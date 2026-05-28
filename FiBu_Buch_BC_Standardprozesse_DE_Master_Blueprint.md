@@ -29,7 +29,9 @@ Hinweis: Dieses Buch ist ein quellenbasiertes Lern-, Schulungs-, Projekt- und Im
 15. Reporting, Admin, Job Queue, Change Log, Datenexport
 16. Schulungskapitel nach Abteilungen
 17. Master-UAT und Abweichungsmatrix
-18. Quellenverzeichnis
+18. Standardgrenzen: Wann BC Standard endet
+19. Ausblick: häufig genutzte Extensions und Einrichtungslogik
+20. Quellenverzeichnis
 
 ---
 
@@ -900,7 +902,253 @@ Kontrollfrage:
 
 ---
 
-## 18. Quellenverzeichnis
+## 18. Standardgrenzen: Wann BC Standard endet [Q1][Q2][Q35]
+
+Dieses Kapitel ist die Entscheidungsstelle zwischen Standard, Prozessdesign, Extension und Programmierung. Business Central deckt viele Geschäftsprozesse im Standard ab. Der Standard endet aber dort, wo ein Unternehmen spezielle Automatisierung, Branchenlogik, rechtliche Zusatzanforderungen, Massendatenlogik oder tiefe externe Integration verlangt.
+
+### 18.1 Vier-Stufen-Modell
+
+| Stufe | Bedeutung | Entscheidung |
+|---|---|---|
+| **1. Standard direkt** | Prozess ist mit Standardseiten, Standardsetup und Standardbelegen abbildbar. | Kein Add-on. Schulung und Einrichtung reichen. |
+| **2. Standard mit Prozessdesign** | Prozess ist möglich, braucht aber klare Rollen, Dimensionen, Workflows, Deferrals oder Evidence Packs. | Kein Code, aber strenges Design. |
+| **3. AppSource/Extension** | Standard kann den Prozess nur mühsam oder nicht kontrollsicher automatisieren. | geprüfte Extension evaluieren. |
+| **4. Individualprogrammierung** | Keine passende Standardfunktion oder Extension; Wettbewerbsvorteil/Branchenspezifik ist hoch. | AL-Extension mit Spezifikation, Tests und Upgrade-Konzept. |
+
+Praxisregel:
+- Erst Standard beweisen, dann Extension prüfen, dann programmieren. Wer sofort programmiert, verliert oft Upgradefähigkeit und Prozessklarheit.
+
+### 18.2 Standardgrenzen je Prozessbereich
+
+| Prozessbereich | Standard reicht typischerweise für | Grenze des Standards | Typische Lösung |
+|---|---|---|---|
+| Sales/O2C | Angebot, Auftrag, Lieferung, Rechnung, Retoure, Dropshipping | hochautomatisierte Preis-/Rabattlogik, komplexe Portalprozesse, Spezial-EDI | Extension oder Integration |
+| Shopify/Onlineshop | Shop-Synchronisation und Auftragsübernahme | Marktplatzmix, Retourenportale, Payment-Reconciliation über viele Provider | Connector/Custom Integration |
+| Purchasing/P2P | Bestellung, WE, Eingangsrechnung, Zahlung | OCR, automatischer 3-Way-Match, Vertragsprüfung, Eingangsarchiv | Document Capture / AP-Automation |
+| E-Rechnung | E-Documents-Grundlogik | Peppol-Netzwerk, lokale Formate, Massenvalidierung, Lieferanten-Onboarding | E-Document Provider / Extension |
+| Inventory | Artikel, Lagerorte, Serien/Chargen, Inventur | mobile Scanner, hochautomatisierte Lagerprozesse, Versanddienstleister | WMS-/Scanner-/Shipping-App |
+| Warehouse | Pick, Put-away, Bins, Receipts, Shipments | Funkterminalprozesse, Wegeoptimierung, Packplätze, Gefahrgut | Extension oder Spezial-WMS |
+| Manufacturing | BOM, Routing, Fertigungsauftrag, Verbrauch, Output | Feinplanung, MES, Betriebsdatenerfassung, Maschinenanbindung | MES/APS/Custom |
+| Projects | Projektaufgaben, Ressourcen, Verbrauch, Faktura | komplexes Vertragsmanagement, Earned Value, Bau-/Anlagenbau-Spezifika | Branchenextension |
+| Service | Serviceartikel, Serviceauftrag, Vertrag | Field-Service-Dispatching, mobile Techniker-App, SLA-Automation | Field-Service-App/Custom |
+| Miete | Rechnung, Deferral, Anlage/Serviceartikel, Dimension | Verfügbarkeitskalender, Mietpark, automatische Verlängerung, Verbrauchsabrechnung | Rental-Extension |
+| Finanzierung | Zahlungsbedingungen, Teilzahlungen, externe Zahlung | Kreditvertrag, Tilgungsplan, Effektivzins, regulatorische Speziallogik | Speziallösung/Custom |
+| Finance/Bank | Journale, Zahlungen, Bankabstimmung | EBICS, Zahlungsavise, erweiterte OP-Verarbeitung, Zahlungsverkehr DACH | OPplus/Banking-Extension |
+| Anlagen | Standardanlagen und AfA | Anlageninventur, Komponentenansatz, besondere DACH-Funktionen | Finance-/FA-Extension |
+| Reporting | Financial Reports, Analyseansichten, Power BI | Management-Konsolidierung, KPI-Cockpits, Data Warehouse | Power BI/Data Platform |
+| Intercompany | IC-Dokumente und Journale | konzernweite IC-Automation, Transferpreise, Multi-ERP | Prozessdesign/Custom |
+
+### 18.3 Entscheidungsmatrix Extension oder Programmierung
+
+| Prüffrage | Wenn Ja | Wenn Nein |
+|---|---|---|
+| Gibt es eine offizielle BC-Standardfunktion? | Standard konfigurieren und schulen. | AppSource prüfen. |
+| Gibt es eine etablierte AppSource-App mit Dokumentation? | Extension evaluieren. | Custom-Konzept prüfen. |
+| Ist der Prozess branchenspezifischer Wettbewerbsvorteil? | Custom kann sinnvoll sein. | Standard/Extension bevorzugen. |
+| Betrifft der Prozess Steuer, Bank, Archiv oder Massendaten? | Upgrade- und Auditfähigkeit besonders prüfen. | schlankes Custom möglich. |
+| Muss der Prozess releasefähig bleiben? | AppSource/Standard bevorzugen. | Custom nur mit Testautomatisierung. |
+
+BC-Best-Practice:
+- Jede Extension bekommt vor Einführung eine `EXT-ID`, Zweckbeschreibung, Prozessowner, Datenobjekte, Testfälle, Rollback-Plan und Upgrade-Verantwortlichen.
+- Jede Individualprogrammierung bekommt zusätzlich technische Spezifikation, Berechtigungsmodell, Event-/Subscriber-Konzept, Telemetrie und Regressionstest.
+
+### 18.4 Schulungsübung Standardgrenze
+
+Fall:
+- Die RM-SERVICE GmbH will Maschinen vermieten. Kunden sollen online Verfügbarkeit sehen, Mietverträge verlängern, Schäden dokumentieren und Verbrauchsstunden abrechnen.
+
+Aufgabe:
+1. Markiere, was im BC-Standard abbildbar ist.
+2. Markiere, was mit Prozessdesign möglich ist.
+3. Markiere, wo eine Rental-Extension oder Custom-Lösung sinnvoll wird.
+
+Lösungsskizze:
+- Standard: Debitor, Artikel/Anlage, Verkaufsrechnung, Deferrals, Dimension `PRODUCTLINE = RENTAL`.
+- Prozessdesign: Mietvertrag als Projekt/Servicefall, Evidence Pack, manuelle Verfügbarkeitsprüfung.
+- Extension/Custom: Online-Verfügbarkeitskalender, automatische Vertragsverlängerung, Schadensworkflow, nutzungsabhängige Abrechnung.
+
+---
+
+## 19. Ausblick: häufig genutzte Extensions und Einrichtungslogik [Q35][Q36][Q37][Q38][Q39][Q40][Q41][Q42]
+
+Dieses Kapitel ist kein Produktkatalog und keine Kaufempfehlung. Es zeigt, welche Extension-Klassen in DACH-Projekten häufig geprüft werden, warum sie helfen und wie sie grundsätzlich in Business Central eingeführt werden. Die konkrete Auswahl hängt von Lizenz, Land, Prozessreife, Datenschutz, GoBD-Anforderung und Partnerkompetenz ab.
+
+### 19.1 AppSource-Grundlogik
+
+Standard laut Quelle:
+- Business Central kann AppSource-Apps über die Seite `Microsoft AppSource Apps` suchen und verwalten. Dort lassen sich Apps nach Name, Publisher, Installationsstatus, Popularität, Bewertung und Änderungsdatum filtern. [Q35]
+
+Einrichtungslogik:
+1. Prozesslücke dokumentieren.
+2. AppSource und Herstellerdokumentation prüfen.
+3. Testcompany verwenden.
+4. Extension installieren.
+5. Assisted Setup oder Setup-Seiten ausführen.
+6. Berechtigungen und Role Center prüfen.
+7. Stammdaten/Mapping konfigurieren.
+8. UAT mit Happy Path und Abweichungen durchführen.
+9. GoBD-/DSGVO-/Archivwirkung dokumentieren.
+10. Produktivsetzung mit Rollback- und Supportpfad freigeben.
+
+### 19.2 Extension-Klassen
+
+| Klasse | Typischer Bedarf | Beispiel-Extensions | Was sie bringen |
+|---|---|---|---|
+| AP Automation / Document Capture | Eingangsrechnungen, OCR, Freigabe, Archiv | Continia Document Capture | Import, OCR, Registrierung, Approval, Order Matching, Archiv |
+| Expense Management | Reisekosten, Belege, Firmenkarten, Genehmigung | Continia Expense Management | mobile Belegerfassung, Expense Reports, Mileage, Per Diem, Approval |
+| Banking / OP-Verarbeitung | Zahlungsverkehr, Bankauszüge, Zahlungsavise | Continia OPplus | Zahlungs-/Bankfunktionen, OP-Komfort, Raten, erweiterte Auswertungen |
+| E-Documents / Peppol | E-Rechnung und Netzwerkanbindung | E-Document Provider, Continia eDocuments | Versand/Empfang strukturierter Dokumente |
+| Anzahlungen | Projekt-/Bau-/Maschinenbau-Anzahlungen | COSMO Advance Payment | Anzahlungsanforderungen, Anzahlungsrechnungen, Schlussrechnung |
+| DATEV/Steuerberater | Übergabe an Kanzlei | DATEV-Extensions, Partnerlösungen | Buchungs-/Belegübergabe, Konten-/Steuerberaterprozess |
+| Shipping / Carrier | Versandlabels, Tracking, Packplatz | Shipping-Apps | Label, Carrier, Tracking, Versandstatus |
+| WMS / Scanner | mobiles Lager, Barcode, Packplatz | Scanner-/WMS-Apps | mobile Datenerfassung, Lagerqualität |
+| Rental / Subscription | Mietpark, wiederkehrende Abrechnung | Rental-/Subscription-Apps | Vertragslogik, Verfügbarkeit, Verlängerung |
+| Reporting / BI | Management Reporting, Data Warehouse | Power BI/Data-Apps | KPIs, Dashboards, Datenmodell |
+
+### 19.3 Continia Document Capture (Klasse: AP Automation) [Q36][Q37]
+
+Use Case:
+- Die RM-SHARED GmbH verarbeitet monatlich `2.500` Eingangsrechnungen. BC Standard kann Purchase Invoices und Incoming Documents verarbeiten. Die Grenze liegt bei OCR, automatischem Abgleich, Genehmigungsrouting und revisionsnaher Dokumentenverarbeitung in Masse.
+
+Nutzen:
+- Import und OCR-Verarbeitung von Eingangsrechnungen.
+- Registrierung und Weiterleitung in Genehmigungsflüsse.
+- Order Matching gegen Bestellungen und Wareneingänge.
+- Archivierung und Nachvollziehbarkeit des Rechnungsprozesses.
+
+Einrichtungslogik:
+1. App in Testcompany installieren.
+2. Assisted Setup starten.
+3. Kreditoren, Templates, Dokumentkategorien und Freigaben konfigurieren.
+4. Purchase Order Matching testen.
+5. E-Rechnung/XML und PDF-Verarbeitung testen.
+6. Evidence Pack und Archivzugriff dokumentieren.
+
+BC-Best-Practice:
+- Document Capture ersetzt nicht den fachlichen P2P-Prozess. Es automatisiert Eingang, Erkennung, Matching, Approval und Archivierung. Der fachliche 3-Way-Match bleibt Prozesspflicht.
+
+### 19.4 Continia Expense Management (Klasse: Travel & Expense) [Q38][Q39]
+
+Use Case:
+- Servicetechniker und Projektleiter reichen Hotel, Fahrtkosten, Bewirtung und Kilometer ein. BC Standard kann Sachkonten und Kreditoren buchen, bildet aber mobile Belegerfassung, Genehmigung und Firmenkartenabgleich nicht komfortabel vollständig ab.
+
+Nutzen:
+- Mobile Belegerfassung.
+- Expense Reports, Kilometer und Pauschalen.
+- Genehmigungsflows.
+- Buchung auf Sachkonten, Dimensionen und ggf. Projekte.
+
+Einrichtungslogik:
+1. App installieren und aktivieren.
+2. Expense User, Genehmiger und Dimensionen einrichten.
+3. Ausgabenkategorien auf Sachkonten mappen.
+4. Firmenkartenimport testen.
+5. Projekt- und Service-Dimensionen prüfen.
+
+Schulungsfall:
+- Techniker bucht Hotel `180 EUR`, Kilometer `220 km`, Parken `18 EUR`. Manager genehmigt. Finance prüft Buchung auf Projekt `PROJ-5001`.
+
+### 19.5 Continia OPplus (Klasse: Banking/Payments/Finance) [Q40][Q41]
+
+Use Case:
+- Die RM-SALES GmbH hat viele Zahlungseingänge, Zahlungsavise, Ratenzahlungen und Bankdateien. BC Standard kann Zahlungen und Bankabstimmung verarbeiten. Die Grenze liegt bei DACH-Komfort, Massenzahlungen, erweiterten OP-Funktionen und Spezialfällen.
+
+Nutzen:
+- Unterstützung wichtiger Finanzbuchhaltungsaufgaben.
+- Komfort bei eingehenden und ausgehenden Zahlungen.
+- Module wie Multiple Payments, Installments, Extended Fixed Assets und Extended Analysis laut Herstellerdokumentation.
+
+Einrichtungslogik:
+1. OPplus aktivieren.
+2. Module auswählen.
+3. Bank- und Zahlungsparameter konfigurieren.
+4. Berechtigungen setzen.
+5. Zahlungsimport, Avis und Ratenfall testen.
+
+Best Practice:
+- OPplus nicht als „mehr Finance“ einführen, sondern für konkrete Schmerzpunkte: Zahlungsavise, Massenausgleich, Raten, Bankformate, OP-Transparenz.
+
+### 19.6 COSMO Advance Payment (Klasse: Anzahlungen) [Q42]
+
+Use Case:
+- Maschinenbau und Projektgeschäft verlangen Anzahlungen: `30 %` bei Auftrag, `40 %` bei Meilenstein, `30 %` bei Abnahme. BC Standard kennt Vorauszahlungen, aber komplexe Anzahlungslogik in Bau-/Projekt-/Maschinenbauprozessen kann mehr Struktur brauchen.
+
+Nutzen:
+- strukturierte Anzahlungsprozesse.
+- bessere Abbildung von Anzahlungsanforderungen und Schlussrechnungen.
+- Unterstützung projekt- oder auftragsnaher Anzahlungslogik.
+
+Einrichtungslogik:
+1. AppSource/Herstellerinstallation prüfen.
+2. Anzahlungsarten definieren.
+3. Konten und Steuerlogik mappen.
+4. Verkaufsauftrag mit Anzahlungsplan testen.
+5. Schlussrechnung und USt-Abstimmung prüfen.
+
+Prüfungsfalle:
+- Anzahlungslogik ist steuerlich sensibel. Extension-Komfort ersetzt nicht die Prüfung von Steuerentstehung, Rechnungstext, USt-Ausweis und Schlussrechnungslogik.
+
+### 19.7 DATEV-/Steuerberater-Übergabe (Klasse: DACH Accounting)
+
+Use Case:
+- Die RM-SHARED GmbH will Monatsdaten, Belege und Buchungen an den Steuerberater übergeben. BC Standard kann Daten exportieren und Reports liefern. DACH-Projekte verlangen häufig standardisierte Kanzleiübergaben, Kontenmapping und Belegverknüpfung.
+
+Nutzen:
+- strukturierter Export.
+- weniger manuelle Überleitung.
+- bessere Abstimmung mit Steuerberaterprozessen.
+
+Einrichtungslogik:
+1. Zielprozess klären: Buchungsstapel, Belegbilder, Stammdaten, Salden oder vollständige Prüfungsexporte?
+2. Kontenrahmen und Steuerkennzeichen mappen.
+3. Testmonat exportieren.
+4. Import beim Steuerberater validieren.
+5. Fehlerliste und Monatsroutine dokumentieren.
+
+Hinweis:
+- Konkrete DATEV-Lösung und Hersteller hängen stark von Partner, Land, Kontenrahmen und Prozess ab. Deshalb wird im Buch nur die Prozessklasse beschrieben und nicht eine einzelne Lösung als Standard gesetzt.
+
+### 19.8 Wann Individualprogrammierung sinnvoll ist
+
+Individualprogrammierung ist sinnvoll, wenn mindestens einer dieser Punkte erfüllt ist:
+
+| Kriterium | Beispiel |
+|---|---|
+| kein passender Standard und keine passende Extension | Spezialmietpark mit IoT-Verbrauchsdaten |
+| Wettbewerbsvorteil | eigener Konfigurator für Sondermaschinen |
+| tiefe Integration | Maschinen-/MES-Daten in Fertigungsrückmeldung |
+| klare stabile Regel | automatischer TaxScenario-Validator |
+| hoher Volumenprozess | Massenerzeugung projektspezifischer Serviceaufträge |
+
+Mindestanforderungen:
+- Fachkonzept.
+- Datenmodell.
+- Berechtigungskonzept.
+- Testfälle.
+- Upgrade-Konzept.
+- Telemetrie und Fehlerlogging.
+- Dokumentation im Evidence Pack.
+
+### 19.9 Schulungsübung Extension-Auswahl
+
+Fall:
+- Die RM-SHARED GmbH hat `2.500` Eingangsrechnungen pro Monat, `180` Reisekostenabrechnungen, `4` Banken, viele Zahlungsavise und Maschinenbau-Anzahlungen.
+
+Aufgabe:
+1. Ordne jeden Schmerzpunkt einer Extension-Klasse zu.
+2. Entscheide, ob Standard, Extension oder Custom die Startlösung ist.
+3. Definiere je Klasse einen UAT-Test.
+
+Lösungsskizze:
+- Eingangsrechnungen: Document Capture/AP Automation.
+- Reisekosten: Expense Management.
+- Banken/Zahlungsavise: OPplus/Banking.
+- Anzahlungen: COSMO Advance Payment oder Standard-Vorauszahlung plus Prozessdesign.
+- Custom nur, wenn die Extension den spezifischen Prozess nicht abdeckt.
+
+---
+
+## 20. Quellenverzeichnis
 
 - [Q1] Microsoft Learn: Business Central documentation: https://learn.microsoft.com/en-us/dynamics365/business-central/
 - [Q2] Microsoft Learn: Business functionality supported by Business Central: https://learn.microsoft.com/en-us/dynamics365/business-central/across-business-functionality
@@ -936,3 +1184,11 @@ Kontrollfrage:
 - [Q32] Microsoft Learn: Job queue: https://learn.microsoft.com/en-us/dynamics365/business-central/admin-job-queues-schedule-tasks
 - [Q33] Microsoft Learn: Analyze data in Business Central: https://learn.microsoft.com/en-us/dynamics365/business-central/analysis-mode
 - [Q34] Microsoft Learn: Business Central APIs and web services: https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/webservices/web-services
+- [Q35] Microsoft Learn: Manage AppSource apps: https://learn.microsoft.com/en-gb/dynamics365/business-central/admin-manage-appsource-apps
+- [Q36] Continia Docs: Document Capture business functionality: https://docs.continia.com/en-us/continia-document-capture/getting-started/business-functionality
+- [Q37] Continia Docs: Getting started with Document Capture: https://docs.continia.com/en-us/continia-document-capture/getting-started/overview
+- [Q38] Continia Docs: Getting started with Expense Management: https://docs.continia.com/en-us/continia-expense-management/getting-started/overview
+- [Q39] Continia Docs: Expense Management overview: https://docs.continia.com/en-us/continia-expense-management/
+- [Q40] Continia Docs: Continia OPplus overview: https://docs.continia.com/en-us/continia-opplus
+- [Q41] Continia Docs: Overview of setting up OPplus: https://docs.continia.com/en-us/continia-opplus/setting-up-opplus/overview-of-setting-up-opplus/
+- [Q42] COSMO Docs: COSMO Advance Payment installation: https://docs.cosmoconsult.com/en-us/business-central/project-manufacturing-pack/getting-started/install-reg-apt/install-apt.html

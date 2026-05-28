@@ -75,7 +75,7 @@ Zweck: Prüfungsvorbereitung (IHK), ERP-Implementierungsleitfaden (Microsoft Dyn
 | `FiBu_Buch_BC_Blueprint_E2E_Prozesse.md` | ~650 | Business Central E2E-Prozess-Blueprints |
 | `FiBu_Buch_BC_Einfuehrung_Schweiz_Separate_Firma_USt_DE-CH.md` | ~2.152 | BC-Einführung Schweiz, DE/CH-Steuerkomplexität |
 | `FiBu_Buch_BC_Extensions_Prozesse.md` | ~2.631 | BC Finance-Prozesse mit DACH-Extensions (Continia, OPplus, DATEV etc.) |
-| `FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md` | ~940 | BC-Standardprozesse Deutschland, Musterkonzern, Rollen, Trainingsdaten, E2E-Abweichungen, Quellen |
+| `FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md` | ~1.195 | BC-Standardprozesse Deutschland, Musterkonzern, Rollen, Trainingsdaten, Standardgrenzen, Extension-Ausblick, Quellen |
 
 ---
 
@@ -110,6 +110,8 @@ Zweck: Prüfungsvorbereitung (IHK), ERP-Implementierungsleitfaden (Microsoft Dyn
 - Musterkonzern Rhein-Main Industriegruppe als durchgängiger roter Faden
 - Rollen, Bedienhandlungen, Trainingsdaten und Schulungen je Abteilung
 - Standardpfade und Abweichungen: Foundation, O2C, P2P, Lager/Warehouse, Fertigung, Service, Projekte, Bank, Anlagen, VAT/USt, R2R, Reporting/Admin
+- Standardgrenzen: wann BC Standard reicht, wann Extension/AppSource sinnvoll ist, wann Individualprogrammierung erforderlich wird
+- Ausblick auf häufig genutzte DACH-/BC-Extensions: AP Automation, Expense, Banking/OP, E-Documents, Anzahlungen, DATEV, WMS/Shipping, Rental/Reporting
 - Primärquellen: Microsoft Learn, UStG, AO, BMF, BZSt
 
 ---
