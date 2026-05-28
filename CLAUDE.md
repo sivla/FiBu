@@ -75,6 +75,7 @@ Zweck: Prüfungsvorbereitung (IHK), ERP-Implementierungsleitfaden (Microsoft Dyn
 | `FiBu_Buch_BC_Blueprint_E2E_Prozesse.md` | ~650 | Business Central E2E-Prozess-Blueprints |
 | `FiBu_Buch_BC_Einfuehrung_Schweiz_Separate_Firma_USt_DE-CH.md` | ~2.152 | BC-Einführung Schweiz, DE/CH-Steuerkomplexität |
 | `FiBu_Buch_BC_Extensions_Prozesse.md` | ~2.631 | BC Finance-Prozesse mit DACH-Extensions (Continia, OPplus, DATEV etc.) |
+| `FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md` | ~600 | BC-Standardprozesse Deutschland, Musterfirma, E2E-Abweichungen, Quellen |
 
 ---
 
@@ -103,6 +104,12 @@ Zweck: Prüfungsvorbereitung (IHK), ERP-Implementierungsleitfaden (Microsoft Dyn
 - Extensions: Continia (Banking, Document Capture, Expense), COSMO, OPplus, DATEV, Integro MDMS
 - Audit-feste E2E-Prozessketten
 - Verfahrensdokumentation, Z3-Konzept, E-Rechnung
+
+### 5. BC Standardprozesse Deutschland (FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md)
+- End-to-End-Master-Blueprint aller relevanten BC-Standardprozesse im deutschen Kontext
+- Musterfirma Rhein-Main Maschinenbau & Service GmbH als durchgängiger roter Faden
+- Standardpfade und Abweichungen: O2C, P2P, Lager, Fertigung, Service, Projekte, Bank, Anlagen, VAT/USt, R2R
+- Primärquellen: Microsoft Learn, UStG, AO, BMF, BZSt
 
 ---
 

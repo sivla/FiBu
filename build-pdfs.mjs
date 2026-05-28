@@ -4,11 +4,12 @@
 // ═══════════════════════════════════════════════════════════════════════
 //
 // Verwendung:
-//   npm run build           → Alle 4 Bücher als PDF erzeugen
+//   npm run build           → Alle 5 Bücher als PDF erzeugen
 //   npm run build:book1     → Nur Buch 1 (IHK Bilanzbuchhalter)
 //   npm run build:book2     → Nur Buch 2 (BC E2E-Blueprints)
 //   npm run build:book3     → Nur Buch 3 (BC Schweiz DE/CH)
 //   npm run build:book4     → Nur Buch 4 (BC Extensions DACH)
+//   npm run build:book5     → Nur Buch 5 (BC Standardprozesse DE)
 //
 // Voraussetzungen:
 //   npm install             → Installiert marked + puppeteer (inkl. Chromium)
@@ -48,6 +49,11 @@ const BOOKS = [
     file: 'FiBu_Buch_BC_Extensions_Prozesse.md',
     title: 'FiBu-Buch 4: BC Extensions DACH',
     subtitle: 'GoBD-konforme Finance-Prozesse mit Continia, OPplus, DATEV',
+  },
+  {
+    file: 'FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md',
+    title: 'FiBu-Buch 5: BC Standardprozesse DE',
+    subtitle: 'End-to-End-Master-Blueprint mit Musterfirma, Abweichungen und Quellen',
   },
 ];
 
