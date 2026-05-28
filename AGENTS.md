@@ -57,7 +57,7 @@ Werden in VS Code (Erweiterung „Markdown Preview Mermaid Support"), Obsidian, 
 
 ## Was ist dieses Projekt?
 
-Dieses Verzeichnis enthält eine **fachliche Wissenssammlung zur Finanzbuchhaltung (FiBu)**, bestehend aus vier umfangreichen Markdown-Dokumenten. Es handelt sich um kein Softwareprojekt – es gibt keinen Code, keine Dependencies, kein Build-System.
+Dieses Verzeichnis enthält eine **fachliche Wissenssammlung zur Finanzbuchhaltung (FiBu)**, bestehend aus fünf umfangreichen Markdown-Dokumenten. Es handelt sich um ein fachliches Buchprojekt mit Markdown-Quellen und PDF-Build-Pipeline.
 
 Zweck: Prüfungsvorbereitung (IHK), ERP-Implementierungsleitfaden (Microsoft Dynamics 365 Business Central), Compliance-Dokumentation (GoBD) und Mehrländer-Steuerberatung (DE/CH).
 
@@ -75,7 +75,7 @@ Zweck: Prüfungsvorbereitung (IHK), ERP-Implementierungsleitfaden (Microsoft Dyn
 | `FiBu_Buch_BC_Blueprint_E2E_Prozesse.md` | ~650 | Business Central E2E-Prozess-Blueprints |
 | `FiBu_Buch_BC_Einfuehrung_Schweiz_Separate_Firma_USt_DE-CH.md` | ~2.152 | BC-Einführung Schweiz, DE/CH-Steuerkomplexität |
 | `FiBu_Buch_BC_Extensions_Prozesse.md` | ~2.631 | BC Finance-Prozesse mit DACH-Extensions (Continia, OPplus, DATEV etc.) |
-| `FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md` | ~1.195 | BC-Standardprozesse Deutschland, Musterkonzern, Rollen, Trainingsdaten, Standardgrenzen, Extension-Ausblick, Quellen |
+| `FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md` | ~1.537 | BC-Standardprozesse Deutschland, Musterkonzern, Rollen, Trainingsdaten, Preise, Controlling/GuV, Onboarding, Standardgrenzen, Extension-Ausblick, Quellen |
 
 ---
 
@@ -110,6 +110,9 @@ Zweck: Prüfungsvorbereitung (IHK), ERP-Implementierungsleitfaden (Microsoft Dyn
 - Musterkonzern Rhein-Main Industriegruppe als durchgängiger roter Faden
 - Rollen, Bedienhandlungen, Trainingsdaten und Schulungen je Abteilung
 - Standardpfade und Abweichungen: Foundation, O2C, P2P, Lager/Warehouse, Fertigung, Service, Projekte, Bank, Anlagen, VAT/USt, R2R, Reporting/Admin
+- Einkaufspreise, Verkaufspreise, Rabatte, Margenlogik und Preislisten mit Einsteigererklärungen
+- Controller-Berichte, GuV, Financial Reports, Dimensionen, Kostenstellenlogik und Management-Auswertungen
+- Einsteiger-Onboarding: Tell Me, Profile, Berechtigungen, Personalisierung, Stolpersteine, Diagnose und Korrekturpfade
 - Standardgrenzen: wann BC Standard reicht, wann Extension/AppSource sinnvoll ist, wann Individualprogrammierung erforderlich wird
 - Ausblick auf häufig genutzte DACH-/BC-Extensions: AP Automation, Expense, Banking/OP, E-Documents, Anzahlungen, DATEV, WMS/Shipping, Rental/Reporting
 - Primärquellen: Microsoft Learn, UStG, AO, BMF, BZSt

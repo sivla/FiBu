@@ -31,7 +31,10 @@ Hinweis: Dieses Buch ist ein quellenbasiertes Lern-, Schulungs-, Projekt- und Im
 17. Master-UAT und Abweichungsmatrix
 18. Standardgrenzen: Wann BC Standard endet
 19. Ausblick: häufig genutzte Extensions und Einrichtungslogik
-20. Quellenverzeichnis
+20. Einkaufspreise, Verkaufspreise, Rabatte und Margensteuerung
+21. Controlling, GuV, Financial Reports und Management-Auswertungen
+22. Einsteiger-Onboarding: Finden, Bedienen, Fehler vermeiden und korrigieren
+23. Quellenverzeichnis
 
 ---
 
@@ -1148,7 +1151,333 @@ Lösungsskizze:
 
 ---
 
-## 20. Quellenverzeichnis
+## 20. Einkaufspreise, Verkaufspreise, Rabatte und Margensteuerung [Q43][Q44][Q45][Q46][Q47]
+
+Preise sind in Business Central keine Nebensache. Sie entscheiden über Marge, Bewertung, Rabattspielraum, Einkaufskonditionen und Controlling-Aussagen. Ein Einsteiger muss zuerst verstehen: Einkaufspreis ist nicht Verkaufspreis, Einstandskosten sind nicht automatisch Lagerwert, und Rabatt ist nicht dasselbe wie Skonto.
+
+### 20.1 Grundbegriffe in 60 Sekunden
+
+| Begriff | Einsteiger-Erklärung | BC-Bezug |
+|---|---|---|
+| Einkaufspreis | Was das Unternehmen für einen Artikel oder eine Leistung bezahlt. | Purchase Price Lists, Vendor, Item |
+| Einstandskosten | Einkaufspreis plus direkt zurechenbare Nebenkosten, soweit im Prozess abgebildet. | Item Cost, Value Entries, Item Charges |
+| Verkaufspreis | Was der Kunde zahlen soll. | Sales Price Lists, Item Unit Price |
+| Rabatt | Preisnachlass auf Zeilen- oder Rechnungsebene. | Line Discount, Invoice Discount |
+| Skonto | Zahlungsnachlass bei schneller Zahlung. | Payment Terms, Payment Discount |
+| Marge | Verkaufserlös minus Kosten. | Sales Analysis, Financial Reports, Dimensions |
+
+Praxisregel:
+- Preise werden vor der Belegerfassung eingerichtet. Manuelle Preisänderungen im Auftrag sind Ausnahmen und müssen fachlich begründet sein.
+
+### 20.2 Standard laut Quelle
+
+Business Central unterstützt Preis- und Rabattlisten für Einkauf und Verkauf. Preis- und Rabattstrategien werden vor der Belegerfassung auf den Setup-Seiten und Preislistenseiten definiert. Bei Belegen zieht BC passende Preise und Rabatte heran, wenn Kriterien wie Kunde, Kundengruppe, Kreditor, Artikel, Menge und Datum erfüllt sind. [Q43][Q44][Q45][Q46]
+
+Microsoft Learn beschreibt außerdem, dass Business Central bei besonderen Einkaufs- und Verkaufspreisen die beste zulässige Preis-/Rabattkombination berechnet. Für den Einkauf ist der beste Preis der niedrigste zulässige Preis mit dem höchsten zulässigen Zeilenrabatt am relevanten Datum. [Q46]
+
+### 20.3 Verkaufspreise einrichten
+
+Use Case:
+- Die RM-SALES GmbH verkauft Ersatzteile an B2B-Kunden, B2C-Onlineshop-Kunden und Intercompany-Kunden. Diese Gruppen brauchen unterschiedliche Preise.
+
+| Preislogik | Beispiel | BC-Einrichtung |
+|---|---|---|
+| Standardpreis | `SP-PUMP-01` kostet regulär `320 EUR` | `Item Card` → `Unit Price` |
+| Kundengruppe B2B | B2B-Kunden zahlen `295 EUR` | `Customer Price Groups` / Sales Price List |
+| Einzelkunde | D10000 zahlt `285 EUR` ab 10 Stück | Sales Price List für Kunden |
+| Zeitraumpreis | Aktion im Juni `2026` | Start-/Enddatum in Preislinie |
+| Mengenstaffel | ab 20 Stück `270 EUR` | Minimum Quantity in Preislinie |
+| Shoppreis | B2C `349 EUR` brutto/steuerabhängig | eigene Preisgruppe/Shop-Logik |
+
+Mitarbeiterbedienung:
+1. Vertriebsleitung: Tell Me → `Sales Price Lists`.
+2. Neue Liste `VK-B2B-2026` erstellen.
+3. `Price Type = Sale`, Status zunächst `Draft`.
+4. Zeilen für `SP-PUMP-01`, `SP-SENSOR-02`, `KIT-MAINT` erfassen.
+5. Startdatum `01.06.2026` setzen.
+6. Preise fachlich prüfen.
+7. Status auf `Active` setzen.
+8. Testauftrag für D10000 erfassen und Preis prüfen.
+
+BC-Best-Practice:
+- Keine produktiven Preislisten ohne Gültigkeitsdatum.
+- Keine Preisänderung ohne Verantwortlichen, Ticket oder Freigabe.
+- Onlineshop-, B2B- und Intercompany-Preise getrennt führen.
+- Preislisten erst in Testcompany prüfen, dann produktiv aktivieren.
+
+### 20.4 Einkaufspreise einrichten
+
+Use Case:
+- Die RM-PROD GmbH kauft `RAW-STEEL` bei `K10000`. Der Standardpreis beträgt `2.500 EUR`, ab 20 Stück `2.350 EUR`.
+
+Mitarbeiterbedienung:
+1. Einkäufer: Tell Me → `Vendors`.
+2. Kreditor `K10000` öffnen.
+3. Aktion `Prices` oder `Purchase Price Lists` wählen.
+4. Neue Einkaufspreisliste `EK-STAHL-2026` anlegen.
+5. Zeile `RAW-STEEL`, Mindestmenge `1`, Preis `2.500 EUR`.
+6. zweite Zeile `RAW-STEEL`, Mindestmenge `20`, Preis `2.350 EUR`.
+7. Status `Active`.
+8. Testbestellung über 10 und 20 Stück erfassen.
+
+Kontrollpunkte:
+- Preis gültig für richtigen Kreditor?
+- Währung richtig?
+- Einheit richtig?
+- Mindestmenge richtig?
+- Datum richtig?
+- Rabatt zusätzlich oder bereits im Preis enthalten?
+
+### 20.5 Margensteuerung
+
+Zahlenbeispiel:
+
+| Artikel | Einkaufskosten | Verkaufspreis | Rohertrag | Rohertragsquote |
+|---|---:|---:|---:|---:|
+| `SP-PUMP-01` | 180 | 320 | 140 | 43,75 % |
+| `SP-SENSOR-02` | 75 | 149 | 74 | 49,66 % |
+| `KIT-MAINT` | 240 | 450 | 210 | 46,67 % |
+
+Rechnung:
+- Rohertrag = Verkaufspreis - Einkaufskosten.
+- Rohertragsquote = Rohertrag / Verkaufspreis.
+
+BC-Best-Practice:
+- Marge nicht nur im Verkaufsauftrag prüfen. Der Controller prüft sie nach Buchung über Erlöse, COGS (Cost of Goods Sold (Wareneinsatz)) und Dimensionen.
+- Für Schulungen wird Dimension `PRODUCTLINE` zwingend gesetzt. Sonst kann der Controller nicht sehen, ob Maschinen, Ersatzteile, Service oder Mietmodell profitabel sind.
+
+### 20.6 Stolpersteine und Korrekturen
+
+| Fehler | Woran erkennt man ihn? | Ursache | Korrektur |
+|---|---|---|---|
+| falscher Verkaufspreis im Auftrag | Zeile zieht unerwarteten Preis | falsche Preisgruppe oder Datum | Preislistenzeile prüfen, Auftrag aktualisieren oder neu erfassen |
+| Einkaufspreis zieht nicht | Bestellzeile zeigt alten Preis | Preislistestatus nicht `Active` | Preislistestatus aktivieren, Belegzeile neu validieren |
+| Marge negativ | Verkaufspreis kleiner Kosten | falsche Kosten, Rabatt, falsche Einheit | Item Cost, Preis, Einheit und Rabatt prüfen |
+| Rabatt doppelt | Zeilenrabatt und Rechnung rabattiert | Rabattlogik nicht getrennt | Rabattmatrix dokumentieren |
+| Einheit falsch | Preis wirkt um Faktor falsch | Stück/Karton/Palette verwechselt | Unit of Measure prüfen |
+| Shoppreis anders als BC | Webshop und BC nicht synchron | Preisquelle unklar | führendes System definieren |
+| Intercompany-Marge falsch | IC-Verkauf zeigt falschen Erlös | IC-Preis nicht gepflegt | IC-Preisliste einrichten |
+
+Prüfungsfalle:
+- Ein Preisfehler ist selten nur ein Vertriebsproblem. Er kann Umsatz, USt, Marge, Provision, Lagerbewertung und Kundenzufriedenheit gleichzeitig treffen.
+
+Schulungsübung:
+1. Lege `VK-B2B-2026` für `SP-PUMP-01` mit `295 EUR` an.
+2. Lege für D10000 ab 10 Stück `285 EUR` an.
+3. Erstelle Auftrag mit 1 Stück und 10 Stück.
+4. Erkläre, warum BC unterschiedliche Preise zieht.
+5. Prüfe den Rohertrag gegen Einkaufskosten `180 EUR`.
+
+---
+
+## 21. Controlling, GuV, Financial Reports und Management-Auswertungen [Q48][Q49][Q50][Q51]
+
+Controlling in Business Central beginnt nicht mit einem Bericht. Es beginnt mit richtigem Setup: Kontenplan, Kontenkategorien, Dimensionen, Buchungsgruppen und saubere Belegprozesse. Ein Financial Report ist nur so gut wie die Buchungen, die er auswertet.
+
+### 21.1 Einsteigerbild: Was will ein Controller sehen?
+
+| Frage | Bericht/Analyse | Benötigte Datenqualität |
+|---|---|---|
+| Verdienen wir Geld? | GuV / Income Statement | Erlöse und Aufwände richtig gebucht |
+| Welche Produktlinie verdient Geld? | GuV nach `PRODUCTLINE` | Dimension auf jeder Buchung |
+| Welcher Standort ist teuer? | Kosten nach `LOCATION-GROUP` | Lager-/Standortdimension |
+| Wie entwickelt sich Marge? | Erlöse minus Wareneinsatz | Artikelkosten und COGS stimmen |
+| Welche Kunden zahlen spät? | Debitorenfälligkeit | OP-Ausgleich sauber |
+| Wie hoch ist Liquidität? | Cash Flow / Bankberichte | Bankabstimmung und Zahlungsbedingungen |
+| Welche Projekte laufen aus dem Ruder? | Project Ledger / WIP | Projektverbrauch vollständig |
+
+### 21.2 Standard laut Quelle
+
+Microsoft Learn beschreibt Financial Reports als Funktion, um Finanzdaten aus dem Kontenplan zu analysieren, Hauptbucheinträge mit Budgeteinträgen zu vergleichen und Berichte wie Income Statement und Balance Sheet zu nutzen oder anzupassen. Financial Reports können Dimensionen nutzen und ohne Entwickler erstellt werden. [Q48]
+
+Dimensionen kategorisieren Einträge, damit sie für Analysezwecke gruppiert werden können. Microsoft nennt als Beispiele Abteilung, Projekt, Region, Verkäufer oder Kundengruppe. [Q49]
+
+### 21.3 GuV sinnvoll einrichten
+
+Use Case:
+- Die RM-Gruppe will monatlich eine GuV nach Produktlinie und Abteilung sehen: Maschinen, Ersatzteile, Service, Projekte, Miete.
+
+Einrichtungslogik:
+1. Kontenplan prüfen: Erlöse, Wareneinsatz, Personal, Fremdleistungen, Lagerabweichungen, Servicekosten, Projektkosten.
+2. G/L Account Categories pflegen.
+3. Dimensionen definieren: `DEPARTMENT`, `PRODUCTLINE`, `CHANNEL`, `LOCATION-GROUP`.
+4. Pflichtdimensionen auf Debitoren, Artikel, Ressourcen, Projekte und Sachkonten setzen.
+5. Financial Report `RM-GUV-MONAT` anlegen.
+6. Zeilenstruktur definieren: Umsatzerlöse, Wareneinsatz, Rohertrag, operative Kosten, EBITDA-nahe Kennzahl.
+7. Spaltenstruktur definieren: Ist Monat, Ist kumuliert, Budget, Abweichung absolut, Abweichung %.
+8. Filter nach Dimension testen.
+9. Bericht für Controller-Rolle bookmarken.
+
+Beispiel-GuV:
+
+| Zeile | Formel/Quelle | März 2026 |
+|---|---|---:|
+| Umsatzerlöse Maschinen | Erlöskonten `MACHINE` | 340.000 |
+| Umsatzerlöse Ersatzteile | Erlöskonten `SPARE` | 85.000 |
+| Serviceerlöse | Erlöskonten `SERVICE` | 42.000 |
+| Wareneinsatz | COGS-Konten | -210.000 |
+| Rohertrag | Umsatzerlöse + Wareneinsatz | 257.000 |
+| Personal/Fremdleistung | Aufwandskonten | -96.000 |
+| Sonstige Kosten | Aufwandskonten | -48.000 |
+| Ergebnis vor Abschreibung | Zwischensumme | 113.000 |
+
+### 21.4 Berichte für Controller
+
+| Bericht | Zweck | Tell Me / Seite |
+|---|---|---|
+| GuV Monat | Ergebnis je Monat | `Financial Reports` |
+| Bilanz | Vermögens-/Kapitalstruktur | `Financial Reports` |
+| Cash Flow | Liquiditätsblick | `Cash Flow Forecast` |
+| Debitorenfälligkeit | Zahlungsverzug | `Aged Accounts Receivable` |
+| Kreditorenfälligkeit | Zahlungsplanung | `Aged Accounts Payable` |
+| Lagerbewertung | Bestand und Wert | `Inventory Valuation` |
+| Dimensionsdetail | Analyse nach Dimensionen | `Dimensions - Detail` |
+| Projektbericht | Budget/Ist/Unbilled | `Projects`, Project Reports |
+| Produktionsabweichung | Kostenabweichungen | `Production Order Statistics` |
+
+BC-Best-Practice:
+- Controller bekommen ein eigenes Rollenprofil mit gebookmarkten Seiten: `Financial Reports`, `G/L Entries`, `Analysis Views`, `Dimensions`, `Inventory Valuation`, `Customer Ledger Entries`, `Vendor Ledger Entries`, `Projects`.
+- Controller dürfen analysieren, aber nicht jedes Setup ändern. Setup-Änderungen an Konten, Dimensionen und Reports erfolgen kontrolliert.
+
+### 21.5 Stolpersteine und Korrekturen
+
+| Fehler | Symptom | Ursache | Korrektur |
+|---|---|---|---|
+| GuV stimmt nicht | Erlöse fehlen | falsches Erlöskonto in Posting Setup | General Posting Setup prüfen, Korrekturbuchung |
+| Produktlinienbericht leer | Dimension fehlt | Pflichtdimension nicht gesetzt | Dimension korrigieren, Analysis View aktualisieren |
+| Marge falsch | Wareneinsatz fehlt/spät | Lagerkosten nicht fakturiert oder Adjust Cost offen | Kostenregulierung prüfen |
+| Budgetvergleich unsinnig | Budget auf anderer Dimension | Budgetdimensionen passen nicht | Budgetstruktur angleichen |
+| Bericht nicht auffindbar | Controller findet Seite nicht | kein Bookmark/Rollenprofil | Seite bookmarken, Profile anpassen |
+| falsche Periodenzahlen | Buchungen in falschem Datum | Posting Date/Document Date verwechselt | Periodenfilter und Buchungsdatum prüfen |
+| Analyseansicht alt | Zahlen fehlen | Analysis View nicht aktualisiert | Analysis View Update ausführen |
+
+Prüfungstipp:
+- Bei jeder GuV-Abweichung zuerst klären: Ist die Buchung falsch, die Dimension falsch, der Zeitraum falsch oder der Bericht falsch?
+
+Schulungsübung:
+1. Erstelle Financial Report `RM-GUV-MONAT`.
+2. Filtere auf `PRODUCTLINE = SPARE`.
+3. Vergleiche März `2026` mit Budget.
+4. Finde eine Buchung ohne Dimension und beschreibe die Korrektur.
+
+---
+
+## 22. Einsteiger-Onboarding: Finden, Bedienen, Fehler vermeiden und korrigieren [Q52][Q53][Q54][Q55]
+
+Dieses Kapitel ist für Mitarbeiter gedacht, die noch nie mit ERP gearbeitet haben. Der wichtigste Satz lautet: Business Central speichert nicht „irgendeinen Bildschirm“, sondern Geschäftsvorfälle. Jede Eingabe kann Belege, Posten, Berichte und Rechte beeinflussen.
+
+### 22.1 Was ist ERP?
+
+Ein ERP-System (Enterprise Resource Planning (Unternehmensressourcenplanung)) verbindet Abteilungen. Verkauf, Einkauf, Lager, Fertigung, Service und Buchhaltung arbeiten auf denselben Daten. Wenn der Einkauf eine Bestellung bucht, sieht das Lager den Wareneingang. Wenn der Vertrieb eine Rechnung bucht, sieht die Buchhaltung eine Forderung. Wenn das Lager Ware verkauft, sieht das Controlling den Wareneinsatz.
+
+Merksatz:
+- In BC ist eine Eingabe selten nur lokal. Sie kann Folgeprozesse auslösen.
+
+### 22.2 Wie finde ich Dinge in Business Central?
+
+Standard laut Quelle:
+- Business Central hat die Suche `Tell Me`, die über `Alt+Q` oder das Suchsymbol erreichbar ist. Darüber lassen sich Seiten und Informationen finden. [Q52]
+- Nutzer können Seiten bookmarken und ihren Arbeitsbereich personalisieren. Personalisierung betrifft den eigenen Arbeitsbereich; Profilanpassungen durch Administratoren betreffen Rollen/Profile. [Q53][Q54]
+
+Bedienlogik:
+
+| Ziel | So findet man es | Beispiel |
+|---|---|---|
+| Seite öffnen | `Alt+Q` → Suchbegriff | `Sales Orders` |
+| eigene Favoriten setzen | Bookmark-Symbol | Sales Orders ins Role Center |
+| Spalte anzeigen | Personalisieren | `Location Code` sichtbar machen |
+| Rollenlayout für alle ändern | `Profiles (Roles)` | Controller-Rolle anpassen |
+| Listen eingrenzen | Filter | Debitor D10000, März 2026 |
+| Hilfetext nutzen | Feldhilfe/Tooltip | Bedeutung eines Feldes prüfen |
+
+Einsteiger-Best-Practice:
+- Nie raten. Erst Suchbegriff, Seite, Feldhilfe, dann Buchung.
+- Wenn eine Seite fehlt, liegt es oft an Rolle, Berechtigung, Sprache, Lizenz, Company oder Personalisierung.
+
+### 22.3 Was muss man einstellen, damit Mitarbeiter Dinge finden?
+
+| Thema | Einstellung | Warum wichtig |
+|---|---|---|
+| Rolle/Profile | passende Role Center | Mitarbeiter sehen relevante Kacheln |
+| Berechtigungen | Permission Sets | Seiten sind zugänglich |
+| Bookmarks | Seiten anheften | häufige Seiten schnell erreichbar |
+| Personalisierung | unnötige Felder ausblenden | Anfänger werden nicht überfordert |
+| Profilanpassung | Admin passt Seiten für Rolle an | einheitliche Schulungsoberfläche |
+| Sprache | Deutsch als UI-Sprache, soweit gewünscht | Begriffe konsistent |
+| Firmenauswahl | richtige Company | Buchungen landen im richtigen Mandanten |
+| Suchbegriffe | Schulungstabelle mit deutschen/englischen Begriffen | Tell Me findet oft englische Seitennamen |
+
+Suchworttabelle:
+
+| Aufgabe | Suchbegriff in Tell Me |
+|---|---|
+| Verkaufsauftrag | `Sales Orders` |
+| Einkaufsbestellung | `Purchase Orders` |
+| Debitorenposten | `Customer Ledger Entries` |
+| Kreditorenposten | `Vendor Ledger Entries` |
+| Artikelposten | `Item Ledger Entries` |
+| Sachposten | `G/L Entries` |
+| USt-Posten | `VAT Entries` |
+| Dimensionen | `Dimensions` |
+| Financial Reports | `Financial Reports` |
+| Zahlungsabstimmungsjournal | `Payment Reconciliation Journal` |
+| Change Log | `Change Log Entries` |
+| Profile/Rollen | `Profiles (Roles)` |
+
+### 22.4 Die zehn wichtigsten Anfängerfehler
+
+| Fehler | Warum gefährlich? | Lösung |
+|---|---|---|
+| falsche Company | Buchung im falschen Mandanten | Company oben prüfen, vor Buchung stoppen |
+| falsches Datum | falsche Periode/USt | Posting Date und Document Date bewusst prüfen |
+| falscher Debitor/Kreditor | OP bei falschem Partner | Stammdatenname, Nummer, Land prüfen |
+| falscher Lagerort | Bestand am falschen Ort | `Location Code` sichtbar machen |
+| Menge mit Einheit verwechselt | Bestand/Preis falsch | Einheit und Menge prüfen |
+| Preis manuell überschrieben | Marge/Vertrag falsch | Preisursache prüfen, Änderung dokumentieren |
+| USt-Gruppe geändert | systematischer Steuerfehler | nur berechtigte Rollen dürfen USt-Setup ändern |
+| ohne Dimension gebucht | Reporting unbrauchbar | Pflichtdimensionen einrichten |
+| Beleg statt Posten gesucht | Nachweis nicht gefunden | Posted Documents und Entries unterscheiden |
+| Korrektur durch Löschen versucht | Audit Trail beschädigt | Storno/Gutschrift/Korrekturbuchung nutzen |
+
+### 22.5 Fehler korrigieren: Grundlogik
+
+| Fehlerart | Korrekturweg | Nicht tun |
+|---|---|---|
+| noch nicht gebuchter Beleg falsch | Belegzeile korrigieren oder löschen | falschen Beleg buchen |
+| gebuchte Verkaufsrechnung falsch | Sales Credit Memo oder Korrekturprozess | gebuchte Rechnung „ändern“ wollen |
+| gebuchte Einkaufsrechnung falsch | Purchase Credit Memo / Korrekturbuchung | Vorsteuer unbeachtet lassen |
+| falsche Dimension | Dimension Correction, soweit verfügbar und zulässig | Reporting manuell über Excel reparieren |
+| falsches Konto | Umbuchung/Storno mit Begründung | Direkt im Hauptbuch ohne Nachweis korrigieren |
+| falscher Lagerbestand | Item Journal / Inventurprozess | Bestand „irgendwo“ ausgleichen |
+| falscher Zahlungsausgleich | Unapply Entries, neu ausgleichen | OP doppelt ausgleichen |
+
+BC-Best-Practice:
+- Jede Korrektur braucht drei Antworten: Was war falsch? Wie wird korrigiert? Welcher Nachweis zeigt die Korrektur?
+
+### 22.6 Onboarding-Pfad für jeden Mitarbeiter
+
+| Tag | Inhalt | Ergebnis |
+|---|---|---|
+| 1 | Was ist BC? Company, Role Center, Suche, Belege, Posten | Mitarbeiter findet Seiten |
+| 2 | Stammdaten lesen, nicht ändern | Mitarbeiter versteht Kunden, Lieferanten, Artikel |
+| 3 | eigene Abteilungsprozesse | Einkauf/Verkauf/Lager/Fertigung/Finance |
+| 4 | Fehler und Korrekturen | Mitarbeiter erkennt typische Fehler |
+| 5 | Nachweise und Reports | Mitarbeiter versteht, warum sauber gearbeitet wird |
+
+Schulungsübung:
+1. Öffne per `Alt+Q` die Seite `Sales Orders`.
+2. Bookmarke sie.
+3. Öffne `Customer Ledger Entries`.
+4. Filtere auf Debitor `D10000`.
+5. Blende über Personalisierung die Spalte `External Document No.` ein.
+6. Erkläre, warum du diese Spalte im Alltag brauchst.
+
+Merksatz:
+- Ein guter BC-Anwender muss nicht alles wissen. Er muss wissen, wo er sucht, was er prüft, wann er stoppt und wen er fragt.
+
+---
+
+## 23. Quellenverzeichnis
 
 - [Q1] Microsoft Learn: Business Central documentation: https://learn.microsoft.com/en-us/dynamics365/business-central/
 - [Q2] Microsoft Learn: Business functionality supported by Business Central: https://learn.microsoft.com/en-us/dynamics365/business-central/across-business-functionality
@@ -1192,3 +1521,16 @@ Lösungsskizze:
 - [Q40] Continia Docs: Continia OPplus overview: https://docs.continia.com/en-us/continia-opplus
 - [Q41] Continia Docs: Overview of setting up OPplus: https://docs.continia.com/en-us/continia-opplus/setting-up-opplus/overview-of-setting-up-opplus/
 - [Q42] COSMO Docs: COSMO Advance Payment installation: https://docs.cosmoconsult.com/en-us/business-central/project-manufacturing-pack/getting-started/install-reg-apt/install-apt.html
+- [Q43] Microsoft Learn: Set up prices and discounts: https://learn.microsoft.com/en-gb/dynamics365/business-central/across-prices-and-discounts
+- [Q44] Microsoft Learn Training: Manage sales prices in Business Central: https://learn.microsoft.com/en-us/training/modules/manage-sales-prices-dynamics-365-business-central/
+- [Q45] Microsoft Learn: Set up customer price groups: https://learn.microsoft.com/en-gb/dynamics365/business-central/sales-how-to-set-up-customer-price-groups
+- [Q46] Microsoft Learn: Record special purchase prices and discounts: https://learn.microsoft.com/en-us/dynamics365/business-central/purchasing-how-record-purchase-price-discount-payment-agreements
+- [Q47] Microsoft Learn: Setting up sales: https://learn.microsoft.com/en-us/dynamics365/business-central/sales-setup-sales
+- [Q48] Microsoft Learn: Prepare financial reporting with financial data and account categories: https://learn.microsoft.com/en-us/dynamics365/business-central/bi-how-work-account-schedule
+- [Q49] Microsoft Learn: Work with dimensions: https://learn.microsoft.com/en-us/dynamics365/business-central/finance-dimensions
+- [Q50] Microsoft Learn: Dimensions - Detail report: https://learn.microsoft.com/en-us/dynamics365/business-central/reports/report-28
+- [Q51] Microsoft Learn: Financial reports and analysis: https://learn.microsoft.com/en-us/dynamics365/business-central/finance-reports
+- [Q52] Microsoft Learn: Finding pages and information with Tell Me: https://learn.microsoft.com/en-us/dynamics365/business-central/ui-search
+- [Q53] Microsoft Learn: Personalize your workspace: https://learn.microsoft.com/en-us/dynamics365/business-central/ui-personalization-user
+- [Q54] Microsoft Learn: Customize pages for profiles: https://learn.microsoft.com/en-us/dynamics365/business-central/ui-personalization-manage
+- [Q55] Microsoft Learn: Manage users and roles: https://learn.microsoft.com/en-us/dynamics365/business-central/admin-users-profiles-roles
