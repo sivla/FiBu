@@ -35,7 +35,7 @@ flowchart LR
     B -- Ja --> C[Freistellung oder Anrechnung]
     B -- Nein --> D[Nationales Recht]
 ```
-Werden in VS Code (Erweiterung „Markdown Preview Mermaid Support"), Obsidian, GitHub und mkdocs gerendert. Nur in Buch 3 aktiv – in anderen Büchern nicht einführen (Stiltreue).
+Werden in VS Code (Erweiterung „Markdown Preview Mermaid Support"), Obsidian, GitHub und mkdocs gerendert. Visualisierungen sind in allen Büchern zulässig, wenn sie den Buchstil unterstützen: Buch 1 nutzt prüfungsorientierte Denk- und Rechenschemata, Buch 2 kompakte Prozessflüsse, Buch 3 szenario-narrative Steuerlogik, Buch 4 GoBD-/Audit-Kontrollflüsse.
 
 **B) Rasterbilder** (PNG/JPG für Buchungsschemas, Screenshots, Organigramme):
 - Ablageort: Unterordner `img/` neben den `.md`-Dateien
@@ -285,7 +285,7 @@ Jedes Buch hat neben den gemeinsamen Stilregeln seinen eigenen Charakter. Beim E
 ### Buch 3: FiBu_Buch_BC_Einfuehrung_Schweiz_Separate_Firma_USt_DE-CH.md – Stil: Szenario-narrativ
 
 **Erkennungsmerkmale:**
-- **Mermaid-Flowcharts** für Visualisierungen (einziges Buch mit Diagrammen): ` ```mermaid `
+- **Mermaid-Flowcharts** für szenario-narrative Visualisierungen und steuerliche Entscheidungsbäume: ` ```mermaid `
 - **„Lernauszug (verkürzt):"** – Gesetzestexte als Blockquote `>` mit Originalzitat (immer mit Primärquellenlink davor)
 - **„Primärquelle(n):"** direkt über dem Inhalt mit URL auf derselben Zeile
 - **„Konsequenz für DE/CH:"** – eigener Absatz nach jedem Szenario mit praxisrelevanter Schlussfolgerung
