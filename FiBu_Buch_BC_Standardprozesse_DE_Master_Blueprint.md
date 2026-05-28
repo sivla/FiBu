@@ -1,424 +1,616 @@
-# FiBu-Buch 5: Business Central (BC) – Standardprozesse Deutschland als End-to-End-Master-Blueprint
+# FiBu-Buch 5: Business Central (BC) – Standardprozesse Deutschland als vollständiges Durchspielbuch
 
 Stand: `28.05.2026`
-Hinweis: Dieses Buch ist ein Lern-, Projekt- und Prüfungsleitfaden für Microsoft Dynamics 365 Business Central im deutschen Unternehmenskontext. Es ersetzt keine individuelle Rechts-, Steuer- oder Implementierungsberatung.
+Hinweis: Dieses Buch ist ein quellenbasiertes Lern-, Schulungs-, Projekt- und Implementierungsbuch für Microsoft Dynamics 365 Business Central im deutschen Unternehmenskontext. Es ersetzt keine individuelle Rechts-, Steuer- oder Implementierungsberatung.
 
 **Verlässlichkeitsstandard und Rechtsstand**
 - Rechtsstand und Link-Prüfung der Primärquellen: `28.05.2026`.
-- Fachlicher Fokus: Business Central Standard, deutsche Umsatzsteuer (USt), GoBD, E-Rechnung, HGB-nahe Finanzprozesse.
-- BC-Funktionsumfang, Seitenbezeichnungen und Lokalisierungen können je Release Wave, Mandant, Lizenz und Erweiterung abweichen.
+- Fachlicher Fokus: Business Central Standard, deutsche Umsatzsteuer (USt), GoBD, E-Rechnung, HGB-nahe Finanzprozesse, Lager, Fertigung, Service, Projekte, Onlineshop, Intercompany und Reporting.
+- BC-Funktionsumfang, Seitenbezeichnungen und Lokalisierungen können je Release Wave, Mandant, Lizenz, Sprache, Berechtigung und aktivierter Funktion abweichen.
 - Bei Abweichungen zwischen diesem Buch und Normtext oder Microsoft Learn gilt immer die aktuelle Primärquelle.
-- Dieses Skript verwendet nur Primärquellen: Microsoft Learn, Gesetze im Internet, BMF und BZSt.
+- Dieses Skript verwendet für Quellenangaben nur Primärquellen: Microsoft Learn, Gesetze im Internet, BMF, BZSt und amtliche EU-Quellen.
 
 ## Inhaltsverzeichnis (Kurz)
 
-1. Ziel, Denkmodell und Musterfirma
-2. Prozesslandkarte der Musterfirma
-3. Stammdaten- und Setup-Fundament
-4. O2C (Order-to-Cash (Auftrag-bis-Zahlung))
-5. P2P (Procure-to-Pay (Beschaffung-bis-Zahlung))
-6. Inventory & Warehouse (Lager und Logistik)
-7. Planning, Assembly & Manufacturing (Planung, Montage und Fertigung)
-8. Service Management (Servicegeschäft)
-9. Projects (Projekte) und Ressourcen
-10. Bank, Cash, Mahnwesen und Zahlungsverkehr
-11. Fixed Assets (Anlagenbuchhaltung)
-12. VAT/USt, E-Rechnung und deutsche Lokalisierung
-13. R2R (Record-to-Report (Buchung-bis-Abschluss))
-14. Intercompany, Foreign Trade und Sonderfälle
-15. End-to-End-Testkatalog und Abweichungsmatrix
-16. Quellenverzeichnis
+1. Zielbild: Business Central komplett durchspielen
+2. Quellen-, Pflicht- und Best-Practice-Schicht
+3. Musterkonzern Rhein-Main Industriegruppe
+4. Rollen, Abteilungen und Bedienlogik in BC
+5. Trainingsdaten: Stammdaten, Standorte, Artikel, Belege
+6. Foundation: Companies, Benutzer, Nummernserien, Dimensionen, Workflows
+7. Sales/O2C: Vertrieb, Onlineshop, Dropshipping, Retouren, Vorauszahlungen
+8. Purchasing/P2P: Einkauf, Wareneingang, E-Rechnung, Fremdarbeit, Zahlungen
+9. Inventory & Warehouse: einfaches Lager, gesteuertes Lager, Bins, Inventur
+10. Planning, Assembly & Manufacturing: Planung, Montage, Fertigung, Fremdarbeit
+11. Service, Mietmodelle und Finanzierung im Standardgrenzbereich
+12. Projects: Projektgeschäft, Ressourcen, WIP, Faktura
+13. Finance/R2R: Journale, Debitoren, Kreditoren, Bank, Anlagen, USt, Abschluss
+14. Intercompany, Ausland, Foreign Trade und Sonderfälle
+15. Reporting, Admin, Job Queue, Change Log, Datenexport
+16. Schulungskapitel nach Abteilungen
+17. Master-UAT und Abweichungsmatrix
+18. Quellenverzeichnis
 
 ---
 
-## 1. Ziel, Denkmodell und Musterfirma
+## 1. Zielbild: Business Central komplett durchspielen [Q1][Q2]
 
-Dieses Buch beschreibt Business Central nicht als Sammlung einzelner Menüpunkte. Es beschreibt das Unternehmen als zusammenhängenden Prozesskörper: Auftrag, Beschaffung, Lager, Fertigung, Service, Projekt, Zahlung, Steuer und Abschluss greifen ineinander. Nach diesem Buch kannst du Standardprozesse in Business Central end-to-end erklären, testen und gegen deutsche Nachweis- und Steueranforderungen absichern.
+Dieses Buch erklärt Business Central nicht als Sammlung einzelner Masken. Es erklärt Business Central als Unternehmenssystem: Mitarbeiter legen Stammdaten an, kaufen ein, lagern ein, fertigen, verkaufen, liefern, fakturieren, kassieren, zahlen, melden Steuern, schließen Perioden und weisen alles prüfbar nach. Nach diesem Buch kannst du einen vollständigen Trainingsmandanten aufbauen und die Standardprozesse Ende-zu-Ende durchspielen.
 
-### 1.1 Ziel
+Ziel:
+- Du kannst alle relevanten BC-Standardprozessbereiche fachlich einordnen und anhand eines deutschen Musterkonzerns bedienen. [Q1][Q2]
+- Du erkennst, welche Prozesse direkt im Standard abbildbar sind und wo Miet-, Finanzierungs- oder Spezialmodelle Prozessdesign, Extension oder Customizing brauchen. [Q2]
+- Du kannst je Abteilung sagen, was der Mitarbeiter in BC macht, welche Seite er öffnet, welche Felder er pflegt und welche Entries entstehen. [Q1]
+- Du kannst Schulungen durchführen, weil jedes Prozesskapitel Beispieldaten, Klickpfad, Übung, Lösung und Kontrollfrage enthält.
 
-- Du kannst die relevanten BC-Standardprozesse im deutschen Mittelstand als E2E-Prozessketten darstellen.
-- Du erkennst Abweichungen vom Standardpfad früh: Teillieferung, Rückgabe, Preisabweichung, Skonto, Fremdwährung, Streckengeschäft, Projektverbrauch, Fertigungsabweichung, Servicegarantie.
-- Du kannst zu jedem Prozess sagen, welche Stammdaten, Buchungsgruppen, Posten (Entries), Belege, Kontrollen und Nachweise entstehen.
-- Du kannst einen UAT (User Acceptance Test (Benutzerabnahmetest)) planen, der nicht nur „Buchung klappt“, sondern „Prozess ist prüfbar“ beweist.
+### 1.1 Was „alle Standardprozesse“ in diesem Buch bedeutet [Q2]
 
-### 1.2 Die Musterfirma: Rhein-Main Maschinenbau & Service GmbH
+Business Central deckt nach Microsofts offizieller Prozesslandkarte Finance, Sales, Purchasing, Inventory, Warehouse Management, Online Store mit Shopify, Fixed Assets, Planning, Assembly, Manufacturing, Project Management, Service Management, Relationship Management, Human Resources, Reporting, Admin, Workflows und Integrationen ab. Dieses Buch nimmt diese Prozessgruppen als Mindestumfang. [Q1][Q2]
 
-Die **Rhein-Main Maschinenbau & Service GmbH** sitzt in Frankfurt am Main und bildet bewusst viele typische Standardfälle ab.
-
-| Bereich | Ausprägung in der Musterfirma | Warum relevant für BC |
+| BC-Prozessbereich | Wird in diesem Buch behandelt als | Trainingsziel |
 |---|---|---|
-| Vertrieb | Maschinen, Ersatzteile, Dienstleistungen, Wartungsverträge | O2C, Service, Projekt, USt |
-| Einkauf | Rohmaterial, Handelsware, Fremdleistungen, Anlagen | P2P, Lager, Projekt, Anlagenbuchhaltung |
-| Lager | Hauptlager Frankfurt, Außenlager Hamburg, Servicefahrzeuge | Lagerorte, Umlagerung, Kommissionierung |
-| Fertigung | Montage von Standardmaschinen und kundenspezifischen Varianten | Stücklisten (BOM), Arbeitspläne (Routings), Fertigungsaufträge |
-| Service | Wartung, Reparatur, Garantie und kostenpflichtiger Außendienst | Serviceaufträge, Serviceartikel, Ersatzteilverbrauch |
-| Projekte | Installation beim Kunden, Schulungen, Sondermaschinen | Project Tasks, Planning Lines, Ressourcen |
-| Deutschland | UStVA, E-Rechnung, GoBD, Aufbewahrung, DATEV-nahe Nachweise | deutsche Lokalisierung, VAT Reporting, Archivlogik |
-| Ausland | EU-Kunden, Drittland, Streckengeschäft, Import | VAT Posting Setup, Intrastat, Exportnachweise |
+| Finance | Hauptbuch, Nebenbücher, Bank, USt, Anlagen, Abschluss | Buchungsspur und Abschlussfähigkeit verstehen |
+| Sales | Angebot, Auftrag, Lieferung, Rechnung, Retoure, Mahnung | O2C mit Abweichungen bedienen |
+| Purchasing | Anfrage, Bestellung, Wareneingang, Eingangsrechnung, Rücksendung | P2P und 3-Way-Match erklären |
+| Inventory | Artikel, Lagerorte, Varianten, Bewertung, Inventur | Mengen- und Wertfluss abstimmen |
+| Warehouse | Put-away, Pick, Bins, gesteuerte Lagerorte | einfache und gesteuerte Lagerlogik unterscheiden |
+| Shopify/Online Store | Kunden-, Artikel- und Auftragsfluss aus dem Shop | Onlineshop-Aufträge in BC verarbeiten |
+| Planning | Forecast, MPS, MRP, Planungsarbeitsblatt | Bedarf in Beschaffung/Fertigung übersetzen |
+| Assembly | Montageauftrag, Assemble-to-Order, Kits | Baugruppen ohne volle Fertigung abbilden |
+| Manufacturing | Stückliste, Arbeitsplan, Fertigungsauftrag, Verbrauch, Output | Produktionskosten und Abweichungen verstehen |
+| Projects | Projektaufgaben, Ressourcen, Verbrauch, WIP, Faktura | Projektwertschöpfung abrechnen |
+| Service | Serviceartikel, Serviceauftrag, Vertrag, Garantie | After-Sales-Prozesse steuern |
+| Relationship Management | Kontakte, Verkaufschancen, Segmente | Vorvertrieb und Kundenbeziehung pflegen |
+| Human Resources | Mitarbeiter, Abwesenheiten | Basis-HR im BC-Standard zeigen |
+| Admin/Reporting | Rollen, Berechtigungen, Change Log, Job Queue, Analyse | Betrieb und Nachweis sichern |
 
-### 1.3 Grundprinzip
+### 1.2 Standard, Pflicht, Best Practice und Projektentscheidung
 
-> Merksatz: Ein BC-Prozess ist erst verstanden, wenn du vier Spuren erklären kannst: fachlicher Ablauf, Buchungsspur, Steuerlogik und Nachweispaket.
+Dieses Buch trennt vier Ebenen:
+
+| Ebene | Bedeutung | Beispiel |
+|---|---|---|
+| Standard laut Quelle | Funktion ist in Microsoft Learn beschrieben | `Sales Orders`, `Purchase Orders`, `Production Orders` |
+| Deutsche Pflicht/Compliance | Rechtliche oder steuerliche Anforderung | § 147 AO, UStG, GoBD, E-Rechnung |
+| BC-Best-Practice | robuste Projektpraxis, nicht automatisch Gesetz | Vier-Augen-Freigabe für USt-Setup |
+| Projektentscheidung der Musterfirma | bewusst konstruiertes Trainingsdesign | ein gesteuertes Lager und ein einfaches Lager parallel |
+
+> Merksatz: Best Practice ist keine Rechtsquelle. Sie ist die fachlich begründete Art, den Standard so zu nutzen, dass Prozesse stabil, prüfbar und schulbar werden.
+
+---
+
+## 2. Quellen-, Pflicht- und Best-Practice-Schicht [Q1][Q20][Q21][Q22]
+
+Das Buch ist quellenbasiert. Jede wesentliche BC-Funktion wird auf Microsoft Learn zurückgeführt. Jede deutsche Steuer- oder Nachweisaussage wird auf Gesetz, BMF oder BZSt gestützt. Best Practices werden separat benannt.
+
+### 2.1 Quellenlogik
+
+| Aussageart | Primärquelle | Beispiel |
+|---|---|---|
+| BC-Standardfunktion | Microsoft Learn | Warehouse, Manufacturing, Service, Projects |
+| deutsche USt | UStG, BZSt, BMF | Rechnung, UStVA, ZM, Reverse Charge |
+| Aufbewahrung und Datenzugriff | AO, GoBD/BMF | § 147 AO, Z3, Verfahrensdokumentation |
+| E-Rechnung | UStG, BMF, Microsoft Learn E-Documents | XML, Validierung, Archivierung |
+| EU-Bezug | EUR-Lex, EU-Richtlinien | Mehrwertsteuer-Systemrichtlinie |
+
+### 2.2 Best-Practice-Katalog der Musterfirma
+
+| Best Practice | Zweck | Nicht verwechseln mit |
+|---|---|---|
+| Change Request für Buchungsgruppen | systematische Falschbuchungen vermeiden | gesetzlicher Einzelpflicht |
+| Vier-Augen-Prüfung bei Bankdaten | Betrugsprävention | vollständiger Payment-Approval-Lösung |
+| Periodensperre nach Monatsabschluss | Vorperiodenbuchungen verhindern | Jahresabschlussprüfung |
+| Evidence Pack je Steuerfall | Tax Review reproduzierbar machen | bloßer Belegablage |
+| getrennte Lagerorte je Prozesslogik | Lagerbedienung schulbar halten | zwingender BC-Vorgabe |
+| Rollenprofile nach Abteilung | Bedienung vereinfachen | alleiniger Berechtigungskontrolle |
+| Testdatenkatalog | Schulungen wiederholbar machen | produktiver Migration |
+
+Prüfungsfalle:
+- In Projekten wird „Microsoft kann das“ häufig mit „unser Prozess ist prüfbar eingerichtet“ verwechselt. Die Funktion ist nur der Werkzeugkasten. Die Nachweislogik entsteht durch Setup, Rollen, Kontrolle und Dokumentation.
+
+---
+
+## 3. Musterkonzern Rhein-Main Industriegruppe
+
+Die Musterfirma ist bewusst breit konstruiert. Sie soll Business Central nicht minimal abbilden, sondern als Trainingsuniversum möglichst vollständig auslösen.
+
+### 3.1 Konzernstruktur
+
+| Company in BC | Rolle im Konzern | Hauptprozesse |
+|---|---|---|
+| `RM-PROD GmbH` | Produktion und Zentrallager | Fertigung, gesteuertes Lager, Einkauf, Intercompany-Verkauf |
+| `RM-SALES GmbH` | Vertrieb und Onlineshop | B2B, B2C, Shopify, Dropshipping, Debitoren |
+| `RM-SERVICE GmbH` | Wartung, Miete, Finanzierungsvorbereitung | Service, Mietfälle, Projekte, Anlagen-/Serviceartikel |
+| `RM-SHARED GmbH` | Shared Services | Einkauf, Stammdaten, Zahlungsverkehr, Reporting |
+| `RM-AT GmbH` | EU-Auslandsgesellschaft | Intercompany, EU-USt, Intrastat-nahe Fälle |
 
 ```mermaid
 flowchart LR
-    A["Geschäftsvorfall"] --> B["Beleg in BC"]
-    B --> C["Buchung (Posting)"]
-    C --> D["Ledger Entries (Posten)"]
-    D --> E["Reporting / Meldung"]
-    E --> F["Evidence Pack (Nachweispaket)"]
+    PROD["RM-PROD GmbH\nFertigung + Zentrallager"] --> SALES["RM-SALES GmbH\nVertrieb + Onlineshop"]
+    PROD --> SERVICE["RM-SERVICE GmbH\nService + Miete"]
+    SHARED["RM-SHARED GmbH\nEinkauf + Stammdaten"] --> PROD
+    SHARED --> SALES
+    SALES --> AT["RM-AT GmbH\nEU-Vertrieb"]
+    SERVICE --> SALES
 ```
+
+### 3.2 Standorte und Lagerlogik
+
+| Lagerort | Company | Lagerart | BC-Logik | Trainingszweck |
+|---|---|---|---|---|
+| `FRA-ZL` | RM-PROD | Zentrallager | gesteuerte Einlagerung/Kommissionierung mit Bins | Warehouse Receipt, Put-away, Pick, Shipment |
+| `MZ-EINFACH` | RM-SALES | Außenlager | einfache Lagerbuchung ohne gesteuerte Einlagerung | einfacher Wareneingang und Verkauf |
+| `HH-FUL` | RM-SALES | Onlineshop-Fulfillment | Pick/Shipment vereinfacht | Shop-Auftrag bis Versand |
+| `VAN-01` | RM-SERVICE | Servicefahrzeug | Lagerort für Techniker | Ersatzteilverbrauch im Service |
+| `PROJ-BER` | RM-SERVICE | Projektlager | Projektbezogenes Lager | Projektmaterial und Baustelle |
+| `DROP` | RM-SALES | Dropshipping | kein eigener Bestand | Direktlieferung Lieferant an Kunde |
+
+### 3.3 Geschäftsmodelle
+
+| Modell | Use Case | BC-Schwerpunkt | Standardgrenze |
+|---|---|---|---|
+| Eigenfertigung | Standardmaschine `RM-M100` | Manufacturing | vollständig im Standard demonstrierbar |
+| Variantenfertigung | Sondermaschine `RM-X500` | BOM/Routing/Projekt/Fertigung | Variantenlogik braucht klare Stammdaten |
+| Handelsware | Ersatzteil `SP-PUMP-01` | O2C/P2P/Inventory | Standard |
+| Onlineshop | Webshop-Verkauf Ersatzteile | Shopify Connector / Sales Orders | abhängig von Connector-Setup |
+| Service | Wartung beim Kunden | Service Management | Standard |
+| Miete | Mietmaschine 12 Monate | Service/Projects/Deferrals/Fixed Assets | Standard nur mit Prozessdesign |
+| Finanzierung | Kunde finanziert Maschine über Bank | Sales/Receivables/Deferrals | komplexe Finanzierungslogik nicht vollständig Standard |
+| Intercompany | PROD verkauft an SALES | Intercompany | Standard mit IC-Setup |
+| Dropshipping | Lieferant liefert direkt an Kunden | Sales + Purchase Link | Standard |
+
+---
+
+## 4. Rollen, Abteilungen und Bedienlogik in BC
+
+Ein vollständiges Schulungsbuch muss zeigen, wie Mitarbeiter arbeiten. Deshalb beschreibt jedes Prozesskapitel fachliche Aufgabe, Role Center, Tell-Me-Suche, Seiten, Felder und Folgebelege.
+
+### 4.1 Rollenmatrix
+
+| Rolle | Abteilung | Typische BC-Seiten | Was macht der Mitarbeiter? |
+|---|---|---|---|
+| Verkäuferin | Vertrieb | `Sales Quotes`, `Sales Orders`, `Customers`, `Contacts` | Angebot erstellen, Auftrag erfassen, Verfügbarkeit prüfen, Rechnung auslösen |
+| E-Commerce-Sachbearbeiter | Onlineshop | `Shopify Shops`, `Sales Orders`, `Items`, `Customers` | Shop-Aufträge synchronisieren, Fehler klären, Versand anstoßen |
+| Einkäufer | Einkauf | `Vendors`, `Purchase Orders`, `Purchase Invoices` | Bestellung auslösen, Preise prüfen, Wareneingang/Rechnung abstimmen |
+| Lagerist einfaches Lager | Lager MZ | `Item Journals`, `Sales Shipments`, `Purchase Receipts` | Ware annehmen, Bestand prüfen, Lieferung buchen |
+| Lagerist gesteuertes Lager | FRA-ZL | `Warehouse Receipts`, `Put-aways`, `Picks`, `Warehouse Shipments` | Einlagern, kommissionieren, versenden |
+| Produktionsplanerin | Fertigung | `Planning Worksheet`, `Production Orders`, `BOMs`, `Routings` | Bedarf planen, Fertigungsaufträge erstellen, Termine prüfen |
+| Meister | Fertigung | `Released Production Orders`, `Consumption Journal`, `Output Journal` | Verbrauch und Output melden, Ausschuss dokumentieren |
+| Servicetechniker | Service | `Service Orders`, `Service Items`, `Item Journals` | Serviceauftrag bearbeiten, Ersatzteile verbrauchen, Zeiten erfassen |
+| Projektleiter | Projekte | `Projects`, `Project Tasks`, `Project Journals` | Budget, Verbrauch, Fortschritt und Faktura steuern |
+| Debitorenbuchhalterin | Finance | `Customer Ledger Entries`, `Payment Reconciliation Journal`, `Reminders` | Zahlung ausgleichen, mahnen, offene Posten prüfen |
+| Kreditorenbuchhalter | Finance | `Vendor Ledger Entries`, `Payment Journals`, `Purchase Invoices` | Eingangsrechnungen prüfen, Zahlungen vorbereiten |
+| Anlagenbuchhalterin | Finance | `Fixed Assets`, `FA Journals`, `Calculate Depreciation` | Zugänge, AfA und Abgänge buchen |
+| Controller | Controlling | `Analysis Views`, `Financial Reports`, `Dimensions` | Auswertungen und Abweichungen analysieren |
+| BC-Admin | IT/Finance Operations | `Users`, `Permission Sets`, `Change Log Setup`, `Job Queue Entries` | Rollen, Automatisierung und Audit Trail verwalten |
+
+### 4.2 Bedienmuster
+
+1. **Role Center prüfen:** Der Mitarbeiter startet im passenden Arbeitsbereich.
+2. **Tell Me nutzen:** Er sucht stabile Seitenbegriffe, nicht lange Menüpfade.
+3. **Belegkopf prüfen:** Kunde/Lieferant, Datum, Standort, Währung, Dimension, USt-Gruppe.
+4. **Zeilen pflegen:** Artikel, Ressource, Sachkonto, Menge, Preis, Lagerort, Projekt.
+5. **Vorschau/Prüfung:** Posting Preview, Verfügbarkeit, Freigabe, Pflichtfelder.
+6. **Buchen:** Post/Release/Register.
+7. **Nachweis prüfen:** Entries, Belegkette, Attachments, Reports.
 
 Praxisregel:
-- Starte nie mit der Seite in BC. Starte mit der Frage: „Welche Verpflichtung, Ware, Dienstleistung, Zahlung oder Steuer entsteht?“
-
-Prüfungsfalle:
-- Ein Prozess gilt im Projekt als „fertig“, obwohl nur der Happy Path getestet wurde. In der Praxis scheitert er dann an Teilmengen, Stornos, Steuerabweichungen oder fehlenden Nachweisen.
+- Schulungen beginnen mit Rollen und Aufgaben, nicht mit Menüs. Ein Einkäufer muss wissen, warum er eine Bestellung auslöst; die Seite ist erst der zweite Schritt.
 
 ---
 
-## 2. Prozesslandkarte der Musterfirma
+## 5. Trainingsdaten: Stammdaten, Standorte, Artikel, Belege
 
-Dieses Kapitel ordnet alle Standardprozesse in eine gemeinsame Landkarte ein. Die Landkarte ist die Klammer für das gesamte Buch: Jeder Einzelprozess muss später wieder auf diese Gesamtlogik zurückführen.
+Dieses Kapitel liefert Beispieldaten, damit Schulungen aufeinander aufbauen. Die Daten sind bewusst vereinfacht, aber realitätsnah.
 
-### 2.1 Gesamtbild
+### 5.1 Dimensionen
 
-```mermaid
-flowchart TB
-    M["Stammdaten & Setup"] --> O["O2C: Verkauf"]
-    M --> P["P2P: Einkauf"]
-    M --> L["Inventory & Warehouse"]
-    L --> F["Fertigung / Montage"]
-    F --> O
-    O --> B["Bank / Forderungen"]
-    P --> Z["Zahlungen / Verbindlichkeiten"]
-    O --> S["Service"]
-    P --> A["Anlagen"]
-    F --> R["R2R Abschluss"]
-    B --> R
-    Z --> R
-    A --> R
-    R --> V["VAT / Reporting / GoBD"]
-```
-
-### 2.2 Prozessgruppen
-
-| Prozessgruppe | Standardpfad | Typische Abweichungen | Nachweisziel |
-|---|---|---|---|
-| O2C | Angebot → Auftrag → Lieferung → Rechnung → Zahlung | Teillieferung, Gutschrift, Retoure, Vorauszahlung, EU/Drittland | Belegkette bis Zahlung und USt-Ausweis |
-| P2P | Anfrage → Bestellung → Wareneingang → Eingangsrechnung → Zahlung | Preisabweichung, Mengenabweichung, Teil-WE, Rücksendung, E-Rechnung | 3-Way-Match und Kreditorenabstimmung |
-| Inventory | Zugang → Lagerbewegung → Verbrauch/Verkauf → Bewertung | Umlagerung, Inventurdifferenz, Chargen/Seriennummer, negative Bestände | Item Ledger Entries und Value Entries nachvollziehbar |
-| Fertigung | Planung → Auftrag → Verbrauch → Istmeldung → Fertigmeldung | Ausschuss, Ersatzkomponente, Eilauftrag, Fremdarbeit | Produktionskosten und Bestandszugang plausibel |
-| Service | Meldung → Auftrag → Ersatzteil/Arbeitszeit → Faktura | Garantie, Kulanz, Teilfakturierung, Fremdleistung | Serviceartikelhistorie und Kosten-/Erlösnachweis |
-| Projekte | Projektkarte → Aufgaben → Planung → Verbrauch → Faktura | Festpreis, Aufwand, Meilenstein, mehrere Rechnungsempfänger | Projektbudget gegen Ist und Faktura |
-| Bank | Import → Matching → Ausgleich → Abstimmung | Teilzahlung, Skonto, Überzahlung, ungeklärter Zahlungseingang | OP-Ausgleich und Bankabstimmung |
-| Anlagen | Zugang → Aktivierung → AfA → Abgang | Nachaktivierung, Teilabgang, Zuschuss, Reparatur vs. Aktivierung | Anlagenkarte und AfA-Lauf |
-| R2R | Journal → Abstimmung → Periodensperre → Abschluss | Nachbuchung, Korrektur, Rückstellung, Abgrenzung | SUSA, Abschlusscheckliste, Audit Trail |
-
-### 2.3 Abweichungslogik in 60 Sekunden
-
-Jede Abweichung verändert mindestens eine von fünf Ebenen:
-
-1. **Menge**: Teilmenge, Ausschuss, Nachlieferung, Inventurdifferenz.
-2. **Preis**: Rabatt, Skonto, Preisabweichung, Fremdwährung.
-3. **Zeit**: Vorleistung, Anzahlung, Periodenabgrenzung, verspätete Rechnung.
-4. **Steuer**: Inland, EU, Drittland, Reverse Charge, Steuerbefreiung.
-5. **Nachweis**: fehlender Beleg, fehlende Freigabe, nicht verknüpfter Exportnachweis.
-
-Prüfungstipp:
-- Im UAT muss jede dieser fünf Ebenen mindestens einmal bewusst gebrochen werden. Nur dann ist der Prozess robust getestet.
-
----
-
-## 3. Stammdaten- und Setup-Fundament
-
-Stammdaten sind in Business Central keine neutrale Adressverwaltung. Sie steuern Buchung, Steuer, Lager, Preisfindung, Zahlungsbedingungen und Reporting. Wer Stammdaten falsch setzt, erzeugt systematische Fehler in jedem Folgeprozess.
-
-### 3.1 Pflichtobjekte
-
-| Objekt | Kritische Felder | Folge bei Fehler |
+| Dimension | Werte | Zweck |
 |---|---|---|
-| `Customer` (Debitor) | Posting Groups, VAT Bus. Posting Group, Payment Terms, Country/Region Code | falsches Debitorenkonto, falsche USt, falsche Fälligkeit |
-| `Vendor` (Kreditor) | Vendor Posting Group, VAT Bus. Posting Group, IBAN, External Document No. Pflicht | falsche Verbindlichkeit, Zahlungsrisiko, Dubletten |
-| `Item` (Artikel) | Type, Inventory Posting Group, Gen. Prod. Posting Group, VAT Prod. Posting Group, Costing Method | falsche Lagerbewertung, falsche COGS, falsche Steuer |
-| `Resource` (Ressource) | Gen. Prod. Posting Group, Einheit, Preis/Kosten | falsche Projekt- oder Servicekosten |
-| `G/L Account` (Sachkonto) | Direct Posting, Gen. Posting Type, VAT Posting Groups | manuelle Fehlbuchungen, USt-Fehler |
-| `Location` (Lagerort) | Require Receive/Shipment/Pick/Put-away, Bin Mandatory | Lagerprozess passt nicht zum physischen Ablauf |
-| `Fixed Asset` (Anlage) | Depreciation Book, FA Posting Group, Nutzungsdauer | falsche AfA, falscher Anlagenabgang |
+| `COMPANY-GROUP` | PROD, SALES, SERVICE, SHARED, AT | Konzerninterne Auswertung |
+| `DEPARTMENT` | SALES, PURCH, WHSE, PROD, SERV, FIN, ADMIN | Rollen- und Kostenstellenlogik |
+| `CHANNEL` | B2B, SHOP, IC, SERVICE, PROJECT | Vertriebskanal |
+| `PRODUCTLINE` | MACHINE, SPARE, RENTAL, SERVICE | Produktlinie |
+| `LOCATION-GROUP` | DIRECTED, SIMPLE, VAN, PROJECT, DROP | Lagerlogik |
 
-### 3.2 Setup-Kern
+### 5.2 Debitoren
 
-```mermaid
-flowchart LR
-    A["Posting Groups"] --> D["General Posting Setup"]
-    B["VAT Posting Groups"] --> E["VAT Posting Setup"]
-    C["Inventory Posting Groups"] --> F["Inventory Posting Setup"]
-    D --> G["G/L Entries"]
-    E --> H["VAT Entries"]
-    F --> I["Value Entries"]
-```
+| Nr. | Name | Land | Typ | USt-Logik | Trainingsfall |
+|---|---|---|---|---|---|
+| `D10000` | Müller Maschinenbau GmbH | DE | B2B | Inland 19 % | Standardverkauf Maschine |
+| `D11000` | Handwerk24 Onlinekunde | DE | B2C | Inland 19 % | Onlineshop-Ersatzteil |
+| `D20000` | Alpha Machines SAS | FR | EU-B2B | innergemeinschaftlich | EU-Lieferung |
+| `D30000` | SwissTech AG | CH | Drittland | Export | Ausfuhrlieferung |
+| `D90000` | RM-SALES GmbH IC | DE | Intercompany | Inland/IC | IC-Verkauf PROD an SALES |
 
-Kontrollpunkte:
-- Buchungsgruppen dürfen nach Produktivstart nur per Change Request geändert werden.
-- USt-relevante Stammdaten benötigen Vier-Augen-Prüfung.
-- Nummernserien müssen eindeutig, nachvollziehbar und pro Belegart steuerbar sein.
-- `Allow Posting From/To` und VAT-Periodensteuerung müssen Monatsabschlüsse schützen.
+### 5.3 Kreditoren
 
-UAT-Minimaltests:
-1. Debitor Inland mit 19 % USt buchen.
-2. Debitor EU mit USt-IdNr. und 0 %/Reverse-Charge-Logik buchen.
-3. Kreditor Inland mit Vorsteuer buchen.
-4. Artikel mit Lagerbewertung kaufen, verkaufen und Wertposten prüfen.
-5. Manuelle Sachkontobuchung auf gesperrtes Direktbuchungskonto verhindern.
+| Nr. | Name | Land | Typ | Trainingsfall |
+|---|---|---|---|---|
+| `K10000` | Stahlwerk Ruhr GmbH | DE | Material | Rohmaterial Einkauf |
+| `K11000` | Elektro Parts GmbH | DE | Komponenten | Elektronik Einkauf |
+| `K20000` | Dropship Europe BV | NL | Dropshipping | Direktlieferung |
+| `K30000` | Zollspedition Nord GmbH | DE | Spedition/Zoll | Import/EUSt |
+| `K40000` | Lohnfertiger Süd GmbH | DE | Fremdarbeit | Subcontracting |
 
----
+### 5.4 Artikel, Ressourcen und Anlagen
 
-## 4. O2C (Order-to-Cash (Auftrag-bis-Zahlung))
+| Nr. | Beschreibung | Typ | Lager/Prozess | Standardkosten/Preis |
+|---|---|---|---|---:|
+| `RM-M100` | Standardmaschine M100 | Fertigerzeugnis | Fertigung/Verkauf | 42.000 / 68.000 |
+| `RM-X500` | Sondermaschine X500 | Projekt/Fertigung | Projekt + Fertigung | 90.000 / 145.000 |
+| `SP-PUMP-01` | Ersatzteil Pumpe | Lagerartikel | Einkauf/Shop/Service | 180 / 320 |
+| `SP-SENSOR-02` | Sensor Set | Lagerartikel mit Seriennr. | Shop/Service | 75 / 149 |
+| `RAW-STEEL` | Stahlträger | Rohmaterial | Fertigung | 2.500 / - |
+| `COMP-CTRL` | Steuerungseinheit | Komponente | Fertigung | 3.200 / - |
+| `KIT-MAINT` | Wartungskit | Montageartikel | Assembly/Service | 240 / 450 |
+| `RES-TECH` | Servicetechniker Stunde | Ressource | Service/Projekt | 65 / 115 |
+| `FA-CNC-01` | CNC-Anlage | Anlage | Anlagenbuchhaltung | 250.000 |
 
-Der O2C-Prozess beginnt nicht mit der Rechnung. Er beginnt mit der Kundenanfrage und endet erst, wenn Forderung, Steuer, Zahlung und Nachweis vollständig geschlossen sind. In der Musterfirma verkauft der Vertrieb eine Maschine, Ersatzteile und eine Installationsleistung.
+### 5.5 Beispielbelege
 
-### 4.1 Standardpfad
-
-```mermaid
-flowchart LR
-    A["Sales Quote"] --> B["Sales Order"]
-    B --> C["Warehouse Shipment / Sales Shipment"]
-    C --> D["Posted Sales Invoice"]
-    D --> E["Customer Ledger Entry"]
-    D --> F["VAT Entry"]
-    E --> G["Payment Application"]
-    G --> H["Closed Customer Ledger Entry"]
-```
-
-BC (Business Central (ERP-System))-Bezug:
-- `Sales Quotes`, `Sales Orders`, `Posted Sales Shipments`, `Posted Sales Invoices`
-- `Customer Ledger Entries`, `Detailed Cust. Ledg. Entries`, `G/L Entries`, `VAT Entries`
-- Microsoft Learn: https://learn.microsoft.com/en-us/dynamics365/business-central/sales-how-sell-products
-- Microsoft Learn: https://learn.microsoft.com/en-us/dynamics365/business-central/ui-post-sales
-
-### 4.2 Zahlenbeispiel
-
-Die Rhein-Main Maschinenbau & Service GmbH verkauft Ersatzteile für `10.000 EUR` netto an einen deutschen Kunden. USt `19 %` = `1.900 EUR`. Zahlungsziel: 30 Tage.
-
-| Buchung | Soll | Haben |
-|---|---:|---:|
-| Forderungen | 11.900 | |
-| Umsatzerlöse Ersatzteile | | 10.000 |
-| Umsatzsteuer 19 % | | 1.900 |
-
-Nach Zahlung:
-
-| Buchung | Soll | Haben |
-|---|---:|---:|
-| Bank | 11.900 | |
-| Forderungen | | 11.900 |
-
-### 4.3 Abweichungen
-
-| Abweichung | BC-Mechanik | Risiko | Kontrolle |
+| Fall | Beleg | Daten | Erwarteter Prozess |
 |---|---|---|---|
-| Teillieferung | `Qty. to Ship`, später Restlieferung | Rechnung vor Lieferung | Shipment-Status je Zeile prüfen |
-| Teilrechnung | `Qty. to Invoice` | Forderung stimmt, aber Leistung nicht vollständig | Abgleich Sales Shipment ↔ Invoice |
-| Retoure | Sales Return Order / Sales Credit Memo | falsche USt-Korrektur | Bezug zur Ursprungsrechnung |
-| Preisnachlass nach Rechnung | Credit Memo | § 17 UStG-Berichtigung fehlt | VAT Entry der Gutschrift prüfen |
-| Anzahlung | Prepayment Invoice | falsche Steuerperiode | Prepayment VAT und Schlussrechnung abstimmen |
-| EU-B2B | VAT Bus. Posting Group EU | fehlende USt-IdNr./ZM | USt-IdNr. und Zusammenfassende Meldung |
-| Drittland Export | VAT Clause Export | fehlender Ausfuhrnachweis | Exportbeleg im Evidence Pack |
-| Streckengeschäft | Drop Shipment | Wareneingang/Lieferung verwechselt | Verknüpfung Sales Order ↔ Purchase Order |
-
-Prüfungsfalle:
-- „Gebuchte Verkaufsrechnung vorhanden“ reicht nicht. Entscheidend ist, ob Lieferung, Steuerlogik, Forderungsausgleich und Nachweis zusammenpassen.
-
-UAT-Minimaltests:
-1. Inlandslieferung 19 % vollständig liefern, fakturieren und bezahlen.
-2. Teillieferung mit späterer Restlieferung und zwei Rechnungen.
-3. Retoure mit Bezug auf gebuchte Rechnung.
-4. EU-B2B-Lieferung mit USt-IdNr. und 0 %-Logik.
-5. Drittland-Export mit VAT Clause und Exportnachweis.
+| S-001 | Sales Order `SO-1001` | D10000 kauft `RM-M100`, 1 Stück | Fertigung → Lieferung → Rechnung |
+| S-002 | Shop Order `WEB-24001` | D11000 kauft `SP-PUMP-01`, 2 Stück | Shopify → Fulfillment → Zahlung |
+| S-003 | Drop Shipment `SO-1003` | D10000 kauft Handelsware von K20000 | Verkaufsauftrag ↔ Einkaufsbestellung |
+| P-001 | Purchase Order `PO-2001` | RAW-STEEL 10 Stück | Wareneingang gesteuertes Lager |
+| M-001 | Production Order `PROD-3001` | `RM-M100`, 3 Stück | Verbrauch + Output |
+| SV-001 | Service Order `SERV-4001` | Wartung D10000 | Techniker + Ersatzteil |
+| J-001 | Project `PROJ-5001` | Installation Sondermaschine | Ressourcen + Material + Faktura |
+| F-001 | FA Journal `FA-6001` | CNC-Zugang | Anlage aktivieren + AfA |
 
 ---
 
-## 5. P2P (Procure-to-Pay (Beschaffung-bis-Zahlung))
+## 6. Foundation: Companies, Benutzer, Nummernserien, Dimensionen, Workflows [Q3][Q4][Q5][Q6]
 
-Der P2P-Prozess steuert Verbindlichkeiten, Lagerzugänge, Vorsteuer und Zahlungsrisiken. In der Musterfirma kauft der Einkauf Stahl, Elektronikkomponenten, Fremdservice und Büromaterial.
+Foundation-Prozesse tragen alle Fachprozesse. Fehler in Nummernserien, Dimensionen, Buchungsgruppen oder Berechtigungen wirken wie ein Multiplikator.
 
-### 5.1 Standardpfad
+### 6.1 Quelle und Zweck
+
+Standard laut Quelle:
+- Business Central unterstützt mehrere Companies, Benutzer, Berechtigungen, Workflows, Job Queues, Change Log und Einrichtung für Geschäftsprozesse. [Q3][Q4][Q5][Q6]
+
+Deutsche Pflicht/Compliance:
+- Für steuerrelevante Systeme sind Nachvollziehbarkeit, Vollständigkeit, Richtigkeit, Unveränderbarkeit und Datenzugriff im GoBD-Kontext relevant. [Q21][Q22]
+
+BC-Best-Practice:
+- Setup-Änderungen an Posting Groups, VAT Posting Setup, Nummernserien und Dimensionen laufen über Change Request, Testnachweis und Freigabe.
+
+### 6.2 Mitarbeiterbedienung
+
+| Rolle | Aufgabe | Tell Me / Seite | Was wird getan? |
+|---|---|---|---|
+| BC-Admin | Company anlegen | `Companies` | Trainingscompanies erstellen |
+| Finance-Leitung | Buchungsperioden steuern | `General Ledger Setup`, `Accounting Periods` | Buchungsfenster festlegen |
+| Stammdaten-Team | Dimensionen pflegen | `Dimensions`, `Dimension Values` | Pflichtdimensionen anlegen |
+| Admin | Change Log aktivieren | `Change Log Setup` | kritische Tabellen überwachen |
+| Prozessowner | Workflow prüfen | `Workflows`, `Approval User Setup` | Freigaben für Einkauf/Verkauf definieren |
+
+### 6.3 E2E-Setupfluss
 
 ```mermaid
 flowchart LR
-    A["Purchase Quote / Anfrage"] --> B["Purchase Order"]
-    B --> C["Purchase Receipt"]
+    A["Company"] --> B["Users / Permission Sets"]
+    B --> C["No. Series"]
+    C --> D["Dimensions"]
+    D --> E["Posting Groups"]
+    E --> F["VAT Posting Setup"]
+    F --> G["Workflows"]
+    G --> H["Test Posting"]
+```
+
+### 6.4 UAT-Schulung Foundation
+
+Aufgabe:
+1. Lege Dimension `CHANNEL` mit Werten `B2B`, `SHOP`, `IC`, `SERVICE`, `PROJECT` an.
+2. Setze `CHANNEL` als Pflichtdimension für Debitor `D10000`.
+3. Buche eine Verkaufsrechnung ohne `CHANNEL`.
+4. Korrigiere den Fehler und buche erneut.
+
+Erwartete Lösung:
+- Die Buchung ohne Pflichtdimension wird verhindert oder als Fehler markiert.
+- Die korrigierte Buchung erzeugt `G/L Entries` mit Dimension `CHANNEL = B2B`.
+
+Kontrollfrage:
+- Warum ist eine Pflichtdimension eher ein Prozesskontrollinstrument als eine reine Reporting-Einstellung?
+
+---
+
+## 7. Sales/O2C: Vertrieb, Onlineshop, Dropshipping, Retouren, Vorauszahlungen [Q7][Q8][Q9][Q10]
+
+O2C beginnt beim Kontakt oder Angebot und endet erst, wenn Lieferung, Rechnung, Forderung, Zahlung, USt und Nachweis geschlossen sind.
+
+### 7.1 Standard laut Quelle
+
+Business Central unterstützt Verkaufsangebote, Verkaufsaufträge, Lieferungen, Rechnungen, Retouren, Gutschriften und Dropshipping. Der Shopify-Bereich synchronisiert Onlineshop-Daten je Einrichtung mit Business Central. [Q7][Q8][Q9][Q10]
+
+### 7.2 Mitarbeiterrollen
+
+| Rolle | Bedienhandlung | Seite | Ergebnis |
+|---|---|---|---|
+| Verkäuferin | Angebot für `RM-M100` erstellen | `Sales Quotes` | Angebot mit Preis und Liefertermin |
+| Vertriebsinnendienst | Angebot in Auftrag umwandeln | `Sales Orders` | `SO-1001` |
+| Lagerist | Lieferung kommissionieren | `Warehouse Picks` oder `Sales Orders` | gebuchte Lieferung |
+| Debitorenbuchhalterin | Rechnung und Zahlung prüfen | `Customer Ledger Entries` | offener oder geschlossener Posten |
+| E-Commerce-Sachbearbeiter | Shop-Auftrag prüfen | `Shopify Orders` / `Sales Orders` | Webauftrag in BC |
+
+### 7.3 Standardpfad B2B-Verkauf
+
+```mermaid
+flowchart LR
+    A["Contact / Customer"] --> B["Sales Quote"]
+    B --> C["Sales Order"]
+    C --> D["Pick / Shipment"]
+    D --> E["Posted Sales Invoice"]
+    E --> F["Customer Ledger Entry"]
+    E --> G["VAT Entry"]
+    F --> H["Payment Application"]
+```
+
+### 7.4 Beispieldaten und Buchung
+
+Fall `S-001`: Debitor `D10000` kauft `RM-M100`, 1 Stück, netto `68.000 EUR`, USt `12.920 EUR`.
+
+| Buchung | Soll | Haben |
+|---|---:|---:|
+| Forderungen D10000 | 80.920 | |
+| Umsatzerlöse Maschinen | | 68.000 |
+| Umsatzsteuer 19 % | | 12.920 |
+
+Mitarbeiterbedienung:
+1. Verkäuferin: Tell Me → `Sales Quotes` → New → `Sell-to Customer No. = D10000`.
+2. Zeile: `Type = Item`, `No. = RM-M100`, `Quantity = 1`, `Location Code = FRA-ZL`.
+3. Aktion: `Make Order`.
+4. Lagerist: Tell Me → `Warehouse Picks` → Pick erstellen und registrieren.
+5. Vertrieb: `Post` → Ship and Invoice, wenn Lieferung abgeschlossen ist.
+6. Buchhaltung: Tell Me → `Customer Ledger Entries` → Posten D10000 prüfen.
+
+### 7.5 Abweichungen und Sonderfälle
+
+| Use Case | BC-Mechanik | Mitarbeiter | Risiko | Evidence Pack |
+|---|---|---|---|---|
+| Teillieferung | `Qty. to Ship` | Lager/Vertrieb | Rechnung über falsche Menge | Shipment ↔ Invoice |
+| Retoure | `Sales Return Order` | Vertrieb/Lager | USt-Korrektur fehlt | Bezug zur Ursprungsrechnung |
+| Gutschrift | `Sales Credit Memo` | Debitorenbuchhaltung | falsches Erlöskonto | Credit Memo + VAT Entry |
+| Vorauszahlung | `Prepayment Invoice` | Vertrieb/Finance | falsche Steuerperiode | Prepayment VAT |
+| Dropshipping | Sales Order ↔ Purchase Order | Vertrieb/Einkauf | Liefernachweis fehlt | Lieferantenbeleg + Kundenrechnung |
+| Shopify | Shop Order → Sales Order | E-Commerce | falsche Kundenzuordnung | Shop-ID + BC-Beleg |
+| EU-B2B | VAT Bus. Posting Group EU | Vertrieb/Finance | USt-IdNr. fehlt | USt-IdNr., ZM |
+| Drittland | Export-VAT-Clause | Vertrieb/Finance | Ausfuhrnachweis fehlt | Exportnachweis |
+
+BC-Best-Practice:
+- Verkäufer dürfen Preise und Rabatte erfassen, aber nicht USt-Buchungsgruppen ändern.
+- Onlineshop-Aufträge laufen durch eine tägliche Fehlerliste: unbekannte Artikel, fehlende Kunden, Zahlungsabweichungen.
+
+Schulungsübung:
+- Erstelle `SO-1003` als Dropshipment für Debitor `D10000` und Kreditor `K20000`. Verknüpfe Verkaufs- und Einkaufsbeleg. Prüfe, warum kein eigener Lagerbestand entsteht.
+
+---
+
+## 8. Purchasing/P2P: Einkauf, Wareneingang, E-Rechnung, Fremdarbeit, Zahlungen [Q11][Q12][Q13]
+
+P2P beginnt beim Bedarf und endet mit abgestimmter Verbindlichkeit, Zahlung und Vorsteuer. Der Einkauf erzeugt nicht nur Belege, sondern steuert Preis-, Mengen-, Liefer- und Betrugsrisiken.
+
+### 8.1 Mitarbeiterrollen
+
+| Rolle | Bedienhandlung | Seite | Ergebnis |
+|---|---|---|---|
+| Einkäufer | Bestellung aus Planungsbedarf erstellen | `Purchase Orders` | `PO-2001` |
+| Lagerist | Wareneingang buchen | `Warehouse Receipts` oder `Purchase Orders` | Bestand steigt |
+| Kreditorenbuchhalter | Eingangsrechnung prüfen | `Purchase Invoices` / `Incoming Documents` | Verbindlichkeit |
+| Finance-Leitung | Zahlung freigeben | `Payment Journals` | Zahlungsvorschlag |
+
+### 8.2 Prozessfluss
+
+```mermaid
+flowchart LR
+    A["Bedarf / Requisition"] --> B["Purchase Order"]
+    B --> C["Receipt"]
     C --> D["Purchase Invoice"]
     D --> E["Vendor Ledger Entry"]
     D --> F["VAT Entry"]
     E --> G["Payment Journal"]
-    G --> H["Closed Vendor Ledger Entry"]
+    G --> H["Closed Vendor Entry"]
 ```
 
-BC-Bezug:
-- `Purchase Orders`, `Purchase Receipts`, `Purchase Invoices`, `Posted Purchase Invoices`
-- `Vendor Ledger Entries`, `G/L Entries`, `Item Ledger Entries`, `Value Entries`, `VAT Entries`
-- Microsoft Learn: https://learn.microsoft.com/en-us/dynamics365/business-central/purchasing-how-record-purchases
+### 8.3 Beispieldaten und Buchung
 
-### 5.2 Zahlenbeispiel
-
-Einkauf von Rohmaterial: `20.000 EUR` netto, Vorsteuer `3.800 EUR`, Zahlung `23.800 EUR`.
+Fall `P-001`: Einkauf `RAW-STEEL`, 10 Stück à `2.500 EUR`, netto `25.000 EUR`, Vorsteuer `4.750 EUR`.
 
 | Buchung | Soll | Haben |
 |---|---:|---:|
-| Vorräte/Rohmaterial | 20.000 | |
-| Vorsteuer 19 % | 3.800 | |
-| Verbindlichkeiten | | 23.800 |
+| Vorräte Rohmaterial | 25.000 | |
+| Vorsteuer 19 % | 4.750 | |
+| Verbindlichkeiten K10000 | | 29.750 |
 
-### 5.3 Abweichungen
+Bedienung:
+1. Einkäufer: Tell Me → `Purchase Orders` → New → `Buy-from Vendor No. = K10000`.
+2. Zeile: `Type = Item`, `No. = RAW-STEEL`, `Quantity = 10`, `Location Code = FRA-ZL`.
+3. Lagerist: gesteuertes Lager → `Warehouse Receipt` erstellen und buchen.
+4. Kreditorenbuchhalter: Eingangsrechnung mit Bestellung abgleichen.
+5. Finance: Zahlungsvorschlag erstellen und ausführen.
 
-| Abweichung | BC-Mechanik | Risiko | Kontrolle |
-|---|---|---|---|
-| Teil-Wareneingang | mehrere Receipts | Rechnung über nicht erhaltene Menge | Quantity Received vs. Quantity Invoiced |
-| Sammelrechnung | Combine Receipts | Wareneingang bleibt offen | Purchase Receipts vollständig zuordnen |
-| Preisabweichung | Invoice Amount ≠ Order Amount | falscher Lagerwert | Preisfreigabe und Value Entries |
-| Mengenabweichung | Rechnung > Eingang | Überzahlung | 3-Way-Match |
-| Rücksendung | Purchase Return Order / Credit Memo | Vorsteuerkorrektur fehlt | Bezug zur Ursprungsrechnung |
-| E-Rechnung | E-Documents | XML nicht führend archiviert | XML, Validierung, Buchungsbezug |
-| Fremdleistung | G/L Account oder Resource | Aktivierung/Projektzuordnung falsch | Dimension/Projektaufgabe prüfen |
-| Import Drittland | Import VAT | Einfuhrumsatzsteuer falsch | Zollbeleg und EUSt-Konto |
+### 8.4 Abweichungen
 
-Microsoft Learn:
-- Purchase Returns: https://learn.microsoft.com/en-us/dynamics365/business-central/purchasing-how-process-purchase-returns-cancellations
-- E-Documents Purchase: https://learn.microsoft.com/en-us/dynamics365/business-central/finance-how-use-edocuments-purchase
-
-UAT-Minimaltests:
-1. Bestellung mit Wareneingang und Rechnung vollständig buchen.
-2. Teil-WE, danach Sammelrechnung.
-3. Preisabweichung mit Freigabe.
-4. Rücksendung an Lieferanten mit Gutschrift.
-5. Eingangs-E-Rechnung mit Zuordnung zur Bestellung.
-
----
-
-## 6. Inventory & Warehouse (Lager und Logistik)
-
-Lagerprozesse verbinden physische Bewegung mit finanzieller Bewertung. Business Central trennt daher Mengenposten (`Item Ledger Entries`) und Wertposten (`Value Entries`). Diese Trennung ist für Abstimmung und Abschluss zentral.
-
-### 6.1 Standardpfade
-
-| Prozess | Ablauf | Entries |
+| Use Case | BC-Mechanik | Kontrolle |
 |---|---|---|
-| Einkaufslagerzugang | Bestellung → Wareneingang → Rechnung | Item Ledger Entry, Value Entry, G/L Entry |
-| Verkaufslagerabgang | Auftrag → Lieferung → Rechnung | Item Ledger Entry, Value Entry, COGS |
-| Umlagerung | Transfer Order → Shipment → Receipt | Item Ledger Entries je Lagerort |
-| Inventur | Physical Inventory Journal → Posting | Korrekturposten Menge/Wert |
-| Lagerkommissionierung | Pick → Shipment | Lagerbewegung vor Verkaufslieferung |
+| Teil-Wareneingang | mehrere Receipts | `Qty. Received` vs. `Qty. Invoiced` |
+| Preisabweichung | Rechnungspreis abweichend | Freigabe vor Buchung |
+| Rücksendung | `Purchase Return Order` | Bezug zur Ursprungslieferung |
+| E-Rechnung | E-Documents / Incoming Documents | XML und Validierung |
+| Fremdarbeit | Subcontracting / Purchase Service | Fertigungsauftragbezug |
+| Lieferantenbank geändert | Vendor Bank Account | Vier-Augen-Prüfung |
 
-Microsoft Learn:
-- Inventory Setup: https://learn.microsoft.com/en-us/dynamics365/business-central/inventory-setup-inventory
+BC-Best-Practice:
+- Externe Belegnummer ist Pflicht.
+- Bankdatenänderungen werden nicht im Zahlungslauf geändert, sondern vorher freigegeben.
+- Mengen- und Preisabweichungen erhalten eigene Freigaberegeln.
 
-### 6.2 Abweichungen
-
-| Abweichung | Konsequenz |
-|---|---|
-| Negative Bestände | COGS kann vor endgültigem Einstandspreis entstehen |
-| Chargen-/Seriennummernpflicht | jede Bewegung braucht eindeutige Item Tracking Line |
-| Ersatzartikel | Verfügbarkeitsprüfung muss Substitution zulassen |
-| falsche Einheit | Menge und Bewertung laufen auseinander |
-| verspätete Eingangsrechnung | erwartete Kosten vs. tatsächliche Kosten abstimmen |
-| Inventurdifferenz | Ergebniswirkung und Ursachenanalyse dokumentieren |
-
-Praxisregel:
-- Jede Lagerabweichung ist gleichzeitig ein Mengen-, Bewertungs- und Verantwortungsproblem.
-
-UAT-Minimaltests:
-1. Artikel kaufen, einlagern, verkaufen und COGS prüfen.
-2. Umlagerung Frankfurt → Hamburg.
-3. Inventurdifferenz buchen und Wertposten prüfen.
-4. Seriennummernpflichtigen Artikel verkaufen.
-5. verspätete Eingangsrechnung nach Wareneingang buchen.
+Schulungsübung:
+- Buche eine Bestellung mit Teil-Wareneingang 6/10 Stück. Buche anschließend eine Rechnung über 10 Stück und erkläre den Fehler.
 
 ---
 
-## 7. Planning, Assembly & Manufacturing (Planung, Montage und Fertigung)
+## 9. Inventory & Warehouse: einfaches Lager, gesteuertes Lager, Bins, Inventur [Q14][Q15]
 
-Fertigung ist der Prozess, in dem Business Central am stärksten zwischen Planung und Ist unterscheidet. Die Musterfirma fertigt eine Standardmaschine aus Baugruppen und kauft einzelne Komponenten fremd ein.
+Lager in Business Central ist nicht einheitlich. Die Mustergruppe nutzt bewusst zwei Extreme: ein einfaches Lager und ein gesteuertes Zentrallager.
 
-### 7.1 Fertigungsstandard
+### 9.1 Lagerlogik im Vergleich
+
+| Merkmal | Einfaches Lager `MZ-EINFACH` | Gesteuertes Lager `FRA-ZL` |
+|---|---|---|
+| Wareneingang | direkt aus Bestellung | Warehouse Receipt + Put-away |
+| Versand | direkt aus Verkaufsauftrag | Warehouse Shipment + Pick |
+| Bins | optional/vereinfacht | verbindlich |
+| Mitarbeiter | Sachbearbeiter/Lagerist | Lagerrolle mit Aufgabenliste |
+| Schulungsziel | schneller Standardpfad | vollständige Warehouse-Steuerung |
+
+### 9.2 Prozessfluss gesteuertes Lager
 
 ```mermaid
 flowchart LR
-    A["Demand: Sales Order / Forecast"] --> B["Planning Worksheet"]
-    B --> C["Production Order"]
-    C --> D["Component Consumption"]
-    C --> E["Operation Output"]
-    D --> F["Finished Goods"]
-    E --> F
-    F --> G["Sales Shipment"]
+    A["Purchase Order"] --> B["Warehouse Receipt"]
+    B --> C["Posted Receipt"]
+    C --> D["Put-away"]
+    D --> E["Bin Bestand"]
+    E --> F["Warehouse Pick"]
+    F --> G["Warehouse Shipment"]
+    G --> H["Sales Shipment"]
 ```
 
-Microsoft Learn:
-- Supply Planning: https://learn.microsoft.com/en-us/dynamics365/business-central/production-planning
-- Production Orders: https://learn.microsoft.com/en-us/dynamics365/business-central/production-about-production-orders
-- Create Production Orders: https://learn.microsoft.com/en-us/dynamics365/business-central/production-how-to-create-production-orders
+### 9.3 Mitarbeiterbedienung
 
-### 7.2 Abweichungen
-
-| Abweichung | BC-Reaktion | Abschlussrisiko |
+| Rolle | Seite | Tätigkeit |
 |---|---|---|
-| Materialausschuss | höherer Verbrauch | Fertigungsabweichung |
-| Ersatzkomponente | manuelle Änderung Komponente | Stücklisten-/Kostenabweichung |
-| Eilauftrag | manuelle Fertigungsorder | Planung wird umgangen |
-| Fremdarbeit | Einkauf/Fremdleistung | Kosten landen nicht im Auftrag |
-| Teilfertigmeldung | Output kleiner als Plan | Bestand und Kosten unvollständig |
-| Nacharbeit | zusätzlicher Arbeitsgang | Kostenstelle/Ressource falsch |
+| Lagerist Wareneingang | `Warehouse Receipts` | Lieferung erfassen, Menge prüfen |
+| Einlagerer | `Warehouse Put-aways` | Bin vorschlagen, Ware einlagern |
+| Kommissionierer | `Warehouse Picks` | Pickliste abarbeiten |
+| Lagerleitung | `Items by Location`, `Inventory Valuation` | Bestände und Werte prüfen |
 
-Zahlenbeispiel:
-- Planverbrauch: Stahl `5.000 EUR`, Elektronik `3.000 EUR`, Arbeitszeit `2.000 EUR`.
-- Istverbrauch: Stahl `5.400 EUR`, Elektronik `3.000 EUR`, Arbeitszeit `2.300 EUR`.
-- Fertigungsabweichung: `700 EUR`.
+### 9.4 Abweichungen
 
-Prüfungstipp:
-- Fertigung nie nur über fertige Stückzahl prüfen. Prüfe Verbrauch, Output, Rest-WIP und Abweichung.
+| Use Case | BC-Reaktion | Risiko |
+|---|---|---|
+| falscher Bin | Korrektur über Warehouse Journal | Bestand physisch falsch |
+| Seriennummer fehlt | Buchung blockiert oder Tracking-Fehler | Rückverfolgbarkeit fehlt |
+| Inventurdifferenz | Physical Inventory Journal | Ergebniswirkung |
+| Umlagerung | Transfer Order | Bestand im Transit |
+| negativer Bestand | je Setup möglich/verhindert | COGS unsicher |
+
+Schulungsübung einfaches Lager:
+- Buche Einkauf `SP-PUMP-01` nach `MZ-EINFACH`, verkaufe 2 Stück und prüfe Item Ledger Entries.
+
+Schulungsübung gesteuertes Lager:
+- Buche `RAW-STEEL` nach `FRA-ZL`, erstelle Put-away, danach Pick für Fertigung oder Verkauf.
 
 ---
 
-## 8. Service Management (Servicegeschäft)
+## 10. Planning, Assembly & Manufacturing: Planung, Montage, Fertigung, Fremdarbeit [Q16][Q17][Q18]
 
-Serviceprozesse verbinden Kundenbeziehung, Ersatzteile, Arbeitszeit, Garantie und Faktura. Die Musterfirma wartet Maschinen nach Auslieferung und verkauft Ersatzteile aus Servicefahrzeugen.
+Die Mustergruppe produziert mehrere Produkte. Damit lassen sich Planung, Montage und Fertigung sauber unterscheiden.
 
-### 8.1 Standardpfad
+### 10.1 Produktstruktur
+
+| Produkt | Prozess | Bestandteile |
+|---|---|---|
+| `KIT-MAINT` | Assembly | Pumpe + Sensor + Dichtung |
+| `RM-M100` | Manufacturing Standard | Stahl, Steuerung, Montagezeit |
+| `RM-X500` | Project + Manufacturing | kundenspezifische BOM, Projektressourcen |
+| `SP-SENSOR-02` | Handels-/Serienartikel | Einkauf, Seriennummer |
+
+### 10.2 Fertigungsfluss
+
+```mermaid
+flowchart LR
+    A["Sales Forecast / Sales Order"] --> B["Planning Worksheet"]
+    B --> C["Firm Planned Production Order"]
+    C --> D["Released Production Order"]
+    D --> E["Consumption Journal"]
+    D --> F["Output Journal"]
+    E --> G["Value Entries"]
+    F --> G
+    G --> H["Finished Goods Inventory"]
+```
+
+### 10.3 Mitarbeiterbedienung
+
+| Rolle | Seite | Tätigkeit |
+|---|---|---|
+| Produktionsplanerin | `Planning Worksheet` | Bedarf berechnen, Vorschläge prüfen |
+| Arbeitsvorbereitung | `Production BOMs`, `Routings` | Struktur und Arbeitsgänge pflegen |
+| Meister | `Released Production Orders` | Auftrag starten, Material prüfen |
+| Werker/Meister | `Consumption Journal`, `Output Journal` | Verbrauch und Output melden |
+| Controller | `Production Order Statistics` | Abweichungen analysieren |
+
+### 10.4 Abweichungen
+
+| Use Case | BC-Mechanik | Best Practice |
+|---|---|---|
+| Ausschuss | Mehrverbrauch oder Output-Differenz | Ausschussgrund dokumentieren |
+| Ersatzkomponente | Komponentenänderung im Auftrag | Freigabe durch Arbeitsvorbereitung |
+| Fremdarbeit | Subcontracting/Purchase | Bestellung mit Fertigungsbezug |
+| Nacharbeit | zusätzlicher Arbeitsgang | Kosten separat auswerten |
+| Eilauftrag | manuelle Produktionsorder | Planungsabweichung markieren |
+| Teilfertigmeldung | Output kleiner Planmenge | Rest-WIP prüfen |
+
+Schulungsübung:
+- Erstelle Fertigungsauftrag `PROD-3001` für 3 Stück `RM-M100`. Melde 5 % Mehrverbrauch `RAW-STEEL` und erkläre die Abweichung in Value Entries.
+
+---
+
+## 11. Service, Mietmodelle und Finanzierung im Standardgrenzbereich [Q19][Q25][Q26]
+
+Service Management ist Standard. Miet- und Finanzierungsmodelle sind je Ausprägung Standard, Prozessdesign oder Erweiterung. Dieses Buch zeigt zuerst den Standard und markiert danach Grenzen.
+
+### 11.1 Service-Standard
 
 ```mermaid
 flowchart LR
     A["Service Item"] --> B["Service Order"]
-    B --> C["Service Lines: Arbeit / Ersatzteile"]
-    C --> D["Service Shipment / Consumption"]
+    B --> C["Service Lines"]
+    C --> D["Item / Resource Consumption"]
     D --> E["Service Invoice"]
     E --> F["Customer Ledger Entry"]
 ```
 
-Microsoft Learn:
-- Service Setup: https://learn.microsoft.com/en-us/dynamics365/business-central/service-setup-service
+Mitarbeiterbedienung:
+1. Servicedisponent: Tell Me → `Service Orders` → neuen Auftrag für D10000 anlegen.
+2. Techniker: Serviceartikel auswählen, Fehlerbeschreibung erfassen.
+3. Techniker: Ersatzteil `SP-PUMP-01` und Ressource `RES-TECH` erfassen.
+4. Serviceabrechnung: Auftrag fakturieren oder als Garantie/Kulanz markieren.
 
-### 8.2 Abweichungen
+### 11.2 Mietmodell im BC-Standardgrenzbereich
 
-| Abweichung | Behandlung |
-|---|---|
-| Garantie | Erlös 0 oder separates Garantie-/Kulanzkonto |
-| Teilfakturierung | Arbeitszeit sofort, Ersatzteil später |
-| Fremdleistung | P2P-Beleg mit Serviceauftragsbezug |
-| Ersatzteil fehlt | Lagerort Servicefahrzeug prüfen |
-| Kunde reklamiert | Credit Memo oder Service-Retoure |
-| Wartungsvertrag | periodische Abrechnung und Vertragsnachweis |
+| Modell | Standardabbildung | Grenze |
+|---|---|---|
+| Kurzzeitmiete mit Rechnung | Sales Invoice / Project / Service | Verfügbarkeitskalender nicht vollwertig |
+| Wartungspauschale | Service Contract | Vertragslogik standardnah |
+| Mietmaschine als Anlage | Fixed Asset + Service Item | komplexe Mietabrechnung braucht Design |
+| monatliche Abgrenzung | Deferrals | Vertragsänderungen separat steuern |
 
-Evidence Pack:
-- Serviceauftrag, Serviceartikelhistorie, Arbeitszeitnachweis, Ersatzteilverbrauch, Kundenfreigabe, Rechnung oder Kulanzentscheidung.
+BC-Best-Practice:
+- Mietfälle erhalten eigene Produktlinie `RENTAL`, eigene Dimension und eigenes Evidence Pack.
+- Wenn Verfügbarkeitskalender, automatische Verlängerung, variable Nutzung oder komplexe Indexierung nötig sind, wird Extension/Customizing geprüft.
+
+### 11.3 Finanzierung im Standardgrenzbereich
+
+| Use Case | Standardabbildung | Hinweis |
+|---|---|---|
+| Kunde zahlt in Raten | Zahlungsbedingungen / Teilzahlungen | einfache Raten möglich |
+| externe Bank finanziert | Verkauf an Kunden, Zahlung durch Bank | Abtretung/Vertrag separat dokumentieren |
+| Leasingähnlicher Verkauf | Vertragliche Prüfung erforderlich | nicht als bloßer Verkaufsauftrag behandeln |
+
+Schulungsübung:
+- Lege einen Mietfall für `RM-M100` über 12 Monate an. Nutze Dimension `PRODUCTLINE = RENTAL`, erstelle Monatsrechnung und erkläre, warum dies keine vollständige Mietverwaltungssoftware ersetzt.
 
 ---
 
-## 9. Projects (Projekte) und Ressourcen
+## 12. Projects: Projektgeschäft, Ressourcen, WIP, Faktura [Q27]
 
-Projektprozesse sind in Business Central eigenständige Wertträger. Sie sammeln Planung, Ressourcen, Artikelverbrauch, Fremdleistungen und Faktura. In der Musterfirma betrifft das Installation, Schulung und Sondermaschinen.
+Projects bilden mehrperiodige Leistungserbringung ab. Die Mustergruppe nutzt Projekte für Installation, Sondermaschinen und Kundenschulungen.
 
-### 9.1 Standardpfad
+### 12.1 Prozessfluss
 
 ```mermaid
 flowchart LR
@@ -426,227 +618,321 @@ flowchart LR
     B --> C["Planning Lines"]
     C --> D["Usage: Item / Resource / G/L"]
     D --> E["Project Ledger Entries"]
-    E --> F["Sales Invoice"]
+    E --> F["WIP / Billing"]
+    F --> G["Sales Invoice"]
 ```
 
-Microsoft Learn:
-- Create Projects: https://learn.microsoft.com/en-us/dynamics365/business-central/projects-how-create-jobs
+### 12.2 Mitarbeiterbedienung
 
-### 9.2 Abweichungen
-
-| Abweichung | Risiko | Kontrolle |
+| Rolle | Seite | Tätigkeit |
 |---|---|---|
-| Festpreis | Istkosten laufen ohne Mehrerlös | Budget vs. Ist |
-| Time & Material | nicht fakturierte Zeiten | WIP-/Unbilled-Auswertung |
-| mehrere Rechnungsempfänger | falscher Debitor | Task Billing Method prüfen |
-| Projektlager | Materialverbrauch ohne Projektbezug | Location/Bin je Projekt |
-| Reisekosten | Aufwand ohne Weiterbelastung | Dimension und Projektaufgabe |
-| Meilensteinrechnung | Erlös vor Leistung | Abgrenzung prüfen |
+| Projektleiter | `Projects` | Projekt und Aufgaben anlegen |
+| Einkauf | `Purchase Orders` | Projektbezogene Fremdleistung bestellen |
+| Lager | `Item Journals` / Projektverbrauch | Material auf Projekt buchen |
+| Consultant/Techniker | `Project Journals` | Zeit erfassen |
+| Finance | `Create Project Sales Invoice` | Faktura erstellen |
 
-Praxisregel:
-- Jedes Projekt braucht mindestens eine Aufgabe, weil Buchungen auf Project Tasks referenzieren.
+### 12.3 Abweichungen
 
----
+| Use Case | Risiko | Kontrolle |
+|---|---|---|
+| Festpreis | Istkosten überschreiten Erlös | Budget/Ist-Bericht |
+| Time & Material | Zeiten nicht fakturiert | Unbilled-Auswertung |
+| Meilenstein | Erlös vor Leistung | Abgrenzung |
+| Fremdleistung | Kosten ohne Projektbezug | Bestellzeile mit Projekt |
+| Projektlager | Material bleibt im falschen Lager | Location `PROJ-BER` |
 
-## 10. Bank, Cash, Mahnwesen und Zahlungsverkehr
-
-Bankprozesse schließen offene Posten und beweisen Liquidität. Die fachliche Frage lautet nicht „steht Geld auf dem Konto?“, sondern „ist jede Bankbewegung einem Beleg, einer Forderung, einer Verbindlichkeit oder einem Klärfall zugeordnet?“
-
-### 10.1 Standardpfade
-
-| Prozess | Ablauf |
-|---|---|
-| Kundenzahlung | Bankimport → Payment Reconciliation Journal → Apply Entries → Bankabstimmung |
-| Lieferantenzahlung | Payment Journal → Zahlungsvorschlag → Bankdatei → Ausgleich |
-| Teilzahlung | offener Restposten bleibt bestehen |
-| Skonto | Zahlungsdifferenz wird als Skonto gebucht |
-| Überzahlung | Guthaben oder Rückzahlung |
-| ungeklärte Zahlung | Klärungskonto mit Verantwortlichem |
-
-Microsoft Learn:
-- Customer Payment Application: https://learn.microsoft.com/en-us/dynamics365/business-central/receivables-how-apply-sales-transactions-manually
-- Vendor Payment Application: https://learn.microsoft.com/en-us/dynamics365/business-central/payables-how-apply-purchase-transactions-manually
-
-Prüfungsfalle:
-- Bankabstimmung ohne OP-Ausgleich zeigt nur, dass der Banksaldo stimmt. Sie beweist nicht, dass Forderungen und Verbindlichkeiten richtig geschlossen wurden.
+Schulungsübung:
+- Projekt `PROJ-5001`: Installiere `RM-X500`, buche 20 Technikerstunden, Material `SP-SENSOR-02`, Fremdleistung und eine Meilensteinrechnung.
 
 ---
 
-## 11. Fixed Assets (Anlagenbuchhaltung)
+## 13. Finance/R2R: Journale, Debitoren, Kreditoren, Bank, Anlagen, USt, Abschluss [Q20][Q21][Q22][Q23][Q24][Q28]
 
-Anlagenprozesse verbinden Einkauf, Aktivierung, Abschreibung und Abgang. In der Musterfirma betrifft das CNC-Maschinen, Firmenfahrzeuge, IT-Ausstattung und selbstständige Betriebsvorrichtungen.
+Finance ist die Klammer aller Prozesse. Jeder operative Vorgang muss sich in Hauptbuch, Nebenbuch, Steuer, Bank und Abschluss wiederfinden.
 
-### 11.1 Standardpfad
+### 13.1 Finance-Prozesslandkarte
+
+```mermaid
+flowchart TB
+    A["Sales / Customer Ledger"] --> G["General Ledger"]
+    B["Purchasing / Vendor Ledger"] --> G
+    C["Inventory / Value Entries"] --> G
+    D["FA Ledger Entries"] --> G
+    E["Bank Ledger Entries"] --> G
+    F["VAT Entries"] --> G
+    G --> H["Financial Reports"]
+    H --> I["Period Close"]
+```
+
+### 13.2 Mitarbeiterbedienung
+
+| Rolle | Seite | Tätigkeit |
+|---|---|---|
+| Debitorenbuchhalterin | `Customer Ledger Entries`, `Reminders` | OP prüfen, Zahlungen ausgleichen, mahnen |
+| Kreditorenbuchhalter | `Vendor Ledger Entries`, `Payment Journals` | Rechnungen prüfen, Zahlungslauf |
+| Anlagenbuchhalterin | `Fixed Assets`, `FA Journals` | Zugang, AfA, Abgang |
+| Buchhalter | `General Journals` | Abgrenzungen, Umbuchungen, Rückstellungen |
+| Steuerverantwortliche | `VAT Entries`, `VAT Statements`, VAT Reports | USt-Abstimmung |
+| Finance-Leitung | `Financial Reports`, `Accounting Periods` | Abschluss und Periodensperre |
+
+### 13.3 Abweichungen
+
+| Use Case | BC-Mechanik | Evidence |
+|---|---|---|
+| Teilzahlung | Apply Entries teilweise | Restposten |
+| Skonto | Payment Discount | Steuerkorrektur prüfen |
+| Bankdifferenz | Payment Reconciliation Journal | Klärposten |
+| Anlagenabgang | FA Disposal | Buchwert/Erlös |
+| Abgrenzung | Deferrals / General Journal | Abgrenzungsplan |
+| USt-Korrektur | Credit Memo / VAT Entry | Bezug zur Rechnung |
+
+Deutsche Pflicht/Compliance:
+- Steuerlich relevante Unterlagen müssen nach § 147 AO aufbewahrt werden. [Q21]
+- GoBD konkretisiert Anforderungen an Nachvollziehbarkeit, Unveränderbarkeit und Datenzugriff. [Q22]
+- USt-relevante Prozesse müssen mit UStG und Meldelogik abgestimmt sein. [Q20][Q24]
+
+Schulungsübung:
+- Importiere einen Bankauszug mit drei Zeilen: Vollzahlung, Teilzahlung, unbekannte Zahlung. Gleiche zwei Posten aus und buche den dritten auf Klärung.
+
+---
+
+## 14. Intercompany, Ausland, Foreign Trade und Sonderfälle [Q29][Q30][Q31]
+
+Intercompany und Ausland verbinden mehrere Prozesswelten. Ein Intercompany-Verkauf erzeugt bei einer Company O2C und bei der anderen P2P.
+
+### 14.1 Intercompany-Fluss
 
 ```mermaid
 flowchart LR
-    A["Purchase Invoice / FA Journal"] --> B["Fixed Asset Card"]
-    B --> C["Acquisition Cost"]
-    C --> D["Depreciation Run"]
-    D --> E["FA Ledger Entries"]
-    E --> F["Disposal / Retirement"]
+    A["RM-PROD Sales Order"] --> B["IC Outbox"]
+    B --> C["RM-SALES IC Inbox"]
+    C --> D["RM-SALES Purchase Order"]
+    D --> E["Receipt / Invoice"]
+    A --> F["Shipment / Sales Invoice"]
+    E --> G["IC Reconciliation"]
 ```
 
-Microsoft Learn:
-- Fixed Assets Setup: https://learn.microsoft.com/en-us/dynamics365/business-central/fa-setup
-- Manage Fixed Assets: https://learn.microsoft.com/en-us/dynamics365/business-central/fa-manage
+### 14.2 Sonderfallmatrix
 
-### 11.2 Abweichungen
-
-| Abweichung | Behandlung |
-|---|---|
-| nachträgliche Anschaffungskosten | Nachaktivierung auf Anlage |
-| Reparatur statt Aktivierung | Aufwand, wenn keine Erweiterung/Verbesserung |
-| Teilabgang | mengen- oder wertmäßiger Teilabgang |
-| Zuschuss | Brutto-/Nettomethode nach Bilanzierungsentscheidung |
-| falsche Nutzungsdauer | AfA-Plan korrigieren, Begründung dokumentieren |
-| Verkauf mit Gewinn/Verlust | Buchwert, Erlös und USt trennen |
-
-Zahlenbeispiel:
-- CNC-Maschine: Anschaffung `120.000 EUR`, Nutzungsdauer `10 Jahre`, lineare AfA `12.000 EUR` p. a.
-- Verkauf nach 3 Jahren für `90.000 EUR` netto.
-- Buchwert: `84.000 EUR`, Veräußerungsgewinn: `6.000 EUR`.
-
----
-
-## 12. VAT/USt, E-Rechnung und deutsche Lokalisierung
-
-Die deutsche Prozesssicht verlangt, dass steuerliche Behandlung, Rechnungsformat, Meldung und Archivierung zusammenpassen. Business Central liefert dafür VAT Posting Setup, VAT Entries, VAT Reports und deutsche Lokalisierungsfunktionen.
-
-### 12.1 Standardlogik
-
-| Sachverhalt | BC-Setup | Nachweis |
-|---|---|---|
-| Inland 19 % | VAT Bus./Prod. Posting Setup 19 % | Rechnung, VAT Entry |
-| Inland 7 % | eigener VAT Identifier | Rechnung, VAT Entry |
-| steuerfrei | VAT Clause | Befreiungsgrund |
-| EU-B2B Lieferung | EU-Gruppe, USt-IdNr. | ZM, Belegnachweis |
-| Reverse Charge | VAT Calculation Type Reverse Charge | Eingangsrechnung, VAT Entries |
-| Import | Import VAT / Full VAT | Zollbeleg, EUSt |
-| E-Rechnung B2B | strukturierte XML-Komponente | XML führend archiviert |
-
-Primärquellen:
-- Microsoft Learn VAT Setup: https://learn.microsoft.com/en-us/dynamics365/business-central/finance-setup-vat
-- Microsoft Learn VAT Reports: https://learn.microsoft.com/en-us/dynamics365/business-central/finance-vat-reports
-- Microsoft Learn Germany Local Functionality: https://learn.microsoft.com/en-us/dynamics365/business-central/localfunctionality/germany/germany-local-functionality
-- UStG: https://www.gesetze-im-internet.de/ustg_1980/
-- AO § 147: https://www.gesetze-im-internet.de/ao_1977/__147.html
-- GoBD 2. Änderung vom 14.07.2025: https://www.bundesfinanzministerium.de/Content/DE/Downloads/BMF_Schreiben/Weitere_Steuerthemen/Abgabenordnung/2025-07-14-GoBD-2-aenderung.pdf
-
-Prüfungsfalle:
-- Bei E-Rechnungen ist nicht das PDF der führende steuerliche Datenträger, wenn die strukturierte XML-Komponente den Rechnungsinhalt enthält.
-
----
-
-## 13. R2R (Record-to-Report (Buchung-bis-Abschluss))
-
-R2R bündelt alle Prozesse in den Abschluss. Der Monatsabschluss der Musterfirma ist nicht nur eine Summen- und Saldenliste. Er ist eine Kette aus Abstimmungen, Sperren, Nachweisen und Management Reporting.
-
-### 13.1 Abschlusskette
-
-```mermaid
-flowchart LR
-    A["Subledger Close"] --> B["Bank Reconciliation"]
-    B --> C["VAT Reconciliation"]
-    C --> D["Inventory Valuation"]
-    D --> E["FA Depreciation"]
-    E --> F["Accruals / Provisions"]
-    F --> G["Trial Balance"]
-    G --> H["Period Lock"]
-```
-
-### 13.2 Pflichtabstimmungen
-
-| Abstimmung | Quelle | Ziel |
-|---|---|---|
-| Debitoren | Customer Ledger Entries | Forderungskonto |
-| Kreditoren | Vendor Ledger Entries | Verbindlichkeitskonto |
-| Lager | Value Entries / Inventory Valuation | Vorratskonten |
-| Bank | Bank Account Ledger Entries | Kontoauszug |
-| USt | VAT Entries | Steuerkonten / Meldung |
-| Anlagen | FA Ledger Entries | Anlagenkonten |
-| Projekte | Project Ledger Entries | WIP, Erlöse, Kosten |
-
-Merksatz:
-- Erst Nebenbücher schließen, dann Hauptbuch beurteilen.
-
----
-
-## 14. Intercompany, Foreign Trade und Sonderfälle
-
-Sonderfälle sind keine Randnotiz. Sie entscheiden, ob ein Standardprozess im echten Unternehmen tragfähig ist. Die Musterfirma verkauft ins EU-Ausland, bezieht Ware aus Drittland und verrechnet Leistungen mit einer verbundenen Servicegesellschaft.
-
-### 14.1 Sonderfallmatrix
-
-| Fall | Prozessberührung | Hauptprüfung |
-|---|---|---|
-| Intercompany-Verkauf | O2C + P2P + Konsolidierung | Gegenbeleg und Abstimmung |
-| EU-Lieferung | O2C + VAT | USt-IdNr., Transportnachweis, ZM |
-| Drittland-Export | O2C + Zoll | Ausfuhrnachweis |
-| Import | P2P + VAT + Lager | Zollwert, EUSt, Wareneingang |
-| Streckengeschäft | O2C + P2P | Lieferort, Verknüpfung, Steuerlogik |
-| Reihengeschäft | O2C/P2P/VAT | bewegte Lieferung, Nachweise |
-| Fremdwährung | O2C/P2P/R2R | Kursdifferenz, Neubewertung |
-| Konsignationslager | Inventory/VAT | Eigentumsübergang, Steuerzeitpunkt |
-
-Prüfungstipp:
-- Sonderfälle brauchen ein `TaxScenario` oder eine gleichwertige dokumentierte Klassifikation. Sonst ist nach sechs Monaten nicht mehr erklärbar, warum 0 %, Reverse Charge oder Import VAT verwendet wurde.
-
----
-
-## 15. End-to-End-Testkatalog und Abweichungsmatrix
-
-Dieses Kapitel fasst die UAT-Logik zusammen. Der Testkatalog ist so aufgebaut, dass jede Prozessgruppe mindestens einen Standardpfad und mehrere Abweichungen enthält.
-
-### 15.1 Master-UAT
-
-| ID | Prozess | Testfall | Erwarteter Nachweis |
+| Use Case | Prozessbereiche | Mitarbeiter | Hauptrisiko |
 |---|---|---|---|
-| UAT-001 | O2C | Inlandslieferung 19 % vollständig | Invoice, VAT Entry, Zahlungsausgleich |
-| UAT-002 | O2C | Teillieferung + Teilrechnung | Shipment/Invoice-Mengenabgleich |
-| UAT-003 | O2C | Retoure nach Rechnung | Credit Memo mit USt-Korrektur |
-| UAT-004 | P2P | Bestellung → WE → Rechnung → Zahlung | 3-Way-Match |
-| UAT-005 | P2P | Preisabweichung | Freigabe und Value Entry |
-| UAT-006 | Inventory | Umlagerung Frankfurt → Hamburg | Item Ledger Entries je Lagerort |
-| UAT-007 | Inventory | Inventurdifferenz | Journal, Wertkorrektur |
-| UAT-008 | Manufacturing | Fertigungsauftrag mit Mehrverbrauch | Abweichungsanalyse |
-| UAT-009 | Service | Garantieauftrag | Kosten ohne Erlös oder Kulanzkonto |
-| UAT-010 | Project | Festpreisprojekt mit Materialverbrauch | Budget/Ist/Faktura |
-| UAT-011 | Bank | Teilzahlung Kunde | offener Restposten |
-| UAT-012 | Fixed Assets | Zugang + AfA + Abgang | FA Ledger Entries |
-| UAT-013 | VAT | EU-B2B-Lieferung | USt-IdNr., VAT Entry, ZM-Logik |
-| UAT-014 | E-Rechnung | Eingangs-E-Rechnung | XML, Validierung, Buchungsbezug |
-| UAT-015 | R2R | Monatsabschluss | Abstimmmappe und Periodensperre |
+| IC-Verkauf PROD an SALES | O2C + P2P | Vertrieb/Einkauf/Finance | Gegenbeleg fehlt |
+| EU-Lieferung nach FR | Sales + VAT | Vertrieb/Steuer | USt-IdNr./ZM |
+| Drittland Export CH | Sales + Zoll + VAT | Vertrieb/Finance | Ausfuhrnachweis |
+| Import aus CH | Purchase + Zoll + VAT | Einkauf/Finance | EUSt falsch |
+| Reihengeschäft | Sales/Purchase/VAT | Tax/Finance | bewegte Lieferung |
+| Fremdwährung USD | Sales/Purchase/R2R | Finance | Kursbewertung |
+| Konsignationsnähe | Inventory/VAT | Logistik/Tax | Eigentumsübergang |
 
-### 15.2 Abschluss-Merksatz
+BC-Best-Practice:
+- Jeder Sonderfall bekommt ein `TaxScenario` oder ein gleichwertiges Klassifikationsfeld in der Prozessdokumentation.
+- Kein 0 %-Fall ohne Evidence Pack.
 
-> Ein Standardprozess ist nur dann standardisiert, wenn auch seine Abweichungen standardisiert sind.
+Schulungsübung:
+- RM-PROD verkauft `RM-M100` an RM-SALES. Erzeuge IC-Belegkette und stimme Forderung/Verbindlichkeit ab.
 
 ---
 
-## 16. Quellenverzeichnis
+## 15. Reporting, Admin, Job Queue, Change Log, Datenexport [Q5][Q6][Q32][Q33][Q34]
+
+Reporting und Admin sind keine Nebenthemen. Sie entscheiden, ob die Organisation Business Central stabil betreiben und prüfen kann.
+
+### 15.1 Standardbereiche
+
+| Bereich | BC-Seiten | Schulungsziel |
+|---|---|---|
+| Financial Reports | `Financial Reports`, `Account Schedules` | GuV/Bilanznahe Auswertung |
+| Analysis Views | `Analysis Views` | Dimensionale Analyse |
+| Power BI-nahe Auswertung | Power BI Integration | Management Reporting |
+| Change Log | `Change Log Setup`, `Change Log Entries` | Stammdatenänderungen nachweisen |
+| Job Queue | `Job Queue Entries` | Automatisierung überwachen |
+| Berechtigungen | `Users`, `Permission Sets` | Rollen und SoD abbilden |
+| Datenexport | Datenzugriff/Reports/API | Betriebsprüfung und Migration |
+
+Mitarbeiterbedienung:
+- Controller erstellt Auswertung nach `DEPARTMENT` und `PRODUCTLINE`.
+- Admin prüft fehlgeschlagene Job Queue Entries.
+- Finance Operations exportiert Prüfungsdaten und dokumentiert Zeitraum, Filter und Verantwortlichen.
+
+Schulungsübung:
+- Aktiviere Change Log für Vendor Bank Accounts, ändere IBAN bei `K10000`, prüfe Change Log Entry und erkläre den Nachweiswert.
+
+---
+
+## 16. Schulungskapitel nach Abteilungen
+
+Dieses Kapitel bündelt die Trainingspfade. Jede Schulung nutzt dieselbe Datenwelt.
+
+### 16.1 Einkaufsschulung
+
+Ziel:
+- Einkäufer kann Lieferanten, Bestellung, Wareneingang, Eingangsrechnung und Abweichung verstehen.
+
+Übung:
+1. Bestellung `PO-2001` für `RAW-STEEL` anlegen.
+2. Wareneingang im gesteuerten Lager buchen.
+3. Rechnung mit Preisabweichung erfassen.
+4. Abweichung freigeben und buchen.
+
+Kontrollfrage:
+- Warum ist der Wareneingang fachlich nicht dasselbe wie die Eingangsrechnung?
+
+### 16.2 Verkaufsschulung
+
+Übung:
+1. Angebot an D10000 erstellen.
+2. Auftrag erzeugen.
+3. Lieferung aus gesteuertem Lager anstoßen.
+4. Rechnung buchen.
+5. Zahlung ausgleichen.
+
+Kontrollfrage:
+- Welche Entries beweisen, dass Umsatz, Forderung und Steuer entstanden sind?
+
+### 16.3 Lagerschulung einfaches Lager
+
+Übung:
+- Kaufe `SP-PUMP-01` nach `MZ-EINFACH`, verkaufe 2 Stück, buche Inventurdifferenz 1 Stück.
+
+Kontrollfrage:
+- Warum ist das einfache Lager schneller, aber weniger prozessgeführt?
+
+### 16.4 Lagerschulung gesteuertes Lager
+
+Übung:
+- Warehouse Receipt, Put-away, Pick und Shipment für `FRA-ZL` durchspielen.
+
+Kontrollfrage:
+- Welche Dokumente entstehen zusätzlich gegenüber einfachem Lager?
+
+### 16.5 Fertigungsschulung
+
+Übung:
+- Fertigungsauftrag `PROD-3001` erstellen, Verbrauch buchen, Output melden, Abweichung analysieren.
+
+Kontrollfrage:
+- Warum braucht Fertigung sowohl Mengen- als auch Wertposten?
+
+### 16.6 Serviceschulung
+
+Übung:
+- Serviceauftrag `SERV-4001` mit Garantieentscheidung und Ersatzteilverbrauch buchen.
+
+Kontrollfrage:
+- Wann entsteht Erlös, wann nur Aufwand?
+
+### 16.7 Projektschulung
+
+Übung:
+- Projekt `PROJ-5001` mit Ressourcen, Material, Fremdleistung und Meilensteinrechnung abbilden.
+
+Kontrollfrage:
+- Was ist der Unterschied zwischen Projektverbrauch und Projektfaktura?
+
+### 16.8 Buchhaltungsschulung
+
+Übung:
+- Zahlungslauf, Bankabstimmung, USt-Abstimmung, Anlagen-AfA und Periodensperre durchführen.
+
+Kontrollfrage:
+- Warum ist die SUSA ohne Nebenbuchabstimmung nicht ausreichend?
+
+### 16.9 Admin-/Stammdatenschulung
+
+Übung:
+- Benutzerrolle anlegen, Permission Set zuweisen, Change Log aktivieren, Nummernserie prüfen.
+
+Kontrollfrage:
+- Warum ist Berechtigung keine rein technische Aufgabe?
+
+### 16.10 Abschluss- und Reporting-Schulung
+
+Übung:
+- Monatsabschluss für März `2026` durchführen: Debitoren, Kreditoren, Bank, Lager, Anlagen, USt, Financial Report.
+
+Kontrollfrage:
+- Welche Nachweise gehören in das Abschluss-Evidence-Pack?
+
+---
+
+## 17. Master-UAT und Abweichungsmatrix
+
+### 17.1 Master-UAT
+
+| ID | Prozess | Fall | Rolle | Erwarteter Nachweis |
+|---|---|---|---|---|
+| UAT-001 | Foundation | Pflichtdimension blockiert Buchung | Stammdaten-Team | Fehlermeldung + korrigierte Buchung |
+| UAT-002 | Sales | B2B-Verkauf Maschine | Vertrieb | Sales Invoice + Customer Ledger |
+| UAT-003 | Sales | Retoure mit Gutschrift | Vertrieb/Finance | Credit Memo + VAT Entry |
+| UAT-004 | Shopify | Webshop-Auftrag | E-Commerce | Shop-ID + Sales Order |
+| UAT-005 | Dropshipping | Direktlieferung | Vertrieb/Einkauf | verknüpfte Sales/Purchase Belege |
+| UAT-006 | Purchasing | Teil-WE | Einkauf/Lager | offene Restmenge |
+| UAT-007 | P2P | E-Rechnung | Kreditorenbuchhaltung | XML + Buchungsbezug |
+| UAT-008 | Warehouse | Put-away/Pick | Lager | Warehouse Entries |
+| UAT-009 | Inventory | Inventurdifferenz | Lagerleitung | Item/Value Entries |
+| UAT-010 | Planning | MRP-Vorschlag | Produktionsplanung | Planning Worksheet Lines |
+| UAT-011 | Manufacturing | Mehrverbrauch | Meister/Controlling | Fertigungsabweichung |
+| UAT-012 | Assembly | Wartungskit montieren | Lager/Service | Assembly Order |
+| UAT-013 | Service | Garantieauftrag | Service | Kosten ohne Erlös/Kulanznachweis |
+| UAT-014 | Rental | Monatsmiete | Service/Finance | Rechnung + Abgrenzungslogik |
+| UAT-015 | Project | Meilensteinrechnung | Projektleitung | Project Ledger + Sales Invoice |
+| UAT-016 | Bank | Teilzahlung | Debitorenbuchhaltung | Restposten |
+| UAT-017 | Fixed Assets | Zugang + AfA | Anlagenbuchhaltung | FA Ledger Entries |
+| UAT-018 | VAT | EU-Lieferung | Steuerverantwortliche | USt-IdNr./VAT Entry/ZM-Logik |
+| UAT-019 | Intercompany | IC-Verkauf | Finance | Gegenbeleg + Abstimmung |
+| UAT-020 | Reporting | Financial Report | Controlling | Bericht nach Dimension |
+
+### 17.2 Abweichungsmatrix
+
+| Abweichung | Betroffene Prozesse | Diagnosepfad |
+|---|---|---|
+| falsche USt-Gruppe | Sales, Purchase, VAT | Beleg → VAT Entry → VAT Posting Setup → Stammdaten |
+| falscher Lagerort | Sales, Purchase, Warehouse | Belegzeile → Item Ledger Entry → Location |
+| fehlende Dimension | alle Buchungen | G/L Entry → Dimension Set |
+| nicht ausgeglichener OP | Sales/Purchase/Bank | Customer/Vendor Ledger Entry → Detailed Entries |
+| Bestand stimmt nicht | Inventory/Warehouse | Item Ledger Entry → Warehouse Entry → Physische Zählung |
+| Fertigungskosten falsch | Manufacturing | Production Order → Consumption/Output → Value Entries |
+| Projekt nicht fakturiert | Projects | Project Ledger Entries → Planning Lines → Sales Invoice |
+| IC nicht abgestimmt | Intercompany/R2R | IC Inbox/Outbox → Customer/Vendor Ledger |
+
+> Abschluss-Merksatz: Business Central ist vollständig verstanden, wenn der Leser denselben Geschäftsvorfall aus Sicht des Mitarbeiters, des Belegs, der Buchung, der Steuer und des Nachweises erklären kann.
+
+---
+
+## 18. Quellenverzeichnis
 
 - [Q1] Microsoft Learn: Business Central documentation: https://learn.microsoft.com/en-us/dynamics365/business-central/
-- [Q2] Microsoft Learn: Welcome to Business Central: https://learn.microsoft.com/en-us/dynamics365/business-central/welcome
-- [Q3] Microsoft Learn: Germany local functionality: https://learn.microsoft.com/en-us/dynamics365/business-central/localfunctionality/germany/germany-local-functionality
-- [Q4] Microsoft Learn: Set up VAT: https://learn.microsoft.com/en-us/dynamics365/business-central/finance-setup-vat
-- [Q5] Microsoft Learn: Built-in VAT reports: https://learn.microsoft.com/en-us/dynamics365/business-central/finance-vat-reports
-- [Q6] Microsoft Learn: Sell products with a customer sales order: https://learn.microsoft.com/en-us/dynamics365/business-central/sales-how-sell-products
-- [Q7] Microsoft Learn: Posting sales documents: https://learn.microsoft.com/en-us/dynamics365/business-central/ui-post-sales
-- [Q8] Microsoft Learn: Record purchases with purchase invoices and orders: https://learn.microsoft.com/en-us/dynamics365/business-central/purchasing-how-record-purchases
-- [Q9] Microsoft Learn: Process purchase returns or cancellations: https://learn.microsoft.com/en-us/dynamics365/business-central/purchasing-how-process-purchase-returns-cancellations
-- [Q10] Microsoft Learn: Use e-documents in the purchase process: https://learn.microsoft.com/en-us/dynamics365/business-central/finance-how-use-edocuments-purchase
-- [Q11] Microsoft Learn: Setting up inventory: https://learn.microsoft.com/en-us/dynamics365/business-central/inventory-setup-inventory
-- [Q12] Microsoft Learn: Supply Planning: https://learn.microsoft.com/en-us/dynamics365/business-central/production-planning
-- [Q13] Microsoft Learn: About production orders: https://learn.microsoft.com/en-us/dynamics365/business-central/production-about-production-orders
-- [Q14] Microsoft Learn: Create production orders: https://learn.microsoft.com/en-us/dynamics365/business-central/production-how-to-create-production-orders
-- [Q15] Microsoft Learn: Setting up service management: https://learn.microsoft.com/en-us/dynamics365/business-central/service-setup-service
-- [Q16] Microsoft Learn: Create projects: https://learn.microsoft.com/en-us/dynamics365/business-central/projects-how-create-jobs
-- [Q17] Microsoft Learn: Reconcile customer payments: https://learn.microsoft.com/en-us/dynamics365/business-central/receivables-how-apply-sales-transactions-manually
-- [Q18] Microsoft Learn: Reconcile vendor payments: https://learn.microsoft.com/en-us/dynamics365/business-central/payables-how-apply-purchase-transactions-manually
-- [Q19] Microsoft Learn: Set up fixed assets: https://learn.microsoft.com/en-us/dynamics365/business-central/fa-setup
-- [Q20] Microsoft Learn: Manage fixed assets: https://learn.microsoft.com/en-us/dynamics365/business-central/fa-manage
-- [Q21] Umsatzsteuergesetz (UStG): https://www.gesetze-im-internet.de/ustg_1980/
-- [Q22] Abgabenordnung (AO) § 147 Aufbewahrung: https://www.gesetze-im-internet.de/ao_1977/__147.html
-- [Q23] BMF-Schreiben vom 14.07.2025: GoBD, 2. Änderung: https://www.bundesfinanzministerium.de/Content/DE/Downloads/BMF_Schreiben/Weitere_Steuerthemen/Abgabenordnung/2025-07-14-GoBD-2-aenderung.pdf
-- [Q24] Bundeszentralamt für Steuern: Umsatzsteuer und Zusammenfassende Meldung: https://www.bzst.de/DE/Unternehmen/Umsatzsteuer/umsatzsteuer_node.html
+- [Q2] Microsoft Learn: Business functionality supported by Business Central: https://learn.microsoft.com/en-us/dynamics365/business-central/across-business-functionality
+- [Q3] Microsoft Learn: Set up companies: https://learn.microsoft.com/en-us/dynamics365/business-central/about-new-company
+- [Q4] Microsoft Learn: Users and permissions: https://learn.microsoft.com/en-us/dynamics365/business-central/ui-how-users-permissions
+- [Q5] Microsoft Learn: Workflows in Business Central: https://learn.microsoft.com/en-us/dynamics365/business-central/across-workflow
+- [Q6] Microsoft Learn: Auditing changes: https://learn.microsoft.com/en-us/dynamics365/business-central/across-log-changes
+- [Q7] Microsoft Learn: Manage sales: https://learn.microsoft.com/en-us/dynamics365/business-central/sales-manage-sales
+- [Q8] Microsoft Learn: Sell products with sales orders: https://learn.microsoft.com/en-us/dynamics365/business-central/sales-how-sell-products
+- [Q9] Microsoft Learn: Process sales returns or cancellations: https://learn.microsoft.com/en-us/dynamics365/business-central/sales-how-process-sales-returns-cancellations
+- [Q10] Microsoft Learn: Shopify connector overview: https://learn.microsoft.com/en-us/dynamics365/business-central/shopify/get-started
+- [Q11] Microsoft Learn: Manage purchasing: https://learn.microsoft.com/en-us/dynamics365/business-central/purchasing-manage-purchasing
+- [Q12] Microsoft Learn: Record purchases: https://learn.microsoft.com/en-us/dynamics365/business-central/purchasing-how-record-purchases
+- [Q13] Microsoft Learn: Use e-documents in purchase process: https://learn.microsoft.com/en-us/dynamics365/business-central/finance-how-use-edocuments-purchase
+- [Q14] Microsoft Learn: Setting up inventory: https://learn.microsoft.com/en-us/dynamics365/business-central/inventory-setup-inventory
+- [Q15] Microsoft Learn: Warehouse management overview: https://learn.microsoft.com/en-us/dynamics365/business-central/warehouse-manage-warehouse
+- [Q16] Microsoft Learn: Supply planning: https://learn.microsoft.com/en-us/dynamics365/business-central/production-planning
+- [Q17] Microsoft Learn: Assembly management: https://learn.microsoft.com/en-us/dynamics365/business-central/assembly-assemble-items
+- [Q18] Microsoft Learn: Production orders: https://learn.microsoft.com/en-us/dynamics365/business-central/production-about-production-orders
+- [Q19] Microsoft Learn: Service management setup: https://learn.microsoft.com/en-us/dynamics365/business-central/service-setup-service
+- [Q20] Umsatzsteuergesetz (UStG): https://www.gesetze-im-internet.de/ustg_1980/
+- [Q21] Abgabenordnung (AO) § 147 Aufbewahrung: https://www.gesetze-im-internet.de/ao_1977/__147.html
+- [Q22] BMF-Schreiben vom 14.07.2025: GoBD, 2. Änderung: https://www.bundesfinanzministerium.de/Content/DE/Downloads/BMF_Schreiben/Weitere_Steuerthemen/Abgabenordnung/2025-07-14-GoBD-2-aenderung.pdf
+- [Q23] Microsoft Learn: Set up VAT: https://learn.microsoft.com/en-us/dynamics365/business-central/finance-setup-vat
+- [Q24] BZSt: Umsatzsteuer und Zusammenfassende Meldung: https://www.bzst.de/DE/Unternehmen/Umsatzsteuer/umsatzsteuer_node.html
+- [Q25] Microsoft Learn: Defer revenues and expenses: https://learn.microsoft.com/en-us/dynamics365/business-central/finance-how-defer-revenue-expenses
+- [Q26] Microsoft Learn: Manage fixed assets: https://learn.microsoft.com/en-us/dynamics365/business-central/fa-manage
+- [Q27] Microsoft Learn: Create projects: https://learn.microsoft.com/en-us/dynamics365/business-central/projects-how-create-jobs
+- [Q28] Microsoft Learn: Financial reports and analysis: https://learn.microsoft.com/en-us/dynamics365/business-central/finance-reports
+- [Q29] Microsoft Learn: Set up intercompany transactions: https://learn.microsoft.com/en-us/dynamics365/business-central/intercompany-how-setup
+- [Q30] EUR-Lex: Richtlinie 2006/112/EG Mehrwertsteuer-Systemrichtlinie: https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:32006L0112
+- [Q31] Microsoft Learn: Currencies in Business Central: https://learn.microsoft.com/en-us/dynamics365/business-central/finance-currencies
+- [Q32] Microsoft Learn: Job queue: https://learn.microsoft.com/en-us/dynamics365/business-central/admin-job-queues-schedule-tasks
+- [Q33] Microsoft Learn: Analyze data in Business Central: https://learn.microsoft.com/en-us/dynamics365/business-central/analysis-mode
+- [Q34] Microsoft Learn: Business Central APIs and web services: https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/webservices/web-services
