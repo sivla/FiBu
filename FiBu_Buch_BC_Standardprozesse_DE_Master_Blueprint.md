@@ -39,7 +39,9 @@ Hinweis: Dieses Buch ist ein quellenbasiertes Lern-, Schulungs-, Projekt- und Im
 25. Lagerlogiken im Vergleich: einfach, Basic Warehouse und gesteuertes Lager
 26. Admin, Superuser, Grundeinrichtung und laufender Betrieb
 27. Inland, Ausland, Dropshipping und Steuerlogiken
-28. Quellenverzeichnis
+28. Vollständiger Bedien- und Prozesskatalog
+29. Vollständigkeitsprüfung: Was muss ein Leser nach dem Buch können?
+30. Quellenverzeichnis
 
 ---
 
@@ -82,10 +84,10 @@ Dieses Buch ist als Master-Blueprint vollständig in der Breite. Es deckt die re
 |---|---|---|
 | Prozesslandkarte | vollständig in der Breite | alle wesentlichen BC-Standardbereiche sind benannt |
 | Musterfirma | vollständig als Trainingsuniversum | mehrere Firmen, Lager, Produktionen, Service, Shop, Projekte und IC sind angelegt |
-| Bedienung | im Ausbau | jede Rolle braucht noch mehr Klickpfade, Suchbegriffe und Fehlerbilder |
-| Buchungsspur | im Ausbau | für jeden Prozess sollen Entries, Konten und Abstimmungen sichtbar werden |
-| Berichtswesen | im Ausbau | Controller-Reports, GuV, Dimensionen und Abweichungen werden weiter vertieft |
-| Einsteigerfähigkeit | im Ausbau | Begriffe, Oberflächenlogik und Alltagstipps werden konsequent ergänzt |
+| Bedienung | durch Prozesskatalog geschlossen | jede Rolle bekommt Suchlogik, Klickpfad, Prüfpunkte und Fehlerbilder |
+| Buchungsspur | durch Postenlogik geschlossen | die wichtigsten Entries, Konten und Abstimmungen sind je Prozessbereich benannt |
+| Berichtswesen | durch Controller- und Prozesskatalog geschlossen | GuV, Bilanz, Dimensionen, Lagerwert, OP und operative Berichte sind verknüpft |
+| Einsteigerfähigkeit | durch Onboarding- und Tippskapitel geschlossen | Begriffe, Oberflächenlogik, Filter, Korrekturen und Routinen sind erklärt |
 | Rechts-/Quellensicherheit | quellenbasiert | jede Pflicht- oder Standardaussage verweist auf Primärquellen |
 
 Praxisregel:
@@ -2199,7 +2201,258 @@ Merksatz:
 
 ---
 
-## 28. Quellenverzeichnis
+## 28. Vollständiger Bedien- und Prozesskatalog [Q1][Q2][Q7][Q11][Q14][Q15][Q16][Q17][Q18][Q19][Q23][Q27][Q28][Q29][Q33][Q48][Q49][Q52][Q69]
+
+Dieses Kapitel ist der vollständige Arbeitskatalog für Business Central. Es verbindet alle Prozessbereiche mit der Frage: Wo finde ich es, was richte ich ein, was macht der Mitarbeiter, welche Posten entstehen, welcher Bericht kontrolliert das Ergebnis und welche Fehler sind typisch? Damit wird aus dem Buch ein Bedien- und Schulungssystem.
+
+### 28.1 Das Universal-Pattern für jeden BC-Prozess
+
+Jeder Prozess wird nach demselben Muster geschult:
+
+1. **Ziel verstehen:** Was soll fachlich passieren?
+2. **Seite finden:** `Alt+Q` nutzen und Suchbegriff eingeben.
+3. **Setup prüfen:** Buchungsgruppen, Nummernserien, Dimensionen, Rollen, Lagerort, Steuerlogik.
+4. **Stammdaten prüfen:** Kunde, Lieferant, Artikel, Ressource, Sachkonto, Projekt, Anlage.
+5. **Beleg erfassen:** Kopf, Zeilen, Datum, Menge, Preis, Steuer, Dimension.
+6. **Vor Buchung prüfen:** Company, Datum, Partner, Betrag, USt, Lagerort, Dimension.
+7. **Buchen:** passende Aktion wählen.
+8. **Posten prüfen:** Nebenbuch und Hauptbuch öffnen.
+9. **Bericht prüfen:** Financial Report, Lagerbewertung, OP-Liste, Projektbericht oder Analyse.
+10. **Fehler korrigieren:** nie löschen, sondern fachlich stornieren, gutschreiben, umbuchen oder korrigieren.
+11. **Evidence Pack sichern:** Beleg, Entries, Bericht, Freigabe, Nachweis.
+
+Merksatz:
+- Ein vollständiger BC-Prozess endet nicht mit `Post`. Er endet mit Kontrolle, Nachweis und verständlicher Buchungsspur.
+
+### 28.2 Vollständige Prozesslandkarte
+
+| Prozessbereich | Hauptseiten/Suchbegriffe | Setup | Mitarbeiteraktion | Entries/Nachweis | Kontrollbericht |
+|---|---|---|---|---|---|
+| Company & Foundation | `Companies`, `Company Information`, `Assisted Setup` | Company, Region, Währung, Nummernserien | Mandant anlegen und prüfen | Setup-Protokoll | Setup-Checkliste |
+| Benutzer & Rollen | `Users`, `Permission Sets`, `Profiles (Roles)` | Lizenz, Permission Sets, Profile | Nutzer berechtigen | User Card, Permission Sets | Berechtigungsreview |
+| Dimensionen | `Dimensions`, `Default Dimensions` | Global/Shortcut Dimensions, Value Posting | Dimensionen zuweisen | G/L Entries mit Dimension | Dimensions - Detail |
+| Kontenplan | `Chart of Accounts`, `G/L Account Categories` | Konten, Kategorien, Direktbuchung | Konto pflegen und sperren | G/L Entries | Financial Reports |
+| USt | `VAT Posting Setup`, `VAT Entries` | VAT Bus./Prod. Groups | Steuerlogik buchen und prüfen | VAT Entries | USt-Abstimmung |
+| O2C | `Sales Quotes`, `Sales Orders`, `Posted Sales Invoices` | Sales Setup, Debitoren, Preise | Angebot/Auftrag/Rechnung | Customer Ledger, G/L, VAT | OP-Liste, GuV |
+| Retouren | `Sales Return Orders`, `Sales Credit Memos` | Retourengründe, Lagerort | Ware zurücknehmen/gutschreiben | Item Ledger, Customer Ledger | Retourenliste |
+| Mahnwesen | `Reminders`, `Customer Ledger Entries` | Mahnmethoden, Zahlungsbedingungen | offene Posten mahnen | Reminder, Customer Ledger | Debitorenfälligkeit |
+| P2P | `Purchase Orders`, `Posted Purchase Invoices` | Purchasing Setup, Kreditoren | bestellen, empfangen, fakturieren | Vendor Ledger, G/L, VAT | Kreditorenfälligkeit |
+| Einkaufspreise | `Purchase Price Lists` | Preislisten, Kreditorartikel | Preise pflegen | Belegzeilen, Margenprüfung | Einkaufsanalyse |
+| Verkaufspreise | `Sales Price Lists` | Preisgruppen, Rabatte | Preise pflegen | Belegzeilen, Erlöse | Margenanalyse |
+| Inventory | `Items`, `Item Journals`, `Item Ledger Entries` | Artikel, Einheiten, Kostenmethode | Bestand buchen/korrigieren | Item Ledger, Value Entries | Inventory Valuation |
+| Basic Warehouse | `Inventory Put-aways`, `Inventory Picks` | Lagerort, Bin Mandatory | einlagern/kommissionieren | Warehouse Activity, Item Ledger | Lagerbewegungen |
+| Advanced Warehouse | `Warehouse Receipts`, `Warehouse Put-aways`, `Warehouse Picks` | Require Receive/Pick, Directed Put-away | Receive, Put-away, Pick | Warehouse Entries, Item Ledger | Bin Contents |
+| Inventur | `Physical Inventory Journals` | Inventurzyklen, Lagerorte | zählen und buchen | Item Ledger, Value Entries | Inventurdifferenzen |
+| Planung | `Planning Worksheets`, `Requisition Worksheets` | Planungspolitik, Forecast | Bedarf berechnen | Vorschlagszeilen | Planungsarbeitsblatt |
+| Montage | `Assembly Orders` | Assembly BOM, Artikel | Kit montieren | Assembly/Item Entries | Montagekosten |
+| Fertigung | `Production BOMs`, `Routings`, `Production Orders` | Stücklisten, Arbeitspläne, Kapazitäten | Verbrauch und Output buchen | Item/Capacity/Value Entries | Produktionsstatistik |
+| Fremdarbeit | `Subcontracting Worksheets`, Purchase | Arbeitsgänge, Kreditor | Fremdleistung beschaffen | Purchase, Capacity, Value | Fertigungsabweichung |
+| Service | `Service Items`, `Service Orders`, `Service Contracts` | Service Setup, Verträge | Reparatur/Wartung erfassen | Service Ledger, G/L | Serviceberichte |
+| Projekte | `Projects`, `Project Journals`, `Project Planning Lines` | Projektsetup, WIP-Methode | Aufwand, Budget, Faktura | Project Ledger, G/L | Projektanalyse |
+| Anlagen | `Fixed Assets`, `FA Journals` | FA Posting Groups, AfA-Bücher | Zugang, AfA, Abgang | FA Ledger, G/L | Anlagenliste |
+| Bank & Zahlungen | `Payment Journals`, `Payment Reconciliation Journals` | Bankkonten, Zahlungsarten | zahlen, abstimmen | Bank/G/L, Ledger Entries | Bankabstimmung |
+| Abschluss | `Accounting Periods`, `General Journals`, `Financial Reports` | Perioden, Sperren, Abschlusskonten | abgrenzen, schließen, berichten | G/L Entries | Bilanz/GuV |
+| Intercompany | `Intercompany Setup`, IC Journals | IC Partner, IC Konten | IC-Belege senden/empfangen | IC Entries, G/L | IC-Abstimmung |
+| Shopify/Online | `Shopify Shops`, `Sales Orders` | Shop, Mapping, Steuer | Shopaufträge verarbeiten | Sales, Customer, VAT | Shop-Abstimmung |
+| Dropshipping | `Sales Orders`, `Purchase Orders` | Purchasing Code, Lieferant | Direktlieferung steuern | verknüpfte Sales/Purchase Entries | Marge, Steuer, Liefernachweis |
+| Reporting | `Financial Reports`, `Analysis Mode`, `Analysis Views` | Dimensionen, Reports | auswerten und filtern | G/L, Dimensionen | GuV, Bilanz, Analyse |
+| Administration | `Job Queue Entries`, `Change Log`, `Extension Management` | Jobs, Logging, Apps | Betrieb überwachen | Logs, Change Log | Admin-Kalender |
+
+### 28.3 Vollständige Schrittfolge Grundeinrichtung
+
+Diese Reihenfolge gilt für einen neuen Trainingsmandanten. Sie ist bewusst streng, weil spätere Korrekturen an Fundamentdaten teuer werden.
+
+1. `Companies` öffnen und Company `RM-PROD` anlegen.
+2. `Company Information` pflegen: Name, Adresse, USt-ID, Bankdaten.
+3. `General Ledger Setup` prüfen: Währung, Buchungsdatum, Rundung, Dimensionslogik.
+4. `Accounting Periods` für das Geschäftsjahr anlegen.
+5. `Chart of Accounts` importieren oder pflegen.
+6. `G/L Account Categories` für Bilanz und GuV zuordnen.
+7. `General Posting Setup` für Geschäftsbuchungsgruppen und Produktbuchungsgruppen pflegen.
+8. `VAT Posting Setup` für Inland, EU und Drittland pflegen.
+9. `Customer Posting Groups` und `Vendor Posting Groups` definieren.
+10. `Inventory Posting Setup` und Lagerkonten definieren.
+11. `Dimensions` anlegen: `DEPARTMENT`, `PRODUCTLINE`, `CHANNEL`, `LOCATION-GROUP`, `PROJECT`.
+12. `Default Dimensions` an Debitoren, Kreditoren, Artikeln, Ressourcen und Sachkonten pflegen.
+13. `No. Series` für Debitoren, Kreditoren, Artikel, Belege, Anlagen, Projekte definieren.
+14. `Sales & Receivables Setup` prüfen.
+15. `Purchases & Payables Setup` prüfen.
+16. `Inventory Setup` prüfen.
+17. Lagerorte in `Locations` anlegen: einfaches Lager, Basic Warehouse, Advanced Warehouse.
+18. Bins und Lagerplatzlogik für gesteuertes Lager anlegen.
+19. Debitoren und Kreditoren anlegen.
+20. Artikel, Einheiten, Varianten, Item Tracking und Preise anlegen.
+21. Ressourcen, Projekte, Anlagen, Serviceartikel anlegen.
+22. Workflows und Genehmigungen einrichten.
+23. `Users`, `Permission Sets`, `Profiles (Roles)` einrichten.
+24. `Job Queue Entries` für Kostenregulierung, Reports, Schnittstellen prüfen.
+25. `Change Log Setup` für kritische Tabellen aktivieren.
+26. Extensions installieren und dokumentieren.
+27. Testdaten laden.
+28. UAT nach Kapitel 17 und 29 durchführen.
+29. Go-Live-Checkliste unterschreiben.
+30. Produktivbetrieb mit Admin-Kalender starten.
+
+Prüfungsfalle:
+- Stammdaten können schnell angelegt werden. Das Setup darunter entscheidet aber, ob die späteren Buchungen richtig in Bilanz, GuV, USt, Lager und Reporting landen.
+
+### 28.4 Vollständige operative Tagesroutine nach Rolle
+
+| Rolle | Tagesstart | operative Arbeit | Tagesende |
+|---|---|---|---|
+| Verkauf | offene Angebote/Aufträge prüfen | Auftrag, Preis, Verfügbarkeit, Lieferung, Rechnung | gebuchte Rechnungen und offene Lieferungen prüfen |
+| Einkauf | Bestellvorschläge und offene Bestellungen prüfen | Bestellung, Wareneingang, Eingangsrechnung | Preis-/Mengenabweichungen klären |
+| Lager einfach | offene Eingänge/Ausgänge prüfen | direkt empfangen, liefern, zählen | Item Ledger und Differenzen prüfen |
+| Lager gesteuert | Warehouse Receipts, Put-aways, Picks prüfen | Receive, Put-away, Pick, Ship | offene Warehouse-Aktivitäten schließen |
+| Fertigung | offene Fertigungsaufträge prüfen | Material, Output, Ausschuss, Nacharbeit | Verbrauch/Output und Abweichung prüfen |
+| Service | offene Serviceaufträge prüfen | Diagnose, Ersatzteil, Ressource, Faktura | Servicekosten und Vertragsfälle prüfen |
+| Projektleitung | Projektaufgaben prüfen | Ressourcen, Einkauf, WIP, Rechnung | Budget/Ist prüfen |
+| Buchhaltung | offene Posten und Journale prüfen | Rechnungen, Zahlungen, USt, Anlagen | OP, Bank, Fehlerjournal prüfen |
+| Controlling | GuV und Abweichungen prüfen | Drilldown, Dimensionen, Margen | Ursachenliste aktualisieren |
+| Admin/Superuser | Job Queue, Fehler, Nutzer prüfen | Rechte, Setup, Change Requests | kritische Änderungen dokumentieren |
+
+### 28.5 Vollständige Fehler- und Korrekturmatrix
+
+| Bereich | typischer Fehler | zuerst prüfen | Korrekturweg |
+|---|---|---|---|
+| Stammdaten | falsche Buchungsgruppe | Karte, Posting Setup, Testbuchung | Stammdaten ändern, Altbelege fachlich korrigieren |
+| Verkauf | falscher Preis | Price List, Menge, Datum, Kunde | Belegzeile neu validieren oder Gutschrift |
+| Einkauf | falscher Kreditor | Bestellung, Rechnung, OP | stornieren/gutschreiben und neu erfassen |
+| USt | falsche VAT Group | Debitor/Kreditor, Artikel, VAT Setup | Steuerkorrektur mit Finance-Freigabe |
+| Lager | falscher Lagerort | Item Ledger, Location, Bin | Umlagerung oder Korrekturjournal |
+| Warehouse | offene Aktivität | Warehouse Entries, Put-away/Pick | Aktivität abschließen oder korrigieren |
+| Fertigung | falscher Verbrauch | Production Order, Item Ledger | Verbrauch korrigieren, Kostenlauf |
+| Projekt | falsche Aufgabe | Project Ledger Entries | Umbuchung/Korrekturjournal |
+| Bank | falscher Ausgleich | Ledger Entries, Applies-to ID | Unapply und neu ausgleichen |
+| Dimension | fehlende Dimension | G/L Entries, Dimension Set | Dimension Correction, wenn zulässig |
+| Abschluss | falsche Periode | Posting Date, Accounting Periods | Storno und korrekte Periode |
+| Reporting | falscher Filter | Filter, Analysis View, Dimension | Filter korrigieren, Analysis View aktualisieren |
+
+### 28.6 Vollständige Berichtsmatrix
+
+| Bericht | Ziel | Mindestfilter | Nutzer |
+|---|---|---|---|
+| Financial Reports GuV | Ergebnis sehen | Datum, Company, Dimension | Controller, Finance |
+| Financial Reports Bilanz | Vermögen/Schulden sehen | Datum, Company | Finance-Leitung |
+| General Ledger Entries | Buchungsspur prüfen | Konto, Datum, Belegnr. | Buchhaltung |
+| Customer Ledger Entries | Forderungen prüfen | Kunde, offen, Fälligkeit | Debitorenbuchhaltung |
+| Vendor Ledger Entries | Verbindlichkeiten prüfen | Kreditor, offen, Fälligkeit | Kreditorenbuchhaltung |
+| VAT Entries | Steuer prüfen | Datum, VAT Bus./Prod. Group | Steuerteam |
+| Inventory Valuation | Lagerwert prüfen | Datum, Lagerort, Artikel | Controlling |
+| Item Ledger Entries | Menge prüfen | Artikel, Lagerort, Datum | Lager |
+| Value Entries | Wert prüfen | Artikel, Beleg, Datum | Controlling/Finance |
+| Aged Accounts Receivable | überfällige Kunden | Stichtag | Debitoren |
+| Aged Accounts Payable | Zahlungsplanung | Stichtag | Kreditoren |
+| Dimensions - Detail | Reportingdimension prüfen | Dimension, Datum | Controller |
+| Project Reports | Projektmarge prüfen | Projekt, Aufgabe | Projektleitung |
+| Production Order Statistics | Fertigungskosten prüfen | Auftrag | Fertigung/Controlling |
+| Change Log Entries | Setupänderung prüfen | Tabelle, Nutzer, Datum | Admin/Audit |
+
+### 28.7 Was im Standard bewusst nicht vollständig gelöst wird
+
+| Thema | Warum nicht vollständig Standard? | Entscheidung |
+|---|---|---|
+| komplexes Mietmodell | Laufzeit, Vertragsänderungen, Rückgabe, Bewertung | Extension oder Customizing prüfen |
+| Finanzierung/Leasing | rechtliche und bilanzielle Varianten | Fachkonzept plus Extension |
+| globale Steuerberechnung | länderspezifische Regeln, OSS, Reihengeschäfte | Tax Engine/Steuerberatung |
+| komplexes WMS | Scanner, Touren, Packstraßen, Gefahrgut | WMS-Extension |
+| EDI | partnerabhängige Formate | EDI-Extension |
+| DATEV-Tiefe | Kanzleiprozesse, Kontierungslogik | DACH-Extension |
+| Konzernkonsolidierung | Eliminierung, IFRS, Konzernabschluss | Zusatzlösung/Reporting |
+| Payroll | Lohn ist nicht BC-Kernstandard | externe Lohnlösung |
+
+Merksatz:
+- Vollständigkeit heißt nicht, alles im Standard zu erzwingen. Vollständigkeit heißt, Standard, Extension und Individualentwicklung sauber zu unterscheiden.
+
+---
+
+## 29. Vollständigkeitsprüfung: Was muss ein Leser nach dem Buch können?
+
+Dieses Kapitel ist der Abschlusstest. Wer diese Punkte praktisch durchführen kann, ist kein reiner Leser mehr, sondern kann in Business Central arbeiten, Fehler erkennen und mit Key Usern sprechen.
+
+### 29.1 Mindestkompetenz nach Rollen
+
+| Rolle | Muss nach dem Buch können |
+|---|---|
+| Einsteiger | suchen, filtern, Company prüfen, Belege/Posten unterscheiden |
+| Verkauf | Auftrag erfassen, Preise prüfen, Lieferung/Rechnung buchen, Retoure verstehen |
+| Einkauf | Bestellung erfassen, Wareneingang/Rechnung prüfen, Preisabweichung klären |
+| Lager | einfaches und gesteuertes Lager bedienen, Bins und offene Aktivitäten prüfen |
+| Fertigung | Stückliste, Arbeitsplan, Auftrag, Verbrauch, Output und Abweichung erklären |
+| Service | Serviceartikel, Auftrag, Vertrag, Garantie/Kulanz einordnen |
+| Projektleitung | Projektaufgaben, Ressourcen, WIP, Faktura und Marge prüfen |
+| Buchhaltung | OP, Journal, Bank, USt, Anlagen, Abschluss und Korrekturwege bedienen |
+| Controller | GuV, Bilanz, Dimensionen, Marge, Lagerwert und Drilldown analysieren |
+| Admin | Nutzer, Rechte, Profile, Job Queue, Change Log, Extensions und Setup kontrollieren |
+| Superuser | Prozessdesign, UAT, Fehleranalyse, Evidence Pack und Standardgrenzen führen |
+
+### 29.2 Praktische Abschlussprüfung
+
+Der Leser muss folgende End-to-End-Fälle im Trainingsmandanten durchführen:
+
+1. neuen Debitor mit Dimension und USt-Logik anlegen.
+2. neuen Kreditor mit Einkaufspreis anlegen.
+3. Artikel mit Einheit, Kostenmethode, Verkaufspreis und Lagerort anlegen.
+4. B2B-Verkaufsauftrag erstellen, liefern, fakturieren und Posten prüfen.
+5. Einkaufsbestellung erstellen, Wareneingang buchen, Rechnung buchen und OP prüfen.
+6. Ware im einfachen Lager direkt empfangen und liefern.
+7. Ware im gesteuerten Lager über Receipt, Put-away, Pick und Shipment bewegen.
+8. Inventurdifferenz buchen und Lagerwert prüfen.
+9. Fertigungsauftrag mit Verbrauch und Output buchen.
+10. Serviceauftrag mit Ersatzteil und Arbeitszeit fakturieren.
+11. Projektaufwand erfassen und abrechnen.
+12. Bankzahlung ausgleichen und Unapply-Fall erklären.
+13. Anlage kaufen, aktivieren und Abschreibung buchen.
+14. USt-Inlandfall buchen und VAT Entries prüfen.
+15. EU-B2B-Fall mit USt-ID-Prüfung erklären.
+16. Drittlandexport als Nachweisfall erklären.
+17. Dropshipping-Inlandsfall buchen.
+18. Dropshipping-Auslandsfall als TaxScenario dokumentieren.
+19. Intercompany-Fall zwischen zwei Companies abstimmen.
+20. Financial Report GuV mit Dimension filtern und Abweichung erklären.
+21. falsche Dimension korrigieren oder Korrekturweg begründen.
+22. gebuchte falsche Verkaufsrechnung über Gutschrift korrigieren.
+23. Permission Set und Rollenprofil für neuen Nutzer zuweisen.
+24. Job Queue und Change Log prüfen.
+25. Evidence Pack für einen Prozess vollständig zusammenstellen.
+
+### 29.3 Vollständigkeitsdefinition für dieses Buch
+
+Das Buch gilt für den Trainingszweck als vollständig, wenn jeder Prozessbereich diese Elemente enthält:
+
+| Element | Mindestanforderung |
+|---|---|
+| Quelle | Microsoft Learn oder amtliche Primärquelle |
+| Zweck | fachlicher Nutzen in Einsteigersprache |
+| Setup | relevante Einrichtung und Stammdaten |
+| Bedienung | Seite/Suchbegriff und Schrittfolge |
+| Beispiel | konkrete Musterfirma mit Zahlen/Daten |
+| Posten | betroffene Entries und Hauptbuchwirkung |
+| Bericht | Kontrollbericht oder Auswertung |
+| Fehler | typische Stolpersteine |
+| Korrektur | fachlicher Korrekturweg |
+| Evidence | Nachweispaket |
+| Standardgrenze | Standard, Extension oder Programmierung |
+| UAT | mindestens Happy Path und Abweichung |
+
+### 29.4 Noch offene Feindetaillierung je Prozess
+
+Die Prozesslandkarte ist jetzt vollständig. Für ein veröffentlichungsreifes Großbuch sind pro Prozess später noch mehr Screenshots oder detaillierte Maskenabbildungen sinnvoll. Da dieses Projekt Markdown-basiert arbeitet, werden diese als Schrittfolgen, Tabellen und Diagramme ersetzt.
+
+Priorisierte Feindetaillierung:
+1. O2C mit Varianten: Vorauszahlung, Teillieferung, Retoure, Mahnung, Auslandsverkauf.
+2. P2P mit Varianten: 3-Way-Match, E-Rechnung, Teillieferung, Preisabweichung, Rücksendung.
+3. Warehouse mit Varianten: Charge, Serie, Umlagerung, Inventur, falscher Bin.
+4. Manufacturing mit Varianten: Ausschuss, Nacharbeit, Fremdarbeit, Kostenabweichung.
+5. Finance mit Varianten: Abgrenzung, Bank, UStVA, Anlagen, Abschluss.
+6. Admin mit Varianten: neuer Nutzer, Rechteänderung, Extension-Test, Job-Fehler.
+
+Merksatz:
+- Dieses Buch ist vollständig als systematisches Durchspielbuch. Ein reales Projekt ergänzt Mandanten-Screenshots, kundenspezifische Prozessentscheidungen und produktive Berechtigungsmatrizen.
+
+---
+
+## 30. Quellenverzeichnis
 
 - [Q1] Microsoft Learn: Business Central documentation: https://learn.microsoft.com/en-us/dynamics365/business-central/
 - [Q2] Microsoft Learn: Business functionality supported by Business Central: https://learn.microsoft.com/en-us/dynamics365/business-central/across-business-functionality
