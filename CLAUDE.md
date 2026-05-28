@@ -75,7 +75,7 @@ Zweck: Prüfungsvorbereitung (IHK), ERP-Implementierungsleitfaden (Microsoft Dyn
 | `FiBu_Buch_BC_Blueprint_E2E_Prozesse.md` | ~650 | Business Central E2E-Prozess-Blueprints |
 | `FiBu_Buch_BC_Einfuehrung_Schweiz_Separate_Firma_USt_DE-CH.md` | ~2.152 | BC-Einführung Schweiz, DE/CH-Steuerkomplexität |
 | `FiBu_Buch_BC_Extensions_Prozesse.md` | ~2.631 | BC Finance-Prozesse mit DACH-Extensions (Continia, OPplus, DATEV etc.) |
-| `FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md` | ~2.954 | BC-Standardprozesse Deutschland, deutsche BC-Oberfläche, vollständiger Bedien- und Prozesskatalog, Dokumente/E-Mail, Genehmigungen/SoD, Datenqualität/Migration, Monitoring/Hypercare, wiederkehrende Finance-Prozesse, Musterkonzern, Rollen, Trainingsdaten, Postenlogik, Lagerlogiken, Admin/Betrieb, Steuerlogiken, Preise, Controlling/GuV, Onboarding, Tipps & Tricks, Standardgrenzen, Extension-Ausblick, Quellen |
+| `FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md` | ~3.347 | BC-Standardprozesse Deutschland, Greenfield-Einrichtung, deutsche BC-Oberfläche, vollständiger Bedien- und Prozesskatalog, Übungslösungen, Dokumente/E-Mail, Genehmigungen/SoD, Datenqualität/Migration, Monitoring/Hypercare, wiederkehrende Finance-Prozesse, Musterkonzern, Rollen, Trainingsdaten, Postenlogik, Lagerlogiken, Admin/Betrieb, Steuerlogiken, Preise, Controlling/GuV, Onboarding, Tipps & Tricks, Standardgrenzen, Extension-Ausblick, Quellen |
 
 ---
 
@@ -121,6 +121,8 @@ Zweck: Prüfungsvorbereitung (IHK), ERP-Implementierungsleitfaden (Microsoft Dyn
 - Vollständiger Bedien- und Prozesskatalog: Seiten, Setup, Bedienhandlung, Entries, Nachweis, Bericht, Fehler und Korrektur je Prozessbereich
 - Abschlussprüfung: praktische End-to-End-Fälle und Vollständigkeitsdefinition für den Trainingszweck
 - Deutsche Business-Central-Oberfläche als führende Sprache: deutsche Seiten-/Funktionsbegriffe zuerst, englische Begriffe nur als Klammer-/Suchhilfe
+- Greenfield-Einführung mit sinnvoller Bucharchitektur, Masterplan, Beispieldatenpaket und UAT-Erwartungen
+- Lösungsanhang: Übungen und UAT-Fälle werden mit Klickweg, Postenspur, Kontrolle und Korrekturweg aufgelöst
 - Zusatzkapitel zu Dokumentversand, Berichtslayouts, Genehmigungen, SoD, Datenqualität, Migration, Hypercare, Monitoring, Performance und wiederkehrenden Finance-Prozessen
 - Standardgrenzen: wann BC Standard reicht, wann Extension/AppSource sinnvoll ist, wann Individualprogrammierung erforderlich wird
 - Ausblick auf häufig genutzte DACH-/BC-Extensions: AP Automation, Expense, Banking/OP, E-Documents, Anzahlungen, DATEV, WMS/Shipping, Rental/Reporting

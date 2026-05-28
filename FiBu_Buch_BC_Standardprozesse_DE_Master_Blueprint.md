@@ -1,4 +1,4 @@
-# FiBu-Buch 5: Business Central (BC) – Standardprozesse Deutschland als vollständiges Durchspielbuch
+# FiBu-Buch 5: Business Central (BC) – Standardprozesse Deutschland als systematisches Greenfield-Durchspielbuch
 
 Stand: `28.05.2026`
 Hinweis: Dieses Buch ist ein quellenbasiertes Lern-, Schulungs-, Projekt- und Implementierungsbuch für Microsoft Dynamics 365 Business Central im deutschen Unternehmenskontext. Es ersetzt keine individuelle Rechts-, Steuer- oder Implementierungsberatung.
@@ -18,20 +18,20 @@ Hinweis: Dieses Buch ist ein quellenbasiertes Lern-, Schulungs-, Projekt- und Im
 3. Musterkonzern Rhein-Main Industriegruppe
 4. Rollen, Abteilungen und Bedienlogik in BC
 5. Trainingsdaten: Stammdaten, Standorte, Artikel, Belege
-6. Foundation: Companies, Benutzer, Nummernserien, Dimensionen, Workflows
-7. Sales/O2C: Vertrieb, Onlineshop, Dropshipping, Retouren, Vorauszahlungen
-8. Purchasing/P2P: Einkauf, Wareneingang, E-Rechnung, Fremdarbeit, Zahlungen
-9. Inventory & Warehouse: einfaches Lager, gesteuertes Lager, Bins, Inventur
-10. Planning, Assembly & Manufacturing: Planung, Montage, Fertigung, Fremdarbeit
+6. Grundlagen (Foundation): Companies, Benutzer, Nummernserien, Dimensionen, Workflows
+7. Verkauf/O2C (Order-to-Cash): Vertrieb, Onlineshop, Dropshipping, Retouren, Vorauszahlungen
+8. Einkauf/P2P (Procure-to-Pay): Einkauf, Wareneingang, E-Rechnung, Fremdarbeit, Zahlungen
+9. Bestand und Lager (Inventory & Warehouse): einfaches Lager, gesteuertes Lager, Lagerplätze, Inventur
+10. Planung, Montage und Fertigung (Planning, Assembly & Manufacturing): Planung, Montage, Fertigung, Fremdarbeit
 11. Service, Mietmodelle und Finanzierung im Standardgrenzbereich
-12. Projects: Projektgeschäft, Ressourcen, WIP, Faktura
-13. Finance/R2R: Journale, Debitoren, Kreditoren, Bank, Anlagen, USt, Abschluss
-14. Intercompany, Ausland, Foreign Trade und Sonderfälle
-15. Reporting, Admin, Job Queue, Change Log, Datenexport
+12. Projekte (Projects): Projektgeschäft, Ressourcen, WIP, Faktura
+13. Finanzbuchhaltung/R2R (Record-to-Report): Journale, Debitoren, Kreditoren, Bank, Anlagen, USt, Abschluss
+14. Konzerninterne Prozesse, Ausland, Außenhandel und Sonderfälle
+15. Berichtswesen, Administration, Aufgabenwarteschlange, Änderungsprotokoll, Datenexport
 16. Schulungskapitel nach Abteilungen
 17. Master-UAT und Abweichungsmatrix
 18. Standardgrenzen: Wann BC Standard endet
-19. Ausblick: häufig genutzte Extensions und Einrichtungslogik
+19. Ausblick: häufig genutzte Erweiterungen (Extensions) und Einrichtungslogik
 20. Einkaufspreise, Verkaufspreise, Rabatte und Margensteuerung
 21. Controlling, GuV, Financial Reports und Management-Auswertungen
 22. Einsteiger-Onboarding: Finden, Bedienen, Fehler vermeiden und korrigieren
@@ -43,24 +43,26 @@ Hinweis: Dieses Buch ist ein quellenbasiertes Lern-, Schulungs-, Projekt- und Im
 28. Vollständiger Bedien- und Prozesskatalog
 29. Vollständigkeitsprüfung: Was muss ein Leser nach dem Buch können?
 30. Deutsche BC-Oberfläche: Begriffe, Seiten und Suchlogik
-31. Dokumente, E-Mail, Beleglayouts und Ausgabeprozesse
-32. Genehmigungen, Kontrollen, SoD und Prozesssicherheit
-33. Datenqualität, Migration und Stammdaten-Governance
-34. Monitoring, Hypercare, Performance und Betrieb
-35. Wiederkehrende Finance-Prozesse, Abgrenzungen und Umlagen
-36. Quellenverzeichnis
+31. Greenfield-Einführung: Konzern von null aufbauen
+32. Dokumente, E-Mail, Beleglayouts und Ausgabeprozesse
+33. Genehmigungen, Kontrollen, SoD und Prozesssicherheit
+34. Datenqualität, Migration und Stammdaten-Governance
+35. Monitoring, Hypercare, Performance und Betrieb
+36. Wiederkehrende Finance-Prozesse, Abgrenzungen und Umlagen
+37. Lösungsanhang zu Übungen und UAT-Fällen
+38. Quellenverzeichnis
 
 ---
 
 ## 1. Zielbild: Business Central komplett durchspielen [Q1][Q2]
 
-Dieses Buch erklärt Business Central nicht als Sammlung einzelner Masken. Es erklärt Business Central als Unternehmenssystem: Mitarbeiter legen Stammdaten an, kaufen ein, lagern ein, fertigen, verkaufen, liefern, fakturieren, kassieren, zahlen, melden Steuern, schließen Perioden und weisen alles prüfbar nach. Nach diesem Buch kannst du einen vollständigen Trainingsmandanten aufbauen und die Standardprozesse Ende-zu-Ende durchspielen.
+Dieses Buch erklärt Business Central nicht als Sammlung einzelner Masken. Es erklärt Business Central als Unternehmenssystem: Mitarbeiter legen Stammdaten an, kaufen ein, lagern ein, fertigen, verkaufen, liefern, fakturieren, kassieren, zahlen, melden Steuern, schließen Perioden und weisen alles prüfbar nach. Nach diesem Buch kannst du einen Greenfield-Trainingsmandanten aufbauen und die Standardprozesse Ende-zu-Ende durchspielen.
 
 Ziel:
 - Du kannst alle relevanten BC-Standardprozessbereiche fachlich einordnen und anhand eines deutschen Musterkonzerns bedienen. [Q1][Q2]
 - Du erkennst, welche Prozesse direkt im Standard abbildbar sind und wo Miet-, Finanzierungs- oder Spezialmodelle Prozessdesign, Extension oder Customizing brauchen. [Q2]
 - Du kannst je Abteilung sagen, was der Mitarbeiter in BC macht, welche Seite er öffnet, welche Felder er pflegt und welche Entries entstehen. [Q1]
-- Du kannst Schulungen durchführen, weil jedes Prozesskapitel Beispieldaten, Klickpfad, Übung, Lösung und Kontrollfrage enthält.
+- Du kannst Schulungen durchführen, weil Prozesskapitel Beispieldaten, Klickpfade, Übungen und einen Lösungsanhang enthalten.
 
 ### 1.1 Was „alle Standardprozesse“ in diesem Buch bedeutet [Q2]
 
@@ -85,12 +87,12 @@ Business Central deckt nach Microsofts offizieller Prozesslandkarte Finance, Sal
 
 ### 1.2 Vollständigkeitsstatus und Ausbauprinzip
 
-Dieses Buch ist als Master-Blueprint vollständig in der Breite. Es deckt die relevanten BC-Standardbereiche und die wichtigsten deutschen Pflichtperspektiven ab. Vollständig im Sinne eines echten Einführungs- und Schulungsbuchs wird es aber erst durch Tiefe: je Prozess braucht es Daten, Bedienpfad, Buchungsspur, typische Fehler, Korrekturweg, Kontrollbericht und Übung.
+Dieses Buch ist als Master-Blueprint systematisch in der Breite. Es deckt die relevanten BC-Standardbereiche und die wichtigsten deutschen Pflichtperspektiven ab. Für ein echtes Einführungs- und Schulungsbuch braucht jeder Prozess zusätzlich Daten, Bedienpfad, Buchungsspur, typische Fehler, Korrekturweg, Kontrollbericht und Übung mit Lösung.
 
 | Ebene | Status | Was das praktisch bedeutet |
 |---|---|---|
-| Prozesslandkarte | vollständig in der Breite | alle wesentlichen BC-Standardbereiche sind benannt |
-| Musterfirma | vollständig als Trainingsuniversum | mehrere Firmen, Lager, Produktionen, Service, Shop, Projekte und IC sind angelegt |
+| Prozesslandkarte | systematisch in der Breite | alle wesentlichen BC-Standardbereiche sind benannt |
+| Musterfirma | als Trainingsuniversum angelegt | mehrere Firmen, Lager, Produktionen, Service, Shop, Projekte und IC sind angelegt |
 | Bedienung | durch Prozesskatalog geschlossen | jede Rolle bekommt Suchlogik, Klickpfad, Prüfpunkte und Fehlerbilder |
 | Buchungsspur | durch Postenlogik geschlossen | die wichtigsten Entries, Konten und Abstimmungen sind je Prozessbereich benannt |
 | Berichtswesen | durch Controller- und Prozesskatalog geschlossen | GuV, Bilanz, Dimensionen, Lagerwert, OP und operative Berichte sind verknüpft |
@@ -321,7 +323,7 @@ Dieses Kapitel liefert Beispieldaten, damit Schulungen aufeinander aufbauen. Die
 
 ---
 
-## 6. Foundation: Companies, Benutzer, Nummernserien, Dimensionen, Workflows [Q3][Q4][Q5][Q6]
+## 6. Grundlagen (Foundation): Companies, Benutzer, Nummernserien, Dimensionen, Workflows [Q3][Q4][Q5][Q6]
 
 Foundation-Prozesse tragen alle Fachprozesse. Fehler in Nummernserien, Dimensionen, Buchungsgruppen oder Berechtigungen wirken wie ein Multiplikator.
 
@@ -376,7 +378,7 @@ Kontrollfrage:
 
 ---
 
-## 7. Sales/O2C: Vertrieb, Onlineshop, Dropshipping, Retouren, Vorauszahlungen [Q7][Q8][Q9][Q10]
+## 7. Verkauf/O2C (Order-to-Cash): Vertrieb, Onlineshop, Dropshipping, Retouren, Vorauszahlungen [Q7][Q8][Q9][Q10]
 
 O2C beginnt beim Kontakt oder Angebot und endet erst, wenn Lieferung, Rechnung, Forderung, Zahlung, USt und Nachweis geschlossen sind.
 
@@ -447,7 +449,7 @@ Schulungsübung:
 
 ---
 
-## 8. Purchasing/P2P: Einkauf, Wareneingang, E-Rechnung, Fremdarbeit, Zahlungen [Q11][Q12][Q13]
+## 8. Einkauf/P2P (Procure-to-Pay): Einkauf, Wareneingang, E-Rechnung, Fremdarbeit, Zahlungen [Q11][Q12][Q13]
 
 P2P beginnt beim Bedarf und endet mit abgestimmter Verbindlichkeit, Zahlung und Vorsteuer. Der Einkauf erzeugt nicht nur Belege, sondern steuert Preis-, Mengen-, Liefer- und Betrugsrisiken.
 
@@ -511,7 +513,7 @@ Schulungsübung:
 
 ---
 
-## 9. Inventory & Warehouse: einfaches Lager, gesteuertes Lager, Bins, Inventur [Q14][Q15]
+## 9. Bestand und Lager (Inventory & Warehouse): einfaches Lager, gesteuertes Lager, Lagerplätze, Inventur [Q14][Q15]
 
 Lager in Business Central ist nicht einheitlich. Die Mustergruppe nutzt bewusst zwei Extreme: ein einfaches Lager und ein gesteuertes Zentrallager.
 
@@ -565,7 +567,7 @@ Schulungsübung gesteuertes Lager:
 
 ---
 
-## 10. Planning, Assembly & Manufacturing: Planung, Montage, Fertigung, Fremdarbeit [Q16][Q17][Q18]
+## 10. Planung, Montage und Fertigung (Planning, Assembly & Manufacturing): Planung, Montage, Fertigung, Fremdarbeit [Q16][Q17][Q18]
 
 Die Mustergruppe produziert mehrere Produkte. Damit lassen sich Planung, Montage und Fertigung sauber unterscheiden.
 
@@ -665,7 +667,7 @@ Schulungsübung:
 
 ---
 
-## 12. Projects: Projektgeschäft, Ressourcen, WIP, Faktura [Q27]
+## 12. Projekte (Projects): Projektgeschäft, Ressourcen, WIP, Faktura [Q27]
 
 Projects bilden mehrperiodige Leistungserbringung ab. Die Mustergruppe nutzt Projekte für Installation, Sondermaschinen und Kundenschulungen.
 
@@ -706,7 +708,7 @@ Schulungsübung:
 
 ---
 
-## 13. Finance/R2R: Journale, Debitoren, Kreditoren, Bank, Anlagen, USt, Abschluss [Q20][Q21][Q22][Q23][Q24][Q28]
+## 13. Finanzbuchhaltung/R2R (Record-to-Report): Journale, Debitoren, Kreditoren, Bank, Anlagen, USt, Abschluss [Q20][Q21][Q22][Q23][Q24][Q28]
 
 Finance ist die Klammer aller Prozesse. Jeder operative Vorgang muss sich in Hauptbuch, Nebenbuch, Steuer, Bank und Abschluss wiederfinden.
 
@@ -756,7 +758,7 @@ Schulungsübung:
 
 ---
 
-## 14. Intercompany, Ausland, Foreign Trade und Sonderfälle [Q29][Q30][Q31]
+## 14. Konzerninterne Prozesse, Ausland, Außenhandel und Sonderfälle [Q29][Q30][Q31]
 
 Intercompany und Ausland verbinden mehrere Prozesswelten. Ein Intercompany-Verkauf erzeugt bei einer Company O2C und bei der anderen P2P.
 
@@ -793,7 +795,7 @@ Schulungsübung:
 
 ---
 
-## 15. Reporting, Admin, Job Queue, Change Log, Datenexport [Q5][Q6][Q32][Q33][Q34]
+## 15. Berichtswesen, Administration, Aufgabenwarteschlange, Änderungsprotokoll, Datenexport [Q5][Q6][Q32][Q33][Q34]
 
 Reporting und Admin sind keine Nebenthemen. Sie entscheiden, ob die Organisation Business Central stabil betreiben und prüfen kann.
 
@@ -979,9 +981,9 @@ Praxisregel:
 
 | Prozessbereich | Standard reicht typischerweise für | Grenze des Standards | Typische Lösung |
 |---|---|---|---|
-| Sales/O2C | Angebot, Auftrag, Lieferung, Rechnung, Retoure, Dropshipping | hochautomatisierte Preis-/Rabattlogik, komplexe Portalprozesse, Spezial-EDI | Extension oder Integration |
+| Verkauf/O2C | Angebot, Auftrag, Lieferung, Rechnung, Retoure, Dropshipping | hochautomatisierte Preis-/Rabattlogik, komplexe Portalprozesse, Spezial-EDI | Erweiterung oder Integration |
 | Shopify/Onlineshop | Shop-Synchronisation und Auftragsübernahme | Marktplatzmix, Retourenportale, Payment-Reconciliation über viele Provider | Connector/Custom Integration |
-| Purchasing/P2P | Bestellung, WE, Eingangsrechnung, Zahlung | OCR, automatischer 3-Way-Match, Vertragsprüfung, Eingangsarchiv | Document Capture / AP-Automation |
+| Einkauf/P2P | Bestellung, WE, Eingangsrechnung, Zahlung | OCR, automatischer 3-Way-Match, Vertragsprüfung, Eingangsarchiv | Document Capture / AP-Automation |
 | E-Rechnung | E-Documents-Grundlogik | Peppol-Netzwerk, lokale Formate, Massenvalidierung, Lieferanten-Onboarding | E-Document Provider / Extension |
 | Inventory | Artikel, Lagerorte, Serien/Chargen, Inventur | mobile Scanner, hochautomatisierte Lagerprozesse, Versanddienstleister | WMS-/Scanner-/Shipping-App |
 | Warehouse | Pick, Put-away, Bins, Receipts, Shipments | Funkterminalprozesse, Wegeoptimierung, Packplätze, Gefahrgut | Extension oder Spezial-WMS |
@@ -1026,7 +1028,7 @@ Lösungsskizze:
 
 ---
 
-## 19. Ausblick: häufig genutzte Extensions und Einrichtungslogik [Q35][Q36][Q37][Q38][Q39][Q40][Q41][Q42]
+## 19. Ausblick: häufig genutzte Erweiterungen (Extensions) und Einrichtungslogik [Q35][Q36][Q37][Q38][Q39][Q40][Q41][Q42]
 
 Dieses Kapitel ist kein Produktkatalog und keine Kaufempfehlung. Es zeigt, welche Extension-Klassen in DACH-Projekten häufig geprüft werden, warum sie helfen und wie sie grundsätzlich in Business Central eingeführt werden. Die konkrete Auswahl hängt von Lizenz, Land, Prozessreife, Datenschutz, GoBD-Anforderung und Partnerkompetenz ab.
 
@@ -2594,7 +2596,130 @@ Merksatz:
 
 ---
 
-## 31. Dokumente, E-Mail, Beleglayouts und Ausgabeprozesse [Q75][Q76][Q77][Q78]
+## 31. Greenfield-Einführung: Konzern von null aufbauen [Q1][Q2][Q3][Q4][Q23][Q49][Q69][Q70][Q71][Q80]
+
+Dieses Kapitel ordnet das Buch neu aus Greenfield-Sicht. Wir beginnen nicht mit einzelnen Funktionen, sondern mit einem leeren Mandanten. Danach entstehen Companies, Rollen, Konten, Dimensionen, Steuerlogik, Lagerorte, Stammdaten, Prozesse, Berichte und Betrieb. So lernt der Leser, Business Central nicht nur zu bedienen, sondern aufzubauen.
+
+### 31.1 Sinnvolle Buchstruktur von Grund auf
+
+Die bisherige Struktur deckt die Themen fachlich ab. Für Lernen und Einführung ist diese Reihenfolge didaktisch sinnvoller:
+
+| Phase | Buchlogik | Warum diese Reihenfolge? |
+|---|---|---|
+| 1 | Zielbild, Quellen, Sprachregel | Leser versteht Standard, Pflicht und deutsche Oberfläche |
+| 2 | Musterkonzern und Rollen | Leser weiß, wer im System arbeitet |
+| 3 | Greenfield-Grundeinrichtung | Mandant, Companies, Konten, USt, Dimensionen, Nummernserien entstehen |
+| 4 | Stammdaten und Trainingsdaten | Debitoren, Kreditoren, Artikel, Ressourcen, Projekte, Anlagen |
+| 5 | Kernprozesse | Verkauf, Einkauf, Lager, Fertigung, Service, Projekte, Finance |
+| 6 | Postenlogik und Reporting | Leser versteht, was Buchungen auslösen |
+| 7 | Admin, Governance, Monitoring | System bleibt stabil |
+| 8 | Übungen, Lösungen, UAT | Wissen wird praktisch geprüft |
+
+Korrektur zur bisherigen Fassung:
+- Kapitel dürfen nicht wie eine Sammlung einzelner Erweiterungen wirken. Der rote Faden ist jetzt: **Greenfield → Setup → Stammdaten → Prozess → Posten → Bericht → Betrieb → Übungslösung**.
+
+### 31.2 Greenfield-Masterplan der Rhein-Main Industriegruppe
+
+| Schritt | Ergebnis | Deutsche BC-Seiten |
+|---|---|---|
+| 1 | Firmenstruktur steht | `Unternehmen (Companies)` |
+| 2 | Basisdaten je Company gepflegt | `Unternehmensdaten (Company Information)` |
+| 3 | Kontenplan steht | `Kontenplan (Chart of Accounts)` |
+| 4 | Buchungsgruppen und USt-Logik stehen | `Buchungsmatrix Einrichtung`, `USt-Buchungsmatrix Einrichtung` |
+| 5 | Dimensionen stehen | `Dimensionen`, `Standarddimensionen` |
+| 6 | Nummernserien stehen | `Nummernserien (No. Series)` |
+| 7 | Lagerstruktur steht | `Lagerorte (Locations)`, `Lagerplätze (Bins)` |
+| 8 | Benutzer/Rollen stehen | `Benutzer`, `Berechtigungssätze`, `Profile/Rollen` |
+| 9 | Stammdaten stehen | `Debitoren`, `Kreditoren`, `Artikel`, `Ressourcen`, `Anlagen`, `Projekte` |
+| 10 | Workflows und Kontrollen stehen | `Workflows`, `Genehmigungsanforderungen` |
+| 11 | Berichte stehen | `Finanzberichte`, `Analyseansichten` |
+| 12 | Betrieb steht | `Aufgabenwarteschlangenposten`, `Änderungsprotokoll`, `Erweiterungsverwaltung` |
+
+### 31.3 Beispieldatenpaket für den Start
+
+Companies:
+
+| Company | Zweck | Besonderheit |
+|---|---|---|
+| `RM-PROD` | Produktion | Fertigung, gesteuertes Lager |
+| `RM-SALES` | Vertrieb/Onlineshop | Verkauf, Shopify, Dropshipping |
+| `RM-SERVICE` | Service/Miete | Serviceaufträge, Wartung, Mietlogik |
+| `RM-SHARED` | Einkauf/Shared Services | zentrale Kreditoren, Umlagen |
+| `RM-CH` | Ausland/Intercompany | Drittland-/CH-Bezug |
+
+Dimensionen:
+
+| Dimension | Werte |
+|---|---|
+| `DEPARTMENT` | `SALES`, `PURCH`, `WH`, `PROD`, `SERV`, `FIN`, `ADMIN` |
+| `PRODUCTLINE` | `MACHINE`, `SPARE`, `SERVICE`, `PROJECT`, `RENTAL` |
+| `CHANNEL` | `B2B`, `SHOP`, `IC`, `EXPORT` |
+| `LOCATION-GROUP` | `FRA`, `MZ`, `DA`, `VAN`, `PROJECT` |
+
+Artikel:
+
+| Artikel | Art | Kosten | Verkaufspreis | Prozess |
+|---|---|---:|---:|---|
+| `RM-M100` | Maschine | 18.000 | 32.000 | Fertigung/Verkauf |
+| `SP-PUMP-01` | Ersatzteil | 180 | 320 | Lager/Verkauf |
+| `SP-SENSOR-02` | Ersatzteil | 75 | 149 | Shop/Service |
+| `RAW-STEEL` | Rohmaterial | 2.500 | - | Einkauf/Fertigung |
+| `KIT-MAINT` | Wartungskit | 240 | 450 | Montage/Service |
+
+Debitoren:
+
+| Debitor | Land | Typ | Zahlungsbedingung | Steuerfall |
+|---|---|---|---|---|
+| `D10000` | DE | B2B | 14 Tage 2 %, 30 Tage netto | Inland |
+| `D20000` | FR | EU-B2B | 30 Tage netto | EU-Lieferung |
+| `D30000` | CH | Drittland | Vorkasse | Export |
+| `D40000` | DE | B2C-Shop | sofort | Onlineshop |
+
+Kreditoren:
+
+| Kreditor | Land | Zweck | Steuerfall |
+|---|---|---|---|
+| `K10000` | DE | Rohmaterial | Inland |
+| `K20000` | NL | Handelsware | EU-Erwerb |
+| `K30000` | CH | Spezialteile | Import/Drittland |
+| `K40000` | DE | Fremdarbeit | Inland/Fertigung |
+
+### 31.4 Reihenfolge der praktischen Einrichtung im Buch
+
+1. Company `RM-PROD` anlegen.
+2. Unternehmensdaten pflegen.
+3. Kontenplan und Sachkontokategorien prüfen.
+4. Buchungsgruppen und USt-Buchungsmatrix einrichten.
+5. Dimensionen und Pflichtdimensionen einrichten.
+6. Nummernserien einrichten.
+7. Lagerorte `FRA-ZL`, `MZ-EINFACH`, `VAN-SERV`, `PROJ-LAG` anlegen.
+8. für `FRA-ZL` Lagerplätze und gesteuerte Lagerlogik aktivieren.
+9. Benutzer und Rollenprofile anlegen.
+10. Debitoren, Kreditoren, Artikel, Ressourcen, Projekte und Anlagen anlegen.
+11. Verkaufspreislisten und Einkaufspreislisten aktivieren.
+12. Workflows für Einkauf, Bankdaten und USt-Setup aktivieren.
+13. Beleglayouts, E-Mail-Szenarien und Berichtsauswahl einrichten.
+14. Job Queue und Change Log aktivieren.
+15. UAT-Basisszenarien buchen.
+
+### 31.5 Greenfield-UAT mit Lösungserwartung
+
+| Test | Aufgabe | Lösungserwartung |
+|---|---|---|
+| GF-001 | Company `RM-PROD` anlegen | Company ist sichtbar, Unternehmensdaten gepflegt |
+| GF-002 | Dimension `PRODUCTLINE` mit Pflichtwert anlegen | Buchung ohne Dimension wird blockiert |
+| GF-003 | Artikel `SP-PUMP-01` anlegen | Artikel hat Buchungsgruppen, Einheit, Kosten, Preis |
+| GF-004 | Lagerort `FRA-ZL` als gesteuertes Lager einrichten | Wareneingang läuft über Lagereingang und Einlagerung |
+| GF-005 | Debitor D10000 anlegen | Debitor hat Zahlungsbedingung, USt-Logik, Dimension |
+| GF-006 | Verkaufsauftrag buchen | Debitorenposten, Sachposten, Artikelposten, USt-Posten entstehen |
+| GF-007 | Finanzbericht prüfen | GuV zeigt Erlös und Wareneinsatz nach Dimension |
+
+Merksatz:
+- Auf der grünen Wiese zählt die Reihenfolge. Falsche Grundlagen erzeugen später richtige Klicks mit falschem Ergebnis.
+
+---
+
+## 32. Dokumente, E-Mail, Beleglayouts und Ausgabeprozesse [Q75][Q76][Q77][Q78]
 
 Ein Business-Central-Prozess endet für den Kunden, Lieferanten oder Prüfer oft nicht mit der Buchung. Er endet mit einem verständlichen, richtigen und nachweisbaren Dokument. Deshalb gehören E-Mail-Einrichtung, Beleglayouts, Berichtsauswahl und Versandprofile in jedes vollständige BC-Schulungsbuch.
 
@@ -2657,7 +2782,7 @@ Merksatz:
 
 ---
 
-## 32. Genehmigungen, Kontrollen, SoD und Prozesssicherheit [Q5][Q79]
+## 33. Genehmigungen, Kontrollen, SoD und Prozesssicherheit [Q5][Q79]
 
 Genehmigungen schützen Business Central vor unkontrollierten Stammdaten, Preisen, Bestellungen und Zahlungen. Sie ersetzen kein Vertrauen. Sie sorgen dafür, dass kritische Entscheidungen nachvollziehbar und prüfbar bleiben.
 
@@ -2705,7 +2830,7 @@ Merksatz:
 
 ---
 
-## 33. Datenqualität, Migration und Stammdaten-Governance [Q69][Q80]
+## 34. Datenqualität, Migration und Stammdaten-Governance [Q69][Q80]
 
 Business Central ist nur so gut wie seine Stammdaten. Falsche Debitoren, Kreditoren, Artikel, Buchungsgruppen oder Dimensionen erzeugen falsche Buchungen, schlechte Berichte und unnötige Korrekturen.
 
@@ -2752,7 +2877,7 @@ Merksatz:
 
 ---
 
-## 34. Monitoring, Hypercare, Performance und Betrieb [Q32][Q69][Q81][Q82][Q83]
+## 35. Monitoring, Hypercare, Performance und Betrieb [Q32][Q69][Q81][Q82][Q83]
 
 Nach dem Go-Live beginnt die eigentliche Bewährungsprobe. Business Central muss überwacht, erklärt, korrigiert und stabilisiert werden. Hypercare ist die Phase, in der kleine Fehler noch schnell sichtbar werden, bevor sie Monatsabschluss oder Tagesgeschäft gefährden.
 
@@ -2806,7 +2931,7 @@ Merksatz:
 
 ---
 
-## 35. Wiederkehrende Finance-Prozesse, Abgrenzungen und Umlagen [Q25][Q84][Q85]
+## 36. Wiederkehrende Finance-Prozesse, Abgrenzungen und Umlagen [Q25][Q84][Q85]
 
 Viele Finance-Prozesse wiederholen sich: Mieten, Wartungen, Versicherungen, Umlagen, Abgrenzungen, wiederkehrende Journale und periodische Rechnungen. Wer diese Prozesse manuell pflegt, erzeugt vermeidbare Fehler.
 
@@ -2864,7 +2989,275 @@ Merksatz:
 
 ---
 
-## 36. Quellenverzeichnis
+## 37. Lösungsanhang zu Übungen und UAT-Fällen
+
+Dieses Kapitel behebt eine wichtige Lücke: Übungen ohne Lösung sind für ein Schulungsbuch unvollständig. Jede Übung wird künftig entweder direkt im Kapitel oder hier im Lösungsanhang beantwortet. Die Lösung beschreibt nicht nur das Ergebnis, sondern auch den Weg in der deutschen Business-Central-Oberfläche.
+
+### 37.1 Lösungsmuster für jede Übung
+
+Jede Lösung folgt diesem Schema:
+
+1. **Startseite:** Welche deutsche BC-Seite wird geöffnet?
+2. **Stammdaten:** Welche Daten müssen vorhanden sein?
+3. **Eingabe:** Welche Felder werden gepflegt?
+4. **Buchung:** Welche Aktion wird ausgeführt?
+5. **Posten:** Welche Posten entstehen?
+6. **Kontrolle:** Welcher Bericht oder welche Liste beweist das Ergebnis?
+7. **Fehlerfall:** Was wäre typisch falsch?
+8. **Korrektur:** Wie wird fachlich sauber korrigiert?
+
+### 37.2 Lösung: Foundation und Pflichtdimension
+
+Aufgabe:
+- Lege Dimension `CHANNEL` mit Wert `B2B` an und erzwinge sie für ein Erlöskonto.
+
+Lösung:
+1. Öffne `Dimensionen (Dimensions)`.
+2. Lege Dimension `CHANNEL` an.
+3. Öffne `Dimensionswerte (Dimension Values)`.
+4. Lege Wert `B2B` an.
+5. Öffne `Kontenplan (Chart of Accounts)`.
+6. Wähle das Erlöskonto für Maschinenverkauf.
+7. Öffne `Standarddimensionen (Default Dimensions)`.
+8. Setze `CHANNEL` mit Wertbuchung `Code erforderlich`.
+9. Erstelle eine Testbuchung ohne `CHANNEL`.
+10. Erwartung: BC blockiert die Buchung.
+11. Ergänze `CHANNEL = B2B`.
+12. Buche erneut.
+13. Prüfe `Sachposten (G/L Entries)` mit Dimension `CHANNEL`.
+
+### 37.3 Lösung: Verkauf O2C mit Lagerartikel
+
+Aufgabe:
+- Verkaufe `10` Stück `SP-PUMP-01` an D10000.
+
+Lösung:
+1. Öffne `Verkaufsaufträge (Sales Orders)`.
+2. Wähle `Neu`.
+3. Debitor `D10000` eintragen.
+4. Buchungsdatum und Belegdatum prüfen.
+5. Zeile `Artikel`, Nr. `SP-PUMP-01`, Menge `10` eintragen.
+6. Lagerort `FRA-ZL` oder `MZ-EINFACH` setzen.
+7. Preis prüfen: bei D10000 ab 10 Stück erwarteter Preis `285 EUR`.
+8. Dimension `PRODUCTLINE = SPARE`, `CHANNEL = B2B` prüfen.
+9. Bei einfachem Lager `Buchen` → `Liefern und fakturieren`.
+10. Bei gesteuertem Lager zuerst Lagerkommissionierung durchführen.
+11. Öffne `Gebuchte Verkaufsrechnungen`.
+12. Prüfe `Debitorenposten`: Forderung.
+13. Prüfe `Sachposten`: Forderung, Erlös, USt, Wareneinsatz, Bestand.
+14. Prüfe `Artikelposten`: Mengenabgang.
+15. Prüfe `Wertposten`: Kostenabgang.
+
+Typischer Fehler:
+- falscher Lagerort. Korrektur erfolgt nicht durch Löschen gebuchter Posten, sondern über Gutschrift, Neubuchung oder Lagerkorrektur nach Freigabe.
+
+### 37.4 Lösung: Einkauf P2P mit Wareneingang und Rechnung
+
+Aufgabe:
+- Kaufe `RAW-STEEL` bei K10000, buche Wareneingang und Eingangsrechnung.
+
+Lösung:
+1. Öffne `Einkaufsbestellungen (Purchase Orders)`.
+2. Neue Bestellung für Kreditor `K10000`.
+3. Zeile `Artikel`, Nr. `RAW-STEEL`, Menge `10`.
+4. Einkaufspreis, Einheit, Lieferdatum und Lagerort prüfen.
+5. Bei einfachem Lager `Buchen` → `Empfangen`.
+6. Bei gesteuertem Lager `Lagereingänge (Warehouse Receipts)` öffnen, Quelldokument holen, Wareneingang buchen und Einlagerung registrieren.
+7. Eingangsrechnung aus Bestellung buchen.
+8. Prüfe `Kreditorenposten`: Verbindlichkeit.
+9. Prüfe `Artikelposten`: Mengenzugang.
+10. Prüfe `Wertposten`: Wertzugang.
+11. Prüfe `Sachposten`: Bestand/Verbindlichkeit/Vorsteuer.
+
+### 37.5 Lösung: Lagerlogik einfach vs. gesteuert
+
+Aufgabe:
+- Buche denselben Artikel einmal in `MZ-EINFACH` und einmal in `FRA-ZL`.
+
+Lösung:
+1. Für `MZ-EINFACH`: Bestellung öffnen und direkt `Empfangen` buchen.
+2. Prüfen: Artikelposten entsteht sofort mit Lagerort `MZ-EINFACH`.
+3. Für `FRA-ZL`: `Lagereingänge (Warehouse Receipts)` öffnen.
+4. `Quelldokumente holen`.
+5. Wareneingang buchen.
+6. `Lagereinlagerungen (Warehouse Put-aways)` öffnen.
+7. Einlagerung registrieren.
+8. Prüfen: Ware ist erst nach Einlagerung am Lagerplatz verfügbar.
+9. Ergebnis erklären: einfaches Lager ist schneller; gesteuertes Lager ist kontrollierter und erzeugt zusätzliche Lageraktivitäten.
+
+### 37.6 Lösung: Fertigung mit Mehrverbrauch
+
+Aufgabe:
+- Fertige `RM-M100` und buche 5 % Mehrverbrauch `RAW-STEEL`.
+
+Lösung:
+1. Öffne `Fertigungsaufträge (Production Orders)`.
+2. Lege freigegebenen Fertigungsauftrag für `RM-M100` an.
+3. Prüfe Fertigungsstückliste und Arbeitsplan.
+4. Buche Materialverbrauch im Verbrauchsjournal.
+5. Erfasse `RAW-STEEL` mit 5 % Mehrmenge.
+6. Buche Output.
+7. Prüfe `Artikelposten`: Verbrauch und Zugang.
+8. Prüfe `Wertposten`: Fertigungskosten.
+9. Prüfe Produktionsstatistik.
+10. Controlling dokumentiert Abweichung: Ausschuss, Nacharbeit oder falsche Stückliste.
+
+### 37.7 Lösung: Service, Mietfall und Standardgrenze
+
+Aufgabe:
+- Lege Mietfall `RM-M100` über 12 Monate an und erkläre die Standardgrenze.
+
+Lösung:
+1. Lege Debitor und Artikel/Ressource für monatliche Miete an.
+2. Erfasse wiederkehrende Rechnung oder periodischen Verkaufsprozess.
+3. Setze Dimension `PRODUCTLINE = RENTAL`.
+4. Prüfe, ob Erlösabgrenzung nötig ist.
+5. Buche Monatsrechnung.
+6. Prüfe Debitorenposten, Sachposten und Finanzbericht.
+7. Erkläre Standardgrenze: BC kann Rechnung, Debitor, Erlös und Abgrenzung abbilden. Vertragsverwaltung mit Laufzeiten, Rückgaben, Zustandsprüfung, Mietobjektakte, Verlängerung und komplexer Bewertung braucht Extension oder Customizing.
+
+### 37.8 Lösung: Projekt mit Meilensteinrechnung
+
+Aufgabe:
+- Projektaufwand erfassen und Meilenstein fakturieren.
+
+Lösung:
+1. Öffne `Projekte (Projects/Jobs)`.
+2. Lege Projekt für D10000 an.
+3. Lege Projektaufgaben an.
+4. Erfasse Ressource und Fremdleistung.
+5. Prüfe Projektposten.
+6. Erstelle Verkaufsrechnung aus abrechenbarer Projektzeile.
+7. Buche Rechnung.
+8. Prüfe Projektposten, Debitorenposten und Sachposten.
+9. Prüfe Projektanalyse: Budget, Ist, fakturiert, offen.
+
+### 37.9 Lösung: Finance, Bank und Zahlungsausgleich
+
+Aufgabe:
+- Gleiche Teilzahlung eines Debitors aus.
+
+Lösung:
+1. Öffne `Zahlungsabstimmungsjournale (Payment Reconciliation Journals)` oder `Fibu Buch.-Blätter (General Journals)`.
+2. Erfasse Zahlungseingang mit Bankkonto und Debitor.
+3. Wende Zahlung auf offene Rechnung an.
+4. Bei Teilzahlung bleibt Restposten offen.
+5. Buche Journal.
+6. Prüfe `Debitorenposten`: Rechnung teilweise ausgeglichen.
+7. Prüfe `Sachposten`: Bank und Forderung.
+8. Fehlerfall: falsche Rechnung ausgeglichen.
+9. Korrektur: Ausgleich lösen (`Ausgleich aufheben / Unapply Entries`) und korrekt neu ausgleichen.
+
+### 37.10 Lösung: USt, EU, Drittland und Dropshipping
+
+Aufgabe:
+- Prüfe einen Inlandfall, EU-B2B-Fall, Drittlandexport und Dropshipping-Fall.
+
+Lösung:
+1. Prüfe Debitor/Kreditor: Land, USt-ID, Buchungsgruppen.
+2. Prüfe Artikel/Sachkonto: USt-Produktbuchungsgruppe.
+3. Prüfe `USt-Buchungsmatrix Einrichtung (VAT Posting Setup)`.
+4. Inland: deutsche USt-Posten erwarten.
+5. EU-B2B: USt-ID prüfen und ZM-/Nachweislogik dokumentieren.
+6. Drittland: Exportnachweis/Zollnachweis dokumentieren.
+7. Dropshipping: Verkaufsauftrag mit Einkauf verknüpfen.
+8. Prüfe, ob Lieferbewegung und Rechnungskette steuerlich zusammenpassen.
+9. Prüfe `USt-Posten (VAT Entries)` und `Sachposten`.
+10. Bei komplexem Reihengeschäft: Steuerfreigabe vor Produktivbuchung.
+
+### 37.11 Lösung: Admin, Benutzer, Rechte und Change Log
+
+Aufgabe:
+- Lege neuen Nutzer an, weise Rechte zu und aktiviere Änderungsprotokoll.
+
+Lösung:
+1. Benutzer in Microsoft 365 anlegen und Lizenz zuweisen.
+2. In BC `Benutzer (Users)` öffnen.
+3. Benutzer synchronisieren oder öffnen.
+4. Company-Zugriff prüfen.
+5. `Berechtigungssätze (Permission Sets)` passend zur Rolle zuweisen.
+6. `Profile/Rollen (Profiles (Roles))` setzen.
+7. Testlogin durchführen.
+8. `Änderungsprotokoll Einrichtung (Change Log Setup)` öffnen.
+9. Kritische Tabellen aktivieren, z. B. Kreditor-Bankkonten, Buchungsgruppen, USt-Setup.
+10. Teständerung durchführen.
+11. `Änderungsprotokollposten (Change Log Entries)` prüfen.
+
+### 37.12 Lösung: Dokumentversand und Beleglayout
+
+Aufgabe:
+- Sende eine gebuchte Verkaufsrechnung per E-Mail.
+
+Lösung:
+1. Öffne `E-Mail-Konten`.
+2. Prüfe eingerichtetes Konto.
+3. Öffne `E-Mail-Szenariozuordnungen`.
+4. Prüfe Szenario Verkauf.
+5. Öffne `Berichtsauswahl - Verkauf`.
+6. Prüfe Bericht und Layout für Rechnung.
+7. Öffne `Gebuchte Verkaufsrechnungen`.
+8. Wähle Rechnung.
+9. Wähle `Drucken/Senden` → `Per E-Mail senden`.
+10. Prüfe Empfänger, Betreff, PDF-Anhang und Text.
+11. Senden.
+12. Prüfe `Gesendete E-Mails` oder bei Fehler `E-Mail-Ausgang`.
+
+### 37.13 Lösung: Monitoring und Hypercare
+
+Aufgabe:
+- Prüfe morgens den BC-Betrieb.
+
+Lösung:
+1. Öffne `Aufgabenwarteschlangenposten`.
+2. Prüfe Fehler, letzte Ausführung und nächste Ausführung.
+3. Öffne `E-Mail-Ausgang`.
+4. Prüfe fehlgeschlagene E-Mails.
+5. Öffne `Genehmigungsanforderungen`.
+6. Prüfe hängende Freigaben.
+7. Öffne `Änderungsprotokollposten`.
+8. Prüfe kritische Änderungen seit gestern.
+9. Prüfe offene Tickets und wiederkehrende Fehlermuster.
+10. Dokumentiere Maßnahmen im Hypercare-Protokoll.
+
+Merksatz:
+- Eine Übung ist erst vollständig, wenn der Lernende den Klickweg, das Ergebnis, die Postenspur, den Kontrollbericht und den Korrekturweg erklären kann.
+
+### 37.14 Zuordnung aller Übungen zu Lösungen
+
+| Übung im Buch | Lösung im Anhang |
+|---|---|
+| Kapitel 6 Foundation/Pflichtdimension | 37.2 |
+| Kapitel 7 Verkauf/O2C | 37.3 |
+| Kapitel 8 Einkauf/P2P | 37.4 |
+| Kapitel 9 einfaches und gesteuertes Lager | 37.5 |
+| Kapitel 10 Fertigung/Mehrverbrauch | 37.6 |
+| Kapitel 11 Mietmodell/Standardgrenze | 37.7 |
+| Kapitel 12 Projekte/Meilenstein | 37.8 |
+| Kapitel 13 Bank/OP/Finance | 37.9 |
+| Kapitel 14 Intercompany/Ausland | 37.10 und 37.11 |
+| Kapitel 15 Admin/Change Log/Job Queue | 37.11 und 37.13 |
+| Kapitel 16 Abteilungsschulungen | jeweilige Prozesslösung 37.2 bis 37.13 |
+| Kapitel 17 Master-UAT | jeweilige Prozesslösung 37.2 bis 37.13 |
+| Kapitel 18 Standardgrenze | 37.7 und Kapitel 18.4 |
+| Kapitel 19 Erweiterungsauswahl | Kapitel 19.9 und 37.13 |
+| Kapitel 20 Preise/Margen | 37.3 und 37.4 |
+| Kapitel 21 GuV/Controlling | 37.3, 37.9 und Kapitel 21.5 |
+| Kapitel 22 Onboarding | 37.11 und 37.13 |
+| Kapitel 23 Tipps/Filter/Korrektur | 37.9 und 37.13 |
+| Kapitel 24 Postenlogik | 37.3 |
+| Kapitel 25 Lagerlogiken | 37.5 |
+| Kapitel 26 Admin/Betrieb | 37.11 und 37.13 |
+| Kapitel 27 Steuer/Dropshipping | 37.10 |
+| Kapitel 31 Greenfield-UAT | 37.2 bis 37.13 |
+| Kapitel 32 Dokumentversand | 37.12 |
+| Kapitel 33 Genehmigungen/SoD | 37.11 |
+| Kapitel 34 Migration/Stammdaten | 37.2 und 37.11 |
+| Kapitel 35 Monitoring/Hypercare | 37.13 |
+| Kapitel 36 Wiederkehrende Finance-Prozesse | 37.9 und Kapitel 36.1 bis 36.3 |
+
+---
+
+## 38. Quellenverzeichnis
 
 - [Q1] Microsoft Learn: Business Central documentation: https://learn.microsoft.com/en-us/dynamics365/business-central/
 - [Q2] Microsoft Learn: Business functionality supported by Business Central: https://learn.microsoft.com/en-us/dynamics365/business-central/across-business-functionality
