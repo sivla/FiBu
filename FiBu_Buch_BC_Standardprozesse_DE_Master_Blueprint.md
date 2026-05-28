@@ -34,7 +34,8 @@ Hinweis: Dieses Buch ist ein quellenbasiertes Lern-, Schulungs-, Projekt- und Im
 20. Einkaufspreise, Verkaufspreise, Rabatte und Margensteuerung
 21. Controlling, GuV, Financial Reports und Management-Auswertungen
 22. Einsteiger-Onboarding: Finden, Bedienen, Fehler vermeiden und korrigieren
-23. Quellenverzeichnis
+23. Tipps und Tricks: schneller, sicherer und prüfbarer in BC arbeiten
+24. Quellenverzeichnis
 
 ---
 
@@ -69,7 +70,31 @@ Business Central deckt nach Microsofts offizieller Prozesslandkarte Finance, Sal
 | Human Resources | Mitarbeiter, Abwesenheiten | Basis-HR im BC-Standard zeigen |
 | Admin/Reporting | Rollen, Berechtigungen, Change Log, Job Queue, Analyse | Betrieb und Nachweis sichern |
 
-### 1.2 Standard, Pflicht, Best Practice und Projektentscheidung
+### 1.2 Vollständigkeitsstatus und Ausbauprinzip
+
+Dieses Buch ist als Master-Blueprint vollständig in der Breite. Es deckt die relevanten BC-Standardbereiche und die wichtigsten deutschen Pflichtperspektiven ab. Vollständig im Sinne eines echten Einführungs- und Schulungsbuchs wird es aber erst durch Tiefe: je Prozess braucht es Daten, Bedienpfad, Buchungsspur, typische Fehler, Korrekturweg, Kontrollbericht und Übung.
+
+| Ebene | Status | Was das praktisch bedeutet |
+|---|---|---|
+| Prozesslandkarte | vollständig in der Breite | alle wesentlichen BC-Standardbereiche sind benannt |
+| Musterfirma | vollständig als Trainingsuniversum | mehrere Firmen, Lager, Produktionen, Service, Shop, Projekte und IC sind angelegt |
+| Bedienung | im Ausbau | jede Rolle braucht noch mehr Klickpfade, Suchbegriffe und Fehlerbilder |
+| Buchungsspur | im Ausbau | für jeden Prozess sollen Entries, Konten und Abstimmungen sichtbar werden |
+| Berichtswesen | im Ausbau | Controller-Reports, GuV, Dimensionen und Abweichungen werden weiter vertieft |
+| Einsteigerfähigkeit | im Ausbau | Begriffe, Oberflächenlogik und Alltagstipps werden konsequent ergänzt |
+| Rechts-/Quellensicherheit | quellenbasiert | jede Pflicht- oder Standardaussage verweist auf Primärquellen |
+
+Praxisregel:
+- „Vollständig“ bedeutet in diesem Buch nicht, dass jeder Sonderfall jeder Branche gelöst ist. Es bedeutet, dass ein Lernender den BC-Standard systematisch durchspielen, Grenzen erkennen und Abweichungen fachlich sauber entscheiden kann.
+
+Ausbauprinzip:
+1. Jeder Standardprozess bekommt einen Happy Path.
+2. Jeder Standardprozess bekommt mindestens drei realistische Abweichungen.
+3. Jede Abweichung bekommt einen Diagnosepfad und einen Korrekturweg.
+4. Jede Buchung bekommt eine Nachweisspur über Beleg, Posten, Bericht und Evidence Pack.
+5. Jede Rolle bekommt Suchbegriffe, Tagesroutine und Stoppsignale.
+
+### 1.3 Standard, Pflicht, Best Practice und Projektentscheidung
 
 Dieses Buch trennt vier Ebenen:
 
@@ -1477,7 +1502,244 @@ Merksatz:
 
 ---
 
-## 23. Quellenverzeichnis
+## 23. Tipps und Tricks: schneller, sicherer und prüfbarer in BC arbeiten [Q52][Q53][Q54][Q56][Q57][Q58][Q59][Q60]
+
+Dieses Kapitel ist das praktische Werkzeugfach für den Arbeitsalltag. Es sammelt Routinen, Tastenkürzel, Suchlogik, Filtertechnik, Kontrollgriffe und Korrekturwege. Ziel ist nicht Geschwindigkeit um jeden Preis, sondern sicheres Arbeiten mit prüfbarer Spur.
+
+### 23.1 Die wichtigste Grundregel
+
+> Erst finden, dann filtern, dann prüfen, dann buchen.
+
+Einsteiger machen Fehler oft nicht, weil sie die Fachlogik nicht verstehen. Sie machen Fehler, weil sie zu schnell buchen, auf der falschen Company arbeiten, einen Filter übersehen oder eine englische Seitenbezeichnung nicht kennen. Business Central unterstützt Suche, Filter, Personalisierung, Rollenprofile und Tastenkürzel. Diese Funktionen müssen bewusst geschult werden. [Q52][Q53][Q54][Q56][Q57]
+
+### 23.2 Tastenkürzel und Bediengriffe für jeden Mitarbeiter
+
+| Ziel | Bediengriff | Warum wichtig |
+|---|---|---|
+| Seite oder Bericht finden | `Alt+Q` | zentrale Suche `Tell Me` öffnen |
+| in Liste suchen | `F3` | Datensatz in Liste schnell finden |
+| Filter setzen | Filterbereich öffnen und Feldfilter setzen | große Listen kontrollierbar machen |
+| Seite als Favorit speichern | Bookmark-Symbol | tägliche Seiten im Role Center sichtbar machen |
+| Hilfetext öffnen | Feldhilfe/Microsoft-Learn-Hilfe | Feldbedeutung prüfen |
+| Seite personalisieren | Einstellungen → `Personalize` | wichtige Felder sichtbar machen |
+| Liste nach Excel prüfen | `Open in Excel` / Export, sofern berechtigt | Abstimmung und Analyse unterstützen |
+| Beleg vor Buchung prüfen | `Preview Posting`, wenn verfügbar | erwartete Posten vor Buchung kontrollieren |
+
+BC-Best-Practice:
+- Tastenkürzel werden nicht nur als Liste verteilt. Jeder Mitarbeiter übt sie mit echten Aufgaben: Auftrag finden, Debitor filtern, Posten öffnen, Belegspur verfolgen.
+
+### 23.3 Suchbegriffe: Deutsch denken, englisch finden
+
+Viele deutschsprachige Nutzer suchen nach „Verkaufsauftrag“, „Debitorenposten“ oder „Sachposten“. In BC sind Seiten je nach Sprache, Übersetzung und Mandant trotzdem oft unter englischen Begriffen schneller auffindbar. Deshalb bekommt jede Schulung eine Suchwortliste.
+
+| Fachlicher Wunsch | Häufig guter Suchbegriff | Typischer Nutzer |
+|---|---|---|
+| Kundenauftrag bearbeiten | `Sales Orders` | Verkauf |
+| gebuchte Verkaufsrechnung finden | `Posted Sales Invoices` | Verkauf/Buchhaltung |
+| Kundenzahlungen prüfen | `Customer Ledger Entries` | Buchhaltung |
+| Lieferantenbestellung erfassen | `Purchase Orders` | Einkauf |
+| gebuchte Einkaufsrechnung finden | `Posted Purchase Invoices` | Einkauf/Buchhaltung |
+| Wareneingang prüfen | `Warehouse Receipts` / `Posted Purchase Receipts` | Lager/Einkauf |
+| Artikelbewegung prüfen | `Item Ledger Entries` | Lager/Controlling |
+| Wertbewegung prüfen | `Value Entries` | Controlling/Buchhaltung |
+| Sachkontobuchungen prüfen | `General Ledger Entries` | Buchhaltung/Controlling |
+| USt prüfen | `VAT Entries` | Buchhaltung |
+| GuV aufrufen | `Financial Reports` | Controlling |
+| Analyse nach Dimension | `Analysis Views` / `Dimensions - Detail` | Controlling |
+| Dimension korrigieren | `Dimension Corrections` | Finance/Admin |
+| Perioden schließen | `Accounting Periods` | Finance-Leitung |
+
+Prüfungsfalle:
+- Wenn ein Mitarbeiter eine Seite nicht findet, ist nicht automatisch die Funktion nicht vorhanden. Häufig sind Rolle, Berechtigung, Sprache, Suchbegriff oder Personalisierung die Ursache.
+
+### 23.4 Filtertechnik: der unterschätzte Produktivitätshebel
+
+Microsoft Learn beschreibt Suche, Sortierung und Filter als zentrale Mechanismen, um Listen, Berichte und Datenmengen einzugrenzen. In Listen kann gesucht, sortiert und gefiltert werden; bei Berichten werden Filter verwendet, um die Auswertung zu begrenzen. [Q57]
+
+Arbeitsroutine:
+1. Liste öffnen.
+2. Filterbereich anzeigen.
+3. zuerst Zeitraum filtern.
+4. dann Partner, Artikel, Konto oder Dimension filtern.
+5. Filter laut vorlesen: „Ich sehe März 2026, Debitor D10000, Company RM-SALES.“
+6. erst danach analysieren oder exportieren.
+
+Beispiel:
+
+| Frage | Filter |
+|---|---|
+| Welche Rechnungen an D10000 sind offen? | `Customer No. = D10000`, `Open = Yes` |
+| Welche Artikelbewegungen gab es in Frankfurt? | `Location Code = FRA-WH1`, Datum `01.03.2026..31.03.2026` |
+| Welche Erlöse gehören zum Onlineshop? | Dimension `CHANNEL = SHOP` |
+| Welche Buchungen fehlen in der GuV? | Zeitraum, Sachkonto, Dimension `PRODUCTLINE` |
+
+Stolperstein:
+- Ein alter Filter bleibt aktiv. Der Mitarbeiter sieht „keine Daten“ und glaubt, der Beleg sei weg. Lösung: Filterbereich prüfen und Filter zurücksetzen.
+
+### 23.5 Persönliche Oberfläche sinnvoll einrichten
+
+Personalisierung ist kein Kosmetikthema. Sie entscheidet, ob Anfänger die richtigen Felder sehen und ob Fehler früh auffallen. Microsoft unterscheidet persönliche Anpassungen des Nutzers und Profilanpassungen durch Administratoren. [Q53][Q54]
+
+| Rolle | Sichtbar machen | Ausblenden/vermeiden |
+|---|---|---|
+| Verkauf | `External Document No.`, `Location Code`, `Shipment Date`, `Payment Terms Code` | seltene technische Felder |
+| Einkauf | `Vendor Item No.`, `Expected Receipt Date`, `Location Code`, `Direct Unit Cost` | unnötige Finance-Felder |
+| Lager | `Location Code`, `Bin Code`, `Quantity`, `Qty. to Handle`, Charge/Serie | Preisfelder, wenn nicht benötigt |
+| Buchhaltung | `Posting Date`, `Document Date`, `VAT Bus. Posting Group`, `VAT Prod. Posting Group`, Dimensionen | operative Felder ohne Buchungsbezug |
+| Controlling | Dimensionen, Konten, Beträge, Entry No., Source Type | Bearbeitungsaktionen ohne Analysezweck |
+
+BC-Best-Practice:
+- Schulungsoberflächen werden rollenbasiert vorbereitet. Anfänger sollen die Felder sehen, die sie prüfen müssen, nicht alle Felder, die technisch existieren.
+
+### 23.6 Buchungsroutine: die 10-Sekunden-Prüfung vor jedem Posting
+
+Vor jeder Buchung wird kurz gestoppt. Diese Routine verhindert die meisten Anfängerfehler.
+
+1. Richtige Company?
+2. Richtiger Belegtyp?
+3. Richtiger Kunde, Lieferant, Artikel oder Konto?
+4. Richtiges Buchungsdatum?
+5. Richtiger Leistungs-/Lieferzeitraum?
+6. Richtiger Lagerort und Bin?
+7. Richtige Menge und Einheit?
+8. Richtiger Preis oder Rabatt?
+9. Richtige USt-Logik?
+10. Pflichtdimensionen gesetzt?
+
+Beispiel:
+- Ein Verkäufer bucht eine Rechnung über `10` Stück `SP-PUMP-01` an D10000. Vor `Post` prüft er Company `RM-SALES`, Datum `31.03.2026`, Lagerort `FRA-WH1`, Preis `285 EUR`, Dimension `PRODUCTLINE = SPARE` und USt-Logik Deutschland. Erst dann wird gebucht.
+
+Merksatz:
+- Eine Buchung ist schnell. Eine falsche Buchung ist langsam.
+
+### 23.7 Fehler sauber korrigieren
+
+Business Central arbeitet mit gebuchten Posten. Gebuchte Daten werden fachlich korrigiert, nicht „unsichtbar repariert“. Microsoft beschreibt unter anderem das Stornieren von Journalbuchungen über Umkehrbuchungen und das Korrigieren von Dimensionen auf Sachposten. [Q58][Q59]
+
+| Fehler | Richtiger Weg | Nachweis |
+|---|---|---|
+| falsche Journalbuchung | Reverse/Storno und richtige Buchung neu erfassen | ursprünglicher Posten, Storno, neue Buchung |
+| falsche Dimension auf Sachposten | Dimension Correction prüfen und durchführen | Historie der Dimension Correction |
+| falsche gebuchte Verkaufsrechnung | Gutschrift/Korrekturbeleg | Rechnung, Gutschrift, neue Rechnung |
+| falscher Zahlungsausgleich | Ausgleich lösen und korrekt neu ausgleichen | Customer/Vendor Ledger Entries |
+| falscher Lagerbestand | Inventur, Artikeljournal oder Lagerkorrektur nach Freigabe | Item Ledger Entries, Value Entries |
+| falsche Periode | Buchungsdatum prüfen, Periodensperre beachten, Korrektur dokumentieren | G/L Entries, Abschlussnachweis |
+
+Achtung:
+- Dimension Correction ändert nach Microsoft die Dimensionen auf Sachposten. Sie ändert nicht automatisch die Dimensionen in allen Nebenbüchern derselben Transaktion. Deshalb muss Finance prüfen, ob Reporting, Nebenbuch und Nachweislogik zusammenpassen. [Q59]
+
+### 23.8 Tipps für Controller
+
+Controller arbeiten nicht nur mit fertigen Berichten. Sie prüfen, ob die Daten für Berichte überhaupt belastbar sind.
+
+Tagesroutine:
+1. `Financial Reports` öffnen.
+2. GuV für aktuellen Monat und kumuliert prüfen.
+3. Dimension `PRODUCTLINE` filtern.
+4. auffällige Abweichung identifizieren.
+5. über Sachposten auf Belege zurückgehen.
+6. Nebenbuch prüfen: Debitor, Kreditor, Artikel, Projekt oder Anlage.
+7. Ursache dokumentieren: Preis, Menge, Datum, Dimension, Kostenlauf oder Korrektur.
+
+Typische Controller-Fragen:
+
+| Frage | Prüfpunkte |
+|---|---|
+| Warum ist die Marge gefallen? | Verkaufspreis, Rabatt, Einkaufskosten, Wareneinsatz, Dimension |
+| Warum fehlt Umsatz? | Rechnung nicht gebucht, falsches Datum, falsches Konto |
+| Warum ist Lagerwert hoch? | Wareneingang ohne Rechnung, Überbestand, Kostenregulierung |
+| Warum passt GuV nicht zum operativen Gefühl? | Dimensionen fehlen, Periodenabgrenzung fehlt, Buchungen im falschen Monat |
+| Warum ist Projektmarge falsch? | Ressourcenverbrauch, WIP, Fremdleistungen, Faktura |
+
+Best Practice:
+- Jeder Monatsabschluss bekommt eine Abweichungsliste mit Ursache, Verantwortlichem und Korrekturstatus. Ohne Ursache ist eine Abweichung noch keine Analyse.
+
+### 23.9 Tipps für Einkauf, Verkauf und Lager
+
+Einkauf:
+- Nutze Lieferantenartikelnummern konsequent.
+- Prüfe `Expected Receipt Date`, damit Planung und Lager nicht falsche Verfügbarkeiten sehen.
+- Prüfe Preis, Währung, Einheit und Mindestmenge vor Freigabe.
+- Bei Preisabweichung nie nur die Bestellung ändern. Kläre, ob die Einkaufspreisliste falsch ist.
+
+Verkauf:
+- Prüfe vor Zusage Lagerort, Verfügbarkeit, Lieferdatum und Zahlungsbedingungen.
+- Nutze Preislisten statt manueller Zeilenpreise.
+- Bei Retouren zuerst Ursache klären: falsche Ware, Qualität, Preis, Kunde oder Lieferung.
+- Bei Shopaufträgen prüfen, ob Kunde, Steuerlogik und Artikelmapping stimmen.
+
+Lager:
+- Scanne oder prüfe Artikelnummer, Charge, Seriennummer und Lagerplatz.
+- Verwechsle nie `Quantity`, `Qty. to Receive`, `Qty. to Ship` und `Qty. to Handle`.
+- Melde Abweichungen sofort. Nachträgliche Lagerkorrekturen sind schwieriger als saubere Klärung vor Buchung.
+
+### 23.10 Tipps für Admins und Key User
+
+Admins und Key User schützen das System vor schleichender Unordnung.
+
+| Thema | Tipp | Risiko bei Vernachlässigung |
+|---|---|---|
+| Rollen | je Abteilung eigenes Profil | Nutzer sehen zu viel oder zu wenig |
+| Berechtigungen | Least Privilege | Setup wird versehentlich geändert |
+| Stammdaten | Änderungsprozess mit Vier-Augen-Prinzip | falsche Buchungsgruppen, falsche USt |
+| Nummernserien | sprechend, aber nicht überladen | Belege werden schwer nachvollziehbar |
+| Dimensionen | Pflichtdimensionen und Value Posting nutzen | Reporting unbrauchbar |
+| Change Log | für kritische Tabellen aktivieren | Änderungen nicht prüfbar |
+| Job Queue | Verantwortlichen und Monitoring definieren | automatische Prozesse bleiben unbemerkt stehen |
+| Testcompany | Änderungen zuerst testen | Produktivdaten werden Trainingsfeld |
+
+### 23.11 Wenn etwas nicht stimmt: Diagnosebaum
+
+```mermaid
+flowchart TD
+    A[Problem erkannt] --> B{Ist der Beleg schon gebucht?}
+    B -- Nein --> C[Beleg prüfen und korrigieren]
+    B -- Ja --> D{Betrifft es nur Reporting?}
+    D -- Ja --> E[Dimension, Filter, Analysis View, Financial Report prüfen]
+    D -- Nein --> F{Betrifft es Bestand oder Wert?}
+    F -- Bestand --> G[Item Ledger Entries und Lagerprozess prüfen]
+    F -- Wert --> H[Value Entries, Kostenregulierung und Sachposten prüfen]
+    F -- Weder noch --> I[Debitor/Kreditor/Sachkonto/USt prüfen]
+    E --> J[Nachweis dokumentieren]
+    G --> J
+    H --> J
+    I --> J
+```
+
+Praxisregel:
+- Nie direkt „korrigieren“, bevor die Ursache benannt ist. Sonst entsteht aus einem Fehler ein zweiter Fehler.
+
+### 23.12 Mini-Spickzettel für den Schreibtisch
+
+| Situation | Erst prüfen | Dann tun |
+|---|---|---|
+| Ich finde eine Seite nicht | `Alt+Q`, englischen Begriff, Rolle | Bookmark setzen |
+| Ich sehe keine Daten | Filter, Company, Zeitraum | Filter zurücksetzen |
+| Preis stimmt nicht | Preislistenzeile, Datum, Menge, Gruppe | Belegzeile neu validieren |
+| USt stimmt nicht | Debitor/Kreditorgruppe, Artikelgruppe, VAT Posting Setup | nicht manuell übersteuern |
+| GuV stimmt nicht | Zeitraum, Konto, Dimension, gebuchte Belege | Sachposten zurückverfolgen |
+| Lagerbestand stimmt nicht | Item Ledger Entries, Lagerort, Bin, Charge | Inventur-/Korrekturprozess nutzen |
+| Dimension fehlt | Default Dimensions, Pflichtdimension, Korrekturberechtigung | Dimension Correction prüfen |
+| Periode falsch | Posting Date, Accounting Periods, Sperren | Finance-Leitung einbinden |
+
+Schulungsübung:
+1. Öffne `Sales Orders` mit `Alt+Q`.
+2. Setze einen Filter auf Debitor `D10000`.
+3. Öffne einen gebuchten Verkaufsbeleg.
+4. Springe zu `Customer Ledger Entries`.
+5. Öffne die zugehörigen `G/L Entries`.
+6. Erkläre die Buchungsspur.
+7. Blende eine fehlende Spalte über Personalisierung ein.
+8. Bookmarke die Seite.
+9. Dokumentiere einen absichtlich gesetzten falschen Filter und setze ihn zurück.
+10. Beschreibe, welche Korrektur zulässig wäre, wenn der Beleg bereits gebucht ist.
+
+Merksatz:
+- Gute BC-Arbeit ist wiederholbar: gleiche Suche, gleiche Prüfung, gleicher Nachweis, gleiche Korrekturlogik.
+
+---
+
+## 24. Quellenverzeichnis
 
 - [Q1] Microsoft Learn: Business Central documentation: https://learn.microsoft.com/en-us/dynamics365/business-central/
 - [Q2] Microsoft Learn: Business functionality supported by Business Central: https://learn.microsoft.com/en-us/dynamics365/business-central/across-business-functionality
@@ -1534,3 +1796,8 @@ Merksatz:
 - [Q53] Microsoft Learn: Personalize your workspace: https://learn.microsoft.com/en-us/dynamics365/business-central/ui-personalization-user
 - [Q54] Microsoft Learn: Customize pages for profiles: https://learn.microsoft.com/en-us/dynamics365/business-central/ui-personalization-manage
 - [Q55] Microsoft Learn: Manage users and roles: https://learn.microsoft.com/en-us/dynamics365/business-central/admin-users-profiles-roles
+- [Q56] Microsoft Learn: Keyboard shortcuts in Business Central: https://learn.microsoft.com/en-gb/dynamics365/business-central/keyboard-shortcuts
+- [Q57] Microsoft Learn: Sort, search, and filter data in lists, reports, or XMLports: https://learn.microsoft.com/en-us/dynamics365/business-central/ui-enter-criteria-filters
+- [Q58] Microsoft Learn: Undo a posting using a reversing entry: https://learn.microsoft.com/en-us/dynamics365/business-central/finance-how-reverse-journal-posting
+- [Q59] Microsoft Learn: Troubleshoot and correct dimensions: https://learn.microsoft.com/en-us/dynamics365/business-central/finance-troubleshooting-correcting-dimensions
+- [Q60] Microsoft Learn: Close accounting periods for a fiscal year: https://learn.microsoft.com/en-us/dynamics365/business-central/year-close-account-periods
