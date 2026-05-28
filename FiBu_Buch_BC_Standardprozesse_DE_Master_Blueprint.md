@@ -7,6 +7,7 @@ Hinweis: Dieses Buch ist ein quellenbasiertes Lern-, Schulungs-, Projekt- und Im
 - Rechtsstand und Link-Prüfung der Primärquellen: `28.05.2026`.
 - Fachlicher Fokus: Business Central Standard, deutsche Umsatzsteuer (USt), GoBD, E-Rechnung, HGB-nahe Finanzprozesse, Lager, Fertigung, Service, Projekte, Onlineshop, Intercompany und Reporting.
 - BC-Funktionsumfang, Seitenbezeichnungen und Lokalisierungen können je Release Wave, Mandant, Lizenz, Sprache, Berechtigung und aktivierter Funktion abweichen.
+- In diesem Buch ist die deutsche Business-Central-Oberfläche führend. Englische Microsoft-Learn-/Tell-Me-Begriffe stehen nur als Klammerzusatz, Suchhilfe oder Quellenbegriff daneben.
 - Bei Abweichungen zwischen diesem Buch und Normtext oder Microsoft Learn gilt immer die aktuelle Primärquelle.
 - Dieses Skript verwendet für Quellenangaben nur Primärquellen: Microsoft Learn, Gesetze im Internet, BMF, BZSt und amtliche EU-Quellen.
 
@@ -41,7 +42,8 @@ Hinweis: Dieses Buch ist ein quellenbasiertes Lern-, Schulungs-, Projekt- und Im
 27. Inland, Ausland, Dropshipping und Steuerlogiken
 28. Vollständiger Bedien- und Prozesskatalog
 29. Vollständigkeitsprüfung: Was muss ein Leser nach dem Buch können?
-30. Quellenverzeichnis
+30. Deutsche BC-Oberfläche: Begriffe, Seiten und Suchlogik
+31. Quellenverzeichnis
 
 ---
 
@@ -106,12 +108,28 @@ Dieses Buch trennt vier Ebenen:
 
 | Ebene | Bedeutung | Beispiel |
 |---|---|---|
-| Standard laut Quelle | Funktion ist in Microsoft Learn beschrieben | `Sales Orders`, `Purchase Orders`, `Production Orders` |
+| Standard laut Quelle | Funktion ist in Microsoft Learn beschrieben | `Verkaufsaufträge (Sales Orders)`, `Einkaufsbestellungen (Purchase Orders)`, `Fertigungsaufträge (Production Orders)` |
 | Deutsche Pflicht/Compliance | Rechtliche oder steuerliche Anforderung | § 147 AO, UStG, GoBD, E-Rechnung |
 | BC-Best-Practice | robuste Projektpraxis, nicht automatisch Gesetz | Vier-Augen-Freigabe für USt-Setup |
 | Projektentscheidung der Musterfirma | bewusst konstruiertes Trainingsdesign | ein gesteuertes Lager und ein einfaches Lager parallel |
 
 > Merksatz: Best Practice ist keine Rechtsquelle. Sie ist die fachlich begründete Art, den Standard so zu nutzen, dass Prozesse stabil, prüfbar und schulbar werden.
+
+### 1.4 Sprachregel: deutsches Business Central zuerst
+
+Dieses Buch schult auf einem deutschen Business-Central-Mandanten. Deshalb steht der deutsche Funktions- und Seitenbegriff immer im Vordergrund. Der englische Begriff bleibt nur dort stehen, wo er für Microsoft Learn, Tell Me, Fehlersuche, internationale Projekte oder technische Tabellenbezeichnungen nützlich ist.
+
+Schreibweise:
+- deutscher BC-Begriff zuerst: `Verkaufsaufträge (Sales Orders)`.
+- deutscher Postenbegriff zuerst: `Sachposten (G/L Entries)`.
+- deutsche Funktion zuerst: `Buchungsvorschau (Preview Posting)`.
+- englischer Begriff nur als Suchhilfe, Quellenbegriff oder technischer Tabellen-/Objektname.
+
+Praxisregel:
+- Mitarbeiter lernen die deutsche Oberfläche. Key User und Admins lernen zusätzlich die englischen Begriffe, weil Dokumentation, AppSource, Fehlermeldungen und Partnerkommunikation häufig englisch sind.
+
+Beispiel:
+- Ein Verkäufer sucht im deutschen BC nach `Verkaufsaufträge`. Wenn die Suche nichts findet oder die Umgebung englisch dokumentiert ist, nutzt er zusätzlich `Sales Orders`.
 
 ---
 
@@ -2226,67 +2244,67 @@ Merksatz:
 
 ### 28.2 Vollständige Prozesslandkarte
 
-| Prozessbereich | Hauptseiten/Suchbegriffe | Setup | Mitarbeiteraktion | Entries/Nachweis | Kontrollbericht |
+| Prozessbereich | Deutsche Hauptseiten mit englischer Suchhilfe | Setup | Mitarbeiteraktion | Posten/Nachweis | Kontrollbericht |
 |---|---|---|---|---|---|
-| Company & Foundation | `Companies`, `Company Information`, `Assisted Setup` | Company, Region, Währung, Nummernserien | Mandant anlegen und prüfen | Setup-Protokoll | Setup-Checkliste |
-| Benutzer & Rollen | `Users`, `Permission Sets`, `Profiles (Roles)` | Lizenz, Permission Sets, Profile | Nutzer berechtigen | User Card, Permission Sets | Berechtigungsreview |
-| Dimensionen | `Dimensions`, `Default Dimensions` | Global/Shortcut Dimensions, Value Posting | Dimensionen zuweisen | G/L Entries mit Dimension | Dimensions - Detail |
-| Kontenplan | `Chart of Accounts`, `G/L Account Categories` | Konten, Kategorien, Direktbuchung | Konto pflegen und sperren | G/L Entries | Financial Reports |
-| USt | `VAT Posting Setup`, `VAT Entries` | VAT Bus./Prod. Groups | Steuerlogik buchen und prüfen | VAT Entries | USt-Abstimmung |
-| O2C | `Sales Quotes`, `Sales Orders`, `Posted Sales Invoices` | Sales Setup, Debitoren, Preise | Angebot/Auftrag/Rechnung | Customer Ledger, G/L, VAT | OP-Liste, GuV |
-| Retouren | `Sales Return Orders`, `Sales Credit Memos` | Retourengründe, Lagerort | Ware zurücknehmen/gutschreiben | Item Ledger, Customer Ledger | Retourenliste |
-| Mahnwesen | `Reminders`, `Customer Ledger Entries` | Mahnmethoden, Zahlungsbedingungen | offene Posten mahnen | Reminder, Customer Ledger | Debitorenfälligkeit |
-| P2P | `Purchase Orders`, `Posted Purchase Invoices` | Purchasing Setup, Kreditoren | bestellen, empfangen, fakturieren | Vendor Ledger, G/L, VAT | Kreditorenfälligkeit |
-| Einkaufspreise | `Purchase Price Lists` | Preislisten, Kreditorartikel | Preise pflegen | Belegzeilen, Margenprüfung | Einkaufsanalyse |
-| Verkaufspreise | `Sales Price Lists` | Preisgruppen, Rabatte | Preise pflegen | Belegzeilen, Erlöse | Margenanalyse |
-| Inventory | `Items`, `Item Journals`, `Item Ledger Entries` | Artikel, Einheiten, Kostenmethode | Bestand buchen/korrigieren | Item Ledger, Value Entries | Inventory Valuation |
-| Basic Warehouse | `Inventory Put-aways`, `Inventory Picks` | Lagerort, Bin Mandatory | einlagern/kommissionieren | Warehouse Activity, Item Ledger | Lagerbewegungen |
-| Advanced Warehouse | `Warehouse Receipts`, `Warehouse Put-aways`, `Warehouse Picks` | Require Receive/Pick, Directed Put-away | Receive, Put-away, Pick | Warehouse Entries, Item Ledger | Bin Contents |
-| Inventur | `Physical Inventory Journals` | Inventurzyklen, Lagerorte | zählen und buchen | Item Ledger, Value Entries | Inventurdifferenzen |
-| Planung | `Planning Worksheets`, `Requisition Worksheets` | Planungspolitik, Forecast | Bedarf berechnen | Vorschlagszeilen | Planungsarbeitsblatt |
-| Montage | `Assembly Orders` | Assembly BOM, Artikel | Kit montieren | Assembly/Item Entries | Montagekosten |
-| Fertigung | `Production BOMs`, `Routings`, `Production Orders` | Stücklisten, Arbeitspläne, Kapazitäten | Verbrauch und Output buchen | Item/Capacity/Value Entries | Produktionsstatistik |
-| Fremdarbeit | `Subcontracting Worksheets`, Purchase | Arbeitsgänge, Kreditor | Fremdleistung beschaffen | Purchase, Capacity, Value | Fertigungsabweichung |
-| Service | `Service Items`, `Service Orders`, `Service Contracts` | Service Setup, Verträge | Reparatur/Wartung erfassen | Service Ledger, G/L | Serviceberichte |
-| Projekte | `Projects`, `Project Journals`, `Project Planning Lines` | Projektsetup, WIP-Methode | Aufwand, Budget, Faktura | Project Ledger, G/L | Projektanalyse |
-| Anlagen | `Fixed Assets`, `FA Journals` | FA Posting Groups, AfA-Bücher | Zugang, AfA, Abgang | FA Ledger, G/L | Anlagenliste |
-| Bank & Zahlungen | `Payment Journals`, `Payment Reconciliation Journals` | Bankkonten, Zahlungsarten | zahlen, abstimmen | Bank/G/L, Ledger Entries | Bankabstimmung |
-| Abschluss | `Accounting Periods`, `General Journals`, `Financial Reports` | Perioden, Sperren, Abschlusskonten | abgrenzen, schließen, berichten | G/L Entries | Bilanz/GuV |
-| Intercompany | `Intercompany Setup`, IC Journals | IC Partner, IC Konten | IC-Belege senden/empfangen | IC Entries, G/L | IC-Abstimmung |
-| Shopify/Online | `Shopify Shops`, `Sales Orders` | Shop, Mapping, Steuer | Shopaufträge verarbeiten | Sales, Customer, VAT | Shop-Abstimmung |
-| Dropshipping | `Sales Orders`, `Purchase Orders` | Purchasing Code, Lieferant | Direktlieferung steuern | verknüpfte Sales/Purchase Entries | Marge, Steuer, Liefernachweis |
-| Reporting | `Financial Reports`, `Analysis Mode`, `Analysis Views` | Dimensionen, Reports | auswerten und filtern | G/L, Dimensionen | GuV, Bilanz, Analyse |
-| Administration | `Job Queue Entries`, `Change Log`, `Extension Management` | Jobs, Logging, Apps | Betrieb überwachen | Logs, Change Log | Admin-Kalender |
+| Company & Foundation | `Unternehmen (Companies)`, `Unternehmensdaten (Company Information)`, `Unterstützte Einrichtung (Assisted Setup)` | Mandant, Region, Währung, Nummernserien | Mandant anlegen und prüfen | Setup-Protokoll | Setup-Checkliste |
+| Benutzer & Rollen | `Benutzer (Users)`, `Berechtigungssätze (Permission Sets)`, `Profile/Rollen (Profiles (Roles))` | Lizenz, Berechtigungssätze, Profile | Nutzer berechtigen | Benutzerkarte, Berechtigungssätze | Berechtigungsreview |
+| Dimensionen | `Dimensionen (Dimensions)`, `Standarddimensionen (Default Dimensions)` | globale Dimensionen, Shortcut-Dimensionen, Wertbuchung | Dimensionen zuweisen | Sachposten (G/L Entries) mit Dimension | Dimensionen - Detail |
+| Kontenplan | `Kontenplan (Chart of Accounts)`, `Sachkontokategorien (G/L Account Categories)` | Konten, Kategorien, Direktbuchung | Konto pflegen und sperren | Sachposten (G/L Entries) | Finanzberichte |
+| USt | `USt-Buchungsmatrix (VAT Posting Setup)`, `USt-Posten (VAT Entries)` | USt-Geschäftsbuchungsgruppen, USt-Produktbuchungsgruppen | Steuerlogik buchen und prüfen | USt-Posten (VAT Entries) | USt-Abstimmung |
+| O2C | `Verkaufsangebote (Sales Quotes)`, `Verkaufsaufträge (Sales Orders)`, `Gebuchte Verkaufsrechnungen (Posted Sales Invoices)` | Verkaufseinrichtung, Debitoren, Preise | Angebot/Auftrag/Rechnung | Debitorenposten, Sachposten, USt-Posten | OP-Liste, GuV |
+| Retouren | `Verkaufsreklamationsaufträge (Sales Return Orders)`, `Verkaufsgutschriften (Sales Credit Memos)` | Retourengründe, Lagerort | Ware zurücknehmen/gutschreiben | Artikelposten, Debitorenposten | Retourenliste |
+| Mahnwesen | `Mahnungen (Reminders)`, `Debitorenposten (Customer Ledger Entries)` | Mahnmethoden, Zahlungsbedingungen | offene Posten mahnen | Mahnung, Debitorenposten | Debitorenfälligkeit |
+| P2P | `Einkaufsbestellungen (Purchase Orders)`, `Gebuchte Einkaufsrechnungen (Posted Purchase Invoices)` | Einkaufseinrichtung, Kreditoren | bestellen, empfangen, fakturieren | Kreditorenposten, Sachposten, USt-Posten | Kreditorenfälligkeit |
+| Einkaufspreise | `Einkaufspreislisten (Purchase Price Lists)` | Preislisten, Kreditorartikel | Preise pflegen | Belegzeilen, Margenprüfung | Einkaufsanalyse |
+| Verkaufspreise | `Verkaufspreislisten (Sales Price Lists)` | Preisgruppen, Rabatte | Preise pflegen | Belegzeilen, Erlöse | Margenanalyse |
+| Lager/Bestand | `Artikel (Items)`, `Artikeljournale (Item Journals)`, `Artikelposten (Item Ledger Entries)` | Artikel, Einheiten, Kostenmethode | Bestand buchen/korrigieren | Artikelposten, Wertposten | Lagerbewertung |
+| Basislager | `Lagereinlagerungen (Inventory Put-aways)`, `Lagerkommissionierungen (Inventory Picks)` | Lagerort, Lagerplatzpflicht | einlagern/kommissionieren | Lageraktivität, Artikelposten | Lagerbewegungen |
+| Gesteuertes Lager | `Lagereingänge (Warehouse Receipts)`, `Lagereinlagerungen (Warehouse Put-aways)`, `Lagerkommissionierungen (Warehouse Picks)` | Wareneingang/Kommissionierung erforderlich, gesteuerte Einlagerung | empfangen, einlagern, kommissionieren | Lagerposten, Artikelposten | Lagerplatzinhalt |
+| Inventur | `Inventurjournale (Physical Inventory Journals)` | Inventurzyklen, Lagerorte | zählen und buchen | Artikelposten, Wertposten | Inventurdifferenzen |
+| Planung | `Planungsarbeitsblätter (Planning Worksheets)`, `Bestellarbeitsblätter (Requisition Worksheets)` | Planungspolitik, Absatzplanung | Bedarf berechnen | Vorschlagszeilen | Planungsarbeitsblatt |
+| Montage | `Montageaufträge (Assembly Orders)` | Montagestückliste, Artikel | Kit montieren | Montage-/Artikelposten | Montagekosten |
+| Fertigung | `Fertigungsstücklisten (Production BOMs)`, `Arbeitspläne (Routings)`, `Fertigungsaufträge (Production Orders)` | Stücklisten, Arbeitspläne, Kapazitäten | Verbrauch und Output buchen | Artikel-/Kapazitäts-/Wertposten | Produktionsstatistik |
+| Fremdarbeit | `Fremdarbeitsarbeitsblätter (Subcontracting Worksheets)`, Einkauf | Arbeitsgänge, Kreditor | Fremdleistung beschaffen | Einkaufs-, Kapazitäts-, Wertposten | Fertigungsabweichung |
+| Service | `Serviceartikel (Service Items)`, `Serviceaufträge (Service Orders)`, `Serviceverträge (Service Contracts)` | Serviceeinrichtung, Verträge | Reparatur/Wartung erfassen | Serviceposten, Sachposten | Serviceberichte |
+| Projekte | `Projekte (Projects/Jobs)`, `Projektjournale (Project Journals)`, `Projektplanzeilen (Project Planning Lines)` | Projektsetup, WIP-Methode | Aufwand, Budget, Faktura | Projektposten, Sachposten | Projektanalyse |
+| Anlagen | `Anlagen (Fixed Assets)`, `Anlagenjournale (FA Journals)` | Anlagenbuchungsgruppen, AfA-Bücher | Zugang, AfA, Abgang | Anlagenposten, Sachposten | Anlagenliste |
+| Bank & Zahlungen | `Zahlungsjournale (Payment Journals)`, `Zahlungsabstimmungsjournale (Payment Reconciliation Journals)` | Bankkonten, Zahlungsarten | zahlen, abstimmen | Bank-/Sachposten, Debitoren-/Kreditorenposten | Bankabstimmung |
+| Abschluss | `Buchhaltungsperioden (Accounting Periods)`, `Fibu Buch.-Blätter (General Journals)`, `Finanzberichte (Financial Reports)` | Perioden, Sperren, Abschlusskonten | abgrenzen, schließen, berichten | Sachposten | Bilanz/GuV |
+| Intercompany | `Intercompany-Einrichtung (Intercompany Setup)`, IC-Buch.-Blätter | IC Partner, IC Konten | IC-Belege senden/empfangen | IC-Posten, Sachposten | IC-Abstimmung |
+| Shopify/Online | `Shopify Shops`, `Verkaufsaufträge (Sales Orders)` | Shop, Mapping, Steuer | Shopaufträge verarbeiten | Verkaufs-, Debitoren-, USt-Posten | Shop-Abstimmung |
+| Dropshipping | `Verkaufsaufträge (Sales Orders)`, `Einkaufsbestellungen (Purchase Orders)` | Einkaufscode (Purchasing Code), Lieferant | Direktlieferung steuern | verknüpfte Verkaufs-/Einkaufsposten | Marge, Steuer, Liefernachweis |
+| Reporting | `Finanzberichte (Financial Reports)`, `Analysemodus (Analysis Mode)`, `Analyseansichten (Analysis Views)` | Dimensionen, Reports | auswerten und filtern | Sachposten, Dimensionen | GuV, Bilanz, Analyse |
+| Administration | `Aufgabenwarteschlangenposten (Job Queue Entries)`, `Änderungsprotokoll (Change Log)`, `Erweiterungsverwaltung (Extension Management)` | Jobs, Protokollierung, Apps | Betrieb überwachen | Protokolle, Änderungsprotokoll | Admin-Kalender |
 
 ### 28.3 Vollständige Schrittfolge Grundeinrichtung
 
 Diese Reihenfolge gilt für einen neuen Trainingsmandanten. Sie ist bewusst streng, weil spätere Korrekturen an Fundamentdaten teuer werden.
 
-1. `Companies` öffnen und Company `RM-PROD` anlegen.
-2. `Company Information` pflegen: Name, Adresse, USt-ID, Bankdaten.
-3. `General Ledger Setup` prüfen: Währung, Buchungsdatum, Rundung, Dimensionslogik.
-4. `Accounting Periods` für das Geschäftsjahr anlegen.
-5. `Chart of Accounts` importieren oder pflegen.
-6. `G/L Account Categories` für Bilanz und GuV zuordnen.
-7. `General Posting Setup` für Geschäftsbuchungsgruppen und Produktbuchungsgruppen pflegen.
-8. `VAT Posting Setup` für Inland, EU und Drittland pflegen.
-9. `Customer Posting Groups` und `Vendor Posting Groups` definieren.
-10. `Inventory Posting Setup` und Lagerkonten definieren.
-11. `Dimensions` anlegen: `DEPARTMENT`, `PRODUCTLINE`, `CHANNEL`, `LOCATION-GROUP`, `PROJECT`.
-12. `Default Dimensions` an Debitoren, Kreditoren, Artikeln, Ressourcen und Sachkonten pflegen.
-13. `No. Series` für Debitoren, Kreditoren, Artikel, Belege, Anlagen, Projekte definieren.
-14. `Sales & Receivables Setup` prüfen.
-15. `Purchases & Payables Setup` prüfen.
-16. `Inventory Setup` prüfen.
+1. `Unternehmen (Companies)` öffnen und Company `RM-PROD` anlegen.
+2. `Unternehmensdaten (Company Information)` pflegen: Name, Adresse, USt-ID, Bankdaten.
+3. `Finanzbuchhaltung Einrichtung (General Ledger Setup)` prüfen: Währung, Buchungsdatum, Rundung, Dimensionslogik.
+4. `Buchhaltungsperioden (Accounting Periods)` für das Geschäftsjahr anlegen.
+5. `Kontenplan (Chart of Accounts)` importieren oder pflegen.
+6. `Sachkontokategorien (G/L Account Categories)` für Bilanz und GuV zuordnen.
+7. `Allgemeine Buchungsmatrix Einrichtung (General Posting Setup)` für Geschäftsbuchungsgruppen und Produktbuchungsgruppen pflegen.
+8. `USt-Buchungsmatrix Einrichtung (VAT Posting Setup)` für Inland, EU und Drittland pflegen.
+9. `Debitorenbuchungsgruppen (Customer Posting Groups)` und `Kreditorenbuchungsgruppen (Vendor Posting Groups)` definieren.
+10. `Lagerbuchungsmatrix Einrichtung (Inventory Posting Setup)` und Lagerkonten definieren.
+11. `Dimensionen (Dimensions)` anlegen: `DEPARTMENT`, `PRODUCTLINE`, `CHANNEL`, `LOCATION-GROUP`, `PROJECT`.
+12. `Standarddimensionen (Default Dimensions)` an Debitoren, Kreditoren, Artikeln, Ressourcen und Sachkonten pflegen.
+13. `Nummernserien (No. Series)` für Debitoren, Kreditoren, Artikel, Belege, Anlagen, Projekte definieren.
+14. `Verkauf & Marketing Einrichtung (Sales & Receivables Setup)` prüfen.
+15. `Einkauf & Kreditoren Einrichtung (Purchases & Payables Setup)` prüfen.
+16. `Lager Einrichtung (Inventory Setup)` prüfen.
 17. Lagerorte in `Locations` anlegen: einfaches Lager, Basic Warehouse, Advanced Warehouse.
 18. Bins und Lagerplatzlogik für gesteuertes Lager anlegen.
 19. Debitoren und Kreditoren anlegen.
 20. Artikel, Einheiten, Varianten, Item Tracking und Preise anlegen.
 21. Ressourcen, Projekte, Anlagen, Serviceartikel anlegen.
 22. Workflows und Genehmigungen einrichten.
-23. `Users`, `Permission Sets`, `Profiles (Roles)` einrichten.
-24. `Job Queue Entries` für Kostenregulierung, Reports, Schnittstellen prüfen.
-25. `Change Log Setup` für kritische Tabellen aktivieren.
+23. `Benutzer (Users)`, `Berechtigungssätze (Permission Sets)`, `Profile/Rollen (Profiles (Roles))` einrichten.
+24. `Aufgabenwarteschlangenposten (Job Queue Entries)` für Kostenregulierung, Reports, Schnittstellen prüfen.
+25. `Änderungsprotokoll Einrichtung (Change Log Setup)` für kritische Tabellen aktivieren.
 26. Extensions installieren und dokumentieren.
 27. Testdaten laden.
 28. UAT nach Kapitel 17 und 29 durchführen.
@@ -2452,7 +2470,126 @@ Merksatz:
 
 ---
 
-## 30. Quellenverzeichnis
+## 30. Deutsche BC-Oberfläche: Begriffe, Seiten und Suchlogik
+
+Dieses Kapitel übersetzt die wichtigsten Business-Central-Begriffe in die deutsche Bedienwelt. Es ist bewusst praktisch: Ein Mitarbeiter soll wissen, welchen deutschen Begriff er sieht, welchen englischen Begriff Microsoft Learn verwendet und was die Seite fachlich bedeutet.
+
+### 30.1 Grundsatz für Schulungen
+
+Schulungen, Arbeitsanweisungen und Screenshots verwenden die deutsche Oberfläche. Englische Begriffe werden in Klammern ergänzt, weil Suchfunktion, Partnerdokumentation und Microsoft Learn teilweise englische Namen verwenden.
+
+| Regel | Anwendung |
+|---|---|
+| Deutsch zuerst | `Verkaufsaufträge (Sales Orders)` |
+| Abkürzungen erklären | `Sachposten (G/L Entries)` |
+| Posten immer fachlich erklären | `Debitorenposten = offene und ausgeglichene Kundenforderungen` |
+| Tell-Me-Suche zweisprachig schulen | erst deutsch suchen, dann englischen Begriff versuchen |
+| Screenshots/Schulungsmandant deutsch | Sprache/Region im Nutzerprofil auf Deutsch/Deutschland setzen |
+
+### 30.2 Deutsche Seitenbegriffe für Verkauf, Einkauf und Finance
+
+| Deutscher Begriff in der Schulung | Englischer Begriff / Microsoft Learn | Zweck |
+|---|---|---|
+| Debitoren | Customers | Kundenstammdaten |
+| Kreditoren | Vendors | Lieferantenstammdaten |
+| Artikel | Items | Material, Ware, Handelsartikel |
+| Verkaufsangebote | Sales Quotes | Angebot an Kunden |
+| Verkaufsaufträge | Sales Orders | Auftrag, Lieferung, Rechnung |
+| Gebuchte Verkaufsrechnungen | Posted Sales Invoices | Nachweis gebuchter Ausgangsrechnungen |
+| Verkaufsgutschriften | Sales Credit Memos | Korrektur/Gutschrift im Verkauf |
+| Verkaufsreklamationen / Verkaufsreklamationsaufträge | Sales Return Orders | Rücknahmeprozess |
+| Einkaufsbestellungen | Purchase Orders | Bestellung beim Lieferanten |
+| Einkaufsrechnungen | Purchase Invoices | Eingangsrechnung |
+| Gebuchte Einkaufsrechnungen | Posted Purchase Invoices | Nachweis gebuchter Eingangsrechnungen |
+| Einkaufsgutschriften | Purchase Credit Memos | Korrektur/Gutschrift im Einkauf |
+| Erinnerungen/Mahnungen | Reminders | Mahnprozess |
+| Zahlungsjournale | Payment Journals | Zahlungsläufe |
+| Zahlungsabstimmungsjournale | Payment Reconciliation Journals | Bank-/Zahlungsabgleich |
+| Sachkontenplan | Chart of Accounts | Kontenübersicht |
+| Sachposten | General Ledger Entries / G/L Entries | Hauptbuchbuchungen |
+| Debitorenposten | Customer Ledger Entries | Forderungen und Ausgleich |
+| Kreditorenposten | Vendor Ledger Entries | Verbindlichkeiten und Ausgleich |
+| USt-Posten | VAT Entries | Umsatzsteuer/Vorsteuer |
+| Finanzberichte | Financial Reports | GuV, Bilanz, Auswertungen |
+
+### 30.3 Deutsche Seitenbegriffe für Lager, Fertigung, Projekte und Service
+
+| Deutscher Begriff in der Schulung | Englischer Begriff / Microsoft Learn | Zweck |
+|---|---|---|
+| Lagerorte | Locations | physische oder logische Lager |
+| Lagerplätze | Bins | Plätze innerhalb eines Lagerorts |
+| Artikelposten | Item Ledger Entries | Mengenbewegungen |
+| Wertposten | Value Entries | Wertbewegungen und Kosten |
+| Artikeljournale | Item Journals | Bestandskorrekturen |
+| Inventurjournale | Physical Inventory Journals | Inventur |
+| Lagereinlagerungen | Warehouse Put-aways | gesteuerte Einlagerung |
+| Lagerkommissionierungen | Warehouse Picks | gesteuerte Kommissionierung |
+| Lagereingänge | Warehouse Receipts | Wareneingänge im Lager |
+| Lagerausgänge / Lagerlieferungen | Warehouse Shipments | Versand aus dem Lager |
+| Umlagerungsaufträge | Transfer Orders | Bewegung zwischen Lagerorten |
+| Montageaufträge | Assembly Orders | Montage/Kits |
+| Fertigungsstücklisten | Production BOMs | Materialstruktur |
+| Arbeitspläne | Routings | Arbeitsgänge |
+| Fertigungsaufträge | Production Orders | Produktion |
+| Projekte | Projects / Jobs | Projektgeschäft |
+| Projektposten | Project Ledger Entries / Job Ledger Entries | Projektverbrauch/Faktura |
+| Ressourcen | Resources | Mitarbeiter/Maschinen/Dienstleistungen |
+| Serviceartikel | Service Items | zu wartende Objekte |
+| Serviceaufträge | Service Orders | Reparatur/Wartung |
+| Serviceverträge | Service Contracts | Wartungsverträge |
+
+### 30.4 Deutsche Admin- und Superuser-Begriffe
+
+| Deutscher Begriff in der Schulung | Englischer Begriff / Microsoft Learn | Zweck |
+|---|---|---|
+| Benutzer | Users | Anwender im Mandanten |
+| Berechtigungssätze | Permission Sets | Rechtepakete |
+| Profile/Rollen | Profiles (Roles) | Rollencenter und Oberfläche |
+| Rollencenter | Role Center | Startseite je Rolle |
+| Aufgabenwarteschlangenposten | Job Queue Entries | geplante/automatische Läufe |
+| Änderungsprotokoll | Change Log | Nachweis von Stammdaten-/Setupänderungen |
+| Änderungsprotokollposten | Change Log Entries | konkrete protokollierte Änderung |
+| Erweiterungsverwaltung | Extension Management | installierte Apps/Extensions |
+| unterstützte Einrichtung | Assisted Setup | Einrichtungsassistenten |
+| Konfigurationspakete | Configuration Packages | Datenmigration/Setup-Import |
+| Nummernserien | No. Series | Beleg- und Stammdatennummern |
+| Buchhaltungsperioden | Accounting Periods | Geschäftsjahr/Perioden |
+| Dimensionen | Dimensions | Kostenstellen, Produktlinien, Kanäle |
+| Standarddimensionen | Default Dimensions | automatische Dimensionsvorgaben |
+| Buchungsgruppen | Posting Groups | Kontenfindung |
+| USt-Buchungsmatrix | VAT Posting Setup | Steuerfindung |
+
+### 30.5 Deutsche Bedienanweisungen: Formulierungsmuster
+
+Falsch für dieses Buch:
+- „Open `Sales Orders` and post the invoice.“
+
+Richtig:
+- „Öffne über `Alt+Q` die Seite `Verkaufsaufträge (Sales Orders)`. Öffne den Auftrag. Prüfe Debitor, Buchungsdatum, Lagerort, Preis, USt-Produktbuchungsgruppe und Dimensionen. Wähle anschließend `Buchen`.“
+
+Richtig bei Admin-Themen:
+- „Öffne `Benutzer (Users)`, prüfe den Benutzer und weise passende `Berechtigungssätze (Permission Sets)` zu. Prüfe danach das `Profil/Rollencenter (Profiles (Roles))`.“
+
+### 30.6 Mindest-Glossar für jeden neuen Abschnitt
+
+Jeder neue BC-Abschnitt verwendet künftig diese Struktur:
+
+| Element | Pflicht |
+|---|---|
+| Seite | deutscher Name plus englischer Suchbegriff |
+| Feld | deutscher Feldname, wenn bekannt; englischer Feldname nur als Klammer |
+| Aktion | deutsche Aktion, z. B. `Buchen`, `Freigeben`, `Ausgleichen` |
+| Posten | deutscher Postenbegriff plus englischer Tabellen-/Learn-Begriff |
+| Bericht | deutscher Berichtstitel plus englischer Quellenbegriff |
+| Fehlerbild | deutsche Anwendersprache |
+| Admin-Hinweis | deutsche Oberfläche und englischer Quellenbegriff |
+
+Merksatz:
+- Ein deutsches Schulungsbuch darf englische BC-Begriffe erklären. Es darf sie aber nicht zur Hauptsprache machen.
+
+---
+
+## 31. Quellenverzeichnis
 
 - [Q1] Microsoft Learn: Business Central documentation: https://learn.microsoft.com/en-us/dynamics365/business-central/
 - [Q2] Microsoft Learn: Business functionality supported by Business Central: https://learn.microsoft.com/en-us/dynamics365/business-central/across-business-functionality
