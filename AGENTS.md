@@ -75,7 +75,7 @@ Zweck: Prüfungsvorbereitung (IHK), ERP-Implementierungsleitfaden (Microsoft Dyn
 | `FiBu_Buch_BC_Blueprint_E2E_Prozesse.md` | ~650 | Business Central E2E-Prozess-Blueprints |
 | `FiBu_Buch_BC_Einfuehrung_Schweiz_Separate_Firma_USt_DE-CH.md` | ~2.152 | BC-Einführung Schweiz, DE/CH-Steuerkomplexität |
 | `FiBu_Buch_BC_Extensions_Prozesse.md` | ~2.631 | BC Finance-Prozesse mit DACH-Extensions (Continia, OPplus, DATEV etc.) |
-| `FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md` | ~1.804 | BC-Standardprozesse Deutschland, Musterkonzern, Rollen, Trainingsdaten, Preise, Controlling/GuV, Onboarding, Tipps & Tricks, Standardgrenzen, Extension-Ausblick, Quellen |
+| `FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md` | ~2.278 | BC-Standardprozesse Deutschland, Musterkonzern, Rollen, Trainingsdaten, Postenlogik, Lagerlogiken, Admin/Betrieb, Steuerlogiken, Preise, Controlling/GuV, Onboarding, Tipps & Tricks, Standardgrenzen, Extension-Ausblick, Quellen |
 
 ---
 
@@ -114,6 +114,10 @@ Zweck: Prüfungsvorbereitung (IHK), ERP-Implementierungsleitfaden (Microsoft Dyn
 - Controller-Berichte, GuV, Financial Reports, Dimensionen, Kostenstellenlogik und Management-Auswertungen
 - Einsteiger-Onboarding: Tell Me, Profile, Berechtigungen, Personalisierung, Stolpersteine, Diagnose und Korrekturpfade
 - Tipps und Tricks für Alltag, Filter, Tastenkürzel, Korrekturen, Controller-Routinen und rollenbasierte Oberflächen
+- Bilanz-, GuV-, Nebenbuch- und Postenlogik: Beleg → Buchung → Entries → Bericht
+- Lagerlogiken im Vergleich: einfaches Lager, Basic Warehouse, Advanced Warehouse mit Auswirkungen und Schrittfolgen
+- Admin-/Superuser-Betrieb: Grundeinrichtung, Userverwaltung, Rechte, Job Queue, Change Log, laufende Kontrollen
+- Inland-/Auslandsteuerlogiken und Dropshipping-Fälle mit BC-Prüfpunkten und Evidence Pack
 - Standardgrenzen: wann BC Standard reicht, wann Extension/AppSource sinnvoll ist, wann Individualprogrammierung erforderlich wird
 - Ausblick auf häufig genutzte DACH-/BC-Extensions: AP Automation, Expense, Banking/OP, E-Documents, Anzahlungen, DATEV, WMS/Shipping, Rental/Reporting
 - Primärquellen: Microsoft Learn, UStG, AO, BMF, BZSt

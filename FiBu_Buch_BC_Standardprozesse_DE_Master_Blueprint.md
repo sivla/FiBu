@@ -35,7 +35,11 @@ Hinweis: Dieses Buch ist ein quellenbasiertes Lern-, Schulungs-, Projekt- und Im
 21. Controlling, GuV, Financial Reports und Management-Auswertungen
 22. Einsteiger-Onboarding: Finden, Bedienen, Fehler vermeiden und korrigieren
 23. Tipps und Tricks: schneller, sicherer und prüfbarer in BC arbeiten
-24. Quellenverzeichnis
+24. Bilanz, GuV, Nebenbücher und Postenlogik verstehen
+25. Lagerlogiken im Vergleich: einfach, Basic Warehouse und gesteuertes Lager
+26. Admin, Superuser, Grundeinrichtung und laufender Betrieb
+27. Inland, Ausland, Dropshipping und Steuerlogiken
+28. Quellenverzeichnis
 
 ---
 
@@ -1739,7 +1743,463 @@ Merksatz:
 
 ---
 
-## 24. Quellenverzeichnis
+## 24. Bilanz, GuV, Nebenbücher und Postenlogik verstehen [Q28][Q48][Q49][Q61][Q62][Q63][Q64]
+
+Dieses Kapitel erklärt, wie Business Central finanziell „denkt“. Wer BC bedienen will, muss Belege, Buchungen, Posten (Entries), Nebenbücher und Hauptbuch unterscheiden. Danach kannst du aus einer Rechnung die Wirkung auf Bilanz, GuV, offene Posten, Lagerwert und Controlling nachvollziehen.
+
+### 24.1 Das Grundbild: Beleg, Buchung, Posten, Bericht
+
+| Ebene | Einsteiger-Erklärung | Beispiel |
+|---|---|---|
+| Beleg | fachliches Dokument vor oder nach Buchung | Verkaufsauftrag, Einkaufsrechnung |
+| Buchung (Posting) | Aktion, die aus einem Beleg verbindliche Einträge erzeugt | `Post`, `Post and Send` |
+| Posten (Entry) | gespeicherte Buchungsspur in Tabellen | `G/L Entry`, `Customer Ledger Entry` |
+| Nebenbuch | Detailbuch für Debitoren, Kreditoren, Artikel, Anlagen | Kundenposten, Artikelposten |
+| Hauptbuch | finanzielle Gesamtsicht über Sachkonten | Bilanz und GuV |
+| Bericht | Auswertung aus Posten und Stammdaten | Financial Report, Lagerbewertung |
+
+Merksatz:
+- Der Beleg erzählt, was passieren sollte. Die Posten zeigen, was tatsächlich gebucht wurde.
+
+### 24.2 Die wichtigsten Postenarten
+
+| Postenart | Deutsch | Wofür? | Typische Frage |
+|---|---|---|---|
+| `G/L Entries` | Sachposten | Hauptbuch, Bilanz, GuV | Welches Konto wurde bebucht? |
+| `Customer Ledger Entries` | Debitorenposten | Forderungen, offene Kundenposten | Zahlt der Kunde noch? |
+| `Vendor Ledger Entries` | Kreditorenposten | Verbindlichkeiten, offene Lieferantenposten | Müssen wir noch zahlen? |
+| `VAT Entries` | USt-Posten | Umsatzsteuer/Vorsteuer | Welche Steuer wurde gemeldet? |
+| `Item Ledger Entries` | Artikelposten | Mengenbewegung | Wie viele Stück sind wo? |
+| `Value Entries` | Wertposten | Lagerwert und Wareneinsatz | Welcher Wert hängt an der Menge? |
+| `FA Ledger Entries` | Anlagenposten | Anlagenbuchhaltung | Anschaffung, AfA, Abgang |
+| `Project Ledger Entries` | Projektposten | Projektverbrauch und Faktura | Was wurde auf Projekt gebucht? |
+
+Microsoft Learn beschreibt das Hauptbuch und den Kontenplan als Speicher der Finanzdaten. Finanzberichte nutzen diese Daten, um Bilanz, GuV und Analysen zu erstellen. [Q61][Q48]
+
+### 24.3 Beispiel: Verkauf mit Lagerartikel
+
+Use Case:
+- RM-SALES verkauft `10` Stück `SP-PUMP-01` für `285 EUR` netto je Stück an D10000.
+- Kosten je Stück: `180 EUR`.
+- USt: `19 %`.
+
+Wirkung:
+
+| Bereich | Wirkung |
+|---|---|
+| Debitor | Forderung `3.391,50 EUR` |
+| Erlös | Umsatzerlös `2.850,00 EUR` |
+| USt | Umsatzsteuer `541,50 EUR` |
+| Lager | Bestand sinkt um `10` Stück |
+| GuV | Wareneinsatz `1.800,00 EUR` |
+| Marge | Rohertrag `1.050,00 EUR` |
+
+Postenspur:
+1. `Sales Order` buchen.
+2. `Posted Sales Invoice` öffnen.
+3. `Customer Ledger Entries` prüfen: Forderung.
+4. `G/L Entries` prüfen: Forderung, Erlös, USt, Wareneinsatz, Bestandskonto.
+5. `Item Ledger Entries` prüfen: Mengenabgang.
+6. `Value Entries` prüfen: Wertabgang und Kosten.
+7. `VAT Entries` prüfen: Steuerbasis und Steuerbetrag.
+8. `Financial Reports` prüfen: GuV-Auswirkung.
+
+Prüfungsfalle:
+- Viele Einsteiger suchen den Wareneinsatz in der Verkaufsrechnung. Der Wareneinsatz ergibt sich aus Artikel-/Wertposten und der Lagerbuchhaltung. Er muss mit dem Hauptbuch abgestimmt werden.
+
+### 24.4 Bilanz und GuV in BC lesen
+
+| Geschäftsvorfall | Bilanzwirkung | GuV-Wirkung |
+|---|---|---|
+| Warenkauf auf Rechnung | Vorräte steigen, Verbindlichkeit steigt | keine GuV, solange Lagerbestand bleibt |
+| Warenverkauf | Forderung steigt, Vorräte sinken | Erlös und Wareneinsatz |
+| Zahlungseingang | Bank steigt, Forderung sinkt | keine neue GuV-Wirkung |
+| Anlagenkauf | Anlagevermögen steigt, Bank/Kreditor sinkt/steigt | keine sofortige GuV außer Nebenkostenlogik |
+| Abschreibung | Anlagevermögen sinkt | Abschreibungsaufwand |
+| Eingangsrechnung Dienstleistung | Verbindlichkeit steigt | Aufwand steigt |
+
+BC-Best-Practice:
+- Jeder Controller lernt Rückwärtsnavigation: Financial Report → G/L Entry → Source Document → Nebenbuch → Stammdaten.
+- Jeder Buchhalter lernt Vorwärtsnavigation: Beleg → Posting Preview → gebuchter Beleg → Entries → Bericht.
+
+### 24.5 Kostenlogik, Lagerwert und GuV
+
+Microsoft Learn beschreibt, dass Lagerkosten regelmäßig angepasst und ins Hauptbuch übertragen werden müssen. Costing Methods bestimmen, wie Abgänge bewertet werden; Cost Adjustment aktualisiert Wareneinsatz und Lagerwerte, wenn spätere Einkaufskosten zugeordnet werden. [Q62][Q63]
+
+Einsteigerbild:
+- `Item Ledger Entries` beantworten „wie viel?“
+- `Value Entries` beantworten „welcher Wert?“
+- `G/L Entries` beantworten „welches Konto?“
+
+Stolpersteine:
+
+| Fehler | Auswirkung | Lösung |
+|---|---|---|
+| Kostenregulierung nicht gelaufen | Marge und Lagerwert sind vorläufig | `Adjust Cost - Item Entries` / Job Queue prüfen |
+| Einkauf nur geliefert, nicht fakturiert | erwartete Kosten können von endgültigen Kosten abweichen | Wareneingang und Rechnung abstimmen |
+| falsche Bewertungsmethode | Lagerwert und COGS falsch | Artikelsetup vor Go-Live prüfen |
+| direkte Sachkontobuchung auf Lagerkonto | Nebenbuch passt nicht zum Hauptbuch | Lagerkonten nur über Warenprozesse bebuchen |
+| Inventur ohne Wertkontrolle | Menge stimmt, Wert bleibt unklar | Lagerbewertung und Value Entries prüfen |
+
+### 24.6 UAT-Übung: Eine Rechnung bis zur Bilanz verfolgen
+
+Aufgabe:
+1. Erstelle Verkaufsauftrag D10000 mit `SP-PUMP-01`, Menge `10`.
+2. Nutze `Preview Posting`, wenn verfügbar.
+3. Buche Lieferung und Rechnung.
+4. Öffne `Posted Sales Invoice`.
+5. Prüfe `Customer Ledger Entries`.
+6. Prüfe `G/L Entries`.
+7. Prüfe `Item Ledger Entries`.
+8. Prüfe `Value Entries`.
+9. Öffne `Financial Reports` und filtere den Monat.
+10. Erkläre, welche Zeilen Bilanz betreffen und welche Zeilen GuV betreffen.
+
+Merksatz:
+- Wer BC verstehen will, folgt nicht nur dem Beleg. Er folgt der Postenkette.
+
+---
+
+## 25. Lagerlogiken im Vergleich: einfach, Basic Warehouse und gesteuertes Lager [Q14][Q15][Q65][Q66][Q67][Q68]
+
+Lager ist in Business Central kein einzelner Prozess. Die Einrichtung des Lagerorts entscheidet, ob der Mitarbeiter direkt aus Bestellung und Auftrag bucht oder mit Wareneingang, Einlagerung, Kommissionierung, Lagerplatz und gesteuerten Aktivitäten arbeitet. Dieses Kapitel macht die Unterschiede und Auswirkungen sichtbar.
+
+### 25.1 Die drei Verständnisebenen
+
+| Ebene | Erklärung | Typischer Ort in der Musterfirma |
+|---|---|---|
+| Einfaches Lager | Belege buchen direkt Menge und Wert | kleines Ersatzteillager `MZ-WH2` |
+| Basic Warehouse | einfache Lageraktivitäten wie Inventory Put-away/Pick | Service- und Projektlager |
+| Advanced Warehouse | Warehouse Receipt, Warehouse Put-away, Pick, Bins, Directed Put-away and Pick | Hauptlager `FRA-WH1` |
+
+Microsoft Learn beschreibt verschiedene Methoden für Wareneingang und Einlagerung: direkt aus Belegen, über Inventory Put-away, über Warehouse Receipt oder über getrennte Warehouse Receipt und Warehouse Put-away. [Q65][Q66]
+
+### 25.2 Einrichtungsmatrix Lagerort
+
+| Feld/Option | Einfach | Basic | Advanced |
+|---|---|---|---|
+| `Require Receive` | nein | optional | ja |
+| `Require Put-away` | nein | ja nach Prozess | ja |
+| `Require Shipment` | nein | optional | ja |
+| `Require Pick` | nein | ja nach Prozess | ja |
+| `Bin Mandatory` | optional | häufig ja | ja |
+| `Directed Put-away and Pick` | nein | nein | ja |
+| typische Dokumente | Purchase Order, Sales Order | Inventory Put-away/Pick | Warehouse Receipt, Put-away, Pick |
+| Komplexität | niedrig | mittel | hoch |
+| Schulungsbedarf | niedrig | mittel | hoch |
+
+Achtung:
+- Mehr Lagersteuerung bedeutet mehr Kontrolle, aber auch mehr Prozessschritte. Ein kleines Lager wird durch Advanced Warehouse nicht automatisch besser. Es wird nur komplexer.
+
+### 25.3 Unterschiedliche Auswirkungen
+
+| Thema | Einfaches Lager | Gesteuertes Lager |
+|---|---|---|
+| Wareneingang | Einkauf bucht Eingang direkt | Lager bucht Warehouse Receipt, Einlagerung folgt |
+| Verfügbarkeit | nach Belegbuchung sichtbar | abhängig von Receive/Put-away-Status |
+| Fehlerquelle | falscher Lagerort/Menge | zusätzlich falscher Bin, offene Aktivität, nicht registrierter Pick |
+| Verantwortung | Einkauf/Verkauf näher an Buchung | Lagerrolle stärker getrennt |
+| Nachweis | gebuchter Beleg und Artikelposten | zusätzliche Warehouse-Dokumente |
+| Tempo | schneller | kontrollierter |
+| Eignung | kleine Lager, einfache Waren | große Lager, viele Bins, Chargen, Wegeoptimierung |
+
+### 25.4 Schrittfolge einfaches Lager
+
+Wareneingang:
+1. Tell Me → `Purchase Orders`.
+2. Bestellung öffnen.
+3. `Location Code` prüfen.
+4. `Qty. to Receive` prüfen.
+5. `Post` → `Receive`.
+6. `Item Ledger Entries` prüfen.
+
+Verkauf:
+1. Tell Me → `Sales Orders`.
+2. Auftrag öffnen.
+3. `Location Code` und Verfügbarkeit prüfen.
+4. `Qty. to Ship` prüfen.
+5. `Post` → `Ship` oder `Ship and Invoice`.
+6. Artikelposten und Sachposten prüfen.
+
+### 25.5 Schrittfolge gesteuertes Lager
+
+Wareneingang:
+1. Tell Me → `Warehouse Receipts`.
+2. neues Warehouse Receipt erstellen.
+3. `Get Source Documents` ausführen.
+4. Bestellzeilen übernehmen.
+5. Mengen physisch prüfen.
+6. `Post Receipt` buchen.
+7. Tell Me → `Warehouse Put-aways`.
+8. Put-away öffnen.
+9. Take-/Place-Zeilen prüfen.
+10. `Register Put-away`.
+11. Bin Content und Item Ledger Entries prüfen.
+
+Auslieferung:
+1. Tell Me → `Warehouse Shipments`.
+2. Source Documents holen.
+3. Shipment erstellen.
+4. Pick erzeugen.
+5. Tell Me → `Warehouse Picks`.
+6. Pick registrieren.
+7. Warehouse Shipment buchen.
+8. Posted Shipment, Item Ledger Entries und Value Entries prüfen.
+
+### 25.6 Typische Lagerfehler und Lösungen
+
+| Fehler | Symptom | Ursache | Korrektur |
+|---|---|---|---|
+| Ware ist physisch da, aber nicht verfügbar | Verkauf kann nicht liefern | Put-away nicht registriert | Warehouse Put-away abschließen |
+| Ware liegt im falschen Bin | Pick schlägt falschen Platz vor | Einlagerung falsch | Movement oder Umlagerung |
+| Bestellung ist geliefert, aber nicht fakturiert | Lagerwert vorläufig | Rechnung fehlt | Eingangsrechnung buchen |
+| Verkauf kann nicht buchen | offene Warehouse-Aktivität | Pick/Shipment nicht abgeschlossen | Lagerdokument prüfen |
+| Bestand negativ | falsche Reihenfolge oder Setup | Lieferung vor Eingang | Negative Inventory prüfen und Prozess sperren |
+| Charge fehlt | Buchung blockiert | Item Tracking nicht gepflegt | Chargennummer erfassen |
+| Inventur differiert | Mengenabweichung | physische Bewegung ohne BC-Buchung | Inventurprozess mit Freigabe |
+
+### 25.7 Welche Lagerlogik passt?
+
+Entscheidungsregel:
+- Einfaches Lager für wenige Artikel, wenige Lagerplätze und klare Verantwortlichkeiten.
+- Basic Warehouse für einfache Trennung zwischen Büro und Lager.
+- Advanced Warehouse für viele Lagerplätze, mehrere Mitarbeiter, hohe Mengen, Chargen/Serien, Wegeoptimierung und strikte Prozesskontrolle.
+
+Schulungsübung:
+1. Buche denselben Wareneingang einmal in `MZ-WH2` direkt aus der Bestellung.
+2. Buche ihn in `FRA-WH1` über Warehouse Receipt und Put-away.
+3. Vergleiche Anzahl Schritte, beteiligte Rollen, Fehlerquellen und Nachweise.
+4. Erkläre, warum `FRA-WH1` kontrollierter, aber langsamer ist.
+
+---
+
+## 26. Admin, Superuser, Grundeinrichtung und laufender Betrieb [Q3][Q4][Q5][Q6][Q32][Q35][Q52][Q54][Q55][Q69][Q70][Q71][Q72]
+
+Business Central lebt nicht nur durch operative Buchungen. Das System bleibt nur stabil, wenn Admins und Superuser Rollen, Rechte, Stammdaten, Jobs, Erweiterungen, Profile, Schnittstellen und Änderungen steuern. Dieses Kapitel trennt Grundeinrichtung und laufenden Betrieb.
+
+### 26.1 Admin, Superuser und Key User
+
+| Rolle | Aufgabe | Darf nicht passieren |
+|---|---|---|
+| BC Admin | Umgebung, Benutzer, Rechte, Apps, technische Einstellungen | operative Fachentscheidungen allein treffen |
+| Superuser Finance | Konten, Buchungsgruppen, USt, Abschlusslogik fachlich prüfen | Setup ohne Test und Freigabe ändern |
+| Key User Verkauf | Vertriebsprozesse testen, Schulung unterstützen | Preise/Steuern ohne Governance ändern |
+| Key User Lager | Lagerprozesse und Scanner-/Bin-Logik prüfen | Lagerkorrekturen ohne Ursache buchen |
+| Data Owner | Stammdatenqualität verantworten | Dubletten und unklare Nummernkreise zulassen |
+
+Microsoft Learn beschreibt Admin-Aufgaben wie Benutzer, Berechtigungen, UI-Anpassung, Setup Guides, Job Queues, Datenmigration und Troubleshooting. [Q69]
+
+### 26.2 Grundeinrichtung: Reihenfolge
+
+1. Companies anlegen.
+2. Sprache, Region, Währung und Basisdaten prüfen.
+3. Kontenplan und Buchungsgruppen einrichten.
+4. USt-Logik einrichten.
+5. Nummernserien definieren.
+6. Dimensionen und Pflichtdimensionen definieren.
+7. Lagerorte, Bins und Lagerlogik einrichten.
+8. Artikel, Debitoren, Kreditoren, Ressourcen und Anlagen anlegen.
+9. Rollenprofile und Permission Sets zuweisen.
+10. Workflows, Genehmigungen und Job Queue einrichten.
+11. Change Log für kritische Tabellen aktivieren.
+12. Beleglayouts und E-Mail-Szenarien prüfen.
+13. Schnittstellen und Extensions testen.
+14. UAT mit echten End-to-End-Fällen durchführen.
+15. Go-Live-Sperren und Startposten abstimmen.
+
+Praxisregel:
+- Buchungsgruppen, USt-Setup, Dimensionen und Lagerlogik sind Fundament. Wer sie später unkontrolliert ändert, gefährdet historische Vergleichbarkeit.
+
+### 26.3 Userverwaltung und Berechtigungen
+
+Microsoft Learn beschreibt, dass Benutzer über Microsoft 365 Admin Center angelegt und in Business Central synchronisiert werden. Berechtigungen werden über Permission Sets und Sicherheitsgruppen gesteuert. [Q70][Q71]
+
+Schrittfolge neuer Mitarbeiter:
+1. Microsoft-365-Benutzer anlegen.
+2. passende Lizenz zuweisen.
+3. Benutzer nach BC synchronisieren.
+4. Company-Zugriff prüfen.
+5. Permission Sets zuweisen.
+6. Rolle/Profile zuweisen.
+7. Personalisierung/Bookmarks für Schulung vorbereiten.
+8. Testlogin durchführen.
+9. Onboarding-Aufgabe aus Kapitel 22 durchführen lassen.
+
+Least-Privilege-Regel:
+- Ein Nutzer bekommt nur Rechte, die er für seine Aufgabe braucht. `SUPER` bleibt streng begrenzt. Microsoft beschreibt spezielle Permission Sets wie `SUPER` und deren weitreichende Wirkung. [Q72]
+
+### 26.4 Laufender Betrieb: Admin-Kalender
+
+| Rhythmus | Aufgabe |
+|---|---|
+| täglich | Job Queue prüfen, Fehlermeldungen prüfen, Schnittstellenstatus prüfen |
+| wöchentlich | neue Nutzer/Rechte prüfen, offene Workflows prüfen, Change Log stichproben |
+| monatlich | Periodensperren, Lagerkostenlauf, USt-Abstimmung, GuV-Abstimmung |
+| quartalsweise | Berechtigungsreview, Rollenprofile, Extensions, Performance, Schulungsbedarf |
+| jährlich | Geschäftsjahr/Accounting Periods, Abschlussprozesse, Archiv-/Aufbewahrung, Notfalltests |
+
+### 26.5 Superuser-Checklisten
+
+Finance-Superuser:
+- USt-Setup nur mit Testfall ändern.
+- Buchungsgruppenänderung nur mit Change Request.
+- Periodensperren nach Abschluss setzen.
+- Financial Reports gegen Sachposten abstimmen.
+- Dimension Correction nur mit Begründung und Berechtigung.
+
+Lager-Superuser:
+- Lagerortsetup dokumentieren.
+- Bins, Pick, Put-away und Inventurprozesse testen.
+- Item Tracking pflegen.
+- Negative Bestände überwachen.
+- Kostenregulierung mit Finance abstimmen.
+
+Vertriebs-Superuser:
+- Preislisten testen.
+- Shop-/BC-Mapping prüfen.
+- Retourenursachen auswerten.
+- Kundengruppen und Zahlungsbedingungen prüfen.
+
+### 26.6 Stolpersteine im Admin-Bereich
+
+| Fehler | Auswirkung | Lösung |
+|---|---|---|
+| zu viele Nutzer mit `SUPER` | Setup und Daten gefährdet | Adminrechte begrenzen und reviewen |
+| keine Testcompany | Änderungen treffen Produktion | Sandbox/Testcompany verpflichtend |
+| keine Pflichtdimensionen | Reporting bricht | Default Dimensions und Value Posting pflegen |
+| Job Queue unbeobachtet | Kosten, E-Mails, Schnittstellen laufen nicht | Monitoring und Verantwortliche |
+| Extensions unkontrolliert installiert | Prozesse ändern sich unerkannt | AppSource-Prozess mit Test und Freigabe |
+| Rollenprofile nicht gepflegt | Nutzer finden Seiten nicht | Profile zentral anpassen |
+| Change Log fehlt | Änderungen nicht prüfbar | kritische Tabellen definieren |
+
+Merksatz:
+- Operative Exzellenz entsteht nicht im Auftrag. Sie entsteht in sauberer Einrichtung, stabilen Rollen und kontrolliertem Betrieb.
+
+---
+
+## 27. Inland, Ausland, Dropshipping und Steuerlogiken [Q10][Q20][Q23][Q24][Q29][Q30][Q31][Q73][Q74]
+
+Steuerlogik in BC entsteht aus Partner, Artikel/Leistung, Land, USt-Registrierung, Lieferweg und Buchungsgruppen. Dieses Kapitel zeigt die wichtigsten Inland-/Ausland- und Dropshipping-Fälle als Bedien- und Denkmodell. Es ersetzt keine Steuerberatung, macht aber die BC-Logik prüfbar.
+
+### 27.1 Grundmodell der USt-Findung
+
+Business Central nutzt VAT Business Posting Groups und VAT Product Posting Groups, um Steuerberechnung und Steuerposten zu bestimmen. Microsoft Learn beschreibt, dass die Steuer unter anderem davon abhängt, wer kauft oder verkauft und was gekauft oder verkauft wird. [Q23]
+
+| Dimension | Frage | BC-Stammdaten |
+|---|---|---|
+| Partner | Inland, EU, Drittland, Unternehmer, Privatkunde? | Debitor/Kreditor, Land, USt-ID |
+| Gegenstand | Ware, Dienstleistung, Anlage, Charge? | Artikel, Sachkonto, Ressource |
+| Bewegung | Lieferung, Leistung, Dropshipment, IC? | Beleg, Ship-to, Location |
+| Steuerregel | Inlandsteuer, Reverse Charge, steuerfrei, Export? | VAT Posting Setup |
+| Nachweis | Rechnung, Gelangensnachweis, Ausfuhr, USt-ID? | Evidence Pack |
+
+### 27.2 Fallmatrix Verkauf
+
+| Fall | Beispiel | Typische Steuerlogik | BC-Prüfpunkte |
+|---|---|---|---|
+| Inland B2B | DE an DE-Unternehmer | deutsche USt | VAT Bus./Prod. Posting Group |
+| Inland B2C | DE an Privatkunde | deutsche USt | Preis brutto/netto, Rechnung |
+| EU B2B | DE an FR-Unternehmer mit USt-ID | innergemeinschaftliche Lieferung/Reverse-Charge-nahe Meldelogik | USt-ID, ZM, VAT Entries |
+| EU B2C | DE an Privatkunde EU | besondere Fernverkaufs-/OSS-Prüfung außerhalb einfacher Standardannahme | Steuerentscheidung dokumentieren |
+| Drittland Export | DE an CH/US | Ausfuhrnachweis, steuerfreie Exportlogik möglich | Land, Zoll-/Ausfuhrnachweis |
+| Intercompany EU | DE an EU-Konzerngesellschaft | IC-Prozess plus USt-/ZM-Prüfung | IC-Partner, VAT Setup |
+
+Achtung:
+- Die BC-Buchungsgruppe ist keine steuerliche Begründung. Sie ist die technische Abbildung einer steuerlich geprüften Entscheidung.
+
+### 27.3 Fallmatrix Einkauf
+
+| Fall | Beispiel | Typische Steuerlogik | BC-Prüfpunkte |
+|---|---|---|---|
+| Inland Einkauf | DE kauft bei DE | Vorsteuer | Kreditor, VAT Prod. Posting Group |
+| EU-Erwerb | DE kauft Ware aus NL | Erwerbsteuer/Vorsteuer-Logik | Reverse Charge VAT, VAT Entries |
+| Drittland Import | DE importiert aus CH/CN | Einfuhrumsatzsteuer/Zoll außerhalb reiner Standardbuchung prüfen | Importbelege, separate Nachweise |
+| Dienstleistung EU | Beratung aus AT | Reverse Charge möglich | Leistungsortprüfung |
+| Fremdarbeit Ausland | Produktionsleistung Ausland | Steuer- und Zollprüfung | Sachverhalt dokumentieren |
+
+### 27.4 Dropshipping Inland
+
+Microsoft Learn beschreibt Drop Shipment als Versand direkt vom Lieferanten an den Kunden. In BC wird die Verkaufszeile als Drop Shipment markiert und mit einer Einkaufsbestellung verbunden. [Q73]
+
+Schrittfolge:
+1. Tell Me → `Sales Orders`.
+2. Verkaufsauftrag für Kunden anlegen.
+3. Artikelzeile erfassen.
+4. Feld `Drop Shipment` oder `Purchasing Code` sichtbar machen.
+5. Zeile als Drop Shipment markieren.
+6. Aktion `Create Purchase Orders` oder Requisition/Planning Worksheet nutzen.
+7. Lieferant prüfen.
+8. Einkaufsbestellung erzeugen.
+9. Ship-to auf Kundenadresse prüfen.
+10. Nach Liefermeldung Verkaufsauftrag liefern/buchen.
+11. Einkaufsseite empfangen und fakturieren.
+12. Verkaufsrechnung und Einkaufsrechnung abstimmen.
+
+Inlandsauswirkung:
+- Physisch geht Ware nicht durch eigenes Lager.
+- BC erzeugt trotzdem eine verknüpfte Einkaufs-/Verkaufslogik.
+- Steuerlich muss geklärt sein, wer an wen liefert und welche Rechnungskette vorliegt.
+
+### 27.5 Dropshipping Ausland
+
+Auslands-Dropshipping ist fachlich riskanter, weil Lieferweg, Rechnungskette, Eigentumsübergang, Lieferland, Steuerregistrierung, Zoll und Nachweise auseinanderfallen können.
+
+Beispiele:
+
+| Fall | Sachverhalt | Risiko |
+|---|---|---|
+| DE-Kunde, DE-Lieferant | Inland-Dropshipment | relativ einfacher Nachweis |
+| DE-Kunde, EU-Lieferant | Ware kommt aus EU nach DE | Erwerb/Lieferlogik prüfen |
+| EU-Kunde, DE-Lieferant | Ware geht DE → EU-Kunde | USt-ID und innergemeinschaftliche Lieferung prüfen |
+| CH-Kunde, DE-Lieferant | Export | Ausfuhrnachweis/Zoll |
+| DE-Kunde, CH-Lieferant | Import nach DE | Einfuhrumsatzsteuer/Zoll/Importeurrolle |
+| EU-Kunde, EU-Lieferant, DE-Verkäufer | Reihengeschäftsrisiko | steuerliche Prüfung zwingend |
+
+BC-Best-Practice:
+- Für Auslands-Dropshipping wird kein Standardprozess ohne Steuerfreigabe produktiv geschult.
+- Jede Variante bekommt ein eigenes TaxScenario mit Debitor, Kreditor, Ship-to, VAT Setup, Nachweis und Testbuchung.
+- Wenn Standardfelder und Belege den Nachweis nicht tragen, braucht es Prozessanpassung, Extension oder individuelle Dokumentation.
+
+### 27.6 Wo endet BC-Standard bei Steuerlogiken?
+
+| Situation | Standard reicht oft | Zusatz nötig |
+|---|---|---|
+| einfache Inland-USt | ja | sauberes VAT Setup |
+| EU-B2B mit USt-ID | oft ja | USt-ID-Prüfung, ZM, Nachweise |
+| Drittlandexport | teilweise | Zoll-/Ausfuhrnachweise außerhalb BC |
+| OSS/Fernverkauf | projektspezifisch | Steuerberatung, ggf. Extension/Prozess |
+| komplexes Reihengeschäft | selten allein | steuerliche Analyse und Spezialprozess |
+| Import mit EUSt/Zoll | teilweise | Importbelege, Zollkonten, ggf. Extension |
+| globale Tax Engine | nein | externe Steuerlösung/Extension |
+
+### 27.7 UAT-Steuerfälle
+
+1. DE-Verkauf an DE-Kunde mit `19 %`.
+2. DE-Verkauf an EU-Unternehmer mit geprüfter USt-ID.
+3. DE-Verkauf an CH-Kunden mit Exportnachweis.
+4. Einkauf DE bei DE-Kreditor mit Vorsteuer.
+5. Einkauf aus EU mit Reverse-Charge-/Erwerbsteuerlogik.
+6. Dropshipping DE-Lieferant an DE-Kunde.
+7. Dropshipping EU-Lieferant an DE-Kunde.
+8. Dropshipping DE-Lieferant an CH-Kunde.
+9. Intercompany-Verkauf zwischen zwei Companies.
+10. Fehlerfall: falsche VAT Business Posting Group und Korrektur über Gutschrift/Korrekturbuchung.
+
+Evidence Pack:
+- Belegkette Verkauf/Einkauf.
+- USt-ID-Prüfung, soweit EU-B2B.
+- Liefer-/Ausfuhrnachweis.
+- VAT Entries.
+- G/L Entries.
+- ZM-/UStVA-Abstimmung, soweit relevant.
+- Steuerfreigabe bei komplexen Fällen.
+
+Merksatz:
+- Bei Ausland und Dropshipping ist die Adresse nicht genug. Entscheidend sind Rechnungskette, Lieferbewegung, Steuerstatus, Nachweis und technische VAT-Einrichtung.
+
+---
+
+## 28. Quellenverzeichnis
 
 - [Q1] Microsoft Learn: Business Central documentation: https://learn.microsoft.com/en-us/dynamics365/business-central/
 - [Q2] Microsoft Learn: Business functionality supported by Business Central: https://learn.microsoft.com/en-us/dynamics365/business-central/across-business-functionality
@@ -1801,3 +2261,17 @@ Merksatz:
 - [Q58] Microsoft Learn: Undo a posting using a reversing entry: https://learn.microsoft.com/en-us/dynamics365/business-central/finance-how-reverse-journal-posting
 - [Q59] Microsoft Learn: Troubleshoot and correct dimensions: https://learn.microsoft.com/en-us/dynamics365/business-central/finance-troubleshooting-correcting-dimensions
 - [Q60] Microsoft Learn: Close accounting periods for a fiscal year: https://learn.microsoft.com/en-us/dynamics365/business-central/year-close-account-periods
+- [Q61] Microsoft Learn: Understand the general ledger and Chart of Accounts: https://learn.microsoft.com/en-us/dynamics365/business-central/finance-general-ledger
+- [Q62] Microsoft Learn: Managing inventory costs: https://learn.microsoft.com/en-us/dynamics365/business-central/finance-set-up-inventory-valuation-and-costing
+- [Q63] Microsoft Learn: Track item cost adjustments: https://learn.microsoft.com/en-us/dynamics365/business-central/finance-track-inventory-costs
+- [Q64] Microsoft Learn: General Ledger Entries report: https://learn.microsoft.com/en-gb/dynamics365/business-central/finance-powerbi-general-ledger-entries
+- [Q65] Microsoft Learn: Walkthrough receiving and putting away in basic warehousing: https://learn.microsoft.com/en-us/dynamics365/business-central/walkthrough-receiving-and-putting-away-in-basic-warehousing
+- [Q66] Microsoft Learn: Walkthrough receiving and putting away in advanced warehousing: https://learn.microsoft.com/en-us/dynamics365/business-central/walkthrough-receiving-and-putting-away-in-advanced-warehousing
+- [Q67] Microsoft Learn: Design details warehouse setup: https://learn.microsoft.com/en-us/dynamics365/business-central/design-details-warehouse-setup
+- [Q68] Microsoft Learn: Put items away: https://learn.microsoft.com/en-gb/dynamics365/business-central/warehouse-put-away-items
+- [Q69] Microsoft Learn: Administration tasks in Business Central: https://learn.microsoft.com/en-us/dynamics365/business-central/admin-setup-and-administration
+- [Q70] Microsoft Learn: Create users according to licenses: https://learn.microsoft.com/en-us/dynamics365/business-central/ui-how-users-permissions
+- [Q71] Microsoft Learn: Define granular permissions: https://learn.microsoft.com/en-us/dynamics365/business-central/ui-define-granular-permissions
+- [Q72] Microsoft Learn: Special permission sets: https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/administration/administration-special-permission-sets
+- [Q73] Microsoft Learn: Make drop shipments: https://learn.microsoft.com/en-us/dynamics365/business-central/sales-how-drop-shipment
+- [Q74] Microsoft Learn: Validate VAT registration numbers: https://learn.microsoft.com/en-gb/dynamics365/business-central/finance-how-validate-vat-registration-number
