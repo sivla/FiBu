@@ -50,7 +50,15 @@ Hinweis: Dieses Buch ist ein quellenbasiertes Lern-, Schulungs-, Projekt- und Im
 35. Monitoring, Hypercare, Performance und Betrieb
 36. Wiederkehrende Finance-Prozesse, Abgrenzungen und Umlagen
 37. Lösungsanhang zu Übungen und UAT-Fällen
-38. Quellenverzeichnis
+38. Kritische Gap-Analyse und Strukturentscheidung
+39. Wie man dieses Buch nutzt: Lernpfade und Reifegrad
+40. MB-800-Kompetenzmatrix
+41. Microsoft-Learn-Abdeckung und Lernpfad-Mapping
+42. Business Central Solution Architect Pfad: Standard-first Architektur
+43. Fachliche Masterkapitel: Buchungslogik, Dimensionen, Posten, Kosten, Anlagen und Bank
+44. MB-800- und Praxisfallen: Was ähnlich klingt, aber nicht gleich ist
+45. Projektartefakte
+46. Quellenverzeichnis
 
 ---
 
@@ -85,29 +93,64 @@ Business Central deckt nach Microsofts offizieller Prozesslandkarte Finance, Sal
 | Human Resources | Mitarbeiter, Abwesenheiten | Basis-HR im BC-Standard zeigen |
 | Admin/Reporting | Rollen, Berechtigungen, Change Log, Job Queue, Analyse | Betrieb und Nachweis sichern |
 
-### 1.2 Vollständigkeitsstatus und Ausbauprinzip
+### 1.2 Vollständigkeitsstatus und Buchprinzip
 
-Dieses Buch ist als Master-Blueprint systematisch in der Breite. Es deckt die relevanten BC-Standardbereiche und die wichtigsten deutschen Pflichtperspektiven ab. Für ein echtes Einführungs- und Schulungsbuch braucht jeder Prozess zusätzlich Daten, Bedienpfad, Buchungsspur, typische Fehler, Korrekturweg, Kontrollbericht und Übung mit Lösung.
+Dieses Buch ist ein vollumfängliches Business-Central-Einführungs-, Schulungs-, Projekt-, Nachschlage- und Architekturhandbuch für den deutschen Unternehmenskontext. Es verbindet BC-Standardprozesse, deutsche Finance-/Compliance-Perspektive, praktische Bedienung, Buchungsspur, Fehlerdiagnose, UAT, Evidence Packs, MB-800-Abdeckung, Microsoft-Learn-Lernpfade und Solution-Architect-Denken in einer einheitlichen Lern- und Projektstruktur.
 
-| Ebene | Status | Was das praktisch bedeutet |
+Vollständigkeit bedeutet in diesem Buch:
+- Alle relevanten BC-Standardbereiche werden fachlich erklärt und praktisch durchgespielt.
+- Jeder Prozess enthält Zweck, Rolle, Setup, Stammdaten, Bedienpfad, Happy Path, Abweichungen, Diagnose, Korrektur, Buchungsspur, Bericht, Evidence Pack, Übung, Lösung und UAT-Fall.
+- Jede wichtige Buchung wird über Beleg, gebuchten Beleg, Posten, Nebenbuch, Sachposten, USt-Posten, Artikelposten, Wertposten oder Bericht nachvollziehbar gemacht.
+- Die deutsche BC-Oberfläche ist führend; englische Microsoft-Learn-/Tell-Me-Begriffe stehen als Such- und Quellenhilfe daneben.
+- Alle MB-800-relevanten Skills sind über eine Kompetenzmatrix abgebildet.
+- Der offizielle Microsoft-Learn-Vorbereitungspfad zur MB-800-Zertifizierung ist über Lernpfad-, Modul- und Unit-Mapping eingebunden.
+- Die offizielle Business-Central-Produktdokumentation von Microsoft Learn dient zusätzlich als Vollständigkeits-Overlay für alle BC-Standardbereiche.
+- Relevante Lernpfade und Kompetenzbereiche außerhalb von MB-800 werden als Architektur- und Projektkompetenz integriert, soweit sie für Business Central Standard, Integrationen, Power Platform, Reporting, Betrieb oder Solution Architecture sinnvoll sind.
+- Standard, Pflicht, Best Practice, Projektentscheidung, Extension und Customizing werden sauber getrennt.
+
+| Buchschicht | Was das Buch liefert | Praktischer Nachweis |
 |---|---|---|
-| Prozesslandkarte | systematisch in der Breite | alle wesentlichen BC-Standardbereiche sind benannt |
-| Musterfirma | als Trainingsuniversum angelegt | mehrere Firmen, Lager, Produktionen, Service, Shop, Projekte und IC sind angelegt |
-| Bedienung | durch Prozesskatalog geschlossen | jede Rolle bekommt Suchlogik, Klickpfad, Prüfpunkte und Fehlerbilder |
-| Buchungsspur | durch Postenlogik geschlossen | die wichtigsten Entries, Konten und Abstimmungen sind je Prozessbereich benannt |
-| Berichtswesen | durch Controller- und Prozesskatalog geschlossen | GuV, Bilanz, Dimensionen, Lagerwert, OP und operative Berichte sind verknüpft |
-| Einsteigerfähigkeit | durch Onboarding- und Tippskapitel geschlossen | Begriffe, Oberflächenlogik, Filter, Korrekturen und Routinen sind erklärt |
-| Rechts-/Quellensicherheit | quellenbasiert | jede Pflicht- oder Standardaussage verweist auf Primärquellen |
+| BC-Prozesslandkarte | alle relevanten Standardbereiche Ende-zu-Ende | Prozesskapitel und E2E-Fälle |
+| Einsteigerpfad | Oberfläche, Suche, Rollen, Belege, Posten, Filter, Korrekturen | Onboarding- und Bedienkapitel |
+| Prozessmodule | Zweck, Setup, Stammdaten, Bedienpfad, Happy Path, Abweichungen | Kapitelstruktur je Prozess |
+| Buchungsspur | Beleg, gebuchter Beleg, Entries, Nebenbuch, Sachposten, Bericht | Postenlogik und Evidence Pack |
+| Finance/R2R | Hauptbuch, Nebenbücher, Bank, Anlagen, USt, Abschluss, Reporting | Finance-Kapitel und Abschlussfall |
+| Operative Prozesse | Sales, Purchasing, Inventory, Warehouse, Planning, Assembly, Manufacturing, Service, Projects | UAT- und Schulungsfälle |
+| Fehlerdiagnose | typische Fehler, Ursache, Diagnosepfad, Korrekturweg | Diagnosematrizen |
+| UAT | Happy Path, Abweichung, Akzeptanzkriterien | Master-UAT und Testskripte |
+| MB-800-Abdeckung | alle aktuellen Skills measured | MB-800-Kompetenzmatrix |
+| Microsoft-Learn-Lernpfad | Lernpfade, Module und Units | Lernpfad-Mapping |
+| BC-Produktlandkarte | alle relevanten Standardbereiche aus Microsoft Learn | Produktlandkarten-Mapping |
+| Solution Architecture | Standard-first, Fit-Gap, Datenmodell, Security, Integration, Migration, Betrieb | Solution-Architect-Kapitel |
+| Projektfähigkeit | Fit-Gap, Standardgrenzen, Extensions, Go-live, Hypercare | Consultant- und Projektkapitel |
 
-Praxisregel:
-- „Vollständig“ bedeutet in diesem Buch nicht, dass jeder Sonderfall jeder Branche gelöst ist. Es bedeutet, dass ein Lernender den BC-Standard systematisch durchspielen, Grenzen erkennen und Abweichungen fachlich sauber entscheiden kann.
-
-Ausbauprinzip:
-1. Jeder Standardprozess bekommt einen Happy Path.
-2. Jeder Standardprozess bekommt mindestens drei realistische Abweichungen.
-3. Jede Abweichung bekommt einen Diagnosepfad und einen Korrekturweg.
-4. Jede Buchung bekommt eine Nachweisspur über Beleg, Posten, Bericht und Evidence Pack.
-5. Jede Rolle bekommt Suchbegriffe, Tagesroutine und Stoppsignale.
+Jedes relevante Prozesskapitel folgt dieser Struktur:
+1. Zweck und Prozesskontext.
+2. Warum braucht die Rhein-Main Industriegruppe diesen Prozess?
+3. Quelle und Standardeinordnung.
+4. MB-800-Zuordnung, falls relevant.
+5. Microsoft-Learn-Lernpfad-/Modul-/Unit-Zuordnung, falls relevant.
+6. Beteiligte Rollen.
+7. Setup-Voraussetzungen.
+8. Stammdaten.
+9. Schritt-für-Schritt-Bedienpfad.
+10. Happy Path mit Beispieldaten.
+11. Abweichungen.
+12. Diagnosepfad.
+13. Korrekturweg.
+14. Buchungsspur und Postenlogik.
+15. Kontrollbericht.
+16. Evidence Pack.
+17. Typische Anfängerfehler.
+18. MB-800-Prüfungsfallen, falls relevant.
+19. Solution-Architect-Box, falls relevant.
+20. Wiederholungsfragen.
+21. Szenariofragen.
+22. Praktische Übung.
+23. Lösungsskizze.
+24. UAT-Testfall.
+25. Akzeptanzkriterien.
+26. Standardgrenze und Erweiterungsentscheidung.
 
 ### 1.3 Standard, Pflicht, Best Practice und Projektentscheidung
 
@@ -2460,20 +2503,21 @@ Das Buch gilt für den Trainingszweck als vollständig, wenn jeder Prozessbereic
 | Standardgrenze | Standard, Extension oder Programmierung |
 | UAT | mindestens Happy Path und Abweichung |
 
-### 29.4 Noch offene Feindetaillierung je Prozess
+### 29.4 Prozessvarianten im Prüf- und Schulungsumfang
 
-Die Prozesslandkarte ist jetzt vollständig. Für ein veröffentlichungsreifes Großbuch sind pro Prozess später noch mehr Screenshots oder detaillierte Maskenabbildungen sinnvoll. Da dieses Projekt Markdown-basiert arbeitet, werden diese als Schrittfolgen, Tabellen und Diagramme ersetzt.
+Die Prozesslandkarte enthält die prüf- und schulungsrelevanten Varianten je Prozessbereich. Die Varianten werden über Prozesskapitel, UAT-Fälle, Lösungsanhang und MB-800-Kompetenzmatrix nachgewiesen.
 
-Priorisierte Feindetaillierung:
-1. O2C mit Varianten: Vorauszahlung, Teillieferung, Retoure, Mahnung, Auslandsverkauf.
-2. P2P mit Varianten: 3-Way-Match, E-Rechnung, Teillieferung, Preisabweichung, Rücksendung.
-3. Warehouse mit Varianten: Charge, Serie, Umlagerung, Inventur, falscher Bin.
-4. Manufacturing mit Varianten: Ausschuss, Nacharbeit, Fremdarbeit, Kostenabweichung.
-5. Finance mit Varianten: Abgrenzung, Bank, UStVA, Anlagen, Abschluss.
-6. Admin mit Varianten: neuer Nutzer, Rechteänderung, Extension-Test, Job-Fehler.
+| Prozessbereich | Varianten im Buch |
+|---|---|
+| Verkauf/O2C | Vorauszahlung, Teillieferung, Retoure, Mahnung, Auslandsverkauf, Dropshipping |
+| Einkauf/P2P | 3-Way-Match, E-Rechnung, Teillieferung, Preisabweichung, Rücksendung, wiederkehrende Einkaufszeilen |
+| Lager/Warehouse | Charge, Serie, Umlagerung, Inventur, falscher Lagerplatz, gesteuerte und einfache Lagerlogik |
+| Fertigung | Ausschuss, Nacharbeit, Fremdarbeit, Kostenabweichung, Verbrauch und Output |
+| Finance/R2R | Abgrenzung, Bank, UStVA, Anlagen, Abschluss, OP-Ausgleich, Korrekturen |
+| Administration | neuer Nutzer, Rechteänderung, Extension-Test, Job-Fehler, Change Log, Monitoring |
 
 Merksatz:
-- Dieses Buch ist vollständig als systematisches Durchspielbuch. Ein reales Projekt ergänzt Mandanten-Screenshots, kundenspezifische Prozessentscheidungen und produktive Berechtigungsmatrizen.
+- Dieses Buch ist ein systematisches Durchspielbuch: Es verbindet Greenfield-Einrichtung, Standardprozess, Abweichung, Korrektur, UAT und Evidence Pack.
 
 ---
 
@@ -2577,9 +2621,9 @@ Richtig:
 Richtig bei Admin-Themen:
 - „Öffne `Benutzer (Users)`, prüfe den Benutzer und weise passende `Berechtigungssätze (Permission Sets)` zu. Prüfe danach das `Profil/Rollencenter (Profiles (Roles))`.“
 
-### 30.6 Mindest-Glossar für jeden neuen Abschnitt
+### 30.6 Mindest-Glossar für jeden Abschnitt
 
-Jeder neue BC-Abschnitt verwendet künftig diese Struktur:
+Jeder BC-Abschnitt verwendet diese Struktur:
 
 | Element | Pflicht |
 |---|---|
@@ -2991,7 +3035,7 @@ Merksatz:
 
 ## 37. Lösungsanhang zu Übungen und UAT-Fällen
 
-Dieses Kapitel behebt eine wichtige Lücke: Übungen ohne Lösung sind für ein Schulungsbuch unvollständig. Jede Übung wird künftig entweder direkt im Kapitel oder hier im Lösungsanhang beantwortet. Die Lösung beschreibt nicht nur das Ergebnis, sondern auch den Weg in der deutschen Business-Central-Oberfläche.
+Dieses Kapitel enthält die Lösungsschicht zu den Übungen. Jede Übung wird entweder direkt im Kapitel oder hier im Lösungsanhang beantwortet. Die Lösung beschreibt nicht nur das Ergebnis, sondern auch den Weg in der deutschen Business-Central-Oberfläche.
 
 ### 37.1 Lösungsmuster für jede Übung
 
@@ -3257,7 +3301,588 @@ Merksatz:
 
 ---
 
-## 38. Quellenverzeichnis
+## 38. Kritische Gap-Analyse und Strukturentscheidung
+
+Dieses Kapitel dokumentiert die kritische Prüfung der Buchstruktur. Die Analyse ist Bestandteil des Buches, weil sie transparent zeigt, warum die Greenfield-Struktur, die MB-800-Abdeckung und die Solution-Architect-Schicht aufgenommen sind.
+
+| Bereich | Aktueller Stand | Problem | Maßnahme | Priorität |
+|---|---|---|---|---|
+| Zielbild und Sprache | deutsches BC-Buch mit englischen Suchhilfen | frühere Kapitel enthielten englisch dominierte Überschriften | deutsche Oberfläche als führende Sprachregel verankert | hoch |
+| Fallstudie Rhein-Main Industriegruppe | Companies, Rollen und Beispieldaten vorhanden | Fallstudie war zunächst listenartig | Greenfield-Kapitel und Use-Case-Matrix erweitern die Fallstudie | hoch |
+| Prozesslandkarte | alle Kernprozesse vorhanden | Prozesslandkarte brauchte Nachweislogik | Bedien- und Prozesskatalog ergänzt | hoch |
+| Foundation | Companies, Benutzer, Nummernserien, Dimensionen, Workflows vorhanden | Greenfield-Reihenfolge fehlte als Gesamtpfad | Greenfield-Masterplan ergänzt | hoch |
+| Finance/R2R | Hauptbuch, Nebenbücher, Bank, Anlagen, USt, Abschluss vorhanden | MB-800-Finance-Details mussten explizit gemappt werden | MB-800-Matrix und Masterkapitel ergänzt | hoch |
+| Sales/O2C | Verkauf, Retouren, Dropshipping, Preise vorhanden | Prüfungsfallen wie Rahmenaufträge, Storno, Abgrenzungen mussten systematisch sein | MB-800-Fallen und Matrix ergänzt | hoch |
+| Purchasing/P2P | Einkauf, Wareneingang, E-Rechnung, Zahlungen vorhanden | Over-Receipt, Reverse Receipt und wiederkehrende Einkaufszeilen fehlten als Prüfungsbegriffe | MB-800-Matrix ergänzt | hoch |
+| Inventory | Artikel, Varianten, Bewertung, Inventur vorhanden | SKU, Kostenmethoden und Value Entries mussten stärker geprüft werden | Masterkapitel Inventory Costing ergänzt | hoch |
+| Warehouse | einfache und gesteuerte Lagerlogik vorhanden | deutsche Begriffe und Auswirkungen mussten stärker hervorgehoben werden | Begriffskapitel und Lagervergleich ergänzt | mittel |
+| Planning | Planungsarbeitsblatt vorhanden | MB-800 gewichtet Planung nicht stark, aber BC-Produktlandkarte verlangt Einordnung | Learn-Mapping ergänzt | mittel |
+| Assembly | Montage vorhanden | Lösungspfad war knapp | Lösungsanhang verbindet Montage mit Lager/Fertigung | mittel |
+| Manufacturing | Fertigung vorhanden | Solution-Architect-Sicht auf Standardgrenzen fehlte | Architekturpfad ergänzt | mittel |
+| Service | Service und Mietgrenze vorhanden | Field-Service-Abgrenzung fehlte | Learn- und Integrationsmapping ergänzt | mittel |
+| Projects | Projektgeschäft vorhanden | WIP/Faktura braucht Praxisbezug | Prozesskatalog und Lösungsanhang verweisen auf Projektlösung | mittel |
+| Fixed Assets | Anlagen vorhanden | MB-800-Anlagenkompetenzen mussten explizit sein | MB-800-Matrix und Masterkapitel Anlagen ergänzt | hoch |
+| Bank/Payments | Zahlungen und Ausgleich vorhanden | Payment Registration, Cash Receipt Journal, Unapply und Bankabstimmung mussten gebündelt sein | Bank-Masterkapitel ergänzt | hoch |
+| USt/E-Rechnung/Compliance | USt, AO, GoBD, E-Rechnung vorhanden | Steuerfälle mussten als Nachweisfälle geführt werden | Evidence Packs und Steuerfallmatrix ergänzt | hoch |
+| Reporting/Controlling | GuV, Financial Reports und Dimensionen vorhanden | Analysis Mode und Produktlandkarten-Mapping fehlten als Prüfungs-/Learn-Layer | Learn-Mapping ergänzt | mittel |
+| Admin/Security | Nutzer, Rechte, Rollen, Change Log vorhanden | Security Filters, Security Groups und Auditing mussten ausdrücklich zugeordnet werden | MB-800-Matrix ergänzt | hoch |
+| Workflows/Approvals | Workflows und Genehmigungen vorhanden | Approval Users und Workflow User Groups fehlten als MB-800-Begriff | MB-800-Matrix ergänzt | hoch |
+| Migration/Data Management | Konfigurationspakete vorhanden | Opening Balances und Datenmigrationsstrategie mussten sichtbar sein | Solution-Architect- und MB-800-Matrix ergänzt | hoch |
+| Integrationen | Microsoft 365, Power Platform, Shopify, APIs erwähnt | Abgrenzung zu Dynamics 365 Sales und Field Service fehlte | Learn-Mapping ergänzt | mittel |
+| Extensions/Standardgrenzen | AppSource und Extensions vorhanden | Build-vs.-Buy-Entscheidung brauchte Architekturmatrix | Solution-Architect-Kapitel ergänzt | hoch |
+| UAT | Master-UAT vorhanden | Testskriptfelder mussten produktionsreif sein | Lösungsanhang und Artefakt-Templates ergänzt | hoch |
+| Übungen und Lösungen | Übungen vorhanden | Lösungen waren nicht durchgängig explizit | Lösungsanhang und Zuordnungsmatrix ergänzt | hoch |
+| Evidence Packs | vorhanden | je Prozess stärker standardisiert | Prozessschablone und Projektartefakte ergänzt | hoch |
+| MB-800-Abdeckung | nicht explizit genug | Study Guide fehlte als Kompetenzmatrix | Kapitel 40 ergänzt | sehr hoch |
+| Microsoft-Learn-Lernpfad-Mapping | nicht explizit genug | Lernpfade waren Quellen, aber kein Mapping | Kapitel 41 ergänzt | sehr hoch |
+| Solution-Architect-Kompetenz | punktuell vorhanden | Architektursicht brauchte eigenen Pfad | Kapitel 42 ergänzt | hoch |
+| Glossar und Seitenindex | deutsches Begriffskapitel vorhanden | Seitenindex muss als Lernwerkzeug funktionieren | Kapitel 30 und 44 ergänzen Verwechslungen | mittel |
+| Projektartefakte | vereinzelt vorhanden | direkt nutzbare Templates fehlten | Kapitel 45 ergänzt | hoch |
+
+### 38.1 Neue Zielstruktur des Buches
+
+Die Zielstruktur des Buches ist:
+1. Zielbild, Buchprinzip und Sprachregel.
+2. Wie man dieses Buch nutzt.
+3. Rhein-Main Industriegruppe als durchgehende Fallstudie.
+4. Quellen-, Pflicht- und Best-Practice-Schicht.
+5. Business Central Denken lernen.
+6. Einsteigerpfad: Oberfläche, Suche, Belege, Posten, Filter.
+7. Foundation: Companies, Setup, Nummernserien, Dimensionen, Workflows.
+8. Security, Rollen, Berechtigungen und SoD.
+9. Datenqualität, Migration und Opening Balances.
+10. Posting Groups und Buchungslogik.
+11. Dimensionen als Steuerungs- und Reportinglogik.
+12. Verkauf/O2C.
+13. Einkauf/P2P.
+14. Inventory.
+15. Warehouse.
+16. Planning, Assembly und Manufacturing.
+17. Service Management.
+18. Projects.
+19. Fixed Assets.
+20. Bank, Payments und OP-Ausgleich.
+21. USt, E-Rechnung, Ausland und Compliance.
+22. Finance/R2R, Monatsabschluss und Reporting.
+23. Controlling, Financial Reports, Analysis Mode und Power BI.
+24. Integrationen: Microsoft 365, Power Platform, Shopify, D365 Sales, Field Service.
+25. Admin, Job Queue, Change Log, Monitoring und Betrieb.
+26. Standardgrenzen, Extensions, AppSource und Customizing.
+27. Business Central Solution Architect Pfad.
+28. UAT-Testbibliothek.
+29. Übungen und Lösungen.
+30. MB-800-Kompetenzmatrix.
+31. Microsoft-Learn-Lernpfad-Mapping.
+32. MB-800-Prüfungstraining.
+33. Glossar Deutsch/Englisch/Tell-Me.
+34. Seitenindex.
+35. Projektartefakte.
+36. Quellenverzeichnis.
+
+### 38.2 Fallstudie als durchgehende Unternehmensgruppe
+
+Die Rhein-Main Industriegruppe ist ein mittelständischer Maschinenbau- und Servicekonzern mit Produktion, Ersatzteilhandel, Onlineshop, technischem Service, Projektgeschäft, Mietmodellen, Auslandsgeschäft und Intercompany-Prozessen. Die Gruppe führt Microsoft Dynamics 365 Business Central ein, um Vertrieb, Einkauf, Lager, Fertigung, Service, Projekte, Finanzbuchhaltung, Anlagen, Bank, USt, Reporting und Administration in einem integrierten Standardsystem abzubilden.
+
+| Company | Warum sie existiert | Prozesse | Rollen | Module/Funktionen | Risiken und Standardgrenzen |
+|---|---|---|---|---|---|
+| RM-PROD GmbH | produziert Maschinen und Baugruppen | Einkauf, Fertigung, Lager, Intercompany | Produktionsplanung, Lager, Meister, Controlling | Fertigung, Lager, Planung, Intercompany | Kostenabweichungen, Fremdarbeit, gesteuertes Lager |
+| RM-SALES GmbH | verkauft B2B und über Onlineshop | Verkauf, Shop, Dropshipping, Retouren | Vertrieb, E-Commerce, Debitoren | Verkauf, Shopify, Preise, Debitoren | Steuerlogik, Preislisten, Shop-Mapping |
+| RM-SERVICE GmbH | erbringt Service, Projekte und Mietmodelle | Service, Projekte, Ressourcen, Mietabrechnung | Disposition, Techniker, Projektleitung | Service, Projekte, Ressourcen, Abgrenzung | Mietmodell als Standardgrenze |
+| RM-SHARED GmbH | betreibt Finance, Admin und Reporting | R2R, Bank, USt, Stammdaten, Admin | Finance, Controller, BC-Admin | Finance, Bank, Anlagen, Security, Reporting | SoD, Datenqualität, Periodenabschluss |
+| RM-AT GmbH | bildet EU-/Auslandsszenarien ab | IC, EU-B2B, lokale Abweichungen | Finance, Vertrieb, Steuerrolle | Intercompany, Währungen, USt | Auslandssteuer, lokale Pflichtlogik |
+
+Use-Case-Matrix:
+
+| Use Case | Geschäftsgrund | Beteiligte Company | Rollen | BC-Prozesse | Hauptbelege | Hauptposten | Lernziel |
+|---|---|---|---|---|---|---|---|
+| Standardmaschine verkaufen | Maschinenumsatz | RM-SALES, RM-PROD | Vertrieb, Lager, Finance | Verkauf, Lager, IC | Verkaufsauftrag, Rechnung | Debitorenposten, Sachposten, Artikelposten | O2C und IC verstehen |
+| Standardmaschine produzieren | Eigenfertigung | RM-PROD | Planung, Meister, Lager | Fertigung, Planung | Fertigungsauftrag | Artikelposten, Wertposten | Produktionskosten verstehen |
+| Rohmaterial einkaufen | Materialversorgung | RM-PROD | Einkauf, Lager, Kreditoren | Einkauf, Lager | Einkaufsbestellung | Kreditorenposten, Wertposten | P2P und Lagerwert verstehen |
+| Ersatzteil im Onlineshop verkaufen | Ersatzteilumsatz | RM-SALES | E-Commerce, Lager | Shopify, Verkauf | Shopauftrag, Verkaufsrechnung | Debitorenposten, USt-Posten | Shopprozess prüfen |
+| Dropshipping abwickeln | Handelsware ohne Lager | RM-SALES | Vertrieb, Einkauf | Verkauf, Einkauf | Verkaufsauftrag, Einkaufsbestellung | Verkaufs-/Einkaufsposten | Direktlieferung verstehen |
+| Retoure und Gutschrift | Reklamation | RM-SALES | Vertrieb, Finance | Retoure, Gutschrift | Gutschrift | Debitorenposten, USt-Posten | Korrektur sauber buchen |
+| Serviceauftrag Garantie/Kulanz | Kundenbindung | RM-SERVICE | Service, Finance | Service | Serviceauftrag | Service-/Sachposten | Kosten ohne Erlös erklären |
+| Ersatzteilverbrauch Service | Reparatur | RM-SERVICE | Techniker, Lager | Service, Lager | Servicebeleg | Artikelposten, Wertposten | Verbrauch nachweisen |
+| Projektinstallation | Projektgeschäft | RM-SERVICE | Projektleitung, Finance | Projekte, Faktura | Projektrechnung | Projektposten, Sachposten | WIP/Faktura verstehen |
+| Mietmodell | wiederkehrender Erlös | RM-SERVICE | Service, Finance | Verkauf, Abgrenzung | Monatsrechnung | Debitorenposten, Sachposten | Standardgrenze erkennen |
+| Anlage kaufen | Investition | RM-SHARED | Anlagenbuchhaltung | Anlagen | Einkaufsrechnung/FA Journal | Anlagenposten, Sachposten | AfA-Prozess verstehen |
+| EU-B2B-Verkauf | EU-Geschäft | RM-SALES, RM-AT | Vertrieb, Steuer | Verkauf, USt | Verkaufsrechnung | USt-Posten | USt-ID-Logik prüfen |
+| Drittlandexport | Export | RM-SALES | Vertrieb, Steuer | Verkauf, Export | Rechnung, Nachweis | Sachposten, USt-Posten | Nachweislogik verstehen |
+| Intercompany-Verkauf | Konzernfluss | RM-PROD, RM-SALES | Finance | IC | IC-Belege | Debitor/Kreditor, Sachposten | IC-Abstimmung |
+| Monatsabschluss | Abschlussfähigkeit | RM-SHARED | Finance, Controller | R2R | Journale, Reports | Sachposten | Abschlussroutine |
+| falsche Dimension | Reportingfehler | alle | Controller, Finance | Dimension Correction | Korrekturprotokoll | Sachposten | Diagnose und Korrektur |
+| falsche USt-Gruppe | Steuerfehler | alle | Steuerrolle | VAT Setup | Korrekturbeleg | USt-Posten | Steuerdiagnose |
+| Lagerwert stimmt nicht | Bewertungsfehler | RM-PROD | Lager, Controlling | Inventory Costing | Kostenlauf | Wertposten | Cost Adjustment verstehen |
+| GuV nach Produktlinie | Managementreporting | RM-SHARED | Controller | Financial Reports | Bericht | Sachposten/Dimensionen | Analysefähigkeit |
+| kompletter E2E-UAT | Go-live-Freigabe | alle | Projektteam | alle | Evidence Pack | alle relevanten Posten | Go-live-Reife |
+
+### 38.3 Kapitelbox für alle Prozessmodule
+
+| Feld | Inhalt |
+|---|---|
+| Zielgruppe | Einsteiger / Key User / Consultant / Architect |
+| Schwierigkeit | Basic / Intermediate / Advanced |
+| Prozess | O2C / P2P / R2R / Inventory etc. |
+| MB-800-Relevanz | Ja/Nein + Skill |
+| Solution-Architect-Relevanz | Ja/Nein |
+| Benötigte Vorkenntnisse | z. B. Belege/Posten |
+| Ergebnis nach dem Kapitel | Was kann der Leser danach? |
+| Übung vorhanden | Ja |
+| UAT vorhanden | Ja |
+| Lösung vorhanden | Ja |
+
+---
+
+## 39. Wie man dieses Buch nutzt: Lernpfade und Reifegrad
+
+Dieses Buch lässt sich als Einsteigerkurs, Key-User-Schulung, Functional-Consultant-Training, MB-800-Vorbereitung und Solution-Architect-Leitfaden verwenden. Die Lernpfade nutzen dieselben Kapitel, aber mit unterschiedlicher Tiefe.
+
+### 39.1 Lernpfad für Einsteiger
+
+| Tag | Kapitel | Ergebnis |
+|---|---|---|
+| 1 | 1, 22, 23, 30 | Oberfläche, Suche, Filter und deutsche Begriffe verstehen |
+| 2 | 24, 28 | Belege, Posten und Prozesslandkarte verstehen |
+| 3 | 7, 8, 9 | Verkauf, Einkauf und Lager bedienen |
+| 4 | 13, 21 | OP, GuV, Berichte und Buchungsspur lesen |
+| 5 | 37 | Übungen mit Lösung durchführen |
+
+### 39.2 Lernpfad für Buchhaltung
+
+| Phase | Kapitel | Fokus |
+|---|---|---|
+| Grundlagen | 24, 43 | Sachposten, Nebenbücher, Posting Groups |
+| Tagesgeschäft | 13, 20, 35, 36 | OP, Zahlungen, Preise, Abgrenzungen |
+| Abschluss | 21, 24, 28 | GuV, Bilanz, Reporting, Evidence |
+| Prüfung | 40, 44 | MB-800-Fallen und Praxisfallen |
+
+### 39.3 Lernpfad für Key User
+
+Key User bearbeiten Kapitel 3, 4, 16, 17, 28, 31, 37 und 45. Sie lernen Prozessdesign, UAT, Fehlerdiagnose, Evidence Packs und Trainingsfähigkeit.
+
+### 39.4 Lernpfad für Junior Functional Consultants
+
+Junior Consultants bearbeiten Kapitel 6 bis 15, 20 bis 28, 33 bis 37 sowie 40 und 41. Sie verbinden Setup, Stammdaten, Prozessbedienung, Postenlogik und MB-800-Kompetenzen.
+
+### 39.5 Lernpfad für Solution Architects
+
+Solution Architects bearbeiten Kapitel 18, 19, 28, 31, 34, 35, 38, 42 und 45. Sie bewerten Standard-first-Design, Fit-Gap, Erweiterungen, Integration, Migration, Security, UAT und Betrieb.
+
+### 39.6 MB-800-Lernplan 14 Tage
+
+| Tag | Fokus |
+|---|---|
+| 1 | Study Guide lesen, Kapitel 1, 22, 30 |
+| 2 | Company, Assisted Setup, Konfigurationspakete |
+| 3 | Benutzer, Profile, Berechtigungen, Security |
+| 4 | Dimensionen und Workflows |
+| 5 | Hauptbuch, Perioden, Zahlungsbedingungen, Währungen |
+| 6 | Kontenplan, Finanzberichte, Buchungsgruppen |
+| 7 | Debitoren, Kreditoren, OP und Zahlungen |
+| 8 | Anlagen |
+| 9 | Artikel, Lagerorte, Kostenmethoden, SKU |
+| 10 | Einkauf |
+| 11 | Verkauf |
+| 12 | Finanzdokumente, Gutschriften, Vorauszahlungen |
+| 13 | Bank, Journale, Ausgleich, Währungen |
+| 14 | Fallen, UAT, Probeprüfung |
+
+### 39.7 MB-800-Lernplan 30 Tage
+
+Der 30-Tage-Plan nutzt dieselbe Reihenfolge wie der 14-Tage-Plan, aber jede Skill Area bekommt zusätzlich einen Übungstag, einen Fehlerdiagnosetag und einen Wiederholungstag. Die letzten vier Tage bestehen aus Fallstudie Rhein-Main, UAT, Prüfungsfallen und Wiederholung der Kompetenzmatrix.
+
+### 39.8 In 5 Minuten merken
+
+- 5 wichtigste Begriffe: Company, Rolle, Beleg, Posten, Buchungsgruppe.
+- 5 wichtigste Seiten: Verkaufsaufträge, Einkaufsbestellungen, Sachposten, Dimensionen, Finanzberichte.
+- 3 häufigste Fehler: falsche Company, falsche Dimension, falsche USt-Gruppe.
+- 3 Prüfungsfallen: Personalisieren vs. Anpassen, General Posting Setup vs. VAT Posting Setup, Item Ledger Entries vs. Value Entries.
+- 1 Praxisregel: Erst Setup und Stammdaten verstehen, dann Prozesse buchen.
+
+---
+
+## 40. MB-800-Kompetenzmatrix [Q86][Q87][Q88]
+
+Dieses Kapitel weist die MB-800-Abdeckung nach. Die offiziellen Skills measured seit `17.12.2025` umfassen vier Skill Areas: Business Central einrichten, Finanzen konfigurieren, Verkauf/Einkauf konfigurieren und Business-Central-Operationen durchführen. [Q86]
+
+| MB-800 Skill Area | Objective | Sub-Skill | Prüfungsgewichtung | Microsoft-Learn-Modul/Unit | Buchkapitel | Praxisübung | UAT-Fall | Prüfungsfalle | Status |
+|---|---|---|---|---|---|---|---|---|---|
+| Set up Business Central | Company erstellen | Companies, Assisted Setup, Configuration Worksheet, Configuration Packages, Opening Balances, Data Migration | 25–30 % | MB-800 Study Guide, Get started path | 6, 31, 34, 40 | Greenfield Setup | GF-001 | Assisted Setup vs. Manual Setup | abgedeckt |
+| Set up Business Central | Security verwalten | Users, Profiles, Permission Sets, Security Groups, Security Filters, Security Auditing | 25–30 % | MB-800 Study Guide | 26, 30, 33, 40, 44 | Nutzer anlegen | UAT Admin | Rolle vs. Berechtigungssatz | abgedeckt |
+| Set up Business Central | Core Functionality | Company Information, Report Layouts, Job Queues, Email Accounts, Number Series | 25–30 % | MB-800 Study Guide | 6, 15, 26, 32, 35 | Dokumentversand | UAT Dokumente | Report Layout vs. Financial Report | abgedeckt |
+| Set up Business Central | Dimensions | Dimension Values, Global, Shortcut, Default, Combinations, Correction Tool, Priorities | 25–30 % | MB-800 Study Guide | 5, 6, 21, 24, 43 | Pflichtdimension | UAT-001 | Global vs. Shortcut Dimension | abgedeckt |
+| Set up Business Central | Workflows | Workflows, Notifications, Approval Users, Workflow User Groups | 25–30 % | MB-800 Study Guide | 6, 32, 33 | Einkaufsfreigabe | UAT Approval | Approval vs. Permission | abgedeckt |
+| Set up Business Central | Integrationen | Microsoft 365, Excel, OneDrive, Outlook, Teams, Word, Power Platform | 25–30 % | Get started path, BC docs | 15, 31, 32, 41 | Edit in Excel | UAT Integration | Integration vs. Extension | abgedeckt |
+| Configure financials | Finanzmanagement | General Ledger Setup, Accounting Periods, Payment Terms, Deferrals, Currencies, Payment Methods | 30–35 % | MB-800 Study Guide | 13, 24, 35, 36, 43 | Abgrenzung | UAT Finance | Deferrals vs. Recurring Journals | abgedeckt |
+| Configure financials | Kontenplan | G/L Accounts, Account Categories, Financial Reports | 30–35 % | Finance modules | 13, 21, 24, 43 | GuV | UAT-020 | Sachkonto vs. Buchungsgruppe | abgedeckt |
+| Configure financials | Buchungsgruppen | Bank, Customer, Vendor, Inventory, General Posting Setup, Inventory Posting Setup | 30–35 % | Finance modules | 13, 24, 43 | Posting Setup | UAT Posting | General vs. VAT Posting | abgedeckt |
+| Configure financials | Journale und Bank | Bank Accounts, Journal Templates, Batches, Recurring Journals | 30–35 % | Finance modules | 13, 35, 36, 43 | Zahlung | UAT-016 | Payment Journal vs. Cash Receipt Journal | abgedeckt |
+| Configure financials | Kreditoren | Vendors, Vendor Ledger, Detailed Entries, Payment Journals | 30–35 % | Finance modules | 8, 13, 24, 43 | P2P | UAT-006 | Vendor Ledger vs. Detailed Vendor Ledger | abgedeckt |
+| Configure financials | Debitoren | Customers, Customer Ledger, Detailed Entries, Cash Receipts, Payment Registration | 30–35 % | Finance modules | 7, 13, 24, 43 | O2C | UAT-002 | Payment Registration vs. Journal | abgedeckt |
+| Configure financials | Anlagen | Depreciation Books, FA Classes, FA Posting Groups, Components, Methods | 30–35 % | Finance modules | 13, 24, 43 | Anlagenzugang | UAT-017 | Purchase Invoice vs. FA Journal | abgedeckt |
+| Configure sales and purchasing | Inventory Setup | Item Categories, Attributes, Units, Variants, Locations, SKU, Costing Methods | 10–15 % | Inventory modules | 5, 9, 25, 43 | Lagerbewertung | UAT-009 | Item Ledger vs. Value Entries | abgedeckt |
+| Configure sales and purchasing | Master Data | Customer shipping, Vendor order address, Lead Time, Locations | 10–15 % | Sales/Purchasing modules | 5, 7, 8, 20 | Stammdaten | UAT O2C/P2P | Customer Posting Group vs. Gen. Bus. Group | abgedeckt |
+| Configure sales and purchasing | Preise/Rabatte | Purchase Prices, Line Discounts, Invoice Discounts, Sales Prices | 10–15 % | Pricing modules | 20 | Preisübung | UAT Pricing | Zeilenrabatt vs. Rechnungsrabatt | abgedeckt |
+| Perform operations | Basic Tasks | Personalizing, Customizing, Designing, Filters, Related Entries, Inspect Pages, Edit in Excel, OneDrive, Analysis Mode | 25–30 % | Get started path | 22, 23, 30, 41, 44 | Onboarding | UAT Basic | Personalisieren vs. Anpassen | abgedeckt |
+| Perform operations | Purchases | Quotes, Orders, Receipts, Over-Receipt, Reverse Receipt, Invoices, Recurring Lines, Blanket Orders, Deferrals | 25–30 % | Purchasing modules | 8, 36, 40, 44 | Einkaufsübung | UAT-006 | Receive vs. Invoice | abgedeckt |
+| Perform operations | Sales | Quotes, Orders, Availability, Shipments, Reverse Shipment, Invoices, Recurring Lines, Blanket Orders, Deferrals | 25–30 % | Sales modules | 7, 20, 36, 40, 44 | Verkaufsübung | UAT-002 | Shipment reversal vs. Credit Memo | abgedeckt |
+| Perform operations | Financial Documents | Purchase/Sales Invoices, Credit Memos, Combine Shipments/Receipts, Correct Posted Invoices, Release/Reopen, Prepayments | 25–30 % | Operations modules | 7, 8, 13, 18, 44 | Gutschrift | UAT-003 | Reverse Journal vs. Credit Memo | abgedeckt |
+| Perform operations | Payments/Journals | Payment Journals, Cash Receipt Journals, Payment Registration, Apply/Unapply, Reverse Journals, Bank Reconciliation, Allocations, Exchange Rates | 25–30 % | Finance operations modules | 13, 35, 36, 43 | Bankausgleich | UAT-016 | Apply vs. Unapply | abgedeckt |
+| Perform operations | Fixed Assets | Acquisition, Depreciation, Disposal | 25–30 % | Fixed Assets modules | 13, 24, 43 | Anlage | UAT-017 | Acquisition vs. Depreciation | abgedeckt |
+
+---
+
+## 41. Microsoft-Learn-Abdeckung und Lernpfad-Mapping [Q1][Q2][Q87][Q88][Q89]
+
+Dieses Kapitel bildet MB-800 und die Business-Central-Produktlandkarte auf das Buch ab. Microsoft Learn bleibt die Primärquelle für BC-Standardfunktionen; dieses Buch übersetzt die Lerninhalte in deutsche Prozess-, Projekt- und Übungslogik.
+
+| Microsoft-Learn-Bereich | Lernpfad/Modul/Unit | BC-Thema | Buchkapitel | Übung | UAT-Fall | Tiefe |
+|---|---|---|---|---|---|---|
+| MB-800 | Study Guide | alle Skills measured | 40 | alle Prozessübungen | Master-UAT | tief |
+| Zertifizierung | Functional Consultant Associate | Rolle und Exam-Kontext | 40 | MB-800-Lernplan | UAT Matrix | tief |
+| Get started | Trial, Einführung, Anpassen | Einstieg, Oberfläche | 22, 23, 30, 39 | Onboarding | Basic UAT | tief |
+| Produktdokumentation | Business functionality | BC-Standardlandkarte | 1, 28, 41 | Prozesskatalog | E2E-UAT | tief |
+| Implementierung | Companies, Setup, Migration | Greenfield | 31, 34, 45 | GF-UAT | GF-001 bis GF-007 | tief |
+| Security/Compliance | User Access, Audit Changes | Rollen, Rechte, Change Log | 26, 33, 35 | Adminübung | UAT Admin | tief |
+| Finance | General Ledger, VAT, Bank, Fixed Assets | R2R | 13, 24, 35, 36, 43 | Abschluss | UAT Finance | tief |
+| Sales | Quotes, Orders, Invoices, Returns | O2C | 7, 20, 44 | Verkauf | UAT Sales | tief |
+| Purchasing | Orders, Receipts, Invoices | P2P | 8, 20, 44 | Einkauf | UAT Purchasing | tief |
+| Inventory | Items, Costing, Valuation | Lagerwert | 9, 24, 25, 43 | Inventur | UAT Inventory | tief |
+| Warehouse | Basic/Advanced Warehouse | Lagersteuerung | 9, 25 | Lagerübung | UAT Warehouse | tief |
+| Shopify | Connector | Onlineshop | 7, 27, 41 | Shopauftrag | UAT Shopify | mittel |
+| Fixed Assets | FA Setup/Transactions | Anlagen | 13, 24, 43 | Anlage | UAT-017 | tief |
+| Planning | Planning Worksheet | Planung | 10, 28 | MRP | UAT-010 | mittel |
+| Assembly | Assembly Orders | Montage | 10 | Wartungskit | UAT-012 | mittel |
+| Manufacturing | Production Orders | Fertigung | 10 | Mehrverbrauch | UAT-011 | mittel |
+| Projects | Projects/Jobs | Projektgeschäft | 12 | Meilenstein | UAT-015 | tief |
+| Service | Service Management | Serviceauftrag | 11 | Garantie | UAT-013 | mittel |
+| Relationship Management | Kontakte/Opportunities | Vorvertrieb | 28, 41 | Kontaktfall | UAT optional | Überblick |
+| Human Resources | Employees/Absences | Basis-HR | 28, 41 | Mitarbeiter | UAT optional | Überblick |
+| Copilot | Copilot-Funktionen | Produktivität | 41, 42 | Architekturfrage | UAT optional | Überblick |
+| Workspace Settings | Personalisieren/Profile | Oberfläche | 22, 23, 30, 44 | Onboarding | Basic UAT | tief |
+| Teams/OneDrive | M365 Integration | Zusammenarbeit | 31, 41 | Dokument | UAT Integration | mittel |
+| BI/Reporting | Analysis Mode, Power BI | Controlling | 21, 41, 43 | GuV | UAT Reporting | tief |
+| Environments/Updates | Betrieb | Admin/Betrieb | 35, 42 | Hypercare | UAT Betrieb | mittel |
+| Telemetry | Monitoring | Performance/Fehler | 35, 42 | Supportfall | UAT Monitoring | mittel |
+| Customization | Extension/AppSource | Standardgrenzen | 18, 19, 42 | Fit-Gap | UAT Extension | tief |
+| AL/APIs | AL, OData, SOAP, APIs | Architekturverständnis | 15, 42 | Integrationsentscheidung | UAT Integration | Überblick |
+| MB-820-Light | Extensions, ALM, APIs, Telemetry | Architect-Verständnis | 42 | Architekturcase | Architecture Review | Überblick |
+| Power Platform | Power Automate, Power Apps, Dataverse, Power BI, Copilot Studio | Erweiterung/Integration | 41, 42 | Fit-Gap | UAT Integration | Überblick |
+| Dynamics 365 Sales/Field Service | CRM vs. BC, Field Service vs. BC Service | Abgrenzung | 41, 42 | Architekturfrage | Fit-Gap | Überblick |
+
+---
+
+## 42. Business Central Solution Architect Pfad: Standard-first Architektur
+
+Dieses Kapitel vermittelt, wie ein Business Central Solution Architect Standardlösungen entwirft, bewertet, dokumentiert, testet und projektfähig macht. Es ist kein AL-Developer-Handbuch. Es ist Architektur auf Basis von Business Central Standard, Setup, Prozessdesign, Datenmodell, Sicherheit, Integrationen, Migration, UAT, Betrieb und Erweiterungsentscheidungen.
+
+### 42.1 Rolle und Denkweise
+
+Ein BC Solution Architect sorgt dafür, dass fachliche Anforderungen mit Standardfunktionen, Setup, Prozessdesign, Erweiterungen und Integrationen tragfähig umgesetzt werden. Er schützt Upgradefähigkeit, Datenqualität, Nachweisfähigkeit und Bedienbarkeit.
+
+### 42.2 Architektur-Kompetenzmatrix
+
+| Architekturkompetenz | BC-Standardthema | Buchkapitel | Praxisfall | Entscheidungskriterium | Nachweis |
+|---|---|---|---|---|---|
+| Requirements | Prozessaufnahme | 31, 38, 45 | Maschinenverkauf | fachlicher Nutzen | Fit-Gap-Matrix |
+| Fit-Gap | Standard vs. Lücke | 18, 19, 42 | Mietmodell | Standardfähigkeit | Fit-Gap-Protokoll |
+| Solution Blueprint | Prozessarchitektur | 28, 31 | Greenfield | E2E-Abdeckung | Blueprint |
+| Company-Architektur | Mandanten/Companies | 3, 31 | RM-Gruppe | rechtlich/prozessual | Company-Konzept |
+| Intercompany | IC-Flüsse | 14, 27, 42 | RM-PROD an RM-SALES | Gegenbelege | IC-Abstimmung |
+| Datenqualität | Stammdaten | 5, 34, 45 | Artikel/Debitor | Pflichtfelder | Data Owner Matrix |
+| Nummernserien | Beleglogik | 6, 31 | Belege | Nachvollziehbarkeit | Nummernserienkonzept |
+| Dimensionen | Reporting | 5, 21, 43 | GuV nach Produktlinie | Steuerungsnutzen | Dimensionskonzept |
+| Posting/VAT | Kontenfindung | 13, 24, 43 | USt-Fall | korrekte Buchung | Posting-Matrix |
+| Security | Rollen/SoD | 26, 33, 45 | Zahlungslauf | Risikotrennung | Rollenmatrix |
+| Workflow | Genehmigung | 32, 33 | Einkaufsfreigabe | Kontrollbedarf | Workflow-Test |
+| Integration | APIs/M365/Power Platform | 15, 41, 42 | Shopify/Power BI | Standardconnector | Integrationsdesign |
+| Migration | Opening Balances | 31, 34 | Startsaldo | Abstimmung | Migrationsprotokoll |
+| Testing | UAT/Regression | 17, 37, 45 | Master-UAT | Akzeptanz | Testprotokoll |
+| Go-live | Cutover | 35, 45 | Produktivstart | Bereitschaft | Cutover-Plan |
+| Betrieb | Job Queue/Telemetry | 35 | Hypercare | Stabilität | Monitoring-Log |
+| Extension | AppSource/Custom | 18, 19 | Rental/WMS/OCR | TCO/Upgrade | ADR |
+
+### 42.3 Architekturentscheidung
+
+| Feld | Leitfrage |
+|---|---|
+| Standardlösung | Welche BC-Standardfunktion erfüllt den Kernbedarf? |
+| Setup-Option | Welche Einrichtung entscheidet über das Verhalten? |
+| Prozessdesign | Welche Rollen, Freigaben und Nachweise braucht der Prozess? |
+| Extension-Kandidat | Welche AppSource-Lösung passt, wenn Standard nicht reicht? |
+| Custom nur wenn | Welche Anforderung ist weder Standard noch Extension-fähig? |
+| Risiken | Welche Steuer-, GoBD-, Security-, Performance- oder Upgrade-Risiken entstehen? |
+| UAT-Nachweis | Welcher Test beweist die Entscheidung? |
+| Betriebsfolge | Was muss im laufenden Betrieb überwacht werden? |
+| Empfehlung | Standard, Extension, Custom oder Prozessänderung? |
+
+### 42.4 Mini-Cases mit Lösung
+
+Fall 1: Mietmodell.
+- Standardlösung: Verkaufsrechnung, wiederkehrende Erlöse, Abgrenzung.
+- Lücke: Objektverwaltung, Rückgabe, Laufzeitänderung, Zustand.
+- Empfehlung: Standard für Training, Rental-Extension für produktive Mietverwaltung.
+
+Fall 2: OCR-Eingangsrechnung.
+- Standardlösung: Einkaufsrechnung und E-Documents.
+- Lücke: OCR, Match-Automation, Freigabestrecke mit Belegbild.
+- Empfehlung: AP-Automation-Extension.
+
+Fall 3: Power BI Controlling.
+- Standardlösung: Finanzberichte und Analysemodus.
+- Lücke: Management-Cockpit über mehrere Companies.
+- Empfehlung: Power BI Datenmodell mit Dimensionen und kontrollierter Datenquelle.
+
+---
+
+## 43. Fachliche Masterkapitel: Buchungslogik, Dimensionen, Posten, Kosten, Anlagen und Bank
+
+Dieses Kapitel bündelt die fachlichen Kernmodelle, die jeder Consultant und Key User sicher beherrschen muss.
+
+### 43.1 Buchungslogik in BC: Posting Groups und Posting Setup
+
+| Einrichtung | Deutsche Bedeutung | Wirkung |
+|---|---|---|
+| Debitorenbuchungsgruppen (Customer Posting Groups) | Forderungskonten | Debitoren-Nebenbuch auf Bilanzkonto |
+| Kreditorenbuchungsgruppen (Vendor Posting Groups) | Verbindlichkeitskonten | Kreditoren-Nebenbuch auf Bilanzkonto |
+| Bankkontobuchungsgruppen (Bank Account Posting Groups) | Bankkontenfindung | Bankkonto im Hauptbuch |
+| Lagerbuchungsgruppen (Inventory Posting Groups) | Bestandkonten nach Lager/Artikel | Vorratskonten |
+| Geschäftsbuchungsgruppen (General Business Posting Groups) | Wer kauft/verkauft? | Partner-/Marktlogik |
+| Produktbuchungsgruppen (General Product Posting Groups) | Was wird verkauft/gekauft? | Erlös-/Aufwandslogik |
+| Allgemeine Buchungsmatrix Einrichtung (General Posting Setup) | Kombination Geschäft/Produkt | Erlös, Aufwand, Wareneinsatz |
+| USt-Geschäftsbuchungsgruppen (VAT Business Posting Groups) | steuerliche Partnerlogik | USt-Sachverhalt |
+| USt-Produktbuchungsgruppen (VAT Product Posting Groups) | steuerliche Produktlogik | Steuersatz/Steuerart |
+| USt-Buchungsmatrix Einrichtung (VAT Posting Setup) | Steuerkombination | USt-/Vorsteuerkonten |
+| Lagerbuchungsmatrix Einrichtung (Inventory Posting Setup) | Lagerwertkonten | Bestand nach Lagerort |
+
+Diagnosepfad:
+1. Beleg öffnen.
+2. Debitor/Kreditor/Artikel prüfen.
+3. Buchungsgruppen prüfen.
+4. Buchungsmatrix prüfen.
+5. Buchungsvorschau prüfen.
+6. Gebuchte Posten prüfen.
+
+### 43.2 Dimensionen als Steuerungs-, Kontroll- und Reportinglogik
+
+Dimensionen sind keine Buchungsgruppen. Sie verändern nicht das Konto, sondern die Auswertung und Kontrolle. Die Rhein-Main Industriegruppe nutzt `DEPARTMENT`, `PRODUCTLINE`, `CHANNEL`, `LOCATION-GROUP` und `PROJECT`.
+
+| Funktion | Zweck | Fehler |
+|---|---|---|
+| Dimensionswerte | erlaubte Ausprägungen | falsche/alte Werte |
+| Globale Dimensionen | wichtigste Auswertungsachsen | nachträgliche Änderung ist kritisch |
+| Shortcut-Dimensionen | schnelle Eingabe | Nutzer sieht Feld nicht |
+| Standarddimensionen | automatische Vorschläge/Pflichten | Reportinglücken |
+| Dimensionskombinationen | verbotene Kombinationen | Buchung blockiert |
+| Dimensionsprioritäten | Konfliktauflösung | falscher Wert gewinnt |
+| Dimension Correction Tool | Sachpostendimension korrigieren | Nebenbücher nicht blind gleichsetzen |
+
+### 43.3 Buchungsspur-Atlas
+
+| Vorgang | Hauptposten |
+|---|---|
+| Verkaufsrechnung | Debitorenposten, Sachposten, USt-Posten, Artikelposten, Wertposten |
+| Einkaufsrechnung | Kreditorenposten, Sachposten, USt-Posten, Artikel-/Wertposten |
+| Zahlung | Debitoren-/Kreditorenposten, detaillierte Posten, Bank-/Sachposten |
+| Bankabstimmung | Bankposten, Sachposten, Ausgleichsnachweis |
+| Anlagenzugang | Anlagenposten, Sachposten |
+| Abschreibung | Anlagenposten, Sachposten |
+| Lagerbewegung | Artikelposten, Wertposten |
+| Fertigung Output | Artikelposten, Kapazitätsposten, Wertposten |
+| Serviceverbrauch | Serviceposten, Artikelposten, Sachposten |
+| Projektverbrauch | Projektposten, Sachposten |
+| Abgrenzung | Sachposten über Perioden |
+| Vorauszahlung | Vorauszahlungsrechnung, Debitor/Kreditor, USt, Sachposten |
+| Gutschrift | Gegenposten zu Rechnung, USt-Korrektur |
+| Journalstorno | Umkehrposten im Hauptbuch |
+
+### 43.4 Inventory Costing und Lagerbewertung
+
+Lagerbewertung verbindet Artikelposten, Wertposten und Sachposten. Die monatliche Kontrolle nutzt Lagerbewertung, Kostenregulierung und Abgleich mit dem Hauptbuch.
+
+| Thema | Prüfung |
+|---|---|
+| Kostenmethode | FIFO, Durchschnitt, Standard etc. |
+| erwartete Kosten | Wareneingang ohne Rechnung |
+| fakturierte Kosten | endgültige Rechnungskosten |
+| Kostenregulierung | Adjust Cost - Item Entries |
+| Lagerwert ins Hauptbuch | Post Inventory Cost to G/L |
+| negative Bestände | Prozess- und Bewertungsrisiko |
+| Wareneinsatz | COGS gegen Erlöse |
+
+### 43.5 Anlagen
+
+| Bereich | Setup/Prozess |
+|---|---|
+| Anlagen Einrichtung | Nummern, Buchungslogik |
+| AfA-Bücher | handels-/steuernahe Logik |
+| Anlagenklassen/-unterklassen | Struktur |
+| Anlagenbuchungsgruppen | Kontenfindung |
+| Hauptanlagen/Komponenten | Anlagenstruktur |
+| Zugang | Einkaufsrechnung oder Anlagenjournal |
+| Abschreibung | AfA-Lauf |
+| Abgang | Verkauf/Verschrottung |
+| Nachweis | Anlagenposten und Sachposten |
+
+### 43.6 Bank, Payments und OP-Ausgleich
+
+| Funktion | Zweck |
+|---|---|
+| Zahlungsjournal | Kreditorenzahlungen |
+| Zahlungseingangsjournal | Debitorenzahlungen |
+| Zahlungsregistrierung | vereinfachter Ausgleich |
+| Posten ausgleichen | Rechnung und Zahlung verbinden |
+| Ausgleich aufheben | falschen Ausgleich korrigieren |
+| Bankkontoabstimmung | Bank gegen Buchhaltung abstimmen |
+| Teilzahlung | Restposten bleibt offen |
+| Skonto | Zahlungsbedingung reduziert Betrag |
+| Überzahlung | Klärung/Restposten |
+| unbekannte Zahlung | Klärposten |
+
+### 43.7 Fehlerdiagnose nach Symptom
+
+| Symptom | Erst prüfen | Korrektur |
+|---|---|---|
+| Rechnung bucht nicht | Pflichtfeld, Freigabe, Dimension, USt | Beleg korrigieren |
+| USt falsch | VAT Posting Setup, Partner, Artikel | Gutschrift/Korrektur |
+| Marge falsch | Preis, Kosten, Rabatt, Kostenlauf | Preis/Kostenlauf prüfen |
+| Lagerwert falsch | Value Entries, Kostenregulierung | Adjust Cost und Abstimmung |
+| GuV leer nach Dimension | Dimension, Filter, Analysis View | Dimension Correction/Update |
+| Zahlung gleicht nicht aus | Applies-to, Währung, Restbetrag | Unapply und neu ausgleichen |
+| User sieht Seite nicht | Profil, Berechtigung, Lizenz | Permission Set/Rolle |
+| Job Queue läuft nicht | Fehler, Benutzer, nächste Ausführung | Job korrigieren/neustarten |
+| Integration hängt | Queue, Token, Mapping | Monitoring/Support |
+| Analysis View ist alt | Aktualisierung | Analysis View Update |
+| Beleg ist gebucht | gebuchter Beleg nicht direkt ändern | Gutschrift/Storno/Korrektur |
+
+---
+
+## 44. MB-800- und Praxisfallen: Was ähnlich klingt, aber nicht gleich ist
+
+| Falle | Erklärung | Praxisbeispiel | MB-800-Relevanz | typische falsche Antwort | richtige Denkweise |
+|---|---|---|---|---|---|
+| Personalisieren vs. Anpassen vs. Design | persönlicher Arbeitsbereich, Profilanpassung, Entwickler-/Designänderung | Feld nur für einen Nutzer sichtbar | hoch | alles ist Customizing | Wirkungskreis unterscheiden |
+| Profile/Rollen vs. Berechtigungssätze | Oberfläche vs. Rechte | Nutzer sieht Seite, darf aber nicht buchen | hoch | Profil gibt Rechte | Rechte kommen aus Permission Sets |
+| Permission Sets vs. Security Groups vs. Security Filters | Rechtepaket, Gruppenzuweisung, Datenfilter | Nutzer darf nur bestimmte Daten sehen | hoch | Security Group filtert automatisch Daten | Filter gesondert prüfen |
+| Default vs. Global vs. Shortcut Dimensions | Vorgabe, Hauptachsen, Eingabefelder | GuV nach Produktlinie | hoch | alle Dimensionen sind gleich | Zweck unterscheiden |
+| Dimension Correction vs. Nebenbuchkorrektur | Sachpostendimension korrigieren | Reporting falsch | hoch | korrigiert alles | Nebenbücher prüfen |
+| General Posting Groups vs. VAT Posting Groups | Erlös/Aufwand vs. Steuer | Konto richtig, USt falsch | hoch | eine Matrix löst alles | beide Matrizen prüfen |
+| Customer Posting Group vs. General Business Posting Group | Forderungskonto vs. Marktlogik | falsches Forderungskonto | hoch | beide sind Debitorlogik | Nebenbuch vs. GuV trennen |
+| Inventory Posting Setup vs. General Posting Setup | Bestandkonto vs. Wareneinsatz/Erlös | Lagerwert falsch | hoch | eine Lagergruppe reicht | Wertfluss differenzieren |
+| Item Ledger vs. Value vs. G/L Entries | Menge, Wert, Hauptbuch | Bestand stimmt, Wert nicht | hoch | Artikelposten zeigen Wert vollständig | Postenarten kombinieren |
+| Customer Ledger vs. Detailed Customer Ledger | OP vs. Ausgleichsdetails | Teilzahlung | mittel | nur Customer Ledger prüfen | Detailed Entries ansehen |
+| Payment Journal vs. Cash Receipt Journal vs. Payment Registration | Zahlungsausgang, Zahlungseingang, vereinfachter Ausgleich | Kundenzahlung | hoch | jedes Journal ist gleich | Zahlungsrichtung prüfen |
+| Reverse Journal vs. Credit Memo vs. Correct Posted Invoice | Hauptbuchstorno, kaufmännische Gutschrift, Belegkorrektur | falsche Rechnung | hoch | Journalstorno für alles | Belegart entscheidet |
+| Deferrals vs. Recurring Journals | Periodenverteilung vs. Wiederholung | Versicherung vs. Miete | hoch | beides ist monatlich | Zweck prüfen |
+| Blanket Order vs. Quote vs. Order | Rahmen, Angebot, Auftrag | Jahresmenge | mittel | Rahmenauftrag ist Auftrag | Verbindlichkeit prüfen |
+| Receive vs. Invoice | Ware vs. Rechnung | Wareneingang offen | hoch | Empfang bucht Aufwand endgültig | Menge und Wert trennen |
+| Shipment reversal vs. Sales Credit Memo | Lieferstorno vs. Wertkorrektur | falsche Lieferung | hoch | Gutschrift korrigiert Lager immer | Warenbewegung prüfen |
+| Over-Receipt vs. Quantity Change | Mehrlieferung vs. Mengenänderung | Lieferant liefert mehr | mittel | Menge einfach erhöhen | Prozessregel prüfen |
+| Opening Balances vs. Migration Packages | Startsaldo vs. Importwerkzeug | Go-live | hoch | Package ist Saldo | Inhalt vs. Werkzeug |
+| Assisted Setup vs. Manual Setup | Assistent vs. direkte Einrichtung | neue Company | mittel | Assistent löst alles | Setup prüfen |
+| Report Layouts vs. Financial Reports | Beleglayout vs. Finanzanalyse | Rechnung vs. GuV | hoch | Layout ist Bericht | Ausgabe vs. Analyse |
+| Workflow Approval vs. Permission Restriction | Freigabeprozess vs. Recht | Bestellung > 5.000 EUR | hoch | Genehmigung ersetzt Recht | beides getrennt |
+| Extension vs. Configuration vs. Customizing | App, Setup, Individualänderung | Mietlösung | hoch | alles ist Custom | Upgradefähigkeit prüfen |
+| Company vs. Dimension | rechtlicher Mandant vs. Auswertungsachse | Standortanalyse | hoch | jeder Standort braucht Company | rechtliche Pflicht prüfen |
+| Testcompany vs. Sandbox Environment | Company im System vs. getrennte Umgebung | UAT | mittel | Testcompany schützt alles | Umgebung trennen |
+
+---
+
+## 45. Projektartefakte
+
+Dieses Kapitel liefert direkt nutzbare Templates.
+
+### 45.1 Fit-Gap-Matrix
+
+| Anforderung | Standard | Setup | Prozessdesign | Extension | Custom | Entscheidung | UAT |
+|---|---|---|---|---|---|---|---|
+|  | Ja/Nein |  |  |  |  |  |  |
+
+### 45.2 Prozessaufnahme-Template
+
+| Prozess | Rolle | Trigger | Eingabe | Aktion | Beleg | Posten | Bericht | Fehler | Nachweis |
+|---|---|---|---|---|---|---|---|---|---|
+
+### 45.3 Stammdaten-Template
+
+| Objekt | Pflichtfeld | Datenowner | Quelle | Validierung | Freigabe | Fehlerregel |
+|---|---|---|---|---|---|---|
+
+### 45.4 Migration-Mapping
+
+| Altfeld | BC-Feld | Tabelle/Seite | Transformation | Pflicht | Testfall | Freigabe |
+|---|---|---|---|---|---|---|
+
+### 45.5 UAT-Testfall-Template
+
+| Feld | Inhalt |
+|---|---|
+| ID |  |
+| Ziel |  |
+| Prozess |  |
+| Rolle |  |
+| Voraussetzung |  |
+| Testdaten |  |
+| Schrittfolge |  |
+| erwartete Belege |  |
+| erwartete Posten |  |
+| Kontrollbericht |  |
+| Negativfall |  |
+| Akzeptanzkriterium |  |
+| Evidence Pack |  |
+| Ergebnis |  |
+| Lösungshinweis |  |
+
+### 45.6 Rollen-/Berechtigungsmatrix
+
+| Rolle | Profil | Permission Sets | Companies | kritische Rechte | SoD-Konflikt | Review |
+|---|---|---|---|---|---|---|
+
+### 45.7 Security-/SoD-Matrix
+
+| Konflikt | Risiko | Rolle A | Rolle B | Kontrolle | Freigabe |
+|---|---|---|---|---|---|
+
+### 45.8 Change-Request-Template
+
+| CR-ID | Änderung | Grund | Risiko | Test | Freigabe | Rollback | Go-live |
+|---|---|---|---|---|---|---|---|
+
+### 45.9 Extension-Evaluierung
+
+| Extension | Prozess | Standardlücke | Hersteller | Test | Kosten | Risiko | Empfehlung |
+|---|---|---|---|---|---|---|---|
+
+### 45.10 Architecture Decision Record
+
+| Feld | Inhalt |
+|---|---|
+| Entscheidung |  |
+| Kontext |  |
+| Optionen | Standard / Extension / Custom / Prozessänderung |
+| Entscheidungskriterien |  |
+| UAT-Nachweis |  |
+| Betriebsfolge |  |
+| Verantwortlich |  |
+
+### 45.11 Checklisten
+
+| Checkliste | Kernpunkte |
+|---|---|
+| Go-live | Stammdaten, Salden, Rollen, Schnittstellen, UAT, Support |
+| Cutover | Freeze, Export, Import, Salden, Validierung, Freigabe |
+| Hypercare Issue Log | ID, Symptom, Ursache, Workaround, Fix, Owner |
+| Evidence Pack | Beleg, Posten, Bericht, Freigabe, Nachweis |
+| Release Wave | Release Notes, Testplan, Extensions, Rollen, Training |
+| Job Queue | Fehler, Laufzeit, Verantwortlicher, Neustart |
+| Monatsabschluss | OP, Bank, Lagerwert, USt, Anlagen, GuV |
+| USt-Abstimmung | VAT Entries, Sachkonten, UStVA, ZM, Nachweise |
+| Lagerwert | Item Ledger, Value Entries, Inventory Valuation, G/L |
+| Berechtigungsreview | Nutzer, Rollen, Permission Sets, SoD, SUPER |
+
+---
+
+## 46. Quellenverzeichnis
 
 - [Q1] Microsoft Learn: Business Central documentation: https://learn.microsoft.com/en-us/dynamics365/business-central/
 - [Q2] Microsoft Learn: Business functionality supported by Business Central: https://learn.microsoft.com/en-us/dynamics365/business-central/across-business-functionality
@@ -3344,3 +3969,7 @@ Merksatz:
 - [Q83] Microsoft Learn: How to work with a performance problem: https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/performance/performance-work-perf-problem
 - [Q84] Microsoft Learn: Work with recurring revenue in Business Central: https://learn.microsoft.com/en-us/dynamics365/business-central/finance-recurring-invoicing
 - [Q85] Microsoft Learn: Use allocation keys in general journals: https://learn.microsoft.com/en-us/dynamics365/business-central/ui-how-use-allocation-keys-general-journals
+- [Q86] Microsoft Learn: Study guide for Exam MB-800: Microsoft Dynamics 365 Business Central Functional Consultant: https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/mb-800
+- [Q87] Microsoft Learn: Microsoft Certified: Dynamics 365 Business Central Functional Consultant Associate: https://learn.microsoft.com/en-us/credentials/certifications/d365-business-central-functional-consultant-associate/
+- [Q88] Microsoft Learn: Get started with Microsoft Dynamics 365 Business Central: https://learn.microsoft.com/en-us/training/paths/get-started-dynamics-365-business-central/
+- [Q89] Microsoft Learn: Microsoft Dynamics 365 Business Central training: https://learn.microsoft.com/en-us/training/dynamics365/business-central
