@@ -43,7 +43,12 @@ Hinweis: Dieses Buch ist ein quellenbasiertes Lern-, Schulungs-, Projekt- und Im
 28. Vollständiger Bedien- und Prozesskatalog
 29. Vollständigkeitsprüfung: Was muss ein Leser nach dem Buch können?
 30. Deutsche BC-Oberfläche: Begriffe, Seiten und Suchlogik
-31. Quellenverzeichnis
+31. Dokumente, E-Mail, Beleglayouts und Ausgabeprozesse
+32. Genehmigungen, Kontrollen, SoD und Prozesssicherheit
+33. Datenqualität, Migration und Stammdaten-Governance
+34. Monitoring, Hypercare, Performance und Betrieb
+35. Wiederkehrende Finance-Prozesse, Abgrenzungen und Umlagen
+36. Quellenverzeichnis
 
 ---
 
@@ -2589,7 +2594,277 @@ Merksatz:
 
 ---
 
-## 31. Quellenverzeichnis
+## 31. Dokumente, E-Mail, Beleglayouts und Ausgabeprozesse [Q75][Q76][Q77][Q78]
+
+Ein Business-Central-Prozess endet für den Kunden, Lieferanten oder Prüfer oft nicht mit der Buchung. Er endet mit einem verständlichen, richtigen und nachweisbaren Dokument. Deshalb gehören E-Mail-Einrichtung, Beleglayouts, Berichtsauswahl und Versandprofile in jedes vollständige BC-Schulungsbuch.
+
+### 31.1 Warum das wichtig ist
+
+| Thema | Auswirkung |
+|---|---|
+| falsches Rechnungslayout | Kunde erhält unvollständige Pflichtangaben |
+| falsche Absenderadresse | Dokument wirkt unprofessionell oder landet im Spam |
+| falscher Bericht | falscher Belegtyp oder falsche Anlage |
+| kein Versandprofil | Mitarbeiter wählen jedes Mal manuell und uneinheitlich |
+| fehlgeschlagene E-Mail | Rechnung gilt intern als erledigt, kommt aber nicht an |
+
+Microsoft Learn beschreibt, dass Business Central Dokumente wie Verkaufs- und Einkaufsbelege direkt per E-Mail senden kann. Administratoren richten E-Mail-Konten und E-Mail-Szenarien ein; Dokumente können als PDF-Anhang gesendet werden. [Q75][Q77]
+
+### 31.2 Grundeinrichtung Dokumentversand
+
+Schrittfolge:
+1. Öffne `E-Mail-Konten (Email Accounts)`.
+2. Richte das zentrale Konto ein, z. B. `rechnung@rhein-main-industrie.de`.
+3. Öffne `E-Mail-Szenariozuordnungen (Email Scenario Assignment)`.
+4. Ordne Verkauf, Einkauf, Service und Mahnwesen passenden Absendern zu.
+5. Öffne `Berichtsauswahl - Verkauf (Report Selection - Sales)`.
+6. Prüfe, welcher Bericht für Angebot, Auftrag, Lieferung, Rechnung und Gutschrift verwendet wird.
+7. Öffne `Berichtslayouts (Report Layouts)`.
+8. Lege das gewünschte Standardlayout je Company fest.
+9. Prüfe Testversand an interne Adresse.
+10. Prüfe `Gesendete E-Mails (Sent Emails)` und `E-Mail-Ausgang (Email Outbox)`.
+
+BC-Best-Practice:
+- Jede Company bekommt eigene Beleglayouts mit korrektem Logo, Adresse, USt-ID, Bankdaten und Pflichttexten.
+- E-Mail-Szenarien werden zentral eingerichtet. Mitarbeiter sollen nicht frei entscheiden, ob Rechnungen von privaten Nutzeradressen versendet werden.
+
+### 31.3 Deutsche Belegausgabe-Matrix
+
+| Prozess | Deutsche Seite | Einrichtung | Prüfpunkte |
+|---|---|---|---|
+| Verkaufsrechnung senden | `Gebuchte Verkaufsrechnungen (Posted Sales Invoices)` | Berichtsauswahl Verkauf, E-Mail-Szenario | PDF, Empfänger, Betreff, Pflichtangaben |
+| Verkaufsangebot senden | `Verkaufsangebote (Sales Quotes)` | Berichtsauswahl Verkauf | Gültigkeit, Preis, Ansprechpartner |
+| Einkaufsbestellung senden | `Einkaufsbestellungen (Purchase Orders)` | Berichtsauswahl Einkauf | Lieferadresse, Liefertermin |
+| Servicebeleg senden | `Serviceaufträge (Service Orders)` | Berichtsauswahl Service | Serviceadresse, Gerät, Leistung |
+| Mahnung senden | `Mahnungen (Reminders)` | Mahnmethoden, Berichtsauswahl | Fälligkeit, Gebühren, Tonalität |
+
+Stolperstein:
+- Ein Berichtslayout kann je Company unterschiedlich sein. Ein Layouttest in `RM-SALES` beweist nicht automatisch, dass `RM-SERVICE` korrekt eingerichtet ist. [Q76]
+
+### 31.4 UAT-Test Dokumente
+
+1. Gebuchte Verkaufsrechnung öffnen.
+2. `Drucken/Senden` wählen.
+3. PDF prüfen.
+4. E-Mail-Text prüfen.
+5. Empfänger und Absender prüfen.
+6. Versand auslösen.
+7. `Gesendete E-Mails` prüfen.
+8. Fehlerfall mit ungültiger E-Mail-Adresse testen und `E-Mail-Ausgang` prüfen.
+
+Merksatz:
+- Ein gebuchter Beleg ist fachlich wichtig. Ein korrekt versendeter und nachweisbarer Beleg ist operativ entscheidend.
+
+---
+
+## 32. Genehmigungen, Kontrollen, SoD und Prozesssicherheit [Q5][Q79]
+
+Genehmigungen schützen Business Central vor unkontrollierten Stammdaten, Preisen, Bestellungen und Zahlungen. Sie ersetzen kein Vertrauen. Sie sorgen dafür, dass kritische Entscheidungen nachvollziehbar und prüfbar bleiben.
+
+### 32.1 Was genehmigt werden sollte
+
+| Objekt | Warum? | Beispielregel |
+|---|---|---|
+| neuer Debitor | Kreditrisiko, USt, Stammdatenqualität | Finance prüft vor erster Rechnung |
+| neuer Kreditor | Betrugsrisiko, Bankdaten | Vier-Augen-Prüfung der IBAN |
+| Einkaufsbestellung | Budget und Bedarf | ab `5.000 EUR` Genehmigung Einkaufsleitung |
+| Verkaufspreisänderung | Marge und Vertragsbindung | Freigabe durch Vertriebsleitung |
+| Zahlungslauf | Liquidität und Betrugsprävention | Finance-Leitung genehmigt |
+| USt-Setup | steuerliches Risiko | nur Steuerverantwortliche plus Admin |
+| Buchungsgruppe | Hauptbuchwirkung | Change Request zwingend |
+
+Microsoft Learn beschreibt Genehmigungsworkflows, mit denen Datensätze oder Dokumente zur Genehmigung gesendet, genehmigt oder abgelehnt werden können. [Q79]
+
+### 32.2 Schrittfolge Einkaufsbestellung genehmigen
+
+1. Admin öffnet `Workflows`.
+2. Workflow-Vorlage für Einkaufsbestellgenehmigung auswählen.
+3. Genehmigergruppe definieren.
+4. Betragsschwelle festlegen.
+5. Benachrichtigung/E-Mail prüfen.
+6. Workflow aktivieren.
+7. Einkäufer erstellt `Einkaufsbestellung (Purchase Order)`.
+8. Einkäufer wählt `Genehmigungsanforderung senden`.
+9. Genehmiger prüft Preis, Lieferant, Budget, Dimension.
+10. Genehmiger wählt `Genehmigen` oder `Ablehnen`.
+11. Nach Genehmigung wird Bestellung freigegeben.
+
+### 32.3 SoD-Matrix (Segregation of Duties)
+
+| Kombination | Risiko | Empfehlung |
+|---|---|---|
+| Kreditor anlegen + Zahlung freigeben | Zahlungsbetrug | trennen |
+| Bankdaten ändern + Zahlungslauf buchen | Manipulation | Vier-Augen-Prüfung |
+| USt-Setup ändern + UStVA melden | Steuerfehler | Steuerrolle trennen |
+| Preis ändern + Auftrag buchen | Margenmanipulation | Preisfreigabe |
+| Lagerbestand korrigieren + Inventur genehmigen | Bestandsverschleierung | Lagerleitung prüft |
+| Berechtigungen vergeben + operative Buchung | Adminmissbrauch | Adminrechte begrenzen |
+
+Merksatz:
+- Gute Berechtigungen verhindern nicht jede Fehlbuchung. Gute Berechtigungen verhindern, dass eine Person kritische Fehler allein erzeugen und verdecken kann.
+
+---
+
+## 33. Datenqualität, Migration und Stammdaten-Governance [Q69][Q80]
+
+Business Central ist nur so gut wie seine Stammdaten. Falsche Debitoren, Kreditoren, Artikel, Buchungsgruppen oder Dimensionen erzeugen falsche Buchungen, schlechte Berichte und unnötige Korrekturen.
+
+### 33.1 Stammdaten-Governance
+
+| Stammdatenobjekt | Data Owner | Pflichtprüfung |
+|---|---|---|
+| Debitor | Vertrieb + Finance | Adresse, USt-ID, Zahlungsbedingung, Buchungsgruppe |
+| Kreditor | Einkauf + Finance | Bankdaten, USt, Zahlungsbedingung, Buchungsgruppe |
+| Artikel | Stammdaten-Team | Einheit, Kostenmethode, Buchungsgruppen, Lagerlogik |
+| Sachkonto | Finance | Direktbuchung, Kategorie, Abschlusslogik |
+| Dimension | Controlling | Pflichtwert, erlaubte Werte, Berichtsnutzen |
+| Ressource | Projekt/Service | Kosten, Preis, Einheit |
+| Anlage | Finance | Anlagenbuchungsgruppe, AfA-Buch |
+
+### 33.2 Migrationslogik
+
+Microsoft Learn beschreibt Konfigurationspakete als Werkzeug, um Tabellen und Daten für Einrichtung und Migration zu nutzen. [Q80]
+
+Schrittfolge:
+1. Datenobjekte festlegen.
+2. Datenowner je Objekt benennen.
+3. Altbestand exportieren.
+4. Dubletten bereinigen.
+5. Pflichtfelder definieren.
+6. Buchungsgruppen und Dimensionen mappen.
+7. Testimport über `Konfigurationspakete (Configuration Packages)`.
+8. Fehlerliste bereinigen.
+9. Testbuchung mit migrierten Daten durchführen.
+10. Produktivimport freigeben.
+
+Stolpersteine:
+
+| Fehler | Wirkung | Lösung |
+|---|---|---|
+| Debitor ohne USt-Logik | falsche Rechnung | Pflichtfeldprüfung |
+| Artikel ohne Kostenmethode | falsche Lagerbewertung | Artikelvorlagen |
+| Dimensionen nicht gemappt | Reporting leer | Migrationsmapping |
+| alte Dubletten übernommen | OP und Auswertungen unsauber | Dublettenbereinigung |
+| Bankdaten ungeprüft | Zahlungsrisiko | Vier-Augen-Freigabe |
+
+Merksatz:
+- Migration ist kein technischer Import. Migration ist fachliche Datenqualität mit technischem Werkzeug.
+
+---
+
+## 34. Monitoring, Hypercare, Performance und Betrieb [Q32][Q69][Q81][Q82][Q83]
+
+Nach dem Go-Live beginnt die eigentliche Bewährungsprobe. Business Central muss überwacht, erklärt, korrigiert und stabilisiert werden. Hypercare ist die Phase, in der kleine Fehler noch schnell sichtbar werden, bevor sie Monatsabschluss oder Tagesgeschäft gefährden.
+
+### 34.1 Hypercare-Plan
+
+| Zeitraum | Fokus | tägliche Fragen |
+|---|---|---|
+| Woche 1 | Buchungen möglich? | Können Verkauf, Einkauf, Lager, Finance buchen? |
+| Woche 2 | Fehlerhäufung | Wo entstehen die meisten Tickets? |
+| Woche 3 | Reporting | Stimmen OP, Lagerwert, GuV, USt? |
+| Woche 4 | Stabilisierung | Welche Workarounds müssen in echte Prozesse überführt werden? |
+| Monat 2 | Optimierung | Welche Rollen, Felder, Filter, Berichte fehlen? |
+
+### 34.2 Monitoring-Matrix
+
+| Objekt | Deutsche Seite | Was prüfen? |
+|---|---|---|
+| Aufgabenwarteschlange | `Aufgabenwarteschlangenposten (Job Queue Entries)` | Fehler, letzte Ausführung, nächste Ausführung |
+| E-Mail | `E-Mail-Ausgang (Email Outbox)` | fehlgeschlagene Sendungen |
+| Änderungsprotokoll | `Änderungsprotokollposten (Change Log Entries)` | kritische Setupänderungen |
+| Workflows | `Workflows`, `Genehmigungsanforderungen` | hängende Freigaben |
+| Benutzer | `Benutzer (Users)` | falsche Rollen/Rechte |
+| Telemetrie | Application Insights / Power BI Apps | Fehler, Nutzung, Performance |
+
+Microsoft Learn beschreibt Telemetrie als Möglichkeit, Aktivitäten und Zustand von Umgebungen und Apps zu analysieren. [Q81]
+
+### 34.3 Performance und Support
+
+Microsoft Learn empfiehlt für Performanceprobleme, Telemetrie und Application Insights zu nutzen, um Ursachen systematisch zu untersuchen. [Q83]
+
+Prüfpfad:
+1. Problem konkretisieren: Seite, Nutzer, Uhrzeit, Company, Aktion.
+2. Prüfen, ob alle Nutzer betroffen sind.
+3. Prüfen, ob Job Queue oder Integration parallel läuft.
+4. Telemetrie prüfen.
+5. Browser/Client/Netzwerk ausschließen.
+6. Extension-Verdacht prüfen.
+7. Microsoft/Partner-Support mit Belegpaket einbinden.
+
+Evidence Pack Support:
+- Screenshot der Fehlermeldung.
+- Uhrzeit mit Zeitzone.
+- Benutzer und Company.
+- betroffene Seite.
+- Reproduktionsschritte.
+- letzte Setup-/Extension-Änderung.
+- Telemetriehinweis.
+
+Merksatz:
+- „BC ist langsam“ ist kein Fehlerbild. Ein gutes Fehlerbild nennt Seite, Aktion, Uhrzeit, Nutzer, Company und Wiederholbarkeit.
+
+---
+
+## 35. Wiederkehrende Finance-Prozesse, Abgrenzungen und Umlagen [Q25][Q84][Q85]
+
+Viele Finance-Prozesse wiederholen sich: Mieten, Wartungen, Versicherungen, Umlagen, Abgrenzungen, wiederkehrende Journale und periodische Rechnungen. Wer diese Prozesse manuell pflegt, erzeugt vermeidbare Fehler.
+
+### 35.1 Wiederkehrende Buchungen
+
+Business Central unterstützt wiederkehrende Journale und Umlageschlüssel. Umlageschlüssel können verwendet werden, um Beträge in wiederkehrenden Fibu Buch.-Blättern zu verteilen. [Q85]
+
+Use Case:
+- RM-SHARED zahlt Büromiete `30.000 EUR` und verteilt sie nach Fläche auf drei Standorte.
+
+| Standort | Anteil | Betrag |
+|---|---:|---:|
+| Frankfurt | 50 % | 15.000 |
+| Mainz | 30 % | 9.000 |
+| Darmstadt | 20 % | 6.000 |
+
+Schrittfolge:
+1. Öffne `Wiederkehrende Fibu Buch.-Blätter (Recurring General Journals)`.
+2. Lege Buchungszeile für Mietaufwand an.
+3. Definiere Wiederholungsmethode und Intervall.
+4. Hinterlege Dimension `LOCATION-GROUP`.
+5. Richte Umlageschlüssel ein.
+6. Prüfe Buchungsvorschau.
+7. Buche und prüfe Sachposten.
+
+### 35.2 Abgrenzungen
+
+Microsoft Learn beschreibt Abgrenzungen als Funktion, um Erlöse und Aufwendungen über Perioden zu verteilen. [Q25]
+
+Beispiel:
+- Versicherung `12.000 EUR` für `12` Monate wird im Januar bezahlt.
+- Monatlicher Aufwand: `1.000 EUR`.
+
+BC-Best-Practice:
+- Wiederkehrende Kosten und Abgrenzungen werden nicht über Excel „nach Gefühl“ gebucht.
+- Finance definiert Vorlagen, Perioden, Dimensionen und Kontrollbericht.
+
+### 35.3 Wiederkehrende Erlöse
+
+Microsoft Learn beschreibt wiederkehrende Erlöse in Business Central, unter anderem für periodische Abrechnungsszenarien. [Q84]
+
+Use Case:
+- RM-SERVICE berechnet monatlich Wartungspauschalen.
+
+Prüfpunkte:
+- Vertragsdaten vollständig?
+- Leistungszeitraum korrekt?
+- USt-Logik korrekt?
+- Abgrenzung nötig?
+- Rechnungslauf kontrolliert?
+- Debitorenposten und Erlöskonto geprüft?
+
+Merksatz:
+- Wiederholung ist kein Grund für weniger Kontrolle. Wiederholung ist ein Grund für bessere Vorlagen.
+
+---
+
+## 36. Quellenverzeichnis
 
 - [Q1] Microsoft Learn: Business Central documentation: https://learn.microsoft.com/en-us/dynamics365/business-central/
 - [Q2] Microsoft Learn: Business functionality supported by Business Central: https://learn.microsoft.com/en-us/dynamics365/business-central/across-business-functionality
@@ -2665,3 +2940,14 @@ Merksatz:
 - [Q72] Microsoft Learn: Special permission sets: https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/administration/administration-special-permission-sets
 - [Q73] Microsoft Learn: Make drop shipments: https://learn.microsoft.com/en-us/dynamics365/business-central/sales-how-drop-shipment
 - [Q74] Microsoft Learn: Validate VAT registration numbers: https://learn.microsoft.com/en-gb/dynamics365/business-central/finance-how-validate-vat-registration-number
+- [Q75] Microsoft Learn: Set up email: https://learn.microsoft.com/en-us/dynamics365/business-central/admin-how-setup-email
+- [Q76] Microsoft Learn: Set the layout used by a report: https://learn.microsoft.com/en-us/dynamics365/business-central/ui-set-report-layout
+- [Q77] Microsoft Learn: Send documents and emails: https://learn.microsoft.com/en-us/dynamics365/business-central/ui-how-send-documents-email
+- [Q78] Microsoft Learn: Report selection for documents in Business Central: https://learn.microsoft.com/en-us/dynamics365/business-central/across-report-selections
+- [Q79] Microsoft Learn: Approve or reject documents in workflows: https://learn.microsoft.com/en-us/dynamics365/business-central/across-how-use-approval-workflows
+- [Q80] Microsoft Learn: Use Excel to import data with configuration packages: https://learn.microsoft.com/en-ca/dynamics365/business-central/across-import-data-configuration-packages
+- [Q81] Microsoft Learn: Monitoring and analyzing telemetry: https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/administration/telemetry-overview
+- [Q82] Microsoft Learn: Analyze job queue lifecycle trace telemetry: https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/administration/telemetry-job-queue-lifecycle-trace
+- [Q83] Microsoft Learn: How to work with a performance problem: https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/performance/performance-work-perf-problem
+- [Q84] Microsoft Learn: Work with recurring revenue in Business Central: https://learn.microsoft.com/en-us/dynamics365/business-central/finance-recurring-invoicing
+- [Q85] Microsoft Learn: Use allocation keys in general journals: https://learn.microsoft.com/en-us/dynamics365/business-central/ui-how-use-allocation-keys-general-journals
