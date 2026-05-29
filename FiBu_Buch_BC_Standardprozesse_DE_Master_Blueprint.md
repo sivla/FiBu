@@ -1468,25 +1468,49 @@ BC-Best-Practice:
 - Onlineshop-Aufträge laufen durch eine tägliche Fehlerliste: unbekannte Artikel, fehlende Kunden, Zahlungsabweichungen.
 
 Schulungsübung:
-- Erstelle `SO-1003` als Dropshipment für Debitor `D10000` und Kreditor `K20000`. Verknüpfe Verkaufs- und Einkaufsbeleg. Prüfe, warum kein eigener Lagerbestand entsteht.
+
+| Feld | Inhalt |
+|---|---|
+| Rolle | Vertrieb, Lager, Debitorenbuchhaltung |
+| Alltagssituation | Debitor `D10000` bestellt Maschine `RM-M100`; RM-SALES liefert aus `FRA-ZL` und fakturiert sofort. |
+| Konkrete Testdaten | `SO-1001`, `D10000`, Artikel `RM-M100`, Menge `1`, Preis `68.000 EUR`, USt `19 %`, Dimension `PRODUCTLINE = MACHINE` |
+| Startseite über `Alt+Q` | `Verkaufsaufträge (Sales Orders)` |
+| Exakte Felder und Werte | `Debitorennr. = D10000`, `Art = Artikel`, `Nr. = RM-M100`, `Menge = 1`, `Lagerortcode = FRA-ZL`, `PRODUCTLINE = MACHINE` |
+| Auszuführende Aktion | `Buchungsvorschau (Preview Posting)`, `Freigeben (Release)`, `Buchen`, `Liefern und fakturieren (Ship and Invoice)` |
+| Erwartete Belege | Verkaufsauftrag, gebuchte Verkaufslieferung, gebuchte Verkaufsrechnung |
+| Erwartete Posten | Debitorenposten, Sachposten, USt-Posten, Artikelposten, Wertposten |
+| Kontrollbericht | `Finanzberichte (Financial Reports)`, `Lagerbewertung (Inventory Valuation)` |
+| Fehlerfrage | Was passiert, wenn versehentlich `Lagerortcode = MZ-EINFACH` gebucht wird? |
+
+Lösungsskizze:
+1. Öffne `Verkaufsaufträge (Sales Orders)` über `Alt+Q`.
+2. Wähle `Neu` und erfasse `Debitorennr. = D10000`.
+3. Erfasse die Zeile `Art = Artikel`, `Nr. = RM-M100`, `Menge = 1`, `Lagerortcode = FRA-ZL`.
+4. Prüfe Preis `68.000 EUR`, USt-Gruppen und Dimension `PRODUCTLINE = MACHINE`.
+5. Wähle `Buchungsvorschau (Preview Posting)` und prüfe Forderung, Erlös, USt, Lagerabgang und Wareneinsatz.
+6. Wähle `Freigeben (Release)`, anschließend `Buchen` und `Liefern und fakturieren (Ship and Invoice)`.
+7. Öffne `Gebuchte Verkaufsrechnungen (Posted Sales Invoices)` und die Belegnummer.
+8. Prüfe `Debitorenposten (Customer Ledger Entries)`, `Sachposten (G/L Entries)`, `USt-Posten (VAT Entries)`, `Artikelposten (Item Ledger Entries)` und `Wertposten (Value Entries)`.
+9. Öffne `Finanzberichte (Financial Reports)` und prüfe Erlös und Wareneinsatz mit Dimension `PRODUCTLINE = MACHINE`.
 
 UAT-Fall:
 
 | Feld | Inhalt |
 |---|---|
 | ID | `UAT-O2C-001` |
-| Ziel | Standardmaschine Ende-zu-Ende verkaufen |
 | Rolle | Vertrieb, Lager, Debitorenbuchhaltung |
-| Voraussetzung | Debitor `D10000`, Artikel `RM-M100`, Lagerort `FRA-ZL`, gültige USt- und Buchungsgruppen |
-| Testdaten | Menge `1`, Verkaufspreis `68.000 EUR`, Dimension `PRODUCTLINE = MACHINE` |
-| Schrittfolge | Angebot optional erstellen, Verkaufsauftrag erfassen, Buchungsvorschau prüfen, liefern und fakturieren, Posten prüfen |
+| Testdaten | `D10000`, `RM-M100`, Menge `1`, Preis `68.000 EUR`, Lagerort `FRA-ZL` |
+| Exakte Schrittfolge | 1. `Verkaufsaufträge (Sales Orders)` öffnen.<br>2. Auftrag mit `D10000` und `RM-M100` erfassen.<br>3. `Buchungsvorschau (Preview Posting)` prüfen.<br>4. `Freigeben (Release)` wählen.<br>5. `Buchen` → `Liefern und fakturieren (Ship and Invoice)` wählen.<br>6. Gebuchte Rechnung und Posten öffnen.<br>7. Finanzbericht und Lagerbewertung prüfen. |
 | Erwartete Belege | Verkaufsauftrag, gebuchte Verkaufslieferung, gebuchte Verkaufsrechnung |
 | Erwartete Posten | Debitorenposten, Sachposten, USt-Posten, Artikelposten, Wertposten |
 | Kontrollbericht | `Finanzberichte (Financial Reports)`, `Lagerbewertung (Inventory Valuation)` |
-| Negativfall | falscher Lagerort oder falsche USt-Gruppe |
-| Akzeptanzkriterium | Forderung, Erlös, USt, Lagerabgang, Kostenabgang und Dimension stimmen |
-| Evidence Pack | Belegnummern, Postenexport, Buchungsvorschau, Berichtsexport, Testergebnis |
-| Lösungshinweis | Fehler werden über Gutschrift/Neubuchung oder fachlich freigegebene Korrektur gebucht, nicht durch manuelle Postenänderung |
+| Akzeptanzkriterium | Forderung `80.920 EUR`, Erlös `68.000 EUR`, USt `12.920 EUR`, Lagerabgang und Wareneinsatz sind nachweisbar. |
+| Evidence Pack | Auftrag, gebuchte Rechnung, Postenfilter, Buchungsvorschau, Finanzbericht, Lagerbewertung |
+| Absichtlich falsche Eingabe | `Lagerortcode = MZ-EINFACH` statt `FRA-ZL` |
+| Erwartetes Fehlverhalten | Lagerabgang erfolgt aus falschem Lagerort. |
+| Diagnosepfad | Gebuchte Verkaufsrechnung → `Artikelposten (Item Ledger Entries)` → Feld `Lagerortcode`. |
+| Erlaubter Korrekturweg | Gutschrift/Neubuchung oder fachlich freigegebene Lagerkorrektur mit Evidence Pack. |
+| Nicht erlaubt | Gebuchte Artikelposten löschen oder Lagerwert im Bericht manuell überschreiben. |
 
 ### In 5 Minuten merken
 
@@ -1614,15 +1638,49 @@ BC-Best-Practice:
 - Mengen- und Preisabweichungen erhalten eigene Freigaberegeln.
 
 Schulungsübung:
-- Buche eine Bestellung mit Teil-Wareneingang 6/10 Stück. Buche anschließend eine Rechnung über 10 Stück und erkläre den Fehler.
+
+| Feld | Inhalt |
+|---|---|
+| Rolle | Einkauf, Lager, Kreditorenbuchhaltung |
+| Alltagssituation | RM-PROD bestellt `RAW-STEEL` bei `K10000`; nur 6 von 10 Stück treffen ein, die Rechnung lautet aber auf 10 Stück. |
+| Konkrete Testdaten | `PO-2001`, Kreditor `K10000`, Artikel `RAW-STEEL`, Bestellmenge `10`, Wareneingang `6`, Lagerort `FRA-ZL` |
+| Startseite über `Alt+Q` | `Einkaufsbestellungen (Purchase Orders)` |
+| Exakte Felder und Werte | `Kreditorennr. = K10000`, `Art = Artikel`, `Nr. = RAW-STEEL`, `Menge = 10`, `Zu empfangen = 6`, `Lagerortcode = FRA-ZL` |
+| Auszuführende Aktion | `Buchen` → `Empfangen`, danach Eingangsrechnung über `10` testen und korrigieren |
+| Erwartete Belege | Einkaufsbestellung, gebuchte Einkaufslieferung über `6`, gebuchte Einkaufsrechnung über zulässige Menge |
+| Erwartete Posten | Artikelposten, Wertposten, Kreditorenposten, Sachposten, USt-Posten |
+| Kontrollbericht | `Gebuchte Einkaufslieferungen (Posted Purchase Receipts)`, `Kreditorenposten (Vendor Ledger Entries)`, `Lagerbewertung (Inventory Valuation)` |
+| Fehlerfrage | Warum darf Finance nicht einfach die Rechnung über `10` buchen, wenn nur `6` empfangen wurden? |
 
 Lösungsskizze:
-1. Öffne `Einkaufsbestellungen (Purchase Orders)` und erfasse Bestellung `PO-2001` mit `K10000`, `RAW-STEEL`, Menge `10`.
-2. Buche im Feld `Zu empfangen` nur `6` und wähle `Buchen` → `Empfangen`.
-3. Öffne `Artikelposten (Item Ledger Entries)` und prüfe den Zugang von `6` Stück.
-4. Erfasse die Eingangsrechnung über `10` Stück und starte `Buchungsvorschau (Preview Posting)`.
-5. Die Differenz zeigt, dass empfangene und fakturierte Menge nicht zusammenpassen. Korrigiere die Rechnungsmenge auf `6` oder buche den restlichen Wareneingang nach, wenn die Ware tatsächlich eingetroffen ist.
-6. Prüfe danach `Kreditorenposten`, `Sachposten`, `Artikelposten`, `Wertposten` und `USt-Posten`.
+1. Öffne `Einkaufsbestellungen (Purchase Orders)` über `Alt+Q`.
+2. Erfasse Bestellung `PO-2001` mit `Kreditorennr. = K10000`.
+3. Erfasse Zeile `Art = Artikel`, `Nr. = RAW-STEEL`, `Menge = 10`, `Lagerortcode = FRA-ZL`.
+4. Setze `Zu empfangen = 6` und wähle `Buchen` → `Empfangen`.
+5. Öffne `Artikelposten (Item Ledger Entries)` und prüfe Zugang `6` für `RAW-STEEL`.
+6. Öffne die Bestellung erneut und versuche, eine Eingangsrechnung über `10` zu buchen.
+7. Prüfe die Mengenfelder `Empfangene Menge (Qty. Received)` und `Fakturierte Menge (Qty. Invoiced)`.
+8. Korrigiere die Rechnungsmenge auf `6` oder buche den Restwareneingang, wenn die Ware tatsächlich eingetroffen ist.
+9. Prüfe `Kreditorenposten (Vendor Ledger Entries)`, `Sachposten (G/L Entries)`, `USt-Posten (VAT Entries)` und `Wertposten (Value Entries)`.
+
+UAT-Fall:
+
+| Feld | Inhalt |
+|---|---|
+| ID | `UAT-P2P-001` |
+| Rolle | Einkauf, Lager, Kreditorenbuchhaltung |
+| Testdaten | `PO-2001`, `K10000`, `RAW-STEEL`, Menge `10`, Wareneingang `6`, Lagerort `FRA-ZL` |
+| Exakte Schrittfolge | 1. `Einkaufsbestellungen (Purchase Orders)` öffnen.<br>2. Bestellung mit `K10000` und `RAW-STEEL` erfassen.<br>3. `Zu empfangen = 6` buchen.<br>4. `Artikelposten (Item Ledger Entries)` prüfen.<br>5. Eingangsrechnung über `10` testen.<br>6. Fehler über Mengenfelder diagnostizieren.<br>7. Rechnung auf `6` korrigieren oder Rest-WE buchen.<br>8. Kreditoren-, Sach-, USt- und Wertposten prüfen. |
+| Erwartete Belege | Einkaufsbestellung, gebuchte Einkaufslieferung, gebuchte Einkaufsrechnung |
+| Erwartete Posten | Kreditorenposten, Sachposten, USt-Posten, Artikelposten, Wertposten |
+| Kontrollbericht | `Gebuchte Einkaufslieferungen (Posted Purchase Receipts)`, `Kreditorenposten (Vendor Ledger Entries)`, `Lagerbewertung (Inventory Valuation)` |
+| Akzeptanzkriterium | Nur empfangene Ware wird fakturiert oder der Restwareneingang ist vor der Rechnung sauber gebucht. |
+| Evidence Pack | Bestellung, Wareneingang, Eingangsrechnung, Postenfilter, Fehlerdiagnose, Korrekturentscheidung |
+| Absichtlich falsche Eingabe | Rechnung über `10` buchen, obwohl nur `6` empfangen wurden. |
+| Erwartetes Fehlverhalten | Mengenabgleich zeigt Abweichung; Verbindlichkeit und Lagerwert wären sonst zu hoch. |
+| Diagnosepfad | Einkaufsbestellung → Zeilenfelder `Empfangene Menge` / `Fakturierte Menge` → gebuchte Einkaufslieferung. |
+| Erlaubter Korrekturweg | Rechnungsmenge auf `6` reduzieren oder fehlenden Wareneingang buchen, wenn Ware physisch da ist. |
+| Nicht erlaubt | Rechnung über `10` freigeben, nur damit der Kreditor bezahlt werden kann. |
 
 ### In 5 Minuten merken
 
@@ -1766,44 +1824,46 @@ Korrigiere Lagerfehler nicht durch manuelles Löschen von Posten. Vor der Buchun
 
 | Feld | Inhalt |
 |---|---|
-| Rolle | Lagerist und Finance |
-| Ausgangssituation | Rohmaterial wird einmal im einfachen Lager und einmal im gesteuerten Lager empfangen. |
-| Testdaten | `PO-2001`, `PO-2002`, Artikel `RAW-STEEL`, Menge `1.000 KG`, Lagerorte `MZ-EINFACH` und `FRA-ZL` |
-| Startseite über `Alt+Q` | `Einkaufsbestellungen (Purchase Orders)` und `Lagereingänge (Warehouse Receipts)` |
-| Felder und Werte | `Lagerortcode`, `Menge`, `Einheitencode`, `Direkte Kosten`, `LOCATION-GROUP` |
-| Aktion | `Empfangen`, `Wareneingang buchen (Post Receipt)`, `Einlagerung registrieren (Register Put-away)` |
-| Erwartete Belege | gebuchter Wareneingang, Einlagerungsnachweis |
-| Erwartete Posten | `Artikelposten (Item Ledger Entries)`, `Wertposten (Value Entries)` |
-| Kontrollbericht | `Lagerbewertung (Inventory Valuation)` |
-| Fehlerfrage | Warum reicht im gesteuerten Lager der gebuchte Wareneingang allein nicht? |
+| Rolle | Lagerist einfaches Lager, Lagerist gesteuertes Lager, Finance |
+| Alltagssituation | Rohmaterial wird einmal im einfachen Lager `MZ-EINFACH` und einmal im gesteuerten Lager `FRA-ZL` empfangen. |
+| Konkrete Testdaten | `PO-2001`, `PO-2002`, Kreditor `K10000`, Artikel `RAW-STEEL`, Menge `1.000 KG`, Lagerorte `MZ-EINFACH` und `FRA-ZL`, Lagerplätze `REC-01`, `RAW-01` |
+| Startseite über `Alt+Q` | `Einkaufsbestellungen (Purchase Orders)`, `Lagereingänge (Warehouse Receipts)` |
+| Exakte Felder und Werte | `Kreditorennr. = K10000`, `Art = Artikel`, `Nr. = RAW-STEEL`, `Menge = 1.000`, `Lagerortcode = MZ-EINFACH/FRA-ZL`, `LOCATION-GROUP = SIMPLE/DIRECTED` |
+| Auszuführende Aktion | `Empfangen`, `Quelldokumente holen (Get Source Documents)`, `Wareneingang buchen (Post Receipt)`, `Einlagerung registrieren (Register Put-away)` |
+| Erwartete Belege | gebuchte Einkaufslieferung, Lagereingang, registrierte Einlagerung |
+| Erwartete Posten | `Artikelposten (Item Ledger Entries)`, `Wertposten (Value Entries)`, nach Kostenbuchung `Sachposten (G/L Entries)` |
+| Kontrollbericht | `Lagerbewertung (Inventory Valuation)`, `Lagerplatzinhalt (Bin Contents)` |
+| Fehlerfrage | Warum zeigt `FRA-ZL` trotz gebuchtem Wareneingang keine verfügbare Ware am richtigen Lagerplatz? |
 
 ### Lösung
 
-Der Wareneingang bestätigt die Annahme. Erst die registrierte Einlagerung zeigt, dass die Ware am richtigen Lagerplatz liegt.
-
-1. Öffne die Startseite über `Alt+Q`.
-2. Erfasse die Testdaten aus der Übung.
-3. Prüfe Pflichtfelder, Buchungsgruppen und Dimensionen.
-4. Führe die Aktion aus.
-5. Öffne die erwarteten Posten.
-6. Öffne den Kontrollbericht.
-7. Dokumentiere das Evidence Pack.
+1. Öffne `Einkaufsbestellungen (Purchase Orders)` und öffne `PO-2001`.
+2. Prüfe `Kreditorennr. = K10000`, Zeile `RAW-STEEL`, `Menge = 1.000`, `Lagerortcode = MZ-EINFACH`.
+3. Wähle `Buchen` und `Empfangen`.
+4. Öffne `Artikelposten (Item Ledger Entries)` und filtere `Artikelnr. = RAW-STEEL`, `Lagerortcode = MZ-EINFACH`.
+5. Öffne `Wertposten (Value Entries)` und prüfe den Zugangswert.
+6. Öffne `Lagereingänge (Warehouse Receipts)`, wähle `Quelldokumente holen (Get Source Documents)` und hole `PO-2002`.
+7. Prüfe `Lagerortcode = FRA-ZL`, buche `Wareneingang buchen (Post Receipt)` und öffne danach `Lagereinlagerungen (Warehouse Put-aways)`.
+8. Prüfe `Von Lagerplatz = REC-01`, `Nach Lagerplatz = RAW-01`, wähle `Einlagerung registrieren (Register Put-away)` und kontrolliere `Lagerplatzinhalt (Bin Contents)`.
 
 ### UAT-Fall
 
 | Feld | Inhalt |
 |---|---|
 | ID | `UAT-INV-WH-001` |
-| Rolle | Lagerist, Finance |
-| Testdaten | `PO-2001`, `PO-2002`, Artikel `RAW-STEEL`, Menge `1.000 KG`, Lagerorte `MZ-EINFACH` und `FRA-ZL` |
-| Exakte Schrittfolge | Startseite über `Alt+Q` öffnen, Testdaten erfassen, Pflichtfelder prüfen, Aktion ausführen, Posten filtern, Kontrollbericht öffnen, Evidence Pack speichern |
-| Erwartete Belege | gebuchter Wareneingang, Einlagerungsnachweis |
-| Erwartete Posten | `Artikelposten (Item Ledger Entries)`, `Wertposten (Value Entries)` |
-| Kontrollbericht | `Lagerbewertung (Inventory Valuation)` |
-| Akzeptanzkriterium | Beleg, Posten, Kontrollbericht und Evidence Pack zeigen denselben Vorgang vollständig und widerspruchsfrei. |
-| Evidence Pack | Belegnummer, gebuchter Beleg, Postenfilter, Berichtsexport, Fehlerdiagnose und Testergebnis |
-| Negativtest | Wareneingang in `FRA-ZL` buchen, aber Einlagerung nicht registrieren. |
-| Erwartete Korrektur | `Lagereinlagerungen (Warehouse Put-aways)` öffnen, Lagerplatz prüfen, Einlagerung registrieren und `Lagerplatzinhalt (Bin Contents)` abstimmen. |
+| Rolle | Lagerist einfaches Lager, Lagerist gesteuertes Lager, Finance |
+| Testdaten | `PO-2001`, `PO-2002`, Kreditor `K10000`, Artikel `RAW-STEEL`, Menge `1.000 KG`, Lagerorte `MZ-EINFACH` und `FRA-ZL`, Lagerplätze `REC-01`, `RAW-01` |
+| Exakte Schrittfolge | 1. Öffne `Einkaufsbestellungen (Purchase Orders)` und buche `PO-2001` mit `Lagerortcode = MZ-EINFACH` als Wareneingang.<br>2. Prüfe `Artikelposten (Item Ledger Entries)` und `Wertposten (Value Entries)` für `RAW-STEEL`.<br>3. Öffne `Lagereingänge (Warehouse Receipts)` und hole `PO-2002` über `Quelldokumente holen (Get Source Documents)`.<br>4. Buche `Wareneingang buchen (Post Receipt)`.<br>5. Öffne `Lagereinlagerungen (Warehouse Put-aways)` und registriere die Einlagerung nach `RAW-01`.<br>6. Öffne `Lagerbewertung (Inventory Valuation)` und `Lagerplatzinhalt (Bin Contents)` und vergleiche Menge, Wert und Lagerplatz. |
+| Erwartete Belege | gebuchte Einkaufslieferung, Lagereingang, registrierte Einlagerung |
+| Erwartete Posten | `Artikelposten (Item Ledger Entries)`, `Wertposten (Value Entries)`, nach Kostenbuchung `Sachposten (G/L Entries)` |
+| Kontrollbericht | `Lagerbewertung (Inventory Valuation)`, `Lagerplatzinhalt (Bin Contents)` |
+| Akzeptanzkriterium | Beleg, gebuchter Beleg oder Prozesslauf, Posten und Kontrollbericht zeigen denselben Vorgang mit identischem Betrag, Datum, Menge und Dimension. |
+| Evidence Pack | Ausgangsbeleg, gebuchter Beleg, Postenfilter, Berichtsexport, Negativtest, Korrekturbeleg und Testergebnis |
+| Absichtlich falsche Eingabe | `FRA-ZL`-Wareneingang buchen, aber Einlagerung nicht registrieren. |
+| Erwartetes Fehlverhalten | Artikelposten zeigt Zugang, aber `Lagerplatzinhalt (Bin Contents)` zeigt keine verfügbare Menge am Zielplatz. |
+| Diagnosepfad | `Lagereinlagerungen (Warehouse Put-aways)` öffnen und offene Aktivität zur Belegnummer suchen. |
+| Erlaubter Korrekturweg | Einlagerung registrieren und Lagerplatzinhalt erneut prüfen. |
+| Nicht erlaubt | Bestand manuell auf `RAW-01` erhöhen, ohne die offene Lageraktivität zu schließen. |
 
 ### In 5 Minuten merken
 
@@ -1941,28 +2001,27 @@ Nach einer falschen Fertigungsbuchung wird nicht am Posten gearbeitet. Korrigier
 
 | Feld | Inhalt |
 |---|---|
-| Rolle | Produktionsplanerin und Meister |
-| Ausgangssituation | Drei Maschinen `RM-M100` werden für Kundenaufträge produziert. |
-| Testdaten | `PROD-3001`, `RM-M100`, Menge `3`, Material `RAW-STEEL`, Lagerort `FRA-ZL` |
-| Startseite über `Alt+Q` | `Planungsarbeitsblatt (Planning Worksheet)` |
-| Felder und Werte | `Artikel`, `Menge`, `Lagerortcode`, `Fälligkeitsdatum`, Komponentenmenge |
-| Aktion | Planung berechnen, Fertigungsauftrag erzeugen, Verbrauch buchen, Output buchen |
-| Erwartete Belege | Fertigungsauftrag, Verbrauchsbuchung, Outputbuchung |
-| Erwartete Posten | `Artikelposten (Item Ledger Entries)`, `Wertposten (Value Entries)`, Kapazitätsposten |
-| Kontrollbericht | `Fertigungsauftragsstatistik (Production Order Statistics)` |
-| Fehlerfrage | Warum reicht ein fertiger Output ohne Verbrauchsbuchung nicht? |
+| Rolle | Produktionsplanerin, Meister, Controller |
+| Alltagssituation | RM-PROD produziert drei Maschinen `RM-M100` aus Material `RAW-STEEL`. |
+| Konkrete Testdaten | `PROD-3001`, Artikel `RM-M100`, Menge `3`, Lagerort `FRA-ZL`, Material `RAW-STEEL` |
+| Startseite über `Alt+Q` | `Planungsarbeitsblatt (Planning Worksheet)`, `Freigegebene Fertigungsaufträge (Released Production Orders)` |
+| Exakte Felder und Werte | `Artikelnr. = RM-M100`, `Menge = 3`, `Lagerortcode = FRA-ZL`, `Fälligkeitsdatum = 30.06.2026`, Komponente `RAW-STEEL` |
+| Auszuführende Aktion | Plan berechnen, Fertigungsauftrag erzeugen, Verbrauch buchen, Output buchen |
+| Erwartete Belege | freigegebener Fertigungsauftrag, Verbrauchsbuchung, Outputbuchung |
+| Erwartete Posten | `Artikelposten (Item Ledger Entries)`, `Wertposten (Value Entries)`, Kapazitätsposten, nach Kostenbuchung `Sachposten (G/L Entries)` |
+| Kontrollbericht | `Fertigungsauftragsstatistik (Production Order Statistics)`, `Wertposten (Value Entries)` |
+| Fehlerfrage | Warum ist ein Output ohne Verbrauch fachlich unvollständig? |
 
 ### Lösung
 
-Der Bestand fertiger Maschinen wäre sichtbar, aber die Herstellkosten wären unvollständig.
-
-1. Öffne die Startseite über `Alt+Q`.
-2. Erfasse die Testdaten aus der Übung.
-3. Prüfe Pflichtfelder, Buchungsgruppen und Dimensionen.
-4. Führe die Aktion aus.
-5. Öffne die erwarteten Posten.
-6. Öffne den Kontrollbericht.
-7. Dokumentiere das Evidence Pack.
+1. Öffne `Planungsarbeitsblatt (Planning Worksheet)` und berechne den Plan für `RM-M100`.
+2. Prüfe Vorschlag `Menge = 3`, `Lagerortcode = FRA-ZL`, `Fälligkeitsdatum = 30.06.2026`.
+3. Wähle `Aktionsmeldung ausführen (Carry Out Action Message)` und erzeuge `PROD-3001`.
+4. Öffne `Freigegebene Fertigungsaufträge (Released Production Orders)` und öffne `PROD-3001`.
+5. Prüfe `Herkunftsnr. = RM-M100`, `Menge = 3`, Komponente `RAW-STEEL`.
+6. Öffne `Verbrauch Buch.-Blätter (Consumption Journals)`, buche den Verbrauch von `RAW-STEEL`.
+7. Öffne `Istmeldung Buch.-Blätter (Output Journals)`, buche Output `3` Stück `RM-M100`.
+8. Prüfe `Artikelposten (Item Ledger Entries)`, `Wertposten (Value Entries)` und `Fertigungsauftragsstatistik (Production Order Statistics)`.
 
 ### UAT-Fall
 
@@ -1970,15 +2029,18 @@ Der Bestand fertiger Maschinen wäre sichtbar, aber die Herstellkosten wären un
 |---|---|
 | ID | `UAT-MFG-001` |
 | Rolle | Produktionsplanerin, Meister, Controller |
-| Testdaten | `PROD-3001`, `RM-M100`, Menge `3`, Material `RAW-STEEL`, Lagerort `FRA-ZL` |
-| Exakte Schrittfolge | Startseite über `Alt+Q` öffnen, Testdaten erfassen, Pflichtfelder prüfen, Aktion ausführen, Posten filtern, Kontrollbericht öffnen, Evidence Pack speichern |
-| Erwartete Belege | Fertigungsauftrag, Verbrauchsbuchung, Outputbuchung |
-| Erwartete Posten | `Artikelposten (Item Ledger Entries)`, `Wertposten (Value Entries)`, Kapazitätsposten |
-| Kontrollbericht | `Fertigungsauftragsstatistik (Production Order Statistics)` |
-| Akzeptanzkriterium | Beleg, Posten, Kontrollbericht und Evidence Pack zeigen denselben Vorgang vollständig und widerspruchsfrei. |
-| Evidence Pack | Belegnummer, gebuchter Beleg, Postenfilter, Berichtsexport, Fehlerdiagnose und Testergebnis |
-| Negativtest | Output `3` buchen, aber Verbrauch `RAW-STEEL` vergessen. |
-| Erwartete Korrektur | Verbrauch nachbuchen, Wertposten prüfen, Fertigungsauftragsstatistik erneut abstimmen. |
+| Testdaten | `PROD-3001`, Artikel `RM-M100`, Menge `3`, Lagerort `FRA-ZL`, Material `RAW-STEEL` |
+| Exakte Schrittfolge | 1. Planungsarbeitsblatt für `RM-M100` öffnen und Plan berechnen.<br>2. Fertigungsauftrag `PROD-3001` erzeugen und freigeben.<br>3. Komponente `RAW-STEEL` im Auftrag prüfen.<br>4. Verbrauch buchen.<br>5. Output `3` buchen.<br>6. Fertigungsauftragsstatistik öffnen und Materialkosten, Output und Abweichungen prüfen. |
+| Erwartete Belege | freigegebener Fertigungsauftrag, Verbrauchsbuchung, Outputbuchung |
+| Erwartete Posten | `Artikelposten (Item Ledger Entries)`, `Wertposten (Value Entries)`, Kapazitätsposten, nach Kostenbuchung `Sachposten (G/L Entries)` |
+| Kontrollbericht | `Fertigungsauftragsstatistik (Production Order Statistics)`, `Wertposten (Value Entries)` |
+| Akzeptanzkriterium | Beleg, gebuchter Beleg oder Prozesslauf, Posten und Kontrollbericht zeigen denselben Vorgang mit identischem Betrag, Datum, Menge und Dimension. |
+| Evidence Pack | Ausgangsbeleg, gebuchter Beleg, Postenfilter, Berichtsexport, Negativtest, Korrekturbeleg und Testergebnis |
+| Absichtlich falsche Eingabe | Output `3` buchen, aber Verbrauch `RAW-STEEL` nicht buchen. |
+| Erwartetes Fehlverhalten | Fertiger Bestand steigt, Herstellkosten sind unvollständig. |
+| Diagnosepfad | `Fertigungsauftragsstatistik (Production Order Statistics)` und `Wertposten (Value Entries)` prüfen. |
+| Erlaubter Korrekturweg | Verbrauch nachbuchen, Kostenregulierung ausführen und Statistik erneut abstimmen. |
+| Nicht erlaubt | Herstellkosten manuell im Finanzbericht korrigieren. |
 
 ### In 5 Minuten merken
 
@@ -2115,28 +2177,27 @@ Servicekorrekturen brauchen eine fachliche Entscheidung. Nach Buchung wird über
 
 | Feld | Inhalt |
 |---|---|
-| Rolle | Servicedisponent und Techniker |
-| Ausgangssituation | Maschine `RM-M100-SN1001` benötigt Pumpentausch. |
-| Testdaten | `SERV-4001`, `D10000`, `SP-PUMP-01`, `RES-TECH`, `2` Stunden |
+| Rolle | Servicedisponent, Techniker, Finance |
+| Alltagssituation | Müller Maschinenbau meldet eine defekte Pumpe an Maschine `RM-M100-SN1001`. |
+| Konkrete Testdaten | `SERV-4001`, Debitor `D10000`, Serviceartikel `RM-M100-SN1001`, Ersatzteil `SP-PUMP-01`, Lagerort `VAN-SERV`, Ressource `RES-TECH`, Menge `2` Stunden |
 | Startseite über `Alt+Q` | `Serviceaufträge (Service Orders)` |
-| Felder und Werte | `Debitorennr.`, `Serviceartikelnr.`, `Art`, `Nr.`, `Menge`, `Lagerortcode`, Garantiekennzeichen |
-| Aktion | Serviceauftrag erfassen, Ersatzteil und Ressource buchen, Faktura oder Kulanz dokumentieren |
+| Exakte Felder und Werte | `Debitorennr. = D10000`, `Serviceartikelnr. = RM-M100-SN1001`, Zeile `Art = Artikel`, `Nr. = SP-PUMP-01`, `Menge = 1`, `Lagerortcode = VAN-SERV`, Zeile `Art = Ressource`, `Nr. = RES-TECH`, `Menge = 2` |
+| Auszuführende Aktion | Serviceauftrag erfassen, Ersatzteil und Ressource buchen, Faktura oder Garantie/Kulanz dokumentieren |
 | Erwartete Belege | Serviceauftrag, gebuchte Servicerechnung oder Kulanznachweis |
-| Erwartete Posten | `Artikelposten (Item Ledger Entries)`, `Wertposten (Value Entries)`, bei Faktura `Debitorenposten (Customer Ledger Entries)` |
+| Erwartete Posten | `Artikelposten (Item Ledger Entries)`, `Wertposten (Value Entries)`, bei Faktura `Debitorenposten (Customer Ledger Entries)` und `Sachposten (G/L Entries)` |
 | Kontrollbericht | `Serviceauftragsstatistik (Service Order Statistics)` |
-| Fehlerfrage | Wie unterscheidest du Garantie und Kulanz im Evidence Pack? |
+| Fehlerfrage | Woran erkennst du, ob der Fall fakturiert oder als Garantie/Kulanz dokumentiert wurde? |
 
 ### Lösung
 
-Garantie folgt vereinbarten Bedingungen. Kulanz ist eine Projektentscheidung und braucht einen dokumentierten Freigabegrund.
-
-1. Öffne die Startseite über `Alt+Q`.
-2. Erfasse die Testdaten aus der Übung.
-3. Prüfe Pflichtfelder, Buchungsgruppen und Dimensionen.
-4. Führe die Aktion aus.
-5. Öffne die erwarteten Posten.
-6. Öffne den Kontrollbericht.
-7. Dokumentiere das Evidence Pack.
+1. Öffne `Serviceaufträge (Service Orders)` und suche `SERV-4001`.
+2. Prüfe `Debitorennr. = D10000` und `Serviceartikelnr. = RM-M100-SN1001`.
+3. Prüfe Servicezeile `Art = Artikel`, `Nr. = SP-PUMP-01`, `Menge = 1`, `Lagerortcode = VAN-SERV`.
+4. Prüfe Servicezeile `Art = Ressource`, `Nr. = RES-TECH`, `Menge = 2`.
+5. Prüfe Garantie-/Kulanzkennzeichen und Dimension `DEPARTMENT = SERVICE`.
+6. Wähle `Buchungsvorschau (Preview Posting)`.
+7. Buche den Auftrag je Entscheidung als Faktura oder dokumentiere Garantie/Kulanz.
+8. Prüfe `Artikelposten (Item Ledger Entries)`, `Wertposten (Value Entries)` und bei Faktura `Debitorenposten (Customer Ledger Entries)`.
 
 ### UAT-Fall
 
@@ -2144,15 +2205,18 @@ Garantie folgt vereinbarten Bedingungen. Kulanz ist eine Projektentscheidung und
 |---|---|
 | ID | `UAT-SERV-001` |
 | Rolle | Servicedisponent, Techniker, Finance |
-| Testdaten | `SERV-4001`, `D10000`, `SP-PUMP-01`, `RES-TECH`, `2` Stunden |
-| Exakte Schrittfolge | Startseite über `Alt+Q` öffnen, Testdaten erfassen, Pflichtfelder prüfen, Aktion ausführen, Posten filtern, Kontrollbericht öffnen, Evidence Pack speichern |
+| Testdaten | `SERV-4001`, Debitor `D10000`, Serviceartikel `RM-M100-SN1001`, Ersatzteil `SP-PUMP-01`, Lagerort `VAN-SERV`, Ressource `RES-TECH`, Menge `2` Stunden |
+| Exakte Schrittfolge | 1. Öffne `Serviceaufträge (Service Orders)` und öffne `SERV-4001`.<br>2. Prüfe Debitor und Serviceartikel.<br>3. Erfasse Ersatzteil `SP-PUMP-01` mit Menge `1` und Lagerort `VAN-SERV`.<br>4. Erfasse Ressource `RES-TECH` mit Menge `2`.<br>5. Starte `Buchungsvorschau (Preview Posting)`.<br>6. Buche Faktura oder dokumentiere Garantie/Kulanz.<br>7. Prüfe Serviceauftragsstatistik und Posten. |
 | Erwartete Belege | Serviceauftrag, gebuchte Servicerechnung oder Kulanznachweis |
-| Erwartete Posten | `Artikelposten (Item Ledger Entries)`, `Wertposten (Value Entries)`, bei Faktura `Debitorenposten (Customer Ledger Entries)` |
+| Erwartete Posten | `Artikelposten (Item Ledger Entries)`, `Wertposten (Value Entries)`, bei Faktura `Debitorenposten (Customer Ledger Entries)` und `Sachposten (G/L Entries)` |
 | Kontrollbericht | `Serviceauftragsstatistik (Service Order Statistics)` |
-| Akzeptanzkriterium | Beleg, Posten, Kontrollbericht und Evidence Pack zeigen denselben Vorgang vollständig und widerspruchsfrei. |
-| Evidence Pack | Belegnummer, gebuchter Beleg, Postenfilter, Berichtsexport, Fehlerdiagnose und Testergebnis |
-| Negativtest | Servicezeile mit Ersatzteil ohne Lagerort `VAN-SERV` erfassen. |
-| Erwartete Korrektur | Servicezeile vor Buchung korrigieren; nach Buchung über Gutschrift/Korrekturauftrag sauber neu buchen. |
+| Akzeptanzkriterium | Beleg, gebuchter Beleg oder Prozesslauf, Posten und Kontrollbericht zeigen denselben Vorgang mit identischem Betrag, Datum, Menge und Dimension. |
+| Evidence Pack | Ausgangsbeleg, gebuchter Beleg, Postenfilter, Berichtsexport, Negativtest, Korrekturbeleg und Testergebnis |
+| Absichtlich falsche Eingabe | Ersatzteil `SP-PUMP-01` ohne Lagerort `VAN-SERV` erfassen. |
+| Erwartetes Fehlverhalten | Verbrauch bucht auf falschen oder leeren Lagerort; Technikerbestand stimmt nicht. |
+| Diagnosepfad | Servicezeile, Artikelposten und Lagerortfilter prüfen. |
+| Erlaubter Korrekturweg | Vor Buchung Lagerort korrigieren; nach Buchung Gutschrift/Korrekturauftrag und Neubuchung. |
+| Nicht erlaubt | Artikelposten direkt löschen oder Servicebericht manuell schönziehen. |
 
 ### In 5 Minuten merken
 
@@ -2289,44 +2353,46 @@ Projektfehler werden über Projektjournale, Gutschriften oder Korrekturrechnunge
 
 | Feld | Inhalt |
 |---|---|
-| Rolle | Projektleiter und Finance |
-| Ausgangssituation | Meilensteinrechnung für Installation `PROJ-5001` erstellen. |
-| Testdaten | `PROJ-5001`, `D10000`, `RES-TECH` 20 Stunden, `SP-SENSOR-02` Menge 4 |
+| Rolle | Projektleiter, Projektcontroller, Finance |
+| Alltagssituation | Rhein-Main führt den Kapitel-16-Fall mit den angegebenen Trainingsdaten aus. |
+| Konkrete Testdaten | `PROJ-5001`, `D10000`, `RES-TECH` 20 Stunden, `SP-SENSOR-02` Menge 4 |
 | Startseite über `Alt+Q` | `Projekte (Projects)` |
-| Felder und Werte | `Projektaufgabennr.`, `Art`, `Nr.`, `Menge`, `Einstandspreis`, `Verkaufspreis`, Dimension `PROJECT` |
-| Aktion | Verbrauch buchen und Meilensteinrechnung erstellen |
-| Erwartete Belege | Projektjournal, Projektposten, gebuchte Verkaufsrechnung |
-| Erwartete Posten | `Projektposten (Project Ledger Entries)`, `Sachposten (G/L Entries)`, `Debitorenposten (Customer Ledger Entries)` |
+| Exakte Felder und Werte | `Projektaufgabennr. = 2000`, `Art = Ressource/Artikel`, `Nr. = RES-TECH/SP-SENSOR-02`, `Menge = 20/4`, Dimension `PROJECT = PROJ-5001` |
+| Auszuführende Aktion | Projektverbrauch buchen und Meilensteinrechnung erstellen |
+| Erwartete Belege | Ausgangsbeleg, gebuchter Beleg oder registrierter Prozesslauf |
+| Erwartete Posten | `Projektposten (Project Ledger Entries)`, `Debitorenposten (Customer Ledger Entries)`, `Sachposten (G/L Entries)` |
 | Kontrollbericht | `Projektstatistik (Project Statistics)` |
-| Fehlerfrage | Warum darf die Meilensteinrechnung nicht ohne Leistungsnachweis ins Evidence Pack? |
+| Fehlerfrage | Welche Posten und welcher Bericht beweisen, dass der Vorgang korrekt abgeschlossen ist? |
 
 ### Lösung
 
-Weil der gebuchte Erlös fachlich durch Abnahme, Vertrag oder Meilensteinfreigabe gedeckt sein muss.
-
-1. Öffne die Startseite über `Alt+Q`.
-2. Erfasse die Testdaten aus der Übung.
-3. Prüfe Pflichtfelder, Buchungsgruppen und Dimensionen.
-4. Führe die Aktion aus.
-5. Öffne die erwarteten Posten.
-6. Öffne den Kontrollbericht.
-7. Dokumentiere das Evidence Pack.
+1. Öffne `Projekte (Projects)` über `Alt+Q`.
+2. Erfasse oder öffne den Fall `PROJ-5001`, `D10000`, `RES-TECH` 20 Stunden, `SP-SENSOR-02` Menge 4.
+3. Prüfe `Projektaufgabennr. = 2000`, `Art = Ressource/Artikel`, `Nr. = RES-TECH/SP-SENSOR-02`, `Menge = 20/4`, Dimension `PROJECT = PROJ-5001`.
+4. Starte `Buchungsvorschau (Preview Posting)`, wenn der Vorgang buchungsrelevant ist.
+5. Führe die Aktion aus: Projektverbrauch buchen und Meilensteinrechnung erstellen.
+6. Öffne die erwarteten Posten: `Projektposten (Project Ledger Entries)`, `Debitorenposten (Customer Ledger Entries)`, `Sachposten (G/L Entries)`.
+7. Öffne den Kontrollbericht: `Projektstatistik (Project Statistics)`.
+8. Vergleiche Belegnummer, Betrag, Menge, Datum und Dimension und speichere das Evidence Pack.
 
 ### UAT-Fall
 
 | Feld | Inhalt |
 |---|---|
-| ID | `UAT-PROJ-001` |
+| ID | `UAT-K16-001` |
 | Rolle | Projektleiter, Projektcontroller, Finance |
 | Testdaten | `PROJ-5001`, `D10000`, `RES-TECH` 20 Stunden, `SP-SENSOR-02` Menge 4 |
-| Exakte Schrittfolge | Startseite über `Alt+Q` öffnen, Testdaten erfassen, Pflichtfelder prüfen, Aktion ausführen, Posten filtern, Kontrollbericht öffnen, Evidence Pack speichern |
-| Erwartete Belege | Projektjournal, Projektposten, gebuchte Verkaufsrechnung |
-| Erwartete Posten | `Projektposten (Project Ledger Entries)`, `Sachposten (G/L Entries)`, `Debitorenposten (Customer Ledger Entries)` |
+| Exakte Schrittfolge | 1. Öffne `Projekte (Projects)` über `Alt+Q`.<br>2. Lege oder öffne `PROJ-5001`, `D10000`, `RES-TECH` 20 Stunden, `SP-SENSOR-02` Menge 4.<br>3. Prüfe Felder: `Projektaufgabennr. = 2000`, `Art = Ressource/Artikel`, `Nr. = RES-TECH/SP-SENSOR-02`, `Menge = 20/4`, Dimension `PROJECT = PROJ-5001`.<br>4. Führe aus: Projektverbrauch buchen und Meilensteinrechnung erstellen.<br>5. Prüfe Posten: `Projektposten (Project Ledger Entries)`, `Debitorenposten (Customer Ledger Entries)`, `Sachposten (G/L Entries)`.<br>6. Prüfe Bericht: `Projektstatistik (Project Statistics)`. |
+| Erwartete Belege | Ausgangsbeleg, gebuchter Beleg oder registrierter Prozesslauf |
+| Erwartete Posten | `Projektposten (Project Ledger Entries)`, `Debitorenposten (Customer Ledger Entries)`, `Sachposten (G/L Entries)` |
 | Kontrollbericht | `Projektstatistik (Project Statistics)` |
-| Akzeptanzkriterium | Beleg, Posten, Kontrollbericht und Evidence Pack zeigen denselben Vorgang vollständig und widerspruchsfrei. |
-| Evidence Pack | Belegnummer, gebuchter Beleg, Postenfilter, Berichtsexport, Fehlerdiagnose und Testergebnis |
-| Negativtest | Materialverbrauch ohne Projektaufgabe buchen. |
-| Erwartete Korrektur | Fehlbuchung über Projektjournal korrigieren und Material auf Aufgabe `2000` neu buchen. |
+| Akzeptanzkriterium | Beleg, gebuchter Beleg oder Prozesslauf, Posten und Kontrollbericht zeigen denselben Vorgang mit identischem Betrag, Datum, Menge und Dimension. |
+| Evidence Pack | Ausgangsbeleg, gebuchter Beleg, Postenfilter, Berichtsexport, Negativtest, Korrekturbeleg und Testergebnis |
+| Absichtlich falsche Eingabe | Material ohne Projektaufgabe buchen |
+| Erwartetes Fehlverhalten | Der Materialverbrauch erscheint nicht in der richtigen Projektaufgabe; Projektmarge und Meilensteinrechnung sind unvollständig. |
+| Diagnosepfad | Beleg öffnen, `Projektposten (Project Ledger Entries)`, `Debitorenposten (Customer Ledger Entries)`, `Sachposten (G/L Entries)` filtern und `Projektstatistik (Project Statistics)` mit dem Ausgangsbeleg vergleichen. |
+| Erlaubter Korrekturweg | Vor Buchung die `Projektaufgabennr.` nachtragen. Nach Buchung den falschen Projektverbrauch über `Projekt Buch.-Blätter (Project Journals)` mit Gegenzeile stornieren und mit richtiger Projektaufgabe neu buchen. |
+| Nicht erlaubt | Projektposten löschen, Projektstatistik manuell anpassen oder Meilensteinrechnung ohne korrekte Projektaufgabe freigeben. |
 
 ### In 5 Minuten merken
 
@@ -2462,44 +2528,46 @@ Die Korrektur folgt immer dem gebuchten Zustand. Ungebuchte Belege werden korrig
 
 | Feld | Inhalt |
 |---|---|
-| Rolle | Fachanwender, Key User und Finance |
-| Ausgangssituation | E-Commerce-Sachbearbeiterin sieht morgens den Shopauftrag `WEB-24001`. Kunde `D11000` hat zwei Ersatzteile `SP-PUMP-01` bestellt. Ein zweiter Auftrag ist Dropshipping: RM-SALES verkauft, aber Lieferant `K20000` liefert direkt an den Kunden. |
-| Testdaten | `WEB-24001`, `D11000`, `SP-PUMP-01`, Menge `2`, `K20000` |
-| Startseite über `Alt+Q` | `Shopify-Shops (Shopify Shops)` |
-| Felder und Werte | `Buchungsdatum`, `Belegdatum`, `Nr.`, `Menge/Betrag`, Buchungsgruppen, Dimensionen |
-| Aktion | Vorgang erfassen, prüfen, buchen oder abstimmen |
-| Erwartete Belege | Ausgangsbeleg und gebuchter Beleg |
-| Erwartete Posten | Debitorenposten, Sachposten, USt-Posten, Artikelposten/Wertposten bei Lagerware und Kreditorenposten bei Dropshipping |
-| Kontrollbericht | Shop-Abstimmung, `USt-Posten (VAT Entries)`, Margenbericht |
-| Fehlerfrage | Welcher Posten beweist die fachliche Wirkung? |
+| Rolle | E-Commerce, Vertrieb, Einkauf, Finance |
+| Alltagssituation | Rhein-Main führt den Kapitel-17-Fall mit den angegebenen Trainingsdaten aus. |
+| Konkrete Testdaten | `WEB-24001`, `D11000`, `SP-PUMP-01`, Menge `2`, Dropshipping-Kreditor `K20000` |
+| Startseite über `Alt+Q` | `Shopify-Aufträge (Shopify Orders)`, `Verkaufsaufträge (Sales Orders)` |
+| Exakte Felder und Werte | `Debitor = D11000`, `Nr. = SP-PUMP-01`, `Menge = 2`, `CHANNEL = SHOP`, Dropshipping-Kreditor `K20000` |
+| Auszuführende Aktion | Shopauftrag prüfen, Verkaufsauftrag buchen, bei Dropshipping Einkaufsbestellung verknüpfen |
+| Erwartete Belege | Ausgangsbeleg, gebuchter Beleg oder registrierter Prozesslauf |
+| Erwartete Posten | `Debitorenposten`, `Sachposten`, `USt-Posten`, bei Lagerware `Artikelposten`/`Wertposten`, bei Dropshipping `Kreditorenposten` |
+| Kontrollbericht | Shop-Abstimmung, Margenbericht, `USt-Posten (VAT Entries)` |
+| Fehlerfrage | Welche Posten und welcher Bericht beweisen, dass der Vorgang korrekt abgeschlossen ist? |
 
 ### Lösung
 
-Der Vorgang ist gelöst, wenn Debitorenposten, Sachposten, USt-Posten, Artikelposten/Wertposten bei Lagerware und Kreditorenposten bei Dropshipping sichtbar sind und Shop-Abstimmung, `USt-Posten (VAT Entries)`, Margenbericht denselben Betrag zeigt.
-
-1. Öffne die Startseite über `Alt+Q`.
-2. Erfasse die Testdaten aus der Übung.
-3. Prüfe Pflichtfelder, Buchungsgruppen und Dimensionen.
-4. Führe die Aktion aus.
-5. Öffne die erwarteten Posten.
-6. Öffne den Kontrollbericht.
-7. Dokumentiere das Evidence Pack.
+1. Öffne `Shopify-Aufträge (Shopify Orders)`, `Verkaufsaufträge (Sales Orders)` über `Alt+Q`.
+2. Erfasse oder öffne den Fall `WEB-24001`, `D11000`, `SP-PUMP-01`, Menge `2`, Dropshipping-Kreditor `K20000`.
+3. Prüfe `Debitor = D11000`, `Nr. = SP-PUMP-01`, `Menge = 2`, `CHANNEL = SHOP`, Dropshipping-Kreditor `K20000`.
+4. Starte `Buchungsvorschau (Preview Posting)`, wenn der Vorgang buchungsrelevant ist.
+5. Führe die Aktion aus: Shopauftrag prüfen, Verkaufsauftrag buchen, bei Dropshipping Einkaufsbestellung verknüpfen.
+6. Öffne die erwarteten Posten: `Debitorenposten`, `Sachposten`, `USt-Posten`, bei Lagerware `Artikelposten`/`Wertposten`, bei Dropshipping `Kreditorenposten`.
+7. Öffne den Kontrollbericht: Shop-Abstimmung, Margenbericht, `USt-Posten (VAT Entries)`.
+8. Vergleiche Belegnummer, Betrag, Menge, Datum und Dimension und speichere das Evidence Pack.
 
 ### UAT-Fall
 
 | Feld | Inhalt |
 |---|---|
-| ID | `UAT-SHOPIFY-DROPSHIPPING-001` |
-| Rolle | Fachanwender, Key User, Finance |
-| Testdaten | `WEB-24001`, `D11000`, `SP-PUMP-01`, Menge `2`, `K20000` |
-| Exakte Schrittfolge | Startseite über `Alt+Q` öffnen, Testdaten erfassen, Pflichtfelder prüfen, Aktion ausführen, Posten filtern, Kontrollbericht öffnen, Evidence Pack speichern |
-| Erwartete Belege | Ausgangsbeleg und gebuchter Beleg |
-| Erwartete Posten | Debitorenposten, Sachposten, USt-Posten, Artikelposten/Wertposten bei Lagerware und Kreditorenposten bei Dropshipping |
-| Kontrollbericht | Shop-Abstimmung, `USt-Posten (VAT Entries)`, Margenbericht |
-| Akzeptanzkriterium | Beleg, Posten, Kontrollbericht und Evidence Pack zeigen denselben Vorgang vollständig und widerspruchsfrei. |
-| Evidence Pack | Belegnummer, gebuchter Beleg, Postenfilter, Berichtsexport, Fehlerdiagnose und Testergebnis |
-| Negativtest | Pflichtdimension oder Buchungsgruppe falsch erfassen. |
-| Erwartete Korrektur | Fehler über Posten und Bericht nachweisen, Stammdaten korrigieren und Beleg fachlich sauber korrigieren. |
+| ID | `UAT-K17-001` |
+| Rolle | E-Commerce, Vertrieb, Einkauf, Finance |
+| Testdaten | `WEB-24001`, `D11000`, `SP-PUMP-01`, Menge `2`, Dropshipping-Kreditor `K20000` |
+| Exakte Schrittfolge | 1. Öffne `Shopify-Aufträge (Shopify Orders)`, `Verkaufsaufträge (Sales Orders)` über `Alt+Q`.<br>2. Lege oder öffne `WEB-24001`, `D11000`, `SP-PUMP-01`, Menge `2`, Dropshipping-Kreditor `K20000`.<br>3. Prüfe Felder: `Debitor = D11000`, `Nr. = SP-PUMP-01`, `Menge = 2`, `CHANNEL = SHOP`, Dropshipping-Kreditor `K20000`.<br>4. Führe aus: Shopauftrag prüfen, Verkaufsauftrag buchen, bei Dropshipping Einkaufsbestellung verknüpfen.<br>5. Prüfe Posten: `Debitorenposten`, `Sachposten`, `USt-Posten`, bei Lagerware `Artikelposten`/`Wertposten`, bei Dropshipping `Kreditorenposten`.<br>6. Prüfe Bericht: Shop-Abstimmung, Margenbericht, `USt-Posten (VAT Entries)`. |
+| Erwartete Belege | Ausgangsbeleg, gebuchter Beleg oder registrierter Prozesslauf |
+| Erwartete Posten | `Debitorenposten`, `Sachposten`, `USt-Posten`, bei Lagerware `Artikelposten`/`Wertposten`, bei Dropshipping `Kreditorenposten` |
+| Kontrollbericht | Shop-Abstimmung, Margenbericht, `USt-Posten (VAT Entries)` |
+| Akzeptanzkriterium | Beleg, gebuchter Beleg oder Prozesslauf, Posten und Kontrollbericht zeigen denselben Vorgang mit identischem Betrag, Datum, Menge und Dimension. |
+| Evidence Pack | Ausgangsbeleg, gebuchter Beleg, Postenfilter, Berichtsexport, Negativtest, Korrekturbeleg und Testergebnis |
+| Absichtlich falsche Eingabe | Artikelmapping falsch setzen |
+| Erwartetes Fehlverhalten | Der Shopauftrag erzeugt den falschen Artikel, falsche Marge oder falsche Lager-/Dropshipping-Logik. |
+| Diagnosepfad | Beleg öffnen, `Debitorenposten`, `Sachposten`, `USt-Posten`, bei Lagerware `Artikelposten`/`Wertposten`, bei Dropshipping `Kreditorenposten` filtern und Shop-Abstimmung, Margenbericht, `USt-Posten (VAT Entries)` mit dem Ausgangsbeleg vergleichen. |
+| Erlaubter Korrekturweg | Mapping in `Shopify-Artikeln (Shopify Products)` korrigieren, ungebuchten Verkaufsauftrag löschen oder neu erstellen; bei gebuchter falscher Rechnung Verkaufs-gutschrift erstellen und Shopauftrag mit korrektem Artikel erneut buchen. |
+| Nicht erlaubt | Gebuchte Verkaufsrechnung direkt ändern, Lagerposten löschen oder die Shop-Abstimmung durch manuelle Tabellenänderung „reparieren“. |
 
 ### In 5 Minuten merken
 
@@ -2635,44 +2703,48 @@ Die Korrektur folgt immer dem gebuchten Zustand. Ungebuchte Belege werden korrig
 
 | Feld | Inhalt |
 |---|---|
-| Rolle | Fachanwender, Key User und Finance |
-| Ausgangssituation | RM-PROD verkauft eine Maschine intern an RM-SALES. Parallel verkauft RM-AT Ersatzteile an einen EU-Unternehmer. Finance muss prüfen, ob Intercompany-Belege, USt-Logik, Nachweise und Abstimmungskonten zusammenpassen. |
-| Testdaten | `IC-7001`, Artikel `RM-M100`, Preis `42.000 EUR`, EU-Kunde `D-AT100` |
-| Startseite über `Alt+Q` | `Intercompany-Ausgangstransaktionen` |
-| Felder und Werte | `Buchungsdatum`, `Belegdatum`, `Nr.`, `Menge/Betrag`, Buchungsgruppen, Dimensionen |
-| Aktion | Vorgang erfassen, prüfen, buchen oder abstimmen |
-| Erwartete Belege | Ausgangsbeleg und gebuchter Beleg |
-| Erwartete Posten | Debitorenposten, Kreditorenposten, Sachposten, USt-Posten, Artikelposten und Wertposten |
+| Rolle | Finance, Vertrieb, Steuerteam |
+| Alltagssituation | Rhein-Main führt den Kapitel-18-Fall mit den angegebenen Trainingsdaten aus. |
+| Konkrete Testdaten | `IC-7001`, RM-PROD an RM-SALES, `RM-M100`, Preis `42.000 EUR`, EU-Kunde `D-AT100` |
+| Startseite über `Alt+Q` | `Intercompany-Ausgangstransaktionen`, `Verkaufsaufträge (Sales Orders)` |
+| Exakte Felder und Werte | `IC-Partner = RM-SALES`, `Artikel = RM-M100`, `Preis = 42.000`, `USt-Geschäftsbuchungsgruppe = EU/IC` |
+| Auszuführende Aktion | `Buchungsvorschau (Preview Posting)` starten, IC-Verkaufsrechnung buchen, in der Partnercompany `Intercompany-Eingangstransaktionen` öffnen, Transaktion annehmen und danach `USt-Posten (VAT Entries)` sowie `Sachposten (G/L Entries)` mit Belegnummer `IC-7001` filtern |
+| Erwartete Belege | Ausgangsbeleg, gebuchter Beleg oder registrierter Prozesslauf |
+| Erwartete Posten | `Debitorenposten`, `Kreditorenposten`, `Sachposten`, `USt-Posten`, `Artikelposten`, `Wertposten` |
 | Kontrollbericht | IC-Abstimmung, `USt-Posten (VAT Entries)`, `Sachposten (G/L Entries)` |
-| Fehlerfrage | Welcher Posten beweist die fachliche Wirkung? |
+| Fehlerfrage | Welche Posten und welcher Bericht beweisen, dass der Vorgang korrekt abgeschlossen ist? |
 
 ### Lösung
 
-Der Vorgang ist gelöst, wenn Debitorenposten, Kreditorenposten, Sachposten, USt-Posten, Artikelposten und Wertposten sichtbar sind und IC-Abstimmung, `USt-Posten (VAT Entries)`, `Sachposten (G/L Entries)` denselben Betrag zeigt.
-
-1. Öffne die Startseite über `Alt+Q`.
-2. Erfasse die Testdaten aus der Übung.
-3. Prüfe Pflichtfelder, Buchungsgruppen und Dimensionen.
-4. Führe die Aktion aus.
-5. Öffne die erwarteten Posten.
-6. Öffne den Kontrollbericht.
-7. Dokumentiere das Evidence Pack.
+1. Öffne `Intercompany-Ausgangstransaktionen`, `Verkaufsaufträge (Sales Orders)` über `Alt+Q`.
+2. Erfasse oder öffne den Fall `IC-7001`, RM-PROD an RM-SALES, `RM-M100`, Preis `42.000 EUR`, EU-Kunde `D-AT100`.
+3. Prüfe `IC-Partner = RM-SALES`, `Artikel = RM-M100`, `Preis = 42.000`, `USt-Geschäftsbuchungsgruppe = EU/IC`.
+4. Starte `Buchungsvorschau (Preview Posting)`, wenn der Vorgang buchungsrelevant ist.
+5. Wähle `Buchen`, buche die IC-Verkaufsrechnung und notiere die gebuchte Belegnummer.
+6. Wechsle in die Partnercompany RM-SALES, öffne über `Alt+Q` die Seite `Intercompany-Eingangstransaktionen` und nimm die Transaktion zu `IC-7001` an.
+7. Öffne `USt-Posten (VAT Entries)` und filtere auf die gebuchte Belegnummer; prüfe Bemessungsgrundlage `42.000 EUR`, USt-Logik `EU/IC` und Datum.
+8. Öffne die erwarteten Posten: `Debitorenposten`, `Kreditorenposten`, `Sachposten`, `USt-Posten`, `Artikelposten`, `Wertposten`.
+9. Öffne den Kontrollbericht: IC-Abstimmung, `USt-Posten (VAT Entries)`, `Sachposten (G/L Entries)`.
+10. Vergleiche Belegnummer, Betrag, Menge, Datum und Dimension und speichere das Evidence Pack.
 
 ### UAT-Fall
 
 | Feld | Inhalt |
 |---|---|
-| ID | `UAT-INTERCOMPANY-AUSLAND-001` |
-| Rolle | Fachanwender, Key User, Finance |
-| Testdaten | `IC-7001`, Artikel `RM-M100`, Preis `42.000 EUR`, EU-Kunde `D-AT100` |
-| Exakte Schrittfolge | Startseite über `Alt+Q` öffnen, Testdaten erfassen, Pflichtfelder prüfen, Aktion ausführen, Posten filtern, Kontrollbericht öffnen, Evidence Pack speichern |
-| Erwartete Belege | Ausgangsbeleg und gebuchter Beleg |
-| Erwartete Posten | Debitorenposten, Kreditorenposten, Sachposten, USt-Posten, Artikelposten und Wertposten |
+| ID | `UAT-K18-001` |
+| Rolle | Finance, Vertrieb, Steuerteam |
+| Testdaten | `IC-7001`, RM-PROD an RM-SALES, `RM-M100`, Preis `42.000 EUR`, EU-Kunde `D-AT100` |
+| Exakte Schrittfolge | 1. Öffne `Verkaufsaufträge (Sales Orders)` über `Alt+Q` in RM-PROD.<br>2. Lege oder öffne `IC-7001`, Debitor/IC-Partner `RM-SALES`, Artikel `RM-M100`, Menge `1`, Preis `42.000 EUR`, EU-Kunde `D-AT100`.<br>3. Prüfe Felder: `IC-Partner = RM-SALES`, `Artikel = RM-M100`, `Preis = 42.000`, `USt-Geschäftsbuchungsgruppe = EU/IC`.<br>4. Wähle `Buchungsvorschau (Preview Posting)` und prüfe erwartete `Sachposten (G/L Entries)` und `USt-Posten (VAT Entries)`.<br>5. Wähle `Buchen` und notiere die gebuchte Belegnummer.<br>6. Wechsle in RM-SALES, öffne `Intercompany-Eingangstransaktionen` über `Alt+Q`, öffne die Transaktion zu `IC-7001` und wähle `Annehmen`.<br>7. Prüfe `Debitorenposten`, `Kreditorenposten`, `Sachposten`, `USt-Posten`, `Artikelposten` und `Wertposten` mit Belegnummerfilter.<br>8. Prüfe IC-Abstimmung, `USt-Posten (VAT Entries)` und `Sachposten (G/L Entries)` als Kontrollberichte. |
+| Erwartete Belege | Ausgangsbeleg, gebuchter Beleg oder registrierter Prozesslauf |
+| Erwartete Posten | `Debitorenposten`, `Kreditorenposten`, `Sachposten`, `USt-Posten`, `Artikelposten`, `Wertposten` |
 | Kontrollbericht | IC-Abstimmung, `USt-Posten (VAT Entries)`, `Sachposten (G/L Entries)` |
-| Akzeptanzkriterium | Beleg, Posten, Kontrollbericht und Evidence Pack zeigen denselben Vorgang vollständig und widerspruchsfrei. |
-| Evidence Pack | Belegnummer, gebuchter Beleg, Postenfilter, Berichtsexport, Fehlerdiagnose und Testergebnis |
-| Negativtest | Pflichtdimension oder Buchungsgruppe falsch erfassen. |
-| Erwartete Korrektur | Fehler über Posten und Bericht nachweisen, Stammdaten korrigieren und Beleg fachlich sauber korrigieren. |
+| Akzeptanzkriterium | Beleg, gebuchter Beleg oder Prozesslauf, Posten und Kontrollbericht zeigen denselben Vorgang mit identischem Betrag, Datum, Menge und Dimension. |
+| Evidence Pack | Ausgangsbeleg, gebuchter Beleg, Postenfilter, Berichtsexport, Negativtest, Korrekturbeleg und Testergebnis |
+| Absichtlich falsche Eingabe | USt-Geschäftsbuchungsgruppe Inland statt EU verwenden |
+| Erwartetes Fehlverhalten | Die USt-Posten zeigen eine falsche Steuerlogik; IC-Abstimmung und Auslandsauswertung sind nicht belastbar. |
+| Diagnosepfad | Beleg öffnen, `Debitorenposten`, `Kreditorenposten`, `Sachposten`, `USt-Posten`, `Artikelposten`, `Wertposten` filtern und IC-Abstimmung, `USt-Posten (VAT Entries)`, `Sachposten (G/L Entries)` mit dem Ausgangsbeleg vergleichen. |
+| Erlaubter Korrekturweg | Vor Buchung die USt-Geschäftsbuchungsgruppe am Beleg oder Stammdatensatz korrigieren. Nach Buchung IC-Beleg über Gutschrift stornieren, Stammdaten korrigieren und IC-Vorgang neu auslösen. |
+| Nicht erlaubt | USt-Posten überschreiben, nur den Bericht korrigieren oder IC-Differenzen ohne Gegenbeleg ausbuchen. |
 
 ### In 5 Minuten merken
 
@@ -2808,44 +2880,46 @@ Die Korrektur folgt immer dem gebuchten Zustand. Ungebuchte Belege werden korrig
 
 | Feld | Inhalt |
 |---|---|
-| Rolle | Fachanwender, Key User und Finance |
-| Ausgangssituation | Auf dem Bankkonto geht `80.920 EUR` von `D10000` ein. Die Debitorenbuchhalterin gleicht die Zahlung gegen Rechnung `SO-1001` aus. Erst danach ist die Forderung wirklich erledigt. |
-| Testdaten | Zahlung `80.920 EUR`, Debitor `D10000`, Rechnung `SO-1001` |
-| Startseite über `Alt+Q` | `Debitorenposten (Customer Ledger Entries)` |
-| Felder und Werte | `Buchungsdatum`, `Belegdatum`, `Nr.`, `Menge/Betrag`, Buchungsgruppen, Dimensionen |
-| Aktion | Vorgang erfassen, prüfen, buchen oder abstimmen |
-| Erwartete Belege | Ausgangsbeleg und gebuchter Beleg |
-| Erwartete Posten | Debitorenposten, detaillierte Debitorenposten, Bankposten und Sachposten |
-| Kontrollbericht | `Debitorenposten (Customer Ledger Entries)`, OP-Liste, Altersstruktur |
-| Fehlerfrage | Welcher Posten beweist die fachliche Wirkung? |
+| Rolle | Debitorenbuchhaltung, Kreditorenbuchhaltung |
+| Alltagssituation | Rhein-Main führt den Kapitel-19-Fall mit den angegebenen Trainingsdaten aus. |
+| Konkrete Testdaten | Zahlung `80.920 EUR`, Debitor `D10000`, Rechnung `SO-1001` |
+| Startseite über `Alt+Q` | `Zahlungseingangs Buch.-Blätter (Cash Receipt Journals)`, `Debitorenposten (Customer Ledger Entries)` |
+| Exakte Felder und Werte | `Kontonr. = D10000`, `Betrag = -80.920`, `Gegenkontoart = Bankkonto`, `Gegenkontonr. = BANK-RM-01`, Ausgleich mit `SO-1001` |
+| Auszuführende Aktion | Zahlung erfassen, Ausgleich anwenden, Buchungsvorschau prüfen, buchen |
+| Erwartete Belege | Ausgangsbeleg, gebuchter Beleg oder registrierter Prozesslauf |
+| Erwartete Posten | `Debitorenposten`, `Detaillierte Debitorenposten`, Bank-/Sachposten |
+| Kontrollbericht | OP-Liste, `Debitorenposten (Customer Ledger Entries)` |
+| Fehlerfrage | Welche Posten und welcher Bericht beweisen, dass der Vorgang korrekt abgeschlossen ist? |
 
 ### Lösung
 
-Der Vorgang ist gelöst, wenn Debitorenposten, detaillierte Debitorenposten, Bankposten und Sachposten sichtbar sind und `Debitorenposten (Customer Ledger Entries)`, OP-Liste, Altersstruktur denselben Betrag zeigt.
-
-1. Öffne die Startseite über `Alt+Q`.
-2. Erfasse die Testdaten aus der Übung.
-3. Prüfe Pflichtfelder, Buchungsgruppen und Dimensionen.
-4. Führe die Aktion aus.
-5. Öffne die erwarteten Posten.
-6. Öffne den Kontrollbericht.
-7. Dokumentiere das Evidence Pack.
+1. Öffne `Zahlungseingangs Buch.-Blätter (Cash Receipt Journals)`, `Debitorenposten (Customer Ledger Entries)` über `Alt+Q`.
+2. Erfasse oder öffne den Fall Zahlung `80.920 EUR`, Debitor `D10000`, Rechnung `SO-1001`.
+3. Prüfe `Kontonr. = D10000`, `Betrag = -80.920`, `Gegenkontoart = Bankkonto`, `Gegenkontonr. = BANK-RM-01`, Ausgleich mit `SO-1001`.
+4. Starte `Buchungsvorschau (Preview Posting)`, wenn der Vorgang buchungsrelevant ist.
+5. Führe die Aktion aus: Zahlung erfassen, Ausgleich anwenden, Buchungsvorschau prüfen, buchen.
+6. Öffne die erwarteten Posten: `Debitorenposten`, `Detaillierte Debitorenposten`, Bank-/Sachposten.
+7. Öffne den Kontrollbericht: OP-Liste, `Debitorenposten (Customer Ledger Entries)`.
+8. Vergleiche Belegnummer, Betrag, Menge, Datum und Dimension und speichere das Evidence Pack.
 
 ### UAT-Fall
 
 | Feld | Inhalt |
 |---|---|
-| ID | `UAT-OP-AUSGLEICH-001` |
-| Rolle | Fachanwender, Key User, Finance |
+| ID | `UAT-K19-001` |
+| Rolle | Debitorenbuchhaltung, Kreditorenbuchhaltung |
 | Testdaten | Zahlung `80.920 EUR`, Debitor `D10000`, Rechnung `SO-1001` |
-| Exakte Schrittfolge | Startseite über `Alt+Q` öffnen, Testdaten erfassen, Pflichtfelder prüfen, Aktion ausführen, Posten filtern, Kontrollbericht öffnen, Evidence Pack speichern |
-| Erwartete Belege | Ausgangsbeleg und gebuchter Beleg |
-| Erwartete Posten | Debitorenposten, detaillierte Debitorenposten, Bankposten und Sachposten |
-| Kontrollbericht | `Debitorenposten (Customer Ledger Entries)`, OP-Liste, Altersstruktur |
-| Akzeptanzkriterium | Beleg, Posten, Kontrollbericht und Evidence Pack zeigen denselben Vorgang vollständig und widerspruchsfrei. |
-| Evidence Pack | Belegnummer, gebuchter Beleg, Postenfilter, Berichtsexport, Fehlerdiagnose und Testergebnis |
-| Negativtest | Pflichtdimension oder Buchungsgruppe falsch erfassen. |
-| Erwartete Korrektur | Fehler über Posten und Bericht nachweisen, Stammdaten korrigieren und Beleg fachlich sauber korrigieren. |
+| Exakte Schrittfolge | 1. Öffne `Zahlungseingangs Buch.-Blätter (Cash Receipt Journals)`, `Debitorenposten (Customer Ledger Entries)` über `Alt+Q`.<br>2. Lege oder öffne Zahlung `80.920 EUR`, Debitor `D10000`, Rechnung `SO-1001`.<br>3. Prüfe Felder: `Kontonr. = D10000`, `Betrag = -80.920`, `Gegenkontoart = Bankkonto`, `Gegenkontonr. = BANK-RM-01`, Ausgleich mit `SO-1001`.<br>4. Führe aus: Zahlung erfassen, Ausgleich anwenden, Buchungsvorschau prüfen, buchen.<br>5. Prüfe Posten: `Debitorenposten`, `Detaillierte Debitorenposten`, Bank-/Sachposten.<br>6. Prüfe Bericht: OP-Liste, `Debitorenposten (Customer Ledger Entries)`. |
+| Erwartete Belege | Ausgangsbeleg, gebuchter Beleg oder registrierter Prozesslauf |
+| Erwartete Posten | `Debitorenposten`, `Detaillierte Debitorenposten`, Bank-/Sachposten |
+| Kontrollbericht | OP-Liste, `Debitorenposten (Customer Ledger Entries)` |
+| Akzeptanzkriterium | Beleg, gebuchter Beleg oder Prozesslauf, Posten und Kontrollbericht zeigen denselben Vorgang mit identischem Betrag, Datum, Menge und Dimension. |
+| Evidence Pack | Ausgangsbeleg, gebuchter Beleg, Postenfilter, Berichtsexport, Negativtest, Korrekturbeleg und Testergebnis |
+| Absichtlich falsche Eingabe | Zahlung ohne Ausgleich buchen |
+| Erwartetes Fehlverhalten | Zahlung und Rechnung stehen beide offen; die OP-Liste zeigt keinen erledigten Debitorenposten. |
+| Diagnosepfad | Beleg öffnen, `Debitorenposten`, `Detaillierte Debitorenposten`, Bank-/Sachposten filtern und OP-Liste, `Debitorenposten (Customer Ledger Entries)` mit dem Ausgangsbeleg vergleichen. |
+| Erlaubter Korrekturweg | `Debitorenposten (Customer Ledger Entries)` öffnen, Zahlung markieren, `Posten ausgleichen (Apply Entries)` wählen, Rechnung `SO-1001` auswählen und Ausgleich buchen. Bei falschem Ausgleich zuerst `Ausgleich aufheben (Unapply Entries)`. |
+| Nicht erlaubt | Zahlung löschen, Rechnungsbetrag ändern oder offene Posten in Excel als erledigt markieren. |
 
 ### In 5 Minuten merken
 
@@ -2979,44 +3053,46 @@ Die Korrektur folgt immer dem gebuchten Zustand. Ungebuchte Belege werden korrig
 
 | Feld | Inhalt |
 |---|---|
-| Rolle | Fachanwender, Key User und Finance |
-| Ausgangssituation | Die Bankdatei für den 20.06.2026 ist eingelesen. Business Central schlägt vor, die Zahlung von `D10000` der Rechnung `SO-1001` zuzuordnen. Finance prüft, bucht und stimmt das Bankkonto ab. |
-| Testdaten | `BANK-2026-06-20`, Bankkonto `BANK-RM-01`, Zahlung `80.920 EUR` |
+| Rolle | Bankbuchhaltung, Finance-Leitung |
+| Alltagssituation | Rhein-Main führt den Kapitel-20-Fall mit den angegebenen Trainingsdaten aus. |
+| Konkrete Testdaten | `BANK-2026-06-20`, Bankkonto `BANK-RM-01`, Zahlung `80.920 EUR` von `D10000` |
 | Startseite über `Alt+Q` | `Zahlungsabstimmungs Buch.-Blatt (Payment Reconciliation Journal)` |
-| Felder und Werte | `Buchungsdatum`, `Belegdatum`, `Nr.`, `Menge/Betrag`, Buchungsgruppen, Dimensionen |
-| Aktion | Vorgang erfassen, prüfen, buchen oder abstimmen |
-| Erwartete Belege | Ausgangsbeleg und gebuchter Beleg |
-| Erwartete Posten | Bankkontoposten, Sachposten Bank, Debitorenposten und detaillierte Ausgleichsposten |
-| Kontrollbericht | `Bankkontenabstimmung (Bank Account Reconciliation)`, Bankkontoposten |
-| Fehlerfrage | Welcher Posten beweist die fachliche Wirkung? |
+| Exakte Felder und Werte | `Bankkonto = BANK-RM-01`, `Betrag = 80.920`, `Verwendungszweck = SO-1001`, `Debitor = D10000` |
+| Auszuführende Aktion | Bankumsatz importieren, automatisch zuordnen, Ausgleich prüfen, Bank abstimmen |
+| Erwartete Belege | Ausgangsbeleg, gebuchter Beleg oder registrierter Prozesslauf |
+| Erwartete Posten | `Bankkontoposten`, `Sachposten`, `Debitorenposten`, detaillierte Ausgleichsposten |
+| Kontrollbericht | `Bankkontenabstimmung (Bank Account Reconciliation)` |
+| Fehlerfrage | Welche Posten und welcher Bericht beweisen, dass der Vorgang korrekt abgeschlossen ist? |
 
 ### Lösung
 
-Der Vorgang ist gelöst, wenn Bankkontoposten, Sachposten Bank, Debitorenposten und detaillierte Ausgleichsposten sichtbar sind und `Bankkontenabstimmung (Bank Account Reconciliation)`, Bankkontoposten denselben Betrag zeigt.
-
-1. Öffne die Startseite über `Alt+Q`.
-2. Erfasse die Testdaten aus der Übung.
-3. Prüfe Pflichtfelder, Buchungsgruppen und Dimensionen.
-4. Führe die Aktion aus.
-5. Öffne die erwarteten Posten.
-6. Öffne den Kontrollbericht.
-7. Dokumentiere das Evidence Pack.
+1. Öffne `Zahlungsabstimmungs Buch.-Blatt (Payment Reconciliation Journal)` über `Alt+Q`.
+2. Erfasse oder öffne den Fall `BANK-2026-06-20`, Bankkonto `BANK-RM-01`, Zahlung `80.920 EUR` von `D10000`.
+3. Prüfe `Bankkonto = BANK-RM-01`, `Betrag = 80.920`, `Verwendungszweck = SO-1001`, `Debitor = D10000`.
+4. Starte `Buchungsvorschau (Preview Posting)`, wenn der Vorgang buchungsrelevant ist.
+5. Führe die Aktion aus: Bankumsatz importieren, automatisch zuordnen, Ausgleich prüfen, Bank abstimmen.
+6. Öffne die erwarteten Posten: `Bankkontoposten`, `Sachposten`, `Debitorenposten`, detaillierte Ausgleichsposten.
+7. Öffne den Kontrollbericht: `Bankkontenabstimmung (Bank Account Reconciliation)`.
+8. Vergleiche Belegnummer, Betrag, Menge, Datum und Dimension und speichere das Evidence Pack.
 
 ### UAT-Fall
 
 | Feld | Inhalt |
 |---|---|
-| ID | `UAT-BANK-PAYMENTS-001` |
-| Rolle | Fachanwender, Key User, Finance |
-| Testdaten | `BANK-2026-06-20`, Bankkonto `BANK-RM-01`, Zahlung `80.920 EUR` |
-| Exakte Schrittfolge | Startseite über `Alt+Q` öffnen, Testdaten erfassen, Pflichtfelder prüfen, Aktion ausführen, Posten filtern, Kontrollbericht öffnen, Evidence Pack speichern |
-| Erwartete Belege | Ausgangsbeleg und gebuchter Beleg |
-| Erwartete Posten | Bankkontoposten, Sachposten Bank, Debitorenposten und detaillierte Ausgleichsposten |
-| Kontrollbericht | `Bankkontenabstimmung (Bank Account Reconciliation)`, Bankkontoposten |
-| Akzeptanzkriterium | Beleg, Posten, Kontrollbericht und Evidence Pack zeigen denselben Vorgang vollständig und widerspruchsfrei. |
-| Evidence Pack | Belegnummer, gebuchter Beleg, Postenfilter, Berichtsexport, Fehlerdiagnose und Testergebnis |
-| Negativtest | Pflichtdimension oder Buchungsgruppe falsch erfassen. |
-| Erwartete Korrektur | Fehler über Posten und Bericht nachweisen, Stammdaten korrigieren und Beleg fachlich sauber korrigieren. |
+| ID | `UAT-K20-001` |
+| Rolle | Bankbuchhaltung, Finance-Leitung |
+| Testdaten | `BANK-2026-06-20`, Bankkonto `BANK-RM-01`, Zahlung `80.920 EUR` von `D10000` |
+| Exakte Schrittfolge | 1. Öffne `Zahlungsabstimmungs Buch.-Blatt (Payment Reconciliation Journal)` über `Alt+Q`.<br>2. Lege oder öffne `BANK-2026-06-20`, Bankkonto `BANK-RM-01`, Zahlung `80.920 EUR` von `D10000`.<br>3. Prüfe Felder: `Bankkonto = BANK-RM-01`, `Betrag = 80.920`, `Verwendungszweck = SO-1001`, `Debitor = D10000`.<br>4. Führe aus: Bankumsatz importieren, automatisch zuordnen, Ausgleich prüfen, Bank abstimmen.<br>5. Prüfe Posten: `Bankkontoposten`, `Sachposten`, `Debitorenposten`, detaillierte Ausgleichsposten.<br>6. Prüfe Bericht: `Bankkontenabstimmung (Bank Account Reconciliation)`. |
+| Erwartete Belege | Ausgangsbeleg, gebuchter Beleg oder registrierter Prozesslauf |
+| Erwartete Posten | `Bankkontoposten`, `Sachposten`, `Debitorenposten`, detaillierte Ausgleichsposten |
+| Kontrollbericht | `Bankkontenabstimmung (Bank Account Reconciliation)` |
+| Akzeptanzkriterium | Beleg, gebuchter Beleg oder Prozesslauf, Posten und Kontrollbericht zeigen denselben Vorgang mit identischem Betrag, Datum, Menge und Dimension. |
+| Evidence Pack | Ausgangsbeleg, gebuchter Beleg, Postenfilter, Berichtsexport, Negativtest, Korrekturbeleg und Testergebnis |
+| Absichtlich falsche Eingabe | Bankumsatz falschem Debitor zuordnen |
+| Erwartetes Fehlverhalten | Der falsche Debitor wird ausgeglichen; der richtige Debitor bleibt offen und die Bankabstimmung ist fachlich falsch. |
+| Diagnosepfad | Beleg öffnen, `Bankkontoposten`, `Sachposten`, `Debitorenposten`, detaillierte Ausgleichsposten filtern und `Bankkontenabstimmung (Bank Account Reconciliation)` mit dem Ausgangsbeleg vergleichen. |
+| Erlaubter Korrekturweg | Vor Buchung im `Zahlungsabstimmungs Buch.-Blatt (Payment Reconciliation Journal)` die Zuordnung ändern. Nach Buchung Ausgleich beim falschen Debitor aufheben und Zahlung über `Posten ausgleichen (Apply Entries)` dem richtigen Debitor zuordnen. |
+| Nicht erlaubt | Bankposten löschen, Bankauszug neu importieren, ohne den falschen Ausgleich zu dokumentieren, oder die Bankabstimmung manuell überschreiben. |
 
 ### In 5 Minuten merken
 
@@ -3152,44 +3228,46 @@ Die Korrektur folgt immer dem gebuchten Zustand. Ungebuchte Belege werden korrig
 
 | Feld | Inhalt |
 |---|---|
-| Rolle | Fachanwender, Key User und Finance |
-| Ausgangssituation | RM-PROD kauft eine CNC-Fräse `FA-CNC-01` für `250.000 EUR`. Die Anlagenbuchhalterin aktiviert die Anlage, prüft das AfA-Buch und bucht die erste monatliche Abschreibung. |
-| Testdaten | `FA-CNC-01`, Kreditor `K30000`, Anschaffung `250.000 EUR`, AfA-Buch `HGB` |
-| Startseite über `Alt+Q` | `Anlagen (Fixed Assets)` |
-| Felder und Werte | `Buchungsdatum`, `Belegdatum`, `Nr.`, `Menge/Betrag`, Buchungsgruppen, Dimensionen |
-| Aktion | Vorgang erfassen, prüfen, buchen oder abstimmen |
-| Erwartete Belege | Ausgangsbeleg und gebuchter Beleg |
-| Erwartete Posten | Anlagenposten, Kreditorenposten, Sachposten Anlage/Vorsteuer/Verbindlichkeit und AfA-Sachposten |
-| Kontrollbericht | `Anlagenstatistik`, `Anlagenposten (FA Ledger Entries)`, `Sachposten (G/L Entries)` |
-| Fehlerfrage | Welcher Posten beweist die fachliche Wirkung? |
+| Rolle | Anlagenbuchhaltung, Kreditorenbuchhaltung |
+| Alltagssituation | Rhein-Main führt den Kapitel-21-Fall mit den angegebenen Trainingsdaten aus. |
+| Konkrete Testdaten | `FA-CNC-01`, Kreditor `K30000`, Anschaffung `250.000 EUR`, AfA-Buch `HGB` |
+| Startseite über `Alt+Q` | `Anlagen (Fixed Assets)`, `Einkaufsrechnungen (Purchase Invoices)` |
+| Exakte Felder und Werte | `Anlagennr. = FA-CNC-01`, `AfA-Buchcode = HGB`, `Anlagenbuchungsgruppe = MACHINERY`, Einkaufsrechnung `250.000` |
+| Auszuführende Aktion | Anlage anlegen, Einkaufsrechnung buchen, AfA berechnen und buchen |
+| Erwartete Belege | Ausgangsbeleg, gebuchter Beleg oder registrierter Prozesslauf |
+| Erwartete Posten | `Anlagenposten`, `Kreditorenposten`, `Sachposten`, AfA-Sachposten |
+| Kontrollbericht | `Anlagenstatistik`, `Anlagenposten (FA Ledger Entries)` |
+| Fehlerfrage | Welche Posten und welcher Bericht beweisen, dass der Vorgang korrekt abgeschlossen ist? |
 
 ### Lösung
 
-Der Vorgang ist gelöst, wenn Anlagenposten, Kreditorenposten, Sachposten Anlage/Vorsteuer/Verbindlichkeit und AfA-Sachposten sichtbar sind und `Anlagenstatistik`, `Anlagenposten (FA Ledger Entries)`, `Sachposten (G/L Entries)` denselben Betrag zeigt.
-
-1. Öffne die Startseite über `Alt+Q`.
-2. Erfasse die Testdaten aus der Übung.
-3. Prüfe Pflichtfelder, Buchungsgruppen und Dimensionen.
-4. Führe die Aktion aus.
-5. Öffne die erwarteten Posten.
-6. Öffne den Kontrollbericht.
-7. Dokumentiere das Evidence Pack.
+1. Öffne `Anlagen (Fixed Assets)`, `Einkaufsrechnungen (Purchase Invoices)` über `Alt+Q`.
+2. Erfasse oder öffne den Fall `FA-CNC-01`, Kreditor `K30000`, Anschaffung `250.000 EUR`, AfA-Buch `HGB`.
+3. Prüfe `Anlagennr. = FA-CNC-01`, `AfA-Buchcode = HGB`, `Anlagenbuchungsgruppe = MACHINERY`, Einkaufsrechnung `250.000`.
+4. Starte `Buchungsvorschau (Preview Posting)`, wenn der Vorgang buchungsrelevant ist.
+5. Führe die Aktion aus: Anlage anlegen, Einkaufsrechnung buchen, AfA berechnen und buchen.
+6. Öffne die erwarteten Posten: `Anlagenposten`, `Kreditorenposten`, `Sachposten`, AfA-Sachposten.
+7. Öffne den Kontrollbericht: `Anlagenstatistik`, `Anlagenposten (FA Ledger Entries)`.
+8. Vergleiche Belegnummer, Betrag, Menge, Datum und Dimension und speichere das Evidence Pack.
 
 ### UAT-Fall
 
 | Feld | Inhalt |
 |---|---|
-| ID | `UAT-FIXED-ASSETS-001` |
-| Rolle | Fachanwender, Key User, Finance |
+| ID | `UAT-K21-001` |
+| Rolle | Anlagenbuchhaltung, Kreditorenbuchhaltung |
 | Testdaten | `FA-CNC-01`, Kreditor `K30000`, Anschaffung `250.000 EUR`, AfA-Buch `HGB` |
-| Exakte Schrittfolge | Startseite über `Alt+Q` öffnen, Testdaten erfassen, Pflichtfelder prüfen, Aktion ausführen, Posten filtern, Kontrollbericht öffnen, Evidence Pack speichern |
-| Erwartete Belege | Ausgangsbeleg und gebuchter Beleg |
-| Erwartete Posten | Anlagenposten, Kreditorenposten, Sachposten Anlage/Vorsteuer/Verbindlichkeit und AfA-Sachposten |
-| Kontrollbericht | `Anlagenstatistik`, `Anlagenposten (FA Ledger Entries)`, `Sachposten (G/L Entries)` |
-| Akzeptanzkriterium | Beleg, Posten, Kontrollbericht und Evidence Pack zeigen denselben Vorgang vollständig und widerspruchsfrei. |
-| Evidence Pack | Belegnummer, gebuchter Beleg, Postenfilter, Berichtsexport, Fehlerdiagnose und Testergebnis |
-| Negativtest | Pflichtdimension oder Buchungsgruppe falsch erfassen. |
-| Erwartete Korrektur | Fehler über Posten und Bericht nachweisen, Stammdaten korrigieren und Beleg fachlich sauber korrigieren. |
+| Exakte Schrittfolge | 1. Öffne `Anlagen (Fixed Assets)`, `Einkaufsrechnungen (Purchase Invoices)` über `Alt+Q`.<br>2. Lege oder öffne `FA-CNC-01`, Kreditor `K30000`, Anschaffung `250.000 EUR`, AfA-Buch `HGB`.<br>3. Prüfe Felder: `Anlagennr. = FA-CNC-01`, `AfA-Buchcode = HGB`, `Anlagenbuchungsgruppe = MACHINERY`, Einkaufsrechnung `250.000`.<br>4. Führe aus: Anlage anlegen, Einkaufsrechnung buchen, AfA berechnen und buchen.<br>5. Prüfe Posten: `Anlagenposten`, `Kreditorenposten`, `Sachposten`, AfA-Sachposten.<br>6. Prüfe Bericht: `Anlagenstatistik`, `Anlagenposten (FA Ledger Entries)`. |
+| Erwartete Belege | Ausgangsbeleg, gebuchter Beleg oder registrierter Prozesslauf |
+| Erwartete Posten | `Anlagenposten`, `Kreditorenposten`, `Sachposten`, AfA-Sachposten |
+| Kontrollbericht | `Anlagenstatistik`, `Anlagenposten (FA Ledger Entries)` |
+| Akzeptanzkriterium | Beleg, gebuchter Beleg oder Prozesslauf, Posten und Kontrollbericht zeigen denselben Vorgang mit identischem Betrag, Datum, Menge und Dimension. |
+| Evidence Pack | Ausgangsbeleg, gebuchter Beleg, Postenfilter, Berichtsexport, Negativtest, Korrekturbeleg und Testergebnis |
+| Absichtlich falsche Eingabe | Anlage als Sachkonto statt Anlage buchen |
+| Erwartetes Fehlverhalten | Es entstehen keine Anlagenposten; AfA kann nicht korrekt berechnet werden und der Anlagenbestand ist unvollständig. |
+| Diagnosepfad | Beleg öffnen, `Anlagenposten`, `Kreditorenposten`, `Sachposten`, AfA-Sachposten filtern und `Anlagenstatistik`, `Anlagenposten (FA Ledger Entries)` mit dem Ausgangsbeleg vergleichen. |
+| Erlaubter Korrekturweg | Vor Buchung Zeilenart auf `Anlage (Fixed Asset)` und Nr. `FA-CNC-01` ändern. Nach Buchung Einkaufsrechnung stornieren oder gutschreiben und Zugang mit korrekter Anlagenzeile neu buchen. |
+| Nicht erlaubt | Sachposten in eine Anlage „umetikettieren“, AfA manuell ohne Anlagenposten buchen oder Anlagenliste außerhalb von BC führen. |
 
 ### In 5 Minuten merken
 
@@ -3325,44 +3403,46 @@ Die Korrektur folgt immer dem gebuchten Zustand. Ungebuchte Belege werden korrig
 
 | Feld | Inhalt |
 |---|---|
-| Rolle | Fachanwender, Key User und Finance |
-| Ausgangssituation | Die Rechnung `SO-1001` über `68.000 EUR` netto erzeugt `12.920 EUR` USt. Das Steuerteam prüft, ob USt-Buchungsmatrix, USt-Posten, E-Belegstatus und Nachweise zusammenpassen. |
-| Testdaten | `SO-1001`, Basis `68.000 EUR`, USt `19 %`, Steuer `12.920 EUR` |
-| Startseite über `Alt+Q` | `USt-Buchungsmatrix Einrichtung (VAT Posting Setup)` |
-| Felder und Werte | `Buchungsdatum`, `Belegdatum`, `Nr.`, `Menge/Betrag`, Buchungsgruppen, Dimensionen |
-| Aktion | Vorgang erfassen, prüfen, buchen oder abstimmen |
-| Erwartete Belege | Ausgangsbeleg und gebuchter Beleg |
-| Erwartete Posten | USt-Posten, Sachposten, Debitorenposten und E-Belegstatus |
-| Kontrollbericht | `USt-Abrechnung (VAT Statement)`, `USt-Posten (VAT Entries)`, `E-Belege (E-Documents)` |
-| Fehlerfrage | Welcher Posten beweist die fachliche Wirkung? |
+| Rolle | Steuerverantwortliche, Debitorenbuchhaltung |
+| Alltagssituation | Rhein-Main führt den Kapitel-22-Fall mit den angegebenen Trainingsdaten aus. |
+| Konkrete Testdaten | `SO-1001`, Basis `68.000 EUR`, USt `19 %`, Steuer `12.920 EUR` |
+| Startseite über `Alt+Q` | `USt-Buchungsmatrix Einrichtung (VAT Posting Setup)`, `USt-Posten (VAT Entries)`, `E-Belege (E-Documents)` |
+| Exakte Felder und Werte | `USt-Geschäftsbuchungsgruppe = INLAND`, `USt-Produktbuchungsgruppe = VAT19`, `USt % = 19` |
+| Auszuführende Aktion | USt-Setup prüfen, Rechnung buchen, E-Belegstatus prüfen, USt-Abrechnung abstimmen |
+| Erwartete Belege | Ausgangsbeleg, gebuchter Beleg oder registrierter Prozesslauf |
+| Erwartete Posten | `USt-Posten`, `Sachposten`, `Debitorenposten`, E-Belegstatus |
+| Kontrollbericht | `USt-Abrechnung (VAT Statement)`, `E-Belege (E-Documents)` |
+| Fehlerfrage | Welche Posten und welcher Bericht beweisen, dass der Vorgang korrekt abgeschlossen ist? |
 
 ### Lösung
 
-Der Vorgang ist gelöst, wenn USt-Posten, Sachposten, Debitorenposten und E-Belegstatus sichtbar sind und `USt-Abrechnung (VAT Statement)`, `USt-Posten (VAT Entries)`, `E-Belege (E-Documents)` denselben Betrag zeigt.
-
-1. Öffne die Startseite über `Alt+Q`.
-2. Erfasse die Testdaten aus der Übung.
-3. Prüfe Pflichtfelder, Buchungsgruppen und Dimensionen.
-4. Führe die Aktion aus.
-5. Öffne die erwarteten Posten.
-6. Öffne den Kontrollbericht.
-7. Dokumentiere das Evidence Pack.
+1. Öffne `USt-Buchungsmatrix Einrichtung (VAT Posting Setup)`, `USt-Posten (VAT Entries)`, `E-Belege (E-Documents)` über `Alt+Q`.
+2. Erfasse oder öffne den Fall `SO-1001`, Basis `68.000 EUR`, USt `19 %`, Steuer `12.920 EUR`.
+3. Prüfe `USt-Geschäftsbuchungsgruppe = INLAND`, `USt-Produktbuchungsgruppe = VAT19`, `USt % = 19`.
+4. Starte `Buchungsvorschau (Preview Posting)`, wenn der Vorgang buchungsrelevant ist.
+5. Führe die Aktion aus: USt-Setup prüfen, Rechnung buchen, E-Belegstatus prüfen, USt-Abrechnung abstimmen.
+6. Öffne die erwarteten Posten: `USt-Posten`, `Sachposten`, `Debitorenposten`, E-Belegstatus.
+7. Öffne den Kontrollbericht: `USt-Abrechnung (VAT Statement)`, `E-Belege (E-Documents)`.
+8. Vergleiche Belegnummer, Betrag, Menge, Datum und Dimension und speichere das Evidence Pack.
 
 ### UAT-Fall
 
 | Feld | Inhalt |
 |---|---|
-| ID | `UAT-UST-E-RECHNUNG-001` |
-| Rolle | Fachanwender, Key User, Finance |
+| ID | `UAT-K22-001` |
+| Rolle | Steuerverantwortliche, Debitorenbuchhaltung |
 | Testdaten | `SO-1001`, Basis `68.000 EUR`, USt `19 %`, Steuer `12.920 EUR` |
-| Exakte Schrittfolge | Startseite über `Alt+Q` öffnen, Testdaten erfassen, Pflichtfelder prüfen, Aktion ausführen, Posten filtern, Kontrollbericht öffnen, Evidence Pack speichern |
-| Erwartete Belege | Ausgangsbeleg und gebuchter Beleg |
-| Erwartete Posten | USt-Posten, Sachposten, Debitorenposten und E-Belegstatus |
-| Kontrollbericht | `USt-Abrechnung (VAT Statement)`, `USt-Posten (VAT Entries)`, `E-Belege (E-Documents)` |
-| Akzeptanzkriterium | Beleg, Posten, Kontrollbericht und Evidence Pack zeigen denselben Vorgang vollständig und widerspruchsfrei. |
-| Evidence Pack | Belegnummer, gebuchter Beleg, Postenfilter, Berichtsexport, Fehlerdiagnose und Testergebnis |
-| Negativtest | Pflichtdimension oder Buchungsgruppe falsch erfassen. |
-| Erwartete Korrektur | Fehler über Posten und Bericht nachweisen, Stammdaten korrigieren und Beleg fachlich sauber korrigieren. |
+| Exakte Schrittfolge | 1. Öffne `USt-Buchungsmatrix Einrichtung (VAT Posting Setup)`, `USt-Posten (VAT Entries)`, `E-Belege (E-Documents)` über `Alt+Q`.<br>2. Lege oder öffne `SO-1001`, Basis `68.000 EUR`, USt `19 %`, Steuer `12.920 EUR`.<br>3. Prüfe Felder: `USt-Geschäftsbuchungsgruppe = INLAND`, `USt-Produktbuchungsgruppe = VAT19`, `USt % = 19`.<br>4. Führe aus: USt-Setup prüfen, Rechnung buchen, E-Belegstatus prüfen, USt-Abrechnung abstimmen.<br>5. Prüfe Posten: `USt-Posten`, `Sachposten`, `Debitorenposten`, E-Belegstatus.<br>6. Prüfe Bericht: `USt-Abrechnung (VAT Statement)`, `E-Belege (E-Documents)`. |
+| Erwartete Belege | Ausgangsbeleg, gebuchter Beleg oder registrierter Prozesslauf |
+| Erwartete Posten | `USt-Posten`, `Sachposten`, `Debitorenposten`, E-Belegstatus |
+| Kontrollbericht | `USt-Abrechnung (VAT Statement)`, `E-Belege (E-Documents)` |
+| Akzeptanzkriterium | Beleg, gebuchter Beleg oder Prozesslauf, Posten und Kontrollbericht zeigen denselben Vorgang mit identischem Betrag, Datum, Menge und Dimension. |
+| Evidence Pack | Ausgangsbeleg, gebuchter Beleg, Postenfilter, Berichtsexport, Negativtest, Korrekturbeleg und Testergebnis |
+| Absichtlich falsche Eingabe | Artikel mit falscher USt-Produktbuchungsgruppe buchen |
+| Erwartetes Fehlverhalten | Die USt-Posten und die USt-Abrechnung zeigen falsche Steuerbeträge oder falsche Steuerkennzeichen. |
+| Diagnosepfad | Beleg öffnen, `USt-Posten`, `Sachposten`, `Debitorenposten`, E-Belegstatus filtern und `USt-Abrechnung (VAT Statement)`, `E-Belege (E-Documents)` mit dem Ausgangsbeleg vergleichen. |
+| Erlaubter Korrekturweg | Vor Buchung USt-Produktbuchungsgruppe am Artikel oder Beleg korrigieren. Nach Buchung Verkaufs-/Einkaufsgutschrift erstellen, Stammdaten korrigieren, Beleg neu buchen und USt-Abrechnung erneut abstimmen. |
+| Nicht erlaubt | USt-Posten direkt ändern, Steuerbetrag nur im Bericht korrigieren oder E-Rechnungsnachweis ohne Korrektur freigeben. |
 
 ### In 5 Minuten merken
 
@@ -3498,44 +3578,46 @@ Die Korrektur folgt immer dem gebuchten Zustand. Ungebuchte Belege werden korrig
 
 | Feld | Inhalt |
 |---|---|
-| Rolle | Fachanwender, Key User und Finance |
-| Ausgangssituation | Zum Monatsende stimmt der Controller den Lagerwert ab. `RAW-STEEL` wurde mit erwarteten Kosten eingebucht, die Rechnung kam später mit `12.300 EUR`. Kostenregulierung und Lagerkostenbuchung müssen den Wert sauber ins Hauptbuch bringen. |
-| Testdaten | `RAW-STEEL`, `PO-2001`, erwartete Kosten `12.000 EUR`, fakturierte Kosten `12.300 EUR` |
-| Startseite über `Alt+Q` | `Artikelposten (Item Ledger Entries)` |
-| Felder und Werte | `Buchungsdatum`, `Belegdatum`, `Nr.`, `Menge/Betrag`, Buchungsgruppen, Dimensionen |
-| Aktion | Vorgang erfassen, prüfen, buchen oder abstimmen |
-| Erwartete Belege | Ausgangsbeleg und gebuchter Beleg |
-| Erwartete Posten | Artikelposten, Wertposten und Sachposten nach Lagerkostenbuchung |
-| Kontrollbericht | `Lagerbewertung (Inventory Valuation)`, `Wertposten (Value Entries)`, Sachkontenabstimmung |
-| Fehlerfrage | Welcher Posten beweist die fachliche Wirkung? |
+| Rolle | Lagercontrolling, Finance |
+| Alltagssituation | Rhein-Main führt den Kapitel-23-Fall mit den angegebenen Trainingsdaten aus. |
+| Konkrete Testdaten | `RAW-STEEL`, `PO-2001`, erwartete Kosten `12.000 EUR`, fakturierte Kosten `12.300 EUR` |
+| Startseite über `Alt+Q` | `Kostenregulierung Artikelposten (Adjust Cost - Item Entries)`, `Lagerbewertung (Inventory Valuation)` |
+| Exakte Felder und Werte | `Artikelnr. = RAW-STEEL`, `Bewertungsdatum = 30.06.2026`, erwartete/fakturierte Kosten |
+| Auszuführende Aktion | Kostenregulierung ausführen, Lagerkosten ins Hauptbuch buchen, Lagerbewertung abstimmen |
+| Erwartete Belege | Ausgangsbeleg, gebuchter Beleg oder registrierter Prozesslauf |
+| Erwartete Posten | `Artikelposten`, `Wertposten`, `Sachposten` |
+| Kontrollbericht | `Lagerbewertung (Inventory Valuation)`, Sachkontenabstimmung |
+| Fehlerfrage | Welche Posten und welcher Bericht beweisen, dass der Vorgang korrekt abgeschlossen ist? |
 
 ### Lösung
 
-Der Vorgang ist gelöst, wenn Artikelposten, Wertposten und Sachposten nach Lagerkostenbuchung sichtbar sind und `Lagerbewertung (Inventory Valuation)`, `Wertposten (Value Entries)`, Sachkontenabstimmung denselben Betrag zeigt.
-
-1. Öffne die Startseite über `Alt+Q`.
-2. Erfasse die Testdaten aus der Übung.
-3. Prüfe Pflichtfelder, Buchungsgruppen und Dimensionen.
-4. Führe die Aktion aus.
-5. Öffne die erwarteten Posten.
-6. Öffne den Kontrollbericht.
-7. Dokumentiere das Evidence Pack.
+1. Öffne `Kostenregulierung Artikelposten (Adjust Cost - Item Entries)`, `Lagerbewertung (Inventory Valuation)` über `Alt+Q`.
+2. Erfasse oder öffne den Fall `RAW-STEEL`, `PO-2001`, erwartete Kosten `12.000 EUR`, fakturierte Kosten `12.300 EUR`.
+3. Prüfe `Artikelnr. = RAW-STEEL`, `Bewertungsdatum = 30.06.2026`, erwartete/fakturierte Kosten.
+4. Starte `Buchungsvorschau (Preview Posting)`, wenn der Vorgang buchungsrelevant ist.
+5. Führe die Aktion aus: Kostenregulierung ausführen, Lagerkosten ins Hauptbuch buchen, Lagerbewertung abstimmen.
+6. Öffne die erwarteten Posten: `Artikelposten`, `Wertposten`, `Sachposten`.
+7. Öffne den Kontrollbericht: `Lagerbewertung (Inventory Valuation)`, Sachkontenabstimmung.
+8. Vergleiche Belegnummer, Betrag, Menge, Datum und Dimension und speichere das Evidence Pack.
 
 ### UAT-Fall
 
 | Feld | Inhalt |
 |---|---|
-| ID | `UAT-INVENTORY-COSTING-001` |
-| Rolle | Fachanwender, Key User, Finance |
+| ID | `UAT-K23-001` |
+| Rolle | Lagercontrolling, Finance |
 | Testdaten | `RAW-STEEL`, `PO-2001`, erwartete Kosten `12.000 EUR`, fakturierte Kosten `12.300 EUR` |
-| Exakte Schrittfolge | Startseite über `Alt+Q` öffnen, Testdaten erfassen, Pflichtfelder prüfen, Aktion ausführen, Posten filtern, Kontrollbericht öffnen, Evidence Pack speichern |
-| Erwartete Belege | Ausgangsbeleg und gebuchter Beleg |
-| Erwartete Posten | Artikelposten, Wertposten und Sachposten nach Lagerkostenbuchung |
-| Kontrollbericht | `Lagerbewertung (Inventory Valuation)`, `Wertposten (Value Entries)`, Sachkontenabstimmung |
-| Akzeptanzkriterium | Beleg, Posten, Kontrollbericht und Evidence Pack zeigen denselben Vorgang vollständig und widerspruchsfrei. |
-| Evidence Pack | Belegnummer, gebuchter Beleg, Postenfilter, Berichtsexport, Fehlerdiagnose und Testergebnis |
-| Negativtest | Pflichtdimension oder Buchungsgruppe falsch erfassen. |
-| Erwartete Korrektur | Fehler über Posten und Bericht nachweisen, Stammdaten korrigieren und Beleg fachlich sauber korrigieren. |
+| Exakte Schrittfolge | 1. Öffne `Kostenregulierung Artikelposten (Adjust Cost - Item Entries)`, `Lagerbewertung (Inventory Valuation)` über `Alt+Q`.<br>2. Lege oder öffne `RAW-STEEL`, `PO-2001`, erwartete Kosten `12.000 EUR`, fakturierte Kosten `12.300 EUR`.<br>3. Prüfe Felder: `Artikelnr. = RAW-STEEL`, `Bewertungsdatum = 30.06.2026`, erwartete/fakturierte Kosten.<br>4. Führe aus: Kostenregulierung ausführen, Lagerkosten ins Hauptbuch buchen, Lagerbewertung abstimmen.<br>5. Prüfe Posten: `Artikelposten`, `Wertposten`, `Sachposten`.<br>6. Prüfe Bericht: `Lagerbewertung (Inventory Valuation)`, Sachkontenabstimmung. |
+| Erwartete Belege | Ausgangsbeleg, gebuchter Beleg oder registrierter Prozesslauf |
+| Erwartete Posten | `Artikelposten`, `Wertposten`, `Sachposten` |
+| Kontrollbericht | `Lagerbewertung (Inventory Valuation)`, Sachkontenabstimmung |
+| Akzeptanzkriterium | Beleg, gebuchter Beleg oder Prozesslauf, Posten und Kontrollbericht zeigen denselben Vorgang mit identischem Betrag, Datum, Menge und Dimension. |
+| Evidence Pack | Ausgangsbeleg, gebuchter Beleg, Postenfilter, Berichtsexport, Negativtest, Korrekturbeleg und Testergebnis |
+| Absichtlich falsche Eingabe | Kostenregulierung nicht ausführen |
+| Erwartetes Fehlverhalten | Lagerbewertung, Wareneinsatz und GuV stimmen zeitlich oder betragsmäßig nicht mit den Wertposten überein. |
+| Diagnosepfad | Beleg öffnen, `Artikelposten`, `Wertposten`, `Sachposten` filtern und `Lagerbewertung (Inventory Valuation)`, Sachkontenabstimmung mit dem Ausgangsbeleg vergleichen. |
+| Erlaubter Korrekturweg | `Lagerregulierung fakt. Einst. Preise (Adjust Cost - Item Entries)` ausführen, danach `Lagerregulierung buchen (Post Inventory Cost to G/L)` starten und Lagerbewertung erneut mit Sachkonten abstimmen. |
+| Nicht erlaubt | Wertposten löschen, Wareneinsatz manuell glätten oder Monatsabschluss ohne dokumentierte Lagerwertabstimmung freigeben. |
 
 ### In 5 Minuten merken
 
@@ -3672,44 +3754,46 @@ Die Korrektur folgt immer dem gebuchten Zustand. Ungebuchte Belege werden korrig
 
 | Feld | Inhalt |
 |---|---|
-| Rolle | Fachanwender, Key User und Finance |
-| Ausgangssituation | Am letzten Arbeitstag im Juni prüft RM-SHARED Debitoren, Kreditoren, Bank, USt, Anlagen, Lager und Projekte. Erst wenn alle Nebenbücher abgestimmt sind, wird die GuV an die Geschäftsführung gegeben. |
-| Testdaten | Abschlussperiode `06/2026`, Abschlussdatum `30.06.2026` |
-| Startseite über `Alt+Q` | `Buchhaltungsperioden (Accounting Periods)` |
-| Felder und Werte | `Buchungsdatum`, `Belegdatum`, `Nr.`, `Menge/Betrag`, Buchungsgruppen, Dimensionen |
-| Aktion | Vorgang erfassen, prüfen, buchen oder abstimmen |
-| Erwartete Belege | Ausgangsbeleg und gebuchter Beleg |
-| Erwartete Posten | Sachposten, Debitorenposten, Kreditorenposten, Bankposten, USt-Posten, Anlagenposten, Artikelposten und Wertposten |
-| Kontrollbericht | `Finanzberichte (Financial Reports)`, OP-Listen, `USt-Abrechnung (VAT Statement)`, `Lagerbewertung (Inventory Valuation)` |
-| Fehlerfrage | Welcher Posten beweist die fachliche Wirkung? |
+| Rolle | Finance-Leitung, Debitoren, Kreditoren, Steuerteam |
+| Alltagssituation | Rhein-Main führt den Kapitel-24-Fall mit den angegebenen Trainingsdaten aus. |
+| Konkrete Testdaten | Abschlussperiode `06/2026`, Abschlussdatum `30.06.2026` |
+| Startseite über `Alt+Q` | `Finanzberichte (Financial Reports)`, `Buchhaltungsperioden (Accounting Periods)` |
+| Exakte Felder und Werte | `Datumsfilter = 01.06.2026..30.06.2026`, Company RM-SHARED/RM-PROD/RM-SALES, Dimensionen |
+| Auszuführende Aktion | OP, Bank, USt, Anlagen, Lager, Projekte und GuV abstimmen |
+| Erwartete Belege | Ausgangsbeleg, gebuchter Beleg oder registrierter Prozesslauf |
+| Erwartete Posten | `Sachposten`, `Debitorenposten`, `Kreditorenposten`, `Bankposten`, `USt-Posten`, `Anlagenposten`, `Artikelposten`, `Wertposten` |
+| Kontrollbericht | Abschlusscheckliste, Finanzbericht, OP-Listen, Lagerbewertung |
+| Fehlerfrage | Welche Posten und welcher Bericht beweisen, dass der Vorgang korrekt abgeschlossen ist? |
 
 ### Lösung
 
-Der Vorgang ist gelöst, wenn Sachposten, Debitorenposten, Kreditorenposten, Bankposten, USt-Posten, Anlagenposten, Artikelposten und Wertposten sichtbar sind und `Finanzberichte (Financial Reports)`, OP-Listen, `USt-Abrechnung (VAT Statement)`, `Lagerbewertung (Inventory Valuation)` denselben Betrag zeigt.
-
-1. Öffne die Startseite über `Alt+Q`.
-2. Erfasse die Testdaten aus der Übung.
-3. Prüfe Pflichtfelder, Buchungsgruppen und Dimensionen.
-4. Führe die Aktion aus.
-5. Öffne die erwarteten Posten.
-6. Öffne den Kontrollbericht.
-7. Dokumentiere das Evidence Pack.
+1. Öffne `Finanzberichte (Financial Reports)`, `Buchhaltungsperioden (Accounting Periods)` über `Alt+Q`.
+2. Erfasse oder öffne den Fall Abschlussperiode `06/2026`, Abschlussdatum `30.06.2026`.
+3. Prüfe `Datumsfilter = 01.06.2026..30.06.2026`, Company RM-SHARED/RM-PROD/RM-SALES, Dimensionen.
+4. Starte `Buchungsvorschau (Preview Posting)`, wenn der Vorgang buchungsrelevant ist.
+5. Führe die Aktion aus: OP, Bank, USt, Anlagen, Lager, Projekte und GuV abstimmen.
+6. Öffne die erwarteten Posten: `Sachposten`, `Debitorenposten`, `Kreditorenposten`, `Bankposten`, `USt-Posten`, `Anlagenposten`, `Artikelposten`, `Wertposten`.
+7. Öffne den Kontrollbericht: Abschlusscheckliste, Finanzbericht, OP-Listen, Lagerbewertung.
+8. Vergleiche Belegnummer, Betrag, Menge, Datum und Dimension und speichere das Evidence Pack.
 
 ### UAT-Fall
 
 | Feld | Inhalt |
 |---|---|
-| ID | `UAT-R2R-ABSCHLUSS-001` |
-| Rolle | Fachanwender, Key User, Finance |
+| ID | `UAT-K24-001` |
+| Rolle | Finance-Leitung, Debitoren, Kreditoren, Steuerteam |
 | Testdaten | Abschlussperiode `06/2026`, Abschlussdatum `30.06.2026` |
-| Exakte Schrittfolge | Startseite über `Alt+Q` öffnen, Testdaten erfassen, Pflichtfelder prüfen, Aktion ausführen, Posten filtern, Kontrollbericht öffnen, Evidence Pack speichern |
-| Erwartete Belege | Ausgangsbeleg und gebuchter Beleg |
-| Erwartete Posten | Sachposten, Debitorenposten, Kreditorenposten, Bankposten, USt-Posten, Anlagenposten, Artikelposten und Wertposten |
-| Kontrollbericht | `Finanzberichte (Financial Reports)`, OP-Listen, `USt-Abrechnung (VAT Statement)`, `Lagerbewertung (Inventory Valuation)` |
-| Akzeptanzkriterium | Beleg, Posten, Kontrollbericht und Evidence Pack zeigen denselben Vorgang vollständig und widerspruchsfrei. |
-| Evidence Pack | Belegnummer, gebuchter Beleg, Postenfilter, Berichtsexport, Fehlerdiagnose und Testergebnis |
-| Negativtest | Pflichtdimension oder Buchungsgruppe falsch erfassen. |
-| Erwartete Korrektur | Fehler über Posten und Bericht nachweisen, Stammdaten korrigieren und Beleg fachlich sauber korrigieren. |
+| Exakte Schrittfolge | 1. Öffne `Finanzberichte (Financial Reports)`, `Buchhaltungsperioden (Accounting Periods)` über `Alt+Q`.<br>2. Lege oder öffne Abschlussperiode `06/2026`, Abschlussdatum `30.06.2026`.<br>3. Prüfe Felder: `Datumsfilter = 01.06.2026..30.06.2026`, Company RM-SHARED/RM-PROD/RM-SALES, Dimensionen.<br>4. Führe aus: OP, Bank, USt, Anlagen, Lager, Projekte und GuV abstimmen.<br>5. Prüfe Posten: `Sachposten`, `Debitorenposten`, `Kreditorenposten`, `Bankposten`, `USt-Posten`, `Anlagenposten`, `Artikelposten`, `Wertposten`.<br>6. Prüfe Bericht: Abschlusscheckliste, Finanzbericht, OP-Listen, Lagerbewertung. |
+| Erwartete Belege | Ausgangsbeleg, gebuchter Beleg oder registrierter Prozesslauf |
+| Erwartete Posten | `Sachposten`, `Debitorenposten`, `Kreditorenposten`, `Bankposten`, `USt-Posten`, `Anlagenposten`, `Artikelposten`, `Wertposten` |
+| Kontrollbericht | Abschlusscheckliste, Finanzbericht, OP-Listen, Lagerbewertung |
+| Akzeptanzkriterium | Beleg, gebuchter Beleg oder Prozesslauf, Posten und Kontrollbericht zeigen denselben Vorgang mit identischem Betrag, Datum, Menge und Dimension. |
+| Evidence Pack | Ausgangsbeleg, gebuchter Beleg, Postenfilter, Berichtsexport, Negativtest, Korrekturbeleg und Testergebnis |
+| Absichtlich falsche Eingabe | Periode schließen, obwohl Bankabstimmung offen ist |
+| Erwartetes Fehlverhalten | Monatsabschluss ist nicht prüfbar; Bankbestand, OP-Listen und Sachkonto können voneinander abweichen. |
+| Diagnosepfad | Beleg öffnen, `Sachposten`, `Debitorenposten`, `Kreditorenposten`, `Bankposten`, `USt-Posten`, `Anlagenposten`, `Artikelposten`, `Wertposten` filtern und Abschlusscheckliste, Finanzbericht, OP-Listen, Lagerbewertung mit dem Ausgangsbeleg vergleichen. |
+| Erlaubter Korrekturweg | Buchungsperiode wieder öffnen oder Freigabe zurücknehmen, `Bankkontenabstimmung (Bank Account Reconciliation)` abschließen, offene Differenzen dokumentiert buchen und Abschlusscheckliste erneut abzeichnen. |
+| Nicht erlaubt | Abschlusscheckliste abhaken, obwohl Bankabstimmung offen ist, oder Differenzen außerhalb von BC ausgleichen. |
 
 ### In 5 Minuten merken
 
@@ -3845,44 +3929,46 @@ Die Korrektur folgt immer dem gebuchten Zustand. Ungebuchte Belege werden korrig
 
 | Feld | Inhalt |
 |---|---|
-| Rolle | Fachanwender, Key User und Finance |
-| Ausgangssituation | Der Controller öffnet morgens die GuV `RM-GUV-MONAT`. Die Geschäftsführung fragt, warum `PRODUCTLINE = MACHINE` im Kanal `B2B` weniger Marge zeigt. Der Controller drillt von Finanzbericht zu Sachposten und Dimensionen. |
-| Testdaten | `RM-GUV-MONAT`, Zeitraum `01.06.2026..30.06.2026`, `PRODUCTLINE=MACHINE`, `CHANNEL=B2B` |
-| Startseite über `Alt+Q` | `Finanzberichte (Financial Reports)` |
-| Felder und Werte | `Buchungsdatum`, `Belegdatum`, `Nr.`, `Menge/Betrag`, Buchungsgruppen, Dimensionen |
-| Aktion | Vorgang erfassen, prüfen, buchen oder abstimmen |
-| Erwartete Belege | Ausgangsbeleg und gebuchter Beleg |
-| Erwartete Posten | Sachposten mit Dimensionen, Wertposten für Marge, Nebenbuch-Drilldown und Power-BI-Daten |
-| Kontrollbericht | `Finanzberichte (Financial Reports)`, `Analyseansichten (Analysis Views)`, Power-BI-Bericht |
-| Fehlerfrage | Welcher Posten beweist die fachliche Wirkung? |
+| Rolle | Controller, Finance-Leitung |
+| Alltagssituation | Rhein-Main führt den Kapitel-25-Fall mit den angegebenen Trainingsdaten aus. |
+| Konkrete Testdaten | `RM-GUV-MONAT`, Zeitraum `01.06.2026..30.06.2026`, `PRODUCTLINE=MACHINE`, `CHANNEL=B2B` |
+| Startseite über `Alt+Q` | `Finanzberichte (Financial Reports)`, `Sachposten (G/L Entries)` |
+| Exakte Felder und Werte | `Datumsfilter = 01.06.2026..30.06.2026`, `PRODUCTLINE = MACHINE`, `CHANNEL = B2B`, `DEPARTMENT = SALES` |
+| Auszuführende Aktion | Finanzbericht filtern, Drilldown auf Sachposten durchführen, Abweichung erklären |
+| Erwartete Belege | Ausgangsbeleg, gebuchter Beleg oder registrierter Prozesslauf |
+| Erwartete Posten | `Sachposten` mit Dimensionen, Wertposten für Marge, Nebenbuch-Drilldown |
+| Kontrollbericht | `Finanzberichte (Financial Reports)`, `Analyseansichten (Analysis Views)` |
+| Fehlerfrage | Welche Posten und welcher Bericht beweisen, dass der Vorgang korrekt abgeschlossen ist? |
 
 ### Lösung
 
-Der Vorgang ist gelöst, wenn Sachposten mit Dimensionen, Wertposten für Marge, Nebenbuch-Drilldown und Power-BI-Daten sichtbar sind und `Finanzberichte (Financial Reports)`, `Analyseansichten (Analysis Views)`, Power-BI-Bericht denselben Betrag zeigt.
-
-1. Öffne die Startseite über `Alt+Q`.
-2. Erfasse die Testdaten aus der Übung.
-3. Prüfe Pflichtfelder, Buchungsgruppen und Dimensionen.
-4. Führe die Aktion aus.
-5. Öffne die erwarteten Posten.
-6. Öffne den Kontrollbericht.
-7. Dokumentiere das Evidence Pack.
+1. Öffne `Finanzberichte (Financial Reports)`, `Sachposten (G/L Entries)` über `Alt+Q`.
+2. Erfasse oder öffne den Fall `RM-GUV-MONAT`, Zeitraum `01.06.2026..30.06.2026`, `PRODUCTLINE=MACHINE`, `CHANNEL=B2B`.
+3. Prüfe `Datumsfilter = 01.06.2026..30.06.2026`, `PRODUCTLINE = MACHINE`, `CHANNEL = B2B`, `DEPARTMENT = SALES`.
+4. Starte `Buchungsvorschau (Preview Posting)`, wenn der Vorgang buchungsrelevant ist.
+5. Führe die Aktion aus: Finanzbericht filtern, Drilldown auf Sachposten durchführen, Abweichung erklären.
+6. Öffne die erwarteten Posten: `Sachposten` mit Dimensionen, Wertposten für Marge, Nebenbuch-Drilldown.
+7. Öffne den Kontrollbericht: `Finanzberichte (Financial Reports)`, `Analyseansichten (Analysis Views)`.
+8. Vergleiche Belegnummer, Betrag, Menge, Datum und Dimension und speichere das Evidence Pack.
 
 ### UAT-Fall
 
 | Feld | Inhalt |
 |---|---|
-| ID | `UAT-REPORTING-CONTROLLING-001` |
-| Rolle | Fachanwender, Key User, Finance |
+| ID | `UAT-K25-001` |
+| Rolle | Controller, Finance-Leitung |
 | Testdaten | `RM-GUV-MONAT`, Zeitraum `01.06.2026..30.06.2026`, `PRODUCTLINE=MACHINE`, `CHANNEL=B2B` |
-| Exakte Schrittfolge | Startseite über `Alt+Q` öffnen, Testdaten erfassen, Pflichtfelder prüfen, Aktion ausführen, Posten filtern, Kontrollbericht öffnen, Evidence Pack speichern |
-| Erwartete Belege | Ausgangsbeleg und gebuchter Beleg |
-| Erwartete Posten | Sachposten mit Dimensionen, Wertposten für Marge, Nebenbuch-Drilldown und Power-BI-Daten |
-| Kontrollbericht | `Finanzberichte (Financial Reports)`, `Analyseansichten (Analysis Views)`, Power-BI-Bericht |
-| Akzeptanzkriterium | Beleg, Posten, Kontrollbericht und Evidence Pack zeigen denselben Vorgang vollständig und widerspruchsfrei. |
-| Evidence Pack | Belegnummer, gebuchter Beleg, Postenfilter, Berichtsexport, Fehlerdiagnose und Testergebnis |
-| Negativtest | Pflichtdimension oder Buchungsgruppe falsch erfassen. |
-| Erwartete Korrektur | Fehler über Posten und Bericht nachweisen, Stammdaten korrigieren und Beleg fachlich sauber korrigieren. |
+| Exakte Schrittfolge | 1. Öffne `Finanzberichte (Financial Reports)`, `Sachposten (G/L Entries)` über `Alt+Q`.<br>2. Lege oder öffne `RM-GUV-MONAT`, Zeitraum `01.06.2026..30.06.2026`, `PRODUCTLINE=MACHINE`, `CHANNEL=B2B`.<br>3. Prüfe Felder: `Datumsfilter = 01.06.2026..30.06.2026`, `PRODUCTLINE = MACHINE`, `CHANNEL = B2B`, `DEPARTMENT = SALES`.<br>4. Führe aus: Finanzbericht filtern, Drilldown auf Sachposten durchführen, Abweichung erklären.<br>5. Prüfe Posten: `Sachposten` mit Dimensionen, Wertposten für Marge, Nebenbuch-Drilldown.<br>6. Prüfe Bericht: `Finanzberichte (Financial Reports)`, `Analyseansichten (Analysis Views)`. |
+| Erwartete Belege | Ausgangsbeleg, gebuchter Beleg oder registrierter Prozesslauf |
+| Erwartete Posten | `Sachposten` mit Dimensionen, Wertposten für Marge, Nebenbuch-Drilldown |
+| Kontrollbericht | `Finanzberichte (Financial Reports)`, `Analyseansichten (Analysis Views)` |
+| Akzeptanzkriterium | Beleg, gebuchter Beleg oder Prozesslauf, Posten und Kontrollbericht zeigen denselben Vorgang mit identischem Betrag, Datum, Menge und Dimension. |
+| Evidence Pack | Ausgangsbeleg, gebuchter Beleg, Postenfilter, Berichtsexport, Negativtest, Korrekturbeleg und Testergebnis |
+| Absichtlich falsche Eingabe | GuV ohne Dimensionsfilter auswerten |
+| Erwartetes Fehlverhalten | Management sieht nur Gesamtwerte; GuV nach Produktlinie, Vertriebskanal und Abteilung ist nicht aussagefähig. |
+| Diagnosepfad | Beleg öffnen, `Sachposten` mit Dimensionen, Wertposten für Marge, Nebenbuch-Drilldown filtern und `Finanzberichte (Financial Reports)`, `Analyseansichten (Analysis Views)` mit dem Ausgangsbeleg vergleichen. |
+| Erlaubter Korrekturweg | Finanzbericht mit Dimensionsfilter `PRODUCTLINE`, `CHANNEL` und `DEPARTMENT` neu öffnen; falls Sachposten falsche Dimension tragen, zulässige `Dimensionskorrektur (Dimension Correction)` durchführen und Analyseansicht aktualisieren. |
+| Nicht erlaubt | GuV-Werte in Excel manuell verteilen, Dimensionen ohne Freigabe korrigieren oder Managementbericht ohne Drilldown-Nachweis freigeben. |
 
 ### In 5 Minuten merken
 
