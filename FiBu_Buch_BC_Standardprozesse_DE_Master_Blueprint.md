@@ -4128,183 +4128,112 @@ Merksatz:
 
 
 ## 29. Integrationen [Q35][Q36][Q37][Q38][Q39][Q40][Q41][Q42]
+Dieses Kapitel zeigt, wie Rhein-Main Integrationen und Extensions nicht nach Bauchgefühl auswählt, sondern als prüfbare Architekturentscheidung. Nach dem Kapitel kannst du für einen konkreten Schmerzpunkt entscheiden, ob Business-Central-Standard, AppSource-Extension, Power Platform, API-Integration oder Customizing die richtige Lösung ist.
 
-Dieses Kapitel ist kein Produktkatalog und keine Kaufempfehlung. Es zeigt, welche Extension-Klassen in DACH-Projekten häufig geprüft werden, warum sie helfen und wie sie grundsätzlich in Business Central eingeführt werden. Die konkrete Auswahl hängt von Lizenz, Land, Prozessreife, Datenschutz, GoBD-Anforderung und Partnerkompetenz ab.
+### Entscheidungssituation bei Rhein-Main
 
-### AppSource-Grundlogik
+RM-SHARED verarbeitet monatlich `2.500` Eingangsrechnungen, `180` Reisekostenabrechnungen und Zahlungseingänge aus vier Banken. RM-SALES nutzt Shopify. RM-SERVICE will perspektivisch Field-Service-nahe mobile Einsätze. Der Standard kann viele Kernprozesse abbilden, aber nicht jede Massenverarbeitung, mobile Belegerfassung, OCR-Erkennung, Bankkomfortfunktion oder Spezialintegration wirtschaftlich genug leisten.
 
-Standard laut Quelle:
-- Business Central kann AppSource-Apps über die Seite `Microsoft AppSource Apps` suchen und verwalten. Dort lassen sich Apps nach Name, Publisher, Installationsstatus, Popularität, Bewertung und Änderungsdatum filtern. [Q35]
+Die Architekturfrage lautet nicht: „Welche Extension klingt gut?“ Die Frage lautet: **Welcher konkrete Prozessschmerz bleibt nach Standard-Setup, Prozessdesign und UAT offen?**
 
-Einrichtungslogik:
-1. Prozesslücke dokumentieren.
-2. AppSource und Herstellerdokumentation prüfen.
-3. Testcompany verwenden.
-4. Extension installieren.
-5. Assisted Setup oder Setup-Seiten ausführen.
-6. Berechtigungen und Role Center prüfen.
-7. Stammdaten/Mapping konfigurieren.
-8. UAT mit Happy Path und Abweichungen durchführen.
-9. GoBD-/DSGVO-/Archivwirkung dokumentieren.
-10. Produktivsetzung mit Rollback- und Supportpfad freigeben.
+### Für absolute Einsteiger erklärt
 
-### Extension-Klassen
+Eine Extension ist eine Erweiterung für Business Central. Sie ergänzt den Standard, zum Beispiel OCR-Erkennung, Banking-Komfort oder spezielle Branchenlogik. Eine Integration verbindet Business Central mit anderen Systemen, zum Beispiel Shopify, Power BI, Power Automate oder einem Versanddienstleister.
 
-| Klasse | Typischer Bedarf | Beispiel-Extensions | Was sie bringen |
+Rhein-Main installiert keine Extension direkt in Produktion. Jede Erweiterung wird zuerst in einer Sandbox/Testcompany geprüft. Der Nachweis besteht aus Prozessfall, Daten, Berechtigung, UAT, Fehlerfall, Rollback und Betriebsverantwortung.
+
+### Standard-first-Entscheidung
+
+| Stufe | Prüffrage | Rhein-Main-Beispiel | Nachweis |
 |---|---|---|---|
-| AP Automation / Document Capture | Eingangsrechnungen, OCR, Freigabe, Archiv | Continia Document Capture | Import, OCR, Registrierung, Approval, Order Matching, Archiv |
-| Expense Management | Reisekosten, Belege, Firmenkarten, Genehmigung | Continia Expense Management | mobile Belegerfassung, Expense Reports, Mileage, Per Diem, Approval |
-| Banking / OP-Verarbeitung | Zahlungsverkehr, Bankauszüge, Zahlungsavise | Continia OPplus | Zahlungs-/Bankfunktionen, OP-Komfort, Raten, erweiterte Auswertungen |
-| E-Documents / Peppol | E-Rechnung und Netzwerkanbindung | E-Document Provider, Continia eDocuments | Versand/Empfang strukturierter Dokumente |
-| Anzahlungen | Projekt-/Bau-/Maschinenbau-Anzahlungen | COSMO Advance Payment | Anzahlungsanforderungen, Anzahlungsrechnungen, Schlussrechnung |
-| DATEV/Steuerberater | Übergabe an Kanzlei | DATEV-Extensions, Partnerlösungen | Buchungs-/Belegübergabe, Konten-/Steuerberaterprozess |
-| Shipping / Carrier | Versandlabels, Tracking, Packplatz | Shipping-Apps | Label, Carrier, Tracking, Versandstatus |
-| WMS / Scanner | mobiles Lager, Barcode, Packplatz | Scanner-/WMS-Apps | mobile Datenerfassung, Lagerqualität |
-| Rental / Subscription | Mietpark, wiederkehrende Abrechnung | Rental-/Subscription-Apps | Vertragslogik, Verfügbarkeit, Verlängerung |
-| Reporting / BI | Management Reporting, Data Warehouse | Power BI/Data-Apps | KPIs, Dashboards, Datenmodell |
+| Standard | Kann BC den Prozess mit Setup und Training abbilden? | Einkaufsrechnung manuell buchen | Prozess-UAT bestanden |
+| Standard plus Prozessdesign | Reichen Rollen, Workflow und Evidence Pack? | Einkaufsfreigabe ab `5.000 EUR` | Workflow-Test |
+| AppSource-Extension | Bleibt ein wiederkehrender, wirtschaftlich relevanter Schmerz? | OCR für `2.500` Eingangsrechnungen | Extension-UAT |
+| Power Platform/API | Muss BC mit externem System kommunizieren? | Power Automate Benachrichtigung | Integrations-UAT |
+| Custom | Gibt es keine Standard- oder AppSource-Lösung? | Spezialmietpark mit Zustandsdaten | ADR und technisches Konzept |
 
-### Continia Document Capture (Klasse: AP Automation) [Q36][Q37]
+### Deutsche BC-Seiten
 
-Use Case:
-- Die RM-SHARED GmbH verarbeitet monatlich `2.500` Eingangsrechnungen. BC Standard kann Einkaufsrechnungen (Purchase Invoices) und Eingehende Dokumente (Incoming Documents) verarbeiten. Die Grenze liegt bei OCR, automatischem Abgleich, Genehmigungsrouting und revisionsnaher Dokumentenverarbeitung in Masse.
+- `Erweiterungsverwaltung (Extension Management)`
+- `Microsoft AppSource Apps`
+- `Unterstützte Einrichtung (Assisted Setup)`
+- `Berechtigungssätze (Permission Sets)`
+- `Aufgabenwarteschlangenposten (Job Queue Entries)`
+- `Webdienste (Web Services)`
+- `API-Einrichtung (API Setup)`
+- `Ereignisprotokolle / Telemetrie (Telemetry)`
 
-Nutzen:
-- Import und OCR-Verarbeitung von Eingangsrechnungen.
-- Registrierung und Weiterleitung in Genehmigungsflüsse.
-- Order Matching gegen Bestellungen und Wareneingänge.
-- Archivierung und Nachvollziehbarkeit des Rechnungsprozesses.
+### Konkreter Rhein-Main-Fall: Document-Capture-Extension prüfen
 
-Einrichtungslogik:
-1. App in Testcompany installieren.
-2. Assisted Setup starten.
-3. Kreditoren, Templates, Dokumentkategorien und Freigaben konfigurieren.
-4. Abgleich von Einkaufsbestellungen (Purchase Order Matching) testen.
-5. E-Rechnung/XML und PDF-Verarbeitung testen.
-6. Evidence Pack und Archivzugriff dokumentieren.
+Rhein-Main prüft eine Document-Capture-Extension für Eingangsrechnungen, weil `2.500` Rechnungen pro Monat manuell zu viel Aufwand erzeugen.
 
-BC-Best-Practice:
-- Document Capture ersetzt nicht den fachlichen P2P-Prozess. Es automatisiert Eingang, Erkennung, Matching, Approval und Archivierung. Der fachliche 3-Way-Match bleibt Prozesspflicht.
+1. Öffne in der Sandbox `Alt+Q` und suche `Erweiterungsverwaltung (Extension Management)`.
+2. Prüfe, ob die Extension bereits installiert ist; wenn ja, notiere Version, Publisher und Status.
+3. Öffne `Microsoft AppSource Apps` und suche nach der freigegebenen Document-Capture-App.
+4. Prüfe Publisher, Dokumentation, unterstützte Länder, letzte Aktualisierung und Berechtigungsanforderungen.
+5. Installiere die App ausschließlich in der Sandbox/Testcompany `RM-SHARED-TEST`.
+6. Öffne `Unterstützte Einrichtung (Assisted Setup)` der Extension.
+7. Richte Kreditor `K10000`, Dokumentkategorie `Eingangsrechnung`, Genehmiger `FIN-LEAD` und Dimension `DEPARTMENT = FINANCE` ein.
+8. Importiere Testrechnung `INV-K10000-4711.pdf` über die Extension.
+9. Prüfe OCR-Ergebnis: Kreditor `K10000`, Betrag `12.300 EUR`, externe Belegnr. `4711`, USt `19 %`.
+10. Erzeuge daraus eine `Einkaufsrechnung (Purchase Invoice)`.
+11. Starte `Buchungsvorschau (Preview Posting)` und prüfe `Kreditorenposten`, `Sachposten` und `USt-Posten`.
+12. Sende die Rechnung in den Genehmigungsworkflow.
+13. Melde dich als `FIN-LEAD` an, genehmige die Rechnung und buche sie.
+14. Öffne `Kreditorenposten (Vendor Ledger Entries)`, `USt-Posten (VAT Entries)` und den Archiv-/Beleglink.
+15. Dokumentiere Version, Setup, Testdaten, Posten, Genehmigung, Beleglink, Fehlerfall und Rollback im Evidence Pack.
 
-### Continia Expense Management (Klasse: Travel & Expense) [Q38][Q39]
+### Negativtest Extension
 
-Use Case:
-- Servicetechniker und Projektleiter reichen Hotel, Fahrtkosten, Bewirtung und Kilometer ein. BC Standard kann Sachkonten und Kreditoren buchen, bildet aber mobile Belegerfassung, Genehmigung und Firmenkartenabgleich nicht komfortabel vollständig ab.
-
-Nutzen:
-- Mobile Belegerfassung.
-- Expense Reports, Kilometer und Pauschalen.
-- Genehmigungsflows.
-- Buchung auf Sachkonten, Dimensionen und ggf. Projekte.
-
-Einrichtungslogik:
-1. App installieren und aktivieren.
-2. Expense User, Genehmiger und Dimensionen einrichten.
-3. Ausgabenkategorien auf Sachkonten mappen.
-4. Firmenkartenimport testen.
-5. Projekt- und Service-Dimensionen prüfen.
-
-Schulungsfall:
-- Techniker bucht Hotel `180 EUR`, Kilometer `220 km`, Parken `18 EUR`. Manager genehmigt. Finance prüft Buchung auf Projekt `PROJ-5001`.
-
-### Continia OPplus (Klasse: Banking/Payments/Finance) [Q40][Q41]
-
-Use Case:
-- Die RM-SALES GmbH hat viele Zahlungseingänge, Zahlungsavise, Ratenzahlungen und Bankdateien. BC Standard kann Zahlungen und Bankabstimmung verarbeiten. Die Grenze liegt bei DACH-Komfort, Massenzahlungen, erweiterten OP-Funktionen und Spezialfällen.
-
-Nutzen:
-- Unterstützung wichtiger Finanzbuchhaltungsaufgaben.
-- Komfort bei eingehenden und ausgehenden Zahlungen.
-- Module wie Multiple Payments, Installments, Extended Fixed Assets und Extended Analysis laut Herstellerdokumentation.
-
-Einrichtungslogik:
-1. OPplus aktivieren.
-2. Module auswählen.
-3. Bank- und Zahlungsparameter konfigurieren.
-4. Berechtigungen setzen.
-5. Zahlungsimport, Avis und Ratenfall testen.
-
-Best Practice:
-- OPplus nicht als „mehr Finance“ einführen, sondern für konkrete Schmerzpunkte: Zahlungsavise, Massenausgleich, Raten, Bankformate, OP-Transparenz.
-
-### COSMO Advance Payment (Klasse: Anzahlungen) [Q42]
-
-Use Case:
-- Maschinenbau und Projektgeschäft verlangen Anzahlungen: `30 %` bei Auftrag, `40 %` bei Meilenstein, `30 %` bei Abnahme. BC Standard kennt Vorauszahlungen, aber komplexe Anzahlungslogik in Bau-/Projekt-/Maschinenbauprozessen kann mehr Struktur brauchen.
-
-Nutzen:
-- strukturierte Anzahlungsprozesse.
-- bessere Abbildung von Anzahlungsanforderungen und Schlussrechnungen.
-- Unterstützung projekt- oder auftragsnaher Anzahlungslogik.
-
-Einrichtungslogik:
-1. AppSource/Herstellerinstallation prüfen.
-2. Anzahlungsarten definieren.
-3. Konten und Steuerlogik mappen.
-4. Verkaufsauftrag mit Anzahlungsplan testen.
-5. Schlussrechnung und USt-Abstimmung prüfen.
-
-Prüfungsfalle:
-- Anzahlungslogik ist steuerlich sensibel. Extension-Komfort ersetzt nicht die Prüfung von Steuerentstehung, Rechnungstext, USt-Ausweis und Schlussrechnungslogik.
-
-### DATEV-/Steuerberater-Übergabe (Klasse: DACH Accounting)
-
-Use Case:
-- Die RM-SHARED GmbH will Monatsdaten, Belege und Buchungen an den Steuerberater übergeben. BC Standard kann Daten exportieren und Reports liefern. DACH-Projekte verlangen häufig standardisierte Kanzleiübergaben, Kontenmapping und Belegverknüpfung.
-
-Nutzen:
-- strukturierter Export.
-- weniger manuelle Überleitung.
-- bessere Abstimmung mit Steuerberaterprozessen.
-
-Einrichtungslogik:
-1. Zielprozess klären: Buchungsstapel, Belegbilder, Stammdaten, Salden oder vollständige Prüfungsexporte?
-2. Kontenrahmen und Steuerkennzeichen mappen.
-3. Testmonat exportieren.
-4. Import beim Steuerberater validieren.
-5. Fehlerliste und Monatsroutine dokumentieren.
-
-Hinweis:
-- Konkrete DATEV-Lösung und Hersteller hängen stark von Partner, Land, Kontenrahmen und Prozess ab. Deshalb wird im Buch nur die Prozessklasse beschrieben und nicht eine einzelne Lösung als Standard gesetzt.
-
-### Wann Individualprogrammierung sinnvoll ist
-
-Individualprogrammierung ist sinnvoll, wenn mindestens einer dieser Punkte erfüllt ist:
-
-| Kriterium | Beispiel |
+| Feld | Inhalt |
 |---|---|
-| kein passender Standard und keine passende Extension | Spezialmietpark mit IoT-Verbrauchsdaten |
-| Wettbewerbsvorteil | eigener Konfigurator für Sondermaschinen |
-| tiefe Integration | Maschinen-/MES-Daten in Fertigungsrückmeldung |
-| klare stabile Regel | automatischer TaxScenario-Validator |
-| hoher Volumenprozess | Massenerzeugung projektspezifischer Serviceaufträge |
+| Absichtlich falsche Eingabe | Testrechnung mit unbekanntem Kreditor `K99999` importieren |
+| Erwartetes Fehlverhalten | Extension darf keine ungeprüfte Einkaufsrechnung mit falschem Kreditor buchen |
+| Diagnosepfad | OCR-Protokoll, Kreditorenmapping, Fehlerliste und Extension-Log prüfen |
+| Erlaubter Korrekturweg | Kreditor fachlich anlegen oder Rechnung auf bestehenden Kreditor mappen, danach UAT erneut ausführen |
+| Nicht erlaubt | Kreditor automatisch ohne Vier-Augen-Prüfung anlegen oder Rechnung direkt gegen Sachkonto buchen |
 
-Mindestanforderungen:
-- Fachkonzept.
-- Datenmodell.
-- Berechtigungskonzept.
-- Testfälle.
-- Upgrade-Konzept.
-- Telemetrie und Fehlerlogging.
-- Dokumentation im Evidence Pack.
+### Integrations- und Extension-Matrix
 
-### Schulungsübung Extension-Auswahl
+| Schmerzpunkt | Standardfähigkeit | Extension/API-Kandidat | UAT-Nachweis | Betriebsverantwortung |
+|---|---|---|---|---|
+| `2.500` Eingangsrechnungen | Standard kann buchen, aber OCR/Massenrouting begrenzt | Document Capture / AP Automation | Testrechnung `INV-K10000-4711` bis Posten und Archiv | Kreditorenbuchhaltung + Admin |
+| Reisekosten `180` pro Monat | Standard nur über manuelle Buchungen | Expense Management | Hotel `180 EUR`, Kilometer, Genehmigung, Projekt-Dimension | HR/Finance |
+| vier Banken und Avise | Standardbankabstimmung möglich | Banking/OP-Komfort | Kontoauszug, Avis, Ausgleich, OP-Liste | Bankbuchhaltung |
+| Shopify | Standardconnector vorhanden | Shopify-Connector Standard, nur bei Lücke Extension | `WEB-24001` bis Marge | E-Commerce-Key-User |
+| Mietmodell | Standardrechnung und Abgrenzung möglich, Vertragslogik begrenzt | Rental-/Subscription-App | Mietvertrag, Rückgabe, Verlängerung, Abgrenzung | Service + Finance |
+| Management-Cockpit | Finanzberichte und Analysemodus vorhanden | Power BI | GuV `RM-GUV-MONAT` mit Drilldown | Controlling |
 
-Fall:
-- Die RM-SHARED GmbH hat `2.500` Eingangsrechnungen pro Monat, `180` Reisekostenabrechnungen, `4` Banken, viele Zahlungsavise und Maschinenbau-Anzahlungen.
+### Architecture Decision Record: Extension
 
-Aufgabe:
-1. Ordne jeden Schmerzpunkt einer Extension-Klasse zu.
-2. Entscheide, ob Standard, Extension oder Custom die Startlösung ist.
-3. Definiere je Klasse einen UAT-Test.
+| Feld | Rhein-Main-Ausfüllung |
+|---|---|
+| ADR-ID | `ADR-EXT-AP-001` |
+| Entscheidung | Document-Capture-Extension in Sandbox für P2P testen |
+| Standardnachweis | Manuelle Einkaufsrechnung und Genehmigungsworkflow funktionieren, aber Massenerfassung bleibt Engpass |
+| Fit-Gap | OCR, Belegbild, Matching und Massenrouting fehlen wirtschaftlich im Standardprozess |
+| Risiko | Datenschutz, Berechtigungen, Upgrade, Archivzugriff, Supportabhängigkeit |
+| UAT | `INV-K10000-4711.pdf`, Kreditor `K10000`, Betrag `12.300 EUR`, USt `19 %`, Genehmiger `FIN-LEAD` |
+| Betrieb | Extension-Version, Job Queue, Fehlerprotokoll und Supportkontakt monatlich prüfen |
+| Rollback | Keine Produktivaktivierung ohne bestandenen UAT; Testdaten aus Sandbox löschen |
+| Empfehlung | Pilot in Sandbox, danach Entscheidungsvorlage für Steering Committee |
 
-Lösungsskizze:
-- Eingangsrechnungen: Document Capture/AP Automation.
-- Reisekosten: Expense Management.
-- Banken/Zahlungsavise: OPplus/Banking.
-- Anzahlungen: COSMO Advance Payment oder Standard-Vorauszahlung plus Prozessdesign.
-- Custom nur, wenn die Extension den spezifischen Prozess nicht abdeckt.
+### UAT-Fall Integration
 
----
+| Feld | Inhalt |
+|---|---|
+| ID | `UAT-INT-AP-001` |
+| Ziel | Eingangsrechnung per Document Capture importieren, genehmigen, buchen und nachweisen |
+| Rolle | Kreditorenbuchhaltung, Genehmiger, BC-Admin |
+| Voraussetzung | Extension in `RM-SHARED-TEST`, Kreditor `K10000`, Genehmiger `FIN-LEAD`, USt-Setup `19 %` |
+| Testdaten | `INV-K10000-4711.pdf`, Betrag `12.300 EUR`, USt `19 %`, externe Belegnr. `4711` |
+| Schritte | 1. `Erweiterungsverwaltung` öffnen und Version prüfen.<br>2. Testrechnung importieren.<br>3. OCR-Felder Kreditor, Betrag, USt und externe Belegnr. prüfen.<br>4. `Einkaufsrechnung (Purchase Invoice)` erzeugen.<br>5. `Buchungsvorschau (Preview Posting)` prüfen.<br>6. Genehmigung an `FIN-LEAD` senden.<br>7. Genehmigen und buchen.<br>8. Kreditorenposten, USt-Posten, Sachposten und Beleglink prüfen. |
+| Akzeptanzkriterium | Rechnung ist gebucht, genehmigt, archiviert und über Posten sowie Beleglink nachvollziehbar |
+| Evidence Pack | Extension-Version, Setup-Screenshot, OCR-Protokoll, Genehmigung, gebuchte Rechnung, Postenfilter, Beleglink, Negativtest |
+
+### Praxisregel
+
+- Eine Extension ist erst projektfähig, wenn Standardnachweis, Fit-Gap, UAT, Rollen, Berechtigungen, Betrieb und Rollback dokumentiert sind.
 
 
 ## 30. Betrieb, Monitoring und Hypercare [Q32][Q69][Q81][Q82][Q83]
@@ -5426,23 +5355,29 @@ Dieses Buch ist ein vollumfängliches Business-Central-Einführungs-, Schulungs-
 
 Die folgende Matrix dokumentiert die strenge 10/10-Prüfung der Prozess- und Finance-Kapitel 11 bis 25. Sie ist kein Selbstlob, sondern ein Redaktionsinstrument: Ein Kapitel gilt erst dann als buchwürdig, wenn Einsteigerführung, Rhein-Main-Situation, konkrete Bedienung, Postenspur, Fehlerdiagnose, Übung, Lösung und UAT zusammenpassen.
 
-| Kapitel | Bewertung /10 | Hauptschwäche | Generische Stellen | Fehlende konkrete Schritte | UAT-Qualität | Sofortmaßnahme |
-|---|---:|---|---|---|---|---|
-| 11. Order-to-Cash | 10/10 | keine offene Schwäche | keine | keine | konkret mit Beleg, Posten, Negativtest | keine Maßnahme |
-| 12. Procure-to-Pay | 10/10 | keine offene Schwäche | keine | keine | konkret mit Mengenabweichung und Korrektur | keine Maßnahme |
-| 13. Inventory und Warehouse | 10/10 | Einstieg war noch formelhaft | Kapitelauftakt | keine Prozesslücke | konkret für einfaches und gesteuertes Lager | Kapitelauftakt konkretisiert |
-| 14. Planning, Assembly und Manufacturing | 10/10 | Einstieg war noch formelhaft | Kapitelauftakt | keine Prozesslücke | konkret mit Verbrauch/Output-Negativtest | Kapitelauftakt konkretisiert |
-| 15. Service | 10/10 | Einstieg war noch formelhaft | Kapitelauftakt | keine Prozesslücke | konkret mit Serviceauftrag, Ressource, Ersatzteil | Kapitelauftakt konkretisiert |
-| 16. Projects | 10/10 | Einstieg war noch formelhaft | Kapitelauftakt | keine Prozesslücke | konkret mit Projektaufgabe und Meilenstein | Kapitelauftakt konkretisiert |
-| 17. Shopify, Dropshipping und Sonderverkauf | 10/10 | Hauptteil war zu schablonenhaft | Einsteigertext, Rollen, Schrittfolge, Buchungsspur | Dropshipping-Verknüpfung und Lagerprüfung waren zu knapp | UAT konkret, durch Hauptteil gestützt | Hauptteil vollständig ersetzt |
-| 18. Intercompany und Ausland | 10/10 | Hauptteil war zu schablonenhaft | Einsteigertext, Schrittfolge, Buchungsspur | IC-Ausgang/-Eingang war nicht ausreichend geführt | UAT konkret, durch Hauptteil gestützt | Hauptteil vollständig ersetzt |
-| 19. Debitoren, Kreditoren und OP-Ausgleich | 10/10 | Hauptteil war zu schablonenhaft | Einsteigertext, Schrittfolge, Buchungsspur | Ausgleich/Unapply war im Hauptteil zu knapp | UAT konkret, durch Hauptteil gestützt | Hauptteil vollständig ersetzt |
-| 20. Bank, Payments und Bankabstimmung | 10/10 | Hauptteil war zu schablonenhaft | Einsteigertext, Schrittfolge, Buchungsspur | Bankimport, Zuordnung und Abstimmung waren nicht als Klickfolge geführt | UAT konkret, durch Hauptteil gestützt | Hauptteil vollständig ersetzt |
-| 21. Anlagen | 10/10 | Hauptteil war zu schablonenhaft | Einsteigertext, Schrittfolge, Buchungsspur | Anlagenkarte, Zugang und AfA waren nicht als vollständige Klickfolge geführt | UAT konkret, durch Hauptteil gestützt | Hauptteil vollständig ersetzt |
-| 22. USt, E-Rechnung und deutsche Nachweissicht | 10/10 | Hauptteil war zu schablonenhaft | Einsteigertext, Setup, Schrittfolge, Buchungsspur | USt-Matrix, E-Belegstatus und USt-Abrechnung waren zu generisch | UAT konkret, durch Hauptteil gestützt | Hauptteil vollständig ersetzt |
-| 23. Inventory Costing und Lagerbewertung | 10/10 | Hauptteil war zu schablonenhaft | Einsteigertext, Kostenregulierung, Buchungsspur | Wertposten, Kostenregulierung und Hauptbuchbuchung waren zu knapp | UAT konkret, durch Hauptteil gestützt | Hauptteil vollständig ersetzt |
-| 24. Monatsabschluss / Record-to-Report | 10/10 | Hauptteil war zu schablonenhaft | Einsteigertext, Abschlussreihenfolge, Buchungsspur | OP, Bank, USt, Anlagen, Lager, Projekte und GuV waren nicht als Abschlusskette geführt | UAT konkret, durch Hauptteil gestützt | Hauptteil vollständig ersetzt |
-| 25. Reporting, Controlling, Finanzberichte und Power BI | 10/10 | war zuvor wie ein Buchungsprozess formuliert | vor Überarbeitung: Reporting-Generik | Drilldown, Datenanalysemodus und Power-BI-Abgrenzung fehlten | UAT konkret mit Filter-/Drilldown-Negativtest | bereits als Controlling-Lernmodul neu gefasst |
+| Kapitel | Typ | Bewertung /10 | Hauptschwäche | Generische Stellen | Fehlende Konkretisierung | Sofortmaßnahme |
+|---|---|---:|---|---|---|---|
+| 11. Order-to-Cash | Operativer Prozess | 10/10 | keine offene Schwäche | keine | keine | keine Maßnahme |
+| 12. Procure-to-Pay | Operativer Prozess | 10/10 | keine offene Schwäche | keine | keine | keine Maßnahme |
+| 13. Inventory und Warehouse | Operativer Prozess | 10/10 | keine offene Schwäche | keine | keine | Kapitelauftakt konkretisiert |
+| 14. Planning, Assembly und Manufacturing | Operativer Prozess | 10/10 | keine offene Schwäche | keine | keine | Kapitelauftakt konkretisiert |
+| 15. Service | Operativer Prozess | 10/10 | keine offene Schwäche | keine | keine | Kapitelauftakt konkretisiert |
+| 16. Projects | Operativer Prozess | 10/10 | keine offene Schwäche | keine | keine | Kapitelauftakt konkretisiert |
+| 17. Shopify, Dropshipping und Sonderverkauf | Operativer Prozess | 10/10 | war im Hauptteil zu schablonenhaft | Einsteigertext, Schrittfolge, Buchungsspur | Dropshipping-Verknüpfung und Lagerprüfung | Hauptteil vollständig ersetzt |
+| 18. Intercompany und Ausland | Operativer Prozess | 10/10 | war im Hauptteil zu schablonenhaft | Einsteigertext, Schrittfolge, Buchungsspur | IC-Ausgang/-Eingang | Hauptteil vollständig ersetzt |
+| 19. Debitoren, Kreditoren und OP-Ausgleich | Operativer Prozess | 10/10 | war im Hauptteil zu schablonenhaft | Einsteigertext, Schrittfolge, Buchungsspur | Ausgleich und Ausgleich aufheben | Hauptteil vollständig ersetzt |
+| 20. Bank, Payments und Bankabstimmung | Operativer Prozess | 10/10 | war im Hauptteil zu schablonenhaft | Einsteigertext, Schrittfolge, Buchungsspur | Bankimport, Zuordnung, Abstimmung | Hauptteil vollständig ersetzt |
+| 21. Anlagen | Operativer Prozess | 10/10 | war im Hauptteil zu schablonenhaft | Einsteigertext, Schrittfolge, Buchungsspur | Anlagenkarte, Zugang, AfA | Hauptteil vollständig ersetzt |
+| 22. USt, E-Rechnung und deutsche Nachweissicht | Operativer Prozess | 10/10 | war im Hauptteil zu schablonenhaft | Einsteigertext, Setup, Schrittfolge | USt-Matrix, E-Belegstatus, USt-Abrechnung | Hauptteil vollständig ersetzt |
+| 23. Inventory Costing und Lagerbewertung | Operativer Prozess | 10/10 | war im Hauptteil zu schablonenhaft | Einsteigertext, Kostenregulierung, Buchungsspur | Wertposten, Kostenregulierung, Hauptbuchbuchung | Hauptteil vollständig ersetzt |
+| 24. Monatsabschluss / Record-to-Report | Operativer Prozess | 10/10 | war im Hauptteil zu schablonenhaft | Einsteigertext, Abschlussreihenfolge, Buchungsspur | OP, Bank, USt, Anlagen, Lager, Projekte, GuV | Hauptteil vollständig ersetzt |
+| 25. Reporting, Controlling, Finanzberichte und Power BI | Operativer Prozess | 10/10 | war wie Buchungsprozess formuliert | Reporting-Generik | Drilldown, Datenanalysemodus, Power-BI-Abgrenzung | als Controlling-Lernmodul neu gefasst |
+| 26. Fit-Gap und Standard-first Design | Projekt/Architektur | 9/10 | Entscheidungssituation vorhanden, UAT-Nachweis noch knapp | Extension-/Custom-Entscheidung teils tabellarisch | konkrete Rhein-Main-ADR und Testschritte | nächster Kandidat nach Kapitel 29 |
+| 27. Security, Rollen, SoD und Governance | Projekt/Architektur | 9/10 | gute SoD-Logik, aber UAT für Rollen noch ausbaufähig | Admin-Kalender teils listenhaft | konkrete Berechtigungstests je Rolle | späterer Feinschliff |
+| 28. Migration, Opening Balances und Cutover | Projekt/Architektur | 8/10 | Migrationslogik solide, Cutover-Entscheidung noch zu allgemein | Schrittfolge ohne konkreten Rhein-Main-Testimport | Opening-Balance-Abstimmung und Rollback | nach 26 priorisieren |
+| 29. Integrationen | Projekt/Architektur | 10/10 | war schwächstes Kapitel: Extension-Auswahl zu produktkatalogartig | „Extension installieren“, UAT allgemein | AppSource-Prüfung, Testcompany, Verantwortlichkeit, Nachweis | Kapitel 29 vollständig als Rhein-Main-Entscheidungsfall ersetzt |
+| 30. Betrieb, Monitoring und Hypercare | Projekt/Architektur | 9/10 | Monitoring vorhanden, aber konkrete Job-Fehler-UATs noch knapp | Supportpfad teils allgemein | täglicher Hypercare-Test mit Job Queue und E-Mail | späterer Feinschliff |
+| 31. Business Central Solution Architect Pfad | Projekt/Architektur | 9/10 | gute Matrix, Mini-Cases noch knapp | Architekturentscheidung als Leitfragen | konkrete ADR-Ausfüllung und UAT-Nachweis je Mini-Case | späterer Feinschliff |
 
 Praktische Einordnung: Die Matrix ist eine Arbeitsprüfung für die Redaktion. Der Leser nutzt sie indirekt daran, dass jedes Prozesskapitel dieselbe fachliche Tiefe bietet: Geschäftsgrund, Rolle, BC-Bedienung, Postenspur, Bericht, Fehler, Lösung und UAT.
 
