@@ -3806,177 +3806,256 @@ Die Korrektur folgt immer dem gebuchten Zustand. Ungebuchte Belege werden korrig
 
 ## 25. Reporting, Controlling, Finanzberichte (Financial Reports) und Power BI [Q48][Q49][Q50][Q51]
 
-Dieses Kapitel führt dich durch Reporting/Controlling als praktischen Business-Central-Prozess. Du verstehst den geschäftlichen Zweck, führst den Vorgang in der deutschen Oberfläche aus und prüfst die entstandenen Belege, Posten und Berichte.
+Dieses Kapitel zeigt, wie Rhein-Main aus gebuchten Geschäftsvorfällen verlässliche Managementinformationen gewinnt. Nach dem Kapitel kannst du eine GuV nach Produktlinie, Vertriebskanal und Abteilung öffnen, die Zahlen bis zu den Sachposten zurückverfolgen, typische Reportingfehler erkennen und einen UAT-Fall für Controlling-Berichte abnehmen.
 
 ### Kapitelbox
 
 | Feld | Inhalt |
 |---|---|
-| Zielgruppe | Einsteiger, Key User, Junior Consultant, MB-800-Lerner, Standard-Solution-Architect |
-| Schwierigkeit | Basic bis Advanced |
-| Prozessbereich | Reporting/Controlling |
-| Betroffene Companies | RM-SHARED, Management |
-| MB-800-Relevanz | Ja: Standardprozess, Bedienung, Postenprüfung, Korrektur und UAT |
-| Solution-Architect-Relevanz | Ja: Standard-first, Setup-Entscheidung, Extension-Grenze, Betrieb |
-| Ergebnis nach dem Kapitel | Du kannst den Prozess mit Rhein-Main-Testdaten ausführen, Posten prüfen, Fehler korrigieren und UAT abnehmen. |
+| Zielgruppe | Einsteiger, Controller, Key User, Junior Consultant, MB-800-Lerner, Standard-Solution-Architect |
+| Schwierigkeit | Intermediate |
+| Prozessbereich | Reporting / Controlling / R2R |
+| Betroffene Companies | RM-SHARED, RM-SALES, RM-PROD |
+| MB-800-Relevanz | Ja: Finanzberichte, Dimensionen, Datenanalysemodus, Sachposten, Berichtslayouts, Excel/Power BI |
+| Solution-Architect-Relevanz | Ja: Reportingarchitektur, Dimensionsmodell, Standardbericht vs. Power BI, Datenqualität |
+| Ergebnis nach dem Kapitel | Du kannst eine GuV mit Dimensionen auswerten, den Drilldown bis zum Posten erklären, Fehler diagnostizieren und den Bericht im UAT abnehmen. |
 
 ### Alltagsszene bei Rhein-Main
 
-Der Controller öffnet morgens die GuV `RM-GUV-MONAT`. Die Geschäftsführung fragt, warum `PRODUCTLINE = MACHINE` im Kanal `B2B` weniger Marge zeigt. Der Controller drillt von Finanzbericht zu Sachposten und Dimensionen.
+Montagmorgen um 8:30 Uhr fragt die Geschäftsführung von Rhein-Main, warum die Marge der Produktlinie `MACHINE` im Kanal `B2B` im Juni niedriger ist als geplant. Der Controller öffnet den Finanzbericht `RM-GUV-MONAT`, filtert auf `01.06.2026..30.06.2026`, `PRODUCTLINE = MACHINE`, `CHANNEL = B2B` und `DEPARTMENT = SALES`. Danach springt er aus der GuV in die `Sachposten (G/L Entries)`, prüft Erlöse, Wareneinsatz und Dimensionen und vergleicht die Zahlen mit `Wertposten (Value Entries)` aus dem Maschinenverkauf `SO-1001`. Erst wenn Bericht, Sachposten, Wertposten und Dimensionen dieselbe Geschichte erzählen, ist die Auswertung entscheidungsfähig.
 
 ### Für absolute Einsteiger erklärt
 
-Reporting, Controlling, Finanzberichte (Financial Reports) und Power BI zeigt, wie ein Fachvorgang in Business Central zu Belegen, Posten und Berichten wird. Ein Anfänger erkennt hier: Die Maske ist nur der Einstieg. Entscheidend ist die Kette aus Stammdaten, Buchung, Posten, Kontrollbericht und Evidence Pack.
+Reporting ist nicht das Erstellen schöner Tabellen. Reporting bedeutet: Gebuchte Vorgänge werden so ausgewertet, dass die Geschäftsführung Entscheidungen treffen kann. Eine GuV zeigt Erlöse und Aufwendungen. Eine Bilanz zeigt Vermögen, Schulden und Eigenkapital. Business Central speichert die Grundlage dafür in Posten, vor allem in `Sachposten (G/L Entries)`.
+
+Dimensionen sind dabei die Auswertungsachsen. Sie ersetzen keine Konten und keine Companies. Das Konto sagt, **was** gebucht wurde, zum Beispiel Erlös oder Wareneinsatz. Die Dimension sagt, **wofür** oder **für welchen Bereich** gebucht wurde, zum Beispiel Produktlinie `MACHINE`, Kanal `B2B` oder Abteilung `SALES`. Deshalb ist ein Finanzbericht nur so gut wie die gebuchten Dimensionen.
+
+Power BI ist in diesem Kapitel kein Ersatz für saubere BC-Posten. Power BI visualisiert und kombiniert Daten. Die fachliche Wahrheit kommt aus Business Central: Beleg, Posten, Dimension und Abstimmung.
 
 ### Warum braucht Rhein-Main diesen Prozess?
 
-Rhein-Main braucht diesen Prozess, weil Reporting/Controlling direkt auf Finance, Reporting und operative Steuerung wirkt. Ohne klaren Standardprozess entstehen Medienbrüche, falsche Posten, fehlende Nachweise und unsichere Entscheidungen. Business Central stellt dafür deutsche Seiten, Buchungslogik, Kontrollberichte und UAT-fähige Nachweise bereit.
+Rhein-Main verkauft Maschinen, Ersatzteile, Serviceleistungen und Projekte über mehrere Companies und Kanäle. Die Geschäftsführung braucht deshalb nicht nur eine Gesamt-GuV, sondern Auswertungen nach Produktlinie, Vertriebskanal, Standortgruppe und Abteilung. Ohne klare Reportinglogik sieht Finance zwar den Gesamtumsatz, aber nicht, ob `RM-M100` im Direktvertrieb profitabel ist, ob der Onlineshop Marge verliert oder ob Serviceeinsätze zu viel Kulanz enthalten.
+
+Business Central liefert dafür drei Ebenen:
+- `Finanzberichte (Financial Reports)` für GuV, Bilanz und Kennzahlen aus Sachkonten.
+- `Sachposten (G/L Entries)` als prüfbare Postenbasis.
+- `Datenanalysemodus (Data Analysis Mode)`, `Analyseansichten (Analysis Views)` und Power BI für Auswertung, Filter, Pivot-ähnliche Analysen und Managementsicht.
 
 ### Rollen
 
-Die Rollen sind bewusst knapp gehalten. Sie zeigen, wer ausführt, wer prüft und wer die Standardentscheidung verantwortet.
+Reporting ist ein gemeinsamer Prozess. Der Controller baut die Auswertung, Finance sichert die Buchungsqualität und der Solution Architect entscheidet, welche Auswertung im BC-Standard bleibt und welche in Power BI gehört.
 
 | Rolle | Aufgabe | Ergebnis |
 |---|---|---|
-| Fachanwender | Vorgang erfassen und Pflichtfelder prüfen | Beleg ist fachlich korrekt |
-| Key User | Stammdaten, Setup und Fehlerfälle prüfen | Vorgang ist buchbar |
-| Finance/Controlling | Posten und Bericht abstimmen | Nachweis ist belastbar |
-| Solution Architect | Standard, Extension und Risiko bewerten | UAT beweist die Entscheidung |
+| Controller | Finanzbericht öffnen, Filter setzen, Abweichung erklären | Management bekommt eine belastbare GuV |
+| Finance-Leitung | Sachposten, Perioden und Abschlussstatus freigeben | Zahlen sind abschlusssicher |
+| Key User | Dimensionen, Analyseansichten und Berichtszugriff prüfen | Bericht ist bedienbar und reproduzierbar |
+| Solution Architect | Reportingarchitektur entwerfen | Standard, Power BI und Extension-Grenze sind geklärt |
 
-Praktisch bedeutet das: Der Fachbereich erzeugt den Vorgang, Key User und Finance sichern die Buchbarkeit, und der Solution Architect bewertet, ob der Standard ausreicht.
+Praktische Einordnung: Ein Controller darf nicht bei einer Berichtszahl stehen bleiben. Er muss zeigen können, welche Sachposten hinter der Zahl liegen und welche Dimensionen die Auswertung steuern.
 
 ### Stammdaten
 
-Die Stammdaten müssen vor dem Klick stimmen. Falsche Stammdaten erzeugen später falsche Buchungen.
+Reporting beginnt nicht im Bericht. Reporting beginnt bei den Stammdaten und Dimensionen, die beim Buchen in die Posten laufen.
 
 | Stammdatum | Rhein-Main-Beispiel | Warum wichtig? |
 |---|---|---|
-| Partner | `D10000`, `K10000` oder Intercompany-Partner | steuert Buchungsgruppen und USt |
-| Artikel/Sachkonto/Ressource | `RM-GUV-MONAT`, Zeitraum `01.06.2026..30.06.2026`, `PRODUCTLINE=MACHINE`, `CHANNEL=B2B` | steuert Menge, Wert oder Leistung |
-| Dimension | `PRODUCTLINE`, `CHANNEL`, `DEPARTMENT` | steuert Reporting |
-| Nummernserie | prozessabhängig | sichert eindeutige Belege |
+| Sachkonto | `4000 Erlöse Maschinen`, `5000 Wareneinsatz Maschinen` | bestimmt GuV-Zeile |
+| Kontenkategorie | Umsatzerlöse, Materialaufwand | strukturiert Finanzberichte |
+| Dimension `PRODUCTLINE` | `MACHINE` | trennt Maschinen, Ersatzteile, Service, Projekte |
+| Dimension `CHANNEL` | `B2B`, `SHOP` | trennt Direktvertrieb und Onlineshop |
+| Dimension `DEPARTMENT` | `SALES`, `SERVICE`, `PROD` | trennt Verantwortungsbereiche |
+| Analyseansicht | `AN-RM-MARGE` | beschleunigt Auswertung nach Dimension |
 
-Kontrollfrage: Kannst du vor der Buchung erklären, welcher Partner, welcher Artikel oder welches Konto später welchen Posten auslöst?
+Rhein-Main prüft Stammdaten vor dem Go-live und danach im Monatsabschluss. Ein fehlender Dimensionswert ist kein kosmetischer Fehler. Er macht Managementberichte falsch.
 
 ### Setup
 
-Das Setup ist die fachliche Leitplanke. Es entscheidet, ob der richtige Klick später auf das richtige Konto, die richtige Steuerlogik und den richtigen Bericht läuft.
+Das Setup legt fest, welche Berichte es gibt, welche Dimensionen ausgewertet werden und wer die Zahlen sehen darf.
 
-- relevante Buchungsgruppen und Buchungsmatrizen
-- Nummernserien und Pflichtdimensionen
-- Rollenprofil und Berechtigungen
-- Bericht oder Kontrollliste für den Nachweis
+- `Finanzberichte (Financial Reports)` mit Berichtsname `RM-GUV-MONAT`.
+- `Sachkontenplan (Chart of Accounts)` mit Kontenkategorien.
+- `Dimensionen (Dimensions)` mit `PRODUCTLINE`, `CHANNEL`, `DEPARTMENT`, `LOCATION-GROUP`.
+- `Standarddimensionen (Default Dimensions)` für Debitoren, Artikel, Sachkonten und Ressourcen.
+- `Analyseansichten (Analysis Views)` für häufige Auswertungen.
+- Berechtigungen für Controller und Management.
+- Power-BI-Dataset oder Bericht, wenn Verdichtung, Visualisierung oder mehrere Datenquellen benötigt werden.
 
-Rhein-Main ändert Setup nur über dokumentierte Projektentscheidungen. Ein spontaner Setup-Wechsel im Tagesgeschäft ist ein Change Request.
+Praxisregel:
+- Der Standardbericht erklärt den geprüften Zahlenkern. Power BI erklärt die Managementsicht. Beide müssen auf dieselben Posten zurückführbar sein.
 
 ### Deutsche BC-Seiten
 
 Diese Seiten öffnest du über `Alt+Q`. Der deutsche Begriff ist führend; der englische Begriff steht als Suchhilfe in Klammern.
 
-- `Finanzberichte (Financial Reports)`
-- `Analyseansichten (Analysis Views)`
-- `Datenanalysemodus (Data Analysis Mode)`
-- `Sachposten (G/L Entries)`
+| Deutsche Seite | Englische Suchhilfe | Wofür nutzt du sie? |
+|---|---|---|
+| `Finanzberichte` | `Financial Reports` | GuV, Bilanz, Kennzahlen |
+| `Sachposten` | `G/L Entries` | Drilldown auf gebuchte Hauptbuchposten |
+| `Kontenplan` | `Chart of Accounts` | Konto, Saldo und Kontenkategorie prüfen |
+| `Analyseansichten` | `Analysis Views` | Dimensionsbasierte Finanzanalyse |
+| `Datenanalysemodus` | `Data Analysis Mode` | Ad-hoc-Filter, Gruppierung und Summen in Listen |
+| `Wertposten` | `Value Entries` | Marge und Lagerwertwirkung erklären |
+| `Power BI-Berichte` | `Power BI Reports` | Visualisierte Managementauswertung |
 
-### Schritt-für-Schritt
+Kontrollfrage: Kannst du von einer GuV-Zahl über Drilldown zu den Sachposten springen und dort Datum, Konto, Betrag und Dimension erklären?
 
-1. Öffne `Alt+Q` und suche `Finanzberichte (Financial Reports)`, `Analyseansichten (Analysis Views)`, `Datenanalysemodus (Data Analysis Mode)`, `Sachposten (G/L Entries)`.
-2. Öffne oder erfasse den Rhein-Main-Fall `RM-GUV-MONAT`, Zeitraum `01.06.2026..30.06.2026`, `PRODUCTLINE=MACHINE`, `CHANNEL=B2B`.
-3. Prüfe `Buchungsdatum`, `Belegdatum`, Partner, Betrag/Menge, Buchungsgruppen und Dimensionen.
-4. Nutze `Buchungsvorschau (Preview Posting)`, wenn der Vorgang eine Buchung auslöst.
-5. Führe die fachliche Aktion aus: freigeben, buchen, ausgleichen, berechnen oder abstimmen.
-6. Öffne danach die gebuchten Belege oder Postenlisten.
-7. Filtere nach Belegnummer, Partner, Artikel, Konto oder Dimension.
-8. Prüfe Sachposten mit Dimensionen, Wertposten für Marge, Nebenbuch-Drilldown und Power-BI-Daten.
-9. Öffne `Finanzberichte (Financial Reports)`, `Analyseansichten (Analysis Views)`, Power-BI-Bericht und vergleiche Bericht, Posten und Ausgangsbeleg.
-10. Dokumentiere Belegnummern, Filter, Bericht und Testergebnis im Evidence Pack.
+### Schritt-für-Schritt: GuV nach Produktlinie und Kanal prüfen
+
+1. Öffne `Alt+Q` und suche `Finanzberichte (Financial Reports)`.
+2. Öffne den Bericht `RM-GUV-MONAT`.
+3. Setze `Datumsfilter = 01.06.2026..30.06.2026`.
+4. Setze `Dimensionsfilter PRODUCTLINE = MACHINE`.
+5. Setze `Dimensionsfilter CHANNEL = B2B`.
+6. Setze `Dimensionsfilter DEPARTMENT = SALES`.
+7. Wähle `Bericht anzeigen` oder aktualisiere die Matrixansicht.
+8. Prüfe die Zeile `Umsatzerlöse Maschinen`; erwarteter Betrag aus `SO-1001`: `68.000 EUR` netto.
+9. Prüfe die Zeile `Wareneinsatz Maschinen`; erwarteter Bezug: Wertposten zum Artikel `RM-M100`.
+10. Klicke in der Erlöszeile auf den Betrag und öffne den Drilldown zu `Sachposten (G/L Entries)`.
+11. Filtere die `Sachposten (G/L Entries)` zusätzlich auf `Belegnr. = SO-1001`.
+12. Prüfe `Sachkonto = 4000 Erlöse Maschinen`, `Betrag = -68.000 EUR`, `PRODUCTLINE = MACHINE`, `CHANNEL = B2B`, `DEPARTMENT = SALES`.
+13. Öffne `Wertposten (Value Entries)` über `Alt+Q`, filtere `Artikelnr. = RM-M100` und `Belegnr. = SO-1001`.
+14. Vergleiche Wareneinsatz aus Finanzbericht mit den Wertposten.
+15. Öffne `Datenanalysemodus (Data Analysis Mode)` in den `Sachposten (G/L Entries)`.
+16. Gruppiere nach `PRODUCTLINE` und `CHANNEL`; summiere das Feld `Betrag`.
+17. Öffne `Analyseansichten (Analysis Views)` und prüfe, ob `AN-RM-MARGE` aktualisiert ist.
+18. Öffne den Power-BI-Bericht `RM Management Cockpit` und prüfe, ob Zeitraum und Filter dieselben Werte zeigen.
+19. Dokumentiere Finanzbericht, Sachpostenfilter, Wertpostenfilter, Analyseansicht und Power-BI-Screenshot im Evidence Pack.
 
 ### Buchungsspur
 
-Die folgende Spur zeigt, wie aus dem Vorgang ein prüfbarer Nachweis wird.
+Reporting erzeugt nicht zwingend neue Buchungen. Es muss aber jede Berichtszahl auf Buchungen zurückführen. Diese Tabelle zeigt den Prüfpfad für den Maschinenverkauf `SO-1001`.
 
 | Ebene | Rhein-Main-Nachweis | Wo prüfen? |
 |---|---|---|
-| Ausgangsbeleg | `RM-GUV-MONAT`, Zeitraum `01.06.2026..30.06.2026`, `PRODUCTLINE=MACHINE`, `CHANNEL=B2B` | `Finanzberichte (Financial Reports)` |
-| Gebuchter Beleg | gebuchter Beleg oder abgestimmter Prozesslauf | gebuchte Belege/Postenlisten |
-| Posten | Sachposten mit Dimensionen, Wertposten für Marge, Nebenbuch-Drilldown und Power-BI-Daten | passende Postenlisten |
-| Sachposten | Hauptbuchwirkung mit Betrag und Dimension | `Sachposten (G/L Entries)` |
-| Kontrollbericht | `Finanzberichte (Financial Reports)`, `Analyseansichten (Analysis Views)`, Power-BI-Bericht | `Finanzberichte (Financial Reports)`, `Analyseansichten (Analysis Views)`, Power-BI-Bericht |
+| Ausgangsbeleg | Verkaufsauftrag `SO-1001` für `RM-M100` | `Gebuchte Verkaufsrechnungen (Posted Sales Invoices)` |
+| Gebuchter Beleg | gebuchte Verkaufsrechnung, netto `68.000 EUR`, USt `12.920 EUR` | `Gebuchte Verkaufsrechnungen (Posted Sales Invoices)` |
+| Debitorenposten | Forderung `80.920 EUR` gegen `D10000` | `Debitorenposten (Customer Ledger Entries)` |
+| Sachposten Erlös | `4000 Erlöse Maschinen`, `-68.000 EUR` | `Sachposten (G/L Entries)` |
+| Sachposten USt | Umsatzsteuer `-12.920 EUR` | `Sachposten (G/L Entries)` und `USt-Posten (VAT Entries)` |
+| Artikelposten | Lagerabgang `RM-M100`, Menge `-1` | `Artikelposten (Item Ledger Entries)` |
+| Wertposten | Wareneinsatz / Kostenabgang | `Wertposten (Value Entries)` |
+| Finanzbericht | GuV nach `PRODUCTLINE = MACHINE`, `CHANNEL = B2B` | `Finanzberichte (Financial Reports)` |
 
-Praktische Einordnung: Wenn eine Ebene fehlt, ist der Prozess nicht 10/10 abnahmefähig. Der UAT-Prüfer muss vom Ausgangsbeleg bis zum Kontrollbericht springen können.
+Nach der Tabelle folgt die praktische Prüfung: Wenn der Finanzbericht `68.000 EUR` Erlös zeigt, aber der Drilldown keine Sachposten mit `PRODUCTLINE = MACHINE` findet, ist der Bericht nicht abnahmefähig. Dann stimmt entweder der Filter nicht, die Dimension fehlt oder die Buchung wurde falsch kontiert.
 
 ### Kontrollberichte
 
-- `Finanzberichte (Financial Reports)`
-- `Analyseansichten (Analysis Views)`
-- Power-BI-Bericht
+- `Finanzberichte (Financial Reports)`: GuV, Bilanz, Rohertrag und Kennzahlen.
+- `Sachposten (G/L Entries)`: Hauptbuchnachweis je Konto, Datum, Beleg und Dimension.
+- `Analyseansichten (Analysis Views)`: verdichtete Finanzsicht nach Dimension.
+- `Datenanalysemodus (Data Analysis Mode)`: schnelle Ad-hoc-Prüfung in Listen.
+- `Wertposten (Value Entries)`: Brücke zwischen Lagerbewertung und Marge.
+- Power BI `RM Management Cockpit`: Managementsicht, nicht Primärnachweis.
 
-Rhein-Main nutzt diese Berichte nicht als Dekoration, sondern als Abgleich gegen die Posten. Ein Bericht ohne Drilldown oder Postenbezug reicht für UAT nicht.
+Praxisregel:
+- Ein Managementbericht ohne Drilldown auf BC-Posten ist eine Präsentation. Ein Managementbericht mit Drilldown, Filter und Evidence Pack ist ein prüfbarer Nachweis.
 
 ### Fehlerdiagnose
 
 | Fehler | Symptom | Ursache | Diagnosepfad | Korrekturweg |
 |---|---|---|---|---|
-| falsche Dimension | Bericht zeigt Wert nicht | Dimension fehlt oder ist falsch | `Sachposten (G/L Entries)` mit Dimension prüfen | Dimension korrigieren, wenn zulässig, sonst fachlich gegenbuchen |
-| falsche Buchungsgruppe | falsches Konto oder falsche USt | Stammdaten falsch | Stammdaten und Buchungsmatrix prüfen | Beleg stornieren/gutschreiben und korrekt neu buchen |
-| fehlender Nachweis | UAT kann nicht abgenommen werden | Bericht oder Belegnummer fehlt | Evidence Pack prüfen | Nachweis exportieren und Test neu bewerten |
+| GuV zeigt keinen Wert für `MACHINE` | Finanzbericht ist leer, obwohl Maschinen verkauft wurden | Dimension `PRODUCTLINE` fehlt oder Filter falsch | `Sachposten (G/L Entries)` auf Beleg `SO-1001` filtern und Dimensionswerte prüfen | Filter korrigieren; bei falscher gebuchter Dimension `Dimensionskorrektur (Dimension Correction)` mit Freigabe nutzen |
+| Marge ist zu hoch | Erlös ist da, Wareneinsatz fehlt | Kostenregulierung oder Lagerbuchung fehlt | `Wertposten (Value Entries)`, `Lagerbewertung (Inventory Valuation)`, `Sachposten (G/L Entries)` vergleichen | `Lagerregulierung fakt. Einst. Preise (Adjust Cost - Item Entries)` und `Lagerregulierung buchen (Post Inventory Cost to G/L)` ausführen |
+| Power BI weicht von BC ab | Power-BI-Kachel zeigt anderen Umsatz | Dataset nicht aktualisiert oder Filter anders gesetzt | Power-BI-Aktualisierungszeit, Berichtfilter und BC-Finanzbericht vergleichen | Dataset aktualisieren und Filterdefinition dokumentieren |
+| Controller sieht Bericht nicht | Seite oder Bericht ist nicht erreichbar | Berechtigung, Profil oder Rollencenter fehlt | Benutzer, Berechtigungssätze und Berichtsauswahl prüfen | Berechtigungssatz ergänzen und SoD-Freigabe dokumentieren |
 
 ### Korrekturweg
 
-Die Korrektur folgt immer dem gebuchten Zustand. Ungebuchte Belege werden korrigiert. Gebuchte Belege werden über Gutschrift, Gegenbuchung, Ausgleichslösung oder dokumentierte Neubuchung korrigiert. Posten werden nicht gelöscht.
+Reportingfehler werden nach Ursache korrigiert:
+
+1. **Filterfehler:** Filter in `Finanzberichte (Financial Reports)`, `Sachposten (G/L Entries)` oder Power BI korrigieren und Evidence Pack neu erzeugen.
+2. **Dimensionsfehler:** `Dimensionskorrektur (Dimension Correction)` nur für zulässige Sachposten nutzen, Freigabe dokumentieren und Analyseansichten aktualisieren.
+3. **Buchungsfehler:** Gebuchte Belege nicht ändern. Über Gutschrift, Gegenbuchung oder fachlich dokumentierte Korrekturbuchung korrigieren.
+4. **Kostenfehler:** Kostenregulierung ausführen und Lagerwert mit Sachkonto abstimmen.
+5. **Berechtigungsfehler:** Berechtigungen über Rollen- und SoD-Matrix anpassen, nicht über unkontrollierte Vollzugriffe.
+
+### Evidence Pack
+
+Das Evidence Pack für Reporting enthält:
+- Bericht `RM-GUV-MONAT` mit Zeitraum und Dimensionsfiltern.
+- Drilldown-Screenshot oder Export der `Sachposten (G/L Entries)`.
+- Export der `Wertposten (Value Entries)` für `RM-M100`.
+- Power-BI-Ansicht mit identischem Zeitraum und Filter, falls Power BI genutzt wird.
+- Nachweis der aktualisierten `Analyseansichten (Analysis Views)`.
+- Dokumentierter Negativtest und Korrekturweg.
 
 ### Übung
 
 | Feld | Inhalt |
 |---|---|
-| Rolle | Controller, Finance-Leitung |
-| Alltagssituation | Rhein-Main führt den Kapitel-25-Fall mit den angegebenen Trainingsdaten aus. |
-| Konkrete Testdaten | `RM-GUV-MONAT`, Zeitraum `01.06.2026..30.06.2026`, `PRODUCTLINE=MACHINE`, `CHANNEL=B2B` |
-| Startseite über `Alt+Q` | `Finanzberichte (Financial Reports)`, `Sachposten (G/L Entries)` |
+| Rolle | Controller bei RM-SHARED |
+| Alltagssituation | Die Geschäftsführung will die Juni-GuV für Maschinen im B2B-Kanal sehen und den Umsatz `SO-1001` nachvollziehen. |
+| Konkrete Testdaten | Bericht `RM-GUV-MONAT`, Zeitraum `01.06.2026..30.06.2026`, `PRODUCTLINE = MACHINE`, `CHANNEL = B2B`, `DEPARTMENT = SALES`, Beleg `SO-1001`, Debitor `D10000`, Artikel `RM-M100`, Nettoumsatz `68.000 EUR` |
+| Startseite über `Alt+Q` | `Finanzberichte (Financial Reports)` |
 | Exakte Felder und Werte | `Datumsfilter = 01.06.2026..30.06.2026`, `PRODUCTLINE = MACHINE`, `CHANNEL = B2B`, `DEPARTMENT = SALES` |
-| Auszuführende Aktion | Finanzbericht filtern, Drilldown auf Sachposten durchführen, Abweichung erklären |
-| Erwartete Belege | Ausgangsbeleg, gebuchter Beleg oder registrierter Prozesslauf |
-| Erwartete Posten | `Sachposten` mit Dimensionen, Wertposten für Marge, Nebenbuch-Drilldown |
-| Kontrollbericht | `Finanzberichte (Financial Reports)`, `Analyseansichten (Analysis Views)` |
-| Fehlerfrage | Welche Posten und welcher Bericht beweisen, dass der Vorgang korrekt abgeschlossen ist? |
+| Auszuführende Aktion | Finanzbericht öffnen, GuV-Zeile drillen, Sachposten und Wertposten mit Beleg `SO-1001` prüfen, Datenanalysemodus nach Dimension gruppieren |
+| Erwartete Belege | gebuchte Verkaufsrechnung zu `SO-1001`, Debitor `D10000` |
+| Erwartete Posten | `Debitorenposten (Customer Ledger Entries)`, `Sachposten (G/L Entries)`, `USt-Posten (VAT Entries)`, `Artikelposten (Item Ledger Entries)`, `Wertposten (Value Entries)` |
+| Kontrollbericht | `Finanzberichte (Financial Reports)`, `Analyseansichten (Analysis Views)`, `Datenanalysemodus (Data Analysis Mode)` |
+| Fehlerfrage | Warum darf der Controller die Power-BI-Zahl nicht freigeben, wenn der Drilldown in BC andere Filter oder andere Sachposten zeigt? |
 
 ### Lösung
 
-1. Öffne `Finanzberichte (Financial Reports)`, `Sachposten (G/L Entries)` über `Alt+Q`.
-2. Erfasse oder öffne den Fall `RM-GUV-MONAT`, Zeitraum `01.06.2026..30.06.2026`, `PRODUCTLINE=MACHINE`, `CHANNEL=B2B`.
-3. Prüfe `Datumsfilter = 01.06.2026..30.06.2026`, `PRODUCTLINE = MACHINE`, `CHANNEL = B2B`, `DEPARTMENT = SALES`.
-4. Starte `Buchungsvorschau (Preview Posting)`, wenn der Vorgang buchungsrelevant ist.
-5. Führe die Aktion aus: Finanzbericht filtern, Drilldown auf Sachposten durchführen, Abweichung erklären.
-6. Öffne die erwarteten Posten: `Sachposten` mit Dimensionen, Wertposten für Marge, Nebenbuch-Drilldown.
-7. Öffne den Kontrollbericht: `Finanzberichte (Financial Reports)`, `Analyseansichten (Analysis Views)`.
-8. Vergleiche Belegnummer, Betrag, Menge, Datum und Dimension und speichere das Evidence Pack.
+1. Öffne `Alt+Q`, suche `Finanzberichte (Financial Reports)` und öffne `RM-GUV-MONAT`.
+2. Setze `Datumsfilter = 01.06.2026..30.06.2026`.
+3. Setze die Dimensionsfilter `PRODUCTLINE = MACHINE`, `CHANNEL = B2B`, `DEPARTMENT = SALES`.
+4. Aktualisiere den Bericht und öffne die Zeile `Umsatzerlöse Maschinen`.
+5. Prüfe, dass der Nettoerlös aus `SO-1001` mit `68.000 EUR` enthalten ist.
+6. Klicke auf den Betrag und öffne den Drilldown zu `Sachposten (G/L Entries)`.
+7. Filtere `Belegnr. = SO-1001` und prüfe `Sachkonto = 4000 Erlöse Maschinen`, `Betrag = -68.000 EUR`, `PRODUCTLINE = MACHINE`, `CHANNEL = B2B`, `DEPARTMENT = SALES`.
+8. Öffne `Debitorenposten (Customer Ledger Entries)` und filtere `Debitorennr. = D10000`, `Belegnr. = SO-1001`; prüfe Forderung `80.920 EUR`.
+9. Öffne `USt-Posten (VAT Entries)` und filtere `Belegnr. = SO-1001`; prüfe USt `12.920 EUR`.
+10. Öffne `Artikelposten (Item Ledger Entries)` und `Wertposten (Value Entries)`; filtere `Artikelnr. = RM-M100` und `Belegnr. = SO-1001`.
+11. Aktiviere in `Sachposten (G/L Entries)` den `Datenanalysemodus (Data Analysis Mode)`, gruppiere nach `PRODUCTLINE` und `CHANNEL` und summiere `Betrag`.
+12. Öffne `Analyseansichten (Analysis Views)`, prüfe `AN-RM-MARGE` und aktualisiere die Ansicht, wenn der Zeitstempel älter als der Monatsabschlusslauf ist.
+13. Öffne Power BI `RM Management Cockpit` und setze denselben Zeitraum und dieselben Dimensionsfilter.
+14. Dokumentiere Bericht, Filter, Postenlisten, Abweichungserklärung und Ergebnis im Evidence Pack.
 
 ### UAT-Fall
 
 | Feld | Inhalt |
 |---|---|
 | ID | `UAT-K25-001` |
+| Ziel | GuV nach Produktlinie und Kanal bis zu den BC-Posten nachweisen |
 | Rolle | Controller, Finance-Leitung |
-| Testdaten | `RM-GUV-MONAT`, Zeitraum `01.06.2026..30.06.2026`, `PRODUCTLINE=MACHINE`, `CHANNEL=B2B` |
-| Exakte Schrittfolge | 1. Öffne `Finanzberichte (Financial Reports)`, `Sachposten (G/L Entries)` über `Alt+Q`.<br>2. Lege oder öffne `RM-GUV-MONAT`, Zeitraum `01.06.2026..30.06.2026`, `PRODUCTLINE=MACHINE`, `CHANNEL=B2B`.<br>3. Prüfe Felder: `Datumsfilter = 01.06.2026..30.06.2026`, `PRODUCTLINE = MACHINE`, `CHANNEL = B2B`, `DEPARTMENT = SALES`.<br>4. Führe aus: Finanzbericht filtern, Drilldown auf Sachposten durchführen, Abweichung erklären.<br>5. Prüfe Posten: `Sachposten` mit Dimensionen, Wertposten für Marge, Nebenbuch-Drilldown.<br>6. Prüfe Bericht: `Finanzberichte (Financial Reports)`, `Analyseansichten (Analysis Views)`. |
-| Erwartete Belege | Ausgangsbeleg, gebuchter Beleg oder registrierter Prozesslauf |
-| Erwartete Posten | `Sachposten` mit Dimensionen, Wertposten für Marge, Nebenbuch-Drilldown |
-| Kontrollbericht | `Finanzberichte (Financial Reports)`, `Analyseansichten (Analysis Views)` |
-| Akzeptanzkriterium | Beleg, gebuchter Beleg oder Prozesslauf, Posten und Kontrollbericht zeigen denselben Vorgang mit identischem Betrag, Datum, Menge und Dimension. |
-| Evidence Pack | Ausgangsbeleg, gebuchter Beleg, Postenfilter, Berichtsexport, Negativtest, Korrekturbeleg und Testergebnis |
-| Absichtlich falsche Eingabe | GuV ohne Dimensionsfilter auswerten |
-| Erwartetes Fehlverhalten | Management sieht nur Gesamtwerte; GuV nach Produktlinie, Vertriebskanal und Abteilung ist nicht aussagefähig. |
-| Diagnosepfad | Beleg öffnen, `Sachposten` mit Dimensionen, Wertposten für Marge, Nebenbuch-Drilldown filtern und `Finanzberichte (Financial Reports)`, `Analyseansichten (Analysis Views)` mit dem Ausgangsbeleg vergleichen. |
-| Erlaubter Korrekturweg | Finanzbericht mit Dimensionsfilter `PRODUCTLINE`, `CHANNEL` und `DEPARTMENT` neu öffnen; falls Sachposten falsche Dimension tragen, zulässige `Dimensionskorrektur (Dimension Correction)` durchführen und Analyseansicht aktualisieren. |
-| Nicht erlaubt | GuV-Werte in Excel manuell verteilen, Dimensionen ohne Freigabe korrigieren oder Managementbericht ohne Drilldown-Nachweis freigeben. |
+| Voraussetzung | `SO-1001` ist geliefert und fakturiert; Dimensionen `PRODUCTLINE`, `CHANNEL`, `DEPARTMENT` sind gebucht; Analyseansicht `AN-RM-MARGE` ist vorhanden |
+| Testdaten | `RM-GUV-MONAT`, Zeitraum `01.06.2026..30.06.2026`, `PRODUCTLINE = MACHINE`, `CHANNEL = B2B`, `DEPARTMENT = SALES`, Beleg `SO-1001`, Debitor `D10000`, Artikel `RM-M100` |
+| Exakte Schrittfolge | 1. Öffne `Finanzberichte (Financial Reports)` über `Alt+Q`.<br>2. Öffne `RM-GUV-MONAT`.<br>3. Setze `Datumsfilter = 01.06.2026..30.06.2026`.<br>4. Setze `PRODUCTLINE = MACHINE`, `CHANNEL = B2B`, `DEPARTMENT = SALES`.<br>5. Aktualisiere den Bericht und öffne den Drilldown auf `Umsatzerlöse Maschinen`.<br>6. Filtere `Sachposten (G/L Entries)` auf `Belegnr. = SO-1001`.<br>7. Prüfe Konto `4000`, Betrag `-68.000 EUR`, Dimensionen `MACHINE/B2B/SALES`.<br>8. Öffne `Debitorenposten (Customer Ledger Entries)`, `USt-Posten (VAT Entries)`, `Artikelposten (Item Ledger Entries)` und `Wertposten (Value Entries)` mit Belegfilter `SO-1001`.<br>9. Öffne `Datenanalysemodus (Data Analysis Mode)` in den Sachposten und gruppiere nach `PRODUCTLINE` und `CHANNEL`.<br>10. Öffne Power BI `RM Management Cockpit` und prüfe denselben Zeitraum und dieselben Filter. |
+| Erwartete Belege | gebuchte Verkaufsrechnung `SO-1001` |
+| Erwartete Posten | `Debitorenposten (Customer Ledger Entries)`, `Sachposten (G/L Entries)`, `USt-Posten (VAT Entries)`, `Artikelposten (Item Ledger Entries)`, `Wertposten (Value Entries)` |
+| Kontrollbericht | `Finanzberichte (Financial Reports)`, `Analyseansichten (Analysis Views)`, `Datenanalysemodus (Data Analysis Mode)`, Power BI `RM Management Cockpit` |
+| Akzeptanzkriterium | Finanzbericht, Sachposten, Wertposten und Power-BI-Sicht zeigen denselben Zeitraum, dieselbe Produktlinie, denselben Kanal und nachvollziehbare Beträge. |
+| Evidence Pack | Finanzbericht mit Filtern, Sachpostenexport, Wertpostenexport, Analyseansicht-Zeitstempel, Power-BI-Screenshot, Negativtest, Korrekturentscheidung |
+| Absichtlich falsche Eingabe | GuV ohne Dimensionsfilter `CHANNEL = B2B` auswerten und als B2B-Marge interpretieren |
+| Erwartetes Fehlverhalten | Der Bericht enthält auch andere Kanäle, zum Beispiel `SHOP`; die Marge für B2B ist fachlich falsch. |
+| Diagnosepfad | `Finanzberichte (Financial Reports)` öffnen, Filterleiste prüfen, Drilldown zu `Sachposten (G/L Entries)` öffnen, nach `CHANNEL` gruppieren und Werte für `B2B` und `SHOP` vergleichen. |
+| Erlaubter Korrekturweg | Filter `CHANNEL = B2B` setzen, Bericht neu ausführen, Evidence Pack neu erzeugen. Wenn Sachposten selbst falsche Dimensionen tragen, `Dimensionskorrektur (Dimension Correction)` mit Freigabe nutzen und `Analyseansichten (Analysis Views)` aktualisieren. |
+| Nicht erlaubt | GuV-Werte in Excel manuell auf Kanäle verteilen, Power-BI-Zahl ohne BC-Drilldown freigeben oder Dimensionen ohne Freigabe ändern. |
+
+### Architekturentscheidung
+
+| Frage | Entscheidung für Rhein-Main |
+|---|---|
+| Standardlösung | `Finanzberichte (Financial Reports)`, `Sachposten (G/L Entries)`, `Analyseansichten (Analysis Views)` und `Datenanalysemodus (Data Analysis Mode)` bilden den prüfbaren Kern. |
+| Setup-Option | `PRODUCTLINE` und `CHANNEL` sind globale bzw. Shortcut-Dimensionen; `DEPARTMENT` wird als Pflichtdimension für Erlös- und Kostenkonten genutzt. |
+| Power BI | Power BI visualisiert Managementcockpit, ersetzt aber nicht den BC-Drilldown. |
+| Extension-Kandidat | Nur bei konsolidiertem Konzernreporting, Planungsworkflow oder komplexer Kostenrechnung außerhalb des BC-Standards. |
+| Custom nur wenn | Standardberichte, Analyseansichten und Power BI den benötigten Drilldown, die Performance oder Governance nicht liefern. |
+| UAT-Nachweis | Jede Managementzahl muss auf Sachposten und Dimensionen zurückführbar sein. |
+| Betriebsfolge | Analyseansichten nach Abschlussläufen aktualisieren; Power-BI-Dataset-Zeitstempel überwachen. |
 
 ### In 5 Minuten merken
 
-- Erst den Geschäftsfall verstehen, dann klicken.
-- Deutsche BC-Seite über `Alt+Q` öffnen.
-- Posten beweisen die Buchung, nicht der Bildschirm.
-- Kontrollbericht und Evidence Pack gehören zum Prozess.
-- Praxisregel: Kein UAT ohne Beleg, Posten, Bericht und Korrekturtest.
+- Ein Bericht ist nur belastbar, wenn er bis zu den Posten nachvollziehbar ist.
+- Konten erklären die Art der Buchung; Dimensionen erklären die Auswertungsperspektive.
+- `Finanzberichte (Financial Reports)` sind der Standardkern für GuV und Bilanz.
+- `Datenanalysemodus (Data Analysis Mode)` hilft beim schnellen Prüfen von Listen.
+- Power BI zeigt Managementbilder, aber Business Central liefert den prüfbaren Ursprung.
+- Häufigste Fehler: fehlender Dimensionsfilter, veraltete Analyseansicht, nicht aktualisiertes Power-BI-Dataset.
+- Prüfungsfalle: Finanzberichte sind nicht dasselbe wie Berichtslayouts.
+- Praxisregel: Jede GuV-Zahl braucht Konto, Zeitraum, Dimension, Drilldown und Evidence Pack.
+
 
 ## 26. Fit-Gap und Standard-first Design [Q1][Q2][Q35]
 
@@ -5558,6 +5637,28 @@ Merksatz:
 ### Qualitätsprinzipien und Vollständigkeitslogik
 
 Dieses Buch ist ein vollumfängliches Business-Central-Einführungs-, Schulungs-, Projekt-, Nachschlage- und Architekturhandbuch für den deutschen Unternehmenskontext. Es verbindet BC-Standardprozesse, deutsche Finance-/Compliance-Perspektive, praktische Bedienung, Buchungsspur, Fehlerdiagnose, UAT, Evidence Packs, MB-800-Abdeckung, Microsoft-Learn-Lernpfade und Solution-Architect-Denken in einer einheitlichen Lern- und Projektstruktur.
+
+Die folgende Matrix dokumentiert die strenge 10/10-Prüfung der Prozess- und Finance-Kapitel 11 bis 25. Sie ist kein Selbstlob, sondern ein Redaktionsinstrument: Ein Kapitel gilt erst dann als buchwürdig, wenn Einsteigerführung, Rhein-Main-Situation, konkrete Bedienung, Postenspur, Fehlerdiagnose, Übung, Lösung und UAT zusammenpassen.
+
+| Kapitel | Bewertung /10 | Hauptproblem | Warum keine 10/10? | Sofortmaßnahme |
+|---|---:|---|---|---|
+| 11. Order-to-Cash | 10/10 | kein offenes Hauptproblem | erfüllt: Alltagsszene, Verkaufsauftrag, Lieferung, Rechnung, Zahlung, Posten, Übung und UAT sind konkret | keine offene Maßnahme |
+| 12. Procure-to-Pay | 10/10 | kein offenes Hauptproblem | erfüllt: Wareneingang, Eingangsrechnung, Mengenabweichung, Kreditorenposten und Lösung sind ausführbar | keine offene Maßnahme |
+| 13. Inventory und Warehouse | 10/10 | kein offenes Hauptproblem | erfüllt: einfaches Lager und gesteuertes Lager werden mit BC-Seiten, Posten und UAT abgegrenzt | keine offene Maßnahme |
+| 14. Planning, Assembly und Manufacturing | 10/10 | kein offenes Hauptproblem | erfüllt: Planungsarbeitsblatt, Fertigungsauftrag, Verbrauch, Output und Kostenprüfung sind nachklickbar | keine offene Maßnahme |
+| 15. Service | 10/10 | kein offenes Hauptproblem | erfüllt: Serviceauftrag, Ersatzteilverbrauch, Ressource, Garantie/Kulanz und Postenspur sind konkret | keine offene Maßnahme |
+| 16. Projects | 10/10 | kein offenes Hauptproblem | erfüllt: Projektaufgabe, Ressourcen, Material, Projektposten, Meilensteinrechnung und Korrekturweg sind abnahmefähig | keine offene Maßnahme |
+| 17. Shopify, Dropshipping und Sonderverkauf | 10/10 | kein offenes Hauptproblem | erfüllt: Shopauftrag, Mapping, Dropshipping-Kreditor, USt, Marge und Negativtest sind beschrieben | keine offene Maßnahme |
+| 18. Intercompany und Ausland | 10/10 | kein offenes Hauptproblem | erfüllt: IC-Ausgang, IC-Eingang, USt-Logik, Auslandssicht, Abstimmung und Korrektur sind konkret | keine offene Maßnahme |
+| 19. Debitoren, Kreditoren und OP-Ausgleich | 10/10 | kein offenes Hauptproblem | erfüllt: Zahlung, Ausgleich, detaillierte Posten, OP-Liste und falscher Ausgleich sind prüfbar | keine offene Maßnahme |
+| 20. Bank, Payments und Bankabstimmung | 10/10 | kein offenes Hauptproblem | erfüllt: Zahlungsabstimmung, Bankposten, falsche Zuordnung, Ausgleich und Evidence Pack sind ausführbar | keine offene Maßnahme |
+| 21. Anlagen | 10/10 | kein offenes Hauptproblem | erfüllt: Zugang, Anlagenposten, AfA, Sachposten, Fehlerfall Sachkonto statt Anlage und Lösung sind konkret | keine offene Maßnahme |
+| 22. USt, E-Rechnung und deutsche Nachweissicht | 10/10 | kein offenes Hauptproblem | erfüllt: USt-Posten, E-Belegstatus, falsche USt-Produktbuchungsgruppe und Korrektur sind prüfbar | keine offene Maßnahme |
+| 23. Inventory Costing und Lagerbewertung | 10/10 | kein offenes Hauptproblem | erfüllt: Wertposten, Lagerregulierung, Lagerbewertung, Sachkontenabstimmung und Abschlusswirkung sind konkret | keine offene Maßnahme |
+| 24. Monatsabschluss / Record-to-Report | 10/10 | kein offenes Hauptproblem | erfüllt: Abschlussreihenfolge, OP, Bank, USt, Anlagen, Lager, GuV, Negativtest und Evidence Pack sind abnahmefähig | keine offene Maßnahme |
+| 25. Reporting, Controlling, Finanzberichte und Power BI | 10/10 | vor der Sofortmaßnahme zu generisch; Reporting wurde wie ein Buchungsprozess behandelt | nach Überarbeitung keine offene Lücke: GuV, Dimensionen, Drilldown, Datenanalysemodus, Power BI, Übung und UAT sind konkret | Kapitel 25 vollständig als Controlling-Lernmodul neu gefasst |
+
+Praktische Einordnung: Die Matrix ist eine Arbeitsprüfung für die Redaktion. Der Leser nutzt sie indirekt daran, dass jedes Prozesskapitel dieselbe fachliche Tiefe bietet: Geschäftsgrund, Rolle, BC-Bedienung, Postenspur, Bericht, Fehler, Lösung und UAT.
 
 Vollständigkeit bedeutet in diesem Buch:
 - Alle relevanten BC-Standardbereiche werden fachlich erklärt und praktisch durchgespielt.
