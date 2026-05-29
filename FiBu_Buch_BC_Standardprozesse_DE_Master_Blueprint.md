@@ -1904,10 +1904,10 @@ Ausgangsdaten:
 
 | Rolle | Aufgabe | Ergebnis |
 |---|---|---|
-| Fachanwender | Prozess ausführen und Belegdaten prüfen | fachlich korrekter Vorgang |
+| Fachanwender | Prozess ausführen und Belegdaten prüfen | fachlich geprüfter Vorgang mit Belegnummer |
 | Key User | Stammdaten, Setup und Fehlerfälle prüfen | stabiler Prozess |
 | Finance/Controlling | Buchungsspur, Bericht und Evidence Pack prüfen | abgestimmter Nachweis |
-| Solution Architect | Standardgrenze und Betriebsfolge bewerten | tragfähiges Prozessdesign |
+| Solution Architect | Standardgrenze und Betriebsfolge bewerten | tragfähige Standardentscheidung mit UAT-Nachweis |
 
 ### Benötigte Stammdaten
 
@@ -2008,7 +2008,7 @@ Du bildest eine reale Unternehmenshandlung in Business Central ab: Bedarf planen
 
 ### Warum braucht die Rhein-Main Industriegruppe diesen Prozess?
 
-Die Rhein-Main Industriegruppe braucht diesen Prozess, weil operative Arbeit sonst nicht zuverlässig in Finance, Lager, Steuer und Reporting ankommt. Der Prozess nutzt `Fertigungsaufträge (Production Orders)`, `Planungsarbeitsblatt (Planning Worksheet)`. Beteiligt ist vor allem die Rolle Produktionsplanerin und Meister. Am Ende erwartet die Fachabteilung einen prüfbaren Beleg, passende Posten, einen Kontrollbericht und einen UAT-Nachweis.
+RM-PROD produziert `RM-M100`, weil RM-SALES verbindliche Kundenaufträge bedienen muss. Der Prozess verbindet Absatzbedarf, Stückliste, Arbeitsplan, Materialverbrauch, Kapazität, Output und Kosten. Ohne Fertigungsauftrag sind Rohmaterialverbrauch, fertiger Bestand und Herstellkosten nicht sauber nachvollziehbar. Business Central liefert am Ende Fertigungsauftrag, Artikelposten, Wertposten, Kapazitätsposten und Kostenkontrolle.
 
 ### Rollen
 
@@ -2021,28 +2021,29 @@ Die Rhein-Main Industriegruppe braucht diesen Prozess, weil operative Arbeit son
 ### Schritt-für-Schritt in der deutschen BC-Oberfläche
 
 1. Öffne die Suche mit `Alt+Q`.
-2. Suche nach `Fertigungsaufträge (Production Orders)`, `Planungsarbeitsblatt (Planning Worksheet)`.
-3. Öffne die passende Seite und lege den Vorgang für `RM-M100` an oder filtere darauf.
-4. Prüfe Buchungsdatum, Belegdatum, Company, Lagerort, Dimensionen und Buchungsgruppen.
-5. Erfasse Menge, Preis, Ressource, Sachkonto oder Projektbezug entsprechend dem Fall.
-6. Wähle `Buchungsvorschau (Preview Posting)`, wenn der Vorgang eine Buchung auslöst.
-7. Führe die fachliche Aktion aus: freigeben, registrieren, buchen, fakturieren oder ausgleichen.
-8. Öffne den gebuchten Beleg oder die entstandenen Postenlisten.
-9. Filtere nach Belegnummer, Artikel, Debitor, Kreditor, Projekt oder Anlage.
-10. Öffne den Kontrollbericht `Wertposten (Value Entries)` und Fertigungsauftragsstatistik und vergleiche Menge, Wert, Steuer und Dimension.
-11. Speichere Belegnummern, Postenfilter und Bericht als Evidence Pack.
+2. Suche nach `Planungsarbeitsblatt (Planning Worksheet)`, `Fertigungsaufträge (Production Orders)`, `Verbrauch Buch.-Blätter (Consumption Journals)`, `Istmeldung Buch.-Blätter (Output Journals)`.
+3. Erfasse oder öffne den Rhein-Main-Fall `PROD-3001`, `RM-M100`, Menge `3`, Lagerort `FRA-ZL`, Material `RAW-STEEL`.
+4. Prüfe die Pflichtfelder `Buchungsdatum`, `Belegdatum`, `Nr.`, `Menge`, `Preis/Betrag`, `Lagerortcode`, Buchungsgruppen und Dimensionen.
+5. Prüfe vor der Buchung über `Buchungsvorschau (Preview Posting)`, welche Posten entstehen.
+6. Führe die fachliche Aktion aus: freigeben, registrieren, buchen, fakturieren, ausgleichen oder berechnen.
+7. Öffne danach den gebuchten Beleg oder die passende Postenliste.
+8. Filtere nach der Belegnummer oder dem Stammdatencode aus dem Testfall.
+9. Prüfe die Mengen-, Wert-, Steuer- und Dimensionswirkung in den Posten.
+10. Öffne den Kontrollbericht `Fertigungsauftragsstatistik`, `Artikelposten (Item Ledger Entries)`, `Wertposten (Value Entries)` und vergleiche Beleg, Posten und Bericht.
+11. Speichere Belegnummern, Postenfilter, Bericht und fachliches Testergebnis im Evidence Pack.
 
 ### Buchungsspur
 
-| Ebene | Was prüfen? | Wo prüfen? |
+| Ebene | Rhein-Main-Nachweis | Wo prüfen? |
 |---|---|---|
-| Ausgangsbeleg | fachlicher Vorgang und Pflichtfelder | Startseite des Prozesses |
-| Gebuchter Beleg | gebuchte Lieferung, Rechnung, Zahlung, Journal oder Projektbuchung | gebuchte Belege/Postenlisten |
-| Nebenbuch | Debitor, Kreditor, Artikel, Bank, Anlage oder Projekt | passende Postenliste |
-| Sachposten | Hauptbuchwirkung | `Sachposten (G/L Entries)` |
-| USt/Wert | Steuer, Lagerwert oder Kostenwirkung | `USt-Posten`, `Wertposten`, Bericht |
-| Bericht | fachliche Kontrolle | `Wertposten (Value Entries)` und Fertigungsauftragsstatistik |
+| Ausgangsbeleg | `PROD-3001`, `RM-M100`, Menge `3`, Lagerort `FRA-ZL`, Material `RAW-STEEL` | Startseite des Prozesses |
+| Gebuchter Beleg | gebuchter Beleg, registrierte Aktivität oder berechneter Abschlusslauf | gebuchte Belege und Postenlisten |
+| Nebenbuch/Spezialposten | Artikelposten für Verbrauch und Output, Wertposten für Material- und Kapazitätskosten, Kapazitätsposten und nach Kostenbuchung Sachposten | passende Postenlisten |
+| Sachposten | Hauptbuchwirkung mit Konto, Betrag und Dimension | `Sachposten (G/L Entries)` |
+| USt/Wert/Spezialspur | Steuer, Lagerwert, Anlage, Projekt oder Servicewirkung | `USt-Posten (VAT Entries)`, `Wertposten (Value Entries)` oder Spezialposten |
+| Kontrollbericht | fachliche Abstimmung | `Fertigungsauftragsstatistik`, `Artikelposten (Item Ledger Entries)`, `Wertposten (Value Entries)` |
 
+Die Buchung ist erst nachvollziehbar, wenn Belegnummer, Postenfilter, Betrag, Menge und Dimension zusammenpassen. Ein Screenshot der Maske reicht nicht aus; das Evidence Pack enthält immer Beleg, Posten und Kontrollbericht.
 ### Zahlenbeispiel
 
 Rhein-Main nutzt `RM-M100` mit einem Beispielwert von `10.000 EUR`. Die Buchung muss zeigen, welche Menge bewegt wird, welcher Wert entsteht, welche Dimension mitläuft und welcher Bericht das Ergebnis bestätigt.
@@ -2082,19 +2083,22 @@ Führe den Fall für `RM-M100` in der Trainingscompany aus. Dokumentiere Startbe
 | Feld | Inhalt |
 |---|---|
 | ID | `UAT-MFG-001` |
-| Ziel | Planning, Assembly und Manufacturing fachlich abnehmen |
+| Ziel | Prozess mit Rhein-Main-Testdaten fachlich abnehmen |
 | Rolle | Produktionsplanerin und Meister |
-| Voraussetzung | Stammdaten, Buchungsgruppen, Dimensionen und Berechtigungen sind eingerichtet |
-| Testdaten | `RM-M100`, Beispielwert `10.000 EUR` |
-| Erwartete Posten | Sachposten und passende Nebenbuchposten |
-| Kontrollbericht | `Wertposten (Value Entries)` und Fertigungsauftragsstatistik |
-| Negativfall | falsche Dimension oder falsche Buchungsgruppe |
-| Akzeptanzkriterium | Beleg, Posten, Bericht und Evidence Pack stimmen überein |
+| Voraussetzung | Stammdaten, Buchungsgruppen, Dimensionen, Berechtigungen und Testperiode sind eingerichtet |
+| Testdaten | `PROD-3001`, `RM-M100`, Menge `3`, Lagerort `FRA-ZL`, Material `RAW-STEEL` |
+| Schritte | Startseite über `Alt+Q` öffnen, Testdaten erfassen, Pflichtfelder prüfen, `Buchungsvorschau (Preview Posting)` nutzen, fachliche Aktion ausführen, Posten und Bericht kontrollieren |
+| Erwartete Belege | Ausgangsbeleg, gebuchter Beleg oder registrierte Prozessaktivität mit eindeutiger Belegnummer |
+| Erwartete Posten | Artikelposten für Verbrauch und Output, Wertposten für Material- und Kapazitätskosten, Kapazitätsposten und nach Kostenbuchung Sachposten |
+| Kontrollbericht | `Fertigungsauftragsstatistik`, `Artikelposten (Item Ledger Entries)`, `Wertposten (Value Entries)` |
+| Negativfall | falsche Dimension, falsche Buchungsgruppe, fehlender Prozessschritt oder abweichender Betrag |
+| Akzeptanzkriterium | Beleg, Posten, Kontrollbericht und Evidence Pack zeigen denselben Vorgang vollständig und widerspruchsfrei |
+| Evidence Pack | Belegnummern, Postenfilter, Berichtsexport, Fehlertest, Korrekturhinweis und Testergebnis |
 
 ### In 5 Minuten merken
 
 * 5 wichtigste Begriffe: Beleg, gebuchter Beleg, Posten, Dimension, Evidence Pack.
-* 5 wichtigste Seiten: `Fertigungsaufträge (Production Orders)`, `Planungsarbeitsblatt (Planning Worksheet)`, `Sachposten`, passende Nebenbuchposten, Kontrollbericht, gebuchte Belege.
+* 5 wichtigste Seiten: `Fertigungsaufträge (Production Orders)`, `Planungsarbeitsblatt (Planning Worksheet)`, `Sachposten (G/L Entries)`, passende Postenlisten, Kontrollbericht, gebuchte Belege.
 * 3 häufigste Fehler: falsche Stammdaten, falsche Dimension, übersprungener Prozessschritt.
 * 3 Prüfungsfallen: Bildschirm ist nicht Buchung, Beleg ist nicht Posten, Bericht ersetzt keine Abstimmung.
 * 1 Praxisregel: Erst Beleg verstehen, dann buchen, dann Posten und Bericht prüfen.
@@ -2119,10 +2123,10 @@ Führe den Fall für `RM-M100` in der Trainingscompany aus. Dokumentiere Startbe
 
 | Rolle | Aufgabe | Ergebnis |
 |---|---|---|
-| Fachanwender | Prozess ausführen und Belegdaten prüfen | fachlich korrekter Vorgang |
+| Fachanwender | Prozess ausführen und Belegdaten prüfen | fachlich geprüfter Vorgang mit Belegnummer |
 | Key User | Stammdaten, Setup und Fehlerfälle prüfen | stabiler Prozess |
 | Finance/Controlling | Buchungsspur, Bericht und Evidence Pack prüfen | abgestimmter Nachweis |
-| Solution Architect | Standardgrenze und Betriebsfolge bewerten | tragfähiges Prozessdesign |
+| Solution Architect | Standardgrenze und Betriebsfolge bewerten | tragfähige Standardentscheidung mit UAT-Nachweis |
 
 ### Benötigte Stammdaten
 
@@ -2217,7 +2221,7 @@ Du bildest eine reale Unternehmenshandlung in Business Central ab: Wartung durch
 
 ### Warum braucht die Rhein-Main Industriegruppe diesen Prozess?
 
-Die Rhein-Main Industriegruppe braucht diesen Prozess, weil operative Arbeit sonst nicht zuverlässig in Finance, Lager, Steuer und Reporting ankommt. Der Prozess nutzt `Serviceaufträge (Service Orders)`. Beteiligt ist vor allem die Rolle Servicedisponent und Techniker. Am Ende erwartet die Fachabteilung einen prüfbaren Beleg, passende Posten, einen Kontrollbericht und einen UAT-Nachweis.
+RM-SERVICE hält ausgelieferte Maschinen betriebsbereit. Ein Serviceauftrag bündelt Kunde, Serviceartikel, Technikerzeit, Ersatzteilverbrauch, Garantieentscheidung und Abrechnung. Ohne diesen Prozess verschwinden Materialverbrauch und Technikerleistung in Notizen oder Excel-Listen. Business Central macht daraus Servicebeleg, Serviceposten, Artikelposten, Wertposten, Rechnung oder Kulanznachweis.
 
 ### Rollen
 
@@ -2230,28 +2234,29 @@ Die Rhein-Main Industriegruppe braucht diesen Prozess, weil operative Arbeit son
 ### Schritt-für-Schritt in der deutschen BC-Oberfläche
 
 1. Öffne die Suche mit `Alt+Q`.
-2. Suche nach `Serviceaufträge (Service Orders)`.
-3. Öffne die passende Seite und lege den Vorgang für `SP-PUMP-01` und `RES-TECH` an oder filtere darauf.
-4. Prüfe Buchungsdatum, Belegdatum, Company, Lagerort, Dimensionen und Buchungsgruppen.
-5. Erfasse Menge, Preis, Ressource, Sachkonto oder Projektbezug entsprechend dem Fall.
-6. Wähle `Buchungsvorschau (Preview Posting)`, wenn der Vorgang eine Buchung auslöst.
-7. Führe die fachliche Aktion aus: freigeben, registrieren, buchen, fakturieren oder ausgleichen.
-8. Öffne den gebuchten Beleg oder die entstandenen Postenlisten.
-9. Filtere nach Belegnummer, Artikel, Debitor, Kreditor, Projekt oder Anlage.
-10. Öffne den Kontrollbericht `Serviceposten`, `Artikelposten`, `Debitorenposten` und vergleiche Menge, Wert, Steuer und Dimension.
-11. Speichere Belegnummern, Postenfilter und Bericht als Evidence Pack.
+2. Suche nach `Serviceaufträge (Service Orders)`, `Serviceartikel (Service Items)`, `Ressourcen (Resources)`, `Gebuchte Verkaufsrechnungen (Posted Sales Invoices)`.
+3. Erfasse oder öffne den Rhein-Main-Fall `SERV-4001`, Kunde `D10000`, Serviceartikel `RM-M100-SN1001`, Ersatzteil `SP-PUMP-01`, Ressource `RES-TECH`, `2` Stunden.
+4. Prüfe die Pflichtfelder `Buchungsdatum`, `Belegdatum`, `Nr.`, `Menge`, `Preis/Betrag`, `Lagerortcode`, Buchungsgruppen und Dimensionen.
+5. Prüfe vor der Buchung über `Buchungsvorschau (Preview Posting)`, welche Posten entstehen.
+6. Führe die fachliche Aktion aus: freigeben, registrieren, buchen, fakturieren, ausgleichen oder berechnen.
+7. Öffne danach den gebuchten Beleg oder die passende Postenliste.
+8. Filtere nach der Belegnummer oder dem Stammdatencode aus dem Testfall.
+9. Prüfe die Mengen-, Wert-, Steuer- und Dimensionswirkung in den Posten.
+10. Öffne den Kontrollbericht `Serviceauftragsstatistik`, `Artikelposten (Item Ledger Entries)`, `Wertposten (Value Entries)`, `Gebuchte Verkaufsrechnungen (Posted Sales Invoices)` und vergleiche Beleg, Posten und Bericht.
+11. Speichere Belegnummern, Postenfilter, Bericht und fachliches Testergebnis im Evidence Pack.
 
 ### Buchungsspur
 
-| Ebene | Was prüfen? | Wo prüfen? |
+| Ebene | Rhein-Main-Nachweis | Wo prüfen? |
 |---|---|---|
-| Ausgangsbeleg | fachlicher Vorgang und Pflichtfelder | Startseite des Prozesses |
-| Gebuchter Beleg | gebuchte Lieferung, Rechnung, Zahlung, Journal oder Projektbuchung | gebuchte Belege/Postenlisten |
-| Nebenbuch | Debitor, Kreditor, Artikel, Bank, Anlage oder Projekt | passende Postenliste |
-| Sachposten | Hauptbuchwirkung | `Sachposten (G/L Entries)` |
-| USt/Wert | Steuer, Lagerwert oder Kostenwirkung | `USt-Posten`, `Wertposten`, Bericht |
-| Bericht | fachliche Kontrolle | `Serviceposten`, `Artikelposten`, `Debitorenposten` |
+| Ausgangsbeleg | `SERV-4001`, Kunde `D10000`, Serviceartikel `RM-M100-SN1001`, Ersatzteil `SP-PUMP-01`, Ressource `RES-TECH`, `2` Stunden | Startseite des Prozesses |
+| Gebuchter Beleg | gebuchter Beleg, registrierte Aktivität oder berechneter Abschlusslauf | gebuchte Belege und Postenlisten |
+| Nebenbuch/Spezialposten | Serviceposten, Ressourcen- oder Sachposten, Artikelposten, Wertposten, Debitorenposten und USt-Posten bei Faktura | passende Postenlisten |
+| Sachposten | Hauptbuchwirkung mit Konto, Betrag und Dimension | `Sachposten (G/L Entries)` |
+| USt/Wert/Spezialspur | Steuer, Lagerwert, Anlage, Projekt oder Servicewirkung | `USt-Posten (VAT Entries)`, `Wertposten (Value Entries)` oder Spezialposten |
+| Kontrollbericht | fachliche Abstimmung | `Serviceauftragsstatistik`, `Artikelposten (Item Ledger Entries)`, `Wertposten (Value Entries)`, `Gebuchte Verkaufsrechnungen (Posted Sales Invoices)` |
 
+Die Buchung ist erst nachvollziehbar, wenn Belegnummer, Postenfilter, Betrag, Menge und Dimension zusammenpassen. Ein Screenshot der Maske reicht nicht aus; das Evidence Pack enthält immer Beleg, Posten und Kontrollbericht.
 ### Zahlenbeispiel
 
 Rhein-Main nutzt `SP-PUMP-01` und `RES-TECH` mit einem Beispielwert von `10.000 EUR`. Die Buchung muss zeigen, welche Menge bewegt wird, welcher Wert entsteht, welche Dimension mitläuft und welcher Bericht das Ergebnis bestätigt.
@@ -2291,19 +2296,22 @@ Führe den Fall für `SP-PUMP-01` und `RES-TECH` in der Trainingscompany aus. Do
 | Feld | Inhalt |
 |---|---|
 | ID | `UAT-SERV-001` |
-| Ziel | Service fachlich abnehmen |
+| Ziel | Prozess mit Rhein-Main-Testdaten fachlich abnehmen |
 | Rolle | Servicedisponent und Techniker |
-| Voraussetzung | Stammdaten, Buchungsgruppen, Dimensionen und Berechtigungen sind eingerichtet |
-| Testdaten | `SP-PUMP-01` und `RES-TECH`, Beispielwert `10.000 EUR` |
-| Erwartete Posten | Sachposten und passende Nebenbuchposten |
-| Kontrollbericht | `Serviceposten`, `Artikelposten`, `Debitorenposten` |
-| Negativfall | falsche Dimension oder falsche Buchungsgruppe |
-| Akzeptanzkriterium | Beleg, Posten, Bericht und Evidence Pack stimmen überein |
+| Voraussetzung | Stammdaten, Buchungsgruppen, Dimensionen, Berechtigungen und Testperiode sind eingerichtet |
+| Testdaten | `SERV-4001`, Kunde `D10000`, Serviceartikel `RM-M100-SN1001`, Ersatzteil `SP-PUMP-01`, Ressource `RES-TECH`, `2` Stunden |
+| Schritte | Startseite über `Alt+Q` öffnen, Testdaten erfassen, Pflichtfelder prüfen, `Buchungsvorschau (Preview Posting)` nutzen, fachliche Aktion ausführen, Posten und Bericht kontrollieren |
+| Erwartete Belege | Ausgangsbeleg, gebuchter Beleg oder registrierte Prozessaktivität mit eindeutiger Belegnummer |
+| Erwartete Posten | Serviceposten, Ressourcen- oder Sachposten, Artikelposten, Wertposten, Debitorenposten und USt-Posten bei Faktura |
+| Kontrollbericht | `Serviceauftragsstatistik`, `Artikelposten (Item Ledger Entries)`, `Wertposten (Value Entries)`, `Gebuchte Verkaufsrechnungen (Posted Sales Invoices)` |
+| Negativfall | falsche Dimension, falsche Buchungsgruppe, fehlender Prozessschritt oder abweichender Betrag |
+| Akzeptanzkriterium | Beleg, Posten, Kontrollbericht und Evidence Pack zeigen denselben Vorgang vollständig und widerspruchsfrei |
+| Evidence Pack | Belegnummern, Postenfilter, Berichtsexport, Fehlertest, Korrekturhinweis und Testergebnis |
 
 ### In 5 Minuten merken
 
 * 5 wichtigste Begriffe: Beleg, gebuchter Beleg, Posten, Dimension, Evidence Pack.
-* 5 wichtigste Seiten: `Serviceaufträge (Service Orders)`, `Sachposten`, passende Nebenbuchposten, Kontrollbericht, gebuchte Belege.
+* 5 wichtigste Seiten: `Serviceaufträge (Service Orders)`, `Sachposten (G/L Entries)`, passende Postenlisten, Kontrollbericht, gebuchte Belege.
 * 3 häufigste Fehler: falsche Stammdaten, falsche Dimension, übersprungener Prozessschritt.
 * 3 Prüfungsfallen: Bildschirm ist nicht Buchung, Beleg ist nicht Posten, Bericht ersetzt keine Abstimmung.
 * 1 Praxisregel: Erst Beleg verstehen, dann buchen, dann Posten und Bericht prüfen.
@@ -2328,10 +2336,10 @@ Führe den Fall für `SP-PUMP-01` und `RES-TECH` in der Trainingscompany aus. Do
 
 | Rolle | Aufgabe | Ergebnis |
 |---|---|---|
-| Fachanwender | Prozess ausführen und Belegdaten prüfen | fachlich korrekter Vorgang |
+| Fachanwender | Prozess ausführen und Belegdaten prüfen | fachlich geprüfter Vorgang mit Belegnummer |
 | Key User | Stammdaten, Setup und Fehlerfälle prüfen | stabiler Prozess |
 | Finance/Controlling | Buchungsspur, Bericht und Evidence Pack prüfen | abgestimmter Nachweis |
-| Solution Architect | Standardgrenze und Betriebsfolge bewerten | tragfähiges Prozessdesign |
+| Solution Architect | Standardgrenze und Betriebsfolge bewerten | tragfähige Standardentscheidung mit UAT-Nachweis |
 
 ### Benötigte Stammdaten
 
@@ -2420,7 +2428,7 @@ Du bildest eine reale Unternehmenshandlung in Business Central ab: Projektaufgab
 
 ### Warum braucht die Rhein-Main Industriegruppe diesen Prozess?
 
-Die Rhein-Main Industriegruppe braucht diesen Prozess, weil operative Arbeit sonst nicht zuverlässig in Finance, Lager, Steuer und Reporting ankommt. Der Prozess nutzt `Projekte (Projects)`, `Projekt Buch.-Blätter (Project Journals)`. Beteiligt ist vor allem die Rolle Projektleiter. Am Ende erwartet die Fachabteilung einen prüfbaren Beleg, passende Posten, einen Kontrollbericht und einen UAT-Nachweis.
+RM-SERVICE installiert Sondermaschinen als Projekt, weil Material, Fremdleistung, Technikerzeit und Meilensteinrechnung über Wochen entstehen. Das Projekt verbindet Budget, Aufgaben, Istkosten, Faktura und Marge. Ohne Projektlogik erkennt Finance Kosten zu spät und der Vertrieb fakturiert Meilensteine unsicher. Business Central liefert Projektposten, Projektstatistik, Verkaufsrechnung und Margenkontrolle.
 
 ### Rollen
 
@@ -2433,28 +2441,29 @@ Die Rhein-Main Industriegruppe braucht diesen Prozess, weil operative Arbeit son
 ### Schritt-für-Schritt in der deutschen BC-Oberfläche
 
 1. Öffne die Suche mit `Alt+Q`.
-2. Suche nach `Projekte (Projects)`, `Projekt Buch.-Blätter (Project Journals)`.
-3. Öffne die passende Seite und lege den Vorgang für `PROJ-5001` an oder filtere darauf.
-4. Prüfe Buchungsdatum, Belegdatum, Company, Lagerort, Dimensionen und Buchungsgruppen.
-5. Erfasse Menge, Preis, Ressource, Sachkonto oder Projektbezug entsprechend dem Fall.
-6. Wähle `Buchungsvorschau (Preview Posting)`, wenn der Vorgang eine Buchung auslöst.
-7. Führe die fachliche Aktion aus: freigeben, registrieren, buchen, fakturieren oder ausgleichen.
-8. Öffne den gebuchten Beleg oder die entstandenen Postenlisten.
-9. Filtere nach Belegnummer, Artikel, Debitor, Kreditor, Projekt oder Anlage.
-10. Öffne den Kontrollbericht `Projektposten (Project Ledger Entries)` und Projektstatistik und vergleiche Menge, Wert, Steuer und Dimension.
-11. Speichere Belegnummern, Postenfilter und Bericht als Evidence Pack.
+2. Suche nach `Projekte (Projects)`, `Projektplanzeilen (Project Planning Lines)`, `Projekt Buch.-Blätter (Project Journals)`, `Projektposten (Project Ledger Entries)`.
+3. Erfasse oder öffne den Rhein-Main-Fall `PROJ-5001`, Kunde `D10000`, Sondermaschine `RM-X500`, Aufgabe `2000 Installation`, Ressource `RES-TECH`, `20` Stunden.
+4. Prüfe die Pflichtfelder `Buchungsdatum`, `Belegdatum`, `Nr.`, `Menge`, `Preis/Betrag`, `Lagerortcode`, Buchungsgruppen und Dimensionen.
+5. Prüfe vor der Buchung über `Buchungsvorschau (Preview Posting)`, welche Posten entstehen.
+6. Führe die fachliche Aktion aus: freigeben, registrieren, buchen, fakturieren, ausgleichen oder berechnen.
+7. Öffne danach den gebuchten Beleg oder die passende Postenliste.
+8. Filtere nach der Belegnummer oder dem Stammdatencode aus dem Testfall.
+9. Prüfe die Mengen-, Wert-, Steuer- und Dimensionswirkung in den Posten.
+10. Öffne den Kontrollbericht `Projektstatistik (Project Statistics)`, `Projektposten (Project Ledger Entries)`, `Finanzberichte (Financial Reports)` und vergleiche Beleg, Posten und Bericht.
+11. Speichere Belegnummern, Postenfilter, Bericht und fachliches Testergebnis im Evidence Pack.
 
 ### Buchungsspur
 
-| Ebene | Was prüfen? | Wo prüfen? |
+| Ebene | Rhein-Main-Nachweis | Wo prüfen? |
 |---|---|---|
-| Ausgangsbeleg | fachlicher Vorgang und Pflichtfelder | Startseite des Prozesses |
-| Gebuchter Beleg | gebuchte Lieferung, Rechnung, Zahlung, Journal oder Projektbuchung | gebuchte Belege/Postenlisten |
-| Nebenbuch | Debitor, Kreditor, Artikel, Bank, Anlage oder Projekt | passende Postenliste |
-| Sachposten | Hauptbuchwirkung | `Sachposten (G/L Entries)` |
-| USt/Wert | Steuer, Lagerwert oder Kostenwirkung | `USt-Posten`, `Wertposten`, Bericht |
-| Bericht | fachliche Kontrolle | `Projektposten (Project Ledger Entries)` und Projektstatistik |
+| Ausgangsbeleg | `PROJ-5001`, Kunde `D10000`, Sondermaschine `RM-X500`, Aufgabe `2000 Installation`, Ressource `RES-TECH`, `20` Stunden | Startseite des Prozesses |
+| Gebuchter Beleg | gebuchter Beleg, registrierte Aktivität oder berechneter Abschlusslauf | gebuchte Belege und Postenlisten |
+| Nebenbuch/Spezialposten | Projektposten, Artikelposten und Wertposten bei Material, Sachposten, Debitorenposten und USt-Posten bei Meilensteinrechnung | passende Postenlisten |
+| Sachposten | Hauptbuchwirkung mit Konto, Betrag und Dimension | `Sachposten (G/L Entries)` |
+| USt/Wert/Spezialspur | Steuer, Lagerwert, Anlage, Projekt oder Servicewirkung | `USt-Posten (VAT Entries)`, `Wertposten (Value Entries)` oder Spezialposten |
+| Kontrollbericht | fachliche Abstimmung | `Projektstatistik (Project Statistics)`, `Projektposten (Project Ledger Entries)`, `Finanzberichte (Financial Reports)` |
 
+Die Buchung ist erst nachvollziehbar, wenn Belegnummer, Postenfilter, Betrag, Menge und Dimension zusammenpassen. Ein Screenshot der Maske reicht nicht aus; das Evidence Pack enthält immer Beleg, Posten und Kontrollbericht.
 ### Zahlenbeispiel
 
 Rhein-Main nutzt `PROJ-5001` mit einem Beispielwert von `10.000 EUR`. Die Buchung muss zeigen, welche Menge bewegt wird, welcher Wert entsteht, welche Dimension mitläuft und welcher Bericht das Ergebnis bestätigt.
@@ -2494,19 +2503,22 @@ Führe den Fall für `PROJ-5001` in der Trainingscompany aus. Dokumentiere Start
 | Feld | Inhalt |
 |---|---|
 | ID | `UAT-PROJ-001` |
-| Ziel | Projects fachlich abnehmen |
-| Rolle | Projektleiter |
-| Voraussetzung | Stammdaten, Buchungsgruppen, Dimensionen und Berechtigungen sind eingerichtet |
-| Testdaten | `PROJ-5001`, Beispielwert `10.000 EUR` |
-| Erwartete Posten | Sachposten und passende Nebenbuchposten |
-| Kontrollbericht | `Projektposten (Project Ledger Entries)` und Projektstatistik |
-| Negativfall | falsche Dimension oder falsche Buchungsgruppe |
-| Akzeptanzkriterium | Beleg, Posten, Bericht und Evidence Pack stimmen überein |
+| Ziel | Prozess mit Rhein-Main-Testdaten fachlich abnehmen |
+| Rolle | Projektleiter und Projektcontroller |
+| Voraussetzung | Stammdaten, Buchungsgruppen, Dimensionen, Berechtigungen und Testperiode sind eingerichtet |
+| Testdaten | `PROJ-5001`, Kunde `D10000`, Sondermaschine `RM-X500`, Aufgabe `2000 Installation`, Ressource `RES-TECH`, `20` Stunden |
+| Schritte | Startseite über `Alt+Q` öffnen, Testdaten erfassen, Pflichtfelder prüfen, `Buchungsvorschau (Preview Posting)` nutzen, fachliche Aktion ausführen, Posten und Bericht kontrollieren |
+| Erwartete Belege | Ausgangsbeleg, gebuchter Beleg oder registrierte Prozessaktivität mit eindeutiger Belegnummer |
+| Erwartete Posten | Projektposten, Artikelposten und Wertposten bei Material, Sachposten, Debitorenposten und USt-Posten bei Meilensteinrechnung |
+| Kontrollbericht | `Projektstatistik (Project Statistics)`, `Projektposten (Project Ledger Entries)`, `Finanzberichte (Financial Reports)` |
+| Negativfall | falsche Dimension, falsche Buchungsgruppe, fehlender Prozessschritt oder abweichender Betrag |
+| Akzeptanzkriterium | Beleg, Posten, Kontrollbericht und Evidence Pack zeigen denselben Vorgang vollständig und widerspruchsfrei |
+| Evidence Pack | Belegnummern, Postenfilter, Berichtsexport, Fehlertest, Korrekturhinweis und Testergebnis |
 
 ### In 5 Minuten merken
 
 * 5 wichtigste Begriffe: Beleg, gebuchter Beleg, Posten, Dimension, Evidence Pack.
-* 5 wichtigste Seiten: `Projekte (Projects)`, `Projekt Buch.-Blätter (Project Journals)`, `Sachposten`, passende Nebenbuchposten, Kontrollbericht, gebuchte Belege.
+* 5 wichtigste Seiten: `Projekte (Projects)`, `Projekt Buch.-Blätter (Project Journals)`, `Sachposten (G/L Entries)`, passende Postenlisten, Kontrollbericht, gebuchte Belege.
 * 3 häufigste Fehler: falsche Stammdaten, falsche Dimension, übersprungener Prozessschritt.
 * 3 Prüfungsfallen: Bildschirm ist nicht Buchung, Beleg ist nicht Posten, Bericht ersetzt keine Abstimmung.
 * 1 Praxisregel: Erst Beleg verstehen, dann buchen, dann Posten und Bericht prüfen.
@@ -2531,10 +2543,10 @@ Führe den Fall für `PROJ-5001` in der Trainingscompany aus. Dokumentiere Start
 
 | Rolle | Aufgabe | Ergebnis |
 |---|---|---|
-| Fachanwender | Prozess ausführen und Belegdaten prüfen | fachlich korrekter Vorgang |
+| Fachanwender | Prozess ausführen und Belegdaten prüfen | fachlich geprüfter Vorgang mit Belegnummer |
 | Key User | Stammdaten, Setup und Fehlerfälle prüfen | stabiler Prozess |
 | Finance/Controlling | Buchungsspur, Bericht und Evidence Pack prüfen | abgestimmter Nachweis |
-| Solution Architect | Standardgrenze und Betriebsfolge bewerten | tragfähiges Prozessdesign |
+| Solution Architect | Standardgrenze und Betriebsfolge bewerten | tragfähige Standardentscheidung mit UAT-Nachweis |
 
 ### Benötigte Stammdaten
 
@@ -2714,34 +2726,30 @@ RM-SALES verkauft Ersatzteile wie `SP-PUMP-01` über Shopify und Handelsware per
 
 ### Schritt-für-Schritt in der deutschen BC-Oberfläche
 
-1. Öffne `Alt+Q`.
-2. Suche `Shopify-Shops (Shopify Shops)` und öffne den eingerichteten Shop.
-3. Prüfe Kunden-, Artikel- und Steuerzuordnung.
-4. Suche `Shopify-Aufträge (Shopify Orders)` oder die synchronisierten `Verkaufsaufträge (Sales Orders)`.
-5. Öffne den Auftrag für `D11000`.
-6. Prüfe Debitor, Artikel `SP-PUMP-01`, Menge `2`, Preis, USt-Gruppen und Dimension `CHANNEL = SHOP`.
-7. Wähle bei lagernder Ware `Buchen` und danach `Liefern und fakturieren`.
-8. Öffne `Gebuchte Verkaufsrechnungen (Posted Sales Invoices)`.
-9. Prüfe `Debitorenposten`, `Sachposten`, `Artikelposten`, `Wertposten` und `USt-Posten`.
-10. Für Dropshipping öffne den Verkaufsauftrag und setze den passenden Einkaufscode für Direktlieferung.
-11. Erzeuge oder öffne die verknüpfte `Einkaufsbestellung (Purchase Order)` an `K20000`.
-12. Prüfe, dass Verkaufs- und Einkaufsbeleg zusammengehören.
-13. Buche Lieferung/Rechnung erst, wenn der Liefernachweis des Lieferanten vorliegt.
-14. Dokumentiere Shop-ID, BC-Belegnummer, Zahlungsreferenz, Liefernachweis und Posten im Evidence Pack.
+1. Öffne die Suche mit `Alt+Q`.
+2. Suche nach `Shopify-Shops (Shopify Shops)`, `Shopify-Aufträge (Shopify Orders)`, `Verkaufsaufträge (Sales Orders)`, `Einkaufsbestellungen (Purchase Orders)`.
+3. Erfasse oder öffne den Rhein-Main-Fall Shopauftrag `WEB-24001`, Kunde `D11000`, Artikel `SP-PUMP-01`, Menge `2`, Dropshipping-Kreditor `K20000`.
+4. Prüfe die Pflichtfelder `Buchungsdatum`, `Belegdatum`, `Nr.`, `Menge`, `Preis/Betrag`, `Lagerortcode`, Buchungsgruppen und Dimensionen.
+5. Prüfe vor der Buchung über `Buchungsvorschau (Preview Posting)`, welche Posten entstehen.
+6. Führe die fachliche Aktion aus: freigeben, registrieren, buchen, fakturieren, ausgleichen oder berechnen.
+7. Öffne danach den gebuchten Beleg oder die passende Postenliste.
+8. Filtere nach der Belegnummer oder dem Stammdatencode aus dem Testfall.
+9. Prüfe die Mengen-, Wert-, Steuer- und Dimensionswirkung in den Posten.
+10. Öffne den Kontrollbericht `Shopify-Aufträge (Shopify Orders)`, Shop-Abstimmung, `USt-Posten (VAT Entries)`, Margenbericht und vergleiche Beleg, Posten und Bericht.
+11. Speichere Belegnummern, Postenfilter, Bericht und fachliches Testergebnis im Evidence Pack.
 
 ### Buchungsspur
 
-| Ebene | Shopify | Dropshipping |
+| Ebene | Rhein-Main-Nachweis | Wo prüfen? |
 |---|---|---|
-| Ausgang | Shop-Auftrag | Verkaufsauftrag mit Einkaufscode |
-| Verkaufsbeleg | Verkaufsauftrag / gebuchte Verkaufsrechnung | Verkaufsauftrag / gebuchte Verkaufsrechnung |
-| Einkaufsbeleg | meist keiner | verknüpfte Einkaufsbestellung |
-| Debitorenposten | Forderung oder bezahlter Shop-Posten | Forderung gegen Kunden |
-| Kreditorenposten | keiner, wenn Lagerware | Verbindlichkeit gegenüber Lieferant |
-| Artikelposten | Lagerabgang bei Lagerware | kein eigener Bestand, wenn echte Direktlieferung |
-| USt-Posten | USt aus Verkauf | USt je Liefer- und Rechnungskette prüfen |
-| Kontrollbericht | Shop-Abstimmung, GuV, USt | Marge, Liefernachweis, USt, IC/Drop-Nachweis |
+| Ausgangsbeleg | Shopauftrag `WEB-24001`, Kunde `D11000`, Artikel `SP-PUMP-01`, Menge `2`, Dropshipping-Kreditor `K20000` | Startseite des Prozesses |
+| Gebuchter Beleg | gebuchter Beleg, registrierte Aktivität oder berechneter Abschlusslauf | gebuchte Belege und Postenlisten |
+| Nebenbuch/Spezialposten | Debitorenposten, Sachposten, USt-Posten, Artikelposten und Wertposten bei Lagerware; Kreditorenposten bei Dropshipping | passende Postenlisten |
+| Sachposten | Hauptbuchwirkung mit Konto, Betrag und Dimension | `Sachposten (G/L Entries)` |
+| USt/Wert/Spezialspur | Steuer, Lagerwert, Anlage, Projekt oder Servicewirkung | `USt-Posten (VAT Entries)`, `Wertposten (Value Entries)` oder Spezialposten |
+| Kontrollbericht | fachliche Abstimmung | `Shopify-Aufträge (Shopify Orders)`, Shop-Abstimmung, `USt-Posten (VAT Entries)`, Margenbericht |
 
+Die Buchung ist erst nachvollziehbar, wenn Belegnummer, Postenfilter, Betrag, Menge und Dimension zusammenpassen. Ein Screenshot der Maske reicht nicht aus; das Evidence Pack enthält immer Beleg, Posten und Kontrollbericht.
 ### Fehlerdiagnose
 
 | Fehler | Symptom | Ursache | Diagnosepfad | Korrektur |
@@ -2762,18 +2770,22 @@ Lösungsskizze:
 - Der Dropshipping-Fall braucht eine verknüpfte Einkaufsbestellung.
 - Die Kontrolle erfolgt über Verkaufsbeleg, Zahlungsreferenz, Liefernachweis, USt-Posten und Marge.
 
-UAT-Fall:
+### UAT-Fall
 
 | Feld | Inhalt |
 |---|---|
 | ID | `UAT-SHOP-DROP-001` |
-| Ziel | Shopify-Auftrag und Dropshipping-Fall abnehmen |
-| Rolle | E-Commerce, Vertrieb, Einkauf, Finance |
-| Testdaten | `D11000`, `SP-PUMP-01`, Menge `2`, `K20000` für Dropshipping |
-| Erwartete Belege | Shop-Auftrag, Verkaufsauftrag, gebuchte Verkaufsrechnung, verknüpfte Einkaufsbestellung bei Dropshipping |
-| Erwartete Posten | Debitorenposten, Sachposten, USt-Posten, Artikel-/Wertposten bei Lagerware, Kreditorenposten bei Dropshipping |
-| Kontrollbericht | Shop-Abstimmung, Finanzbericht, USt-Posten, Marge |
-| Akzeptanzkriterium | Shop-ID, BC-Beleg, Zahlung, Lieferung, USt und Marge sind nachvollziehbar |
+| Ziel | Prozess mit Rhein-Main-Testdaten fachlich abnehmen |
+| Rolle | E-Commerce, Vertrieb, Einkauf und Finance |
+| Voraussetzung | Stammdaten, Buchungsgruppen, Dimensionen, Berechtigungen und Testperiode sind eingerichtet |
+| Testdaten | Shopauftrag `WEB-24001`, Kunde `D11000`, Artikel `SP-PUMP-01`, Menge `2`, Dropshipping-Kreditor `K20000` |
+| Schritte | Startseite über `Alt+Q` öffnen, Testdaten erfassen, Pflichtfelder prüfen, `Buchungsvorschau (Preview Posting)` nutzen, fachliche Aktion ausführen, Posten und Bericht kontrollieren |
+| Erwartete Belege | Ausgangsbeleg, gebuchter Beleg oder registrierte Prozessaktivität mit eindeutiger Belegnummer |
+| Erwartete Posten | Debitorenposten, Sachposten, USt-Posten, Artikelposten und Wertposten bei Lagerware; Kreditorenposten bei Dropshipping |
+| Kontrollbericht | `Shopify-Aufträge (Shopify Orders)`, Shop-Abstimmung, `USt-Posten (VAT Entries)`, Margenbericht |
+| Negativfall | falsche Dimension, falsche Buchungsgruppe, fehlender Prozessschritt oder abweichender Betrag |
+| Akzeptanzkriterium | Beleg, Posten, Kontrollbericht und Evidence Pack zeigen denselben Vorgang vollständig und widerspruchsfrei |
+| Evidence Pack | Belegnummern, Postenfilter, Berichtsexport, Fehlertest, Korrekturhinweis und Testergebnis |
 
 ### In 5 Minuten merken
 
@@ -2784,106 +2796,6 @@ UAT-Fall:
 * 1 Praxisregel: Kein Shop- oder Dropshipping-Fall ohne Abgleich von Auftrag, Zahlung, Lieferung, Steuer und Evidence Pack.
 
 ---
-
-### Praxisfall Rhein-Main: Intercompany und Ausland
-
-### Für absolute Einsteiger: Was du hier gerade tust
-
-Du bildest eine reale Unternehmenshandlung in Business Central ab: IC-Verkauf, EU-Lieferung oder Drittlandexport nachweisbar abwickeln. Der Bildschirm ist nur der Startpunkt. Entscheidend ist, dass Beleg, gebuchter Beleg, Posten, Bericht und Evidence Pack zusammenpassen.
-
-### Warum braucht die Rhein-Main Industriegruppe diesen Prozess?
-
-Die Rhein-Main Industriegruppe braucht diesen Prozess, weil operative Arbeit sonst nicht zuverlässig in Finance, Lager, Steuer und Reporting ankommt. Der Prozess nutzt `Intercompany-Ausgangstransaktionen`, `USt-Buchungsmatrix Einrichtung`. Beteiligt ist vor allem die Rolle Finance und Vertrieb. Am Ende erwartet die Fachabteilung einen prüfbaren Beleg, passende Posten, einen Kontrollbericht und einen UAT-Nachweis.
-
-### Rollen
-
-| Rolle | Aufgabe | Ergebnis |
-|---|---|---|
-| Fachbereich | Vorgang fachlich auslösen | korrekter Ausgangsbeleg |
-| Key User | Stammdaten und Pflichtfelder prüfen | buchbarer Vorgang |
-| Finance/Controlling | Posten und Bericht prüfen | abgestimmtes Ergebnis |
-
-### Schritt-für-Schritt in der deutschen BC-Oberfläche
-
-1. Öffne die Suche mit `Alt+Q`.
-2. Suche nach `Intercompany-Ausgangstransaktionen`, `USt-Buchungsmatrix Einrichtung`.
-3. Öffne die passende Seite und lege den Vorgang für `RM-M100` an oder filtere darauf.
-4. Prüfe Buchungsdatum, Belegdatum, Company, Lagerort, Dimensionen und Buchungsgruppen.
-5. Erfasse Menge, Preis, Ressource, Sachkonto oder Projektbezug entsprechend dem Fall.
-6. Wähle `Buchungsvorschau (Preview Posting)`, wenn der Vorgang eine Buchung auslöst.
-7. Führe die fachliche Aktion aus: freigeben, registrieren, buchen, fakturieren oder ausgleichen.
-8. Öffne den gebuchten Beleg oder die entstandenen Postenlisten.
-9. Filtere nach Belegnummer, Artikel, Debitor, Kreditor, Projekt oder Anlage.
-10. Öffne den Kontrollbericht `USt-Posten`, `Sachposten`, Abstimmung IC-Konto und vergleiche Menge, Wert, Steuer und Dimension.
-11. Speichere Belegnummern, Postenfilter und Bericht als Evidence Pack.
-
-### Buchungsspur
-
-| Ebene | Was prüfen? | Wo prüfen? |
-|---|---|---|
-| Ausgangsbeleg | fachlicher Vorgang und Pflichtfelder | Startseite des Prozesses |
-| Gebuchter Beleg | gebuchte Lieferung, Rechnung, Zahlung, Journal oder Projektbuchung | gebuchte Belege/Postenlisten |
-| Nebenbuch | Debitor, Kreditor, Artikel, Bank, Anlage oder Projekt | passende Postenliste |
-| Sachposten | Hauptbuchwirkung | `Sachposten (G/L Entries)` |
-| USt/Wert | Steuer, Lagerwert oder Kostenwirkung | `USt-Posten`, `Wertposten`, Bericht |
-| Bericht | fachliche Kontrolle | `USt-Posten`, `Sachposten`, Abstimmung IC-Konto |
-
-### Zahlenbeispiel
-
-Rhein-Main nutzt `RM-M100` mit einem Beispielwert von `10.000 EUR`. Die Buchung muss zeigen, welche Menge bewegt wird, welcher Wert entsteht, welche Dimension mitläuft und welcher Bericht das Ergebnis bestätigt.
-
-### Abweichungen
-
-| Abweichung | Risiko | Kontrolle |
-|---|---|---|
-| falsche Stammdaten | falsche Konten, Steuer oder Dimension | Stammdatenkarte und Buchungsvorschau |
-| falsche Menge oder falscher Wert | Bestand, Marge oder Abschluss stimmt nicht | Postenliste und Kontrollbericht |
-| Prozessschritt übersprungen | Belegkette unvollständig | gebuchte Belege und Evidence Pack |
-
-### Fehlerdiagnose
-
-| Fehler | Symptom | Ursache | Diagnosepfad | Korrekturweg | Was man nicht tun darf |
-|---|---|---|---|---|---|
-| falsche Dimension | Bericht zeigt Wert nicht | Pflichtdimension fehlt oder ist falsch | Beleg → Posten → Dimension | Dimension Correction Tool oder fachliche Korrekturbuchung | Bericht manuell überschreiben |
-| falsche Buchungsgruppe | falsches Konto oder falsche USt | Stammdaten falsch gepflegt | Stammdatenkarte → Posting Setup → Sachposten | Stammdaten korrigieren, Beleg fachlich stornieren/neubuchen | gebuchte Posten löschen |
-| falscher Status | Beleg kann nicht gebucht werden | Freigabe, Lageraktivität oder Pflichtfeld fehlt | Belegstatus → Fehlermeldung → Einrichtung | Status zurücksetzen, Pflichtfeld ergänzen, Prozessschritt nachholen | Warnungen ignorieren |
-
-### Übung
-
-Führe den Fall für `RM-M100` in der Trainingscompany aus. Dokumentiere Startbeleg, gebuchten Beleg, Posten, Kontrollbericht und eine typische Abweichung.
-
-### Lösungsskizze
-
-1. Öffne `Intercompany-Ausgangstransaktionen`, `USt-Buchungsmatrix Einrichtung` über `Alt+Q`.
-2. Erfasse oder filtere den Vorgang für `RM-M100`.
-3. Prüfe Datum, Lagerort, Buchungsgruppen und Dimensionen.
-4. Nutze `Buchungsvorschau (Preview Posting)`, wenn eine Buchung erfolgt.
-5. Buche oder registriere den Vorgang.
-6. Prüfe Sachposten, Nebenbuchposten und `USt-Posten`, `Sachposten`, Abstimmung IC-Konto.
-7. Dokumentiere das Evidence Pack.
-
-### UAT-Fall
-
-| Feld | Inhalt |
-|---|---|
-| ID | `UAT-IC-001` |
-| Ziel | Intercompany und Ausland fachlich abnehmen |
-| Rolle | Finance und Vertrieb |
-| Voraussetzung | Stammdaten, Buchungsgruppen, Dimensionen und Berechtigungen sind eingerichtet |
-| Testdaten | `RM-M100`, Beispielwert `10.000 EUR` |
-| Erwartete Posten | Sachposten und passende Nebenbuchposten |
-| Kontrollbericht | `USt-Posten`, `Sachposten`, Abstimmung IC-Konto |
-| Negativfall | falsche Dimension oder falsche Buchungsgruppe |
-| Akzeptanzkriterium | Beleg, Posten, Bericht und Evidence Pack stimmen überein |
-
-### In 5 Minuten merken
-
-* 5 wichtigste Begriffe: Beleg, gebuchter Beleg, Posten, Dimension, Evidence Pack.
-* 5 wichtigste Seiten: `Intercompany-Ausgangstransaktionen`, `USt-Buchungsmatrix Einrichtung`, `Sachposten`, passende Nebenbuchposten, Kontrollbericht, gebuchte Belege.
-* 3 häufigste Fehler: falsche Stammdaten, falsche Dimension, übersprungener Prozessschritt.
-* 3 Prüfungsfallen: Bildschirm ist nicht Buchung, Beleg ist nicht Posten, Bericht ersetzt keine Abstimmung.
-* 1 Praxisregel: Erst Beleg verstehen, dann buchen, dann Posten und Bericht prüfen.
-
 
 ## 18. Intercompany und Ausland [Q29][Q30][Q31]
 
@@ -2904,10 +2816,10 @@ Führe den Fall für `RM-M100` in der Trainingscompany aus. Dokumentiere Startbe
 
 | Rolle | Aufgabe | Ergebnis |
 |---|---|---|
-| Fachanwender | Prozess ausführen und Belegdaten prüfen | fachlich korrekter Vorgang |
+| Fachanwender | Prozess ausführen und Belegdaten prüfen | fachlich geprüfter Vorgang mit Belegnummer |
 | Key User | Stammdaten, Setup und Fehlerfälle prüfen | stabiler Prozess |
 | Finance/Controlling | Buchungsspur, Bericht und Evidence Pack prüfen | abgestimmter Nachweis |
-| Solution Architect | Standardgrenze und Betriebsfolge bewerten | tragfähiges Prozessdesign |
+| Solution Architect | Standardgrenze und Betriebsfolge bewerten | tragfähige Standardentscheidung mit UAT-Nachweis |
 
 ### Benötigte Stammdaten
 
@@ -2984,7 +2896,7 @@ Du bildest eine reale Unternehmenshandlung in Business Central ab: IC-Verkauf, E
 
 ### Warum braucht die Rhein-Main Industriegruppe diesen Prozess?
 
-Die Rhein-Main Industriegruppe braucht diesen Prozess, weil operative Arbeit sonst nicht zuverlässig in Finance, Lager, Steuer und Reporting ankommt. Der Prozess nutzt `Intercompany-Ausgangstransaktionen`, `USt-Buchungsmatrix Einrichtung`. Beteiligt ist vor allem die Rolle Finance und Vertrieb. Am Ende erwartet die Fachabteilung einen prüfbaren Beleg, passende Posten, einen Kontrollbericht und einen UAT-Nachweis.
+RM-PROD verkauft intern an RM-SALES und RM-AT bedient Auslandsszenarien. Intercompany und Ausland brauchen getrennte Belegketten, USt-Logik, Nachweise und Abstimmungskonten. Ohne klaren Prozess stimmen Umsatz, Einkauf, USt, Forderung, Verbindlichkeit und IC-Abstimmung nicht zusammen. Business Central macht aus einem Geschäftsvorfall prüfbare Belege in beiden Companies.
 
 ### Rollen
 
@@ -2997,28 +2909,29 @@ Die Rhein-Main Industriegruppe braucht diesen Prozess, weil operative Arbeit son
 ### Schritt-für-Schritt in der deutschen BC-Oberfläche
 
 1. Öffne die Suche mit `Alt+Q`.
-2. Suche nach `Intercompany-Ausgangstransaktionen`, `USt-Buchungsmatrix Einrichtung`.
-3. Öffne die passende Seite und lege den Vorgang für `RM-M100` an oder filtere darauf.
-4. Prüfe Buchungsdatum, Belegdatum, Company, Lagerort, Dimensionen und Buchungsgruppen.
-5. Erfasse Menge, Preis, Ressource, Sachkonto oder Projektbezug entsprechend dem Fall.
-6. Wähle `Buchungsvorschau (Preview Posting)`, wenn der Vorgang eine Buchung auslöst.
-7. Führe die fachliche Aktion aus: freigeben, registrieren, buchen, fakturieren oder ausgleichen.
-8. Öffne den gebuchten Beleg oder die entstandenen Postenlisten.
-9. Filtere nach Belegnummer, Artikel, Debitor, Kreditor, Projekt oder Anlage.
-10. Öffne den Kontrollbericht `USt-Posten`, `Sachposten`, Abstimmung IC-Konto und vergleiche Menge, Wert, Steuer und Dimension.
-11. Speichere Belegnummern, Postenfilter und Bericht als Evidence Pack.
+2. Suche nach `Intercompany-Ausgangstransaktionen`, `Intercompany-Eingangstransaktionen`, `Verkaufsaufträge (Sales Orders)`, `USt-Posten (VAT Entries)`.
+3. Erfasse oder öffne den Rhein-Main-Fall `IC-7001`, RM-PROD an RM-SALES, Artikel `RM-M100`, Preis `42.000 EUR`, EU-Fall `D-AT100`.
+4. Prüfe die Pflichtfelder `Buchungsdatum`, `Belegdatum`, `Nr.`, `Menge`, `Preis/Betrag`, `Lagerortcode`, Buchungsgruppen und Dimensionen.
+5. Prüfe vor der Buchung über `Buchungsvorschau (Preview Posting)`, welche Posten entstehen.
+6. Führe die fachliche Aktion aus: freigeben, registrieren, buchen, fakturieren, ausgleichen oder berechnen.
+7. Öffne danach den gebuchten Beleg oder die passende Postenliste.
+8. Filtere nach der Belegnummer oder dem Stammdatencode aus dem Testfall.
+9. Prüfe die Mengen-, Wert-, Steuer- und Dimensionswirkung in den Posten.
+10. Öffne den Kontrollbericht `Intercompany-Ausgangstransaktionen`, `Sachposten (G/L Entries)`, `USt-Posten (VAT Entries)`, IC-Abstimmung und vergleiche Beleg, Posten und Bericht.
+11. Speichere Belegnummern, Postenfilter, Bericht und fachliches Testergebnis im Evidence Pack.
 
 ### Buchungsspur
 
-| Ebene | Was prüfen? | Wo prüfen? |
+| Ebene | Rhein-Main-Nachweis | Wo prüfen? |
 |---|---|---|
-| Ausgangsbeleg | fachlicher Vorgang und Pflichtfelder | Startseite des Prozesses |
-| Gebuchter Beleg | gebuchte Lieferung, Rechnung, Zahlung, Journal oder Projektbuchung | gebuchte Belege/Postenlisten |
-| Nebenbuch | Debitor, Kreditor, Artikel, Bank, Anlage oder Projekt | passende Postenliste |
-| Sachposten | Hauptbuchwirkung | `Sachposten (G/L Entries)` |
-| USt/Wert | Steuer, Lagerwert oder Kostenwirkung | `USt-Posten`, `Wertposten`, Bericht |
-| Bericht | fachliche Kontrolle | `USt-Posten`, `Sachposten`, Abstimmung IC-Konto |
+| Ausgangsbeleg | `IC-7001`, RM-PROD an RM-SALES, Artikel `RM-M100`, Preis `42.000 EUR`, EU-Fall `D-AT100` | Startseite des Prozesses |
+| Gebuchter Beleg | gebuchter Beleg, registrierte Aktivität oder berechneter Abschlusslauf | gebuchte Belege und Postenlisten |
+| Nebenbuch/Spezialposten | Debitoren- und Kreditorenposten in beteiligten Companies, Sachposten, USt-Posten sowie Artikelposten und Wertposten bei Warenbewegung | passende Postenlisten |
+| Sachposten | Hauptbuchwirkung mit Konto, Betrag und Dimension | `Sachposten (G/L Entries)` |
+| USt/Wert/Spezialspur | Steuer, Lagerwert, Anlage, Projekt oder Servicewirkung | `USt-Posten (VAT Entries)`, `Wertposten (Value Entries)` oder Spezialposten |
+| Kontrollbericht | fachliche Abstimmung | `Intercompany-Ausgangstransaktionen`, `Sachposten (G/L Entries)`, `USt-Posten (VAT Entries)`, IC-Abstimmung |
 
+Die Buchung ist erst nachvollziehbar, wenn Belegnummer, Postenfilter, Betrag, Menge und Dimension zusammenpassen. Ein Screenshot der Maske reicht nicht aus; das Evidence Pack enthält immer Beleg, Posten und Kontrollbericht.
 ### Zahlenbeispiel
 
 Rhein-Main nutzt `RM-M100` mit einem Beispielwert von `10.000 EUR`. Die Buchung muss zeigen, welche Menge bewegt wird, welcher Wert entsteht, welche Dimension mitläuft und welcher Bericht das Ergebnis bestätigt.
@@ -3058,19 +2971,22 @@ Führe den Fall für `RM-M100` in der Trainingscompany aus. Dokumentiere Startbe
 | Feld | Inhalt |
 |---|---|
 | ID | `UAT-IC-001` |
-| Ziel | Intercompany und Ausland fachlich abnehmen |
-| Rolle | Finance und Vertrieb |
-| Voraussetzung | Stammdaten, Buchungsgruppen, Dimensionen und Berechtigungen sind eingerichtet |
-| Testdaten | `RM-M100`, Beispielwert `10.000 EUR` |
-| Erwartete Posten | Sachposten und passende Nebenbuchposten |
-| Kontrollbericht | `USt-Posten`, `Sachposten`, Abstimmung IC-Konto |
-| Negativfall | falsche Dimension oder falsche Buchungsgruppe |
-| Akzeptanzkriterium | Beleg, Posten, Bericht und Evidence Pack stimmen überein |
+| Ziel | Prozess mit Rhein-Main-Testdaten fachlich abnehmen |
+| Rolle | Finance, Vertrieb und Steuerteam |
+| Voraussetzung | Stammdaten, Buchungsgruppen, Dimensionen, Berechtigungen und Testperiode sind eingerichtet |
+| Testdaten | `IC-7001`, RM-PROD an RM-SALES, Artikel `RM-M100`, Preis `42.000 EUR`, EU-Fall `D-AT100` |
+| Schritte | Startseite über `Alt+Q` öffnen, Testdaten erfassen, Pflichtfelder prüfen, `Buchungsvorschau (Preview Posting)` nutzen, fachliche Aktion ausführen, Posten und Bericht kontrollieren |
+| Erwartete Belege | Ausgangsbeleg, gebuchter Beleg oder registrierte Prozessaktivität mit eindeutiger Belegnummer |
+| Erwartete Posten | Debitoren- und Kreditorenposten in beteiligten Companies, Sachposten, USt-Posten sowie Artikelposten und Wertposten bei Warenbewegung |
+| Kontrollbericht | `Intercompany-Ausgangstransaktionen`, `Sachposten (G/L Entries)`, `USt-Posten (VAT Entries)`, IC-Abstimmung |
+| Negativfall | falsche Dimension, falsche Buchungsgruppe, fehlender Prozessschritt oder abweichender Betrag |
+| Akzeptanzkriterium | Beleg, Posten, Kontrollbericht und Evidence Pack zeigen denselben Vorgang vollständig und widerspruchsfrei |
+| Evidence Pack | Belegnummern, Postenfilter, Berichtsexport, Fehlertest, Korrekturhinweis und Testergebnis |
 
 ### In 5 Minuten merken
 
 * 5 wichtigste Begriffe: Beleg, gebuchter Beleg, Posten, Dimension, Evidence Pack.
-* 5 wichtigste Seiten: `Intercompany-Ausgangstransaktionen`, `USt-Buchungsmatrix Einrichtung`, `Sachposten`, passende Nebenbuchposten, Kontrollbericht, gebuchte Belege.
+* 5 wichtigste Seiten: `Intercompany-Ausgangstransaktionen`, `USt-Buchungsmatrix Einrichtung`, `Sachposten (G/L Entries)`, passende Postenlisten, Kontrollbericht, gebuchte Belege.
 * 3 häufigste Fehler: falsche Stammdaten, falsche Dimension, übersprungener Prozessschritt.
 * 3 Prüfungsfallen: Bildschirm ist nicht Buchung, Beleg ist nicht Posten, Bericht ersetzt keine Abstimmung.
 * 1 Praxisregel: Erst Beleg verstehen, dann buchen, dann Posten und Bericht prüfen.
@@ -3100,10 +3016,10 @@ Teil D zeigt, wie operative Vorgänge in Nebenbüchern, Hauptbuch, Bank, USt, An
 
 | Rolle | Aufgabe | Ergebnis |
 |---|---|---|
-| Fachanwender | Prozess ausführen und Belegdaten prüfen | fachlich korrekter Vorgang |
+| Fachanwender | Prozess ausführen und Belegdaten prüfen | fachlich geprüfter Vorgang mit Belegnummer |
 | Key User | Stammdaten, Setup und Fehlerfälle prüfen | stabiler Prozess |
 | Finance/Controlling | Buchungsspur, Bericht und Evidence Pack prüfen | abgestimmter Nachweis |
-| Solution Architect | Standardgrenze und Betriebsfolge bewerten | tragfähiges Prozessdesign |
+| Solution Architect | Standardgrenze und Betriebsfolge bewerten | tragfähige Standardentscheidung mit UAT-Nachweis |
 
 ### Benötigte Stammdaten
 
@@ -3216,7 +3132,7 @@ Du bildest eine reale Unternehmenshandlung in Business Central ab: Zahlung impor
 
 ### Warum braucht die Rhein-Main Industriegruppe diesen Prozess?
 
-Die Rhein-Main Industriegruppe braucht diesen Prozess, weil operative Arbeit sonst nicht zuverlässig in Finance, Lager, Steuer und Reporting ankommt. Der Prozess nutzt `Zahlungs Buch.-Blätter (Payment Journals)`, `Zahlungsabstimmungs Buch.-Blatt (Payment Reconciliation Journal)`. Beteiligt ist vor allem die Rolle Debitoren- und Kreditorenbuchhaltung. Am Ende erwartet die Fachabteilung einen prüfbaren Beleg, passende Posten, einen Kontrollbericht und einen UAT-Nachweis.
+RM-SHARED muss offene Forderungen und Verbindlichkeiten täglich klären. Ein bezahlter Kunde ist erst erledigt, wenn Zahlung und offener Posten ausgeglichen sind. Ohne OP-Ausgleich bleiben Mahnungen falsch, Skonto wird unsicher und die Bilanz zeigt unklare Forderungen. Business Central verknüpft Zahlung, Debitoren- oder Kreditorenposten, detaillierte Posten und Sachposten.
 
 ### Rollen
 
@@ -3229,28 +3145,29 @@ Die Rhein-Main Industriegruppe braucht diesen Prozess, weil operative Arbeit son
 ### Schritt-für-Schritt in der deutschen BC-Oberfläche
 
 1. Öffne die Suche mit `Alt+Q`.
-2. Suche nach `Zahlungs Buch.-Blätter (Payment Journals)`, `Zahlungsabstimmungs Buch.-Blatt (Payment Reconciliation Journal)`.
-3. Öffne die passende Seite und lege den Vorgang für `D10000` und Rechnung `SO-1001` an oder filtere darauf.
-4. Prüfe Buchungsdatum, Belegdatum, Company, Lagerort, Dimensionen und Buchungsgruppen.
-5. Erfasse Menge, Preis, Ressource, Sachkonto oder Projektbezug entsprechend dem Fall.
-6. Wähle `Buchungsvorschau (Preview Posting)`, wenn der Vorgang eine Buchung auslöst.
-7. Führe die fachliche Aktion aus: freigeben, registrieren, buchen, fakturieren oder ausgleichen.
-8. Öffne den gebuchten Beleg oder die entstandenen Postenlisten.
-9. Filtere nach Belegnummer, Artikel, Debitor, Kreditor, Projekt oder Anlage.
-10. Öffne den Kontrollbericht `Debitorenposten`, `Kreditorenposten`, `Bankkontoposten` und vergleiche Menge, Wert, Steuer und Dimension.
-11. Speichere Belegnummern, Postenfilter und Bericht als Evidence Pack.
+2. Suche nach `Debitorenposten (Customer Ledger Entries)`, `Zahlungseingangs Buch.-Blätter (Cash Receipt Journals)`, `Ausgleich anwenden (Apply Entries)`.
+3. Erfasse oder öffne den Rhein-Main-Fall Zahlung `80.920 EUR` zu Verkaufsrechnung `SO-1001` von `D10000`.
+4. Prüfe die Pflichtfelder `Buchungsdatum`, `Belegdatum`, `Nr.`, `Menge`, `Preis/Betrag`, `Lagerortcode`, Buchungsgruppen und Dimensionen.
+5. Prüfe vor der Buchung über `Buchungsvorschau (Preview Posting)`, welche Posten entstehen.
+6. Führe die fachliche Aktion aus: freigeben, registrieren, buchen, fakturieren, ausgleichen oder berechnen.
+7. Öffne danach den gebuchten Beleg oder die passende Postenliste.
+8. Filtere nach der Belegnummer oder dem Stammdatencode aus dem Testfall.
+9. Prüfe die Mengen-, Wert-, Steuer- und Dimensionswirkung in den Posten.
+10. Öffne den Kontrollbericht `Debitorenposten (Customer Ledger Entries)`, `Detaillierte Debitorenposten (Detailed Customer Ledger Entries)`, OP-Liste und vergleiche Beleg, Posten und Bericht.
+11. Speichere Belegnummern, Postenfilter, Bericht und fachliches Testergebnis im Evidence Pack.
 
 ### Buchungsspur
 
-| Ebene | Was prüfen? | Wo prüfen? |
+| Ebene | Rhein-Main-Nachweis | Wo prüfen? |
 |---|---|---|
-| Ausgangsbeleg | fachlicher Vorgang und Pflichtfelder | Startseite des Prozesses |
-| Gebuchter Beleg | gebuchte Lieferung, Rechnung, Zahlung, Journal oder Projektbuchung | gebuchte Belege/Postenlisten |
-| Nebenbuch | Debitor, Kreditor, Artikel, Bank, Anlage oder Projekt | passende Postenliste |
-| Sachposten | Hauptbuchwirkung | `Sachposten (G/L Entries)` |
-| USt/Wert | Steuer, Lagerwert oder Kostenwirkung | `USt-Posten`, `Wertposten`, Bericht |
-| Bericht | fachliche Kontrolle | `Debitorenposten`, `Kreditorenposten`, `Bankkontoposten` |
+| Ausgangsbeleg | Zahlung `80.920 EUR` zu Verkaufsrechnung `SO-1001` von `D10000` | Startseite des Prozesses |
+| Gebuchter Beleg | gebuchter Beleg, registrierte Aktivität oder berechneter Abschlusslauf | gebuchte Belege und Postenlisten |
+| Nebenbuch/Spezialposten | Debitorenposten mit Ausgleich, detaillierte Debitorenposten, Bank- und Sachposten; bei Lieferanten analog Kreditorenposten | passende Postenlisten |
+| Sachposten | Hauptbuchwirkung mit Konto, Betrag und Dimension | `Sachposten (G/L Entries)` |
+| USt/Wert/Spezialspur | Steuer, Lagerwert, Anlage, Projekt oder Servicewirkung | `USt-Posten (VAT Entries)`, `Wertposten (Value Entries)` oder Spezialposten |
+| Kontrollbericht | fachliche Abstimmung | `Debitorenposten (Customer Ledger Entries)`, `Detaillierte Debitorenposten (Detailed Customer Ledger Entries)`, OP-Liste |
 
+Die Buchung ist erst nachvollziehbar, wenn Belegnummer, Postenfilter, Betrag, Menge und Dimension zusammenpassen. Ein Screenshot der Maske reicht nicht aus; das Evidence Pack enthält immer Beleg, Posten und Kontrollbericht.
 ### Zahlenbeispiel
 
 Rhein-Main nutzt `D10000` und Rechnung `SO-1001` mit einem Beispielwert von `10.000 EUR`. Die Buchung muss zeigen, welche Menge bewegt wird, welcher Wert entsteht, welche Dimension mitläuft und welcher Bericht das Ergebnis bestätigt.
@@ -3289,20 +3206,23 @@ Führe den Fall für `D10000` und Rechnung `SO-1001` in der Trainingscompany aus
 
 | Feld | Inhalt |
 |---|---|
-| ID | `UAT-BANK-001` |
-| Ziel | Bank, Payments und OP-Ausgleich fachlich abnehmen |
+| ID | `UAT-OP-001` |
+| Ziel | Prozess mit Rhein-Main-Testdaten fachlich abnehmen |
 | Rolle | Debitoren- und Kreditorenbuchhaltung |
-| Voraussetzung | Stammdaten, Buchungsgruppen, Dimensionen und Berechtigungen sind eingerichtet |
-| Testdaten | `D10000` und Rechnung `SO-1001`, Beispielwert `10.000 EUR` |
-| Erwartete Posten | Sachposten und passende Nebenbuchposten |
-| Kontrollbericht | `Debitorenposten`, `Kreditorenposten`, `Bankkontoposten` |
-| Negativfall | falsche Dimension oder falsche Buchungsgruppe |
-| Akzeptanzkriterium | Beleg, Posten, Bericht und Evidence Pack stimmen überein |
+| Voraussetzung | Stammdaten, Buchungsgruppen, Dimensionen, Berechtigungen und Testperiode sind eingerichtet |
+| Testdaten | Zahlung `80.920 EUR` zu Verkaufsrechnung `SO-1001` von `D10000` |
+| Schritte | Startseite über `Alt+Q` öffnen, Testdaten erfassen, Pflichtfelder prüfen, `Buchungsvorschau (Preview Posting)` nutzen, fachliche Aktion ausführen, Posten und Bericht kontrollieren |
+| Erwartete Belege | Ausgangsbeleg, gebuchter Beleg oder registrierte Prozessaktivität mit eindeutiger Belegnummer |
+| Erwartete Posten | Debitorenposten mit Ausgleich, detaillierte Debitorenposten, Bank- und Sachposten; bei Lieferanten analog Kreditorenposten |
+| Kontrollbericht | `Debitorenposten (Customer Ledger Entries)`, `Detaillierte Debitorenposten (Detailed Customer Ledger Entries)`, OP-Liste |
+| Negativfall | falsche Dimension, falsche Buchungsgruppe, fehlender Prozessschritt oder abweichender Betrag |
+| Akzeptanzkriterium | Beleg, Posten, Kontrollbericht und Evidence Pack zeigen denselben Vorgang vollständig und widerspruchsfrei |
+| Evidence Pack | Belegnummern, Postenfilter, Berichtsexport, Fehlertest, Korrekturhinweis und Testergebnis |
 
 ### In 5 Minuten merken
 
 * 5 wichtigste Begriffe: Beleg, gebuchter Beleg, Posten, Dimension, Evidence Pack.
-* 5 wichtigste Seiten: `Zahlungs Buch.-Blätter (Payment Journals)`, `Zahlungsabstimmungs Buch.-Blatt (Payment Reconciliation Journal)`, `Sachposten`, passende Nebenbuchposten, Kontrollbericht, gebuchte Belege.
+* 5 wichtigste Seiten: `Zahlungs Buch.-Blätter (Payment Journals)`, `Zahlungsabstimmungs Buch.-Blatt (Payment Reconciliation Journal)`, `Sachposten (G/L Entries)`, passende Postenlisten, Kontrollbericht, gebuchte Belege.
 * 3 häufigste Fehler: falsche Stammdaten, falsche Dimension, übersprungener Prozessschritt.
 * 3 Prüfungsfallen: Bildschirm ist nicht Buchung, Beleg ist nicht Posten, Bericht ersetzt keine Abstimmung.
 * 1 Praxisregel: Erst Beleg verstehen, dann buchen, dann Posten und Bericht prüfen.
@@ -3327,10 +3247,10 @@ Führe den Fall für `D10000` und Rechnung `SO-1001` in der Trainingscompany aus
 
 | Rolle | Aufgabe | Ergebnis |
 |---|---|---|
-| Fachanwender | Prozess ausführen und Belegdaten prüfen | fachlich korrekter Vorgang |
+| Fachanwender | Prozess ausführen und Belegdaten prüfen | fachlich geprüfter Vorgang mit Belegnummer |
 | Key User | Stammdaten, Setup und Fehlerfälle prüfen | stabiler Prozess |
 | Finance/Controlling | Buchungsspur, Bericht und Evidence Pack prüfen | abgestimmter Nachweis |
-| Solution Architect | Standardgrenze und Betriebsfolge bewerten | tragfähiges Prozessdesign |
+| Solution Architect | Standardgrenze und Betriebsfolge bewerten | tragfähige Standardentscheidung mit UAT-Nachweis |
 
 ### Benötigte Stammdaten
 
@@ -3372,7 +3292,7 @@ Du bildest eine reale Unternehmenshandlung in Business Central ab: Zahlung impor
 
 ### Warum braucht die Rhein-Main Industriegruppe diesen Prozess?
 
-Die Rhein-Main Industriegruppe braucht diesen Prozess, weil operative Arbeit sonst nicht zuverlässig in Finance, Lager, Steuer und Reporting ankommt. Der Prozess nutzt `Zahlungs Buch.-Blätter (Payment Journals)`, `Zahlungsabstimmungs Buch.-Blatt (Payment Reconciliation Journal)`. Beteiligt ist vor allem die Rolle Debitoren- und Kreditorenbuchhaltung. Am Ende erwartet die Fachabteilung einen prüfbaren Beleg, passende Posten, einen Kontrollbericht und einen UAT-Nachweis.
+RM-SHARED importiert Bankumsätze und stimmt sie gegen offene Posten ab. Bank ist nicht nur Kontostand, sondern ein Kontrollprozess zwischen Bankauszug, Zahlung, OP-Ausgleich und Hauptbuch. Ohne Bankabstimmung bleiben Zahlungseingänge, Gebühren, Doppelzahlungen und Klärposten unentdeckt. Business Central liefert Zahlungsabstimmung, Bankkontoposten und abgestimmte Sachposten.
 
 ### Rollen
 
@@ -3385,28 +3305,29 @@ Die Rhein-Main Industriegruppe braucht diesen Prozess, weil operative Arbeit son
 ### Schritt-für-Schritt in der deutschen BC-Oberfläche
 
 1. Öffne die Suche mit `Alt+Q`.
-2. Suche nach `Zahlungs Buch.-Blätter (Payment Journals)`, `Zahlungsabstimmungs Buch.-Blatt (Payment Reconciliation Journal)`.
-3. Öffne die passende Seite und lege den Vorgang für `D10000` und Rechnung `SO-1001` an oder filtere darauf.
-4. Prüfe Buchungsdatum, Belegdatum, Company, Lagerort, Dimensionen und Buchungsgruppen.
-5. Erfasse Menge, Preis, Ressource, Sachkonto oder Projektbezug entsprechend dem Fall.
-6. Wähle `Buchungsvorschau (Preview Posting)`, wenn der Vorgang eine Buchung auslöst.
-7. Führe die fachliche Aktion aus: freigeben, registrieren, buchen, fakturieren oder ausgleichen.
-8. Öffne den gebuchten Beleg oder die entstandenen Postenlisten.
-9. Filtere nach Belegnummer, Artikel, Debitor, Kreditor, Projekt oder Anlage.
-10. Öffne den Kontrollbericht `Debitorenposten`, `Kreditorenposten`, `Bankkontoposten` und vergleiche Menge, Wert, Steuer und Dimension.
-11. Speichere Belegnummern, Postenfilter und Bericht als Evidence Pack.
+2. Suche nach `Zahlungsabstimmungs Buch.-Blatt (Payment Reconciliation Journal)`, `Bankkontenabstimmung (Bank Account Reconciliation)`, `Bankkontoposten (Bank Account Ledger Entries)`.
+3. Erfasse oder öffne den Rhein-Main-Fall Bankauszug `BANK-2026-06-20`, Bankkonto `BANK-RM-01`, Zahlung `80.920 EUR` von `D10000`.
+4. Prüfe die Pflichtfelder `Buchungsdatum`, `Belegdatum`, `Nr.`, `Menge`, `Preis/Betrag`, `Lagerortcode`, Buchungsgruppen und Dimensionen.
+5. Prüfe vor der Buchung über `Buchungsvorschau (Preview Posting)`, welche Posten entstehen.
+6. Führe die fachliche Aktion aus: freigeben, registrieren, buchen, fakturieren, ausgleichen oder berechnen.
+7. Öffne danach den gebuchten Beleg oder die passende Postenliste.
+8. Filtere nach der Belegnummer oder dem Stammdatencode aus dem Testfall.
+9. Prüfe die Mengen-, Wert-, Steuer- und Dimensionswirkung in den Posten.
+10. Öffne den Kontrollbericht `Zahlungsabstimmungs Buch.-Blatt (Payment Reconciliation Journal)`, `Bankkontenabstimmung (Bank Account Reconciliation)`, Bankkontoposten und vergleiche Beleg, Posten und Bericht.
+11. Speichere Belegnummern, Postenfilter, Bericht und fachliches Testergebnis im Evidence Pack.
 
 ### Buchungsspur
 
-| Ebene | Was prüfen? | Wo prüfen? |
+| Ebene | Rhein-Main-Nachweis | Wo prüfen? |
 |---|---|---|
-| Ausgangsbeleg | fachlicher Vorgang und Pflichtfelder | Startseite des Prozesses |
-| Gebuchter Beleg | gebuchte Lieferung, Rechnung, Zahlung, Journal oder Projektbuchung | gebuchte Belege/Postenlisten |
-| Nebenbuch | Debitor, Kreditor, Artikel, Bank, Anlage oder Projekt | passende Postenliste |
-| Sachposten | Hauptbuchwirkung | `Sachposten (G/L Entries)` |
-| USt/Wert | Steuer, Lagerwert oder Kostenwirkung | `USt-Posten`, `Wertposten`, Bericht |
-| Bericht | fachliche Kontrolle | `Debitorenposten`, `Kreditorenposten`, `Bankkontoposten` |
+| Ausgangsbeleg | Bankauszug `BANK-2026-06-20`, Bankkonto `BANK-RM-01`, Zahlung `80.920 EUR` von `D10000` | Startseite des Prozesses |
+| Gebuchter Beleg | gebuchter Beleg, registrierte Aktivität oder berechneter Abschlusslauf | gebuchte Belege und Postenlisten |
+| Nebenbuch/Spezialposten | Bankkontoposten, Sachposten Bank, Debitoren- oder Kreditorenposten und detaillierte Ausgleichsposten | passende Postenlisten |
+| Sachposten | Hauptbuchwirkung mit Konto, Betrag und Dimension | `Sachposten (G/L Entries)` |
+| USt/Wert/Spezialspur | Steuer, Lagerwert, Anlage, Projekt oder Servicewirkung | `USt-Posten (VAT Entries)`, `Wertposten (Value Entries)` oder Spezialposten |
+| Kontrollbericht | fachliche Abstimmung | `Zahlungsabstimmungs Buch.-Blatt (Payment Reconciliation Journal)`, `Bankkontenabstimmung (Bank Account Reconciliation)`, Bankkontoposten |
 
+Die Buchung ist erst nachvollziehbar, wenn Belegnummer, Postenfilter, Betrag, Menge und Dimension zusammenpassen. Ein Screenshot der Maske reicht nicht aus; das Evidence Pack enthält immer Beleg, Posten und Kontrollbericht.
 ### Zahlenbeispiel
 
 Rhein-Main nutzt `D10000` und Rechnung `SO-1001` mit einem Beispielwert von `10.000 EUR`. Die Buchung muss zeigen, welche Menge bewegt wird, welcher Wert entsteht, welche Dimension mitläuft und welcher Bericht das Ergebnis bestätigt.
@@ -3446,19 +3367,22 @@ Führe den Fall für `D10000` und Rechnung `SO-1001` in der Trainingscompany aus
 | Feld | Inhalt |
 |---|---|
 | ID | `UAT-BANK-001` |
-| Ziel | Bank, Payments und OP-Ausgleich fachlich abnehmen |
-| Rolle | Debitoren- und Kreditorenbuchhaltung |
-| Voraussetzung | Stammdaten, Buchungsgruppen, Dimensionen und Berechtigungen sind eingerichtet |
-| Testdaten | `D10000` und Rechnung `SO-1001`, Beispielwert `10.000 EUR` |
-| Erwartete Posten | Sachposten und passende Nebenbuchposten |
-| Kontrollbericht | `Debitorenposten`, `Kreditorenposten`, `Bankkontoposten` |
-| Negativfall | falsche Dimension oder falsche Buchungsgruppe |
-| Akzeptanzkriterium | Beleg, Posten, Bericht und Evidence Pack stimmen überein |
+| Ziel | Prozess mit Rhein-Main-Testdaten fachlich abnehmen |
+| Rolle | Bankbuchhaltung und Finance-Leitung |
+| Voraussetzung | Stammdaten, Buchungsgruppen, Dimensionen, Berechtigungen und Testperiode sind eingerichtet |
+| Testdaten | Bankauszug `BANK-2026-06-20`, Bankkonto `BANK-RM-01`, Zahlung `80.920 EUR` von `D10000` |
+| Schritte | Startseite über `Alt+Q` öffnen, Testdaten erfassen, Pflichtfelder prüfen, `Buchungsvorschau (Preview Posting)` nutzen, fachliche Aktion ausführen, Posten und Bericht kontrollieren |
+| Erwartete Belege | Ausgangsbeleg, gebuchter Beleg oder registrierte Prozessaktivität mit eindeutiger Belegnummer |
+| Erwartete Posten | Bankkontoposten, Sachposten Bank, Debitoren- oder Kreditorenposten und detaillierte Ausgleichsposten |
+| Kontrollbericht | `Zahlungsabstimmungs Buch.-Blatt (Payment Reconciliation Journal)`, `Bankkontenabstimmung (Bank Account Reconciliation)`, Bankkontoposten |
+| Negativfall | falsche Dimension, falsche Buchungsgruppe, fehlender Prozessschritt oder abweichender Betrag |
+| Akzeptanzkriterium | Beleg, Posten, Kontrollbericht und Evidence Pack zeigen denselben Vorgang vollständig und widerspruchsfrei |
+| Evidence Pack | Belegnummern, Postenfilter, Berichtsexport, Fehlertest, Korrekturhinweis und Testergebnis |
 
 ### In 5 Minuten merken
 
 * 5 wichtigste Begriffe: Beleg, gebuchter Beleg, Posten, Dimension, Evidence Pack.
-* 5 wichtigste Seiten: `Zahlungs Buch.-Blätter (Payment Journals)`, `Zahlungsabstimmungs Buch.-Blatt (Payment Reconciliation Journal)`, `Sachposten`, passende Nebenbuchposten, Kontrollbericht, gebuchte Belege.
+* 5 wichtigste Seiten: `Zahlungs Buch.-Blätter (Payment Journals)`, `Zahlungsabstimmungs Buch.-Blatt (Payment Reconciliation Journal)`, `Sachposten (G/L Entries)`, passende Postenlisten, Kontrollbericht, gebuchte Belege.
 * 3 häufigste Fehler: falsche Stammdaten, falsche Dimension, übersprungener Prozessschritt.
 * 3 Prüfungsfallen: Bildschirm ist nicht Buchung, Beleg ist nicht Posten, Bericht ersetzt keine Abstimmung.
 * 1 Praxisregel: Erst Beleg verstehen, dann buchen, dann Posten und Bericht prüfen.
@@ -3483,10 +3407,10 @@ Führe den Fall für `D10000` und Rechnung `SO-1001` in der Trainingscompany aus
 
 | Rolle | Aufgabe | Ergebnis |
 |---|---|---|
-| Fachanwender | Prozess ausführen und Belegdaten prüfen | fachlich korrekter Vorgang |
+| Fachanwender | Prozess ausführen und Belegdaten prüfen | fachlich geprüfter Vorgang mit Belegnummer |
 | Key User | Stammdaten, Setup und Fehlerfälle prüfen | stabiler Prozess |
 | Finance/Controlling | Buchungsspur, Bericht und Evidence Pack prüfen | abgestimmter Nachweis |
-| Solution Architect | Standardgrenze und Betriebsfolge bewerten | tragfähiges Prozessdesign |
+| Solution Architect | Standardgrenze und Betriebsfolge bewerten | tragfähige Standardentscheidung mit UAT-Nachweis |
 
 ### Benötigte Stammdaten
 
@@ -3528,7 +3452,7 @@ Du bildest eine reale Unternehmenshandlung in Business Central ab: Anlage kaufen
 
 ### Warum braucht die Rhein-Main Industriegruppe diesen Prozess?
 
-Die Rhein-Main Industriegruppe braucht diesen Prozess, weil operative Arbeit sonst nicht zuverlässig in Finance, Lager, Steuer und Reporting ankommt. Der Prozess nutzt `Anlagen (Fixed Assets)`, `Anlagen Buch.-Blätter (FA Journals)`. Beteiligt ist vor allem die Rolle Anlagenbuchhalterin. Am Ende erwartet die Fachabteilung einen prüfbaren Beleg, passende Posten, einen Kontrollbericht und einen UAT-Nachweis.
+RM-PROD kauft Maschinen, Werkzeuge und Fahrzeuge, die über mehrere Jahre genutzt werden. Anlagen müssen aktiviert, abgeschrieben und bei Verkauf oder Verschrottung ausgebucht werden. Ohne Anlagenbuchhaltung stimmen Bilanz, GuV und Kostenstellen nicht. Business Central verbindet Anlagenkarte, AfA-Buch, Anlagenbuchungsgruppen, Einkaufsrechnung, Anlagenposten und Sachposten.
 
 ### Rollen
 
@@ -3541,28 +3465,29 @@ Die Rhein-Main Industriegruppe braucht diesen Prozess, weil operative Arbeit son
 ### Schritt-für-Schritt in der deutschen BC-Oberfläche
 
 1. Öffne die Suche mit `Alt+Q`.
-2. Suche nach `Anlagen (Fixed Assets)`, `Anlagen Buch.-Blätter (FA Journals)`.
-3. Öffne die passende Seite und lege den Vorgang für `FA-CNC-01` an oder filtere darauf.
-4. Prüfe Buchungsdatum, Belegdatum, Company, Lagerort, Dimensionen und Buchungsgruppen.
-5. Erfasse Menge, Preis, Ressource, Sachkonto oder Projektbezug entsprechend dem Fall.
-6. Wähle `Buchungsvorschau (Preview Posting)`, wenn der Vorgang eine Buchung auslöst.
-7. Führe die fachliche Aktion aus: freigeben, registrieren, buchen, fakturieren oder ausgleichen.
-8. Öffne den gebuchten Beleg oder die entstandenen Postenlisten.
-9. Filtere nach Belegnummer, Artikel, Debitor, Kreditor, Projekt oder Anlage.
-10. Öffne den Kontrollbericht `Anlagenposten (FA Ledger Entries)` und Anlagenbuchwert und vergleiche Menge, Wert, Steuer und Dimension.
-11. Speichere Belegnummern, Postenfilter und Bericht als Evidence Pack.
+2. Suche nach `Anlagen (Fixed Assets)`, `Einkaufsrechnungen (Purchase Invoices)`, `Anlagen Buch.-Blätter (FA Journals)`, `Anlagenposten (FA Ledger Entries)`.
+3. Erfasse oder öffne den Rhein-Main-Fall Anlage `FA-CNC-01`, Kreditor `K30000`, Anschaffung `250.000 EUR`, AfA-Buch `HGB`, Buchungsgruppe `MACHINERY`.
+4. Prüfe die Pflichtfelder `Buchungsdatum`, `Belegdatum`, `Nr.`, `Menge`, `Preis/Betrag`, `Lagerortcode`, Buchungsgruppen und Dimensionen.
+5. Prüfe vor der Buchung über `Buchungsvorschau (Preview Posting)`, welche Posten entstehen.
+6. Führe die fachliche Aktion aus: freigeben, registrieren, buchen, fakturieren, ausgleichen oder berechnen.
+7. Öffne danach den gebuchten Beleg oder die passende Postenliste.
+8. Filtere nach der Belegnummer oder dem Stammdatencode aus dem Testfall.
+9. Prüfe die Mengen-, Wert-, Steuer- und Dimensionswirkung in den Posten.
+10. Öffne den Kontrollbericht `Anlagen (Fixed Assets)`, `Anlagenposten (FA Ledger Entries)`, `Anlagenstatistik`, `Sachposten (G/L Entries)` und vergleiche Beleg, Posten und Bericht.
+11. Speichere Belegnummern, Postenfilter, Bericht und fachliches Testergebnis im Evidence Pack.
 
 ### Buchungsspur
 
-| Ebene | Was prüfen? | Wo prüfen? |
+| Ebene | Rhein-Main-Nachweis | Wo prüfen? |
 |---|---|---|
-| Ausgangsbeleg | fachlicher Vorgang und Pflichtfelder | Startseite des Prozesses |
-| Gebuchter Beleg | gebuchte Lieferung, Rechnung, Zahlung, Journal oder Projektbuchung | gebuchte Belege/Postenlisten |
-| Nebenbuch | Debitor, Kreditor, Artikel, Bank, Anlage oder Projekt | passende Postenliste |
-| Sachposten | Hauptbuchwirkung | `Sachposten (G/L Entries)` |
-| USt/Wert | Steuer, Lagerwert oder Kostenwirkung | `USt-Posten`, `Wertposten`, Bericht |
-| Bericht | fachliche Kontrolle | `Anlagenposten (FA Ledger Entries)` und Anlagenbuchwert |
+| Ausgangsbeleg | Anlage `FA-CNC-01`, Kreditor `K30000`, Anschaffung `250.000 EUR`, AfA-Buch `HGB`, Buchungsgruppe `MACHINERY` | Startseite des Prozesses |
+| Gebuchter Beleg | gebuchter Beleg, registrierte Aktivität oder berechneter Abschlusslauf | gebuchte Belege und Postenlisten |
+| Nebenbuch/Spezialposten | Anlagenposten für Anschaffung und AfA, Kreditorenposten, Sachposten Anlage/Vorsteuer/Verbindlichkeit und AfA-Sachposten | passende Postenlisten |
+| Sachposten | Hauptbuchwirkung mit Konto, Betrag und Dimension | `Sachposten (G/L Entries)` |
+| USt/Wert/Spezialspur | Steuer, Lagerwert, Anlage, Projekt oder Servicewirkung | `USt-Posten (VAT Entries)`, `Wertposten (Value Entries)` oder Spezialposten |
+| Kontrollbericht | fachliche Abstimmung | `Anlagen (Fixed Assets)`, `Anlagenposten (FA Ledger Entries)`, `Anlagenstatistik`, `Sachposten (G/L Entries)` |
 
+Die Buchung ist erst nachvollziehbar, wenn Belegnummer, Postenfilter, Betrag, Menge und Dimension zusammenpassen. Ein Screenshot der Maske reicht nicht aus; das Evidence Pack enthält immer Beleg, Posten und Kontrollbericht.
 ### Zahlenbeispiel
 
 Rhein-Main nutzt `FA-CNC-01` mit einem Beispielwert von `10.000 EUR`. Die Buchung muss zeigen, welche Menge bewegt wird, welcher Wert entsteht, welche Dimension mitläuft und welcher Bericht das Ergebnis bestätigt.
@@ -3602,19 +3527,22 @@ Führe den Fall für `FA-CNC-01` in der Trainingscompany aus. Dokumentiere Start
 | Feld | Inhalt |
 |---|---|
 | ID | `UAT-FA-001` |
-| Ziel | Fixed Assets fachlich abnehmen |
+| Ziel | Prozess mit Rhein-Main-Testdaten fachlich abnehmen |
 | Rolle | Anlagenbuchhalterin |
-| Voraussetzung | Stammdaten, Buchungsgruppen, Dimensionen und Berechtigungen sind eingerichtet |
-| Testdaten | `FA-CNC-01`, Beispielwert `10.000 EUR` |
-| Erwartete Posten | Sachposten und passende Nebenbuchposten |
-| Kontrollbericht | `Anlagenposten (FA Ledger Entries)` und Anlagenbuchwert |
-| Negativfall | falsche Dimension oder falsche Buchungsgruppe |
-| Akzeptanzkriterium | Beleg, Posten, Bericht und Evidence Pack stimmen überein |
+| Voraussetzung | Stammdaten, Buchungsgruppen, Dimensionen, Berechtigungen und Testperiode sind eingerichtet |
+| Testdaten | Anlage `FA-CNC-01`, Kreditor `K30000`, Anschaffung `250.000 EUR`, AfA-Buch `HGB`, Buchungsgruppe `MACHINERY` |
+| Schritte | Startseite über `Alt+Q` öffnen, Testdaten erfassen, Pflichtfelder prüfen, `Buchungsvorschau (Preview Posting)` nutzen, fachliche Aktion ausführen, Posten und Bericht kontrollieren |
+| Erwartete Belege | Ausgangsbeleg, gebuchter Beleg oder registrierte Prozessaktivität mit eindeutiger Belegnummer |
+| Erwartete Posten | Anlagenposten für Anschaffung und AfA, Kreditorenposten, Sachposten Anlage/Vorsteuer/Verbindlichkeit und AfA-Sachposten |
+| Kontrollbericht | `Anlagen (Fixed Assets)`, `Anlagenposten (FA Ledger Entries)`, `Anlagenstatistik`, `Sachposten (G/L Entries)` |
+| Negativfall | falsche Dimension, falsche Buchungsgruppe, fehlender Prozessschritt oder abweichender Betrag |
+| Akzeptanzkriterium | Beleg, Posten, Kontrollbericht und Evidence Pack zeigen denselben Vorgang vollständig und widerspruchsfrei |
+| Evidence Pack | Belegnummern, Postenfilter, Berichtsexport, Fehlertest, Korrekturhinweis und Testergebnis |
 
 ### In 5 Minuten merken
 
 * 5 wichtigste Begriffe: Beleg, gebuchter Beleg, Posten, Dimension, Evidence Pack.
-* 5 wichtigste Seiten: `Anlagen (Fixed Assets)`, `Anlagen Buch.-Blätter (FA Journals)`, `Sachposten`, passende Nebenbuchposten, Kontrollbericht, gebuchte Belege.
+* 5 wichtigste Seiten: `Anlagen (Fixed Assets)`, `Anlagen Buch.-Blätter (FA Journals)`, `Sachposten (G/L Entries)`, passende Postenlisten, Kontrollbericht, gebuchte Belege.
 * 3 häufigste Fehler: falsche Stammdaten, falsche Dimension, übersprungener Prozessschritt.
 * 3 Prüfungsfallen: Bildschirm ist nicht Buchung, Beleg ist nicht Posten, Bericht ersetzt keine Abstimmung.
 * 1 Praxisregel: Erst Beleg verstehen, dann buchen, dann Posten und Bericht prüfen.
@@ -3639,10 +3567,10 @@ Führe den Fall für `FA-CNC-01` in der Trainingscompany aus. Dokumentiere Start
 
 | Rolle | Aufgabe | Ergebnis |
 |---|---|---|
-| Fachanwender | Prozess ausführen und Belegdaten prüfen | fachlich korrekter Vorgang |
+| Fachanwender | Prozess ausführen und Belegdaten prüfen | fachlich geprüfter Vorgang mit Belegnummer |
 | Key User | Stammdaten, Setup und Fehlerfälle prüfen | stabiler Prozess |
 | Finance/Controlling | Buchungsspur, Bericht und Evidence Pack prüfen | abgestimmter Nachweis |
-| Solution Architect | Standardgrenze und Betriebsfolge bewerten | tragfähiges Prozessdesign |
+| Solution Architect | Standardgrenze und Betriebsfolge bewerten | tragfähige Standardentscheidung mit UAT-Nachweis |
 
 ### Benötigte Stammdaten
 
@@ -3747,7 +3675,7 @@ Du bildest eine reale Unternehmenshandlung in Business Central ab: Steuerlogik p
 
 ### Warum braucht die Rhein-Main Industriegruppe diesen Prozess?
 
-Die Rhein-Main Industriegruppe braucht diesen Prozess, weil operative Arbeit sonst nicht zuverlässig in Finance, Lager, Steuer und Reporting ankommt. Der Prozess nutzt `USt-Posten (VAT Entries)`, `USt-Abrechnung (VAT Statement)`, `E-Belege (E-Documents)`. Beteiligt ist vor allem die Rolle Steuerverantwortliche. Am Ende erwartet die Fachabteilung einen prüfbaren Beleg, passende Posten, einen Kontrollbericht und einen UAT-Nachweis.
+RM-SHARED muss Umsatzsteuer, E-Rechnung und Nachweise korrekt führen. USt entsteht nicht durch Text auf der Rechnung, sondern durch Buchungsmatrix, Beleg, Leistungsbeziehung und Buchung. Ohne Nachweissicht drohen falsche Steuerbeträge, unvollständige Meldungen und Betriebsprüfungsrisiken. Business Central erzeugt USt-Posten, Sachposten, E-Belegstatus und Abstimmberichte.
 
 ### Rollen
 
@@ -3760,28 +3688,29 @@ Die Rhein-Main Industriegruppe braucht diesen Prozess, weil operative Arbeit son
 ### Schritt-für-Schritt in der deutschen BC-Oberfläche
 
 1. Öffne die Suche mit `Alt+Q`.
-2. Suche nach `USt-Posten (VAT Entries)`, `USt-Abrechnung (VAT Statement)`, `E-Belege (E-Documents)`.
-3. Öffne die passende Seite und lege den Vorgang für `D20000`, `D30000`, `K10000` an oder filtere darauf.
-4. Prüfe Buchungsdatum, Belegdatum, Company, Lagerort, Dimensionen und Buchungsgruppen.
-5. Erfasse Menge, Preis, Ressource, Sachkonto oder Projektbezug entsprechend dem Fall.
-6. Wähle `Buchungsvorschau (Preview Posting)`, wenn der Vorgang eine Buchung auslöst.
-7. Führe die fachliche Aktion aus: freigeben, registrieren, buchen, fakturieren oder ausgleichen.
-8. Öffne den gebuchten Beleg oder die entstandenen Postenlisten.
-9. Filtere nach Belegnummer, Artikel, Debitor, Kreditor, Projekt oder Anlage.
-10. Öffne den Kontrollbericht `USt-Abrechnung`, `USt-Posten`, Zusammenfassende Meldung falls relevant und vergleiche Menge, Wert, Steuer und Dimension.
-11. Speichere Belegnummern, Postenfilter und Bericht als Evidence Pack.
+2. Suche nach `USt-Buchungsmatrix Einrichtung (VAT Posting Setup)`, `USt-Posten (VAT Entries)`, `USt-Abrechnung (VAT Statement)`, `E-Belege (E-Documents)`.
+3. Erfasse oder öffne den Rhein-Main-Fall Verkaufsrechnung `SO-1001`, Bemessungsgrundlage `68.000 EUR`, USt `19 %`, Steuer `12.920 EUR`.
+4. Prüfe die Pflichtfelder `Buchungsdatum`, `Belegdatum`, `Nr.`, `Menge`, `Preis/Betrag`, `Lagerortcode`, Buchungsgruppen und Dimensionen.
+5. Prüfe vor der Buchung über `Buchungsvorschau (Preview Posting)`, welche Posten entstehen.
+6. Führe die fachliche Aktion aus: freigeben, registrieren, buchen, fakturieren, ausgleichen oder berechnen.
+7. Öffne danach den gebuchten Beleg oder die passende Postenliste.
+8. Filtere nach der Belegnummer oder dem Stammdatencode aus dem Testfall.
+9. Prüfe die Mengen-, Wert-, Steuer- und Dimensionswirkung in den Posten.
+10. Öffne den Kontrollbericht `USt-Abrechnung (VAT Statement)`, `USt-Posten (VAT Entries)`, `E-Belege (E-Documents)` und vergleiche Beleg, Posten und Bericht.
+11. Speichere Belegnummern, Postenfilter, Bericht und fachliches Testergebnis im Evidence Pack.
 
 ### Buchungsspur
 
-| Ebene | Was prüfen? | Wo prüfen? |
+| Ebene | Rhein-Main-Nachweis | Wo prüfen? |
 |---|---|---|
-| Ausgangsbeleg | fachlicher Vorgang und Pflichtfelder | Startseite des Prozesses |
-| Gebuchter Beleg | gebuchte Lieferung, Rechnung, Zahlung, Journal oder Projektbuchung | gebuchte Belege/Postenlisten |
-| Nebenbuch | Debitor, Kreditor, Artikel, Bank, Anlage oder Projekt | passende Postenliste |
-| Sachposten | Hauptbuchwirkung | `Sachposten (G/L Entries)` |
-| USt/Wert | Steuer, Lagerwert oder Kostenwirkung | `USt-Posten`, `Wertposten`, Bericht |
-| Bericht | fachliche Kontrolle | `USt-Abrechnung`, `USt-Posten`, Zusammenfassende Meldung falls relevant |
+| Ausgangsbeleg | Verkaufsrechnung `SO-1001`, Bemessungsgrundlage `68.000 EUR`, USt `19 %`, Steuer `12.920 EUR` | Startseite des Prozesses |
+| Gebuchter Beleg | gebuchter Beleg, registrierte Aktivität oder berechneter Abschlusslauf | gebuchte Belege und Postenlisten |
+| Nebenbuch/Spezialposten | USt-Posten mit Basis und Betrag, Sachposten Erlös/USt/Forderung und Debitorenposten | passende Postenlisten |
+| Sachposten | Hauptbuchwirkung mit Konto, Betrag und Dimension | `Sachposten (G/L Entries)` |
+| USt/Wert/Spezialspur | Steuer, Lagerwert, Anlage, Projekt oder Servicewirkung | `USt-Posten (VAT Entries)`, `Wertposten (Value Entries)` oder Spezialposten |
+| Kontrollbericht | fachliche Abstimmung | `USt-Abrechnung (VAT Statement)`, `USt-Posten (VAT Entries)`, `E-Belege (E-Documents)` |
 
+Die Buchung ist erst nachvollziehbar, wenn Belegnummer, Postenfilter, Betrag, Menge und Dimension zusammenpassen. Ein Screenshot der Maske reicht nicht aus; das Evidence Pack enthält immer Beleg, Posten und Kontrollbericht.
 ### Zahlenbeispiel
 
 Rhein-Main nutzt `D20000`, `D30000`, `K10000` mit einem Beispielwert von `10.000 EUR`. Die Buchung muss zeigen, welche Menge bewegt wird, welcher Wert entsteht, welche Dimension mitläuft und welcher Bericht das Ergebnis bestätigt.
@@ -3821,19 +3750,22 @@ Führe den Fall für `D20000`, `D30000`, `K10000` in der Trainingscompany aus. D
 | Feld | Inhalt |
 |---|---|
 | ID | `UAT-VAT-001` |
-| Ziel | USt, E-Rechnung und Nachweissicht fachlich abnehmen |
+| Ziel | Prozess mit Rhein-Main-Testdaten fachlich abnehmen |
 | Rolle | Steuerverantwortliche |
-| Voraussetzung | Stammdaten, Buchungsgruppen, Dimensionen und Berechtigungen sind eingerichtet |
-| Testdaten | `D20000`, `D30000`, `K10000`, Beispielwert `10.000 EUR` |
-| Erwartete Posten | Sachposten und passende Nebenbuchposten |
-| Kontrollbericht | `USt-Abrechnung`, `USt-Posten`, Zusammenfassende Meldung falls relevant |
-| Negativfall | falsche Dimension oder falsche Buchungsgruppe |
-| Akzeptanzkriterium | Beleg, Posten, Bericht und Evidence Pack stimmen überein |
+| Voraussetzung | Stammdaten, Buchungsgruppen, Dimensionen, Berechtigungen und Testperiode sind eingerichtet |
+| Testdaten | Verkaufsrechnung `SO-1001`, Bemessungsgrundlage `68.000 EUR`, USt `19 %`, Steuer `12.920 EUR` |
+| Schritte | Startseite über `Alt+Q` öffnen, Testdaten erfassen, Pflichtfelder prüfen, `Buchungsvorschau (Preview Posting)` nutzen, fachliche Aktion ausführen, Posten und Bericht kontrollieren |
+| Erwartete Belege | Ausgangsbeleg, gebuchter Beleg oder registrierte Prozessaktivität mit eindeutiger Belegnummer |
+| Erwartete Posten | USt-Posten mit Basis und Betrag, Sachposten Erlös/USt/Forderung und Debitorenposten |
+| Kontrollbericht | `USt-Abrechnung (VAT Statement)`, `USt-Posten (VAT Entries)`, `E-Belege (E-Documents)` |
+| Negativfall | falsche Dimension, falsche Buchungsgruppe, fehlender Prozessschritt oder abweichender Betrag |
+| Akzeptanzkriterium | Beleg, Posten, Kontrollbericht und Evidence Pack zeigen denselben Vorgang vollständig und widerspruchsfrei |
+| Evidence Pack | Belegnummern, Postenfilter, Berichtsexport, Fehlertest, Korrekturhinweis und Testergebnis |
 
 ### In 5 Minuten merken
 
 * 5 wichtigste Begriffe: Beleg, gebuchter Beleg, Posten, Dimension, Evidence Pack.
-* 5 wichtigste Seiten: `USt-Posten (VAT Entries)`, `USt-Abrechnung (VAT Statement)`, `E-Belege (E-Documents)`, `Sachposten`, passende Nebenbuchposten, Kontrollbericht, gebuchte Belege.
+* 5 wichtigste Seiten: `USt-Posten (VAT Entries)`, `USt-Abrechnung (VAT Statement)`, `E-Belege (E-Documents)`, `Sachposten (G/L Entries)`, passende Postenlisten, Kontrollbericht, gebuchte Belege.
 * 3 häufigste Fehler: falsche Stammdaten, falsche Dimension, übersprungener Prozessschritt.
 * 3 Prüfungsfallen: Bildschirm ist nicht Buchung, Beleg ist nicht Posten, Bericht ersetzt keine Abstimmung.
 * 1 Praxisregel: Erst Beleg verstehen, dann buchen, dann Posten und Bericht prüfen.
@@ -3858,10 +3790,10 @@ Führe den Fall für `D20000`, `D30000`, `K10000` in der Trainingscompany aus. D
 
 | Rolle | Aufgabe | Ergebnis |
 |---|---|---|
-| Fachanwender | Prozess ausführen und Belegdaten prüfen | fachlich korrekter Vorgang |
+| Fachanwender | Prozess ausführen und Belegdaten prüfen | fachlich geprüfter Vorgang mit Belegnummer |
 | Key User | Stammdaten, Setup und Fehlerfälle prüfen | stabiler Prozess |
 | Finance/Controlling | Buchungsspur, Bericht und Evidence Pack prüfen | abgestimmter Nachweis |
-| Solution Architect | Standardgrenze und Betriebsfolge bewerten | tragfähiges Prozessdesign |
+| Solution Architect | Standardgrenze und Betriebsfolge bewerten | tragfähige Standardentscheidung mit UAT-Nachweis |
 
 ### Benötigte Stammdaten
 
@@ -3903,7 +3835,7 @@ Du bildest eine reale Unternehmenshandlung in Business Central ab: Ware einlager
 
 ### Warum braucht die Rhein-Main Industriegruppe diesen Prozess?
 
-Die Rhein-Main Industriegruppe braucht diesen Prozess, weil operative Arbeit sonst nicht zuverlässig in Finance, Lager, Steuer und Reporting ankommt. Der Prozess nutzt `Lagerorte (Locations)`, `Artikelposten (Item Ledger Entries)`, `Wertposten (Value Entries)`. Beteiligt ist vor allem die Rolle Lagerist. Am Ende erwartet die Fachabteilung einen prüfbaren Beleg, passende Posten, einen Kontrollbericht und einen UAT-Nachweis.
+RM-SHARED muss Lagerbestand und Lagerwert im Abschluss erklären. Mengen allein reichen nicht, weil Artikelposten die Menge und Wertposten den Wert tragen. Ohne Kostenregulierung und Abstimmung passt die Lagerbewertung nicht zum Hauptbuch. Business Central verbindet Artikelposten, Wertposten, Kostenregulierung, Lagerwertbericht und Sachposten.
 
 ### Rollen
 
@@ -3916,28 +3848,29 @@ Die Rhein-Main Industriegruppe braucht diesen Prozess, weil operative Arbeit son
 ### Schritt-für-Schritt in der deutschen BC-Oberfläche
 
 1. Öffne die Suche mit `Alt+Q`.
-2. Suche nach `Lagerorte (Locations)`, `Artikelposten (Item Ledger Entries)`, `Wertposten (Value Entries)`.
-3. Öffne die passende Seite und lege den Vorgang für `SP-PUMP-01` an oder filtere darauf.
-4. Prüfe Buchungsdatum, Belegdatum, Company, Lagerort, Dimensionen und Buchungsgruppen.
-5. Erfasse Menge, Preis, Ressource, Sachkonto oder Projektbezug entsprechend dem Fall.
-6. Wähle `Buchungsvorschau (Preview Posting)`, wenn der Vorgang eine Buchung auslöst.
-7. Führe die fachliche Aktion aus: freigeben, registrieren, buchen, fakturieren oder ausgleichen.
-8. Öffne den gebuchten Beleg oder die entstandenen Postenlisten.
-9. Filtere nach Belegnummer, Artikel, Debitor, Kreditor, Projekt oder Anlage.
-10. Öffne den Kontrollbericht `Lagerbewertung (Inventory Valuation)` und vergleiche Menge, Wert, Steuer und Dimension.
-11. Speichere Belegnummern, Postenfilter und Bericht als Evidence Pack.
+2. Suche nach `Artikelposten (Item Ledger Entries)`, `Wertposten (Value Entries)`, `Kostenregulierung Artikelposten (Adjust Cost - Item Entries)`, `Lagerbewertung (Inventory Valuation)`.
+3. Erfasse oder öffne den Rhein-Main-Fall Artikel `RAW-STEEL` aus `PO-2001`, erwartete Kosten `12.000 EUR`, fakturierte Kosten `12.300 EUR`, Stichtag `30.06.2026`.
+4. Prüfe die Pflichtfelder `Buchungsdatum`, `Belegdatum`, `Nr.`, `Menge`, `Preis/Betrag`, `Lagerortcode`, Buchungsgruppen und Dimensionen.
+5. Prüfe vor der Buchung über `Buchungsvorschau (Preview Posting)`, welche Posten entstehen.
+6. Führe die fachliche Aktion aus: freigeben, registrieren, buchen, fakturieren, ausgleichen oder berechnen.
+7. Öffne danach den gebuchten Beleg oder die passende Postenliste.
+8. Filtere nach der Belegnummer oder dem Stammdatencode aus dem Testfall.
+9. Prüfe die Mengen-, Wert-, Steuer- und Dimensionswirkung in den Posten.
+10. Öffne den Kontrollbericht `Lagerbewertung (Inventory Valuation)`, `Wertposten (Value Entries)`, `Kostenregulierung Artikelposten (Adjust Cost - Item Entries)` und vergleiche Beleg, Posten und Bericht.
+11. Speichere Belegnummern, Postenfilter, Bericht und fachliches Testergebnis im Evidence Pack.
 
 ### Buchungsspur
 
-| Ebene | Was prüfen? | Wo prüfen? |
+| Ebene | Rhein-Main-Nachweis | Wo prüfen? |
 |---|---|---|
-| Ausgangsbeleg | fachlicher Vorgang und Pflichtfelder | Startseite des Prozesses |
-| Gebuchter Beleg | gebuchte Lieferung, Rechnung, Zahlung, Journal oder Projektbuchung | gebuchte Belege/Postenlisten |
-| Nebenbuch | Debitor, Kreditor, Artikel, Bank, Anlage oder Projekt | passende Postenliste |
-| Sachposten | Hauptbuchwirkung | `Sachposten (G/L Entries)` |
-| USt/Wert | Steuer, Lagerwert oder Kostenwirkung | `USt-Posten`, `Wertposten`, Bericht |
-| Bericht | fachliche Kontrolle | `Lagerbewertung (Inventory Valuation)` |
+| Ausgangsbeleg | Artikel `RAW-STEEL` aus `PO-2001`, erwartete Kosten `12.000 EUR`, fakturierte Kosten `12.300 EUR`, Stichtag `30.06.2026` | Startseite des Prozesses |
+| Gebuchter Beleg | gebuchter Beleg, registrierte Aktivität oder berechneter Abschlusslauf | gebuchte Belege und Postenlisten |
+| Nebenbuch/Spezialposten | Artikelposten für Mengen, Wertposten für Wertschichten und Sachposten nach Lagerkostenbuchung | passende Postenlisten |
+| Sachposten | Hauptbuchwirkung mit Konto, Betrag und Dimension | `Sachposten (G/L Entries)` |
+| USt/Wert/Spezialspur | Steuer, Lagerwert, Anlage, Projekt oder Servicewirkung | `USt-Posten (VAT Entries)`, `Wertposten (Value Entries)` oder Spezialposten |
+| Kontrollbericht | fachliche Abstimmung | `Lagerbewertung (Inventory Valuation)`, `Wertposten (Value Entries)`, `Kostenregulierung Artikelposten (Adjust Cost - Item Entries)` |
 
+Die Buchung ist erst nachvollziehbar, wenn Belegnummer, Postenfilter, Betrag, Menge und Dimension zusammenpassen. Ein Screenshot der Maske reicht nicht aus; das Evidence Pack enthält immer Beleg, Posten und Kontrollbericht.
 ### Zahlenbeispiel
 
 Rhein-Main nutzt `SP-PUMP-01` mit einem Beispielwert von `10.000 EUR`. Die Buchung muss zeigen, welche Menge bewegt wird, welcher Wert entsteht, welche Dimension mitläuft und welcher Bericht das Ergebnis bestätigt.
@@ -3976,123 +3909,26 @@ Führe den Fall für `SP-PUMP-01` in der Trainingscompany aus. Dokumentiere Star
 
 | Feld | Inhalt |
 |---|---|
-| ID | `UAT-WHSE-001` |
-| Ziel | Inventory und Warehouse fachlich abnehmen |
-| Rolle | Lagerist |
-| Voraussetzung | Stammdaten, Buchungsgruppen, Dimensionen und Berechtigungen sind eingerichtet |
-| Testdaten | `SP-PUMP-01`, Beispielwert `10.000 EUR` |
-| Erwartete Posten | Sachposten und passende Nebenbuchposten |
-| Kontrollbericht | `Lagerbewertung (Inventory Valuation)` |
-| Negativfall | falsche Dimension oder falsche Buchungsgruppe |
-| Akzeptanzkriterium | Beleg, Posten, Bericht und Evidence Pack stimmen überein |
+| ID | `UAT-COST-001` |
+| Ziel | Prozess mit Rhein-Main-Testdaten fachlich abnehmen |
+| Rolle | Lagercontrolling und Finance |
+| Voraussetzung | Stammdaten, Buchungsgruppen, Dimensionen, Berechtigungen und Testperiode sind eingerichtet |
+| Testdaten | Artikel `RAW-STEEL` aus `PO-2001`, erwartete Kosten `12.000 EUR`, fakturierte Kosten `12.300 EUR`, Stichtag `30.06.2026` |
+| Schritte | Startseite über `Alt+Q` öffnen, Testdaten erfassen, Pflichtfelder prüfen, `Buchungsvorschau (Preview Posting)` nutzen, fachliche Aktion ausführen, Posten und Bericht kontrollieren |
+| Erwartete Belege | Ausgangsbeleg, gebuchter Beleg oder registrierte Prozessaktivität mit eindeutiger Belegnummer |
+| Erwartete Posten | Artikelposten für Mengen, Wertposten für Wertschichten und Sachposten nach Lagerkostenbuchung |
+| Kontrollbericht | `Lagerbewertung (Inventory Valuation)`, `Wertposten (Value Entries)`, `Kostenregulierung Artikelposten (Adjust Cost - Item Entries)` |
+| Negativfall | falsche Dimension, falsche Buchungsgruppe, fehlender Prozessschritt oder abweichender Betrag |
+| Akzeptanzkriterium | Beleg, Posten, Kontrollbericht und Evidence Pack zeigen denselben Vorgang vollständig und widerspruchsfrei |
+| Evidence Pack | Belegnummern, Postenfilter, Berichtsexport, Fehlertest, Korrekturhinweis und Testergebnis |
 
 ### In 5 Minuten merken
 
 * 5 wichtigste Begriffe: Beleg, gebuchter Beleg, Posten, Dimension, Evidence Pack.
-* 5 wichtigste Seiten: `Lagerorte (Locations)`, `Artikelposten (Item Ledger Entries)`, `Wertposten (Value Entries)`, `Sachposten`, passende Nebenbuchposten, Kontrollbericht, gebuchte Belege.
+* 5 wichtigste Seiten: `Lagerorte (Locations)`, `Artikelposten (Item Ledger Entries)`, `Wertposten (Value Entries)`, `Sachposten (G/L Entries)`, passende Postenlisten, Kontrollbericht, gebuchte Belege.
 * 3 häufigste Fehler: falsche Stammdaten, falsche Dimension, übersprungener Prozessschritt.
 * 3 Prüfungsfallen: Bildschirm ist nicht Buchung, Beleg ist nicht Posten, Bericht ersetzt keine Abstimmung.
 * 1 Praxisregel: Erst Beleg verstehen, dann buchen, dann Posten und Bericht prüfen.
-
-### Praxisfall Rhein-Main: Monatsabschluss / Record-to-Report
-
-### Für absolute Einsteiger: Was du hier gerade tust
-
-Du bildest eine reale Unternehmenshandlung in Business Central ab: Nebenbücher abstimmen, Perioden prüfen und Abschlussnachweis erstellen. Der Bildschirm ist nur der Startpunkt. Entscheidend ist, dass Beleg, gebuchter Beleg, Posten, Bericht und Evidence Pack zusammenpassen.
-
-### Warum braucht die Rhein-Main Industriegruppe diesen Prozess?
-
-Die Rhein-Main Industriegruppe braucht diesen Prozess, weil operative Arbeit sonst nicht zuverlässig in Finance, Lager, Steuer und Reporting ankommt. Der Prozess nutzt `Sachposten (G/L Entries)`, `Finanzberichte (Financial Reports)`, `Buchhaltungsperioden (Accounting Periods)`. Beteiligt ist vor allem die Rolle Finance-Leitung. Am Ende erwartet die Fachabteilung einen prüfbaren Beleg, passende Posten, einen Kontrollbericht und einen UAT-Nachweis.
-
-### Rollen
-
-| Rolle | Aufgabe | Ergebnis |
-|---|---|---|
-| Fachbereich | Vorgang fachlich auslösen | korrekter Ausgangsbeleg |
-| Key User | Stammdaten und Pflichtfelder prüfen | buchbarer Vorgang |
-| Finance/Controlling | Posten und Bericht prüfen | abgestimmtes Ergebnis |
-
-### Schritt-für-Schritt in der deutschen BC-Oberfläche
-
-1. Öffne die Suche mit `Alt+Q`.
-2. Suche nach `Sachposten (G/L Entries)`, `Finanzberichte (Financial Reports)`, `Buchhaltungsperioden (Accounting Periods)`.
-3. Öffne die passende Seite und lege den Vorgang für `2026-05` an oder filtere darauf.
-4. Prüfe Buchungsdatum, Belegdatum, Company, Lagerort, Dimensionen und Buchungsgruppen.
-5. Erfasse Menge, Preis, Ressource, Sachkonto oder Projektbezug entsprechend dem Fall.
-6. Wähle `Buchungsvorschau (Preview Posting)`, wenn der Vorgang eine Buchung auslöst.
-7. Führe die fachliche Aktion aus: freigeben, registrieren, buchen, fakturieren oder ausgleichen.
-8. Öffne den gebuchten Beleg oder die entstandenen Postenlisten.
-9. Filtere nach Belegnummer, Artikel, Debitor, Kreditor, Projekt oder Anlage.
-10. Öffne den Kontrollbericht `Finanzberichte`, OP-Listen, Lagerbewertung, USt-Abrechnung und vergleiche Menge, Wert, Steuer und Dimension.
-11. Speichere Belegnummern, Postenfilter und Bericht als Evidence Pack.
-
-### Buchungsspur
-
-| Ebene | Was prüfen? | Wo prüfen? |
-|---|---|---|
-| Ausgangsbeleg | fachlicher Vorgang und Pflichtfelder | Startseite des Prozesses |
-| Gebuchter Beleg | gebuchte Lieferung, Rechnung, Zahlung, Journal oder Projektbuchung | gebuchte Belege/Postenlisten |
-| Nebenbuch | Debitor, Kreditor, Artikel, Bank, Anlage oder Projekt | passende Postenliste |
-| Sachposten | Hauptbuchwirkung | `Sachposten (G/L Entries)` |
-| USt/Wert | Steuer, Lagerwert oder Kostenwirkung | `USt-Posten`, `Wertposten`, Bericht |
-| Bericht | fachliche Kontrolle | `Finanzberichte`, OP-Listen, Lagerbewertung, USt-Abrechnung |
-
-### Zahlenbeispiel
-
-Rhein-Main nutzt `2026-05` mit einem Beispielwert von `10.000 EUR`. Die Buchung muss zeigen, welche Menge bewegt wird, welcher Wert entsteht, welche Dimension mitläuft und welcher Bericht das Ergebnis bestätigt.
-
-### Abweichungen
-
-| Abweichung | Risiko | Kontrolle |
-|---|---|---|
-| falsche Stammdaten | falsche Konten, Steuer oder Dimension | Stammdatenkarte und Buchungsvorschau |
-| falsche Menge oder falscher Wert | Bestand, Marge oder Abschluss stimmt nicht | Postenliste und Kontrollbericht |
-| Prozessschritt übersprungen | Belegkette unvollständig | gebuchte Belege und Evidence Pack |
-
-### Fehlerdiagnose
-
-| Fehler | Symptom | Ursache | Diagnosepfad | Korrekturweg | Was man nicht tun darf |
-|---|---|---|---|---|---|
-| falsche Dimension | Bericht zeigt Wert nicht | Pflichtdimension fehlt oder ist falsch | Beleg → Posten → Dimension | Dimension Correction Tool oder fachliche Korrekturbuchung | Bericht manuell überschreiben |
-| falsche Buchungsgruppe | falsches Konto oder falsche USt | Stammdaten falsch gepflegt | Stammdatenkarte → Posting Setup → Sachposten | Stammdaten korrigieren, Beleg fachlich stornieren/neubuchen | gebuchte Posten löschen |
-| falscher Status | Beleg kann nicht gebucht werden | Freigabe, Lageraktivität oder Pflichtfeld fehlt | Belegstatus → Fehlermeldung → Einrichtung | Status zurücksetzen, Pflichtfeld ergänzen, Prozessschritt nachholen | Warnungen ignorieren |
-
-### Übung
-
-Führe den Fall für `2026-05` in der Trainingscompany aus. Dokumentiere Startbeleg, gebuchten Beleg, Posten, Kontrollbericht und eine typische Abweichung.
-
-### Lösungsskizze
-
-1. Öffne `Sachposten (G/L Entries)`, `Finanzberichte (Financial Reports)`, `Buchhaltungsperioden (Accounting Periods)` über `Alt+Q`.
-2. Erfasse oder filtere den Vorgang für `2026-05`.
-3. Prüfe Datum, Lagerort, Buchungsgruppen und Dimensionen.
-4. Nutze `Buchungsvorschau (Preview Posting)`, wenn eine Buchung erfolgt.
-5. Buche oder registriere den Vorgang.
-6. Prüfe Sachposten, Nebenbuchposten und `Finanzberichte`, OP-Listen, Lagerbewertung, USt-Abrechnung.
-7. Dokumentiere das Evidence Pack.
-
-### UAT-Fall
-
-| Feld | Inhalt |
-|---|---|
-| ID | `UAT-R2R-001` |
-| Ziel | Monatsabschluss / Record-to-Report fachlich abnehmen |
-| Rolle | Finance-Leitung |
-| Voraussetzung | Stammdaten, Buchungsgruppen, Dimensionen und Berechtigungen sind eingerichtet |
-| Testdaten | `2026-05`, Beispielwert `10.000 EUR` |
-| Erwartete Posten | Sachposten und passende Nebenbuchposten |
-| Kontrollbericht | `Finanzberichte`, OP-Listen, Lagerbewertung, USt-Abrechnung |
-| Negativfall | falsche Dimension oder falsche Buchungsgruppe |
-| Akzeptanzkriterium | Beleg, Posten, Bericht und Evidence Pack stimmen überein |
-
-### In 5 Minuten merken
-
-* 5 wichtigste Begriffe: Beleg, gebuchter Beleg, Posten, Dimension, Evidence Pack.
-* 5 wichtigste Seiten: `Sachposten (G/L Entries)`, `Finanzberichte (Financial Reports)`, `Buchhaltungsperioden (Accounting Periods)`, `Sachposten`, passende Nebenbuchposten, Kontrollbericht, gebuchte Belege.
-* 3 häufigste Fehler: falsche Stammdaten, falsche Dimension, übersprungener Prozessschritt.
-* 3 Prüfungsfallen: Bildschirm ist nicht Buchung, Beleg ist nicht Posten, Bericht ersetzt keine Abstimmung.
-* 1 Praxisregel: Erst Beleg verstehen, dann buchen, dann Posten und Bericht prüfen.
-
 
 ## 24. Monatsabschluss / Record-to-Report [Q25][Q84][Q85]
 
@@ -4113,10 +3949,10 @@ Führe den Fall für `2026-05` in der Trainingscompany aus. Dokumentiere Startbe
 
 | Rolle | Aufgabe | Ergebnis |
 |---|---|---|
-| Fachanwender | Prozess ausführen und Belegdaten prüfen | fachlich korrekter Vorgang |
+| Fachanwender | Prozess ausführen und Belegdaten prüfen | fachlich geprüfter Vorgang mit Belegnummer |
 | Key User | Stammdaten, Setup und Fehlerfälle prüfen | stabiler Prozess |
 | Finance/Controlling | Buchungsspur, Bericht und Evidence Pack prüfen | abgestimmter Nachweis |
-| Solution Architect | Standardgrenze und Betriebsfolge bewerten | tragfähiges Prozessdesign |
+| Solution Architect | Standardgrenze und Betriebsfolge bewerten | tragfähige Standardentscheidung mit UAT-Nachweis |
 
 ### Benötigte Stammdaten
 
@@ -4216,7 +4052,7 @@ Du bildest eine reale Unternehmenshandlung in Business Central ab: Nebenbücher 
 
 ### Warum braucht die Rhein-Main Industriegruppe diesen Prozess?
 
-Die Rhein-Main Industriegruppe braucht diesen Prozess, weil operative Arbeit sonst nicht zuverlässig in Finance, Lager, Steuer und Reporting ankommt. Der Prozess nutzt `Sachposten (G/L Entries)`, `Finanzberichte (Financial Reports)`, `Buchhaltungsperioden (Accounting Periods)`. Beteiligt ist vor allem die Rolle Finance-Leitung. Am Ende erwartet die Fachabteilung einen prüfbaren Beleg, passende Posten, einen Kontrollbericht und einen UAT-Nachweis.
+RM-SHARED schließt jeden Monat Debitoren, Kreditoren, Bank, USt, Anlagen, Lager und Projekte ab. Der Monatsabschluss ist die Reihenfolge, in der Einzelprozesse belastbar zu GuV und Bilanz verdichtet werden. Ohne Abschlusskalender entstehen offene Fehler, Nachbuchungen und unklare Verantwortlichkeiten. Business Central liefert Postenlisten, Abstimmberichte, Finanzberichte und ein Evidence Pack.
 
 ### Rollen
 
@@ -4229,28 +4065,29 @@ Die Rhein-Main Industriegruppe braucht diesen Prozess, weil operative Arbeit son
 ### Schritt-für-Schritt in der deutschen BC-Oberfläche
 
 1. Öffne die Suche mit `Alt+Q`.
-2. Suche nach `Sachposten (G/L Entries)`, `Finanzberichte (Financial Reports)`, `Buchhaltungsperioden (Accounting Periods)`.
-3. Öffne die passende Seite und lege den Vorgang für `2026-05` an oder filtere darauf.
-4. Prüfe Buchungsdatum, Belegdatum, Company, Lagerort, Dimensionen und Buchungsgruppen.
-5. Erfasse Menge, Preis, Ressource, Sachkonto oder Projektbezug entsprechend dem Fall.
-6. Wähle `Buchungsvorschau (Preview Posting)`, wenn der Vorgang eine Buchung auslöst.
-7. Führe die fachliche Aktion aus: freigeben, registrieren, buchen, fakturieren oder ausgleichen.
-8. Öffne den gebuchten Beleg oder die entstandenen Postenlisten.
-9. Filtere nach Belegnummer, Artikel, Debitor, Kreditor, Projekt oder Anlage.
-10. Öffne den Kontrollbericht `Finanzberichte`, OP-Listen, Lagerbewertung, USt-Abrechnung und vergleiche Menge, Wert, Steuer und Dimension.
-11. Speichere Belegnummern, Postenfilter und Bericht als Evidence Pack.
+2. Suche nach `Buchhaltungsperioden (Accounting Periods)`, `Sachposten (G/L Entries)`, `Finanzberichte (Financial Reports)`, `Lagerbewertung (Inventory Valuation)`.
+3. Erfasse oder öffne den Rhein-Main-Fall Abschlussperiode `06/2026`, Companies RM-SHARED/RM-PROD/RM-SALES, Abschlussdatum `30.06.2026`.
+4. Prüfe die Pflichtfelder `Buchungsdatum`, `Belegdatum`, `Nr.`, `Menge`, `Preis/Betrag`, `Lagerortcode`, Buchungsgruppen und Dimensionen.
+5. Prüfe vor der Buchung über `Buchungsvorschau (Preview Posting)`, welche Posten entstehen.
+6. Führe die fachliche Aktion aus: freigeben, registrieren, buchen, fakturieren, ausgleichen oder berechnen.
+7. Öffne danach den gebuchten Beleg oder die passende Postenliste.
+8. Filtere nach der Belegnummer oder dem Stammdatencode aus dem Testfall.
+9. Prüfe die Mengen-, Wert-, Steuer- und Dimensionswirkung in den Posten.
+10. Öffne den Kontrollbericht `Finanzberichte (Financial Reports)`, OP-Listen, `Lagerbewertung (Inventory Valuation)`, `USt-Abrechnung (VAT Statement)` und vergleiche Beleg, Posten und Bericht.
+11. Speichere Belegnummern, Postenfilter, Bericht und fachliches Testergebnis im Evidence Pack.
 
 ### Buchungsspur
 
-| Ebene | Was prüfen? | Wo prüfen? |
+| Ebene | Rhein-Main-Nachweis | Wo prüfen? |
 |---|---|---|
-| Ausgangsbeleg | fachlicher Vorgang und Pflichtfelder | Startseite des Prozesses |
-| Gebuchter Beleg | gebuchte Lieferung, Rechnung, Zahlung, Journal oder Projektbuchung | gebuchte Belege/Postenlisten |
-| Nebenbuch | Debitor, Kreditor, Artikel, Bank, Anlage oder Projekt | passende Postenliste |
-| Sachposten | Hauptbuchwirkung | `Sachposten (G/L Entries)` |
-| USt/Wert | Steuer, Lagerwert oder Kostenwirkung | `USt-Posten`, `Wertposten`, Bericht |
-| Bericht | fachliche Kontrolle | `Finanzberichte`, OP-Listen, Lagerbewertung, USt-Abrechnung |
+| Ausgangsbeleg | Abschlussperiode `06/2026`, Companies RM-SHARED/RM-PROD/RM-SALES, Abschlussdatum `30.06.2026` | Startseite des Prozesses |
+| Gebuchter Beleg | gebuchter Beleg, registrierte Aktivität oder berechneter Abschlusslauf | gebuchte Belege und Postenlisten |
+| Nebenbuch/Spezialposten | Sachposten, Debitorenposten, Kreditorenposten, Bankposten, USt-Posten, Anlagenposten, Artikelposten und Wertposten | passende Postenlisten |
+| Sachposten | Hauptbuchwirkung mit Konto, Betrag und Dimension | `Sachposten (G/L Entries)` |
+| USt/Wert/Spezialspur | Steuer, Lagerwert, Anlage, Projekt oder Servicewirkung | `USt-Posten (VAT Entries)`, `Wertposten (Value Entries)` oder Spezialposten |
+| Kontrollbericht | fachliche Abstimmung | `Finanzberichte (Financial Reports)`, OP-Listen, `Lagerbewertung (Inventory Valuation)`, `USt-Abrechnung (VAT Statement)` |
 
+Die Buchung ist erst nachvollziehbar, wenn Belegnummer, Postenfilter, Betrag, Menge und Dimension zusammenpassen. Ein Screenshot der Maske reicht nicht aus; das Evidence Pack enthält immer Beleg, Posten und Kontrollbericht.
 ### Zahlenbeispiel
 
 Rhein-Main nutzt `2026-05` mit einem Beispielwert von `10.000 EUR`. Die Buchung muss zeigen, welche Menge bewegt wird, welcher Wert entsteht, welche Dimension mitläuft und welcher Bericht das Ergebnis bestätigt.
@@ -4290,19 +4127,22 @@ Führe den Fall für `2026-05` in der Trainingscompany aus. Dokumentiere Startbe
 | Feld | Inhalt |
 |---|---|
 | ID | `UAT-R2R-001` |
-| Ziel | Monatsabschluss / Record-to-Report fachlich abnehmen |
+| Ziel | Prozess mit Rhein-Main-Testdaten fachlich abnehmen |
 | Rolle | Finance-Leitung |
-| Voraussetzung | Stammdaten, Buchungsgruppen, Dimensionen und Berechtigungen sind eingerichtet |
-| Testdaten | `2026-05`, Beispielwert `10.000 EUR` |
-| Erwartete Posten | Sachposten und passende Nebenbuchposten |
-| Kontrollbericht | `Finanzberichte`, OP-Listen, Lagerbewertung, USt-Abrechnung |
-| Negativfall | falsche Dimension oder falsche Buchungsgruppe |
-| Akzeptanzkriterium | Beleg, Posten, Bericht und Evidence Pack stimmen überein |
+| Voraussetzung | Stammdaten, Buchungsgruppen, Dimensionen, Berechtigungen und Testperiode sind eingerichtet |
+| Testdaten | Abschlussperiode `06/2026`, Companies RM-SHARED/RM-PROD/RM-SALES, Abschlussdatum `30.06.2026` |
+| Schritte | Startseite über `Alt+Q` öffnen, Testdaten erfassen, Pflichtfelder prüfen, `Buchungsvorschau (Preview Posting)` nutzen, fachliche Aktion ausführen, Posten und Bericht kontrollieren |
+| Erwartete Belege | Ausgangsbeleg, gebuchter Beleg oder registrierte Prozessaktivität mit eindeutiger Belegnummer |
+| Erwartete Posten | Sachposten, Debitorenposten, Kreditorenposten, Bankposten, USt-Posten, Anlagenposten, Artikelposten und Wertposten |
+| Kontrollbericht | `Finanzberichte (Financial Reports)`, OP-Listen, `Lagerbewertung (Inventory Valuation)`, `USt-Abrechnung (VAT Statement)` |
+| Negativfall | falsche Dimension, falsche Buchungsgruppe, fehlender Prozessschritt oder abweichender Betrag |
+| Akzeptanzkriterium | Beleg, Posten, Kontrollbericht und Evidence Pack zeigen denselben Vorgang vollständig und widerspruchsfrei |
+| Evidence Pack | Belegnummern, Postenfilter, Berichtsexport, Fehlertest, Korrekturhinweis und Testergebnis |
 
 ### In 5 Minuten merken
 
 * 5 wichtigste Begriffe: Beleg, gebuchter Beleg, Posten, Dimension, Evidence Pack.
-* 5 wichtigste Seiten: `Sachposten (G/L Entries)`, `Finanzberichte (Financial Reports)`, `Buchhaltungsperioden (Accounting Periods)`, `Sachposten`, passende Nebenbuchposten, Kontrollbericht, gebuchte Belege.
+* 5 wichtigste Seiten: `Sachposten (G/L Entries)`, `Finanzberichte (Financial Reports)`, `Buchhaltungsperioden (Accounting Periods)`, `Sachposten (G/L Entries)`, passende Postenlisten, Kontrollbericht, gebuchte Belege.
 * 3 häufigste Fehler: falsche Stammdaten, falsche Dimension, übersprungener Prozessschritt.
 * 3 Prüfungsfallen: Bildschirm ist nicht Buchung, Beleg ist nicht Posten, Bericht ersetzt keine Abstimmung.
 * 1 Praxisregel: Erst Beleg verstehen, dann buchen, dann Posten und Bericht prüfen.
@@ -4327,10 +4167,10 @@ Führe den Fall für `2026-05` in der Trainingscompany aus. Dokumentiere Startbe
 
 | Rolle | Aufgabe | Ergebnis |
 |---|---|---|
-| Fachanwender | Prozess ausführen und Belegdaten prüfen | fachlich korrekter Vorgang |
+| Fachanwender | Prozess ausführen und Belegdaten prüfen | fachlich geprüfter Vorgang mit Belegnummer |
 | Key User | Stammdaten, Setup und Fehlerfälle prüfen | stabiler Prozess |
 | Finance/Controlling | Buchungsspur, Bericht und Evidence Pack prüfen | abgestimmter Nachweis |
-| Solution Architect | Standardgrenze und Betriebsfolge bewerten | tragfähiges Prozessdesign |
+| Solution Architect | Standardgrenze und Betriebsfolge bewerten | tragfähige Standardentscheidung mit UAT-Nachweis |
 
 ### Benötigte Stammdaten
 
@@ -4490,7 +4330,7 @@ Du bildest eine reale Unternehmenshandlung in Business Central ab: GuV, Bilanz u
 
 ### Warum braucht die Rhein-Main Industriegruppe diesen Prozess?
 
-Die Rhein-Main Industriegruppe braucht diesen Prozess, weil operative Arbeit sonst nicht zuverlässig in Finance, Lager, Steuer und Reporting ankommt. Der Prozess nutzt `Finanzberichte (Financial Reports)`, `Analyseansichten (Analysis Views)`, `Datenanalysemodus (Data Analysis Mode)`. Beteiligt ist vor allem die Rolle Controller. Am Ende erwartet die Fachabteilung einen prüfbaren Beleg, passende Posten, einen Kontrollbericht und einen UAT-Nachweis.
+RM-Management will GuV, Marge, Lagerwert und Projektprofitabilität nach Produktlinie, Kanal, Abteilung und Standort sehen. Reporting beginnt deshalb nicht im Bericht, sondern in Buchungsgruppen, Dimensionen und sauber gebuchten Posten. Ohne diese Logik liefern Finanzberichte und Power BI nur hübsche, aber falsche Zahlen. Business Central liefert Finanzberichte, Analyseansichten, Datenanalysemodus und exportierbare Nachweise.
 
 ### Rollen
 
@@ -4503,28 +4343,29 @@ Die Rhein-Main Industriegruppe braucht diesen Prozess, weil operative Arbeit son
 ### Schritt-für-Schritt in der deutschen BC-Oberfläche
 
 1. Öffne die Suche mit `Alt+Q`.
-2. Suche nach `Finanzberichte (Financial Reports)`, `Analyseansichten (Analysis Views)`, `Datenanalysemodus (Data Analysis Mode)`.
-3. Öffne die passende Seite und lege den Vorgang für `PRODUCTLINE = MACHINE` an oder filtere darauf.
-4. Prüfe Buchungsdatum, Belegdatum, Company, Lagerort, Dimensionen und Buchungsgruppen.
-5. Erfasse Menge, Preis, Ressource, Sachkonto oder Projektbezug entsprechend dem Fall.
-6. Wähle `Buchungsvorschau (Preview Posting)`, wenn der Vorgang eine Buchung auslöst.
-7. Führe die fachliche Aktion aus: freigeben, registrieren, buchen, fakturieren oder ausgleichen.
-8. Öffne den gebuchten Beleg oder die entstandenen Postenlisten.
-9. Filtere nach Belegnummer, Artikel, Debitor, Kreditor, Projekt oder Anlage.
-10. Öffne den Kontrollbericht `GuV nach Produktlinie`, Analyseansicht, Power-BI-Dataset und vergleiche Menge, Wert, Steuer und Dimension.
-11. Speichere Belegnummern, Postenfilter und Bericht als Evidence Pack.
+2. Suche nach `Finanzberichte (Financial Reports)`, `Analyseansichten (Analysis Views)`, `Datenanalysemodus (Data Analysis Mode)`, `Sachposten (G/L Entries)`.
+3. Erfasse oder öffne den Rhein-Main-Fall Finanzbericht `RM-GUV-MONAT`, Zeitraum `01.06.2026..30.06.2026`, Filter `PRODUCTLINE=MACHINE`, `CHANNEL=B2B`, `DEPARTMENT=SALES`.
+4. Prüfe die Pflichtfelder `Buchungsdatum`, `Belegdatum`, `Nr.`, `Menge`, `Preis/Betrag`, `Lagerortcode`, Buchungsgruppen und Dimensionen.
+5. Prüfe vor der Buchung über `Buchungsvorschau (Preview Posting)`, welche Posten entstehen.
+6. Führe die fachliche Aktion aus: freigeben, registrieren, buchen, fakturieren, ausgleichen oder berechnen.
+7. Öffne danach den gebuchten Beleg oder die passende Postenliste.
+8. Filtere nach der Belegnummer oder dem Stammdatencode aus dem Testfall.
+9. Prüfe die Mengen-, Wert-, Steuer- und Dimensionswirkung in den Posten.
+10. Öffne den Kontrollbericht `Finanzberichte (Financial Reports)`, `Analyseansichten (Analysis Views)`, `Datenanalysemodus (Data Analysis Mode)` und vergleiche Beleg, Posten und Bericht.
+11. Speichere Belegnummern, Postenfilter, Bericht und fachliches Testergebnis im Evidence Pack.
 
 ### Buchungsspur
 
-| Ebene | Was prüfen? | Wo prüfen? |
+| Ebene | Rhein-Main-Nachweis | Wo prüfen? |
 |---|---|---|
-| Ausgangsbeleg | fachlicher Vorgang und Pflichtfelder | Startseite des Prozesses |
-| Gebuchter Beleg | gebuchte Lieferung, Rechnung, Zahlung, Journal oder Projektbuchung | gebuchte Belege/Postenlisten |
-| Nebenbuch | Debitor, Kreditor, Artikel, Bank, Anlage oder Projekt | passende Postenliste |
-| Sachposten | Hauptbuchwirkung | `Sachposten (G/L Entries)` |
-| USt/Wert | Steuer, Lagerwert oder Kostenwirkung | `USt-Posten`, `Wertposten`, Bericht |
-| Bericht | fachliche Kontrolle | `GuV nach Produktlinie`, Analyseansicht, Power-BI-Dataset |
+| Ausgangsbeleg | Finanzbericht `RM-GUV-MONAT`, Zeitraum `01.06.2026..30.06.2026`, Filter `PRODUCTLINE=MACHINE`, `CHANNEL=B2B`, `DEPARTMENT=SALES` | Startseite des Prozesses |
+| Gebuchter Beleg | gebuchter Beleg, registrierte Aktivität oder berechneter Abschlusslauf | gebuchte Belege und Postenlisten |
+| Nebenbuch/Spezialposten | Sachposten mit Dimensionen, Nebenbuch-Drilldown, Wertposten für Marge und Exportdaten für Power BI | passende Postenlisten |
+| Sachposten | Hauptbuchwirkung mit Konto, Betrag und Dimension | `Sachposten (G/L Entries)` |
+| USt/Wert/Spezialspur | Steuer, Lagerwert, Anlage, Projekt oder Servicewirkung | `USt-Posten (VAT Entries)`, `Wertposten (Value Entries)` oder Spezialposten |
+| Kontrollbericht | fachliche Abstimmung | `Finanzberichte (Financial Reports)`, `Analyseansichten (Analysis Views)`, `Datenanalysemodus (Data Analysis Mode)` |
 
+Die Buchung ist erst nachvollziehbar, wenn Belegnummer, Postenfilter, Betrag, Menge und Dimension zusammenpassen. Ein Screenshot der Maske reicht nicht aus; das Evidence Pack enthält immer Beleg, Posten und Kontrollbericht.
 ### Zahlenbeispiel
 
 Rhein-Main nutzt `PRODUCTLINE = MACHINE` mit einem Beispielwert von `10.000 EUR`. Die Buchung muss zeigen, welche Menge bewegt wird, welcher Wert entsteht, welche Dimension mitläuft und welcher Bericht das Ergebnis bestätigt.
@@ -4564,19 +4405,22 @@ Führe den Fall für `PRODUCTLINE = MACHINE` in der Trainingscompany aus. Dokume
 | Feld | Inhalt |
 |---|---|
 | ID | `UAT-REP-001` |
-| Ziel | Reporting, Controlling und Power BI fachlich abnehmen |
+| Ziel | Prozess mit Rhein-Main-Testdaten fachlich abnehmen |
 | Rolle | Controller |
-| Voraussetzung | Stammdaten, Buchungsgruppen, Dimensionen und Berechtigungen sind eingerichtet |
-| Testdaten | `PRODUCTLINE = MACHINE`, Beispielwert `10.000 EUR` |
-| Erwartete Posten | Sachposten und passende Nebenbuchposten |
-| Kontrollbericht | `GuV nach Produktlinie`, Analyseansicht, Power-BI-Dataset |
-| Negativfall | falsche Dimension oder falsche Buchungsgruppe |
-| Akzeptanzkriterium | Beleg, Posten, Bericht und Evidence Pack stimmen überein |
+| Voraussetzung | Stammdaten, Buchungsgruppen, Dimensionen, Berechtigungen und Testperiode sind eingerichtet |
+| Testdaten | Finanzbericht `RM-GUV-MONAT`, Zeitraum `01.06.2026..30.06.2026`, Filter `PRODUCTLINE=MACHINE`, `CHANNEL=B2B`, `DEPARTMENT=SALES` |
+| Schritte | Startseite über `Alt+Q` öffnen, Testdaten erfassen, Pflichtfelder prüfen, `Buchungsvorschau (Preview Posting)` nutzen, fachliche Aktion ausführen, Posten und Bericht kontrollieren |
+| Erwartete Belege | Ausgangsbeleg, gebuchter Beleg oder registrierte Prozessaktivität mit eindeutiger Belegnummer |
+| Erwartete Posten | Sachposten mit Dimensionen, Nebenbuch-Drilldown, Wertposten für Marge und Exportdaten für Power BI |
+| Kontrollbericht | `Finanzberichte (Financial Reports)`, `Analyseansichten (Analysis Views)`, `Datenanalysemodus (Data Analysis Mode)` |
+| Negativfall | falsche Dimension, falsche Buchungsgruppe, fehlender Prozessschritt oder abweichender Betrag |
+| Akzeptanzkriterium | Beleg, Posten, Kontrollbericht und Evidence Pack zeigen denselben Vorgang vollständig und widerspruchsfrei |
+| Evidence Pack | Belegnummern, Postenfilter, Berichtsexport, Fehlertest, Korrekturhinweis und Testergebnis |
 
 ### In 5 Minuten merken
 
 * 5 wichtigste Begriffe: Beleg, gebuchter Beleg, Posten, Dimension, Evidence Pack.
-* 5 wichtigste Seiten: `Finanzberichte (Financial Reports)`, `Analyseansichten (Analysis Views)`, `Datenanalysemodus (Data Analysis Mode)`, `Sachposten`, passende Nebenbuchposten, Kontrollbericht, gebuchte Belege.
+* 5 wichtigste Seiten: `Finanzberichte (Financial Reports)`, `Analyseansichten (Analysis Views)`, `Datenanalysemodus (Data Analysis Mode)`, `Sachposten (G/L Entries)`, passende Postenlisten, Kontrollbericht, gebuchte Belege.
 * 3 häufigste Fehler: falsche Stammdaten, falsche Dimension, übersprungener Prozessschritt.
 * 3 Prüfungsfallen: Bildschirm ist nicht Buchung, Beleg ist nicht Posten, Bericht ersetzt keine Abstimmung.
 * 1 Praxisregel: Erst Beleg verstehen, dann buchen, dann Posten und Bericht prüfen.
