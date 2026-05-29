@@ -1,4 +1,4 @@
-# FiBu-Buch 5: Business Central (BC) – Standardprozesse Deutschland als systematisches Greenfield-Durchspielbuch
+﻿# FiBu-Buch 5: Business Central (BC) – Standardprozesse Deutschland als systematisches Greenfield-Durchspielbuch
 
 Stand: `28.05.2026`
 Hinweis: Dieses Buch ist ein quellenbasiertes Lern-, Schulungs-, Projekt- und Implementierungsbuch für Microsoft Dynamics 365 Business Central im deutschen Unternehmenskontext. Es ersetzt keine individuelle Rechts-, Steuer- oder Implementierungsberatung.
@@ -40,11 +40,11 @@ Hinweis: Dieses Buch ist ein quellenbasiertes Lern-, Schulungs-, Projekt- und Im
 **Teil D — Finance, Kontrolle und Abschluss**
 19. Debitoren, Kreditoren und OP-Ausgleich
 20. Bank, Payments und Bankabstimmung
-21. Fixed Assets
+21. Anlagen (Fixed Assets)
 22. USt, E-Rechnung und deutsche Nachweissicht
 23. Inventory Costing und Lagerbewertung im Abschluss
 24. Monatsabschluss / Record-to-Report
-25. Reporting, Controlling, Financial Reports und Power BI
+25. Reporting, Controlling, Finanzberichte (Financial Reports) und Power BI
 
 **Teil E — Projekt, Architektur und Betrieb**
 26. Fit-Gap und Standard-first Design
@@ -119,7 +119,7 @@ Dieses Buch trennt vier Ebenen:
 
 ### Sprachregel: deutsches Business Central zuerst
 
-Dieses Buch schult auf einem deutschen Business-Central-Mandanten. Deshalb steht der deutsche Funktions- und Seitenbegriff immer im Vordergrund. Der englische Begriff bleibt nur dort stehen, wo er für Microsoft Learn, Tell Me, Fehlersuche, internationale Projekte oder technische Tabellenbezeichnungen nützlich ist.
+Dieses Buch schult auf einem deutschen Business-Central-Mandanten. Deshalb steht der deutsche Funktions- und Seitenbegriff immer im Vordergrund. Der englische Begriff bleibt nur dort stehen, wo er für Microsoft Learn, `Alt+Q`, Fehlersuche, internationale Projekte oder technische Tabellenbezeichnungen nützlich ist.
 
 Schreibweise:
 - deutscher BC-Begriff zuerst: `Verkaufsaufträge (Sales Orders)`.
@@ -131,7 +131,7 @@ Praxisregel:
 - Mitarbeiter lernen die deutsche Oberfläche. Key User und Admins lernen zusätzlich die englischen Begriffe, weil Dokumentation, AppSource, Fehlermeldungen und Partnerkommunikation häufig englisch sind.
 
 Beispiel:
-- Ein Verkäufer sucht im deutschen BC nach `Verkaufsaufträge`. Wenn die Suche nichts findet oder die Umgebung englisch dokumentiert ist, nutzt er zusätzlich `Sales Orders`.
+- Ein Verkäufer sucht im deutschen BC nach `Verkaufsaufträge`. Wenn die Suche nichts findet oder die Umgebung englisch dokumentiert ist, nutzt er zusätzlich `Verkaufsaufträge (Sales Orders)`.
 
 ---
 
@@ -315,7 +315,7 @@ flowchart LR
 
 | Lagerort | Company | Lagerart | BC-Logik | Trainingszweck |
 |---|---|---|---|---|
-| `FRA-ZL` | RM-PROD | Zentrallager | gesteuerte Einlagerung/Kommissionierung mit Bins | Warehouse Receipt, Put-away, Pick, Shipment |
+| `FRA-ZL` | RM-PROD | Zentrallager | gesteuerte Einlagerung/Kommissionierung mit Bins | Lagereingang (Warehouse Receipt), Einlagerung (Put-away), Kommissionierung (Pick), Warenausgang (Shipment) |
 | `MZ-EINFACH` | RM-SALES | Außenlager | einfache Lagerbuchung ohne gesteuerte Einlagerung | einfacher Wareneingang und Verkauf |
 | `HH-FUL` | RM-SALES | Onlineshop-Fulfillment | Pick/Shipment vereinfacht | Shop-Auftrag bis Versand |
 | `VAN-01` | RM-SERVICE | Servicefahrzeug | Lagerort für Techniker | Ersatzteilverbrauch im Service |
@@ -329,9 +329,9 @@ flowchart LR
 | Eigenfertigung | Standardmaschine `RM-M100` | Manufacturing | vollständig im Standard demonstrierbar |
 | Variantenfertigung | Sondermaschine `RM-X500` | BOM/Routing/Projekt/Fertigung | Variantenlogik braucht klare Stammdaten |
 | Handelsware | Ersatzteil `SP-PUMP-01` | O2C/P2P/Inventory | Standard |
-| Onlineshop | Webshop-Verkauf Ersatzteile | Shopify Connector / Sales Orders | abhängig von Connector-Setup |
+| Onlineshop | Webshop-Verkauf Ersatzteile | Shopify Connector / Verkaufsaufträge (Sales Orders) | abhängig von Connector-Setup |
 | Service | Wartung beim Kunden | Service Management | Standard |
-| Miete | Mietmaschine 12 Monate | Service/Projects/Deferrals/Fixed Assets | Standard nur mit Prozessdesign |
+| Miete | Mietmaschine 12 Monate | Service/Projekte/Abgrenzungen/Anlagen (Service/Projects/Deferrals/Fixed Assets) | Standard nur mit Prozessdesign |
 | Finanzierung | Kunde finanziert Maschine über Bank | Sales/Receivables/Deferrals | komplexe Finanzierungslogik nicht vollständig Standard |
 | Intercompany | PROD verkauft an SALES | Intercompany | Standard mit IC-Setup |
 | Dropshipping | Lieferant liefert direkt an Kunden | Sales + Purchase Link | Standard |
@@ -372,25 +372,25 @@ Ein vollständiges Schulungsbuch muss zeigen, wie Mitarbeiter arbeiten. Deshalb 
 
 | Rolle | Abteilung | Typische BC-Seiten | Was macht der Mitarbeiter? |
 |---|---|---|---|
-| Verkäuferin | Vertrieb | `Sales Quotes`, `Sales Orders`, `Customers`, `Contacts` | Angebot erstellen, Auftrag erfassen, Verfügbarkeit prüfen, Rechnung auslösen |
-| E-Commerce-Sachbearbeiter | Onlineshop | `Shopify Shops`, `Sales Orders`, `Items`, `Customers` | Shop-Aufträge synchronisieren, Fehler klären, Versand anstoßen |
-| Einkäufer | Einkauf | `Vendors`, `Purchase Orders`, `Purchase Invoices` | Bestellung auslösen, Preise prüfen, Wareneingang/Rechnung abstimmen |
-| Lagerist einfaches Lager | Lager MZ | `Item Journals`, `Sales Shipments`, `Purchase Receipts` | Ware annehmen, Bestand prüfen, Lieferung buchen |
-| Lagerist gesteuertes Lager | FRA-ZL | `Warehouse Receipts`, `Put-aways`, `Picks`, `Warehouse Shipments` | Einlagern, kommissionieren, versenden |
-| Produktionsplanerin | Fertigung | `Planning Worksheet`, `Production Orders`, `BOMs`, `Routings` | Bedarf planen, Fertigungsaufträge erstellen, Termine prüfen |
-| Meister | Fertigung | `Released Production Orders`, `Consumption Journal`, `Output Journal` | Verbrauch und Output melden, Ausschuss dokumentieren |
-| Servicetechniker | Service | `Service Orders`, `Service Items`, `Item Journals` | Serviceauftrag bearbeiten, Ersatzteile verbrauchen, Zeiten erfassen |
-| Projektleiter | Projekte | `Projects`, `Project Tasks`, `Project Journals` | Budget, Verbrauch, Fortschritt und Faktura steuern |
-| Debitorenbuchhalterin | Finance | `Customer Ledger Entries`, `Payment Reconciliation Journal`, `Reminders` | Zahlung ausgleichen, mahnen, offene Posten prüfen |
-| Kreditorenbuchhalter | Finance | `Vendor Ledger Entries`, `Payment Journals`, `Purchase Invoices` | Eingangsrechnungen prüfen, Zahlungen vorbereiten |
-| Anlagenbuchhalterin | Finance | `Fixed Assets`, `FA Journals`, `Calculate Depreciation` | Zugänge, AfA und Abgänge buchen |
-| Controller | Controlling | `Analysis Views`, `Financial Reports`, `Dimensions` | Auswertungen und Abweichungen analysieren |
+| Verkäuferin | Vertrieb | `Verkaufsangebote (Sales Quotes)`, `Verkaufsaufträge (Sales Orders)`, `Debitoren (Customers)`, `Kontakte (Contacts)` | Angebot erstellen, Auftrag erfassen, Verfügbarkeit prüfen, Rechnung auslösen |
+| E-Commerce-Sachbearbeiter | Onlineshop | `Shopify-Shops (Shopify Shops)`, `Verkaufsaufträge (Sales Orders)`, `Artikel (Items)`, `Debitoren (Customers)` | Shop-Aufträge synchronisieren, Fehler klären, Versand anstoßen |
+| Einkäufer | Einkauf | `Kreditoren (Vendors)`, `Einkaufsbestellungen (Purchase Orders)`, `Einkaufsrechnungen (Purchase Invoices)` | Bestellung auslösen, Preise prüfen, Wareneingang/Rechnung abstimmen |
+| Lagerist einfaches Lager | Lager MZ | `Artikeljournale (Item Journals)`, `Verkaufslieferungen (Sales Shipments)`, `Einkaufslieferungen (Purchase Receipts)` | Ware annehmen, Bestand prüfen, Lieferung buchen |
+| Lagerist gesteuertes Lager | FRA-ZL | `Lagereingänge (Warehouse Receipts)`, `Lagereinlagerungen (Warehouse Put-aways)`, `Lagerkommissionierungen (Warehouse Picks)`, `Warenausgänge (Warehouse Shipments)` | Einlagern, kommissionieren, versenden |
+| Produktionsplanerin | Fertigung | `Planungsarbeitsblatt (Planning Worksheet)`, `Fertigungsaufträge (Production Orders)`, `Stücklisten (BOMs)`, `Arbeitspläne (Routings)` | Bedarf planen, Fertigungsaufträge erstellen, Termine prüfen |
+| Meister | Fertigung | `Freigegebene Fertigungsaufträge (Released Production Orders)`, `Verbrauch Buch.-Blatt (Consumption Journal)`, `Istmeldung Buch.-Blatt (Output Journal)` | Verbrauch und Output melden, Ausschuss dokumentieren |
+| Servicetechniker | Service | `Serviceaufträge (Service Orders)`, `Serviceartikel (Service Items)`, `Artikeljournale (Item Journals)` | Serviceauftrag bearbeiten, Ersatzteile verbrauchen, Zeiten erfassen |
+| Projektleiter | Projekte | `Projekte (Projects)`, `Project Tasks`, `Project Journals` | Budget, Verbrauch, Fortschritt und Faktura steuern |
+| Debitorenbuchhalterin | Finance | `Debitorenposten (Customer Ledger Entries)`, `Zahlungsabstimmungs Buch.-Blatt (Payment Reconciliation Journal)`, `Reminders` | Zahlung ausgleichen, mahnen, offene Posten prüfen |
+| Kreditorenbuchhalter | Finance | `Kreditorenposten (Vendor Ledger Entries)`, `Zahlungs Buch.-Blätter (Payment Journals)`, `Einkaufsrechnungen (Purchase Invoices)` | Eingangsrechnungen prüfen, Zahlungen vorbereiten |
+| Anlagenbuchhalterin | Finance | `Anlagen (Fixed Assets)`, `Anlagen Buch.-Blätter (FA Journals)`, `AfA berechnen (Calculate Depreciation)` | Zugänge, AfA und Abgänge buchen |
+| Controller | Controlling | `Analyseansichten (Analysis Views)`, `Finanzberichte (Financial Reports)`, `Dimensionen (Dimensions)` | Auswertungen und Abweichungen analysieren |
 | BC-Admin | IT/Finance Operations | `Users`, `Permission Sets`, `Change Log Setup`, `Job Queue Entries` | Rollen, Automatisierung und Audit Trail verwalten |
 
 #### Bedienmuster
 
 1. **Role Center prüfen:** Der Mitarbeiter startet im passenden Arbeitsbereich.
-2. **Tell Me nutzen:** Er sucht stabile Seitenbegriffe, nicht lange Menüpfade.
+2. **`Alt+Q`nutzen:** Er sucht stabile Seitenbegriffe, nicht lange Menüpfade.
 3. **Belegkopf prüfen:** Kunde/Lieferant, Datum, Standort, Währung, Dimension, USt-Gruppe.
 4. **Zeilen pflegen:** Artikel, Ressource, Sachkonto, Menge, Preis, Lagerort, Projekt.
 5. **Vorschau/Prüfung:** Posting Preview, Verfügbarkeit, Freigabe, Pflichtfelder.
@@ -445,11 +445,11 @@ BC-Best-Practice:
 
 ### Mitarbeiterbedienung
 
-| Rolle | Aufgabe | Tell Me / Seite | Was wird getan? |
+| Rolle | Aufgabe | `Alt+Q`/ Seite | Was wird getan? |
 |---|---|---|---|
 | BC-Admin | Company anlegen | `Companies` | Trainingscompanies erstellen |
 | Finance-Leitung | Buchungsperioden steuern | `General Ledger Setup`, `Accounting Periods` | Buchungsfenster festlegen |
-| Stammdaten-Team | Dimensionen pflegen | `Dimensions`, `Dimension Values` | Pflichtdimensionen anlegen |
+| Stammdaten-Team | Dimensionen pflegen | `Dimensionen (Dimensions)`, `Dimension Values` | Pflichtdimensionen anlegen |
 | Admin | Change Log aktivieren | `Change Log Setup` | kritische Tabellen überwachen |
 | Prozessowner | Workflow prüfen | `Workflows`, `Approval User Setup` | Freigaben für Einkauf/Verkauf definieren |
 
@@ -476,7 +476,7 @@ Aufgabe:
 
 Erwartete Lösung:
 - Die Buchung ohne Pflichtdimension wird verhindert oder als Fehler markiert.
-- Die korrigierte Buchung erzeugt `G/L Entries` mit Dimension `CHANNEL = B2B`.
+- Die korrigierte Buchung erzeugt `Sachposten (G/L Entries)` mit Dimension `CHANNEL = B2B`.
 
 Kontrollfrage:
 - Warum ist eine Pflichtdimension eher ein Prozesskontrollinstrument als eine reine Reporting-Einstellung?
@@ -810,7 +810,7 @@ Schulungen, Arbeitsanweisungen und Screenshots verwenden die deutsche Oberfläch
 ### Deutsche Bedienanweisungen: Formulierungsmuster
 
 Falsch für dieses Buch:
-- „Open `Sales Orders` and post the invoice.“
+- „Open `Verkaufsaufträge (Sales Orders)` and post the invoice.“
 
 Richtig:
 - „Öffne über `Alt+Q` die Seite `Verkaufsaufträge (Sales Orders)`. Öffne den Auftrag. Prüfe Debitor, Buchungsdatum, Lagerort, Preis, USt-Produktbuchungsgruppe und Dimensionen. Wähle anschließend `Buchen`.“
@@ -1012,14 +1012,14 @@ Merksatz:
 
 | Postenart | Deutsch | Wofür? | Typische Frage |
 |---|---|---|---|
-| `G/L Entries` | Sachposten | Hauptbuch, Bilanz, GuV | Welches Konto wurde bebucht? |
-| `Customer Ledger Entries` | Debitorenposten | Forderungen, offene Kundenposten | Zahlt der Kunde noch? |
-| `Vendor Ledger Entries` | Kreditorenposten | Verbindlichkeiten, offene Lieferantenposten | Müssen wir noch zahlen? |
-| `VAT Entries` | USt-Posten | Umsatzsteuer/Vorsteuer | Welche Steuer wurde gemeldet? |
-| `Item Ledger Entries` | Artikelposten | Mengenbewegung | Wie viele Stück sind wo? |
-| `Value Entries` | Wertposten | Lagerwert und Wareneinsatz | Welcher Wert hängt an der Menge? |
+| `Sachposten (G/L Entries)` | Sachposten | Hauptbuch, Bilanz, GuV | Welches Konto wurde bebucht? |
+| `Debitorenposten (Customer Ledger Entries)` | Debitorenposten | Forderungen, offene Kundenposten | Zahlt der Kunde noch? |
+| `Kreditorenposten (Vendor Ledger Entries)` | Kreditorenposten | Verbindlichkeiten, offene Lieferantenposten | Müssen wir noch zahlen? |
+| `USt-Posten (VAT Entries)` | USt-Posten | Umsatzsteuer/Vorsteuer | Welche Steuer wurde gemeldet? |
+| `Artikelposten (Item Ledger Entries)` | Artikelposten | Mengenbewegung | Wie viele Stück sind wo? |
+| `Wertposten (Value Entries)` | Wertposten | Lagerwert und Wareneinsatz | Welcher Wert hängt an der Menge? |
 | `FA Ledger Entries` | Anlagenposten | Anlagenbuchhaltung | Anschaffung, AfA, Abgang |
-| `Project Ledger Entries` | Projektposten | Projektverbrauch und Faktura | Was wurde auf Projekt gebucht? |
+| `Projektposten (Project Ledger Entries)` | Projektposten | Projektverbrauch und Faktura | Was wurde auf Projekt gebucht? |
 
 Microsoft Learn beschreibt das Hauptbuch und den Kontenplan als Speicher der Finanzdaten. Finanzberichte nutzen diese Daten, um Bilanz, GuV und Analysen zu erstellen. [Q61][Q48]
 
@@ -1044,12 +1044,12 @@ Wirkung:
 Postenspur:
 1. `Sales Order` buchen.
 2. `Posted Sales Invoice` öffnen.
-3. `Customer Ledger Entries` prüfen: Forderung.
-4. `G/L Entries` prüfen: Forderung, Erlös, USt, Wareneinsatz, Bestandskonto.
-5. `Item Ledger Entries` prüfen: Mengenabgang.
-6. `Value Entries` prüfen: Wertabgang und Kosten.
-7. `VAT Entries` prüfen: Steuerbasis und Steuerbetrag.
-8. `Financial Reports` prüfen: GuV-Auswirkung.
+3. `Debitorenposten (Customer Ledger Entries)` prüfen: Forderung.
+4. `Sachposten (G/L Entries)` prüfen: Forderung, Erlös, USt, Wareneinsatz, Bestandskonto.
+5. `Artikelposten (Item Ledger Entries)` prüfen: Mengenabgang.
+6. `Wertposten (Value Entries)` prüfen: Wertabgang und Kosten.
+7. `USt-Posten (VAT Entries)` prüfen: Steuerbasis und Steuerbetrag.
+8. `Finanzberichte (Financial Reports)` prüfen: GuV-Auswirkung.
 
 Prüfungsfalle:
 - Viele Einsteiger suchen den Wareneinsatz in der Verkaufsrechnung. Der Wareneinsatz ergibt sich aus Artikel-/Wertposten und der Lagerbuchhaltung. Er muss mit dem Hauptbuch abgestimmt werden.
@@ -1074,9 +1074,9 @@ BC-Best-Practice:
 Microsoft Learn beschreibt, dass Lagerkosten regelmäßig angepasst und ins Hauptbuch übertragen werden müssen. Costing Methods bestimmen, wie Abgänge bewertet werden; Cost Adjustment aktualisiert Wareneinsatz und Lagerwerte, wenn spätere Einkaufskosten zugeordnet werden. [Q62][Q63]
 
 Einsteigerbild:
-- `Item Ledger Entries` beantworten „wie viel?“
-- `Value Entries` beantworten „welcher Wert?“
-- `G/L Entries` beantworten „welches Konto?“
+- `Artikelposten (Item Ledger Entries)` beantworten „wie viel?“
+- `Wertposten (Value Entries)` beantworten „welcher Wert?“
+- `Sachposten (G/L Entries)` beantworten „welches Konto?“
 
 Stolpersteine:
 
@@ -1095,11 +1095,11 @@ Aufgabe:
 2. Nutze `Preview Posting`, wenn verfügbar.
 3. Buche Lieferung und Rechnung.
 4. Öffne `Posted Sales Invoice`.
-5. Prüfe `Customer Ledger Entries`.
-6. Prüfe `G/L Entries`.
-7. Prüfe `Item Ledger Entries`.
-8. Prüfe `Value Entries`.
-9. Öffne `Financial Reports` und filtere den Monat.
+5. Prüfe `Debitorenposten (Customer Ledger Entries)`.
+6. Prüfe `Sachposten (G/L Entries)`.
+7. Prüfe `Artikelposten (Item Ledger Entries)`.
+8. Prüfe `Wertposten (Value Entries)`.
+9. Öffne `Finanzberichte (Financial Reports)` und filtere den Monat.
 10. Erkläre, welche Zeilen Bilanz betreffen und welche Zeilen GuV betreffen.
 
 Merksatz:
@@ -1360,11 +1360,11 @@ Business Central unterstützt Verkaufsangebote, Verkaufsaufträge, Lieferungen, 
 
 | Rolle | Bedienhandlung | Seite | Ergebnis |
 |---|---|---|---|
-| Verkäuferin | Angebot für `RM-M100` erstellen | `Sales Quotes` | Angebot mit Preis und Liefertermin |
-| Vertriebsinnendienst | Angebot in Auftrag umwandeln | `Sales Orders` | `SO-1001` |
-| Lagerist | Lieferung kommissionieren | `Warehouse Picks` oder `Sales Orders` | gebuchte Lieferung |
-| Debitorenbuchhalterin | Rechnung und Zahlung prüfen | `Customer Ledger Entries` | offener oder geschlossener Posten |
-| E-Commerce-Sachbearbeiter | Shop-Auftrag prüfen | `Shopify Orders` / `Sales Orders` | Webauftrag in BC |
+| Verkäuferin | Angebot für `RM-M100` erstellen | `Verkaufsangebote (Sales Quotes)` | Angebot mit Preis und Liefertermin |
+| Vertriebsinnendienst | Angebot in Auftrag umwandeln | `Verkaufsaufträge (Sales Orders)` | `SO-1001` |
+| Lagerist | Lieferung kommissionieren | `Lagerkommissionierungen (Warehouse Picks)` oder `Verkaufsaufträge (Sales Orders)` | gebuchte Lieferung |
+| Debitorenbuchhalterin | Rechnung und Zahlung prüfen | `Debitorenposten (Customer Ledger Entries)` | offener oder geschlossener Posten |
+| E-Commerce-Sachbearbeiter | Shop-Auftrag prüfen | `Shopify-Aufträge (Shopify Orders)` / `Verkaufsaufträge (Sales Orders)` | Webauftrag in BC |
 
 ### Standardpfad B2B-Verkauf
 
@@ -1443,12 +1443,12 @@ Fall `S-001`: Debitor `D10000` kauft `RM-M100`, 1 Stück, netto `68.000 EUR`, US
 | Umsatzsteuer 19 % | | 12.920 |
 
 Mitarbeiterbedienung:
-1. Verkäuferin: Tell Me → `Sales Quotes` → New → `Sell-to Customer No. = D10000`.
-2. Zeile: `Type = Item`, `No. = RM-M100`, `Quantity = 1`, `Location Code = FRA-ZL`.
+1. Verkäuferin: `Alt+Q` → `Verkaufsangebote (Sales Quotes)` → `Neu` → Feld `Verk. an Deb.-Nr. = D10000`.
+2. Zeile: `Art = Artikel`, `Nr. = RM-M100`, `Menge = 1`, `Lagerortcode = FRA-ZL`.
 3. Aktion: `Make Order`.
-4. Lagerist: Tell Me → `Warehouse Picks` → Pick erstellen und registrieren.
+4. Lagerist: `Alt+Q` → `Lagerkommissionierungen (Warehouse Picks)` → Pick erstellen und registrieren.
 5. Vertrieb: `Post` → Ship and Invoice, wenn Lieferung abgeschlossen ist.
-6. Buchhaltung: Tell Me → `Customer Ledger Entries` → Posten D10000 prüfen.
+6. Buchhaltung: `Alt+Q` → `Debitorenposten (Customer Ledger Entries)` → Posten D10000 prüfen.
 
 ### Abweichungen und Sonderfälle
 
@@ -1526,10 +1526,10 @@ RM-PROD benötigt Rohmaterial `RAW-STEEL`, damit Fertigungsaufträge für `RM-M1
 
 | Rolle | Bedienhandlung | Seite | Ergebnis |
 |---|---|---|---|
-| Einkäufer | Bestellung aus Planungsbedarf erstellen | `Purchase Orders` | `PO-2001` |
-| Lagerist | Wareneingang buchen | `Warehouse Receipts` oder `Purchase Orders` | Bestand steigt |
-| Kreditorenbuchhalter | Eingangsrechnung prüfen | `Purchase Invoices` / `Incoming Documents` | Verbindlichkeit |
-| Finance-Leitung | Zahlung freigeben | `Payment Journals` | Zahlungsvorschlag |
+| Einkäufer | Bestellung aus Planungsbedarf erstellen | `Einkaufsbestellungen (Purchase Orders)` | `PO-2001` |
+| Lagerist | Wareneingang buchen | `Lagereingänge (Warehouse Receipts)` oder `Einkaufsbestellungen (Purchase Orders)` | Bestand steigt |
+| Kreditorenbuchhalter | Eingangsrechnung prüfen | `Einkaufsrechnungen (Purchase Invoices)` / `Incoming Documents` | Verbindlichkeit |
+| Finance-Leitung | Zahlung freigeben | `Zahlungs Buch.-Blätter (Payment Journals)` | Zahlungsvorschlag |
 
 ### Prozessfluss
 
@@ -1591,9 +1591,9 @@ Fall `P-001`: Einkauf `RAW-STEEL`, 10 Stück à `2.500 EUR`, netto `25.000 EUR`,
 | Verbindlichkeiten K10000 | | 29.750 |
 
 Bedienung:
-1. Einkäufer: Tell Me → `Purchase Orders` → New → `Buy-from Vendor No. = K10000`.
-2. Zeile: `Type = Item`, `No. = RAW-STEEL`, `Quantity = 10`, `Location Code = FRA-ZL`.
-3. Lagerist: gesteuertes Lager → `Warehouse Receipt` erstellen und buchen.
+1. Einkäufer: `Alt+Q` → `Einkaufsbestellungen (Purchase Orders)` → `Neu` → Feld `Eink. von Kred.-Nr. = K10000`.
+2. Zeile: `Art = Artikel`, `Nr. = RAW-STEEL`, `Menge = 10`, `Lagerortcode = FRA-ZL`.
+3. Lagerist: gesteuertes Lager → `Lagereingang (Warehouse Receipt)` erstellen und buchen.
 4. Kreditorenbuchhalter: Eingangsrechnung mit Bestellung abgleichen.
 5. Finance: Zahlungsvorschlag erstellen und ausführen.
 
@@ -1601,12 +1601,12 @@ Bedienung:
 
 | Use Case | BC-Mechanik | Kontrolle |
 |---|---|---|
-| Teil-Wareneingang | mehrere Receipts | `Qty. Received` vs. `Qty. Invoiced` |
+| Teil-Wareneingang | mehrere gebuchte Wareneingänge | `Empfangene Menge (Qty. Received)` vs. `Fakturierte Menge (Qty. Invoiced)` |
 | Preisabweichung | Rechnungspreis abweichend | Freigabe vor Buchung |
-| Rücksendung | `Purchase Return Order` | Bezug zur Ursprungslieferung |
-| E-Rechnung | E-Documents / Incoming Documents | XML und Validierung |
-| Fremdarbeit | Subcontracting / Purchase Service | Fertigungsauftragbezug |
-| Lieferantenbank geändert | Vendor Bank Account | Vier-Augen-Prüfung |
+| Rücksendung | `Einkaufsreklamationsauftrag (Purchase Return Order)` | Bezug zur Ursprungslieferung |
+| E-Rechnung | `E-Belege (E-Documents)` / `Eingehende Belege (Incoming Documents)` | XML und Validierung |
+| Fremdarbeit | Fremdarbeit (Subcontracting) / Einkaufsleistung (Purchase Service) | Fertigungsauftragbezug |
+| Lieferantenbank geändert | Kreditorbankkonto (Vendor Bank Account) | Vier-Augen-Prüfung |
 
 BC-Best-Practice:
 - Externe Belegnummer ist Pflicht.
@@ -1637,343 +1637,253 @@ Lösungsskizze:
 
 ## 13. Inventory und Warehouse: Ware bewegen und bewerten [Q14][Q15][Q65][Q66][Q67][Q68]
 
+Dieses Kapitel erklärt Lager nicht als Abstellfläche, sondern als Prozess aus Menge, Lagerort, Lagerplatz, Wert und Nachweis. Nach dem Kapitel kannst du ein einfaches Lager und ein gesteuertes Lager unterscheiden, Lagerbewegungen in Business Central ausführen und die entstehenden Artikelposten und Wertposten prüfen.
+
 ### Kapitelbox
 
 | Feld | Inhalt |
 |---|---|
-| Zielgruppe | Einsteiger, Key User, Consultant, Architect |
+| Zielgruppe | Einsteiger, Lager, Einkauf, Verkauf, Controlling, Consultant, Architect |
 | Schwierigkeit | Basic bis Advanced |
 | Prozessbereich | Inventory/Warehouse |
 | Betroffene Companies | RM-PROD, RM-SALES, RM-SERVICE |
-| MB-800-Relevanz | Ja: Artikel, Lagerorte, Artikelposten, Wertposten, Lageraktivitäten |
-| Solution-Architect-Relevanz | Ja: einfache Lagerlogik vs. gesteuertes Lager, Lagerbewertung, Kostenfluss |
-| Benötigte Vorkenntnisse | Belege, Posten, Stammdaten, Buchungsgruppen, Dimensionen |
-| Ergebnis nach dem Kapitel | Leser kann den Prozess mit Rhein-Main-Testdaten ausführen, Posten prüfen, Fehler diagnostizieren und UAT nachweisen |
+| MB-800-Relevanz | Ja: Artikel, Lagerorte, Artikelposten, Wertposten, Kostenmethoden, Lageraktivitäten |
+| Solution-Architect-Relevanz | Ja: einfaches Lager vs. gesteuertes Lager, Lagerbewertung, Kostenfluss |
+| Benötigte Vorkenntnisse | Artikel, Lagerort, Wareneingang, Lieferung, Buchungsgruppen, Dimensionen |
+| Ergebnis nach dem Kapitel | Du kannst Ware einlagern, kommissionieren, umlagern, Mengen und Werte prüfen und Lagerfehler korrigieren. |
+
+### Für absolute Einsteiger: Was du hier gerade tust
+
+Lager bedeutet in Business Central nicht nur „Ware liegt irgendwo“. Das System trennt drei Fragen. Erstens: Welcher Artikel ist vorhanden? Zweitens: Wo liegt der Artikel? Drittens: Welchen Wert hat der Artikel? Ein Wareneingang erzeugt eine Mengenbewegung. Eine Rechnung und die Kostenregulierung erzeugen oder aktualisieren die Wertlogik. Deshalb prüft das Lager vor allem Artikelposten und Lagerplätze, während Finance zusätzlich Wertposten und Sachposten prüft.
+
+### Warum braucht die Rhein-Main Industriegruppe diesen Prozess?
+
+RM-PROD lagert Rohmaterial und fertige Maschinen im gesteuerten Zentrallager `FRA-ZL`. RM-SALES nutzt einfache Lager für Ersatzteile und Versand. RM-SERVICE nutzt Fahrzeuglager für Techniker. Ohne saubere Lagerlogik verkauft der Vertrieb Artikel, die physisch nicht verfügbar sind. Die Fertigung startet mit falschem Bestand. Finance bewertet das Lager falsch. Business Central verbindet Wareneingang, Einlagerung, Kommissionierung, Lieferung, Artikelposten, Wertposten und Lagerbewertung.
 
 ### Beteiligte Rollen
 
 | Rolle | Aufgabe | Ergebnis |
 |---|---|---|
-| Fachanwender | Prozess ausführen und Belegdaten prüfen | fachlich korrekter Vorgang |
-| Key User | Stammdaten, Setup und Fehlerfälle prüfen | stabiler Prozess |
-| Finance/Controlling | Buchungsspur, Bericht und Evidence Pack prüfen | abgestimmter Nachweis |
-| Solution Architect | Standardgrenze und Betriebsfolge bewerten | tragfähiges Prozessdesign |
+| Lagerist Wareneingang | gelieferte Ware prüfen und Wareneingang buchen | Menge ist im System erfasst |
+| Einlagerer | Ware auf Lagerplatz legen und Einlagerung registrieren | Ware ist verfügbar oder kontrolliert eingelagert |
+| Kommissionierer | Ware für Verkauf, Service oder Fertigung picken | Ausgangsprozess ist lagerseitig vorbereitet |
+| Lagerleitung | Bestände, Lagerplätze und offene Aktivitäten prüfen | Lagerprozess ist vollständig |
+| Finance/Controlling | Wertposten, Lagerbewertung und Sachposten abstimmen | Lagerwert ist finanzbuchhalterisch nachvollziehbar |
+| Solution Architect | Lagerlogik je Standort festlegen | angemessene Prozesskomplexität |
 
 ### Benötigte Stammdaten
 
-Artikel `SP-PUMP-01`, `RAW-STEEL`, Lagerorte `FRA-ZL`, `MZ-EINFACH`, Lagerplätze, Einheiten, Kostenmethode. Diese Daten müssen vor dem Test gepflegt sein, sonst erzeugt der richtige Klick später falsche Posten oder unvollständige Berichte.
+| Stammdatum | Beispiel | Warum wichtig? |
+|---|---|---|
+| Artikel | `SP-PUMP-01`, `RAW-STEEL`, `RM-M100` | steuert Einheit, Kostenmethode, Buchungsgruppen und Verfügbarkeit |
+| Lagerort | `MZ-EINFACH`, `FRA-ZL`, `VAN-SERV` | entscheidet über einfache oder gesteuerte Lagerlogik |
+| Lagerplatz | `PICK-01`, `REC-01`, `RAW-01` | notwendig bei Lagerplatzpflicht und gesteuertem Lager |
+| Einheit | `STÜCK`, `KG` | verhindert Mengenfehler |
+| Kostenmethode | FIFO, Durchschnitt, Standard | beeinflusst Wertposten und Lagerbewertung |
+| Dimensionen | `LOCATION-GROUP`, `PRODUCTLINE` | machen Lagerwert und Aufwand auswertbar |
 
 ### Benötigtes Setup
 
-`Lager Einrichtung (Inventory Setup)`, `Lagerorte (Locations)`, Lagerplätze, Lagerbuchungsmatrix, Nummernserien, Lageraktivitäten. Das Setup wird nicht während der Buchung improvisiert, sondern vorab durch Key User und Finance freigegeben.
+| Setup | Zweck | Rhein-Main-Entscheidung |
+|---|---|---|
+| `Lager Einrichtung (Inventory Setup)` | allgemeine Lagersteuerung und Kostenlogik | automatische Kostenregulierung wird überwacht |
+| `Lagerorte (Locations)` | Prozessverhalten je Standort | `MZ-EINFACH` einfach, `FRA-ZL` gesteuert, `VAN-SERV` Servicefahrzeug |
+| `Lagerbuchungsmatrix Einrichtung (Inventory Posting Setup)` | Bestandskonten nach Lagerort und Lagerbuchungsgruppe | getrennte Bestandskonten für Rohmaterial und Fertigerzeugnisse |
+| Lagerplatzpflicht | Pflicht zur Lagerplatzangabe | bei `FRA-ZL` aktiv |
+| Wareneingang/Einlagerung erforderlich | trennt Eingang und Einlagerung | bei `FRA-ZL` aktiv |
+| Kommissionierung/Warenausgang erforderlich | trennt Auftrag und Lagerausgang | bei `FRA-ZL` aktiv |
 
 ### Deutsche BC-Seiten mit englischer Suchhilfe
 
-`Lagerorte (Locations)`, `Artikel (Items)`, `Artikelposten (Item Ledger Entries)`, `Wertposten (Value Entries)`, `Lagereingänge (Warehouse Receipts)`, `Lagerkommissionierungen (Warehouse Picks)`. Suche die Seiten über `Alt+Q`; wenn der deutsche Begriff nicht gefunden wird, nutze den englischen Klammerbegriff.
-
-### Happy Path mit Rhein-Main-Testdaten
-
-Testfall: `SP-PUMP-01`, Menge `10`, Lagerort `FRA-ZL`, Lagerplatz `PICK-01`. Der Happy Path ist bestanden, wenn der gebuchte Beleg, die Nebenbuchposten, die Sachposten, der Kontrollbericht und das Evidence Pack übereinstimmen.
-
-### Kontrollbericht
-
-`Lagerbewertung (Inventory Valuation)`, `Artikelposten`, `Wertposten`, Lagerplatzinhalt. Der Kontrollbericht ist die fachliche Gegenprobe zur Buchung. Er beantwortet nicht nur, ob gebucht wurde, sondern ob Menge, Wert, Steuer, Dimension und Zeitraum stimmen.
-
-### Korrekturweg
-
-1. Fehlerbild aus Anwendersicht festhalten.
-2. Belegnummer, Datum, Stammdaten und Dimensionen prüfen.
-3. Buchungsspur bis zu Nebenbuchposten und Sachposten verfolgen.
-4. Entscheiden, ob vor Buchung korrigiert, nach Buchung gutgeschrieben, storniert, ausgeglichen, umgebucht oder per zulässigem Korrekturwerkzeug korrigiert wird.
-5. Korrektur mit Beleg, Posten und Bericht dokumentieren.
-
-### Evidence Pack
-
-Wareneingangs-/Ausgangsbeleg, Artikelposten, Wertposten, Lageraktivität, Lagerbewertung. Das Evidence Pack wird im UAT und später im Betrieb genutzt, damit Fachbereich, Finance und Prüfung dieselbe Spur nachvollziehen können.
-
-Lager in Business Central ist nicht einheitlich. Die Mustergruppe nutzt bewusst zwei Extreme: ein einfaches Lager und ein gesteuertes Zentrallager.
-
-| Feld | Inhalt |
-|---|---|
-| Zielgruppe | Einsteiger, Lager, Einkauf, Verkauf, Controlling, Consultant |
-| Schwierigkeit | Basic bis Advanced |
-| Prozessbereich | Inventory/Warehouse |
-| Betroffene Companies | RM-PROD, RM-SALES, RM-SERVICE |
-| MB-800-Relevanz | Ja: Artikel, Lagerorte, Artikelposten, Wertposten, Kostenmethoden |
-| Solution-Architect-Relevanz | Ja: einfaches Lager vs. gesteuerte Lagerlogik |
-| Benötigte Vorkenntnisse | Artikel, Lagerort, Wareneingang, Lieferung |
-| Ergebnis nach dem Kapitel | Leser kann erklären, warum Menge, Lagerplatz und Wert getrennt geprüft werden |
-
-### Für absolute Einsteiger: Was du hier gerade tust
-
-Lager bedeutet nicht nur „Ware liegt irgendwo“. Business Central unterscheidet, welche Ware vorhanden ist, wo sie liegt, ob sie schon eingelagert ist und welchen Wert sie hat. Wenn ein Wareneingang gebucht wird, entsteht eine Mengenbewegung. Wenn Kosten gebucht und reguliert werden, entsteht die Wertlogik. Deshalb prüft man Artikelposten für Mengen und Wertposten für Werte.
-
-### Warum braucht die Rhein-Main Industriegruppe diesen Prozess?
-
-RM-PROD lagert Rohmaterial und fertige Maschinen im gesteuerten Lager `FRA-ZL`. RM-SALES nutzt einfache Lager für Ersatzteile und Versand. RM-SERVICE nutzt Fahrzeuglager für Techniker. Ohne saubere Lagerlogik verkauft der Vertrieb nicht belastbar, die Fertigung startet mit falschem Bestand und Finance bewertet den Lagerwert falsch. Business Central verbindet Wareneingang, Einlagerung, Kommissionierung, Lieferung, Artikelposten, Wertposten und Lagerbewertung.
+| Deutsche Seite | Englische Suchhilfe | Verwendung |
+|---|---|---|
+| `Lagerorte` | `Locations` | Lagerlogik je Standort prüfen |
+| `Artikel` | `Artikel (Items)` | Artikelstamm, Einheit, Kostenmethode prüfen |
+| `Artikelposten` | `Artikelposten (Item Ledger Entries)` | Mengenbewegungen prüfen |
+| `Wertposten` | `Wertposten (Value Entries)` | Wertbewegungen prüfen |
+| `Lagereingänge` | `Lagereingänge (Warehouse Receipts)` | gesteuerten Wareneingang buchen |
+| `Lagereinlagerungen` | `Lagereinlagerungen (Warehouse Put-aways)` | Einlagerung registrieren |
+| `Lagerkommissionierungen` | `Lagerkommissionierungen (Warehouse Picks)` | Pick registrieren |
+| `Lagerplatzinhalt` | `Lagerplatzinhalt (Bin Contents)` | Bestand je Lagerplatz prüfen |
+| `Lagerbewertung` | `Lagerbewertung (Inventory Valuation)` | Lagerwert nach Artikel/Lagerort prüfen |
 
 ### Lagerlogik im Vergleich
 
+Lager ist in Business Central kein einzelner Standardpfad. Die Einrichtung des Lagerorts entscheidet, wie viele Schritte der Mitarbeiter ausführt und welche Nachweise entstehen.
+
 | Merkmal | Einfaches Lager `MZ-EINFACH` | Gesteuertes Lager `FRA-ZL` |
 |---|---|---|
-| Wareneingang | direkt aus Bestellung | Warehouse Receipt + Put-away |
-| Versand | direkt aus Verkaufsauftrag | Warehouse Shipment + Pick |
-| Bins | optional/vereinfacht | verbindlich |
-| Mitarbeiter | Sachbearbeiter/Lagerist | Lagerrolle mit Aufgabenliste |
-| Schulungsziel | schneller Standardpfad | vollständige Warehouse-Steuerung |
+| Wareneingang | direkt aus Bestellung buchen | `Lagereingänge (Warehouse Receipts)` und `Lagereinlagerungen (Warehouse Put-aways)` |
+| Versand | direkt aus Verkaufsauftrag buchen | `Lagerkommissionierungen (Warehouse Picks)` und Lagerausgang |
+| Lagerplätze | optional oder vereinfacht | verbindlich |
+| Mitarbeiterführung | wenige Systemschritte | klare Aufgabenlisten für Lagerrollen |
+| Nachweis | gebuchter Beleg, Artikelposten, Wertposten | zusätzlich Lageraktivitäten und Lagerplatzinhalt |
+| Tempo | schneller | kontrollierter |
+| Risiko | falscher Lagerort oder Menge | zusätzlich offene Aktivität, falscher Bin, nicht registrierter Pick |
+
+Achtung:
+- Mehr Lagersteuerung bedeutet mehr Kontrolle, aber auch mehr Prozessschritte. Ein kleines Lager wird durch gesteuerte Einlagerung nicht automatisch besser. Es wird nur komplexer.
 
 ### Prozessfluss gesteuertes Lager
 
 ```mermaid
 flowchart LR
-    A["Purchase Order"] --> B["Warehouse Receipt"]
-    B --> C["Posted Receipt"]
-    C --> D["Put-away"]
-    D --> E["Bin Bestand"]
-    E --> F["Warehouse Pick"]
-    F --> G["Warehouse Shipment"]
-    G --> H["Sales Shipment"]
+    A["Einkaufsbestellung (Purchase Order)"] --> B["Lagereingang (Warehouse Receipt)"]
+    B --> C["Gebuchter Wareneingang (Posted Receipt)"]
+    C --> D["Lagereinlagerung (Warehouse Put-away)"]
+    D --> E["Lagerplatzbestand (Bin Content)"]
+    E --> F["Lagerkommissionierung (Warehouse Pick)"]
+    F --> G["Warenausgang (Warehouse Shipment)"]
+    G --> H["Gebuchte Verkaufslieferung (Posted Sales Shipment)"]
 ```
 
-### Mitarbeiterbedienung
+### Konkrete Alt+Q-Schrittfolge: einfaches Lager
 
-| Rolle | Seite | Tätigkeit |
+Wareneingang im einfachen Lager:
+1. Öffne `Alt+Q`.
+2. Suche `Einkaufsbestellungen (Purchase Orders)`.
+3. Öffne die Bestellung `PO-2001` für `SP-PUMP-01`.
+4. Prüfe `Lagerortcode = MZ-EINFACH`.
+5. Prüfe `Zu empfangen = 10`.
+6. Wähle `Buchen`.
+7. Wähle `Empfangen`.
+8. Öffne `Artikelposten (Item Ledger Entries)` und filtere auf `SP-PUMP-01` und `MZ-EINFACH`.
+9. Öffne `Wertposten (Value Entries)` und prüfe den Zugangswert.
+10. Öffne `Lagerbewertung (Inventory Valuation)` und prüfe den Lagerwert.
+
+Verkauf aus einfachem Lager:
+1. Öffne `Alt+Q`.
+2. Suche `Verkaufsaufträge (Sales Orders)`.
+3. Öffne Auftrag `SO-SP-1001`.
+4. Prüfe `Lagerortcode = MZ-EINFACH` und `Zu liefern = 2`.
+5. Wähle `Buchen`.
+6. Wähle `Liefern` oder `Liefern und fakturieren`.
+7. Prüfe `Artikelposten (Item Ledger Entries)`, `Wertposten (Value Entries)` und bei Faktura `Sachposten (G/L Entries)`.
+
+### Konkrete Alt+Q-Schrittfolge: gesteuertes Lager
+
+Wareneingang im gesteuerten Lager:
+1. Öffne `Alt+Q`.
+2. Suche `Lagereingänge (Warehouse Receipts)`.
+3. Wähle `Neu`.
+4. Wähle den Lagerort `FRA-ZL`.
+5. Wähle `Quelldokumente holen (Get Source Documents)`.
+6. Übernimm die Bestellung `PO-3001` mit Artikel `RAW-STEEL`.
+7. Prüfe physische Menge, Einheit und Lagerort.
+8. Wähle `Wareneingang buchen (Post Receipt)`.
+9. Öffne `Lagereinlagerungen (Warehouse Put-aways)` über `Alt+Q`.
+10. Öffne die erzeugte Einlagerung.
+11. Prüfe Entnahme-/Platzierungszeilen und Lagerplatz `REC-01` oder `RAW-01`.
+12. Wähle `Einlagerung registrieren (Register Put-away)`.
+13. Öffne `Lagerplatzinhalt (Bin Contents)` und prüfe den Bestand.
+14. Öffne `Artikelposten (Item Ledger Entries)` und `Wertposten (Value Entries)`.
+
+Auslieferung im gesteuerten Lager:
+1. Öffne `Alt+Q`.
+2. Suche `Warenausgänge (Warehouse Shipments)`.
+3. Wähle `Neu` und Lagerort `FRA-ZL`.
+4. Wähle `Quelldokumente holen (Get Source Documents)`.
+5. Übernimm den Verkaufsauftrag.
+6. Erzeuge die `Lagerkommissionierung (Warehouse Pick)`.
+7. Öffne `Lagerkommissionierungen (Warehouse Picks)`.
+8. Prüfe Entnahme-Lagerplatz, Menge und Artikel.
+9. Wähle `Kommissionierung registrieren (Register Pick)`.
+10. Öffne den Warenausgang erneut.
+11. Wähle `Lieferung buchen (Post Shipment)`.
+12. Prüfe `Gebuchte Verkaufslieferungen (Posted Sales Shipments)`, `Artikelposten (Item Ledger Entries)` und `Wertposten (Value Entries)`.
+
+### Happy Path mit Rhein-Main-Testdaten
+
+| Prozess | Testdaten | Erwartetes Ergebnis |
 |---|---|---|
-| Lagerist Wareneingang | `Warehouse Receipts` | Lieferung erfassen, Menge prüfen |
-| Einlagerer | `Warehouse Put-aways` | Bin vorschlagen, Ware einlagern |
-| Kommissionierer | `Warehouse Picks` | Pickliste abarbeiten |
-| Lagerleitung | `Items by Location`, `Inventory Valuation` | Bestände und Werte prüfen |
-
-### Abweichungen
-
-| Use Case | BC-Reaktion | Risiko |
-|---|---|---|
-| falscher Bin | Korrektur über Warehouse Journal | Bestand physisch falsch |
-| Seriennummer fehlt | Buchung blockiert oder Tracking-Fehler | Rückverfolgbarkeit fehlt |
-| Inventurdifferenz | Physical Inventory Journal | Ergebniswirkung |
-| Umlagerung | Transfer Order | Bestand im Transit |
-| negativer Bestand | je Setup möglich/verhindert | COGS unsicher |
-
-Schulungsübung einfaches Lager:
-- Buche Einkauf `SP-PUMP-01` nach `MZ-EINFACH`, verkaufe 2 Stück und prüfe Item Ledger Entries.
-
-Schulungsübung gesteuertes Lager:
-- Buche `RAW-STEEL` nach `FRA-ZL`, erstelle Put-away, danach Pick für Fertigung oder Verkauf.
-
----
-
-### Lagerlogiken im Vergleich
-
-Lager ist in Business Central kein einzelner Prozess. Die Einrichtung des Lagerorts entscheidet, ob der Mitarbeiter direkt aus Bestellung und Auftrag bucht oder mit Wareneingang, Einlagerung, Kommissionierung, Lagerplatz und gesteuerten Aktivitäten arbeitet. Dieses Kapitel macht die Unterschiede und Auswirkungen sichtbar.
-
-### Die drei Verständnisebenen
-
-| Ebene | Erklärung | Typischer Ort in der Musterfirma |
-|---|---|---|
-| Einfaches Lager | Belege buchen direkt Menge und Wert | kleines Ersatzteillager `MZ-WH2` |
-| Basic Warehouse | einfache Lageraktivitäten wie Inventory Put-away/Pick | Service- und Projektlager |
-| Advanced Warehouse | Warehouse Receipt, Warehouse Put-away, Pick, Bins, Directed Put-away and Pick | Hauptlager `FRA-WH1` |
-
-Microsoft Learn beschreibt verschiedene Methoden für Wareneingang und Einlagerung: direkt aus Belegen, über Inventory Put-away, über Warehouse Receipt oder über getrennte Warehouse Receipt und Warehouse Put-away. [Q65][Q66]
-
-### Einrichtungsmatrix Lagerort
-
-| Feld/Option | Einfach | Basic | Advanced |
-|---|---|---|---|
-| `Require Receive` | nein | optional | ja |
-| `Require Put-away` | nein | ja nach Prozess | ja |
-| `Require Shipment` | nein | optional | ja |
-| `Require Pick` | nein | ja nach Prozess | ja |
-| `Bin Mandatory` | optional | häufig ja | ja |
-| `Directed Put-away and Pick` | nein | nein | ja |
-| typische Dokumente | Purchase Order, Sales Order | Inventory Put-away/Pick | Warehouse Receipt, Put-away, Pick |
-| Komplexität | niedrig | mittel | hoch |
-| Schulungsbedarf | niedrig | mittel | hoch |
-
-Achtung:
-- Mehr Lagersteuerung bedeutet mehr Kontrolle, aber auch mehr Prozessschritte. Ein kleines Lager wird durch Advanced Warehouse nicht automatisch besser. Es wird nur komplexer.
-
-### Unterschiedliche Auswirkungen
-
-| Thema | Einfaches Lager | Gesteuertes Lager |
-|---|---|---|
-| Wareneingang | Einkauf bucht Eingang direkt | Lager bucht Warehouse Receipt, Einlagerung folgt |
-| Verfügbarkeit | nach Belegbuchung sichtbar | abhängig von Receive/Put-away-Status |
-| Fehlerquelle | falscher Lagerort/Menge | zusätzlich falscher Bin, offene Aktivität, nicht registrierter Pick |
-| Verantwortung | Einkauf/Verkauf näher an Buchung | Lagerrolle stärker getrennt |
-| Nachweis | gebuchter Beleg und Artikelposten | zusätzliche Warehouse-Dokumente |
-| Tempo | schneller | kontrollierter |
-| Eignung | kleine Lager, einfache Waren | große Lager, viele Bins, Chargen, Wegeoptimierung |
-
-### Schrittfolge einfaches Lager
-
-Wareneingang:
-1. Tell Me → `Purchase Orders`.
-2. Bestellung öffnen.
-3. `Location Code` prüfen.
-4. `Qty. to Receive` prüfen.
-5. `Post` → `Receive`.
-6. `Item Ledger Entries` prüfen.
-
-Verkauf:
-1. Tell Me → `Sales Orders`.
-2. Auftrag öffnen.
-3. `Location Code` und Verfügbarkeit prüfen.
-4. `Qty. to Ship` prüfen.
-5. `Post` → `Ship` oder `Ship and Invoice`.
-6. Artikelposten und Sachposten prüfen.
-
-### Schrittfolge gesteuertes Lager
-
-Wareneingang:
-1. Tell Me → `Warehouse Receipts`.
-2. neues Warehouse Receipt erstellen.
-3. `Get Source Documents` ausführen.
-4. Bestellzeilen übernehmen.
-5. Mengen physisch prüfen.
-6. `Post Receipt` buchen.
-7. Tell Me → `Warehouse Put-aways`.
-8. Put-away öffnen.
-9. Take-/Place-Zeilen prüfen.
-10. `Register Put-away`.
-11. Bin Content und Item Ledger Entries prüfen.
-
-Auslieferung:
-1. Tell Me → `Warehouse Shipments`.
-2. Source Documents holen.
-3. Shipment erstellen.
-4. Pick erzeugen.
-5. Tell Me → `Warehouse Picks`.
-6. Pick registrieren.
-7. Warehouse Shipment buchen.
-8. Posted Shipment, Item Ledger Entries und Value Entries prüfen.
-
-### Typische Lagerfehler und Lösungen
-
-| Fehler | Symptom | Ursache | Korrektur |
-|---|---|---|---|
-| Ware ist physisch da, aber nicht verfügbar | Verkauf kann nicht liefern | Put-away nicht registriert | Warehouse Put-away abschließen |
-| Ware liegt im falschen Bin | Pick schlägt falschen Platz vor | Einlagerung falsch | Movement oder Umlagerung |
-| Bestellung ist geliefert, aber nicht fakturiert | Lagerwert vorläufig | Rechnung fehlt | Eingangsrechnung buchen |
-| Verkauf kann nicht buchen | offene Warehouse-Aktivität | Pick/Shipment nicht abgeschlossen | Lagerdokument prüfen |
-| Bestand negativ | falsche Reihenfolge oder Setup | Lieferung vor Eingang | Negative Inventory prüfen und Prozess sperren |
-| Charge fehlt | Buchung blockiert | Item Tracking nicht gepflegt | Chargennummer erfassen |
-| Inventur differiert | Mengenabweichung | physische Bewegung ohne BC-Buchung | Inventurprozess mit Freigabe |
-
-### Welche Lagerlogik passt?
-
-Entscheidungsregel:
-- Einfaches Lager für wenige Artikel, wenige Lagerplätze und klare Verantwortlichkeiten.
-- Basic Warehouse für einfache Trennung zwischen Büro und Lager.
-- Advanced Warehouse für viele Lagerplätze, mehrere Mitarbeiter, hohe Mengen, Chargen/Serien, Wegeoptimierung und strikte Prozesskontrolle.
-
-Schulungsübung:
-1. Buche denselben Wareneingang einmal in `MZ-WH2` direkt aus der Bestellung.
-2. Buche ihn in `FRA-WH1` über Warehouse Receipt und Put-away.
-3. Vergleiche Anzahl Schritte, beteiligte Rollen, Fehlerquellen und Nachweise.
-4. Erkläre, warum `FRA-WH1` kontrollierter, aber langsamer ist.
-
----
-
-### Praxisfall Rhein-Main: Inventory und Warehouse
-
-### Für absolute Einsteiger: Was du hier gerade tust
-
-Du bildest eine reale Unternehmenshandlung in Business Central ab: Ware einlagern, kommissionieren, umlagern und bewerten. Der Bildschirm ist nur der Startpunkt. Entscheidend ist, dass Beleg, gebuchter Beleg, Posten, Bericht und Evidence Pack zusammenpassen.
-
-### Warum braucht die Rhein-Main Industriegruppe diesen Prozess?
-
-Die Rhein-Main Industriegruppe braucht diesen Prozess, weil operative Arbeit sonst nicht zuverlässig in Finance, Lager, Steuer und Reporting ankommt. Der Prozess nutzt `Lagerorte (Locations)`, `Artikelposten (Item Ledger Entries)`, `Wertposten (Value Entries)`. Beteiligt ist vor allem die Rolle Lagerist. Am Ende erwartet die Fachabteilung einen prüfbaren Beleg, passende Posten, einen Kontrollbericht und einen UAT-Nachweis.
-
-### Rollen
-
-| Rolle | Aufgabe | Ergebnis |
-|---|---|---|
-| Fachbereich | Vorgang fachlich auslösen | korrekter Ausgangsbeleg |
-| Key User | Stammdaten und Pflichtfelder prüfen | buchbarer Vorgang |
-| Finance/Controlling | Posten und Bericht prüfen | abgestimmtes Ergebnis |
-
-### Schritt-für-Schritt in der deutschen BC-Oberfläche
-
-1. Öffne die Suche mit `Alt+Q`.
-2. Suche nach `Lagerorte (Locations)`, `Artikelposten (Item Ledger Entries)`, `Wertposten (Value Entries)`.
-3. Öffne die passende Seite und lege den Vorgang für `SP-PUMP-01` an oder filtere darauf.
-4. Prüfe Buchungsdatum, Belegdatum, Company, Lagerort, Dimensionen und Buchungsgruppen.
-5. Erfasse Menge, Preis, Ressource, Sachkonto oder Projektbezug entsprechend dem Fall.
-6. Wähle `Buchungsvorschau (Preview Posting)`, wenn der Vorgang eine Buchung auslöst.
-7. Führe die fachliche Aktion aus: freigeben, registrieren, buchen, fakturieren oder ausgleichen.
-8. Öffne den gebuchten Beleg oder die entstandenen Postenlisten.
-9. Filtere nach Belegnummer, Artikel, Debitor, Kreditor, Projekt oder Anlage.
-10. Öffne den Kontrollbericht `Lagerbewertung (Inventory Valuation)` und vergleiche Menge, Wert, Steuer und Dimension.
-11. Speichere Belegnummern, Postenfilter und Bericht als Evidence Pack.
+| einfaches Lager | `SP-PUMP-01`, Menge `10`, Lagerort `MZ-EINFACH` | Artikelposten zeigt Zugang; Lagerbewertung steigt |
+| Verkauf einfach | `SP-PUMP-01`, Menge `2`, Lagerort `MZ-EINFACH` | Artikelposten zeigt Abgang; bei Faktura entstehen Wertposten und Sachposten |
+| gesteuerter Eingang | `RAW-STEEL`, Menge `100`, Lagerort `FRA-ZL`, Lagerplatz `RAW-01` | Lagereingang und Einlagerung sind abgeschlossen; Bestand liegt im richtigen Bin |
+| gesteuerter Ausgang | `RM-M100`, Menge `1`, Lagerort `FRA-ZL` | Pick ist registriert; Lieferung erzeugt Artikelposten und Wertposten |
 
 ### Buchungsspur
 
-| Ebene | Was prüfen? | Wo prüfen? |
+| Ebene | Was entsteht? | Wo prüfen? |
 |---|---|---|
-| Ausgangsbeleg | fachlicher Vorgang und Pflichtfelder | Startseite des Prozesses |
-| Gebuchter Beleg | gebuchte Lieferung, Rechnung, Zahlung, Journal oder Projektbuchung | gebuchte Belege/Postenlisten |
-| Nebenbuch | Debitor, Kreditor, Artikel, Bank, Anlage oder Projekt | passende Postenliste |
-| Sachposten | Hauptbuchwirkung | `Sachposten (G/L Entries)` |
-| USt/Wert | Steuer, Lagerwert oder Kostenwirkung | `USt-Posten`, `Wertposten`, Bericht |
-| Bericht | fachliche Kontrolle | `Lagerbewertung (Inventory Valuation)` |
+| Ausgangsbeleg | Einkaufsbestellung oder Verkaufsauftrag | `Einkaufsbestellungen (Purchase Orders)`, `Verkaufsaufträge (Sales Orders)` |
+| Lageraktivität | Lagereingang, Einlagerung, Kommissionierung | `Lagereingänge (Warehouse Receipts)`, `Lagereinlagerungen (Warehouse Put-aways)`, `Lagerkommissionierungen (Warehouse Picks)` |
+| Mengenposten | Zugang, Abgang, Umlagerung oder Inventurdifferenz | `Artikelposten (Item Ledger Entries)` |
+| Wertposten | Zugangswert, Kostenabgang, Kostenregulierung | `Wertposten (Value Entries)` |
+| Sachposten | Bestand, Wareneinsatz, Abweichungen | `Sachposten (G/L Entries)` |
+| Bericht | Lagerwert nach Artikel und Lagerort | `Lagerbewertung (Inventory Valuation)` |
 
-### Zahlenbeispiel
+### Kontrollbericht
 
-Rhein-Main nutzt `SP-PUMP-01` mit einem Beispielwert von `10.000 EUR`. Die Buchung muss zeigen, welche Menge bewegt wird, welcher Wert entsteht, welche Dimension mitläuft und welcher Bericht das Ergebnis bestätigt.
-
-### Abweichungen
-
-| Abweichung | Risiko | Kontrolle |
-|---|---|---|
-| falsche Stammdaten | falsche Konten, Steuer oder Dimension | Stammdatenkarte und Buchungsvorschau |
-| falsche Menge oder falscher Wert | Bestand, Marge oder Abschluss stimmt nicht | Postenliste und Kontrollbericht |
-| Prozessschritt übersprungen | Belegkette unvollständig | gebuchte Belege und Evidence Pack |
+Der wichtigste Kontrollbericht ist `Lagerbewertung (Inventory Valuation)`. Er wird mit `Artikelposten (Item Ledger Entries)`, `Wertposten (Value Entries)` und bei gebuchten Kosten mit `Sachposten (G/L Entries)` abgestimmt. Im gesteuerten Lager kommt `Lagerplatzinhalt (Bin Contents)` hinzu, weil eine korrekte Gesamtmenge trotzdem am falschen Lagerplatz liegen kann.
 
 ### Fehlerdiagnose
 
 | Fehler | Symptom | Ursache | Diagnosepfad | Korrekturweg | Was man nicht tun darf |
 |---|---|---|---|---|---|
-| falsche Dimension | Bericht zeigt Wert nicht | Pflichtdimension fehlt oder ist falsch | Beleg → Posten → Dimension | Dimension Correction Tool oder fachliche Korrekturbuchung | Bericht manuell überschreiben |
-| falsche Buchungsgruppe | falsches Konto oder falsche USt | Stammdaten falsch gepflegt | Stammdatenkarte → Posting Setup → Sachposten | Stammdaten korrigieren, Beleg fachlich stornieren/neubuchen | gebuchte Posten löschen |
-| falscher Status | Beleg kann nicht gebucht werden | Freigabe, Lageraktivität oder Pflichtfeld fehlt | Belegstatus → Fehlermeldung → Einrichtung | Status zurücksetzen, Pflichtfeld ergänzen, Prozessschritt nachholen | Warnungen ignorieren |
+| Ware ist physisch da, aber nicht verfügbar | Verkauf oder Fertigung kann nicht zugreifen | Einlagerung nicht registriert | `Lagereinlagerungen`, `Lagerplatzinhalt`, `Artikelposten` prüfen | Einlagerung registrieren oder Lageraktivität korrigieren | Artikelposten manuell löschen |
+| Ware liegt im falschen Bin | Pick schlägt falschen Platz vor | falsche Einlagerung | `Lagerplatzinhalt` und Lagerbewegungen prüfen | Umlagerung oder Lagerbewegungsjournal mit Freigabe | Bestand ohne Beleg verschieben |
+| Lagerwert stimmt nicht | Menge stimmt, Wert nicht | Rechnung fehlt oder Kostenregulierung offen | `Wertposten`, `Lagerbewertung`, Kostenregulierung prüfen | Eingangsrechnung buchen und Kostenregulierung ausführen | nur Sachkonto manuell korrigieren |
+| Verkauf kann nicht buchen | offene Lageraktivität | Pick oder Warenausgang nicht abgeschlossen | `Lagerkommissionierungen`, `Warenausgänge` prüfen | Pick registrieren und Lieferung buchen | Verkaufsauftrag mehrfach neu erfassen |
+| Charge oder Seriennummer fehlt | Buchung blockiert | Artikelverfolgung nicht gepflegt | Artikelverfolgungszeilen prüfen | Charge/Serie erfassen und erneut buchen | Trackingpflicht abschalten, um schnell zu buchen |
+
+### Korrekturweg
+
+1. Fehlerbild aus Anwendersicht festhalten.
+2. Belegnummer, Artikel, Lagerort, Lagerplatz, Menge und Datum prüfen.
+3. Artikelposten für Mengenwirkung prüfen.
+4. Wertposten für Wertwirkung prüfen.
+5. Bei gesteuertem Lager offene Lageraktivitäten prüfen.
+6. Korrektur vor Buchung im Beleg durchführen; nach Buchung fachlich über Umlagerung, Inventurjournal, Gutschrift, Storno oder Kostenregulierung korrigieren.
+7. Korrektur mit Beleg, Posten, Bericht und Freigabe dokumentieren.
+
+### Evidence Pack
+
+Das Evidence Pack besteht aus Ausgangsbeleg, gebuchtem Wareneingang oder gebuchter Lieferung, Lageraktivität, Artikelposten, Wertposten, Lagerplatzinhalt, Lagerbewertung und Freigabe der Korrektur. Bei Monatsabschlussfällen ergänzt Finance den Abgleich zur Finanzbuchhaltung.
 
 ### Übung
 
-Führe den Fall für `SP-PUMP-01` in der Trainingscompany aus. Dokumentiere Startbeleg, gebuchten Beleg, Posten, Kontrollbericht und eine typische Abweichung.
+Aufgabe:
+- Buche denselben Wareneingang einmal in `MZ-EINFACH` direkt aus der Einkaufsbestellung und einmal in `FRA-ZL` über Lagereingang und Einlagerung. Vergleiche Schritte, Rollen, Fehlerquellen und Nachweise.
+
+Ausgangsdaten:
+- Artikel `SP-PUMP-01`, Menge `10`, Lagerort `MZ-EINFACH`.
+- Artikel `RAW-STEEL`, Menge `100`, Lagerort `FRA-ZL`, Lagerplatz `RAW-01`.
 
 ### Lösungsskizze
 
-1. Öffne `Lagerorte (Locations)`, `Artikelposten (Item Ledger Entries)`, `Wertposten (Value Entries)` über `Alt+Q`.
-2. Erfasse oder filtere den Vorgang für `SP-PUMP-01`.
-3. Prüfe Datum, Lagerort, Buchungsgruppen und Dimensionen.
-4. Nutze `Buchungsvorschau (Preview Posting)`, wenn eine Buchung erfolgt.
-5. Buche oder registriere den Vorgang.
-6. Prüfe Sachposten, Nebenbuchposten und `Lagerbewertung (Inventory Valuation)`.
-7. Dokumentiere das Evidence Pack.
+1. Für `MZ-EINFACH` öffnest du `Einkaufsbestellungen (Purchase Orders)`, prüfst `Lagerortcode`, buchst `Empfangen` und prüfst `Artikelposten (Item Ledger Entries)` sowie `Wertposten (Value Entries)`.
+2. Für `FRA-ZL` öffnest du `Lagereingänge (Warehouse Receipts)`, holst über `Quelldokumente holen (Get Source Documents)` die Bestellung, buchst den Wareneingang und registrierst anschließend die `Lagereinlagerung (Warehouse Put-away)`.
+3. Der einfache Prozess hat weniger Schritte und weniger Nachweise. Der gesteuerte Prozess hat mehr Kontrolle, weil Wareneingang, Einlagerung und Lagerplatz getrennt nachgewiesen werden.
+4. Die Lösung ist korrekt, wenn die Mengen in `Artikelposten (Item Ledger Entries)`, die Werte in `Wertposten (Value Entries)` und die Lagerplatzmenge in `Lagerplatzinhalt (Bin Contents)` stimmen.
 
 ### UAT-Fall
 
 | Feld | Inhalt |
 |---|---|
 | ID | `UAT-WHSE-001` |
-| Ziel | Inventory und Warehouse fachlich abnehmen |
-| Rolle | Lagerist |
-| Voraussetzung | Stammdaten, Buchungsgruppen, Dimensionen und Berechtigungen sind eingerichtet |
-| Testdaten | `SP-PUMP-01`, Beispielwert `10.000 EUR` |
-| Erwartete Posten | Sachposten und passende Nebenbuchposten |
-| Kontrollbericht | `Lagerbewertung (Inventory Valuation)` |
-| Negativfall | falsche Dimension oder falsche Buchungsgruppe |
-| Akzeptanzkriterium | Beleg, Posten, Bericht und Evidence Pack stimmen überein |
+| Ziel | einfaches Lager und gesteuertes Lager Ende-zu-Ende vergleichen |
+| Prozess | Inventory und Warehouse |
+| Rolle | Lagerist, Lagerleitung, Finance |
+| Voraussetzung | Lagerorte `MZ-EINFACH` und `FRA-ZL`, Artikel `SP-PUMP-01` und `RAW-STEEL`, Lagerbuchungsmatrix eingerichtet |
+| Testdaten | `SP-PUMP-01` Menge `10` nach `MZ-EINFACH`; `RAW-STEEL` Menge `100` nach `FRA-ZL` |
+| Schrittfolge | einfacher Wareneingang aus Bestellung; gesteuerter Wareneingang über Lagereingang und Einlagerung; Posten und Berichte prüfen |
+| Erwartete Belege | Einkaufsbestellung, gebuchte Einkaufslieferung, Lagereingang, Lagereinlagerung |
+| Erwartete Posten | Artikelposten, Wertposten, bei Faktura Sachposten |
+| Kontrollbericht | `Lagerbewertung (Inventory Valuation)`, `Lagerplatzinhalt (Bin Contents)` |
+| Negativfall | Einlagerung in `FRA-ZL` wird nicht registriert |
+| Akzeptanzkriterium | Bestand ist am richtigen Lagerort und Lagerplatz verfügbar; Wertposten und Lagerbewertung stimmen |
+| Evidence Pack | Belegnummern, Lageraktivitäten, Artikelposten, Wertposten, Lagerbewertung, Testergebnis |
+| Lösungshinweis | Bei fehlender Verfügbarkeit zuerst offene Lageraktivitäten prüfen, nicht sofort eine Bestandskorrektur buchen. |
 
 ### In 5 Minuten merken
 
-* 5 wichtigste Begriffe: Beleg, gebuchter Beleg, Posten, Dimension, Evidence Pack.
-* 5 wichtigste Seiten: `Lagerorte (Locations)`, `Artikelposten (Item Ledger Entries)`, `Wertposten (Value Entries)`, `Sachposten`, passende Nebenbuchposten, Kontrollbericht, gebuchte Belege.
-* 3 häufigste Fehler: falsche Stammdaten, falsche Dimension, übersprungener Prozessschritt.
-* 3 Prüfungsfallen: Bildschirm ist nicht Buchung, Beleg ist nicht Posten, Bericht ersetzt keine Abstimmung.
-* 1 Praxisregel: Erst Beleg verstehen, dann buchen, dann Posten und Bericht prüfen.
+- 5 wichtigste Begriffe: Lagerort, Lagerplatz, Artikelposten, Wertposten, Lagerbewertung.
+- 5 wichtigste Seiten: `Lagerorte (Locations)`, `Lagereingänge (Warehouse Receipts)`, `Lagereinlagerungen (Warehouse Put-aways)`, `Lagerkommissionierungen (Warehouse Picks)`, `Lagerbewertung (Inventory Valuation)`.
+- 3 häufigste Fehler: Einlagerung nicht registriert, falscher Lagerplatz, Menge stimmt aber Wert nicht.
+- 3 Prüfungsfallen: Artikelposten zeigen Menge, Wertposten zeigen Wert, gesteuertes Lager braucht mehr Prozessschritte als einfaches Lager.
+- 1 Praxisregel: Lager ist erst abgeschlossen, wenn Menge, Lagerplatz, Wert und Bericht zusammenpassen.
 
+---
 
 ## 14. Planning, Assembly und Manufacturing: Maschine produzieren [Q16][Q17][Q18]
 
@@ -2068,10 +1978,10 @@ flowchart LR
 
 | Rolle | Seite | Tätigkeit |
 |---|---|---|
-| Produktionsplanerin | `Planning Worksheet` | Bedarf berechnen, Vorschläge prüfen |
-| Arbeitsvorbereitung | `Production BOMs`, `Routings` | Struktur und Arbeitsgänge pflegen |
-| Meister | `Released Production Orders` | Auftrag starten, Material prüfen |
-| Werker/Meister | `Consumption Journal`, `Output Journal` | Verbrauch und Output melden |
+| Produktionsplanerin | `Planungsarbeitsblatt (Planning Worksheet)` | Bedarf berechnen, Vorschläge prüfen |
+| Arbeitsvorbereitung | `Production BOMs`, `Arbeitspläne (Routings)` | Struktur und Arbeitsgänge pflegen |
+| Meister | `Freigegebene Fertigungsaufträge (Released Production Orders)` | Auftrag starten, Material prüfen |
+| Werker/Meister | `Verbrauch Buch.-Blatt (Consumption Journal)`, `Istmeldung Buch.-Blatt (Output Journal)` | Verbrauch und Output melden |
 | Controller | `Production Order Statistics` | Abweichungen analysieren |
 
 ### Abweichungen
@@ -2268,7 +2178,7 @@ flowchart LR
 ```
 
 Mitarbeiterbedienung:
-1. Servicedisponent: Tell Me → `Service Orders` → neuen Auftrag für D10000 anlegen.
+1. Servicedisponent: `Alt+Q` → `Serviceaufträge (Service Orders)` → neuen Auftrag für D10000 anlegen.
 2. Techniker: Serviceartikel auswählen, Fehlerbeschreibung erfassen.
 3. Techniker: Ersatzteil `SP-PUMP-01` und Ressource `RES-TECH` erfassen.
 4. Serviceabrechnung: Auftrag fakturieren oder als Garantie/Kulanz markieren.
@@ -2481,9 +2391,9 @@ flowchart LR
 
 | Rolle | Seite | Tätigkeit |
 |---|---|---|
-| Projektleiter | `Projects` | Projekt und Aufgaben anlegen |
-| Einkauf | `Purchase Orders` | Projektbezogene Fremdleistung bestellen |
-| Lager | `Item Journals` / Projektverbrauch | Material auf Projekt buchen |
+| Projektleiter | `Projekte (Projects)` | Projekt und Aufgaben anlegen |
+| Einkauf | `Einkaufsbestellungen (Purchase Orders)` | Projektbezogene Fremdleistung bestellen |
+| Lager | `Artikeljournale (Item Journals)` / Projektverbrauch | Material auf Projekt buchen |
 | Consultant/Techniker | `Project Journals` | Zeit erfassen |
 | Finance | `Create Project Sales Invoice` | Faktura erstellen |
 
@@ -2703,12 +2613,12 @@ Achtung:
 Microsoft Learn beschreibt Drop Shipment als Versand direkt vom Lieferanten an den Kunden. In BC wird die Verkaufszeile als Drop Shipment markiert und mit einer Einkaufsbestellung verbunden. [Q73]
 
 Schrittfolge:
-1. Tell Me → `Sales Orders`.
+1. `Alt+Q` → `Verkaufsaufträge (Sales Orders)`.
 2. Verkaufsauftrag für Kunden anlegen.
 3. Artikelzeile erfassen.
 4. Feld `Drop Shipment` oder `Purchasing Code` sichtbar machen.
 5. Zeile als Drop Shipment markieren.
-6. Aktion `Create Purchase Orders` oder Requisition/Planning Worksheet nutzen.
+6. Aktion `Einkaufsbestellungen erstellen (Create Purchase Orders)` oder Requisition/Planning Worksheet nutzen.
 7. Lieferant prüfen.
 8. Einkaufsbestellung erzeugen.
 9. Ship-to auf Kundenadresse prüfen.
@@ -3266,12 +3176,12 @@ flowchart TB
 
 | Rolle | Seite | Tätigkeit |
 |---|---|---|
-| Debitorenbuchhalterin | `Customer Ledger Entries`, `Reminders` | OP prüfen, Zahlungen ausgleichen, mahnen |
-| Kreditorenbuchhalter | `Vendor Ledger Entries`, `Payment Journals` | Rechnungen prüfen, Zahlungslauf |
-| Anlagenbuchhalterin | `Fixed Assets`, `FA Journals` | Zugang, AfA, Abgang |
+| Debitorenbuchhalterin | `Debitorenposten (Customer Ledger Entries)`, `Reminders` | OP prüfen, Zahlungen ausgleichen, mahnen |
+| Kreditorenbuchhalter | `Kreditorenposten (Vendor Ledger Entries)`, `Zahlungs Buch.-Blätter (Payment Journals)` | Rechnungen prüfen, Zahlungslauf |
+| Anlagenbuchhalterin | `Anlagen (Fixed Assets)`, `Anlagen Buch.-Blätter (FA Journals)` | Zugang, AfA, Abgang |
 | Buchhalter | `General Journals` | Abgrenzungen, Umbuchungen, Rückstellungen |
-| Steuerverantwortliche | `VAT Entries`, `VAT Statements`, VAT Reports | USt-Abstimmung |
-| Finance-Leitung | `Financial Reports`, `Accounting Periods` | Abschluss und Periodensperre |
+| Steuerverantwortliche | `USt-Posten (VAT Entries)`, `VAT Statements`, VAT Reports | USt-Abstimmung |
+| Finance-Leitung | `Finanzberichte (Financial Reports)`, `Accounting Periods` | Abschluss und Periodensperre |
 
 ### Abweichungen
 
@@ -3554,7 +3464,7 @@ Führe den Fall für `D10000` und Rechnung `SO-1001` in der Trainingscompany aus
 * 1 Praxisregel: Erst Beleg verstehen, dann buchen, dann Posten und Bericht prüfen.
 
 
-## 21. Fixed Assets
+## 21. Anlagen (Fixed Assets)
 
 ### Kapitelbox
 
@@ -4398,7 +4308,7 @@ Führe den Fall für `2026-05` in der Trainingscompany aus. Dokumentiere Startbe
 * 1 Praxisregel: Erst Beleg verstehen, dann buchen, dann Posten und Bericht prüfen.
 
 
-## 25. Reporting, Controlling, Financial Reports und Power BI [Q48][Q49][Q50][Q51]
+## 25. Reporting, Controlling, Finanzberichte (Financial Reports) und Power BI [Q48][Q49][Q50][Q51]
 
 ### Kapitelbox
 
@@ -4466,7 +4376,7 @@ Controlling in Business Central beginnt nicht mit einem Bericht. Es beginnt mit 
 | Wie entwickelt sich Marge? | Erlöse minus Wareneinsatz | Artikelkosten und COGS stimmen |
 | Welche Kunden zahlen spät? | Debitorenfälligkeit | OP-Ausgleich sauber |
 | Wie hoch ist Liquidität? | Cash Flow / Bankberichte | Bankabstimmung und Zahlungsbedingungen |
-| Welche Projekte laufen aus dem Ruder? | Project Ledger / WIP | Projektverbrauch vollständig |
+| Welche Projekte laufen aus dem Ruder? | Projektposten (Project Ledger) / WIP | Projektverbrauch vollständig |
 
 ### Standard laut Quelle
 
@@ -4505,20 +4415,20 @@ Beispiel-GuV:
 
 ### Berichte für Controller
 
-| Bericht | Zweck | Tell Me / Seite |
+| Bericht | Zweck | `Alt+Q`/ Seite |
 |---|---|---|
-| GuV Monat | Ergebnis je Monat | `Financial Reports` |
-| Bilanz | Vermögens-/Kapitalstruktur | `Financial Reports` |
+| GuV Monat | Ergebnis je Monat | `Finanzberichte (Financial Reports)` |
+| Bilanz | Vermögens-/Kapitalstruktur | `Finanzberichte (Financial Reports)` |
 | Cash Flow | Liquiditätsblick | `Cash Flow Forecast` |
 | Debitorenfälligkeit | Zahlungsverzug | `Aged Accounts Receivable` |
 | Kreditorenfälligkeit | Zahlungsplanung | `Aged Accounts Payable` |
-| Lagerbewertung | Bestand und Wert | `Inventory Valuation` |
+| Lagerbewertung | Bestand und Wert | `Lagerbewertung (Inventory Valuation)` |
 | Dimensionsdetail | Analyse nach Dimensionen | `Dimensions - Detail` |
-| Projektbericht | Budget/Ist/Unbilled | `Projects`, Project Reports |
+| Projektbericht | Budget/Ist/Unbilled | `Projekte (Projects)`, Project Reports |
 | Produktionsabweichung | Kostenabweichungen | `Production Order Statistics` |
 
 BC-Best-Practice:
-- Controller bekommen ein eigenes Rollenprofil mit gebookmarkten Seiten: `Financial Reports`, `G/L Entries`, `Analysis Views`, `Dimensions`, `Inventory Valuation`, `Customer Ledger Entries`, `Vendor Ledger Entries`, `Projects`.
+- Controller bekommen ein eigenes Rollenprofil mit gebookmarkten Seiten: `Finanzberichte (Financial Reports)`, `Sachposten (G/L Entries)`, `Analyseansichten (Analysis Views)`, `Dimensionen (Dimensions)`, `Lagerbewertung (Inventory Valuation)`, `Debitorenposten (Customer Ledger Entries)`, `Kreditorenposten (Vendor Ledger Entries)`, `Projekte (Projects)`.
 - Controller dürfen analysieren, aber nicht jedes Setup ändern. Setup-Änderungen an Konten, Dimensionen und Reports erfolgen kontrolliert.
 
 ### Stolpersteine und Korrekturen
@@ -4552,8 +4462,8 @@ Reporting und Admin sind keine Nebenthemen. Sie entscheiden, ob die Organisation
 
 | Bereich | BC-Seiten | Schulungsziel |
 |---|---|---|
-| Financial Reports | `Financial Reports`, `Account Schedules` | GuV/Bilanznahe Auswertung |
-| Analysis Views | `Analysis Views` | Dimensionale Analyse |
+| Financial Reports | `Finanzberichte (Financial Reports)`, `Account Schedules` | GuV/Bilanznahe Auswertung |
+| Analysis Views | `Analyseansichten (Analysis Views)` | Dimensionale Analyse |
 | Power BI-nahe Auswertung | Power BI Integration | Management Reporting |
 | Change Log | `Change Log Setup`, `Change Log Entries` | Stammdatenänderungen nachweisen |
 | Job Queue | `Job Queue Entries` | Automatisierung überwachen |
@@ -4831,7 +4741,7 @@ Finance-Superuser:
 - USt-Setup nur mit Testfall ändern.
 - Buchungsgruppenänderung nur mit Change Request.
 - Periodensperren nach Abschluss setzen.
-- Financial Reports gegen Sachposten abstimmen.
+- Finanzberichte (Financial Reports) gegen Sachposten abstimmen.
 - Dimension Correction nur mit Begründung und Berechtigung.
 
 Lager-Superuser:
@@ -5681,28 +5591,28 @@ Dieses Kapitel weist die MB-800-Abdeckung nach. Die offiziellen Skills measured 
 
 | MB-800 Skill Area | Objective | Sub-Skill | Prüfungsgewichtung | Microsoft-Learn-Modul/Unit | Buchkapitel | Praxisübung | UAT-Fall | Prüfungsfalle | Status |
 |---|---|---|---|---|---|---|---|---|---|
-| Set up Business Central | Company erstellen | Companies, Assisted Setup, Configuration Worksheet, Configuration Packages, Opening Balances, Data Migration | 25–30 % | MB-800 Study Guide, Get started path | 6, 31, 34, 40 | Greenfield Setup | GF-001 | Assisted Setup vs. Manual Setup | abgedeckt |
-| Set up Business Central | Security verwalten | Users, Profiles, Permission Sets, Security Groups, Security Filters, Security Auditing | 25–30 % | MB-800 Study Guide | 26, 30, 33, 40, 44 | Nutzer anlegen | UAT Admin | Rolle vs. Berechtigungssatz | abgedeckt |
-| Set up Business Central | Core Functionality | Company Information, Report Layouts, Job Queues, Email Accounts, Number Series | 25–30 % | MB-800 Study Guide | 6, 15, 26, 32, 35 | Dokumentversand | UAT Dokumente | Report Layout vs. Financial Report | abgedeckt |
-| Set up Business Central | Dimensions | Dimension Values, Global, Shortcut, Default, Combinations, Correction Tool, Priorities | 25–30 % | MB-800 Study Guide | 5, 6, 21, 24, 43 | Pflichtdimension | UAT-001 | Global vs. Shortcut Dimension | abgedeckt |
-| Set up Business Central | Workflows | Workflows, Notifications, Approval Users, Workflow User Groups | 25–30 % | MB-800 Study Guide | 6, 32, 33 | Einkaufsfreigabe | UAT Approval | Approval vs. Permission | abgedeckt |
-| Set up Business Central | Integrationen | Microsoft 365, Excel, OneDrive, Outlook, Teams, Word, Power Platform | 25–30 % | Get started path, BC docs | 15, 31, 32, 41 | Edit in Excel | UAT Integration | Integration vs. Extension | abgedeckt |
-| Configure financials | Finanzmanagement | General Ledger Setup, Accounting Periods, Payment Terms, Deferrals, Currencies, Payment Methods | 30–35 % | MB-800 Study Guide | 13, 24, 35, 36, 43 | Abgrenzung | UAT Finance | Deferrals vs. Recurring Journals | abgedeckt |
-| Configure financials | Kontenplan | G/L Accounts, Account Categories, Financial Reports | 30–35 % | Finance modules | 13, 21, 24, 43 | GuV | UAT-020 | Sachkonto vs. Buchungsgruppe | abgedeckt |
-| Configure financials | Buchungsgruppen | Bank, Customer, Vendor, Inventory, General Posting Setup, Inventory Posting Setup | 30–35 % | Finance modules | 13, 24, 43 | Posting Setup | UAT Posting | General vs. VAT Posting | abgedeckt |
-| Configure financials | Journale und Bank | Bank Accounts, Journal Templates, Batches, Recurring Journals | 30–35 % | Finance modules | 13, 35, 36, 43 | Zahlung | UAT-016 | Payment Journal vs. Cash Receipt Journal | abgedeckt |
-| Configure financials | Kreditoren | Vendors, Vendor Ledger, Detailed Entries, Payment Journals | 30–35 % | Finance modules | 8, 13, 24, 43 | P2P | UAT-006 | Vendor Ledger vs. Detailed Vendor Ledger | abgedeckt |
-| Configure financials | Debitoren | Customers, Customer Ledger, Detailed Entries, Cash Receipts, Payment Registration | 30–35 % | Finance modules | 7, 13, 24, 43 | O2C | UAT-002 | Payment Registration vs. Journal | abgedeckt |
-| Configure financials | Anlagen | Depreciation Books, FA Classes, FA Posting Groups, Components, Methods | 30–35 % | Finance modules | 13, 24, 43 | Anlagenzugang | UAT-017 | Purchase Invoice vs. FA Journal | abgedeckt |
-| Configure sales and purchasing | Inventory Setup | Item Categories, Attributes, Units, Variants, Locations, SKU, Costing Methods | 10–15 % | Inventory modules | 5, 9, 25, 43 | Lagerbewertung | UAT-009 | Item Ledger vs. Value Entries | abgedeckt |
+| Set up Business Central | Company erstellen | Companies, Assisted Setup, Configuration Worksheet, Configuration Packages, Opening Balances, Data Migration | 25–30 % | MB-800 Study Guide, Get started path | 6, 8, 28, 34 | Greenfield Setup | GF-001 | Assisted Setup vs. Manual Setup | abgedeckt |
+| Set up Business Central | Security verwalten | Users, Profiles, Permission Sets, Security Groups, Security Filters, Security Auditing | 25–30 % | MB-800 Study Guide | 27, 30, 34, 36, 38 | Nutzer anlegen | UAT Admin | Rolle vs. Berechtigungssatz | abgedeckt |
+| Set up Business Central | Core Functionality | Company Information, Report Layouts, Job Queues, Email Accounts, Number Series | 25–30 % | MB-800 Study Guide | 6, 8, 30, 34, 35 | Dokumentversand | UAT Dokumente | Report Layout vs. Financial Report | abgedeckt |
+| Set up Business Central | Dimensions | Dimension Values, Global, Shortcut, Default, Combinations, Correction Tool, Priorities | 25–30 % | MB-800 Study Guide | 8, 10, 25, 38 | Pflichtdimension | UAT-001 | Global vs. Shortcut Dimension | abgedeckt |
+| Set up Business Central | Workflows | Workflows, Notifications, Approval Users, Workflow User Groups | 25–30 % | MB-800 Study Guide | 8, 27, 32, 33 | Einkaufsfreigabe | UAT Approval | Approval vs. Permission | abgedeckt |
+| Set up Business Central | Integrationen | Microsoft 365, Excel, OneDrive, Outlook, Teams, Word, Power Platform | 25–30 % | Get started path, BC docs | 29, 31, 35, 38 | Edit in Excel | UAT Integration | Integration vs. Extension | abgedeckt |
+| Configure financials | Finanzmanagement | General Ledger Setup, Accounting Periods, Payment Terms, Deferrals, Currencies, Payment Methods | 30–35 % | MB-800 Study Guide | 9, 19, 20, 22, 24 | Abgrenzung | UAT Finance | Deferrals vs. Recurring Journals | abgedeckt |
+| Configure financials | Kontenplan | G/L Accounts, Account Categories, Financial Reports | 30–35 % | Finance modules | 9, 24, 25, 38 | GuV | UAT-020 | Sachkonto vs. Buchungsgruppe | abgedeckt |
+| Configure financials | Buchungsgruppen | Bank, Customer, Vendor, Inventory, General Posting Setup, Inventory Posting Setup | 30–35 % | Finance modules | 9, 13, 22, 38 | Posting Setup | UAT Posting | General vs. VAT Posting | abgedeckt |
+| Configure financials | Journale und Bank | Bank Accounts, Journal Templates, Batches, Recurring Journals | 30–35 % | Finance modules | 19, 20, 24, 36 | Zahlung | UAT-016 | Payment Journal vs. Cash Receipt Journal | abgedeckt |
+| Configure financials | Kreditoren | Vendors, Vendor Ledger, Detailed Entries, Payment Journals | 30–35 % | Finance modules | 12, 19, 20, 24 | P2P | UAT-006 | Vendor Ledger vs. Detailed Vendor Ledger | abgedeckt |
+| Configure financials | Debitoren | Customers, Customer Ledger, Detailed Entries, Cash Receipts, Payment Registration | 30–35 % | Finance modules | 11, 19, 20, 24 | O2C | UAT-002 | Payment Registration vs. Journal | abgedeckt |
+| Configure financials | Anlagen | Depreciation Books, FA Classes, FA Posting Groups, Components, Methods | 30–35 % | Finance modules | 21, 24, 38 | Anlagenzugang | UAT-017 | Purchase Invoice vs. FA Journal | abgedeckt |
+| Configure sales and purchasing | Inventory Setup | Item Categories, Attributes, Units, Variants, Locations, SKU, Costing Methods | 10–15 % | Inventory modules | 7, 9, 13, 23 | Lagerbewertung | UAT-009 | Item Ledger vs. Value Entries | abgedeckt |
 | Configure sales and purchasing | Master Data | Customer shipping, Vendor order address, Lead Time, Locations | 10–15 % | Sales/Purchasing modules | 5, 7, 8, 20 | Stammdaten | UAT O2C/P2P | Customer Posting Group vs. Gen. Bus. Group | abgedeckt |
 | Configure sales and purchasing | Preise/Rabatte | Purchase Prices, Line Discounts, Invoice Discounts, Sales Prices | 10–15 % | Pricing modules | 20 | Preisübung | UAT Pricing | Zeilenrabatt vs. Rechnungsrabatt | abgedeckt |
 | Perform operations | Basic Tasks | Personalizing, Customizing, Designing, Filters, Related Entries, Inspect Pages, Edit in Excel, OneDrive, Analysis Mode | 25–30 % | Get started path | 22, 23, 30, 41, 44 | Onboarding | UAT Basic | Personalisieren vs. Anpassen | abgedeckt |
-| Perform operations | Purchases | Quotes, Orders, Receipts, Over-Receipt, Reverse Receipt, Invoices, Recurring Lines, Blanket Orders, Deferrals | 25–30 % | Purchasing modules | 8, 36, 40, 44 | Einkaufsübung | UAT-006 | Receive vs. Invoice | abgedeckt |
+| Perform operations | Purchases | Quotes, Orders, Receipts, Over-Receipt, Reverse Receipt, Invoices, Recurring Lines, Blanket Orders, Deferrals | 25–30 % | Purchasing modules | 12, 13, 34, 36 | Einkaufsübung | UAT-006 | Receive vs. Invoice | abgedeckt |
 | Perform operations | Sales | Quotes, Orders, Availability, Shipments, Reverse Shipment, Invoices, Recurring Lines, Blanket Orders, Deferrals | 25–30 % | Sales modules | 7, 20, 36, 40, 44 | Verkaufsübung | UAT-002 | Shipment reversal vs. Credit Memo | abgedeckt |
-| Perform operations | Financial Documents | Purchase/Sales Invoices, Credit Memos, Combine Shipments/Receipts, Correct Posted Invoices, Release/Reopen, Prepayments | 25–30 % | Operations modules | 7, 8, 13, 18, 44 | Gutschrift | UAT-003 | Reverse Journal vs. Credit Memo | abgedeckt |
-| Perform operations | Payments/Journals | Payment Journals, Cash Receipt Journals, Payment Registration, Apply/Unapply, Reverse Journals, Bank Reconciliation, Allocations, Exchange Rates | 25–30 % | Finance operations modules | 13, 35, 36, 43 | Bankausgleich | UAT-016 | Apply vs. Unapply | abgedeckt |
-| Perform operations | Fixed Assets | Acquisition, Depreciation, Disposal | 25–30 % | Fixed Assets modules | 13, 24, 43 | Anlage | UAT-017 | Acquisition vs. Depreciation | abgedeckt |
+| Perform operations | Financial Documents | Purchase/Sales Invoices, Credit Memos, Combine Shipments/Receipts, Correct Posted Invoices, Release/Reopen, Prepayments | 25–30 % | Operations modules | 11, 12, 18, 19, 36 | Gutschrift | UAT-003 | Reverse Journal vs. Credit Memo | abgedeckt |
+| Perform operations | Payments/Journals | Payment Journals, Cash Receipt Journals, Payment Registration, Apply/Unapply, Reverse Journals, Bank Reconciliation, Allocations, Exchange Rates | 25–30 % | Finance operations modules | 19, 20, 24, 36 | Bankausgleich | UAT-016 | Apply vs. Unapply | abgedeckt |
+| Perform operations | Fixed Assets | Acquisition, Depreciation, Disposal | 25–30 % | Fixed Assets modules | 21, 24, 38 | Anlage | UAT-017 | Acquisition vs. Depreciation | abgedeckt |
 
 ---
 
@@ -5794,15 +5704,15 @@ Merksatz:
 ### Wie finde ich Dinge in Business Central?
 
 Standard laut Quelle:
-- Business Central hat die Suche `Tell Me`, die über `Alt+Q` oder das Suchsymbol erreichbar ist. Darüber lassen sich Seiten und Informationen finden. [Q52]
+- Business Central hat die Suche ``Alt+Q``, die über `Alt+Q` oder das Suchsymbol erreichbar ist. Darüber lassen sich Seiten und Informationen finden. [Q52]
 - Nutzer können Seiten bookmarken und ihren Arbeitsbereich personalisieren. Personalisierung betrifft den eigenen Arbeitsbereich; Profilanpassungen durch Administratoren betreffen Rollen/Profile. [Q53][Q54]
 
 Bedienlogik:
 
 | Ziel | So findet man es | Beispiel |
 |---|---|---|
-| Seite öffnen | `Alt+Q` → Suchbegriff | `Sales Orders` |
-| eigene Favoriten setzen | Bookmark-Symbol | Sales Orders ins Role Center |
+| Seite öffnen | `Alt+Q` → Suchbegriff | `Verkaufsaufträge (Sales Orders)` |
+| eigene Favoriten setzen | Bookmark-Symbol | Verkaufsaufträge (Sales Orders) ins Rollencenter |
 | Spalte anzeigen | Personalisieren | `Location Code` sichtbar machen |
 | Rollenlayout für alle ändern | `Profiles (Roles)` | Controller-Rolle anpassen |
 | Listen eingrenzen | Filter | Debitor D10000, März 2026 |
@@ -5823,22 +5733,22 @@ Einsteiger-Best-Practice:
 | Profilanpassung | Admin passt Seiten für Rolle an | einheitliche Schulungsoberfläche |
 | Sprache | Deutsch als UI-Sprache, soweit gewünscht | Begriffe konsistent |
 | Firmenauswahl | richtige Company | Buchungen landen im richtigen Mandanten |
-| Suchbegriffe | Schulungstabelle mit deutschen/englischen Begriffen | Tell Me findet oft englische Seitennamen |
+| Suchbegriffe | Schulungstabelle mit deutschen/englischen Begriffen | `Alt+Q`findet oft englische Seitennamen |
 
 Suchworttabelle:
 
-| Aufgabe | Suchbegriff in Tell Me |
+| Aufgabe | Suchbegriff in `Alt+Q`|
 |---|---|
-| Verkaufsauftrag | `Sales Orders` |
-| Einkaufsbestellung | `Purchase Orders` |
-| Debitorenposten | `Customer Ledger Entries` |
-| Kreditorenposten | `Vendor Ledger Entries` |
-| Artikelposten | `Item Ledger Entries` |
-| Sachposten | `G/L Entries` |
-| USt-Posten | `VAT Entries` |
-| Dimensionen | `Dimensions` |
-| Financial Reports | `Financial Reports` |
-| Zahlungsabstimmungsjournal | `Payment Reconciliation Journal` |
+| Verkaufsauftrag | `Verkaufsaufträge (Sales Orders)` |
+| Einkaufsbestellung | `Einkaufsbestellungen (Purchase Orders)` |
+| Debitorenposten | `Debitorenposten (Customer Ledger Entries)` |
+| Kreditorenposten | `Kreditorenposten (Vendor Ledger Entries)` |
+| Artikelposten | `Artikelposten (Item Ledger Entries)` |
+| Sachposten | `Sachposten (G/L Entries)` |
+| USt-Posten | `USt-Posten (VAT Entries)` |
+| Dimensionen | `Dimensionen (Dimensions)` |
+| Financial Reports | `Finanzberichte (Financial Reports)` |
+| Zahlungsabstimmungsjournal | `Zahlungsabstimmungs Buch.-Blatt (Payment Reconciliation Journal)` |
 | Change Log | `Change Log Entries` |
 | Profile/Rollen | `Profiles (Roles)` |
 
@@ -5883,9 +5793,9 @@ BC-Best-Practice:
 | 5 | Nachweise und Reports | Mitarbeiter versteht, warum sauber gearbeitet wird |
 
 Schulungsübung:
-1. Öffne per `Alt+Q` die Seite `Sales Orders`.
+1. Öffne per `Alt+Q` die Seite `Verkaufsaufträge (Sales Orders)`.
 2. Bookmarke sie.
-3. Öffne `Customer Ledger Entries`.
+3. Öffne `Debitorenposten (Customer Ledger Entries)`.
 4. Filtere auf Debitor `D10000`.
 5. Blende über Personalisierung die Spalte `External Document No.` ein.
 6. Erkläre, warum du diese Spalte im Alltag brauchst.
@@ -5909,7 +5819,7 @@ Einsteiger machen Fehler oft nicht, weil sie die Fachlogik nicht verstehen. Sie 
 
 | Ziel | Bediengriff | Warum wichtig |
 |---|---|---|
-| Seite oder Bericht finden | `Alt+Q` | zentrale Suche `Tell Me` öffnen |
+| Seite oder Bericht finden | `Alt+Q` | zentrale Suche ``Alt+Q`` öffnen |
 | in Liste suchen | `F3` | Datensatz in Liste schnell finden |
 | Filter setzen | Filterbereich öffnen und Feldfilter setzen | große Listen kontrollierbar machen |
 | Seite als Favorit speichern | Bookmark-Symbol | tägliche Seiten im Role Center sichtbar machen |
@@ -5927,18 +5837,18 @@ Viele deutschsprachige Nutzer suchen nach „Verkaufsauftrag“, „Debitorenpos
 
 | Fachlicher Wunsch | Häufig guter Suchbegriff | Typischer Nutzer |
 |---|---|---|
-| Kundenauftrag bearbeiten | `Sales Orders` | Verkauf |
+| Kundenauftrag bearbeiten | `Verkaufsaufträge (Sales Orders)` | Verkauf |
 | gebuchte Verkaufsrechnung finden | `Posted Sales Invoices` | Verkauf/Buchhaltung |
-| Kundenzahlungen prüfen | `Customer Ledger Entries` | Buchhaltung |
-| Lieferantenbestellung erfassen | `Purchase Orders` | Einkauf |
+| Kundenzahlungen prüfen | `Debitorenposten (Customer Ledger Entries)` | Buchhaltung |
+| Lieferantenbestellung erfassen | `Einkaufsbestellungen (Purchase Orders)` | Einkauf |
 | gebuchte Einkaufsrechnung finden | `Posted Purchase Invoices` | Einkauf/Buchhaltung |
-| Wareneingang prüfen | `Warehouse Receipts` / `Posted Purchase Receipts` | Lager/Einkauf |
-| Artikelbewegung prüfen | `Item Ledger Entries` | Lager/Controlling |
-| Wertbewegung prüfen | `Value Entries` | Controlling/Buchhaltung |
+| Wareneingang prüfen | `Lagereingänge (Warehouse Receipts)` / `Gebuchte Einkaufslieferungen (Posted Purchase Receipts)` | Lager/Einkauf |
+| Artikelbewegung prüfen | `Artikelposten (Item Ledger Entries)` | Lager/Controlling |
+| Wertbewegung prüfen | `Wertposten (Value Entries)` | Controlling/Buchhaltung |
 | Sachkontobuchungen prüfen | `General Ledger Entries` | Buchhaltung/Controlling |
-| USt prüfen | `VAT Entries` | Buchhaltung |
-| GuV aufrufen | `Financial Reports` | Controlling |
-| Analyse nach Dimension | `Analysis Views` / `Dimensions - Detail` | Controlling |
+| USt prüfen | `USt-Posten (VAT Entries)` | Buchhaltung |
+| GuV aufrufen | `Finanzberichte (Financial Reports)` | Controlling |
+| Analyse nach Dimension | `Analyseansichten (Analysis Views)` / `Dimensions - Detail` | Controlling |
 | Dimension korrigieren | `Dimension Corrections` | Finance/Admin |
 | Perioden schließen | `Accounting Periods` | Finance-Leitung |
 
@@ -6014,9 +5924,9 @@ Business Central arbeitet mit gebuchten Posten. Gebuchte Daten werden fachlich k
 | falsche Journalbuchung | Reverse/Storno und richtige Buchung neu erfassen | ursprünglicher Posten, Storno, neue Buchung |
 | falsche Dimension auf Sachposten | Dimension Correction prüfen und durchführen | Historie der Dimension Correction |
 | falsche gebuchte Verkaufsrechnung | Gutschrift/Korrekturbeleg | Rechnung, Gutschrift, neue Rechnung |
-| falscher Zahlungsausgleich | Ausgleich lösen und korrekt neu ausgleichen | Customer/Vendor Ledger Entries |
-| falscher Lagerbestand | Inventur, Artikeljournal oder Lagerkorrektur nach Freigabe | Item Ledger Entries, Value Entries |
-| falsche Periode | Buchungsdatum prüfen, Periodensperre beachten, Korrektur dokumentieren | G/L Entries, Abschlussnachweis |
+| falscher Zahlungsausgleich | Ausgleich lösen und korrekt neu ausgleichen | Debitoren-/Kreditorenposten (Customer/Vendor Ledger Entries) |
+| falscher Lagerbestand | Inventur, Artikeljournal oder Lagerkorrektur nach Freigabe | Artikelposten (Item Ledger Entries), Wertposten (Value Entries) |
+| falsche Periode | Buchungsdatum prüfen, Periodensperre beachten, Korrektur dokumentieren | Sachposten (G/L Entries), Abschlussnachweis |
 
 Achtung:
 - Dimension Correction ändert nach Microsoft die Dimensionen auf Sachposten. Sie ändert nicht automatisch die Dimensionen in allen Nebenbüchern derselben Transaktion. Deshalb muss Finance prüfen, ob Reporting, Nebenbuch und Nachweislogik zusammenpassen. [Q59]
@@ -6026,7 +5936,7 @@ Achtung:
 Controller arbeiten nicht nur mit fertigen Berichten. Sie prüfen, ob die Daten für Berichte überhaupt belastbar sind.
 
 Tagesroutine:
-1. `Financial Reports` öffnen.
+1. `Finanzberichte (Financial Reports)` öffnen.
 2. GuV für aktuellen Monat und kumuliert prüfen.
 3. Dimension `PRODUCTLINE` filtern.
 4. auffällige Abweichung identifizieren.
@@ -6090,8 +6000,8 @@ flowchart TD
     B -- Ja --> D{Betrifft es nur Reporting?}
     D -- Ja --> E[Dimension, Filter, Analysis View, Financial Report prüfen]
     D -- Nein --> F{Betrifft es Bestand oder Wert?}
-    F -- Bestand --> G[Item Ledger Entries und Lagerprozess prüfen]
-    F -- Wert --> H[Value Entries, Kostenregulierung und Sachposten prüfen]
+    F -- Bestand --> G[Artikelposten (Item Ledger Entries) und Lagerprozess prüfen]
+    F -- Wert --> H[Wertposten (Value Entries), Kostenregulierung und Sachposten prüfen]
     F -- Weder noch --> I[Debitor/Kreditor/Sachkonto/USt prüfen]
     E --> J[Nachweis dokumentieren]
     G --> J
@@ -6116,11 +6026,11 @@ Praxisregel:
 | Periode falsch | Posting Date, Accounting Periods, Sperren | Finance-Leitung einbinden |
 
 Schulungsübung:
-1. Öffne `Sales Orders` mit `Alt+Q`.
+1. Öffne `Verkaufsaufträge (Sales Orders)` mit `Alt+Q`.
 2. Setze einen Filter auf Debitor `D10000`.
 3. Öffne einen gebuchten Verkaufsbeleg.
-4. Springe zu `Customer Ledger Entries`.
-5. Öffne die zugehörigen `G/L Entries`.
+4. Springe zu `Debitorenposten (Customer Ledger Entries)`.
+5. Öffne die zugehörigen `Sachposten (G/L Entries)`.
 6. Erkläre die Buchungsspur.
 7. Blende eine fehlende Spalte über Personalisierung ein.
 8. Bookmarke die Seite.
@@ -6224,7 +6134,7 @@ Schulungen, Arbeitsanweisungen und Screenshots verwenden die deutsche Oberfläch
 ### Deutsche Bedienanweisungen: Formulierungsmuster
 
 Falsch für dieses Buch:
-- „Open `Sales Orders` and post the invoice.“
+- „Open `Verkaufsaufträge (Sales Orders)` and post the invoice.“
 
 Richtig:
 - „Öffne über `Alt+Q` die Seite `Verkaufsaufträge (Sales Orders)`. Öffne den Auftrag. Prüfe Debitor, Buchungsdatum, Lagerort, Preis, USt-Produktbuchungsgruppe und Dimensionen. Wähle anschließend `Buchen`.“
@@ -6364,7 +6274,7 @@ Merksatz:
 | Bank & Zahlungen | `Zahlungsjournale (Payment Journals)`, `Zahlungsabstimmungsjournale (Payment Reconciliation Journals)` | Bankkonten, Zahlungsarten | zahlen, abstimmen | Bank-/Sachposten, Debitoren-/Kreditorenposten | Bankabstimmung |
 | Abschluss | `Buchhaltungsperioden (Accounting Periods)`, `Fibu Buch.-Blätter (General Journals)`, `Finanzberichte (Financial Reports)` | Perioden, Sperren, Abschlusskonten | abgrenzen, schließen, berichten | Sachposten | Bilanz/GuV |
 | Intercompany | `Intercompany-Einrichtung (Intercompany Setup)`, IC-Buch.-Blätter | IC Partner, IC Konten | IC-Belege senden/empfangen | IC-Posten, Sachposten | IC-Abstimmung |
-| Shopify/Online | `Shopify Shops`, `Verkaufsaufträge (Sales Orders)` | Shop, Mapping, Steuer | Shopaufträge verarbeiten | Verkaufs-, Debitoren-, USt-Posten | Shop-Abstimmung |
+| Shopify/Online | `Shopify-Shops (Shopify Shops)`, `Verkaufsaufträge (Sales Orders)` | Shop, Mapping, Steuer | Shopaufträge verarbeiten | Verkaufs-, Debitoren-, USt-Posten | Shop-Abstimmung |
 | Dropshipping | `Verkaufsaufträge (Sales Orders)`, `Einkaufsbestellungen (Purchase Orders)` | Einkaufscode (Purchasing Code), Lieferant | Direktlieferung steuern | verknüpfte Verkaufs-/Einkaufsposten | Marge, Steuer, Liefernachweis |
 | Reporting | `Finanzberichte (Financial Reports)`, `Analysemodus (Analysis Mode)`, `Analyseansichten (Analysis Views)` | Dimensionen, Reports | auswerten und filtern | Sachposten, Dimensionen | GuV, Bilanz, Analyse |
 | Administration | `Aufgabenwarteschlangenposten (Job Queue Entries)`, `Änderungsprotokoll (Change Log)`, `Erweiterungsverwaltung (Extension Management)` | Jobs, Protokollierung, Apps | Betrieb überwachen | Protokolle, Änderungsprotokoll | Admin-Kalender |
@@ -6414,7 +6324,7 @@ Prüfungsfalle:
 | Verkauf | offene Angebote/Aufträge prüfen | Auftrag, Preis, Verfügbarkeit, Lieferung, Rechnung | gebuchte Rechnungen und offene Lieferungen prüfen |
 | Einkauf | Bestellvorschläge und offene Bestellungen prüfen | Bestellung, Wareneingang, Eingangsrechnung | Preis-/Mengenabweichungen klären |
 | Lager einfach | offene Eingänge/Ausgänge prüfen | direkt empfangen, liefern, zählen | Item Ledger und Differenzen prüfen |
-| Lager gesteuert | Warehouse Receipts, Put-aways, Picks prüfen | Receive, Put-away, Pick, Ship | offene Warehouse-Aktivitäten schließen |
+| Lager gesteuert | Lagereingänge, Lagereinlagerungen und Lagerkommissionierungen prüfen | Empfangen, einlagern, kommissionieren, liefern | offene Warehouse-Aktivitäten schließen |
 | Fertigung | offene Fertigungsaufträge prüfen | Material, Output, Ausschuss, Nacharbeit | Verbrauch/Output und Abweichung prüfen |
 | Service | offene Serviceaufträge prüfen | Diagnose, Ersatzteil, Ressource, Faktura | Servicekosten und Vertragsfälle prüfen |
 | Projektleitung | Projektaufgaben prüfen | Ressourcen, Einkauf, WIP, Rechnung | Budget/Ist prüfen |
@@ -6514,7 +6424,7 @@ Der Leser muss folgende End-to-End-Fälle im Trainingsmandanten durchführen:
 11. Projektaufwand erfassen und abrechnen.
 12. Bankzahlung ausgleichen und Unapply-Fall erklären.
 13. Anlage kaufen, aktivieren und Abschreibung buchen.
-14. USt-Inlandfall buchen und VAT Entries prüfen.
+14. USt-Inlandfall buchen und USt-Posten (VAT Entries) prüfen.
 15. EU-B2B-Fall mit USt-ID-Prüfung erklären.
 16. Drittlandexport als Nachweisfall erklären.
 17. Dropshipping-Inlandsfall buchen.
@@ -6677,7 +6587,7 @@ Lagerbewertung verbindet Artikelposten, Wertposten und Sachposten. Die monatlich
 | Rechnung bucht nicht | Pflichtfeld, Freigabe, Dimension, USt | Beleg korrigieren |
 | USt falsch | VAT Posting Setup, Partner, Artikel | Gutschrift/Korrektur |
 | Marge falsch | Preis, Kosten, Rabatt, Kostenlauf | Preis/Kostenlauf prüfen |
-| Lagerwert falsch | Value Entries, Kostenregulierung | Adjust Cost und Abstimmung |
+| Lagerwert falsch | Wertposten (Value Entries), Kostenregulierung | Adjust Cost und Abstimmung |
 | GuV leer nach Dimension | Dimension, Filter, Analysis View | Dimension Correction/Update |
 | Zahlung gleicht nicht aus | Applies-to, Währung, Restbetrag | Unapply und neu ausgleichen |
 | User sieht Seite nicht | Profil, Berechtigung, Lizenz | Permission Set/Rolle |
@@ -6776,8 +6686,8 @@ Dieses Kapitel liefert direkt nutzbare Templates.
 | Release Wave | Release Notes, Testplan, Extensions, Rollen, Training |
 | Job Queue | Fehler, Laufzeit, Verantwortlicher, Neustart |
 | Monatsabschluss | OP, Bank, Lagerwert, USt, Anlagen, GuV |
-| USt-Abstimmung | VAT Entries, Sachkonten, UStVA, ZM, Nachweise |
-| Lagerwert | Item Ledger, Value Entries, Inventory Valuation, G/L |
+| USt-Abstimmung | USt-Posten (VAT Entries), Sachkonten, UStVA, ZM, Nachweise |
+| Lagerwert | Artikelposten (Item Ledger Entries), Wertposten (Value Entries), Lagerbewertung (Inventory Valuation), Sachposten (G/L Entries) |
 | Berechtigungsreview | Nutzer, Rollen, Permission Sets, SoD, SUPER |
 
 ---
@@ -6836,7 +6746,7 @@ Dieses Kapitel liefert direkt nutzbare Templates.
 - [Q49] Microsoft Learn: Work with dimensions: https://learn.microsoft.com/en-us/dynamics365/business-central/finance-dimensions
 - [Q50] Microsoft Learn: Dimensions - Detail report: https://learn.microsoft.com/en-us/dynamics365/business-central/reports/report-28
 - [Q51] Microsoft Learn: Financial reports and analysis: https://learn.microsoft.com/en-us/dynamics365/business-central/finance-reports
-- [Q52] Microsoft Learn: Finding pages and information with Tell Me: https://learn.microsoft.com/en-us/dynamics365/business-central/ui-search
+- [Q52] Microsoft Learn: Finding pages and information with `Alt+Q`: https://learn.microsoft.com/en-us/dynamics365/business-central/ui-search
 - [Q53] Microsoft Learn: Personalize your workspace: https://learn.microsoft.com/en-us/dynamics365/business-central/ui-personalization-user
 - [Q54] Microsoft Learn: Customize pages for profiles: https://learn.microsoft.com/en-us/dynamics365/business-central/ui-personalization-manage
 - [Q55] Microsoft Learn: Manage users and roles: https://learn.microsoft.com/en-us/dynamics365/business-central/admin-users-profiles-roles
