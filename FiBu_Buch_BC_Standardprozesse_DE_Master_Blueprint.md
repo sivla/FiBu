@@ -11,56 +11,71 @@ Hinweis: Dieses Buch ist ein quellenbasiertes Lern-, Schulungs-, Projekt- und Im
 - Bei Abweichungen zwischen diesem Buch und Normtext oder Microsoft Learn gilt immer die aktuelle Primärquelle.
 - Dieses Skript verwendet für Quellenangaben nur Primärquellen: Microsoft Learn, Gesetze im Internet, BMF, BZSt und amtliche EU-Quellen.
 
-## Inhaltsverzeichnis (Kurz)
+## Inhaltsverzeichnis nach sechs Teilen
 
+**Teil A — Orientierung und Fallstudie**
 1. Zielbild: Business Central komplett durchspielen
 2. Quellen-, Pflicht- und Best-Practice-Schicht
 3. Musterkonzern Rhein-Main Industriegruppe
-4. Rollen, Abteilungen und Bedienlogik in BC
-5. Trainingsdaten: Stammdaten, Standorte, Artikel, Belege
+4. ERP und Business Central für absolute Einsteiger
+5. Wie Business Central denkt: Stammdaten, Belege, Posten und Trainingsdaten
+
+**Teil B — Grundlage: Firma, Daten, Setup**
 6. Grundlagen (Foundation): Companies, Benutzer, Nummernserien, Dimensionen, Workflows
-7. Verkauf/O2C (Order-to-Cash): Vertrieb, Onlineshop, Dropshipping, Retouren, Vorauszahlungen
-8. Einkauf/P2P (Procure-to-Pay): Einkauf, Wareneingang, E-Rechnung, Fremdarbeit, Zahlungen
-9. Bestand und Lager (Inventory & Warehouse): einfaches Lager, gesteuertes Lager, Lagerplätze, Inventur
-10. Planung, Montage und Fertigung (Planning, Assembly & Manufacturing): Planung, Montage, Fertigung, Fremdarbeit
-11. Service, Mietmodelle und Finanzierung im Standardgrenzbereich
-12. Projekte (Projects): Projektgeschäft, Ressourcen, WIP, Faktura
-13. Finanzbuchhaltung/R2R (Record-to-Report): Journale, Debitoren, Kreditoren, Bank, Anlagen, USt, Abschluss
-14. Konzerninterne Prozesse, Ausland, Außenhandel und Sonderfälle
-15. Berichtswesen, Administration, Aufgabenwarteschlange, Änderungsprotokoll, Datenexport
-16. Schulungskapitel nach Abteilungen
-17. Master-UAT und Abweichungsmatrix
-18. Standardgrenzen: Wann BC Standard endet
-19. Ausblick: häufig genutzte Erweiterungen (Extensions) und Einrichtungslogik
 20. Einkaufspreise, Verkaufspreise, Rabatte und Margensteuerung
-21. Controlling, GuV, Financial Reports und Management-Auswertungen
-22. Einsteiger-Onboarding: Finden, Bedienen, Fehler vermeiden und korrigieren
-23. Tipps und Tricks: schneller, sicherer und prüfbarer in BC arbeiten
 24. Bilanz, GuV, Nebenbücher und Postenlogik verstehen
 25. Lagerlogiken im Vergleich: einfach, Basic Warehouse und gesteuertes Lager
-26. Admin, Superuser, Grundeinrichtung und laufender Betrieb
-27. Inland, Ausland, Dropshipping und Steuerlogiken
-28. Vollständiger Bedien- und Prozesskatalog
-29. Vollständigkeitsprüfung: Was muss ein Leser nach dem Buch können?
 30. Deutsche BC-Oberfläche: Begriffe, Seiten und Suchlogik
 31. Greenfield-Einführung: Konzern von null aufbauen
+
+**Teil C — Operative End-to-End-Prozesse**
+7. Verkauf/O2C (Order-to-Cash)
+8. Einkauf/P2P (Procure-to-Pay)
+9. Bestand und Lager (Inventory & Warehouse)
+10. Planung, Montage und Fertigung
+11. Service, Mietmodelle und Finanzierung im Standardgrenzbereich
+12. Projekte (Projects)
+14. Konzerninterne Prozesse, Ausland, Außenhandel und Sonderfälle
+27. Inland, Ausland, Dropshipping und Steuerlogiken
+
+**Teil D — Finance, Kontrolle und Abschluss**
+13. Finanzbuchhaltung/R2R (Record-to-Report)
+21. Controlling, GuV, Financial Reports und Management-Auswertungen
+35. Monitoring, Hypercare, Performance und Betrieb
+36. Wiederkehrende Finance-Prozesse, Abgrenzungen und Umlagen
+43. Fachliche Praxisanker: Buchungslogik, Dimensionen, Posten, Kosten, Anlagen und Bank
+
+**Teil E — Projekt, Architektur und Betrieb**
+15. Berichtswesen, Administration, Aufgabenwarteschlange, Änderungsprotokoll, Datenexport
+18. Standardgrenzen: Wann BC Standard endet
+19. Ausblick: häufig genutzte Erweiterungen (Extensions)
+26. Admin, Superuser, Grundeinrichtung und laufender Betrieb
 32. Dokumente, E-Mail, Beleglayouts und Ausgabeprozesse
 33. Genehmigungen, Kontrollen, SoD und Prozesssicherheit
 34. Datenqualität, Migration und Stammdaten-Governance
-35. Monitoring, Hypercare, Performance und Betrieb
-36. Wiederkehrende Finance-Prozesse, Abgrenzungen und Umlagen
-37. Lösungsanhang zu Übungen und UAT-Fällen
+42. Business Central Solution Architect Pfad
+45. Projektartefakte
+
+**Teil F — Training, Prüfung und Nachschlagen**
+16. Schulungskapitel nach Abteilungen
+17. Master-UAT und Abweichungsmatrix
+22. Einsteiger-Onboarding
+23. Tipps und Tricks
+28. Vollständiger Bedien- und Prozesskatalog
+29. Vollständigkeitsprüfung
+37. Lösungsanhang
 38. Kritische Gap-Analyse und Strukturentscheidung
-39. Wie man dieses Buch nutzt: Lernpfade und Reifegrad
+39. Wie man dieses Buch nutzt
 40. MB-800-Kompetenzmatrix
 41. Microsoft-Learn-Abdeckung und Lernpfad-Mapping
-42. Business Central Solution Architect Pfad: Standard-first Architektur
-43. Fachliche Masterkapitel: Buchungslogik, Dimensionen, Posten, Kosten, Anlagen und Bank
-44. MB-800- und Praxisfallen: Was ähnlich klingt, aber nicht gleich ist
-45. Projektartefakte
+44. MB-800- und Praxisfallen
 46. Quellenverzeichnis
 
 ---
+
+## Teil A — Orientierung und Fallstudie
+
+Teil A erklärt, warum dieses Buch existiert, wie die Rhein-Main Industriegruppe funktioniert und welche Grundbegriffe ein Leser ohne ERP-Vorwissen zuerst braucht. Der Leser soll die Firma verstehen, bevor er einzelne Seiten in Business Central öffnet.
 
 ## 1. Zielbild: Business Central komplett durchspielen [Q1][Q2]
 
@@ -218,6 +233,39 @@ Prüfungsfalle:
 
 Die Musterfirma ist bewusst breit konstruiert. Sie soll Business Central nicht minimal abbilden, sondern als Trainingsuniversum möglichst vollständig auslösen.
 
+### 3.0 Die Fallstudie in einfachen Worten
+
+Die Rhein-Main Industriegruppe baut Maschinen, verkauft Ersatzteile, betreibt einen Onlineshop, schickt Servicetechniker zum Kunden, wickelt Projekte ab und führt mehrere Gesellschaften in einer Unternehmensgruppe. Genau deshalb braucht sie ein ERP-System. Ohne ERP würden Vertrieb, Einkauf, Lager, Fertigung, Service und Buchhaltung mit getrennten Listen arbeiten. Dann weiß der Vertrieb nicht sicher, ob Ware verfügbar ist. Der Einkauf sieht zu spät, welches Material fehlt. Das Lager kennt Mengen, aber nicht immer Werte. Finance erkennt Fehler erst im Monatsabschluss.
+
+Business Central verbindet diese Abteilungen. Ein Verkaufsauftrag ist nicht nur ein Formular für den Kunden. Er beeinflusst Lager, Umsatz, Umsatzsteuer, Forderungen, Wareneinsatz, Dimensionen und Reporting. Eine Einkaufsbestellung ist nicht nur eine Bestellung beim Lieferanten. Sie beeinflusst Materialverfügbarkeit, Lagerwert, Kreditorenposten, Vorsteuer und Fertigungsfähigkeit. Die Fallstudie führt diese Zusammenhänge durch das gesamte Buch.
+
+Die Gruppe verdient Geld über mehrere Erlösquellen:
+
+| Erlösquelle | Beispiel | Warum BC relevant ist |
+|---|---|---|
+| Maschinenverkauf | `RM-M100` | Verkauf, Lager, Fertigung, Finance |
+| Sondermaschinen | `RM-X500` | Projekt, Fertigung, Meilensteinrechnung |
+| Ersatzteile | `SP-PUMP-01` | Lager, Shop, Service |
+| Service | Wartung und Reparatur | Serviceauftrag, Ressource, Ersatzteil |
+| Projekte | Installation | Projektposten, WIP, Faktura |
+| Miete | Mietmaschine | Abgrenzung, Standardgrenze |
+| Intercompany | RM-PROD an RM-SALES | IC-Belege, Abstimmung |
+
+Vor Business Central hatte die Gruppe typische Probleme:
+- Vertrieb verkaufte Artikel ohne belastbare Verfügbarkeitsprüfung.
+- Einkaufspreise und Verkaufsmargen wurden zu spät verglichen.
+- Lagerbestand stimmte mengenmäßig, aber nicht immer wertmäßig.
+- Finance erkannte USt-Fehler erst im Monatsabschluss.
+- Service verbrauchte Ersatzteile, ohne jeden Fall sauber zu fakturieren.
+- Projektkosten wurden zu spät sichtbar.
+- Intercompany-Abstimmung erfolgte manuell.
+- Management erhielt keine verlässliche GuV nach Produktlinie.
+- Excel-Listen erzeugten Dubletten und falsche Stammdaten.
+- Berechtigungen waren unklar.
+- Belege und Nachweise waren schwer auffindbar.
+
+Business Central wird eingeführt, damit dieselben Stammdaten und Buchungsregeln in allen Abteilungen gelten. Der Standard-first-Ansatz bedeutet: Zuerst wird geprüft, ob Business Central Standard den Prozess tragen kann. Erst danach wird über Extension, Integration oder Customizing entschieden.
+
 ### 3.1 Konzernstruktur
 
 | Company in BC | Rolle im Konzern | Hauptprozesse |
@@ -265,11 +313,30 @@ flowchart LR
 
 ---
 
-## 4. Rollen, Abteilungen und Bedienlogik in BC
+## 4. ERP und Business Central für absolute Einsteiger
+
+Dieses Kapitel erklärt Business Central ohne ERP-Vorkenntnisse. Du lernst, warum Unternehmen ein integriertes System brauchen, wie aus Stammdaten Belege entstehen und warum Posten nach dem Buchen wichtiger sind als die ursprüngliche Bildschirmmaske.
+
+### 4.0 Das Grundprinzip in einfachen Worten
+
+Ein ERP-System (Enterprise Resource Planning) ist das zentrale Arbeitssystem eines Unternehmens. Es verbindet Verkauf, Einkauf, Lager, Fertigung, Service, Projekte, Bank und Buchhaltung. Ohne ERP arbeiten Abteilungen oft mit Excel-Listen, E-Mails und einzelnen Programmen. Dann stimmen Kunden, Artikel, Preise, Lagerbestände und offene Posten nicht zuverlässig überein.
+
+Business Central ist das ERP-System der Rhein-Main Industriegruppe. Ein Verkaufsauftrag ist dort nicht nur ein Formular. Er verbindet Debitor, Artikel, Preis, Liefertermin, Lagerort, USt und Dimensionen. Wenn der Auftrag geliefert und fakturiert wird, entstehen gebuchte Belege und Posten. Diese Posten zeigen Finance, Lager und Controlling, was wirklich passiert ist.
+
+Beispiel Verkauf: Kunde `D10000` bestellt eine Pumpe `SP-PUMP-01`. Business Central erzeugt daraus einen Verkaufsauftrag. Beim Buchen entstehen Forderung, Erlös, USt, Lagerabgang und Wertposten. Deshalb prüft RM-SHARED nach dem Buchen nicht nur die Rechnung, sondern auch Debitorenposten, Sachposten, Artikelposten, Wertposten und USt-Posten.
+
+Beispiel Einkauf: RM-PROD kauft Stahl `RAW-STEEL` bei `K10000`. Beim Wareneingang steigt der Bestand. Bei der Eingangsrechnung entsteht eine Verbindlichkeit und Vorsteuer. Einkauf, Lager und Buchhaltung arbeiten also am gleichen Vorgang, aber aus unterschiedlichen Perspektiven.
+
+Beispiel Zahlung: Wenn der Kunde die Rechnung bezahlt, wird die Zahlung mit dem offenen Debitorenposten ausgeglichen. Erst dann ist die Forderung erledigt. Ein Kontoauszug allein genügt nicht; Business Central muss wissen, welche Rechnung mit welcher Zahlung zusammengehört.
+
+Praxisregel:
+- In Business Central zählt nach dem Buchen die Postenspur: Beleg, gebuchter Beleg, Nebenbuchposten, Sachposten, USt-Posten, Artikelposten, Wertposten und Bericht müssen zusammenpassen.
+
+### 4.1 Rollen, Abteilungen und Bedienlogik in BC
 
 Ein vollständiges Schulungsbuch muss zeigen, wie Mitarbeiter arbeiten. Deshalb beschreibt jedes Prozesskapitel fachliche Aufgabe, Role Center, Tell-Me-Suche, Seiten, Felder und Folgebelege.
 
-### 4.1 Rollenmatrix
+#### 4.1.1 Rollenmatrix
 
 | Rolle | Abteilung | Typische BC-Seiten | Was macht der Mitarbeiter? |
 |---|---|---|---|
@@ -288,7 +355,7 @@ Ein vollständiges Schulungsbuch muss zeigen, wie Mitarbeiter arbeiten. Deshalb 
 | Controller | Controlling | `Analysis Views`, `Financial Reports`, `Dimensions` | Auswertungen und Abweichungen analysieren |
 | BC-Admin | IT/Finance Operations | `Users`, `Permission Sets`, `Change Log Setup`, `Job Queue Entries` | Rollen, Automatisierung und Audit Trail verwalten |
 
-### 4.2 Bedienmuster
+#### 4.1.2 Bedienmuster
 
 1. **Role Center prüfen:** Der Mitarbeiter startet im passenden Arbeitsbereich.
 2. **Tell Me nutzen:** Er sucht stabile Seitenbegriffe, nicht lange Menüpfade.
@@ -303,9 +370,24 @@ Praxisregel:
 
 ---
 
-## 5. Trainingsdaten: Stammdaten, Standorte, Artikel, Belege
+## 5. Wie Business Central denkt: Stammdaten, Belege, Posten und Trainingsdaten
 
-Dieses Kapitel liefert Beispieldaten, damit Schulungen aufeinander aufbauen. Die Daten sind bewusst vereinfacht, aber realitätsnah.
+Dieses Kapitel erklärt die Denkweise hinter Business Central und liefert danach die Trainingsdaten der Fallstudie. Du lernst zuerst, welche Datenarten es gibt, und nutzt anschließend dieselben Debitoren, Kreditoren, Artikel, Ressourcen, Anlagen und Belege in allen Prozesskapiteln.
+
+### 5.0 Das Datenmodell für Einsteiger
+
+Stammdaten sind dauerhafte Grunddaten. Dazu gehören Debitoren, Kreditoren, Artikel, Ressourcen, Anlagen, Lagerorte, Zahlungsbedingungen, Buchungsgruppen und Dimensionen. Bewegungsdaten entstehen aus Geschäftsvorfällen. Dazu gehören Angebote, Aufträge, Wareneingänge, Rechnungen, Zahlungen, Lagerbewegungen, Serviceaufträge und Journalzeilen.
+
+Ein Beleg ist ein noch bearbeitbarer Vorgang, zum Beispiel ein Verkaufsauftrag. Ein gebuchter Beleg ist das Ergebnis einer Buchung, zum Beispiel eine gebuchte Verkaufsrechnung. Nach dem Buchen entstehen Posten. Posten sind die prüfbare Wahrheit in Business Central, weil sie Mengen, Werte, Steuern, offene Posten und Sachkonten nachvollziehbar speichern.
+
+Ein Journal ist eine Erfassungsmaske für Buchungen, die nicht aus einem operativen Beleg kommen oder bewusst direkt gebucht werden. Beispiele sind allgemeine Buchungsblätter, Zahlungsbuchungsblätter, Anlagenbuchungsblätter oder Artikel Buch.-Blätter. Der Unterschied ist wichtig: Ein Verkaufsauftrag erzeugt eine Belegkette mit Lieferung und Rechnung; ein Journal bucht direkter und braucht deshalb stärkere Kontrolle.
+
+Eine Buchungsgruppe ist eine Stammdaten-Eigenschaft, die Business Central später zur Kontenfindung nutzt. Eine Buchungsmatrix verbindet Geschäftspartnerart und Produktart. Sie entscheidet, welche Sachkonten bei Verkauf, Einkauf, Lager oder USt angesprochen werden. Eine Dimension ist eine Auswertungsachse, etwa Produktlinie, Abteilung oder Standort.
+
+Ein Kontrollbericht ist eine Auswertung, mit der der Fachbereich prüft, ob das Ergebnis stimmt. Ein Evidence Pack (Nachweispaket) ist die Sammlung aus Belegnummern, Posten, Berichten, Exporten und Freigaben, die einen Prozess prüfbar macht. UAT (User Acceptance Testing) bedeutet fachlicher Benutzerabnahmetest: Die Fachabteilung führt echte Testfälle aus und bestätigt, dass der Prozess alltagstauglich funktioniert.
+
+Praxisregel:
+- Erst Stammdaten verstehen, dann Belege buchen, danach Posten und Berichte prüfen. Wer diese Reihenfolge beherrscht, versteht Business Central.
 
 ### 5.1 Dimensionen
 
@@ -366,6 +448,10 @@ Dieses Kapitel liefert Beispieldaten, damit Schulungen aufeinander aufbauen. Die
 
 ---
 
+## Teil B — Grundlage: Firma, Daten, Setup
+
+Teil B baut die Rhein-Main Industriegruppe auf der grünen Wiese auf. Hier entstehen Companies, Rollen, Stammdaten, Nummernserien, Buchungsgruppen, Dimensionen und die deutsche Bedienlogik, die alle späteren Prozesse steuert.
+
 ## 6. Grundlagen (Foundation): Companies, Benutzer, Nummernserien, Dimensionen, Workflows [Q3][Q4][Q5][Q6]
 
 Foundation-Prozesse tragen alle Fachprozesse. Fehler in Nummernserien, Dimensionen, Buchungsgruppen oder Berechtigungen wirken wie ein Multiplikator.
@@ -421,9 +507,32 @@ Kontrollfrage:
 
 ---
 
+## Teil C — Operative End-to-End-Prozesse
+
+Teil C führt die operativen Prozesse aus Sicht der Fachabteilungen durch. Jeder Prozess beginnt mit dem geschäftlichen Warum, führt durch die deutsche Business-Central-Oberfläche und endet mit Posten, Bericht, Fehlerdiagnose, Lösung und UAT-Nachweis.
+
 ## 7. Verkauf/O2C (Order-to-Cash): Vertrieb, Onlineshop, Dropshipping, Retouren, Vorauszahlungen [Q7][Q8][Q9][Q10]
 
 O2C beginnt beim Kontakt oder Angebot und endet erst, wenn Lieferung, Rechnung, Forderung, Zahlung, USt und Nachweis geschlossen sind.
+
+| Feld | Inhalt |
+|---|---|
+| Zielgruppe | Einsteiger, Verkauf, Lager, Debitorenbuchhaltung, Consultant, Architect |
+| Schwierigkeit | Basic bis Intermediate |
+| Prozessbereich | Verkauf/O2C |
+| Betroffene Companies | RM-SALES, RM-PROD, RM-SHARED |
+| MB-800-Relevanz | Ja: Verkauf, Debitoren, Preise, Gutschriften, Zahlungsausgleich |
+| Solution-Architect-Relevanz | Ja: Preislogik, Lagerlogik, USt, IC und Shop-Integration |
+| Benötigte Vorkenntnisse | Debitor, Artikel, Lagerort, Beleg, Posten |
+| Ergebnis nach dem Kapitel | Leser kann einen Verkaufsfall erfassen, buchen, prüfen und korrigieren |
+
+### Für absolute Einsteiger: Was du hier gerade tust
+
+Ein Kunde bestellt eine Maschine oder ein Ersatzteil. In Business Central wird daraus zuerst ein Verkaufsbeleg. Dieser Beleg enthält Kunde, Artikel, Menge, Preis, Liefertermin, Lagerort, USt und Dimensionen. Wenn die Ware geliefert und fakturiert wird, entstehen Forderung, Erlös, Umsatzsteuer, Lagerabgang und Wareneinsatz. Deshalb ist ein Verkaufsauftrag nicht nur ein Formular. Er ist der Start einer Buchungskette, die Vertrieb, Lager, Finance und Controlling verbindet.
+
+### Warum braucht die Rhein-Main Industriegruppe diesen Prozess?
+
+RM-SALES verkauft Maschinen, Ersatzteile und Handelsware. Ohne sauberen Verkaufsprozess wüsste das Lager nicht, was geliefert werden muss, Finance hätte keine verlässliche Forderung und Controlling könnte Erlöse nicht nach Produktlinie auswerten. Business Central bündelt Angebot, Auftrag, Lieferung, Rechnung und Zahlung. Am Ende erwartet die Gruppe gebuchte Verkaufsbelege, Debitorenposten, Sachposten, USt-Posten, Artikelposten, Wertposten und einen Finanzbericht nach `PRODUCTLINE`.
 
 ### 7.1 Standard laut Quelle
 
@@ -451,6 +560,59 @@ flowchart LR
     E --> G["VAT Entry"]
     F --> H["Payment Application"]
 ```
+
+#### 7.3.1 Schritt-für-Schritt in der deutschen Oberfläche
+
+1. Öffne die Suche mit `Alt+Q`.
+2. Suche nach `Verkaufsaufträge (Sales Orders)`.
+3. Öffne die Seite `Verkaufsaufträge`.
+4. Wähle `Neu`.
+5. Wähle im Feld `Debitorennr.` den Kunden `D10000`.
+6. Prüfe `Buchungsdatum`, `Belegdatum`, `Fälligkeitsdatum`, `Währungscode` und `Zahlungsbedingungscode`.
+7. Wechsle in die Zeilen.
+8. Wähle in der Spalte `Art` den Wert `Artikel`.
+9. Wähle in der Spalte `Nr.` den Artikel `RM-M100`.
+10. Trage in `Menge` den Wert `1` ein.
+11. Prüfe `Lagerortcode = FRA-ZL`, Verkaufspreis, USt-Geschäftsbuchungsgruppe, USt-Produktbuchungsgruppe und Dimension `PRODUCTLINE = MACHINE`.
+12. Wähle `Buchungsvorschau (Preview Posting)`, wenn verfügbar.
+13. Prüfe, ob Debitorenposten, Sachposten, USt-Posten, Artikelposten und Wertposten entstehen würden.
+14. Wähle `Freigeben (Release)`, falls der Prozess Freigabe nutzt.
+15. Bei gesteuertem Lager erstellt der Lagerist die `Lagerkommissionierung (Warehouse Pick)`.
+16. Wähle `Buchen`.
+17. Wähle `Liefern und fakturieren`, wenn Lieferung und Rechnung gleichzeitig gebucht werden.
+18. Öffne `Gebuchte Verkaufsrechnungen (Posted Sales Invoices)`.
+19. Öffne `Debitorenposten (Customer Ledger Entries)` und filtere auf `D10000`.
+20. Öffne `Sachposten (G/L Entries)` und filtere auf die Belegnummer.
+21. Öffne `Artikelposten (Item Ledger Entries)` für `RM-M100`.
+22. Öffne `Wertposten (Value Entries)` und prüfe den Kostenabgang.
+23. Öffne `USt-Posten (VAT Entries)` und prüfe Steuerbasis und Steuerbetrag.
+24. Öffne `Finanzberichte (Financial Reports)` und prüfe Erlös und Wareneinsatz.
+
+#### 7.3.2 Buchungsspur
+
+| Ebene | Beispiel | Wo prüfen? |
+|---|---|---|
+| Beleg | Verkaufsauftrag `SO-1001` | `Verkaufsaufträge (Sales Orders)` |
+| Gebuchter Beleg | gebuchte Verkaufsrechnung | `Gebuchte Verkaufsrechnungen (Posted Sales Invoices)` |
+| Debitorenposten | Forderung gegen D10000 | `Debitorenposten (Customer Ledger Entries)` |
+| Sachposten | Forderung, Erlös, USt, Wareneinsatz, Bestand | `Sachposten (G/L Entries)` |
+| Artikelposten | Mengenabgang `RM-M100` | `Artikelposten (Item Ledger Entries)` |
+| Wertposten | Kostenabgang | `Wertposten (Value Entries)` |
+| USt-Posten | USt aus Verkauf | `USt-Posten (VAT Entries)` |
+| Bericht | GuV nach Produktlinie | `Finanzberichte (Financial Reports)` |
+
+Die Buchungsspur zeigt, dass ein Verkaufsauftrag mehr ist als ein Vertriebsformular. Der gleiche Vorgang erzeugt eine Forderung, einen Erlös, USt, Lagerbewegung, Kostenabgang und Auswertungsdaten für Controlling. Finance prüft deshalb nicht nur die Rechnung, sondern die gesamte Kette vom Auftrag bis zum Posten.
+
+#### 7.3.3 Fehlerdiagnose und Korrektur
+
+| Fehler | Symptom | Ursache | Diagnosepfad | Korrekturweg | Was man nicht tun darf |
+|---|---|---|---|---|---|
+| falscher Lagerort | Bestand stimmt nicht | falscher Lagerortcode im Auftrag | Verkaufsrechnung → Artikelposten → Lagerort | Gutschrift/Neubuchung oder Lagerkorrektur nach Freigabe | gebuchte Posten löschen wollen |
+| falscher Preis | Marge falsch | falsche Preisliste oder manuelle Änderung | Verkaufszeile → Preisfindung → Finanzbericht | Preislisten korrigieren, Beleg fachlich korrigieren | Preis im gebuchten Beleg überschreiben wollen |
+| falsche USt | USt-Posten falsch | falsche USt-Buchungsgruppe | Debitor/Artikel → USt-Buchungsmatrix Einrichtung → USt-Posten | Gutschrift und Neuberechnung nach Steuerfreigabe | USt nur im Bericht manuell korrigieren |
+
+Praxisregel:
+- Ein gebuchter Verkaufsbeleg wird fachlich korrigiert, nicht technisch gelöscht. Der Korrekturweg muss den ursprünglichen Fehler, den neuen Beleg und die betroffenen Posten nachvollziehbar verbinden.
 
 ### 7.4 Beispieldaten und Buchung
 
@@ -490,11 +652,56 @@ BC-Best-Practice:
 Schulungsübung:
 - Erstelle `SO-1003` als Dropshipment für Debitor `D10000` und Kreditor `K20000`. Verknüpfe Verkaufs- und Einkaufsbeleg. Prüfe, warum kein eigener Lagerbestand entsteht.
 
+UAT-Fall:
+
+| Feld | Inhalt |
+|---|---|
+| ID | `UAT-O2C-001` |
+| Ziel | Standardmaschine Ende-zu-Ende verkaufen |
+| Rolle | Vertrieb, Lager, Debitorenbuchhaltung |
+| Voraussetzung | Debitor `D10000`, Artikel `RM-M100`, Lagerort `FRA-ZL`, gültige USt- und Buchungsgruppen |
+| Testdaten | Menge `1`, Verkaufspreis `68.000 EUR`, Dimension `PRODUCTLINE = MACHINE` |
+| Schrittfolge | Angebot optional erstellen, Verkaufsauftrag erfassen, Buchungsvorschau prüfen, liefern und fakturieren, Posten prüfen |
+| Erwartete Belege | Verkaufsauftrag, gebuchte Verkaufslieferung, gebuchte Verkaufsrechnung |
+| Erwartete Posten | Debitorenposten, Sachposten, USt-Posten, Artikelposten, Wertposten |
+| Kontrollbericht | `Finanzberichte (Financial Reports)`, `Lagerbewertung (Inventory Valuation)` |
+| Negativfall | falscher Lagerort oder falsche USt-Gruppe |
+| Akzeptanzkriterium | Forderung, Erlös, USt, Lagerabgang, Kostenabgang und Dimension stimmen |
+| Evidence Pack | Belegnummern, Postenexport, Buchungsvorschau, Berichtsexport, Testergebnis |
+| Lösungshinweis | Fehler werden über Gutschrift/Neubuchung oder fachlich freigegebene Korrektur gebucht, nicht durch manuelle Postenänderung |
+
+## In 5 Minuten merken
+
+* 5 wichtigste Begriffe: Verkaufsauftrag, gebuchte Verkaufsrechnung, Debitorenposten, USt-Posten, Wertposten.
+* 5 wichtigste Seiten: `Verkaufsaufträge`, `Gebuchte Verkaufsrechnungen`, `Debitorenposten`, `Sachposten`, `Artikelposten`.
+* 3 häufigste Fehler: falscher Lagerort, falscher Preis, falsche USt-Gruppe.
+* 3 Prüfungsfallen: Angebot ist noch keine Buchung, Lieferung ist nicht immer Rechnung, Gutschrift ist nicht dasselbe wie Postenlöschung.
+* 1 Praxisregel: Vor dem Buchen immer Buchungsvorschau, Lagerort, Preis, USt und Dimension prüfen.
+
 ---
 
 ## 8. Einkauf/P2P (Procure-to-Pay): Einkauf, Wareneingang, E-Rechnung, Fremdarbeit, Zahlungen [Q11][Q12][Q13]
 
 P2P beginnt beim Bedarf und endet mit abgestimmter Verbindlichkeit, Zahlung und Vorsteuer. Der Einkauf erzeugt nicht nur Belege, sondern steuert Preis-, Mengen-, Liefer- und Betrugsrisiken.
+
+| Feld | Inhalt |
+|---|---|
+| Zielgruppe | Einsteiger, Einkauf, Lager, Kreditorenbuchhaltung, Consultant |
+| Schwierigkeit | Basic bis Intermediate |
+| Prozessbereich | Einkauf/P2P |
+| Betroffene Companies | RM-PROD, RM-SHARED |
+| MB-800-Relevanz | Ja: Kreditoren, Einkaufsbestellungen, Wareneingänge, Eingangsrechnungen, Zahlungen |
+| Solution-Architect-Relevanz | Ja: 3-Way-Match, E-Rechnung, Genehmigungen, Lagerintegration |
+| Benötigte Vorkenntnisse | Kreditor, Artikel, Lagerort, Bestellung, Rechnung |
+| Ergebnis nach dem Kapitel | Leser kann Rohmaterial beschaffen, Wareneingang buchen, Rechnung prüfen und Posten kontrollieren |
+
+### Für absolute Einsteiger: Was du hier gerade tust
+
+Die Firma kauft Stahl, damit später Maschinen produziert werden können. In Business Central beginnt das mit einer Einkaufsbestellung. Beim Wareneingang steigt der Lagerbestand. Bei der Eingangsrechnung entsteht eine Verbindlichkeit gegenüber dem Lieferanten und gegebenenfalls Vorsteuer. Einkauf verbindet also Bedarf, Lager und Buchhaltung.
+
+### Warum braucht die Rhein-Main Industriegruppe diesen Prozess?
+
+RM-PROD benötigt Rohmaterial `RAW-STEEL`, damit Fertigungsaufträge für `RM-M100` starten können. Ohne Einkaufsbestellung wären Preis, Menge, Liefertermin, Lagerort und spätere Rechnung nicht sauber verbunden. Business Central stellt sicher, dass Wareneingang, Eingangsrechnung, Kreditorenposten, Artikelposten, Wertposten und Sachposten zusammenpassen.
 
 ### 8.1 Mitarbeiterrollen
 
@@ -517,6 +724,42 @@ flowchart LR
     E --> G["Payment Journal"]
     G --> H["Closed Vendor Entry"]
 ```
+
+#### 8.2.1 Schritt-für-Schritt in der deutschen Oberfläche
+
+1. Öffne die Suche mit `Alt+Q`.
+2. Suche nach `Einkaufsbestellungen (Purchase Orders)`.
+3. Öffne die Seite `Einkaufsbestellungen`.
+4. Wähle `Neu`.
+5. Wähle im Feld `Kreditorennr.` den Lieferanten `K10000`.
+6. Prüfe `Buchungsdatum`, `Belegdatum`, `Kred.-Rechnungsnr.`, `Zahlungsbedingungscode` und Währung.
+7. Erfasse in den Zeilen `Art = Artikel`, `Nr. = RAW-STEEL`, `Menge = 10`, `Lagerortcode = FRA-ZL`.
+8. Prüfe Einkaufspreis, USt-Geschäftsbuchungsgruppe, USt-Produktbuchungsgruppe und Dimension `PRODUCTLINE = MACHINE`.
+9. Wähle `Buchungsvorschau (Preview Posting)`, wenn die Eingangsrechnung bereits gebucht werden soll.
+10. Buche zunächst `Empfangen`, wenn Ware und Rechnung getrennt eintreffen.
+11. Öffne `Gebuchte Einkaufslieferungen (Posted Purchase Receipts)` und prüfe Menge und Lagerort.
+12. Öffne `Artikelposten (Item Ledger Entries)` für `RAW-STEEL`.
+13. Öffne die Bestellung erneut und erfasse die externe Rechnungsnummer des Lieferanten.
+14. Wähle `Buchen` und danach `Fakturieren`.
+15. Öffne `Gebuchte Einkaufsrechnungen (Posted Purchase Invoices)`.
+16. Öffne `Kreditorenposten (Vendor Ledger Entries)` und filtere auf `K10000`.
+17. Öffne `Sachposten (G/L Entries)` und filtere auf die Belegnummer.
+18. Öffne `USt-Posten (VAT Entries)` und prüfe Vorsteuerbasis und Vorsteuerbetrag.
+19. Öffne `Wertposten (Value Entries)` und prüfe den Zugangswert.
+20. Dokumentiere Bestellnummer, Wareneingang, Eingangsrechnung, Posten und Kontrollbericht im Evidence Pack.
+
+#### 8.2.2 Buchungsspur
+
+| Ebene | Beispiel | Wo prüfen? |
+|---|---|---|
+| Beleg | Einkaufsbestellung `PO-2001` | `Einkaufsbestellungen (Purchase Orders)` |
+| Gebuchter Wareneingang | gebuchte Einkaufslieferung | `Gebuchte Einkaufslieferungen (Posted Purchase Receipts)` |
+| Gebuchte Rechnung | gebuchte Einkaufsrechnung | `Gebuchte Einkaufsrechnungen (Posted Purchase Invoices)` |
+| Kreditorenposten | Verbindlichkeit gegen `K10000` | `Kreditorenposten (Vendor Ledger Entries)` |
+| Sachposten | Vorrat, Vorsteuer, Verbindlichkeit | `Sachposten (G/L Entries)` |
+| Artikelposten | Mengenzugang `RAW-STEEL` | `Artikelposten (Item Ledger Entries)` |
+| Wertposten | Zugangswert Rohmaterial | `Wertposten (Value Entries)` |
+| USt-Posten | Vorsteuer aus Einkauf | `USt-Posten (VAT Entries)` |
 
 ### 8.3 Beispieldaten und Buchung
 
@@ -554,11 +797,46 @@ BC-Best-Practice:
 Schulungsübung:
 - Buche eine Bestellung mit Teil-Wareneingang 6/10 Stück. Buche anschließend eine Rechnung über 10 Stück und erkläre den Fehler.
 
+Lösungsskizze:
+1. Öffne `Einkaufsbestellungen (Purchase Orders)` und erfasse Bestellung `PO-2001` mit `K10000`, `RAW-STEEL`, Menge `10`.
+2. Buche im Feld `Zu empfangen` nur `6` und wähle `Buchen` → `Empfangen`.
+3. Öffne `Artikelposten (Item Ledger Entries)` und prüfe den Zugang von `6` Stück.
+4. Erfasse die Eingangsrechnung über `10` Stück und starte `Buchungsvorschau (Preview Posting)`.
+5. Die Differenz zeigt, dass empfangene und fakturierte Menge nicht zusammenpassen. Korrigiere die Rechnungsmenge auf `6` oder buche den restlichen Wareneingang nach, wenn die Ware tatsächlich eingetroffen ist.
+6. Prüfe danach `Kreditorenposten`, `Sachposten`, `Artikelposten`, `Wertposten` und `USt-Posten`.
+
+## In 5 Minuten merken
+
+* 5 wichtigste Begriffe: Einkaufsbestellung, Wareneingang, gebuchte Einkaufsrechnung, Kreditorenposten, Vorsteuer.
+* 5 wichtigste Seiten: `Einkaufsbestellungen`, `Gebuchte Einkaufslieferungen`, `Gebuchte Einkaufsrechnungen`, `Kreditorenposten`, `Artikelposten`.
+* 3 häufigste Fehler: fehlende externe Rechnungsnummer, falscher Lagerort, Rechnung über nicht empfangene Menge.
+* 3 Prüfungsfallen: Empfangen ist nicht Fakturieren, Kreditorenposten ist nicht Sachposten, Vorsteuer hängt an der USt-Buchungsmatrix.
+* 1 Praxisregel: Einkauf prüft Preis und Menge, Lager prüft Wareneingang, Finance prüft Rechnung und Posten.
+
 ---
 
 ## 9. Bestand und Lager (Inventory & Warehouse): einfaches Lager, gesteuertes Lager, Lagerplätze, Inventur [Q14][Q15]
 
 Lager in Business Central ist nicht einheitlich. Die Mustergruppe nutzt bewusst zwei Extreme: ein einfaches Lager und ein gesteuertes Zentrallager.
+
+| Feld | Inhalt |
+|---|---|
+| Zielgruppe | Einsteiger, Lager, Einkauf, Verkauf, Controlling, Consultant |
+| Schwierigkeit | Basic bis Advanced |
+| Prozessbereich | Inventory/Warehouse |
+| Betroffene Companies | RM-PROD, RM-SALES, RM-SERVICE |
+| MB-800-Relevanz | Ja: Artikel, Lagerorte, Artikelposten, Wertposten, Kostenmethoden |
+| Solution-Architect-Relevanz | Ja: einfaches Lager vs. gesteuerte Lagerlogik |
+| Benötigte Vorkenntnisse | Artikel, Lagerort, Wareneingang, Lieferung |
+| Ergebnis nach dem Kapitel | Leser kann erklären, warum Menge, Lagerplatz und Wert getrennt geprüft werden |
+
+### Für absolute Einsteiger: Was du hier gerade tust
+
+Lager bedeutet nicht nur „Ware liegt irgendwo“. Business Central unterscheidet, welche Ware vorhanden ist, wo sie liegt, ob sie schon eingelagert ist und welchen Wert sie hat. Wenn ein Wareneingang gebucht wird, entsteht eine Mengenbewegung. Wenn Kosten gebucht und reguliert werden, entsteht die Wertlogik. Deshalb prüft man Artikelposten für Mengen und Wertposten für Werte.
+
+### Warum braucht die Rhein-Main Industriegruppe diesen Prozess?
+
+RM-PROD lagert Rohmaterial und fertige Maschinen im gesteuerten Lager `FRA-ZL`. RM-SALES nutzt einfache Lager für Ersatzteile und Versand. RM-SERVICE nutzt Fahrzeuglager für Techniker. Ohne saubere Lagerlogik verkauft der Vertrieb nicht belastbar, die Fertigung startet mit falschem Bestand und Finance bewertet den Lagerwert falsch. Business Central verbindet Wareneingang, Einlagerung, Kommissionierung, Lieferung, Artikelposten, Wertposten und Lagerbewertung.
 
 ### 9.1 Lagerlogik im Vergleich
 
@@ -614,6 +892,14 @@ Schulungsübung gesteuertes Lager:
 
 Die Mustergruppe produziert mehrere Produkte. Damit lassen sich Planung, Montage und Fertigung sauber unterscheiden.
 
+### Für absolute Einsteiger: Was du hier gerade tust
+
+Fertigung bedeutet: Aus eingekauften Materialien und Arbeitszeit entsteht ein neues Produkt. Business Central braucht dafür eine Stückliste, einen Arbeitsplan und einen Fertigungsauftrag. Die Stückliste sagt, welches Material verbraucht wird. Der Arbeitsplan sagt, welche Arbeitsschritte nötig sind. Der Fertigungsauftrag verbindet Verbrauch, Output und Kosten. Am Ende sieht Finance, welche Material- und Arbeitskosten in der Maschine stecken.
+
+### Warum braucht die Rhein-Main Industriegruppe diesen Prozess?
+
+RM-PROD produziert die Standardmaschine `RM-M100`. Ohne Fertigungsauftrag könnte das Unternehmen zwar Material entnehmen, aber nicht sauber beweisen, welcher Verbrauch zu welcher Maschine gehört. Business Central zeigt, ob die Fertigung mehr Material verbraucht als geplant, ob Output gebucht wurde und wie die Kosten in Lagerbewertung und GuV wirken.
+
 ### 10.1 Produktstruktur
 
 | Produkt | Prozess | Bestandteile |
@@ -667,6 +953,14 @@ Schulungsübung:
 
 Service Management ist Standard. Miet- und Finanzierungsmodelle sind je Ausprägung Standard, Prozessdesign oder Erweiterung. Dieses Buch zeigt zuerst den Standard und markiert danach Grenzen.
 
+### Für absolute Einsteiger: Was du hier gerade tust
+
+Nach dem Verkauf einer Maschine endet die Kundenbeziehung nicht. Ein Kunde meldet einen Fehler, ein Techniker fährt zum Kunden, verbraucht ein Ersatzteil und erfasst Arbeitszeit. Business Central bündelt diese Informationen im Serviceauftrag. Je nach Fall wird daraus eine Rechnung, ein Garantiefall oder Kulanz. Service verbindet also Kunde, Maschine, Ersatzteil, Ressource, Lager und Finance.
+
+### Warum braucht die Rhein-Main Industriegruppe diesen Prozess?
+
+RM-SERVICE verdient Geld mit Wartung und Reparaturen, muss aber auch Garantiekosten kontrollieren. Ohne Serviceprozess würden Ersatzteile verschwinden, Technikerzeiten nicht fakturiert und Garantieentscheidungen nicht nachweisbar. Business Central erzeugt Servicebelege, Artikelbewegungen, Sachposten, Debitorenposten oder Kulanznachweise.
+
 ### 11.1 Service-Standard
 
 ```mermaid
@@ -714,6 +1008,14 @@ Schulungsübung:
 
 Projects bilden mehrperiodige Leistungserbringung ab. Die Mustergruppe nutzt Projekte für Installation, Sondermaschinen und Kundenschulungen.
 
+### Für absolute Einsteiger: Was du hier gerade tust
+
+Ein Projekt ist ein Kundenauftrag, der nicht mit einer einzigen Lieferung erledigt ist. Es gibt Aufgaben, Zeiten, Material, Fremdleistungen, Meilensteine und Rechnungen. Business Central sammelt diese Werte auf Projektaufgaben. Dadurch sieht die Projektleitung, ob Budget, Istkosten, fakturierte Beträge und offene Leistungen zusammenpassen.
+
+### Warum braucht die Rhein-Main Industriegruppe diesen Prozess?
+
+RM-SERVICE installiert Sondermaschinen beim Kunden. Dafür werden Technikerstunden, Material und Fremdleistungen verbraucht. Ohne Projektmodul wären Kosten in verschiedenen Belegen verteilt und die Marge zu spät sichtbar. Business Central erzeugt Projektposten, Sachposten, Verkaufsrechnungen und Projektberichte.
+
 ### 12.1 Prozessfluss
 
 ```mermaid
@@ -751,9 +1053,32 @@ Schulungsübung:
 
 ---
 
+## Teil D — Finance, Kontrolle und Abschluss
+
+Teil D zeigt, wie operative Vorgänge in Finanzbuchhaltung, Nebenbüchern, USt, Lagerbewertung, Anlagen, Bank, GuV, Bilanz und Managementauswertungen sichtbar werden. Hier lernt der Leser, warum Posten und Kontrollberichte wichtiger sind als reine Bildschirmmasken.
+
 ## 13. Finanzbuchhaltung/R2R (Record-to-Report): Journale, Debitoren, Kreditoren, Bank, Anlagen, USt, Abschluss [Q20][Q21][Q22][Q23][Q24][Q28]
 
 Finance ist die Klammer aller Prozesse. Jeder operative Vorgang muss sich in Hauptbuch, Nebenbuch, Steuer, Bank und Abschluss wiederfinden.
+
+| Feld | Inhalt |
+|---|---|
+| Zielgruppe | Einsteiger, Buchhaltung, Controller, Key User, Consultant, Architect |
+| Schwierigkeit | Basic bis Advanced |
+| Prozessbereich | R2R, Finance, Abschluss |
+| Betroffene Companies | RM-SHARED, alle operativen Companies |
+| MB-800-Relevanz | Ja: Finanzbuchhaltung, Journale, Debitoren, Kreditoren, Anlagen, Bank, USt, Abschluss |
+| Solution-Architect-Relevanz | Ja: Kontenplan, Posting Groups, Dimensionen, Abschlussarchitektur, Evidence Pack |
+| Benötigte Vorkenntnisse | Belege, Posten, Nebenbücher, Dimensionen |
+| Ergebnis nach dem Kapitel | Leser kann operative Buchungen bis zu Sachposten, Nebenbuch, USt und Finanzbericht verfolgen |
+
+### Für absolute Einsteiger: Was du hier gerade tust
+
+Finanzbuchhaltung sammelt nicht einfach Zahlen. Sie übersetzt Geschäftsprozesse in nachvollziehbare Buchungen. Wenn RM-SALES eine Maschine verkauft, entsteht eine Forderung. Wenn RM-PROD Stahl einkauft, entsteht eine Verbindlichkeit und Lagerwert. Wenn RM-SHARED eine Zahlung bucht, wird ein offener Posten ausgeglichen. Business Central verbindet diese Vorgänge über Posten. Deshalb prüft Finance nach dem Buchen immer, ob Beleg, gebuchter Beleg, Nebenbuch, Sachposten, USt-Posten und Bericht zusammenpassen.
+
+### Warum braucht die Rhein-Main Industriegruppe diesen Prozess?
+
+RM-SHARED verantwortet Finance, Bank, USt, Anlagen, Abschluss und Managementauswertungen für die Gruppe. Ohne Record-to-Report-Prozess wären Erlöse, Wareneinsatz, Lagerwert, offene Posten und Steuer nicht belastbar. Business Central liefert dafür `Sachposten (G/L Entries)`, `Debitorenposten (Customer Ledger Entries)`, `Kreditorenposten (Vendor Ledger Entries)`, `USt-Posten (VAT Entries)`, Anlagenposten und Finanzberichte. Das Evidence Pack besteht aus Buchungsjournalen, offenen Posten, Abstimmberichten, USt-Auswertungen, Lagerbewertung, Anlagenübersicht und Abschlussfreigabe.
 
 ### 13.1 Finance-Prozesslandkarte
 
@@ -863,6 +1188,10 @@ Schulungsübung:
 - Aktiviere Change Log für Vendor Bank Accounts, ändere IBAN bei `K10000`, prüfe Change Log Entry und erkläre den Nachweiswert.
 
 ---
+
+## Teil F — Training, Prüfung und Nachschlagen
+
+Teil F bündelt Schulungen, UAT, Lösungen, MB-800, Microsoft-Learn-Mapping, Glossar, Seitenindex, Praxisfallen und Projektartefakte. Dieser Teil macht das Buch als Trainings- und Nachschlagewerk nutzbar.
 
 ## 16. Schulungskapitel nach Abteilungen
 
@@ -1003,6 +1332,10 @@ Kontrollfrage:
 > Abschluss-Merksatz: Business Central ist vollständig verstanden, wenn der Leser denselben Geschäftsvorfall aus Sicht des Mitarbeiters, des Belegs, der Buchung, der Steuer und des Nachweises erklären kann.
 
 ---
+
+## Teil E — Projekt, Architektur und Betrieb
+
+Teil E macht aus Prozesswissen projektfähige Business-Central-Kompetenz. Es verbindet Standard-first-Design, Fit-Gap, Erweiterungsentscheidungen, Security, Governance, Migration, Betrieb, Monitoring und Hypercare.
 
 ## 18. Standardgrenzen: Wann BC Standard endet [Q1][Q2][Q35]
 
@@ -2767,7 +3100,7 @@ Merksatz:
 
 Ein Business-Central-Prozess endet für den Kunden, Lieferanten oder Prüfer oft nicht mit der Buchung. Er endet mit einem verständlichen, richtigen und nachweisbaren Dokument. Deshalb gehören E-Mail-Einrichtung, Beleglayouts, Berichtsauswahl und Versandprofile in jedes vollständige BC-Schulungsbuch.
 
-### 31.1 Warum das wichtig ist
+### 32.1 Warum das wichtig ist
 
 | Thema | Auswirkung |
 |---|---|
@@ -2779,7 +3112,7 @@ Ein Business-Central-Prozess endet für den Kunden, Lieferanten oder Prüfer oft
 
 Microsoft Learn beschreibt, dass Business Central Dokumente wie Verkaufs- und Einkaufsbelege direkt per E-Mail senden kann. Administratoren richten E-Mail-Konten und E-Mail-Szenarien ein; Dokumente können als PDF-Anhang gesendet werden. [Q75][Q77]
 
-### 31.2 Grundeinrichtung Dokumentversand
+### 32.2 Grundeinrichtung Dokumentversand
 
 Schrittfolge:
 1. Öffne `E-Mail-Konten (Email Accounts)`.
@@ -2797,7 +3130,7 @@ BC-Best-Practice:
 - Jede Company bekommt eigene Beleglayouts mit korrektem Logo, Adresse, USt-ID, Bankdaten und Pflichttexten.
 - E-Mail-Szenarien werden zentral eingerichtet. Mitarbeiter sollen nicht frei entscheiden, ob Rechnungen von privaten Nutzeradressen versendet werden.
 
-### 31.3 Deutsche Belegausgabe-Matrix
+### 32.3 Deutsche Belegausgabe-Matrix
 
 | Prozess | Deutsche Seite | Einrichtung | Prüfpunkte |
 |---|---|---|---|
@@ -2810,7 +3143,7 @@ BC-Best-Practice:
 Stolperstein:
 - Ein Berichtslayout kann je Company unterschiedlich sein. Ein Layouttest in `RM-SALES` beweist nicht automatisch, dass `RM-SERVICE` korrekt eingerichtet ist. [Q76]
 
-### 31.4 UAT-Test Dokumente
+### 32.4 UAT-Test Dokumente
 
 1. Gebuchte Verkaufsrechnung öffnen.
 2. `Drucken/Senden` wählen.
@@ -2830,7 +3163,7 @@ Merksatz:
 
 Genehmigungen schützen Business Central vor unkontrollierten Stammdaten, Preisen, Bestellungen und Zahlungen. Sie ersetzen kein Vertrauen. Sie sorgen dafür, dass kritische Entscheidungen nachvollziehbar und prüfbar bleiben.
 
-### 32.1 Was genehmigt werden sollte
+### 33.1 Was genehmigt werden sollte
 
 | Objekt | Warum? | Beispielregel |
 |---|---|---|
@@ -2844,7 +3177,7 @@ Genehmigungen schützen Business Central vor unkontrollierten Stammdaten, Preise
 
 Microsoft Learn beschreibt Genehmigungsworkflows, mit denen Datensätze oder Dokumente zur Genehmigung gesendet, genehmigt oder abgelehnt werden können. [Q79]
 
-### 32.2 Schrittfolge Einkaufsbestellung genehmigen
+### 33.2 Schrittfolge Einkaufsbestellung genehmigen
 
 1. Admin öffnet `Workflows`.
 2. Workflow-Vorlage für Einkaufsbestellgenehmigung auswählen.
@@ -2858,7 +3191,7 @@ Microsoft Learn beschreibt Genehmigungsworkflows, mit denen Datensätze oder Dok
 10. Genehmiger wählt `Genehmigen` oder `Ablehnen`.
 11. Nach Genehmigung wird Bestellung freigegeben.
 
-### 32.3 SoD-Matrix (Segregation of Duties)
+### 33.3 SoD-Matrix (Segregation of Duties)
 
 | Kombination | Risiko | Empfehlung |
 |---|---|---|
@@ -2878,7 +3211,7 @@ Merksatz:
 
 Business Central ist nur so gut wie seine Stammdaten. Falsche Debitoren, Kreditoren, Artikel, Buchungsgruppen oder Dimensionen erzeugen falsche Buchungen, schlechte Berichte und unnötige Korrekturen.
 
-### 33.1 Stammdaten-Governance
+### 34.1 Stammdaten-Governance
 
 | Stammdatenobjekt | Data Owner | Pflichtprüfung |
 |---|---|---|
@@ -2890,7 +3223,7 @@ Business Central ist nur so gut wie seine Stammdaten. Falsche Debitoren, Kredito
 | Ressource | Projekt/Service | Kosten, Preis, Einheit |
 | Anlage | Finance | Anlagenbuchungsgruppe, AfA-Buch |
 
-### 33.2 Migrationslogik
+### 34.2 Migrationslogik
 
 Microsoft Learn beschreibt Konfigurationspakete als Werkzeug, um Tabellen und Daten für Einrichtung und Migration zu nutzen. [Q80]
 
@@ -2925,7 +3258,7 @@ Merksatz:
 
 Nach dem Go-Live beginnt die eigentliche Bewährungsprobe. Business Central muss überwacht, erklärt, korrigiert und stabilisiert werden. Hypercare ist die Phase, in der kleine Fehler noch schnell sichtbar werden, bevor sie Monatsabschluss oder Tagesgeschäft gefährden.
 
-### 34.1 Hypercare-Plan
+### 35.1 Hypercare-Plan
 
 | Zeitraum | Fokus | tägliche Fragen |
 |---|---|---|
@@ -2935,7 +3268,7 @@ Nach dem Go-Live beginnt die eigentliche Bewährungsprobe. Business Central muss
 | Woche 4 | Stabilisierung | Welche Workarounds müssen in echte Prozesse überführt werden? |
 | Monat 2 | Optimierung | Welche Rollen, Felder, Filter, Berichte fehlen? |
 
-### 34.2 Monitoring-Matrix
+### 35.2 Monitoring-Matrix
 
 | Objekt | Deutsche Seite | Was prüfen? |
 |---|---|---|
@@ -2948,7 +3281,7 @@ Nach dem Go-Live beginnt die eigentliche Bewährungsprobe. Business Central muss
 
 Microsoft Learn beschreibt Telemetrie als Möglichkeit, Aktivitäten und Zustand von Umgebungen und Apps zu analysieren. [Q81]
 
-### 34.3 Performance und Support
+### 35.3 Performance und Support
 
 Microsoft Learn empfiehlt für Performanceprobleme, Telemetrie und Application Insights zu nutzen, um Ursachen systematisch zu untersuchen. [Q83]
 
@@ -2979,7 +3312,7 @@ Merksatz:
 
 Viele Finance-Prozesse wiederholen sich: Mieten, Wartungen, Versicherungen, Umlagen, Abgrenzungen, wiederkehrende Journale und periodische Rechnungen. Wer diese Prozesse manuell pflegt, erzeugt vermeidbare Fehler.
 
-### 35.1 Wiederkehrende Buchungen
+### 36.1 Wiederkehrende Buchungen
 
 Business Central unterstützt wiederkehrende Journale und Umlageschlüssel. Umlageschlüssel können verwendet werden, um Beträge in wiederkehrenden Fibu Buch.-Blättern zu verteilen. [Q85]
 
@@ -3001,7 +3334,7 @@ Schrittfolge:
 6. Prüfe Buchungsvorschau.
 7. Buche und prüfe Sachposten.
 
-### 35.2 Abgrenzungen
+### 36.2 Abgrenzungen
 
 Microsoft Learn beschreibt Abgrenzungen als Funktion, um Erlöse und Aufwendungen über Perioden zu verteilen. [Q25]
 
@@ -3013,7 +3346,7 @@ BC-Best-Practice:
 - Wiederkehrende Kosten und Abgrenzungen werden nicht über Excel „nach Gefühl“ gebucht.
 - Finance definiert Vorlagen, Perioden, Dimensionen und Kontrollbericht.
 
-### 35.3 Wiederkehrende Erlöse
+### 36.3 Wiederkehrende Erlöse
 
 Microsoft Learn beschreibt wiederkehrende Erlöse in Business Central, unter anderem für periodische Abrechnungsszenarien. [Q84]
 
