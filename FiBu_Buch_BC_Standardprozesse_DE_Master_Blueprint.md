@@ -4050,6 +4050,45 @@ Fehlende Dimension:
 - Korrektur, wenn Konto/Betrag falsch ist: fachliche Korrekturbuchung, Gutschrift oder Neubuchung nach Beleglogik. Eine Dimensionskorrektur repariert keine falsche Buchung auf ein falsches Konto.
 - Nicht erlaubt: Power-BI-Daten manuell überschreiben, Excel-Korrektur neben BC führen oder Sachposten ohne Freigabe umdeuten.
 
+### Marge vor und nach Kostenregulierung
+
+Dieses Kapitel nutzt bewusst den Zahlenfall aus Kapitel 23. Dort kauft RM-PROD `RAW-STEEL` zunächst mit erwarteten Kosten von `100 EUR` je Stück ein. Die spätere Eingangsrechnung liegt bei `110 EUR` je Stück. Weil `6` von `10` Stück bereits in `PROD-3001` verbraucht wurden, verteilt die Kostenregulierung `60 EUR` auf Verbrauch/Fertigung/Wareneinsatz und `40 EUR` auf den Restbestand.
+
+Für den Controller ist entscheidend: Der Nettoerlös aus `SO-1001` bleibt `68.000 EUR`. Die USt von `12.920 EUR` ist kein Erlös. Sie ist Steuerverbindlichkeit und wird separat über `USt-Posten (VAT Entries)` und Sachposten geprüft. Die Bruttomarge verändert sich nur, weil der Wareneinsatz nach der Kostenregulierung steigt.
+
+| Kennzahl | Vor Kostenregulierung | Nach Kostenregulierung | Wirkung |
+|---|---:|---:|---|
+| Nettoerlös | `68.000 EUR` | `68.000 EUR` | unverändert |
+| USt | `12.920 EUR` | `12.920 EUR` | nicht Teil des Erlöses |
+| Wareneinsatz | Beispielwert vor Regulierung | Beispielwert + `60 EUR` | steigt |
+| Bruttomarge | Nettoerlös minus Wareneinsatz vor Regulierung | vorherige Bruttomarge - `60 EUR` | sinkt um `60 EUR` |
+
+Warum sieht die Marge vorher zu gut aus? Vor der Kostenregulierung basiert der verbrauchte Anteil von `RAW-STEEL` noch auf `100 EUR` je Stück. Nach der Rechnung ist klar, dass die tatsächlichen Kosten `110 EUR` je Stück betragen. Für die `6` verbrauchten Stück fehlen deshalb `6 x 10 EUR = 60 EUR` in den Verbrauchs-/Fertigungskosten. Solange diese Differenz nicht in Wertposten und danach im Hauptbuch verarbeitet ist, wirkt der Wareneinsatz zu niedrig und die Marge zu hoch.
+
+Der Controller prüft die Kette in dieser Reihenfolge:
+
+1. Öffne `Wertposten (Value Entries)` über `Alt+Q`.
+2. Filtere `Artikelnr. = RAW-STEEL` und `Belegnr. = PROD-3001` oder die verknüpften Verbrauchs-/Fertigungsbelege.
+3. Prüfe, ob der zusätzliche Kostenanteil `60 EUR` auf den Verbrauch/Fertigungsbezug gebucht wurde.
+4. Öffne `Wertposten (Value Entries)` für den Restbestand und prüfe den zusätzlichen Lageranteil `40 EUR`.
+5. Öffne `Lagerregulierung buchen (Post Inventory Cost to G/L)` oder prüfe den Laufstatus, falls die Buchung über Aufgabenwarteschlange erfolgt.
+6. Öffne `Sachposten (G/L Entries)` und prüfe, ob die Wertpostenwirkung im Hauptbuch angekommen ist. Die betroffenen Konten hängen von Lagerbuchungsmatrix und Buchungssetup ab.
+7. Öffne `Finanzberichte (Financial Reports)` und Bericht `RM-GUV-MONAT`.
+8. Setze `Datumsfilter = 01.06.2026..30.06.2026`, `PRODUCTLINE = MACHINE` und optional `CHANNEL = B2B`.
+9. Prüfe Erlös `68.000 EUR`, Wareneinsatz nach Kostenregulierung und Bruttomarge.
+10. Öffne `Analyseansichten (Analysis Views)` und aktualisiere die relevante Analyseansicht, wenn sie vor der Kostenregulierung erstellt wurde.
+11. Öffne Power BI `RM Management Cockpit` und prüfe, ob Dataset-Aktualisierung, Zeitraum und Dimensionsfilter mit Business Central übereinstimmen.
+
+Reporting darf erst freigegeben werden, wenn Kostenregulierung und Lagerregulierung ins Hauptbuch abgeschlossen sind. Business Central kann Wertänderungen in `Wertposten (Value Entries)` korrekt nachziehen; die GuV sieht diese Änderung aber erst zuverlässig, wenn die Hauptbuchseite ebenfalls abgestimmt ist. Power BI korrigiert keine ungeklärte Kostenlogik. Es zeigt nur Daten an, die aus Business Central oder dem Datenmodell kommen. Wenn Wertposten und Sachposten nicht zusammenpassen, visualisiert Power BI eine Unstimmigkeit, löst sie aber nicht.
+
+Der Drilldown ist Pflicht:
+- `Wertposten (Value Entries)` erklären, **warum** der Wareneinsatz steigt.
+- `Sachposten (G/L Entries)` zeigen, **ob** die Kostenwirkung im Hauptbuch angekommen ist.
+- `Finanzberichte (Financial Reports)` zeigen, **wie** sich die GuV verändert.
+- `Analyseansichten (Analysis Views)` und Power BI zeigen, **wie** die Werte nach Dimensionen ausgewertet werden.
+
+Nicht erlaubt ist, die Marge in Power BI oder Excel manuell um `60 EUR` zu korrigieren. Die Korrektur gehört in die Business-Central-Kostenkette: Wertposten prüfen, Kostenregulierung ausführen, Lagerkosten ins Hauptbuch buchen, Finanzbericht neu prüfen, Analyseansicht/Power BI aktualisieren.
+
 ### Buchungsspur
 
 Reporting erzeugt nicht zwingend neue Buchungen. Es muss aber jede Berichtszahl auf Buchungen zurückführen. Diese Tabelle zeigt den Prüfpfad für den Maschinenverkauf `SO-1001`.
@@ -5775,7 +5814,7 @@ Die folgende Matrix ist eine ehrliche Reifegradprüfung. Sie bewertet nicht, was
 | 22. USt, E-Rechnung und deutsche Nachweissicht | 10 | 10 | Die geforderten Steuerfälle Inland `SO-1001`, EU-B2B `D12000-EU` und Drittland `D13000-US` sind mit USt-Gruppen, Alt+Q-Schritten, erwarteten USt-/Sachposten, Nachweisstatus, Fehlerfall, Korrektur und UAT-Mini-Fall enthalten. | Keine Lücke für die aktuell geforderte Steuerfalltiefe. | Weitere Sonderfälle wie Reverse Charge und Anzahlungs-USt bleiben sinnvolle spätere Vertiefungen, senken den aktuellen Zielerfüllungsgrad aber nicht. |
 | 23. Inventory Costing und Lagerbewertung | 10 | 10 | Der Vorher/Nachher-Zahlenfall `RAW-STEEL` ist vollständig enthalten: `10` Stück, `100/110 EUR`, Differenz `100 EUR`, Verbrauch `6`, Rest `4`, Verteilung `60/40 EUR`, Artikelposten, Wertposten, Sachposten, Lagerbewertung und GuV-Wirkung. | Keine Lücke für den geforderten Kostenregulierungsfall. | Spätere Vertiefung: zusätzlicher Kostenmethodenvergleich mit negativem Bestand. |
 | 24. Monatsabschluss / Record-to-Report | 10 | 10 | Die Abschluss-Arbeitsmappe enthält alle 15 geforderten Schritte von offenen Verkaufsbelegen bis Periodensperre, jeweils mit Alt+Q-Seite, Bericht/Liste, Prüfkriterium, typischem Fehler, erlaubtem Korrekturweg und Evidence-Pack-Nachweis. | Keine Lücke für die geforderte Abschluss-Arbeitsmappe. | Spätere Vertiefung: Reviewer-Protokoll mit Beispiel-Sollwerten je Kontrollpunkt. |
-| 25. Reporting, Controlling, Finanzberichte und Power BI | 9.5 | 10 | Der konkrete Reportingfall `RM-GUV-MONAT` mit Zeitraum Juni 2026, `PRODUCTLINE = MACHINE`, optional `CHANNEL = B2B`, `SO-1001`, Erlös `68.000 EUR`, separater USt, Wareneinsatz, Bruttomarge und Drilldown bis Sachposten/Wertposten ist enthalten. | Für vollständige `10/10` fehlen noch Plan/Ist, Berichtslayout-Governance und Power-BI-Berechtigungsmodell als eigene UAT-Fälle. | Reporting-UAT um Plan/Ist, Berichtslayout vs. Finanzbericht und Power-BI-Governance-Negativtest ergänzen. |
+| 25. Reporting, Controlling, Finanzberichte und Power BI | 10 | 10 | Der konkrete Reportingfall `RM-GUV-MONAT` mit Zeitraum Juni 2026, `PRODUCTLINE = MACHINE`, optional `CHANNEL = B2B`, `SO-1001`, Erlös `68.000 EUR`, separater USt, Wareneinsatz, Bruttomarge, Kostenregulierungswirkung aus Kapitel 23 und Drilldown bis Wertposten/Sachposten ist enthalten. | Keine Lücke für die aktuell geforderte Verbindung zwischen Reporting und Inventory Costing. | Spätere Vertiefung: Plan/Ist, Berichtslayout-Governance und Power-BI-Berechtigungsmodell als eigene UAT-Fälle. |
 | 29. Integrationen | 8 | 10 | Architekturentscheidung ist deutlich stärker, aber viele Integrationsklassen sind noch in einer Matrix statt als volle Entscheidungsfälle ausgearbeitet. | Für Expense, DATEV, Shipping, WMS und Reporting/BI fehlen noch eigene vollständige Schrittfolgen wie bei Document Capture. | Je Integrationsklasse einen kurzen Testcompany-Fall mit UAT, Rollback und Supportübergabe ergänzen. |
 
 Praktische Einordnung: Der aktuelle Stand ist kein fertiges `10/10`-Endurteil. Die Matrix zeigt, welche Kapitel bereits als starke Schulungskapitel funktionieren und wo der nächste redaktionelle Ausbau ansetzen muss. In dieser Überarbeitung wurden Kapitel 22, 23, 24 und 29 direkt verbessert, weil dort die größte Lücke zwischen behaupteter und tatsächlich sichtbarer Tiefe bestand.
