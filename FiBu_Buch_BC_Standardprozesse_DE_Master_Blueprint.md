@@ -3207,6 +3207,150 @@ Für `SO-1001` bedeutet das:
 
 Wenn im UAT nur die Rechnung richtig aussieht, aber die `USt-Posten (VAT Entries)` falsch sind, ist der Fall nicht bestanden. Der Posten ist der steuerliche Nachweis.
 
+### Drei Steuer-Mini-Fälle für Rhein-Main
+
+Rhein-Main prüft Steuerlogik nicht abstrakt. Das Steuerteam testet drei wiederkehrende Fälle getrennt, weil jeder Fall andere USt-Gruppen, Nachweise und Fehlerbilder erzeugt. Die folgenden Mini-Fälle sind bewusst kurz genug für Schulung, aber konkret genug für UAT.
+
+#### A. Inland 19 %: `SO-1001` an `D10000`
+
+Alltagsszene:
+RM-SALES verkauft eine Maschine `RM-M100` an den deutschen Kunden `D10000`. Der Verkauf ist ein normaler Inlandsvorgang mit `19 %` Umsatzsteuer. Finance erwartet eine Forderung über `80.920 EUR`, Erlös über `68.000 EUR` und Umsatzsteuer über `12.920 EUR`.
+
+| Prüfperspektive | Rhein-Main-Wert |
+|---|---|
+| Debitor | `D10000` |
+| USt-Geschäftsbuchungsgruppe | `INLAND` |
+| Artikel | `RM-M100` |
+| USt-Produktbuchungsgruppe | `FULL` |
+| USt-Matrix | `INLAND/FULL = 19 %` |
+| Nachweis | gebuchte Rechnung, USt-Posten, USt-Abrechnung, E-Belegstatus |
+
+Alt+Q-Schritte:
+1. Öffne `Gebuchte Verkaufsrechnungen (Posted Sales Invoices)` und öffne `SO-1001`.
+2. Prüfe `Debitorennr. = D10000`, Netto `68.000 EUR`, USt `12.920 EUR`, Brutto `80.920 EUR`.
+3. Öffne `USt-Buchungsmatrix Einrichtung (VAT Posting Setup)` und prüfe `INLAND/FULL = 19 %`.
+4. Öffne `USt-Posten (VAT Entries)` und filtere `Belegnr. = SO-1001`.
+5. Öffne `Sachposten (G/L Entries)` und filtere `Belegnr. = SO-1001`.
+6. Öffne `USt-Abrechnung (VAT Statement)` für Juni `2026`.
+7. Öffne `E-Belege (E-Documents)` und prüfe Status/Referenz `SO-1001`.
+
+Erwartete Posten:
+- `Debitorenposten (Customer Ledger Entries)`: Forderung `80.920 EUR`.
+- `Sachposten (G/L Entries)`: Forderung, Erlös `68.000 EUR`, USt `12.920 EUR`.
+- `USt-Posten (VAT Entries)`: Bemessungsgrundlage `68.000 EUR`, Betrag `12.920 EUR`, Satz `19 %`.
+
+Fehlerfall:
+- Fehler: Artikel `RM-M100` trägt versehentlich `USt-Produktbuchungsgruppe = ZERO`.
+- Erkennung: `USt-Posten (VAT Entries)` zeigt keinen oder falschen Steuerbetrag.
+- Korrektur vor Buchung: Verkaufsauftrag öffnen, USt-Gruppen prüfen, Artikel-/Zeilenwert korrigieren, `Buchungsvorschau (Preview Posting)` erneut prüfen.
+- Korrektur nach Buchung: Verkaufsgutschrift erstellen, Stammdaten korrigieren, Rechnung neu buchen.
+- Nicht erlaubt: USt-Posten oder USt-Abrechnung manuell überschreiben.
+
+UAT-Mini-Fall:
+
+| Feld | Inhalt |
+|---|---|
+| ID | `UAT-VAT-IN-001` |
+| Ziel | Inlandrechnung `SO-1001` mit `19 %` USt nachweisen |
+| Rolle | Steuerteam, Debitorenbuchhaltung |
+| Schritte | `SO-1001` öffnen, USt-Gruppen prüfen, USt-Posten filtern, Sachposten prüfen, USt-Abrechnung Juni prüfen, E-Belegstatus dokumentieren |
+| Akzeptanzkriterium | Rechnung, USt-Posten, Sachposten und USt-Abrechnung zeigen `68.000 EUR` Basis und `12.920 EUR` USt |
+| Evidence Pack | Rechnung, USt-Postenexport, Sachpostenfilter, USt-Abrechnung, E-Belegstatus, Negativtest `ZERO` |
+
+#### B. EU-B2B: `D12000-EU` mit gültiger USt-ID
+
+Alltagsszene:
+RM-SALES verkauft Ersatzteile an den EU-Geschäftskunden `D12000-EU`. Der Kunde gibt eine gültige USt-ID an. Der Vorgang wird als innergemeinschaftliche Lieferung behandelt, sofern die materiellen und formellen Nachweise vorliegen. Das Buch ersetzt keine Steuerberatung; es zeigt die BC-Prüflogik.
+
+| Prüfperspektive | Rhein-Main-Wert |
+|---|---|
+| Debitor | `D12000-EU` |
+| USt-Geschäftsbuchungsgruppe | `EU-B2B` |
+| Artikel | `SP-PUMP-01` |
+| USt-Produktbuchungsgruppe | `FULL` |
+| USt-Matrix | `EU-B2B/FULL = 0 %` mit EU-Nachweislogik |
+| Nachweis | USt-ID-Prüfung, Liefernachweis, USt-Posten, Zusammenfassende Meldung, E-Belegstatus |
+
+Alt+Q-Schritte:
+1. Öffne `Debitoren (Customers)` und öffne `D12000-EU`.
+2. Prüfe `USt-IdNr.` und Land/Region.
+3. Öffne `USt-IdNr.-Prüfung (VAT Registration No. Validation)` oder die verfügbare Validierungsaktion am Debitor.
+4. Öffne `Verkaufsaufträge (Sales Orders)` und prüfe den EU-Auftrag.
+5. Prüfe in der Zeile `USt-Geschäftsbuchungsgruppe = EU-B2B` und `USt-Produktbuchungsgruppe = FULL`.
+6. Öffne `Buchungsvorschau (Preview Posting)` und prüfe, dass kein deutscher USt-Betrag entsteht.
+7. Nach Buchung öffne `USt-Posten (VAT Entries)` und filtere auf den Beleg.
+8. Öffne den Nachweisordner/Evidence Pack und dokumentiere USt-ID-Prüfung, Liefernachweis und Beleg.
+
+Erwartete Posten:
+- `Debitorenposten (Customer Ledger Entries)`: Forderung netto.
+- `Sachposten (G/L Entries)`: Erlös und Forderung ohne deutsche Umsatzsteuer.
+- `USt-Posten (VAT Entries)`: Bemessungsgrundlage mit EU-Steuerlogik, USt-Betrag `0`.
+
+Fehlerfall:
+- Fehler: `D12000-EU` hat keine gültige USt-ID oder falsche USt-Geschäftsbuchungsgruppe.
+- Erkennung: Debitorenkarte, USt-ID-Prüfung und `USt-Posten (VAT Entries)` passen nicht zusammen.
+- Korrektur vor Buchung: USt-ID prüfen, Debitorengruppe korrigieren, Beleg aktualisieren, Buchungsvorschau erneut prüfen.
+- Korrektur nach Buchung: Beleg gutschreiben und mit korrekter Steuerlogik neu buchen; Nachweise im Evidence Pack dokumentieren.
+- Nicht erlaubt: EU-Steuerfreiheit ohne USt-ID- und Liefernachweis freigeben.
+
+UAT-Mini-Fall:
+
+| Feld | Inhalt |
+|---|---|
+| ID | `UAT-VAT-EU-001` |
+| Ziel | EU-B2B-Verkauf mit gültiger USt-ID und Nachweislogik abnehmen |
+| Rolle | Steuerteam, Vertrieb |
+| Schritte | Debitor `D12000-EU` öffnen, USt-ID validieren, Verkaufsauftrag prüfen, Buchungsvorschau öffnen, USt-Posten und Nachweise prüfen |
+| Akzeptanzkriterium | USt-Betrag ist `0`, EU-Bemessungsgrundlage ist in USt-Posten nachvollziehbar, USt-ID- und Liefernachweis liegen vor |
+| Evidence Pack | USt-ID-Prüfung, Rechnung, Liefernachweis, USt-Posten, ggf. ZM-Nachweis, Negativtest ungültige USt-ID |
+
+#### C. Drittland: `D13000-US` mit Ausfuhrnachweis
+
+Alltagsszene:
+RM-SALES verkauft Ersatzteile an `D13000-US` in die USA. Der Verkauf kann nur dann steuerlich korrekt als Drittlandexport behandelt werden, wenn der Ausfuhrnachweis sauber dokumentiert ist. Business Central zeigt die Steuerlogik; der Nachweis entsteht durch Beleg- und Exportdokumentation.
+
+| Prüfperspektive | Rhein-Main-Wert |
+|---|---|
+| Debitor | `D13000-US` |
+| USt-Geschäftsbuchungsgruppe | `DRITTLAND` |
+| Artikel | `SP-PUMP-01` |
+| USt-Produktbuchungsgruppe | `FULL` |
+| USt-Matrix | `DRITTLAND/FULL = 0 %` mit Exportnachweis |
+| Nachweis | Ausfuhrnachweis, Rechnung, Versand-/Zolldokument, USt-Posten, Belegarchiv |
+
+Alt+Q-Schritte:
+1. Öffne `Debitoren (Customers)` und prüfe `D13000-US`, Land/Region `US` und USt-Geschäftsbuchungsgruppe `DRITTLAND`.
+2. Öffne `Verkaufsaufträge (Sales Orders)` und öffne den Exportauftrag.
+3. Prüfe Lieferadresse, Incoterm/Versandinformation, Artikel, Menge und USt-Gruppen.
+4. Öffne `Buchungsvorschau (Preview Posting)` und prüfe, dass keine deutsche USt gebucht wird.
+5. Buche Lieferung und Rechnung erst, wenn Export- und Versandnachweise definiert sind.
+6. Öffne `USt-Posten (VAT Entries)` und filtere auf den Beleg.
+7. Öffne `Sachposten (G/L Entries)` und prüfe Erlös/Forderung ohne deutsche USt.
+8. Lege Ausfuhrnachweis, Versandbeleg und Rechnung im Evidence Pack ab.
+
+Erwartete Posten:
+- `Debitorenposten (Customer Ledger Entries)`: Forderung netto oder Fremdwährungsbetrag nach Beleg.
+- `Sachposten (G/L Entries)`: Forderung und Exporterlös ohne deutsche Umsatzsteuer.
+- `USt-Posten (VAT Entries)`: Exportbemessungsgrundlage mit USt-Betrag `0`.
+
+Fehlerfall:
+- Fehler: Drittlandauftrag wird mit `INLAND/FULL` gebucht oder Ausfuhrnachweis fehlt.
+- Erkennung: `USt-Posten (VAT Entries)` zeigt deutsche USt oder Evidence Pack enthält keinen Exportnachweis.
+- Korrektur vor Buchung: Debitor-/Beleggruppen, Lieferadresse und Nachweispflicht korrigieren.
+- Korrektur nach Buchung: Gutschrift/Neubuchung bei falscher Steuer; fehlenden Nachweis nachfordern und dokumentieren.
+- Nicht erlaubt: Steuerfreie Ausfuhr nur wegen Land `US` akzeptieren, ohne Nachweisstatus zu prüfen.
+
+UAT-Mini-Fall:
+
+| Feld | Inhalt |
+|---|---|
+| ID | `UAT-VAT-EX-001` |
+| Ziel | Drittlandexport mit Ausfuhrnachweis abnehmen |
+| Rolle | Vertrieb, Steuerteam, Versand |
+| Schritte | Debitor `D13000-US` prüfen, Exportauftrag öffnen, USt-Gruppen und Lieferadresse prüfen, Buchungsvorschau öffnen, USt-Posten und Sachposten prüfen, Ausfuhrnachweis ablegen |
+| Akzeptanzkriterium | USt-Betrag ist `0`, Exportbemessungsgrundlage ist nachvollziehbar, Ausfuhrnachweis liegt im Evidence Pack |
+| Evidence Pack | Rechnung, Versand-/Zolldokument, Ausfuhrnachweis, USt-Posten, Sachposten, Negativtest falsche Gruppe `INLAND` |
+
 ### Buchungsspur
 
 | Ebene | Rhein-Main-Nachweis | Wo prüfen? |
@@ -3379,6 +3523,70 @@ Für Rhein-Main ist das besonders wichtig, weil `RAW-STEEL` in `RM-M100` eingeht
 
 Typischer Anfängerfehler: Der Bestand wird in den Artikelposten geprüft und für „fertig“ erklärt. Das reicht nicht. Wenn Wertposten oder Sachposten nicht stimmen, ist der Abschluss trotzdem falsch.
 
+### Vorher/Nachher-Zahlenfall: Kostenregulierung bei `RAW-STEEL`
+
+Rhein-Main kauft `10` Stück `RAW-STEEL` für die Fertigung. Beim Wareneingang erwartet RM-PROD einen Preis von `100 EUR` je Stück. Die Eingangsrechnung kommt später mit `110 EUR` je Stück. Zu diesem Zeitpunkt wurden bereits `6` Stück in Fertigungsauftrag `PROD-3001` verbraucht. `4` Stück liegen noch im Lager.
+
+Der Zahlenfall zeigt, warum Kostenregulierung notwendig ist. Ohne Regulierung bliebe der Verbrauch zu niedrig bewertet und der Lagerwert wäre ebenfalls falsch.
+
+| Schritt | Menge | Preis | Wert | Wirkung vor Kostenregulierung |
+|---|---:|---:|---:|---|
+| Wareneingang `RAW-STEEL` | `10` | `100 EUR` erwartet | `1.000 EUR` | Lagerwert steigt erwartungsgemäß um `1.000 EUR` |
+| Verbrauch in `PROD-3001` | `6` | `100 EUR` erwartet | `600 EUR` | Fertigung/Wareneinsatz nutzt erwartete Kosten |
+| Restbestand | `4` | `100 EUR` erwartet | `400 EUR` | Lager zeigt Restwert `400 EUR` |
+| Eingangsrechnung | `10` | `110 EUR` tatsächlich | `1.100 EUR` | Kostenabweichung `100 EUR` entsteht |
+
+Die Differenz beträgt `100 EUR`. Business Central verteilt diese Differenz nach der Mengenwirkung:
+- Verbrauchte Menge: `6/10` der Differenz = `60 EUR`.
+- Restbestand: `4/10` der Differenz = `40 EUR`.
+
+| Bereich | Vorher | Nach Kostenregulierung | Wirkung |
+|---|---:|---:|---|
+| Verbrauch in `PROD-3001` | `600 EUR` | `660 EUR` | Fertigungskosten steigen um `60 EUR` |
+| Restbestand `RAW-STEEL` | `400 EUR` | `440 EUR` | Lagerwert steigt um `40 EUR` |
+| Gesamtkosten | `1.000 EUR` | `1.100 EUR` | Eingangsrechnung ist vollständig verteilt |
+| GuV-Wirkung | zu niedriger Aufwand/Wareneinsatz | Aufwand/Wareneinsatz um `60 EUR` höher, sobald Verbrauch/Output/Verkauf in GuV wirkt | Marge wird realistischer |
+
+Schritt-für-Schritt-Prüfung:
+1. Öffne `Alt+Q` und suche `Artikelposten (Item Ledger Entries)`.
+2. Filtere `Artikelnr. = RAW-STEEL`, `Belegnr. = PO-2001`.
+3. Prüfe Wareneingang `10` Stück.
+4. Filtere auf Verbrauch zu `PROD-3001` und prüfe `6` Stück Verbrauch.
+5. Öffne `Wertposten (Value Entries)` und filtere `Artikelnr. = RAW-STEEL`.
+6. Prüfe erwartete Kosten: Zugang `1.000 EUR`, Verbrauch `600 EUR`, Restbestand rechnerisch `400 EUR`.
+7. Öffne die gebuchte Einkaufsrechnung und prüfe fakturierte Kosten `1.100 EUR`.
+8. Führe `Lagerregulierung fakt. Einst. Preise (Adjust Cost - Item Entries)` aus.
+9. Öffne `Wertposten (Value Entries)` erneut und prüfe zusätzliche Regulierungswerte: `60 EUR` auf Verbrauch/Fertigung und `40 EUR` auf Restbestand.
+10. Führe `Lagerregulierung buchen (Post Inventory Cost to G/L)` aus.
+11. Öffne `Sachposten (G/L Entries)` und prüfe, ob Lagerbestand und Wareneinsatz/Fertigungskosten im Hauptbuch angekommen sind.
+12. Öffne `Lagerbewertung (Inventory Valuation)` zum `30.06.2026`; Restbestand `4` Stück muss mit `440 EUR` bewertet sein.
+
+Was Business Central fachlich macht:
+- Der Rechnungspreis ersetzt nicht einfach pauschal den alten Preis.
+- Die Differenz wird auf die bereits verbrauchte Menge und den noch vorhandenen Bestand verteilt.
+- Wertposten dokumentieren diese Verteilung.
+- Sachposten zeigen die Hauptbuchwirkung erst nach `Lagerregulierung buchen (Post Inventory Cost to G/L)`.
+
+Fehlerfall:
+- Fehler: Kostenregulierung wird vor dem Monatsabschluss nicht ausgeführt.
+- Symptom: Lagerbewertung zeigt andere Werte als Sachkonto Lager oder GuV-Marge ist zu hoch.
+- Diagnose: `Wertposten (Value Entries)` auf erwartete/fakturierte Kosten prüfen und Lagerbewertung mit Sachposten vergleichen.
+- Erlaubter Korrekturweg: Kostenregulierung ausführen, Lagerkosten ins Hauptbuch buchen, Berichte neu abstimmen.
+- Nicht erlaubt: Differenz `100 EUR` manuell auf ein Wareneinsatzkonto buchen, ohne Wertpostenbezug und Lagerwertprüfung.
+
+UAT-Mini-Fall:
+
+| Feld | Inhalt |
+|---|---|
+| ID | `UAT-COST-RAW-001` |
+| Ziel | Kostenabweichung `100 EUR` aus Einkauf `RAW-STEEL` korrekt auf Verbrauch und Lager verteilen |
+| Rolle | Lagerbuchhaltung, Controller |
+| Testdaten | `RAW-STEEL`, Menge `10`, erwarteter Preis `100 EUR`, Rechnungspreis `110 EUR`, Verbrauch `6`, Restbestand `4`, Fertigungsauftrag `PROD-3001` |
+| Schritte | Artikelposten prüfen, Wertposten vor Regulierung prüfen, Kostenregulierung ausführen, Lagerkosten ins Hauptbuch buchen, Wertposten/Sachposten/Lagerbewertung erneut prüfen |
+| Erwartetes Ergebnis | `60 EUR` Differenz wirken auf Verbrauch/Fertigung, `40 EUR` erhöhen den Restlagerwert |
+| Akzeptanzkriterium | Wertposten, Lagerbewertung und Sachposten zeigen dieselbe Verteilung |
+| Evidence Pack | Artikelposten, Wertposten vor/nach Regulierung, Sachposten, Lagerbewertung, Kostenlaufprotokoll, Negativtest ohne Regulierung |
+
 ### Buchungsspur
 
 | Ebene | Rhein-Main-Nachweis | Wo prüfen? |
@@ -3503,6 +3711,31 @@ Ein Monatsabschluss ist wie eine Kette. Wenn ein frühes Glied offen ist, wird e
 Für Einsteiger ist der wichtigste Gedanke: Der Monatsabschluss erzeugt nicht aus Chaos einen richtigen Bericht. Er prüft, ob alle vorgelagerten Prozesse richtig gebucht wurden. Debitoren und Kreditoren zeigen offene Posten. Die Bank zeigt, ob Zahlungen wirklich auf dem Konto angekommen sind. Anlagen zeigen Abschreibungen. Lager zeigt Bestand und Wert. Projekte zeigen Aufwand, Erlöse und Marge. Erst wenn diese Bereiche plausibel sind, haben GuV und Bilanz Aussagekraft.
 
 Rhein-Main arbeitet deshalb mit einer festen Sperrregel: Eine Periode wird erst freigegeben, wenn jeder Kontrollbericht im Evidence Pack liegt. Fehlt ein Bericht, ist der Abschluss nicht abnahmefähig. Eine Excel-Notiz ersetzt keinen Business-Central-Nachweis.
+
+### Abschluss-Arbeitsmappe Juni 2026
+
+Die folgende Arbeitsmappe ist der operative Abschlussfahrplan. Sie ist bewusst konkreter als eine normale Checkliste: Jeder Schritt nennt Seite, Bericht, Prüfkriterium, typischen Fehler, erlaubte Korrektur und Evidence-Pack-Nachweis.
+
+| Nr. | Abschluss-Schritt | Seite über `Alt+Q` | Bericht / Liste | Prüfkriterium | Typischer Fehler | Erlaubter Korrekturweg | Evidence-Pack-Nachweis |
+|---:|---|---|---|---|---|---|---|
+| 1 | Offene Verkaufsbelege | `Verkaufsaufträge (Sales Orders)`, `Verkaufsrechnungen (Sales Invoices)` | Liste offener Verkaufsbelege | Keine alten lieferbaren/fakturierbaren Belege ohne Entscheidung | Lieferung offen, Rechnung nicht gebucht, falsches Buchungsdatum | Beleg fachlich freigeben, buchen, stornieren oder begründet in Folgemonat verschieben | Export offener Verkaufsbelege mit Kommentar |
+| 2 | Offene Einkaufsbelege | `Einkaufsbestellungen (Purchase Orders)`, `Einkaufsrechnungen (Purchase Invoices)` | Liste offener Einkaufsbelege | Wareneingänge und Eingangsrechnungen Juni sind vollständig bewertet | Wareneingang gebucht, Eingangsrechnung fehlt | Rechnung nachfordern, Rückstellung/Abgrenzung prüfen, Belegstatus dokumentieren | Export offener Einkaufsbelege und Rückstellungsliste |
+| 3 | Debitoren-OP | `Debitorenposten (Customer Ledger Entries)` | OP-Liste Debitoren | `SO-1001` ist bezahlt oder bewusst offen | Zahlung nicht ausgeglichen | Zahlungseingang buchen oder `Posten ausgleichen (Apply Entries)` korrekt ausführen | Debitoren-OP-Liste mit Altersstruktur |
+| 4 | Kreditoren-OP | `Kreditorenposten (Vendor Ledger Entries)` | OP-Liste Kreditoren | Eingangsrechnungen sind vollständig, fällige Zahlungen vorbereitet | Rechnung doppelt oder nicht erfasst | Dublette stornieren; fehlende Rechnung erfassen oder Abgrenzung dokumentieren | Kreditoren-OP-Liste und Zahlungsvorschlag |
+| 5 | Bank | `Bankkontenabstimmung (Bank Account Reconciliation)` | Bankabstimmung `BANK-RM-01` | Bankposten stimmen mit Kontoauszug `BA-2026-06-30` überein | unbekannte Zahlung oder Doppelimport | Klärposten buchen, richtige Zuordnung herstellen, Doppelimport stornieren | gebuchte Bankabstimmung, Kontoauszug, Klärpostenliste |
+| 6 | USt | `USt-Abrechnung (VAT Statement)`, `USt-Posten (VAT Entries)` | USt-Abrechnung Juni `2026` | USt-Posten passen zu Inland/EU/Drittland und Zeitraum | falsches Buchungsdatum oder falsche USt-Gruppe | vor Buchung korrigieren; nach Buchung Gutschrift/Neubuchung oder dokumentierte Periodenkorrektur | USt-Abrechnung, USt-Postenexport, Steuerfallnachweise |
+| 7 | Anlagen | `AfA berechnen (Calculate Depreciation)`, `Anlagenposten (FA Ledger Entries)` | Anlagenbuchwertbericht | AfA für `FA-CNC-01` bis `30.06.2026` gebucht | AfA-Lauf fehlt oder falsches Startdatum | AfA-Lauf ausführen oder falsche Anlagenbuchung stornieren und korrekt buchen | Anlagenbuchwertbericht, AfA-Posten, Sachposten |
+| 8 | Lagerwert | `Lagerbewertung (Inventory Valuation)`, `Wertposten (Value Entries)` | Lagerbewertung zum `30.06.2026` | Lagerbewertung stimmt mit Sachkonto Bestand überein | Kostenregulierung oder Lagerwertbuchung fehlt | `Lagerregulierung fakt. Einst. Preise (Adjust Cost - Item Entries)` und `Lagerregulierung buchen (Post Inventory Cost to G/L)` ausführen | Lagerbewertung, Wertposten, Sachposten Bestand |
+| 9 | Projekte | `Projektstatistik (Project Statistics)`, `Projektposten (Project Ledger Entries)` | Projektstatistik `PROJ-5001` | Aufwand, Faktura und Marge sind plausibel | Material/Ressource auf falsche Projektaufgabe gebucht | falsche Buchung stornieren und auf richtige Aufgabe neu buchen | Projektstatistik, Projektposten, Korrekturbeleg |
+| 10 | Abgrenzungen | `Abgrenzungsvorlagen (Deferral Templates)`, `Sachposten (G/L Entries)` | Abgrenzungsübersicht / Sachposten | periodische Erlöse und Aufwände sind richtig verteilt | Miet-/Serviceerlös komplett im falschen Monat | Abgrenzungslauf oder Korrekturbuchung mit Freigabe | Abgrenzungsplan, Sachposten, Freigabe |
+| 11 | Sachkonten | `Sachposten (G/L Entries)`, `Kontenplan (Chart of Accounts)` | Saldenliste / Kontenplan | wesentliche Konten sind plausibel und ohne ungeklärte Ausreißer | Direktbuchung auf Systemkonto oder falsche Dimension | Korrekturbuchung mit Begründung; Stammdaten/Dimension korrigieren | Saldenliste, Sachpostenfilter, Review-Kommentar |
+| 12 | Finanzberichte | `Finanzberichte (Financial Reports)` | `RM-GUV-MONAT` | GuV Juni ist nach Dimensionen auswertbar | Filter falsch oder Analyseansicht veraltet | Filter korrigieren, Analyseansicht aktualisieren, Bericht neu exportieren | Finanzbericht mit Filtern, Drilldown-Nachweis |
+| 13 | GuV/Bilanz | `Finanzberichte (Financial Reports)` | GuV und Bilanz Juni | GuV/Bilanz stimmen mit Nebenbüchern und Sachposten überein | Bilanzkonto stimmt nicht mit Nebenbuch | betroffenen Bereich zurückspringen und Ursache korrigieren | GuV, Bilanz, Abstimmbrücke |
+| 14 | Evidence Pack | Dokumentenablage / Belegarchiv | Abschlussordner `2026-06` | Alle Nachweise sind vollständig und versioniert | Bericht fehlt oder Filter nicht dokumentiert | Bericht neu erzeugen, Filter und Ersteller dokumentieren | vollständiger Abschlussordner mit Index |
+| 15 | Periodensperre | `Buchhaltungsperioden (Accounting Periods)`, `Benutzereinrichtung (User Setup)` | Perioden-/Buchungssperren | Juni wird erst nach Freigabe gesperrt | Sperre vor Korrektur oder zu spät gesetzt | Freigabeprozess wiederholen, Sperrdatum korrekt setzen | Freigabeprotokoll, Sperrdatennachweis |
+
+Praktische Anwendung:
+Finance arbeitet die Tabelle von oben nach unten ab. Wenn Schritt `8` Lagerwert nicht bestanden ist, wird Schritt `12` Finanzbericht nicht freigegeben. Der Abschluss ist erst belastbar, wenn jeder Kontrollpunkt einen Evidence-Pack-Nachweis hat.
 
 ### Rollen und Abschlussreihenfolge
 
@@ -5481,9 +5714,9 @@ Die folgende Matrix ist eine ehrliche Reifegradprüfung. Sie bewertet nicht, was
 | 19. Debitoren, Kreditoren und OP-Ausgleich | 9 | 10 | Starkes Kapitel für OP-Logik, aber Teilzahlung, Skonto, Überzahlung und Ausgleichsaufhebung brauchen mehr Beispiele. | Detaillierte Postenlogik bei Teilzahlung und Skonto. | Vier OP-Sonderfälle mit Buchungsspur und Lösung ergänzen. |
 | 20. Bank, Payments und Bankabstimmung | 9 | 10 | Gute Praxisnähe, aber Banking-Importformate, Klärposten und Massenabstimmung sind noch knapp. | Mehr Differenzfälle und Bankdatei-/Avislogik. | Bankkapitel um unbekannte Zahlung, Avis und Doppelimport erweitern. |
 | 21. Anlagen | 8 | 10 | Anlagenzugang und AfA sind abgedeckt, aber Komponenten, Umbuchung, Teilabgang und Inventur fehlen noch in Tiefe. | Anlagenkomponenten, Verkauf/Abgang, außerplanmäßige Themen, Anlageninventur. | Anlagenkapitel mit vollständigem Lebenszyklusfall erweitern. |
-| 22. USt, E-Rechnung und deutsche Nachweissicht | 8 | 10 | Inlandfall ist verbessert, aber EU-/Drittlandlogik, E-Rechnungsformate und Nachweisvarianten sind noch nicht vollständig ausdidaktisiert. | USt-ID-Prüfung, Reverse-Charge-Abgrenzung, Ausfuhrnachweis, E-Rechnungsfehlerstatus. | Steuerkapitel um getrennte Inland-, EU- und Drittland-UATs ergänzen. |
-| 23. Inventory Costing und Lagerbewertung | 8 | 10 | Postenspur ist besser, aber Kostenmethoden, erwartete Kosten, negative Bestände und Fertigungskosten brauchen mehr Rechenbeispiele. | FIFO/Durchschnitt, erwartete vs. fakturierte Kosten, Kostenregulierung bei Verkauf vor Rechnung. | Zahlenfall mit Vorher/Nachher-Wertposten und GuV-Auswirkung ergänzen. |
-| 24. Monatsabschluss / Record-to-Report | 8 | 10 | Abschlussreihenfolge ist klarer, aber die einzelnen Abschlusskontrollen sind noch zu wenig als echte Arbeitsmappe ausgeprägt. | Konkrete Soll-/Ist-Werte je Nebenbuch, Freigabestatus, Sperrlogik und Review-Kommentare. | Abschlusscheckliste mit Beispielwerten und Freigabedialogen ausbauen. |
+| 22. USt, E-Rechnung und deutsche Nachweissicht | 9.5 | 10 | Inland, EU-B2B und Drittland sind jetzt als getrennte Mini-Fälle mit USt-Gruppen, UAT und Nachweisen ausgearbeitet. Für `10/10` fehlen noch tiefere Sonderfälle wie Reverse Charge, Anzahlungs-USt und E-Rechnungsformatfehler. | Reverse-Charge-/Anzahlungsfälle und detaillierte Validierungsfehler bei E-Rechnungen. | Steuerkapitel um zwei Sonderfälle mit Belegkorrektur und E-Dokument-Fehlerstatus ergänzen. |
+| 23. Inventory Costing und Lagerbewertung | 9.5 | 10 | Der Vorher/Nachher-Zahlenfall `RAW-STEEL` zeigt Kostenregulierung, `60/40 EUR`-Verteilung, Wertposten, Lagerwert und GuV-Wirkung. Für `10/10` fehlen noch Kostenmethodenvergleich und negativer Bestand als eigener Zahlenfall. | FIFO/Durchschnitt, negativer Bestand und Verkauf vor Eingangsrechnung. | Zusätzlichen Kostenmethodenvergleich mit negativem Bestand und späterer Rechnung ergänzen. |
+| 24. Monatsabschluss / Record-to-Report | 9.5 | 10 | Die Abschluss-Arbeitsmappe deckt 15 Schritte mit Seite, Bericht, Prüfkriterium, Fehler, Korrektur und Evidence ab. Für `10/10` fehlen noch konkrete Beispiel-Sollwerte je Nebenbuch und ein vollständiger Review-Kommentarfluss. | Soll-/Ist-Werte, Reviewer, Freigabestatus und Kommentarbeispiele je Abschlussbereich. | Abschluss-UAT um Reviewer-Protokoll und Beispielwerte für jeden Kontrollpunkt ergänzen. |
 | 25. Reporting, Controlling, Finanzberichte und Power BI | 9 | 10 | Sehr gutes Lernkapitel, aber Plan/Ist, Berichtslayouts und Power-BI-Governance sind noch ausbaufähig. | Planwerte, Berichtslayout vs. Finanzbericht, Dataset-Governance und Berechtigungsmodell. | Reporting-UAT um Plan/Ist und Governance-Negativtest ergänzen. |
 | 29. Integrationen | 8 | 10 | Architekturentscheidung ist deutlich stärker, aber viele Integrationsklassen sind noch in einer Matrix statt als volle Entscheidungsfälle ausgearbeitet. | Für Expense, DATEV, Shipping, WMS und Reporting/BI fehlen noch eigene vollständige Schrittfolgen wie bei Document Capture. | Je Integrationsklasse einen kurzen Testcompany-Fall mit UAT, Rollback und Supportübergabe ergänzen. |
 
