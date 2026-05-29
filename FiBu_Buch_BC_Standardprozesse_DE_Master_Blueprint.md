@@ -169,69 +169,87 @@ Prüfungsfalle:
 
 ## 2. Wie man dieses Buch nutzt: Lernpfade und Reifegrad
 
-Dieses Buch lässt sich als Einsteigerkurs, Key-User-Schulung, Functional-Consultant-Training, MB-800-Vorbereitung und Solution-Architect-Leitfaden verwenden. Die Lernpfade nutzen dieselben Kapitel, aber mit unterschiedlicher Tiefe.
+Dieses Kapitel zeigt dir, wie du das Buch je nach Rolle durcharbeitest. Die Kapitel 1 bis 40 bleiben dieselbe Landkarte; nur Reihenfolge, Tempo und Übungstiefe ändern sich.
 
-### Lernpfad für Einsteiger
+### Lernpfad für Einsteiger: 7 Tage
+
+Der Einsteigerpfad setzt kein ERP-Wissen voraus. Er führt von der Firma über Grundbegriffe zu den ersten Buchungen und Nachweisen.
 
 | Tag | Kapitel | Ergebnis |
 |---|---|---|
-| 1 | 1, 22, 23, 30 | Oberfläche, Suche, Filter und deutsche Begriffe verstehen |
-| 2 | 24, 28 | Belege, Posten und Prozesslandkarte verstehen |
-| 3 | 7, 8, 9 | Verkauf, Einkauf und Lager bedienen |
-| 4 | 13, 21 | OP, GuV, Berichte und Buchungsspur lesen |
-| 5 | 37 | Übungen mit Lösung durchführen |
+| 1 | 1 bis 5 | Buchziel, Rhein-Main-Fallstudie, ERP-Grundbegriffe und BC-Denkweise verstehen |
+| 2 | 6 bis 8 | Companies, Stammdaten und Foundation Setup sicher einordnen |
+| 3 | 9 bis 10 | Buchungsgruppen, Kontenfindung, Dimensionen und Reportingachsen verstehen |
+| 4 | 11 bis 12 | Verkauf/O2C und Einkauf/P2P mit Belegen, Posten und Kontrollberichten durchführen |
+| 5 | 13 bis 18 | Lager, Fertigung, Service, Projekte, Shopify, Dropshipping, Ausland und Intercompany als Prozesskette lesen |
+| 6 | 19 bis 25 | OP-Ausgleich, Bank, Anlagen, USt, Lagerbewertung, Monatsabschluss und Reporting prüfen |
+| 7 | 32, 33, 37 und 38 | UAT-Fälle ausführen, Lösungen nachvollziehen, Begriffe nachschlagen und Prozesskatalog nutzen |
+
+Praxisregel:
+- Einsteiger lesen zuerst die Geschichte der Rhein-Main Industriegruppe. Danach werden Seiten, Felder und Posten leichter verständlich, weil jeder Klick einen geschäftlichen Grund hat.
 
 ### Lernpfad für Buchhaltung
 
 | Phase | Kapitel | Fokus |
 |---|---|---|
-| Grundlagen | 24, 43 | Sachposten, Nebenbücher, Posting Groups |
-| Tagesgeschäft | 13, 20, 35, 36 | OP, Zahlungen, Preise, Abgrenzungen |
-| Abschluss | 21, 24, 28 | GuV, Bilanz, Reporting, Evidence |
-| Prüfung | 40, 44 | MB-800-Fallen und Praxisfallen |
+| Grundlagen | 6 bis 10 | Company, Stammdaten, Buchungsgruppen, USt-Matrix und Dimensionen |
+| Tagesgeschäft | 11, 12, 19 und 20 | Verkaufs- und Einkaufsbelege, OP-Ausgleich, Zahlungsjournale und Bankabstimmung |
+| Anlagen und Steuer | 21 und 22 | Anlagenzugang, AfA, USt-Posten, E-Rechnung und deutsche Nachweissicht |
+| Abschluss | 23 bis 25 | Lagerbewertung, Monatsabschluss, GuV, Bilanz, Finanzberichte und Power BI |
+| Nachweis und Prüfung | 32 bis 38 | UAT, Übungen, MB-800-Abdeckung, Prüfungstraining, Glossar und Seitenindex |
 
 ### Lernpfad für Key User
 
-Key User bearbeiten Kapitel 3, 4, 16, 17, 28, 31, 37 und 45. Sie lernen Prozessdesign, UAT, Fehlerdiagnose, Evidence Packs und Trainingsfähigkeit.
+Key User verbinden Fachprozess und Systembedienung. Sie lesen Kapitel 3 bis 5 für die Fallstudie, Kapitel 7 bis 10 für Daten und Setup, danach die eigenen Prozesskapitel aus 11 bis 25. UAT, Übungen, Glossar, Seitenindex und Projektartefakte stehen in Kapitel 32, 33, 37, 38 und 39.
+
+Typische Reihenfolge:
+1. Rhein-Main-Fallstudie und BC-Denkweise: Kapitel 3 bis 5.
+2. Stammdaten, Buchungsgruppen und Dimensionen: Kapitel 7 bis 10.
+3. Eigener Fachbereich: passende Prozesskapitel 11 bis 25.
+4. UAT und Schulungsfähigkeit: Kapitel 32 und 33.
+5. Nachschlagen und Projektarbeit: Kapitel 37 bis 39.
 
 ### Lernpfad für Junior Functional Consultants
 
-Junior Consultants bearbeiten Kapitel 6 bis 15, 20 bis 28, 33 bis 37 sowie 40 und 41. Sie verbinden Setup, Stammdaten, Prozessbedienung, Postenlogik und MB-800-Kompetenzen.
+Junior Consultants bearbeiten zuerst die Grundlagenkapitel 1 bis 10. Danach führen sie alle operativen und Finance-Prozesse in Kapitel 11 bis 25 mit Testdaten durch. Teil E mit Kapitel 26 bis 31 ergänzt Fit-Gap, Security, Migration, Integrationen, Betrieb und Solution-Architect-Denken. Teil F mit Kapitel 32 bis 39 liefert UAT, Übungen, MB-800, Microsoft Learn, Glossar, Seitenindex und Projektartefakte.
+
+Prüfungstipp:
+- Ein Junior Consultant gilt erst dann als projektsicher, wenn er einen gebuchten Beleg bis in Nebenbuch, Sachposten, USt-Posten, Artikelposten, Wertposten und Bericht erklären kann.
 
 ### Lernpfad für Solution Architects
 
-Solution Architects bearbeiten Kapitel 18, 19, 28, 31, 34, 35, 38, 42 und 45. Sie bewerten Standard-first-Design, Fit-Gap, Erweiterungen, Integration, Migration, Security, UAT und Betrieb.
+Solution Architects arbeiten stärker entscheidungsorientiert. Sie starten mit Kapitel 3, 6, 9 und 10, weil Company-Struktur, Buchungsgruppen und Dimensionen die Architektur prägen. Danach folgen die Architektur- und Projektkapitel 26 bis 31. Die Prozesskapitel 11 bis 25 werden nicht nur geklickt, sondern auf Standardgrenze, Extension-Kandidat, UAT-Nachweis und Betriebsfolge geprüft. Kapitel 35, 38 und 39 dienen als Quellen-, Prozess- und Artefakt-Nachweis.
 
 ### MB-800-Lernplan 14 Tage
 
-| Tag | Fokus |
-|---|---|
-| 1 | Study Guide lesen, Kapitel 1, 22, 30 |
-| 2 | Company, Assisted Setup, Konfigurationspakete |
-| 3 | Benutzer, Profile, Berechtigungen, Security |
-| 4 | Dimensionen und Workflows |
-| 5 | Hauptbuch, Perioden, Zahlungsbedingungen, Währungen |
-| 6 | Kontenplan, Finanzberichte, Buchungsgruppen |
-| 7 | Debitoren, Kreditoren, OP und Zahlungen |
-| 8 | Anlagen |
-| 9 | Artikel, Lagerorte, Kostenmethoden, SKU |
-| 10 | Einkauf |
-| 11 | Verkauf |
-| 12 | Finanzdokumente, Gutschriften, Vorauszahlungen |
-| 13 | Bank, Journale, Ausgleich, Währungen |
-| 14 | Fallen, UAT, Probeprüfung |
+| Tag | Fokus | Kapitel |
+|---|---|---|
+| 1 | Study Guide, Buchlogik, Oberfläche, ERP-Grundlagen | 1 bis 5, 34 |
+| 2 | Companies, Assisted Setup, Konfigurationspakete, Opening Balances | 6, 8 und 28 |
+| 3 | Benutzer, Profile, Berechtigungssätze, Security Groups, Security Filters | 27 |
+| 4 | Nummernserien, Dimensionen, Workflows und Genehmigungen | 8, 10 und 27 |
+| 5 | Hauptbuch, Perioden, Zahlungsbedingungen, Währungen, Posting Groups | 9 und 24 |
+| 6 | Kontenplan, Finanzberichte, Buchungsgruppen, Dimensionen im Reporting | 9, 10 und 25 |
+| 7 | Debitoren, Kreditoren, OP-Ausgleich und Zahlungen | 19 und 20 |
+| 8 | Anlagen, AfA-Bücher, Zugang, Abschreibung und Abgang | 21 |
+| 9 | Artikel, Lagerorte, Kostenmethoden, Artikelposten und Wertposten | 13 und 23 |
+| 10 | Einkauf, Wareneingang, Eingangsrechnung, Rücksendung, Gutschrift | 12 |
+| 11 | Verkauf, Lieferung, Rechnung, Retoure, Gutschrift, Vorauszahlung | 11 |
+| 12 | Shopify, Dropshipping, Ausland, USt und E-Rechnung | 17, 18 und 22 |
+| 13 | Bankabstimmung, Journale, Ausgleich, Währungen und Korrekturen | 19, 20 und 24 |
+| 14 | UAT, Übungen, MB-800-Matrix und Prüfungstraining | 32 bis 36 |
 
 ### MB-800-Lernplan 30 Tage
 
-Der 30-Tage-Plan nutzt dieselbe Reihenfolge wie der 14-Tage-Plan, aber jede Skill Area bekommt zusätzlich einen Übungstag, einen Fehlerdiagnosetag und einen Wiederholungstag. Die letzten vier Tage bestehen aus Fallstudie Rhein-Main, UAT, Prüfungsfallen und Wiederholung der Kompetenzmatrix.
+Der 30-Tage-Plan nutzt dieselbe Reihenfolge wie der 14-Tage-Plan. Jeder Themenblock bekommt zusätzlich einen Übungstag aus Kapitel 33, einen UAT-Tag aus Kapitel 32 und einen Prüfungstag aus Kapitel 36. Die letzten vier Tage bestehen aus Rhein-Main-Gesamtfall, Kompetenzmatrix in Kapitel 34, Microsoft-Learn-Mapping in Kapitel 35 und Wiederholung der Prüfungsfallen.
 
 ### In 5 Minuten merken
 
 - 5 wichtigste Begriffe: Company, Rolle, Beleg, Posten, Buchungsgruppe.
-- 5 wichtigste Seiten: Verkaufsaufträge, Einkaufsbestellungen, Sachposten, Dimensionen, Finanzberichte.
+- 5 wichtigste Seiten: `Verkaufsaufträge`, `Einkaufsbestellungen`, `Sachposten`, `Dimensionen`, `Finanzberichte`.
 - 3 häufigste Fehler: falsche Company, falsche Dimension, falsche USt-Gruppe.
-- 3 Prüfungsfallen: Personalisieren vs. Anpassen, General Posting Setup vs. VAT Posting Setup, Item Ledger Entries vs. Value Entries.
-- 1 Praxisregel: Erst Setup und Stammdaten verstehen, dann Prozesse buchen.
+- 3 Prüfungsfallen: Personalisieren vs. Anpassen, Allgemeine Buchungsmatrix Einrichtung vs. USt-Buchungsmatrix Einrichtung, Artikelposten vs. Wertposten.
+- 1 Praxisregel: Erst Setup und Stammdaten verstehen, dann Prozesse buchen und die Posten nachweisen.
 
 ---
 
@@ -1091,7 +1109,20 @@ Merksatz:
 
 ## 10. Dimensionen und Reportingachsen
 
-Dimensionen sind die Auswertungsachsen der Rhein-Main Industriegruppe. Sie erklären, ob ein Erlös zu Maschinen, Ersatzteilen, Service oder Miete gehört und ob Kosten in Vertrieb, Fertigung, Lager, Projekt oder Administration entstanden sind.
+Dimensionen sind die Auswertungsachsen der Rhein-Main Industriegruppe. Nach diesem Kapitel kannst du erklären, warum Dimensionen keine Konten und keine Companies sind, wie sie in Belege gelangen und wie Controller eine GuV nach Produktlinie, Vertriebskanal und Abteilung prüfen.
+
+### Kapitelbox
+
+| Feld | Inhalt |
+|---|---|
+| Zielgruppe | Einsteiger, Key User, Consultant, Architect |
+| Schwierigkeit | Basic bis Intermediate |
+| Prozessbereich | Foundation, Reporting, R2R |
+| Betroffene Companies | RM-SALES, RM-PROD, RM-SERVICE, RM-SHARED |
+| MB-800-Relevanz | Ja: Dimensions, Dimension Values, Default Dimensions, Dimension Correction Tool |
+| Solution-Architect-Relevanz | Ja: Reportingmodell, Pflichtdimensionen, Company-vs.-Dimension-Entscheidung |
+| Benötigte Vorkenntnisse | Belege, Sachposten, Buchungsgruppen aus Kapitel 9 |
+| Ergebnis nach dem Kapitel | Du kannst Dimensionen einrichten, in Belegen prüfen, in Sachposten nachweisen und Reportingfehler korrigieren. |
 
 ### Für absolute Einsteiger: Was ist eine Dimension?
 
@@ -1102,9 +1133,19 @@ Beispiel: Der Verkauf von `RM-M100` bucht Erlös auf ein Erlöskonto. Mit der Di
 Praxisregel:
 - Konten beantworten „Was ist es bilanziell?“. Companies beantworten „Welche rechtliche Einheit?“. Dimensionen beantworten „Wofür, wo, über welchen Kanal und für welche Produktlinie?“.
 
-### Warum nutzt Rhein-Main diese Dimensionen?
+### Warum braucht Rhein-Main diesen Prozess?
 
 Rhein-Main braucht eine GuV nicht nur für die gesamte Company, sondern nach Produktlinie, Kanal, Abteilung und Lagerlogik. Ohne Dimensionen wüsste die Geschäftsführung zwar, wie hoch der Gesamtumsatz ist, aber nicht, ob Maschinen, Ersatzteile, Service, Projekte oder Miete profitabel sind. Auch Standort- und Lagerentscheidungen wären kaum belastbar.
+
+### Warum Dimensionen keine Konten und keine Companies sind
+
+Ein Konto ist Bestandteil der Finanzbuchhaltung. Es entscheidet, ob ein Betrag als Forderung, Erlös, Aufwand, Bestand, USt oder Bank erscheint. Eine Company ist die buchende rechtliche Einheit. Eine Dimension ist eine zusätzliche Auswertungsachse innerhalb derselben Buchung.
+
+| Begriff | Entscheidet über | Rhein-Main-Beispiel | Typischer Fehler |
+|---|---|---|---|
+| Company | rechtliche Einheit | `RM-SALES GmbH` verkauft an Kunde | eine Produktlinie als eigene Company anlegen |
+| Sachkonto | Bilanz-/GuV-Position | Erlöskonto Maschinenverkauf | Dimension als Konto missbrauchen |
+| Dimension | Analyse und Steuerung | `PRODUCTLINE = MACHINE` | Dimension vergessen und GuV nach Produktlinie leer erhalten |
 
 | Dimension | Warum Rhein-Main sie nutzt | Typische Frage |
 |---|---|---|
@@ -1113,7 +1154,7 @@ Rhein-Main braucht eine GuV nicht nur für die gesamte Company, sondern nach Pro
 | `DEPARTMENT` | Vertrieb, Einkauf, Lager, Fertigung, Service, Finance trennen | Welche Abteilung verursacht Kosten? |
 | `LOCATION-GROUP` | gesteuertes Lager, einfaches Lager, Fahrzeuglager, Projektlager trennen | Welche Lagerlogik bindet Wert und Aufwand? |
 
-### Dimensionen
+### Dimensionsmodell der Rhein-Main Industriegruppe
 
 | Dimension | Werte | Zweck |
 |---|---|---|
@@ -1123,15 +1164,18 @@ Rhein-Main braucht eine GuV nicht nur für die gesamte Company, sondern nach Pro
 | `PRODUCTLINE` | MACHINE, SPARE, RENTAL, SERVICE | Produktlinie |
 | `LOCATION-GROUP` | DIRECTED, SIMPLE, VAN, PROJECT, DROP | Lagerlogik |
 
+Praktisch nutzt Rhein-Main `PRODUCTLINE` und `DEPARTMENT` als globale Dimensionen, weil diese beiden Achsen fast jede GuV-Frage beantworten. `CHANNEL` und `LOCATION-GROUP` werden als Shortcut-Dimensionen sichtbar gemacht, damit Vertriebskanal und Lagerlogik im Alltag sichtbar bleiben.
 
-
-### Dimensionen in der täglichen Arbeit
+### Konkrete BC-Schritte mit Alt+Q
 
 1. Öffne `Alt+Q` und suche `Dimensionen (Dimensions)`.
 2. Prüfe die Werte für `PRODUCTLINE`, `DEPARTMENT`, `CHANNEL` und `LOCATION-GROUP`.
 3. Öffne `Standarddimensionen (Default Dimensions)` am Debitor, Kreditor, Artikel oder Sachkonto.
-4. Prüfe vor dem Buchen, ob Pflichtdimensionen vorhanden sind.
-5. Öffne nach dem Buchen `Sachposten (G/L Entries)` und blende die Dimensionen ein.
+4. Öffne `Finanzbuchhaltung Einrichtung (General Ledger Setup)` und prüfe die globalen Dimensionen.
+5. Öffne `Dimensionskombinationen (Dimension Combinations)` und prüfe gesperrte Kombinationen.
+6. Prüfe vor dem Buchen, ob Pflichtdimensionen vorhanden sind.
+7. Öffne nach dem Buchen `Sachposten (G/L Entries)` und blende die Dimensionen ein.
+8. Öffne `Finanzberichte (Financial Reports)` und filtere die GuV nach `PRODUCTLINE`, `CHANNEL` und `DEPARTMENT`.
 
 ### Wo Dimensionen gepflegt werden
 
@@ -1157,20 +1201,48 @@ Pflichtdimensionen wirken wie eine fachliche Schranke. Wenn für ein Sachkonto, 
 6. Öffne `Finanzberichte (Financial Reports)` und filtere nach `PRODUCTLINE = MACHINE`.
 7. Vergleiche, ob die Summe mit den Sachposten übereinstimmt.
 
-### Globale Dimensionen, Shortcut-Dimensionen und Dimensionskombinationen
+### Standarddimensionen, globale Dimensionen, Shortcut-Dimensionen und Dimensionskombinationen
 
-Globale Dimensionen sind die zwei wichtigsten Dimensionen einer Company. Sie sind besonders stark in Auswertungen, Filtern und Berichten verankert. Rhein-Main nutzt daf?r typischerweise `DEPARTMENT` und `PRODUCTLINE`, weil diese beiden Achsen fast jede GuV-Frage beantworten. Eine ?nderung globaler Dimensionen ist kein Alltagsvorgang und wird vor Go-live entschieden.
+Standarddimensionen sind Vorschläge oder Pflichtwerte an Stammdaten. Sie sorgen dafür, dass der Anwender nicht jedes Mal neu überlegen muss. Eine Standarddimension kann als Vorschlag wirken oder eine Buchung blockieren, wenn der Wert fehlt.
 
-Shortcut-Dimensionen sind zus?tzliche Dimensionen, die Anwender schnell auf Belegen sehen und pflegen k?nnen. Sie helfen im Alltag, ersetzen aber keine fachliche Pflichtpr?fung. Rhein-Main nutzt `CHANNEL` und `LOCATION-GROUP` als praktische Zusatzachsen, damit Vertriebskanal und Lagerlogik in Belegen sichtbar bleiben.
+Globale Dimensionen sind die zwei wichtigsten Dimensionen einer Company. Sie sind besonders stark in Auswertungen, Filtern und Berichten verankert. Rhein-Main nutzt dafür typischerweise `PRODUCTLINE` und `DEPARTMENT`, weil diese beiden Achsen fast jede GuV-Frage beantworten. Eine Änderung globaler Dimensionen ist kein Alltagsvorgang und wird vor Go-live entschieden.
 
-Dimensionskombinationen verhindern fachlich unsinnige Kombinationen. Beispiel: `CHANNEL = SHOP` passt nicht zu einem Intercompany-Verkauf, und `LOCATION-GROUP = VAN` passt nicht zu einer normalen Fertigungseinlagerung. Solche Regeln sch?tzen die Auswertung vor scheinbar kleinen Eingabefehlern.
+Shortcut-Dimensionen sind zusätzliche Dimensionen, die Anwender schnell auf Belegen sehen und pflegen können. Sie helfen im Alltag, ersetzen aber keine fachliche Pflichtprüfung. Rhein-Main nutzt `CHANNEL` und `LOCATION-GROUP` als praktische Zusatzachsen, damit Vertriebskanal und Lagerlogik in Belegen sichtbar bleiben.
+
+Dimensionskombinationen verhindern fachlich unsinnige Kombinationen. Beispiel: `CHANNEL = SHOP` passt nicht zu einem Intercompany-Verkauf, und `LOCATION-GROUP = VAN` passt nicht zu einer normalen Fertigungseinlagerung. Solche Regeln schützen die Auswertung vor scheinbar kleinen Eingabefehlern.
 
 | Konzept | Einsteigerbild | Rhein-Main-Beispiel |
 |---|---|---|
 | globale Dimension | wichtigste Auswertungsachse | `PRODUCTLINE`, `DEPARTMENT` |
 | Shortcut-Dimension | schnell sichtbares Eingabefeld | `CHANNEL`, `LOCATION-GROUP` |
-| Standarddimension | automatischer Vorschlag oder Pflichtwert | Artikel `RM-M100` schl?gt `MACHINE` vor |
+| Standarddimension | automatischer Vorschlag oder Pflichtwert | Artikel `RM-M100` schlägt `MACHINE` vor |
 | Dimensionskombination | erlaubte oder verbotene Kombination | `SHOP` nicht mit `IC` kombinieren |
+
+### Rhein-Main-Komplettfall: Verkauf `RM-M100` mit Reportingdimensionen
+
+RM-SALES verkauft eine Standardmaschine `RM-M100` an `D10000`. Der Verkaufspreis beträgt `68.000 EUR`. Die Dimensionen lauten:
+
+| Dimension | Wert | Herkunft |
+|---|---|---|
+| `PRODUCTLINE` | `MACHINE` | Standarddimension am Artikel `RM-M100` |
+| `CHANNEL` | `B2B` | Standarddimension am Debitor `D10000` oder Belegkopf |
+| `DEPARTMENT` | `SALES` | Rolle/Belegkopf des Vertriebs |
+| `LOCATION-GROUP` | `DIRECTED` | Lagerort für gesteuertes Lager |
+
+Diese Dimensionen laufen mit der Buchung in die Sachposten. Für den Controller zählt besonders der Erlösposten. Er muss im Finanzbericht für `PRODUCTLINE = MACHINE`, `CHANNEL = B2B` und `DEPARTMENT = SALES` erscheinen. Artikelposten und Wertposten zeigen die Mengen- und Kostenwirkung; Sachposten zeigen Erlös, Forderung, USt und Wareneinsatz mit Dimensionen.
+
+### Prüfung in Sachposten und GuV
+
+| Prüfung | Seite | Erwartung |
+|---|---|---|
+| Erlösdimension | `Sachposten (G/L Entries)` | Erlösposten trägt `PRODUCTLINE = MACHINE`, `CHANNEL = B2B`, `DEPARTMENT = SALES` |
+| Forderung | `Debitorenposten (Customer Ledger Entries)` | Forderung gegen `D10000` ist offen oder später ausgeglichen |
+| USt | `USt-Posten (VAT Entries)` | Steuerbetrag gehört zum gebuchten Verkaufsbeleg |
+| Lagerwirkung | `Artikelposten (Item Ledger Entries)` und `Wertposten (Value Entries)` | Lagerabgang und Kostenabgang zu `RM-M100` sind vorhanden |
+| GuV | `Finanzberichte (Financial Reports)` | Umsatz erscheint im Filter `PRODUCTLINE = MACHINE`, `CHANNEL = B2B` und `DEPARTMENT = SALES` |
+
+Kontrollfrage:
+- Stimmt die Gesamt-GuV, aber die GuV nach Produktlinie nicht, liegt der Fehler häufig nicht im Konto, sondern in der Dimension.
 
 ### Dimension Correction Tool: Was es kann und was nicht
 
@@ -1184,7 +1256,7 @@ Das Dimension Correction Tool kann Dimensionen auf Sachposten korrigieren, wenn 
 | Artikel wurde aus falschem Lagerort geliefert | Nein | Artikelposten und Lagerlogik sind falsch |
 | Kostenstelle fehlt auf Sachbuchung | Ja, wenn fachlich eindeutig | Reportingdimension korrigierbar |
 
-### Rhein-Main-Beispiel: falsche Produktlinie im Verkauf
+### Fehlerdiagnose: Dimension fehlt oder falscher Wert
 
 Fall: Verkaufsauftrag `SO-1001` für `RM-M100` wurde korrekt an `D10000` gebucht. Der Erlös beträgt `68.000 EUR`. Auf der Verkaufszeile fehlt jedoch `PRODUCTLINE = MACHINE`; stattdessen steht `PRODUCTLINE = SPARE`.
 
@@ -1204,6 +1276,12 @@ Korrektur:
 - Wenn nur die Dimension falsch ist, nutzt Finance nach Freigabe das Dimension Correction Tool.
 - Wenn Konto, Debitor, USt oder Lager falsch sind, wird nicht per Dimension Correction korrigiert. Dann braucht es Gutschrift, Storno, Neubuchung oder fachliche Korrekturbuchung.
 
+| Fehler | Symptom | Ursache | Diagnosepfad | Korrekturweg | Was man nicht tun darf |
+|---|---|---|---|---|---|
+| `PRODUCTLINE` fehlt | GuV nach Produktlinie zeigt zu wenig Umsatz | Standarddimension am Artikel fehlt | Artikelkarte, Belegzeile, Sachposten prüfen | vor Buchung in Belegzeile korrigieren; nach Buchung Dimension Correction prüfen | gebuchte Rechnung direkt ändern wollen |
+| `CHANNEL` ist falsch | Shop- und B2B-Umsatz sind vertauscht | Debitor oder Belegkopf liefert falschen Wert | Debitorenkarte und Sachposten vergleichen | Standarddimension korrigieren, gebuchte Sachposten nur bei reinem Reportingfehler korrigieren | Steuer- oder Debitorenfehler über Dimension Correction lösen |
+| `DEPARTMENT` fehlt | Kostenstellenbericht ist unvollständig | Sachkonto verlangt keine Pflichtdimension | Sachkontokarte und Dimensionswertbuchung prüfen | Pflichtdimension setzen und Prozess erneut testen | alte Fehler ohne Freigabe massenhaft ändern |
+
 Übung:
 1. Öffne `Verkaufsaufträge (Sales Orders)` und erfasse `D10000`, Artikel `RM-M100`, Menge `1`.
 2. Setze auf der Zeile `PRODUCTLINE = SPARE`, obwohl es eine Maschine ist.
@@ -1211,12 +1289,13 @@ Korrektur:
 4. Korrigiere vor dem Buchen auf `PRODUCTLINE = MACHINE`.
 5. Buche den Auftrag.
 6. Öffne `Sachposten (G/L Entries)` und kontrolliere die Dimension.
-7. Öffne `Finanzberichte (Financial Reports)` und filtere auf `PRODUCTLINE = MACHINE`.
+7. Öffne `Finanzberichte (Financial Reports)` und filtere auf `PRODUCTLINE = MACHINE`, `CHANNEL = B2B` und `DEPARTMENT = SALES`.
 
 Lösungsskizze:
 - Vor dem Buchen wird die falsche Dimension direkt in der Belegzeile korrigiert.
 - Nach dem Buchen wird zuerst geprüft, ob nur die Dimension falsch ist.
 - Das Dimension Correction Tool ist nur dann zulässig, wenn Betrag, Konto, Debitor, Artikel, Lager und USt korrekt sind.
+- Die Lösung ist korrekt, wenn die Sachposten die erwarteten Dimensionen tragen und der Finanzbericht den Maschinenumsatz im Dimensionsfilter zeigt.
 
 UAT-Fall:
 
@@ -1226,12 +1305,12 @@ UAT-Fall:
 | Ziel | Pflichtdimension und Reportingdimension für Maschinenverkauf nachweisen |
 | Rolle | Controller, Finance Key User |
 | Voraussetzung | Dimension `PRODUCTLINE`, Wert `MACHINE`, Standarddimension am Artikel `RM-M100` |
-| Testdaten | `D10000`, `RM-M100`, Preis `68.000 EUR`, `CHANNEL = B2B` |
+| Testdaten | `D10000`, `RM-M100`, Preis `68.000 EUR`, `PRODUCTLINE = MACHINE`, `CHANNEL = B2B`, `DEPARTMENT = SALES`, `LOCATION-GROUP = DIRECTED` |
 | Schrittfolge | Auftrag erfassen, Dimension prüfen, buchen, Sachposten und Finanzbericht kontrollieren |
 | Erwartete Posten | Sachposten mit `PRODUCTLINE = MACHINE`, Debitorenposten, USt-Posten, Artikelposten, Wertposten |
 | Negativfall | `PRODUCTLINE` fehlt oder ist `SPARE` |
 | Akzeptanzkriterium | GuV nach Produktlinie zeigt Maschinenumsatz korrekt |
-| Evidence Pack | Belegnummer, Sachpostenfilter, Finanzbericht, Freigabe der Korrektur falls nötig |
+| Evidence Pack | Belegnummer, Sachpostenfilter, Finanzbericht, Screenshot der Dimensionen, Freigabe der Korrektur falls nötig |
 
 Praxisregel:
 - Eine Dimension ist keine Company und kein Konto. Sie ergänzt die Auswertung, ersetzt aber keine rechtliche Einheit und keine Buchungslogik.
@@ -1566,35 +1645,35 @@ Lösungsskizze:
 | Schwierigkeit | Basic bis Advanced |
 | Prozessbereich | Inventory/Warehouse |
 | Betroffene Companies | RM-PROD, RM-SALES, RM-SERVICE |
-| MB-800-Relevanz | Ja: Artikel, Lagerorte, Artikelposten, Wertposten, Lageraktivit?ten |
+| MB-800-Relevanz | Ja: Artikel, Lagerorte, Artikelposten, Wertposten, Lageraktivitäten |
 | Solution-Architect-Relevanz | Ja: einfache Lagerlogik vs. gesteuertes Lager, Lagerbewertung, Kostenfluss |
-| Ben?tigte Vorkenntnisse | Belege, Posten, Stammdaten, Buchungsgruppen, Dimensionen |
-| Ergebnis nach dem Kapitel | Leser kann den Prozess mit Rhein-Main-Testdaten ausf?hren, Posten pr?fen, Fehler diagnostizieren und UAT nachweisen |
+| Benötigte Vorkenntnisse | Belege, Posten, Stammdaten, Buchungsgruppen, Dimensionen |
+| Ergebnis nach dem Kapitel | Leser kann den Prozess mit Rhein-Main-Testdaten ausführen, Posten prüfen, Fehler diagnostizieren und UAT nachweisen |
 
 ### Beteiligte Rollen
 
 | Rolle | Aufgabe | Ergebnis |
 |---|---|---|
-| Fachanwender | Prozess ausf?hren und Belegdaten pr?fen | fachlich korrekter Vorgang |
-| Key User | Stammdaten, Setup und Fehlerf?lle pr?fen | stabiler Prozess |
-| Finance/Controlling | Buchungsspur, Bericht und Evidence Pack pr?fen | abgestimmter Nachweis |
-| Solution Architect | Standardgrenze und Betriebsfolge bewerten | tragf?higes Prozessdesign |
+| Fachanwender | Prozess ausführen und Belegdaten prüfen | fachlich korrekter Vorgang |
+| Key User | Stammdaten, Setup und Fehlerfälle prüfen | stabiler Prozess |
+| Finance/Controlling | Buchungsspur, Bericht und Evidence Pack prüfen | abgestimmter Nachweis |
+| Solution Architect | Standardgrenze und Betriebsfolge bewerten | tragfähiges Prozessdesign |
 
-### Ben?tigte Stammdaten
+### Benötigte Stammdaten
 
-Artikel `SP-PUMP-01`, `RAW-STEEL`, Lagerorte `FRA-ZL`, `MZ-EINFACH`, Lagerpl?tze, Einheiten, Kostenmethode. Diese Daten m?ssen vor dem Test gepflegt sein, sonst erzeugt der richtige Klick sp?ter falsche Posten oder unvollst?ndige Berichte.
+Artikel `SP-PUMP-01`, `RAW-STEEL`, Lagerorte `FRA-ZL`, `MZ-EINFACH`, Lagerplätze, Einheiten, Kostenmethode. Diese Daten müssen vor dem Test gepflegt sein, sonst erzeugt der richtige Klick später falsche Posten oder unvollständige Berichte.
 
-### Ben?tigtes Setup
+### Benötigtes Setup
 
-`Lager Einrichtung (Inventory Setup)`, `Lagerorte (Locations)`, Lagerpl?tze, Lagerbuchungsmatrix, Nummernserien, Lageraktivit?ten. Das Setup wird nicht w?hrend der Buchung improvisiert, sondern vorab durch Key User und Finance freigegeben.
+`Lager Einrichtung (Inventory Setup)`, `Lagerorte (Locations)`, Lagerplätze, Lagerbuchungsmatrix, Nummernserien, Lageraktivitäten. Das Setup wird nicht während der Buchung improvisiert, sondern vorab durch Key User und Finance freigegeben.
 
 ### Deutsche BC-Seiten mit englischer Suchhilfe
 
-`Lagerorte (Locations)`, `Artikel (Items)`, `Artikelposten (Item Ledger Entries)`, `Wertposten (Value Entries)`, `Lagereing?nge (Warehouse Receipts)`, `Lagerkommissionierungen (Warehouse Picks)`. Suche die Seiten ?ber `Alt+Q`; wenn der deutsche Begriff nicht gefunden wird, nutze den englischen Klammerbegriff.
+`Lagerorte (Locations)`, `Artikel (Items)`, `Artikelposten (Item Ledger Entries)`, `Wertposten (Value Entries)`, `Lagereingänge (Warehouse Receipts)`, `Lagerkommissionierungen (Warehouse Picks)`. Suche die Seiten über `Alt+Q`; wenn der deutsche Begriff nicht gefunden wird, nutze den englischen Klammerbegriff.
 
 ### Happy Path mit Rhein-Main-Testdaten
 
-Testfall: `SP-PUMP-01`, Menge `10`, Lagerort `FRA-ZL`, Lagerplatz `PICK-01`. Der Happy Path ist bestanden, wenn der gebuchte Beleg, die Nebenbuchposten, die Sachposten, der Kontrollbericht und das Evidence Pack ?bereinstimmen.
+Testfall: `SP-PUMP-01`, Menge `10`, Lagerort `FRA-ZL`, Lagerplatz `PICK-01`. Der Happy Path ist bestanden, wenn der gebuchte Beleg, die Nebenbuchposten, die Sachposten, der Kontrollbericht und das Evidence Pack übereinstimmen.
 
 ### Kontrollbericht
 
@@ -1603,14 +1682,14 @@ Testfall: `SP-PUMP-01`, Menge `10`, Lagerort `FRA-ZL`, Lagerplatz `PICK-01`. Der
 ### Korrekturweg
 
 1. Fehlerbild aus Anwendersicht festhalten.
-2. Belegnummer, Datum, Stammdaten und Dimensionen pr?fen.
+2. Belegnummer, Datum, Stammdaten und Dimensionen prüfen.
 3. Buchungsspur bis zu Nebenbuchposten und Sachposten verfolgen.
-4. Entscheiden, ob vor Buchung korrigiert, nach Buchung gutgeschrieben, storniert, ausgeglichen, umgebucht oder per zul?ssigem Korrekturwerkzeug korrigiert wird.
+4. Entscheiden, ob vor Buchung korrigiert, nach Buchung gutgeschrieben, storniert, ausgeglichen, umgebucht oder per zulässigem Korrekturwerkzeug korrigiert wird.
 5. Korrektur mit Beleg, Posten und Bericht dokumentieren.
 
 ### Evidence Pack
 
-Wareneingangs-/Ausgangsbeleg, Artikelposten, Wertposten, Lageraktivit?t, Lagerbewertung. Das Evidence Pack wird im UAT und sp?ter im Betrieb genutzt, damit Fachbereich, Finance und Pr?fung dieselbe Spur nachvollziehen k?nnen.
+Wareneingangs-/Ausgangsbeleg, Artikelposten, Wertposten, Lageraktivität, Lagerbewertung. Das Evidence Pack wird im UAT und später im Betrieb genutzt, damit Fachbereich, Finance und Prüfung dieselbe Spur nachvollziehen können.
 
 Lager in Business Central ist nicht einheitlich. Die Mustergruppe nutzt bewusst zwei Extreme: ein einfaches Lager und ein gesteuertes Zentrallager.
 
@@ -1906,51 +1985,51 @@ Führe den Fall für `SP-PUMP-01` in der Trainingscompany aus. Dokumentiere Star
 | Schwierigkeit | Basic bis Advanced |
 | Prozessbereich | Planning/Assembly/Manufacturing |
 | Betroffene Companies | RM-PROD |
-| MB-800-Relevanz | Ja: Planung, St?cklisten, Arbeitspl?ne, Fertigungsauftr?ge, Verbrauch, Output |
+| MB-800-Relevanz | Ja: Planung, Stücklisten, Arbeitspläne, Fertigungsaufträge, Verbrauch, Output |
 | Solution-Architect-Relevanz | Ja: Planungsparameter, Make-or-Buy, Fremdarbeit, Kostenregulierung |
-| Ben?tigte Vorkenntnisse | Belege, Posten, Stammdaten, Buchungsgruppen, Dimensionen |
-| Ergebnis nach dem Kapitel | Leser kann den Prozess mit Rhein-Main-Testdaten ausf?hren, Posten pr?fen, Fehler diagnostizieren und UAT nachweisen |
+| Benötigte Vorkenntnisse | Belege, Posten, Stammdaten, Buchungsgruppen, Dimensionen |
+| Ergebnis nach dem Kapitel | Leser kann den Prozess mit Rhein-Main-Testdaten ausführen, Posten prüfen, Fehler diagnostizieren und UAT nachweisen |
 
 ### Beteiligte Rollen
 
 | Rolle | Aufgabe | Ergebnis |
 |---|---|---|
-| Fachanwender | Prozess ausf?hren und Belegdaten pr?fen | fachlich korrekter Vorgang |
-| Key User | Stammdaten, Setup und Fehlerf?lle pr?fen | stabiler Prozess |
-| Finance/Controlling | Buchungsspur, Bericht und Evidence Pack pr?fen | abgestimmter Nachweis |
-| Solution Architect | Standardgrenze und Betriebsfolge bewerten | tragf?higes Prozessdesign |
+| Fachanwender | Prozess ausführen und Belegdaten prüfen | fachlich korrekter Vorgang |
+| Key User | Stammdaten, Setup und Fehlerfälle prüfen | stabiler Prozess |
+| Finance/Controlling | Buchungsspur, Bericht und Evidence Pack prüfen | abgestimmter Nachweis |
+| Solution Architect | Standardgrenze und Betriebsfolge bewerten | tragfähiges Prozessdesign |
 
-### Ben?tigte Stammdaten
+### Benötigte Stammdaten
 
-Artikel `RM-M100`, `RAW-STEEL`, `COMP-CTRL`, St?ckliste, Arbeitsplan, Arbeitsplatzgruppe, Lagerort `FRA-ZL`. Diese Daten m?ssen vor dem Test gepflegt sein, sonst erzeugt der richtige Klick sp?ter falsche Posten oder unvollst?ndige Berichte.
+Artikel `RM-M100`, `RAW-STEEL`, `COMP-CTRL`, Stückliste, Arbeitsplan, Arbeitsplatzgruppe, Lagerort `FRA-ZL`. Diese Daten müssen vor dem Test gepflegt sein, sonst erzeugt der richtige Klick später falsche Posten oder unvollständige Berichte.
 
-### Ben?tigtes Setup
+### Benötigtes Setup
 
-Produktionssetup, Planungspolitik, Fertigungsst?cklisten, Arbeitspl?ne, Kapazit?ten, Lagerbuchung. Das Setup wird nicht w?hrend der Buchung improvisiert, sondern vorab durch Key User und Finance freigegeben.
+Produktionssetup, Planungspolitik, Fertigungsstücklisten, Arbeitspläne, Kapazitäten, Lagerbuchung. Das Setup wird nicht während der Buchung improvisiert, sondern vorab durch Key User und Finance freigegeben.
 
 ### Deutsche BC-Seiten mit englischer Suchhilfe
 
-`Planungsarbeitsblatt (Planning Worksheet)`, `Fertigungsauftr?ge (Production Orders)`, `Verbrauch Buch.-Blatt (Consumption Journal)`, `Istmeldung Buch.-Blatt (Output Journal)`. Suche die Seiten ?ber `Alt+Q`; wenn der deutsche Begriff nicht gefunden wird, nutze den englischen Klammerbegriff.
+`Planungsarbeitsblatt (Planning Worksheet)`, `Fertigungsaufträge (Production Orders)`, `Verbrauch Buch.-Blatt (Consumption Journal)`, `Istmeldung Buch.-Blatt (Output Journal)`. Suche die Seiten über `Alt+Q`; wenn der deutsche Begriff nicht gefunden wird, nutze den englischen Klammerbegriff.
 
 ### Happy Path mit Rhein-Main-Testdaten
 
-Testfall: Fertigungsauftrag `PROD-3001` f?r `RM-M100`, Menge `3`. Der Happy Path ist bestanden, wenn der gebuchte Beleg, die Nebenbuchposten, die Sachposten, der Kontrollbericht und das Evidence Pack ?bereinstimmen.
+Testfall: Fertigungsauftrag `PROD-3001` für `RM-M100`, Menge `3`. Der Happy Path ist bestanden, wenn der gebuchte Beleg, die Nebenbuchposten, die Sachposten, der Kontrollbericht und das Evidence Pack übereinstimmen.
 
 ### Kontrollbericht
 
-Fertigungsauftragsstatistik, Artikelposten, Wertposten, Kapazit?tsposten. Der Kontrollbericht ist die fachliche Gegenprobe zur Buchung. Er beantwortet nicht nur, ob gebucht wurde, sondern ob Menge, Wert, Steuer, Dimension und Zeitraum stimmen.
+Fertigungsauftragsstatistik, Artikelposten, Wertposten, Kapazitätsposten. Der Kontrollbericht ist die fachliche Gegenprobe zur Buchung. Er beantwortet nicht nur, ob gebucht wurde, sondern ob Menge, Wert, Steuer, Dimension und Zeitraum stimmen.
 
 ### Korrekturweg
 
 1. Fehlerbild aus Anwendersicht festhalten.
-2. Belegnummer, Datum, Stammdaten und Dimensionen pr?fen.
+2. Belegnummer, Datum, Stammdaten und Dimensionen prüfen.
 3. Buchungsspur bis zu Nebenbuchposten und Sachposten verfolgen.
-4. Entscheiden, ob vor Buchung korrigiert, nach Buchung gutgeschrieben, storniert, ausgeglichen, umgebucht oder per zul?ssigem Korrekturwerkzeug korrigiert wird.
+4. Entscheiden, ob vor Buchung korrigiert, nach Buchung gutgeschrieben, storniert, ausgeglichen, umgebucht oder per zulässigem Korrekturwerkzeug korrigiert wird.
 5. Korrektur mit Beleg, Posten und Bericht dokumentieren.
 
 ### Evidence Pack
 
-Planungsvorschlag, freigegebener Fertigungsauftrag, Verbrauch, Output, Abweichungsanalyse. Das Evidence Pack wird im UAT und sp?ter im Betrieb genutzt, damit Fachbereich, Finance und Pr?fung dieselbe Spur nachvollziehen k?nnen.
+Planungsvorschlag, freigegebener Fertigungsauftrag, Verbrauch, Output, Abweichungsanalyse. Das Evidence Pack wird im UAT und später im Betrieb genutzt, damit Fachbereich, Finance und Prüfung dieselbe Spur nachvollziehen können.
 
 Die Mustergruppe produziert mehrere Produkte. Damit lassen sich Planung, Montage und Fertigung sauber unterscheiden.
 
@@ -2123,33 +2202,33 @@ Führe den Fall für `RM-M100` in der Trainingscompany aus. Dokumentiere Startbe
 | Betroffene Companies | RM-SERVICE, RM-SHARED |
 | MB-800-Relevanz | Ja: Serviceartikel, Serviceauftrag, Garantie, Kulanz, Ersatzteilverbrauch, Ressource |
 | Solution-Architect-Relevanz | Ja: BC Service vs. Field Service, Garantie-/Kulanzdesign, Ersatzteillager |
-| Ben?tigte Vorkenntnisse | Belege, Posten, Stammdaten, Buchungsgruppen, Dimensionen |
-| Ergebnis nach dem Kapitel | Leser kann den Prozess mit Rhein-Main-Testdaten ausf?hren, Posten pr?fen, Fehler diagnostizieren und UAT nachweisen |
+| Benötigte Vorkenntnisse | Belege, Posten, Stammdaten, Buchungsgruppen, Dimensionen |
+| Ergebnis nach dem Kapitel | Leser kann den Prozess mit Rhein-Main-Testdaten ausführen, Posten prüfen, Fehler diagnostizieren und UAT nachweisen |
 
 ### Beteiligte Rollen
 
 | Rolle | Aufgabe | Ergebnis |
 |---|---|---|
-| Fachanwender | Prozess ausf?hren und Belegdaten pr?fen | fachlich korrekter Vorgang |
-| Key User | Stammdaten, Setup und Fehlerf?lle pr?fen | stabiler Prozess |
-| Finance/Controlling | Buchungsspur, Bericht und Evidence Pack pr?fen | abgestimmter Nachweis |
-| Solution Architect | Standardgrenze und Betriebsfolge bewerten | tragf?higes Prozessdesign |
+| Fachanwender | Prozess ausführen und Belegdaten prüfen | fachlich korrekter Vorgang |
+| Key User | Stammdaten, Setup und Fehlerfälle prüfen | stabiler Prozess |
+| Finance/Controlling | Buchungsspur, Bericht und Evidence Pack prüfen | abgestimmter Nachweis |
+| Solution Architect | Standardgrenze und Betriebsfolge bewerten | tragfähiges Prozessdesign |
 
-### Ben?tigte Stammdaten
+### Benötigte Stammdaten
 
-Serviceartikel f?r `RM-M100`, Debitor `D10000`, Artikel `SP-PUMP-01`, Ressource `RES-TECH`, Fahrzeuglager. Diese Daten m?ssen vor dem Test gepflegt sein, sonst erzeugt der richtige Klick sp?ter falsche Posten oder unvollst?ndige Berichte.
+Serviceartikel für `RM-M100`, Debitor `D10000`, Artikel `SP-PUMP-01`, Ressource `RES-TECH`, Fahrzeuglager. Diese Daten müssen vor dem Test gepflegt sein, sonst erzeugt der richtige Klick später falsche Posten oder unvollständige Berichte.
 
-### Ben?tigtes Setup
+### Benötigtes Setup
 
-Serviceeinrichtung, Serviceartikel, Servicevertragslogik, Ressourcen, Lagerort `VAN-SERV`, Buchungsgruppen. Das Setup wird nicht w?hrend der Buchung improvisiert, sondern vorab durch Key User und Finance freigegeben.
+Serviceeinrichtung, Serviceartikel, Servicevertragslogik, Ressourcen, Lagerort `VAN-SERV`, Buchungsgruppen. Das Setup wird nicht während der Buchung improvisiert, sondern vorab durch Key User und Finance freigegeben.
 
 ### Deutsche BC-Seiten mit englischer Suchhilfe
 
-`Serviceauftr?ge (Service Orders)`, `Serviceartikel (Service Items)`, `Ressourcen (Resources)`, `Artikelposten (Item Ledger Entries)`. Suche die Seiten ?ber `Alt+Q`; wenn der deutsche Begriff nicht gefunden wird, nutze den englischen Klammerbegriff.
+`Serviceaufträge (Service Orders)`, `Serviceartikel (Service Items)`, `Ressourcen (Resources)`, `Artikelposten (Item Ledger Entries)`. Suche die Seiten über `Alt+Q`; wenn der deutsche Begriff nicht gefunden wird, nutze den englischen Klammerbegriff.
 
 ### Happy Path mit Rhein-Main-Testdaten
 
-Testfall: Serviceauftrag `SERV-4001`, Ersatzteil `SP-PUMP-01`, 2 Technikerstunden. Der Happy Path ist bestanden, wenn der gebuchte Beleg, die Nebenbuchposten, die Sachposten, der Kontrollbericht und das Evidence Pack ?bereinstimmen.
+Testfall: Serviceauftrag `SERV-4001`, Ersatzteil `SP-PUMP-01`, 2 Technikerstunden. Der Happy Path ist bestanden, wenn der gebuchte Beleg, die Nebenbuchposten, die Sachposten, der Kontrollbericht und das Evidence Pack übereinstimmen.
 
 ### Kontrollbericht
 
@@ -2158,14 +2237,14 @@ Serviceposten, Artikelposten, Debitorenposten, Sachposten. Der Kontrollbericht i
 ### Korrekturweg
 
 1. Fehlerbild aus Anwendersicht festhalten.
-2. Belegnummer, Datum, Stammdaten und Dimensionen pr?fen.
+2. Belegnummer, Datum, Stammdaten und Dimensionen prüfen.
 3. Buchungsspur bis zu Nebenbuchposten und Sachposten verfolgen.
-4. Entscheiden, ob vor Buchung korrigiert, nach Buchung gutgeschrieben, storniert, ausgeglichen, umgebucht oder per zul?ssigem Korrekturwerkzeug korrigiert wird.
+4. Entscheiden, ob vor Buchung korrigiert, nach Buchung gutgeschrieben, storniert, ausgeglichen, umgebucht oder per zulässigem Korrekturwerkzeug korrigiert wird.
 5. Korrektur mit Beleg, Posten und Bericht dokumentieren.
 
 ### Evidence Pack
 
-Serviceauftrag, Technikerzeiten, Ersatzteilverbrauch, Garantie-/Kulanzentscheidung, Rechnung oder Nachweis. Das Evidence Pack wird im UAT und sp?ter im Betrieb genutzt, damit Fachbereich, Finance und Pr?fung dieselbe Spur nachvollziehen k?nnen.
+Serviceauftrag, Technikerzeiten, Ersatzteilverbrauch, Garantie-/Kulanzentscheidung, Rechnung oder Nachweis. Das Evidence Pack wird im UAT und später im Betrieb genutzt, damit Fachbereich, Finance und Prüfung dieselbe Spur nachvollziehen können.
 
 Service Management ist Standard. Miet- und Finanzierungsmodelle sind je Ausprägung Standard, Prozessdesign oder Erweiterung. Dieses Buch zeigt zuerst den Standard und markiert danach Grenzen.
 
@@ -2332,33 +2411,33 @@ Führe den Fall für `SP-PUMP-01` und `RES-TECH` in der Trainingscompany aus. Do
 | Betroffene Companies | RM-SERVICE, RM-SHARED |
 | MB-800-Relevanz | Ja: Projekte, Projektaufgaben, Ressourcen, Material, Fremdleistung, WIP/Faktura |
 | Solution-Architect-Relevanz | Ja: Projektstruktur, WIP-Methode, Meilensteinrechnung, Projektmarge |
-| Ben?tigte Vorkenntnisse | Belege, Posten, Stammdaten, Buchungsgruppen, Dimensionen |
-| Ergebnis nach dem Kapitel | Leser kann den Prozess mit Rhein-Main-Testdaten ausf?hren, Posten pr?fen, Fehler diagnostizieren und UAT nachweisen |
+| Benötigte Vorkenntnisse | Belege, Posten, Stammdaten, Buchungsgruppen, Dimensionen |
+| Ergebnis nach dem Kapitel | Leser kann den Prozess mit Rhein-Main-Testdaten ausführen, Posten prüfen, Fehler diagnostizieren und UAT nachweisen |
 
 ### Beteiligte Rollen
 
 | Rolle | Aufgabe | Ergebnis |
 |---|---|---|
-| Fachanwender | Prozess ausf?hren und Belegdaten pr?fen | fachlich korrekter Vorgang |
-| Key User | Stammdaten, Setup und Fehlerf?lle pr?fen | stabiler Prozess |
-| Finance/Controlling | Buchungsspur, Bericht und Evidence Pack pr?fen | abgestimmter Nachweis |
-| Solution Architect | Standardgrenze und Betriebsfolge bewerten | tragf?higes Prozessdesign |
+| Fachanwender | Prozess ausführen und Belegdaten prüfen | fachlich korrekter Vorgang |
+| Key User | Stammdaten, Setup und Fehlerfälle prüfen | stabiler Prozess |
+| Finance/Controlling | Buchungsspur, Bericht und Evidence Pack prüfen | abgestimmter Nachweis |
+| Solution Architect | Standardgrenze und Betriebsfolge bewerten | tragfähiges Prozessdesign |
 
-### Ben?tigte Stammdaten
+### Benötigte Stammdaten
 
-Projekt `PROJ-5001`, Sondermaschine `RM-X500`, Ressource `RES-TECH`, Artikel `SP-SENSOR-02`, Kreditor Fremdleistung. Diese Daten m?ssen vor dem Test gepflegt sein, sonst erzeugt der richtige Klick sp?ter falsche Posten oder unvollst?ndige Berichte.
+Projekt `PROJ-5001`, Sondermaschine `RM-X500`, Ressource `RES-TECH`, Artikel `SP-SENSOR-02`, Kreditor Fremdleistung. Diese Daten müssen vor dem Test gepflegt sein, sonst erzeugt der richtige Klick später falsche Posten oder unvollständige Berichte.
 
-### Ben?tigtes Setup
+### Benötigtes Setup
 
-Projektsetup, Projektbuchungsgruppen, Ressourcen, WIP-Methode, Nummernserien, Dimension `PROJECT`. Das Setup wird nicht w?hrend der Buchung improvisiert, sondern vorab durch Key User und Finance freigegeben.
+Projektsetup, Projektbuchungsgruppen, Ressourcen, WIP-Methode, Nummernserien, Dimension `PROJECT`. Das Setup wird nicht während der Buchung improvisiert, sondern vorab durch Key User und Finance freigegeben.
 
 ### Deutsche BC-Seiten mit englischer Suchhilfe
 
-`Projekte (Projects)`, `Projektaufgaben (Project Tasks)`, `Projekt Buch.-Bl?tter (Project Journals)`, `Projektplanzeilen (Project Planning Lines)`. Suche die Seiten ?ber `Alt+Q`; wenn der deutsche Begriff nicht gefunden wird, nutze den englischen Klammerbegriff.
+`Projekte (Projects)`, `Projektaufgaben (Project Tasks)`, `Projekt Buch.-Blätter (Project Journals)`, `Projektplanzeilen (Project Planning Lines)`. Suche die Seiten über `Alt+Q`; wenn der deutsche Begriff nicht gefunden wird, nutze den englischen Klammerbegriff.
 
 ### Happy Path mit Rhein-Main-Testdaten
 
-Testfall: Projekt `PROJ-5001`, 20 Stunden, Material `SP-SENSOR-02`, Meilenstein `40 %`. Der Happy Path ist bestanden, wenn der gebuchte Beleg, die Nebenbuchposten, die Sachposten, der Kontrollbericht und das Evidence Pack ?bereinstimmen.
+Testfall: Projekt `PROJ-5001`, 20 Stunden, Material `SP-SENSOR-02`, Meilenstein `40 %`. Der Happy Path ist bestanden, wenn der gebuchte Beleg, die Nebenbuchposten, die Sachposten, der Kontrollbericht und das Evidence Pack übereinstimmen.
 
 ### Kontrollbericht
 
@@ -2367,14 +2446,14 @@ Projektposten, Projektstatistik, Sachposten, unfakturierte Leistungen. Der Kontr
 ### Korrekturweg
 
 1. Fehlerbild aus Anwendersicht festhalten.
-2. Belegnummer, Datum, Stammdaten und Dimensionen pr?fen.
+2. Belegnummer, Datum, Stammdaten und Dimensionen prüfen.
 3. Buchungsspur bis zu Nebenbuchposten und Sachposten verfolgen.
-4. Entscheiden, ob vor Buchung korrigiert, nach Buchung gutgeschrieben, storniert, ausgeglichen, umgebucht oder per zul?ssigem Korrekturwerkzeug korrigiert wird.
+4. Entscheiden, ob vor Buchung korrigiert, nach Buchung gutgeschrieben, storniert, ausgeglichen, umgebucht oder per zulässigem Korrekturwerkzeug korrigiert wird.
 5. Korrektur mit Beleg, Posten und Bericht dokumentieren.
 
 ### Evidence Pack
 
-Projektkarte, Budget/Ist, Projektposten, Meilensteinrechnung, Margenbericht. Das Evidence Pack wird im UAT und sp?ter im Betrieb genutzt, damit Fachbereich, Finance und Pr?fung dieselbe Spur nachvollziehen k?nnen.
+Projektkarte, Budget/Ist, Projektposten, Meilensteinrechnung, Margenbericht. Das Evidence Pack wird im UAT und später im Betrieb genutzt, damit Fachbereich, Finance und Prüfung dieselbe Spur nachvollziehen können.
 
 Projects bilden mehrperiodige Leistungserbringung ab. Die Mustergruppe nutzt Projekte für Installation, Sondermaschinen und Kundenschulungen.
 
@@ -2533,35 +2612,35 @@ Führe den Fall für `PROJ-5001` in der Trainingscompany aus. Dokumentiere Start
 | Schwierigkeit | Basic bis Advanced |
 | Prozessbereich | Shopify/Dropshipping/Sonderverkauf |
 | Betroffene Companies | RM-SALES, RM-SHARED |
-| MB-800-Relevanz | Ja: Shopify-Auftr?ge, Artikelmapping, Zahlungen, Dropshipping, Steuerlogik |
+| MB-800-Relevanz | Ja: Shopify-Aufträge, Artikelmapping, Zahlungen, Dropshipping, Steuerlogik |
 | Solution-Architect-Relevanz | Ja: Shop-Integration, Mapping, Steuergrenzen, Dropship-Prozessdesign |
-| Ben?tigte Vorkenntnisse | Belege, Posten, Stammdaten, Buchungsgruppen, Dimensionen |
-| Ergebnis nach dem Kapitel | Leser kann den Prozess mit Rhein-Main-Testdaten ausf?hren, Posten pr?fen, Fehler diagnostizieren und UAT nachweisen |
+| Benötigte Vorkenntnisse | Belege, Posten, Stammdaten, Buchungsgruppen, Dimensionen |
+| Ergebnis nach dem Kapitel | Leser kann den Prozess mit Rhein-Main-Testdaten ausführen, Posten prüfen, Fehler diagnostizieren und UAT nachweisen |
 
 ### Beteiligte Rollen
 
 | Rolle | Aufgabe | Ergebnis |
 |---|---|---|
-| Fachanwender | Prozess ausf?hren und Belegdaten pr?fen | fachlich korrekter Vorgang |
-| Key User | Stammdaten, Setup und Fehlerf?lle pr?fen | stabiler Prozess |
-| Finance/Controlling | Buchungsspur, Bericht und Evidence Pack pr?fen | abgestimmter Nachweis |
-| Solution Architect | Standardgrenze und Betriebsfolge bewerten | tragf?higes Prozessdesign |
+| Fachanwender | Prozess ausführen und Belegdaten prüfen | fachlich korrekter Vorgang |
+| Key User | Stammdaten, Setup und Fehlerfälle prüfen | stabiler Prozess |
+| Finance/Controlling | Buchungsspur, Bericht und Evidence Pack prüfen | abgestimmter Nachweis |
+| Solution Architect | Standardgrenze und Betriebsfolge bewerten | tragfähiges Prozessdesign |
 
-### Ben?tigte Stammdaten
+### Benötigte Stammdaten
 
-Debitor `D11000`, Artikel `SP-PUMP-01`, Kreditor `K20000`, Shopify-Shop, Einkaufscode Dropshipping. Diese Daten m?ssen vor dem Test gepflegt sein, sonst erzeugt der richtige Klick sp?ter falsche Posten oder unvollst?ndige Berichte.
+Debitor `D11000`, Artikel `SP-PUMP-01`, Kreditor `K20000`, Shopify-Shop, Einkaufscode Dropshipping. Diese Daten müssen vor dem Test gepflegt sein, sonst erzeugt der richtige Klick später falsche Posten oder unvollständige Berichte.
 
-### Ben?tigtes Setup
+### Benötigtes Setup
 
-Shopify-Shop, Kunden-/Artikelmapping, Verkaufseinrichtung, Einkaufscode, USt-Buchungsmatrix, Zahlungsabgleich. Das Setup wird nicht w?hrend der Buchung improvisiert, sondern vorab durch Key User und Finance freigegeben.
+Shopify-Shop, Kunden-/Artikelmapping, Verkaufseinrichtung, Einkaufscode, USt-Buchungsmatrix, Zahlungsabgleich. Das Setup wird nicht während der Buchung improvisiert, sondern vorab durch Key User und Finance freigegeben.
 
 ### Deutsche BC-Seiten mit englischer Suchhilfe
 
-`Shopify-Shops (Shopify Shops)`, `Shopify-Auftr?ge (Shopify Orders)`, `Verkaufsauftr?ge (Sales Orders)`, `Einkaufsbestellungen (Purchase Orders)`. Suche die Seiten ?ber `Alt+Q`; wenn der deutsche Begriff nicht gefunden wird, nutze den englischen Klammerbegriff.
+`Shopify-Shops (Shopify Shops)`, `Shopify-Aufträge (Shopify Orders)`, `Verkaufsaufträge (Sales Orders)`, `Einkaufsbestellungen (Purchase Orders)`. Suche die Seiten über `Alt+Q`; wenn der deutsche Begriff nicht gefunden wird, nutze den englischen Klammerbegriff.
 
 ### Happy Path mit Rhein-Main-Testdaten
 
-Testfall: Shop-Auftrag `WEB-24001`, Menge `2`, Dropship-Fall mit `K20000`. Der Happy Path ist bestanden, wenn der gebuchte Beleg, die Nebenbuchposten, die Sachposten, der Kontrollbericht und das Evidence Pack ?bereinstimmen.
+Testfall: Shop-Auftrag `WEB-24001`, Menge `2`, Dropship-Fall mit `K20000`. Der Happy Path ist bestanden, wenn der gebuchte Beleg, die Nebenbuchposten, die Sachposten, der Kontrollbericht und das Evidence Pack übereinstimmen.
 
 ### Kontrollbericht
 
@@ -2570,14 +2649,14 @@ Shop-Abstimmung, Debitorenposten, USt-Posten, Marge, Liefernachweis. Der Kontrol
 ### Korrekturweg
 
 1. Fehlerbild aus Anwendersicht festhalten.
-2. Belegnummer, Datum, Stammdaten und Dimensionen pr?fen.
+2. Belegnummer, Datum, Stammdaten und Dimensionen prüfen.
 3. Buchungsspur bis zu Nebenbuchposten und Sachposten verfolgen.
-4. Entscheiden, ob vor Buchung korrigiert, nach Buchung gutgeschrieben, storniert, ausgeglichen, umgebucht oder per zul?ssigem Korrekturwerkzeug korrigiert wird.
+4. Entscheiden, ob vor Buchung korrigiert, nach Buchung gutgeschrieben, storniert, ausgeglichen, umgebucht oder per zulässigem Korrekturwerkzeug korrigiert wird.
 5. Korrektur mit Beleg, Posten und Bericht dokumentieren.
 
 ### Evidence Pack
 
-Shop-ID, Verkaufsauftrag, Zahlungsreferenz, Liefernachweis, verkn?pfte Einkaufsbestellung. Das Evidence Pack wird im UAT und sp?ter im Betrieb genutzt, damit Fachbereich, Finance und Pr?fung dieselbe Spur nachvollziehen k?nnen.
+Shop-ID, Verkaufsauftrag, Zahlungsreferenz, Liefernachweis, verknüpfte Einkaufsbestellung. Das Evidence Pack wird im UAT und später im Betrieb genutzt, damit Fachbereich, Finance und Prüfung dieselbe Spur nachvollziehen können.
 
 ### Inland, Ausland, Dropshipping und Steuerlogiken
 
@@ -2906,35 +2985,35 @@ Führe den Fall für `RM-M100` in der Trainingscompany aus. Dokumentiere Startbe
 | Schwierigkeit | Basic bis Advanced |
 | Prozessbereich | Intercompany/Ausland |
 | Betroffene Companies | RM-PROD, RM-SALES, RM-AT, RM-SHARED |
-| MB-800-Relevanz | Ja: Intercompany, EU-B2B, Drittland, Fremdw?hrung, USt-Nachweise |
+| MB-800-Relevanz | Ja: Intercompany, EU-B2B, Drittland, Fremdwährung, USt-Nachweise |
 | Solution-Architect-Relevanz | Ja: Company-Struktur, IC-Konten, Steuerfallklassifikation, Auslandslieferung |
-| Ben?tigte Vorkenntnisse | Belege, Posten, Stammdaten, Buchungsgruppen, Dimensionen |
-| Ergebnis nach dem Kapitel | Leser kann den Prozess mit Rhein-Main-Testdaten ausf?hren, Posten pr?fen, Fehler diagnostizieren und UAT nachweisen |
+| Benötigte Vorkenntnisse | Belege, Posten, Stammdaten, Buchungsgruppen, Dimensionen |
+| Ergebnis nach dem Kapitel | Leser kann den Prozess mit Rhein-Main-Testdaten ausführen, Posten prüfen, Fehler diagnostizieren und UAT nachweisen |
 
 ### Beteiligte Rollen
 
 | Rolle | Aufgabe | Ergebnis |
 |---|---|---|
-| Fachanwender | Prozess ausf?hren und Belegdaten pr?fen | fachlich korrekter Vorgang |
-| Key User | Stammdaten, Setup und Fehlerf?lle pr?fen | stabiler Prozess |
-| Finance/Controlling | Buchungsspur, Bericht und Evidence Pack pr?fen | abgestimmter Nachweis |
-| Solution Architect | Standardgrenze und Betriebsfolge bewerten | tragf?higes Prozessdesign |
+| Fachanwender | Prozess ausführen und Belegdaten prüfen | fachlich korrekter Vorgang |
+| Key User | Stammdaten, Setup und Fehlerfälle prüfen | stabiler Prozess |
+| Finance/Controlling | Buchungsspur, Bericht und Evidence Pack prüfen | abgestimmter Nachweis |
+| Solution Architect | Standardgrenze und Betriebsfolge bewerten | tragfähiges Prozessdesign |
 
-### Ben?tigte Stammdaten
+### Benötigte Stammdaten
 
-IC-Partner RM-SALES, Debitor `D20000`, Debitor `D30000`, Artikel `RM-M100`, USt-ID, Liefernachweise. Diese Daten m?ssen vor dem Test gepflegt sein, sonst erzeugt der richtige Klick sp?ter falsche Posten oder unvollst?ndige Berichte.
+IC-Partner RM-SALES, Debitor `D20000`, Debitor `D30000`, Artikel `RM-M100`, USt-ID, Liefernachweise. Diese Daten müssen vor dem Test gepflegt sein, sonst erzeugt der richtige Klick später falsche Posten oder unvollständige Berichte.
 
-### Ben?tigtes Setup
+### Benötigtes Setup
 
-Intercompany-Einrichtung, IC-Partner, USt-Buchungsmatrix, W?hrungen, Dimensionen, Nummernserien. Das Setup wird nicht w?hrend der Buchung improvisiert, sondern vorab durch Key User und Finance freigegeben.
+Intercompany-Einrichtung, IC-Partner, USt-Buchungsmatrix, Währungen, Dimensionen, Nummernserien. Das Setup wird nicht während der Buchung improvisiert, sondern vorab durch Key User und Finance freigegeben.
 
 ### Deutsche BC-Seiten mit englischer Suchhilfe
 
-`Intercompany-Einrichtung (Intercompany Setup)`, `IC-Ausgangstransaktionen`, `Verkaufsauftr?ge`, `USt-Posten`. Suche die Seiten ?ber `Alt+Q`; wenn der deutsche Begriff nicht gefunden wird, nutze den englischen Klammerbegriff.
+`Intercompany-Einrichtung (Intercompany Setup)`, `IC-Ausgangstransaktionen`, `Verkaufsaufträge`, `USt-Posten`. Suche die Seiten über `Alt+Q`; wenn der deutsche Begriff nicht gefunden wird, nutze den englischen Klammerbegriff.
 
 ### Happy Path mit Rhein-Main-Testdaten
 
-Testfall: RM-PROD verkauft `RM-M100` an RM-SALES und EU-Fall an `D20000`. Der Happy Path ist bestanden, wenn der gebuchte Beleg, die Nebenbuchposten, die Sachposten, der Kontrollbericht und das Evidence Pack ?bereinstimmen.
+Testfall: RM-PROD verkauft `RM-M100` an RM-SALES und EU-Fall an `D20000`. Der Happy Path ist bestanden, wenn der gebuchte Beleg, die Nebenbuchposten, die Sachposten, der Kontrollbericht und das Evidence Pack übereinstimmen.
 
 ### Kontrollbericht
 
@@ -2943,14 +3022,14 @@ IC-Abstimmung, Sachposten, USt-Posten, Debitoren-/Kreditorenposten. Der Kontroll
 ### Korrekturweg
 
 1. Fehlerbild aus Anwendersicht festhalten.
-2. Belegnummer, Datum, Stammdaten und Dimensionen pr?fen.
+2. Belegnummer, Datum, Stammdaten und Dimensionen prüfen.
 3. Buchungsspur bis zu Nebenbuchposten und Sachposten verfolgen.
-4. Entscheiden, ob vor Buchung korrigiert, nach Buchung gutgeschrieben, storniert, ausgeglichen, umgebucht oder per zul?ssigem Korrekturwerkzeug korrigiert wird.
+4. Entscheiden, ob vor Buchung korrigiert, nach Buchung gutgeschrieben, storniert, ausgeglichen, umgebucht oder per zulässigem Korrekturwerkzeug korrigiert wird.
 5. Korrektur mit Beleg, Posten und Bericht dokumentieren.
 
 ### Evidence Pack
 
-IC-Ausgang/Eingang, Gegenbeleg, USt-ID-Pr?fung, Liefer-/Ausfuhrnachweis. Das Evidence Pack wird im UAT und sp?ter im Betrieb genutzt, damit Fachbereich, Finance und Pr?fung dieselbe Spur nachvollziehen k?nnen.
+IC-Ausgang/Eingang, Gegenbeleg, USt-ID-Prüfung, Liefer-/Ausfuhrnachweis. Das Evidence Pack wird im UAT und später im Betrieb genutzt, damit Fachbereich, Finance und Prüfung dieselbe Spur nachvollziehen können.
 
 Intercompany und Ausland verbinden mehrere Prozesswelten. Ein Intercompany-Verkauf erzeugt bei einer Company O2C und bei der anderen P2P.
 
@@ -3104,33 +3183,33 @@ Teil D zeigt, wie operative Vorgänge in Nebenbüchern, Hauptbuch, Bank, USt, An
 | Betroffene Companies | RM-SHARED |
 | MB-800-Relevanz | Ja: Offene Posten, Ausgleich, Mahnung, Zahlung, Skonto, Teilzahlung |
 | Solution-Architect-Relevanz | Ja: OP-Design, Zahlungsbedingungen, Nebenbuchabstimmung |
-| Ben?tigte Vorkenntnisse | Belege, Posten, Stammdaten, Buchungsgruppen, Dimensionen |
-| Ergebnis nach dem Kapitel | Leser kann den Prozess mit Rhein-Main-Testdaten ausf?hren, Posten pr?fen, Fehler diagnostizieren und UAT nachweisen |
+| Benötigte Vorkenntnisse | Belege, Posten, Stammdaten, Buchungsgruppen, Dimensionen |
+| Ergebnis nach dem Kapitel | Leser kann den Prozess mit Rhein-Main-Testdaten ausführen, Posten prüfen, Fehler diagnostizieren und UAT nachweisen |
 
 ### Beteiligte Rollen
 
 | Rolle | Aufgabe | Ergebnis |
 |---|---|---|
-| Fachanwender | Prozess ausf?hren und Belegdaten pr?fen | fachlich korrekter Vorgang |
-| Key User | Stammdaten, Setup und Fehlerf?lle pr?fen | stabiler Prozess |
-| Finance/Controlling | Buchungsspur, Bericht und Evidence Pack pr?fen | abgestimmter Nachweis |
-| Solution Architect | Standardgrenze und Betriebsfolge bewerten | tragf?higes Prozessdesign |
+| Fachanwender | Prozess ausführen und Belegdaten prüfen | fachlich korrekter Vorgang |
+| Key User | Stammdaten, Setup und Fehlerfälle prüfen | stabiler Prozess |
+| Finance/Controlling | Buchungsspur, Bericht und Evidence Pack prüfen | abgestimmter Nachweis |
+| Solution Architect | Standardgrenze und Betriebsfolge bewerten | tragfähiges Prozessdesign |
 
-### Ben?tigte Stammdaten
+### Benötigte Stammdaten
 
-Debitor `D10000`, Kreditor `K10000`, Rechnungen `SO-1001`, `PO-2001`, Zahlungsbedingungen. Diese Daten m?ssen vor dem Test gepflegt sein, sonst erzeugt der richtige Klick sp?ter falsche Posten oder unvollst?ndige Berichte.
+Debitor `D10000`, Kreditor `K10000`, Rechnungen `SO-1001`, `PO-2001`, Zahlungsbedingungen. Diese Daten müssen vor dem Test gepflegt sein, sonst erzeugt der richtige Klick später falsche Posten oder unvollständige Berichte.
 
-### Ben?tigtes Setup
+### Benötigtes Setup
 
-Debitoren-/Kreditorenbuchungsgruppen, Zahlungsbedingungen, Mahnmethoden, Skonto, Nummernserien. Das Setup wird nicht w?hrend der Buchung improvisiert, sondern vorab durch Key User und Finance freigegeben.
+Debitoren-/Kreditorenbuchungsgruppen, Zahlungsbedingungen, Mahnmethoden, Skonto, Nummernserien. Das Setup wird nicht während der Buchung improvisiert, sondern vorab durch Key User und Finance freigegeben.
 
 ### Deutsche BC-Seiten mit englischer Suchhilfe
 
-`Debitorenposten (Customer Ledger Entries)`, `Kreditorenposten (Vendor Ledger Entries)`, `Ausgleich (Apply Entries)`, `Mahnungen (Reminders)`. Suche die Seiten ?ber `Alt+Q`; wenn der deutsche Begriff nicht gefunden wird, nutze den englischen Klammerbegriff.
+`Debitorenposten (Customer Ledger Entries)`, `Kreditorenposten (Vendor Ledger Entries)`, `Ausgleich (Apply Entries)`, `Mahnungen (Reminders)`. Suche die Seiten über `Alt+Q`; wenn der deutsche Begriff nicht gefunden wird, nutze den englischen Klammerbegriff.
 
 ### Happy Path mit Rhein-Main-Testdaten
 
-Testfall: Kundenzahlung zu `SO-1001`, Teilzahlung und Skonto. Der Happy Path ist bestanden, wenn der gebuchte Beleg, die Nebenbuchposten, die Sachposten, der Kontrollbericht und das Evidence Pack ?bereinstimmen.
+Testfall: Kundenzahlung zu `SO-1001`, Teilzahlung und Skonto. Der Happy Path ist bestanden, wenn der gebuchte Beleg, die Nebenbuchposten, die Sachposten, der Kontrollbericht und das Evidence Pack übereinstimmen.
 
 ### Kontrollbericht
 
@@ -3139,14 +3218,14 @@ OP-Listen, detaillierte Debitoren-/Kreditorenposten, Sachposten. Der Kontrollber
 ### Korrekturweg
 
 1. Fehlerbild aus Anwendersicht festhalten.
-2. Belegnummer, Datum, Stammdaten und Dimensionen pr?fen.
+2. Belegnummer, Datum, Stammdaten und Dimensionen prüfen.
 3. Buchungsspur bis zu Nebenbuchposten und Sachposten verfolgen.
-4. Entscheiden, ob vor Buchung korrigiert, nach Buchung gutgeschrieben, storniert, ausgeglichen, umgebucht oder per zul?ssigem Korrekturwerkzeug korrigiert wird.
+4. Entscheiden, ob vor Buchung korrigiert, nach Buchung gutgeschrieben, storniert, ausgeglichen, umgebucht oder per zulässigem Korrekturwerkzeug korrigiert wird.
 5. Korrektur mit Beleg, Posten und Bericht dokumentieren.
 
 ### Evidence Pack
 
-Rechnung, Zahlung, Ausgleichseintr?ge, OP-Auszug, Mahn-/Zahlungsnachweis. Das Evidence Pack wird im UAT und sp?ter im Betrieb genutzt, damit Fachbereich, Finance und Pr?fung dieselbe Spur nachvollziehen k?nnen.
+Rechnung, Zahlung, Ausgleichseinträge, OP-Auszug, Mahn-/Zahlungsnachweis. Das Evidence Pack wird im UAT und später im Betrieb genutzt, damit Fachbereich, Finance und Prüfung dieselbe Spur nachvollziehen können.
 
 Finance ist die Klammer aller Prozesse. Jeder operative Vorgang muss sich in Hauptbuch, Nebenbuch, Steuer, Bank und Abschluss wiederfinden.
 
@@ -3330,34 +3409,34 @@ Führe den Fall für `D10000` und Rechnung `SO-1001` in der Trainingscompany aus
 | Prozessbereich | Bank/Payments |
 | Betroffene Companies | RM-SHARED |
 | MB-800-Relevanz | Ja: Zahlungsjournal, Zahlungseingang, Bankabstimmung, unbekannte Zahlung |
-| Solution-Architect-Relevanz | Ja: Bankintegration, Kl?rposten, Vier-Augen-Prinzip |
-| Ben?tigte Vorkenntnisse | Belege, Posten, Stammdaten, Buchungsgruppen, Dimensionen |
-| Ergebnis nach dem Kapitel | Leser kann den Prozess mit Rhein-Main-Testdaten ausf?hren, Posten pr?fen, Fehler diagnostizieren und UAT nachweisen |
+| Solution-Architect-Relevanz | Ja: Bankintegration, Klärposten, Vier-Augen-Prinzip |
+| Benötigte Vorkenntnisse | Belege, Posten, Stammdaten, Buchungsgruppen, Dimensionen |
+| Ergebnis nach dem Kapitel | Leser kann den Prozess mit Rhein-Main-Testdaten ausführen, Posten prüfen, Fehler diagnostizieren und UAT nachweisen |
 
 ### Beteiligte Rollen
 
 | Rolle | Aufgabe | Ergebnis |
 |---|---|---|
-| Fachanwender | Prozess ausf?hren und Belegdaten pr?fen | fachlich korrekter Vorgang |
-| Key User | Stammdaten, Setup und Fehlerf?lle pr?fen | stabiler Prozess |
-| Finance/Controlling | Buchungsspur, Bericht und Evidence Pack pr?fen | abgestimmter Nachweis |
-| Solution Architect | Standardgrenze und Betriebsfolge bewerten | tragf?higes Prozessdesign |
+| Fachanwender | Prozess ausführen und Belegdaten prüfen | fachlich korrekter Vorgang |
+| Key User | Stammdaten, Setup und Fehlerfälle prüfen | stabiler Prozess |
+| Finance/Controlling | Buchungsspur, Bericht und Evidence Pack prüfen | abgestimmter Nachweis |
+| Solution Architect | Standardgrenze und Betriebsfolge bewerten | tragfähiges Prozessdesign |
 
-### Ben?tigte Stammdaten
+### Benötigte Stammdaten
 
-Bankkonto Hausbank, Debitor `D10000`, Kreditor `K10000`, Kontoauszugszeilen. Diese Daten m?ssen vor dem Test gepflegt sein, sonst erzeugt der richtige Klick sp?ter falsche Posten oder unvollst?ndige Berichte.
+Bankkonto Hausbank, Debitor `D10000`, Kreditor `K10000`, Kontoauszugszeilen. Diese Daten müssen vor dem Test gepflegt sein, sonst erzeugt der richtige Klick später falsche Posten oder unvollständige Berichte.
 
-### Ben?tigtes Setup
+### Benötigtes Setup
 
-Bankkonten, Bankkontobuchungsgruppen, Zahlungsarten, Zahlungsjournale, Bankabstimmung. Das Setup wird nicht w?hrend der Buchung improvisiert, sondern vorab durch Key User und Finance freigegeben.
+Bankkonten, Bankkontobuchungsgruppen, Zahlungsarten, Zahlungsjournale, Bankabstimmung. Das Setup wird nicht während der Buchung improvisiert, sondern vorab durch Key User und Finance freigegeben.
 
 ### Deutsche BC-Seiten mit englischer Suchhilfe
 
-`Zahlungs Buch.-Bl?tter (Payment Journals)`, `Zahlungsabstimmungs Buch.-Blatt (Payment Reconciliation Journal)`, `Bankkontoabstimmung (Bank Account Reconciliation)`. Suche die Seiten ?ber `Alt+Q`; wenn der deutsche Begriff nicht gefunden wird, nutze den englischen Klammerbegriff.
+`Zahlungs Buch.-Blätter (Payment Journals)`, `Zahlungsabstimmungs Buch.-Blatt (Payment Reconciliation Journal)`, `Bankkontoabstimmung (Bank Account Reconciliation)`. Suche die Seiten über `Alt+Q`; wenn der deutsche Begriff nicht gefunden wird, nutze den englischen Klammerbegriff.
 
 ### Happy Path mit Rhein-Main-Testdaten
 
-Testfall: Vollzahlung, Teilzahlung, unbekannte Zahlung. Der Happy Path ist bestanden, wenn der gebuchte Beleg, die Nebenbuchposten, die Sachposten, der Kontrollbericht und das Evidence Pack ?bereinstimmen.
+Testfall: Vollzahlung, Teilzahlung, unbekannte Zahlung. Der Happy Path ist bestanden, wenn der gebuchte Beleg, die Nebenbuchposten, die Sachposten, der Kontrollbericht und das Evidence Pack übereinstimmen.
 
 ### Kontrollbericht
 
@@ -3366,14 +3445,14 @@ Bankkontoposten, Sachposten, OP-Ausgleich, Bankabstimmungsbericht. Der Kontrollb
 ### Korrekturweg
 
 1. Fehlerbild aus Anwendersicht festhalten.
-2. Belegnummer, Datum, Stammdaten und Dimensionen pr?fen.
+2. Belegnummer, Datum, Stammdaten und Dimensionen prüfen.
 3. Buchungsspur bis zu Nebenbuchposten und Sachposten verfolgen.
-4. Entscheiden, ob vor Buchung korrigiert, nach Buchung gutgeschrieben, storniert, ausgeglichen, umgebucht oder per zul?ssigem Korrekturwerkzeug korrigiert wird.
+4. Entscheiden, ob vor Buchung korrigiert, nach Buchung gutgeschrieben, storniert, ausgeglichen, umgebucht oder per zulässigem Korrekturwerkzeug korrigiert wird.
 5. Korrektur mit Beleg, Posten und Bericht dokumentieren.
 
 ### Evidence Pack
 
-Kontoauszug, Zahlungsjournal, Ausgleich, Bankabstimmung, Kl?rpostenliste. Das Evidence Pack wird im UAT und sp?ter im Betrieb genutzt, damit Fachbereich, Finance und Pr?fung dieselbe Spur nachvollziehen k?nnen.
+Kontoauszug, Zahlungsjournal, Ausgleich, Bankabstimmung, Klärpostenliste. Das Evidence Pack wird im UAT und später im Betrieb genutzt, damit Fachbereich, Finance und Prüfung dieselbe Spur nachvollziehen können.
 
 ### Praxisfall Rhein-Main: Bank, Payments und OP-Ausgleich
 
@@ -3486,34 +3565,34 @@ Führe den Fall für `D10000` und Rechnung `SO-1001` in der Trainingscompany aus
 | Prozessbereich | Fixed Assets |
 | Betroffene Companies | RM-SHARED, RM-PROD |
 | MB-800-Relevanz | Ja: Anlage, Zugang, Aktivierung, AfA, Abgang |
-| Solution-Architect-Relevanz | Ja: AfA-B?cher, Anlagenklassen, Komponenten, Monatsabschluss |
-| Ben?tigte Vorkenntnisse | Belege, Posten, Stammdaten, Buchungsgruppen, Dimensionen |
-| Ergebnis nach dem Kapitel | Leser kann den Prozess mit Rhein-Main-Testdaten ausf?hren, Posten pr?fen, Fehler diagnostizieren und UAT nachweisen |
+| Solution-Architect-Relevanz | Ja: AfA-Bücher, Anlagenklassen, Komponenten, Monatsabschluss |
+| Benötigte Vorkenntnisse | Belege, Posten, Stammdaten, Buchungsgruppen, Dimensionen |
+| Ergebnis nach dem Kapitel | Leser kann den Prozess mit Rhein-Main-Testdaten ausführen, Posten prüfen, Fehler diagnostizieren und UAT nachweisen |
 
 ### Beteiligte Rollen
 
 | Rolle | Aufgabe | Ergebnis |
 |---|---|---|
-| Fachanwender | Prozess ausf?hren und Belegdaten pr?fen | fachlich korrekter Vorgang |
-| Key User | Stammdaten, Setup und Fehlerf?lle pr?fen | stabiler Prozess |
-| Finance/Controlling | Buchungsspur, Bericht und Evidence Pack pr?fen | abgestimmter Nachweis |
-| Solution Architect | Standardgrenze und Betriebsfolge bewerten | tragf?higes Prozessdesign |
+| Fachanwender | Prozess ausführen und Belegdaten prüfen | fachlich korrekter Vorgang |
+| Key User | Stammdaten, Setup und Fehlerfälle prüfen | stabiler Prozess |
+| Finance/Controlling | Buchungsspur, Bericht und Evidence Pack prüfen | abgestimmter Nachweis |
+| Solution Architect | Standardgrenze und Betriebsfolge bewerten | tragfähiges Prozessdesign |
 
-### Ben?tigte Stammdaten
+### Benötigte Stammdaten
 
-Anlage `FA-CNC-01`, Kreditor `K30000`, Anschaffung `250.000 EUR`, AfA-Buch. Diese Daten m?ssen vor dem Test gepflegt sein, sonst erzeugt der richtige Klick sp?ter falsche Posten oder unvollst?ndige Berichte.
+Anlage `FA-CNC-01`, Kreditor `K30000`, Anschaffung `250.000 EUR`, AfA-Buch. Diese Daten müssen vor dem Test gepflegt sein, sonst erzeugt der richtige Klick später falsche Posten oder unvollständige Berichte.
 
-### Ben?tigtes Setup
+### Benötigtes Setup
 
-Anlageneinrichtung, AfA-B?cher, Anlagenbuchungsgruppen, Anlagenklassen, Nummernserien. Das Setup wird nicht w?hrend der Buchung improvisiert, sondern vorab durch Key User und Finance freigegeben.
+Anlageneinrichtung, AfA-Bücher, Anlagenbuchungsgruppen, Anlagenklassen, Nummernserien. Das Setup wird nicht während der Buchung improvisiert, sondern vorab durch Key User und Finance freigegeben.
 
 ### Deutsche BC-Seiten mit englischer Suchhilfe
 
-`Anlagen (Fixed Assets)`, `Anlagen Buch.-Bl?tter (FA Journals)`, `AfA berechnen (Calculate Depreciation)`, `Anlagenposten (FA Ledger Entries)`. Suche die Seiten ?ber `Alt+Q`; wenn der deutsche Begriff nicht gefunden wird, nutze den englischen Klammerbegriff.
+`Anlagen (Fixed Assets)`, `Anlagen Buch.-Blätter (FA Journals)`, `AfA berechnen (Calculate Depreciation)`, `Anlagenposten (FA Ledger Entries)`. Suche die Seiten über `Alt+Q`; wenn der deutsche Begriff nicht gefunden wird, nutze den englischen Klammerbegriff.
 
 ### Happy Path mit Rhein-Main-Testdaten
 
-Testfall: CNC-Anlage kaufen, aktivieren, Monats-AfA buchen. Der Happy Path ist bestanden, wenn der gebuchte Beleg, die Nebenbuchposten, die Sachposten, der Kontrollbericht und das Evidence Pack ?bereinstimmen.
+Testfall: CNC-Anlage kaufen, aktivieren, Monats-AfA buchen. Der Happy Path ist bestanden, wenn der gebuchte Beleg, die Nebenbuchposten, die Sachposten, der Kontrollbericht und das Evidence Pack übereinstimmen.
 
 ### Kontrollbericht
 
@@ -3522,14 +3601,14 @@ Anlagenposten, Sachposten, Anlagenbuchwert, AfA-Bericht. Der Kontrollbericht ist
 ### Korrekturweg
 
 1. Fehlerbild aus Anwendersicht festhalten.
-2. Belegnummer, Datum, Stammdaten und Dimensionen pr?fen.
+2. Belegnummer, Datum, Stammdaten und Dimensionen prüfen.
 3. Buchungsspur bis zu Nebenbuchposten und Sachposten verfolgen.
-4. Entscheiden, ob vor Buchung korrigiert, nach Buchung gutgeschrieben, storniert, ausgeglichen, umgebucht oder per zul?ssigem Korrekturwerkzeug korrigiert wird.
+4. Entscheiden, ob vor Buchung korrigiert, nach Buchung gutgeschrieben, storniert, ausgeglichen, umgebucht oder per zulässigem Korrekturwerkzeug korrigiert wird.
 5. Korrektur mit Beleg, Posten und Bericht dokumentieren.
 
 ### Evidence Pack
 
-Eingangsrechnung, Anlagenkarte, Anlagenposten, AfA-Lauf, Sachposten. Das Evidence Pack wird im UAT und sp?ter im Betrieb genutzt, damit Fachbereich, Finance und Pr?fung dieselbe Spur nachvollziehen k?nnen.
+Eingangsrechnung, Anlagenkarte, Anlagenposten, AfA-Lauf, Sachposten. Das Evidence Pack wird im UAT und später im Betrieb genutzt, damit Fachbereich, Finance und Prüfung dieselbe Spur nachvollziehen können.
 
 ### Praxisfall Rhein-Main: Fixed Assets
 
@@ -3643,33 +3722,33 @@ Führe den Fall für `FA-CNC-01` in der Trainingscompany aus. Dokumentiere Start
 | Betroffene Companies | RM-SHARED, alle operativen Companies |
 | MB-800-Relevanz | Ja: USt-Posten, UStVA, E-Rechnung, EU/Drittland, Nachweise |
 | Solution-Architect-Relevanz | Ja: Steuerlogik, Compliance, E-Rechnung, Evidence Pack |
-| Ben?tigte Vorkenntnisse | Belege, Posten, Stammdaten, Buchungsgruppen, Dimensionen |
-| Ergebnis nach dem Kapitel | Leser kann den Prozess mit Rhein-Main-Testdaten ausf?hren, Posten pr?fen, Fehler diagnostizieren und UAT nachweisen |
+| Benötigte Vorkenntnisse | Belege, Posten, Stammdaten, Buchungsgruppen, Dimensionen |
+| Ergebnis nach dem Kapitel | Leser kann den Prozess mit Rhein-Main-Testdaten ausführen, Posten prüfen, Fehler diagnostizieren und UAT nachweisen |
 
 ### Beteiligte Rollen
 
 | Rolle | Aufgabe | Ergebnis |
 |---|---|---|
-| Fachanwender | Prozess ausf?hren und Belegdaten pr?fen | fachlich korrekter Vorgang |
-| Key User | Stammdaten, Setup und Fehlerf?lle pr?fen | stabiler Prozess |
-| Finance/Controlling | Buchungsspur, Bericht und Evidence Pack pr?fen | abgestimmter Nachweis |
-| Solution Architect | Standardgrenze und Betriebsfolge bewerten | tragf?higes Prozessdesign |
+| Fachanwender | Prozess ausführen und Belegdaten prüfen | fachlich korrekter Vorgang |
+| Key User | Stammdaten, Setup und Fehlerfälle prüfen | stabiler Prozess |
+| Finance/Controlling | Buchungsspur, Bericht und Evidence Pack prüfen | abgestimmter Nachweis |
+| Solution Architect | Standardgrenze und Betriebsfolge bewerten | tragfähiges Prozessdesign |
 
-### Ben?tigte Stammdaten
+### Benötigte Stammdaten
 
-Debitor `D10000`, `D20000`, `D30000`, Kreditor `K10000`, E-Rechnungsdatei. Diese Daten m?ssen vor dem Test gepflegt sein, sonst erzeugt der richtige Klick sp?ter falsche Posten oder unvollst?ndige Berichte.
+Debitor `D10000`, `D20000`, `D30000`, Kreditor `K10000`, E-Rechnungsdatei. Diese Daten müssen vor dem Test gepflegt sein, sonst erzeugt der richtige Klick später falsche Posten oder unvollständige Berichte.
 
-### Ben?tigtes Setup
+### Benötigtes Setup
 
-USt-Gruppen, USt-Buchungsmatrix, E-Belege, Beleglayouts, Nummernserien, Archiv-/Nachweisprozess. Das Setup wird nicht w?hrend der Buchung improvisiert, sondern vorab durch Key User und Finance freigegeben.
+USt-Gruppen, USt-Buchungsmatrix, E-Belege, Beleglayouts, Nummernserien, Archiv-/Nachweisprozess. Das Setup wird nicht während der Buchung improvisiert, sondern vorab durch Key User und Finance freigegeben.
 
 ### Deutsche BC-Seiten mit englischer Suchhilfe
 
-`USt-Posten (VAT Entries)`, `USt-Abrechnung (VAT Statement)`, `E-Belege (E-Documents)`, `Gebuchte Verkaufsrechnungen`. Suche die Seiten ?ber `Alt+Q`; wenn der deutsche Begriff nicht gefunden wird, nutze den englischen Klammerbegriff.
+`USt-Posten (VAT Entries)`, `USt-Abrechnung (VAT Statement)`, `E-Belege (E-Documents)`, `Gebuchte Verkaufsrechnungen`. Suche die Seiten über `Alt+Q`; wenn der deutsche Begriff nicht gefunden wird, nutze den englischen Klammerbegriff.
 
 ### Happy Path mit Rhein-Main-Testdaten
 
-Testfall: DE-Verkauf 19 %, EU-B2B, Drittlandexport, Eingangsrechnung mit Vorsteuer. Der Happy Path ist bestanden, wenn der gebuchte Beleg, die Nebenbuchposten, die Sachposten, der Kontrollbericht und das Evidence Pack ?bereinstimmen.
+Testfall: DE-Verkauf 19 %, EU-B2B, Drittlandexport, Eingangsrechnung mit Vorsteuer. Der Happy Path ist bestanden, wenn der gebuchte Beleg, die Nebenbuchposten, die Sachposten, der Kontrollbericht und das Evidence Pack übereinstimmen.
 
 ### Kontrollbericht
 
@@ -3678,14 +3757,14 @@ USt-Posten, USt-Abrechnung, ZM soweit relevant, E-Rechnungsstatus. Der Kontrollb
 ### Korrekturweg
 
 1. Fehlerbild aus Anwendersicht festhalten.
-2. Belegnummer, Datum, Stammdaten und Dimensionen pr?fen.
+2. Belegnummer, Datum, Stammdaten und Dimensionen prüfen.
 3. Buchungsspur bis zu Nebenbuchposten und Sachposten verfolgen.
-4. Entscheiden, ob vor Buchung korrigiert, nach Buchung gutgeschrieben, storniert, ausgeglichen, umgebucht oder per zul?ssigem Korrekturwerkzeug korrigiert wird.
+4. Entscheiden, ob vor Buchung korrigiert, nach Buchung gutgeschrieben, storniert, ausgeglichen, umgebucht oder per zulässigem Korrekturwerkzeug korrigiert wird.
 5. Korrektur mit Beleg, Posten und Bericht dokumentieren.
 
 ### Evidence Pack
 
-Rechnung, XML/E-Rechnung, USt-ID-Pr?fung, Liefernachweis, USt-Posten. Das Evidence Pack wird im UAT und sp?ter im Betrieb genutzt, damit Fachbereich, Finance und Pr?fung dieselbe Spur nachvollziehen k?nnen.
+Rechnung, XML/E-Rechnung, USt-ID-Prüfung, Liefernachweis, USt-Posten. Das Evidence Pack wird im UAT und später im Betrieb genutzt, damit Fachbereich, Finance und Prüfung dieselbe Spur nachvollziehen können.
 
 ### Dokumente, E-Mail, Beleglayouts und Ausgabeprozesse
 
@@ -3862,33 +3941,33 @@ Führe den Fall für `D20000`, `D30000`, `K10000` in der Trainingscompany aus. D
 | Betroffene Companies | RM-PROD, RM-SHARED |
 | MB-800-Relevanz | Ja: Kostenmethode, Wertposten, erwartete/fakturierte Kosten, Lagerwertabschluss |
 | Solution-Architect-Relevanz | Ja: Kostenregulierung, Hauptbuchabgleich, Bewertungsmethode |
-| Ben?tigte Vorkenntnisse | Belege, Posten, Stammdaten, Buchungsgruppen, Dimensionen |
-| Ergebnis nach dem Kapitel | Leser kann den Prozess mit Rhein-Main-Testdaten ausf?hren, Posten pr?fen, Fehler diagnostizieren und UAT nachweisen |
+| Benötigte Vorkenntnisse | Belege, Posten, Stammdaten, Buchungsgruppen, Dimensionen |
+| Ergebnis nach dem Kapitel | Leser kann den Prozess mit Rhein-Main-Testdaten ausführen, Posten prüfen, Fehler diagnostizieren und UAT nachweisen |
 
 ### Beteiligte Rollen
 
 | Rolle | Aufgabe | Ergebnis |
 |---|---|---|
-| Fachanwender | Prozess ausf?hren und Belegdaten pr?fen | fachlich korrekter Vorgang |
-| Key User | Stammdaten, Setup und Fehlerf?lle pr?fen | stabiler Prozess |
-| Finance/Controlling | Buchungsspur, Bericht und Evidence Pack pr?fen | abgestimmter Nachweis |
-| Solution Architect | Standardgrenze und Betriebsfolge bewerten | tragf?higes Prozessdesign |
+| Fachanwender | Prozess ausführen und Belegdaten prüfen | fachlich korrekter Vorgang |
+| Key User | Stammdaten, Setup und Fehlerfälle prüfen | stabiler Prozess |
+| Finance/Controlling | Buchungsspur, Bericht und Evidence Pack prüfen | abgestimmter Nachweis |
+| Solution Architect | Standardgrenze und Betriebsfolge bewerten | tragfähiges Prozessdesign |
 
-### Ben?tigte Stammdaten
+### Benötigte Stammdaten
 
-Artikel `RAW-STEEL`, `RM-M100`, Einkauf `PO-2001`, Fertigung `PROD-3001`. Diese Daten m?ssen vor dem Test gepflegt sein, sonst erzeugt der richtige Klick sp?ter falsche Posten oder unvollst?ndige Berichte.
+Artikel `RAW-STEEL`, `RM-M100`, Einkauf `PO-2001`, Fertigung `PROD-3001`. Diese Daten müssen vor dem Test gepflegt sein, sonst erzeugt der richtige Klick später falsche Posten oder unvollständige Berichte.
 
-### Ben?tigtes Setup
+### Benötigtes Setup
 
-Kostenmethode, Lager Einrichtung, automatische Kostenbuchung, Kostenregulierung, Lagerbuchungsmatrix. Das Setup wird nicht w?hrend der Buchung improvisiert, sondern vorab durch Key User und Finance freigegeben.
+Kostenmethode, Lager Einrichtung, automatische Kostenbuchung, Kostenregulierung, Lagerbuchungsmatrix. Das Setup wird nicht während der Buchung improvisiert, sondern vorab durch Key User und Finance freigegeben.
 
 ### Deutsche BC-Seiten mit englischer Suchhilfe
 
-`Wertposten (Value Entries)`, `Kostenregulierung Artikelposten (Adjust Cost - Item Entries)`, `Lagerwert (Inventory Valuation)`. Suche die Seiten ?ber `Alt+Q`; wenn der deutsche Begriff nicht gefunden wird, nutze den englischen Klammerbegriff.
+`Wertposten (Value Entries)`, `Kostenregulierung Artikelposten (Adjust Cost - Item Entries)`, `Lagerwert (Inventory Valuation)`. Suche die Seiten über `Alt+Q`; wenn der deutsche Begriff nicht gefunden wird, nutze den englischen Klammerbegriff.
 
 ### Happy Path mit Rhein-Main-Testdaten
 
-Testfall: Wareneingang, sp?tere Eingangsrechnung, Kostenregulierung, Lagerbewertung. Der Happy Path ist bestanden, wenn der gebuchte Beleg, die Nebenbuchposten, die Sachposten, der Kontrollbericht und das Evidence Pack ?bereinstimmen.
+Testfall: Wareneingang, spätere Eingangsrechnung, Kostenregulierung, Lagerbewertung. Der Happy Path ist bestanden, wenn der gebuchte Beleg, die Nebenbuchposten, die Sachposten, der Kontrollbericht und das Evidence Pack übereinstimmen.
 
 ### Kontrollbericht
 
@@ -3897,14 +3976,14 @@ Lagerbewertung, Wertposten, Sachposten, Abstimmung Bestand/Wareneinsatz. Der Kon
 ### Korrekturweg
 
 1. Fehlerbild aus Anwendersicht festhalten.
-2. Belegnummer, Datum, Stammdaten und Dimensionen pr?fen.
+2. Belegnummer, Datum, Stammdaten und Dimensionen prüfen.
 3. Buchungsspur bis zu Nebenbuchposten und Sachposten verfolgen.
-4. Entscheiden, ob vor Buchung korrigiert, nach Buchung gutgeschrieben, storniert, ausgeglichen, umgebucht oder per zul?ssigem Korrekturwerkzeug korrigiert wird.
+4. Entscheiden, ob vor Buchung korrigiert, nach Buchung gutgeschrieben, storniert, ausgeglichen, umgebucht oder per zulässigem Korrekturwerkzeug korrigiert wird.
 5. Korrektur mit Beleg, Posten und Bericht dokumentieren.
 
 ### Evidence Pack
 
-Artikelposten, Wertposten, Kostenregulierungslauf, Lagerbewertung, Hauptbuchabgleich. Das Evidence Pack wird im UAT und sp?ter im Betrieb genutzt, damit Fachbereich, Finance und Pr?fung dieselbe Spur nachvollziehen k?nnen.
+Artikelposten, Wertposten, Kostenregulierungslauf, Lagerbewertung, Hauptbuchabgleich. Das Evidence Pack wird im UAT und später im Betrieb genutzt, damit Fachbereich, Finance und Prüfung dieselbe Spur nachvollziehen können.
 
 ### Praxisfall Rhein-Main: Inventory und Warehouse
 
@@ -4117,33 +4196,33 @@ Führe den Fall für `2026-05` in der Trainingscompany aus. Dokumentiere Startbe
 | Betroffene Companies | RM-SHARED |
 | MB-800-Relevanz | Ja: Nebenbuchabstimmung, Perioden, USt, Bank, Anlagen, Lager, GuV, Bilanz |
 | Solution-Architect-Relevanz | Ja: Abschlusskalender, Periodensperre, Evidence Pack |
-| Ben?tigte Vorkenntnisse | Belege, Posten, Stammdaten, Buchungsgruppen, Dimensionen |
-| Ergebnis nach dem Kapitel | Leser kann den Prozess mit Rhein-Main-Testdaten ausf?hren, Posten pr?fen, Fehler diagnostizieren und UAT nachweisen |
+| Benötigte Vorkenntnisse | Belege, Posten, Stammdaten, Buchungsgruppen, Dimensionen |
+| Ergebnis nach dem Kapitel | Leser kann den Prozess mit Rhein-Main-Testdaten ausführen, Posten prüfen, Fehler diagnostizieren und UAT nachweisen |
 
 ### Beteiligte Rollen
 
 | Rolle | Aufgabe | Ergebnis |
 |---|---|---|
-| Fachanwender | Prozess ausf?hren und Belegdaten pr?fen | fachlich korrekter Vorgang |
-| Key User | Stammdaten, Setup und Fehlerf?lle pr?fen | stabiler Prozess |
-| Finance/Controlling | Buchungsspur, Bericht und Evidence Pack pr?fen | abgestimmter Nachweis |
-| Solution Architect | Standardgrenze und Betriebsfolge bewerten | tragf?higes Prozessdesign |
+| Fachanwender | Prozess ausführen und Belegdaten prüfen | fachlich korrekter Vorgang |
+| Key User | Stammdaten, Setup und Fehlerfälle prüfen | stabiler Prozess |
+| Finance/Controlling | Buchungsspur, Bericht und Evidence Pack prüfen | abgestimmter Nachweis |
+| Solution Architect | Standardgrenze und Betriebsfolge bewerten | tragfähiges Prozessdesign |
 
-### Ben?tigte Stammdaten
+### Benötigte Stammdaten
 
-Monat `2026-05`, offene Posten, Bankauszug, USt-Posten, Lagerbewertung, AfA-Lauf. Diese Daten m?ssen vor dem Test gepflegt sein, sonst erzeugt der richtige Klick sp?ter falsche Posten oder unvollst?ndige Berichte.
+Monat `2026-05`, offene Posten, Bankauszug, USt-Posten, Lagerbewertung, AfA-Lauf. Diese Daten müssen vor dem Test gepflegt sein, sonst erzeugt der richtige Klick später falsche Posten oder unvollständige Berichte.
 
-### Ben?tigtes Setup
+### Benötigtes Setup
 
-Buchhaltungsperioden, Buchungsdatumsgrenzen, wiederkehrende Buchungen, Abgrenzungen, Berichte. Das Setup wird nicht w?hrend der Buchung improvisiert, sondern vorab durch Key User und Finance freigegeben.
+Buchhaltungsperioden, Buchungsdatumsgrenzen, wiederkehrende Buchungen, Abgrenzungen, Berichte. Das Setup wird nicht während der Buchung improvisiert, sondern vorab durch Key User und Finance freigegeben.
 
 ### Deutsche BC-Seiten mit englischer Suchhilfe
 
-`Buchhaltungsperioden (Accounting Periods)`, `Sachposten`, `Finanzberichte`, `USt-Abrechnung`, `Lagerbewertung`. Suche die Seiten ?ber `Alt+Q`; wenn der deutsche Begriff nicht gefunden wird, nutze den englischen Klammerbegriff.
+`Buchhaltungsperioden (Accounting Periods)`, `Sachposten`, `Finanzberichte`, `USt-Abrechnung`, `Lagerbewertung`. Suche die Seiten über `Alt+Q`; wenn der deutsche Begriff nicht gefunden wird, nutze den englischen Klammerbegriff.
 
 ### Happy Path mit Rhein-Main-Testdaten
 
-Testfall: Monatsabschluss Mai 2026 mit OP, Bank, USt, Lager, Anlagen, GuV. Der Happy Path ist bestanden, wenn der gebuchte Beleg, die Nebenbuchposten, die Sachposten, der Kontrollbericht und das Evidence Pack ?bereinstimmen.
+Testfall: Monatsabschluss Mai 2026 mit OP, Bank, USt, Lager, Anlagen, GuV. Der Happy Path ist bestanden, wenn der gebuchte Beleg, die Nebenbuchposten, die Sachposten, der Kontrollbericht und das Evidence Pack übereinstimmen.
 
 ### Kontrollbericht
 
@@ -4152,14 +4231,14 @@ Abschlusscheckliste, Finanzberichte, Nebenbuchabstimmungen, Evidence Pack. Der K
 ### Korrekturweg
 
 1. Fehlerbild aus Anwendersicht festhalten.
-2. Belegnummer, Datum, Stammdaten und Dimensionen pr?fen.
+2. Belegnummer, Datum, Stammdaten und Dimensionen prüfen.
 3. Buchungsspur bis zu Nebenbuchposten und Sachposten verfolgen.
-4. Entscheiden, ob vor Buchung korrigiert, nach Buchung gutgeschrieben, storniert, ausgeglichen, umgebucht oder per zul?ssigem Korrekturwerkzeug korrigiert wird.
+4. Entscheiden, ob vor Buchung korrigiert, nach Buchung gutgeschrieben, storniert, ausgeglichen, umgebucht oder per zulässigem Korrekturwerkzeug korrigiert wird.
 5. Korrektur mit Beleg, Posten und Bericht dokumentieren.
 
 ### Evidence Pack
 
-OP-Listen, Bankabstimmung, USt-Abstimmung, Lagerwert, Anlagenliste, GuV/Bilanz. Das Evidence Pack wird im UAT und sp?ter im Betrieb genutzt, damit Fachbereich, Finance und Pr?fung dieselbe Spur nachvollziehen k?nnen.
+OP-Listen, Bankabstimmung, USt-Abstimmung, Lagerwert, Anlagenliste, GuV/Bilanz. Das Evidence Pack wird im UAT und später im Betrieb genutzt, damit Fachbereich, Finance und Prüfung dieselbe Spur nachvollziehen können.
 
 ### Wiederkehrende Finance-Prozesse, Abgrenzungen und Umlagen
 
@@ -4331,33 +4410,33 @@ Führe den Fall für `2026-05` in der Trainingscompany aus. Dokumentiere Startbe
 | Betroffene Companies | RM-SHARED, alle Companies |
 | MB-800-Relevanz | Ja: Finanzberichte, Analysemodus, Analyseansichten, Power BI, GuV nach Dimension |
 | Solution-Architect-Relevanz | Ja: Reportingarchitektur, Dimensionenmodell, Datenmodell, Power-BI-Grenzen |
-| Ben?tigte Vorkenntnisse | Belege, Posten, Stammdaten, Buchungsgruppen, Dimensionen |
-| Ergebnis nach dem Kapitel | Leser kann den Prozess mit Rhein-Main-Testdaten ausf?hren, Posten pr?fen, Fehler diagnostizieren und UAT nachweisen |
+| Benötigte Vorkenntnisse | Belege, Posten, Stammdaten, Buchungsgruppen, Dimensionen |
+| Ergebnis nach dem Kapitel | Leser kann den Prozess mit Rhein-Main-Testdaten ausführen, Posten prüfen, Fehler diagnostizieren und UAT nachweisen |
 
 ### Beteiligte Rollen
 
 | Rolle | Aufgabe | Ergebnis |
 |---|---|---|
-| Fachanwender | Prozess ausf?hren und Belegdaten pr?fen | fachlich korrekter Vorgang |
-| Key User | Stammdaten, Setup und Fehlerf?lle pr?fen | stabiler Prozess |
-| Finance/Controlling | Buchungsspur, Bericht und Evidence Pack pr?fen | abgestimmter Nachweis |
-| Solution Architect | Standardgrenze und Betriebsfolge bewerten | tragf?higes Prozessdesign |
+| Fachanwender | Prozess ausführen und Belegdaten prüfen | fachlich korrekter Vorgang |
+| Key User | Stammdaten, Setup und Fehlerfälle prüfen | stabiler Prozess |
+| Finance/Controlling | Buchungsspur, Bericht und Evidence Pack prüfen | abgestimmter Nachweis |
+| Solution Architect | Standardgrenze und Betriebsfolge bewerten | tragfähiges Prozessdesign |
 
-### Ben?tigte Stammdaten
+### Benötigte Stammdaten
 
-Dimension `PRODUCTLINE = MACHINE`, `CHANNEL = B2B`, Zeitraum `2026-05`. Diese Daten m?ssen vor dem Test gepflegt sein, sonst erzeugt der richtige Klick sp?ter falsche Posten oder unvollst?ndige Berichte.
+Dimension `PRODUCTLINE = MACHINE`, `CHANNEL = B2B`, Zeitraum `2026-05`. Diese Daten müssen vor dem Test gepflegt sein, sonst erzeugt der richtige Klick später falsche Posten oder unvollständige Berichte.
 
-### Ben?tigtes Setup
+### Benötigtes Setup
 
-Finanzberichte, Sachkontokategorien, Dimensionen, Analyseansichten, Datenanalysemodus, Power-BI-Dataset. Das Setup wird nicht w?hrend der Buchung improvisiert, sondern vorab durch Key User und Finance freigegeben.
+Finanzberichte, Sachkontokategorien, Dimensionen, Analyseansichten, Datenanalysemodus, Power-BI-Dataset. Das Setup wird nicht während der Buchung improvisiert, sondern vorab durch Key User und Finance freigegeben.
 
 ### Deutsche BC-Seiten mit englischer Suchhilfe
 
-`Finanzberichte (Financial Reports)`, `Analysemodus (Analysis Mode)`, `Analyseansichten (Analysis Views)`, `Sachposten`. Suche die Seiten ?ber `Alt+Q`; wenn der deutsche Begriff nicht gefunden wird, nutze den englischen Klammerbegriff.
+`Finanzberichte (Financial Reports)`, `Analysemodus (Analysis Mode)`, `Analyseansichten (Analysis Views)`, `Sachposten`. Suche die Seiten über `Alt+Q`; wenn der deutsche Begriff nicht gefunden wird, nutze den englischen Klammerbegriff.
 
 ### Happy Path mit Rhein-Main-Testdaten
 
-Testfall: GuV nach Produktlinie und Standort f?r Mai 2026. Der Happy Path ist bestanden, wenn der gebuchte Beleg, die Nebenbuchposten, die Sachposten, der Kontrollbericht und das Evidence Pack ?bereinstimmen.
+Testfall: GuV nach Produktlinie und Standort für Mai 2026. Der Happy Path ist bestanden, wenn der gebuchte Beleg, die Nebenbuchposten, die Sachposten, der Kontrollbericht und das Evidence Pack übereinstimmen.
 
 ### Kontrollbericht
 
@@ -4366,14 +4445,14 @@ Finanzbericht, Sachpostenfilter, Analyseansicht, Power-BI-Abgleich. Der Kontroll
 ### Korrekturweg
 
 1. Fehlerbild aus Anwendersicht festhalten.
-2. Belegnummer, Datum, Stammdaten und Dimensionen pr?fen.
+2. Belegnummer, Datum, Stammdaten und Dimensionen prüfen.
 3. Buchungsspur bis zu Nebenbuchposten und Sachposten verfolgen.
-4. Entscheiden, ob vor Buchung korrigiert, nach Buchung gutgeschrieben, storniert, ausgeglichen, umgebucht oder per zul?ssigem Korrekturwerkzeug korrigiert wird.
+4. Entscheiden, ob vor Buchung korrigiert, nach Buchung gutgeschrieben, storniert, ausgeglichen, umgebucht oder per zulässigem Korrekturwerkzeug korrigiert wird.
 5. Korrektur mit Beleg, Posten und Bericht dokumentieren.
 
 ### Evidence Pack
 
-Berichtsexport, Filterdefinition, Sachpostenabgleich, Freigabe Controlling. Das Evidence Pack wird im UAT und sp?ter im Betrieb genutzt, damit Fachbereich, Finance und Pr?fung dieselbe Spur nachvollziehen k?nnen.
+Berichtsexport, Filterdefinition, Sachpostenabgleich, Freigabe Controlling. Das Evidence Pack wird im UAT und später im Betrieb genutzt, damit Fachbereich, Finance und Prüfung dieselbe Spur nachvollziehen können.
 
 Controlling in Business Central beginnt nicht mit einem Bericht. Es beginnt mit richtigem Setup: Kontenplan, Kontenkategorien, Dimensionen, Buchungsgruppen und saubere Belegprozesse. Ein Financial Report ist nur so gut wie die Buchungen, die er auswertet.
 
@@ -4665,137 +4744,20 @@ Lösungsskizze:
 
 ---
 
-### Interne Qualitätssicherung und Strukturentscheidung
+### Qualitätssicherung der Standardentscheidung
 
-Dieses Kapitel dokumentiert die kritische Prüfung der Buchstruktur. Die Analyse ist Bestandteil des Buches, weil sie transparent zeigt, warum die Greenfield-Struktur, die MB-800-Abdeckung und die Solution-Architect-Schicht aufgenommen sind.
+Fit-Gap gehört in Teil E, weil hier nicht mehr die Bedienung im Vordergrund steht, sondern die Projektentscheidung. Die Detailprüfung der Buchqualität, der Seitenindex und der vollständige Prozesskatalog stehen in Kapitel 38. Die wiederverwendbaren Projektvorlagen stehen in Kapitel 39.
 
-| Bereich | Aktueller Stand | Problem | Maßnahme | Priorität |
-|---|---|---|---|---|
-| Zielbild und Sprache | deutsches BC-Buch mit englischen Suchhilfen | frühere Kapitel enthielten englisch dominierte Überschriften | deutsche Oberfläche als führende Sprachregel verankert | hoch |
-| Fallstudie Rhein-Main Industriegruppe | Companies, Rollen und Beispieldaten vorhanden | Fallstudie war zunächst listenartig | Greenfield-Kapitel und Use-Case-Matrix erweitern die Fallstudie | hoch |
-| Prozesslandkarte | alle Kernprozesse vorhanden | Prozesslandkarte brauchte Nachweislogik | Bedien- und Prozesskatalog ergänzt | hoch |
-| Foundation | Companies, Benutzer, Nummernserien, Dimensionen, Workflows vorhanden | Greenfield-Reihenfolge fehlte als Gesamtpfad | Greenfield-Masterplan ergänzt | hoch |
-| Finance/R2R | Hauptbuch, Nebenbücher, Bank, Anlagen, USt, Abschluss vorhanden | MB-800-Finance-Details mussten explizit gemappt werden | MB-800-Matrix und Masterkapitel ergänzt | hoch |
-| Sales/O2C | Verkauf, Retouren, Dropshipping, Preise vorhanden | Prüfungsfallen wie Rahmenaufträge, Storno, Abgrenzungen mussten systematisch sein | MB-800-Fallen und Matrix ergänzt | hoch |
-| Purchasing/P2P | Einkauf, Wareneingang, E-Rechnung, Zahlungen vorhanden | Over-Receipt, Reverse Receipt und wiederkehrende Einkaufszeilen fehlten als Prüfungsbegriffe | MB-800-Matrix ergänzt | hoch |
-| Inventory | Artikel, Varianten, Bewertung, Inventur vorhanden | SKU, Kostenmethoden und Value Entries mussten stärker geprüft werden | Masterkapitel Inventory Costing ergänzt | hoch |
-| Warehouse | einfache und gesteuerte Lagerlogik vorhanden | deutsche Begriffe und Auswirkungen mussten stärker hervorgehoben werden | Begriffskapitel und Lagervergleich ergänzt | mittel |
-| Planning | Planungsarbeitsblatt vorhanden | MB-800 gewichtet Planung nicht stark, aber BC-Produktlandkarte verlangt Einordnung | Learn-Mapping ergänzt | mittel |
-| Assembly | Montage vorhanden | Lösungspfad war knapp | Lösungsanhang verbindet Montage mit Lager/Fertigung | mittel |
-| Manufacturing | Fertigung vorhanden | Solution-Architect-Sicht auf Standardgrenzen fehlte | Architekturpfad ergänzt | mittel |
-| Service | Service und Mietgrenze vorhanden | Field-Service-Abgrenzung fehlte | Learn- und Integrationsmapping ergänzt | mittel |
-| Projects | Projektgeschäft vorhanden | WIP/Faktura braucht Praxisbezug | Prozesskatalog und Lösungsanhang verweisen auf Projektlösung | mittel |
-| Fixed Assets | Anlagen vorhanden | MB-800-Anlagenkompetenzen mussten explizit sein | MB-800-Matrix und Masterkapitel Anlagen ergänzt | hoch |
-| Bank/Payments | Zahlungen und Ausgleich vorhanden | Payment Registration, Cash Receipt Journal, Unapply und Bankabstimmung mussten gebündelt sein | Bank-Masterkapitel ergänzt | hoch |
-| USt/E-Rechnung/Compliance | USt, AO, GoBD, E-Rechnung vorhanden | Steuerfälle mussten als Nachweisfälle geführt werden | Evidence Packs und Steuerfallmatrix ergänzt | hoch |
-| Reporting/Controlling | GuV, Financial Reports und Dimensionen vorhanden | Analysis Mode und Produktlandkarten-Mapping fehlten als Prüfungs-/Learn-Layer | Learn-Mapping ergänzt | mittel |
-| Admin/Security | Nutzer, Rechte, Rollen, Change Log vorhanden | Security Filters, Security Groups und Auditing mussten ausdrücklich zugeordnet werden | MB-800-Matrix ergänzt | hoch |
-| Workflows/Approvals | Workflows und Genehmigungen vorhanden | Approval Users und Workflow User Groups fehlten als MB-800-Begriff | MB-800-Matrix ergänzt | hoch |
-| Migration/Data Management | Konfigurationspakete vorhanden | Opening Balances und Datenmigrationsstrategie mussten sichtbar sein | Solution-Architect- und MB-800-Matrix ergänzt | hoch |
-| Integrationen | Microsoft 365, Power Platform, Shopify, APIs erwähnt | Abgrenzung zu Dynamics 365 Sales und Field Service fehlte | Learn-Mapping ergänzt | mittel |
-| Extensions/Standardgrenzen | AppSource und Extensions vorhanden | Build-vs.-Buy-Entscheidung brauchte Architekturmatrix | Solution-Architect-Kapitel ergänzt | hoch |
-| UAT | Master-UAT vorhanden | Testskriptfelder mussten produktionsreif sein | Lösungsanhang und Artefakt-Templates ergänzt | hoch |
-| Übungen und Lösungen | Übungen vorhanden | Lösungen waren nicht durchgängig explizit | Lösungsanhang und Zuordnungsmatrix ergänzt | hoch |
-| Evidence Packs | vorhanden | je Prozess stärker standardisiert | Prozessschablone und Projektartefakte ergänzt | hoch |
-| MB-800-Abdeckung | nicht explizit genug | Study Guide fehlte als Kompetenzmatrix | Kapitel 40 ergänzt | sehr hoch |
-| Microsoft-Learn-Lernpfad-Mapping | nicht explizit genug | Lernpfade waren Quellen, aber kein Mapping | Kapitel 41 ergänzt | sehr hoch |
-| Solution-Architect-Kompetenz | punktuell vorhanden | Architektursicht brauchte eigenen Pfad | Kapitel 42 ergänzt | hoch |
-| Glossar und Seitenindex | deutsches Begriffskapitel vorhanden | Seitenindex muss als Lernwerkzeug funktionieren | Kapitel 30 und 44 ergänzen Verwechslungen | mittel |
-| Projektartefakte | vereinzelt vorhanden | direkt nutzbare Templates fehlten | Kapitel 45 ergänzt | hoch |
+| Entscheidung | Wo im Buch nachweisen? | Praktischer Nachweis |
+|---|---|---|
+| Standard reicht | Prozesskapitel 11 bis 25 | Happy Path, Buchungsspur, UAT-Fall |
+| Setup reicht | Kapitel 8 bis 10 | Einrichtung, Stammdaten, Buchungsvorschau |
+| Extension prüfen | Kapitel 26 und 31 | Fit-Gap, Architekturentscheidung, UAT-Nachweis |
+| Custom prüfen | Kapitel 26, 29 und 31 | Integrations-/Custom-Entscheidung, Risiko, Betriebsfolge |
+| Projektartefakt erstellen | Kapitel 39 | Fit-Gap-Matrix, Extension-Evaluierung, Architecture Decision Record |
 
-### Neue Zielstruktur des Buches
-
-Die Zielstruktur des Buches ist:
-1. Zielbild, Buchprinzip und Sprachregel.
-2. Wie man dieses Buch nutzt.
-3. Rhein-Main Industriegruppe als durchgehende Fallstudie.
-4. Quellen-, Pflicht- und Best-Practice-Schicht.
-5. Business Central Denken lernen.
-6. Einsteigerpfad: Oberfläche, Suche, Belege, Posten, Filter.
-7. Foundation: Companies, Setup, Nummernserien, Dimensionen, Workflows.
-8. Security, Rollen, Berechtigungen und SoD.
-9. Datenqualität, Migration und Opening Balances.
-10. Posting Groups und Buchungslogik.
-11. Dimensionen als Steuerungs- und Reportinglogik.
-12. Verkauf/O2C.
-13. Einkauf/P2P.
-14. Inventory.
-15. Warehouse.
-16. Planning, Assembly und Manufacturing.
-17. Service Management.
-18. Projects.
-19. Fixed Assets.
-20. Bank, Payments und OP-Ausgleich.
-21. USt, E-Rechnung, Ausland und Compliance.
-22. Finance/R2R, Monatsabschluss und Reporting.
-23. Controlling, Financial Reports, Analysis Mode und Power BI.
-24. Integrationen: Microsoft 365, Power Platform, Shopify, D365 Sales, Field Service.
-25. Admin, Job Queue, Change Log, Monitoring und Betrieb.
-26. Standardgrenzen, Extensions, AppSource und Customizing.
-27. Business Central Solution Architect Pfad.
-28. UAT-Testbibliothek.
-29. Übungen und Lösungen.
-30. MB-800-Kompetenzmatrix.
-31. Microsoft-Learn-Lernpfad-Mapping.
-32. MB-800-Prüfungstraining.
-33. Glossar Deutsch/Englisch/Tell-Me.
-34. Seitenindex.
-35. Projektartefakte.
-36. Quellenverzeichnis.
-
-### Fallstudie als durchgehende Unternehmensgruppe
-
-Die Rhein-Main Industriegruppe ist ein mittelständischer Maschinenbau- und Servicekonzern mit Produktion, Ersatzteilhandel, Onlineshop, technischem Service, Projektgeschäft, Mietmodellen, Auslandsgeschäft und Intercompany-Prozessen. Die Gruppe führt Microsoft Dynamics 365 Business Central ein, um Vertrieb, Einkauf, Lager, Fertigung, Service, Projekte, Finanzbuchhaltung, Anlagen, Bank, USt, Reporting und Administration in einem integrierten Standardsystem abzubilden.
-
-| Company | Warum sie existiert | Prozesse | Rollen | Module/Funktionen | Risiken und Standardgrenzen |
-|---|---|---|---|---|---|
-| RM-PROD GmbH | produziert Maschinen und Baugruppen | Einkauf, Fertigung, Lager, Intercompany | Produktionsplanung, Lager, Meister, Controlling | Fertigung, Lager, Planung, Intercompany | Kostenabweichungen, Fremdarbeit, gesteuertes Lager |
-| RM-SALES GmbH | verkauft B2B und über Onlineshop | Verkauf, Shop, Dropshipping, Retouren | Vertrieb, E-Commerce, Debitoren | Verkauf, Shopify, Preise, Debitoren | Steuerlogik, Preislisten, Shop-Mapping |
-| RM-SERVICE GmbH | erbringt Service, Projekte und Mietmodelle | Service, Projekte, Ressourcen, Mietabrechnung | Disposition, Techniker, Projektleitung | Service, Projekte, Ressourcen, Abgrenzung | Mietmodell als Standardgrenze |
-| RM-SHARED GmbH | betreibt Finance, Admin und Reporting | R2R, Bank, USt, Stammdaten, Admin | Finance, Controller, BC-Admin | Finance, Bank, Anlagen, Security, Reporting | SoD, Datenqualität, Periodenabschluss |
-| RM-AT GmbH | bildet EU-/Auslandsszenarien ab | IC, EU-B2B, lokale Abweichungen | Finance, Vertrieb, Steuerrolle | Intercompany, Währungen, USt | Auslandssteuer, lokale Pflichtlogik |
-
-Use-Case-Matrix:
-
-| Use Case | Geschäftsgrund | Beteiligte Company | Rollen | BC-Prozesse | Hauptbelege | Hauptposten | Lernziel |
-|---|---|---|---|---|---|---|---|
-| Standardmaschine verkaufen | Maschinenumsatz | RM-SALES, RM-PROD | Vertrieb, Lager, Finance | Verkauf, Lager, IC | Verkaufsauftrag, Rechnung | Debitorenposten, Sachposten, Artikelposten | O2C und IC verstehen |
-| Standardmaschine produzieren | Eigenfertigung | RM-PROD | Planung, Meister, Lager | Fertigung, Planung | Fertigungsauftrag | Artikelposten, Wertposten | Produktionskosten verstehen |
-| Rohmaterial einkaufen | Materialversorgung | RM-PROD | Einkauf, Lager, Kreditoren | Einkauf, Lager | Einkaufsbestellung | Kreditorenposten, Wertposten | P2P und Lagerwert verstehen |
-| Ersatzteil im Onlineshop verkaufen | Ersatzteilumsatz | RM-SALES | E-Commerce, Lager | Shopify, Verkauf | Shopauftrag, Verkaufsrechnung | Debitorenposten, USt-Posten | Shopprozess prüfen |
-| Dropshipping abwickeln | Handelsware ohne Lager | RM-SALES | Vertrieb, Einkauf | Verkauf, Einkauf | Verkaufsauftrag, Einkaufsbestellung | Verkaufs-/Einkaufsposten | Direktlieferung verstehen |
-| Retoure und Gutschrift | Reklamation | RM-SALES | Vertrieb, Finance | Retoure, Gutschrift | Gutschrift | Debitorenposten, USt-Posten | Korrektur sauber buchen |
-| Serviceauftrag Garantie/Kulanz | Kundenbindung | RM-SERVICE | Service, Finance | Service | Serviceauftrag | Service-/Sachposten | Kosten ohne Erlös erklären |
-| Ersatzteilverbrauch Service | Reparatur | RM-SERVICE | Techniker, Lager | Service, Lager | Servicebeleg | Artikelposten, Wertposten | Verbrauch nachweisen |
-| Projektinstallation | Projektgeschäft | RM-SERVICE | Projektleitung, Finance | Projekte, Faktura | Projektrechnung | Projektposten, Sachposten | WIP/Faktura verstehen |
-| Mietmodell | wiederkehrender Erlös | RM-SERVICE | Service, Finance | Verkauf, Abgrenzung | Monatsrechnung | Debitorenposten, Sachposten | Standardgrenze erkennen |
-| Anlage kaufen | Investition | RM-SHARED | Anlagenbuchhaltung | Anlagen | Einkaufsrechnung/FA Journal | Anlagenposten, Sachposten | AfA-Prozess verstehen |
-| EU-B2B-Verkauf | EU-Geschäft | RM-SALES, RM-AT | Vertrieb, Steuer | Verkauf, USt | Verkaufsrechnung | USt-Posten | USt-ID-Logik prüfen |
-| Drittlandexport | Export | RM-SALES | Vertrieb, Steuer | Verkauf, Export | Rechnung, Nachweis | Sachposten, USt-Posten | Nachweislogik verstehen |
-| Intercompany-Verkauf | Konzernfluss | RM-PROD, RM-SALES | Finance | IC | IC-Belege | Debitor/Kreditor, Sachposten | IC-Abstimmung |
-| Monatsabschluss | Abschlussfähigkeit | RM-SHARED | Finance, Controller | R2R | Journale, Reports | Sachposten | Abschlussroutine |
-| falsche Dimension | Reportingfehler | alle | Controller, Finance | Dimension Correction | Korrekturprotokoll | Sachposten | Diagnose und Korrektur |
-| falsche USt-Gruppe | Steuerfehler | alle | Steuerrolle | VAT Setup | Korrekturbeleg | USt-Posten | Steuerdiagnose |
-| Lagerwert stimmt nicht | Bewertungsfehler | RM-PROD | Lager, Controlling | Inventory Costing | Kostenlauf | Wertposten | Cost Adjustment verstehen |
-| GuV nach Produktlinie | Managementreporting | RM-SHARED | Controller | Financial Reports | Bericht | Sachposten/Dimensionen | Analysefähigkeit |
-| kompletter E2E-UAT | Go-live-Freigabe | alle | Projektteam | alle | Evidence Pack | alle relevanten Posten | Go-live-Reife |
-
-### Kapitelbox für alle Prozessmodule
-
-| Feld | Inhalt |
-|---|---|
-| Zielgruppe | Einsteiger / Key User / Consultant / Architect |
-| Schwierigkeit | Basic / Intermediate / Advanced |
-| Prozess | O2C / P2P / R2R / Inventory etc. |
-| MB-800-Relevanz | Ja/Nein + Skill |
-| Solution-Architect-Relevanz | Ja/Nein |
-| Benötigte Vorkenntnisse | z. B. Belege/Posten |
-| Ergebnis nach dem Kapitel | Was kann der Leser danach? |
-| Übung vorhanden | Ja |
-| UAT vorhanden | Ja |
-| Lösung vorhanden | Ja |
-
----
+Merksatz:
+- Eine Standardgrenze ist erst belegt, wenn der Standardprozess mit Testdaten, Posten, Bericht und UAT-Nachweis wirklich ausprobiert wurde.
 
 
 ## 27. Security, Rollen, SoD und Governance [Q5][Q79]
@@ -5246,23 +5208,23 @@ Ein BC Solution Architect sorgt dafür, dass fachliche Anforderungen mit Standar
 
 | Architekturkompetenz | BC-Standardthema | Buchkapitel | Praxisfall | Entscheidungskriterium | Nachweis |
 |---|---|---|---|---|---|
-| Requirements | Prozessaufnahme | 31, 38, 45 | Maschinenverkauf | fachlicher Nutzen | Fit-Gap-Matrix |
-| Fit-Gap | Standard vs. Lücke | 18, 19, 42 | Mietmodell | Standardfähigkeit | Fit-Gap-Protokoll |
-| Solution Blueprint | Prozessarchitektur | 28, 31 | Greenfield | E2E-Abdeckung | Blueprint |
-| Company-Architektur | Mandanten/Companies | 3, 31 | RM-Gruppe | rechtlich/prozessual | Company-Konzept |
-| Intercompany | IC-Flüsse | 14, 27, 42 | RM-PROD an RM-SALES | Gegenbelege | IC-Abstimmung |
-| Datenqualität | Stammdaten | 5, 34, 45 | Artikel/Debitor | Pflichtfelder | Data Owner Matrix |
-| Nummernserien | Beleglogik | 6, 31 | Belege | Nachvollziehbarkeit | Nummernserienkonzept |
-| Dimensionen | Reporting | 5, 21, 43 | GuV nach Produktlinie | Steuerungsnutzen | Dimensionskonzept |
-| Posting/VAT | Kontenfindung | 13, 24, 43 | USt-Fall | korrekte Buchung | Posting-Matrix |
-| Security | Rollen/SoD | 26, 33, 45 | Zahlungslauf | Risikotrennung | Rollenmatrix |
-| Workflow | Genehmigung | 32, 33 | Einkaufsfreigabe | Kontrollbedarf | Workflow-Test |
-| Integration | APIs/M365/Power Platform | 15, 41, 42 | Shopify/Power BI | Standardconnector | Integrationsdesign |
-| Migration | Opening Balances | 31, 34 | Startsaldo | Abstimmung | Migrationsprotokoll |
-| Testing | UAT/Regression | 17, 37, 45 | Master-UAT | Akzeptanz | Testprotokoll |
-| Go-live | Cutover | 35, 45 | Produktivstart | Bereitschaft | Cutover-Plan |
-| Betrieb | Job Queue/Telemetry | 35 | Hypercare | Stabilität | Monitoring-Log |
-| Extension | AppSource/Custom | 18, 19 | Rental/WMS/OCR | TCO/Upgrade | ADR |
+| Requirements | Prozessaufnahme und Zielbild | 3, 26, 38, 39 | Maschinenverkauf | fachlicher Nutzen | Fit-Gap-Matrix |
+| Fit-Gap | Standard vs. Lücke | 26 und 31 | Mietmodell | Standardfähigkeit | Fit-Gap-Protokoll |
+| Solution Blueprint | Prozessarchitektur | 11 bis 25, 31, 38 | Greenfield-Durchspiel | E2E-Abdeckung | Blueprint und Prozesskatalog |
+| Company-Architektur | Mandanten/Companies | 3 und 6 | RM-Gruppe | rechtlich/prozessual | Company-Konzept |
+| Intercompany | IC-Flüsse | 18 und 31 | RM-PROD an RM-SALES | Gegenbelege | IC-Abstimmung |
+| Datenqualität | Stammdaten | 7, 28 und 39 | Artikel/Debitor | Pflichtfelder | Data Owner Matrix |
+| Nummernserien | Beleglogik | 8 | Verkaufs- und Einkaufsbelege | Nachvollziehbarkeit | Nummernserienkonzept |
+| Dimensionen | Reporting | 10, 25 und 38 | GuV nach Produktlinie | Steuerungsnutzen | Dimensionskonzept |
+| Posting/VAT | Kontenfindung | 9, 22 und 38 | USt-Fall | korrekte Buchung | Posting-Matrix |
+| Security | Rollen/SoD | 27 und 39 | Zahlungslauf | Risikotrennung | Rollenmatrix |
+| Workflow | Genehmigung | 8 und 27 | Einkaufsfreigabe | Kontrollbedarf | Workflow-Test |
+| Integration | APIs, Microsoft 365, Power Platform | 17, 29, 31 und 35 | Shopify/Power BI | Standardconnector | Integrationsdesign |
+| Migration | Opening Balances | 28 | Startsaldo | Abstimmung | Migrationsprotokoll |
+| Testing | UAT/Regression | 32, 33 und 39 | Master-UAT | Akzeptanz | Testprotokoll |
+| Go-live | Cutover | 28, 30 und 39 | Produktivstart | Bereitschaft | Cutover-Plan |
+| Betrieb | Job Queue/Telemetry | 30 und 31 | Hypercare | Stabilität | Monitoring-Log |
+| Extension | AppSource/Custom | 26, 29 und 31 | Rental/WMS/OCR | TCO/Upgrade | Architecture Decision Record |
 
 ### Architekturentscheidung
 
@@ -5751,37 +5713,37 @@ Dieses Kapitel bildet MB-800 und die Business-Central-Produktlandkarte auf das B
 
 | Microsoft-Learn-Bereich | Lernpfad/Modul/Unit | BC-Thema | Buchkapitel | Übung | UAT-Fall | Tiefe |
 |---|---|---|---|---|---|---|
-| MB-800 | Study Guide | alle Skills measured | 40 | alle Prozessübungen | Master-UAT | tief |
-| Zertifizierung | Functional Consultant Associate | Rolle und Exam-Kontext | 40 | MB-800-Lernplan | UAT Matrix | tief |
-| Get started | Trial, Einführung, Anpassen | Einstieg, Oberfläche | 22, 23, 30, 39 | Onboarding | Basic UAT | tief |
-| Produktdokumentation | Business functionality | BC-Standardlandkarte | 1, 28, 41 | Prozesskatalog | E2E-UAT | tief |
-| Implementierung | Companies, Setup, Migration | Greenfield | 31, 34, 45 | GF-UAT | GF-001 bis GF-007 | tief |
-| Security/Compliance | User Access, Audit Changes | Rollen, Rechte, Change Log | 26, 33, 35 | Adminübung | UAT Admin | tief |
-| Finance | General Ledger, VAT, Bank, Fixed Assets | R2R | 13, 24, 35, 36, 43 | Abschluss | UAT Finance | tief |
-| Sales | Quotes, Orders, Invoices, Returns | O2C | 7, 20, 44 | Verkauf | UAT Sales | tief |
-| Purchasing | Orders, Receipts, Invoices | P2P | 8, 20, 44 | Einkauf | UAT Purchasing | tief |
-| Inventory | Items, Costing, Valuation | Lagerwert | 9, 24, 25, 43 | Inventur | UAT Inventory | tief |
-| Warehouse | Basic/Advanced Warehouse | Lagersteuerung | 9, 25 | Lagerübung | UAT Warehouse | tief |
-| Shopify | Connector | Onlineshop | 7, 27, 41 | Shopauftrag | UAT Shopify | mittel |
-| Fixed Assets | FA Setup/Transactions | Anlagen | 13, 24, 43 | Anlage | UAT-017 | tief |
-| Planning | Planning Worksheet | Planung | 10, 28 | MRP | UAT-010 | mittel |
-| Assembly | Assembly Orders | Montage | 10 | Wartungskit | UAT-012 | mittel |
-| Manufacturing | Production Orders | Fertigung | 10 | Mehrverbrauch | UAT-011 | mittel |
-| Projects | Projects/Jobs | Projektgeschäft | 12 | Meilenstein | UAT-015 | tief |
-| Service | Service Management | Serviceauftrag | 11 | Garantie | UAT-013 | mittel |
-| Relationship Management | Kontakte/Opportunities | Vorvertrieb | 28, 41 | Kontaktfall | UAT optional | Überblick |
-| Human Resources | Employees/Absences | Basis-HR | 28, 41 | Mitarbeiter | UAT optional | Überblick |
-| Copilot | Copilot-Funktionen | Produktivität | 41, 42 | Architekturfrage | UAT optional | Überblick |
-| Workspace Settings | Personalisieren/Profile | Oberfläche | 22, 23, 30, 44 | Onboarding | Basic UAT | tief |
-| Teams/OneDrive | M365 Integration | Zusammenarbeit | 31, 41 | Dokument | UAT Integration | mittel |
-| BI/Reporting | Analysis Mode, Power BI | Controlling | 21, 41, 43 | GuV | UAT Reporting | tief |
-| Environments/Updates | Betrieb | Admin/Betrieb | 35, 42 | Hypercare | UAT Betrieb | mittel |
-| Telemetry | Monitoring | Performance/Fehler | 35, 42 | Supportfall | UAT Monitoring | mittel |
-| Customization | Extension/AppSource | Standardgrenzen | 18, 19, 42 | Fit-Gap | UAT Extension | tief |
-| AL/APIs | AL, OData, SOAP, APIs | Architekturverständnis | 15, 42 | Integrationsentscheidung | UAT Integration | Überblick |
-| MB-820-Light | Extensions, ALM, APIs, Telemetry | Architect-Verständnis | 42 | Architekturcase | Architecture Review | Überblick |
-| Power Platform | Power Automate, Power Apps, Dataverse, Power BI, Copilot Studio | Erweiterung/Integration | 41, 42 | Fit-Gap | UAT Integration | Überblick |
-| Dynamics 365 Sales/Field Service | CRM vs. BC, Field Service vs. BC Service | Abgrenzung | 41, 42 | Architekturfrage | Fit-Gap | Überblick |
+| MB-800 | Study Guide | alle Skills measured | 34 | Übungen aus 33 | Master-UAT aus 32 | tief |
+| Zertifizierung | Functional Consultant Associate | Rolle und Exam-Kontext | 34 und 36 | MB-800-Lernplan | UAT-Matrix | tief |
+| Get started | Trial, Einführung, Anpassen | Einstieg, Oberfläche, Suche | 2, 4, 5 und 37 | Onboarding | Basic UAT | tief |
+| Produktdokumentation | Business functionality | BC-Standardlandkarte | 11 bis 25, 35 und 38 | Prozesskatalog | E2E-UAT | tief |
+| Implementierung | Companies, Setup, Migration | Greenfield | 6, 8, 28 und 39 | GF-UAT | GF-001 bis GF-007 | tief |
+| Security/Compliance | User Access, Audit Changes | Rollen, Rechte, Change Log | 27, 30 und 39 | Adminübung | UAT Admin | tief |
+| Finance | General Ledger, VAT, Bank, Fixed Assets | R2R | 9, 19 bis 25 und 38 | Abschluss | UAT Finance | tief |
+| Sales | Quotes, Orders, Invoices, Returns | O2C | 11 und 36 | Verkauf | UAT Sales | tief |
+| Purchasing | Orders, Receipts, Invoices | P2P | 12 und 36 | Einkauf | UAT Purchasing | tief |
+| Inventory | Items, Costing, Valuation | Lagerwert | 13, 23 und 38 | Inventur | UAT Inventory | tief |
+| Warehouse | Basic/Advanced Warehouse | Lagersteuerung | 13 | Lagerübung | UAT Warehouse | tief |
+| Shopify | Connector | Onlineshop | 17, 29 und 35 | Shopauftrag | UAT Shopify | mittel |
+| Fixed Assets | FA Setup/Transactions | Anlagen | 21 | Anlage | UAT-017 | tief |
+| Planning | Planning Worksheet | Planung | 14 | MRP | UAT-010 | mittel |
+| Assembly | Assembly Orders | Montage | 14 | Wartungskit | UAT-012 | mittel |
+| Manufacturing | Production Orders | Fertigung | 14 | Mehrverbrauch | UAT-011 | mittel |
+| Projects | Projects/Jobs | Projektgeschäft | 16 | Meilenstein | UAT-015 | tief |
+| Service | Service Management | Serviceauftrag | 15 | Garantie | UAT-013 | mittel |
+| Relationship Management | Kontakte/Opportunities | Vorvertrieb | 38 | Kontaktfall | UAT optional | Überblick |
+| Human Resources | Employees/Absences | Basis-HR | 38 | Mitarbeiter | UAT optional | Überblick |
+| Copilot | Copilot-Funktionen | Produktivität | 29, 31 und 35 | Architekturfrage | UAT optional | Überblick |
+| Workspace Settings | Personalisieren/Profile | Oberfläche | 4, 8, 27 und 37 | Onboarding | Basic UAT | tief |
+| Teams/OneDrive | M365 Integration | Zusammenarbeit | 29 und 35 | Dokument | UAT Integration | mittel |
+| BI/Reporting | Analysis Mode, Power BI | Controlling | 25, 35 und 38 | GuV | UAT Reporting | tief |
+| Environments/Updates | Betrieb | Admin/Betrieb | 30 und 31 | Hypercare | UAT Betrieb | mittel |
+| Telemetry | Monitoring | Performance/Fehler | 30 und 31 | Supportfall | UAT Monitoring | mittel |
+| Customization | Extension/AppSource | Standardgrenzen | 26 und 31 | Fit-Gap | UAT Extension | tief |
+| AL/APIs | AL, OData, SOAP, APIs | Architekturverständnis | 29 und 31 | Integrationsentscheidung | UAT Integration | Überblick |
+| MB-820-Light | Extensions, ALM, APIs, Telemetry | Architect-Verständnis | 29, 30 und 31 | Architekturcase | Architecture Review | Überblick |
+| Power Platform | Power Automate, Power Apps, Dataverse, Power BI, Copilot Studio | Erweiterung/Integration | 25, 29, 31 und 35 | Fit-Gap | UAT Integration | Überblick |
+| Dynamics 365 Sales/Field Service | CRM vs. BC, Field Service vs. BC Service | Abgrenzung | 15, 29 und 31 | Architekturfrage | Fit-Gap | Überblick |
 
 ---
 
@@ -6438,7 +6400,7 @@ Diese Reihenfolge gilt für einen neuen Trainingsmandanten. Sie ist bewusst stre
 25. `Änderungsprotokoll Einrichtung (Change Log Setup)` für kritische Tabellen aktivieren.
 26. Extensions installieren und dokumentieren.
 27. Testdaten laden.
-28. UAT nach Kapitel 17 und 29 durchführen.
+28. UAT nach Kapitel 32 durchführen und Projektartefakte aus Kapitel 39 nutzen.
 29. Go-Live-Checkliste unterschreiben.
 30. Produktivbetrieb mit Admin-Kalender starten.
 
@@ -6602,138 +6564,21 @@ Merksatz:
 
 ---
 
-### Gap-Analyse als interne Qualitätssicherung
+### Struktur- und Konsistenzprüfung
 
-Dieses Kapitel dokumentiert die kritische Prüfung der Buchstruktur. Die Analyse ist Bestandteil des Buches, weil sie transparent zeigt, warum die Greenfield-Struktur, die MB-800-Abdeckung und die Solution-Architect-Schicht aufgenommen sind.
+Die Qualitätssicherung liegt in Teil F, damit der Hauptfluss nicht durch Meta-Erklärungen unterbrochen wird. Sie prüft die sechs Teile, die fortlaufende Nummerierung, die Prozessvollständigkeit und die Nachweisfähigkeit der Kapitel.
 
-| Bereich | Aktueller Stand | Problem | Maßnahme | Priorität |
-|---|---|---|---|---|
-| Zielbild und Sprache | deutsches BC-Buch mit englischen Suchhilfen | frühere Kapitel enthielten englisch dominierte Überschriften | deutsche Oberfläche als führende Sprachregel verankert | hoch |
-| Fallstudie Rhein-Main Industriegruppe | Companies, Rollen und Beispieldaten vorhanden | Fallstudie war zunächst listenartig | Greenfield-Kapitel und Use-Case-Matrix erweitern die Fallstudie | hoch |
-| Prozesslandkarte | alle Kernprozesse vorhanden | Prozesslandkarte brauchte Nachweislogik | Bedien- und Prozesskatalog ergänzt | hoch |
-| Foundation | Companies, Benutzer, Nummernserien, Dimensionen, Workflows vorhanden | Greenfield-Reihenfolge fehlte als Gesamtpfad | Greenfield-Masterplan ergänzt | hoch |
-| Finance/R2R | Hauptbuch, Nebenbücher, Bank, Anlagen, USt, Abschluss vorhanden | MB-800-Finance-Details mussten explizit gemappt werden | MB-800-Matrix und Masterkapitel ergänzt | hoch |
-| Sales/O2C | Verkauf, Retouren, Dropshipping, Preise vorhanden | Prüfungsfallen wie Rahmenaufträge, Storno, Abgrenzungen mussten systematisch sein | MB-800-Fallen und Matrix ergänzt | hoch |
-| Purchasing/P2P | Einkauf, Wareneingang, E-Rechnung, Zahlungen vorhanden | Over-Receipt, Reverse Receipt und wiederkehrende Einkaufszeilen fehlten als Prüfungsbegriffe | MB-800-Matrix ergänzt | hoch |
-| Inventory | Artikel, Varianten, Bewertung, Inventur vorhanden | SKU, Kostenmethoden und Value Entries mussten stärker geprüft werden | Masterkapitel Inventory Costing ergänzt | hoch |
-| Warehouse | einfache und gesteuerte Lagerlogik vorhanden | deutsche Begriffe und Auswirkungen mussten stärker hervorgehoben werden | Begriffskapitel und Lagervergleich ergänzt | mittel |
-| Planning | Planungsarbeitsblatt vorhanden | MB-800 gewichtet Planung nicht stark, aber BC-Produktlandkarte verlangt Einordnung | Learn-Mapping ergänzt | mittel |
-| Assembly | Montage vorhanden | Lösungspfad war knapp | Lösungsanhang verbindet Montage mit Lager/Fertigung | mittel |
-| Manufacturing | Fertigung vorhanden | Solution-Architect-Sicht auf Standardgrenzen fehlte | Architekturpfad ergänzt | mittel |
-| Service | Service und Mietgrenze vorhanden | Field-Service-Abgrenzung fehlte | Learn- und Integrationsmapping ergänzt | mittel |
-| Projects | Projektgeschäft vorhanden | WIP/Faktura braucht Praxisbezug | Prozesskatalog und Lösungsanhang verweisen auf Projektlösung | mittel |
-| Fixed Assets | Anlagen vorhanden | MB-800-Anlagenkompetenzen mussten explizit sein | MB-800-Matrix und Masterkapitel Anlagen ergänzt | hoch |
-| Bank/Payments | Zahlungen und Ausgleich vorhanden | Payment Registration, Cash Receipt Journal, Unapply und Bankabstimmung mussten gebündelt sein | Bank-Masterkapitel ergänzt | hoch |
-| USt/E-Rechnung/Compliance | USt, AO, GoBD, E-Rechnung vorhanden | Steuerfälle mussten als Nachweisfälle geführt werden | Evidence Packs und Steuerfallmatrix ergänzt | hoch |
-| Reporting/Controlling | GuV, Financial Reports und Dimensionen vorhanden | Analysis Mode und Produktlandkarten-Mapping fehlten als Prüfungs-/Learn-Layer | Learn-Mapping ergänzt | mittel |
-| Admin/Security | Nutzer, Rechte, Rollen, Change Log vorhanden | Security Filters, Security Groups und Auditing mussten ausdrücklich zugeordnet werden | MB-800-Matrix ergänzt | hoch |
-| Workflows/Approvals | Workflows und Genehmigungen vorhanden | Approval Users und Workflow User Groups fehlten als MB-800-Begriff | MB-800-Matrix ergänzt | hoch |
-| Migration/Data Management | Konfigurationspakete vorhanden | Opening Balances und Datenmigrationsstrategie mussten sichtbar sein | Solution-Architect- und MB-800-Matrix ergänzt | hoch |
-| Integrationen | Microsoft 365, Power Platform, Shopify, APIs erwähnt | Abgrenzung zu Dynamics 365 Sales und Field Service fehlte | Learn-Mapping ergänzt | mittel |
-| Extensions/Standardgrenzen | AppSource und Extensions vorhanden | Build-vs.-Buy-Entscheidung brauchte Architekturmatrix | Solution-Architect-Kapitel ergänzt | hoch |
-| UAT | Master-UAT vorhanden | Testskriptfelder mussten produktionsreif sein | Lösungsanhang und Artefakt-Templates ergänzt | hoch |
-| Übungen und Lösungen | Übungen vorhanden | Lösungen waren nicht durchgängig explizit | Lösungsanhang und Zuordnungsmatrix ergänzt | hoch |
-| Evidence Packs | vorhanden | je Prozess stärker standardisiert | Prozessschablone und Projektartefakte ergänzt | hoch |
-| MB-800-Abdeckung | nicht explizit genug | Study Guide fehlte als Kompetenzmatrix | Kapitel 40 ergänzt | sehr hoch |
-| Microsoft-Learn-Lernpfad-Mapping | nicht explizit genug | Lernpfade waren Quellen, aber kein Mapping | Kapitel 41 ergänzt | sehr hoch |
-| Solution-Architect-Kompetenz | punktuell vorhanden | Architektursicht brauchte eigenen Pfad | Kapitel 42 ergänzt | hoch |
-| Glossar und Seitenindex | deutsches Begriffskapitel vorhanden | Seitenindex muss als Lernwerkzeug funktionieren | Kapitel 30 und 44 ergänzen Verwechslungen | mittel |
-| Projektartefakte | vereinzelt vorhanden | direkt nutzbare Templates fehlten | Kapitel 45 ergänzt | hoch |
+| Prüffeld | Sollzustand | Nachweis im Buch |
+|---|---|---|
+| Struktur | sechs Teile, Kapitel 1 bis 40 | Inhaltsverzeichnis und Kapitelüberschriften |
+| Grundlagen | Teil B enthält Companies, Stammdaten, Foundation, Buchungsgruppen und Dimensionen | Kapitel 6 bis 10 |
+| Operative Prozesse | jeder Prozess enthält Bedienpfad, Testdaten, Buchungsspur, Fehlerdiagnose, Übung, Lösung und UAT | Kapitel 11 bis 18 |
+| Finance und Abschluss | OP, Bank, Anlagen, USt, Lagerbewertung, Abschluss und Reporting sind prüfbar | Kapitel 19 bis 25 |
+| Projekt und Betrieb | Fit-Gap, Security, Migration, Integration, Betrieb und Architektur sind entscheidungsfähig | Kapitel 26 bis 31 |
+| Training und Nachschlagen | UAT, Übungen, MB-800, Microsoft Learn, Glossar, Seitenindex, Artefakte und Quellen sind auffindbar | Kapitel 32 bis 40 |
 
-### Neue Zielstruktur des Buches
-
-Die Zielstruktur des Buches ist:
-1. Zielbild, Buchprinzip und Sprachregel.
-2. Wie man dieses Buch nutzt.
-3. Rhein-Main Industriegruppe als durchgehende Fallstudie.
-4. Quellen-, Pflicht- und Best-Practice-Schicht.
-5. Business Central Denken lernen.
-6. Einsteigerpfad: Oberfläche, Suche, Belege, Posten, Filter.
-7. Foundation: Companies, Setup, Nummernserien, Dimensionen, Workflows.
-8. Security, Rollen, Berechtigungen und SoD.
-9. Datenqualität, Migration und Opening Balances.
-10. Posting Groups und Buchungslogik.
-11. Dimensionen als Steuerungs- und Reportinglogik.
-12. Verkauf/O2C.
-13. Einkauf/P2P.
-14. Inventory.
-15. Warehouse.
-16. Planning, Assembly und Manufacturing.
-17. Service Management.
-18. Projects.
-19. Fixed Assets.
-20. Bank, Payments und OP-Ausgleich.
-21. USt, E-Rechnung, Ausland und Compliance.
-22. Finance/R2R, Monatsabschluss und Reporting.
-23. Controlling, Financial Reports, Analysis Mode und Power BI.
-24. Integrationen: Microsoft 365, Power Platform, Shopify, D365 Sales, Field Service.
-25. Admin, Job Queue, Change Log, Monitoring und Betrieb.
-26. Standardgrenzen, Extensions, AppSource und Customizing.
-27. Business Central Solution Architect Pfad.
-28. UAT-Testbibliothek.
-29. Übungen und Lösungen.
-30. MB-800-Kompetenzmatrix.
-31. Microsoft-Learn-Lernpfad-Mapping.
-32. MB-800-Prüfungstraining.
-33. Glossar Deutsch/Englisch/Tell-Me.
-34. Seitenindex.
-35. Projektartefakte.
-36. Quellenverzeichnis.
-
-### Fallstudie als durchgehende Unternehmensgruppe
-
-Die Rhein-Main Industriegruppe ist ein mittelständischer Maschinenbau- und Servicekonzern mit Produktion, Ersatzteilhandel, Onlineshop, technischem Service, Projektgeschäft, Mietmodellen, Auslandsgeschäft und Intercompany-Prozessen. Die Gruppe führt Microsoft Dynamics 365 Business Central ein, um Vertrieb, Einkauf, Lager, Fertigung, Service, Projekte, Finanzbuchhaltung, Anlagen, Bank, USt, Reporting und Administration in einem integrierten Standardsystem abzubilden.
-
-| Company | Warum sie existiert | Prozesse | Rollen | Module/Funktionen | Risiken und Standardgrenzen |
-|---|---|---|---|---|---|
-| RM-PROD GmbH | produziert Maschinen und Baugruppen | Einkauf, Fertigung, Lager, Intercompany | Produktionsplanung, Lager, Meister, Controlling | Fertigung, Lager, Planung, Intercompany | Kostenabweichungen, Fremdarbeit, gesteuertes Lager |
-| RM-SALES GmbH | verkauft B2B und über Onlineshop | Verkauf, Shop, Dropshipping, Retouren | Vertrieb, E-Commerce, Debitoren | Verkauf, Shopify, Preise, Debitoren | Steuerlogik, Preislisten, Shop-Mapping |
-| RM-SERVICE GmbH | erbringt Service, Projekte und Mietmodelle | Service, Projekte, Ressourcen, Mietabrechnung | Disposition, Techniker, Projektleitung | Service, Projekte, Ressourcen, Abgrenzung | Mietmodell als Standardgrenze |
-| RM-SHARED GmbH | betreibt Finance, Admin und Reporting | R2R, Bank, USt, Stammdaten, Admin | Finance, Controller, BC-Admin | Finance, Bank, Anlagen, Security, Reporting | SoD, Datenqualität, Periodenabschluss |
-| RM-AT GmbH | bildet EU-/Auslandsszenarien ab | IC, EU-B2B, lokale Abweichungen | Finance, Vertrieb, Steuerrolle | Intercompany, Währungen, USt | Auslandssteuer, lokale Pflichtlogik |
-
-Use-Case-Matrix:
-
-| Use Case | Geschäftsgrund | Beteiligte Company | Rollen | BC-Prozesse | Hauptbelege | Hauptposten | Lernziel |
-|---|---|---|---|---|---|---|---|
-| Standardmaschine verkaufen | Maschinenumsatz | RM-SALES, RM-PROD | Vertrieb, Lager, Finance | Verkauf, Lager, IC | Verkaufsauftrag, Rechnung | Debitorenposten, Sachposten, Artikelposten | O2C und IC verstehen |
-| Standardmaschine produzieren | Eigenfertigung | RM-PROD | Planung, Meister, Lager | Fertigung, Planung | Fertigungsauftrag | Artikelposten, Wertposten | Produktionskosten verstehen |
-| Rohmaterial einkaufen | Materialversorgung | RM-PROD | Einkauf, Lager, Kreditoren | Einkauf, Lager | Einkaufsbestellung | Kreditorenposten, Wertposten | P2P und Lagerwert verstehen |
-| Ersatzteil im Onlineshop verkaufen | Ersatzteilumsatz | RM-SALES | E-Commerce, Lager | Shopify, Verkauf | Shopauftrag, Verkaufsrechnung | Debitorenposten, USt-Posten | Shopprozess prüfen |
-| Dropshipping abwickeln | Handelsware ohne Lager | RM-SALES | Vertrieb, Einkauf | Verkauf, Einkauf | Verkaufsauftrag, Einkaufsbestellung | Verkaufs-/Einkaufsposten | Direktlieferung verstehen |
-| Retoure und Gutschrift | Reklamation | RM-SALES | Vertrieb, Finance | Retoure, Gutschrift | Gutschrift | Debitorenposten, USt-Posten | Korrektur sauber buchen |
-| Serviceauftrag Garantie/Kulanz | Kundenbindung | RM-SERVICE | Service, Finance | Service | Serviceauftrag | Service-/Sachposten | Kosten ohne Erlös erklären |
-| Ersatzteilverbrauch Service | Reparatur | RM-SERVICE | Techniker, Lager | Service, Lager | Servicebeleg | Artikelposten, Wertposten | Verbrauch nachweisen |
-| Projektinstallation | Projektgeschäft | RM-SERVICE | Projektleitung, Finance | Projekte, Faktura | Projektrechnung | Projektposten, Sachposten | WIP/Faktura verstehen |
-| Mietmodell | wiederkehrender Erlös | RM-SERVICE | Service, Finance | Verkauf, Abgrenzung | Monatsrechnung | Debitorenposten, Sachposten | Standardgrenze erkennen |
-| Anlage kaufen | Investition | RM-SHARED | Anlagenbuchhaltung | Anlagen | Einkaufsrechnung/FA Journal | Anlagenposten, Sachposten | AfA-Prozess verstehen |
-| EU-B2B-Verkauf | EU-Geschäft | RM-SALES, RM-AT | Vertrieb, Steuer | Verkauf, USt | Verkaufsrechnung | USt-Posten | USt-ID-Logik prüfen |
-| Drittlandexport | Export | RM-SALES | Vertrieb, Steuer | Verkauf, Export | Rechnung, Nachweis | Sachposten, USt-Posten | Nachweislogik verstehen |
-| Intercompany-Verkauf | Konzernfluss | RM-PROD, RM-SALES | Finance | IC | IC-Belege | Debitor/Kreditor, Sachposten | IC-Abstimmung |
-| Monatsabschluss | Abschlussfähigkeit | RM-SHARED | Finance, Controller | R2R | Journale, Reports | Sachposten | Abschlussroutine |
-| falsche Dimension | Reportingfehler | alle | Controller, Finance | Dimension Correction | Korrekturprotokoll | Sachposten | Diagnose und Korrektur |
-| falsche USt-Gruppe | Steuerfehler | alle | Steuerrolle | VAT Setup | Korrekturbeleg | USt-Posten | Steuerdiagnose |
-| Lagerwert stimmt nicht | Bewertungsfehler | RM-PROD | Lager, Controlling | Inventory Costing | Kostenlauf | Wertposten | Cost Adjustment verstehen |
-| GuV nach Produktlinie | Managementreporting | RM-SHARED | Controller | Financial Reports | Bericht | Sachposten/Dimensionen | Analysefähigkeit |
-| kompletter E2E-UAT | Go-live-Freigabe | alle | Projektteam | alle | Evidence Pack | alle relevanten Posten | Go-live-Reife |
-
-### Kapitelbox für alle Prozessmodule
-
-| Feld | Inhalt |
-|---|---|
-| Zielgruppe | Einsteiger / Key User / Consultant / Architect |
-| Schwierigkeit | Basic / Intermediate / Advanced |
-| Prozess | O2C / P2P / R2R / Inventory etc. |
-| MB-800-Relevanz | Ja/Nein + Skill |
-| Solution-Architect-Relevanz | Ja/Nein |
-| Benötigte Vorkenntnisse | z. B. Belege/Posten |
-| Ergebnis nach dem Kapitel | Was kann der Leser danach? |
-| Übung vorhanden | Ja |
-| UAT vorhanden | Ja |
-| Lösung vorhanden | Ja |
-
----
-
+Merksatz:
+- Qualität im BC-Buch bedeutet nicht mehr Kapitel, sondern verlässliche Kapitel: Zweck, Bedienung, Posten, Fehler, Korrektur, UAT und Nachweis.
 ### Fachliche Praxisanker: Buchungslogik, Dimensionen, Posten, Kosten, Anlagen und Bank
 
 Dieses Kapitel bündelt die fachlichen Kernmodelle, die jeder Consultant und Key User sicher beherrschen muss.
