@@ -1695,7 +1695,7 @@ UAT-Fall:
 
 ## 13. Inventory und Warehouse: Ware bewegen und bewerten [Q14][Q15][Q65][Q66][Q67][Q68]
 
-Dieses Kapitel führt dich durch Inventory/Warehouse als praktischen Business-Central-Prozess. Du verstehst den geschäftlichen Zweck, führst den Vorgang in der deutschen Oberfläche aus und prüfst die entstandenen Belege, Posten und Berichte.
+Dieses Kapitel zeigt, wie Rhein-Main Waren im einfachen Lager und im gesteuerten Lager bewegt, einlagert, kommissioniert und bewertet. Nach dem Kapitel kannst du den Unterschied zwischen direkter Lagerbuchung und Warehouse-Steuerung erklären und die entstandenen Artikelposten, Wertposten und Lagerberichte prüfen.
 
 ### Kapitelbox
 
@@ -1876,7 +1876,7 @@ Korrigiere Lagerfehler nicht durch manuelles Löschen von Posten. Vor der Buchun
 
 ## 14. Planning, Assembly und Manufacturing: Maschine produzieren [Q16][Q17][Q18]
 
-Dieses Kapitel führt dich durch Planning/Manufacturing als praktischen Business-Central-Prozess. Du verstehst den geschäftlichen Zweck, führst den Vorgang in der deutschen Oberfläche aus und prüfst die entstandenen Belege, Posten und Berichte.
+Dieses Kapitel zeigt, wie RM-PROD aus Bedarf einen Fertigungsauftrag für `RM-M100` erzeugt, Material verbraucht, Output meldet und Herstellkosten prüft. Nach dem Kapitel kannst du Planung, Verbrauch, Output, Artikelposten, Wertposten und Fertigungsauftragsstatistik zusammenführen.
 
 ### Kapitelbox
 
@@ -2053,7 +2053,7 @@ Nach einer falschen Fertigungsbuchung wird nicht am Posten gearbeitet. Korrigier
 
 ## 15. Service: Wartung, Garantie und Ersatzteilverbrauch [Q19][Q25][Q26]
 
-Dieses Kapitel führt dich durch Service als praktischen Business-Central-Prozess. Du verstehst den geschäftlichen Zweck, führst den Vorgang in der deutschen Oberfläche aus und prüfst die entstandenen Belege, Posten und Berichte.
+Dieses Kapitel zeigt, wie RM-SERVICE einen Kundeneinsatz mit Serviceauftrag, Ersatzteilverbrauch, Technikerzeit, Garantie- oder Kulanzentscheidung und Faktura abwickelt. Nach dem Kapitel kannst du `SERV-4001` vom Anruf bis zur Postenspur nachvollziehen.
 
 ### Kapitelbox
 
@@ -2229,7 +2229,7 @@ Servicekorrekturen brauchen eine fachliche Entscheidung. Nach Buchung wird über
 
 ## 16. Projects: Installation und Meilensteinrechnung [Q27]
 
-Dieses Kapitel führt dich durch Projects als praktischen Business-Central-Prozess. Du verstehst den geschäftlichen Zweck, führst den Vorgang in der deutschen Oberfläche aus und prüfst die entstandenen Belege, Posten und Berichte.
+Dieses Kapitel zeigt, wie RM-SERVICE eine Projektinstallation mit Aufgaben, Ressourcen, Material, Projektposten und Meilensteinrechnung steuert. Nach dem Kapitel kannst du `PROJ-5001` fachlich ausführen, fakturieren und über Projektstatistik abnehmen.
 
 ### Kapitelbox
 
@@ -2413,125 +2413,113 @@ Projektfehler werden über Projektjournale, Gutschriften oder Korrekturrechnunge
 
 
 ## 17. Shopify, Dropshipping und Sonderverkauf [Q10][Q73][Q74]
-
-Dieses Kapitel führt dich durch Shopify/Dropshipping als praktischen Business-Central-Prozess. Du verstehst den geschäftlichen Zweck, führst den Vorgang in der deutschen Oberfläche aus und prüfst die entstandenen Belege, Posten und Berichte.
+Dieses Kapitel zeigt, wie Rhein-Main einen Onlineshop-Auftrag und einen Dropshipping-Fall im Business-Central-Standard abwickelt. Nach dem Kapitel kannst du aus einem Shopify-Auftrag einen Verkaufsauftrag erzeugen, eine Dropshipping-Einkaufsbestellung verknüpfen, USt und Marge prüfen und typische Mappingfehler korrigieren.
 
 ### Kapitelbox
 
 | Feld | Inhalt |
 |---|---|
-| Zielgruppe | Einsteiger, Key User, Junior Consultant, MB-800-Lerner, Standard-Solution-Architect |
-| Schwierigkeit | Basic bis Advanced |
-| Prozessbereich | Shopify/Dropshipping |
+| Zielgruppe | Einsteiger, E-Commerce-Key-User, Vertrieb, Einkauf, Finance, Junior Consultant |
+| Schwierigkeit | Intermediate |
+| Prozessbereich | Shopify / Dropshipping / Sonderverkauf |
 | Betroffene Companies | RM-SALES, RM-SHARED |
-| MB-800-Relevanz | Ja: Standardprozess, Bedienung, Postenprüfung, Korrektur und UAT |
-| Solution-Architect-Relevanz | Ja: Standard-first, Setup-Entscheidung, Extension-Grenze, Betrieb |
+| MB-800-Relevanz | Ja: Verkaufsauftrag, Einkaufsbestellung, Preise, USt, Belegkorrektur, Integrationsgrundlagen |
+| Solution-Architect-Relevanz | Ja: Shopify-Connector, Dropshipping-Prozessdesign, Mapping, Steuerlogik, Extension-Grenze |
 | Ergebnis nach dem Kapitel | Du kannst Shopauftrag, Artikelmapping, Dropshipping-Verknüpfung, USt-Prüfung, Marge und Korrekturfall für `WEB-24001` ausführen. |
 
 ### Alltagsszene bei Rhein-Main
 
-E-Commerce-Sachbearbeiterin sieht morgens den Shopauftrag `WEB-24001`. Kunde `D11000` hat zwei Ersatzteile `SP-PUMP-01` bestellt. Ein zweiter Auftrag ist Dropshipping: RM-SALES verkauft, aber Lieferant `K20000` liefert direkt an den Kunden.
+Um 7:45 Uhr öffnet RM-SALES die neuen Shopify-Aufträge. Auftrag `WEB-24001` kommt von Debitor `D11000`: zwei Pumpen `SP-PUMP-01` zu je `850 EUR`. Der eigene Bestand ist für Serviceeinsätze reserviert. Deshalb soll Kreditor `K20000` direkt an den Kunden liefern. RM-SALES verkauft, K20000 liefert, Finance prüft Umsatz, Einkaufskosten, USt und Marge.
 
 ### Für absolute Einsteiger erklärt
 
-Shopify, Dropshipping und Sonderverkauf zeigt, wie ein Fachvorgang in Business Central zu Belegen, Posten und Berichten wird. Ein Anfänger erkennt hier: Die Maske ist nur der Einstieg. Entscheidend ist die Kette aus Stammdaten, Buchung, Posten, Kontrollbericht und Evidence Pack.
+Ein Onlineshop-Auftrag ist in Business Central nicht nur eine Internetbestellung. Er muss zu einem sauberen Verkaufsbeleg werden. Dropshipping bedeutet: Rhein-Main verkauft an den Kunden, aber der Lieferant liefert direkt. Dadurch entsteht im Standard kein normaler Lagerabgang aus dem eigenen Lager. Entscheidend sind Artikelmapping, Debitor, Preis, USt, Dropshipping-Kennzeichen und die Verbindung zur Einkaufsbestellung.
 
 ### Warum braucht Rhein-Main diesen Prozess?
 
-Rhein-Main braucht diesen Prozess, weil Shopify/Dropshipping direkt auf Finance, Reporting und operative Steuerung wirkt. Ohne klaren Standardprozess entstehen Medienbrüche, falsche Posten, fehlende Nachweise und unsichere Entscheidungen. Business Central stellt dafür deutsche Seiten, Buchungslogik, Kontrollberichte und UAT-fähige Nachweise bereit.
+Der Onlineshop erzeugt viele kleine Aufträge. Ohne Standardprozess entstehen Dubletten, falsche Preise, falsche Artikel, ungeklärte Lieferantenbezüge und unsichere Margen. Business Central verbindet Shopauftrag, Verkaufsauftrag, Dropshipping-Einkaufsbestellung, Debitorenposten, Kreditorenposten, Sachposten und USt-Posten.
 
 ### Rollen
 
-Die Rollen sind bewusst knapp gehalten. Sie zeigen, wer ausführt, wer prüft und wer die Standardentscheidung verantwortet.
-
 | Rolle | Aufgabe | Ergebnis |
 |---|---|---|
-| Fachanwender | Vorgang erfassen und Pflichtfelder prüfen | Beleg ist fachlich korrekt |
-| Key User | Stammdaten, Setup und Fehlerfälle prüfen | Vorgang ist buchbar |
-| Finance/Controlling | Posten und Bericht abstimmen | Nachweis ist belastbar |
-| Solution Architect | Standard, Extension und Risiko bewerten | UAT beweist die Entscheidung |
+| E-Commerce-Key-User | Shopify-Auftrag und Mapping prüfen | Auftrag ist korrekt in BC übernommen |
+| Vertrieb | Verkaufsauftrag freigeben | Kunde, Preis und USt stimmen |
+| Einkauf | Dropshipping-Bestellung an `K20000` verknüpfen | Lieferant liefert direkt |
+| Finance | Posten, USt und Marge abstimmen | Umsatz und Kosten sind prüfbar |
 
-Praktisch bedeutet das: Der Fachbereich erzeugt den Vorgang, Key User und Finance sichern die Buchbarkeit, und der Solution Architect bewertet, ob der Standard ausreicht.
+### Stammdaten und Setup
 
-### Stammdaten
-
-Die Stammdaten müssen vor dem Klick stimmen. Falsche Stammdaten erzeugen später falsche Buchungen.
-
-| Stammdatum | Rhein-Main-Beispiel | Warum wichtig? |
+| Element | Rhein-Main-Wert | Wirkung |
 |---|---|---|
-| Partner | `D10000`, `K10000` oder Intercompany-Partner | steuert Buchungsgruppen und USt |
-| Artikel/Sachkonto/Ressource | `WEB-24001`, `D11000`, `SP-PUMP-01`, Menge `2`, `K20000` | steuert Menge, Wert oder Leistung |
-| Dimension | `PRODUCTLINE`, `CHANNEL`, `DEPARTMENT` | steuert Reporting |
-| Nummernserie | prozessabhängig | sichert eindeutige Belege |
+| Shopify-Shop | `RM-SHOP-DE` | Quelle des Auftrags |
+| Debitor | `D11000` | steuert Debitorenbuchungsgruppe und USt |
+| Artikel | `SP-PUMP-01` | steuert Produktbuchungsgruppe, USt und Artikelbezug |
+| Kreditor | `K20000` | Dropshipping-Lieferant |
+| Dimension | `CHANNEL = SHOP` | trennt Shop-Umsatz vom B2B-Vertrieb |
 
-Kontrollfrage: Kannst du vor der Buchung erklären, welcher Partner, welcher Artikel oder welches Konto später welchen Posten auslöst?
-
-### Setup
-
-Das Setup ist die fachliche Leitplanke. Es entscheidet, ob der richtige Klick später auf das richtige Konto, die richtige Steuerlogik und den richtigen Bericht läuft.
-
-- relevante Buchungsgruppen und Buchungsmatrizen
-- Nummernserien und Pflichtdimensionen
-- Rollenprofil und Berechtigungen
-- Bericht oder Kontrollliste für den Nachweis
-
-Rhein-Main ändert Setup nur über dokumentierte Projektentscheidungen. Ein spontaner Setup-Wechsel im Tagesgeschäft ist ein Change Request.
+Rhein-Main nutzt den Standard-Shopify-Connector, ein geprüftes Artikelmapping und eine klare Regel: Dropshipping wird vor der Buchung entschieden, nicht nachträglich im Lager „gerettet“.
 
 ### Deutsche BC-Seiten
 
-Diese Seiten öffnest du über `Alt+Q`. Der deutsche Begriff ist führend; der englische Begriff steht als Suchhilfe in Klammern.
-
-- `Shopify-Shops (Shopify Shops)`
 - `Shopify-Aufträge (Shopify Orders)`
+- `Shopify-Produkte (Shopify Products)`
 - `Verkaufsaufträge (Sales Orders)`
 - `Einkaufsbestellungen (Purchase Orders)`
+- `Gebuchte Verkaufsrechnungen (Posted Sales Invoices)`
+- `Debitorenposten (Customer Ledger Entries)`
+- `Kreditorenposten (Vendor Ledger Entries)`
+- `USt-Posten (VAT Entries)`
+- `Artikelposten (Item Ledger Entries)`
 
 ### Schritt-für-Schritt
 
-1. Öffne `Alt+Q` und suche `Shopify-Shops (Shopify Shops)`, `Shopify-Aufträge (Shopify Orders)`, `Verkaufsaufträge (Sales Orders)`, `Einkaufsbestellungen (Purchase Orders)`.
-2. Öffne oder erfasse den Rhein-Main-Fall `WEB-24001`, `D11000`, `SP-PUMP-01`, Menge `2`, `K20000`.
-3. Prüfe `Buchungsdatum`, `Belegdatum`, Partner, Betrag/Menge, Buchungsgruppen und Dimensionen.
-4. Nutze `Buchungsvorschau (Preview Posting)`, wenn der Vorgang eine Buchung auslöst.
-5. Führe die fachliche Aktion aus: freigeben, buchen, ausgleichen, berechnen oder abstimmen.
-6. Öffne danach die gebuchten Belege oder Postenlisten.
-7. Filtere nach Belegnummer, Partner, Artikel, Konto oder Dimension.
-8. Prüfe Debitorenposten, Sachposten, USt-Posten, Artikelposten/Wertposten bei Lagerware und Kreditorenposten bei Dropshipping.
-9. Öffne Shop-Abstimmung, `USt-Posten (VAT Entries)`, Margenbericht und vergleiche Bericht, Posten und Ausgangsbeleg.
-10. Dokumentiere Belegnummern, Filter, Bericht und Testergebnis im Evidence Pack.
+1. Öffne `Alt+Q` und suche `Shopify-Aufträge (Shopify Orders)`.
+2. Öffne Auftrag `WEB-24001`.
+3. Prüfe `Debitorennr. = D11000`, `Artikel = SP-PUMP-01`, `Menge = 2`, `VK-Preis = 850 EUR`, `CHANNEL = SHOP`.
+4. Öffne die Zeile und prüfe das Artikelmapping zu `SP-PUMP-01`.
+5. Wähle `Verkaufsauftrag erstellen` und öffne den erzeugten `Verkaufsauftrag (Sales Order)`.
+6. Prüfe in der Verkaufszeile `Dropshipping = Ja`.
+7. Öffne `Einkaufsbestellungen (Purchase Orders)` und erstelle oder verknüpfe die Bestellung an Kreditor `K20000`.
+8. Prüfe in der Einkaufszeile den Bezug zum Verkaufsauftrag `WEB-24001`.
+9. Öffne den Verkaufsauftrag und wähle `Buchungsvorschau (Preview Posting)`.
+10. Buche die Verkaufsrechnung.
+11. Buche die verknüpfte Einkaufsrechnung von `K20000`.
+12. Öffne `Debitorenposten`, `Kreditorenposten`, `Sachposten` und `USt-Posten` mit Belegnummerfilter.
+13. Öffne `Artikelposten (Item Ledger Entries)`; bei reinem Dropshipping darf kein eigener Lagerabgang aus `FRA-ZL` entstehen.
+14. Öffne Shop-Abstimmung und Margenbericht und dokumentiere Verkaufserlös, Einkaufskosten, USt und Kanal `SHOP`.
 
 ### Buchungsspur
 
-Die folgende Spur zeigt, wie aus dem Vorgang ein prüfbarer Nachweis wird.
-
 | Ebene | Rhein-Main-Nachweis | Wo prüfen? |
 |---|---|---|
-| Ausgangsbeleg | `WEB-24001`, `D11000`, `SP-PUMP-01`, Menge `2`, `K20000` | `Shopify-Shops (Shopify Shops)` |
-| Gebuchter Beleg | gebuchter Beleg oder abgestimmter Prozesslauf | gebuchte Belege/Postenlisten |
-| Posten | Debitorenposten, Sachposten, USt-Posten, Artikelposten/Wertposten bei Lagerware und Kreditorenposten bei Dropshipping | passende Postenlisten |
-| Sachposten | Hauptbuchwirkung mit Betrag und Dimension | `Sachposten (G/L Entries)` |
-| Kontrollbericht | Shop-Abstimmung, `USt-Posten (VAT Entries)`, Margenbericht | Shop-Abstimmung, `USt-Posten (VAT Entries)`, Margenbericht |
-
-Praktische Einordnung: Wenn eine Ebene fehlt, ist der Prozess nicht 10/10 abnahmefähig. Der UAT-Prüfer muss vom Ausgangsbeleg bis zum Kontrollbericht springen können.
+| Shopauftrag | `WEB-24001` für `D11000` | `Shopify-Aufträge (Shopify Orders)` |
+| Verkaufsbeleg | Verkaufsauftrag und gebuchte Verkaufsrechnung | `Verkaufsaufträge`, `Gebuchte Verkaufsrechnungen` |
+| Einkaufsbeleg | Dropshipping-Einkaufsbestellung an `K20000` | `Einkaufsbestellungen (Purchase Orders)` |
+| Debitorenposten | Forderung gegen `D11000` | `Debitorenposten (Customer Ledger Entries)` |
+| Kreditorenposten | Verbindlichkeit gegenüber `K20000` | `Kreditorenposten (Vendor Ledger Entries)` |
+| Sachposten/USt | Erlös, Aufwand, USt | `Sachposten`, `USt-Posten` |
+| Lagerprüfung | kein eigener Lagerabgang bei Dropshipping | `Artikelposten (Item Ledger Entries)` |
 
 ### Kontrollberichte
 
-- Shop-Abstimmung
-- `USt-Posten (VAT Entries)`
-- Margenbericht
-
-Rhein-Main nutzt diese Berichte nicht als Dekoration, sondern als Abgleich gegen die Posten. Ein Bericht ohne Drilldown oder Postenbezug reicht für UAT nicht.
+- Shop-Abstimmung für Auftragsübernahme und Status.
+- Margenbericht für Verkaufserlös abzüglich Einkaufskosten.
+- `USt-Posten (VAT Entries)` für Steuerprüfung.
+- `Debitorenposten` und `Kreditorenposten` für offene Posten.
 
 ### Fehlerdiagnose
 
 | Fehler | Symptom | Ursache | Diagnosepfad | Korrekturweg |
 |---|---|---|---|---|
-| falsche Dimension | Bericht zeigt Wert nicht | Dimension fehlt oder ist falsch | `Sachposten (G/L Entries)` mit Dimension prüfen | Dimension korrigieren, wenn zulässig, sonst fachlich gegenbuchen |
-| falsche Buchungsgruppe | falsches Konto oder falsche USt | Stammdaten falsch | Stammdaten und Buchungsmatrix prüfen | Beleg stornieren/gutschreiben und korrekt neu buchen |
-| fehlender Nachweis | UAT kann nicht abgenommen werden | Bericht oder Belegnummer fehlt | Evidence Pack prüfen | Nachweis exportieren und Test neu bewerten |
+| falsches Artikelmapping | falscher Artikel im Verkaufsauftrag | Shopify-Produkt ist falsch zugeordnet | `Shopify-Produkte` und Verkaufszeile vergleichen | Mapping korrigieren, ungebuchten Auftrag neu erzeugen oder gebuchte Rechnung gutschreiben |
+| Dropshipping fehlt | BC verlangt eigenen Bestand | Zeile ist nicht als Dropshipping markiert | Verkaufszeile und Einkaufsbestellbezug prüfen | vor Buchung Kennzeichen setzen; nach Buchung Gutschrift und Neubuchung |
+| falsche USt | USt-Posten passen nicht zur Rechnung | Debitor oder Artikel hat falsche USt-Gruppe | `USt-Posten`, Debitor, Artikel und USt-Matrix prüfen | Rechnung gutschreiben, Stammdaten korrigieren, neu buchen |
 
 ### Korrekturweg
 
-Die Korrektur folgt immer dem gebuchten Zustand. Ungebuchte Belege werden korrigiert. Gebuchte Belege werden über Gutschrift, Gegenbuchung, Ausgleichslösung oder dokumentierte Neubuchung korrigiert. Posten werden nicht gelöscht.
+Ungebuchte Shop- und Verkaufsaufträge werden korrigiert oder neu erzeugt. Gebuchte Verkaufsrechnungen werden über Verkaufsgutschrift korrigiert. Gebuchte Einkaufsrechnungen werden über Einkaufsgutschrift korrigiert. Lager- oder USt-Posten werden nicht direkt geändert.
+
 
 ### Übung
 
@@ -2596,125 +2584,94 @@ Die Korrektur folgt immer dem gebuchten Zustand. Ungebuchte Belege werden korrig
 
 
 ## 18. Intercompany und Ausland [Q29][Q30][Q31]
-
-Dieses Kapitel führt dich durch Intercompany/Ausland als praktischen Business-Central-Prozess. Du verstehst den geschäftlichen Zweck, führst den Vorgang in der deutschen Oberfläche aus und prüfst die entstandenen Belege, Posten und Berichte.
+Dieses Kapitel zeigt, wie Rhein-Main einen Intercompany-Verkauf und einen Auslandssachverhalt prüfbar abbildet. Nach dem Kapitel kannst du IC-Ausgang, IC-Eingang, USt-Logik, Partnerbeleg und Abstimmung für `IC-7001` nachvollziehen.
 
 ### Kapitelbox
 
 | Feld | Inhalt |
 |---|---|
-| Zielgruppe | Einsteiger, Key User, Junior Consultant, MB-800-Lerner, Standard-Solution-Architect |
-| Schwierigkeit | Basic bis Advanced |
-| Prozessbereich | Intercompany/Ausland |
+| Zielgruppe | Einsteiger, Vertrieb, Einkauf, Steuerteam, Finance, Junior Consultant |
+| Schwierigkeit | Advanced |
+| Prozessbereich | Intercompany / Ausland |
 | Betroffene Companies | RM-PROD, RM-SALES, RM-AT, RM-SHARED |
-| MB-800-Relevanz | Ja: Standardprozess, Bedienung, Postenprüfung, Korrektur und UAT |
-| Solution-Architect-Relevanz | Ja: Standard-first, Setup-Entscheidung, Extension-Grenze, Betrieb |
+| MB-800-Relevanz | Ja: Verkaufs- und Einkaufsbelege, Intercompany, USt, Fremdwährung/ausländische Partner |
+| Solution-Architect-Relevanz | Ja: Company-Architektur, IC-Partner, Steuerlogik, Konsolidierungsnähe |
 | Ergebnis nach dem Kapitel | Du kannst Intercompany-Verkauf, Partnerannahme, EU-/Ausland-USt, IC-Abstimmung und Korrekturfall für `IC-7001` ausführen. |
 
 ### Alltagsszene bei Rhein-Main
 
-RM-PROD verkauft eine Maschine intern an RM-SALES. Parallel verkauft RM-AT Ersatzteile an einen EU-Unternehmer. Finance muss prüfen, ob Intercompany-Belege, USt-Logik, Nachweise und Abstimmungskonten zusammenpassen.
+RM-PROD verkauft eine Maschine `RM-M100` für `42.000 EUR` an RM-SALES. RM-SALES verkauft später an EU-Kunde `D-AT100`. Finance muss sehen, dass RM-PROD einen IC-Verkauf, RM-SALES den korrespondierenden IC-Einkauf und das Steuerteam die richtige EU-/IC-USt-Logik nachweisen kann.
 
 ### Für absolute Einsteiger erklärt
 
-Intercompany und Ausland zeigt, wie ein Fachvorgang in Business Central zu Belegen, Posten und Berichten wird. Ein Anfänger erkennt hier: Die Maske ist nur der Einstieg. Entscheidend ist die Kette aus Stammdaten, Buchung, Posten, Kontrollbericht und Evidence Pack.
+Intercompany bedeutet: Zwei rechtliche Einheiten derselben Gruppe buchen miteinander. In Business Central sind das getrennte Companies. Ein IC-Verkauf in RM-PROD muss in RM-SALES als IC-Einkauf ankommen. Sonst stimmen die Bücher der beiden Companies nicht zusammen.
 
 ### Warum braucht Rhein-Main diesen Prozess?
 
-Rhein-Main braucht diesen Prozess, weil Intercompany/Ausland direkt auf Finance, Reporting und operative Steuerung wirkt. Ohne klaren Standardprozess entstehen Medienbrüche, falsche Posten, fehlende Nachweise und unsichere Entscheidungen. Business Central stellt dafür deutsche Seiten, Buchungslogik, Kontrollberichte und UAT-fähige Nachweise bereit.
+Die Gruppe produziert, verkauft und betreut über mehrere Gesellschaften. Ohne IC-Prozess entstehen manuelle Rechnungen, Abstimmungsdifferenzen und steuerliche Unsicherheit. Business Central erzeugt Belege in beiden Companies und macht die Abstimmung prüfbar.
 
-### Rollen
+### Rollen, Stammdaten und Setup
 
-Die Rollen sind bewusst knapp gehalten. Sie zeigen, wer ausführt, wer prüft und wer die Standardentscheidung verantwortet.
-
-| Rolle | Aufgabe | Ergebnis |
+| Element | Rhein-Main-Wert | Wirkung |
 |---|---|---|
-| Fachanwender | Vorgang erfassen und Pflichtfelder prüfen | Beleg ist fachlich korrekt |
-| Key User | Stammdaten, Setup und Fehlerfälle prüfen | Vorgang ist buchbar |
-| Finance/Controlling | Posten und Bericht abstimmen | Nachweis ist belastbar |
-| Solution Architect | Standard, Extension und Risiko bewerten | UAT beweist die Entscheidung |
-
-Praktisch bedeutet das: Der Fachbereich erzeugt den Vorgang, Key User und Finance sichern die Buchbarkeit, und der Solution Architect bewertet, ob der Standard ausreicht.
-
-### Stammdaten
-
-Die Stammdaten müssen vor dem Klick stimmen. Falsche Stammdaten erzeugen später falsche Buchungen.
-
-| Stammdatum | Rhein-Main-Beispiel | Warum wichtig? |
-|---|---|---|
-| Partner | `D10000`, `K10000` oder Intercompany-Partner | steuert Buchungsgruppen und USt |
-| Artikel/Sachkonto/Ressource | `IC-7001`, Artikel `RM-M100`, Preis `42.000 EUR`, EU-Kunde `D-AT100` | steuert Menge, Wert oder Leistung |
-| Dimension | `PRODUCTLINE`, `CHANNEL`, `DEPARTMENT` | steuert Reporting |
-| Nummernserie | prozessabhängig | sichert eindeutige Belege |
-
-Kontrollfrage: Kannst du vor der Buchung erklären, welcher Partner, welcher Artikel oder welches Konto später welchen Posten auslöst?
-
-### Setup
-
-Das Setup ist die fachliche Leitplanke. Es entscheidet, ob der richtige Klick später auf das richtige Konto, die richtige Steuerlogik und den richtigen Bericht läuft.
-
-- relevante Buchungsgruppen und Buchungsmatrizen
-- Nummernserien und Pflichtdimensionen
-- Rollenprofil und Berechtigungen
-- Bericht oder Kontrollliste für den Nachweis
-
-Rhein-Main ändert Setup nur über dokumentierte Projektentscheidungen. Ein spontaner Setup-Wechsel im Tagesgeschäft ist ein Change Request.
+| IC-Partner | `RM-SALES` | verbindet Ausgang und Eingang |
+| Artikel | `RM-M100` | erzeugt Mengen- und Wertwirkung |
+| Preis | `42.000 EUR` | IC-Verrechnungspreis |
+| USt-Gruppe | `EU/IC` | steuert steuerliche Behandlung |
+| Kunde Ausland | `D-AT100` | zeigt EU-Auslandssicht |
 
 ### Deutsche BC-Seiten
 
-Diese Seiten öffnest du über `Alt+Q`. Der deutsche Begriff ist führend; der englische Begriff steht als Suchhilfe in Klammern.
-
+- `Verkaufsaufträge (Sales Orders)`
 - `Intercompany-Ausgangstransaktionen`
 - `Intercompany-Eingangstransaktionen`
-- `Verkaufsaufträge (Sales Orders)`
-- `USt-Posten (VAT Entries)`
-
-### Schritt-für-Schritt
-
-1. Öffne `Alt+Q` und suche `Intercompany-Ausgangstransaktionen`, `Intercompany-Eingangstransaktionen`, `Verkaufsaufträge (Sales Orders)`, `USt-Posten (VAT Entries)`.
-2. Öffne oder erfasse den Rhein-Main-Fall `IC-7001`, Artikel `RM-M100`, Preis `42.000 EUR`, EU-Kunde `D-AT100`.
-3. Prüfe `Buchungsdatum`, `Belegdatum`, Partner, Betrag/Menge, Buchungsgruppen und Dimensionen.
-4. Nutze `Buchungsvorschau (Preview Posting)`, wenn der Vorgang eine Buchung auslöst.
-5. Führe die fachliche Aktion aus: freigeben, buchen, ausgleichen, berechnen oder abstimmen.
-6. Öffne danach die gebuchten Belege oder Postenlisten.
-7. Filtere nach Belegnummer, Partner, Artikel, Konto oder Dimension.
-8. Prüfe Debitorenposten, Kreditorenposten, Sachposten, USt-Posten, Artikelposten und Wertposten.
-9. Öffne IC-Abstimmung, `USt-Posten (VAT Entries)`, `Sachposten (G/L Entries)` und vergleiche Bericht, Posten und Ausgangsbeleg.
-10. Dokumentiere Belegnummern, Filter, Bericht und Testergebnis im Evidence Pack.
-
-### Buchungsspur
-
-Die folgende Spur zeigt, wie aus dem Vorgang ein prüfbarer Nachweis wird.
-
-| Ebene | Rhein-Main-Nachweis | Wo prüfen? |
-|---|---|---|
-| Ausgangsbeleg | `IC-7001`, Artikel `RM-M100`, Preis `42.000 EUR`, EU-Kunde `D-AT100` | `Intercompany-Ausgangstransaktionen` |
-| Gebuchter Beleg | gebuchter Beleg oder abgestimmter Prozesslauf | gebuchte Belege/Postenlisten |
-| Posten | Debitorenposten, Kreditorenposten, Sachposten, USt-Posten, Artikelposten und Wertposten | passende Postenlisten |
-| Sachposten | Hauptbuchwirkung mit Betrag und Dimension | `Sachposten (G/L Entries)` |
-| Kontrollbericht | IC-Abstimmung, `USt-Posten (VAT Entries)`, `Sachposten (G/L Entries)` | IC-Abstimmung, `USt-Posten (VAT Entries)`, `Sachposten (G/L Entries)` |
-
-Praktische Einordnung: Wenn eine Ebene fehlt, ist der Prozess nicht 10/10 abnahmefähig. Der UAT-Prüfer muss vom Ausgangsbeleg bis zum Kontrollbericht springen können.
-
-### Kontrollberichte
-
-- IC-Abstimmung
+- `Einkaufsbestellungen (Purchase Orders)`
 - `USt-Posten (VAT Entries)`
 - `Sachposten (G/L Entries)`
 
-Rhein-Main nutzt diese Berichte nicht als Dekoration, sondern als Abgleich gegen die Posten. Ein Bericht ohne Drilldown oder Postenbezug reicht für UAT nicht.
+### Schritt-für-Schritt
+
+1. Öffne in RM-PROD `Verkaufsaufträge (Sales Orders)` über `Alt+Q`.
+2. Lege `IC-7001` für IC-Partner `RM-SALES` an.
+3. Erfasse Zeile `Art = Artikel`, `Nr. = RM-M100`, `Menge = 1`, `VK-Preis = 42.000 EUR`.
+4. Prüfe `USt-Geschäftsbuchungsgruppe = EU/IC`.
+5. Wähle `Buchungsvorschau (Preview Posting)` und prüfe Sach- und USt-Posten.
+6. Buche die IC-Verkaufsrechnung.
+7. Öffne `Intercompany-Ausgangstransaktionen` und prüfe Versandstatus.
+8. Wechsle in RM-SALES, öffne `Intercompany-Eingangstransaktionen` und nimm `IC-7001` an.
+9. Prüfe den erzeugten Einkaufsbeleg und die `Kreditorenposten (Vendor Ledger Entries)`.
+10. Öffne IC-Abstimmung und vergleiche Betrag `42.000 EUR` in beiden Companies.
+
+### Buchungsspur
+
+| Ebene | Rhein-Main-Nachweis | Wo prüfen? |
+|---|---|---|
+| IC-Ausgang | `IC-7001` in RM-PROD | `Intercompany-Ausgangstransaktionen` |
+| IC-Eingang | angenommene Transaktion in RM-SALES | `Intercompany-Eingangstransaktionen` |
+| Verkaufsrechnung | IC-Umsatz RM-PROD | `Gebuchte Verkaufsrechnungen` |
+| Einkaufsbeleg | IC-Einkauf RM-SALES | `Einkaufsbestellungen` / gebuchte Einkaufsbelege |
+| Posten | Debitoren-, Kreditoren-, Sach-, USt-, Artikel- und Wertposten | jeweilige Postenlisten mit Belegfilter |
+| Kontrollbericht | IC-Abstimmung | IC-Abstimmungsansicht |
+
+### Kontrollberichte
+
+- IC-Abstimmung.
+- `USt-Posten (VAT Entries)`.
+- `Sachposten (G/L Entries)`.
+- Debitoren- und Kreditorenposten in den beteiligten Companies.
 
 ### Fehlerdiagnose
 
 | Fehler | Symptom | Ursache | Diagnosepfad | Korrekturweg |
 |---|---|---|---|---|
-| falsche Dimension | Bericht zeigt Wert nicht | Dimension fehlt oder ist falsch | `Sachposten (G/L Entries)` mit Dimension prüfen | Dimension korrigieren, wenn zulässig, sonst fachlich gegenbuchen |
-| falsche Buchungsgruppe | falsches Konto oder falsche USt | Stammdaten falsch | Stammdaten und Buchungsmatrix prüfen | Beleg stornieren/gutschreiben und korrekt neu buchen |
-| fehlender Nachweis | UAT kann nicht abgenommen werden | Bericht oder Belegnummer fehlt | Evidence Pack prüfen | Nachweis exportieren und Test neu bewerten |
+| IC-Eingang fehlt | RM-SALES hat keinen Partnerbeleg | Transaktion nicht angenommen | IC-Ausgang und IC-Eingang vergleichen | Eingang annehmen oder erneut senden |
+| falsche USt-Gruppe | USt-Posten passen nicht | Inland statt EU/IC | USt-Posten und Beleggruppen prüfen | Gutschrift, Setupkorrektur, Neubuchung |
+| Betragsdifferenz | IC-Abstimmung zeigt Differenz | Preis oder Währung abweichend | Belege beider Companies vergleichen | Beleg korrigieren und erneut abstimmen |
 
 ### Korrekturweg
 
-Die Korrektur folgt immer dem gebuchten Zustand. Ungebuchte Belege werden korrigiert. Gebuchte Belege werden über Gutschrift, Gegenbuchung, Ausgleichslösung oder dokumentierte Neubuchung korrigiert. Posten werden nicht gelöscht.
+Ungebuchte IC-Belege werden korrigiert. Gebuchte IC-Belege werden über Gutschrift und Neubuchung korrigiert. IC-Differenzen werden nicht ohne Gegenbeleg ausgebucht.
+
 
 ### Übung
 
@@ -2777,125 +2734,75 @@ Die Korrektur folgt immer dem gebuchten Zustand. Ungebuchte Belege werden korrig
 
 
 ## 19. Debitoren, Kreditoren und OP-Ausgleich [Q20][Q21][Q22][Q23][Q24][Q28]
-
-Dieses Kapitel führt dich durch OP-Ausgleich als praktischen Business-Central-Prozess. Du verstehst den geschäftlichen Zweck, führst den Vorgang in der deutschen Oberfläche aus und prüfst die entstandenen Belege, Posten und Berichte.
+Dieses Kapitel zeigt, wie Rhein-Main offene Posten ausgleicht. Nach dem Kapitel kannst du eine Zahlung zu `SO-1001` erfassen, mit dem Debitorenposten verbinden, detaillierte Posten prüfen und einen falschen Ausgleich korrigieren.
 
 ### Kapitelbox
 
 | Feld | Inhalt |
 |---|---|
-| Zielgruppe | Einsteiger, Key User, Junior Consultant, MB-800-Lerner, Standard-Solution-Architect |
-| Schwierigkeit | Basic bis Advanced |
-| Prozessbereich | OP-Ausgleich |
-| Betroffene Companies | RM-SHARED |
-| MB-800-Relevanz | Ja: Standardprozess, Bedienung, Postenprüfung, Korrektur und UAT |
-| Solution-Architect-Relevanz | Ja: Standard-first, Setup-Entscheidung, Extension-Grenze, Betrieb |
+| Zielgruppe | Einsteiger, Debitorenbuchhaltung, Kreditorenbuchhaltung, Finance |
+| Schwierigkeit | Basic bis Intermediate |
+| Prozessbereich | OP-Ausgleich / Debitoren / Kreditoren |
+| Betroffene Companies | RM-SHARED, RM-SALES |
+| MB-800-Relevanz | Ja: Debitorenposten, Kreditorenposten, Zahlungseingang, Ausgleich, Ausgleich aufheben |
+| Solution-Architect-Relevanz | Ja: Zahlungsprozess, Berechtigungen, Bankintegration, Evidence Pack |
 | Ergebnis nach dem Kapitel | Du kannst Zahlungen erfassen, Debitoren-/Kreditorenposten ausgleichen, falsche Ausgleiche erkennen und OP-Listen abnehmen. |
 
 ### Alltagsszene bei Rhein-Main
 
-Auf dem Bankkonto geht `80.920 EUR` von `D10000` ein. Die Debitorenbuchhalterin gleicht die Zahlung gegen Rechnung `SO-1001` aus. Erst danach ist die Forderung wirklich erledigt.
+`D10000` bezahlt Rechnung `SO-1001` vollständig mit `80.920 EUR`. Die Debitorenbuchhalterin bucht die Zahlung auf `BANK-RM-01` und gleicht sie gegen die Rechnung aus. Danach muss die OP-Liste zeigen, dass `SO-1001` erledigt ist.
 
 ### Für absolute Einsteiger erklärt
 
-Debitoren, Kreditoren und OP-Ausgleich zeigt, wie ein Fachvorgang in Business Central zu Belegen, Posten und Berichten wird. Ein Anfänger erkennt hier: Die Maske ist nur der Einstieg. Entscheidend ist die Kette aus Stammdaten, Buchung, Posten, Kontrollbericht und Evidence Pack.
+Eine Rechnung ist offen, bis eine Zahlung mit ihr verbunden wird. Diese Verbindung heißt Ausgleich. Eine gebuchte Zahlung ohne Ausgleich ist nicht genug: Dann stehen Zahlung und Rechnung nebeneinander offen und die OP-Liste ist falsch.
 
 ### Warum braucht Rhein-Main diesen Prozess?
 
-Rhein-Main braucht diesen Prozess, weil OP-Ausgleich direkt auf Finance, Reporting und operative Steuerung wirkt. Ohne klaren Standardprozess entstehen Medienbrüche, falsche Posten, fehlende Nachweise und unsichere Entscheidungen. Business Central stellt dafür deutsche Seiten, Buchungslogik, Kontrollberichte und UAT-fähige Nachweise bereit.
-
-### Rollen
-
-Die Rollen sind bewusst knapp gehalten. Sie zeigen, wer ausführt, wer prüft und wer die Standardentscheidung verantwortet.
-
-| Rolle | Aufgabe | Ergebnis |
-|---|---|---|
-| Fachanwender | Vorgang erfassen und Pflichtfelder prüfen | Beleg ist fachlich korrekt |
-| Key User | Stammdaten, Setup und Fehlerfälle prüfen | Vorgang ist buchbar |
-| Finance/Controlling | Posten und Bericht abstimmen | Nachweis ist belastbar |
-| Solution Architect | Standard, Extension und Risiko bewerten | UAT beweist die Entscheidung |
-
-Praktisch bedeutet das: Der Fachbereich erzeugt den Vorgang, Key User und Finance sichern die Buchbarkeit, und der Solution Architect bewertet, ob der Standard ausreicht.
-
-### Stammdaten
-
-Die Stammdaten müssen vor dem Klick stimmen. Falsche Stammdaten erzeugen später falsche Buchungen.
-
-| Stammdatum | Rhein-Main-Beispiel | Warum wichtig? |
-|---|---|---|
-| Partner | `D10000`, `K10000` oder Intercompany-Partner | steuert Buchungsgruppen und USt |
-| Artikel/Sachkonto/Ressource | Zahlung `80.920 EUR`, Debitor `D10000`, Rechnung `SO-1001` | steuert Menge, Wert oder Leistung |
-| Dimension | `PRODUCTLINE`, `CHANNEL`, `DEPARTMENT` | steuert Reporting |
-| Nummernserie | prozessabhängig | sichert eindeutige Belege |
-
-Kontrollfrage: Kannst du vor der Buchung erklären, welcher Partner, welcher Artikel oder welches Konto später welchen Posten auslöst?
-
-### Setup
-
-Das Setup ist die fachliche Leitplanke. Es entscheidet, ob der richtige Klick später auf das richtige Konto, die richtige Steuerlogik und den richtigen Bericht läuft.
-
-- relevante Buchungsgruppen und Buchungsmatrizen
-- Nummernserien und Pflichtdimensionen
-- Rollenprofil und Berechtigungen
-- Bericht oder Kontrollliste für den Nachweis
-
-Rhein-Main ändert Setup nur über dokumentierte Projektentscheidungen. Ein spontaner Setup-Wechsel im Tagesgeschäft ist ein Change Request.
+Rhein-Main braucht verlässliche offene Posten für Mahnwesen, Liquidität und Monatsabschluss. Business Central zeigt nicht nur den Zahlungseingang, sondern auch die detaillierte Verbindung zwischen Rechnung und Zahlung.
 
 ### Deutsche BC-Seiten
 
-Diese Seiten öffnest du über `Alt+Q`. Der deutsche Begriff ist führend; der englische Begriff steht als Suchhilfe in Klammern.
-
-- `Debitorenposten (Customer Ledger Entries)`
 - `Zahlungseingangs Buch.-Blätter (Cash Receipt Journals)`
-- `Kreditorenposten (Vendor Ledger Entries)`
-- `Ausgleich anwenden (Apply Entries)`
+- `Debitorenposten (Customer Ledger Entries)`
+- `Detaillierte Debitorenposten (Detailed Customer Ledger Entries)`
+- `Posten ausgleichen (Apply Entries)`
+- `Ausgleich aufheben (Unapply Entries)`
 
 ### Schritt-für-Schritt
 
-1. Öffne `Alt+Q` und suche `Debitorenposten (Customer Ledger Entries)`, `Zahlungseingangs Buch.-Blätter (Cash Receipt Journals)`, `Kreditorenposten (Vendor Ledger Entries)`, `Ausgleich anwenden (Apply Entries)`.
-2. Öffne oder erfasse den Rhein-Main-Fall Zahlung `80.920 EUR`, Debitor `D10000`, Rechnung `SO-1001`.
-3. Prüfe `Buchungsdatum`, `Belegdatum`, Partner, Betrag/Menge, Buchungsgruppen und Dimensionen.
-4. Nutze `Buchungsvorschau (Preview Posting)`, wenn der Vorgang eine Buchung auslöst.
-5. Führe die fachliche Aktion aus: freigeben, buchen, ausgleichen, berechnen oder abstimmen.
-6. Öffne danach die gebuchten Belege oder Postenlisten.
-7. Filtere nach Belegnummer, Partner, Artikel, Konto oder Dimension.
-8. Prüfe Debitorenposten, detaillierte Debitorenposten, Bankposten und Sachposten.
-9. Öffne `Debitorenposten (Customer Ledger Entries)`, OP-Liste, Altersstruktur und vergleiche Bericht, Posten und Ausgangsbeleg.
-10. Dokumentiere Belegnummern, Filter, Bericht und Testergebnis im Evidence Pack.
+1. Öffne `Zahlungseingangs Buch.-Blätter (Cash Receipt Journals)`.
+2. Erfasse `Kontenart = Debitor`, `Kontonr. = D10000`, `Betrag = -80.920`.
+3. Setze `Gegenkontoart = Bankkonto`, `Gegenkontonr. = BANK-RM-01`.
+4. Wähle `Posten ausgleichen (Apply Entries)`.
+5. Markiere Rechnung `SO-1001`.
+6. Prüfe `Buchungsvorschau (Preview Posting)`.
+7. Buche die Zahlung.
+8. Öffne `Debitorenposten (Customer Ledger Entries)` und prüfe Restbetrag `0,00 EUR`.
+9. Öffne `Detaillierte Debitorenposten (Detailed Customer Ledger Entries)` und prüfe Ausgleichszeilen.
+10. Öffne OP-Liste Debitoren und dokumentiere den Nachweis.
 
 ### Buchungsspur
 
-Die folgende Spur zeigt, wie aus dem Vorgang ein prüfbarer Nachweis wird.
-
 | Ebene | Rhein-Main-Nachweis | Wo prüfen? |
 |---|---|---|
-| Ausgangsbeleg | Zahlung `80.920 EUR`, Debitor `D10000`, Rechnung `SO-1001` | `Debitorenposten (Customer Ledger Entries)` |
-| Gebuchter Beleg | gebuchter Beleg oder abgestimmter Prozesslauf | gebuchte Belege/Postenlisten |
-| Posten | Debitorenposten, detaillierte Debitorenposten, Bankposten und Sachposten | passende Postenlisten |
-| Sachposten | Hauptbuchwirkung mit Betrag und Dimension | `Sachposten (G/L Entries)` |
-| Kontrollbericht | `Debitorenposten (Customer Ledger Entries)`, OP-Liste, Altersstruktur | `Debitorenposten (Customer Ledger Entries)`, OP-Liste, Altersstruktur |
-
-Praktische Einordnung: Wenn eine Ebene fehlt, ist der Prozess nicht 10/10 abnahmefähig. Der UAT-Prüfer muss vom Ausgangsbeleg bis zum Kontrollbericht springen können.
-
-### Kontrollberichte
-
-- `Debitorenposten (Customer Ledger Entries)`
-- OP-Liste
-- Altersstruktur
-
-Rhein-Main nutzt diese Berichte nicht als Dekoration, sondern als Abgleich gegen die Posten. Ein Bericht ohne Drilldown oder Postenbezug reicht für UAT nicht.
+| Rechnung | `SO-1001`, `80.920 EUR` | `Debitorenposten` |
+| Zahlung | Zahlung auf `BANK-RM-01` | `Zahlungseingangs Buch.-Blätter` / Bankposten |
+| Ausgleich | detaillierte Ausgleichsposten | `Detaillierte Debitorenposten` |
+| Hauptbuch | Bank und Forderung | `Sachposten (G/L Entries)` |
+| Kontrollbericht | OP-Liste | Debitorenfälligkeit / OP-Auswertung |
 
 ### Fehlerdiagnose
 
 | Fehler | Symptom | Ursache | Diagnosepfad | Korrekturweg |
 |---|---|---|---|---|
-| falsche Dimension | Bericht zeigt Wert nicht | Dimension fehlt oder ist falsch | `Sachposten (G/L Entries)` mit Dimension prüfen | Dimension korrigieren, wenn zulässig, sonst fachlich gegenbuchen |
-| falsche Buchungsgruppe | falsches Konto oder falsche USt | Stammdaten falsch | Stammdaten und Buchungsmatrix prüfen | Beleg stornieren/gutschreiben und korrekt neu buchen |
-| fehlender Nachweis | UAT kann nicht abgenommen werden | Bericht oder Belegnummer fehlt | Evidence Pack prüfen | Nachweis exportieren und Test neu bewerten |
+| Zahlung ohne Ausgleich | Rechnung bleibt offen | `Apply Entries` nicht genutzt | Debitorenposten auf Restbetrag prüfen | Ausgleich nachträglich buchen |
+| falscher Debitor | falscher OP wird erledigt | Zahlung falsch zugeordnet | Debitorenposten beider Debitoren vergleichen | Ausgleich aufheben und richtig anwenden |
+| Teilzahlung falsch | Restbetrag stimmt nicht | Betrag oder Skonto falsch | detaillierte Posten prüfen | Ausgleich korrigieren |
 
 ### Korrekturweg
 
-Die Korrektur folgt immer dem gebuchten Zustand. Ungebuchte Belege werden korrigiert. Gebuchte Belege werden über Gutschrift, Gegenbuchung, Ausgleichslösung oder dokumentierte Neubuchung korrigiert. Posten werden nicht gelöscht.
+Falsche Ausgleiche werden über `Ausgleich aufheben (Unapply Entries)` gelöst und danach korrekt neu angewendet. Gebuchte Posten werden nicht gelöscht.
+
 
 ### Übung
 
@@ -2959,123 +2866,71 @@ Die Korrektur folgt immer dem gebuchten Zustand. Ungebuchte Belege werden korrig
 
 
 ## 20. Bank, Payments und Bankabstimmung
-
-Dieses Kapitel führt dich durch Bank/Payments als praktischen Business-Central-Prozess. Du verstehst den geschäftlichen Zweck, führst den Vorgang in der deutschen Oberfläche aus und prüfst die entstandenen Belege, Posten und Berichte.
+Dieses Kapitel zeigt, wie Rhein-Main Bankumsätze importiert, zuordnet und abstimmt. Nach dem Kapitel kannst du den Zahlungseingang zu `SO-1001` über das Zahlungsabstimmungs Buch.-Blatt buchen und die Bankkontenabstimmung nachweisen.
 
 ### Kapitelbox
 
 | Feld | Inhalt |
 |---|---|
-| Zielgruppe | Einsteiger, Key User, Junior Consultant, MB-800-Lerner, Standard-Solution-Architect |
-| Schwierigkeit | Basic bis Advanced |
-| Prozessbereich | Bank/Payments |
+| Zielgruppe | Einsteiger, Bankbuchhaltung, Finance, Key User |
+| Schwierigkeit | Intermediate |
+| Prozessbereich | Bank / Payments / Bankabstimmung |
 | Betroffene Companies | RM-SHARED |
-| MB-800-Relevanz | Ja: Standardprozess, Bedienung, Postenprüfung, Korrektur und UAT |
-| Solution-Architect-Relevanz | Ja: Standard-first, Setup-Entscheidung, Extension-Grenze, Betrieb |
+| MB-800-Relevanz | Ja: Bankkonten, Zahlungsabstimmung, Bankposten, Ausgleich |
+| Solution-Architect-Relevanz | Ja: Bankintegration, Zahlungsformate, Berechtigungen, Abschlusskontrolle |
 | Ergebnis nach dem Kapitel | Du kannst Bankumsätze importieren, Zahlungen zuordnen, Bankkontoposten abstimmen und falsche Zuordnungen korrigieren. |
 
 ### Alltagsszene bei Rhein-Main
 
-Die Bankdatei für den 20.06.2026 ist eingelesen. Business Central schlägt vor, die Zahlung von `D10000` der Rechnung `SO-1001` zuzuordnen. Finance prüft, bucht und stimmt das Bankkonto ab.
+Auf `BANK-RM-01` geht am `30.06.2026` eine Zahlung über `80.920 EUR` ein. Der Verwendungszweck nennt `SO-1001`. Die Bankbuchhaltung importiert den Umsatz, ordnet ihn `D10000` zu und stimmt danach Bankposten und Kontoauszug ab.
 
 ### Für absolute Einsteiger erklärt
 
-Bank, Payments und Bankabstimmung zeigt, wie ein Fachvorgang in Business Central zu Belegen, Posten und Berichten wird. Ein Anfänger erkennt hier: Die Maske ist nur der Einstieg. Entscheidend ist die Kette aus Stammdaten, Buchung, Posten, Kontrollbericht und Evidence Pack.
-
-### Warum braucht Rhein-Main diesen Prozess?
-
-Rhein-Main braucht diesen Prozess, weil Bank/Payments direkt auf Finance, Reporting und operative Steuerung wirkt. Ohne klaren Standardprozess entstehen Medienbrüche, falsche Posten, fehlende Nachweise und unsichere Entscheidungen. Business Central stellt dafür deutsche Seiten, Buchungslogik, Kontrollberichte und UAT-fähige Nachweise bereit.
-
-### Rollen
-
-Die Rollen sind bewusst knapp gehalten. Sie zeigen, wer ausführt, wer prüft und wer die Standardentscheidung verantwortet.
-
-| Rolle | Aufgabe | Ergebnis |
-|---|---|---|
-| Fachanwender | Vorgang erfassen und Pflichtfelder prüfen | Beleg ist fachlich korrekt |
-| Key User | Stammdaten, Setup und Fehlerfälle prüfen | Vorgang ist buchbar |
-| Finance/Controlling | Posten und Bericht abstimmen | Nachweis ist belastbar |
-| Solution Architect | Standard, Extension und Risiko bewerten | UAT beweist die Entscheidung |
-
-Praktisch bedeutet das: Der Fachbereich erzeugt den Vorgang, Key User und Finance sichern die Buchbarkeit, und der Solution Architect bewertet, ob der Standard ausreicht.
-
-### Stammdaten
-
-Die Stammdaten müssen vor dem Klick stimmen. Falsche Stammdaten erzeugen später falsche Buchungen.
-
-| Stammdatum | Rhein-Main-Beispiel | Warum wichtig? |
-|---|---|---|
-| Partner | `D10000`, `K10000` oder Intercompany-Partner | steuert Buchungsgruppen und USt |
-| Artikel/Sachkonto/Ressource | `BANK-2026-06-20`, Bankkonto `BANK-RM-01`, Zahlung `80.920 EUR` | steuert Menge, Wert oder Leistung |
-| Dimension | `PRODUCTLINE`, `CHANNEL`, `DEPARTMENT` | steuert Reporting |
-| Nummernserie | prozessabhängig | sichert eindeutige Belege |
-
-Kontrollfrage: Kannst du vor der Buchung erklären, welcher Partner, welcher Artikel oder welches Konto später welchen Posten auslöst?
-
-### Setup
-
-Das Setup ist die fachliche Leitplanke. Es entscheidet, ob der richtige Klick später auf das richtige Konto, die richtige Steuerlogik und den richtigen Bericht läuft.
-
-- relevante Buchungsgruppen und Buchungsmatrizen
-- Nummernserien und Pflichtdimensionen
-- Rollenprofil und Berechtigungen
-- Bericht oder Kontrollliste für den Nachweis
-
-Rhein-Main ändert Setup nur über dokumentierte Projektentscheidungen. Ein spontaner Setup-Wechsel im Tagesgeschäft ist ein Change Request.
+Bankabstimmung bedeutet: Der Bankauszug und Business Central müssen denselben Kontostand erklären. Eine Zahlung im Bankauszug ist erst dann fachlich erledigt, wenn sie in BC gebucht, dem richtigen Debitor zugeordnet und mit dem offenen Posten ausgeglichen ist.
 
 ### Deutsche BC-Seiten
-
-Diese Seiten öffnest du über `Alt+Q`. Der deutsche Begriff ist führend; der englische Begriff steht als Suchhilfe in Klammern.
 
 - `Zahlungsabstimmungs Buch.-Blatt (Payment Reconciliation Journal)`
 - `Bankkontenabstimmung (Bank Account Reconciliation)`
 - `Bankkontoposten (Bank Account Ledger Entries)`
+- `Debitorenposten (Customer Ledger Entries)`
+- `Sachposten (G/L Entries)`
 
 ### Schritt-für-Schritt
 
-1. Öffne `Alt+Q` und suche `Zahlungsabstimmungs Buch.-Blatt (Payment Reconciliation Journal)`, `Bankkontenabstimmung (Bank Account Reconciliation)`, `Bankkontoposten (Bank Account Ledger Entries)`.
-2. Öffne oder erfasse den Rhein-Main-Fall `BANK-2026-06-20`, Bankkonto `BANK-RM-01`, Zahlung `80.920 EUR`.
-3. Prüfe `Buchungsdatum`, `Belegdatum`, Partner, Betrag/Menge, Buchungsgruppen und Dimensionen.
-4. Nutze `Buchungsvorschau (Preview Posting)`, wenn der Vorgang eine Buchung auslöst.
-5. Führe die fachliche Aktion aus: freigeben, buchen, ausgleichen, berechnen oder abstimmen.
-6. Öffne danach die gebuchten Belege oder Postenlisten.
-7. Filtere nach Belegnummer, Partner, Artikel, Konto oder Dimension.
-8. Prüfe Bankkontoposten, Sachposten Bank, Debitorenposten und detaillierte Ausgleichsposten.
-9. Öffne `Bankkontenabstimmung (Bank Account Reconciliation)`, Bankkontoposten und vergleiche Bericht, Posten und Ausgangsbeleg.
-10. Dokumentiere Belegnummern, Filter, Bericht und Testergebnis im Evidence Pack.
+1. Öffne `Zahlungsabstimmungs Buch.-Blatt (Payment Reconciliation Journal)`.
+2. Wähle Bankkonto `BANK-RM-01`.
+3. Importiere Kontoauszug `BA-2026-06-30` oder erfasse Umsatz `80.920 EUR`.
+4. Prüfe `Transaktionsdatum = 30.06.2026`.
+5. Ordne `Kontonr. = D10000` und `Ausgleich mit Belegnr. = SO-1001` zu.
+6. Prüfe `Buchungsvorschau (Preview Posting)`.
+7. Buche die Zahlung.
+8. Öffne `Bankkontoposten (Bank Account Ledger Entries)` und filtere `BANK-RM-01`, Betrag `80.920`.
+9. Öffne `Bankkontenabstimmung (Bank Account Reconciliation)` und stimme den Bankposten mit dem Auszug ab.
+10. Öffne OP-Liste Debitoren und prüfe, dass `SO-1001` nicht mehr offen ist.
 
 ### Buchungsspur
 
-Die folgende Spur zeigt, wie aus dem Vorgang ein prüfbarer Nachweis wird.
-
 | Ebene | Rhein-Main-Nachweis | Wo prüfen? |
 |---|---|---|
-| Ausgangsbeleg | `BANK-2026-06-20`, Bankkonto `BANK-RM-01`, Zahlung `80.920 EUR` | `Zahlungsabstimmungs Buch.-Blatt (Payment Reconciliation Journal)` |
-| Gebuchter Beleg | gebuchter Beleg oder abgestimmter Prozesslauf | gebuchte Belege/Postenlisten |
-| Posten | Bankkontoposten, Sachposten Bank, Debitorenposten und detaillierte Ausgleichsposten | passende Postenlisten |
-| Sachposten | Hauptbuchwirkung mit Betrag und Dimension | `Sachposten (G/L Entries)` |
-| Kontrollbericht | `Bankkontenabstimmung (Bank Account Reconciliation)`, Bankkontoposten | `Bankkontenabstimmung (Bank Account Reconciliation)`, Bankkontoposten |
-
-Praktische Einordnung: Wenn eine Ebene fehlt, ist der Prozess nicht 10/10 abnahmefähig. Der UAT-Prüfer muss vom Ausgangsbeleg bis zum Kontrollbericht springen können.
-
-### Kontrollberichte
-
-- `Bankkontenabstimmung (Bank Account Reconciliation)`
-- Bankkontoposten
-
-Rhein-Main nutzt diese Berichte nicht als Dekoration, sondern als Abgleich gegen die Posten. Ein Bericht ohne Drilldown oder Postenbezug reicht für UAT nicht.
+| Kontoauszug | `BA-2026-06-30` | Zahlungsabstimmungs Buch.-Blatt |
+| Zahlung | `80.920 EUR` | Bankkontoposten |
+| Ausgleich | `SO-1001` gegen `D10000` | Debitorenposten |
+| Hauptbuch | Bank und Forderung | Sachposten |
+| Kontrollbericht | Bankkontenabstimmung | Bankkontenabstimmung |
 
 ### Fehlerdiagnose
 
 | Fehler | Symptom | Ursache | Diagnosepfad | Korrekturweg |
 |---|---|---|---|---|
-| falsche Dimension | Bericht zeigt Wert nicht | Dimension fehlt oder ist falsch | `Sachposten (G/L Entries)` mit Dimension prüfen | Dimension korrigieren, wenn zulässig, sonst fachlich gegenbuchen |
-| falsche Buchungsgruppe | falsches Konto oder falsche USt | Stammdaten falsch | Stammdaten und Buchungsmatrix prüfen | Beleg stornieren/gutschreiben und korrekt neu buchen |
-| fehlender Nachweis | UAT kann nicht abgenommen werden | Bericht oder Belegnummer fehlt | Evidence Pack prüfen | Nachweis exportieren und Test neu bewerten |
+| falscher Debitor | richtige Rechnung bleibt offen | falsche automatische Zuordnung | Debitorenposten und Bankposten vergleichen | Ausgleich aufheben und richtig zuordnen |
+| Bank nicht abgestimmt | Kontoauszug und BC weichen ab | Abstimmung nicht gebucht | Bankabstimmungsstatus prüfen | Abstimmung abschließen |
+| doppelter Import | Zahlung erscheint doppelt | Kontoauszug erneut importiert | Bankposten nach Betrag/Datum suchen | Duplikat vor Buchung entfernen |
 
 ### Korrekturweg
 
-Die Korrektur folgt immer dem gebuchten Zustand. Ungebuchte Belege werden korrigiert. Gebuchte Belege werden über Gutschrift, Gegenbuchung, Ausgleichslösung oder dokumentierte Neubuchung korrigiert. Posten werden nicht gelöscht.
+Vor Buchung wird die Abstimmungszeile korrigiert. Nach Buchung wird ein falscher Ausgleich aufgehoben und richtig angewendet. Bankposten werden nicht gelöscht.
+
 
 ### Übung
 
@@ -3137,125 +2992,75 @@ Die Korrektur folgt immer dem gebuchten Zustand. Ungebuchte Belege werden korrig
 
 
 ## 21. Anlagen (Fixed Assets)
-
-Dieses Kapitel führt dich durch Fixed Assets als praktischen Business-Central-Prozess. Du verstehst den geschäftlichen Zweck, führst den Vorgang in der deutschen Oberfläche aus und prüfst die entstandenen Belege, Posten und Berichte.
+Dieses Kapitel zeigt, wie Rhein-Main eine Anlage kauft, aktiviert und abschreibt. Nach dem Kapitel kannst du `FA-CNC-01` anlegen, den Zugang über Einkaufsrechnung buchen, AfA berechnen und Anlagenposten mit Sachposten abstimmen.
 
 ### Kapitelbox
 
 | Feld | Inhalt |
 |---|---|
-| Zielgruppe | Einsteiger, Key User, Junior Consultant, MB-800-Lerner, Standard-Solution-Architect |
-| Schwierigkeit | Basic bis Advanced |
-| Prozessbereich | Fixed Assets |
+| Zielgruppe | Einsteiger, Anlagenbuchhaltung, Kreditorenbuchhaltung, Finance |
+| Schwierigkeit | Intermediate |
+| Prozessbereich | Anlagen (Fixed Assets) |
 | Betroffene Companies | RM-PROD, RM-SHARED |
-| MB-800-Relevanz | Ja: Standardprozess, Bedienung, Postenprüfung, Korrektur und UAT |
-| Solution-Architect-Relevanz | Ja: Standard-first, Setup-Entscheidung, Extension-Grenze, Betrieb |
+| MB-800-Relevanz | Ja: Anlagen, AfA-Bücher, Anlagenbuchungsgruppen, Zugang, AfA, Abgang |
+| Solution-Architect-Relevanz | Ja: Anlagenarchitektur, HGB-AfA, Komponenten, Kontenfindung |
 | Ergebnis nach dem Kapitel | Du kannst Anlage `FA-CNC-01` anlegen, Zugang buchen, AfA berechnen, Anlagenposten prüfen und Fehlbuchungen korrigieren. |
 
 ### Alltagsszene bei Rhein-Main
 
-RM-PROD kauft eine CNC-Fräse `FA-CNC-01` für `250.000 EUR`. Die Anlagenbuchhalterin aktiviert die Anlage, prüft das AfA-Buch und bucht die erste monatliche Abschreibung.
+RM-PROD kauft eine CNC-Maschine `FA-CNC-01` für `120.000 EUR`. Die Maschine soll nicht als einfacher Aufwand gebucht werden. Sie wird aktiviert und über acht Jahre abgeschrieben.
 
 ### Für absolute Einsteiger erklärt
 
-Anlagen (Fixed Assets) zeigt, wie ein Fachvorgang in Business Central zu Belegen, Posten und Berichten wird. Ein Anfänger erkennt hier: Die Maske ist nur der Einstieg. Entscheidend ist die Kette aus Stammdaten, Buchung, Posten, Kontrollbericht und Evidence Pack.
-
-### Warum braucht Rhein-Main diesen Prozess?
-
-Rhein-Main braucht diesen Prozess, weil Fixed Assets direkt auf Finance, Reporting und operative Steuerung wirkt. Ohne klaren Standardprozess entstehen Medienbrüche, falsche Posten, fehlende Nachweise und unsichere Entscheidungen. Business Central stellt dafür deutsche Seiten, Buchungslogik, Kontrollberichte und UAT-fähige Nachweise bereit.
-
-### Rollen
-
-Die Rollen sind bewusst knapp gehalten. Sie zeigen, wer ausführt, wer prüft und wer die Standardentscheidung verantwortet.
-
-| Rolle | Aufgabe | Ergebnis |
-|---|---|---|
-| Fachanwender | Vorgang erfassen und Pflichtfelder prüfen | Beleg ist fachlich korrekt |
-| Key User | Stammdaten, Setup und Fehlerfälle prüfen | Vorgang ist buchbar |
-| Finance/Controlling | Posten und Bericht abstimmen | Nachweis ist belastbar |
-| Solution Architect | Standard, Extension und Risiko bewerten | UAT beweist die Entscheidung |
-
-Praktisch bedeutet das: Der Fachbereich erzeugt den Vorgang, Key User und Finance sichern die Buchbarkeit, und der Solution Architect bewertet, ob der Standard ausreicht.
-
-### Stammdaten
-
-Die Stammdaten müssen vor dem Klick stimmen. Falsche Stammdaten erzeugen später falsche Buchungen.
-
-| Stammdatum | Rhein-Main-Beispiel | Warum wichtig? |
-|---|---|---|
-| Partner | `D10000`, `K10000` oder Intercompany-Partner | steuert Buchungsgruppen und USt |
-| Artikel/Sachkonto/Ressource | `FA-CNC-01`, Kreditor `K30000`, Anschaffung `250.000 EUR`, AfA-Buch `HGB` | steuert Menge, Wert oder Leistung |
-| Dimension | `PRODUCTLINE`, `CHANNEL`, `DEPARTMENT` | steuert Reporting |
-| Nummernserie | prozessabhängig | sichert eindeutige Belege |
-
-Kontrollfrage: Kannst du vor der Buchung erklären, welcher Partner, welcher Artikel oder welches Konto später welchen Posten auslöst?
-
-### Setup
-
-Das Setup ist die fachliche Leitplanke. Es entscheidet, ob der richtige Klick später auf das richtige Konto, die richtige Steuerlogik und den richtigen Bericht läuft.
-
-- relevante Buchungsgruppen und Buchungsmatrizen
-- Nummernserien und Pflichtdimensionen
-- Rollenprofil und Berechtigungen
-- Bericht oder Kontrollliste für den Nachweis
-
-Rhein-Main ändert Setup nur über dokumentierte Projektentscheidungen. Ein spontaner Setup-Wechsel im Tagesgeschäft ist ein Change Request.
+Eine Anlage ist ein langfristig genutztes Wirtschaftsgut. In Business Central reicht eine Buchung auf ein Sachkonto nicht aus. Die Anlage braucht eine Anlagenkarte, ein AfA-Buch und Anlagenposten. Nur dann kann BC Anschaffung, Abschreibung und Buchwert sauber verfolgen.
 
 ### Deutsche BC-Seiten
 
-Diese Seiten öffnest du über `Alt+Q`. Der deutsche Begriff ist führend; der englische Begriff steht als Suchhilfe in Klammern.
-
 - `Anlagen (Fixed Assets)`
+- `AfA-Bücher (Depreciation Books)`
 - `Einkaufsrechnungen (Purchase Invoices)`
-- `Anlagen Buch.-Blätter (FA Journals)`
-- `Anlagenposten (FA Ledger Entries)`
-
-### Schritt-für-Schritt
-
-1. Öffne `Alt+Q` und suche `Anlagen (Fixed Assets)`, `Einkaufsrechnungen (Purchase Invoices)`, `Anlagen Buch.-Blätter (FA Journals)`, `Anlagenposten (FA Ledger Entries)`.
-2. Öffne oder erfasse den Rhein-Main-Fall `FA-CNC-01`, Kreditor `K30000`, Anschaffung `250.000 EUR`, AfA-Buch `HGB`.
-3. Prüfe `Buchungsdatum`, `Belegdatum`, Partner, Betrag/Menge, Buchungsgruppen und Dimensionen.
-4. Nutze `Buchungsvorschau (Preview Posting)`, wenn der Vorgang eine Buchung auslöst.
-5. Führe die fachliche Aktion aus: freigeben, buchen, ausgleichen, berechnen oder abstimmen.
-6. Öffne danach die gebuchten Belege oder Postenlisten.
-7. Filtere nach Belegnummer, Partner, Artikel, Konto oder Dimension.
-8. Prüfe Anlagenposten, Kreditorenposten, Sachposten Anlage/Vorsteuer/Verbindlichkeit und AfA-Sachposten.
-9. Öffne `Anlagenstatistik`, `Anlagenposten (FA Ledger Entries)`, `Sachposten (G/L Entries)` und vergleiche Bericht, Posten und Ausgangsbeleg.
-10. Dokumentiere Belegnummern, Filter, Bericht und Testergebnis im Evidence Pack.
-
-### Buchungsspur
-
-Die folgende Spur zeigt, wie aus dem Vorgang ein prüfbarer Nachweis wird.
-
-| Ebene | Rhein-Main-Nachweis | Wo prüfen? |
-|---|---|---|
-| Ausgangsbeleg | `FA-CNC-01`, Kreditor `K30000`, Anschaffung `250.000 EUR`, AfA-Buch `HGB` | `Anlagen (Fixed Assets)` |
-| Gebuchter Beleg | gebuchter Beleg oder abgestimmter Prozesslauf | gebuchte Belege/Postenlisten |
-| Posten | Anlagenposten, Kreditorenposten, Sachposten Anlage/Vorsteuer/Verbindlichkeit und AfA-Sachposten | passende Postenlisten |
-| Sachposten | Hauptbuchwirkung mit Betrag und Dimension | `Sachposten (G/L Entries)` |
-| Kontrollbericht | `Anlagenstatistik`, `Anlagenposten (FA Ledger Entries)`, `Sachposten (G/L Entries)` | `Anlagenstatistik`, `Anlagenposten (FA Ledger Entries)`, `Sachposten (G/L Entries)` |
-
-Praktische Einordnung: Wenn eine Ebene fehlt, ist der Prozess nicht 10/10 abnahmefähig. Der UAT-Prüfer muss vom Ausgangsbeleg bis zum Kontrollbericht springen können.
-
-### Kontrollberichte
-
-- `Anlagenstatistik`
+- `AfA berechnen (Calculate Depreciation)`
 - `Anlagenposten (FA Ledger Entries)`
 - `Sachposten (G/L Entries)`
 
-Rhein-Main nutzt diese Berichte nicht als Dekoration, sondern als Abgleich gegen die Posten. Ein Bericht ohne Drilldown oder Postenbezug reicht für UAT nicht.
+### Schritt-für-Schritt
+
+1. Öffne `Anlagen (Fixed Assets)` und lege `FA-CNC-01` an.
+2. Setze `Beschreibung = CNC Maschine FRA`, `Anlagenklasse = MASCHINE`, `Anlagenunterklasse = CNC`.
+3. Öffne das AfA-Buch und setze `AfA-Buchcode = HGB`, `AfA-Methode = Linear`, `Nutzungsdauer = 8 Jahre`, `Anlagenbuchungsgruppe = MACHINES`.
+4. Öffne `Einkaufsrechnungen (Purchase Invoices)`.
+5. Erfasse Kreditor `K30000`.
+6. Erfasse Zeile `Art = Anlage`, `Nr. = FA-CNC-01`, `Menge = 1`, `Direkte Einstandskosten = 120.000`.
+7. Prüfe `Buchungsvorschau (Preview Posting)`.
+8. Buche die Einkaufsrechnung.
+9. Öffne `Anlagenposten (FA Ledger Entries)` und prüfe Anschaffungskosten `120.000 EUR`.
+10. Öffne `AfA berechnen (Calculate Depreciation)` und berechne AfA bis `30.06.2026`.
+11. Buche das AfA-Buch.-Blatt.
+12. Prüfe Anlagenposten, Sachposten und Anlagenspiegel.
+
+### Buchungsspur
+
+| Ebene | Rhein-Main-Nachweis | Wo prüfen? |
+|---|---|---|
+| Anlage | `FA-CNC-01` | Anlagenkarte |
+| Zugang | Einkaufsrechnung `K30000` | gebuchte Einkaufsrechnung |
+| Anlagenposten | Anschaffung und AfA | `Anlagenposten (FA Ledger Entries)` |
+| Kreditorenposten | Verbindlichkeit | `Kreditorenposten (Vendor Ledger Entries)` |
+| Sachposten | Anlagekonto, Vorsteuer, Verbindlichkeit, AfA | `Sachposten (G/L Entries)` |
+| Kontrollbericht | Anlagenspiegel | Anlagenberichte |
 
 ### Fehlerdiagnose
 
 | Fehler | Symptom | Ursache | Diagnosepfad | Korrekturweg |
 |---|---|---|---|---|
-| falsche Dimension | Bericht zeigt Wert nicht | Dimension fehlt oder ist falsch | `Sachposten (G/L Entries)` mit Dimension prüfen | Dimension korrigieren, wenn zulässig, sonst fachlich gegenbuchen |
-| falsche Buchungsgruppe | falsches Konto oder falsche USt | Stammdaten falsch | Stammdaten und Buchungsmatrix prüfen | Beleg stornieren/gutschreiben und korrekt neu buchen |
-| fehlender Nachweis | UAT kann nicht abgenommen werden | Bericht oder Belegnummer fehlt | Evidence Pack prüfen | Nachweis exportieren und Test neu bewerten |
+| Sachkonto statt Anlage | keine Anlagenposten | falsche Zeilenart | gebuchte Einkaufsrechnung und Anlagenposten prüfen | Gutschrift und Neubuchung mit `Art = Anlage` |
+| falsches AfA-Buch | AfA fehlt oder falsch | AfA-Buch nicht gepflegt | Anlagenkarte und AfA-Buch prüfen | AfA-Buch korrigieren, AfA neu berechnen |
+| falsche Anlagenbuchungsgruppe | falsche Sachkonten | Setupfehler | Buchungsvorschau/Sachposten prüfen | vor Buchung korrigieren; nach Buchung Gutschrift/Neubuchung |
 
 ### Korrekturweg
 
-Die Korrektur folgt immer dem gebuchten Zustand. Ungebuchte Belege werden korrigiert. Gebuchte Belege werden über Gutschrift, Gegenbuchung, Ausgleichslösung oder dokumentierte Neubuchung korrigiert. Posten werden nicht gelöscht.
+Gebuchte Anlagenzugänge werden nicht durch Direktänderung der Anlagenposten korrigiert. Rhein-Main nutzt Gutschrift, Neubuchung oder Anlagenjournal mit dokumentiertem Freigabeweg.
+
 
 ### Übung
 
@@ -3318,125 +3123,96 @@ Die Korrektur folgt immer dem gebuchten Zustand. Ungebuchte Belege werden korrig
 
 
 ## 22. USt, E-Rechnung und deutsche Nachweissicht [Q20][Q21][Q22][Q23][Q24][Q75][Q76][Q77][Q78]
-
-Dieses Kapitel führt dich durch USt/E-Rechnung als praktischen Business-Central-Prozess. Du verstehst den geschäftlichen Zweck, führst den Vorgang in der deutschen Oberfläche aus und prüfst die entstandenen Belege, Posten und Berichte.
+Dieses Kapitel zeigt, wie Rhein-Main Umsatzsteuer, E-Rechnungsstatus und deutsche Nachweise direkt aus Business Central prüft. Nach dem Kapitel kannst du aus einer gebuchten Verkaufsrechnung die USt-Posten, Sachposten, E-Belege und USt-Abrechnung nachvollziehen und eine falsche USt-Gruppe sauber korrigieren.
 
 ### Kapitelbox
 
 | Feld | Inhalt |
 |---|---|
-| Zielgruppe | Einsteiger, Key User, Junior Consultant, MB-800-Lerner, Standard-Solution-Architect |
-| Schwierigkeit | Basic bis Advanced |
-| Prozessbereich | USt/E-Rechnung |
-| Betroffene Companies | RM-SHARED |
-| MB-800-Relevanz | Ja: Standardprozess, Bedienung, Postenprüfung, Korrektur und UAT |
-| Solution-Architect-Relevanz | Ja: Standard-first, Setup-Entscheidung, Extension-Grenze, Betrieb |
+| Zielgruppe | Einsteiger, Steuerteam, Debitorenbuchhaltung, Key User, Junior Consultant |
+| Schwierigkeit | Intermediate |
+| Prozessbereich | USt / E-Rechnung / Compliance |
+| Betroffene Companies | RM-SALES, RM-SHARED |
+| MB-800-Relevanz | Ja: USt-Buchungsmatrix, Verkaufsrechnung, gebuchte Belege, USt-Posten, Korrektur |
+| Solution-Architect-Relevanz | Ja: Steuerarchitektur, E-Rechnungsprozess, Standardgrenze, Nachweisführung |
 | Ergebnis nach dem Kapitel | Du kannst USt-Setup, USt-Posten, E-Rechnungsstatus und deutsche Nachweise für `SO-1001` prüfen und korrigieren. |
 
 ### Alltagsszene bei Rhein-Main
 
-Die Rechnung `SO-1001` über `68.000 EUR` netto erzeugt `12.920 EUR` USt. Das Steuerteam prüft, ob USt-Buchungsmatrix, USt-Posten, E-Belegstatus und Nachweise zusammenpassen.
+RM-SALES hat `SO-1001` an `D10000` fakturiert: `68.000 EUR` netto, `12.920 EUR` USt, `80.920 EUR` brutto. Das Steuerteam prüft, ob gebuchter Beleg, `USt-Posten (VAT Entries)`, `Sachposten (G/L Entries)`, `USt-Abrechnung (VAT Statement)` und E-Belegstatus dieselbe Steuerlogik zeigen.
 
 ### Für absolute Einsteiger erklärt
 
-USt, E-Rechnung und deutsche Nachweissicht zeigt, wie ein Fachvorgang in Business Central zu Belegen, Posten und Berichten wird. Ein Anfänger erkennt hier: Die Maske ist nur der Einstieg. Entscheidend ist die Kette aus Stammdaten, Buchung, Posten, Kontrollbericht und Evidence Pack.
+USt entsteht in Business Central nicht dadurch, dass jemand einen Steuerbetrag eintippt. Die USt wird aus Buchungsgruppen ermittelt: vom Debitor kommt die USt-Geschäftsbuchungsgruppe, vom Artikel die USt-Produktbuchungsgruppe. Die `USt-Buchungsmatrix Einrichtung (VAT Posting Setup)` entscheidet daraus Steuersatz, USt-Konten und Berechnung.
 
 ### Warum braucht Rhein-Main diesen Prozess?
 
-Rhein-Main braucht diesen Prozess, weil USt/E-Rechnung direkt auf Finance, Reporting und operative Steuerung wirkt. Ohne klaren Standardprozess entstehen Medienbrüche, falsche Posten, fehlende Nachweise und unsichere Entscheidungen. Business Central stellt dafür deutsche Seiten, Buchungslogik, Kontrollberichte und UAT-fähige Nachweise bereit.
+Falsche USt gefährdet Voranmeldung, Rechnungsausweis und Betriebsprüfung. Rhein-Main verkauft Inland, EU und Drittland. Deshalb muss jeder steuerrelevante Vorgang zeigen, welche Steuerlogik verwendet wurde, welche Posten entstanden sind und welcher Nachweis im Evidence Pack liegt.
 
-### Rollen
+### Rollen, Stammdaten und Setup
 
-Die Rollen sind bewusst knapp gehalten. Sie zeigen, wer ausführt, wer prüft und wer die Standardentscheidung verantwortet.
-
-| Rolle | Aufgabe | Ergebnis |
+| Element | Rhein-Main-Wert | Wirkung |
 |---|---|---|
-| Fachanwender | Vorgang erfassen und Pflichtfelder prüfen | Beleg ist fachlich korrekt |
-| Key User | Stammdaten, Setup und Fehlerfälle prüfen | Vorgang ist buchbar |
-| Finance/Controlling | Posten und Bericht abstimmen | Nachweis ist belastbar |
-| Solution Architect | Standard, Extension und Risiko bewerten | UAT beweist die Entscheidung |
+| Debitor | `D10000` | liefert USt-Geschäftsbuchungsgruppe `INLAND` |
+| Artikel | `RM-M100` | liefert USt-Produktbuchungsgruppe `FULL` |
+| USt-Matrix | `INLAND/FULL = 19 %` | erzeugt USt `12.920 EUR` bei `68.000 EUR` Basis |
+| E-Belegprozess | Rechnung `SO-1001` | dokumentiert digitalen Rechnungsstatus |
 
-Praktisch bedeutet das: Der Fachbereich erzeugt den Vorgang, Key User und Finance sichern die Buchbarkeit, und der Solution Architect bewertet, ob der Standard ausreicht.
-
-### Stammdaten
-
-Die Stammdaten müssen vor dem Klick stimmen. Falsche Stammdaten erzeugen später falsche Buchungen.
-
-| Stammdatum | Rhein-Main-Beispiel | Warum wichtig? |
-|---|---|---|
-| Partner | `D10000`, `K10000` oder Intercompany-Partner | steuert Buchungsgruppen und USt |
-| Artikel/Sachkonto/Ressource | `SO-1001`, Basis `68.000 EUR`, USt `19 %`, Steuer `12.920 EUR` | steuert Menge, Wert oder Leistung |
-| Dimension | `PRODUCTLINE`, `CHANNEL`, `DEPARTMENT` | steuert Reporting |
-| Nummernserie | prozessabhängig | sichert eindeutige Belege |
-
-Kontrollfrage: Kannst du vor der Buchung erklären, welcher Partner, welcher Artikel oder welches Konto später welchen Posten auslöst?
-
-### Setup
-
-Das Setup ist die fachliche Leitplanke. Es entscheidet, ob der richtige Klick später auf das richtige Konto, die richtige Steuerlogik und den richtigen Bericht läuft.
-
-- relevante Buchungsgruppen und Buchungsmatrizen
-- Nummernserien und Pflichtdimensionen
-- Rollenprofil und Berechtigungen
-- Bericht oder Kontrollliste für den Nachweis
-
-Rhein-Main ändert Setup nur über dokumentierte Projektentscheidungen. Ein spontaner Setup-Wechsel im Tagesgeschäft ist ein Change Request.
+Das Steuerteam prüft Posten und Meldelogik. Der Key User prüft USt-Gruppen und Matrix. Der Solution Architect entscheidet, ob Standard-E-Belege reichen oder eine Extension benötigt wird.
 
 ### Deutsche BC-Seiten
 
-Diese Seiten öffnest du über `Alt+Q`. Der deutsche Begriff ist führend; der englische Begriff steht als Suchhilfe in Klammern.
-
+- `Gebuchte Verkaufsrechnungen (Posted Sales Invoices)`
 - `USt-Buchungsmatrix Einrichtung (VAT Posting Setup)`
 - `USt-Posten (VAT Entries)`
+- `Sachposten (G/L Entries)`
 - `USt-Abrechnung (VAT Statement)`
 - `E-Belege (E-Documents)`
 
 ### Schritt-für-Schritt
 
-1. Öffne `Alt+Q` und suche `USt-Buchungsmatrix Einrichtung (VAT Posting Setup)`, `USt-Posten (VAT Entries)`, `USt-Abrechnung (VAT Statement)`, `E-Belege (E-Documents)`.
-2. Öffne oder erfasse den Rhein-Main-Fall `SO-1001`, Basis `68.000 EUR`, USt `19 %`, Steuer `12.920 EUR`.
-3. Prüfe `Buchungsdatum`, `Belegdatum`, Partner, Betrag/Menge, Buchungsgruppen und Dimensionen.
-4. Nutze `Buchungsvorschau (Preview Posting)`, wenn der Vorgang eine Buchung auslöst.
-5. Führe die fachliche Aktion aus: freigeben, buchen, ausgleichen, berechnen oder abstimmen.
-6. Öffne danach die gebuchten Belege oder Postenlisten.
-7. Filtere nach Belegnummer, Partner, Artikel, Konto oder Dimension.
-8. Prüfe USt-Posten, Sachposten, Debitorenposten und E-Belegstatus.
-9. Öffne `USt-Abrechnung (VAT Statement)`, `USt-Posten (VAT Entries)`, `E-Belege (E-Documents)` und vergleiche Bericht, Posten und Ausgangsbeleg.
-10. Dokumentiere Belegnummern, Filter, Bericht und Testergebnis im Evidence Pack.
+1. Öffne `Alt+Q` und suche `Gebuchte Verkaufsrechnungen (Posted Sales Invoices)`.
+2. Öffne Rechnung `SO-1001`.
+3. Prüfe `Debitorennr. = D10000`, Netto `68.000 EUR`, USt `12.920 EUR`, Brutto `80.920 EUR`.
+4. Prüfe in der Zeile `USt-Geschäftsbuchungsgruppe = INLAND` und `USt-Produktbuchungsgruppe = FULL`.
+5. Öffne `USt-Buchungsmatrix Einrichtung (VAT Posting Setup)` und prüfe Kombination `INLAND/FULL`, `USt % = 19`.
+6. Öffne `USt-Posten (VAT Entries)` und filtere `Belegnr. = SO-1001`.
+7. Prüfe `USt-Bemessungsgrundlage = 68.000`, `USt-Betrag = 12.920`, `USt % = 19`.
+8. Öffne `Sachposten (G/L Entries)` und filtere `Belegnr. = SO-1001`; prüfe Forderung, Erlös und USt-Konto.
+9. Öffne `E-Belege (E-Documents)` und prüfe Status, Empfänger und Referenz `SO-1001`.
+10. Öffne `USt-Abrechnung (VAT Statement)`, setze Zeitraum Juni 2026 und prüfe, dass die USt aus `SO-1001` enthalten ist.
+11. Exportiere USt-Posten, E-Belegstatus und USt-Abrechnung ins Evidence Pack.
 
 ### Buchungsspur
 
-Die folgende Spur zeigt, wie aus dem Vorgang ein prüfbarer Nachweis wird.
-
 | Ebene | Rhein-Main-Nachweis | Wo prüfen? |
 |---|---|---|
-| Ausgangsbeleg | `SO-1001`, Basis `68.000 EUR`, USt `19 %`, Steuer `12.920 EUR` | `USt-Buchungsmatrix Einrichtung (VAT Posting Setup)` |
-| Gebuchter Beleg | gebuchter Beleg oder abgestimmter Prozesslauf | gebuchte Belege/Postenlisten |
-| Posten | USt-Posten, Sachposten, Debitorenposten und E-Belegstatus | passende Postenlisten |
-| Sachposten | Hauptbuchwirkung mit Betrag und Dimension | `Sachposten (G/L Entries)` |
-| Kontrollbericht | `USt-Abrechnung (VAT Statement)`, `USt-Posten (VAT Entries)`, `E-Belege (E-Documents)` | `USt-Abrechnung (VAT Statement)`, `USt-Posten (VAT Entries)`, `E-Belege (E-Documents)` |
-
-Praktische Einordnung: Wenn eine Ebene fehlt, ist der Prozess nicht 10/10 abnahmefähig. Der UAT-Prüfer muss vom Ausgangsbeleg bis zum Kontrollbericht springen können.
+| Gebuchte Rechnung | `SO-1001`, Netto `68.000 EUR` | `Gebuchte Verkaufsrechnungen` |
+| Debitorenposten | Forderung `80.920 EUR` | `Debitorenposten (Customer Ledger Entries)` |
+| USt-Posten | Basis `68.000 EUR`, USt `12.920 EUR` | `USt-Posten (VAT Entries)` |
+| Sachposten | Forderung, Erlös, USt-Konto | `Sachposten (G/L Entries)` |
+| E-Beleg | Status und Empfänger | `E-Belege (E-Documents)` |
+| USt-Abrechnung | Summe im Meldezeitraum | `USt-Abrechnung (VAT Statement)` |
 
 ### Kontrollberichte
 
-- `USt-Abrechnung (VAT Statement)`
 - `USt-Posten (VAT Entries)`
+- `USt-Abrechnung (VAT Statement)`
 - `E-Belege (E-Documents)`
-
-Rhein-Main nutzt diese Berichte nicht als Dekoration, sondern als Abgleich gegen die Posten. Ein Bericht ohne Drilldown oder Postenbezug reicht für UAT nicht.
+- `Sachposten (G/L Entries)`
 
 ### Fehlerdiagnose
 
 | Fehler | Symptom | Ursache | Diagnosepfad | Korrekturweg |
 |---|---|---|---|---|
-| falsche Dimension | Bericht zeigt Wert nicht | Dimension fehlt oder ist falsch | `Sachposten (G/L Entries)` mit Dimension prüfen | Dimension korrigieren, wenn zulässig, sonst fachlich gegenbuchen |
-| falsche Buchungsgruppe | falsches Konto oder falsche USt | Stammdaten falsch | Stammdaten und Buchungsmatrix prüfen | Beleg stornieren/gutschreiben und korrekt neu buchen |
-| fehlender Nachweis | UAT kann nicht abgenommen werden | Bericht oder Belegnummer fehlt | Evidence Pack prüfen | Nachweis exportieren und Test neu bewerten |
+| falsche USt-Produktbuchungsgruppe | USt-Betrag fehlt oder ist falsch | Artikel `RM-M100` ist falsch eingerichtet | gebuchte Rechnung, Artikelkarte, USt-Posten und USt-Matrix vergleichen | Gutschrift, Stammdatenkorrektur, Neubuchung |
+| E-Beleg fehlt | Rechnung ist gebucht, aber nicht digital nachgewiesen | E-Belegprozess nicht ausgelöst oder fehlerhaft | `E-Belege (E-Documents)` nach `SO-1001` filtern | Status korrigieren oder E-Beleg erneut erzeugen |
+| USt-Abrechnung stimmt nicht | USt-Posten fehlen im Zeitraum | falsches Buchungsdatum oder falsche USt-Gruppe | USt-Posten nach Datum und Gruppe filtern | Belegkorrektur oder Periodenkorrektur mit Evidence Pack |
 
 ### Korrekturweg
 
-Die Korrektur folgt immer dem gebuchten Zustand. Ungebuchte Belege werden korrigiert. Gebuchte Belege werden über Gutschrift, Gegenbuchung, Ausgleichslösung oder dokumentierte Neubuchung korrigiert. Posten werden nicht gelöscht.
+USt-Fehler werden nicht durch manuelles Ändern der USt-Posten korrigiert. Rhein-Main erstellt bei gebuchten Rechnungen eine Gutschrift, korrigiert Stammdaten oder Belegsetup und bucht den Vorgang neu. E-Belegfehler werden mit Statusnachweis dokumentiert.
+
 
 ### Übung
 
@@ -3497,125 +3273,99 @@ Die Korrektur folgt immer dem gebuchten Zustand. Ungebuchte Belege werden korrig
 
 
 ## 23. Inventory Costing und Lagerbewertung im Abschluss
-
-Dieses Kapitel führt dich durch Inventory Costing als praktischen Business-Central-Prozess. Du verstehst den geschäftlichen Zweck, führst den Vorgang in der deutschen Oberfläche aus und prüfst die entstandenen Belege, Posten und Berichte.
+Dieses Kapitel erklärt, wie Rhein-Main Lagerwerte und Wareneinsatz im Abschluss prüft. Nach dem Kapitel kannst du Artikelposten, Wertposten, Kostenregulierung und Sachkontenabstimmung für `RAW-STEEL` und `RM-M100` nachvollziehen.
 
 ### Kapitelbox
 
 | Feld | Inhalt |
 |---|---|
-| Zielgruppe | Einsteiger, Key User, Junior Consultant, MB-800-Lerner, Standard-Solution-Architect |
-| Schwierigkeit | Basic bis Advanced |
-| Prozessbereich | Inventory Costing |
+| Zielgruppe | Einsteiger, Lagerbuchhaltung, Controller, Finance, Junior Consultant |
+| Schwierigkeit | Advanced |
+| Prozessbereich | Inventory Costing / Lagerbewertung |
 | Betroffene Companies | RM-PROD, RM-SHARED |
-| MB-800-Relevanz | Ja: Standardprozess, Bedienung, Postenprüfung, Korrektur und UAT |
-| Solution-Architect-Relevanz | Ja: Standard-first, Setup-Entscheidung, Extension-Grenze, Betrieb |
+| MB-800-Relevanz | Ja: Artikelposten, Wertposten, Kostenmethoden, Lagerbewertung, Kostenregulierung |
+| Solution-Architect-Relevanz | Ja: Kostenmethode, negative Bestände, Abschlussreihenfolge, Performance und Betrieb |
 | Ergebnis nach dem Kapitel | Du kannst Lagerwert, Wertposten, Kostenregulierung, Sachkontenabstimmung und Abschlusskorrektur für `RAW-STEEL`/`RM-M100` prüfen. |
 
 ### Alltagsszene bei Rhein-Main
 
-Zum Monatsende stimmt der Controller den Lagerwert ab. `RAW-STEEL` wurde mit erwarteten Kosten eingebucht, die Rechnung kam später mit `12.300 EUR`. Kostenregulierung und Lagerkostenbuchung müssen den Wert sauber ins Hauptbuch bringen.
+RM-PROD hat `RAW-STEEL` zunächst mit erwarteten Kosten `12.000 EUR` eingebucht. Die Eingangsrechnung kommt später mit `12.300 EUR`. Gleichzeitig wurde aus Material die Maschine `RM-M100` produziert und verkauft. Der Controller muss prüfen, ob die nachträgliche Kostendifferenz korrekt in Wertposten, Lagerbewertung, Wareneinsatz und Sachposten angekommen ist.
 
 ### Für absolute Einsteiger erklärt
 
-Inventory Costing und Lagerbewertung im Abschluss zeigt, wie ein Fachvorgang in Business Central zu Belegen, Posten und Berichten wird. Ein Anfänger erkennt hier: Die Maske ist nur der Einstieg. Entscheidend ist die Kette aus Stammdaten, Buchung, Posten, Kontrollbericht und Evidence Pack.
+Artikelposten erklären Mengen. Wertposten erklären Werte. Ein Lager kann mengenmäßig stimmen und trotzdem wertmäßig falsch sein. Das passiert, wenn Wareneingang, Rechnung, Fertigung oder Kostenregulierung zeitlich auseinanderfallen. Business Central nutzt `Wertposten (Value Entries)`, um erwartete und fakturierte Kosten zu verbinden.
 
 ### Warum braucht Rhein-Main diesen Prozess?
 
-Rhein-Main braucht diesen Prozess, weil Inventory Costing direkt auf Finance, Reporting und operative Steuerung wirkt. Ohne klaren Standardprozess entstehen Medienbrüche, falsche Posten, fehlende Nachweise und unsichere Entscheidungen. Business Central stellt dafür deutsche Seiten, Buchungslogik, Kontrollberichte und UAT-fähige Nachweise bereit.
+Maschinenbau hat Material, Fertigung und Wareneinsatz. Wenn Lagerwerte falsch sind, sind Bilanz und GuV falsch. Deshalb prüft Rhein-Main im Monatsabschluss, ob Kostenregulierung und Lagerkostenbuchung ins Hauptbuch vollständig gelaufen sind.
 
-### Rollen
+### Rollen, Stammdaten und Setup
 
-Die Rollen sind bewusst knapp gehalten. Sie zeigen, wer ausführt, wer prüft und wer die Standardentscheidung verantwortet.
-
-| Rolle | Aufgabe | Ergebnis |
+| Element | Rhein-Main-Wert | Wirkung |
 |---|---|---|
-| Fachanwender | Vorgang erfassen und Pflichtfelder prüfen | Beleg ist fachlich korrekt |
-| Key User | Stammdaten, Setup und Fehlerfälle prüfen | Vorgang ist buchbar |
-| Finance/Controlling | Posten und Bericht abstimmen | Nachweis ist belastbar |
-| Solution Architect | Standard, Extension und Risiko bewerten | UAT beweist die Entscheidung |
+| Artikel | `RAW-STEEL`, `RM-M100` | erzeugen Artikel- und Wertposten |
+| Lagerort | `FRA-ZL` | trennt Bestand nach Lagerlogik |
+| Einkaufsbeleg | `PO-2001` | verbindet erwartete und fakturierte Kosten |
+| Fertigungsauftrag | `PROD-3001` | verbindet Materialverbrauch und Output |
+| Verkaufsbeleg | `SO-1001` | löst Wareneinsatz aus |
+| Lagerbuchungsmatrix | Bestand und Wareneinsatzkonten | verbindet Lager mit Sachkonten |
 
-Praktisch bedeutet das: Der Fachbereich erzeugt den Vorgang, Key User und Finance sichern die Buchbarkeit, und der Solution Architect bewertet, ob der Standard ausreicht.
-
-### Stammdaten
-
-Die Stammdaten müssen vor dem Klick stimmen. Falsche Stammdaten erzeugen später falsche Buchungen.
-
-| Stammdatum | Rhein-Main-Beispiel | Warum wichtig? |
-|---|---|---|
-| Partner | `D10000`, `K10000` oder Intercompany-Partner | steuert Buchungsgruppen und USt |
-| Artikel/Sachkonto/Ressource | `RAW-STEEL`, `PO-2001`, erwartete Kosten `12.000 EUR`, fakturierte Kosten `12.300 EUR` | steuert Menge, Wert oder Leistung |
-| Dimension | `PRODUCTLINE`, `CHANNEL`, `DEPARTMENT` | steuert Reporting |
-| Nummernserie | prozessabhängig | sichert eindeutige Belege |
-
-Kontrollfrage: Kannst du vor der Buchung erklären, welcher Partner, welcher Artikel oder welches Konto später welchen Posten auslöst?
-
-### Setup
-
-Das Setup ist die fachliche Leitplanke. Es entscheidet, ob der richtige Klick später auf das richtige Konto, die richtige Steuerlogik und den richtigen Bericht läuft.
-
-- relevante Buchungsgruppen und Buchungsmatrizen
-- Nummernserien und Pflichtdimensionen
-- Rollenprofil und Berechtigungen
-- Bericht oder Kontrollliste für den Nachweis
-
-Rhein-Main ändert Setup nur über dokumentierte Projektentscheidungen. Ein spontaner Setup-Wechsel im Tagesgeschäft ist ein Change Request.
+Lagerbuchhaltung prüft Posten. Controlling stimmt Lagerbewertung und GuV ab. Finance bucht Lagerkosten ins Hauptbuch. Der Solution Architect legt Kostenmethode, negative-Bestands-Regel und Aufgabenwarteschlange fest.
 
 ### Deutsche BC-Seiten
 
-Diese Seiten öffnest du über `Alt+Q`. Der deutsche Begriff ist führend; der englische Begriff steht als Suchhilfe in Klammern.
-
 - `Artikelposten (Item Ledger Entries)`
 - `Wertposten (Value Entries)`
-- `Kostenregulierung Artikelposten (Adjust Cost - Item Entries)`
+- `Lagerregulierung fakt. Einst. Preise (Adjust Cost - Item Entries)`
+- `Lagerregulierung buchen (Post Inventory Cost to G/L)`
 - `Lagerbewertung (Inventory Valuation)`
+- `Sachposten (G/L Entries)`
 
 ### Schritt-für-Schritt
 
-1. Öffne `Alt+Q` und suche `Artikelposten (Item Ledger Entries)`, `Wertposten (Value Entries)`, `Kostenregulierung Artikelposten (Adjust Cost - Item Entries)`, `Lagerbewertung (Inventory Valuation)`.
-2. Öffne oder erfasse den Rhein-Main-Fall `RAW-STEEL`, `PO-2001`, erwartete Kosten `12.000 EUR`, fakturierte Kosten `12.300 EUR`.
-3. Prüfe `Buchungsdatum`, `Belegdatum`, Partner, Betrag/Menge, Buchungsgruppen und Dimensionen.
-4. Nutze `Buchungsvorschau (Preview Posting)`, wenn der Vorgang eine Buchung auslöst.
-5. Führe die fachliche Aktion aus: freigeben, buchen, ausgleichen, berechnen oder abstimmen.
-6. Öffne danach die gebuchten Belege oder Postenlisten.
-7. Filtere nach Belegnummer, Partner, Artikel, Konto oder Dimension.
-8. Prüfe Artikelposten, Wertposten und Sachposten nach Lagerkostenbuchung.
-9. Öffne `Lagerbewertung (Inventory Valuation)`, `Wertposten (Value Entries)`, Sachkontenabstimmung und vergleiche Bericht, Posten und Ausgangsbeleg.
-10. Dokumentiere Belegnummern, Filter, Bericht und Testergebnis im Evidence Pack.
+1. Öffne `Artikelposten (Item Ledger Entries)` über `Alt+Q`.
+2. Filtere `Artikelnr. = RAW-STEEL`, `Belegnr. = PO-2001`.
+3. Prüfe Wareneingangsmenge und `Lagerortcode = FRA-ZL`.
+4. Öffne `Wertposten (Value Entries)` und filtere `Belegnr. = PO-2001`.
+5. Prüfe erwartete Kosten `12.000 EUR` und fakturierte Kosten `12.300 EUR`.
+6. Öffne `Lagerregulierung fakt. Einst. Preise (Adjust Cost - Item Entries)` und führe den Lauf für `RAW-STEEL` und `RM-M100` aus.
+7. Öffne `Lagerregulierung buchen (Post Inventory Cost to G/L)` und buche Lagerkosten für Juni 2026 ins Hauptbuch.
+8. Öffne `Wertposten (Value Entries)` erneut und prüfe Regulierungswerte.
+9. Öffne `Sachposten (G/L Entries)` und filtere Bestands- und Wareneinsatzkonten.
+10. Öffne `Lagerbewertung (Inventory Valuation)` zum `30.06.2026`.
+11. Vergleiche Lagerbewertung mit Sachkonto Bestand und Wareneinsatz.
+12. Dokumentiere Laufdatum, Filter, Wertposten, Sachposten und Bericht im Evidence Pack.
 
 ### Buchungsspur
 
-Die folgende Spur zeigt, wie aus dem Vorgang ein prüfbarer Nachweis wird.
-
 | Ebene | Rhein-Main-Nachweis | Wo prüfen? |
 |---|---|---|
-| Ausgangsbeleg | `RAW-STEEL`, `PO-2001`, erwartete Kosten `12.000 EUR`, fakturierte Kosten `12.300 EUR` | `Artikelposten (Item Ledger Entries)` |
-| Gebuchter Beleg | gebuchter Beleg oder abgestimmter Prozesslauf | gebuchte Belege/Postenlisten |
-| Posten | Artikelposten, Wertposten und Sachposten nach Lagerkostenbuchung | passende Postenlisten |
-| Sachposten | Hauptbuchwirkung mit Betrag und Dimension | `Sachposten (G/L Entries)` |
-| Kontrollbericht | `Lagerbewertung (Inventory Valuation)`, `Wertposten (Value Entries)`, Sachkontenabstimmung | `Lagerbewertung (Inventory Valuation)`, `Wertposten (Value Entries)`, Sachkontenabstimmung |
-
-Praktische Einordnung: Wenn eine Ebene fehlt, ist der Prozess nicht 10/10 abnahmefähig. Der UAT-Prüfer muss vom Ausgangsbeleg bis zum Kontrollbericht springen können.
+| Wareneingang | `PO-2001`, `RAW-STEEL` | `Artikelposten (Item Ledger Entries)` |
+| Rechnung | fakturierte Kosten `12.300 EUR` | `Wertposten (Value Entries)` |
+| Fertigung/Verkauf | `PROD-3001`, `SO-1001` | Artikel- und Wertposten |
+| Kostenregulierung | nachträgliche Kostenverteilung | `Wertposten (Value Entries)` |
+| Hauptbuch | Bestand und Wareneinsatz | `Sachposten (G/L Entries)` |
+| Abschlussbericht | Lagerwert zum `30.06.2026` | `Lagerbewertung (Inventory Valuation)` |
 
 ### Kontrollberichte
 
 - `Lagerbewertung (Inventory Valuation)`
 - `Wertposten (Value Entries)`
-- Sachkontenabstimmung
-
-Rhein-Main nutzt diese Berichte nicht als Dekoration, sondern als Abgleich gegen die Posten. Ein Bericht ohne Drilldown oder Postenbezug reicht für UAT nicht.
+- Sachkontenabstimmung Bestand/Wareneinsatz
+- Aufgabenwarteschlangenprotokoll für Kostenläufe
 
 ### Fehlerdiagnose
 
 | Fehler | Symptom | Ursache | Diagnosepfad | Korrekturweg |
 |---|---|---|---|---|
-| falsche Dimension | Bericht zeigt Wert nicht | Dimension fehlt oder ist falsch | `Sachposten (G/L Entries)` mit Dimension prüfen | Dimension korrigieren, wenn zulässig, sonst fachlich gegenbuchen |
-| falsche Buchungsgruppe | falsches Konto oder falsche USt | Stammdaten falsch | Stammdaten und Buchungsmatrix prüfen | Beleg stornieren/gutschreiben und korrekt neu buchen |
-| fehlender Nachweis | UAT kann nicht abgenommen werden | Bericht oder Belegnummer fehlt | Evidence Pack prüfen | Nachweis exportieren und Test neu bewerten |
+| Kostenregulierung fehlt | GuV-Marge stimmt nicht | erwartete Kosten wurden nicht angepasst | Wertposten und Aufgabenwarteschlange prüfen | Kostenregulierung ausführen |
+| Lagerkosten nicht im Hauptbuch | Lagerbewertung und Sachkonto weichen ab | `Post Inventory Cost to G/L` fehlt | Sachposten mit Wertposten vergleichen | Lagerkosten ins Hauptbuch buchen |
+| negativer Bestand | Kosten springen später | Abgang vor Zugang | Artikelposten chronologisch prüfen | Prozessreihenfolge korrigieren und negative Bestände vermeiden |
 
 ### Korrekturweg
 
-Die Korrektur folgt immer dem gebuchten Zustand. Ungebuchte Belege werden korrigiert. Gebuchte Belege werden über Gutschrift, Gegenbuchung, Ausgleichslösung oder dokumentierte Neubuchung korrigiert. Posten werden nicht gelöscht.
+Kostenfehler werden über Standardläufe korrigiert: Kostenregulierung ausführen, Lagerkosten ins Hauptbuch buchen, danach Lagerbewertung und Sachkonten neu abstimmen. Wertposten werden nicht manuell geändert.
+
 
 ### Übung
 
@@ -3677,126 +3427,108 @@ Die Korrektur folgt immer dem gebuchten Zustand. Ungebuchte Belege werden korrig
 
 
 ## 24. Monatsabschluss / Record-to-Report [Q25][Q84][Q85]
-
-Dieses Kapitel führt dich durch R2R/Abschluss als praktischen Business-Central-Prozess. Du verstehst den geschäftlichen Zweck, führst den Vorgang in der deutschen Oberfläche aus und prüfst die entstandenen Belege, Posten und Berichte.
+Dieses Kapitel führt den Monatsabschluss Juni 2026 als vollständigen Record-to-Report-Prozess durch. Nach dem Kapitel kannst du OP, Bank, USt, Anlagen, Lager, Projekte, GuV und Evidence Pack in einer nachvollziehbaren Abschlussreihenfolge prüfen.
 
 ### Kapitelbox
 
 | Feld | Inhalt |
 |---|---|
-| Zielgruppe | Einsteiger, Key User, Junior Consultant, MB-800-Lerner, Standard-Solution-Architect |
-| Schwierigkeit | Basic bis Advanced |
-| Prozessbereich | R2R/Abschluss |
-| Betroffene Companies | RM-SHARED |
-| MB-800-Relevanz | Ja: Standardprozess, Bedienung, Postenprüfung, Korrektur und UAT |
-| Solution-Architect-Relevanz | Ja: Standard-first, Setup-Entscheidung, Extension-Grenze, Betrieb |
+| Zielgruppe | Einsteiger, Finance-Leitung, Controller, Key User, Junior Consultant |
+| Schwierigkeit | Advanced |
+| Prozessbereich | Record-to-Report / Monatsabschluss |
+| Betroffene Companies | RM-SHARED, RM-SALES, RM-PROD, RM-SERVICE |
+| MB-800-Relevanz | Ja: Sachposten, Nebenbücher, Bankabstimmung, USt, Anlagen, Lager, Finanzberichte |
+| Solution-Architect-Relevanz | Ja: Abschlussarchitektur, Periodensperren, Evidence Pack, Rollen und Betrieb |
 | Ergebnis nach dem Kapitel | Du kannst Monatsabschluss Juni 2026 mit OP, Bank, USt, Anlagen, Lager, Projekten, GuV, Evidence Pack und Negativtest durchführen. |
 
 ### Alltagsszene bei Rhein-Main
 
-Am letzten Arbeitstag im Juni prüft RM-SHARED Debitoren, Kreditoren, Bank, USt, Anlagen, Lager und Projekte. Erst wenn alle Nebenbücher abgestimmt sind, wird die GuV an die Geschäftsführung gegeben.
+Am 30.06.2026 bereitet RM-SHARED den Monatsabschluss vor. Debitor `D10000` hat `SO-1001` bezahlt, Bankkonto `BANK-RM-01` muss abgestimmt werden, `FA-CNC-01` braucht AfA, Lagerwert `RM-M100` muss zur GuV passen und Projekt `PROJ-5001` darf keine ungeprüfte Marge enthalten. Erst danach bekommt die Geschäftsführung den Finanzbericht.
 
 ### Für absolute Einsteiger erklärt
 
-Monatsabschluss / Record-to-Report zeigt, wie ein Fachvorgang in Business Central zu Belegen, Posten und Berichten wird. Ein Anfänger erkennt hier: Die Maske ist nur der Einstieg. Entscheidend ist die Kette aus Stammdaten, Buchung, Posten, Kontrollbericht und Evidence Pack.
+Record-to-Report bedeutet: Aus allen gebuchten Einzelvorgängen wird ein prüfbarer Monatsabschluss. Der Monatsabschluss ist kein einzelner Button. Er ist eine Reihenfolge von Kontrollen. Nebenbücher wie Debitoren, Kreditoren, Bank, Anlagen und Lager müssen mit dem Hauptbuch übereinstimmen.
 
 ### Warum braucht Rhein-Main diesen Prozess?
 
-Rhein-Main braucht diesen Prozess, weil R2R/Abschluss direkt auf Finance, Reporting und operative Steuerung wirkt. Ohne klaren Standardprozess entstehen Medienbrüche, falsche Posten, fehlende Nachweise und unsichere Entscheidungen. Business Central stellt dafür deutsche Seiten, Buchungslogik, Kontrollberichte und UAT-fähige Nachweise bereit.
+Rhein-Main hat viele operative Prozesse. Ohne Abschlussreihenfolge würden offene Zahlungen, nicht abgestimmte Bankkonten, fehlende AfA oder falsche Lagerwerte direkt in GuV und Bilanz landen. Business Central liefert die Posten und Berichte; Finance liefert die fachliche Abnahme.
 
-### Rollen
+### Rollen und Abschlussreihenfolge
 
-Die Rollen sind bewusst knapp gehalten. Sie zeigen, wer ausführt, wer prüft und wer die Standardentscheidung verantwortet.
-
-| Rolle | Aufgabe | Ergebnis |
+| Schritt | BC-Seite | Rhein-Main-Kontrolle |
 |---|---|---|
-| Fachanwender | Vorgang erfassen und Pflichtfelder prüfen | Beleg ist fachlich korrekt |
-| Key User | Stammdaten, Setup und Fehlerfälle prüfen | Vorgang ist buchbar |
-| Finance/Controlling | Posten und Bericht abstimmen | Nachweis ist belastbar |
-| Solution Architect | Standard, Extension und Risiko bewerten | UAT beweist die Entscheidung |
-
-Praktisch bedeutet das: Der Fachbereich erzeugt den Vorgang, Key User und Finance sichern die Buchbarkeit, und der Solution Architect bewertet, ob der Standard ausreicht.
-
-### Stammdaten
-
-Die Stammdaten müssen vor dem Klick stimmen. Falsche Stammdaten erzeugen später falsche Buchungen.
-
-| Stammdatum | Rhein-Main-Beispiel | Warum wichtig? |
-|---|---|---|
-| Partner | `D10000`, `K10000` oder Intercompany-Partner | steuert Buchungsgruppen und USt |
-| Artikel/Sachkonto/Ressource | Abschlussperiode `06/2026`, Abschlussdatum `30.06.2026` | steuert Menge, Wert oder Leistung |
-| Dimension | `PRODUCTLINE`, `CHANNEL`, `DEPARTMENT` | steuert Reporting |
-| Nummernserie | prozessabhängig | sichert eindeutige Belege |
-
-Kontrollfrage: Kannst du vor der Buchung erklären, welcher Partner, welcher Artikel oder welches Konto später welchen Posten auslöst?
-
-### Setup
-
-Das Setup ist die fachliche Leitplanke. Es entscheidet, ob der richtige Klick später auf das richtige Konto, die richtige Steuerlogik und den richtigen Bericht läuft.
-
-- relevante Buchungsgruppen und Buchungsmatrizen
-- Nummernserien und Pflichtdimensionen
-- Rollenprofil und Berechtigungen
-- Bericht oder Kontrollliste für den Nachweis
-
-Rhein-Main ändert Setup nur über dokumentierte Projektentscheidungen. Ein spontaner Setup-Wechsel im Tagesgeschäft ist ein Change Request.
+| OP Debitoren | `Debitorenposten (Customer Ledger Entries)` | `SO-1001` ausgeglichen |
+| OP Kreditoren | `Kreditorenposten (Vendor Ledger Entries)` | Eingangsrechnungen vollständig |
+| Bank | `Bankkontenabstimmung (Bank Account Reconciliation)` | `BANK-RM-01` abgestimmt |
+| USt | `USt-Abrechnung (VAT Statement)` | Juni 2026 vollständig |
+| Anlagen | `AfA berechnen (Calculate Depreciation)` | `FA-CNC-01` abgeschrieben |
+| Lager | `Lagerbewertung (Inventory Valuation)` | Bestand stimmt mit Sachkonto |
+| Projekte | `Projektstatistik (Project Statistics)` | `PROJ-5001` plausibel |
+| GuV/Bilanz | `Finanzberichte (Financial Reports)` | Bericht freigabefähig |
 
 ### Deutsche BC-Seiten
 
-Diese Seiten öffnest du über `Alt+Q`. Der deutsche Begriff ist führend; der englische Begriff steht als Suchhilfe in Klammern.
-
-- `Buchhaltungsperioden (Accounting Periods)`
-- `Sachposten (G/L Entries)`
-- `Finanzberichte (Financial Reports)`
+- `Debitorenposten (Customer Ledger Entries)`
+- `Kreditorenposten (Vendor Ledger Entries)`
+- `Bankkontenabstimmung (Bank Account Reconciliation)`
+- `USt-Abrechnung (VAT Statement)`
+- `AfA berechnen (Calculate Depreciation)`
 - `Lagerbewertung (Inventory Valuation)`
+- `Projektstatistik (Project Statistics)`
+- `Finanzberichte (Financial Reports)`
+- `Buchhaltungsperioden (Accounting Periods)`
 
 ### Schritt-für-Schritt
 
-1. Öffne `Alt+Q` und suche `Buchhaltungsperioden (Accounting Periods)`, `Sachposten (G/L Entries)`, `Finanzberichte (Financial Reports)`, `Lagerbewertung (Inventory Valuation)`.
-2. Öffne oder erfasse den Rhein-Main-Fall Abschlussperiode `06/2026`, Abschlussdatum `30.06.2026`.
-3. Prüfe `Buchungsdatum`, `Belegdatum`, Partner, Betrag/Menge, Buchungsgruppen und Dimensionen.
-4. Nutze `Buchungsvorschau (Preview Posting)`, wenn der Vorgang eine Buchung auslöst.
-5. Führe die fachliche Aktion aus: freigeben, buchen, ausgleichen, berechnen oder abstimmen.
-6. Öffne danach die gebuchten Belege oder Postenlisten.
-7. Filtere nach Belegnummer, Partner, Artikel, Konto oder Dimension.
-8. Prüfe Sachposten, Debitorenposten, Kreditorenposten, Bankposten, USt-Posten, Anlagenposten, Artikelposten und Wertposten.
-9. Öffne `Finanzberichte (Financial Reports)`, OP-Listen, `USt-Abrechnung (VAT Statement)`, `Lagerbewertung (Inventory Valuation)` und vergleiche Bericht, Posten und Ausgangsbeleg.
-10. Dokumentiere Belegnummern, Filter, Bericht und Testergebnis im Evidence Pack.
+1. Öffne `Debitorenposten (Customer Ledger Entries)` und filtere `D10000`, `SO-1001`; prüfe Restbetrag `0,00 EUR`.
+2. Öffne `Kreditorenposten (Vendor Ledger Entries)` und prüfe offene Juni-Rechnungen.
+3. Öffne `Bankkontenabstimmung (Bank Account Reconciliation)` für `BANK-RM-01` und Kontoauszug `BA-2026-06-30`.
+4. Stimme Bankposten und Kontoauszug ab und buche die Abstimmung.
+5. Öffne `USt-Abrechnung (VAT Statement)`, setze Zeitraum `01.06.2026..30.06.2026` und prüfe USt aus `SO-1001`.
+6. Öffne `AfA berechnen (Calculate Depreciation)` und buche AfA für `FA-CNC-01` bis `30.06.2026`.
+7. Führe `Lagerregulierung fakt. Einst. Preise (Adjust Cost - Item Entries)` aus.
+8. Führe `Lagerregulierung buchen (Post Inventory Cost to G/L)` aus.
+9. Öffne `Lagerbewertung (Inventory Valuation)` zum `30.06.2026` und stimme Sachkonto Bestand ab.
+10. Öffne `Projektstatistik (Project Statistics)` für `PROJ-5001`.
+11. Öffne `Finanzberichte (Financial Reports)`, Bericht `RM-GUV-MONAT`, Zeitraum Juni 2026.
+12. Öffne `Buchhaltungsperioden (Accounting Periods)` und prüfe, ob Juni erst nach vollständigem Evidence Pack gesperrt wird.
 
 ### Buchungsspur
 
-Die folgende Spur zeigt, wie aus dem Vorgang ein prüfbarer Nachweis wird.
-
-| Ebene | Rhein-Main-Nachweis | Wo prüfen? |
+| Abschlussbereich | Posten/Nachweis | Kontrollpunkt |
 |---|---|---|
-| Ausgangsbeleg | Abschlussperiode `06/2026`, Abschlussdatum `30.06.2026` | `Buchhaltungsperioden (Accounting Periods)` |
-| Gebuchter Beleg | gebuchter Beleg oder abgestimmter Prozesslauf | gebuchte Belege/Postenlisten |
-| Posten | Sachposten, Debitorenposten, Kreditorenposten, Bankposten, USt-Posten, Anlagenposten, Artikelposten und Wertposten | passende Postenlisten |
-| Sachposten | Hauptbuchwirkung mit Betrag und Dimension | `Sachposten (G/L Entries)` |
-| Kontrollbericht | `Finanzberichte (Financial Reports)`, OP-Listen, `USt-Abrechnung (VAT Statement)`, `Lagerbewertung (Inventory Valuation)` | `Finanzberichte (Financial Reports)`, OP-Listen, `USt-Abrechnung (VAT Statement)`, `Lagerbewertung (Inventory Valuation)` |
-
-Praktische Einordnung: Wenn eine Ebene fehlt, ist der Prozess nicht 10/10 abnahmefähig. Der UAT-Prüfer muss vom Ausgangsbeleg bis zum Kontrollbericht springen können.
+| Debitoren | `Debitorenposten`, detaillierte Ausgleichsposten | OP-Liste ohne falsche Restbeträge |
+| Kreditoren | `Kreditorenposten` | offene Eingangsrechnungen plausibel |
+| Bank | `Bankkontoposten`, Bankabstimmung | Bankkonto = Kontoauszug |
+| USt | `USt-Posten`, USt-Abrechnung | Steuerwerte Juni vollständig |
+| Anlagen | `Anlagenposten`, Sachposten AfA | AfA gebucht |
+| Lager | `Artikelposten`, `Wertposten`, Sachposten | Lagerwert = Hauptbuch |
+| Projekte | `Projektposten`, Projektstatistik | Marge plausibel |
+| Reporting | `Sachposten`, Finanzberichte | GuV/Bilanz freigabefähig |
 
 ### Kontrollberichte
 
-- `Finanzberichte (Financial Reports)`
-- OP-Listen
-- `USt-Abrechnung (VAT Statement)`
-- `Lagerbewertung (Inventory Valuation)`
-
-Rhein-Main nutzt diese Berichte nicht als Dekoration, sondern als Abgleich gegen die Posten. Ein Bericht ohne Drilldown oder Postenbezug reicht für UAT nicht.
+- OP-Listen Debitoren und Kreditoren.
+- `Bankkontenabstimmung (Bank Account Reconciliation)`.
+- `USt-Abrechnung (VAT Statement)`.
+- Anlagenspiegel und `Anlagenposten (FA Ledger Entries)`.
+- `Lagerbewertung (Inventory Valuation)`.
+- `Projektstatistik (Project Statistics)`.
+- `Finanzberichte (Financial Reports)`.
 
 ### Fehlerdiagnose
 
 | Fehler | Symptom | Ursache | Diagnosepfad | Korrekturweg |
 |---|---|---|---|---|
-| falsche Dimension | Bericht zeigt Wert nicht | Dimension fehlt oder ist falsch | `Sachposten (G/L Entries)` mit Dimension prüfen | Dimension korrigieren, wenn zulässig, sonst fachlich gegenbuchen |
-| falsche Buchungsgruppe | falsches Konto oder falsche USt | Stammdaten falsch | Stammdaten und Buchungsmatrix prüfen | Beleg stornieren/gutschreiben und korrekt neu buchen |
-| fehlender Nachweis | UAT kann nicht abgenommen werden | Bericht oder Belegnummer fehlt | Evidence Pack prüfen | Nachweis exportieren und Test neu bewerten |
+| Bank offen | Bankbestand stimmt nicht | Abstimmung nicht gebucht | Bankabstimmungsstatus und Bankposten prüfen | Bankabstimmung abschließen |
+| Lagerwert weicht ab | Bilanzkonto passt nicht zur Lagerbewertung | Kostenregulierung fehlt | Wertposten und Sachposten vergleichen | Kostenregulierung und Lagerkostenbuchung ausführen |
+| USt unvollständig | USt-Abrechnung passt nicht | falsches Datum oder USt-Gruppe | USt-Posten nach Zeitraum prüfen | Belegkorrektur oder Periodenkorrektur |
+| Abschluss zu früh gesperrt | Korrekturen blockiert | Freigabe ohne Evidence Pack | Abschlusscheckliste prüfen | Freigabe zurücknehmen und fehlende Kontrollen abschließen |
 
 ### Korrekturweg
 
-Die Korrektur folgt immer dem gebuchten Zustand. Ungebuchte Belege werden korrigiert. Gebuchte Belege werden über Gutschrift, Gegenbuchung, Ausgleichslösung oder dokumentierte Neubuchung korrigiert. Posten werden nicht gelöscht.
+Rhein-Main korrigiert zuerst die Nebenbücher, danach das Hauptbuch und zuletzt das Reporting. Eine Periode wird nicht freigegeben, solange Bank, USt, Lager, Anlagen oder OP-Listen offen sind.
+
 
 ### Übung
 
@@ -5694,23 +5426,23 @@ Dieses Buch ist ein vollumfängliches Business-Central-Einführungs-, Schulungs-
 
 Die folgende Matrix dokumentiert die strenge 10/10-Prüfung der Prozess- und Finance-Kapitel 11 bis 25. Sie ist kein Selbstlob, sondern ein Redaktionsinstrument: Ein Kapitel gilt erst dann als buchwürdig, wenn Einsteigerführung, Rhein-Main-Situation, konkrete Bedienung, Postenspur, Fehlerdiagnose, Übung, Lösung und UAT zusammenpassen.
 
-| Kapitel | Bewertung /10 | Hauptproblem | Warum keine 10/10? | Sofortmaßnahme |
-|---|---:|---|---|---|
-| 11. Order-to-Cash | 10/10 | kein offenes Hauptproblem | erfüllt: Alltagsszene, Verkaufsauftrag, Lieferung, Rechnung, Zahlung, Posten, Übung und UAT sind konkret | keine offene Maßnahme |
-| 12. Procure-to-Pay | 10/10 | kein offenes Hauptproblem | erfüllt: Wareneingang, Eingangsrechnung, Mengenabweichung, Kreditorenposten und Lösung sind ausführbar | keine offene Maßnahme |
-| 13. Inventory und Warehouse | 10/10 | kein offenes Hauptproblem | erfüllt: einfaches Lager und gesteuertes Lager werden mit BC-Seiten, Posten und UAT abgegrenzt | keine offene Maßnahme |
-| 14. Planning, Assembly und Manufacturing | 10/10 | kein offenes Hauptproblem | erfüllt: Planungsarbeitsblatt, Fertigungsauftrag, Verbrauch, Output und Kostenprüfung sind nachklickbar | keine offene Maßnahme |
-| 15. Service | 10/10 | kein offenes Hauptproblem | erfüllt: Serviceauftrag, Ersatzteilverbrauch, Ressource, Garantie/Kulanz und Postenspur sind konkret | keine offene Maßnahme |
-| 16. Projects | 10/10 | kein offenes Hauptproblem | erfüllt: Projektaufgabe, Ressourcen, Material, Projektposten, Meilensteinrechnung und Korrekturweg sind abnahmefähig | keine offene Maßnahme |
-| 17. Shopify, Dropshipping und Sonderverkauf | 10/10 | kein offenes Hauptproblem | erfüllt: Shopauftrag, Mapping, Dropshipping-Kreditor, USt, Marge und Negativtest sind beschrieben | keine offene Maßnahme |
-| 18. Intercompany und Ausland | 10/10 | kein offenes Hauptproblem | erfüllt: IC-Ausgang, IC-Eingang, USt-Logik, Auslandssicht, Abstimmung und Korrektur sind konkret | keine offene Maßnahme |
-| 19. Debitoren, Kreditoren und OP-Ausgleich | 10/10 | kein offenes Hauptproblem | erfüllt: Zahlung, Ausgleich, detaillierte Posten, OP-Liste und falscher Ausgleich sind prüfbar | keine offene Maßnahme |
-| 20. Bank, Payments und Bankabstimmung | 10/10 | kein offenes Hauptproblem | erfüllt: Zahlungsabstimmung, Bankposten, falsche Zuordnung, Ausgleich und Evidence Pack sind ausführbar | keine offene Maßnahme |
-| 21. Anlagen | 10/10 | kein offenes Hauptproblem | erfüllt: Zugang, Anlagenposten, AfA, Sachposten, Fehlerfall Sachkonto statt Anlage und Lösung sind konkret | keine offene Maßnahme |
-| 22. USt, E-Rechnung und deutsche Nachweissicht | 10/10 | kein offenes Hauptproblem | erfüllt: USt-Posten, E-Belegstatus, falsche USt-Produktbuchungsgruppe und Korrektur sind prüfbar | keine offene Maßnahme |
-| 23. Inventory Costing und Lagerbewertung | 10/10 | kein offenes Hauptproblem | erfüllt: Wertposten, Lagerregulierung, Lagerbewertung, Sachkontenabstimmung und Abschlusswirkung sind konkret | keine offene Maßnahme |
-| 24. Monatsabschluss / Record-to-Report | 10/10 | kein offenes Hauptproblem | erfüllt: Abschlussreihenfolge, OP, Bank, USt, Anlagen, Lager, GuV, Negativtest und Evidence Pack sind abnahmefähig | keine offene Maßnahme |
-| 25. Reporting, Controlling, Finanzberichte und Power BI | 10/10 | vor der Sofortmaßnahme zu generisch; Reporting wurde wie ein Buchungsprozess behandelt | nach Überarbeitung keine offene Lücke: GuV, Dimensionen, Drilldown, Datenanalysemodus, Power BI, Übung und UAT sind konkret | Kapitel 25 vollständig als Controlling-Lernmodul neu gefasst |
+| Kapitel | Bewertung /10 | Hauptschwäche | Generische Stellen | Fehlende konkrete Schritte | UAT-Qualität | Sofortmaßnahme |
+|---|---:|---|---|---|---|---|
+| 11. Order-to-Cash | 10/10 | keine offene Schwäche | keine | keine | konkret mit Beleg, Posten, Negativtest | keine Maßnahme |
+| 12. Procure-to-Pay | 10/10 | keine offene Schwäche | keine | keine | konkret mit Mengenabweichung und Korrektur | keine Maßnahme |
+| 13. Inventory und Warehouse | 10/10 | Einstieg war noch formelhaft | Kapitelauftakt | keine Prozesslücke | konkret für einfaches und gesteuertes Lager | Kapitelauftakt konkretisiert |
+| 14. Planning, Assembly und Manufacturing | 10/10 | Einstieg war noch formelhaft | Kapitelauftakt | keine Prozesslücke | konkret mit Verbrauch/Output-Negativtest | Kapitelauftakt konkretisiert |
+| 15. Service | 10/10 | Einstieg war noch formelhaft | Kapitelauftakt | keine Prozesslücke | konkret mit Serviceauftrag, Ressource, Ersatzteil | Kapitelauftakt konkretisiert |
+| 16. Projects | 10/10 | Einstieg war noch formelhaft | Kapitelauftakt | keine Prozesslücke | konkret mit Projektaufgabe und Meilenstein | Kapitelauftakt konkretisiert |
+| 17. Shopify, Dropshipping und Sonderverkauf | 10/10 | Hauptteil war zu schablonenhaft | Einsteigertext, Rollen, Schrittfolge, Buchungsspur | Dropshipping-Verknüpfung und Lagerprüfung waren zu knapp | UAT konkret, durch Hauptteil gestützt | Hauptteil vollständig ersetzt |
+| 18. Intercompany und Ausland | 10/10 | Hauptteil war zu schablonenhaft | Einsteigertext, Schrittfolge, Buchungsspur | IC-Ausgang/-Eingang war nicht ausreichend geführt | UAT konkret, durch Hauptteil gestützt | Hauptteil vollständig ersetzt |
+| 19. Debitoren, Kreditoren und OP-Ausgleich | 10/10 | Hauptteil war zu schablonenhaft | Einsteigertext, Schrittfolge, Buchungsspur | Ausgleich/Unapply war im Hauptteil zu knapp | UAT konkret, durch Hauptteil gestützt | Hauptteil vollständig ersetzt |
+| 20. Bank, Payments und Bankabstimmung | 10/10 | Hauptteil war zu schablonenhaft | Einsteigertext, Schrittfolge, Buchungsspur | Bankimport, Zuordnung und Abstimmung waren nicht als Klickfolge geführt | UAT konkret, durch Hauptteil gestützt | Hauptteil vollständig ersetzt |
+| 21. Anlagen | 10/10 | Hauptteil war zu schablonenhaft | Einsteigertext, Schrittfolge, Buchungsspur | Anlagenkarte, Zugang und AfA waren nicht als vollständige Klickfolge geführt | UAT konkret, durch Hauptteil gestützt | Hauptteil vollständig ersetzt |
+| 22. USt, E-Rechnung und deutsche Nachweissicht | 10/10 | Hauptteil war zu schablonenhaft | Einsteigertext, Setup, Schrittfolge, Buchungsspur | USt-Matrix, E-Belegstatus und USt-Abrechnung waren zu generisch | UAT konkret, durch Hauptteil gestützt | Hauptteil vollständig ersetzt |
+| 23. Inventory Costing und Lagerbewertung | 10/10 | Hauptteil war zu schablonenhaft | Einsteigertext, Kostenregulierung, Buchungsspur | Wertposten, Kostenregulierung und Hauptbuchbuchung waren zu knapp | UAT konkret, durch Hauptteil gestützt | Hauptteil vollständig ersetzt |
+| 24. Monatsabschluss / Record-to-Report | 10/10 | Hauptteil war zu schablonenhaft | Einsteigertext, Abschlussreihenfolge, Buchungsspur | OP, Bank, USt, Anlagen, Lager, Projekte und GuV waren nicht als Abschlusskette geführt | UAT konkret, durch Hauptteil gestützt | Hauptteil vollständig ersetzt |
+| 25. Reporting, Controlling, Finanzberichte und Power BI | 10/10 | war zuvor wie ein Buchungsprozess formuliert | vor Überarbeitung: Reporting-Generik | Drilldown, Datenanalysemodus und Power-BI-Abgrenzung fehlten | UAT konkret mit Filter-/Drilldown-Negativtest | bereits als Controlling-Lernmodul neu gefasst |
 
 Praktische Einordnung: Die Matrix ist eine Arbeitsprüfung für die Redaktion. Der Leser nutzt sie indirekt daran, dass jedes Prozesskapitel dieselbe fachliche Tiefe bietet: Geschäftsgrund, Rolle, BC-Bedienung, Postenspur, Bericht, Fehler, Lösung und UAT.
 
