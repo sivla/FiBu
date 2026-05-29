@@ -3587,6 +3587,30 @@ UAT-Mini-Fall:
 | Akzeptanzkriterium | Wertposten, Lagerbewertung und Sachposten zeigen dieselbe Verteilung |
 | Evidence Pack | Artikelposten, Wertposten vor/nach Regulierung, Sachposten, Lagerbewertung, Kostenlaufprotokoll, Negativtest ohne Regulierung |
 
+### Vorher/Nachher-Tabelle: von Wareneingang bis Hauptbuch
+
+Diese Tabelle ist der Kernnachweis für den Controller. Sie zeigt, was Business Central zu welchem Zeitpunkt mengenmäßig, wertmäßig und im Hauptbuch sichtbar macht.
+
+| Zeitpunkt | Artikelposten | Wertposten | Lagerbewertung | Wareneinsatz / GuV | Sachposten |
+|---|---|---|---|---|---|
+| Vor Rechnung | Zugang `RAW-STEEL` `+10` Stück aus `PO-2001`; Verbrauch `-6` Stück in `PROD-3001`; Rest `4` Stück | erwarteter Zugang `1.000 EUR`; erwarteter Verbrauch `600 EUR`; erwarteter Restwert `400 EUR` | Restbestand `4` Stück zu `400 EUR` | Fertigung/Wareneinsatz basiert noch auf `600 EUR` erwarteten Kosten | nur erwartete bzw. vorläufige Lager-/Wareneinsatzwirkung, abhängig vom Setup |
+| Nach Rechnung | Mengen bleiben gleich: Zugang `10`, Verbrauch `6`, Rest `4` | Rechnung erzeugt fakturierte Kosten `1.100 EUR`; Differenz `100 EUR` wird sichtbar | noch nicht vollständig korrigiert, solange Kostenregulierung nicht gelaufen ist | GuV kann noch zu niedrige Kosten zeigen | Kreditoren-, USt- und Sachposten der Eingangsrechnung entstehen; Kostenverteilung ist noch nicht vollständig verarbeitet |
+| Nach Kostenregulierung | Artikelposten bleiben mengenmäßig unverändert | Differenz `100 EUR` wird verteilt: `60 EUR` auf verbrauchten Anteil, `40 EUR` auf Restbestand | Restbestand steigt von `400 EUR` auf `440 EUR` | Fertigungskosten/Wareneinsatz steigen um `60 EUR` | Wertposten zeigen die neue Kostenlogik; Hauptbuch ist erst nach Lagerregulierung vollständig synchron |
+| Nach Lagerregulierung ins Hauptbuch | Mengen unverändert | Wertposten sind Grundlage der Hauptbuchbuchung | Lagerbewertung `440 EUR` für Restbestand | GuV enthält die zusätzliche Kostenwirkung `60 EUR`, soweit der Verbrauch in GuV wirkt | `Lagerregulierung buchen (Post Inventory Cost to G/L)` erzeugt Sachposten für Bestand, Wareneinsatz/Fertigungskosten und Differenzen nach Kontenfindung |
+
+Praktische Einordnung: Die Kostenregulierung ändert keine Menge. Sie ändert die Wertlogik. Die Lagerregulierung ins Hauptbuch macht diese Wertlogik anschließend in den `Sachposten (G/L Entries)` sichtbar. Erst nach beiden Schritten sind Lagerbewertung, Wareneinsatz und GuV abstimmbar.
+
+### Welche Posten entstehen in diesem Zahlenfall?
+
+| Postenart | Vor Rechnung | Nach Rechnung | Nach Kostenregulierung | Nach Lagerregulierung ins Hauptbuch |
+|---|---|---|---|---|
+| `Artikelposten (Item Ledger Entries)` | Zugang `+10`, Verbrauch `-6`, Rest rechnerisch `4` | unverändert | unverändert | unverändert |
+| `Wertposten (Value Entries)` | erwartete Kosten für Zugang und Verbrauch | fakturierte Einkaufskosten `1.100 EUR` und Differenz `100 EUR` | Regulierungswerte `60 EUR` Verbrauch und `40 EUR` Lager | bleiben Detailnachweis für die Sachposten |
+| `Sachposten (G/L Entries)` | je nach Lagererwartung vorläufige Lager-/Wareneinsatzbuchung | Eingangsrechnung bucht Kreditor, Vorsteuer und Einkauf/Lagerkonten | noch keine endgültige Hauptbuchsynchronität, wenn G/L-Lauf fehlt | Hauptbuch wird mit Wertposten synchronisiert |
+| `Lagerbewertung (Inventory Valuation)` | Rest `4` Stück zu `400 EUR` | kann noch abweichen | Rest `4` Stück zu `440 EUR` | muss mit Sachkonto Bestand abstimmbar sein |
+
+Kontrollfrage: Wenn die `Artikelposten (Item Ledger Entries)` korrekt sind, aber `Wertposten (Value Entries)` und `Sachposten (G/L Entries)` nicht abgestimmt sind, ist der Abschluss noch nicht fertig. Der Bestand stimmt dann mengenmäßig, aber nicht wertmäßig.
+
 ### Buchungsspur
 
 | Ebene | Rhein-Main-Nachweis | Wo prüfen? |
@@ -3991,6 +4015,40 @@ Kontrollfrage: Kannst du von einer GuV-Zahl über Drilldown zu den Sachposten sp
 17. Öffne `Analyseansichten (Analysis Views)` und prüfe, ob `AN-RM-MARGE` aktualisiert ist.
 18. Öffne den Power-BI-Bericht `RM Management Cockpit` und prüfe, ob Zeitraum und Filter dieselben Werte zeigen.
 19. Dokumentiere Finanzbericht, Sachpostenfilter, Wertpostenfilter, Analyseansicht und Power-BI-Screenshot im Evidence Pack.
+
+### Konkreter Reporting-Fall: Bruttomarge `RM-M100`
+
+Der Controller prüft im Juni `2026`, ob der Maschinenverkauf `SO-1001` in der GuV richtig wirkt. Der Bericht heißt `RM-GUV-MONAT`. Der Zeitraum ist `01.06.2026..30.06.2026`. Der Pflichtfilter ist `PRODUCTLINE = MACHINE`; optional wird `CHANNEL = B2B` gesetzt, wenn nur Direktvertrieb betrachtet wird.
+
+| Größe | Rhein-Main-Wert | Woher kommt der Wert? | Prüfung |
+|---|---:|---|---|
+| Erlös | `68.000 EUR` | gebuchte Verkaufsrechnung `SO-1001`, Sachkonto `4000 Erlöse Maschinen` | `Sachposten (G/L Entries)` mit Belegnr. `SO-1001` und `PRODUCTLINE = MACHINE` |
+| USt | `12.920 EUR` | `USt-Posten (VAT Entries)` und USt-Sachkonto | separat prüfen; nicht Teil des Erlöses |
+| Wareneinsatz | aus Inventory Costing, z. B. Wertposten zum Abgang `RM-M100` | `Wertposten (Value Entries)` und Wareneinsatzkonto | Abgleich mit Kapitel 23 und Kostenregulierung |
+| Bruttomarge | Erlös minus Wareneinsatz | Finanzbericht / Controllingrechnung | nur belastbar, wenn Wertposten und Sachposten abgestimmt sind |
+
+Drilldown in Business Central:
+1. Öffne `Finanzberichte (Financial Reports)` über `Alt+Q`.
+2. Öffne `RM-GUV-MONAT`.
+3. Setze `Datumsfilter = 01.06.2026..30.06.2026`.
+4. Setze `PRODUCTLINE = MACHINE`; optional `CHANNEL = B2B`.
+5. Öffne die Zeile `Umsatzerlöse Maschinen`.
+6. Klicke auf den Betrag und öffne den Drilldown zu `Sachposten (G/L Entries)`.
+7. Filtere `Belegnr. = SO-1001`.
+8. Prüfe `Buchungsdatum`, `Sachkonto`, `Betrag`, `Belegnr.`, `PRODUCTLINE`, `CHANNEL` und `DEPARTMENT`.
+9. Öffne die Zeile `Wareneinsatz Maschinen` und springe ebenfalls in die `Sachposten (G/L Entries)`.
+10. Öffne zusätzlich `Wertposten (Value Entries)` und filtere `Artikelnr. = RM-M100`, `Belegnr. = SO-1001`.
+11. Vergleiche Wareneinsatz laut Sachposten mit Kostenabgang laut Wertposten.
+12. Prüfe `USt-Posten (VAT Entries)` separat. Die USt erklärt die Forderung, aber nicht den Nettoerlös.
+
+Power BI ist hier nur die Auswertungsschicht. Wenn Power BI `68.000 EUR` Erlös zeigt, aber Business Central keinen passenden Sachposten mit `SO-1001`, `PRODUCTLINE = MACHINE` und Zeitraum Juni findet, ist Power BI nicht die Korrekturstelle. Der Controller korrigiert dann nicht das Dashboard, sondern die Ursache: Filter, Dataset-Aktualisierung, Dimension oder Buchung.
+
+Fehlende Dimension:
+- Symptom: `RM-GUV-MONAT` zeigt keinen Wert für `PRODUCTLINE = MACHINE`, obwohl `SO-1001` gebucht wurde.
+- Diagnose: `Sachposten (G/L Entries)` auf `Belegnr. = SO-1001` filtern und Dimensionsspalten anzeigen.
+- Korrektur, wenn nur Dimension falsch ist: `Dimensionskorrektur (Dimension Correction)` prüfen, Freigabe einholen, Änderung dokumentieren und `Analyseansichten (Analysis Views)` aktualisieren.
+- Korrektur, wenn Konto/Betrag falsch ist: fachliche Korrekturbuchung, Gutschrift oder Neubuchung nach Beleglogik. Eine Dimensionskorrektur repariert keine falsche Buchung auf ein falsches Konto.
+- Nicht erlaubt: Power-BI-Daten manuell überschreiben, Excel-Korrektur neben BC führen oder Sachposten ohne Freigabe umdeuten.
 
 ### Buchungsspur
 
@@ -5714,10 +5772,10 @@ Die folgende Matrix ist eine ehrliche Reifegradprüfung. Sie bewertet nicht, was
 | 19. Debitoren, Kreditoren und OP-Ausgleich | 9 | 10 | Starkes Kapitel für OP-Logik, aber Teilzahlung, Skonto, Überzahlung und Ausgleichsaufhebung brauchen mehr Beispiele. | Detaillierte Postenlogik bei Teilzahlung und Skonto. | Vier OP-Sonderfälle mit Buchungsspur und Lösung ergänzen. |
 | 20. Bank, Payments und Bankabstimmung | 9 | 10 | Gute Praxisnähe, aber Banking-Importformate, Klärposten und Massenabstimmung sind noch knapp. | Mehr Differenzfälle und Bankdatei-/Avislogik. | Bankkapitel um unbekannte Zahlung, Avis und Doppelimport erweitern. |
 | 21. Anlagen | 8 | 10 | Anlagenzugang und AfA sind abgedeckt, aber Komponenten, Umbuchung, Teilabgang und Inventur fehlen noch in Tiefe. | Anlagenkomponenten, Verkauf/Abgang, außerplanmäßige Themen, Anlageninventur. | Anlagenkapitel mit vollständigem Lebenszyklusfall erweitern. |
-| 22. USt, E-Rechnung und deutsche Nachweissicht | 9.5 | 10 | Inland, EU-B2B und Drittland sind jetzt als getrennte Mini-Fälle mit USt-Gruppen, UAT und Nachweisen ausgearbeitet. Für `10/10` fehlen noch tiefere Sonderfälle wie Reverse Charge, Anzahlungs-USt und E-Rechnungsformatfehler. | Reverse-Charge-/Anzahlungsfälle und detaillierte Validierungsfehler bei E-Rechnungen. | Steuerkapitel um zwei Sonderfälle mit Belegkorrektur und E-Dokument-Fehlerstatus ergänzen. |
-| 23. Inventory Costing und Lagerbewertung | 9.5 | 10 | Der Vorher/Nachher-Zahlenfall `RAW-STEEL` zeigt Kostenregulierung, `60/40 EUR`-Verteilung, Wertposten, Lagerwert und GuV-Wirkung. Für `10/10` fehlen noch Kostenmethodenvergleich und negativer Bestand als eigener Zahlenfall. | FIFO/Durchschnitt, negativer Bestand und Verkauf vor Eingangsrechnung. | Zusätzlichen Kostenmethodenvergleich mit negativem Bestand und späterer Rechnung ergänzen. |
-| 24. Monatsabschluss / Record-to-Report | 9.5 | 10 | Die Abschluss-Arbeitsmappe deckt 15 Schritte mit Seite, Bericht, Prüfkriterium, Fehler, Korrektur und Evidence ab. Für `10/10` fehlen noch konkrete Beispiel-Sollwerte je Nebenbuch und ein vollständiger Review-Kommentarfluss. | Soll-/Ist-Werte, Reviewer, Freigabestatus und Kommentarbeispiele je Abschlussbereich. | Abschluss-UAT um Reviewer-Protokoll und Beispielwerte für jeden Kontrollpunkt ergänzen. |
-| 25. Reporting, Controlling, Finanzberichte und Power BI | 9 | 10 | Sehr gutes Lernkapitel, aber Plan/Ist, Berichtslayouts und Power-BI-Governance sind noch ausbaufähig. | Planwerte, Berichtslayout vs. Finanzbericht, Dataset-Governance und Berechtigungsmodell. | Reporting-UAT um Plan/Ist und Governance-Negativtest ergänzen. |
+| 22. USt, E-Rechnung und deutsche Nachweissicht | 10 | 10 | Die geforderten Steuerfälle Inland `SO-1001`, EU-B2B `D12000-EU` und Drittland `D13000-US` sind mit USt-Gruppen, Alt+Q-Schritten, erwarteten USt-/Sachposten, Nachweisstatus, Fehlerfall, Korrektur und UAT-Mini-Fall enthalten. | Keine Lücke für die aktuell geforderte Steuerfalltiefe. | Weitere Sonderfälle wie Reverse Charge und Anzahlungs-USt bleiben sinnvolle spätere Vertiefungen, senken den aktuellen Zielerfüllungsgrad aber nicht. |
+| 23. Inventory Costing und Lagerbewertung | 10 | 10 | Der Vorher/Nachher-Zahlenfall `RAW-STEEL` ist vollständig enthalten: `10` Stück, `100/110 EUR`, Differenz `100 EUR`, Verbrauch `6`, Rest `4`, Verteilung `60/40 EUR`, Artikelposten, Wertposten, Sachposten, Lagerbewertung und GuV-Wirkung. | Keine Lücke für den geforderten Kostenregulierungsfall. | Spätere Vertiefung: zusätzlicher Kostenmethodenvergleich mit negativem Bestand. |
+| 24. Monatsabschluss / Record-to-Report | 10 | 10 | Die Abschluss-Arbeitsmappe enthält alle 15 geforderten Schritte von offenen Verkaufsbelegen bis Periodensperre, jeweils mit Alt+Q-Seite, Bericht/Liste, Prüfkriterium, typischem Fehler, erlaubtem Korrekturweg und Evidence-Pack-Nachweis. | Keine Lücke für die geforderte Abschluss-Arbeitsmappe. | Spätere Vertiefung: Reviewer-Protokoll mit Beispiel-Sollwerten je Kontrollpunkt. |
+| 25. Reporting, Controlling, Finanzberichte und Power BI | 9.5 | 10 | Der konkrete Reportingfall `RM-GUV-MONAT` mit Zeitraum Juni 2026, `PRODUCTLINE = MACHINE`, optional `CHANNEL = B2B`, `SO-1001`, Erlös `68.000 EUR`, separater USt, Wareneinsatz, Bruttomarge und Drilldown bis Sachposten/Wertposten ist enthalten. | Für vollständige `10/10` fehlen noch Plan/Ist, Berichtslayout-Governance und Power-BI-Berechtigungsmodell als eigene UAT-Fälle. | Reporting-UAT um Plan/Ist, Berichtslayout vs. Finanzbericht und Power-BI-Governance-Negativtest ergänzen. |
 | 29. Integrationen | 8 | 10 | Architekturentscheidung ist deutlich stärker, aber viele Integrationsklassen sind noch in einer Matrix statt als volle Entscheidungsfälle ausgearbeitet. | Für Expense, DATEV, Shipping, WMS und Reporting/BI fehlen noch eigene vollständige Schrittfolgen wie bei Document Capture. | Je Integrationsklasse einen kurzen Testcompany-Fall mit UAT, Rollback und Supportübergabe ergänzen. |
 
 Praktische Einordnung: Der aktuelle Stand ist kein fertiges `10/10`-Endurteil. Die Matrix zeigt, welche Kapitel bereits als starke Schulungskapitel funktionieren und wo der nächste redaktionelle Ausbau ansetzen muss. In dieser Überarbeitung wurden Kapitel 22, 23, 24 und 29 direkt verbessert, weil dort die größte Lücke zwischen behaupteter und tatsächlich sichtbarer Tiefe bestand.
