@@ -103,64 +103,6 @@ Business Central deckt nach Microsofts offizieller Prozesslandkarte Finance, Sal
 | Human Resources | Mitarbeiter, Abwesenheiten | Basis-HR im BC-Standard zeigen |
 | Admin/Reporting | Rollen, Berechtigungen, Change Log, Job Queue, Analyse | Betrieb und Nachweis sichern |
 
-### Vollständigkeitsstatus und Buchprinzip
-
-Dieses Buch ist ein vollumfängliches Business-Central-Einführungs-, Schulungs-, Projekt-, Nachschlage- und Architekturhandbuch für den deutschen Unternehmenskontext. Es verbindet BC-Standardprozesse, deutsche Finance-/Compliance-Perspektive, praktische Bedienung, Buchungsspur, Fehlerdiagnose, UAT, Evidence Packs, MB-800-Abdeckung, Microsoft-Learn-Lernpfade und Solution-Architect-Denken in einer einheitlichen Lern- und Projektstruktur.
-
-Vollständigkeit bedeutet in diesem Buch:
-- Alle relevanten BC-Standardbereiche werden fachlich erklärt und praktisch durchgespielt.
-- Jeder Prozess enthält Zweck, Rolle, Setup, Stammdaten, Bedienpfad, Happy Path, Abweichungen, Diagnose, Korrektur, Buchungsspur, Bericht, Evidence Pack, Übung, Lösung und UAT-Fall.
-- Jede wichtige Buchung wird über Beleg, gebuchten Beleg, Posten, Nebenbuch, Sachposten, USt-Posten, Artikelposten, Wertposten oder Bericht nachvollziehbar gemacht.
-- Die deutsche BC-Oberfläche ist führend; englische Microsoft-Learn-/Tell-Me-Begriffe stehen als Such- und Quellenhilfe daneben.
-- Alle MB-800-relevanten Skills sind über eine Kompetenzmatrix abgebildet.
-- Der offizielle Microsoft-Learn-Vorbereitungspfad zur MB-800-Zertifizierung ist über Lernpfad-, Modul- und Unit-Mapping eingebunden.
-- Die offizielle Business-Central-Produktdokumentation von Microsoft Learn dient zusätzlich als Vollständigkeits-Overlay für alle BC-Standardbereiche.
-- Relevante Lernpfade und Kompetenzbereiche außerhalb von MB-800 werden als Architektur- und Projektkompetenz integriert, soweit sie für Business Central Standard, Integrationen, Power Platform, Reporting, Betrieb oder Solution Architecture sinnvoll sind.
-- Standard, Pflicht, Best Practice, Projektentscheidung, Extension und Customizing werden sauber getrennt.
-
-| Buchschicht | Was das Buch liefert | Praktischer Nachweis |
-|---|---|---|
-| BC-Prozesslandkarte | alle relevanten Standardbereiche Ende-zu-Ende | Prozesskapitel und E2E-Fälle |
-| Einsteigerpfad | Oberfläche, Suche, Rollen, Belege, Posten, Filter, Korrekturen | Onboarding- und Bedienkapitel |
-| Prozessmodule | Zweck, Setup, Stammdaten, Bedienpfad, Happy Path, Abweichungen | Kapitelstruktur je Prozess |
-| Buchungsspur | Beleg, gebuchter Beleg, Entries, Nebenbuch, Sachposten, Bericht | Postenlogik und Evidence Pack |
-| Finance/R2R | Hauptbuch, Nebenbücher, Bank, Anlagen, USt, Abschluss, Reporting | Finance-Kapitel und Abschlussfall |
-| Operative Prozesse | Sales, Purchasing, Inventory, Warehouse, Planning, Assembly, Manufacturing, Service, Projects | UAT- und Schulungsfälle |
-| Fehlerdiagnose | typische Fehler, Ursache, Diagnosepfad, Korrekturweg | Diagnosematrizen |
-| UAT | Happy Path, Abweichung, Akzeptanzkriterien | Master-UAT und Testskripte |
-| MB-800-Abdeckung | alle aktuellen Skills measured | MB-800-Kompetenzmatrix |
-| Microsoft-Learn-Lernpfad | Lernpfade, Module und Units | Lernpfad-Mapping |
-| BC-Produktlandkarte | alle relevanten Standardbereiche aus Microsoft Learn | Produktlandkarten-Mapping |
-| Solution Architecture | Standard-first, Fit-Gap, Datenmodell, Security, Integration, Migration, Betrieb | Solution-Architect-Kapitel |
-| Projektfähigkeit | Fit-Gap, Standardgrenzen, Extensions, Go-live, Hypercare | Consultant- und Projektkapitel |
-
-Jedes relevante Prozesskapitel folgt dieser Struktur:
-1. Zweck und Prozesskontext.
-2. Warum braucht die Rhein-Main Industriegruppe diesen Prozess?
-3. Quelle und Standardeinordnung.
-4. MB-800-Zuordnung, falls relevant.
-5. Microsoft-Learn-Lernpfad-/Modul-/Unit-Zuordnung, falls relevant.
-6. Beteiligte Rollen.
-7. Setup-Voraussetzungen.
-8. Stammdaten.
-9. Schritt-für-Schritt-Bedienpfad.
-10. Happy Path mit Beispieldaten.
-11. Abweichungen.
-12. Diagnosepfad.
-13. Korrekturweg.
-14. Buchungsspur und Postenlogik.
-15. Kontrollbericht.
-16. Evidence Pack.
-17. Typische Anfängerfehler.
-18. MB-800-Prüfungsfallen, falls relevant.
-19. Solution-Architect-Box, falls relevant.
-20. Wiederholungsfragen.
-21. Szenariofragen.
-22. Praktische Übung.
-23. Lösungsskizze.
-24. UAT-Testfall.
-25. Akzeptanzkriterien.
-26. Standardgrenze und Erweiterungsentscheidung.
 
 ### Standard, Pflicht, Best Practice und Projektentscheidung
 
@@ -380,7 +322,7 @@ flowchart LR
 
 ### Erzählerischer Zusammenhang der Use Cases
 
-Die Rhein-Main Industriegruppe verdient ihr Geld nicht mit einem einzigen Prozess. Ein Maschinenverkauf beginnt im Vertrieb, löst Verfügbarkeitspr?fung aus, kann Fertigung anstoßen, bewegt Lagerwerte und endet in Forderung, Zahlung und GuV. Ein Servicefall beginnt beim Kundenproblem, verbraucht Ersatzteile, erzeugt Technikerzeiten und entscheidet zwischen Rechnung, Garantie und Kulanz. Ein Projekt verbindet Sondermaschine, Fremdleistung, Material, Ressourcen und Meilensteinrechnung.
+Die Rhein-Main Industriegruppe verdient ihr Geld nicht mit einem einzigen Prozess. Ein Maschinenverkauf beginnt im Vertrieb, löst Verfügbarkeitsprüfung aus, kann Fertigung anstoßen, bewegt Lagerwerte und endet in Forderung, Zahlung und GuV. Ein Servicefall beginnt beim Kundenproblem, verbraucht Ersatzteile, erzeugt Technikerzeiten und entscheidet zwischen Rechnung, Garantie und Kulanz. Ein Projekt verbindet Sondermaschine, Fremdleistung, Material, Ressourcen und Meilensteinrechnung.
 
 Mehrere Companies sind deshalb kein Selbstzweck. RM-PROD zeigt Produktion und Materialfluss. RM-SALES zeigt Markt, Kunden, Preise und Onlineshop. RM-SERVICE zeigt laufende Kundenbetreuung. RM-SHARED bündelt Finance, USt, Bank, Reporting und Administration. RM-AT macht EU- und Auslandsszenarien sichtbar. Business Central löst damit reale Probleme: weniger Dubletten, bessere Verfügbarkeit, nachvollziehbare Steuerlogik, abgestimmte Posten, belastbare GuV nach Produktlinie und klare Verantwortlichkeiten.
 
@@ -877,173 +819,144 @@ Merksatz:
 
 ---
 
-### Vollständiger Bedien- und Prozesskatalog
-
-Dieses Kapitel ist der vollständige Arbeitskatalog für Business Central. Es verbindet alle Prozessbereiche mit der Frage: Wo finde ich es, was richte ich ein, was macht der Mitarbeiter, welche Posten entstehen, welcher Bericht kontrolliert das Ergebnis und welche Fehler sind typisch? Damit wird aus dem Buch ein Bedien- und Schulungssystem.
-
-### Das Universal-Pattern für jeden BC-Prozess
-
-Jeder Prozess wird nach demselben Muster geschult:
-
-1. **Ziel verstehen:** Was soll fachlich passieren?
-2. **Seite finden:** `Alt+Q` nutzen und Suchbegriff eingeben.
-3. **Setup prüfen:** Buchungsgruppen, Nummernserien, Dimensionen, Rollen, Lagerort, Steuerlogik.
-4. **Stammdaten prüfen:** Kunde, Lieferant, Artikel, Ressource, Sachkonto, Projekt, Anlage.
-5. **Beleg erfassen:** Kopf, Zeilen, Datum, Menge, Preis, Steuer, Dimension.
-6. **Vor Buchung prüfen:** Company, Datum, Partner, Betrag, USt, Lagerort, Dimension.
-7. **Buchen:** passende Aktion wählen.
-8. **Posten prüfen:** Nebenbuch und Hauptbuch öffnen.
-9. **Bericht prüfen:** Financial Report, Lagerbewertung, OP-Liste, Projektbericht oder Analyse.
-10. **Fehler korrigieren:** nie löschen, sondern fachlich stornieren, gutschreiben, umbuchen oder korrigieren.
-11. **Evidence Pack sichern:** Beleg, Entries, Bericht, Freigabe, Nachweis.
-
-Merksatz:
-- Ein vollständiger BC-Prozess endet nicht mit `Post`. Er endet mit Kontrolle, Nachweis und verständlicher Buchungsspur.
-
-### Vollständige Prozesslandkarte
-
-| Prozessbereich | Deutsche Hauptseiten mit englischer Suchhilfe | Setup | Mitarbeiteraktion | Posten/Nachweis | Kontrollbericht |
-|---|---|---|---|---|---|
-| Company & Foundation | `Unternehmen (Companies)`, `Unternehmensdaten (Company Information)`, `Unterstützte Einrichtung (Assisted Setup)` | Mandant, Region, Währung, Nummernserien | Mandant anlegen und prüfen | Setup-Protokoll | Setup-Checkliste |
-| Benutzer & Rollen | `Benutzer (Users)`, `Berechtigungssätze (Permission Sets)`, `Profile/Rollen (Profiles (Roles))` | Lizenz, Berechtigungssätze, Profile | Nutzer berechtigen | Benutzerkarte, Berechtigungssätze | Berechtigungsreview |
-| Dimensionen | `Dimensionen (Dimensions)`, `Standarddimensionen (Default Dimensions)` | globale Dimensionen, Shortcut-Dimensionen, Wertbuchung | Dimensionen zuweisen | Sachposten (G/L Entries) mit Dimension | Dimensionen - Detail |
-| Kontenplan | `Kontenplan (Chart of Accounts)`, `Sachkontokategorien (G/L Account Categories)` | Konten, Kategorien, Direktbuchung | Konto pflegen und sperren | Sachposten (G/L Entries) | Finanzberichte |
-| USt | `USt-Buchungsmatrix (VAT Posting Setup)`, `USt-Posten (VAT Entries)` | USt-Geschäftsbuchungsgruppen, USt-Produktbuchungsgruppen | Steuerlogik buchen und prüfen | USt-Posten (VAT Entries) | USt-Abstimmung |
-| O2C | `Verkaufsangebote (Sales Quotes)`, `Verkaufsaufträge (Sales Orders)`, `Gebuchte Verkaufsrechnungen (Posted Sales Invoices)` | Verkaufseinrichtung, Debitoren, Preise | Angebot/Auftrag/Rechnung | Debitorenposten, Sachposten, USt-Posten | OP-Liste, GuV |
-| Retouren | `Verkaufsreklamationsaufträge (Sales Return Orders)`, `Verkaufsgutschriften (Sales Credit Memos)` | Retourengründe, Lagerort | Ware zurücknehmen/gutschreiben | Artikelposten, Debitorenposten | Retourenliste |
-| Mahnwesen | `Mahnungen (Reminders)`, `Debitorenposten (Customer Ledger Entries)` | Mahnmethoden, Zahlungsbedingungen | offene Posten mahnen | Mahnung, Debitorenposten | Debitorenfälligkeit |
-| P2P | `Einkaufsbestellungen (Purchase Orders)`, `Gebuchte Einkaufsrechnungen (Posted Purchase Invoices)` | Einkaufseinrichtung, Kreditoren | bestellen, empfangen, fakturieren | Kreditorenposten, Sachposten, USt-Posten | Kreditorenfälligkeit |
-| Einkaufspreise | `Einkaufspreislisten (Purchase Price Lists)` | Preislisten, Kreditorartikel | Preise pflegen | Belegzeilen, Margenprüfung | Einkaufsanalyse |
-| Verkaufspreise | `Verkaufspreislisten (Sales Price Lists)` | Preisgruppen, Rabatte | Preise pflegen | Belegzeilen, Erlöse | Margenanalyse |
-| Lager/Bestand | `Artikel (Items)`, `Artikeljournale (Item Journals)`, `Artikelposten (Item Ledger Entries)` | Artikel, Einheiten, Kostenmethode | Bestand buchen/korrigieren | Artikelposten, Wertposten | Lagerbewertung |
-| Basislager | `Lagereinlagerungen (Inventory Put-aways)`, `Lagerkommissionierungen (Inventory Picks)` | Lagerort, Lagerplatzpflicht | einlagern/kommissionieren | Lageraktivität, Artikelposten | Lagerbewegungen |
-| Gesteuertes Lager | `Lagereingänge (Warehouse Receipts)`, `Lagereinlagerungen (Warehouse Put-aways)`, `Lagerkommissionierungen (Warehouse Picks)` | Wareneingang/Kommissionierung erforderlich, gesteuerte Einlagerung | empfangen, einlagern, kommissionieren | Lagerposten, Artikelposten | Lagerplatzinhalt |
-| Inventur | `Inventurjournale (Physical Inventory Journals)` | Inventurzyklen, Lagerorte | zählen und buchen | Artikelposten, Wertposten | Inventurdifferenzen |
-| Planung | `Planungsarbeitsblätter (Planning Worksheets)`, `Bestellarbeitsblätter (Requisition Worksheets)` | Planungspolitik, Absatzplanung | Bedarf berechnen | Vorschlagszeilen | Planungsarbeitsblatt |
-| Montage | `Montageaufträge (Assembly Orders)` | Montagestückliste, Artikel | Kit montieren | Montage-/Artikelposten | Montagekosten |
-| Fertigung | `Fertigungsstücklisten (Production BOMs)`, `Arbeitspläne (Routings)`, `Fertigungsaufträge (Production Orders)` | Stücklisten, Arbeitspläne, Kapazitäten | Verbrauch und Output buchen | Artikel-/Kapazitäts-/Wertposten | Produktionsstatistik |
-| Fremdarbeit | `Fremdarbeitsarbeitsblätter (Subcontracting Worksheets)`, Einkauf | Arbeitsgänge, Kreditor | Fremdleistung beschaffen | Einkaufs-, Kapazitäts-, Wertposten | Fertigungsabweichung |
-| Service | `Serviceartikel (Service Items)`, `Serviceaufträge (Service Orders)`, `Serviceverträge (Service Contracts)` | Serviceeinrichtung, Verträge | Reparatur/Wartung erfassen | Serviceposten, Sachposten | Serviceberichte |
-| Projekte | `Projekte (Projects/Jobs)`, `Projektjournale (Project Journals)`, `Projektplanzeilen (Project Planning Lines)` | Projektsetup, WIP-Methode | Aufwand, Budget, Faktura | Projektposten, Sachposten | Projektanalyse |
-| Anlagen | `Anlagen (Fixed Assets)`, `Anlagenjournale (FA Journals)` | Anlagenbuchungsgruppen, AfA-Bücher | Zugang, AfA, Abgang | Anlagenposten, Sachposten | Anlagenliste |
-| Bank & Zahlungen | `Zahlungsjournale (Payment Journals)`, `Zahlungsabstimmungsjournale (Payment Reconciliation Journals)` | Bankkonten, Zahlungsarten | zahlen, abstimmen | Bank-/Sachposten, Debitoren-/Kreditorenposten | Bankabstimmung |
-| Abschluss | `Buchhaltungsperioden (Accounting Periods)`, `Fibu Buch.-Blätter (General Journals)`, `Finanzberichte (Financial Reports)` | Perioden, Sperren, Abschlusskonten | abgrenzen, schließen, berichten | Sachposten | Bilanz/GuV |
-| Intercompany | `Intercompany-Einrichtung (Intercompany Setup)`, IC-Buch.-Blätter | IC Partner, IC Konten | IC-Belege senden/empfangen | IC-Posten, Sachposten | IC-Abstimmung |
-| Shopify/Online | `Shopify Shops`, `Verkaufsaufträge (Sales Orders)` | Shop, Mapping, Steuer | Shopaufträge verarbeiten | Verkaufs-, Debitoren-, USt-Posten | Shop-Abstimmung |
-| Dropshipping | `Verkaufsaufträge (Sales Orders)`, `Einkaufsbestellungen (Purchase Orders)` | Einkaufscode (Purchasing Code), Lieferant | Direktlieferung steuern | verknüpfte Verkaufs-/Einkaufsposten | Marge, Steuer, Liefernachweis |
-| Reporting | `Finanzberichte (Financial Reports)`, `Analysemodus (Analysis Mode)`, `Analyseansichten (Analysis Views)` | Dimensionen, Reports | auswerten und filtern | Sachposten, Dimensionen | GuV, Bilanz, Analyse |
-| Administration | `Aufgabenwarteschlangenposten (Job Queue Entries)`, `Änderungsprotokoll (Change Log)`, `Erweiterungsverwaltung (Extension Management)` | Jobs, Protokollierung, Apps | Betrieb überwachen | Protokolle, Änderungsprotokoll | Admin-Kalender |
-
-### Vollständige Schrittfolge Grundeinrichtung
-
-Diese Reihenfolge gilt für einen neuen Trainingsmandanten. Sie ist bewusst streng, weil spätere Korrekturen an Fundamentdaten teuer werden.
-
-1. `Unternehmen (Companies)` öffnen und Company `RM-PROD` anlegen.
-2. `Unternehmensdaten (Company Information)` pflegen: Name, Adresse, USt-ID, Bankdaten.
-3. `Finanzbuchhaltung Einrichtung (General Ledger Setup)` prüfen: Währung, Buchungsdatum, Rundung, Dimensionslogik.
-4. `Buchhaltungsperioden (Accounting Periods)` für das Geschäftsjahr anlegen.
-5. `Kontenplan (Chart of Accounts)` importieren oder pflegen.
-6. `Sachkontokategorien (G/L Account Categories)` für Bilanz und GuV zuordnen.
-7. `Allgemeine Buchungsmatrix Einrichtung (General Posting Setup)` für Geschäftsbuchungsgruppen und Produktbuchungsgruppen pflegen.
-8. `USt-Buchungsmatrix Einrichtung (VAT Posting Setup)` für Inland, EU und Drittland pflegen.
-9. `Debitorenbuchungsgruppen (Customer Posting Groups)` und `Kreditorenbuchungsgruppen (Vendor Posting Groups)` definieren.
-10. `Lagerbuchungsmatrix Einrichtung (Inventory Posting Setup)` und Lagerkonten definieren.
-11. `Dimensionen (Dimensions)` anlegen: `DEPARTMENT`, `PRODUCTLINE`, `CHANNEL`, `LOCATION-GROUP`, `PROJECT`.
-12. `Standarddimensionen (Default Dimensions)` an Debitoren, Kreditoren, Artikeln, Ressourcen und Sachkonten pflegen.
-13. `Nummernserien (No. Series)` für Debitoren, Kreditoren, Artikel, Belege, Anlagen, Projekte definieren.
-14. `Verkauf & Marketing Einrichtung (Sales & Receivables Setup)` prüfen.
-15. `Einkauf & Kreditoren Einrichtung (Purchases & Payables Setup)` prüfen.
-16. `Lager Einrichtung (Inventory Setup)` prüfen.
-17. Lagerorte in `Locations` anlegen: einfaches Lager, Basic Warehouse, Advanced Warehouse.
-18. Bins und Lagerplatzlogik für gesteuertes Lager anlegen.
-19. Debitoren und Kreditoren anlegen.
-20. Artikel, Einheiten, Varianten, Item Tracking und Preise anlegen.
-21. Ressourcen, Projekte, Anlagen, Serviceartikel anlegen.
-22. Workflows und Genehmigungen einrichten.
-23. `Benutzer (Users)`, `Berechtigungssätze (Permission Sets)`, `Profile/Rollen (Profiles (Roles))` einrichten.
-24. `Aufgabenwarteschlangenposten (Job Queue Entries)` für Kostenregulierung, Reports, Schnittstellen prüfen.
-25. `Änderungsprotokoll Einrichtung (Change Log Setup)` für kritische Tabellen aktivieren.
-26. Extensions installieren und dokumentieren.
-27. Testdaten laden.
-28. UAT nach Kapitel 17 und 29 durchführen.
-29. Go-Live-Checkliste unterschreiben.
-30. Produktivbetrieb mit Admin-Kalender starten.
-
-Prüfungsfalle:
-- Stammdaten können schnell angelegt werden. Das Setup darunter entscheidet aber, ob die späteren Buchungen richtig in Bilanz, GuV, USt, Lager und Reporting landen.
-
-### Vollständige operative Tagesroutine nach Rolle
-
-| Rolle | Tagesstart | operative Arbeit | Tagesende |
-|---|---|---|---|
-| Verkauf | offene Angebote/Aufträge prüfen | Auftrag, Preis, Verfügbarkeit, Lieferung, Rechnung | gebuchte Rechnungen und offene Lieferungen prüfen |
-| Einkauf | Bestellvorschläge und offene Bestellungen prüfen | Bestellung, Wareneingang, Eingangsrechnung | Preis-/Mengenabweichungen klären |
-| Lager einfach | offene Eingänge/Ausgänge prüfen | direkt empfangen, liefern, zählen | Item Ledger und Differenzen prüfen |
-| Lager gesteuert | Warehouse Receipts, Put-aways, Picks prüfen | Receive, Put-away, Pick, Ship | offene Warehouse-Aktivitäten schließen |
-| Fertigung | offene Fertigungsaufträge prüfen | Material, Output, Ausschuss, Nacharbeit | Verbrauch/Output und Abweichung prüfen |
-| Service | offene Serviceaufträge prüfen | Diagnose, Ersatzteil, Ressource, Faktura | Servicekosten und Vertragsfälle prüfen |
-| Projektleitung | Projektaufgaben prüfen | Ressourcen, Einkauf, WIP, Rechnung | Budget/Ist prüfen |
-| Buchhaltung | offene Posten und Journale prüfen | Rechnungen, Zahlungen, USt, Anlagen | OP, Bank, Fehlerjournal prüfen |
-| Controlling | GuV und Abweichungen prüfen | Drilldown, Dimensionen, Margen | Ursachenliste aktualisieren |
-| Admin/Superuser | Job Queue, Fehler, Nutzer prüfen | Rechte, Setup, Change Requests | kritische Änderungen dokumentieren |
-
-### Vollständige Fehler- und Korrekturmatrix
-
-| Bereich | typischer Fehler | zuerst prüfen | Korrekturweg |
-|---|---|---|---|
-| Stammdaten | falsche Buchungsgruppe | Karte, Posting Setup, Testbuchung | Stammdaten ändern, Altbelege fachlich korrigieren |
-| Verkauf | falscher Preis | Price List, Menge, Datum, Kunde | Belegzeile neu validieren oder Gutschrift |
-| Einkauf | falscher Kreditor | Bestellung, Rechnung, OP | stornieren/gutschreiben und neu erfassen |
-| USt | falsche VAT Group | Debitor/Kreditor, Artikel, VAT Setup | Steuerkorrektur mit Finance-Freigabe |
-| Lager | falscher Lagerort | Item Ledger, Location, Bin | Umlagerung oder Korrekturjournal |
-| Warehouse | offene Aktivität | Warehouse Entries, Put-away/Pick | Aktivität abschließen oder korrigieren |
-| Fertigung | falscher Verbrauch | Production Order, Item Ledger | Verbrauch korrigieren, Kostenlauf |
-| Projekt | falsche Aufgabe | Project Ledger Entries | Umbuchung/Korrekturjournal |
-| Bank | falscher Ausgleich | Ledger Entries, Applies-to ID | Unapply und neu ausgleichen |
-| Dimension | fehlende Dimension | G/L Entries, Dimension Set | Dimension Correction, wenn zulässig |
-| Abschluss | falsche Periode | Posting Date, Accounting Periods | Storno und korrekte Periode |
-| Reporting | falscher Filter | Filter, Analysis View, Dimension | Filter korrigieren, Analysis View aktualisieren |
-
-### Vollständige Berichtsmatrix
-
-| Bericht | Ziel | Mindestfilter | Nutzer |
-|---|---|---|---|
-| Financial Reports GuV | Ergebnis sehen | Datum, Company, Dimension | Controller, Finance |
-| Financial Reports Bilanz | Vermögen/Schulden sehen | Datum, Company | Finance-Leitung |
-| General Ledger Entries | Buchungsspur prüfen | Konto, Datum, Belegnr. | Buchhaltung |
-| Customer Ledger Entries | Forderungen prüfen | Kunde, offen, Fälligkeit | Debitorenbuchhaltung |
-| Vendor Ledger Entries | Verbindlichkeiten prüfen | Kreditor, offen, Fälligkeit | Kreditorenbuchhaltung |
-| VAT Entries | Steuer prüfen | Datum, VAT Bus./Prod. Group | Steuerteam |
-| Inventory Valuation | Lagerwert prüfen | Datum, Lagerort, Artikel | Controlling |
-| Item Ledger Entries | Menge prüfen | Artikel, Lagerort, Datum | Lager |
-| Value Entries | Wert prüfen | Artikel, Beleg, Datum | Controlling/Finance |
-| Aged Accounts Receivable | überfällige Kunden | Stichtag | Debitoren |
-| Aged Accounts Payable | Zahlungsplanung | Stichtag | Kreditoren |
-| Dimensions - Detail | Reportingdimension prüfen | Dimension, Datum | Controller |
-| Project Reports | Projektmarge prüfen | Projekt, Aufgabe | Projektleitung |
-| Production Order Statistics | Fertigungskosten prüfen | Auftrag | Fertigung/Controlling |
-| Change Log Entries | Setupänderung prüfen | Tabelle, Nutzer, Datum | Admin/Audit |
-
-### Was im Standard bewusst nicht vollständig gelöst wird
-
-| Thema | Warum nicht vollständig Standard? | Entscheidung |
-|---|---|---|
-| komplexes Mietmodell | Laufzeit, Vertragsänderungen, Rückgabe, Bewertung | Extension oder Customizing prüfen |
-| Finanzierung/Leasing | rechtliche und bilanzielle Varianten | Fachkonzept plus Extension |
-| globale Steuerberechnung | länderspezifische Regeln, OSS, Reihengeschäfte | Tax Engine/Steuerberatung |
-| komplexes WMS | Scanner, Touren, Packstraßen, Gefahrgut | WMS-Extension |
-| EDI | partnerabhängige Formate | EDI-Extension |
-| DATEV-Tiefe | Kanzleiprozesse, Kontierungslogik | DACH-Extension |
-| Konzernkonsolidierung | Eliminierung, IFRS, Konzernabschluss | Zusatzlösung/Reporting |
-| Payroll | Lohn ist nicht BC-Kernstandard | externe Lohnlösung |
-
-Merksatz:
-- Vollständigkeit heißt nicht, alles im Standard zu erzwingen. Vollständigkeit heißt, Standard, Extension und Individualentwicklung sauber zu unterscheiden.
-
 ---
 
 
+
 ## 9. Buchungslogik und Posting Groups
+
+Dieses Kapitel erklärt die Kontenfindung in Business Central so, dass auch Einsteiger verstehen, warum ein Verkaufsauftrag automatisch Forderung, Erlös, Umsatzsteuer, Lagerabgang und Wareneinsatz buchen kann. Danach kannst du eine Buchung nicht nur ausführen, sondern ihre Konten, Nebenbücher und Fehlerquellen erklären.
+
+### Für absolute Einsteiger: Warum braucht Business Central Buchungsgruppen?
+
+Business Central soll nicht bei jeder Rechnung fragen, welches Sachkonto für Forderungen, Erlöse, Verbindlichkeiten, Vorsteuer, Lagerbestand oder Wareneinsatz verwendet werden soll. Das wäre fehleranfällig und für Anwender kaum beherrschbar. Deshalb nutzt Business Central Buchungsgruppen. Eine Buchungsgruppe ist eine Stammdateninformation, die später bei der Buchung die richtigen Konten findet.
+
+Das Grundprinzip ist einfach: Der Debitor sagt, auf welches Forderungskonto gebucht wird. Der Artikel sagt, welche Produktlogik gilt. Der Lagerort und die Lagerbuchungsgruppe sagen, welches Bestandskonto betroffen ist. Die USt-Buchungsgruppen sagen, welche Steuerlogik gilt. Die Buchungsmatrizen verbinden diese Informationen zu einer konkreten Buchung.
+
+Praxisregel:
+- Anwender erfassen Belege. Key User und Finance sorgen dafür, dass Buchungsgruppen und Buchungsmatrizen vorher richtig eingerichtet sind.
+
+### Welche Buchungsgruppen kommen woher?
+
+| Herkunft | Buchungsgruppe | Was steuert sie? | Rhein-Main-Beispiel |
+|---|---|---|---|
+| Debitor | Debitorenbuchungsgruppe (Customer Posting Group) | Forderungskonto | `D10000` → Forderungen Inland |
+| Kreditor | Kreditorenbuchungsgruppe (Vendor Posting Group) | Verbindlichkeitskonto | `K10000` → Verbindlichkeiten Inland |
+| Bankkonto | Bankkontobuchungsgruppe (Bank Account Posting Group) | Bank-Sachkonto | Hausbank RM-SHARED |
+| Artikel | Produktbuchungsgruppe (General Product Posting Group) | Erlös-, Aufwands- und Wareneinsatzlogik | `RM-M100` → Maschinen |
+| Debitor/Kreditor | Geschäftsbuchungsgruppe (General Business Posting Group) | Markt-/Partnerlogik | Inland, EU, Drittland |
+| Artikel | Lagerbuchungsgruppe (Inventory Posting Group) | Bestandskonto | Fertigerzeugnisse Maschinen |
+| Debitor/Kreditor | USt-Geschäftsbuchungsgruppe (VAT Business Posting Group) | steuerliche Partnerlogik | Inland 19 %, EU-B2B, Drittland |
+| Artikel/Sachkonto | USt-Produktbuchungsgruppe (VAT Product Posting Group) | steuerliche Produktlogik | Voller Satz, steuerfrei, Reverse Charge |
+
+### Was machen die drei Matrizen?
+
+Die Allgemeine Buchungsmatrix Einrichtung (General Posting Setup) verbindet Geschäftsbuchungsgruppe und Produktbuchungsgruppe. Sie entscheidet zum Beispiel, welches Erlöskonto und welches Wareneinsatzkonto bei einem Verkauf verwendet werden.
+
+Die USt-Buchungsmatrix Einrichtung (VAT Posting Setup) verbindet USt-Geschäftsbuchungsgruppe und USt-Produktbuchungsgruppe. Sie entscheidet, ob 19 Prozent Umsatzsteuer, Vorsteuer, steuerfrei, innergemeinschaftlich oder ein anderer Steuerfall gebucht wird.
+
+Die Lagerbuchungsmatrix Einrichtung (Inventory Posting Setup) verbindet Lagerort und Lagerbuchungsgruppe. Sie entscheidet, welches Bestandskonto für den Lagerwert verwendet wird.
+
+| Matrix | Kombiniert | Ergebnis |
+|---|---|---|
+| Allgemeine Buchungsmatrix Einrichtung | Wer handelt? + was wird gehandelt? | Erlös, Aufwand, Wareneinsatz |
+| USt-Buchungsmatrix Einrichtung | steuerlicher Partner + steuerliches Produkt | USt-/Vorsteuerkonto, Steuersatz, Steuerart |
+| Lagerbuchungsmatrix Einrichtung | Lagerort + Lagerbuchungsgruppe | Bestandskonto |
+
+### Rhein-Main-Komplettfall: `D10000` kauft `RM-M100`
+
+RM-SALES verkauft eine Standardmaschine `RM-M100` an Debitor `D10000`.
+
+Testdaten:
+
+| Feld | Wert |
+|---|---|
+| Debitor | `D10000` Müller Maschinenbau GmbH |
+| Artikel | `RM-M100` Standardmaschine |
+| Menge | `1` |
+| Verkaufspreis netto | `68.000 EUR` |
+| angenommener Lagerwert / Kosten | `42.000 EUR` |
+| USt | `19 %` = `12.920 EUR` |
+| Bruttobetrag | `80.920 EUR` |
+| Lagerort | `FRA-ZL` |
+| Dimension | `PRODUCTLINE = MACHINE`, `CHANNEL = B2B` |
+
+Buchungsgruppen im Fall:
+
+| Quelle | Wertbeispiel | Wirkung |
+|---|---|---|
+| Debitor `D10000` | Debitorenbuchungsgruppe `INLAND` | Forderung Inland |
+| Debitor `D10000` | Geschäftsbuchungsgruppe `DE-INLAND` | inländischer Verkauf |
+| Debitor `D10000` | USt-Geschäftsbuchungsgruppe `DE-INLAND` | deutsche USt-Logik |
+| Artikel `RM-M100` | Produktbuchungsgruppe `MACHINE` | Erlöskonto Maschinen und Wareneinsatz Maschinen |
+| Artikel `RM-M100` | USt-Produktbuchungsgruppe `VAT19` | voller deutscher Steuersatz |
+| Artikel `RM-M100` | Lagerbuchungsgruppe `FG-MACHINE` | Bestand Fertigerzeugnisse Maschinen |
+| Lagerort `FRA-ZL` | Lagerortcode | Bestandskonto über Lagerbuchungsmatrix |
+
+Buchungsspur:
+
+| Ebene | Erwartete Wirkung | Wo prüfen? |
+|---|---|---|
+| Verkaufsauftrag | `D10000`, `RM-M100`, Menge `1`, Preis `68.000 EUR` | `Verkaufsaufträge (Sales Orders)` |
+| Debitorenposten | Forderung `80.920 EUR` | `Debitorenposten (Customer Ledger Entries)` |
+| Sachposten Forderung | Soll Forderungen `80.920 EUR` | `Sachposten (G/L Entries)` |
+| Sachposten Erlös | Haben Umsatzerlöse Maschinen `68.000 EUR` | `Sachposten (G/L Entries)` |
+| USt-Posten | Steuerbasis `68.000 EUR`, USt `12.920 EUR` | `USt-Posten (VAT Entries)` |
+| Artikelposten | Mengenabgang `1` Stück `RM-M100` | `Artikelposten (Item Ledger Entries)` |
+| Wertposten | Kostenabgang `42.000 EUR` | `Wertposten (Value Entries)` |
+| Sachposten Wareneinsatz | Soll Wareneinsatz Maschinen `42.000 EUR` | `Sachposten (G/L Entries)` |
+| Sachposten Bestand | Haben Bestand Fertigerzeugnisse `42.000 EUR` | `Sachposten (G/L Entries)` |
+| Bericht | Erlös und Wareneinsatz nach `PRODUCTLINE = MACHINE` | `Finanzberichte (Financial Reports)` |
+
+### Was passiert bei falscher Buchungsgruppe?
+
+| Fehler | Symptom | Ursache | Diagnosepfad | Korrektur |
+|---|---|---|---|---|
+| falsche Produktbuchungsgruppe am Artikel | Erlös landet auf falschem Konto | Artikel `RM-M100` als Handelsware statt Maschine gepflegt | Artikelkarte → Buchungsgruppen → Sachposten | Stammdaten korrigieren, gebuchten Beleg fachlich gutschreiben und neu buchen |
+| falsche USt-Produktbuchungsgruppe | USt-Posten falsch | Artikel steuerlich falsch klassifiziert | Verkaufsbeleg → USt-Posten → USt-Buchungsmatrix | Steuerlich freigegebene Korrektur über Gutschrift/Neubuchung |
+| fehlende Lagerbuchungsmatrix | Buchung bricht ab oder Bestandkonto fehlt | Kombination Lagerort `FRA-ZL` und Lagerbuchungsgruppe fehlt | Fehlermeldung → Lagerbuchungsmatrix Einrichtung | Matrix ergänzen, Buchung erneut starten |
+| falsche Debitorenbuchungsgruppe | Forderung auf falschem Sammelkonto | Debitorenkarte falsch eingerichtet | Debitorenposten → Sachposten Forderung | Debitor korrigieren; bestehende Buchung nur über freigegebenen Korrekturweg berichtigen |
+
+Übung:
+1. Öffne `Artikel (Items)` und prüfe `RM-M100`.
+2. Notiere Produktbuchungsgruppe, Lagerbuchungsgruppe und USt-Produktbuchungsgruppe.
+3. Öffne `Debitoren (Customers)` und prüfe `D10000`.
+4. Notiere Debitorenbuchungsgruppe, Geschäftsbuchungsgruppe und USt-Geschäftsbuchungsgruppe.
+5. Öffne `Allgemeine Buchungsmatrix Einrichtung (General Posting Setup)`.
+6. Prüfe die Kombination aus Geschäftsbuchungsgruppe und Produktbuchungsgruppe.
+7. Öffne `USt-Buchungsmatrix Einrichtung (VAT Posting Setup)`.
+8. Prüfe die Steuerkombination.
+9. Öffne `Lagerbuchungsmatrix Einrichtung (Inventory Posting Setup)`.
+10. Prüfe die Kombination aus `FRA-ZL` und Lagerbuchungsgruppe.
+
+Lösungsskizze:
+- Die Forderung kommt aus der Debitorenbuchungsgruppe.
+- Der Erlös und Wareneinsatz kommen aus der Allgemeinen Buchungsmatrix.
+- Die USt kommt aus der USt-Buchungsmatrix.
+- Der Lagerbestand kommt aus der Lagerbuchungsmatrix.
+- Die Dimensionen erklären nicht das Konto, sondern die Auswertung.
+
+UAT-Fall:
+
+| Feld | Inhalt |
+|---|---|
+| ID | `UAT-SETUP-POSTING-001` |
+| Ziel | Kontenfindung für Verkauf `RM-M100` nachweisen |
+| Rolle | Finance Key User |
+| Voraussetzung | Debitor `D10000`, Artikel `RM-M100`, Lagerort `FRA-ZL`, Buchungsmatrizen gepflegt |
+| Testdaten | Preis `68.000 EUR`, Kosten `42.000 EUR`, USt `19 %` |
+| Schrittfolge | Stammdaten prüfen, Buchungsvorschau aus Verkaufsauftrag starten, Posten kontrollieren |
+| Erwartete Posten | Debitorenposten, Sachposten, Artikelposten, Wertposten, USt-Posten |
+| Kontrollbericht | `Finanzberichte (Financial Reports)` und `Lagerbewertung (Inventory Valuation)` |
+| Akzeptanzkriterium | Forderung, Erlös, USt, Bestand und Wareneinsatz werden auf erwartete Konten gebucht |
+
+### In 5 Minuten merken
+
+* 5 wichtigste Begriffe: Debitorenbuchungsgruppe, Produktbuchungsgruppe, Allgemeine Buchungsmatrix, USt-Buchungsmatrix, Lagerbuchungsmatrix.
+* 5 wichtigste Seiten: `Debitoren`, `Artikel`, `Allgemeine Buchungsmatrix Einrichtung`, `USt-Buchungsmatrix Einrichtung`, `Lagerbuchungsmatrix Einrichtung`.
+* 3 häufigste Fehler: falsche Produktbuchungsgruppe, fehlende Lagerbuchungsmatrix, falsche USt-Gruppe.
+* 3 Prüfungsfallen: Buchungsgruppe ist nicht Dimension, USt-Matrix ist nicht allgemeine Buchungsmatrix, Artikelposten zeigen Menge und Wertposten zeigen Wert.
+* 1 Praxisregel: Vor Go-live werden Buchungsgruppen mit Buchungsvorschau und Testposten geprüft, nicht erst im Monatsabschluss.
 
 ### Bilanz, GuV, Nebenbücher und Postenlogik verstehen
 
@@ -1190,19 +1103,6 @@ Diagnosepfad:
 5. Buchungsvorschau prüfen.
 6. Gebuchte Posten prüfen.
 
-### Dimensionen als Steuerungs-, Kontroll- und Reportinglogik
-
-Dimensionen sind keine Buchungsgruppen. Sie verändern nicht das Konto, sondern die Auswertung und Kontrolle. Die Rhein-Main Industriegruppe nutzt `DEPARTMENT`, `PRODUCTLINE`, `CHANNEL`, `LOCATION-GROUP` und `PROJECT`.
-
-| Funktion | Zweck | Fehler |
-|---|---|---|
-| Dimensionswerte | erlaubte Ausprägungen | falsche/alte Werte |
-| Globale Dimensionen | wichtigste Auswertungsachsen | nachträgliche Änderung ist kritisch |
-| Shortcut-Dimensionen | schnelle Eingabe | Nutzer sieht Feld nicht |
-| Standarddimensionen | automatische Vorschläge/Pflichten | Reportinglücken |
-| Dimensionskombinationen | verbotene Kombinationen | Buchung blockiert |
-| Dimensionsprioritäten | Konfliktauflösung | falscher Wert gewinnt |
-| Dimension Correction Tool | Sachpostendimension korrigieren | Nebenbücher nicht blind gleichsetzen |
 
 ### Buchungsspur-Atlas
 
@@ -1289,6 +1189,26 @@ Lagerbewertung verbindet Artikelposten, Wertposten und Sachposten. Die monatlich
 
 Dimensionen sind die Auswertungsachsen der Rhein-Main Industriegruppe. Sie erklären, ob ein Erlös zu Maschinen, Ersatzteilen, Service oder Miete gehört und ob Kosten in Vertrieb, Fertigung, Lager, Projekt oder Administration entstanden sind.
 
+### Für absolute Einsteiger: Was ist eine Dimension?
+
+Eine Dimension ist ein Auswertungsmerkmal. Sie ist kein Sachkonto und keine Company. Das Sachkonto entscheidet, ob etwas Forderung, Erlös, Aufwand, Bestand oder Bank ist. Die Company entscheidet, in welcher rechtlichen Einheit gebucht wird. Die Dimension ergänzt diese Buchung um eine fachliche Sicht, zum Beispiel Produktlinie, Vertriebskanal, Abteilung oder Standortgruppe.
+
+Beispiel: Der Verkauf von `RM-M100` bucht Erlös auf ein Erlöskonto. Mit der Dimension `PRODUCTLINE = MACHINE` erkennt Controlling zusätzlich, dass der Erlös zur Maschinenlinie gehört. Mit `CHANNEL = B2B` erkennt Vertrieb, dass der Verkauf aus dem B2B-Kanal kam. Das Konto bleibt gleich; die Auswertung wird genauer.
+
+Praxisregel:
+- Konten beantworten „Was ist es bilanziell?“. Companies beantworten „Welche rechtliche Einheit?“. Dimensionen beantworten „Wofür, wo, über welchen Kanal und für welche Produktlinie?“.
+
+### Warum nutzt Rhein-Main diese Dimensionen?
+
+Rhein-Main braucht eine GuV nicht nur für die gesamte Company, sondern nach Produktlinie, Kanal, Abteilung und Lagerlogik. Ohne Dimensionen wüsste die Geschäftsführung zwar, wie hoch der Gesamtumsatz ist, aber nicht, ob Maschinen, Ersatzteile, Service, Projekte oder Miete profitabel sind. Auch Standort- und Lagerentscheidungen wären kaum belastbar.
+
+| Dimension | Warum Rhein-Main sie nutzt | Typische Frage |
+|---|---|---|
+| `PRODUCTLINE` | Maschinen, Ersatzteile, Service, Projekte und Miete trennen | Welche Produktlinie verdient Geld? |
+| `CHANNEL` | B2B, Onlineshop, Intercompany und Service unterscheiden | Welcher Vertriebskanal erzeugt Marge? |
+| `DEPARTMENT` | Vertrieb, Einkauf, Lager, Fertigung, Service, Finance trennen | Welche Abteilung verursacht Kosten? |
+| `LOCATION-GROUP` | gesteuertes Lager, einfaches Lager, Fahrzeuglager, Projektlager trennen | Welche Lagerlogik bindet Wert und Aufwand? |
+
 ### Dimensionen
 
 | Dimension | Werte | Zweck |
@@ -1309,8 +1229,101 @@ Dimensionen sind die Auswertungsachsen der Rhein-Main Industriegruppe. Sie erkl�
 4. Prüfe vor dem Buchen, ob Pflichtdimensionen vorhanden sind.
 5. Öffne nach dem Buchen `Sachposten (G/L Entries)` und blende die Dimensionen ein.
 
+### Wo Dimensionen gepflegt werden
+
+| Ort | Zweck | Beispiel |
+|---|---|---|
+| `Dimensionen (Dimensions)` | Dimension und Dimensionswerte anlegen | `PRODUCTLINE`, Wert `MACHINE` |
+| `Standarddimensionen (Default Dimensions)` | Vorschlag oder Pflicht an Stammdaten setzen | Artikel `RM-M100` bekommt `PRODUCTLINE = MACHINE` |
+| Debitorenkarte | Kundenspezifische Dimensionen | `D10000` bekommt `CHANNEL = B2B` |
+| Artikelkarte | Artikelbezogene Dimensionen | `SP-PUMP-01` bekommt `PRODUCTLINE = SPARE` |
+| Sachkontokarte | Kontenbezogene Pflichtdimensionen | Marketingaufwand braucht `DEPARTMENT` |
+| Belegzeile | Dimension im konkreten Vorgang prüfen oder ergänzen | Verkaufszeile `RM-M100` |
+| `Sachposten (G/L Entries)` | Dimension nach dem Buchen kontrollieren | Erlös mit `PRODUCTLINE = MACHINE` |
+
+Pflichtdimensionen wirken wie eine fachliche Schranke. Wenn für ein Sachkonto, einen Artikel oder einen Debitor eine Dimension zwingend ist, verhindert Business Central die Buchung oder meldet einen Fehler, solange der Dimensionswert fehlt oder unzulässig ist.
+
+### Dimensionen nach dem Buchen prüfen
+
+1. Öffne `Alt+Q`.
+2. Suche `Sachposten (G/L Entries)`.
+3. Filtere auf die Belegnummer der gebuchten Verkaufsrechnung.
+4. Blende die Spalten für `PRODUCTLINE`, `CHANNEL`, `DEPARTMENT` und `LOCATION-GROUP` ein.
+5. Prüfe, ob Erlös, Wareneinsatz, Forderung und USt die erwarteten Dimensionen tragen.
+6. Öffne `Finanzberichte (Financial Reports)` und filtere nach `PRODUCTLINE = MACHINE`.
+7. Vergleiche, ob die Summe mit den Sachposten übereinstimmt.
+
+### Dimension Correction Tool: Was es kann und was nicht
+
+Das Dimension Correction Tool kann Dimensionen auf Sachposten korrigieren, wenn eine Buchung fachlich richtig war, aber die Auswertungsdimension falsch oder unvollständig ist. Es ersetzt keine Gutschrift, keine Stornobuchung und keine Korrektur in Nebenbüchern.
+
+| Situation | Dimension Correction sinnvoll? | Begründung |
+|---|---|---|
+| Erlös wurde auf richtiges Konto gebucht, aber `PRODUCTLINE` fehlt | Ja, nach Freigabe | Auswertung falsch, Buchung selbst fachlich korrekt |
+| falscher Debitor wurde fakturiert | Nein | Beleg und Nebenbuch sind falsch |
+| falsche USt-Gruppe wurde genutzt | Nein | Steuerposten und Sachposten sind falsch |
+| Artikel wurde aus falschem Lagerort geliefert | Nein | Artikelposten und Lagerlogik sind falsch |
+| Kostenstelle fehlt auf Sachbuchung | Ja, wenn fachlich eindeutig | Reportingdimension korrigierbar |
+
+### Rhein-Main-Beispiel: falsche Produktlinie im Verkauf
+
+Fall: Verkaufsauftrag `SO-1001` für `RM-M100` wurde korrekt an `D10000` gebucht. Der Erlös beträgt `68.000 EUR`. Auf der Verkaufszeile fehlt jedoch `PRODUCTLINE = MACHINE`; stattdessen steht `PRODUCTLINE = SPARE`.
+
+Symptom:
+- Die Gesamt-GuV stimmt.
+- Die GuV nach Produktlinie zeigt zu wenig Maschinenumsatz und zu viel Ersatzteilumsatz.
+- Debitorenposten, USt-Posten und Betrag sind korrekt.
+
+Diagnose:
+1. Öffne `Finanzberichte (Financial Reports)` und filtere nach `PRODUCTLINE = MACHINE`.
+2. Vergleiche mit dem Verkaufsbericht für `RM-M100`.
+3. Öffne `Sachposten (G/L Entries)` und filtere auf die Belegnummer.
+4. Prüfe die Dimensionswerte auf Erlös- und Wareneinsatzposten.
+5. Entscheide, ob nur die Dimension falsch ist oder auch Beleg, Konto, USt oder Lager betroffen sind.
+
+Korrektur:
+- Wenn nur die Dimension falsch ist, nutzt Finance nach Freigabe das Dimension Correction Tool.
+- Wenn Konto, Debitor, USt oder Lager falsch sind, wird nicht per Dimension Correction korrigiert. Dann braucht es Gutschrift, Storno, Neubuchung oder fachliche Korrekturbuchung.
+
+Übung:
+1. Öffne `Verkaufsaufträge (Sales Orders)` und erfasse `D10000`, Artikel `RM-M100`, Menge `1`.
+2. Setze auf der Zeile `PRODUCTLINE = SPARE`, obwohl es eine Maschine ist.
+3. Nutze `Buchungsvorschau (Preview Posting)` und prüfe die Dimensionen.
+4. Korrigiere vor dem Buchen auf `PRODUCTLINE = MACHINE`.
+5. Buche den Auftrag.
+6. Öffne `Sachposten (G/L Entries)` und kontrolliere die Dimension.
+7. Öffne `Finanzberichte (Financial Reports)` und filtere auf `PRODUCTLINE = MACHINE`.
+
+Lösungsskizze:
+- Vor dem Buchen wird die falsche Dimension direkt in der Belegzeile korrigiert.
+- Nach dem Buchen wird zuerst geprüft, ob nur die Dimension falsch ist.
+- Das Dimension Correction Tool ist nur dann zulässig, wenn Betrag, Konto, Debitor, Artikel, Lager und USt korrekt sind.
+
+UAT-Fall:
+
+| Feld | Inhalt |
+|---|---|
+| ID | `UAT-DIM-001` |
+| Ziel | Pflichtdimension und Reportingdimension für Maschinenverkauf nachweisen |
+| Rolle | Controller, Finance Key User |
+| Voraussetzung | Dimension `PRODUCTLINE`, Wert `MACHINE`, Standarddimension am Artikel `RM-M100` |
+| Testdaten | `D10000`, `RM-M100`, Preis `68.000 EUR`, `CHANNEL = B2B` |
+| Schrittfolge | Auftrag erfassen, Dimension prüfen, buchen, Sachposten und Finanzbericht kontrollieren |
+| Erwartete Posten | Sachposten mit `PRODUCTLINE = MACHINE`, Debitorenposten, USt-Posten, Artikelposten, Wertposten |
+| Negativfall | `PRODUCTLINE` fehlt oder ist `SPARE` |
+| Akzeptanzkriterium | GuV nach Produktlinie zeigt Maschinenumsatz korrekt |
+| Evidence Pack | Belegnummer, Sachpostenfilter, Finanzbericht, Freigabe der Korrektur falls nötig |
+
 Praxisregel:
 - Eine Dimension ist keine Company und kein Konto. Sie ergänzt die Auswertung, ersetzt aber keine rechtliche Einheit und keine Buchungslogik.
+
+### In 5 Minuten merken
+
+* 5 wichtigste Begriffe: Dimension, Dimensionswert, Standarddimension, Pflichtdimension, Dimension Correction Tool.
+* 5 wichtigste Seiten: `Dimensionen`, `Standarddimensionen`, `Sachposten`, `Finanzberichte`, `Analyseansichten`.
+* 3 häufigste Fehler: Dimension fehlt, falscher Wert gewinnt, Dimension wird mit Company verwechselt.
+* 3 Prüfungsfallen: Dimension ist kein Konto, Dimension Correction korrigiert keine falsche USt, globale Dimensionen sind besonders kritisch.
+* 1 Praxisregel: Dimensionen werden vor dem Buchen geprüft und nach dem Buchen in Sachposten und Berichten nachgewiesen.
 
 
 
@@ -1810,7 +1823,7 @@ Schulungsübung:
 
 ---
 
-### Lernmodul-Ergänzung: Inventory und Warehouse
+### Praxisfall Rhein-Main: Inventory und Warehouse
 
 ### Für absolute Einsteiger: Was du hier gerade tust
 
@@ -1869,9 +1882,9 @@ Rhein-Main nutzt `SP-PUMP-01` mit einem Beispielwert von `10.000 EUR`. Die Buchu
 
 | Fehler | Symptom | Ursache | Diagnosepfad | Korrekturweg | Was man nicht tun darf |
 |---|---|---|---|---|---|
-| falsche Dimension | Bericht zeigt Wert nicht | Pflichtdimension fehlt oder ist falsch | Beleg ? Posten ? Dimension | Dimension Correction Tool oder fachliche Korrekturbuchung | Bericht manuell überschreiben |
-| falsche Buchungsgruppe | falsches Konto oder falsche USt | Stammdaten falsch gepflegt | Stammdatenkarte ? Posting Setup ? Sachposten | Stammdaten korrigieren, Beleg fachlich stornieren/neubuchen | gebuchte Posten löschen |
-| falscher Status | Beleg kann nicht gebucht werden | Freigabe, Lageraktivität oder Pflichtfeld fehlt | Belegstatus ? Fehlermeldung ? Einrichtung | Status zurücksetzen, Pflichtfeld ergänzen, Prozessschritt nachholen | Warnungen ignorieren |
+| falsche Dimension | Bericht zeigt Wert nicht | Pflichtdimension fehlt oder ist falsch | Beleg → Posten → Dimension | Dimension Correction Tool oder fachliche Korrekturbuchung | Bericht manuell überschreiben |
+| falsche Buchungsgruppe | falsches Konto oder falsche USt | Stammdaten falsch gepflegt | Stammdatenkarte → Posting Setup → Sachposten | Stammdaten korrigieren, Beleg fachlich stornieren/neubuchen | gebuchte Posten löschen |
+| falscher Status | Beleg kann nicht gebucht werden | Freigabe, Lageraktivität oder Pflichtfeld fehlt | Belegstatus → Fehlermeldung → Einrichtung | Status zurücksetzen, Pflichtfeld ergänzen, Prozessschritt nachholen | Warnungen ignorieren |
 
 ### Übung
 
@@ -1971,7 +1984,7 @@ Schulungsübung:
 
 ---
 
-### Lernmodul-Ergänzung: Planning, Assembly und Manufacturing
+### Praxisfall Rhein-Main: Planning, Assembly und Manufacturing
 
 ### Für absolute Einsteiger: Was du hier gerade tust
 
@@ -2030,9 +2043,9 @@ Rhein-Main nutzt `RM-M100` mit einem Beispielwert von `10.000 EUR`. Die Buchung 
 
 | Fehler | Symptom | Ursache | Diagnosepfad | Korrekturweg | Was man nicht tun darf |
 |---|---|---|---|---|---|
-| falsche Dimension | Bericht zeigt Wert nicht | Pflichtdimension fehlt oder ist falsch | Beleg ? Posten ? Dimension | Dimension Correction Tool oder fachliche Korrekturbuchung | Bericht manuell überschreiben |
-| falsche Buchungsgruppe | falsches Konto oder falsche USt | Stammdaten falsch gepflegt | Stammdatenkarte ? Posting Setup ? Sachposten | Stammdaten korrigieren, Beleg fachlich stornieren/neubuchen | gebuchte Posten löschen |
-| falscher Status | Beleg kann nicht gebucht werden | Freigabe, Lageraktivität oder Pflichtfeld fehlt | Belegstatus ? Fehlermeldung ? Einrichtung | Status zurücksetzen, Pflichtfeld ergänzen, Prozessschritt nachholen | Warnungen ignorieren |
+| falsche Dimension | Bericht zeigt Wert nicht | Pflichtdimension fehlt oder ist falsch | Beleg → Posten → Dimension | Dimension Correction Tool oder fachliche Korrekturbuchung | Bericht manuell überschreiben |
+| falsche Buchungsgruppe | falsches Konto oder falsche USt | Stammdaten falsch gepflegt | Stammdatenkarte → Posting Setup → Sachposten | Stammdaten korrigieren, Beleg fachlich stornieren/neubuchen | gebuchte Posten löschen |
+| falscher Status | Beleg kann nicht gebucht werden | Freigabe, Lageraktivität oder Pflichtfeld fehlt | Belegstatus → Fehlermeldung → Einrichtung | Status zurücksetzen, Pflichtfeld ergänzen, Prozessschritt nachholen | Warnungen ignorieren |
 
 ### Übung
 
@@ -2126,7 +2139,7 @@ Schulungsübung:
 
 ---
 
-### Lernmodul-Ergänzung: Service
+### Praxisfall Rhein-Main: Service
 
 ### Für absolute Einsteiger: Was du hier gerade tust
 
@@ -2185,9 +2198,9 @@ Rhein-Main nutzt `SP-PUMP-01` und `RES-TECH` mit einem Beispielwert von `10.000 
 
 | Fehler | Symptom | Ursache | Diagnosepfad | Korrekturweg | Was man nicht tun darf |
 |---|---|---|---|---|---|
-| falsche Dimension | Bericht zeigt Wert nicht | Pflichtdimension fehlt oder ist falsch | Beleg ? Posten ? Dimension | Dimension Correction Tool oder fachliche Korrekturbuchung | Bericht manuell überschreiben |
-| falsche Buchungsgruppe | falsches Konto oder falsche USt | Stammdaten falsch gepflegt | Stammdatenkarte ? Posting Setup ? Sachposten | Stammdaten korrigieren, Beleg fachlich stornieren/neubuchen | gebuchte Posten löschen |
-| falscher Status | Beleg kann nicht gebucht werden | Freigabe, Lageraktivität oder Pflichtfeld fehlt | Belegstatus ? Fehlermeldung ? Einrichtung | Status zurücksetzen, Pflichtfeld ergänzen, Prozessschritt nachholen | Warnungen ignorieren |
+| falsche Dimension | Bericht zeigt Wert nicht | Pflichtdimension fehlt oder ist falsch | Beleg → Posten → Dimension | Dimension Correction Tool oder fachliche Korrekturbuchung | Bericht manuell überschreiben |
+| falsche Buchungsgruppe | falsches Konto oder falsche USt | Stammdaten falsch gepflegt | Stammdatenkarte → Posting Setup → Sachposten | Stammdaten korrigieren, Beleg fachlich stornieren/neubuchen | gebuchte Posten löschen |
+| falscher Status | Beleg kann nicht gebucht werden | Freigabe, Lageraktivität oder Pflichtfeld fehlt | Belegstatus → Fehlermeldung → Einrichtung | Status zurücksetzen, Pflichtfeld ergänzen, Prozessschritt nachholen | Warnungen ignorieren |
 
 ### Übung
 
@@ -2275,7 +2288,7 @@ Schulungsübung:
 
 ---
 
-### Lernmodul-Ergänzung: Projects
+### Praxisfall Rhein-Main: Projects
 
 ### Für absolute Einsteiger: Was du hier gerade tust
 
@@ -2334,9 +2347,9 @@ Rhein-Main nutzt `PROJ-5001` mit einem Beispielwert von `10.000 EUR`. Die Buchun
 
 | Fehler | Symptom | Ursache | Diagnosepfad | Korrekturweg | Was man nicht tun darf |
 |---|---|---|---|---|---|
-| falsche Dimension | Bericht zeigt Wert nicht | Pflichtdimension fehlt oder ist falsch | Beleg ? Posten ? Dimension | Dimension Correction Tool oder fachliche Korrekturbuchung | Bericht manuell überschreiben |
-| falsche Buchungsgruppe | falsches Konto oder falsche USt | Stammdaten falsch gepflegt | Stammdatenkarte ? Posting Setup ? Sachposten | Stammdaten korrigieren, Beleg fachlich stornieren/neubuchen | gebuchte Posten löschen |
-| falscher Status | Beleg kann nicht gebucht werden | Freigabe, Lageraktivität oder Pflichtfeld fehlt | Belegstatus ? Fehlermeldung ? Einrichtung | Status zurücksetzen, Pflichtfeld ergänzen, Prozessschritt nachholen | Warnungen ignorieren |
+| falsche Dimension | Bericht zeigt Wert nicht | Pflichtdimension fehlt oder ist falsch | Beleg → Posten → Dimension | Dimension Correction Tool oder fachliche Korrekturbuchung | Bericht manuell überschreiben |
+| falsche Buchungsgruppe | falsches Konto oder falsche USt | Stammdaten falsch gepflegt | Stammdatenkarte → Posting Setup → Sachposten | Stammdaten korrigieren, Beleg fachlich stornieren/neubuchen | gebuchte Posten löschen |
+| falscher Status | Beleg kann nicht gebucht werden | Freigabe, Lageraktivität oder Pflichtfeld fehlt | Belegstatus → Fehlermeldung → Einrichtung | Status zurücksetzen, Pflichtfeld ergänzen, Prozessschritt nachholen | Warnungen ignorieren |
 
 ### Übung
 
@@ -2499,7 +2512,102 @@ Merksatz:
 
 ---
 
-### Lernmodul-Ergänzung: Intercompany und Ausland
+### Praxisfall Rhein-Main: Shopify und Dropshipping
+
+### Für absolute Einsteiger: Was du hier gerade tust
+
+Ein Kunde bestellt nicht immer direkt beim Vertrieb. Bei Rhein-Main kauft `D11000` Ersatzteile im Onlineshop. Business Central muss daraus einen verwertbaren Verkaufsauftrag machen. Bei Dropshipping verkauft RM-SALES eine Ware an den Kunden, aber der Lieferant liefert direkt. Der wichtigste Unterschied: Beim Onlineshop kommt der Auftrag aus einem externen Kanal; beim Dropshipping entsteht eine verknüpfte Verkaufs- und Einkaufslogik ohne eigenen Lagerzugang.
+
+### Warum braucht die Rhein-Main Industriegruppe diesen Prozess?
+
+RM-SALES verkauft Ersatzteile wie `SP-PUMP-01` über Shopify und Handelsware per Dropshipping. Ohne sauberen Prozess wären Kundenzuordnung, Artikelmapping, USt, Zahlung, Lieferstatus und Marge nicht zuverlässig. Business Central muss Shop-Auftrag, Verkaufsauftrag, Zahlung, Lieferung, Rechnung, USt-Posten und Evidence Pack zusammenführen. Beim Dropshipping muss zusätzlich die Einkaufsbestellung mit dem Verkaufsauftrag verknüpft sein.
+
+### Konkrete Testdaten
+
+| Fall | Wert |
+|---|---|
+| Shop-Kunde | `D11000` Handwerk24 Onlinekunde |
+| Artikel | `SP-PUMP-01` |
+| Menge | `2` |
+| Verkaufspreis netto | `320 EUR` je Stück |
+| USt | `19 %` |
+| Dropshipping-Kreditor | `K20000` Dropship Europe BV |
+| Dimension | `CHANNEL = SHOP`, `PRODUCTLINE = SPARE` |
+
+### Schritt-für-Schritt in der deutschen BC-Oberfläche
+
+1. Öffne `Alt+Q`.
+2. Suche `Shopify-Shops (Shopify Shops)` und öffne den eingerichteten Shop.
+3. Prüfe Kunden-, Artikel- und Steuerzuordnung.
+4. Suche `Shopify-Aufträge (Shopify Orders)` oder die synchronisierten `Verkaufsaufträge (Sales Orders)`.
+5. Öffne den Auftrag für `D11000`.
+6. Prüfe Debitor, Artikel `SP-PUMP-01`, Menge `2`, Preis, USt-Gruppen und Dimension `CHANNEL = SHOP`.
+7. Wähle bei lagernder Ware `Buchen` und danach `Liefern und fakturieren`.
+8. Öffne `Gebuchte Verkaufsrechnungen (Posted Sales Invoices)`.
+9. Prüfe `Debitorenposten`, `Sachposten`, `Artikelposten`, `Wertposten` und `USt-Posten`.
+10. Für Dropshipping öffne den Verkaufsauftrag und setze den passenden Einkaufscode für Direktlieferung.
+11. Erzeuge oder öffne die verknüpfte `Einkaufsbestellung (Purchase Order)` an `K20000`.
+12. Prüfe, dass Verkaufs- und Einkaufsbeleg zusammengehören.
+13. Buche Lieferung/Rechnung erst, wenn der Liefernachweis des Lieferanten vorliegt.
+14. Dokumentiere Shop-ID, BC-Belegnummer, Zahlungsreferenz, Liefernachweis und Posten im Evidence Pack.
+
+### Buchungsspur
+
+| Ebene | Shopify | Dropshipping |
+|---|---|---|
+| Ausgang | Shop-Auftrag | Verkaufsauftrag mit Einkaufscode |
+| Verkaufsbeleg | Verkaufsauftrag / gebuchte Verkaufsrechnung | Verkaufsauftrag / gebuchte Verkaufsrechnung |
+| Einkaufsbeleg | meist keiner | verknüpfte Einkaufsbestellung |
+| Debitorenposten | Forderung oder bezahlter Shop-Posten | Forderung gegen Kunden |
+| Kreditorenposten | keiner, wenn Lagerware | Verbindlichkeit gegenüber Lieferant |
+| Artikelposten | Lagerabgang bei Lagerware | kein eigener Bestand, wenn echte Direktlieferung |
+| USt-Posten | USt aus Verkauf | USt je Liefer- und Rechnungskette prüfen |
+| Kontrollbericht | Shop-Abstimmung, GuV, USt | Marge, Liefernachweis, USt, IC/Drop-Nachweis |
+
+### Fehlerdiagnose
+
+| Fehler | Symptom | Ursache | Diagnosepfad | Korrektur |
+|---|---|---|---|---|
+| Artikelmapping falsch | Shop-Auftrag erzeugt falschen Artikel | Shopify-Artikel nicht sauber zugeordnet | Shopify-Auftrag → Artikelkarte → Verkaufszeile | Mapping korrigieren, Auftrag neu synchronisieren oder fachlich korrigieren |
+| USt falsch | USt-Posten passt nicht | falsche Kundengruppe oder Lieferlandlogik | Debitor → USt-Buchungsmatrix → USt-Posten | vor Buchung korrigieren, nach Buchung Gutschrift/Neubuchung |
+| Dropship-Verknüpfung fehlt | Einkauf und Verkauf laufen getrennt | Einkaufscode nicht gesetzt | Verkaufszeile → Einkaufsbestellung | Belege vor Buchung verknüpfen oder Prozess neu aufsetzen |
+
+Übung:
+1. Synchronisiere oder erfasse Shop-Auftrag `WEB-24001` für `D11000`.
+2. Prüfe Artikel `SP-PUMP-01`, Menge `2`, Preis und Dimension `CHANNEL = SHOP`.
+3. Buche Lieferung und Rechnung.
+4. Prüfe Debitorenposten, Sachposten, Artikelposten, Wertposten und USt-Posten.
+5. Erfasse zusätzlich einen Dropshipping-Fall mit `K20000` und dokumentiere, warum kein eigener Lagerbestand entsteht.
+
+Lösungsskizze:
+- Der Shop-Fall erzeugt einen normalen Verkaufsfluss mit Shop-Referenz.
+- Der Dropshipping-Fall braucht eine verknüpfte Einkaufsbestellung.
+- Die Kontrolle erfolgt über Verkaufsbeleg, Zahlungsreferenz, Liefernachweis, USt-Posten und Marge.
+
+UAT-Fall:
+
+| Feld | Inhalt |
+|---|---|
+| ID | `UAT-SHOP-DROP-001` |
+| Ziel | Shopify-Auftrag und Dropshipping-Fall abnehmen |
+| Rolle | E-Commerce, Vertrieb, Einkauf, Finance |
+| Testdaten | `D11000`, `SP-PUMP-01`, Menge `2`, `K20000` für Dropshipping |
+| Erwartete Belege | Shop-Auftrag, Verkaufsauftrag, gebuchte Verkaufsrechnung, verknüpfte Einkaufsbestellung bei Dropshipping |
+| Erwartete Posten | Debitorenposten, Sachposten, USt-Posten, Artikel-/Wertposten bei Lagerware, Kreditorenposten bei Dropshipping |
+| Kontrollbericht | Shop-Abstimmung, Finanzbericht, USt-Posten, Marge |
+| Akzeptanzkriterium | Shop-ID, BC-Beleg, Zahlung, Lieferung, USt und Marge sind nachvollziehbar |
+
+### In 5 Minuten merken
+
+* 5 wichtigste Begriffe: Shopify-Auftrag, Artikelmapping, Einkaufscode, Dropshipping, Liefernachweis.
+* 5 wichtigste Seiten: `Shopify-Shops`, `Shopify-Aufträge`, `Verkaufsaufträge`, `Einkaufsbestellungen`, `USt-Posten`.
+* 3 häufigste Fehler: falsches Mapping, falsche USt, fehlende Dropship-Verknüpfung.
+* 3 Prüfungsfallen: Shop-Auftrag ist nicht automatisch geprüft, Dropshipping ist kein normaler Lagerabgang, Zahlungsanbieter ersetzt keinen Debitorenabgleich.
+* 1 Praxisregel: Kein Shop- oder Dropshipping-Fall ohne Abgleich von Auftrag, Zahlung, Lieferung, Steuer und Evidence Pack.
+
+---
+
+### Praxisfall Rhein-Main: Intercompany und Ausland
 
 ### Für absolute Einsteiger: Was du hier gerade tust
 
@@ -2558,9 +2666,9 @@ Rhein-Main nutzt `RM-M100` mit einem Beispielwert von `10.000 EUR`. Die Buchung 
 
 | Fehler | Symptom | Ursache | Diagnosepfad | Korrekturweg | Was man nicht tun darf |
 |---|---|---|---|---|---|
-| falsche Dimension | Bericht zeigt Wert nicht | Pflichtdimension fehlt oder ist falsch | Beleg ? Posten ? Dimension | Dimension Correction Tool oder fachliche Korrekturbuchung | Bericht manuell überschreiben |
-| falsche Buchungsgruppe | falsches Konto oder falsche USt | Stammdaten falsch gepflegt | Stammdatenkarte ? Posting Setup ? Sachposten | Stammdaten korrigieren, Beleg fachlich stornieren/neubuchen | gebuchte Posten löschen |
-| falscher Status | Beleg kann nicht gebucht werden | Freigabe, Lageraktivität oder Pflichtfeld fehlt | Belegstatus ? Fehlermeldung ? Einrichtung | Status zurücksetzen, Pflichtfeld ergänzen, Prozessschritt nachholen | Warnungen ignorieren |
+| falsche Dimension | Bericht zeigt Wert nicht | Pflichtdimension fehlt oder ist falsch | Beleg → Posten → Dimension | Dimension Correction Tool oder fachliche Korrekturbuchung | Bericht manuell überschreiben |
+| falsche Buchungsgruppe | falsches Konto oder falsche USt | Stammdaten falsch gepflegt | Stammdatenkarte → Posting Setup → Sachposten | Stammdaten korrigieren, Beleg fachlich stornieren/neubuchen | gebuchte Posten löschen |
+| falscher Status | Beleg kann nicht gebucht werden | Freigabe, Lageraktivität oder Pflichtfeld fehlt | Belegstatus → Fehlermeldung → Einrichtung | Status zurücksetzen, Pflichtfeld ergänzen, Prozessschritt nachholen | Warnungen ignorieren |
 
 ### Übung
 
@@ -2636,7 +2744,7 @@ Schulungsübung:
 
 ---
 
-### Lernmodul-Ergänzung: Intercompany und Ausland
+### Praxisfall Rhein-Main: Intercompany und Ausland
 
 ### Für absolute Einsteiger: Was du hier gerade tust
 
@@ -2695,9 +2803,9 @@ Rhein-Main nutzt `RM-M100` mit einem Beispielwert von `10.000 EUR`. Die Buchung 
 
 | Fehler | Symptom | Ursache | Diagnosepfad | Korrekturweg | Was man nicht tun darf |
 |---|---|---|---|---|---|
-| falsche Dimension | Bericht zeigt Wert nicht | Pflichtdimension fehlt oder ist falsch | Beleg ? Posten ? Dimension | Dimension Correction Tool oder fachliche Korrekturbuchung | Bericht manuell überschreiben |
-| falsche Buchungsgruppe | falsches Konto oder falsche USt | Stammdaten falsch gepflegt | Stammdatenkarte ? Posting Setup ? Sachposten | Stammdaten korrigieren, Beleg fachlich stornieren/neubuchen | gebuchte Posten löschen |
-| falscher Status | Beleg kann nicht gebucht werden | Freigabe, Lageraktivität oder Pflichtfeld fehlt | Belegstatus ? Fehlermeldung ? Einrichtung | Status zurücksetzen, Pflichtfeld ergänzen, Prozessschritt nachholen | Warnungen ignorieren |
+| falsche Dimension | Bericht zeigt Wert nicht | Pflichtdimension fehlt oder ist falsch | Beleg → Posten → Dimension | Dimension Correction Tool oder fachliche Korrekturbuchung | Bericht manuell überschreiben |
+| falsche Buchungsgruppe | falsches Konto oder falsche USt | Stammdaten falsch gepflegt | Stammdatenkarte → Posting Setup → Sachposten | Stammdaten korrigieren, Beleg fachlich stornieren/neubuchen | gebuchte Posten löschen |
+| falscher Status | Beleg kann nicht gebucht werden | Freigabe, Lageraktivität oder Pflichtfeld fehlt | Belegstatus → Fehlermeldung → Einrichtung | Status zurücksetzen, Pflichtfeld ergänzen, Prozessschritt nachholen | Warnungen ignorieren |
 
 ### Übung
 
@@ -2812,9 +2920,9 @@ Schulungsübung:
 
 ### OP-Ausgleich als Lernfall
 
-Offene Posten sind Forderungen oder Verbindlichkeiten, die noch nicht durch Zahlung, Gutschrift oder Ausgleich erledigt sind. RM-SHARED prüft täglich `Debitorenposten (Customer Ledger Entries)` und `Kreditorenposten (Vendor Ledger Entries)`. Eine Zahlung wird nicht nur auf dem Bankkonto gebucht, sondern mit dem offenen Posten verkn?pft.
+Offene Posten sind Forderungen oder Verbindlichkeiten, die noch nicht durch Zahlung, Gutschrift oder Ausgleich erledigt sind. RM-SHARED prüft täglich `Debitorenposten (Customer Ledger Entries)` und `Kreditorenposten (Vendor Ledger Entries)`. Eine Zahlung wird nicht nur auf dem Bankkonto gebucht, sondern mit dem offenen Posten verknüpft.
 
-### Lernmodul-Ergänzung: Bank, Payments und OP-Ausgleich
+### Praxisfall Rhein-Main: Bank, Payments und OP-Ausgleich
 
 ### Für absolute Einsteiger: Was du hier gerade tust
 
@@ -2873,9 +2981,9 @@ Rhein-Main nutzt `D10000` und Rechnung `SO-1001` mit einem Beispielwert von `10.
 
 | Fehler | Symptom | Ursache | Diagnosepfad | Korrekturweg | Was man nicht tun darf |
 |---|---|---|---|---|---|
-| falsche Dimension | Bericht zeigt Wert nicht | Pflichtdimension fehlt oder ist falsch | Beleg ? Posten ? Dimension | Dimension Correction Tool oder fachliche Korrekturbuchung | Bericht manuell überschreiben |
-| falsche Buchungsgruppe | falsches Konto oder falsche USt | Stammdaten falsch gepflegt | Stammdatenkarte ? Posting Setup ? Sachposten | Stammdaten korrigieren, Beleg fachlich stornieren/neubuchen | gebuchte Posten löschen |
-| falscher Status | Beleg kann nicht gebucht werden | Freigabe, Lageraktivität oder Pflichtfeld fehlt | Belegstatus ? Fehlermeldung ? Einrichtung | Status zurücksetzen, Pflichtfeld ergänzen, Prozessschritt nachholen | Warnungen ignorieren |
+| falsche Dimension | Bericht zeigt Wert nicht | Pflichtdimension fehlt oder ist falsch | Beleg → Posten → Dimension | Dimension Correction Tool oder fachliche Korrekturbuchung | Bericht manuell überschreiben |
+| falsche Buchungsgruppe | falsches Konto oder falsche USt | Stammdaten falsch gepflegt | Stammdatenkarte → Posting Setup → Sachposten | Stammdaten korrigieren, Beleg fachlich stornieren/neubuchen | gebuchte Posten löschen |
+| falscher Status | Beleg kann nicht gebucht werden | Freigabe, Lageraktivität oder Pflichtfeld fehlt | Belegstatus → Fehlermeldung → Einrichtung | Status zurücksetzen, Pflichtfeld ergänzen, Prozessschritt nachholen | Warnungen ignorieren |
 
 ### Übung
 
@@ -2916,7 +3024,7 @@ Führe den Fall für `D10000` und Rechnung `SO-1001` in der Trainingscompany aus
 
 ## 20. Bank, Payments und Bankabstimmung
 
-### Lernmodul-Ergänzung: Bank, Payments und OP-Ausgleich
+### Praxisfall Rhein-Main: Bank, Payments und OP-Ausgleich
 
 ### Für absolute Einsteiger: Was du hier gerade tust
 
@@ -2975,9 +3083,9 @@ Rhein-Main nutzt `D10000` und Rechnung `SO-1001` mit einem Beispielwert von `10.
 
 | Fehler | Symptom | Ursache | Diagnosepfad | Korrekturweg | Was man nicht tun darf |
 |---|---|---|---|---|---|
-| falsche Dimension | Bericht zeigt Wert nicht | Pflichtdimension fehlt oder ist falsch | Beleg ? Posten ? Dimension | Dimension Correction Tool oder fachliche Korrekturbuchung | Bericht manuell überschreiben |
-| falsche Buchungsgruppe | falsches Konto oder falsche USt | Stammdaten falsch gepflegt | Stammdatenkarte ? Posting Setup ? Sachposten | Stammdaten korrigieren, Beleg fachlich stornieren/neubuchen | gebuchte Posten löschen |
-| falscher Status | Beleg kann nicht gebucht werden | Freigabe, Lageraktivität oder Pflichtfeld fehlt | Belegstatus ? Fehlermeldung ? Einrichtung | Status zurücksetzen, Pflichtfeld ergänzen, Prozessschritt nachholen | Warnungen ignorieren |
+| falsche Dimension | Bericht zeigt Wert nicht | Pflichtdimension fehlt oder ist falsch | Beleg → Posten → Dimension | Dimension Correction Tool oder fachliche Korrekturbuchung | Bericht manuell überschreiben |
+| falsche Buchungsgruppe | falsches Konto oder falsche USt | Stammdaten falsch gepflegt | Stammdatenkarte → Posting Setup → Sachposten | Stammdaten korrigieren, Beleg fachlich stornieren/neubuchen | gebuchte Posten löschen |
+| falscher Status | Beleg kann nicht gebucht werden | Freigabe, Lageraktivität oder Pflichtfeld fehlt | Belegstatus → Fehlermeldung → Einrichtung | Status zurücksetzen, Pflichtfeld ergänzen, Prozessschritt nachholen | Warnungen ignorieren |
 
 ### Übung
 
@@ -3018,7 +3126,7 @@ Führe den Fall für `D10000` und Rechnung `SO-1001` in der Trainingscompany aus
 
 ## 21. Fixed Assets
 
-### Lernmodul-Ergänzung: Fixed Assets
+### Praxisfall Rhein-Main: Fixed Assets
 
 ### Für absolute Einsteiger: Was du hier gerade tust
 
@@ -3077,9 +3185,9 @@ Rhein-Main nutzt `FA-CNC-01` mit einem Beispielwert von `10.000 EUR`. Die Buchun
 
 | Fehler | Symptom | Ursache | Diagnosepfad | Korrekturweg | Was man nicht tun darf |
 |---|---|---|---|---|---|
-| falsche Dimension | Bericht zeigt Wert nicht | Pflichtdimension fehlt oder ist falsch | Beleg ? Posten ? Dimension | Dimension Correction Tool oder fachliche Korrekturbuchung | Bericht manuell überschreiben |
-| falsche Buchungsgruppe | falsches Konto oder falsche USt | Stammdaten falsch gepflegt | Stammdatenkarte ? Posting Setup ? Sachposten | Stammdaten korrigieren, Beleg fachlich stornieren/neubuchen | gebuchte Posten löschen |
-| falscher Status | Beleg kann nicht gebucht werden | Freigabe, Lageraktivität oder Pflichtfeld fehlt | Belegstatus ? Fehlermeldung ? Einrichtung | Status zurücksetzen, Pflichtfeld ergänzen, Prozessschritt nachholen | Warnungen ignorieren |
+| falsche Dimension | Bericht zeigt Wert nicht | Pflichtdimension fehlt oder ist falsch | Beleg → Posten → Dimension | Dimension Correction Tool oder fachliche Korrekturbuchung | Bericht manuell überschreiben |
+| falsche Buchungsgruppe | falsches Konto oder falsche USt | Stammdaten falsch gepflegt | Stammdatenkarte → Posting Setup → Sachposten | Stammdaten korrigieren, Beleg fachlich stornieren/neubuchen | gebuchte Posten löschen |
+| falscher Status | Beleg kann nicht gebucht werden | Freigabe, Lageraktivität oder Pflichtfeld fehlt | Belegstatus → Fehlermeldung → Einrichtung | Status zurücksetzen, Pflichtfeld ergänzen, Prozessschritt nachholen | Warnungen ignorieren |
 
 ### Übung
 
@@ -3183,7 +3291,7 @@ Merksatz:
 
 ---
 
-### Lernmodul-Ergänzung: USt, E-Rechnung und Nachweissicht
+### Praxisfall Rhein-Main: USt, E-Rechnung und Nachweissicht
 
 ### Für absolute Einsteiger: Was du hier gerade tust
 
@@ -3242,9 +3350,9 @@ Rhein-Main nutzt `D20000`, `D30000`, `K10000` mit einem Beispielwert von `10.000
 
 | Fehler | Symptom | Ursache | Diagnosepfad | Korrekturweg | Was man nicht tun darf |
 |---|---|---|---|---|---|
-| falsche Dimension | Bericht zeigt Wert nicht | Pflichtdimension fehlt oder ist falsch | Beleg ? Posten ? Dimension | Dimension Correction Tool oder fachliche Korrekturbuchung | Bericht manuell überschreiben |
-| falsche Buchungsgruppe | falsches Konto oder falsche USt | Stammdaten falsch gepflegt | Stammdatenkarte ? Posting Setup ? Sachposten | Stammdaten korrigieren, Beleg fachlich stornieren/neubuchen | gebuchte Posten löschen |
-| falscher Status | Beleg kann nicht gebucht werden | Freigabe, Lageraktivität oder Pflichtfeld fehlt | Belegstatus ? Fehlermeldung ? Einrichtung | Status zurücksetzen, Pflichtfeld ergänzen, Prozessschritt nachholen | Warnungen ignorieren |
+| falsche Dimension | Bericht zeigt Wert nicht | Pflichtdimension fehlt oder ist falsch | Beleg → Posten → Dimension | Dimension Correction Tool oder fachliche Korrekturbuchung | Bericht manuell überschreiben |
+| falsche Buchungsgruppe | falsches Konto oder falsche USt | Stammdaten falsch gepflegt | Stammdatenkarte → Posting Setup → Sachposten | Stammdaten korrigieren, Beleg fachlich stornieren/neubuchen | gebuchte Posten löschen |
+| falscher Status | Beleg kann nicht gebucht werden | Freigabe, Lageraktivität oder Pflichtfeld fehlt | Belegstatus → Fehlermeldung → Einrichtung | Status zurücksetzen, Pflichtfeld ergänzen, Prozessschritt nachholen | Warnungen ignorieren |
 
 ### Übung
 
@@ -3285,7 +3393,7 @@ Führe den Fall für `D20000`, `D30000`, `K10000` in der Trainingscompany aus. D
 
 ## 23. Inventory Costing und Lagerbewertung im Abschluss
 
-### Lernmodul-Ergänzung: Inventory und Warehouse
+### Praxisfall Rhein-Main: Inventory und Warehouse
 
 ### Für absolute Einsteiger: Was du hier gerade tust
 
@@ -3344,9 +3452,9 @@ Rhein-Main nutzt `SP-PUMP-01` mit einem Beispielwert von `10.000 EUR`. Die Buchu
 
 | Fehler | Symptom | Ursache | Diagnosepfad | Korrekturweg | Was man nicht tun darf |
 |---|---|---|---|---|---|
-| falsche Dimension | Bericht zeigt Wert nicht | Pflichtdimension fehlt oder ist falsch | Beleg ? Posten ? Dimension | Dimension Correction Tool oder fachliche Korrekturbuchung | Bericht manuell überschreiben |
-| falsche Buchungsgruppe | falsches Konto oder falsche USt | Stammdaten falsch gepflegt | Stammdatenkarte ? Posting Setup ? Sachposten | Stammdaten korrigieren, Beleg fachlich stornieren/neubuchen | gebuchte Posten löschen |
-| falscher Status | Beleg kann nicht gebucht werden | Freigabe, Lageraktivität oder Pflichtfeld fehlt | Belegstatus ? Fehlermeldung ? Einrichtung | Status zurücksetzen, Pflichtfeld ergänzen, Prozessschritt nachholen | Warnungen ignorieren |
+| falsche Dimension | Bericht zeigt Wert nicht | Pflichtdimension fehlt oder ist falsch | Beleg → Posten → Dimension | Dimension Correction Tool oder fachliche Korrekturbuchung | Bericht manuell überschreiben |
+| falsche Buchungsgruppe | falsches Konto oder falsche USt | Stammdaten falsch gepflegt | Stammdatenkarte → Posting Setup → Sachposten | Stammdaten korrigieren, Beleg fachlich stornieren/neubuchen | gebuchte Posten löschen |
+| falscher Status | Beleg kann nicht gebucht werden | Freigabe, Lageraktivität oder Pflichtfeld fehlt | Belegstatus → Fehlermeldung → Einrichtung | Status zurücksetzen, Pflichtfeld ergänzen, Prozessschritt nachholen | Warnungen ignorieren |
 
 ### Übung
 
@@ -3384,7 +3492,7 @@ Führe den Fall für `SP-PUMP-01` in der Trainingscompany aus. Dokumentiere Star
 * 3 Prüfungsfallen: Bildschirm ist nicht Buchung, Beleg ist nicht Posten, Bericht ersetzt keine Abstimmung.
 * 1 Praxisregel: Erst Beleg verstehen, dann buchen, dann Posten und Bericht prüfen.
 
-### Lernmodul-Ergänzung: Monatsabschluss / Record-to-Report
+### Praxisfall Rhein-Main: Monatsabschluss / Record-to-Report
 
 ### Für absolute Einsteiger: Was du hier gerade tust
 
@@ -3443,9 +3551,9 @@ Rhein-Main nutzt `2026-05` mit einem Beispielwert von `10.000 EUR`. Die Buchung 
 
 | Fehler | Symptom | Ursache | Diagnosepfad | Korrekturweg | Was man nicht tun darf |
 |---|---|---|---|---|---|
-| falsche Dimension | Bericht zeigt Wert nicht | Pflichtdimension fehlt oder ist falsch | Beleg ? Posten ? Dimension | Dimension Correction Tool oder fachliche Korrekturbuchung | Bericht manuell überschreiben |
-| falsche Buchungsgruppe | falsches Konto oder falsche USt | Stammdaten falsch gepflegt | Stammdatenkarte ? Posting Setup ? Sachposten | Stammdaten korrigieren, Beleg fachlich stornieren/neubuchen | gebuchte Posten löschen |
-| falscher Status | Beleg kann nicht gebucht werden | Freigabe, Lageraktivität oder Pflichtfeld fehlt | Belegstatus ? Fehlermeldung ? Einrichtung | Status zurücksetzen, Pflichtfeld ergänzen, Prozessschritt nachholen | Warnungen ignorieren |
+| falsche Dimension | Bericht zeigt Wert nicht | Pflichtdimension fehlt oder ist falsch | Beleg → Posten → Dimension | Dimension Correction Tool oder fachliche Korrekturbuchung | Bericht manuell überschreiben |
+| falsche Buchungsgruppe | falsches Konto oder falsche USt | Stammdaten falsch gepflegt | Stammdatenkarte → Posting Setup → Sachposten | Stammdaten korrigieren, Beleg fachlich stornieren/neubuchen | gebuchte Posten löschen |
+| falscher Status | Beleg kann nicht gebucht werden | Freigabe, Lageraktivität oder Pflichtfeld fehlt | Belegstatus → Fehlermeldung → Einrichtung | Status zurücksetzen, Pflichtfeld ergänzen, Prozessschritt nachholen | Warnungen ignorieren |
 
 ### Übung
 
@@ -3544,7 +3652,7 @@ Merksatz:
 
 ---
 
-### Lernmodul-Ergänzung: Monatsabschluss / Record-to-Report
+### Praxisfall Rhein-Main: Monatsabschluss / Record-to-Report
 
 ### Für absolute Einsteiger: Was du hier gerade tust
 
@@ -3603,9 +3711,9 @@ Rhein-Main nutzt `2026-05` mit einem Beispielwert von `10.000 EUR`. Die Buchung 
 
 | Fehler | Symptom | Ursache | Diagnosepfad | Korrekturweg | Was man nicht tun darf |
 |---|---|---|---|---|---|
-| falsche Dimension | Bericht zeigt Wert nicht | Pflichtdimension fehlt oder ist falsch | Beleg ? Posten ? Dimension | Dimension Correction Tool oder fachliche Korrekturbuchung | Bericht manuell überschreiben |
-| falsche Buchungsgruppe | falsches Konto oder falsche USt | Stammdaten falsch gepflegt | Stammdatenkarte ? Posting Setup ? Sachposten | Stammdaten korrigieren, Beleg fachlich stornieren/neubuchen | gebuchte Posten löschen |
-| falscher Status | Beleg kann nicht gebucht werden | Freigabe, Lageraktivität oder Pflichtfeld fehlt | Belegstatus ? Fehlermeldung ? Einrichtung | Status zurücksetzen, Pflichtfeld ergänzen, Prozessschritt nachholen | Warnungen ignorieren |
+| falsche Dimension | Bericht zeigt Wert nicht | Pflichtdimension fehlt oder ist falsch | Beleg → Posten → Dimension | Dimension Correction Tool oder fachliche Korrekturbuchung | Bericht manuell überschreiben |
+| falsche Buchungsgruppe | falsches Konto oder falsche USt | Stammdaten falsch gepflegt | Stammdatenkarte → Posting Setup → Sachposten | Stammdaten korrigieren, Beleg fachlich stornieren/neubuchen | gebuchte Posten löschen |
+| falscher Status | Beleg kann nicht gebucht werden | Freigabe, Lageraktivität oder Pflichtfeld fehlt | Belegstatus → Fehlermeldung → Einrichtung | Status zurücksetzen, Pflichtfeld ergänzen, Prozessschritt nachholen | Warnungen ignorieren |
 
 ### Übung
 
@@ -3764,7 +3872,7 @@ Schulungsübung:
 
 Teil F bündelt Schulungen, UAT, Lösungen, MB-800, Microsoft-Learn-Mapping, Glossar, Seitenindex, Praxisfallen und Projektartefakte. Dieser Teil macht das Buch als Trainings- und Nachschlagewerk nutzbar.
 
-### Lernmodul-Ergänzung: Reporting, Controlling und Power BI
+### Praxisfall Rhein-Main: Reporting, Controlling und Power BI
 
 ### Für absolute Einsteiger: Was du hier gerade tust
 
@@ -3823,9 +3931,9 @@ Rhein-Main nutzt `PRODUCTLINE = MACHINE` mit einem Beispielwert von `10.000 EUR`
 
 | Fehler | Symptom | Ursache | Diagnosepfad | Korrekturweg | Was man nicht tun darf |
 |---|---|---|---|---|---|
-| falsche Dimension | Bericht zeigt Wert nicht | Pflichtdimension fehlt oder ist falsch | Beleg ? Posten ? Dimension | Dimension Correction Tool oder fachliche Korrekturbuchung | Bericht manuell überschreiben |
-| falsche Buchungsgruppe | falsches Konto oder falsche USt | Stammdaten falsch gepflegt | Stammdatenkarte ? Posting Setup ? Sachposten | Stammdaten korrigieren, Beleg fachlich stornieren/neubuchen | gebuchte Posten löschen |
-| falscher Status | Beleg kann nicht gebucht werden | Freigabe, Lageraktivität oder Pflichtfeld fehlt | Belegstatus ? Fehlermeldung ? Einrichtung | Status zurücksetzen, Pflichtfeld ergänzen, Prozessschritt nachholen | Warnungen ignorieren |
+| falsche Dimension | Bericht zeigt Wert nicht | Pflichtdimension fehlt oder ist falsch | Beleg → Posten → Dimension | Dimension Correction Tool oder fachliche Korrekturbuchung | Bericht manuell überschreiben |
+| falsche Buchungsgruppe | falsches Konto oder falsche USt | Stammdaten falsch gepflegt | Stammdatenkarte → Posting Setup → Sachposten | Stammdaten korrigieren, Beleg fachlich stornieren/neubuchen | gebuchte Posten löschen |
+| falscher Status | Beleg kann nicht gebucht werden | Freigabe, Lageraktivität oder Pflichtfeld fehlt | Belegstatus → Fehlermeldung → Einrichtung | Status zurücksetzen, Pflichtfeld ergänzen, Prozessschritt nachholen | Warnungen ignorieren |
 
 ### Übung
 
@@ -5562,6 +5670,66 @@ Merksatz:
 
 
 ## 38. Seitenindex, Prozesskatalog und Qualitätssicherung
+
+### Qualitätsprinzipien und Vollständigkeitslogik
+
+Dieses Buch ist ein vollumfängliches Business-Central-Einführungs-, Schulungs-, Projekt-, Nachschlage- und Architekturhandbuch für den deutschen Unternehmenskontext. Es verbindet BC-Standardprozesse, deutsche Finance-/Compliance-Perspektive, praktische Bedienung, Buchungsspur, Fehlerdiagnose, UAT, Evidence Packs, MB-800-Abdeckung, Microsoft-Learn-Lernpfade und Solution-Architect-Denken in einer einheitlichen Lern- und Projektstruktur.
+
+Vollständigkeit bedeutet in diesem Buch:
+- Alle relevanten BC-Standardbereiche werden fachlich erklärt und praktisch durchgespielt.
+- Jeder Prozess enthält Zweck, Rolle, Setup, Stammdaten, Bedienpfad, Happy Path, Abweichungen, Diagnose, Korrektur, Buchungsspur, Bericht, Evidence Pack, Übung, Lösung und UAT-Fall.
+- Jede wichtige Buchung wird über Beleg, gebuchten Beleg, Posten, Nebenbuch, Sachposten, USt-Posten, Artikelposten, Wertposten oder Bericht nachvollziehbar gemacht.
+- Die deutsche BC-Oberfläche ist führend; englische Microsoft-Learn-/Tell-Me-Begriffe stehen als Such- und Quellenhilfe daneben.
+- Alle MB-800-relevanten Skills sind über eine Kompetenzmatrix abgebildet.
+- Der offizielle Microsoft-Learn-Vorbereitungspfad zur MB-800-Zertifizierung ist über Lernpfad-, Modul- und Unit-Mapping eingebunden.
+- Die offizielle Business-Central-Produktdokumentation von Microsoft Learn dient zusätzlich als Vollständigkeits-Overlay für alle BC-Standardbereiche.
+- Relevante Lernpfade und Kompetenzbereiche außerhalb von MB-800 werden als Architektur- und Projektkompetenz integriert, soweit sie für Business Central Standard, Integrationen, Power Platform, Reporting, Betrieb oder Solution Architecture sinnvoll sind.
+- Standard, Pflicht, Best Practice, Projektentscheidung, Extension und Customizing werden sauber getrennt.
+
+| Buchschicht | Was das Buch liefert | Praktischer Nachweis |
+|---|---|---|
+| BC-Prozesslandkarte | alle relevanten Standardbereiche Ende-zu-Ende | Prozesskapitel und E2E-Fälle |
+| Einsteigerpfad | Oberfläche, Suche, Rollen, Belege, Posten, Filter, Korrekturen | Onboarding- und Bedienkapitel |
+| Prozessmodule | Zweck, Setup, Stammdaten, Bedienpfad, Happy Path, Abweichungen | Kapitelstruktur je Prozess |
+| Buchungsspur | Beleg, gebuchter Beleg, Entries, Nebenbuch, Sachposten, Bericht | Postenlogik und Evidence Pack |
+| Finance/R2R | Hauptbuch, Nebenbücher, Bank, Anlagen, USt, Abschluss, Reporting | Finance-Kapitel und Abschlussfall |
+| Operative Prozesse | Sales, Purchasing, Inventory, Warehouse, Planning, Assembly, Manufacturing, Service, Projects | UAT- und Schulungsfälle |
+| Fehlerdiagnose | typische Fehler, Ursache, Diagnosepfad, Korrekturweg | Diagnosematrizen |
+| UAT | Happy Path, Abweichung, Akzeptanzkriterien | Master-UAT und Testskripte |
+| MB-800-Abdeckung | alle aktuellen Skills measured | MB-800-Kompetenzmatrix |
+| Microsoft-Learn-Lernpfad | Lernpfade, Module und Units | Lernpfad-Mapping |
+| BC-Produktlandkarte | alle relevanten Standardbereiche aus Microsoft Learn | Produktlandkarten-Mapping |
+| Solution Architecture | Standard-first, Fit-Gap, Datenmodell, Security, Integration, Migration, Betrieb | Solution-Architect-Kapitel |
+| Projektfähigkeit | Fit-Gap, Standardgrenzen, Extensions, Go-live, Hypercare | Consultant- und Projektkapitel |
+
+Jedes relevante Prozesskapitel folgt dieser Struktur:
+1. Zweck und Prozesskontext.
+2. Warum braucht die Rhein-Main Industriegruppe diesen Prozess?
+3. Quelle und Standardeinordnung.
+4. MB-800-Zuordnung, falls relevant.
+5. Microsoft-Learn-Lernpfad-/Modul-/Unit-Zuordnung, falls relevant.
+6. Beteiligte Rollen.
+7. Setup-Voraussetzungen.
+8. Stammdaten.
+9. Schritt-für-Schritt-Bedienpfad.
+10. Happy Path mit Beispieldaten.
+11. Abweichungen.
+12. Diagnosepfad.
+13. Korrekturweg.
+14. Buchungsspur und Postenlogik.
+15. Kontrollbericht.
+16. Evidence Pack.
+17. Typische Anfängerfehler.
+18. MB-800-Prüfungsfallen, falls relevant.
+19. Solution-Architect-Box, falls relevant.
+20. Wiederholungsfragen.
+21. Szenariofragen.
+22. Praktische Übung.
+23. Lösungsskizze.
+24. UAT-Testfall.
+25. Akzeptanzkriterien.
+26. Standardgrenze und Erweiterungsentscheidung.
+
 
 Dieses Kapitel ist der vollständige Arbeitskatalog für Business Central. Es verbindet alle Prozessbereiche mit der Frage: Wo finde ich es, was richte ich ein, was macht der Mitarbeiter, welche Posten entstehen, welcher Bericht kontrolliert das Ergebnis und welche Fehler sind typisch? Damit wird aus dem Buch ein Bedien- und Schulungssystem.
 
