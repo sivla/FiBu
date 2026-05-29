@@ -397,6 +397,109 @@ Ein vollständiges Schulungsbuch muss zeigen, wie Mitarbeiter arbeiten. Deshalb 
 6. **Buchen:** Post/Release/Register.
 7. **Nachweis prüfen:** Entries, Belegkette, Attachments, Reports.
 
+#### Bebilderte Klickanleitung: `UAT-START-001` Spielwiese öffnen und CRONUS einordnen
+
+Der erste Klickfall beginnt nicht mit einer Buchung. Er beginnt mit Orientierung. In einer neuen Business-Central-Spielwiese sieht der Anwender zuerst eine Sandbox oder Testumgebung mit CRONUS-Demodaten. Diese Umgebung ist kein fertiger Rhein-Main-Mandant. Sie ist der sichere Übungsraum, in dem Oberfläche, Suche, Company, Rolle und Grundnavigation verstanden werden.
+
+Ziel:
+- Du öffnest Business Central im Browser und erkennst, in welcher Umgebung du arbeitest.
+- Du prüfst Company, Sprache, Rolle und Suchfunktion.
+- Du unterscheidest CRONUS-Demodaten von den späteren Rhein-Main-Trainingsdaten.
+
+Vorbedingungen:
+- Business Central ist als Trial, Sandbox oder Trainingsumgebung bereitgestellt.
+- Der Testbenutzer kann sich anmelden.
+- Die Oberfläche ist möglichst auf Deutsch/Deutschland eingestellt.
+- Es wird nicht in einer produktiven Umgebung gearbeitet.
+- Hinweis für den technischen Probelauf: Die aktuelle Spielwiese kann gemischt Deutsch/Englisch erscheinen. Die finalen Buchscreenshots werden später in einem durchgängig deutschen Lauf ersetzt.
+
+| Schritt | Screenshot-Datei | Bildinhalt | Feldlogik | Prüfhinweis |
+|---:|---|---|---|---|
+| 020 | `img/uat-start-001-020-rollencenter-startseite.png` | Rollencenter nach Anmeldung | Das Rollencenter zeigt Rolle, Aufgaben und Startkacheln. | Rolle und sichtbare Menüs dokumentieren. |
+| 050 | `img/uat-start-001-050-alt-q-suche.png` | `Alt+Q` mit Suchfeld | `Alt+Q` ist der stabile Einstieg in Seiten und Berichte. | Deutsch suchen, bei Bedarf englische Suchhilfe nutzen. |
+| 060 | `img/uat-start-001-060-unternehmen-seite.png` | Seite `Unternehmen (Companies)` | Die Liste zeigt verfügbare Companies im Environment. | CRONUS ist Demonstrationsbestand, nicht Rhein-Main-Zielstruktur. |
+| 070 | `img/uat-start-001-070-unternehmensdaten.png` | `Unternehmensdaten (Company Information)` | Unternehmensdaten prägen Belege, Berichte und rechtliche Angaben. | Name, Adresse, Land/Region, USt-ID und Bankdaten später fachlich pflegen. |
+
+Technischer Prüfstatus:
+- `npm run auth:bc` speichert den Business-Central-Login-State lokal.
+- `npm run screenshots:start` erzeugt die vier Startbilder automatisiert.
+- `npm run smoke:bc` öffnet zentrale BC-Seiten probeweise: `Customers`, `Vendors`, `Items`, `Sales Orders`, `Purchase Orders`, `Chart of Accounts`.
+- Die Smoke-Bilder dienen der Werkzeugprüfung. Sie sind noch kein finales Buchlayout, weil die Oberfläche teilweise englisch ist und Einführungs-Popups erscheinen können.
+
+Bildauswertung:
+
+![Rollencenter in der Business-Central-Spielwiese](img/uat-start-001-020-rollencenter-startseite.png)
+
+Was du im Bild siehst:
+- Oben steht `Dynamics 365 Business Central` mit der Umgebung `MCP_1_20260210`.
+- Die Company heißt `My Company`.
+- Das Rollencenter zeigt Kacheln, Aktionen, Suche und Sandbox-Hinweis.
+
+Feldlogik:
+- `My Company` ist die aktuell geöffnete Company. Sie ist nicht automatisch der Zielmandant des Buchprojekts.
+- Der Sandbox-Hinweis zeigt, dass diese Umgebung für Tests und Entwicklung gedacht ist.
+
+Prüfhinweis:
+- Vor jedem Test wird Umgebung, Company und Rolle geprüft. Ein falscher Mandant macht jeden späteren Nachweis wertlos.
+
+![Tell-Me-Suche mit Companies](img/uat-start-001-050-alt-q-suche.png)
+
+Was du im Bild siehst:
+- Die Suche `Wie möchten Sie weiter verfahren?` ist geöffnet.
+- Der Suchbegriff `Companies` wird verwendet, weil die aktuelle Oberfläche gemischt Deutsch/Englisch ist.
+
+Feldlogik:
+- `Alt+Q` oder der Suchbutton öffnet dieselbe Tell-Me-Suche.
+- Der Suchbegriff darf in der Technik englisch sein, auch wenn der Buchtext später deutsch formuliert wird.
+
+Prüfhinweis:
+- Für finale deutsche Screenshots wird derselbe Schritt mit deutschem Suchbegriff erneut geprüft.
+
+![Companies mit CRONUS und My Company](img/uat-start-001-060-unternehmen-seite.png)
+
+Was du im Bild siehst:
+- Die Seite `Companies` zeigt mindestens `CRONUS USA, Inc.` und `My Company`.
+- `CRONUS USA, Inc.` ist als Evaluation Company markiert.
+
+Feldlogik:
+- Eine Company ist ein buchender Mandant innerhalb derselben Business-Central-Umgebung.
+- CRONUS enthält Demodaten. Diese Daten sind nützlich für Tests, aber nicht automatisch die Rhein-Main-Trainingsdaten.
+
+Prüfhinweis:
+- Der erste Foundation-Schritt kopiert CRONUS in eine eigene Trainingscompany `RM-DEMO`.
+
+![Company Information in My Company](img/uat-start-001-070-unternehmensdaten.png)
+
+Was du im Bild siehst:
+- Die Seite `Company Information` zeigt Pflichtfelder wie `Name`, `Address`, `City`, `ZIP Code` und `Country/Region Code`.
+- Mehrere Felder sind noch leer.
+
+Feldlogik:
+- Unternehmensdaten prägen Belege, Berichte und rechtliche Angaben.
+- Leere Pflichtfelder sind für eine Spielwiese akzeptabel, aber nicht für einen prüfbaren Trainingsmandanten.
+
+Prüfhinweis:
+- Für `RM-DEMO` werden Unternehmensdaten später bewusst gesetzt und als Trainingsdaten dokumentiert.
+
+Feldlogik:
+- `Environment` bezeichnet die technische Umgebung, zum Beispiel Sandbox oder Produktion.
+- `Company` bezeichnet den buchenden Mandanten innerhalb dieser Umgebung.
+- `CRONUS` ist ein Demonstrationsmandant mit Beispielstammdaten. Er eignet sich für Orientierung, aber nicht als ungeprüfter Nachweis für Rhein-Main-Prozesse.
+- `Profil/Rolle` steuert Oberfläche und Rollencenter. Es ersetzt keine Berechtigungsprüfung.
+
+Prüfhinweis:
+- Ein sauberer Screenshot-Prozess beginnt immer mit Umgebung, Company, Sprache und Rolle. Erst danach werden Stammdaten, Belege und Posten bebildert.
+
+Evidence Pack (Nachweispaket):
+- Screenshot Rollencenter mit sichtbarer Rolle.
+- Screenshot Company-Auswahl oder Seite `Unternehmen (Companies)`.
+- Screenshot deutscher Oberfläche oder Spracheinstellung.
+- Screenshot `Alt+Q`-Suche.
+- Notiz zur Umgebung: Trial, Sandbox oder Trainingsmandant.
+
+Merksatz:
+- CRONUS ist die Spielwiese für Orientierung. Der prüfbare Buchfall entsteht erst, wenn Testdaten, Company, Rolle und Nachweisziel bewusst festgelegt sind.
+
 Praxisregel:
 - Schulungen beginnen mit Rollen und Aufgaben, nicht mit Menüs. Ein Einkäufer muss wissen, warum er eine Bestellung auslöst; die Seite ist erst der zweite Schritt.
 
@@ -1405,6 +1508,55 @@ flowchart LR
 22. Öffne `Wertposten (Value Entries)` und prüfe den Kostenabgang.
 23. Öffne `USt-Posten (VAT Entries)` und prüfe Steuerbasis und Steuerbetrag.
 24. Öffne `Finanzberichte (Financial Reports)` und prüfe Erlös und Wareneinsatz.
+
+#### Bebilderte Klickanleitung: `UAT-O2C-001`
+
+Diese Klickanleitung macht den Verkaufsprozess nachklickbar. Sie zeigt nicht jeden Mausklick, sondern die Kontrollpunkte, an denen ein Anwender fachlich entscheiden oder ein Prüfer später Nachweise verlangen würde.
+
+Ziel:
+- Du erstellst einen Verkaufsauftrag für Debitor `D10000`.
+- Du erfasst Artikel `RM-M100`, Menge `1`, Preis `68.000 EUR`.
+- Du prüfst USt `19 %` und Dimension `PRODUCTLINE = MACHINE`.
+
+Vorbedingungen:
+- Company: `RM-DEMO` oder die im Trainingsmandanten definierte Verkaufsgesellschaft.
+- Sprache/Region: Deutsch/Deutschland.
+- Rolle: Vertrieb oder Verkaufsauftragsverarbeitung.
+- Debitor `D10000`, Artikel `RM-M100`, Lagerort `FRA-ZL` und Dimension `PRODUCTLINE = MACHINE` sind angelegt.
+- USt-Geschäftsbuchungsgruppe und USt-Produktbuchungsgruppe führen zum Steuersatz `19 %`.
+
+| Schritt | Screenshot-Datei | Bildinhalt | Feldlogik | Prüfhinweis |
+|---:|---|---|---|---|
+| 010 | `img/uat-o2c-001-010-suche-verkaufsauftraege.png` | `Alt+Q` mit Suchbegriff `Verkaufsaufträge` | Die Suche ist der stabile Einstieg, nicht ein Menüpfad. | Sprache und Company vor dem Öffnen prüfen. |
+| 020 | `img/uat-o2c-001-020-liste-verkaufsauftraege.png` | Liste `Verkaufsaufträge` mit Aktion `Neu` | Die Liste zeigt offene, noch bearbeitbare Belege. | Nicht mit `Gebuchte Verkaufsrechnungen` verwechseln. |
+| 030 | `img/uat-o2c-001-030-kopf-debitor-d10000.png` | Auftragskopf mit Debitor `D10000` | Der Debitor steuert Zahlungsbedingungen, Debitorenbuchungsgruppe und USt-Geschäftsbuchungsgruppe. | Debitor, Buchungsdatum, Belegdatum und Währung prüfen. |
+| 040 | `img/uat-o2c-001-040-zeile-artikel-rm-m100.png` | Verkaufszeile mit `RM-M100`, Menge `1`, Preis `68.000 EUR` | Der Artikel steuert Produktbuchungsgruppe, Lagerbuchungsgruppe und USt-Produktbuchungsgruppe. | Lagerort `FRA-ZL` und Einheit prüfen. |
+| 050 | `img/uat-o2c-001-050-dimension-productline-machine.png` | Dimensionsprüfung `PRODUCTLINE = MACHINE` | Die Dimension ordnet Erlös und Marge der Produktlinie zu. | Fehlende Dimension vor der Buchung korrigieren. |
+| 060 | `img/uat-o2c-001-060-buchungsvorschau.png` | `Buchungsvorschau (Preview Posting)` | Vor dem Buchen werden erwartete Posten sichtbar. | Forderung, Erlös, USt, Bestand und Wareneinsatz plausibilisieren. |
+| 070 | `img/uat-o2c-001-070-buchen-liefern-fakturieren.png` | Dialog `Buchen` mit `Liefern und fakturieren` | Die Aktion erzeugt gebuchte Belege und Posten. | Nur buchen, wenn Liefer- und Rechnungsfreigabe vorliegt. |
+| 080 | `img/uat-o2c-001-080-gebuchte-verkaufsrechnung.png` | gebuchte Verkaufsrechnung | Der gebuchte Beleg ist der Einstieg in die Nachweiskette. | Belegnummer für alle Postenfilter notieren. |
+| 090 | `img/uat-o2c-001-090-debitorenposten-d10000.png` | Debitorenposten für `D10000` | Der offene Posten zeigt Forderung und Fälligkeit. | Betrag brutto `80.920 EUR` prüfen. |
+| 100 | `img/uat-o2c-001-100-sachposten-ust-wertposten.png` | Sachposten, USt-Posten, Artikelposten und Wertposten | Die Postenspur belegt Finance-, Steuer- und Lagerwirkung. | Belegnummer, Betrag, Steuerbasis, Menge und Dimension abstimmen. |
+
+Markdown-Einbindung:
+
+```md
+![Verkaufsauftrag Kopf mit Debitor D10000](img/uat-o2c-001-030-kopf-debitor-d10000.png)
+```
+
+Evidence Pack (Nachweispaket):
+- Auftragsnummer und gebuchte Verkaufsrechnungsnummer.
+- Screenshot Auftragskopf und Verkaufszeile.
+- Screenshot Dimension `PRODUCTLINE = MACHINE`.
+- Buchungsvorschau oder Postenspur nach Buchung.
+- Debitorenposten mit Bruttobetrag `80.920 EUR`.
+- Sachposten für Forderung, Erlös, Umsatzsteuer, Bestand und Wareneinsatz.
+- USt-Posten mit Steuerbasis `68.000 EUR` und Steuerbetrag `12.920 EUR`.
+- Artikelposten und Wertposten für `RM-M100`.
+- Finanzbericht mit Erlös und Marge nach `PRODUCTLINE = MACHINE`.
+
+Praxisregel:
+- Ein Screenshot gehört immer an eine fachliche Entscheidung, nicht an jeden Klick. Gute Buchscreenshots zeigen Seite, Feld, Wert und Prüfzweck.
 
 #### Buchungsspur
 
@@ -5896,6 +6048,102 @@ Jeder Prozess wird nach demselben Muster geschult:
 Merksatz:
 - Ein vollständiger BC-Prozess endet nicht mit `Post`. Er endet mit Kontrolle, Nachweis und verständlicher Buchungsspur.
 
+### Standard für bebilderte Klickanleitungen
+
+Bebilderte Klickanleitungen erweitern die bestehenden Bedienpfade. Sie ersetzen die fachliche Erklärung nicht. Ein Bild zeigt, wo der Anwender handelt; der Text erklärt, warum dieser Schritt fachlich, steuerlich oder prüferisch zählt.
+
+Ziel:
+- Du kannst aus einem vorhandenen Prozesskapitel eine nachklickbare Anleitung erstellen.
+- Du kannst Screenshots so benennen, dass sie im Markdown dauerhaft auffindbar bleiben.
+- Du kannst je Screenshot Feldlogik, Prüfhinweis und Evidence-Pack-Relevanz dokumentieren.
+
+#### Wann ein Screenshot gesetzt wird
+
+Ein Screenshot wird gesetzt, wenn sich der fachliche Zustand ändert oder ein Nachweis entsteht. Reine Navigationsklicks werden nur bebildert, wenn der Leser die Seite sonst nicht zuverlässig findet.
+
+| Screenshot-Anlass | Beispiel | Warum relevant? |
+|---|---|---|
+| Einstieg über Suche | `Alt+Q` → `Verkaufsaufträge` | zeigt stabilen Zugang zur Seite |
+| Belegkopf | Debitor `D10000` | Partner, Datum, Währung und USt-Ausgangspunkt |
+| Belegzeile | Artikel `RM-M100`, Menge, Preis | Produktlogik, Lager, Preis, USt, Dimension |
+| kritisches Feld | `PRODUCTLINE = MACHINE` | Reporting- und Kontrolllogik |
+| Vorabprüfung | `Buchungsvorschau (Preview Posting)` | erwartete Posten vor Buchung |
+| Buchungsaktion | `Buchen`, `Liefern und fakturieren` | Übergang von Entwurf zu Posten |
+| gebuchter Beleg | gebuchte Verkaufsrechnung | Startpunkt der Nachweiskette |
+| Postenspur | Sachposten, USt-Posten, Artikelposten | prüfbare Wirkung |
+| Kontrollbericht | Finanzbericht, Lagerbewertung, OP-Liste | Management- und Abschlussnachweis |
+| Fehlerfall | blockierte Buchung, fehlende Dimension | Schulungswert und Diagnosefähigkeit |
+
+#### Dateinamenskonvention
+
+Alle Screenshots liegen im Ordner `img/` neben der Markdown-Datei. Dateinamen sind kleingeschrieben, enthalten keine Leerzeichen und nutzen Bindestriche.
+
+Muster:
+
+```text
+img/[uat-id]-[schritt]-[seite-oder-objekt]-[kurzinhalt].png
+```
+
+Beispiele:
+- `img/uat-o2c-001-030-kopf-debitor-d10000.png`
+- `img/uat-o2c-001-050-dimension-productline-machine.png`
+- `img/uat-p2p-001-040-zeile-raw-steel.png`
+- `img/uat-r2r-001-090-finanzbericht-juni-2026.png`
+
+#### Bildqualität und Wiederholbarkeit
+
+Die Screenshots entstehen immer aus einer kontrollierten Umgebung. Dadurch sehen spätere Kapitel nicht wie zufällige Bildschirmfotos aus.
+
+| Einstellung | Vorgabe |
+|---|---|
+| Umgebung | Business-Central-Sandbox, keine Produktion |
+| Company | definierte Trainingscompany, z. B. `RM-DEMO` |
+| Sprache | Deutsch/Deutschland |
+| Browser | Microsoft Edge oder Chromium |
+| Zoom | `100 %` |
+| Auflösung | mindestens `1440 x 1000` |
+| Testdaten | Rhein-Main-Stammdaten aus Kapitel 7 |
+| Benutzer | dedizierter Testbenutzer je Rolle |
+| Datenschutz | keine echten Personen-, Bank- oder Kundendaten |
+| Hervorhebung | rote Rahmen, Nummern oder Pfeile nur bei erklärungsbedürftigen Feldern |
+
+#### Redaktionsmuster je Screenshot
+
+Jeder Screenshot erhält eine knappe Erklärung. Der Text benennt Seite, Feld, Wert, Fachlogik und Prüfzweck.
+
+```md
+![Verkaufsauftrag Kopf mit Debitor D10000](img/uat-o2c-001-030-kopf-debitor-d10000.png)
+
+Was du im Bild siehst:
+- Die Seite zeigt den Kopf eines Verkaufsauftrags.
+- Das Feld `Debitorennr.` enthält `D10000`.
+- Rechts oder in Infoboxen können Zusatzinformationen zum Debitor erscheinen.
+
+Feldlogik:
+- `Debitorennr. = D10000` zieht Zahlungsbedingungen, Debitorenbuchungsgruppe und USt-Geschäftsbuchungsgruppe.
+
+Prüfhinweis:
+- Vor der Buchung werden Debitor, Buchungsdatum, Belegdatum, Währung und Dimension geprüft.
+
+Evidence Pack:
+- Screenshot Auftragskopf.
+- Spätere gebuchte Verkaufsrechnung.
+- Debitorenposten und Sachposten mit gleicher Belegnummer.
+```
+
+Die Rubrik `Was du im Bild siehst` ist verbindlich. Sie trennt sichtbare Oberfläche von fachlicher Bedeutung. Ein Leser soll erkennen, welche Elemente reine Navigation sind und welche Elemente später prüfungsrelevant werden.
+
+#### Werkzeuglogik
+
+| Werkzeug | Einsatz im Buchprojekt | Grenze |
+|---|---|---|
+| Playwright | reproduzierbare Screenshots, feste Auflösung, Namenskonvention, Wiederholung nach Release Wave | Entra-ID-Login, MFA und dynamische BC-UI brauchen Setup |
+| Power Automate Desktop | Key-User-Aufnahme, Workshop-Dokumentation, halbautomatische Screenshots | schwächere Versionskontrolle und CI/CD |
+| Business Central Page Scripting Tool | UAT-Aufzeichnung und Regressionstest des fachlichen Klickpfads | nicht primär für redaktionell gestaltete Screenshots |
+
+Praxisregel:
+- Page Scripts sichern den fachlichen Test. Playwright erzeugt die Buchbilder. Power Automate Desktop hilft, wenn Fachanwender Klickpfade ohne Code aufnehmen.
+
 ### Vollständige Prozesslandkarte
 
 | Prozessbereich | Deutsche Hauptseiten mit englischer Suchhilfe | Setup | Mitarbeiteraktion | Posten/Nachweis | Kontrollbericht |
@@ -6293,6 +6541,38 @@ Dieses Kapitel liefert direkt nutzbare Templates.
 | Evidence Pack |  |
 | Ergebnis |  |
 | Lösungshinweis |  |
+
+### Template für bebilderte Klickanleitungen
+
+| Feld | Inhalt |
+|---|---|
+| Anleitung-ID |  |
+| Prozess |  |
+| Kapitelbezug |  |
+| Zielgruppe |  |
+| Rolle in BC |  |
+| Company |  |
+| Sprache/Region | Deutsch/Deutschland |
+| Testbenutzer |  |
+| Vorbedingungen |  |
+| Testdaten |  |
+| Hauptseite |  |
+| Einstieg | `Alt+Q` →  |
+| erwartetes Ergebnis |  |
+| Buchungswirkung |  |
+| Kontrollberichte |  |
+| Evidence Pack |  |
+| Negativfall |  |
+| Aktualisierung nach Release Wave |  |
+
+| Schritt | Screenshot-Datei | Aktion | Feld/Wert | Feldlogik | Prüfhinweis | Evidence |
+|---:|---|---|---|---|---|---|
+| 010 | `img/[id]-010-[slug].png` |  |  |  |  |  |
+| 020 | `img/[id]-020-[slug].png` |  |  |  |  |  |
+| 030 | `img/[id]-030-[slug].png` |  |  |  |  |  |
+
+Merksatz:
+- Eine bebilderte Klickanleitung ist erst vollständig, wenn der Leser den Prozess durchführen, das Ergebnis prüfen und den Nachweis ablegen kann.
 
 ### Rollen-/Berechtigungsmatrix
 
