@@ -4,10 +4,12 @@ import path from 'node:path';
 
 const imgDir = path.resolve('img');
 
-export function requireBcUrl() {
-  const bcUrl = process.env.BC_URL;
+export function requireBcUrl(envPrefix?: string) {
+  const prefixedKey = envPrefix ? `${envPrefix}_BC_URL` : undefined;
+  const bcUrl = (prefixedKey ? process.env[prefixedKey] : undefined) ?? process.env.BC_URL;
   if (!bcUrl) {
-    throw new Error('BC_URL fehlt. Lege eine .env mit BC_URL=https://businesscentral.dynamics.com/... an.');
+    const expected = prefixedKey ? `${prefixedKey} oder BC_URL` : 'BC_URL';
+    throw new Error(`${expected} fehlt. Lege eine .env mit Business-Central-URL an.`);
   }
 
   return bcUrl;

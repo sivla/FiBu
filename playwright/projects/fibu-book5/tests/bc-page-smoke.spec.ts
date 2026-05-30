@@ -1,6 +1,7 @@
 import { expect, test } from '@playwright/test';
 import 'dotenv/config';
-import { openSearchResult, pageText, requireBcUrl, screenshot, searchFor, waitForBusinessCentralShell } from './bc-helpers';
+import { openSearchResult, pageText, requireBcUrl, screenshot, searchFor, waitForBusinessCentralShell } from '../../../core/bc-helpers';
+import { project } from '../project';
 
 test.use({
   storageState: 'playwright/.auth/bc-user.json'
@@ -47,7 +48,7 @@ const pages = [
 
 for (const bcPage of pages) {
   test(`BC-Seite öffnen: ${bcPage.search}`, async ({ page }) => {
-    await page.goto(requireBcUrl());
+    await page.goto(requireBcUrl(project.envPrefix));
     await waitForBusinessCentralShell(page);
 
     await searchFor(page, bcPage.search);

@@ -7,7 +7,8 @@ import {
   screenshot,
   searchFor,
   waitForBusinessCentralShell
-} from './bc-helpers';
+} from '../../../core/bc-helpers';
+import { project } from '../project';
 
 test.use({
   storageState: 'playwright/.auth/bc-user.json'
@@ -16,7 +17,7 @@ test.use({
 test('FOUNDATION-001 Company RM-DEMO aus CRONUS kopieren oder prüfen', async ({ page }) => {
   test.setTimeout(12 * 60_000);
 
-  await page.goto(requireBcUrl());
+  await page.goto(requireBcUrl(project.envPrefix));
   await waitForBusinessCentralShell(page);
 
   await searchFor(page, 'Companies');
@@ -25,7 +26,7 @@ test('FOUNDATION-001 Company RM-DEMO aus CRONUS kopieren oder prüfen', async ({
 
   const companiesBefore = await findFrameText(page, /Companies/);
   if (/RM-DEMO/.test(companiesBefore.bodyText)) {
-    await screenshot(page, 'foundation-001-030-rm-demo-besteht.png');
+    await screenshot(page, 'foundation-001-030-rm-demo-angelegt.png');
     return;
   }
 

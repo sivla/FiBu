@@ -7,14 +7,15 @@ import {
   screenshot,
   searchFor,
   waitForBusinessCentralShell
-} from './bc-helpers';
+} from '../../../core/bc-helpers';
+import { project } from '../project';
 
 test.use({
   storageState: 'playwright/.auth/bc-user.json'
 });
 
 test('UAT-START-001 Spielwiese öffnen und CRONUS einordnen', async ({ page }) => {
-  const bcUrl = requireBcUrl();
+  const bcUrl = requireBcUrl(project.envPrefix);
 
   await page.goto(bcUrl);
   await waitForBusinessCentralShell(page);

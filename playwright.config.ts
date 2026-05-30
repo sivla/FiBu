@@ -2,7 +2,7 @@ import { defineConfig } from '@playwright/test';
 import 'dotenv/config';
 
 export default defineConfig({
-  testDir: './scripts/playwright',
+  testDir: './playwright/projects',
   timeout: 120_000,
   expect: {
     timeout: 20_000

@@ -569,6 +569,142 @@ flowchart LR
     G --> H["Test Posting"]
 ```
 
+### Bebilderte Klickanleitung: `FOUNDATION-001` und `FOUNDATION-002` Trainingscompany aufbauen
+
+Der erste echte Foundation-Prozess legt keine Buchung an. Er schafft den wiederholbaren Trainingsraum. Dafür wird die CRONUS-Company in eine eigene Company `RM-DEMO` kopiert und anschließend mit fachlichen Unternehmensdaten versehen.
+
+Ziel:
+- Du erzeugst eine eigene Trainingscompany aus `CRONUS USA, Inc.`.
+- Du setzt die Unternehmensdaten für `Rhein-Main Demo GmbH`.
+- Du dokumentierst jeden Datenwert so, dass der Lauf später erneut ausgeführt werden kann.
+
+Testdatenquelle:
+- Datei: `playwright/projects/fibu-book5/testdata/foundation/rm-demo-company.json`
+- Company: `RM-DEMO`
+- Name: `Rhein-Main Demo GmbH`
+- Adresse: `Mainzer Landstrasse 100`, `60329 Frankfurt am Main`, `DE`
+- Kontakt: `Finance Training`, Telefon `+49 69 5550100`
+
+Technischer Lauf:
+1. `npm run foundation:company`
+2. `npm run foundation:company-info`
+
+#### `FOUNDATION-001`: CRONUS nach `RM-DEMO` kopieren
+
+![Companies vor der Kopie](img/foundation-001-010-companies-vorbereitung.png)
+
+Was du im Bild siehst:
+- Die Seite `Companies` zeigt die vorhandenen Companies.
+- `CRONUS USA, Inc.` ist als Demo-/Evaluation-Company vorhanden.
+- `My Company` ist die bisherige Spielwiese.
+
+Feldlogik:
+- Eine Company ist ein buchender Mandant innerhalb derselben Business-Central-Umgebung.
+- `CRONUS USA, Inc.` enthält Demodaten. Diese Daten werden als Startbestand für `RM-DEMO` genutzt.
+
+Prüfhinweis:
+- Eine Company wird nicht durch freie Tabellenzeilen improvisiert. Der stabile Weg ist `Copy` aus CRONUS.
+
+![Copy Company Dialog](img/foundation-001-020-copy-company-dialog.png)
+
+Was du im Bild siehst:
+- Der Dialog `Copy Company` fragt nach `New Company Name`.
+- Der Hinweis erklärt, dass Daten und Transaktionen aus der ausgewählten Company kopiert werden.
+- Der Schalter `I understand` muss aktiv sein, bevor `OK` sinnvoll ist.
+
+Feldlogik:
+- `New Company Name = RM-DEMO` legt den technischen Company-Namen fest.
+- Die Kopie übernimmt Stammdaten, Setup und Demobewegungen aus CRONUS.
+
+Prüfhinweis:
+- Das Kopieren kann dauern und andere Nutzer in der Quellcompany beeinträchtigen. In diesem Buch geschieht es nur in der Sandbox.
+
+![Copy Company bestätigt](img/foundation-001-025-copy-company-bestaetigung.png)
+
+Was du im Bild siehst:
+- `RM-DEMO` ist als neuer Company-Name eingetragen.
+- Der Bestätigungsschalter ist gesetzt.
+- `OK` startet die Kopie.
+
+Feldlogik:
+- Die Bestätigung ist kein fachliches Feld, sondern eine Schutzabfrage gegen unbeabsichtigtes Kopieren.
+
+Prüfhinweis:
+- Ohne diesen Schritt bleibt `RM-DEMO` nicht als prüfbarer Trainingsmandant verfügbar.
+
+![RM-DEMO angelegt](img/foundation-001-030-rm-demo-angelegt.png)
+
+Was du im Bild siehst:
+- Die Liste `Companies` enthält `RM-DEMO`.
+- Damit ist der technische Trainingsmandant vorhanden.
+
+Feldlogik:
+- `RM-DEMO` ist ab jetzt über die Business-Central-URL mit `company=RM-DEMO` erreichbar.
+
+Evidence Pack:
+- Screenshot der Companies-Liste vor der Kopie.
+- Screenshot des Copy-Dialogs.
+- Screenshot der Liste mit `RM-DEMO`.
+
+#### `FOUNDATION-002`: Unternehmensdaten für `RM-DEMO` setzen
+
+![RM-DEMO Rollencenter](img/foundation-002-010-rm-demo-rollencenter.png)
+
+Was du im Bild siehst:
+- Oben links steht die Company `RM-DEMO`.
+- Das Rollencenter zeigt CRONUS-Demodaten und Aktivitäten.
+- Der Sandbox-Hinweis bleibt sichtbar.
+
+Feldlogik:
+- `RM-DEMO` ist die Arbeitscompany für alle folgenden Trainingsdaten.
+- Die sichtbaren CRONUS-Werte sind Startdaten, keine finalen Rhein-Main-Prozessdaten.
+
+Prüfhinweis:
+- Jeder spätere Prozesslauf beginnt mit der Prüfung, dass `RM-DEMO` aktiv ist.
+
+![Company Information vor der Pflege](img/foundation-002-020-company-information-vorher.png)
+
+Was du im Bild siehst:
+- Die Seite `Company Information` zeigt noch CRONUS-nahe Stammdaten.
+- Name, Adresse, Land, Kontakt und Telefon sind editierbar.
+
+Feldlogik:
+- Diese Felder prägen Belegköpfe, Berichte und Unternehmensangaben.
+- Sie sind Stammdaten, keine Buchung.
+
+Prüfhinweis:
+- Vor steuerlich prüfbaren Belegen müssen Unternehmensdaten bewusst gesetzt werden.
+
+![Company Information nach der Pflege](img/foundation-002-030-company-information-nachher.png)
+
+Was du im Bild siehst:
+- `Name = Rhein-Main Demo GmbH`
+- `Address = Mainzer Landstrasse 100`
+- `Address 2 = Trainingsmandant`
+- `City = Frankfurt am Main`
+- `ZIP Code = 60329`
+- `Country/Region Code = DE`
+- `Contact Name = Finance Training`
+- `Phone No. = +49 69 5550100`
+- Oben ist `Gespeichert` sichtbar.
+
+Feldlogik:
+- `Country/Region Code = DE` macht aus der CRONUS-Kopie einen deutschen Trainingskontext.
+- Adresse und Kontakt sind bewusst fiktiv. Sie dienen der Schulung und enthalten keine echten personenbezogenen Daten.
+- E-Mail, Homepage, Steuer-ID und USt-ID werden in diesem ersten Foundation-Schritt noch nicht gesetzt. Sie folgen erst, wenn Steuer- und E-Rechnungslogik im Buch behandelt werden.
+
+Prüfhinweis:
+- Der Screenshot ist erst buchfähig, wenn `Gespeichert` sichtbar ist. Ein Bild mit `Wird gespeichert ...` ist nur ein Zwischenzustand.
+
+Evidence Pack:
+- JSON-Testdaten aus `playwright/projects/fibu-book5/testdata/foundation/rm-demo-company.json`.
+- Screenshot `Company Information` vor der Pflege.
+- Screenshot `Company Information` nach der Pflege.
+- Playwright-Test `foundation-company-information.spec.ts`.
+
+Praxisregel:
+- Testdaten gehören ins Repository und ins Buch. Nur dann kann ein Leser den Mandanten später wieder auf denselben Stand bringen.
+
 ### UAT-Schulung Foundation
 
 Aufgabe:
