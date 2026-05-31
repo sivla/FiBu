@@ -37,6 +37,7 @@ Wenn Playwright beim Testen etwas findet, das nicht erklärt ist, wird es nicht 
 | `playwright/BC-LEARNING-MODEL.md` | Lernmodell: Business Central durch Nutzung verstehen |
 | `playwright/FINDINGS.md` | offene Fundstellen aus Screenshots und Tests |
 | `playwright/projects/fibu-book5/UI-INVENTORY.md` | Inventar der gesehenen, geklickten und verstandenen BC-Funktionen |
+| `playwright/projects/fibu-book5/BOOK-CLICK-GUIDE-COVERAGE.md` | Abdeckung der getesteten bebilderten Klickanleitungen |
 | `playwright/LEARNINGS.md` | wiederverwendbare BC-Playwright-Erfahrungen |
 | `playwright/PROJECTS.md` | Register für mehrere Projekte |
 | `playwright/ENVIRONMENTS.md` | Regeln für Umgebungen und `.env` |

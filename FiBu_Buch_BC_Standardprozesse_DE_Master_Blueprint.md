@@ -798,7 +798,11 @@ Companies:
 | `RM-SALES` | Vertrieb/Onlineshop | Verkauf, Shopify, Dropshipping |
 | `RM-SERVICE` | Service/Miete | Serviceaufträge, Wartung, Mietlogik |
 | `RM-SHARED` | Einkauf/Shared Services | zentrale Kreditoren, Umlagen |
-| `RM-CH` | Ausland/Intercompany | Drittland-/CH-Bezug |
+| `RM-AT` | EU-Auslandsgesellschaft | EU-USt, Intrastat-nahe Fälle, Intercompany |
+
+Hinweis:
+
+Die Auslandsgesellschaft im Buch ist `RM-AT`. Drittland-/CH-Fälle werden nicht über eine eigene Company `RM-CH` modelliert, sondern über Debitoren, Kreditoren und Steuerfälle wie `D30000 SwissTech AG` mit Land `CH`. Damit bleiben EU-B2B, Intercompany und Drittlandexport fachlich getrennt.
 
 Dimensionen:
 
@@ -853,6 +857,40 @@ Kreditoren:
 12. Workflows für Einkauf, Bankdaten und USt-Setup aktivieren.
 13. Beleglayouts, E-Mail-Szenarien und Berichtsauswahl einrichten.
 14. Aufgabenwarteschlange (Job Queue) und Änderungsprotokoll (Change Log) aktivieren.
+
+### Bebilderte Klickanleitungen: aktueller Foundation-Stand
+
+Die folgenden Klickanleitungen sind in der Spielwiese mit Playwright geprüft und als Evidence abgelegt. Sie sind der getestete Startpunkt für die Buchscreenshots:
+
+| Klickanleitung | BC-Seite | Testfall | Screenshot | Evidence | Status |
+|---|---|---|---|---|---|
+| Ist-Stand der Stammdaten prüfen | Customers, Items, Locations, Dimensions, Posting Setup | `MASTERDATA-001` | `img/masterdata-001-*.png` | `playwright/projects/fibu-book5/evidence/masterdata-001/` | geprüft |
+| Dimensionen anlegen | `Dimensionen (Dimensions)` | `MASTERDATA-002` | `img/masterdata-002-dimensions-rhein-main.png` | `playwright/projects/fibu-book5/evidence/masterdata-002/` | geprüft |
+| Dimensionswerte anlegen | `Dimension Values` | `MASTERDATA-003` | `img/masterdata-003-dimension-values-rhein-main.png` | `playwright/projects/fibu-book5/evidence/masterdata-003/` | geprüft |
+| Lagerort `FRA-ZL` anlegen | `Lagerorte (Locations)` / `Location Card` | `MASTERDATA-004` | `img/masterdata-004-locations-rhein-main.png` | `playwright/projects/fibu-book5/evidence/masterdata-004/` | geprüft |
+
+Redaktionsregel:
+
+Eine Klickanleitung gilt erst als buchfähig, wenn der Playwright-Lauf die Zielseite wirklich geöffnet hat, der Screenshot vorhanden ist und ein Evidence-Pack den Zustand nach erneutem Öffnen oder nach fachlicher Prüfung bestätigt. Ein Screenshot ohne Persistenz- oder Seitenprüfung ist nur ein Entwurf.
+
+### Klickanleitung: Lagerort `FRA-ZL` anlegen
+
+Für den ersten O2C-Test braucht Rhein-Main einen Lagerort. In der Spielwiese wird `FRA-ZL` zunächst als einfacher Lagerort angelegt; die gesteuerte Warehouse-Logik folgt später.
+
+1. Öffne `Alt+Q`.
+2. Suche `Lagerorte` oder `Locations`.
+3. Öffne die Seite `Locations`.
+4. Wähle `Neu`.
+5. Business Central öffnet die `Location Card`.
+6. Erfasse im Feld `Code` den Wert `FRA-ZL`.
+7. Erfasse im Feld `Name` den Wert `Frankfurt Zentrallager`.
+8. Speichere und schließe die Karte.
+9. Öffne die Liste `Locations` erneut.
+10. Prüfe, ob `FRA-ZL` mit Name `Frankfurt Zentrallager` in der Liste sichtbar ist.
+
+Prüfhinweis:
+
+Aktiviere für diesen ersten Test noch keine Lagerplätze, gesteuerte Einlagerung oder Kommissionierung. Diese Funktionen ändern den Prozesspfad für Wareneingang und Verkauf. Sie gehören in den Warehouse-Test, nicht in den ersten einfachen O2C-Fit.
 15. UAT-Basisszenarien buchen.
 
 ### Greenfield-UAT mit Lösungserwartung

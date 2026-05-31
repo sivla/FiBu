@@ -42,7 +42,7 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 
 | Feld | Wert |
 |---|---|
-| Status | buch-update |
+| Status | erledigt |
 | Projekt | fibu-book5 |
 | Testfall | Build-Scope aus Buch |
 | Screenshot | noch keiner |
@@ -50,20 +50,20 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 | sichtbarer Text | Kapitel 6 nennt `RM-CH`; Kapitel 3 nennt `RM-AT GmbH` |
 | Elementtyp | Buch-/Datenmodell-Fundstelle |
 | erste Hypothese | Das Buch vermischt Drittland-/CH-Fall und EU-/AT-Fall. |
-| Recherchequelle | Buchkapitel 3, 6, 18, 22 später gegenprüfen |
-| Testergebnis | noch offen |
-| Entscheidung | Buch ergänzen/bereinigen |
+| Recherchequelle | Buchkapitel 3, 6, 18, 22 gegenprüft |
+| Testergebnis | Buchmodell bereinigt: Company für EU-Ausland ist `RM-AT`; Drittland/CH bleibt als Debitor-/Steuerfall `D30000`/CH, nicht als eigene Company in Welle 1. |
+| Entscheidung | Buch und Projektdaten auf `RM-AT` als Auslandsgesellschaft vereinheitlicht; CH als Drittland-Kunden-/Lieferfall dokumentieren. |
 | Buchstelle | Konzernstruktur, Beispieldatenpaket, Ausland/USt/Intercompany |
 
 Bewertung:
 
-Für EU-B2B, Drittland, USt-ID, Exportnachweis und Intercompany ist es fachlich relevant, ob die Auslandsgesellschaft Schweiz oder Österreich ist. Diese Entscheidung muss vor den Auslands- und Intercompany-Tests geklärt werden.
+Für EU-B2B, Drittland, USt-ID, Exportnachweis und Intercompany ist es fachlich relevant, ob die Auslandsgesellschaft Schweiz oder Österreich ist. Entscheidung: `RM-AT` ist die Auslandsgesellschaft für EU-/Intercompany-Fälle; CH bleibt als Drittlandfall über Debitor `D30000 SwissTech AG` und Kreditor-/Importfälle erhalten.
 
 ## FIND-BC-UI-001 Tell-Me-Suche wählt nicht automatisch die richtige Seite
 
 | Feld | Wert |
 |---|---|
-| Status | getestet |
+| Status | erledigt |
 | Projekt | fibu-book5 |
 | Testfall | alle Such-basierten Playwright-Läufe |
 | Screenshot | diverse `smoke-bc-*` und `masterdata-001-*` |
@@ -88,7 +88,7 @@ Für Audit- und Setup-Prüfungen verwendet Playwright nach Möglichkeit direkte 
 
 | Feld | Wert |
 |---|---|
-| Status | getestet |
+| Status | erledigt |
 | Projekt | fibu-book5 |
 | Testfall | `MASTERDATA-001` |
 | Screenshot | `img/masterdata-001-*` |
@@ -109,7 +109,7 @@ Ein bestandener Playwright-Test ist nur dann Evidence, wenn er die richtige Busi
 
 | Feld | Wert |
 |---|---|
-| Status | getestet |
+| Status | erledigt |
 | Projekt | fibu-book5 |
 | Testfall | `MASTERDATA-001` |
 | Screenshot | `img/masterdata-001-dimensions.png` |
@@ -130,7 +130,7 @@ Für das Anlegen einer Dimension braucht der Leser zuerst die Seite `Dimensions`
 
 | Feld | Wert |
 |---|---|
-| Status | getestet |
+| Status | erledigt |
 | Projekt | fibu-book5 |
 | Testfall | `MASTERDATA-002` |
 | Screenshot | `img/masterdata-002-dimensions-rhein-main.png` |
@@ -159,7 +159,7 @@ Cleanup-Prüfungen dürfen nicht gegen freien Seitentext laufen. Der Text `Produ
 
 | Feld | Wert |
 |---|---|
-| Status | getestet |
+| Status | erledigt |
 | Projekt | fibu-book5 |
 | Testfall | `MASTERDATA-003` |
 | Screenshot | `img/masterdata-003-dimension-values-rhein-main.png` |

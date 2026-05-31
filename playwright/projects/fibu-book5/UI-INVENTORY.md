@@ -44,7 +44,7 @@ Wenn das Projekt fertig ist, kennen wir Business Central für den Buchumfang nic
 | Bereich | Seite | Page-ID | UI-Element | Funktion | Testfall | Screenshot/Evidence | Status | Buchstelle |
 |---|---|---:|---|---|---|---|---|---|
 | Navigation | Role Center | n/a | Search/Tell-Me | Seiten, Aktionen und Berichte finden | `UAT-START-001` | `img/uat-start-001-050-alt-q-suche.png` | verstanden | Kapitel 4/8 |
-| Navigation | Tell-Me | n/a | Suchtrefferliste | richtigen Seitentreffer wählen | `FIND-BC-UI-001` | `playwright/FINDINGS.md` | buch-update | Kapitel 8 |
+| Navigation | Tell-Me | n/a | Suchtrefferliste | richtigen Seitentreffer wählen | `FIND-BC-UI-001` | `playwright/FINDINGS.md` | erledigt | Kapitel 8 |
 | Company | Companies | n/a | Copy | Company aus CRONUS kopieren | `FOUNDATION-001` | `img/foundation-001-*` | erledigt | Kapitel 6 |
 | Company | Company Information | n/a | Textfelder | Unternehmensdaten pflegen | `FOUNDATION-002` | `img/foundation-002-*` | erledigt | Kapitel 6 |
 

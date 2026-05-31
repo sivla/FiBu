@@ -137,11 +137,11 @@ Diese Welle wird nicht als erstes gebaut. Sie braucht Prozessdaten und klare Sta
 | `RM-SALES` | Vertrieb/Shop | später |
 | `RM-SERVICE` | Service/Miete | später |
 | `RM-SHARED` | Finance/Einkauf | später |
-| `RM-CH`/`RM-AT` | Ausland/Intercompany | später, abhängig vom Buchtext bereinigen |
+| `RM-AT` | EU-Ausland/Intercompany | später |
 
 Hinweis:
 
-Das Buch nennt einmal `RM-CH`, an anderer Stelle `RM-AT`. Das ist eine echte Buch-Fundstelle und muss fachlich bereinigt werden.
+Bereinigte Modellentscheidung: `RM-AT` ist die Auslandsgesellschaft für EU-/Intercompany-Szenarien. CH bleibt als Drittlandfall auf Debitor-/Kreditorenebene, z. B. `D30000 SwissTech AG`, aber nicht als eigene Company in der ersten Rhein-Main-Company-Struktur.
 
 ### Dimensionen
 
@@ -195,5 +195,5 @@ Jedes angelegte Objekt bekommt:
 2. `MASTERDATA-001` laufen lassen und Ist-Screenshots sichern.
 3. `MASTERDATA-002` Dimensionen per UI anlegen.
 4. `MASTERDATA-004` Lagerort `FRA-ZL` anlegen.
-5. `MASTERDATA-004` Debitor `D10000` und Artikel `RM-M100` anlegen.
+5. `MASTERDATA-005` Debitor `D10000` und Artikel `RM-M100` anlegen.
 6. Buchtext in Kapitel 6/7 ergänzen: nackige CRONUS-Instanz braucht zuerst Rhein-Main-Mindestdaten.

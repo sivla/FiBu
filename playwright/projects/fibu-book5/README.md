@@ -12,6 +12,8 @@ Wenn ein Screenshot etwas zeigt, das im Buch noch nicht erklärt ist, wird darau
 
 Das Ziel ist praktisches Business-Central-Wissen. Am Ende soll dieses Projekt nicht nur wissen, welche Funktionen Business Central laut Dokumentation hat. Es soll die für das Buch relevanten Klickpfade, Buttons, Menüs und Funktionen real durchgespielt, fotografiert, verstanden und dokumentiert haben. Der Nachweis steht in `UI-INVENTORY.md`.
 
+Die redaktionelle Abdeckung der bebilderten Klickanleitungen steht in `BOOK-CLICK-GUIDE-COVERAGE.md`.
+
 ## Umgebung
 
 | Feld | Wert |
@@ -35,6 +37,11 @@ Aktuell:
 
 ```text
 foundation/rm-demo-company.json
+masterdata/dimensions.json
+masterdata/locations.json
+masterdata/customers.json
+masterdata/items.json
+sales/uat-o2c-001.json
 ```
 
 ## Befehle
@@ -43,6 +50,10 @@ foundation/rm-demo-company.json
 npm run fibu:screenshots:start
 npm run fibu:foundation:company
 npm run fibu:foundation:company-info
+npm run fibu:audit:data
+npm run fibu:masterdata:dimensions
+npm run fibu:masterdata:dimension-values
+npm run fibu:masterdata:locations
 npm run fibu:smoke:bc
 ```
 

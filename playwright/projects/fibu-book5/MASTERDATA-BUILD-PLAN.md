@@ -20,7 +20,7 @@ Wir bauen zuerst einen **Mindestdatenstand Rhein-Main in `RM-DEMO`**.
 
 Warum nicht sofort alle Companies?
 
-- Das Buch beschreibt fachlich mehrere Companies: `RM-PROD`, `RM-SALES`, `RM-SERVICE`, `RM-SHARED`, `RM-CH`.
+- Das Buch beschreibt fachlich mehrere Companies: `RM-PROD`, `RM-SALES`, `RM-SERVICE`, `RM-SHARED`, `RM-AT`.
 - Für die ersten Lern- und Screenshotläufe ist eine konsolidierte Trainingscompany schneller, stabiler und didaktisch sauberer.
 - Echte Mehr-Company-/Intercompany-Fälle kommen später als eigener Block.
 - O2C, P2P, Lager, Dimensionen und Posting können in `RM-DEMO` zuerst verstanden und bebildert werden.

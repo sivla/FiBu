@@ -25,12 +25,16 @@ Deshalb gilt:
 | `RM-SALES` | Vertrieb, Onlineshop, Dropshipping | zu prüfen / vermutlich fehlt |
 | `RM-SERVICE` | Service, Wartung, Miete | zu prüfen / vermutlich fehlt |
 | `RM-SHARED` | Einkauf, Shared Services, Finance | zu prüfen / vermutlich fehlt |
-| `RM-CH` | Ausland/Intercompany | zu prüfen / vermutlich fehlt |
+| `RM-AT` | EU-Ausland/Intercompany | zu prüfen / vermutlich fehlt |
 | `RM-DEMO` | aktuelle Trainingscompany für erste Tests | vorhanden |
 
 Arbeitsentscheidung:
 
 Für frühe Buchscreenshots kann `RM-DEMO` als konsolidierte Trainingscompany dienen. Das muss im Buch erklärt werden, weil das Buch fachlich mehrere Companies beschreibt. Später können die echten Rhein-Main-Companies zusätzlich angelegt werden.
+
+Modellentscheidung:
+
+`RM-AT` ist die Auslandsgesellschaft für EU-/Intercompany-Fälle. CH bleibt als Drittlandfall über Debitoren/Kreditoren, nicht als eigene Company im ersten Company-Modell.
 
 ### Dimensionen
 
