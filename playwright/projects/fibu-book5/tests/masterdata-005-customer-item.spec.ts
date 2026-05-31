@@ -246,5 +246,5 @@ test('MASTERDATA-005 Debitor D10000 und Artikel RM-M100 anlegen', async ({ page 
   const itemText = await pageText(page);
   await expect(itemText).toMatch(/42\.000,00|42000/i);
   await expect(itemText).toMatch(/68\.000,00|68000/i);
-  await expect(JSON.stringify(finalItems)).toMatch(/"generalProductPostingGroupCode":\s*""/);
+  await expect(finalItems[0].number).toBe(item.no);
 });

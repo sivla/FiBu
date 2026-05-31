@@ -87,7 +87,8 @@ Aufbau-Befund aus `MASTERDATA-005`:
 
 - `RM-M100 Standardmaschine M100` wurde über Playwright als angemeldeten Träger und die Business-Central-API angelegt.
 - Kosten und Verkaufspreis sind sichtbar nachgewiesen: `42.000 / 68.000`.
-- Harte Grenze: `Base Unit of Measure`, `Gen. Prod. Posting Group` und `Inventory Posting Group` sind im aktuellen Item-Card-Nachweis leer. Der Artikel existiert, ist aber noch nicht O2C-buchungsfähig.
+- Harte Grenze aus dem Erstlauf: `Base Unit of Measure`, `Gen. Prod. Posting Group` und `Inventory Posting Group` waren im Item-Card-Nachweis leer. Der Artikel existierte, war aber noch nicht O2C-buchungsfähig.
+- Nach `MASTERDATA-006` trägt `RM-M100` einen CRONUS-Technikfit: `PCS`, `RETAIL`, `RESALE`, `FURNITURE`.
 - Screenshot: `img/masterdata-005-items-after-api.png`.
 - API-Nachweis: `playwright/projects/fibu-book5/evidence/masterdata-005/api-result.json`.
 
@@ -185,8 +186,9 @@ Wir sollten nicht sofort eigene Kontenmatrix komplett neu bauen. Für den ersten
 1. `MASTERDATA-002`: Dimensionen anlegen. Status: erledigt.
 2. `MASTERDATA-004`: Lagerort `FRA-ZL` anlegen. Status: erledigt.
 3. `MASTERDATA-005`: Debitor `D10000` und Artikel `RM-M100` anlegen. Status: erledigt.
-4. `MASTERDATA-006`: Posting-Fit mit Buchungsvorschau prüfen. Status: nächster Pflichtschritt.
-5. Erst dann `UAT-O2C-001` vollständig buchen.
+4. `MASTERDATA-006`: Posting-Fit mit API-Probelauf prüfen. Status: erledigt als CRONUS-Technikfit.
+5. Als Nächstes Standarddimensionen und deutschen Steuer-/Währungsfit klären.
+6. Erst dann `UAT-O2C-001` vollständig buchen.
 
 ## Testqualitäts-Learning
 

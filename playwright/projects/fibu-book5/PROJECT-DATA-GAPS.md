@@ -117,7 +117,8 @@ Aktueller Stand:
 
 - `RM-M100` wurde in `MASTERDATA-005` über die angemeldete Playwright-Session und die Business-Central-API angelegt.
 - Kosten und Verkaufspreis sind sichtbar geprüft: `42.000 / 68.000`.
-- Der Artikel ist noch nicht buchungsfähig: `Base Unit of Measure`, `Gen. Prod. Posting Group` und `Inventory Posting Group` sind im aktuellen Nachweis leer. Das ist Gegenstand von `MASTERDATA-006`.
+- In `MASTERDATA-006` wurde der erste technische Posting-Fit gesetzt: `PCS`, `RETAIL`, `RESALE`, `FURNITURE`.
+- Diese Werte sind CRONUS-USA-Vorlagen und noch nicht das endgültige Rhein-Main-Zielmodell `Maschine / 19 % USt / EUR`.
 
 ### Posting-Setup für `UAT-O2C-001`
 
@@ -143,4 +144,8 @@ Aktueller Stand:
 - USt-/Tax-Posting-Logik für 19 %.
 - Standarddimension `PRODUCTLINE = MACHINE`.
 
-Erst wenn diese Felder und Posting-Matrizen nachweisbar passen, darf `UAT-O2C-001` als Verkaufsauftrag ausgeführt werden.
+Aktueller Stand:
+
+- Der technische CRONUS-Fit ist grün: Ein Sales Order mit Zeile kann per API erstellt werden.
+- Der deutsche Ziel-Fit ist noch offen: `EUR`, `19 %` USt und Ziel-Buchungsgruppen müssen in einer deutschen Umgebung oder in einem sauber konfigurierten Rhein-Main-Setup erneut geprüft werden.
+- `UAT-O2C-001` darf als UI-Klickpfad vorbereitet werden; eine endgültige Buchung mit deutschem Steueranspruch bleibt bis zur Steuer-/Dimensionsentscheidung zurückgestellt.

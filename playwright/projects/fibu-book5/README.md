@@ -55,12 +55,15 @@ npm run fibu:masterdata:dimensions
 npm run fibu:masterdata:dimension-values
 npm run fibu:masterdata:locations
 npm run fibu:masterdata:customer-item
+npm run fibu:masterdata:posting-fit
 npm run fibu:smoke:bc
 ```
 
 `MASTERDATA-005` nutzt Playwright nicht nur für Klicks und Screenshots, sondern auch als authentifizierten technischen Träger für die Business-Central-API. Der Webclient liefert den gültigen Session-Token; die API erzeugt die Stammdaten idempotent. Danach öffnet Playwright die BC-Seiten und erzeugt die Buchscreenshots.
 
 Wichtig: Diese API-Anlage ersetzt nicht den fachlichen Posting-Fit. Sichtbar leere Buchungsgruppen oder Basiseinheiten bleiben Findings für `MASTERDATA-006`.
+
+`MASTERDATA-006` setzt für die aktuelle CRONUS-Spielwiese einen technischen Posting-Fit: Customer Template, `PCS`, `RETAIL`, `RESALE`, `FURNITURE`. Danach beweist eine API-Probe, dass ein Sales Order mit `D10000`, `RM-M100`, Menge `1`, Preis `68.000` und Lagerort `FRA-ZL` angelegt werden kann. Das ist bewusst noch kein deutscher `EUR`-/`19 %`-USt-Nachweis.
 
 ## Redaktionsregel
 

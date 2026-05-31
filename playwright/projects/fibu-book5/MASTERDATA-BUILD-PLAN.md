@@ -148,8 +148,8 @@ Harte fachliche Grenze:
 
 - `MASTERDATA-005` beweist Existenz, Name, Adresse, Kosten und Verkaufspreis.
 - `MASTERDATA-005` beweist noch nicht Buchungsfähigkeit.
-- Beim Artikel sind `Base Unit of Measure`, `Gen. Prod. Posting Group` und `Inventory Posting Group` sichtbar leer. Das ist kein kosmetischer Fehler, sondern ein Buchungsblocker für `UAT-O2C-001`.
-- Die Korrektur gehört nach `MASTERDATA-006`, damit Stammdatenerzeugung und Posting-Fit getrennt prüfbar bleiben.
+- Beim Erstlauf waren `Base Unit of Measure`, `Gen. Prod. Posting Group` und `Inventory Posting Group` sichtbar leer. Das war kein kosmetischer Fehler, sondern ein Buchungsblocker für `UAT-O2C-001`.
+- Die Korrektur erfolgt in `MASTERDATA-006`, damit Stammdatenerzeugung und Posting-Fit getrennt prüfbar bleiben.
 
 ### `MASTERDATA-006`: Posting-Fit prüfen
 
@@ -166,6 +166,14 @@ Ziel:
 - Inventory Posting Setup für `FRA-ZL` vollständig
 
 Erst wenn dieser Schritt grün ist, darf `UAT-O2C-001` gebucht werden.
+
+Status nach Testlauf:
+
+- `MASTERDATA-006` ist als CRONUS-Technikfit grün.
+- Debitor `D10000` trägt nach `Apply Template` die notwendige Customer-Posting-Grundlogik.
+- Artikel `RM-M100` trägt `PCS`, `RETAIL`, `RESALE` und `FURNITURE`.
+- Eine API-Probe kann einen Verkaufsauftrag mit Zeile `RM-M100`, Menge `1`, Preis `68.000`, Lagerort `FRA-ZL` erstellen und wieder löschen.
+- Harte fachliche Grenze: Das ist noch kein deutscher Ziel-Fit mit `EUR` und `19 %` USt. Der aktuelle Probelauf nutzt CRONUS-USA-Steuerlogik; die API-Evidence zeigt `currencyCode = USD`, `taxCode = FURNITURE`, `taxPercent = 0`.
 
 ## Was ins Buch muss
 

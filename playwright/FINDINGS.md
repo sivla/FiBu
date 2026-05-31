@@ -161,20 +161,40 @@ Cleanup-Prüfungen dürfen nicht gegen freien Seitentext laufen. Der Text `Produ
 |---|---|
 | Status | erledigt |
 | Projekt | fibu-book5 |
-| Testfall | `MASTERDATA-005` |
-| Screenshot | `img/masterdata-005-items-after-api.png` |
+| Testfall | `MASTERDATA-005`, gelöst in `MASTERDATA-006` |
+| Screenshot | `img/masterdata-005-items-after-api.png`, `img/masterdata-006-item-posting-fit.png` |
 | BC-Seite | `Items` / `Item Card` |
 | sichtbarer Text | `Base Unit of Measure`, `Gen. Prod. Posting Group`, `Inventory Posting Group` leer |
 | Elementtyp | Feld / Stammdaten-/Buchungslogik |
 | erste Hypothese | Die Standard-API legt den Artikel an, setzt aber nicht automatisch alle buchungsrelevanten BC-Felder. |
 | Recherchequelle | praktischer Playwright-Lauf mit BC-API und Item Card |
-| Testergebnis | `RM-M100` existiert mit Kosten `42.000,00` und Verkaufspreis `68.000,00`; Buchungsgruppen und Basiseinheit sind sichtbar leer. |
-| Entscheidung | `MASTERDATA-005` gilt nur als Existenz- und Screenshot-Nachweis; Buchungsfähigkeit wird separat in `MASTERDATA-006` geprüft und korrigiert. |
+| Testergebnis | `RM-M100` existierte zunächst mit Kosten `42.000,00` und Verkaufspreis `68.000,00`; Buchungsgruppen und Basiseinheit waren leer. `MASTERDATA-006` setzt `PCS`, `RETAIL`, `RESALE`, `FURNITURE` und beweist einen Sales-Order-Probelauf. |
+| Entscheidung | `MASTERDATA-005` bleibt Existenz- und Screenshot-Nachweis; `MASTERDATA-006` ist der erste technische Posting-Fit. |
 | Buchstelle | Stammdaten, Artikel, Posting-Fit, O2C-Vorbereitung |
 
 Bewertung:
 
 Das ist ein klassischer Beratungsfehler: Stammdaten sind nicht fertig, nur weil Name und Preis sichtbar sind. Für einen Verkaufsauftrag braucht der Artikel eine Basiseinheit, Produktbuchungsgruppe, Lagerbuchungsgruppe und passende Buchungsmatrix. Der erste O2C-Lauf darf deshalb erst nach `MASTERDATA-006` gebucht werden.
+
+## FIND-BC-TAX-001 CRONUS-Technikfit ist noch kein deutscher Steuerfit
+
+| Feld | Wert |
+|---|---|
+| Status | offen |
+| Projekt | fibu-book5 |
+| Testfall | `MASTERDATA-006` |
+| Screenshot | `img/masterdata-006-customer-template-fit.png`, `img/masterdata-006-item-posting-fit.png` |
+| Evidence | `playwright/projects/fibu-book5/evidence/masterdata-006/api-result.json` |
+| BC-Seite | `Customer Card`, `Item Card`, Standard-API `salesOrders` |
+| sichtbarer/API-Text | `currencyCode = USD`, `taxCode = FURNITURE`, `taxPercent = 0` |
+| Elementtyp | Steuer-/Währungs-/Posting-Setup |
+| erste Hypothese | Die aktuelle Spielwiese ist CRONUS USA. Sie kann den technischen Klickpfad tragen, bildet aber den deutschen Zielsteuerfall nicht automatisch ab. |
+| Entscheidung | UI- und API-Lernen darf weitergehen; endgültige Buchscreenshots für `EUR` und `19 %` brauchen einen deutschen Lauf oder ein explizit konfiguriertes deutsches Setup. |
+| Buchstelle | Foundation, Posting Groups, USt, O2C |
+
+Bewertung:
+
+Das ist für das Buch zentral: Ein grüner technischer Test ist nicht automatisch ein fachlich korrekter deutscher Steuerfall. Für die jetzige Spielwiese zählt `MASTERDATA-006` als Laufbarkeitsnachweis. Für den Buch-Endstand müssen `EUR`, deutsche USt-Logik und `19 %` separat nachgewiesen werden.
 
 ## FIND-BC-TEST-003 Dimensionswerte brauchen Persistenzprüfung über Grid-Werte
 

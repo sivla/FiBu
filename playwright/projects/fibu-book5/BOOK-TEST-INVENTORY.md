@@ -28,10 +28,10 @@ Jeder Buchabschnitt wird in eine oder mehrere testbare Einheiten zerlegt:
 | 6 | 10 | `MASTERDATA-003` | Mindest-Dimensionswerte für O2C anlegen und persistent prüfen | erledigt |
 | 7 | 7/13 | `MASTERDATA-004` | Mindestlagerort `FRA-ZL` anlegen | erledigt |
 | 8 | 7/11/13 | `MASTERDATA-005` | Debitor `D10000` und Artikel `RM-M100` anlegen | erledigt |
-| 9 | 9 | `MASTERDATA-006` | Posting-Fit für O2C prüfen | fällig |
-| 10 | 9 | `UAT-SETUP-POSTING-001` | Buchungsgruppen und Posting-Setup für Verkauf prüfen | blockiert bis Masterdata |
+| 9 | 9 | `MASTERDATA-006` | Posting-Fit für O2C prüfen | erledigt als CRONUS-Technikfit |
+| 10 | 9 | `UAT-SETUP-POSTING-001` | Buchungsgruppen und Posting-Setup für Verkauf prüfen | fällig für deutschen Ziel-Fit |
 | 11 | 10 | `UAT-DIM-001` | Dimension `PRODUCTLINE = MACHINE` und weitere Reportingdimensionen prüfen | teilvorbereitet |
-| 12 | 11 | `UAT-O2C-001` | Verkaufsauftrag für `D10000`/`RM-M100` erfassen, prüfen, buchen, Posten nachweisen | blockiert bis Masterdata |
+| 12 | 11 | `UAT-O2C-001` | Verkaufsauftrag für `D10000`/`RM-M100` erfassen, prüfen, buchen, Posten nachweisen | technisch vorbereitet, fachlich noch Steuer/Dimension prüfen |
 | 13 | 12 | `UAT-P2P-001` | Einkaufsprozess mit Wareneingang und Rechnung | offen |
 | 14 | 13 | `UAT-INV-001` | Lagerbestand, Lagerbewegung, Wertposten und Lagerbewertung | offen |
 | 15 | 14 | `UAT-MFG-001` | Fertigungs-/Montagefall mit Materialverbrauch | offen |

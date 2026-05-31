@@ -192,7 +192,7 @@ Jedes angelegte Objekt bekommt:
 ## Nächste konkrete Arbeit
 
 1. Vollständige Testdatenkataloge im Repo weiter ausbauen.
-2. `MASTERDATA-006` ausführen: Posting-Fit für `D10000` + `RM-M100` + `FRA-ZL` herstellen und nachweisen.
-3. Standarddimensionen für `D10000` und `RM-M100` prüfen oder setzen.
-4. Erst danach `UAT-O2C-001` als Verkaufsauftrag erfassen, Vorschau prüfen und buchen.
-5. Buchtext in Kapitel 6/7/11/13 ergänzen: nackige CRONUS-Instanz braucht zuerst Rhein-Main-Mindestdaten und Posting-Fit.
+2. Standarddimensionen für `D10000` und `RM-M100` prüfen oder setzen.
+3. CRONUS-USA-Technikfit von deutschem Ziel-Fit `EUR` / `19 %` trennen.
+4. `UAT-O2C-001` als UI-Klickpfad erfassen; endgültige Buchung erst nach Steuer-/Dimensionsentscheidung.
+5. Buchtext in Kapitel 6/7/9/11/13 ergänzen: nackige CRONUS-Instanz braucht zuerst Rhein-Main-Mindestdaten, Posting-Fit und fachlichen Steuerfit.

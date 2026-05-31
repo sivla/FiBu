@@ -869,6 +869,7 @@ Die folgenden Klickanleitungen sind in der Spielwiese mit Playwright geprüft un
 | Dimensionswerte anlegen | `Dimension Values` | `MASTERDATA-003` | `img/masterdata-003-dimension-values-rhein-main.png` | `playwright/projects/fibu-book5/evidence/masterdata-003/` | geprüft |
 | Lagerort `FRA-ZL` anlegen | `Lagerorte (Locations)` / `Location Card` | `MASTERDATA-004` | `img/masterdata-004-locations-rhein-main.png` | `playwright/projects/fibu-book5/evidence/masterdata-004/` | geprüft |
 | Debitor `D10000` und Artikel `RM-M100` anlegen | `Customers`, `Items`, `Item Card` | `MASTERDATA-005` | `img/masterdata-005-customers-after-api.png`, `img/masterdata-005-items-after-api.png` | `playwright/projects/fibu-book5/evidence/masterdata-005/` | geprüft |
+| Posting-Fit für ersten O2C-Probelauf herstellen | `Customer Card`, `Item Card`, Sales-Order-API | `MASTERDATA-006` | `img/masterdata-006-customer-template-fit.png`, `img/masterdata-006-item-posting-fit.png` | `playwright/projects/fibu-book5/evidence/masterdata-006/` | geprüft als CRONUS-Technikfit |
 
 Redaktionsregel:
 
@@ -917,7 +918,30 @@ Artikel prüfen:
 
 Prüfhinweis:
 
-Der Screenshot der Artikelkarte zeigt bewusst, dass `Base Unit of Measure`, `Gen. Prod. Posting Group` und `Inventory Posting Group` noch leer sind. Das ist kein Nebenthema. Ohne diese Felder ist der Artikel noch nicht belastbar buchungsfähig. Deshalb folgt vor dem ersten Verkaufsauftrag zwingend `MASTERDATA-006`: Posting-Fit prüfen und korrigieren.
+Der erste Screenshot der Artikelkarte zeigte bewusst, dass `Base Unit of Measure`, `Gen. Prod. Posting Group` und `Inventory Posting Group` noch leer waren. Das ist kein Nebenthema. Ohne diese Felder ist ein Artikel nicht belastbar buchungsfähig. `MASTERDATA-006` korrigiert diesen Zustand für die aktuelle CRONUS-Spielwiese mit `PCS`, `RETAIL`, `RESALE` und `FURNITURE`.
+
+### Klickanleitung: Posting-Fit für den ersten O2C-Probelauf prüfen
+
+In einer nackten CRONUS-Spielwiese reicht es nicht, Debitor und Artikel nur mit Nummer, Name und Preis anzulegen. Der Debitor braucht eine Debitorenbuchungsgruppe, Zahlungslogik und Geschäftsbuchungslogik. Der Artikel braucht mindestens Basiseinheit, Produktbuchungsgruppe, Lagerbuchungsgruppe und Steuergruppe.
+
+Für den aktuellen technischen Probelauf wird bewusst eine CRONUS-Vorlage genutzt:
+
+1. Öffne den Debitor `D10000`.
+2. Wähle `Apply Template`.
+3. Wähle `CUSTOMER COMPANY`.
+4. Bestätige die Anwendung der Vorlage.
+5. Prüfe anschließend, dass `D10000` weiterhin Name, Adresse, Land `DE` und E-Mail korrekt trägt.
+6. Öffne den Artikel `RM-M100`.
+7. Prüfe `Base Unit of Measure = PCS`.
+8. Prüfe `Gen. Prod. Posting Group = RETAIL`.
+9. Prüfe `Inventory Posting Group = RESALE`.
+10. Prüfe `Tax Group Code = FURNITURE`.
+11. Erzeuge als technische Probe einen Verkaufsauftrag für `D10000` mit Artikel `RM-M100`, Menge `1`, Preis `68.000` und Lagerort `FRA-ZL`.
+12. Prüfe, dass die Zeile angelegt werden kann.
+
+Prüfhinweis:
+
+Dieser Stand ist ein technischer Laufbarkeitsnachweis, kein deutscher Steuer-Endstand. Die aktuelle Spielwiese basiert auf CRONUS USA. Der API-Nachweis zeigt deshalb `currencyCode = USD`, `taxCode = FURNITURE` und `taxPercent = 0`. Für finale Buchscreenshots mit `EUR` und `19 %` USt braucht das Projekt später einen deutschen Lauf oder ein explizit konfiguriertes deutsches Steuer-Setup.
 15. UAT-Basisszenarien buchen.
 
 ### Greenfield-UAT mit Lösungserwartung

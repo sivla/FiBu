@@ -25,15 +25,16 @@ Eine Klickanleitung gilt erst als abgedeckt, wenn:
 | Lager | Lagerort `FRA-ZL` anlegen | `MASTERDATA-004` | `img/masterdata-004-locations-rhein-main.png` | `evidence/masterdata-004/` | abgedeckt |
 | Debitoren | Debitor `D10000` anlegen und sichtbar prüfen | `MASTERDATA-005` | `img/masterdata-005-customers-after-api.png` | `evidence/masterdata-005/api-result.json` | abgedeckt |
 | Artikel | Artikel `RM-M100` mit Kosten und Preis anlegen und sichtbar prüfen | `MASTERDATA-005` | `img/masterdata-005-items-after-api.png` | `evidence/masterdata-005/api-result.json` | abgedeckt |
+| Posting-Fit | Debitor-Template und Artikel-Buchungsgruppen für ersten O2C-Probelauf setzen | `MASTERDATA-006` | `img/masterdata-006-customer-template-fit.png`, `img/masterdata-006-item-posting-fit.png` | `evidence/masterdata-006/api-result.json` | abgedeckt als CRONUS-Technikfit |
 
 ## Nächste fehlende Klickanleitungen
 
 | Priorität | Buchbereich | Klickanleitung | Blocker |
 |---:|---|---|---|
-| 1 | Posting | Posting-Fit für `D10000` + `RM-M100` + `FRA-ZL` prüfen | Artikel-Postinggruppen und Basiseinheit sind nach API-Anlage sichtbar leer |
-| 2 | Dimensionen | Standarddimensionen für `D10000` und `RM-M100` prüfen oder setzen | Standarddimensionen wurden noch nicht fachlich persistent geprüft |
-| 3 | O2C | Verkaufsauftrag erfassen und Buchungsvorschau prüfen | `MASTERDATA-006` muss grün sein |
-| 4 | O2C | Auftrag buchen und Postenspur nachweisen | Posting-Fit muss grün sein |
+| 1 | Dimensionen | Standarddimensionen für `D10000` und `RM-M100` prüfen oder setzen | Standarddimensionen wurden noch nicht fachlich persistent geprüft |
+| 2 | Steuer | Deutschen Ziel-Fit `EUR` / `19 %` von CRONUS-USA-Fit trennen | aktueller API-Probelauf ergibt `USD`, `FURNITURE`, `taxPercent = 0` |
+| 3 | O2C | Verkaufsauftrag in der UI erfassen und Screenshots erzeugen | API-Probe ist grün, UI-Klickpfad fehlt noch |
+| 4 | O2C | Auftrag buchen und Postenspur nachweisen | Buchung erst nach Steuer-/Dimensionsentscheidung |
 
 ## Geschlossene Findings
 
