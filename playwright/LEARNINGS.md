@@ -39,6 +39,7 @@ Das Repository soll auch von anderen Codex-Accounts übernommen werden können. 
 | ARIA-Rollen | Schalter/Felder sind nicht immer zuverlässig als `role` auffindbar. | Rollen bevorzugen, aber BC-spezifische Fallbacks akzeptieren. |
 | Listen-Neuanlage | Nach `Neu` bleiben Hauptliste und `Neu - ...`-Form gleichzeitig sichtbar. Unspezifische Locators treffen schnell die falsche Liste. | Bei Neuanlagen auf `form "Neu - <Seite>"` scopen, dann Felder erfassen und anschließend gegen Seitentext/Evidence prüfen. |
 | Grid-Fokus | Blindes Tippen in BC-Grids kann Text in falsche Zellen schreiben oder gar nichts speichern. | Zelle/Form bewusst fokussieren, nach jedem Datensatz hart prüfen und Fehlversuche dokumentieren. |
+| Grid-Evidence | Sichtbare Werte in Listen erscheinen nicht immer in `innerText`; bei `Dimension Values` liegen sie als `input.value` vor. | Persistenz über Neuöffnen der Seite und passende DOM-Werte prüfen, nicht nur über Seitentext. |
 | Land/Region-Abhängigkeiten | `Country/Region Code = DE` verändert abhängige Adressfelder. | Land vor Ort/PLZ setzen und anschließend sichtbare Pflichtfelder prüfen. |
 | Speichern-Zustand | Screenshots während `Wird gespeichert ...` sind nicht buchfähig. | Nach `Gespeichert/Saved` zusätzlich kurz warten. |
 | Direkte Tabellenzeile | Neue Company durch freie Zeile verursachte Validierungsfehler. | Nicht verwenden; `Copy Company` ist der dokumentierte Weg im Projekt. |

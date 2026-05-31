@@ -322,6 +322,10 @@ flowchart LR
 | `PROJ-BER` | RM-SERVICE | Projektlager | Projektbezogenes Lager | Projektmaterial und Baustelle |
 | `DROP` | RM-SALES | Dropshipping | kein eigener Bestand | Direktlieferung Lieferant an Kunde |
 
+Projektregel für die Spielwiese:
+
+Im ersten O2C-Aufbau wird `FRA-ZL` zunächst nur als Lagerort angelegt. Die gesteuerte Lagerlogik mit Lagerplätzen, Lagereingängen, Einlagerungen, Kommissionierungen und Warenausgängen wird später im Warehouse-Kapitel aktiviert und separat getestet. Sonst würde der erste Verkaufsauftrag zu früh in einen vollständigen Warehouse-Prozess kippen.
+
 ### Geschäftsmodelle
 
 | Modell | Use Case | BC-Schwerpunkt | Standardgrenze |
@@ -842,7 +846,7 @@ Kreditoren:
 5. Dimensionen und Pflichtdimensionen einrichten.
 6. Nummernserien einrichten.
 7. Lagerorte `FRA-ZL`, `MZ-EINFACH`, `VAN-SERV`, `PROJ-LAG` anlegen.
-8. für `FRA-ZL` Lagerplätze und gesteuerte Lagerlogik aktivieren.
+8. Für den ersten O2C-Test `FRA-ZL` noch einfach halten; im Warehouse-Block Lagerplätze und gesteuerte Lagerlogik aktivieren.
 9. Benutzer und Rollenprofile anlegen.
 10. Debitoren, Kreditoren, Artikel, Ressourcen, Projekte und Anlagen anlegen.
 11. Verkaufspreislisten und Einkaufspreislisten aktivieren.
@@ -1472,6 +1476,31 @@ In einer nackten CRONUS-Spielwiese sind die Rhein-Main-Dimensionen nicht vollst�
 Prüfhinweis:
 
 Tippe nicht blind in die Tabelle. In Business Central bleiben Hauptliste und Neuanlagekontext gleichzeitig sichtbar. Für eine Klickanleitung ist wichtig, dass der Anwender wirklich in der neuen Zeile `Neu - Dimensions` arbeitet. Sonst wird scheinbar geklickt, aber fachlich keine neue Dimension angelegt.
+
+### Dimensionswerte anlegen und wirklich prüfen
+
+Eine Dimension ist erst praktisch nutzbar, wenn die benötigten Dimensionswerte vorhanden sind. Für den ersten Rhein-Main-O2C-Lauf brauchst du mindestens diese Werte:
+
+| Dimension | Dimensionswert | Name |
+|---|---|---|
+| `PRODUCTLINE` | `MACHINE` | `Machine` |
+| `CHANNEL` | `B2B` | `Business-to-Business` |
+| `DEPARTMENT` | `SALES` | `Sales` |
+| `LOCATION-GROUP` | `DIRECTED` | `Directed Warehouse` |
+
+Vorgehen:
+
+1. Öffne `Dimensionen (Dimensions)`.
+2. Markiere die Dimension, zum Beispiel `PRODUCTLINE`.
+3. Wähle `Dimension` und danach `Dimension Values`.
+4. Erfasse den Wert, zum Beispiel `MACHINE`, und den Namen `Machine`.
+5. Warte auf `Gespeichert`.
+6. Schließe die Seite oder öffne die Dimension erneut.
+7. Prüfe, ob der Wert nach erneutem Öffnen wieder sichtbar ist.
+
+Evidence-Hinweis:
+
+Ein sichtbarer Wert im Grid ist noch kein ausreichender Nachweis. Für UAT und Buchprojekt zählt erst der Reload-Nachweis: Der Wert muss nach erneutem Öffnen der Seite wieder vorhanden sein. Das schützt vor Scheinscreenshots, bei denen ein Wert zwar in einer noch nicht sauber gespeicherten Zeile steht, aber später nicht mehr existiert.
 
 ### Wo Dimensionen gepflegt werden
 

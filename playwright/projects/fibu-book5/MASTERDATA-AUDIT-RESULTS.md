@@ -100,6 +100,13 @@ Bewertung:
 
 Lagerorte müssen angelegt werden. Für `FRA-ZL` muss später entschieden werden, ob wir sofort gesteuerte Lagerlogik aktivieren oder erst einen einfachen Trainingslagerort verwenden.
 
+Aufbau-Befund aus `MASTERDATA-004`:
+
+- `FRA-ZL` wurde als Lagerort mit Name `Frankfurt Zentrallager` angelegt.
+- Für den ersten O2C-Fit wurde noch keine gesteuerte Warehouse-Logik aktiviert.
+- Diese Entscheidung hält den ersten Verkaufsauftrag testbar; gesteuerte Einlagerung, Bins, Picks und Warehouse Employees werden später im Warehouse-Block geprüft.
+- Evidence liegt unter `playwright/projects/fibu-book5/evidence/masterdata-004/`.
+
 ### Dimensionen
 
 Ist:
@@ -131,6 +138,13 @@ Aufbau-Befund aus `MASTERDATA-002`:
 - Die Neuanlage funktioniert zuverlässig erst, wenn Playwright nach `Neu` innerhalb der Form `Neu - Dimensions` arbeitet.
 - Evidence liegt unter `playwright/projects/fibu-book5/evidence/masterdata-002/`.
 
+Aufbau-Befund aus `MASTERDATA-003`:
+
+- Die Mindestwerte für den ersten O2C-Fall sind vorhanden: `MACHINE`, `B2B`, `SALES`, `DIRECTED`.
+- `DEPARTMENT` enthielt bereits CRONUS-Werte; `SALES` wurde als vorhandener Wert bestätigt.
+- Persistenz wurde nicht nur optisch, sondern durch erneutes Öffnen der `Dimension Values`-Seiten geprüft.
+- Evidence liegt unter `playwright/projects/fibu-book5/evidence/masterdata-003/`.
+
 ### Posting Setup
 
 Ist:
@@ -154,9 +168,9 @@ Wir sollten nicht sofort eigene Kontenmatrix komplett neu bauen. Für den ersten
 ## Harte nächste Reihenfolge
 
 1. `MASTERDATA-002`: Dimensionen anlegen.
-2. `MASTERDATA-003`: Lagerort `FRA-ZL` anlegen.
-3. `MASTERDATA-004`: Debitor `D10000` und Artikel `RM-M100` anlegen.
-4. `MASTERDATA-005`: Posting-Fit mit Buchungsvorschau prüfen.
+2. `MASTERDATA-004`: Lagerort `FRA-ZL` anlegen.
+3. `MASTERDATA-005`: Debitor `D10000` und Artikel `RM-M100` anlegen.
+4. `MASTERDATA-006`: Posting-Fit mit Buchungsvorschau prüfen.
 5. Erst dann `UAT-O2C-001` vollständig buchen.
 
 ## Testqualitäts-Learning

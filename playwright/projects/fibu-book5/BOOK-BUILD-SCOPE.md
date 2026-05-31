@@ -194,6 +194,6 @@ Jedes angelegte Objekt bekommt:
 1. Vollständige Testdatenkataloge im Repo anlegen.
 2. `MASTERDATA-001` laufen lassen und Ist-Screenshots sichern.
 3. `MASTERDATA-002` Dimensionen per UI anlegen.
-4. `MASTERDATA-003` Lagerort `FRA-ZL` anlegen.
+4. `MASTERDATA-004` Lagerort `FRA-ZL` anlegen.
 5. `MASTERDATA-004` Debitor `D10000` und Artikel `RM-M100` anlegen.
 6. Buchtext in Kapitel 6/7 ergänzen: nackige CRONUS-Instanz braucht zuerst Rhein-Main-Mindestdaten.

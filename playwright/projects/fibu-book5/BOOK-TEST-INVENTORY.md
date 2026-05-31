@@ -25,7 +25,7 @@ Jeder Buchabschnitt wird in eine oder mehrere testbare Einheiten zerlegt:
 | 3 | 6 | `FOUNDATION-002` | Unternehmensdaten für `RM-DEMO` setzen | bestanden |
 | 4 | 7 | `MASTERDATA-001` | Ist-Stand der relevanten Stammdaten- und Setup-Seiten sichern | vorbereitet |
 | 5 | 7/10 | `MASTERDATA-002` | Mindestdimensionen für O2C anlegen | offen |
-| 6 | 7/13 | `MASTERDATA-003` | Mindestlagerort `FRA-ZL` anlegen | offen |
+| 6 | 7/13 | `MASTERDATA-004` | Mindestlagerort `FRA-ZL` anlegen | erledigt |
 | 7 | 7/11 | `MASTERDATA-004` | Debitor `D10000` und Artikel `RM-M100` anlegen | offen |
 | 8 | 9 | `MASTERDATA-005` | Posting-Fit für O2C prüfen | offen |
 | 9 | 9 | `UAT-SETUP-POSTING-001` | Buchungsgruppen und Posting-Setup für Verkauf prüfen | blockiert bis Masterdata |

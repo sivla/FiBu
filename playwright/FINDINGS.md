@@ -155,23 +155,27 @@ Zusatz-Learning:
 
 Cleanup-Prüfungen dürfen nicht gegen freien Seitentext laufen. Der Text `Product Line` enthält fachlich das Wort `Line`, ist aber kein Dimensionscode `LINE`. Deshalb muss Cleanup eine konkrete Code-Zelle oder einen konkreten Datensatz-Locator prüfen.
 
-## FIND-BC-TEST-003 Dimensionswerte speichern ist noch nicht stabil automatisiert
+## FIND-BC-TEST-003 Dimensionswerte brauchen Persistenzprüfung über Grid-Werte
 
 | Feld | Wert |
 |---|---|
-| Status | offen |
+| Status | getestet |
 | Projekt | fibu-book5 |
-| Testfall | nächster Schritt nach `MASTERDATA-002` |
-| Screenshot | noch kein Buch-Screenshot |
+| Testfall | `MASTERDATA-003` |
+| Screenshot | `img/masterdata-003-dimension-values-rhein-main.png` |
 | BC-Seite | `Dimension Values` aus `Dimensions` |
 | sichtbarer Text | `Dimension Values - PRODUCTLINE`, `Nicht gespeichert`, `Gespeichert` |
 | Elementtyp | Liste / Neuanlage / Speichern |
-| erste Hypothese | Die Zeile lässt sich optisch füllen, aber der Speicherauslöser ist bei Dimension Values anders als bei Dimensions. |
-| Recherchequelle | praktischer Playwright-Explorationslauf |
-| Testergebnis | `MACHINE` wurde optisch in der Zeile angezeigt, war nach erneutem Öffnen aber nicht persistent nachweisbar. |
-| Entscheidung | Noch nicht als Testfall freigeben; erst den sicheren Speicherauslöser finden und dann `MASTERDATA-003` bauen. |
+| erste Hypothese | Die Zeile lässt sich optisch füllen, aber reiner Seitentext ist kein belastbarer Persistenznachweis. |
+| Recherchequelle | praktischer Playwright-Lauf; Microsoft Learn zu Dateneingabe und Keyboard Shortcuts |
+| Testergebnis | `MACHINE`, `B2B`, `SALES`, `DIRECTED` sind nach erneutem Öffnen über Grid-Werte nachweisbar. |
+| Entscheidung | `MASTERDATA-003` prüft `input.value`/Grid-Werte statt nur `innerText`. Reload-/Neuöffnungsnachweis ist Pflicht. |
 | Buchstelle | Dimensionen, vorbereitender Stammdatenaufbau |
 
 Bewertung:
 
-Ein Screenshot mit sichtbarem Wert reicht nicht als Evidence, wenn der Wert nach erneutem Öffnen nicht gespeichert ist. Für das Projekt gilt: Stammdatenaufbau ist erst erledigt, wenn der Datensatz nach Reload oder erneutem Öffnen der Seite wiedergefunden wird.
+Ein Screenshot mit sichtbarem Wert reicht nicht als Evidence, wenn der Wert nach erneutem Öffnen nicht nachweisbar ist. Für das Projekt gilt: Stammdatenaufbau ist erst erledigt, wenn der Datensatz nach Reload oder erneutem Öffnen der Seite wiedergefunden wird.
+
+Zusatz-Learning:
+
+Business-Central-Grids geben Werte nicht immer über `innerText` aus. Sichtbare Zellwerte können in `input.value` liegen. Für Evidence muss der Test daher je Seite entscheiden, ob Text, ARIA, Input-Wert oder Screenshot der belastbare Nachweis ist.

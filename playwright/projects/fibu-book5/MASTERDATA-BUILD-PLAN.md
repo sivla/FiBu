@@ -32,7 +32,7 @@ Projektentscheidung:
 | technische Startcompany | `RM-DEMO` |
 | fachliches Modell | Rhein-Main Mindestdatenstand |
 | echte Mehr-Company-Struktur | späterer Ausbau |
-| nächster blockierender Meilenstein | `MASTERDATA-001` bis `MASTERDATA-004` |
+| nächster blockierender Meilenstein | `MASTERDATA-001` bis `MASTERDATA-006` |
 
 ## Reihenfolge
 
@@ -91,13 +91,19 @@ Nächster Schritt:
 
 - Dimensionswerte anlegen: `PRODUCTLINE=MACHINE`, `CHANNEL=B2B`, `DEPARTMENT=SALES`, `LOCATION-GROUP=DIRECTED`.
 
-Offener technischer Befund:
+Status 31.05.2026:
 
-- Die `Dimension Values`-Liste lässt sich öffnen und optisch befüllen.
-- Der Speicherauslöser ist noch nicht belastbar automatisiert; ein sichtbarer Wert war nach erneutem Öffnen nicht persistent.
-- Deshalb wird der Dimensionswerte-Aufbau erst als eigener Testfall freigegeben, wenn der Wert nach Reload erneut nachweisbar ist.
+- Testlauf `npm run fibu:masterdata:dimension-values` bestanden.
+- Dimensionswerte persistent nachgewiesen: `PRODUCTLINE=MACHINE`, `CHANNEL=B2B`, `DEPARTMENT=SALES`, `LOCATION-GROUP=DIRECTED`.
+- Evidence: `img/masterdata-003-dimension-values-rhein-main.png` und `playwright/projects/fibu-book5/evidence/masterdata-003/`.
 
-### `MASTERDATA-003`: Lagerorte aufbauen
+Technischer Befund:
+
+- Die `Dimension Values`-Liste gibt sichtbare Werte nicht zuverlässig über `innerText` aus.
+- Der Test prüft deshalb Grid-/Input-Werte und öffnet die Seite erneut.
+- Für Buch und UAT gilt: Sichtbar im Screenshot reicht nicht; nach Reload wiedergefunden ist belastbar.
+
+### `MASTERDATA-004`: Lagerorte aufbauen
 
 Mindestumfang:
 
@@ -109,7 +115,19 @@ Späterer Vollumfang:
 - `VAN-SERV`
 - `PROJ-LAG`
 
-### `MASTERDATA-004`: Debitor und Artikel für O2C aufbauen
+Status 31.05.2026:
+
+- Testlauf `npm run fibu:masterdata:locations` bestanden.
+- Lagerort `FRA-ZL` mit Name `Frankfurt Zentrallager` wurde angelegt.
+- Evidence: `img/masterdata-004-locations-rhein-main.png` und `playwright/projects/fibu-book5/evidence/masterdata-004/`.
+
+Projektentscheidung:
+
+- `FRA-ZL` wird für den ersten O2C-Fit zunächst als einfacher Lagerort angelegt.
+- Gesteuerte Lagerlogik, Lagerplätze, Warehouse Receipts/Picks und Warehouse Employees werden später im Warehouse-Block aktiviert und getestet.
+- Grund: Wenn `FRA-ZL` sofort als gesteuertes Lager konfiguriert wird, verändert sich der O2C-Klickpfad massiv. Das ist fachlich richtig für Warehouse-Schulung, aber zu früh für den ersten Verkaufsauftrag.
+
+### `MASTERDATA-005`: Debitor und Artikel für O2C aufbauen
 
 Mindestumfang:
 
@@ -120,7 +138,7 @@ Mindestumfang:
 - Kosten `42.000 EUR`
 - Lagerortbezug `FRA-ZL`
 
-### `MASTERDATA-005`: Posting-Fit prüfen
+### `MASTERDATA-006`: Posting-Fit prüfen
 
 Ziel:
 

@@ -57,6 +57,8 @@ Wenn das Projekt fertig ist, kennen wir Business Central für den Buchumfang nic
 | Lager | Locations | 15 | Liste, New, Location | Lagerorte verwalten | `MASTERDATA-001` | `img/masterdata-001-locations.png` | gesehen | Kapitel 7/13 |
 | Dimensionen | Dimensions | 536 | Liste, New, Dimension Values | Dimensionen und Werte verwalten | `MASTERDATA-001` | `img/masterdata-001-dimensions.png` | gesehen | Kapitel 10 |
 | Dimensionen | Dimensions | 536 | Neu, `Neu - Dimensions`, Code, Name | Dimensionen `PRODUCTLINE`, `CHANNEL`, `LOCATION-GROUP` anlegen; `DEPARTMENT` als bestehend erkennen | `MASTERDATA-002` | `img/masterdata-002-dimensions-rhein-main.png`; `playwright/projects/fibu-book5/evidence/masterdata-002/` | erledigt | Kapitel 10 |
+| Dimensionen | Dimension Values | n/a | Dimension, Dimension Values, Code, Name, Dimension Value Type | Dimensionswerte `MACHINE`, `B2B`, `SALES`, `DIRECTED` anlegen und nach Neuöffnen prüfen | `MASTERDATA-003` | `img/masterdata-003-dimension-values-rhein-main.png`; `playwright/projects/fibu-book5/evidence/masterdata-003/` | erledigt | Kapitel 10 |
+| Lager | Locations / Location Card | 15 | Neu, Code, Name, Warehouse-FastTabs | Lagerort `FRA-ZL` für ersten O2C-Fit anlegen; gesteuerte Warehouse-Logik später separat | `MASTERDATA-004` | `img/masterdata-004-locations-rhein-main.png`; `playwright/projects/fibu-book5/evidence/masterdata-004/` | erledigt | Kapitel 7/13 |
 | Posting | General Posting Setup | 314 | Liste bearbeiten, Suggest Accounts, Copy | Erlös-/Aufwandskonten für Gruppenmatrix | `MASTERDATA-001` | `img/masterdata-001-general-posting-setup.png` | gesehen | Kapitel 9 |
 | Steuer | VAT/Tax Posting Setup | 472 | Liste bearbeiten, Suggest Accounts, Copy | USt-/Tax-Konten und Steuersätze | `MASTERDATA-001` | `img/masterdata-001-vat-posting-setup.png` | gesehen | Kapitel 9/22 |
 | Lagerbewertung | Inventory Posting Setup | 5826 | Liste bearbeiten, Suggest Accounts | Bestandskonten je Lagerort/Posting Group | `MASTERDATA-001` | `img/masterdata-001-inventory-posting-setup.png` | gesehen | Kapitel 9/13/23 |
@@ -65,11 +67,11 @@ Wenn das Projekt fertig ist, kennen wir Business Central für den Buchumfang nic
 
 | Reihenfolge | Ziel |
 |---:|---|
-| 1 | `Dimensions`: `Dimension Values` für `PRODUCTLINE`, `CHANNEL`, `DEPARTMENT`, `LOCATION-GROUP` wirklich klicken und Werte anlegen |
-| 2 | `Locations`: `New`, Lagerort `FRA-ZL` anlegen, relevante Lager-/Warehouse-Felder verstehen |
-| 3 | `Customers`: `New`, Debitor `D10000` anlegen, Customer Templates prüfen |
-| 4 | `Items`: `New`, Artikel `RM-M100` anlegen, Item Templates, Costing, Posting Groups verstehen |
-| 5 | `Sales Orders`: `New`, Debitor und Zeile erfassen, Actions `Release`, `Preview Posting`, `Post` verstehen |
+| 1 | `Customers`: `New`, Debitor `D10000` anlegen, Customer Templates prüfen |
+| 2 | `Items`: `New`, Artikel `RM-M100` anlegen, Item Templates, Costing, Posting Groups verstehen |
+| 3 | `Sales Orders`: `New`, Debitor und Zeile erfassen, Actions `Release`, `Preview Posting`, `Post` verstehen |
+| 4 | Buchungsvorschau und Postenspur für O2C testen |
+| 5 | Warehouse-Block: `FRA-ZL` später mit Bins/Receipts/Picks ausbauen |
 
 ## Definition of Done für eine Funktion
 

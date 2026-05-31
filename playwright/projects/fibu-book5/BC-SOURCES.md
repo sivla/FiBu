@@ -10,12 +10,18 @@ Quelle:
 
 - Microsoft Learn: Work with dimensions to track and analyse data  
   https://learn.microsoft.com/en-ca/dynamics365/business-central/finance-dimensions
+- Microsoft Learn: Enter data in Business Central  
+  https://learn.microsoft.com/en-us/dynamics365/business-central/ui-enter-data
+- Microsoft Learn: Keyboard shortcuts in Business Central  
+  https://learn.microsoft.com/en-gb/dynamics365/business-central/keyboard-shortcuts
 
 Projektregel:
 
 - Rhein-Main-Dimensionen werden explizit angelegt.
 - CRONUS-Dimensionswerte werden nicht stillschweigend umgedeutet.
 - Für den Aufbau wird Page `536` (`Dimensions`) verwendet.
+- Bei Grid-Eingaben zählt erst der Nachweis nach Fokuswechsel, Speichern und erneutem Öffnen.
+- `Ctrl+Enter` kann zum Speichern und Schließen einer Seite genutzt werden; der Test muss trotzdem die Persistenz erneut prüfen.
 
 ## Posting Groups
 
