@@ -80,6 +80,11 @@ Für `UAT-O2C-001` mindestens erforderlich:
 
 - `D10000`
 
+Aktueller Stand:
+
+- `D10000` wurde in `MASTERDATA-005` über die angemeldete Playwright-Session und die Business-Central-API angelegt.
+- Sichtprüfung und Evidence: `img/masterdata-005-customers-after-api.png`, `playwright/projects/fibu-book5/evidence/masterdata-005/api-result.json`.
+
 ### Kreditoren
 
 | Nr. | Name | Land | Trainingsfall |
@@ -108,6 +113,12 @@ Für `UAT-O2C-001` mindestens erforderlich:
 
 - `RM-M100`
 
+Aktueller Stand:
+
+- `RM-M100` wurde in `MASTERDATA-005` über die angemeldete Playwright-Session und die Business-Central-API angelegt.
+- Kosten und Verkaufspreis sind sichtbar geprüft: `42.000 / 68.000`.
+- Der Artikel ist noch nicht buchungsfähig: `Base Unit of Measure`, `Gen. Prod. Posting Group` und `Inventory Posting Group` sind im aktuellen Nachweis leer. Das ist Gegenstand von `MASTERDATA-006`.
+
 ### Posting-Setup für `UAT-O2C-001`
 
 | Bereich | Erwartung |
@@ -124,14 +135,12 @@ Für `UAT-O2C-001` mindestens erforderlich:
 
 ## Nächster technischer Schritt
 
-`MASTERDATA-001` öffnet die relevanten BC-Seiten und sichert Screenshots/Text:
+`MASTERDATA-006` prüft den Posting-Fit für `D10000` + `RM-M100` + `FRA-ZL`:
 
-- `Customers`
-- `Items`
-- `Locations`
-- `Dimensions`
-- `General Posting Setup`
-- `VAT Posting Setup`
-- `Inventory Posting Setup`
+- Basiseinheit für `RM-M100`.
+- Allgemeine Produktbuchungsgruppe für Maschinen.
+- Lagerbuchungsgruppe für Maschinen.
+- USt-/Tax-Posting-Logik für 19 %.
+- Standarddimension `PRODUCTLINE = MACHINE`.
 
-Danach wird entschieden, welche Daten in `RM-DEMO` angelegt werden und welche Buchstellen angepasst werden müssen.
+Erst wenn diese Felder und Posting-Matrizen nachweisbar passen, darf `UAT-O2C-001` als Verkaufsauftrag ausgeführt werden.

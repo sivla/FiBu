@@ -138,6 +138,19 @@ Mindestumfang:
 - Kosten `42.000 EUR`
 - Lagerortbezug `FRA-ZL`
 
+Status:
+
+- Debitor `D10000` und Artikel `RM-M100` wurden mit Playwright über die angemeldete Business-Central-Webclient-Session und die Standard-API angelegt.
+- Evidence: `img/masterdata-005-customers-after-api.png`, `img/masterdata-005-items-after-api.png` und `playwright/projects/fibu-book5/evidence/masterdata-005/api-result.json`.
+- Der API-Weg ist idempotent und löscht das beim ersten UI-Experiment entstandene leere Artefakt `C00010`, falls es ohne Anzeigename vorhanden ist.
+
+Harte fachliche Grenze:
+
+- `MASTERDATA-005` beweist Existenz, Name, Adresse, Kosten und Verkaufspreis.
+- `MASTERDATA-005` beweist noch nicht Buchungsfähigkeit.
+- Beim Artikel sind `Base Unit of Measure`, `Gen. Prod. Posting Group` und `Inventory Posting Group` sichtbar leer. Das ist kein kosmetischer Fehler, sondern ein Buchungsblocker für `UAT-O2C-001`.
+- Die Korrektur gehört nach `MASTERDATA-006`, damit Stammdatenerzeugung und Posting-Fit getrennt prüfbar bleiben.
+
 ### `MASTERDATA-006`: Posting-Fit prüfen
 
 Ziel:

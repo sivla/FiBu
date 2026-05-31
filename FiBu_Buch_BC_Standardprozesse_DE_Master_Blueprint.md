@@ -868,6 +868,7 @@ Die folgenden Klickanleitungen sind in der Spielwiese mit Playwright geprüft un
 | Dimensionen anlegen | `Dimensionen (Dimensions)` | `MASTERDATA-002` | `img/masterdata-002-dimensions-rhein-main.png` | `playwright/projects/fibu-book5/evidence/masterdata-002/` | geprüft |
 | Dimensionswerte anlegen | `Dimension Values` | `MASTERDATA-003` | `img/masterdata-003-dimension-values-rhein-main.png` | `playwright/projects/fibu-book5/evidence/masterdata-003/` | geprüft |
 | Lagerort `FRA-ZL` anlegen | `Lagerorte (Locations)` / `Location Card` | `MASTERDATA-004` | `img/masterdata-004-locations-rhein-main.png` | `playwright/projects/fibu-book5/evidence/masterdata-004/` | geprüft |
+| Debitor `D10000` und Artikel `RM-M100` anlegen | `Customers`, `Items`, `Item Card` | `MASTERDATA-005` | `img/masterdata-005-customers-after-api.png`, `img/masterdata-005-items-after-api.png` | `playwright/projects/fibu-book5/evidence/masterdata-005/` | geprüft |
 
 Redaktionsregel:
 
@@ -891,6 +892,32 @@ Für den ersten O2C-Test braucht Rhein-Main einen Lagerort. In der Spielwiese wi
 Prüfhinweis:
 
 Aktiviere für diesen ersten Test noch keine Lagerplätze, gesteuerte Einlagerung oder Kommissionierung. Diese Funktionen ändern den Prozesspfad für Wareneingang und Verkauf. Sie gehören in den Warehouse-Test, nicht in den ersten einfachen O2C-Fit.
+
+### Klickanleitung: Debitor `D10000` und Artikel `RM-M100` prüfen
+
+Für den ersten O2C-Test müssen Debitor und Artikel vorhanden sein. In der aktuellen Spielwiese werden beide Stammdatensätze reproduzierbar über Playwright und die authentifizierte Business-Central-API erzeugt; anschließend werden sie im Webclient sichtbar geprüft und fotografiert.
+
+Debitor prüfen:
+
+1. Öffne `Alt+Q`.
+2. Suche `Debitoren` oder `Customers`.
+3. Öffne die Seite `Customers`.
+4. Prüfe, ob `D10000` mit Name `Mueller Maschinenbau GmbH` sichtbar ist.
+5. Öffne die FactBox `Sell-to Customer Sales History` und prüfe, dass die Zähler für den neuen Debitor noch `0` zeigen.
+
+Artikel prüfen:
+
+1. Öffne `Alt+Q`.
+2. Suche `Artikel` oder `Items`.
+3. Öffne den Artikel `RM-M100`.
+4. Prüfe `Description = Standardmaschine M100`.
+5. Prüfe `Type = Inventory`.
+6. Prüfe `Unit Cost = 42.000,00`.
+7. Prüfe `Unit Price = 68.000,00`.
+
+Prüfhinweis:
+
+Der Screenshot der Artikelkarte zeigt bewusst, dass `Base Unit of Measure`, `Gen. Prod. Posting Group` und `Inventory Posting Group` noch leer sind. Das ist kein Nebenthema. Ohne diese Felder ist der Artikel noch nicht belastbar buchungsfähig. Deshalb folgt vor dem ersten Verkaufsauftrag zwingend `MASTERDATA-006`: Posting-Fit prüfen und korrigieren.
 15. UAT-Basisszenarien buchen.
 
 ### Greenfield-UAT mit Lösungserwartung

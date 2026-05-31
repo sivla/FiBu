@@ -23,16 +23,17 @@ Eine Klickanleitung gilt erst als abgedeckt, wenn:
 | Dimensionen | Mindestdimensionen anlegen | `MASTERDATA-002` | `img/masterdata-002-dimensions-rhein-main.png` | `evidence/masterdata-002/` | abgedeckt |
 | Dimensionen | Mindest-Dimensionswerte anlegen | `MASTERDATA-003` | `img/masterdata-003-dimension-values-rhein-main.png` | `evidence/masterdata-003/` | abgedeckt |
 | Lager | Lagerort `FRA-ZL` anlegen | `MASTERDATA-004` | `img/masterdata-004-locations-rhein-main.png` | `evidence/masterdata-004/` | abgedeckt |
+| Debitoren | Debitor `D10000` anlegen und sichtbar prüfen | `MASTERDATA-005` | `img/masterdata-005-customers-after-api.png` | `evidence/masterdata-005/api-result.json` | abgedeckt |
+| Artikel | Artikel `RM-M100` mit Kosten und Preis anlegen und sichtbar prüfen | `MASTERDATA-005` | `img/masterdata-005-items-after-api.png` | `evidence/masterdata-005/api-result.json` | abgedeckt |
 
 ## Nächste fehlende Klickanleitungen
 
 | Priorität | Buchbereich | Klickanleitung | Blocker |
 |---:|---|---|---|
-| 1 | Debitoren | Debitor `D10000` anlegen und Standarddimensionen setzen | Posting-/Vorlagenfelder prüfen |
-| 2 | Artikel | Artikel `RM-M100` anlegen, Preis/Kosten/Buchungsgruppen setzen | Item Template und Posting Groups prüfen |
-| 3 | Posting | Posting-Fit für `D10000` + `RM-M100` + `FRA-ZL` prüfen | Debitor und Artikel müssen existieren |
-| 4 | O2C | Verkaufsauftrag erfassen und Buchungsvorschau prüfen | Masterdata 005/006 |
-| 5 | O2C | Auftrag buchen und Postenspur nachweisen | Posting-Fit muss grün sein |
+| 1 | Posting | Posting-Fit für `D10000` + `RM-M100` + `FRA-ZL` prüfen | Artikel-Postinggruppen und Basiseinheit sind nach API-Anlage sichtbar leer |
+| 2 | Dimensionen | Standarddimensionen für `D10000` und `RM-M100` prüfen oder setzen | Standarddimensionen wurden noch nicht fachlich persistent geprüft |
+| 3 | O2C | Verkaufsauftrag erfassen und Buchungsvorschau prüfen | `MASTERDATA-006` muss grün sein |
+| 4 | O2C | Auftrag buchen und Postenspur nachweisen | Posting-Fit muss grün sein |
 
 ## Geschlossene Findings
 

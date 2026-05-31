@@ -191,9 +191,8 @@ Jedes angelegte Objekt bekommt:
 
 ## Nächste konkrete Arbeit
 
-1. Vollständige Testdatenkataloge im Repo anlegen.
-2. `MASTERDATA-001` laufen lassen und Ist-Screenshots sichern.
-3. `MASTERDATA-002` Dimensionen per UI anlegen.
-4. `MASTERDATA-004` Lagerort `FRA-ZL` anlegen.
-5. `MASTERDATA-005` Debitor `D10000` und Artikel `RM-M100` anlegen.
-6. Buchtext in Kapitel 6/7 ergänzen: nackige CRONUS-Instanz braucht zuerst Rhein-Main-Mindestdaten.
+1. Vollständige Testdatenkataloge im Repo weiter ausbauen.
+2. `MASTERDATA-006` ausführen: Posting-Fit für `D10000` + `RM-M100` + `FRA-ZL` herstellen und nachweisen.
+3. Standarddimensionen für `D10000` und `RM-M100` prüfen oder setzen.
+4. Erst danach `UAT-O2C-001` als Verkaufsauftrag erfassen, Vorschau prüfen und buchen.
+5. Buchtext in Kapitel 6/7/11/13 ergänzen: nackige CRONUS-Instanz braucht zuerst Rhein-Main-Mindestdaten und Posting-Fit.

@@ -54,8 +54,13 @@ npm run fibu:audit:data
 npm run fibu:masterdata:dimensions
 npm run fibu:masterdata:dimension-values
 npm run fibu:masterdata:locations
+npm run fibu:masterdata:customer-item
 npm run fibu:smoke:bc
 ```
+
+`MASTERDATA-005` nutzt Playwright nicht nur für Klicks und Screenshots, sondern auch als authentifizierten technischen Träger für die Business-Central-API. Der Webclient liefert den gültigen Session-Token; die API erzeugt die Stammdaten idempotent. Danach öffnet Playwright die BC-Seiten und erzeugt die Buchscreenshots.
+
+Wichtig: Diese API-Anlage ersetzt nicht den fachlichen Posting-Fit. Sichtbar leere Buchungsgruppen oder Basiseinheiten bleiben Findings für `MASTERDATA-006`.
 
 ## Redaktionsregel
 

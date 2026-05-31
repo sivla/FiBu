@@ -155,6 +155,27 @@ Zusatz-Learning:
 
 Cleanup-Prüfungen dürfen nicht gegen freien Seitentext laufen. Der Text `Product Line` enthält fachlich das Wort `Line`, ist aber kein Dimensionscode `LINE`. Deshalb muss Cleanup eine konkrete Code-Zelle oder einen konkreten Datensatz-Locator prüfen.
 
+## FIND-BC-API-001 Stammdaten per API sind noch kein Posting-Fit
+
+| Feld | Wert |
+|---|---|
+| Status | erledigt |
+| Projekt | fibu-book5 |
+| Testfall | `MASTERDATA-005` |
+| Screenshot | `img/masterdata-005-items-after-api.png` |
+| BC-Seite | `Items` / `Item Card` |
+| sichtbarer Text | `Base Unit of Measure`, `Gen. Prod. Posting Group`, `Inventory Posting Group` leer |
+| Elementtyp | Feld / Stammdaten-/Buchungslogik |
+| erste Hypothese | Die Standard-API legt den Artikel an, setzt aber nicht automatisch alle buchungsrelevanten BC-Felder. |
+| Recherchequelle | praktischer Playwright-Lauf mit BC-API und Item Card |
+| Testergebnis | `RM-M100` existiert mit Kosten `42.000,00` und Verkaufspreis `68.000,00`; Buchungsgruppen und Basiseinheit sind sichtbar leer. |
+| Entscheidung | `MASTERDATA-005` gilt nur als Existenz- und Screenshot-Nachweis; Buchungsfähigkeit wird separat in `MASTERDATA-006` geprüft und korrigiert. |
+| Buchstelle | Stammdaten, Artikel, Posting-Fit, O2C-Vorbereitung |
+
+Bewertung:
+
+Das ist ein klassischer Beratungsfehler: Stammdaten sind nicht fertig, nur weil Name und Preis sichtbar sind. Für einen Verkaufsauftrag braucht der Artikel eine Basiseinheit, Produktbuchungsgruppe, Lagerbuchungsgruppe und passende Buchungsmatrix. Der erste O2C-Lauf darf deshalb erst nach `MASTERDATA-006` gebucht werden.
+
 ## FIND-BC-TEST-003 Dimensionswerte brauchen Persistenzprüfung über Grid-Werte
 
 | Feld | Wert |

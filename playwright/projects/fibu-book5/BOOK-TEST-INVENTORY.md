@@ -27,8 +27,8 @@ Jeder Buchabschnitt wird in eine oder mehrere testbare Einheiten zerlegt:
 | 5 | 7/10 | `MASTERDATA-002` | Mindestdimensionen für O2C anlegen | erledigt |
 | 6 | 10 | `MASTERDATA-003` | Mindest-Dimensionswerte für O2C anlegen und persistent prüfen | erledigt |
 | 7 | 7/13 | `MASTERDATA-004` | Mindestlagerort `FRA-ZL` anlegen | erledigt |
-| 8 | 7/11/13 | `MASTERDATA-005` | Debitor `D10000` und Artikel `RM-M100` anlegen | offen |
-| 9 | 9 | `MASTERDATA-006` | Posting-Fit für O2C prüfen | offen |
+| 8 | 7/11/13 | `MASTERDATA-005` | Debitor `D10000` und Artikel `RM-M100` anlegen | erledigt |
+| 9 | 9 | `MASTERDATA-006` | Posting-Fit für O2C prüfen | fällig |
 | 10 | 9 | `UAT-SETUP-POSTING-001` | Buchungsgruppen und Posting-Setup für Verkauf prüfen | blockiert bis Masterdata |
 | 11 | 10 | `UAT-DIM-001` | Dimension `PRODUCTLINE = MACHINE` und weitere Reportingdimensionen prüfen | teilvorbereitet |
 | 12 | 11 | `UAT-O2C-001` | Verkaufsauftrag für `D10000`/`RM-M100` erfassen, prüfen, buchen, Posten nachweisen | blockiert bis Masterdata |

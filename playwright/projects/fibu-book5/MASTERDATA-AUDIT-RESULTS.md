@@ -56,6 +56,13 @@ Bewertung:
 
 Debitoren müssen angelegt werden. CRONUS-Debitoren sind für die Rhein-Main-Fallstudie fachlich falsch.
 
+Aufbau-Befund aus `MASTERDATA-005`:
+
+- `D10000 Müller Maschinenbau GmbH` wurde über Playwright als angemeldeten Träger und die Business-Central-API angelegt.
+- Der Debitor ist in der Customers-Liste sichtbar und per Evidence dokumentiert.
+- Screenshot: `img/masterdata-005-customers-after-api.png`.
+- API-Nachweis: `playwright/projects/fibu-book5/evidence/masterdata-005/api-result.json`.
+
 ### Artikel
 
 Ist:
@@ -75,6 +82,14 @@ Soll:
 Bewertung:
 
 Artikel müssen angelegt werden. Bestehende CRONUS-Artikel können höchstens als technische Vorlage für Felder und Posting Groups dienen.
+
+Aufbau-Befund aus `MASTERDATA-005`:
+
+- `RM-M100 Standardmaschine M100` wurde über Playwright als angemeldeten Träger und die Business-Central-API angelegt.
+- Kosten und Verkaufspreis sind sichtbar nachgewiesen: `42.000 / 68.000`.
+- Harte Grenze: `Base Unit of Measure`, `Gen. Prod. Posting Group` und `Inventory Posting Group` sind im aktuellen Item-Card-Nachweis leer. Der Artikel existiert, ist aber noch nicht O2C-buchungsfähig.
+- Screenshot: `img/masterdata-005-items-after-api.png`.
+- API-Nachweis: `playwright/projects/fibu-book5/evidence/masterdata-005/api-result.json`.
 
 ### Lagerorte
 
@@ -167,10 +182,10 @@ Wir sollten nicht sofort eigene Kontenmatrix komplett neu bauen. Für den ersten
 
 ## Harte nächste Reihenfolge
 
-1. `MASTERDATA-002`: Dimensionen anlegen.
-2. `MASTERDATA-004`: Lagerort `FRA-ZL` anlegen.
-3. `MASTERDATA-005`: Debitor `D10000` und Artikel `RM-M100` anlegen.
-4. `MASTERDATA-006`: Posting-Fit mit Buchungsvorschau prüfen.
+1. `MASTERDATA-002`: Dimensionen anlegen. Status: erledigt.
+2. `MASTERDATA-004`: Lagerort `FRA-ZL` anlegen. Status: erledigt.
+3. `MASTERDATA-005`: Debitor `D10000` und Artikel `RM-M100` anlegen. Status: erledigt.
+4. `MASTERDATA-006`: Posting-Fit mit Buchungsvorschau prüfen. Status: nächster Pflichtschritt.
 5. Erst dann `UAT-O2C-001` vollständig buchen.
 
 ## Testqualitäts-Learning
