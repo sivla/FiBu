@@ -15,8 +15,21 @@ Jedes Projekt bekommt:
 - eigene Tests unter `tests/`
 - ein eigenes `README.md` mit Umgebung, Ziel, Status und Besonderheiten
 - projektspezifische Learnings im Projekt-README
+- Fundstellen zu sichtbaren, aber noch nicht erklärten BC-Funktionen in `FINDINGS.md`
 
 Gemeinsame Business-Central-Mechanik liegt dagegen in `playwright/core/`.
+
+## Gemeinsames Projektziel
+
+Alle Business-Central-Projekte in diesem Repository verfolgen neben der konkreten Testaufgabe ein gemeinsames Lernziel:
+
+- Business Central durch echte Nutzung verstehen.
+- Sichtbare Funktionen systematisch kennenlernen.
+- Buttons, Menüs, Felder, Dialoge, FactBoxes und Berichte fachlich einordnen.
+- Lücken zwischen Buchtext und tatsächlicher Oberfläche erkennen.
+- Relevante Lücken recherchieren und in Buch oder Projektdokumentation zurückspielen.
+
+Das gilt besonders für Buchprojekte: Ein Screenshot darf keine fachlich relevanten ungeklärten Elemente enthalten.
 
 ## Projektstruktur
 
@@ -97,4 +110,5 @@ Jedes Projekt muss so dokumentiert sein, dass ein anderer Codex-Account ohne Cha
 - Testdaten als Dateien versionieren.
 - fragile Klicks und BC-Eigenheiten sofort dokumentieren.
 - Screenshots im Buch oder in der Projekt-Doku erklären.
+- unerklärte UI-Elemente in `FINDINGS.md` erfassen.
 - neue allgemeine BC-Erfahrungen in `playwright/LEARNINGS.md` übernehmen.

@@ -1,10 +1,12 @@
 # Übergabe für neue Codex-Accounts
 
-Dieses Repository soll von anderen Codex-Accounts weiterbearbeitet werden können. Der Fokus liegt auf Business-Central-Playwright-Automation für Buch- und Projektdokumentation.
+Dieses Repository soll von anderen Codex-Accounts weiterbearbeitet werden können. Der Fokus liegt auf Business-Central-Playwright-Automation, Business-Central-Lernen und Buch-/Projektdokumentation.
 
 ## Ziel des Repositories
 
 Das Repository enthält ein Markdown-Buchprojekt und eine Playwright-Automation, mit der Business-Central-Prozesse getestet, Testdaten erzeugt und Screenshots für bebilderte Klickanleitungen erstellt werden.
+
+Das übergeordnete Ziel ist, Business Central durch Nutzung systematisch zu lernen. Das Buch liefert die fachliche Route. Playwright prüft diese Route in einer echten BC-Umgebung. Was Business Central zusätzlich sichtbar macht, wird als Lern- und Recherchematerial behandelt.
 
 ## Wichtigste Dateien
 
@@ -13,6 +15,9 @@ Das Repository enthält ein Markdown-Buchprojekt und eine Playwright-Automation,
 | `FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md` | aktuelles Buch 5 |
 | `playwright/core/` | wiederverwendbare Business-Central-Helfer |
 | `playwright/projects/fibu-book5/` | aktuelle Tests, Testdaten und Projektdoku für Buch 5 |
+| `playwright/BC-LEARNING-MODEL.md` | Lernmodell für Business Central durch Playwright-Nutzung |
+| `playwright/FINDINGS.md` | offene Fundstellen aus Screenshots und Tests |
+| `playwright/projects/fibu-book5/UI-INVENTORY.md` | Nachweis der gesehenen, geklickten und verstandenen BC-Funktionen |
 | `playwright/PROJECTS.md` | Register für mehrere Playwright-Projekte |
 | `playwright/LEARNINGS.md` | projektübergreifende BC-Playwright-Erfahrungen |
 | `playwright/ENVIRONMENTS.md` | Umgang mit verschiedenen BC-Umgebungen |
@@ -50,12 +55,17 @@ npm run fibu:foundation:company-info
 3. Testdaten als JSON unter `playwright/projects/<projekt>/testdata/` dokumentieren.
 4. Playwright-Test schreiben, der Daten erzeugt oder prüft.
 5. Screenshots in `img/` erzeugen.
-6. Im Buch jeden Screenshot erklären:
+6. Sichtbare, aber unerklärte BC-Funktionen in `playwright/FINDINGS.md` erfassen.
+7. Relevante Fundstellen recherchieren, bevorzugt mit Microsoft Learn, BC-Hilfe und eigenem Gegentest.
+8. Im Buch jeden Screenshot erklären:
    - Was du im Bild siehst
+   - Warum das fachlich wichtig ist
    - Feldlogik
    - Prüfhinweis
+   - Typische Fehler
    - Evidence Pack
-7. Learnings in `playwright/LEARNINGS.md` ergänzen, wenn etwas BC-spezifisch neu ist.
+9. Learnings in `playwright/LEARNINGS.md` ergänzen, wenn etwas BC-spezifisch neu ist.
+10. Buch aktualisieren, wenn eine gefundene Funktion für Prozess, Prüfung, Fehlerdiagnose oder Evidence Pack relevant ist.
 
 ## Wichtige Projektentscheidungen
 
@@ -67,6 +77,11 @@ npm run fibu:foundation:company-info
 - Neue Projekte werden in `playwright/PROJECTS.md` registriert.
 - Ein Projekt ist fachlich definiert; die konkrete BC-Umgebung kann später wechseln.
 - Übergabefähigkeit ist ein Ziel: Wissen gehört in Markdown-Dateien, nicht nur in Chatverläufe.
+- Das Projekt lernt Business Central anhand des Buchs und anhand eigener Tests.
+- Ziel ist, sichtbare Business-Central-Funktionen schrittweise zu kennen und fachlich einzuordnen.
+- Eine Funktion gilt erst als verstanden, wenn sie praktisch gesehen, geklickt oder bewusst nicht ausgeführt, geprüft und dokumentiert wurde.
+- Unbekannte oder im Buch fehlende Funktionen werden als Fundstellen dokumentiert und nachrecherchiert.
+- Relevante Erkenntnisse werden ins Buch zurückgespielt.
 - Tests dürfen englische BC-Suchbegriffe verwenden.
 - Buchtexte und finale Anleitungen bleiben deutsch.
 - Finale Screenshots sollen später in möglichst deutscher Oberfläche neu erzeugt werden.

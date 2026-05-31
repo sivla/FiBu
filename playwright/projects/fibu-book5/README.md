@@ -6,6 +6,12 @@ Dieses Projekt enthält die Business-Central-Tests und Screenshots für `FiBu-Bu
 
 Die Tests sollen die BC-Anleitungen im Buch praktisch durchspielen, fehlende Testdaten erzeugen oder prüfen und Screenshots für die bebilderten Klickanleitungen liefern.
 
+Zusätzlich ist dieses Projekt eine Lernstrecke für Business Central. Beim Durchspielen sollen nicht nur die Buchschritte bestätigt werden. Wir beobachten auch, welche Business-Central-Funktionen sichtbar werden, welche Buttons und Menüs der Anwender sieht und welche Felder oder FactBoxes fachlich erklärt werden müssen.
+
+Wenn ein Screenshot etwas zeigt, das im Buch noch nicht erklärt ist, wird daraus eine Fundstelle in `playwright/FINDINGS.md`. Relevante Fundstellen werden recherchiert, getestet und anschließend im Buch ergänzt.
+
+Das Ziel ist praktisches Business-Central-Wissen. Am Ende soll dieses Projekt nicht nur wissen, welche Funktionen Business Central laut Dokumentation hat. Es soll die für das Buch relevanten Klickpfade, Buttons, Menüs und Funktionen real durchgespielt, fotografiert, verstanden und dokumentiert haben. Der Nachweis steht in `UI-INVENTORY.md`.
+
 ## Umgebung
 
 | Feld | Wert |
@@ -45,8 +51,21 @@ npm run fibu:smoke:bc
 Jeder Screenshot, der ins Buch kommt, braucht eine Auswertung:
 
 - Was du im Bild siehst
+- Warum das fachlich wichtig ist
 - Feldlogik
 - Prüfhinweis
+- Typische Fehler
 - Evidence Pack
 
 Screenshots aus gemischtsprachigen Probeläufen sind Arbeitsmaterial. Finale Buchscreenshots werden später ersetzt.
+
+## Lernregel
+
+Jeder Testlauf beantwortet zusätzlich diese Fragen:
+
+- Welche BC-Seite wurde geöffnet?
+- Welche Buttons, Menüs, Register und FactBoxes sind sichtbar?
+- Welche davon sind für den Prozess relevant?
+- Welche davon fehlen noch im Buch?
+- Welche Funktion muss nachrecherchiert werden?
+- Welche Erkenntnis gehört in Buchtext, Testdaten oder Evidence Pack?

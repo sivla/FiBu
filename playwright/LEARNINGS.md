@@ -2,7 +2,9 @@
 
 Stand: 30.05.2026
 
-Dieses Logbuch sammelt technische Erfahrungen aus den Business-Central-Läufen. Es ist bewusst praxisnah. Ziel ist nicht, Playwright allgemein zu erklären, sondern wiederverwendbares Wissen für Business-Central-Projekte aufzubauen.
+Dieses Logbuch sammelt technische und fachliche Erfahrungen aus den Business-Central-Läufen. Es ist bewusst praxisnah. Ziel ist nicht, Playwright allgemein zu erklären, sondern wiederverwendbares Wissen für Business-Central-Projekte aufzubauen.
+
+Das Repository lernt Business Central anhand des Buchs und anhand echter Tests. Screenshots sind deshalb nicht nur Bildmaterial. Sie sind Fundstellen für Funktionen, Buttons, Felder, Dialoge und Hinweise, die verstanden und bei Relevanz im Buch erklärt werden müssen.
 
 ## Grundsatz
 
@@ -23,6 +25,7 @@ Das Repository soll auch von anderen Codex-Accounts übernommen werden können. 
 | Company-Kopie | `Copy` aus `CRONUS USA, Inc.` nach `RM-DEMO` ist der richtige Foundation-Weg. | Keine Company-Zeile frei eintippen, sondern CRONUS kopieren. |
 | Unternehmensdaten | `Company Information` lässt sich per Playwright setzen. | Stammdatenwerte in JSON-Dateien versionieren. |
 | Screenshot-Auswertung | Bilder werden im Buch verständlicher, wenn jedes Bild erklärt wird. | Pro Screenshot: Was du siehst, Feldlogik, Prüfhinweis, Evidence Pack. |
+| Screenshot-Fundstellen | Screenshots zeigen oft Buttons oder Hinweise, die im Buch noch fehlen. | In `FINDINGS.md` erfassen, recherchieren, testen und bei Relevanz ins Buch übernehmen. |
 
 ## Was schwierig oder fragil ist
 
@@ -30,10 +33,12 @@ Das Repository soll auch von anderen Codex-Accounts übernommen werden können. 
 |---|---|---|
 | Gemischte Sprache | Oberfläche ist teilweise Deutsch, teilweise Englisch. | Tests technisch bilingual; finale Buchscreenshots später in deutschem Lauf ersetzen. |
 | BC läuft in Frames | Viele sichtbare Inhalte liegen nicht im äußeren Browser-DOM. | `page.frames()` durchsuchen und im passenden Frame klicken/lesen. |
-| Tell-Me-Trefferlisten | `Enter` öffnet nicht immer den fachlich gewünschten Treffer. | Wenn nötig gezielt Treffer im Frame anklicken oder bei fester Auflösung Koordinaten nutzen. |
+| Tell-Me-Trefferlisten | `Enter` oder der erste Treffer öffnet oft nicht die fachlich gewünschte Seite. | Kein Blindklick auf den ersten Treffer. Trefferindex oder Zielseite bewusst festlegen; Mehrdeutigkeit als Fundstelle behandeln. |
 | Einführungs-Popups | BC zeigt „About ...“ oder Tour-Popups, die Screenshots stören. | Für Probeläufe zulassen; für finale Buchbilder gezielt schließen oder Umgebung vorbereiten. |
 | QuickInfo-Overlays | Klick auf Feldhilfe/Toggle kann eine QuickInfo öffnen und Buttons blockieren. | Bei bekannten Dialogen gezielte Koordinate oder `force` nutzen. |
 | ARIA-Rollen | Schalter/Felder sind nicht immer zuverlässig als `role` auffindbar. | Rollen bevorzugen, aber BC-spezifische Fallbacks akzeptieren. |
+| Listen-Neuanlage | Nach `Neu` bleiben Hauptliste und `Neu - ...`-Form gleichzeitig sichtbar. Unspezifische Locators treffen schnell die falsche Liste. | Bei Neuanlagen auf `form "Neu - <Seite>"` scopen, dann Felder erfassen und anschließend gegen Seitentext/Evidence prüfen. |
+| Grid-Fokus | Blindes Tippen in BC-Grids kann Text in falsche Zellen schreiben oder gar nichts speichern. | Zelle/Form bewusst fokussieren, nach jedem Datensatz hart prüfen und Fehlversuche dokumentieren. |
 | Land/Region-Abhängigkeiten | `Country/Region Code = DE` verändert abhängige Adressfelder. | Land vor Ort/PLZ setzen und anschließend sichtbare Pflichtfelder prüfen. |
 | Speichern-Zustand | Screenshots während `Wird gespeichert ...` sind nicht buchfähig. | Nach `Gespeichert/Saved` zusätzlich kurz warten. |
 | Direkte Tabellenzeile | Neue Company durch freie Zeile verursachte Validierungsfehler. | Nicht verwenden; `Copy Company` ist der dokumentierte Weg im Projekt. |
@@ -102,11 +107,20 @@ Empfohlene erste Tests:
 5. Erster Fachprozess ohne Buchung.
 6. Erster Fachprozess mit Buchung und Evidence Pack.
 
+Jeder dieser Tests ist zugleich ein Lernlauf. Nach dem Test wird geprüft:
+
+- Welche sichtbaren BC-Funktionen wurden nicht erklärt?
+- Welche Buttons oder Menüs sind für Anwender relevant?
+- Welche Felder haben Folgeeffekte für Buchung, Steuer, Dimension, Lager oder Bericht?
+- Welche Fundstellen gehören in `FINDINGS.md`?
+- Welche Erkenntnisse müssen ins Buch?
+
 ## Übergaberegel
 
 Wenn ein neuer Codex-Account übernimmt, muss er ohne Chatverlauf arbeiten können. Deshalb gilt:
 
 - Neue Workarounds werden in diesem Logbuch dokumentiert.
+- Neue fachliche UI-Fundstellen werden in `FINDINGS.md` dokumentiert.
 - Neue Umgebungen werden nach `ENVIRONMENTS.md` beschrieben.
 - Neue Projektszenarien bekommen ein eigenes Projekt-README.
 - Jeder Testdatenwert, der für Screenshots gebraucht wird, wird als Datei versioniert.
@@ -119,3 +133,5 @@ Wenn ein neuer Codex-Account übernimmt, muss er ohne Chatverlauf arbeiten könn
 - Koordinatenklicks weiter reduzieren.
 - Deutsche Suchbegriffe im finalen Lauf erzwingen.
 - Nach jedem Test automatisch eine Markdown-Bildauswertung vorbereiten.
+- Fundstellen halbautomatisch aus Screenshots und Seitentiteln erfassen.
+- Recherchequellen pro Fundstelle dokumentieren.

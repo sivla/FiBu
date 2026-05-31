@@ -705,6 +705,29 @@ Evidence Pack:
 Praxisregel:
 - Testdaten gehören ins Repository und ins Buch. Nur dann kann ein Leser den Mandanten später wieder auf denselben Stand bringen.
 
+#### Harte Projektregel: CRONUS ist nicht Rhein-Main
+
+Eine frisch kopierte CRONUS-Company enthält nicht automatisch die Stammdaten der Rhein-Main-Fallstudie. Sie ist nur die technische Spielwiese. Für prüfbare Buchprozesse müssen die Rhein-Main-Daten zuerst aufgebaut werden.
+
+Das betrifft insbesondere:
+
+- Companies und Rollenmodell der Rhein-Main-Gruppe.
+- Dimensionen wie `PRODUCTLINE`, `CHANNEL`, `DEPARTMENT` und `LOCATION-GROUP`.
+- Lagerorte wie `FRA-ZL`, `MZ-EINFACH`, `VAN-SERV` und `PROJ-LAG`.
+- Debitoren wie `D10000`, `D11000`, `D20000`, `D30000` und `D90000`.
+- Kreditoren wie `K10000`, `K11000`, `K20000`, `K30000` und `K40000`.
+- Artikel, Ressourcen, Anlagen und Projekte wie `RM-M100`, `SP-PUMP-01`, `RES-TECH`, `FA-CNC-01` und `PROJ-5001`.
+- Buchungsgruppen, USt-Logik, Lagerbuchungsmatrix und Standarddimensionen.
+
+Deshalb gilt für alle bebilderten Klickanleitungen:
+
+1. Zuerst wird dokumentiert, welche Daten und Setups der Prozess braucht.
+2. Fehlende Daten werden angelegt oder als Blocker markiert.
+3. Erst danach wird der fachliche Prozess gebucht.
+4. Jeder angelegte Stammdatensatz bekommt Testdaten-Datei, Screenshot und Bucherklärung.
+
+Für den ersten belastbaren Lauf nutzt das Projekt `RM-DEMO` als konsolidierte Trainingscompany. Die im Buch beschriebenen Ziel-Companies `RM-PROD`, `RM-SALES`, `RM-SERVICE`, `RM-SHARED` und Auslandsgesellschaften werden später als eigener Mehr-Company-Block aufgebaut. Das verhindert, dass der erste Lernlauf durch Intercompany-, Berechtigungs- und Konsolidierungsthemen blockiert wird.
+
 ### UAT-Schulung Foundation
 
 Aufgabe:
@@ -960,6 +983,23 @@ Merksatz:
 ### Deutsche BC-Oberfläche: Begriffe, Seiten und Suchlogik
 
 Dieses Kapitel übersetzt die wichtigsten Business-Central-Begriffe in die deutsche Bedienwelt. Es ist bewusst praktisch: Ein Mitarbeiter soll wissen, welchen deutschen Begriff er sieht, welchen englischen Begriff Microsoft Learn verwendet und was die Seite fachlich bedeutet.
+
+Die Suche in Business Central ist hilfreich, aber nicht blind eindeutig. Ein Suchbegriff kann Seiten, Berichte, Aktionen, Setup-Einträge und Datenfundstellen liefern. Der erste Treffer ist deshalb nicht automatisch der richtige Treffer.
+
+Praxisregel:
+- In Klickanleitungen wird nicht nur der Suchbegriff dokumentiert, sondern auch der gewünschte Treffer.
+- Für Seiten wird ausdrücklich der Seitentreffer gewählt, zum Beispiel `Verkaufsaufträge (Sales Orders)` als Liste offener Verkaufsaufträge.
+- Anwender sollen nicht einfach `Enter` drücken, wenn mehrere Treffer sichtbar sind.
+- Playwright-Tests dürfen den ersten Treffer nur verwenden, wenn der Treffer fachlich eindeutig ist.
+
+Beispiel:
+
+| Suchbegriff | Gewünschter Treffer | Nicht verwechseln mit |
+|---|---|---|
+| `Sales Orders` | Seite `Sales Orders` / `Verkaufsaufträge` | Berichte, gebuchte Belege, Datenfundstellen |
+| `Customers` | Seite `Customers` / `Debitoren` | Kontakt-/Kundendaten aus Suchindex |
+| `VAT Posting Setup` | Setup-Seite `VAT Posting Setup` | USt-Posten oder USt-Berichte |
+| `Dimensions` | Seite `Dimensions` | Dimensionen in Auswertungen oder Detailseiten |
 
 ### Grundsatz für Schulungen
 
@@ -1415,6 +1455,23 @@ Praktisch nutzt Rhein-Main `PRODUCTLINE` und `DEPARTMENT` als globale Dimensione
 6. Prüfe vor dem Buchen, ob Pflichtdimensionen vorhanden sind.
 7. Öffne nach dem Buchen `Sachposten (G/L Entries)` und blende die Dimensionen ein.
 8. Öffne `Finanzberichte (Financial Reports)` und filtere die GuV nach `PRODUCTLINE`, `CHANNEL` und `DEPARTMENT`.
+
+### Dimension neu anlegen
+
+In einer nackten CRONUS-Spielwiese sind die Rhein-Main-Dimensionen nicht vollständig vorhanden. Lege deshalb vor dem ersten O2C-Test mindestens `PRODUCTLINE`, `CHANNEL` und `LOCATION-GROUP` an. `DEPARTMENT` kann in CRONUS bereits vorhanden sein; prüfe das zuerst, bevor du doppelte oder abweichende Codes erzeugst.
+
+1. Öffne `Dimensionen (Dimensions)`.
+2. Wähle `Neu`.
+3. Business Central öffnet die neue Zeile im Kontext `Neu - Dimensions`. Erfasse dort `Code` und `Name`.
+4. Lege `PRODUCTLINE` mit Name `Product Line` an.
+5. Lege `CHANNEL` mit Name `Sales Channel` an.
+6. Lege `LOCATION-GROUP` mit Name `Location Group` an.
+7. Prüfe, ob `DEPARTMENT` bereits existiert.
+8. Warte auf `Gespeichert` und prüfe danach, ob alle Codes in der Dimensionsliste sichtbar sind.
+
+Prüfhinweis:
+
+Tippe nicht blind in die Tabelle. In Business Central bleiben Hauptliste und Neuanlagekontext gleichzeitig sichtbar. Für eine Klickanleitung ist wichtig, dass der Anwender wirklich in der neuen Zeile `Neu - Dimensions` arbeitet. Sonst wird scheinbar geklickt, aber fachlich keine neue Dimension angelegt.
 
 ### Wo Dimensionen gepflegt werden
 

@@ -15,6 +15,12 @@ export function requireBcUrl(envPrefix?: string) {
   return bcUrl;
 }
 
+export function bcPageUrl(pageId: number, envPrefix?: string) {
+  const url = new URL(requireBcUrl(envPrefix));
+  url.searchParams.set('page', String(pageId));
+  return url.toString();
+}
+
 export async function screenshot(page: Page, fileName: string) {
   await fs.mkdir(imgDir, { recursive: true });
   await page.screenshot({
@@ -36,18 +42,35 @@ export async function searchFor(page: Page, term: string) {
   await page.waitForTimeout(2500);
 }
 
-export async function openSearchResult(page: Page, label: RegExp) {
+type OpenSearchResultOptions = {
+  occurrence?: number;
+  requireUnique?: boolean;
+};
+
+export async function openSearchResult(page: Page, label: RegExp, options: OpenSearchResultOptions = {}) {
+  const occurrence = options.occurrence ?? 0;
+
   for (const frame of page.frames()) {
     const bodyText = await frame.locator('body').innerText({ timeout: 1000 }).catch(() => '');
     if (label.test(bodyText)) {
-      await frame.getByText(label).first().click();
+      const matches = frame.getByText(label);
+      const count = await matches.count().catch(() => 0);
+
+      if (options.requireUnique && count !== 1) {
+        throw new Error(`Tell-Me Treffer ${label} ist nicht eindeutig. Treffer: ${count}. Trefferindex explizit setzen.`);
+      }
+
+      if (count <= occurrence) {
+        throw new Error(`Tell-Me Treffer ${label} hat nur ${count} Treffer. Gewünscht war Trefferindex ${occurrence}.`);
+      }
+
+      await matches.nth(occurrence).click();
       await page.waitForTimeout(5000);
       return;
     }
   }
 
-  await page.keyboard.press('Enter');
-  await page.waitForTimeout(5000);
+  throw new Error(`Tell-Me Treffer ${label} wurde nicht gefunden. Kein Enter-Fallback, weil BC-Suche mehrdeutig ist.`);
 }
 
 export async function openSecondSearchBlockResult(page: Page) {
@@ -63,6 +86,31 @@ export async function pageText(page: Page) {
   return texts.join('\n');
 }
 
+export async function visibleButtonNames(page: Page) {
+  const names = new Set<string>();
+  const scopes = [page, ...page.frames()];
+
+  for (const scope of scopes) {
+    const buttons = scope.getByRole('button');
+    const count = await buttons.count().catch(() => 0);
+
+    for (let index = 0; index < count; index += 1) {
+      const name = await buttons.nth(index).innerText({ timeout: 500 }).catch(() => '');
+      const normalized = name.replace(/\s+/g, ' ').trim();
+      if (normalized) {
+        names.add(normalized);
+      }
+    }
+  }
+
+  return [...names].sort((left, right) => left.localeCompare(right));
+}
+
+export async function writeEvidenceText(filePath: string, content: string) {
+  await fs.mkdir(path.dirname(filePath), { recursive: true });
+  await fs.writeFile(filePath, content, 'utf8');
+}
+
 export async function clickInFrameContaining(page: Page, frameText: RegExp, targetText: RegExp) {
   for (const frame of page.frames()) {
     const bodyText = await frame.locator('body').innerText({ timeout: 1000 }).catch(() => '');
@@ -76,6 +124,26 @@ export async function clickInFrameContaining(page: Page, frameText: RegExp, targ
   }
 
   throw new Error(`Kein BC-Frame mit Text ${frameText} gefunden.`);
+}
+
+export async function clickButtonInAnyFrame(page: Page, name: RegExp) {
+  const pageButton = page.getByRole('button', { name }).first();
+  if (await pageButton.isVisible({ timeout: 1000 }).catch(() => false)) {
+    await pageButton.click();
+    await page.waitForTimeout(3000);
+    return;
+  }
+
+  for (const frame of page.frames()) {
+    const button = frame.getByRole('button', { name }).first();
+    if (await button.isVisible({ timeout: 1000 }).catch(() => false)) {
+      await button.click();
+      await page.waitForTimeout(3000);
+      return;
+    }
+  }
+
+  throw new Error(`Kein Button ${name} gefunden.`);
 }
 
 export async function findFrameText(page: Page, frameText: RegExp) {
