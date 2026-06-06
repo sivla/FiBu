@@ -870,6 +870,7 @@ Die folgenden Klickanleitungen sind in der Spielwiese mit Playwright geprüft un
 | Lagerort `FRA-ZL` anlegen | `Lagerorte (Locations)` / `Location Card` | `MASTERDATA-004` | `img/masterdata-004-locations-rhein-main.png` | `playwright/projects/fibu-book5/evidence/masterdata-004/` | geprüft |
 | Debitor `D10000` und Artikel `RM-M100` anlegen | `Customers`, `Items`, `Item Card` | `MASTERDATA-005` | `img/masterdata-005-customers-after-api.png`, `img/masterdata-005-items-after-api.png` | `playwright/projects/fibu-book5/evidence/masterdata-005/` | geprüft |
 | Posting-Fit für ersten O2C-Probelauf herstellen | `Customer Card`, `Item Card`, Sales-Order-API | `MASTERDATA-006` | `img/masterdata-006-customer-template-fit.png`, `img/masterdata-006-item-posting-fit.png` | `playwright/projects/fibu-book5/evidence/masterdata-006/` | geprüft als CRONUS-Technikfit |
+| Standarddimensionen für O2C setzen | `Default Dimensions`, `Customer Card`, `Item Card` | `MASTERDATA-007` | `img/masterdata-007-item-rm-m100-standarddimension.png`, `img/masterdata-007-customer-d10000-standarddimension.png` | `playwright/projects/fibu-book5/evidence/masterdata-007/` | geprüft als API-/Evidence-Nachweis |
 
 Redaktionsregel:
 
@@ -942,6 +943,21 @@ Für den aktuellen technischen Probelauf wird bewusst eine CRONUS-Vorlage genutz
 Prüfhinweis:
 
 Dieser Stand ist ein technischer Laufbarkeitsnachweis, kein deutscher Steuer-Endstand. Die aktuelle Spielwiese basiert auf CRONUS USA. Der API-Nachweis zeigt deshalb `currencyCode = USD`, `taxCode = FURNITURE` und `taxPercent = 0`. Für finale Buchscreenshots mit `EUR` und `19 %` USt braucht das Projekt später einen deutschen Lauf oder ein explizit konfiguriertes deutsches Steuer-Setup.
+
+### Klickanleitung: Standarddimensionen für `D10000` und `RM-M100` prüfen
+
+Standarddimensionen beantworten nicht die Frage, auf welches Sachkonto gebucht wird. Sie beantworten die Frage, wie der gebuchte Vorgang später ausgewertet wird. Für Rhein-Main ist das beim Maschinenverkauf entscheidend: Der Erlös aus `RM-M100` soll im Reporting unter `PRODUCTLINE = MACHINE` erscheinen; der Kunde `D10000` soll dem Vertriebskanal `CHANNEL = B2B` zugeordnet sein.
+
+Geprüfter Laborstand:
+
+1. Artikel `RM-M100` trägt die Standarddimension `PRODUCTLINE = MACHINE`.
+2. Debitor `D10000` trägt die Standarddimension `CHANNEL = B2B`.
+3. Beide Standarddimensionen sind mit `Same Code` gepflegt.
+4. Das bedeutet: Der Stammdatensatz soll nicht nur einen Vorschlagswert liefern, sondern genau diesen Dimensionswert erzwingen.
+
+Prüfhinweis:
+
+Der aktuelle Nachweis stammt aus der Business-Central-API und ist persistent. Für die finale bebilderte Buchanleitung fehlt noch ein gutes UI-Bild des Dialogs `Default Dimensions`. Die Laborbilder zeigen die zugehörigen Stammdatenkarten; das finale Buchbild wird später in der deutschen Umgebung ersetzt.
 15. UAT-Basisszenarien buchen.
 
 ### Greenfield-UAT mit Lösungserwartung

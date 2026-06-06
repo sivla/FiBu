@@ -26,12 +26,13 @@ Eine Klickanleitung gilt erst als abgedeckt, wenn:
 | Debitoren | Debitor `D10000` anlegen und sichtbar prüfen | `MASTERDATA-005` | `img/masterdata-005-customers-after-api.png` | `evidence/masterdata-005/api-result.json` | abgedeckt |
 | Artikel | Artikel `RM-M100` mit Kosten und Preis anlegen und sichtbar prüfen | `MASTERDATA-005` | `img/masterdata-005-items-after-api.png` | `evidence/masterdata-005/api-result.json` | abgedeckt |
 | Posting-Fit | Debitor-Template und Artikel-Buchungsgruppen für ersten O2C-Probelauf setzen | `MASTERDATA-006` | `img/masterdata-006-customer-template-fit.png`, `img/masterdata-006-item-posting-fit.png` | `evidence/masterdata-006/api-result.json` | abgedeckt als CRONUS-Technikfit |
+| Dimensionen | Standarddimensionen `PRODUCTLINE=MACHINE` und `CHANNEL=B2B` setzen | `MASTERDATA-007` | `img/masterdata-007-item-rm-m100-standarddimension.png`, `img/masterdata-007-customer-d10000-standarddimension.png` | `evidence/masterdata-007/api-result.json` | abgedeckt als API-/Evidence-Nachweis |
 
 ## Nächste fehlende Klickanleitungen
 
 | Priorität | Buchbereich | Klickanleitung | Blocker |
 |---:|---|---|---|
-| 1 | Dimensionen | Standarddimensionen für `D10000` und `RM-M100` prüfen oder setzen | Standarddimensionen wurden noch nicht fachlich persistent geprüft |
+| 1 | Dimensionen | UI-Klickpfad zum Dialog `Default Dimensions` fotografieren | `MASTERDATA-007` beweist die Daten per API, aber der Standarddimensionen-Dialog ist noch kein gutes Buchbild |
 | 2 | Steuer | Deutschen Ziel-Fit `EUR` / `19 %` von CRONUS-USA-Fit trennen | aktueller API-Probelauf ergibt `USD`, `FURNITURE`, `taxPercent = 0` |
 | 3 | O2C | Verkaufsauftrag in der UI erfassen und Screenshots erzeugen | API-Probe ist grün, UI-Klickpfad fehlt noch |
 | 4 | O2C | Auftrag buchen und Postenspur nachweisen | Buchung erst nach Steuer-/Dimensionsentscheidung |

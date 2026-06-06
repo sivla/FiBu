@@ -56,6 +56,7 @@ npm run fibu:masterdata:dimension-values
 npm run fibu:masterdata:locations
 npm run fibu:masterdata:customer-item
 npm run fibu:masterdata:posting-fit
+npm run fibu:masterdata:default-dimensions
 npm run fibu:smoke:bc
 ```
 
@@ -77,6 +78,19 @@ Jeder Screenshot, der ins Buch kommt, braucht eine Auswertung:
 - Evidence Pack
 
 Screenshots aus gemischtsprachigen Probeläufen sind Arbeitsmaterial. Finale Buchscreenshots werden später ersetzt.
+
+## Laborbilder und Finalbilder
+
+Die aktuelle CRONUS-Spielwiese erzeugt Laborbilder. Diese Bilder sind wichtig, weil sie Klickpfade, Felder, Datenbedarf, Fehlermeldungen und BC-Verhalten sichtbar machen. Sie sind aber nicht automatisch finale Buchbilder.
+
+Für jedes Laborbild gilt:
+
+- Es darf ins Projekt und in Evidence Packs.
+- Es darf zur Buchkritik und zur fachlichen Erklärung genutzt werden.
+- Es muss offenlegen, wenn Umgebung, Sprache, Währung, Steuerlogik oder Datenmodell vom Zielbild abweichen.
+- Es wird später durch finale deutsche Buchscreenshots ersetzt, sobald eine passende deutsche Umgebung bereitsteht.
+
+Der wichtigste redaktionelle Auftrag bleibt: Das Buch kritisch prüfen. Jeder Lauf beantwortet nicht nur, ob ein Klick funktioniert, sondern auch was Business Central zeigt, warum der Schritt fachlich nötig ist, welche Felder eine Wirkung haben und ob der Buchtext die richtige fachliche Absicht erklärt.
 
 ## Lernregel
 

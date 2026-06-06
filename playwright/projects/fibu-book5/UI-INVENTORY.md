@@ -62,6 +62,7 @@ Wenn das Projekt fertig ist, kennen wir Business Central für den Buchumfang nic
 | Debitoren | Customers | 22 | Liste, Debitorenzeile, FactBoxes | Debitor `D10000` als Rhein-Main-Stammdatum sichtbar prüfen | `MASTERDATA-005` | `img/masterdata-005-customers-after-api.png`; `playwright/projects/fibu-book5/evidence/masterdata-005/api-result.json` | erledigt | Kapitel 7/11 |
 | Artikel | Item Card / Items | 30/31 | Details, Costs & Posting, Required Fields | Artikel `RM-M100` mit Kosten/Preis sichtbar prüfen; fehlende Buchungsfelder erkennen | `MASTERDATA-005`; `FIND-BC-API-001` | `img/masterdata-005-items-after-api.png`; `playwright/projects/fibu-book5/evidence/masterdata-005/api-result.json` | erledigt | Kapitel 7/13 |
 | Posting-Fit | Customer Card / Item Card / Sales Orders API | 21/30/31 | Apply Template, Base Unit, Posting Groups, Sales Order Probe | Debitor- und Artikel-Posting-Fit für ersten CRONUS-O2C-Probelauf herstellen | `MASTERDATA-006` | `img/masterdata-006-customer-template-fit.png`; `img/masterdata-006-item-posting-fit.png`; `playwright/projects/fibu-book5/evidence/masterdata-006/api-result.json` | erledigt | Kapitel 9/11 |
+| Dimensionen | Default Dimensions API / Customer Card / Item Card | n/a/21/30 | Standarddimension, `Same Code`, Stammdatenkarten | `RM-M100` auf `PRODUCTLINE=MACHINE` und `D10000` auf `CHANNEL=B2B` setzen | `MASTERDATA-007` | `img/masterdata-007-item-rm-m100-standarddimension.png`; `img/masterdata-007-customer-d10000-standarddimension.png`; `playwright/projects/fibu-book5/evidence/masterdata-007/api-result.json` | erledigt als API-Nachweis | Kapitel 10/11 |
 | Posting | General Posting Setup | 314 | Liste bearbeiten, Suggest Accounts, Copy | Erlös-/Aufwandskonten für Gruppenmatrix | `MASTERDATA-001` | `img/masterdata-001-general-posting-setup.png` | gesehen | Kapitel 9 |
 | Steuer | VAT/Tax Posting Setup | 472 | Liste bearbeiten, Suggest Accounts, Copy | USt-/Tax-Konten und Steuersätze | `MASTERDATA-001` | `img/masterdata-001-vat-posting-setup.png` | gesehen | Kapitel 9/22 |
 | Lagerbewertung | Inventory Posting Setup | 5826 | Liste bearbeiten, Suggest Accounts | Bestandskonten je Lagerort/Posting Group | `MASTERDATA-001` | `img/masterdata-001-inventory-posting-setup.png` | gesehen | Kapitel 9/13/23 |
@@ -70,7 +71,7 @@ Wenn das Projekt fertig ist, kennen wir Business Central für den Buchumfang nic
 
 | Reihenfolge | Ziel |
 |---:|---|
-| 1 | `Default Dimensions`: Standarddimensionen für `D10000` und `RM-M100` prüfen oder setzen |
+| 1 | `Default Dimensions`: Dialog/Seite für Standarddimensionen als echtes UI-Buchbild öffnen und fotografieren |
 | 2 | `Sales Orders`: `New`, Debitor und Zeile erfassen, Actions `Release`, `Preview Posting`, `Post` verstehen |
 | 3 | Steuer-/Währungsfit: CRONUS-USA-Probelauf von deutschem Ziel-Fall `EUR` / `19 %` trennen |
 | 4 | Buchungsvorschau und Postenspur für O2C testen |

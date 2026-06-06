@@ -53,6 +53,13 @@ Für `UAT-O2C-001` mindestens erforderlich:
 - `DEPARTMENT = SALES`
 - `LOCATION-GROUP = DIRECTED`
 
+Aktueller Stand:
+
+- `PRODUCTLINE`, `CHANNEL`, `DEPARTMENT` und `LOCATION-GROUP` sind als Mindestdimensionen beziehungsweise Werte vorbereitet.
+- `MASTERDATA-007` setzt `PRODUCTLINE = MACHINE` als Standarddimension am Artikel `RM-M100`.
+- `MASTERDATA-007` setzt `CHANNEL = B2B` als Standarddimension am Debitor `D10000`.
+- `DEPARTMENT = SALES` und `LOCATION-GROUP = DIRECTED` sind fachlich vorbereitet, aber noch nicht als konkrete Standarddimension am ersten O2C-Beleg nachgewiesen.
+
 ### Lagerorte
 
 | Lagerort | Zweck |
@@ -84,6 +91,7 @@ Aktueller Stand:
 
 - `D10000` wurde in `MASTERDATA-005` über die angemeldete Playwright-Session und die Business-Central-API angelegt.
 - Sichtprüfung und Evidence: `img/masterdata-005-customers-after-api.png`, `playwright/projects/fibu-book5/evidence/masterdata-005/api-result.json`.
+- Standarddimension `CHANNEL = B2B` ist in `MASTERDATA-007` gesetzt und per API nachgewiesen.
 
 ### Kreditoren
 
@@ -119,6 +127,7 @@ Aktueller Stand:
 - Kosten und Verkaufspreis sind sichtbar geprüft: `42.000 / 68.000`.
 - In `MASTERDATA-006` wurde der erste technische Posting-Fit gesetzt: `PCS`, `RETAIL`, `RESALE`, `FURNITURE`.
 - Diese Werte sind CRONUS-USA-Vorlagen und noch nicht das endgültige Rhein-Main-Zielmodell `Maschine / 19 % USt / EUR`.
+- Standarddimension `PRODUCTLINE = MACHINE` ist in `MASTERDATA-007` gesetzt und per API nachgewiesen.
 
 ### Posting-Setup für `UAT-O2C-001`
 
@@ -147,5 +156,6 @@ Aktueller Stand:
 Aktueller Stand:
 
 - Der technische CRONUS-Fit ist grün: Ein Sales Order mit Zeile kann per API erstellt werden.
+- Die O2C-Standarddimensionen `PRODUCTLINE = MACHINE` am Artikel und `CHANNEL = B2B` am Debitor sind gesetzt.
 - Der deutsche Ziel-Fit ist noch offen: `EUR`, `19 %` USt und Ziel-Buchungsgruppen müssen in einer deutschen Umgebung oder in einem sauber konfigurierten Rhein-Main-Setup erneut geprüft werden.
-- `UAT-O2C-001` darf als UI-Klickpfad vorbereitet werden; eine endgültige Buchung mit deutschem Steueranspruch bleibt bis zur Steuer-/Dimensionsentscheidung zurückgestellt.
+- `UAT-O2C-001` darf als UI-Klickpfad vorbereitet werden; eine endgültige Buchung mit deutschem Steueranspruch bleibt bis zur Steuerentscheidung und den finalen deutschen Screenshots zurückgestellt.

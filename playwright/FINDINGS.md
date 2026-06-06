@@ -196,6 +196,28 @@ Bewertung:
 
 Das ist für das Buch zentral: Ein grüner technischer Test ist nicht automatisch ein fachlich korrekter deutscher Steuerfall. Für die jetzige Spielwiese zählt `MASTERDATA-006` als Laufbarkeitsnachweis. Für den Buch-Endstand müssen `EUR`, deutsche USt-Logik und `19 %` separat nachgewiesen werden.
 
+## FIND-BC-DIM-002 Standarddimensionen brauchen Daten- und UI-Nachweis
+
+| Feld | Wert |
+|---|---|
+| Status | buch-update |
+| Projekt | fibu-book5 |
+| Testfall | `MASTERDATA-007` |
+| Screenshot | `img/masterdata-007-item-rm-m100-standarddimension.png`, `img/masterdata-007-customer-d10000-standarddimension.png` |
+| Evidence | `playwright/projects/fibu-book5/evidence/masterdata-007/api-result.json` |
+| BC-Seite | `Default Dimensions`, `Item Card`, `Customer Card` |
+| sichtbarer/API-Text | `PRODUCTLINE=MACHINE`, `CHANNEL=B2B`, `postingValidation=Same_x0020_Code` |
+| Elementtyp | Standarddimension / Reporting- und Beleglogik |
+| erste Hypothese | Standarddimensionen sind für das Buch fachlich wichtiger als ihr unscheinbarer UI-Ort vermuten lässt, weil sie spätere Beleg- und Sachpostendimensionen vorbereiten. |
+| Recherchequelle | praktischer Playwright-Lauf mit BC-API |
+| Testergebnis | Die Standarddimensionen wurden persistent gesetzt und per API nachgewiesen. Die aktuellen Screenshots zeigen die Stammdatenkarten, aber noch nicht den eigentlichen Default-Dimensions-Dialog. |
+| Entscheidung | Buch ergänzen: Standarddimensionen erklären, API-Nachweis als Labor-Evidence akzeptieren, UI-Dialogbild später nachziehen. |
+| Buchstelle | Kapitel 10 Dimensionen, Kapitel 11 O2C, Reporting nach `PRODUCTLINE` |
+
+Bewertung:
+
+Für den Verkaufsauftrag ist `PRODUCTLINE=MACHINE` nicht kosmetisch. Ohne diese Dimension kann der Erlös später zwar gebucht sein, aber im Produktlinienbericht fehlen oder falsch zugeordnet sein. `Same Code` ist deshalb die harte Lernregel: Der Artikel `RM-M100` soll nicht irgendeine Produktlinie zulassen, sondern genau `MACHINE`.
+
 ## FIND-BC-TEST-003 Dimensionswerte brauchen Persistenzprüfung über Grid-Werte
 
 | Feld | Wert |

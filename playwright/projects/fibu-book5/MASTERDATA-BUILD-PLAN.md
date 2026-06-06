@@ -32,7 +32,7 @@ Projektentscheidung:
 | technische Startcompany | `RM-DEMO` |
 | fachliches Modell | Rhein-Main Mindestdatenstand |
 | echte Mehr-Company-Struktur | späterer Ausbau |
-| nächster blockierender Meilenstein | `MASTERDATA-001` bis `MASTERDATA-006` |
+| nächster blockierender Meilenstein | `MASTERDATA-001` bis `MASTERDATA-007` |
 
 ## Reihenfolge
 
@@ -174,6 +174,21 @@ Status nach Testlauf:
 - Artikel `RM-M100` trägt `PCS`, `RETAIL`, `RESALE` und `FURNITURE`.
 - Eine API-Probe kann einen Verkaufsauftrag mit Zeile `RM-M100`, Menge `1`, Preis `68.000`, Lagerort `FRA-ZL` erstellen und wieder löschen.
 - Harte fachliche Grenze: Das ist noch kein deutscher Ziel-Fit mit `EUR` und `19 %` USt. Der aktuelle Probelauf nutzt CRONUS-USA-Steuerlogik; die API-Evidence zeigt `currencyCode = USD`, `taxCode = FURNITURE`, `taxPercent = 0`.
+
+### `MASTERDATA-007`: Standarddimensionen für O2C setzen
+
+Ziel:
+
+- Artikel `RM-M100` bekommt `PRODUCTLINE = MACHINE`.
+- Debitor `D10000` bekommt `CHANNEL = B2B`.
+- Beide Werte werden mit `Same Code` gepflegt, damit der spätere Beleg nicht beliebige Werte durchlässt.
+
+Status nach Testlauf:
+
+- `MASTERDATA-007` ist als API-/Evidence-Nachweis grün.
+- Evidence liegt unter `playwright/projects/fibu-book5/evidence/masterdata-007/`.
+- Laborbilder liegen unter `img/masterdata-007-*`.
+- Harte Grenze: Die Daten sind persistent nachgewiesen, aber ein gutes Buchbild des eigentlichen Dialogs `Default Dimensions` fehlt noch.
 
 ## Was ins Buch muss
 
