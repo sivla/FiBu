@@ -208,10 +208,106 @@ export async function findFrameText(page: Page, frameText: RegExp) {
 export async function dismissTours(page: Page) {
   for (const frame of page.frames()) {
     const text = await frame.locator('body').innerText({ timeout: 500 }).catch(() => '');
-    if (!/Tour starten|Start tour|About/i.test(text)) {
+    if (!/Tour starten|Start tour|About|teaching tip|Hilfe anzeigen/i.test(text)) {
       continue;
     }
 
-    await frame.getByRole('button', { name: /Schließen|Close|×/i }).click({ timeout: 1000 }).catch(() => undefined);
+    const closeByRole = frame
+      .getByRole('button', { name: /Schließen|Schliessen|Close|Dismiss|Discard|Verwerfen|×|X/i })
+      .last();
+    if (await closeByRole.isVisible({ timeout: 500 }).catch(() => false)) {
+      await closeByRole.click();
+      await page.waitForTimeout(500);
+      continue;
+    }
+
+    const closeByAttributes = frame
+      .locator(
+        [
+          'button[aria-label*="Close" i]',
+          'button[aria-label*="Schließ" i]',
+          'button[aria-label*="Schliess" i]',
+          'button[title*="Close" i]',
+          'button[title*="Schließ" i]',
+          'button[title*="Schliess" i]'
+        ].join(', ')
+      )
+      .last();
+    if (await closeByAttributes.isVisible({ timeout: 500 }).catch(() => false)) {
+      await closeByAttributes.click();
+      await page.waitForTimeout(500);
+      continue;
+    }
+
+    const clicked = await frame
+      .evaluate(() => {
+        const textPattern = /Tour starten|Start tour|About|Hilfe anzeigen/i;
+        const allElements = [...document.querySelectorAll<HTMLElement>('*')];
+        const teachingText = allElements
+          .filter((element) => textPattern.test(element.innerText || ''))
+          .sort((left, right) => {
+            const leftRect = left.getBoundingClientRect();
+            const rightRect = right.getBoundingClientRect();
+            return leftRect.width * leftRect.height - rightRect.width * rightRect.height;
+          })[0];
+        if (!teachingText) return false;
+
+        let container: HTMLElement | null = teachingText;
+        for (let depth = 0; depth < 8 && container; depth += 1) {
+          const rect = container.getBoundingClientRect();
+          if (rect.width >= 200 && rect.width <= 700 && rect.height >= 80 && rect.height <= 500) {
+            const closeTarget = document.elementFromPoint(rect.right - 32, rect.top + 32) as HTMLElement | null;
+            const closeButton = closeTarget?.closest<HTMLElement>('button,[role="button"]') ?? closeTarget;
+            if (closeButton) {
+              closeButton.click();
+              return true;
+            }
+          }
+
+          const buttons = [...container.querySelectorAll<HTMLElement>('button,[role="button"]')].filter((button) => {
+            const rect = button.getBoundingClientRect();
+            return rect.width > 0 && rect.height > 0;
+          });
+          const closeButton =
+            buttons.find((button) => /Schließen|Schliessen|Close|Dismiss|Discard|Verwerfen|×|X/i.test(button.innerText || button.getAttribute('aria-label') || '')) ??
+            buttons.at(-1);
+
+          if (closeButton) {
+            closeButton.click();
+            return true;
+          }
+
+          container = container.parentElement;
+        }
+
+        return false;
+      })
+      .catch(() => false);
+    if (clicked) {
+      await page.waitForTimeout(500);
+    }
   }
+}
+
+export async function hideFactBoxPane(page: Page) {
+  const scopes = [page, ...page.frames()];
+
+  for (const scope of scopes) {
+    const toggle = scope
+      .getByRole('menuitemcheckbox', { name: /Infobox umschalten|Toggle FactBox|FactBox/i })
+      .first();
+    if (!(await toggle.isVisible({ timeout: 500 }).catch(() => false))) {
+      continue;
+    }
+
+    const checked = await toggle.getAttribute('aria-checked').catch(() => null);
+    if (checked !== 'false') {
+      await toggle.click();
+      await page.waitForTimeout(1000);
+    }
+
+    return true;
+  }
+
+  return false;
 }

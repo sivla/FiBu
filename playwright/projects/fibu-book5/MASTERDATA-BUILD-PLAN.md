@@ -215,7 +215,7 @@ Status nach Testlauf:
 - Der Dialog `Default Dimensions` ist jetzt als UI-Laborbild per Page `540` nachgewiesen:
   - `img/masterdata-007-default-dimensions-item-rm-m100.png`
   - `img/masterdata-007-default-dimensions-customer-d10000.png`
-- Harte Grenze: Die Bilder sind Kandidaten, aber noch keine finalen deutschen Buchbilder. Die Umgebung ist gemischt Deutsch/Englisch und zeigt die Info-Karte `About default dimensions`.
+- Harte Grenze: Die Bilder sind Kandidaten, aber noch keine finalen deutschen Buchbilder. Die Umgebung ist gemischt Deutsch/Englisch. Die Teaching-Tip-Karte `About default dimensions` wird vor dem Screenshot gezielt geschlossen.
 
 ### `UAT-O2C-001`: erster Verkaufsauftrag als Lern- und Laborlauf
 

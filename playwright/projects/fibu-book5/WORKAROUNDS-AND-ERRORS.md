@@ -107,6 +107,17 @@ Jeder Eintrag muss außerdem gegen die betroffene Buchstelle geprüft werden. We
 | Buchwirkung | Finale Buchscreenshots dürfen nicht durch ungezielte Tastaturbereinigung entstehen. Hilfekarten werden entweder bewusst als Lernbefund gezeigt oder gezielt über ihre eigene Schließen-Aktion entfernt. |
 | Künftige Regel | Keine globalen Tastatur-Workarounds ohne anschließende fachliche Prüfung. Nach jeder UI-Bereinigung muss der Test erneut Auftrag, Debitor oder Zeile im aktuellen Kontext nachweisen. |
 
+## WK-BC-O2C-008A Teaching Tips gezielt schliessen
+
+| Feld | Wert |
+|---|---|
+| Problem | Page `540` zeigte beim Standarddimensionsnachweis unten links die Karte `About default dimensions`; dadurch war der Screenshot technisch gueltig, aber als Buchbild unruhig. |
+| Sichtbarer Beleg | Vorheriger Labor-Screenshot `img/masterdata-007-default-dimensions-item-rm-m100.png`; aktueller Lauf `npm run fibu:masterdata:default-dimensions` erzeugt die beiden Page-540-Bilder ohne Karte. |
+| Ursache | Microsoft beschreibt solche Karten als Teaching Tips und Tours. In der aktuellen gemischten UI war der Schliessen-Button als `Verwerfen` beschriftet, nicht als `Close`. |
+| Loesung | `dismissTours()` erkennt jetzt `Schliessen`, `Close`, `Dismiss`, `Discard` und `Verwerfen`. Der Helfer schliesst die Karte ueber ihre eigene Aktion statt global `Escape` zu druecken. |
+| Buchwirkung | Teaching Tips duerfen als Lernbefund erklaert werden. Fuer Feld- und Tabellenbelege sollen sie geschlossen werden, wenn sie keine fachliche Aussage tragen. |
+| Kuenftige Regel | Keine blinde globale Ausschaltung der Onboarding-Hilfe setzen. Fuer reproduzierbare Buchscreenshots Teaching Tips gezielt pro Lauf schliessen und danach den fachlichen Seitentext erneut pruefen. |
+
 ## WK-BC-O2C-009 CRONUS-Labor ist nicht automatisch deutscher Steuerfit
 
 | Feld | Wert |

@@ -980,7 +980,7 @@ Der Debitor `D10000` wird damit dem Vertriebskanal Business-to-Business zugeordn
 
 Prüfhinweis:
 
-Der aktuelle Nachweis besteht aus API-Evidence und UI-Laborbildern des Dialogs `Default Dimensions`. Die Bilder sind fachlich brauchbare Kandidaten, aber noch keine finalen deutschen Buchbilder: Die Umgebung ist CRONUS-basiert, die Oberfläche ist gemischt Deutsch/Englisch, und die Info-Karte `About default dimensions` ist sichtbar. Für die finale Fassung wird derselbe Nachweis später in der deutschen Umgebung ersetzt.
+Der aktuelle Nachweis besteht aus API-Evidence und UI-Laborbildern des Dialogs `Default Dimensions`. Die Bilder sind fachlich brauchbare Kandidaten, aber noch keine finalen deutschen Buchbilder: Die Umgebung ist CRONUS-basiert und die Oberfläche ist gemischt Deutsch/Englisch. Die zuvor sichtbare Teaching-Tip-Karte `About default dimensions` wird im Playwright-Lauf gezielt geschlossen. Für die finale Fassung wird derselbe Nachweis später in der deutschen Umgebung ersetzt.
 
 Wichtig für Anfänger: Eine Standarddimension am Artikel oder Debitor ist nur die Vorbereitung. Sie beweist noch nicht automatisch, dass jede erwartete Dimension im konkreten Verkaufsauftrag angekommen ist. Der O2C-Lauf `UAT-O2C-001` weist `CHANNEL = B2B` und `PRODUCTLINE = MACHINE` inzwischen im Zeilen-Dimensionsdialog nach. Der geprüfte Klickpfad lautet `Line` -> `Related Information` -> `Dimensions`. Für die finale Anleitung muss derselbe Nachweis später in der deutschen Umgebung neu fotografiert und nach dem Buchen zusätzlich in Sachposten oder Reporting wiedergefunden werden.
 15. UAT-Basisszenarien buchen.

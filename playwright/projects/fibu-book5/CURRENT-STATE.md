@@ -1,6 +1,6 @@
 # Current State fuer FiBu Buch 5
 
-Stand: 07.06.2026
+Stand: 08.06.2026
 
 Diese Datei ist die erste Orientierung fuer neue Codex-Agents. Sie fasst zusammen, wo das Projekt steht, was entschieden ist, was nicht erneut diskutiert werden muss und was als naechster sinnvoller Schritt gilt.
 
@@ -69,6 +69,8 @@ Definition: Eine Anleitung ist erst abgesichert, wenn der Klickpfad in BC funkti
 - Neue Agents arbeiten ausschliesslich mit Codex. Projektdateien enthalten keine Bezuege zu anderen Agentenplattformen.
 - Das Projekt muss auf Windows und macOS laufen.
 - Alle Textdateien sind UTF-8; pruefen mit `npm run check:encoding`.
+- Teaching Tips/Tourkarten werden fuer Tabellen- und Feldnachweise gezielt mit `dismissTours()` geschlossen; kein globales `Escape` verwenden.
+- Fuer breite Tabellenbilder kann die rechte Infobox/FactBox mit `hideFactBoxPane()` eingeklappt werden, wenn sie relevante Spalten verdraengt.
 
 ## Aktueller Handover-Stand
 
@@ -88,6 +90,7 @@ Der aktuelle Handover-Stand enthaelt:
 - Windows-/macOS-Hinweise fuer neue Agents
 - explizite Commit-/Push-Regel: jeder Push muss eine arbeitsfaehige Uebergabe garantieren
 - explizite Projektmission: Buch lernen, Business Central lernen, Playwright lernen und Buch erweitern
+- allgemeine Screenshot-Helfer fuer Teaching Tips und FactBox/Infobox
 
 Der vorherige fachliche O2C-Nachweis ist:
 

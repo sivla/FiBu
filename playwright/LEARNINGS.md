@@ -34,7 +34,8 @@ Das Repository soll auch von anderen Codex-Accounts übernommen werden können. 
 | Gemischte Sprache | Oberfläche ist teilweise Deutsch, teilweise Englisch. | Tests technisch bilingual; finale Buchscreenshots später in deutschem Lauf ersetzen. |
 | BC läuft in Frames | Viele sichtbare Inhalte liegen nicht im äußeren Browser-DOM. | `page.frames()` durchsuchen und im passenden Frame klicken/lesen. |
 | Tell-Me-Trefferlisten | `Enter` oder der erste Treffer öffnet oft nicht die fachlich gewünschte Seite. | Kein Blindklick auf den ersten Treffer. Trefferindex oder Zielseite bewusst festlegen; Mehrdeutigkeit als Fundstelle behandeln. |
-| Einführungs-Popups | BC zeigt „About ...“ oder Tour-Popups, die Screenshots stören. | Für Probeläufe zulassen; für finale Buchbilder gezielt schließen oder Umgebung vorbereiten. |
+| Einführungs-Popups | BC zeigt „About ...“ oder Tour-Popups, die Screenshots stören. Der Schließen-Button kann je nach UI-Sprache auch `Verwerfen` heißen. | Für Probeläufe zulassen; für finale Buchbilder gezielt mit `dismissTours()` schließen oder Umgebung vorbereiten. |
+| Rechte Infobox/FactBox | FactBoxes sind fachlich nützlich, nehmen bei Tabellenbildern aber Spaltenbreite weg. | Vor breiten Listen-/Zeilenbildern bewusst entscheiden: sichtbar lassen und erklären oder mit `hideFactBoxPane()` einklappen. |
 | QuickInfo-Overlays | Klick auf Feldhilfe/Toggle kann eine QuickInfo öffnen und Buttons blockieren. | Bei bekannten Dialogen gezielte Koordinate oder `force` nutzen. |
 | ARIA-Rollen | Schalter/Felder sind nicht immer zuverlässig als `role` auffindbar. | Rollen bevorzugen, aber BC-spezifische Fallbacks akzeptieren. |
 | Listen-Neuanlage | Nach `Neu` bleiben Hauptliste und `Neu - ...`-Form gleichzeitig sichtbar. Unspezifische Locators treffen schnell die falsche Liste. | Bei Neuanlagen auf `form "Neu - <Seite>"` scopen, dann Felder erfassen und anschließend gegen Seitentext/Evidence prüfen. |
