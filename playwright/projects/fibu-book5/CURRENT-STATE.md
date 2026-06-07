@@ -111,6 +111,7 @@ Letzter echter Fortschritt:
 - BC stoppt nicht auf dem normalen Buchungsdialog, sondern auf `Error Messages`.
 - Fehlerkern: `Inventory Account is missing in Inventory Posting Setup Location Code: FRA-ZL, Invt. Posting Group Code: RESALE.`
 - `MASTERDATA-008` hat die blockierende Zeile in `Inventory Posting Setup` praktisch geoeffnet: `FRA-ZL` + `RESALE` ist vorhanden, aber das `Inventory Account` ist leer.
+- Die `MASTERDATA-008`-Evidence enthaelt jetzt Company/Sandbox, Status `labor`, fachlichen Sollzustand, sichtbaren Ist-Befund, Limitationen, Buchwirkung und naechsten Schritt.
 - `FINDINGS.md`, Coverage, Workarounds, Screenshot-QA und Buchtext sind auf diesen Laborstand synchronisiert.
 
 ## Aktuelle O2C-Wahrheit
@@ -170,7 +171,7 @@ Als naechstes gezielt die blockierende Lagerbuchungsmatrix-Luecke fachlich entsc
 Synchronisationsstand nach der letzten Projektwahrheits-Pruefung:
 
 - Praktisch nachgewiesen: O2C-Kopf, Verkaufszeile, EUR, `PRODUCTLINE=MACHINE` im Zeilendimensionsdialog, Preview-Posting-Pruefung bis zum Fehlerbild, Inventory-Posting-Setup-Zeile `FRA-ZL` + `RESALE` mit leerem `Inventory Account`.
-- Labor-Nachweis: alle aktuellen O2C- und MASTERDATA-008-Bilder/Evidence gelten fuer CRONUS USA / gemischte UI.
+- Labor-Nachweis: alle aktuellen O2C- und MASTERDATA-008-Bilder/Evidence gelten fuer CRONUS USA / gemischte UI; `MASTERDATA-008` ist als Labor-Evidence mit Company/Sandbox und klarer Soll-/Ist-Trennung markiert.
 - Finaler DE-Nachweis offen: deutsche Oberflaeche, 19-%-USt, echte Postenvorschau, Buchung und Postenspur.
 - Blockiert: echte Buchungsvorschau/Postenvorschau fuer `UAT-O2C-001`, bis ein `Inventory Account` fuer `FRA-ZL` + `RESALE` fachlich entschieden und gesetzt ist.
 - Nicht geprueft: P2P, echte Buchung, Debitoren-/Sach-/Artikel-/Wertposten, Finanzbericht.
