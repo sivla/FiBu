@@ -4,6 +4,18 @@ import path from 'node:path';
 
 const imgDir = path.resolve('img');
 
+type ScreenshotStatus = 'labor' | 'candidate' | 'final' | 'rejected';
+
+type ScreenshotOptions = {
+  projectName?: string;
+  testId?: string;
+  status?: ScreenshotStatus;
+  purpose?: string;
+  expectedPageText?: RegExp[];
+  knownLimitations?: string[];
+  bookUse?: 'navigation' | 'process-proof' | 'field-proof' | 'evidence' | 'do-not-use';
+};
+
 export function requireBcUrl(envPrefix?: string) {
   const prefixedKey = envPrefix ? `${envPrefix}_BC_URL` : undefined;
   const bcUrl = (prefixedKey ? process.env[prefixedKey] : undefined) ?? process.env.BC_URL;
@@ -21,16 +33,44 @@ export function bcPageUrl(pageId: number, envPrefix?: string) {
   return url.toString();
 }
 
-export async function screenshot(page: Page, fileName: string) {
+export async function screenshot(page: Page, fileName: string, options: ScreenshotOptions = {}) {
+  const pageTextEvidence = options.expectedPageText?.length ? await pageText(page) : '';
+  for (const expected of options.expectedPageText ?? []) {
+    expect(pageTextEvidence, `Screenshot-Kontext ${fileName} muss ${expected} im BC-Seitentext enthalten.`).toMatch(expected);
+  }
+
   await fs.mkdir(imgDir, { recursive: true });
+  const imagePath = path.join(imgDir, fileName);
   await page.screenshot({
-    path: path.join(imgDir, fileName),
+    path: imagePath,
     fullPage: false
   });
+
+  if (options.projectName && options.testId) {
+    const evidenceDir = path.resolve('playwright/projects', options.projectName, 'evidence', options.testId);
+    await fs.mkdir(evidenceDir, { recursive: true });
+    await fs.writeFile(
+      path.join(evidenceDir, fileName.replace(/\.png$/i, '.screenshot.json')),
+      JSON.stringify(
+        {
+          fileName,
+          imagePath,
+          status: options.status ?? 'labor',
+          bookUse: options.bookUse ?? 'evidence',
+          purpose: options.purpose ?? '',
+          expectedPageText: (options.expectedPageText ?? []).map((entry) => entry.source),
+          knownLimitations: options.knownLimitations ?? []
+        },
+        null,
+        2
+      ),
+      'utf8'
+    );
+  }
 }
 
 export async function waitForBusinessCentralShell(page: Page) {
-  await expect(page.getByRole('button', { name: /Suchen|Search/i })).toBeVisible({ timeout: 60_000 });
+  await expect(page.getByRole('button', { name: /Suchen|Search/i })).toBeVisible({ timeout: 120_000 });
   await page.waitForTimeout(10_000);
 }
 
@@ -49,11 +89,12 @@ type OpenSearchResultOptions = {
 
 export async function openSearchResult(page: Page, label: RegExp, options: OpenSearchResultOptions = {}) {
   const occurrence = options.occurrence ?? 0;
+  const scopes = [page, ...page.frames()];
 
-  for (const frame of page.frames()) {
-    const bodyText = await frame.locator('body').innerText({ timeout: 1000 }).catch(() => '');
+  for (const scope of scopes) {
+    const bodyText = await scope.locator('body').innerText({ timeout: 1000 }).catch(() => '');
     if (label.test(bodyText)) {
-      const matches = frame.getByText(label);
+      const matches = scope.getByText(label);
       const count = await matches.count().catch(() => 0);
 
       if (options.requireUnique && count !== 1) {
@@ -127,23 +168,23 @@ export async function clickInFrameContaining(page: Page, frameText: RegExp, targ
 }
 
 export async function clickButtonInAnyFrame(page: Page, name: RegExp) {
-  const pageButton = page.getByRole('button', { name }).first();
-  if (await pageButton.isVisible({ timeout: 1000 }).catch(() => false)) {
-    await pageButton.click();
-    await page.waitForTimeout(3000);
-    return;
-  }
+  const scopes = [page, ...page.frames()];
 
-  for (const frame of page.frames()) {
-    const button = frame.getByRole('button', { name }).first();
-    if (await button.isVisible({ timeout: 1000 }).catch(() => false)) {
-      await button.click();
-      await page.waitForTimeout(3000);
-      return;
+  for (const scope of scopes) {
+    for (const role of ['button', 'menuitem'] as const) {
+      const action = scope.getByRole(role, { name }).first();
+      if (await action.isVisible({ timeout: 1000 }).catch(() => false)) {
+        await action.click();
+        if (role === 'menuitem') {
+          await page.keyboard.press('Enter');
+        }
+        await page.waitForTimeout(3000);
+        return;
+      }
     }
   }
 
-  throw new Error(`Kein Button ${name} gefunden.`);
+  throw new Error(`Keine Aktion ${name} gefunden.`);
 }
 
 export async function findFrameText(page: Page, frameText: RegExp) {

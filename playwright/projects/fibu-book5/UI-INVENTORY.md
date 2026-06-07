@@ -67,12 +67,21 @@ Wenn das Projekt fertig ist, kennen wir Business Central für den Buchumfang nic
 | Steuer | VAT/Tax Posting Setup | 472 | Liste bearbeiten, Suggest Accounts, Copy | USt-/Tax-Konten und Steuersätze | `MASTERDATA-001` | `img/masterdata-001-vat-posting-setup.png` | gesehen | Kapitel 9/22 |
 | Lagerbewertung | Inventory Posting Setup | 5826 | Liste bearbeiten, Suggest Accounts | Bestandskonten je Lagerort/Posting Group | `MASTERDATA-001` | `img/masterdata-001-inventory-posting-setup.png` | gesehen | Kapitel 9/13/23 |
 
+## O2C
+
+| Bereich | Seite | Page-ID | UI-Element | Funktion | Testfall | Screenshot/Evidence | Status | Buchstelle |
+|---|---|---:|---|---|---|---|---|---|
+| Verkauf | Sales Orders | 9305 | Tell-Me-Suche, Liste, Aktion `Neu` | Einstieg in offene Verkaufsaufträge; richtige Seite statt gebuchte Belege wählen | `UAT-O2C-001` | `img/uat-o2c-001-010-suche-verkaufsauftraege.png`; `img/uat-o2c-001-020-liste-verkaufsauftraege.png`; `SCREENSHOT-QA.md` | gesehen als Labor-/Navigationsbild | Kapitel 11 |
+| Verkauf | Sales Order | 42 | Auftragskopf, `Customer Name`, FactBox `Sell-to Customer Sales History` | Debitor auswählen und fachliche Nummer `D10000` prüfen | `UAT-O2C-001` | `img/uat-o2c-001-030-kopf-debitor-d10000.png`; `evidence/uat-o2c-001/030-kopf-debitor-d10000-page-text.txt` | erledigt als Laborbild | Kapitel 11 |
+| Verkauf | Sales Order Lines | 42 | Zeilengrid, horizontaler Container `freeze-pane-scrollbar`, `Type`, `No.`, `Location Code`, Preis, `Tax Group Code`, Betrag | Artikel `RM-M100` mit Menge `1`, Lagerort `FRA-ZL`, Preis `68.000` und CRONUS-Steuergruppe sichtbar prüfen | `UAT-O2C-001` | `img/uat-o2c-001-040-zeile-artikel-rm-m100.png`; `img/uat-o2c-001-041-zeile-betraege-steuer.png`; `img/uat-o2c-001-042-zeile-spaete-spalten.png`; `evidence/uat-o2c-001/041-horizontal-scroll-diagnostics.json`; `SCREENSHOT-QA.md` | verstanden als Laborbild/Scrollstrategie; finaler Dimensions-/DE-Steuernachweis offen | Kapitel 11 |
+| Verkauf/Steuer | Sales Order API / Sales Order Card | n/a/42 | Ziel-vs.-Labor-Abweichung | Erkennen, dass CRONUS-USA-Lauf nicht deutsches `EUR`-/`19 %`-Setup beweist | `UAT-O2C-001` | `evidence/uat-o2c-001/045-target-vs-labor-delta.md`; `WORKAROUNDS-AND-ERRORS.md` | verstanden, Setup-Lücke offen | Kapitel 9/11/22 |
+
 ## Nächste Inventarziele
 
 | Reihenfolge | Ziel |
 |---:|---|
 | 1 | `Default Dimensions`: Dialog/Seite für Standarddimensionen als echtes UI-Buchbild öffnen und fotografieren |
-| 2 | `Sales Orders`: `New`, Debitor und Zeile erfassen, Actions `Release`, `Preview Posting`, `Post` verstehen |
+| 2 | `Sales Order Lines`: besseres Zeilen-/Detailbild erzeugen, das Menge, Preis, Steuergruppe, Währung und Dimension wirklich zeigt |
 | 3 | Steuer-/Währungsfit: CRONUS-USA-Probelauf von deutschem Ziel-Fall `EUR` / `19 %` trennen |
 | 4 | Buchungsvorschau und Postenspur für O2C testen |
 | 5 | Warehouse-Block: `FRA-ZL` später mit Bins/Receipts/Picks ausbauen |

@@ -1,0 +1,36 @@
+{
+  "id": "UAT-O2C-001",
+  "status": "labor-delta",
+  "summary": "Der Klickpfad ist lauffaehig, aber das Labor entspricht noch nicht dem fachlichen Zielmodell.",
+  "expected": {
+    "currencyCode": "EUR",
+    "vatPercent": 19,
+    "netAmount": 68000,
+    "vatAmount": 12920,
+    "grossAmount": 80920,
+    "dimensions": {
+      "PRODUCTLINE": "MACHINE"
+    }
+  },
+  "actual": {
+    "currencyCode": "USD",
+    "taxCode": "FURNITURE",
+    "taxPercent": 0,
+    "netAmount": 68000,
+    "vatAmount": 0,
+    "grossAmount": 68000,
+    "dimensions": {
+      "CHANNEL": "B2B",
+      "PRODUCTLINE": "MACHINE"
+    }
+  },
+  "differences": [
+    "Waehrung: erwartet EUR, Labor liefert USD",
+    "Steuersatz: erwartet 19 %, Labor liefert 0 %",
+    "Steuerbetrag: erwartet 12920, Labor liefert 0",
+    "Bruttobetrag: erwartet 80920, Labor liefert 68000"
+  ],
+  "cause": "Die aktuelle Spielwiese nutzt ein anderes Buchungs-, Steuer- oder Waehrungssetup als das fachliche Zielmodell.",
+  "resolution": "Fuer finale Buchscreenshots Zielmandant oder explizites Ziel-Posting-/Steuer-Setup vorbereiten; dieser Lauf bleibt Labor-Evidence fuer Klickpfad und Datenbedarf.",
+  "bookImpact": "Buch muss Laborlauf und Ziel-Endstand trennen: Screenshots aus dem Labor beweisen Bedienpfad, aber nicht automatisch Steuer/Waehrung des Zielmodells."
+}

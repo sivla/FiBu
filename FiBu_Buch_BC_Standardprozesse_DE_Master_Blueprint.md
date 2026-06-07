@@ -871,6 +871,7 @@ Die folgenden Klickanleitungen sind in der Spielwiese mit Playwright geprüft un
 | Debitor `D10000` und Artikel `RM-M100` anlegen | `Customers`, `Items`, `Item Card` | `MASTERDATA-005` | `img/masterdata-005-customers-after-api.png`, `img/masterdata-005-items-after-api.png` | `playwright/projects/fibu-book5/evidence/masterdata-005/` | geprüft |
 | Posting-Fit für ersten O2C-Probelauf herstellen | `Customer Card`, `Item Card`, Sales-Order-API | `MASTERDATA-006` | `img/masterdata-006-customer-template-fit.png`, `img/masterdata-006-item-posting-fit.png` | `playwright/projects/fibu-book5/evidence/masterdata-006/` | geprüft als CRONUS-Technikfit |
 | Standarddimensionen für O2C setzen | `Default Dimensions`, `Customer Card`, `Item Card` | `MASTERDATA-007` | `img/masterdata-007-item-rm-m100-standarddimension.png`, `img/masterdata-007-customer-d10000-standarddimension.png` | `playwright/projects/fibu-book5/evidence/masterdata-007/` | geprüft als API-/Evidence-Nachweis |
+| Verkaufsauftrag für `D10000` mit Zeile `RM-M100` als Laborlauf erzeugen | `Sales Orders`, `Sales Order` | `UAT-O2C-001` | `img/uat-o2c-001-030-kopf-debitor-d10000.png`, `img/uat-o2c-001-040-zeile-artikel-rm-m100.png` | `playwright/projects/fibu-book5/evidence/uat-o2c-001/` | geprüft als Laborlauf; Auftrag wird danach bereinigt |
 
 Redaktionsregel:
 
@@ -934,15 +935,18 @@ Für den aktuellen technischen Probelauf wird bewusst eine CRONUS-Vorlage genutz
 5. Prüfe anschließend, dass `D10000` weiterhin Name, Adresse, Land `DE` und E-Mail korrekt trägt.
 6. Öffne den Artikel `RM-M100`.
 7. Prüfe `Base Unit of Measure = PCS`.
-8. Prüfe `Gen. Prod. Posting Group = RETAIL`.
-9. Prüfe `Inventory Posting Group = RESALE`.
-10. Prüfe `Tax Group Code = FURNITURE`.
-11. Erzeuge als technische Probe einen Verkaufsauftrag für `D10000` mit Artikel `RM-M100`, Menge `1`, Preis `68.000` und Lagerort `FRA-ZL`.
-12. Prüfe, dass die Zeile angelegt werden kann.
+8. Prüfe im Bereich `Costs & Posting`: `Gen. Prod. Posting Group = RETAIL`.
+9. Prüfe im selben Bereich: `Inventory Posting Group = RESALE`.
+10. Prüfe im selben Bereich: `Tax Group Code = FURNITURE`.
+11. Öffne wieder den Debitor `D10000`.
+12. Prüfe im Bereich `Invoicing` nach `Mehr anzeigen`: `Tax Liable = Ja`, `Tax Area Code = leer`, `Gen. Bus. Posting Group = DOMESTIC`, `Customer Posting Group = DOMESTIC` und `Currency Code = EUR`.
+13. Erzeuge als technische Probe einen Verkaufsauftrag für `D10000` mit Artikel `RM-M100`, Menge `1`, Preis `68.000` und Lagerort `FRA-ZL`.
+14. Prüfe, dass die Zeile angelegt werden kann.
+15. Öffne den Auftrag danach erneut und fotografiere die Zeile erst, wenn `RM-M100`, `Standardmaschine M100`, `FRA-ZL` und `68.000,00` sichtbar sind.
 
 Prüfhinweis:
 
-Dieser Stand ist ein technischer Laufbarkeitsnachweis, kein deutscher Steuer-Endstand. Die aktuelle Spielwiese basiert auf CRONUS USA. Der API-Nachweis zeigt deshalb `currencyCode = USD`, `taxCode = FURNITURE` und `taxPercent = 0`. Für finale Buchscreenshots mit `EUR` und `19 %` USt braucht das Projekt später einen deutschen Lauf oder ein explizit konfiguriertes deutsches Steuer-Setup.
+Dieser Stand ist ein technischer Laufbarkeitsnachweis, kein deutscher Steuer-Endstand. Die aktuelle Spielwiese basiert auf CRONUS USA. Der MCP-Nachweis zeigt jetzt zwar `Currency Code = EUR` am Debitor `D10000` und in neuen Aufträgen, aber die Steuerherkunft bleibt CRONUS-Sales-Tax: Am Debitor ist `Tax Liable` aktiv und `Tax Area Code` leer; am Artikel ist `Tax Group Code = FURNITURE` gesetzt. Das erklärt, warum der Auftrag technisch laufen kann, aber noch keine deutsche `19 %`-USt berechnet. Für finale Buchscreenshots mit `19 %` USt braucht das Projekt später einen deutschen Lauf oder ein explizit konfiguriertes deutsches VAT-Setup. Laboraufträge aus Screenshot-Läufen werden nach dem Nachweis gezielt gelöscht, damit die Spielwiese nicht mit Entwürfen vollläuft.
 
 ### Klickanleitung: Standarddimensionen für `D10000` und `RM-M100` prüfen
 
@@ -958,6 +962,8 @@ Geprüfter Laborstand:
 Prüfhinweis:
 
 Der aktuelle Nachweis stammt aus der Business-Central-API und ist persistent. Für die finale bebilderte Buchanleitung fehlt noch ein gutes UI-Bild des Dialogs `Default Dimensions`. Die Laborbilder zeigen die zugehörigen Stammdatenkarten; das finale Buchbild wird später in der deutschen Umgebung ersetzt.
+
+Wichtig für Anfänger: Eine Standarddimension am Artikel oder Debitor ist nur die Vorbereitung. Sie beweist noch nicht automatisch, dass jede erwartete Dimension im konkreten Verkaufsauftrag angekommen ist. Der O2C-Lauf `UAT-O2C-001` weist `CHANNEL = B2B` und `PRODUCTLINE = MACHINE` inzwischen im Zeilen-Dimensionsdialog nach. Der geprüfte Klickpfad lautet `Line` -> `Related Information` -> `Dimensions`. Für die finale Anleitung muss derselbe Nachweis später in der deutschen Umgebung neu fotografiert und nach dem Buchen zusätzlich in Sachposten oder Reporting wiedergefunden werden.
 15. UAT-Basisszenarien buchen.
 
 ### Greenfield-UAT mit Lösungserwartung
@@ -1815,7 +1821,7 @@ flowchart LR
 2. Suche nach `Verkaufsaufträge (Sales Orders)`.
 3. Öffne die Seite `Verkaufsaufträge`.
 4. Wähle `Neu`.
-5. Wähle im Feld `Debitorennr.` den Kunden `D10000`.
+5. Wähle im Auftragskopf den Kunden `D10000`. Je nach Rolle, Sprache und Personalisierung ist zuerst das Feld `Debitorenname` / `Customer Name` sichtbar; gib dort den Kundennamen ein oder öffne die Auswahlliste und wähle den Debitor mit Nummer `D10000`.
 6. Prüfe `Buchungsdatum`, `Belegdatum`, `Fälligkeitsdatum`, `Währungscode` und `Zahlungsbedingungscode`.
 7. Wechsle in die Zeilen.
 8. Wähle in der Spalte `Art` den Wert `Artikel`.
@@ -1845,6 +1851,10 @@ Ziel:
 - Du erfasst Artikel `RM-M100`, Menge `1`, Preis `68.000 EUR`.
 - Du prüfst USt `19 %` und Dimension `PRODUCTLINE = MACHINE`.
 
+Laborhinweis:
+
+Der aktuelle Playwright-Lauf `UAT-O2C-001` beweist den Klickpfad und die benötigten Stammdaten in der CRONUS-Spielwiese. Er beweist noch nicht den deutschen Steuer-Endstand. Die Evidence `playwright/projects/fibu-book5/evidence/uat-o2c-001/045-target-vs-labor-delta.md` zeigt die Abweichung: Ziel laut Buch `EUR`, `19 %`, Steuerbetrag `12.920`, Bruttobetrag `80.920`; aktueller Laborlauf `USD`, `0 %`, Steuerbetrag `0`, Bruttobetrag `68.000`. Das ist kein Bedienfehler, sondern eine Setup-Lücke der aktuellen Spielwiese.
+
 Vorbedingungen:
 - Company: `RM-DEMO` oder die im Trainingsmandanten definierte Verkaufsgesellschaft.
 - Sprache/Region: Deutsch/Deutschland.
@@ -1854,16 +1864,48 @@ Vorbedingungen:
 
 | Schritt | Screenshot-Datei | Bildinhalt | Feldlogik | Prüfhinweis |
 |---:|---|---|---|---|
-| 010 | `img/uat-o2c-001-010-suche-verkaufsauftraege.png` | `Alt+Q` mit Suchbegriff `Verkaufsaufträge` | Die Suche ist der stabile Einstieg, nicht ein Menüpfad. | Sprache und Company vor dem Öffnen prüfen. |
-| 020 | `img/uat-o2c-001-020-liste-verkaufsauftraege.png` | Liste `Verkaufsaufträge` mit Aktion `Neu` | Die Liste zeigt offene, noch bearbeitbare Belege. | Nicht mit `Gebuchte Verkaufsrechnungen` verwechseln. |
-| 030 | `img/uat-o2c-001-030-kopf-debitor-d10000.png` | Auftragskopf mit Debitor `D10000` | Der Debitor steuert Zahlungsbedingungen, Debitorenbuchungsgruppe und USt-Geschäftsbuchungsgruppe. | Debitor, Buchungsdatum, Belegdatum und Währung prüfen. |
-| 040 | `img/uat-o2c-001-040-zeile-artikel-rm-m100.png` | Verkaufszeile mit `RM-M100`, Menge `1`, Preis `68.000 EUR` | Der Artikel steuert Produktbuchungsgruppe, Lagerbuchungsgruppe und USt-Produktbuchungsgruppe. | Lagerort `FRA-ZL` und Einheit prüfen. |
-| 050 | `img/uat-o2c-001-050-dimension-productline-machine.png` | Dimensionsprüfung `PRODUCTLINE = MACHINE` | Die Dimension ordnet Erlös und Marge der Produktlinie zu. | Fehlende Dimension vor der Buchung korrigieren. |
+| 010 | `img/uat-o2c-001-010-suche-verkaufsauftraege.png` | `Alt+Q` / Tell-Me mit Suchbegriff `Sales Orders` im gemischtsprachigen Laborlauf | Die Suche ist der stabile Einstieg, nicht ein Menüpfad. | Im deutschen Finallauf denselben Einstieg mit `Verkaufsaufträge` fotografieren und den richtigen Treffer ausdrücklich benennen. |
+| 020 | `img/uat-o2c-001-020-liste-verkaufsauftraege.png` | Laborbild der Liste `Sales Orders` mit Aktion `Neu` | Die Liste zeigt offene, noch bearbeitbare Belege; `Neu` ist in BC eine Menüaktion. | Dieses Bild ist nur Navigations-/Listenbild. Es zeigt noch nicht unseren Auftrag `D10000`, sondern vorhandene CRONUS-Aufträge. |
+| 030 | `img/uat-o2c-001-030-kopf-debitor-d10000.png` | Auftragskopf mit Debitor `D10000` / `Mueller Maschinenbau GmbH` | Das sichtbare Pflichtfeld kann `Debitorenname` / `Customer Name` sein. Nach Auswahl steuert der Debitor Zahlungsbedingungen, Debitorenbuchungsgruppe und USt-Geschäftsbuchungsgruppe. | Debitornummer in FactBox/Liste prüfen; außerdem Buchungsdatum, Belegdatum, Fälligkeitsdatum und Währung prüfen. |
+| 040 | `img/uat-o2c-001-040-zeile-artikel-rm-m100.png` | Laborbild der Verkaufszeile mit `RM-M100`, Beschreibung, Lagerort `FRA-ZL` und Betrag `68.000,00` | Der Artikel steuert Produktbuchungsgruppe, Lagerbuchungsgruppe und USt-Produktbuchungsgruppe. | Das aktuelle Bild ist noch kein finales Buchbild: Menge ist nur am Rand/über Seitentext nachgewiesen, USt-/Tax-Spalte ist nicht sichtbar, Gesamtsummen laufen in USD. |
+| 045 | `playwright/projects/fibu-book5/evidence/uat-o2c-001/045-target-vs-labor-delta.md` | Ziel-vs.-Labor-Abweichung für Währung, USt und Brutto | Einrichtung entscheidet, ob der Beleg nur technisch lauffähig oder fachlich deutscher Steuerfall ist. | Bei Abweichung nicht buchen, sondern Setup-Lücke dokumentieren. `PRODUCTLINE = MACHINE` ist inzwischen separat im Dimensionsdialog nachgewiesen. |
+| 050 | `img/uat-o2c-001-050-dimension-productline-machine.png` | Dimensionsprüfung `PRODUCTLINE = MACHINE` über `Line` -> `Related Information` -> `Dimensions` | Die Dimension ordnet Erlös und Marge der Produktlinie zu. | Vor dem Buchen prüfen, ob `PRODUCTLINE = MACHINE` und `CHANNEL = B2B` im Dialog `Edit Dimension Set Entries` sichtbar sind. |
 | 060 | `img/uat-o2c-001-060-buchungsvorschau.png` | `Buchungsvorschau (Preview Posting)` | Vor dem Buchen werden erwartete Posten sichtbar. | Forderung, Erlös, USt, Bestand und Wareneinsatz plausibilisieren. |
 | 070 | `img/uat-o2c-001-070-buchen-liefern-fakturieren.png` | Dialog `Buchen` mit `Liefern und fakturieren` | Die Aktion erzeugt gebuchte Belege und Posten. | Nur buchen, wenn Liefer- und Rechnungsfreigabe vorliegt. |
 | 080 | `img/uat-o2c-001-080-gebuchte-verkaufsrechnung.png` | gebuchte Verkaufsrechnung | Der gebuchte Beleg ist der Einstieg in die Nachweiskette. | Belegnummer für alle Postenfilter notieren. |
 | 090 | `img/uat-o2c-001-090-debitorenposten-d10000.png` | Debitorenposten für `D10000` | Der offene Posten zeigt Forderung und Fälligkeit. | Betrag brutto `80.920 EUR` prüfen. |
 | 100 | `img/uat-o2c-001-100-sachposten-ust-wertposten.png` | Sachposten, USt-Posten, Artikelposten und Wertposten | Die Postenspur belegt Finance-, Steuer- und Lagerwirkung. | Belegnummer, Betrag, Steuerbasis, Menge und Dimension abstimmen. |
+
+Was Anfänger hier lernen:
+
+- Ein `Sales Order` / Verkaufsauftrag ist ein offener Beleg. Er ist noch nicht gebucht und erzeugt noch keine Forderung.
+- Der Auftragskopf beantwortet: Wer ist der Kunde, welche Daten, welche Währung, welche Zahlungs- und Steuerlogik gelten?
+- Die Auftragszeile beantwortet: Was wird verkauft, in welcher Menge, aus welchem Lager, zu welchem Preis und mit welcher Produkt-/Steuerlogik?
+- Der Artikel `RM-M100` bringt Beschreibung, Einheit `PCS`, Preis und Buchungs-/Steuergruppen in die Zeile.
+- Der Lagerort `FRA-ZL` sagt, aus welchem Bestand später geliefert wird.
+- Die Dimension `PRODUCTLINE = MACHINE` ist für das spätere Reporting wichtig. Ohne diese Dimension kann der Umsatz zwar gebucht sein, aber in der Produktlinienauswertung fehlen.
+- Der geprüfte Bedienpfad für die Zeilendimension lautet `Line` -> `Related Information` -> `Dimensions`.
+
+Was im aktuellen Laborbild sichtbar ist:
+
+- Die Verkaufszeile enthält `Item`, `RM-M100`, `Standardmaschine M100`, `FRA-ZL`, Menge `1`, Einheit `PCS` und Betrag `68.000,00`.
+- Die Steuer-/Tax-Spalte zeigt im Labor `FURNITURE` und der Evidence-Nachweis zeigt `taxPercent = 0`.
+- Der Dimensionsdialog zeigt `CHANNEL = B2B` und `PRODUCTLINE = MACHINE`.
+- Das beweist: Der Klickpfad, die Stammdaten und der Dimensionsfluss funktionieren im Labor. Es beweist noch nicht den deutschen Steuerfall.
+
+Typische Anfängerfehler:
+
+| Fehlerbild | Warum es passiert | Lösung |
+|---|---|---|
+| Der Anwender öffnet `Gebuchte Verkaufsrechnungen` statt `Verkaufsaufträge`. | Offene Belege und gebuchte Belege klingen ähnlich, haben aber unterschiedliche Zwecke. | Für die Erfassung immer `Verkaufsaufträge (Sales Orders)` öffnen; gebuchte Belege erst nach dem Buchen prüfen. |
+| Im Kopf wird `D10000` gesucht, aber sichtbar ist `Customer Name`. | BC zeigt je nach Rolle/Sprache zuerst den Namen statt der Nummer. | Kundenname eingeben oder Lookup öffnen, danach Nummer `D10000` in FactBox/Liste prüfen. |
+| Die Zeile sieht richtig aus, aber USt/Währung stimmen nicht. | Stammdaten und Buchungsgruppen machen den Auftrag technisch lauffähig, aber das Steuer-/Währungssetup passt noch nicht zum Zielmandanten. | Nicht buchen. Ziel-vs.-Labor-Abweichung dokumentieren und deutsches Posting-/USt-Setup herstellen. |
+| `PRODUCTLINE = MACHINE` fehlt. | Standarddimension am Artikel fehlt oder wurde nicht in den Beleg übernommen. | Vor dem Buchen Dimension in Zeile oder Dimensionsdialog prüfen und korrigieren. |
+| Der Test lässt Entwurfsaufträge liegen. | BC speichert Belege früh automatisch. | Laboraufträge nach Screenshot über eindeutig eingegrenzten Cleanup entfernen; Evidence-Läufe bewusst getrennt durchführen. |
+
+Merksatz:
+
+Ein Verkaufsauftrag ist erst dann prüfbereit, wenn Kopf, Zeile, Betrag, Steuer, Lagerort und Dimension zusammenpassen. Ein grüner Klickpfad ersetzt keine fachliche Prüfung.
 
 Markdown-Einbindung:
 
@@ -1884,6 +1926,7 @@ Evidence Pack (Nachweispaket):
 
 Praxisregel:
 - Ein Screenshot gehört immer an eine fachliche Entscheidung, nicht an jeden Klick. Gute Buchscreenshots zeigen Seite, Feld, Wert und Prüfzweck.
+- Reine Labor-Screenshotläufe werden nach dem benötigten Bild abgebrochen oder der Entwurfsbeleg wird entfernt. Nur ein bewusster Evidence-Lauf für Buchungsvorschau, Buchung und Postenspur lässt den Beleg bestehen oder bucht ihn.
 
 #### Buchungsspur
 
@@ -6413,6 +6456,7 @@ img/[uat-id]-[schritt]-[seite-oder-objekt]-[kurzinhalt].png
 
 Beispiele:
 - `img/uat-o2c-001-030-kopf-debitor-d10000.png`
+- `img/uat-o2c-001-040-zeile-artikel-rm-m100.png`
 - `img/uat-o2c-001-050-dimension-productline-machine.png`
 - `img/uat-p2p-001-040-zeile-raw-steel.png`
 - `img/uat-r2r-001-090-finanzbericht-juni-2026.png`
@@ -6428,7 +6472,7 @@ Die Screenshots entstehen immer aus einer kontrollierten Umgebung. Dadurch sehen
 | Sprache | Deutsch/Deutschland |
 | Browser | Microsoft Edge oder Chromium |
 | Zoom | `100 %` |
-| Auflösung | mindestens `1440 x 1000` |
+| Auflösung | Standard für BC-Listen und Belegzeilen: `1920 x 1080` |
 | Testdaten | Rhein-Main-Stammdaten aus Kapitel 7 |
 | Benutzer | dedizierter Testbenutzer je Rolle |
 | Datenschutz | keine echten Personen-, Bank- oder Kundendaten |
@@ -6443,11 +6487,13 @@ Jeder Screenshot erhält eine knappe Erklärung. Der Text benennt Seite, Feld, W
 
 Was du im Bild siehst:
 - Die Seite zeigt den Kopf eines Verkaufsauftrags.
-- Das Feld `Debitorennr.` enthält `D10000`.
+- Das sichtbare Kopffeld heißt in diesem Lauf `Customer Name` und zeigt `Mueller Maschinenbau GmbH`.
+- Die FactBox oder der Seitenkontext weist die fachliche Debitornummer `D10000` nach.
 - Rechts oder in Infoboxen können Zusatzinformationen zum Debitor erscheinen.
 
 Feldlogik:
-- `Debitorennr. = D10000` zieht Zahlungsbedingungen, Debitorenbuchungsgruppe und USt-Geschäftsbuchungsgruppe.
+- Die Debitorenauswahl zieht Zahlungsbedingungen, Debitorenbuchungsgruppe, USt-Geschäftsbuchungsgruppe und Adressdaten in den Auftrag.
+- Sichtbarer Name und fachlicher Schlüssel sind getrennt zu prüfen: Name im Kopf, Nummer `D10000` im Debitor-/FactBox-Kontext.
 
 Prüfhinweis:
 - Vor der Buchung werden Debitor, Buchungsdatum, Belegdatum, Währung und Dimension geprüft.
@@ -6827,6 +6873,25 @@ Lagerbewertung verbindet Artikelposten, Wertposten und Sachposten. Die monatlich
 ## 39. Projektartefakte
 
 Dieses Kapitel liefert direkt nutzbare Templates.
+
+### Artefaktlandkarte für das Buchprojekt
+
+Die folgenden Projektdateien steuern die bebilderten Business-Central-Anleitungen. Sie sind nicht nur technische Ablage, sondern Teil der Lern- und Qualitätssicherung.
+
+| Artefakt | Zweck |
+|---|---|
+| `playwright/BC-LEARNING-MODEL.md` | erklärt, wie das Projekt Business Central durch echte Nutzung lernt |
+| `playwright/projects/fibu-book5/BEGINNER-LEARNING-CHECKLIST.md` | prüft, ob eine Anleitung für Anfänger Bedienung, Verständnis, Kontrolle, Fehler und Lösung erklärt |
+| `playwright/projects/fibu-book5/BOOK-TEST-INVENTORY.md` | übersetzt Buchkapitel in testbare BC-Läufe |
+| `playwright/projects/fibu-book5/BOOK-CLICK-GUIDE-COVERAGE.md` | zeigt, welche Klickanleitungen bereits bebildert und mit Evidence abgesichert sind |
+| `playwright/projects/fibu-book5/UI-INVENTORY.md` | sammelt sichtbare BC-Seiten, Buttons, Felder, FactBoxes und Funktionen |
+| `playwright/projects/fibu-book5/WORKAROUNDS-AND-ERRORS.md` | dokumentiert Fehlerbilder, Ursachen, Lösungen und Buchwirkung |
+| `playwright/projects/fibu-book5/evidence/` | enthält technische und fachliche Nachweise je Testfall |
+| `img/` | enthält die Arbeits- und späteren Buchscreenshots |
+
+Regel:
+
+Wenn ein Testlauf eine Abweichung findet, werden Buch, Coverage, Findings, Workaround-Journal und Evidence gemeinsam aktualisiert. Nur so lernt das Projekt nicht nur den Klickpfad, sondern auch die Business-Central-Logik hinter dem Fehler.
 
 ### Fit-Gap-Matrix
 

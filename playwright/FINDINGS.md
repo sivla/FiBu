@@ -22,7 +22,7 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 
 | Feld | Wert |
 |---|---|
-| Status | offen |
+| Status | erledigt |
 | Projekt | fibu-book5 |
 | Testfall |  |
 | Screenshot |  |
@@ -37,6 +37,57 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 ```
 
 ## Aktuelle Fundstellen
+
+## FIND-BC-SHOT-001 O2C-Zeilenbild beweist nicht alle Buchbehauptungen
+
+| Feld | Wert |
+|---|---|
+| Status | offen |
+| Projekt | fibu-book5 |
+| Testfall | `UAT-O2C-001` |
+| Screenshot | `img/uat-o2c-001-040-zeile-artikel-rm-m100.png`, `img/uat-o2c-001-041-zeile-betraege-steuer.png` |
+| BC-Seite | `Sales Order`, Page `42` |
+| sichtbarer Text | `RM-M100`, `Standardmaschine M100`, `FRA-ZL`, `68.000,00`; Evidence zeigt `USD`, `FURNITURE`, `taxPercent = 0` |
+| Elementtyp | Screenshot-/Evidence-Qualitaet |
+| erste Hypothese | Das Bild `040` ist als Laborbild brauchbar, aber nicht als finales Buchbild, weil Menge, USt-/Tax-Gruppe, Waehrung und Dimension nicht sauber sichtbar sind. Ein zweites Bild nach gezieltem horizontalem Grid-Scroll koennte die Steuer-/Betragsspalten sichtbar machen. |
+| Recherchequelle | visuelle Screenshot-Pruefung am 2026-06-07, `SCREENSHOT-QA.md` |
+| Testergebnis | DOM-Scroll auf den BC-Container `freeze-pane-scrollbar` funktioniert. `041` zeigt `Unit Price Excl. Tax`, `Tax Group Code = FURNITURE` und `Line Amount Excl. Tax = 68.000,00`. `042` zeigt, dass Scroll ans rechte Ende andere spaete Spalten trifft. |
+| Entscheidung | `041` als Laborbild fuer Steuer-/Betragsspalten behalten; fuer finale deutsche Buchbilder weiterhin neue Zielumgebung und Dimensionsnachweis erforderlich |
+| Buchstelle | `UAT-O2C-001`, Verkaufszeile, Evidence Pack |
+
+## FIND-BC-SHOT-002 O2C-Listenbild zeigt CRONUS-Auftraege, nicht den Buchfall
+
+| Feld | Wert |
+|---|---|
+| Status | offen |
+| Projekt | fibu-book5 |
+| Testfall | `UAT-O2C-001` |
+| Screenshot | `img/uat-o2c-001-020-liste-verkaufsauftraege.png` |
+| BC-Seite | `Sales Orders`, Page `9305` |
+| sichtbarer Text | vorhandene CRONUS-Auftraege, `10000`, `Adatum Corporation` |
+| Elementtyp | Screenshot-/Datensatz-Scope |
+| erste Hypothese | Das Bild ist ein Navigationsbild, aber kein Prozessnachweis fuer `D10000`. |
+| Recherchequelle | visuelle Screenshot-Pruefung am 2026-06-07, `SCREENSHOT-QA.md` |
+| Testergebnis | offen |
+| Entscheidung | im Buch nur als Navigationsbild verwenden; fuer Prozessnachweis Auftrag filtern oder Karte zeigen |
+| Buchstelle | `UAT-O2C-001`, Verkaufsauftragsliste |
+
+## FIND-BC-SHOT-003 Redundanter Screenshot `030-neuer-verkaufsauftrag`
+
+| Feld | Wert |
+|---|---|
+| Status | offen |
+| Projekt | fibu-book5 |
+| Testfall | `UAT-O2C-001` |
+| Screenshot | `img/uat-o2c-001-030-neuer-verkaufsauftrag.png` |
+| BC-Seite | `Sales Order`, Page `42` |
+| sichtbarer Text | identisch zu `img/uat-o2c-001-030-kopf-debitor-d10000.png` |
+| Elementtyp | Asset-Qualitaet |
+| erste Hypothese | Der Test erstellt zwei Dateien zum selben Zustand; der Dateiname `neuer-verkaufsauftrag` suggeriert faelschlich einen leeren neuen Auftrag. |
+| Recherchequelle | `Get-FileHash` am 2026-06-07, `SCREENSHOT-QA.md` |
+| Testergebnis | beide Dateien hatten denselben Hash; die redundante PNG wurde entfernt und der Test erzeugt sie nicht mehr. |
+| Entscheidung | nicht als eigenes Buchbild verwenden; der laufende Test erzeugt nur noch `030-kopf-debitor-d10000`. |
+| Buchstelle | Screenshot-Konvention, `UAT-O2C-001` |
 
 ## FIND-BC-BOOK-001 Auslandsgesellschaft `RM-CH` vs. `RM-AT`
 
@@ -83,6 +134,69 @@ Die Business-Central-Suche ist für Menschen hilfreich, aber für Automatisierun
 Folgeentscheidung:
 
 Für Audit- und Setup-Prüfungen verwendet Playwright nach Möglichkeit direkte BC-Seiten-URLs mit Page-ID. Tell-Me bleibt für Buchscreenshots und Anwenderschulung wichtig, darf aber nicht die einzige technische Navigation für kritische Prüfungen sein.
+
+## FIND-BC-UI-003 Verkaufsauftrag: `Neu` und `Customer Name` sind für Anfänger erklärungsbedürftig
+
+| Feld | Wert |
+|---|---|
+| Status | erledigt |
+| Projekt | fibu-book5 |
+| Testfall | `UAT-O2C-001` |
+| Screenshot | `img/uat-o2c-001-020-liste-verkaufsauftraege.png`, `img/uat-o2c-001-030-kopf-debitor-d10000.png` |
+| BC-Seite | `Sales Orders` / `Sales Order` |
+| sichtbarer Text | `Neu`, `Customer Name`, `Customer No. D10000`, `Mueller Maschinenbau GmbH` |
+| Elementtyp | Menü / Feld / FactBox |
+| erste Hypothese | Die Buchanweisung „Debitor D10000 auswählen“ ist für die sichtbare Oberfläche zu knapp. |
+| Recherchequelle | praktischer Playwright-Lauf am 2026-06-07 |
+| Testergebnis | `Neu` ist in der Liste als Menüaktion gerendert. Im Auftragskopf ist zuerst `Customer Name` sichtbar; die Eingabe der Debitornummer in dieses Feld wurde nicht übernommen, die Eingabe des Kundennamens dagegen schon. Danach zeigt BC in Liste und FactBox `Customer No. D10000`. |
+| Entscheidung | Buch ergänzen: sichtbares Feld, Eingabelogik und Prüfung von Nummer/Name erklären. |
+| Buchstelle | `UAT-O2C-001`, Verkaufsauftrag Kopf |
+
+Bewertung:
+
+Für Anwender ist fachlich der Debitor `D10000` gemeint, in der Oberfläche kann die erste Pflichtauswahl aber über den Namen erfolgen. Eine gute Klickanleitung muss deshalb sagen, dass der Leser den Debitor über Name oder Lookup auswählt und anschließend die Debitornummer `D10000` in FactBox, Liste oder Kopfkontext prüft.
+
+## FIND-BC-TEST-003 BC-Text enthält alte Liste und aktuelle Karte gleichzeitig
+
+| Feld | Wert |
+|---|---|
+| Status | erledigt |
+| Projekt | fibu-book5 |
+| Testfall | `UAT-O2C-001` |
+| Screenshot | `img/uat-o2c-001-030-kopf-debitor-d10000.png` |
+| BC-Seite | `Sales Orders` / `Sales Order` |
+| sichtbarer Text | mehrere `S-ORD...` aus Liste und aktueller Karte |
+| Elementtyp | Testqualitäts-Fundstelle |
+| erste Hypothese | Nach `Neu` bleiben Listeninhalt und Karteninhalt im DOM; freier Seitentext ist kein sicherer Datensatz-Scope. |
+| Recherchequelle | praktischer Playwright-Lauf am 2026-06-07 |
+| Testergebnis | Eine erste Cleanup-Logik griff die erste Belegnummer aus dem Seitentext und damit einen alten Listendatensatz. Korrigiert: Für Screenshot-Cleanup wird die aktuelle Kartennummer aus dem späteren Kartenkontext bzw. der letzten Belegnummer im Seitentext verwendet. Offene Laborbelege für `D10000` wurden gezielt entfernt. |
+| Entscheidung | Cleanup- und Evidence-Logik niemals gegen ungescopten Freitext bauen; Datensatznummern aus Kartenkontext, URL, API-Antwort oder eindeutigem Marker ermitteln. |
+| Buchstelle | Playwright-Regeln, Evidence-Pack-Regeln |
+
+Bewertung:
+
+Business Central rendert häufig Liste, Karte, FactBox und Hintergrundkontext gleichzeitig. Für Screenshots ist das nützlich, für automatisierte Nachweise aber gefährlich. Tests müssen deshalb immer klären, welcher sichtbare Text wirklich zum aktuellen Beleg gehört.
+
+## FIND-BC-TEST-004 Screenshot-Bereinigung darf BC-Fokuszustände nicht zerstören
+
+| Feld | Wert |
+|---|---|
+| Status | erledigt |
+| Projekt | fibu-book5 |
+| Testfall | `UAT-O2C-001` |
+| Screenshot | `img/uat-o2c-001-040-zeile-artikel-rm-m100.png` |
+| BC-Seite | `Sales Order`, Page `42` |
+| sichtbarer Text | `RM-M100`, `Standardmaschine M100`, `FRA-ZL`, `68.000,00` |
+| Elementtyp | Testqualitäts-Fundstelle / Screenshot-Stabilisierung |
+| erste Hypothese | Hilfekarten lassen sich vor Buchscreenshots pauschal mit `Escape` schließen. |
+| Recherchequelle | praktischer Playwright-Lauf am 2026-06-07 |
+| Testergebnis | Die Hypothese ist falsch. `Escape` kann je nach Fokus einen BC-Größenänderungsmodus auslösen und danach den Seitentext für Evidence unbrauchbar machen. |
+| Entscheidung | Keine globale `Escape`-Bereinigung. Finale Screenshots schließen Hilfekarten nur gezielt über das sichtbare Schließen-Element oder lassen sie im Laborbild bewusst stehen. |
+| Buchstelle | Playwright-Regeln, Bildqualität und Wiederholbarkeit |
+
+Bewertung:
+
+Business Central ist kein statisches Webformular. Tastaturbefehle wirken immer im aktuellen Fokuskontext. Für Buchscreenshots ist deshalb eine fachliche Nachprüfung nach jedem UI-Cleanup Pflicht: Der Test muss erneut sehen, dass der richtige Auftrag, der richtige Debitor oder die richtige Zeile sichtbar ist.
 
 ## FIND-BC-TEST-001 MASTERDATA-001 war False Positive
 
@@ -184,17 +298,17 @@ Das ist ein klassischer Beratungsfehler: Stammdaten sind nicht fertig, nur weil 
 | Projekt | fibu-book5 |
 | Testfall | `MASTERDATA-006` |
 | Screenshot | `img/masterdata-006-customer-template-fit.png`, `img/masterdata-006-item-posting-fit.png` |
-| Evidence | `playwright/projects/fibu-book5/evidence/masterdata-006/api-result.json` |
+| Evidence | `playwright/projects/fibu-book5/evidence/masterdata-006/api-result.json`, `playwright/projects/fibu-book5/evidence/uat-o2c-001/045-target-vs-labor-delta.md` |
 | BC-Seite | `Customer Card`, `Item Card`, Standard-API `salesOrders` |
-| sichtbarer/API-Text | `currencyCode = USD`, `taxCode = FURNITURE`, `taxPercent = 0` |
+| sichtbarer/API-Text | frueher `currencyCode = USD`, nach MCP-Korrektur `Currency Code = EUR`; weiterhin `Tax Area Code` leer, `Tax Group Code = FURNITURE`, kein deutscher `19 %`-VAT-Nachweis |
 | Elementtyp | Steuer-/Währungs-/Posting-Setup |
 | erste Hypothese | Die aktuelle Spielwiese ist CRONUS USA. Sie kann den technischen Klickpfad tragen, bildet aber den deutschen Zielsteuerfall nicht automatisch ab. |
-| Entscheidung | UI- und API-Lernen darf weitergehen; endgültige Buchscreenshots für `EUR` und `19 %` brauchen einen deutschen Lauf oder ein explizit konfiguriertes deutsches Setup. |
+| Entscheidung | UI- und API-Lernen darf weitergehen; `EUR` ist am Debitor `D10000` geloest, endgueltige Buchscreenshots fuer `19 %` brauchen aber einen deutschen Lauf oder ein explizit konfiguriertes deutsches VAT-Setup. |
 | Buchstelle | Foundation, Posting Groups, USt, O2C |
 
 Bewertung:
 
-Das ist für das Buch zentral: Ein grüner technischer Test ist nicht automatisch ein fachlich korrekter deutscher Steuerfall. Für die jetzige Spielwiese zählt `MASTERDATA-006` als Laufbarkeitsnachweis. Für den Buch-Endstand müssen `EUR`, deutsche USt-Logik und `19 %` separat nachgewiesen werden.
+Das ist fuer das Buch zentral: Ein gruener technischer Test ist nicht automatisch ein fachlich korrekter deutscher Steuerfall. Fuer die jetzige Spielwiese zaehlt `MASTERDATA-006` als Laufbarkeitsnachweis. MCP hat die Herkunft genauer gemacht: `RM-M100` liefert `Tax Group Code = FURNITURE`; `D10000` liefert `Tax Liable`, `Tax Area Code = leer`, `Gen. Bus. Posting Group = DOMESTIC`, `Customer Posting Group = DOMESTIC` und inzwischen `Currency Code = EUR`. Fuer den Buch-Endstand muessen deutsche USt-Logik und `19 %` separat nachgewiesen werden.
 
 ## FIND-BC-DIM-002 Standarddimensionen brauchen Daten- und UI-Nachweis
 
@@ -242,3 +356,25 @@ Ein Screenshot mit sichtbarem Wert reicht nicht als Evidence, wenn der Wert nach
 Zusatz-Learning:
 
 Business-Central-Grids geben Werte nicht immer über `innerText` aus. Sichtbare Zellwerte können in `input.value` liegen. Für Evidence muss der Test daher je Seite entscheiden, ob Text, ARIA, Input-Wert oder Screenshot der belastbare Nachweis ist.
+
+## FIND-BC-DIM-003 Auftragskopf-Dimension ist nicht automatisch Zeilendimension
+
+| Feld | Wert |
+|---|---|
+| Status | offen |
+| Projekt | fibu-book5 |
+| Testfall | `UAT-O2C-001` |
+| Screenshot | `img/uat-o2c-001-030-kopf-debitor-d10000.png`, `img/uat-o2c-001-041-zeile-betraege-steuer.png` |
+| Evidence | `playwright/projects/fibu-book5/evidence/uat-o2c-001/040-zeile-artikel-rm-m100-api-result.json`, `playwright/projects/fibu-book5/evidence/uat-o2c-001/045-target-vs-labor-delta.md` |
+| BC-Seite/API | `Sales Order`, API-Navigation `salesOrders(...)/dimensionSetLines` |
+| sichtbarer/API-Text | `CHANNEL=B2B`; `PRODUCTLINE=MACHINE` fehlt im Vorgangsnachweis |
+| Elementtyp | Dimension / Belegkopf / Verkaufszeile / Reportingnachweis |
+| erste Hypothese | Die Debitor-Standarddimension kommt am Auftragskopf an. Die Artikel-Standarddimension muss in der Zeile, im Dimensionsdialog oder nach dem Buchen separat nachgewiesen werden. |
+| Recherchequelle | praktischer Playwright-Lauf; Microsoft Learn Sales Order API mit `dimensionSetLines` |
+| Testergebnis | `orderDimensionSetLines` liefert `CHANNEL=B2B`. Der Zielvergleich zeigt `PRODUCTLINE=MACHINE` weiterhin als fehlend. |
+| Entscheidung | O2C nicht als dimensionsfachlich fertig behandeln. Naechster Ausbau: Dimensionsdialog der Verkaufszeile oder Postenansicht oeffnen und fotografieren. |
+| Buchstelle | Kapitel 10 Dimensionen, Kapitel 11 O2C, Reporting nach Produktlinie |
+
+Bewertung:
+
+Das ist ein sehr nuetzlicher Lernpunkt fuer Anfaenger: Eine Dimension kann korrekt am Kopf stehen und trotzdem ist die fachlich entscheidende Produktlinienauswertung noch nicht bewiesen. Fuer das Buch braucht der Leser deshalb drei Ebenen: Standarddimension vorbereiten, Dimension im Beleg pruefen, Dimension in Posten oder Bericht wiederfinden.

@@ -3,7 +3,7 @@ import 'dotenv/config';
 
 export default defineConfig({
   testDir: './playwright/projects',
-  timeout: 120_000,
+  timeout: 240_000,
   expect: {
     timeout: 20_000
   },
@@ -11,7 +11,7 @@ export default defineConfig({
   use: {
     browserName: 'chromium',
     headless: false,
-    viewport: { width: 1440, height: 1000 },
+    viewport: { width: 1920, height: 1080 },
     locale: 'de-DE',
     timezoneId: 'Europe/Berlin',
     screenshot: 'only-on-failure',

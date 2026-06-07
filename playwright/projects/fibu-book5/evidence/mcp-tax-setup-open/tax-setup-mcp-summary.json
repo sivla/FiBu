@@ -1,0 +1,52 @@
+{
+  "scenario": "MCP tax setup exploration after EUR correction",
+  "date": "2026-06-07",
+  "company": "RM-DEMO",
+  "findings": {
+    "salesOrderProbe": {
+      "orderNo": "S-ORD101052",
+      "cleanup": "Deleted by UI; final Sales Orders list returned to 7 entries",
+      "currency": "EUR",
+      "lineItem": "RM-M100",
+      "quantity": "1",
+      "taxAreaCode": "blank",
+      "taxGroupCode": "FURNITURE",
+      "source": "../mcp-o2c-vat-check/060-after-price-and-tax-check.txt"
+    },
+    "salesTaxPages": [
+      {
+        "page": 467,
+        "title": "Tax Groups",
+        "source": "02-opened-Tax-Groups.txt",
+        "visibleCodes": ["LABOR", "MATERIALS", "NONTAXABLE", "SUPPLIES"]
+      },
+      {
+        "page": 468,
+        "title": "Tax Details",
+        "source": "03-opened-Tax-Details.txt",
+        "visibleExample": "GA / FURNITURE / Sales and Use Tax / Tax Below Maximum 3.0"
+      },
+      {
+        "page": 469,
+        "title": "Tax Areas",
+        "source": "01-opened-Tax-Areas.txt",
+        "visibleCodes": ["ATLANTA, GA", "CHICAGO, IL", "MIAMI, FL", "N.ATL., GA"]
+      }
+    ],
+    "vatPages": [
+      {
+        "page": 470,
+        "title": "VAT Business Posting Groups",
+        "source": "05-opened-VAT-Business-Posting-Groups.txt",
+        "finding": "Page exists, but current visible setup does not prove a German 19 percent VAT setup."
+      },
+      {
+        "page": 471,
+        "title": "VAT Product Posting Groups",
+        "source": "04-opened-VAT-Product-Posting-Groups.txt",
+        "finding": "Page exists, but current visible setup does not prove a German 19 percent VAT setup."
+      }
+    ]
+  },
+  "conclusion": "EUR is now fixed for D10000. German 19 percent VAT is not solved in this CRONUS-USA sandbox; the current UI path shows Sales Tax fields and US tax setup. Final book screenshots for German VAT need a German company or explicit German VAT setup."
+}

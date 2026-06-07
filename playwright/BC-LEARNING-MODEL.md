@@ -29,6 +29,20 @@ Zu jedem relevanten Schritt werden deshalb fünf Fragen beantwortet:
 | Was prüfe ich danach? | Kontrollliste, Posten, Bericht, Statistik oder Status |
 | Was lernt der Anwender daraus? | BC-Konzept, Prozessregel oder typische Fehlerquelle |
 
+## Anfänger-Perspektive
+
+Der Leser wird als Anfänger gedacht. Er kennt Business Central noch nicht, verwechselt offene Belege mit gebuchten Belegen, weiß nicht, welche Felder automatisch aus Stammdaten kommen, und kann aus einem Screenshot nicht von selbst ableiten, welche Zahl später in welchem Posten landet. Genau diese Lücke muss das Buch schließen.
+
+Jede Klickanleitung beantwortet deshalb drei Ebenen:
+
+| Ebene | Anfängerfrage | Antwort im Buch |
+|---|---|---|
+| Bedienung | Was klicke oder tippe ich jetzt? | konkreter Pfad, sichtbarer Button, Feldname, Suchbegriff |
+| Verständnis | Warum mache ich das? | Prozesszweck, Stammdatenlogik, Folgeeffekt |
+| Kontrolle | Woran erkenne ich, dass es richtig war? | sichtbarer Wert, Status, Buchungsvorschau, Posten, Bericht, Evidence |
+
+Wenn ein Schritt nur bedient, aber nicht erklärt wird, ist er für dieses Projekt noch nicht fertig.
+
 ## Button- und Funktionsinventar
 
 Ein langfristiges Ziel ist, Business Central nicht nur pro Prozess zu bedienen, sondern die sichtbaren Funktionen schrittweise zu verstehen. Dazu wird aus den Klickpfaden ein Inventar aufgebaut:
@@ -73,6 +87,47 @@ Jede bebilderte Klickanleitung soll diese Schichten enthalten:
 | Prüfung | wie der Anwender richtig kontrolliert | Statistik, Buchungsvorschau, gebuchte Rechnung, Postenfilter |
 | Fehlerdiagnose | woran ein falscher Schritt erkennbar ist | falsche USt-Gruppe, fehlende Dimension, Preisabweichung |
 | Evidence | welcher Nachweis bleibt | Screenshot, Belegnummer, Postenexport, Bericht, Freigabe |
+
+## Anfänger-Didaktik je BC-Objekt
+
+Business Central wird im Buch nicht als Sammlung isolierter Masken erklärt, sondern als Kette aus Stammdaten, Belegen, Buchung und Posten. Jede Anleitung macht diese Kette sichtbar.
+
+| BC-Objekt | Was Anfänger verstehen müssen |
+|---|---|
+| Stammdaten | Debitor, Artikel, Lagerort und Dimension sind nicht nur Listenwerte; sie steuern Felder, Konten, Steuer, Preise, Lager und Auswertungen. |
+| Offener Beleg | Ein Verkaufsauftrag ist noch bearbeitbar. Er ist noch kein gebuchter Nachweis und noch keine Forderung. |
+| Belegzeile | Die Zeile verbindet Artikel, Menge, Lagerort, Preis, Steuer- und Dimensionslogik. |
+| Buchungsvorschau | Sie ist der sichere Halt vor dem Buchen: Was würde BC erzeugen, wenn ich jetzt buche? |
+| Gebuchter Beleg | Nach dem Buchen ist der Vorgang dokumentiert; Korrekturen laufen über definierte Folgeprozesse. |
+| Posten | Posten sind die prüfbare Wahrheit: Debitorenposten, Sachposten, USt-Posten, Artikelposten und Wertposten erklären die Wirkung. |
+| Bericht | Berichte und Finanzberichte zeigen nur dann richtige Ergebnisse, wenn Buchung, Filter und Dimensionen stimmen. |
+
+Die wichtigste Lernregel lautet: Ein Klick ist erst verstanden, wenn seine Folge in Beleg, Posten oder Bericht erklärt werden kann.
+
+## Anfängerfehler als Lernmaterial
+
+Fehler werden nicht versteckt. Sie sind besonders wertvoll, weil echte Anwender genau dort lernen.
+
+Jeder relevante Fehler wird in vier Sätzen erklärt:
+
+1. Was sieht der Anwender?
+2. Warum passiert das in Business Central?
+3. Welche Einrichtung, Stammdaten oder Bedienung fehlt?
+4. Wie wird es gelöst und wie prüft man danach?
+
+Typische Fehlerkategorien:
+
+| Kategorie | Beispiel |
+|---|---|
+| falsche Seite | `Sales Orders` statt `Posted Sales Invoices`, oder umgekehrt |
+| falscher Treffer | Tell-Me wählt den obersten, aber nicht den fachlich richtigen Treffer |
+| fehlende Stammdaten | Artikel existiert, aber Basiseinheit oder Buchungsgruppe fehlt |
+| fehlendes Setup | Auftrag läuft technisch, aber USt/Währung entsprechen nicht dem Zielmodell |
+| verdeckte Feldlogik | sichtbares Feld heißt `Customer Name`, fachlich gemeint ist Debitor `D10000` |
+| fehlende Dimension | Buchung ist möglich, aber Reporting nach `PRODUCTLINE` wird falsch |
+| UI-Kontext | Liste, Karte, FactBox und Hilfekarte sind gleichzeitig sichtbar |
+
+Diese Fehler gehören in `WORKAROUNDS-AND-ERRORS.md`, relevante Buchabweichungen zusätzlich in das Buch.
 
 ## Redaktionsmuster für jeden Screenshot
 

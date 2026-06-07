@@ -31,7 +31,7 @@ Jeder Buchabschnitt wird in eine oder mehrere testbare Einheiten zerlegt:
 | 9 | 9 | `MASTERDATA-006` | Posting-Fit für O2C prüfen | erledigt als CRONUS-Technikfit |
 | 10 | 9 | `UAT-SETUP-POSTING-001` | Buchungsgruppen und Posting-Setup für Verkauf prüfen | fällig für deutschen Ziel-Fit |
 | 11 | 10 | `MASTERDATA-007` | Standarddimensionen für `D10000` und `RM-M100` setzen | erledigt als API-/Evidence-Nachweis |
-| 12 | 10 | `UAT-DIM-001` | Dimension `PRODUCTLINE = MACHINE` und weitere Reportingdimensionen prüfen | teilvorbereitet, UI-Dialogbild fehlt |
+| 12 | 10 | `UAT-DIM-001` | Dimension `PRODUCTLINE = MACHINE` und weitere Reportingdimensionen prüfen | Belegdialog in O2C nachgewiesen; Posten-/Reportingnachweis offen |
 | 13 | 11 | `UAT-O2C-001` | Verkaufsauftrag für `D10000`/`RM-M100` erfassen, prüfen, buchen, Posten nachweisen | technisch vorbereitet, fachlich noch Steuer/Finalbilder prüfen |
 | 13 | 12 | `UAT-P2P-001` | Einkaufsprozess mit Wareneingang und Rechnung | offen |
 | 14 | 13 | `UAT-INV-001` | Lagerbestand, Lagerbewegung, Wertposten und Lagerbewertung | offen |
@@ -48,6 +48,20 @@ Jeder Buchabschnitt wird in eine oder mehrere testbare Einheiten zerlegt:
 | 25 | 25 | `UAT-REPORT-001` | Finanzbericht nach Dimension und Drilldown | offen |
 
 ## Aktueller Fokus: `UAT-O2C-001`
+
+Aktueller Laborstatus: Der Klickpfad bis zur Verkaufszeile ist grün. `evidence/uat-o2c-001/045-target-vs-labor-delta.md` weist aber die Setup-Abweichung `USD` / `0 %` / `68.000` gegen den Buch-Zielfall `EUR` / `19 %` / `80.920` aus. `CHANNEL = B2B` und `PRODUCTLINE = MACHINE` sind im Zeilen-Dimensionsdialog nachgewiesen. Deshalb bleibt Buchungsvorschau/Buchung für den deutschen Endstand nur noch wegen Steuer- und Währungssetup blockiert.
+
+Screenshot-QA:
+
+- `010` ist als Tell-Me-Laborbild brauchbar, im deutschen Finallauf aber neu aufzunehmen.
+- `020` ist nur Navigationsbild, weil es vorhandene CRONUS-Aufträge und nicht den Buchfall `D10000` zeigt.
+- `030` ist als Kopf-Laborbild brauchbar, enthält aber Document-Check-/Copilot-Störer.
+- `030-neuer-verkaufsauftrag` war redundant zu `030-kopf-debitor-d10000`, wurde entfernt und wird vom Test nicht mehr erzeugt.
+- `040` beweist Artikel, Beschreibung, Lagerort und Betrag, aber nicht gut genug Menge, Steuergruppe, Währung und Dimension; es ist daher noch kein finales Buchbild.
+- `041` ist ein brauchbares Laborbild nach DOM-Scroll des BC-Zeilengrids. Es zeigt `Tax Group Code = FURNITURE` und Beträge, bleibt aber wegen CRONUS-Steuerlogik und USD-Summen kein finales deutsches Buchbild.
+- `042` ist ein verworfener Kontrollversuch am rechten Tabellenende und zeigt nur, dass Grid-Scroll technisch funktioniert.
+- `050` ist ein guter Labor-Kandidat für den Dimensionsnachweis. Der Pfad lautet `Line` -> `Related Information` -> `Dimensions`; sichtbar sind `CHANNEL = B2B` und `PRODUCTLINE = MACHINE`.
+- `050` ist ein guter Labor-Kandidat fuer den Dimensionsnachweis. Der Pfad lautet `Line` -> `Related Information` -> `Dimensions`; sichtbar sind `CHANNEL = B2B` und `PRODUCTLINE = MACHINE`.
 
 Ziel:
 

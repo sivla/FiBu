@@ -175,6 +175,30 @@ Status nach Testlauf:
 - Eine API-Probe kann einen Verkaufsauftrag mit Zeile `RM-M100`, Menge `1`, Preis `68.000`, Lagerort `FRA-ZL` erstellen und wieder löschen.
 - Harte fachliche Grenze: Das ist noch kein deutscher Ziel-Fit mit `EUR` und `19 %` USt. Der aktuelle Probelauf nutzt CRONUS-USA-Steuerlogik; die API-Evidence zeigt `currencyCode = USD`, `taxCode = FURNITURE`, `taxPercent = 0`.
 
+Update 07.06.2026:
+
+- Per Playwright MCP wurde geprueft, dass `EUR` als Currency in BC existiert.
+- Am Debitor `D10000` war `Currency Code` zunaechst leer; dadurch zog der Laborauftrag lokale CRONUS-USA-Waehrung.
+- `D10000` wurde auf `Currency Code = EUR` gesetzt und nach Reload persistent nachgewiesen.
+- Ein MCP-Gegencheck mit Verkaufsauftrag `S-ORD101051` bestaetigte: neue Auftraege fuer `D10000` zeigen `Currency Code: EUR` und EUR-Summenfelder.
+- Der Laborauftrag `S-ORD101051` wurde per UI wieder geloescht. Die USt-Logik `19 %` ist dadurch noch nicht geloest.
+
+Update Steuerlogik per MCP:
+
+- Ein weiterer MCP-Lauf mit `S-ORD101052` bestaetigte: Kopf und Zeile koennen `D10000`, `RM-M100`, Menge `1` und `Currency Code: EUR` zeigen.
+- Der Zeilenkontext zeigt aber `Tax Area Code` leer und `Tax Group Code = FURNITURE`.
+- MCP oeffnete die Steuerseiten `Tax Groups` Page 467, `Tax Details` Page 468, `Tax Areas` Page 469, `VAT Business Posting Groups` Page 470 und `VAT Product Posting Groups` Page 471.
+- Die sichtbare Laborsteuerlogik ist US Sales Tax, nicht deutsche USt. Beispiel: `Tax Details` enthaelt GA/FURNITURE mit `Tax Below Maximum 3,0`, nicht `19 %`.
+- Direkter MCP-Quercheck Page 472 oeffnete `VAT Posting Setup` / `Tax Posting Setup`; die zugehoerige Card Page 473 zeigt `VAT Calculation Type = Sales Tax`.
+- Konsequenz: `EUR` ist fuer `D10000` geloest; `19 %` bleibt fuer den deutschen Zielmandanten oder ein explizites deutsches VAT-Setup offen.
+
+Update Steuerherkunft per MCP:
+
+- MCP oeffnete die Artikelkarte `RM-M100` und bestaetigte im Bereich `Costs & Posting`: `Gen. Prod. Posting Group = RETAIL`, `Tax Group Code = FURNITURE`, `Inventory Posting Group = RESALE`.
+- MCP oeffnete die Debitorenkarte `D10000` und bestaetigte im Bereich `Invoicing`: `Tax Liable` ist aktiv, `Tax Area Code` ist leer, `Gen. Bus. Posting Group = DOMESTIC`, `Customer Posting Group = DOMESTIC`, `Currency Code = EUR`.
+- Evidence: `playwright/projects/fibu-book5/evidence/mcp-tax-origin/tax-origin-mcp-summary.json`.
+- Lernregel: Die Verkaufszeile erbt ihre Sales-Tax-Produktlogik aus dem Artikel. Der Debitor liefert die Geschaefts-/Debitorenbuchungslogik und die Waehrung. Ein leerer `Tax Area Code` plus `FURNITURE` ist kein deutscher 19-%-USt-Nachweis.
+
 ### `MASTERDATA-007`: Standarddimensionen für O2C setzen
 
 Ziel:
@@ -189,6 +213,35 @@ Status nach Testlauf:
 - Evidence liegt unter `playwright/projects/fibu-book5/evidence/masterdata-007/`.
 - Laborbilder liegen unter `img/masterdata-007-*`.
 - Harte Grenze: Die Daten sind persistent nachgewiesen, aber ein gutes Buchbild des eigentlichen Dialogs `Default Dimensions` fehlt noch.
+
+### `UAT-O2C-001`: erster Verkaufsauftrag als Lern- und Laborlauf
+
+Ziel:
+
+- Verkaufsauftragsliste öffnen.
+- Auftragskopf mit `D10000` sichtbar machen.
+- Verkaufszeile `RM-M100`, Menge `1`, Lagerort `FRA-ZL`, Preis `68.000` sichtbar machen.
+- Zielmodell `EUR` / `19 %` / `80.920` gegen CRONUS-Labor vergleichen.
+- Entwurfsauftrag nach dem Screenshot wieder entfernen.
+
+Status nach Testlauf:
+
+- `UAT-O2C-001` ist als Klickpfad bis zur Zeile grün.
+- Laborbilder liegen unter `img/uat-o2c-001-*`.
+- Evidence liegt unter `playwright/projects/fibu-book5/evidence/uat-o2c-001/`.
+- `045-target-vs-labor-delta.md` zeigt die harte Setup-Grenze: Ziel `EUR` / `19 %` / `80.920`, Labor `USD` / `0 %` / `68.000`.
+- Dieselbe Evidence zeigt jetzt auch: `CHANNEL = B2B` und `PRODUCTLINE = MACHINE` sind im Dimensionsdialog der Verkaufszeile nachgewiesen.
+- `999-cleanup.json` beweist, dass der Laborauftrag nach dem Screenshot entfernt wurde.
+
+Lernentscheidung:
+
+Der Lauf ist für Anfänger wertvoll, weil er zeigt, dass ein Auftrag technisch laufen kann, obwohl Steuer- und Währungssetup fachlich noch nicht passen. Das Buch muss deshalb Klickpfad, Labor-Evidence und deutschen Ziel-Endstand sauber trennen.
+
+Dimensionsentscheidung:
+
+- Standarddimensionen an Artikel und Debitor sind Voraussetzung, aber kein vollstaendiger Prozessnachweis.
+- `UAT-O2C-001` weist `PRODUCTLINE = MACHINE` jetzt im Verkaufszeilen-Dimensionsdialog nach.
+- Der naechste fachliche Ausbau muss dieselbe Dimension nach dem Buchen in Sachposten oder Reporting wiederfinden.
 
 ## Was ins Buch muss
 
