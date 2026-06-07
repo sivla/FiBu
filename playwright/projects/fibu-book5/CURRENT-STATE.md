@@ -112,6 +112,7 @@ Letzter echter Fortschritt:
 - Fehlerkern: `Inventory Account is missing in Inventory Posting Setup Location Code: FRA-ZL, Invt. Posting Group Code: RESALE.`
 - `MASTERDATA-008` hat die blockierende Zeile in `Inventory Posting Setup` praktisch geoeffnet: `FRA-ZL` + `RESALE` ist vorhanden, aber das `Inventory Account` ist leer.
 - Die `MASTERDATA-008`-Evidence enthaelt jetzt Company/Sandbox, Status `labor`, fachlichen Sollzustand, sichtbaren Ist-Befund, Limitationen, Buchwirkung und naechsten Schritt.
+- Die Buchstelle und `BEGINNER-LEARNING-CHECKLIST.md` erklaeren jetzt fuer Anfaenger: Was man in der leeren `Inventory Account`-Spalte sieht, warum das die Buchungsvorschau stoppt, warum kein beliebiges Konto gesetzt werden darf und woran der naechste Fix erkannt wird.
 - `FINDINGS.md`, Coverage, Workarounds, Screenshot-QA und Buchtext sind auf diesen Laborstand synchronisiert.
 
 ## Aktuelle O2C-Wahrheit
@@ -163,7 +164,7 @@ Governance, Encoding, Mac-Kompatibilitaet und Lean-Evidence sind committed und g
 
 Als naechstes gezielt die blockierende Lagerbuchungsmatrix-Luecke fachlich entscheiden:
 
-1. Klaeren, welches CRONUS-Labor-Bestandskonto fuer `FRA-ZL` + `RESALE` fachlich vertretbar ist oder ob die Luecke nur dokumentiert bleibt.
+1. Klaeren, welches CRONUS-Labor-Bestandskonto fuer `FRA-ZL` + `RESALE` fachlich vertretbar ist oder ob die Luecke nur dokumentiert bleibt. Der naechste Lauf muss fuer Anfaenger sichtbar machen: altes Symptom, gesetztes Konto, erneute Preview-Pruefung.
 2. Falls ein Konto gesetzt wird, die Kontenentscheidung mit Quelle/Begruendung dokumentieren.
 3. Danach `Preview Posting` erneut laufen lassen. Wenn die Postenvorschau danach oeffnet, Postenarten nur als CRONUS-Labor-Evidence bewerten.
 4. Deutsche `19 %`-USt bleibt davon getrennt: kein deutscher Steuer-Endstand in dieser USA-Spielwiese.

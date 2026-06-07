@@ -961,7 +961,8 @@ Diese Prüfung ist kein Buchungsschritt, sondern eine Diagnose. Sie erklärt, wa
 4. Filtere `Location Code` auf `FRA-ZL`.
 5. Filtere `Invt. Posting Group Code` auf `RESALE`.
 6. Prüfe die Spalte `Inventory Account`.
-7. Setze kein Konto nur, um den Fehler wegzubekommen. Die Kontenwahl ist eine fachliche FiBu-Entscheidung.
+7. Wenn `Inventory Account` leer ist, ist die Ursache des Preview-Posting-Fehlers gefunden.
+8. Setze kein Konto nur, um den Fehler wegzubekommen. Die Kontenwahl ist eine fachliche FiBu-Entscheidung.
 
 ![Inventory Posting Setup fuer FRA-ZL und RESALE](playwright/projects/fibu-book5/img/masterdata-008-inventory-posting-setup-fra-zl-resale.png)
 
@@ -970,6 +971,15 @@ Business Central zeigt genau eine Zeile für `Location Code = FRA-ZL` und `Invt.
 
 Warum das fachlich wichtig ist:
 Die Lagerbuchungsgruppe am Artikel sagt, welche Art von Bestand vorliegt. Der Lagerort sagt, wo der Bestand liegt. Erst die Lagerbuchungsmatrix verbindet beides mit dem passenden Sachkonto für Bestand. Ohne diese Verbindung kann BC nicht sauber bestimmen, auf welches Vorratskonto die Artikelbewegung wirken soll.
+
+Was du tun musst:
+Nicht den Verkaufsauftrag ändern und nicht direkt buchen. Entscheide zuerst mit Finance oder anhand eines freigegebenen CRONUS-Labor-Setups, welches Bestandskonto für `FRA-ZL` + `RESALE` gelten soll. Trage dieses Konto erst danach in `Inventory Account` ein und dokumentiere die Entscheidung im Evidence Pack.
+
+Was passiert, wenn es falsch ist:
+Bleibt das Feld leer, stoppt `Buchungsvorschau (Preview Posting)` weiter mit `Inventory Account is missing`. Wird ein falsches Konto eingetragen, kann die Buchung technisch durchlaufen, aber der Lagerwert landet auf einem falschen Sachkonto. Das wäre für Anfänger schwerer zu erkennen als der aktuelle Fehler, weil BC dann möglicherweise keinen Dialog mehr anzeigt, die Auswertung aber fachlich falsch ist.
+
+Woran du erkennst, dass es danach stimmt:
+Die Zeile `FRA-ZL` + `RESALE` zeigt ein begründetes `Inventory Account`. Danach wird `UAT-O2C-001` erneut ausgeführt. Ein erfolgreicher Zwischennachweis ist erst erreicht, wenn `Buchungsvorschau (Preview Posting)` nicht mehr auf diesen Inventory-Posting-Setup-Fehler stoppt, sondern eine Postenvorschau oder den nächsten echten Setup-Hinweis zeigt.
 
 Prüfhinweis:
 Der Nachweis `MASTERDATA-008` ist ein CRONUS-USA-Laborbefund und noch kein finaler deutscher Buchungsgruppen-Entwurf. Für die nächste technische Prüfung muss fachlich entschieden werden, welches Bestandskonto für `FRA-ZL` + `RESALE` im Labor verwendet werden darf. Danach wird `UAT-O2C-001` erneut mit `Buchungsvorschau (Preview Posting)` geprüft.
