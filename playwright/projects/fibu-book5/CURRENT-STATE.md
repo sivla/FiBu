@@ -56,12 +56,12 @@ Aktiver Fokus:
 - Das Projekt muss auf Windows und macOS laufen.
 - Alle Textdateien sind UTF-8; pruefen mit `npm run check:encoding`.
 
-## Letzter grosser Nachweis
+## Letzter Commit
 
 Commit:
 
 ```text
-7faa0d4 Document BC screenshot workflow and O2C evidence
+8ead77b Keep BC Playwright project lean and portable
 ```
 
 Branch:
@@ -72,11 +72,18 @@ codex/playwright-bc-screenshot-foundation
 
 Der Commit enthaelt:
 
-- O2C-Laborbilder unter `img/uat-o2c-001-*`
-- Evidence zu `UAT-O2C-001`
-- kompakte MCP-Evidence zu Waehrung, Steuerlogik und VAT/Sales-Tax-Abgrenzung
-- aktualisierte Buchpassagen
-- neue Projekt-Dokumente fuer MCP, Workarounds, Screenshot-QA, Portabilitaet und Microsoft-Doc-Validation
+- Lean-Aufraeumung der MCP-Rohsnapshots
+- dauerhafte Ignore-Regeln fuer `console-*.log` und `page-*.yml`
+- `ARTIFACT-GOVERNANCE.md`
+- `CURRENT-STATE.md` als Handover-Startpunkt
+- UTF-8-/LF-Regeln und Encoding-Check
+- Windows-/macOS-Hinweise fuer neue Agents
+
+Der vorherige fachliche O2C-Nachweis ist:
+
+```text
+7faa0d4 Document BC screenshot workflow and O2C evidence
+```
 
 ## Aktuelle O2C-Wahrheit
 
@@ -119,19 +126,17 @@ Der aktuelle Lauf darf nicht gebucht oder als deutscher Steuer-Endstand verkauft
 
 ## Naechster sinnvoller Schritt
 
-Nicht sofort neue Roh-Evidence erzeugen. Das Projekt ist auf kompakte Evidence ausgerichtet:
+Governance, Encoding, Mac-Kompatibilitaet und Lean-Evidence sind committed und gepusht. Nicht erneut mit Aufraeumen beginnen, solange keine neue Rohmasse entsteht.
 
-1. `ARTIFACT-GOVERNANCE.md` fertig in README/HANDOVER verlinken.
-2. `CURRENT-STATE.md` als erste Handover-Datei etablieren.
-3. Commit fuer Encoding, Mac-Kompatibilitaet, Agentenbereinigung, Lean-Evidence und Handover-Update erstellen.
-4. Danach den naechsten fachlichen Block waehlen:
-   - entweder deutschen VAT-Zielmandanten vorbereiten,
-   - oder im aktuellen Labor weiter O2C ohne Buchung vertiefen,
-   - oder P2P/weitere Stammdaten erst aufbauen.
+Als naechstes den fachlichen Block waehlen:
+
+1. deutschen VAT-Zielmandanten vorbereiten,
+2. oder im aktuellen Labor weiter O2C ohne Buchung vertiefen,
+3. oder P2P/weitere Stammdaten erst aufbauen.
 
 Empfohlene Richtung:
 
-Zuerst Governance und Handover committen. Danach `UAT-O2C-001` in einem deutschen oder explizit deutsch konfigurierten VAT-Setup erneut laufen lassen.
+Empfohlen: `UAT-O2C-001` in einem deutschen oder explizit deutsch konfigurierten VAT-Setup erneut laufen lassen.
 
 ## Befehle fuer neue Agents
 

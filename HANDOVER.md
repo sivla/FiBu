@@ -77,6 +77,20 @@ npm run fibu:foundation:company-info
 9. Learnings in `playwright/LEARNINGS.md` ergänzen, wenn etwas BC-spezifisch neu ist.
 10. Buch aktualisieren, wenn eine gefundene Funktion für Prozess, Prüfung, Fehlerdiagnose oder Evidence Pack relevant ist.
 
+## Commit-/Push-Regel
+
+Jeder Commit und jeder Push muss eine arbeitsfähige Übergabe garantieren. Vor dem Commit gilt:
+
+- `playwright/projects/fibu-book5/CURRENT-STATE.md` ist aktuell.
+- Der nächste sinnvolle Schritt ist konkret benannt.
+- Bekannte fachliche Grenzen, Workarounds und offene Fehler sind dokumentiert.
+- Neue Screenshots, Evidence und Buchänderungen sind miteinander verknüpft.
+- Rohartefakte wie Playwright-Reports, Test-Traces, Auth-State, `.env`, `console-*.log` und `page-*.yml` bleiben uncommitted.
+- `npm run check:encoding` und `git diff --check` laufen ohne Fehler, wenn Textdateien geändert wurden.
+- `git status --short` ist nach dem Push sauber.
+
+Wenn ein Commit diese Punkte nicht erfüllt, ist er noch kein vollständiger Projektstand.
+
 ## Wichtige Projektentscheidungen
 
 - Die meisten Projekte werden Business-Central-Projekte sein.

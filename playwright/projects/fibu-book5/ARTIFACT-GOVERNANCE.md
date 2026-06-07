@@ -101,6 +101,14 @@ Nicht zusammengehoerend:
 - Evidence-Rohmasse ohne Buch- oder Testwirkung
 - geheime oder lokale Auth-Artefakte
 
+Jeder Commit/Push ist zugleich eine Uebergabe. Deshalb muss vor jedem Push gelten:
+
+1. `CURRENT-STATE.md` beschreibt den tatsaechlichen Stand.
+2. Der naechste sinnvolle Arbeitsschritt ist fuer einen neuen Agenten eindeutig.
+3. Relevante Fehler, Workarounds und Buchwirkungen sind dokumentiert.
+4. Das Repo enthaelt nur projektwertvolle Artefakte.
+5. Die Arbeitskopie ist nach dem Push sauber.
+
 ## Aktueller Aufraeumbefund
 
 Stand 07.06.2026:
