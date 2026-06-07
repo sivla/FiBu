@@ -1,0 +1,69 @@
+{
+  "project": "fibu-book5",
+  "testId": "MASTERDATA-009",
+  "environment": {
+    "sandbox": "MCP_1_20260210",
+    "company": "Rhein-Main Demo GmbH",
+    "baseData": "CRONUS USA",
+    "uiLanguage": "mixed German/English"
+  },
+  "evidenceStatus": "labor",
+  "target": {
+    "locationCode": "FRA-ZL",
+    "inventoryPostingGroupCode": "RESALE",
+    "inventoryAccount": "14140"
+  },
+  "sourceForAccountDecision": "MASTERDATA-001 inventory-posting-setup evidence shows existing CRONUS RESALE rows with Inventory Account 14140 for blank/default and multiple locations.",
+  "action": "already-fit",
+  "beforeInventoryAccount": "14140",
+  "afterTextContainsTargetSetup": true,
+  "beforeValues": [
+    {
+      "index": 0,
+      "value": "FRA-ZL",
+      "ariaLabel": ""
+    },
+    {
+      "index": 1,
+      "value": "RESALE",
+      "ariaLabel": ""
+    },
+    {
+      "index": 2,
+      "value": "",
+      "ariaLabel": ""
+    },
+    {
+      "index": 3,
+      "value": "14140",
+      "ariaLabel": ""
+    },
+    {
+      "index": 4,
+      "value": "",
+      "ariaLabel": ""
+    },
+    {
+      "index": 5,
+      "value": "",
+      "ariaLabel": ""
+    },
+    {
+      "index": 6,
+      "value": "",
+      "ariaLabel": ""
+    },
+    {
+      "index": 7,
+      "value": "",
+      "ariaLabel": ""
+    }
+  ],
+  "afterValues": [],
+  "limitations": [
+    "Laborfix, not German final chart-of-accounts decision.",
+    "Does not solve CRONUS Sales Tax / German 19 percent VAT gap.",
+    "Does not prove posting entries; UAT-O2C-001 Preview Posting must run after this setup fit."
+  ],
+  "nextStep": "Run npm run fibu:uat:o2c and check whether Preview Posting now reaches entries or the next setup error."
+}

@@ -35,14 +35,14 @@ Jeder Buch-Screenshot bekommt:
 | Auftragskopf | `Customer Name` ist sichtbar, fachlich muss Debitor `D10000` geprüft werden. |
 | Auftragszeile | `RM-M100`, Menge, Lagerort, Einheit, Preis und Steuergruppe bestimmen die spätere Wirkung. |
 | Setup-Lücke | Der aktuelle Laborauftrag liefert `EUR`, aber weiter `0 %` Tax; das ist kein Bedienfehler, sondern fehlender deutscher Steuerfit. |
-| Inventory Posting Setup | `MASTERDATA-008` zeigt `FRA-ZL` + `RESALE` mit leerem `Inventory Account`. Wenn `Preview Posting` auf Inventory Posting Setup stoppt, ist nicht der Auftrag kaputt, sondern die Kontenfindung fuer den Lagerwert fehlt. |
+| Inventory Posting Setup | `MASTERDATA-008` zeigt `FRA-ZL` + `RESALE` mit leerem `Inventory Account`; `MASTERDATA-009` setzt im CRONUS-Labor `14140`. Wenn `Preview Posting` auf Inventory Posting Setup stoppt, ist nicht der Auftrag kaputt, sondern die Kontenfindung fuer den Lagerwert fehlt. |
 | Cleanup | Laboraufträge werden nach Screenshots entfernt, weil BC Entwürfe automatisch speichert. |
 
 ## Nächste Lernfragen
 
 | Priorität | Frage |
 |---:|---|
-| 1 | Welches Labor-Bestandskonto ist fuer `FRA-ZL` + `RESALE` fachlich vertretbar, und woran erkennt der Anfaenger nach der Korrektur, dass `Preview Posting` nicht mehr an dieser Setup-Luecke stoppt? |
+| 1 | Was zeigt `Preview Posting` nach dem `MASTERDATA-009`-Laborfit, und woran erkennt der Anfaenger, dass die Inventory-Posting-Setup-Luecke nicht mehr der Blocker ist? |
 | 2 | Was zeigt `Preview Posting` bei einem Verkaufsauftrag und welche Posten muss ein Anfänger erkennen? |
 | 3 | Welche Einrichtung macht aus dem CRONUS-Labor einen deutschen `19 %`-Fall? |
 | 4 | Wie wird `PRODUCTLINE = MACHINE` nach dem Buchen in Sachposten, Wertposten oder Reporting wiedergefunden? |

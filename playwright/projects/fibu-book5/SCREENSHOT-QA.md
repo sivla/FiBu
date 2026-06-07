@@ -30,6 +30,12 @@ Zu jedem automatisiert erzeugten O2C-Screenshot schreibt der Screenshot-Helper e
 |---|---|---|---|
 | `playwright/projects/fibu-book5/img/masterdata-008-inventory-posting-setup-fra-zl-resale.png` | gutes Fehler-/Lernbild | Breite Listenansicht zeigt `Inventory Posting Setup` mit gefilterter Zielzeile `FRA-ZL` + `RESALE`. Die Spalten `Inventory Account` und `Inventory Account (Interim)` sind sichtbar und leer. | Als Laborbild fuer den O2C-Blocker geeignet. Nicht als finaler Setup-Endstand verwenden, weil noch keine fachliche Kontenentscheidung getroffen wurde. |
 
+## `MASTERDATA-009` Screenshot Review
+
+| Screenshot | Bewertung | Befund | Entscheidung |
+|---|---|---|---|
+| `playwright/projects/fibu-book5/img/masterdata-009-inventory-posting-setup-fra-zl-resale-14140.png` | guter Labor-Fit-Nachweis | Gefilterte Zielzeile `FRA-ZL` + `RESALE` zeigt jetzt `Inventory Account = 14140`. Das Konto wurde aus vorhandenen CRONUS-RESALE-Zeilen abgeleitet. | Als Laborbild fuer den geschlossenen Inventory-Posting-Setup-Blocker geeignet. Nicht als deutscher Kontenplan-Endstand verwenden; O2C-Preview muss danach separat neu erzeugt werden. |
+
 ## `UAT-O2C-001` Screenshot Review
 
 | Screenshot | Bewertung | Befund | Entscheidung |

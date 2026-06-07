@@ -982,7 +982,7 @@ Woran du erkennst, dass es danach stimmt:
 Die Zeile `FRA-ZL` + `RESALE` zeigt ein begründetes `Inventory Account`. Danach wird `UAT-O2C-001` erneut ausgeführt. Ein erfolgreicher Zwischennachweis ist erst erreicht, wenn `Buchungsvorschau (Preview Posting)` nicht mehr auf diesen Inventory-Posting-Setup-Fehler stoppt, sondern eine Postenvorschau oder den nächsten echten Setup-Hinweis zeigt.
 
 Prüfhinweis:
-Der Nachweis `MASTERDATA-008` ist ein CRONUS-USA-Laborbefund und noch kein finaler deutscher Buchungsgruppen-Entwurf. Für die nächste technische Prüfung muss fachlich entschieden werden, welches Bestandskonto für `FRA-ZL` + `RESALE` im Labor verwendet werden darf. Danach wird `UAT-O2C-001` erneut mit `Buchungsvorschau (Preview Posting)` geprüft.
+Der Nachweis `MASTERDATA-008` ist ein CRONUS-USA-Laborbefund und noch kein finaler deutscher Buchungsgruppen-Entwurf. `MASTERDATA-009` setzt für den Laborfit `Inventory Account = 14140`, weil vorhandene CRONUS-RESALE-Zeilen dieses Konto verwenden. Das ist eine nachvollziehbare Laborentscheidung, aber kein deutscher Kontenplan-Endstand. Danach wird `UAT-O2C-001` erneut mit `Buchungsvorschau (Preview Posting)` geprüft.
 
 ### Klickanleitung: Standarddimensionen für `D10000` und `RM-M100` prüfen
 
