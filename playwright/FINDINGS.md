@@ -42,46 +42,46 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 
 | Feld | Wert |
 |---|---|
-| Status | offen |
+| Status | erledigt |
 | Projekt | fibu-book5 |
 | Testfall | `UAT-O2C-001` |
-| Screenshot | `img/uat-o2c-001-040-zeile-artikel-rm-m100.png`, `img/uat-o2c-001-041-zeile-betraege-steuer.png` |
+| Screenshot | `playwright/projects/fibu-book5/img/uat-o2c-001-040-zeile-artikel-rm-m100.png`, `playwright/projects/fibu-book5/img/uat-o2c-001-041-zeile-betraege-steuer.png` |
 | BC-Seite | `Sales Order`, Page `42` |
-| sichtbarer Text | `RM-M100`, `Standardmaschine M100`, `FRA-ZL`, `68.000,00`; Evidence zeigt `USD`, `FURNITURE`, `taxPercent = 0` |
+| sichtbarer Text | `RM-M100`, `Standardmaschine M100`, `FRA-ZL`, `68.000,00`; aktueller Laborlauf zeigt `EUR`, `FURNITURE`, `taxPercent = 0` |
 | Elementtyp | Screenshot-/Evidence-Qualitaet |
 | erste Hypothese | Das Bild `040` ist als Laborbild brauchbar, aber nicht als finales Buchbild, weil Menge, USt-/Tax-Gruppe, Waehrung und Dimension nicht sauber sichtbar sind. Ein zweites Bild nach gezieltem horizontalem Grid-Scroll koennte die Steuer-/Betragsspalten sichtbar machen. |
 | Recherchequelle | visuelle Screenshot-Pruefung am 2026-06-07, `SCREENSHOT-QA.md` |
 | Testergebnis | DOM-Scroll auf den BC-Container `freeze-pane-scrollbar` funktioniert. `041` zeigt `Unit Price Excl. Tax`, `Tax Group Code = FURNITURE` und `Line Amount Excl. Tax = 68.000,00`. `042` zeigt, dass Scroll ans rechte Ende andere spaete Spalten trifft. |
-| Entscheidung | `041` als Laborbild fuer Steuer-/Betragsspalten behalten; fuer finale deutsche Buchbilder weiterhin neue Zielumgebung und Dimensionsnachweis erforderlich |
+| Entscheidung | `041` als Laborbild fuer Steuer-/Betragsspalten behalten; `050` weist `PRODUCTLINE=MACHINE` im Zeilendimensionsdialog nach; fuer finale deutsche Buchbilder bleiben deutsche Sprache, 19-%-USt und Postennachweis offen |
 | Buchstelle | `UAT-O2C-001`, Verkaufszeile, Evidence Pack |
 
 ## FIND-BC-SHOT-002 O2C-Listenbild zeigt CRONUS-Auftraege, nicht den Buchfall
 
 | Feld | Wert |
 |---|---|
-| Status | offen |
+| Status | erledigt |
 | Projekt | fibu-book5 |
 | Testfall | `UAT-O2C-001` |
-| Screenshot | `img/uat-o2c-001-020-liste-verkaufsauftraege.png` |
+| Screenshot | `playwright/projects/fibu-book5/img/uat-o2c-001-020-liste-verkaufsauftraege.png` |
 | BC-Seite | `Sales Orders`, Page `9305` |
 | sichtbarer Text | vorhandene CRONUS-Auftraege, `10000`, `Adatum Corporation` |
 | Elementtyp | Screenshot-/Datensatz-Scope |
 | erste Hypothese | Das Bild ist ein Navigationsbild, aber kein Prozessnachweis fuer `D10000`. |
 | Recherchequelle | visuelle Screenshot-Pruefung am 2026-06-07, `SCREENSHOT-QA.md` |
-| Testergebnis | offen |
-| Entscheidung | im Buch nur als Navigationsbild verwenden; fuer Prozessnachweis Auftrag filtern oder Karte zeigen |
+| Testergebnis | `020` bleibt als Navigationsbild dokumentiert; `030` und folgende Bilder tragen den Prozessnachweis fuer `D10000`. |
+| Entscheidung | im Buch nur als Navigationsbild verwenden; Prozessnachweis erfolgt ueber die erzeugte Auftragskarte und Evidence. |
 | Buchstelle | `UAT-O2C-001`, Verkaufsauftragsliste |
 
 ## FIND-BC-SHOT-003 Redundanter Screenshot `030-neuer-verkaufsauftrag`
 
 | Feld | Wert |
 |---|---|
-| Status | offen |
+| Status | erledigt |
 | Projekt | fibu-book5 |
 | Testfall | `UAT-O2C-001` |
-| Screenshot | `img/uat-o2c-001-030-neuer-verkaufsauftrag.png` |
+| Screenshot | `playwright/projects/fibu-book5/img/uat-o2c-001-030-neuer-verkaufsauftrag.png` |
 | BC-Seite | `Sales Order`, Page `42` |
-| sichtbarer Text | identisch zu `img/uat-o2c-001-030-kopf-debitor-d10000.png` |
+| sichtbarer Text | identisch zu `playwright/projects/fibu-book5/img/uat-o2c-001-030-kopf-debitor-d10000.png` |
 | Elementtyp | Asset-Qualitaet |
 | erste Hypothese | Der Test erstellt zwei Dateien zum selben Zustand; der Dateiname `neuer-verkaufsauftrag` suggeriert faelschlich einen leeren neuen Auftrag. |
 | Recherchequelle | `Get-FileHash` am 2026-06-07, `SCREENSHOT-QA.md` |
@@ -142,7 +142,7 @@ Für Audit- und Setup-Prüfungen verwendet Playwright nach Möglichkeit direkte 
 | Status | erledigt |
 | Projekt | fibu-book5 |
 | Testfall | `UAT-O2C-001` |
-| Screenshot | `img/uat-o2c-001-020-liste-verkaufsauftraege.png`, `img/uat-o2c-001-030-kopf-debitor-d10000.png` |
+| Screenshot | `playwright/projects/fibu-book5/img/uat-o2c-001-020-liste-verkaufsauftraege.png`, `playwright/projects/fibu-book5/img/uat-o2c-001-030-kopf-debitor-d10000.png` |
 | BC-Seite | `Sales Orders` / `Sales Order` |
 | sichtbarer Text | `Neu`, `Customer Name`, `Customer No. D10000`, `Mueller Maschinenbau GmbH` |
 | Elementtyp | Menü / Feld / FactBox |
@@ -163,7 +163,7 @@ Für Anwender ist fachlich der Debitor `D10000` gemeint, in der Oberfläche kann
 | Status | erledigt |
 | Projekt | fibu-book5 |
 | Testfall | `UAT-O2C-001` |
-| Screenshot | `img/uat-o2c-001-030-kopf-debitor-d10000.png` |
+| Screenshot | `playwright/projects/fibu-book5/img/uat-o2c-001-030-kopf-debitor-d10000.png` |
 | BC-Seite | `Sales Orders` / `Sales Order` |
 | sichtbarer Text | mehrere `S-ORD...` aus Liste und aktueller Karte |
 | Elementtyp | Testqualitäts-Fundstelle |
@@ -184,7 +184,7 @@ Business Central rendert häufig Liste, Karte, FactBox und Hintergrundkontext gl
 | Status | erledigt |
 | Projekt | fibu-book5 |
 | Testfall | `UAT-O2C-001` |
-| Screenshot | `img/uat-o2c-001-040-zeile-artikel-rm-m100.png` |
+| Screenshot | `playwright/projects/fibu-book5/img/uat-o2c-001-040-zeile-artikel-rm-m100.png` |
 | BC-Seite | `Sales Order`, Page `42` |
 | sichtbarer Text | `RM-M100`, `Standardmaschine M100`, `FRA-ZL`, `68.000,00` |
 | Elementtyp | Testqualitäts-Fundstelle / Screenshot-Stabilisierung |
@@ -205,7 +205,7 @@ Business Central ist kein statisches Webformular. Tastaturbefehle wirken immer i
 | Status | erledigt |
 | Projekt | fibu-book5 |
 | Testfall | `MASTERDATA-001` |
-| Screenshot | `img/masterdata-001-*` |
+| Screenshot | `playwright/projects/fibu-book5/img/masterdata-001-*` |
 | BC-Seite | Role Center statt Zielseite |
 | sichtbarer Text | Role-Center-Kacheln wie `Sales This Month`, `Ongoing Sales`, `Sales Orders` |
 | Elementtyp | Testqualitäts-Fundstelle |
@@ -226,7 +226,7 @@ Ein bestandener Playwright-Test ist nur dann Evidence, wenn er die richtige Busi
 | Status | erledigt |
 | Projekt | fibu-book5 |
 | Testfall | `MASTERDATA-001` |
-| Screenshot | `img/masterdata-001-dimensions.png` |
+| Screenshot | `playwright/projects/fibu-book5/img/masterdata-001-dimensions.png` |
 | BC-Seite | `Dimensions` / `Dimension Value List` |
 | sichtbarer Text | `Dimensions`, `Dimension Value List` |
 | Elementtyp | Seiten-/Navigations-Fundstelle |
@@ -247,7 +247,7 @@ Für das Anlegen einer Dimension braucht der Leser zuerst die Seite `Dimensions`
 | Status | erledigt |
 | Projekt | fibu-book5 |
 | Testfall | `MASTERDATA-002` |
-| Screenshot | `img/masterdata-002-dimensions-rhein-main.png` |
+| Screenshot | `playwright/projects/fibu-book5/img/masterdata-002-dimensions-rhein-main.png` |
 | BC-Seite | `Dimensions`, Page `536` |
 | sichtbarer Text | `Neu`, `Liste bearbeiten`, `Neu - Dimensions`, `Gespeichert` |
 | Elementtyp | Liste / Neuanlage / Grid-Fokus |
@@ -276,7 +276,7 @@ Cleanup-Prüfungen dürfen nicht gegen freien Seitentext laufen. Der Text `Produ
 | Status | erledigt |
 | Projekt | fibu-book5 |
 | Testfall | `MASTERDATA-005`, gelöst in `MASTERDATA-006` |
-| Screenshot | `img/masterdata-005-items-after-api.png`, `img/masterdata-006-item-posting-fit.png` |
+| Screenshot | `playwright/projects/fibu-book5/img/masterdata-005-items-after-api.png`, `playwright/projects/fibu-book5/img/masterdata-006-item-posting-fit.png` |
 | BC-Seite | `Items` / `Item Card` |
 | sichtbarer Text | `Base Unit of Measure`, `Gen. Prod. Posting Group`, `Inventory Posting Group` leer |
 | Elementtyp | Feld / Stammdaten-/Buchungslogik |
@@ -294,10 +294,10 @@ Das ist ein klassischer Beratungsfehler: Stammdaten sind nicht fertig, nur weil 
 
 | Feld | Wert |
 |---|---|
-| Status | offen |
+| Status | erledigt |
 | Projekt | fibu-book5 |
 | Testfall | `MASTERDATA-006` |
-| Screenshot | `img/masterdata-006-customer-template-fit.png`, `img/masterdata-006-item-posting-fit.png` |
+| Screenshot | `playwright/projects/fibu-book5/img/masterdata-006-customer-template-fit.png`, `playwright/projects/fibu-book5/img/masterdata-006-item-posting-fit.png` |
 | Evidence | `playwright/projects/fibu-book5/evidence/masterdata-006/api-result.json`, `playwright/projects/fibu-book5/evidence/uat-o2c-001/045-target-vs-labor-delta.md` |
 | BC-Seite | `Customer Card`, `Item Card`, Standard-API `salesOrders` |
 | sichtbarer/API-Text | frueher `currencyCode = USD`, nach MCP-Korrektur `Currency Code = EUR`; weiterhin `Tax Area Code` leer, `Tax Group Code = FURNITURE`, kein deutscher `19 %`-VAT-Nachweis |
@@ -310,6 +310,28 @@ Bewertung:
 
 Das ist fuer das Buch zentral: Ein gruener technischer Test ist nicht automatisch ein fachlich korrekter deutscher Steuerfall. Fuer die jetzige Spielwiese zaehlt `MASTERDATA-006` als Laufbarkeitsnachweis. MCP hat die Herkunft genauer gemacht: `RM-M100` liefert `Tax Group Code = FURNITURE`; `D10000` liefert `Tax Liable`, `Tax Area Code = leer`, `Gen. Bus. Posting Group = DOMESTIC`, `Customer Posting Group = DOMESTIC` und inzwischen `Currency Code = EUR`. Fuer den Buch-Endstand muessen deutsche USt-Logik und `19 %` separat nachgewiesen werden.
 
+## FIND-BC-O2C-004 Preview Posting prueft Inventory Posting Setup
+
+| Feld | Wert |
+|---|---|
+| Status | erledigt |
+| Projekt | fibu-book5 |
+| Testfall | `UAT-O2C-001` |
+| Screenshot | `playwright/projects/fibu-book5/img/uat-o2c-001-060-buchungsvorschau.png` |
+| Evidence | `playwright/projects/fibu-book5/evidence/uat-o2c-001/060-preview-posting-result.json`, `playwright/projects/fibu-book5/evidence/uat-o2c-001/060-preview-posting-learning.md` |
+| BC-Seite | `Sales Order`, `Error Messages`, `Inventory Posting Setup` |
+| sichtbarer/API-Text | `Inventory Account is missing in Inventory Posting Setup Location Code: FRA-ZL, Invt. Posting Group Code: RESALE.` |
+| Elementtyp | Buchungsvorschau / Fehlerbild / Buchungslogik |
+| erste Hypothese | `Preview Posting` prueft vor dem Buchen nicht nur Debitor, Artikel und Steuer, sondern auch die Kontenfindung fuer Lagerort und Lagerbuchungsgruppe. |
+| Recherchequelle | praktischer Playwright-Lauf `npm run fibu:uat:o2c`; Microsoft Learn `Preview Posting Results` in `MICROSOFT-DOC-VALIDATION.md` |
+| Testergebnis | Der Test klickt den Dropdown-Teil von `Post...`, waehlt `Preview Posting`, erreicht die Preview-Pruefung und landet auf `Error Messages`. Der normale Buchungsdialog `Ship / Invoice / Ship and Invoice` wurde nicht bestaetigt. |
+| Entscheidung | Buch ergaenzen: Preview Posting ist Pflicht vor dem Buchen; wenn BC auf `Inventory Posting Setup` stoppt, muss zuerst `FRA-ZL` + `RESALE` fachlich eingerichtet oder als Laborgrenze dokumentiert werden. |
+| Buchstelle | `UAT-O2C-001`, Posting Groups, Inventory Posting Setup, Fehler-/Workaround-Kapitel |
+
+Bewertung:
+
+Das ist ein echter Lernfund fuer Anfaenger und Consultants. Ein Verkaufsauftrag kann technisch angelegt sein und trotzdem nicht buchungsfaehig sein. Die Buchungsvorschau macht diese Grenze sichtbar, bevor echte Posten entstehen. Der naechste fachliche Block ist deshalb nicht direktes Buchen, sondern die Lagerbuchungsmatrix fuer `FRA-ZL` und `RESALE`.
+
 ## FIND-BC-DIM-002 Standarddimensionen brauchen Daten- und UI-Nachweis
 
 | Feld | Wert |
@@ -317,7 +339,7 @@ Das ist fuer das Buch zentral: Ein gruener technischer Test ist nicht automatisc
 | Status | erledigt |
 | Projekt | fibu-book5 |
 | Testfall | `MASTERDATA-007` |
-| Screenshot | `img/masterdata-007-default-dimensions-item-rm-m100.png`, `img/masterdata-007-default-dimensions-customer-d10000.png`, `img/masterdata-007-item-rm-m100-standarddimension.png`, `img/masterdata-007-customer-d10000-standarddimension.png` |
+| Screenshot | `playwright/projects/fibu-book5/img/masterdata-007-default-dimensions-item-rm-m100.png`, `playwright/projects/fibu-book5/img/masterdata-007-default-dimensions-customer-d10000.png`, `playwright/projects/fibu-book5/img/masterdata-007-item-rm-m100-standarddimension.png`, `playwright/projects/fibu-book5/img/masterdata-007-customer-d10000-standarddimension.png` |
 | Evidence | `playwright/projects/fibu-book5/evidence/masterdata-007/api-result.json` |
 | BC-Seite | `Default Dimensions`, `Item Card`, `Customer Card` |
 | sichtbarer/API-Text | `PRODUCTLINE=MACHINE`, `CHANNEL=B2B`, `postingValidation=Same_x0020_Code` |
@@ -339,7 +361,7 @@ Für den Verkaufsauftrag ist `PRODUCTLINE=MACHINE` nicht kosmetisch. Ohne diese 
 | Status | erledigt |
 | Projekt | fibu-book5 |
 | Testfall | `MASTERDATA-003` |
-| Screenshot | `img/masterdata-003-dimension-values-rhein-main.png` |
+| Screenshot | `playwright/projects/fibu-book5/img/masterdata-003-dimension-values-rhein-main.png` |
 | BC-Seite | `Dimension Values` aus `Dimensions` |
 | sichtbarer Text | `Dimension Values - PRODUCTLINE`, `Nicht gespeichert`, `Gespeichert` |
 | Elementtyp | Liste / Neuanlage / Speichern |
@@ -361,20 +383,20 @@ Business-Central-Grids geben Werte nicht immer über `innerText` aus. Sichtbare 
 
 | Feld | Wert |
 |---|---|
-| Status | offen |
+| Status | erledigt |
 | Projekt | fibu-book5 |
 | Testfall | `UAT-O2C-001` |
-| Screenshot | `img/uat-o2c-001-030-kopf-debitor-d10000.png`, `img/uat-o2c-001-041-zeile-betraege-steuer.png` |
-| Evidence | `playwright/projects/fibu-book5/evidence/uat-o2c-001/040-zeile-artikel-rm-m100-api-result.json`, `playwright/projects/fibu-book5/evidence/uat-o2c-001/045-target-vs-labor-delta.md` |
+| Screenshot | `playwright/projects/fibu-book5/img/uat-o2c-001-030-kopf-debitor-d10000.png`, `playwright/projects/fibu-book5/img/uat-o2c-001-041-zeile-betraege-steuer.png`, `playwright/projects/fibu-book5/img/uat-o2c-001-050-dimension-productline-machine.png` |
+| Evidence | `playwright/projects/fibu-book5/evidence/uat-o2c-001/040-zeile-artikel-rm-m100-api-result.json`, `playwright/projects/fibu-book5/evidence/uat-o2c-001/045-target-vs-labor-delta.md`, `playwright/projects/fibu-book5/evidence/uat-o2c-001/050-line-dimension-dialog-result.json` |
 | BC-Seite/API | `Sales Order`, API-Navigation `salesOrders(...)/dimensionSetLines` |
-| sichtbarer/API-Text | `CHANNEL=B2B`; `PRODUCTLINE=MACHINE` fehlt im Vorgangsnachweis |
+| sichtbarer/API-Text | `CHANNEL=B2B`; `PRODUCTLINE=MACHINE` ist im Zeilendimensionsdialog sichtbar nachgewiesen |
 | Elementtyp | Dimension / Belegkopf / Verkaufszeile / Reportingnachweis |
 | erste Hypothese | Die Debitor-Standarddimension kommt am Auftragskopf an. Die Artikel-Standarddimension muss in der Zeile, im Dimensionsdialog oder nach dem Buchen separat nachgewiesen werden. |
 | Recherchequelle | praktischer Playwright-Lauf; Microsoft Learn Sales Order API mit `dimensionSetLines` |
-| Testergebnis | `orderDimensionSetLines` liefert `CHANNEL=B2B`. Der Zielvergleich zeigt `PRODUCTLINE=MACHINE` weiterhin als fehlend. |
-| Entscheidung | O2C nicht als dimensionsfachlich fertig behandeln. Naechster Ausbau: Dimensionsdialog der Verkaufszeile oder Postenansicht oeffnen und fotografieren. |
+| Testergebnis | `orderDimensionSetLines` liefert `CHANNEL=B2B`. Der O2C-Test oeffnet danach `Line` -> `Related Information` -> `Dimensions`; Screenshot `050` und `050-line-dimension-dialog-result.json` weisen `PRODUCTLINE=MACHINE` nach. |
+| Entscheidung | Beleg-Dimensionsnachweis im Labor ist erledigt. Finaler deutscher Screenshot und Nachweis in Posten/Reporting bleiben offen, weil noch nicht gebucht wird. |
 | Buchstelle | Kapitel 10 Dimensionen, Kapitel 11 O2C, Reporting nach Produktlinie |
 
 Bewertung:
 
-Das ist ein sehr nuetzlicher Lernpunkt fuer Anfaenger: Eine Dimension kann korrekt am Kopf stehen und trotzdem ist die fachlich entscheidende Produktlinienauswertung noch nicht bewiesen. Fuer das Buch braucht der Leser deshalb drei Ebenen: Standarddimension vorbereiten, Dimension im Beleg pruefen, Dimension in Posten oder Bericht wiederfinden.
+Das ist ein sehr nuetzlicher Lernpunkt fuer Anfaenger: Eine Dimension kann korrekt am Kopf stehen und trotzdem muss die fachlich entscheidende Produktliniendimension in der Zeile geprueft werden. Fuer das Buch braucht der Leser deshalb drei Ebenen: Standarddimension vorbereiten, Dimension im Beleg pruefen, Dimension in Posten oder Bericht wiederfinden.

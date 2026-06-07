@@ -97,11 +97,19 @@ Der aktuelle Handover-Stand enthaelt:
 - allgemeine Screenshot-Helfer fuer Teaching Tips und FactBox/Infobox
 - `LAB-FIT-STATUS.md` als blockuebergreifende Prozesslandkarte
 
-Der vorherige fachliche O2C-Nachweis ist:
+Der aktuelle fachliche O2C-/Screenshot-Nachweis ist:
 
 ```text
-7faa0d4 Document BC screenshot workflow and O2C evidence
+31839cc Document O2C preview posting blocker
 ```
+
+Letzter echter Fortschritt:
+
+- Projektbilder wurden aus Root-`img/` nach `playwright/projects/fibu-book5/img/` verschoben.
+- `UAT-O2C-001` erreicht `Preview Posting` ueber den Dropdown-Teil von `Post...`.
+- BC stoppt nicht auf dem normalen Buchungsdialog, sondern auf `Error Messages`.
+- Fehlerkern: `Inventory Account is missing in Inventory Posting Setup Location Code: FRA-ZL, Invt. Posting Group Code: RESALE.`
+- `FINDINGS.md`, Coverage, Workarounds, Screenshot-QA und Buchtext sind auf diesen Laborstand synchronisiert.
 
 ## Aktuelle O2C-Wahrheit
 
@@ -155,6 +163,14 @@ Als naechstes gezielt die blockierende Lagerbuchungsmatrix-Luecke entscheiden:
 2. Klaeren, ob im CRONUS-Labor ein vorhandenes Bestandskonto sinnvoll wiederverwendet werden darf oder ob die Luecke nur dokumentiert wird.
 3. Danach `Preview Posting` erneut laufen lassen. Wenn die Postenvorschau danach oeffnet, Postenarten nur als CRONUS-Labor-Evidence bewerten.
 4. Deutsche `19 %`-USt bleibt davon getrennt: kein deutscher Steuer-Endstand in dieser USA-Spielwiese.
+
+Synchronisationsstand nach der letzten Projektwahrheits-Pruefung:
+
+- Praktisch nachgewiesen: O2C-Kopf, Verkaufszeile, EUR, `PRODUCTLINE=MACHINE` im Zeilendimensionsdialog, Preview-Posting-Pruefung bis zum Fehlerbild.
+- Labor-Nachweis: alle aktuellen O2C-Bilder und Evidence gelten fuer CRONUS USA / gemischte UI.
+- Finaler DE-Nachweis offen: deutsche Oberflaeche, 19-%-USt, echte Postenvorschau, Buchung und Postenspur.
+- Blockiert: echte Buchungsvorschau/Postenvorschau fuer `UAT-O2C-001`, bis `Inventory Posting Setup` fuer `FRA-ZL` + `RESALE` geklaert ist.
+- Nicht geprueft: P2P, echte Buchung, Debitoren-/Sach-/Artikel-/Wertposten, Finanzbericht.
 
 ## Befehle fuer neue Agents
 
