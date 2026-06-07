@@ -1,5 +1,15 @@
 # FiBu Buch 5 Playwright-Projekt
 
+## Aktueller Einstieg
+
+Neue Agents lesen zuerst:
+
+```text
+CURRENT-STATE.md
+```
+
+Diese Datei ist die kompakte Fortsetzungsanweisung fuer das Projekt.
+
 Dieses Projekt enthält die Business-Central-Tests und Screenshots für `FiBu-Buch 5`.
 
 ## Ziel

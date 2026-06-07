@@ -1,5 +1,15 @@
 # Business-Central-Lern- und Screenshot-Projekt
 
+## Aktueller Einstieg
+
+Neue Agents starten hier:
+
+```text
+playwright/projects/fibu-book5/CURRENT-STATE.md
+```
+
+Diese Datei beschreibt den letzten Stand, die offenen fachlichen Grenzen und den nächsten sinnvollen Schritt. Sie ist wichtiger als der Chatverlauf.
+
 Dieses Repository ist ein Arbeitsprojekt, um Microsoft Dynamics 365 Business Central systematisch zu lernen, zu testen und für ein Buchprojekt mit bebilderten Klickanleitungen zu dokumentieren.
 
 Der erste konkrete Anwendungsfall ist `FiBu-Buch 5`. Das langfristige Ziel ist jedoch größer: Das Projekt soll Business Central durch reale Nutzung erschließen. Playwright klickt Prozesse durch, erzeugt Screenshots, entdeckt sichtbare Funktionen und hilft dabei, das Buch fachlich zu verbessern.
@@ -72,3 +82,43 @@ Ein getesteter Buchabschnitt ist erst dann fertig, wenn:
 - offene Funktionen in `playwright/FINDINGS.md` erfasst oder erledigt sind
 - das Buch die Erkenntnisse enthält
 - Evidence-Pack-Hinweise vorhanden sind
+
+## Encoding
+
+Alle Textdateien im Projekt werden als UTF-8 gepflegt. Das ist wichtig, weil Buchtext, Business-Central-Begriffe und Microsoft-Learn-Zitate deutsche Umlaute enthalten.
+
+Pruefung:
+
+```powershell
+npm run check:encoding
+```
+
+Unter macOS/Linux:
+
+```bash
+npm run check:encoding
+```
+
+Wenn `Get-Content` in PowerShell deutsche Umlaute sichtbar falsch anzeigt, ist in der Regel die Konsolenausgabe falsch eingestellt, nicht die Datei. Fuer die aktuelle Sitzung kann die Konsole so auf UTF-8 gestellt werden:
+
+```powershell
+. .\scripts\Use-Utf8Console.ps1
+```
+
+Unter macOS ist die Terminal-Ausgabe normalerweise bereits UTF-8. Falls eine Shell-Sitzung trotzdem falsch konfiguriert ist:
+
+```bash
+. ./scripts/use-utf8-console.sh
+```
+
+## Plattformen
+
+Das Projekt soll auf Windows und macOS laufen.
+
+| Bereich | Regel |
+|---|---|
+| Node/npm | Skripte in `package.json` plattformneutral halten |
+| Playwright | Browserinstallation je Rechner mit `npx playwright install chromium` |
+| Pfade | Im Code bevorzugt Node-`path` oder Playwright-Projektpfade nutzen, keine hart verdrahteten Windows-Trenner |
+| Encoding | UTF-8 und LF ueber `.editorconfig` und `.gitattributes` |
+| Secrets | `.env` und `playwright/.auth/` bleiben lokal auf jedem Rechner |

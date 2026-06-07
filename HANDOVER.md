@@ -1,5 +1,15 @@
 # Übergabe für neue Codex-Accounts
 
+## Zuerst Lesen
+
+Neue Agents lesen zuerst:
+
+```text
+playwright/projects/fibu-book5/CURRENT-STATE.md
+```
+
+Diese Datei enthält den aktuellen fachlichen Stand, harte Projektentscheidungen, offene Grenzen und den nächsten sinnvollen Schritt. Ohne diese Datei besteht die Gefahr, alte Chatlogik zu wiederholen oder CRONUS-Laborbefunde als deutsche Zielnachweise zu missverstehen.
+
 Dieses Repository soll von anderen Codex-Accounts weiterbearbeitet werden können. Der Fokus liegt auf Business-Central-Playwright-Automation, Business-Central-Lernen und Buch-/Projektdokumentation.
 
 ## Ziel des Repositories
@@ -111,3 +121,36 @@ CRONUS USA, Inc.
 ## Wichtige Warnung
 
 Business Central ist UI-seitig nicht vollständig stabil wie eine klassische Web-App. Viele Inhalte liegen in Frames, manche Controls haben unzuverlässige ARIA-Rollen, und Einführungs-Popups stören Screenshots. Deshalb immer nach einem grünen Test mindestens einen Screenshot visuell prüfen.
+
+## Encoding-Warnung
+
+Dieses Repository nutzt UTF-8 fuer Markdown, JSON, TypeScript und Evidence-Textdateien.
+
+Vor groesseren Doku-Aenderungen:
+
+```powershell
+npm run check:encoding
+```
+
+Wenn PowerShell deutsche Umlaute sichtbar falsch ausgibt, zuerst die aktuelle Konsole auf UTF-8 stellen:
+
+```powershell
+. .\scripts\Use-Utf8Console.ps1
+```
+
+Unter macOS/Linux:
+
+```bash
+. ./scripts/use-utf8-console.sh
+```
+
+Nicht blind "Mojibake reparieren", bevor geprueft wurde, ob die Datei selbst oder nur die Konsolenausgabe betroffen ist.
+
+## Plattformregel
+
+Das Projekt wird fuer Windows und macOS gepflegt.
+
+- Keine neuen projektrelevanten Skripte nur als Windows-PowerShell bereitstellen, wenn eine Node- oder Shell-Variante sinnvoll moeglich ist.
+- `package.json`-Skripte sollen ohne Windows-spezifische Pfadtrenner funktionieren.
+- Lokale Auth-Dateien und `.env` werden pro Rechner neu erzeugt.
+- Playwright-Browser muessen pro Rechner installiert werden: `npx playwright install chromium`.
