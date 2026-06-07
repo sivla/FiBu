@@ -149,7 +149,14 @@ export async function visibleButtonNames(page: Page) {
 
 export async function writeEvidenceText(filePath: string, content: string) {
   await fs.mkdir(path.dirname(filePath), { recursive: true });
-  await fs.writeFile(filePath, content, 'utf8');
+  const normalized = content
+    .replace(/\r\n?/g, '\n')
+    .split('\n')
+    .map((line) => line.replace(/[ \t]+$/g, ''))
+    .join('\n')
+    .replace(/(?:\n[ \t]*)+$/g, '')
+    .concat('\n');
+  await fs.writeFile(filePath, normalized, 'utf8');
 }
 
 export async function clickInFrameContaining(page: Page, frameText: RegExp, targetText: RegExp) {

@@ -212,7 +212,10 @@ Status nach Testlauf:
 - `MASTERDATA-007` ist als API-/Evidence-Nachweis grün.
 - Evidence liegt unter `playwright/projects/fibu-book5/evidence/masterdata-007/`.
 - Laborbilder liegen unter `img/masterdata-007-*`.
-- Harte Grenze: Die Daten sind persistent nachgewiesen, aber ein gutes Buchbild des eigentlichen Dialogs `Default Dimensions` fehlt noch.
+- Der Dialog `Default Dimensions` ist jetzt als UI-Laborbild per Page `540` nachgewiesen:
+  - `img/masterdata-007-default-dimensions-item-rm-m100.png`
+  - `img/masterdata-007-default-dimensions-customer-d10000.png`
+- Harte Grenze: Die Bilder sind Kandidaten, aber noch keine finalen deutschen Buchbilder. Die Umgebung ist gemischt Deutsch/Englisch und zeigt die Info-Karte `About default dimensions`.
 
 ### `UAT-O2C-001`: erster Verkaufsauftrag als Lern- und Laborlauf
 

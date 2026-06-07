@@ -17,6 +17,13 @@ Laborbilder duerfen abweichen. Dann muessen Abweichung, Ursache und Buchwirkung 
 
 Zu jedem automatisiert erzeugten O2C-Screenshot schreibt der Screenshot-Helper eine Metadatendatei unter `evidence/<testfall>/...screenshot.json`. Diese Datei enthaelt Status, Buchnutzung, Zweck, erwartete Werte im BC-Seitentext und bekannte Grenzen. Die PNG-Datei allein ist deshalb nicht mehr die ganze Wahrheit.
 
+## `MASTERDATA-007` Screenshot Review
+
+| Screenshot | Bewertung | Befund | Entscheidung |
+|---|---|---|---|
+| `img/masterdata-007-default-dimensions-item-rm-m100.png` | guter Labor-Kandidat | Page `540` zeigt `Default Dimensions` mit `PRODUCTLINE`, `MACHINE` und `Same Code`. Die Info-Karte `About default dimensions` ist sichtbar, verdeckt aber die Datenzeile nicht. | Als Buchkandidat fuer Standarddimensionen geeignet; final in deutscher Umgebung und moeglichst ohne Info-Karte neu erzeugen. |
+| `img/masterdata-007-default-dimensions-customer-d10000.png` | guter Labor-Kandidat | Page `540` zeigt `CHANNEL`, `B2B`, `Business-to-Business` und `Same Code`. Parent `D10000` ist ueber Filter/Test/Evidence belegt, aber nicht im sichtbaren Seitentext. | Als Laborbild geeignet; Buchtext muss erklaeren, dass Page 540 auf den Debitorenkontext gefiltert wurde. |
+
 ## `UAT-O2C-001` Screenshot Review
 
 | Screenshot | Bewertung | Befund | Entscheidung |

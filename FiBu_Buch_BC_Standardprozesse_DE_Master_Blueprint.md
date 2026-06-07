@@ -959,9 +959,28 @@ Geprüfter Laborstand:
 3. Beide Standarddimensionen sind mit `Same Code` gepflegt.
 4. Das bedeutet: Der Stammdatensatz soll nicht nur einen Vorschlagswert liefern, sondern genau diesen Dimensionswert erzwingen.
 
+![Standarddimension am Artikel RM-M100](img/masterdata-007-default-dimensions-item-rm-m100.png)
+
+Was du im Bild siehst:
+Business Central zeigt die Seite `Default Dimensions`. Für den Artikelkontext ist die Dimension `PRODUCTLINE` mit dem Dimensionswert `MACHINE` gepflegt. In der Spalte `Value Posting` steht `Same Code`.
+
+Warum das fachlich wichtig ist:
+`PRODUCTLINE = MACHINE` sorgt dafür, dass der Maschinenartikel `RM-M100` später in Auswertungen der Produktlinie Maschine zugeordnet werden kann. `Same Code` ist stärker als ein bloßer Vorschlag: Der Datensatz soll genau diesen Dimensionswert verwenden.
+
+Prüfhinweis:
+Das Laborbild ist über Page `540` gefiltert. Der Artikel `RM-M100` steht nicht zwingend im sichtbaren Seitentext, wird aber durch Test, Dateiname, API-Evidence und Filterkontext nachgewiesen. Für finale Buchbilder wird derselbe Nachweis später in einer deutschen Umgebung neu erzeugt.
+
+![Standarddimension am Debitor D10000](img/masterdata-007-default-dimensions-customer-d10000.png)
+
+Was du im Bild siehst:
+Für den Debitorenkontext ist die Dimension `CHANNEL` mit dem Wert `B2B` gepflegt. Auch hier steht `Value Posting = Same Code`.
+
+Warum das fachlich wichtig ist:
+Der Debitor `D10000` wird damit dem Vertriebskanal Business-to-Business zugeordnet. Das ist für spätere Umsatz-, Margen- und Managementberichte wichtig, weil ein Auftrag zwar korrekt gebucht sein kann, aber ohne passende Dimension im Reporting falsch oder unvollständig erscheint.
+
 Prüfhinweis:
 
-Der aktuelle Nachweis stammt aus der Business-Central-API und ist persistent. Für die finale bebilderte Buchanleitung fehlt noch ein gutes UI-Bild des Dialogs `Default Dimensions`. Die Laborbilder zeigen die zugehörigen Stammdatenkarten; das finale Buchbild wird später in der deutschen Umgebung ersetzt.
+Der aktuelle Nachweis besteht aus API-Evidence und UI-Laborbildern des Dialogs `Default Dimensions`. Die Bilder sind fachlich brauchbare Kandidaten, aber noch keine finalen deutschen Buchbilder: Die Umgebung ist CRONUS-basiert, die Oberfläche ist gemischt Deutsch/Englisch, und die Info-Karte `About default dimensions` ist sichtbar. Für die finale Fassung wird derselbe Nachweis später in der deutschen Umgebung ersetzt.
 
 Wichtig für Anfänger: Eine Standarddimension am Artikel oder Debitor ist nur die Vorbereitung. Sie beweist noch nicht automatisch, dass jede erwartete Dimension im konkreten Verkaufsauftrag angekommen ist. Der O2C-Lauf `UAT-O2C-001` weist `CHANNEL = B2B` und `PRODUCTLINE = MACHINE` inzwischen im Zeilen-Dimensionsdialog nach. Der geprüfte Klickpfad lautet `Line` -> `Related Information` -> `Dimensions`. Für die finale Anleitung muss derselbe Nachweis später in der deutschen Umgebung neu fotografiert und nach dem Buchen zusätzlich in Sachposten oder Reporting wiedergefunden werden.
 15. UAT-Basisszenarien buchen.

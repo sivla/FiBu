@@ -314,18 +314,18 @@ Das ist fuer das Buch zentral: Ein gruener technischer Test ist nicht automatisc
 
 | Feld | Wert |
 |---|---|
-| Status | buch-update |
+| Status | erledigt |
 | Projekt | fibu-book5 |
 | Testfall | `MASTERDATA-007` |
-| Screenshot | `img/masterdata-007-item-rm-m100-standarddimension.png`, `img/masterdata-007-customer-d10000-standarddimension.png` |
+| Screenshot | `img/masterdata-007-default-dimensions-item-rm-m100.png`, `img/masterdata-007-default-dimensions-customer-d10000.png`, `img/masterdata-007-item-rm-m100-standarddimension.png`, `img/masterdata-007-customer-d10000-standarddimension.png` |
 | Evidence | `playwright/projects/fibu-book5/evidence/masterdata-007/api-result.json` |
 | BC-Seite | `Default Dimensions`, `Item Card`, `Customer Card` |
 | sichtbarer/API-Text | `PRODUCTLINE=MACHINE`, `CHANNEL=B2B`, `postingValidation=Same_x0020_Code` |
 | Elementtyp | Standarddimension / Reporting- und Beleglogik |
 | erste Hypothese | Standarddimensionen sind für das Buch fachlich wichtiger als ihr unscheinbarer UI-Ort vermuten lässt, weil sie spätere Beleg- und Sachpostendimensionen vorbereiten. |
 | Recherchequelle | praktischer Playwright-Lauf mit BC-API |
-| Testergebnis | Die Standarddimensionen wurden persistent gesetzt und per API nachgewiesen. Die aktuellen Screenshots zeigen die Stammdatenkarten, aber noch nicht den eigentlichen Default-Dimensions-Dialog. |
-| Entscheidung | Buch ergänzen: Standarddimensionen erklären, API-Nachweis als Labor-Evidence akzeptieren, UI-Dialogbild später nachziehen. |
+| Testergebnis | Die Standarddimensionen wurden persistent gesetzt, per API nachgewiesen und per Page `540` als UI-Laborbild fotografiert. Die Dialogbilder zeigen `PRODUCTLINE=MACHINE` und `CHANNEL=B2B` mit `Same Code`. |
+| Entscheidung | Buch ergänzt: Standarddimensionen, `Same Code`, UI-Dialog und Laborgrenzen erklären. Finale deutsche Bilder später neu erzeugen. |
 | Buchstelle | Kapitel 10 Dimensionen, Kapitel 11 O2C, Reporting nach `PRODUCTLINE` |
 
 Bewertung:

@@ -167,7 +167,7 @@ Aufbau-Befund aus `MASTERDATA-007`:
 - Debitor `D10000` trägt als Standarddimension `CHANNEL = B2B`.
 - Beide Standarddimensionen sind mit `Same Code` gesetzt.
 - Evidence liegt unter `playwright/projects/fibu-book5/evidence/masterdata-007/`.
-- Das ist ein persistenter API-/Evidence-Nachweis. Ein gutes UI-Buchbild des Dialogs `Default Dimensions` fehlt noch.
+- Das ist ein persistenter API-/Evidence-Nachweis. Der Dialog `Default Dimensions` ist inzwischen auch als UI-Laborbild per Page `540` dokumentiert; finale deutsche Bilder folgen spaeter.
 
 ### Posting Setup
 
@@ -196,7 +196,7 @@ Wir sollten nicht sofort eigene Kontenmatrix komplett neu bauen. Für den ersten
 3. `MASTERDATA-005`: Debitor `D10000` und Artikel `RM-M100` anlegen. Status: erledigt.
 4. `MASTERDATA-006`: Posting-Fit mit API-Probelauf prüfen. Status: erledigt als CRONUS-Technikfit.
 5. `MASTERDATA-007`: Standarddimensionen für O2C setzen. Status: erledigt als API-/Evidence-Nachweis.
-6. Als Nächstes UI-Bild für `Default Dimensions` und deutschen Steuer-/Währungsfit klären.
+6. Als Nächstes deutschen Steuer-/Währungsfit klären oder O2C-Zeilen-/Detailbilder verbessern.
 7. Erst dann `UAT-O2C-001` vollständig buchen.
 
 ## Testqualitäts-Learning

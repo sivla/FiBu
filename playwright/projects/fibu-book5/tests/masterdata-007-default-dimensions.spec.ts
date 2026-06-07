@@ -167,6 +167,47 @@ async function openCardAndCapture(page: Page, pageId: string, tableName: string,
   await writeEvidenceText(evidenceFile, await pageText(page));
 }
 
+async function openDefaultDimensionsAndCapture(
+  page: Page,
+  target: DefaultDimensionTarget,
+  tableId: number,
+  fileName: string,
+  evidenceFile: string
+) {
+  const url = new URL(requireBcUrl(project.envPrefix));
+  url.searchParams.set('page', '540');
+  url.searchParams.set(
+    'filter',
+    `'Default Dimension'.'Table ID' IS '${tableId}' AND 'Default Dimension'.'No.' IS '${target.parentNumber}'`
+  );
+
+  await page.goto('about:blank');
+  await page.goto(url.toString());
+  await expect.poll(() => pageText(page), { timeout: 120_000 }).toMatch(/Default Dimensions|Standarddimensionen/i);
+  await expect.poll(() => pageText(page), { timeout: 120_000 }).toMatch(new RegExp(target.dimensionCode, 'i'));
+  await expect.poll(() => pageText(page), { timeout: 120_000 }).toMatch(new RegExp(target.dimensionValueCode, 'i'));
+  await dismissTours(page);
+  await page.waitForTimeout(2000);
+  await screenshot(page, fileName, {
+    projectName: project.name,
+    testId: 'masterdata-007',
+    status: 'candidate',
+    bookUse: 'field-proof',
+    purpose: `Default Dimensions UI-Nachweis fuer ${target.parentType} ${target.parentNumber}: ${target.dimensionCode}=${target.dimensionValueCode}`,
+    expectedPageText: [
+      /Default Dimensions|Standarddimensionen/i,
+      new RegExp(target.dimensionCode, 'i'),
+      new RegExp(target.dimensionValueCode, 'i')
+    ],
+    knownLimitations: [
+      'Laborumgebung ist CRONUS USA und UI ist gemischt Deutsch/Englisch.',
+      `Page 540 wird auf ${target.parentType} ${target.parentNumber} gefiltert; der Stammdatensatz ist nicht zwingend im sichtbaren Seitentext enthalten.`,
+      'Direkter Page-540-Aufruf beweist die Seite; finaler deutscher Buchlauf soll denselben Zustand nochmals fotografieren.'
+    ]
+  });
+  await writeEvidenceText(evidenceFile, await pageText(page));
+}
+
 test('MASTERDATA-007 Standarddimensionen fuer O2C setzen', async ({ page }) => {
   test.setTimeout(300_000);
 
@@ -231,6 +272,14 @@ test('MASTERDATA-007 Standarddimensionen fuer O2C setzen', async ({ page }) => {
     path.join(evidenceDir, 'item-rm-m100-card.txt')
   );
 
+  await openDefaultDimensionsAndCapture(
+    page,
+    targets[0],
+    27,
+    'masterdata-007-default-dimensions-item-rm-m100.png',
+    path.join(evidenceDir, 'default-dimensions-item-rm-m100-page-text.txt')
+  );
+
   await openCardAndCapture(
     page,
     '21',
@@ -238,6 +287,14 @@ test('MASTERDATA-007 Standarddimensionen fuer O2C setzen', async ({ page }) => {
     'D10000',
     'masterdata-007-customer-d10000-standarddimension.png',
     path.join(evidenceDir, 'customer-d10000-card.txt')
+  );
+
+  await openDefaultDimensionsAndCapture(
+    page,
+    targets[1],
+    18,
+    'masterdata-007-default-dimensions-customer-d10000.png',
+    path.join(evidenceDir, 'default-dimensions-customer-d10000-page-text.txt')
   );
 
   const flattened = JSON.stringify(finalDimensions);

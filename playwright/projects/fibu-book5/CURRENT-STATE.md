@@ -55,6 +55,7 @@ Definition: Eine Anleitung ist erst abgesichert, wenn der Klickpfad in BC funkti
 | Waehrung | `EUR` ist am Debitor `D10000` gesetzt und per MCP nachgewiesen |
 | Steuer | deutsche `19 %` USt ist in dieser CRONUS-USA-Spielwiese nicht nachgewiesen |
 | Dimension im Auftrag | `PRODUCTLINE=MACHINE` und `CHANNEL=B2B` sind im Zeilen-Dimensionsdialog nachgewiesen |
+| Standarddimensionen-UI | Page `540` zeigt `PRODUCTLINE=MACHINE` am Artikel und `CHANNEL=B2B` am Debitor als UI-Laborbild |
 | Cleanup | Labor-Verkaufsauftraege werden nach Screenshot-Lauf entfernt |
 
 ## Wichtigste Entscheidungen
@@ -140,7 +141,7 @@ Governance, Encoding, Mac-Kompatibilitaet und Lean-Evidence sind committed und g
 Als naechstes den fachlichen Block waehlen:
 
 1. deutschen VAT-Zielmandanten vorbereiten,
-2. oder im aktuellen Labor weiter O2C ohne Buchung vertiefen,
+2. oder im aktuellen Labor ein besseres O2C-Zeilen-/Detailbild erzeugen,
 3. oder P2P/weitere Stammdaten erst aufbauen.
 
 Empfohlene Richtung:
