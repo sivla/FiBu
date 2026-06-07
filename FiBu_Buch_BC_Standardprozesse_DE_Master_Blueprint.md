@@ -871,6 +871,7 @@ Die folgenden Klickanleitungen sind in der Spielwiese mit Playwright geprüft un
 | Debitor `D10000` und Artikel `RM-M100` anlegen | `Customers`, `Items`, `Item Card` | `MASTERDATA-005` | `playwright/projects/fibu-book5/img/masterdata-005-customers-after-api.png`, `playwright/projects/fibu-book5/img/masterdata-005-items-after-api.png` | `playwright/projects/fibu-book5/evidence/masterdata-005/` | geprüft |
 | Posting-Fit für ersten O2C-Probelauf herstellen | `Customer Card`, `Item Card`, Sales-Order-API | `MASTERDATA-006` | `playwright/projects/fibu-book5/img/masterdata-006-customer-template-fit.png`, `playwright/projects/fibu-book5/img/masterdata-006-item-posting-fit.png` | `playwright/projects/fibu-book5/evidence/masterdata-006/` | geprüft als CRONUS-Technikfit |
 | Standarddimensionen für O2C setzen | `Default Dimensions`, `Customer Card`, `Item Card` | `MASTERDATA-007` | `playwright/projects/fibu-book5/img/masterdata-007-item-rm-m100-standarddimension.png`, `playwright/projects/fibu-book5/img/masterdata-007-customer-d10000-standarddimension.png` | `playwright/projects/fibu-book5/evidence/masterdata-007/` | geprüft als API-/Evidence-Nachweis |
+| Lagerbuchungsmatrix für O2C-Blocker prüfen | `Inventory Posting Setup` | `MASTERDATA-008` | `playwright/projects/fibu-book5/img/masterdata-008-inventory-posting-setup-fra-zl-resale.png` | `playwright/projects/fibu-book5/evidence/masterdata-008/` | geprüft als Labor-Diagnose; Kontoentscheidung offen |
 | Verkaufsauftrag für `D10000` mit Zeile `RM-M100` als Laborlauf erzeugen | `Sales Orders`, `Sales Order` | `UAT-O2C-001` | `playwright/projects/fibu-book5/img/uat-o2c-001-030-kopf-debitor-d10000.png`, `playwright/projects/fibu-book5/img/uat-o2c-001-040-zeile-artikel-rm-m100.png` | `playwright/projects/fibu-book5/evidence/uat-o2c-001/` | geprüft als Laborlauf; Auftrag wird danach bereinigt |
 
 Redaktionsregel:
@@ -946,7 +947,32 @@ Für den aktuellen technischen Probelauf wird bewusst eine CRONUS-Vorlage genutz
 
 Prüfhinweis:
 
-Dieser Stand ist ein technischer Laufbarkeitsnachweis, kein deutscher Steuer-Endstand. Die aktuelle Spielwiese basiert auf CRONUS USA. Der MCP-Nachweis zeigt jetzt zwar `Currency Code = EUR` am Debitor `D10000` und in neuen Aufträgen, aber die Steuerherkunft bleibt CRONUS-Sales-Tax: Am Debitor ist `Tax Liable` aktiv und `Tax Area Code` leer; am Artikel ist `Tax Group Code = FURNITURE` gesetzt. Das erklärt, warum der Auftrag technisch laufen kann, aber noch keine deutsche `19 %`-USt berechnet. Für finale Buchscreenshots mit `19 %` USt braucht das Projekt später einen deutschen Lauf oder ein explizit konfiguriertes deutsches VAT-Setup. Laboraufträge aus Screenshot-Läufen werden nach dem Nachweis gezielt gelöscht, damit die Spielwiese nicht mit Entwürfen vollläuft.
+Dieser Stand ist ein technischer Laufbarkeitsnachweis, kein deutscher Steuer-Endstand. Die aktuelle Spielwiese basiert auf CRONUS USA. Der MCP-Nachweis zeigt jetzt zwar `Currency Code = EUR` am Debitor `D10000` und in neuen Aufträgen, aber die Steuerherkunft bleibt CRONUS-Sales-Tax: Am Debitor ist `Tax Liable` aktiv und `Tax Area Code` leer; am Artikel ist `Tax Group Code = FURNITURE` gesetzt. Das erklärt, warum der Auftrag technisch laufen kann, aber noch keine deutsche `19 %`-USt berechnet. Für finale Buchscreenshots mit `19 %` USt braucht das Projekt später einen deutschen Lauf oder ein explizit konfiguriertes deutsches VAT-Setup.
+
+Der aktuelle O2C-Laborlauf zeigt außerdem einen zweiten, sehr lehrreichen Blocker: Die Buchungsvorschau erreicht zwar die BC-Prüfung, stoppt aber mit `Inventory Account is missing in Inventory Posting Setup Location Code: FRA-ZL, Invt. Posting Group Code: RESALE.` Das bedeutet nicht, dass Debitor, Artikel oder Preis falsch sind. Es bedeutet: Für die Kombination aus Lagerort `FRA-ZL` und Lagerbuchungsgruppe `RESALE` fehlt das Bestandskonto in der Lagerbuchungsmatrix. Business Central kann eine Artikelbewegung erst buchen oder als Postenvorschau darstellen, wenn auch die Wertfortschreibung in Richtung Hauptbuch eindeutig ist. Laboraufträge aus Screenshot-Läufen werden nach dem Nachweis gezielt gelöscht, damit die Spielwiese nicht mit Entwürfen vollläuft.
+
+### Klickanleitung: Inventory Posting Setup für `FRA-ZL` und `RESALE` prüfen
+
+Diese Prüfung ist kein Buchungsschritt, sondern eine Diagnose. Sie erklärt, warum ein Verkaufsauftrag trotz korrektem Debitor, Artikel, Menge und Preis noch nicht bis zur Buchungsvorschau kommt.
+
+1. Öffne `Alt+Q`.
+2. Suche `Inventory Posting Setup` oder in einer deutschen Umgebung `Lagerbuchungsmatrix Einrichtung`.
+3. Öffne die Seite `Inventory Posting Setup`.
+4. Filtere `Location Code` auf `FRA-ZL`.
+5. Filtere `Invt. Posting Group Code` auf `RESALE`.
+6. Prüfe die Spalte `Inventory Account`.
+7. Setze kein Konto nur, um den Fehler wegzubekommen. Die Kontenwahl ist eine fachliche FiBu-Entscheidung.
+
+![Inventory Posting Setup fuer FRA-ZL und RESALE](playwright/projects/fibu-book5/img/masterdata-008-inventory-posting-setup-fra-zl-resale.png)
+
+Was du im Bild siehst:
+Business Central zeigt genau eine Zeile für `Location Code = FRA-ZL` und `Invt. Posting Group = RESALE`. Die Spalten `Inventory Account` und `Inventory Account (Interim)` sind sichtbar. Das `Inventory Account` ist leer.
+
+Warum das fachlich wichtig ist:
+Die Lagerbuchungsgruppe am Artikel sagt, welche Art von Bestand vorliegt. Der Lagerort sagt, wo der Bestand liegt. Erst die Lagerbuchungsmatrix verbindet beides mit dem passenden Sachkonto für Bestand. Ohne diese Verbindung kann BC nicht sauber bestimmen, auf welches Vorratskonto die Artikelbewegung wirken soll.
+
+Prüfhinweis:
+Der Nachweis `MASTERDATA-008` ist ein CRONUS-USA-Laborbefund und noch kein finaler deutscher Buchungsgruppen-Entwurf. Für die nächste technische Prüfung muss fachlich entschieden werden, welches Bestandskonto für `FRA-ZL` + `RESALE` im Labor verwendet werden darf. Danach wird `UAT-O2C-001` erneut mit `Buchungsvorschau (Preview Posting)` geprüft.
 
 ### Klickanleitung: Standarddimensionen für `D10000` und `RM-M100` prüfen
 

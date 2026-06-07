@@ -58,6 +58,7 @@ Definition: Eine Anleitung ist erst abgesichert, wenn der Klickpfad in BC funkti
 | Dimension im Auftrag | `PRODUCTLINE=MACHINE` und `CHANNEL=B2B` sind im Zeilen-Dimensionsdialog nachgewiesen |
 | Standarddimensionen-UI | Page `540` zeigt `PRODUCTLINE=MACHINE` am Artikel und `CHANNEL=B2B` am Debitor als UI-Laborbild |
 | Buchungsvorschau | `Preview Posting` wird technisch erreicht, stoppt aber auf `Error Messages`: `Inventory Account is missing in Inventory Posting Setup Location Code: FRA-ZL, Invt. Posting Group Code: RESALE` |
+| Inventory Posting Setup | Page `5826` zeigt die Zielkombination `FRA-ZL` + `RESALE`; das Feld `Inventory Account` ist sichtbar leer. Kein Konto wurde automatisch gesetzt. |
 | Bildablage | Projektbilder liegen unter `playwright/projects/fibu-book5/img/`; Root-`img/` ist keine Sammelstelle mehr |
 | Cleanup | Labor-Verkaufsauftraege werden nach Screenshot-Lauf entfernt |
 
@@ -109,6 +110,7 @@ Letzter echter Fortschritt:
 - `UAT-O2C-001` erreicht `Preview Posting` ueber den Dropdown-Teil von `Post...`.
 - BC stoppt nicht auf dem normalen Buchungsdialog, sondern auf `Error Messages`.
 - Fehlerkern: `Inventory Account is missing in Inventory Posting Setup Location Code: FRA-ZL, Invt. Posting Group Code: RESALE.`
+- `MASTERDATA-008` hat die blockierende Zeile in `Inventory Posting Setup` praktisch geoeffnet: `FRA-ZL` + `RESALE` ist vorhanden, aber das `Inventory Account` ist leer.
 - `FINDINGS.md`, Coverage, Workarounds, Screenshot-QA und Buchtext sind auf diesen Laborstand synchronisiert.
 
 ## Aktuelle O2C-Wahrheit
@@ -138,6 +140,7 @@ Zeilenbild klappt die rechte FactBox ein und zeigt Menge 1, FRA-ZL, EUR-Summen u
 PRODUCTLINE = MACHINE ist im Zeilen-Dimensionsdialog sichtbar.
 Preview Posting wird ueber den Dropdown-Teil von Post... erreicht.
 BC zeigt Error Messages statt Postenvorschau, weil fuer FRA-ZL/RESALE im Inventory Posting Setup das Inventory Account fehlt.
+Inventory Posting Setup Page 5826 zeigt diese Kombination mit leerem Inventory Account als Labor-Nachweis.
 19 % deutsche USt ist noch nicht erreicht.
 ```
 
@@ -157,19 +160,19 @@ Der aktuelle Lauf darf nicht gebucht oder als deutscher Steuer-Endstand verkauft
 
 Governance, Encoding, Mac-Kompatibilitaet und Lean-Evidence sind committed und gepusht. Nicht erneut mit Aufraeumen beginnen, solange keine neue Rohmasse entsteht.
 
-Als naechstes gezielt die blockierende Lagerbuchungsmatrix-Luecke entscheiden:
+Als naechstes gezielt die blockierende Lagerbuchungsmatrix-Luecke fachlich entscheiden:
 
-1. `Inventory Posting Setup` fuer Kombination `Location Code = FRA-ZL` und `Invt. Posting Group Code = RESALE` untersuchen.
-2. Klaeren, ob im CRONUS-Labor ein vorhandenes Bestandskonto sinnvoll wiederverwendet werden darf oder ob die Luecke nur dokumentiert wird.
+1. Klaeren, welches CRONUS-Labor-Bestandskonto fuer `FRA-ZL` + `RESALE` fachlich vertretbar ist oder ob die Luecke nur dokumentiert bleibt.
+2. Falls ein Konto gesetzt wird, die Kontenentscheidung mit Quelle/Begruendung dokumentieren.
 3. Danach `Preview Posting` erneut laufen lassen. Wenn die Postenvorschau danach oeffnet, Postenarten nur als CRONUS-Labor-Evidence bewerten.
 4. Deutsche `19 %`-USt bleibt davon getrennt: kein deutscher Steuer-Endstand in dieser USA-Spielwiese.
 
 Synchronisationsstand nach der letzten Projektwahrheits-Pruefung:
 
-- Praktisch nachgewiesen: O2C-Kopf, Verkaufszeile, EUR, `PRODUCTLINE=MACHINE` im Zeilendimensionsdialog, Preview-Posting-Pruefung bis zum Fehlerbild.
-- Labor-Nachweis: alle aktuellen O2C-Bilder und Evidence gelten fuer CRONUS USA / gemischte UI.
+- Praktisch nachgewiesen: O2C-Kopf, Verkaufszeile, EUR, `PRODUCTLINE=MACHINE` im Zeilendimensionsdialog, Preview-Posting-Pruefung bis zum Fehlerbild, Inventory-Posting-Setup-Zeile `FRA-ZL` + `RESALE` mit leerem `Inventory Account`.
+- Labor-Nachweis: alle aktuellen O2C- und MASTERDATA-008-Bilder/Evidence gelten fuer CRONUS USA / gemischte UI.
 - Finaler DE-Nachweis offen: deutsche Oberflaeche, 19-%-USt, echte Postenvorschau, Buchung und Postenspur.
-- Blockiert: echte Buchungsvorschau/Postenvorschau fuer `UAT-O2C-001`, bis `Inventory Posting Setup` fuer `FRA-ZL` + `RESALE` geklaert ist.
+- Blockiert: echte Buchungsvorschau/Postenvorschau fuer `UAT-O2C-001`, bis ein `Inventory Account` fuer `FRA-ZL` + `RESALE` fachlich entschieden und gesetzt ist.
 - Nicht geprueft: P2P, echte Buchung, Debitoren-/Sach-/Artikel-/Wertposten, Finanzbericht.
 
 ## Befehle fuer neue Agents

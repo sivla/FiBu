@@ -317,20 +317,20 @@ Das ist fuer das Buch zentral: Ein gruener technischer Test ist nicht automatisc
 | Status | erledigt |
 | Projekt | fibu-book5 |
 | Testfall | `UAT-O2C-001` |
-| Screenshot | `playwright/projects/fibu-book5/img/uat-o2c-001-060-buchungsvorschau.png` |
-| Evidence | `playwright/projects/fibu-book5/evidence/uat-o2c-001/060-preview-posting-result.json`, `playwright/projects/fibu-book5/evidence/uat-o2c-001/060-preview-posting-learning.md` |
+| Screenshot | `playwright/projects/fibu-book5/img/uat-o2c-001-060-buchungsvorschau.png`, `playwright/projects/fibu-book5/img/masterdata-008-inventory-posting-setup-fra-zl-resale.png` |
+| Evidence | `playwright/projects/fibu-book5/evidence/uat-o2c-001/060-preview-posting-result.json`, `playwright/projects/fibu-book5/evidence/uat-o2c-001/060-preview-posting-learning.md`, `playwright/projects/fibu-book5/evidence/masterdata-008/013-diagnosis.json`, `playwright/projects/fibu-book5/evidence/masterdata-008/014-learning-note.md` |
 | BC-Seite | `Sales Order`, `Error Messages`, `Inventory Posting Setup` |
 | sichtbarer/API-Text | `Inventory Account is missing in Inventory Posting Setup Location Code: FRA-ZL, Invt. Posting Group Code: RESALE.` |
 | Elementtyp | Buchungsvorschau / Fehlerbild / Buchungslogik |
 | erste Hypothese | `Preview Posting` prueft vor dem Buchen nicht nur Debitor, Artikel und Steuer, sondern auch die Kontenfindung fuer Lagerort und Lagerbuchungsgruppe. |
 | Recherchequelle | praktischer Playwright-Lauf `npm run fibu:uat:o2c`; Microsoft Learn `Preview Posting Results` in `MICROSOFT-DOC-VALIDATION.md` |
-| Testergebnis | Der Test klickt den Dropdown-Teil von `Post...`, waehlt `Preview Posting`, erreicht die Preview-Pruefung und landet auf `Error Messages`. Der normale Buchungsdialog `Ship / Invoice / Ship and Invoice` wurde nicht bestaetigt. |
-| Entscheidung | Buch ergaenzen: Preview Posting ist Pflicht vor dem Buchen; wenn BC auf `Inventory Posting Setup` stoppt, muss zuerst `FRA-ZL` + `RESALE` fachlich eingerichtet oder als Laborgrenze dokumentiert werden. |
+| Testergebnis | Der Test klickt den Dropdown-Teil von `Post...`, waehlt `Preview Posting`, erreicht die Preview-Pruefung und landet auf `Error Messages`. Der normale Buchungsdialog `Ship / Invoice / Ship and Invoice` wurde nicht bestaetigt. `MASTERDATA-008` oeffnet danach Page `5826` und weist die Zielzeile `FRA-ZL` + `RESALE` mit leerem `Inventory Account` nach. |
+| Entscheidung | Buch ergaenzen: Preview Posting ist Pflicht vor dem Buchen; wenn BC auf `Inventory Posting Setup` stoppt, muss zuerst `FRA-ZL` + `RESALE` fachlich eingerichtet oder als Laborgrenze dokumentiert werden. Die Diagnose ist erledigt; Kontenentscheidung und erneute Preview bleiben offen. |
 | Buchstelle | `UAT-O2C-001`, Posting Groups, Inventory Posting Setup, Fehler-/Workaround-Kapitel |
 
 Bewertung:
 
-Das ist ein echter Lernfund fuer Anfaenger und Consultants. Ein Verkaufsauftrag kann technisch angelegt sein und trotzdem nicht buchungsfaehig sein. Die Buchungsvorschau macht diese Grenze sichtbar, bevor echte Posten entstehen. Der naechste fachliche Block ist deshalb nicht direktes Buchen, sondern die Lagerbuchungsmatrix fuer `FRA-ZL` und `RESALE`.
+Das ist ein echter Lernfund fuer Anfaenger und Consultants. Ein Verkaufsauftrag kann technisch angelegt sein und trotzdem nicht buchungsfaehig sein. Die Buchungsvorschau macht diese Grenze sichtbar, bevor echte Posten entstehen. Der naechste fachliche Block ist deshalb nicht direktes Buchen, sondern die fachlich begruendete Kontenentscheidung fuer die Lagerbuchungsmatrix `FRA-ZL` und `RESALE`.
 
 ## FIND-BC-DIM-002 Standarddimensionen brauchen Daten- und UI-Nachweis
 
