@@ -8,6 +8,8 @@ Diese Datei ist die erste Orientierung fuer neue Codex-Agents. Sie fasst zusamme
 
 Das Projekt erweitert ein Business-Central-Buch um bebilderte Klickanleitungen. Es nutzt Playwright und MCP-Exploration, um Business-Central-Prozesse praktisch durchzuspielen, Screenshots zu erzeugen, Stammdaten aufzubauen und Buchluecken zu korrigieren.
 
+FiBu Buch 5 ist dabei nicht nur ein Screenshot-Ziel. Es ist der fachliche Lernpfad fuer Business Central. Jede Buchanleitung wird als pruefbare These behandelt: Funktioniert sie in BC, welche Voraussetzungen fehlen, welche Felder und Buttons sieht der Anwender, was macht BC fachlich daraus und was muss im Buch ergaenzt werden?
+
 Aktiver Fokus:
 
 - Projekt `fibu-book5`
@@ -17,6 +19,17 @@ Aktiver Fokus:
 - Zielprozess zuerst `UAT-O2C-001`
 - UI aktuell gemischt Deutsch/Englisch
 - finale deutsche Buchscreenshots stehen noch aus
+
+## Projektmission
+
+Das Projekt verfolgt vier gleichrangige Ziele:
+
+1. Buch lernen: vorhandene Kapitel, Anleitungen und Annahmen verstehen.
+2. Business Central lernen: Prozesse, Seiten, Buttons, Felder, Einrichtung, Fehler und Folgebelege praktisch kennenlernen.
+3. Playwright lernen: robuste BC-Klickpfade, Datenanlage, Screenshots, Cleanup und Evidence automatisieren.
+4. Buch verbessern: jede relevante Erkenntnis in Klickanleitung, Screenshot-Erklaerung, Workaround, Finding oder Buchtext zurueckspielen.
+
+Definition: Eine Anleitung ist erst abgesichert, wenn der Klickpfad in BC funktioniert, die benoetigten Daten dokumentiert sind, passende Bilder vorliegen, die sichtbaren BC-Elemente erklaert sind und offene Abweichungen dokumentiert wurden.
 
 ## Was ein neuer Agent zuerst lesen muss
 
@@ -56,13 +69,7 @@ Aktiver Fokus:
 - Das Projekt muss auf Windows und macOS laufen.
 - Alle Textdateien sind UTF-8; pruefen mit `npm run check:encoding`.
 
-## Letzter Commit
-
-Commit:
-
-```text
-8ead77b Keep BC Playwright project lean and portable
-```
+## Aktueller Handover-Stand
 
 Branch:
 
@@ -70,7 +77,7 @@ Branch:
 codex/playwright-bc-screenshot-foundation
 ```
 
-Der Commit enthaelt:
+Der aktuelle Handover-Stand enthaelt:
 
 - Lean-Aufraeumung der MCP-Rohsnapshots
 - dauerhafte Ignore-Regeln fuer `console-*.log` und `page-*.yml`
@@ -78,6 +85,8 @@ Der Commit enthaelt:
 - `CURRENT-STATE.md` als Handover-Startpunkt
 - UTF-8-/LF-Regeln und Encoding-Check
 - Windows-/macOS-Hinweise fuer neue Agents
+- explizite Commit-/Push-Regel: jeder Push muss eine arbeitsfaehige Uebergabe garantieren
+- explizite Projektmission: Buch lernen, Business Central lernen, Playwright lernen und Buch erweitern
 
 Der vorherige fachliche O2C-Nachweis ist:
 

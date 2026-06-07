@@ -8,6 +8,19 @@ Dieses Repository soll nicht nur Business-Central-Screenshots erzeugen. Es soll 
 - ein Evidence-Pack-Baustein
 - eine Lernspur für spätere Consultants, Key User und Autoren
 
+FiBu Buch 5 ist der erste konkrete Lehrplan. Das Buch bestimmt, welche Prozesse zuerst geprüft werden. Business Central bestimmt im Gegentest, ob die Anleitung vollständig, korrekt und für Anfänger verständlich ist. Playwright ist das Werkzeug, mit dem diese Prüfung wiederholbar wird.
+
+Der Arbeitsauftrag lautet:
+
+1. Buchanleitung lesen.
+2. Klickpfad in BC ausführen.
+3. Fehlende Einrichtung oder Stammdaten herstellen und dokumentieren.
+4. Screenshots erzeugen.
+5. Sichtbare BC-Elemente fachlich erklären.
+6. Fehler, Workarounds und offene Fragen dokumentieren.
+7. Buchtext, Klickanleitung und Evidence Pack aktualisieren.
+8. Den Lauf so hinterlassen, dass er später in einer neuen Umgebung wiederholt werden kann.
+
 Das Projekt lernt Business Central aus zwei Quellen:
 
 1. aus dem bestehenden Buch, das die fachliche Reihenfolge und den roten Faden vorgibt

@@ -14,6 +14,25 @@ Dieses Repository ist ein Arbeitsprojekt, um Microsoft Dynamics 365 Business Cen
 
 Der erste konkrete Anwendungsfall ist `FiBu-Buch 5`. Das langfristige Ziel ist jedoch größer: Das Projekt soll Business Central durch reale Nutzung erschließen. Playwright klickt Prozesse durch, erzeugt Screenshots, entdeckt sichtbare Funktionen und hilft dabei, das Buch fachlich zu verbessern.
 
+## Projektauftrag
+
+`FiBu` ist ein kombiniertes Lern-, Test- und Redaktionsprojekt.
+
+Das Projekt soll:
+
+- das Buch fachlich durcharbeiten,
+- Business Central durch echte Nutzung lernen,
+- jede Anleitung im Buch praktisch prüfen,
+- fehlende Stammdaten und Einrichtungen in BC erkennen, anlegen und dokumentieren,
+- Klickpfade mit Playwright, MCP-Exploration und manueller Sichtprüfung absichern,
+- Screenshots und Schrittfolgen für alle relevanten Buchanleitungen erzeugen,
+- sichtbare Felder, Buttons, FastTabs, FactBoxes, Dialoge und Fehlermeldungen fachlich erklären,
+- Abweichungen zwischen Buchtext und BC-Wirklichkeit als Findings erfassen,
+- das Buch sinnvoll erweitern, wenn Bedienung, Prozesslogik, Prüfung oder Evidence Pack dadurch klarer werden,
+- Playwright-Wissen so aufbauen, dass spätere Business-Central-Projekte und Umgebungen nach demselben Muster getestet werden können.
+
+Das Ziel ist nicht nur, dass ein Test grün ist. Das Ziel ist, dass ein Anfänger mit dem Buch Business Central versteht, die Klickfolge nachmachen kann und weiß, warum Business Central an jeder Stelle so reagiert.
+
 ## Projektziele
 
 1. Business-Central-Prozesse aus dem Buch praktisch durchspielen.

@@ -18,6 +18,14 @@ Das Repository enthält ein Markdown-Buchprojekt und eine Playwright-Automation,
 
 Das übergeordnete Ziel ist, Business Central durch Nutzung systematisch zu lernen. Das Buch liefert die fachliche Route. Playwright prüft diese Route in einer echten BC-Umgebung. Was Business Central zusätzlich sichtbar macht, wird als Lern- und Recherchematerial behandelt.
 
+Der Projektauftrag ist dreifach:
+
+1. Das Buch lernen: Jede Anleitung wird als fachliche These behandelt und in Business Central nachgespielt.
+2. Business Central lernen: Jede sichtbare Funktion, jedes relevante Feld und jeder Fehlerzustand wird fachlich eingeordnet.
+3. Playwright lernen: Das Repo entwickelt robuste Muster, um BC zu bedienen, zu testen, Screenshots zu erzeugen und Evidence nachvollziehbar abzulegen.
+
+Eine Anleitung gilt erst als belastbar, wenn sie funktioniert, bebildert ist, ihre sichtbaren BC-Elemente erklärt und ihre Voraussetzungen dokumentiert. Wenn eine Anleitung nicht funktioniert, wird nicht nur der Test angepasst: Ursache, Setup-Lücke, Workaround und Buchkorrektur werden dokumentiert.
+
 ## Wichtigste Dateien
 
 | Datei/Ordner | Bedeutung |
