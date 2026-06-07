@@ -85,7 +85,7 @@ Status 31.05.2026:
 - Dimensionen angelegt: `PRODUCTLINE`, `CHANNEL`, `LOCATION-GROUP`.
 - Dimension `DEPARTMENT` existierte bereits in CRONUS und wurde bewusst wiederverwendet.
 - Fehlversuch `LINE` aus einem früheren Grid-Fokus-Lauf wurde geprüft; im finalen Lauf war kein Cleanup mehr erforderlich.
-- Evidence: `img/masterdata-002-dimensions-rhein-main.png` und `playwright/projects/fibu-book5/evidence/masterdata-002/`.
+- Evidence: `playwright/projects/fibu-book5/img/masterdata-002-dimensions-rhein-main.png` und `playwright/projects/fibu-book5/evidence/masterdata-002/`.
 
 Nächster Schritt:
 
@@ -95,7 +95,7 @@ Status 31.05.2026:
 
 - Testlauf `npm run fibu:masterdata:dimension-values` bestanden.
 - Dimensionswerte persistent nachgewiesen: `PRODUCTLINE=MACHINE`, `CHANNEL=B2B`, `DEPARTMENT=SALES`, `LOCATION-GROUP=DIRECTED`.
-- Evidence: `img/masterdata-003-dimension-values-rhein-main.png` und `playwright/projects/fibu-book5/evidence/masterdata-003/`.
+- Evidence: `playwright/projects/fibu-book5/img/masterdata-003-dimension-values-rhein-main.png` und `playwright/projects/fibu-book5/evidence/masterdata-003/`.
 
 Technischer Befund:
 
@@ -119,7 +119,7 @@ Status 31.05.2026:
 
 - Testlauf `npm run fibu:masterdata:locations` bestanden.
 - Lagerort `FRA-ZL` mit Name `Frankfurt Zentrallager` wurde angelegt.
-- Evidence: `img/masterdata-004-locations-rhein-main.png` und `playwright/projects/fibu-book5/evidence/masterdata-004/`.
+- Evidence: `playwright/projects/fibu-book5/img/masterdata-004-locations-rhein-main.png` und `playwright/projects/fibu-book5/evidence/masterdata-004/`.
 
 Projektentscheidung:
 
@@ -141,7 +141,7 @@ Mindestumfang:
 Status:
 
 - Debitor `D10000` und Artikel `RM-M100` wurden mit Playwright über die angemeldete Business-Central-Webclient-Session und die Standard-API angelegt.
-- Evidence: `img/masterdata-005-customers-after-api.png`, `img/masterdata-005-items-after-api.png` und `playwright/projects/fibu-book5/evidence/masterdata-005/api-result.json`.
+- Evidence: `playwright/projects/fibu-book5/img/masterdata-005-customers-after-api.png`, `playwright/projects/fibu-book5/img/masterdata-005-items-after-api.png` und `playwright/projects/fibu-book5/evidence/masterdata-005/api-result.json`.
 - Der API-Weg ist idempotent und löscht das beim ersten UI-Experiment entstandene leere Artefakt `C00010`, falls es ohne Anzeigename vorhanden ist.
 
 Harte fachliche Grenze:
@@ -211,10 +211,10 @@ Status nach Testlauf:
 
 - `MASTERDATA-007` ist als API-/Evidence-Nachweis grün.
 - Evidence liegt unter `playwright/projects/fibu-book5/evidence/masterdata-007/`.
-- Laborbilder liegen unter `img/masterdata-007-*`.
+- Laborbilder liegen unter `playwright/projects/fibu-book5/img/masterdata-007-*`.
 - Der Dialog `Default Dimensions` ist jetzt als UI-Laborbild per Page `540` nachgewiesen:
-  - `img/masterdata-007-default-dimensions-item-rm-m100.png`
-  - `img/masterdata-007-default-dimensions-customer-d10000.png`
+  - `playwright/projects/fibu-book5/img/masterdata-007-default-dimensions-item-rm-m100.png`
+  - `playwright/projects/fibu-book5/img/masterdata-007-default-dimensions-customer-d10000.png`
 - Harte Grenze: Die Bilder sind Kandidaten, aber noch keine finalen deutschen Buchbilder. Die Umgebung ist gemischt Deutsch/Englisch. Die Teaching-Tip-Karte `About default dimensions` wird vor dem Screenshot gezielt geschlossen.
 
 ### `UAT-O2C-001`: erster Verkaufsauftrag als Lern- und Laborlauf
@@ -230,7 +230,7 @@ Ziel:
 Status nach Testlauf:
 
 - `UAT-O2C-001` ist als Klickpfad bis zur Zeile grün.
-- Laborbilder liegen unter `img/uat-o2c-001-*`.
+- Laborbilder liegen unter `playwright/projects/fibu-book5/img/uat-o2c-001-*`.
 - Evidence liegt unter `playwright/projects/fibu-book5/evidence/uat-o2c-001/`.
 - `045-target-vs-labor-delta.md` zeigt die harte Setup-Grenze: Ziel `EUR` / `19 %` / `80.920`, Labor `USD` / `0 %` / `68.000`.
 - Dieselbe Evidence zeigt jetzt auch: `CHANNEL = B2B` und `PRODUCTLINE = MACHINE` sind im Dimensionsdialog der Verkaufszeile nachgewiesen.

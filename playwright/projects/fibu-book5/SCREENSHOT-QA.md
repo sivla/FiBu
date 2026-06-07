@@ -21,21 +21,22 @@ Zu jedem automatisiert erzeugten O2C-Screenshot schreibt der Screenshot-Helper e
 
 | Screenshot | Bewertung | Befund | Entscheidung |
 |---|---|---|---|
-| `img/masterdata-007-default-dimensions-item-rm-m100.png` | guter Labor-Kandidat | Page `540` zeigt `Default Dimensions` mit `PRODUCTLINE`, `MACHINE` und `Same Code`. Die Teaching-Tip-Karte `About default dimensions` wurde gezielt geschlossen. | Als Buchkandidat fuer Standarddimensionen geeignet; final in deutscher Umgebung neu erzeugen. |
-| `img/masterdata-007-default-dimensions-customer-d10000.png` | guter Labor-Kandidat | Page `540` zeigt `CHANNEL`, `B2B`, `Business-to-Business` und `Same Code`. Parent `D10000` ist ueber Filter/Test/Evidence belegt, aber nicht im sichtbaren Seitentext. | Als Laborbild geeignet; Buchtext muss erklaeren, dass Page 540 auf den Debitorenkontext gefiltert wurde. |
+| `playwright/projects/fibu-book5/img/masterdata-007-default-dimensions-item-rm-m100.png` | guter Labor-Kandidat | Page `540` zeigt `Default Dimensions` mit `PRODUCTLINE`, `MACHINE` und `Same Code`. Die Teaching-Tip-Karte `About default dimensions` wurde gezielt geschlossen. | Als Buchkandidat fuer Standarddimensionen geeignet; final in deutscher Umgebung neu erzeugen. |
+| `playwright/projects/fibu-book5/img/masterdata-007-default-dimensions-customer-d10000.png` | guter Labor-Kandidat | Page `540` zeigt `CHANNEL`, `B2B`, `Business-to-Business` und `Same Code`. Parent `D10000` ist ueber Filter/Test/Evidence belegt, aber nicht im sichtbaren Seitentext. | Als Laborbild geeignet; Buchtext muss erklaeren, dass Page 540 auf den Debitorenkontext gefiltert wurde. |
 
 ## `UAT-O2C-001` Screenshot Review
 
 | Screenshot | Bewertung | Befund | Entscheidung |
 |---|---|---|---|
-| `img/uat-o2c-001-010-suche-verkaufsauftraege.png` | brauchbares Laborbild | Tell-Me zeigt `Sales Orders`, richtige Treffergruppe und mehrere aehnliche Treffer. Das ist didaktisch gut, weil es die Gefahr falscher Suchtreffer sichtbar macht. | Als Labor-/Toolbild behalten. Final mit deutschem Suchbegriff `Verkaufsauftraege` neu erzeugen. |
-| `img/uat-o2c-001-020-liste-verkaufsauftraege.png` | nicht als O2C-Prozessnachweis geeignet | Liste zeigt vorhandene CRONUS-Auftraege und markiert `10000`/Adatum, nicht `D10000`. | Nur als Navigationsbild verwenden. Fuer Prozessnachweis nach Anlage auf den erzeugten Auftrag filtern oder direkt die Karte zeigen. |
-| `img/uat-o2c-001-030-kopf-debitor-d10000.png` | gutes Laborbild mit Stoerern | Auftragsnummer, `Mueller Maschinenbau GmbH`, Status, Datum und FactBox mit `Customer No. D10000` sind sichtbar. Stoerer: Document-Check-Leiste und Copilot-Zusammenfassung. | Als Laborbild geeignet. Fuer finales Buchbild Stoerer gezielt schliessen oder im Text als Anfaengerbefund erklaeren. |
-| `img/uat-o2c-001-030-neuer-verkaufsauftrag.png` | entfernt | Datei war identisch zum Kopf-Screenshot nach Debitoranlage. Sie zeigte keinen leeren neuen Auftrag. | Aus dem Lauf entfernt; der Test erzeugt nur noch `030-kopf-debitor-d10000`. |
-| `img/uat-o2c-001-040-zeile-artikel-rm-m100.png` | guter Labor-Kandidat | Die FactBox ist gezielt eingeklappt. Sichtbar sind `Item`, `RM-M100`, Beschreibung, `FRA-ZL`, Menge `1`, EUR-Summen und `Total Tax (EUR) = 0,00`. | Als Laborbild fuer Zeile, Menge, Lagerort und EUR-Summen geeignet. Nicht final, weil 0-%-Tax weiter CRONUS-USA-Laborlogik ist und die Dimension separat fotografiert wird. |
-| `img/uat-o2c-001-041-zeile-betraege-steuer.png` | brauchbares Laborbild | DOM-Scroll des BC-Containers `freeze-pane-scrollbar` zeigt `Unit Price Excl. Tax`, `Tax Group Code = FURNITURE` und `Line Amount Excl. Tax = 68.000,00`. | Als Laborbild fuer Steuer-/Betragsspalten nutzbar. Nicht als finales deutsches Buchbild, weil CRONUS-Steuergruppe `FURNITURE` und 0-%-Tax kein deutscher USt-Nachweis sind. |
-| `img/uat-o2c-001-042-zeile-spaete-spalten.png` | verworfener Kontrollversuch | Scroll ans rechte Tabellenende zeigt Plan-/Shipment-/Department-Spalten. | Nicht im Buch verwenden; nur Nachweis, dass DOM-Scroll grundsaetzlich funktioniert. |
-| `img/uat-o2c-001-050-dimension-productline-machine.png` | guter Labor-Kandidat | `Line` -> `Related Information` -> `Dimensions` oeffnet `Edit Dimension Set Entries`. Sichtbar sind `CHANNEL = B2B` und `PRODUCTLINE = MACHINE`. | Als Buchkandidat fuer Dimensionspruefung nutzbar. Final spaeter in deutscher Umgebung neu erzeugen. |
+| `playwright/projects/fibu-book5/img/uat-o2c-001-010-suche-verkaufsauftraege.png` | brauchbares Laborbild | Tell-Me zeigt `Sales Orders`, richtige Treffergruppe und mehrere aehnliche Treffer. Das ist didaktisch gut, weil es die Gefahr falscher Suchtreffer sichtbar macht. | Als Labor-/Toolbild behalten. Final mit deutschem Suchbegriff `Verkaufsauftraege` neu erzeugen. |
+| `playwright/projects/fibu-book5/img/uat-o2c-001-020-liste-verkaufsauftraege.png` | nicht als O2C-Prozessnachweis geeignet | Liste zeigt vorhandene CRONUS-Auftraege und markiert `10000`/Adatum, nicht `D10000`. | Nur als Navigationsbild verwenden. Fuer Prozessnachweis nach Anlage auf den erzeugten Auftrag filtern oder direkt die Karte zeigen. |
+| `playwright/projects/fibu-book5/img/uat-o2c-001-030-kopf-debitor-d10000.png` | gutes Laborbild mit Stoerern | Auftragsnummer, `Mueller Maschinenbau GmbH`, Status, Datum und FactBox mit `Customer No. D10000` sind sichtbar. Stoerer: Document-Check-Leiste und Copilot-Zusammenfassung. | Als Laborbild geeignet. Fuer finales Buchbild Stoerer gezielt schliessen oder im Text als Anfaengerbefund erklaeren. |
+| `playwright/projects/fibu-book5/img/uat-o2c-001-030-neuer-verkaufsauftrag.png` | entfernt | Datei war identisch zum Kopf-Screenshot nach Debitoranlage. Sie zeigte keinen leeren neuen Auftrag. | Aus dem Lauf entfernt; der Test erzeugt nur noch `030-kopf-debitor-d10000`. |
+| `playwright/projects/fibu-book5/img/uat-o2c-001-040-zeile-artikel-rm-m100.png` | guter Labor-Kandidat | Die FactBox ist gezielt eingeklappt. Sichtbar sind `Item`, `RM-M100`, Beschreibung, `FRA-ZL`, Menge `1`, EUR-Summen und `Total Tax (EUR) = 0,00`. | Als Laborbild fuer Zeile, Menge, Lagerort und EUR-Summen geeignet. Nicht final, weil 0-%-Tax weiter CRONUS-USA-Laborlogik ist und die Dimension separat fotografiert wird. |
+| `playwright/projects/fibu-book5/img/uat-o2c-001-041-zeile-betraege-steuer.png` | brauchbares Laborbild | DOM-Scroll des BC-Containers `freeze-pane-scrollbar` zeigt `Unit Price Excl. Tax`, `Tax Group Code = FURNITURE` und `Line Amount Excl. Tax = 68.000,00`. | Als Laborbild fuer Steuer-/Betragsspalten nutzbar. Nicht als finales deutsches Buchbild, weil CRONUS-Steuergruppe `FURNITURE` und 0-%-Tax kein deutscher USt-Nachweis sind. |
+| `playwright/projects/fibu-book5/img/uat-o2c-001-042-zeile-spaete-spalten.png` | verworfener Kontrollversuch | Scroll ans rechte Tabellenende zeigt Plan-/Shipment-/Department-Spalten. | Nicht im Buch verwenden; nur Nachweis, dass DOM-Scroll grundsaetzlich funktioniert. |
+| `playwright/projects/fibu-book5/img/uat-o2c-001-050-dimension-productline-machine.png` | guter Labor-Kandidat | `Line` -> `Related Information` -> `Dimensions` oeffnet `Edit Dimension Set Entries`. Sichtbar sind `CHANNEL = B2B` und `PRODUCTLINE = MACHINE`. | Als Buchkandidat fuer Dimensionspruefung nutzbar. Final spaeter in deutscher Umgebung neu erzeugen. |
+| `playwright/projects/fibu-book5/img/uat-o2c-001-060-buchungsvorschau.png` | gutes Fehler-/Lernbild, kein finales Buchungsvorschau-Bild | Der Test erreicht `Preview Posting`, aber BC zeigt `Error Messages`: `Inventory Account is missing in Inventory Posting Setup Location Code: FRA-ZL, Invt. Posting Group Code: RESALE`. | Als Fehlerbild im Buch/Projekt nutzbar. Nicht als Nachweis fuer erwartete Sach-, Debitoren-, USt-, Artikel- oder Wertposten verwenden. |
 
 ## Harte Findings aus dem Review
 
@@ -51,7 +52,7 @@ Das aktuelle Zeilenbild beweist Artikel, Beschreibung, Lagerort, Menge, EUR-Summ
 
 Document Check, Copilot Summary, FactBoxes, Hilfe- und Tourkarten koennen fuer Anfaenger lehrreich sein. Fuer finale Prozessbilder muessen sie aber entweder entfernt oder im Begleittext erklaert werden.
 
-Aktuelle technische Regel: Page-Teaching-Tips werden vor Tabellen-/Feldnachweisen mit `dismissTours()` gezielt geschlossen. Fuer breite Tabellen kann `hideFactBoxPane()` verwendet werden, wenn die rechte Infobox/FactBox den relevanten Spaltenraum nimmt.
+Aktuelle technische Regel: Page-Teaching-Tips werden vor Tabellen-/Feldnachweisen mit `dismissTours()` gezielt geschlossen. Fuer breite Tabellen kann `hideFactBoxPane()` verwendet werden, wenn die rechte Infobox/FactBox den relevanten Spaltenraum nimmt. Wenn BC eine breite Layoutansicht oder eine vergroesserte Detail-/Listenansicht anbietet, darf sie fuer Buchscreenshots genutzt werden, sofern Evidence und Buchtext erklaeren, welche Felder dadurch sichtbar werden.
 
 ### QA-O2C-004 Evidence-Text enthaelt UI-Resize-/Skriptartefakte
 
@@ -65,12 +66,16 @@ Die Scrollversuche zeigen: Werte koennen im BC-DOM beziehungsweise Seitentext vo
 
 Business Central nutzt fuer das Verkaufszeilengrid einen horizontal scrollbaren Container `freeze-pane-scrollbar`. DOM-Scroll auf diesen Container funktioniert besser als Mauskoordinaten. Der mittlere Scrollwert liefert ein brauchbares Laborbild fuer Steuer- und Betragsspalten. Fuer finale Buchbilder muss der Zielbereich aber bewusst gewaehlt und visuell geprueft werden.
 
+### QA-O2C-007 Buchungsvorschau-Fehlerbild ist kein Postenvorschau-Nachweis
+
+`060` zeigt nicht die erwarteten Postenarten, sondern die BC-Fehlerseite. Das Bild ist didaktisch wertvoll, weil es die fehlende Kontenfindung fuer `FRA-ZL` + `RESALE` sichtbar macht. Fuer den finalen O2C-Nachweis muss nach Korrektur des Inventory Posting Setup ein neues Bild entstehen, das echte Preview-Posting-Eintraege zeigt.
+
 ## Verbesserungsregeln fuer die naechsten Laeufe
 
 - Vor jedem Screenshot muss der Test pruefen, ob der Zielwert im Seitentext vorhanden ist; die visuelle Buchfreigabe erfolgt zusaetzlich ueber Screenshot-QA.
 - Screenshots bekommen einen Status: `labor`, `candidate`, `final`, `rejected`.
 - Screenshot-Metadaten gehoeren zum Evidence Pack und muessen vor Buchverwendung gelesen werden.
 - Redundante Screenshots werden nicht ins Buch referenziert.
-- Tabellenbilder brauchen eine definierte Spaltenstrategie: breiter Viewport, horizontaler Scroll, Zeilendetail, Personalisierung oder mehrere Detailbilder.
+- Tabellenbilder brauchen eine definierte Spaltenstrategie: breiter Viewport, breite Layoutansicht, horizontaler Scroll, Zeilendetail, Personalisierung oder mehrere Detailbilder.
 - Fuer Dimensionen reicht kein Stammdatenbild. Der O2C-Lauf nutzt jetzt `Line` -> `Related Information` -> `Dimensions` als Belegnachweis; spaetere Buchungslaufe muessen die Dimension zusaetzlich in Posten oder Reporting wiederfinden.
 - Rohes `pageText()` wird nicht ungefiltert als redaktionelle Wahrheit verwendet.

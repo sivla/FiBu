@@ -17,6 +17,7 @@ import {
   requireBcUrl,
   screenshot,
   searchFor,
+  visibleButtonNames,
   waitForBusinessCentralShell
 } from '../../../core/bc-helpers';
 import { project } from '../project';
@@ -277,6 +278,32 @@ async function clickFirstVisibleAction(page: Page, name: RegExp) {
   return false;
 }
 
+async function clickPostDropdown(page: Page) {
+  const scopes = [page, ...page.frames()];
+  for (const scope of scopes) {
+    const postAction = scope.getByRole('button', { name: /^Post(?:\.\.\.)?$|^Buchen(?:\.\.\.)?$/i }).first();
+    if (!(await postAction.isVisible({ timeout: 1000 }).catch(() => false))) {
+      continue;
+    }
+
+    const box = await postAction.boundingBox().catch(() => null);
+    if (!box) {
+      continue;
+    }
+
+    await page.mouse.click(box.x + box.width + 12, box.y + box.height / 2);
+    await page.waitForTimeout(1_500);
+    return true;
+  }
+
+  return false;
+}
+
+async function hasPostingChoiceDialog(page: Page) {
+  const text = await pageText(page);
+  return /Ship and Invoice/i.test(text) && /(^|\n)OK(\n|$)/i.test(text) && /Abbrechen|Cancel/i.test(text);
+}
+
 async function captureSalesLineDimensionEvidence(page: Page, data: O2CTestData) {
   const result: {
     selectedLine: boolean;
@@ -350,6 +377,150 @@ async function captureSalesLineDimensionEvidence(page: Page, data: O2CTestData) 
     )
   );
   await writeJsonEvidence(o2cEvidencePath('050-line-dimension-dialog-result.json'), result);
+
+  return result;
+}
+
+async function capturePreviewPostingEvidence(page: Page, orderNumber: string, data: O2CTestData) {
+  const result: {
+    orderNumber: string;
+    target: {
+      customerNo: string;
+      itemNo: string;
+      quantity: number;
+      unitPrice: number;
+      currencyCode: string;
+      vatPercent: number;
+    };
+    openedPostMenu: boolean;
+    clickedPreviewPosting: boolean;
+    reachedPreviewValidation: boolean;
+    openedPreview: boolean;
+    blocked: boolean;
+    openedPostingChoiceDialog: boolean;
+    errorSummary?: string;
+    pageTextEvidenceFile: string;
+    notes: string[];
+  } = {
+    orderNumber,
+    target: {
+      customerNo: data.customerNo,
+      itemNo: data.itemNo,
+      quantity: data.quantity,
+      unitPrice: data.unitPrice,
+      currencyCode: data.currencyCode,
+      vatPercent: data.vatPercent
+    },
+    openedPostMenu: false,
+    clickedPreviewPosting: false,
+    reachedPreviewValidation: false,
+    openedPreview: false,
+    blocked: false,
+    openedPostingChoiceDialog: false,
+    pageTextEvidenceFile: '060-preview-posting-page-text.txt',
+    notes: []
+  };
+
+  await writeJsonEvidence(o2cEvidencePath('060-visible-actions-before-preview.json'), await visibleButtonNames(page));
+
+  result.openedPostMenu = await clickPostDropdown(page);
+  if (!result.openedPostMenu) {
+    result.notes.push('Dropdown neben Post/Buchen wurde nicht als sichtbarer Command-Bar-Eintrag gefunden; direkter Preview-Posting-Klick wird trotzdem versucht.');
+  }
+  await writeTextEvidence(o2cEvidencePath('060-after-post-menu-page-text.txt'), await pageText(page));
+  await writeJsonEvidence(o2cEvidencePath('060-visible-actions-after-post-menu.json'), await visibleButtonNames(page));
+
+  result.clickedPreviewPosting = await clickFirstVisibleAction(
+    page,
+    /^Preview Posting$|^Buchungsvorschau$|^Vorschau buchen$|^Buchen Vorschau$/i
+  );
+  if (!result.clickedPreviewPosting) {
+    result.notes.push('Preview Posting/Buchungsvorschau wurde nach dem Oeffnen der Posting-Aktion nicht gefunden.');
+  }
+
+  await page.waitForTimeout(5_000);
+  const previewText = await pageText(page);
+  await writeTextEvidence(o2cEvidencePath(result.pageTextEvidenceFile), previewText);
+
+  result.openedPostingChoiceDialog = await hasPostingChoiceDialog(page);
+  result.errorSummary =
+    previewText.match(/Inventory Account is missing in Inventory Posting Setup Location Code:\s*FRA-ZL,\s*Invt\. Posting Group Code:\s*RESALE\./i)?.[0] ??
+    previewText.match(/Error Messages[\s\S]{0,400}/i)?.[0]?.replace(/\s+/g, ' ').trim();
+  result.blocked = /Error Messages|Fehlermeldungen|Message Type\s*Error|Inventory Account is missing|fehlt|must have a value|muss einen Wert|not possible|nicht m.glich|nichts zu buchen|nothing to post/i.test(
+    previewText
+  );
+  result.reachedPreviewValidation =
+    result.clickedPreviewPosting &&
+    /Error Messages|Fehlermeldungen|Posting Preview|Buchungsvorschau|G\/L Entry|Sachposten|Customer Ledger Entry|Debitorenposten|VAT Entry|USt|Item Ledger Entry|Artikelposten|Value Entry|Wertposten/i.test(
+      previewText
+    );
+  result.openedPreview = !result.blocked && !result.openedPostingChoiceDialog && /Posting Preview|Buchungsvorschau|G\/L Entry|Sachposten|Customer Ledger Entry|Debitorenposten|VAT Entry|USt|Item Ledger Entry|Artikelposten|Value Entry|Wertposten/i.test(
+    previewText
+  );
+
+  if (result.openedPreview) {
+    result.notes.push('Buchungsvorschau wurde als nicht buchender Laborlauf geoeffnet.');
+  } else if (result.openedPostingChoiceDialog) {
+    result.notes.push('BC zeigt den normalen Buchungsdialog Ship/Invoice/Ship and Invoice. Das ist nicht die Buchungsvorschau und darf im Screenshotlauf nicht mit OK bestaetigt werden.');
+  } else if (result.blocked) {
+    result.notes.push('BC erreicht die Preview-Posting-Pruefung, zeigt aber ein blockierendes Fehlerbild statt der Postenvorschau.');
+    if (result.errorSummary) {
+      result.notes.push(`Fehlerkern: ${result.errorSummary}`);
+    }
+  } else {
+    result.notes.push('Kein eindeutiger Buchungsvorschau-Kontext im Seitentext; Screenshot und Aktionslisten als Explorationsnachweis lesen.');
+  }
+
+  await screenshot(
+    page,
+    'uat-o2c-001-060-buchungsvorschau.png',
+    o2cScreenshotOptions(
+      result.openedPreview ? 'labor' : 'rejected',
+      'Nicht buchender Laborlauf der Buchungsvorschau fuer den O2C-Auftrag.',
+      result.openedPreview
+        ? [/Posting Preview|Preview Posting|Buchungsvorschau|G\/L Entry|Sachposten|Customer Ledger Entry|Debitorenposten|VAT Entry|USt|Item Ledger Entry|Artikelposten|Value Entry|Wertposten/i]
+        : [],
+      result.openedPreview
+        ? [
+            'CRONUS-USA-Laborbild; Steuerlogik bleibt Sales Tax/0 % und ist kein deutscher 19-%-USt-Endstand.',
+            'Buchungsvorschau beweist Konten-/Postenarten nur fuer diesen Laborauftrag, nicht fuer den finalen deutschen Mandanten.'
+          ]
+        : [
+            result.blocked
+              ? 'Preview Posting/Buchungsvorschau wurde erreicht, aber BC zeigt Error Messages statt Postenvorschau.'
+              : 'Preview Posting/Buchungsvorschau wurde im aktuellen UI-Zustand nicht eindeutig erreicht.',
+            'Nicht als finales Buchbild verwenden; Evidence erklaert Suchweg, sichtbare Aktionen und Setup-Luecke.'
+          ],
+      'evidence'
+    )
+  );
+
+  await writeJsonEvidence(o2cEvidencePath('060-preview-posting-result.json'), result);
+  await writeTextEvidence(
+    o2cEvidencePath('060-preview-posting-learning.md'),
+    [
+      '# UAT-O2C-001 Buchungsvorschau-Lernbefund',
+      '',
+      '| Punkt | Befund |',
+      '|---|---|',
+      `| Auftrag | ${orderNumber} fuer ${data.customerNo} / ${data.itemNo}. |`,
+      `| Posting-Menue gefunden | ${result.openedPostMenu ? 'ja' : 'nein'} |`,
+      `| Preview Posting geklickt | ${result.clickedPreviewPosting ? 'ja' : 'nein'} |`,
+      `| Preview-Pruefung erreicht | ${result.reachedPreviewValidation ? 'ja' : 'nein'} |`,
+      `| Buchungsvorschau geoeffnet | ${result.openedPreview ? 'ja' : 'nein'} |`,
+      `| Normaler Buchungsdialog geoeffnet | ${result.openedPostingChoiceDialog ? 'ja' : 'nein'} |`,
+      `| Blockierendes Fehlerbild | ${result.blocked ? 'ja' : 'nein'} |`,
+      `| Fehlerkern | ${result.errorSummary ?? 'nicht eindeutig extrahiert'} |`,
+      `| Evidence | \`${result.pageTextEvidenceFile}\`, \`060-visible-actions-before-preview.json\`, \`060-visible-actions-after-post-menu.json\`, \`060-preview-posting-result.json\` |`,
+      '| Fachliche Einordnung | Microsoft Learn beschreibt Preview Posting als Vorabpruefung der Eintraege, die beim Buchen entstehen. Im aktuellen Projekt ist das ein sicherer Zwischenschritt vor jeder echten Buchung. |',
+      '| Buchwirkung | Die Anleitung soll vor `Buchen` immer erst die Buchungsvorschau zeigen und erklaeren, welche Postenarten der Anwender plausibilisiert. Der deutsche 19-%-Endstand bleibt im Zielmandanten nachzuweisen. |',
+      '',
+      '## Notizen',
+      '',
+      ...result.notes.map((note) => `- ${note}`),
+      ''
+    ].join('\n')
+  );
 
   return result;
 }
@@ -517,6 +688,10 @@ test('UAT-O2C-001 Verkaufsauftrag starten und Lern-Screenshots erzeugen', async 
       ...orderDimensions,
       ...(lineDimensionEvidence.hasTargetDimension ? data.dimensions : {})
     });
+
+    await openSalesOrderCard(page, currentOrderNumber!);
+    await settleForBookScreenshot(page);
+    await capturePreviewPostingEvidence(page, currentOrderNumber!, data);
   } finally {
     const cleanup = await cleanupSalesOrdersByCustomer(page, {
       companyName: project.defaultCompany,

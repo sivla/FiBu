@@ -24,7 +24,7 @@ Jeder Eintrag muss außerdem gegen die betroffene Buchstelle geprüft werden. We
 | Feld | Wert |
 |---|---|
 | Problem | Die Suche `Alt+Q` / `Sales Orders` war als Anfängerpfad sichtbar, aber Playwright konnte den Suchtreffer nicht immer stabil öffnen. |
-| Sichtbarer Beleg | `img/uat-o2c-001-010-suche-verkaufsauftraege.png` |
+| Sichtbarer Beleg | `playwright/projects/fibu-book5/img/uat-o2c-001-010-suche-verkaufsauftraege.png` |
 | Ursache | Business Central rendert Tell-Me-Suchergebnisse dynamisch und teils anders als klassische Web-Links. Außerdem kann der oberste Treffer fachlich falsch sein. |
 | Lösung | Für Buchscreenshots bleibt die Suche sichtbar. Der technische Lauf öffnet die Verkaufsauftragsliste danach über Page-ID `9305`. |
 | Buchwirkung | Die Anleitung muss weiterhin `Alt+Q` erklären, aber ausdrücklich sagen, welchen Treffer der Leser auswählt. |
@@ -35,7 +35,7 @@ Jeder Eintrag muss außerdem gegen die betroffene Buchstelle geprüft werden. We
 | Feld | Wert |
 |---|---|
 | Problem | Der Helper `clickButtonInAnyFrame` fand `Neu` nicht, obwohl die Aktion sichtbar war. |
-| Sichtbarer Beleg | `img/uat-o2c-001-020-liste-verkaufsauftraege.png` |
+| Sichtbarer Beleg | `playwright/projects/fibu-book5/img/uat-o2c-001-020-liste-verkaufsauftraege.png` |
 | Ursache | BC rendert Aktionen in der Befehlsleiste häufig als `menuitem`, nicht als `button`. |
 | Lösung | Der Helper sucht jetzt nach `button` und `menuitem`. Bei `menuitem` wird nach dem Klick zusätzlich `Enter` gesendet, weil BC die Aktion teils erst fokussiert. |
 | Buchwirkung | Die Buchanleitung beschreibt `Neu` als Aktion in der Verkaufsauftragsliste, nicht als beliebigen Button. |
@@ -46,7 +46,7 @@ Jeder Eintrag muss außerdem gegen die betroffene Buchstelle geprüft werden. We
 | Feld | Wert |
 |---|---|
 | Problem | Die Eingabe `D10000` im sichtbaren Feld wurde nicht übernommen; der Auftrag blieb ohne Debitor. |
-| Sichtbarer Beleg | `img/uat-o2c-001-030-kopf-debitor-d10000.png`; die fruehere redundante Datei `img/uat-o2c-001-030-neuer-verkaufsauftrag.png` wurde entfernt. |
+| Sichtbarer Beleg | `playwright/projects/fibu-book5/img/uat-o2c-001-030-kopf-debitor-d10000.png`; die fruehere redundante Datei `playwright/projects/fibu-book5/img/uat-o2c-001-030-neuer-verkaufsauftrag.png` wurde entfernt. |
 | Ursache | Im Auftragskopf ist zuerst `Customer Name` sichtbar. Der fachliche Debitorcode `D10000` erscheint nach Auswahl in Liste und FactBox, ist aber nicht zwingend das Eingabefeld, das der Anwender zuerst sieht. |
 | Lösung | Der Test gibt den Kundennamen `Mueller Maschinenbau GmbH` ein und prüft danach `D10000` im Seitentext/FactBox-Kontext. |
 | Buchwirkung | Die Anleitung wurde korrigiert: Debitor über Name oder Lookup auswählen und anschließend Nummer `D10000` prüfen. |
@@ -68,7 +68,7 @@ Jeder Eintrag muss außerdem gegen die betroffene Buchstelle geprüft werden. We
 | Feld | Wert |
 |---|---|
 | Problem | Eine frühe Cleanup-Logik nahm die erste Belegnummer aus dem Seitentext und hätte dadurch einen alten Listendatensatz erwischen können. |
-| Sichtbarer Beleg | `img/uat-o2c-001-030-kopf-debitor-d10000.png`, `playwright/FINDINGS.md` → `FIND-BC-TEST-003` |
+| Sichtbarer Beleg | `playwright/projects/fibu-book5/img/uat-o2c-001-030-kopf-debitor-d10000.png`, `playwright/FINDINGS.md` → `FIND-BC-TEST-003` |
 | Ursache | BC hält Hintergrundliste, aktuelle Karte, FactBox und Hinweise gleichzeitig im DOM. `pageText()` ist Evidence-Material, aber kein eindeutiger Datensatz-Scope. |
 | Lösung | Cleanup wurde auf API-Filter `customerNumber = D10000` umgestellt. Damit werden nur Laboraufträge aus unserem Szenario entfernt. |
 | Buchwirkung | Evidence-Regeln wurden ergänzt: Nachweise müssen eindeutig sagen, welcher Beleg geprüft wird. |
@@ -79,18 +79,18 @@ Jeder Eintrag muss außerdem gegen die betroffene Buchstelle geprüft werden. We
 | Feld | Wert |
 |---|---|
 | Problem | Bei `1440x1000` waren BC-Listen und Verkaufszeilen zu eng; viele Spalten lagen außerhalb des sichtbaren Bereichs. |
-| Sichtbarer Beleg | ältere und neue `img/uat-o2c-001-020-liste-verkaufsauftraege.png`; neuer Lauf zeigt mehr Spalten bis Status/Beträge. |
+| Sichtbarer Beleg | ältere und neue `playwright/projects/fibu-book5/img/uat-o2c-001-020-liste-verkaufsauftraege.png`; neuer Lauf zeigt mehr Spalten bis Status/Beträge. |
 | Ursache | Business Central-Listen sind breit und horizontal scrollbar. Standard-Viewport-Breiten erzeugen unnötig abgeschnittene Tabellenbilder. |
-| Lösung | Playwright-Viewport wurde auf `1920x1080` erhöht. |
-| Buchwirkung | Laborbilder werden aussagekräftiger, weil mehr Tabellenkontext sichtbar ist. |
-| Künftige Regel | Für BC-Listen und Belegzeilen standardmäßig `1920x1080` nutzen. Für finale Bilder zusätzlich prüfen, ob FactBox ein- oder ausgeblendet werden soll. |
+| Lösung | Playwright-Viewport wurde auf `1920x1080` erhöht. Zusaetzlich darf die breite Layoutansicht beziehungsweise eine vergroesserte Seiten-/Listenansicht genutzt werden, wenn BC dadurch relevante Spalten ohne irrefuehrenden Zuschnitt zeigt. |
+| Buchwirkung | Laborbilder werden aussagekräftiger, weil mehr Tabellenkontext sichtbar ist. Der Buchtext muss aber benennen, ob das Bild im normalen Layout, mit eingeklappter FactBox oder in breiter Layoutansicht aufgenommen wurde. |
+| Künftige Regel | Für BC-Listen und Belegzeilen standardmäßig `1920x1080` nutzen. Für finale Bilder zusätzlich prüfen, ob FactBox ein- oder ausgeblendet werden soll und ob breite Layoutansicht, horizontaler Scroll oder Detailansicht die fachlich bessere Darstellung liefert. |
 
 ## WK-BC-O2C-007 Hilfekarten und Popover sind Laborbefunde
 
 | Feld | Wert |
 |---|---|
 | Problem | BC blendet Hilfekarten wie `About sales orders` oder `About sales order details` ein; Popover können Felder überlagern. |
-| Sichtbarer Beleg | `img/uat-o2c-001-020-liste-verkaufsauftraege.png`, `img/uat-o2c-001-030-kopf-debitor-d10000.png` |
+| Sichtbarer Beleg | `playwright/projects/fibu-book5/img/uat-o2c-001-020-liste-verkaufsauftraege.png`, `playwright/projects/fibu-book5/img/uat-o2c-001-030-kopf-debitor-d10000.png` |
 | Ursache | In neuen Rollen/Companies zeigt BC kontextuelle Hilfe und Touren. Bei Feldfokus können zusätzliche Kontakt-/Lookup-Popover erscheinen. |
 | Lösung | Für den aktuellen Lernlauf werden Hilfekarten bewusst nicht entfernt, weil sie zeigen, was Anfänger sehen. Für finale Buchbilder wird später entschieden, ob sie geschlossen werden. |
 | Buchwirkung | Hilfekarten können im Buch als Hinweis auf BC-Onboarding erwähnt werden, gehören aber vermutlich nicht in finale Prozessscreenshots. |
@@ -112,7 +112,7 @@ Jeder Eintrag muss außerdem gegen die betroffene Buchstelle geprüft werden. We
 | Feld | Wert |
 |---|---|
 | Problem | Page `540` zeigte beim Standarddimensionsnachweis unten links die Karte `About default dimensions`; dadurch war der Screenshot technisch gueltig, aber als Buchbild unruhig. |
-| Sichtbarer Beleg | Vorheriger Labor-Screenshot `img/masterdata-007-default-dimensions-item-rm-m100.png`; aktueller Lauf `npm run fibu:masterdata:default-dimensions` erzeugt die beiden Page-540-Bilder ohne Karte. |
+| Sichtbarer Beleg | Vorheriger Labor-Screenshot `playwright/projects/fibu-book5/img/masterdata-007-default-dimensions-item-rm-m100.png`; aktueller Lauf `npm run fibu:masterdata:default-dimensions` erzeugt die beiden Page-540-Bilder ohne Karte. |
 | Ursache | Microsoft beschreibt solche Karten als Teaching Tips und Tours. In der aktuellen gemischten UI war der Schliessen-Button als `Verwerfen` beschriftet, nicht als `Close`. |
 | Loesung | `dismissTours()` erkennt jetzt `Schliessen`, `Close`, `Dismiss`, `Discard` und `Verwerfen`. Der Helfer schliesst die Karte ueber ihre eigene Aktion statt global `Escape` zu druecken. |
 | Buchwirkung | Teaching Tips duerfen als Lernbefund erklaert werden. Fuer Feld- und Tabellenbelege sollen sie geschlossen werden, wenn sie keine fachliche Aussage tragen. |
@@ -134,11 +134,22 @@ Jeder Eintrag muss außerdem gegen die betroffene Buchstelle geprüft werden. We
 | Feld | Wert |
 |---|---|
 | Problem | Der aktuelle `UAT-O2C-001`-Lauf entspricht dem Buchziel bei Waehrung und Dimension inzwischen besser, aber noch nicht beim deutschen Steuerziel. |
-| Sichtbarer Beleg | `playwright/projects/fibu-book5/evidence/uat-o2c-001/045-target-vs-labor-delta.md`, `046-o2c-lab-learning-summary.md`, `img/uat-o2c-001-040-zeile-artikel-rm-m100.png`, `img/uat-o2c-001-050-dimension-productline-machine.png`. |
+| Sichtbarer Beleg | `playwright/projects/fibu-book5/evidence/uat-o2c-001/045-target-vs-labor-delta.md`, `046-o2c-lab-learning-summary.md`, `playwright/projects/fibu-book5/img/uat-o2c-001-040-zeile-artikel-rm-m100.png`, `playwright/projects/fibu-book5/img/uat-o2c-001-050-dimension-productline-machine.png`. |
 | Ursache | `D10000` liefert jetzt `Currency Code = EUR`. Die CRONUS-USA-Spielwiese nutzt aber weiter Sales-Tax-Logik: Artikel `RM-M100` traegt `Tax Group = FURNITURE`, die Zeile liefert `taxPercent = 0`. |
 | Loesung | Der Test klappt fuer breite Zeilenbilder die rechte FactBox ein, schreibt `039-factbox-hidden-result.json`, erzeugt eine kompakte Lernzusammenfassung und markiert den Steuer-Endstand weiter als Laborgrenze. |
 | Buchwirkung | Die O2C-Anleitung darf jetzt sagen: EUR ist im Labor nachgewiesen. Sie darf nicht sagen: deutsche `19 %` USt ist nachgewiesen. Vor Buchung oder finalem Screenshot braucht es weiter deutschen VAT-Zielmandanten oder sauber dokumentiertes deutsches VAT-Setup. |
 | Kuenftige Regel | Wenn ein frueherer Delta-Befund teilweise geloest wurde, muss der Test die neue Wahrheit neu schreiben und das Buch die alte Abweichung korrigieren. |
+
+## WK-BC-O2C-009B Preview Posting erreicht, aber Inventory Posting Setup blockiert
+
+| Feld | Wert |
+|---|---|
+| Problem | `Preview Posting` wird im O2C-Labor erreicht, aber Business Central zeigt `Error Messages` statt einer Postenvorschau. |
+| Sichtbarer Beleg | `playwright/projects/fibu-book5/img/uat-o2c-001-060-buchungsvorschau.png`, `playwright/projects/fibu-book5/evidence/uat-o2c-001/060-preview-posting-result.json`, `playwright/projects/fibu-book5/evidence/uat-o2c-001/060-preview-posting-learning.md` |
+| Ursache | Die Fehlermeldung lautet: `Inventory Account is missing in Inventory Posting Setup Location Code: FRA-ZL, Invt. Posting Group Code: RESALE.` BC prueft damit nicht nur Debitor, Artikel und Steuer, sondern auch die Lagerbuchungsmatrix fuer die Kombination aus Lagerort und Lagerbuchungsgruppe. |
+| Loesung | Nicht buchen und nicht mit `OK` im normalen Buchungsdialog weitergehen. Zuerst `Inventory Posting Setup` fuer `FRA-ZL` + `RESALE` untersuchen und ein passendes Bestandskonto dokumentiert setzen oder die Luecke bewusst als Laborgrenze stehen lassen. Danach `Preview Posting` erneut ausfuehren. |
+| Buchwirkung | Die O2C-Anleitung braucht vor dem Buchungsschritt einen Fehler-/Pruefhinweis: Wenn die Buchungsvorschau auf `Inventory Posting Setup` stoppt, fehlt nicht der Auftrag, sondern eine Kontenfindung fuer Bestand. Leser lernen dadurch, warum Lagerort und Lagerbuchungsgruppe buchungsrelevant sind. |
+| Kuenftige Regel | `Preview Posting` ist Pflicht vor jeder echten Buchung. Ein Preview-Fehler wird als Lernbild dokumentiert und erst fachlich geloest; er wird nicht durch zufaelliges Wegklicken oder direkte Buchung umgangen. |
 
 ## WK-BC-O2C-010 Dimension im Auftrag ist eigener Nachweis, nicht nur Stammdatenannahme
 

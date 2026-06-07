@@ -12,7 +12,14 @@ export async function writeJsonEvidence(filePath: string, value: unknown) {
 
 export async function writeTextEvidence(filePath: string, value: string) {
   await fs.mkdir(path.dirname(filePath), { recursive: true });
-  await fs.writeFile(filePath, value, 'utf8');
+  const normalized = value
+    .replace(/\r\n?/g, '\n')
+    .split('\n')
+    .map((line) => line.replace(/[ \t]+$/g, ''))
+    .join('\n')
+    .replace(/(?:\n[ \t]*)+$/g, '')
+    .concat('\n');
+  await fs.writeFile(filePath, normalized, 'utf8');
 }
 
 type FinancialTarget = {

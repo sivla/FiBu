@@ -2,7 +2,13 @@ import { expect, type Page } from '@playwright/test';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-const imgDir = path.resolve('img');
+const rootImgDir = path.resolve('img');
+
+function inferProjectNameFromCallStack() {
+  const stack = new Error().stack ?? '';
+  const match = stack.match(/playwright[\\/]+projects[\\/]+([^\\/]+)[\\/]+tests[\\/]+/i);
+  return match?.[1];
+}
 
 type ScreenshotStatus = 'labor' | 'candidate' | 'final' | 'rejected';
 
@@ -34,6 +40,8 @@ export function bcPageUrl(pageId: number, envPrefix?: string) {
 }
 
 export async function screenshot(page: Page, fileName: string, options: ScreenshotOptions = {}) {
+  const projectName = options.projectName ?? inferProjectNameFromCallStack();
+  const imgDir = projectName ? path.resolve('playwright/projects', projectName, 'img') : rootImgDir;
   const pageTextEvidence = options.expectedPageText?.length ? await pageText(page) : '';
   for (const expected of options.expectedPageText ?? []) {
     expect(pageTextEvidence, `Screenshot-Kontext ${fileName} muss ${expected} im BC-Seitentext enthalten.`).toMatch(expected);
@@ -46,8 +54,8 @@ export async function screenshot(page: Page, fileName: string, options: Screensh
     fullPage: false
   });
 
-  if (options.projectName && options.testId) {
-    const evidenceDir = path.resolve('playwright/projects', options.projectName, 'evidence', options.testId);
+  if (projectName && options.testId) {
+    const evidenceDir = path.resolve('playwright/projects', projectName, 'evidence', options.testId);
     await fs.mkdir(evidenceDir, { recursive: true });
     await fs.writeFile(
       path.join(evidenceDir, fileName.replace(/\.png$/i, '.screenshot.json')),

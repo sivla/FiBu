@@ -60,7 +60,7 @@ Aufbau-Befund aus `MASTERDATA-005`:
 
 - `D10000 Müller Maschinenbau GmbH` wurde über Playwright als angemeldeten Träger und die Business-Central-API angelegt.
 - Der Debitor ist in der Customers-Liste sichtbar und per Evidence dokumentiert.
-- Screenshot: `img/masterdata-005-customers-after-api.png`.
+- Screenshot: `playwright/projects/fibu-book5/img/masterdata-005-customers-after-api.png`.
 - API-Nachweis: `playwright/projects/fibu-book5/evidence/masterdata-005/api-result.json`.
 
 ### Artikel
@@ -89,7 +89,7 @@ Aufbau-Befund aus `MASTERDATA-005`:
 - Kosten und Verkaufspreis sind sichtbar nachgewiesen: `42.000 / 68.000`.
 - Harte Grenze aus dem Erstlauf: `Base Unit of Measure`, `Gen. Prod. Posting Group` und `Inventory Posting Group` waren im Item-Card-Nachweis leer. Der Artikel existierte, war aber noch nicht O2C-buchungsfähig.
 - Nach `MASTERDATA-006` trägt `RM-M100` einen CRONUS-Technikfit: `PCS`, `RETAIL`, `RESALE`, `FURNITURE`.
-- Screenshot: `img/masterdata-005-items-after-api.png`.
+- Screenshot: `playwright/projects/fibu-book5/img/masterdata-005-items-after-api.png`.
 - API-Nachweis: `playwright/projects/fibu-book5/evidence/masterdata-005/api-result.json`.
 
 ### Lagerorte

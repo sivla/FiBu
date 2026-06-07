@@ -57,7 +57,7 @@ npm run fibu:uat:o2c
 
 Diese Skripte erzeugen:
 
-- Screenshots unter `img/`
+- Screenshots unter `playwright/projects/fibu-book5/img/`
 - Screenshot-Metadaten unter `playwright/projects/fibu-book5/evidence/<testfall>/`
 - API-/Text-/Delta-Evidence
 - Cleanup-Nachweise fuer Laborbelege

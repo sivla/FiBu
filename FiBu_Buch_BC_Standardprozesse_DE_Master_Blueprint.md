@@ -1,4 +1,4 @@
-﻿# FiBu-Buch 5: Business Central (BC) – Standardprozesse Deutschland als systematisches Greenfield-Durchspielbuch
+# FiBu-Buch 5: Business Central (BC) – Standardprozesse Deutschland als systematisches Greenfield-Durchspielbuch
 
 Stand: `28.05.2026`
 Hinweis: Dieses Buch ist ein quellenbasiertes Lern-, Schulungs-, Projekt- und Implementierungsbuch für Microsoft Dynamics 365 Business Central im deutschen Unternehmenskontext. Es ersetzt keine individuelle Rechts-, Steuer- oder Implementierungsberatung.
@@ -419,10 +419,10 @@ Vorbedingungen:
 
 | Schritt | Screenshot-Datei | Bildinhalt | Feldlogik | Prüfhinweis |
 |---:|---|---|---|---|
-| 020 | `img/uat-start-001-020-rollencenter-startseite.png` | Rollencenter nach Anmeldung | Das Rollencenter zeigt Rolle, Aufgaben und Startkacheln. | Rolle und sichtbare Menüs dokumentieren. |
-| 050 | `img/uat-start-001-050-alt-q-suche.png` | `Alt+Q` mit Suchfeld | `Alt+Q` ist der stabile Einstieg in Seiten und Berichte. | Deutsch suchen, bei Bedarf englische Suchhilfe nutzen. |
-| 060 | `img/uat-start-001-060-unternehmen-seite.png` | Seite `Unternehmen (Companies)` | Die Liste zeigt verfügbare Companies im Environment. | CRONUS ist Demonstrationsbestand, nicht Rhein-Main-Zielstruktur. |
-| 070 | `img/uat-start-001-070-unternehmensdaten.png` | `Unternehmensdaten (Company Information)` | Unternehmensdaten prägen Belege, Berichte und rechtliche Angaben. | Name, Adresse, Land/Region, USt-ID und Bankdaten später fachlich pflegen. |
+| 020 | `playwright/projects/fibu-book5/img/uat-start-001-020-rollencenter-startseite.png` | Rollencenter nach Anmeldung | Das Rollencenter zeigt Rolle, Aufgaben und Startkacheln. | Rolle und sichtbare Menüs dokumentieren. |
+| 050 | `playwright/projects/fibu-book5/img/uat-start-001-050-alt-q-suche.png` | `Alt+Q` mit Suchfeld | `Alt+Q` ist der stabile Einstieg in Seiten und Berichte. | Deutsch suchen, bei Bedarf englische Suchhilfe nutzen. |
+| 060 | `playwright/projects/fibu-book5/img/uat-start-001-060-unternehmen-seite.png` | Seite `Unternehmen (Companies)` | Die Liste zeigt verfügbare Companies im Environment. | CRONUS ist Demonstrationsbestand, nicht Rhein-Main-Zielstruktur. |
+| 070 | `playwright/projects/fibu-book5/img/uat-start-001-070-unternehmensdaten.png` | `Unternehmensdaten (Company Information)` | Unternehmensdaten prägen Belege, Berichte und rechtliche Angaben. | Name, Adresse, Land/Region, USt-ID und Bankdaten später fachlich pflegen. |
 
 Technischer Prüfstatus:
 - `npm run auth:bc` speichert den Business-Central-Login-State lokal.
@@ -432,7 +432,7 @@ Technischer Prüfstatus:
 
 Bildauswertung:
 
-![Rollencenter in der Business-Central-Spielwiese](img/uat-start-001-020-rollencenter-startseite.png)
+![Rollencenter in der Business-Central-Spielwiese](playwright/projects/fibu-book5/img/uat-start-001-020-rollencenter-startseite.png)
 
 Was du im Bild siehst:
 - Oben steht `Dynamics 365 Business Central` mit der Umgebung `MCP_1_20260210`.
@@ -446,7 +446,7 @@ Feldlogik:
 Prüfhinweis:
 - Vor jedem Test wird Umgebung, Company und Rolle geprüft. Ein falscher Mandant macht jeden späteren Nachweis wertlos.
 
-![Tell-Me-Suche mit Companies](img/uat-start-001-050-alt-q-suche.png)
+![Tell-Me-Suche mit Companies](playwright/projects/fibu-book5/img/uat-start-001-050-alt-q-suche.png)
 
 Was du im Bild siehst:
 - Die Suche `Wie möchten Sie weiter verfahren?` ist geöffnet.
@@ -459,7 +459,7 @@ Feldlogik:
 Prüfhinweis:
 - Für finale deutsche Screenshots wird derselbe Schritt mit deutschem Suchbegriff erneut geprüft.
 
-![Companies mit CRONUS und My Company](img/uat-start-001-060-unternehmen-seite.png)
+![Companies mit CRONUS und My Company](playwright/projects/fibu-book5/img/uat-start-001-060-unternehmen-seite.png)
 
 Was du im Bild siehst:
 - Die Seite `Companies` zeigt mindestens `CRONUS USA, Inc.` und `My Company`.
@@ -472,7 +472,7 @@ Feldlogik:
 Prüfhinweis:
 - Der erste Foundation-Schritt kopiert CRONUS in eine eigene Trainingscompany `RM-DEMO`.
 
-![Company Information in My Company](img/uat-start-001-070-unternehmensdaten.png)
+![Company Information in My Company](playwright/projects/fibu-book5/img/uat-start-001-070-unternehmensdaten.png)
 
 Was du im Bild siehst:
 - Die Seite `Company Information` zeigt Pflichtfelder wie `Name`, `Address`, `City`, `ZIP Code` und `Country/Region Code`.
@@ -595,7 +595,7 @@ Technischer Lauf:
 
 #### `FOUNDATION-001`: CRONUS nach `RM-DEMO` kopieren
 
-![Companies vor der Kopie](img/foundation-001-010-companies-vorbereitung.png)
+![Companies vor der Kopie](playwright/projects/fibu-book5/img/foundation-001-010-companies-vorbereitung.png)
 
 Was du im Bild siehst:
 - Die Seite `Companies` zeigt die vorhandenen Companies.
@@ -609,7 +609,7 @@ Feldlogik:
 Prüfhinweis:
 - Eine Company wird nicht durch freie Tabellenzeilen improvisiert. Der stabile Weg ist `Copy` aus CRONUS.
 
-![Copy Company Dialog](img/foundation-001-020-copy-company-dialog.png)
+![Copy Company Dialog](playwright/projects/fibu-book5/img/foundation-001-020-copy-company-dialog.png)
 
 Was du im Bild siehst:
 - Der Dialog `Copy Company` fragt nach `New Company Name`.
@@ -623,7 +623,7 @@ Feldlogik:
 Prüfhinweis:
 - Das Kopieren kann dauern und andere Nutzer in der Quellcompany beeinträchtigen. In diesem Buch geschieht es nur in der Sandbox.
 
-![Copy Company bestätigt](img/foundation-001-025-copy-company-bestaetigung.png)
+![Copy Company bestätigt](playwright/projects/fibu-book5/img/foundation-001-025-copy-company-bestaetigung.png)
 
 Was du im Bild siehst:
 - `RM-DEMO` ist als neuer Company-Name eingetragen.
@@ -636,7 +636,7 @@ Feldlogik:
 Prüfhinweis:
 - Ohne diesen Schritt bleibt `RM-DEMO` nicht als prüfbarer Trainingsmandant verfügbar.
 
-![RM-DEMO angelegt](img/foundation-001-030-rm-demo-angelegt.png)
+![RM-DEMO angelegt](playwright/projects/fibu-book5/img/foundation-001-030-rm-demo-angelegt.png)
 
 Was du im Bild siehst:
 - Die Liste `Companies` enthält `RM-DEMO`.
@@ -652,7 +652,7 @@ Evidence Pack:
 
 #### `FOUNDATION-002`: Unternehmensdaten für `RM-DEMO` setzen
 
-![RM-DEMO Rollencenter](img/foundation-002-010-rm-demo-rollencenter.png)
+![RM-DEMO Rollencenter](playwright/projects/fibu-book5/img/foundation-002-010-rm-demo-rollencenter.png)
 
 Was du im Bild siehst:
 - Oben links steht die Company `RM-DEMO`.
@@ -666,7 +666,7 @@ Feldlogik:
 Prüfhinweis:
 - Jeder spätere Prozesslauf beginnt mit der Prüfung, dass `RM-DEMO` aktiv ist.
 
-![Company Information vor der Pflege](img/foundation-002-020-company-information-vorher.png)
+![Company Information vor der Pflege](playwright/projects/fibu-book5/img/foundation-002-020-company-information-vorher.png)
 
 Was du im Bild siehst:
 - Die Seite `Company Information` zeigt noch CRONUS-nahe Stammdaten.
@@ -679,7 +679,7 @@ Feldlogik:
 Prüfhinweis:
 - Vor steuerlich prüfbaren Belegen müssen Unternehmensdaten bewusst gesetzt werden.
 
-![Company Information nach der Pflege](img/foundation-002-030-company-information-nachher.png)
+![Company Information nach der Pflege](playwright/projects/fibu-book5/img/foundation-002-030-company-information-nachher.png)
 
 Was du im Bild siehst:
 - `Name = Rhein-Main Demo GmbH`
@@ -864,14 +864,14 @@ Die folgenden Klickanleitungen sind in der Spielwiese mit Playwright geprüft un
 
 | Klickanleitung | BC-Seite | Testfall | Screenshot | Evidence | Status |
 |---|---|---|---|---|---|
-| Ist-Stand der Stammdaten prüfen | Customers, Items, Locations, Dimensions, Posting Setup | `MASTERDATA-001` | `img/masterdata-001-*.png` | `playwright/projects/fibu-book5/evidence/masterdata-001/` | geprüft |
-| Dimensionen anlegen | `Dimensionen (Dimensions)` | `MASTERDATA-002` | `img/masterdata-002-dimensions-rhein-main.png` | `playwright/projects/fibu-book5/evidence/masterdata-002/` | geprüft |
-| Dimensionswerte anlegen | `Dimension Values` | `MASTERDATA-003` | `img/masterdata-003-dimension-values-rhein-main.png` | `playwright/projects/fibu-book5/evidence/masterdata-003/` | geprüft |
-| Lagerort `FRA-ZL` anlegen | `Lagerorte (Locations)` / `Location Card` | `MASTERDATA-004` | `img/masterdata-004-locations-rhein-main.png` | `playwright/projects/fibu-book5/evidence/masterdata-004/` | geprüft |
-| Debitor `D10000` und Artikel `RM-M100` anlegen | `Customers`, `Items`, `Item Card` | `MASTERDATA-005` | `img/masterdata-005-customers-after-api.png`, `img/masterdata-005-items-after-api.png` | `playwright/projects/fibu-book5/evidence/masterdata-005/` | geprüft |
-| Posting-Fit für ersten O2C-Probelauf herstellen | `Customer Card`, `Item Card`, Sales-Order-API | `MASTERDATA-006` | `img/masterdata-006-customer-template-fit.png`, `img/masterdata-006-item-posting-fit.png` | `playwright/projects/fibu-book5/evidence/masterdata-006/` | geprüft als CRONUS-Technikfit |
-| Standarddimensionen für O2C setzen | `Default Dimensions`, `Customer Card`, `Item Card` | `MASTERDATA-007` | `img/masterdata-007-item-rm-m100-standarddimension.png`, `img/masterdata-007-customer-d10000-standarddimension.png` | `playwright/projects/fibu-book5/evidence/masterdata-007/` | geprüft als API-/Evidence-Nachweis |
-| Verkaufsauftrag für `D10000` mit Zeile `RM-M100` als Laborlauf erzeugen | `Sales Orders`, `Sales Order` | `UAT-O2C-001` | `img/uat-o2c-001-030-kopf-debitor-d10000.png`, `img/uat-o2c-001-040-zeile-artikel-rm-m100.png` | `playwright/projects/fibu-book5/evidence/uat-o2c-001/` | geprüft als Laborlauf; Auftrag wird danach bereinigt |
+| Ist-Stand der Stammdaten prüfen | Customers, Items, Locations, Dimensions, Posting Setup | `MASTERDATA-001` | `playwright/projects/fibu-book5/img/masterdata-001-*.png` | `playwright/projects/fibu-book5/evidence/masterdata-001/` | geprüft |
+| Dimensionen anlegen | `Dimensionen (Dimensions)` | `MASTERDATA-002` | `playwright/projects/fibu-book5/img/masterdata-002-dimensions-rhein-main.png` | `playwright/projects/fibu-book5/evidence/masterdata-002/` | geprüft |
+| Dimensionswerte anlegen | `Dimension Values` | `MASTERDATA-003` | `playwright/projects/fibu-book5/img/masterdata-003-dimension-values-rhein-main.png` | `playwright/projects/fibu-book5/evidence/masterdata-003/` | geprüft |
+| Lagerort `FRA-ZL` anlegen | `Lagerorte (Locations)` / `Location Card` | `MASTERDATA-004` | `playwright/projects/fibu-book5/img/masterdata-004-locations-rhein-main.png` | `playwright/projects/fibu-book5/evidence/masterdata-004/` | geprüft |
+| Debitor `D10000` und Artikel `RM-M100` anlegen | `Customers`, `Items`, `Item Card` | `MASTERDATA-005` | `playwright/projects/fibu-book5/img/masterdata-005-customers-after-api.png`, `playwright/projects/fibu-book5/img/masterdata-005-items-after-api.png` | `playwright/projects/fibu-book5/evidence/masterdata-005/` | geprüft |
+| Posting-Fit für ersten O2C-Probelauf herstellen | `Customer Card`, `Item Card`, Sales-Order-API | `MASTERDATA-006` | `playwright/projects/fibu-book5/img/masterdata-006-customer-template-fit.png`, `playwright/projects/fibu-book5/img/masterdata-006-item-posting-fit.png` | `playwright/projects/fibu-book5/evidence/masterdata-006/` | geprüft als CRONUS-Technikfit |
+| Standarddimensionen für O2C setzen | `Default Dimensions`, `Customer Card`, `Item Card` | `MASTERDATA-007` | `playwright/projects/fibu-book5/img/masterdata-007-item-rm-m100-standarddimension.png`, `playwright/projects/fibu-book5/img/masterdata-007-customer-d10000-standarddimension.png` | `playwright/projects/fibu-book5/evidence/masterdata-007/` | geprüft als API-/Evidence-Nachweis |
+| Verkaufsauftrag für `D10000` mit Zeile `RM-M100` als Laborlauf erzeugen | `Sales Orders`, `Sales Order` | `UAT-O2C-001` | `playwright/projects/fibu-book5/img/uat-o2c-001-030-kopf-debitor-d10000.png`, `playwright/projects/fibu-book5/img/uat-o2c-001-040-zeile-artikel-rm-m100.png` | `playwright/projects/fibu-book5/evidence/uat-o2c-001/` | geprüft als Laborlauf; Auftrag wird danach bereinigt |
 
 Redaktionsregel:
 
@@ -959,7 +959,7 @@ Geprüfter Laborstand:
 3. Beide Standarddimensionen sind mit `Same Code` gepflegt.
 4. Das bedeutet: Der Stammdatensatz soll nicht nur einen Vorschlagswert liefern, sondern genau diesen Dimensionswert erzwingen.
 
-![Standarddimension am Artikel RM-M100](img/masterdata-007-default-dimensions-item-rm-m100.png)
+![Standarddimension am Artikel RM-M100](playwright/projects/fibu-book5/img/masterdata-007-default-dimensions-item-rm-m100.png)
 
 Was du im Bild siehst:
 Business Central zeigt die Seite `Default Dimensions`. Für den Artikelkontext ist die Dimension `PRODUCTLINE` mit dem Dimensionswert `MACHINE` gepflegt. In der Spalte `Value Posting` steht `Same Code`.
@@ -970,7 +970,7 @@ Warum das fachlich wichtig ist:
 Prüfhinweis:
 Das Laborbild ist über Page `540` gefiltert. Der Artikel `RM-M100` steht nicht zwingend im sichtbaren Seitentext, wird aber durch Test, Dateiname, API-Evidence und Filterkontext nachgewiesen. Für finale Buchbilder wird derselbe Nachweis später in einer deutschen Umgebung neu erzeugt.
 
-![Standarddimension am Debitor D10000](img/masterdata-007-default-dimensions-customer-d10000.png)
+![Standarddimension am Debitor D10000](playwright/projects/fibu-book5/img/masterdata-007-default-dimensions-customer-d10000.png)
 
 Was du im Bild siehst:
 Für den Debitorenkontext ist die Dimension `CHANNEL` mit dem Wert `B2B` gepflegt. Auch hier steht `Value Posting = Same Code`.
@@ -1883,17 +1883,17 @@ Vorbedingungen:
 
 | Schritt | Screenshot-Datei | Bildinhalt | Feldlogik | Prüfhinweis |
 |---:|---|---|---|---|
-| 010 | `img/uat-o2c-001-010-suche-verkaufsauftraege.png` | `Alt+Q` / Tell-Me mit Suchbegriff `Sales Orders` im gemischtsprachigen Laborlauf | Die Suche ist der stabile Einstieg, nicht ein Menüpfad. | Im deutschen Finallauf denselben Einstieg mit `Verkaufsaufträge` fotografieren und den richtigen Treffer ausdrücklich benennen. |
-| 020 | `img/uat-o2c-001-020-liste-verkaufsauftraege.png` | Laborbild der Liste `Sales Orders` mit Aktion `Neu` | Die Liste zeigt offene, noch bearbeitbare Belege; `Neu` ist in BC eine Menüaktion. | Dieses Bild ist nur Navigations-/Listenbild. Es zeigt noch nicht unseren Auftrag `D10000`, sondern vorhandene CRONUS-Aufträge. |
-| 030 | `img/uat-o2c-001-030-kopf-debitor-d10000.png` | Auftragskopf mit Debitor `D10000` / `Mueller Maschinenbau GmbH` | Das sichtbare Pflichtfeld kann `Debitorenname` / `Customer Name` sein. Nach Auswahl steuert der Debitor Zahlungsbedingungen, Debitorenbuchungsgruppe und USt-Geschäftsbuchungsgruppe. | Debitornummer in FactBox/Liste prüfen; außerdem Buchungsdatum, Belegdatum, Fälligkeitsdatum und Währung prüfen. |
-| 040 | `img/uat-o2c-001-040-zeile-artikel-rm-m100.png` | Laborbild der Verkaufszeile mit `RM-M100`, Beschreibung, Lagerort `FRA-ZL`, Menge `1`, EUR-Summen und `Total Tax (EUR) = 0,00` | Der Artikel steuert Produktbuchungsgruppe, Lagerbuchungsgruppe und Steuergruppe; der Debitor steuert unter anderem Währung und Geschäftspartnerlogik. | Das aktuelle Bild ist ein guter Labor-Kandidat, aber noch kein finales Buchbild: Die FactBox ist für Tabellenbreite eingeklappt, die Steuer bleibt CRONUS-USA-Laborlogik mit 0 %. |
+| 010 | `playwright/projects/fibu-book5/img/uat-o2c-001-010-suche-verkaufsauftraege.png` | `Alt+Q` / Tell-Me mit Suchbegriff `Sales Orders` im gemischtsprachigen Laborlauf | Die Suche ist der stabile Einstieg, nicht ein Menüpfad. | Im deutschen Finallauf denselben Einstieg mit `Verkaufsaufträge` fotografieren und den richtigen Treffer ausdrücklich benennen. |
+| 020 | `playwright/projects/fibu-book5/img/uat-o2c-001-020-liste-verkaufsauftraege.png` | Laborbild der Liste `Sales Orders` mit Aktion `Neu` | Die Liste zeigt offene, noch bearbeitbare Belege; `Neu` ist in BC eine Menüaktion. | Dieses Bild ist nur Navigations-/Listenbild. Es zeigt noch nicht unseren Auftrag `D10000`, sondern vorhandene CRONUS-Aufträge. |
+| 030 | `playwright/projects/fibu-book5/img/uat-o2c-001-030-kopf-debitor-d10000.png` | Auftragskopf mit Debitor `D10000` / `Mueller Maschinenbau GmbH` | Das sichtbare Pflichtfeld kann `Debitorenname` / `Customer Name` sein. Nach Auswahl steuert der Debitor Zahlungsbedingungen, Debitorenbuchungsgruppe und USt-Geschäftsbuchungsgruppe. | Debitornummer in FactBox/Liste prüfen; außerdem Buchungsdatum, Belegdatum, Fälligkeitsdatum und Währung prüfen. |
+| 040 | `playwright/projects/fibu-book5/img/uat-o2c-001-040-zeile-artikel-rm-m100.png` | Laborbild der Verkaufszeile mit `RM-M100`, Beschreibung, Lagerort `FRA-ZL`, Menge `1`, EUR-Summen und `Total Tax (EUR) = 0,00` | Der Artikel steuert Produktbuchungsgruppe, Lagerbuchungsgruppe und Steuergruppe; der Debitor steuert unter anderem Währung und Geschäftspartnerlogik. | Das aktuelle Bild ist ein guter Labor-Kandidat, aber noch kein finales Buchbild: Die FactBox ist für Tabellenbreite eingeklappt, die Steuer bleibt CRONUS-USA-Laborlogik mit 0 %. |
 | 045 | `playwright/projects/fibu-book5/evidence/uat-o2c-001/045-target-vs-labor-delta.md` und `046-o2c-lab-learning-summary.md` | Ziel-vs.-Labor-Abweichung für USt und Brutto plus kompakte Lernzusammenfassung | Einrichtung entscheidet, ob der Beleg nur technisch lauffähig oder fachlich deutscher Steuerfall ist. | Bei Abweichung nicht buchen, sondern Setup-Lücke dokumentieren. `EUR` und `PRODUCTLINE = MACHINE` sind inzwischen im Labor nachgewiesen; `19 %` USt bleibt offen. |
-| 050 | `img/uat-o2c-001-050-dimension-productline-machine.png` | Dimensionsprüfung `PRODUCTLINE = MACHINE` über `Line` -> `Related Information` -> `Dimensions` | Die Dimension ordnet Erlös und Marge der Produktlinie zu. | Vor dem Buchen prüfen, ob `PRODUCTLINE = MACHINE` und `CHANNEL = B2B` im Dialog `Edit Dimension Set Entries` sichtbar sind. |
-| 060 | `img/uat-o2c-001-060-buchungsvorschau.png` | `Buchungsvorschau (Preview Posting)` | Vor dem Buchen werden erwartete Posten sichtbar. | Forderung, Erlös, USt, Bestand und Wareneinsatz plausibilisieren. |
-| 070 | `img/uat-o2c-001-070-buchen-liefern-fakturieren.png` | Dialog `Buchen` mit `Liefern und fakturieren` | Die Aktion erzeugt gebuchte Belege und Posten. | Nur buchen, wenn Liefer- und Rechnungsfreigabe vorliegt. |
-| 080 | `img/uat-o2c-001-080-gebuchte-verkaufsrechnung.png` | gebuchte Verkaufsrechnung | Der gebuchte Beleg ist der Einstieg in die Nachweiskette. | Belegnummer für alle Postenfilter notieren. |
-| 090 | `img/uat-o2c-001-090-debitorenposten-d10000.png` | Debitorenposten für `D10000` | Der offene Posten zeigt Forderung und Fälligkeit. | Betrag brutto `80.920 EUR` prüfen. |
-| 100 | `img/uat-o2c-001-100-sachposten-ust-wertposten.png` | Sachposten, USt-Posten, Artikelposten und Wertposten | Die Postenspur belegt Finance-, Steuer- und Lagerwirkung. | Belegnummer, Betrag, Steuerbasis, Menge und Dimension abstimmen. |
+| 050 | `playwright/projects/fibu-book5/img/uat-o2c-001-050-dimension-productline-machine.png` | Dimensionsprüfung `PRODUCTLINE = MACHINE` über `Line` -> `Related Information` -> `Dimensions` | Die Dimension ordnet Erlös und Marge der Produktlinie zu. | Vor dem Buchen prüfen, ob `PRODUCTLINE = MACHINE` und `CHANNEL = B2B` im Dialog `Edit Dimension Set Entries` sichtbar sind. |
+| 060 | `playwright/projects/fibu-book5/img/uat-o2c-001-060-buchungsvorschau.png` | Labor-Fehlerbild nach `Buchungsvorschau (Preview Posting)` | BC prüft vor dem Buchen die Kontenfindung. Im aktuellen Labor fehlt `Inventory Account` im `Inventory Posting Setup` für `FRA-ZL` + `RESALE`. | Nicht buchen. Inventory Posting Setup korrigieren oder als Laborgrenze dokumentieren; danach Buchungsvorschau erneut erzeugen. |
+| 070 | `playwright/projects/fibu-book5/img/uat-o2c-001-070-buchen-liefern-fakturieren.png` | Dialog `Buchen` mit `Liefern und fakturieren` | Die Aktion erzeugt gebuchte Belege und Posten. | Nur buchen, wenn Liefer- und Rechnungsfreigabe vorliegt. |
+| 080 | `playwright/projects/fibu-book5/img/uat-o2c-001-080-gebuchte-verkaufsrechnung.png` | gebuchte Verkaufsrechnung | Der gebuchte Beleg ist der Einstieg in die Nachweiskette. | Belegnummer für alle Postenfilter notieren. |
+| 090 | `playwright/projects/fibu-book5/img/uat-o2c-001-090-debitorenposten-d10000.png` | Debitorenposten für `D10000` | Der offene Posten zeigt Forderung und Fälligkeit. | Betrag brutto `80.920 EUR` prüfen. |
+| 100 | `playwright/projects/fibu-book5/img/uat-o2c-001-100-sachposten-ust-wertposten.png` | Sachposten, USt-Posten, Artikelposten und Wertposten | Die Postenspur belegt Finance-, Steuer- und Lagerwirkung. | Belegnummer, Betrag, Steuerbasis, Menge und Dimension abstimmen. |
 
 Was Anfänger hier lernen:
 
@@ -1910,6 +1910,7 @@ Was im aktuellen Laborbild sichtbar ist:
 - Die Verkaufszeile enthält `Item`, `RM-M100`, `Standardmaschine M100`, `FRA-ZL`, Menge `1`, Einheit `PCS` und Betrag `68.000,00`.
 - Die Steuer-/Tax-Spalte zeigt im Labor `FURNITURE` und der Evidence-Nachweis zeigt `taxPercent = 0`.
 - Der Dimensionsdialog zeigt `CHANNEL = B2B` und `PRODUCTLINE = MACHINE`.
+- Die Buchungsvorschau-Prüfung stoppt aktuell auf `Error Messages`: `Inventory Account is missing in Inventory Posting Setup Location Code: FRA-ZL, Invt. Posting Group Code: RESALE`.
 - Das beweist: Der Klickpfad, die Stammdaten und der Dimensionsfluss funktionieren im Labor. Es beweist noch nicht den deutschen Steuerfall.
 
 Typische Anfängerfehler:
@@ -1919,6 +1920,7 @@ Typische Anfängerfehler:
 | Der Anwender öffnet `Gebuchte Verkaufsrechnungen` statt `Verkaufsaufträge`. | Offene Belege und gebuchte Belege klingen ähnlich, haben aber unterschiedliche Zwecke. | Für die Erfassung immer `Verkaufsaufträge (Sales Orders)` öffnen; gebuchte Belege erst nach dem Buchen prüfen. |
 | Im Kopf wird `D10000` gesucht, aber sichtbar ist `Customer Name`. | BC zeigt je nach Rolle/Sprache zuerst den Namen statt der Nummer. | Kundenname eingeben oder Lookup öffnen, danach Nummer `D10000` in FactBox/Liste prüfen. |
 | Die Zeile sieht richtig aus, aber USt stimmt nicht. | Stammdaten und Buchungsgruppen machen den Auftrag technisch lauffähig; `EUR` ist im Labor gelöst, aber die CRONUS-USA-Steuerlogik liefert weiter 0 % statt deutscher 19-%-USt. | Nicht als deutschen Zielbeleg buchen. Ziel-vs.-Labor-Abweichung dokumentieren und deutsches Posting-/USt-Setup herstellen. |
+| Die Buchungsvorschau zeigt `Inventory Account is missing in Inventory Posting Setup`. | Lagerort und Lagerbuchungsgruppe sind nicht nur Zusatzfelder. BC braucht für `FRA-ZL` + `RESALE` ein Bestandskonto in der Lagerbuchungsmatrix. | `Inventory Posting Setup` öffnen, Kombination `FRA-ZL`/`RESALE` prüfen, Bestandskonto fachlich setzen oder Laborgrenze dokumentieren. Danach Preview Posting erneut starten. |
 | `PRODUCTLINE = MACHINE` fehlt. | Standarddimension am Artikel fehlt oder wurde nicht in den Beleg übernommen. | Vor dem Buchen Dimension in Zeile oder Dimensionsdialog prüfen und korrigieren. |
 | Der Test lässt Entwurfsaufträge liegen. | BC speichert Belege früh automatisch. | Laboraufträge nach Screenshot über eindeutig eingegrenzten Cleanup entfernen; Evidence-Läufe bewusst getrennt durchführen. |
 
@@ -1929,14 +1931,14 @@ Ein Verkaufsauftrag ist erst dann prüfbereit, wenn Kopf, Zeile, Betrag, Steuer,
 Markdown-Einbindung:
 
 ```md
-![Verkaufsauftrag Kopf mit Debitor D10000](img/uat-o2c-001-030-kopf-debitor-d10000.png)
+![Verkaufsauftrag Kopf mit Debitor D10000](playwright/projects/fibu-book5/img/uat-o2c-001-030-kopf-debitor-d10000.png)
 ```
 
 Evidence Pack (Nachweispaket):
 - Auftragsnummer und gebuchte Verkaufsrechnungsnummer.
 - Screenshot Auftragskopf und Verkaufszeile.
 - Screenshot Dimension `PRODUCTLINE = MACHINE`.
-- Buchungsvorschau oder Postenspur nach Buchung.
+- Buchungsvorschau oder, falls blockiert, Fehlerbild der Preview-Posting-Prüfung mit Setup-Ursache.
 - Debitorenposten mit Bruttobetrag `80.920 EUR`.
 - Sachposten für Forderung, Erlös, Umsatzsteuer, Bestand und Wareneinsatz.
 - USt-Posten mit Steuerbasis `68.000 EUR` und Steuerbetrag `12.920 EUR`.
@@ -6465,20 +6467,20 @@ Ein Screenshot wird gesetzt, wenn sich der fachliche Zustand ändert oder ein Na
 
 #### Dateinamenskonvention
 
-Alle Screenshots liegen im Ordner `img/` neben der Markdown-Datei. Dateinamen sind kleingeschrieben, enthalten keine Leerzeichen und nutzen Bindestriche.
+Alle Screenshots dieses Buchprojekts liegen im Ordner `playwright/projects/fibu-book5/img/`. Dateinamen sind kleingeschrieben, enthalten keine Leerzeichen und nutzen Bindestriche.
 
 Muster:
 
 ```text
-img/[uat-id]-[schritt]-[seite-oder-objekt]-[kurzinhalt].png
+playwright/projects/fibu-book5/img/[uat-id]-[schritt]-[seite-oder-objekt]-[kurzinhalt].png
 ```
 
 Beispiele:
-- `img/uat-o2c-001-030-kopf-debitor-d10000.png`
-- `img/uat-o2c-001-040-zeile-artikel-rm-m100.png`
-- `img/uat-o2c-001-050-dimension-productline-machine.png`
-- `img/uat-p2p-001-040-zeile-raw-steel.png`
-- `img/uat-r2r-001-090-finanzbericht-juni-2026.png`
+- `playwright/projects/fibu-book5/img/uat-o2c-001-030-kopf-debitor-d10000.png`
+- `playwright/projects/fibu-book5/img/uat-o2c-001-040-zeile-artikel-rm-m100.png`
+- `playwright/projects/fibu-book5/img/uat-o2c-001-050-dimension-productline-machine.png`
+- `playwright/projects/fibu-book5/img/uat-p2p-001-040-zeile-raw-steel.png`
+- `playwright/projects/fibu-book5/img/uat-r2r-001-090-finanzbericht-juni-2026.png`
 
 #### Bildqualität und Wiederholbarkeit
 
@@ -6502,7 +6504,7 @@ Die Screenshots entstehen immer aus einer kontrollierten Umgebung. Dadurch sehen
 Jeder Screenshot erhält eine knappe Erklärung. Der Text benennt Seite, Feld, Wert, Fachlogik und Prüfzweck.
 
 ```md
-![Verkaufsauftrag Kopf mit Debitor D10000](img/uat-o2c-001-030-kopf-debitor-d10000.png)
+![Verkaufsauftrag Kopf mit Debitor D10000](playwright/projects/fibu-book5/img/uat-o2c-001-030-kopf-debitor-d10000.png)
 
 Was du im Bild siehst:
 - Die Seite zeigt den Kopf eines Verkaufsauftrags.
@@ -6906,7 +6908,7 @@ Die folgenden Projektdateien steuern die bebilderten Business-Central-Anleitunge
 | `playwright/projects/fibu-book5/UI-INVENTORY.md` | sammelt sichtbare BC-Seiten, Buttons, Felder, FactBoxes und Funktionen |
 | `playwright/projects/fibu-book5/WORKAROUNDS-AND-ERRORS.md` | dokumentiert Fehlerbilder, Ursachen, Lösungen und Buchwirkung |
 | `playwright/projects/fibu-book5/evidence/` | enthält technische und fachliche Nachweise je Testfall |
-| `img/` | enthält die Arbeits- und späteren Buchscreenshots |
+| `playwright/projects/fibu-book5/img/` | enthält die Arbeits- und späteren Buchscreenshots |
 
 Regel:
 
@@ -6978,9 +6980,9 @@ Wenn ein Testlauf eine Abweichung findet, werden Buch, Coverage, Findings, Worka
 
 | Schritt | Screenshot-Datei | Aktion | Feld/Wert | Feldlogik | Prüfhinweis | Evidence |
 |---:|---|---|---|---|---|---|
-| 010 | `img/[id]-010-[slug].png` |  |  |  |  |  |
-| 020 | `img/[id]-020-[slug].png` |  |  |  |  |  |
-| 030 | `img/[id]-030-[slug].png` |  |  |  |  |  |
+| 010 | `playwright/projects/fibu-book5/img/[id]-010-[slug].png` |  |  |  |  |  |
+| 020 | `playwright/projects/fibu-book5/img/[id]-020-[slug].png` |  |  |  |  |  |
+| 030 | `playwright/projects/fibu-book5/img/[id]-030-[slug].png` |  |  |  |  |  |
 
 Merksatz:
 - Eine bebilderte Klickanleitung ist erst vollständig, wenn der Leser den Prozess durchführen, das Ergebnis prüfen und den Nachweis ablegen kann.

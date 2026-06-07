@@ -90,7 +90,7 @@ Für `UAT-O2C-001` mindestens erforderlich:
 Aktueller Stand:
 
 - `D10000` wurde in `MASTERDATA-005` über die angemeldete Playwright-Session und die Business-Central-API angelegt.
-- Sichtprüfung und Evidence: `img/masterdata-005-customers-after-api.png`, `playwright/projects/fibu-book5/evidence/masterdata-005/api-result.json`.
+- Sichtprüfung und Evidence: `playwright/projects/fibu-book5/img/masterdata-005-customers-after-api.png`, `playwright/projects/fibu-book5/evidence/masterdata-005/api-result.json`.
 - Standarddimension `CHANNEL = B2B` ist in `MASTERDATA-007` gesetzt und per API nachgewiesen.
 
 ### Kreditoren

@@ -8,7 +8,7 @@ Das Projekt braucht vier getrennte Sichtweisen:
 
 | Sicht | Zweck | Typische Dateien |
 |---|---|---|
-| Buch | erklaert Business Central fuer Leser | `FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md`, `img/*.png` |
+| Buch | erklaert Business Central fuer Leser | `FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md`, `playwright/projects/fibu-book5/img/*.png` |
 | Test | wiederholt Klickpfade und Datenanlage | `playwright/projects/fibu-book5/tests/*.spec.ts`, `testdata/**/*.json` |
 | Evidence | belegt, was ein Lauf gezeigt oder erzeugt hat | `playwright/projects/fibu-book5/evidence/<fall>/` |
 | Lernen | bewertet BC-Verhalten und Buchluecken | `FINDINGS.md`, `WORKAROUNDS-AND-ERRORS.md`, `UI-INVENTORY.md`, `MICROSOFT-DOC-VALIDATION.md` |
@@ -31,7 +31,7 @@ Keine dieser Sichten ersetzt die andere. Ein Screenshot ist kein fachlicher Bewe
 
 | Pfad | Inhalt | Nicht hinein |
 |---|---|---|
-| `img/` | Buch- und Labor-Screenshots, die im Markdown referenziert werden koennen | unbenannte Debugbilder |
+| `playwright/projects/fibu-book5/img/` | Buch- und Labor-Screenshots, die im Markdown referenziert werden koennen | unbenannte Debugbilder |
 | `playwright/core/` | projektuebergreifende BC-Mechanik | Debitoren, Artikel, Buchfalllogik |
 | `playwright/projects/fibu-book5/tests/` | versionierte Playwright-Testfaelle | MCP-Wegwerfskripte |
 | `playwright/projects/fibu-book5/testdata/` | fachliche Ziel- und Stammdaten | Laufprotokolle |

@@ -57,6 +57,8 @@ Definition: Eine Anleitung ist erst abgesichert, wenn der Klickpfad in BC funkti
 | Steuer | deutsche `19 %` USt ist in dieser CRONUS-USA-Spielwiese nicht nachgewiesen |
 | Dimension im Auftrag | `PRODUCTLINE=MACHINE` und `CHANNEL=B2B` sind im Zeilen-Dimensionsdialog nachgewiesen |
 | Standarddimensionen-UI | Page `540` zeigt `PRODUCTLINE=MACHINE` am Artikel und `CHANNEL=B2B` am Debitor als UI-Laborbild |
+| Buchungsvorschau | `Preview Posting` wird technisch erreicht, stoppt aber auf `Error Messages`: `Inventory Account is missing in Inventory Posting Setup Location Code: FRA-ZL, Invt. Posting Group Code: RESALE` |
+| Bildablage | Projektbilder liegen unter `playwright/projects/fibu-book5/img/`; Root-`img/` ist keine Sammelstelle mehr |
 | Cleanup | Labor-Verkaufsauftraege werden nach Screenshot-Lauf entfernt |
 
 ## Wichtigste Entscheidungen
@@ -72,6 +74,7 @@ Definition: Eine Anleitung ist erst abgesichert, wenn der Klickpfad in BC funkti
 - Alle Textdateien sind UTF-8; pruefen mit `npm run check:encoding`.
 - Teaching Tips/Tourkarten werden fuer Tabellen- und Feldnachweise gezielt mit `dismissTours()` geschlossen; kein globales `Escape` verwenden.
 - Fuer breite Tabellenbilder kann die rechte Infobox/FactBox mit `hideFactBoxPane()` eingeklappt werden, wenn sie relevante Spalten verdraengt.
+- Wenn BC eine breite Layoutansicht oder vergroesserte Detail-/Listenansicht anbietet, darf sie fuer Buchscreenshots genutzt werden; der Lauf muss dann dokumentieren, warum diese Ansicht fachlich besser ist.
 
 ## Aktueller Handover-Stand
 
@@ -125,6 +128,8 @@ Preis 68.000 sichtbar.
 EUR ist am Debitor gesetzt und in neuen Auftraegen sichtbar.
 Zeilenbild klappt die rechte FactBox ein und zeigt Menge 1, FRA-ZL, EUR-Summen und Total Tax 0,00.
 PRODUCTLINE = MACHINE ist im Zeilen-Dimensionsdialog sichtbar.
+Preview Posting wird ueber den Dropdown-Teil von Post... erreicht.
+BC zeigt Error Messages statt Postenvorschau, weil fuer FRA-ZL/RESALE im Inventory Posting Setup das Inventory Account fehlt.
 19 % deutsche USt ist noch nicht erreicht.
 ```
 
@@ -144,15 +149,12 @@ Der aktuelle Lauf darf nicht gebucht oder als deutscher Steuer-Endstand verkauft
 
 Governance, Encoding, Mac-Kompatibilitaet und Lean-Evidence sind committed und gepusht. Nicht erneut mit Aufraeumen beginnen, solange keine neue Rohmasse entsteht.
 
-Als naechstes den fachlichen Block waehlen:
+Als naechstes gezielt die blockierende Lagerbuchungsmatrix-Luecke entscheiden:
 
-1. deutschen VAT-Zielmandanten vorbereiten,
-2. oder im aktuellen Labor gezielt `Preview Posting` als nicht buchenden Lernlauf untersuchen,
-3. oder P2P/weitere Stammdaten erst aufbauen.
-
-Empfohlene Richtung:
-
-Empfohlen: vor einer echten Buchung zuerst `Preview Posting`/Buchungsvorschau fuer `UAT-O2C-001` als Laborlauf untersuchen. Wenn BC wegen 0-%-Sales-Tax oder Setup blockiert, Fehlerbild dokumentieren; wenn die Vorschau laeuft, nur als CRONUS-Labor-Evidence bewerten.
+1. `Inventory Posting Setup` fuer Kombination `Location Code = FRA-ZL` und `Invt. Posting Group Code = RESALE` untersuchen.
+2. Klaeren, ob im CRONUS-Labor ein vorhandenes Bestandskonto sinnvoll wiederverwendet werden darf oder ob die Luecke nur dokumentiert wird.
+3. Danach `Preview Posting` erneut laufen lassen. Wenn die Postenvorschau danach oeffnet, Postenarten nur als CRONUS-Labor-Evidence bewerten.
+4. Deutsche `19 %`-USt bleibt davon getrennt: kein deutscher Steuer-Endstand in dieser USA-Spielwiese.
 
 ## Befehle fuer neue Agents
 
@@ -196,5 +198,6 @@ Danach `.env` mit der konkreten Business-Central-URL fuellen.
 - Nicht MCP-Rohsnapshots wie `console-*.log` oder `page-*.yml` committen; Erkenntnisse in kompakte Evidence ueberfuehren.
 - Nicht mit blindem `Enter` den ersten Tell-Me-Treffer waehlen.
 - Nicht globale `Escape`-Workarounds nutzen, um Popups zu schliessen.
+- Nicht den Hauptteil von `Post...` klicken, wenn `Preview Posting` gemeint ist; das oeffnet den normalen Buchungsdialog `Ship / Invoice / Ship and Invoice`.
 - Nicht aus freiem Seitentext ungescopte Belegnummern fuer Cleanup ableiten.
 - Nicht `.env`, `playwright/.auth/`, Playwright-Reports oder Test-Traces committen.

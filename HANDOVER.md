@@ -73,7 +73,7 @@ npm run fibu:foundation:company-info
 2. Prüfen, welche Testdaten fehlen.
 3. Testdaten als JSON unter `playwright/projects/<projekt>/testdata/` dokumentieren.
 4. Playwright-Test schreiben, der Daten erzeugt oder prüft.
-5. Screenshots in `img/` erzeugen.
+5. Screenshots in `playwright/projects/fibu-book5/img/` erzeugen.
 6. Sichtbare, aber unerklärte BC-Funktionen in `playwright/FINDINGS.md` erfassen.
 7. Relevante Fundstellen recherchieren, bevorzugt mit Microsoft Learn, BC-Hilfe und eigenem Gegentest.
 8. Im Buch jeden Screenshot erklären:
