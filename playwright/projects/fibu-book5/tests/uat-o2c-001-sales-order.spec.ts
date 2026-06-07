@@ -12,6 +12,7 @@ import {
 } from '../../../core/evidence';
 import {
   bcPageUrl,
+  hideFactBoxPane,
   pageText,
   requireBcUrl,
   screenshot,
@@ -121,6 +122,63 @@ async function writeO2CTargetVsLaborDelta(
   );
 
   return targetVsLaborDelta;
+}
+
+async function writeO2CLabLearningSummary(
+  data: O2CTestData,
+  lineEvidence: {
+    order: {
+      number?: string;
+      currencyCode?: string;
+      totalAmountExcludingTax?: number;
+      totalTaxAmount?: number;
+      totalAmountIncludingTax?: number;
+    };
+    item: {
+      number?: string;
+      generalProductPostingGroupCode?: string;
+      inventoryPostingGroupCode?: string;
+      taxGroupCode?: string;
+      baseUnitOfMeasureCode?: string;
+    };
+    line: {
+      lineObjectNumber?: string;
+      quantity?: number;
+      unitPrice?: number;
+      taxCode?: string;
+      taxPercent?: number;
+      amountExcludingTax?: number;
+      totalTaxAmount?: number;
+      amountIncludingTax?: number;
+    };
+    orderDimensionSetLines: unknown;
+  },
+  dimensions: Record<string, string>,
+  lineDimensionEvidence: { hasTargetDimension: boolean }
+) {
+  const orderDimensions = Object.entries(dimensions)
+    .map(([dimensionCode, dimensionValue]) => `${dimensionCode}=${dimensionValue}`)
+    .join(', ');
+
+  await writeTextEvidence(
+    o2cEvidencePath('046-o2c-lab-learning-summary.md'),
+    [
+      '# UAT-O2C-001 Labor-Lernzusammenfassung',
+      '',
+      '| Punkt | Erklaerung |',
+      '|---|---|',
+      `| Situation | Verkaufsauftrag ${lineEvidence.order.number ?? ''} fuer Debitor ${data.customerNo}, Artikel ${data.itemNo}, Menge ${data.quantity}, Lagerort ${data.locationCode}. |`,
+      `| Waehrung | Der Auftrag laeuft im aktuellen Labor mit ${lineEvidence.order.currencyCode ?? 'leer'}. Das entspricht jetzt dem Buchziel ${data.currencyCode}. |`,
+      `| Betrag | Netto ${lineEvidence.line.amountExcludingTax ?? ''}, Steuer ${lineEvidence.line.totalTaxAmount ?? ''}, Brutto ${lineEvidence.line.amountIncludingTax ?? ''}. |`,
+      `| Steuer-/Tax-Logik | Die Verkaufszeile nutzt Tax Code ${lineEvidence.line.taxCode ?? 'leer'} mit ${lineEvidence.line.taxPercent ?? 'leer'} %. Das ist CRONUS-USA-Sales-Tax-Logik und kein deutscher 19-%-USt-Nachweis. |`,
+      `| Artikel-Posting | Artikel ${lineEvidence.item.number ?? data.itemNo} traegt Base Unit ${lineEvidence.item.baseUnitOfMeasureCode ?? 'leer'}, Gen. Prod. Posting Group ${lineEvidence.item.generalProductPostingGroupCode ?? 'leer'}, Inventory Posting Group ${lineEvidence.item.inventoryPostingGroupCode ?? 'leer'} und Tax Group ${lineEvidence.item.taxGroupCode ?? 'leer'}. |`,
+      `| Dimensionen | Die Evidence weist ${orderDimensions || 'keine Dimensionen'} nach. Wichtig: CHANNEL kommt aus dem Auftragskontext; PRODUCTLINE=MACHINE wird im Zeilen-Dimensionsdialog ${lineDimensionEvidence.hasTargetDimension ? 'sichtbar nachgewiesen' : 'noch nicht sichtbar nachgewiesen'}. |`,
+      '| Warum BC so reagiert | Business Central berechnet Betrag, Steuer und Konten nicht aus einem einzelnen Feld. Debitor, Artikel, Buchungsgruppen, Steuergruppen, Lagerort und Dimensionen wirken zusammen. |',
+      '| Anfaengerpruefung | Vor dem Buchen Kopf, Zeile, EUR-Summen, Tax/VAT-Ergebnis, Lagerort und Dimensionsdialog pruefen. Wenn Steuer 0 % bleibt, nicht als deutschen Zielbeleg buchen. |',
+      '| Buchwirkung | Das Buch darf den aktuellen Lauf als Klickpfad- und Lernnachweis verwenden. Der deutsche 19-%-USt-Endstand bleibt future-de-final. |',
+      ''
+    ].join('\n')
+  );
 }
 
 function dimensionMapFromApiResult(result: unknown) {
@@ -385,6 +443,12 @@ test('UAT-O2C-001 Verkaufsauftrag starten und Lern-Screenshots erzeugen', async 
     await expect.poll(async () => pageText(page), { timeout: 90_000 }).toMatch(
       /RM-M100|Standardmaschine|68\.000|68000/i
     );
+    const factBoxHiddenForLineScreenshots = await hideFactBoxPane(page);
+    await writeJsonEvidence(o2cEvidencePath('039-factbox-hidden-result.json'), {
+      factBoxHiddenForLineScreenshots,
+      reason:
+        'Fuer breite Verkaufszeilenbilder wird die rechte Infobox/FactBox eingeklappt, damit Menge, Steuer- und Betragsspalten besser sichtbar werden.'
+    });
     await settleForBookScreenshot(page);
     await screenshot(
       page,
@@ -394,7 +458,8 @@ test('UAT-O2C-001 Verkaufsauftrag starten und Lern-Screenshots erzeugen', async 
         'Laborbild der Verkaufszeile mit Artikel RM-M100.',
         [/RM-M100/i, /Standardmaschine/i, /FRA-ZL/i, /68\.000|68000/i],
         [
-          'Menge, Steuergruppe, Waehrung und Dimension sind nicht ausreichend sichtbar.',
+          'FactBox wird fuer mehr Tabellenbreite gezielt eingeklappt.',
+          'Dimension wird separat im Dimensionsdialog nachgewiesen.',
           'Bild ist Labor-Evidence, aber kein finales Buchbild.'
         ],
         'field-proof'
@@ -411,8 +476,8 @@ test('UAT-O2C-001 Verkaufsauftrag starten und Lern-Screenshots erzeugen', async 
         [/FURNITURE/i, /68\.000|68000/i],
         [
           'DOM-Scroll ueber freeze-pane-scrollbar zeigt Tax Group und Betraege im Laborbild.',
-          'CRONUS-Steuergruppe FURNITURE und USD-Summen sind kein deutscher Zielnachweis.',
-          'Dimension PRODUCTLINE ist weiterhin nicht nachgewiesen.'
+          'CRONUS-Steuergruppe FURNITURE und 0-%-Tax sind kein deutscher 19-%-USt-Nachweis.',
+          'Dimension PRODUCTLINE ist in diesem Tabellenbild nicht sichtbar; der Test weist sie separat im Dimensionsdialog nach.'
         ],
         'field-proof'
       )
@@ -439,6 +504,15 @@ test('UAT-O2C-001 Verkaufsauftrag starten und Lern-Screenshots erzeugen', async 
     await expect(lineText).toMatch(/RM-M100|Standardmaschine|68\.000|68000/i);
 
     const lineDimensionEvidence = await captureSalesLineDimensionEvidence(page, data);
+    await writeO2CLabLearningSummary(
+      data,
+      lineEvidence,
+      {
+        ...orderDimensions,
+        ...(lineDimensionEvidence.hasTargetDimension ? data.dimensions : {})
+      },
+      lineDimensionEvidence
+    );
     await writeO2CTargetVsLaborDelta(data, lineEvidence, {
       ...orderDimensions,
       ...(lineDimensionEvidence.hasTargetDimension ? data.dimensions : {})

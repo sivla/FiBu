@@ -58,7 +58,7 @@ Screenshot-QA:
 - `030` ist als Kopf-Laborbild brauchbar, enthält aber Document-Check-/Copilot-Störer.
 - `030-neuer-verkaufsauftrag` war redundant zu `030-kopf-debitor-d10000`, wurde entfernt und wird vom Test nicht mehr erzeugt.
 - `040` beweist Artikel, Beschreibung, Lagerort und Betrag, aber nicht gut genug Menge, Steuergruppe, Währung und Dimension; es ist daher noch kein finales Buchbild.
-- `041` ist ein brauchbares Laborbild nach DOM-Scroll des BC-Zeilengrids. Es zeigt `Tax Group Code = FURNITURE` und Beträge, bleibt aber wegen CRONUS-Steuerlogik und USD-Summen kein finales deutsches Buchbild.
+- `041` ist ein brauchbares Laborbild nach DOM-Scroll des BC-Zeilengrids. Es zeigt `Tax Group Code = FURNITURE` und Beträge, bleibt aber wegen CRONUS-Steuerlogik und 0-%-Tax kein finales deutsches Buchbild.
 - `042` ist ein verworfener Kontrollversuch am rechten Tabellenende und zeigt nur, dass Grid-Scroll technisch funktioniert.
 - `050` ist ein guter Labor-Kandidat für den Dimensionsnachweis. Der Pfad lautet `Line` -> `Related Information` -> `Dimensions`; sichtbar sind `CHANNEL = B2B` und `PRODUCTLINE = MACHINE`.
 - `050` ist ein guter Labor-Kandidat fuer den Dimensionsnachweis. Der Pfad lautet `Line` -> `Related Information` -> `Dimensions`; sichtbar sind `CHANNEL = B2B` und `PRODUCTLINE = MACHINE`.

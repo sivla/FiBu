@@ -34,16 +34,16 @@ Jeder Buch-Screenshot bekommt:
 | Offene Belege | `Sales Orders` sind bearbeitbare Aufträge; gebuchte Verkaufsrechnungen sind Nachweise nach der Buchung. |
 | Auftragskopf | `Customer Name` ist sichtbar, fachlich muss Debitor `D10000` geprüft werden. |
 | Auftragszeile | `RM-M100`, Menge, Lagerort, Einheit, Preis und Steuergruppe bestimmen die spätere Wirkung. |
-| Setup-Lücke | CRONUS USA liefert `USD` und `0 %`; das ist kein Bedienfehler, sondern fehlender deutscher Steuerfit. |
+| Setup-Lücke | Der aktuelle Laborauftrag liefert `EUR`, aber weiter `0 %` Tax; das ist kein Bedienfehler, sondern fehlender deutscher Steuerfit. |
 | Cleanup | Laboraufträge werden nach Screenshots entfernt, weil BC Entwürfe automatisch speichert. |
 
 ## Nächste Lernfragen
 
 | Priorität | Frage |
 |---:|---|
-| 1 | Wie öffnet und erklärt man den Standarddimensionen-Dialog so, dass `PRODUCTLINE = MACHINE` sichtbar wird? |
-| 2 | Was zeigt `Preview Posting` bei einem Verkaufsauftrag und welche Posten muss ein Anfänger erkennen? |
-| 3 | Welche Einrichtung macht aus dem CRONUS-Labor einen deutschen `EUR`-/`19 %`-Fall? |
+| 1 | Was zeigt `Preview Posting` bei einem Verkaufsauftrag und welche Posten muss ein Anfänger erkennen? |
+| 2 | Welche Einrichtung macht aus dem CRONUS-Labor einen deutschen `19 %`-Fall? |
+| 3 | Wie wird `PRODUCTLINE = MACHINE` nach dem Buchen in Sachposten, Wertposten oder Reporting wiedergefunden? |
 | 4 | Welche Aktionen `Release`, `Post`, `Ship`, `Invoice` sieht der Anwender und wann darf er sie verwenden? |
 
 ## Regel für Fehler

@@ -4,7 +4,7 @@ Der Klickpfad ist lauffaehig, aber das Labor entspricht noch nicht dem fachliche
 
 | Pruefpunkt | Ziel laut Buch | Ist im Labor |
 |---|---:|---:|
-| Waehrung | EUR | USD |
+| Waehrung | EUR | EUR |
 | Steuersatz | 19 % | 0 % |
 | Nettobetrag | 68000 | 68000 |
 | Steuerbetrag | 12920 | 0 |
@@ -14,7 +14,6 @@ Der Klickpfad ist lauffaehig, aber das Labor entspricht noch nicht dem fachliche
 
 ## Abweichungen
 
-- Waehrung: erwartet EUR, Labor liefert USD
 - Steuersatz: erwartet 19 %, Labor liefert 0 %
 - Steuerbetrag: erwartet 12920, Labor liefert 0
 - Bruttobetrag: erwartet 80920, Labor liefert 68000

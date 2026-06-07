@@ -129,6 +129,17 @@ Jeder Eintrag muss außerdem gegen die betroffene Buchstelle geprüft werden. We
 | Buchwirkung | Das Buch muss zwischen Laborlauf und finalem Zielbild unterscheiden. Screenshots aus CRONUS dürfen nicht als Nachweis für `EUR` und `19 %` USt ausgegeben werden. |
 | Künftige Regel | Wenn ein Buchfall fachliche Beträge, Steuer oder Währung erwartet, schreibt der Test einen Soll-Ist-Nachweis. Abweichungen werden als Setup-Lücke dokumentiert und nicht still übergangen. |
 
+## WK-BC-O2C-009A Aktueller O2C-Laborstand: EUR geloest, Steuer offen
+
+| Feld | Wert |
+|---|---|
+| Problem | Der aktuelle `UAT-O2C-001`-Lauf entspricht dem Buchziel bei Waehrung und Dimension inzwischen besser, aber noch nicht beim deutschen Steuerziel. |
+| Sichtbarer Beleg | `playwright/projects/fibu-book5/evidence/uat-o2c-001/045-target-vs-labor-delta.md`, `046-o2c-lab-learning-summary.md`, `img/uat-o2c-001-040-zeile-artikel-rm-m100.png`, `img/uat-o2c-001-050-dimension-productline-machine.png`. |
+| Ursache | `D10000` liefert jetzt `Currency Code = EUR`. Die CRONUS-USA-Spielwiese nutzt aber weiter Sales-Tax-Logik: Artikel `RM-M100` traegt `Tax Group = FURNITURE`, die Zeile liefert `taxPercent = 0`. |
+| Loesung | Der Test klappt fuer breite Zeilenbilder die rechte FactBox ein, schreibt `039-factbox-hidden-result.json`, erzeugt eine kompakte Lernzusammenfassung und markiert den Steuer-Endstand weiter als Laborgrenze. |
+| Buchwirkung | Die O2C-Anleitung darf jetzt sagen: EUR ist im Labor nachgewiesen. Sie darf nicht sagen: deutsche `19 %` USt ist nachgewiesen. Vor Buchung oder finalem Screenshot braucht es weiter deutschen VAT-Zielmandanten oder sauber dokumentiertes deutsches VAT-Setup. |
+| Kuenftige Regel | Wenn ein frueherer Delta-Befund teilweise geloest wurde, muss der Test die neue Wahrheit neu schreiben und das Buch die alte Abweichung korrigieren. |
+
 ## WK-BC-O2C-010 Dimension im Auftrag ist eigener Nachweis, nicht nur Stammdatenannahme
 
 | Feld | Wert |

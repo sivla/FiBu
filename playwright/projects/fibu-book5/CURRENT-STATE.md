@@ -52,7 +52,7 @@ Definition: Eine Anleitung ist erst abgesichert, wenn der Klickpfad in BC funkti
 | Debitor | `D10000` / `Mueller Maschinenbau GmbH` existiert |
 | Artikel | `RM-M100` / `Standardmaschine M100` existiert |
 | Preis | Zielpreis `68.000` im Labor sichtbar |
-| Waehrung | `EUR` ist am Debitor `D10000` gesetzt und per MCP nachgewiesen |
+| Waehrung | `EUR` ist am Debitor `D10000` gesetzt und im aktuellen `UAT-O2C-001`-Auftrag nachgewiesen |
 | Steuer | deutsche `19 %` USt ist in dieser CRONUS-USA-Spielwiese nicht nachgewiesen |
 | Dimension im Auftrag | `PRODUCTLINE=MACHINE` und `CHANNEL=B2B` sind im Zeilen-Dimensionsdialog nachgewiesen |
 | Standarddimensionen-UI | Page `540` zeigt `PRODUCTLINE=MACHINE` am Artikel und `CHANNEL=B2B` am Debitor als UI-Laborbild |
@@ -121,6 +121,7 @@ RM-M100 funktioniert.
 Menge 1 funktioniert.
 Preis 68.000 sichtbar.
 EUR ist am Debitor gesetzt und in neuen Auftraegen sichtbar.
+Zeilenbild klappt die rechte FactBox ein und zeigt Menge 1, FRA-ZL, EUR-Summen und Total Tax 0,00.
 PRODUCTLINE = MACHINE ist im Zeilen-Dimensionsdialog sichtbar.
 19 % deutsche USt ist noch nicht erreicht.
 ```
@@ -144,12 +145,12 @@ Governance, Encoding, Mac-Kompatibilitaet und Lean-Evidence sind committed und g
 Als naechstes den fachlichen Block waehlen:
 
 1. deutschen VAT-Zielmandanten vorbereiten,
-2. oder im aktuellen Labor ein besseres O2C-Zeilen-/Detailbild erzeugen,
+2. oder im aktuellen Labor gezielt `Preview Posting` als nicht buchenden Lernlauf untersuchen,
 3. oder P2P/weitere Stammdaten erst aufbauen.
 
 Empfohlene Richtung:
 
-Empfohlen: `UAT-O2C-001` in einem deutschen oder explizit deutsch konfigurierten VAT-Setup erneut laufen lassen.
+Empfohlen: vor einer echten Buchung zuerst `Preview Posting`/Buchungsvorschau fuer `UAT-O2C-001` als Laborlauf untersuchen. Wenn BC wegen 0-%-Sales-Tax oder Setup blockiert, Fehlerbild dokumentieren; wenn die Vorschau laeuft, nur als CRONUS-Labor-Evidence bewerten.
 
 ## Befehle fuer neue Agents
 
