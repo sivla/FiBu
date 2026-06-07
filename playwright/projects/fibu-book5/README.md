@@ -26,6 +26,8 @@ Das Ziel ist praktisches Business-Central-Wissen. Am Ende soll dieses Projekt ni
 
 Die redaktionelle Abdeckung der bebilderten Klickanleitungen steht in `BOOK-CLICK-GUIDE-COVERAGE.md`.
 
+Der blockuebergreifende Lab-Fit-Status steht in `LAB-FIT-STATUS.md`. Diese Datei zeigt fuer Foundation, Stammdaten, Posting, Tax/VAT, O2C, P2P, Inventory, Reporting und weitere Buchbereiche, was im aktuellen CRONUS-Labor praktisch geprueft ist, was nur teilweise passt und welcher deutsche Finalnachweis spaeter fehlt.
+
 Die Anfänger-Didaktik steht in `BEGINNER-LEARNING-CHECKLIST.md`. Diese Checkliste ist vor allem für neue Codex-Accounts, Autoren und Consultants wichtig: Ein Klickpfad ist erst fertig, wenn Bedienung, Verständnis, Kontrolle, Fehlerbild und Lösung erklärt sind.
 
 Die Bildfreigabe steht in `SCREENSHOT-QA.md`. Ein grüner Playwright-Lauf bedeutet noch nicht automatisch, dass der Screenshot buchfähig ist. Jedes Bild wird darauf geprüft, ob es den richtigen Datensatz, die richtigen Felder, passende Sprache/Währung/Steuerlogik und keine irreführenden Laborstörer zeigt.

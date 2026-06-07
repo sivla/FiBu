@@ -37,9 +37,10 @@ Definition: Eine Anleitung ist erst abgesichert, wenn der Klickpfad in BC funkti
 2. `playwright/projects/fibu-book5/CURRENT-STATE.md`
 3. `playwright/projects/fibu-book5/README.md`
 4. `playwright/projects/fibu-book5/ARTIFACT-GOVERNANCE.md`
-5. `playwright/projects/fibu-book5/WORKAROUNDS-AND-ERRORS.md`
-6. `playwright/FINDINGS.md`
-7. relevante Buchstelle in `FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md`
+5. `playwright/projects/fibu-book5/LAB-FIT-STATUS.md`
+6. `playwright/projects/fibu-book5/WORKAROUNDS-AND-ERRORS.md`
+7. `playwright/FINDINGS.md`
+8. relevante Buchstelle in `FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md`
 
 ## Aktueller fachlicher Stand
 
@@ -91,6 +92,7 @@ Der aktuelle Handover-Stand enthaelt:
 - explizite Commit-/Push-Regel: jeder Push muss eine arbeitsfaehige Uebergabe garantieren
 - explizite Projektmission: Buch lernen, Business Central lernen, Playwright lernen und Buch erweitern
 - allgemeine Screenshot-Helfer fuer Teaching Tips und FactBox/Infobox
+- `LAB-FIT-STATUS.md` als blockuebergreifende Prozesslandkarte
 
 Der vorherige fachliche O2C-Nachweis ist:
 
@@ -182,6 +184,7 @@ Danach `.env` mit der konkreten Business-Central-URL fuellen.
 |---|---|
 | `playwright/projects/fibu-book5/testdata/sales/uat-o2c-001.json` | Zielwerte fuer O2C |
 | `playwright/projects/fibu-book5/tests/uat-o2c-001-sales-order.spec.ts` | aktueller O2C-Test |
+| `playwright/projects/fibu-book5/LAB-FIT-STATUS.md` | blockuebergreifende Prozesslandkarte |
 | `playwright/projects/fibu-book5/evidence/uat-o2c-001/045-target-vs-labor-delta.md` | harter Soll-Ist-Abgleich |
 | `playwright/projects/fibu-book5/WORKAROUNDS-AND-ERRORS.md` | bekannte Fehler und Loesungen |
 | `playwright/projects/fibu-book5/MICROSOFT-DOC-VALIDATION.md` | offizieller Doku-Abgleich |

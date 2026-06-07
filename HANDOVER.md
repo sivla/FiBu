@@ -33,6 +33,7 @@ Eine Anleitung gilt erst als belastbar, wenn sie funktioniert, bebildert ist, ih
 | `FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md` | aktuelles Buch 5 |
 | `playwright/core/` | wiederverwendbare Business-Central-Helfer |
 | `playwright/projects/fibu-book5/` | aktuelle Tests, Testdaten und Projektdoku für Buch 5 |
+| `playwright/projects/fibu-book5/LAB-FIT-STATUS.md` | blockuebergreifende Prozesslandkarte fuer Foundation, Stammdaten, Posting, Tax/VAT, O2C und weitere Buchbereiche |
 | `playwright/BC-LEARNING-MODEL.md` | Lernmodell für Business Central durch Playwright-Nutzung |
 | `playwright/FINDINGS.md` | offene Fundstellen aus Screenshots und Tests |
 | `playwright/projects/fibu-book5/UI-INVENTORY.md` | Nachweis der gesehenen, geklickten und verstandenen BC-Funktionen |
