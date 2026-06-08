@@ -595,3 +595,25 @@ Bewertung:
 Das ist ein idealer Lernfall fuer Anfaenger: Der Bericht ist nicht falsch, sondern zeigt die Folge der gebuchten Laborposten. Wer Lagerbewertung versteht, muss Artikelposten, Wertposten, Stichtag, Lagerortfilter und Anfangsbestand zusammen lesen. Die erklaerende Kette ist jetzt dokumentiert. Der naechste Schritt ist nicht sofort Warehouse oder neue O2C-Buchung, sondern der Zielbestandsplan: Wie bekommt `RM-M100` vor finalen Buchbildern einen belegten positiven Zugang?
 
 Folgeentscheidung aus `INVENTORY-004`: Fuer stabile Buchbilder ist ein klar markierter Trainings-/Opening-Balance-Zugang `RM-M100 +2` in `FRA-ZL` der kleinste kontrollierte naechste Schritt. Einkauf von `RM-M100` passt fachlich schlechter, Assembly gehoert in einen anderen Prozess, und Manufacturing/Output bleibt der spaetere echte End-to-End-Nachweis fuer Maschinenfertigung.
+
+## FIND-BC-INV-002 Item Journal kann Zielbestand vorbereiten, aber Preview/Check muss vor Buchung geklaert sein
+
+| Feld | Wert |
+|---|---|
+| Status | offen bis Buchungsfreigabe; Draft-Lernfall erledigt |
+| Projekt | fibu-book5 |
+| Testfall | `INVENTORY-006` |
+| Screenshot | `playwright/projects/fibu-book5/img/inventory-006-010-target-journal-line-before-post.png` |
+| Evidence | `playwright/projects/fibu-book5/evidence/inventory-006/README.md`, `playwright/projects/fibu-book5/evidence/inventory-006/INVENTORY-006-TARGET-STOCK-DRAFT-result.json`, `playwright/projects/fibu-book5/evidence/inventory-006/010-target-journal-line-controls.json` |
+| BC-Seite | `Item Journals`, Page `40` |
+| sichtbarer Text / Werte | `Positive Adjmt.`, `INV006-*`, `RM-M100`, `FRA-ZL`, Menge `2`, `PCS`, Unit Amount/Amount/Unit Cost `42.000,00`/`84.000,00`, `PRODUCTLINE=MACHINE` im Dimensionsdialog |
+| Elementtyp | Inventory Journal / positiver Trainingsbestand / Vorabkontrolle |
+| erste Hypothese | Der kleinste kontrollierte Weg zum positiven `RM-M100`-Bestand ist eine positive Anpassung im Item Journal, aber vor Buchung braucht es eine belastbare Kontrolle. |
+| Recherchequelle | praktischer Playwright-Lauf `npm run fibu:inventory:target-stock-draft` |
+| Testergebnis | Die Zielzeile kann vorbereitet werden, BC zieht Mengen-, Betrags- und Kostenwerte plausibel, `PRODUCTLINE=MACHINE` ist vor Buchung sichtbar. `Post` ist sichtbar; `Preview Posting` wurde im stabilen Preflight nicht als nutzbare Aktion nachgewiesen. Der Test bucht nicht und loescht den Draft ueber `Weitere Optionen anzeigen` -> `Zeile loeschen`. |
+| Entscheidung | Buch ergaenzen: Ein Journal-Draft ist noch kein Bestand. Leser muessen Zielwerte, Dimension und Vorabkontrolle pruefen, bevor sie buchen. Rechts liegende Felder wie `Applies-to Entry` duerfen nicht blind mit Kostenwerten gefuellt werden. |
+| Buchstelle | Kapitel 13 Inventory/Warehouse, Kapitel 23 Inventory Costing und Lagerbewertung |
+
+Bewertung:
+
+Das ist ein sehr guter Anfaenger-Lernfall. Die Zeile sieht fachlich einfach aus, aber BC-Journale haben viele Spalten mit unterschiedlicher Bedeutung. `Unit Cost` ist eine Bewertungsinformation; `Applies-to Entry` ist eine Zuordnungs-/Ausgleichsspalte. Wer dort den Kostenwert eintraegt, erzeugt einen Zeilenfehler statt einer besseren Bewertung. Fuer die naechste Buchung braucht das Projekt deshalb einen bewusst dokumentierten Kontrollpunkt: entweder eine stabile Vorschau, ein Journal-Check oder eine andere fachlich akzeptierte Vorabpruefung.

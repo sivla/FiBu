@@ -1,0 +1,77 @@
+{
+  "testId": "INVENTORY-006",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "dataBasis": "CRONUS USA",
+  "mode": "controlled-draft-no-posting",
+  "documentNo": "INV006-595117",
+  "target": {
+    "id": "INVENTORY-004",
+    "purpose": "Zielbestandsplan fuer stabile finale RM-M100-Buchbilder",
+    "status": "planned-only-no-posting",
+    "company": "RM-DEMO",
+    "environment": "MCP_1_20260210",
+    "itemNo": "RM-M100",
+    "locationCode": "FRA-ZL",
+    "recommendedPath": "opening-balance-for-training-before-final-o2c-screenshots",
+    "quantityToAdd": 2,
+    "unitCost": 42000,
+    "expectedPositiveValue": 84000,
+    "currentKnownOutflow": {
+      "sourceProcess": "UAT-O2C-001",
+      "postedSalesInvoiceNo": "PS-INV103297",
+      "itemLedgerEntryNo": "792",
+      "quantity": -1,
+      "costAmount": -42000
+    },
+    "expectedAfterCurrentOutflow": {
+      "remainingQuantity": 1,
+      "remainingValue": 42000
+    },
+    "dimension": {
+      "PRODUCTLINE": "MACHINE"
+    },
+    "boundaries": [
+      "Planungswert, noch keine BC-Buchung.",
+      "Nur CRONUS-USA-Laborfit, kein deutscher Kontenplan-Endstand.",
+      "Anfangsbestand ist Trainings-/Opening-Balance-Logik, kein Manufacturing-Nachweis.",
+      "Manufacturing fuer RM-M100 bleibt spaeterer eigener Prozessblock."
+    ],
+    "nextEvidenceId": "INVENTORY-005"
+  },
+  "factBoxHidden": true,
+  "preCleanupDeletedDocuments": [],
+  "targetVisible": true,
+  "unitCostVisible": true,
+  "acceptedGridValues": {
+    "documentNo": true,
+    "itemNo": true,
+    "locationCode": true,
+    "quantity": true,
+    "unitCost": true
+  },
+  "pageHasError": false,
+  "productlineMachineVisible": true,
+  "clickedDimensions": true,
+  "previewVisible": false,
+  "postVisible": true,
+  "mayPost": false,
+  "posted": false,
+  "cleanup": {
+    "attempted": true,
+    "cleaned": true,
+    "documentNoStillVisible": false
+  },
+  "proves": [
+    "Eine Ziel-Journalzeile fuer RM-M100 +2 in FRA-ZL kann im Item Journal vorbereitet werden, sofern targetVisible true ist.",
+    "Der Lauf prueft vor einer Buchung bewusst Dimension und Preview-Moeglichkeit.",
+    "Es wurde nicht gebucht, weil die Vorbedingungen fuer eine saubere Evidence-Buchung nicht vollstaendig erfuellt sind."
+  ],
+  "doesNotProve": [
+    "Kein positiver Bestand wurde erzeugt.",
+    "Keine Artikelposten, Wertposten oder Sachposten wurden erzeugt.",
+    "Keine korrigierte Inventory Valuation.",
+    "Kein deutscher Finalnachweis."
+  ],
+  "nextStep": "Dimension/Preview-Pfad im Item Journal weiter klaeren oder alternativen kontrollierten Bestandszugang suchen, bevor gebucht wird."
+}

@@ -187,6 +187,20 @@ Jeder Eintrag muss außerdem gegen die betroffene Buchstelle geprüft werden. We
 | Pruefung nach Korrektur | `npm run fibu:uat:o2c` wurde erneut ausgefuehrt. Ergebnis: `openedPreview = true`, `oldInventoryPostingErrorPresent = false`, `openedPostingChoiceDialog = false`, `noPostingCommittedByTest = true`. Die Vorschau zeigt `G/L Entry = 4`, `Cust. Ledger Entry = 1`, `Item Ledger Entry = 1`, `Detailed Cust. Ledg. Entry = 1`, `Value Entry = 1`. |
 | Buchwirkung | Die O2C-Anleitung braucht vor dem Buchungsschritt einen Fehler-/Pruefhinweis: Wenn die Buchungsvorschau auf `Inventory Posting Setup` stoppt, fehlt nicht der Auftrag, sondern eine Kontenfindung fuer Bestand. Leser lernen dadurch, warum Lagerort und Lagerbuchungsgruppe buchungsrelevant sind. |
 | Status | Laborfix praktisch bestaetigt: Ursache diagnostiziert, `Inventory Account = 14140` gesetzt, alter Fehler verschwunden, Posting Preview sichtbar. Kein deutscher Kontenplan-Endstand und keine echte Buchung. |
+
+## WK-BC-INV-001 Item-Journal-Spalte `Applies-to Entry` nicht mit `Unit Cost` verwechseln
+
+| Feld | Wert |
+|---|---|
+| Status | geloest als Tool-/Anfaenger-Lernfall; keine Buchung |
+| Testfall | `INVENTORY-006` |
+| Situation | Fuer den geplanten positiven Trainingsbestand `RM-M100 +2` in `FRA-ZL` wurde eine Item-Journal-Zeile vorbereitet. |
+| Symptom | Ein frueher Probeversuch schrieb `42000` in die rechts liegende Spalte `Applies-to Entry`. BC markierte die Zeile mit Fehlerhinweis statt daraus einen korrekten Kostenwert zu machen. |
+| Ursache | Die Spalten im Item Journal liegen horizontal dicht nebeneinander. `Unit Cost` ist eine Bewertungs-/Kosteninformation; `Applies-to Entry` ist eine Zuordnungs-/Ausgleichsspalte und erwartet keinen Kostenbetrag. Blindes Feldindex-Fuellen ist hier gefaehrlich. |
+| Warum BC so reagiert | BC validiert Journalfelder fachlich. Ein Wert in `Applies-to Entry` wird als Postenbezug interpretiert, nicht als Kostenpflege. |
+| Loesung | Der stabile Lauf fuellt nur Posting Date, Entry Type, Document No., Item No., Location Code und Quantity. BC setzt `PCS`, Unit Amount, Amount und Unit Cost automatisch. Cleanup erfolgt ueber `Weitere Optionen anzeigen` -> `Zeile loeschen`, nicht ueber globales `Escape` oder `Ctrl+Delete`. |
+| Pruefung nach Korrektur | `npm run fibu:inventory:target-stock-draft` laeuft gruen. Evidence zeigt `targetVisible=true`, `unitCostVisible=true`, `productlineMachineVisible=true`, `posted=false`, `cleanup.cleaned=true`. |
+| Buchwirkung | Die Klickanleitung muss Journalspalten erlaeutern: Kostenwerte nicht in `Applies-to Entry` eintragen; vor Buchung Zielwerte und Dimension pruefen; erst nach stabiler Vorabkontrolle buchen. |
 | Kuenftige Regel | `Preview Posting` ist Pflicht vor jeder echten Buchung. Ein Preview-Fehler wird als Lernbild dokumentiert und erst fachlich geloest; er wird nicht durch zufaelliges Wegklicken oder direkte Buchung umgangen. |
 
 ## WK-BC-O2C-010 Dimension im Auftrag ist eigener Nachweis, nicht nur Stammdatenannahme

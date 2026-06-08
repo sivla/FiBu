@@ -125,6 +125,12 @@ Fuer `UAT-O2C-001` fasst `playwright/projects/fibu-book5/evidence/uat-o2c-001/RE
 | `playwright/projects/fibu-book5/img/inventory-005-010-item-journal-direct.png` | guter Labor-Readiness-Kandidat | Page `40` zeigt `Item Journals`, Batch Name, `Post` sowie Zeilenfelder wie Posting Date, Entry Type, Document No., Item No., Location Code, Quantity, Unit Cost und Applies-to Entry. FactBox ist eingeklappt, breite Layoutansicht ist aktiv. Eine leere/default Tabellenzeile ist sichtbar, aber kein Zielartikel `RM-M100`. | Als Buch-/Lernbild fuer den kontrollierten Einstieg in positive Bestandsbewegungen geeignet. Nicht als Buchungsnachweis verwenden: keine Zielzeile, keine Preview-Wirkung, keine Postenspur. |
 | `playwright/projects/fibu-book5/img/inventory-005-020-item-journals-tell-me.png` | Navigationsbild | Tell-Me wurde mit `Item Journals` genutzt und zeigt den Einstieg ohne Enter-Fallback. | Als Navigationsbild nutzbar, wenn das Buch die Suche erklaert. Der technische Folgeprozess sollte weiterhin die belegte Page-ID oder einen eindeutig gewaehlten Treffer nutzen. |
 
+## `INVENTORY-006` Screenshot Review
+
+| Screenshot | Bewertung | Befund | Entscheidung |
+|---|---|---|---|
+| `playwright/projects/fibu-book5/img/inventory-006-010-target-journal-line-before-post.png` | guter Labor-Draft-Kandidat | Breite Layoutansicht zeigt `Item Journals` mit Zielzeile `INV006-*`, Posting Date `08.06.2026`, `RM-M100`, `Standardmaschine M100`, `FRA-ZL`, Menge `2` und `PCS`. Unit Amount/Amount/Unit Cost liegen weiter rechts und sind in `010-target-journal-line-controls.json` belegt. | Als Lernbild fuer den kontrollierten Journal-Draft geeignet. Nicht als Buchungs- oder Bestandsnachweis verwenden: keine Preview Posting, keine Postenspur, keine Lagerbewertungskorrektur, Cleanup danach erfolgt. |
+
 ## Harte Findings aus dem Review
 
 ### QA-O2C-001 Listenbild zeigt nicht den Buchfall
