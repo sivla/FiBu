@@ -89,7 +89,7 @@ Wenn das Projekt fertig ist, kennen wir Business Central für den Buchumfang nic
 
 | Reihenfolge | Ziel |
 |---:|---|
-| 1 | Negativen `RM-M100`-Wert aus `Inventory Valuation` als Lernfall erklaeren: Bestand vor Verkauf, Kostenkette und finaler Zielbestand |
+| 1 | Zielbestandsplan fuer finale `RM-M100`-Buchbilder formulieren: Anfangsbestand, Einkauf, Montage oder Fertigung als positiver Zugang vor Verkauf |
 | 2 | `REPORTING-002`: Financial Reports/Dimension Perspective gezielt fuer `PRODUCTLINE=MACHINE` und `CHANNEL=B2B` weiterfuehren |
 | 3 | G/L Entry Dimensions zu `PS-INV103297` read-only pruefen, ohne neue O2C-Buchung |
 | 4 | Steuerfit: CRONUS-USA-Probelauf weiter vom deutschen Ziel-Fall `19 %` trennen |

@@ -1,0 +1,61 @@
+{
+  "testId": "INVENTORY-003",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "dataBasis": "CRONUS USA",
+  "mode": "read-only-evidence-synthesis-no-posting",
+  "sourceEvidence": {
+    "inventoryValuation": "playwright/projects/fibu-book5/evidence/inventory-002/INVENTORY-VALUATION-result.json",
+    "inventoryTrace": "playwright/projects/fibu-book5/evidence/inventory-001/INVENTORY-LAB-TRACE-result.json",
+    "o2cPostingTrace": "playwright/projects/fibu-book5/evidence/uat-o2c-001/082-posting-entry-trace.json",
+    "p2pPostingTrace": "playwright/projects/fibu-book5/evidence/p2p-001/160-posting-trace-summary.json"
+  },
+  "observedInventoryValuation": {
+    "asOfDate": "08.06.2026",
+    "itemFilter": "RM-M100|RAW-STEEL",
+    "locationFilter": "FRA-ZL",
+    "rawSteelInventoryValue": "25.000,00",
+    "rmM100InventoryValue": "-42.000,00",
+    "totalInventoryValue": "-17.000,00"
+  },
+  "explainedByPostedEntries": {
+    "rawSteel": {
+      "sourceProcess": "UAT-P2P-001",
+      "postedPurchaseInvoiceNo": "108219",
+      "itemLedgerEntryNo": "793",
+      "itemNo": "RAW-STEEL",
+      "locationCode": "FRA-ZL",
+      "quantityVisible": "10",
+      "costEvidenceVisible": "25.000"
+    },
+    "rmM100": {
+      "sourceProcess": "UAT-O2C-001",
+      "salesOrderNo": "S-ORD101068",
+      "postedSalesInvoiceNo": "PS-INV103297",
+      "itemLedgerEntryNo": "792",
+      "itemNo": "RM-M100",
+      "locationCode": "FRA-ZL",
+      "quantityVisible": "-1",
+      "costAmountEvidence": "-42.000,00"
+    }
+  },
+  "interpretation": {
+    "isReportBug": false,
+    "negativeValueExplanation": "Der Bericht liest die vorhandene Artikel-/Wertpostenkette im Filterkontext. Fuer RM-M100 ist ein Abgang belegt, aber kein passender positiver Zugang oder Anfangsbestand in FRA-ZL in der aktuellen Evidence-Kette belegt.",
+    "beginnerLearning": "Negative Lagerbewertung ist ein Pruefsignal: Stichtag, Lagerortfilter, Artikelposten, Wertposten, Anfangsbestand und Prozessreihenfolge zusammen pruefen."
+  },
+  "proves": [
+    "Der negative RM-M100-Wert aus Inventory Valuation ist anhand vorhandener O2C-Postenspur erklaerbar.",
+    "RAW-STEEL und RM-M100 erzeugen zusammen die sichtbare Labor-Summe -17.000,00.",
+    "Fuer finale Buchbilder braucht RM-M100 vor dem Verkauf einen belegten positiven Bestand oder Zugang im gleichen Zielkontext."
+  ],
+  "doesNotProve": [
+    "Kein deutscher Kontenplan-Endstand.",
+    "Kein deutscher 19-Prozent-USt-Endstand.",
+    "Keine Kostenregulierung.",
+    "Keine Warehouse-Aktivierung.",
+    "Keine neue Buchung.",
+    "Keine finale Monatsabschluss-Abstimmung."
+  ],
+  "nextStep": "Zielbestandsplan fuer RM-M100 formulieren: Anfangsbestand, Einkauf, Montage oder Fertigung als sauberer positiver Zugang vor dem finalen O2C-Bildlauf."
+}

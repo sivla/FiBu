@@ -6905,6 +6905,8 @@ Lagerbewertung verbindet Artikelposten, Wertposten und Sachposten. Die monatlich
 
 Laborbefund aus `INVENTORY-002`: In `RM-DEMO` wurde der Bericht `Inventory Valuation` read-only mit `As Of Date = 08.06.2026`, Artikelfilter `RM-M100|RAW-STEEL` und `Location Filter = FRA-ZL` ausgefuehrt. Die Vorschau zeigt `RAW-STEEL` positiv mit `25.000,00`, `RM-M100` negativ mit `-42.000,00` und einen `Total Inventory Value` von `-17.000,00`. Das ist kein finaler deutscher Abschlusswert, sondern ein Lernbild: Der Bericht bewertet die vorhandene Bewegungskette zum Stichtag. Ist ein Artikel im betrachteten Lagerort negativ, muss der Leser nicht den Bericht korrigieren, sondern Bestand, Zugang, Verkauf/Lieferung, Wertposten und Kostenkette pruefen.
 
+Die vorhandene Labor-Postenspur erklaert den Wert: `RAW-STEEL` kam ueber die gebuchte Einkaufsrechnung `108219` mit Artikelposten `793`, Menge `10` und Wertbezug `25.000,00` positiv nach `FRA-ZL`. `RM-M100` ging ueber die gebuchte Verkaufsrechnung `PS-INV103297` mit Artikelposten `792`, Menge `-1` und Kostenbezug `-42.000,00` aus `FRA-ZL` ab. Ein passender positiver Zugang oder Anfangsbestand fuer `RM-M100` ist in der aktuellen Evidence-Kette nicht belegt. Deshalb ist `-17.000,00` keine Berichtspanne, sondern ein Warnsignal fuer den Trainingsdatenstand: Vor finalen Buchbildern braucht `RM-M100` einen sauberen Zugang, zum Beispiel Anfangsbestand, Einkauf, Montage oder Fertigung.
+
 Fuer eine belastbare Buchanleitung gehoeren deshalb drei Bilder zusammen: die Request Page mit Stichtag, Item- und Lagerortfilter; die Berichtsvorschau; und die Postenspur aus Artikelposten/Wertposten. Erst wenn diese drei Ebenen zusammenpassen, darf der Lagerwert als fachlicher Nachweis verwendet werden.
 
 | Thema | Prüfung |

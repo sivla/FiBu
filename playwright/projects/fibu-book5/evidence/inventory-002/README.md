@@ -12,11 +12,12 @@ Status: Labor-Nachweis, read-only, keine Buchung.
 | `inventory-002-030-inventory-valuation-preview.screenshot.json` | Screenshot-Metadaten | Screenshot-Zweck, Status und Grenzen fuer die Berichtsvorschau. | Kein finaler DE-Abschlussnachweis. | labor |
 | `INVENTORY-VALUATION-result.json` | JSON-Evidence | Filter, UI-Status und sichtbare Werte: `RAW-STEEL = 25.000,00`, `RM-M100 = -42.000,00`, `Total Inventory Value = -17.000,00`. | Keine Buchung, keine Warehouse-Aktivierung, keine deutsche Finalbewertung. | labor |
 | `INVENTORY-VALUATION.md` | Lernzusammenfassung | Warum Stichtag, Item-Filter und Lagerortfilter fuer Lagerbewertung wichtig sind. | Keine allgemeine BC-Regel ohne Laborbezug. | labor |
+| `../inventory-003/INVENTORY-NEGATIVE-RM-M100.md` | Folge-Erklaerung | Warum `RM-M100` im Labor negativ bewertet wird und welche Postenspur das erklaert. | Keine neue BC-Ausfuehrung, kein finaler deutscher Zielbestand. | labor |
 
 ## Aktuelle Wahrheit
 
-`Inventory Valuation` rendert in `RM-DEMO` mit `As Of Date = 08.06.2026`, `No. = RM-M100|RAW-STEEL` und `Location Filter = FRA-ZL` eine read-only Berichtsvorschau. Der Bericht zeigt `RAW-STEEL` positiv, `RM-M100` negativ und eine negative Summe. Das ist ein starker Lernfall fuer Lagerbewertung, aber kein finaler deutscher Abschlusszustand.
+`Inventory Valuation` rendert in `RM-DEMO` mit `As Of Date = 08.06.2026`, `No. = RM-M100|RAW-STEEL` und `Location Filter = FRA-ZL` eine read-only Berichtsvorschau. Der Bericht zeigt `RAW-STEEL` positiv, `RM-M100` negativ und eine negative Summe. `INVENTORY-003` erklaert diesen Wert aus der vorhandenen O2C-/P2P-Postenspur: `RAW-STEEL` hat einen belegten positiven Zugang, `RM-M100` einen belegten Abgang, aber keinen belegten positiven Zugang im aktuellen Filterkontext. Das ist ein starker Lernfall fuer Lagerbewertung, aber kein finaler deutscher Abschlusszustand.
 
 ## Naechster Schritt
 
-Den negativen Laborwert fuer `RM-M100` fachlich untersuchen: Anfangsbestand, Einkauf vor Verkauf, Kostenkette und ob finale Buchbilder zuerst einen sauberen Bestand fuer `RM-M100` brauchen.
+Einen Zielbestandsplan fuer finale Buchbilder formulieren: Wie entsteht `RM-M100` vor dem Verkauf sauber positiv, z. B. Anfangsbestand, Einkauf, Montage oder Fertigung, bevor Warehouse oder Manufacturing praktisch gestartet werden.
