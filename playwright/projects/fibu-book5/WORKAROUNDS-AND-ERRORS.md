@@ -30,6 +30,17 @@ Jeder Eintrag muss außerdem gegen die betroffene Buchstelle geprüft werden. We
 | Buchwirkung | Kapitel 12 wurde ergänzt: Der P2P-Fall startet nicht direkt mit der Bestellung, sondern braucht zuerst Kreditoren- und Artikel-Readiness. Ein fehlendes Posting-/Template-Setup ist kein Bedienfehler des Einkäufers. |
 | Künftige Regel | Vor P2P-Preview oder Buchung immer erst Readiness prüfen: Kreditor, Artikel, Lagerort, Postinggruppen, Kosten, Steuer-/Tax-Setup und Cleanup-Strategie. |
 
+## WK-BC-P2P-002 Vendor Invoice No. fehlt vor Preview/Buchung
+
+| Feld | Wert |
+|---|---|
+| Problem | Der erste P2P-Preview-Versuch fuer Bestellung `106036` stoppte auf `Error Messages` statt `Posting Preview`. |
+| Sichtbarer Beleg | `playwright/projects/fibu-book5/evidence/p2p-001/095-preview-posting-page-text.txt` mit Meldung `You need to enter the document number of the document from the vendor in the Vendor Invoice No. field`; Screenshot `playwright/projects/fibu-book5/img/p2p-001-095-preview-posting.png` nach Korrektur. |
+| Ursache | Bei Einkaufsrechnungen erwartet BC die externe Belegnummer des Lieferanten. Sie verhindert, dass Rechnungen ohne Lieferantenreferenz gebucht oder spaeter nicht mehr eindeutig zugeordnet werden. |
+| Lösung | Die v2.0-Standard-API `purchaseOrders` enthaelt `vendorInvoiceNumber` nicht. Der Laborlauf setzt das Feld deshalb ueber ODataV4 `purchaseDocuments.vendorInvoiceNumber` und oeffnet danach Preview Posting erneut. |
+| Buchwirkung | Kapitel 12 muss `Kred.-Rechnungsnr.` / `Vendor Invoice No.` als Pflichtpruefung vor Preview und Buchung nennen. |
+| Künftige Regel | Bei BC-Pflichtfeldern pruefen, ob die Standard-API sie wirklich abdeckt. Falls nicht, Page-/OData-Service oder UI-Pfad dokumentieren; niemals die Fehlermeldung wegklicken und buchen. |
+
 ## WK-BC-O2C-001 Tell-Me-Suche als Screenshot, aber nicht als technische Navigation
 
 | Feld | Wert |

@@ -43,4 +43,4 @@ Ein P2P-Prozess kann erst sinnvoll geklickt werden, wenn Kreditor, Artikel, Lage
 
 ## Naechster Schritt
 
-UAT-P2P-001 Preview-Readiness: Einkaufsbestellung per UI/API erzeugen, Buchungsvorschau oeffnen, Setup-Blocker dokumentieren, danach Entwurf bereinigen; weiterhin nicht buchen.
+Historisch war der naechste Schritt der Preview-Posting-Lauf. Dieser wurde inzwischen ausgefuehrt und in `P2P-LAB-POSTING.md`, `100-purchase-posting-result.json` und `160-posting-trace-summary.json` dokumentiert. Diese Datei bleibt der Readiness-Nachweis vor der Buchung.

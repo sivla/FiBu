@@ -46,11 +46,11 @@ Deutsche `19 %` USt, deutscher Kontenplan, deutsche Steuerreports und finale deu
 | Standarddimension Artikel | 10, 11, 13, 25 | `RM-M100 -> PRODUCTLINE=MACHINE` | gesetzt; in Verkaufszeile und Artikelposten nachgewiesen | ja | ja, `masterdata-007`, O2C `050/089` | `done-labor` | P0 | Sachposten/Financial-Reports-Wirkung read-only pruefen. |
 | Debitor O2C | 7, 11, 19, 22 | `D10000 Mueller Maschinenbau GmbH`, EUR, Inland-B2B | existiert; EUR passt; Tax bleibt CRONUS-USA-Labor | ja, `customers.json`, `sales/uat-o2c-001.json` | ja, `masterdata-005`, O2C | `partial` | P0 | Deutsche VAT-Business-Logik nicht als erledigt markieren. |
 | Weitere Debitoren | 7, 17, 18, 22 | `D11000`, `D20000`, `D30000`, `D90000` | nur Buch-/Testdatenmodell | ja | nein | `planned-only` | P3 | Erst fuer Shop, EU, Export oder IC als eigener Block. |
-| Kreditor P2P | 7, 12, 19, 20 | `K10000 Stahlwerk Ruhr GmbH` | existiert in `RM-DEMO`; Vendor Template angewendet; Entwurf laeuft mit `USD` als CRONUS-Laborgrenze | ja, `vendors.json`, `purchase/uat-p2p-001.json`, `process-cases.json` | ja, `p2p-001` | `partial` | P0 | Im naechsten Lauf Preview Posting pruefen; deutscher EUR-/VAT-Fit bleibt offen. |
+| Kreditor P2P | 7, 12, 19, 20 | `K10000 Stahlwerk Ruhr GmbH` | existiert in `RM-DEMO`; Vendor Template angewendet; Laborbuchung `Receive and Invoice` erzeugt Einkaufsrechnung `108219`; Entwurf/Rechnung laufen mit `USD` als CRONUS-Laborgrenze | ja, `vendors.json`, `purchase/uat-p2p-001.json`, `process-cases.json` | ja, `p2p-001` | `partial` | P0 | Nicht erneut buchen; Payment/OP-Ausgleich oder DE-VAT-Fit spaeter pruefen. |
 | Weitere Kreditoren | 7, 12, 17, 18 | `K11000`, `K20000`, `K30000`, `K40000` | geplant | ja | nein | `planned-only` | P2-P3 | Nur pro Prozessbedarf anlegen. |
 | Artikel O2C | 7, 11, 13, 23 | `RM-M100`, Preis `68.000`, Kosten `42.000`, `PCS`, `RETAIL`, `RESALE`, `FURNITURE` | existiert und gebucht im Labor | ja, `items.json`, `sales/uat-o2c-001.json` | ja, `masterdata-005/006`, O2C | `done-labor` | P0 | Deutscher Product/VAT/Inventory-Fit bleibt Finalthema. |
 | Ersatzteilartikel | 7, 13, 15, 17 | `SP-PUMP-01`, `SP-SENSOR-02`, `KIT-MAINT` | nur geplant | ja | nein | `planned-only` | P1-P2 | Erst fuer Ersatzteilverkauf, Service oder Shop aufbauen. |
-| Rohmaterial | 7, 12, 14, 23 | `RAW-STEEL`, `COMP-CTRL` | `RAW-STEEL` existiert mit Kosten `2.500`, `PCS`, CRONUS-Technikfit `RETAIL`/`RESALE`/`FURNITURE`; `COMP-CTRL` bleibt geplant | ja | ja, `p2p-001` | `partial` | P1-P2 | P2P Preview Posting pruefen; danach Manufacturing-Erweiterung separat. |
+| Rohmaterial | 7, 12, 14, 23 | `RAW-STEEL`, `COMP-CTRL` | `RAW-STEEL` existiert mit Kosten `2.500`, `PCS`, CRONUS-Technikfit `RETAIL`/`RESALE`/`FURNITURE`; P2P-Wertposten und Artikelposten `793` sind belegt; `COMP-CTRL` bleibt geplant | ja | ja, `p2p-001` | `partial` | P1-P2 | Inventory/Lagerbewertung fuer `RAW-STEEL` read-only pruefen; Manufacturing-Erweiterung separat. |
 | Ressourcen | 7, 15, 16 | `RES-TECH` | nur geplant | ja, `resources-assets-projects.json` | nein | `planned-only` | P2 | Erst fuer Service/Project-Block. |
 | Anlage | 7, 21 | `FA-CNC-01` | nur geplant | ja | nein | `planned-only` | P2 | Vor Anlagenprozess Nummernserie, FA Posting Group und AfA-Buch pruefen. |
 | Projekt | 7, 16 | `PROJ-5001` | nur geplant | ja | nein | `planned-only` | P2 | Erst nach Ressourcen/Kunde/Projektsetup. |
@@ -59,7 +59,7 @@ Deutsche `19 %` USt, deutscher Kontenplan, deutsche Steuerreports und finale deu
 | Weitere Lagerorte | 7, 13, 15, 16 | `MZ-EINFACH`, `VAN-SERV`, `PROJ-LAG` | geplant | ja | nein | `planned-only` | P1-P2 | Bei Inventory/Service/Project gezielt anlegen. |
 | Lagerplaetze/Bins | 13 | Bins fuer gesteuertes Warehouse | nicht aufgebaut | nein | nein | `planned-only` | P1 | Erst nach einfachem P2P/Inventory-Fit. |
 | Customer Posting Setup | 9, 11, 19 | Forderungskonto fuer `D10000` | CRONUS-Laborfit funktioniert | teilweise | ja indirekt ueber O2C-Posten | `partial` | P0 | Deutsches Forderungskonto spaeter final pruefen. |
-| Vendor Posting Setup | 9, 12, 19 | Verbindlichkeitskonto fuer `K10000` | Vendor Template schliesst den Entwurfsblocker; konkrete Matrix/Konto nicht final sichtbar belegt | nein | ja indirekt, `p2p-001` | `partial` | P0 | Mit Preview Posting pruefen, ob Verbindlichkeits-/Sachpostenarten entstehen. |
+| Vendor Posting Setup | 9, 12, 19 | Verbindlichkeitskonto fuer `K10000` | Vendor Template schliesst den Entwurfsblocker; P2P-Sachposten zeigen im Labor `22100 Accounts Payable, Domestic` | nein | ja indirekt, `p2p-001` | `partial` | P0 | Deutsches Verbindlichkeitskonto spaeter final pruefen; im Labor nicht erneut buchen. |
 | General Posting Setup | 9, 11, 12 | Erlos, Aufwand, Wareneinsatz nach Business/Product Groups | O2C laeuft im CRONUS-Fit; deutsche Gruppen offen | teilweise | ja fuer O2C-Labor | `partial` | P0 | Fuer P2P und DE-Finalfit separate Matrix pruefen. |
 | VAT/Tax Posting Setup | 9, 11, 12, 22 | deutsche `19 %` USt/Vorsteuer | CRONUS-USA Sales Tax, `0 %` im O2C-Labor | nein fuer DE-Final | ja als Delta | `missing-setup` | P0 | DE-VAT-Readiness separat planen, nicht in US-Sales-Tax erzwingen. |
 | Inventory Posting Setup | 9, 11, 13, 23 | Bestandskonto je Lagerort/Inventory Group | `FRA-ZL` + `RESALE -> 14140` gesetzt | teilweise | ja, `masterdata-008/009` | `done-labor` | P0 | Nur CRONUS-Laborfit; kein deutscher Kontenplan-Endstand. |
@@ -69,7 +69,7 @@ Deutsche `19 %` USt, deutscher Kontenplan, deutsche Steuerreports und finale deu
 | Journale | 19, 20, 21, 24 | Zahlungs-, Fibu-, Anlagen- und Abschlussjournale | nicht gestartet | nein | nein | `planned-only` | P4 | Erst nach Prozessbelegen und Readiness. |
 | Workflows/Freigaben | 12, 20, 27, 29 | Einkauf, Zahlungen, AP-Automation, Genehmiger | Buchmodell, nicht Labor | nein | nein | `not-now` | P4 | Nach Standardprozessen, nicht vor P2P-Basis. |
 | O2C Evidence Pack | 11, 19, 23, 25 | Auftrag, Preview, gebuchte Rechnung, Posten, Dimension, Reporting | Labor weit belegt; Reporting/DE-USt offen | ja | ja | `partial` | P0/P4 | Keine zweite Buchung; Reporting/G/L-Dimension read-only nachziehen. |
-| P2P Evidence Pack | 12, 19, 22 | Bestellung, Wareneingang, Eingangsrechnung, Kreditorenposten, Sachposten, Vorsteuer | Readiness gestartet; Entwurfsbestellung mit Zeile moeglich und bereinigt | ja als Prozessfall | ja, `p2p-001` | `partial` | P0 | Naechster Lauf: Preview Posting ohne Buchung. |
+| P2P Evidence Pack | 12, 19, 22 | Bestellung, Wareneingang, Eingangsrechnung, Kreditorenposten, Sachposten, Vorsteuer | Laborprozess gebucht: Bestellung `106049`, gebuchte Einkaufsrechnung `108219`, Kreditorenposten, Sachposten, Wertposten und Artikelposten; Vorsteuer bleibt `0 %` | ja als Prozessfall | ja, `p2p-001` | `partial` | P0 | Keine zweite Buchung; Zahlung/OP-Ausgleich oder DE-VAT-Fit spaeter. |
 | Inventory/Warehouse Evidence Pack | 13, 23 | Artikelposten, Wertposten, Lagerbewertung, Bins/Picks | O2C-Artikel-/Wertposten belegt; Warehouse offen | teilweise | ja O2C | `partial` | P1 | Erst Inventory einfach, dann Warehouse gesteuert. |
 | Manufacturing/Assembly Evidence Pack | 14 | BOM/Routing/Production Order, Verbrauch, Output | nicht gestartet | teilweise | nein | `planned-only` | P2 | Nach P2P/Inventory. |
 | Service Evidence Pack | 15 | Serviceartikel, Serviceauftrag, Ressource, Ersatzteilverbrauch | nicht gestartet | teilweise | nein | `planned-only` | P2 | Nach Ersatzteil-/Ressourcenfit. |
@@ -89,8 +89,8 @@ Deutsche `19 %` USt, deutscher Kontenplan, deutsche Steuerreports und finale deu
 ## Empfohlene Build-Reihenfolge
 
 1. Aktuellen O2C-Laborbeleg nicht erneut buchen; `REPORTING-002` ist erledigt als Sichtbarkeitsbefund. Naechster Reporting-Schritt ist `Dimension Perspective`, `Dimensions - Detail` oder Analysis Views read-only.
-2. P2P-Readiness ist vorbereitet: `K10000`, `RAW-STEEL`, `FRA-ZL`, Vendor Template und CRONUS-Technikfit sind belegt.
-3. Einfachen P2P-Lauf mit Preview zuerst, weiterhin ohne Buchung; Buchung nur nach separater Readiness.
+2. P2P-Laborbuchung ist erledigt: `106049` -> `108219`. Nicht erneut buchen; naechster P2P-naher Schritt ist Zahlung/OP-Ausgleich oder Inventory/Lagerbewertung.
+3. Deutsche VAT-/EUR-/Kontenplan-Endstaende bleiben getrennte Finalaufgaben.
 4. Inventory einfach vertiefen: `SP-PUMP-01`, `RAW-STEEL`, Wertposten, Lagerbewertung, Kostenregulierung.
 5. Warehouse separat: `FRA-ZL` als gesteuertes Lager mit Bins, Receipts, Put-aways, Picks.
 6. Danach Manufacturing/Assembly, Service, Projects.
@@ -104,7 +104,7 @@ Deutsche `19 %` USt, deutscher Kontenplan, deutsche Steuerreports und finale deu
 | Welcher deutsche Kontenplan gilt spaeter fuer Maschinen, Bestand, Wareneinsatz, Forderungen und Verbindlichkeiten? | `14140` ist nur CRONUS-Laborfit. | offen fuer DE-Final |
 | Wird die deutsche 19-%-USt in neuer deutscher Umgebung oder in `RM-DEMO` mit explizitem VAT-Setup belegt? | CRONUS-USA Sales Tax darf nicht umgedeutet werden. | offen |
 | Welche Dimensionen werden globale/Shortcut-Dimensionen? | Entscheidend fuer sichtbare Spalten, Filter und Financial Reports. | offen |
-| Welche P2P-Buchung wird zuerst erlaubt: nur Preview oder kontrollierte Laborbuchung? | Verhindert falsche Kreditoren-/Vorsteuerbuchungen. | offen |
+| Welche P2P-Buchung wird zuerst erlaubt: nur Preview oder kontrollierte Laborbuchung? | Verhindert falsche Kreditoren-/Vorsteuerbuchungen. | beantwortet fuer Labor: genau eine Buchung `106049` -> `108219`; weitere Buchungen gesperrt |
 | Welche Reporting-Auswertung ist der erste Buchnachweis: `Income Statement`, `Revenue`, Analysis View oder G/L Entries Filter? | Bestimmt Screenshots und Anfaengererklaerung. | offen |
 
 ## Nicht jetzt

@@ -58,6 +58,7 @@ Definition: Eine Anleitung ist erst abgesichert, wenn der Klickpfad in BC funkti
 | Dimension im Auftrag | `PRODUCTLINE=MACHINE` und `CHANNEL=B2B` sind im Zeilen-Dimensionsdialog nachgewiesen |
 | Standarddimensionen-UI | Page `540` zeigt `PRODUCTLINE=MACHINE` am Artikel und `CHANNEL=B2B` am Debitor als UI-Laborbild |
 | Buchungsvorschau und Laborbuchung | `Preview Posting` wurde nach `MASTERDATA-009` erneut erreicht und zeigt echte Vorschauzeilen: `G/L Entry = 4`, `Cust. Ledger Entry = 1`, `Item Ledger Entry = 1`, `Detailed Cust. Ledg. Entry = 1`, `Value Entry = 1`; danach wurde genau eine CRONUS-USA-Laborbuchung mit `Ship and Invoice` ausgefuehrt: Auftrag `S-ORD101068`, gebuchte Verkaufsrechnung `PS-INV103297` |
+| Procure-to-Pay | `UAT-P2P-001` wurde als CRONUS-USA-Laborprozess gebucht: Bestellung `106049`, Option `Receive and Invoice`, gebuchte Einkaufsrechnung `108219`; Preview zeigte `G/L Entry = 4`, `Vendor Ledger Entry = 1`, `Detailed Vendor Ledg. Entry = 1`, `Item Ledger Entry = 1`, `Value Entry = 1`; Postenspur zeigt Kreditorenposten, Sachposten, Wertposten und Artikelposten `793` |
 | Reporting / Financial Reports | `REPORTING-001` oeffnet `Financial Reports` read-only ueber Tell-Me in der Gruppe `Berichte und Analysen`; Liste zeigt u. a. `Balance Sheet`, `Income Statement` und `Revenue`; Dimensionsfilter/PRODUCTLINE-Summenwirkung ist noch offen |
 | Inventory Posting Setup | Page `5826` zeigt die Zielkombination `FRA-ZL` + `RESALE`; `MASTERDATA-009` hat fuer den CRONUS-Laborfit `Inventory Account = 14140` gesetzt |
 | Bildablage | Projektbilder liegen unter `playwright/projects/fibu-book5/img/`; Root-`img/` ist keine Sammelstelle mehr |
@@ -125,6 +126,7 @@ Letzter echter Fortschritt:
 - Der erneute O2C-Lauf bestaetigt den Fit: `oldInventoryPostingErrorPresent = false`, `openedPreview = true`, `openedPostingChoiceDialog = false`, `noPostingCommittedByTest = true`.
 - `evidence/masterdata-009/012-o2c-setup-fit-checklist.md` dokumentiert den aktuellen O2C-Setup-Fit fuer Stammdaten, Posting Groups, Tax/VAT, Dimensionen, Waehrung, Lagerort, Nummernserien/API-Anlage, Cleanup und Preview-Status.
 - `evidence/uat-o2c-001/O2C-LAB-FINAL-SYNC.md` fasst den finalen aktuellen O2C-Laborstand zusammen: keine neue Buchung, `S-ORD101068` -> `PS-INV103297`, Postenspur, `PRODUCTLINE=MACHINE` am Artikelposten, offene Sachposten-/Reportingdimensionen und offene deutsche 19-%-USt.
+- `UAT-P2P-001` hat den ersten Einkaufslaborprozess gebucht: Bestellung `106049` -> gebuchte Einkaufsrechnung `108219`. Vor der Preview musste `Vendor Invoice No.` gesetzt werden; die v2.0-Standard-API kann das Feld nicht patchen, ODataV4 `purchaseDocuments` schon. Preview zeigte echte Vorschauarten, danach wurde genau einmal `Receive and Invoice` bestaetigt. Postenspur: Kreditorenposten sichtbar, Sachposten mit `22100` und `14140`, Wertposten mit `RAW-STEEL` und `Item Ledger Entry No. = 793`, Artikelposten `793` sichtbar. P2P bleibt CRONUS-USA-Labor: `USD`, `Tax Percent = 0`, keine deutsche 19-%-Vorsteuer, `PRODUCTLINE=MACHINE` nicht in P2P-Posten sichtbar.
 - `FINDINGS.md`, Coverage, Workarounds, Screenshot-QA und Buchtext sind auf diesen Laborstand synchronisiert.
 
 ## Aktuelle O2C-Wahrheit
@@ -183,7 +185,7 @@ Als naechstes gezielt den naechsten Lernblock waehlen, ohne erneut zu buchen:
 2. Die Postenspur nicht erneut buchen; `PS-INV103297` ist der Laborbeleg.
 3. O2C ist im CRONUS-Labor bis gebuchte Rechnung, Postenspur, Artikelposten und Artikelposten-Dimension nachgewiesen.
 4. Stammdaten- und Setup-Folgearbeit aus `MASTERDATA-BACKLOG.md` ableiten, damit neue Prozesse nicht mit fehlenden Kreditoren, Artikeln, Dimensionswerten, Posting Groups oder Tax/VAT-Annahmen starten.
-5. `UAT-P2P-001` Readiness ist gelaufen: `K10000`, `RAW-STEEL` und `FRA-ZL` existieren; Vendor Template wurde angewendet; `RAW-STEEL` nutzt als CRONUS-Technikfit `RETAIL`/`RESALE`/`FURNITURE`; eine temporaere Einkaufsbestellung mit Zeile `RAW-STEEL`, Menge `10`, `Direct Unit Cost = 2500` wurde angelegt und geloescht.
+5. `UAT-P2P-001` ist nach Readiness und Preview genau einmal im Labor gebucht: Bestellung `106049`, gebuchte Einkaufsrechnung `108219`, `Receive and Invoice`; Postenspur ist read-only belegt. Keine zweite P2P-Buchung ohne neuen ausdruecklichen Grund.
 6. `REPORTING-002` hat Financial Reports und O2C-Posten read-only geprueft: `PRODUCTLINE=MACHINE` und `CHANNEL=B2B` sind am Artikelposten `Entry No. 792` sichtbar, aber nicht in den aktuellen Sachposten-/Financial-Reports-Texten; Financial Reports zeigt `Dimension Perspective`, `Column Definition` und Reports `Income Statement`, `Revenue`, `Balance Sheet`.
 7. Deutsche `19 %`-USt bleibt davon getrennt offen.
 
@@ -195,7 +197,7 @@ Synchronisationsstand nach der letzten Projektwahrheits-Pruefung:
 - Finaler DE-Nachweis offen: deutsche Oberflaeche, 19-%-USt, deutsche Buchung und deutsche Postenspur.
 - Blockiert/offen: kein Inventory-Posting-Setup-Blocker mehr; direkter Artikelposten-Check ist geloest ueber `Item Ledger Entry No. = 792`; `PRODUCTLINE=MACHINE` und `CHANNEL=B2B` sind am Artikelposten nachgewiesen; Reporting-Seite ist erreichbar und zeigt Dimension-/Analyseoptionen, aber `PRODUCTLINE`/`CHANNEL` sind im aktuellen Financial-Reports-Lauf nicht sichtbar nutzbar; offen bleiben Steuer-/VAT-Fit, Sachposten-Dimensionsdialog/Dimension-Set-Nachweis, Reporting-Auswertungsnachweis und finale deutsche Nachweise.
 - Dimensionen: O2C-Kerndimensionen und Default Dimensions sind praktisch nachgewiesen; vollstaendige Buchstandard-Dimensionsmatrix ist noch nicht fertig.
-- Nicht geprueft: P2P-Preview-Posting, P2P-Buchung/Wareneingang/Eingangsrechnung, Zahlungen, echte Financial-Reports-Zahlenwirkung nach Dimension.
+- Nicht geprueft: P2P-Zahlung/OP-Ausgleich, deutsche P2P-19-%-Vorsteuer, P2P-Dimensionen in Posten, echte Financial-Reports-Zahlenwirkung nach Dimension.
 
 ## Befehle fuer neue Agents
 
