@@ -217,6 +217,21 @@ Jeder Eintrag muss außerdem gegen die betroffene Buchstelle geprüft werden. We
 | Buchwirkung | Fuer dieses Bild ist die rechte Infobox kein Stoerer, sondern der Nachweis. Die Anleitung muss erklaeren, wann FactBox einklappen sinnvoll ist und wann sie bewusst sichtbar bleiben muss. |
 | Kuenftige Regel | Tabellenbilder: FactBox einklappen, wenn sie Spalten verdraengt. Kontrollbilder: FactBox sichtbar lassen, wenn dort der fachliche Status steht. Cleanup nie nur ueber globale Tasten absichern. |
 
+## WK-BC-INV-003 Journal-Check-Zaehler und Current-line-Status getrennt lesen
+
+| Feld | Wert |
+|---|---|
+| Status | geloest als Tool-/Anfaenger-Lernfall; Laborbuchung `INV008-899959` danach erfolgreich |
+| Testfall | `INVENTORY-008` |
+| Situation | Vor der kontrollierten positiven Item-Journal-Laborbuchung sollte der Test erneut einen Preflight sichern. |
+| Symptom | Ein erster `INVENTORY-008`-Lauf zeigte die fachlich richtige Zielzeile, aber die FactBox-Kachel blieb auf `0 Lines checked`, obwohl `Current line: No issues found` sichtbar war. Ein zweiter Lauf las den Zustand zu frueh, waehrend BC die Zeile noch speicherte. |
+| Ursache | Business Central speichert Journalzeilen automatisch und aktualisiert FactBox-Kacheln asynchron. Der globale Zaehler `Lines checked` ist nicht in jedem UI-Moment der sicherste Nachweis fuer die aktuelle Zeile; der Current-line-Status und `0 Issues Total` sind fuer diesen Laborlauf der relevante Preflight. |
+| Warum BC so reagiert | Journale sind editierbare Tabellen. Der sichtbare Zeileninhalt, der gespeicherte Datensatz und die rechte FactBox koennen kurzzeitig unterschiedliche Aktualisierungsstaende haben. |
+| Loesung | `INVENTORY-008` wartet nach der Zeileneingabe auf einen stabilen Zustand und akzeptiert fuer die Buchungsfreigabe `Current line: No issues found` plus `0 Issues Total`. Alte `INV008-*`-Drafts werden vor dem naechsten Versuch gezielt geloescht. |
+| Pruefung nach Korrektur | `npm run fibu:inventory:post-target-stock` lief gruen. Evidence zeigt `posted=true`, `documentNo=INV008-899959`, Artikelposten/Wertposten/Sachposten sichtbar und Inventory Valuation `Total Inventory Value = 67.000,00`. |
+| Buchwirkung | Die Anleitung darf nicht nur auf eine einzelne Kachel schauen. Anfaenger sollen Zielzeile, Current-line-Status, `0 Issues Total`, Buchungsdialog und danach Postenspur gemeinsam pruefen. |
+| Kuenftige Regel | Vor Journalbuchungen nie blind aus einem einzelnen UI-Zaehler ableiten. Wenn `Preview Posting` nicht verfuegbar ist, mindestens Current-line-Preflight, keine Issues, Zielwerte, Dimension und anschliessende Postenspur dokumentieren. |
+
 ## WK-BC-O2C-010 Dimension im Auftrag ist eigener Nachweis, nicht nur Stammdatenannahme
 
 | Feld | Wert |

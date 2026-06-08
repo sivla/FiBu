@@ -137,6 +137,19 @@ Fuer `UAT-O2C-001` fasst `playwright/projects/fibu-book5/evidence/uat-o2c-001/RE
 |---|---|---|---|
 | `playwright/projects/fibu-book5/img/inventory-007-010-journal-check-no-issues.png` | guter Labor-Preflight-Kandidat | Item Journals zeigt die Zielzeile `RM-M100`, `FRA-ZL`, Menge `2`; die rechte FactBox bleibt bewusst sichtbar und zeigt `Journal Check` mit `1 Lines checked`, `0 Lines with issues`, `0 Issues Total` und `No issues found`. Unit Amount/Amount/Unit Cost sind zusaetzlich in `010-journal-check-controls.json` belegt. | Als Lernbild fuer den nicht buchenden Preflight vor einer positiven Bestandsbewegung geeignet. Nicht als Buchungs-, Posten- oder Lagerbewertungsnachweis verwenden; keine deutsche Final-Evidence. |
 
+## `INVENTORY-008` Screenshot Review
+
+| Screenshot | Bewertung | Befund | Entscheidung |
+|---|---|---|---|
+| `playwright/projects/fibu-book5/img/inventory-008-010-journal-line-before-post.png` | guter Labor-Preposting-Kandidat | Item Journals zeigt die Zielzeile `INV008-899959` mit `RM-M100`, `FRA-ZL`, Menge `2`; die Evidence belegt Unit Amount/Amount/Unit Cost `42.000,00`/`84.000,00` und Journal Check ohne sichtbare Issues fuer die aktuelle Zeile. | Als Buch-/Lernbild fuer die letzte Kontrolle vor der Laborbuchung geeignet. Nicht als Postenspur oder Bestandsergebnis verwenden. |
+| `playwright/projects/fibu-book5/img/inventory-008-030-post-confirm-dialog.png` | wichtiger Labor-Buchungsnachweis | Zeigt den normalen Buchungsdialog vor der genau einmaligen Bestaetigung der Item-Journal-Zeile. | Als Evidence fuer bewusste Laborbuchung geeignet; nicht erneut ausfuehren, kein deutsches Finalbild. |
+| `playwright/projects/fibu-book5/img/inventory-008-040-post-result.png` | Labor-Ergebnisbild | Zustand nach der Bestaetigung; die belastbare Buchungswahrheit steht in `INVENTORY-008-POSTING-result.json` und den Postenbildern. | Als Kontextbild behalten; fuer Buchtext mit Artikelposten/Wertposten/Sachposten kombinieren. |
+| `playwright/projects/fibu-book5/img/inventory-008-050-item-ledger-entry.png` | guter Labor-Artikelposten-Nachweis | Gefilterte Artikelposten zur Belegnummer `INV008-899959` zeigen `RM-M100`, `FRA-ZL`, Menge `2` und Wertbezug. | Als Buchkandidat fuer Mengenwirkung einer positiven Artikeljournalbuchung geeignet; keine deutsche Final-Evidence. |
+| `playwright/projects/fibu-book5/img/inventory-008-060-value-entry.png` | guter Labor-Wertposten-Nachweis | Wertposten zur Belegnummer zeigen `RM-M100`, Menge `2`, Kostenbetrag `84.000` und Unit Cost `42.000`. | Als Buchkandidat fuer Bewertungswirkung geeignet; nicht als Kostenregulierung oder Reporting-Summe ausgeben. |
+| `playwright/projects/fibu-book5/img/inventory-008-070-gl-entry.png` | guter Labor-Sachposten-Nachweis | Sachposten zur Belegnummer zeigen Konto `14140` und Betrag `84.000`. | Als Laborbild fuer Hauptbuchwirkung geeignet; kein deutscher Kontenplan-Endstand. |
+| `playwright/projects/fibu-book5/img/inventory-008-090-inventory-valuation-request.png` | gutes Labor-Request-Page-Bild | Request Page zeigt Stichtag, Artikelfilter `RM-M100|RAW-STEEL` und Lagerortfilter `FRA-ZL`. | Als Buchbild fuer Reportfilter geeignet; Ergebniswirkung erst mit Preview-Bild. |
+| `playwright/projects/fibu-book5/img/inventory-008-091-inventory-valuation-preview.png` | guter Labor-Zahlenbericht nach Korrektur | Vorschau zeigt nach der Laborbuchung `RM-M100 = 42.000,00`, `RAW-STEEL = 25.000,00` und `Total Inventory Value = 67.000,00`. | Als Laborbild fuer die korrigierte Lagerbewertung geeignet. Nicht als deutscher Abschluss- oder Kostenregulierungsnachweis verwenden. |
+
 ## Harte Findings aus dem Review
 
 ### QA-O2C-001 Listenbild zeigt nicht den Buchfall

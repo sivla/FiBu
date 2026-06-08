@@ -40,4 +40,4 @@ Keine Buchung, kein positiver Bestand, keine Postenspur und keine korrigierte La
 
 ## Naechster Schritt
 
-INVENTORY-008 kann nach Projektentscheid genau eine positive Laborbuchung RM-M100 +2 ausfuehren und danach Artikelposten, Wertposten, Sachposten sowie Inventory Valuation nachweisen; die Buchung bleibt CRONUS-USA-Labor.
+Erledigt durch INVENTORY-008: Die positive Laborbuchung RM-M100 +2 wurde genau einmal als INV008-899959 ausgefuehrt und danach ueber Artikelposten, Wertposten, Sachposten sowie Inventory Valuation nachgewiesen. Nicht erneut buchen.

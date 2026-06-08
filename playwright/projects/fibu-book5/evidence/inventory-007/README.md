@@ -27,4 +27,4 @@ Keine Buchung, kein positiver Bestand, keine Artikelposten, keine Wertposten, ke
 
 ## Naechster Schritt
 
-Nach Projektentscheid kann `INVENTORY-008` genau eine positive CRONUS-USA-Laborbuchung `RM-M100 +2` ausfuehren und danach Artikelposten, Wertposten, Sachposten sowie `Inventory Valuation` nachweisen. Die Buchung darf nicht als deutscher Endstand dargestellt werden.
+Erledigt durch `INVENTORY-008`: Die positive CRONUS-USA-Laborbuchung `RM-M100 +2` wurde genau einmal als `INV008-899959` ausgefuehrt und danach ueber Artikelposten, Wertposten, Sachposten sowie `Inventory Valuation` nachgewiesen. Nicht erneut buchen; naechster Schritt ist didaktische Bucherklaerung oder ein getrennter Reporting-/Payment-/Warehouse-Block.

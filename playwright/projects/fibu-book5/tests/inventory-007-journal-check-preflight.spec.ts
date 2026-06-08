@@ -457,7 +457,7 @@ test('INVENTORY-007 Journal Check fuer RM-M100 Zielbestand als Vorabkontrolle si
       'Kein deutscher Finalnachweis.'
     ],
     nextStep:
-      'INVENTORY-008 kann nach Projektentscheid genau eine positive Laborbuchung RM-M100 +2 ausfuehren und danach Artikelposten, Wertposten, Sachposten sowie Inventory Valuation nachweisen; die Buchung bleibt CRONUS-USA-Labor.'
+      'Erledigt durch INVENTORY-008: Die positive Laborbuchung RM-M100 +2 wurde genau einmal als INV008-899959 ausgefuehrt und danach ueber Artikelposten, Wertposten, Sachposten sowie Inventory Valuation nachgewiesen. Nicht erneut buchen.'
   };
 
   await writeJsonEvidence(inventoryEvidencePath('INVENTORY-007-JOURNAL-CHECK-result.json'), result);

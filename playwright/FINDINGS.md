@@ -38,26 +38,26 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 
 ## Aktuelle Fundstellen
 
-## FIND-BC-INV-002 Item Journals sind der naechste kontrollierte Bestandszugang, aber noch keine Buchung
+## FIND-BC-INV-002 Item Journals sind der kontrollierte Bestandszugang
 
 | Feld | Wert |
 |---|---|
-| Status | erledigt als Labor-Readiness; Buchung offen |
+| Status | erledigt als CRONUS-USA-Laborbuchung |
 | Projekt | fibu-book5 |
-| Testfall | `INVENTORY-005` |
-| Screenshot | `playwright/projects/fibu-book5/img/inventory-005-010-item-journal-direct.png`, `playwright/projects/fibu-book5/img/inventory-005-020-item-journals-tell-me.png` |
+| Testfall | `INVENTORY-005`, `INVENTORY-006`, `INVENTORY-007`, `INVENTORY-008` |
+| Screenshot | `playwright/projects/fibu-book5/img/inventory-005-010-item-journal-direct.png`, `playwright/projects/fibu-book5/img/inventory-006-010-target-journal-line-before-post.png`, `playwright/projects/fibu-book5/img/inventory-007-010-journal-check-no-issues.png`, `playwright/projects/fibu-book5/img/inventory-008-050-item-ledger-entry.png`, `playwright/projects/fibu-book5/img/inventory-008-091-inventory-valuation-preview.png` |
 | BC-Seite | `Item Journals`, Page `40`, Tell-Me |
-| sichtbarer Text | `Item Journals`, `Post`, `Posting Date`, `Entry Type`, `Document No.`, `Item No.`, `Location Code`, `Quantity`, `Unit Cost` |
+| sichtbarer Text | `Item Journals`, `Post`, `Positive Adjmt.`, `INV008-899959`, `RM-M100`, `FRA-ZL`, `Quantity 2`, `Unit Cost 42.000,00`, `Item Ledger Entries`, `Value Entries`, `G/L Entries`, `Inventory Valuation`, `Total Inventory Value 67.000,00` |
 | Elementtyp | Inventory Journal / Trainingsbestand / Buchungsrisiko |
 | erste Hypothese | Der negative `RM-M100`-Laborwert darf nicht ueber manuelle Sachposten korrigiert werden. Der naechste sichere Einstieg ist ein Artikeljournal, weil es Artikel-/Wertposten erzeugen kann. |
-| Recherchequelle | praktischer Playwright-Lauf `npm run fibu:inventory:target-stock-readiness`, `playwright/projects/fibu-book5/evidence/inventory-005/INVENTORY-005-TARGET-STOCK-READINESS-result.json` |
-| Testergebnis | Page `40` oeffnet im Labor `Item Journals`; zentrale Felder fuer eine spaetere Journalzeile und die Aktion `Post` sind sichtbar. `Preview Posting` und Dimensionen sind im direkten Screenshot nicht sichtbar nachgewiesen. Der Lauf hat keine Zeile angelegt und nicht gebucht. |
-| Entscheidung | Buch ergaenzen: Vor einer positiven Bestandsbewegung muss der Leser sehen, welche Journalfelder kontrolliert werden. Die eigentliche Buchung bleibt ein separater, bewusst freigegebener Schritt mit Zielwerten, Dimension und Postenspur. |
+| Recherchequelle | praktische Playwright-Laeufe `npm run fibu:inventory:target-stock-readiness`, `npm run fibu:inventory:target-stock-draft`, `npm run fibu:inventory:journal-check`, `npm run fibu:inventory:post-target-stock`; `playwright/projects/fibu-book5/evidence/inventory-008/README.md` |
+| Testergebnis | Page `40` oeffnet im Labor `Item Journals`; die Zielzeile `RM-M100 +2` in `FRA-ZL` kann vorbereitet, mit `PRODUCTLINE=MACHINE` geprueft und nach Journal-Check-/Current-line-Preflight genau einmal gebucht werden. `INVENTORY-008` erzeugte `INV008-899959`, Artikelposten, Wertposten, Sachposten mit `14140` und eine korrigierte Inventory Valuation. |
+| Entscheidung | Buch ergaenzen: Vor einer positiven Bestandsbewegung muss der Leser Zielwerte, Dimension und Journal Check verstehen. Nach der Buchung muessen Artikelposten, Wertposten, Sachposten und Lagerbewertung zusammen gelesen werden. |
 | Buchstelle | Kapitel 13 Inventory/Warehouse, Kapitel 23 Inventory Costing und Lagerbewertung |
 
 Bewertung:
 
-Das ist der praktische Anschluss an `INVENTORY-004`. Fuer Anfaenger ist wichtig: Ein Artikelbestand entsteht in BC ueber Artikelbewegungen, nicht ueber eine isolierte Fibu-Korrektur. `Item Journals` ist als Einstieg belegt, aber die Buchanleitung darf daraus noch keinen Bestand, keine Lagerbewertungskorrektur und keine deutschen Finalwerte ableiten.
+Das ist der praktische Anschluss an `INVENTORY-004`. Fuer Anfaenger ist wichtig: Ein Artikelbestand entsteht in BC ueber Artikelbewegungen, nicht ueber eine isolierte Fibu-Korrektur. Die Buchanleitung darf den positiven Bestand jetzt als CRONUS-USA-Laborbefund erklaeren, aber nicht als deutschen Finalwert oder Manufacturing-Output.
 
 ## FIND-BC-INV-001 Inventory Trace braucht Artikelposten, Wertposten und Sachposten zusammen
 
@@ -596,24 +596,24 @@ Das ist ein idealer Lernfall fuer Anfaenger: Der Bericht ist nicht falsch, sonde
 
 Folgeentscheidung aus `INVENTORY-004`: Fuer stabile Buchbilder ist ein klar markierter Trainings-/Opening-Balance-Zugang `RM-M100 +2` in `FRA-ZL` der kleinste kontrollierte naechste Schritt. Einkauf von `RM-M100` passt fachlich schlechter, Assembly gehoert in einen anderen Prozess, und Manufacturing/Output bleibt der spaetere echte End-to-End-Nachweis fuer Maschinenfertigung.
 
-## FIND-BC-INV-002 Item Journal kann Zielbestand vorbereiten und per Journal Check pruefen
+## FIND-BC-INV-003 Item Journal kann Zielbestand vorbereiten, pruefen und buchen
 
 | Feld | Wert |
 |---|---|
-| Status | teilweise erledigt: Draft und Journal Check belegt; positive Buchung/Postenspur offen |
+| Status | erledigt als CRONUS-USA-Laborbuchung |
 | Projekt | fibu-book5 |
-| Testfall | `INVENTORY-006`, `INVENTORY-007` |
-| Screenshot | `playwright/projects/fibu-book5/img/inventory-006-010-target-journal-line-before-post.png`, `playwright/projects/fibu-book5/img/inventory-007-010-journal-check-no-issues.png` |
-| Evidence | `playwright/projects/fibu-book5/evidence/inventory-006/README.md`, `playwright/projects/fibu-book5/evidence/inventory-006/INVENTORY-006-TARGET-STOCK-DRAFT-result.json`, `playwright/projects/fibu-book5/evidence/inventory-007/README.md`, `playwright/projects/fibu-book5/evidence/inventory-007/INVENTORY-007-JOURNAL-CHECK-result.json` |
+| Testfall | `INVENTORY-006`, `INVENTORY-007`, `INVENTORY-008` |
+| Screenshot | `playwright/projects/fibu-book5/img/inventory-006-010-target-journal-line-before-post.png`, `playwright/projects/fibu-book5/img/inventory-007-010-journal-check-no-issues.png`, `playwright/projects/fibu-book5/img/inventory-008-010-journal-line-before-post.png`, `playwright/projects/fibu-book5/img/inventory-008-050-item-ledger-entry.png`, `playwright/projects/fibu-book5/img/inventory-008-091-inventory-valuation-preview.png` |
+| Evidence | `playwright/projects/fibu-book5/evidence/inventory-006/README.md`, `playwright/projects/fibu-book5/evidence/inventory-006/INVENTORY-006-TARGET-STOCK-DRAFT-result.json`, `playwright/projects/fibu-book5/evidence/inventory-007/README.md`, `playwright/projects/fibu-book5/evidence/inventory-007/INVENTORY-007-JOURNAL-CHECK-result.json`, `playwright/projects/fibu-book5/evidence/inventory-008/README.md`, `playwright/projects/fibu-book5/evidence/inventory-008/INVENTORY-008-POSTING-result.json` |
 | BC-Seite | `Item Journals`, Page `40` |
-| sichtbarer Text / Werte | `Positive Adjmt.`, `INV006-*`/`INV007-*`, `RM-M100`, `FRA-ZL`, Menge `2`, `PCS`, Unit Amount/Amount/Unit Cost `42.000,00`/`84.000,00`, `PRODUCTLINE=MACHINE` im Dimensionsdialog, `Journal Check`, `1 Lines checked`, `0 Lines with issues`, `0 Issues Total`, `No issues found` |
+| sichtbarer Text / Werte | `Positive Adjmt.`, `INV008-899959`, `RM-M100`, `FRA-ZL`, Menge `2`, `PCS`, Unit Amount/Amount/Unit Cost `42.000,00`/`84.000,00`, `PRODUCTLINE=MACHINE` im Dimensionsdialog, `Journal Check`, `No issues found`, Artikelposten, Wertposten, Sachposten `14140`, Inventory Valuation `67.000,00` |
 | Elementtyp | Inventory Journal / positiver Trainingsbestand / Vorabkontrolle |
 | erste Hypothese | Der kleinste kontrollierte Weg zum positiven `RM-M100`-Bestand ist eine positive Anpassung im Item Journal, aber vor Buchung braucht es eine belastbare Kontrolle. |
-| Recherchequelle | praktische Playwright-Laeufe `npm run fibu:inventory:target-stock-draft`, `npm run fibu:inventory:journal-check` |
-| Testergebnis | Die Zielzeile kann vorbereitet werden, BC zieht Mengen-, Betrags- und Kostenwerte plausibel, `PRODUCTLINE=MACHINE` ist vor Buchung sichtbar. `Journal Check` ist in der rechten FactBox sichtbar und meldet `1 Lines checked`, `0 Lines with issues`, `0 Issues Total`. `Preview Posting` wurde im Item Journal nicht als nutzbare Aktion nachgewiesen. Die Tests buchen nicht und bereinigen den Draft. |
-| Entscheidung | Buch ergaenzen: Ein Journal-Draft und ein gruener Journal Check sind Vorabkontrollen, aber noch kein Bestand. Leser muessen Zielwerte, Dimension und Journal Check pruefen; die positive Laborbuchung mit Postenspur ist der naechste separate Schritt. Rechts liegende Felder wie `Applies-to Entry` duerfen nicht blind mit Kostenwerten gefuellt werden. |
+| Recherchequelle | praktische Playwright-Laeufe `npm run fibu:inventory:target-stock-draft`, `npm run fibu:inventory:journal-check`, `npm run fibu:inventory:post-target-stock` |
+| Testergebnis | Die Zielzeile kann vorbereitet werden, BC zieht Mengen-, Betrags- und Kostenwerte plausibel, `PRODUCTLINE=MACHINE` ist vor Buchung sichtbar. `Preview Posting` wurde im Item Journal nicht als nutzbare Aktion nachgewiesen. `INVENTORY-008` nutzt deshalb den belegten Journal-Check-/Current-line-Preflight und bucht genau einmal. Danach sind Artikelposten, Wertposten, Sachposten und Inventory Valuation sichtbar. |
+| Entscheidung | Buch ergaenzen: Ein Journal-Draft und ein gruener Journal Check sind Vorabkontrollen; der Bestandsnachweis entsteht erst nach bewusster Buchung ueber Artikelposten, Wertposten, Sachposten und Lagerbewertung. Rechts liegende Felder wie `Applies-to Entry` duerfen nicht blind mit Kostenwerten gefuellt werden. |
 | Buchstelle | Kapitel 13 Inventory/Warehouse, Kapitel 23 Inventory Costing und Lagerbewertung |
 
 Bewertung:
 
-Das ist ein sehr guter Anfaenger-Lernfall. Die Zeile sieht fachlich einfach aus, aber BC-Journale haben viele Spalten mit unterschiedlicher Bedeutung. `Unit Cost` ist eine Bewertungsinformation; `Applies-to Entry` ist eine Zuordnungs-/Ausgleichsspalte. Wer dort den Kostenwert eintraegt, erzeugt einen Zeilenfehler statt einer besseren Bewertung. `INVENTORY-007` belegt jetzt den nicht buchenden Journal Check als Preflight. Fuer die naechste Buchung braucht das Projekt deshalb keinen weiteren Draft-Beweis, sondern einen bewussten Laborentscheid: genau einmal buchen und danach Artikelposten, Wertposten, Sachposten sowie `Inventory Valuation` pruefen.
+Das ist ein sehr guter Anfaenger-Lernfall. Die Zeile sieht fachlich einfach aus, aber BC-Journale haben viele Spalten mit unterschiedlicher Bedeutung. `Unit Cost` ist eine Bewertungsinformation; `Applies-to Entry` ist eine Zuordnungs-/Ausgleichsspalte. Wer dort den Kostenwert eintraegt, erzeugt einen Zeilenfehler statt einer besseren Bewertung. `INVENTORY-008` hat die bewusste Laborbuchung umgesetzt. Fuer die naechste Arbeit braucht das Projekt keine weitere `INV008`-Buchung, sondern Buch-/Anfaengererklaerung und spaeter getrennte Reporting-, Warehouse- oder Manufacturing-Nachweise.
