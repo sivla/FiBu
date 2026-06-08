@@ -204,6 +204,8 @@ Fuer `UAT-O2C-001` fasst `playwright/projects/fibu-book5/evidence/uat-o2c-001/RE
 | Screenshot | Bewertung | Befund | Entscheidung |
 |---|---|---|---|
 | `playwright/projects/fibu-book5/img/payments-006-010-cash-receipt-amount-validation.png` | gutes Labor-Lernbild fuer Journal Check / Setup-Blocker | Cash Receipt Journal zeigt den Entwurf mit Betrag `-67.673,60` in USD-Anzeige, Gegenkonto `BANK-RM-01`, Rechnungsbezug `PS-INV103297` und rechts `1 Issues Total`. Current line meldet: `Bank Account Posting Group` fehlt. | Als Buch-/Lernbild fuer Preflight und Bankkonto-Posting-Fit geeignet. Nicht als Zahlungsfreigabe, Zahlungs-, Ausgleichs-, Bankposten- oder deutscher Compliance-Nachweis verwenden. |
+| `playwright/projects/fibu-book5/img/payments-007-010-bank-account-posting-group-fit.png` | gutes Labor-Setup-Lernbild | Bank Account Card `BANK-RM-01` zeigt den Posting-FastTab; `Bank Acc. Posting Group` ist im Labor auf `CHECKING` gefittet. | Als Buch-/Lernbild fuer Bankkonto-Posting-Fit geeignet. Nicht als deutscher Bank-/Kontenplan-/Compliance-Finalnachweis verwenden. |
+| `playwright/projects/fibu-book5/img/payments-007-020-cash-receipt-journal-after-bank-fit.png` | gutes Labor-Preflight-Lernbild mit Folgefehler | Cash Receipt Journal zeigt `BANK-RM-01`, Rechnungsbezug `PS-INV103297`, Amount-LCY-Anzeige und rechts `Journal Check` mit `1 Issues Total`; der alte Bank-Posting-Group-Fehler ist weg, Current line nennt wieder Amount. | Als Buch-/Lernbild fuer die Trennung von Bankkonto-Fit und zahlungsreifer Journalzeile geeignet. Nicht als Zahlungsfreigabe, Zahlungs-, Ausgleichs- oder Bankwirkungsnachweis verwenden. |
 
 ## Harte Findings aus dem Review
 

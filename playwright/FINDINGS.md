@@ -42,23 +42,45 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 
 | Feld | Wert |
 |---|---|
-| Status | offen als Bankkonto-Posting-Fit-Lernfall |
+| Status | erledigt durch `PAYMENTS-007`; Folgefund `FIND-BC-PAY-006` offen |
 | Projekt | fibu-book5 |
-| Testfall | `PAYMENTS-006` |
+| Testfall | `PAYMENTS-006`, `PAYMENTS-007` |
 | Screenshot | `playwright/projects/fibu-book5/img/payments-006-010-cash-receipt-amount-validation.png` |
-| Evidence | `playwright/projects/fibu-book5/evidence/payments-006/PAYMENTS-006-result.json`, `playwright/projects/fibu-book5/evidence/payments-006/PAYMENTS-006-AMOUNT-VALIDATION.md` |
+| Evidence | `playwright/projects/fibu-book5/evidence/payments-006/PAYMENTS-006-result.json`, `playwright/projects/fibu-book5/evidence/payments-006/PAYMENTS-006-AMOUNT-VALIDATION.md`, `playwright/projects/fibu-book5/evidence/payments-007/PAYMENTS-007-result.json` |
 | BC-Seite | Cash Receipt Journals |
 | sichtbarer Text | `BANK-RM-01`, `Journal Check`, `1 Issues Total`, `Bank Account Posting Group` |
 | Elementtyp | Zahlungsjournal / Bankkonto-Posting-Fit / Journal Check |
 | erste Hypothese | Nach korrekter Amount-Eingabe prueft BC den Balance Account. Ein Bankkonto ohne Bank Account Posting Group ist als Gegenkonto im Zahlungsjournal noch nicht buchungsreif. |
 | Recherchequelle | praktischer UI-only Playwright-Lauf `npm run fibu:payments:cash-receipt-amount-validation`; `playwright/projects/fibu-book5/evidence/payments-006/README.md` |
-| Testergebnis | Rohzahl `-68000` erzeugt den bekannten Amount-Fehler. Lokales Format `-68.000,00` loest die Amount-Validierung zwischenzeitlich. Nach `Refresh` meldet Journal Check: `'Bank Account Posting Group' ist nicht vorhanden. Identifizierende Felder und Werte: Code=''`. Es wurde keine Zahlung und kein Ausgleich gebucht. |
-| Entscheidung | Buch ergaenzen: Zahlungsjournal-Preflight prueft nicht nur Debitor, Betrag und Rechnung, sondern auch den Bankkonto-Posting-Fit. Naechster Lauf muss `BANK-RM-01` per UI auf Bank Account Posting Group/Sachkonto pruefen oder fitten. |
+| Testergebnis | Rohzahl `-68000` erzeugt den bekannten Amount-Fehler. Lokales Format `-68.000,00` loest die Amount-Validierung zwischenzeitlich. Nach `Refresh` meldet Journal Check in `PAYMENTS-006`: `'Bank Account Posting Group' ist nicht vorhanden. Identifizierende Felder und Werte: Code=''`. `PAYMENTS-007` fittet `BANK-RM-01 = CHECKING`; dieser Fehler ist danach weg. Es wurde keine Zahlung und kein Ausgleich gebucht. |
+| Entscheidung | Buch ergaenzen: Zahlungsjournal-Preflight prueft nicht nur Debitor, Betrag und Rechnung, sondern auch den Bankkonto-Posting-Fit. `BANK-RM-01 = CHECKING` ist im CRONUS-Labor erledigt, aber der Zahlungsjournal-Preflight bleibt wegen Amount-Issue gesperrt. |
 | Buchstelle | Kapitel 19 Debitoren/Kreditoren und Kapitel 20 Bank/Payments |
 
 Bewertung:
 
 Das ist ein sehr praktischer Anfaengerbefund. Ein Bankkonto kann in der Liste existieren und als Gegenkonto auswaehlbar sein, aber trotzdem noch keine tragfaehige Kontenfindung fuer die Zahlungsbuchung besitzen. Der Journal Check macht diese fehlende Einrichtung sichtbar, bevor echte Bank- und Debitorenposten entstehen.
+
+## FIND-BC-PAY-006 Amount bleibt Journal-Check-Blocker nach Bankkonto-Fit
+
+| Feld | Wert |
+|---|---|
+| Status | offen als Amount-/Spaltenpositions-Lernfall |
+| Projekt | fibu-book5 |
+| Testfall | `PAYMENTS-007` |
+| Screenshot | `playwright/projects/fibu-book5/img/payments-007-020-cash-receipt-journal-after-bank-fit.png` |
+| Evidence | `playwright/projects/fibu-book5/evidence/payments-007/PAYMENTS-007-result.json`, `playwright/projects/fibu-book5/evidence/payments-007/PAYMENTS-007-BANK-POSTING-FIT.md` |
+| BC-Seite | Cash Receipt Journals |
+| sichtbarer Text | `BANK-RM-01`, `Amount ($)`, `Journal Check`, `1 Issues Total`, `Amount` |
+| Elementtyp | Zahlungsjournal / Amount-Feld / Journal Check |
+| erste Hypothese | Nach geloestem Bankkonto-Fit trifft der UI-Draft noch nicht stabil das fachlich relevante `Amount`-Feld oder BC validiert die Zeile erst nach anderer Feld-/Spalteninteraktion. |
+| Recherchequelle | praktischer UI-only Playwright-Lauf `npm run fibu:payments:bank-posting-fit`; `playwright/projects/fibu-book5/evidence/payments-007/README.md` |
+| Testergebnis | `BANK-RM-01` traegt persistiert `Bank Acc. Posting Group = CHECKING`; der alte Bank-Posting-Group-Fehler ist weg. Der Draft zeigt aber weiter `1 Issues Total`; Current line meldet `'Amount' muss in 'Gen. Journal Line' einen Wert enthalten...`. Entwurf wurde geloescht; keine Zahlung, kein Ausgleich. |
+| Entscheidung | `PAYMENTS-008` muss Amount-Feld, Amount-LCY-Anzeige und Spaltenposition in breiter Layoutansicht gezielt klaeren, bevor irgendeine Zahlungsbuchung freigegeben wird. |
+| Buchstelle | Kapitel 19 Debitoren/Kreditoren und Kapitel 20 Bank/Payments |
+
+Bewertung:
+
+Das ist ein guter Anfaengerbefund, weil er zeigt: Ein sichtbarer Betrag in der Journalzeile beweist noch keine zahlungsreife Gen.-Journal-Line. Erst der rechte `Journal Check` entscheidet, ob BC die Zeile fachlich akzeptiert.
 
 ## FIND-BC-PAY-004 UI-Draft ist noch nicht zahlungsreif
 

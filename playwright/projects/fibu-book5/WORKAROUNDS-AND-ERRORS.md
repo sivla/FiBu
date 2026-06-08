@@ -49,16 +49,30 @@ Jeder Eintrag muss außerdem gegen die betroffene Buchstelle geprüft werden. We
 
 | Feld | Wert |
 |---|---|
-| Status | offen als Setup-Fit-Lernfall; keine Zahlung |
-| Testfall | `PAYMENTS-006` |
+| Status | geloest als Bankkonto-Posting-Fit; Folgeblocker Amount bleibt offen; keine Zahlung |
+| Testfall | `PAYMENTS-006`, `PAYMENTS-007` |
 | Situation | Nach Amount-Korrektur wurde im Cash Receipt Journal ein Zahlungseingangs-Entwurf mit Debitor `D10000`, Betrag `-68.000,00`, Gegenkonto `BANK-RM-01` und Rechnungsbezug `PS-INV103297` vorbereitet. |
 | Symptom | Nach `Refresh` meldet Journal Check `1 Issues Total`. Current line zeigt: `'Bank Account Posting Group' ist nicht vorhanden. Identifizierende Felder und Werte: Code=''`. |
 | Ursache | `BANK-RM-01` existiert als Laborbankkonto, aber die Bank Account Posting Group beziehungsweise die daran haengende Kontenfindung ist fuer eine Zahlungsbuchung noch nicht tragfaehig gesetzt. |
 | Warum BC so reagiert | Beim Zahlungsjournal muss BC nicht nur Debitor und Betrag kennen. Das Gegenkonto Bankkonto muss auf ein Sachkonto durchgebucht werden koennen. Dafuer dient die Bankkontobuchungsgruppe. Ohne diese Gruppe kann BC keine Bank-/Fibu-Wirkung erzeugen. |
-| Loesung | Noch offen. Naechster Schritt ist `PAYMENTS-007`: `BANK-RM-01` per UI oeffnen, Bank Account Posting Group und zugehoeriges Sachkonto pruefen und ggf. kontrolliert per UI fitten. |
-| Pruefung nach Korrektur | Danach denselben Cash-Receipt-Draft erneut ohne Buchung vorbereiten und Journal Check auf `0 Issues Total`, `0 Lines with issues` und `Current line: No issues found` pruefen. |
+| Loesung | `PAYMENTS-007` oeffnet `BANK-RM-01` ueber die UI und weist `Bank Acc. Posting Group = CHECKING` persistiert nach. `CHECKING` verweist im CRONUS-USA-Labor auf G/L Account `18200`. Das ist ein Laborfit, kein deutscher Bank-/Kontenplan-Endstand. |
+| Pruefung nach Korrektur | Der alte Fehler `'Bank Account Posting Group' ... Code=''` tritt im Nachlauf nicht mehr auf. Der Cash-Receipt-Draft bleibt aber gesperrt, weil Journal Check nun wieder das Amount-Issue meldet: `'Amount' muss in 'Gen. Journal Line' einen Wert enthalten...`. |
 | Buchwirkung | Kapitel 19/20 muss erklaeren: Ein sichtbares Bankkonto reicht nicht. Fuer Zahlungsbuchungen braucht es Bankkonto, Bankkontobuchungsgruppe und Sachkonto-Fit, bevor `Post` fachlich erlaubt ist. |
 | Kuenftige Regel | Zahlungsbuchung bleibt gesperrt, solange Journal Check Bank Account Posting Group oder Bank-Sachkonto-Fit bemängelt. |
+
+## WK-BC-PAY-005 Amount-Issue bleibt nach Bankkonto-Posting-Fit
+
+| Feld | Wert |
+|---|---|
+| Status | offen; keine Zahlung |
+| Testfall | `PAYMENTS-007` |
+| Situation | Nach `BANK-RM-01 = CHECKING` wurde derselbe Cash-Receipt-Draft fuer `D10000`, `PS-INV103297`, Gegenkonto `BANK-RM-01` und Betrag `-68.000,00` erneut vorbereitet. |
+| Symptom | Der alte Bank-Posting-Group-Fehler ist weg. Journal Check meldet aber weiterhin `1 Issues Total`; Current line nennt wieder `'Amount' muss in 'Gen. Journal Line' einen Wert enthalten...`. |
+| Ursache | Noch nicht abschliessend geklaert. Sichtbar ist `Amount ($) = -67.673,60`; zu pruefen ist, ob der Eingabefokus/die Spaltenposition das eigentliche `Amount`-Feld oder nur die LCY-Anzeige beziehungsweise eine unvollstaendig validierte Zelle trifft. |
+| Warum BC so reagiert | BC validiert Journalzeilen intern gegen die Tabelle `Gen. Journal Line`. Sichtbare Werte in Nachbar- oder Anzeigespalten reichen nicht, wenn das fachlich relevante Amount-Feld fuer die Journalzeile intern leer bleibt. |
+| Loesung | Offen. Naechster Schritt `PAYMENTS-008`: Amount-Feld, Amount-LCY-Anzeige und Spaltenposition in breiter Layoutansicht gezielt unterscheiden; danach Journal Check erneut lesen und Draft wieder loeschen. |
+| Buchwirkung | Kapitel 19/20 muss betonen: Eine Journalzeile gilt erst als zahlungsreif, wenn `Journal Check` keine Issues meldet. Sichtbarer Betrag allein reicht nicht. |
+| Kuenftige Regel | Keine Zahlung buchen, solange `Journal Check` Amount, Posting Group oder andere Zeilenfehler meldet. |
 
 ## WK-BC-P2P-001 Kreditor ohne Template blockiert P2P-Entwurf
 
