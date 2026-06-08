@@ -3690,6 +3690,19 @@ Laborbefund in `RM-DEMO`: `FIXEDASSETS-006` liest vorhandene CRONUS-Anlagenbuchu
 
 Weiterer Laborbefund: `FIXEDASSETS-007` liest die angrenzenden Setup-Seiten read-only. `Depreciation Books` zeigt in `RM-DEMO` nur `COMPANY = Company Book`; ein AfA-Buch `HGB` ist nicht sichtbar. `FA Classes` zeigt `FINANCIAL`, `INTANGIBLE` und `TANGIBLE`. Für Anfänger ist das wichtig: AfA-Buch, Anlagenklasse und Anlagenbuchungsgruppe sind drei unterschiedliche Dinge. Das AfA-Buch beschreibt Bewertungs-/Abschreibungslogik, die Anlagenklasse strukturiert die Anlage fachlich, und die Anlagenbuchungsgruppe steuert die Sachkonten. Erst wenn diese Ebenen zusammenpassen, darf ein Anlagenzugang vorbereitet werden.
 
+Status vor dem ersten bebilderten Anlagenlauf:
+
+| Prüfpunkt | Buchziel | RM-DEMO-Laborbefund | Konsequenz |
+|---|---|---|---|
+| Anlage | `FA-CNC-01` | nicht sichtbar | Anlagenkarte noch nicht anlegen, solange Setup-Gate geschlossen ist |
+| AfA-Buch | `HGB` | `COMPANY = Company Book` sichtbar, `HGB` nicht sichtbar | deutscher HGB-Endstand offen |
+| Anlagenklasse | `MASCHINE`/`CNC` | `FINANCIAL`, `INTANGIBLE`, `TANGIBLE` sichtbar | Zielklassifizierung muss später bewusst eingerichtet oder auf vorhandene Klasse gemappt werden |
+| Anlagenbuchungsgruppe | `MACHINES` | fehlt; vorhandene CRONUS-Gruppen und Konten wurden gelesen | kein Konto raten; Setup-Fit nur mit Freigabe |
+| Kreditor | `K30000` | nicht sichtbar | Kreditorenanlage bleibt eigener Klickpfad |
+| Zugang/AfA | Einkaufsrechnung, Anlagenposten, AfA bis `30.06.2026` | nicht gebucht | keine Laborbuchung ohne neues Gate |
+
+Evidence-Pack-Stand: `FIXEDASSETS-005` belegt den UI-Pfad zu `FA Posting Groups`, `FIXEDASSETS-006` belegt vorhandene CRONUS-Konten, `FIXEDASSETS-007` belegt AfA-Bücher und Anlagenklassen. Diese Evidence ist ein Labor-Nachweis für die Setup-Reihenfolge, kein finaler deutscher Anlagenprozess. Für finale Buchscreenshots fehlen weiterhin `FA-CNC-01`, `HGB`, `MACHINES`, `K30000`, Zugang, Anlagenposten, AfA-Posten und deutscher Kontenplan-/USt-Nachweis.
+
 ### Schritt-für-Schritt
 
 1. Öffne `Anlagen (Fixed Assets)` und lege `FA-CNC-01` an.
