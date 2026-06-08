@@ -23,8 +23,8 @@ Umgebung: `MCP_1_20260210`, Company `RM-DEMO`, CRONUS USA. Ausgangsbeleg ist die
 
 ## Kernaussage
 
-`PRODUCTLINE=MACHINE` und `CHANNEL=B2B` sind am Artikelposten `Entry No. 792` erneut sichtbar. In `G/L Entries` und `Financial Reports` sind sie in diesem Lauf nicht als sichtbare Filter- oder Summenachse nachgewiesen. Financial Reports zeigt aber die naechsten Hebel `Dimension Perspective` und `Column Definition`.
+`PRODUCTLINE=MACHINE` und `CHANNEL=B2B` sind am Artikelposten `Entry No. 792` erneut sichtbar. In `G/L Entries` und `Financial Reports` sind sie in diesem Lauf nicht als sichtbare Filter- oder Summenachse nachgewiesen. Financial Reports zeigt zwar `Dimension Perspective` und `Column Definition`; `REPORTING-003` hat den schnellen `Dimension Perspective`-Pfad danach aber als nicht belegten Sichtnachweis eingeordnet.
 
 ## Naechster Schritt
 
-`REPORTING-003` sollte read-only `Dimension Perspective`, `Dimensions - Detail` oder Analysis Views pruefen. Ziel ist ein belastbarer Reportingpfad nach `PRODUCTLINE=MACHINE` und `CHANNEL=B2B`, ohne eine weitere O2C-Buchung.
+Naechster read-only Schritt ist `Dimensions - Detail` oder Analysis Views. Ziel ist ein belastbarer Reportingpfad nach `PRODUCTLINE=MACHINE` und `CHANNEL=B2B`, ohne eine weitere O2C-Buchung.

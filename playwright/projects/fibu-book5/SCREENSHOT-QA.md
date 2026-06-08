@@ -80,6 +80,13 @@ Fuer `UAT-O2C-001` fasst `playwright/projects/fibu-book5/evidence/uat-o2c-001/RE
 | `playwright/projects/fibu-book5/img/reporting-002-046-item-ledger-entry-792-dimensions.png` | guter Labor-Dimensionsnachweis | `Entry` -> `Dimensions` am Artikelposten `792` zeigt `PRODUCTLINE=MACHINE` und `CHANNEL=B2B`. | Als Laborbild fuer Dimensionsvererbung in Artikelposten geeignet; kein Financial-Reports-Endnachweis. |
 | `playwright/projects/fibu-book5/img/reporting-002-055-financial-reports-list.png` | guter Labor-Startpunkt fuer naechsten Reporting-Schritt | Financial Reports ist erreichbar; sichtbar sind u. a. `Income Statement`, `Revenue`, `Balance Sheet`, `Dimension Perspective` und `Column Definition`. `PRODUCTLINE`/`CHANNEL` sind noch nicht als Filter oder Auswertungsachse sichtbar. | Als Laborbild fuer Reporting-Navigation geeignet. Naechster Bildschritt: `Dimension Perspective` oder Dimensionsbericht gezielt oeffnen. |
 
+## `REPORTING-003` Screenshot Review
+
+| Screenshot | Bewertung | Befund | Entscheidung |
+|---|---|---|---|
+| `playwright/projects/fibu-book5/img/reporting-003-020-financial-reports-wide-layout.png` | brauchbarer Labor-Startpunkt | Financial Reports ist im breiten Viewport sichtbar; die Tabellenansicht zeigt mehr Spalten und eignet sich fuer Erklaerung von `Row Definition`, `Column Definition` und Reportingzeilen. | Als Laborbild fuer breite Layoutansicht und Reporting-Navigation geeignet; noch kein Dimensions- oder Zahlenbeweis. |
+| `playwright/projects/fibu-book5/img/reporting-003-030-dimension-perspective-result.png` | rejected Negativbild | Nach dem Versuch `Definitions -> Dimension Perspective` ist kein Dimension-Perspective-Kontext sichtbar; das Bild zeigt das Role Center. | Nicht als Buchbild verwenden. Als Evidence fuer den gescheiterten Schnellpfad behalten; naechster Bildschritt ist `Dimensions - Detail` oder Analysis Views. |
+
 ## `P2P-001` Screenshot Review
 
 | Screenshot | Bewertung | Befund | Entscheidung |
