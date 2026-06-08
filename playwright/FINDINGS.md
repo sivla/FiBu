@@ -38,11 +38,33 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 
 ## Aktuelle Fundstellen
 
+## FIND-BC-PAY-008 Post-Button ist noch keine Zahlung, erst der Dialog entscheidet
+
+| Feld | Wert |
+|---|---|
+| Status | erledigt als UI-only Buchungsdialog-Readiness; echte Zahlung offen |
+| Projekt | fibu-book5 |
+| Testfall | `PAYMENTS-010` |
+| Screenshot | `playwright/projects/fibu-book5/img/payments-010-030-post-dialog-before-cancel.png` |
+| Evidence | `playwright/projects/fibu-book5/evidence/payments-010/PAYMENTS-010-result.json`, `playwright/projects/fibu-book5/evidence/payments-010/PAYMENTS-010-POSTING-READINESS.md` |
+| BC-Seite | Cash Receipt Journals |
+| sichtbarer Text | `Post`, `Ja`, `Nein`, `Journal Check`, `0 Issues Total` |
+| Elementtyp | Zahlungsjournal / Buchungsdialog / Sicherheitsabbruch |
+| erste Hypothese | Nach `Journal Check = 0 Issues` und Apply-Readiness ist die naechste riskante Schwelle nicht die Sichtbarkeit von `Post`, sondern die Bestaetigung im Dialog. |
+| Recherchequelle | praktischer UI-only Playwright-Lauf `npm run fibu:payments:posting-readiness`; `playwright/projects/fibu-book5/evidence/payments-010/README.md` |
+| Testergebnis | `PAYMENTS-010` bereitet den Cash-Receipt-Draft fuer `D10000`/`PS-INV103297`/`BANK-RM-01` erneut vor, bestaetigt `Journal Check = 0 Issues`, oeffnet `Apply Entries` read-only und klickt danach `Post` nur bis zum Bestaetigungsdialog. Business Central zeigt `Ja`/`Nein`; der Test klickt `Nein`, loescht den Draft und bucht nichts. |
+| Entscheidung | Buch ergaenzen: Ein sichtbarer `Post`-Button ist noch keine Zahlung. Fuer Einsteiger muss der Bestaetigungsdialog als letzte Sicherheitsgrenze erklaert werden. Eine echte Laborzahlung darf erst in `PAYMENTS-011` nach ausdruecklicher Freigabe erfolgen. |
+| Buchstelle | Kapitel 19 Debitoren/Kreditoren und Kapitel 20 Bank/Payments |
+
+Bewertung:
+
+Dieser Befund ist didaktisch stark, weil er Angst und Sorglosigkeit gleichzeitig korrigiert: `Post` anzuklicken kann einen Dialog oeffnen, aber die eigentliche Buchung entsteht erst durch die Bestaetigung. Fuer das Buch ist wichtig, dass Lernende den Unterschied zwischen Vorpruefung, Dialog und finaler Buchung sehen.
+
 ## FIND-BC-PAY-007 Apply Entries im Zahlungsjournal ist ein Readiness-Pfad, noch kein Ausgleich
 
 | Feld | Wert |
 |---|---|
-| Status | erledigt als UI-only Apply-/Preview-Readiness; Folgearbeit Zahlungsfreigabe offen |
+| Status | erledigt als UI-only Apply-/Preview-Readiness; Folgefund `FIND-BC-PAY-008` erledigt |
 | Projekt | fibu-book5 |
 | Testfall | `PAYMENTS-009` |
 | Screenshot | `playwright/projects/fibu-book5/img/payments-009-010-cash-receipt-apply-preview-readiness.png`, `playwright/projects/fibu-book5/img/payments-009-020-apply-entries-readonly.png` |
