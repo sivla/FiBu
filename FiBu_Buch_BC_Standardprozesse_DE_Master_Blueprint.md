@@ -3409,6 +3409,7 @@ Rhein-Main braucht verlässliche offene Posten für Mahnwesen, Liquidität und M
 5. Markiere Rechnung `SO-1001`.
 6. Erfasse den Betrag im lokalen Format und pruefe danach, ob BC ihn als Betrag speichert.
    Laborhinweis aus `PAYMENTS-008`: Nutze fuer diesen Kontrollpunkt eine breite Layoutansicht. Unterscheide das eigentliche `Amount`-Feld von `Amount ($)`: Im Labor steht der Zahlungsbetrag in `Amount = -68.000,00`; `Amount ($) = -67.673,60` ist die umgerechnete Anzeige. Nach `Refresh` muss rechts im `Journal Check` `0 Issues Total` sichtbar sein.
+   Laborhinweis aus `PAYMENTS-009`: `Applies-to Doc. Type` und `Applies-to Doc. No.` zeigen im Entwurf den Zielbeleg `PS-INV103297`. `Posten ausgleichen (Apply Entries)` kann read-only geoeffnet werden und zeigt `Amount to Apply`/`Remaining Amount`. Das Oeffnen dieser Seite ist noch kein OP-Ausgleich; riskante Aktionen wie `Post`, `OK`, `Set Applies-to ID` oder `Post Application` duerfen nur in einem freigegebenen Buchungsschritt ausgefuehrt werden. `Preview Posting` war im aktuellen Cash-Receipt-Journal-Labor nicht direkt sichtbar und ist deshalb noch kein Zahlungsfreigabenachweis.
 7. Pruefe zuerst den rechten Bereich `Journal Check`. Solange dort Issues sichtbar sind, darf nicht gebucht werden.
 8. Wenn `Bank Account Posting Group` fehlt, ist nicht der Debitor falsch, sondern das Bankkonto/Gegenkonto noch nicht buchungsfaehig eingerichtet.
 9. Pruefe danach `Buchungsvorschau (Preview Posting)`, falls die Aktion in der Umgebung verfuegbar ist.

@@ -38,6 +38,28 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 
 ## Aktuelle Fundstellen
 
+## FIND-BC-PAY-007 Apply Entries im Zahlungsjournal ist ein Readiness-Pfad, noch kein Ausgleich
+
+| Feld | Wert |
+|---|---|
+| Status | erledigt als UI-only Apply-/Preview-Readiness; Folgearbeit Zahlungsfreigabe offen |
+| Projekt | fibu-book5 |
+| Testfall | `PAYMENTS-009` |
+| Screenshot | `playwright/projects/fibu-book5/img/payments-009-010-cash-receipt-apply-preview-readiness.png`, `playwright/projects/fibu-book5/img/payments-009-020-apply-entries-readonly.png` |
+| Evidence | `playwright/projects/fibu-book5/evidence/payments-009/PAYMENTS-009-result.json`, `playwright/projects/fibu-book5/evidence/payments-009/PAYMENTS-009-APPLY-PREVIEW-READINESS.md` |
+| BC-Seite | Cash Receipt Journals / Apply Entries |
+| sichtbarer Text | `D10000`, `PS-INV103297`, `Amount to Apply`, `Remaining Amount`, `Journal Check`, `0 Issues Total`, `Post`, `OK` |
+| Elementtyp | Zahlungsjournal / Apply Entries / Ausgleichsbezug |
+| erste Hypothese | Wenn `Applies-to Doc. Type` und `Applies-to Doc. No.` im Draft gesetzt sind, sollte Business Central den offenen Rechnungsbezug im Apply-Entries-Kontext anzeigen, ohne dass dadurch schon ein gebuchter OP-Ausgleich entsteht. |
+| Recherchequelle | praktischer UI-only Playwright-Lauf `npm run fibu:payments:apply-preview-readiness`; `playwright/projects/fibu-book5/evidence/payments-009/README.md` |
+| Testergebnis | `PAYMENTS-009` bereitet den Cash-Receipt-Draft fuer `D10000`/`PS-INV103297`/`BANK-RM-01` erneut vor, bestaetigt `Journal Check = 0 Issues`, oeffnet `Apply Entries` read-only und zeigt den Rechnungs-/Betragskontext. Sichtbare Aktionen wie `Post`/`OK` wurden nicht ausgefuehrt. `Preview Posting` war im Cash Receipt Journal nicht direkt sichtbar. Der Draft wurde geloescht; keine Zahlung, kein Ausgleich, keine Bankabstimmung. |
+| Entscheidung | Buch ergaenzen: `Apply Entries` ist ein Kontroll- und Zuordnungskontext. Das Oeffnen der Seite ist noch kein Ausgleich; erst Buchungs-/Apply-Aktionen erzeugen Zahlungs-, Bank- oder Ausgleichsposten. Vor einer Laborzahlung braucht es einen separaten Freigabecheck fuer Buchungsdialog und Preview-Risiko. |
+| Buchstelle | Kapitel 19 Debitoren/Kreditoren und Kapitel 20 Bank/Payments |
+
+Bewertung:
+
+Dieser Befund ist fuer Anfaenger besonders wichtig, weil Business Central riskante Aktionen im selben Kontext zeigt, in dem auch harmlose Kontrolle stattfindet. Das Buch muss daher sprachlich sauber trennen: Rechnungsbezug pruefen, Apply Entries ansehen, aber `Post`, `OK`, `Set Applies-to ID` oder `Post Application` nur ausfuehren, wenn genau dieser Schritt freigegeben ist.
+
 ## FIND-BC-PAY-005 Bank Account Posting Group blockiert Zahlungsjournal nach Amount-Fix
 
 | Feld | Wert |
@@ -64,7 +86,7 @@ Das ist ein sehr praktischer Anfaengerbefund. Ein Bankkonto kann in der Liste ex
 
 | Feld | Wert |
 |---|---|
-| Status | erledigt als UI-Amount-/Journal-Check-Lernfall; Folgefund Apply-/Preview-Readiness offen |
+| Status | erledigt als UI-Amount-/Journal-Check-Lernfall; Folgefund `FIND-BC-PAY-007` erledigt |
 | Projekt | fibu-book5 |
 | Testfall | `PAYMENTS-007`, `PAYMENTS-008` |
 | Screenshot | `playwright/projects/fibu-book5/img/payments-007-020-cash-receipt-journal-after-bank-fit.png`, `playwright/projects/fibu-book5/img/payments-008-010-cash-receipt-amount-field-diagnosis.png` |
@@ -80,7 +102,7 @@ Das ist ein sehr praktischer Anfaengerbefund. Ein Bankkonto kann in der Liste ex
 
 Bewertung:
 
-Das ist ein guter Anfaengerbefund, weil er zeigt: Ein sichtbarer Betrag in der Journalzeile beweist noch keine zahlungsreife Gen.-Journal-Line. Erst der rechte `Journal Check` entscheidet, ob BC die Zeile fachlich akzeptiert. Nach `PAYMENTS-008` ist dieser Preflight im Labor positiv; der naechste Kontrollpunkt ist Apply-/Preview-Readiness, nicht sofortiges Buchen.
+Das ist ein guter Anfaengerbefund, weil er zeigt: Ein sichtbarer Betrag in der Journalzeile beweist noch keine zahlungsreife Gen.-Journal-Line. Erst der rechte `Journal Check` entscheidet, ob BC die Zeile fachlich akzeptiert. Nach `PAYMENTS-008` ist dieser Preflight im Labor positiv; `PAYMENTS-009` hat danach den Apply-Entries-Kontext read-only nachgewiesen. Der naechste Kontrollpunkt ist Zahlungsfreigabe/Buchungsdialog-Risiko, nicht blindes Buchen.
 
 ## FIND-BC-PAY-004 UI-Draft ist noch nicht zahlungsreif
 

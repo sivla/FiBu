@@ -72,7 +72,7 @@ Jeder Eintrag muss außerdem gegen die betroffene Buchstelle geprüft werden. We
 | Warum BC so reagiert | BC validiert Journalzeilen intern gegen die Tabelle `Gen. Journal Line`. Sichtbare Werte in Nachbar- oder Anzeigespalten reichen nicht, wenn das fachlich relevante Amount-Feld fuer die Journalzeile intern leer bleibt. |
 | Loesung | In breiter Ansicht Amount-Feld bewusst mit `-68.000,00` fuellen, Zeile verlassen, `Refresh` im rechten `Journal Check` ausfuehren und erst dann den Status bewerten. `PAYMENTS-008` zeigt danach `1 Lines checked`, `0 Lines with issues`, `0 Issues Total` und `No issues found`. |
 | Buchwirkung | Kapitel 19/20 muss betonen: Eine Journalzeile gilt erst als zahlungsreif, wenn `Journal Check` keine Issues meldet. Sichtbarer Betrag allein reicht nicht; `Amount` und `Amount ($)` muessen unterschieden werden. |
-| Kuenftige Regel | Keine Zahlung buchen, solange `Journal Check` Amount, Posting Group oder andere Zeilenfehler meldet. Nach `Journal Check = 0 Issues` folgt zuerst eine nicht buchende Apply-/Preview-Readiness, keine sofortige Zahlung. |
+| Kuenftige Regel | Keine Zahlung buchen, solange `Journal Check` Amount, Posting Group oder andere Zeilenfehler meldet. Nach `Journal Check = 0 Issues` folgt zuerst eine nicht buchende Apply-/Preview-Readiness; `PAYMENTS-009` hat diesen Apply-Kontext belegt, aber `Preview Posting` war nicht direkt sichtbar. Vor einer Zahlung braucht es weiterhin eine ausdrueckliche Freigabe. |
 
 ## WK-BC-P2P-001 Kreditor ohne Template blockiert P2P-Entwurf
 
