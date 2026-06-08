@@ -10,3 +10,4 @@ Status: CRONUS-USA-Labor, UI-only Amount-/Journal-Check-Diagnose, keine Zahlung,
 | `payments-008-010-cash-receipt-amount-field-diagnosis.screenshot.json` | Screenshot-Metadaten | Zweck und Grenzen des Amount-Diagnosebilds | keine Zahlungsfreigabe | labor |
 | `PAYMENTS-008-result.json` | JSON-Ergebnis | strukturierter UI-Amount-/Cleanup-/Sicherheitsbefund | kein Zahlungs-Finalnachweis | labor |
 | `PAYMENTS-008-AMOUNT-FIELD-DIAGNOSIS.md` | Lernzusammenfassung | Anfaengererklaerung zu Amount vs. Amount ($), Journal Check und Buchwirkung | keine Zahlung und kein Ausgleich | labor |
+| `PAYMENTS-008-AMOUNT-DIAGNOSTIC.md` | Kompatibilitaets-/Uebergabenotiz | alter Amount-Blocker ist geloest; stabiler UI-Pfad und Folgegrenze nach `PAYMENTS-009` | keine neue BC-Ausfuehrung, keine Zahlung | labor |
