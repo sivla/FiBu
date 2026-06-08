@@ -3379,6 +3379,9 @@ Eine Rechnung ist offen, bis eine Zahlung mit ihr verbunden wird. Diese Verbindu
 Laborbefund `PAYMENTS-001`:
 Im aktuellen `RM-DEMO`-Labor wurde noch keine Zahlung gebucht. Nachgewiesen ist der Startpunkt: Die gebuchte Verkaufsrechnung `PS-INV103297` erscheint in `Customer Ledger Entries` als offener Debitorenposten zu `D10000`; die gebuchte Einkaufsrechnung `108219` erscheint in `Vendor Ledger Entries` als offener Kreditorenposten zu `K10000`. Dort sieht der Anwender Restbetrag, Faelligkeit, Waehrung und Ausgleichs-/Payment-Kontext. Fuer Anfaenger ist das die wichtigste Kontrollfrage vor jedem Zahlungsjournal: Welcher Posten ist offen und welcher Betrag soll ausgeglichen werden? Zahlung, Ausgleich, Bankkonto und Bankabstimmung sind damit noch nicht bewiesen; sie folgen erst nach einem getrennten Readiness-Schritt.
 
+Laborbefund `PAYMENTS-002`:
+Die naechste Readiness-Pruefung oeffnet `Bank Accounts`, `Cash Receipt Journals`, `Payment Journals` und `Apply Entries` aus Debitoren- und Kreditorenposten. Das Labor zeigt vorhandene CRONUS-Bankkonten `CHECKING` und `SAVINGS`, aber nicht das Buchziel `BANK-RM-01`. Deshalb darf noch keine Zahlung gebucht werden. Ein sichtbarer `Post`-Button im Journal ist keine fachliche Freigabe; zuerst muessen Bankkonto, Gegenkonto, Betrag, Ausgleichsbezug und Vorabkontrolle passen.
+
 ### Warum braucht Rhein-Main diesen Prozess?
 
 Rhein-Main braucht verlässliche offene Posten für Mahnwesen, Liquidität und Monatsabschluss. Business Central zeigt nicht nur den Zahlungseingang, sondern auch die detaillierte Verbindung zwischen Rechnung und Zahlung.

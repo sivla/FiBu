@@ -19,6 +19,17 @@ Jeder relevante Fehler oder Workaround bekommt:
 
 Jeder Eintrag muss außerdem gegen die betroffene Buchstelle geprüft werden. Wenn der Workaround zeigt, dass der Buchtext zu knapp, falsch oder missverständlich ist, wird die Buchstelle im selben Arbeitsgang korrigiert oder als offene Buch-Fundstelle in `playwright/FINDINGS.md` markiert.
 
+## WK-BC-PAY-001 Zielbankkonto `BANK-RM-01` fehlt vor Zahlungsbuchung
+
+| Feld | Wert |
+|---|---|
+| Problem | `PAYMENTS-002` konnte Bank Accounts, Cash Receipt Journal, Payment Journal und Apply Entries oeffnen, aber das Zielbankkonto `BANK-RM-01` war in der Bankkontenliste nicht sichtbar. |
+| Sichtbarer Beleg | `playwright/projects/fibu-book5/img/payments-002-010-bank-accounts.png`, `playwright/projects/fibu-book5/evidence/payments-002/PAYMENTS-002-result.json`, `playwright/projects/fibu-book5/evidence/payments-002/PAYMENTS-002-READINESS.md` |
+| Ursache | `BANK-RM-01` ist ein Buch-/Rhein-Main-Zielwert. Die aktuelle CRONUS-USA-Laborcompany `RM-DEMO` enthaelt stattdessen vorhandene CRONUS-Bankkonten wie `CHECKING` und `SAVINGS`. |
+| Loesung | In diesem Lauf wurde bewusst nicht gebucht und kein Ersatzkonto stillschweigend verwendet. Der naechste Schritt ist ein idempotenter Bankkonto-Fit fuer `BANK-RM-01` oder eine dokumentierte Entscheidung, welches vorhandene CRONUS-Bankkonto als Laborersatz genutzt wird. |
+| Buchwirkung | Kapitel 19/20 muss Bankkonto-Readiness vor der ersten Zahlung nennen. Ein sichtbares Zahlungsjournal reicht nicht; das Gegenkonto und der Bankkontext muessen fachlich passen. |
+| Kuenftige Regel | Keine Zahlungsbuchung ohne dokumentierten Bankkonto-Entscheid. `Post` im Journal ist sichtbar, aber bis Bankkonto, Betrag, Ausgleichsbezug und Vorabkontrolle passen, bleibt die Buchung gesperrt. |
+
 ## WK-BC-P2P-001 Kreditor ohne Template blockiert P2P-Entwurf
 
 | Feld | Wert |

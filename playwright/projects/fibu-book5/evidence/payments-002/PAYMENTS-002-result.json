@@ -1,0 +1,80 @@
+{
+  "testId": "PAYMENTS-002",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "dataBasis": "CRONUS USA",
+  "mode": "controlled-readiness-no-posting-no-application-no-journal-line",
+  "sourceDocuments": {
+    "postedSalesInvoiceNo": "PS-INV103297",
+    "postedPurchaseInvoiceNo": "108219",
+    "customerNo": "D10000",
+    "vendorNo": "K10000",
+    "targetBankAccountNo": "BANK-RM-01"
+  },
+  "pages": {
+    "bankAccounts": {
+      "pageId": 371,
+      "opened": true,
+      "targetBankAccountVisible": false,
+      "anyBankAccountContextVisible": true
+    },
+    "cashReceiptJournal": {
+      "pageId": 255,
+      "opened": true,
+      "accountFieldsVisible": true,
+      "postActionVisible": true
+    },
+    "paymentJournal": {
+      "pageId": 256,
+      "opened": true,
+      "accountFieldsVisible": true,
+      "postActionVisible": true
+    },
+    "customerApplyEntries": {
+      "sourcePageId": 25,
+      "actionMenuOpened": true,
+      "openedFromLedgerEntry": true,
+      "documentVisible": true,
+      "dangerousApplyOrPostActionsVisible": true
+    },
+    "vendorApplyEntries": {
+      "sourcePageId": 29,
+      "actionMenuOpened": true,
+      "openedFromLedgerEntry": true,
+      "documentVisible": true,
+      "dangerousApplyOrPostActionsVisible": true
+    }
+  },
+  "safety": {
+    "posted": false,
+    "applied": false,
+    "journalLineCreated": false,
+    "bankReconciliationOpened": false,
+    "setAppliesToIdClicked": false,
+    "postApplicationClicked": false
+  },
+  "summary": {
+    "bankAccountReady": false,
+    "cashReceiptJournalReachable": true,
+    "paymentJournalReachable": true,
+    "customerApplyEntriesPathReachable": true,
+    "vendorApplyEntriesPathReachable": true,
+    "readyForPaymentPosting": false
+  },
+  "proves": [
+    "Ob der Bankkonten-Einstieg fuer den Zielbankkonto-Check erreichbar ist.",
+    "Ob Cash Receipt Journal und Payment Journal als Bedienpfade erreichbar sind.",
+    "Ob Apply Entries aus Debitoren- und Kreditorenposten erreichbar ist."
+  ],
+  "doesNotProve": [
+    "Keine Zahlung gebucht.",
+    "Kein Ausgleich angewendet.",
+    "Keine Journalzeile erstellt.",
+    "Keine Bankkontoabstimmung geoeffnet oder gebucht.",
+    "Kein deutscher Zahlungs-, Steuer- oder Bank-Finalnachweis."
+  ],
+  "blockers": [
+    "Zielbankkonto BANK-RM-01 ist im Bank-Accounts-Bild/Seitentext nicht sichtbar; vor einer Laborzahlung muss Bankkonto-Setup oder bewusstes CRONUS-Ersatzbankkonto entschieden werden."
+  ],
+  "nextStep": "PAYMENTS-003 darf noch nicht buchen. Naechster Schritt ist ein idempotenter Bankkonto-Setup-/Fit-Lauf oder eine dokumentierte Entscheidung fuer ein vorhandenes CRONUS-Bankkonto als Laborersatz."
+}
