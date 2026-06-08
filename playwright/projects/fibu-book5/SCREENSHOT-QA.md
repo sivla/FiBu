@@ -111,6 +111,13 @@ Fuer `UAT-O2C-001` fasst `playwright/projects/fibu-book5/evidence/uat-o2c-001/RE
 | `playwright/projects/fibu-book5/img/inventory-001-090-location-fra-zl.png` | guter Labor-Lagerortnachweis | Location `FRA-ZL` ist sichtbar; der Lauf aktiviert keine Warehouse-Logik. | Als Nachweis fuer einfachen Lagerort geeignet; gesteuertes Warehouse bleibt eigener Block. |
 | `playwright/projects/fibu-book5/img/inventory-001-100-inventory-valuation-tell-me.png` | Einstieg, kein Zahlenbeweis | Tell-Me zeigt `Inventory Valuation` unter `Berichte und Analysen`. | Nur als Navigations-/Einstiegsbild verwenden. Konkrete Lagerbewertungszahlen brauchen `INVENTORY-002`. |
 
+## `INVENTORY-002` Screenshot Review
+
+| Screenshot | Bewertung | Befund | Entscheidung |
+|---|---|---|---|
+| `playwright/projects/fibu-book5/img/inventory-002-020-inventory-valuation-request.png` | gutes Labor-Request-Page-Bild | Dialog `Inventory Valuation` zeigt `As Of Date = 08.06.2026`, `No. = RM-M100|RAW-STEEL`, `Location Filter = FRA-ZL` und die Aktion `Vorschau`. Der Hintergrund ist das Role Center; das ist fuer Report-Request-Pages normal. | Als Buchkandidat fuer Berichtseinstieg und Filterlogik geeignet. Nicht als Ergebnisbild verwenden. |
+| `playwright/projects/fibu-book5/img/inventory-002-030-inventory-valuation-preview.png` | guter Labor-Zahlenbericht | Vorschau zeigt `RAW-STEEL` mit `25.000,00`, `RM-M100` mit `-42.000,00` und `Total Inventory Value = -17.000,00`; Filterkontext und Stichtag sind oben sichtbar. | Als Laborbild fuer Lagerbewertung geeignet. Buchtext muss negative RM-M100-Menge/Wert als Laborbefund erklaeren; kein deutscher Abschluss- oder Kontenplan-Endstand. |
+
 ## Harte Findings aus dem Review
 
 ### QA-O2C-001 Listenbild zeigt nicht den Buchfall
@@ -155,5 +162,6 @@ Business Central nutzt fuer das Verkaufszeilengrid einen horizontal scrollbaren 
 - Redundante Screenshots werden nicht ins Buch referenziert.
 - Tabellenbilder brauchen eine definierte Spaltenstrategie: breiter Viewport, breite Layoutansicht, horizontaler Scroll, Zeilendetail, Personalisierung oder mehrere Detailbilder.
 - `INVENTORY-001` nutzt `Breites Layout umschalten` fuer gefilterte Tabellenbilder; die JSON-Evidence protokolliert `wideLayoutActivated = true`.
+- `INVENTORY-002` zeigt: Bei Report-Request-Pages ist ein grosser Viewport stabiler als ein generischer Maximize-/Breites-Layout-Klick. Globaler Tour-Cleanup darf dort nicht blind laufen, weil Overlays den Reportkontext stoeren koennen.
 - Fuer Dimensionen reicht kein Stammdatenbild. Der O2C-Lauf nutzt jetzt `Line` -> `Related Information` -> `Dimensions` als Belegnachweis; spaetere Buchungslaufe muessen die Dimension zusaetzlich in Posten oder Reporting wiederfinden.
 - Rohes `pageText()` wird nicht ungefiltert als redaktionelle Wahrheit verwendet.

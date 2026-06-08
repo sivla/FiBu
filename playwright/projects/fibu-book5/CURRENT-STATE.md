@@ -130,6 +130,7 @@ Letzter echter Fortschritt:
 - `UAT-P2P-001` hat den ersten Einkaufslaborprozess gebucht: Bestellung `106049` -> gebuchte Einkaufsrechnung `108219`. Vor der Preview musste `Vendor Invoice No.` gesetzt werden; die v2.0-Standard-API kann das Feld nicht patchen, ODataV4 `purchaseDocuments` schon. Preview zeigte echte Vorschauarten, danach wurde genau einmal `Receive and Invoice` bestaetigt. Postenspur: Kreditorenposten sichtbar, Sachposten mit `22100` und `14140`, Wertposten mit `RAW-STEEL` und `Item Ledger Entry No. = 793`, Artikelposten `793` sichtbar. P2P bleibt CRONUS-USA-Labor: `USD`, `Tax Percent = 0`, keine deutsche 19-%-Vorsteuer, `PRODUCTLINE=MACHINE` nicht in P2P-Posten sichtbar.
 - `FINDINGS.md`, Coverage, Workarounds, Screenshot-QA und Buchtext sind auf diesen Laborstand synchronisiert.
 - `INVENTORY-001` ist als read-only Inventory Trace gelaufen: O2C-Artikelposten `792` zeigt `RM-M100`, `FRA-ZL`, Menge `-1`, Sales Amount `67.673,60` und Cost Amount `-42.000,00`; O2C-Wertposten verknuepfen `PS-INV103297` mit `Item Ledger Entry No. 792`; O2C-Sachposten zeigen u. a. `14140`. P2P-Artikelposten `793` zeigt `RAW-STEEL`, `FRA-ZL`, Menge `10` und Kostenbezug; P2P-Wertposten verknuepfen `108219` mit `Item Ledger Entry No. 793`; P2P-Sachposten zeigen `22100` und `14140` mit `25.000`. Der Test bucht nicht, nutzt die breite Layoutansicht und schliesst Teaching Tips vor den Screenshots.
+- `INVENTORY-002` ist als read-only Lagerbewertungsnachweis gelaufen: `Inventory Valuation` wurde ueber Tell-Me geoeffnet, die Request Page mit `As Of Date = 08.06.2026`, `No. = RM-M100|RAW-STEEL` und `Location Filter = FRA-ZL` gefuellt und per `Vorschau` gerendert. Der Bericht zeigt `RAW-STEEL = 25.000,00`, `RM-M100 = -42.000,00` und `Total Inventory Value = -17.000,00`. Keine Buchung, keine Kostenregulierung, keine Warehouse-Aktivierung. Der negative `RM-M100`-Wert ist der naechste fachliche Lernfall.
 
 ## Aktuelle O2C-Wahrheit
 
@@ -188,7 +189,7 @@ Als naechstes gezielt den naechsten Lernblock waehlen, ohne erneut zu buchen:
 3. O2C ist im CRONUS-Labor bis gebuchte Rechnung, Postenspur, Artikelposten und Artikelposten-Dimension nachgewiesen.
 4. Stammdaten- und Setup-Folgearbeit aus `MASTERDATA-BACKLOG.md` ableiten, damit neue Prozesse nicht mit fehlenden Kreditoren, Artikeln, Dimensionswerten, Posting Groups oder Tax/VAT-Annahmen starten.
 5. `UAT-P2P-001` ist nach Readiness und Preview genau einmal im Labor gebucht: Bestellung `106049`, gebuchte Einkaufsrechnung `108219`, `Receive and Invoice`; Postenspur ist read-only belegt. Keine zweite P2P-Buchung ohne neuen ausdruecklichen Grund.
-6. `INVENTORY-001` hat O2C- und P2P-Inventory-Spuren read-only zusammengefuehrt. Keine Buchung, keine Warehouse-Aktivierung. Naechster Schritt ist Inventory Valuation/Lagerbewertung mit Datum, Artikel- und Lagerortfilter.
+6. `INVENTORY-001` hat O2C- und P2P-Inventory-Spuren read-only zusammengefuehrt. `INVENTORY-002` hat danach `Inventory Valuation` mit Datum, Artikel- und Lagerortfilter als Zahlenbericht nachgewiesen. Keine Buchung, keine Warehouse-Aktivierung. Naechster Schritt ist die fachliche Erklaerung des negativen `RM-M100`-Werts.
 7. `REPORTING-002` hat Financial Reports und O2C-Posten read-only geprueft: `PRODUCTLINE=MACHINE` und `CHANNEL=B2B` sind am Artikelposten `Entry No. 792` sichtbar, aber nicht in den aktuellen Sachposten-/Financial-Reports-Texten; Financial Reports zeigt `Dimension Perspective`, `Column Definition` und Reports `Income Statement`, `Revenue`, `Balance Sheet`.
 8. Deutsche `19 %`-USt bleibt davon getrennt offen.
 
@@ -198,9 +199,9 @@ Synchronisationsstand nach der letzten Projektwahrheits-Pruefung:
 - Labor-Nachweis: alle aktuellen O2C-, MASTERDATA-008- und MASTERDATA-009-Bilder/Evidence gelten fuer CRONUS USA / gemischte UI; `MASTERDATA-009` ist ein Labor-Setup-Fit, kein deutscher Kontenplan-Endstand.
 - Labor-Buchungsfreigabe: `070-lab-posting-readiness.md` wurde genutzt; genau eine CRONUS-USA-Laborbuchung ist erfolgt (`S-ORD101068` -> `PS-INV103297`). Nicht erneut buchen.
 - Finaler DE-Nachweis offen: deutsche Oberflaeche, 19-%-USt, deutsche Buchung und deutsche Postenspur.
-- Blockiert/offen: kein Inventory-Posting-Setup-Blocker mehr; direkter Artikelposten-Check ist geloest ueber `Item Ledger Entry No. = 792`; `PRODUCTLINE=MACHINE` und `CHANNEL=B2B` sind am Artikelposten nachgewiesen; Reporting-Seite ist erreichbar und zeigt Dimension-/Analyseoptionen, aber `PRODUCTLINE`/`CHANNEL` sind im aktuellen Financial-Reports-Lauf nicht sichtbar nutzbar; offen bleiben Steuer-/VAT-Fit, Sachposten-Dimensionsdialog/Dimension-Set-Nachweis, Reporting-Auswertungsnachweis und finale deutsche Nachweise.
+- Blockiert/offen: kein Inventory-Posting-Setup-Blocker mehr; direkter Artikelposten-Check ist geloest ueber `Item Ledger Entry No. = 792`; `PRODUCTLINE=MACHINE` und `CHANNEL=B2B` sind am Artikelposten nachgewiesen; `Inventory Valuation` ist als Labor-Zahlenbericht nachgewiesen, zeigt aber einen negativen `RM-M100`-Wert als Folgefrage; Reporting-Seite ist erreichbar und zeigt Dimension-/Analyseoptionen, aber `PRODUCTLINE`/`CHANNEL` sind im aktuellen Financial-Reports-Lauf nicht sichtbar nutzbar; offen bleiben Steuer-/VAT-Fit, Sachposten-Dimensionsdialog/Dimension-Set-Nachweis, Reporting-Auswertungsnachweis und finale deutsche Nachweise.
 - Dimensionen: O2C-Kerndimensionen und Default Dimensions sind praktisch nachgewiesen; vollstaendige Buchstandard-Dimensionsmatrix ist noch nicht fertig.
-- Nicht geprueft: P2P-Zahlung/OP-Ausgleich, deutsche P2P-19-%-Vorsteuer, P2P-Dimensionen in Posten, echte Financial-Reports-Zahlenwirkung nach Dimension, konkrete Lagerbewertungszahlen im Report `Inventory Valuation`.
+- Nicht geprueft: P2P-Zahlung/OP-Ausgleich, deutsche P2P-19-%-Vorsteuer, P2P-Dimensionen in Posten, echte Financial-Reports-Zahlenwirkung nach Dimension, Ursache/Korrekturweg fuer negative `RM-M100`-Lagerbewertung im Labor.
 
 ## Befehle fuer neue Agents
 
@@ -235,6 +236,7 @@ Danach `.env` mit der konkreten Business-Central-URL fuellen.
 | `playwright/projects/fibu-book5/evidence/uat-o2c-001/README.md` | Evidence-Index fuer den aktuellen O2C-Laborlauf |
 | `playwright/projects/fibu-book5/evidence/uat-o2c-001/O2C-LAB-FINAL-SYNC.md` | finaler O2C-Labor-Sync ohne neue Buchung |
 | `playwright/projects/fibu-book5/evidence/inventory-001/INVENTORY-LAB-TRACE.md` | read-only Inventory Trace fuer O2C/P2P: Artikelposten, Wertposten, Sachposten, Artikelkarten, Lagerort, breite Layoutansicht |
+| `playwright/projects/fibu-book5/evidence/inventory-002/INVENTORY-VALUATION.md` | read-only Lagerbewertungsbericht mit Stichtag, Item-/Location-Filter, Laborzahlen und negativem RM-M100-Lernfall |
 | `playwright/projects/fibu-book5/BOOK-TO-EVIDENCE-AUDIT.md` | kritischer Buch-vs.-Projekt-vs.-Evidence-Abgleich mit Anforderungsmatrix |
 | `playwright/projects/fibu-book5/BOOK-EVIDENCE-WORKPLAN.md` | belastbarer Arbeitsplan aus Buch-vs.-Evidence-Abgleich |
 | `playwright/projects/fibu-book5/MASTERDATA-BACKLOG.md` | priorisierter Stammdaten- und Setup-Backlog aus dem Buch fuer `RM-DEMO` |

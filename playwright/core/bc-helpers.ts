@@ -221,7 +221,7 @@ export async function dismissTours(page: Page) {
     }
 
     const closeByRole = frame
-      .getByRole('button', { name: /Schließen|Schliessen|Close|Dismiss|Discard|Verwerfen|×|X/i })
+      .getByRole('button', { name: /Schließen|Schliessen|Close|Dismiss|Discard|Verwerfen|Verstanden|Got it|×/i })
       .last();
     if (await closeByRole.isVisible({ timeout: 500 }).catch(() => false)) {
       await closeByRole.click();
@@ -277,7 +277,7 @@ export async function dismissTours(page: Page) {
             return rect.width > 0 && rect.height > 0;
           });
           const closeButton =
-            buttons.find((button) => /Schließen|Schliessen|Close|Dismiss|Discard|Verwerfen|×|X/i.test(button.innerText || button.getAttribute('aria-label') || '')) ??
+            buttons.find((button) => /Schließen|Schliessen|Close|Dismiss|Discard|Verwerfen|Verstanden|Got it|×/i.test(button.innerText || button.getAttribute('aria-label') || '')) ??
             buttons.at(-1);
 
           if (closeButton) {

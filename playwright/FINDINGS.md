@@ -550,3 +550,25 @@ Das ist ein sehr nuetzlicher Lernpunkt fuer Anfaenger: Eine Dimension kann korre
 Bewertung:
 
 Das ist ein starker Anfaenger-Lernpunkt. Der Artikelposten beweist, dass die Dimension in der gebuchten Spur angekommen ist. Der Financial Report beweist damit aber noch nicht automatisch eine GuV-Auswertung nach Produktlinie oder Kanal. Fuer das Buch muss deshalb der Reportingpfad selbst bebildert werden, statt die Postendimension als Berichtssumme umzudeuten.
+
+## FIND-BC-INV-001 Inventory Valuation braucht Stichtag und zeigt negative Laborbewertung fuer RM-M100
+
+| Feld | Wert |
+|---|---|
+| Status | offen als Lernfall |
+| Projekt | fibu-book5 |
+| Testfall | `INVENTORY-002` |
+| Screenshot | `playwright/projects/fibu-book5/img/inventory-002-020-inventory-valuation-request.png`, `playwright/projects/fibu-book5/img/inventory-002-030-inventory-valuation-preview.png` |
+| Evidence | `playwright/projects/fibu-book5/evidence/inventory-002/INVENTORY-VALUATION-result.json`, `playwright/projects/fibu-book5/evidence/inventory-002/INVENTORY-VALUATION.md`, `playwright/projects/fibu-book5/evidence/inventory-002/README.md` |
+| BC-Seite | `Inventory Valuation` |
+| sichtbarer Text | `As Of Date = 08.06.2026`, `No. = RM-M100|RAW-STEEL`, `Location Filter = FRA-ZL`, `RAW-STEEL = 25.000,00`, `RM-M100 = -42.000,00`, `Total Inventory Value = -17.000,00` |
+| Elementtyp | Lagerbewertung / Report Request Page / Report Viewer |
+| erste Hypothese | Die Lagerbewertung ist eine Stichtagsauswertung aus Artikel-/Wertposten. Der negative `RM-M100`-Wert entsteht nicht im Bericht, sondern aus der Labor-Bewegungskette: Verkauf/Lieferung ohne vorher passend aufgebauten positiven Bestand im selben Filterkontext. |
+| Recherchequelle | praktischer Playwright-Lauf `npm run fibu:inventory:valuation` |
+| Testergebnis | Der Report rendert read-only mit Stichtag, Item- und Lagerortfilter. Mit `As Of Date = 08.06.2026` zeigt die Vorschau beide Artikel und die negative Summe. |
+| Entscheidung | Buch ergaenzen: Lagerbewertung braucht Stichtag und Filter. Negative Lagerwerte sind kein Screenshotfehler, sondern ein Hinweis auf Bestands-/Kostenkette, Anfangsbestand oder Reihenfolge der Bewegungen. Finale Buchbilder brauchen eine konsistente deutsche Zielumgebung mit sauberem Anfangsbestand oder passendem Zugang fuer `RM-M100`. |
+| Buchstelle | Kapitel 13 Inventory/Warehouse, Kapitel 23 Inventory Costing und Lagerbewertung |
+
+Bewertung:
+
+Das ist ein idealer Lernfall fuer Anfaenger: Der Bericht ist nicht „falsch“, sondern zeigt die Folge der gebuchten Laborposten. Wer Lagerbewertung versteht, muss Artikelposten, Wertposten, Stichtag, Lagerortfilter und Anfangsbestand zusammen lesen. Der naechste Schritt ist daher nicht sofort Warehouse oder neue Buchung, sondern die erklaerende Kette: Warum ist `RAW-STEEL` positiv, warum ist `RM-M100` negativ, und welche Daten braucht ein finales Buchbild?

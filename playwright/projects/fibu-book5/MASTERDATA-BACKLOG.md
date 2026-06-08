@@ -70,7 +70,7 @@ Deutsche `19 %` USt, deutscher Kontenplan, deutsche Steuerreports und finale deu
 | Workflows/Freigaben | 12, 20, 27, 29 | Einkauf, Zahlungen, AP-Automation, Genehmiger | Buchmodell, nicht Labor | nein | nein | `not-now` | P4 | Nach Standardprozessen, nicht vor P2P-Basis. |
 | O2C Evidence Pack | 11, 19, 23, 25 | Auftrag, Preview, gebuchte Rechnung, Posten, Dimension, Reporting | Labor weit belegt; Reporting/DE-USt offen | ja | ja | `partial` | P0/P4 | Keine zweite Buchung; Reporting/G/L-Dimension read-only nachziehen. |
 | P2P Evidence Pack | 12, 19, 22 | Bestellung, Wareneingang, Eingangsrechnung, Kreditorenposten, Sachposten, Vorsteuer | Laborprozess gebucht: Bestellung `106049`, gebuchte Einkaufsrechnung `108219`, Kreditorenposten, Sachposten, Wertposten und Artikelposten; Vorsteuer bleibt `0 %` | ja als Prozessfall | ja, `p2p-001` | `partial` | P0 | Keine zweite Buchung; Zahlung/OP-Ausgleich oder DE-VAT-Fit spaeter. |
-| Inventory/Warehouse Evidence Pack | 13, 23 | Artikelposten, Wertposten, Lagerbewertung, Bins/Picks | `INVENTORY-001` belegt O2C `RM-M100` und P2P `RAW-STEEL` read-only ueber Item Ledger Entries `792`/`793`, Value Entries, G/L Entries, Artikelkarten und Location `FRA-ZL`; Tabellenbilder nutzen breite Layoutansicht; Warehouse und Lagerbewertungszahlen offen | teilweise | ja, `inventory-001`, O2C, P2P | `partial` | P1 | Inventory Valuation/Lagerbewertung mit Datum, Artikel- und Lagerortfilter read-only pruefen; danach Warehouse getrennt. |
+| Inventory/Warehouse Evidence Pack | 13, 23 | Artikelposten, Wertposten, Lagerbewertung, Bins/Picks | `INVENTORY-001` belegt O2C `RM-M100` und P2P `RAW-STEEL` read-only ueber Item Ledger Entries `792`/`793`, Value Entries, G/L Entries, Artikelkarten und Location `FRA-ZL`; `INVENTORY-002` belegt `Inventory Valuation` mit `As Of Date = 08.06.2026`, `No. = RM-M100|RAW-STEEL`, `Location Filter = FRA-ZL`, Berichtswerten `25.000,00`, `-42.000,00` und `Total Inventory Value = -17.000,00`; Warehouse offen | teilweise | ja, `inventory-001`, `inventory-002`, O2C, P2P | `partial` | P1 | Negativen `RM-M100`-Wert als Bestands-/Kostenketten-Lernfall erklaeren; danach Warehouse getrennt. |
 | Manufacturing/Assembly Evidence Pack | 14 | BOM/Routing/Production Order, Verbrauch, Output | nicht gestartet | teilweise | nein | `planned-only` | P2 | Nach P2P/Inventory. |
 | Service Evidence Pack | 15 | Serviceartikel, Serviceauftrag, Ressource, Ersatzteilverbrauch | nicht gestartet | teilweise | nein | `planned-only` | P2 | Nach Ersatzteil-/Ressourcenfit. |
 | Project Evidence Pack | 16 | Projekt, Aufgaben, Ressource, Material, Faktura, WIP | nicht gestartet | teilweise | nein | `planned-only` | P2 | Nach Ressourcen/Projektsetup. |
@@ -91,7 +91,7 @@ Deutsche `19 %` USt, deutscher Kontenplan, deutsche Steuerreports und finale deu
 1. Aktuellen O2C-Laborbeleg nicht erneut buchen; `REPORTING-002` ist erledigt als Sichtbarkeitsbefund. Naechster Reporting-Schritt ist `Dimension Perspective`, `Dimensions - Detail` oder Analysis Views read-only.
 2. P2P-Laborbuchung ist erledigt: `106049` -> `108219`. Nicht erneut buchen; naechster P2P-naher Schritt ist Zahlung/OP-Ausgleich oder Inventory/Lagerbewertung.
 3. Deutsche VAT-/EUR-/Kontenplan-Endstaende bleiben getrennte Finalaufgaben.
-4. Inventory einfach vertiefen: Lagerbewertung/Inventory Valuation fuer `RM-M100`, `RAW-STEEL` und `FRA-ZL` als read-only Zahlenbericht pruefen.
+4. Inventory einfach vertiefen: `INVENTORY-002` ist als read-only Zahlenbericht erledigt; naechster Schritt ist die fachliche Erklaerung, warum `RM-M100` im Labor negativ bewertet ist und wie der finale Zielbestand vorbereitet wird.
 5. Warehouse separat: `FRA-ZL` als gesteuertes Lager mit Bins, Receipts, Put-aways, Picks erst nach dem einfachen Inventory-Trace.
 6. Danach Manufacturing/Assembly, Service, Projects.
 7. Erst danach Multi-Company/Intercompany und Ausland.
@@ -106,7 +106,7 @@ Deutsche `19 %` USt, deutscher Kontenplan, deutsche Steuerreports und finale deu
 | Welche Dimensionen werden globale/Shortcut-Dimensionen? | Entscheidend fuer sichtbare Spalten, Filter und Financial Reports. | offen |
 | Welche P2P-Buchung wird zuerst erlaubt: nur Preview oder kontrollierte Laborbuchung? | Verhindert falsche Kreditoren-/Vorsteuerbuchungen. | beantwortet fuer Labor: genau eine Buchung `106049` -> `108219`; weitere Buchungen gesperrt |
 | Welche Reporting-Auswertung ist der erste Buchnachweis: `Income Statement`, `Revenue`, Analysis View oder G/L Entries Filter? | Bestimmt Screenshots und Anfaengererklaerung. | offen |
-| Welche Lagerbewertung soll der erste Buchnachweis sein: `Inventory Valuation` mit Datum/Artikel/Lagerort oder zuerst Wertposten/Sachposten-Abgleich? | Bestimmt Kapitel 13/23-Screenshots und ob Zahlenwirkung behauptet werden darf. | Einstieg gefunden; Zahlenbericht offen |
+| Welche Lagerbewertung soll der erste Buchnachweis sein: `Inventory Valuation` mit Datum/Artikel/Lagerort oder zuerst Wertposten/Sachposten-Abgleich? | Bestimmt Kapitel 13/23-Screenshots und ob Zahlenwirkung behauptet werden darf. | beantwortet fuer Labor: `INVENTORY-002` nutzt `Inventory Valuation` mit Stichtag, Artikel- und Lagerortfilter; negativer `RM-M100`-Wert ist Folgefrage |
 
 ## Nicht jetzt
 
@@ -121,6 +121,6 @@ Deutsche `19 %` USt, deutscher Kontenplan, deutsche Steuerreports und finale deu
 
 ```text
 Arbeite auf Branch codex/playwright-bc-screenshot-foundation.
-Lies CURRENT-STATE.md, LAB-FIT-STATUS.md, BOOK-CLICK-GUIDE-COVERAGE.md und evidence/inventory-001/INVENTORY-LAB-TRACE.md.
-Fuehre genau einen read-only Schritt aus: INVENTORY-002 soll `Inventory Valuation`/Lagerbewertung mit Datum, Artikel `RM-M100`/`RAW-STEEL` und Lagerort `FRA-ZL` pruefen. Keine Datenanlage, keine Buchung, keine Warehouse-Aktivierung. Sichere nur kompakte Evidence, Zahlen nur behaupten, wenn sie sichtbar oder strukturiert nachgewiesen sind.
+Lies CURRENT-STATE.md, LAB-FIT-STATUS.md, BOOK-CLICK-GUIDE-COVERAGE.md und evidence/inventory-002/INVENTORY-VALUATION.md.
+Fuehre genau einen read-only Folge-Schritt aus: Erklaere den negativen `RM-M100`-Wert aus `Inventory Valuation` fachlich anhand vorhandener O2C/P2P-Postenspur und dokumentiere, welche Anfangsbestands- oder Einkaufslogik fuer finale Buchbilder noetig ist. Keine Datenanlage, keine Buchung, keine Warehouse-Aktivierung.
 ```

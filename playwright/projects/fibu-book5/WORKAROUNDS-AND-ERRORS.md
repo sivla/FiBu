@@ -140,6 +140,17 @@ Jeder Eintrag muss außerdem gegen die betroffene Buchstelle geprüft werden. We
 | Buchwirkung | Teaching Tips duerfen als Lernbefund erklaert werden. Fuer Feld- und Tabellenbelege sollen sie geschlossen werden, wenn sie keine fachliche Aussage tragen. |
 | Kuenftige Regel | Keine blinde globale Ausschaltung der Onboarding-Hilfe setzen. Fuer reproduzierbare Buchscreenshots Teaching Tips gezielt pro Lauf schliessen und danach den fachlichen Seitentext erneut pruefen. |
 
+## WK-BC-INV-001 Report-Request-Pages nicht mit globalem Tour-Cleanup oder Maximize-Klick stoeren
+
+| Feld | Wert |
+|---|---|
+| Problem | Der erste automatisierte `INVENTORY-002`-Lauf hing im generischen `dismissTours()` beziehungsweise verlor nach einem breiten/Maximize-Klick den Reportkontext. |
+| Sichtbarer Beleg | Fehlgeschlagener Lauf `npm run fibu:inventory:valuation` am 08.06.2026; danach erfolgreiche Evidence unter `playwright/projects/fibu-book5/evidence/inventory-002/` und Screenshots `playwright/projects/fibu-book5/img/inventory-002-*`. |
+| Ursache | Report-Request-Pages liegen als modaler BC-Kontext ueber dem Role Center. Ein zu breites Close-Muster (`X`) konnte falsche UI-Elemente wie `Report Inbox` treffen; zusaetzlich ist `Seite maximieren` bei Reportdialogen nicht so stabil wie bei Listen. |
+| Loesung | `dismissTours()` wurde enger gefasst: kein alleinstehendes `X` mehr als Close-Kriterium, dafuer gezielte Texte wie `Verstanden`/`Got it`. `INVENTORY-002` oeffnet den Reporttreffer sofort und nutzt fuer Request Page und Vorschau den grossen Viewport statt generischem Maximize-/Breites-Layout-Klick. |
+| Buchwirkung | Die Anleitung darf die Report-Request-Page mit den Filtern zeigen. Sie muss nicht behaupten, dass breite Layoutansicht fuer jeden Reportdialog noetig oder sinnvoll ist. |
+| Kuenftige Regel | Breite Layoutansicht fuer Tabellen/listenartige Seiten nutzen; bei Report-Request-Pages zuerst Stabilitaet pruefen und nur gezielt schliessen, was fachlich stoert. |
+
 ## WK-BC-O2C-009 CRONUS-Labor ist nicht automatisch deutscher Steuerfit
 
 | Feld | Wert |

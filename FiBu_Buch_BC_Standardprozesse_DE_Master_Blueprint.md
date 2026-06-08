@@ -6903,6 +6903,10 @@ Diagnosepfad:
 
 Lagerbewertung verbindet Artikelposten, Wertposten und Sachposten. Die monatliche Kontrolle nutzt Lagerbewertung, Kostenregulierung und Abgleich mit dem Hauptbuch.
 
+Laborbefund aus `INVENTORY-002`: In `RM-DEMO` wurde der Bericht `Inventory Valuation` read-only mit `As Of Date = 08.06.2026`, Artikelfilter `RM-M100|RAW-STEEL` und `Location Filter = FRA-ZL` ausgefuehrt. Die Vorschau zeigt `RAW-STEEL` positiv mit `25.000,00`, `RM-M100` negativ mit `-42.000,00` und einen `Total Inventory Value` von `-17.000,00`. Das ist kein finaler deutscher Abschlusswert, sondern ein Lernbild: Der Bericht bewertet die vorhandene Bewegungskette zum Stichtag. Ist ein Artikel im betrachteten Lagerort negativ, muss der Leser nicht den Bericht korrigieren, sondern Bestand, Zugang, Verkauf/Lieferung, Wertposten und Kostenkette pruefen.
+
+Fuer eine belastbare Buchanleitung gehoeren deshalb drei Bilder zusammen: die Request Page mit Stichtag, Item- und Lagerortfilter; die Berichtsvorschau; und die Postenspur aus Artikelposten/Wertposten. Erst wenn diese drei Ebenen zusammenpassen, darf der Lagerwert als fachlicher Nachweis verwendet werden.
+
 | Thema | Prüfung |
 |---|---|
 | Kostenmethode | FIFO, Durchschnitt, Standard etc. |

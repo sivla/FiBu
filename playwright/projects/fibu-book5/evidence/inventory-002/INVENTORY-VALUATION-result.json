@@ -1,0 +1,52 @@
+{
+  "testId": "INVENTORY-002",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "dataBasis": "CRONUS USA",
+  "mode": "read-only-no-posting",
+  "report": "Inventory Valuation",
+  "filters": {
+    "asOfDate": "08.06.2026",
+    "itemNo": "RM-M100|RAW-STEEL",
+    "locationFilter": "FRA-ZL"
+  },
+  "ui": {
+    "tellMeVisible": true,
+    "clickedReportResult": true,
+    "shellWideLayoutActivated": false,
+    "requestWideLayoutActivated": false,
+    "requestPageVisible": true,
+    "previewClicked": true,
+    "previewVisible": true
+  },
+  "filterEntry": {
+    "dateSet": true,
+    "itemFilterSet": true,
+    "locationFilterSet": true
+  },
+  "observedValues": {
+    "rawSteelVisible": true,
+    "rawSteelQuantity10Visible": true,
+    "rawSteelInventoryValue25000Visible": true,
+    "rmM100Visible": true,
+    "rmM100QuantityMinus1Visible": true,
+    "rmM100InventoryValueMinus42000Visible": true,
+    "totalInventoryValueMinus17000Visible": true,
+    "reportFilterContextVisible": true,
+    "quantitiesAndValuesAsOfVisible": true
+  },
+  "proves": [
+    "Inventory Valuation ist ueber Tell-Me in Berichte und Analysen erreichbar.",
+    "Die Request Page zeigt einen Stichtag und bietet Item- sowie Location-Filter.",
+    "Mit As Of Date, Item-Filter und Location Filter rendert BC eine read-only Berichtsvorschau.",
+    "Der Bericht zeigt im Labor RAW-STEEL, RM-M100 und Total Inventory Value fuer FRA-ZL."
+  ],
+  "doesNotProve": [
+    "Kein deutscher Kontenplan-Endstand.",
+    "Kein deutscher 19-Prozent-USt-Endstand.",
+    "Keine Kostenregulierung.",
+    "Keine Warehouse-Aktivierung.",
+    "Keine neue Buchung."
+  ],
+  "nextStep": "Negativen Lagerwert RM-M100 als Lernfall analysieren und entscheiden, ob finale Buchbilder vorher sauberen Anfangsbestand oder Einkaufszugang fuer RM-M100 brauchen."
+}

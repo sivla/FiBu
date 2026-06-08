@@ -68,6 +68,7 @@ Wenn das Projekt fertig ist, kennen wir Business Central für den Buchumfang nic
 | Posting | General Posting Setup | 314 | Liste bearbeiten, Suggest Accounts, Copy | Erlös-/Aufwandskonten für Gruppenmatrix | `MASTERDATA-001` | `playwright/projects/fibu-book5/img/masterdata-001-general-posting-setup.png` | gesehen | Kapitel 9 |
 | Steuer | VAT/Tax Posting Setup | 472 | Liste bearbeiten, Suggest Accounts, Copy | USt-/Tax-Konten und Steuersätze | `MASTERDATA-001` | `playwright/projects/fibu-book5/img/masterdata-001-vat-posting-setup.png` | gesehen | Kapitel 9/22 |
 | Lagerbewertung | Inventory Posting Setup | 5826 | Liste bearbeiten, Suggest Accounts | Bestandskonten je Lagerort/Posting Group | `MASTERDATA-001` | `playwright/projects/fibu-book5/img/masterdata-001-inventory-posting-setup.png` | gesehen | Kapitel 9/13/23 |
+| Lagerbewertung | Inventory Valuation | n/a | Request Page, `As Of Date`, Item-Filter `No.`, `Location Filter`, `Vorschau`, Report Viewer | Stichtagsbezogene Lagerbewertung nach Artikel und Lagerort erzeugen | `INVENTORY-002` | `playwright/projects/fibu-book5/img/inventory-002-020-inventory-valuation-request.png`; `playwright/projects/fibu-book5/img/inventory-002-030-inventory-valuation-preview.png`; `playwright/projects/fibu-book5/evidence/inventory-002/` | erledigt als Labor-Zahlenbericht; kein DE-Finalabschluss | Kapitel 13/23 |
 
 ## O2C
 
@@ -88,10 +89,10 @@ Wenn das Projekt fertig ist, kennen wir Business Central für den Buchumfang nic
 
 | Reihenfolge | Ziel |
 |---:|---|
-| 1 | `REPORTING-002`: Financial Reports maximieren, passenden Report waehlen und Dimensions-/Filterfelder fuer `PRODUCTLINE=MACHINE` suchen |
-| 2 | G/L Entry Dimensions zu `PS-INV103297` read-only pruefen, ohne neue O2C-Buchung |
-| 3 | Steuerfit: CRONUS-USA-Probelauf weiter vom deutschen Ziel-Fall `19 %` trennen |
-| 4 | P2P-/Kreditoren-Stammdaten vorbereiten: `K10000`, `RAW-STEEL`, Default Dimensions, Vendor/General Posting Setup, Tax/VAT-Laborgrenze |
+| 1 | Negativen `RM-M100`-Wert aus `Inventory Valuation` als Lernfall erklaeren: Bestand vor Verkauf, Kostenkette und finaler Zielbestand |
+| 2 | `REPORTING-002`: Financial Reports/Dimension Perspective gezielt fuer `PRODUCTLINE=MACHINE` und `CHANNEL=B2B` weiterfuehren |
+| 3 | G/L Entry Dimensions zu `PS-INV103297` read-only pruefen, ohne neue O2C-Buchung |
+| 4 | Steuerfit: CRONUS-USA-Probelauf weiter vom deutschen Ziel-Fall `19 %` trennen |
 | 5 | Warehouse-Block: `FRA-ZL` spaeter mit Bins/Receipts/Picks ausbauen |
 
 ## Definition of Done fuer eine Funktion
