@@ -112,7 +112,7 @@ Wenn das Projekt fertig ist, kennen wir Business Central für den Buchumfang nic
 
 | Reihenfolge | Ziel |
 |---:|---|
-| 1 | `PAYMENTS-011` nur mit ausdruecklicher Freigabe als kontrollierte Laborzahlung; ohne Freigabe Payments-Buchtext/Evidence-Pack didaktisch abrunden |
+| 1 | `PAYMENTS-011` nur mit ausdruecklicher Freigabe als kontrollierte Laborzahlung; `PAYMENTS-EVIDENCE-PACK-SYNC.md` hat den nicht buchenden Payments-Lernpfad bereits abgerundet |
 | 2 | Reporting weiterfuehren: `REPORTING-007` hat `Analysis by Dimensions` nur als Tell-Me-Suchpfad belegt; Analysis-View-Fit fuer `PRODUCTLINE=MACHINE` und `CHANNEL=B2B` oder alternativen offiziellen Reporting-Einstieg nur mit eigener Freigabe planen |
 | 3 | Inventory-Laborblock didaktisch abrunden: Item Journal, Journal Check, Buchungsdialog, Artikelposten, Wertposten, Sachposten und Inventory Valuation fuer Anfaenger erklaeren; keine weitere `INV008`-Buchung |
 | 4 | G/L Entry Dimensions zu `PS-INV103297` read-only pruefen, ohne neue O2C-Buchung |

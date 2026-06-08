@@ -16,4 +16,5 @@ Status: CRONUS-USA-Labor, UI-only Posting-Readiness, keine Zahlung, kein Ausglei
 | `PAYMENTS-010-result.json` | JSON-Ergebnis | strukturierter Apply-/Preview-/Post-Dialog-/Cleanup-/Sicherheitsbefund | kein Zahlungs-Finalnachweis | labor |
 | `PAYMENTS-010-POSTING-READINESS.md` | Lernzusammenfassung | Anfaengererklaerung zu Applies-to, Apply Entries, Journal Check, Post-Dialog und Grenzen | keine Zahlung und kein Ausgleich | labor |
 | `PAYMENTS-010-BOOK-SYNC.md` | Buch-Sync | welche PAYMENTS-010-Wahrheit in Kapitel 19/20 eingearbeitet wurde | keinen neuen BC-Lauf und keine Zahlungswirkung | labor |
+| `PAYMENTS-EVIDENCE-PACK-SYNC.md` | Evidence-Pack-Sync | wie `PAYMENTS-001` bis `PAYMENTS-010` zusammenhaengen: offener Posten, Journal-Draft, Journal Check, Apply Entries, Post-Dialog, Abbruch | keine neue BC-Ausfuehrung, keine Zahlung, keinen OP-Ausgleich | labor |
 | `*.screenshot.json` | Screenshot-Metadaten | Zweck und Limitationen der PNGs | keine eigenstaendige fachliche Wahrheit ohne Text/JSON | labor |

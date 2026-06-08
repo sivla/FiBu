@@ -46,14 +46,14 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 | Projekt | fibu-book5 |
 | Testfall | `PAYMENTS-010` |
 | Screenshot | `playwright/projects/fibu-book5/img/payments-010-030-post-dialog-before-cancel.png` |
-| Evidence | `playwright/projects/fibu-book5/evidence/payments-010/PAYMENTS-010-result.json`, `playwright/projects/fibu-book5/evidence/payments-010/PAYMENTS-010-POSTING-READINESS.md` |
+| Evidence | `playwright/projects/fibu-book5/evidence/payments-010/PAYMENTS-010-result.json`, `playwright/projects/fibu-book5/evidence/payments-010/PAYMENTS-010-POSTING-READINESS.md`, `playwright/projects/fibu-book5/evidence/payments-010/PAYMENTS-EVIDENCE-PACK-SYNC.md` |
 | BC-Seite | Cash Receipt Journals |
 | sichtbarer Text | `Post`, `Ja`, `Nein`, `Journal Check`, `0 Issues Total` |
 | Elementtyp | Zahlungsjournal / Buchungsdialog / Sicherheitsabbruch |
 | erste Hypothese | Nach `Journal Check = 0 Issues` und Apply-Readiness ist die naechste riskante Schwelle nicht die Sichtbarkeit von `Post`, sondern die Bestaetigung im Dialog. |
 | Recherchequelle | praktischer UI-only Playwright-Lauf `npm run fibu:payments:posting-readiness`; `playwright/projects/fibu-book5/evidence/payments-010/README.md` |
 | Testergebnis | `PAYMENTS-010` bereitet den Cash-Receipt-Draft fuer `D10000`/`PS-INV103297`/`BANK-RM-01` erneut vor, bestaetigt `Journal Check = 0 Issues`, oeffnet `Apply Entries` read-only und klickt danach `Post` nur bis zum Bestaetigungsdialog. Business Central zeigt `Ja`/`Nein`; der Test klickt `Nein`, loescht den Draft und bucht nichts. |
-| Entscheidung | Buch ergaenzen: Ein sichtbarer `Post`-Button ist noch keine Zahlung. Fuer Einsteiger muss der Bestaetigungsdialog als letzte Sicherheitsgrenze erklaert werden. Eine echte Laborzahlung darf erst in `PAYMENTS-011` nach ausdruecklicher Freigabe erfolgen. |
+| Entscheidung | Buch ergaenzen: Ein sichtbarer `Post`-Button ist noch keine Zahlung. Fuer Einsteiger muss der Bestaetigungsdialog als letzte Sicherheitsgrenze erklaert werden. `PAYMENTS-EVIDENCE-PACK-SYNC.md` ordnet die Kette von offenem Posten bis Post-Dialog als Lernpfad; eine echte Laborzahlung darf erst in `PAYMENTS-011` nach ausdruecklicher Freigabe erfolgen. |
 | Buchstelle | Kapitel 19 Debitoren/Kreditoren und Kapitel 20 Bank/Payments |
 
 Bewertung:

@@ -6979,6 +6979,21 @@ Fuer eine belastbare Buchanleitung gehoeren deshalb drei Bilder zusammen: die Re
 | Überzahlung | Klärung/Restposten |
 | unbekannte Zahlung | Klärposten |
 
+Aktueller Laborstand aus `PAYMENTS-001` bis `PAYMENTS-010`:
+
+Der Zahlungsfall zur gebuchten Verkaufsrechnung `PS-INV103297` ist bis zur letzten Sicherheitsgrenze vorbereitet, aber noch nicht gebucht. Business Central zeigt den offenen Debitorenposten, das Zahlungseingangsjournal, das Laborbankkonto `BANK-RM-01`, den Betrag `-68.000,00`, den Rechnungsbezug über `Applies-to Doc. No. = PS-INV103297`, `Apply Entries` und `Journal Check = 0 Issues`. In `PAYMENTS-010` wurde `Post` nur so weit geklickt, dass der Bestätigungsdialog mit `Ja` und `Nein` sichtbar wurde. Der Lauf klickte `Nein` und löschte den Draft. Deshalb ist dieser Stand ein starker Nachweis für Vorbereitung, Prüfung und Risikoabgrenzung, aber kein Zahlungs-, Ausgleichs- oder Bankpostennachweis.
+
+Prüfregel für Anfänger:
+
+| Schwelle | Bedeutung | Aktueller Laborstatus |
+|---|---|---|
+| Offener Posten | Welche Rechnung soll bezahlt oder ausgeglichen werden? | `PS-INV103297` sichtbar |
+| Journal-Draft | Welche Zahlung wird vorbereitet? | `D10000`, `BANK-RM-01`, `-68.000,00` sichtbar |
+| Journal Check | Ist die Journalzeile fachlich buchungsreif? | `0 Issues` sichtbar |
+| Apply Entries | Welche Rechnung wird zugeordnet? | read-only geprüft |
+| Post-Dialog | Wird wirklich gebucht? | Dialog sichtbar, mit `Nein` abgebrochen |
+| Postenspur nach Zahlung | Wurden Zahlung und Ausgleich erzeugt? | offen, keine Buchung |
+
 ### Fehlerdiagnose nach Symptom
 
 | Symptom | Erst prüfen | Korrektur |
