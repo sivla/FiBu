@@ -122,6 +122,6 @@ Deutsche `19 %` USt, deutscher Kontenplan, deutsche Steuerreports und finale deu
 
 ```text
 Arbeite auf Branch codex/playwright-bc-screenshot-foundation.
-Lies CURRENT-STATE.md, LAB-FIT-STATUS.md, BOOK-CLICK-GUIDE-COVERAGE.md, evidence/payments-001/README.md, evidence/payments-002/README.md und evidence/payments-003/README.md.
-Starte `PAYMENTS-004` als kontrollierten, nicht buchenden Zahlungsjournal-Readiness-Lauf: pruefe fuer Debitorenzahlung oder Kreditorenzahlung die benoetigten Journalfelder, Gegenkonto `BANK-RM-01`, Betrag, Ausgleichsbezug und Preflight-/Journal-Check-Moeglichkeiten. Keine Zahlung, kein Ausgleich, keine Bankabstimmung, keine neue O2C-/P2P-/Inventory-Buchung und kein deutscher Finalnachweis.
+Lies CURRENT-STATE.md, LAB-FIT-STATUS.md, BOOK-CLICK-GUIDE-COVERAGE.md, evidence/payments-008/README.md, evidence/payments-009/README.md und evidence/payments-010/README.md.
+Wenn eine echte Laborzahlung ausdruecklich freigegeben ist, starte `PAYMENTS-011` als kontrollierten Zahlungsbuchungslauf mit genau einer Zahlung, Postenspur und Cleanup-Regeln fuer Entwuerfe. Ohne diese Freigabe keinen Post-Dialog mit `Ja` bestaetigen; stattdessen Payments-/OP-Evidence-Pack und Buchkapitel 19/20 didaktisch weiter synchronisieren.
 ```

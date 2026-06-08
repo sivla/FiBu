@@ -3457,6 +3457,9 @@ Falsche Ausgleiche werden über `Ausgleich aufheben (Unapply Entries)` gelöst u
 | Kontrollbericht | OP-Liste Debitoren, `Debitorenposten (Customer Ledger Entries)` |
 | Fehlerfrage | Woran erkennst du, dass die Zahlung zwar gebucht, aber nicht mit `SO-1001` ausgeglichen wurde? |
 
+Laborstatus zu dieser Uebung:
+Die folgende Uebung beschreibt das deutsche Zielbild. Im aktuellen `RM-DEMO`-Labor ist noch keine Zahlung gebucht. Praktisch belegt ist bis `PAYMENTS-010` der sichere Vorlauf: Journalzeile fuer `D10000` und `PS-INV103297`, Betrag `-68.000,00`, Gegenkonto `BANK-RM-01`, `Journal Check = 0 Issues`, `Apply Entries` read-only und der `Post`-Bestaetigungsdialog mit `Ja`/`Nein`. Der Test hat `Nein` gewaehlt. Erst ein spaeter ausdruecklich freigegebener Lauf darf die Zahlung wirklich buchen und danach Debitorenposten, detaillierte Debitorenposten, Bankposten und Sachposten nachweisen.
+
 ### Lösung
 
 1. Öffne `Zahlungseingangs Buch.-Blätter (Cash Receipt Journals)` über `Alt+Q`.
@@ -3486,8 +3489,8 @@ Falsche Ausgleiche werden über `Ausgleich aufheben (Unapply Entries)` gelöst u
 | Erwartete Belege | gebuchte Zahlung |
 | Erwartete Posten | `Debitorenposten`, `Detaillierte Debitorenposten`, `Bankkontoposten`, `Sachposten` |
 | Kontrollbericht | OP-Liste Debitoren |
-| Akzeptanzkriterium | Rechnung `SO-1001` ist nicht mehr offen; Zahlung und Rechnung sind in detaillierten Debitorenposten verbunden. |
-| Evidence Pack | Buch.-Blatt-Zeile, Buchungsvorschau, Debitorenposten, detaillierte Debitorenposten, OP-Liste, Negativtest |
+| Akzeptanzkriterium | Zielbild: Rechnung `SO-1001` ist nicht mehr offen; Zahlung und Rechnung sind in detaillierten Debitorenposten verbunden. Aktueller Laborstand: nur Vorlauf bis `Post`-Dialog nachgewiesen, noch keine Zahlung. |
+| Evidence Pack | Aktuell vorhanden: Buch.-Blatt-Zeile, Apply-Entries-Readiness, Journal Check, Post-Dialog mit Abbruch. Fuer den Final-/Zahlungsnachweis fehlen noch gebuchte Zahlung, Debitorenposten nach Ausgleich, detaillierte Debitorenposten, Bankposten, Sachposten und OP-Liste. |
 | Absichtlich falsche Eingabe | Zahlung buchen, ohne `Posten ausgleichen (Apply Entries)` zu verwenden |
 | Erwartetes Fehlverhalten | Zahlung und Rechnung stehen beide als offene Debitorenposten; OP-Liste ist falsch. |
 | Diagnosepfad | `Debitorenposten (Customer Ledger Entries)` auf `D10000` filtern und offene Restbeträge prüfen. |

@@ -153,6 +153,7 @@ Letzter echter Fortschritt:
 - `PAYMENTS-009` ist als UI-only Apply-/Preview-Readiness gelaufen: derselbe Cash-Receipt-Draft `D10000`/`PS-INV103297`/`BANK-RM-01` wurde mit Betrag `-68.000,00` vorbereitet, `Journal Check = 0 Issues` bestaetigt, `Applies-to Doc. No. = PS-INV103297` dokumentiert und `Apply Entries` read-only geoeffnet. Der Apply-Kontext zeigt `D10000`, `EUR`, `Remaining Amount` und `Amount to Apply`; sichtbare riskante Aktionen wie `Post`/`OK` wurden nicht geklickt. `Preview Posting` war im Journal nicht direkt sichtbar. Der Entwurf wurde bereinigt; keine Zahlung, kein OP-Ausgleich, keine Bankabstimmung.
 - Queue-Hinweis: Aeltere Prompts, die `PAYMENTS-008` noch als offenen Amount-Blocker behandeln, sind ueberholt. `evidence/payments-008/PAYMENTS-008-AMOUNT-DIAGNOSTIC.md` fasst den geloesten Blocker zusammen; `PAYMENTS-010` bleibt der naechste sinnvolle Payments-Schritt.
 - `PAYMENTS-010` ist als UI-only Posting-Readiness gelaufen: derselbe Cash-Receipt-Draft wurde erneut mit `Journal Check = 0 Issues` vorbereitet, Apply Entries read-only geoeffnet, `Preview Posting` blieb direkt nicht sichtbar, und `Post` oeffnete einen Bestaetigungsdialog mit `Ja`/`Nein`. Der Test klickte `Nein`, bestaetigte keine Buchung und bereinigte den Draft. Keine Zahlung, kein OP-Ausgleich, keine Bankposten, keine Bankabstimmung.
+- `PAYMENTS-010` wurde danach als Buch-/Evidence-Sync nachgezogen: Kapitel 19/20 markiert die Zahlungsuebung jetzt explizit als deutsches Zielbild, waehrend der aktuelle `RM-DEMO`-Laborstand nur bis Journalzeile, Apply-Readiness, `Journal Check = 0 Issues` und Post-Dialog mit Abbruch reicht. `PAYMENTS-010-BOOK-SYNC.md` dokumentiert diese Trennung.
 
 ## Aktuelle O2C-Wahrheit
 
@@ -205,6 +206,8 @@ Der aktuelle gebuchte Lauf darf nur als CRONUS-USA-Laborbuchung gelesen werden. 
 Governance, Encoding, Mac-Kompatibilitaet und Lean-Evidence sind committed und gepusht. Nicht erneut mit Aufraeumen beginnen, solange keine neue Rohmasse entsteht.
 
 Als naechstes gezielt den Payments-Lernblock fortsetzen, ohne erneut O2C/P2P/Inventory zu buchen. `PAYMENTS-010` hat den Buchungsdialog-/Freigabecheck vor einer moeglichen Laborzahlung erledigt: `Post` fuehrt in einen `Ja`/`Nein`-Dialog; `Nein` bricht ab; keine Zahlung wurde gebucht. Sinnvollster naechster Lauf ist `PAYMENTS-011` nur nach ausdruecklicher Freigabe als kontrollierte Laborzahlung mit Postenspur. Ohne diese Freigabe stattdessen Payments-Buchtext/Evidence-Pack didaktisch abrunden.
+
+Letzter Payments-Sync ohne BC-Ausfuehrung: Kapitel 19/20 und `evidence/payments-010/` trennen jetzt deutsches Zielbild (`SO-1001`, `80.920 EUR`, final offen) vom Laborbeleg (`PS-INV103297`, `68.000 EUR`, Post-Dialog abgebrochen). Aeltere Prompts, die PAYMENTS-004 bis PAYMENTS-008 als naechsten Schritt nennen, sind ueberholt.
 
 1. `080-posting-result.json` und `082-posting-entry-trace.json` lesen.
 2. Die Postenspur nicht erneut buchen; `PS-INV103297` ist der Laborbeleg.

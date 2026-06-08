@@ -130,7 +130,7 @@ Das ist ein guter Anfaengerbefund, weil er zeigt: Ein sichtbarer Betrag in der J
 
 | Feld | Wert |
 |---|---|
-| Status | offen als Payment-Draft-Lernfall |
+| Status | erledigt als Payment-Draft-Lernfall; Folgechecks `PAYMENTS-006` bis `PAYMENTS-010` abgeschlossen |
 | Projekt | fibu-book5 |
 | Testfall | `PAYMENTS-005` |
 | Screenshot | `playwright/projects/fibu-book5/img/payments-005-010-cash-receipt-ui-draft.png` |
@@ -140,8 +140,8 @@ Das ist ein guter Anfaengerbefund, weil er zeigt: Ein sichtbarer Betrag in der J
 | Elementtyp | Zahlungsjournal-Entwurf / Journal Check |
 | erste Hypothese | Ein sichtbarer Zahlungsjournal-Draft beweist noch nicht, dass die Zeile fachlich buchungsreif ist. Journal Check muss vor einer Zahlung ohne Issues sein oder die Restgrenze muss erklaert werden. |
 | Recherchequelle | praktischer UI-only Playwright-Lauf `npm run fibu:payments:cash-receipt-ui-draft`; `playwright/projects/fibu-book5/evidence/payments-005/README.md` |
-| Testergebnis | Die Zeile wurde vollstaendig ueber die UI vorbereitet und wieder geloescht. Debitor, Betrag, Gegenkonto und Rechnungsbezug sind sichtbar. Journal Check meldet aber `1 Issue`: `'Amount' muss in 'Gen. Journal Line' einen Wert enthalten...`. Es wurde keine Zahlung und kein Ausgleich gebucht. |
-| Entscheidung | Buch ergaenzen: Zahlungsjournal-Entwurf und Zahlungsfreigabe trennen. Naechster Lauf muss Amount-Validierung/Betragsrichtung ueber UI klaeren; API ist keine Abkuerzung fuer diesen Klickpfad. |
+| Testergebnis | Die Zeile wurde vollstaendig ueber die UI vorbereitet und wieder geloescht. Debitor, Betrag, Gegenkonto und Rechnungsbezug sind sichtbar. Journal Check meldete zunaechst `1 Issue`: `'Amount' muss in 'Gen. Journal Line' einen Wert enthalten...`. Die Folgechecks klaerten Amount-Format, Bank Account Posting Group, `Journal Check = 0 Issues`, Apply Entries read-only und den Post-Dialog mit Abbruch. Es wurde keine Zahlung und kein Ausgleich gebucht. |
+| Entscheidung | Buch ergaenzen: Zahlungsjournal-Entwurf, Journal Check, Apply-Bezug, Post-Dialog und Zahlungsfreigabe trennen. Amount-Validierung ist geloest; echte Zahlung bleibt `PAYMENTS-011` nur nach ausdruecklicher Freigabe. |
 | Buchstelle | Kapitel 19 Debitoren/Kreditoren und Kapitel 20 Bank/Payments |
 
 Bewertung:
