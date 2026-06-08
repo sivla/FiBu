@@ -258,6 +258,7 @@ Danach `.env` mit der konkreten Business-Central-URL fuellen.
 | `playwright/projects/fibu-book5/evidence/inventory-008/INVENTORY-008-SYNC.md` | Sync-Zusammenfassung fuer Trainings-/Opening-Balance-Zugang, Postenarten, Laborgrenzen und Buchwirkung |
 | `playwright/projects/fibu-book5/evidence/payments-001/README.md` | Evidence-Index fuer offene Debitoren-/Kreditorenposten als read-only Startpunkt fuer Payments/OP-Ausgleich; keine Zahlung und kein Ausgleich |
 | `playwright/projects/fibu-book5/evidence/payments-002/README.md` | Evidence-Index fuer Bank-/Journal-/Apply-Readiness; `BANK-RM-01` fehlt, keine Zahlung, kein Ausgleich, keine Journalzeile |
+| `playwright/projects/fibu-book5/evidence/payments-002/PAYMENTS-READINESS.md` | Governance-Gate vor Payments/OP: trotz sichtbarer Journale und Apply Entries bleibt Zahlung/Ausgleich gesperrt, bis `BANK-RM-01` gefittet oder ein CRONUS-Bankkonto bewusst freigegeben ist |
 | `playwright/projects/fibu-book5/BOOK-TO-EVIDENCE-AUDIT.md` | kritischer Buch-vs.-Projekt-vs.-Evidence-Abgleich mit Anforderungsmatrix |
 | `playwright/projects/fibu-book5/BOOK-EVIDENCE-WORKPLAN.md` | belastbarer Arbeitsplan aus Buch-vs.-Evidence-Abgleich |
 | `playwright/projects/fibu-book5/MASTERDATA-BACKLOG.md` | priorisierter Stammdaten- und Setup-Backlog aus dem Buch fuer `RM-DEMO` |

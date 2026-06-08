@@ -46,7 +46,7 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 | Projekt | fibu-book5 |
 | Testfall | `PAYMENTS-002` |
 | Screenshot | `playwright/projects/fibu-book5/img/payments-002-010-bank-accounts.png`, `playwright/projects/fibu-book5/img/payments-002-020-cash-receipt-journal.png`, `playwright/projects/fibu-book5/img/payments-002-030-payment-journal.png` |
-| Evidence | `playwright/projects/fibu-book5/evidence/payments-002/PAYMENTS-002-result.json`, `playwright/projects/fibu-book5/evidence/payments-002/PAYMENTS-002-READINESS.md` |
+| Evidence | `playwright/projects/fibu-book5/evidence/payments-002/PAYMENTS-002-result.json`, `playwright/projects/fibu-book5/evidence/payments-002/PAYMENTS-002-READINESS.md`, `playwright/projects/fibu-book5/evidence/payments-002/PAYMENTS-READINESS.md` |
 | BC-Seite | Bank Accounts / Cash Receipt Journals / Payment Journals / Apply Entries |
 | sichtbarer Text | `CHECKING`, `SAVINGS`, `Cash Receipt Journals`, `Payment Journals`, `Apply Entries`, `Post`, `Journal Check`, `PS-INV103297`, `108219` |
 | Elementtyp | Bankkonto-Setup / Zahlungsjournal / Ausgleichspfad |
