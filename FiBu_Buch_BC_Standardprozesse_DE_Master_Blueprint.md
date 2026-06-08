@@ -1746,6 +1746,8 @@ Im Zielbild laufen diese Dimensionen mit der Buchung in die auswertbaren Posten.
 
 Aktueller Laborstand: `PRODUCTLINE = MACHINE` und `CHANNEL = B2B` sind im Verkaufszeilen-Dimensionsdialog belegt. Nach der Laborbuchung `S-ORD101068` -> `PS-INV103297` zeigt der Artikelposten `Entry No. 792` über `Entry` -> `Dimensions` ebenfalls `CHANNEL = B2B` und `PRODUCTLINE = MACHINE`. Auf Sachposten und in `Financial Reports` ist diese Dimensionswirkung noch nicht als Screenshot-/Evidence-Nachweis abgeschlossen. `REPORTING-006` bestätigt den Zwischenstand: Die gefilterten `Sachposten (G/L Entries)` zur Rechnung sind sichtbar, aber der Data-Analysis-/Analysemodus wurde dort nicht belastbar erreicht und `PRODUCTLINE`/`CHANNEL` erscheinen nicht als sichtbare Filter- oder Spaltenlogik.
 
+`REPORTING-008` setzt deshalb die naechste Grenze: Die vorhandene `REVENUE` Analysis View nutzt im Labor `AREA`, `DEPARTMENT` und `CUSTOMERGROUP`, aber nicht `PRODUCTLINE` oder `CHANNEL`. Weitere Wiederholungen derselben read-only Suchpfade wuerden voraussichtlich kein besseres Buchbild liefern. Der naechste sinnvolle Reporting-Schritt ist eine bewusst freigegebene Labor-Analysis-View mit `PRODUCTLINE` und `CHANNEL` als Dimensionen. Das ist keine Buchung, aber Reporting-Setup; deshalb wird es nicht heimlich im Autopilot geaendert. Bis diese Freigabe und der Nachweis vorliegen, bleibt die GuV-/Revenue-Auswertung nach Produktlinie und Kanal offen.
+
 ### Prüfung in Sachposten und GuV
 
 | Prüfung | Seite | Erwartung |
