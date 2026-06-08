@@ -58,6 +58,7 @@ Definition: Eine Anleitung ist erst abgesichert, wenn der Klickpfad in BC funkti
 | Dimension im Auftrag | `PRODUCTLINE=MACHINE` und `CHANNEL=B2B` sind im Zeilen-Dimensionsdialog nachgewiesen |
 | Standarddimensionen-UI | Page `540` zeigt `PRODUCTLINE=MACHINE` am Artikel und `CHANNEL=B2B` am Debitor als UI-Laborbild |
 | Buchungsvorschau und Laborbuchung | `Preview Posting` wurde nach `MASTERDATA-009` erneut erreicht und zeigt echte Vorschauzeilen: `G/L Entry = 4`, `Cust. Ledger Entry = 1`, `Item Ledger Entry = 1`, `Detailed Cust. Ledg. Entry = 1`, `Value Entry = 1`; danach wurde genau eine CRONUS-USA-Laborbuchung mit `Ship and Invoice` ausgefuehrt: Auftrag `S-ORD101068`, gebuchte Verkaufsrechnung `PS-INV103297` |
+| Reporting / Financial Reports | `REPORTING-001` oeffnet `Financial Reports` read-only ueber Tell-Me in der Gruppe `Berichte und Analysen`; Liste zeigt u. a. `Balance Sheet`, `Income Statement` und `Revenue`; Dimensionsfilter/PRODUCTLINE-Summenwirkung ist noch offen |
 | Inventory Posting Setup | Page `5826` zeigt die Zielkombination `FRA-ZL` + `RESALE`; `MASTERDATA-009` hat fuer den CRONUS-Laborfit `Inventory Account = 14140` gesetzt |
 | Bildablage | Projektbilder liegen unter `playwright/projects/fibu-book5/img/`; Root-`img/` ist keine Sammelstelle mehr |
 | Cleanup | Labor-Verkaufsauftraege werden nach Screenshot-Lauf entfernt |
@@ -113,6 +114,7 @@ Letzter echter Fortschritt:
 - Der maximierte Read-only-Drilldown in `G/L Entry` oeffnet direkt `G/L Entries Preview` und zeigt Konten `14140`, `50110`, `40140`, `15110`; Betraege sind im Seitentext nachgewiesen, fuer ein finales Screenshot-Betragsbild muss noch horizontal gescrollt werden.
 - Der normale Buchungsdialog wurde danach bewusst fuer genau eine Laborbuchung geoeffnet; Option `Ship and Invoice`, OK einmal bestaetigt.
 - Gebuchte Verkaufsrechnung `PS-INV103297` ist entstanden. Read-only-Postenspur zeigt gebuchte Verkaufsrechnung, Debitorenposten, Sachposten, Wertposten und Artikelposten. Wichtig: Die direkte Artikelpostenliste blieb mit Filter `Order No. = S-ORD101068` leer; der Artikelposten wurde ueber den Wertposten-Link `Item Ledger Entry No. = 792` gefunden. Auf diesem Artikelposten zeigt `Entry` -> `Dimensions` die Dimensionen `CHANNEL=B2B` und `PRODUCTLINE=MACHINE`.
+- `REPORTING-001` startet den naechsten Block klein und read-only: Tell-Me-Suche nach `Financial Reports`, bewusst Auswahl des Treffers unter `Berichte und Analysen`, Screenshot der Financial-Reports-Liste und JSON-Evidence. Der Lauf bucht nichts und beweist noch keine `PRODUCTLINE=MACHINE`-Auswertung.
 - `MASTERDATA-008` hat die blockierende Zeile in `Inventory Posting Setup` praktisch geoeffnet: `FRA-ZL` + `RESALE` ist vorhanden, aber das `Inventory Account` ist leer.
 - Die `MASTERDATA-008`-Evidence enthaelt jetzt Company/Sandbox, Status `labor`, fachlichen Sollzustand, sichtbaren Ist-Befund, Limitationen, Buchwirkung und naechsten Schritt.
 - Die Buchstelle und `BEGINNER-LEARNING-CHECKLIST.md` erklaeren jetzt fuer Anfaenger: Was man in der leeren `Inventory Account`-Spalte sieht, warum das die Buchungsvorschau stoppt, warum kein beliebiges Konto gesetzt werden darf und woran der naechste Fix erkannt wird.
@@ -176,7 +178,8 @@ Als naechstes gezielt den naechsten Lernblock waehlen, ohne erneut zu buchen:
 1. `080-posting-result.json` und `082-posting-entry-trace.json` lesen.
 2. Die Postenspur nicht erneut buchen; `PS-INV103297` ist der Laborbeleg.
 3. O2C ist im CRONUS-Labor bis gebuchte Rechnung, Postenspur, Artikelposten und Artikelposten-Dimension nachgewiesen.
-4. Deutsche `19 %`-USt bleibt davon getrennt offen.
+4. Reporting ist jetzt read-only bis zur Seite `Financial Reports` gestartet; als naechstes passenden Report oeffnen, breite/maximierte Ansicht nutzen und Dimensionsfilter fuer `PRODUCTLINE=MACHINE` suchen.
+5. Deutsche `19 %`-USt bleibt davon getrennt offen.
 
 Synchronisationsstand nach der letzten Projektwahrheits-Pruefung:
 
@@ -184,7 +187,7 @@ Synchronisationsstand nach der letzten Projektwahrheits-Pruefung:
 - Labor-Nachweis: alle aktuellen O2C-, MASTERDATA-008- und MASTERDATA-009-Bilder/Evidence gelten fuer CRONUS USA / gemischte UI; `MASTERDATA-009` ist ein Labor-Setup-Fit, kein deutscher Kontenplan-Endstand.
 - Labor-Buchungsfreigabe: `070-lab-posting-readiness.md` wurde genutzt; genau eine CRONUS-USA-Laborbuchung ist erfolgt (`S-ORD101068` -> `PS-INV103297`). Nicht erneut buchen.
 - Finaler DE-Nachweis offen: deutsche Oberflaeche, 19-%-USt, deutsche Buchung und deutsche Postenspur.
-- Blockiert/offen: kein Inventory-Posting-Setup-Blocker mehr; direkter Artikelposten-Check ist geloest ueber `Item Ledger Entry No. = 792`; `PRODUCTLINE=MACHINE` ist am Artikelposten nachgewiesen; offen bleiben Steuer-/VAT-Fit, Reporting-/Auswertungsnachweis und finale deutsche Nachweise.
+- Blockiert/offen: kein Inventory-Posting-Setup-Blocker mehr; direkter Artikelposten-Check ist geloest ueber `Item Ledger Entry No. = 792`; `PRODUCTLINE=MACHINE` ist am Artikelposten nachgewiesen; Reporting-Seite ist erreichbar, aber Dimensionsfilter/Summenwirkung ist offen; offen bleiben Steuer-/VAT-Fit, Reporting-Auswertungsnachweis und finale deutsche Nachweise.
 - Nicht geprueft: P2P, Zahlungen, Finanzbericht.
 
 ## Befehle fuer neue Agents

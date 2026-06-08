@@ -63,6 +63,12 @@ Fuer `UAT-O2C-001` fasst `playwright/projects/fibu-book5/evidence/uat-o2c-001/RE
 | `playwright/projects/fibu-book5/img/uat-o2c-001-088-item-ledger-entry-by-entry-no.png` | guter Labor-Artikelposten-Nachweis | Page `38` zeigt den Artikelposten `Entry No. 792` mit `Sales Shipment S-SHPT102297`, `RM-M100`, Lagerort `FRA-ZL` und Menge `-1`. Der Schluessel stammt aus dem Wertposten. | Als Laborbild fuer Artikelposten geeignet; keine deutsche USt- oder Dimensions-Evidence. |
 | `playwright/projects/fibu-book5/img/uat-o2c-001-089-item-ledger-entry-dimensions.png` | guter Labor-Dimensionsnachweis | `Entry` -> `Dimensions` auf dem Artikelposten `792` zeigt `CHANNEL=B2B` und `PRODUCTLINE=MACHINE`. | Als Laborbild fuer Dimensionswirkung am gebuchten Artikelposten geeignet; Reportingwirkung und deutscher Finalnachweis bleiben offen. |
 
+## `REPORTING-001` Screenshot Review
+
+| Screenshot | Bewertung | Befund | Entscheidung |
+|---|---|---|---|
+| `playwright/projects/fibu-book5/img/reporting-001-010-financial-reports.png` | erster Labor-Startpunkt fuer Reporting | `Financial Reports` ist ueber Tell-Me in der Gruppe `Berichte und Analysen` geoeffnet. Die Liste zeigt u. a. `Balance Sheet`, `Income Statement` und `Revenue`; unten links liegt noch ein Teaching Tip `About Financial Reports`. | Als Laborbild fuer Seiten-Erreichbarkeit und Anfaenger-Erklaerung geeignet. Noch kein Buchbild fuer `PRODUCTLINE=MACHINE`, weil kein Dimensionsfilter und keine Summenwirkung nachgewiesen sind. |
+
 ## Harte Findings aus dem Review
 
 ### QA-O2C-001 Listenbild zeigt nicht den Buchfall

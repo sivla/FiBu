@@ -44,7 +44,7 @@ Diese Datei ist die Prozesslandkarte fuer das Business-Central-Labor. Sie verhin
 | Projects | nicht geprueft | noch kein Lauf | keine | Buchkapitel offen | Projektposten, Projektfaktura, Dimensionen | spaeterer Prozessblock |
 | Bank / Payments | nicht geprueft | gebuchte Laborrechnung `PS-INV103297` existiert als Ausgangspunkt; Zahlung noch nicht getestet | `evidence/uat-o2c-001/080-posting-result.json` | Zahlungsprozesse koennen jetzt an einer Laborrechnung geuebt werden | Zahlung, Ausgleich, Bankposten im deutschen Zielmandanten | nach Postenspur-/Dimensionscheck |
 | Fixed Assets | nicht geprueft | noch kein Lauf | keine | Anlagenkapitel offen | Anlagenkarte, AfA-Buch, Anlagenposten | spaeterer Prozessblock |
-| Reporting / Financial Reports | offen | Dimensionen als Reporting-Voraussetzung aufgebaut | `masterdata-002/003/007`, Buchkapitel | noch keine gebuchten Sachposten fuer Reporting | Finanzbericht mit gebuchten Dimensionen | nach Buchung/Postenlauf |
+| Reporting / Financial Reports | labor | Financial Reports per Tell-Me in der Gruppe `Berichte und Analysen` read-only geoeffnet; Liste zeigt u. a. `Balance Sheet`, `Income Statement` und `Revenue` | `evidence/reporting-001/010-financial-reports-open-result.json`, `playwright/projects/fibu-book5/img/reporting-001-010-financial-reports.png` | Reporting-Seite ist erreichbar; Teaching Tip erklaert Financial Reports; Dimensionen/PRODUCTLINE sind im Finanzbericht noch nicht gefiltert oder summiert | Finanzbericht mit gebuchten Dimensionen `PRODUCTLINE=MACHINE`, `CHANNEL=B2B`, `DEPARTMENT=SALES` in deutscher Zielcompany | Financial Reports maximieren oder passenden Report waehlen und Dimensionsfilter suchen |
 | Periodenabschluss | nicht geprueft | noch kein Lauf | keine | haengt an gebuchten Belegen | Abschlussprozess in DE-Company | spaeterer Prozessblock |
 | E-Rechnung / Compliance | nicht geprueft | noch kein Lauf | keine | nicht im CRONUS-Labor belastbar | deutsche Lokalisierung und Compliance-Setup | spaeterer DE-Finalblock |
 | Migration / Opening Balances | nicht geprueft | noch kein Lauf | keine | nicht Teil des aktuellen Labors | Migration/Openings in Zielcompany | spaeterer Prozessblock |
@@ -56,6 +56,6 @@ Wenn ein neuer Prozessblock praktisch bearbeitet wird, wird diese Datei im selbe
 
 ## Naechste sinnvolle Lab-Fit-Schritte
 
-1. Reporting/Financial Reports mit `PRODUCTLINE=MACHINE` als Auswertungsdimension vorbereiten oder zum naechsten Prozessblock wechseln.
+1. Reporting/Financial Reports weiterfuehren: passenden Report waehlen, Ansicht maximieren und Dimensionsfilter fuer `PRODUCTLINE=MACHINE` suchen.
 2. Postenspur aus `UAT-O2C-001` als Anfaenger-Lernbild erklaeren: gebuchte Verkaufsrechnung, Debitorenposten, Sachposten, Wertposten, Artikelposten und Dimensionen am Artikelposten.
 3. Deutsche USt-Grenze weiter offen halten: CRONUS-USA zeigt weiter keinen 19-%-USt-Endstand.
