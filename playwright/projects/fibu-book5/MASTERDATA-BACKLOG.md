@@ -12,6 +12,8 @@ Die Ziel-Companies `RM-PROD`, `RM-SALES`, `RM-SERVICE`, `RM-SHARED` und `RM-AT` 
 
 Deutsche `19 %` USt, deutscher Kontenplan, deutsche Steuerreports und finale deutsche Buchscreenshots werden in `RM-DEMO` nicht als erledigt markiert, solange sie nicht in einer passenden deutschen Umgebung oder durch ein explizit freigegebenes deutsches VAT-Setup nachgewiesen sind.
 
+Autonome Folge-Laeufe muessen zusaetzlich `AUTOPILOT-STATE.json` und `POSTING-AND-SETUP-GATES.md` beachten. Zahlungen, OP-Ausgleich, Analysis-View-Fit, deutsches VAT-Setup, Fixed-Assets-Setup oder -Buchung, Warehouse-Aktivierung, Manufacturing/Service/Projects-Buchungen, neue Companies sowie Wiederholungen von O2C/P2P/INV008 sind ohne aktuelles Gate gesperrt.
+
 ## Status- und Prioritaetslogik
 
 | Status | Bedeutung |
@@ -117,11 +119,12 @@ Deutsche `19 %` USt, deutscher Kontenplan, deutsche Steuerreports und finale deu
 - Keine beliebigen Konten fuer deutsche Zielaussagen setzen.
 - Keine Warehouse-, Manufacturing-, Service- oder Project-Prozesse starten, bevor die Basisdaten dafuer gezielt vorbereitet sind.
 - Keine Power-BI-/Integrationsthemen starten, bevor BC-Reporting und Sachpostenfilter belegt sind.
+- Keine Gate-gesperrten Setup-Aenderungen oder Buchungen ohne aktuelle Freigabe aus `POSTING-AND-SETUP-GATES.md`.
 
 ## Naechster konkreter Prompt
 
 ```text
 Arbeite auf Branch codex/playwright-bc-screenshot-foundation.
-Lies CURRENT-STATE.md, LAB-FIT-STATUS.md, BOOK-CLICK-GUIDE-COVERAGE.md, evidence/payments-008/README.md, evidence/payments-009/README.md und evidence/payments-010/README.md.
-Wenn eine echte Laborzahlung ausdruecklich freigegeben ist, starte `PAYMENTS-011` als kontrollierten Zahlungsbuchungslauf mit genau einer Zahlung, Postenspur und Cleanup-Regeln fuer Entwuerfe. Ohne diese Freigabe keinen Post-Dialog mit `Ja` bestaetigen; stattdessen Payments-/OP-Evidence-Pack und Buchkapitel 19/20 didaktisch weiter synchronisieren.
+Lies CURRENT-STATE.md, AUTOPILOT-STATE.json, POSTING-AND-SETUP-GATES.md, LAB-FIT-STATUS.md und BOOK-CLICK-GUIDE-COVERAGE.md.
+Ohne Gate-Freigabe starte `FIXEDASSETS-006` als read-only-Lauf: vorhandene CRONUS-Konten in FA Posting Groups lesen und als Setup-Vorbereitung fuer `MACHINES` dokumentieren. Keine Anlagenbuchungsgruppe anlegen oder aendern, keine Anlagenkarte, keine Einkaufsrechnung, keine Anlagenbuchung.
 ```

@@ -38,9 +38,11 @@ Definition: Eine Anleitung ist erst abgesichert, wenn der Klickpfad in BC funkti
 3. `playwright/projects/fibu-book5/README.md`
 4. `playwright/projects/fibu-book5/ARTIFACT-GOVERNANCE.md`
 5. `playwright/projects/fibu-book5/LAB-FIT-STATUS.md`
-6. `playwright/projects/fibu-book5/WORKAROUNDS-AND-ERRORS.md`
-7. `playwright/FINDINGS.md`
-8. relevante Buchstelle in `FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md`
+6. `playwright/projects/fibu-book5/AUTOPILOT-STATE.json`
+7. `playwright/projects/fibu-book5/POSTING-AND-SETUP-GATES.md`
+8. `playwright/projects/fibu-book5/WORKAROUNDS-AND-ERRORS.md`
+9. `playwright/FINDINGS.md`
+10. relevante Buchstelle in `FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md`
 
 ## Aktueller fachlicher Stand
 
@@ -104,6 +106,8 @@ Der aktuelle Handover-Stand enthaelt:
 - explizite Projektmission: Buch lernen, Business Central lernen, Playwright lernen und Buch erweitern
 - allgemeine Screenshot-Helfer fuer Teaching Tips und FactBox/Infobox
 - `LAB-FIT-STATUS.md` als blockuebergreifende Prozesslandkarte
+- `AUTOPILOT-STATE.json` als maschinenlesbarer Autopilot-Status fuer Sandbox, Company, letzte Laborbuchungen, Hard Locks und naechsten Schritt
+- `POSTING-AND-SETUP-GATES.md` als ausdrueckliche Gate-Liste fuer Zahlungen, Analysis View, DE-VAT, Fixed Assets, Warehouse, Manufacturing, Service, Projects, neue Company und Wiederholungsbuchungen
 
 Der aktuelle fachliche O2C-/Screenshot-Nachweis ist:
 
@@ -222,7 +226,7 @@ Der aktuelle gebuchte Lauf darf nur als CRONUS-USA-Laborbuchung gelesen werden. 
 
 Governance, Encoding, Mac-Kompatibilitaet und Lean-Evidence sind committed und gepusht. Nicht erneut mit Aufraeumen beginnen, solange keine neue Rohmasse entsteht.
 
-Als naechstes gezielt entweder `FIXEDASSETS-006` als idempotenten UI-Setup-Fit fuer `MACHINES` vorbereiten, den Payments-Lernblock nur nach Freigabe fortsetzen, Reporting nur nach Analysis-View-Freigabe weiterklaeren oder den Steuerblock nur nach DE-VAT-Setup-/Umgebungsfreigabe praktisch starten. Shopify/Online Store ist kein naechster Prozessblock mehr; Kapitel 17 wird spaeter nur als Dropshipping/Sonderverkauf ohne Connector-Scope bearbeitet. `FIXEDASSETS-005` hat den FA-Posting-Groups-Pfad praktisch geklaert: Zielseite erreichbar, vorhandene CRONUS-Gruppen sichtbar, `MACHINES` fehlt weiter. Vor einem Setup-Fit muessen vorhandene CRONUS-Konten aus `FA Posting Groups` gelesen werden; kein Konto raten. `PAYMENTS-010` und `PAYMENTS-EVIDENCE-PACK-SYNC.md` haben den Zahlungsweg bis zur letzten Sicherheitsgrenze didaktisch geschlossen; `POSTING-TRACE-001` und `POSTING-TRACE-002` haben die gebuchten O2C-/P2P-/Inventory-Postenspuren als Anfaenger-Lernatlas und konkrete O2C-Buchstelle verbunden. `REPORTING-009` hat den letzten einfachen Sachposten-Dimensionsversuch read-only abgeschlossen: Shortcut-Spalten ja, `PRODUCTLINE`/`CHANNEL` nein. `REPORTING-008` bleibt deshalb der naechste Reporting-Hebel: ein freigegebener Analysis-View-Fit fuer `PRODUCTLINE`/`CHANNEL`. `TAX-001` hat die deutsche USt-Grenze als Readiness geklaert: ohne Freigabe kein `VAT19`-Setup und keine neue 19-%-Buchung. Ohne Freigaben nur read-only oder Buch-/Evidence-Sync waehlen.
+Als naechstes gezielt `AUTOPILOT-STATE.json` und `POSTING-AND-SETUP-GATES.md` beachten. Ohne ausdrueckliche Gate-Freigabe ist der naechste praktische Schritt `FIXEDASSETS-006` als read-only-Lauf: vorhandene CRONUS-Konten aus `FA Posting Groups` lesen und dokumentieren, damit ein spaeterer `MACHINES`-Fit nicht auf geratenen Konten basiert. Kein Setup-Fit, keine Anlagenkarte und keine Anlagenbuchung ohne Gate. Payments nur nach Payment-Gate, Reporting nur nach Analysis-View-Gate, Steuer nur nach DE-VAT-Gate, Warehouse/Manufacturing/Service/Projects nur nach eigenem Gate. Shopify/Online Store ist kein naechster Prozessblock mehr; Kapitel 17 wird spaeter nur als Dropshipping/Sonderverkauf ohne Connector-Scope bearbeitet. `FIXEDASSETS-005` hat den FA-Posting-Groups-Pfad praktisch geklaert: Zielseite erreichbar, vorhandene CRONUS-Gruppen sichtbar, `MACHINES` fehlt weiter. `PAYMENTS-010` und `PAYMENTS-EVIDENCE-PACK-SYNC.md` haben den Zahlungsweg bis zur letzten Sicherheitsgrenze didaktisch geschlossen; `POSTING-TRACE-001` und `POSTING-TRACE-002` haben die gebuchten O2C-/P2P-/Inventory-Postenspuren als Anfaenger-Lernatlas und konkrete O2C-Buchstelle verbunden. `REPORTING-009` hat den letzten einfachen Sachposten-Dimensionsversuch read-only abgeschlossen: Shortcut-Spalten ja, `PRODUCTLINE`/`CHANNEL` nein. `TAX-001` hat die deutsche USt-Grenze als Readiness geklaert: ohne Freigabe kein `VAT19`-Setup und keine neue 19-%-Buchung.
 
 Letzter Payments-Sync ohne BC-Ausfuehrung: Kapitel 19/20 und `evidence/payments-010/` trennen jetzt deutsches Zielbild (`SO-1001`, `80.920 EUR`, final offen) vom Laborbeleg (`PS-INV103297`, `68.000 EUR`, Post-Dialog abgebrochen). Aeltere Prompts, die PAYMENTS-004 bis PAYMENTS-008 als naechsten Schritt nennen, sind ueberholt.
 
@@ -276,6 +280,8 @@ Danach `.env` mit der konkreten Business-Central-URL fuellen.
 
 | Datei | Zweck |
 |---|---|
+| `playwright/projects/fibu-book5/AUTOPILOT-STATE.json` | maschinenlesbarer Autopilot-Status mit Sandbox, Company, letzten Laborbuchungen, Locks und naechstem Schritt |
+| `playwright/projects/fibu-book5/POSTING-AND-SETUP-GATES.md` | Freigabe-Gates fuer Setup-Aenderungen, Zahlungen, neue Companies und Wiederholungsbuchungen |
 | `playwright/projects/fibu-book5/testdata/sales/uat-o2c-001.json` | Zielwerte fuer O2C |
 | `playwright/projects/fibu-book5/tests/uat-o2c-001-sales-order.spec.ts` | aktueller O2C-Test |
 | `playwright/projects/fibu-book5/evidence/uat-o2c-001/README.md` | Evidence-Index fuer den aktuellen O2C-Laborlauf |

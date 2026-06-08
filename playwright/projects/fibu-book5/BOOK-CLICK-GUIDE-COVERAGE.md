@@ -19,6 +19,8 @@ Eine Klickanleitung gilt erst als abgedeckt, wenn:
 11. fachliche Aussagen gegen `MICROSOFT-DOC-VALIDATION.md` beziehungsweise Microsoft Learn geprüft sind, sofern sie allgemeine Business-Central-Regeln betreffen
 12. die Anleitung gegen `ENVIRONMENT-PORTABILITY.md` geprüft ist, wenn sie später in einem deutschen Zielmandanten wiederholt werden soll
 
+Gate-Regel: Sobald eine Klickanleitung eine Buchung, Zahlung, Setup-Aenderung, neue Company oder Wiederholungsbuchung ausloesen koennte, muss sie gegen `POSTING-AND-SETUP-GATES.md` geprueft werden. Ohne aktuelles Gate bleibt sie Read-only-, Readiness- oder Buch-Sync-Anleitung.
+
 ## Abgedeckte Klickanleitungen
 
 | Buchbereich | Klickanleitung | Testfall | Screenshot | Evidence | Status |

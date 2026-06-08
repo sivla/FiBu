@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-06-09",
+  "repository": "sivla/FiBu",
+  "branch": "codex/playwright-bc-screenshot-foundation",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "dataBasis": "CRONUS USA",
+  "activeArea": "governance",
+  "lastCompletedRun": "GOVERNANCE-001-AUTOPILOT-STATE-GATES",
+  "lastWorkType": "governance-state-sync",
+  "postedInLastRun": false,
+  "latestPostedDocuments": {
+    "o2c": {
+      "salesOrder": "S-ORD101068",
+      "postedSalesInvoice": "PS-INV103297"
+    },
+    "p2p": {
+      "purchaseOrder": "106049",
+      "postedPurchaseInvoice": "108219"
+    },
+    "inventory": {
+      "documentNo": "INV008-899959"
+    },
+    "payments": null,
+    "fixedAssets": null
+  },
+  "hardLocks": [
+    "no second O2C posting without explicit gate",
+    "no second P2P posting without explicit gate",
+    "no second INV008 posting without explicit gate",
+    "no payment posting without explicit gate",
+    "no OP application without explicit gate",
+    "no bank reconciliation without explicit gate",
+    "no VAT19 setup without explicit gate",
+    "no Analysis View setup without explicit gate",
+    "no Fixed Assets setup or posting without explicit gate",
+    "no Warehouse activation without explicit gate",
+    "no Manufacturing posting without explicit gate",
+    "no Service posting without explicit gate",
+    "no Projects posting without explicit gate",
+    "no new company without explicit gate",
+    "no Shopify scope"
+  ],
+  "openGates": [
+    "PAYMENTS-011-LAB-PAYMENT",
+    "REPORTING-011-ANALYSIS-VIEW-FIT",
+    "TAX-002-DE-VAT-FIT",
+    "FIXEDASSETS-004-SETUP-OR-POSTING",
+    "WAREHOUSE-001-ACTIVATION",
+    "MANUFACTURING-001-POSTING",
+    "SERVICE-001-POSTING",
+    "PROJECTS-001-POSTING",
+    "NEW-COMPANY-001",
+    "O2C-REPOST-001",
+    "P2P-REPOST-001",
+    "INVENTORY-REPOST-INV008"
+  ],
+  "nextBestStepWithoutApproval": "FIXEDASSETS-006 read-only: vorhandene CRONUS-Konten in FA Posting Groups lesen und als Setup-Vorbereitung fuer MACHINES dokumentieren; keine Anlagenbuchungsgruppe anlegen oder bearbeiten.",
+  "nextBestStepWithApproval": {
+    "payments": "PAYMENTS-011-LAB-PAYMENT: kontrollierte Laborzahlung nur mit ausdruecklicher Freigabe, Postenspur und Bank-/OP-Evidence.",
+    "reporting": "REPORTING-011-ANALYSIS-VIEW-FIT: idempotenten Analysis-View-Fit fuer PRODUCTLINE/CHANNEL nur mit Freigabe einrichten/aktualisieren.",
+    "tax": "TAX-002-DE-VAT-FIT: deutsches VAT19-Setup nur mit Freigabe und separatem Preview-/VAT-Entries-Nachweis.",
+    "fixedAssets": "FIXEDASSETS-004-SETUP-OR-POSTING: MACHINES, FA-CNC-01, HGB, K30000 oder Anlagenbuchung nur mit Freigabe und UI-first Evidence."
+  },
+  "doNotRepeat": [
+    "Do not repeat O2C posting for UAT-O2C-001",
+    "Do not repeat P2P posting for UAT-P2P-001",
+    "Do not repeat INV008 inventory posting",
+    "Do not repeat reporting read-only negative paths REPORTING-003 to REPORTING-009 without a new approved setup or official path",
+    "Do not plan Shopify/Online Store scope"
+  ],
+  "notes": [
+    "AUTOPILOT-STATE.json and POSTING-AND-SETUP-GATES.md were introduced because the V2 autopilot prompt requires machine-readable state and explicit gates.",
+    "FIXEDASSETS-005 reached FA Posting Groups read-only; MACHINES remains missing.",
+    "Without approval, next Fixed Assets step is read-only account reading, not setup."
+  ]
+}

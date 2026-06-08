@@ -859,6 +859,28 @@ Das ist ein idealer Lernfall fuer Anfaenger: Der Bericht ist nicht falsch, sonde
 
 Folgeentscheidung aus `INVENTORY-004` bis `INVENTORY-008`: Der klar markierte Trainings-/Opening-Balance-Zugang `RM-M100 +2` in `FRA-ZL` war der kleinste kontrollierte Schritt und wurde genau einmal gebucht. Einkauf von `RM-M100` passt fachlich schlechter, Assembly gehoert in einen anderen Prozess, und Manufacturing/Output bleibt der spaetere echte End-to-End-Nachweis fuer Maschinenfertigung.
 
+## FIND-BC-GOV-001 Autopilot-State und Gates verhindern Drift und Doppelbuchungen
+
+| Feld | Wert |
+|---|---|
+| Status | erledigt als Governance-Sync |
+| Projekt | fibu-book5 |
+| Testfall | `GOVERNANCE-001-AUTOPILOT-STATE-GATES` |
+| Screenshot | keiner; Governance-/State-Sync ohne BC-Lauf |
+| Evidence | `playwright/projects/fibu-book5/AUTOPILOT-STATE.json`, `playwright/projects/fibu-book5/POSTING-AND-SETUP-GATES.md`, `playwright/projects/fibu-book5/CURRENT-STATE.md`, `playwright/projects/fibu-book5/LAB-FIT-STATUS.md` |
+| BC-Seite | keine |
+| sichtbarer Text / Werte | O2C `PS-INV103297`, P2P `108219`, Inventory `INV008-899959`; gesperrte Gates fuer Payments, Reporting Analysis View, DE-VAT, Fixed Assets, Warehouse, Manufacturing, Service, Projects, neue Company und Wiederholungsbuchungen |
+| Elementtyp | Governance / Handover / Autopilot-Sicherheit |
+| erste Hypothese | Wiederholte Queue-Laeufe brauchen eine maschinenlesbare Wahrheit, sonst koennen alte Prompts versehentlich Zahlungen, Setup-Fits oder Doppelbuchungen ausloesen. |
+| Recherchequelle | aktueller Repo-Stand und V2-Autopilot-Prompt |
+| Testergebnis | `AUTOPILOT-STATE.json` haelt Sandbox, Company, letzte Laborbuchungen, Hard Locks und naechsten nicht freigabepflichtigen Schritt fest. `POSTING-AND-SETUP-GATES.md` definiert, welche Aktionen ohne ausdrueckliche Freigabe gesperrt sind. |
+| Entscheidung | Folge-Agenten muessen vor Setup-Aenderungen, Buchungen, neuer Company oder Wiederholungen die Gate-Datei lesen. Ohne Freigabe ist der naechste praktische Schritt `FIXEDASSETS-006` read-only: vorhandene CRONUS-Konten in FA Posting Groups lesen. |
+| Buchstelle | Handover, Evidence Governance, alle Kapitel mit Buchung oder Setup-Aenderung |
+
+Bewertung:
+
+Das ist kein Business-Central-Fachnachweis, aber ein wichtiger Projektsicherheitsnachweis. Das Buchprojekt lernt durch echte Bedienung; damit diese Bedienung nicht chaotisch wird, muessen einmalige Laborbuchungen und freigabepflichtige Setup-Schritte explizit gesperrt sein.
+
 ## FIND-BC-INV-003 Item Journal kann Zielbestand vorbereiten, pruefen und buchen
 
 | Feld | Wert |
