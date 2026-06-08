@@ -26,9 +26,24 @@ Jeder Eintrag muss außerdem gegen die betroffene Buchstelle geprüft werden. We
 | Problem | `PAYMENTS-002` konnte Bank Accounts, Cash Receipt Journal, Payment Journal und Apply Entries oeffnen, aber das Zielbankkonto `BANK-RM-01` war in der Bankkontenliste nicht sichtbar. |
 | Sichtbarer Beleg | `playwright/projects/fibu-book5/img/payments-002-010-bank-accounts.png`, `playwright/projects/fibu-book5/img/payments-003-010-bank-accounts-bank-rm-01-fit.png`, `playwright/projects/fibu-book5/evidence/payments-002/PAYMENTS-002-result.json`, `playwright/projects/fibu-book5/evidence/payments-003/PAYMENTS-003-result.json`, `playwright/projects/fibu-book5/evidence/payments-003/PAYMENTS-003-BANK-ACCOUNT-FIT.md` |
 | Ursache | `BANK-RM-01` ist ein Buch-/Rhein-Main-Zielwert. Die aktuelle CRONUS-USA-Laborcompany `RM-DEMO` enthaelt stattdessen vorhandene CRONUS-Bankkonten wie `CHECKING` und `SAVINGS`. |
-| Loesung | `PAYMENTS-003` hat `BANK-RM-01` idempotent per BC-Standard-API angelegt und danach in Bank Accounts sichtbar geprueft. Es wurde bewusst nicht gezahlt, nicht ausgeglichen und keine Bankabstimmung gestartet. |
+| Loesung | `PAYMENTS-003` hat `BANK-RM-01` idempotent per BC-Standard-API angelegt und danach in Bank Accounts sichtbar geprueft. Das bleibt Laborhistorie und keine Buch-Klickanleitung. Fuer das Buch muss eine Bankkontoanlage entweder als UI-Klickpfad nachgezogen oder als vorbereitete Voraussetzung dokumentiert werden. Es wurde bewusst nicht gezahlt, nicht ausgeglichen und keine Bankabstimmung gestartet. |
 | Buchwirkung | Kapitel 19/20 muss Bankkonto-Readiness vor der ersten Zahlung nennen. Ein sichtbares Zahlungsjournal reicht nicht; das Gegenkonto und der Bankkontext muessen fachlich passen. |
 | Kuenftige Regel | Keine Zahlungsbuchung nur wegen vorhandenem Bankkonto. `Post` im Journal ist sichtbar, aber bis Journalfelder, Gegenkonto `BANK-RM-01`, Betrag, Ausgleichsbezug, Bank Account Posting Group/Sachkonto-Fit und Vorabkontrolle passen, bleibt die Buchung gesperrt. |
+
+## WK-BC-PAY-003 Sichtbarer Cash-Receipt-Draft hat noch Amount-Issue
+
+| Feld | Wert |
+|---|---|
+| Status | offen als UI-/Anfaenger-Lernfall; keine Buchung |
+| Testfall | `PAYMENTS-005` |
+| Situation | Fuer den ersten Zahlungseingang wurde im Cash Receipt Journal eine Entwurfszeile ueber die UI vorbereitet: Debitor `D10000`, Betrag `-68.000`, Gegenkonto `BANK-RM-01`, Rechnungsbezug `PS-INV103297`. |
+| Symptom | Die Zeile sieht im Grid plausibel aus, aber Journal Check zeigt `1 Issues Total`. Current line meldet: `'Amount' muss in 'Gen. Journal Line' einen Wert enthalten...`. |
+| Ursache | Noch nicht abschliessend geklaert. Wahrscheinlich ist der sichtbare Gridwert nach der automatisierten Eingabe noch nicht als gueltiger interner Amount gespeichert oder die Betrags-/Waehrungsrichtung der Cash-Receipt-Zeile passt nicht zum CRONUS-Laborjournal. |
+| Warum BC so reagiert | Journale sind editierbare Tabellen mit Feldvalidierungen. Sichtbarer Zelltext, gespeicherter Feldwert, Waehrungsbetrag und Journal-Check-FactBox koennen auseinanderfallen, solange die Zeile nicht fachlich korrekt validiert ist. |
+| Loesung | Noch offen. Naechster Schritt ist `PAYMENTS-006`: denselben UI-Klickpfad erneut aufbauen, Amount-Eingabe/Betragsrichtung pruefen und erst bei `0 Issues` weiter Richtung Zahlungsbuchung denken. |
+| Pruefung nach Korrektur | Offen. Erwartet wird Journal Check ohne Issues, weiterhin ohne Zahlung und ohne OP-Ausgleich. |
+| Buchwirkung | Die Anleitung muss erklaeren: Zahlungsjournalzeile sichtbar ausfuellen reicht nicht. Journal Check rechts ist ein Pflicht-Kontrollpunkt. Fehler werden als Lernfall dokumentiert, nicht ueber API oder direkte Buchung umgangen. |
+| Kuenftige Regel | Fachliche Anlage, Aenderung oder Vorbereitung fuer Buchscreenshots laeuft ueber UI. API ist keine Abkuerzung fuer Klickpfade; wenn API als Laborfit genutzt wurde, bleibt ein UI-Pfad oder eine klare Voraussetzung im Buch offen. |
 
 ## WK-BC-P2P-001 Kreditor ohne Template blockiert P2P-Entwurf
 

@@ -12,12 +12,14 @@ Playwright MCP ist fuer dieses Projekt sinnvoll, aber nicht als alleiniger Produ
 | Menues, Dialoge, Rollen, Labels und Frames live finden | Playwright MCP |
 | Stammdaten- oder Setup-Pfad erstmalig ausprobieren | Playwright MCP, danach Playwright-Test |
 | finale oder wiederholbare Buchscreenshots erzeugen | Playwright-Testskripte |
-| Evidence Pack, Cleanup, Soll-Ist-Abgleich | Playwright-Testskripte |
+| Evidence Pack, UI-Cleanup, Soll-Ist-Abgleich | Playwright-Testskripte |
 | CI/CD, Repo-Umzug, anderer Codex-Account | Playwright-Testskripte |
 
 Kurzregel:
 
-> MCP findet den Weg. Das Repo beweist den Weg.
+> MCP findet den Weg. Das Repo beweist den UI-Weg.
+
+Fuer Buch-Klickanleitungen gilt: Fachliche Anlage, Aenderung, Vorbereitung und Buchung muessen ueber die Business-Central-UI nachvollziehbar sein. API-Zugriffe duerfen technische Zusatzdiagnose oder historischen Laborfit liefern, ersetzen aber keinen bebilderten Klickpfad. Wenn ein Objekt fuer das Buch angelegt werden muss, braucht es einen UI-Pfad oder es bleibt eine vorbereitete Voraussetzung/offene Folgearbeit.
 
 ## Offizielle Einordnung
 
@@ -59,7 +61,7 @@ Diese Skripte erzeugen:
 
 - Screenshots unter `playwright/projects/fibu-book5/img/`
 - Screenshot-Metadaten unter `playwright/projects/fibu-book5/evidence/<testfall>/`
-- API-/Text-/Delta-Evidence
+- UI-/Text-/Control-/Delta-Evidence
 - Cleanup-Nachweise fuer Laborbelege
 
 ## Warum MCP fuer Business Central trotzdem Sinn macht
@@ -132,7 +134,7 @@ Fuer Buch und UAT zaehlt erst:
 
 - PNG-Screenshot
 - Screenshot-Metadaten
-- Page-Text oder API-Evidence
+- Page-Text, UI-Control-Snapshot oder sonstige UI-nahe Evidence
 - Soll-Ist-Abgleich
 - Cleanup
 - Markdown-Erklaerung im Buch oder Projekt
@@ -173,7 +175,7 @@ MCP kann hier zuerst die UI finden:
 2. `Mehr anzeigen` im Bereich `General` nutzen.
 3. Feld `Currency Code` / `Waehrungscode` suchen.
 4. Falls nicht sichtbar: Personalisierung oder weitere FastTabs pruefen.
-5. Danach Playwright-Test oder API-Helfer anpassen.
+5. Danach Playwright-Test anpassen; API-Helfer nur fuer technische Zusatzdiagnose, nicht als Ersatz fuer den UI-Klickpfad.
 
 Wichtig:
 
@@ -299,7 +301,7 @@ Die konkrete Einbindung haengt vom Client ab. Fuer dieses Repository gilt: MCP-K
 
 1. MCP fuer schnelle Exploration nutzen, wenn verfuegbar.
 2. Jede Erkenntnis in `FINDINGS.md`, `UI-INVENTORY.md` oder `WORKAROUNDS-AND-ERRORS.md` dokumentieren.
-3. Danach einen Playwright-Test oder Helper bauen.
+3. Danach einen Playwright-Test oder Helper bauen, der den UI-Weg reproduziert.
 4. Evidence Pack erzeugen.
 5. Buchtext aktualisieren.
 

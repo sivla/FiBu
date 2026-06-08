@@ -3383,7 +3383,10 @@ Laborbefund `PAYMENTS-002`:
 Die naechste Readiness-Pruefung oeffnet `Bank Accounts`, `Cash Receipt Journals`, `Payment Journals` und `Apply Entries` aus Debitoren- und Kreditorenposten. Das Labor zeigt vorhandene CRONUS-Bankkonten `CHECKING` und `SAVINGS`, aber nicht das Buchziel `BANK-RM-01`. Deshalb darf noch keine Zahlung gebucht werden. Ein sichtbarer `Post`-Button im Journal ist keine fachliche Freigabe; zuerst muessen Bankkonto, Gegenkonto, Betrag, Ausgleichsbezug und Vorabkontrolle passen.
 
 Laborbefund `PAYMENTS-003`:
-`BANK-RM-01` wurde danach als CRONUS-USA-Laborbankkonto per Standard-API angelegt und in `Bank Accounts` sichtbar geprueft. Das loest nur den Stammdatenblocker. Es ist noch keine Zahlung, kein OP-Ausgleich und keine Bankabstimmung nachgewiesen. Fuer den naechsten Screenshot-Lauf muss das Buch deshalb zuerst die Zahlungsjournal-Readiness zeigen: Konto, Gegenkonto `BANK-RM-01`, Betrag, Ausgleichsbezug und Vorabkontrolle. Erst wenn diese Punkte passen, darf eine kontrollierte Laborzahlung geplant werden.
+`BANK-RM-01` wurde danach als CRONUS-USA-Laborbankkonto per Standard-API angelegt und in `Bank Accounts` sichtbar geprueft. Das loest nur den Stammdatenblocker. Fuer das Buch ist das noch keine Klickanleitung zur Bankkontoanlage; wenn die Bankkontoanlage erklaert werden soll, braucht sie einen eigenen UI-Pfad oder wird als vorbereitete Voraussetzung genannt.
+
+Laborbefund `PAYMENTS-004` und `PAYMENTS-005`:
+Das Cash Receipt Journal zeigt die noetigen Felder und Aktionen: Buchungsdatum, Belegart, Belegnr., Kontenart, Kontonr., Betrag, Gegenkonto, Ausgleichsbezug, `Apply Entries`, `Journal Check` und `Post`. In `PAYMENTS-005` wurde eine Zahlungsjournalzeile vollstaendig ueber die UI vorbereitet: `D10000`, Betrag `-68.000`, Gegenkonto `BANK-RM-01`, Ausgleichsbezug `PS-INV103297`. Der Entwurf wurde danach wieder geloescht. Wichtig: Journal Check meldete noch `1 Issue` zur `Amount`-Validierung der `Gen. Journal Line`. Deshalb ist der aktuelle Laborstand noch nicht zahlungsreif. Es ist weiterhin keine Zahlung, kein OP-Ausgleich und keine Bankabstimmung nachgewiesen.
 
 ### Warum braucht Rhein-Main diesen Prozess?
 
@@ -3404,11 +3407,12 @@ Rhein-Main braucht verlässliche offene Posten für Mahnwesen, Liquidität und M
 3. Setze `Gegenkontoart = Bankkonto`, `Gegenkontonr. = BANK-RM-01`.
 4. Wähle `Posten ausgleichen (Apply Entries)`.
 5. Markiere Rechnung `SO-1001`.
-6. Prüfe `Buchungsvorschau (Preview Posting)`.
-7. Buche die Zahlung.
-8. Öffne `Debitorenposten (Customer Ledger Entries)` und prüfe Restbetrag `0,00 EUR`.
-9. Öffne `Detaillierte Debitorenposten (Detailed Customer Ledger Entries)` und prüfe Ausgleichszeilen.
-10. Öffne OP-Liste Debitoren und dokumentiere den Nachweis.
+6. Pruefe zuerst den rechten Bereich `Journal Check`. Solange dort Issues sichtbar sind, darf nicht gebucht werden.
+7. Pruefe danach `Buchungsvorschau (Preview Posting)`, falls die Aktion in der Umgebung verfuegbar ist.
+8. Buche die Zahlung erst, wenn Betrag, Gegenkonto, Ausgleichsbezug und `Journal Check` stimmig sind.
+9. Öffne `Debitorenposten (Customer Ledger Entries)` und prüfe Restbetrag `0,00 EUR`.
+10. Öffne `Detaillierte Debitorenposten (Detailed Customer Ledger Entries)` und prüfe Ausgleichszeilen.
+11. Öffne OP-Liste Debitoren und dokumentiere den Nachweis.
 
 ### Buchungsspur
 

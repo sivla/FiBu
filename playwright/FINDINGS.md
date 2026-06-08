@@ -38,6 +38,28 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 
 ## Aktuelle Fundstellen
 
+## FIND-BC-PAY-004 UI-Draft ist noch nicht zahlungsreif
+
+| Feld | Wert |
+|---|---|
+| Status | offen als Payment-Draft-Lernfall |
+| Projekt | fibu-book5 |
+| Testfall | `PAYMENTS-005` |
+| Screenshot | `playwright/projects/fibu-book5/img/payments-005-010-cash-receipt-ui-draft.png` |
+| Evidence | `playwright/projects/fibu-book5/evidence/payments-005/PAYMENTS-005-result.json`, `playwright/projects/fibu-book5/evidence/payments-005/PAYMENTS-005-CASH-RECEIPT-UI-DRAFT.md` |
+| BC-Seite | Cash Receipt Journals |
+| sichtbarer Text | `D10000`, `BANK-RM-01`, `PS-INV103297`, `Journal Check`, `1 Issues Total`, `Amount` |
+| Elementtyp | Zahlungsjournal-Entwurf / Journal Check |
+| erste Hypothese | Ein sichtbarer Zahlungsjournal-Draft beweist noch nicht, dass die Zeile fachlich buchungsreif ist. Journal Check muss vor einer Zahlung ohne Issues sein oder die Restgrenze muss erklaert werden. |
+| Recherchequelle | praktischer UI-only Playwright-Lauf `npm run fibu:payments:cash-receipt-ui-draft`; `playwright/projects/fibu-book5/evidence/payments-005/README.md` |
+| Testergebnis | Die Zeile wurde vollstaendig ueber die UI vorbereitet und wieder geloescht. Debitor, Betrag, Gegenkonto und Rechnungsbezug sind sichtbar. Journal Check meldet aber `1 Issue`: `'Amount' muss in 'Gen. Journal Line' einen Wert enthalten...`. Es wurde keine Zahlung und kein Ausgleich gebucht. |
+| Entscheidung | Buch ergaenzen: Zahlungsjournal-Entwurf und Zahlungsfreigabe trennen. Naechster Lauf muss Amount-Validierung/Betragsrichtung ueber UI klaeren; API ist keine Abkuerzung fuer diesen Klickpfad. |
+| Buchstelle | Kapitel 19 Debitoren/Kreditoren und Kapitel 20 Bank/Payments |
+
+Bewertung:
+
+Das ist ein idealer Anfaengerbefund: In Business Central kann eine Zeile sichtbar plausibel aussehen, waehrend die Journal-Check-FactBox noch einen internen Validierungsfehler meldet. Das Buch sollte deshalb nicht nur die Zeile zeigen, sondern auch den rechten Journal Check erklaeren.
+
 ## FIND-BC-PAY-003 Cash Receipt Journal braucht Readiness vor der ersten Zahlungszeile
 
 | Feld | Wert |

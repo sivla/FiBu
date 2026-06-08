@@ -193,6 +193,12 @@ Fuer `UAT-O2C-001` fasst `playwright/projects/fibu-book5/evidence/uat-o2c-001/RE
 |---|---|---|---|
 | `playwright/projects/fibu-book5/img/payments-004-010-cash-receipt-journal-readiness.png` | guter Labor-Readiness-Kandidat | Cash Receipt Journal ist in `RM-DEMO` sichtbar; Evidence bestaetigt Posting Date, Document Type/No., Account Type/No., Amount, Bal. Account, Apply Entries, Journal Check und `Post`. `Preview Posting` ist in diesem Lauf nicht sichtbar. | Als Lernbild fuer den Schritt zwischen offenen Debitorenposten und erster Zahlungsjournalzeile geeignet. Nicht als Zahlungs-, Ausgleichs-, Bankwirkungs- oder deutscher Compliance-Nachweis verwenden. |
 
+## `PAYMENTS-005` Screenshot Review
+
+| Screenshot | Bewertung | Befund | Entscheidung |
+|---|---|---|---|
+| `playwright/projects/fibu-book5/img/payments-005-010-cash-receipt-ui-draft.png` | gutes Labor-Lernbild mit Fehlerhinweis | Cash Receipt Journal zeigt eine per UI vorbereitete Zahlungsjournalzeile mit Betrag, Gegenkonto `BANK-RM-01` und Rechnungsbezug `PS-INV103297`. Rechts ist Journal Check sichtbar und meldet `1 Issue Total`; Current line nennt die `Amount`-Validierung der `Gen. Journal Line`. | Als Buch-/Lernbild fuer den Unterschied zwischen sichtbarer Entwurfszeile und zahlungsreifem Journal geeignet. Nicht als Zahlungsfreigabe, Zahlungs-, Ausgleichs- oder Bankwirkungsnachweis verwenden. |
+
 ## Harte Findings aus dem Review
 
 ### QA-O2C-001 Listenbild zeigt nicht den Buchfall

@@ -1,0 +1,47 @@
+{
+  "testId": "PAYMENTS-005",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "dataBasis": "CRONUS USA",
+  "mode": "ui-draft-no-payment-no-application",
+  "documentNo": "PAY005-477634",
+  "sourceContext": {
+    "postedSalesInvoiceNo": "PS-INV103297",
+    "customerNo": "D10000",
+    "targetBankAccountNo": "BANK-RM-01",
+    "amountDraft": -68000
+  },
+  "draftVisible": true,
+  "customerVisible": true,
+  "bankVisible": true,
+  "invoiceReferenceVisible": true,
+  "amountVisible": true,
+  "journalCheckVisible": true,
+  "journalCheckIssueCount": 1,
+  "journalCheckIssueText": "'Amount' muss in 'Gen. Journal Line' einen Wert enthalten: 'Journal Template Name=CASHRCPT, Journal Batch Name=GENERAL, Line No.=10000'. Der Wert darf nicht null oder leer sein.",
+  "readyForPaymentPosting": false,
+  "postVisible": true,
+  "cleanup": {
+    "attempted": true,
+    "cleaned": true,
+    "documentNoStillVisible": false
+  },
+  "safety": {
+    "paymentPosted": false,
+    "applicationPosted": false,
+    "bankReconciliationOpened": false,
+    "postActionClicked": false
+  },
+  "proves": [
+    "Eine Cash-Receipt-Journal-Zeile kann ueber die UI fuer D10000 vorbereitet werden.",
+    "Der UI-Entwurf kann BANK-RM-01 als Gegenkonto und PS-INV103297 als Rechnungsbezug sichtbar enthalten.",
+    "Der Entwurf wurde anschliessend geloescht; keine Zahlung und kein OP-Ausgleich wurden gebucht."
+  ],
+  "doesNotProve": [
+    "Keine Zahlung wurde gebucht.",
+    "Kein OP wurde ausgeglichen.",
+    "Keine Bankposten oder Debitorenpostenwirkung.",
+    "Kein deutscher Bank-, Steuer- oder Compliance-Finalnachweis."
+  ],
+  "nextStep": "PAYMENTS-006: UI-Draft erneut gezielt verbessern, bis Journal Check 0 Issues zeigt; Amount-Validierung, Betragsrichtung und Apply-Logik klaeren. Keine Zahlung ohne neue Freigabe."
+}
