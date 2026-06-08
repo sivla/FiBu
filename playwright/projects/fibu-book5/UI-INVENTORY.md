@@ -124,13 +124,13 @@ Wenn das Projekt fertig ist, kennen wir Business Central für den Buchumfang nic
 
 | Reihenfolge | Ziel |
 |---:|---|
-| 1 | `FIXEDASSETS-006`: vor dem UI-Setup-Fit fuer `MACHINES` vorhandene CRONUS-FA-Posting-Group-Konten lesen; danach `MACHINES`, `FA-CNC-01`, `HGB`, `K30000` und Zugangspfad idempotent planen; kein Anlagenzugang und keine AfA-Buchung ohne eigenen Freigabeschritt |
+| 1 | `MANUFACTURING-001-READINESS`: Assembly-/Manufacturing-Einstiege und Voraussetzungen fuer `RM-M100`, `RAW-STEEL`, Komponenten, BOM/Routing oder Montage/Fertigung read-only pruefen; keine Produktion, kein Verbrauch, kein Output, keine Buchung |
 | 2 | `PAYMENTS-011` nur mit ausdruecklicher Freigabe als kontrollierte Laborzahlung; `PAYMENTS-EVIDENCE-PACK-SYNC.md` hat den nicht buchenden Payments-Lernpfad bereits abgerundet |
 | 3 | Reporting weiterfuehren: `REPORTING-009` hat den einfachen Sachposten-Dimensionspfad read-only ausgeschoepft; `REPORTING-008` definiert den Analysis-View-Fit fuer `PRODUCTLINE=MACHINE` und `CHANNEL=B2B` als naechsten Hebel; nur mit eigener Freigabe umsetzen, sonst keinen weiteren gleichen read-only Reportingpfad wiederholen |
 | 4 | Postenspur-Lernatlas `POSTING-TRACE-001` ist erledigt: O2C, P2P und Inventory erklaeren Beleg, Nebenbuchposten, Sachposten, Artikelposten, Wertposten und Bericht als gemeinsame Anfaengerkette; keine weitere `INV008`-Buchung |
 | 5 | Sachposten-Dimensionspfad nicht erneut als naechstes Ziel einplanen: `REPORTING-009` hat ihn read-only geprueft und als Teil-/Negativbefund dokumentiert |
 | 6 | Steuerfit: CRONUS-USA-Probelauf weiter vom deutschen Ziel-Fall `19 %` trennen |
-| 7 | Warehouse-Block: `FRA-ZL` spaeter mit Bins/Receipts/Picks ausbauen |
+| 7 | Warehouse-Block: `WAREHOUSE-001` und `WAREHOUSE-002` sind als Readiness/Buch-Sync erledigt; `FRA-ZL` spaeter nur mit Gate mit Bins/Receipts/Picks ausbauen |
 
 ## Definition of Done fuer eine Funktion
 Eine Funktion gilt erst als erledigt, wenn:

@@ -2351,6 +2351,18 @@ Aktueller Laborbefund aus `INVENTORY-001`: In der CRONUS-USA-Spielwiese `RM-DEMO
 
 Aktueller Warehouse-Readiness-Befund aus `WAREHOUSE-001`: `FRA-ZL` ist in `RM-DEMO` als Lagerort read-only sichtbar. Auf dem aktuellen Laborbild sind die typischen Warehouse-Aktivierungsmarker `Bin Mandatory`, `Require Receive`, `Require Shipment`, `Require Put-away`, `Require Pick` und `Directed Put-away and Pick` nicht sichtbar nachgewiesen. Tell-Me zeigt Einstiegspfade für `Warehouse Receipts`, `Warehouse Put-aways`, `Warehouse Picks` und `Bins`; `Warehouse Shipments` wurde in diesem Lauf nicht belastbar sichtbar. Deshalb bleibt `FRA-ZL` für die aktuelle Evidence-Kette ein einfacher Lagerort mit Inventory-Posten- und Lagerbewertungsnachweis. Gesteuerte Lagerprozesse werden erst mit separatem Setup-Gate aktiviert und bebildert.
 
+Statusbox fuer den aktuellen Buchstand:
+
+| Pruefpunkt | Aktueller Stand |
+|---|---|
+| Buchziel | `FRA-ZL` soll spaeter als gesteuertes Lager mit Lagerplaetzen, Lagereingang, Einlagerung, Kommissionierung und Warenausgang bebildert werden. |
+| RM-DEMO-Labor | `FRA-ZL` ist als einfacher Lagerort sichtbar; Inventory-Posten, Wertposten, Sachposten und Lagerbewertung sind belegt. |
+| Warehouse-Readiness | Einstiegspfade fuer `Warehouse Receipts`, `Warehouse Put-aways`, `Warehouse Picks` und `Bins` sind sichtbar; `Warehouse Shipments` ist in `WAREHOUSE-001` nicht belastbar sichtbar. |
+| Was nicht behauptet wird | Keine aktivierten Bins, keine gesteuerte Einlagerung/Kommissionierung, kein Warehouse Receipt, kein Put-away, kein Pick, kein Shipment und keine Warehouse-Buchung. |
+| Gate | `WAREHOUSE-001-ACTIVATION` bleibt gesperrt. Ohne Freigabe wird kein Lagerort-Setup geaendert und keine Warehouse-Aktivitaet erzeugt. |
+| Evidence Pack | `playwright/projects/fibu-book5/evidence/warehouse-001/` und `playwright/projects/fibu-book5/evidence/warehouse-002/`. |
+| Deutscher Finalnachweis | Offen: deutsche Oberflaeche, finales Warehouse-Setup, Bins, Prozessstatus und Postenspur muessen separat nachgewiesen werden. |
+
 ### Warum braucht Rhein-Main diesen Prozess?
 
 Rhein-Main braucht beide Lagerlogiken, weil nicht jede Ware gleich kritisch ist. Ersatzteile in `MZ-EINFACH` werden schnell bewegt und brauchen wenig Prozessführung. Rohmaterial und Fertigmaschinen in `FRA-ZL` haben hohe Werte und müssen lagerplatzgenau gesteuert werden. Business Central verbindet beide Welten mit derselben Artikel- und Wertlogik. Der Unterschied liegt in den Lageraktivitäten vor der endgültigen Buchung.

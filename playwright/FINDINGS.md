@@ -865,7 +865,7 @@ Folgeentscheidung aus `INVENTORY-004` bis `INVENTORY-008`: Der klar markierte Tr
 |---|---|
 | Status | erledigt als Governance-Sync |
 | Projekt | fibu-book5 |
-| Testfall | `GOVERNANCE-001-AUTOPILOT-STATE-GATES` |
+| Testfall | `GOVERNANCE-001-AUTOPILOT-STATE-GATES`, `WAREHOUSE-002` |
 | Screenshot | keiner; Governance-/State-Sync ohne BC-Lauf |
 | Evidence | `playwright/projects/fibu-book5/AUTOPILOT-STATE.json`, `playwright/projects/fibu-book5/POSTING-AND-SETUP-GATES.md`, `playwright/projects/fibu-book5/CURRENT-STATE.md`, `playwright/projects/fibu-book5/LAB-FIT-STATUS.md` |
 | BC-Seite | keine |
@@ -874,7 +874,7 @@ Folgeentscheidung aus `INVENTORY-004` bis `INVENTORY-008`: Der klar markierte Tr
 | erste Hypothese | Wiederholte Queue-Laeufe brauchen eine maschinenlesbare Wahrheit, sonst koennen alte Prompts versehentlich Zahlungen, Setup-Fits oder Doppelbuchungen ausloesen. |
 | Recherchequelle | aktueller Repo-Stand und V2-Autopilot-Prompt |
 | Testergebnis | `AUTOPILOT-STATE.json` haelt Sandbox, Company, letzte Laborbuchungen, Hard Locks und naechsten nicht freigabepflichtigen Schritt fest. `POSTING-AND-SETUP-GATES.md` definiert, welche Aktionen ohne ausdrueckliche Freigabe gesperrt sind. |
-| Entscheidung | Folge-Agenten muessen vor Setup-Aenderungen, Buchungen, neuer Company oder Wiederholungen die Gate-Datei lesen. `FIXEDASSETS-008` ist erledigt; ohne Freigabe bleibt Fixed Assets gesperrt und der naechste praktische Schritt soll ein anderer read-only oder Buch-Sync-Block sein, z. B. Warehouse-Readiness ohne Aktivierung. |
+| Entscheidung | Folge-Agenten muessen vor Setup-Aenderungen, Buchungen, neuer Company oder Wiederholungen die Gate-Datei lesen. `FIXEDASSETS-008` und `WAREHOUSE-002` sind erledigt; ohne Freigabe bleiben Fixed Assets und Warehouse-Aktivierung gesperrt. Naechster praktischer Schritt ohne Gate ist ein anderer read-only Block, aktuell Manufacturing/Assembly-Readiness. |
 | Buchstelle | Handover, Evidence Governance, alle Kapitel mit Buchung oder Setup-Aenderung |
 
 Bewertung:
@@ -907,14 +907,14 @@ Das ist ein sehr guter Anfaenger-Lernfall. Die Zeile sieht fachlich einfach aus,
 
 | Feld | Wert |
 |---|---|
-| Status | erledigt als read-only Readiness; Aktivierung offen/gate-gesperrt |
-| Quelle | `WAREHOUSE-001` |
+| Status | erledigt als read-only Readiness und Buch-Sync; Aktivierung offen/gate-gesperrt |
+| Quelle | `WAREHOUSE-001`, `WAREHOUSE-002` |
 | BC-Seite | Locations / Tell-Me |
 | sichtbarer Text / Werte | `FRA-ZL`, `Warehouse Receipts`, `Warehouse Put-aways`, `Warehouse Picks`, `Bins`; `Warehouse Shipments` nicht belastbar sichtbar |
 | Elementtyp | Lagerort / Warehouse-Einstiegspfade |
 | erste Hypothese | Nach Inventory-Postenspur und Lagerbewertung muss zuerst geklaert werden, ob `FRA-ZL` schon Warehouse-Logik traegt oder nur einfacher Lagerort ist. |
 | Testergebnis | `WAREHOUSE-001` oeffnet `FRA-ZL` read-only als Location. Die typischen Warehouse-Marker `Bin Mandatory`, `Require Receive`, `Require Shipment`, `Require Put-away`, `Require Pick` und `Directed Put-away and Pick` sind nicht sichtbar. Tell-Me zeigt `Warehouse Receipts`, `Warehouse Put-aways`, `Warehouse Picks` und `Bins`; `Warehouse Shipments` wurde nicht belastbar sichtbar. Keine Bins, keine Warehouse-Aktivitaet, keine Setup-Aenderung, keine Buchung. |
-| Entscheidung | Kapitel 13 darf den aktuellen Laborstand nur als einfachen Lagerort plus Warehouse-Readiness darstellen. Ein gesteuerter Warehouse-Prozess braucht ein eigenes Gate fuer Aktivierung, Bins und spaetere Prozess-Evidence. Naechster sicherer Schritt ist `WAREHOUSE-002` als Buch-/Evidence-Sync. |
+| Entscheidung | Kapitel 13 stellt den aktuellen Laborstand jetzt nur als einfachen Lagerort plus Warehouse-Readiness dar. `WAREHOUSE-002` hat dafuer eine Statusbox ergaenzt: Buchziel, RM-DEMO-Labor, Warehouse-Readiness, Nichtbehauptungen, Gate und deutscher Finalnachweis sind getrennt. Ein gesteuerter Warehouse-Prozess braucht weiter ein eigenes Gate fuer Aktivierung, Bins und spaetere Prozess-Evidence. Naechster sicherer Schritt ohne Gate ist Manufacturing/Assembly-Readiness read-only. |
 | Buchstelle | Kapitel 13 Inventory/Warehouse |
 
 Fuer Anfaenger ist das wichtig, weil `Location Code = FRA-ZL` nicht automatisch bedeutet, dass BC schon Warehouse Receipts, Put-aways, Picks und Bins erzwingt. Ein Lagerort ist die Ortsdimension der Bewegung; Warehouse-Aktivierung ist zusaetzliches Setup, das den Prozesspfad aendert.
