@@ -1,0 +1,54 @@
+{
+  "testId": "INVENTORY-004",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "dataBasis": "CRONUS USA",
+  "mode": "planning-readiness-no-bc-execution-no-posting",
+  "sourceEvidence": {
+    "negativeValuation": "playwright/projects/fibu-book5/evidence/inventory-003/INVENTORY-NEGATIVE-RM-M100.md",
+    "inventoryValuation": "playwright/projects/fibu-book5/evidence/inventory-002/INVENTORY-VALUATION-result.json",
+    "inventoryTrace": "playwright/projects/fibu-book5/evidence/inventory-001/INVENTORY-LAB-TRACE.md",
+    "testdataItems": "playwright/projects/fibu-book5/testdata/masterdata/items.json",
+    "processCases": "playwright/projects/fibu-book5/testdata/masterdata/process-cases.json"
+  },
+  "decision": {
+    "recommendedNextPositiveStockPath": "opening-balance-for-training",
+    "reason": "Kleinster kontrollierter Schritt fuer stabile O2C-, Inventory- und Reporting-Buchbilder; Manufacturing bleibt fachlich spaeterer End-to-End-Prozess.",
+    "notRecommendedNow": [
+      "new O2C booking",
+      "warehouse activation",
+      "manual G/L entries",
+      "full manufacturing run without BOM/routing/readiness"
+    ]
+  },
+  "plannedStockMovement": {
+    "itemNo": "RM-M100",
+    "locationCode": "FRA-ZL",
+    "quantityToAdd": 2,
+    "unitCost": 42000,
+    "expectedPositiveValue": 84000,
+    "alreadyProvenO2COutflowQuantity": -1,
+    "alreadyProvenO2COutflowCost": -42000,
+    "expectedRemainingQuantityAfterCurrentLabOutflow": 1,
+    "expectedRemainingValueAfterCurrentLabOutflow": 42000,
+    "dimension": {
+      "PRODUCTLINE": "MACHINE"
+    }
+  },
+  "requiredPrechecksBeforeExecution": [
+    "RM-M100 exists and remains an Inventory item.",
+    "FRA-ZL exists as the target location.",
+    "Inventory Posting Setup FRA-ZL + RESALE = 14140 remains fit for CRONUS-USA lab.",
+    "PRODUCTLINE=MACHINE remains default/required dimension for RM-M100 or is set on the movement.",
+    "The chosen BC page or journal supports a controlled positive item movement with document number and posting trace.",
+    "Preview Posting or an equivalent pre-posting control is checked if available."
+  ],
+  "doesNotProve": [
+    "No stock was posted in this run.",
+    "No German VAT or German chart of accounts final state.",
+    "No manufacturing output.",
+    "No warehouse process.",
+    "No cost adjustment or period close."
+  ],
+  "nextStep": "Prepare INVENTORY-005: identify and test the BC path for a controlled positive RM-M100 opening/training stock movement, then document item ledger entries, value entries, G/L entries and Inventory Valuation."
+}

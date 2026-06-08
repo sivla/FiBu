@@ -19,6 +19,7 @@ Diese Testdaten beschreiben den Lern- und Laborstand fuer `RM-DEMO`. Sie sind ke
 | `masterdata/resources-assets-projects.json` | Ressourcen, Anlagen, Projekte und Bankkonto | geplant |
 | `sales/uat-o2c-001.json` | konkreter O2C-Testfall mit Zielwerten | Labor belegt mit Steuerabweichung |
 | `purchase/uat-p2p-001.json` | konkreter P2P-Readiness-Fall mit Zielwerten | Labor-Readiness belegt, keine Buchung |
+| `inventory/rm-m100-target-stock-plan.json` | geplanter positiver `RM-M100`-Zugang fuer stabile finale Buchbilder | geplant, noch keine Buchung |
 
 ## Konventionen
 
@@ -43,6 +44,7 @@ Diese Testdaten beschreiben den Lern- und Laborstand fuer `RM-DEMO`. Sie sind ke
 | Standarddimensionen | `RM-M100 -> PRODUCTLINE=MACHINE`, `D10000 -> CHANNEL=B2B` |
 | Posting-Laborfit | `FRA-ZL` + `RESALE -> Inventory Account 14140` |
 | O2C | Auftrag `S-ORD101068` wurde genau einmal mit `Ship and Invoice` gebucht; Rechnung `PS-INV103297` |
+| Inventory Planung | `INVENTORY-004` empfiehlt fuer finale `RM-M100`-Bilder einen klar markierten Trainings-/Opening-Balance-Zugang `+2` in `FRA-ZL`, damit der bekannte Abgang `-1` nicht zu negativer Bewertung fuehrt |
 
 ## Geplant, aber noch nicht praktisch belegt
 

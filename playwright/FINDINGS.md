@@ -572,3 +572,5 @@ Das ist ein starker Anfaenger-Lernpunkt. Der Artikelposten beweist, dass die Dim
 Bewertung:
 
 Das ist ein idealer Lernfall fuer Anfaenger: Der Bericht ist nicht falsch, sondern zeigt die Folge der gebuchten Laborposten. Wer Lagerbewertung versteht, muss Artikelposten, Wertposten, Stichtag, Lagerortfilter und Anfangsbestand zusammen lesen. Die erklaerende Kette ist jetzt dokumentiert. Der naechste Schritt ist nicht sofort Warehouse oder neue O2C-Buchung, sondern der Zielbestandsplan: Wie bekommt `RM-M100` vor finalen Buchbildern einen belegten positiven Zugang?
+
+Folgeentscheidung aus `INVENTORY-004`: Fuer stabile Buchbilder ist ein klar markierter Trainings-/Opening-Balance-Zugang `RM-M100 +2` in `FRA-ZL` der kleinste kontrollierte naechste Schritt. Einkauf von `RM-M100` passt fachlich schlechter, Assembly gehoert in einen anderen Prozess, und Manufacturing/Output bleibt der spaetere echte End-to-End-Nachweis fuer Maschinenfertigung.

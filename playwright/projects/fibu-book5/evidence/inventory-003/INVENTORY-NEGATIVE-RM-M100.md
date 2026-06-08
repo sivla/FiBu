@@ -86,4 +86,4 @@ Dieser Nachweis erklaert den aktuellen Laborbefund. Er beweist nicht:
 
 ## Naechster Schritt
 
-Vor Warehouse oder Manufacturing einen kleinen Zielbestandsplan fuer `RM-M100` formulieren: Welche Buchung oder welcher Prozess erzeugt den positiven Bestand fuer finale Buchbilder, ohne die aktuelle Laborrechnung erneut zu buchen?
+`INVENTORY-004` hat den Zielbestandsplan formuliert. Naechster praktischer Schritt ist `INVENTORY-005`: Den positiven Trainings-/Opening-Balance-Zugang `RM-M100 +2` in `FRA-ZL` kontrolliert vorbereiten, Setup/Preview soweit moeglich pruefen und nur bei sicherem Pfad genau eine positive Bestandsbewegung mit Postenspur dokumentieren.
