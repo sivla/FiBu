@@ -170,17 +170,18 @@ Der aktuelle Lauf darf nicht gebucht oder als deutscher Steuer-Endstand verkauft
 
 Governance, Encoding, Mac-Kompatibilitaet und Lean-Evidence sind committed und gepusht. Nicht erneut mit Aufraeumen beginnen, solange keine neue Rohmasse entsteht.
 
-Als naechstes gezielt die neue O2C-Preview-Evidence didaktisch auswerten:
+Als naechstes gezielt die kontrollierte CRONUS-USA-Laborbuchung vorbereiten:
 
-1. G/L-Preview horizontal auf Betragsspalten scrollen und als eigenes Laborbild sichern.
-2. Erklaeren, was die sichtbaren Preview-Arten und G/L-Preview-Zeilen fuer Anfaenger bedeuten.
-3. Deutsche `19 %`-USt davon getrennt halten: kein deutscher Steuer-Endstand in dieser USA-Spielwiese.
-4. Danach entscheiden, ob der naechste kleine Block Tax/VAT-Fit oder bewusst abgegrenzter Labor-Buchungsnachweis ist.
+1. Vor Beginn des naechsten praktischen Laufs `playwright/projects/fibu-book5/evidence/uat-o2c-001/070-lab-posting-readiness.md` lesen.
+2. Nur wenn dort `Laborbuchung ist erlaubt: ja` steht, darf genau eine kontrollierte CRONUS-USA-Laborbuchung fuer `UAT-O2C-001` erfolgen.
+3. Vor Buchung erneut Kopf, Zeile, EUR, Tax-0-%-Laborgrenze, Dimension und Preview Posting pruefen.
+4. Danach gebuchte Verkaufsrechnung und Postenspur als Labor-Evidence sichern; deutsche `19 %`-USt bleibt davon getrennt offen.
 
 Synchronisationsstand nach der letzten Projektwahrheits-Pruefung:
 
 - Praktisch nachgewiesen: O2C-Kopf, Verkaufszeile, EUR, `PRODUCTLINE=MACHINE` im Zeilendimensionsdialog, Preview Posting mit Vorschauzeilen, G/L-Preview-Drilldown mit Konto `14140`, Inventory-Posting-Setup-Zeile `FRA-ZL` + `RESALE`, Laborfit `Inventory Account = 14140`.
 - Labor-Nachweis: alle aktuellen O2C-, MASTERDATA-008- und MASTERDATA-009-Bilder/Evidence gelten fuer CRONUS USA / gemischte UI; `MASTERDATA-009` ist ein Labor-Setup-Fit, kein deutscher Kontenplan-Endstand.
+- Labor-Buchungsfreigabe: `070-lab-posting-readiness.md` erlaubt eine einmalige kontrollierte CRONUS-USA-Laborbuchung im naechsten Lauf; in diesem Lauf wurde nicht gebucht.
 - Finaler DE-Nachweis offen: deutsche Oberflaeche, 19-%-USt, echte Buchung und Postenspur.
 - Blockiert/offen: kein Inventory-Posting-Setup-Blocker mehr; offen bleiben Steuer-/VAT-Fit, bewusster Buchungsentscheid und finale deutsche Nachweise.
 - Nicht geprueft: P2P, echte Buchung, Debitoren-/Sach-/Artikel-/Wertposten, Finanzbericht.
