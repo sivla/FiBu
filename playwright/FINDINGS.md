@@ -38,6 +38,28 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 
 ## Aktuelle Fundstellen
 
+## FIND-BC-PAY-003 Cash Receipt Journal braucht Readiness vor der ersten Zahlungszeile
+
+| Feld | Wert |
+|---|---|
+| Status | erledigt als read-only Labor-Readiness, Folgearbeit offen |
+| Projekt | fibu-book5 |
+| Testfall | `PAYMENTS-004` |
+| Screenshot | `playwright/projects/fibu-book5/img/payments-004-010-cash-receipt-journal-readiness.png` |
+| Evidence | `playwright/projects/fibu-book5/evidence/payments-004/PAYMENTS-004-result.json`, `playwright/projects/fibu-book5/evidence/payments-004/PAYMENTS-004-CASH-RECEIPT-JOURNAL-READINESS.md` |
+| BC-Seite | Cash Receipt Journals / Bank Accounts |
+| sichtbarer Text | `Cash Receipt Journal`, `Posting Date`, `Document Type`, `Document No.`, `Account Type`, `Account No.`, `Amount`, `Bal. Account`, `Apply Entries`, `Journal Check`, `Post`, `BANK-RM-01` |
+| Elementtyp | Zahlungsjournal-Readiness / OP-Ausgleichsvorbereitung |
+| erste Hypothese | Nach offenen Posten und Bankkonto-Fit muss vor einer Zahlung zuerst der Journalort mit Pflichtfeldern, Gegenkonto, Ausgleichsbezug und Preflight-Aktionen verstanden werden. |
+| Recherchequelle | praktischer Playwright-Lauf `npm run fibu:payments:cash-receipt-readiness`; `playwright/projects/fibu-book5/evidence/payments-004/README.md` |
+| Testergebnis | `BANK-RM-01` ist live in Bank Accounts sichtbar. Cash Receipt Journal ist erreichbar und zeigt Pflichtfelder, Gegenkonto-/Ausgleichshinweise sowie `Journal Check`; `Preview Posting` ist in diesem Lauf nicht sichtbar. Es wurde keine Journalzeile erstellt, keine Zahlung gebucht und kein Ausgleich angewendet. |
+| Entscheidung | Buch ergaenzen: Zwischen OP-Liste/Bankkonto und erster Zahlung gehoert ein nicht-buchender Zahlungsjournal-Readiness-Schritt. Naechste Arbeit ist eine bereinigbare Entwurfszeile, nicht sofort Zahlung. |
+| Buchstelle | Kapitel 19 Debitoren/Kreditoren und Kapitel 20 Bank/Payments |
+
+Bewertung:
+
+Das ist fuer Anfaenger ein wichtiger Sicherheitsanker: Ein sichtbares Zahlungsjournal und ein sichtbarer `Post`-Button bedeuten noch nicht, dass gebucht werden darf. Erst wenn Debitor, offener Posten, Betrag, Gegenkonto, Ausgleichsbezug und Journal Check zusammenpassen, darf eine kontrollierte Laborzahlung ueberhaupt vorbereitet werden.
+
 ## FIND-BC-PAY-002 Bankkonto-Fit vor der ersten Laborzahlung
 
 | Feld | Wert |

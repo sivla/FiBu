@@ -187,6 +187,12 @@ Fuer `UAT-O2C-001` fasst `playwright/projects/fibu-book5/evidence/uat-o2c-001/RE
 |---|---|---|---|
 | `playwright/projects/fibu-book5/img/payments-003-010-bank-accounts-bank-rm-01-fit.png` | guter Labor-Setup-Nachweis | Bank Accounts zeigt `BANK-RM-01` nach idempotenter Anlage per BC-Standard-API neben den CRONUS-Bankkonten. | Als Buch-/Lernbild fuer Bankkonto-Readiness geeignet. Nicht als Zahlungs-, Ausgleichs-, Bankabstimmungs- oder deutscher Bank-Compliance-Nachweis verwenden. |
 
+## `PAYMENTS-004` Screenshot Review
+
+| Screenshot | Bewertung | Befund | Entscheidung |
+|---|---|---|---|
+| `playwright/projects/fibu-book5/img/payments-004-010-cash-receipt-journal-readiness.png` | guter Labor-Readiness-Kandidat | Cash Receipt Journal ist in `RM-DEMO` sichtbar; Evidence bestaetigt Posting Date, Document Type/No., Account Type/No., Amount, Bal. Account, Apply Entries, Journal Check und `Post`. `Preview Posting` ist in diesem Lauf nicht sichtbar. | Als Lernbild fuer den Schritt zwischen offenen Debitorenposten und erster Zahlungsjournalzeile geeignet. Nicht als Zahlungs-, Ausgleichs-, Bankwirkungs- oder deutscher Compliance-Nachweis verwenden. |
+
 ## Harte Findings aus dem Review
 
 ### QA-O2C-001 Listenbild zeigt nicht den Buchfall
