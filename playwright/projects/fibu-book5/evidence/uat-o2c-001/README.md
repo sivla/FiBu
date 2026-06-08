@@ -75,8 +75,10 @@ Die Preview-Uebersicht zeigt Postenarten und Anzahl. Der anschliessende Read-onl
 | `079-pre-posting-check-result.json` | Strukturierte Vorpruefung | Frischer Buchungsauftrag `S-ORD101068`, Kopf/Zeile, EUR, Tax-0-%-Laborgrenze, `PRODUCTLINE=MACHINE`, Preview Posting und Inventory-Fit wurden vor dem Buchen geprueft. | Deutsche 19-%-USt, produktive Buchungsfreigabe. | Labor-Vorpruefung |
 | `080-posting-result.json` | Strukturierte Buchungs-Evidence | Genau eine CRONUS-USA-Laborbuchung mit `Ship and Invoice`; gebuchte Verkaufsrechnung `PS-INV103297`; OK wurde einmal bestaetigt. | Deutschen 19-%-USt-Endstand, deutschen Kontenplan-Endstand, produktive Buchungsfreigabe. | Labor-Buchungsnachweis |
 | `080-posting-learning.md` | Lernzusammenfassung | Erklaert, warum `Ship and Invoice` fuer den O2C-Laborfall gewaehlt wurde und warum Preview vor dem Buchen Pflicht ist. | Finale deutsche Buchung. | Labor-Lernnachweis |
-| `082-posting-entry-trace.json` | Strukturierte Postenspur-Evidence | Gebuchte Verkaufsrechnung, Debitorenposten, Sachposten und Wertposten wurden read-only geoeffnet; Konto `14140` ist in Debitoren-/Sachposten-Text sichtbar. | Direkter Artikelposten-Nachweis, `PRODUCTLINE=MACHINE` in Posten, deutsche USt. | Labor-Postenspur |
-| `082-posting-entry-trace-learning.md` | Lernzusammenfassung | Erklaert fuer Anfaenger, dass BC nach `Ship and Invoice` Beleg und Posten erzeugt. | Dass alle Postenarten final vollstaendig sichtbar waeren. | Labor-Lernnachweis |
+| `082-posting-entry-trace.json` | Strukturierte Postenspur-Evidence | Gebuchte Verkaufsrechnung, Debitorenposten, Sachposten, Wertposten und Artikelposten wurden read-only geoeffnet; Artikelposten wurde ueber `Item Ledger Entry No. = 792` aus dem Wertposten gefunden; Konto `14140` ist in Debitoren-/Sachposten-Text sichtbar. | `PRODUCTLINE=MACHINE` in Posten, deutsche USt. | Labor-Postenspur |
+| `082-posting-entry-trace-learning.md` | Lernzusammenfassung | Erklaert fuer Anfaenger, dass BC nach `Ship and Invoice` Beleg und Posten erzeugt und dass der Artikelposten ueber die Wertposten-Verknuepfung gefunden wurde. | Deutsche finale Postenspur. | Labor-Lernnachweis |
+| `087-find-entries-posted-invoice-page-text.txt` | Roh-Seitentext | `Find entries...` auf `PS-INV103297` zeigt Posted Sales Invoice, `G/L Entry`, `Cust. Ledger Entry`, `Detailed Cust. Ledg. Entry` und `Value Entry`. | Artikelposten; `PRODUCTLINE=MACHINE`. | Labor-Negativnachweis |
+| `088-item-ledger-entry-by-entry-no-page-text.txt` | Roh-Seitentext | Page `38` mit `Entry No. = 792` zeigt Artikelposten: `Sales Shipment S-SHPT102297`, `RM-M100`, `FRA-ZL`, Menge `-1`. | Deutsche USt oder Dimensionen. | Labor-Artikelposten |
 | `999-cleanup.json` | Cleanup-Evidence | Preview-Auftrag `S-ORD101067` fuer `D10000` wurde per API geloescht; Status `204`. | Cleanup fuer die spaetere Laborbuchung `S-ORD101068`; gebuchte Belege koennen nicht wie Entwuerfe geloescht werden. | Cleanup-Nachweis |
 | `uat-o2c-001-010-suche-verkaufsauftraege.screenshot.json` | Screenshot-Metadaten | Such-/Tell-Me-Bild ist als Labor-/Navigationsevidence beschrieben. | Prozessdatensatz `D10000` oder O2C-Werte. | Labor-Metadaten |
 | `uat-o2c-001-020-liste-verkaufsauftraege.screenshot.json` | Screenshot-Metadaten | Listenbild ist Navigationsbild. | Nachweis des konkreten Laborauftrags. | Labor-Metadaten |
@@ -102,6 +104,8 @@ Die Preview-Uebersicht zeigt Postenarten und Anzahl. Der anschliessende Read-onl
 | `../../img/uat-o2c-001-084-gl-entries.png` | labor/evidence | Sachposten zur gebuchten Rechnung |
 | `../../img/uat-o2c-001-085-item-ledger-entries.png` | rejected/labor-check | direkte Artikelpostenliste blieb mit Filter `Order No. = S-ORD101068` leer |
 | `../../img/uat-o2c-001-086-value-entries.png` | labor/evidence | Wertposten zur gebuchten Rechnung |
+| `../../img/uat-o2c-001-087-find-entries-posted-invoice.png` | labor/evidence | `Find entries...` zeigt Postenarten ohne Artikelposten |
+| `../../img/uat-o2c-001-088-item-ledger-entry-by-entry-no.png` | labor/evidence | Artikelposten ueber `Entry No. = 792` aus dem Wertposten |
 
 ## Was jetzt als CRONUS-Labor-Evidence abgedeckt ist
 
@@ -113,17 +117,17 @@ Die Preview-Uebersicht zeigt Postenarten und Anzahl. Der anschliessende Read-onl
 - Maximieren rechts oben funktioniert als Screenshot-Strategie fuer die Preview; der Klick auf `G/L Entry` oeffnet direkt `G/L Entries Preview`.
 - Die G/L-Preview zeigt Sachkonten `14140`, `50110`, `40140`, `15110` und Betragswerte im Seitentext.
 - Die kontrollierte Laborbuchung `S-ORD101068` wurde genau einmal mit `Ship and Invoice` gebucht.
-- Gebuchte Verkaufsrechnung `PS-INV103297`, Debitorenposten, Sachposten und Wertposten sind als Read-only-Postenspur nachgewiesen.
+- Gebuchte Verkaufsrechnung `PS-INV103297`, Debitorenposten, Sachposten, Wertposten und Artikelposten sind als Read-only-Postenspur nachgewiesen.
+- Der Artikelposten ist ein guter Lernfall: `Find entries...` auf der Rechnung zeigt keinen `Item Ledger Entry`; der Wertposten enthaelt aber `Item Ledger Entry No. = 792`, und darueber zeigt Page `38` den Artikelposten.
 
 ## Was offen bleibt
 
 - Deutscher 19-%-USt-Endstand und Bruttobetrag `80.920 EUR`.
 - `VAT Entry` beziehungsweise deutscher USt-Posten.
 - Visuell optimale Detailansicht der Preview-Zeilen mit Betragsspalten; Konten sind sichtbar, Betrage derzeit vor allem im Seitentext nachgewiesen.
-- Direkter Artikelposten-Nachweis: Page `38` blieb mit Filter `Order No. = S-ORD101068` leer; naechster Check ueber `Find entries...` oder gebuchte Lieferung.
 - `PRODUCTLINE=MACHINE` in Preview-Details, gebuchten Sach-/Wertposten oder Reporting.
 - Finale deutsche Screenshots in deutscher Zielumgebung.
 
 ## Naechster konkreter Schritt
 
-Als naechster kleiner Schritt bietet sich ein gezielter Read-only-Check ueber `Find entries...` auf der gebuchten Verkaufsrechnung `PS-INV103297` an, um den fehlenden direkten Artikelposten-Nachweis und moegliche Dimensionsspuren besser zu finden. Keine weitere Buchung.
+Als naechster kleiner Schritt bietet sich ein gezielter Read-only-Check der Dimensionswirkung an: `PRODUCTLINE=MACHINE` in gebuchten Posten oder Reporting suchen. Keine weitere Buchung.

@@ -59,6 +59,8 @@ Fuer `UAT-O2C-001` fasst `playwright/projects/fibu-book5/evidence/uat-o2c-001/RE
 | `playwright/projects/fibu-book5/img/uat-o2c-001-084-gl-entries.png` | guter Labor-Postennachweis | Gefilterte Sachposten zur gebuchten Rechnung; Seitentext enthaelt Betrag, Debitor und Konto `14140`. | Als Laborbild fuer Sachposten geeignet; keine deutsche Kontenplan-Evidence. |
 | `playwright/projects/fibu-book5/img/uat-o2c-001-085-item-ledger-entries.png` | verworfener direkter Artikelposten-Check | Page `38` blieb mit Filter `Order No. = S-ORD101068` leer. | Nicht als Artikelpostenbeweis verwenden; naechster Read-only-Check ueber `Find entries...` oder gebuchte Lieferung. |
 | `playwright/projects/fibu-book5/img/uat-o2c-001-086-value-entries.png` | guter Labor-Postennachweis | Gefilterte Wertposten zur gebuchten Rechnung; Seitentext zeigt `RM-M100` und `D10000`. | Als Laborbild fuer Wertposten geeignet; Dimensionen sind noch nicht sichtbar nachgewiesen. |
+| `playwright/projects/fibu-book5/img/uat-o2c-001-087-find-entries-posted-invoice.png` | guter Labor-Negativnachweis | `Find entries...` auf der gebuchten Rechnung zeigt Posted Sales Invoice, G/L Entry, Cust. Ledger Entry, Detailed Cust. Ledg. Entry und Value Entry, aber keinen Item Ledger Entry. | Als Lernbild geeignet: Nicht jede erwartete Postenart erscheint direkt unter `Find entries...`. |
+| `playwright/projects/fibu-book5/img/uat-o2c-001-088-item-ledger-entry-by-entry-no.png` | guter Labor-Artikelposten-Nachweis | Page `38` zeigt den Artikelposten `Entry No. 792` mit `Sales Shipment S-SHPT102297`, `RM-M100`, Lagerort `FRA-ZL` und Menge `-1`. Der Schluessel stammt aus dem Wertposten. | Als Laborbild fuer Artikelposten geeignet; keine deutsche USt- oder Dimensions-Evidence. |
 
 ## Harte Findings aus dem Review
 
@@ -94,7 +96,7 @@ Business Central nutzt fuer das Verkaufszeilengrid einen horizontal scrollbaren 
 
 ### QA-O2C-008 Laborbuchung ist erfolgt, aber bleibt CRONUS-USA-Evidence
 
-`080` bis `086` zeigen die einmalige Laborbuchung `S-ORD101068` -> `PS-INV103297` und die erste Postenspur. Diese Bilder sind fuer das Lernen stark, weil sie die Wirkung von `Ship and Invoice` sichtbar machen. Sie sind aber keine deutschen Finalbilder: Steuer bleibt 0 %, Konten sind CRONUS-USA-Laborfit, und der direkte Artikelposten-Check ist noch offen.
+`080` bis `088` zeigen die einmalige Laborbuchung `S-ORD101068` -> `PS-INV103297` und die erste Postenspur. Diese Bilder sind fuer das Lernen stark, weil sie die Wirkung von `Ship and Invoice` sichtbar machen. Sie sind aber keine deutschen Finalbilder: Steuer bleibt 0 %, Konten sind CRONUS-USA-Laborfit, und die Dimension `PRODUCTLINE=MACHINE` ist nach Buchung noch nicht sichtbar.
 
 ## Verbesserungsregeln fuer die naechsten Laeufe
 

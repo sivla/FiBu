@@ -74,6 +74,76 @@ async function openFilteredPage(page: Page, target: TraceTarget, postedInvoiceNo
   };
 }
 
+async function clickFirstVisibleAction(page: Page, name: RegExp) {
+  for (const scope of [page, ...page.frames()]) {
+    for (const role of ['button', 'menuitem'] as const) {
+      const locator = scope.getByRole(role, { name }).first();
+      if (await locator.isVisible({ timeout: 1000 }).catch(() => false)) {
+        if (await locator.click({ timeout: 4000 }).then(() => true).catch(() => false)) {
+          await page.waitForTimeout(3000);
+          return true;
+        }
+      }
+    }
+
+    const textLocator = scope.getByText(name).first();
+    if (await textLocator.isVisible({ timeout: 1000 }).catch(() => false)) {
+      if (await textLocator.click({ timeout: 4000 }).then(() => true).catch(() => false)) {
+        await page.waitForTimeout(3000);
+        return true;
+      }
+    }
+  }
+
+  return false;
+}
+
+async function captureFindEntriesTrace(page: Page, postedInvoiceNo: string) {
+  await page.goto(bcPageUrl(132, 'Sales Invoice Header', 'No.', postedInvoiceNo), { waitUntil: 'domcontentloaded' });
+  await waitForBusinessCentralShell(page);
+  await page.waitForTimeout(2500);
+
+  const clickedFindEntries = await clickFirstVisibleAction(
+    page,
+    /^Find entries\.\.\.$|^Find entries$|^Posten suchen\.\.\.$|^Posten suchen$|^Navigate\.\.\.$|^Navigieren\.\.\.$/i
+  );
+  await page.waitForTimeout(5000);
+  const text = await pageText(page);
+  await writeTextEvidence(o2cEvidencePath('087-find-entries-posted-invoice-page-text.txt'), text);
+  await screenshot(page, 'uat-o2c-001-087-find-entries-posted-invoice.png', {
+    projectName: project.name,
+    testId: 'uat-o2c-001',
+    status: clickedFindEntries && /Find Entries|Navigate|Posten suchen|Item Ledger Entry|Value Entry|G\/L Entry|Cust\. Ledger Entry/i.test(text) ? 'labor' : 'rejected',
+    purpose: `Read-only-Find-Entries-Nachweis zur gebuchten Verkaufsrechnung ${postedInvoiceNo}.`,
+    expectedPageText: [],
+    knownLimitations: [
+      'CRONUS-USA-Laborposten, keine deutsche 19-%-USt-Evidence.',
+      'Find Entries/Navigate ist read-only; keine neue Buchung.'
+    ],
+    bookUse: 'evidence'
+  });
+
+  return {
+    id: 'find-entries-posted-invoice',
+    postedSalesInvoiceNumber: postedInvoiceNo,
+    clickedFindEntries,
+    pageContextVisible: /Find Entries|Navigate|Posten suchen|Gebuchte Verkaufsrechnung|Posted Sales Invoice/i.test(text),
+    hasPostedInvoiceNo: new RegExp(postedInvoiceNo).test(text),
+    hasCustomerLedgerEntry: /Cust\. Ledger Entry|Customer Ledger Entry|Debitorenposten/i.test(text),
+    hasGlEntry: /G\/L Entry|G\/L Entries|Sachposten/i.test(text),
+    hasItemLedgerEntry: /Item Ledger Entry|Item Ledger Entries|Artikelposten/i.test(text),
+    hasValueEntry: /Value Entry|Value Entries|Wertposten/i.test(text),
+    hasProductlineMachine: /PRODUCTLINE[\s\S]{0,160}MACHINE|MACHINE[\s\S]{0,160}PRODUCTLINE/i.test(text),
+    textEvidenceFile: '087-find-entries-posted-invoice-page-text.txt',
+    screenshot: 'uat-o2c-001-087-find-entries-posted-invoice.png'
+  };
+}
+
+function extractItemLedgerEntryNoFromValueEntry(valueEntryText: string) {
+  const match = valueEntryText.match(/\b(-?\d+)\s+(-?\d+)\s*(?:\n|$)/m);
+  return match?.[1];
+}
+
 test('UAT-O2C-001 gebuchte Rechnung und Postenspur read-only sichern', async ({ page }) => {
   const posting = JSON.parse(await fs.readFile(o2cEvidencePath('080-posting-result.json'), 'utf8')) as PostingResult;
   expect(posting.posted).toBe(true);
@@ -137,6 +207,26 @@ test('UAT-O2C-001 gebuchte Rechnung und Postenspur read-only sichern', async ({ 
   for (const target of targets) {
     traces.push(await openFilteredPage(page, target, documentNo));
   }
+  const valueEntryText = await fs.readFile(o2cEvidencePath('086-value-entries-page-text.txt'), 'utf8');
+  const itemLedgerEntryNoFromValueEntry = extractItemLedgerEntryNoFromValueEntry(valueEntryText);
+  let itemLedgerEntryByEntryNoTrace: Awaited<ReturnType<typeof openFilteredPage>> | undefined;
+  if (itemLedgerEntryNoFromValueEntry) {
+    itemLedgerEntryByEntryNoTrace = await openFilteredPage(
+      page,
+      {
+        id: 'item-ledger-entry-by-entry-no',
+        pageId: 38,
+        tableName: 'Item Ledger Entry',
+        filterField: 'Entry No.',
+        filterValue: itemLedgerEntryNoFromValueEntry,
+        fileStem: '088-item-ledger-entry-by-entry-no',
+        imageFileName: 'uat-o2c-001-088-item-ledger-entry-by-entry-no.png',
+        labelPattern: /Item Ledger Entries|Item Ledger Entry|Artikelposten|RM-M100/i
+      },
+      documentNo
+    );
+  }
+  const findEntriesTrace = await captureFindEntriesTrace(page, documentNo);
 
   const result = {
     testId: 'UAT-O2C-001',
@@ -145,13 +235,22 @@ test('UAT-O2C-001 gebuchte Rechnung und Postenspur read-only sichern', async ({ 
     orderNumber: posting.orderNumber,
     postedSalesInvoiceNumber: documentNo,
     traces,
+    itemLedgerEntryNoFromValueEntry,
+    itemLedgerEntryByEntryNoTrace,
+    findEntriesTrace,
     summary: {
       postedInvoiceVisible: traces.find((entry) => entry.id === 'posted-sales-invoice')?.filterValueVisible ?? false,
       customerLedgerVisible: traces.find((entry) => entry.id === 'customer-ledger-entries')?.filterValueVisible ?? false,
       glEntriesVisible: traces.find((entry) => entry.id === 'gl-entries')?.filterValueVisible ?? false,
-      itemLedgerVisible: traces.find((entry) => entry.id === 'item-ledger-entries')?.filterValueVisible ?? false,
+      itemLedgerVisible:
+        (traces.find((entry) => entry.id === 'item-ledger-entries')?.filterValueVisible ?? false) ||
+        (itemLedgerEntryByEntryNoTrace?.filterValueVisible ?? false) ||
+        findEntriesTrace.hasItemLedgerEntry,
       valueEntriesVisible: traces.find((entry) => entry.id === 'value-entries')?.filterValueVisible ?? false,
-      productlineMachineFoundInTrace: traces.some((entry) => entry.hasProductlineMachine)
+      itemLedgerVisibleViaDirectFilter: traces.find((entry) => entry.id === 'item-ledger-entries')?.filterValueVisible ?? false,
+      itemLedgerVisibleViaValueEntryEntryNo: itemLedgerEntryByEntryNoTrace?.filterValueVisible ?? false,
+      itemLedgerVisibleViaFindEntries: findEntriesTrace.hasItemLedgerEntry,
+      productlineMachineFoundInTrace: traces.some((entry) => entry.hasProductlineMachine) || findEntriesTrace.hasProductlineMachine
     },
     explicitNonProofs: [
       'kein deutscher 19-%-USt-Endstand',
@@ -173,6 +272,9 @@ test('UAT-O2C-001 gebuchte Rechnung und Postenspur read-only sichern', async ({ 
       `| Debitorenposten sichtbar | ${result.summary.customerLedgerVisible ? 'ja' : 'nein'} |`,
       `| Sachposten sichtbar | ${result.summary.glEntriesVisible ? 'ja' : 'nein'} |`,
       `| Artikelposten sichtbar | ${result.summary.itemLedgerVisible ? 'ja' : 'nein'} |`,
+      `| Artikelposten ueber Direktfilter sichtbar | ${result.summary.itemLedgerVisibleViaDirectFilter ? 'ja' : 'nein'} |`,
+      `| Artikelposten ueber Value-Entry-Verknuepfung sichtbar | ${result.summary.itemLedgerVisibleViaValueEntryEntryNo ? 'ja' : 'nein'} |`,
+      `| Artikelposten ueber Find entries sichtbar | ${result.summary.itemLedgerVisibleViaFindEntries ? 'ja' : 'nein'} |`,
       `| Wertposten sichtbar | ${result.summary.valueEntriesVisible ? 'ja' : 'nein'} |`,
       `| PRODUCTLINE=MACHINE in Postenspur sichtbar | ${result.summary.productlineMachineFoundInTrace ? 'ja' : 'nein'} |`,
       '| Warum das wichtig ist | Nach `Ship and Invoice` verschwindet der Auftrag nicht einfach: BC erzeugt eine gebuchte Verkaufsrechnung und daraus fachliche Posten fuer Debitor, Sachkonten, Artikel und Wert. Diese Posten sind die Beweisfuehrung hinter dem Screenshot. |',
