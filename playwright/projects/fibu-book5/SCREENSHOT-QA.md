@@ -234,6 +234,13 @@ Fuer `UAT-O2C-001` fasst `playwright/projects/fibu-book5/evidence/uat-o2c-001/RE
 | `playwright/projects/fibu-book5/img/reporting-007-010-tell-me-analysis-by-dimensions.png` | brauchbarer Navigationsnachweis | Tell-Me findet den Suchpfad `Analysis by Dimensions`; `PRODUCTLINE`/`CHANNEL` sind in diesem Suchzustand nicht sichtbar. | Als Evidence fuer den geprueften Einstieg behalten. Nicht als Reportingwirkungsbild verwenden. |
 | `playwright/projects/fibu-book5/img/reporting-007-020-analysis-by-dimensions-result.png` | rejected Negativbild | Nach dem Klickversuch ist kein belastbarer `Analysis by Dimensions`-Request-/Matrixkontext sichtbar; `PRODUCTLINE=MACHINE`, `CHANNEL=B2B`, `Show Matrix` und Datumsfilter sind nicht nachgewiesen. | Nicht als Buchbild verwenden. Der Pfad bleibt ein Labor-Negativbefund; naechster Schritt braucht freigegebenen Analysis-View-Fit oder alternativen offiziellen Reporting-Einstieg. |
 
+## `REPORTING-009` Screenshot Review
+
+| Screenshot | Bewertung | Befund | Entscheidung |
+|---|---|---|---|
+| `playwright/projects/fibu-book5/img/reporting-009-010-gl-entries-before-dimensions.png` | guter Labor-Sachposten-Nachweis in breiter Ansicht | Gefilterte `G/L Entries` zur `PS-INV103297` zeigen Konten `50110`, `40140`, `15110`, `14140`, EUR-Betraege sowie die Shortcut-Spalten `Department Code` und `Customergroup Code`. `PRODUCTLINE`/`CHANNEL` sind nicht sichtbar. | Als Buch-/Lernbild fuer Hauptbuchspur und Shortcut-Spalten geeignet. Nicht als Dimensions- oder Reportingwirkungsnachweis fuer `PRODUCTLINE`/`CHANNEL` verwenden. |
+| `playwright/projects/fibu-book5/img/reporting-009-020-gl-entry-dimensions-result.png` | negativer Laborbefund | Nach `Weitere Optionen` bleibt kein sichtbarer `Entry` -> `Dimensions`-Dialog und kein `PRODUCTLINE`-/`CHANNEL`-Kontext sichtbar. | Als Evidence fuer den ausgeschlossenen einfachen Sachposten-Dimensionspfad behalten. Naechster Reporting-Schritt braucht freigegebenen Analysis-View-Fit oder alternativen offiziellen Reporting-Einstieg. |
+
 ## Harte Findings aus dem Review
 
 ### QA-O2C-001 Listenbild zeigt nicht den Buchfall
