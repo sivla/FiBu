@@ -58,6 +58,7 @@ Wenn das Projekt fertig ist, kennen wir Business Central für den Buchumfang nic
 | Dimensionen | Dimensions | 536 | Liste, New, Dimension Values | Dimensionen und Werte verwalten | `MASTERDATA-001` | `playwright/projects/fibu-book5/img/masterdata-001-dimensions.png` | gesehen | Kapitel 10 |
 | Dimensionen | Dimensions | 536 | Neu, `Neu - Dimensions`, Code, Name | Dimensionen `PRODUCTLINE`, `CHANNEL`, `LOCATION-GROUP` anlegen; `DEPARTMENT` als bestehend erkennen | `MASTERDATA-002` | `playwright/projects/fibu-book5/img/masterdata-002-dimensions-rhein-main.png`; `playwright/projects/fibu-book5/evidence/masterdata-002/` | erledigt | Kapitel 10 |
 | Dimensionen | Dimension Values | n/a | Dimension, Dimension Values, Code, Name, Dimension Value Type | Dimensionswerte `MACHINE`, `B2B`, `SALES`, `DIRECTED` anlegen und nach Neuöffnen prüfen | `MASTERDATA-003` | `playwright/projects/fibu-book5/img/masterdata-003-dimension-values-rhein-main.png`; `playwright/projects/fibu-book5/evidence/masterdata-003/` | erledigt | Kapitel 10 |
+| Dimensionen | Dimensions / BC API | 536 / API v2.0 | Dimensionsliste, `dimensions`, `dimensionValues` | Buchstandard-Dimensionsmatrix gegen `RM-DEMO` pruefen und API-Anlagegrenze erkennen | `MASTERDATA-DIMENSIONS` | `playwright/projects/fibu-book5/img/masterdata-dimensions-010-book-standard-dimensions.png`; `playwright/projects/fibu-book5/evidence/masterdata-dimensions/` | verstanden als Labor-Delta: O2C-Kern passt, `COMPANY-GROUP` und mehrere Erweiterungswerte fehlen | Kapitel 10 |
 | Lager | Locations / Location Card | 15 | Neu, Code, Name, Warehouse-FastTabs | Lagerort `FRA-ZL` für ersten O2C-Fit anlegen; gesteuerte Warehouse-Logik später separat | `MASTERDATA-004` | `playwright/projects/fibu-book5/img/masterdata-004-locations-rhein-main.png`; `playwright/projects/fibu-book5/evidence/masterdata-004/` | erledigt | Kapitel 7/13 |
 | Debitoren | Customers | 22 | Liste, Debitorenzeile, FactBoxes | Debitor `D10000` als Rhein-Main-Stammdatum sichtbar prüfen | `MASTERDATA-005` | `playwright/projects/fibu-book5/img/masterdata-005-customers-after-api.png`; `playwright/projects/fibu-book5/evidence/masterdata-005/api-result.json` | erledigt | Kapitel 7/11 |
 | Artikel | Item Card / Items | 30/31 | Details, Costs & Posting, Required Fields | Artikel `RM-M100` mit Kosten/Preis sichtbar prüfen; fehlende Buchungsfelder erkennen | `MASTERDATA-005`; `FIND-BC-API-001` | `playwright/projects/fibu-book5/img/masterdata-005-items-after-api.png`; `playwright/projects/fibu-book5/evidence/masterdata-005/api-result.json` | erledigt | Kapitel 7/13 |
@@ -89,8 +90,9 @@ Wenn das Projekt fertig ist, kennen wir Business Central für den Buchumfang nic
 | 1 | `REPORTING-002`: Financial Reports maximieren, passenden Report waehlen und Dimensions-/Filterfelder fuer `PRODUCTLINE=MACHINE` suchen |
 | 2 | G/L Entry Dimensions zu `PS-INV103297` read-only pruefen, ohne neue O2C-Buchung |
 | 3 | Steuerfit: CRONUS-USA-Probelauf weiter vom deutschen Ziel-Fall `19 %` trennen |
-| 4 | P2P-/Kreditoren-Stammdaten vorbereiten, nachdem O2C/Reporting synchron sind |
-| 5 | Warehouse-Block: `FRA-ZL` spaeter mit Bins/Receipts/Picks ausbauen |
+| 4 | Fehlende P1-Dimensionswerte fuer P2P/Inventory/Warehouse gezielt per UI-Setup-Lauf anlegen oder pro Prozessbedarf vorbereiten |
+| 5 | P2P-/Kreditoren-Stammdaten vorbereiten, nachdem O2C/Reporting synchron sind |
+| 6 | Warehouse-Block: `FRA-ZL` spaeter mit Bins/Receipts/Picks ausbauen |
 
 ## Definition of Done fuer eine Funktion
 Eine Funktion gilt erst als erledigt, wenn:

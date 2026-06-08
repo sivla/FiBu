@@ -29,6 +29,7 @@ Eine Klickanleitung gilt erst als abgedeckt, wenn:
 | Stammdaten-Audit | Ist-Stand Customers, Items, Locations, Dimensions, Posting Setup sichern | `MASTERDATA-001` | `playwright/projects/fibu-book5/img/masterdata-001-*` | `evidence/masterdata-001/` | abgedeckt |
 | Dimensionen | Mindestdimensionen anlegen | `MASTERDATA-002` | `playwright/projects/fibu-book5/img/masterdata-002-dimensions-rhein-main.png` | `evidence/masterdata-002/` | abgedeckt |
 | Dimensionen | Mindest-Dimensionswerte anlegen | `MASTERDATA-003` | `playwright/projects/fibu-book5/img/masterdata-003-dimension-values-rhein-main.png` | `evidence/masterdata-003/` | abgedeckt |
+| Dimensionen | Buchstandard-Dimensionsmatrix gegen `RM-DEMO` pruefen | `MASTERDATA-DIMENSIONS` | `playwright/projects/fibu-book5/img/masterdata-dimensions-010-book-standard-dimensions.png` | `evidence/masterdata-dimensions/010-dimension-foundation-result.json`, `evidence/masterdata-dimensions/011-dimension-foundation-summary.md` | teilweise abgedeckt als Labor-Delta: O2C-Kernwerte und Default Dimensions tragen; `COMPANY-GROUP` und mehrere Erweiterungswerte fehlen; Standard-API ist fuer `dimensions`/`dimensionValues` read-only |
 | Lager | Lagerort `FRA-ZL` anlegen | `MASTERDATA-004` | `playwright/projects/fibu-book5/img/masterdata-004-locations-rhein-main.png` | `evidence/masterdata-004/` | abgedeckt |
 | Debitoren | Debitor `D10000` anlegen und sichtbar prüfen | `MASTERDATA-005` | `playwright/projects/fibu-book5/img/masterdata-005-customers-after-api.png` | `evidence/masterdata-005/api-result.json` | abgedeckt |
 | Artikel | Artikel `RM-M100` mit Kosten und Preis anlegen und sichtbar prüfen | `MASTERDATA-005` | `playwright/projects/fibu-book5/img/masterdata-005-items-after-api.png` | `evidence/masterdata-005/api-result.json` | abgedeckt |
@@ -47,6 +48,7 @@ Eine Klickanleitung gilt erst als abgedeckt, wenn:
 | 1 | Steuer | Deutschen Ziel-Fit `19 %` von CRONUS-USA-Fit trennen | aktueller Laborlauf zeigt EUR, aber weiter CRONUS-USA-Sales-Tax `FURNITURE` mit 0 % statt deutschem VAT-Endstand |
 | 2 | Reporting | Dimension `PRODUCTLINE = MACHINE` in Auswertungen/Financial Reports sichtbar nachweisen | `REPORTING-001` oeffnet Financial Reports; Filter/Summenwirkung noch offen |
 | 3 | O2C | Gebuchte Postenspur didaktisch erklaeren | Laborbuchung ist erfolgt; Buchtext muss erklaeren, warum Beleg, Debitorenposten, Sachposten, Wertposten und Artikelposten entstehen und was noch Laborgrenze ist |
+| 4 | Dimensionen | Fehlende P1-Dimensionswerte fuer P2P/Inventory/Warehouse gezielt anlegen | `MASTERDATA-DIMENSIONS` zeigt fehlende Werte; Standard-API erlaubt keinen Insert, daher UI-Setup-Lauf noetig |
 
 ## Geschlossene Findings
 

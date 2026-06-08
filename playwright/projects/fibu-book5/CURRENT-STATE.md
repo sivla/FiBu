@@ -47,8 +47,8 @@ Definition: Eine Anleitung ist erst abgesichert, wenn der Klickpfad in BC funkti
 | Bereich | Stand |
 |---|---|
 | Company | `RM-DEMO` existiert als CRONUS-basierte Trainingscompany |
-| Dimensionen | `PRODUCTLINE`, `CHANNEL`, `LOCATION-GROUP`; `DEPARTMENT` wiederverwendet |
-| Dimensionswerte | `PRODUCTLINE=MACHINE`, `CHANNEL=B2B`, `DEPARTMENT=SALES`, `LOCATION-GROUP=DIRECTED` |
+| Dimensionen | `DEPARTMENT`, `CHANNEL`, `PRODUCTLINE`, `LOCATION-GROUP` existieren; `COMPANY-GROUP` fehlt im Labor und bleibt Folgearbeit |
+| Dimensionswerte | O2C-Kernwerte `PRODUCTLINE=MACHINE`, `CHANNEL=B2B`, `DEPARTMENT=SALES`, `LOCATION-GROUP=DIRECTED` existieren; mehrere Buchstandard-Erweiterungswerte fehlen noch |
 | Lagerort | `FRA-ZL` existiert als einfacher Lagerort |
 | Debitor | `D10000` / `Mueller Maschinenbau GmbH` existiert |
 | Artikel | `RM-M100` / `Standardmaschine M100` existiert |
@@ -108,6 +108,7 @@ UAT-O2C-001 nach MASTERDATA-009: Posting Preview zeigt echte Vorschauzeilen; gen
 Letzter echter Fortschritt:
 
 - `MASTERDATA-BACKLOG.md` uebersetzt die Buchkapitel 3, 6 bis 18 und 19 bis 25 jetzt in einen priorisierten Stammdaten-/Setup-Backlog fuer `RM-DEMO`; `testdata/README.md` erklaert Struktur, Laborgrenzen und welche Daten bereits praktisch belegt sind.
+- `MASTERDATA-DIMENSIONS` prueft die Buchdimensionen read-only gegen `RM-DEMO`: `DEPARTMENT`, `CHANNEL`, `PRODUCTLINE`, `LOCATION-GROUP` existieren; `COMPANY-GROUP` sowie mehrere Erweiterungswerte fehlen. Die Standard-API erlaubt fuer `dimensions` und `dimensionValues` keinen Insert, daher bleibt die fehlende Buchmatrix ein gezielter UI-Setup-Folgeschritt.
 - Projektbilder wurden aus Root-`img/` nach `playwright/projects/fibu-book5/img/` verschoben.
 - `UAT-O2C-001` erreicht `Preview Posting` ueber den Dropdown-Teil von `Post...`.
 - Nach `MASTERDATA-009` stoppt BC nicht mehr auf dem Inventory-Posting-Setup-Fehler, sondern oeffnet `Posting Preview`.
@@ -180,9 +181,10 @@ Als naechstes gezielt den naechsten Lernblock waehlen, ohne erneut zu buchen:
 1. `080-posting-result.json` und `082-posting-entry-trace.json` lesen.
 2. Die Postenspur nicht erneut buchen; `PS-INV103297` ist der Laborbeleg.
 3. O2C ist im CRONUS-Labor bis gebuchte Rechnung, Postenspur, Artikelposten und Artikelposten-Dimension nachgewiesen.
-4. Stammdaten- und Setup-Folgearbeit aus `MASTERDATA-BACKLOG.md` ableiten, damit neue Prozesse nicht mit fehlenden Kreditoren, Artikeln, Posting Groups oder Tax/VAT-Annahmen starten.
-5. Reporting ist jetzt read-only bis zur Seite `Financial Reports` gestartet; als naechstes passenden Report oeffnen, breite/maximierte Ansicht nutzen und Dimensionsfilter fuer `PRODUCTLINE=MACHINE` suchen.
-6. Deutsche `19 %`-USt bleibt davon getrennt offen.
+4. Stammdaten- und Setup-Folgearbeit aus `MASTERDATA-BACKLOG.md` ableiten, damit neue Prozesse nicht mit fehlenden Kreditoren, Artikeln, Dimensionswerten, Posting Groups oder Tax/VAT-Annahmen starten.
+5. Vor P2P/Inventory entscheiden, ob zuerst fehlende P1-Dimensionswerte (`PURCH`, `WHSE`, `SPARE`, `SIMPLE`) per gezieltem UI-Lauf angelegt werden.
+6. Reporting ist jetzt read-only bis zur Seite `Financial Reports` gestartet; als naechstes passenden Report oeffnen, breite/maximierte Ansicht nutzen und Dimensionsfilter fuer `PRODUCTLINE=MACHINE` suchen.
+7. Deutsche `19 %`-USt bleibt davon getrennt offen.
 
 Synchronisationsstand nach der letzten Projektwahrheits-Pruefung:
 
@@ -191,6 +193,7 @@ Synchronisationsstand nach der letzten Projektwahrheits-Pruefung:
 - Labor-Buchungsfreigabe: `070-lab-posting-readiness.md` wurde genutzt; genau eine CRONUS-USA-Laborbuchung ist erfolgt (`S-ORD101068` -> `PS-INV103297`). Nicht erneut buchen.
 - Finaler DE-Nachweis offen: deutsche Oberflaeche, 19-%-USt, deutsche Buchung und deutsche Postenspur.
 - Blockiert/offen: kein Inventory-Posting-Setup-Blocker mehr; direkter Artikelposten-Check ist geloest ueber `Item Ledger Entry No. = 792`; `PRODUCTLINE=MACHINE` ist am Artikelposten nachgewiesen; Reporting-Seite ist erreichbar, aber Dimensionsfilter/Summenwirkung ist offen; offen bleiben Steuer-/VAT-Fit, Reporting-Auswertungsnachweis und finale deutsche Nachweise.
+- Dimensionen: O2C-Kerndimensionen und Default Dimensions sind praktisch nachgewiesen; vollstaendige Buchstandard-Dimensionsmatrix ist noch nicht fertig.
 - Nicht geprueft: P2P, Zahlungen, Finanzbericht.
 
 ## Befehle fuer neue Agents
@@ -229,6 +232,7 @@ Danach `.env` mit der konkreten Business-Central-URL fuellen.
 | `playwright/projects/fibu-book5/BOOK-EVIDENCE-WORKPLAN.md` | belastbarer Arbeitsplan aus Buch-vs.-Evidence-Abgleich |
 | `playwright/projects/fibu-book5/MASTERDATA-BACKLOG.md` | priorisierter Stammdaten- und Setup-Backlog aus dem Buch fuer `RM-DEMO` |
 | `playwright/projects/fibu-book5/testdata/README.md` | Testdatenstruktur, Konventionen und Laborgrenzen |
+| `playwright/projects/fibu-book5/evidence/masterdata-dimensions/011-dimension-foundation-summary.md` | aktueller Foundation-/Dimensionsfit inklusive fehlender Erweiterungswerte |
 | `playwright/projects/fibu-book5/LAB-FIT-STATUS.md` | blockuebergreifende Prozesslandkarte |
 | `playwright/projects/fibu-book5/evidence/uat-o2c-001/045-target-vs-labor-delta.md` | harter Soll-Ist-Abgleich |
 | `playwright/projects/fibu-book5/WORKAROUNDS-AND-ERRORS.md` | bekannte Fehler und Loesungen |

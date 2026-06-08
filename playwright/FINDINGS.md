@@ -396,6 +396,28 @@ Zusatz-Learning:
 
 Business-Central-Grids geben Werte nicht immer über `innerText` aus. Sichtbare Zellwerte können in `input.value` liegen. Für Evidence muss der Test daher je Seite entscheiden, ob Text, ARIA, Input-Wert oder Screenshot der belastbare Nachweis ist.
 
+## FIND-BC-DIM-004 Standard-API liest Dimensionen, legt sie aber nicht an
+
+| Feld | Wert |
+|---|---|
+| Status | offen |
+| Projekt | fibu-book5 |
+| Testfall | `MASTERDATA-DIMENSIONS` |
+| Screenshot | `playwright/projects/fibu-book5/img/masterdata-dimensions-010-book-standard-dimensions.png` |
+| Evidence | `playwright/projects/fibu-book5/evidence/masterdata-dimensions/010-dimension-foundation-result.json`, `playwright/projects/fibu-book5/evidence/masterdata-dimensions/011-dimension-foundation-summary.md` |
+| BC-Seite/API | `Dimensions`, API v2.0 `dimensions`, `dimensionValues` |
+| sichtbarer/API-Text | `DEPARTMENT`, `CHANNEL`, `PRODUCTLINE`, `LOCATION-GROUP` existieren; `COMPANY-GROUP` fehlt. `POST dimensions` und `POST dimensionValues` liefern `405 Entity does not support insert`. |
+| Elementtyp | Dimension / Stammdatenanlage / API-Grenze |
+| erste Hypothese | Die Standard-API eignet sich fuer Pruefung und Evidence, aber nicht fuer die Anlage der Dimensionsstammdaten. |
+| Recherchequelle | praktischer Playwright-Lauf `npm run fibu:masterdata:dimension-foundation` |
+| Testergebnis | Der Lauf wurde auf Read-only-/Delta-Evidence umgestellt. O2C-Kerndimensionen und Default Dimensions sind nachgewiesen. Fehlende Erweiterungswerte wurden nicht heimlich erzeugt, sondern als UI-Setup-Folgearbeit dokumentiert. |
+| Entscheidung | Fuer fehlende Buchstandard-Dimensionswerte braucht das Projekt einen gezielten UI-Setup-Lauf oder einen anderen freigegebenen Setup-Kanal. P2P/Inventory/Warehouse nicht starten, ohne benoetigte P1-Werte vorher zu klaeren. |
+| Buchstelle | Kapitel 10 Dimensionen, Stammdatenaufbau, Evidence Pack |
+
+Bewertung:
+
+Das ist ein wichtiger Automatisierungsbefund. Nicht jede BC-API-Ressource, die lesbar ist, ist auch fuer Stammdatenanlage beschreibbar. Fuer das Buch bedeutet das: Der Leser darf API-Evidence als Pruefnachweis verstehen, aber nicht als universellen Anlageweg. Fehlende Werte wie `PURCH`, `SPARE` oder `SIMPLE` muessen bewusst ueber die BC-Oberflaeche oder einen projektspezifisch freigegebenen Setup-Kanal angelegt werden.
+
 ## FIND-BC-DIM-003 Auftragskopf-Dimension ist nicht automatisch Zeilendimension
 
 | Feld | Wert |

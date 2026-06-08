@@ -25,6 +25,7 @@ Fuer `UAT-O2C-001` fasst `playwright/projects/fibu-book5/evidence/uat-o2c-001/RE
 |---|---|---|---|
 | `playwright/projects/fibu-book5/img/masterdata-007-default-dimensions-item-rm-m100.png` | guter Labor-Kandidat | Page `540` zeigt `Default Dimensions` mit `PRODUCTLINE`, `MACHINE` und `Same Code`. Die Teaching-Tip-Karte `About default dimensions` wurde gezielt geschlossen. | Als Buchkandidat fuer Standarddimensionen geeignet; final in deutscher Umgebung neu erzeugen. |
 | `playwright/projects/fibu-book5/img/masterdata-007-default-dimensions-customer-d10000.png` | guter Labor-Kandidat | Page `540` zeigt `CHANNEL`, `B2B`, `Business-to-Business` und `Same Code`. Parent `D10000` ist ueber Filter/Test/Evidence belegt, aber nicht im sichtbaren Seitentext. | Als Laborbild geeignet; Buchtext muss erklaeren, dass Page 540 auf den Debitorenkontext gefiltert wurde. |
+| `playwright/projects/fibu-book5/img/masterdata-dimensions-010-book-standard-dimensions.png` | Labor-Kandidat mit Grenze | Dimensionsliste zeigt zentrale RM-DEMO-Dimensionen wie `DEPARTMENT`, `CHANNEL`, `PRODUCTLINE`, `LOCATION-GROUP`. | Als Uebersichtsbild fuer den O2C-Kern geeignet. Nicht als Nachweis fuer alle Buchstandard-Werte nutzen; fehlende Werte stehen in `evidence/masterdata-dimensions/011-dimension-foundation-summary.md`. |
 
 ## `MASTERDATA-008` Screenshot Review
 

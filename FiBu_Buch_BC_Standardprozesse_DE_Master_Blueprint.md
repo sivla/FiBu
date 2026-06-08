@@ -1683,6 +1683,8 @@ Evidence-Hinweis:
 
 Ein sichtbarer Wert im Grid ist noch kein ausreichender Nachweis. Für UAT und Buchprojekt zählt erst der Reload-Nachweis: Der Wert muss nach erneutem Öffnen der Seite wieder vorhanden sein. Das schützt vor Scheinscreenshots, bei denen ein Wert zwar in einer noch nicht sauber gespeicherten Zeile steht, aber später nicht mehr existiert.
 
+Aktueller Laborhinweis für `RM-DEMO`: Der O2C-Mindeststand ist praktisch nachgewiesen (`PRODUCTLINE=MACHINE`, `CHANNEL=B2B`, `DEPARTMENT=SALES`, `LOCATION-GROUP=DIRECTED`). Die vollständige Buchmatrix ist damit noch nicht automatisch fertig. `COMPANY-GROUP` und mehrere Erweiterungswerte wie `CHANNEL=SHOP`, `PRODUCTLINE=SPARE` oder `LOCATION-GROUP=SIMPLE` bleiben im aktuellen CRONUS-USA-Labor Folgearbeit. Die Standard-API kann diese Dimensionsstammdaten in diesem Lauf lesen, erlaubt aber keinen Insert; fehlende Werte werden deshalb nicht heimlich erzeugt, sondern als gezielter UI-Setup-Schritt geplant.
+
 ### Wo Dimensionen gepflegt werden
 
 | Ort | Zweck | Beispiel |
