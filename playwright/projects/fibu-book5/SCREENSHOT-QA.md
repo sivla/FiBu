@@ -71,6 +71,15 @@ Fuer `UAT-O2C-001` fasst `playwright/projects/fibu-book5/evidence/uat-o2c-001/RE
 |---|---|---|---|
 | `playwright/projects/fibu-book5/img/reporting-001-010-financial-reports.png` | erster Labor-Startpunkt fuer Reporting | `Financial Reports` ist ueber Tell-Me in der Gruppe `Berichte und Analysen` geoeffnet. Die Liste zeigt u. a. `Balance Sheet`, `Income Statement` und `Revenue`; unten links liegt noch ein Teaching Tip `About Financial Reports`. | Als Laborbild fuer Seiten-Erreichbarkeit und Anfaenger-Erklaerung geeignet. Noch kein Buchbild fuer `PRODUCTLINE=MACHINE`, weil kein Dimensionsfilter und keine Summenwirkung nachgewiesen sind. |
 
+## `REPORTING-002` Screenshot Review
+
+| Screenshot | Bewertung | Befund | Entscheidung |
+|---|---|---|---|
+| `playwright/projects/fibu-book5/img/reporting-002-010-gl-entries-ps-inv103297.png` | Labor-Negativnachweis | Gefilterte Sachposten zur gebuchten Rechnung `PS-INV103297` sind sichtbar; `PRODUCTLINE=MACHINE` und `CHANNEL=B2B` erscheinen im aktuellen Seitentext nicht. | Als Lernbild geeignet: Sachposten zeigen Konto/Betrag, aber Dimensionen muessen ggf. ueber Dialog, Dimension Set oder Dimensionsbericht nachgewiesen werden. |
+| `playwright/projects/fibu-book5/img/reporting-002-020-gl-entry-dimensions.png` | verworfener Dimensionsdialogversuch | Der Test konnte im aktuellen G/L-Entries-Kontext `Entry` -> `Dimensions` nicht oeffnen; Screenshot entspricht deshalb weiter der Sachpostenliste. | Nicht als Dimensionsnachweis verwenden; naechster Lauf braucht gezielten Sachposten-Dimensionspfad. |
+| `playwright/projects/fibu-book5/img/reporting-002-046-item-ledger-entry-792-dimensions.png` | guter Labor-Dimensionsnachweis | `Entry` -> `Dimensions` am Artikelposten `792` zeigt `PRODUCTLINE=MACHINE` und `CHANNEL=B2B`. | Als Laborbild fuer Dimensionsvererbung in Artikelposten geeignet; kein Financial-Reports-Endnachweis. |
+| `playwright/projects/fibu-book5/img/reporting-002-055-financial-reports-list.png` | guter Labor-Startpunkt fuer naechsten Reporting-Schritt | Financial Reports ist erreichbar; sichtbar sind u. a. `Income Statement`, `Revenue`, `Balance Sheet`, `Dimension Perspective` und `Column Definition`. `PRODUCTLINE`/`CHANNEL` sind noch nicht als Filter oder Auswertungsachse sichtbar. | Als Laborbild fuer Reporting-Navigation geeignet. Naechster Bildschritt: `Dimension Perspective` oder Dimensionsbericht gezielt oeffnen. |
+
 ## Harte Findings aus dem Review
 
 ### QA-O2C-001 Listenbild zeigt nicht den Buchfall

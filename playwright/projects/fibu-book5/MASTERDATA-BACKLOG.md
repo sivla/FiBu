@@ -74,7 +74,7 @@ Deutsche `19 %` USt, deutscher Kontenplan, deutsche Steuerreports und finale deu
 | Manufacturing/Assembly Evidence Pack | 14 | BOM/Routing/Production Order, Verbrauch, Output | nicht gestartet | teilweise | nein | `planned-only` | P2 | Nach P2P/Inventory. |
 | Service Evidence Pack | 15 | Serviceartikel, Serviceauftrag, Ressource, Ersatzteilverbrauch | nicht gestartet | teilweise | nein | `planned-only` | P2 | Nach Ersatzteil-/Ressourcenfit. |
 | Project Evidence Pack | 16 | Projekt, Aufgaben, Ressource, Material, Faktura, WIP | nicht gestartet | teilweise | nein | `planned-only` | P2 | Nach Ressourcen/Projektsetup. |
-| Reporting/Financial Reports | 10, 25 | GuV/Revenue nach `PRODUCTLINE=MACHINE`, `CHANNEL=B2B` | Seite ist read-only erreichbar, Filter/Summen offen | nein | ja, `reporting-001` | `partial` | P4 | `REPORTING-002`: Report waehlen, maximieren, Dimensionsfilter suchen. |
+| Reporting/Financial Reports | 10, 25 | GuV/Revenue nach `PRODUCTLINE=MACHINE`, `CHANNEL=B2B` | Financial Reports ist read-only erreichbar; `Dimension Perspective` und `Column Definition` sichtbar; `PRODUCTLINE`/`CHANNEL` nicht als sichtbarer Filter/Summenbeweis nachgewiesen | nein | ja, `reporting-001`, `reporting-002` | `partial` | P4 | `Dimension Perspective`, `Dimensions - Detail` oder Analysis Views gezielt fuer `PRODUCTLINE`/`CHANNEL` pruefen. |
 
 ## Abhaengigkeiten
 
@@ -88,7 +88,7 @@ Deutsche `19 %` USt, deutscher Kontenplan, deutsche Steuerreports und finale deu
 
 ## Empfohlene Build-Reihenfolge
 
-1. Aktuellen O2C-Laborbeleg nicht erneut buchen; stattdessen `REPORTING-002` und G/L-Dimensionsdialog read-only pruefen.
+1. Aktuellen O2C-Laborbeleg nicht erneut buchen; `REPORTING-002` ist erledigt als Sichtbarkeitsbefund. Naechster Reporting-Schritt ist `Dimension Perspective`, `Dimensions - Detail` oder Analysis Views read-only.
 2. P2P-Basis vorbereiten: `K10000`, `RAW-STEEL`, Default Dimensions, Vendor Posting Group, Purchase/General Posting Setup, Tax/VAT-Laborgrenze, Nummernserie.
 3. Einfachen P2P-Lauf mit Preview zuerst, Buchung nur nach separater Readiness.
 4. Inventory einfach vertiefen: `SP-PUMP-01`, `RAW-STEEL`, Wertposten, Lagerbewertung, Kostenregulierung.
@@ -121,5 +121,5 @@ Deutsche `19 %` USt, deutscher Kontenplan, deutsche Steuerreports und finale deu
 ```text
 Arbeite auf Branch codex/playwright-bc-screenshot-foundation.
 Lies CURRENT-STATE.md, MASTERDATA-BACKLOG.md, BOOK-TO-EVIDENCE-AUDIT.md, LAB-FIT-STATUS.md und evidence/reporting-001/010-financial-reports-open-result.json.
-Fuehre genau einen read-only Schritt aus: REPORTING-002 soll Financial Reports oeffnen, den passendsten Report fuer O2C/GuV auswaehlen, die Ansicht maximieren, Dimensions-/Filterfelder fuer PRODUCTLINE=MACHINE und CHANNEL=B2B suchen und kompakte Evidence plus Screenshot sichern. Keine Datenanlage, keine Buchung.
+Fuehre genau einen read-only Schritt aus: REPORTING-003 soll ausgehend von REPORTING-002 `Dimension Perspective`, `Dimensions - Detail` oder Analysis Views pruefen und klaeren, ob PRODUCTLINE=MACHINE und CHANNEL=B2B fuer die gebuchte Rechnung PS-INV103297 auswertbar sind. Keine Datenanlage, keine Buchung.
 ```

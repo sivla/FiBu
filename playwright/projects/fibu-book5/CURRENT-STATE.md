@@ -184,7 +184,7 @@ Als naechstes gezielt den naechsten Lernblock waehlen, ohne erneut zu buchen:
 3. O2C ist im CRONUS-Labor bis gebuchte Rechnung, Postenspur, Artikelposten und Artikelposten-Dimension nachgewiesen.
 4. Stammdaten- und Setup-Folgearbeit aus `MASTERDATA-BACKLOG.md` ableiten, damit neue Prozesse nicht mit fehlenden Kreditoren, Artikeln, Dimensionswerten, Posting Groups oder Tax/VAT-Annahmen starten.
 5. P1-Dimensionswerte sind vorbereitet; als naechstes P2P-Stammdaten/Setup-Fit fuer `K10000` und `RAW-STEEL` pruefen, bevor ein Einkaufsbeleg erzeugt wird.
-6. Reporting ist jetzt read-only bis zur Seite `Financial Reports` gestartet; alternativ passenden Report oeffnen, breite/maximierte Ansicht nutzen und Dimensionsfilter fuer `PRODUCTLINE=MACHINE` suchen.
+6. `REPORTING-002` hat Financial Reports und O2C-Posten read-only geprueft: `PRODUCTLINE=MACHINE` und `CHANNEL=B2B` sind am Artikelposten `Entry No. 792` sichtbar, aber nicht in den aktuellen Sachposten-/Financial-Reports-Texten; Financial Reports zeigt `Dimension Perspective`, `Column Definition` und Reports `Income Statement`, `Revenue`, `Balance Sheet`.
 7. Deutsche `19 %`-USt bleibt davon getrennt offen.
 
 Synchronisationsstand nach der letzten Projektwahrheits-Pruefung:
@@ -193,9 +193,9 @@ Synchronisationsstand nach der letzten Projektwahrheits-Pruefung:
 - Labor-Nachweis: alle aktuellen O2C-, MASTERDATA-008- und MASTERDATA-009-Bilder/Evidence gelten fuer CRONUS USA / gemischte UI; `MASTERDATA-009` ist ein Labor-Setup-Fit, kein deutscher Kontenplan-Endstand.
 - Labor-Buchungsfreigabe: `070-lab-posting-readiness.md` wurde genutzt; genau eine CRONUS-USA-Laborbuchung ist erfolgt (`S-ORD101068` -> `PS-INV103297`). Nicht erneut buchen.
 - Finaler DE-Nachweis offen: deutsche Oberflaeche, 19-%-USt, deutsche Buchung und deutsche Postenspur.
-- Blockiert/offen: kein Inventory-Posting-Setup-Blocker mehr; direkter Artikelposten-Check ist geloest ueber `Item Ledger Entry No. = 792`; `PRODUCTLINE=MACHINE` ist am Artikelposten nachgewiesen; Reporting-Seite ist erreichbar, aber Dimensionsfilter/Summenwirkung ist offen; offen bleiben Steuer-/VAT-Fit, Reporting-Auswertungsnachweis und finale deutsche Nachweise.
+- Blockiert/offen: kein Inventory-Posting-Setup-Blocker mehr; direkter Artikelposten-Check ist geloest ueber `Item Ledger Entry No. = 792`; `PRODUCTLINE=MACHINE` und `CHANNEL=B2B` sind am Artikelposten nachgewiesen; Reporting-Seite ist erreichbar und zeigt Dimension-/Analyseoptionen, aber `PRODUCTLINE`/`CHANNEL` sind im aktuellen Financial-Reports-Lauf nicht sichtbar nutzbar; offen bleiben Steuer-/VAT-Fit, Sachposten-Dimensionsdialog/Dimension-Set-Nachweis, Reporting-Auswertungsnachweis und finale deutsche Nachweise.
 - Dimensionen: O2C-Kerndimensionen und Default Dimensions sind praktisch nachgewiesen; vollstaendige Buchstandard-Dimensionsmatrix ist noch nicht fertig.
-- Nicht geprueft: P2P, Zahlungen, Finanzbericht.
+- Nicht geprueft: P2P, Zahlungen, echte Financial-Reports-Zahlenwirkung nach Dimension.
 
 ## Befehle fuer neue Agents
 

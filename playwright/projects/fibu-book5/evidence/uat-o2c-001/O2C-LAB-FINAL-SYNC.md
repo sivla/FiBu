@@ -48,11 +48,11 @@ Diese Datei synchronisiert den aktuellen O2C-Laborstand zwischen Buch, Evidence 
 |---|---|---|
 | Verkaufszeile / Belegdialog | belegt | Die Dimension kommt im konkreten O2C-Beleg an. |
 | Gebuchte Verkaufsrechnung | offen | Noch kein sichtbarer Dimensionsdialog oder Spaltennachweis auf der Posted Sales Invoice. |
-| Sachposten / G/L Entries | offen | Der Trace zeigt die Sachposten, aber `PRODUCTLINE=MACHINE` ist dort noch nicht sichtbar nachgewiesen. |
+| Sachposten / G/L Entries | offen | `REPORTING-002` zeigt die Sachposten zur Rechnung, aber `PRODUCTLINE=MACHINE` und `CHANNEL=B2B` sind dort im aktuellen UI-Kontext nicht sichtbar nachgewiesen. |
 | Debitorenposten | nicht nachgewiesen | Fuer Forderungsposten fachlich moeglich, aber noch nicht belegt. |
 | Artikelposten | belegt | Item Ledger Entry `792` zeigt `CHANNEL=B2B` und `PRODUCTLINE=MACHINE`. |
 | Wertposten | offen | Wertposten ist sichtbar, Dimensionen dort aber noch nicht nachgewiesen. |
-| Financial Reports | offen | Seite ist erreichbar, Filter-/Summenwirkung nach `PRODUCTLINE=MACHINE` fehlt noch. |
+| Financial Reports | offen | Seite ist erreichbar und zeigt `Dimension Perspective`/`Column Definition`; Filter-/Summenwirkung nach `PRODUCTLINE=MACHINE` oder `CHANNEL=B2B` fehlt noch. |
 
 ## Buchwirkung
 
@@ -63,6 +63,7 @@ Das Buch darf jetzt sagen:
 - `Inventory Account = 14140` ist ein begruendeter CRONUS-Laborfit, kein deutscher Kontenplan-Endstand.
 - `PS-INV103297` ist der aktuelle gebuchte Laborbeleg fuer die O2C-Postenspur.
 - `PRODUCTLINE=MACHINE` ist nach der Buchung am Artikelposten nachgewiesen.
+- `REPORTING-002` beweist: Financial Reports ist der richtige naechste Reporting-Einstieg, aber noch kein Summenbeweis nach Produktlinie oder Kanal.
 
 Das Buch darf nicht sagen:
 
@@ -73,4 +74,4 @@ Das Buch darf nicht sagen:
 
 ## Naechster O2C-Schritt
 
-Keine weitere O2C-Buchung. Der naechste sinnvolle O2C-nahe Schritt ist ein read-only Nachweis der Dimensionen in `G/L Entries` oder ein Reporting-Lauf `REPORTING-002`, der den Filter-/Summennachweis fuer `PRODUCTLINE=MACHINE` sucht.
+Keine weitere O2C-Buchung. Der naechste sinnvolle O2C-nahe Schritt ist `REPORTING-003`: `Dimension Perspective`, `Dimensions - Detail` oder Analysis Views gezielt read-only pruefen, damit klar wird, ob `PRODUCTLINE=MACHINE` und `CHANNEL=B2B` fuer `PS-INV103297` auswertbar sind.

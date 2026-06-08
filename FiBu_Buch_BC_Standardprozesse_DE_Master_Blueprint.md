@@ -1402,7 +1402,7 @@ Aktueller Laborabgleich in `RM-DEMO`:
 | Preview Posting | erwartete Postenarten vor Buchung | belegt: `G/L Entry`, `Cust. Ledger Entry`, `Item Ledger Entry`, `Detailed Cust. Ledg. Entry`, `Value Entry` |
 | Buchung | Lieferung und Rechnung | einmal bewusst als CRONUS-USA-Laborbuchung ausgeführt: `S-ORD101068` -> `PS-INV103297` |
 | Postenspur | Debitorenposten, Sachposten, USt-Posten, Artikelposten, Wertposten | Debitorenposten, Sachposten, Wertposten und Artikelposten belegt; deutscher USt-Posten offen |
-| Dimension | `PRODUCTLINE = MACHINE`, `CHANNEL = B2B` in Beleg, Posten und Reporting | im Zeilendimensionsdialog und am Artikelposten `Entry No. 792` belegt; Sachposten/Financial Reports offen |
+| Dimension | `PRODUCTLINE = MACHINE`, `CHANNEL = B2B` in Beleg, Posten und Reporting | im Zeilendimensionsdialog und am Artikelposten `Entry No. 792` belegt; im aktuellen Labor nicht sichtbar in Sachposten/Financial Reports als Filter- oder Summenbeweis |
 
 ### Was passiert bei falscher Buchungsgruppe?
 
@@ -6164,7 +6164,7 @@ Controller arbeiten nicht nur mit fertigen Berichten. Sie prüfen, ob die Daten 
 Tagesroutine:
 1. `Finanzberichte (Financial Reports)` öffnen.
 2. GuV für aktuellen Monat und kumuliert prüfen.
-3. Dimension `PRODUCTLINE` filtern.
+3. Dimension `PRODUCTLINE` filtern oder über `Dimension Perspective`, `Dimensions - Detail` beziehungsweise eine Analysis View prüfen.
 4. auffällige Abweichung identifizieren.
 5. über Sachposten auf Belege zurückgehen.
 6. Nebenbuch prüfen: Debitor, Kreditor, Artikel, Projekt oder Anlage.

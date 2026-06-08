@@ -439,3 +439,25 @@ Das ist ein wichtiger Automatisierungsbefund. Nicht jede BC-API-Ressource, die l
 Bewertung:
 
 Das ist ein sehr nuetzlicher Lernpunkt fuer Anfaenger: Eine Dimension kann korrekt am Kopf stehen und trotzdem muss die fachlich entscheidende Produktliniendimension in der Zeile geprueft werden. Fuer das Buch braucht der Leser deshalb drei Ebenen: Standarddimension vorbereiten, Dimension im Beleg pruefen, Dimension in Posten oder Bericht wiederfinden.
+
+## FIND-BC-REPORT-005 Financial Reports zeigen Dimension Perspective, aber noch keine PRODUCTLINE-/CHANNEL-Auswertung
+
+| Feld | Wert |
+|---|---|
+| Status | offen |
+| Projekt | fibu-book5 |
+| Testfall | `REPORTING-002` |
+| Screenshot | `playwright/projects/fibu-book5/img/reporting-002-010-gl-entries-ps-inv103297.png`, `playwright/projects/fibu-book5/img/reporting-002-046-item-ledger-entry-792-dimensions.png`, `playwright/projects/fibu-book5/img/reporting-002-055-financial-reports-list.png` |
+| Evidence | `playwright/projects/fibu-book5/evidence/reporting-002/REPORTING-002-result.json`, `playwright/projects/fibu-book5/evidence/reporting-002/REPORTING-002-PRODUCTLINE-CHANNEL.md` |
+| BC-Seite | `G/L Entries`, `Item Ledger Entries`, `Financial Reports` |
+| sichtbarer Text | `PS-INV103297`, `Entry No. 792`, `PRODUCTLINE=MACHINE`, `CHANNEL=B2B`, `Dimension Perspective`, `Column Definition` |
+| Elementtyp | Reporting / Dimension / Postenspur |
+| erste Hypothese | Eine Dimension kann am gebuchten Posten vorhanden sein, ohne im Financial Report sofort als sichtbarer Filter oder Summenachse aufzutauchen. |
+| Recherchequelle | praktischer Playwright-Lauf `npm run fibu:reporting:productline-channel` |
+| Testergebnis | `PRODUCTLINE=MACHINE` und `CHANNEL=B2B` sind am Artikelposten `792` sichtbar. In den gefilterten Sachposten und in Financial Reports wurden sie nicht als sichtbarer Filter/Summenbeweis gefunden. Financial Reports zeigt aber `Dimension Perspective` und `Column Definition` als naechste Reporting-Hebel. |
+| Entscheidung | Buch ergaenzen: Postendimension und Reportingauswertung sind zwei Nachweisebenen. Fuer den finalen Reportingbeweis braucht es einen separaten Schritt ueber `Dimension Perspective`, `Dimensions - Detail` oder Analysis Views. |
+| Buchstelle | Kapitel 10 Dimensionen, Kapitel 25 Reporting/Financial Reports |
+
+Bewertung:
+
+Das ist ein starker Anfaenger-Lernpunkt. Der Artikelposten beweist, dass die Dimension in der gebuchten Spur angekommen ist. Der Financial Report beweist damit aber noch nicht automatisch eine GuV-Auswertung nach Produktlinie oder Kanal. Fuer das Buch muss deshalb der Reportingpfad selbst bebildert werden, statt die Postendimension als Berichtssumme umzudeuten.
