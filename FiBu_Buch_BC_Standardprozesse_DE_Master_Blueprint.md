@@ -3382,6 +3382,9 @@ Im aktuellen `RM-DEMO`-Labor wurde noch keine Zahlung gebucht. Nachgewiesen ist 
 Laborbefund `PAYMENTS-002`:
 Die naechste Readiness-Pruefung oeffnet `Bank Accounts`, `Cash Receipt Journals`, `Payment Journals` und `Apply Entries` aus Debitoren- und Kreditorenposten. Das Labor zeigt vorhandene CRONUS-Bankkonten `CHECKING` und `SAVINGS`, aber nicht das Buchziel `BANK-RM-01`. Deshalb darf noch keine Zahlung gebucht werden. Ein sichtbarer `Post`-Button im Journal ist keine fachliche Freigabe; zuerst muessen Bankkonto, Gegenkonto, Betrag, Ausgleichsbezug und Vorabkontrolle passen.
 
+Laborbefund `PAYMENTS-003`:
+`BANK-RM-01` wurde danach als CRONUS-USA-Laborbankkonto per Standard-API angelegt und in `Bank Accounts` sichtbar geprueft. Das loest nur den Stammdatenblocker. Es ist noch keine Zahlung, kein OP-Ausgleich und keine Bankabstimmung nachgewiesen. Fuer den naechsten Screenshot-Lauf muss das Buch deshalb zuerst die Zahlungsjournal-Readiness zeigen: Konto, Gegenkonto `BANK-RM-01`, Betrag, Ausgleichsbezug und Vorabkontrolle. Erst wenn diese Punkte passen, darf eine kontrollierte Laborzahlung geplant werden.
+
 ### Warum braucht Rhein-Main diesen Prozess?
 
 Rhein-Main braucht verlässliche offene Posten für Mahnwesen, Liquidität und Monatsabschluss. Business Central zeigt nicht nur den Zahlungseingang, sondern auch die detaillierte Verbindung zwischen Rechnung und Zahlung.

@@ -181,6 +181,12 @@ Fuer `UAT-O2C-001` fasst `playwright/projects/fibu-book5/evidence/uat-o2c-001/RE
 | `playwright/projects/fibu-book5/img/payments-002-050-customer-apply-entries.png` | Labor-Pfadnachweis | Apply Entries wurde aus dem Debitorenpostenkontext erreicht; der Lauf klickt keine Ausgleichs-/Buchungsaktion. | Als Lernbild fuer den Unterschied zwischen Pfad oeffnen und Ausgleich anwenden geeignet. Kein OP-Ausgleichsnachweis. |
 | `playwright/projects/fibu-book5/img/payments-002-070-vendor-apply-entries.png` | Labor-Pfadnachweis | Apply Entries wurde aus dem Kreditorenpostenkontext erreicht; der Lauf klickt keine Ausgleichs-/Buchungsaktion. | Als Lernbild fuer den Unterschied zwischen Pfad oeffnen und Ausgleich anwenden geeignet. Kein OP-Ausgleichsnachweis. |
 
+## `PAYMENTS-003` Screenshot Review
+
+| Screenshot | Bewertung | Befund | Entscheidung |
+|---|---|---|---|
+| `playwright/projects/fibu-book5/img/payments-003-010-bank-accounts-bank-rm-01-fit.png` | guter Labor-Setup-Nachweis | Bank Accounts zeigt `BANK-RM-01` nach idempotenter Anlage per BC-Standard-API neben den CRONUS-Bankkonten. | Als Buch-/Lernbild fuer Bankkonto-Readiness geeignet. Nicht als Zahlungs-, Ausgleichs-, Bankabstimmungs- oder deutscher Bank-Compliance-Nachweis verwenden. |
+
 ## Harte Findings aus dem Review
 
 ### QA-O2C-001 Listenbild zeigt nicht den Buchfall

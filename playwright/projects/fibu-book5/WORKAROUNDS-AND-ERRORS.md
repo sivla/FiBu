@@ -24,11 +24,11 @@ Jeder Eintrag muss außerdem gegen die betroffene Buchstelle geprüft werden. We
 | Feld | Wert |
 |---|---|
 | Problem | `PAYMENTS-002` konnte Bank Accounts, Cash Receipt Journal, Payment Journal und Apply Entries oeffnen, aber das Zielbankkonto `BANK-RM-01` war in der Bankkontenliste nicht sichtbar. |
-| Sichtbarer Beleg | `playwright/projects/fibu-book5/img/payments-002-010-bank-accounts.png`, `playwright/projects/fibu-book5/evidence/payments-002/PAYMENTS-002-result.json`, `playwright/projects/fibu-book5/evidence/payments-002/PAYMENTS-002-READINESS.md` |
+| Sichtbarer Beleg | `playwright/projects/fibu-book5/img/payments-002-010-bank-accounts.png`, `playwright/projects/fibu-book5/img/payments-003-010-bank-accounts-bank-rm-01-fit.png`, `playwright/projects/fibu-book5/evidence/payments-002/PAYMENTS-002-result.json`, `playwright/projects/fibu-book5/evidence/payments-003/PAYMENTS-003-result.json`, `playwright/projects/fibu-book5/evidence/payments-003/PAYMENTS-003-BANK-ACCOUNT-FIT.md` |
 | Ursache | `BANK-RM-01` ist ein Buch-/Rhein-Main-Zielwert. Die aktuelle CRONUS-USA-Laborcompany `RM-DEMO` enthaelt stattdessen vorhandene CRONUS-Bankkonten wie `CHECKING` und `SAVINGS`. |
-| Loesung | In diesem Lauf wurde bewusst nicht gebucht und kein Ersatzkonto stillschweigend verwendet. Der naechste Schritt ist ein idempotenter Bankkonto-Fit fuer `BANK-RM-01` oder eine dokumentierte Entscheidung, welches vorhandene CRONUS-Bankkonto als Laborersatz genutzt wird. |
+| Loesung | `PAYMENTS-003` hat `BANK-RM-01` idempotent per BC-Standard-API angelegt und danach in Bank Accounts sichtbar geprueft. Es wurde bewusst nicht gezahlt, nicht ausgeglichen und keine Bankabstimmung gestartet. |
 | Buchwirkung | Kapitel 19/20 muss Bankkonto-Readiness vor der ersten Zahlung nennen. Ein sichtbares Zahlungsjournal reicht nicht; das Gegenkonto und der Bankkontext muessen fachlich passen. |
-| Kuenftige Regel | Keine Zahlungsbuchung ohne dokumentierten Bankkonto-Entscheid. `Post` im Journal ist sichtbar, aber bis Bankkonto, Betrag, Ausgleichsbezug und Vorabkontrolle passen, bleibt die Buchung gesperrt. |
+| Kuenftige Regel | Keine Zahlungsbuchung nur wegen vorhandenem Bankkonto. `Post` im Journal ist sichtbar, aber bis Journalfelder, Gegenkonto `BANK-RM-01`, Betrag, Ausgleichsbezug, Bank Account Posting Group/Sachkonto-Fit und Vorabkontrolle passen, bleibt die Buchung gesperrt. |
 
 ## WK-BC-P2P-001 Kreditor ohne Template blockiert P2P-Entwurf
 

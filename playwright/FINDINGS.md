@@ -38,27 +38,27 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 
 ## Aktuelle Fundstellen
 
-## FIND-BC-PAY-002 Bankkonto-Fit fehlt vor der ersten Laborzahlung
+## FIND-BC-PAY-002 Bankkonto-Fit vor der ersten Laborzahlung
 
 | Feld | Wert |
 |---|---|
-| Status | getestet, Folgearbeit offen |
+| Status | geloest als Bankkonto-Fit, Folgearbeit offen |
 | Projekt | fibu-book5 |
-| Testfall | `PAYMENTS-002` |
-| Screenshot | `playwright/projects/fibu-book5/img/payments-002-010-bank-accounts.png`, `playwright/projects/fibu-book5/img/payments-002-020-cash-receipt-journal.png`, `playwright/projects/fibu-book5/img/payments-002-030-payment-journal.png` |
-| Evidence | `playwright/projects/fibu-book5/evidence/payments-002/PAYMENTS-002-result.json`, `playwright/projects/fibu-book5/evidence/payments-002/PAYMENTS-002-READINESS.md`, `playwright/projects/fibu-book5/evidence/payments-002/PAYMENTS-READINESS.md` |
+| Testfall | `PAYMENTS-002`, `PAYMENTS-003` |
+| Screenshot | `playwright/projects/fibu-book5/img/payments-002-010-bank-accounts.png`, `playwright/projects/fibu-book5/img/payments-003-010-bank-accounts-bank-rm-01-fit.png`, `playwright/projects/fibu-book5/img/payments-002-020-cash-receipt-journal.png`, `playwright/projects/fibu-book5/img/payments-002-030-payment-journal.png` |
+| Evidence | `playwright/projects/fibu-book5/evidence/payments-002/PAYMENTS-002-result.json`, `playwright/projects/fibu-book5/evidence/payments-002/PAYMENTS-002-READINESS.md`, `playwright/projects/fibu-book5/evidence/payments-002/PAYMENTS-READINESS.md`, `playwright/projects/fibu-book5/evidence/payments-003/PAYMENTS-003-result.json`, `playwright/projects/fibu-book5/evidence/payments-003/PAYMENTS-003-BANK-ACCOUNT-FIT.md` |
 | BC-Seite | Bank Accounts / Cash Receipt Journals / Payment Journals / Apply Entries |
 | sichtbarer Text | `CHECKING`, `SAVINGS`, `Cash Receipt Journals`, `Payment Journals`, `Apply Entries`, `Post`, `Journal Check`, `PS-INV103297`, `108219` |
 | Elementtyp | Bankkonto-Setup / Zahlungsjournal / Ausgleichspfad |
 | erste Hypothese | Das Buchziel `BANK-RM-01` ist nicht automatisch in der CRONUS-USA-Laborcompany vorhanden. Vor einer Zahlungsbuchung muss entweder das Zielbankkonto eingerichtet oder ein vorhandenes CRONUS-Bankkonto bewusst als Laborersatz gewaehlt werden. |
 | Recherchequelle | praktischer Playwright-Lauf `npm run fibu:payments:readiness`; `playwright/projects/fibu-book5/evidence/payments-002/README.md` |
-| Testergebnis | Bank Accounts ist erreichbar und zeigt `CHECKING`/`SAVINGS`, aber nicht `BANK-RM-01`. Cash Receipt Journal und Payment Journal sind erreichbar und zeigen zentrale Felder/Post-Aktionen. Apply Entries ist aus Debitoren- und Kreditorenposten erreichbar. Es wurde keine Journalzeile erstellt, keine Zahlung gebucht und kein Ausgleich angewendet. |
-| Entscheidung | Buch ergaenzen: Eine Payments-Anleitung braucht vor der Buchung einen Bankkonto-Readiness-Schritt. Der naechste Projektlauf ist Bankkonto-Fit/Entscheidung, nicht Zahlung. |
+| Testergebnis | `PAYMENTS-002` zeigte `CHECKING`/`SAVINGS`, aber nicht `BANK-RM-01`. `PAYMENTS-003` legte `BANK-RM-01` per BC-Standard-API an und zeigte das Konto danach in Bank Accounts. Cash Receipt Journal, Payment Journal und Apply Entries sind erreichbar. Es wurde keine Journalzeile erstellt, keine Zahlung gebucht und kein Ausgleich angewendet. |
+| Entscheidung | Buch ergaenzen: Eine Payments-Anleitung braucht vor der Buchung einen Bankkonto-Readiness-Schritt. Der Bankkonto-Fit ist erledigt, aber die naechste Arbeit ist eine nicht buchende Zahlungsjournal-Readiness, nicht Zahlung. |
 | Buchstelle | Kapitel 19 Debitoren/Kreditoren und Kapitel 20 Bank/Payments |
 
 Bewertung:
 
-Das ist ein wichtiger Stopppunkt. Die Bedienpfade fuer Journal und Apply Entries sind vorhanden, aber der fachliche Zahlungsweg ist ohne Bankkonto-Entscheid nicht reif fuer eine Buchung. Fuer Anfaenger bedeutet das: Ein sichtbarer `Post`-Button im Zahlungsjournal ist keine Buchungsfreigabe. Erst Bankkonto, Gegenkonto, Betrag, Ausgleichsbezug und Vorabkontrolle muessen passen.
+Das ist ein wichtiger Stopppunkt. Die Bedienpfade fuer Journal und Apply Entries sind vorhanden, und `BANK-RM-01` ist jetzt als Laborbankkonto vorhanden. Fuer Anfaenger bedeutet das trotzdem: Ein sichtbarer `Post`-Button im Zahlungsjournal ist keine Buchungsfreigabe. Erst Journalfelder, Gegenkonto, Betrag, Ausgleichsbezug, Bank Account Posting Group/Sachkonto-Fit und Vorabkontrolle muessen passen.
 
 ## FIND-BC-PAY-001 OP-Ausgleich startet bei offenen Posten, nicht beim Bankkonto
 

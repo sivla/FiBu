@@ -16,7 +16,7 @@ Diese Testdaten beschreiben den Lern- und Laborstand fuer `RM-DEMO`. Sie sind ke
 | `masterdata/items.json` | Artikel fuer Maschine, Ersatzteile, Rohmaterial und Kits | `RM-M100` belegt; `RAW-STEEL` als P2P-Laborartikel mit Postenspur belegt |
 | `masterdata/locations.json` | Lagerorte fuer einfaches Lager, Warehouse, Servicefahrzeug und Projekt | `FRA-ZL` belegt; weitere Lagerorte geplant |
 | `masterdata/process-cases.json` | fachliche Prozessfaelle aus dem Buch | O2C praktisch belegt; andere Faelle geplant |
-| `masterdata/resources-assets-projects.json` | Ressourcen, Anlagen, Projekte und Bankkonto | geplant |
+| `masterdata/resources-assets-projects.json` | Ressourcen, Anlagen, Projekte und Bankkonto | Bankkonto `BANK-RM-01` als CRONUS-USA-Laborfit belegt; Ressourcen/Anlagen/Projekte geplant |
 | `sales/uat-o2c-001.json` | konkreter O2C-Testfall mit Zielwerten | Labor belegt mit Steuerabweichung |
 | `purchase/uat-p2p-001.json` | konkreter P2P-Fall mit Zielwerten | CRONUS-USA-Laborprozess gebucht: Bestellung `106049` -> gebuchte Einkaufsrechnung `108219`; keine deutsche 19-%-Vorsteuer |
 | `inventory/rm-m100-target-stock-plan.json` | positiver `RM-M100`-Zugang fuer stabile finale Buchbilder | Draft praktisch vorbereitet in `INVENTORY-006`, Journal Check/Current line ohne Issues in `INVENTORY-007`, genau eine Laborbuchung `INV008-899959` in `INVENTORY-008` mit Postenspur und korrigierter Inventory Valuation |
@@ -45,6 +45,7 @@ Diese Testdaten beschreiben den Lern- und Laborstand fuer `RM-DEMO`. Sie sind ke
 | Posting-Laborfit | `FRA-ZL` + `RESALE -> Inventory Account 14140` |
 | O2C | Auftrag `S-ORD101068` wurde genau einmal mit `Ship and Invoice` gebucht; Rechnung `PS-INV103297` |
 | Inventory Laborbuchung | `INVENTORY-004` empfiehlt fuer finale `RM-M100`-Bilder einen klar markierten Trainings-/Opening-Balance-Zugang `+2` in `FRA-ZL`, damit der bekannte Abgang `-1` nicht zu negativer Bewertung fuehrt; `INVENTORY-006` beweist den Journal-Draft mit `PRODUCTLINE=MACHINE`, `INVENTORY-007` beweist Journal Check/Current line ohne Issues, `INVENTORY-008` bucht `INV008-899959` genau einmal und belegt Artikelposten, Wertposten, Sachposten `14140` sowie Inventory Valuation mit `RM-M100 = 42.000,00` |
+| Bank | `BANK-RM-01 Hausbank Rhein-Main` als CRONUS-USA-Laborbankkonto; keine echte Bankverbindung, keine Zahlung, kein Ausgleich, keine Bankabstimmung |
 
 ## Geplant, aber noch nicht praktisch belegt
 
@@ -55,7 +56,6 @@ Diese Testdaten beschreiben den Lern- und Laborstand fuer `RM-DEMO`. Sie sind ke
 | Artikel | `SP-PUMP-01`, `SP-SENSOR-02`, `RAW-STEEL`, `COMP-CTRL`, `KIT-MAINT` |
 | Lagerorte | `MZ-EINFACH`, `VAN-SERV`, `PROJ-LAG` |
 | Ressourcen/Anlagen/Projekte | `RES-TECH`, `FA-CNC-01`, `PROJ-5001` |
-| Bank | `BANK-RM-01` |
 | Prozesse | Warehouse, Manufacturing, Service, Projects, Payments, Fixed Assets; P2P und Inventory sind als CRONUS-USA-Laborprozesse belegt, aber deutsche Finalnachweise bleiben offen |
 
 ## Laborgrenzen
