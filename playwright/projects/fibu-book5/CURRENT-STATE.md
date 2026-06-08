@@ -121,6 +121,7 @@ Letzter echter Fortschritt:
 - `MASTERDATA-009` hat den CRONUS-Laborfit gesetzt: `FRA-ZL` + `RESALE` nutzt jetzt `Inventory Account = 14140`, abgeleitet aus vorhandenen CRONUS-RESALE-Zeilen.
 - Der erneute O2C-Lauf bestaetigt den Fit: `oldInventoryPostingErrorPresent = false`, `openedPreview = true`, `openedPostingChoiceDialog = false`, `noPostingCommittedByTest = true`.
 - `evidence/masterdata-009/012-o2c-setup-fit-checklist.md` dokumentiert den aktuellen O2C-Setup-Fit fuer Stammdaten, Posting Groups, Tax/VAT, Dimensionen, Waehrung, Lagerort, Nummernserien/API-Anlage, Cleanup und Preview-Status.
+- `evidence/uat-o2c-001/O2C-LAB-FINAL-SYNC.md` fasst den finalen aktuellen O2C-Laborstand zusammen: keine neue Buchung, `S-ORD101068` -> `PS-INV103297`, Postenspur, `PRODUCTLINE=MACHINE` am Artikelposten, offene Sachposten-/Reportingdimensionen und offene deutsche 19-%-USt.
 - `FINDINGS.md`, Coverage, Workarounds, Screenshot-QA und Buchtext sind auf diesen Laborstand synchronisiert.
 
 ## Aktuelle O2C-Wahrheit
@@ -221,6 +222,7 @@ Danach `.env` mit der konkreten Business-Central-URL fuellen.
 | `playwright/projects/fibu-book5/testdata/sales/uat-o2c-001.json` | Zielwerte fuer O2C |
 | `playwright/projects/fibu-book5/tests/uat-o2c-001-sales-order.spec.ts` | aktueller O2C-Test |
 | `playwright/projects/fibu-book5/evidence/uat-o2c-001/README.md` | Evidence-Index fuer den aktuellen O2C-Laborlauf |
+| `playwright/projects/fibu-book5/evidence/uat-o2c-001/O2C-LAB-FINAL-SYNC.md` | finaler O2C-Labor-Sync ohne neue Buchung |
 | `playwright/projects/fibu-book5/BOOK-TO-EVIDENCE-AUDIT.md` | kritischer Buch-vs.-Projekt-vs.-Evidence-Abgleich mit Anforderungsmatrix |
 | `playwright/projects/fibu-book5/BOOK-EVIDENCE-WORKPLAN.md` | belastbarer Arbeitsplan aus Buch-vs.-Evidence-Abgleich |
 | `playwright/projects/fibu-book5/LAB-FIT-STATUS.md` | blockuebergreifende Prozesslandkarte |

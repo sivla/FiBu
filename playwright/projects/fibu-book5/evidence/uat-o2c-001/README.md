@@ -41,6 +41,7 @@ Die Preview-Uebersicht zeigt Postenarten und Anzahl. Der anschliessende Read-onl
 
 | Datei | Typ | Beweist | Beweist nicht | Status |
 |---|---|---|---|---|
+| `O2C-LAB-FINAL-SYNC.md` | Synchronisationsnachweis | Fasst den finalen CRONUS-USA-O2C-Laborstand zusammen: Preview, genau eine Laborbuchung `S-ORD101068` -> `PS-INV103297`, Postenspur, `PRODUCTLINE=MACHINE` am Artikelposten und offene Grenzen. | Deutschen 19-%-USt-Endstand, deutschen Kontenplan-Endstand, Financial-Reports-Summenwirkung. | Labor-Sync |
 | `030-kopf-debitor-d10000-api-result.json` | API-Zustand | Auftrag `S-ORD101067` wurde fuer `D10000` angelegt; `currencyCode = EUR`; Status `Draft`; Belegdaten und Adresse sind vorhanden. | Zeilenbetrag, Dimension `PRODUCTLINE`, Preview Posting, echte Buchung. | Labor-Evidence |
 | `030-kopf-debitor-d10000-page-text.txt` | Roh-Seitentext | UI-Kontext enthaelt Auftragskopf, Debitorname und weitere sichtbare BC-Texte. | Saubere redaktionelle Sichtbarkeit ohne Stoerer; keine finale Screenshot-Freigabe. | Roh-Evidence |
 | `uat-o2c-001-030-kopf-debitor-d10000.screenshot.json` | Screenshot-Metadaten | Screenshot `030` ist als `candidate` fuer Auftragskopf/Debitor markiert und nennt erwarteten Seitentext. | Stoererfreie finale deutsche Buchabbildung. | Candidate-Metadaten |

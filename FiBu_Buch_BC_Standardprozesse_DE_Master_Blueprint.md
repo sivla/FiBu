@@ -871,8 +871,10 @@ Die folgenden Klickanleitungen sind in der Spielwiese mit Playwright geprüft un
 | Debitor `D10000` und Artikel `RM-M100` anlegen | `Customers`, `Items`, `Item Card` | `MASTERDATA-005` | `playwright/projects/fibu-book5/img/masterdata-005-customers-after-api.png`, `playwright/projects/fibu-book5/img/masterdata-005-items-after-api.png` | `playwright/projects/fibu-book5/evidence/masterdata-005/` | geprüft |
 | Posting-Fit für ersten O2C-Probelauf herstellen | `Customer Card`, `Item Card`, Sales-Order-API | `MASTERDATA-006` | `playwright/projects/fibu-book5/img/masterdata-006-customer-template-fit.png`, `playwright/projects/fibu-book5/img/masterdata-006-item-posting-fit.png` | `playwright/projects/fibu-book5/evidence/masterdata-006/` | geprüft als CRONUS-Technikfit |
 | Standarddimensionen für O2C setzen | `Default Dimensions`, `Customer Card`, `Item Card` | `MASTERDATA-007` | `playwright/projects/fibu-book5/img/masterdata-007-item-rm-m100-standarddimension.png`, `playwright/projects/fibu-book5/img/masterdata-007-customer-d10000-standarddimension.png` | `playwright/projects/fibu-book5/evidence/masterdata-007/` | geprüft als API-/Evidence-Nachweis |
-| Lagerbuchungsmatrix für O2C-Blocker prüfen | `Inventory Posting Setup` | `MASTERDATA-008` | `playwright/projects/fibu-book5/img/masterdata-008-inventory-posting-setup-fra-zl-resale.png` | `playwright/projects/fibu-book5/evidence/masterdata-008/` | geprüft als Labor-Diagnose; Kontoentscheidung offen |
-| Verkaufsauftrag für `D10000` mit Zeile `RM-M100` als Laborlauf erzeugen | `Sales Orders`, `Sales Order` | `UAT-O2C-001` | `playwright/projects/fibu-book5/img/uat-o2c-001-030-kopf-debitor-d10000.png`, `playwright/projects/fibu-book5/img/uat-o2c-001-040-zeile-artikel-rm-m100.png` | `playwright/projects/fibu-book5/evidence/uat-o2c-001/` | geprüft als Laborlauf; Auftrag wird danach bereinigt |
+| Lagerbuchungsmatrix für O2C-Blocker prüfen | `Inventory Posting Setup` | `MASTERDATA-008` | `playwright/projects/fibu-book5/img/masterdata-008-inventory-posting-setup-fra-zl-resale.png` | `playwright/projects/fibu-book5/evidence/masterdata-008/` | geprüft als Labor-Diagnose; ursprünglicher Blocker war leeres `Inventory Account` für `FRA-ZL` + `RESALE` |
+| Lagerbuchungsmatrix für O2C-Labor fitten | `Inventory Posting Setup` | `MASTERDATA-009` | `playwright/projects/fibu-book5/img/masterdata-009-inventory-posting-setup-fra-zl-resale-14140.png` | `playwright/projects/fibu-book5/evidence/masterdata-009/` | geprüft als CRONUS-Laborfit: `Inventory Account = 14140`; kein deutscher Kontenplan-Endstand |
+| Verkaufsauftrag für `D10000` mit Zeile `RM-M100`, Preview, Laborbuchung und Postenspur prüfen | `Sales Orders`, `Sales Order`, `Posted Sales Invoice`, Entries | `UAT-O2C-001` | `playwright/projects/fibu-book5/img/uat-o2c-001-030-kopf-debitor-d10000.png`, `playwright/projects/fibu-book5/img/uat-o2c-001-040-zeile-artikel-rm-m100.png`, `playwright/projects/fibu-book5/img/uat-o2c-001-060-buchungsvorschau.png`, `playwright/projects/fibu-book5/img/uat-o2c-001-082-posted-sales-invoice.png`, `playwright/projects/fibu-book5/img/uat-o2c-001-089-item-ledger-entry-dimensions.png` | `playwright/projects/fibu-book5/evidence/uat-o2c-001/` | geprüft als CRONUS-USA-Laborlauf: Preview-Auftrag `S-ORD101067` wurde bereinigt; genau eine Laborbuchung `S-ORD101068` erzeugte `PS-INV103297`; deutsche 19-%-USt bleibt offen |
+| Financial Reports als Reporting-Einstieg öffnen | `Financial Reports` | `REPORTING-001` | `playwright/projects/fibu-book5/img/reporting-001-010-financial-reports.png` | `playwright/projects/fibu-book5/evidence/reporting-001/` | geprüft als read-only Laborstart; Filter-/Summenwirkung nach `PRODUCTLINE=MACHINE` noch offen |
 
 Redaktionsregel:
 
@@ -949,7 +951,7 @@ Prüfhinweis:
 
 Dieser Stand ist ein technischer Laufbarkeitsnachweis, kein deutscher Steuer-Endstand. Die aktuelle Spielwiese basiert auf CRONUS USA. Der MCP-Nachweis zeigt jetzt zwar `Currency Code = EUR` am Debitor `D10000` und in neuen Aufträgen, aber die Steuerherkunft bleibt CRONUS-Sales-Tax: Am Debitor ist `Tax Liable` aktiv und `Tax Area Code` leer; am Artikel ist `Tax Group Code = FURNITURE` gesetzt. Das erklärt, warum der Auftrag technisch laufen kann, aber noch keine deutsche `19 %`-USt berechnet. Für finale Buchscreenshots mit `19 %` USt braucht das Projekt später einen deutschen Lauf oder ein explizit konfiguriertes deutsches VAT-Setup.
 
-Der O2C-Laborlauf zeigte außerdem einen zweiten, sehr lehrreichen Blocker: Die Buchungsvorschau erreichte zwar die BC-Prüfung, stoppte aber zunächst mit `Inventory Account is missing in Inventory Posting Setup Location Code: FRA-ZL, Invt. Posting Group Code: RESALE.` Das bedeutete nicht, dass Debitor, Artikel oder Preis falsch waren. Es bedeutete: Für die Kombination aus Lagerort `FRA-ZL` und Lagerbuchungsgruppe `RESALE` fehlte das Bestandskonto in der Lagerbuchungsmatrix. Business Central kann eine Artikelbewegung erst buchen oder als Postenvorschau darstellen, wenn auch die Wertfortschreibung in Richtung Hauptbuch eindeutig ist. Nach dem CRONUS-Laborfit `Inventory Account = 14140` zeigt `Buchungsvorschau (Preview Posting)` echte Vorschauzeilen: Sachposten, Debitorenposten, Artikelposten, detaillierte Debitorenposten und Wertposten. Das ist noch keine echte Buchung und kein deutscher 19-%-USt-Endstand. Laboraufträge aus Screenshot-Läufen werden nach dem Nachweis gezielt gelöscht, damit die Spielwiese nicht mit Entwürfen vollläuft.
+Der O2C-Laborlauf zeigte außerdem einen zweiten, sehr lehrreichen Blocker: Die Buchungsvorschau erreichte zwar die BC-Prüfung, stoppte aber zunächst mit `Inventory Account is missing in Inventory Posting Setup Location Code: FRA-ZL, Invt. Posting Group Code: RESALE.` Das bedeutete nicht, dass Debitor, Artikel oder Preis falsch waren. Es bedeutete: Für die Kombination aus Lagerort `FRA-ZL` und Lagerbuchungsgruppe `RESALE` fehlte das Bestandskonto in der Lagerbuchungsmatrix. Business Central kann eine Artikelbewegung erst buchen oder als Postenvorschau darstellen, wenn auch die Wertfortschreibung in Richtung Hauptbuch eindeutig ist. Nach dem CRONUS-Laborfit `Inventory Account = 14140` zeigt `Buchungsvorschau (Preview Posting)` echte Vorschauzeilen: Sachposten, Debitorenposten, Artikelposten, detaillierte Debitorenposten und Wertposten. Danach wurde genau eine bewusste CRONUS-USA-Laborbuchung mit `Ship and Invoice` durchgeführt: Auftrag `S-ORD101068` erzeugte die gebuchte Verkaufsrechnung `PS-INV103297`. Diese Buchung ist Labor-Evidence für Bedienpfad, Postenspur und Dimensionslernen, aber kein deutscher 19-%-USt-Endstand. Der separate Preview-Auftrag `S-ORD101067` wurde bereinigt; der gebuchte Laborbeleg bleibt als Nachweis erhalten.
 
 ### Klickanleitung: Inventory Posting Setup für `FRA-ZL` und `RESALE` prüfen
 
@@ -1389,6 +1391,19 @@ Buchungsspur:
 | Sachposten Bestand | Haben Bestand Fertigerzeugnisse `42.000 EUR` | `Sachposten (G/L Entries)` |
 | Bericht | Erlös und Wareneinsatz nach `PRODUCTLINE = MACHINE` | `Finanzberichte (Financial Reports)` |
 
+Aktueller Laborabgleich in `RM-DEMO`:
+
+| Ebene | Zielbild für deutsche Endumgebung | aktueller CRONUS-USA-Laborstand |
+|---|---|---|
+| Verkaufsauftrag | `D10000`, `RM-M100`, Menge `1`, Preis `68.000 EUR` | belegt im Labor |
+| Währung | `EUR` | belegt im Labor |
+| USt | `19 %`, Steuerbetrag `12.920 EUR` | offen; Labor zeigt `0 %` und `Tax Group Code = FURNITURE` |
+| Brutto | `80.920 EUR` | offen; Laborrechnung `PS-INV103297` zeigt `68.000 EUR` inklusive Tax `0` |
+| Preview Posting | erwartete Postenarten vor Buchung | belegt: `G/L Entry`, `Cust. Ledger Entry`, `Item Ledger Entry`, `Detailed Cust. Ledg. Entry`, `Value Entry` |
+| Buchung | Lieferung und Rechnung | einmal bewusst als CRONUS-USA-Laborbuchung ausgeführt: `S-ORD101068` -> `PS-INV103297` |
+| Postenspur | Debitorenposten, Sachposten, USt-Posten, Artikelposten, Wertposten | Debitorenposten, Sachposten, Wertposten und Artikelposten belegt; deutscher USt-Posten offen |
+| Dimension | `PRODUCTLINE = MACHINE`, `CHANNEL = B2B` in Beleg, Posten und Reporting | im Zeilendimensionsdialog und am Artikelposten `Entry No. 792` belegt; Sachposten/Financial Reports offen |
+
 ### Was passiert bei falscher Buchungsgruppe?
 
 | Fehler | Symptom | Ursache | Diagnosepfad | Korrektur |
@@ -1720,7 +1735,9 @@ RM-SALES verkauft eine Standardmaschine `RM-M100` an `D10000`. Der Verkaufspreis
 | `DEPARTMENT` | `SALES` | Rolle/Belegkopf des Vertriebs |
 | `LOCATION-GROUP` | `DIRECTED` | Lagerort für gesteuertes Lager |
 
-Diese Dimensionen laufen mit der Buchung in die Sachposten. Für den Controller zählt besonders der Erlösposten. Er muss im Finanzbericht für `PRODUCTLINE = MACHINE`, `CHANNEL = B2B` und `DEPARTMENT = SALES` erscheinen. Artikelposten und Wertposten zeigen die Mengen- und Kostenwirkung; Sachposten zeigen Erlös, Forderung, USt und Wareneinsatz mit Dimensionen.
+Im Zielbild laufen diese Dimensionen mit der Buchung in die auswertbaren Posten. Für den Controller zählt besonders der Erlösposten. Er muss im Finanzbericht für `PRODUCTLINE = MACHINE`, `CHANNEL = B2B` und `DEPARTMENT = SALES` erscheinen. Artikelposten und Wertposten zeigen die Mengen- und Kostenwirkung; Sachposten zeigen Erlös, Forderung, USt und Wareneinsatz mit Dimensionen.
+
+Aktueller Laborstand: `PRODUCTLINE = MACHINE` und `CHANNEL = B2B` sind im Verkaufszeilen-Dimensionsdialog belegt. Nach der Laborbuchung `S-ORD101068` -> `PS-INV103297` zeigt der Artikelposten `Entry No. 792` über `Entry` -> `Dimensions` ebenfalls `CHANNEL = B2B` und `PRODUCTLINE = MACHINE`. Auf Sachposten und in `Financial Reports` ist diese Dimensionswirkung noch nicht als Screenshot-/Evidence-Nachweis abgeschlossen.
 
 ### Prüfung in Sachposten und GuV
 

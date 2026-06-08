@@ -42,7 +42,7 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 
 | Feld | Wert |
 |---|---|
-| Status | buch-update |
+| Status | recherchieren |
 | Projekt | fibu-book5 |
 | Testfall | `UAT-O2C-001`, `REPORTING-001`, `MASTERDATA-009` |
 | Screenshot | `playwright/projects/fibu-book5/img/uat-o2c-001-080-posting-dialog-before-ok.png`, `playwright/projects/fibu-book5/img/uat-o2c-001-082-posted-sales-invoice.png`, `playwright/projects/fibu-book5/img/reporting-001-010-financial-reports.png` |
@@ -52,7 +52,7 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 | erste Hypothese | Mehrere Buchstellen beschreiben noch den frueheren Stand: O2C nur bis Kopf/Zeile oder Inventory-Posting-Setup-Diagnose; Reporting als Ziel, aber noch ohne Filter-/Summen-Evidence. |
 | Recherchequelle | `playwright/projects/fibu-book5/BOOK-TO-EVIDENCE-AUDIT.md`, `080-posting-result.json`, `082-posting-entry-trace.json`, `reporting-001/010-financial-reports-open-result.json` |
 | Testergebnis | O2C ist im CRONUS-USA-Labor bis Preview, genau einer Laborbuchung, gebuchter Verkaufsrechnung und Postenspur belegt. `PRODUCTLINE=MACHINE` ist im Belegdialog und am Artikelposten belegt, aber noch nicht in Sachposten oder Financial Reports. Deutsche `19 %` USt ist weiterhin offen. |
-| Entscheidung | Buch ergaenzen: Laborstand, gebuchte Belegnummer `PS-INV103297`, Grenzen des CRONUS-USA-Laufs und Reporting-Status klar trennen. |
+| Entscheidung | O2C-Buchstand wurde aktualisiert: `MASTERDATA-009`, `PS-INV103297`, CRONUS-USA-Laborgrenzen und Ziel-vs.-Labor-Tabelle sind eingearbeitet. Offen bleibt die Recherche/Pruefung fuer Sachposten- und Financial-Reports-Dimensionen. |
 | Buchstelle | Foundation-Stand, Kapitel 10 Dimensionen/Reporting, Kapitel 11 O2C, Kapitel 25 Financial Reports |
 
 ## FIND-BC-SHOT-001 O2C-Zeilenbild beweist nicht alle Buchbehauptungen
