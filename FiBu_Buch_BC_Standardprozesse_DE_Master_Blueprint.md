@@ -1473,6 +1473,10 @@ Dieses Kapitel erklärt, wie Business Central finanziell „denkt“. Wer BC bed
 Merksatz:
 - Der Beleg erzählt, was passieren sollte. Die Posten zeigen, was tatsächlich gebucht wurde.
 
+Aktueller Laborbefund aus `POSTING-TRACE-001`: In `RM-DEMO` wurden drei Buchungsspuren praktisch belegt und als Lernkette zusammengefuehrt. Die O2C-Laborrechnung `PS-INV103297` zeigt Debitorenposten, Sachposten, Wertposten und Artikelposten; am Artikelposten `Entry No. 792` sind `CHANNEL = B2B` und `PRODUCTLINE = MACHINE` sichtbar. Die P2P-Laborrechnung `108219` zeigt Kreditorenposten, Sachposten, Wertposten und Artikelposten `793`. Die Inventory-Laborbuchung `INV008-899959` zeigt Artikelposten, Wertposten, Sachposten auf Konto `14140` und danach eine `Inventory Valuation` mit `RM-M100 = 42.000,00`, `RAW-STEEL = 25.000,00` und `Total Inventory Value = 67.000,00`.
+
+Fuer Einsteiger ist daraus die wichtigste Regel: Jede Postenart beantwortet nur eine bestimmte Frage. Debitorenposten und Kreditorenposten zeigen offene Forderungen oder Verbindlichkeiten. Sachposten zeigen die Kontenwirkung im Hauptbuch. Artikelposten zeigen Mengenbewegungen. Wertposten zeigen Wert- und Kostenbewegungen. Ein Bericht wie `Inventory Valuation` oder `Financial Reports` ist erst dann belastbar, wenn er zur Postenspur passt. Der aktuelle Laborstand beweist noch keine deutsche `19 %` USt, keine deutschen Kontenplan-Endstaende und keine Financial-Reports-Summe nach `PRODUCTLINE` oder `CHANNEL`.
+
 ### Die wichtigsten Postenarten
 
 | Postenart | Deutsch | Wofür? | Typische Frage |

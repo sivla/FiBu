@@ -38,6 +38,28 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 
 ## Aktuelle Fundstellen
 
+## FIND-BC-POST-001 Postenspur ist eine Kette, kein einzelner Beleg
+
+| Feld | Wert |
+|---|---|
+| Status | erledigt als Buch-/Evidence-Sync |
+| Projekt | fibu-book5 |
+| Testfall | `POSTING-TRACE-001` |
+| Screenshot | vorhandene Bilder aus `uat-o2c-001`, `p2p-001`, `inventory-008` |
+| Evidence | `playwright/projects/fibu-book5/evidence/posting-trace-001/POSTING-TRACE-LEARNING-ATLAS.md` |
+| BC-Seite | Posted Sales Invoice, Posted Purchase Invoice, Customer/Vendor Ledger Entries, G/L Entries, Item Ledger Entries, Value Entries, Inventory Valuation |
+| sichtbarer Text | `PS-INV103297`, `108219`, `INV008-899959`, `14140`, `Entry No. 792`, `Entry No. 793`, `Total Inventory Value = 67.000,00` |
+| Elementtyp | Postenspur / Evidence Pack / Anfaengererklaerung |
+| erste Hypothese | Lernende verstehen Buchungen besser, wenn jede Postenart als Antwort auf eine eigene Frage erklaert wird. |
+| Recherchequelle | vorhandene Playwright-Evidence `UAT-O2C-001`, `UAT-P2P-001`, `INVENTORY-008` |
+| Testergebnis | Die gebuchten Laborbelege zeigen unterschiedliche Postenketten: O2C erzeugt Debitoren-, Sach-, Wert- und Artikelposten; P2P erzeugt Kreditoren-, Sach-, Wert- und Artikelposten; Inventory Journal erzeugt Artikel-, Wert- und Sachposten sowie Lagerbewertungswirkung. |
+| Entscheidung | Buch ergaenzt: Postenspur wird als Lernkette aus Beleg, Nebenbuch, Sachposten, Artikelposten, Wertposten und Bericht erklaert. Laborgrenzen bleiben sichtbar: keine deutsche `19 %` USt, keine deutschen Kontenplan-Endstaende, keine Reporting-Summe nach `PRODUCTLINE`/`CHANNEL`. |
+| Buchstelle | Kapitel 9, 11, 12, 13, 19, 23, 25 |
+
+Bewertung:
+
+Dieser Befund macht aus vorhandenen Screenshots Unterrichtsmaterial. Der Leser soll nicht nur sehen, dass nach dem Buchen viele Listen entstehen, sondern verstehen, welche Liste welche Kontrollfrage beantwortet.
+
 ## FIND-BC-PAY-008 Post-Button ist noch keine Zahlung, erst der Dialog entscheidet
 
 | Feld | Wert |
