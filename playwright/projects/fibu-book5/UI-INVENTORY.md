@@ -87,6 +87,7 @@ Wenn das Projekt fertig ist, kennen wir Business Central für den Buchumfang nic
 | Reporting | Financial Reports | n/a | Tell-Me Treffergruppe `Berichte und Analysen`, Berichtsliste | Einstieg in Finanzberichte fuer spaeteren Dimensionsnachweis | `REPORTING-001` | `playwright/projects/fibu-book5/img/reporting-001-010-financial-reports.png`; `evidence/reporting-001/010-financial-reports-open-result.json` | gesehen/geklickt; Filterwirkung offen | Kapitel 10/25 |
 | Reporting | Analysis Views | n/a | `Analysis by Dimensions`, `Update`, `Dimension 1 Code` bis `Dimension 4 Code`, `REVENUE` Card | Dimensionsbasierte Reporting-Sichten pruefen und klaeren, ob Buchdimensionen eingerichtet sind | `REPORTING-004` | `playwright/projects/fibu-book5/img/reporting-004-020-analysis-views-list.png`; `playwright/projects/fibu-book5/img/reporting-004-030-revenue-analysis-view-card.png`; `evidence/reporting-004/` | verstanden als Labor-Negativbefund: `REVENUE` nutzt `AREA`, `DEPARTMENT`, `CUSTOMERGROUP`, nicht `PRODUCTLINE`/`CHANNEL` | Kapitel 10/25 |
 | Reporting | Tell-Me / moeglicher Bericht `Dimensions - Detail` | n/a | Suchbegriff `Dimensions - Detail`, Folgezustand ohne Ziel-Request-Page | Pruefen, ob der Dimensionsbericht als einfacher UI-Einstieg fuer `PRODUCTLINE`/`CHANNEL` taugt | `REPORTING-005` | `playwright/projects/fibu-book5/img/reporting-005-*`; `playwright/projects/fibu-book5/evidence/reporting-005/` | verstanden als Labor-Negativbefund: Bericht wurde ueber Tell-Me nicht sichtbar erreicht; keine Reportingwirkung | Kapitel 10/25 |
+| Reporting | G/L Entries | 20 | Filter `Document No. = PS-INV103297`, moegliche Analyse-/Data-Analysis-Aktion | Pruefen, ob gefilterte Sachposten direkt als Analysepfad fuer `PRODUCTLINE`/`CHANNEL` taugen | `REPORTING-006` | `playwright/projects/fibu-book5/img/reporting-006-*`; `playwright/projects/fibu-book5/evidence/reporting-006/` | verstanden als Labor-Negativbefund: Sachposten sichtbar, aber kein belastbarer Data-Analysis-Hebel und keine `PRODUCTLINE`-/`CHANNEL`-Sichtbarkeit | Kapitel 10/25 |
 
 ## Payments / OP-Ausgleich
 
@@ -111,7 +112,7 @@ Wenn das Projekt fertig ist, kennen wir Business Central für den Buchumfang nic
 | Reihenfolge | Ziel |
 |---:|---|
 | 1 | `PAYMENTS-011` nur mit ausdruecklicher Freigabe als kontrollierte Laborzahlung; ohne Freigabe Payments-Buchtext/Evidence-Pack didaktisch abrunden |
-| 2 | Reporting weiterfuehren: alternativen UI-Einstieg ueber Berichtssuche/`Analysis by Dimensions` oder Data Analysis Mode auf `G/L Entries` pruefen; Analysis-View-Fit fuer `PRODUCTLINE=MACHINE` und `CHANNEL=B2B` nur mit eigener Freigabe planen |
+| 2 | Reporting weiterfuehren: gezielten UI-Einstieg ueber `Analysis by Dimensions` pruefen; Analysis-View-Fit fuer `PRODUCTLINE=MACHINE` und `CHANNEL=B2B` nur mit eigener Freigabe planen |
 | 3 | Inventory-Laborblock didaktisch abrunden: Item Journal, Journal Check, Buchungsdialog, Artikelposten, Wertposten, Sachposten und Inventory Valuation fuer Anfaenger erklaeren; keine weitere `INV008`-Buchung |
 | 4 | G/L Entry Dimensions zu `PS-INV103297` read-only pruefen, ohne neue O2C-Buchung |
 | 5 | Steuerfit: CRONUS-USA-Probelauf weiter vom deutschen Ziel-Fall `19 %` trennen |

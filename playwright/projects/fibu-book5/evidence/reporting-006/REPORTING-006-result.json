@@ -1,0 +1,71 @@
+{
+  "testId": "REPORTING-006",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "dataBasis": "CRONUS USA",
+  "mode": "read-only-no-posting-no-setup",
+  "sourceContext": {
+    "postedSalesInvoiceNo": "PS-INV103297",
+    "priorFinding": "REPORTING-002 bis REPORTING-005 belegen Dimensionen am Artikelposten, aber keine sichtbare Financial-Reports-Auswertung nach PRODUCTLINE/CHANNEL."
+  },
+  "actions": {
+    "openedGlEntries": true,
+    "filterValueVisible": true,
+    "analysisClick": {
+      "clicked": false
+    }
+  },
+  "before": {
+    "glEntriesVisible": true,
+    "postedInvoiceVisible": true,
+    "productlineVisible": false,
+    "channelVisible": false,
+    "productlineMachineVisible": false,
+    "channelB2bVisible": false,
+    "analysisTextVisible": false,
+    "relevantButtons": [
+      "Customergroup Code",
+      "Gen. Bus. Posting Group",
+      "Gen. Prod. Posting Group"
+    ],
+    "textEvidenceFile": "010-gl-entries-before-analysis-page-text.txt",
+    "buttonEvidenceFile": "010-gl-entries-before-analysis-buttons.json",
+    "screenshot": "reporting-006-010-gl-entries-before-analysis.png"
+  },
+  "after": {
+    "glEntriesVisible": true,
+    "postedInvoiceVisible": true,
+    "productlineVisible": false,
+    "channelVisible": false,
+    "productlineMachineVisible": false,
+    "channelB2bVisible": false,
+    "analysisTextVisible": false,
+    "relevantButtons": [
+      "Customergroup Code",
+      "Gen. Bus. Posting Group",
+      "Gen. Prod. Posting Group"
+    ],
+    "textEvidenceFile": "020-gl-entries-after-analysis-attempt-page-text.txt",
+    "buttonEvidenceFile": "020-gl-entries-after-analysis-attempt-buttons.json",
+    "screenshot": "reporting-006-020-gl-entries-after-analysis-attempt.png"
+  },
+  "summary": {
+    "dataAnalysisReached": false,
+    "productlineOrChannelVisibleInGlEntries": false,
+    "productlineMachineOrChannelB2bVisible": false,
+    "noPostingCommittedByTest": true,
+    "noSetupChangedByTest": true
+  },
+  "proves": [
+    "Ob G/L Entries zur gebuchten O2C-Laborrechnung read-only erreichbar sind.",
+    "Ob ein sichtbarer Data-Analysis-/Analysemodus-Hebel in diesem G/L-Entries-Kontext nutzbar ist.",
+    "Ob PRODUCTLINE/CHANNEL im sichtbaren G/L-Entries-/Analysekontext auftauchen."
+  ],
+  "doesNotProve": [
+    "Keine neue oder aktualisierte Analysis View.",
+    "Keine garantierte GuV-/Revenue-Zahlenwirkung nach PRODUCTLINE oder CHANNEL.",
+    "Kein deutscher Reporting-Finalnachweis.",
+    "Keine neue Buchung und kein deutscher 19-Prozent-USt-Nachweis."
+  ],
+  "nextStep": "Data Analysis auf G/L Entries liefert in diesem Laborlauf noch keinen sichtbaren PRODUCTLINE-/CHANNEL-Nachweis. Naechster Hebel: Analysis by Dimensions gezielt oeffnen oder freigegebenen Analysis-View-Fit fuer PRODUCTLINE/CHANNEL planen."
+}

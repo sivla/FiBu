@@ -220,6 +220,13 @@ Fuer `UAT-O2C-001` fasst `playwright/projects/fibu-book5/evidence/uat-o2c-001/RE
 | `playwright/projects/fibu-book5/img/payments-010-020-apply-entries-readonly.png` | brauchbares Laborbild fuer erneuten Apply-Kontext | Apply Entries wurde im PAYMENTS-010-Freigabecheck erneut read-only erreicht. | Als Wiederholungs-/Sicherheitsbild nutzbar, primaeres Apply-Lernbild bleibt `PAYMENTS-009-020`. Kein Zahlungs- oder OP-Ausgleichsnachweis. |
 | `playwright/projects/fibu-book5/img/payments-010-030-post-dialog-before-cancel.png` | gutes Laborbild fuer Buchungsdialog-Risiko | Der Post-Bestaetigungsdialog zeigt `Ja`/`Nein`; der Test klickt danach `Nein`. | Als Buch-/Lernbild fuer den Unterschied zwischen `Post`-Dialog oeffnen und Zahlung wirklich bestaetigen geeignet. Kein Zahlungs-, Ausgleichs- oder Bankwirkungsnachweis. |
 
+## `REPORTING-006` Screenshot Review
+
+| Screenshot | Bewertung | Befund | Entscheidung |
+|---|---|---|---|
+| `playwright/projects/fibu-book5/img/reporting-006-010-gl-entries-before-analysis.png` | brauchbarer Labor-Sachposten-Nachweis | Gefilterte `G/L Entries` zur gebuchten Verkaufsrechnung `PS-INV103297` sind sichtbar. Die Roh-Evidence belegt Konten/Betragskontext, aber keine sichtbaren `PRODUCTLINE`-/`CHANNEL`-Spalten. | Als Lernbild fuer Hauptbuchspur geeignet. Nicht als Reporting- oder Dimensionsauswertungsbild verwenden. |
+| `playwright/projects/fibu-book5/img/reporting-006-020-gl-entries-after-analysis-attempt.png` | negativer Laborbefund | Nach dem kontrollierten Analyseversuch bleibt kein belastbarer Data-Analysis-/Analysemodus mit `PRODUCTLINE` oder `CHANNEL` sichtbar. | Als Evidence fuer den verworfenen G/L-Entries-Data-Analysis-Pfad behalten; kein finales Buchbild fuer Reportingwirkung. |
+
 ## Harte Findings aus dem Review
 
 ### QA-O2C-001 Listenbild zeigt nicht den Buchfall

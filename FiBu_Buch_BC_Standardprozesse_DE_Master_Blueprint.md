@@ -875,6 +875,7 @@ Die folgenden Klickanleitungen sind in der Spielwiese mit Playwright geprüft un
 | Lagerbuchungsmatrix für O2C-Labor fitten | `Inventory Posting Setup` | `MASTERDATA-009` | `playwright/projects/fibu-book5/img/masterdata-009-inventory-posting-setup-fra-zl-resale-14140.png` | `playwright/projects/fibu-book5/evidence/masterdata-009/` | geprüft als CRONUS-Laborfit: `Inventory Account = 14140`; kein deutscher Kontenplan-Endstand |
 | Verkaufsauftrag für `D10000` mit Zeile `RM-M100`, Preview, Laborbuchung und Postenspur prüfen | `Sales Orders`, `Sales Order`, `Posted Sales Invoice`, Entries | `UAT-O2C-001` | `playwright/projects/fibu-book5/img/uat-o2c-001-030-kopf-debitor-d10000.png`, `playwright/projects/fibu-book5/img/uat-o2c-001-040-zeile-artikel-rm-m100.png`, `playwright/projects/fibu-book5/img/uat-o2c-001-060-buchungsvorschau.png`, `playwright/projects/fibu-book5/img/uat-o2c-001-082-posted-sales-invoice.png`, `playwright/projects/fibu-book5/img/uat-o2c-001-089-item-ledger-entry-dimensions.png` | `playwright/projects/fibu-book5/evidence/uat-o2c-001/` | geprüft als CRONUS-USA-Laborlauf: Preview-Auftrag `S-ORD101067` wurde bereinigt; genau eine Laborbuchung `S-ORD101068` erzeugte `PS-INV103297`; deutsche 19-%-USt bleibt offen |
 | Financial Reports als Reporting-Einstieg öffnen | `Financial Reports` | `REPORTING-001` | `playwright/projects/fibu-book5/img/reporting-001-010-financial-reports.png` | `playwright/projects/fibu-book5/evidence/reporting-001/` | geprüft als read-only Laborstart; Filter-/Summenwirkung nach `PRODUCTLINE=MACHINE` noch offen |
+| Reportingdimensionen in Posten und Analysepfaden suchen | `G/L Entries`, `Item Ledger Entries`, `Financial Reports`, `Analysis Views` | `REPORTING-002` bis `REPORTING-006` | `playwright/projects/fibu-book5/img/reporting-002-046-item-ledger-entry-792-dimensions.png`, `playwright/projects/fibu-book5/img/reporting-004-030-revenue-analysis-view-card.png`, `playwright/projects/fibu-book5/img/reporting-006-010-gl-entries-before-analysis.png` | `playwright/projects/fibu-book5/evidence/reporting-002/` bis `playwright/projects/fibu-book5/evidence/reporting-006/` | geprüft als read-only Laborbefund: `PRODUCTLINE=MACHINE` und `CHANNEL=B2B` sind am Artikelposten sichtbar; `REVENUE`, `Dimensions - Detail` und G/L-Entries-Data-Analysis liefern noch keinen belastbaren Reportingnachweis |
 
 Redaktionsregel:
 
@@ -1020,7 +1021,7 @@ Prüfhinweis:
 
 Der aktuelle Nachweis besteht aus API-Evidence und UI-Laborbildern des Dialogs `Default Dimensions`. Die Bilder sind fachlich brauchbare Kandidaten, aber noch keine finalen deutschen Buchbilder: Die Umgebung ist CRONUS-basiert und die Oberfläche ist gemischt Deutsch/Englisch. Die zuvor sichtbare Teaching-Tip-Karte `About default dimensions` wird im Playwright-Lauf gezielt geschlossen. Für die finale Fassung wird derselbe Nachweis später in der deutschen Umgebung ersetzt.
 
-Wichtig für Anfänger: Eine Standarddimension am Artikel oder Debitor ist nur die Vorbereitung. Sie beweist noch nicht automatisch, dass jede erwartete Dimension im konkreten Verkaufsauftrag angekommen ist. Der O2C-Lauf `UAT-O2C-001` weist `CHANNEL = B2B` und `PRODUCTLINE = MACHINE` inzwischen im Zeilen-Dimensionsdialog nach. Der geprüfte Klickpfad lautet `Line` -> `Related Information` -> `Dimensions`. Für die finale Anleitung muss derselbe Nachweis später in der deutschen Umgebung neu fotografiert und nach dem Buchen zusätzlich in Sachposten oder Reporting wiedergefunden werden.
+Wichtig für Anfänger: Eine Standarddimension am Artikel oder Debitor ist nur die Vorbereitung. Sie beweist noch nicht automatisch, dass jede erwartete Dimension im konkreten Verkaufsauftrag angekommen ist. Der O2C-Lauf `UAT-O2C-001` weist `CHANNEL = B2B` und `PRODUCTLINE = MACHINE` inzwischen im Zeilen-Dimensionsdialog nach. Der geprüfte Klickpfad lautet `Line` -> `Related Information` -> `Dimensions`. Nach der Laborbuchung ist dieselbe Dimensionsspur am Artikelposten `Entry No. 792` sichtbar. Das ist aber noch kein GuV- oder Finanzberichtsnachweis: `REPORTING-006` zeigt zwar die gefilterten Sachposten zur Rechnung `PS-INV103297`, aber dort keinen belastbaren Data-Analysis-/Analysemodus-Hebel und keine sichtbaren `PRODUCTLINE`-/`CHANNEL`-Spalten. Für die finale Anleitung muss derselbe Nachweis später in der deutschen Umgebung neu fotografiert und in einer passenden Reportingansicht, zum Beispiel `Analysis by Dimensions` oder einer freigegebenen Analysis View, wiedergefunden werden.
 15. UAT-Basisszenarien buchen.
 
 ### Greenfield-UAT mit Lösungserwartung
@@ -1739,7 +1740,7 @@ RM-SALES verkauft eine Standardmaschine `RM-M100` an `D10000`. Der Verkaufspreis
 
 Im Zielbild laufen diese Dimensionen mit der Buchung in die auswertbaren Posten. Für den Controller zählt besonders der Erlösposten. Er muss im Finanzbericht für `PRODUCTLINE = MACHINE`, `CHANNEL = B2B` und `DEPARTMENT = SALES` erscheinen. Artikelposten und Wertposten zeigen die Mengen- und Kostenwirkung; Sachposten zeigen Erlös, Forderung, USt und Wareneinsatz mit Dimensionen.
 
-Aktueller Laborstand: `PRODUCTLINE = MACHINE` und `CHANNEL = B2B` sind im Verkaufszeilen-Dimensionsdialog belegt. Nach der Laborbuchung `S-ORD101068` -> `PS-INV103297` zeigt der Artikelposten `Entry No. 792` über `Entry` -> `Dimensions` ebenfalls `CHANNEL = B2B` und `PRODUCTLINE = MACHINE`. Auf Sachposten und in `Financial Reports` ist diese Dimensionswirkung noch nicht als Screenshot-/Evidence-Nachweis abgeschlossen.
+Aktueller Laborstand: `PRODUCTLINE = MACHINE` und `CHANNEL = B2B` sind im Verkaufszeilen-Dimensionsdialog belegt. Nach der Laborbuchung `S-ORD101068` -> `PS-INV103297` zeigt der Artikelposten `Entry No. 792` über `Entry` -> `Dimensions` ebenfalls `CHANNEL = B2B` und `PRODUCTLINE = MACHINE`. Auf Sachposten und in `Financial Reports` ist diese Dimensionswirkung noch nicht als Screenshot-/Evidence-Nachweis abgeschlossen. `REPORTING-006` bestätigt den Zwischenstand: Die gefilterten `Sachposten (G/L Entries)` zur Rechnung sind sichtbar, aber der Data-Analysis-/Analysemodus wurde dort nicht belastbar erreicht und `PRODUCTLINE`/`CHANNEL` erscheinen nicht als sichtbare Filter- oder Spaltenlogik.
 
 ### Prüfung in Sachposten und GuV
 
@@ -4628,6 +4629,9 @@ Diese Seiten öffnest du über `Alt+Q`. Der deutsche Begriff ist führend; der e
 Kontrollfrage: Kannst du von einer GuV-Zahl über Drilldown zu den Sachposten springen und dort Datum, Konto, Betrag und Dimension erklären?
 
 ### Schritt-für-Schritt: GuV nach Produktlinie und Kanal prüfen
+
+Laborhinweis:
+In `RM-DEMO` ist dieser Reportingpfad noch nicht final belegt. `REPORTING-002` bis `REPORTING-006` zeigen, dass die Dimensionen am Artikelposten vorhanden sind, aber weder die vorhandene `REVENUE` Analysis View noch der einfache `Dimensions - Detail`-Suchpfad noch der G/L-Entries-Data-Analysis-Versuch bisher eine belastbare GuV-Auswertung nach `PRODUCTLINE` und `CHANNEL` liefern. Die folgenden Schritte sind deshalb Zielbild für die deutsche Endumgebung beziehungsweise für einen freigegebenen Analysis-View-Fit.
 
 1. Öffne `Alt+Q` und suche `Finanzberichte (Financial Reports)`.
 2. Öffne den Bericht `RM-GUV-MONAT`.
