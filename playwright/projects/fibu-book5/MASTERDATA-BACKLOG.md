@@ -46,11 +46,11 @@ Deutsche `19 %` USt, deutscher Kontenplan, deutsche Steuerreports und finale deu
 | Standarddimension Artikel | 10, 11, 13, 25 | `RM-M100 -> PRODUCTLINE=MACHINE` | gesetzt; in Verkaufszeile und Artikelposten nachgewiesen | ja | ja, `masterdata-007`, O2C `050/089` | `done-labor` | P0 | Sachposten/Financial-Reports-Wirkung read-only pruefen. |
 | Debitor O2C | 7, 11, 19, 22 | `D10000 Mueller Maschinenbau GmbH`, EUR, Inland-B2B | existiert; EUR passt; Tax bleibt CRONUS-USA-Labor | ja, `customers.json`, `sales/uat-o2c-001.json` | ja, `masterdata-005`, O2C | `partial` | P0 | Deutsche VAT-Business-Logik nicht als erledigt markieren. |
 | Weitere Debitoren | 7, 17, 18, 22 | `D11000`, `D20000`, `D30000`, `D90000` | nur Buch-/Testdatenmodell | ja | nein | `planned-only` | P3 | Erst fuer Shop, EU, Export oder IC als eigener Block. |
-| Kreditor P2P | 7, 12, 19, 20 | `K10000 Stahlwerk Ruhr GmbH` | Testdaten vorhanden, kein RM-DEMO-Nachweis | ja, `vendors.json`, `process-cases.json` | nein | `planned-only` | P0 | Naechster neuer Prozessblock: Kreditoranlage und Einkaufs-Posting-Fit pruefen. |
+| Kreditor P2P | 7, 12, 19, 20 | `K10000 Stahlwerk Ruhr GmbH` | existiert in `RM-DEMO`; Vendor Template angewendet; Entwurf laeuft mit `USD` als CRONUS-Laborgrenze | ja, `vendors.json`, `purchase/uat-p2p-001.json`, `process-cases.json` | ja, `p2p-001` | `partial` | P0 | Im naechsten Lauf Preview Posting pruefen; deutscher EUR-/VAT-Fit bleibt offen. |
 | Weitere Kreditoren | 7, 12, 17, 18 | `K11000`, `K20000`, `K30000`, `K40000` | geplant | ja | nein | `planned-only` | P2-P3 | Nur pro Prozessbedarf anlegen. |
 | Artikel O2C | 7, 11, 13, 23 | `RM-M100`, Preis `68.000`, Kosten `42.000`, `PCS`, `RETAIL`, `RESALE`, `FURNITURE` | existiert und gebucht im Labor | ja, `items.json`, `sales/uat-o2c-001.json` | ja, `masterdata-005/006`, O2C | `done-labor` | P0 | Deutscher Product/VAT/Inventory-Fit bleibt Finalthema. |
 | Ersatzteilartikel | 7, 13, 15, 17 | `SP-PUMP-01`, `SP-SENSOR-02`, `KIT-MAINT` | nur geplant | ja | nein | `planned-only` | P1-P2 | Erst fuer Ersatzteilverkauf, Service oder Shop aufbauen. |
-| Rohmaterial | 7, 12, 14, 23 | `RAW-STEEL`, `COMP-CTRL` | nur geplant | ja | nein | `planned-only` | P1-P2 | Vor P2P/Manufacturing Einkauf und Lagerfit pruefen. |
+| Rohmaterial | 7, 12, 14, 23 | `RAW-STEEL`, `COMP-CTRL` | `RAW-STEEL` existiert mit Kosten `2.500`, `PCS`, CRONUS-Technikfit `RETAIL`/`RESALE`/`FURNITURE`; `COMP-CTRL` bleibt geplant | ja | ja, `p2p-001` | `partial` | P1-P2 | P2P Preview Posting pruefen; danach Manufacturing-Erweiterung separat. |
 | Ressourcen | 7, 15, 16 | `RES-TECH` | nur geplant | ja, `resources-assets-projects.json` | nein | `planned-only` | P2 | Erst fuer Service/Project-Block. |
 | Anlage | 7, 21 | `FA-CNC-01` | nur geplant | ja | nein | `planned-only` | P2 | Vor Anlagenprozess Nummernserie, FA Posting Group und AfA-Buch pruefen. |
 | Projekt | 7, 16 | `PROJ-5001` | nur geplant | ja | nein | `planned-only` | P2 | Erst nach Ressourcen/Kunde/Projektsetup. |
@@ -59,7 +59,7 @@ Deutsche `19 %` USt, deutscher Kontenplan, deutsche Steuerreports und finale deu
 | Weitere Lagerorte | 7, 13, 15, 16 | `MZ-EINFACH`, `VAN-SERV`, `PROJ-LAG` | geplant | ja | nein | `planned-only` | P1-P2 | Bei Inventory/Service/Project gezielt anlegen. |
 | Lagerplaetze/Bins | 13 | Bins fuer gesteuertes Warehouse | nicht aufgebaut | nein | nein | `planned-only` | P1 | Erst nach einfachem P2P/Inventory-Fit. |
 | Customer Posting Setup | 9, 11, 19 | Forderungskonto fuer `D10000` | CRONUS-Laborfit funktioniert | teilweise | ja indirekt ueber O2C-Posten | `partial` | P0 | Deutsches Forderungskonto spaeter final pruefen. |
-| Vendor Posting Setup | 9, 12, 19 | Verbindlichkeitskonto fuer `K10000` | nicht aufgebaut | nein | nein | `missing-evidence` | P0 | Vor erstem P2P-Lauf pruefen. |
+| Vendor Posting Setup | 9, 12, 19 | Verbindlichkeitskonto fuer `K10000` | Vendor Template schliesst den Entwurfsblocker; konkrete Matrix/Konto nicht final sichtbar belegt | nein | ja indirekt, `p2p-001` | `partial` | P0 | Mit Preview Posting pruefen, ob Verbindlichkeits-/Sachpostenarten entstehen. |
 | General Posting Setup | 9, 11, 12 | Erlos, Aufwand, Wareneinsatz nach Business/Product Groups | O2C laeuft im CRONUS-Fit; deutsche Gruppen offen | teilweise | ja fuer O2C-Labor | `partial` | P0 | Fuer P2P und DE-Finalfit separate Matrix pruefen. |
 | VAT/Tax Posting Setup | 9, 11, 12, 22 | deutsche `19 %` USt/Vorsteuer | CRONUS-USA Sales Tax, `0 %` im O2C-Labor | nein fuer DE-Final | ja als Delta | `missing-setup` | P0 | DE-VAT-Readiness separat planen, nicht in US-Sales-Tax erzwingen. |
 | Inventory Posting Setup | 9, 11, 13, 23 | Bestandskonto je Lagerort/Inventory Group | `FRA-ZL` + `RESALE -> 14140` gesetzt | teilweise | ja, `masterdata-008/009` | `done-labor` | P0 | Nur CRONUS-Laborfit; kein deutscher Kontenplan-Endstand. |
@@ -69,7 +69,7 @@ Deutsche `19 %` USt, deutscher Kontenplan, deutsche Steuerreports und finale deu
 | Journale | 19, 20, 21, 24 | Zahlungs-, Fibu-, Anlagen- und Abschlussjournale | nicht gestartet | nein | nein | `planned-only` | P4 | Erst nach Prozessbelegen und Readiness. |
 | Workflows/Freigaben | 12, 20, 27, 29 | Einkauf, Zahlungen, AP-Automation, Genehmiger | Buchmodell, nicht Labor | nein | nein | `not-now` | P4 | Nach Standardprozessen, nicht vor P2P-Basis. |
 | O2C Evidence Pack | 11, 19, 23, 25 | Auftrag, Preview, gebuchte Rechnung, Posten, Dimension, Reporting | Labor weit belegt; Reporting/DE-USt offen | ja | ja | `partial` | P0/P4 | Keine zweite Buchung; Reporting/G/L-Dimension read-only nachziehen. |
-| P2P Evidence Pack | 12, 19, 22 | Bestellung, Wareneingang, Eingangsrechnung, Kreditorenposten, Sachposten, Vorsteuer | nicht gestartet | ja als Prozessfall | nein | `planned-only` | P0 | P2P-Stammdaten und Setup-Fit vor erstem Lauf. |
+| P2P Evidence Pack | 12, 19, 22 | Bestellung, Wareneingang, Eingangsrechnung, Kreditorenposten, Sachposten, Vorsteuer | Readiness gestartet; Entwurfsbestellung mit Zeile moeglich und bereinigt | ja als Prozessfall | ja, `p2p-001` | `partial` | P0 | Naechster Lauf: Preview Posting ohne Buchung. |
 | Inventory/Warehouse Evidence Pack | 13, 23 | Artikelposten, Wertposten, Lagerbewertung, Bins/Picks | O2C-Artikel-/Wertposten belegt; Warehouse offen | teilweise | ja O2C | `partial` | P1 | Erst Inventory einfach, dann Warehouse gesteuert. |
 | Manufacturing/Assembly Evidence Pack | 14 | BOM/Routing/Production Order, Verbrauch, Output | nicht gestartet | teilweise | nein | `planned-only` | P2 | Nach P2P/Inventory. |
 | Service Evidence Pack | 15 | Serviceartikel, Serviceauftrag, Ressource, Ersatzteilverbrauch | nicht gestartet | teilweise | nein | `planned-only` | P2 | Nach Ersatzteil-/Ressourcenfit. |
@@ -89,8 +89,8 @@ Deutsche `19 %` USt, deutscher Kontenplan, deutsche Steuerreports und finale deu
 ## Empfohlene Build-Reihenfolge
 
 1. Aktuellen O2C-Laborbeleg nicht erneut buchen; `REPORTING-002` ist erledigt als Sichtbarkeitsbefund. Naechster Reporting-Schritt ist `Dimension Perspective`, `Dimensions - Detail` oder Analysis Views read-only.
-2. P2P-Basis vorbereiten: `K10000`, `RAW-STEEL`, Default Dimensions, Vendor Posting Group, Purchase/General Posting Setup, Tax/VAT-Laborgrenze, Nummernserie.
-3. Einfachen P2P-Lauf mit Preview zuerst, Buchung nur nach separater Readiness.
+2. P2P-Readiness ist vorbereitet: `K10000`, `RAW-STEEL`, `FRA-ZL`, Vendor Template und CRONUS-Technikfit sind belegt.
+3. Einfachen P2P-Lauf mit Preview zuerst, weiterhin ohne Buchung; Buchung nur nach separater Readiness.
 4. Inventory einfach vertiefen: `SP-PUMP-01`, `RAW-STEEL`, Wertposten, Lagerbewertung, Kostenregulierung.
 5. Warehouse separat: `FRA-ZL` als gesteuertes Lager mit Bins, Receipts, Put-aways, Picks.
 6. Danach Manufacturing/Assembly, Service, Projects.

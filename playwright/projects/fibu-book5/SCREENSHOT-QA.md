@@ -80,6 +80,13 @@ Fuer `UAT-O2C-001` fasst `playwright/projects/fibu-book5/evidence/uat-o2c-001/RE
 | `playwright/projects/fibu-book5/img/reporting-002-046-item-ledger-entry-792-dimensions.png` | guter Labor-Dimensionsnachweis | `Entry` -> `Dimensions` am Artikelposten `792` zeigt `PRODUCTLINE=MACHINE` und `CHANNEL=B2B`. | Als Laborbild fuer Dimensionsvererbung in Artikelposten geeignet; kein Financial-Reports-Endnachweis. |
 | `playwright/projects/fibu-book5/img/reporting-002-055-financial-reports-list.png` | guter Labor-Startpunkt fuer naechsten Reporting-Schritt | Financial Reports ist erreichbar; sichtbar sind u. a. `Income Statement`, `Revenue`, `Balance Sheet`, `Dimension Perspective` und `Column Definition`. `PRODUCTLINE`/`CHANNEL` sind noch nicht als Filter oder Auswertungsachse sichtbar. | Als Laborbild fuer Reporting-Navigation geeignet. Naechster Bildschritt: `Dimension Perspective` oder Dimensionsbericht gezielt oeffnen. |
 
+## `P2P-001` Screenshot Review
+
+| Screenshot | Bewertung | Befund | Entscheidung |
+|---|---|---|---|
+| `playwright/projects/fibu-book5/img/p2p-001-010-vendor-k10000.png` | brauchbares Laborbild mit Stoerer | Vendor Card zeigt `K10000`, Name, Adresse, Country/Region Code `DE`, Zahlungsbedingungen und offene Betragswerte. Unten links ist noch der Teaching Tip `About vendor details` sichtbar. | Als Readiness-Laborbild geeignet; fuer finale Buchbilder Teaching Tip schliessen und Invoicing-/Posting-Felder gezielt aufklappen. |
+| `playwright/projects/fibu-book5/img/p2p-001-020-item-raw-steel.png` | gutes Labor-Setupbild | Item Card zeigt `RAW-STEEL`, `PCS`, `Inventory`, `Unit Cost = 2.500,00`, `Costing Method = FIFO`, `Gen. Prod. Posting Group = RETAIL`, `Tax Group Code = FURNITURE`, `Inventory Posting Group = RESALE`. | Als Laborbild fuer RAW-STEEL-Readiness geeignet. Nicht als deutscher Rohmaterial-/VAT-Endstand verwenden. |
+
 ## Harte Findings aus dem Review
 
 ### QA-O2C-001 Listenbild zeigt nicht den Buchfall

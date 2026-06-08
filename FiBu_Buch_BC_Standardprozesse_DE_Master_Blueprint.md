@@ -2206,6 +2206,12 @@ flowchart LR
 
 Fall `P-001`: Einkauf `RAW-STEEL`, 10 Stück à `2.500 EUR`, netto `25.000 EUR`, Vorsteuer `4.750 EUR`.
 
+Aktueller Laborabgleich in `RM-DEMO`:
+
+Der Playwright-Lauf `UAT-P2P-001` ist aktuell als Readiness-Lauf belegt, aber noch nicht als gebuchter P2P-Prozess. `K10000` und `RAW-STEEL` existieren in der CRONUS-USA-Spielwiese. Der Kreditor brauchte ein Vendor Template, weil Business Central Einkaufsbelege nur dann belastbar erzeugen kann, wenn die Kreditoren-/Posting-Vorgaben tragen. Der Artikel `RAW-STEEL` nutzt für den Laborfit `Gen. Prod. Posting Group = RETAIL`, `Inventory Posting Group = RESALE` und `Tax Group Code = FURNITURE`; das ist ein technischer CRONUS-Fit, kein deutscher Rohmaterial-/Vorsteuer-Endstand.
+
+Eine temporäre Einkaufsbestellung mit `K10000`, `RAW-STEEL`, Menge `10`, Lagerort `FRA-ZL` und `Direct Unit Cost = 2.500` konnte angelegt und wieder gelöscht werden. Die Entwurfszeile zeigte netto `25.000`, aber im aktuellen Labor `Currency Code = USD` und `Tax Percent = 0`. Deshalb darf dieser Stand nur beweisen: Stammdaten und Einkaufszeile sind bereit für den nächsten Preview-Posting-Lauf ohne Buchung. Er beweist noch nicht `EUR`, `19 %` deutsche Vorsteuer, Wareneingang, Eingangsrechnung oder Kreditorenposten.
+
 | Buchung | Soll | Haben |
 |---|---:|---:|
 | Vorräte Rohmaterial | 25.000 | |

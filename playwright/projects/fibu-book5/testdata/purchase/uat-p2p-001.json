@@ -1,0 +1,41 @@
+{
+  "id": "UAT-P2P-001",
+  "mode": "readiness-no-posting",
+  "description": "P2P-Readiness fuer Rohmaterialeinkauf ohne Buchung",
+  "vendorNo": "K10000",
+  "vendorName": "Stahlwerk Ruhr GmbH",
+  "itemNo": "RAW-STEEL",
+  "itemDescription": "Stahltraeger",
+  "quantity": 10,
+  "receiptQuantityForLaterProcess": 6,
+  "unitCost": 2500,
+  "netAmount": 25000,
+  "targetVatPercent": 19,
+  "targetVatAmount": 4750,
+  "targetGrossAmount": 29750,
+  "currencyCode": "EUR",
+  "locationCode": "FRA-ZL",
+  "labPostingFit": {
+    "generalProductPostingGroupCode": "RETAIL",
+    "inventoryPostingGroupCode": "RESALE",
+    "taxGroupCode": "FURNITURE",
+    "reason": "Nur CRONUS-USA-Technikfit fuer Readiness und spaetere Preview; kein deutscher Rohmaterial-/Vorsteuer-Endstand."
+  },
+  "expectedEntriesAfterFuturePosting": [
+    "Vendor Ledger Entry",
+    "G/L Entry",
+    "Item Ledger Entry",
+    "Value Entry",
+    "VAT/Tax Entry"
+  ],
+  "dimensions": {
+    "PRODUCTLINE": "MACHINE",
+    "DEPARTMENT": "PURCH",
+    "LOCATION-GROUP": "DIRECTED"
+  },
+  "currentLabBoundary": [
+    "Dieser Lauf prueft nur Readiness und erzeugt keine P2P-Buchung.",
+    "Deutsche 19-Prozent-Vorsteuer ist Zielbild, nicht CRONUS-USA-Laborbeweis.",
+    "Ein temporaerer Einkaufsbestell-Entwurf darf zur technischen Probe erzeugt und sofort geloescht werden."
+  ]
+}

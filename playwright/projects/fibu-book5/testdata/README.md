@@ -13,11 +13,12 @@ Diese Testdaten beschreiben den Lern- und Laborstand fuer `RM-DEMO`. Sie sind ke
 | `masterdata/dimensions.json` | Dimensionen und Dimensionswerte fuer O2C und spaetere Prozesse | Kernwerte belegt; Erweiterungen geplant |
 | `masterdata/customers.json` | Debitorenmodell fuer O2C, Shop, EU, Export und IC | `D10000` belegt; weitere Debitoren geplant |
 | `masterdata/vendors.json` | Kreditorenmodell fuer P2P, Dropship, Zoll, Fremdarbeit | geplant, noch keine RM-DEMO-Evidence |
-| `masterdata/items.json` | Artikel fuer Maschine, Ersatzteile, Rohmaterial und Kits | `RM-M100` belegt; weitere Artikel geplant |
+| `masterdata/items.json` | Artikel fuer Maschine, Ersatzteile, Rohmaterial und Kits | `RM-M100` belegt; `RAW-STEEL` als P2P-Readiness-Laborfit belegt |
 | `masterdata/locations.json` | Lagerorte fuer einfaches Lager, Warehouse, Servicefahrzeug und Projekt | `FRA-ZL` belegt; weitere Lagerorte geplant |
 | `masterdata/process-cases.json` | fachliche Prozessfaelle aus dem Buch | O2C praktisch belegt; andere Faelle geplant |
 | `masterdata/resources-assets-projects.json` | Ressourcen, Anlagen, Projekte und Bankkonto | geplant |
 | `sales/uat-o2c-001.json` | konkreter O2C-Testfall mit Zielwerten | Labor belegt mit Steuerabweichung |
+| `purchase/uat-p2p-001.json` | konkreter P2P-Readiness-Fall mit Zielwerten | Labor-Readiness belegt, keine Buchung |
 
 ## Konventionen
 
@@ -37,6 +38,7 @@ Diese Testdaten beschreiben den Lern- und Laborstand fuer `RM-DEMO`. Sie sind ke
 | Dimensionswerte | `MACHINE`, `B2B`, `SALES`, `DIRECTED` |
 | Debitor | `D10000 Mueller Maschinenbau GmbH`, O2C mit `EUR` |
 | Artikel | `RM-M100 Standardmaschine M100`, Preis `68.000`, Kosten `42.000` |
+| P2P-Readiness | `K10000`, `RAW-STEEL`, `FRA-ZL`, Entwurfszeile `10 x 2.500` erstellt und geloescht |
 | Lagerort | `FRA-ZL` als einfacher Lagerort |
 | Standarddimensionen | `RM-M100 -> PRODUCTLINE=MACHINE`, `D10000 -> CHANNEL=B2B` |
 | Posting-Laborfit | `FRA-ZL` + `RESALE -> Inventory Account 14140` |

@@ -19,6 +19,17 @@ Jeder relevante Fehler oder Workaround bekommt:
 
 Jeder Eintrag muss außerdem gegen die betroffene Buchstelle geprüft werden. Wenn der Workaround zeigt, dass der Buchtext zu knapp, falsch oder missverständlich ist, wird die Buchstelle im selben Arbeitsgang korrigiert oder als offene Buch-Fundstelle in `playwright/FINDINGS.md` markiert.
 
+## WK-BC-P2P-001 Kreditor ohne Template blockiert P2P-Entwurf
+
+| Feld | Wert |
+|---|---|
+| Problem | Der erste P2P-Readiness-Lauf konnte für `K10000` keinen belastbaren Purchase-Order-Entwurf erzeugen, solange die Kreditoren-/Posting-Vorgaben fehlten. |
+| Sichtbarer Beleg | `playwright/projects/fibu-book5/evidence/p2p-001/005-vendor-template-application-page-text.txt`, `playwright/projects/fibu-book5/evidence/p2p-001/P2P-READINESS.json`, `playwright/projects/fibu-book5/img/p2p-001-010-vendor-k10000.png` |
+| Ursache | Business Central braucht beim Einkauf nicht nur eine Kreditorennummer. Zahlungsbedingungen, Zahlungsart und Posting-Kontext werden aus dem Kreditor und seiner Einrichtung abgeleitet. Ein neu erzeugter Labor-Kreditor ist ohne Template fachlich noch nicht reif für Einkaufsbelege. |
+| Lösung | Auf der Vendor Card `K10000` wurde `Apply Template` genutzt und bestätigt. Danach konnte der Test den Kreditor erneut patchen und einen temporären Purchase-Order-Entwurf mit `RAW-STEEL` anlegen und wieder löschen. |
+| Buchwirkung | Kapitel 12 wurde ergänzt: Der P2P-Fall startet nicht direkt mit der Bestellung, sondern braucht zuerst Kreditoren- und Artikel-Readiness. Ein fehlendes Posting-/Template-Setup ist kein Bedienfehler des Einkäufers. |
+| Künftige Regel | Vor P2P-Preview oder Buchung immer erst Readiness prüfen: Kreditor, Artikel, Lagerort, Postinggruppen, Kosten, Steuer-/Tax-Setup und Cleanup-Strategie. |
+
 ## WK-BC-O2C-001 Tell-Me-Suche als Screenshot, aber nicht als technische Navigation
 
 | Feld | Wert |

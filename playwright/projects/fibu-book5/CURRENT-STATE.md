@@ -183,7 +183,7 @@ Als naechstes gezielt den naechsten Lernblock waehlen, ohne erneut zu buchen:
 2. Die Postenspur nicht erneut buchen; `PS-INV103297` ist der Laborbeleg.
 3. O2C ist im CRONUS-Labor bis gebuchte Rechnung, Postenspur, Artikelposten und Artikelposten-Dimension nachgewiesen.
 4. Stammdaten- und Setup-Folgearbeit aus `MASTERDATA-BACKLOG.md` ableiten, damit neue Prozesse nicht mit fehlenden Kreditoren, Artikeln, Dimensionswerten, Posting Groups oder Tax/VAT-Annahmen starten.
-5. P1-Dimensionswerte sind vorbereitet; als naechstes P2P-Stammdaten/Setup-Fit fuer `K10000` und `RAW-STEEL` pruefen, bevor ein Einkaufsbeleg erzeugt wird.
+5. `UAT-P2P-001` Readiness ist gelaufen: `K10000`, `RAW-STEEL` und `FRA-ZL` existieren; Vendor Template wurde angewendet; `RAW-STEEL` nutzt als CRONUS-Technikfit `RETAIL`/`RESALE`/`FURNITURE`; eine temporaere Einkaufsbestellung mit Zeile `RAW-STEEL`, Menge `10`, `Direct Unit Cost = 2500` wurde angelegt und geloescht.
 6. `REPORTING-002` hat Financial Reports und O2C-Posten read-only geprueft: `PRODUCTLINE=MACHINE` und `CHANNEL=B2B` sind am Artikelposten `Entry No. 792` sichtbar, aber nicht in den aktuellen Sachposten-/Financial-Reports-Texten; Financial Reports zeigt `Dimension Perspective`, `Column Definition` und Reports `Income Statement`, `Revenue`, `Balance Sheet`.
 7. Deutsche `19 %`-USt bleibt davon getrennt offen.
 
@@ -195,7 +195,7 @@ Synchronisationsstand nach der letzten Projektwahrheits-Pruefung:
 - Finaler DE-Nachweis offen: deutsche Oberflaeche, 19-%-USt, deutsche Buchung und deutsche Postenspur.
 - Blockiert/offen: kein Inventory-Posting-Setup-Blocker mehr; direkter Artikelposten-Check ist geloest ueber `Item Ledger Entry No. = 792`; `PRODUCTLINE=MACHINE` und `CHANNEL=B2B` sind am Artikelposten nachgewiesen; Reporting-Seite ist erreichbar und zeigt Dimension-/Analyseoptionen, aber `PRODUCTLINE`/`CHANNEL` sind im aktuellen Financial-Reports-Lauf nicht sichtbar nutzbar; offen bleiben Steuer-/VAT-Fit, Sachposten-Dimensionsdialog/Dimension-Set-Nachweis, Reporting-Auswertungsnachweis und finale deutsche Nachweise.
 - Dimensionen: O2C-Kerndimensionen und Default Dimensions sind praktisch nachgewiesen; vollstaendige Buchstandard-Dimensionsmatrix ist noch nicht fertig.
-- Nicht geprueft: P2P, Zahlungen, echte Financial-Reports-Zahlenwirkung nach Dimension.
+- Nicht geprueft: P2P-Preview-Posting, P2P-Buchung/Wareneingang/Eingangsrechnung, Zahlungen, echte Financial-Reports-Zahlenwirkung nach Dimension.
 
 ## Befehle fuer neue Agents
 
