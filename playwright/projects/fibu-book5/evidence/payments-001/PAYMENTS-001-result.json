@@ -1,0 +1,71 @@
+{
+  "testId": "PAYMENTS-001",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "dataBasis": "CRONUS USA",
+  "mode": "read-only-open-entry-readiness-no-posting-no-application",
+  "sourceDocuments": {
+    "postedSalesInvoiceNo": "PS-INV103297",
+    "postedPurchaseInvoiceNo": "108219",
+    "customerNo": "D10000",
+    "vendorNo": "K10000"
+  },
+  "traces": [
+    {
+      "id": "customer-ledger-entry",
+      "pageId": 25,
+      "tableName": "Cust. Ledger Entry",
+      "filterField": "Document No.",
+      "filterValue": "PS-INV103297",
+      "pageContextVisible": true,
+      "documentNoVisible": true,
+      "accountNoVisible": true,
+      "accountNameVisible": true,
+      "amountVisible": true,
+      "remainingAmountOrOpenVisible": true,
+      "paymentOrApplyActionsVisible": true,
+      "textEvidenceFile": "010-customer-ledger-entry-ps-inv103297-page-text.txt",
+      "screenshot": "payments-001-010-customer-ledger-entry-ps-inv103297.png"
+    },
+    {
+      "id": "vendor-ledger-entry",
+      "pageId": 29,
+      "tableName": "Vendor Ledger Entry",
+      "filterField": "Document No.",
+      "filterValue": "108219",
+      "pageContextVisible": true,
+      "documentNoVisible": true,
+      "accountNoVisible": true,
+      "accountNameVisible": true,
+      "amountVisible": true,
+      "remainingAmountOrOpenVisible": true,
+      "paymentOrApplyActionsVisible": true,
+      "textEvidenceFile": "020-vendor-ledger-entry-108219-page-text.txt",
+      "screenshot": "payments-001-020-vendor-ledger-entry-108219.png"
+    }
+  ],
+  "summary": {
+    "customerLedgerEntryVisible": true,
+    "vendorLedgerEntryVisible": true,
+    "customerOpenOrRemainingVisible": true,
+    "vendorOpenOrRemainingVisible": true,
+    "paymentOrApplyActionsSeen": true,
+    "posted": false,
+    "applied": false,
+    "paymentJournalOpened": false,
+    "bankReconciliationOpened": false
+  },
+  "proves": [
+    "Die gebuchte O2C-Laborrechnung kann als Debitorenposten fuer OP-/Payment-Lernen herangezogen werden.",
+    "Die gebuchte P2P-Laborrechnung kann als Kreditorenposten fuer OP-/Payment-Lernen herangezogen werden.",
+    "Der naechste Payments-Lauf darf mit offenen Posten starten, muss aber Bank-/Journal-Readiness separat pruefen."
+  ],
+  "doesNotProve": [
+    "Keine Zahlung gebucht.",
+    "Kein Ausgleich angewendet.",
+    "Kein Payment Journal oder Cash Receipt Journal eingerichtet oder gebucht.",
+    "Keine Bankkontoabstimmung.",
+    "Kein deutscher Zahlungs-, Steuer- oder Bank-Finalnachweis."
+  ],
+  "nextStep": "PAYMENTS-002 als kontrollierter Readiness-Lauf: Bankkonto, Zahlungsjournal/Cash Receipt Journal, Zahlungsbedingungen und Apply-Entries-Pfad pruefen; erst danach eine einzelne Laborzahlung buchen oder bewusst weiter read-only bleiben."
+}

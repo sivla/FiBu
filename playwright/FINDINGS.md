@@ -38,6 +38,28 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 
 ## Aktuelle Fundstellen
 
+## FIND-BC-PAY-001 OP-Ausgleich startet bei offenen Posten, nicht beim Bankkonto
+
+| Feld | Wert |
+|---|---|
+| Status | erledigt als read-only Labor-Readiness |
+| Projekt | fibu-book5 |
+| Testfall | `PAYMENTS-001` |
+| Screenshot | `playwright/projects/fibu-book5/img/payments-001-010-customer-ledger-entry-ps-inv103297.png`, `playwright/projects/fibu-book5/img/payments-001-020-vendor-ledger-entry-108219.png` |
+| Evidence | `playwright/projects/fibu-book5/evidence/payments-001/PAYMENTS-001-result.json`, `playwright/projects/fibu-book5/evidence/payments-001/PAYMENTS-001-OPEN-ENTRY-READINESS.md` |
+| BC-Seite | Customer Ledger Entries / Vendor Ledger Entries |
+| sichtbarer Text | `PS-INV103297`, `D10000`, `108219`, `K10000`, `Remaining Amount`, `Open`, `Due Date`, `Payment Method`, `Applied Entries`, `Related G/L Entries` |
+| Elementtyp | OP-Ausgleich / Payments / offene Posten |
+| erste Hypothese | Nach O2C und P2P sind Belege nicht einfach abgeschlossen. Fuer Zahlung und Ausgleich muss zuerst geklaert werden, welcher Debitoren- oder Kreditorenposten offen ist und welcher Restbetrag ausgeglichen werden soll. |
+| Recherchequelle | praktischer Playwright-Lauf `npm run fibu:payments:open-entries`; `playwright/projects/fibu-book5/evidence/payments-001/README.md` |
+| Testergebnis | Debitorenposten zur gebuchten Verkaufsrechnung `PS-INV103297` und Kreditorenposten zur gebuchten Einkaufsrechnung `108219` sind in `RM-DEMO` sichtbar. Payment-/Apply-Aktionen sind im Kontext sichtbar, wurden aber bewusst nicht ausgefuehrt. Keine Zahlung, kein Ausgleich, kein Zahlungsjournal und keine Bankabstimmung. |
+| Entscheidung | Buch ergaenzen: Kapitel 19/20 sollen zuerst offene Posten, Restbetrag, Faelligkeit und Ausgleichslogik erklaeren. Bankkonto und Zahlungsjournal sind der naechste Readiness-Schritt, nicht schon bewiesene Wirkung. |
+| Buchstelle | Kapitel 19 Debitoren/Kreditoren und Kapitel 20 Bank/Payments |
+
+Bewertung:
+
+Das ist ein zentraler Lernpunkt fuer Anfaenger. Eine gebuchte Rechnung erzeugt einen offenen Nebenbuchposten. Erst Zahlung und Ausgleich schliessen ihn. Das Buch sollte deshalb die Postenlisten als Kontrollpunkt vor der Zahlungsbuchung zeigen: Was ist offen, fuer wen, in welcher Waehrung, mit welchem Restbetrag und welcher Faelligkeit? `PAYMENTS-001` beweist nur diesen Startpunkt. `PAYMENTS-002` muss Bank-/Journal-/Apply-Readiness pruefen, bevor eine einzelne Laborzahlung erlaubt wird.
+
 ## FIND-BC-INV-002 Item Journals sind der kontrollierte Bestandszugang
 
 | Feld | Wert |

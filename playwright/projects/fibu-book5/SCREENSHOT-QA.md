@@ -164,6 +164,13 @@ Fuer `UAT-O2C-001` fasst `playwright/projects/fibu-book5/evidence/uat-o2c-001/RE
 | `playwright/projects/fibu-book5/img/inventory-008-090-inventory-valuation-request.png` | gutes Labor-Request-Page-Bild | Request Page zeigt Stichtag, Artikelfilter `RM-M100|RAW-STEEL` und Lagerortfilter `FRA-ZL`. | Als Buchbild fuer Reportfilter geeignet; Ergebniswirkung erst mit Preview-Bild. |
 | `playwright/projects/fibu-book5/img/inventory-008-091-inventory-valuation-preview.png` | guter Labor-Zahlenbericht nach Korrektur | Vorschau zeigt nach der Laborbuchung `RM-M100 = 42.000,00`, `RAW-STEEL = 25.000,00` und `Total Inventory Value = 67.000,00`. | Als Laborbild fuer die korrigierte Lagerbewertung geeignet. Nicht als deutscher Abschluss- oder Kostenregulierungsnachweis verwenden. |
 
+## `PAYMENTS-001` Screenshot Review
+
+| Screenshot | Bewertung | Befund | Entscheidung |
+|---|---|---|---|
+| `playwright/projects/fibu-book5/img/payments-001-010-customer-ledger-entry-ps-inv103297.png` | guter Labor-Readiness-Kandidat | Customer Ledger Entries ist auf `Document No. = PS-INV103297` gefiltert und zeigt Debitor `D10000`, EUR, Faelligkeits-/Skontokontext sowie FactBox-/Related-Entries-Kontext. Restbetrag/Open-Logik ist in Seitentext/JSON belegt, liegt im aktuellen Bild aber nicht als eigene Restbetragsspalte im sichtbaren Ausschnitt. Teaching Tips werden vor dem Screenshot gezielt geschlossen. | Als Lernbild fuer den Start von Zahlungseingang/OP-Ausgleich geeignet. Nicht als Zahlungs-, Ausgleichs- oder Banknachweis verwenden. Fuer finale Buchbilder ggf. horizontal auf Restbetrag/Open-Spalten scrollen. |
+| `playwright/projects/fibu-book5/img/payments-001-020-vendor-ledger-entry-108219.png` | guter Labor-Readiness-Kandidat | Vendor Ledger Entries ist auf `Document No. = 108219` gefiltert und zeigt Kreditor `K10000`, Faelligkeits-/Skontokontext und Related G/L Entries. Restbetrag/Open-Logik ist in Seitentext/JSON belegt, liegt im aktuellen Bild aber nicht als eigene Restbetragsspalte im sichtbaren Ausschnitt. Teaching Tips werden vor dem Screenshot gezielt geschlossen. | Als Lernbild fuer den Start von Zahlungsausgang/OP-Ausgleich geeignet. Nicht als Zahlungs-, Ausgleichs- oder Banknachweis verwenden. Fuer finale Buchbilder ggf. horizontal auf Restbetrag/Open-Spalten scrollen. |
+
 ## Harte Findings aus dem Review
 
 ### QA-O2C-001 Listenbild zeigt nicht den Buchfall

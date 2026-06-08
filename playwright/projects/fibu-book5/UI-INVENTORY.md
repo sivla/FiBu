@@ -87,15 +87,23 @@ Wenn das Projekt fertig ist, kennen wir Business Central für den Buchumfang nic
 | Reporting | Financial Reports | n/a | Tell-Me Treffergruppe `Berichte und Analysen`, Berichtsliste | Einstieg in Finanzberichte fuer spaeteren Dimensionsnachweis | `REPORTING-001` | `playwright/projects/fibu-book5/img/reporting-001-010-financial-reports.png`; `evidence/reporting-001/010-financial-reports-open-result.json` | gesehen/geklickt; Filterwirkung offen | Kapitel 10/25 |
 | Reporting | Analysis Views | n/a | `Analysis by Dimensions`, `Update`, `Dimension 1 Code` bis `Dimension 4 Code`, `REVENUE` Card | Dimensionsbasierte Reporting-Sichten pruefen und klaeren, ob Buchdimensionen eingerichtet sind | `REPORTING-004` | `playwright/projects/fibu-book5/img/reporting-004-020-analysis-views-list.png`; `playwright/projects/fibu-book5/img/reporting-004-030-revenue-analysis-view-card.png`; `evidence/reporting-004/` | verstanden als Labor-Negativbefund: `REVENUE` nutzt `AREA`, `DEPARTMENT`, `CUSTOMERGROUP`, nicht `PRODUCTLINE`/`CHANNEL` | Kapitel 10/25 |
 
+## Payments / OP-Ausgleich
+
+| Bereich | Seite | Page-ID | UI-Element | Funktion | Testfall | Screenshot/Evidence | Status | Buchstelle |
+|---|---|---:|---|---|---|---|---|---|
+| Payments | Customer Ledger Entries | 25 | Filter `Document No.`, Spalten `Customer No.`, `Original Amount`, `Remaining Amount`, `Due Date`, FactBox `Applied Entries`, Aktionen `Apply Entries`/Payment-Kontext | offenen Debitorenposten zur gebuchten Verkaufsrechnung `PS-INV103297` als Startpunkt fuer Zahlungseingang und Ausgleich pruefen | `PAYMENTS-001` | `playwright/projects/fibu-book5/img/payments-001-010-customer-ledger-entry-ps-inv103297.png`; `evidence/payments-001/` | gesehen/verstanden als read-only Labor-Readiness; keine Zahlung und kein Ausgleich | Kapitel 19/20 |
+| Payments | Vendor Ledger Entries | 29 | Filter `Document No.`, Spalten `Vendor No.`, `Original Amount`, `Remaining Amount`, `Due Date`, Related G/L Entries, Aktionen `Apply Entries`/Payment-Kontext | offenen Kreditorenposten zur gebuchten Einkaufsrechnung `108219` als Startpunkt fuer Zahlungsausgang und Ausgleich pruefen | `PAYMENTS-001` | `playwright/projects/fibu-book5/img/payments-001-020-vendor-ledger-entry-108219.png`; `evidence/payments-001/` | gesehen/verstanden als read-only Labor-Readiness; keine Zahlung und kein Ausgleich | Kapitel 19/20 |
+
 ## Naechste Inventarziele
 
 | Reihenfolge | Ziel |
 |---:|---|
-| 1 | Inventory-Laborblock didaktisch abrunden: Item Journal, Journal Check, Buchungsdialog, Artikelposten, Wertposten, Sachposten und Inventory Valuation fuer Anfaenger erklaeren; keine weitere `INV008`-Buchung |
+| 1 | `PAYMENTS-002`: Bankkonto, Payment-/Cash-Receipt-Journal, Zahlungsbedingungen und Apply-Entries-Pfad pruefen; keine Zahlung buchen, bevor Readiness dokumentiert ist |
 | 2 | Reporting weiterfuehren: `Dimensions - Detail` read-only pruefen oder Analysis-View-Fit fuer `PRODUCTLINE=MACHINE` und `CHANNEL=B2B` planen |
-| 3 | G/L Entry Dimensions zu `PS-INV103297` read-only pruefen, ohne neue O2C-Buchung |
-| 4 | Steuerfit: CRONUS-USA-Probelauf weiter vom deutschen Ziel-Fall `19 %` trennen |
-| 5 | Warehouse-Block: `FRA-ZL` spaeter mit Bins/Receipts/Picks ausbauen |
+| 3 | Inventory-Laborblock didaktisch abrunden: Item Journal, Journal Check, Buchungsdialog, Artikelposten, Wertposten, Sachposten und Inventory Valuation fuer Anfaenger erklaeren; keine weitere `INV008`-Buchung |
+| 4 | G/L Entry Dimensions zu `PS-INV103297` read-only pruefen, ohne neue O2C-Buchung |
+| 5 | Steuerfit: CRONUS-USA-Probelauf weiter vom deutschen Ziel-Fall `19 %` trennen |
+| 6 | Warehouse-Block: `FRA-ZL` spaeter mit Bins/Receipts/Picks ausbauen |
 
 ## Definition of Done fuer eine Funktion
 Eine Funktion gilt erst als erledigt, wenn:

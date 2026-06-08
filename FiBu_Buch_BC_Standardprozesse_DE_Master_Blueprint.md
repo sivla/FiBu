@@ -3376,6 +3376,9 @@ Dieses Kapitel zeigt, wie Rhein-Main offene Posten ausgleicht. Nach dem Kapitel 
 
 Eine Rechnung ist offen, bis eine Zahlung mit ihr verbunden wird. Diese Verbindung heißt Ausgleich. Eine gebuchte Zahlung ohne Ausgleich ist nicht genug: Dann stehen Zahlung und Rechnung nebeneinander offen und die OP-Liste ist falsch.
 
+Laborbefund `PAYMENTS-001`:
+Im aktuellen `RM-DEMO`-Labor wurde noch keine Zahlung gebucht. Nachgewiesen ist der Startpunkt: Die gebuchte Verkaufsrechnung `PS-INV103297` erscheint in `Customer Ledger Entries` als offener Debitorenposten zu `D10000`; die gebuchte Einkaufsrechnung `108219` erscheint in `Vendor Ledger Entries` als offener Kreditorenposten zu `K10000`. Dort sieht der Anwender Restbetrag, Faelligkeit, Waehrung und Ausgleichs-/Payment-Kontext. Fuer Anfaenger ist das die wichtigste Kontrollfrage vor jedem Zahlungsjournal: Welcher Posten ist offen und welcher Betrag soll ausgeglichen werden? Zahlung, Ausgleich, Bankkonto und Bankabstimmung sind damit noch nicht bewiesen; sie folgen erst nach einem getrennten Readiness-Schritt.
+
 ### Warum braucht Rhein-Main diesen Prozess?
 
 Rhein-Main braucht verlässliche offene Posten für Mahnwesen, Liquidität und Monatsabschluss. Business Central zeigt nicht nur den Zahlungseingang, sondern auch die detaillierte Verbindung zwischen Rechnung und Zahlung.
