@@ -57,7 +57,7 @@ Definition: Eine Anleitung ist erst abgesichert, wenn der Klickpfad in BC funkti
 | Steuer | deutsche `19 %` USt ist in dieser CRONUS-USA-Spielwiese nicht nachgewiesen |
 | Dimension im Auftrag | `PRODUCTLINE=MACHINE` und `CHANNEL=B2B` sind im Zeilen-Dimensionsdialog nachgewiesen |
 | Standarddimensionen-UI | Page `540` zeigt `PRODUCTLINE=MACHINE` am Artikel und `CHANNEL=B2B` am Debitor als UI-Laborbild |
-| Buchungsvorschau | `Preview Posting` wurde nach `MASTERDATA-009` erneut erreicht und zeigt echte Vorschauzeilen: `G/L Entry = 4`, `Cust. Ledger Entry = 1`, `Item Ledger Entry = 1`, `Detailed Cust. Ledg. Entry = 1`, `Value Entry = 1`; maximierter Drilldown in `G/L Entry` zeigt G/L-Preview-Konten inklusive `14140`; der fruehere Inventory-Posting-Setup-Fehler ist verschwunden |
+| Buchungsvorschau und Laborbuchung | `Preview Posting` wurde nach `MASTERDATA-009` erneut erreicht und zeigt echte Vorschauzeilen: `G/L Entry = 4`, `Cust. Ledger Entry = 1`, `Item Ledger Entry = 1`, `Detailed Cust. Ledg. Entry = 1`, `Value Entry = 1`; danach wurde genau eine CRONUS-USA-Laborbuchung mit `Ship and Invoice` ausgefuehrt: Auftrag `S-ORD101068`, gebuchte Verkaufsrechnung `PS-INV103297` |
 | Inventory Posting Setup | Page `5826` zeigt die Zielkombination `FRA-ZL` + `RESALE`; `MASTERDATA-009` hat fuer den CRONUS-Laborfit `Inventory Account = 14140` gesetzt |
 | Bildablage | Projektbilder liegen unter `playwright/projects/fibu-book5/img/`; Root-`img/` ist keine Sammelstelle mehr |
 | Cleanup | Labor-Verkaufsauftraege werden nach Screenshot-Lauf entfernt |
@@ -101,7 +101,7 @@ Der aktuelle Handover-Stand enthaelt:
 Der aktuelle fachliche O2C-/Screenshot-Nachweis ist:
 
 ```text
-UAT-O2C-001 nach MASTERDATA-009: Posting Preview zeigt echte Vorschauzeilen; nicht gebucht
+UAT-O2C-001 nach MASTERDATA-009: Posting Preview zeigt echte Vorschauzeilen; genau eine CRONUS-USA-Laborbuchung erzeugt PS-INV103297 und Postenspur
 ```
 
 Letzter echter Fortschritt:
@@ -111,7 +111,8 @@ Letzter echter Fortschritt:
 - Nach `MASTERDATA-009` stoppt BC nicht mehr auf dem Inventory-Posting-Setup-Fehler, sondern oeffnet `Posting Preview`.
 - Sichtbare Vorschauzeilen: `G/L Entry = 4`, `Cust. Ledger Entry = 1`, `Item Ledger Entry = 1`, `Detailed Cust. Ledg. Entry = 1`, `Value Entry = 1`.
 - Der maximierte Read-only-Drilldown in `G/L Entry` oeffnet direkt `G/L Entries Preview` und zeigt Konten `14140`, `50110`, `40140`, `15110`; Betraege sind im Seitentext nachgewiesen, fuer ein finales Screenshot-Betragsbild muss noch horizontal gescrollt werden.
-- Der normale Buchungsdialog `Ship / Invoice / Ship and Invoice` wurde nicht geoeffnet; der Test hat nicht gebucht.
+- Der normale Buchungsdialog wurde danach bewusst fuer genau eine Laborbuchung geoeffnet; Option `Ship and Invoice`, OK einmal bestaetigt.
+- Gebuchte Verkaufsrechnung `PS-INV103297` ist entstanden. Read-only-Postenspur zeigt gebuchte Verkaufsrechnung, Debitorenposten, Sachposten und Wertposten; direkte Artikelpostenliste blieb mit Filter `Order No. = S-ORD101068` leer.
 - `MASTERDATA-008` hat die blockierende Zeile in `Inventory Posting Setup` praktisch geoeffnet: `FRA-ZL` + `RESALE` ist vorhanden, aber das `Inventory Account` ist leer.
 - Die `MASTERDATA-008`-Evidence enthaelt jetzt Company/Sandbox, Status `labor`, fachlichen Sollzustand, sichtbaren Ist-Befund, Limitationen, Buchwirkung und naechsten Schritt.
 - Die Buchstelle und `BEGINNER-LEARNING-CHECKLIST.md` erklaeren jetzt fuer Anfaenger: Was man in der leeren `Inventory Account`-Spalte sieht, warum das die Buchungsvorschau stoppt, warum kein beliebiges Konto gesetzt werden darf und woran der naechste Fix erkannt wird.
@@ -150,7 +151,7 @@ Inventory Posting Setup Page 5826 zeigte diese Kombination zunaechst mit leerem 
 Preview Posting nach diesem Setup-Fit ist erneut gelaufen: Der alte Fehler `Inventory Account is missing... FRA-ZL, RESALE` ist weg.
 Die Vorschau zeigt `G/L Entry = 4`, `Cust. Ledger Entry = 1`, `Item Ledger Entry = 1`, `Detailed Cust. Ledg. Entry = 1` und `Value Entry = 1`.
 Der Drilldown in `G/L Entry` zeigt eine G/L-Preview mit Konto `14140`; `PRODUCTLINE=MACHINE` ist dort noch nicht sichtbar.
-Der Auftrag wurde nicht gebucht; der Laborauftrag wurde nach dem Nachweis bereinigt.
+Preview-Auftrag `S-ORD101067` wurde nicht gebucht und bereinigt. Laborauftrag `S-ORD101068` wurde genau einmal mit `Ship and Invoice` gebucht; gebuchte Verkaufsrechnung `PS-INV103297` bleibt als Labor-Evidence erhalten.
 19 % deutsche USt ist noch nicht erreicht.
 ```
 
@@ -164,27 +165,27 @@ Warum USt offen ist:
 
 Folge:
 
-Der aktuelle Lauf darf nicht gebucht oder als deutscher Steuer-Endstand verkauft werden.
+Der aktuelle gebuchte Lauf darf nur als CRONUS-USA-Laborbuchung gelesen werden. Er darf nicht als deutscher Steuer-Endstand verkauft werden und nicht erneut gebucht werden.
 
 ## Naechster sinnvoller Schritt
 
 Governance, Encoding, Mac-Kompatibilitaet und Lean-Evidence sind committed und gepusht. Nicht erneut mit Aufraeumen beginnen, solange keine neue Rohmasse entsteht.
 
-Als naechstes gezielt die kontrollierte CRONUS-USA-Laborbuchung vorbereiten:
+Als naechstes gezielt die Postenspur vertiefen, ohne erneut zu buchen:
 
-1. Vor Beginn des naechsten praktischen Laufs `playwright/projects/fibu-book5/evidence/uat-o2c-001/070-lab-posting-readiness.md` lesen.
-2. Nur wenn dort `Laborbuchung ist erlaubt: ja` steht, darf genau eine kontrollierte CRONUS-USA-Laborbuchung fuer `UAT-O2C-001` erfolgen.
-3. Vor Buchung erneut Kopf, Zeile, EUR, Tax-0-%-Laborgrenze, Dimension und Preview Posting pruefen.
-4. Danach gebuchte Verkaufsrechnung und Postenspur als Labor-Evidence sichern; deutsche `19 %`-USt bleibt davon getrennt offen.
+1. `080-posting-result.json` und `082-posting-entry-trace.json` lesen.
+2. Auf `PS-INV103297` read-only ueber `Find entries...` oder gebuchte Lieferung pruefen, warum Page `38` mit `Order No. = S-ORD101068` keinen direkten Artikelposten zeigte.
+3. Dimension `PRODUCTLINE=MACHINE` in gebuchten Posten oder Reporting suchen.
+4. Deutsche `19 %`-USt bleibt davon getrennt offen.
 
 Synchronisationsstand nach der letzten Projektwahrheits-Pruefung:
 
 - Praktisch nachgewiesen: O2C-Kopf, Verkaufszeile, EUR, `PRODUCTLINE=MACHINE` im Zeilendimensionsdialog, Preview Posting mit Vorschauzeilen, G/L-Preview-Drilldown mit Konto `14140`, Inventory-Posting-Setup-Zeile `FRA-ZL` + `RESALE`, Laborfit `Inventory Account = 14140`.
 - Labor-Nachweis: alle aktuellen O2C-, MASTERDATA-008- und MASTERDATA-009-Bilder/Evidence gelten fuer CRONUS USA / gemischte UI; `MASTERDATA-009` ist ein Labor-Setup-Fit, kein deutscher Kontenplan-Endstand.
-- Labor-Buchungsfreigabe: `070-lab-posting-readiness.md` erlaubt eine einmalige kontrollierte CRONUS-USA-Laborbuchung im naechsten Lauf; in diesem Lauf wurde nicht gebucht.
-- Finaler DE-Nachweis offen: deutsche Oberflaeche, 19-%-USt, echte Buchung und Postenspur.
-- Blockiert/offen: kein Inventory-Posting-Setup-Blocker mehr; offen bleiben Steuer-/VAT-Fit, bewusster Buchungsentscheid und finale deutsche Nachweise.
-- Nicht geprueft: P2P, echte Buchung, Debitoren-/Sach-/Artikel-/Wertposten, Finanzbericht.
+- Labor-Buchungsfreigabe: `070-lab-posting-readiness.md` wurde genutzt; genau eine CRONUS-USA-Laborbuchung ist erfolgt (`S-ORD101068` -> `PS-INV103297`). Nicht erneut buchen.
+- Finaler DE-Nachweis offen: deutsche Oberflaeche, 19-%-USt, deutsche Buchung und deutsche Postenspur.
+- Blockiert/offen: kein Inventory-Posting-Setup-Blocker mehr; offen bleiben Steuer-/VAT-Fit, direkter Artikelposten-Check, Dimensionsspur nach Buchung und finale deutsche Nachweise.
+- Nicht geprueft: P2P, Zahlungen, Finanzbericht.
 
 ## Befehle fuer neue Agents
 

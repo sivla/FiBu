@@ -2,7 +2,7 @@
 
 Stand: 08.06.2026
 
-Dieser Ordner dokumentiert den CRONUS-USA-Laborlauf fuer `UAT-O2C-001` nach `MASTERDATA-009`. Der Lauf beweist einen stabilen O2C-Klickpfad bis zur nicht buchenden `Posting Preview`. Er beweist keinen deutschen 19-%-USt-Endstand und keine echte gebuchte Postenspur.
+Dieser Ordner dokumentiert den CRONUS-USA-Laborlauf fuer `UAT-O2C-001` nach `MASTERDATA-009`. Die Dateien `060`/`061` beweisen den stabilen O2C-Klickpfad bis zur nicht buchenden `Posting Preview`. Die Dateien `080`/`082` dokumentieren danach genau eine kontrollierte Laborbuchung mit gebuchter Verkaufsrechnung und Postenspur. Das beweist keinen deutschen 19-%-USt-Endstand.
 
 ## Laufkontext
 
@@ -11,7 +11,8 @@ Dieser Ordner dokumentiert den CRONUS-USA-Laborlauf fuer `UAT-O2C-001` nach `MAS
 | Sandbox | `MCP_1_20260210` |
 | Company | `RM-DEMO` |
 | Datenbasis | CRONUS USA |
-| Auftrag | `S-ORD101067` |
+| Auftrag | Preview-Lauf `S-ORD101067`; Laborbuchung `S-ORD101068` |
+| Gebuchte Verkaufsrechnung | `PS-INV103297` |
 | Debitor | `D10000` / Mueller Maschinenbau GmbH |
 | Artikel | `RM-M100` / Standardmaschine M100 |
 | Menge | `1` |
@@ -19,8 +20,8 @@ Dieser Ordner dokumentiert den CRONUS-USA-Laborlauf fuer `UAT-O2C-001` nach `MAS
 | Preis | `68.000 EUR` |
 | Dimensionen | `PRODUCTLINE=MACHINE` im Zeilendialog, `CHANNEL=B2B` im Auftragskontext |
 | Tax/VAT | Labor zeigt `Tax Group Code = FURNITURE`, `taxPercent = 0`; deutsche `19 %` USt offen |
-| Posting | keine echte Buchung; nur `Preview Posting` |
-| Cleanup | Auftrag `S-ORD101067` wurde nach dem Lauf geloescht |
+| Posting | `060`/`061`: keine echte Buchung; `080`: genau eine kontrollierte CRONUS-USA-Laborbuchung mit `Ship and Invoice` |
+| Cleanup | Preview-Auftrag `S-ORD101067` wurde geloescht; gebuchter Laborbeleg `PS-INV103297` bleibt als Postenspur erhalten |
 
 ## Zentrale Preview-Posting-Wahrheit
 
@@ -71,7 +72,12 @@ Die Preview-Uebersicht zeigt Postenarten und Anzahl. Der anschliessende Read-onl
 | `061-preview-related-entries-gl-entry-page-text.txt` | Roh-Seitentext | G/L-Preview enthaelt Konten `14140`, `50110`, `40140`, `15110`, Beschreibungen, Betragswerte und EUR-Quellbetraege. | Saubere visuelle Buchabbildung; Rohtext enthaelt BC-Shell-/Skriptartefakte. | Roh-Evidence |
 | `061-preview-related-entries-gl-entry-learning.md` | Lernzusammenfassung | Erklaert den Read-only-Drilldown: maximiert, `G/L Entry` selektiert, Detailkontext geoeffnet, Konten/Betrage/14140 sichtbar, nicht gebucht. | Deutsche Steuerlogik, gebuchte Posten. | Labor-Lernnachweis |
 | `uat-o2c-001-061-preview-related-entries-gl-entry.screenshot.json` | Screenshot-Metadaten | Screenshot `061` ist `labor`/`evidence` fuer G/L-Preview-Drilldown. | Finales deutsches Buchbild; Betragsspalten sind im Screenshot noch nicht optimal sichtbar. | Labor-Metadaten |
-| `999-cleanup.json` | Cleanup-Evidence | Auftrag `S-ORD101067` fuer `D10000` wurde per API geloescht; Status `204`. | Dass keine anderen Altauftraege existieren; gebuchte Posten, weil nicht gebucht wurde. | Cleanup-Nachweis |
+| `079-pre-posting-check-result.json` | Strukturierte Vorpruefung | Frischer Buchungsauftrag `S-ORD101068`, Kopf/Zeile, EUR, Tax-0-%-Laborgrenze, `PRODUCTLINE=MACHINE`, Preview Posting und Inventory-Fit wurden vor dem Buchen geprueft. | Deutsche 19-%-USt, produktive Buchungsfreigabe. | Labor-Vorpruefung |
+| `080-posting-result.json` | Strukturierte Buchungs-Evidence | Genau eine CRONUS-USA-Laborbuchung mit `Ship and Invoice`; gebuchte Verkaufsrechnung `PS-INV103297`; OK wurde einmal bestaetigt. | Deutschen 19-%-USt-Endstand, deutschen Kontenplan-Endstand, produktive Buchungsfreigabe. | Labor-Buchungsnachweis |
+| `080-posting-learning.md` | Lernzusammenfassung | Erklaert, warum `Ship and Invoice` fuer den O2C-Laborfall gewaehlt wurde und warum Preview vor dem Buchen Pflicht ist. | Finale deutsche Buchung. | Labor-Lernnachweis |
+| `082-posting-entry-trace.json` | Strukturierte Postenspur-Evidence | Gebuchte Verkaufsrechnung, Debitorenposten, Sachposten und Wertposten wurden read-only geoeffnet; Konto `14140` ist in Debitoren-/Sachposten-Text sichtbar. | Direkter Artikelposten-Nachweis, `PRODUCTLINE=MACHINE` in Posten, deutsche USt. | Labor-Postenspur |
+| `082-posting-entry-trace-learning.md` | Lernzusammenfassung | Erklaert fuer Anfaenger, dass BC nach `Ship and Invoice` Beleg und Posten erzeugt. | Dass alle Postenarten final vollstaendig sichtbar waeren. | Labor-Lernnachweis |
+| `999-cleanup.json` | Cleanup-Evidence | Preview-Auftrag `S-ORD101067` fuer `D10000` wurde per API geloescht; Status `204`. | Cleanup fuer die spaetere Laborbuchung `S-ORD101068`; gebuchte Belege koennen nicht wie Entwuerfe geloescht werden. | Cleanup-Nachweis |
 | `uat-o2c-001-010-suche-verkaufsauftraege.screenshot.json` | Screenshot-Metadaten | Such-/Tell-Me-Bild ist als Labor-/Navigationsevidence beschrieben. | Prozessdatensatz `D10000` oder O2C-Werte. | Labor-Metadaten |
 | `uat-o2c-001-020-liste-verkaufsauftraege.screenshot.json` | Screenshot-Metadaten | Listenbild ist Navigationsbild. | Nachweis des konkreten Laborauftrags. | Labor-Metadaten |
 
@@ -88,6 +94,14 @@ Die Preview-Uebersicht zeigt Postenarten und Anzahl. Der anschliessende Read-onl
 | `../../img/uat-o2c-001-050-dimension-productline-machine.png` | candidate | Zeilendimensionsdialog |
 | `../../img/uat-o2c-001-060-buchungsvorschau.png` | labor/evidence | Posting Preview mit Vorschauarten |
 | `../../img/uat-o2c-001-061-preview-related-entries-gl-entry.png` | labor/evidence | maximierter Read-only-Drilldown in `G/L Entries Preview` |
+| `../../img/uat-o2c-001-079-preview-before-lab-posting.png` | labor/evidence | letzte Preview-Pruefung vor der Laborbuchung |
+| `../../img/uat-o2c-001-080-posting-dialog-before-ok.png` | labor/evidence | Buchungsdialog vor bewusster Bestaetigung |
+| `../../img/uat-o2c-001-081-posting-result.png` | labor/evidence | Ergebniszustand nach der Laborbuchung |
+| `../../img/uat-o2c-001-082-posted-sales-invoice.png` | labor/evidence | gebuchte Verkaufsrechnung `PS-INV103297` |
+| `../../img/uat-o2c-001-083-customer-ledger-entries.png` | labor/evidence | Debitorenposten zur gebuchten Rechnung |
+| `../../img/uat-o2c-001-084-gl-entries.png` | labor/evidence | Sachposten zur gebuchten Rechnung |
+| `../../img/uat-o2c-001-085-item-ledger-entries.png` | rejected/labor-check | direkte Artikelpostenliste blieb mit Filter `Order No. = S-ORD101068` leer |
+| `../../img/uat-o2c-001-086-value-entries.png` | labor/evidence | Wertposten zur gebuchten Rechnung |
 
 ## Was jetzt als CRONUS-Labor-Evidence abgedeckt ist
 
@@ -98,17 +112,18 @@ Die Preview-Uebersicht zeigt Postenarten und Anzahl. Der anschliessende Read-onl
 - `Preview Posting` zeigt echte Vorschauarten und keine Inventory-Posting-Setup-Fehlermeldung mehr.
 - Maximieren rechts oben funktioniert als Screenshot-Strategie fuer die Preview; der Klick auf `G/L Entry` oeffnet direkt `G/L Entries Preview`.
 - Die G/L-Preview zeigt Sachkonten `14140`, `50110`, `40140`, `15110` und Betragswerte im Seitentext.
-- Der Test hat nicht gebucht und der erzeugte Auftrag wurde bereinigt.
+- Die kontrollierte Laborbuchung `S-ORD101068` wurde genau einmal mit `Ship and Invoice` gebucht.
+- Gebuchte Verkaufsrechnung `PS-INV103297`, Debitorenposten, Sachposten und Wertposten sind als Read-only-Postenspur nachgewiesen.
 
 ## Was offen bleibt
 
 - Deutscher 19-%-USt-Endstand und Bruttobetrag `80.920 EUR`.
 - `VAT Entry` beziehungsweise deutscher USt-Posten.
 - Visuell optimale Detailansicht der Preview-Zeilen mit Betragsspalten; Konten sind sichtbar, Betrage derzeit vor allem im Seitentext nachgewiesen.
+- Direkter Artikelposten-Nachweis: Page `38` blieb mit Filter `Order No. = S-ORD101068` leer; naechster Check ueber `Find entries...` oder gebuchte Lieferung.
 - `PRODUCTLINE=MACHINE` in Preview-Details, gebuchten Sach-/Wertposten oder Reporting.
-- Echte Buchung, Lieferung/Fakturierung und finale Postenspur.
 - Finale deutsche Screenshots in deutscher Zielumgebung.
 
 ## Naechster konkreter Schritt
 
-Als naechster kleiner Schritt bietet sich ein horizontaler Scroll innerhalb `G/L Entries Preview` an, damit die Betragsspalten auch im Screenshot sichtbar werden. Weiterhin nicht buchen.
+Als naechster kleiner Schritt bietet sich ein gezielter Read-only-Check ueber `Find entries...` auf der gebuchten Verkaufsrechnung `PS-INV103297` an, um den fehlenden direkten Artikelposten-Nachweis und moegliche Dimensionsspuren besser zu finden. Keine weitere Buchung.
