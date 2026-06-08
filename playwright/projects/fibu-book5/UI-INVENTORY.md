@@ -117,7 +117,7 @@ Wenn das Projekt fertig ist, kennen wir Business Central für den Buchumfang nic
 | 1 | `PAYMENTS-011` nur mit ausdruecklicher Freigabe als kontrollierte Laborzahlung; `PAYMENTS-EVIDENCE-PACK-SYNC.md` hat den nicht buchenden Payments-Lernpfad bereits abgerundet |
 | 2 | Reporting weiterfuehren: `REPORTING-009` hat den einfachen Sachposten-Dimensionspfad read-only ausgeschoepft; `REPORTING-008` definiert den Analysis-View-Fit fuer `PRODUCTLINE=MACHINE` und `CHANNEL=B2B` als naechsten Hebel; nur mit eigener Freigabe umsetzen, sonst keinen weiteren gleichen read-only Reportingpfad wiederholen |
 | 3 | Postenspur-Lernatlas `POSTING-TRACE-001` ist erledigt: O2C, P2P und Inventory erklaeren Beleg, Nebenbuchposten, Sachposten, Artikelposten, Wertposten und Bericht als gemeinsame Anfaengerkette; keine weitere `INV008`-Buchung |
-| 4 | G/L Entry Dimensions zu `PS-INV103297` read-only pruefen, ohne neue O2C-Buchung |
+| 4 | Sachposten-Dimensionspfad nicht erneut als naechstes Ziel einplanen: `REPORTING-009` hat ihn read-only geprueft und als Teil-/Negativbefund dokumentiert |
 | 5 | Steuerfit: CRONUS-USA-Probelauf weiter vom deutschen Ziel-Fall `19 %` trennen |
 | 6 | Warehouse-Block: `FRA-ZL` spaeter mit Bins/Receipts/Picks ausbauen |
 

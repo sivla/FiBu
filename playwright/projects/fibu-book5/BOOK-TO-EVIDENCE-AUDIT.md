@@ -8,6 +8,8 @@ Update nach O2C-Sync: Die zentralen O2C-Buchstellen wurden auf den Laborstand `S
 
 Update nach Stammdaten-Backlog: `MASTERDATA-BACKLOG.md` uebersetzt die Buchkapitel 3, 6 bis 18 und 19 bis 25 in priorisierte RM-DEMO-Testdaten- und Setup-Schritte. Der Audit bleibt die Buch-vs.-Evidence-Wahrheit; der Backlog entscheidet, welche Stammdaten/Setups als naechstes praktisch gebaut oder bewusst spaeter gehalten werden.
 
+Update nach `REPORTING-009`/`REPORTING-010`: Der einfache read-only Sachposten-Dimensionspfad ist geprueft und nur teilweise/negativ belegt. `G/L Entries` zu `PS-INV103297` sind in breiter Ansicht sichtbar und zeigen Shortcut-Spalten `Department Code`/`Customergroup Code`; `PRODUCTLINE`/`CHANNEL` und ein belastbarer `Entry` -> `Dimensions`-Dialog sind dort nicht sichtbar. Financial Reports bleiben fuer `PRODUCTLINE`/`CHANNEL` offen. Der naechste echte Reporting-Hebel ist nur mit Freigabe ein Analysis-View-Fit oder ein anderer belegbarer Standardpfad.
+
 ## Leitentscheidung
 
 `RM-DEMO` bleibt der konsolidierte Lern- und Labor-Mandant in Sandbox `MCP_1_20260210`. Die Ziel-Companies `RM-PROD`, `RM-SALES`, `RM-SERVICE`, `RM-SHARED` und `RM-AT` sind Buchziel fuer einen spaeteren Mehr-Company-/Greenfield-Block. Sie werden nicht als naechster Reflex angelegt. Zuerst werden Buchanforderungen, aktuelle Evidence und RM-DEMO-Setup synchronisiert.
@@ -49,19 +51,19 @@ Update nach Stammdaten-Backlog: `MASTERDATA-BACKLOG.md` uebersetzt die Buchkapit
 | O2C Preview Posting | 11 | echte Vorschauzeilen erreicht | ja, `060/061` | ja | ja | done-labor | Betragsspalten in G/L-Preview optional verbessern |
 | O2C Laborbuchung | 11 | genau einmal `Ship and Invoice`: `S-ORD101068` -> `PS-INV103297` | ja, `080` | ja | ja | done-labor | keine zweite Buchung ohne neuen Readiness-Grund |
 | Debitorenposten zu `PS-INV103297` | 11, 19 | sichtbar, Betrag `68.000`, Kunde `D10000` | ja, `082` Trace | ja | ja | done-labor | Zahlungs-/Ausgleichsblock spaeter |
-| Sachposten zu `PS-INV103297` | 9, 11, 24 | sichtbar, Konto `14140`, Betragstexte; Dimensionen nicht sichtbar belegt | ja | ja | ja | partial | G/L-Entry-Dimensionsdialog suchen |
+| Sachposten zu `PS-INV103297` | 9, 11, 24 | sichtbar, Konto `14140`, Betragstexte; `REPORTING-009` zeigt in breiter Ansicht `Department Code`/`Customergroup Code`, aber nicht `PRODUCTLINE`/`CHANNEL` und keinen belastbaren Dimensionsdialog | ja | ja | ja | partial-negativ | nicht erneut denselben Pfad suchen; naechster Hebel ist Reporting-/Analysis-View-Fit mit Freigabe |
 | Artikelposten zu `RM-M100` | 11, 13, 23 | direkter Filter leer; ueber Value Entry `Item Ledger Entry No. = 792` gefunden | ja | ja | ja | done-labor | Lernfall im Buch/Inventar halten |
 | Wertposten zu `PS-INV103297` | 11, 13, 23 | sichtbar, fuehrt zum Artikelposten | ja | ja | ja | done-labor | Wert-/Kostenlogik spaeter vertiefen |
 | Detailed Cust. Ledger Entry | 11, 19 | in Preview/Find Entries als Postenart sichtbar, Detailseite noch nicht einzeln belegt | teilweise | teilweise | teilweise | partial | read-only Detailnachweis spaeter |
 | USt-/VAT-Posten | 11, 22 | kein deutscher VAT Entry; CRONUS-Sales-Tax-Labor 0 % | Negativ-Evidence | ja als Delta | nein final | missing-setup | DE-Finalblock |
 | `PRODUCTLINE=MACHINE` im Verkaufsauftrag | 10, 11 | Zeilendimensionsdialog zeigt Wert | ja, `050` | ja | ja | done-labor | final DE neu fotografieren |
 | `PRODUCTLINE=MACHINE` in gebuchter Verkaufsrechnung | 10, 11 | nicht sichtbar belegt | nein | nein | nein | missing-evidence | Dimensionen auf gebuchter Rechnung suchen |
-| `PRODUCTLINE=MACHINE` in Sachposten | 10, 11, 25 | G/L Trace zeigt Wert nicht | ja als Negativbefund | ja | ja | missing-evidence | G/L Entry -> Dimensions pruefen |
+| `PRODUCTLINE=MACHINE` in Sachposten | 10, 11, 25 | `REPORTING-009` zeigt den Sachpostenkontext read-only: Shortcut-Spalten sichtbar, `PRODUCTLINE`/`CHANNEL` nicht sichtbar, `Entry` -> `Dimensions` nicht belastbar erreicht | ja als Negativ-/Teilbefund | ja | ja | partial-negativ | als Laborgrenze erklaeren; fuer Reporting naechsten freigegebenen Hebel nutzen |
 | `PRODUCTLINE=MACHINE` in Debitorenposten | 10, 19 | nicht sichtbar belegt | nein | nein | nein | missing-evidence | nur pruefen, falls fachlich sinnvoll |
 | `PRODUCTLINE=MACHINE` in Artikelposten | 10, 13, 23 | `Entry` -> `Dimensions` auf Item Ledger Entry `792` zeigt `PRODUCTLINE=MACHINE` und `CHANNEL=B2B` | ja | ja | ja | done-labor | als harter Laborbeweis nutzen |
 | `PRODUCTLINE=MACHINE` in Wertposten | 10, 23 | Wertposten sichtbar, Dimension dort nicht belegt | nein | nein | nein | missing-evidence | ggf. Value Entry Dimensions pruefen |
-| Financial Reports Seite | 10, 25 | read-only geoeffnet, Liste sichtbar | ja, `reporting-001` | ja | ja | partial | `REPORTING-002`: Report/Filter suchen |
-| Financial Reports nach `PRODUCTLINE=MACHINE` | 10, 25 | nicht belegt | nein | nein | nein | missing-evidence | `REPORTING-002/003` |
+| Financial Reports Seite | 10, 25 | read-only geoeffnet, Liste sichtbar; weitere Reportingpfade `REPORTING-002` bis `REPORTING-009` liefern keine belastbare Summenwirkung nach `PRODUCTLINE`/`CHANNEL` | ja, `reporting-001` bis `reporting-010` | ja | ja | partial-negativ | nur mit neuem Hebel fortsetzen |
+| Financial Reports nach `PRODUCTLINE=MACHINE` | 10, 25 | nicht belegt; vorhandene `REVENUE` Analysis View nutzt nicht `PRODUCTLINE`/`CHANNEL` | ja als Negativ-/Readinessbefund | ja | ja | missing-final-evidence | nur mit Freigabe: Analysis-View-Fit oder anderer Standardpfad |
 | P2P-Stammdaten/Kreditoren | 7, 12 | Testdaten teilweise vorhanden, nicht praktisch aufgebaut | nein | nein | nein | not-yet-started | nach Reporting/O2C-Drift |
 | Bank/Payments | 19, 20 | gebuchte Laborrechnung als Ausgangspunkt vorhanden, keine Zahlung | nein | nein | nein | not-yet-started | nur mit Payment-Readiness |
 | Anlagen/Projekte/Service/Manufacturing | 14-16, 21 | Buchmodell/Testdaten teilweise, keine praktische Evidence | nein | nein | nein | not-yet-started | spaeter blockweise |
@@ -73,8 +75,8 @@ Update nach Stammdaten-Backlog: `MASTERDATA-BACKLOG.md` uebersetzt die Buchkapit
 | `FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md` | `Bebilderte Klickanleitungen: aktueller Foundation-Stand` | `MASTERDATA-008` geprueft als Labor-Diagnose; Kontoentscheidung offen | Der Evidence-Stand war weiter: `MASTERDATA-009` hat `14140` gesetzt und Preview danach bestaetigt | erledigt: `MASTERDATA-009` als eigene Zeile aufgenommen; `MASTERDATA-008` historisch als Diagnose markiert | `evidence/masterdata-009/010-inventory-posting-setup-fit.json`, Screenshot `masterdata-009-*` |
 | `FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md` | gleiche Tabelle, O2C-Zeile | O2C nur Kopf/Zeile, Auftrag wird danach bereinigt | Inzwischen gab es Preview, Laborbuchung und Postenspur; nur Preview-Auftrag wurde bereinigt | erledigt: O2C-Zeile auf Preview, Laborbuchung `PS-INV103297` und offene 19-%-USt aktualisiert | `080-posting-result.json`, `082-posting-entry-trace.json`, `O2C-LAB-FINAL-SYNC.md` |
 | `FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md` | O2C-Zielmodell / Buchungsspur | deutsche USt `19 %`, Brutto `80.920`, USt-Posten als Erwartung | fachlich als Ziel korrekt, aber nicht als RM-DEMO-Laborergebnis belegt | erledigt: Tabelle `Zielbild fuer deutsche Endumgebung` vs. `aktueller CRONUS-USA-Laborstand` ergaenzt | `045-target-vs-labor-delta.*`, `080-posting-result.json`, `O2C-LAB-FINAL-SYNC.md` |
-| `FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md` | Kapitel 10/25 Reporting | Financial Reports nach `PRODUCTLINE`, `CHANNEL`, `DEPARTMENT` filtern | Buchziel ist noch nicht durch Evidence belegt; nur Seite ist geoeffnet | Abschnitt als Ziel-/naechster Nachweis markieren, bis `REPORTING-002` Filter/Summen zeigt | `reporting-001`, spaeter `reporting-002` |
-| `playwright/projects/fibu-book5/UI-INVENTORY.md` | `Naechste Inventarziele` | Preview/Postenspur fuer O2C testen | veraltet; Preview, Buchung und Postenspur sind bereits erfolgt | Naechste Inventarziele auf G/L-Dimensionsnachweis und Reporting setzen | `060`, `080`, `082`, `089` Evidence |
+| `FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md` | Kapitel 10/25 Reporting | Financial Reports nach `PRODUCTLINE`, `CHANNEL`, `DEPARTMENT` filtern | Buchziel ist noch nicht durch Evidence belegt; `REPORTING-001` bis `REPORTING-009` zeigen Einstieg, Artikelposten-Dimension und mehrere Negativpfade | Abschnitt als Ziel-/Laborgrenze markieren; naechster Nachweis nur mit freigegebenem Analysis-View-Fit oder anderem belegbaren Standardpfad | `reporting-001` bis `reporting-010` |
+| `playwright/projects/fibu-book5/UI-INVENTORY.md` | `Naechste Inventarziele` | Preview/Postenspur und G/L-Dimensionspfad als offene Ziele | veraltet; Preview, Buchung, Postenspur und `REPORTING-009`-Sachpostenprobe sind bereits erfolgt | erledigt: Naechste Inventarziele markieren den Sachposten-Dimensionspfad jetzt als abgeschlossenen Teil-/Negativbefund; Reporting-Setup nur mit Freigabe | `060`, `080`, `082`, `089`, `reporting-009`, `reporting-010` |
 | `playwright/projects/fibu-book5/BOOK-CLICK-GUIDE-COVERAGE.md` | abgedeckte Klickanleitungen | Reporting fehlt trotz `REPORTING-001` | Coverage nennt Reporting nur als naechste fehlende Anleitung | Reporting-001 als teilweise gestarteten Laborblock aufnehmen | `reporting-001` Evidence |
 
 ## O2C-Synchronisationsbefund
@@ -94,7 +96,7 @@ Update nach Stammdaten-Backlog: `MASTERDATA-BACKLOG.md` uebersetzt die Buchkapit
 | Wertposten | sichtbar | `082`, Screenshot `086` | Labor-Postenspur belegt |
 | Detailed Cust. Ledger Entries | Preview/Find Entries zeigt Postenart, Detailpruefung fehlt | `060`, `087` | fuer vollstaendige Postenspur spaeter vertiefen |
 | VAT/Sales-Tax-Posten | kein deutscher VAT-Nachweis | `045`, `080` | nicht als erledigt markieren |
-| Reporting | Financial Reports Seite offen, Filter/Summen offen | `reporting-001` | naechster Block |
+| Reporting | Financial Reports Seite offen; `REPORTING-002` bis `REPORTING-009` zeigen Artikelposten-Dimension, vorhandene Analysis-View-Grenze und negative/teilweise Sachposten-/Analysepfade; Filter/Summenwirkung bleibt offen | `reporting-001` bis `reporting-010` | nur mit neuem Hebel fortsetzen |
 
 Fazit: O2C ist als CRONUS-USA-Laborprozess fachlich weitgehend synchronisiert, aber nicht als deutscher Finalprozess. Keine weitere O2C-Buchung ist aktuell gerechtfertigt. Der Engpass ist nicht mehr der Verkaufsauftrag, sondern Dimensionswirkung in Sachposten/Reporting und deutscher Tax/VAT-Finalnachweis.
 
@@ -105,17 +107,17 @@ Fazit: O2C ist als CRONUS-USA-Laborprozess fachlich weitgehend synchronisiert, a
 | Standarddimension Artikel `RM-M100` | gefunden, `Same Code` | `masterdata-007`, Screenshot `masterdata-007-default-dimensions-item-rm-m100.png` | Stammdatenvorgabe existiert | Vorbereitung belegt, kein Prozessnachweis allein |
 | Verkaufszeile / Dimensionsdialog | gefunden | `050-line-dimension-dialog-result.json`, Screenshot `uat-o2c-001-050-dimension-productline-machine.png` | Dimension kam im konkreten Beleg an | O2C-Belegdimenion als Labor belegt |
 | Gebuchte Verkaufsrechnung | nicht belegt | keine | unklar, ob auf gebuchtem Beleg sichtbar erreichbar | Buch nicht behaupten |
-| Sachposten | Trace-Seitentext zeigt `PRODUCTLINE` nicht | `082-posting-entry-trace.json`, Screenshot `084` | G/L-Dimensionswirkung offen | naechster Read-only-Check |
+| Sachposten | `REPORTING-009` zeigt G/L Entries zu `PS-INV103297` in breiter Ansicht; `Department Code`/`Customergroup Code` sichtbar, `PRODUCTLINE`/`CHANNEL` nicht sichtbar | `082-posting-entry-trace.json`, Screenshot `084`, `reporting-009` | G/L-Sachposten-Dimensionswirkung fuer Zielwerte bleibt offen/negativ | nicht als Buchnachweis behaupten |
 | Debitorenposten | nicht belegt | keine | fuer Forderung evtl. nicht wichtigste Reportingebene | nicht behaupten |
 | Artikelposten | gefunden ueber `Entry` -> `Dimensions` auf Entry `792` | `089-item-ledger-entry-dimensions-page-text.txt`, Screenshot `089` | Dimension hat mindestens den Artikelposten erreicht | starker Laborbeweis |
 | Wertposten | nicht belegt | `086` zeigt Wertposten ohne Dimension | Kosten-/Wert-Reportingdimension offen | spaeter pruefen |
-| Financial Reports | Seite offen, `PRODUCTLINE` nicht im Seitentext | `reporting-001` | Reportingfilter/Summenwirkung offen | `REPORTING-002` |
+| Financial Reports | Seite offen; mehrere read-only Pfade ohne Ziel-Summenwirkung | `reporting-001` bis `reporting-010` | Reportingfilter/Summenwirkung offen | Freigabe fuer Analysis-View-Fit oder anderer Standardpfad |
 
 ## Prioritaeten
 
-1. `REPORTING-002` read-only: Financial Reports oeffnen, passenden Report auswaehlen, maximieren, Dimensionsfilter suchen.
+1. Reporting-Freigabeentscheidung: Analysis-View-Fit fuer `PRODUCTLINE`/`CHANNEL` nur mit ausdruecklicher Freigabe; ohne Freigabe keinen gleichen read-only Pfad wiederholen.
 2. `MASTERDATA-BACKLOG.md` als Pflichtquelle nutzen, bevor P2P, Inventory, Warehouse, Manufacturing, Service, Projects, Payments oder Reporting-Finallogik praktisch gestartet werden.
-3. `UAT-O2C-001` read-only erweitern: G/L Entry Dimensions zu `PS-INV103297` suchen, ohne neue Buchung.
+3. `UAT-O2C-001` nicht erneut buchen; Sachposten-Dimensionspfad aus `REPORTING-009` als Laborgrenze nutzen.
 4. DE-VAT-Readiness separat planen, nicht in CRONUS-USA improvisieren.
 5. Erst danach P2P-Stammdaten und Kreditorenprozess starten.
 
@@ -123,8 +125,8 @@ Fazit: O2C ist als CRONUS-USA-Laborprozess fachlich weitgehend synchronisiert, a
 
 ```text
 Arbeite auf Branch codex/playwright-bc-screenshot-foundation.
-Lies CURRENT-STATE.md, BOOK-TO-EVIDENCE-AUDIT.md, LAB-FIT-STATUS.md und evidence/reporting-001/010-financial-reports-open-result.json.
-Fuehre genau einen read-only Schritt aus: REPORTING-002 soll Financial Reports oeffnen, den fachlich passendsten Report fuer O2C/GuV auswaehlen, die Ansicht maximieren, Dimensions-/Filterfelder fuer PRODUCTLINE=MACHINE suchen und kompakte Evidence plus Screenshot sichern. Keine Datenanlage, keine Buchung.
+Lies CURRENT-STATE.md, BOOK-TO-EVIDENCE-AUDIT.md, LAB-FIT-STATUS.md und evidence/reporting-008/REPORTING-008-ANALYSIS-VIEW-FIT-READINESS.md.
+Wenn eine ausdrueckliche Freigabe vorliegt, fuehre einen idempotenten Analysis-View-Laborfit fuer PRODUCTLINE/CHANNEL durch und pruefe danach Analysis by Dimensions/Financial Reports. Ohne Freigabe keinen weiteren gleichen read-only Reportingpfad wiederholen; stattdessen Buch-/Evidence-Sync oder einen anderen freigegebenen Block bearbeiten.
 ```
 
 ## Grenzen

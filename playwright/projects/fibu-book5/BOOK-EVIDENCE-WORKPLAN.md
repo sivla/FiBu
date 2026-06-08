@@ -21,8 +21,8 @@ Dieser Arbeitsplan gleicht das Buch `FiBu_Buch_BC_Standardprozesse_DE_Master_Blu
 | Foundation / Stammdaten | Spielwiese, Company, Dimensionen, Lagerort, Debitor, Artikel vorbereiten | `FOUNDATION-*`, `MASTERDATA-001` bis `MASTERDATA-007` | Labor belegt | Behalten; bei deutscher Umgebung neu fotografieren. |
 | Inventory Posting Setup | Lagerbuchungsmatrix fuer `FRA-ZL` + `RESALE` pruefen und fitten | `MASTERDATA-008` Diagnose, `MASTERDATA-009` Fit `Inventory Account = 14140` | Labor belegt | Buchstelle aktualisieren, falls sie noch `Kontoentscheidung offen` oder nur Diagnose nennt. |
 | O2C `UAT-O2C-001` | Auftrag, Preview, Buchung, Postenspur, Dimensionen, 19 % USt | O2C bis Laborbuchung `PS-INV103297`, Postenspur und Artikelposten-Dimension belegt; Steuer 0 % | Labor belegt, Steuer offen | O2C als CRONUS-Labor stark nutzen; keine zweite Buchung; deutsche USt als separaten Finalblock fuehren. |
-| Reporting / Financial Reports | GuV nach `PRODUCTLINE=MACHINE`, `CHANNEL=B2B`, `DEPARTMENT=SALES` | `REPORTING-001` oeffnet Financial Reports read-only; keine Filter-/Summenwirkung | teilweise belegt | Naechster praktischer Block: Report waehlen, maximieren, Dimensionsfilter finden. |
-| Sachposten-Dimensionen | Dimensionen nach Buchung in Sachposten zeigen | Artikelposten-Dimension belegt; Sachposten-Dimensionen noch nicht sichtbar belegt | teilweise belegt | Vor Reporting zuerst oder parallel G/L-Entry-Dimensionsnachweis fuer `PS-INV103297` suchen. |
+| Reporting / Financial Reports | GuV nach `PRODUCTLINE=MACHINE`, `CHANNEL=B2B`, `DEPARTMENT=SALES` | `REPORTING-001` bis `REPORTING-009` belegen den Einstieg und mehrere Negativpfade: Financial Reports erreichbar, Artikelposten-Dimension belegt, aber keine sichtbare Financial-Reports-Summenwirkung nach `PRODUCTLINE`/`CHANNEL` | teilweise belegt | Keinen gleichen read-only Pfad wiederholen; naechster echter Hebel ist ein freigegebener Analysis-View-Fit oder ein anderer belastbarer Standardpfad. |
+| Sachposten-Dimensionen | Dimensionen nach Buchung in Sachposten zeigen | `REPORTING-009` zeigt G/L Entries zu `PS-INV103297` in breiter Ansicht mit `Department Code`/`Customergroup Code`; `PRODUCTLINE`/`CHANNEL` und `Entry` -> `Dimensions` bleiben dort nicht sichtbar | teilweise belegt, Labor-Negativbefund | Im Buch als Unterschied zwischen Shortcut-Spalten, Postendimensionen und Reportingachsen erklaeren; nicht als erledigten Sachposten-Dimensionsnachweis formulieren. |
 | Tax / VAT / 19 % | Deutsche USt `19 %`, USt-Posten, Brutto `80.920 EUR` | CRONUS-USA zeigt `FURNITURE`, `taxPercent = 0`; kein deutscher VAT-Endstand | offen | Nicht im US-Labor erzwingen; DE-Zielmandant oder explizites VAT-Setup vorbereiten. |
 | P2P / Kreditoren | Einkaufsprozess und Kreditorenpostenspur | Keine praktische Evidence | offen | Nach Reporting/Steuer-Entscheidung als erster neuer Prozessblock vorbereiten. |
 | Bank / Payments | Ausgleich, Zahlung, Bankposten | Gebuchte Laborrechnung existiert als Ausgangspunkt, Zahlung nicht getestet | offen | Spaeter aus `PS-INV103297` ableiten; keine Zahlung ohne Readiness. |
@@ -73,67 +73,63 @@ Arbeitsauftrag:
 
 ### 3. Reporting-Kapitel klingt weiter als die Evidence
 
-Das Buch verlangt Financial Reports mit `PRODUCTLINE=MACHINE`, `CHANNEL=B2B`, `DEPARTMENT=SALES`, Erlos `68.000 EUR`, Wareneinsatz und Drilldown. Aktuelle Evidence belegt nur:
+Das Buch verlangt Financial Reports mit `PRODUCTLINE=MACHINE`, `CHANNEL=B2B`, `DEPARTMENT=SALES`, Erlos `68.000 EUR`, Wareneinsatz und Drilldown. Aktuelle Evidence belegt:
 
 - Seite `Financial Reports` ist erreichbar.
 - Financial-Reports-Liste zeigt u. a. `Balance Sheet`, `Income Statement`, `Revenue`.
-- Keine sichtbare `PRODUCTLINE`-Filterung.
-- Keine Summen- oder Drilldown-Evidence.
+- `PRODUCTLINE=MACHINE` und `CHANNEL=B2B` sind am Artikelposten `792` sichtbar.
+- `REVENUE` Analysis View nutzt `AREA`, `DEPARTMENT`, `CUSTOMERGROUP`, aber nicht `PRODUCTLINE`/`CHANNEL`.
+- `G/L Entries` zu `PS-INV103297` zeigen in breiter Ansicht `Department Code` und `Customergroup Code`, aber nicht `PRODUCTLINE`/`CHANNEL`.
+- Keine belastbare Financial-Reports-Summen- oder Drilldown-Evidence nach `PRODUCTLINE`/`CHANNEL`.
 
 Arbeitsauftrag:
 
-1. Reporting als naechsten praktischen Block fuehren.
-2. Zuerst passenden Report identifizieren: wahrscheinlich `Income Statement`, `Income Statement Detailed` oder `Revenue`.
-3. Ansicht maximieren oder breite Layoutansicht nutzen.
-4. Dimensionsfilter suchen und dokumentieren.
-5. Erst danach Buchabschnitt zu Financial Reports als praktisch belegt markieren.
+1. Reporting nicht als erledigten Buchnachweis formulieren.
+2. Die bisherigen read-only Negativpfade in der Buchlogik erklaeren.
+3. Naechsten praktischen Reporting-Schritt nur mit Freigabe fuer Analysis-View-Fit oder einen neuen belegbaren Standardpfad starten.
+4. Erst danach Buchabschnitt zu Financial Reports als praktisch nach Dimension belegt markieren.
 
 ## Priorisierter Arbeitsplan
 
-### Phase 1: Reporting vom Einstieg zum echten Nachweis bringen
+### Phase 1: Reporting-Read-only-Kette korrekt abschliessen
 
 Ziel:
 
-Financial Reports nicht nur oeffnen, sondern pruefen, ob der O2C-Laborbeleg in einer GuV-/Revenue-Auswertung nach Dimension sichtbar gemacht werden kann.
+Financial Reports, G/L Entries und vorhandene Analysepfade nicht laenger staerker darstellen als die Evidence traegt.
 
-Naechste Tests:
+Status nach `REPORTING-001` bis `REPORTING-009`:
 
-1. `REPORTING-002`: Financial Reports oeffnen, Teaching Tip gezielt schliessen oder als Lernbild dokumentieren, Fenster/Ansicht maximieren.
-2. Bericht `Income Statement`, `Income Statement Detailed` oder `Revenue` auswaehlen.
-3. `View Financial Report` oder gleichwertige Aktion oeffnen.
-4. Nach Dimension-/Filterfeldern suchen: `Dimension`, `Global Dimension 1`, `PRODUCTLINE`, `CHANNEL`, `Budget Filter`, `Analysis View`.
-5. Evidence schreiben:
-   - gewaehlter Report
-   - sichtbare Filter
-   - ob `PRODUCTLINE` direkt filterbar ist
-   - ob `PS-INV103297` / `68.000` indirekt sichtbar wird
+1. `REPORTING-001`: Financial Reports erreichbar.
+2. `REPORTING-002`: Artikelposten `792` zeigt `PRODUCTLINE=MACHINE` und `CHANNEL=B2B`.
+3. `REPORTING-003` bis `REPORTING-007`: Financial-Reports-/Analysis-/Dimensionspfade liefern keinen belastbaren Zielnachweis.
+4. `REPORTING-008`: Analysis-View-Fit als freigabepflichtiger naechster Hebel dokumentiert.
+5. `REPORTING-009`: G/L Entries zeigen nur Shortcut-Spalten, nicht die Ziel-Dimensionen.
 
 Akzeptanz:
 
-- Mindestens ein Screenshot der geoeffneten Berichtsauswertung.
-- JSON-Evidence trennt `Seite geoeffnet`, `Report geoeffnet`, `Filter gefunden`, `Summenwirkung gefunden`.
-- Wenn kein Filter sichtbar ist: Lernfall dokumentieren, welcher BC-Schritt fehlt.
+- Buch und Arbeitsplan nennen diese Kette als Labor-/Negativbefund.
+- Kein weiterer gleicher read-only Reportinglauf wird als naechster Schritt vorgeschlagen.
+- Naechster praktischer Reportinglauf braucht einen neuen Hebel.
 
-### Phase 2: Sachposten-Dimensionen fuer `PS-INV103297` suchen
+### Phase 2: Analysis-View-Fit nur mit Freigabe
 
 Ziel:
 
-Vor dem Reporting-Endnachweis verstehen, ob die Dimensionen auf den Sachposten des gebuchten O2C-Belegs sichtbar oder ueber einen Dialog erreichbar sind.
+Pruefen, ob `PRODUCTLINE` und `CHANNEL` als Reportingachsen genutzt werden koennen, ohne die bisherigen Negativpfade zu wiederholen.
 
-Naechste Tests:
+Naechster praktischer Test nur nach Freigabe:
 
-1. `UAT-O2C-001` nicht erneut buchen.
-2. Sachposten zu `PS-INV103297` read-only oeffnen.
-3. G/L-Zeilen fuer Erlos, Forderung, Bestand, Wareneinsatz identifizieren.
-4. Aktion `Entry` -> `Dimensions` oder vergleichbaren Dimensionsdialog oeffnen.
-5. Pruefen, ob `PRODUCTLINE=MACHINE` und `CHANNEL=B2B` auf G/L Entries sichtbar sind.
+1. Idempotenten Labor-Analysis-View-Fit fuer `PRODUCTLINE`/`CHANNEL` vorbereiten.
+2. Analysis View aktualisieren.
+3. `Analysis by Dimensions` oder gleichwertige Matrix-/Financial-Reports-Sicht pruefen.
+4. Keine Zahlenwirkung behaupten, bevor sie sichtbar belegt ist.
 
 Akzeptanz:
 
-- Kein neuer Verkaufsauftrag.
-- Kein Post.
-- Screenshot und Evidence fuer mindestens eine G/L Entry Dimension.
-- Wenn Dimensionen dort nicht sichtbar sind: erklaeren, ob nur die Spalten fehlen, der Dialog anders erreichbar ist oder die Dimension nicht auf Sachposten lief.
+- Eigene Freigabe liegt vor.
+- Setup-Aenderung ist als CRONUS-USA-Laborfit markiert.
+- Kein deutscher Finalnachweis wird behauptet.
+- Screenshot/Evidence zeigen entweder echte Dimensionenauswertung oder einen neuen konkreten Blocker.
 
 ### Phase 3: Buchdrift im Foundation-/O2C-Abschnitt korrigieren
 
@@ -201,21 +197,21 @@ Empfohlene Reihenfolge nach Reporting/Steuer:
 
 ## Sofort naechster sinnvoller Schritt
 
-Der naechste praktische Schritt ist `REPORTING-002`.
+Der naechste praktische Reporting-Schritt ist nicht mehr `REPORTING-002`, sondern eine Freigabeentscheidung.
 
 Begruendung:
 
-- Er baut direkt auf `REPORTING-001` auf.
-- Er nutzt die vorhandene Laborbuchung `PS-INV103297`.
-- Er erfuellt einen zentralen Buchanspruch: Dimensionen sollen nicht nur im Beleg, sondern in Auswertungen verstanden werden.
-- Er ist read-only und damit risikoarm.
+- `REPORTING-001` bis `REPORTING-009` haben die risikoarmen read-only Pfade bereits abgearbeitet.
+- `PRODUCTLINE`/`CHANNEL` sind am Artikelposten belegt, aber nicht in Sachposten/Financial Reports sichtbar.
+- Ein weiterer gleicher read-only Lauf wuerde voraussichtlich nur denselben Negativbefund wiederholen.
+- Der naechste echte Hebel ist ein freigegebener Analysis-View-Fit oder ein anderer klar begruendeter Standardpfad.
 
 Minimaler Prompt fuer den naechsten Lauf:
 
 ```text
 Arbeite auf Branch codex/playwright-bc-screenshot-foundation.
-Lies CURRENT-STATE.md, LAB-FIT-STATUS.md, BOOK-EVIDENCE-WORKPLAN.md und evidence/reporting-001/010-financial-reports-open-result.json.
-Fuehre REPORTING-002 read-only aus: Financial Reports oeffnen, passenden Report auswaehlen, Ansicht maximieren, Dimension-/Filtermoeglichkeiten fuer PRODUCTLINE=MACHINE suchen, Screenshot und kompakte Evidence sichern. Keine Buchung, keine Datenanlage.
+Lies CURRENT-STATE.md, LAB-FIT-STATUS.md, BOOK-EVIDENCE-WORKPLAN.md und evidence/reporting-008/REPORTING-008-ANALYSIS-VIEW-FIT-READINESS.md.
+Wenn eine ausdrueckliche Freigabe vorliegt, fuehre einen idempotenten Analysis-View-Laborfit fuer PRODUCTLINE/CHANNEL durch und pruefe danach Analysis by Dimensions/Financial Reports. Ohne Freigabe keinen weiteren gleichen read-only Reportingpfad wiederholen; stattdessen Buch-/Evidence-Sync oder einen anderen freigegebenen Block bearbeiten.
 ```
 
 ## Nicht jetzt tun
