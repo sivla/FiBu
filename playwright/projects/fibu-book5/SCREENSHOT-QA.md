@@ -94,6 +94,13 @@ Fuer `UAT-O2C-001` fasst `playwright/projects/fibu-book5/evidence/uat-o2c-001/RE
 | `playwright/projects/fibu-book5/img/reporting-004-020-analysis-views-list.png` | guter Labor-Startpunkt | `Analysis Views` ist erreichbar; sichtbar sind mindestens `GEN_LEDGER` und `REVENUE` sowie Dimensionsspalten `Dimension 1 Code` bis `Dimension 4 Code`. | Als Laborbild fuer den Reporting-Setup-Ort geeignet; noch kein Zahlen- oder Dimensionsergebnis. |
 | `playwright/projects/fibu-book5/img/reporting-004-030-revenue-analysis-view-card.png` | guter Labor-Negativnachweis | Die `REVENUE` Analysis View Card zeigt `AREA`, `DEPARTMENT`, `CUSTOMERGROUP`; `PRODUCTLINE` und `CHANNEL` fehlen. | Als Buch-/Lernbild geeignet, um zu erklaeren, warum eine vorhandene Revenue-Analysis-View nicht automatisch die Buchdimensionen auswertet. Kein finaler Reportingbeweis. |
 
+## `REPORTING-005` Screenshot Review
+
+| Screenshot | Bewertung | Befund | Entscheidung |
+|---|---|---|---|
+| `playwright/projects/fibu-book5/img/reporting-005-010-tell-me-dimensions-detail.png` | rejected Navigations-/Negativbild | Der Tell-Me-Versuch nach `Dimensions - Detail` zeigt keinen eindeutigen sichtbaren Treffer fuer den Zielbericht. | Nicht als Buchbild fuer Reportingwirkung verwenden. Als Evidence behalten, weil der falsche/fehlende Suchpfad fuer Anfaenger relevant ist. |
+| `playwright/projects/fibu-book5/img/reporting-005-020-dimensions-detail-request.png` | rejected Folgezustand | Der Folgezustand zeigt keinen `Dimensions - Detail`-Request-Kontext und keine `PRODUCTLINE`-/`CHANNEL`-Filter. | Nicht als Buchbild verwenden. Naechster Bildschritt braucht alternativen UI-Einstieg oder freigegebenen Analysis-View-Fit. |
+
 ## `P2P-001` Screenshot Review
 
 | Screenshot | Bewertung | Befund | Entscheidung |

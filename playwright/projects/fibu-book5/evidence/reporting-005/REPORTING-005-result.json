@@ -1,0 +1,54 @@
+{
+  "testId": "REPORTING-005",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "dataBasis": "CRONUS USA",
+  "mode": "read-only-no-posting-no-setup",
+  "sourceContext": {
+    "priorO2cInvoice": "PS-INV103297",
+    "priorItemLedgerEntry": "792",
+    "priorFindings": "REPORTING-002 zeigt PRODUCTLINE/CHANNEL am Artikelposten, REPORTING-003/004 zeigen keine Financial-Reports-/REVENUE-Auswertung nach PRODUCTLINE/CHANNEL."
+  },
+  "actions": {
+    "tellMeVisible": false,
+    "dimensionsDetailClicked": false,
+    "previewButtonVisible": false,
+    "previewClicked": false
+  },
+  "requestPage": {
+    "dimensionsDetailVisible": false,
+    "analysisViewVisible": false,
+    "revenueVisible": true,
+    "genLedgerVisible": false,
+    "productlineVisible": false,
+    "channelVisible": false,
+    "departmentVisible": false,
+    "productlineMachineVisible": false,
+    "channelB2bVisible": false,
+    "relevantButtons": [
+      "Don't show this again."
+    ],
+    "textEvidenceFile": "020-dimensions-detail-request-page-text.txt",
+    "buttonEvidenceFile": "020-dimensions-detail-request-buttons.json",
+    "screenshot": "reporting-005-020-dimensions-detail-request.png"
+  },
+  "summary": {
+    "dimensionsDetailReached": false,
+    "productlineOrChannelVisible": false,
+    "productlineMachineOrChannelB2bVisible": false,
+    "noPostingCommittedByTest": true,
+    "noSetupChangedByTest": true
+  },
+  "proves": [
+    "Ob Dimensions - Detail in RM-DEMO read-only ueber Tell-Me erreichbar ist.",
+    "Ob der Request-/Vorschaukontext PRODUCTLINE oder CHANNEL bereits sichtbar anbietet.",
+    "Ob dieser Pfad als naechster Buch-Screenshot-Kandidat fuer Reporting taugt."
+  ],
+  "doesNotProve": [
+    "Keine neue oder aktualisierte Analysis View.",
+    "Keine garantierte GuV-/Revenue-Zahlenwirkung nach PRODUCTLINE oder CHANNEL.",
+    "Kein deutscher Reporting-Finalnachweis.",
+    "Keine neue Buchung und kein deutscher 19-Prozent-USt-Nachweis."
+  ],
+  "nextStep": "Dimensions - Detail wurde ueber Tell-Me in diesem Laborlauf nicht sichtbar gefunden. Naechster Schritt: alternativen UI-Einstieg ueber Berichtssuche/Analysis by Dimensions oder Data Analysis Mode auf G/L Entries read-only pruefen."
+}
