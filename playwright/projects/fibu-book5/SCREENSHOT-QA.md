@@ -134,6 +134,13 @@ Fuer `UAT-O2C-001` fasst `playwright/projects/fibu-book5/evidence/uat-o2c-001/RE
 | `playwright/projects/fibu-book5/img/fixedassets-004-040-vendor-k30000.png` | Labor-Readiness-/Negativbild | Vendors ist erreichbar, aber `K30000` ist nicht sichtbar. | Als Nachweis fuer fehlenden Zielkreditor geeignet. Keine Einkaufsrechnung. |
 | `playwright/projects/fibu-book5/img/fixedassets-004-050-purchase-invoices-entry-path.png` | Labor-Readiness-Kandidat | Purchase Invoices ist erreichbar und zeigt `Neu`/`New from PDF`; `K30000` ist im gefilterten Kontext nicht sichtbar. | Als Einstiegspfadbild geeignet. Nicht als Anlagenzugang oder Buchung verwenden. |
 
+## `FIXEDASSETS-005` Screenshot Review
+
+| Screenshot | Bewertung | Befund | Entscheidung |
+|---|---|---|---|
+| `playwright/projects/fibu-book5/img/fixedassets-005-010-fa-posting-groups-tell-me.png` | brauchbarer Labor-Navigationsnachweis | Tell-Me zeigt `FA Posting Groups` als konkreten UI-Treffer. | Als Suchpfadbild geeignet. Noch kein Nachweis fuer `MACHINES` oder Kontenfit. |
+| `playwright/projects/fibu-book5/img/fixedassets-005-020-fa-posting-groups-result.png` | guter Labor-Pfadnachweis | Die Seite `FA Posting Groups` ist sichtbar; vorhandene CRONUS-Gruppen und Kontenspalten sind zu sehen, `MACHINES` fehlt. Aktionen `Neu` und `Liste bearbeiten` sind sichtbar. | Als Laborbild fuer Anlagenbuchungsgruppen-Pfad und Setup-Luecke geeignet. Nicht als deutscher Kontenplan- oder `MACHINES`-Fit verwenden. |
+
 ## `P2P-001` Screenshot Review
 
 | Screenshot | Bewertung | Befund | Entscheidung |

@@ -3680,6 +3680,12 @@ Eine Anlage ist ein langfristig genutztes Wirtschaftsgut. In Business Central re
 - `Anlagenposten (FA Ledger Entries)`
 - `Sachposten (G/L Entries)`
 
+### Setup-Check vor dem ersten Anlagenzugang
+
+Bevor du `FA-CNC-01` anlegst oder eine Einkaufsrechnung buchst, prüfe die Einrichtung. Im aktuellen CRONUS-USA-Labor `RM-DEMO` ist der UI-Pfad zu `FA Posting Groups` über `Alt+Q` praktisch nachgewiesen: Die Seite zeigt vorhandene CRONUS-Anlagenbuchungsgruppen und Kontenspalten wie `Acquisition Cost Account`, `Accum. Depreciation Account` und `Maintenance Expense Account`. Die Zielgruppe `MACHINES` ist dort aber noch nicht sichtbar. Das ist ein Laborbefund, kein deutscher Endstand.
+
+Für Einsteiger ist die Regel wichtig: Eine Anlagenbuchungsgruppe ist keine Beschreibung der Maschine, sondern Kontenfindung. Sie entscheidet, welche Sachkonten Business Central beim Zugang, bei Abschreibung, Abgang und Buchwert anspricht. Fehlt `MACHINES` oder sind die Konten falsch, darf der Anlagenzugang nicht gebucht werden. Vor einem Setup-Fit müssen vorhandene Gruppen und ihre Konten gelesen werden; kein Konto wird geraten.
+
 ### Schritt-für-Schritt
 
 1. Öffne `Anlagen (Fixed Assets)` und lege `FA-CNC-01` an.

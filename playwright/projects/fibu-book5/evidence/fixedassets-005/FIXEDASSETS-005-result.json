@@ -1,0 +1,76 @@
+{
+  "testId": "FIXEDASSETS-005",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "dataBasis": "CRONUS USA",
+  "mode": "read-only-ui-path-no-posting-no-setup-change",
+  "sourceContext": {
+    "priorRun": "FIXEDASSETS-004",
+    "priorFinding": "FA-CNC-01, HGB, MACHINES und K30000 fehlen; Purchase Invoices ist erreichbar; FA Posting Groups blieb Klickpfadproblem."
+  },
+  "tellMe": {
+    "candidateVisible": true,
+    "relevantButtons": [
+      "Account No.",
+      "Favorite Accounts",
+      "Nach FA Posting Groups suchen",
+      "New Intercom Transactions 0 Gnstig",
+      "New Time Sheets 0"
+    ],
+    "textEvidenceFile": "010-fa-posting-groups-tell-me-page-text.txt",
+    "buttonEvidenceFile": "010-fa-posting-groups-tell-me-buttons.json",
+    "screenshot": "fixedassets-005-010-fa-posting-groups-tell-me.png"
+  },
+  "click": {
+    "clicked": true,
+    "method": "dom-click",
+    "candidateCount": 1,
+    "candidatesEvidenceFile": "010-fa-posting-groups-tell-me-candidates.json"
+  },
+  "result": {
+    "contextVisible": true,
+    "machinesVisible": false,
+    "existingCronusGroups": [
+      "GOODWILL",
+      "PLANT",
+      "PROPERTY",
+      "VEHICLES"
+    ],
+    "newVisible": true,
+    "editVisible": true,
+    "relevantButtons": [
+      "Account No.",
+      "Accum. Depreciation Account",
+      "Acquisition Cost Account",
+      "FA Posting Groups",
+      "Favorite Accounts",
+      "Maintenance Expense Account",
+      "New Intercom Transactions 0 Gnstig",
+      "New Time Sheets 0"
+    ],
+    "textEvidenceFile": "020-fa-posting-groups-result-page-text.txt",
+    "buttonEvidenceFile": "020-fa-posting-groups-result-buttons.json",
+    "screenshot": "fixedassets-005-020-fa-posting-groups-result.png"
+  },
+  "safety": {
+    "setupChanged": false,
+    "postingGroupCreated": false,
+    "postingGroupEdited": false,
+    "posted": false,
+    "fixedAssetCreated": false,
+    "purchaseInvoiceCreated": false,
+    "depreciationCalculated": false
+  },
+  "proves": [
+    "Ob der UI-/Tell-Me-Pfad zu FA Posting Groups in RM-DEMO belastbar erreicht wird.",
+    "Ob die Zielgruppe MACHINES bereits sichtbar ist.",
+    "Ob der naechste Anlagen-Setup-Fit eine sichere UI-Ausgangsseite hat."
+  ],
+  "doesNotProve": [
+    "Keine Anlagenbuchungsgruppe MACHINES wurde eingerichtet.",
+    "Keine Konten der Anlagenbuchungsgruppe wurden fachlich validiert.",
+    "Keine Anlage FA-CNC-01, kein HGB-AfA-Buch und kein Kreditor K30000 wurden angelegt.",
+    "Keine Einkaufsrechnung, keine Aktivierung, keine AfA und kein deutscher Finalnachweis."
+  ],
+  "nextStep": "FIXEDASSETS-006: idempotenten UI-Setup-Fit fuer MACHINES vorbereiten; vorher CRONUS-Konten aus vorhandenen Gruppen lesen, kein Konto raten."
+}
