@@ -141,6 +141,12 @@ Fuer `UAT-O2C-001` fasst `playwright/projects/fibu-book5/evidence/uat-o2c-001/RE
 | `playwright/projects/fibu-book5/img/fixedassets-005-010-fa-posting-groups-tell-me.png` | brauchbarer Labor-Navigationsnachweis | Tell-Me zeigt `FA Posting Groups` als konkreten UI-Treffer. | Als Suchpfadbild geeignet. Noch kein Nachweis fuer `MACHINES` oder Kontenfit. |
 | `playwright/projects/fibu-book5/img/fixedassets-005-020-fa-posting-groups-result.png` | guter Labor-Pfadnachweis | Die Seite `FA Posting Groups` ist sichtbar; vorhandene CRONUS-Gruppen und Kontenspalten sind zu sehen, `MACHINES` fehlt. Aktionen `Neu` und `Liste bearbeiten` sind sichtbar. | Als Laborbild fuer Anlagenbuchungsgruppen-Pfad und Setup-Luecke geeignet. Nicht als deutscher Kontenplan- oder `MACHINES`-Fit verwenden. |
 
+## `FIXEDASSETS-006` Screenshot Review
+
+| Screenshot | Bewertung | Befund | Entscheidung |
+|---|---|---|---|
+| `playwright/projects/fibu-book5/img/fixedassets-006-010-fa-posting-groups-accounts.png` | guter Labor-Setup-Vorbereitungsnachweis | `FA Posting Groups` zeigt sichtbare CRONUS-Gruppen und Kontenspalten. JSON-Evidence liest `EQUIPMENT = 12210/82000`, `GOODWILL = 11300`, `PLANT = 12110/81000`, `PROPERTY = 12130/81000`, `VEHICLES = 12230/82000`. `MACHINES` fehlt weiter. | Als Buch-/Lernbild fuer Kontenfindung in Anlagenbuchungsgruppen geeignet. Nicht als deutscher HGB-Kontenplan, nicht als `MACHINES`-Fit und nicht als Anlagenbuchungsnachweis verwenden. |
+
 ## `P2P-001` Screenshot Review
 
 | Screenshot | Bewertung | Befund | Entscheidung |

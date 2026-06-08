@@ -3686,6 +3686,8 @@ Bevor du `FA-CNC-01` anlegst oder eine Einkaufsrechnung buchst, prüfe die Einri
 
 Für Einsteiger ist die Regel wichtig: Eine Anlagenbuchungsgruppe ist keine Beschreibung der Maschine, sondern Kontenfindung. Sie entscheidet, welche Sachkonten Business Central beim Zugang, bei Abschreibung, Abgang und Buchwert anspricht. Fehlt `MACHINES` oder sind die Konten falsch, darf der Anlagenzugang nicht gebucht werden. Vor einem Setup-Fit müssen vorhandene Gruppen und ihre Konten gelesen werden; kein Konto wird geraten.
 
+Laborbefund in `RM-DEMO`: `FIXEDASSETS-006` liest vorhandene CRONUS-Anlagenbuchungsgruppen read-only. Sichtbar sind unter anderem `EQUIPMENT` mit Konten `12210`/`82000`, `GOODWILL` mit `11300`, `PLANT` mit `12110`/`81000`, `PROPERTY` mit `12130`/`81000` und `VEHICLES` mit `12230`/`82000`. Diese Werte sind nur CRONUS-USA-Laborreferenz. Sie beweisen, dass BC mehrere Konten je Anlagenbuchungsgruppe erwartet; sie beweisen keinen deutschen HGB-Kontenplan und ersetzen nicht den freigegebenen Setup-Fit für `MACHINES`.
+
 ### Schritt-für-Schritt
 
 1. Öffne `Anlagen (Fixed Assets)` und lege `FA-CNC-01` an.
