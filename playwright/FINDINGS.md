@@ -67,19 +67,19 @@ Fuer Anfaenger ist das wichtig, weil Shopify nicht nur eine BC-Seite ist, sonder
 | Status | erledigt als Zielwert-Sync; praktische Anlagen-Setup-/Buchungslinie offen |
 | Projekt | fibu-book5 |
 | Testfall | `FIXEDASSETS-001` |
-| Screenshot | `playwright/projects/fibu-book5/img/fixedassets-001-010-fixed-assets-tell-me.png`, `playwright/projects/fibu-book5/img/fixedassets-001-040-fa-ledger-entries-tell-me.png`, `playwright/projects/fibu-book5/img/fixedassets-002-010-anlagen-tell-me.png`, `playwright/projects/fibu-book5/img/fixedassets-002-030-anlagenbuchungsgruppen-tell-me.png` |
+| Screenshot | `playwright/projects/fibu-book5/img/fixedassets-001-010-fixed-assets-tell-me.png`, `playwright/projects/fibu-book5/img/fixedassets-001-040-fa-ledger-entries-tell-me.png`, `playwright/projects/fibu-book5/img/fixedassets-002-010-anlagen-tell-me.png`, `playwright/projects/fibu-book5/img/fixedassets-002-030-anlagenbuchungsgruppen-tell-me.png`, `playwright/projects/fibu-book5/img/fixedassets-003-010-fixed-assets-list.png`, `playwright/projects/fibu-book5/img/fixedassets-003-020-depreciation-books.png`, `playwright/projects/fibu-book5/img/fixedassets-003-040-purchase-invoices.png`, `playwright/projects/fibu-book5/img/fixedassets-003-050-fa-ledger-entries.png` |
 | BC-Seite | Tell-Me / Seiten und Aufgaben |
-| sichtbarer Text | `Fixed Assets`, `FA Ledger Entries`; danach deutsche Suchpfade `Anlagen`, `AfA`, `Anlagenbuchungsgruppen`, `Einkaufsrechnungen`, `Anlagenposten` als Candidate |
+| sichtbarer Text | `Fixed Assets`, `FA Ledger Entries`; danach deutsche Suchpfade `Anlagen`, `AfA`, `Anlagenbuchungsgruppen`, `Einkaufsrechnungen`, `Anlagenposten` als Candidate; `FIXEDASSETS-003` oeffnet Anlagenliste, AfA-Buecher, Einkaufsrechnungen und Anlagenposten direkt |
 | Elementtyp | Tell-Me / Suchpfad / Anlagen-Readiness |
 | erste Hypothese | Das Anlagenkapitel darf nicht direkt mit Anlagenkarte, Aktivierung oder AfA starten, bevor Zielwerte und robuste Seitenpfade geklaert sind. |
 | Recherchequelle | praktischer Playwright-Lauf `npm run fibu:fixedassets:readiness` |
-| Testergebnis | `FIXEDASSETS-001` hat nur read-only Tell-Me-Evidence erzeugt. `FIXEDASSETS-002` hat deutsche/BC-nahe Suchpfade als Candidate belegt und den Betragswiderspruch nachgewiesen: Kapitel 21 nennt `120.000 EUR`, `resources-assets-projects.json` enthielt `250.000`. Da Kapitel 21 mehrfach konsistent `120.000 EUR` verwendet, wurde die Testdatendatei auf `120000` harmonisiert. Keine Anlage `FA-CNC-01`, kein AfA-Buch `HGB`, keine Anlagenbuchungsgruppe `MACHINES`, keine Einkaufs-/Aktivierungsbuchung und keine Anlagenposten wurden angelegt. |
-| Entscheidung | Zielbetrag ist harmonisiert. Vor einem UI-Setup-Fit oder Anlagenprozess braucht es jetzt robuste UI-Seitenoeffnungen fuer Anlagenkarte, AfA-Kontext, Anlagenbuchungsgruppen, Einkaufsrechnungen und Anlagenposten. |
+| Testergebnis | `FIXEDASSETS-001` hat nur read-only Tell-Me-Evidence erzeugt. `FIXEDASSETS-002` hat deutsche/BC-nahe Suchpfade als Candidate belegt und den Betragswiderspruch nachgewiesen: Kapitel 21 nennt `120.000 EUR`, `resources-assets-projects.json` enthielt `250.000`. Da Kapitel 21 mehrfach konsistent `120.000 EUR` verwendet, wurde die Testdatendatei auf `120000` harmonisiert. `FIXEDASSETS-003` oeffnet direkte Zielseiten read-only: Anlagenliste `5601`, AfA-Buecher `5611`, Einkaufsrechnungen `9308` und Anlagenposten `5604` sind labor-candidate; FA Posting Groups ueber Page-ID `5606` ist rejected, weil der sichtbare Kontext `FA Ledger Entries Preview` zeigt. Keine Anlage `FA-CNC-01`, kein AfA-Buch `HGB`, keine Anlagenbuchungsgruppe `MACHINES`, keine Einkaufs-/Aktivierungsbuchung und keine Anlagenposten fuer `FA-CNC-01` wurden angelegt. |
+| Entscheidung | Zielbetrag ist harmonisiert und mehrere Zielseiten sind erreichbar. Vor einem UI-Setup-Fit oder Anlagenprozess braucht es jetzt `FIXEDASSETS-004`: Anlagenkarte, AfA-Buch, alternativer FA-Posting-Groups-Pfad, Einkaufszugang und Postenspur-Plan getrennt vorbereiten. |
 | Buchstelle | Kapitel 21 Anlagenbuchhaltung |
 
 Bewertung:
 
-Fuer Anfaenger ist das wichtig, weil Anlagenbuchhaltung mehrere Einrichtungsebenen kombiniert: Anlagenkarte, AfA-Buch, Anlagenbuchungsgruppe, Zugangsbuchung und spaeter AfA. Ein sichtbarer Tell-Me-Treffer ist nur ein Einstieg, kein Beweis, dass der Prozess fachlich eingerichtet oder buchungsbereit ist.
+Fuer Anfaenger ist das wichtig, weil Anlagenbuchhaltung mehrere Einrichtungsebenen kombiniert: Anlagenkarte, AfA-Buch, Anlagenbuchungsgruppe, Zugangsbuchung und spaeter AfA. Ein sichtbarer Tell-Me-Treffer oder eine direkt geoeffnete Liste ist nur ein Einstieg, kein Beweis, dass der Prozess fachlich eingerichtet oder buchungsbereit ist.
 
 ## FIND-BC-TAX-001 CRONUS-USA-Sales-Tax ist kein deutscher VAT19-Nachweis
 

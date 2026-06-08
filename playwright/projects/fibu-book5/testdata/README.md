@@ -55,7 +55,7 @@ Diese Testdaten beschreiben den Lern- und Laborstand fuer `RM-DEMO`. Sie sind ke
 | Kreditoren | `K10000`, `K11000`, `K20000`, `K30000`, `K40000` |
 | Artikel | `SP-PUMP-01`, `SP-SENSOR-02`, `RAW-STEEL`, `COMP-CTRL`, `KIT-MAINT` |
 | Lagerorte | `MZ-EINFACH`, `VAN-SERV`, `PROJ-LAG` |
-| Ressourcen/Anlagen/Projekte | `RES-TECH`, `FA-CNC-01` mit Zugangsbetrag `120.000 EUR`, `PROJ-5001`; `FIXEDASSETS-002` hat nur Zielwert-/Suchpfad-Readiness belegt, keine Anlage in BC |
+| Ressourcen/Anlagen/Projekte | `RES-TECH`, `FA-CNC-01` mit Zugangsbetrag `120.000 EUR`, `PROJ-5001`; `FIXEDASSETS-002` hat Zielwert-/Suchpfad-Readiness belegt, `FIXEDASSETS-003` direkte Zielseitenkandidaten fuer Anlagenliste, AfA-Buecher, Einkaufsrechnungen und Anlagenposten; keine Anlage in BC |
 | Prozesse | Warehouse, Manufacturing, Service, Projects, Payments, Fixed Assets; P2P und Inventory sind als CRONUS-USA-Laborprozesse belegt, aber deutsche Finalnachweise bleiben offen |
 
 ## Laborgrenzen

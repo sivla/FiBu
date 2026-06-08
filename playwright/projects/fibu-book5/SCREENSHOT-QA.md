@@ -113,6 +113,16 @@ Fuer `UAT-O2C-001` fasst `playwright/projects/fibu-book5/evidence/uat-o2c-001/RE
 | `playwright/projects/fibu-book5/img/fixedassets-002-040-einkaufsrechnungen-tell-me.png` | Labor-Readiness-Kandidat | Suchbegriff `Einkaufsrechnungen` liefert den moeglichen Zugangspfad ueber Purchase Invoices. | Nur Navigationsbild. Keine Einkaufsrechnung und keine Aktivierung. |
 | `playwright/projects/fibu-book5/img/fixedassets-002-050-anlagenposten-tell-me.png` | Labor-Readiness-Kandidat | Suchbegriff `Anlagenposten` liefert den spaeteren Postennachweis-Kontext. | Nicht als Postenspur verwenden; noch keine Anlage gebucht. |
 
+## `FIXEDASSETS-003` Screenshot Review
+
+| Screenshot | Bewertung | Befund | Entscheidung |
+|---|---|---|---|
+| `playwright/projects/fibu-book5/img/fixedassets-003-010-fixed-assets-list.png` | Labor-Readiness-Kandidat | Direkte Page-ID `5601` oeffnet die Anlagenliste als Zielseitenkandidat. | Als Navigationsbild fuer Kapitel 21 geeignet. Nicht als Anlagenkarte `FA-CNC-01` oder Setupnachweis verwenden. |
+| `playwright/projects/fibu-book5/img/fixedassets-003-020-depreciation-books.png` | Labor-Readiness-Kandidat | Direkte Page-ID `5611` oeffnet AfA-/Depreciation-Books-Kontext. | Als Navigationsbild fuer AfA-Buch-Readiness geeignet. Kein Nachweis fuer `HGB`, keine AfA-Buchung. |
+| `playwright/projects/fibu-book5/img/fixedassets-003-030-fa-posting-groups.png` | rejected | Direkte Page-ID `5606` zeigt im Labor `FA Ledger Entries Preview`, nicht den erwarteten FA-Posting-Groups-Kontext. | Nicht als Buchbild verwenden. Fuer Anlagenbuchungsgruppen braucht `FIXEDASSETS-004` einen alternativen UI-/Tell-Me-Pfad. |
+| `playwright/projects/fibu-book5/img/fixedassets-003-040-purchase-invoices.png` | Labor-Readiness-Kandidat | Direkte Page-ID `9308` oeffnet Einkaufsrechnungen als moeglichen Zugangspfad. | Als Navigationsbild geeignet. Keine Einkaufsrechnung erfasst, keine Aktivierung, keine Buchung. |
+| `playwright/projects/fibu-book5/img/fixedassets-003-050-fa-ledger-entries.png` | Labor-Readiness-Kandidat mit leerer Liste | Direkte Page-ID `5604` oeffnet Anlagenposten; die Liste ist leer, weil `FA-CNC-01` noch nicht angelegt/gebucht ist. Seitentext enthaelt etwas Webshell-Rauschen. | Als Nachweispfad-Bild geeignet, aber nicht als Postenspur. Final nach Anlagenzugang/AfA neu erzeugen. |
+
 ## `P2P-001` Screenshot Review
 
 | Screenshot | Bewertung | Befund | Entscheidung |
