@@ -1,0 +1,55 @@
+{
+  "testId": "FIXEDASSETS-001",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "dataBasis": "CRONUS USA",
+  "mode": "read-only",
+  "noPostingCommittedByTest": true,
+  "noSetupChangedByTest": true,
+  "targetBookScenario": {
+    "fixedAssetNo": "FA-CNC-01",
+    "description": "CNC-Anlage",
+    "depreciationBookCode": "HGB",
+    "faPostingGroup": "MACHINES",
+    "acquisitionCostBookModel": 120000,
+    "acquisitionCostTestdata": 250000
+  },
+  "checks": [
+    {
+      "term": "Fixed Assets",
+      "hasExpectedContext": true,
+      "status": "labor-candidate",
+      "evidenceBasis": "tell-me-page-text-and-screenshot"
+    },
+    {
+      "term": "Depreciation Books",
+      "hasExpectedContext": false,
+      "status": "rejected",
+      "evidenceBasis": "tell-me-page-text-and-screenshot"
+    },
+    {
+      "term": "FA Posting Groups",
+      "hasExpectedContext": false,
+      "status": "rejected",
+      "evidenceBasis": "tell-me-page-text-and-screenshot"
+    },
+    {
+      "term": "FA Ledger Entries",
+      "hasExpectedContext": true,
+      "status": "labor-candidate",
+      "evidenceBasis": "tell-me-page-text-and-screenshot"
+    }
+  ],
+  "proves": [
+    "Der Anlagenblock wird als eigener Readiness-Schritt gestartet, ohne Anlagenstammdaten oder Buchungen zu veraendern.",
+    "Die benoetigten BC-Kontexte fuer Anlagen, AfA-Buecher, Anlagenbuchungsgruppen und Anlagenposten sind als Tell-Me-Einstiegspfade pruefbar oder liefern konkrete Rejected-Evidence.",
+    "Das Buchziel FA-CNC-01 darf noch nicht als praktisch erledigt gelten."
+  ],
+  "doesNotProve": [
+    "Keine Anlage FA-CNC-01 angelegt.",
+    "Kein AfA-Buch HGB oder MACHINES-Fit gesetzt.",
+    "Keine Einkaufsrechnung, keine Aktivierung, keine AfA und keine Anlagenposten gebucht.",
+    "Kein deutscher HGB-/Kontenplan-Endstand."
+  ],
+  "nextStep": "FIXEDASSETS-002 als UI-Read-only-Seitenoeffnung oder Setup-Fit nur nach Pruefung der Zielwerte: FA-CNC-01, AfA-Buch, FA Posting Group, Kreditor K30000 und Betrag im Buch/Testdatenmodell harmonisieren."
+}

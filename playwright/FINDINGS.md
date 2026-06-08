@@ -38,6 +38,27 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 
 ## Aktuelle Fundstellen
 
+## FIND-BC-FA-001 Anlagenkapitel braucht Zielwertabgleich vor Setup und Buchung
+
+| Feld | Wert |
+|---|---|
+| Status | getestet; Buch-/Testdatenabgleich offen |
+| Projekt | fibu-book5 |
+| Testfall | `FIXEDASSETS-001` |
+| Screenshot | `playwright/projects/fibu-book5/img/fixedassets-001-010-fixed-assets-tell-me.png`, `playwright/projects/fibu-book5/img/fixedassets-001-040-fa-ledger-entries-tell-me.png` |
+| BC-Seite | Tell-Me / Seiten und Aufgaben |
+| sichtbarer Text | `Fixed Assets`, `FA Ledger Entries`; `Depreciation Books` und `FA Posting Groups` mit englischen Suchbegriffen nicht belastbar sichtbar |
+| Elementtyp | Tell-Me / Suchpfad / Anlagen-Readiness |
+| erste Hypothese | Das Anlagenkapitel darf nicht direkt mit Anlagenkarte, Aktivierung oder AfA starten, bevor Zielwerte und robuste Seitenpfade geklaert sind. |
+| Recherchequelle | praktischer Playwright-Lauf `npm run fibu:fixedassets:readiness` |
+| Testergebnis | `FIXEDASSETS-001` hat nur read-only Tell-Me-Evidence erzeugt. Keine Anlage `FA-CNC-01`, kein AfA-Buch `HGB`, keine Anlagenbuchungsgruppe `MACHINES`, keine Einkaufs-/Aktivierungsbuchung und keine Anlagenposten wurden angelegt. Zusaetzlich widersprechen sich Buchziel und Testdaten: Kapitel 21 nennt `120.000 EUR`, `resources-assets-projects.json` nennt `250.000`. |
+| Entscheidung | Vor `FIXEDASSETS-002` Zielbetrag, Seitenpfade, Nummernserie, AfA-Buch und FA Posting Group harmonisieren; erst danach UI-Setup-Fit oder Anlagenprozess starten. |
+| Buchstelle | Kapitel 21 Anlagenbuchhaltung |
+
+Bewertung:
+
+Fuer Anfaenger ist das wichtig, weil Anlagenbuchhaltung mehrere Einrichtungsebenen kombiniert: Anlagenkarte, AfA-Buch, Anlagenbuchungsgruppe, Zugangsbuchung und spaeter AfA. Ein sichtbarer Tell-Me-Treffer ist nur ein Einstieg, kein Beweis, dass der Prozess fachlich eingerichtet oder buchungsbereit ist.
+
 ## FIND-BC-TAX-001 CRONUS-USA-Sales-Tax ist kein deutscher VAT19-Nachweis
 
 | Feld | Wert |
