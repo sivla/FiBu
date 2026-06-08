@@ -123,6 +123,17 @@ Fuer `UAT-O2C-001` fasst `playwright/projects/fibu-book5/evidence/uat-o2c-001/RE
 | `playwright/projects/fibu-book5/img/fixedassets-003-040-purchase-invoices.png` | Labor-Readiness-Kandidat | Direkte Page-ID `9308` oeffnet Einkaufsrechnungen als moeglichen Zugangspfad. | Als Navigationsbild geeignet. Keine Einkaufsrechnung erfasst, keine Aktivierung, keine Buchung. |
 | `playwright/projects/fibu-book5/img/fixedassets-003-050-fa-ledger-entries.png` | Labor-Readiness-Kandidat mit leerer Liste | Direkte Page-ID `5604` oeffnet Anlagenposten; die Liste ist leer, weil `FA-CNC-01` noch nicht angelegt/gebucht ist. Seitentext enthaelt etwas Webshell-Rauschen. | Als Nachweispfad-Bild geeignet, aber nicht als Postenspur. Final nach Anlagenzugang/AfA neu erzeugen. |
 
+## `FIXEDASSETS-004` Screenshot Review
+
+| Screenshot | Bewertung | Befund | Entscheidung |
+|---|---|---|---|
+| `playwright/projects/fibu-book5/img/fixedassets-004-010-fixed-asset-fa-cnc-01.png` | Labor-Readiness-/Negativbild | Gefilterte Anlagenliste ist erreichbar, aber `FA-CNC-01` ist nicht sichtbar. | Als Lernbild fuer fehlendes Stammdatum geeignet. Nicht als Anlagenkarte verwenden. |
+| `playwright/projects/fibu-book5/img/fixedassets-004-020-depreciation-book-hgb.png` | Labor-Readiness-/Negativbild | AfA-Buecher sind erreichbar, aber `HGB` ist nicht sichtbar. | Als Setup-Lueckenbild geeignet. Kein AfA-Nachweis. |
+| `playwright/projects/fibu-book5/img/fixedassets-004-030-fa-posting-groups-tell-me.png` | Labor-Navigationsbild | Tell-Me zeigt `FA Posting Groups` in `Seiten und Aufgaben`. | Als Suchpfad-Evidence behalten; noch kein Zielseitenbeweis. |
+| `playwright/projects/fibu-book5/img/fixedassets-004-031-fa-posting-groups-result.png` | rejected | Nach Klickversuch ist kein belastbarer FA-Posting-Groups-Kontext sichtbar; der Zustand faellt auf Role-Center-/Startseitenkontext zurueck. | Nicht als Buchbild verwenden; alternativen Klickpfad suchen. |
+| `playwright/projects/fibu-book5/img/fixedassets-004-040-vendor-k30000.png` | Labor-Readiness-/Negativbild | Vendors ist erreichbar, aber `K30000` ist nicht sichtbar. | Als Nachweis fuer fehlenden Zielkreditor geeignet. Keine Einkaufsrechnung. |
+| `playwright/projects/fibu-book5/img/fixedassets-004-050-purchase-invoices-entry-path.png` | Labor-Readiness-Kandidat | Purchase Invoices ist erreichbar und zeigt `Neu`/`New from PDF`; `K30000` ist im gefilterten Kontext nicht sichtbar. | Als Einstiegspfadbild geeignet. Nicht als Anlagenzugang oder Buchung verwenden. |
+
 ## `P2P-001` Screenshot Review
 
 | Screenshot | Bewertung | Befund | Entscheidung |

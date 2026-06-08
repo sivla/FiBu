@@ -16,7 +16,7 @@ Diese Testdaten beschreiben den Lern- und Laborstand fuer `RM-DEMO`. Sie sind ke
 | `masterdata/items.json` | Artikel fuer Maschine, Ersatzteile, Rohmaterial und Kits | `RM-M100` belegt; `RAW-STEEL` als P2P-Laborartikel mit Postenspur belegt |
 | `masterdata/locations.json` | Lagerorte fuer einfaches Lager, Warehouse, Servicefahrzeug und Projekt | `FRA-ZL` belegt; weitere Lagerorte geplant |
 | `masterdata/process-cases.json` | fachliche Prozessfaelle aus dem Buch | O2C praktisch belegt; andere Faelle geplant |
-| `masterdata/resources-assets-projects.json` | Ressourcen, Anlagen, Projekte und Bankkonto | Bankkonto `BANK-RM-01` als CRONUS-USA-Laborfit belegt; `FA-CNC-01` ist auf Buchziel `120000` harmonisiert, aber noch nicht in BC angelegt; Ressourcen/Projekte geplant |
+| `masterdata/resources-assets-projects.json` | Ressourcen, Anlagen, Projekte und Bankkonto | Bankkonto `BANK-RM-01` als CRONUS-USA-Laborfit belegt; `FA-CNC-01` ist auf Buchziel `120000` harmonisiert, aber laut `FIXEDASSETS-004` noch nicht in BC sichtbar; `HGB`, `MACHINES` und `K30000` fehlen ebenfalls als Laborzielwerte; Ressourcen/Projekte geplant |
 | `sales/uat-o2c-001.json` | konkreter O2C-Testfall mit Zielwerten | Labor belegt mit Steuerabweichung |
 | `purchase/uat-p2p-001.json` | konkreter P2P-Fall mit Zielwerten | CRONUS-USA-Laborprozess gebucht: Bestellung `106049` -> gebuchte Einkaufsrechnung `108219`; keine deutsche 19-%-Vorsteuer |
 | `inventory/rm-m100-target-stock-plan.json` | positiver `RM-M100`-Zugang fuer stabile finale Buchbilder | Draft praktisch vorbereitet in `INVENTORY-006`, Journal Check/Current line ohne Issues in `INVENTORY-007`, genau eine Laborbuchung `INV008-899959` in `INVENTORY-008` mit Postenspur und korrigierter Inventory Valuation |
@@ -55,7 +55,7 @@ Diese Testdaten beschreiben den Lern- und Laborstand fuer `RM-DEMO`. Sie sind ke
 | Kreditoren | `K10000`, `K11000`, `K20000`, `K30000`, `K40000` |
 | Artikel | `SP-PUMP-01`, `SP-SENSOR-02`, `RAW-STEEL`, `COMP-CTRL`, `KIT-MAINT` |
 | Lagerorte | `MZ-EINFACH`, `VAN-SERV`, `PROJ-LAG` |
-| Ressourcen/Anlagen/Projekte | `RES-TECH`, `FA-CNC-01` mit Zugangsbetrag `120.000 EUR`, `PROJ-5001`; `FIXEDASSETS-002` hat Zielwert-/Suchpfad-Readiness belegt, `FIXEDASSETS-003` direkte Zielseitenkandidaten fuer Anlagenliste, AfA-Buecher, Einkaufsrechnungen und Anlagenposten; keine Anlage in BC |
+| Ressourcen/Anlagen/Projekte | `RES-TECH`, `FA-CNC-01` mit Zugangsbetrag `120.000 EUR`, `PROJ-5001`; `FIXEDASSETS-002` hat Zielwert-/Suchpfad-Readiness belegt, `FIXEDASSETS-003` direkte Zielseitenkandidaten fuer Anlagenliste, AfA-Buecher, Einkaufsrechnungen und Anlagenposten, `FIXEDASSETS-004` zeigt fehlende Zielobjekte `FA-CNC-01`, `HGB`, `MACHINES`, `K30000`; keine Anlage in BC |
 | Prozesse | Warehouse, Manufacturing, Service, Projects, Payments, Fixed Assets; P2P und Inventory sind als CRONUS-USA-Laborprozesse belegt, aber deutsche Finalnachweise bleiben offen |
 
 ## Laborgrenzen

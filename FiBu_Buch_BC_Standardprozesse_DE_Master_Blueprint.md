@@ -1086,7 +1086,7 @@ Merksatz:
 | `COMP-CTRL` | Steuerungseinheit | Komponente | Fertigung | 3.200 / - |
 | `KIT-MAINT` | Wartungskit | Montageartikel | Assembly/Service | 240 / 450 |
 | `RES-TECH` | Servicetechniker Stunde | Ressource | Service/Projekt | 65 / 115 |
-| `FA-CNC-01` | CNC-Anlage | Anlage | Anlagenbuchhaltung | 250.000 |
+| `FA-CNC-01` | CNC-Anlage | Anlage | Anlagenbuchhaltung | 120.000 |
 
 ### Beispielbelege
 

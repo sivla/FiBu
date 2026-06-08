@@ -1,0 +1,125 @@
+{
+  "testId": "FIXEDASSETS-004",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "dataBasis": "CRONUS USA",
+  "mode": "read-only-setup-readiness-no-posting-no-setup-change",
+  "scenario": {
+    "fixedAssetNo": "FA-CNC-01",
+    "fixedAssetDescription": "CNC-Anlage",
+    "acquisitionCost": 120000,
+    "depreciationBookCode": "HGB",
+    "faPostingGroup": "MACHINES",
+    "vendorNo": "K30000",
+    "depreciationMethod": "Linear",
+    "usefulLifeYears": 8,
+    "acquisitionPath": "Purchase Invoice / Einkaufsrechnung",
+    "postingForbiddenInThisRun": true
+  },
+  "checks": [
+    {
+      "id": "010-fixed-asset-fa-cnc-01",
+      "pageId": 5601,
+      "contextVisible": true,
+      "targetValueVisible": false,
+      "status": "labor",
+      "searchedValue": "FA-CNC-01",
+      "screenshot": "playwright/projects/fibu-book5/img/fixedassets-004-010-fixed-asset-fa-cnc-01.png",
+      "textEvidence": "playwright/projects/fibu-book5/evidence/fixedassets-004/010-fixed-asset-fa-cnc-01-page-text.txt",
+      "relevantButtons": []
+    },
+    {
+      "id": "020-depreciation-book-hgb",
+      "pageId": 5611,
+      "contextVisible": true,
+      "targetValueVisible": false,
+      "status": "labor",
+      "searchedValue": "HGB",
+      "screenshot": "playwright/projects/fibu-book5/img/fixedassets-004-020-depreciation-book-hgb.png",
+      "textEvidence": "playwright/projects/fibu-book5/evidence/fixedassets-004/020-depreciation-book-hgb-page-text.txt",
+      "relevantButtons": []
+    },
+    {
+      "id": "030-fa-posting-groups",
+      "tellMeCandidateVisible": true,
+      "clicked": {
+        "clicked": false
+      },
+      "contextVisible": false,
+      "targetValueVisible": false,
+      "searchedValue": "MACHINES",
+      "status": "rejected",
+      "screenshot": "playwright/projects/fibu-book5/img/fixedassets-004-031-fa-posting-groups-result.png",
+      "textEvidence": "playwright/projects/fibu-book5/evidence/fixedassets-004/031-fa-posting-groups-result-page-text.txt",
+      "relevantButtons": [
+        "Favorite Accounts",
+        "New Intercom Transactions 0 Gnstig",
+        "New Time Sheets 0"
+      ]
+    },
+    {
+      "id": "040-vendor-k30000",
+      "pageId": 27,
+      "contextVisible": true,
+      "targetValueVisible": false,
+      "status": "labor",
+      "searchedValue": "K30000",
+      "screenshot": "playwright/projects/fibu-book5/img/fixedassets-004-040-vendor-k30000.png",
+      "textEvidence": "playwright/projects/fibu-book5/evidence/fixedassets-004/040-vendor-k30000-page-text.txt",
+      "relevantButtons": [
+        "0 Credit Memos",
+        "0 Kreditoren-Abonnementvertrge",
+        "0 Pstd. Credit Memos"
+      ]
+    },
+    {
+      "id": "050-purchase-invoices-entry-path",
+      "pageId": 9308,
+      "contextVisible": true,
+      "targetValueVisible": false,
+      "status": "labor",
+      "searchedValue": "K30000",
+      "screenshot": "playwright/projects/fibu-book5/img/fixedassets-004-050-purchase-invoices-entry-path.png",
+      "textEvidence": "playwright/projects/fibu-book5/evidence/fixedassets-004/050-purchase-invoices-entry-path-page-text.txt",
+      "relevantButtons": [
+        "Neu",
+        "New from PDF"
+      ]
+    }
+  ],
+  "readiness": {
+    "fixedAssetExists": false,
+    "depreciationBookExists": false,
+    "faPostingGroupPathReached": false,
+    "faPostingGroupExists": false,
+    "vendorExists": false,
+    "purchaseInvoicePathReached": true,
+    "missingTargets": [
+      "FA-CNC-01",
+      "HGB",
+      "MACHINES",
+      "K30000"
+    ],
+    "readyForSetupFit": false,
+    "readyForPosting": false
+  },
+  "safety": {
+    "posted": false,
+    "setupChanged": false,
+    "fixedAssetCreated": false,
+    "purchaseInvoiceCreated": false,
+    "depreciationCalculated": false
+  },
+  "proves": [
+    "Welche Anlagen-Zielobjekte in RM-DEMO bereits sichtbar sind oder fehlen.",
+    "Ob der alternative FA-Posting-Groups-Pfad ueber Tell-Me besser ist als die rejected Page-ID 5606.",
+    "Dass Kapitel 21 vor einer Anlagenbuchung zuerst Stammdaten, AfA-Buch, Anlagenbuchungsgruppe, Kreditor und Zugangspfad klaeren muss."
+  ],
+  "doesNotProve": [
+    "Keine Anlage FA-CNC-01 wurde angelegt.",
+    "Kein AfA-Buch HGB und keine Anlagenbuchungsgruppe MACHINES wurden eingerichtet.",
+    "Keine Einkaufsrechnung, keine Aktivierung, keine AfA und keine Anlagenposten wurden gebucht.",
+    "Kein deutscher HGB-/Kontenplan-Endstand."
+  ],
+  "nextStep": "FIXEDASSETS-005 als idempotenten UI-Setup-Fit nur vorbereiten oder ausfuehren, wenn fehlende Zielobjekte fachlich sicher angelegt werden sollen: zuerst FA-CNC-01 und K30000/Anlagenzugangsvoraussetzung, dann HGB/MACHINES-Kontenfindung, danach erst separater Buchungsfreigabe-Lauf."
+}
