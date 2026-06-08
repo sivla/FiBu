@@ -131,6 +131,12 @@ Fuer `UAT-O2C-001` fasst `playwright/projects/fibu-book5/evidence/uat-o2c-001/RE
 |---|---|---|---|
 | `playwright/projects/fibu-book5/img/inventory-006-010-target-journal-line-before-post.png` | guter Labor-Draft-Kandidat | Breite Layoutansicht zeigt `Item Journals` mit Zielzeile `INV006-*`, Posting Date `08.06.2026`, `RM-M100`, `Standardmaschine M100`, `FRA-ZL`, Menge `2` und `PCS`. Unit Amount/Amount/Unit Cost liegen weiter rechts und sind in `010-target-journal-line-controls.json` belegt. | Als Lernbild fuer den kontrollierten Journal-Draft geeignet. Nicht als Buchungs- oder Bestandsnachweis verwenden: keine Preview Posting, keine Postenspur, keine Lagerbewertungskorrektur, Cleanup danach erfolgt. |
 
+## `INVENTORY-007` Screenshot Review
+
+| Screenshot | Bewertung | Befund | Entscheidung |
+|---|---|---|---|
+| `playwright/projects/fibu-book5/img/inventory-007-010-journal-check-no-issues.png` | guter Labor-Preflight-Kandidat | Item Journals zeigt die Zielzeile `RM-M100`, `FRA-ZL`, Menge `2`; die rechte FactBox bleibt bewusst sichtbar und zeigt `Journal Check` mit `1 Lines checked`, `0 Lines with issues`, `0 Issues Total` und `No issues found`. Unit Amount/Amount/Unit Cost sind zusaetzlich in `010-journal-check-controls.json` belegt. | Als Lernbild fuer den nicht buchenden Preflight vor einer positiven Bestandsbewegung geeignet. Nicht als Buchungs-, Posten- oder Lagerbewertungsnachweis verwenden; keine deutsche Final-Evidence. |
+
 ## Harte Findings aus dem Review
 
 ### QA-O2C-001 Listenbild zeigt nicht den Buchfall

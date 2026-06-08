@@ -201,7 +201,21 @@ Jeder Eintrag muss außerdem gegen die betroffene Buchstelle geprüft werden. We
 | Loesung | Der stabile Lauf fuellt nur Posting Date, Entry Type, Document No., Item No., Location Code und Quantity. BC setzt `PCS`, Unit Amount, Amount und Unit Cost automatisch. Cleanup erfolgt ueber `Weitere Optionen anzeigen` -> `Zeile loeschen`, nicht ueber globales `Escape` oder `Ctrl+Delete`. |
 | Pruefung nach Korrektur | `npm run fibu:inventory:target-stock-draft` laeuft gruen. Evidence zeigt `targetVisible=true`, `unitCostVisible=true`, `productlineMachineVisible=true`, `posted=false`, `cleanup.cleaned=true`. |
 | Buchwirkung | Die Klickanleitung muss Journalspalten erlaeutern: Kostenwerte nicht in `Applies-to Entry` eintragen; vor Buchung Zielwerte und Dimension pruefen; erst nach stabiler Vorabkontrolle buchen. |
-| Kuenftige Regel | `Preview Posting` ist Pflicht vor jeder echten Buchung. Ein Preview-Fehler wird als Lernbild dokumentiert und erst fachlich geloest; er wird nicht durch zufaelliges Wegklicken oder direkte Buchung umgangen. |
+| Kuenftige Regel | Vor jeder echten Buchung braucht es eine dokumentierte Vorabkontrolle: bevorzugt `Preview Posting`, bei Item Journals mindestens einen belegten `Journal Check` oder einen anderen fachlich akzeptierten Preflight. Ein Fehler wird als Lernbild dokumentiert und erst fachlich geloest; er wird nicht durch zufaelliges Wegklicken oder direkte Buchung umgangen. |
+
+## WK-BC-INV-002 Journal Check braucht sichtbare FactBox und robusten Cleanup
+
+| Feld | Wert |
+|---|---|
+| Status | geloest als Tool-/Screenshot-Lernfall; keine Buchung |
+| Testfall | `INVENTORY-007` |
+| Situation | Fuer die vorbereitete Zielzeile `RM-M100 +2` in `FRA-ZL` sollte der rechte `Journal Check` als nicht buchender Preflight fotografiert werden. Anders als bei breiten Tabellenbildern darf die FactBox hier nicht eingeklappt werden, weil sie den fachlichen Nachweis enthaelt. |
+| Symptom | Ein erster Lauf zeigte zwar die Zielzeile und `Journal Check`, blieb aber im Cleanup an der Zeilenmenue-Erkennung haengen. Ein zweiter technischer Fallback mit Tastaturloeschung verliess den Journal-Kontext und landete im Role Center. |
+| Ursache | In Business Central verschiebt die sichtbare FactBox den Tabellenbereich. Das Zeilenmenue `Weitere Optionen anzeigen` ist dann nicht immer per Role-Name sichtbar. Globale Tastaturpfade sind kontextabhaengig und koennen statt der Zeile die Seite beeinflussen. |
+| Loesung | `INVENTORY-007` laesst die FactBox fuer den Screenshot sichtbar, liest die Journal-Check-Buttons strukturiert aus und nutzt fuer Cleanup zuerst sichtbare/geometrische Zeilenmenue-Auswahl. Falls ein alter Restentwurf aus einem Fehlversuch auftaucht, wird er im Pre-Cleanup geloescht und der Item-Journal-Kontext frisch geoeffnet. |
+| Pruefung nach Korrektur | `npm run fibu:inventory:journal-check` laeuft gruen. Evidence zeigt `journalCheckVisible=true`, `oneLineCheckedVisible=true`, `zeroLinesWithIssuesVisible=true`, `zeroIssuesTotalVisible=true`, `posted=false`, `cleanup.cleaned=true`. |
+| Buchwirkung | Fuer dieses Bild ist die rechte Infobox kein Stoerer, sondern der Nachweis. Die Anleitung muss erklaeren, wann FactBox einklappen sinnvoll ist und wann sie bewusst sichtbar bleiben muss. |
+| Kuenftige Regel | Tabellenbilder: FactBox einklappen, wenn sie Spalten verdraengt. Kontrollbilder: FactBox sichtbar lassen, wenn dort der fachliche Status steht. Cleanup nie nur ueber globale Tasten absichern. |
 
 ## WK-BC-O2C-010 Dimension im Auftrag ist eigener Nachweis, nicht nur Stammdatenannahme
 
