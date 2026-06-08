@@ -87,6 +87,13 @@ Fuer `UAT-O2C-001` fasst `playwright/projects/fibu-book5/evidence/uat-o2c-001/RE
 | `playwright/projects/fibu-book5/img/reporting-003-020-financial-reports-wide-layout.png` | brauchbarer Labor-Startpunkt | Financial Reports ist im breiten Viewport sichtbar; die Tabellenansicht zeigt mehr Spalten und eignet sich fuer Erklaerung von `Row Definition`, `Column Definition` und Reportingzeilen. | Als Laborbild fuer breite Layoutansicht und Reporting-Navigation geeignet; noch kein Dimensions- oder Zahlenbeweis. |
 | `playwright/projects/fibu-book5/img/reporting-003-030-dimension-perspective-result.png` | rejected Negativbild | Nach dem Versuch `Definitions -> Dimension Perspective` ist kein Dimension-Perspective-Kontext sichtbar; das Bild zeigt das Role Center. | Nicht als Buchbild verwenden. Als Evidence fuer den gescheiterten Schnellpfad behalten; naechster Bildschritt ist `Dimensions - Detail` oder Analysis Views. |
 
+## `REPORTING-004` Screenshot Review
+
+| Screenshot | Bewertung | Befund | Entscheidung |
+|---|---|---|---|
+| `playwright/projects/fibu-book5/img/reporting-004-020-analysis-views-list.png` | guter Labor-Startpunkt | `Analysis Views` ist erreichbar; sichtbar sind mindestens `GEN_LEDGER` und `REVENUE` sowie Dimensionsspalten `Dimension 1 Code` bis `Dimension 4 Code`. | Als Laborbild fuer den Reporting-Setup-Ort geeignet; noch kein Zahlen- oder Dimensionsergebnis. |
+| `playwright/projects/fibu-book5/img/reporting-004-030-revenue-analysis-view-card.png` | guter Labor-Negativnachweis | Die `REVENUE` Analysis View Card zeigt `AREA`, `DEPARTMENT`, `CUSTOMERGROUP`; `PRODUCTLINE` und `CHANNEL` fehlen. | Als Buch-/Lernbild geeignet, um zu erklaeren, warum eine vorhandene Revenue-Analysis-View nicht automatisch die Buchdimensionen auswertet. Kein finaler Reportingbeweis. |
+
 ## `P2P-001` Screenshot Review
 
 | Screenshot | Bewertung | Befund | Entscheidung |

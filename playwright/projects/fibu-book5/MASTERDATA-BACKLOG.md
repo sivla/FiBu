@@ -74,7 +74,7 @@ Deutsche `19 %` USt, deutscher Kontenplan, deutsche Steuerreports und finale deu
 | Manufacturing/Assembly Evidence Pack | 14 | BOM/Routing/Production Order, Verbrauch, Output | nicht gestartet | teilweise | nein | `planned-only` | P2 | Nach P2P/Inventory. |
 | Service Evidence Pack | 15 | Serviceartikel, Serviceauftrag, Ressource, Ersatzteilverbrauch | nicht gestartet | teilweise | nein | `planned-only` | P2 | Nach Ersatzteil-/Ressourcenfit. |
 | Project Evidence Pack | 16 | Projekt, Aufgaben, Ressource, Material, Faktura, WIP | nicht gestartet | teilweise | nein | `planned-only` | P2 | Nach Ressourcen/Projektsetup. |
-| Reporting/Financial Reports | 10, 25 | GuV/Revenue nach `PRODUCTLINE=MACHINE`, `CHANNEL=B2B` | Financial Reports ist read-only erreichbar; `Dimension Perspective` und `Column Definition` sichtbar; `REPORTING-003` versucht `Definitions -> Dimension Perspective`, erreicht aber keinen sichtbaren Dimensionskontext; `PRODUCTLINE`/`CHANNEL` nicht als sichtbarer Filter/Summenbeweis nachgewiesen | nein | ja, `reporting-001`, `reporting-002`, `reporting-003` | `partial` | P4 | `Dimensions - Detail` oder Analysis Views gezielt fuer `PRODUCTLINE`/`CHANNEL` pruefen. |
+| Reporting/Financial Reports | 10, 25 | GuV/Revenue nach `PRODUCTLINE=MACHINE`, `CHANNEL=B2B` | Financial Reports ist read-only erreichbar; `REPORTING-003` erreicht keinen sichtbaren Dimensionskontext; `REPORTING-004` zeigt `REVENUE` Analysis View mit `AREA`, `DEPARTMENT`, `CUSTOMERGROUP`, aber ohne `PRODUCTLINE`/`CHANNEL` | nein | ja, `reporting-001`, `reporting-002`, `reporting-003`, `reporting-004` | `partial` | P4 | `Dimensions - Detail` read-only pruefen; danach kontrolliert klaeren, ob eine neue/angepasste Analysis View fuer `PRODUCTLINE`/`CHANNEL` noetig ist. |
 
 ## Abhaengigkeiten
 
@@ -88,7 +88,7 @@ Deutsche `19 %` USt, deutscher Kontenplan, deutsche Steuerreports und finale deu
 
 ## Empfohlene Build-Reihenfolge
 
-1. Aktuellen O2C-Laborbeleg nicht erneut buchen; `REPORTING-002` und `REPORTING-003` sind erledigt als Sichtbarkeits-/Negativbefunde. Naechster Reporting-Schritt ist `Dimensions - Detail` oder Analysis Views read-only.
+1. Aktuellen O2C-Laborbeleg nicht erneut buchen; `REPORTING-002` bis `REPORTING-004` sind erledigt als Sichtbarkeits-/Negativbefunde. Naechster Reporting-Schritt ist `Dimensions - Detail` read-only oder ein gezielter Analysis-View-Setup-Fit fuer `PRODUCTLINE`/`CHANNEL`.
 2. P2P-Laborbuchung ist erledigt: `106049` -> `108219`. Nicht erneut buchen; naechster P2P-naher Schritt ist Zahlung/OP-Ausgleich oder Inventory/Lagerbewertung.
 3. Deutsche VAT-/EUR-/Kontenplan-Endstaende bleiben getrennte Finalaufgaben.
 4. Inventory einfach vertiefen: `INVENTORY-008` hat die kontrollierte positive `RM-M100`-Bestandsbewegung als Laborbuchung erledigt und Postenspur/Lagerbewertung belegt. Nicht wiederholen; naechster Nutzen liegt in didaktischer Bucherklaerung, Reporting-Dimensionswirkung oder spaeter Warehouse/Manufacturing.
