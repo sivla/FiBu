@@ -225,6 +225,17 @@ Fuer `UAT-O2C-001` fasst `playwright/projects/fibu-book5/evidence/uat-o2c-001/RE
 | `playwright/projects/fibu-book5/img/inventory-008-090-inventory-valuation-request.png` | gutes Labor-Request-Page-Bild | Request Page zeigt Stichtag, Artikelfilter `RM-M100|RAW-STEEL` und Lagerortfilter `FRA-ZL`. | Als Buchbild fuer Reportfilter geeignet; Ergebniswirkung erst mit Preview-Bild. |
 | `playwright/projects/fibu-book5/img/inventory-008-091-inventory-valuation-preview.png` | guter Labor-Zahlenbericht nach Korrektur | Vorschau zeigt nach der Laborbuchung `RM-M100 = 42.000,00`, `RAW-STEEL = 25.000,00` und `Total Inventory Value = 67.000,00`. | Als Laborbild fuer die korrigierte Lagerbewertung geeignet. Nicht als deutscher Abschluss- oder Kostenregulierungsnachweis verwenden. |
 
+## `WAREHOUSE-001` Screenshot Review
+
+| Screenshot | Bewertung | Befund | Entscheidung |
+|---|---|---|---|
+| `playwright/projects/fibu-book5/img/warehouse-001-010-location-fra-zl.png` | guter Labor-Readiness-Kandidat | `FRA-ZL` ist als Lagerort sichtbar. Die Evidence markiert Warehouse-Aktivierungsfelder wie `Bin Mandatory`, `Require Receive`, `Require Shipment`, `Require Put-away`, `Require Pick` und `Directed Put-away and Pick` als nicht sichtbar. | Als Laborbild fuer die Trennung einfacher Lagerort vs. gesteuertes Warehouse geeignet. Kein Warehouse-Setup-Endstand. |
+| `playwright/projects/fibu-book5/img/warehouse-001-020-warehouse-receipts-tell-me.png` | Navigationskandidat | Tell-Me zeigt `Warehouse Receipts` als Einstiegspfad. | Als Einstiegshinweis geeignet; kein Wareneingangsprozess und kein Belegnachweis. |
+| `playwright/projects/fibu-book5/img/warehouse-001-030-warehouse-putaways-tell-me.png` | Navigationskandidat | Tell-Me zeigt `Warehouse Put-aways` als Einstiegspfad. | Als Einstiegshinweis geeignet; keine Einlagerung erzeugt oder registriert. |
+| `playwright/projects/fibu-book5/img/warehouse-001-040-warehouse-picks-tell-me.png` | Navigationskandidat | Tell-Me zeigt `Warehouse Picks` als Einstiegspfad. | Als Einstiegshinweis geeignet; keine Kommissionierung erzeugt oder registriert. |
+| `playwright/projects/fibu-book5/img/warehouse-001-050-warehouse-shipments-tell-me.png` | rejected/Teilbefund | `Warehouse Shipments` wurde in diesem Lauf nicht belastbar sichtbar erreicht. | Nicht als Buchbild fuer Warenausgang verwenden; als Negativbefund fuer Suchpfad behalten. |
+| `playwright/projects/fibu-book5/img/warehouse-001-060-bins-tell-me.png` | Navigationskandidat | Tell-Me zeigt `Bins`/Lagerplatzkontext als Einstiegspfad. | Als Einstiegshinweis geeignet; keine Bins angelegt und keine Lagerplatzpflicht aktiviert. |
+
 ## `PAYMENTS-001` Screenshot Review
 
 | Screenshot | Bewertung | Befund | Entscheidung |

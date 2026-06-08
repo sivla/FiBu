@@ -902,3 +902,19 @@ Das ist kein Business-Central-Fachnachweis, aber ein wichtiger Projektsicherheit
 Bewertung:
 
 Das ist ein sehr guter Anfaenger-Lernfall. Die Zeile sieht fachlich einfach aus, aber BC-Journale haben viele Spalten mit unterschiedlicher Bedeutung. `Unit Cost` ist eine Bewertungsinformation; `Applies-to Entry` ist eine Zuordnungs-/Ausgleichsspalte. Wer dort den Kostenwert eintraegt, erzeugt einen Zeilenfehler statt einer besseren Bewertung. `INVENTORY-008` hat die bewusste Laborbuchung umgesetzt. Fuer die naechste Arbeit braucht das Projekt keine weitere `INV008`-Buchung, sondern Buch-/Anfaengererklaerung und spaeter getrennte Reporting-, Warehouse- oder Manufacturing-Nachweise.
+
+## FIND-BC-WH-001 Warehouse-Readiness ist nicht Warehouse-Aktivierung
+
+| Feld | Wert |
+|---|---|
+| Status | erledigt als read-only Readiness; Aktivierung offen/gate-gesperrt |
+| Quelle | `WAREHOUSE-001` |
+| BC-Seite | Locations / Tell-Me |
+| sichtbarer Text / Werte | `FRA-ZL`, `Warehouse Receipts`, `Warehouse Put-aways`, `Warehouse Picks`, `Bins`; `Warehouse Shipments` nicht belastbar sichtbar |
+| Elementtyp | Lagerort / Warehouse-Einstiegspfade |
+| erste Hypothese | Nach Inventory-Postenspur und Lagerbewertung muss zuerst geklaert werden, ob `FRA-ZL` schon Warehouse-Logik traegt oder nur einfacher Lagerort ist. |
+| Testergebnis | `WAREHOUSE-001` oeffnet `FRA-ZL` read-only als Location. Die typischen Warehouse-Marker `Bin Mandatory`, `Require Receive`, `Require Shipment`, `Require Put-away`, `Require Pick` und `Directed Put-away and Pick` sind nicht sichtbar. Tell-Me zeigt `Warehouse Receipts`, `Warehouse Put-aways`, `Warehouse Picks` und `Bins`; `Warehouse Shipments` wurde nicht belastbar sichtbar. Keine Bins, keine Warehouse-Aktivitaet, keine Setup-Aenderung, keine Buchung. |
+| Entscheidung | Kapitel 13 darf den aktuellen Laborstand nur als einfachen Lagerort plus Warehouse-Readiness darstellen. Ein gesteuerter Warehouse-Prozess braucht ein eigenes Gate fuer Aktivierung, Bins und spaetere Prozess-Evidence. Naechster sicherer Schritt ist `WAREHOUSE-002` als Buch-/Evidence-Sync. |
+| Buchstelle | Kapitel 13 Inventory/Warehouse |
+
+Fuer Anfaenger ist das wichtig, weil `Location Code = FRA-ZL` nicht automatisch bedeutet, dass BC schon Warehouse Receipts, Put-aways, Picks und Bins erzwingt. Ein Lagerort ist die Ortsdimension der Bewegung; Warehouse-Aktivierung ist zusaetzliches Setup, das den Prozesspfad aendert.
