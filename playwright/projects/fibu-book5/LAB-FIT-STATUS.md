@@ -57,5 +57,6 @@ Wenn ein neuer Prozessblock praktisch bearbeitet wird, wird diese Datei im selbe
 ## Naechste sinnvolle Lab-Fit-Schritte
 
 1. Reporting/Financial Reports weiterfuehren: passenden Report waehlen, Ansicht maximieren und Dimensionsfilter fuer `PRODUCTLINE=MACHINE` suchen.
-2. Postenspur aus `UAT-O2C-001` als Anfaenger-Lernbild erklaeren: gebuchte Verkaufsrechnung, Debitorenposten, Sachposten, Wertposten, Artikelposten und Dimensionen am Artikelposten.
-3. Deutsche USt-Grenze weiter offen halten: CRONUS-USA zeigt weiter keinen 19-%-USt-Endstand.
+2. Stammdaten-Backlog nutzen: P2P erst starten, wenn `K10000`, `RAW-STEEL`, Vendor Posting Group, General Posting Setup, Tax/VAT-Laborgrenze und Nummernserie als Setup-Fit geprueft sind.
+3. Postenspur aus `UAT-O2C-001` als Anfaenger-Lernbild erklaeren: gebuchte Verkaufsrechnung, Debitorenposten, Sachposten, Wertposten, Artikelposten und Dimensionen am Artikelposten.
+4. Deutsche USt-Grenze weiter offen halten: CRONUS-USA zeigt weiter keinen 19-%-USt-Endstand.

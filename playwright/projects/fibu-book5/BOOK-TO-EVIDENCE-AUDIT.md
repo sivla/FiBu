@@ -6,6 +6,8 @@ Dieser Audit ist die harte Abgleichdatei zwischen Buch, `RM-DEMO`-Laborstand und
 
 Update nach O2C-Sync: Die zentralen O2C-Buchstellen wurden auf den Laborstand `S-ORD101068` -> `PS-INV103297` korrigiert. `MASTERDATA-009`, die geloeste Preview-Posting-Blockade, die Laborbuchung und die offene deutsche 19-%-USt sind im Buch jetzt getrennt markiert. Offen bleiben Sachposten-/Reportingdimensionen und der deutsche Finalnachweis.
 
+Update nach Stammdaten-Backlog: `MASTERDATA-BACKLOG.md` uebersetzt die Buchkapitel 3, 6 bis 18 und 19 bis 25 in priorisierte RM-DEMO-Testdaten- und Setup-Schritte. Der Audit bleibt die Buch-vs.-Evidence-Wahrheit; der Backlog entscheidet, welche Stammdaten/Setups als naechstes praktisch gebaut oder bewusst spaeter gehalten werden.
+
 ## Leitentscheidung
 
 `RM-DEMO` bleibt der konsolidierte Lern- und Labor-Mandant in Sandbox `MCP_1_20260210`. Die Ziel-Companies `RM-PROD`, `RM-SALES`, `RM-SERVICE`, `RM-SHARED` und `RM-AT` sind Buchziel fuer einen spaeteren Mehr-Company-/Greenfield-Block. Sie werden nicht als naechster Reflex angelegt. Zuerst werden Buchanforderungen, aktuelle Evidence und RM-DEMO-Setup synchronisiert.
@@ -112,11 +114,10 @@ Fazit: O2C ist als CRONUS-USA-Laborprozess fachlich weitgehend synchronisiert, a
 ## Prioritaeten
 
 1. `REPORTING-002` read-only: Financial Reports oeffnen, passenden Report auswaehlen, maximieren, Dimensionsfilter suchen.
-2. `UAT-O2C-001` read-only erweitern: G/L Entry Dimensions zu `PS-INV103297` suchen, ohne neue Buchung.
-3. Buchabschnitt `Bebilderte Klickanleitungen: aktueller Foundation-Stand` aktualisieren: `MASTERDATA-009`, Laborbuchung, Reporting-001.
-4. UI-Inventar und Coverage synchronisieren, damit neue Agents nicht alte O2C-Ziele wiederholen.
-5. DE-VAT-Readiness separat planen, nicht in CRONUS-USA improvisieren.
-6. Erst danach P2P-Stammdaten und Kreditorenprozess starten.
+2. `MASTERDATA-BACKLOG.md` als Pflichtquelle nutzen, bevor P2P, Inventory, Warehouse, Manufacturing, Service, Projects, Payments oder Reporting-Finallogik praktisch gestartet werden.
+3. `UAT-O2C-001` read-only erweitern: G/L Entry Dimensions zu `PS-INV103297` suchen, ohne neue Buchung.
+4. DE-VAT-Readiness separat planen, nicht in CRONUS-USA improvisieren.
+5. Erst danach P2P-Stammdaten und Kreditorenprozess starten.
 
 ## Naechster sinnvoller Queue-Prompt
 
