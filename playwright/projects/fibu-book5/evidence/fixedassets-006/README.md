@@ -12,4 +12,4 @@ Ziel: vorhandene CRONUS-Konten in `FA Posting Groups` read-only lesen, bevor ein
 
 ## Kernaussage
 
-Without gate: Buch-/Evidence-Sync fuer Kapitel 21 oder Fixed-Assets-Readiness fortsetzen. With gate: idempotenten UI-Setup-Fit fuer MACHINES planen, aber die Zielkonten fachlich aus CRONUS-Gruppen ableiten und als Labor, nicht DE-Final, markieren.
+Without gate: `FIXEDASSETS-007` read-only fortsetzen und vorhandene AfA-Buecher/Depreciation Books sowie Anlagenklassen lesen. With gate: idempotenten UI-Setup-Fit fuer MACHINES planen, aber die Zielkonten fachlich aus CRONUS-Gruppen ableiten und als Labor, nicht DE-Final, markieren.

@@ -126,5 +126,5 @@ Autonome Folge-Laeufe muessen zusaetzlich `AUTOPILOT-STATE.json` und `POSTING-AN
 ```text
 Arbeite auf Branch codex/playwright-bc-screenshot-foundation.
 Lies CURRENT-STATE.md, AUTOPILOT-STATE.json, POSTING-AND-SETUP-GATES.md, LAB-FIT-STATUS.md und BOOK-CLICK-GUIDE-COVERAGE.md.
-Ohne Gate-Freigabe starte `FIXEDASSETS-006` als read-only-Lauf: vorhandene CRONUS-Konten in FA Posting Groups lesen und als Setup-Vorbereitung fuer `MACHINES` dokumentieren. Keine Anlagenbuchungsgruppe anlegen oder aendern, keine Anlagenkarte, keine Einkaufsrechnung, keine Anlagenbuchung.
+Ohne Gate-Freigabe starte `FIXEDASSETS-007` als read-only-Lauf: vorhandene AfA-Buecher/Depreciation Books und Anlagenklassen lesen und als Setup-Vorbereitung fuer `HGB`/`FA-CNC-01` dokumentieren. Keine Anlagenbuchungsgruppe anlegen oder aendern, kein AfA-Buch anlegen oder aendern, keine Anlagenkarte, keine Einkaufsrechnung, keine Anlagenbuchung.
 ```

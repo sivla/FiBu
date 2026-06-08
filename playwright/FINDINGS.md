@@ -874,7 +874,7 @@ Folgeentscheidung aus `INVENTORY-004` bis `INVENTORY-008`: Der klar markierte Tr
 | erste Hypothese | Wiederholte Queue-Laeufe brauchen eine maschinenlesbare Wahrheit, sonst koennen alte Prompts versehentlich Zahlungen, Setup-Fits oder Doppelbuchungen ausloesen. |
 | Recherchequelle | aktueller Repo-Stand und V2-Autopilot-Prompt |
 | Testergebnis | `AUTOPILOT-STATE.json` haelt Sandbox, Company, letzte Laborbuchungen, Hard Locks und naechsten nicht freigabepflichtigen Schritt fest. `POSTING-AND-SETUP-GATES.md` definiert, welche Aktionen ohne ausdrueckliche Freigabe gesperrt sind. |
-| Entscheidung | Folge-Agenten muessen vor Setup-Aenderungen, Buchungen, neuer Company oder Wiederholungen die Gate-Datei lesen. Ohne Freigabe ist der naechste praktische Schritt `FIXEDASSETS-006` read-only: vorhandene CRONUS-Konten in FA Posting Groups lesen. |
+| Entscheidung | Folge-Agenten muessen vor Setup-Aenderungen, Buchungen, neuer Company oder Wiederholungen die Gate-Datei lesen. `FIXEDASSETS-006` ist erledigt; ohne Freigabe ist der naechste praktische Schritt `FIXEDASSETS-007` read-only: vorhandene AfA-Buecher/Depreciation Books und Anlagenklassen lesen. |
 | Buchstelle | Handover, Evidence Governance, alle Kapitel mit Buchung oder Setup-Aenderung |
 
 Bewertung:
