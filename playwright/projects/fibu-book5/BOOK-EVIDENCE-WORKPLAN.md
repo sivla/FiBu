@@ -24,8 +24,8 @@ Dieser Arbeitsplan gleicht das Buch `FiBu_Buch_BC_Standardprozesse_DE_Master_Blu
 | Reporting / Financial Reports | GuV nach `PRODUCTLINE=MACHINE`, `CHANNEL=B2B`, `DEPARTMENT=SALES` | `REPORTING-001` bis `REPORTING-009` belegen den Einstieg und mehrere Negativpfade: Financial Reports erreichbar, Artikelposten-Dimension belegt, aber keine sichtbare Financial-Reports-Summenwirkung nach `PRODUCTLINE`/`CHANNEL` | teilweise belegt | Keinen gleichen read-only Pfad wiederholen; naechster echter Hebel ist ein freigegebener Analysis-View-Fit oder ein anderer belastbarer Standardpfad. |
 | Sachposten-Dimensionen | Dimensionen nach Buchung in Sachposten zeigen | `REPORTING-009` zeigt G/L Entries zu `PS-INV103297` in breiter Ansicht mit `Department Code`/`Customergroup Code`; `PRODUCTLINE`/`CHANNEL` und `Entry` -> `Dimensions` bleiben dort nicht sichtbar | teilweise belegt, Labor-Negativbefund | Im Buch als Unterschied zwischen Shortcut-Spalten, Postendimensionen und Reportingachsen erklaeren; nicht als erledigten Sachposten-Dimensionsnachweis formulieren. |
 | Tax / VAT / 19 % | Deutsche USt `19 %`, USt-Posten, Brutto `80.920 EUR` | CRONUS-USA zeigt `FURNITURE`, `taxPercent = 0`; `TAX-001` dokumentiert die Grenze und den DE-VAT-Readiness-Pfad | offen, Readiness dokumentiert | Nicht im US-Labor erzwingen; DE-Zielmandant oder explizit freigegebenes VAT-Setup vorbereiten. |
-| P2P / Kreditoren | Einkaufsprozess und Kreditorenpostenspur | Keine praktische Evidence | offen | Nach Reporting/Steuer-Entscheidung als erster neuer Prozessblock vorbereiten. |
-| Bank / Payments | Ausgleich, Zahlung, Bankposten | Gebuchte Laborrechnung existiert als Ausgangspunkt, Zahlung nicht getestet | offen | Spaeter aus `PS-INV103297` ableiten; keine Zahlung ohne Readiness. |
+| P2P / Kreditoren | Einkaufsprozess und Kreditorenpostenspur | CRONUS-USA-Laborprozess `106049` -> `108219` ist gebucht; Kreditorenposten, Sachposten, Wertposten und Artikelposten `793` sind belegt; deutsche Vorsteuer offen | Labor belegt, Steuer offen | Keine zweite P2P-Buchung; P2P als Laborbeleg nutzen und deutsche VAT-/Kontenplan-Grenze offen halten. |
+| Bank / Payments | Ausgleich, Zahlung, Bankposten | `PAYMENTS-001` bis `PAYMENTS-010` belegen offene Posten, Cash-Receipt-Draft, `BANK-RM-01`, Journal Check, Apply Entries und Post-Dialog mit Abbruch; keine Zahlung gebucht | Readiness belegt, Buchung offen | `PAYMENTS-011` nur mit ausdruecklicher Freigabe; bis dahin keine Zahlungs- oder Ausgleichsbuchung. |
 | Anlagen, Projekte, Service, Manufacturing | Weitere Buchkapitel praktisch lernen | Keine praktische Evidence | offen | Spaeter blockweise starten, nicht vor Kern-Finance/O2C/Reporting. |
 
 ## Kritische Buchdrift
@@ -175,19 +175,13 @@ Akzeptanz:
 
 Empfohlene Reihenfolge nach Reporting/Steuer:
 
-1. P2P-Stammdaten:
-   - Kreditor `K10000`
-   - Einkaufsartikel oder `RM-M100` als Einkaufsszenario
-   - Einkaufsbuchungsgruppen
-   - Einkaufspreis
-   - Lagerort
-2. P2P-Preview:
-   - Einkaufsbestellung
-   - Receive/Invoice-Logik
-   - Kreditorenposten, Sachposten, Artikelposten, Wertposten
-3. Bank/Payments:
-   - erst auf gebuchte Rechnung oder gebuchte Einkaufsrechnung aufsetzen
-   - Ausgleich nur mit Readiness
+1. Payment-Freigabeentscheidung:
+   - `PAYMENTS-001` bis `PAYMENTS-010` sind bis Post-Dialog/Abbruch belegt.
+   - Echte Zahlung, OP-Ausgleich und Bankposten nur mit ausdruecklicher Freigabe als `PAYMENTS-011`.
+2. Reporting-Freigabeentscheidung:
+   - Analysis-View-Fit fuer `PRODUCTLINE`/`CHANNEL` nur mit ausdruecklicher Setup-Freigabe.
+3. DE-VAT-Freigabeentscheidung:
+   - praktischer `19 %`-Ziellauf nur mit Setup-/Umgebungsfreigabe.
 4. Anlagen:
    - erst wenn Finance/Postenspur-Grundlogik stabil ist.
 

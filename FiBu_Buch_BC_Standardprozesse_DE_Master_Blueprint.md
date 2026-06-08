@@ -1953,11 +1953,14 @@ Vorbedingungen:
 | 040 | `playwright/projects/fibu-book5/img/uat-o2c-001-040-zeile-artikel-rm-m100.png` | Laborbild der Verkaufszeile mit `RM-M100`, Beschreibung, Lagerort `FRA-ZL`, Menge `1`, EUR-Summen und `Total Tax (EUR) = 0,00` | Der Artikel steuert Produktbuchungsgruppe, Lagerbuchungsgruppe und Steuergruppe; der Debitor steuert unter anderem Währung und Geschäftspartnerlogik. | Das aktuelle Bild ist ein guter Labor-Kandidat, aber noch kein finales Buchbild: Die FactBox ist für Tabellenbreite eingeklappt, die Steuer bleibt CRONUS-USA-Laborlogik mit 0 %. |
 | 045 | `playwright/projects/fibu-book5/evidence/uat-o2c-001/045-target-vs-labor-delta.md` und `046-o2c-lab-learning-summary.md` | Ziel-vs.-Labor-Abweichung für USt und Brutto plus kompakte Lernzusammenfassung | Einrichtung entscheidet, ob der Beleg nur technisch lauffähig oder fachlich deutscher Steuerfall ist. | Bei Abweichung nicht buchen, sondern Setup-Lücke dokumentieren. `EUR` und `PRODUCTLINE = MACHINE` sind inzwischen im Labor nachgewiesen; `19 %` USt bleibt offen. |
 | 050 | `playwright/projects/fibu-book5/img/uat-o2c-001-050-dimension-productline-machine.png` | Dimensionsprüfung `PRODUCTLINE = MACHINE` über `Line` -> `Related Information` -> `Dimensions` | Die Dimension ordnet Erlös und Marge der Produktlinie zu. | Vor dem Buchen prüfen, ob `PRODUCTLINE = MACHINE` und `CHANNEL = B2B` im Dialog `Edit Dimension Set Entries` sichtbar sind. |
-| 060 | `playwright/projects/fibu-book5/img/uat-o2c-001-060-buchungsvorschau.png` | Labor-Fehlerbild nach `Buchungsvorschau (Preview Posting)` | BC prüft vor dem Buchen die Kontenfindung. Im aktuellen Labor fehlt `Inventory Account` im `Inventory Posting Setup` für `FRA-ZL` + `RESALE`. | Nicht buchen. Inventory Posting Setup korrigieren oder als Laborgrenze dokumentieren; danach Buchungsvorschau erneut erzeugen. |
-| 070 | `playwright/projects/fibu-book5/img/uat-o2c-001-070-buchen-liefern-fakturieren.png` | Dialog `Buchen` mit `Liefern und fakturieren` | Die Aktion erzeugt gebuchte Belege und Posten. | Nur buchen, wenn Liefer- und Rechnungsfreigabe vorliegt. |
-| 080 | `playwright/projects/fibu-book5/img/uat-o2c-001-080-gebuchte-verkaufsrechnung.png` | gebuchte Verkaufsrechnung | Der gebuchte Beleg ist der Einstieg in die Nachweiskette. | Belegnummer für alle Postenfilter notieren. |
-| 090 | `playwright/projects/fibu-book5/img/uat-o2c-001-090-debitorenposten-d10000.png` | Debitorenposten für `D10000` | Der offene Posten zeigt Forderung und Fälligkeit. | Betrag brutto `80.920 EUR` prüfen. |
-| 100 | `playwright/projects/fibu-book5/img/uat-o2c-001-100-sachposten-ust-wertposten.png` | Sachposten, USt-Posten, Artikelposten und Wertposten | Die Postenspur belegt Finance-, Steuer- und Lagerwirkung. | Belegnummer, Betrag, Steuerbasis, Menge und Dimension abstimmen. |
+| 060 | `playwright/projects/fibu-book5/img/uat-o2c-001-060-buchungsvorschau.png` | erfolgreiche CRONUS-USA-Labor-Buchungsvorschau nach `MASTERDATA-009` | BC prüft vor dem Buchen die erwarteten Postenarten. Nach `FRA-ZL` + `RESALE -> Inventory Account 14140` zeigt die Vorschau echte Zeilen: `G/L Entry`, `Cust. Ledger Entry`, `Item Ledger Entry`, `Detailed Cust. Ledg. Entry`, `Value Entry`. | Das ist Labor-Evidence für Kontenfindung und Postenarten, aber noch kein deutscher Steuer-/Kontenplan-Endstand. |
+| 061 | `playwright/projects/fibu-book5/img/uat-o2c-001-061-preview-related-entries-gl-entry.png` | maximierter Drilldown in `G/L Entries Preview` | Der Drilldown zeigt, welche Sachkonten BC voraussichtlich bebuchen würde, darunter das CRONUS-Laborkonto `14140`. | Für finale Buchbilder Betragsspalten sichtbar machen; `PRODUCTLINE`/`CHANNEL` sind hier nicht als Reportingnachweis belegt. |
+| 080 | `playwright/projects/fibu-book5/img/uat-o2c-001-080-posting-dialog-before-ok.png` | Buchungsdialog vor Bestätigung | `Ship and Invoice` erzeugt Lieferung, Rechnung und gebuchte Posten. | Nur kontrolliert buchen, wenn Preview, Stammdaten, Dimensionen und Laborgrenzen dokumentiert sind; im Projekt wurde genau einmal gebucht. |
+| 082 | `playwright/projects/fibu-book5/img/uat-o2c-001-082-posted-sales-invoice.png` | gebuchte Verkaufsrechnung `PS-INV103297` | Der gebuchte Beleg ist der Einstieg in die Nachweiskette. | Belegnummer für alle Postenfilter notieren; nicht als deutschen 19-%-USt-Endstand lesen. |
+| 083 | `playwright/projects/fibu-book5/img/uat-o2c-001-083-customer-ledger-entries.png` | Debitorenposten für `D10000` | Der offene Posten zeigt Forderung und Fälligkeit. | Im CRONUS-USA-Labor `68.000 EUR` und Tax `0`; deutscher Bruttobetrag `80.920 EUR` bleibt Zielbild. |
+| 084 | `playwright/projects/fibu-book5/img/uat-o2c-001-084-gl-entries.png` | Sachposten zur Laborrechnung | Die Sachposten zeigen Hauptbuchkonten wie Forderung, Erlös, Bestand und Wareneinsatz. | Kontenwirkung prüfen, aber keine `PRODUCTLINE`-/`CHANNEL`-Reportingwirkung behaupten. |
+| 086 | `playwright/projects/fibu-book5/img/uat-o2c-001-086-value-entries.png` | Wertposten zur Laborrechnung | Wertposten verbinden Beleg, Artikelbewegung, Kosten und `Item Ledger Entry No.`. | Aus dem Wertposten führt der robuste Pfad zum Artikelposten `792`. |
+| 089 | `playwright/projects/fibu-book5/img/uat-o2c-001-089-item-ledger-entry-dimensions.png` | Dimensionen am Artikelposten `792` | `CHANNEL = B2B` und `PRODUCTLINE = MACHINE` sind am Artikelposten sichtbar. | Starker Laborbeweis für den Dimensionsfluss in die Artikelpostenspur; Financial-Reports-Summe bleibt offen. |
 
 Was Anfänger hier lernen:
 
@@ -1974,8 +1977,10 @@ Was im aktuellen Laborbild sichtbar ist:
 - Die Verkaufszeile enthält `Item`, `RM-M100`, `Standardmaschine M100`, `FRA-ZL`, Menge `1`, Einheit `PCS` und Betrag `68.000,00`.
 - Die Steuer-/Tax-Spalte zeigt im Labor `FURNITURE` und der Evidence-Nachweis zeigt `taxPercent = 0`.
 - Der Dimensionsdialog zeigt `CHANNEL = B2B` und `PRODUCTLINE = MACHINE`.
-- Die Buchungsvorschau-Prüfung stoppt aktuell auf `Error Messages`: `Inventory Account is missing in Inventory Posting Setup Location Code: FRA-ZL, Invt. Posting Group Code: RESALE`.
-- Das beweist: Der Klickpfad, die Stammdaten und der Dimensionsfluss funktionieren im Labor. Es beweist noch nicht den deutschen Steuerfall.
+- Die Buchungsvorschau zeigt nach dem Laborfit `FRA-ZL` + `RESALE -> 14140` echte Vorschauarten: Sachposten, Debitorenposten, Artikelposten, detaillierte Debitorenposten und Wertposten.
+- Danach wurde genau einmal kontrolliert gebucht: `S-ORD101068` -> `PS-INV103297` mit `Ship and Invoice`.
+- Die Postenspur zeigt Debitorenposten, Sachposten, Wertposten und Artikelposten `792`; am Artikelposten sind `CHANNEL = B2B` und `PRODUCTLINE = MACHINE` sichtbar.
+- Das beweist: Der Klickpfad, die Stammdaten, die CRONUS-Kontenfindung, die Laborbuchung und der Dimensionsfluss in die Artikelpostenspur funktionieren. Es beweist noch nicht den deutschen Steuerfall und noch keine Financial-Reports-Summe nach `PRODUCTLINE`/`CHANNEL`.
 
 Typische Anfängerfehler:
 
@@ -2002,12 +2007,12 @@ Evidence Pack (Nachweispaket):
 - Auftragsnummer und gebuchte Verkaufsrechnungsnummer.
 - Screenshot Auftragskopf und Verkaufszeile.
 - Screenshot Dimension `PRODUCTLINE = MACHINE`.
-- Buchungsvorschau oder, falls blockiert, Fehlerbild der Preview-Posting-Prüfung mit Setup-Ursache.
-- Debitorenposten mit Bruttobetrag `80.920 EUR`.
-- Sachposten für Forderung, Erlös, Umsatzsteuer, Bestand und Wareneinsatz.
-- USt-Posten mit Steuerbasis `68.000 EUR` und Steuerbetrag `12.920 EUR`.
-- Artikelposten und Wertposten für `RM-M100`.
-- Finanzbericht mit Erlös und Marge nach `PRODUCTLINE = MACHINE`.
+- Buchungsvorschau mit erwarteten Postenarten oder, falls blockiert, Fehlerbild der Preview-Posting-Prüfung mit Setup-Ursache.
+- Debitorenposten mit offenem Laborbetrag; im aktuellen Labor `PS-INV103297` mit `68.000 EUR`, nicht `80.920 EUR`.
+- Sachposten für Forderung, Erlös, Bestand und Wareneinsatz; Steuerkonten nur belegen, wenn ein deutscher VAT-Lauf sie wirklich zeigt.
+- Artikelposten und Wertposten für `RM-M100`; im Labor führt der Wertposten zum Artikelposten `792`.
+- Dimensionsnachweis am Artikelposten: `CHANNEL = B2B` und `PRODUCTLINE = MACHINE`.
+- Finanzbericht mit Erlös und Marge nach `PRODUCTLINE = MACHINE` erst aufnehmen, wenn Reporting-Evidence das sichtbar belegt.
 
 Praxisregel:
 - Ein Screenshot gehört immer an eine fachliche Entscheidung, nicht an jeden Klick. Gute Buchscreenshots zeigen Seite, Feld, Wert und Prüfzweck.
@@ -2026,7 +2031,17 @@ Praxisregel:
 | USt-Posten | USt aus Verkauf | `USt-Posten (VAT Entries)` |
 | Bericht | GuV nach Produktlinie | `Finanzberichte (Financial Reports)` |
 
-Die Buchungsspur zeigt, dass ein Verkaufsauftrag mehr ist als ein Vertriebsformular. Der gleiche Vorgang erzeugt eine Forderung, einen Erlös, USt, Lagerbewegung, Kostenabgang und Auswertungsdaten für Controlling. Finance prüft deshalb nicht nur die Rechnung, sondern die gesamte Kette vom Auftrag bis zum Posten.
+Labor-Lernbild aus `POSTING-TRACE-001` und `POSTING-TRACE-002`:
+
+| Kontrollfrage | Laborbeleg | Was ist sichtbar? | Was bleibt offen? |
+|---|---|---|---|
+| Hat der Kunde eine offene Forderung? | `PS-INV103297` | Debitorenposten zu `D10000` mit Laborbetrag `68.000 EUR` | deutscher Bruttobetrag `80.920 EUR` und 19-%-USt |
+| Welche Konten wurden getroffen? | `PS-INV103297`, `108219`, `INV008-899959` | Sachposten, u. a. CRONUS-Laborkonto `14140` fuer Bestand | deutscher Kontenplan-Endstand |
+| Welche Menge wurde bewegt? | Artikelposten `792` und `793`, Inventory-Beleg `INV008-899959` | `RM-M100`-Abgang aus O2C, `RAW-STEEL`-Zugang aus P2P, `RM-M100 +2` aus Item Journal | Manufacturing-/Warehouse-End-to-End-Fluss |
+| Welcher Wert gehoert zur Menge? | Wertposten zu O2C/P2P/Inventory | Wertposten verbinden Beleg, Kosten und Artikelposten | Kostenregulierung und finale Bewertungslogik |
+| Ist die Dimension reportingfaehig? | Artikelposten `792` | `CHANNEL = B2B` und `PRODUCTLINE = MACHINE` sind am Artikelposten sichtbar | Financial Reports/Summe nach `PRODUCTLINE`/`CHANNEL` |
+
+Die Buchungsspur zeigt, dass ein Verkaufsauftrag mehr ist als ein Vertriebsformular. Der gleiche Vorgang erzeugt Forderung, Erlös, Lagerbewegung, Kostenabgang und Auswertungsdaten für Controlling; USt-Posten kommen nur hinzu, wenn das Steuer-Setup sie wirklich erzeugt. Finance prüft deshalb nicht nur die Rechnung, sondern die gesamte Kette vom Auftrag bis zum Posten.
 
 #### Fehlerdiagnose und Korrektur
 
