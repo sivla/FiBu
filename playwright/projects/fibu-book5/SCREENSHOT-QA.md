@@ -101,6 +101,18 @@ Fuer `UAT-O2C-001` fasst `playwright/projects/fibu-book5/evidence/uat-o2c-001/RE
 | `playwright/projects/fibu-book5/img/reporting-005-010-tell-me-dimensions-detail.png` | rejected Navigations-/Negativbild | Der Tell-Me-Versuch nach `Dimensions - Detail` zeigt keinen eindeutigen sichtbaren Treffer fuer den Zielbericht. | Nicht als Buchbild fuer Reportingwirkung verwenden. Als Evidence behalten, weil der falsche/fehlende Suchpfad fuer Anfaenger relevant ist. |
 | `playwright/projects/fibu-book5/img/reporting-005-020-dimensions-detail-request.png` | rejected Folgezustand | Der Folgezustand zeigt keinen `Dimensions - Detail`-Request-Kontext und keine `PRODUCTLINE`-/`CHANNEL`-Filter. | Nicht als Buchbild verwenden. Naechster Bildschritt braucht alternativen UI-Einstieg oder freigegebenen Analysis-View-Fit. |
 
+## `FIXEDASSETS-001` / `FIXEDASSETS-002` Screenshot Review
+
+| Screenshot | Bewertung | Befund | Entscheidung |
+|---|---|---|---|
+| `playwright/projects/fibu-book5/img/fixedassets-001-010-fixed-assets-tell-me.png` | Labor-Readiness-Kandidat | Tell-Me zeigt `Fixed Assets` als Einstiegskontext. Es wurde keine Seite geoeffnet und keine Anlage angelegt. | Als Navigations-/Readinessbild geeignet. Nicht als Anlagenkarte oder Prozessnachweis verwenden. |
+| `playwright/projects/fibu-book5/img/fixedassets-001-040-fa-ledger-entries-tell-me.png` | Labor-Readiness-Kandidat | Tell-Me zeigt `FA Ledger Entries` als moeglichen Nachweispfad. Es gibt noch keine Posten fuer `FA-CNC-01`. | Als spaeterer Nachweispfad-Hinweis geeignet. Nicht als Anlagenpostenbeweis verwenden. |
+| `playwright/projects/fibu-book5/img/fixedassets-002-010-anlagen-tell-me.png` | Labor-Readiness-Kandidat | Deutscher Suchbegriff `Anlagen` liefert sichtbaren Suchkontext. | Als Navigationsbild fuer Kapitel 21 geeignet; naechster Lauf muss die Seite gezielt oeffnen. |
+| `playwright/projects/fibu-book5/img/fixedassets-002-020-afa-tell-me.png` | Labor-Readiness-Kandidat | Suchbegriff `AfA` liefert AfA-nahe Trefferkontexte. | Als Hinweis fuer AfA-Suchstrategie geeignet. Kein AfA-Buch, keine Abschreibung. |
+| `playwright/projects/fibu-book5/img/fixedassets-002-030-anlagenbuchungsgruppen-tell-me.png` | Labor-Readiness-Kandidat | Suchbegriff `Anlagenbuchungsgruppen` liefert einen Setup-Kontext. | Als Hinweis auf die Kontenfindungs-Voraussetzung geeignet. `MACHINES` ist nicht nachgewiesen. |
+| `playwright/projects/fibu-book5/img/fixedassets-002-040-einkaufsrechnungen-tell-me.png` | Labor-Readiness-Kandidat | Suchbegriff `Einkaufsrechnungen` liefert den moeglichen Zugangspfad ueber Purchase Invoices. | Nur Navigationsbild. Keine Einkaufsrechnung und keine Aktivierung. |
+| `playwright/projects/fibu-book5/img/fixedassets-002-050-anlagenposten-tell-me.png` | Labor-Readiness-Kandidat | Suchbegriff `Anlagenposten` liefert den spaeteren Postennachweis-Kontext. | Nicht als Postenspur verwenden; noch keine Anlage gebucht. |
+
 ## `P2P-001` Screenshot Review
 
 | Screenshot | Bewertung | Befund | Entscheidung |

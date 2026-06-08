@@ -110,16 +110,27 @@ Wenn das Projekt fertig ist, kennen wir Business Central für den Buchumfang nic
 | Payments | Payment Journals | 256 | Batch Name `CASH`, Felder Posting Date, Document Type Payment, Account Type Vendor, Account No., Recipient Bank Account, Aktion `Post`, `Apply Entries`, FactBox Journal Check | Zahlungsausgangspfad read-only pruefen | `PAYMENTS-002` | `playwright/projects/fibu-book5/img/payments-002-030-payment-journal.png`; `evidence/payments-002/` | gesehen/verstanden als Readiness; keine Journalzeile bewusst gefuellt, keine Buchung | Kapitel 19/20 |
 | Payments | Apply Entries | n/a | `Start`/`Entry` -> `Apply Entries`, Warnaktionen wie `Set Applies-to ID`/`Post Application` bewusst nicht geklickt | Ausgleichspfad aus offenen Debitoren-/Kreditorenposten oeffnen, ohne Ausgleich anzuwenden | `PAYMENTS-002` | `playwright/projects/fibu-book5/img/payments-002-050-customer-apply-entries.png`; `playwright/projects/fibu-book5/img/payments-002-070-vendor-apply-entries.png`; `evidence/payments-002/` | geklickt/verstanden als Pfadnachweis; kein Ausgleich | Kapitel 19 |
 
+## Fixed Assets
+
+| Bereich | Seite | Page-ID | UI-Element | Funktion | Testfall | Screenshot/Evidence | Status | Buchstelle |
+|---|---|---:|---|---|---|---|---|---|
+| Anlagen | Tell-Me / Fixed Assets | n/a | Suchbegriffe `Fixed Assets`, `Anlagen` | Anlagenliste als Einstieg fuer `FA-CNC-01` finden | `FIXEDASSETS-001`, `FIXEDASSETS-002` | `playwright/projects/fibu-book5/img/fixedassets-001-010-fixed-assets-tell-me.png`; `playwright/projects/fibu-book5/img/fixedassets-002-010-anlagen-tell-me.png`; `evidence/fixedassets-001/`; `evidence/fixedassets-002/` | gesehen/verstanden als Readiness; Seite noch nicht belastbar geoeffnet | Kapitel 21 |
+| Anlagen | Tell-Me / AfA-Kontext | n/a | Suchbegriff `AfA` | AfA-Buecher, AfA berechnen oder Abschreibungsfunktionen als naechsten Seitenpfad finden | `FIXEDASSETS-002` | `playwright/projects/fibu-book5/img/fixedassets-002-020-afa-tell-me.png`; `evidence/fixedassets-002/` | gesehen als Candidate; kein AfA-Buch gesetzt, keine AfA berechnet | Kapitel 21 |
+| Anlagen | Tell-Me / Anlagenbuchungsgruppen | n/a | Suchbegriff `Anlagenbuchungsgruppen` | FA Posting Group / Kontenfindung fuer Anlagen als Setup-Voraussetzung finden | `FIXEDASSETS-002` | `playwright/projects/fibu-book5/img/fixedassets-002-030-anlagenbuchungsgruppen-tell-me.png`; `evidence/fixedassets-002/` | gesehen als Candidate; `MACHINES` nicht gesetzt/geprueft | Kapitel 21 |
+| Anlagen / Einkauf | Tell-Me / Einkaufsrechnungen | n/a | Suchbegriff `Einkaufsrechnungen` | Zugang einer Anlage ueber Einkaufsrechnung vorbereiten | `FIXEDASSETS-002` | `playwright/projects/fibu-book5/img/fixedassets-002-040-einkaufsrechnungen-tell-me.png`; `evidence/fixedassets-002/` | gesehen als Candidate; keine Rechnung erfasst oder gebucht | Kapitel 21 |
+| Anlagen | Tell-Me / Anlagenposten | n/a | Suchbegriffe `FA Ledger Entries`, `Anlagenposten` | spaeteren Nachweispfad fuer Zugang und AfA finden | `FIXEDASSETS-001`, `FIXEDASSETS-002` | `playwright/projects/fibu-book5/img/fixedassets-001-040-fa-ledger-entries-tell-me.png`; `playwright/projects/fibu-book5/img/fixedassets-002-050-anlagenposten-tell-me.png`; `evidence/fixedassets-001/`; `evidence/fixedassets-002/` | gesehen/verstanden als Nachweispfad; noch keine Posten fuer `FA-CNC-01` | Kapitel 21 |
+
 ## Naechste Inventarziele
 
 | Reihenfolge | Ziel |
 |---:|---|
-| 1 | `PAYMENTS-011` nur mit ausdruecklicher Freigabe als kontrollierte Laborzahlung; `PAYMENTS-EVIDENCE-PACK-SYNC.md` hat den nicht buchenden Payments-Lernpfad bereits abgerundet |
-| 2 | Reporting weiterfuehren: `REPORTING-009` hat den einfachen Sachposten-Dimensionspfad read-only ausgeschoepft; `REPORTING-008` definiert den Analysis-View-Fit fuer `PRODUCTLINE=MACHINE` und `CHANNEL=B2B` als naechsten Hebel; nur mit eigener Freigabe umsetzen, sonst keinen weiteren gleichen read-only Reportingpfad wiederholen |
-| 3 | Postenspur-Lernatlas `POSTING-TRACE-001` ist erledigt: O2C, P2P und Inventory erklaeren Beleg, Nebenbuchposten, Sachposten, Artikelposten, Wertposten und Bericht als gemeinsame Anfaengerkette; keine weitere `INV008`-Buchung |
-| 4 | Sachposten-Dimensionspfad nicht erneut als naechstes Ziel einplanen: `REPORTING-009` hat ihn read-only geprueft und als Teil-/Negativbefund dokumentiert |
-| 5 | Steuerfit: CRONUS-USA-Probelauf weiter vom deutschen Ziel-Fall `19 %` trennen |
-| 6 | Warehouse-Block: `FRA-ZL` spaeter mit Bins/Receipts/Picks ausbauen |
+| 1 | `FIXEDASSETS-003`: gezielte UI-Seitenoeffnungen fuer Anlagenkarte, AfA-Kontext, Anlagenbuchungsgruppen, Einkaufsrechnungen und Anlagenposten; kein Setup und keine Buchung |
+| 2 | `PAYMENTS-011` nur mit ausdruecklicher Freigabe als kontrollierte Laborzahlung; `PAYMENTS-EVIDENCE-PACK-SYNC.md` hat den nicht buchenden Payments-Lernpfad bereits abgerundet |
+| 3 | Reporting weiterfuehren: `REPORTING-009` hat den einfachen Sachposten-Dimensionspfad read-only ausgeschoepft; `REPORTING-008` definiert den Analysis-View-Fit fuer `PRODUCTLINE=MACHINE` und `CHANNEL=B2B` als naechsten Hebel; nur mit eigener Freigabe umsetzen, sonst keinen weiteren gleichen read-only Reportingpfad wiederholen |
+| 4 | Postenspur-Lernatlas `POSTING-TRACE-001` ist erledigt: O2C, P2P und Inventory erklaeren Beleg, Nebenbuchposten, Sachposten, Artikelposten, Wertposten und Bericht als gemeinsame Anfaengerkette; keine weitere `INV008`-Buchung |
+| 5 | Sachposten-Dimensionspfad nicht erneut als naechstes Ziel einplanen: `REPORTING-009` hat ihn read-only geprueft und als Teil-/Negativbefund dokumentiert |
+| 6 | Steuerfit: CRONUS-USA-Probelauf weiter vom deutschen Ziel-Fall `19 %` trennen |
+| 7 | Warehouse-Block: `FRA-ZL` spaeter mit Bins/Receipts/Picks ausbauen |
 
 ## Definition of Done fuer eine Funktion
 Eine Funktion gilt erst als erledigt, wenn:

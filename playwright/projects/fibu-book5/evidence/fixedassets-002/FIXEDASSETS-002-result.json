@@ -1,0 +1,82 @@
+{
+  "testId": "FIXEDASSETS-002",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "dataBasis": "CRONUS USA",
+  "mode": "read-only",
+  "noPostingCommittedByTest": true,
+  "noSetupChangedByTest": true,
+  "bookScenario": {
+    "fixedAssetNo": "FA-CNC-01",
+    "description": "CNC Maschine FRA",
+    "acquisitionCost": 120000,
+    "depreciationBookCode": "HGB",
+    "depreciationMethod": "Linear",
+    "usefulLifeYears": 8,
+    "faPostingGroup": "MACHINES",
+    "vendorNo": "K30000",
+    "depreciationUntil": "2026-06-30"
+  },
+  "fixedAssetTestdata": {
+    "no": "FA-CNC-01",
+    "description": "CNC-Anlage",
+    "acquisitionCost": 120000,
+    "purpose": "Anlagenzugang und AfA"
+  },
+  "targetValueDelta": {
+    "acquisitionCostBook": 120000,
+    "acquisitionCostTestdata": 120000,
+    "aligned": true,
+    "decision": "Buch und Testdaten sind beim Anlagenzugang konsistent."
+  },
+  "checks": [
+    {
+      "id": "010-fixed-assets-de",
+      "term": "Anlagen",
+      "hasExpectedContext": true,
+      "status": "labor-candidate",
+      "evidenceBasis": "tell-me-page-text-and-screenshot"
+    },
+    {
+      "id": "020-depreciation-books-afa",
+      "term": "AfA",
+      "hasExpectedContext": true,
+      "status": "labor-candidate",
+      "evidenceBasis": "tell-me-page-text-and-screenshot"
+    },
+    {
+      "id": "030-fa-posting-groups-de",
+      "term": "Anlagenbuchungsgruppen",
+      "hasExpectedContext": true,
+      "status": "labor-candidate",
+      "evidenceBasis": "tell-me-page-text-and-screenshot"
+    },
+    {
+      "id": "040-purchase-invoices-de",
+      "term": "Einkaufsrechnungen",
+      "hasExpectedContext": true,
+      "status": "labor-candidate",
+      "evidenceBasis": "tell-me-page-text-and-screenshot"
+    },
+    {
+      "id": "050-fa-ledger-entries-de",
+      "term": "Anlagenposten",
+      "hasExpectedContext": true,
+      "status": "labor-candidate",
+      "evidenceBasis": "tell-me-page-text-and-screenshot"
+    }
+  ],
+  "proves": [
+    "Kapitel 21 wurde gegen vorhandene Testdaten abgeglichen.",
+    "Deutsche/BC-nahe Suchbegriffe fuer Anlagen, AfA, Anlagenbuchungsgruppen, Einkaufsrechnungen und Anlagenposten wurden read-only geprueft.",
+    "Der naechste Anlagenlauf darf noch nicht buchen, solange Zielbetrag und Setup-Pfade nicht harmonisiert sind."
+  ],
+  "doesNotProve": [
+    "Keine Anlage FA-CNC-01 angelegt.",
+    "Kein AfA-Buch HGB gesetzt.",
+    "Keine Anlagenbuchungsgruppe MACHINES gesetzt.",
+    "Keine Einkaufsrechnung, keine Aktivierung, keine AfA und keine Anlagenposten gebucht.",
+    "Kein deutscher HGB-/Kontenplan-Endstand."
+  ],
+  "nextStep": "FIXEDASSETS-003 nur nach Zielwertentscheidung: entweder Buch/Testdaten auf 120.000 harmonisieren und dann UI-Seitenoeffnungen fuer Anlagenkarte, AfA-Buch und FA Posting Group gezielt nachweisen, oder bewusst den Testdatenwert 250.000 ins Buchmodell uebernehmen."
+}
