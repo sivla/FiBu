@@ -1405,6 +1405,8 @@ Aktueller Laborabgleich in `RM-DEMO`:
 | Postenspur | Debitorenposten, Sachposten, USt-Posten, Artikelposten, Wertposten | Debitorenposten, Sachposten, Wertposten und Artikelposten belegt; deutscher USt-Posten offen |
 | Dimension | `PRODUCTLINE = MACHINE`, `CHANNEL = B2B` in Beleg, Posten und Reporting | im Zeilendimensionsdialog und am Artikelposten `Entry No. 792` belegt; `REPORTING-009` zeigt in Sachposten nur Shortcut-Spalten wie `Department Code`/`Customergroup Code`, aber nicht `PRODUCTLINE`/`CHANNEL`; im aktuellen Labor nicht sichtbar in Financial Reports als Filter- oder Summenbeweis |
 
+Steuer-Laborgrenze aus `TAX-001`: Die aktuelle Sandbox ist CRONUS-USA-basiert. `Tax Group Code = FURNITURE`, `taxPercent = 0` und `totalTaxAmount = 0` sind deshalb kein deutscher `19 %`-USt-Nachweis. Fuer den finalen deutschen Lauf braucht das Buch einen eigenen UI-first Setup- oder Zielmandanten-Nachweis: USt-Geschaeftsbuchungsgruppe, USt-Produktbuchungsgruppe, USt-Buchungsmatrix Einrichtung, Belegvorschau und USt-Posten muessen zusammenpassen. Bis dahin bleiben `80.920 EUR` brutto und `12.920 EUR` USt Zielbild, nicht Laborergebnis.
+
 ### Was passiert bei falscher Buchungsgruppe?
 
 | Fehler | Symptom | Ursache | Diagnosepfad | Korrektur |

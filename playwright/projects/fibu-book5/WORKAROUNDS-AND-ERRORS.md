@@ -214,8 +214,8 @@ Jeder Eintrag muss außerdem gegen die betroffene Buchstelle geprüft werden. We
 | Sichtbarer Beleg | `playwright/projects/fibu-book5/evidence/uat-o2c-001/045-target-vs-labor-delta.md`, `playwright/projects/fibu-book5/evidence/uat-o2c-001/040-zeile-artikel-rm-m100-api-result.json` |
 | Ursache | Die Spielwiese basiert auf CRONUS USA. Die bisher gesetzten Werte `CUSTOMER COMPANY`, `RETAIL`, `RESALE` und `FURNITURE` machen den technischen Verkaufsauftrag lauffähig, bilden aber keine deutsche EUR-/19-%-USt-Logik ab. |
 | Lösung | Der Playwright-Test erzeugt jetzt automatisch einen Ziel-vs.-Labor-Abweichungsnachweis. Der aktuelle Lauf bleibt gültig für Klickpfad, Stammdatenbedarf und Screenshot-Lernen; der deutsche Steuer-Endstand wird als eigene Setup-Aufgabe behandelt. |
-| Buchwirkung | Das Buch muss zwischen Laborlauf und finalem Zielbild unterscheiden. Screenshots aus CRONUS dürfen nicht als Nachweis für `EUR` und `19 %` USt ausgegeben werden. |
-| Künftige Regel | Wenn ein Buchfall fachliche Beträge, Steuer oder Währung erwartet, schreibt der Test einen Soll-Ist-Nachweis. Abweichungen werden als Setup-Lücke dokumentiert und nicht still übergangen. |
+| Buchwirkung | Das Buch muss zwischen Laborlauf und finalem Zielbild unterscheiden. Screenshots aus CRONUS dürfen nicht als Nachweis für `EUR` und `19 %` USt ausgegeben werden. `TAX-001` dokumentiert jetzt die konkrete Readiness-Grenze: Sales Tax/FURNITURE/0 % ist kein VAT19-Endstand. |
+| Künftige Regel | Wenn ein Buchfall fachliche Beträge, Steuer oder Währung erwartet, schreibt der Test einen Soll-Ist-Nachweis. Abweichungen werden als Setup-Lücke dokumentiert und nicht still übergangen. Praktischer DE-VAT-Ziellauf nur mit Setup-/Umgebungsfreigabe. |
 
 ## WK-BC-O2C-009A Aktueller O2C-Laborstand: EUR geloest, Steuer offen
 

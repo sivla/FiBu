@@ -38,6 +38,28 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 
 ## Aktuelle Fundstellen
 
+## FIND-BC-TAX-001 CRONUS-USA-Sales-Tax ist kein deutscher VAT19-Nachweis
+
+| Feld | Wert |
+|---|---|
+| Status | erledigt als Buch-/Evidence-Sync; praktischer DE-Finallauf offen |
+| Projekt | fibu-book5 |
+| Testfall | `TAX-001` |
+| Screenshot | keine neuen Screenshots; nutzt vorhandene O2C-/P2P-/Tax-Evidence |
+| Evidence | `playwright/projects/fibu-book5/evidence/tax-001/TAX-001-DE-VAT-READINESS.md`, `playwright/projects/fibu-book5/evidence/tax-001/TAX-001-result.json` |
+| BC-Seite | Sales Order, Purchase Order, Posted Sales Invoice, Posted Purchase Invoice, VAT/Tax Posting Setup |
+| sichtbarer Text | `PS-INV103297`, `108219`, `Tax Group Code = FURNITURE`, `taxPercent = 0`, `totalTaxAmount = 0`, `VAT Calculation Type = Sales Tax` |
+| Elementtyp | Steuer-Setup / Laborgrenze / Buchziel |
+| erste Hypothese | CRONUS-USA-Steuerfelder koennen Bedienpfade und Laborbuchungen tragen, beweisen aber keine deutsche `19 %`-USt. |
+| Recherchequelle | vorhandene Evidence `045-target-vs-labor-delta.md`, `080-posting-result.json`, `100-purchase-posting-result.json`, `MICROSOFT-DOC-VALIDATION.md`; Microsoft Learn zu VAT Setup und Sales Tax |
+| Testergebnis | O2C und P2P sind gebucht, aber beide Laborbelege haben Steuerbetrag `0`. Die vorhandene Steuergruppe `FURNITURE` ist ein CRONUS-USA-Laborfit. Fuer deutsche `19 %` braucht es einen eigenen VAT-Ziellauf mit VAT Business/Product Posting Groups, VAT Posting Setup, Preview und VAT Entries. |
+| Entscheidung | Buch und Projektstatus trennen jetzt klar: aktueller Laborlauf beweist Prozessbedienung und Postenspur, nicht deutschen VAT19-Endstand. Praktischer DE-VAT-Fit bleibt freigabepflichtig. |
+| Buchstelle | Kapitel 9, 11, 12 und 22 |
+
+Bewertung:
+
+Das ist ein zentraler Einsteigerbefund. Wer `Tax Group Code`, `VAT Posting Setup` oder Steuerfelder sieht, darf daraus nicht automatisch `19 %` deutsche USt ableiten. Im Buch muss der Leser lernen, dass Steuerlogik eine eigene Einrichtungsschicht ist: Partnerlogik, Produktlogik, Setup-Matrix, Belegvorschau und USt-Posten muessen zusammenpassen.
+
 ## FIND-BC-POST-001 Postenspur ist eine Kette, kein einzelner Beleg
 
 | Feld | Wert |

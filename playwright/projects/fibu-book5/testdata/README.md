@@ -65,6 +65,7 @@ Diese Testdaten beschreiben den Lern- und Laborstand fuer `RM-DEMO`. Sie sind ke
 - `68.000 EUR`, Debitor, Artikel, Lagerort, Dimension und Postenspur sind Labor-Evidence.
 - `19 %` USt, Brutto `80.920 EUR` und deutsche USt-Posten bleiben Finalnachweis.
 - Neue Tests muessen diese Trennung in JSON-Evidence, Markdown und Screenshot-Metadaten beibehalten.
+- `TAX-001` dokumentiert diese Trennung als eigenes Readiness-Gate. Ein praktischer deutscher `19 %`-Lauf braucht eine passende deutsche Zielcompany oder eine ausdruecklich freigegebene UI-first VAT-Setup-Strecke; `FURNITURE`/Sales Tax darf nicht zu `VAT19` umgedeutet werden.
 
 ## Beziehung zum Backlog
 

@@ -23,7 +23,7 @@ Dieser Arbeitsplan gleicht das Buch `FiBu_Buch_BC_Standardprozesse_DE_Master_Blu
 | O2C `UAT-O2C-001` | Auftrag, Preview, Buchung, Postenspur, Dimensionen, 19 % USt | O2C bis Laborbuchung `PS-INV103297`, Postenspur und Artikelposten-Dimension belegt; Steuer 0 % | Labor belegt, Steuer offen | O2C als CRONUS-Labor stark nutzen; keine zweite Buchung; deutsche USt als separaten Finalblock fuehren. |
 | Reporting / Financial Reports | GuV nach `PRODUCTLINE=MACHINE`, `CHANNEL=B2B`, `DEPARTMENT=SALES` | `REPORTING-001` bis `REPORTING-009` belegen den Einstieg und mehrere Negativpfade: Financial Reports erreichbar, Artikelposten-Dimension belegt, aber keine sichtbare Financial-Reports-Summenwirkung nach `PRODUCTLINE`/`CHANNEL` | teilweise belegt | Keinen gleichen read-only Pfad wiederholen; naechster echter Hebel ist ein freigegebener Analysis-View-Fit oder ein anderer belastbarer Standardpfad. |
 | Sachposten-Dimensionen | Dimensionen nach Buchung in Sachposten zeigen | `REPORTING-009` zeigt G/L Entries zu `PS-INV103297` in breiter Ansicht mit `Department Code`/`Customergroup Code`; `PRODUCTLINE`/`CHANNEL` und `Entry` -> `Dimensions` bleiben dort nicht sichtbar | teilweise belegt, Labor-Negativbefund | Im Buch als Unterschied zwischen Shortcut-Spalten, Postendimensionen und Reportingachsen erklaeren; nicht als erledigten Sachposten-Dimensionsnachweis formulieren. |
-| Tax / VAT / 19 % | Deutsche USt `19 %`, USt-Posten, Brutto `80.920 EUR` | CRONUS-USA zeigt `FURNITURE`, `taxPercent = 0`; kein deutscher VAT-Endstand | offen | Nicht im US-Labor erzwingen; DE-Zielmandant oder explizites VAT-Setup vorbereiten. |
+| Tax / VAT / 19 % | Deutsche USt `19 %`, USt-Posten, Brutto `80.920 EUR` | CRONUS-USA zeigt `FURNITURE`, `taxPercent = 0`; `TAX-001` dokumentiert die Grenze und den DE-VAT-Readiness-Pfad | offen, Readiness dokumentiert | Nicht im US-Labor erzwingen; DE-Zielmandant oder explizit freigegebenes VAT-Setup vorbereiten. |
 | P2P / Kreditoren | Einkaufsprozess und Kreditorenpostenspur | Keine praktische Evidence | offen | Nach Reporting/Steuer-Entscheidung als erster neuer Prozessblock vorbereiten. |
 | Bank / Payments | Ausgleich, Zahlung, Bankposten | Gebuchte Laborrechnung existiert als Ausgangspunkt, Zahlung nicht getestet | offen | Spaeter aus `PS-INV103297` ableiten; keine Zahlung ohne Readiness. |
 | Anlagen, Projekte, Service, Manufacturing | Weitere Buchkapitel praktisch lernen | Keine praktische Evidence | offen | Spaeter blockweise starten, nicht vor Kern-Finance/O2C/Reporting. |
@@ -159,16 +159,12 @@ Ziel:
 
 Die Luecke zwischen CRONUS-USA-Sales-Tax und deutschem VAT-Zielmodell beherrschbar machen.
 
-Naechste Arbeit:
+Status nach `TAX-001`:
 
-1. Separaten DE-VAT-Readiness-Plan erstellen:
-   - benoetigte VAT Business Posting Group
-   - benoetigte VAT Product Posting Group
-   - VAT Posting Setup fuer 19 %
-   - Debitor-/Artikelzuordnung
-   - erwartete VAT Entries
-2. Entscheiden, ob das in einer deutschen Zielcompany oder nur theoretisch im Buch vorbereitet wird.
-3. Keine CRONUS-USA-Felder als deutschen Endstand umdeuten.
+1. DE-VAT-Readiness ist dokumentiert.
+2. Benoetigte Ebenen sind benannt: VAT Business Posting Group, VAT Product Posting Group, VAT Posting Setup, Belegzeile, Preview, VAT Entries.
+3. O2C `PS-INV103297` und P2P `108219` bleiben Laborbelege mit `0 %`.
+4. Praktischer `19 %`-Ziellauf braucht eigene Setup-/Umgebungsfreigabe.
 
 Akzeptanz:
 
