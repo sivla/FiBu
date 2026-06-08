@@ -48,7 +48,7 @@ Definition: Eine Anleitung ist erst abgesichert, wenn der Klickpfad in BC funkti
 |---|---|
 | Company | `RM-DEMO` existiert als CRONUS-basierte Trainingscompany |
 | Dimensionen | `DEPARTMENT`, `CHANNEL`, `PRODUCTLINE`, `LOCATION-GROUP` existieren; `COMPANY-GROUP` fehlt im Labor und bleibt Folgearbeit |
-| Dimensionswerte | O2C-Kernwerte `PRODUCTLINE=MACHINE`, `CHANNEL=B2B`, `DEPARTMENT=SALES`, `LOCATION-GROUP=DIRECTED` existieren; mehrere Buchstandard-Erweiterungswerte fehlen noch |
+| Dimensionswerte | O2C-Kernwerte `PRODUCTLINE=MACHINE`, `CHANNEL=B2B`, `DEPARTMENT=SALES`, `LOCATION-GROUP=DIRECTED` und P1-Werte `DEPARTMENT=PURCH`, `DEPARTMENT=WHSE`, `PRODUCTLINE=SPARE`, `LOCATION-GROUP=SIMPLE` existieren; Service/Project/Shop/IC-Werte bleiben spaeter |
 | Lagerort | `FRA-ZL` existiert als einfacher Lagerort |
 | Debitor | `D10000` / `Mueller Maschinenbau GmbH` existiert |
 | Artikel | `RM-M100` / `Standardmaschine M100` existiert |
@@ -109,6 +109,7 @@ Letzter echter Fortschritt:
 
 - `MASTERDATA-BACKLOG.md` uebersetzt die Buchkapitel 3, 6 bis 18 und 19 bis 25 jetzt in einen priorisierten Stammdaten-/Setup-Backlog fuer `RM-DEMO`; `testdata/README.md` erklaert Struktur, Laborgrenzen und welche Daten bereits praktisch belegt sind.
 - `MASTERDATA-DIMENSIONS` prueft die Buchdimensionen read-only gegen `RM-DEMO`: `DEPARTMENT`, `CHANNEL`, `PRODUCTLINE`, `LOCATION-GROUP` existieren; `COMPANY-GROUP` sowie mehrere Erweiterungswerte fehlen. Die Standard-API erlaubt fuer `dimensions` und `dimensionValues` keinen Insert, daher bleibt die fehlende Buchmatrix ein gezielter UI-Setup-Folgeschritt.
+- `MASTERDATA-010` hat die ersten P1-Dimensionswerte per UI angelegt: `PURCH`, `WHSE`, `SPARE`, `SIMPLE`. Der Lauf hat nicht gebucht und keine Pflichtdimensionen provoziert.
 - Projektbilder wurden aus Root-`img/` nach `playwright/projects/fibu-book5/img/` verschoben.
 - `UAT-O2C-001` erreicht `Preview Posting` ueber den Dropdown-Teil von `Post...`.
 - Nach `MASTERDATA-009` stoppt BC nicht mehr auf dem Inventory-Posting-Setup-Fehler, sondern oeffnet `Posting Preview`.
@@ -182,8 +183,8 @@ Als naechstes gezielt den naechsten Lernblock waehlen, ohne erneut zu buchen:
 2. Die Postenspur nicht erneut buchen; `PS-INV103297` ist der Laborbeleg.
 3. O2C ist im CRONUS-Labor bis gebuchte Rechnung, Postenspur, Artikelposten und Artikelposten-Dimension nachgewiesen.
 4. Stammdaten- und Setup-Folgearbeit aus `MASTERDATA-BACKLOG.md` ableiten, damit neue Prozesse nicht mit fehlenden Kreditoren, Artikeln, Dimensionswerten, Posting Groups oder Tax/VAT-Annahmen starten.
-5. Vor P2P/Inventory entscheiden, ob zuerst fehlende P1-Dimensionswerte (`PURCH`, `WHSE`, `SPARE`, `SIMPLE`) per gezieltem UI-Lauf angelegt werden.
-6. Reporting ist jetzt read-only bis zur Seite `Financial Reports` gestartet; als naechstes passenden Report oeffnen, breite/maximierte Ansicht nutzen und Dimensionsfilter fuer `PRODUCTLINE=MACHINE` suchen.
+5. P1-Dimensionswerte sind vorbereitet; als naechstes P2P-Stammdaten/Setup-Fit fuer `K10000` und `RAW-STEEL` pruefen, bevor ein Einkaufsbeleg erzeugt wird.
+6. Reporting ist jetzt read-only bis zur Seite `Financial Reports` gestartet; alternativ passenden Report oeffnen, breite/maximierte Ansicht nutzen und Dimensionsfilter fuer `PRODUCTLINE=MACHINE` suchen.
 7. Deutsche `19 %`-USt bleibt davon getrennt offen.
 
 Synchronisationsstand nach der letzten Projektwahrheits-Pruefung:
@@ -233,6 +234,7 @@ Danach `.env` mit der konkreten Business-Central-URL fuellen.
 | `playwright/projects/fibu-book5/MASTERDATA-BACKLOG.md` | priorisierter Stammdaten- und Setup-Backlog aus dem Buch fuer `RM-DEMO` |
 | `playwright/projects/fibu-book5/testdata/README.md` | Testdatenstruktur, Konventionen und Laborgrenzen |
 | `playwright/projects/fibu-book5/evidence/masterdata-dimensions/011-dimension-foundation-summary.md` | aktueller Foundation-/Dimensionsfit inklusive fehlender Erweiterungswerte |
+| `playwright/projects/fibu-book5/evidence/masterdata-010/011-p1-dimension-values-summary.md` | P1-Dimensionswerte fuer P2P/Inventory/Warehouse |
 | `playwright/projects/fibu-book5/LAB-FIT-STATUS.md` | blockuebergreifende Prozesslandkarte |
 | `playwright/projects/fibu-book5/evidence/uat-o2c-001/045-target-vs-labor-delta.md` | harter Soll-Ist-Abgleich |
 | `playwright/projects/fibu-book5/WORKAROUNDS-AND-ERRORS.md` | bekannte Fehler und Loesungen |

@@ -283,7 +283,7 @@ test('MASTERDATA-DIMENSIONS Buchstandard fuer Foundation und Dimensionen haerten
       '',
       '## Buchwirkung',
       '',
-      'Kapitel 10 kann den O2C-Kern als RM-DEMO-Laborfit lesen: DEPARTMENT, CHANNEL, PRODUCTLINE und LOCATION-GROUP existieren, und die Default Dimensions fuer O2C sind weiterhin der konkrete Prozessanker. COMPANY-GROUP und mehrere Erweiterungswerte sind noch kein Laborfit. Pflichtdimensionen werden nicht blind global erzwungen; sie brauchen einen separaten Lernfall mit bewusstem Fehlerbild.',
+      'Kapitel 10 kann den O2C-Kern als RM-DEMO-Laborfit lesen: DEPARTMENT, CHANNEL, PRODUCTLINE und LOCATION-GROUP existieren, und die Default Dimensions fuer O2C sind weiterhin der konkrete Prozessanker. Die ersten P1-Erweiterungswerte fuer P2P/Inventory sind vorbereitet. COMPANY-GROUP und spaetere Service/Project/Shop/IC-Werte sind noch kein Laborfit. Pflichtdimensionen werden nicht blind global erzwungen; sie brauchen einen separaten Lernfall mit bewusstem Fehlerbild.',
       '',
       '## Naechster Schritt',
       '',

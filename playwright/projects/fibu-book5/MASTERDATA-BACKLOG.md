@@ -40,7 +40,8 @@ Deutsche `19 %` USt, deutscher Kontenplan, deutsche Steuerreports und finale deu
 | Ziel-Companies | 3, 6, 18 | `RM-PROD`, `RM-SALES`, `RM-SERVICE`, `RM-SHARED`, `RM-AT` | nur Buchziel | ja, `masterdata/companies.json` | nein | `later-multicompany` | P3 | Erst nach RM-DEMO-Lernlauf als eigener Block. |
 | Dimensionen | 7, 10, 25 | `PRODUCTLINE`, `CHANNEL`, `DEPARTMENT`, `LOCATION-GROUP`, spaeter `COMPANY-GROUP`/`PROJECT` | `DEPARTMENT`, `CHANNEL`, `PRODUCTLINE`, `LOCATION-GROUP` existieren; `COMPANY-GROUP` fehlt im Labor und wurde nicht per API angelegt | ja, `masterdata/dimensions.json` | ja, `masterdata-002/003/007`, `masterdata-dimensions`, O2C | `partial` | P0 | Fehlende Erweiterungsdimension/-werte gezielt per UI-Setup-Lauf planen; Reportingwirkung pruefen. |
 | Dimensionswerte Kern | 7, 10, 11 | `MACHINE`, `B2B`, `SALES`, `DIRECTED` | in `RM-DEMO` nachgewiesen | ja | ja | `done-labor` | P0 | Keine Sofortaktion. |
-| Dimensionswerte Erweiterung | 7, 10, 12-18 | `PURCH`, `WHSE`, `SERV`, `FIN`, `ADMIN`, `SPARE`, `SERVICE`, `PROJECT`, `RENTAL`, `SHOP`, `IC`, `SIMPLE`, `VAN`, `DROP` | Sollwerte gegen API geprueft; mehrere Werte fehlen und wurden nicht per Standard-API angelegt | ja | ja als Delta, `masterdata-dimensions` | `missing-setup` | P1-P3 | Naechster Setup-Schritt: gezielter UI-Lauf fuer P1-Werte vor Inventory/Warehouse/P2P. |
+| Dimensionswerte Erweiterung P1 | 7, 10, 12-13 | `PURCH`, `WHSE`, `SPARE`, `SIMPLE` | per UI-Lauf angelegt und nach Neuoeffnen geprueft | ja | ja, `masterdata-010` | `done-labor` | P1 | Fuer P2P/Inventory nutzbar; Default Dimensions an neuen Stammdaten spaeter separat setzen. |
+| Dimensionswerte Erweiterung spaeter | 7, 10, 14-18 | `SERV`, `FIN`, `ADMIN`, `SERVICE`, `PROJECT`, `RENTAL`, `SHOP`, `IC`, `VAN`, `DROP` | weiterhin geplant; nicht blind angelegt | ja | teilweise als Delta, `masterdata-dimensions` | `planned-only` | P2-P3 | Erst pro Service/Project/Shop/IC-Prozessbedarf anlegen und fotografieren. |
 | Standarddimension Debitor | 10, 11, 19 | `D10000 -> CHANNEL=B2B` | gesetzt und UI/API-geprueft | ja | ja, `masterdata-007`, O2C | `done-labor` | P0 | Fuer weitere Debitoren separat planen. |
 | Standarddimension Artikel | 10, 11, 13, 25 | `RM-M100 -> PRODUCTLINE=MACHINE` | gesetzt; in Verkaufszeile und Artikelposten nachgewiesen | ja | ja, `masterdata-007`, O2C `050/089` | `done-labor` | P0 | Sachposten/Financial-Reports-Wirkung read-only pruefen. |
 | Debitor O2C | 7, 11, 19, 22 | `D10000 Mueller Maschinenbau GmbH`, EUR, Inland-B2B | existiert; EUR passt; Tax bleibt CRONUS-USA-Labor | ja, `customers.json`, `sales/uat-o2c-001.json` | ja, `masterdata-005`, O2C | `partial` | P0 | Deutsche VAT-Business-Logik nicht als erledigt markieren. |
@@ -88,7 +89,7 @@ Deutsche `19 %` USt, deutscher Kontenplan, deutsche Steuerreports und finale deu
 ## Empfohlene Build-Reihenfolge
 
 1. Aktuellen O2C-Laborbeleg nicht erneut buchen; stattdessen `REPORTING-002` und G/L-Dimensionsdialog read-only pruefen.
-2. P2P-Basis vorbereiten: `K10000`, `RAW-STEEL`, Vendor Posting Group, Purchase/General Posting Setup, Tax/VAT-Laborgrenze, Nummernserie.
+2. P2P-Basis vorbereiten: `K10000`, `RAW-STEEL`, Default Dimensions, Vendor Posting Group, Purchase/General Posting Setup, Tax/VAT-Laborgrenze, Nummernserie.
 3. Einfachen P2P-Lauf mit Preview zuerst, Buchung nur nach separater Readiness.
 4. Inventory einfach vertiefen: `SP-PUMP-01`, `RAW-STEEL`, Wertposten, Lagerbewertung, Kostenregulierung.
 5. Warehouse separat: `FRA-ZL` als gesteuertes Lager mit Bins, Receipts, Put-aways, Picks.
