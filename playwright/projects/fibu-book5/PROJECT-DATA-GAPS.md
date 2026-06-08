@@ -22,7 +22,7 @@ Deshalb gilt:
 | Company | Zweck | Status in `RM-DEMO` |
 |---|---|---|
 | `RM-PROD` | Produktion, Fertigung, gesteuertes Lager | zu prüfen / vermutlich fehlt |
-| `RM-SALES` | Vertrieb, Onlineshop, Dropshipping | zu prüfen / vermutlich fehlt |
+| `RM-SALES` | Vertrieb, Dropshipping und Sonderverkauf | zu prüfen / vermutlich fehlt |
 | `RM-SERVICE` | Service, Wartung, Miete | zu prüfen / vermutlich fehlt |
 | `RM-SHARED` | Einkauf, Shared Services, Finance | zu prüfen / vermutlich fehlt |
 | `RM-AT` | EU-Ausland/Intercompany | zu prüfen / vermutlich fehlt |
@@ -42,7 +42,7 @@ Modellentscheidung:
 |---|---|
 | `COMPANY-GROUP` | `PROD`, `SALES`, `SERVICE`, `SHARED`, `AT` |
 | `DEPARTMENT` | `SALES`, `PURCH`, `WHSE`, `PROD`, `SERV`, `FIN`, `ADMIN` |
-| `CHANNEL` | `B2B`, `SHOP`, `IC`, `SERVICE`, `PROJECT` |
+| `CHANNEL` | `B2B`, `IC`, `SERVICE`, `PROJECT` |
 | `PRODUCTLINE` | `MACHINE`, `SPARE`, `RENTAL`, `SERVICE` |
 | `LOCATION-GROUP` | `DIRECTED`, `SIMPLE`, `VAN`, `PROJECT`, `DROP` |
 
@@ -78,7 +78,7 @@ Für `UAT-O2C-001` mindestens erforderlich:
 | Nr. | Name | Land | Trainingsfall |
 |---|---|---|---|
 | `D10000` | Müller Maschinenbau GmbH | DE | Standardverkauf Maschine |
-| `D11000` | Handwerk24 Onlinekunde | DE | Onlineshop-Ersatzteil |
+| `D11000` | Handwerk24 Ersatzteilkunde | DE | Dropshipping-/Sonderverkauf Ersatzteil |
 | `D20000` | Alpha Machines SAS | FR | EU-Lieferung |
 | `D30000` | SwissTech AG | CH | Ausfuhrlieferung |
 | `D90000` | RM-SALES GmbH IC | DE | Intercompany |

@@ -38,6 +38,28 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 
 ## Aktuelle Fundstellen
 
+## FIND-BC-SCOPE-001 Shopify ist aus Buch-5-Lernscope gestrichen
+
+| Feld | Wert |
+|---|---|
+| Status | erledigt als Scope-Entscheidung |
+| Projekt | fibu-book5 |
+| Testfall | `SCOPE-001` |
+| Screenshot | keine BC-Screenshots; Scope-/Buchentscheidung |
+| Evidence | `playwright/projects/fibu-book5/evidence/scope-001/SCOPE-001-SHOPIFY-REMOVAL.md`, `playwright/projects/fibu-book5/evidence/scope-001/SCOPE-001-result.json` |
+| BC-Seite | nicht zutreffend |
+| sichtbarer Text | Shopify/Online Store war im Buch und in Testdaten als aktiver Prozess enthalten |
+| Elementtyp | Scope / Buchplanung / Testdatenmodell |
+| erste Hypothese | Shopify erzeugt einen eigenen Connector-/Integrationsscope und lenkt vom aktuellen UI-first Business-Central-Lernpfad ab. |
+| Recherchequelle | Projektentscheidung vom 08.06.2026 und Buch-/Backlog-Sync |
+| Testergebnis | Kapitel 17, Backlog, Testdaten und Datenluecken wurden auf Dropshipping/Sonderverkauf umgestellt. `WEB-24001`, `CHANNEL=SHOP` und Shopify-Klickpfade sind kein aktives Ziel mehr. |
+| Entscheidung | Shopify/Online Store ist out of scope. Dropshipping bleibt als BC-Standardprozess ohne Connector-Scope erhalten. |
+| Buchstelle | Kapitel 17, Kapitel 1/3/7/10/25/29/38 |
+
+Bewertung:
+
+Fuer Anfaenger ist das wichtig, weil Shopify nicht nur eine BC-Seite ist, sondern Connector, Mapping, Integration und Payment-Provider-Logik nach sich zieht. Das aktuelle Buchprojekt soll zuerst die BC-Standardprozesse ueber UI-Klickpfade lernen.
+
 ## FIND-BC-FA-001 Anlagenkapitel braucht Zielwertabgleich vor Setup und Buchung
 
 | Feld | Wert |

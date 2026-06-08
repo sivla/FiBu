@@ -5,7 +5,7 @@ Hinweis: Dieses Buch ist ein quellenbasiertes Lern-, Schulungs-, Projekt- und Im
 
 **Verlässlichkeitsstandard und Rechtsstand**
 - Rechtsstand und Link-Prüfung der Primärquellen: `28.05.2026`.
-- Fachlicher Fokus: Business Central Standard, deutsche Umsatzsteuer (USt), GoBD, E-Rechnung, HGB-nahe Finanzprozesse, Lager, Fertigung, Service, Projekte, Onlineshop, Intercompany und Reporting.
+- Fachlicher Fokus: Business Central Standard, deutsche Umsatzsteuer (USt), GoBD, E-Rechnung, HGB-nahe Finanzprozesse, Lager, Fertigung, Service, Projekte, Dropshipping/Sonderverkauf, Intercompany und Reporting.
 - BC-Funktionsumfang, Seitenbezeichnungen und Lokalisierungen können je Release Wave, Mandant, Lizenz, Sprache, Berechtigung und aktivierter Funktion abweichen.
 - In diesem Buch ist die deutsche Business-Central-Oberfläche führend. Englische Microsoft-Learn-/Tell-Me-Begriffe stehen nur als Klammerzusatz, Suchhilfe oder Quellenbegriff daneben.
 - Bei Abweichungen zwischen diesem Buch und Normtext oder Microsoft Learn gilt immer die aktuelle Primärquelle.
@@ -34,7 +34,7 @@ Hinweis: Dieses Buch ist ein quellenbasiertes Lern-, Schulungs-, Projekt- und Im
 14. Planning, Assembly und Manufacturing: Maschine produzieren
 15. Service: Wartung, Garantie und Ersatzteilverbrauch
 16. Projects: Installation und Meilensteinrechnung
-17. Shopify, Dropshipping und Sonderverkauf
+17. Dropshipping und Sonderverkauf
 18. Intercompany und Ausland
 
 **Teil D — Finance, Kontrolle und Abschluss**
@@ -84,7 +84,7 @@ Ziel:
 
 ### Was „alle Standardprozesse“ in diesem Buch bedeutet [Q2]
 
-Business Central deckt nach Microsofts offizieller Prozesslandkarte Finance, Sales, Purchasing, Inventory, Warehouse Management, Online Store mit Shopify, Fixed Assets, Planning, Assembly, Manufacturing, Project Management, Service Management, Relationship Management, Human Resources, Reporting, Admin, Workflows und Integrationen ab. Dieses Buch nimmt diese Prozessgruppen als Mindestumfang. [Q1][Q2]
+Business Central deckt nach Microsofts offizieller Prozesslandkarte Finance, Sales, Purchasing, Inventory, Warehouse Management, Online Store mit Shopify, Fixed Assets, Planning, Assembly, Manufacturing, Project Management, Service Management, Relationship Management, Human Resources, Reporting, Admin, Workflows und Integrationen ab. Dieses Buch nutzt diese Prozesslandkarte als Orientierung, streicht Shopify/Online Store aber bewusst aus dem aktuellen Buch-5-Lernscope. [Q1][Q2]
 
 | BC-Prozessbereich | Wird in diesem Buch behandelt als | Trainingsziel |
 |---|---|---|
@@ -93,7 +93,7 @@ Business Central deckt nach Microsofts offizieller Prozesslandkarte Finance, Sal
 | Purchasing | Anfrage, Bestellung, Wareneingang, Eingangsrechnung, Rücksendung | P2P und 3-Way-Match erklären |
 | Inventory | Artikel, Lagerorte, Varianten, Bewertung, Inventur | Mengen- und Wertfluss abstimmen |
 | Lager/Warehouse | Einlagerung (Put-away), Kommissionierung (Pick), Lagerplätze (Bins), gesteuerte Lagerorte | einfache und gesteuerte Lagerlogik unterscheiden |
-| Shopify/Online Store | Kunden-, Artikel- und Auftragsfluss aus dem Shop | Onlineshop-Aufträge in BC verarbeiten |
+| Online Store / Shopify | nicht Teil des aktuellen Buch-5-Lernscope | Connector-Thema bewusst gestrichen; Dropshipping wird ohne Shopify als BC-Standardfall behandelt |
 | Planning | Forecast, MPS, MRP, Planungsarbeitsblatt | Bedarf in Beschaffung/Fertigung übersetzen |
 | Assembly | Montageauftrag, Assemble-to-Order, Kits | Baugruppen ohne volle Fertigung abbilden |
 | Manufacturing | Stückliste, Arbeitsplan, Fertigungsauftrag, Verbrauch, Output | Produktionskosten und Abweichungen verstehen |
@@ -181,7 +181,7 @@ Der Einsteigerpfad setzt kein ERP-Wissen voraus. Er führt von der Firma über G
 | 2 | 6 bis 8 | Companies, Stammdaten und Foundation Setup sicher einordnen |
 | 3 | 9 bis 10 | Buchungsgruppen, Kontenfindung, Dimensionen und Reportingachsen verstehen |
 | 4 | 11 bis 12 | Verkauf/O2C und Einkauf/P2P mit Belegen, Posten und Kontrollberichten durchführen |
-| 5 | 13 bis 18 | Lager, Fertigung, Service, Projekte, Shopify, Dropshipping, Ausland und Intercompany als Prozesskette lesen |
+| 5 | 13 bis 18 | Lager, Fertigung, Service, Projekte, Dropshipping/Sonderverkauf, Ausland und Intercompany als Prozesskette lesen |
 | 6 | 19 bis 25 | OP-Ausgleich, Bank, Anlagen, USt, Lagerbewertung, Monatsabschluss und Reporting prüfen |
 | 7 | 32, 33, 37 und 38 | UAT-Fälle ausführen, Lösungen nachvollziehen, Begriffe nachschlagen und Prozesskatalog nutzen |
 
@@ -235,7 +235,7 @@ Solution Architects arbeiten stärker entscheidungsorientiert. Sie starten mit K
 | 9 | Artikel, Lagerorte, Kostenmethoden, Artikelposten und Wertposten | 13 und 23 |
 | 10 | Einkauf, Wareneingang, Eingangsrechnung, Rücksendung, Gutschrift | 12 |
 | 11 | Verkauf, Lieferung, Rechnung, Retoure, Gutschrift, Vorauszahlung | 11 |
-| 12 | Shopify, Dropshipping, Ausland, USt und E-Rechnung | 17, 18 und 22 |
+| 12 | Dropshipping, Ausland, USt und E-Rechnung | 17, 18 und 22 |
 | 13 | Bankabstimmung, Journale, Ausgleich, Währungen und Korrekturen | 19, 20 und 24 |
 | 14 | UAT, Übungen, MB-800-Matrix und Prüfungstraining | 32 bis 36 |
 
@@ -260,7 +260,7 @@ Die Musterfirma ist bewusst breit konstruiert. Sie soll Business Central nicht m
 
 ### Die Fallstudie in einfachen Worten
 
-Die Rhein-Main Industriegruppe baut Maschinen, verkauft Ersatzteile, betreibt einen Onlineshop, schickt Servicetechniker zum Kunden, wickelt Projekte ab und führt mehrere Gesellschaften in einer Unternehmensgruppe. Genau deshalb braucht sie ein ERP-System. Ohne ERP würden Vertrieb, Einkauf, Lager, Fertigung, Service und Buchhaltung mit getrennten Listen arbeiten. Dann weiß der Vertrieb nicht sicher, ob Ware verfügbar ist. Der Einkauf sieht zu spät, welches Material fehlt. Das Lager kennt Mengen, aber nicht immer Werte. Finance erkennt Fehler erst im Monatsabschluss.
+Die Rhein-Main Industriegruppe baut Maschinen, verkauft Ersatzteile, nutzt Dropshipping fuer Sonderfaelle, schickt Servicetechniker zum Kunden, wickelt Projekte ab und fuehrt mehrere Gesellschaften in einer Unternehmensgruppe. Genau deshalb braucht sie ein ERP-System. Ohne ERP wuerden Vertrieb, Einkauf, Lager, Fertigung, Service und Buchhaltung mit getrennten Listen arbeiten. Dann weiss der Vertrieb nicht sicher, ob Ware verfuegbar ist. Der Einkauf sieht zu spaet, welches Material fehlt. Das Lager kennt Mengen, aber nicht immer Werte. Finance erkennt Fehler erst im Monatsabschluss.
 
 Business Central verbindet diese Abteilungen. Ein Verkaufsauftrag ist nicht nur ein Formular für den Kunden. Er beeinflusst Lager, Umsatz, Umsatzsteuer, Forderungen, Wareneinsatz, Dimensionen und Reporting. Eine Einkaufsbestellung ist nicht nur eine Bestellung beim Lieferanten. Sie beeinflusst Materialverfügbarkeit, Lagerwert, Kreditorenposten, Vorsteuer und Fertigungsfähigkeit. Die Fallstudie führt diese Zusammenhänge durch das gesamte Buch.
 
@@ -296,14 +296,14 @@ Business Central wird eingeführt, damit dieselben Stammdaten und Buchungsregeln
 | Company in BC | Rolle im Konzern | Hauptprozesse |
 |---|---|---|
 | `RM-PROD GmbH` | Produktion und Zentrallager | Fertigung, gesteuertes Lager, Einkauf, Intercompany-Verkauf |
-| `RM-SALES GmbH` | Vertrieb und Onlineshop | B2B, B2C, Shopify, Dropshipping, Debitoren |
+| `RM-SALES GmbH` | Vertrieb und Dropshipping/Sonderverkauf | B2B, Dropshipping, Debitoren |
 | `RM-SERVICE GmbH` | Wartung, Miete, Finanzierungsvorbereitung | Service, Mietfälle, Projekte, Anlagen-/Serviceartikel |
 | `RM-SHARED GmbH` | Shared Services | Einkauf, Stammdaten, Zahlungsverkehr, Reporting |
 | `RM-AT GmbH` | EU-Auslandsgesellschaft | Intercompany, EU-USt, Intrastat-nahe Fälle |
 
 ```mermaid
 flowchart LR
-    PROD["RM-PROD GmbH\nFertigung + Zentrallager"] --> SALES["RM-SALES GmbH\nVertrieb + Onlineshop"]
+    PROD["RM-PROD GmbH\nFertigung + Zentrallager"] --> SALES["RM-SALES GmbH\nVertrieb + Dropshipping"]
     PROD --> SERVICE["RM-SERVICE GmbH\nService + Miete"]
     SHARED["RM-SHARED GmbH\nEinkauf + Stammdaten"] --> PROD
     SHARED --> SALES
@@ -317,7 +317,7 @@ flowchart LR
 |---|---|---|---|---|
 | `FRA-ZL` | RM-PROD | Zentrallager | gesteuerte Einlagerung/Kommissionierung mit Lagerplätzen (Bins) | Lagereingang (Warehouse Receipt), Einlagerung (Put-away), Kommissionierung (Pick), Warenausgang (Shipment) |
 | `MZ-EINFACH` | RM-SALES | Außenlager | einfache Lagerbuchung ohne gesteuerte Einlagerung | einfacher Wareneingang und Verkauf |
-| `HH-FUL` | RM-SALES | Onlineshop-Fulfillment | Kommissionierung/Lieferung (Pick/Shipment) vereinfacht | Shop-Auftrag bis Versand |
+| `HH-FUL` | RM-SALES | Sonderverkaufs-/Versandabwicklung | Kommissionierung/Lieferung (Pick/Shipment) vereinfacht | Ersatzteilauftrag bis Versand |
 | `VAN-01` | RM-SERVICE | Servicefahrzeug | Lagerort für Techniker | Ersatzteilverbrauch im Service |
 | `PROJ-BER` | RM-SERVICE | Projektlager | Projektbezogenes Lager | Projektmaterial und Baustelle |
 | `DROP` | RM-SALES | Dropshipping | kein eigener Bestand | Direktlieferung Lieferant an Kunde |
@@ -333,7 +333,7 @@ Im ersten O2C-Aufbau wird `FRA-ZL` zunächst nur als Lagerort angelegt. Die gest
 | Eigenfertigung | Standardmaschine `RM-M100` | Manufacturing | vollständig im Standard demonstrierbar |
 | Variantenfertigung | Sondermaschine `RM-X500` | BOM/Routing/Projekt/Fertigung | Variantenlogik braucht klare Stammdaten |
 | Handelsware | Ersatzteil `SP-PUMP-01` | O2C/P2P/Inventory | Standard |
-| Onlineshop | Webshop-Verkauf Ersatzteile | Shopify Connector / Verkaufsaufträge (Sales Orders) | abhängig von Connector-Setup |
+| Sonderverkauf/Dropshipping | Ersatzteilverkauf mit direkter Lieferantenlieferung | Verkaufsauftraege (Sales Orders) / Einkaufsbestellungen (Purchase Orders) | abhaengig von Beleg- und Einkaufsbezug |
 | Service | Wartung beim Kunden | Service Management | Standard |
 | Miete | Mietmaschine 12 Monate | Service/Projekte/Abgrenzungen/Anlagen (Service/Projects/Deferrals/Fixed Assets) | Standard nur mit Prozessdesign |
 | Finanzierung | Kunde finanziert Maschine über Bank | Sales/Receivables/Deferrals | komplexe Finanzierungslogik nicht vollständig Standard |
@@ -346,7 +346,7 @@ Im ersten O2C-Aufbau wird `FRA-ZL` zunächst nur als Lagerort angelegt. Die gest
 
 Die Rhein-Main Industriegruppe verdient ihr Geld nicht mit einem einzigen Prozess. Ein Maschinenverkauf beginnt im Vertrieb, löst Verfügbarkeitsprüfung aus, kann Fertigung anstoßen, bewegt Lagerwerte und endet in Forderung, Zahlung und GuV. Ein Servicefall beginnt beim Kundenproblem, verbraucht Ersatzteile, erzeugt Technikerzeiten und entscheidet zwischen Rechnung, Garantie und Kulanz. Ein Projekt verbindet Sondermaschine, Fremdleistung, Material, Ressourcen und Meilensteinrechnung.
 
-Mehrere Companies sind deshalb kein Selbstzweck. RM-PROD zeigt Produktion und Materialfluss. RM-SALES zeigt Markt, Kunden, Preise und Onlineshop. RM-SERVICE zeigt laufende Kundenbetreuung. RM-SHARED bündelt Finance, USt, Bank, Reporting und Administration. RM-AT macht EU- und Auslandsszenarien sichtbar. Business Central löst damit reale Probleme: weniger Dubletten, bessere Verfügbarkeit, nachvollziehbare Steuerlogik, abgestimmte Posten, belastbare GuV nach Produktlinie und klare Verantwortlichkeiten.
+Mehrere Companies sind deshalb kein Selbstzweck. RM-PROD zeigt Produktion und Materialfluss. RM-SALES zeigt Markt, Kunden, Preise und Sonderverkauf. RM-SERVICE zeigt laufende Kundenbetreuung. RM-SHARED buendelt Finance, USt, Bank, Reporting und Administration. RM-AT macht EU- und Auslandsszenarien sichtbar. Business Central loest damit reale Probleme: weniger Dubletten, bessere Verfuegbarkeit, nachvollziehbare Steuerlogik, abgestimmte Posten, belastbare GuV nach Produktlinie und klare Verantwortlichkeiten.
 
 
 ## 4. ERP und Business Central für absolute Einsteiger
@@ -377,7 +377,7 @@ Ein vollständiges Schulungsbuch muss zeigen, wie Mitarbeiter arbeiten. Deshalb 
 | Rolle | Abteilung | Typische BC-Seiten | Was macht der Mitarbeiter? |
 |---|---|---|---|
 | Verkäuferin | Vertrieb | `Verkaufsangebote (Sales Quotes)`, `Verkaufsaufträge (Sales Orders)`, `Debitoren (Customers)`, `Kontakte (Contacts)` | Angebot erstellen, Auftrag erfassen, Verfügbarkeit prüfen, Rechnung auslösen |
-| E-Commerce-Sachbearbeiter | Onlineshop | `Shopify-Shops (Shopify Shops)`, `Verkaufsaufträge (Sales Orders)`, `Artikel (Items)`, `Debitoren (Customers)` | Shop-Aufträge synchronisieren, Fehler klären, Versand anstoßen |
+| Vertriebsinnendienst | Sonderverkauf/Dropshipping | `Verkaufsauftraege (Sales Orders)`, `Einkaufsbestellungen (Purchase Orders)`, `Artikel (Items)`, `Debitoren (Customers)` | Sonderauftraege erfassen, Lieferantenbezug klaeren, Versand anstossen |
 | Einkäufer | Einkauf | `Kreditoren (Vendors)`, `Einkaufsbestellungen (Purchase Orders)`, `Einkaufsrechnungen (Purchase Invoices)` | Bestellung auslösen, Preise prüfen, Wareneingang/Rechnung abstimmen |
 | Lagerist einfaches Lager | Lager MZ | `Artikeljournale (Item Journals)`, `Verkaufslieferungen (Sales Shipments)`, `Einkaufslieferungen (Purchase Receipts)` | Ware annehmen, Bestand prüfen, Lieferung buchen |
 | Lagerist gesteuertes Lager | FRA-ZL | `Lagereingänge (Warehouse Receipts)`, `Lagereinlagerungen (Warehouse Put-aways)`, `Lagerkommissionierungen (Warehouse Picks)`, `Warenausgänge (Warehouse Shipments)` | Einlagern, kommissionieren, versenden |
@@ -735,7 +735,7 @@ Für den ersten belastbaren Lauf nutzt das Projekt `RM-DEMO` als konsolidierte T
 ### UAT-Schulung Foundation
 
 Aufgabe:
-1. Lege Dimension `CHANNEL` mit Werten `B2B`, `SHOP`, `IC`, `SERVICE`, `PROJECT` an.
+1. Lege Dimension `CHANNEL` mit Werten `B2B`, `IC`, `SERVICE`, `PROJECT` an.
 2. Setze `CHANNEL` als Pflichtdimension für Debitor `D10000`.
 3. Buche eine Verkaufsrechnung ohne `CHANNEL`.
 4. Korrigiere den Fehler und buche erneut.
@@ -795,7 +795,7 @@ Companies:
 | Company | Zweck | Besonderheit |
 |---|---|---|
 | `RM-PROD` | Produktion | Fertigung, gesteuertes Lager |
-| `RM-SALES` | Vertrieb/Onlineshop | Verkauf, Shopify, Dropshipping |
+| `RM-SALES` | Vertrieb/Dropshipping | Verkauf, Sonderverkauf, Dropshipping |
 | `RM-SERVICE` | Service/Miete | Serviceaufträge, Wartung, Mietlogik |
 | `RM-SHARED` | Einkauf/Shared Services | zentrale Kreditoren, Umlagen |
 | `RM-AT` | EU-Auslandsgesellschaft | EU-USt, Intrastat-nahe Fälle, Intercompany |
@@ -810,7 +810,7 @@ Dimensionen:
 |---|---|
 | `DEPARTMENT` | `SALES`, `PURCH`, `WH`, `PROD`, `SERV`, `FIN`, `ADMIN` |
 | `PRODUCTLINE` | `MACHINE`, `SPARE`, `SERVICE`, `PROJECT`, `RENTAL` |
-| `CHANNEL` | `B2B`, `SHOP`, `IC`, `EXPORT` |
+| `CHANNEL` | `B2B`, `IC`, `EXPORT` |
 | `LOCATION-GROUP` | `FRA`, `MZ`, `DA`, `VAN`, `PROJECT` |
 
 Artikel:
@@ -830,7 +830,7 @@ Debitoren:
 | `D10000` | DE | B2B | 14 Tage 2 %, 30 Tage netto | Inland |
 | `D20000` | FR | EU-B2B | 30 Tage netto | EU-Lieferung |
 | `D30000` | CH | Drittland | Vorkasse | Export |
-| `D40000` | DE | B2C-Shop | sofort | Onlineshop |
+| `D40000` | DE | B2C-Ersatzteilkunde | sofort | Sonderverkauf |
 
 Kreditoren:
 
@@ -1050,7 +1050,7 @@ Merksatz:
 |---|---|---|
 | `COMPANY-GROUP` | PROD, SALES, SERVICE, SHARED, AT | Konzerninterne Auswertung |
 | `DEPARTMENT` | SALES, PURCH, WHSE, PROD, SERV, FIN, ADMIN | Rollen- und Kostenstellenlogik |
-| `CHANNEL` | B2B, SHOP, IC, SERVICE, PROJECT | Vertriebskanal |
+| `CHANNEL` | B2B, IC, SERVICE, PROJECT | Vertriebskanal |
 | `PRODUCTLINE` | MACHINE, SPARE, RENTAL, SERVICE | Produktlinie |
 | `LOCATION-GROUP` | DIRECTED, SIMPLE, VAN, PROJECT, DROP | Lagerlogik |
 
@@ -1059,7 +1059,7 @@ Merksatz:
 | Nr. | Name | Land | Typ | USt-Logik | Trainingsfall |
 |---|---|---|---|---|---|
 | `D10000` | Müller Maschinenbau GmbH | DE | B2B | Inland 19 % | Standardverkauf Maschine |
-| `D11000` | Handwerk24 Onlinekunde | DE | B2C | Inland 19 % | Onlineshop-Ersatzteil |
+| `D11000` | Handwerk24 Ersatzteilkunde | DE | B2C/Sonderverkauf | Inland 19 % | Dropshipping-/Sonderverkauf Ersatzteil |
 | `D20000` | Alpha Machines SAS | FR | EU-B2B | innergemeinschaftlich | EU-Lieferung |
 | `D30000` | SwissTech AG | CH | Drittland | Export | Ausfuhrlieferung |
 | `D90000` | RM-SALES GmbH IC | DE | Intercompany | Inland/IC | IC-Verkauf PROD an SALES |
@@ -1093,7 +1093,7 @@ Merksatz:
 | Fall | Beleg | Daten | Erwarteter Prozess |
 |---|---|---|---|
 | S-001 | Verkaufsauftrag (Sales Order) `SO-1001` | D10000 kauft `RM-M100`, 1 Stück | Fertigung → Lieferung → Rechnung |
-| S-002 | Shopauftrag (Shop Order) `WEB-24001` | D11000 kauft `SP-PUMP-01`, 2 Stück | Shopify → Fulfillment → Zahlung |
+| S-002 | Sonderverkaufsauftrag `DS-24001` | D11000 kauft `SP-PUMP-01`, 2 Stueck | Verkaufsauftrag -> Dropshipping-Einkauf -> Zahlung |
 | S-003 | Direktlieferung (Drop Shipment) `SO-1003` | D10000 kauft Handelsware von K20000 | Verkaufsauftrag ↔ Einkaufsbestellung |
 | P-001 | Einkaufsbestellung (Purchase Order) `PO-2001` | RAW-STEEL 10 Stück | Wareneingang gesteuertes Lager |
 | M-001 | Fertigungsauftrag (Production Order) `PROD-3001` | `RM-M100`, 3 Stück | Verbrauch + Output |
@@ -1621,7 +1621,7 @@ Ein Konto ist Bestandteil der Finanzbuchhaltung. Es entscheidet, ob ein Betrag a
 | Dimension | Warum Rhein-Main sie nutzt | Typische Frage |
 |---|---|---|
 | `PRODUCTLINE` | Maschinen, Ersatzteile, Service, Projekte und Miete trennen | Welche Produktlinie verdient Geld? |
-| `CHANNEL` | B2B, Onlineshop, Intercompany und Service unterscheiden | Welcher Vertriebskanal erzeugt Marge? |
+| `CHANNEL` | B2B, Intercompany und Service unterscheiden | Welcher Vertriebskanal erzeugt Marge? |
 | `DEPARTMENT` | Vertrieb, Einkauf, Lager, Fertigung, Service, Finance trennen | Welche Abteilung verursacht Kosten? |
 | `LOCATION-GROUP` | gesteuertes Lager, einfaches Lager, Fahrzeuglager, Projektlager trennen | Welche Lagerlogik bindet Wert und Aufwand? |
 
@@ -1631,7 +1631,7 @@ Ein Konto ist Bestandteil der Finanzbuchhaltung. Es entscheidet, ob ein Betrag a
 |---|---|---|
 | `COMPANY-GROUP` | PROD, SALES, SERVICE, SHARED, AT | Konzerninterne Auswertung |
 | `DEPARTMENT` | SALES, PURCH, WHSE, PROD, SERV, FIN, ADMIN | Rollen- und Kostenstellenlogik |
-| `CHANNEL` | B2B, SHOP, IC, SERVICE, PROJECT | Vertriebskanal |
+| `CHANNEL` | B2B, IC, SERVICE, PROJECT | Vertriebskanal |
 | `PRODUCTLINE` | MACHINE, SPARE, RENTAL, SERVICE | Produktlinie |
 | `LOCATION-GROUP` | DIRECTED, SIMPLE, VAN, PROJECT, DROP | Lagerlogik |
 
@@ -1724,14 +1724,14 @@ Globale Dimensionen sind die zwei wichtigsten Dimensionen einer Company. Sie sin
 
 Shortcut-Dimensionen sind zusätzliche Dimensionen, die Anwender schnell auf Belegen sehen und pflegen können. Sie helfen im Alltag, ersetzen aber keine fachliche Pflichtprüfung. Rhein-Main nutzt `CHANNEL` und `LOCATION-GROUP` als praktische Zusatzachsen, damit Vertriebskanal und Lagerlogik in Belegen sichtbar bleiben.
 
-Dimensionskombinationen verhindern fachlich unsinnige Kombinationen. Beispiel: `CHANNEL = SHOP` passt nicht zu einem Intercompany-Verkauf, und `LOCATION-GROUP = VAN` passt nicht zu einer normalen Fertigungseinlagerung. Solche Regeln schützen die Auswertung vor scheinbar kleinen Eingabefehlern.
+Dimensionskombinationen verhindern fachlich unsinnige Kombinationen. Beispiel: `CHANNEL = SERVICE` passt nicht zu einem Intercompany-Verkauf, und `LOCATION-GROUP = VAN` passt nicht zu einer normalen Fertigungseinlagerung. Solche Regeln schuetzen die Auswertung vor scheinbar kleinen Eingabefehlern.
 
 | Konzept | Einsteigerbild | Rhein-Main-Beispiel |
 |---|---|---|
 | globale Dimension | wichtigste Auswertungsachse | `PRODUCTLINE`, `DEPARTMENT` |
 | Shortcut-Dimension | schnell sichtbares Eingabefeld | `CHANNEL`, `LOCATION-GROUP` |
 | Standarddimension | automatischer Vorschlag oder Pflichtwert | Artikel `RM-M100` schlägt `MACHINE` vor |
-| Dimensionskombination | erlaubte oder verbotene Kombination | `SHOP` nicht mit `IC` kombinieren |
+| Dimensionskombination | erlaubte oder verbotene Kombination | `SERVICE` nicht mit `IC` kombinieren |
 
 ### Rhein-Main-Komplettfall: Verkauf `RM-M100` mit Reportingdimensionen
 
@@ -1873,7 +1873,7 @@ RM-SALES verkauft Maschinen, Ersatzteile und Handelsware. Ohne sauberen Verkaufs
 
 ### Standard laut Quelle
 
-Business Central unterstützt Verkaufsangebote, Verkaufsaufträge, Lieferungen, Rechnungen, Retouren, Gutschriften und Dropshipping. Der Shopify-Bereich synchronisiert Onlineshop-Daten je Einrichtung mit Business Central. [Q7][Q8][Q9][Q10]
+Business Central unterstuetzt Verkaufsangebote, Verkaufsauftraege, Lieferungen, Rechnungen, Retouren, Gutschriften und Dropshipping. Shopify/Online Store ist als Connector-Thema bewusst aus diesem Buch-5-Projekt gestrichen; Kapitel 17 behandelt Dropshipping ohne Shop-Connector. [Q7][Q8][Q9]
 
 ### Mitarbeiterrollen
 
@@ -1883,7 +1883,7 @@ Business Central unterstützt Verkaufsangebote, Verkaufsaufträge, Lieferungen, 
 | Vertriebsinnendienst | Angebot in Auftrag umwandeln | `Verkaufsaufträge (Sales Orders)` | `SO-1001` |
 | Lagerist | Lieferung kommissionieren | `Lagerkommissionierungen (Warehouse Picks)` oder `Verkaufsaufträge (Sales Orders)` | gebuchte Lieferung |
 | Debitorenbuchhalterin | Rechnung und Zahlung prüfen | `Debitorenposten (Customer Ledger Entries)` | offener oder geschlossener Posten |
-| E-Commerce-Sachbearbeiter | Shop-Auftrag prüfen | `Shopify-Aufträge (Shopify Orders)` / `Verkaufsaufträge (Sales Orders)` | Webauftrag in BC |
+| Vertriebsinnendienst | Sonderverkauf pruefen | `Verkaufsauftraege (Sales Orders)` / `Einkaufsbestellungen (Purchase Orders)` | Direktlieferungsfall in BC |
 
 ### Standardpfad B2B-Verkauf
 
@@ -2081,13 +2081,13 @@ Mitarbeiterbedienung:
 | Gutschrift | `Verkaufsgutschrift (Sales Credit Memo)` | Debitorenbuchhaltung | falsches Erlöskonto | Gutschrift (Credit Memo) + USt-Posten (VAT Entry) |
 | Vorauszahlung | `Vorauszahlungsrechnung (Prepayment Invoice)` | Vertrieb/Finance | falsche Steuerperiode | Vorauszahlungs-USt (Prepayment VAT) |
 | Dropshipping | Verkaufsauftrag (Sales Order) ↔ Einkaufsbestellung (Purchase Order) | Vertrieb/Einkauf | Liefernachweis fehlt | Lieferantenbeleg + Kundenrechnung |
-| Shopify | Shopauftrag (Shop Order) → Verkaufsauftrag (Sales Order) | E-Commerce | falsche Kundenzuordnung | Shop-ID + BC-Beleg |
+| Dropshipping | Verkaufsauftrag (Sales Order) -> Einkaufsbestellung (Purchase Order) | Sonderverkauf | fehlender Einkaufsbezug | Verkaufs- und Einkaufsbeleg |
 | EU-B2B | USt-Geschäftsbuchungsgruppe EU (VAT Bus. Posting Group EU) | Vertrieb/Finance | USt-IdNr. fehlt | USt-IdNr., ZM |
 | Drittland | Export-USt-Klausel (Export VAT Clause) | Vertrieb/Finance | Ausfuhrnachweis fehlt | Exportnachweis |
 
 BC-Best-Practice:
 - Verkäufer dürfen Preise und Rabatte erfassen, aber nicht USt-Buchungsgruppen ändern.
-- Onlineshop-Aufträge laufen durch eine tägliche Fehlerliste: unbekannte Artikel, fehlende Kunden, Zahlungsabweichungen.
+- Sonderverkaufs- und Dropshipping-Auftraege laufen durch eine taegliche Fehlerliste: fehlende Artikel, fehlende Kunden, fehlender Einkaufsbezug, Zahlungsabweichungen.
 
 Schulungsübung:
 
@@ -3046,38 +3046,37 @@ Projektfehler werden über Projektjournale, Gutschriften oder Korrekturrechnunge
 - Praxisregel: Kein Projektabschluss ohne Projektstatistik.
 
 
-## 17. Shopify, Dropshipping und Sonderverkauf [Q10][Q73][Q74]
-Dieses Kapitel zeigt, wie Rhein-Main einen Onlineshop-Auftrag und einen Dropshipping-Fall im Business-Central-Standard abwickelt. Nach dem Kapitel kannst du aus einem Shopify-Auftrag einen Verkaufsauftrag erzeugen, eine Dropshipping-Einkaufsbestellung verknüpfen, USt und Marge prüfen und typische Mappingfehler korrigieren.
+## 17. Dropshipping und Sonderverkauf [Q73][Q74]
+Dieses Kapitel zeigt, wie Rhein-Main einen Dropshipping- und Sonderverkaufsfall im Business-Central-Standard abwickelt. Shopify/Online Store ist fuer dieses Buch-5-Projekt bewusst gestrichen; der Lernpfad startet deshalb mit Verkaufsauftrag, Dropshipping-Kennzeichen, verknuepfter Einkaufsbestellung, USt-/Margenpruefung und Korrekturfall.
 
 ### Kapitelbox
 
 | Feld | Inhalt |
 |---|---|
-| Zielgruppe | Einsteiger, E-Commerce-Key-User, Vertrieb, Einkauf, Finance, Junior Consultant |
+| Zielgruppe | Einsteiger, Vertrieb, Einkauf, Finance, Junior Consultant |
 | Schwierigkeit | Intermediate |
-| Prozessbereich | Shopify / Dropshipping / Sonderverkauf |
+| Prozessbereich | Dropshipping / Sonderverkauf |
 | Betroffene Companies | RM-SALES, RM-SHARED |
 | MB-800-Relevanz | Ja: Verkaufsauftrag, Einkaufsbestellung, Preise, USt, Belegkorrektur, Integrationsgrundlagen |
-| Solution-Architect-Relevanz | Ja: Shopify-Connector, Dropshipping-Prozessdesign, Mapping, Steuerlogik, Extension-Grenze |
-| Ergebnis nach dem Kapitel | Du kannst Shopauftrag, Artikelmapping, Dropshipping-Verknüpfung, USt-Prüfung, Marge und Korrekturfall für `WEB-24001` ausführen. |
+| Solution-Architect-Relevanz | Ja: Dropshipping-Prozessdesign, Belegverknuepfung, Steuerlogik, Extension-Grenze |
+| Ergebnis nach dem Kapitel | Du kannst Verkaufsauftrag, Dropshipping-Verknuepfung, USt-Pruefung, Marge und Korrekturfall fuer `DS-24001` ausfuehren. |
 
 ### Alltagsszene bei Rhein-Main
 
-Um 7:45 Uhr öffnet RM-SALES die neuen Shopify-Aufträge. Auftrag `WEB-24001` kommt von Debitor `D11000`: zwei Pumpen `SP-PUMP-01` zu je `850 EUR`. Der eigene Bestand ist für Serviceeinsätze reserviert. Deshalb soll Kreditor `K20000` direkt an den Kunden liefern. RM-SALES verkauft, K20000 liefert, Finance prüft Umsatz, Einkaufskosten, USt und Marge.
+Um 7:45 Uhr erfasst RM-SALES einen Sonderverkaufsauftrag `DS-24001` fuer Debitor `D11000`: zwei Pumpen `SP-PUMP-01` zu je `850 EUR`. Der eigene Bestand ist fuer Serviceeinsaetze reserviert. Deshalb soll Kreditor `K20000` direkt an den Kunden liefern. RM-SALES verkauft, K20000 liefert, Finance prueft Umsatz, Einkaufskosten, USt und Marge.
 
 ### Für absolute Einsteiger erklärt
 
-Ein Onlineshop-Auftrag ist in Business Central nicht nur eine Internetbestellung. Er muss zu einem sauberen Verkaufsbeleg werden. Dropshipping bedeutet: Rhein-Main verkauft an den Kunden, aber der Lieferant liefert direkt. Dadurch entsteht im Standard kein normaler Lagerabgang aus dem eigenen Lager. Entscheidend sind Artikelmapping, Debitor, Preis, USt, Dropshipping-Kennzeichen und die Verbindung zur Einkaufsbestellung.
+Ein Dropshipping-Auftrag ist in Business Central ein Verkaufsfall mit fremder Direktlieferung. Rhein-Main verkauft an den Kunden, aber der Lieferant liefert direkt. Dadurch entsteht im Standard kein normaler Lagerabgang aus dem eigenen Lager. Entscheidend sind Debitor, Artikel, Preis, USt, Dropshipping-Kennzeichen und die Verbindung zur Einkaufsbestellung.
 
 ### Warum braucht Rhein-Main diesen Prozess?
 
-Der Onlineshop erzeugt viele kleine Aufträge. Ohne Standardprozess entstehen Dubletten, falsche Preise, falsche Artikel, ungeklärte Lieferantenbezüge und unsichere Margen. Business Central verbindet Shopauftrag, Verkaufsauftrag, Dropshipping-Einkaufsbestellung, Debitorenposten, Kreditorenposten, Sachposten und USt-Posten.
+Sonderverkauf und Dropshipping erzeugen leicht ungeklärte Lieferantenbezüge und unsichere Margen. Business Central verbindet Verkaufsauftrag, Dropshipping-Einkaufsbestellung, Debitorenposten, Kreditorenposten, Sachposten und USt-Posten.
 
 ### Rollen
 
 | Rolle | Aufgabe | Ergebnis |
 |---|---|---|
-| E-Commerce-Key-User | Shopify-Auftrag und Mapping prüfen | Auftrag ist korrekt in BC übernommen |
 | Vertrieb | Verkaufsauftrag freigeben | Kunde, Preis und USt stimmen |
 | Einkauf | Dropshipping-Bestellung an `K20000` verknüpfen | Lieferant liefert direkt |
 | Finance | Posten, USt und Marge abstimmen | Umsatz und Kosten sind prüfbar |
@@ -3086,18 +3085,15 @@ Der Onlineshop erzeugt viele kleine Aufträge. Ohne Standardprozess entstehen Du
 
 | Element | Rhein-Main-Wert | Wirkung |
 |---|---|---|
-| Shopify-Shop | `RM-SHOP-DE` | Quelle des Auftrags |
 | Debitor | `D11000` | steuert Debitorenbuchungsgruppe und USt |
 | Artikel | `SP-PUMP-01` | steuert Produktbuchungsgruppe, USt und Artikelbezug |
 | Kreditor | `K20000` | Dropshipping-Lieferant |
-| Dimension | `CHANNEL = SHOP` | trennt Shop-Umsatz vom B2B-Vertrieb |
+| Dimension | `CHANNEL = B2B` | ordnet den Sonderverkauf dem aktuellen Labor-Vertriebskanal zu |
 
-Rhein-Main nutzt den Standard-Shopify-Connector, ein geprüftes Artikelmapping und eine klare Regel: Dropshipping wird vor der Buchung entschieden, nicht nachträglich im Lager „gerettet“.
+Rhein-Main nutzt eine klare Regel: Dropshipping wird vor der Buchung entschieden, nicht nachtraeglich im Lager "gerettet".
 
 ### Deutsche BC-Seiten
 
-- `Shopify-Aufträge (Shopify Orders)`
-- `Shopify-Produkte (Shopify Products)`
 - `Verkaufsaufträge (Sales Orders)`
 - `Einkaufsbestellungen (Purchase Orders)`
 - `Gebuchte Verkaufsrechnungen (Posted Sales Invoices)`
@@ -3108,28 +3104,26 @@ Rhein-Main nutzt den Standard-Shopify-Connector, ein geprüftes Artikelmapping u
 
 ### Schritt-für-Schritt
 
-1. Öffne `Alt+Q` und suche `Shopify-Aufträge (Shopify Orders)`.
-2. Öffne Auftrag `WEB-24001`.
-3. Prüfe `Debitorennr. = D11000`, `Artikel = SP-PUMP-01`, `Menge = 2`, `VK-Preis = 850 EUR`, `CHANNEL = SHOP`.
-4. Öffne die Zeile und prüfe das Artikelmapping zu `SP-PUMP-01`.
-5. Wähle `Verkaufsauftrag erstellen` und öffne den erzeugten `Verkaufsauftrag (Sales Order)`.
-6. Prüfe in der Verkaufszeile `Dropshipping = Ja`.
-7. Öffne `Einkaufsbestellungen (Purchase Orders)` und erstelle oder verknüpfe die Bestellung an Kreditor `K20000`.
-8. Prüfe in der Einkaufszeile den Bezug zum Verkaufsauftrag `WEB-24001`.
-9. Öffne den Verkaufsauftrag und wähle `Buchungsvorschau (Preview Posting)`.
-10. Buche die Verkaufsrechnung.
-11. Buche die verknüpfte Einkaufsrechnung von `K20000`.
-12. Öffne `Debitorenposten`, `Kreditorenposten`, `Sachposten` und `USt-Posten` mit Belegnummerfilter.
-13. Öffne `Artikelposten (Item Ledger Entries)`; bei reinem Dropshipping darf kein eigener Lagerabgang aus `FRA-ZL` entstehen.
-14. Öffne Shop-Abstimmung und Margenbericht und dokumentiere Verkaufserlös, Einkaufskosten, USt und Kanal `SHOP`.
+1. Oeffne `Alt+Q` und suche `Verkaufsauftraege (Sales Orders)`.
+2. Erstelle oder oeffne den Sonderverkaufsauftrag `DS-24001`.
+3. Pruefe `Debitorennr. = D11000`, `Artikel = SP-PUMP-01`, `Menge = 2`, `VK-Preis = 850 EUR`, `CHANNEL = B2B`.
+4. Pruefe in der Verkaufszeile, ob der Lieferweg als Dropshipping/Sonderbeschaffung vorgesehen ist.
+5. Oeffne `Einkaufsbestellungen (Purchase Orders)` und erstelle oder verknuepfe die Bestellung an Kreditor `K20000`.
+6. Pruefe in der Einkaufszeile den Bezug zum Verkaufsauftrag `DS-24001` beziehungsweise zur erzeugten Verkaufsauftragsnummer.
+7. Oeffne den Verkaufsauftrag und waehle `Buchungsvorschau (Preview Posting)`.
+8. Buche die Verkaufsrechnung erst, wenn Preview und Einkaufsbezug stimmen.
+9. Buche die verknuepfte Einkaufsrechnung von `K20000`.
+10. Oeffne `Debitorenposten`, `Kreditorenposten`, `Sachposten` und `USt-Posten` mit Belegnummerfilter.
+11. Oeffne `Artikelposten (Item Ledger Entries)`; bei reinem Dropshipping darf kein eigener Lagerabgang aus `FRA-ZL` entstehen.
+12. Dokumentiere Verkaufserloes, Einkaufskosten, USt und Kanal `B2B` beziehungsweise den spaeter freigegebenen Zielkanal.
 
-### Feldlogik: Was beim Shopauftrag wirklich kritisch ist
+### Feldlogik: Was beim Dropshipping-Auftrag wirklich kritisch ist
 
-Ein Shopify-Auftrag wirkt für Einsteiger wie ein fertiger Verkauf. In Business Central ist er zunächst nur ein übernommener Vorgang. Erst wenn Debitor, Artikel, Preis, USt, Zahlung, Lieferweg und Dimension stimmen, wird daraus ein belastbarer Verkaufsprozess.
+Ein Dropshipping-Fall wirkt fuer Einsteiger wie ein normaler Verkauf. In Business Central ist aber entscheidend, ob die Ware aus eigenem Bestand geliefert wird oder ob der Lieferant direkt an den Kunden liefert. Erst wenn Debitor, Artikel, Preis, USt, Lieferweg, Einkaufsbezug und Dimension stimmen, wird daraus ein belastbarer Verkaufsprozess.
 
-`Debitorennr. = D11000` entscheidet, ob die Forderung auf den richtigen Kunden läuft und welche Debitorenbuchungsgruppe gilt. `Artikel = SP-PUMP-01` entscheidet über Produktbuchungsgruppe, USt-Produktbuchungsgruppe, Lager- und Margenlogik. `CHANNEL = SHOP` sorgt dafür, dass der Umsatz nicht im B2B-Vertrieb landet. `Dropshipping = Ja` entscheidet, ob Rhein-Main eigenen Bestand bewegt oder Lieferant `K20000` direkt liefert.
+`Debitorennr. = D11000` entscheidet, ob die Forderung auf den richtigen Kunden laeuft und welche Debitorenbuchungsgruppe gilt. `Artikel = SP-PUMP-01` entscheidet ueber Produktbuchungsgruppe, USt-Produktbuchungsgruppe, Lager- und Margenlogik. `CHANNEL = B2B` ist im aktuellen Buch-5-Labor der belegte Vertriebskanal; ein anderer Zielkanal braucht einen eigenen Dimensions-Setup-Nachweis. `Dropshipping = Ja` entscheidet, ob Rhein-Main eigenen Bestand bewegt oder Lieferant `K20000` direkt liefert.
 
-Der Payment-Status ist ein eigener Kontrollpunkt. Ein bezahlter Shopify-Auftrag darf nicht automatisch als fachlich erledigt gelten. Finance prüft, ob Zahlung, Debitorenposten und ggf. Payment-Provider-Ausgleich zusammenpassen. Wenn Shopify `bezahlt` zeigt, Business Central aber einen offenen Debitorenposten ohne Zahlung hat, ist der Prozess nicht abgeschlossen.
+Der Payment-Status ist ein eigener Kontrollpunkt. Eine gebuchte Verkaufsrechnung ist noch nicht bezahlt, solange Debitorenposten, Zahlung und Ausgleich nicht zusammenpassen. Wenn der Auftrag fakturiert ist, Business Central aber einen offenen Debitorenposten ohne Zahlung hat, ist der Prozess nicht abgeschlossen.
 
 Retouren sind ebenfalls kein Lagertrick. Wenn `D11000` einen Shopartikel zurücksendet, entscheidet Rhein-Main zuerst, ob die Ware physisch zurückkommt, ob sie direkt zum Lieferanten geht oder ob nur eine Gutschrift ohne Warenrücklauf erfolgt. Daraus folgt, ob eine Verkaufsgutschrift, Einkaufsrücksendung, Lagerbewegung oder reine Finanzkorrektur nötig ist.
 
@@ -3137,7 +3131,7 @@ Retouren sind ebenfalls kein Lagertrick. Wenn `D11000` einen Shopartikel zurück
 
 | Ebene | Rhein-Main-Nachweis | Wo prüfen? |
 |---|---|---|
-| Shopauftrag | `WEB-24001` für `D11000` | `Shopify-Aufträge (Shopify Orders)` |
+| Verkaufsauftrag | `DS-24001` fuer `D11000` | `Verkaufsauftraege (Sales Orders)` |
 | Verkaufsbeleg | Verkaufsauftrag und gebuchte Verkaufsrechnung | `Verkaufsaufträge`, `Gebuchte Verkaufsrechnungen` |
 | Einkaufsbeleg | Dropshipping-Einkaufsbestellung an `K20000` | `Einkaufsbestellungen (Purchase Orders)` |
 | Debitorenposten | Forderung gegen `D11000` | `Debitorenposten (Customer Ledger Entries)` |
@@ -3147,7 +3141,6 @@ Retouren sind ebenfalls kein Lagertrick. Wenn `D11000` einen Shopartikel zurück
 
 ### Kontrollberichte
 
-- Shop-Abstimmung für Auftragsübernahme und Status.
 - Margenbericht für Verkaufserlös abzüglich Einkaufskosten.
 - `USt-Posten (VAT Entries)` für Steuerprüfung.
 - `Debitorenposten` und `Kreditorenposten` für offene Posten.
@@ -3156,65 +3149,64 @@ Retouren sind ebenfalls kein Lagertrick. Wenn `D11000` einen Shopartikel zurück
 
 | Fehler | Symptom | Ursache | Diagnosepfad | Korrekturweg |
 |---|---|---|---|---|
-| falsches Artikelmapping | falscher Artikel im Verkaufsauftrag | Shopify-Produkt ist falsch zugeordnet | `Shopify-Produkte` und Verkaufszeile vergleichen | Mapping korrigieren, ungebuchten Auftrag neu erzeugen oder gebuchte Rechnung gutschreiben |
+| falscher Artikel | falscher Artikel im Verkaufsauftrag | Artikelnummer wurde im Auftrag falsch gewaehlt | Verkaufszeile, Einkaufszeile und Margenbericht vergleichen | ungebuchten Auftrag korrigieren oder gebuchte Rechnung gutschreiben und neu buchen |
 | Dropshipping fehlt | BC verlangt eigenen Bestand | Zeile ist nicht als Dropshipping markiert | Verkaufszeile und Einkaufsbestellbezug prüfen | vor Buchung Kennzeichen setzen; nach Buchung Gutschrift und Neubuchung |
 | falsche USt | USt-Posten passen nicht zur Rechnung | Debitor oder Artikel hat falsche USt-Gruppe | `USt-Posten`, Debitor, Artikel und USt-Matrix prüfen | Rechnung gutschreiben, Stammdaten korrigieren, neu buchen |
 
 ### Korrekturweg
 
-Ungebuchte Shop- und Verkaufsaufträge werden korrigiert oder neu erzeugt. Gebuchte Verkaufsrechnungen werden über Verkaufsgutschrift korrigiert. Gebuchte Einkaufsrechnungen werden über Einkaufsgutschrift korrigiert. Lager- oder USt-Posten werden nicht direkt geändert.
+Ungebuchte Verkaufsauftraege und Einkaufsbestellungen werden korrigiert oder neu erzeugt. Gebuchte Verkaufsrechnungen werden ueber Verkaufsgutschrift korrigiert. Gebuchte Einkaufsrechnungen werden ueber Einkaufsgutschrift korrigiert. Lager- oder USt-Posten werden nicht direkt geaendert.
 
 
 ### Übung
 
 | Feld | Inhalt |
 |---|---|
-| Rolle | E-Commerce-Key-User, Vertrieb, Einkauf, Finance |
-| Alltagssituation | Ein Onlineshop-Kunde `D11000` bestellt zwei Ersatzteile `SP-PUMP-01`. Der Bestand reicht nicht, deshalb soll der Auftrag über Dropshipping mit Kreditor `K20000` abgewickelt werden. |
-| Konkrete Testdaten | Shopauftrag `WEB-24001`, Debitor `D11000`, Artikel `SP-PUMP-01`, Menge `2`, Verkaufspreis `850 EUR` je Stück, Dropshipping-Kreditor `K20000`, `CHANNEL = SHOP`, Inland USt `19 %` |
-| Startseite über `Alt+Q` | `Shopify-Aufträge (Shopify Orders)` und `Verkaufsaufträge (Sales Orders)` |
-| Exakte Felder und Werte | `Debitorennr. = D11000`, `Art = Artikel`, `Nr. = SP-PUMP-01`, `Menge = 2`, `VK-Preis = 850`, `Dropshipping = Ja`, `Einkauf von Kreditor = K20000`, Dimension `CHANNEL = SHOP` |
-| Auszuführende Aktion | Shopauftrag prüfen, Verkaufsauftrag erzeugen, Dropshipping-Einkaufsbestellung erstellen/verknüpfen, Verkauf fakturieren und Einkaufseingangsrechnung prüfen |
-| Erwartete Belege | Shopify-Auftrag `WEB-24001`, Verkaufsauftrag, Dropshipping-Einkaufsbestellung, gebuchte Verkaufsrechnung, gebuchte Einkaufsrechnung |
+| Rolle | Vertrieb, Einkauf, Finance |
+| Alltagssituation | Kunde `D11000` bestellt zwei Ersatzteile `SP-PUMP-01`. Der eigene Bestand reicht nicht oder soll nicht belastet werden, deshalb soll der Auftrag ueber Dropshipping mit Kreditor `K20000` abgewickelt werden. |
+| Konkrete Testdaten | Sonderverkaufsauftrag `DS-24001`, Debitor `D11000`, Artikel `SP-PUMP-01`, Menge `2`, Verkaufspreis `850 EUR` je Stueck, Dropshipping-Kreditor `K20000`, `CHANNEL = B2B`, Inland USt `19 %` als deutsches Zielbild |
+| Startseite ueber `Alt+Q` | `Verkaufsauftraege (Sales Orders)` und `Einkaufsbestellungen (Purchase Orders)` |
+| Exakte Felder und Werte | `Debitorennr. = D11000`, `Art = Artikel`, `Nr. = SP-PUMP-01`, `Menge = 2`, `VK-Preis = 850`, `Dropshipping = Ja`, `Einkauf von Kreditor = K20000`, Dimension `CHANNEL = B2B` |
+| Auszufuehrende Aktion | Verkaufsauftrag pruefen, Dropshipping-Einkaufsbestellung erstellen/verknuepfen, Verkauf fakturieren und Einkaufseingangsrechnung pruefen |
+| Erwartete Belege | Verkaufsauftrag `DS-24001`, Dropshipping-Einkaufsbestellung, gebuchte Verkaufsrechnung, gebuchte Einkaufsrechnung |
 | Erwartete Posten | `Debitorenposten (Customer Ledger Entries)`, `Kreditorenposten (Vendor Ledger Entries)`, `Sachposten (G/L Entries)`, `USt-Posten (VAT Entries)` |
 | Kontrollbericht | Shop-Abstimmung, Margenbericht, `USt-Posten (VAT Entries)` |
 | Fehlerfrage | Woran erkennst du, ob `SP-PUMP-01` wirklich als Dropshipping und nicht als eigener Lagerabgang gebucht wurde? |
 
 ### Lösung
 
-1. Öffne `Alt+Q`, suche `Shopify-Aufträge (Shopify Orders)` und öffne `WEB-24001`.
-2. Prüfe Debitor `D11000`, Artikelmapping `SP-PUMP-01`, Menge `2`, Preis `850 EUR` und `CHANNEL = SHOP`.
-3. Wähle `Verkaufsauftrag erstellen` und öffne den erzeugten `Verkaufsauftrag (Sales Order)`.
-4. Prüfe in der Verkaufszeile `Art = Artikel`, `Nr. = SP-PUMP-01`, `Menge = 2`, `Dropshipping = Ja`.
-5. Öffne `Einkaufsbestellungen (Purchase Orders)` über `Alt+Q` und erstelle/verknüpfe die Dropshipping-Bestellung für Kreditor `K20000`.
-6. Prüfe in der Einkaufszeile `Verkaufsauftragsnr. = WEB-24001` oder die verknüpfte Verkaufsauftragsnummer.
-7. Gehe zurück zum Verkaufsauftrag und nutze `Buchungsvorschau (Preview Posting)`.
-8. Buche die Verkaufsrechnung und notiere die gebuchte Belegnummer.
-9. Buche die zugehörige Einkaufsrechnung für `K20000`.
-10. Öffne `Debitorenposten (Customer Ledger Entries)` und filtere auf `D11000` und die Verkaufsrechnung.
-11. Öffne `Kreditorenposten (Vendor Ledger Entries)` und filtere auf `K20000` und die Einkaufsrechnung.
-12. Öffne `USt-Posten (VAT Entries)` und prüfe Inland-USt `19 %`.
-13. Öffne `Artikelposten (Item Ledger Entries)`; bei echtem Dropshipping darf kein eigener Lagerabgang aus `FRA-ZL` entstehen.
-14. Öffne den Margenbericht und vergleiche Verkaufserlös, Einkaufskosten und Kanal `SHOP`.
+1. Oeffne `Alt+Q`, suche `Verkaufsauftraege (Sales Orders)` und erstelle oder oeffne den Auftrag `DS-24001`.
+2. Pruefe Debitor `D11000`, Artikel `SP-PUMP-01`, Menge `2`, Preis `850 EUR` und `CHANNEL = B2B`.
+3. Pruefe in der Verkaufszeile `Art = Artikel`, `Nr. = SP-PUMP-01`, `Menge = 2`, `Dropshipping = Ja`.
+4. Oeffne `Einkaufsbestellungen (Purchase Orders)` ueber `Alt+Q` und erstelle/verknuepfe die Dropshipping-Bestellung fuer Kreditor `K20000`.
+5. Pruefe in der Einkaufszeile die verknuepfte Verkaufsauftragsnummer.
+6. Gehe zurueck zum Verkaufsauftrag und nutze `Buchungsvorschau (Preview Posting)`.
+7. Buche die Verkaufsrechnung und notiere die gebuchte Belegnummer.
+8. Buche die zugehoerige Einkaufsrechnung fuer `K20000`.
+9. Oeffne `Debitorenposten (Customer Ledger Entries)` und filtere auf `D11000` und die Verkaufsrechnung.
+10. Oeffne `Kreditorenposten (Vendor Ledger Entries)` und filtere auf `K20000` und die Einkaufsrechnung.
+11. Oeffne `USt-Posten (VAT Entries)` und pruefe Inland-USt `19 %` im deutschen Zielmandanten.
+12. Oeffne `Artikelposten (Item Ledger Entries)`; bei echtem Dropshipping darf kein eigener Lagerabgang aus `FRA-ZL` entstehen.
+13. Oeffne den Margenbericht und vergleiche Verkaufserloes, Einkaufskosten und Kanal `B2B`.
 
 ### UAT-Fall
 
 | Feld | Inhalt |
 |---|---|
 | ID | `UAT-K17-001` |
-| Ziel | Onlineshop-Dropshipping für `WEB-24001` mit Umsatz, Einkauf, USt und Marge abnehmen |
-| Rolle | E-Commerce, Vertrieb, Einkauf, Finance |
-| Voraussetzung | Shopify-Connector ist eingerichtet; `D11000`, `SP-PUMP-01`, `K20000` und Dimension `CHANNEL = SHOP` sind vorhanden |
-| Testdaten | `WEB-24001`, `D11000`, `SP-PUMP-01`, Menge `2`, `850 EUR`, `K20000`, Inland USt `19 %` |
-| Exakte Schrittfolge | 1. Öffne `Shopify-Aufträge (Shopify Orders)` über `Alt+Q`.<br>2. Öffne `WEB-24001` und prüfe Debitor `D11000`.<br>3. Prüfe Artikelmapping `SP-PUMP-01`, Menge `2`, Preis `850 EUR`.<br>4. Erzeuge `Verkaufsauftrag (Sales Order)` und setze/prüfe `Dropshipping = Ja`.<br>5. Öffne `Einkaufsbestellungen (Purchase Orders)` und verknüpfe Kreditor `K20000`.<br>6. Buche Verkauf und Einkauf mit `Buchungsvorschau (Preview Posting)`.<br>7. Prüfe `Debitorenposten`, `Kreditorenposten`, `Sachposten` und `USt-Posten`.<br>8. Prüfe, dass kein eigener `Artikelposten` aus `FRA-ZL` gebucht wurde.<br>9. Öffne Margenbericht und Shop-Abstimmung. |
-| Erwartete Belege | Shopify-Auftrag, Verkaufsauftrag, Einkaufsbestellung, gebuchte Verkaufsrechnung, gebuchte Einkaufsrechnung |
+| Ziel | Dropshipping/Sonderverkauf fuer `DS-24001` mit Umsatz, Einkauf, USt und Marge abnehmen |
+| Rolle | Vertrieb, Einkauf, Finance |
+| Voraussetzung | `D11000`, `SP-PUMP-01`, `K20000` und Dimension `CHANNEL = B2B` sind vorhanden; deutscher USt-Finalnachweis bleibt separater Zielmandant |
+| Testdaten | `DS-24001`, `D11000`, `SP-PUMP-01`, Menge `2`, `850 EUR`, `K20000`, Inland USt `19 %` als deutsches Zielbild |
+| Exakte Schrittfolge | 1. Oeffne `Verkaufsauftraege (Sales Orders)` ueber `Alt+Q`.<br>2. Erstelle oder oeffne `DS-24001` und pruefe Debitor `D11000`.<br>3. Pruefe Artikel `SP-PUMP-01`, Menge `2`, Preis `850 EUR`.<br>4. Setze/pruefe `Dropshipping = Ja`.<br>5. Oeffne `Einkaufsbestellungen (Purchase Orders)` und verknuepfe Kreditor `K20000`.<br>6. Buche Verkauf und Einkauf mit `Buchungsvorschau (Preview Posting)`.<br>7. Pruefe `Debitorenposten`, `Kreditorenposten`, `Sachposten` und `USt-Posten`.<br>8. Pruefe, dass kein eigener `Artikelposten` aus `FRA-ZL` gebucht wurde.<br>9. Oeffne Margenbericht. |
+| Erwartete Belege | Verkaufsauftrag, Einkaufsbestellung, gebuchte Verkaufsrechnung, gebuchte Einkaufsrechnung |
 | Erwartete Posten | `Debitorenposten (Customer Ledger Entries)`, `Kreditorenposten (Vendor Ledger Entries)`, `Sachposten (G/L Entries)`, `USt-Posten (VAT Entries)`; keine eigene Lagerbewegung bei reinem Dropshipping |
 | Kontrollbericht | Shop-Abstimmung, Margenbericht, `USt-Posten (VAT Entries)` |
-| Akzeptanzkriterium | Shopauftrag, Verkauf, Einkauf, USt und Marge sind über Belegnummern verbunden; Lager wird bei Dropshipping nicht fälschlich belastet. |
-| Evidence Pack | Shopify-Auftrag, Verkaufsauftrag, Einkaufsbestellung, gebuchte Rechnungen, Postenfilter, Margenbericht, Negativtest |
+| Akzeptanzkriterium | Verkauf, Einkauf, USt und Marge sind ueber Belegnummern verbunden; Lager wird bei Dropshipping nicht faelschlich belastet. |
+| Evidence Pack | Verkaufsauftrag, Einkaufsbestellung, gebuchte Rechnungen, Postenfilter, Margenbericht, Negativtest |
 | Absichtlich falsche Eingabe | Artikelmapping auf `SP-PUMP-99` statt `SP-PUMP-01` setzen |
 | Erwartetes Fehlverhalten | Der falsche Artikel wird verkauft oder beschafft; Marge und Nachlieferlogik stimmen nicht. |
-| Diagnosepfad | Shopify-Auftrag, Verkaufszeile, Einkaufszeile und Margenbericht auf Artikelnummer vergleichen; `Artikelposten (Item Ledger Entries)` auf falsche Nummer prüfen. |
+| Diagnosepfad | Verkaufszeile, Einkaufszeile und Margenbericht auf Artikelnummer vergleichen; `Artikelposten (Item Ledger Entries)` auf falsche Nummer pruefen. |
 | Erlaubter Korrekturweg | Mapping korrigieren, ungebuchten Auftrag neu erzeugen; bei gebuchter falscher Rechnung Verkaufs- und Einkaufsgutschrift erstellen und Auftrag mit `SP-PUMP-01` neu buchen. |
 | Nicht erlaubt | Gebuchte Rechnung direkt ändern, Shopdaten ohne BC-Korrektur überschreiben oder Lagerposten manuell löschen. |
 
@@ -4585,7 +4577,7 @@ Power BI ist in diesem Kapitel kein Ersatz für saubere BC-Posten. Power BI visu
 
 ### Warum braucht Rhein-Main diesen Prozess?
 
-Rhein-Main verkauft Maschinen, Ersatzteile, Serviceleistungen und Projekte über mehrere Companies und Kanäle. Die Geschäftsführung braucht deshalb nicht nur eine Gesamt-GuV, sondern Auswertungen nach Produktlinie, Vertriebskanal, Standortgruppe und Abteilung. Ohne klare Reportinglogik sieht Finance zwar den Gesamtumsatz, aber nicht, ob `RM-M100` im Direktvertrieb profitabel ist, ob der Onlineshop Marge verliert oder ob Serviceeinsätze zu viel Kulanz enthalten.
+Rhein-Main verkauft Maschinen, Ersatzteile, Serviceleistungen und Projekte ueber mehrere Companies und Kanaele. Die Geschaeftsfuehrung braucht deshalb nicht nur eine Gesamt-GuV, sondern Auswertungen nach Produktlinie, Vertriebskanal, Standortgruppe und Abteilung. Ohne klare Reportinglogik sieht Finance zwar den Gesamtumsatz, aber nicht, ob `RM-M100` im Direktvertrieb profitabel ist, ob Dropshipping-Margen verlieren oder ob Serviceeinsaetze zu viel Kulanz enthalten.
 
 Business Central liefert dafür drei Ebenen:
 - `Finanzberichte (Financial Reports)` für GuV, Bilanz und Kennzahlen aus Sachkonten.
@@ -4614,7 +4606,7 @@ Reporting beginnt nicht im Bericht. Reporting beginnt bei den Stammdaten und Dim
 | Sachkonto | `4000 Erlöse Maschinen`, `5000 Wareneinsatz Maschinen` | bestimmt GuV-Zeile |
 | Kontenkategorie | Umsatzerlöse, Materialaufwand | strukturiert Finanzberichte |
 | Dimension `PRODUCTLINE` | `MACHINE` | trennt Maschinen, Ersatzteile, Service, Projekte |
-| Dimension `CHANNEL` | `B2B`, `SHOP` | trennt Direktvertrieb und Onlineshop |
+| Dimension `CHANNEL` | `B2B`, `SERVICE`, `IC` | trennt Direktvertrieb, Service und Intercompany |
 | Dimension `DEPARTMENT` | `SALES`, `SERVICE`, `PROD` | trennt Verantwortungsbereiche |
 | Analyseansicht | `AN-RM-MARGE` | beschleunigt Auswertung nach Dimension |
 
@@ -4855,8 +4847,8 @@ Das Evidence Pack für Reporting enthält:
 | Akzeptanzkriterium | Finanzbericht, Sachposten, Wertposten und Power-BI-Sicht zeigen denselben Zeitraum, dieselbe Produktlinie, denselben Kanal und nachvollziehbare Beträge. |
 | Evidence Pack | Finanzbericht mit Filtern, Sachpostenexport, Wertpostenexport, Analyseansicht-Zeitstempel, Power-BI-Screenshot, Negativtest, Korrekturentscheidung |
 | Absichtlich falsche Eingabe | GuV ohne Dimensionsfilter `CHANNEL = B2B` auswerten und als B2B-Marge interpretieren |
-| Erwartetes Fehlverhalten | Der Bericht enthält auch andere Kanäle, zum Beispiel `SHOP`; die Marge für B2B ist fachlich falsch. |
-| Diagnosepfad | `Finanzberichte (Financial Reports)` öffnen, Filterleiste prüfen, Drilldown zu `Sachposten (G/L Entries)` öffnen, nach `CHANNEL` gruppieren und Werte für `B2B` und `SHOP` vergleichen. |
+| Erwartetes Fehlverhalten | Der Bericht enthaelt auch andere Kanaele, zum Beispiel `SERVICE`; die Marge fuer B2B ist fachlich falsch. |
+| Diagnosepfad | `Finanzberichte (Financial Reports)` oeffnen, Filterleiste pruefen, Drilldown zu `Sachposten (G/L Entries)` oeffnen, nach `CHANNEL` gruppieren und Werte fuer `B2B` und `SERVICE` vergleichen. |
 | Erlaubter Korrekturweg | Filter `CHANNEL = B2B` setzen, Bericht neu ausführen, Evidence Pack neu erzeugen. Wenn Sachposten selbst falsche Dimensionen tragen, `Dimensionskorrektur (Dimension Correction)` mit Freigabe nutzen und `Analyseansichten (Analysis Views)` aktualisieren. |
 | Nicht erlaubt | GuV-Werte in Excel manuell auf Kanäle verteilen, Power-BI-Zahl ohne BC-Drilldown freigeben oder Dimensionen ohne Freigabe ändern. |
 
@@ -4905,7 +4897,7 @@ Praxisregel:
 | Prozessbereich | Standard reicht typischerweise für | Grenze des Standards | Typische Lösung |
 |---|---|---|---|
 | Verkauf/O2C | Angebot, Auftrag, Lieferung, Rechnung, Retoure, Dropshipping | hochautomatisierte Preis-/Rabattlogik, komplexe Portalprozesse, Spezial-EDI | Erweiterung oder Integration |
-| Shopify/Onlineshop | Shop-Synchronisation und Auftragsübernahme | Marktplatzmix, Retourenportale, Payment-Reconciliation über viele Provider | Connector/Custom Integration |
+| Online Store / Shopify | nicht Teil des aktuellen Buch-5-Lernscope | Connector- und Marktplatzthemen bewusst gestrichen | Out of Scope |
 | Einkauf/P2P | Bestellung, WE, Eingangsrechnung, Zahlung | OCR, automatischer 3-Way-Match, Vertragsprüfung, Eingangsarchiv | Document Capture / AP-Automation |
 | E-Rechnung | E-Documents-Grundlogik | Peppol-Netzwerk, lokale Formate, Massenvalidierung, Lieferanten-Onboarding | E-Document Provider / Extension |
 | Inventory | Artikel, Lagerorte, Serien/Chargen, Inventur | mobile Scanner, hochautomatisierte Lagerprozesse, Versanddienstleister | WMS-/Scanner-/Shipping-App |
@@ -5173,13 +5165,13 @@ Dieses Kapitel zeigt, wie Rhein-Main Integrationen und Extensions nicht nach Bau
 
 ### Entscheidungssituation bei Rhein-Main
 
-RM-SHARED verarbeitet monatlich `2.500` Eingangsrechnungen, `180` Reisekostenabrechnungen und Zahlungseingänge aus vier Banken. RM-SALES nutzt Shopify. RM-SERVICE will perspektivisch Field-Service-nahe mobile Einsätze. Der Standard kann viele Kernprozesse abbilden, aber nicht jede Massenverarbeitung, mobile Belegerfassung, OCR-Erkennung, Bankkomfortfunktion oder Spezialintegration wirtschaftlich genug leisten.
+RM-SHARED verarbeitet monatlich `2.500` Eingangsrechnungen, `180` Reisekostenabrechnungen und Zahlungseingaenge aus vier Banken. RM-SALES nutzt Sondervertrieb und Dropshipping. RM-SERVICE will perspektivisch Field-Service-nahe mobile Einsaetze. Der Standard kann viele Kernprozesse abbilden, aber nicht jede Massenverarbeitung, mobile Belegerfassung, OCR-Erkennung, Bankkomfortfunktion oder Spezialintegration wirtschaftlich genug leisten.
 
 Die Architekturfrage lautet nicht: „Welche Extension klingt gut?“ Die Frage lautet: **Welcher konkrete Prozessschmerz bleibt nach Standard-Setup, Prozessdesign und UAT offen?**
 
 ### Für absolute Einsteiger erklärt
 
-Eine Extension ist eine Erweiterung für Business Central. Sie ergänzt den Standard, zum Beispiel OCR-Erkennung, Banking-Komfort oder spezielle Branchenlogik. Eine Integration verbindet Business Central mit anderen Systemen, zum Beispiel Shopify, Power BI, Power Automate oder einem Versanddienstleister.
+Eine Extension ist eine Erweiterung fuer Business Central. Sie ergaenzt den Standard, zum Beispiel OCR-Erkennung, Banking-Komfort oder spezielle Branchenlogik. Eine Integration verbindet Business Central mit anderen Systemen, zum Beispiel Power BI, Power Automate oder einem Versanddienstleister.
 
 Rhein-Main installiert keine Extension direkt in Produktion. Jede Erweiterung wird zuerst in einer Sandbox/Testcompany geprüft. Der Nachweis besteht aus Prozessfall, Daten, Berechtigung, UAT, Fehlerfall, Rollback und Betriebsverantwortung.
 
@@ -5246,7 +5238,7 @@ Die folgende Matrix ist das zentrale Architekturwerkzeug für Rhein-Main. Sie ve
 | E-Documents/Peppol | Deutsche und EU-Kunden verlangen strukturierte elektronische Rechnungen. RM-SALES braucht einen nachvollziehbaren Versandstatus. | Business Central unterstützt E-Belege und elektronische Dokumentenprozesse je nach Lokalisierung und eingerichteten Diensten. | Peppol-Netzwerk, Provider-Anbindung, Statusrückmeldung und länderspezifische Formate brauchen saubere Einrichtung oder Providerlösung. | E-Documents-/Peppol-Provider oder E-Rechnungs-App. | Unterstützte Formate, Peppol-ID, Statusprotokoll, Fehlerhandling, Archivintegration, Updatefähigkeit. | Rechnungsdaten sind steuer- und personenbezogen; Versand, Empfang, Protokoll und Archiv müssen GoBD-fähig sein. | In `RM-SALES-TEST` Debitor `D12000-EU` mit E-Belegprofil anlegen, Verkaufsrechnung `EINV-1001` erzeugen, E-Dokument senden, Status und Fehlerprotokoll prüfen. | `UAT-INT-EDOC-001`: E-Rechnung erstellen, validieren, versenden, Status abrufen und archivieren. | Rechnung ist fachlich gebucht, technisch validiert, Status ist nachvollziehbar, Beleg ist auffindbar. | Wenn Validierung oder Statusrückmeldung unklar ist, keine Produktivfreigabe. | Debitorenbuchhaltung + E-Invoicing-Owner. | Standard/Providerlösung nach Länderumfang einsetzen. |
 | Anzahlungen | RM-SALES nimmt `30 %` Anzahlung für Sondermaschine `RM-X500`, RM-SERVICE nutzt Projektmeilensteine. | Business Central unterstützt Verkaufs- und Einkaufsanzahlungen im Standard. | Komplexe Schlussrechnungslogik, mehrstufige Projektanzahlungen, Garantierückbehalte oder DACH-Sonderlogik können Erweiterungen verlangen. | Anzahlungs-/Projektabrechnungs-App nur bei komplexem Vertragsmodell. | Standardabdeckung, USt-Zeitpunkt, Schlussrechnung, Projektbezug, Berichtsnachweis, Stornologik. | USt entsteht bei Anzahlungen besonders sensibel; falsche USt-Periode führt zu Compliance-Risiko. | In `RM-SALES-TEST` Verkaufsauftrag `SO-RMX500-01`, Anzahlung `30 %`, USt `19 %`, Buchungsvorschau und Anzahlungsrechnung testen. | `UAT-INT-DP-001`: Anzahlung buchen, Zahlung ausgleichen, Schlussrechnung erstellen, USt-Posten prüfen. | Anzahlungsrechnung, Zahlung, Schlussrechnung und USt-Posten sind periodengerecht nachvollziehbar. | Wenn USt-Posten nicht periodengerecht entstehen oder Schlussrechnung nicht verständlich ist, Prozess nicht freigeben. | Finance Lead + Projektcontrolling. | Standard verwenden, Extension nur bei Vertragskomplexität. |
 | DATEV/Steuerberater | RM-SHARED übergibt Monatsdaten an Steuerberater und Wirtschaftsprüfer. Manuelle Exporte erzeugen Abstimmungsrisiko. | Business Central bietet Datenexporte, Finanzberichte, Sachposten und teils Standarddatenexport. | DATEV-spezifische Formate, Belegbildverknüpfung, Konten-/Steuerschlüsselmapping und Kanzleiabstimmung brauchen oft DACH-Lösung. | DATEV-Schnittstelle/App, z. B. COSMO/DATEV-nahe Lösung. | Kontenmapping, Steuerschlüssel, Beleglink, Periodensperre, Exportprotokoll, Kanzleitest. | Exportdateien enthalten Buchhaltungs- und Personendaten; Aufbewahrung, Zugriff und Übertragungsweg sind zu dokumentieren. | In `RM-SHARED-TEST` Periode `06/2026` schließen, Sachposten, Debitorenposten, Kreditorenposten und Beleglinks exportieren, Import bei Steuerberater-Test prüfen. | `UAT-INT-DATEV-001`: Export `06/2026`, Steuerberaterimport, Summenabgleich GuV/Bilanz/USt. | Summen stimmen mit Finanzbericht, USt-Abrechnung und OP-Listen überein; Exportprotokoll liegt vor. | Wenn Summen nicht abstimmen oder Beleglinks fehlen, Exportlösung nicht produktiv nutzen. | Finance Lead + Steuerberater. | Extension/Partnerlösung prüfen. |
-| Shipping/Carrier | RM-SALES versendet täglich Ersatzteile. Versandlabels, Tracking und Frachtdienstleister werden bisher außerhalb von BC gepflegt. | Verkaufslieferungen und Spediteurcodes sind Standard. | Labeldruck, Trackingrückmeldung, Versandtarife, Packstücke und Carrier-API sind nicht vollständig Standard. | Shipping-/Carrier-App. | Unterstützte Carrier, Labeldruck, Trackinglink, Packstücklogik, Rückmeldung an Shopify, Support. | Adressdaten und Sendungsdaten sind personenbezogen; Carrier-Übermittlung und Fehlerprotokolle sind zu prüfen. | In `RM-SALES-TEST` Verkaufsauftrag `SO-SP-1001`, Artikel `SP-PUMP-01`, Spediteur `DHL`, Label erzeugen, Tracking in gebuchter Lieferung prüfen. | `UAT-INT-SHIP-001`: Lieferung buchen, Label erzeugen, Trackingnummer speichern, Versandmail prüfen. | Gebuchte Lieferung enthält Tracking, Label ist reproduzierbar, Kunde erhält korrekte Versandinformation. | Wenn falscher Carrier oder falsche Adresse übertragen wird, Rollback auf manuellen Versand. | Logistikleitung + E-Commerce-Key-User. | Extension einführen, wenn Volumen und Carrier-API es rechtfertigen. |
+| Shipping/Carrier | RM-SALES versendet taeglich Ersatzteile. Versandlabels, Tracking und Frachtdienstleister werden bisher ausserhalb von BC gepflegt. | Verkaufslieferungen und Spediteurcodes sind Standard. | Labeldruck, Trackingrueckmeldung, Versandtarife, Packstuecke und Carrier-API sind nicht vollstaendig Standard. | Shipping-/Carrier-App. | Unterstuetzte Carrier, Labeldruck, Trackinglink, Packstuecklogik, Rueckmeldung an Versandprozess, Support. | Adressdaten und Sendungsdaten sind personenbezogen; Carrier-Uebermittlung und Fehlerprotokolle sind zu pruefen. | In `RM-SALES-TEST` Verkaufsauftrag `SO-SP-1001`, Artikel `SP-PUMP-01`, Spediteur `DHL`, Label erzeugen, Tracking in gebuchter Lieferung pruefen. | `UAT-INT-SHIP-001`: Lieferung buchen, Label erzeugen, Trackingnummer speichern, Versandmail pruefen. | Gebuchte Lieferung enthaelt Tracking, Label ist reproduzierbar, Kunde erhaelt korrekte Versandinformation. | Wenn falscher Carrier oder falsche Adresse uebertragen wird, Rollback auf manuellen Versand. | Logistikleitung + Vertriebsinnendienst. | Extension einfuehren, wenn Volumen und Carrier-API es rechtfertigen. |
 | WMS/Scanner | Lager `FRA-ZL` arbeitet mit gesteuerter Einlagerung. Papierlisten führen zu Fehlgriffen und verspäteten Buchungen. | Business Central unterstützt Lagerorte, Lagerplätze, Picks, Einlagerungen und gesteuerte Lagerprozesse. | Mobile Scannerführung, Geräteverwaltung, Barcode-Validierung und Offlinefähigkeit sind im Standard je nach Szenario begrenzt. | WMS-/Scanner-App. | Barcodefähigkeit, Lagerplatzvalidierung, Geräteverwaltung, Fehlersperren, Performance, Support. | Scanner protokollieren Mitarbeiteraktionen; Rollen, Logs und Gerätezugriff sind zu steuern. | In `RM-PROD-TEST` Lagerort `FRA-ZL`, Artikel `RAW-STEEL`, Lagerplatz `A-01-01`, Lagereingang und Pick mit Scannerrolle testen. | `UAT-INT-WMS-001`: Lagereingang scannen, Einlagerung bestätigen, Pick für `RM-M100` scannen, Fehlscan testen. | Artikelposten, Lagerplatzinhalt und Pickstatus stimmen; Fehlscan wird verhindert. | Wenn Scanner Buchungen ohne Lagerplatzprüfung zulässt, keine Freigabe. | Lagerleitung + BC-Admin. | Standard nutzen, Scanner-Extension bei gesteuertem Lager pilotieren. |
 | Rental/Subscription | RM-SERVICE vermietet Maschinen und rechnet monatliche Nutzung ab. Standardaufträge bilden Verträge nur eingeschränkt ab. | Wiederkehrende Verkaufszeilen, Abgrenzungen, Service und Projekte können Teile des Modells abbilden. | Vertragslaufzeit, Rückgabe, Verlängerung, Kündigung, nutzungsabhängige Abrechnung und Objektverfügbarkeit sind Standardgrenzen. | Rental-/Subscription-App. | Vertragsobjekte, Fakturaplan, Rückgabe, Wartung, Abgrenzung, Integration in Service und Anlagen. | Vertragsdaten, Nutzungsdaten und Abgrenzungen sind auditrelevant; falsche Periodisierung verzerrt Umsatz. | In `RM-SERVICE-TEST` Mietobjekt `RENT-RM-M100-01`, Debitor `D10000`, Laufzeit `01.07.2026-30.09.2026`, Monatsrate `2.400 EUR` testen. | `UAT-INT-RENT-001`: Vertrag anlegen, Monatsrechnung erzeugen, Abgrenzung buchen, Rückgabe dokumentieren. | Monatlicher Erlös, Abgrenzung, Vertragsstatus und Objektverfügbarkeit sind nachvollziehbar. | Wenn Vertragsbeendigung keine saubere Schlussrechnung/Rückgabe erzeugt, nicht einführen. | Serviceleitung + Finance. | Extension für produktives Mietgeschäft einsetzen. |
 | Reporting/BI | Management braucht GuV nach Produktlinie, Vertriebskanal und Standortgruppe. Excel-Exports sind zu langsam und fehleranfällig. | Finanzberichte, Analysemodus, Dimensionsauswertungen und Power-BI-Anbindung sind Standardnähe. | Konzernweite Dashboards, semantisches Modell, Datenaktualisierung, Berechtigungen und Historisierung brauchen BI-Architektur. | Power BI mit BC-Connector; Custom nur für kuratiertes Data Model. | Datenmodell, Dimensionen, Refresh, Row-Level-Security, Drilldown, Abstimmung zur GuV. | Reportingdaten können personenbezogene und vertrauliche Finanzdaten enthalten; Zugriff, Export und Freigaben sind zu regeln. | In `RM-SHARED-TEST` Finanzbericht `RM-GUV-MONAT`, Dimensionen `PRODUCTLINE`, `CHANNEL`, `DEPARTMENT` prüfen, Power-BI-Dataset aktualisieren. | `UAT-INT-BI-001`: GuV nach `MACHINE` und `B2B`, Drilldown bis Sachposten, Abgleich mit Finanzbericht. | Power-BI-Wert stimmt mit Finanzbericht und Sachpostenfilter überein; Berechtigungen verhindern falsche Einsicht. | Wenn Dashboard nicht mit Finanzbericht abstimmt, Datenmodell nicht freigeben. | Controlling + Data Owner Finance. | Standardberichte zuerst, Power BI für Management-Cockpit. |
@@ -5417,7 +5409,7 @@ Ein BC Solution Architect sorgt dafür, dass fachliche Anforderungen mit Standar
 | Posting/VAT | Kontenfindung | 9, 22 und 38 | USt-Fall | korrekte Buchung | Posting-Matrix |
 | Security | Rollen/SoD | 27 und 39 | Zahlungslauf | Risikotrennung | Rollenmatrix |
 | Workflow | Genehmigung | 8 und 27 | Einkaufsfreigabe | Kontrollbedarf | Workflow-Test |
-| Integration | APIs, Microsoft 365, Power Platform | 17, 29, 31 und 35 | Shopify/Power BI | Standardconnector | Integrationsdesign |
+| Integration | APIs, Microsoft 365, Power Platform | 17, 29, 31 und 35 | Power BI/Power Platform | Standardconnector | Integrationsdesign |
 | Migration | Opening Balances | 28 | Startsaldo | Abstimmung | Migrationsprotokoll |
 | Testing | UAT/Regression | 32, 33 und 39 | Master-UAT | Akzeptanz | Testprotokoll |
 | Go-live | Cutover | 28, 30 und 39 | Produktivstart | Bereitschaft | Cutover-Plan |
@@ -5472,7 +5464,7 @@ Teil F enthält Testbibliothek, Lösungen, MB-800-Abdeckung, Lernpfade, Glossar,
 | UAT-001 | Foundation | Pflichtdimension blockiert Buchung | Stammdaten-Team | Fehlermeldung + korrigierte Buchung |
 | UAT-002 | Sales | B2B-Verkauf Maschine | Vertrieb | Verkaufsrechnung (Sales Invoice) + Debitorenposten (Customer Ledger) |
 | UAT-003 | Sales | Retoure mit Gutschrift | Vertrieb/Finance | Gutschrift (Credit Memo) + USt-Posten (VAT Entry) |
-| UAT-004 | Shopify | Webshop-Auftrag | E-Commerce | Shop-ID + Verkaufsauftrag (Sales Order) |
+| UAT-004 | Dropshipping | Sonderverkaufsauftrag | Vertrieb/Einkauf | Verkaufsauftrag + Einkaufsbestellung |
 | UAT-005 | Dropshipping | Direktlieferung | Vertrieb/Einkauf | verknüpfte Verkaufs-/Einkaufsbelege (Sales/Purchase Documents) |
 | UAT-006 | Purchasing | Teil-WE | Einkauf/Lager | offene Restmenge |
 | UAT-007 | P2P | E-Rechnung | Kreditorenbuchhaltung | XML + Buchungsbezug |
@@ -5922,7 +5914,7 @@ Dieses Kapitel bildet MB-800 und die Business-Central-Produktlandkarte auf das B
 | Purchasing | Orders, Receipts, Invoices | P2P | 12 und 36 | Einkauf | UAT Purchasing | tief |
 | Inventory | Items, Costing, Valuation | Lagerwert | 13, 23 und 38 | Inventur | UAT Inventory | tief |
 | Warehouse | Basic/Advanced Warehouse | Lagersteuerung | 13 | Lagerübung | UAT Warehouse | tief |
-| Shopify | Connector | Onlineshop | 17, 29 und 35 | Shopauftrag | UAT Shopify | mittel |
+| Dropshipping | Standardprozess | Sonderverkauf | 17, 29 und 35 | Verkaufsauftrag + Einkaufsbestellung | UAT Dropshipping | mittel |
 | Fixed Assets | FA Setup/Transactions | Anlagen | 21 | Anlage | UAT-017 | tief |
 | Planning | Planning Worksheet | Planung | 14 | MRP | UAT-010 | mittel |
 | Assembly | Assembly Orders | Montage | 14 | Wartungskit | UAT-012 | mittel |
@@ -6161,7 +6153,7 @@ Beispiel:
 |---|---|
 | Welche Rechnungen an D10000 sind offen? | `Customer No. = D10000`, `Open = Yes` |
 | Welche Artikelbewegungen gab es in Frankfurt? | `Location Code = FRA-WH1`, Datum `01.03.2026..31.03.2026` |
-| Welche Erlöse gehören zum Onlineshop? | Dimension `CHANNEL = SHOP` |
+| Welche Erloese gehoeren zum Servicekanal? | Dimension `CHANNEL = SERVICE` |
 | Welche Buchungen fehlen in der GuV? | Zeitraum, Sachkonto, Dimension `PRODUCTLINE` |
 
 Stolperstein:
@@ -6466,7 +6458,7 @@ Die folgende Matrix ist eine ehrliche Reifegradprüfung. Sie bewertet nicht, was
 | 14. Planning, Assembly und Manufacturing | 8 | 10 | Der Fertigungsfall ist ausführbar, aber Planung, Montage, Ausschuss und Fremdarbeit sind noch zu komprimiert. | MRP-Entscheidung, Stücklistenänderung, Arbeitsplanabweichung und Nacharbeit brauchen mehr Erklärung. | Produktionskapitel in mehrere didaktische Teilfälle gliedern. |
 | 15. Service | 8 | 10 | Serviceauftrag ist gut beschrieben, aber Garantie, Kulanz, Vertrag und mobile Technikerlogik sind noch nicht tief genug. | Abgrenzung Rechnung/Garantie/Kulanz und Servicevertrag mit Folgeprozess. | Drei Servicevarianten mit erlaubter und verbotener Korrektur ergänzen. |
 | 16. Projects | 8 | 10 | Projektfall ist nachvollziehbar, aber WIP, Meilensteinlogik und Projektmarge brauchen mehr Anfängerführung. | Projektaufgaben, Fakturamethode und WIP-Entscheidung sind noch verdichtet. | Projektinstallation mit Kosten, WIP, Faktura und Marge Schritt für Schritt ausbauen. |
-| 17. Shopify, Dropshipping und Sonderverkauf | 8 | 10 | Nachklickbar, aber der Text bleibt bei Shopify-Connector, Payment, Retouren und Steuer-/Lagerwirkung noch knapp. | Zahlungsprovider, Shop-Retoure, Inland/Ausland-Shopauftrag und echtes Mapping-Protokoll. | Shop-Fall um Payment-Abgleich, Retourenfall und Mapping-Fehler mit Screenschrittlogik erweitern. |
+| 17. Dropshipping und Sonderverkauf | 8 | 10 | Nachklickbar, aber der Text braucht noch praktische Dropshipping-Evidence, Einkaufsbezug, Steuer-/Lagerwirkung und Margenbild. | Verkaufsauftrag, Einkaufsbestellung, Preview, Postenspur, Margenbericht und Korrekturfall. | Dropshipping-Fall ohne Shopify-Connector als eigenen Playwright-/Evidence-Block aufbauen. |
 | 18. Intercompany und Ausland | 8 | 10 | Grundfall vorhanden, aber Auslandsteuer, Nachweise, IC-Abstimmung und Transferpreislogik sind noch nicht tief genug. | EU/Drittland, Reihengeschäftsnähe, Fremdwährung und IC-Differenzen. | Auslands- und IC-Fälle trennen und je Fall eigene UAT-Abnahme ergänzen. |
 | 19. Debitoren, Kreditoren und OP-Ausgleich | 9 | 10 | Starkes Kapitel für OP-Logik, aber Teilzahlung, Skonto, Überzahlung und Ausgleichsaufhebung brauchen mehr Beispiele. | Detaillierte Postenlogik bei Teilzahlung und Skonto. | Vier OP-Sonderfälle mit Buchungsspur und Lösung ergänzen. |
 | 20. Bank, Payments und Bankabstimmung | 9 | 10 | Gute Praxisnähe, aber Banking-Importformate, Klärposten und Massenabstimmung sind noch knapp. | Mehr Differenzfälle und Bankdatei-/Avislogik. | Bankkapitel um unbekannte Zahlung, Avis und Doppelimport erweitern. |
@@ -6684,7 +6676,7 @@ Praxisregel:
 | Bank & Zahlungen | `Zahlungsjournale (Payment Journals)`, `Zahlungsabstimmungsjournale (Payment Reconciliation Journals)` | Bankkonten, Zahlungsarten | zahlen, abstimmen | Bank-/Sachposten, Debitoren-/Kreditorenposten | Bankabstimmung |
 | Abschluss | `Buchhaltungsperioden (Accounting Periods)`, `Fibu Buch.-Blätter (General Journals)`, `Finanzberichte (Financial Reports)` | Perioden, Sperren, Abschlusskonten | abgrenzen, schließen, berichten | Sachposten | Bilanz/GuV |
 | Intercompany | `Intercompany-Einrichtung (Intercompany Setup)`, IC-Buch.-Blätter | IC Partner, IC Konten | IC-Belege senden/empfangen | IC-Posten, Sachposten | IC-Abstimmung |
-| Shopify/Online | `Shopify-Shops (Shopify Shops)`, `Verkaufsaufträge (Sales Orders)` | Shop, Mapping, Steuer | Shopaufträge verarbeiten | Verkaufs-, Debitoren-, USt-Posten | Shop-Abstimmung |
+| Dropshipping/Sonderverkauf | `Verkaufsauftraege (Sales Orders)`, `Einkaufsbestellungen (Purchase Orders)` | Einkaufsbezug, Steuer, Marge | Direktlieferungsfaelle verarbeiten | Verkaufs-, Einkaufs-, Debitoren-, Kreditoren-, USt-Posten | Margen-/Postenabstimmung |
 | Dropshipping | `Verkaufsaufträge (Sales Orders)`, `Einkaufsbestellungen (Purchase Orders)` | Einkaufscode (Purchasing Code), Lieferant | Direktlieferung steuern | verknüpfte Verkaufs-/Einkaufsposten | Marge, Steuer, Liefernachweis |
 | Reporting | `Finanzberichte (Financial Reports)`, `Analysemodus (Analysis Mode)`, `Analyseansichten (Analysis Views)` | Dimensionen, Reports | auswerten und filtern | Sachposten, Dimensionen | GuV, Bilanz, Analyse |
 | Administration | `Aufgabenwarteschlangenposten (Job Queue Entries)`, `Änderungsprotokoll (Change Log)`, `Erweiterungsverwaltung (Extension Management)` | Jobs, Protokollierung, Apps | Betrieb überwachen | Protokolle, Änderungsprotokoll | Admin-Kalender |
@@ -7192,7 +7184,7 @@ Merksatz:
 - [Q7] Microsoft Learn: Manage sales: https://learn.microsoft.com/en-us/dynamics365/business-central/sales-manage-sales
 - [Q8] Microsoft Learn: Sell products with sales orders: https://learn.microsoft.com/en-us/dynamics365/business-central/sales-how-sell-products
 - [Q9] Microsoft Learn: Process sales returns or cancellations: https://learn.microsoft.com/en-us/dynamics365/business-central/sales-how-process-sales-returns-cancellations
-- [Q10] Microsoft Learn: Shopify connector overview: https://learn.microsoft.com/en-us/dynamics365/business-central/shopify/get-started
+- [Q10] Gestrichen fuer Buch-5-Scope: Microsoft Learn Shopify connector overview: https://learn.microsoft.com/en-us/dynamics365/business-central/shopify/get-started
 - [Q11] Microsoft Learn: Manage purchasing: https://learn.microsoft.com/en-us/dynamics365/business-central/purchasing-manage-purchasing
 - [Q12] Microsoft Learn: Record purchases: https://learn.microsoft.com/en-us/dynamics365/business-central/purchasing-how-record-purchases
 - [Q13] Microsoft Learn: Use e-documents in purchase process: https://learn.microsoft.com/en-us/dynamics365/business-central/finance-how-use-edocuments-purchase

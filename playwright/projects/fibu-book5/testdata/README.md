@@ -11,7 +11,7 @@ Diese Testdaten beschreiben den Lern- und Laborstand fuer `RM-DEMO`. Sie sind ke
 | `foundation/rm-demo-company.json` | aktuelle Trainingscompany `RM-DEMO` und Herkunft aus CRONUS USA | praktisch belegt |
 | `masterdata/companies.json` | aktueller Lernmandant plus spaetere Ziel-Companies | `RM-DEMO` belegt; Ziel-Companies nur geplant |
 | `masterdata/dimensions.json` | Dimensionen und Dimensionswerte fuer O2C und spaetere Prozesse | Kernwerte belegt; Erweiterungen geplant |
-| `masterdata/customers.json` | Debitorenmodell fuer O2C, Shop, EU, Export und IC | `D10000` belegt; weitere Debitoren geplant |
+| `masterdata/customers.json` | Debitorenmodell fuer O2C, Dropshipping/Sonderverkauf, EU, Export und IC | `D10000` belegt; weitere Debitoren geplant |
 | `masterdata/vendors.json` | Kreditorenmodell fuer P2P, Dropship, Zoll, Fremdarbeit | `K10000` als CRONUS-USA-P2P-Labor belegt; weitere Kreditoren geplant |
 | `masterdata/items.json` | Artikel fuer Maschine, Ersatzteile, Rohmaterial und Kits | `RM-M100` belegt; `RAW-STEEL` als P2P-Laborartikel mit Postenspur belegt |
 | `masterdata/locations.json` | Lagerorte fuer einfaches Lager, Warehouse, Servicefahrzeug und Projekt | `FRA-ZL` belegt; weitere Lagerorte geplant |
