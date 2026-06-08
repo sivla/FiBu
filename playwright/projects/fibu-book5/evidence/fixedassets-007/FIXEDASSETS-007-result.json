@@ -1,0 +1,87 @@
+{
+  "testId": "fixedassets-007",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "dataBasis": "CRONUS USA",
+  "mode": "read-only-setup-preparation-no-posting-no-setup-change",
+  "gate": {
+    "id": "FIXEDASSETS-004-SETUP-OR-POSTING",
+    "status": "locked",
+    "consequence": "No HGB setup, no asset class setup, no fixed asset master data, no purchase invoice, no acquisition, no depreciation."
+  },
+  "sourceContext": {
+    "priorRuns": [
+      "FIXEDASSETS-005",
+      "FIXEDASSETS-006",
+      "GOVERNANCE-003"
+    ],
+    "priorFinding": "FA Posting Groups are reachable and existing CRONUS accounts were read; next safe step is reading Depreciation Books and asset classes."
+  },
+  "depreciationBooks": {
+    "id": "010-depreciation-books",
+    "pageId": 5611,
+    "contextVisible": true,
+    "hgbVisible": false,
+    "rows": [
+      {
+        "code": "COMPANY",
+        "rawText": "COMPANY Company Book on"
+      }
+    ],
+    "screenshot": "fixedassets-007-010-depreciation-books.png",
+    "pageTextEvidenceFile": "010-depreciation-books-page-text.txt",
+    "buttonsEvidenceFile": "010-depreciation-books-buttons.json"
+  },
+  "assetClasses": {
+    "id": "020-fixed-asset-classes",
+    "tellMeCandidateVisible": false,
+    "clickedTellMeResult": false,
+    "clickMethod": null,
+    "directPageTried": true,
+    "directPageId": 5615,
+    "directPageMatched": true,
+    "contextVisible": true,
+    "rows": [
+      {
+        "code": "INTANGIBLE",
+        "rawText": "INTANGIBLE InTangible on"
+      },
+      {
+        "code": "TANGIBLE",
+        "rawText": "TANGIBLE Tangible on"
+      },
+      {
+        "code": "FINANCIAL",
+        "rawText": "FINANCIAL Financial on"
+      }
+    ],
+    "screenshot": "fixedassets-007-021-fixed-asset-classes-result.png",
+    "tellMeScreenshot": "fixedassets-007-020-fixed-asset-classes-tell-me.png",
+    "tellMeEvidenceFile": "020-fixed-asset-classes-tell-me-page-text.txt",
+    "pageTextEvidenceFile": "021-fixed-asset-classes-result-page-text.txt",
+    "buttonsEvidenceFile": "021-fixed-asset-classes-buttons.json",
+    "candidates": []
+  },
+  "safety": {
+    "setupChanged": false,
+    "depreciationBookCreated": false,
+    "assetClassCreated": false,
+    "fixedAssetCreated": false,
+    "purchaseInvoiceCreated": false,
+    "posted": false,
+    "depreciationCalculated": false
+  },
+  "proves": [
+    "Depreciation Books page can be opened read-only through page 5611.",
+    "Current lab visibility for HGB is recorded.",
+    "Fixed Asset Classes Tell-Me search and direct page 5615 result are recorded as UI evidence."
+  ],
+  "doesNotProve": [
+    "No German HGB depreciation book target.",
+    "No MACHINES FA Posting Group fit.",
+    "No FA-CNC-01 fixed asset master data.",
+    "No K30000 vendor or acquisition purchase invoice.",
+    "No acquisition, depreciation or FA ledger trace."
+  ],
+  "nextStep": "Without gate: Kapitel-21-Buch-Sync/Checkliste fuer Anlagen-Setup-Reihenfolge aus FIXEDASSETS-005 bis 007 ergaenzen. With gate: idempotenten UI-Setup-Fit fuer HGB/MACHINES/FA-CNC-01/K30000 planen; Buchung weiterhin separat freigeben."
+}

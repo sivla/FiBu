@@ -3688,6 +3688,8 @@ Für Einsteiger ist die Regel wichtig: Eine Anlagenbuchungsgruppe ist keine Besc
 
 Laborbefund in `RM-DEMO`: `FIXEDASSETS-006` liest vorhandene CRONUS-Anlagenbuchungsgruppen read-only. Sichtbar sind unter anderem `EQUIPMENT` mit Konten `12210`/`82000`, `GOODWILL` mit `11300`, `PLANT` mit `12110`/`81000`, `PROPERTY` mit `12130`/`81000` und `VEHICLES` mit `12230`/`82000`. Diese Werte sind nur CRONUS-USA-Laborreferenz. Sie beweisen, dass BC mehrere Konten je Anlagenbuchungsgruppe erwartet; sie beweisen keinen deutschen HGB-Kontenplan und ersetzen nicht den freigegebenen Setup-Fit für `MACHINES`.
 
+Weiterer Laborbefund: `FIXEDASSETS-007` liest die angrenzenden Setup-Seiten read-only. `Depreciation Books` zeigt in `RM-DEMO` nur `COMPANY = Company Book`; ein AfA-Buch `HGB` ist nicht sichtbar. `FA Classes` zeigt `FINANCIAL`, `INTANGIBLE` und `TANGIBLE`. Für Anfänger ist das wichtig: AfA-Buch, Anlagenklasse und Anlagenbuchungsgruppe sind drei unterschiedliche Dinge. Das AfA-Buch beschreibt Bewertungs-/Abschreibungslogik, die Anlagenklasse strukturiert die Anlage fachlich, und die Anlagenbuchungsgruppe steuert die Sachkonten. Erst wenn diese Ebenen zusammenpassen, darf ein Anlagenzugang vorbereitet werden.
+
 ### Schritt-für-Schritt
 
 1. Öffne `Anlagen (Fixed Assets)` und lege `FA-CNC-01` an.

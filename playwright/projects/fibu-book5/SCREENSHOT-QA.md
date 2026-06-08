@@ -147,6 +147,14 @@ Fuer `UAT-O2C-001` fasst `playwright/projects/fibu-book5/evidence/uat-o2c-001/RE
 |---|---|---|---|
 | `playwright/projects/fibu-book5/img/fixedassets-006-010-fa-posting-groups-accounts.png` | guter Labor-Setup-Vorbereitungsnachweis | `FA Posting Groups` zeigt sichtbare CRONUS-Gruppen und Kontenspalten. JSON-Evidence liest `EQUIPMENT = 12210/82000`, `GOODWILL = 11300`, `PLANT = 12110/81000`, `PROPERTY = 12130/81000`, `VEHICLES = 12230/82000`. `MACHINES` fehlt weiter. | Als Buch-/Lernbild fuer Kontenfindung in Anlagenbuchungsgruppen geeignet. Nicht als deutscher HGB-Kontenplan, nicht als `MACHINES`-Fit und nicht als Anlagenbuchungsnachweis verwenden. |
 
+## `FIXEDASSETS-007` Screenshot Review
+
+| Screenshot | Bewertung | Befund | Entscheidung |
+|---|---|---|---|
+| `playwright/projects/fibu-book5/img/fixedassets-007-010-depreciation-books.png` | guter Labor-Setup-Vorbereitungsnachweis | `Depreciation Books` zeigt `COMPANY = Company Book`; `HGB` ist nicht sichtbar. | Als Buch-/Lernbild fuer AfA-Buch-Readiness geeignet. Nicht als deutscher HGB-Endstand und nicht als AfA-Buchung verwenden. |
+| `playwright/projects/fibu-book5/img/fixedassets-007-020-fixed-asset-classes-tell-me.png` | Navigations-/Suchbild mit begrenztem Nutzen | Tell-Me-Suche nach `Fixed Asset Classes` ist dokumentiert, der robuste Zielnachweis kam aber ueber direkte Page `5615`. | Nur als Suchpfad-Hinweis verwenden; fuer Buchbild besser das Ergebnisbild nutzen. |
+| `playwright/projects/fibu-book5/img/fixedassets-007-021-fixed-asset-classes-result.png` | guter Labor-Setup-Vorbereitungsnachweis | `FA Classes` zeigt `FINANCIAL`, `INTANGIBLE`, `TANGIBLE`. | Als Lernbild fuer Anlagenklassen geeignet. Nicht als Anlagenkarte, Anlagenbuchungsgruppe oder Buchungsnachweis verwenden. |
+
 ## `P2P-001` Screenshot Review
 
 | Screenshot | Bewertung | Befund | Entscheidung |
