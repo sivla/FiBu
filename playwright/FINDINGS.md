@@ -64,23 +64,23 @@ Das ist ein sehr praktischer Anfaengerbefund. Ein Bankkonto kann in der Liste ex
 
 | Feld | Wert |
 |---|---|
-| Status | offen als Amount-/Spaltenpositions-Lernfall |
+| Status | erledigt als UI-Amount-/Journal-Check-Lernfall; Folgefund Apply-/Preview-Readiness offen |
 | Projekt | fibu-book5 |
-| Testfall | `PAYMENTS-007` |
-| Screenshot | `playwright/projects/fibu-book5/img/payments-007-020-cash-receipt-journal-after-bank-fit.png` |
-| Evidence | `playwright/projects/fibu-book5/evidence/payments-007/PAYMENTS-007-result.json`, `playwright/projects/fibu-book5/evidence/payments-007/PAYMENTS-007-BANK-POSTING-FIT.md` |
+| Testfall | `PAYMENTS-007`, `PAYMENTS-008` |
+| Screenshot | `playwright/projects/fibu-book5/img/payments-007-020-cash-receipt-journal-after-bank-fit.png`, `playwright/projects/fibu-book5/img/payments-008-010-cash-receipt-amount-field-diagnosis.png` |
+| Evidence | `playwright/projects/fibu-book5/evidence/payments-007/PAYMENTS-007-result.json`, `playwright/projects/fibu-book5/evidence/payments-007/PAYMENTS-007-BANK-POSTING-FIT.md`, `playwright/projects/fibu-book5/evidence/payments-008/PAYMENTS-008-result.json`, `playwright/projects/fibu-book5/evidence/payments-008/PAYMENTS-008-AMOUNT-FIELD-DIAGNOSIS.md` |
 | BC-Seite | Cash Receipt Journals |
 | sichtbarer Text | `BANK-RM-01`, `Amount ($)`, `Journal Check`, `1 Issues Total`, `Amount` |
 | Elementtyp | Zahlungsjournal / Amount-Feld / Journal Check |
 | erste Hypothese | Nach geloestem Bankkonto-Fit trifft der UI-Draft noch nicht stabil das fachlich relevante `Amount`-Feld oder BC validiert die Zeile erst nach anderer Feld-/Spalteninteraktion. |
-| Recherchequelle | praktischer UI-only Playwright-Lauf `npm run fibu:payments:bank-posting-fit`; `playwright/projects/fibu-book5/evidence/payments-007/README.md` |
-| Testergebnis | `BANK-RM-01` traegt persistiert `Bank Acc. Posting Group = CHECKING`; der alte Bank-Posting-Group-Fehler ist weg. Der Draft zeigt aber weiter `1 Issues Total`; Current line meldet `'Amount' muss in 'Gen. Journal Line' einen Wert enthalten...`. Entwurf wurde geloescht; keine Zahlung, kein Ausgleich. |
-| Entscheidung | `PAYMENTS-008` muss Amount-Feld, Amount-LCY-Anzeige und Spaltenposition in breiter Layoutansicht gezielt klaeren, bevor irgendeine Zahlungsbuchung freigegeben wird. |
+| Recherchequelle | praktische UI-only Playwright-Laeufe `npm run fibu:payments:bank-posting-fit` und `npm run fibu:payments:amount-field-diagnosis`; `playwright/projects/fibu-book5/evidence/payments-008/README.md` |
+| Testergebnis | `BANK-RM-01` traegt persistiert `Bank Acc. Posting Group = CHECKING`; der alte Bank-Posting-Group-Fehler ist weg. `PAYMENTS-008` zeigt in breiter Ansicht `Amount = -68.000,00` und `Amount ($) = -67.673,60`. Nach `Refresh` zeigt `Journal Check` `1 Lines checked`, `0 Lines with issues`, `0 Issues Total` und `No issues found`. Entwurf wurde geloescht; keine Zahlung, kein Ausgleich. |
+| Entscheidung | Buch ergaenzen: Betragsspalte und `Amount ($)` unterscheiden, lokalen Betrag nach Fokus/Refresh pruefen und erst bei `Journal Check = 0 Issues` zum naechsten nicht buchenden Apply-/Preview-Schritt gehen. |
 | Buchstelle | Kapitel 19 Debitoren/Kreditoren und Kapitel 20 Bank/Payments |
 
 Bewertung:
 
-Das ist ein guter Anfaengerbefund, weil er zeigt: Ein sichtbarer Betrag in der Journalzeile beweist noch keine zahlungsreife Gen.-Journal-Line. Erst der rechte `Journal Check` entscheidet, ob BC die Zeile fachlich akzeptiert.
+Das ist ein guter Anfaengerbefund, weil er zeigt: Ein sichtbarer Betrag in der Journalzeile beweist noch keine zahlungsreife Gen.-Journal-Line. Erst der rechte `Journal Check` entscheidet, ob BC die Zeile fachlich akzeptiert. Nach `PAYMENTS-008` ist dieser Preflight im Labor positiv; der naechste Kontrollpunkt ist Apply-/Preview-Readiness, nicht sofortiges Buchen.
 
 ## FIND-BC-PAY-004 UI-Draft ist noch nicht zahlungsreif
 

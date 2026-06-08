@@ -3385,8 +3385,8 @@ Die naechste Readiness-Pruefung oeffnet `Bank Accounts`, `Cash Receipt Journals`
 Laborbefund `PAYMENTS-003`:
 `BANK-RM-01` wurde danach als CRONUS-USA-Laborbankkonto per Standard-API angelegt und in `Bank Accounts` sichtbar geprueft. Das loest nur den Stammdatenblocker. Fuer das Buch ist das noch keine Klickanleitung zur Bankkontoanlage; wenn die Bankkontoanlage erklaert werden soll, braucht sie einen eigenen UI-Pfad oder wird als vorbereitete Voraussetzung genannt.
 
-Laborbefund `PAYMENTS-004` bis `PAYMENTS-006`:
-Das Cash Receipt Journal zeigt die noetigen Felder und Aktionen: Buchungsdatum, Belegart, Belegnr., Kontenart, Kontonr., Betrag, Gegenkonto, Ausgleichsbezug, `Apply Entries`, `Journal Check` und `Post`. In `PAYMENTS-005` wurde eine Zahlungsjournalzeile vollstaendig ueber die UI vorbereitet: `D10000`, Betrag `-68.000`, Gegenkonto `BANK-RM-01`, Ausgleichsbezug `PS-INV103297`. Der Entwurf wurde danach wieder geloescht. `PAYMENTS-006` zeigt die wichtige Detailregel: Die Rohzahl `-68000` fuehrt im Labor zur `Amount`-Validierung, das lokale Format `-68.000,00` loest den Amount-Fehler. Danach meldet `Journal Check` aber den naechsten Setup-Blocker: `Bank Account Posting Group` fehlt fuer das Gegenkonto `BANK-RM-01`. Deshalb ist der aktuelle Laborstand noch nicht zahlungsreif. Es ist weiterhin keine Zahlung, kein OP-Ausgleich und keine Bankabstimmung nachgewiesen.
+Laborbefund `PAYMENTS-004` bis `PAYMENTS-008`:
+Das Cash Receipt Journal zeigt die noetigen Felder und Aktionen: Buchungsdatum, Belegart, Belegnr., Kontenart, Kontonr., Betrag, Gegenkonto, Ausgleichsbezug, `Apply Entries`, `Journal Check` und `Post`. In `PAYMENTS-005` wurde eine Zahlungsjournalzeile vollstaendig ueber die UI vorbereitet: `D10000`, Betrag `-68.000`, Gegenkonto `BANK-RM-01`, Ausgleichsbezug `PS-INV103297`. Der Entwurf wurde danach wieder geloescht. `PAYMENTS-006` zeigt die wichtige Detailregel: Die Rohzahl `-68000` fuehrt im Labor zur `Amount`-Validierung, das lokale Format `-68.000,00` loest den Amount-Fehler. Danach meldete `Journal Check` den naechsten Setup-Blocker: `Bank Account Posting Group` fehlte fuer das Gegenkonto `BANK-RM-01`. `PAYMENTS-007` fittet dieses Bankkonto ueber die UI auf `Bank Acc. Posting Group = CHECKING`. `PAYMENTS-008` zeigt danach in breiter Ansicht den Unterschied zwischen `Amount = -68.000,00` und `Amount ($) = -67.673,60`; nach `Refresh` meldet `Journal Check` `1 Lines checked`, `0 Lines with issues`, `0 Issues Total` und `No issues found`. Damit ist der nicht buchende Journal-Preflight im CRONUS-Labor positiv nachgewiesen. Es ist weiterhin keine Zahlung, kein OP-Ausgleich und keine Bankabstimmung nachgewiesen.
 
 ### Warum braucht Rhein-Main diesen Prozess?
 
@@ -3408,6 +3408,7 @@ Rhein-Main braucht verlässliche offene Posten für Mahnwesen, Liquidität und M
 4. Wähle `Posten ausgleichen (Apply Entries)`.
 5. Markiere Rechnung `SO-1001`.
 6. Erfasse den Betrag im lokalen Format und pruefe danach, ob BC ihn als Betrag speichert.
+   Laborhinweis aus `PAYMENTS-008`: Nutze fuer diesen Kontrollpunkt eine breite Layoutansicht. Unterscheide das eigentliche `Amount`-Feld von `Amount ($)`: Im Labor steht der Zahlungsbetrag in `Amount = -68.000,00`; `Amount ($) = -67.673,60` ist die umgerechnete Anzeige. Nach `Refresh` muss rechts im `Journal Check` `0 Issues Total` sichtbar sein.
 7. Pruefe zuerst den rechten Bereich `Journal Check`. Solange dort Issues sichtbar sind, darf nicht gebucht werden.
 8. Wenn `Bank Account Posting Group` fehlt, ist nicht der Debitor falsch, sondern das Bankkonto/Gegenkonto noch nicht buchungsfaehig eingerichtet.
 9. Pruefe danach `Buchungsvorschau (Preview Posting)`, falls die Aktion in der Umgebung verfuegbar ist.
