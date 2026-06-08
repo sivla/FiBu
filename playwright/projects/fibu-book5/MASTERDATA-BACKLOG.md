@@ -121,6 +121,6 @@ Deutsche `19 %` USt, deutscher Kontenplan, deutsche Steuerreports und finale deu
 
 ```text
 Arbeite auf Branch codex/playwright-bc-screenshot-foundation.
-Lies CURRENT-STATE.md, LAB-FIT-STATUS.md, BOOK-CLICK-GUIDE-COVERAGE.md und evidence/inventory-005/INVENTORY-005-TARGET-STOCK-READINESS.md.
-Arbeite nach `INVENTORY-008` ohne erneute Inventory-Buchung weiter. Lies `evidence/inventory-008/README.md` und `INVENTORY-008-POSTING-result.json`, synchronisiere Buch-/Anfaengererklaerung fuer Artikeljournal, Postenspur und Inventory Valuation, und waehle danach Reporting-Dimensionswirkung oder Payments/OP-Ausgleich als naechsten Prozessblock. Keine neue O2C-/P2P-/Inventory-Buchung, keine Warehouse-Aktivierung, kein deutscher Finalnachweis.
+Lies CURRENT-STATE.md, LAB-FIT-STATUS.md, BOOK-CLICK-GUIDE-COVERAGE.md, evidence/uat-o2c-001/O2C-LAB-FINAL-SYNC.md, evidence/p2p-001/P2P-LAB-POSTING.md und evidence/inventory-008/INVENTORY-008-SYNC.md.
+Starte `PAYMENTS-001` als read-only Readiness-Lauf: pruefe offene Debitorenposten zur gebuchten Verkaufsrechnung `PS-INV103297` und offene Kreditorenposten zur gebuchten Einkaufsrechnung `108219`, ohne Zahlung oder Ausgleich zu buchen. Dokumentiere Bank-/Payment-Journal-Voraussetzungen, offene Laborgrenzen und den naechsten sicheren Fix-/Buchungsschritt. Keine neue O2C-/P2P-/Inventory-Buchung, keine Warehouse-Aktivierung, kein deutscher Finalnachweis.
 ```

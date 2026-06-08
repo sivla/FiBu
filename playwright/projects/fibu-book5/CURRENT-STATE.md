@@ -190,7 +190,7 @@ Der aktuelle gebuchte Lauf darf nur als CRONUS-USA-Laborbuchung gelesen werden. 
 
 Governance, Encoding, Mac-Kompatibilitaet und Lean-Evidence sind committed und gepusht. Nicht erneut mit Aufraeumen beginnen, solange keine neue Rohmasse entsteht.
 
-Als naechstes gezielt den naechsten Lernblock waehlen, ohne erneut zu buchen:
+Als naechstes gezielt den naechsten Lernblock waehlen, ohne erneut zu buchen. Sinnvollster naechster Lauf nach diesem State-Sync ist `PAYMENTS-001`: offene Debitoren-/Kreditorenposten aus `PS-INV103297` und `108219` read-only pruefen und daraus den OP-Ausgleich vorbereiten. Begruendung: O2C, P2P und Inventory sind bereits gebucht oder als Laborblock erklaert; Payments/OP-Ausgleich verbindet Finance-Lernen, Anfaengerwert und Buchkapitel 19/20, ohne Warehouse oder Manufacturing zu frueh zu starten.
 
 1. `080-posting-result.json` und `082-posting-entry-trace.json` lesen.
 2. Die Postenspur nicht erneut buchen; `PS-INV103297` ist der Laborbeleg.
@@ -209,7 +209,7 @@ Synchronisationsstand nach der letzten Projektwahrheits-Pruefung:
 - Finaler DE-Nachweis offen: deutsche Oberflaeche, 19-%-USt, deutsche Buchung und deutsche Postenspur.
 - Blockiert/offen: kein Inventory-Posting-Setup-Blocker mehr; direkter Artikelposten-Check ist geloest ueber `Item Ledger Entry No. = 792`; `PRODUCTLINE=MACHINE` und `CHANNEL=B2B` sind am Artikelposten nachgewiesen; `Inventory Valuation` ist als Labor-Zahlenbericht nachgewiesen, der negative `RM-M100`-Wert ist als Laborfolge erklaert, und `INVENTORY-008` hat den positiven `RM-M100 +2`-Laborzugang mit Postenspur und korrigierter Lagerbewertung gebucht. Reporting-Seite ist erreichbar und zeigt Dimension-/Analyseoptionen, aber `PRODUCTLINE`/`CHANNEL` sind im aktuellen Financial-Reports-Lauf nicht sichtbar nutzbar; offen bleiben Steuer-/VAT-Fit, Sachposten-Dimensionsdialog/Dimension-Set-Nachweis, Reporting-Auswertungsnachweis, finale deutsche Nachweise sowie spaetere Warehouse-/Manufacturing-Prozesse.
 - Dimensionen: O2C-Kerndimensionen und Default Dimensions sind praktisch nachgewiesen; vollstaendige Buchstandard-Dimensionsmatrix ist noch nicht fertig.
-- Nicht geprueft: P2P-Zahlung/OP-Ausgleich, deutsche P2P-19-%-Vorsteuer, P2P-Dimensionen in Posten, echte Financial-Reports-Zahlenwirkung nach Dimension, praktische positive `RM-M100`-Bestandsbewegung nach `INVENTORY-004` bis `INVENTORY-007`.
+- Nicht geprueft: P2P-Zahlung/OP-Ausgleich, deutsche P2P-19-%-Vorsteuer, P2P-Dimensionen in Posten und echte Financial-Reports-Zahlenwirkung nach Dimension. Die praktische positive `RM-M100`-Bestandsbewegung ist dagegen seit `INVENTORY-008` als CRONUS-USA-Laborbuchung belegt; offen bleibt nur der finale deutsche Nachweis.
 
 ## Befehle fuer neue Agents
 
@@ -250,6 +250,7 @@ Danach `.env` mit der konkreten Business-Central-URL fuellen.
 | `playwright/projects/fibu-book5/evidence/inventory-005/INVENTORY-005-TARGET-STOCK-READINESS.md` | read-only Nachweis fuer `Item Journals`/Page `40` als Einstieg in den geplanten positiven RM-M100-Trainingsbestand; keine Buchung |
 | `playwright/projects/fibu-book5/evidence/inventory-006/INVENTORY-006-TARGET-STOCK-DRAFT.md` | kontrollierter Item-Journal-Draft `RM-M100 +2` in `FRA-ZL` mit `PRODUCTLINE=MACHINE`; keine Buchung, Cleanup erfolgreich |
 | `playwright/projects/fibu-book5/evidence/inventory-008/README.md` | Evidence-Index fuer die kontrollierte positive `RM-M100 +2`-Laborbuchung `INV008-899959`, Postenspur und korrigierte Inventory Valuation |
+| `playwright/projects/fibu-book5/evidence/inventory-008/INVENTORY-008-SYNC.md` | Sync-Zusammenfassung fuer Trainings-/Opening-Balance-Zugang, Postenarten, Laborgrenzen und Buchwirkung |
 | `playwright/projects/fibu-book5/BOOK-TO-EVIDENCE-AUDIT.md` | kritischer Buch-vs.-Projekt-vs.-Evidence-Abgleich mit Anforderungsmatrix |
 | `playwright/projects/fibu-book5/BOOK-EVIDENCE-WORKPLAN.md` | belastbarer Arbeitsplan aus Buch-vs.-Evidence-Abgleich |
 | `playwright/projects/fibu-book5/MASTERDATA-BACKLOG.md` | priorisierter Stammdaten- und Setup-Backlog aus dem Buch fuer `RM-DEMO` |

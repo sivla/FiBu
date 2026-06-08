@@ -56,8 +56,8 @@ Wenn ein neuer Prozessblock praktisch bearbeitet wird, wird diese Datei im selbe
 
 ## Naechste sinnvolle Lab-Fit-Schritte
 
-1. Reporting/Financial Reports weiterfuehren: `Dimensions - Detail` read-only pruefen; keine neue O2C-Buchung. `REPORTING-004` zeigt, dass die vorhandene `REVENUE` Analysis View nicht auf `PRODUCTLINE`/`CHANNEL` eingerichtet ist.
-2. Inventory-Zielbestand ist als Laborbuchung erledigt: `INVENTORY-008` buchte `INV008-899959` genau einmal und zeigt Artikelposten, Wertposten, Sachposten sowie korrigierte Inventory Valuation. Nicht erneut buchen; naechster Schritt ist Buch-/Anfaengererklaerung oder Reporting-Dimensionswirkung.
-3. P2P nicht erneut buchen: `106049` -> `108219` ist die Labor-Evidence. Naechster P2P-naher Schritt ist Zahlung/OP-Ausgleich.
+1. Payments/OP-Ausgleich vorbereiten: offene Debitoren-/Kreditorenposten aus `PS-INV103297` und `108219` read-only pruefen; keine Zahlung buchen, bevor Bank-/Journal-Readiness dokumentiert ist.
+2. Reporting/Financial Reports weiterfuehren: `Dimensions - Detail` read-only pruefen; keine neue O2C-Buchung. `REPORTING-004` zeigt, dass die vorhandene `REVENUE` Analysis View nicht auf `PRODUCTLINE`/`CHANNEL` eingerichtet ist.
+3. Inventory-Zielbestand ist als Laborbuchung erledigt: `INVENTORY-008` buchte `INV008-899959` genau einmal und zeigt Artikelposten, Wertposten, Sachposten sowie korrigierte Inventory Valuation. Nicht erneut buchen; Buch-/Anfaengererklaerung ist mit `INVENTORY-008-SYNC.md` vorbereitet.
 4. Postenspur aus `UAT-O2C-001`, `UAT-P2P-001` und `INVENTORY-001` als Anfaenger-Lernbild erklaeren: gebuchte Rechnung, Nebenbuchposten, Sachposten, Wertposten und Artikelposten.
 5. Deutsche USt-Grenze weiter offen halten: CRONUS-USA zeigt weiter keinen 19-%-USt-Endstand.

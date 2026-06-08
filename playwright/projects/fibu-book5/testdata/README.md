@@ -12,13 +12,13 @@ Diese Testdaten beschreiben den Lern- und Laborstand fuer `RM-DEMO`. Sie sind ke
 | `masterdata/companies.json` | aktueller Lernmandant plus spaetere Ziel-Companies | `RM-DEMO` belegt; Ziel-Companies nur geplant |
 | `masterdata/dimensions.json` | Dimensionen und Dimensionswerte fuer O2C und spaetere Prozesse | Kernwerte belegt; Erweiterungen geplant |
 | `masterdata/customers.json` | Debitorenmodell fuer O2C, Shop, EU, Export und IC | `D10000` belegt; weitere Debitoren geplant |
-| `masterdata/vendors.json` | Kreditorenmodell fuer P2P, Dropship, Zoll, Fremdarbeit | geplant, noch keine RM-DEMO-Evidence |
-| `masterdata/items.json` | Artikel fuer Maschine, Ersatzteile, Rohmaterial und Kits | `RM-M100` belegt; `RAW-STEEL` als P2P-Readiness-Laborfit belegt |
+| `masterdata/vendors.json` | Kreditorenmodell fuer P2P, Dropship, Zoll, Fremdarbeit | `K10000` als CRONUS-USA-P2P-Labor belegt; weitere Kreditoren geplant |
+| `masterdata/items.json` | Artikel fuer Maschine, Ersatzteile, Rohmaterial und Kits | `RM-M100` belegt; `RAW-STEEL` als P2P-Laborartikel mit Postenspur belegt |
 | `masterdata/locations.json` | Lagerorte fuer einfaches Lager, Warehouse, Servicefahrzeug und Projekt | `FRA-ZL` belegt; weitere Lagerorte geplant |
 | `masterdata/process-cases.json` | fachliche Prozessfaelle aus dem Buch | O2C praktisch belegt; andere Faelle geplant |
 | `masterdata/resources-assets-projects.json` | Ressourcen, Anlagen, Projekte und Bankkonto | geplant |
 | `sales/uat-o2c-001.json` | konkreter O2C-Testfall mit Zielwerten | Labor belegt mit Steuerabweichung |
-| `purchase/uat-p2p-001.json` | konkreter P2P-Readiness-Fall mit Zielwerten | Labor-Readiness belegt, keine Buchung |
+| `purchase/uat-p2p-001.json` | konkreter P2P-Fall mit Zielwerten | CRONUS-USA-Laborprozess gebucht: Bestellung `106049` -> gebuchte Einkaufsrechnung `108219`; keine deutsche 19-%-Vorsteuer |
 | `inventory/rm-m100-target-stock-plan.json` | positiver `RM-M100`-Zugang fuer stabile finale Buchbilder | Draft praktisch vorbereitet in `INVENTORY-006`, Journal Check/Current line ohne Issues in `INVENTORY-007`, genau eine Laborbuchung `INV008-899959` in `INVENTORY-008` mit Postenspur und korrigierter Inventory Valuation |
 
 ## Konventionen
@@ -39,7 +39,7 @@ Diese Testdaten beschreiben den Lern- und Laborstand fuer `RM-DEMO`. Sie sind ke
 | Dimensionswerte | `MACHINE`, `B2B`, `SALES`, `DIRECTED` |
 | Debitor | `D10000 Mueller Maschinenbau GmbH`, O2C mit `EUR` |
 | Artikel | `RM-M100 Standardmaschine M100`, Preis `68.000`, Kosten `42.000` |
-| P2P-Readiness | `K10000`, `RAW-STEEL`, `FRA-ZL`, Entwurfszeile `10 x 2.500` erstellt und geloescht |
+| P2P | `K10000`, `RAW-STEEL`, `FRA-ZL`; Bestellung `106049` wurde genau einmal mit `Receive and Invoice` gebucht und erzeugte Einkaufsrechnung `108219` |
 | Lagerort | `FRA-ZL` als einfacher Lagerort |
 | Standarddimensionen | `RM-M100 -> PRODUCTLINE=MACHINE`, `D10000 -> CHANNEL=B2B` |
 | Posting-Laborfit | `FRA-ZL` + `RESALE -> Inventory Account 14140` |
@@ -56,7 +56,7 @@ Diese Testdaten beschreiben den Lern- und Laborstand fuer `RM-DEMO`. Sie sind ke
 | Lagerorte | `MZ-EINFACH`, `VAN-SERV`, `PROJ-LAG` |
 | Ressourcen/Anlagen/Projekte | `RES-TECH`, `FA-CNC-01`, `PROJ-5001` |
 | Bank | `BANK-RM-01` |
-| Prozesse | P2P, Inventory, Warehouse, Manufacturing, Service, Projects, Payments, Fixed Assets |
+| Prozesse | Warehouse, Manufacturing, Service, Projects, Payments, Fixed Assets; P2P und Inventory sind als CRONUS-USA-Laborprozesse belegt, aber deutsche Finalnachweise bleiben offen |
 
 ## Laborgrenzen
 

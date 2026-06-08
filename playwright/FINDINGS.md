@@ -572,29 +572,29 @@ Bewertung:
 
 Das ist ein starker Anfaenger-Lernpunkt. Der Artikelposten beweist, dass die Dimension in der gebuchten Spur angekommen ist. Der Financial Report beweist damit aber noch nicht automatisch eine GuV-Auswertung nach Produktlinie oder Kanal. `REPORTING-003` verschaerft diese Regel: Auch ein sichtbarer Menuepunkt `Dimension Perspective` ist noch kein Klickpfad, solange der Folgezustand nicht die erwartete Dimensionsansicht zeigt. `REPORTING-004` zeigt zusaetzlich, dass eine vorhandene Revenue-Analysis-View andere Dimensionen haben kann als das Buchziel. Fuer das Buch muss deshalb der Reportingpfad selbst bebildert werden, statt die Postendimension als Berichtssumme umzudeuten.
 
-## FIND-BC-INV-001 Inventory Valuation braucht Stichtag und zeigt negative Laborbewertung fuer RM-M100
+## FIND-BC-INV-001 Inventory Valuation braucht Stichtag und erklaert die RM-M100-Laborbewertung
 
 | Feld | Wert |
 |---|---|
-| Status | erledigt als Labor-Lernfall; finaler Zielbestand offen |
+| Status | erledigt als Labor-Lernfall; positiver Trainingsbestand seit `INVENTORY-008` belegt; finaler deutscher Nachweis offen |
 | Projekt | fibu-book5 |
 | Testfall | `INVENTORY-002` |
 | Screenshot | `playwright/projects/fibu-book5/img/inventory-002-020-inventory-valuation-request.png`, `playwright/projects/fibu-book5/img/inventory-002-030-inventory-valuation-preview.png` |
 | Evidence | `playwright/projects/fibu-book5/evidence/inventory-002/INVENTORY-VALUATION-result.json`, `playwright/projects/fibu-book5/evidence/inventory-002/INVENTORY-VALUATION.md`, `playwright/projects/fibu-book5/evidence/inventory-002/README.md`, `playwright/projects/fibu-book5/evidence/inventory-003/INVENTORY-NEGATIVE-RM-M100.md` |
 | BC-Seite | `Inventory Valuation` |
-| sichtbarer Text | `As Of Date = 08.06.2026`, `No. = RM-M100|RAW-STEEL`, `Location Filter = FRA-ZL`, `RAW-STEEL = 25.000,00`, `RM-M100 = -42.000,00`, `Total Inventory Value = -17.000,00` |
+| sichtbarer Text | vor `INVENTORY-008`: `RAW-STEEL = 25.000,00`, `RM-M100 = -42.000,00`, `Total Inventory Value = -17.000,00`; nach `INVENTORY-008`: `RM-M100 = 42.000,00`, `RAW-STEEL = 25.000,00`, `Total Inventory Value = 67.000,00` |
 | Elementtyp | Lagerbewertung / Report Request Page / Report Viewer |
 | erste Hypothese | Die Lagerbewertung ist eine Stichtagsauswertung aus Artikel-/Wertposten. Der negative `RM-M100`-Wert entsteht nicht im Bericht, sondern aus der Labor-Bewegungskette: Verkauf/Lieferung ohne vorher passend aufgebauten positiven Bestand im selben Filterkontext. |
 | Recherchequelle | praktischer Playwright-Lauf `npm run fibu:inventory:valuation` |
-| Testergebnis | Der Report rendert read-only mit Stichtag, Item- und Lagerortfilter. Mit `As Of Date = 08.06.2026` zeigt die Vorschau beide Artikel und die negative Summe. `INVENTORY-003` erklaert die Summe aus belegtem P2P-Zugang `RAW-STEEL = 25.000,00` und belegtem O2C-Abgang `RM-M100 = -42.000,00`; ein passender positiver `RM-M100`-Zugang ist in der aktuellen Evidence-Kette nicht belegt. |
-| Entscheidung | Buch ergaenzt: Lagerbewertung braucht Stichtag und Filter. Negative Lagerwerte sind kein Screenshotfehler, sondern ein Hinweis auf Bestands-/Kostenkette, Anfangsbestand oder Reihenfolge der Bewegungen. Finale Buchbilder brauchen eine konsistente deutsche Zielumgebung mit sauberem Anfangsbestand oder passendem Zugang fuer `RM-M100`. |
+| Testergebnis | Der Report rendert read-only mit Stichtag, Item- und Lagerortfilter. `INVENTORY-002` zeigt die negative Ausgangssumme; `INVENTORY-003` erklaert sie aus P2P-Zugang `RAW-STEEL = 25.000,00` und O2C-Abgang `RM-M100 = -42.000,00`. `INVENTORY-008` bucht danach den kontrollierten Trainings-/Opening-Balance-Zugang `RM-M100 +2` und belegt die korrigierte Laborbewertung `Total Inventory Value = 67.000,00`. |
+| Entscheidung | Buch ergaenzt: Lagerbewertung braucht Stichtag und Filter. Negative Lagerwerte sind kein Screenshotfehler, sondern ein Hinweis auf Bestands-/Kostenkette, Anfangsbestand oder Reihenfolge der Bewegungen. Der positive Laborzugang ist jetzt belegt, bleibt aber Trainings-/Opening-Balance-Logik und kein Manufacturing-Output oder deutscher Finalabschluss. |
 | Buchstelle | Kapitel 13 Inventory/Warehouse, Kapitel 23 Inventory Costing und Lagerbewertung |
 
 Bewertung:
 
-Das ist ein idealer Lernfall fuer Anfaenger: Der Bericht ist nicht falsch, sondern zeigt die Folge der gebuchten Laborposten. Wer Lagerbewertung versteht, muss Artikelposten, Wertposten, Stichtag, Lagerortfilter und Anfangsbestand zusammen lesen. Die erklaerende Kette ist jetzt dokumentiert. Der naechste Schritt ist nicht sofort Warehouse oder neue O2C-Buchung, sondern der Zielbestandsplan: Wie bekommt `RM-M100` vor finalen Buchbildern einen belegten positiven Zugang?
+Das ist ein idealer Lernfall fuer Anfaenger: Der Bericht ist nicht falsch, sondern zeigt die Folge der gebuchten Laborposten. Wer Lagerbewertung versteht, muss Artikelposten, Wertposten, Stichtag, Lagerortfilter und Anfangsbestand zusammen lesen. Die erklaerende Kette ist jetzt dokumentiert und durch `INVENTORY-008` praktisch geschlossen: `RM-M100` hat im Labor einen belegten positiven Zugang. Der naechste Schritt ist nicht noch eine Inventory-Buchung, sondern didaktische Abrundung, Reporting-Dimensionswirkung oder Payments/OP-Ausgleich.
 
-Folgeentscheidung aus `INVENTORY-004`: Fuer stabile Buchbilder ist ein klar markierter Trainings-/Opening-Balance-Zugang `RM-M100 +2` in `FRA-ZL` der kleinste kontrollierte naechste Schritt. Einkauf von `RM-M100` passt fachlich schlechter, Assembly gehoert in einen anderen Prozess, und Manufacturing/Output bleibt der spaetere echte End-to-End-Nachweis fuer Maschinenfertigung.
+Folgeentscheidung aus `INVENTORY-004` bis `INVENTORY-008`: Der klar markierte Trainings-/Opening-Balance-Zugang `RM-M100 +2` in `FRA-ZL` war der kleinste kontrollierte Schritt und wurde genau einmal gebucht. Einkauf von `RM-M100` passt fachlich schlechter, Assembly gehoert in einen anderen Prozess, und Manufacturing/Output bleibt der spaetere echte End-to-End-Nachweis fuer Maschinenfertigung.
 
 ## FIND-BC-INV-003 Item Journal kann Zielbestand vorbereiten, pruefen und buchen
 
