@@ -11,6 +11,7 @@
 | Artikelposten ueber Value-Entry-Verknuepfung sichtbar | ja |
 | Artikelposten ueber Find entries sichtbar | nein |
 | Wertposten sichtbar | ja |
-| PRODUCTLINE=MACHINE in Postenspur sichtbar | nein |
+| PRODUCTLINE=MACHINE in Postenspur sichtbar | ja |
+| PRODUCTLINE=MACHINE am Artikelposten sichtbar | ja |
 | Warum das wichtig ist | Nach `Ship and Invoice` verschwindet der Auftrag nicht einfach: BC erzeugt eine gebuchte Verkaufsrechnung und daraus fachliche Posten fuer Debitor, Sachkonten, Artikel und Wert. Diese Posten sind die Beweisfuehrung hinter dem Screenshot. |
 | Laborgrenze | Alle Posten gehoeren zur CRONUS-USA-Spielwiese mit 0-%-Tax. Das ist keine deutsche 19-%-USt-Evidence. |

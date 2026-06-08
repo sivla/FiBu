@@ -79,6 +79,7 @@ Die Preview-Uebersicht zeigt Postenarten und Anzahl. Der anschliessende Read-onl
 | `082-posting-entry-trace-learning.md` | Lernzusammenfassung | Erklaert fuer Anfaenger, dass BC nach `Ship and Invoice` Beleg und Posten erzeugt und dass der Artikelposten ueber die Wertposten-Verknuepfung gefunden wurde. | Deutsche finale Postenspur. | Labor-Lernnachweis |
 | `087-find-entries-posted-invoice-page-text.txt` | Roh-Seitentext | `Find entries...` auf `PS-INV103297` zeigt Posted Sales Invoice, `G/L Entry`, `Cust. Ledger Entry`, `Detailed Cust. Ledg. Entry` und `Value Entry`. | Artikelposten; `PRODUCTLINE=MACHINE`. | Labor-Negativnachweis |
 | `088-item-ledger-entry-by-entry-no-page-text.txt` | Roh-Seitentext | Page `38` mit `Entry No. = 792` zeigt Artikelposten: `Sales Shipment S-SHPT102297`, `RM-M100`, `FRA-ZL`, Menge `-1`. | Deutsche USt oder Dimensionen. | Labor-Artikelposten |
+| `089-item-ledger-entry-dimensions-page-text.txt` | Roh-Seitentext | `Entry` -> `Dimensions` auf Artikelposten `792` zeigt `CHANNEL=B2B` und `PRODUCTLINE=MACHINE`. | Deutsche USt, Reportingwirkung, finale DE-Postenspur. | Labor-Dimensionsnachweis |
 | `999-cleanup.json` | Cleanup-Evidence | Preview-Auftrag `S-ORD101067` fuer `D10000` wurde per API geloescht; Status `204`. | Cleanup fuer die spaetere Laborbuchung `S-ORD101068`; gebuchte Belege koennen nicht wie Entwuerfe geloescht werden. | Cleanup-Nachweis |
 | `uat-o2c-001-010-suche-verkaufsauftraege.screenshot.json` | Screenshot-Metadaten | Such-/Tell-Me-Bild ist als Labor-/Navigationsevidence beschrieben. | Prozessdatensatz `D10000` oder O2C-Werte. | Labor-Metadaten |
 | `uat-o2c-001-020-liste-verkaufsauftraege.screenshot.json` | Screenshot-Metadaten | Listenbild ist Navigationsbild. | Nachweis des konkreten Laborauftrags. | Labor-Metadaten |
@@ -106,6 +107,7 @@ Die Preview-Uebersicht zeigt Postenarten und Anzahl. Der anschliessende Read-onl
 | `../../img/uat-o2c-001-086-value-entries.png` | labor/evidence | Wertposten zur gebuchten Rechnung |
 | `../../img/uat-o2c-001-087-find-entries-posted-invoice.png` | labor/evidence | `Find entries...` zeigt Postenarten ohne Artikelposten |
 | `../../img/uat-o2c-001-088-item-ledger-entry-by-entry-no.png` | labor/evidence | Artikelposten ueber `Entry No. = 792` aus dem Wertposten |
+| `../../img/uat-o2c-001-089-item-ledger-entry-dimensions.png` | labor/evidence | Dimensionsdialog des Artikelpostens mit `PRODUCTLINE=MACHINE` |
 
 ## Was jetzt als CRONUS-Labor-Evidence abgedeckt ist
 
@@ -119,15 +121,16 @@ Die Preview-Uebersicht zeigt Postenarten und Anzahl. Der anschliessende Read-onl
 - Die kontrollierte Laborbuchung `S-ORD101068` wurde genau einmal mit `Ship and Invoice` gebucht.
 - Gebuchte Verkaufsrechnung `PS-INV103297`, Debitorenposten, Sachposten, Wertposten und Artikelposten sind als Read-only-Postenspur nachgewiesen.
 - Der Artikelposten ist ein guter Lernfall: `Find entries...` auf der Rechnung zeigt keinen `Item Ledger Entry`; der Wertposten enthaelt aber `Item Ledger Entry No. = 792`, und darueber zeigt Page `38` den Artikelposten.
+- `PRODUCTLINE=MACHINE` und `CHANNEL=B2B` sind am gebuchten Artikelposten `792` ueber `Entry` -> `Dimensions` sichtbar.
 
 ## Was offen bleibt
 
 - Deutscher 19-%-USt-Endstand und Bruttobetrag `80.920 EUR`.
 - `VAT Entry` beziehungsweise deutscher USt-Posten.
 - Visuell optimale Detailansicht der Preview-Zeilen mit Betragsspalten; Konten sind sichtbar, Betrage derzeit vor allem im Seitentext nachgewiesen.
-- `PRODUCTLINE=MACHINE` in Preview-Details, gebuchten Sach-/Wertposten oder Reporting.
+- `PRODUCTLINE=MACHINE` in Reporting/Financial Reports.
 - Finale deutsche Screenshots in deutscher Zielumgebung.
 
 ## Naechster konkreter Schritt
 
-Als naechster kleiner Schritt bietet sich ein gezielter Read-only-Check der Dimensionswirkung an: `PRODUCTLINE=MACHINE` in gebuchten Posten oder Reporting suchen. Keine weitere Buchung.
+Als naechster kleiner Schritt bietet sich ein Reporting-/Financial-Reports-Check mit `PRODUCTLINE=MACHINE` an oder der Wechsel zum naechsten Prozessblock. Keine weitere Buchung.

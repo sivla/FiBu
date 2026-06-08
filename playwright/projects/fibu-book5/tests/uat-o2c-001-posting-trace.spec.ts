@@ -139,6 +139,37 @@ async function captureFindEntriesTrace(page: Page, postedInvoiceNo: string) {
   };
 }
 
+async function captureCurrentEntryDimensions(page: Page, entryContext: string) {
+  const clickedEntryMenu = await clickFirstVisibleAction(page, /^Entry$|^Posten$/i);
+  const clickedDimensions = await clickFirstVisibleAction(page, /^Dimensions$|^Dimensionen$/i);
+  await page.waitForTimeout(3000);
+  const text = await pageText(page);
+  await writeTextEvidence(o2cEvidencePath('089-item-ledger-entry-dimensions-page-text.txt'), text);
+  await screenshot(page, 'uat-o2c-001-089-item-ledger-entry-dimensions.png', {
+    projectName: project.name,
+    testId: 'uat-o2c-001',
+    status: clickedDimensions && /Dimension|Dimensionen|PRODUCTLINE|MACHINE/i.test(text) ? 'labor' : 'rejected',
+    purpose: `Read-only-Dimensionspruefung fuer ${entryContext}.`,
+    expectedPageText: [],
+    knownLimitations: [
+      'CRONUS-USA-Laborposten, keine deutsche 19-%-USt-Evidence.',
+      'Prueft nur, ob Dimensionen am gebuchten Artikelposten sichtbar sind; keine neue Buchung.'
+    ],
+    bookUse: clickedDimensions ? 'evidence' : 'do-not-use'
+  });
+
+  return {
+    id: 'item-ledger-entry-dimensions',
+    entryContext,
+    clickedEntryMenu,
+    clickedDimensions,
+    dimensionContextVisible: /Dimension|Dimensionen/i.test(text),
+    hasProductlineMachine: /PRODUCTLINE[\s\S]{0,160}MACHINE|MACHINE[\s\S]{0,160}PRODUCTLINE/i.test(text),
+    textEvidenceFile: '089-item-ledger-entry-dimensions-page-text.txt',
+    screenshot: 'uat-o2c-001-089-item-ledger-entry-dimensions.png'
+  };
+}
+
 function extractItemLedgerEntryNoFromValueEntry(valueEntryText: string) {
   const match = valueEntryText.match(/\b(-?\d+)\s+(-?\d+)\s*(?:\n|$)/m);
   return match?.[1];
@@ -210,6 +241,7 @@ test('UAT-O2C-001 gebuchte Rechnung und Postenspur read-only sichern', async ({ 
   const valueEntryText = await fs.readFile(o2cEvidencePath('086-value-entries-page-text.txt'), 'utf8');
   const itemLedgerEntryNoFromValueEntry = extractItemLedgerEntryNoFromValueEntry(valueEntryText);
   let itemLedgerEntryByEntryNoTrace: Awaited<ReturnType<typeof openFilteredPage>> | undefined;
+  let itemLedgerEntryDimensionsTrace: Awaited<ReturnType<typeof captureCurrentEntryDimensions>> | undefined;
   if (itemLedgerEntryNoFromValueEntry) {
     itemLedgerEntryByEntryNoTrace = await openFilteredPage(
       page,
@@ -225,6 +257,10 @@ test('UAT-O2C-001 gebuchte Rechnung und Postenspur read-only sichern', async ({ 
       },
       documentNo
     );
+    itemLedgerEntryDimensionsTrace = await captureCurrentEntryDimensions(
+      page,
+      `Item Ledger Entry No. ${itemLedgerEntryNoFromValueEntry}`
+    );
   }
   const findEntriesTrace = await captureFindEntriesTrace(page, documentNo);
 
@@ -237,6 +273,7 @@ test('UAT-O2C-001 gebuchte Rechnung und Postenspur read-only sichern', async ({ 
     traces,
     itemLedgerEntryNoFromValueEntry,
     itemLedgerEntryByEntryNoTrace,
+    itemLedgerEntryDimensionsTrace,
     findEntriesTrace,
     summary: {
       postedInvoiceVisible: traces.find((entry) => entry.id === 'posted-sales-invoice')?.filterValueVisible ?? false,
@@ -250,7 +287,10 @@ test('UAT-O2C-001 gebuchte Rechnung und Postenspur read-only sichern', async ({ 
       itemLedgerVisibleViaDirectFilter: traces.find((entry) => entry.id === 'item-ledger-entries')?.filterValueVisible ?? false,
       itemLedgerVisibleViaValueEntryEntryNo: itemLedgerEntryByEntryNoTrace?.filterValueVisible ?? false,
       itemLedgerVisibleViaFindEntries: findEntriesTrace.hasItemLedgerEntry,
-      productlineMachineFoundInTrace: traces.some((entry) => entry.hasProductlineMachine) || findEntriesTrace.hasProductlineMachine
+      productlineMachineFoundInTrace:
+        traces.some((entry) => entry.hasProductlineMachine) ||
+        findEntriesTrace.hasProductlineMachine ||
+        (itemLedgerEntryDimensionsTrace?.hasProductlineMachine ?? false)
     },
     explicitNonProofs: [
       'kein deutscher 19-%-USt-Endstand',
@@ -277,6 +317,7 @@ test('UAT-O2C-001 gebuchte Rechnung und Postenspur read-only sichern', async ({ 
       `| Artikelposten ueber Find entries sichtbar | ${result.summary.itemLedgerVisibleViaFindEntries ? 'ja' : 'nein'} |`,
       `| Wertposten sichtbar | ${result.summary.valueEntriesVisible ? 'ja' : 'nein'} |`,
       `| PRODUCTLINE=MACHINE in Postenspur sichtbar | ${result.summary.productlineMachineFoundInTrace ? 'ja' : 'nein'} |`,
+      `| PRODUCTLINE=MACHINE am Artikelposten sichtbar | ${itemLedgerEntryDimensionsTrace?.hasProductlineMachine ? 'ja' : 'nein'} |`,
       '| Warum das wichtig ist | Nach `Ship and Invoice` verschwindet der Auftrag nicht einfach: BC erzeugt eine gebuchte Verkaufsrechnung und daraus fachliche Posten fuer Debitor, Sachkonten, Artikel und Wert. Diese Posten sind die Beweisfuehrung hinter dem Screenshot. |',
       '| Laborgrenze | Alle Posten gehoeren zur CRONUS-USA-Spielwiese mit 0-%-Tax. Das ist keine deutsche 19-%-USt-Evidence. |',
       ''
