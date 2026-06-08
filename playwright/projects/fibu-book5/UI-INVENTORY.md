@@ -75,18 +75,24 @@ Wenn das Projekt fertig ist, kennen wir Business Central für den Buchumfang nic
 | Verkauf | Sales Order | 42 | Auftragskopf, `Customer Name`, FactBox `Sell-to Customer Sales History` | Debitor auswählen und fachliche Nummer `D10000` prüfen | `UAT-O2C-001` | `playwright/projects/fibu-book5/img/uat-o2c-001-030-kopf-debitor-d10000.png`; `evidence/uat-o2c-001/030-kopf-debitor-d10000-page-text.txt` | erledigt als Laborbild | Kapitel 11 |
 | Verkauf | Sales Order Lines | 42 | Zeilengrid, horizontaler Container `freeze-pane-scrollbar`, `Type`, `No.`, `Location Code`, Menge, Preis, `Tax Group Code`, Betrag | Artikel `RM-M100` mit Menge `1`, Lagerort `FRA-ZL`, Preis `68.000`, EUR-Summen und CRONUS-Steuergruppe sichtbar pruefen | `UAT-O2C-001` | `playwright/projects/fibu-book5/img/uat-o2c-001-040-zeile-artikel-rm-m100.png`; `playwright/projects/fibu-book5/img/uat-o2c-001-041-zeile-betraege-steuer.png`; `playwright/projects/fibu-book5/img/uat-o2c-001-042-zeile-spaete-spalten.png`; `evidence/uat-o2c-001/039-factbox-hidden-result.json`; `SCREENSHOT-QA.md` | verstanden als Laborbild/Scrollstrategie; FactBox wird fuer Tabellenbreite eingeklappt; DE-Steuernachweis offen | Kapitel 11 |
 | Verkauf/Steuer | Sales Order API / Sales Order Card | n/a/42 | Ziel-vs.-Labor-Abweichung | Erkennen, dass CRONUS-USA-Lauf zwar `EUR`, aber nicht deutsches `19 %`-Setup beweist | `UAT-O2C-001` | `evidence/uat-o2c-001/045-target-vs-labor-delta.md`; `evidence/uat-o2c-001/046-o2c-lab-learning-summary.md`; `WORKAROUNDS-AND-ERRORS.md` | verstanden, Steuer-Setup-Luecke offen | Kapitel 9/11/22 |
+| Verkauf | Sales Order | 42 | `Post...` -> `Preview Posting` | Nicht buchende Buchungsvorschau mit erwarteten Postenarten oeffnen | `UAT-O2C-001` | `playwright/projects/fibu-book5/img/uat-o2c-001-060-buchungsvorschau.png`; `evidence/uat-o2c-001/060-preview-posting-result.json` | erledigt als Labor-Preview | Kapitel 11 |
+| Verkauf | Sales Order | 42 | Buchungsdialog `Ship and Invoice` | Genau eine kontrollierte Laborbuchung ausfuehren | `UAT-O2C-001` | `playwright/projects/fibu-book5/img/uat-o2c-001-080-posting-dialog-before-ok.png`; `evidence/uat-o2c-001/080-posting-result.json` | erledigt als Laborbuchung; nicht erneut ausfuehren | Kapitel 11 |
+| Verkauf/Fibu | Posted Sales Invoice | 132 | Gebuchte Verkaufsrechnung | Gebuchten Beleg `PS-INV103297` read-only pruefen | `UAT-O2C-001` | `playwright/projects/fibu-book5/img/uat-o2c-001-082-posted-sales-invoice.png`; `evidence/uat-o2c-001/082-posting-entry-trace.json` | erledigt als Laborbeleg | Kapitel 11 |
+| Fibu | Customer Ledger Entries / G/L Entries | 25/20 | Postenlisten mit Belegnummerfilter | Forderung und Sachposten zur Laborrechnung pruefen | `UAT-O2C-001` | `playwright/projects/fibu-book5/img/uat-o2c-001-083-customer-ledger-entries.png`; `playwright/projects/fibu-book5/img/uat-o2c-001-084-gl-entries.png`; `evidence/uat-o2c-001/082-posting-entry-trace.json` | erledigt als Labor-Postenspur; G/L-Dimensionen offen | Kapitel 9/11/19 |
+| Lager/Fibu | Value Entries / Item Ledger Entries | 5802/38 | Wertposten-Link auf `Item Ledger Entry No.`; `Entry` -> `Dimensions` | Artikelposten aus Wertposten finden und Dimensionen am Artikelposten pruefen | `UAT-O2C-001` | `playwright/projects/fibu-book5/img/uat-o2c-001-086-value-entries.png`; `playwright/projects/fibu-book5/img/uat-o2c-001-088-item-ledger-entry-by-entry-no.png`; `playwright/projects/fibu-book5/img/uat-o2c-001-089-item-ledger-entry-dimensions.png` | erledigt als Labor-Dimensionsnachweis am Artikelposten | Kapitel 10/11/13 |
+| Reporting | Financial Reports | n/a | Tell-Me Treffergruppe `Berichte und Analysen`, Berichtsliste | Einstieg in Finanzberichte fuer spaeteren Dimensionsnachweis | `REPORTING-001` | `playwright/projects/fibu-book5/img/reporting-001-010-financial-reports.png`; `evidence/reporting-001/010-financial-reports-open-result.json` | gesehen/geklickt; Filterwirkung offen | Kapitel 10/25 |
 
-## Nächste Inventarziele
+## Naechste Inventarziele
 
 | Reihenfolge | Ziel |
 |---:|---|
-| 1 | `Preview Posting`: nicht buchenden Vorschau-Lauf fuer O2C erkunden und als Lern-/Fehlerbild dokumentieren |
-| 2 | Steuerfit: CRONUS-USA-Probelauf von deutschem Ziel-Fall `19 %` trennen |
-| 3 | Buchungsvorschau und Postenspur für O2C testen |
-| 4 | Warehouse-Block: `FRA-ZL` später mit Bins/Receipts/Picks ausbauen |
+| 1 | `REPORTING-002`: Financial Reports maximieren, passenden Report waehlen und Dimensions-/Filterfelder fuer `PRODUCTLINE=MACHINE` suchen |
+| 2 | G/L Entry Dimensions zu `PS-INV103297` read-only pruefen, ohne neue O2C-Buchung |
+| 3 | Steuerfit: CRONUS-USA-Probelauf weiter vom deutschen Ziel-Fall `19 %` trennen |
+| 4 | P2P-/Kreditoren-Stammdaten vorbereiten, nachdem O2C/Reporting synchron sind |
+| 5 | Warehouse-Block: `FRA-ZL` spaeter mit Bins/Receipts/Picks ausbauen |
 
-## Definition of Done für eine Funktion
-
+## Definition of Done fuer eine Funktion
 Eine Funktion gilt erst als erledigt, wenn:
 
 1. sie in BC sichtbar war
