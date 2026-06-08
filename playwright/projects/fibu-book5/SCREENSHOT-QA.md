@@ -199,6 +199,12 @@ Fuer `UAT-O2C-001` fasst `playwright/projects/fibu-book5/evidence/uat-o2c-001/RE
 |---|---|---|---|
 | `playwright/projects/fibu-book5/img/payments-005-010-cash-receipt-ui-draft.png` | gutes Labor-Lernbild mit Fehlerhinweis | Cash Receipt Journal zeigt eine per UI vorbereitete Zahlungsjournalzeile mit Betrag, Gegenkonto `BANK-RM-01` und Rechnungsbezug `PS-INV103297`. Rechts ist Journal Check sichtbar und meldet `1 Issue Total`; Current line nennt die `Amount`-Validierung der `Gen. Journal Line`. | Als Buch-/Lernbild fuer den Unterschied zwischen sichtbarer Entwurfszeile und zahlungsreifem Journal geeignet. Nicht als Zahlungsfreigabe, Zahlungs-, Ausgleichs- oder Bankwirkungsnachweis verwenden. |
 
+## `PAYMENTS-006` Screenshot Review
+
+| Screenshot | Bewertung | Befund | Entscheidung |
+|---|---|---|---|
+| `playwright/projects/fibu-book5/img/payments-006-010-cash-receipt-amount-validation.png` | gutes Labor-Lernbild fuer Journal Check / Setup-Blocker | Cash Receipt Journal zeigt den Entwurf mit Betrag `-67.673,60` in USD-Anzeige, Gegenkonto `BANK-RM-01`, Rechnungsbezug `PS-INV103297` und rechts `1 Issues Total`. Current line meldet: `Bank Account Posting Group` fehlt. | Als Buch-/Lernbild fuer Preflight und Bankkonto-Posting-Fit geeignet. Nicht als Zahlungsfreigabe, Zahlungs-, Ausgleichs-, Bankposten- oder deutscher Compliance-Nachweis verwenden. |
+
 ## Harte Findings aus dem Review
 
 ### QA-O2C-001 Listenbild zeigt nicht den Buchfall

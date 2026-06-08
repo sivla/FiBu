@@ -34,16 +34,31 @@ Jeder Eintrag muss außerdem gegen die betroffene Buchstelle geprüft werden. We
 
 | Feld | Wert |
 |---|---|
-| Status | offen als UI-/Anfaenger-Lernfall; keine Buchung |
-| Testfall | `PAYMENTS-005` |
+| Status | geloest als Amount-Format-Lernfall; Folgeblocker Bankkonto-Postinggruppe offen; keine Buchung |
+| Testfall | `PAYMENTS-005`, `PAYMENTS-006` |
 | Situation | Fuer den ersten Zahlungseingang wurde im Cash Receipt Journal eine Entwurfszeile ueber die UI vorbereitet: Debitor `D10000`, Betrag `-68.000`, Gegenkonto `BANK-RM-01`, Rechnungsbezug `PS-INV103297`. |
 | Symptom | Die Zeile sieht im Grid plausibel aus, aber Journal Check zeigt `1 Issues Total`. Current line meldet: `'Amount' muss in 'Gen. Journal Line' einen Wert enthalten...`. |
-| Ursache | Noch nicht abschliessend geklaert. Wahrscheinlich ist der sichtbare Gridwert nach der automatisierten Eingabe noch nicht als gueltiger interner Amount gespeichert oder die Betrags-/Waehrungsrichtung der Cash-Receipt-Zeile passt nicht zum CRONUS-Laborjournal. |
+| Ursache | `PAYMENTS-006` zeigt: Die Rohzahl `-68000` reicht fuer diese UI-Eingabe nicht stabil als lokalisierter Business-Central-Betrag. Das lokale Format `-68.000,00` loest die Amount-Validierung zwischenzeitlich. |
 | Warum BC so reagiert | Journale sind editierbare Tabellen mit Feldvalidierungen. Sichtbarer Zelltext, gespeicherter Feldwert, Waehrungsbetrag und Journal-Check-FactBox koennen auseinanderfallen, solange die Zeile nicht fachlich korrekt validiert ist. |
-| Loesung | Noch offen. Naechster Schritt ist `PAYMENTS-006`: denselben UI-Klickpfad erneut aufbauen, Amount-Eingabe/Betragsrichtung pruefen und erst bei `0 Issues` weiter Richtung Zahlungsbuchung denken. |
-| Pruefung nach Korrektur | Offen. Erwartet wird Journal Check ohne Issues, weiterhin ohne Zahlung und ohne OP-Ausgleich. |
+| Loesung | In Zahlungsjournalen mit lokaler deutscher Anzeige Betrag als `-68.000,00` eingeben und nach Fokuswechsel/Journal Check pruefen. Keine API-Abkuerzung und kein `Post`, nur UI-Eingabe und Preflight. |
+| Pruefung nach Korrektur | `PAYMENTS-006` zeigt nach lokalem Format vor Refresh `0 Issues`. Nach Refresh entsteht aber der naechste Setup-Blocker `Bank Account Posting Group` am Balance Account `BANK-RM-01`; deshalb weiterhin keine Zahlungsfreigabe. |
 | Buchwirkung | Die Anleitung muss erklaeren: Zahlungsjournalzeile sichtbar ausfuellen reicht nicht. Journal Check rechts ist ein Pflicht-Kontrollpunkt. Fehler werden als Lernfall dokumentiert, nicht ueber API oder direkte Buchung umgangen. |
-| Kuenftige Regel | Fachliche Anlage, Aenderung oder Vorbereitung fuer Buchscreenshots laeuft ueber UI. API ist keine Abkuerzung fuer Klickpfade; wenn API als Laborfit genutzt wurde, bleibt ein UI-Pfad oder eine klare Voraussetzung im Buch offen. |
+| Kuenftige Regel | Fachliche Anlage, Aenderung oder Vorbereitung fuer Buchscreenshots laeuft ueber UI. Bei Betragsfeldern lokales Anzeigeformat pruefen und danach Journal Check/Refresh lesen. API ist keine Abkuerzung fuer Klickpfade; wenn API als Laborfit genutzt wurde, bleibt ein UI-Pfad oder eine klare Voraussetzung im Buch offen. |
+
+## WK-BC-PAY-004 Bank Account Posting Group fehlt am Zahlungs-Gegenkonto
+
+| Feld | Wert |
+|---|---|
+| Status | offen als Setup-Fit-Lernfall; keine Zahlung |
+| Testfall | `PAYMENTS-006` |
+| Situation | Nach Amount-Korrektur wurde im Cash Receipt Journal ein Zahlungseingangs-Entwurf mit Debitor `D10000`, Betrag `-68.000,00`, Gegenkonto `BANK-RM-01` und Rechnungsbezug `PS-INV103297` vorbereitet. |
+| Symptom | Nach `Refresh` meldet Journal Check `1 Issues Total`. Current line zeigt: `'Bank Account Posting Group' ist nicht vorhanden. Identifizierende Felder und Werte: Code=''`. |
+| Ursache | `BANK-RM-01` existiert als Laborbankkonto, aber die Bank Account Posting Group beziehungsweise die daran haengende Kontenfindung ist fuer eine Zahlungsbuchung noch nicht tragfaehig gesetzt. |
+| Warum BC so reagiert | Beim Zahlungsjournal muss BC nicht nur Debitor und Betrag kennen. Das Gegenkonto Bankkonto muss auf ein Sachkonto durchgebucht werden koennen. Dafuer dient die Bankkontobuchungsgruppe. Ohne diese Gruppe kann BC keine Bank-/Fibu-Wirkung erzeugen. |
+| Loesung | Noch offen. Naechster Schritt ist `PAYMENTS-007`: `BANK-RM-01` per UI oeffnen, Bank Account Posting Group und zugehoeriges Sachkonto pruefen und ggf. kontrolliert per UI fitten. |
+| Pruefung nach Korrektur | Danach denselben Cash-Receipt-Draft erneut ohne Buchung vorbereiten und Journal Check auf `0 Issues Total`, `0 Lines with issues` und `Current line: No issues found` pruefen. |
+| Buchwirkung | Kapitel 19/20 muss erklaeren: Ein sichtbares Bankkonto reicht nicht. Fuer Zahlungsbuchungen braucht es Bankkonto, Bankkontobuchungsgruppe und Sachkonto-Fit, bevor `Post` fachlich erlaubt ist. |
+| Kuenftige Regel | Zahlungsbuchung bleibt gesperrt, solange Journal Check Bank Account Posting Group oder Bank-Sachkonto-Fit bemängelt. |
 
 ## WK-BC-P2P-001 Kreditor ohne Template blockiert P2P-Entwurf
 

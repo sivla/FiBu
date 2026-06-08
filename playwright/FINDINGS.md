@@ -38,6 +38,28 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 
 ## Aktuelle Fundstellen
 
+## FIND-BC-PAY-005 Bank Account Posting Group blockiert Zahlungsjournal nach Amount-Fix
+
+| Feld | Wert |
+|---|---|
+| Status | offen als Bankkonto-Posting-Fit-Lernfall |
+| Projekt | fibu-book5 |
+| Testfall | `PAYMENTS-006` |
+| Screenshot | `playwright/projects/fibu-book5/img/payments-006-010-cash-receipt-amount-validation.png` |
+| Evidence | `playwright/projects/fibu-book5/evidence/payments-006/PAYMENTS-006-result.json`, `playwright/projects/fibu-book5/evidence/payments-006/PAYMENTS-006-AMOUNT-VALIDATION.md` |
+| BC-Seite | Cash Receipt Journals |
+| sichtbarer Text | `BANK-RM-01`, `Journal Check`, `1 Issues Total`, `Bank Account Posting Group` |
+| Elementtyp | Zahlungsjournal / Bankkonto-Posting-Fit / Journal Check |
+| erste Hypothese | Nach korrekter Amount-Eingabe prueft BC den Balance Account. Ein Bankkonto ohne Bank Account Posting Group ist als Gegenkonto im Zahlungsjournal noch nicht buchungsreif. |
+| Recherchequelle | praktischer UI-only Playwright-Lauf `npm run fibu:payments:cash-receipt-amount-validation`; `playwright/projects/fibu-book5/evidence/payments-006/README.md` |
+| Testergebnis | Rohzahl `-68000` erzeugt den bekannten Amount-Fehler. Lokales Format `-68.000,00` loest die Amount-Validierung zwischenzeitlich. Nach `Refresh` meldet Journal Check: `'Bank Account Posting Group' ist nicht vorhanden. Identifizierende Felder und Werte: Code=''`. Es wurde keine Zahlung und kein Ausgleich gebucht. |
+| Entscheidung | Buch ergaenzen: Zahlungsjournal-Preflight prueft nicht nur Debitor, Betrag und Rechnung, sondern auch den Bankkonto-Posting-Fit. Naechster Lauf muss `BANK-RM-01` per UI auf Bank Account Posting Group/Sachkonto pruefen oder fitten. |
+| Buchstelle | Kapitel 19 Debitoren/Kreditoren und Kapitel 20 Bank/Payments |
+
+Bewertung:
+
+Das ist ein sehr praktischer Anfaengerbefund. Ein Bankkonto kann in der Liste existieren und als Gegenkonto auswaehlbar sein, aber trotzdem noch keine tragfaehige Kontenfindung fuer die Zahlungsbuchung besitzen. Der Journal Check macht diese fehlende Einrichtung sichtbar, bevor echte Bank- und Debitorenposten entstehen.
+
 ## FIND-BC-PAY-004 UI-Draft ist noch nicht zahlungsreif
 
 | Feld | Wert |
