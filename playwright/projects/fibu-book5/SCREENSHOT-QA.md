@@ -118,6 +118,13 @@ Fuer `UAT-O2C-001` fasst `playwright/projects/fibu-book5/evidence/uat-o2c-001/RE
 | `playwright/projects/fibu-book5/img/inventory-002-020-inventory-valuation-request.png` | gutes Labor-Request-Page-Bild | Dialog `Inventory Valuation` zeigt `As Of Date = 08.06.2026`, `No. = RM-M100|RAW-STEEL`, `Location Filter = FRA-ZL` und die Aktion `Vorschau`. Der Hintergrund ist das Role Center; das ist fuer Report-Request-Pages normal. | Als Buchkandidat fuer Berichtseinstieg und Filterlogik geeignet. Nicht als Ergebnisbild verwenden. |
 | `playwright/projects/fibu-book5/img/inventory-002-030-inventory-valuation-preview.png` | guter Labor-Zahlenbericht | Vorschau zeigt `RAW-STEEL` mit `25.000,00`, `RM-M100` mit `-42.000,00` und `Total Inventory Value = -17.000,00`; Filterkontext und Stichtag sind oben sichtbar. | Als Laborbild fuer Lagerbewertung geeignet. Buchtext muss negative RM-M100-Menge/Wert als Laborbefund erklaeren; kein deutscher Abschluss- oder Kontenplan-Endstand. |
 
+## `INVENTORY-005` Screenshot Review
+
+| Screenshot | Bewertung | Befund | Entscheidung |
+|---|---|---|---|
+| `playwright/projects/fibu-book5/img/inventory-005-010-item-journal-direct.png` | guter Labor-Readiness-Kandidat | Page `40` zeigt `Item Journals`, Batch Name, `Post` sowie Zeilenfelder wie Posting Date, Entry Type, Document No., Item No., Location Code, Quantity, Unit Cost und Applies-to Entry. FactBox ist eingeklappt, breite Layoutansicht ist aktiv. Eine leere/default Tabellenzeile ist sichtbar, aber kein Zielartikel `RM-M100`. | Als Buch-/Lernbild fuer den kontrollierten Einstieg in positive Bestandsbewegungen geeignet. Nicht als Buchungsnachweis verwenden: keine Zielzeile, keine Preview-Wirkung, keine Postenspur. |
+| `playwright/projects/fibu-book5/img/inventory-005-020-item-journals-tell-me.png` | Navigationsbild | Tell-Me wurde mit `Item Journals` genutzt und zeigt den Einstieg ohne Enter-Fallback. | Als Navigationsbild nutzbar, wenn das Buch die Suche erklaert. Der technische Folgeprozess sollte weiterhin die belegte Page-ID oder einen eindeutig gewaehlten Treffer nutzen. |
+
 ## Harte Findings aus dem Review
 
 ### QA-O2C-001 Listenbild zeigt nicht den Buchfall

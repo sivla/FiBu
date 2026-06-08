@@ -1,0 +1,87 @@
+{
+  "testId": "INVENTORY-005",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "dataBasis": "CRONUS USA",
+  "mode": "read-only-readiness-no-posting",
+  "targetPlan": {
+    "id": "INVENTORY-004",
+    "purpose": "Zielbestandsplan fuer stabile finale RM-M100-Buchbilder",
+    "status": "planned-only-no-posting",
+    "company": "RM-DEMO",
+    "environment": "MCP_1_20260210",
+    "itemNo": "RM-M100",
+    "locationCode": "FRA-ZL",
+    "recommendedPath": "opening-balance-for-training-before-final-o2c-screenshots",
+    "quantityToAdd": 2,
+    "unitCost": 42000,
+    "expectedPositiveValue": 84000,
+    "currentKnownOutflow": {
+      "sourceProcess": "UAT-O2C-001",
+      "postedSalesInvoiceNo": "PS-INV103297",
+      "itemLedgerEntryNo": "792",
+      "quantity": -1,
+      "costAmount": -42000
+    },
+    "expectedAfterCurrentOutflow": {
+      "remainingQuantity": 1,
+      "remainingValue": 42000
+    },
+    "dimension": {
+      "PRODUCTLINE": "MACHINE"
+    },
+    "boundaries": [
+      "Planungswert, noch keine BC-Buchung.",
+      "Nur CRONUS-USA-Laborfit, kein deutscher Kontenplan-Endstand.",
+      "Anfangsbestand ist Trainings-/Opening-Balance-Logik, kein Manufacturing-Nachweis.",
+      "Manufacturing fuer RM-M100 bleibt spaeterer eigener Prozessblock."
+    ],
+    "nextEvidenceId": "INVENTORY-005"
+  },
+  "directPage": {
+    "pageId": 40,
+    "textEvidenceFile": "010-item-journal-direct-page-text.txt",
+    "buttonEvidenceFile": "010-item-journal-direct-buttons.json",
+    "screenshot": "inventory-005-010-item-journal-direct.png",
+    "pageLooksLikeItemJournal": true,
+    "hasItemNoOrNoField": true,
+    "hasEntryType": true,
+    "hasPostingDate": true,
+    "hasDocumentNo": true,
+    "hasLocationCode": true,
+    "hasQuantity": true,
+    "hasUnitCost": true,
+    "hasDimensionsText": false,
+    "hasPreviewAction": false,
+    "hasPostAction": true,
+    "existingDefaultLineVisible": false,
+    "targetItemVisible": false,
+    "targetLocationVisible": false,
+    "targetQuantityVisible": false,
+    "factBoxHidden": true,
+    "wideLayoutActivated": true
+  },
+  "tellMe": {
+    "searchedFor": "Item Journals",
+    "textEvidenceFile": "020-item-journals-tell-me-page-text.txt",
+    "buttonEvidenceFile": "020-item-journals-tell-me-buttons.json",
+    "screenshot": "inventory-005-020-item-journals-tell-me.png",
+    "itemJournalResultVisible": true,
+    "inventoryJournalResultVisible": false,
+    "resultGroupVisible": true
+  },
+  "proves": [
+    "Page 40 ist als Labor-Kandidat fuer Item Journal erreichbar, sofern pageLooksLikeItemJournal true ist.",
+    "Tell-Me zeigt Journal-Einstiege, sofern itemJournalResultVisible oder inventoryJournalResultVisible true ist.",
+    "Der Lauf zeigt, welche Felder und Aktionen vor einer positiven Bestandsbewegung sichtbar geprueft werden koennen."
+  ],
+  "doesNotProve": [
+    "Kein Bestand wurde gebucht.",
+    "Keine Ziel-Journalzeile fuer RM-M100 wurde angelegt.",
+    "Keine Preview-Posting-Zahlenwirkung wurde bewiesen.",
+    "Keine Artikelposten, Wertposten oder Sachposten wurden erzeugt.",
+    "Kein deutscher Finalnachweis."
+  ],
+  "safeForNextStep": true,
+  "nextStep": "Eine separate kontrollierte INVENTORY-006-Ausfuehrung kann die Journalzeile vorbereiten, Preview Posting pruefen und nur bei passendem Zielbild genau einmal buchen."
+}

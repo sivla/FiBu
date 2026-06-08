@@ -38,6 +38,27 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 
 ## Aktuelle Fundstellen
 
+## FIND-BC-INV-002 Item Journals sind der naechste kontrollierte Bestandszugang, aber noch keine Buchung
+
+| Feld | Wert |
+|---|---|
+| Status | erledigt als Labor-Readiness; Buchung offen |
+| Projekt | fibu-book5 |
+| Testfall | `INVENTORY-005` |
+| Screenshot | `playwright/projects/fibu-book5/img/inventory-005-010-item-journal-direct.png`, `playwright/projects/fibu-book5/img/inventory-005-020-item-journals-tell-me.png` |
+| BC-Seite | `Item Journals`, Page `40`, Tell-Me |
+| sichtbarer Text | `Item Journals`, `Post`, `Posting Date`, `Entry Type`, `Document No.`, `Item No.`, `Location Code`, `Quantity`, `Unit Cost` |
+| Elementtyp | Inventory Journal / Trainingsbestand / Buchungsrisiko |
+| erste Hypothese | Der negative `RM-M100`-Laborwert darf nicht ueber manuelle Sachposten korrigiert werden. Der naechste sichere Einstieg ist ein Artikeljournal, weil es Artikel-/Wertposten erzeugen kann. |
+| Recherchequelle | praktischer Playwright-Lauf `npm run fibu:inventory:target-stock-readiness`, `playwright/projects/fibu-book5/evidence/inventory-005/INVENTORY-005-TARGET-STOCK-READINESS-result.json` |
+| Testergebnis | Page `40` oeffnet im Labor `Item Journals`; zentrale Felder fuer eine spaetere Journalzeile und die Aktion `Post` sind sichtbar. `Preview Posting` und Dimensionen sind im direkten Screenshot nicht sichtbar nachgewiesen. Der Lauf hat keine Zeile angelegt und nicht gebucht. |
+| Entscheidung | Buch ergaenzen: Vor einer positiven Bestandsbewegung muss der Leser sehen, welche Journalfelder kontrolliert werden. Die eigentliche Buchung bleibt ein separater, bewusst freigegebener Schritt mit Zielwerten, Dimension und Postenspur. |
+| Buchstelle | Kapitel 13 Inventory/Warehouse, Kapitel 23 Inventory Costing und Lagerbewertung |
+
+Bewertung:
+
+Das ist der praktische Anschluss an `INVENTORY-004`. Fuer Anfaenger ist wichtig: Ein Artikelbestand entsteht in BC ueber Artikelbewegungen, nicht ueber eine isolierte Fibu-Korrektur. `Item Journals` ist als Einstieg belegt, aber die Buchanleitung darf daraus noch keinen Bestand, keine Lagerbewertungskorrektur und keine deutschen Finalwerte ableiten.
+
 ## FIND-BC-INV-001 Inventory Trace braucht Artikelposten, Wertposten und Sachposten zusammen
 
 | Feld | Wert |

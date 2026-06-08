@@ -69,7 +69,7 @@ Wenn das Projekt fertig ist, kennen wir Business Central für den Buchumfang nic
 | Steuer | VAT/Tax Posting Setup | 472 | Liste bearbeiten, Suggest Accounts, Copy | USt-/Tax-Konten und Steuersätze | `MASTERDATA-001` | `playwright/projects/fibu-book5/img/masterdata-001-vat-posting-setup.png` | gesehen | Kapitel 9/22 |
 | Lagerbewertung | Inventory Posting Setup | 5826 | Liste bearbeiten, Suggest Accounts | Bestandskonten je Lagerort/Posting Group | `MASTERDATA-001` | `playwright/projects/fibu-book5/img/masterdata-001-inventory-posting-setup.png` | gesehen | Kapitel 9/13/23 |
 | Lagerbewertung | Inventory Valuation | n/a | Request Page, `As Of Date`, Item-Filter `No.`, `Location Filter`, `Vorschau`, Report Viewer | Stichtagsbezogene Lagerbewertung nach Artikel und Lagerort erzeugen | `INVENTORY-002` | `playwright/projects/fibu-book5/img/inventory-002-020-inventory-valuation-request.png`; `playwright/projects/fibu-book5/img/inventory-002-030-inventory-valuation-preview.png`; `playwright/projects/fibu-book5/evidence/inventory-002/` | erledigt als Labor-Zahlenbericht; kein DE-Finalabschluss | Kapitel 13/23 |
-| Lagerbestand | Item Journals / Inventory Journals | offen | positiver Zugang, Belegnummer, Dimensionen, Posting Preview falls verfuegbar | geplanten Trainings-/Opening-Balance-Zugang `RM-M100 +2` fuer stabile finale Buchbilder vorbereiten | `INVENTORY-004` geplant, `INVENTORY-005` offen | `playwright/projects/fibu-book5/evidence/inventory-004/`; `playwright/projects/fibu-book5/testdata/inventory/rm-m100-target-stock-plan.json` | geplant; noch keine BC-Ausfuehrung und keine Buchung | Kapitel 13/23 |
+| Lagerbestand | Item Journals | 40 | `Post`, Batch Name, Posting Date, Entry Type, Document No., Item No., Location Code, Quantity, Unit Cost | positiven Trainings-/Opening-Balance-Zugang `RM-M100 +2` kontrolliert vorbereiten | `INVENTORY-005` | `playwright/projects/fibu-book5/img/inventory-005-010-item-journal-direct.png`; `playwright/projects/fibu-book5/evidence/inventory-005/` | gesehen/verstanden als Labor-Readiness; keine Ziel-Journalzeile, keine Preview, keine Buchung | Kapitel 13/23 |
 
 ## O2C
 
@@ -90,7 +90,7 @@ Wenn das Projekt fertig ist, kennen wir Business Central für den Buchumfang nic
 
 | Reihenfolge | Ziel |
 |---:|---|
-| 1 | `INVENTORY-005`: positiven Trainings-/Opening-Balance-Zugang `RM-M100 +2` in `FRA-ZL` kontrolliert vorbereiten, ggf. buchen und Postenspur/Lagerbewertung sichern |
+| 1 | `INVENTORY-006`: Journalzeile fuer `RM-M100 +2` in `FRA-ZL` kontrolliert vorbereiten, Preview-Moeglichkeit klaeren, bei passendem Zielbild genau einmal buchen und Postenspur/Lagerbewertung sichern |
 | 2 | `REPORTING-002`: Financial Reports/Dimension Perspective gezielt fuer `PRODUCTLINE=MACHINE` und `CHANNEL=B2B` weiterfuehren |
 | 3 | G/L Entry Dimensions zu `PS-INV103297` read-only pruefen, ohne neue O2C-Buchung |
 | 4 | Steuerfit: CRONUS-USA-Probelauf weiter vom deutschen Ziel-Fall `19 %` trennen |
