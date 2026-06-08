@@ -304,6 +304,23 @@ async function hasPostingChoiceDialog(page: Page) {
   return /Ship and Invoice/i.test(text) && /(^|\n)OK(\n|$)/i.test(text) && /Abbrechen|Cancel/i.test(text);
 }
 
+function extractPreviewEntryCounts(text: string) {
+  const entries = [
+    'G/L Entry',
+    'Cust. Ledger Entry',
+    'Item Ledger Entry',
+    'Detailed Cust. Ledg. Entry',
+    'Value Entry',
+    'VAT Entry'
+  ];
+  return entries
+    .map((entryType) => {
+      const match = text.match(new RegExp(`${entryType.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\s+(\\d+)`, 'i'));
+      return match ? { entryType, count: Number(match[1]) } : null;
+    })
+    .filter((entry): entry is { entryType: string; count: number } => entry !== null);
+}
+
 async function captureSalesLineDimensionEvidence(page: Page, data: O2CTestData) {
   const result: {
     selectedLine: boolean;
@@ -398,6 +415,9 @@ async function capturePreviewPostingEvidence(page: Page, orderNumber: string, da
     openedPreview: boolean;
     blocked: boolean;
     openedPostingChoiceDialog: boolean;
+    oldInventoryPostingErrorPresent: boolean;
+    noPostingCommittedByTest: boolean;
+    previewEntries: Array<{ entryType: string; count: number }>;
     errorSummary?: string;
     pageTextEvidenceFile: string;
     notes: string[];
@@ -417,6 +437,9 @@ async function capturePreviewPostingEvidence(page: Page, orderNumber: string, da
     openedPreview: false,
     blocked: false,
     openedPostingChoiceDialog: false,
+    oldInventoryPostingErrorPresent: false,
+    noPostingCommittedByTest: true,
+    previewEntries: [],
     pageTextEvidenceFile: '060-preview-posting-page-text.txt',
     notes: []
   };
@@ -443,6 +466,11 @@ async function capturePreviewPostingEvidence(page: Page, orderNumber: string, da
   await writeTextEvidence(o2cEvidencePath(result.pageTextEvidenceFile), previewText);
 
   result.openedPostingChoiceDialog = await hasPostingChoiceDialog(page);
+  result.oldInventoryPostingErrorPresent =
+    /Inventory Account is missing in Inventory Posting Setup Location Code:\s*FRA-ZL,\s*Invt\. Posting Group Code:\s*RESALE\./i.test(
+      previewText
+    );
+  result.previewEntries = extractPreviewEntryCounts(previewText);
   result.errorSummary =
     previewText.match(/Inventory Account is missing in Inventory Posting Setup Location Code:\s*FRA-ZL,\s*Invt\. Posting Group Code:\s*RESALE\./i)?.[0] ??
     previewText.match(/Error Messages[\s\S]{0,400}/i)?.[0]?.replace(/\s+/g, ' ').trim();
@@ -460,6 +488,9 @@ async function capturePreviewPostingEvidence(page: Page, orderNumber: string, da
 
   if (result.openedPreview) {
     result.notes.push('Buchungsvorschau wurde als nicht buchender Laborlauf geoeffnet.');
+    if (!result.oldInventoryPostingErrorPresent) {
+      result.notes.push('Der fruehere Inventory-Posting-Setup-Fehler fuer FRA-ZL/RESALE ist im Preview-Text nicht mehr vorhanden.');
+    }
   } else if (result.openedPostingChoiceDialog) {
     result.notes.push('BC zeigt den normalen Buchungsdialog Ship/Invoice/Ship and Invoice. Das ist nicht die Buchungsvorschau und darf im Screenshotlauf nicht mit OK bestaetigt werden.');
   } else if (result.blocked) {
@@ -510,6 +541,9 @@ async function capturePreviewPostingEvidence(page: Page, orderNumber: string, da
       `| Buchungsvorschau geoeffnet | ${result.openedPreview ? 'ja' : 'nein'} |`,
       `| Normaler Buchungsdialog geoeffnet | ${result.openedPostingChoiceDialog ? 'ja' : 'nein'} |`,
       `| Blockierendes Fehlerbild | ${result.blocked ? 'ja' : 'nein'} |`,
+      `| Alter Inventory-Posting-Fehler noch vorhanden | ${result.oldInventoryPostingErrorPresent ? 'ja' : 'nein'} |`,
+      `| Vorschau-Postenarten | ${result.previewEntries.length ? result.previewEntries.map((entry) => `${entry.entryType}: ${entry.count}`).join(', ') : 'keine'} |`,
+      `| Gebucht | ${result.noPostingCommittedByTest ? 'nein, Test nutzt nur Preview Posting und Cleanup' : 'unklar'} |`,
       `| Fehlerkern | ${result.errorSummary ?? 'nicht eindeutig extrahiert'} |`,
       `| Evidence | \`${result.pageTextEvidenceFile}\`, \`060-visible-actions-before-preview.json\`, \`060-visible-actions-after-post-menu.json\`, \`060-preview-posting-result.json\` |`,
       '| Fachliche Einordnung | Microsoft Learn beschreibt Preview Posting als Vorabpruefung der Eintraege, die beim Buchen entstehen. Im aktuellen Projekt ist das ein sicherer Zwischenschritt vor jeder echten Buchung. |',

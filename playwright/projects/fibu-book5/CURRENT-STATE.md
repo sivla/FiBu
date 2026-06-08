@@ -57,7 +57,7 @@ Definition: Eine Anleitung ist erst abgesichert, wenn der Klickpfad in BC funkti
 | Steuer | deutsche `19 %` USt ist in dieser CRONUS-USA-Spielwiese nicht nachgewiesen |
 | Dimension im Auftrag | `PRODUCTLINE=MACHINE` und `CHANNEL=B2B` sind im Zeilen-Dimensionsdialog nachgewiesen |
 | Standarddimensionen-UI | Page `540` zeigt `PRODUCTLINE=MACHINE` am Artikel und `CHANNEL=B2B` am Debitor als UI-Laborbild |
-| Buchungsvorschau | `Preview Posting` wurde technisch erreicht und stoppte vor dem Setup-Fit auf `Error Messages`: `Inventory Account is missing in Inventory Posting Setup Location Code: FRA-ZL, Invt. Posting Group Code: RESALE`; erneuter Preview-Lauf nach `MASTERDATA-009` ist offen |
+| Buchungsvorschau | `Preview Posting` wurde nach `MASTERDATA-009` erneut erreicht und zeigt echte Vorschauzeilen: `G/L Entry = 4`, `Cust. Ledger Entry = 1`, `Item Ledger Entry = 1`, `Detailed Cust. Ledg. Entry = 1`, `Value Entry = 1`; der fruehere Inventory-Posting-Setup-Fehler ist verschwunden |
 | Inventory Posting Setup | Page `5826` zeigt die Zielkombination `FRA-ZL` + `RESALE`; `MASTERDATA-009` hat fuer den CRONUS-Laborfit `Inventory Account = 14140` gesetzt |
 | Bildablage | Projektbilder liegen unter `playwright/projects/fibu-book5/img/`; Root-`img/` ist keine Sammelstelle mehr |
 | Cleanup | Labor-Verkaufsauftraege werden nach Screenshot-Lauf entfernt |
@@ -101,19 +101,21 @@ Der aktuelle Handover-Stand enthaelt:
 Der aktuelle fachliche O2C-/Screenshot-Nachweis ist:
 
 ```text
-31839cc Document O2C preview posting blocker
+UAT-O2C-001 nach MASTERDATA-009: Posting Preview zeigt echte Vorschauzeilen; nicht gebucht
 ```
 
 Letzter echter Fortschritt:
 
 - Projektbilder wurden aus Root-`img/` nach `playwright/projects/fibu-book5/img/` verschoben.
 - `UAT-O2C-001` erreicht `Preview Posting` ueber den Dropdown-Teil von `Post...`.
-- BC stoppt nicht auf dem normalen Buchungsdialog, sondern auf `Error Messages`.
-- Fehlerkern: `Inventory Account is missing in Inventory Posting Setup Location Code: FRA-ZL, Invt. Posting Group Code: RESALE.`
+- Nach `MASTERDATA-009` stoppt BC nicht mehr auf dem Inventory-Posting-Setup-Fehler, sondern oeffnet `Posting Preview`.
+- Sichtbare Vorschauzeilen: `G/L Entry = 4`, `Cust. Ledger Entry = 1`, `Item Ledger Entry = 1`, `Detailed Cust. Ledg. Entry = 1`, `Value Entry = 1`.
+- Der normale Buchungsdialog `Ship / Invoice / Ship and Invoice` wurde nicht geoeffnet; der Test hat nicht gebucht.
 - `MASTERDATA-008` hat die blockierende Zeile in `Inventory Posting Setup` praktisch geoeffnet: `FRA-ZL` + `RESALE` ist vorhanden, aber das `Inventory Account` ist leer.
 - Die `MASTERDATA-008`-Evidence enthaelt jetzt Company/Sandbox, Status `labor`, fachlichen Sollzustand, sichtbaren Ist-Befund, Limitationen, Buchwirkung und naechsten Schritt.
 - Die Buchstelle und `BEGINNER-LEARNING-CHECKLIST.md` erklaeren jetzt fuer Anfaenger: Was man in der leeren `Inventory Account`-Spalte sieht, warum das die Buchungsvorschau stoppt, warum kein beliebiges Konto gesetzt werden darf und woran der naechste Fix erkannt wird.
 - `MASTERDATA-009` hat den CRONUS-Laborfit gesetzt: `FRA-ZL` + `RESALE` nutzt jetzt `Inventory Account = 14140`, abgeleitet aus vorhandenen CRONUS-RESALE-Zeilen.
+- Der erneute O2C-Lauf bestaetigt den Fit: `oldInventoryPostingErrorPresent = false`, `openedPreview = true`, `openedPostingChoiceDialog = false`, `noPostingCommittedByTest = true`.
 - `evidence/masterdata-009/012-o2c-setup-fit-checklist.md` dokumentiert den aktuellen O2C-Setup-Fit fuer Stammdaten, Posting Groups, Tax/VAT, Dimensionen, Waehrung, Lagerort, Nummernserien/API-Anlage, Cleanup und Preview-Status.
 - `FINDINGS.md`, Coverage, Workarounds, Screenshot-QA und Buchtext sind auf diesen Laborstand synchronisiert.
 
@@ -143,9 +145,10 @@ EUR ist am Debitor gesetzt und in neuen Auftraegen sichtbar.
 Zeilenbild klappt die rechte FactBox ein und zeigt Menge 1, FRA-ZL, EUR-Summen und Total Tax 0,00.
 PRODUCTLINE = MACHINE ist im Zeilen-Dimensionsdialog sichtbar.
 Preview Posting wird ueber den Dropdown-Teil von Post... erreicht.
-BC zeigt Error Messages statt Postenvorschau, weil fuer FRA-ZL/RESALE im Inventory Posting Setup das Inventory Account fehlt.
 Inventory Posting Setup Page 5826 zeigte diese Kombination zunaechst mit leerem Inventory Account als Labor-Nachweis; `MASTERDATA-009` setzt jetzt `14140`.
-Preview Posting nach diesem Setup-Fit ist noch nicht erneut gelaufen.
+Preview Posting nach diesem Setup-Fit ist erneut gelaufen: Der alte Fehler `Inventory Account is missing... FRA-ZL, RESALE` ist weg.
+Die Vorschau zeigt `G/L Entry = 4`, `Cust. Ledger Entry = 1`, `Item Ledger Entry = 1`, `Detailed Cust. Ledg. Entry = 1` und `Value Entry = 1`.
+Der Auftrag wurde nicht gebucht; der Laborauftrag wurde nach dem Nachweis bereinigt.
 19 % deutsche USt ist noch nicht erreicht.
 ```
 
@@ -165,20 +168,19 @@ Der aktuelle Lauf darf nicht gebucht oder als deutscher Steuer-Endstand verkauft
 
 Governance, Encoding, Mac-Kompatibilitaet und Lean-Evidence sind committed und gepusht. Nicht erneut mit Aufraeumen beginnen, solange keine neue Rohmasse entsteht.
 
-Als naechstes gezielt den O2C-Laborlauf nach dem Inventory-Posting-Setup-Fit erneut pruefen:
+Als naechstes gezielt die neue O2C-Preview-Evidence didaktisch auswerten:
 
-1. `npm run fibu:uat:o2c` erneut laufen lassen.
-2. Pruefen, ob die Meldung `Inventory Account is missing... FRA-ZL, RESALE` verschwunden ist.
-3. Wenn die Postenvorschau danach oeffnet, Postenarten nur als CRONUS-Labor-Evidence bewerten.
-4. Wenn ein neuer Setup-Fehler erscheint, ihn als naechsten Lernfall dokumentieren.
-5. Deutsche `19 %`-USt bleibt davon getrennt: kein deutscher Steuer-Endstand in dieser USA-Spielwiese.
+1. Erklaeren, was die sichtbaren Preview-Arten fuer Anfaenger bedeuten.
+2. Pruefen, ob die Preview ohne echten Post-Befehl stabil reproduzierbar bleibt.
+3. Deutsche `19 %`-USt davon getrennt halten: kein deutscher Steuer-Endstand in dieser USA-Spielwiese.
+4. Danach entscheiden, ob der naechste kleine Block Tax/VAT-Fit oder bewusst abgegrenzter Labor-Buchungsnachweis ist.
 
 Synchronisationsstand nach der letzten Projektwahrheits-Pruefung:
 
-- Praktisch nachgewiesen: O2C-Kopf, Verkaufszeile, EUR, `PRODUCTLINE=MACHINE` im Zeilendimensionsdialog, Preview-Posting-Pruefung bis zum Fehlerbild, Inventory-Posting-Setup-Zeile `FRA-ZL` + `RESALE`, Laborfit `Inventory Account = 14140`.
+- Praktisch nachgewiesen: O2C-Kopf, Verkaufszeile, EUR, `PRODUCTLINE=MACHINE` im Zeilendimensionsdialog, Preview Posting mit Vorschauzeilen, Inventory-Posting-Setup-Zeile `FRA-ZL` + `RESALE`, Laborfit `Inventory Account = 14140`.
 - Labor-Nachweis: alle aktuellen O2C-, MASTERDATA-008- und MASTERDATA-009-Bilder/Evidence gelten fuer CRONUS USA / gemischte UI; `MASTERDATA-009` ist ein Labor-Setup-Fit, kein deutscher Kontenplan-Endstand.
-- Finaler DE-Nachweis offen: deutsche Oberflaeche, 19-%-USt, echte Postenvorschau, Buchung und Postenspur.
-- Blockiert/offen: echte Buchungsvorschau/Postenvorschau fuer `UAT-O2C-001`, bis der O2C-Lauf nach `MASTERDATA-009` erneut geprueft ist.
+- Finaler DE-Nachweis offen: deutsche Oberflaeche, 19-%-USt, echte Buchung und Postenspur.
+- Blockiert/offen: kein Inventory-Posting-Setup-Blocker mehr; offen bleiben Steuer-/VAT-Fit, bewusster Buchungsentscheid und finale deutsche Nachweise.
 - Nicht geprueft: P2P, echte Buchung, Debitoren-/Sach-/Artikel-/Wertposten, Finanzbericht.
 
 ## Befehle fuer neue Agents

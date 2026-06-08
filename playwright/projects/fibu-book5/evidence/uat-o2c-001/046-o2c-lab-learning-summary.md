@@ -2,7 +2,7 @@
 
 | Punkt | Erklaerung |
 |---|---|
-| Situation | Verkaufsauftrag S-ORD101062 fuer Debitor D10000, Artikel RM-M100, Menge 1, Lagerort FRA-ZL. |
+| Situation | Verkaufsauftrag S-ORD101064 fuer Debitor D10000, Artikel RM-M100, Menge 1, Lagerort FRA-ZL. |
 | Waehrung | Der Auftrag laeuft im aktuellen Labor mit EUR. Das entspricht jetzt dem Buchziel EUR. |
 | Betrag | Netto 68000, Steuer 0, Brutto 68000. |
 | Steuer-/Tax-Logik | Die Verkaufszeile nutzt Tax Code FURNITURE mit 0 %. Das ist CRONUS-USA-Sales-Tax-Logik und kein deutscher 19-%-USt-Nachweis. |

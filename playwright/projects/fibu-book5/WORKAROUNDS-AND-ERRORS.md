@@ -140,20 +140,20 @@ Jeder Eintrag muss außerdem gegen die betroffene Buchstelle geprüft werden. We
 | Buchwirkung | Die O2C-Anleitung darf jetzt sagen: EUR ist im Labor nachgewiesen. Sie darf nicht sagen: deutsche `19 %` USt ist nachgewiesen. Vor Buchung oder finalem Screenshot braucht es weiter deutschen VAT-Zielmandanten oder sauber dokumentiertes deutsches VAT-Setup. |
 | Kuenftige Regel | Wenn ein frueherer Delta-Befund teilweise geloest wurde, muss der Test die neue Wahrheit neu schreiben und das Buch die alte Abweichung korrigieren. |
 
-## WK-BC-O2C-009B Preview Posting erreicht, aber Inventory Posting Setup blockiert
+## WK-BC-O2C-009B Preview Posting erreicht; Inventory Posting Setup war der Blocker
 
 | Feld | Wert |
 |---|---|
-| Problem | `Preview Posting` wird im O2C-Labor erreicht, aber Business Central zeigt `Error Messages` statt einer Postenvorschau. |
+| Problem | `Preview Posting` wurde im O2C-Labor erreicht, aber Business Central zeigte vor `MASTERDATA-009` `Error Messages` statt einer Postenvorschau. |
 | Sichtbarer Beleg | `playwright/projects/fibu-book5/img/uat-o2c-001-060-buchungsvorschau.png`, `playwright/projects/fibu-book5/evidence/uat-o2c-001/060-preview-posting-result.json`, `playwright/projects/fibu-book5/evidence/uat-o2c-001/060-preview-posting-learning.md`, `playwright/projects/fibu-book5/img/masterdata-008-inventory-posting-setup-fra-zl-resale.png`, `playwright/projects/fibu-book5/evidence/masterdata-008/013-diagnosis.json`, `playwright/projects/fibu-book5/img/masterdata-009-inventory-posting-setup-fra-zl-resale-14140.png`, `playwright/projects/fibu-book5/evidence/masterdata-009/010-inventory-posting-setup-fit.json` |
-| Situation | Verkaufsauftrag `UAT-O2C-001` ist technisch angelegt und erreicht die Buchungsvorschau-Pruefung. Danach oeffnet BC die Fehlerliste. |
-| Symptom | `Error Messages` nennt `Inventory Account is missing in Inventory Posting Setup Location Code: FRA-ZL, Invt. Posting Group Code: RESALE.` |
+| Situation | Verkaufsauftrag `UAT-O2C-001` ist technisch angelegt und erreicht die Buchungsvorschau-Pruefung. Vor dem Setup-Fit oeffnete BC die Fehlerliste; nach `MASTERDATA-009` oeffnet BC `Posting Preview`. |
+| Symptom | Vor dem Fix nannte `Error Messages`: `Inventory Account is missing in Inventory Posting Setup Location Code: FRA-ZL, Invt. Posting Group Code: RESALE.` Nach dem Fix ist diese Meldung nicht mehr im Preview-Text. |
 | Ursache | Die Fehlermeldung lautet: `Inventory Account is missing in Inventory Posting Setup Location Code: FRA-ZL, Invt. Posting Group Code: RESALE.` BC prueft damit nicht nur Debitor, Artikel und Steuer, sondern auch die Lagerbuchungsmatrix fuer die Kombination aus Lagerort und Lagerbuchungsgruppe. |
 | Warum BC so reagiert | Beim Buchen einer Artikelbewegung muss BC nicht nur Menge und Umsatz verarbeiten, sondern auch Bestandswerte auf Sachkonten fortschreiben. Dafuer braucht die Kombination aus Lagerort und Inventory Posting Group ein Bestandskonto. |
 | Loesung | Nicht buchen und nicht mit `OK` im normalen Buchungsdialog weitergehen. `MASTERDATA-008` zeigt die Zielzeile `FRA-ZL` + `RESALE` auf Page `5826` mit leerem `Inventory Account`. `MASTERDATA-009` setzt fuer den CRONUS-Laborfit `Inventory Account = 14140`, weil vorhandene CRONUS-RESALE-Zeilen dieses Konto verwenden. |
-| Pruefung nach Korrektur | `npm run fibu:uat:o2c` erneut ausfuehren. Erwartung: Die bisherige Meldung zu `Inventory Account is missing... FRA-ZL, RESALE` erscheint nicht mehr. Danach zeigt BC entweder eine echte Postenvorschau oder den naechsten fachlichen Setup-Fehler. |
+| Pruefung nach Korrektur | `npm run fibu:uat:o2c` wurde erneut ausgefuehrt. Ergebnis: `openedPreview = true`, `oldInventoryPostingErrorPresent = false`, `openedPostingChoiceDialog = false`, `noPostingCommittedByTest = true`. Die Vorschau zeigt `G/L Entry = 4`, `Cust. Ledger Entry = 1`, `Item Ledger Entry = 1`, `Detailed Cust. Ledg. Entry = 1`, `Value Entry = 1`. |
 | Buchwirkung | Die O2C-Anleitung braucht vor dem Buchungsschritt einen Fehler-/Pruefhinweis: Wenn die Buchungsvorschau auf `Inventory Posting Setup` stoppt, fehlt nicht der Auftrag, sondern eine Kontenfindung fuer Bestand. Leser lernen dadurch, warum Lagerort und Lagerbuchungsgruppe buchungsrelevant sind. |
-| Status | Laborfix gesetzt: Ursache praktisch diagnostiziert und `Inventory Account = 14140` gesetzt; erneuter Preview-Posting-Nachweis offen |
+| Status | Laborfix praktisch bestaetigt: Ursache diagnostiziert, `Inventory Account = 14140` gesetzt, alter Fehler verschwunden, Posting Preview sichtbar. Kein deutscher Kontenplan-Endstand und keine echte Buchung. |
 | Kuenftige Regel | `Preview Posting` ist Pflicht vor jeder echten Buchung. Ein Preview-Fehler wird als Lernbild dokumentiert und erst fachlich geloest; er wird nicht durch zufaelliges Wegklicken oder direkte Buchung umgangen. |
 
 ## WK-BC-O2C-010 Dimension im Auftrag ist eigener Nachweis, nicht nur Stammdatenannahme

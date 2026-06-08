@@ -48,7 +48,7 @@ Zu jedem automatisiert erzeugten O2C-Screenshot schreibt der Screenshot-Helper e
 | `playwright/projects/fibu-book5/img/uat-o2c-001-041-zeile-betraege-steuer.png` | brauchbares Laborbild | DOM-Scroll des BC-Containers `freeze-pane-scrollbar` zeigt `Unit Price Excl. Tax`, `Tax Group Code = FURNITURE` und `Line Amount Excl. Tax = 68.000,00`. | Als Laborbild fuer Steuer-/Betragsspalten nutzbar. Nicht als finales deutsches Buchbild, weil CRONUS-Steuergruppe `FURNITURE` und 0-%-Tax kein deutscher USt-Nachweis sind. |
 | `playwright/projects/fibu-book5/img/uat-o2c-001-042-zeile-spaete-spalten.png` | verworfener Kontrollversuch | Scroll ans rechte Tabellenende zeigt Plan-/Shipment-/Department-Spalten. | Nicht im Buch verwenden; nur Nachweis, dass DOM-Scroll grundsaetzlich funktioniert. |
 | `playwright/projects/fibu-book5/img/uat-o2c-001-050-dimension-productline-machine.png` | guter Labor-Kandidat | `Line` -> `Related Information` -> `Dimensions` oeffnet `Edit Dimension Set Entries`. Sichtbar sind `CHANNEL = B2B` und `PRODUCTLINE = MACHINE`. | Als Buchkandidat fuer Dimensionspruefung nutzbar. Final spaeter in deutscher Umgebung neu erzeugen. |
-| `playwright/projects/fibu-book5/img/uat-o2c-001-060-buchungsvorschau.png` | gutes Fehler-/Lernbild, kein finales Buchungsvorschau-Bild | Der Test erreicht `Preview Posting`, aber BC zeigt `Error Messages`: `Inventory Account is missing in Inventory Posting Setup Location Code: FRA-ZL, Invt. Posting Group Code: RESALE`. | Als Fehlerbild im Buch/Projekt nutzbar. Nicht als Nachweis fuer erwartete Sach-, Debitoren-, USt-, Artikel- oder Wertposten verwenden. |
+| `playwright/projects/fibu-book5/img/uat-o2c-001-060-buchungsvorschau.png` | guter Labor-Preview-Nachweis, kein finales deutsches Buchungsvorschau-Bild | Nach `MASTERDATA-009` oeffnet `Preview Posting` echte Vorschauzeilen: `G/L Entry = 4`, `Cust. Ledger Entry = 1`, `Item Ledger Entry = 1`, `Detailed Cust. Ledg. Entry = 1`, `Value Entry = 1`. Der alte Fehler `Inventory Account is missing... FRA-ZL, RESALE` ist nicht mehr sichtbar. | Als Laborbild fuer Postenvorschau und Setup-Wirkung nutzbar. Nicht als finaler deutscher Buchnachweis verwenden, weil CRONUS-USA, 0-%-Tax/kein deutscher 19-%-USt-Nachweis und keine echte Buchung. |
 
 ## Harte Findings aus dem Review
 
@@ -78,9 +78,9 @@ Die Scrollversuche zeigen: Werte koennen im BC-DOM beziehungsweise Seitentext vo
 
 Business Central nutzt fuer das Verkaufszeilengrid einen horizontal scrollbaren Container `freeze-pane-scrollbar`. DOM-Scroll auf diesen Container funktioniert besser als Mauskoordinaten. Der mittlere Scrollwert liefert ein brauchbares Laborbild fuer Steuer- und Betragsspalten. Fuer finale Buchbilder muss der Zielbereich aber bewusst gewaehlt und visuell geprueft werden.
 
-### QA-O2C-007 Buchungsvorschau-Fehlerbild ist kein Postenvorschau-Nachweis
+### QA-O2C-007 Buchungsvorschau zeigt jetzt Labor-Postenvorschau, aber keinen DE-Finalnachweis
 
-`060` zeigt nicht die erwarteten Postenarten, sondern die BC-Fehlerseite. Das Bild ist didaktisch wertvoll, weil es die fehlende Kontenfindung fuer `FRA-ZL` + `RESALE` sichtbar macht. Fuer den finalen O2C-Nachweis muss nach Korrektur des Inventory Posting Setup ein neues Bild entstehen, das echte Preview-Posting-Eintraege zeigt.
+`060` zeigt nach `MASTERDATA-009` nicht mehr die BC-Fehlerseite, sondern `Posting Preview` mit echten Vorschauzeilen. Didaktisch ist das Bild wertvoll, weil es zeigt, dass ein Setup-Fix nicht durch eine echte Buchung geprueft werden muss: Die Buchungsvorschau reicht als sicherer Labor-Nachweis. Fuer den finalen O2C-Nachweis bleiben deutsche Sprache, 19-%-USt, bewusste Buchungsfreigabe und Postenspur offen.
 
 ## Verbesserungsregeln fuer die naechsten Laeufe
 
