@@ -2,7 +2,7 @@
 
 | Punkt | Befund |
 |---|---|
-| Auftrag | S-ORD101064 fuer D10000 / RM-M100. |
+| Auftrag | S-ORD101067 fuer D10000 / RM-M100. |
 | Posting-Menue gefunden | ja |
 | Preview Posting geklickt | ja |
 | Preview-Pruefung erreicht | ja |

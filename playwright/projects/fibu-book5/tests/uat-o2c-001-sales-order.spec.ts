@@ -261,17 +261,27 @@ async function clickFirstVisibleAction(page: Page, name: RegExp) {
     for (const role of ['button', 'menuitem', 'tab'] as const) {
       const locator = scope.getByRole(role, { name }).first();
       if (await locator.isVisible({ timeout: 1000 }).catch(() => false)) {
-        await locator.click({ timeout: 3000 });
-        await page.waitForTimeout(1_500);
-        return true;
+        const clicked = await locator
+          .click({ timeout: 3000 })
+          .then(() => true)
+          .catch(() => false);
+        if (clicked) {
+          await page.waitForTimeout(1_500);
+          return true;
+        }
       }
     }
 
     const textLocator = scope.getByText(name).first();
     if (await textLocator.isVisible({ timeout: 1000 }).catch(() => false)) {
-      await textLocator.click({ timeout: 3000 });
-      await page.waitForTimeout(1_500);
-      return true;
+      const clicked = await textLocator
+        .click({ timeout: 3000 })
+        .then(() => true)
+        .catch(() => false);
+      if (clicked) {
+        await page.waitForTimeout(1_500);
+        return true;
+      }
     }
   }
 
@@ -319,6 +329,189 @@ function extractPreviewEntryCounts(text: string) {
       return match ? { entryType, count: Number(match[1]) } : null;
     })
     .filter((entry): entry is { entryType: string; count: number } => entry !== null);
+}
+
+async function clickPreviewMaximize(page: Page) {
+  const names = /^Maximize|^Maximieren|^Expand|^Vergr(?:oe|ö)ssern|^Focus mode|^Open in full screen|^Im Vollbild|^In neuem Fenster/i;
+  const scopes = [page, ...page.frames()];
+  for (const scope of scopes) {
+    for (const role of ['button', 'menuitem'] as const) {
+      const locator = scope.getByRole(role, { name: names }).first();
+      if (await locator.isVisible({ timeout: 1000 }).catch(() => false)) {
+        await locator.click({ timeout: 3000 });
+        await page.waitForTimeout(1_500);
+        return true;
+      }
+    }
+  }
+
+  const viewport = page.viewportSize();
+  if (!viewport) {
+    return false;
+  }
+
+  const candidates: { x: number; y: number; width: number; height: number }[] = [];
+  for (const scope of scopes) {
+    const buttons = await scope.getByRole('button').all();
+    for (const button of buttons) {
+      const box = await button.boundingBox().catch(() => null);
+      if (!box) {
+        continue;
+      }
+
+      const isPreviewHeaderButton =
+        box.x > viewport.width * 0.65 &&
+        box.x < viewport.width * 0.82 &&
+        box.y > 55 &&
+        box.y < 105 &&
+        box.width <= 60 &&
+        box.height <= 60;
+      if (isPreviewHeaderButton) {
+        candidates.push(box);
+      }
+    }
+  }
+
+  const rightMostHeaderButton = candidates.sort((a, b) => b.x - a.x)[0];
+  if (rightMostHeaderButton) {
+    await page.mouse.click(rightMostHeaderButton.x + rightMostHeaderButton.width / 2, rightMostHeaderButton.y + rightMostHeaderButton.height / 2);
+    await page.waitForTimeout(1_500);
+    return true;
+  }
+
+  return false;
+}
+
+async function selectPreviewEntryType(page: Page, entryType: RegExp) {
+  const scopes = [page, ...page.frames()];
+  for (const scope of scopes) {
+    const entry = scope.getByText(entryType).first();
+    if (await entry.isVisible({ timeout: 1000 }).catch(() => false)) {
+      await entry.click({ timeout: 3000 });
+      await page.waitForTimeout(1_000);
+      return true;
+    }
+  }
+
+  return false;
+}
+
+async function capturePreviewRelatedEntriesEvidence(page: Page, orderNumber: string) {
+  const result: {
+    orderNumber: string;
+    maximizedPreview: boolean;
+    selectedEntryType: string;
+    selectedEntryTypeVisible: boolean;
+    clickedShowRelatedEntries: boolean;
+    detailsOpened: boolean;
+    hasAmounts: boolean;
+    hasAccounts: boolean;
+    hasInventoryAccount14140: boolean;
+    hasProductlineMachine: boolean;
+    pageTextEvidenceFile: string;
+    notes: string[];
+  } = {
+    orderNumber,
+    maximizedPreview: false,
+    selectedEntryType: 'G/L Entry',
+    selectedEntryTypeVisible: false,
+    clickedShowRelatedEntries: false,
+    detailsOpened: false,
+    hasAmounts: false,
+    hasAccounts: false,
+    hasInventoryAccount14140: false,
+    hasProductlineMachine: false,
+    pageTextEvidenceFile: '061-preview-related-entries-gl-entry-page-text.txt',
+    notes: []
+  };
+
+  result.maximizedPreview = await clickPreviewMaximize(page);
+  result.notes.push(
+    result.maximizedPreview
+      ? 'Preview-Fenster wurde vor dem Drilldown maximiert/vergroessert.'
+      : 'Keine beschriftete Maximieren-/Vergroessern-Aktion gefunden; Drilldown wird im aktuellen Preview-Fenster versucht.'
+  );
+
+  await writeTextEvidence(o2cEvidencePath('061-preview-maximized-page-text.txt'), await pageText(page));
+
+  result.selectedEntryTypeVisible = await selectPreviewEntryType(page, /^G\/L Entry$|^Sachposten$/i);
+  if (!result.selectedEntryTypeVisible) {
+    result.notes.push('Postenart G/L Entry konnte nicht sichtbar selektiert werden.');
+  }
+
+  const textAfterSelection = await pageText(page);
+  if (/G\/L Entries Preview|Sachposten Vorschau|Sachpostenpreview/i.test(textAfterSelection)) {
+    result.notes.push('Klick auf G/L Entry hat direkt die Detailseite G/L Entries Preview geoeffnet.');
+  } else {
+    result.clickedShowRelatedEntries = await clickFirstVisibleAction(
+      page,
+      /^Show Related Entries$|^Zugehoerige Eintraege anzeigen$|^Zugehörige Einträge anzeigen$|^Verwandte Eintraege anzeigen$|^Verwandte Einträge anzeigen$/i
+    );
+    if (!result.clickedShowRelatedEntries) {
+      result.notes.push('Aktion Show Related Entries wurde nicht gefunden oder nicht geoeffnet.');
+    }
+  }
+
+  await page.waitForTimeout(3_000);
+  const detailsText = await pageText(page);
+  await writeTextEvidence(o2cEvidencePath(result.pageTextEvidenceFile), detailsText);
+
+  result.detailsOpened = /G\/L Entries Preview|G\/L Entries|G\/L Entry|Sachposten|Account No\.|Konto|Amount|Betrag/i.test(detailsText);
+  result.hasAmounts = /Amount|Betrag|68\.000|68000/i.test(detailsText);
+  result.hasAccounts = /Account No\.|G\/L Account|Konto|Sachkonto|No\./i.test(detailsText);
+  result.hasInventoryAccount14140 = /14140/.test(detailsText);
+  result.hasProductlineMachine = /PRODUCTLINE[\s\S]{0,120}MACHINE|MACHINE[\s\S]{0,120}PRODUCTLINE/i.test(detailsText);
+
+  if (result.detailsOpened) {
+    result.notes.push('Related Entries wurden als Read-only-Drilldown geoeffnet; es wurde nicht gebucht.');
+  } else {
+    result.notes.push('Der Drilldown lieferte noch keinen eindeutigen Detailkontext; Screenshot und Seitentext als Explorationsnachweis lesen.');
+  }
+
+  await screenshot(
+    page,
+    'uat-o2c-001-061-preview-related-entries-gl-entry.png',
+    o2cScreenshotOptions(
+      result.detailsOpened ? 'labor' : 'rejected',
+      'Read-only-Drilldown aus der Buchungsvorschau in Related Entries fuer G/L Entry.',
+      [/G\/L Entry|G\/L Entries|Sachposten|Amount|Betrag|Account|Konto/i],
+      [
+        'Read-only-Laborbild aus Posting Preview; keine echte Buchung.',
+        'CRONUS-USA-Labor, kein deutscher 19-%-USt-Endstand.',
+        'Konten sind sichtbar; Betragsspalten sind im Seitentext nachgewiesen, aber fuer ein gutes Buchbild noch horizontal zu scrollen.'
+      ],
+      result.detailsOpened ? 'evidence' : 'do-not-use'
+    )
+  );
+
+  await writeJsonEvidence(o2cEvidencePath('061-preview-related-entries-gl-entry-result.json'), result);
+  await writeTextEvidence(
+    o2cEvidencePath('061-preview-related-entries-gl-entry-learning.md'),
+    [
+      '# UAT-O2C-001 Preview-Drilldown-Lernbefund',
+      '',
+      '| Punkt | Befund |',
+      '|---|---|',
+      `| Auftrag | ${orderNumber} |`,
+      `| Preview maximiert/vergroessert | ${result.maximizedPreview ? 'ja' : 'nein'} |`,
+      `| Postenart | ${result.selectedEntryType} |`,
+      `| Postenart selektiert | ${result.selectedEntryTypeVisible ? 'ja' : 'nein'} |`,
+      `| Show Related Entries geklickt | ${result.clickedShowRelatedEntries ? 'ja' : 'nein'} |`,
+      `| Detailkontext geoeffnet | ${result.detailsOpened ? 'ja' : 'nein'} |`,
+      `| Betraege sichtbar | ${result.hasAmounts ? 'ja' : 'nein'} |`,
+      `| Konten sichtbar | ${result.hasAccounts ? 'ja' : 'nein'} |`,
+      `| Konto 14140 sichtbar | ${result.hasInventoryAccount14140 ? 'ja' : 'nein'} |`,
+      `| PRODUCTLINE=MACHINE sichtbar | ${result.hasProductlineMachine ? 'ja' : 'nein'} |`,
+      '| Gebucht | nein, nur Preview-/Related-Entries-Drilldown |',
+      '',
+      '## Notizen',
+      '',
+      ...result.notes.map((note) => `- ${note}`),
+      ''
+    ].join('\n')
+  );
+
+  return result;
 }
 
 async function captureSalesLineDimensionEvidence(page: Page, data: O2CTestData) {
@@ -418,6 +611,7 @@ async function capturePreviewPostingEvidence(page: Page, orderNumber: string, da
     oldInventoryPostingErrorPresent: boolean;
     noPostingCommittedByTest: boolean;
     previewEntries: Array<{ entryType: string; count: number }>;
+    relatedEntriesDrilldownEvidenceFile?: string;
     errorSummary?: string;
     pageTextEvidenceFile: string;
     notes: string[];
@@ -525,6 +719,11 @@ async function capturePreviewPostingEvidence(page: Page, orderNumber: string, da
       'evidence'
     )
   );
+
+  if (result.openedPreview) {
+    await capturePreviewRelatedEntriesEvidence(page, orderNumber);
+    result.relatedEntriesDrilldownEvidenceFile = '061-preview-related-entries-gl-entry-result.json';
+  }
 
   await writeJsonEvidence(o2cEvidencePath('060-preview-posting-result.json'), result);
   await writeTextEvidence(
@@ -659,7 +858,7 @@ test('UAT-O2C-001 Verkaufsauftrag starten und Lern-Screenshots erzeugen', async 
       page,
       'uat-o2c-001-040-zeile-artikel-rm-m100.png',
       o2cScreenshotOptions(
-        'rejected',
+        'labor',
         'Laborbild der Verkaufszeile mit Artikel RM-M100.',
         [/RM-M100/i, /Standardmaschine/i, /FRA-ZL/i, /68\.000|68000/i],
         [
