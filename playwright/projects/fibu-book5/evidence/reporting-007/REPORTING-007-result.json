@@ -1,0 +1,68 @@
+{
+  "testId": "REPORTING-007",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "dataBasis": "CRONUS USA",
+  "mode": "read-only-no-posting-no-setup",
+  "sourceContext": {
+    "postedSalesInvoiceNo": "PS-INV103297",
+    "itemLedgerEntryNo": "792",
+    "priorFinding": "REPORTING-002 bis REPORTING-006 belegen PRODUCTLINE/CHANNEL am Artikelposten, aber keine sichtbare Reportingauswertung."
+  },
+  "actions": {
+    "tellMeAnalysisByDimensionsVisible": true,
+    "clickedAnalysisByDimensions": false
+  },
+  "tellMe": {
+    "analysisByDimensionsVisible": true,
+    "analysisViewVisible": false,
+    "productlineVisible": false,
+    "channelVisible": false,
+    "relevantButtons": [
+      "Don't show this again.",
+      "Nach Analysis by Dimensions suchen"
+    ],
+    "textEvidenceFile": "010-tell-me-analysis-by-dimensions-page-text.txt",
+    "buttonEvidenceFile": "010-tell-me-analysis-by-dimensions-buttons.json",
+    "screenshot": "reporting-007-010-tell-me-analysis-by-dimensions.png"
+  },
+  "resultState": {
+    "analysisByDimensionsVisible": false,
+    "analysisViewVisible": false,
+    "revenueVisible": true,
+    "genLedgerVisible": false,
+    "productlineVisible": false,
+    "channelVisible": false,
+    "departmentVisible": false,
+    "productlineMachineVisible": false,
+    "channelB2bVisible": false,
+    "showMatrixVisible": false,
+    "dateFilterVisible": false,
+    "relevantButtons": [
+      "Don't show this again."
+    ],
+    "textEvidenceFile": "020-analysis-by-dimensions-result-page-text.txt",
+    "buttonEvidenceFile": "020-analysis-by-dimensions-result-buttons.json",
+    "screenshot": "reporting-007-020-analysis-by-dimensions-result.png"
+  },
+  "summary": {
+    "analysisByDimensionsReached": false,
+    "targetDimensionsVisible": false,
+    "targetDimensionValuesVisible": false,
+    "matrixOrReportActionVisible": false,
+    "noPostingCommittedByTest": true,
+    "noSetupChangedByTest": true
+  },
+  "proves": [
+    "Ob Analysis by Dimensions in RM-DEMO ueber Tell-Me gezielt erreichbar ist.",
+    "Ob der Ziel-/Request-/Ergebniszustand PRODUCTLINE oder CHANNEL sichtbar anbietet.",
+    "Ob dieser Pfad ein belastbarer Buchbildkandidat fuer O2C-Reporting ist."
+  ],
+  "doesNotProve": [
+    "Keine neue oder aktualisierte Analysis View.",
+    "Keine garantierte GuV-/Revenue-Zahlenwirkung nach PRODUCTLINE oder CHANNEL.",
+    "Kein deutscher Reporting-Finalnachweis.",
+    "Keine neue Buchung und kein deutscher 19-Prozent-USt-Nachweis."
+  ],
+  "nextStep": "Analysis by Dimensions wurde in diesem Laborlauf nicht belastbar geoeffnet. Naechster Hebel bleibt kontrollierter Analysis-View-Fit oder alternativer offizieller Reporting-Einstieg."
+}

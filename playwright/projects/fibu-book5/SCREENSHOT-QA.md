@@ -227,6 +227,13 @@ Fuer `UAT-O2C-001` fasst `playwright/projects/fibu-book5/evidence/uat-o2c-001/RE
 | `playwright/projects/fibu-book5/img/reporting-006-010-gl-entries-before-analysis.png` | brauchbarer Labor-Sachposten-Nachweis | Gefilterte `G/L Entries` zur gebuchten Verkaufsrechnung `PS-INV103297` sind sichtbar. Die Roh-Evidence belegt Konten/Betragskontext, aber keine sichtbaren `PRODUCTLINE`-/`CHANNEL`-Spalten. | Als Lernbild fuer Hauptbuchspur geeignet. Nicht als Reporting- oder Dimensionsauswertungsbild verwenden. |
 | `playwright/projects/fibu-book5/img/reporting-006-020-gl-entries-after-analysis-attempt.png` | negativer Laborbefund | Nach dem kontrollierten Analyseversuch bleibt kein belastbarer Data-Analysis-/Analysemodus mit `PRODUCTLINE` oder `CHANNEL` sichtbar. | Als Evidence fuer den verworfenen G/L-Entries-Data-Analysis-Pfad behalten; kein finales Buchbild fuer Reportingwirkung. |
 
+## `REPORTING-007` Screenshot Review
+
+| Screenshot | Bewertung | Befund | Entscheidung |
+|---|---|---|---|
+| `playwright/projects/fibu-book5/img/reporting-007-010-tell-me-analysis-by-dimensions.png` | brauchbarer Navigationsnachweis | Tell-Me findet den Suchpfad `Analysis by Dimensions`; `PRODUCTLINE`/`CHANNEL` sind in diesem Suchzustand nicht sichtbar. | Als Evidence fuer den geprueften Einstieg behalten. Nicht als Reportingwirkungsbild verwenden. |
+| `playwright/projects/fibu-book5/img/reporting-007-020-analysis-by-dimensions-result.png` | rejected Negativbild | Nach dem Klickversuch ist kein belastbarer `Analysis by Dimensions`-Request-/Matrixkontext sichtbar; `PRODUCTLINE=MACHINE`, `CHANNEL=B2B`, `Show Matrix` und Datumsfilter sind nicht nachgewiesen. | Nicht als Buchbild verwenden. Der Pfad bleibt ein Labor-Negativbefund; naechster Schritt braucht freigegebenen Analysis-View-Fit oder alternativen offiziellen Reporting-Einstieg. |
+
 ## Harte Findings aus dem Review
 
 ### QA-O2C-001 Listenbild zeigt nicht den Buchfall
