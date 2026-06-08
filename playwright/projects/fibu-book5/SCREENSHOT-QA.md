@@ -17,6 +17,8 @@ Laborbilder duerfen abweichen. Dann muessen Abweichung, Ursache und Buchwirkung 
 
 Zu jedem automatisiert erzeugten O2C-Screenshot schreibt der Screenshot-Helper eine Metadatendatei unter `evidence/<testfall>/...screenshot.json`. Diese Datei enthaelt Status, Buchnutzung, Zweck, erwartete Werte im BC-Seitentext und bekannte Grenzen. Die PNG-Datei allein ist deshalb nicht mehr die ganze Wahrheit.
 
+Fuer `UAT-O2C-001` fasst `playwright/projects/fibu-book5/evidence/uat-o2c-001/README.md` die Screenshot-Metadaten, Rohtexte, API-Nachweise, Preview-Evidence und Cleanup-Evidence zusammen. Vor Buchverwendung zuerst diesen Index lesen.
+
 ## `MASTERDATA-007` Screenshot Review
 
 | Screenshot | Bewertung | Befund | Entscheidung |
