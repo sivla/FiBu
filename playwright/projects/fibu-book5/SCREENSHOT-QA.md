@@ -96,6 +96,21 @@ Fuer `UAT-O2C-001` fasst `playwright/projects/fibu-book5/evidence/uat-o2c-001/RE
 | `playwright/projects/fibu-book5/img/p2p-001-150-value-entries.png` | guter Labor-Postennachweis | Wertposten zeigt `RAW-STEEL`, `K10000`, Kosten `25.000` und `Item Ledger Entry No. = 793`. | Als Laborbild fuer Wertposten und Bruecke zum Artikelposten geeignet. |
 | `playwright/projects/fibu-book5/img/p2p-001-155-item-ledger-entry-by-entry-no.png` | guter Labor-Artikelposten-Nachweis | Artikelposten `793` zeigt `RAW-STEEL`, Lagerort `FRA-ZL`, Menge `10` und Kostenbezug. | Als Laborbild fuer Artikelzugang geeignet; `PRODUCTLINE=MACHINE` ist in der P2P-Postenspur noch nicht sichtbar. |
 
+## `INVENTORY-001` Screenshot Review
+
+| Screenshot | Bewertung | Befund | Entscheidung |
+|---|---|---|---|
+| `playwright/projects/fibu-book5/img/inventory-001-010-o2c-item-ledger-entry-rm-m100.png` | guter Labor-Artikelposten-Nachweis | Breite Layoutansicht zeigt Artikelposten `792` mit `RM-M100`, `FRA-ZL`, Menge `-1`, Sales Amount `67.673,60` und Cost Amount `-42.000,00`; Teaching Tip ist geschlossen. | Als Buchkandidat fuer die Rolle von Artikelposten geeignet. Kein deutscher Steuer-/Kontenplan-Endstand. |
+| `playwright/projects/fibu-book5/img/inventory-001-020-o2c-value-entry-rm-m100.png` | guter Labor-Wertposten-Nachweis | Wertposten zur Rechnung `PS-INV103297` zeigen `RM-M100` und die Bruecke zu `Item Ledger Entry No. 792`. | Als Buchkandidat fuer die Bruecke Wertposten -> Artikelposten geeignet. |
+| `playwright/projects/fibu-book5/img/inventory-001-030-o2c-gl-entries-inventory-cogs.png` | guter Labor-Sachposten-Nachweis | Sachposten zur O2C-Rechnung zeigen u. a. `14140` und O2C-Kontenwirkung. | Als Laborbild fuer Hauptbuchwirkung geeignet; keine deutsche Kontenplan-Evidence. |
+| `playwright/projects/fibu-book5/img/inventory-001-040-p2p-item-ledger-entry-raw-steel.png` | guter Labor-Artikelposten-Nachweis | Breite Layoutansicht zeigt Artikelposten `793` mit `RAW-STEEL`, `FRA-ZL`, Menge `10` und Kostenbezug. | Als Buchkandidat fuer Wareneingang/Artikelzugang geeignet; Warehouse bleibt offen. |
+| `playwright/projects/fibu-book5/img/inventory-001-050-p2p-value-entry-raw-steel.png` | guter Labor-Wertposten-Nachweis | Wertposten zur Einkaufsrechnung `108219` zeigen `RAW-STEEL`, Menge/Kosten und die Bruecke zu `Item Ledger Entry No. 793`. | Als Buchkandidat fuer Bewertung der Einkaufsbewegung geeignet. |
+| `playwright/projects/fibu-book5/img/inventory-001-060-p2p-gl-entries-inventory-ap.png` | guter Labor-Sachposten-Nachweis | Breite Layoutansicht zeigt Sachposten zur Einkaufsrechnung `108219`, darunter `22100` und `14140` mit `25.000`. | Als Laborbild fuer Bestand/Kreditorenwirkung geeignet; kein deutscher Kontenplan-Endstand. |
+| `playwright/projects/fibu-book5/img/inventory-001-070-item-card-rm-m100.png` | brauchbares Labor-Stammdatenbild | Item Card `RM-M100` zeigt Artikelkontext und Werte fuer O2C; breite Layoutansicht ist aktiv, aber Kartenbilder sind weniger tabellenkritisch. | Als Kontextbild nutzbar, falls das Buch Artikelkarte und Bewegungsfolge verbindet. |
+| `playwright/projects/fibu-book5/img/inventory-001-080-item-card-raw-steel.png` | brauchbares Labor-Stammdatenbild | Item Card `RAW-STEEL` zeigt Artikelkontext fuer P2P/Inventory. | Als Kontextbild nutzbar; nicht als finaler Rohmaterial-/VAT-Endstand. |
+| `playwright/projects/fibu-book5/img/inventory-001-090-location-fra-zl.png` | guter Labor-Lagerortnachweis | Location `FRA-ZL` ist sichtbar; der Lauf aktiviert keine Warehouse-Logik. | Als Nachweis fuer einfachen Lagerort geeignet; gesteuertes Warehouse bleibt eigener Block. |
+| `playwright/projects/fibu-book5/img/inventory-001-100-inventory-valuation-tell-me.png` | Einstieg, kein Zahlenbeweis | Tell-Me zeigt `Inventory Valuation` unter `Berichte und Analysen`. | Nur als Navigations-/Einstiegsbild verwenden. Konkrete Lagerbewertungszahlen brauchen `INVENTORY-002`. |
+
 ## Harte Findings aus dem Review
 
 ### QA-O2C-001 Listenbild zeigt nicht den Buchfall
@@ -139,5 +154,6 @@ Business Central nutzt fuer das Verkaufszeilengrid einen horizontal scrollbaren 
 - Screenshot-Metadaten gehoeren zum Evidence Pack und muessen vor Buchverwendung gelesen werden.
 - Redundante Screenshots werden nicht ins Buch referenziert.
 - Tabellenbilder brauchen eine definierte Spaltenstrategie: breiter Viewport, breite Layoutansicht, horizontaler Scroll, Zeilendetail, Personalisierung oder mehrere Detailbilder.
+- `INVENTORY-001` nutzt `Breites Layout umschalten` fuer gefilterte Tabellenbilder; die JSON-Evidence protokolliert `wideLayoutActivated = true`.
 - Fuer Dimensionen reicht kein Stammdatenbild. Der O2C-Lauf nutzt jetzt `Line` -> `Related Information` -> `Dimensions` als Belegnachweis; spaetere Buchungslaufe muessen die Dimension zusaetzlich in Posten oder Reporting wiederfinden.
 - Rohes `pageText()` wird nicht ungefiltert als redaktionelle Wahrheit verwendet.

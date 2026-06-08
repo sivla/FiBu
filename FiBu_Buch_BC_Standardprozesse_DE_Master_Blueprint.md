@@ -2323,6 +2323,8 @@ Dienstagmorgen trifft im einfachen Lager `MZ-EINFACH` eine Lieferung mit Ersatzt
 
 Lager bedeutet in Business Central drei Dinge: Menge, Ort und Wert. Die Menge siehst du in `Artikelposten (Item Ledger Entries)`. Den Wert siehst du in `Wertposten (Value Entries)`. Den physischen Lagerort steuerst du über `Lagerorte (Locations)` und bei gesteuertem Lager zusätzlich über `Lagerplätze (Bins)`. Ein einfacher Lagerort ist schneller zu bedienen. Ein gesteuerter Lagerort erzeugt mehr Arbeitsschritte, aber auch bessere Kontrolle.
 
+Aktueller Laborbefund aus `INVENTORY-001`: In der CRONUS-USA-Spielwiese `RM-DEMO` wurden keine neuen Lagerbuchungen erzeugt. Stattdessen wurden die bereits gebuchten Laborbelege read-only verfolgt. Die gebuchte Verkaufsrechnung `PS-INV103297` zeigt über den Wertposten den Artikelposten `792` für `RM-M100`: Lagerort `FRA-ZL`, Menge `-1`, Sales Amount `67.673,60` und Cost Amount `-42.000,00`. Die gebuchte Einkaufsrechnung `108219` zeigt über den Wertposten den Artikelposten `793` für `RAW-STEEL`: Lagerort `FRA-ZL`, Menge `10` und Kostenbezug `25.000`. Die Sachposten zeigen im Labor unter anderem `14140` als Bestandskonto und bei P2P `22100` als Kreditorenkonto. Dieser Nachweis erklärt Menge, Wert und Kontenwirkung. Er beweist noch keine deutsche USt, keinen deutschen Kontenplan und keine finale Lagerbewertung.
+
 ### Warum braucht Rhein-Main diesen Prozess?
 
 Rhein-Main braucht beide Lagerlogiken, weil nicht jede Ware gleich kritisch ist. Ersatzteile in `MZ-EINFACH` werden schnell bewegt und brauchen wenig Prozessführung. Rohmaterial und Fertigmaschinen in `FRA-ZL` haben hohe Werte und müssen lagerplatzgenau gesteuert werden. Business Central verbindet beide Welten mit derselben Artikel- und Wertlogik. Der Unterschied liegt in den Lageraktivitäten vor der endgültigen Buchung.
@@ -2375,6 +2377,8 @@ Diese Seiten öffnest du über `Alt+Q`. Der deutsche Begriff ist führend; der e
 - `Artikelposten (Item Ledger Entries)`
 - `Wertposten (Value Entries)`
 - `Lagerbewertung (Inventory Valuation)`
+
+Praxisregel für Screenshots: Bei breiten Tabellen wie `Artikelposten`, `Wertposten` und `Sachposten` sollte der Anwender die FactBox einklappen und, wenn vorhanden, `Breites Layout umschalten` nutzen. Im Laborlauf `INVENTORY-001` wurden die Tabellenbilder so erzeugt, weil sonst wichtige Spalten wie Artikelnummer, Lagerort, Menge, Betrag, Konto oder externe Belegnummer nicht gleichzeitig sichtbar sind.
 
 ### Schritt-für-Schritt
 
@@ -4111,6 +4115,8 @@ Lagerbuchhaltung prüft Posten. Controlling stimmt Lagerbewertung und GuV ab. Fi
 10. Öffne `Lagerbewertung (Inventory Valuation)` zum `30.06.2026`.
 11. Vergleiche Lagerbewertung mit Sachkonto Bestand und Wareneinsatz.
 12. Dokumentiere Laufdatum, Filter, Wertposten, Sachposten und Bericht im Evidence Pack.
+
+Aktueller Laborabgleich: Das Projekt hat die Vorstufe zu dieser Lagerbewertung bereits praktisch belegt. `INVENTORY-001` zeigt für O2C und P2P die Artikelposten, Wertposten und Sachposten zu `RM-M100` und `RAW-STEEL`. Der Einstieg `Inventory Valuation` wurde über die Business-Central-Suche gefunden und als Screenshot gesichert. Eine konkrete Lagerbewertungszahl mit Datum, Artikel- und Lagerortfilter wurde in diesem Lauf aber noch nicht ausgeführt. Deshalb bleibt die Lagerbewertung im Buch ein Ziel- und Folge-Nachweis, nicht bereits ein finaler Laborbeweis.
 
 ### Postenspur für Einsteiger: Menge ist nicht Wert
 
