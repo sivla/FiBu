@@ -348,3 +348,18 @@ Jeder Eintrag muss außerdem gegen die betroffene Buchstelle geprüft werden. We
 | Loesung | Fuer den aktuellen MCP-Lernlauf wird die USt-Abweichung nicht durch ein willkuerliches US-Steuerfeld kaschiert. Zusaetzlich wurde die Herkunft dokumentiert: `RM-M100` liefert `Tax Group Code = FURNITURE`; `D10000` liefert `Tax Liable = checked`, `Tax Area Code = leer`, `Gen. Bus. Posting Group = DOMESTIC`, `Customer Posting Group = DOMESTIC` und `Currency Code = EUR`. Das Projekt dokumentiert: EUR ist geloest, deutsche USt bleibt Zielmandant-/VAT-Setup-Aufgabe. |
 | Buchwirkung | Das Buch muss erklaeren, dass `19 %` nicht durch Eingabe eines Betrags entsteht. Fuer deutsche Zielbilder braucht der Leser VAT Business Posting Group, VAT Product Posting Group und VAT Posting Setup oder eine deutsche lokalisierte Company mit passendem Setup. |
 | Kuenftige Regel | In CRONUS-USA keine finalen deutschen Steuerbilder erzeugen. Sales-Tax-Felder duerfen als Lernbefund gezeigt werden; finale USt-Screenshots brauchen deutschen Mandanten oder explizit dokumentiertes deutsches VAT-Setup. |
+
+## WK-BC-REP-001 Analysis-View-Fit braucht sichere Card-/Listen-Feldzuordnung
+
+| Feld | Wert |
+|---|---|
+| Status | blockiert / Gate verbraucht; kein Setup-Fit |
+| Testfall | `REPORTING-011` |
+| Situation | Nach `REPORTING-002` bis `REPORTING-010` wurde ein einmaliger UI-first Laborfit fuer eine eigene Analysis View `RM-PLCH` mit `PRODUCTLINE` und `CHANNEL` freigegeben. |
+| Symptom | `Analysis Views` ist erreichbar und zeigt `GEN_LEDGER`, `REVENUE`, Dimensionsspalten, `Analysis by Dimensions` und `Update`. Der Test fand aber keine sicher editierbaren Textfelder fuer Code, Name und Dimensionscodes. |
+| Ursache | Die sichtbare Liste ist kein stabiler Editierkontext fuer Playwright. Ohne belegte Card-/Listen-Feldzuordnung waere ein Klick auf `Neu` plus Feldfuellung riskant: falsche Felder koennten gefuellt oder ein halber Setup-Datensatz erzeugt werden. |
+| Warum BC so reagiert | Analysis Views sind Reporting-Setup. BC trennt Listenanzeige, Aktionen und editierbare Anlage-/Pflegeoberflaeche. Sichtbare Spaltennamen sind noch keine sicheren Eingabefelder. |
+| Loesung | Der Lauf wurde bewusst als `rejected` dokumentiert. `RM-PLCH` wurde nicht angelegt. Ein neuer Setup-Versuch braucht ein ausdrueckliches Feldmapping-/Setup-Gate und muss zuerst die Card/List-Felder sicher identifizieren. |
+| Pruefung nach Korrektur | `npm run fibu:reporting:analysis-view-fit` laeuft gruen und schreibt Evidence, aber mit `fitStatus=rejected`, `createdOrUpdatedByUi=false`, `noPostingCommittedByTest=true`, `noPaymentCommittedByTest=true`. |
+| Buchwirkung | Kapitel 10 und 25 duerfen weiter trennen: Dimension am Artikelposten ist belegt; Reporting nach `PRODUCTLINE`/`CHANNEL` ist noch nicht belegt. Eine passende Analysis View bleibt ein eigener Setup-Klickpfad, der erst bebildert werden darf, wenn die Anlageoberflaeche stabil dokumentiert ist. |
+| Kuenftige Regel | Keine Analysis View per API oder unsicherer Feldindex-Abkuerzung anlegen. Setup-Screenshots brauchen einen stabilen UI-Klickpfad, Vorher/Nachher-Evidence und ein eigenes Gate. |

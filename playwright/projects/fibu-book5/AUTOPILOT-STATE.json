@@ -7,8 +7,8 @@
   "company": "RM-DEMO",
   "dataBasis": "CRONUS USA",
   "activeArea": "reporting",
-  "lastCompletedRun": "GOVERNANCE-006",
-  "lastWorkType": "governance-gate-decision",
+  "lastCompletedRun": "REPORTING-011",
+  "lastWorkType": "ui-first-setup-fit-blocker",
   "postedInLastRun": false,
   "latestPostedDocuments": {
     "o2c": {
@@ -82,7 +82,6 @@
     "no repeat PAYMENTS-014 book-sync without evidence or book delta"
   ],
   "openGates": [
-    "REPORTING-011-ANALYSIS-VIEW-FIT",
     "TAX-002-DE-VAT-FIT",
     "COMPLIANCE-002-EINVOICE-SETUP",
     "SECURITY-002-USER-PERMISSION-SETUP",
@@ -104,10 +103,10 @@
     "INVENTORY-REPOST-INV008"
   ],
   "autonomousAllowed": [],
-  "nextBestStepWithoutApproval": "REPORTING-011-ANALYSIS-VIEW-FIT: approved-for-next-run by GOVERNANCE-006; UI-first idempotenten RM-DEMO-Laborfit fuer eine eigene oder geeignete Analysis View mit PRODUCTLINE/CHANNEL ausfuehren oder Blocker dokumentieren; keine Buchung, keine Bankabstimmung, keine Zahlung.",
+  "nextBestStepWithoutApproval": "REPORTING-012-ANALYSIS-VIEW-BLOCKER-SYNC: REPORTING-011 auswerten und entscheiden, ob ein neues ausdrueckliches Gate fuer Analysis-View-Card/List-Feldmapping noetig ist; ohne neues Gate keine Analysis View anlegen/aendern, keine Buchung, keine Zahlung, keine Bankabstimmung.",
   "nextBestStepWithApproval": {
     "payments": "Nur mit neuem Gate: weitere Zahlung, Kreditorenzahlung oder Bankabstimmung. PAYMENTS-011 darf nicht wiederholt werden.",
-    "reporting": "REPORTING-011-ANALYSIS-VIEW-FIT: durch GOVERNANCE-006 fuer genau den naechsten Lauf freigegeben; UI-first idempotenten Analysis-View-Fit fuer PRODUCTLINE/CHANNEL einrichten/aktualisieren und Reportingwirkung oder Blocker belegen.",
+    "reporting": "Nur mit neuem Gate: Analysis-View-Card/List-Feldmapping fuer RM-PLCH UI-first dokumentieren und danach die Analysis View mit PRODUCTLINE/CHANNEL einrichten/aktualisieren; REPORTING-011 selbst ist verbraucht und rejected.",
     "tax": "TAX-002-DE-VAT-FIT: deutsches VAT19-Setup nur mit Freigabe und separatem Preview-/VAT-Entries-Nachweis.",
     "compliance": "COMPLIANCE-002-EINVOICE-SETUP: E-Rechnungs-/E-Documents-/Versandprofil-/Change-Log-Setup nur mit Freigabe, UI-first Klickpfad, Validierungs-/Versand-/Auditnachweis und klarer Labor-/DE-Trennung.",
     "fixedAssets": "FIXEDASSETS-004-SETUP-OR-POSTING: MACHINES, FA-CNC-01, HGB, K30000 oder Anlagenbuchung nur mit Freigabe und UI-first Evidence.",
@@ -144,7 +143,8 @@
     "Do not start bank reconciliation from PAYMENTS-013 read-only path",
     "Do not repeat PAYMENTS-013 bank-ledger read-only without a new UI path or evidence delta",
     "Do not repeat PAYMENTS-014 book-sync without a new evidence or book delta",
-    "Do not repeat GOVERNANCE-006 without a new gate-decision delta"
+    "Do not repeat GOVERNANCE-006 without a new gate-decision delta",
+    "Do not repeat REPORTING-011-ANALYSIS-VIEW-FIT without a new explicit field-mapping/setup gate"
   ],
   "notes": [
     "AUTOPILOT-STATE.json and POSTING-AND-SETUP-GATES.md were introduced because the V2 autopilot prompt requires machine-readable state and explicit gates.",
@@ -187,6 +187,7 @@
     "PAYMENTS-011 posted exactly one UI-first CRONUS-USA lab payment PAY011-PS103297 for customer D10000 and invoice PS-INV103297. Invoice Remaining Amount is visible as 0,00 with Applied Entries = 1; detailed customer ledger entries show Initial Entry, Payment Discount and Application lines; G/L entries show 15110, 18200 and 40910. Bank Account Ledger Entries were not reliably visible via the tested page-371 path. No bank reconciliation, no vendor payment and no German final proof.",
     "PAYMENTS-013 opened Bank Account Ledger Entries read-only. Tell-Me showed Bank Account Ledger Entries as candidate; Page 372 with Document No. PAY011-PS103297 and Bank Account No. BANK-RM-01 showed the bank ledger entry, amount 67.673,60, Entry No. 4995 and Related G/L Entries 15110/18200/40910. Page 371 remains rejected. No payment, no setup change and no bank reconciliation.",
     "PAYMENTS-014 synced chapter 20, coverage, findings and project state with the Page-372 bank ledger proof. No BC run, no payment, no setup change and no bank reconciliation.",
-    "GOVERNANCE-006 selected REPORTING-011-ANALYSIS-VIEW-FIT as the next practical gate and approved it for exactly the next run. No BC run, no setup change, no posting and no bank reconciliation were executed."
+    "GOVERNANCE-006 selected REPORTING-011-ANALYSIS-VIEW-FIT as the next practical gate and approved it for exactly the next run. No BC run, no setup change, no posting and no bank reconciliation were executed.",
+    "REPORTING-011 opened Analysis Views in RM-DEMO UI-first and proved the list/actions are visible, but rejected the setup fit because no safe editable field mapping was available; RM-PLCH was not created, no setup change, no posting, no payment and no bank reconciliation."
   ]
 }

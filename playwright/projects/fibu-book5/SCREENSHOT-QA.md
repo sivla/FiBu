@@ -396,6 +396,13 @@ Fuer `UAT-O2C-001` fasst `playwright/projects/fibu-book5/evidence/uat-o2c-001/RE
 | `playwright/projects/fibu-book5/img/security-001-060-job-queue-entries-tell-me.png` | Betriebs-Kontext-Kandidat | `Job Queue Entries` ist sichtbar/kontextuell sichtbar. | Als Betriebs-/Automatisierungs-Kontext nutzbar; kein Job wurde angelegt, gestartet oder geaendert. |
 | `playwright/projects/fibu-book5/img/security-001-070-change-log-entries-tell-me.png` | Audit-Kontext-Kandidat | `Change Log Entries` ist sichtbar/kontextuell sichtbar. | Als Audit-/Nachweispfad nutzbar; kein Beweis fuer aktive, korrekt konfigurierte Tabellenprotokollierung. |
 
+## `REPORTING-011` Screenshot Review
+
+| Screenshot | Bewertung | Befund | Entscheidung |
+|---|---|---|---|
+| `playwright/projects/fibu-book5/img/reporting-011-020-analysis-views-before-fit.png` | Labor-/Blockerbild | `Analysis Views` ist erreichbar; vorhandene Views und Dimensionsspalten sind sichtbar. | Als Evidence fuer den Reporting-Setup-Hebel nutzbar; nicht als Finalbild fuer eine Produktlinienauswertung. |
+| `playwright/projects/fibu-book5/img/reporting-011-030-analysis-views-after-fit.png` | rejected/Blockerbild | Der Zustand bleibt ohne `RM-PLCH`; keine sichere editierbare Feldzuordnung fuer die Anlage/Aenderung wurde belegt. | Nicht als Buchbild fuer einen gelungenen Fit nutzen. Als Lernbild fuer Setup-Gate und Feldmapping-Grenze behalten. |
+
 ## Harte Findings aus dem Review
 
 ### QA-O2C-001 Listenbild zeigt nicht den Buchfall
