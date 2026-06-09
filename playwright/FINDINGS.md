@@ -42,10 +42,10 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 
 | Feld | Wert |
 |---|---|
-| Status | erledigt als Laborbuchung; Buch-/Evidence-Sync folgt mit `PAYMENTS-012` |
+| Status | erledigt als Laborbuchung und Buch-/Evidence-Sync `PAYMENTS-012` |
 | Quelle | `PAYMENTS-011` |
 | Screenshot | `playwright/projects/fibu-book5/img/payments-011-060-customer-ledger-invoice-after-payment.png`, `playwright/projects/fibu-book5/img/payments-011-062-detailed-customer-ledger-payment.png`, `playwright/projects/fibu-book5/img/payments-011-064-gl-entries-payment.png` |
-| Evidence | `playwright/projects/fibu-book5/evidence/payments-011/README.md`, `playwright/projects/fibu-book5/evidence/payments-011/PAYMENTS-011-result.json`, `playwright/projects/fibu-book5/evidence/payments-011/PAYMENTS-011-LAB-PAYMENT.md` |
+| Evidence | `playwright/projects/fibu-book5/evidence/payments-011/README.md`, `playwright/projects/fibu-book5/evidence/payments-011/PAYMENTS-011-result.json`, `playwright/projects/fibu-book5/evidence/payments-011/PAYMENTS-011-LAB-PAYMENT.md`, `playwright/projects/fibu-book5/evidence/payments-012/PAYMENTS-012-BOOK-SYNC.md` |
 | BC-Seite | Cash Receipt Journal, Customer Ledger Entries, Detailed Customer Ledger Entries, G/L Entries |
 | sichtbarer Text / Werte | `PAY011-PS103297`, `PS-INV103297`, `Remaining Amount = 0,00`, `Applied Entries = 1`, `Payment Discount`, `Application`, `15110`, `18200`, `40910` |
 | Elementtyp | Buchung / Postenspur / Zahlungsbedingung / Skonto |
@@ -60,7 +60,7 @@ Fuer Anfaenger ist das wichtig, weil die OP-Wahrheit nicht am Journal endet. Nac
 
 | Feld | Wert |
 |---|---|
-| Status | erledigt als Governance-Sync; naechster Praxislauf ist `PAYMENTS-011` |
+| Status | erledigt als Governance-Sync; `PAYMENTS-011` und `PAYMENTS-012` sind inzwischen erledigt |
 | Quelle | `GOVERNANCE-005` |
 | Screenshot | keine neuen Screenshots; Governance-/State-Sync |
 | Evidence | `playwright/projects/fibu-book5/evidence/governance-005/GOVERNANCE-005-AUTONOMOUS-POSTING-POLICY-SYNC.md`, `playwright/projects/fibu-book5/evidence/governance-005/GOVERNANCE-005-result.json`, `playwright/projects/fibu-book5/evidence/governance-005/README.md` |
@@ -70,7 +70,7 @@ Fuer Anfaenger ist das wichtig, weil die OP-Wahrheit nicht am Journal endet. Nac
 | erste Hypothese | Autonome Laborbuchungen koennen nuetzlich sein, wenn jeder Lauf weiterkommen soll. Ohne harte Vorbedingungen wuerden sie aber Referenzbelege, OP-Status und Buchwahrheit verwischen. |
 | Recherchequelle | Autopilot-V2.2-Prompt, `AUTOPILOT-STATE.json`, `POSTING-AND-SETUP-GATES.md`, vorhandene `PAYMENTS-001` bis `PAYMENTS-010` Evidence |
 | Testergebnis | `GOVERNANCE-005` hat keinen BC-Lauf gestartet. Die Policy ist jetzt: `PAYMENTS-011` darf autonom laufen, aber nur fuer den bestehenden offenen Debitorenposten `D10000` / `PS-INV103297` und nur nach frischem UI-Preflight. |
-| Entscheidung | Im naechsten Lauf erst UI-Preflight, dann nur bei passenden Signalen genau eine Laborzahlung buchen. Bei jeder Abweichung Fehlerbild statt Buchung. |
+| Entscheidung | Die Regel wurde in `PAYMENTS-011` angewendet und in `PAYMENTS-012` synchronisiert. Weitere Zahlungen brauchen einen neuen Zweck oder ein neues Gate; der naechste sinnvolle Payment-Schritt ist nur read-only Bank-Ledger-Klaerung. |
 | Buchstelle | Kapitel 19/20 Payments und OP-Ausgleich; Projekt-Governance |
 
 Fuer Anfaenger ist das wichtig, weil Business Central im Zahlungsjournal schnell einen `Post`-Dialog zeigt. Fachlich darf man ihn erst bestaetigen, wenn offener Posten, Bankkonto, Ausgleichsbezug, Betrag und Journal Check zusammenpassen.
@@ -89,7 +89,7 @@ Fuer Anfaenger ist das wichtig, weil Business Central im Zahlungsjournal schnell
 | erste Hypothese | Ein Quellenverweis kann so wirken, als sei der fachliche Prozess bereits praktisch bewiesen. Tatsaechlich erklaert eine Quelle nur Regel, Zielbild oder Recherchepfad; der Projektbeweis braucht konkrete RM-DEMO-Evidence. |
 | Recherchequelle | vorhandenes Quellenverzeichnis, `ARTIFACTS-001`, `LEARNPATH-001`, `MB800-001`, `SCOPE-001`, Autopilot-State und Gates; kein Live-URL-Audit in diesem Lauf |
 | Testergebnis | `SOURCES-001` hat Kapitel 40 ohne BC-Lauf synchronisiert. Quellen sind jetzt als Standardreferenz, amtliche Steuer-/Compliance-Quelle, optionale Vendor-Dokumentation, gestrichener Scope-Hinweis oder konkrete Projekt-Evidence eingeordnet. |
-| Entscheidung | Kapitel 40 trennt Quellen, Labor-Evidence und deutschen Finalnachweis. `Q10` Shopify bleibt nur Out-of-Scope-Marker. `PAYMENTS-011` ist inzwischen erledigt; naechster sicherer Block ist `PAYMENTS-012` Buch-/Evidence-Sync oder Bank-Ledger-read-only-Folgepfad. |
+| Entscheidung | Kapitel 40 trennt Quellen, Labor-Evidence und deutschen Finalnachweis. `Q10` Shopify bleibt nur Out-of-Scope-Marker. `PAYMENTS-012` ist inzwischen erledigt; naechster sicherer Block ist `PAYMENTS-013-BANK-LEDGER-READONLY`. |
 | Buchstelle | Kapitel 40 Quellenverzeichnis |
 
 Fuer Anfaenger ist das wichtig, weil eine gute Quelle Orientierung gibt, aber nicht zeigt, was im eigenen Mandanten wirklich eingerichtet, geklickt, gebucht oder blockiert war.
@@ -108,7 +108,7 @@ Fuer Anfaenger ist das wichtig, weil eine gute Quelle Orientierung gibt, aber ni
 | erste Hypothese | Ein Template oder Handover-Dokument kann so wirken, als sei der Nachweis bereits erbracht. Tatsaechlich ist es nur die Struktur, in die echte BC-Evidence eingeordnet wird. |
 | Recherchequelle | vorhandenes Evidence-Modell, Autopilot-State, Gates, Coverage, UI-Inventar und Kapitel 39; keine neue Microsoft-Learn-Behauptung in diesem Lauf |
 | Testergebnis | `ARTIFACTS-001` hat Kapitel 39 ohne BC-Lauf synchronisiert. Artefakte werden jetzt als Kontroll- und Uebergabeschicht erklaert, nicht als Prozess-, Screenshot-, Buchungs- oder deutscher Finalnachweis. |
-| Entscheidung | Kapitel 39 trennt Templates, Handover und echte Evidence. `SOURCES-001` hat den Folgeblock inzwischen erledigt; `PAYMENTS-011` ist inzwischen erledigt; naechster sicherer Block ist `PAYMENTS-012`. |
+| Entscheidung | Kapitel 39 trennt Templates, Handover und echte Evidence. `SOURCES-001` hat den Folgeblock inzwischen erledigt; `PAYMENTS-012` ist inzwischen erledigt; naechster sicherer Block ist `PAYMENTS-013-BANK-LEDGER-READONLY`. |
 | Buchstelle | Kapitel 39 Projektartefakte |
 
 Fuer Anfaenger ist das wichtig, weil eine gute Vorlage zwar sagt, was zu pruefen ist, aber noch nicht zeigt, dass Business Central den Prozess wirklich mit den richtigen Daten, Feldern, Posten und Berichten getragen hat.
@@ -127,7 +127,7 @@ Fuer Anfaenger ist das wichtig, weil eine gute Vorlage zwar sagt, was zu pruefen
 | erste Hypothese | Ein Indexeintrag oder eine hohe Reifegradbewertung darf nicht so wirken, als sei der jeweilige Prozess praktisch getestet, gebucht und final nachgewiesen. |
 | Recherchequelle | vorhandenes UI-Inventar, Coverage, Screenshot-QA, Autopilot-State und Gates; keine neue Microsoft-Learn-Behauptung in diesem Lauf |
 | Testergebnis | `PAGESINDEX-001` hat Kapitel 38 ohne BC-Lauf synchronisiert. Der Prozesskatalog ist jetzt Zielbild und Steuerungsrahmen, nicht Sammelbeweis fuer alle Business-Central-Prozesspfade. |
-| Entscheidung | Kapitel 38 trennt jetzt Index, Zielpfad, QA-Rahmen, echte Klickpfad-Evidence, Labor-Nachweis und offenen deutschen Finalnachweis. `SOURCES-001` hat Kapitel 40 inzwischen synchronisiert; `PAYMENTS-011` ist inzwischen erledigt; naechster sicherer Block ist `PAYMENTS-012`. |
+| Entscheidung | Kapitel 38 trennt jetzt Index, Zielpfad, QA-Rahmen, echte Klickpfad-Evidence, Labor-Nachweis und offenen deutschen Finalnachweis. `SOURCES-001` hat Kapitel 40 inzwischen synchronisiert; `PAYMENTS-012` ist inzwischen erledigt; naechster sicherer Block ist `PAYMENTS-013-BANK-LEDGER-READONLY`. |
 | Buchstelle | Kapitel 38 Seitenindex, Prozesskatalog und Qualitaetssicherung |
 
 Fuer Anfaenger ist das wichtig, weil ein Buchindex beim Finden hilft, aber nicht beweist, dass der Prozess in Business Central schon richtig eingerichtet, gebucht, kontrolliert und mit Postenspur verstanden wurde.
@@ -489,7 +489,7 @@ Das ist ein guter Anfaengerbefund, weil er zeigt: Ein sichtbarer Betrag in der J
 | erste Hypothese | Ein sichtbarer Zahlungsjournal-Draft beweist noch nicht, dass die Zeile fachlich buchungsreif ist. Journal Check muss vor einer Zahlung ohne Issues sein oder die Restgrenze muss erklaert werden. |
 | Recherchequelle | praktischer UI-only Playwright-Lauf `npm run fibu:payments:cash-receipt-ui-draft`; `playwright/projects/fibu-book5/evidence/payments-005/README.md` |
 | Testergebnis | Die Zeile wurde vollstaendig ueber die UI vorbereitet und wieder geloescht. Debitor, Betrag, Gegenkonto und Rechnungsbezug sind sichtbar. Journal Check meldete zunaechst `1 Issue`: `'Amount' muss in 'Gen. Journal Line' einen Wert enthalten...`. Die Folgechecks klaerten Amount-Format, Bank Account Posting Group, `Journal Check = 0 Issues`, Apply Entries read-only und den Post-Dialog mit Abbruch. Es wurde keine Zahlung und kein Ausgleich gebucht. |
-| Entscheidung | Buch ergaenzen: Zahlungsjournal-Entwurf, Journal Check, Apply-Bezug, Post-Dialog und Zahlungsfreigabe trennen. Amount-Validierung ist geloest; echte Zahlung bleibt `PAYMENTS-011` nur nach ausdruecklicher Freigabe. |
+| Entscheidung | Buch ergaenzen: Zahlungsjournal-Entwurf, Journal Check, Apply-Bezug, Post-Dialog und Zahlungsfreigabe trennen. Amount-Validierung ist geloest; echte Zahlung wurde in `PAYMENTS-011` genau einmal gebucht und in `PAYMENTS-012` synchronisiert. |
 | Buchstelle | Kapitel 19 Debitoren/Kreditoren und Kapitel 20 Bank/Payments |
 
 Bewertung:

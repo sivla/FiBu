@@ -4,8 +4,8 @@
 |---|---|
 | Umgebung | `MCP_1_20260210` |
 | Company | `RM-DEMO` |
-| Status | labor, book-sync, no-new-bc-run, no-payment |
-| Grundlage | `PAYMENTS-001` bis `PAYMENTS-010` |
+| Status | labor, historical-preflight-sync, superseded-by-payments-011 |
+| Grundlage | `PAYMENTS-001` bis `PAYMENTS-010`; aktualisiert nach `PAYMENTS-011`/`PAYMENTS-012` |
 | Ausgangsrechnung | `PS-INV103297` / Debitor `D10000` |
 | Laborbankkonto | `BANK-RM-01`, Bank Acc. Posting Group `CHECKING` |
 
@@ -21,13 +21,15 @@
 | Apply-Bezug | `PAYMENTS-009` und `PAYMENTS-010` | `Applies-to Doc. No. = PS-INV103297` verbindet den Draft fachlich mit der offenen Rechnung; Apply Entries wurde read-only geoeffnet. |
 | Letzte Sicherheitsgrenze | `PAYMENTS-010` | `Post` oeffnet einen `Ja`/`Nein`-Dialog; `Nein` bricht ab; der Draft wurde danach geloescht. |
 
-## Was es nicht beweist
+## Was es zum Zeitpunkt von PAYMENTS-010 nicht beweist
 
 - Keine Zahlung wurde gebucht.
 - Kein OP wurde ausgeglichen.
 - Keine Bankposten wurden erzeugt.
 - Keine Bankabstimmung wurde gestartet.
 - Kein deutscher Bank-, Steuer- oder Compliance-Finalnachweis liegt vor.
+
+Update nach `PAYMENTS-011`: Die Debitorenzahlung wurde spaeter genau einmal als Laborzahlung `PAY011-PS103297` gebucht. Damit sind Zahlung, OP-Ausgleich, Payment Discount und Sachposten fuer `PS-INV103297` belegt. Offen bleiben weiter Bank Account Ledger Entries ueber einen belastbaren UI-Pfad, Bankabstimmung, Kreditorenzahlung und deutscher Finalnachweis.
 
 ## Anfaenger-Lernkette
 
@@ -40,14 +42,14 @@ Eine Zahlung ist in Business Central kein einzelner Klick. Der Lernpfad besteht 
 5. Rechnungsbezug ueber `Applies-to` und `Apply Entries` pruefen.
 6. `Post` nur als letzte, bewusste Buchungsschwelle behandeln.
 
-`PAYMENTS-010` endet bewusst vor Schritt 6: Der Dialog wurde sichtbar gemacht, aber mit `Nein` abgebrochen.
+`PAYMENTS-010` endet bewusst vor Schritt 6: Der Dialog wurde sichtbar gemacht, aber mit `Nein` abgebrochen. `PAYMENTS-011` fuehrt Schritt 6 danach kontrolliert aus; `PAYMENTS-012` synchronisiert die Buch- und Evidence-Wahrheit.
 
 ## Buchwirkung
 
-Kapitel 19/20 duerfen aktuell den kompletten Vorbereitungs- und Sicherheitsweg zeigen, aber noch keine Zahlungswirkung behaupten. Fuer eine bebilderte Anleitung ist die wichtigste Formulierung:
+Kapitel 19/20 duerfen diese Datei als Lernkette fuer den Vorbereitungs- und Sicherheitsweg verwenden. Seit `PAYMENTS-011` duerfen sie zusaetzlich die Labor-Zahlungswirkung behaupten, aber nur fuer `PAY011-PS103297` / `PS-INV103297` und nur als CRONUS-USA-Labor. Fuer eine bebilderte Anleitung bleibt die wichtigste Formulierung:
 
 > Der Post-Dialog ist die letzte Freigabegrenze. Erst `Ja` bucht Zahlung und Ausgleich; `Nein` laesst den Vorgang ungeposted.
 
 ## Naechster Schritt
 
-`PAYMENTS-011` bleibt gesperrt, bis eine ausdrueckliche Freigabe fuer genau eine kontrollierte Laborzahlung vorliegt. Ohne Freigabe ist der naechste sinnvolle Schritt ein weiterer didaktischer Buch-Sync oder ein anderer read-only Prozessblock.
+`PAYMENTS-011` ist erledigt und darf nicht wiederholt werden. Naechster sinnvoller Schritt nach `PAYMENTS-012` ist `PAYMENTS-013-BANK-LEDGER-READONLY`: Bank Account Ledger Entries zur vorhandenen Zahlung read-only ueber einen belastbaren UI-Pfad klaeren, ohne weitere Zahlung und ohne Bankabstimmung.

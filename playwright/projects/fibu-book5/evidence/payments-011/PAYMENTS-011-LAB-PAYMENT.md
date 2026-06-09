@@ -14,7 +14,7 @@
 
 ## Entscheidungssatz
 
-Diese Buchung ist als autonome RM-DEMO-Laborbuchung vertretbar, weil der bestehende offene Debitorenposten PS-INV103297 fuer D10000 im UI sichtbar ist, die Cash-Receipt-Journal-Zeile mit BANK-RM-01 und -68.000,00 EUR auf genau diese Rechnung verweist, Journal Check 0 Issues zeigt, Apply Entries read-only geprueft wurde und die erwartete Postenspur Debitorenposten, detaillierte Debitorenposten, Bankposten und Sachposten umfasst; Risiko und Grenze bleiben CRONUS-USA-Labor ohne Bankabstimmung und ohne deutschen Finalnachweis.
+Diese Buchung ist als autonome RM-DEMO-Laborbuchung vertretbar, weil der bestehende offene Debitorenposten PS-INV103297 fuer D10000 im UI sichtbar ist, die Cash-Receipt-Journal-Zeile mit BANK-RM-01 und -68.000,00 EUR auf genau diese Rechnung verweist, Journal Check 0 Issues zeigt, Apply Entries read-only geprueft wurde und die erwartete Postenspur Debitorenposten, detaillierte Debitorenposten und Sachposten mit Bankwirkung umfasst; Risiko und Grenze bleiben CRONUS-USA-Labor ohne Bank Account Ledger Entry Nachweis, ohne Bankabstimmung und ohne deutschen Finalnachweis.
 
 ## Preflight
 

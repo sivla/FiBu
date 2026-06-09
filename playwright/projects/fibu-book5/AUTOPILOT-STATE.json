@@ -7,9 +7,9 @@
   "company": "RM-DEMO",
   "dataBasis": "CRONUS USA",
   "activeArea": "payments",
-  "lastCompletedRun": "PAYMENTS-011",
-  "lastWorkType": "controlled-ui-lab-payment",
-  "postedInLastRun": true,
+  "lastCompletedRun": "PAYMENTS-012",
+  "lastWorkType": "book-evidence-sync",
+  "postedInLastRun": false,
   "latestPostedDocuments": {
     "o2c": {
       "salesOrder": "S-ORD101068",
@@ -61,7 +61,9 @@
     "no Dropshipping sales/purchase process without explicit gate",
     "no new company without explicit gate",
     "no Shopify scope",
-    "no repeat payment for PAY011-PS103297 / PS-INV103297 without explicit new gate"
+    "no repeat payment for PAY011-PS103297 / PS-INV103297 without explicit new gate",
+    "no repeat PAYMENTS-012 book-sync without evidence delta",
+    "no bank reconciliation without explicit gate after PAYMENTS-012"
   ],
   "openGates": [
     "REPORTING-011-ANALYSIS-VIEW-FIT",
@@ -86,9 +88,9 @@
     "INVENTORY-REPOST-INV008"
   ],
   "autonomousAllowed": [],
-  "nextBestStepWithoutApproval": "PAYMENTS-012-BOOK-SYNC: Payments-Kapitel 19/20, Coverage, Evidence-Pack und Bankposten-Folgepfad mit PAYMENTS-011 synchronisieren; keine weitere Zahlung, keine Bankabstimmung, keine DE-Finalbehauptung.",
+  "nextBestStepWithoutApproval": "PAYMENTS-013-BANK-LEDGER-READONLY: korrekten UI-Pfad fuer Bank Account Ledger Entries zur vorhandenen Zahlung PAY011-PS103297 oder BANK-RM-01 klaeren; keine weitere Zahlung, keine Bankabstimmung, keine Setup-Aenderung.",
   "nextBestStepWithApproval": {
-    "payments": "PAYMENTS-012-BANK-LEDGER-READONLY oder separates Bankabstimmungs-Gate: zuerst den korrekten UI-Pfad fuer Bank Account Ledger Entries zur Zahlung PAY011-PS103297 klaeren; Bankabstimmung nur mit eigenem Gate.",
+    "payments": "Nur mit neuem Gate: weitere Zahlung, Kreditorenzahlung oder Bankabstimmung. PAYMENTS-011 darf nicht wiederholt werden.",
     "reporting": "REPORTING-011-ANALYSIS-VIEW-FIT: idempotenten Analysis-View-Fit fuer PRODUCTLINE/CHANNEL nur mit Freigabe einrichten/aktualisieren.",
     "tax": "TAX-002-DE-VAT-FIT: deutsches VAT19-Setup nur mit Freigabe und separatem Preview-/VAT-Entries-Nachweis.",
     "compliance": "COMPLIANCE-002-EINVOICE-SETUP: E-Rechnungs-/E-Documents-/Versandprofil-/Change-Log-Setup nur mit Freigabe, UI-first Klickpfad, Validierungs-/Versand-/Auditnachweis und klarer Labor-/DE-Trennung.",
@@ -121,7 +123,9 @@
     "Do not repeat ARTIFACTS-001 book-sync without an artifact, handover or governance delta",
     "Do not repeat SOURCES-001 book-sync without a source, scope or official-documentation delta",
     "Do not repeat GOVERNANCE-005 without a new autonomous-posting-policy delta",
-    "Do not repeat PAYMENTS-011 payment PAY011-PS103297 for PS-INV103297"
+    "Do not repeat PAYMENTS-011 payment PAY011-PS103297 for PS-INV103297",
+    "Do not repeat PAYMENTS-012 book-sync without a new evidence or book delta",
+    "Do not start bank reconciliation from PAYMENTS-013 read-only path"
   ],
   "notes": [
     "AUTOPILOT-STATE.json and POSTING-AND-SETUP-GATES.md were introduced because the V2 autopilot prompt requires machine-readable state and explicit gates.",
@@ -161,7 +165,7 @@
     "PAGESINDEX-001 synced chapter 38 without a BC run: pages index, process catalog and QA are mapped to coverage, UI inventory, screenshot QA, gates and existing evidence. This is index/readiness governance, not new UI evidence, process execution, setup change, posting or German final proof.",
     "ARTIFACTS-001 synced chapter 39 without a BC run: project artifacts, templates, handover and repo QA are mapped to evidence structure, Autopilot state, gates and artifact governance. Templates and handover files are control artifacts, not process proof; no setup change, posting, screenshot or German final proof was executed.",
     "SOURCES-001 synced chapter 40 without a BC run: sources are classified as standard references, official legal/tax/compliance references, optional vendor references, out-of-scope markers or project evidence. Sources support book rules and target pictures, but do not prove RM-DEMO click paths, postings or German final proof. Q10 Shopify remains only an out-of-scope marker.",
-    "GOVERNANCE-005 synced the Autopilot V2.2 autonomous lab posting policy into state and gates without a BC run, setup change or posting. PAYMENTS-011 is now the first autonomous candidate, but only for the existing D10000 / PS-INV103297 lab payment after fresh UI preflight and full post-trace plan. Structural locks remain for new company, environment switch, German VAT19, security, integrations, migration, warehouse activation and unprepared repeat postings.",
-    "PAYMENTS-011 posted exactly one UI-first CRONUS-USA lab payment PAY011-PS103297 for customer D10000 and invoice PS-INV103297. Invoice Remaining Amount is visible as 0,00 with Applied Entries = 1; detailed customer ledger entries show Initial Entry, Payment Discount and Application lines; G/L entries show 15110, 18200 and 40910. Bank Account Ledger Entries were not reliably visible via the tested page-371 path. No bank reconciliation, no vendor payment and no German final proof."
+    "PAYMENTS-011 posted exactly one UI-first CRONUS-USA lab payment PAY011-PS103297 for customer D10000 and invoice PS-INV103297. Invoice Remaining Amount is visible as 0,00 with Applied Entries = 1; detailed customer ledger entries show Initial Entry, Payment Discount and Application lines; G/L entries show 15110, 18200 and 40910. Bank Account Ledger Entries were not reliably visible via the tested page-371 path. No bank reconciliation, no vendor payment and no German final proof.",
+    "PAYMENTS-012 synced chapters 19/20, coverage, findings and evidence-pack truth after PAYMENTS-011 without a new BC run, setup change or posting. Next no-approval step is PAYMENTS-013-BANK-LEDGER-READONLY to find a reliable UI path for Bank Account Ledger Entries for PAY011-PS103297 or BANK-RM-01."
   ]
 }
