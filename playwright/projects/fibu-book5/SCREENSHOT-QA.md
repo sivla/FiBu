@@ -155,6 +155,15 @@ Fuer `UAT-O2C-001` fasst `playwright/projects/fibu-book5/evidence/uat-o2c-001/RE
 | `playwright/projects/fibu-book5/img/fixedassets-007-020-fixed-asset-classes-tell-me.png` | Navigations-/Suchbild mit begrenztem Nutzen | Tell-Me-Suche nach `Fixed Asset Classes` ist dokumentiert, der robuste Zielnachweis kam aber ueber direkte Page `5615`. | Nur als Suchpfad-Hinweis verwenden; fuer Buchbild besser das Ergebnisbild nutzen. |
 | `playwright/projects/fibu-book5/img/fixedassets-007-021-fixed-asset-classes-result.png` | guter Labor-Setup-Vorbereitungsnachweis | `FA Classes` zeigt `FINANCIAL`, `INTANGIBLE`, `TANGIBLE`. | Als Lernbild fuer Anlagenklassen geeignet. Nicht als Anlagenkarte, Anlagenbuchungsgruppe oder Buchungsnachweis verwenden. |
 
+## `FIXEDASSETS-010` Screenshot Review
+
+| Screenshot | Bewertung | Befund | Entscheidung |
+|---|---|---|---|
+| `playwright/projects/fibu-book5/img/fixedassets-010-010-fa-posting-groups-preflight.png` | guter Labor-Preflight-Kandidat | Breite Layoutansicht zeigt `FA Posting Groups`, Kontenspalten und vorhandene CRONUS-Gruppe `GOODWILL`; `MACHINES` ist nicht sichtbar. | Als Buch-/Lernbild fuer Kontenfindung und Setup-Luecke geeignet. Nicht als `MACHINES`-Fit, deutscher HGB-Kontenplan oder Buchungsnachweis verwenden. |
+| `playwright/projects/fibu-book5/img/fixedassets-010-020-depreciation-books-preflight.png` | guter Labor-Preflight-Kandidat | `Depreciation Books` ist in breiter Ansicht sichtbar; `COMPANY` ist sichtbar, `HGB` nicht. | Als Lernbild fuer AfA-Buch-Readiness geeignet. Nicht als HGB-Endstand, AfA-Berechnung oder Buchungsnachweis verwenden. |
+| `playwright/projects/fibu-book5/img/fixedassets-010-030-fixed-assets-preflight.png` | guter Labor-Preflight-Kandidat | `Fixed Assets` ist als Anlagenlisten-Kontext sichtbar; `FA-CNC-01` ist nicht sichtbar. | Als Lernbild fuer fehlendes Anlagenstammdatum geeignet. Nicht als Anlagenkarte oder Aktivierungsnachweis verwenden. |
+| `playwright/projects/fibu-book5/img/fixedassets-010-040-vendors-preflight.png` | guter Labor-Preflight-Kandidat | Gefilterter `Vendors`-Kontext fuer `K30000` ist sichtbar, der Zielkreditor selbst nicht. | Als Lernbild fuer fehlenden Kreditor vor Anlagen-Einkaufsrechnung geeignet. Nicht als Kreditoranlage oder Einkaufsrechnung verwenden. |
+
 ## `P2P-001` Screenshot Review
 
 | Screenshot | Bewertung | Befund | Entscheidung |

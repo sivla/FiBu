@@ -38,6 +38,25 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 
 ## Aktuelle Fundstellen
 
+## FIND-BC-FA-010 Setup-Preflight zeigt sichtbare Kontexte, aber kein Setup
+
+| Feld | Wert |
+|---|---|
+| Status | erledigt als read-only UI-Preflight |
+| Quelle | `FIXEDASSETS-010-SETUP-PREFLIGHT-READONLY` |
+| Screenshot | `playwright/projects/fibu-book5/img/fixedassets-010-010-fa-posting-groups-preflight.png`, `playwright/projects/fibu-book5/img/fixedassets-010-020-depreciation-books-preflight.png`, `playwright/projects/fibu-book5/img/fixedassets-010-030-fixed-assets-preflight.png`, `playwright/projects/fibu-book5/img/fixedassets-010-040-vendors-preflight.png` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-010/README.md`, `playwright/projects/fibu-book5/evidence/fixedassets-010/FIXEDASSETS-010-SETUP-PREFLIGHT-READONLY.md`, `playwright/projects/fibu-book5/evidence/fixedassets-010/FIXEDASSETS-010-result.json` |
+| BC-Seite | `FA Posting Groups`, `Depreciation Books`, `Fixed Assets`, `Vendors` |
+| sichtbarer Text / Werte | `FA Posting Groups`, `Depreciation Books`, `Fixed Assets`, `Vendors`, `GOODWILL`, `COMPANY`, `MACHINES`, `HGB`, `FA-CNC-01`, `K30000` |
+| Elementtyp | Setup-Preflight / Tabellenkontext / `New/Neu`-Aktionskandidat |
+| erste Hypothese | Wenn die vier Setup-Kontexte sichtbar sind, kann ein naechster Agent direkt Zielobjekte anlegen. |
+| Recherchequelle | praktischer Playwright-Lauf `npm run fibu:fixedassets:setup-preflight`, Evidence `fixedassets-010` |
+| Testergebnis | Alle vier Kontexte sind read-only sichtbar. `MACHINES`, `HGB`, `FA-CNC-01` und `K30000` sind nicht sichtbar und wurden nicht angelegt. `New/Neu` ist sichtbar, aber bleibt ohne Setup-Gate tabu. Die breite Ansicht verbessert Tabellenbilder, beweist aber keinen Setup-Fit. |
+| Entscheidung | Kapitel 21 kann den Preflight als Lern- und Kontrollschritt nutzen. Ein echter Setup-Fit braucht danach ein ausdrueckliches Gate und muss idempotent, UI-first und seitenbezogen arbeiten; Anlagenbuchung/AfA bleiben ein spaeteres separates Posting-Gate. |
+| Buchstelle | Kapitel 21 Anlagen / Fixed Assets |
+
+Fuer Anfaenger ist das wichtig, weil sichtbare Listen nur zeigen, wo eingerichtet wird. Buchungsfaehig wird eine Anlage erst, wenn Anlage, AfA-Buch, Anlagenbuchungsgruppe, Kreditor und Zugangspfad fachlich zusammenpassen.
+
 ## FIND-BC-FA-009 Fixed-Assets-Gate-Readiness ist noch kein Anlagen-Setup
 
 | Feld | Wert |

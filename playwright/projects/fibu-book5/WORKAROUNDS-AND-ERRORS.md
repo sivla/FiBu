@@ -19,6 +19,22 @@ Jeder relevante Fehler oder Workaround bekommt:
 
 Jeder Eintrag muss außerdem gegen die betroffene Buchstelle geprüft werden. Wenn der Workaround zeigt, dass der Buchtext zu knapp, falsch oder missverständlich ist, wird die Buchstelle im selben Arbeitsgang korrigiert oder als offene Buch-Fundstelle in `playwright/FINDINGS.md` markiert.
 
+## WK-BC-FA-010 Tell-Me-Treffer ist sichtbar, aber nicht per Role-Selector klickbar
+
+| Feld | Wert |
+|---|---|
+| Status | geloest im Test `FIXEDASSETS-010`; Regel fuer kuenftige Setup-Preflights behalten |
+| Testfall | `FIXEDASSETS-010` |
+| Situation | Der neue Setup-Preflight sollte `FA Posting Groups` ueber Tell-Me oeffnen, um den Anlagenbuchungsgruppen-Kontext read-only in breiter Layoutansicht zu sichern. |
+| Symptom | Der erste Testlauf fand den sichtbaren Text `FA Posting Groups` nur als `DIV`; der Role-/Text-Klick oeffnete den Kontext nicht belastbar. Der Lauf war technisch gruen, aber fachlich war `contextVisible = false` fuer FA Posting Groups. |
+| Sichtbarer Beleg | `playwright/projects/fibu-book5/evidence/fixedassets-010/FIXEDASSETS-010-result.json` aus dem Nachlauf zeigt jetzt `contextVisible = true` und Klickmethode `dom-click`; Screenshot `playwright/projects/fibu-book5/img/fixedassets-010-010-fa-posting-groups-preflight.png`. |
+| Ursache | Business Centrals Tell-Me-Ergebnisse koennen als verschachtelte sichtbare Elemente erscheinen, deren klickbarer Vorfahr nicht direkt als sauberer `button`, `link`, `menuitem` oder `option` per Playwright-Rolle erreichbar ist. |
+| Warum BC so reagiert | Die Business-Central-Webshell rendert Suchtreffer, Role-Center und Aktionsbereiche dynamisch. Sichtbarer Text allein beweist nicht, dass der naive Locator auf dem tatsaechlichen Klickziel sitzt. |
+| Loesung | Der Test nutzt fuer genau diesen Treffer den bereits im Projekt bewaehrten DOM-Fallback: passendes sichtbares Element finden, den naechsten klickbaren Vorfahren waehlen und danach den Zielkontext pruefen. Kein blinder Enter-Fallback und kein ungescopter `New/Neu`-Klick. |
+| Pruefung nach Korrektur | Der Nachlauf `npm run fibu:fixedassets:setup-preflight` ist erfolgreich. `FA Posting Groups`, `Depreciation Books`, `Fixed Assets` und `Vendors` sind als Kontexte sichtbar; `MACHINES`, `HGB`, `FA-CNC-01` und `K30000` bleiben nicht sichtbar; kein Setup und keine Buchung. |
+| Buchwirkung | Kapitel 21 kann `FA Posting Groups` als erreichbaren Setup-Kontext zeigen, muss aber weiterhin erklaeren: Sichtbarer Setup-Ort ist noch kein Setup-Fit. |
+| Kuenftige Regel | Bei Tell-Me nicht blind Enter druecken. Erst Trefferkandidaten sammeln, gezielt klicken, danach den Zielseitenkontext pruefen. DOM-Fallback nur fuer den konkreten Treffer und immer mit Nachpruefung des Seitentextes. |
+
 ## WK-BC-PAY-011 Bank Account Ledger Entries ueber Page 371 nicht belastbar sichtbar
 
 | Feld | Wert |

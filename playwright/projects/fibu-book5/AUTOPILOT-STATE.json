@@ -7,8 +7,8 @@
   "company": "RM-DEMO",
   "dataBasis": "CRONUS USA",
   "activeArea": "fixedassets",
-  "lastCompletedRun": "FIXEDASSETS-009-SETUP-GATE-READINESS",
-  "lastWorkType": "fixedassets-gate-readiness-no-bc-run",
+  "lastCompletedRun": "FIXEDASSETS-010-SETUP-PREFLIGHT-READONLY",
+  "lastWorkType": "fixedassets-read-only-ui-preflight",
   "postedInLastRun": false,
   "latestPostedDocuments": {
     "o2c": {
@@ -115,13 +115,13 @@
     "PROJECTS-LAB-POSTING: only after UI-first setup readiness for project, tasks, resource/material/location and invoice/WIP path; current target objects are not ready.",
     "MANUFACTURING-LAB-POSTING: only after UI-first setup readiness for BOM/routing or assembly structure, components, order, consumption/output and cost trace; current target objects are not ready."
   ],
-  "nextBestStepWithoutApproval": "FIXEDASSETS-010-SETUP-PREFLIGHT-READONLY: run BC read-only to confirm safe UI field mapping and scoped New/Card actions for FA Posting Groups, Depreciation Books, Fixed Assets and Vendors; no setup, no posting.",
+  "nextBestStepWithoutApproval": "FIXEDASSETS-011-SETUP-GATE-DECISION: no BC run required; decide whether the read-only FIXEDASSETS-010 UI preflight is sufficient to request an explicit, narrow setup gate for MACHINES, HGB, FA-CNC-01 and K30000, or whether more read-only UI mapping is needed. Do not create or change setup without an explicit gate.",
   "nextBestStepWithApproval": {
     "payments": "Nur mit neuem Gate: weitere Zahlung, Kreditorenzahlung oder Bankabstimmung. PAYMENTS-011 darf nicht wiederholt werden.",
     "reporting": "Further Analysis View setup needs a new explicit gate and a scoped New/Card action proof. REPORTING-013 consumed the GOVERNANCE-007 gate and rejected setup because unscoped New/Neu is globally ambiguous in BC.",
     "tax": "TAX-002-DE-VAT-FIT: only with explicit approval; UI-first VAT Business/Product Posting Groups, VAT Posting Setup, document preview and VAT Entries proof; no German final claim until proven.",
     "compliance": "COMPLIANCE-002-EINVOICE-SETUP: E-Rechnungs-/E-Documents-/Versandprofil-/Change-Log-Setup nur mit Freigabe, UI-first Klickpfad, Validierungs-/Versand-/Auditnachweis und klarer Labor-/DE-Trennung.",
-    "fixedAssets": "FIXEDASSETS-004-SETUP-OR-POSTING remains locked. FIXEDASSETS-009 consolidated existing readiness and formulated the gate chain. With approval only after FIXEDASSETS-010 proves scoped UI actions and field mappings: FIXEDASSETS-011-UI-SETUP-FIT for MACHINES, HGB or an approved lab mapping, FA-CNC-01 and K30000; posting remains a separate later gate.",
+    "fixedAssets": "FIXEDASSETS-004-SETUP-OR-POSTING remains locked. FIXEDASSETS-010 proved the read-only UI contexts for FA Posting Groups, Depreciation Books, Fixed Assets and Vendors in wide layout; MACHINES, HGB, FA-CNC-01 and K30000 remain missing. With approval only: a narrow UI-first setup fit for those exact target objects; posting remains a separate later gate.",
     "security": "SECURITY-002-USER-PERMISSION-SETUP: Benutzer-/Berechtigungs-/Profil-/Security-Group-/User-Setup-/Job-Queue-/Change-Log-Aenderungen nur mit Freigabe, UI-first Klickpfad, Rechte-/SoD-Matrix und Audit-/Review-Evidence.",
     "migration": "MIGRATION-002-CONFIGURATION-PACKAGES-IMPORT: Configuration Packages, Datenimport, Opening-Balance-Journale oder Cutover-Ausfuehrung nur mit Freigabe, UI-first Klickpfad, Abstimmprotokoll und Rueckfallregel.",
     "integrations": "INTEGRATIONS-002-SETUP-OR-CONNECTOR: Extension, AppSource-App, API/Web Service, Connector, Power Platform, Power BI, Job Queue oder produktiven Integrationslauf nur mit Freigabe, UI-first Klickpfad, UAT, Rollen/Berechtigungen, Fehlerfall, Rollback, Monitoring und Support Owner.",
@@ -171,7 +171,8 @@
     "Do not repeat BOOK-REPORTING-UAT-K25-SYNC without a new chapter-25 reporting UAT evidence delta",
     "Do not repeat GOVERNANCE-010-NEXT-NO-GATE-DECISION without a new no-gate decision delta",
     "Do not repeat FIXEDASSETS-009-SETUP-GATE-READINESS without a new Fixed Assets readiness delta",
-    "Do not create MACHINES, HGB, FA-CNC-01 or K30000 before FIXEDASSETS-010 read-only preflight and an explicit setup gate"
+    "Do not repeat FIXEDASSETS-010-SETUP-PREFLIGHT-READONLY without a new UI mapping delta",
+    "Do not create MACHINES, HGB, FA-CNC-01 or K30000 without an explicit setup gate after the completed FIXEDASSETS-010 read-only preflight"
   ],
   "notes": [
     "AUTOPILOT-STATE.json and POSTING-AND-SETUP-GATES.md were introduced because the V2 autopilot prompt requires machine-readable state and explicit gates.",
@@ -181,6 +182,7 @@
     "FIXEDASSETS-007 read Depreciation Books and FA Classes read-only: Depreciation Book COMPANY is visible, HGB is not visible; FA Classes via page 5615 show FINANCIAL, INTANGIBLE, TANGIBLE.",
     "FIXEDASSETS-008 synced chapter 21 with the read-only Fixed Assets evidence chain and added a beginner-facing setup checklist before acquisition/depreciation steps.",
     "Without approval, Fixed Assets remains blocked for setup/posting; no MACHINES, FA-CNC-01, HGB, K30000, acquisition or depreciation.",
+    "FIXEDASSETS-010 ran BC read-only in wide layout and proved UI contexts for FA Posting Groups, Depreciation Books, Fixed Assets and Vendors; MACHINES, HGB, FA-CNC-01 and K30000 remain not visible, and New/Neu remains only a gated setup-action candidate.",
     "WAREHOUSE-001 read FRA-ZL and Warehouse Tell-Me entry points read-only: Location visible, Warehouse Receipts/Put-aways/Picks/Bins visible as entry points, Warehouse Shipments not reliably visible, no Warehouse activation and no posting.",
     "WAREHOUSE-002 synced chapter 13 with WAREHOUSE-001: FRA-ZL is only simple-location/readiness evidence in RM-DEMO; directed warehouse remains gate-locked and German final evidence remains open.",
     "MANUFACTURING-001 checked Manufacturing/Assembly read-only: Planning Worksheet, Production BOMs, Routings, Released Production Orders, Consumption Journal and Output Journal are visible via Tell-Me; Assembly Orders was not reliably visible; RM-M100 and RAW-STEEL are visible as items, COMP-CTRL and KIT-MAINT are not visible; no setup and no posting.",
