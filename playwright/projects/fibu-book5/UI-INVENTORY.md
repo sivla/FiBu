@@ -220,11 +220,17 @@ Wenn das Projekt fertig ist, kennen wir Business Central für den Buchumfang nic
 |---|---|---:|---|---|---|---|---|---|
 | Buch-Sync | Kapitel 30 | n/a | Statusbox `Status des Labor-Nachweises in RM-DEMO` | Job Queue, Monitoring, Telemetrie, Admin Center, Support Owner und Hypercare als Zielbild und Gate-Thema erklaeren | `OPERATIONS-001` | `evidence/operations-001/` | erledigt als Buch-/Readiness-Sync; keine Job Queue angelegt oder gestartet, keine Telemetrie-/Admin-Aenderung, kein Monitoring-Connector und keine Produktivumgebung | Kapitel 30 |
 
+## Solution Architect
+
+| Bereich | Seite | Page-ID | UI-Element | Funktion | Testfall | Screenshot/Evidence | Status | Buchstelle |
+|---|---|---:|---|---|---|---|---|---|
+| Buch-Sync | Kapitel 31 | n/a | Statusbox `Status des Labor-Nachweises in RM-DEMO` | Standardnachweis, Fit-Gap, Extension/AppSource/Custom, Architekturentscheidung, UAT, Rollback und Betrieb als Entscheidungsrahmen erklaeren | `SOLUTIONARCHITECT-001` | `evidence/solutionarchitect-001/` | erledigt als Buch-/Readiness-Sync; keine AL-/Extension-Entwicklung, keine AppSource-Installation, kein API-/Connector-/Power-Platform-/Power-BI-Setup, keine Architekturentscheidung und keine Buchung | Kapitel 31 |
+
 ## Naechste Inventarziele
 
 | Reihenfolge | Ziel |
 |---:|---|
-| 1 | Solution-Architect-Readiness: Kapitel 31 als read-only/Buch-Zielbild-Sync vorbereiten; keine AL-/Extension-Entwicklung, keine produktive Architekturentscheidung umsetzen und keine Setup-/Buchungs-/Integrationsaenderung |
+| 1 | UAT-Readiness: Kapitel 32 als read-only/Buch-Zielbild-Sync vorbereiten; vorhandene Evidence in UAT-Logik einordnen, keine neue Buchung, keine Setup-Aenderung und kein neuer Prozesslauf |
 | 2 | Intercompany-/Auslandprozess nur mit Gate fortsetzen: keine Company anlegen/wechseln, keinen IC-Partner, keinen Beleg `IC-7001`, keine Inbox/Outbox-Aktion und keine VAT-/Waehrungs-Aenderung ohne Freigabe |
 | 3 | Dropshipping-Setup nur mit Gate fortsetzen: `D11000`, `K20000`, `SP-PUMP-01` und Drop-Shipment-/Purchasing-Code-Logik bleiben UI-first Setup-Folgearbeit |
 | 4 | Project-Setup nur mit Gate fortsetzen: Projekt `PROJ-5001`, Ressource `RES-TECH`, Material `SP-SENSOR-02` und Lagerort `PROJ-LAG` bleiben UI-first Setup-Folgearbeit |

@@ -38,6 +38,24 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 
 ## Aktuelle Fundstellen
 
+## FIND-BC-SA-001 Solution-Architect-Readiness ist keine Architekturentscheidung
+
+| Feld | Wert |
+|---|---|
+| Status | erledigt als Buch-Sync; praktische Architekturentscheidung/ADR gate-gesperrt |
+| Quelle | `SOLUTIONARCHITECT-001` |
+| Screenshot | keine neuen Screenshots; Buch-/Readiness-Sync |
+| Evidence | `playwright/projects/fibu-book5/evidence/solutionarchitect-001/SOLUTIONARCHITECT-001-READINESS.md`, `playwright/projects/fibu-book5/evidence/solutionarchitect-001/SOLUTIONARCHITECT-001-result.json`, `playwright/projects/fibu-book5/evidence/solutionarchitect-001/README.md` |
+| BC-Seite | nicht ausgefuehrt; Kapitel 31 Zielbild |
+| sichtbarer Text / Werte | Standard-first, Fit-Gap, Extension/AppSource/Custom, Architecture Decision Record, UAT, Rollback, Betriebsfolge |
+| Elementtyp | Solution-Architecture-Readiness / Gate-Grenze |
+| erste Hypothese | Kapitel 31 darf nicht so wirken, als sei durch die Laborbelege bereits eine produktive Architekturentscheidung, Extension-Empfehlung oder Customizing-Freigabe entstanden. |
+| Testergebnis | `SOLUTIONARCHITECT-001` hat Kapitel 31 gegen den aktuellen Laborstand synchronisiert. Es gab keinen BC-Lauf, keine AL-/Extension-Entwicklung, keine AppSource-Installation, kein API-/Connector-/Power-Platform-/Power-BI-Setup, keine produktive Architekturentscheidung, keine Setup-Aenderung und keine Buchung. |
+| Entscheidung | Kapitel 31 trennt jetzt Entscheidungsrahmen und Umsetzung. Praktische Architekturentscheidungen bleiben Gate-Folgearbeit mit `SOLUTIONARCHITECT-002-ARCHITECTURE-DECISION-OR-ADR`. |
+| Buchstelle | Kapitel 31 Business Central Solution Architect Pfad |
+
+Fuer Anfaenger ist das wichtig, weil Architektur nicht bedeutet, Standardgrenzen sofort technisch zu umgehen. Ein Solution Architect muss zuerst Standardnachweis, Fit-Gap, Risiko, UAT, Owner, Rollback und Betriebsfolge dokumentieren. Erst danach wird entschieden, ob Standard, Setup, Prozessdesign, Extension oder Custom wirklich richtig ist.
+
 ## FIND-BC-OPS-001 Operations-Readiness ist kein eingerichtetes Monitoring
 
 | Feld | Wert |

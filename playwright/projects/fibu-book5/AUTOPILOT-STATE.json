@@ -6,8 +6,8 @@
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
   "dataBasis": "CRONUS USA",
-  "activeArea": "operations",
-  "lastCompletedRun": "OPERATIONS-001",
+  "activeArea": "solutionarchitect",
+  "lastCompletedRun": "SOLUTIONARCHITECT-001",
   "lastWorkType": "book-sync",
   "postedInLastRun": false,
   "latestPostedDocuments": {
@@ -38,6 +38,7 @@
     "no configuration package, data import, opening-balance posting or cutover execution without explicit gate",
     "no extension installation, AppSource app, API/web-service setup, connector authorization, Power Platform setup, Power BI setup or productive integration run without explicit gate",
     "no job queue creation/start, telemetry/Application Insights change, admin center change, monitoring connector setup or production operations change without explicit gate",
+    "no architecture decision, ADR, extension/custom recommendation or productive solution design implementation without explicit gate",
     "no Analysis View setup without explicit gate",
     "no Fixed Assets setup or posting without explicit gate",
     "no Warehouse activation without explicit gate",
@@ -57,6 +58,7 @@
     "MIGRATION-002-CONFIGURATION-PACKAGES-IMPORT",
     "INTEGRATIONS-002-SETUP-OR-CONNECTOR",
     "OPERATIONS-002-JOB-QUEUE-OR-MONITORING-SETUP",
+    "SOLUTIONARCHITECT-002-ARCHITECTURE-DECISION-OR-ADR",
     "FIXEDASSETS-004-SETUP-OR-POSTING",
     "WAREHOUSE-001-ACTIVATION",
     "MANUFACTURING-001-POSTING",
@@ -69,7 +71,7 @@
     "P2P-REPOST-001",
     "INVENTORY-REPOST-INV008"
   ],
-  "nextBestStepWithoutApproval": "SOLUTIONARCHITECT-001-READINESS: Kapitel 31 Business Central Solution Architect Pfad als read-only/Buch-Zielbild-Sync vorbereiten; keine AL-/Extension-Entwicklung, keine produktive Architekturentscheidung umsetzen und keine Setup-/Buchungs-/Integrationsaenderung.",
+  "nextBestStepWithoutApproval": "UAT-001-READINESS: Kapitel 32 UAT-Testbibliothek als read-only/Buch-Zielbild-Sync vorbereiten; vorhandene Evidence in UAT-Logik einordnen, keine neue Buchung, keine Setup-Aenderung und kein neuer Prozesslauf.",
   "nextBestStepWithApproval": {
     "payments": "PAYMENTS-011-LAB-PAYMENT: kontrollierte Laborzahlung nur mit ausdruecklicher Freigabe, Postenspur und Bank-/OP-Evidence.",
     "reporting": "REPORTING-011-ANALYSIS-VIEW-FIT: idempotenten Analysis-View-Fit fuer PRODUCTLINE/CHANNEL nur mit Freigabe einrichten/aktualisieren.",
@@ -79,7 +81,8 @@
     "security": "SECURITY-002-USER-PERMISSION-SETUP: Benutzer-/Berechtigungs-/Profil-/Security-Group-/User-Setup-/Job-Queue-/Change-Log-Aenderungen nur mit Freigabe, UI-first Klickpfad, Rechte-/SoD-Matrix und Audit-/Review-Evidence.",
     "migration": "MIGRATION-002-CONFIGURATION-PACKAGES-IMPORT: Configuration Packages, Datenimport, Opening-Balance-Journale oder Cutover-Ausfuehrung nur mit Freigabe, UI-first Klickpfad, Abstimmprotokoll und Rueckfallregel.",
     "integrations": "INTEGRATIONS-002-SETUP-OR-CONNECTOR: Extension, AppSource-App, API/Web Service, Connector, Power Platform, Power BI, Job Queue oder produktiven Integrationslauf nur mit Freigabe, UI-first Klickpfad, UAT, Rollen/Berechtigungen, Fehlerfall, Rollback, Monitoring und Support Owner.",
-    "operations": "OPERATIONS-002-JOB-QUEUE-OR-MONITORING-SETUP: genau einen Betriebshebel UI-first freigeben, zum Beispiel Job Queue Log/Status oder Monitoring-/Telemetry-Kontext, mit Vorher/Nachher, Support Owner, Rueckfallregel und klarer Labor-/DE-Trennung."
+    "operations": "OPERATIONS-002-JOB-QUEUE-OR-MONITORING-SETUP: genau einen Betriebshebel UI-first freigeben, zum Beispiel Job Queue Log/Status oder Monitoring-/Telemetry-Kontext, mit Vorher/Nachher, Support Owner, Rueckfallregel und klarer Labor-/DE-Trennung.",
+    "solutionarchitect": "SOLUTIONARCHITECT-002-ARCHITECTURE-DECISION-OR-ADR: genau eine Architekturentscheidung nur mit Standardnachweis, Fit-Gap, Risiko, UAT, Owner, Rollback, Betriebsfolge und klarer Labor-/DE-Trennung freigeben."
   },
   "doNotRepeat": [
     "Do not repeat O2C posting for UAT-O2C-001",
@@ -89,6 +92,7 @@
     "Do not repeat SECURITY-001 read-only admin/security Tell-Me checks without a new UI path or setup gate",
     "Do not repeat INTEGRATIONS-001 book-sync without a new approved integration candidate or setup gate",
     "Do not repeat OPERATIONS-001 book-sync without a new approved operations setup gate or concrete monitoring target",
+    "Do not repeat SOLUTIONARCHITECT-001 book-sync without a new approved architecture decision target or ADR gate",
     "Do not plan Shopify/Online Store scope"
   ],
   "notes": [
@@ -117,6 +121,7 @@
     "SECURITY-002 synced chapter 27 with SECURITY-001: the chapter now separates profile/role, permission sets, security groups, user setup, job queue and change log as different check fields. It explicitly marks SECURITY-001 as read-only readiness, not SoD/security final proof. Practical security setup remains gate-locked.",
     "MIGRATION-001 synced chapter 28 without a BC run: migration, opening balances and cutover are now separated as target fields. No configuration package, import, new company, opening-balance posting, setup change or masterdata change was executed. INV008-899959 remains training/opening-balance lab logic, not production migration proof.",
     "INTEGRATIONS-001 synced chapter 29 without a BC run: integrations, extensions, AppSource, APIs/web services, Power Platform and Power BI are now target fields with an explicit setup/connector gate. No extension, connector, API setup, Power Platform setup, Power BI setup, productive data exchange, setup change or posting was executed.",
-    "OPERATIONS-001 synced chapter 30 without a BC run: Betrieb, Monitoring and Hypercare are now target fields with an explicit operations gate. No job queue was created or started, no telemetry/Application Insights or admin center setting was changed, no monitoring connector was configured, no production environment was touched and no posting was executed."
+    "OPERATIONS-001 synced chapter 30 without a BC run: Betrieb, Monitoring and Hypercare are now target fields with an explicit operations gate. No job queue was created or started, no telemetry/Application Insights or admin center setting was changed, no monitoring connector was configured, no production environment was touched and no posting was executed.",
+    "SOLUTIONARCHITECT-001 synced chapter 31 without a BC run: Solution Architect thinking is now a decision framework based on standard evidence, fit-gap, UAT, risk, owner, rollback and operations impact. No AL/extension development, AppSource installation, API/connector/Power Platform/Power BI setup, architecture decision, setup change or posting was executed."
   ]
 }

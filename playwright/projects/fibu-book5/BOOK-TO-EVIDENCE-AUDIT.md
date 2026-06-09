@@ -22,6 +22,8 @@ Update nach `INTEGRATIONS-001`: Kapitel 29 ist als Read-only-/Buch-Zielbild-Sync
 
 Update nach `OPERATIONS-001`: Kapitel 30 ist als Read-only-/Buch-Zielbild-Sync dokumentiert. Betrieb, Monitoring und Hypercare werden als eigene Nachweisschicht getrennt; es gab keinen BC-Lauf, keine Job Queue, keinen Monitoring-Connector, keine Telemetrie-/Admin-Aenderung, keine Produktivumgebung und keine Buchung. Praktische Operations-Aenderungen brauchen Gate `OPERATIONS-002-JOB-QUEUE-OR-MONITORING-SETUP`.
 
+Update nach `SOLUTIONARCHITECT-001`: Kapitel 31 ist als Read-only-/Buch-Zielbild-Sync dokumentiert. Solution-Architect-Denken wird als Entscheidungsrahmen aus Standardnachweis, Fit-Gap, UAT, Risiko, Owner, Rollback und Betriebsfolge getrennt; es gab keinen BC-Lauf, keine AL-/Extension-Entwicklung, keine AppSource-Installation, keine API-/Connector-/Power-Platform-/Power-BI-Einrichtung, keine produktive Architekturentscheidung, keine Setup-Aenderung und keine Buchung. Praktische Architekturentscheidungen brauchen Gate `SOLUTIONARCHITECT-002-ARCHITECTURE-DECISION-OR-ADR`.
+
 ## Leitentscheidung
 
 `RM-DEMO` bleibt der konsolidierte Lern- und Labor-Mandant in Sandbox `MCP_1_20260210`. Die Ziel-Companies `RM-PROD`, `RM-SALES`, `RM-SERVICE`, `RM-SHARED` und `RM-AT` sind Buchziel fuer einen spaeteren Mehr-Company-/Greenfield-Block. Sie werden nicht als naechster Reflex angelegt. Zuerst werden Buchanforderungen, aktuelle Evidence und RM-DEMO-Setup synchronisiert.
@@ -137,8 +139,8 @@ Fazit: O2C ist als CRONUS-USA-Laborprozess fachlich weitgehend synchronisiert, a
 
 ```text
 Arbeite auf Branch codex/playwright-bc-screenshot-foundation.
-Lies AUTOPILOT-STATE.json, POSTING-AND-SETUP-GATES.md, CURRENT-STATE.md, BOOK-TO-EVIDENCE-AUDIT.md, LAB-FIT-STATUS.md und Kapitel 31.
-`OPERATIONS-001` ist erledigt. Ohne Freigabe fuehre `SOLUTIONARCHITECT-001-READINESS` als read-only/Buch-Zielbild-Sync durch: keine AL-/Extension-Entwicklung, keine produktive Architekturentscheidung umsetzen, keine Setup-/Buchungs-/Integrationsaenderung.
+Lies AUTOPILOT-STATE.json, POSTING-AND-SETUP-GATES.md, CURRENT-STATE.md, BOOK-TO-EVIDENCE-AUDIT.md, LAB-FIT-STATUS.md und Kapitel 32.
+`SOLUTIONARCHITECT-001` ist erledigt. Ohne Freigabe fuehre `UAT-001-READINESS` als read-only/Buch-Zielbild-Sync fuer Kapitel 32 durch: vorhandene Evidence in UAT-Testbibliothekslogik einordnen; keine neue Buchung, keine Setup-Aenderung und kein neuer Prozesslauf.
 ```
 
 ## Grenzen

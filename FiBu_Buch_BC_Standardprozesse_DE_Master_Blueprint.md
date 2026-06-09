@@ -5585,6 +5585,22 @@ Merksatz:
 
 Dieses Kapitel vermittelt, wie ein Business Central Solution Architect Standardlösungen entwirft, bewertet, dokumentiert, testet und projektfähig macht. Es ist kein AL-Developer-Handbuch. Es ist Architektur auf Basis von Business Central Standard, Setup, Prozessdesign, Datenmodell, Sicherheit, Integrationen, Migration, UAT, Betrieb und Erweiterungsentscheidungen.
 
+### Status des Labor-Nachweises in `RM-DEMO`
+
+`SOLUTIONARCHITECT-001` ist ein Buch-/Zielbild-Sync ohne Business-Central-Lauf. Der aktuelle Evidence-Stand beweist, dass O2C, P2P, Inventory, Payments-Readiness, Reporting-Grenzen, Security, Migration, Integrationen und Betrieb als getrennte Prueffelder dokumentiert sind. Daraus folgt aber noch keine produktive Architekturentscheidung.
+
+| Prueffeld | Aktueller RM-DEMO-Stand | Nicht behaupten |
+|---|---|---|
+| Standard-first | Prozess-Evidence liegt fuer mehrere Kernprozesse vor; Standardgrenzen sind als Laborbefunde dokumentiert | dass jeder Buch-Mini-Case produktiv standardfaehig ist |
+| Fit-Gap | Reporting, VAT19, Integrationen, Security, Migration und Betrieb haben klare Gates | dass ein Gate schon eine Umsetzung oder Freigabe ist |
+| Extension/AppSource/Custom | Erweiterungen sind als moeglicher Entscheidungsweg beschrieben | dass eine Extension installiert, entwickelt oder empfohlen wurde |
+| Architekturentscheidung | die Leitfragen sind als Entscheidungsraster nutzbar | dass ein Architecture Decision Record freigegeben wurde |
+| UAT/Betrieb | UAT, Rollback, Owner und Betriebsfolge sind Pflichtfelder jeder spaeteren Entscheidung | dass deutscher Finalnachweis, Release-Wave-Test oder Monitoring schon erledigt sind |
+
+Fuer Anfaenger ist dieser Unterschied zentral: Ein Solution Architect entscheidet nicht aus Bauchgefuehl oder nach dem ersten sichtbaren Button. Er sammelt Standardnachweis, prueft Setup und Datenmodell, beschreibt die Luecke, bewertet Risiko und TCO, definiert UAT und dokumentiert Owner, Rollback und Betrieb. Erst danach darf eine konkrete Empfehlung `Standard`, `Setup`, `Prozessdesign`, `Extension`, `Custom` oder `Prozessaenderung` heissen.
+
+Praktische Architekturarbeit bleibt gate-gesperrt. Ohne Freigabe keine AL-/Extension-Entwicklung, keine AppSource-Installation, keine API-/Connector-/Power-Platform-/Power-BI-Einrichtung, keine produktive Architekturentscheidung, keine Setup-Aenderung und keine Buchung. Naechster sicherer Buchblock ist Kapitel 32: vorhandene Evidence in eine UAT-Testbibliothekslogik einordnen.
+
 ### Rolle und Denkweise
 
 Ein BC Solution Architect sorgt dafür, dass fachliche Anforderungen mit Standardfunktionen, Setup, Prozessdesign, Erweiterungen und Integrationen tragfähig umgesetzt werden. Er schützt Upgradefähigkeit, Datenqualität, Nachweisfähigkeit und Bedienbarkeit.
