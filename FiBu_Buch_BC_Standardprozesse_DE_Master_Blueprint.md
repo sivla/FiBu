@@ -6124,6 +6124,8 @@ Dieses Kapitel ordnet die MB-800-Abdeckung ein. Die offiziellen Skills measured 
 
 ## 35. Microsoft-Learn-Lernpfad-Mapping [Q1][Q2][Q87][Q88][Q89]
 
+Status des Evidence-Syncs in `RM-DEMO`: `LEARNPATH-001` vom 09.06.2026 ordnet dieses Kapitel gegen offizielle Microsoft-Learn-Quellen, den MB-800-Study-Guide und vorhandene Projekt-Evidence ein. Das ist eine Lernlandkarte, kein Nachweis, dass Learn-Module abgeschlossen, eine MB-800-Pruefung bestanden oder alle Prozesse im deutschen Zielmandanten final belegt wurden. O2C, P2P und Inventory sind starke CRONUS-USA-Laboranker; Payments, Reporting, Security, Compliance, Migration, Integrationen, Betrieb, UAT und Training bleiben je nach Bereich Readiness, Teilbefund oder Gate-Folgearbeit.
+
 Dieses Kapitel bildet MB-800 und die Business-Central-Produktlandkarte auf das Buch ab. Microsoft Learn bleibt die Primärquelle für BC-Standardfunktionen; dieses Buch übersetzt die Lerninhalte in deutsche Prozess-, Projekt- und Übungslogik.
 
 | Microsoft-Learn-Bereich | Lernpfad/Modul/Unit | BC-Thema | Buchkapitel | Übung | UAT-Fall | Tiefe |

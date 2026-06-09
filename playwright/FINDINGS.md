@@ -38,6 +38,25 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 
 ## Aktuelle Fundstellen
 
+## FIND-BC-LEARNPATH-001 Lernpfad-Mapping ist kein absolvierter Lernpfad
+
+| Feld | Wert |
+|---|---|
+| Status | erledigt als Buch-Sync; praktische Lern-/Pruefungsabnahme bleibt Folgearbeit |
+| Quelle | `LEARNPATH-001` |
+| Screenshot | keine neuen Screenshots; Buch-/Readiness-Sync |
+| Evidence | `playwright/projects/fibu-book5/evidence/learnpath-001/LEARNPATH-001-READINESS.md`, `playwright/projects/fibu-book5/evidence/learnpath-001/LEARNPATH-001-result.json`, `playwright/projects/fibu-book5/evidence/learnpath-001/README.md` |
+| BC-Seite | nicht ausgefuehrt; Kapitel 35 Zielbild |
+| sichtbarer Text / Werte | Microsoft Learn Training Browse, MB-800 Study Guide, Business Central business functionality, O2C `PS-INV103297`, P2P `108219`, Inventory `INV008-899959` |
+| Elementtyp | Lernpfad-Mapping / Readiness / Gate-Grenze |
+| erste Hypothese | Kapitel 35 darf nicht so wirken, als seien Microsoft-Learn-Module abgeschlossen oder alle Lernfelder praktisch final belegt, nur weil sie auf Buchkapitel gemappt sind. |
+| Recherchequelle | Microsoft Learn Training Browse: https://learn.microsoft.com/de-de/training/browse/?expanded=dynamics-365&products=dynamics-business-central; MB-800 Study Guide: https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/mb-800; Business functionality: https://learn.microsoft.com/en-us/dynamics365/business-central/across-business-functionality |
+| Testergebnis | `LEARNPATH-001` hat Kapitel 35 ohne BC-Lauf synchronisiert. Die Lernpfad-Landkarte verbindet offizielle Quellen, Buchkapitel und vorhandene Evidence. O2C, P2P und Inventory sind Laboranker; Payments, Reporting und Gate-Themen bleiben Readiness, Teilbefund oder Buch-Sync. |
+| Entscheidung | Kapitel 35 trennt jetzt Lernlandkarte, absolvierte Learn-Module, Zertifizierung, deutsche Finalnachweise und praktische Prozessnachweise. Naechster sicherer Block ohne Gate ist Kapitel 36 als Pruefungstraining-Sync. |
+| Buchstelle | Kapitel 35 Microsoft-Learn-Lernpfad-Mapping |
+
+Fuer Anfaenger ist das wichtig, weil ein Lernpfad Orientierung gibt, aber nicht automatisch Kompetenz beweist. Kompetenz entsteht erst, wenn Einrichtung, Klickpfad, Beleg, Postenspur, Fehlerfall und Bericht praktisch verstanden und im passenden Mandanten nachgewiesen sind.
+
 ## FIND-BC-MB800-001 Kompetenzmatrix ist kein Zertifizierungsnachweis
 
 | Feld | Wert |
