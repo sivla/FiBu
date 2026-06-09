@@ -1,0 +1,97 @@
+{
+  "testId": "PAYMENTS-013",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "dataBasis": "CRONUS USA",
+  "mode": "read-only-bank-ledger-path",
+  "sourceEvidence": "payments-011/payments-012",
+  "postedInThisRun": false,
+  "setupChanged": false,
+  "bankReconciliationDone": false,
+  "paymentDocumentNo": "PAY011-PS103297",
+  "bankAccountNo": "BANK-RM-01",
+  "tellMe": {
+    "candidateVisible": true,
+    "buttons": [
+      "Nach Bank Account Ledger Entries suchen",
+      "Reconcile Imported Payments Reconcile your bank account by importing transactions and applying them, automatically or manually, to open customer ledger entries, open vendor ledger entries, or open bank account ledger entries.",
+      "Verbindung zu Banken herstellen, um Bank-Feeds zu importieren."
+    ],
+    "textEvidenceFile": "010-tell-me-bank-account-ledger-page-text.txt",
+    "screenshot": "payments-013-010-tell-me-bank-account-ledger.png"
+  },
+  "probes": [
+    {
+      "id": "020-page-372-document-no",
+      "pageId": 372,
+      "tableName": "Bank Account Ledger Entry",
+      "filterField": "Document No.",
+      "filterValue": "PAY011-PS103297",
+      "contextVisible": true,
+      "bankLedgerContextVisible": true,
+      "documentVisible": true,
+      "bankVisible": true,
+      "amountVisible": true,
+      "relevantButtons": [
+        "Bank Account No.",
+        "BANK-RM-01",
+        "Bankposten:",
+        "Entry No.",
+        "Open"
+      ],
+      "status": "labor",
+      "screenshot": "payments-013-020-page-372-document-no.png",
+      "textEvidenceFile": "020-page-372-document-no-page-text.txt"
+    },
+    {
+      "id": "030-page-372-bank-account-no",
+      "pageId": 372,
+      "tableName": "Bank Account Ledger Entry",
+      "filterField": "Bank Account No.",
+      "filterValue": "BANK-RM-01",
+      "contextVisible": true,
+      "bankLedgerContextVisible": true,
+      "documentVisible": true,
+      "bankVisible": true,
+      "amountVisible": true,
+      "relevantButtons": [
+        "Bank Account No.",
+        "BANK-RM-01",
+        "Bankposten:",
+        "Entry No.",
+        "Open"
+      ],
+      "status": "labor",
+      "screenshot": "payments-013-030-page-372-bank-account-no.png",
+      "textEvidenceFile": "030-page-372-bank-account-no-page-text.txt"
+    },
+    {
+      "id": "040-page-371-document-no-legacy",
+      "pageId": 371,
+      "tableName": "Bank Account Ledger Entry",
+      "filterField": "Document No.",
+      "filterValue": "PAY011-PS103297",
+      "contextVisible": false,
+      "bankLedgerContextVisible": false,
+      "documentVisible": false,
+      "bankVisible": false,
+      "amountVisible": false,
+      "relevantButtons": [],
+      "status": "rejected",
+      "screenshot": "payments-013-040-page-371-document-no-legacy.png",
+      "textEvidenceFile": "040-page-371-document-no-legacy-page-text.txt"
+    }
+  ],
+  "bankLedgerProofVisible": true,
+  "bestProbe": "020-page-372-document-no",
+  "proves": [
+    "Bank Account Ledger Entries sind fuer die vorhandene Laborzahlung oder das Bankkonto ueber einen UI-Pfad sichtbar."
+  ],
+  "doesNotProve": [
+    "Keine Bankabstimmung.",
+    "Keine weitere Zahlung.",
+    "Keine Kreditorenzahlung.",
+    "Kein deutscher Bank-/Compliance-Finalnachweis."
+  ],
+  "nextStep": "PAYMENTS-014-BANK-LEDGER-BOOK-SYNC: Kapitel 20 und Evidence-Pack mit dem Bank-Account-Ledger-UI-Pfad synchronisieren; keine Bankabstimmung."
+}

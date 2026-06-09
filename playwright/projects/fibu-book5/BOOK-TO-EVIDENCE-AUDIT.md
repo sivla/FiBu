@@ -149,7 +149,7 @@ Update nach `GOVERNANCE-005`: Autopilot V2.2 ist gegen State und Gates synchroni
 
 ## Prioritaeten
 
-1. Payment-Folgeentscheidung: `PAYMENTS-011-LAB-PAYMENT` ist erledigt und darf nicht wiederholt werden; offen bleiben `PAYMENTS-012` Buch-/Evidence-Sync und der Bank-Ledger-read-only-Folgepfad.
+1. Payment-Folgeentscheidung: `PAYMENTS-011-LAB-PAYMENT` ist erledigt und darf nicht wiederholt werden; `PAYMENTS-012` und `PAYMENTS-013` sind erledigt; offen bleibt der Buch-/Evidence-Sync zum Bankpostenpfad und die gesperrte Bankabstimmung.
 2. Reporting-Freigabeentscheidung: Analysis-View-Fit fuer `PRODUCTLINE`/`CHANNEL` nur mit ausdruecklicher Freigabe; ohne Freigabe keinen gleichen read-only Pfad wiederholen.
 2. `MASTERDATA-BACKLOG.md` als Pflichtquelle nutzen, bevor P2P, Inventory, Warehouse, Manufacturing, Service, Project-Setup, Payments oder Reporting-Finallogik praktisch gestartet werden.
 3. `UAT-O2C-001` nicht erneut buchen; Sachposten-Dimensionspfad aus `REPORTING-009` als Laborgrenze nutzen.
@@ -161,7 +161,7 @@ Update nach `GOVERNANCE-005`: Autopilot V2.2 ist gegen State und Gates synchroni
 ```text
 Arbeite auf Branch codex/playwright-bc-screenshot-foundation.
 Lies AUTOPILOT-STATE.json, POSTING-AND-SETUP-GATES.md, CURRENT-STATE.md, BOOK-TO-EVIDENCE-AUDIT.md, LAB-FIT-STATUS.md, AUTOPILOT-PROMPT-V2.md und evidence/governance-005/.
-`GOVERNANCE-005` und `PAYMENTS-011` sind erledigt. Starte als naechsten Lauf `PAYMENTS-012`: Kapitel 19/20, Coverage, Findings und Evidence-Pack mit `PAY011-PS103297` synchronisieren; Bank Account Ledger Entries nur read-only klaeren, keine weitere Zahlung und keine Bankabstimmung ohne neues Gate.
+`GOVERNANCE-005` und `PAYMENTS-011` sind erledigt. Starte als naechsten Lauf `PAYMENTS-014-BANK-LEDGER-BOOK-SYNC`: Kapitel 20, Coverage, Findings und Evidence-Pack mit dem Page-372-Bankpostenpfad synchronisieren; keine weitere Zahlung und keine Bankabstimmung ohne neues Gate.
 ```
 
 ## Grenzen

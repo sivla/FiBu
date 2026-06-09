@@ -7,8 +7,8 @@
   "company": "RM-DEMO",
   "dataBasis": "CRONUS USA",
   "activeArea": "payments",
-  "lastCompletedRun": "PAYMENTS-012",
-  "lastWorkType": "book-evidence-sync",
+  "lastCompletedRun": "PAYMENTS-013",
+  "lastWorkType": "read-only-evidence-run",
   "postedInLastRun": false,
   "latestPostedDocuments": {
     "o2c": {
@@ -33,7 +33,21 @@
         "Detailed Customer Ledger Entries show Initial Entry, Payment Discount and Application lines",
         "G/L Entries show 15110, 18200 and 40910"
       ],
-      "limitation": "Bank Account Ledger Entries were not reliably visible via the tested page-371 path; no bank reconciliation was executed."
+      "limitation": "Bank Account Ledger Entries are visible since PAYMENTS-013 via page 372; the older tested page-371 path remains rejected; no bank reconciliation was executed.",
+      "bankAccountLedger": {
+        "pageId": 372,
+        "paymentDocumentNo": "PAY011-PS103297",
+        "bankAccountNo": "BANK-RM-01",
+        "amountVisible": "67.673,60",
+        "entryNoVisible": "4995",
+        "relatedGlAccountsVisible": [
+          "15110",
+          "18200",
+          "40910"
+        ],
+        "rejectedLegacyPath": "page 371 did not show Bank Account Ledger Entries context",
+        "limitation": "Read-only CRONUS-USA lab proof; no bank reconciliation, no vendor payment, no German final proof."
+      }
     },
     "fixedAssets": null
   },
@@ -63,7 +77,8 @@
     "no Shopify scope",
     "no repeat payment for PAY011-PS103297 / PS-INV103297 without explicit new gate",
     "no repeat PAYMENTS-012 book-sync without evidence delta",
-    "no bank reconciliation without explicit gate after PAYMENTS-012"
+    "no bank reconciliation without explicit gate after PAYMENTS-012",
+    "no repeat PAYMENTS-013 bank-ledger read-only without evidence delta"
   ],
   "openGates": [
     "REPORTING-011-ANALYSIS-VIEW-FIT",
@@ -88,7 +103,7 @@
     "INVENTORY-REPOST-INV008"
   ],
   "autonomousAllowed": [],
-  "nextBestStepWithoutApproval": "PAYMENTS-013-BANK-LEDGER-READONLY: korrekten UI-Pfad fuer Bank Account Ledger Entries zur vorhandenen Zahlung PAY011-PS103297 oder BANK-RM-01 klaeren; keine weitere Zahlung, keine Bankabstimmung, keine Setup-Aenderung.",
+  "nextBestStepWithoutApproval": "PAYMENTS-014-BANK-LEDGER-BOOK-SYNC: Kapitel 20, Coverage, Findings und Evidence-Pack mit dem erfolgreichen Page-372-Bankpostenpfad synchronisieren; keine weitere Zahlung, keine Bankabstimmung, keine Setup-Aenderung.",
   "nextBestStepWithApproval": {
     "payments": "Nur mit neuem Gate: weitere Zahlung, Kreditorenzahlung oder Bankabstimmung. PAYMENTS-011 darf nicht wiederholt werden.",
     "reporting": "REPORTING-011-ANALYSIS-VIEW-FIT: idempotenten Analysis-View-Fit fuer PRODUCTLINE/CHANNEL nur mit Freigabe einrichten/aktualisieren.",
@@ -125,7 +140,8 @@
     "Do not repeat GOVERNANCE-005 without a new autonomous-posting-policy delta",
     "Do not repeat PAYMENTS-011 payment PAY011-PS103297 for PS-INV103297",
     "Do not repeat PAYMENTS-012 book-sync without a new evidence or book delta",
-    "Do not start bank reconciliation from PAYMENTS-013 read-only path"
+    "Do not start bank reconciliation from PAYMENTS-013 read-only path",
+    "Do not repeat PAYMENTS-013 bank-ledger read-only without a new UI path or evidence delta"
   ],
   "notes": [
     "AUTOPILOT-STATE.json and POSTING-AND-SETUP-GATES.md were introduced because the V2 autopilot prompt requires machine-readable state and explicit gates.",
@@ -166,6 +182,6 @@
     "ARTIFACTS-001 synced chapter 39 without a BC run: project artifacts, templates, handover and repo QA are mapped to evidence structure, Autopilot state, gates and artifact governance. Templates and handover files are control artifacts, not process proof; no setup change, posting, screenshot or German final proof was executed.",
     "SOURCES-001 synced chapter 40 without a BC run: sources are classified as standard references, official legal/tax/compliance references, optional vendor references, out-of-scope markers or project evidence. Sources support book rules and target pictures, but do not prove RM-DEMO click paths, postings or German final proof. Q10 Shopify remains only an out-of-scope marker.",
     "PAYMENTS-011 posted exactly one UI-first CRONUS-USA lab payment PAY011-PS103297 for customer D10000 and invoice PS-INV103297. Invoice Remaining Amount is visible as 0,00 with Applied Entries = 1; detailed customer ledger entries show Initial Entry, Payment Discount and Application lines; G/L entries show 15110, 18200 and 40910. Bank Account Ledger Entries were not reliably visible via the tested page-371 path. No bank reconciliation, no vendor payment and no German final proof.",
-    "PAYMENTS-012 synced chapters 19/20, coverage, findings and evidence-pack truth after PAYMENTS-011 without a new BC run, setup change or posting. Next no-approval step is PAYMENTS-013-BANK-LEDGER-READONLY to find a reliable UI path for Bank Account Ledger Entries for PAY011-PS103297 or BANK-RM-01."
+    "PAYMENTS-013 opened Bank Account Ledger Entries read-only. Tell-Me showed Bank Account Ledger Entries as candidate; Page 372 with Document No. PAY011-PS103297 and Bank Account No. BANK-RM-01 showed the bank ledger entry, amount 67.673,60, Entry No. 4995 and Related G/L Entries 15110/18200/40910. Page 371 remains rejected. No payment, no setup change and no bank reconciliation. Next no-approval step is PAYMENTS-014-BANK-LEDGER-BOOK-SYNC."
   ]
 }
