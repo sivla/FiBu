@@ -30,6 +30,20 @@ Jeder Eintrag muss außerdem gegen die betroffene Buchstelle geprüft werden. We
 | Buchwirkung | Kapitel 19/20 muss Bankkonto-Readiness vor der ersten Zahlung nennen. Ein sichtbares Zahlungsjournal reicht nicht; das Gegenkonto und der Bankkontext muessen fachlich passen. |
 | Kuenftige Regel | Keine Zahlungsbuchung nur wegen vorhandenem Bankkonto. `Post` im Journal ist sichtbar, aber bis Journalfelder, Gegenkonto `BANK-RM-01`, Betrag, Ausgleichsbezug, Bank Account Posting Group/Sachkonto-Fit und Vorabkontrolle passen, bleibt die Buchung gesperrt. |
 
+## WK-BC-SRV-001 Seitentitel ist kein Zielobjekt-Nachweis
+
+| Feld | Wert |
+|---|---|
+| Status | geloest im Test `SERVICE-001`; als kuenftige Evidence-Regel behalten |
+| Testfall | `SERVICE-001` |
+| Situation | Der erste Service-Readiness-Lauf pruefte Zielobjekte wie `RM-M100-SN1001`, `RES-TECH` und `VAN-SERV` ueber gefilterte BC-Listen. |
+| Symptom | Seitentitel wie `Service Items`, `Resources` oder `Locations` waren sichtbar. Eine zu breite Regex haette daraus faelschlich `targetVisible = true` abgeleitet, obwohl die konkrete Zielnummer nicht im Seitentext stand. |
+| Ursache | Business Central zeigt auch bei leerem oder nicht treffendem Filter den Seitenkontext und Aktionen wie `Neu`. Das beweist die Seite, aber nicht den gesuchten Datensatz. |
+| Warum BC so reagiert | Listen und Karten sind UI-Kontexte. Ein gefilterter Listenaufruf kann eine leere Liste, eine vorhandene Seite oder einen Shell-Zustand zeigen, ohne dass der Zielwert geladen wurde. |
+| Loesung | `SERVICE-001` prueft Zielobjekte jetzt streng auf die konkrete Nummer (`RM-M100-SN1001`, `SP-PUMP-01`, `RES-TECH`, `VAN-SERV`) und filtert Auth-/Shell-Rauschen aus kompakten Evidence-Auszugen. Der Nachlauf zeigt die korrekte Wahrheit: Service-Einstiege sichtbar, Zielobjekte bis auf `D10000` nicht sichtbar. |
+| Buchwirkung | Kapitel 15 darf Service-Seiten nicht als Serviceprozessfaehigkeit ausgeben. Ein Buchbild fuer Stammdaten muss die konkrete Nummer zeigen oder die Luecke klar als Stammdatenbefund markieren. |
+| Kuenftige Regel | Bei gefilterten BC-Listen immer zwischen Seitenkontext und Zielwert unterscheiden. Status `labor` nur, wenn die konkrete Nummer sichtbar ist; sonst `rejected`/Datenluecke. |
+
 ## WK-BC-PAY-003 Sichtbarer Cash-Receipt-Draft hat noch Amount-Issue
 
 | Feld | Wert |

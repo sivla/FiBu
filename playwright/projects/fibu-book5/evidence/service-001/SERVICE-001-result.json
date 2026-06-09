@@ -1,0 +1,218 @@
+{
+  "testId": "service-001",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "dataBasis": "CRONUS USA",
+  "mode": "read-only-service-readiness-no-posting-no-setup-change",
+  "gate": {
+    "id": "SERVICE-001-POSTING",
+    "status": "locked",
+    "consequence": "No Service Order creation, no service line entry, no item/resource consumption, no invoice, no posting."
+  },
+  "tellMeEntries": [
+    {
+      "id": "010-service-orders-tell-me",
+      "searchedFor": "Service Orders",
+      "expectedVisible": true,
+      "relevantButtons": [
+        "Nach Service Orders suchen"
+      ],
+      "screenshot": "service-001-010-service-orders-tell-me.png",
+      "pageTextEvidenceFile": "010-service-orders-tell-me-page-text.txt",
+      "buttonsEvidenceFile": "010-service-orders-tell-me-buttons.json"
+    },
+    {
+      "id": "020-service-items-tell-me",
+      "searchedFor": "Service Items",
+      "expectedVisible": true,
+      "relevantButtons": [
+        "Nach Service Items suchen",
+        "Sales Invoice Create a new invoice for the sales of items or services. Invoice quantities cannot be posted partially.",
+        "Sales Order Create a new sales order for items or services.",
+        "Sales Quote Offer items or services to a customer."
+      ],
+      "screenshot": "service-001-020-service-items-tell-me.png",
+      "pageTextEvidenceFile": "020-service-items-tell-me-page-text.txt",
+      "buttonsEvidenceFile": "020-service-items-tell-me-buttons.json"
+    },
+    {
+      "id": "030-resources-tell-me",
+      "searchedFor": "Resources",
+      "expectedVisible": true,
+      "relevantButtons": [
+        "Nach Resources suchen"
+      ],
+      "screenshot": "service-001-030-resources-tell-me.png",
+      "pageTextEvidenceFile": "030-resources-tell-me-page-text.txt",
+      "buttonsEvidenceFile": "030-resources-tell-me-buttons.json"
+    },
+    {
+      "id": "040-service-management-setup-tell-me",
+      "searchedFor": "Service Management Setup",
+      "expectedVisible": true,
+      "relevantButtons": [
+        "Nach Service Management Setup suchen"
+      ],
+      "screenshot": "service-001-040-service-management-setup-tell-me.png",
+      "pageTextEvidenceFile": "040-service-management-setup-tell-me-page-text.txt",
+      "buttonsEvidenceFile": "040-service-management-setup-tell-me-buttons.json"
+    },
+    {
+      "id": "050-service-contracts-tell-me",
+      "searchedFor": "Service Contracts",
+      "expectedVisible": true,
+      "relevantButtons": [
+        "Nach Service Contracts suchen"
+      ],
+      "screenshot": "service-001-050-service-contracts-tell-me.png",
+      "pageTextEvidenceFile": "050-service-contracts-tell-me-page-text.txt",
+      "buttonsEvidenceFile": "050-service-contracts-tell-me-buttons.json"
+    },
+    {
+      "id": "060-service-ledger-entries-tell-me",
+      "searchedFor": "Service Ledger Entries",
+      "expectedVisible": true,
+      "relevantButtons": [
+        "Nach Service Ledger Entries suchen"
+      ],
+      "screenshot": "service-001-060-service-ledger-entries-tell-me.png",
+      "pageTextEvidenceFile": "060-service-ledger-entries-tell-me-page-text.txt",
+      "buttonsEvidenceFile": "060-service-ledger-entries-tell-me-buttons.json"
+    }
+  ],
+  "directChecks": [
+    {
+      "id": "070-customer-d10000",
+      "pageId": 22,
+      "tableName": "Customer",
+      "fieldName": "No.",
+      "value": "D10000",
+      "role": "Servicekunde / Faktura- oder Garantiekontext",
+      "targetVisible": true,
+      "setupMarkers": {
+        "serviceContextVisible": true,
+        "itemContextVisible": false,
+        "resourceContextVisible": true,
+        "locationContextVisible": true,
+        "postingGroupVisible": true,
+        "unitPriceVisible": true
+      },
+      "wideLayoutActivated": true,
+      "screenshot": "service-001-070-customer-d10000.png",
+      "pageTextEvidenceFile": "070-customer-d10000-page-text.txt",
+      "buttonsEvidenceFile": "070-customer-d10000-buttons.json"
+    },
+    {
+      "id": "080-service-item-rm-m100-sn1001",
+      "pageId": 5988,
+      "tableName": "Service Item",
+      "fieldName": "No.",
+      "value": "RM-M100-SN1001",
+      "role": "geplantes gewartetes Objekt beim Kunden",
+      "targetVisible": false,
+      "setupMarkers": {
+        "serviceContextVisible": true,
+        "itemContextVisible": true,
+        "resourceContextVisible": true,
+        "locationContextVisible": true,
+        "postingGroupVisible": false,
+        "unitPriceVisible": false
+      },
+      "wideLayoutActivated": true,
+      "screenshot": "service-001-080-service-item-rm-m100-sn1001.png",
+      "pageTextEvidenceFile": "080-service-item-rm-m100-sn1001-page-text.txt",
+      "buttonsEvidenceFile": "080-service-item-rm-m100-sn1001-buttons.json"
+    },
+    {
+      "id": "090-item-sp-pump-01",
+      "pageId": 31,
+      "tableName": "Item",
+      "fieldName": "No.",
+      "value": "SP-PUMP-01",
+      "role": "geplantes Ersatzteil fuer Serviceverbrauch",
+      "targetVisible": false,
+      "setupMarkers": {
+        "serviceContextVisible": true,
+        "itemContextVisible": true,
+        "resourceContextVisible": true,
+        "locationContextVisible": true,
+        "postingGroupVisible": false,
+        "unitPriceVisible": true
+      },
+      "wideLayoutActivated": true,
+      "screenshot": "service-001-090-item-sp-pump-01.png",
+      "pageTextEvidenceFile": "090-item-sp-pump-01-page-text.txt",
+      "buttonsEvidenceFile": "090-item-sp-pump-01-buttons.json"
+    },
+    {
+      "id": "100-resource-res-tech",
+      "pageId": 77,
+      "tableName": "Resource",
+      "fieldName": "No.",
+      "value": "RES-TECH",
+      "role": "geplante Technikerzeit",
+      "targetVisible": false,
+      "setupMarkers": {
+        "serviceContextVisible": true,
+        "itemContextVisible": false,
+        "resourceContextVisible": true,
+        "locationContextVisible": true,
+        "postingGroupVisible": true,
+        "unitPriceVisible": true
+      },
+      "wideLayoutActivated": true,
+      "screenshot": "service-001-100-resource-res-tech.png",
+      "pageTextEvidenceFile": "100-resource-res-tech-page-text.txt",
+      "buttonsEvidenceFile": "100-resource-res-tech-buttons.json"
+    },
+    {
+      "id": "110-location-van-serv",
+      "pageId": 15,
+      "tableName": "Location",
+      "fieldName": "Code",
+      "value": "VAN-SERV",
+      "role": "geplanter Lagerort fuer Technikerfahrzeug",
+      "targetVisible": false,
+      "setupMarkers": {
+        "serviceContextVisible": true,
+        "itemContextVisible": false,
+        "resourceContextVisible": true,
+        "locationContextVisible": true,
+        "postingGroupVisible": false,
+        "unitPriceVisible": false
+      },
+      "wideLayoutActivated": true,
+      "screenshot": "service-001-110-location-van-serv.png",
+      "pageTextEvidenceFile": "110-location-van-serv-page-text.txt",
+      "buttonsEvidenceFile": "110-location-van-serv-buttons.json"
+    }
+  ],
+  "safety": {
+    "setupChanged": false,
+    "serviceOrderCreated": false,
+    "serviceItemChanged": false,
+    "itemChanged": false,
+    "resourceChanged": false,
+    "locationChanged": false,
+    "itemConsumed": false,
+    "invoicePosted": false,
+    "posted": false
+  },
+  "proves": [
+    "Service-Einstiege wurden in RM-DEMO read-only gesucht und als Navigationsevidence dokumentiert.",
+    "D10000 wurde als vorhandener Servicekunde read-only geprueft.",
+    "RM-M100-SN1001, SP-PUMP-01, RES-TECH und VAN-SERV wurden als Zielobjekte read-only geprueft; fehlende Sichtbarkeit ist ein Stammdaten-/Setup-Backlog-Befund.",
+    "Kapitel 15 braucht vor dem Serviceprozess einen eigenen Service-Setup- und Stammdaten-Fit."
+  ],
+  "doesNotProve": [
+    "Kein Serviceauftrag SERV-4001.",
+    "Kein Serviceartikel-Fit fuer RM-M100-SN1001.",
+    "Kein Ersatzteilverbrauch von SP-PUMP-01.",
+    "Keine Ressourcenerfassung RES-TECH.",
+    "Keine Garantie-, Kulanz- oder Vertragsentscheidung.",
+    "Keine Preview Posting fuer Service.",
+    "Keine Servicerechnung, keine Serviceposten, keine Artikel-/Wert-/Sachposten aus Service.",
+    "Kein deutscher Finalnachweis."
+  ],
+  "nextStep": "SERVICE-002 als Buch-/Evidence-Sync fuer Kapitel 15: Readiness-Befunde einarbeiten und danach nur mit ausdruecklichem Gate Serviceartikel, Ersatzteil, Ressource, Technikerlager und Serviceauftrag UI-first vorbereiten."
+}

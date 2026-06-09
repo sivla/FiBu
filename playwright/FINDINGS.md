@@ -934,3 +934,21 @@ Fuer Anfaenger ist das wichtig, weil `Location Code = FRA-ZL` nicht automatisch 
 | Buchstelle | Kapitel 14 Planning, Assembly und Manufacturing |
 
 Fuer Anfaenger ist das der Kern: Business Central zeigt viele Produktionsseiten, aber Seitenzugriff ist noch kein Produktionsprozess. Erst wenn Stammdaten, Struktur, Auftrag, Verbrauch, Output und Kostenposten zusammenpassen, darf aus einem Navigationsbild ein Buchungsfall werden.
+
+## FIND-BC-SRV-001 Service-Readiness ist nicht Servicefaehigkeit
+
+| Feld | Wert |
+|---|---|
+| Status | offen als Buch-Sync-Finding; praktische Setup-/Buchungslinie gate-gesperrt |
+| Quelle | `SERVICE-001` |
+| Screenshot | `playwright/projects/fibu-book5/img/service-001-010-service-orders-tell-me.png`, `playwright/projects/fibu-book5/img/service-001-020-service-items-tell-me.png`, `playwright/projects/fibu-book5/img/service-001-030-resources-tell-me.png`, `playwright/projects/fibu-book5/img/service-001-080-service-item-rm-m100-sn1001.png`, `playwright/projects/fibu-book5/img/service-001-090-item-sp-pump-01.png`, `playwright/projects/fibu-book5/img/service-001-100-resource-res-tech.png`, `playwright/projects/fibu-book5/img/service-001-110-location-van-serv.png` |
+| Evidence | `playwright/projects/fibu-book5/evidence/service-001/SERVICE-001-result.json`, `playwright/projects/fibu-book5/evidence/service-001/SERVICE-001-READINESS.md`, `playwright/projects/fibu-book5/evidence/service-001/README.md` |
+| BC-Seite | Tell-Me, Service Items, Resources, Customers, Items, Locations |
+| sichtbarer Text / Werte | Tell-Me zeigt `Service Orders`, `Service Items`, `Resources`, `Service Management Setup`, `Service Contracts`, `Service Ledger Entries`; `D10000` ist sichtbar; `RM-M100-SN1001`, `SP-PUMP-01`, `RES-TECH`, `VAN-SERV` sind als konkrete Zielnummern nicht sichtbar |
+| Elementtyp | Service-Readiness / Stammdatenluecke / Gate-Grenze |
+| erste Hypothese | Ein Serviceauftrag braucht mehr als einen sichtbaren Menueeintrag: gewartetes Objekt, Servicekunde, Ersatzteil, Technikerressource, Technikerlager und Entscheidung ueber Faktura/Garantie/Kulanz muessen zusammenpassen. |
+| Testergebnis | `SERVICE-001` laeuft read-only erfolgreich. Der Lauf erzeugt Navigationsevidence und Zielobjekt-Evidence, aber keine Einrichtung, keinen Serviceauftrag, keinen Ersatzteilverbrauch, keine Ressourcenerfassung, keine Rechnung und keine Buchung. |
+| Entscheidung | Kapitel 15 muss vor der Schrittfolge eine Readiness-Statusbox bekommen. Service-Seiten sind erreichbar, aber der Buchfall `SERV-4001` ist in `RM-DEMO` noch nicht servicefaehig, solange `RM-M100-SN1001`, `SP-PUMP-01`, `RES-TECH` und `VAN-SERV` nicht UI-first gefittet und belegt sind. |
+| Buchstelle | Kapitel 15 Service |
+
+Fuer Anfaenger ist das wichtig, weil Service mehrere Welten verbindet: Kundenmaschine, Ersatzteilbestand, Technikerzeit, Garantie-/Kulanzentscheidung und Finance-Wirkung. Ein sichtbarer `Service Orders`-Treffer ist nur die Tuer. Der Prozess beginnt erst, wenn die Zielobjekte vorhanden sind und vor jeder Buchung eine Preview-/Postenspur-Strategie feststeht.

@@ -322,6 +322,22 @@ Fuer `UAT-O2C-001` fasst `playwright/projects/fibu-book5/evidence/uat-o2c-001/RE
 | `playwright/projects/fibu-book5/img/reporting-009-010-gl-entries-before-dimensions.png` | guter Labor-Sachposten-Nachweis in breiter Ansicht | Gefilterte `G/L Entries` zur `PS-INV103297` zeigen Konten `50110`, `40140`, `15110`, `14140`, EUR-Betraege sowie die Shortcut-Spalten `Department Code` und `Customergroup Code`. `PRODUCTLINE`/`CHANNEL` sind nicht sichtbar. | Als Buch-/Lernbild fuer Hauptbuchspur und Shortcut-Spalten geeignet. Nicht als Dimensions- oder Reportingwirkungsnachweis fuer `PRODUCTLINE`/`CHANNEL` verwenden. |
 | `playwright/projects/fibu-book5/img/reporting-009-020-gl-entry-dimensions-result.png` | negativer Laborbefund | Nach `Weitere Optionen` bleibt kein sichtbarer `Entry` -> `Dimensions`-Dialog und kein `PRODUCTLINE`-/`CHANNEL`-Kontext sichtbar. | Als Evidence fuer den ausgeschlossenen einfachen Sachposten-Dimensionspfad behalten. Naechster Reporting-Schritt braucht freigegebenen Analysis-View-Fit oder alternativen offiziellen Reporting-Einstieg. |
 
+## `SERVICE-001` Screenshot Review
+
+| Screenshot | Bewertung | Befund | Entscheidung |
+|---|---|---|---|
+| `playwright/projects/fibu-book5/img/service-001-010-service-orders-tell-me.png` | Navigationskandidat | Tell-Me zeigt `Service Orders` als Einstieg. | Als Readiness-/Suchbild geeignet. Kein Serviceauftrag `SERV-4001` und kein Prozessnachweis. |
+| `playwright/projects/fibu-book5/img/service-001-020-service-items-tell-me.png` | Navigationskandidat | Tell-Me zeigt `Service Items`. | Als Einstieg fuer Serviceartikel geeignet. Der konkrete Serviceartikel `RM-M100-SN1001` ist dadurch noch nicht belegt. |
+| `playwright/projects/fibu-book5/img/service-001-030-resources-tell-me.png` | Navigationskandidat | Tell-Me zeigt `Resources`. | Als Einstieg fuer Ressourcen geeignet. Die konkrete Ressource `RES-TECH` ist dadurch noch nicht belegt. |
+| `playwright/projects/fibu-book5/img/service-001-040-service-management-setup-tell-me.png` | gesperrter Setup-Ort | Tell-Me zeigt `Service Management Setup`. | Nur als Setup-Hinweis verwenden. Keine Serviceeinrichtung ohne Gate aendern. |
+| `playwright/projects/fibu-book5/img/service-001-050-service-contracts-tell-me.png` | Navigationskandidat | Tell-Me zeigt `Service Contracts`. | Als spaeterer Vertrags-/Garantie-Kontext geeignet. Kein Vertrag und keine Garantieentscheidung. |
+| `playwright/projects/fibu-book5/img/service-001-060-service-ledger-entries-tell-me.png` | Nachweispfad-Kandidat | Tell-Me zeigt `Service Ledger Entries`. | Als spaeterer Postenspur-Hinweis geeignet. Keine Serviceposten vorhanden oder gebucht. |
+| `playwright/projects/fibu-book5/img/service-001-070-customer-d10000.png` | guter Labor-Readiness-Kandidat | Gefilterter Customer-Kontext zeigt `D10000` / Mueller Maschinenbau. | Als Servicekunden-Readiness nutzbar. Kein Serviceauftrag und keine Servicefaktura. |
+| `playwright/projects/fibu-book5/img/service-001-080-service-item-rm-m100-sn1001.png` | rejected Datenluecke | Service-Items-Seite ist sichtbar, aber die konkrete Zielnummer `RM-M100-SN1001` ist nicht sichtbar. | Nicht als Serviceartikel-Buchbild verwenden; als Stammdatenluecke behalten. |
+| `playwright/projects/fibu-book5/img/service-001-090-item-sp-pump-01.png` | rejected Datenluecke | Items-Seite ist sichtbar, aber `SP-PUMP-01` ist nicht sichtbar. | Nicht als Ersatzteil-Buchbild verwenden; vor Serviceverbrauch braucht es UI-first Stammdatenfit. |
+| `playwright/projects/fibu-book5/img/service-001-100-resource-res-tech.png` | rejected Datenluecke | Resources-Seite ist sichtbar, aber `RES-TECH` ist nicht sichtbar. | Nicht als Ressourcen-Buchbild verwenden; vor Technikerzeiterfassung braucht es UI-first Stammdatenfit. |
+| `playwright/projects/fibu-book5/img/service-001-110-location-van-serv.png` | rejected Datenluecke | Locations-Seite ist sichtbar, aber `VAN-SERV` ist nicht sichtbar. | Nicht als Technikerlager-Buchbild verwenden; vor Ersatzteilverbrauch braucht es Lagerort-Readiness. |
+
 ## Harte Findings aus dem Review
 
 ### QA-O2C-001 Listenbild zeigt nicht den Buchfall
