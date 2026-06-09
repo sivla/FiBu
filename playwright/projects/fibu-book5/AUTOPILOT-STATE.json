@@ -7,8 +7,8 @@
   "company": "RM-DEMO",
   "dataBasis": "CRONUS USA",
   "activeArea": "reporting",
-  "lastCompletedRun": "REPORTING-012",
-  "lastWorkType": "book-governance-evidence-sync",
+  "lastCompletedRun": "GOVERNANCE-007",
+  "lastWorkType": "governance-state-gate-sync",
   "postedInLastRun": false,
   "latestPostedDocuments": {
     "o2c": {
@@ -79,7 +79,9 @@
     "no repeat PAYMENTS-012 book-sync without evidence delta",
     "no bank reconciliation without explicit gate after PAYMENTS-012",
     "no repeat PAYMENTS-013 bank-ledger read-only without evidence delta",
-    "no repeat PAYMENTS-014 book-sync without evidence or book delta"
+    "no repeat PAYMENTS-014 book-sync without evidence or book delta",
+    "no repeat GOVERNANCE-007 without a new gate-decision delta",
+    "no Analysis View setup outside REPORTING-013 approved-for-next-run gate"
   ],
   "openGates": [
     "TAX-002-DE-VAT-FIT",
@@ -100,13 +102,14 @@
     "NEW-COMPANY-001",
     "O2C-REPOST-001",
     "P2P-REPOST-001",
-    "INVENTORY-REPOST-INV008"
+    "INVENTORY-REPOST-INV008",
+    "REPORTING-013-ANALYSIS-VIEW-FIELDMAPPING-SETUP"
   ],
   "autonomousAllowed": [],
-  "nextBestStepWithoutApproval": "GOVERNANCE-007-REPORTING-NEXT-GATE-DECISION: decide whether to approve a new fieldmapping/setup gate for REPORTING-013-ANALYSIS-VIEW-FIELDMAPPING-SETUP or pivot to another safe evidence block; no Analysis View setup, no BC posting, no payment, no bank reconciliation.",
+  "nextBestStepWithoutApproval": "REPORTING-013-ANALYSIS-VIEW-FIELDMAPPING-SETUP: use the approved-for-next-run gate to document Analysis View card/list field mapping for Code, Name, Dimension 1 Code and Dimension 2 Code; only if mapping is safe, idempotently create/update RM-PLCH with PRODUCTLINE/CHANNEL and verify Analysis by Dimensions; abort without setup if mapping is unsafe; no posting, no payment, no bank reconciliation.",
   "nextBestStepWithApproval": {
     "payments": "Nur mit neuem Gate: weitere Zahlung, Kreditorenzahlung oder Bankabstimmung. PAYMENTS-011 darf nicht wiederholt werden.",
-    "reporting": "With new explicit gate only: REPORTING-013-ANALYSIS-VIEW-FIELDMAPPING-SETUP documents Analysis View card/list field mapping for RM-PLCH UI-first, then idempotently creates/updates RM-PLCH with PRODUCTLINE/CHANNEL and verifies Analysis by Dimensions; REPORTING-011 remains consumed and rejected.",
+    "reporting": "REPORTING-013 is already approved-for-next-run by GOVERNANCE-007. After that single run, close the gate as done-labor, rejected or locked. Any further Analysis View setup needs a new gate.",
     "tax": "TAX-002-DE-VAT-FIT: deutsches VAT19-Setup nur mit Freigabe und separatem Preview-/VAT-Entries-Nachweis.",
     "compliance": "COMPLIANCE-002-EINVOICE-SETUP: E-Rechnungs-/E-Documents-/Versandprofil-/Change-Log-Setup nur mit Freigabe, UI-first Klickpfad, Validierungs-/Versand-/Auditnachweis und klarer Labor-/DE-Trennung.",
     "fixedAssets": "FIXEDASSETS-004-SETUP-OR-POSTING: MACHINES, FA-CNC-01, HGB, K30000 oder Anlagenbuchung nur mit Freigabe und UI-first Evidence.",
@@ -145,7 +148,10 @@
     "Do not repeat PAYMENTS-014 book-sync without a new evidence or book delta",
     "Do not repeat GOVERNANCE-006 without a new gate-decision delta",
     "Do not repeat REPORTING-011-ANALYSIS-VIEW-FIT without a new explicit field-mapping/setup gate",
-    "Do not repeat REPORTING-012-ANALYSIS-VIEW-BLOCKER-SYNC without a new evidence or governance delta"
+    "Do not repeat REPORTING-012-ANALYSIS-VIEW-BLOCKER-SYNC without a new evidence or governance delta",
+    "Do not repeat GOVERNANCE-007 without a new gate-decision delta",
+    "Do not run REPORTING-013 more than once under the GOVERNANCE-007 gate",
+    "Do not create or update RM-PLCH if Analysis View field mapping is unsafe"
   ],
   "notes": [
     "AUTOPILOT-STATE.json and POSTING-AND-SETUP-GATES.md were introduced because the V2 autopilot prompt requires machine-readable state and explicit gates.",
@@ -190,6 +196,7 @@
     "PAYMENTS-014 synced chapter 20, coverage, findings and project state with the Page-372 bank ledger proof. No BC run, no payment, no setup change and no bank reconciliation.",
     "GOVERNANCE-006 selected REPORTING-011-ANALYSIS-VIEW-FIT as the next practical gate and approved it for exactly the next run. No BC run, no setup change, no posting and no bank reconciliation were executed.",
     "REPORTING-011 opened Analysis Views in RM-DEMO UI-first and proved the list/actions are visible, but rejected the setup fit because no safe editable field mapping was available; RM-PLCH was not created, no setup change, no posting, no payment and no bank reconciliation.",
-    "REPORTING-012 synced the rejected REPORTING-011 Analysis View fit into book/workplan/audit/state: no BC run, no setup change, no posting; next step is a new gate decision before any Analysis View setup."
+    "REPORTING-012 synced the rejected REPORTING-011 Analysis View fit into book/workplan/audit/state: no BC run, no setup change, no posting; next step is a new gate decision before any Analysis View setup.",
+    "GOVERNANCE-007 approved exactly one next run for REPORTING-013-ANALYSIS-VIEW-FIELDMAPPING-SETUP: field mapping first, idempotent RM-PLCH setup only if safe, otherwise reject without setup; no BC run, no setup change and no posting in GOVERNANCE-007."
   ]
 }

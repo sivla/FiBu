@@ -21,11 +21,11 @@ Dieser Arbeitsplan gleicht das Buch `FiBu_Buch_BC_Standardprozesse_DE_Master_Blu
 | Foundation / Stammdaten | Spielwiese, Company, Dimensionen, Lagerort, Debitor, Artikel vorbereiten | `FOUNDATION-*`, `MASTERDATA-001` bis `MASTERDATA-007` | Labor belegt | Behalten; bei deutscher Umgebung neu fotografieren. |
 | Inventory Posting Setup | Lagerbuchungsmatrix fuer `FRA-ZL` + `RESALE` pruefen und fitten | `MASTERDATA-008` Diagnose, `MASTERDATA-009` Fit `Inventory Account = 14140` | Labor belegt | Buchstelle aktualisieren, falls sie noch `Kontoentscheidung offen` oder nur Diagnose nennt. |
 | O2C `UAT-O2C-001` | Auftrag, Preview, Buchung, Postenspur, Dimensionen, 19 % USt | O2C bis Laborbuchung `PS-INV103297`, Postenspur und Artikelposten-Dimension belegt; Steuer 0 % | Labor belegt, Steuer offen | O2C als CRONUS-Labor stark nutzen; keine zweite Buchung; deutsche USt als separaten Finalblock fuehren. |
-| Reporting / Financial Reports | GuV nach `PRODUCTLINE=MACHINE`, `CHANNEL=B2B`, `DEPARTMENT=SALES` | `REPORTING-001` bis `REPORTING-011` belegen Einstieg, Artikelposten-Dimension, mehrere Negativpfade und den verbrauchten Analysis-View-Fit: `Analysis Views` ist erreichbar, aber `RM-PLCH` wurde mangels sicherer editierbarer Feldzuordnung nicht angelegt | teilweise belegt / gate-rejected | Keinen gleichen read-only Pfad und `REPORTING-011` nicht wiederholen; naechster echter Hebel braucht ein neues Feldmapping-/Setup-Gate oder einen anderen belegbaren Standardpfad. |
+| Reporting / Financial Reports | GuV nach `PRODUCTLINE=MACHINE`, `CHANNEL=B2B`, `DEPARTMENT=SALES` | `REPORTING-001` bis `REPORTING-012` belegen Einstieg, Artikelposten-Dimension, mehrere Negativpfade und den verbrauchten Analysis-View-Fit; `GOVERNANCE-007` gibt `REPORTING-013` fuer genau den naechsten Feldmapping-/Setup-Versuch frei | teilweise belegt / gate-rejected / next gate approved | Keinen gleichen read-only Pfad und `REPORTING-011` nicht wiederholen; naechster echter Hebel ist `REPORTING-013`: Feldmapping zuerst, Setup nur bei sicherer UI-Zuordnung. |
 | Sachposten-Dimensionen | Dimensionen nach Buchung in Sachposten zeigen | `REPORTING-009` zeigt G/L Entries zu `PS-INV103297` in breiter Ansicht mit `Department Code`/`Customergroup Code`; `PRODUCTLINE`/`CHANNEL` und `Entry` -> `Dimensions` bleiben dort nicht sichtbar | teilweise belegt, Labor-Negativbefund | Im Buch als Unterschied zwischen Shortcut-Spalten, Postendimensionen und Reportingachsen erklaeren; nicht als erledigten Sachposten-Dimensionsnachweis formulieren. |
 | Tax / VAT / 19 % | Deutsche USt `19 %`, USt-Posten, Brutto `80.920 EUR` | CRONUS-USA zeigt `FURNITURE`, `taxPercent = 0`; `TAX-001` dokumentiert die Grenze und den DE-VAT-Readiness-Pfad | offen, Readiness dokumentiert | Nicht im US-Labor erzwingen; DE-Zielmandant oder explizit freigegebenes VAT-Setup vorbereiten. |
 | P2P / Kreditoren | Einkaufsprozess und Kreditorenpostenspur | CRONUS-USA-Laborprozess `106049` -> `108219` ist gebucht; Kreditorenposten, Sachposten, Wertposten und Artikelposten `793` sind belegt; deutsche Vorsteuer offen | Labor belegt, Steuer offen | Keine zweite P2P-Buchung; P2P als Laborbeleg nutzen und deutsche VAT-/Kontenplan-Grenze offen halten. |
-| Bank / Payments | Ausgleich, Zahlung, Bankposten | `PAYMENTS-001` bis `PAYMENTS-010` belegen offene Posten, Cash-Receipt-Draft, `BANK-RM-01`, Journal Check, Apply Entries und Post-Dialog mit Abbruch; `PAYMENTS-011` bucht genau eine UI-first Laborzahlung `PAY011-PS103297`; `PAYMENTS-012` synchronisiert Buch/Evidence; `PAYMENTS-013` belegt Bank Account Ledger Entries ueber Page `372`; `PAYMENTS-014` synchronisiert Kapitel 20 mit dieser Bankpostenlogik | Labor belegt fuer Zahlung, OP-Ausgleich, Sachposten und Bankposten; Bankabstimmung offen | Keine weitere Zahlung und keine Bankabstimmung ohne neues Gate; Reporting bleibt nach `REPORTING-011` auf Blocker-Sync/Feldmapping-Entscheidung. |
+| Bank / Payments | Ausgleich, Zahlung, Bankposten | `PAYMENTS-001` bis `PAYMENTS-010` belegen offene Posten, Cash-Receipt-Draft, `BANK-RM-01`, Journal Check, Apply Entries und Post-Dialog mit Abbruch; `PAYMENTS-011` bucht genau eine UI-first Laborzahlung `PAY011-PS103297`; `PAYMENTS-012` synchronisiert Buch/Evidence; `PAYMENTS-013` belegt Bank Account Ledger Entries ueber Page `372`; `PAYMENTS-014` synchronisiert Kapitel 20 mit dieser Bankpostenlogik | Labor belegt fuer Zahlung, OP-Ausgleich, Sachposten und Bankposten; Bankabstimmung offen | Keine weitere Zahlung und keine Bankabstimmung ohne neues Gate; Reporting ist nach `GOVERNANCE-007` der naechste praktische Gate-Lauf. |
 | Anlagen, Projekte, Service, Manufacturing | Weitere Buchkapitel praktisch lernen | Fixed Assets/Warehouse/Manufacturing/Service/Projects sind als Readiness bzw. Buch-Sync teilweise belegt; Projects ist mit `PROJECTS-001`/`PROJECTS-002` synchronisiert: Einstiege sichtbar, Zielobjekte fehlen | teilweise belegt | Ohne Gate keine Setup-/Buchungslaeufe; naechster sicherer Block ist Kapitel 17 als Dropshipping/Sonderverkauf ohne Shopify-Connector-Scope read-only. |
 | Migration / Opening Balances / Cutover | Kapitel 28 als Zielbild, nicht als ungepruefter Import | `MIGRATION-001` synchronisiert Kapitel 28 ohne BC-Lauf; kein Konfigurationspaket, kein Import, keine neue Company und keine Opening-Balance-Buchung | Readiness/Buch-Sync belegt | Praktischer Migrations-/Opening-Balance-Lauf nur mit Gate; `INTEGRATIONS-001` hat den naechsten sicheren Sync inzwischen erledigt. |
 | Integrationen | Kapitel 29 als Architektur-/UAT-Zielbild, nicht als technische Abkuerzung | `INTEGRATIONS-001` synchronisiert Kapitel 29 ohne BC-Lauf; keine Extension, kein Connector, kein API-/Web-Service-Setup, kein Power-Platform-/Power-BI-Setup und kein produktiver Datenaustausch | Readiness/Buch-Sync belegt | Praktischer Integrations-/Extension-/Connector-/Power-BI-Lauf nur mit Gate; ohne Gate Kapitel 30 Betrieb/Monitoring als Readiness-Sync. |
@@ -39,7 +39,7 @@ Dieser Arbeitsplan gleicht das Buch `FiBu_Buch_BC_Standardprozesse_DE_Master_Blu
 | Glossar Deutsch/Englisch/Tell-Me | Kapitel 37 als Such- und Begriffsschicht, nicht als neuer Klickpfadnachweis | `GLOSSARY-001` synchronisiert Kapitel 37 ohne BC-Lauf gegen UI-Inventar, Coverage und vorhandene Evidence; Begriffe werden als Buchsprache, Suchhilfe, belegter UI-Pfad oder offener Zielbegriff getrennt | Readiness/Buch-Sync belegt | Kapitel 38 ist mit `PAGESINDEX-001` erledigt; ohne Gate Kapitel 39 Projektartefakte/Handover/Repo-QA als Readiness-Sync. |
 | Seitenindex / Prozesskatalog / Qualitaetssicherung | Kapitel 38 als Index-, QA- und Prozesskatalogschicht, nicht als Sammelbeweis aller Klickpfade | `PAGESINDEX-001` synchronisiert Kapitel 38 ohne BC-Lauf gegen Coverage, UI-Inventar, Screenshot-QA, Autopilot-State und Gates; Indexeintrag, Zielpfad, praktische Evidence, Laborgrenze und DE-Finalnachweis sind getrennt | Readiness/Buch-Sync belegt | Ohne Gate Kapitel 39 Projektartefakte/Handover/Repo-QA als Readiness-Sync; praktische UI-/Setup-/Buchungslaeufe nur mit passendem Gate. |
 | Projektartefakte / Handover / Repo-QA | Kapitel 39 als Artefakt- und Uebergabeschicht, nicht als praktischer Prozessnachweis | `ARTIFACTS-001` synchronisiert Kapitel 39 ohne BC-Lauf gegen Evidence-Struktur, Autopilot-State, Gates und Artefakt-Governance; Templates, Handover-Dateien und Evidence-Pack-Platzhalter sind Kontrollartefakte, keine Prozess-Evidence | Readiness/Buch-Sync belegt | Ohne Gate Kapitel 40 Quellenverzeichnis als Readiness-Sync; praktische UI-/Setup-/Buchungslaeufe nur mit passendem Gate. |
-| Quellenverzeichnis / Primaerquellen | Kapitel 40 als Quellenregel, nicht als praktischer Prozessnachweis | `SOURCES-001` synchronisiert Kapitel 40 ohne BC-Lauf gegen Primaerquellenlogik, Microsoft-Learn-Bezug, amtliche Quellen, Vendor-Dokumentation, Evidence-Regeln und gestrichenen Shopify-Scope; Quellen sind Referenzen, keine RM-DEMO-Prozessbeweise | Readiness/Buch-Sync belegt | `GOVERNANCE-005`, `PAYMENTS-011`, `PAYMENTS-014`, `GOVERNANCE-006` und `REPORTING-011` sind erledigt; `REPORTING-012` synchronisiert den Analysis-View-Blocker. Naechster sicherer Block ist eine neue Gate-Entscheidung, nicht ein Wiederholungslauf. |
+| Quellenverzeichnis / Primaerquellen | Kapitel 40 als Quellenregel, nicht als praktischer Prozessnachweis | `SOURCES-001` synchronisiert Kapitel 40 ohne BC-Lauf gegen Primaerquellenlogik, Microsoft-Learn-Bezug, amtliche Quellen, Vendor-Dokumentation, Evidence-Regeln und gestrichenen Shopify-Scope; Quellen sind Referenzen, keine RM-DEMO-Prozessbeweise | Readiness/Buch-Sync belegt | `GOVERNANCE-005`, `PAYMENTS-011`, `PAYMENTS-014`, `GOVERNANCE-006`, `REPORTING-011`, `REPORTING-012` und `GOVERNANCE-007` sind erledigt; naechster sicherer Block ist `REPORTING-013`, nicht ein Wiederholungslauf. |
 
 ## Kritische Buchdrift
 
@@ -111,7 +111,7 @@ Ziel:
 
 Financial Reports, G/L Entries und vorhandene Analysepfade nicht laenger staerker darstellen als die Evidence traegt.
 
-Status nach `REPORTING-001` bis `REPORTING-012`:
+Status nach `REPORTING-001` bis `GOVERNANCE-007`:
 
 1. `REPORTING-001`: Financial Reports erreichbar.
 2. `REPORTING-002`: Artikelposten `792` zeigt `PRODUCTLINE=MACHINE` und `CHANNEL=B2B`.
@@ -122,12 +122,13 @@ Status nach `REPORTING-001` bis `REPORTING-012`:
 7. `GOVERNANCE-006`: genau ein Gate fuer `REPORTING-011` freigegeben.
 8. `REPORTING-011`: Analysis Views erreichbar, aber Fit `RM-PLCH` rejected.
 9. `REPORTING-012`: Blocker synchronisiert; kein erneuter Setup-Versuch ohne neues Gate.
+10. `GOVERNANCE-007`: `REPORTING-013` fuer genau den naechsten Feldmapping-/Setup-Lauf freigegeben.
 
 Akzeptanz:
 
 - Buch und Arbeitsplan nennen diese Kette als Labor-/Negativbefund.
 - Kein weiterer gleicher read-only Reportinglauf wird als naechster Schritt vorgeschlagen.
-- Naechster praktischer Reportinglauf braucht einen neuen Hebel.
+- Naechster praktischer Reportinglauf ist `REPORTING-013`: Feldmapping zuerst, Setup nur bei sicherer UI-Zuordnung.
 
 ### Phase 2: Analysis-View-Feldmapping nur mit neuem Gate
 
@@ -207,7 +208,7 @@ Empfohlene Reihenfolge nach Reporting/Steuer:
 
 ## Sofort naechster sinnvoller Schritt
 
-Der naechste sichere Schritt ist `GOVERNANCE-007-REPORTING-NEXT-GATE-DECISION`.
+Der naechste sichere Schritt ist `REPORTING-013-ANALYSIS-VIEW-FIELDMAPPING-SETUP`.
 
 Begruendung:
 
@@ -222,14 +223,14 @@ Begruendung:
 - Kapitel 39 ist mit `ARTIFACTS-001` als read-only/Buch-Zielbild-Sync erledigt.
 - Kapitel 40 ist mit `SOURCES-001` als read-only/Buch-Zielbild-Sync erledigt.
 - `GOVERNANCE-005` hat Autopilot-V2.2 mit den Gates synchronisiert. `PAYMENTS-011` hat danach die eng begrenzte Payment-Laborzahlung genau einmal ausgefuehrt. `PAYMENTS-013` hat den Bankpostenpfad Page `372` belegt, und `PAYMENTS-014` hat Kapitel 20 damit synchronisiert.
-- `GOVERNANCE-006` gab `REPORTING-011` genau einmal frei. `REPORTING-011` ist verbraucht und rejected; `REPORTING-012` synchronisiert den Blocker. Deshalb ist die naechste Arbeit eine Gate-Entscheidung, keine Wiederholung und keine Bankabstimmung.
+- `GOVERNANCE-006` gab `REPORTING-011` genau einmal frei. `REPORTING-011` ist verbraucht und rejected; `REPORTING-012` synchronisiert den Blocker. `GOVERNANCE-007` gibt jetzt `REPORTING-013` genau einmal frei. Deshalb ist die naechste Arbeit ein Feldmapping-/Setup-Lauf, keine Wiederholung und keine Bankabstimmung.
 
 Minimaler Prompt fuer den naechsten Lauf:
 
 ```text
 Arbeite auf Branch codex/playwright-bc-screenshot-foundation.
-Lies AUTOPILOT-STATE.json, POSTING-AND-SETUP-GATES.md, CURRENT-STATE.md, LAB-FIT-STATUS.md, BOOK-CLICK-GUIDE-COVERAGE.md und evidence/reporting-012/.
-`REPORTING-011` ist verbraucht und rejected; `REPORTING-012` hat den Blocker synchronisiert. Entscheide als `GOVERNANCE-007-REPORTING-NEXT-GATE-DECISION`, ob ein neues Feldmapping-/Setup-Gate fuer `REPORTING-013-ANALYSIS-VIEW-FIELDMAPPING-SETUP` freigegeben wird oder ob ein anderer sicherer Evidence-Block Vorrang hat. Keine Analysis View anlegen/aendern, keine Zahlung, keine Bankabstimmung und keine Buchung.
+Lies AUTOPILOT-STATE.json, POSTING-AND-SETUP-GATES.md, CURRENT-STATE.md, LAB-FIT-STATUS.md, BOOK-CLICK-GUIDE-COVERAGE.md und evidence/governance-007/.
+`GOVERNANCE-007` hat `REPORTING-013-ANALYSIS-VIEW-FIELDMAPPING-SETUP` fuer genau den naechsten Lauf freigegeben. Oeffne `Analysis Views`, dokumentiere zuerst das Feldmapping fuer `Code`, `Name`, `Dimension 1 Code` und `Dimension 2 Code`. Nur wenn diese Zuordnung sicher ist, `RM-PLCH` idempotent mit `PRODUCTLINE`/`CHANNEL` anlegen oder aktualisieren und danach `Analysis by Dimensions` pruefen. Wenn das Mapping unsicher ist: abbrechen, Evidence schreiben, kein Setup. Keine Zahlung, keine Bankabstimmung und keine Buchung.
 ```
 
 ## Nicht jetzt tun

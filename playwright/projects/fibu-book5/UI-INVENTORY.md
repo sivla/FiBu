@@ -253,11 +253,11 @@ Wenn das Projekt fertig ist, kennen wir Business Central für den Buchumfang nic
 
 | Reihenfolge | Ziel |
 |---:|---|
-| 1 | `GOVERNANCE-007-REPORTING-NEXT-GATE-DECISION`: entscheiden, ob ein neues Feldmapping-/Setup-Gate fuer `REPORTING-013` sinnvoll ist; ohne neues Gate keine Analysis View anlegen oder aendern |
+| 1 | `REPORTING-013-ANALYSIS-VIEW-FIELDMAPPING-SETUP`: durch `GOVERNANCE-007` genau einmal freigegeben; Analysis-View-Feldmapping zuerst dokumentieren, nur bei sicherer UI-Zuordnung `RM-PLCH` idempotent anlegen oder aendern |
 | 2 | Intercompany-/Auslandprozess nur mit Gate fortsetzen: keine Company anlegen/wechseln, keinen IC-Partner, keinen Beleg `IC-7001`, keine Inbox/Outbox-Aktion und keine VAT-/Waehrungs-Aenderung ohne Freigabe |
 | 3 | Dropshipping-Setup nur mit Gate fortsetzen: `D11000`, `K20000`, `SP-PUMP-01` und Drop-Shipment-/Purchasing-Code-Logik bleiben UI-first Setup-Folgearbeit |
 | 4 | Project-Setup nur mit Gate fortsetzen: Projekt `PROJ-5001`, Ressource `RES-TECH`, Material `SP-SENSOR-02` und Lagerort `PROJ-LAG` bleiben UI-first Setup-Folgearbeit |
-| 5 | Reporting weiterfuehren: `REPORTING-009` hat den einfachen Sachposten-Dimensionspfad read-only ausgeschoepft; `REPORTING-011` zeigt `Analysis Views`, `GEN_LEDGER`, `REVENUE`, Dimensionsspalten, `Analysis by Dimensions` und `Update`, aber keinen sicheren UI-Fit fuer `RM-PLCH`; nur mit neuer Freigabe umsetzen, sonst keinen weiteren gleichen Reporting-Setup-Versuch wiederholen |
+| 5 | Reporting weiterfuehren: `REPORTING-009` hat den einfachen Sachposten-Dimensionspfad read-only ausgeschoepft; `REPORTING-011` zeigt `Analysis Views`, `GEN_LEDGER`, `REVENUE`, Dimensionsspalten, `Analysis by Dimensions` und `Update`, aber keinen sicheren UI-Fit fuer `RM-PLCH`; `GOVERNANCE-007` gibt genau einen neuen Feldmapping-Lauf frei, danach Gate schliessen |
 | 6 | Postenspur-Lernatlas `POSTING-TRACE-001` ist erledigt: O2C, P2P und Inventory erklaeren Beleg, Nebenbuchposten, Sachposten, Artikelposten, Wertposten und Bericht als gemeinsame Anfaengerkette; keine weitere `INV008`-Buchung |
 | 7 | Sachposten-Dimensionspfad nicht erneut als naechstes Ziel einplanen: `REPORTING-009` hat ihn read-only geprueft und als Teil-/Negativbefund dokumentiert |
 | 8 | Steuerfit: CRONUS-USA-Probelauf weiter vom deutschen Ziel-Fall `19 %` trennen |

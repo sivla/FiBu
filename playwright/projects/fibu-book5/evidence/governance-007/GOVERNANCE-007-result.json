@@ -1,0 +1,41 @@
+{
+  "testId": "GOVERNANCE-007",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "dataBasis": "CRONUS USA",
+  "mode": "governance-state-gate-sync",
+  "bcRunExecuted": false,
+  "setupChanged": false,
+  "posted": false,
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/reporting-011/REPORTING-011-result.json",
+    "playwright/projects/fibu-book5/evidence/reporting-011/REPORTING-011-ANALYSIS-VIEW-FIT.md",
+    "playwright/projects/fibu-book5/evidence/reporting-012/REPORTING-012-result.json",
+    "playwright/projects/fibu-book5/evidence/reporting-012/REPORTING-012-ANALYSIS-VIEW-BLOCKER-SYNC.md"
+  ],
+  "decision": {
+    "selectedNextGate": "REPORTING-013-ANALYSIS-VIEW-FIELDMAPPING-SETUP",
+    "statusForNextRun": "approved-for-next-run",
+    "reason": "Reporting remains the highest-value O2C-near evidence gap for chapters 10 and 25. REPORTING-011 was rejected because field mapping was unsafe, so the next run must first prove field mapping before any idempotent Analysis View setup.",
+    "allowedOnlyIf": [
+      "Analysis Views opens in MCP_1_20260210 / RM-DEMO",
+      "editable card or list field mapping for Code, Name, Dimension 1 Code and Dimension 2 Code is visible and documented",
+      "RM-PLCH creation or update is idempotent",
+      "no posting, no payment, no bank reconciliation and no company switch",
+      "abort without setup change if field mapping is not safe"
+    ]
+  },
+  "proves": [
+    "The next practical reporting step is explicitly gated.",
+    "REPORTING-013 may attempt fieldmapping and idempotent Analysis View setup for exactly one next run.",
+    "REPORTING-011 remains consumed and must not be repeated as the same blind setup attempt."
+  ],
+  "doesNotProve": [
+    "No Business Central UI state was newly inspected.",
+    "No Analysis View RM-PLCH was created or updated.",
+    "No Financial Reports sum by PRODUCTLINE or CHANNEL was proven.",
+    "No German VAT19 or German final reporting proof was produced."
+  ],
+  "nextStepWithoutFurtherApproval": "REPORTING-013-ANALYSIS-VIEW-FIELDMAPPING-SETUP: use the approved-for-next-run gate to document Analysis View field mapping and only then idempotently create/update RM-PLCH; abort without setup if mapping is unsafe.",
+  "status": "completed"
+}
