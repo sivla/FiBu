@@ -5332,6 +5332,18 @@ Merksatz:
 ## 29. Integrationen [Q35][Q36][Q37][Q38][Q39][Q40][Q41][Q42]
 Dieses Kapitel zeigt, wie Rhein-Main Integrationen und Extensions nicht nach Bauchgefühl auswählt, sondern als prüfbare Architekturentscheidung. Nach dem Kapitel kannst du für einen konkreten Schmerzpunkt entscheiden, ob Business-Central-Standard, AppSource-Extension, Power Platform, API-Integration oder Customizing die richtige Lösung ist.
 
+### Status des Labor-Nachweises in `RM-DEMO`
+
+| Feld | Stand |
+|---|---|
+| Evidence | `INTEGRATIONS-001` unter `playwright/projects/fibu-book5/evidence/integrations-001/` |
+| Laborstatus | Buch-/Zielbild-Sync ohne BC-Lauf |
+| Praktisch ausgefuehrt | keine Extension-Installation, keine AppSource-App, kein API-/Web-Service-Setup, kein Connector, kein Power-Platform-/Power-BI-Setup, kein produktiver Datenaustausch |
+| Was das belegt | Kapitel 29 ist als Architektur- und UAT-Entscheidung eingeordnet: erst Standardnachweis und Fit-Gap, dann Sandbox-UAT, Rollen, Berechtigungen, Fehlerfall, Rollback und Betrieb |
+| Was offen bleibt | konkrete Integrationskandidaten wie Document Capture, Banking, DATEV, Shipping, WMS, Power BI oder E-Documents muessen spaeter einzeln mit UI-first Klickpfad, UAT und Evidence belegt werden |
+| Gate | `INTEGRATIONS-002-SETUP-OR-CONNECTOR` erforderlich, bevor eine Extension installiert, ein Connector autorisiert, ein API/Web Service eingerichtet oder ein Power-BI-/Power-Platform-Setup veraendert wird |
+| Deutscher Finalnachweis | offen; Datenschutz, GoBD, Berechtigungen, Provider-/Supportverantwortung und Betrieb muessen in der Zielumgebung nachgewiesen werden |
+
 ### Entscheidungssituation bei Rhein-Main
 
 RM-SHARED verarbeitet monatlich `2.500` Eingangsrechnungen, `180` Reisekostenabrechnungen und Zahlungseingaenge aus vier Banken. RM-SALES nutzt Sondervertrieb und Dropshipping. RM-SERVICE will perspektivisch Field-Service-nahe mobile Einsaetze. Der Standard kann viele Kernprozesse abbilden, aber nicht jede Massenverarbeitung, mobile Belegerfassung, OCR-Erkennung, Bankkomfortfunktion oder Spezialintegration wirtschaftlich genug leisten.

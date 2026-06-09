@@ -39,4 +39,4 @@ Status: `labor`, `read-only`, `compliance-readiness`, `no-posting`, `no-setup-ch
 
 ## Naechster Schritt
 
-COMPLIANCE-002, SECURITY-001, SECURITY-002 und MIGRATION-001 sind erledigt. Kapitel 22, Kapitel 27 und Kapitel 28 sind mit den jeweiligen Read-only-/Buch-Sync-Evidenzen synchronisiert. VAT-, E-Rechnung-/E-Documents-, Versandprofil-, Change-Log-, Security- und Migration-Setup bleiben gate-locked. Ohne Gate ist der naechste sichere Schritt `INTEGRATIONS-001-READINESS`.
+COMPLIANCE-002, SECURITY-001, SECURITY-002, MIGRATION-001 und INTEGRATIONS-001 sind erledigt. Kapitel 22, Kapitel 27, Kapitel 28 und Kapitel 29 sind mit den jeweiligen Read-only-/Buch-Sync-Evidenzen synchronisiert. VAT-, E-Rechnung-/E-Documents-, Versandprofil-, Change-Log-, Security-, Migration- und Integrations-Setup bleiben gate-locked. Ohne Gate ist der naechste sichere Schritt `OPERATIONS-001-READINESS`.

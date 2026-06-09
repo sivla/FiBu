@@ -288,7 +288,7 @@ test('COMPLIANCE-001 Kapitel-22-Readiness read-only pruefen', async ({ page }) =
       'Keine neue Buchung und keine neue Postenspur.'
     ],
     nextStep:
-      'COMPLIANCE-002, SECURITY-001, SECURITY-002 und MIGRATION-001 sind erledigt. Ohne Gate naechster sicherer Schritt: INTEGRATIONS-001-READINESS fuer Kapitel 29; keine Extension installieren, keine API-/Connector-Einrichtung, kein Power-Platform-/Power-BI-Setup und kein produktiver Integrationslauf.'
+      'COMPLIANCE-002, SECURITY-001, SECURITY-002, MIGRATION-001 und INTEGRATIONS-001 sind erledigt. Ohne Gate naechster sicherer Schritt: OPERATIONS-001-READINESS fuer Kapitel 30; keine Job Queue anlegen oder starten, kein Monitoring-Connector einrichten, keine Telemetrie-/Admin-Aenderung und keine Produktivumgebung anfassen.'
   };
 
   await writeJsonEvidence(complianceEvidencePath('COMPLIANCE-001-result.json'), result);

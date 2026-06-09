@@ -18,6 +18,8 @@ Update nach `MANUFACTURING-002`: Kapitel 14 ist mit der read-only Manufacturing-
 
 Update nach `MIGRATION-001`: Kapitel 28 ist als Read-only-/Buch-Zielbild-Sync dokumentiert. Migration, Opening Balances und Cutover werden getrennt; es gab keinen BC-Lauf, kein Konfigurationspaket, keinen Import, keine neue Company und keine Opening-Balance-Buchung. `INV008-899959` bleibt Trainings-/Opening-Balance-Laborlogik, kein produktiver Migration- oder Cutover-Finalnachweis.
 
+Update nach `INTEGRATIONS-001`: Kapitel 29 ist als Read-only-/Buch-Zielbild-Sync dokumentiert. Integrationen, Extensions, AppSource, APIs/Web Services, Power Platform und Power BI werden als Architektur-/UAT-Entscheidung getrennt; es gab keinen BC-Lauf, keine Extension, keinen Connector, kein API-/Web-Service-Setup, kein Power-Platform-/Power-BI-Setup und keinen produktiven Datenaustausch. Praktische Integration braucht Gate `INTEGRATIONS-002-SETUP-OR-CONNECTOR`.
+
 ## Leitentscheidung
 
 `RM-DEMO` bleibt der konsolidierte Lern- und Labor-Mandant in Sandbox `MCP_1_20260210`. Die Ziel-Companies `RM-PROD`, `RM-SALES`, `RM-SERVICE`, `RM-SHARED` und `RM-AT` sind Buchziel fuer einen spaeteren Mehr-Company-/Greenfield-Block. Sie werden nicht als naechster Reflex angelegt. Zuerst werden Buchanforderungen, aktuelle Evidence und RM-DEMO-Setup synchronisiert.
@@ -133,8 +135,8 @@ Fazit: O2C ist als CRONUS-USA-Laborprozess fachlich weitgehend synchronisiert, a
 
 ```text
 Arbeite auf Branch codex/playwright-bc-screenshot-foundation.
-Lies AUTOPILOT-STATE.json, POSTING-AND-SETUP-GATES.md, CURRENT-STATE.md, BOOK-TO-EVIDENCE-AUDIT.md, LAB-FIT-STATUS.md und Kapitel 29.
-`MIGRATION-001` ist erledigt. Ohne Freigabe fuehre `INTEGRATIONS-001-READINESS` als read-only/Buch-Zielbild-Sync durch: keine Extension installieren, keine API-/Connector-Einrichtung, kein Power-Platform-/Power-BI-Setup und kein produktiver Integrationslauf.
+Lies AUTOPILOT-STATE.json, POSTING-AND-SETUP-GATES.md, CURRENT-STATE.md, BOOK-TO-EVIDENCE-AUDIT.md, LAB-FIT-STATUS.md und Kapitel 30.
+`INTEGRATIONS-001` ist erledigt. Ohne Freigabe fuehre `OPERATIONS-001-READINESS` als read-only/Buch-Zielbild-Sync durch: keine Job Queue anlegen oder starten, kein Monitoring-Connector einrichten, keine Telemetrie-/Admin-Aenderung und keine Produktivumgebung anfassen.
 ```
 
 ## Grenzen

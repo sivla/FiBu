@@ -27,7 +27,8 @@ Dieser Arbeitsplan gleicht das Buch `FiBu_Buch_BC_Standardprozesse_DE_Master_Blu
 | P2P / Kreditoren | Einkaufsprozess und Kreditorenpostenspur | CRONUS-USA-Laborprozess `106049` -> `108219` ist gebucht; Kreditorenposten, Sachposten, Wertposten und Artikelposten `793` sind belegt; deutsche Vorsteuer offen | Labor belegt, Steuer offen | Keine zweite P2P-Buchung; P2P als Laborbeleg nutzen und deutsche VAT-/Kontenplan-Grenze offen halten. |
 | Bank / Payments | Ausgleich, Zahlung, Bankposten | `PAYMENTS-001` bis `PAYMENTS-010` belegen offene Posten, Cash-Receipt-Draft, `BANK-RM-01`, Journal Check, Apply Entries und Post-Dialog mit Abbruch; keine Zahlung gebucht | Readiness belegt, Buchung offen | `PAYMENTS-011` nur mit ausdruecklicher Freigabe; bis dahin keine Zahlungs- oder Ausgleichsbuchung. |
 | Anlagen, Projekte, Service, Manufacturing | Weitere Buchkapitel praktisch lernen | Fixed Assets/Warehouse/Manufacturing/Service/Projects sind als Readiness bzw. Buch-Sync teilweise belegt; Projects ist mit `PROJECTS-001`/`PROJECTS-002` synchronisiert: Einstiege sichtbar, Zielobjekte fehlen | teilweise belegt | Ohne Gate keine Setup-/Buchungslaeufe; naechster sicherer Block ist Kapitel 17 als Dropshipping/Sonderverkauf ohne Shopify-Connector-Scope read-only. |
-| Migration / Opening Balances / Cutover | Kapitel 28 als Zielbild, nicht als ungepruefter Import | `MIGRATION-001` synchronisiert Kapitel 28 ohne BC-Lauf; kein Konfigurationspaket, kein Import, keine neue Company und keine Opening-Balance-Buchung | Readiness/Buch-Sync belegt | Praktischer Migrations-/Opening-Balance-Lauf nur mit Gate; ohne Gate Kapitel 29 Integrationen als Readiness-Sync. |
+| Migration / Opening Balances / Cutover | Kapitel 28 als Zielbild, nicht als ungepruefter Import | `MIGRATION-001` synchronisiert Kapitel 28 ohne BC-Lauf; kein Konfigurationspaket, kein Import, keine neue Company und keine Opening-Balance-Buchung | Readiness/Buch-Sync belegt | Praktischer Migrations-/Opening-Balance-Lauf nur mit Gate; `INTEGRATIONS-001` hat den naechsten sicheren Sync inzwischen erledigt. |
+| Integrationen | Kapitel 29 als Architektur-/UAT-Zielbild, nicht als technische Abkuerzung | `INTEGRATIONS-001` synchronisiert Kapitel 29 ohne BC-Lauf; keine Extension, kein Connector, kein API-/Web-Service-Setup, kein Power-Platform-/Power-BI-Setup und kein produktiver Datenaustausch | Readiness/Buch-Sync belegt | Praktischer Integrations-/Extension-/Connector-/Power-BI-Lauf nur mit Gate; ohne Gate Kapitel 30 Betrieb/Monitoring als Readiness-Sync. |
 
 ## Kritische Buchdrift
 
@@ -188,20 +189,20 @@ Empfohlene Reihenfolge nach Reporting/Steuer:
 
 ## Sofort naechster sinnvoller Schritt
 
-Ohne Gate ist der naechste sichere Schritt `INTEGRATIONS-001-READINESS`.
+Ohne Gate ist der naechste sichere Schritt `OPERATIONS-001-READINESS`.
 
 Begruendung:
 
-- `SECURITY-002` und `MIGRATION-001` sind erledigt.
+- `SECURITY-002`, `MIGRATION-001` und `INTEGRATIONS-001` sind erledigt.
 - Praktische Zahlungen, Reporting-Setup, DE-VAT, Security-Setup, Migration/Import, Opening Balances, neue Companies und Wiederholungsbuchungen bleiben gate-gesperrt.
-- Kapitel 29 kann als read-only/Buch-Zielbild-Sync vorbereitet werden, ohne Connector, Extension, API, Power Platform oder Power BI praktisch einzurichten.
+- Kapitel 30 kann als read-only/Buch-Zielbild-Sync vorbereitet werden, ohne Job Queue, Monitoring-Connector, Telemetrie-/Admin-Aenderung oder Produktivumgebung praktisch anzufassen.
 
 Minimaler Prompt fuer den naechsten Lauf:
 
 ```text
 Arbeite auf Branch codex/playwright-bc-screenshot-foundation.
-Lies AUTOPILOT-STATE.json, POSTING-AND-SETUP-GATES.md, CURRENT-STATE.md, LAB-FIT-STATUS.md, BOOK-CLICK-GUIDE-COVERAGE.md und Kapitel 29.
-Führe `INTEGRATIONS-001-READINESS` als Buch-/Zielbild-Sync durch: keine Extension installieren, keine API-/Connector-Einrichtung, kein Power-Platform-/Power-BI-Setup und kein produktiver Integrationslauf. Dokumentiere Integrationen als Zielbild, Gate-Grenze und nächsten freigabepflichtigen praktischen Hebel.
+Lies AUTOPILOT-STATE.json, POSTING-AND-SETUP-GATES.md, CURRENT-STATE.md, LAB-FIT-STATUS.md, BOOK-CLICK-GUIDE-COVERAGE.md und Kapitel 30.
+Fuehre `OPERATIONS-001-READINESS` als Buch-/Zielbild-Sync durch: keine Job Queue anlegen oder starten, kein Monitoring-Connector einrichten, keine Telemetrie-/Admin-Aenderung und keine Produktivumgebung anfassen. Dokumentiere Betrieb, Monitoring und Hypercare als Zielbild, Gate-Grenze und naechsten freigabepflichtigen praktischen Hebel.
 ```
 
 ## Nicht jetzt tun

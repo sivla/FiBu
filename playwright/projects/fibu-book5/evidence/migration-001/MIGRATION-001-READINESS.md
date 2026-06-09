@@ -70,6 +70,6 @@ Kapitel 28 wurde so eingeordnet, dass `RM-DEMO` keine produktive Migration simul
 
 ## Naechster Schritt
 
-Ohne Gate: `INTEGRATIONS-001-READINESS` als Kapitel-29-Buch-/Zielbild-Sync vorbereiten. Keine Extension installieren, keine API-/Connector-Einrichtung, kein Power-Platform-/Power-BI-Setup und kein produktiver Integrationslauf.
+Ohne Gate: `INTEGRATIONS-001` ist inzwischen erledigt. Naechster sicherer Block ist `OPERATIONS-001-READINESS` als Kapitel-30-Buch-/Zielbild-Sync. Keine Job Queue anlegen oder starten, kein Monitoring-Connector einrichten, keine Telemetrie-/Admin-Aenderung und keine Produktivumgebung anfassen.
 
 Mit Gate: spaeter einen UI-first Migrations-Readiness-Lauf fuer Configuration Packages planen, aber erst nach ausdruecklicher Freigabe und ohne Import in Produktiv- oder Fremdmandanten.

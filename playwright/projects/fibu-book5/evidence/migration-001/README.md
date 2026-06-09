@@ -11,4 +11,4 @@ Status: `labor`, `book-sync`, `read-only`, `no-posting`, `no-setup-change`, `no-
 
 Kapitel 28 ist jetzt als Zielbild synchronisiert. `RM-DEMO` liefert bereits Lern-Evidence fuer Stammdaten, Postenspur und den Trainings-/Opening-Balance-Zugang `INV008-899959`, aber keinen produktiven Migrationslauf.
 
-Ohne Gate bleibt es bei Buch-/Readiness-Arbeit. Praktische Migration, Configuration Packages, neue Company, Import und Opening-Balance-Buchung brauchen einen eigenen freigegebenen Lauf.
+Ohne Gate bleibt es bei Buch-/Readiness-Arbeit. Praktische Migration, Configuration Packages, neue Company, Import und Opening-Balance-Buchung brauchen einen eigenen freigegebenen Lauf. `INTEGRATIONS-001` hat den naechsten sicheren Sync inzwischen erledigt; ohne Gate ist jetzt `OPERATIONS-001-READINESS` der naechste Handover-Block.

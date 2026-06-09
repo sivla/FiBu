@@ -15,4 +15,4 @@ Status: `labor`, `read-only`, `security-readiness`, `no-posting`, `no-setup-chan
 
 ## Naechster Schritt
 
-SECURITY-002 und MIGRATION-001 sind erledigt. Kapitel 27 und Kapitel 28 sind synchronisiert. Ohne Gate ist der naechste sichere Schritt `INTEGRATIONS-001-READINESS`: Kapitel 29 als read-only/Buch-Zielbild-Sync vorbereiten, keine Extension installieren, keine API-/Connector-Einrichtung, kein Power-Platform-/Power-BI-Setup und kein produktiver Integrationslauf.
+SECURITY-002, MIGRATION-001 und INTEGRATIONS-001 sind erledigt. Kapitel 27, 28 und 29 sind synchronisiert. Ohne Gate ist der naechste sichere Schritt `OPERATIONS-001-READINESS`: Kapitel 30 als read-only/Buch-Zielbild-Sync vorbereiten, keine Job Queue anlegen oder starten, kein Monitoring-Connector einrichten, keine Telemetrie-/Admin-Aenderung und keine Produktivumgebung anfassen.

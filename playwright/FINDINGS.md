@@ -38,6 +38,24 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 
 ## Aktuelle Fundstellen
 
+## FIND-BC-INT-001 Integrations-Readiness ist keine eingerichtete Integration
+
+| Feld | Wert |
+|---|---|
+| Status | erledigt als Buch-Sync; praktische Setup-/Connector-Linie gate-gesperrt |
+| Quelle | `INTEGRATIONS-001` |
+| Screenshot | keine neuen Screenshots; Buch-/Readiness-Sync |
+| Evidence | `playwright/projects/fibu-book5/evidence/integrations-001/INTEGRATIONS-001-READINESS.md`, `playwright/projects/fibu-book5/evidence/integrations-001/INTEGRATIONS-001-result.json`, `playwright/projects/fibu-book5/evidence/integrations-001/README.md` |
+| BC-Seite | nicht ausgefuehrt; Kapitel 29 Zielbild |
+| sichtbarer Text / Werte | `Extension Management`, `Microsoft AppSource Apps`, `Web Services`, `API Setup`, Power Platform, Power BI, UAT, Rollback, Support Owner |
+| Elementtyp | Integrations-/Extension-Readiness / Gate-Grenze |
+| erste Hypothese | Kapitel 29 darf nicht so wirken, als sei eine Integration durch einen sichtbaren Menuepunkt oder eine schnelle Extension-Installation bereits bewiesen. |
+| Testergebnis | `INTEGRATIONS-001` hat Kapitel 29 gegen den aktuellen Laborstand synchronisiert. Es gab keinen BC-Lauf, keine Extension, keine AppSource-App, kein API-/Web-Service-Setup, keinen Connector, kein Power-Platform-/Power-BI-Setup, keinen produktiven Datenaustausch und keine Buchung. |
+| Entscheidung | Kapitel 29 trennt jetzt Standardnachweis, Fit-Gap, AppSource/Extension, API/Web Services, Power Platform, Power BI, UAT, Rollback und Betrieb. Praktische Integration bleibt Gate-Folgearbeit mit `INTEGRATIONS-002-SETUP-OR-CONNECTOR`. |
+| Buchstelle | Kapitel 29 Integrationen |
+
+Fuer Anfaenger ist das wichtig, weil Integration schnell nach Technik klingt. In Business Central ist sie aber ein pruefbarer Prozess: Datenquelle, Zielsystem, Authentifizierung, Mapping, Berechtigungen, Fehlerfall, Monitoring, Support und Rollback muessen zusammenpassen. Ein sichtbarer Einstieg ist nur Orientierung, kein Integrationsnachweis.
+
 ## FIND-BC-SCOPE-001 Shopify ist aus Buch-5-Lernscope gestrichen
 
 | Feld | Wert |

@@ -69,6 +69,6 @@ Ohne Gate:
 
 ## Naechster Schritt
 
-Ohne Freigabe: `MIGRATION-001` ist erledigt. Naechster sicherer Schritt ist `INTEGRATIONS-001-READINESS` fuer Kapitel 29 als read-only/Buch-Zielbild-Sync. Keine Extension installieren, keine API-/Connector-Einrichtung, kein Power-Platform-/Power-BI-Setup und kein produktiver Integrationslauf.
+Ohne Freigabe: `MIGRATION-001` und `INTEGRATIONS-001` sind erledigt. Naechster sicherer Schritt ist `OPERATIONS-001-READINESS` fuer Kapitel 30 als read-only/Buch-Zielbild-Sync. Keine Job Queue anlegen oder starten, kein Monitoring-Connector einrichten, keine Telemetrie-/Admin-Aenderung und keine Produktivumgebung anfassen.
 
 Mit Freigabe: `SECURITY-002-USER-PERMISSION-SETUP` als UI-first Admin-Lauf mit Testbenutzer, Rollen-/Permission-Set-/Security-Group-Matrix, SoD-Review und Audit-Evidence.

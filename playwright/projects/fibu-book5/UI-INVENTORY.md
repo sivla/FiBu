@@ -208,11 +208,17 @@ Wenn das Projekt fertig ist, kennen wir Business Central für den Buchumfang nic
 |---|---|---:|---|---|---|---|---|---|
 | Buch-Sync | Kapitel 28 | n/a | Statusbox `Status des Labor-Nachweises in RM-DEMO` | Migration, Opening Balances und Cutover als getrennte Prueffelder erklaeren | `MIGRATION-001` | `evidence/migration-001/` | erledigt als Buch-/Readiness-Sync; kein Import, keine neue Company und keine Opening-Balance-Buchung | Kapitel 28 |
 
+## Integrationen
+
+| Bereich | Seite | Page-ID | UI-Element | Funktion | Testfall | Screenshot/Evidence | Status | Buchstelle |
+|---|---|---:|---|---|---|---|---|---|
+| Buch-Sync | Kapitel 29 | n/a | Statusbox `Status des Labor-Nachweises in RM-DEMO` | Integrationen, Extensions, AppSource, API/Web Services, Power Platform und Power BI als Zielbild und Gate-Thema erklaeren | `INTEGRATIONS-001` | `evidence/integrations-001/` | erledigt als Buch-/Readiness-Sync; keine Extension installiert, kein Connector autorisiert, kein API-/Web-Service-Setup, kein Power-Platform-/Power-BI-Setup und kein produktiver Integrationslauf | Kapitel 29 |
+
 ## Naechste Inventarziele
 
 | Reihenfolge | Ziel |
 |---:|---|
-| 1 | Integrations-Readiness: Kapitel 29 als read-only/Buch-Zielbild-Sync vorbereiten; keine Extension installieren, keine API-/Connector-Einrichtung, kein Power-Platform-/Power-BI-Setup und kein produktiver Integrationslauf |
+| 1 | Operations-Readiness: Kapitel 30 als read-only/Buch-Zielbild-Sync vorbereiten; keine Job Queue anlegen oder starten, kein Monitoring-Connector einrichten, keine Telemetrie-/Admin-Aenderung und keine Produktivumgebung anfassen |
 | 2 | Intercompany-/Auslandprozess nur mit Gate fortsetzen: keine Company anlegen/wechseln, keinen IC-Partner, keinen Beleg `IC-7001`, keine Inbox/Outbox-Aktion und keine VAT-/Waehrungs-Aenderung ohne Freigabe |
 | 3 | Dropshipping-Setup nur mit Gate fortsetzen: `D11000`, `K20000`, `SP-PUMP-01` und Drop-Shipment-/Purchasing-Code-Logik bleiben UI-first Setup-Folgearbeit |
 | 4 | Project-Setup nur mit Gate fortsetzen: Projekt `PROJ-5001`, Ressource `RES-TECH`, Material `SP-SENSOR-02` und Lagerort `PROJ-LAG` bleiben UI-first Setup-Folgearbeit |
