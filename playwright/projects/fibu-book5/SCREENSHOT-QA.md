@@ -338,6 +338,22 @@ Fuer `UAT-O2C-001` fasst `playwright/projects/fibu-book5/evidence/uat-o2c-001/RE
 | `playwright/projects/fibu-book5/img/service-001-100-resource-res-tech.png` | rejected Datenluecke | Resources-Seite ist sichtbar, aber `RES-TECH` ist nicht sichtbar. | Nicht als Ressourcen-Buchbild verwenden; vor Technikerzeiterfassung braucht es UI-first Stammdatenfit. |
 | `playwright/projects/fibu-book5/img/service-001-110-location-van-serv.png` | rejected Datenluecke | Locations-Seite ist sichtbar, aber `VAN-SERV` ist nicht sichtbar. | Nicht als Technikerlager-Buchbild verwenden; vor Ersatzteilverbrauch braucht es Lagerort-Readiness. |
 
+## `PROJECTS-001` Screenshot Review
+
+| Screenshot | Bewertung | Befund | Entscheidung |
+|---|---|---|---|
+| `playwright/projects/fibu-book5/img/projects-001-010-projects-tell-me.png` | Navigationskandidat | Tell-Me zeigt `Projects`/Project-Kontext als Einstieg. | Als Readiness-/Suchbild geeignet. Kein Projekt `PROJ-5001` und kein Prozessnachweis. |
+| `playwright/projects/fibu-book5/img/projects-001-020-project-planning-lines-tell-me.png` | Navigationskandidat | Tell-Me zeigt `Project Planning Lines`. | Als Einstieg fuer Projektplanzeilen geeignet. Keine Planzeile fuer `RES-TECH` oder `SP-SENSOR-02`. |
+| `playwright/projects/fibu-book5/img/projects-001-030-project-journals-tell-me.png` | gesperrter Buchungsort | Tell-Me zeigt `Project Journals`. | Nur als spaeteren Journal-Ort verwenden. Kein Projektjournal ohne Gate anlegen oder buchen. |
+| `playwright/projects/fibu-book5/img/projects-001-040-project-ledger-entries-tell-me.png` | Nachweispfad-Kandidat | Tell-Me zeigt `Project Ledger Entries`. | Als spaeterer Postenspur-Hinweis geeignet. Keine Projektposten vorhanden oder gebucht. |
+| `playwright/projects/fibu-book5/img/projects-001-050-project-statistics-tell-me.png` | Kontrollbericht-Kandidat | Tell-Me zeigt `Project Statistics`. | Als spaeteren Kontrollbericht erklaeren. Keine Projektstatistik fuer `PROJ-5001`. |
+| `playwright/projects/fibu-book5/img/projects-001-060-project-wip-tell-me.png` | gesperrter WIP-Kontext | Tell-Me zeigt `Project WIP`. | Nur als WIP-Hinweis verwenden. Keine WIP-Berechnung oder WIP-Buchung ohne Gate. |
+| `playwright/projects/fibu-book5/img/projects-001-070-project-proj-5001.png` | rejected Datenluecke | Projects/Jobs-Kontext ist sichtbar, aber `PROJ-5001` ist nicht sichtbar. | Nicht als Projektkarte verwenden; als Stammdatenluecke behalten. |
+| `playwright/projects/fibu-book5/img/projects-001-080-customer-d10000.png` | guter Labor-Readiness-Kandidat | Gefilterter Customer-Kontext zeigt `D10000` / Mueller Maschinenbau. | Als Projektkunden-Readiness nutzbar. Kein Projekt und keine Projektfaktura. |
+| `playwright/projects/fibu-book5/img/projects-001-090-resource-res-tech.png` | rejected Datenluecke | Resources-Seite ist sichtbar, aber `RES-TECH` ist nicht sichtbar. | Nicht als Ressourcen-Buchbild verwenden; vor Projektzeit braucht es UI-first Stammdatenfit. |
+| `playwright/projects/fibu-book5/img/projects-001-100-item-sp-sensor-02.png` | rejected Datenluecke | Items-Seite ist sichtbar, aber `SP-SENSOR-02` ist nicht sichtbar. | Nicht als Projektmaterial-Buchbild verwenden; vor Projektverbrauch braucht es UI-first Artikel-/Posting-Fit. |
+| `playwright/projects/fibu-book5/img/projects-001-110-location-proj-lag.png` | rejected Datenluecke | Locations-Seite ist sichtbar, aber `PROJ-LAG` ist nicht sichtbar. | Nicht als Projektlager-Buchbild verwenden; vor Projektmaterialverbrauch braucht es Lagerort-Readiness. |
+
 ## Harte Findings aus dem Review
 
 ### QA-O2C-001 Listenbild zeigt nicht den Buchfall

@@ -145,12 +145,23 @@ Wenn das Projekt fertig ist, kennen wir Business Central für den Buchumfang nic
 | Stammdaten | Customer / Item / Location | 22/31/15 | gefilterte Listen, breite Layoutansicht | Servicekunde, Ersatzteil und Technikerlager pruefen | `SERVICE-001` | `playwright/projects/fibu-book5/img/service-001-070-customer-d10000.png`; `playwright/projects/fibu-book5/img/service-001-090-item-sp-pump-01.png`; `playwright/projects/fibu-book5/img/service-001-110-location-van-serv.png`; `evidence/service-001/` | `D10000` sichtbar; `SP-PUMP-01` und `VAN-SERV` nicht sichtbar; keine Anlage, keine Buchung | Kapitel 15 |
 | Buch-Sync | Kapitel 15 | n/a | Statusbox vor Schrittfolge | Service-Seiten als Readiness statt Servicefaehigkeit erklaeren | `SERVICE-002` | `evidence/service-002/` | erledigt als Buch-/Evidence-Sync; `SERV-4001` bleibt Zielpfad, Setup und Buchung gate-gesperrt | Kapitel 15 |
 
+## Projects
+
+| Bereich | Seite | Page-ID | UI-Element | Funktion | Testfall | Screenshot/Evidence | Status | Buchstelle |
+|---|---|---:|---|---|---|---|---|---|
+| Projects | Projects / Jobs | n/a/89 | Tell-Me-Suche, gefilterte Liste, breite Layoutansicht | Einstieg fuer Projekt `PROJ-5001` finden, ohne Projekt anzulegen | `PROJECTS-001` | `playwright/projects/fibu-book5/img/projects-001-010-projects-tell-me.png`; `playwright/projects/fibu-book5/img/projects-001-070-project-proj-5001.png`; `evidence/projects-001/` | Einstieg sichtbar; Zielnummer `PROJ-5001` nicht sichtbar; keine Projektanlage | Kapitel 16 |
+| Projects | Project Planning Lines | n/a | Tell-Me-Suche | Planzeilen als Vorstufe fuer Ressource und Material finden | `PROJECTS-001` | `playwright/projects/fibu-book5/img/projects-001-020-project-planning-lines-tell-me.png`; `evidence/projects-001/` | gesehen/verstanden als Navigationskandidat; keine Planzeile erfasst | Kapitel 16 |
+| Projects | Project Journals | n/a | Tell-Me-Suche | spaeteren Ort fuer Projektverbrauch finden | `PROJECTS-001` | `playwright/projects/fibu-book5/img/projects-001-030-project-journals-tell-me.png`; `evidence/projects-001/` | gesehen/verstanden als gesperrter Buchungsort; kein Journal und keine Buchung | Kapitel 16 |
+| Projects | Project Ledger Entries | n/a | Tell-Me-Suche | spaeteren Nachweispfad fuer Projektposten finden | `PROJECTS-001` | `playwright/projects/fibu-book5/img/projects-001-040-project-ledger-entries-tell-me.png`; `evidence/projects-001/` | gesehen/verstanden als Postenpfad; keine Projektposten aus Zielprojekt | Kapitel 16 |
+| Projects | Project Statistics / Project WIP | n/a | Tell-Me-Suche | Kontrollbericht und WIP-Kontext sichtbar machen | `PROJECTS-001` | `playwright/projects/fibu-book5/img/projects-001-050-project-statistics-tell-me.png`; `playwright/projects/fibu-book5/img/projects-001-060-project-wip-tell-me.png`; `evidence/projects-001/` | gesehen/verstanden als Readiness; keine Statistik, keine WIP-Berechnung | Kapitel 16 |
+| Stammdaten | Customer / Resource / Item / Location | 22/77/31/15 | gefilterte Listen, breite Layoutansicht | Projektkunde, Technikerressource, Projektmaterial und Projektlager pruefen | `PROJECTS-001` | `playwright/projects/fibu-book5/img/projects-001-080-customer-d10000.png`; `playwright/projects/fibu-book5/img/projects-001-090-resource-res-tech.png`; `playwright/projects/fibu-book5/img/projects-001-100-item-sp-sensor-02.png`; `playwright/projects/fibu-book5/img/projects-001-110-location-proj-lag.png`; `evidence/projects-001/` | `D10000` sichtbar; `RES-TECH`, `SP-SENSOR-02` und `PROJ-LAG` nicht sichtbar; keine Anlage, keine Buchung | Kapitel 16 |
+
 ## Naechste Inventarziele
 
 | Reihenfolge | Ziel |
 |---:|---|
-| 1 | `PROJECTS-001-READINESS` read-only starten; keine Projektbuchung, keine WIP-Berechnung und keine Faktura ohne Gate |
-| 2 | Service-Setup nur mit Gate fortsetzen: `SERVICE-002` hat Kapitel 15 synchronisiert; Serviceartikel, Ersatzteil, Ressource und Technikerlager bleiben UI-first Setup-Folgearbeit |
+| 1 | `PROJECTS-002-BOOK-SYNC` starten; `PROJECTS-001` hat Readiness belegt, aber Zielobjekte fehlen |
+| 2 | Project-Setup nur mit Gate fortsetzen: Projekt `PROJ-5001`, Ressource `RES-TECH`, Material `SP-SENSOR-02` und Lagerort `PROJ-LAG` bleiben UI-first Setup-Folgearbeit |
 | 3 | Reporting weiterfuehren: `REPORTING-009` hat den einfachen Sachposten-Dimensionspfad read-only ausgeschoepft; `REPORTING-008` definiert den Analysis-View-Fit fuer `PRODUCTLINE=MACHINE` und `CHANNEL=B2B` als naechsten Hebel; nur mit eigener Freigabe umsetzen, sonst keinen weiteren gleichen read-only Reportingpfad wiederholen |
 | 4 | Postenspur-Lernatlas `POSTING-TRACE-001` ist erledigt: O2C, P2P und Inventory erklaeren Beleg, Nebenbuchposten, Sachposten, Artikelposten, Wertposten und Bericht als gemeinsame Anfaengerkette; keine weitere `INV008`-Buchung |
 | 5 | Sachposten-Dimensionspfad nicht erneut als naechstes Ziel einplanen: `REPORTING-009` hat ihn read-only geprueft und als Teil-/Negativbefund dokumentiert |

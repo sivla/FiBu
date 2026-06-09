@@ -952,3 +952,21 @@ Fuer Anfaenger ist das der Kern: Business Central zeigt viele Produktionsseiten,
 | Buchstelle | Kapitel 15 Service |
 
 Fuer Anfaenger ist das wichtig, weil Service mehrere Welten verbindet: Kundenmaschine, Ersatzteilbestand, Technikerzeit, Garantie-/Kulanzentscheidung und Finance-Wirkung. Ein sichtbarer `Service Orders`-Treffer ist nur die Tuer. Der Prozess beginnt erst, wenn die Zielobjekte vorhanden sind und vor jeder Buchung eine Preview-/Postenspur-Strategie feststeht.
+
+## FIND-BC-PROJ-001 Project-Readiness ist nicht Projektfaehigkeit
+
+| Feld | Wert |
+|---|---|
+| Status | offen als Buch-Sync-Finding; praktische Setup-/Buchungslinie gate-gesperrt |
+| Quelle | `PROJECTS-001` |
+| Screenshot | `playwright/projects/fibu-book5/img/projects-001-010-projects-tell-me.png`, `playwright/projects/fibu-book5/img/projects-001-020-project-planning-lines-tell-me.png`, `playwright/projects/fibu-book5/img/projects-001-030-project-journals-tell-me.png`, `playwright/projects/fibu-book5/img/projects-001-040-project-ledger-entries-tell-me.png`, `playwright/projects/fibu-book5/img/projects-001-050-project-statistics-tell-me.png`, `playwright/projects/fibu-book5/img/projects-001-060-project-wip-tell-me.png`, `playwright/projects/fibu-book5/img/projects-001-070-project-proj-5001.png`, `playwright/projects/fibu-book5/img/projects-001-080-customer-d10000.png`, `playwright/projects/fibu-book5/img/projects-001-090-resource-res-tech.png`, `playwright/projects/fibu-book5/img/projects-001-100-item-sp-sensor-02.png`, `playwright/projects/fibu-book5/img/projects-001-110-location-proj-lag.png` |
+| Evidence | `playwright/projects/fibu-book5/evidence/projects-001/PROJECTS-001-result.json`, `playwright/projects/fibu-book5/evidence/projects-001/PROJECTS-001-READINESS.md`, `playwright/projects/fibu-book5/evidence/projects-001/README.md` |
+| BC-Seite | Tell-Me, Jobs/Projects, Customers, Resources, Items, Locations |
+| sichtbarer Text / Werte | Tell-Me zeigt `Projects`, `Project Planning Lines`, `Project Journals`, `Project Ledger Entries`, `Project Statistics`, `Project WIP`; `D10000` ist sichtbar; `PROJ-5001`, `RES-TECH`, `SP-SENSOR-02`, `PROJ-LAG` sind als konkrete Zielnummern nicht sichtbar |
+| Elementtyp | Project-Readiness / Stammdatenluecke / Gate-Grenze |
+| erste Hypothese | Ein Projektfall braucht mehr als sichtbare Project-/Job-Seiten: Projekt, Aufgaben, Projektkunde, Ressource, Material, Projektlager, Planzeilen, Projektjournal, WIP-/Statistiklogik und Faktura muessen zusammenpassen. |
+| Testergebnis | `PROJECTS-001` laeuft read-only erfolgreich. Der Lauf erzeugt Navigationsevidence und Zielobjekt-Evidence, aber keine Einrichtung, kein Projekt, keine Projektaufgaben, keine Planzeilen, kein Projektjournal, keine WIP-Berechnung, keine Rechnung und keine Buchung. |
+| Entscheidung | Kapitel 16 braucht als naechsten Schritt `PROJECTS-002-BOOK-SYNC`: Project-/Job-Seiten sind nur Readiness. Der Buchfall `PROJ-5001` ist in `RM-DEMO` noch nicht projektfaehig, solange Projekt, Ressource, Material und Projektlager nicht UI-first gefittet und belegt sind. |
+| Buchstelle | Kapitel 16 Projects |
+
+Fuer Anfaenger ist das wichtig, weil Projects Kosten, Verbrauch, WIP-nahe Sicht und Faktura ueber Zeit verbindet. Ein sichtbarer `Projects`-Treffer ist nur der Einstieg. Der Prozess beginnt erst, wenn Stammdaten, Projektaufgaben, Projektjournal, WIP-/Statistikpruefung und Meilensteinrechnung als zusammenhaengende Kette belegt sind.

@@ -72,7 +72,7 @@ Update nach `MANUFACTURING-002`: Kapitel 14 ist mit der read-only Manufacturing-
 | Financial Reports nach `PRODUCTLINE=MACHINE` | 10, 25 | nicht belegt; vorhandene `REVENUE` Analysis View nutzt nicht `PRODUCTLINE`/`CHANNEL` | ja als Negativ-/Readinessbefund | ja | ja | missing-final-evidence | nur mit Freigabe: Analysis-View-Fit oder anderer Standardpfad |
 | P2P-Stammdaten/Kreditoren | 7, 12 | Kreditor `K10000`, Artikel `RAW-STEEL`, Einkaufslaborbuchung `106049` -> `108219` und Postenspur sind belegt; deutsche Vorsteuer offen | ja, `p2p-001` | ja | ja | done-labor / VAT offen | keine zweite P2P-Buchung; deutsche VAT-/Kontenplan-Grenze spaeter |
 | Bank/Payments | 19, 20 | `PAYMENTS-001` bis `PAYMENTS-010` belegen offene Posten, Cash-Receipt-Draft, `BANK-RM-01`, Journal Check, Apply Entries und Post-Dialog mit Abbruch; keine Zahlung | ja, `payments-001` bis `payments-010` | ja | ja | readiness-labor | `PAYMENTS-011` nur mit ausdruecklicher Zahlungsfreigabe |
-| Anlagen/Projekte/Service/Manufacturing | 14-16, 21 | Fixed Assets/Warehouse/Manufacturing/Service sind als Readiness bzw. Buch-Sync teilweise belegt; Projects noch nicht gestartet | teilweise | teilweise | teilweise | partial-readiness | Projects-Readiness read-only als naechster nicht gesperrter Prozessblock |
+| Anlagen/Projekte/Service/Manufacturing | 14-16, 21 | Fixed Assets/Warehouse/Manufacturing/Service sind als Readiness bzw. Buch-Sync teilweise belegt; Projects ist mit `PROJECTS-001` als Readiness gestartet | teilweise | teilweise | teilweise | partial-readiness | `PROJECTS-002-BOOK-SYNC` als naechster nicht gesperrter Prozessblock |
 
 ## Veraltete oder irrefuehrende Buchstellen
 
@@ -122,7 +122,7 @@ Fazit: O2C ist als CRONUS-USA-Laborprozess fachlich weitgehend synchronisiert, a
 ## Prioritaeten
 
 1. Reporting-Freigabeentscheidung: Analysis-View-Fit fuer `PRODUCTLINE`/`CHANNEL` nur mit ausdruecklicher Freigabe; ohne Freigabe keinen gleichen read-only Pfad wiederholen.
-2. `MASTERDATA-BACKLOG.md` als Pflichtquelle nutzen, bevor P2P, Inventory, Warehouse, Manufacturing, Service, Projects, Payments oder Reporting-Finallogik praktisch gestartet werden.
+2. `MASTERDATA-BACKLOG.md` als Pflichtquelle nutzen, bevor P2P, Inventory, Warehouse, Manufacturing, Service, Project-Setup, Payments oder Reporting-Finallogik praktisch gestartet werden.
 3. `UAT-O2C-001` nicht erneut buchen; Sachposten-Dimensionspfad aus `REPORTING-009` als Laborgrenze nutzen.
 4. DE-VAT-Readiness ist mit `TAX-001` geplant; praktische Umsetzung nicht in CRONUS-USA improvisieren, sondern nur mit Freigabe.
 5. Erst danach P2P-Stammdaten und Kreditorenprozess starten.
