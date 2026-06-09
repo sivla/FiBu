@@ -1,0 +1,45 @@
+{
+  "testId": "SERVICE-002",
+  "workType": "book-sync-run",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "dataBasis": "CRONUS USA",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/service-001/SERVICE-001-result.json",
+    "playwright/projects/fibu-book5/evidence/service-001/SERVICE-001-READINESS.md",
+    "playwright/projects/fibu-book5/evidence/service-001/README.md"
+  ],
+  "mode": "documentation-only-no-bc-run",
+  "gate": {
+    "id": "SERVICE-001-POSTING",
+    "status": "locked",
+    "consequence": "No Service Order creation, no service item setup, no spare-part consumption, no resource entry, no invoice and no posting."
+  },
+  "bookChapter": "Kapitel 15 Service",
+  "changes": [
+    "Chapter 15 now contains a SERVICE-001 labor status before the service step sequence.",
+    "The book separates visible service entry points from actual service process capability.",
+    "The missing target objects RM-M100-SN1001, SP-PUMP-01, RES-TECH and VAN-SERV are documented as setup/master-data gaps.",
+    "The existing step sequence is explicitly framed as a target path that must not be run in RM-DEMO without a setup/posting gate."
+  ],
+  "proves": [
+    "Service entry points are visible in RM-DEMO as read-only navigation evidence.",
+    "Customer D10000 is visible.",
+    "The target objects RM-M100-SN1001, SP-PUMP-01, RES-TECH and VAN-SERV are not visible as concrete filtered values in SERVICE-001.",
+    "Chapter 15 is synchronized with the current service readiness evidence."
+  ],
+  "doesNotProve": [
+    "No Service Order SERV-4001.",
+    "No Service Item setup for RM-M100-SN1001.",
+    "No Item SP-PUMP-01 setup.",
+    "No Resource RES-TECH setup.",
+    "No Location VAN-SERV setup.",
+    "No Service Posting Preview.",
+    "No service invoice, no service ledger entries, no item/value/G/L entry trace from service.",
+    "No German final proof."
+  ],
+  "posted": false,
+  "setupChanged": false,
+  "nextStepWithoutApproval": "PROJECTS-001-READINESS read-only, because Service setup/posting remains gate-locked after the book sync.",
+  "nextStepWithApproval": "SERVICE-003-SETUP-FIT: UI-first setup/readiness for service item, spare part, resource and technician location before any Service Order or posting."
+}

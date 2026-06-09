@@ -72,7 +72,7 @@ Update nach `MANUFACTURING-002`: Kapitel 14 ist mit der read-only Manufacturing-
 | Financial Reports nach `PRODUCTLINE=MACHINE` | 10, 25 | nicht belegt; vorhandene `REVENUE` Analysis View nutzt nicht `PRODUCTLINE`/`CHANNEL` | ja als Negativ-/Readinessbefund | ja | ja | missing-final-evidence | nur mit Freigabe: Analysis-View-Fit oder anderer Standardpfad |
 | P2P-Stammdaten/Kreditoren | 7, 12 | Kreditor `K10000`, Artikel `RAW-STEEL`, Einkaufslaborbuchung `106049` -> `108219` und Postenspur sind belegt; deutsche Vorsteuer offen | ja, `p2p-001` | ja | ja | done-labor / VAT offen | keine zweite P2P-Buchung; deutsche VAT-/Kontenplan-Grenze spaeter |
 | Bank/Payments | 19, 20 | `PAYMENTS-001` bis `PAYMENTS-010` belegen offene Posten, Cash-Receipt-Draft, `BANK-RM-01`, Journal Check, Apply Entries und Post-Dialog mit Abbruch; keine Zahlung | ja, `payments-001` bis `payments-010` | ja | ja | readiness-labor | `PAYMENTS-011` nur mit ausdruecklicher Zahlungsfreigabe |
-| Anlagen/Projekte/Service/Manufacturing | 14-16, 21 | Fixed Assets/Warehouse/Manufacturing sind als Readiness bzw. Buch-Sync teilweise belegt; Service und Projects noch nicht gestartet | teilweise | teilweise | teilweise | partial-readiness | Service-Readiness read-only als naechster nicht gesperrter Prozessblock |
+| Anlagen/Projekte/Service/Manufacturing | 14-16, 21 | Fixed Assets/Warehouse/Manufacturing/Service sind als Readiness bzw. Buch-Sync teilweise belegt; Projects noch nicht gestartet | teilweise | teilweise | teilweise | partial-readiness | Projects-Readiness read-only als naechster nicht gesperrter Prozessblock |
 
 ## Veraltete oder irrefuehrende Buchstellen
 

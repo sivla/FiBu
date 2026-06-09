@@ -2736,6 +2736,14 @@ Dieses Kapitel zeigt, wie RM-SERVICE einen Kundeneinsatz mit Serviceauftrag, Ers
 | Solution-Architect-Relevanz | Ja: BC Service vs. Field Service, Garantie, Kulanz, Technikerlager |
 | Ergebnis nach dem Kapitel | Du kannst Serviceauftrag `SERV-4001`, Ersatzteilverbrauch, Technikerzeit, Garantie/Kulanz, Faktura und Postenspur abnehmen. |
 
+### Aktueller Laborstand `SERVICE-001`
+
+Der aktuelle Nachweis in `RM-DEMO` ist ein Readiness-Nachweis, kein Serviceprozess-Endstand. Playwright hat die Service-Einstiege `Service Orders`, `Service Items`, `Resources`, `Service Management Setup`, `Service Contracts` und `Service Ledger Entries` read-only sichtbar gemacht. Der Kunde `D10000` ist sichtbar.
+
+Die konkreten Zielobjekte fuer den Buchfall sind im Labor aber noch nicht als Datensaetze sichtbar: `RM-M100-SN1001` als Serviceartikel, `SP-PUMP-01` als Ersatzteil, `RES-TECH` als Technikerressource und `VAN-SERV` als Technikerlager. Deshalb ist die folgende Schrittfolge aktuell ein Zielpfad fuer den spaeteren Service-Fit, nicht die Aussage, dass `SERV-4001` in `RM-DEMO` bereits angelegt, gebucht oder fakturiert wurde.
+
+Pruefregel fuer Anfaenger: Ein sichtbarer Menuepunkt beweist nur den Einstieg. Servicefaehig ist der Fall erst, wenn gewartetes Objekt, Kunde, Ersatzteil, Ressource, Lagerort, Garantie-/Kulanzentscheidung und spaetere Postenspur zusammenpassen. Ohne ausdrueckliches Setup-/Posting-Gate werden in diesem Labor keine Serviceartikel angelegt, keine Serviceauftraege erzeugt, keine Ersatzteile verbraucht, keine Ressourcen gebucht und keine Servicerechnung erstellt.
+
 ### Alltagsszene bei Rhein-Main
 
 Montagmorgen ruft Müller Maschinenbau bei RM-SERVICE an. Die Maschine `RM-M100` steht wegen einer defekten Pumpe. Der Servicedisponent legt `SERV-4001` an, weist Techniker `RES-TECH` zu, der Techniker verbraucht `SP-PUMP-01` und erfasst zwei Stunden Arbeit. Finance entscheidet danach, ob der Vorgang fakturiert, als Garantie gebucht oder als Kulanz dokumentiert wird.
@@ -2796,6 +2804,8 @@ Diese Seiten öffnest du über `Alt+Q`. Der deutsche Begriff ist führend; der e
 - `Gebuchte Verkaufsrechnungen (Posted Sales Invoices)`
 
 ### Schritt-für-Schritt
+
+Diese Schrittfolge beschreibt den fachlichen Zielpfad. Im aktuellen `RM-DEMO`-Labor ist vor Schritt 2 ein Service-Setup- und Stammdaten-Fit noetig, weil `RM-M100-SN1001`, `SP-PUMP-01`, `RES-TECH` und `VAN-SERV` noch nicht sichtbar nachgewiesen sind.
 
 1. Öffne `Alt+Q` und suche `Serviceaufträge (Service Orders)`.
 2. Wähle `Neu` und erfasse Debitor `D10000`.
