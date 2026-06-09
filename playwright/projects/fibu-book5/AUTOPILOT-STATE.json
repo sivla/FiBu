@@ -6,9 +6,9 @@
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
   "dataBasis": "CRONUS USA",
-  "activeArea": "sources",
-  "lastCompletedRun": "SOURCES-001",
-  "lastWorkType": "book-sync",
+  "activeArea": "governance",
+  "lastCompletedRun": "GOVERNANCE-005",
+  "lastWorkType": "governance-state-sync",
   "postedInLastRun": false,
   "latestPostedDocuments": {
     "o2c": {
@@ -29,8 +29,8 @@
     "no second O2C posting without explicit gate",
     "no second P2P posting without explicit gate",
     "no second INV008 posting without explicit gate",
-    "no payment posting without explicit gate",
-    "no OP application without explicit gate",
+    "no payment posting unless PAYMENTS-011 autonomous criteria or an explicit gate are satisfied",
+    "no OP application unless PAYMENTS-011 autonomous criteria or an explicit gate are satisfied",
     "no bank reconciliation without explicit gate",
     "no VAT19 setup without explicit gate",
     "no E-Documents, e-invoice, document sending profile, Peppol, provider, validation or Change Log setup without explicit gate",
@@ -73,9 +73,31 @@
     "P2P-REPOST-001",
     "INVENTORY-REPOST-INV008"
   ],
-  "nextBestStepWithoutApproval": "GOVERNANCE-005-AUTONOMOUS-POSTING-POLICY-SYNC: Autopilot-V2.2-Aussage zu erweiterten autonomen Buchungsmoeglichkeiten gegen aktuelle Repo-Gates, UI-first-Regel, No-Doppelbuchungs-Locks und Freigabe-Logik synchronisieren; keine BC-Ausfuehrung, keine Buchung, keine Setup-Aenderung.",
+  "autonomousAllowed": [
+    {
+      "gateId": "PAYMENTS-011-LAB-PAYMENT",
+      "scope": "exactly one controlled RM-DEMO lab payment for the existing open customer ledger entry D10000 / PS-INV103297",
+      "requiredPreflight": [
+        "fresh UI-only check in MCP_1_20260210 / RM-DEMO",
+        "open customer ledger entry PS-INV103297 still open for D10000",
+        "Cash Receipt Journal line uses D10000, BANK-RM-01, amount -68.000,00, and applies to PS-INV103297",
+        "BANK-RM-01 still has Bank Acc. Posting Group CHECKING",
+        "Apply Entries is checked in UI",
+        "Journal Check shows 0 Issues after Refresh",
+        "post-confirmation dialog is documented before confirmation",
+        "post-trace plan for Customer Ledger Entries, Detailed Customer Ledger Entries, Bank Account Ledger Entries if visible, and G/L Entries is ready"
+      ],
+      "hardBoundaries": [
+        "no bank reconciliation",
+        "no vendor payment in the same run",
+        "no German VAT19 or German bank final claim",
+        "no payment if any preflight condition fails"
+      ]
+    }
+  ],
+  "nextBestStepWithoutApproval": "PAYMENTS-011-LAB-PAYMENT: kontrollierte RM-DEMO-Laborzahlung fuer den offenen Debitorenposten D10000 / PS-INV103297 nur nach frischem UI-Preflight (BANK-RM-01 = CHECKING, Betrag -68.000,00, Apply Entries, Journal Check = 0 Issues, Postenspurplan); keine Bankabstimmung, keine DE-Finalbehauptung, bei jeder Abweichung abbrechen und Evidence schreiben.",
   "nextBestStepWithApproval": {
-    "payments": "PAYMENTS-011-LAB-PAYMENT: kontrollierte Laborzahlung nur mit ausdruecklicher Freigabe, Postenspur und Bank-/OP-Evidence.",
+    "payments": "PAYMENTS-011-LAB-PAYMENT: kontrollierte Laborzahlung ist autonom erlaubt, aber nur fuer D10000 / PS-INV103297 und nur nach frischem UI-Preflight, Journal Check = 0 Issues, Apply Entries und Postenspur.",
     "reporting": "REPORTING-011-ANALYSIS-VIEW-FIT: idempotenten Analysis-View-Fit fuer PRODUCTLINE/CHANNEL nur mit Freigabe einrichten/aktualisieren.",
     "tax": "TAX-002-DE-VAT-FIT: deutsches VAT19-Setup nur mit Freigabe und separatem Preview-/VAT-Entries-Nachweis.",
     "compliance": "COMPLIANCE-002-EINVOICE-SETUP: E-Rechnungs-/E-Documents-/Versandprofil-/Change-Log-Setup nur mit Freigabe, UI-first Klickpfad, Validierungs-/Versand-/Auditnachweis und klarer Labor-/DE-Trennung.",
@@ -106,7 +128,8 @@
     "Do not repeat GLOSSARY-001 book-sync without a terminology or evidence delta",
     "Do not repeat PAGESINDEX-001 book-sync without a coverage or evidence delta",
     "Do not repeat ARTIFACTS-001 book-sync without an artifact, handover or governance delta",
-    "Do not repeat SOURCES-001 book-sync without a source, scope or official-documentation delta"
+    "Do not repeat SOURCES-001 book-sync without a source, scope or official-documentation delta",
+    "Do not repeat GOVERNANCE-005 without a new autonomous-posting-policy delta"
   ],
   "notes": [
     "AUTOPILOT-STATE.json and POSTING-AND-SETUP-GATES.md were introduced because the V2 autopilot prompt requires machine-readable state and explicit gates.",
@@ -145,6 +168,7 @@
     "GLOSSARY-001 synced chapter 37 without a BC run: German/English glossary and Tell-Me terms are mapped to UI inventory, click-guide coverage and existing evidence. This is terminology readiness, not new UI evidence, German final terminology proof, setup change or posting.",
     "PAGESINDEX-001 synced chapter 38 without a BC run: pages index, process catalog and QA are mapped to coverage, UI inventory, screenshot QA, gates and existing evidence. This is index/readiness governance, not new UI evidence, process execution, setup change, posting or German final proof.",
     "ARTIFACTS-001 synced chapter 39 without a BC run: project artifacts, templates, handover and repo QA are mapped to evidence structure, Autopilot state, gates and artifact governance. Templates and handover files are control artifacts, not process proof; no setup change, posting, screenshot or German final proof was executed.",
-    "SOURCES-001 synced chapter 40 without a BC run: sources are classified as standard references, official legal/tax/compliance references, optional vendor references, out-of-scope markers or project evidence. Sources support book rules and target pictures, but do not prove RM-DEMO click paths, postings or German final proof. Q10 Shopify remains only an out-of-scope marker."
+    "SOURCES-001 synced chapter 40 without a BC run: sources are classified as standard references, official legal/tax/compliance references, optional vendor references, out-of-scope markers or project evidence. Sources support book rules and target pictures, but do not prove RM-DEMO click paths, postings or German final proof. Q10 Shopify remains only an out-of-scope marker.",
+    "GOVERNANCE-005 synced the Autopilot V2.2 autonomous lab posting policy into state and gates without a BC run, setup change or posting. PAYMENTS-011 is now the first autonomous candidate, but only for the existing D10000 / PS-INV103297 lab payment after fresh UI preflight and full post-trace plan. Structural locks remain for new company, environment switch, German VAT19, security, integrations, migration, warehouse activation and unprepared repeat postings."
   ]
 }

@@ -249,7 +249,7 @@ Wenn das Projekt fertig ist, kennen wir Business Central für den Buchumfang nic
 
 | Reihenfolge | Ziel |
 |---:|---|
-| 1 | Governance-Policy-Sync: Autopilot-V2.2-Aussage zu erweiterten autonomen Buchungsmoeglichkeiten gegen aktuelle Repo-Gates, UI-first-Regel und No-Doppelbuchungs-Locks synchronisieren; keine BC-Ausfuehrung, keine Setup-Aenderung und keine Buchung |
+| 1 | `PAYMENTS-011-LAB-PAYMENT`: Cash Receipt Journal, Apply Entries, Journal Check und Post-Dialog fuer `D10000` / `PS-INV103297` frisch ueber UI pruefen; nur bei passenden Signalen genau einmal Laborzahlung buchen und Postenspur sichern |
 | 2 | Intercompany-/Auslandprozess nur mit Gate fortsetzen: keine Company anlegen/wechseln, keinen IC-Partner, keinen Beleg `IC-7001`, keine Inbox/Outbox-Aktion und keine VAT-/Waehrungs-Aenderung ohne Freigabe |
 | 3 | Dropshipping-Setup nur mit Gate fortsetzen: `D11000`, `K20000`, `SP-PUMP-01` und Drop-Shipment-/Purchasing-Code-Logik bleiben UI-first Setup-Folgearbeit |
 | 4 | Project-Setup nur mit Gate fortsetzen: Projekt `PROJ-5001`, Ressource `RES-TECH`, Material `SP-SENSOR-02` und Lagerort `PROJ-LAG` bleiben UI-first Setup-Folgearbeit |

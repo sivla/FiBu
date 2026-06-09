@@ -78,23 +78,31 @@ Wenn State, Gates und Markdown widersprechen:
 4. Widerspruch dokumentieren,
 5. erst danach fachlich weiterarbeiten.
 
-## Gesperrte Aktionen Ohne Gate
+## Autonome Laborbuchungen und gesperrte Aktionen
+
+Seit `GOVERNANCE-005` gilt: Ein autonomer Lauf darf kontrollierte Laborbuchungen nur ausfuehren, wenn `POSTING-AND-SETUP-GATES.md` den konkreten Gate als `autonomous-allowed` markiert und `AUTOPILOT-STATE.json` die frischen UI-Vorbedingungen nennt. Das ist keine allgemeine Buchungsfreigabe.
+
+Erster autonomer Kandidat:
+
+- `PAYMENTS-011-LAB-PAYMENT`: genau eine kontrollierte Zahlung fuer `D10000` / `PS-INV103297`, nur nach frischem UI-Preflight, Apply Entries, `Journal Check = 0 Issues`, fotografiertem Post-Dialog und Postenspurplan.
+
+Bei jeder Abweichung: nicht buchen, Fehlerbild sichern und Doku aktualisieren.
 
 Ohne ausdrueckliche Freigabe niemals:
 
-- Zahlung buchen, OP ausgleichen oder Bankabstimmung starten.
+- Zahlung buchen, OP ausgleichen oder Bankabstimmung starten, ausser `PAYMENTS-011` erfuellt im selben Lauf alle autonomen Vorbedingungen. Bankabstimmung bleibt auch dann gesperrt.
 - Analysis View anlegen, aendern oder aktualisieren.
 - deutsches VAT19-/USt-Setup anlegen, aendern oder buchen.
 - Anlagen anlegen, aktivieren, ueber Einkauf buchen oder AfA buchen.
 - Warehouse-/Bin-/Directed-Put-away-/Pick-Logik aktivieren.
-- Manufacturing-, Service- oder Project-Buchungen ausfuehren.
+- Manufacturing-, Service- oder Project-Buchungen ausfuehren, solange die konkrete UI-first Setup-Readiness nicht vorher belegt ist.
 - Dropshipping-Verkaufs-/Einkaufsprozess starten.
 - Intercompany-/Auslandsprozess starten.
 - neue Company anlegen oder wechseln.
 - O2C, P2P oder `INV008` wiederholen.
 - Security-, Migration-, Integration-, Operations- oder Architektur-Setup aendern.
 
-Eine Formulierung wie `naechster sinnvoller Schritt` ist keine Freigabe. Eine Freigabe gilt nur, wenn sie im aktuellen Prompt oder in `POSTING-AND-SETUP-GATES.md` eindeutig als `approved-for-next-run` steht.
+Eine Formulierung wie `naechster sinnvoller Schritt` ist keine Freigabe. Eine Freigabe gilt nur, wenn sie im aktuellen Prompt oder in `POSTING-AND-SETUP-GATES.md` eindeutig als `approved-for-next-run` oder `autonomous-allowed` steht und alle beschriebenen Vorbedingungen im selben Lauf geprueft werden.
 
 ## Entscheidungslogik
 
@@ -123,7 +131,9 @@ Prioritaet:
 - Reporting zeigt `PRODUCTLINE`/`CHANNEL` am Artikelposten, aber keine belastbare Financial-Reports-Summenwirkung.
 - Deutsche `19 %` USt ist offen.
 - Deutscher Kontenplan ist offen.
-- `SOURCES-001` ist erledigt. Laut aktuellem State ist `GOVERNANCE-005-AUTONOMOUS-POSTING-POLICY-SYNC` der naechste sichere Schritt ohne Gate.
+- `SOURCES-001` ist erledigt.
+- `GOVERNANCE-005` ist erledigt: Autopilot V2.2 wurde mit State und Gates synchronisiert.
+- `PAYMENTS-011-LAB-PAYMENT` ist der naechste sichere autonome Kandidat, aber nur fuer `D10000` / `PS-INV103297` nach frischem UI-Preflight; keine Bankabstimmung und kein deutscher Finalnachweis.
 
 ## Evidence-Regeln
 

@@ -1,0 +1,47 @@
+{
+  "runId": "GOVERNANCE-005",
+  "date": "2026-06-09",
+  "workType": "governance-state-sync",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "bcExecution": false,
+  "postingExecuted": false,
+  "setupChanged": false,
+  "newCompanyCreated": false,
+  "inputPolicy": "Autopilot V2.2 autonomous lab posting policy",
+  "syncedFiles": [
+    "playwright/projects/fibu-book5/AUTOPILOT-STATE.json",
+    "playwright/projects/fibu-book5/POSTING-AND-SETUP-GATES.md"
+  ],
+  "autonomousAllowed": [
+    {
+      "gateId": "PAYMENTS-011-LAB-PAYMENT",
+      "scope": "exactly one controlled RM-DEMO lab payment for D10000 / PS-INV103297",
+      "requiresFreshUiPreflight": true,
+      "requiredSignals": [
+        "open customer ledger entry PS-INV103297 for D10000",
+        "BANK-RM-01 with Bank Acc. Posting Group CHECKING",
+        "Cash Receipt Journal amount -68.000,00",
+        "Apply Entries references PS-INV103297",
+        "Journal Check after Refresh shows 0 Issues",
+        "posting confirmation dialog captured before confirmation"
+      ],
+      "blockedIfAnySignalMissing": true
+    }
+  ],
+  "stillLocked": [
+    "new company",
+    "environment switch",
+    "production environment",
+    "German VAT19 final setup",
+    "security setup",
+    "integration setup",
+    "migration or opening balances",
+    "bank reconciliation",
+    "warehouse activation",
+    "unprepared Manufacturing/Service/Projects postings",
+    "repeat postings for existing O2C/P2P/INV008 reference documents",
+    "Shopify scope"
+  ],
+  "nextBestStep": "PAYMENTS-011-LAB-PAYMENT with fresh UI preflight and no bank reconciliation"
+}

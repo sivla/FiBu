@@ -25,7 +25,7 @@ Dieser Arbeitsplan gleicht das Buch `FiBu_Buch_BC_Standardprozesse_DE_Master_Blu
 | Sachposten-Dimensionen | Dimensionen nach Buchung in Sachposten zeigen | `REPORTING-009` zeigt G/L Entries zu `PS-INV103297` in breiter Ansicht mit `Department Code`/`Customergroup Code`; `PRODUCTLINE`/`CHANNEL` und `Entry` -> `Dimensions` bleiben dort nicht sichtbar | teilweise belegt, Labor-Negativbefund | Im Buch als Unterschied zwischen Shortcut-Spalten, Postendimensionen und Reportingachsen erklaeren; nicht als erledigten Sachposten-Dimensionsnachweis formulieren. |
 | Tax / VAT / 19 % | Deutsche USt `19 %`, USt-Posten, Brutto `80.920 EUR` | CRONUS-USA zeigt `FURNITURE`, `taxPercent = 0`; `TAX-001` dokumentiert die Grenze und den DE-VAT-Readiness-Pfad | offen, Readiness dokumentiert | Nicht im US-Labor erzwingen; DE-Zielmandant oder explizit freigegebenes VAT-Setup vorbereiten. |
 | P2P / Kreditoren | Einkaufsprozess und Kreditorenpostenspur | CRONUS-USA-Laborprozess `106049` -> `108219` ist gebucht; Kreditorenposten, Sachposten, Wertposten und Artikelposten `793` sind belegt; deutsche Vorsteuer offen | Labor belegt, Steuer offen | Keine zweite P2P-Buchung; P2P als Laborbeleg nutzen und deutsche VAT-/Kontenplan-Grenze offen halten. |
-| Bank / Payments | Ausgleich, Zahlung, Bankposten | `PAYMENTS-001` bis `PAYMENTS-010` belegen offene Posten, Cash-Receipt-Draft, `BANK-RM-01`, Journal Check, Apply Entries und Post-Dialog mit Abbruch; keine Zahlung gebucht | Readiness belegt, Buchung offen | `PAYMENTS-011` nur mit ausdruecklicher Freigabe; bis dahin keine Zahlungs- oder Ausgleichsbuchung. |
+| Bank / Payments | Ausgleich, Zahlung, Bankposten | `PAYMENTS-001` bis `PAYMENTS-010` belegen offene Posten, Cash-Receipt-Draft, `BANK-RM-01`, Journal Check, Apply Entries und Post-Dialog mit Abbruch; keine Zahlung gebucht; `GOVERNANCE-005` erlaubt `PAYMENTS-011` autonom als eng begrenzten Laborfall | Readiness belegt, erster Zahlungslauf autonom moeglich | `PAYMENTS-011` als kontrollierten UI-first Laborlauf starten: nur `D10000` / `PS-INV103297`, frischer Preflight, `Journal Check = 0 Issues`, Postenspur; keine Bankabstimmung. |
 | Anlagen, Projekte, Service, Manufacturing | Weitere Buchkapitel praktisch lernen | Fixed Assets/Warehouse/Manufacturing/Service/Projects sind als Readiness bzw. Buch-Sync teilweise belegt; Projects ist mit `PROJECTS-001`/`PROJECTS-002` synchronisiert: Einstiege sichtbar, Zielobjekte fehlen | teilweise belegt | Ohne Gate keine Setup-/Buchungslaeufe; naechster sicherer Block ist Kapitel 17 als Dropshipping/Sonderverkauf ohne Shopify-Connector-Scope read-only. |
 | Migration / Opening Balances / Cutover | Kapitel 28 als Zielbild, nicht als ungepruefter Import | `MIGRATION-001` synchronisiert Kapitel 28 ohne BC-Lauf; kein Konfigurationspaket, kein Import, keine neue Company und keine Opening-Balance-Buchung | Readiness/Buch-Sync belegt | Praktischer Migrations-/Opening-Balance-Lauf nur mit Gate; `INTEGRATIONS-001` hat den naechsten sicheren Sync inzwischen erledigt. |
 | Integrationen | Kapitel 29 als Architektur-/UAT-Zielbild, nicht als technische Abkuerzung | `INTEGRATIONS-001` synchronisiert Kapitel 29 ohne BC-Lauf; keine Extension, kein Connector, kein API-/Web-Service-Setup, kein Power-Platform-/Power-BI-Setup und kein produktiver Datenaustausch | Readiness/Buch-Sync belegt | Praktischer Integrations-/Extension-/Connector-/Power-BI-Lauf nur mit Gate; ohne Gate Kapitel 30 Betrieb/Monitoring als Readiness-Sync. |
@@ -39,7 +39,7 @@ Dieser Arbeitsplan gleicht das Buch `FiBu_Buch_BC_Standardprozesse_DE_Master_Blu
 | Glossar Deutsch/Englisch/Tell-Me | Kapitel 37 als Such- und Begriffsschicht, nicht als neuer Klickpfadnachweis | `GLOSSARY-001` synchronisiert Kapitel 37 ohne BC-Lauf gegen UI-Inventar, Coverage und vorhandene Evidence; Begriffe werden als Buchsprache, Suchhilfe, belegter UI-Pfad oder offener Zielbegriff getrennt | Readiness/Buch-Sync belegt | Kapitel 38 ist mit `PAGESINDEX-001` erledigt; ohne Gate Kapitel 39 Projektartefakte/Handover/Repo-QA als Readiness-Sync. |
 | Seitenindex / Prozesskatalog / Qualitaetssicherung | Kapitel 38 als Index-, QA- und Prozesskatalogschicht, nicht als Sammelbeweis aller Klickpfade | `PAGESINDEX-001` synchronisiert Kapitel 38 ohne BC-Lauf gegen Coverage, UI-Inventar, Screenshot-QA, Autopilot-State und Gates; Indexeintrag, Zielpfad, praktische Evidence, Laborgrenze und DE-Finalnachweis sind getrennt | Readiness/Buch-Sync belegt | Ohne Gate Kapitel 39 Projektartefakte/Handover/Repo-QA als Readiness-Sync; praktische UI-/Setup-/Buchungslaeufe nur mit passendem Gate. |
 | Projektartefakte / Handover / Repo-QA | Kapitel 39 als Artefakt- und Uebergabeschicht, nicht als praktischer Prozessnachweis | `ARTIFACTS-001` synchronisiert Kapitel 39 ohne BC-Lauf gegen Evidence-Struktur, Autopilot-State, Gates und Artefakt-Governance; Templates, Handover-Dateien und Evidence-Pack-Platzhalter sind Kontrollartefakte, keine Prozess-Evidence | Readiness/Buch-Sync belegt | Ohne Gate Kapitel 40 Quellenverzeichnis als Readiness-Sync; praktische UI-/Setup-/Buchungslaeufe nur mit passendem Gate. |
-| Quellenverzeichnis / Primaerquellen | Kapitel 40 als Quellenregel, nicht als praktischer Prozessnachweis | `SOURCES-001` synchronisiert Kapitel 40 ohne BC-Lauf gegen Primaerquellenlogik, Microsoft-Learn-Bezug, amtliche Quellen, Vendor-Dokumentation, Evidence-Regeln und gestrichenen Shopify-Scope; Quellen sind Referenzen, keine RM-DEMO-Prozessbeweise | Readiness/Buch-Sync belegt | Ohne Gate `GOVERNANCE-005-AUTONOMOUS-POSTING-POLICY-SYNC`; praktische UI-/Setup-/Buchungslaeufe nur mit passendem Gate. |
+| Quellenverzeichnis / Primaerquellen | Kapitel 40 als Quellenregel, nicht als praktischer Prozessnachweis | `SOURCES-001` synchronisiert Kapitel 40 ohne BC-Lauf gegen Primaerquellenlogik, Microsoft-Learn-Bezug, amtliche Quellen, Vendor-Dokumentation, Evidence-Regeln und gestrichenen Shopify-Scope; Quellen sind Referenzen, keine RM-DEMO-Prozessbeweise | Readiness/Buch-Sync belegt | `GOVERNANCE-005` ist erledigt; naechster autonomer Kandidat ist `PAYMENTS-011-LAB-PAYMENT`. Praktische UI-/Setup-/Buchungslaeufe bleiben an passende Gates gebunden. |
 
 ## Kritische Buchdrift
 
@@ -188,9 +188,10 @@ Akzeptanz:
 
 Empfohlene Reihenfolge nach Reporting/Steuer:
 
-1. Payment-Freigabeentscheidung:
+1. Payment-Folgearbeit:
    - `PAYMENTS-001` bis `PAYMENTS-010` sind bis Post-Dialog/Abbruch belegt.
-   - Echte Zahlung, OP-Ausgleich und Bankposten nur mit ausdruecklicher Freigabe als `PAYMENTS-011`.
+   - `GOVERNANCE-005` erlaubt `PAYMENTS-011` autonom, aber nur fuer `D10000` / `PS-INV103297` nach frischem UI-Preflight.
+   - Bankabstimmung und weitere Zahlungsvarianten bleiben gesperrt.
 2. Reporting-Freigabeentscheidung:
    - Analysis-View-Fit fuer `PRODUCTLINE`/`CHANNEL` nur mit ausdruecklicher Setup-Freigabe.
 3. DE-VAT-Freigabeentscheidung:
@@ -200,7 +201,7 @@ Empfohlene Reihenfolge nach Reporting/Steuer:
 
 ## Sofort naechster sinnvoller Schritt
 
-Ohne Gate ist der naechste sichere Schritt `GOVERNANCE-005-AUTONOMOUS-POSTING-POLICY-SYNC`.
+Der naechste sichere Schritt ist `PAYMENTS-011-LAB-PAYMENT`.
 
 Begruendung:
 
@@ -214,14 +215,14 @@ Begruendung:
 - Kapitel 38 ist mit `PAGESINDEX-001` als read-only/Buch-Zielbild-Sync erledigt.
 - Kapitel 39 ist mit `ARTIFACTS-001` als read-only/Buch-Zielbild-Sync erledigt.
 - Kapitel 40 ist mit `SOURCES-001` als read-only/Buch-Zielbild-Sync erledigt.
-- Der naechste sichere Schritt ist Governance, weil Autopilot-V2.2 erweiterte autonome Buchungsmoeglichkeiten formuliert, waehrend die aktuellen Repo-Gates praktische Buchungen und Setup-Aenderungen weiter sperren.
+- `GOVERNANCE-005` hat Autopilot-V2.2 mit den Gates synchronisiert. Deshalb ist die naechste praktische Arbeit nicht mehr ein weiterer Governance-Sync, sondern die eng begrenzte Payment-Laborzahlung nach frischem UI-Preflight.
 
 Minimaler Prompt fuer den naechsten Lauf:
 
 ```text
 Arbeite auf Branch codex/playwright-bc-screenshot-foundation.
-Lies AUTOPILOT-STATE.json, POSTING-AND-SETUP-GATES.md, AUTOPILOT-PROMPT-V2.md, CURRENT-STATE.md, LAB-FIT-STATUS.md und BOOK-CLICK-GUIDE-COVERAGE.md.
-Fuehre `GOVERNANCE-005-AUTONOMOUS-POSTING-POLICY-SYNC` als Governance-/State-Sync durch: Autopilot-V2.2-Aussage zu erweiterten autonomen Buchungsmoeglichkeiten gegen aktuelle Repo-Gates, UI-first-Regel, No-Doppelbuchungs-Locks und Freigabe-Logik synchronisieren; keine BC-Ausfuehrung, keine Buchung, keine Setup-Aenderung.
+Lies AUTOPILOT-STATE.json, POSTING-AND-SETUP-GATES.md, AUTOPILOT-PROMPT-V2.md, CURRENT-STATE.md, LAB-FIT-STATUS.md, BOOK-CLICK-GUIDE-COVERAGE.md und evidence/governance-005/.
+Fuehre `PAYMENTS-011-LAB-PAYMENT` als kontrollierten UI-first Laborlauf durch: erst offenen Posten `D10000` / `PS-INV103297`, Cash Receipt Journal, `BANK-RM-01`, Betrag `-68.000,00`, Apply Entries und `Journal Check = 0 Issues` frisch pruefen; nur dann genau einmal buchen und Postenspur sichern. Bei jeder Abweichung nicht buchen, Evidence schreiben und State aktualisieren.
 ```
 
 ## Nicht jetzt tun
