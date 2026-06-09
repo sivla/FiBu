@@ -5599,7 +5599,7 @@ Dieses Kapitel vermittelt, wie ein Business Central Solution Architect Standardl
 
 Fuer Anfaenger ist dieser Unterschied zentral: Ein Solution Architect entscheidet nicht aus Bauchgefuehl oder nach dem ersten sichtbaren Button. Er sammelt Standardnachweis, prueft Setup und Datenmodell, beschreibt die Luecke, bewertet Risiko und TCO, definiert UAT und dokumentiert Owner, Rollback und Betrieb. Erst danach darf eine konkrete Empfehlung `Standard`, `Setup`, `Prozessdesign`, `Extension`, `Custom` oder `Prozessaenderung` heissen.
 
-Praktische Architekturarbeit bleibt gate-gesperrt. Ohne Freigabe keine AL-/Extension-Entwicklung, keine AppSource-Installation, keine API-/Connector-/Power-Platform-/Power-BI-Einrichtung, keine produktive Architekturentscheidung, keine Setup-Aenderung und keine Buchung. Naechster sicherer Buchblock ist Kapitel 32: vorhandene Evidence in eine UAT-Testbibliothekslogik einordnen.
+Praktische Architekturarbeit bleibt gate-gesperrt. Ohne Freigabe keine AL-/Extension-Entwicklung, keine AppSource-Installation, keine API-/Connector-/Power-Platform-/Power-BI-Einrichtung, keine produktive Architekturentscheidung, keine Setup-Aenderung und keine Buchung. Kapitel 32 ist inzwischen als UAT-Testbibliothekslogik eingeordnet; naechster sicherer Buchblock ist Kapitel 33: vorhandene Evidence und UAT-Matrix in Uebungen und Loesungen einordnen.
 
 ### Rolle und Denkweise
 
@@ -5667,6 +5667,12 @@ Fall 3: Power BI Controlling.
 Teil F enthält Testbibliothek, Lösungen, MB-800-Abdeckung, Lernpfade, Glossar, Seitenindex, Projektartefakte und Quellen.
 
 ## 32. UAT-Testbibliothek
+
+> **Aktueller Evidence-Stand `UAT-001`**
+>
+> Dieses Kapitel ist eine UAT-Zielbibliothek, kein Beleg dafuer, dass alle UAT-Faelle bereits bestanden sind. Der aktuelle RM-DEMO-Laborstand ordnet vorhandene Evidence ein: O2C ist mit `S-ORD101068` -> `PS-INV103297` als CRONUS-USA-Laborfall belegt, P2P mit `106049` -> `108219`, Inventory mit `INV008-899959`. Payments ist bis Journal Check, Apply Entries und Post-Dialog mit Abbruch vorbereitet, aber ohne Zahlung oder Ausgleich. Reporting ist nur teilweise/negativ belegt: `PRODUCTLINE=MACHINE` und `CHANNEL=B2B` sind am Artikelposten sichtbar, aber noch nicht als Financial-Reports-Summenwirkung. Deutsche `19 %` USt, deutscher Kontenplan, deutsche E-Rechnung, Security-Setup, Migration, Integrationen, Operations und produktive Architekturentscheidungen bleiben Final- oder Gate-Folgearbeit.
+>
+> Fuer Anfaenger heisst das: Ein UAT-Fall ist erst abnahmefaehig, wenn Testziel, Testdaten, erwarteter Nachweis, tatsaechliches Ergebnis, Abweichung, Fehlerbehandlung und fachlicher Sign-off zusammenpassen. Ein Labor-Screenshot ist ein wichtiger Baustein, aber kein Gesamt-UAT.
 
 ### Master-UAT
 

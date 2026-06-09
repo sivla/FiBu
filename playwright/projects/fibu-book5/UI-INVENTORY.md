@@ -226,11 +226,17 @@ Wenn das Projekt fertig ist, kennen wir Business Central für den Buchumfang nic
 |---|---|---:|---|---|---|---|---|---|
 | Buch-Sync | Kapitel 31 | n/a | Statusbox `Status des Labor-Nachweises in RM-DEMO` | Standardnachweis, Fit-Gap, Extension/AppSource/Custom, Architekturentscheidung, UAT, Rollback und Betrieb als Entscheidungsrahmen erklaeren | `SOLUTIONARCHITECT-001` | `evidence/solutionarchitect-001/` | erledigt als Buch-/Readiness-Sync; keine AL-/Extension-Entwicklung, keine AppSource-Installation, kein API-/Connector-/Power-Platform-/Power-BI-Setup, keine Architekturentscheidung und keine Buchung | Kapitel 31 |
 
+## UAT
+
+| Bereich | Seite | Page-ID | UI-Element | Funktion | Testfall | Screenshot/Evidence | Status | Buchstelle |
+|---|---|---:|---|---|---|---|---|---|
+| Buch-Sync | Kapitel 32 | n/a | Statusbox `Aktueller Evidence-Stand UAT-001` | vorhandene O2C-, P2P-, Inventory-, Payments- und Reporting-Evidence in die Master-UAT-Bibliothek einordnen und von Gesamt-UAT/Sign-off trennen | `UAT-001` | `evidence/uat-001/` | erledigt als Buch-/Readiness-Sync; keine neue UAT-Ausfuehrung, kein BC-Lauf, keine Buchung | Kapitel 32 |
+
 ## Naechste Inventarziele
 
 | Reihenfolge | Ziel |
 |---:|---|
-| 1 | UAT-Readiness: Kapitel 32 als read-only/Buch-Zielbild-Sync vorbereiten; vorhandene Evidence in UAT-Logik einordnen, keine neue Buchung, keine Setup-Aenderung und kein neuer Prozesslauf |
+| 1 | Training-Readiness: Kapitel 33 Uebungen und Loesungen als read-only/Buch-Zielbild-Sync vorbereiten; vorhandene Evidence und UAT-Matrix in Uebungslogik einordnen, keine neue Buchung, keine Setup-Aenderung und kein neuer Prozesslauf |
 | 2 | Intercompany-/Auslandprozess nur mit Gate fortsetzen: keine Company anlegen/wechseln, keinen IC-Partner, keinen Beleg `IC-7001`, keine Inbox/Outbox-Aktion und keine VAT-/Waehrungs-Aenderung ohne Freigabe |
 | 3 | Dropshipping-Setup nur mit Gate fortsetzen: `D11000`, `K20000`, `SP-PUMP-01` und Drop-Shipment-/Purchasing-Code-Logik bleiben UI-first Setup-Folgearbeit |
 | 4 | Project-Setup nur mit Gate fortsetzen: Projekt `PROJ-5001`, Ressource `RES-TECH`, Material `SP-SENSOR-02` und Lagerort `PROJ-LAG` bleiben UI-first Setup-Folgearbeit |

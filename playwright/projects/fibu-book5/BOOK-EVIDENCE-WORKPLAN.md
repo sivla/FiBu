@@ -31,6 +31,7 @@ Dieser Arbeitsplan gleicht das Buch `FiBu_Buch_BC_Standardprozesse_DE_Master_Blu
 | Integrationen | Kapitel 29 als Architektur-/UAT-Zielbild, nicht als technische Abkuerzung | `INTEGRATIONS-001` synchronisiert Kapitel 29 ohne BC-Lauf; keine Extension, kein Connector, kein API-/Web-Service-Setup, kein Power-Platform-/Power-BI-Setup und kein produktiver Datenaustausch | Readiness/Buch-Sync belegt | Praktischer Integrations-/Extension-/Connector-/Power-BI-Lauf nur mit Gate; ohne Gate Kapitel 30 Betrieb/Monitoring als Readiness-Sync. |
 | Betrieb / Monitoring / Hypercare | Kapitel 30 als Betriebszielbild, nicht als eingerichtetes Monitoring | `OPERATIONS-001` synchronisiert Kapitel 30 ohne BC-Lauf; keine Job Queue, keine Telemetrie-/Admin-Aenderung, kein Monitoring-Connector und keine Produktivumgebung | Readiness/Buch-Sync belegt | Praktischer Job-Queue-/Monitoring-/Telemetry-/Admin-Lauf nur mit Gate; ohne Gate Kapitel 31 Solution Architect als Readiness-Sync. |
 | Solution Architect | Kapitel 31 als Entscheidungsrahmen, nicht als umgesetzte Architekturentscheidung | `SOLUTIONARCHITECT-001` synchronisiert Kapitel 31 ohne BC-Lauf; keine AL-/Extension-Entwicklung, keine AppSource-Installation, kein API-/Connector-/Power-Platform-/Power-BI-Setup, keine Architekturentscheidung und keine Buchung | Readiness/Buch-Sync belegt | Praktische Architekturentscheidung/ADR nur mit Gate; ohne Gate Kapitel 32 UAT-Testbibliothek als Readiness-Sync. |
+| UAT-Testbibliothek | Kapitel 32 als UAT-Zielbibliothek, nicht als bestandener Gesamt-UAT | `UAT-001` synchronisiert Kapitel 32 ohne BC-Lauf; vorhandene O2C-, P2P-, Inventory-, Payments- und Reporting-Evidence ist der Master-UAT-Logik zugeordnet; kein Sign-off, keine neue Ausfuehrung und keine Buchung | Readiness/Buch-Sync belegt | Praktische UAT-Ausfuehrung nur mit passendem Prozess-/Setup-/Posting-Gate; ohne Gate Kapitel 33 Uebungen und Loesungen als Readiness-Sync. |
 
 ## Kritische Buchdrift
 
@@ -191,20 +192,20 @@ Empfohlene Reihenfolge nach Reporting/Steuer:
 
 ## Sofort naechster sinnvoller Schritt
 
-Ohne Gate ist der naechste sichere Schritt `UAT-001-READINESS`.
+Ohne Gate ist der naechste sichere Schritt `TRAINING-001-READINESS`.
 
 Begruendung:
 
-- `SECURITY-002`, `MIGRATION-001`, `INTEGRATIONS-001`, `OPERATIONS-001` und `SOLUTIONARCHITECT-001` sind erledigt.
+- `SECURITY-002`, `MIGRATION-001`, `INTEGRATIONS-001`, `OPERATIONS-001`, `SOLUTIONARCHITECT-001` und `UAT-001` sind erledigt.
 - Praktische Zahlungen, Reporting-Setup, DE-VAT, Security-Setup, Migration/Import, Opening Balances, Operations-/Monitoring-/Telemetry-/Admin-Aenderungen, neue Companies und Wiederholungsbuchungen bleiben gate-gesperrt.
-- Kapitel 32 kann als read-only/Buch-Zielbild-Sync vorbereitet werden, ohne neue Buchung, Setup-Aenderung oder neuen Prozesslauf praktisch umzusetzen.
+- Kapitel 33 kann als read-only/Buch-Zielbild-Sync vorbereitet werden, ohne neue Buchung, Setup-Aenderung oder neuen Prozesslauf praktisch umzusetzen.
 
 Minimaler Prompt fuer den naechsten Lauf:
 
 ```text
 Arbeite auf Branch codex/playwright-bc-screenshot-foundation.
-Lies AUTOPILOT-STATE.json, POSTING-AND-SETUP-GATES.md, CURRENT-STATE.md, LAB-FIT-STATUS.md, BOOK-CLICK-GUIDE-COVERAGE.md und Kapitel 32.
-Fuehre `UAT-001-READINESS` als Buch-/Zielbild-Sync durch: vorhandene Evidence in die UAT-Testbibliothek einordnen, Labor-/Finalgrenzen markieren und keine neue Buchung, keine Setup-Aenderung und keinen neuen Prozesslauf starten.
+Lies AUTOPILOT-STATE.json, POSTING-AND-SETUP-GATES.md, CURRENT-STATE.md, LAB-FIT-STATUS.md, BOOK-CLICK-GUIDE-COVERAGE.md und Kapitel 33.
+Fuehre `TRAINING-001-READINESS` als Buch-/Zielbild-Sync durch: vorhandene Evidence und UAT-Matrix in Uebungen/Loesungen einordnen, Labor-/Finalgrenzen markieren und keine neue Buchung, keine Setup-Aenderung und keinen neuen Prozesslauf starten.
 ```
 
 ## Nicht jetzt tun

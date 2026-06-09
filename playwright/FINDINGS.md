@@ -38,6 +38,25 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 
 ## Aktuelle Fundstellen
 
+## FIND-BC-UAT-001 UAT-Bibliothek ist kein bestandener Gesamt-UAT
+
+| Feld | Wert |
+|---|---|
+| Status | erledigt als Buch-Sync; praktische UAT-Ausfuehrung gate-/prozessabhaengig |
+| Quelle | `UAT-001` |
+| Screenshot | keine neuen Screenshots; Buch-/Readiness-Sync |
+| Evidence | `playwright/projects/fibu-book5/evidence/uat-001/UAT-001-READINESS.md`, `playwright/projects/fibu-book5/evidence/uat-001/UAT-001-result.json`, `playwright/projects/fibu-book5/evidence/uat-001/README.md` |
+| BC-Seite | nicht ausgefuehrt; Kapitel 32 Zielbild |
+| sichtbarer Text / Werte | Master-UAT, UAT-001 bis UAT-020, O2C `PS-INV103297`, P2P `108219`, Inventory `INV008-899959`, Payments Readiness, Reporting Teil-/Negativbefund |
+| Elementtyp | UAT-Readiness / Gate-Grenze |
+| erste Hypothese | Kapitel 32 darf nicht so wirken, als seien alle UAT-Faelle bestanden, nur weil einzelne Laborprozesse bereits Evidence besitzen. |
+| Recherchequelle | vorhandene Labor-Evidence und Microsoft Learn Testing Strategy |
+| Testergebnis | `UAT-001` hat Kapitel 32 ohne BC-Lauf synchronisiert. O2C, P2P und Inventory sind als CRONUS-USA-Laborbausteine nutzbar; Payments, Reporting und mehrere Folgeprozesse bleiben Readiness, Teilbefund oder Gate-Folgearbeit. Es gab keinen Gesamt-UAT, keinen Fachbereichs-Sign-off, keine Setup-Aenderung und keine Buchung. |
+| Entscheidung | Kapitel 32 trennt jetzt Zielbibliothek, Labor-Evidence und Finalnachweis. Praktische UAT-Laeufe bleiben an das jeweils passende Prozess-/Setup-/Posting-Gate gebunden. |
+| Buchstelle | Kapitel 32 UAT-Testbibliothek |
+
+Fuer Anfaenger ist das wichtig, weil ein UAT-Fall mehr ist als ein Screenshot oder ein einzelner gruener Test. Erst Testziel, Testdaten, erwarteter Nachweis, tatsaechliches Ergebnis, Abweichung, Fehlerbehandlung und Sign-off machen aus Labor-Evidence eine belastbare Abnahme.
+
 ## FIND-BC-SA-001 Solution-Architect-Readiness ist keine Architekturentscheidung
 
 | Feld | Wert |
