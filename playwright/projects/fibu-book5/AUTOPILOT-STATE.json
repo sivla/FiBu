@@ -7,8 +7,8 @@
   "company": "RM-DEMO",
   "dataBasis": "CRONUS USA",
   "activeArea": "reporting",
-  "lastCompletedRun": "REPORTING-011",
-  "lastWorkType": "ui-first-setup-fit-blocker",
+  "lastCompletedRun": "REPORTING-012",
+  "lastWorkType": "book-governance-evidence-sync",
   "postedInLastRun": false,
   "latestPostedDocuments": {
     "o2c": {
@@ -103,10 +103,10 @@
     "INVENTORY-REPOST-INV008"
   ],
   "autonomousAllowed": [],
-  "nextBestStepWithoutApproval": "REPORTING-012-ANALYSIS-VIEW-BLOCKER-SYNC: REPORTING-011 auswerten und entscheiden, ob ein neues ausdrueckliches Gate fuer Analysis-View-Card/List-Feldmapping noetig ist; ohne neues Gate keine Analysis View anlegen/aendern, keine Buchung, keine Zahlung, keine Bankabstimmung.",
+  "nextBestStepWithoutApproval": "GOVERNANCE-007-REPORTING-NEXT-GATE-DECISION: decide whether to approve a new fieldmapping/setup gate for REPORTING-013-ANALYSIS-VIEW-FIELDMAPPING-SETUP or pivot to another safe evidence block; no Analysis View setup, no BC posting, no payment, no bank reconciliation.",
   "nextBestStepWithApproval": {
     "payments": "Nur mit neuem Gate: weitere Zahlung, Kreditorenzahlung oder Bankabstimmung. PAYMENTS-011 darf nicht wiederholt werden.",
-    "reporting": "Nur mit neuem Gate: Analysis-View-Card/List-Feldmapping fuer RM-PLCH UI-first dokumentieren und danach die Analysis View mit PRODUCTLINE/CHANNEL einrichten/aktualisieren; REPORTING-011 selbst ist verbraucht und rejected.",
+    "reporting": "With new explicit gate only: REPORTING-013-ANALYSIS-VIEW-FIELDMAPPING-SETUP documents Analysis View card/list field mapping for RM-PLCH UI-first, then idempotently creates/updates RM-PLCH with PRODUCTLINE/CHANNEL and verifies Analysis by Dimensions; REPORTING-011 remains consumed and rejected.",
     "tax": "TAX-002-DE-VAT-FIT: deutsches VAT19-Setup nur mit Freigabe und separatem Preview-/VAT-Entries-Nachweis.",
     "compliance": "COMPLIANCE-002-EINVOICE-SETUP: E-Rechnungs-/E-Documents-/Versandprofil-/Change-Log-Setup nur mit Freigabe, UI-first Klickpfad, Validierungs-/Versand-/Auditnachweis und klarer Labor-/DE-Trennung.",
     "fixedAssets": "FIXEDASSETS-004-SETUP-OR-POSTING: MACHINES, FA-CNC-01, HGB, K30000 oder Anlagenbuchung nur mit Freigabe und UI-first Evidence.",
@@ -144,7 +144,8 @@
     "Do not repeat PAYMENTS-013 bank-ledger read-only without a new UI path or evidence delta",
     "Do not repeat PAYMENTS-014 book-sync without a new evidence or book delta",
     "Do not repeat GOVERNANCE-006 without a new gate-decision delta",
-    "Do not repeat REPORTING-011-ANALYSIS-VIEW-FIT without a new explicit field-mapping/setup gate"
+    "Do not repeat REPORTING-011-ANALYSIS-VIEW-FIT without a new explicit field-mapping/setup gate",
+    "Do not repeat REPORTING-012-ANALYSIS-VIEW-BLOCKER-SYNC without a new evidence or governance delta"
   ],
   "notes": [
     "AUTOPILOT-STATE.json and POSTING-AND-SETUP-GATES.md were introduced because the V2 autopilot prompt requires machine-readable state and explicit gates.",
@@ -188,6 +189,7 @@
     "PAYMENTS-013 opened Bank Account Ledger Entries read-only. Tell-Me showed Bank Account Ledger Entries as candidate; Page 372 with Document No. PAY011-PS103297 and Bank Account No. BANK-RM-01 showed the bank ledger entry, amount 67.673,60, Entry No. 4995 and Related G/L Entries 15110/18200/40910. Page 371 remains rejected. No payment, no setup change and no bank reconciliation.",
     "PAYMENTS-014 synced chapter 20, coverage, findings and project state with the Page-372 bank ledger proof. No BC run, no payment, no setup change and no bank reconciliation.",
     "GOVERNANCE-006 selected REPORTING-011-ANALYSIS-VIEW-FIT as the next practical gate and approved it for exactly the next run. No BC run, no setup change, no posting and no bank reconciliation were executed.",
-    "REPORTING-011 opened Analysis Views in RM-DEMO UI-first and proved the list/actions are visible, but rejected the setup fit because no safe editable field mapping was available; RM-PLCH was not created, no setup change, no posting, no payment and no bank reconciliation."
+    "REPORTING-011 opened Analysis Views in RM-DEMO UI-first and proved the list/actions are visible, but rejected the setup fit because no safe editable field mapping was available; RM-PLCH was not created, no setup change, no posting, no payment and no bank reconciliation.",
+    "REPORTING-012 synced the rejected REPORTING-011 Analysis View fit into book/workplan/audit/state: no BC run, no setup change, no posting; next step is a new gate decision before any Analysis View setup."
   ]
 }

@@ -4952,6 +4952,17 @@ Das Evidence Pack für Reporting enthält:
 - Nachweis der aktualisierten `Analyseansichten (Analysis Views)`.
 - Dokumentierter Negativtest und Korrekturweg.
 
+### Aktueller RM-DEMO-Laborstatus
+
+| Feld | Status |
+|---|---|
+| Buchziel | GuV/Financial Reports nach `PRODUCTLINE = MACHINE`, `CHANNEL = B2B`, `DEPARTMENT = SALES`, Drilldown bis Sachposten, Artikelposten und Wertposten |
+| RM-DEMO-Labor | `Financial Reports` ist erreichbar; `PRODUCTLINE = MACHINE` und `CHANNEL = B2B` sind am Artikelposten `792` belegt; `Analysis Views` ist erreichbar |
+| Nicht belegt | keine belastbare Financial-Reports-Summenwirkung nach `PRODUCTLINE`/`CHANNEL`; keine angelegte Analysis View `RM-PLCH`; keine Power-BI-Abstimmung |
+| Blocker | `REPORTING-011` hat den freigegebenen Analysis-View-Fit abgelehnt, weil keine sichere editierbare Feldzuordnung fuer Code, Name und Dimensionsfelder sichtbar war |
+| DE-Finalnachweis | offen: deutsche Oberflaeche, deutscher Kontenplan, deutsche `19 %` USt und finale Reportingbilder |
+| Nicht behaupten | Die folgenden Schritte sind Zielbild fuer den finalen Bericht, nicht der aktuelle RM-DEMO-Nachweis |
+
 ### Übung
 
 | Feld | Inhalt |

@@ -1,0 +1,34 @@
+{
+  "testId": "REPORTING-012",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "dataBasis": "CRONUS USA",
+  "mode": "book-governance-evidence-sync",
+  "bcRunExecuted": false,
+  "setupChanged": false,
+  "posted": false,
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/reporting-011/REPORTING-011-result.json",
+    "playwright/projects/fibu-book5/evidence/reporting-011/REPORTING-011-ANALYSIS-VIEW-FIT.md"
+  ],
+  "decision": {
+    "reporting011MayBeRepeatedWithoutNewGate": false,
+    "analysisViewSetupAllowedWithoutNewGate": false,
+    "reason": "REPORTING-011 consumed the approved gate and rejected the fit because no safe editable UI field mapping for Analysis View setup was available.",
+    "requiredNewGate": "REPORTING-013-ANALYSIS-VIEW-FIELDMAPPING-SETUP"
+  },
+  "proves": [
+    "The project truth is synchronized after the rejected Analysis View setup attempt.",
+    "The next practical Analysis View setup attempt needs a new explicit fieldmapping/setup gate.",
+    "Chapter 25 must separate target reporting flow from current RM-DEMO evidence."
+  ],
+  "doesNotProve": [
+    "No new Business Central UI state.",
+    "No Financial Reports sum by PRODUCTLINE or CHANNEL.",
+    "No created or updated Analysis View RM-PLCH.",
+    "No German VAT19 or German final reporting proof."
+  ],
+  "nextStepWithoutApproval": "GOVERNANCE-007-REPORTING-NEXT-GATE-DECISION: decide whether to approve a fieldmapping/setup gate for Analysis View RM-PLCH or pivot to another safe evidence block; no BC setup, no posting.",
+  "nextStepWithApproval": "REPORTING-013-ANALYSIS-VIEW-FIELDMAPPING-SETUP: document UI field mapping for Analysis View card/list, then idempotently create or update RM-PLCH and verify Analysis by Dimensions.",
+  "status": "completed"
+}

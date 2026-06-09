@@ -253,7 +253,7 @@ Wenn das Projekt fertig ist, kennen wir Business Central für den Buchumfang nic
 
 | Reihenfolge | Ziel |
 |---:|---|
-| 1 | `REPORTING-012-ANALYSIS-VIEW-BLOCKER-SYNC`: `REPORTING-011` ist verbraucht und rejected; ohne neues Feldmapping-/Setup-Gate keine Analysis View anlegen oder aendern |
+| 1 | `GOVERNANCE-007-REPORTING-NEXT-GATE-DECISION`: entscheiden, ob ein neues Feldmapping-/Setup-Gate fuer `REPORTING-013` sinnvoll ist; ohne neues Gate keine Analysis View anlegen oder aendern |
 | 2 | Intercompany-/Auslandprozess nur mit Gate fortsetzen: keine Company anlegen/wechseln, keinen IC-Partner, keinen Beleg `IC-7001`, keine Inbox/Outbox-Aktion und keine VAT-/Waehrungs-Aenderung ohne Freigabe |
 | 3 | Dropshipping-Setup nur mit Gate fortsetzen: `D11000`, `K20000`, `SP-PUMP-01` und Drop-Shipment-/Purchasing-Code-Logik bleiben UI-first Setup-Folgearbeit |
 | 4 | Project-Setup nur mit Gate fortsetzen: Projekt `PROJ-5001`, Ressource `RES-TECH`, Material `SP-SENSOR-02` und Lagerort `PROJ-LAG` bleiben UI-first Setup-Folgearbeit |
