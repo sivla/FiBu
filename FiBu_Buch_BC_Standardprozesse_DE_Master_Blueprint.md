@@ -1750,6 +1750,8 @@ Aktueller Laborstand: `PRODUCTLINE = MACHINE` und `CHANNEL = B2B` sind im Verkau
 
 `REPORTING-008` setzt deshalb die naechste Grenze: Die vorhandene `REVENUE` Analysis View nutzt im Labor `AREA`, `DEPARTMENT` und `CUSTOMERGROUP`, aber nicht `PRODUCTLINE` oder `CHANNEL`. Weitere Wiederholungen derselben read-only Suchpfade wuerden voraussichtlich kein besseres Buchbild liefern. Der naechste sinnvolle Reporting-Schritt ist eine bewusst freigegebene Labor-Analysis-View mit `PRODUCTLINE` und `CHANNEL` als Dimensionen. Das ist keine Buchung, aber Reporting-Setup; deshalb wird es nicht heimlich im Autopilot geaendert. Bis diese Freigabe und der Nachweis vorliegen, bleibt die GuV-/Revenue-Auswertung nach Produktlinie und Kanal offen.
 
+Statushinweis fuer die folgende Prueftabelle: Sie beschreibt das deutsche Zielbild, nicht den aktuellen RM-DEMO-Laborbeweis. Im Labor ist die Dimensionsspur auf dem Beleg und am Artikelposten belegt; Sachposten- und Financial-Reports-Summenwirkung nach `PRODUCTLINE`/`CHANNEL` bleiben offen.
+
 ### Prüfung in Sachposten und GuV
 
 | Prüfung | Seite | Erwartung |
@@ -4979,6 +4981,8 @@ Das Evidence Pack für Reporting enthält:
 | Fehlerfrage | Warum darf der Controller die Power-BI-Zahl nicht freigeben, wenn der Drilldown in BC andere Filter oder andere Sachposten zeigt? |
 
 ### Lösung
+
+Evidence-Hinweis: Die folgende Loesung ist die Zielanleitung fuer den deutschen Reportingfall `UAT-K25-001`. Sie ist noch kein RM-DEMO-Finalnachweis. Im aktuellen Labor ist `PS-INV103297` als O2C-Rechnung belegt; `PRODUCTLINE=MACHINE` und `CHANNEL=B2B` sind am Artikelposten sichtbar, aber nicht als Financial-Reports-Summe, nicht als `RM-GUV-MONAT`-Nachweis, nicht mit deutscher `19 %` USt und nicht mit dem Beispielbeleg `SO-1001`.
 
 1. Öffne `Alt+Q`, suche `Finanzberichte (Financial Reports)` und öffne `RM-GUV-MONAT`.
 2. Setze `Datumsfilter = 01.06.2026..30.06.2026`.

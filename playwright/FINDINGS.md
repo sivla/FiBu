@@ -38,6 +38,25 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 
 ## Aktuelle Fundstellen
 
+## FIND-BC-BOOK-O2C-FOUNDATION-DRIFT Reporting-Zielbild darf nicht als Laborbeweis gelesen werden
+
+| Feld | Wert |
+|---|---|
+| Status | erledigt als Buch-/Evidence-Sync |
+| Quelle | `BOOK-O2C-FOUNDATION-DRIFT-SYNC`, `GOVERNANCE-009`, `REPORTING-001` bis `REPORTING-014`, `UAT-O2C-001` |
+| Screenshot | keine neuen Screenshots; Buch-Sync ohne BC-Lauf |
+| Evidence | `playwright/projects/fibu-book5/evidence/book-o2c-foundation-drift-sync/README.md`, `playwright/projects/fibu-book5/evidence/book-o2c-foundation-drift-sync/BOOK-O2C-FOUNDATION-DRIFT-SYNC.md`, `playwright/projects/fibu-book5/evidence/book-o2c-foundation-drift-sync/BOOK-O2C-FOUNDATION-DRIFT-SYNC-result.json` |
+| BC-Seite | nicht ausgefuehrt; Buchstellen in Kapitel 10/25 |
+| sichtbarer Text / Werte | `PS-INV103297`, `Entry No. 792`, `PRODUCTLINE=MACHINE`, `CHANNEL=B2B`, `UAT-K25-001`, `SO-1001`, `RM-GUV-MONAT`, `19 %` |
+| Elementtyp | Buch-Zielbild / Evidence-Grenze / Reporting-Governance |
+| erste Hypothese | Die Reporting-Zielschritte koennen wie ein bereits bewiesener RM-DEMO-Finanzbericht gelesen werden, obwohl die Labor-Evidence bisher nur Beleg-/Artikelposten-Dimensionen und mehrere Reporting-Teil-/Negativbefunde zeigt. |
+| Recherchequelle | vorhandene Evidence `masterdata-009`, `uat-o2c-001`, `reporting-001` bis `reporting-014`; kein neuer BC-Lauf |
+| Testergebnis | Die zentrale O2C-Stelle war bereits weitgehend synchron. Zwei Reporting-nahe Buchstellen wurden ergaenzt: Die Prueftabelle in Kapitel 10 und die Loesung zu `UAT-K25-001` markieren nun Zielbild vs. RM-DEMO-Laborbeweis. |
+| Entscheidung | Das Buch darf `PRODUCTLINE`/`CHANNEL` als Zielauswertung erklaeren, aber Financial-Reports-Summenwirkung, `SO-1001`, `RM-GUV-MONAT`, deutsche `19 %` USt und deutschen Finalnachweis nicht als erledigt ausgeben. |
+| Buchstelle | Kapitel 10 Dimensionen/Reporting, Kapitel 25 Reporting/UAT |
+
+Fuer Anfaenger ist das wichtig, weil Business Central Ziel-Reporting erst dann traegt, wenn Beleg, Posten, Dimensionen, Bericht/Analysis View und Filterwirkung zusammen nachgewiesen sind. Eine sichtbare Dimension am Artikelposten ist wertvolle Evidence, aber noch keine GuV-Summe nach Produktlinie.
+
 ## FIND-BC-GOV-009 Autonome Laborbuchung braucht neuen Evidence-Zweck
 
 | Feld | Wert |

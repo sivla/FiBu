@@ -1,0 +1,44 @@
+{
+  "testId": "BOOK-O2C-FOUNDATION-DRIFT-SYNC",
+  "project": "fibu-book5",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "book-sync-completed",
+  "workType": "book-sync-no-bc-run",
+  "bcRun": false,
+  "setupChanged": false,
+  "posted": false,
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/masterdata-009/010-inventory-posting-setup-fit.json",
+    "playwright/projects/fibu-book5/evidence/uat-o2c-001/O2C-LAB-FINAL-SYNC.md",
+    "playwright/projects/fibu-book5/evidence/uat-o2c-001/080-posting-result.json",
+    "playwright/projects/fibu-book5/evidence/reporting-014/REPORTING-014-ANALYSIS-VIEW-BOOK-GOVERNANCE-SYNC.md"
+  ],
+  "bookUpdates": [
+    {
+      "chapterArea": "dimensions-posting-and-reporting",
+      "change": "Added status note before the G/L Entries and Financial Reports check table.",
+      "reason": "The table is a German target check, while current RM-DEMO evidence proves dimensions at document and item ledger entry level only."
+    },
+    {
+      "chapterArea": "reporting-uat-k25-001",
+      "change": "Added evidence note before the solution steps.",
+      "reason": "SO-1001, RM-GUV-MONAT, Financial Reports dimension sums, German VAT19 and German final proof are not current RM-DEMO evidence."
+    }
+  ],
+  "labTruth": {
+    "inventoryPostingSetup": "FRA-ZL + RESALE -> 14140",
+    "postedSalesInvoice": "PS-INV103297",
+    "salesOrder": "S-ORD101068",
+    "dimensionEvidence": "PRODUCTLINE=MACHINE and CHANNEL=B2B are visible in the O2C document context and on Item Ledger Entry 792.",
+    "reportingEvidence": "Financial Reports and Analysis View paths were explored, but no PRODUCTLINE/CHANNEL sum or filter effect is proven."
+  },
+  "explicitNonProofs": [
+    "no German 19 percent VAT proof",
+    "no German chart-of-accounts final proof",
+    "no Financial Reports sum by PRODUCTLINE or CHANNEL",
+    "no new screenshot",
+    "no new Business Central execution"
+  ],
+  "nextStep": "BOOK-REPORTING-UAT-K25-SYNC: no BC run; align the Reporting UAT block and acceptance criteria with REPORTING-001 to REPORTING-014 unless a new explicit Analysis View or reporting setup gate is approved."
+}
