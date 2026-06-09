@@ -130,6 +130,8 @@ Update nach `ARTIFACTS-001`: Kapitel 39 ist als Read-only-/Buch-Zielbild-Sync do
 
 Fazit: O2C ist als CRONUS-USA-Laborprozess fachlich weitgehend synchronisiert, aber nicht als deutscher Finalprozess. Keine weitere O2C-Buchung ist aktuell gerechtfertigt. Der Engpass ist nicht mehr der Verkaufsauftrag, sondern Dimensionswirkung in Sachposten/Reporting und deutscher Tax/VAT-Finalnachweis.
 
+Update nach `SOURCES-001`: Kapitel 40 ist als Quellen-/Readiness-Sync dokumentiert. Quellen sind als Microsoft-Learn-/Standardreferenzen, amtliche Steuer-/Compliance-Quellen, Vendor-Dokumentation, gestrichene Scope-Hinweise oder konkrete Projekt-Evidence eingeordnet. Eine Quelle stuetzt eine Regel oder ein Zielbild, beweist aber keinen RM-DEMO-Klickpfad, keine Postenspur, keine Buchung und keinen deutschen Finalnachweis. Es gab keinen BC-Lauf, keinen Live-URL-Audit, keine Setup-Aenderung, keine Buchung und keine neuen Screenshots.
+
 ## PRODUCTLINE=MACHINE harter Pruefstand
 
 | Wo gesucht | Ergebnis | Screenshot/Evidence | fachliche Bedeutung | Buchauswirkung |
@@ -155,8 +157,8 @@ Fazit: O2C ist als CRONUS-USA-Laborprozess fachlich weitgehend synchronisiert, a
 
 ```text
 Arbeite auf Branch codex/playwright-bc-screenshot-foundation.
-Lies AUTOPILOT-STATE.json, POSTING-AND-SETUP-GATES.md, CURRENT-STATE.md, BOOK-TO-EVIDENCE-AUDIT.md, LAB-FIT-STATUS.md und Kapitel 40.
-`ARTIFACTS-001` ist erledigt. Ohne Freigabe fuehre `SOURCES-001-READINESS` als read-only/Buch-Zielbild-Sync fuer Kapitel 40 durch: Quellenverzeichnis gegen Primaerquellenlogik, Microsoft-Learn-Bezug, Quellen-/Evidence-Regeln und gestrichenen Shopify-Scope synchronisieren; keine neue Buchung, keine Setup-Aenderung und kein neuer Prozesslauf.
+Lies AUTOPILOT-STATE.json, POSTING-AND-SETUP-GATES.md, CURRENT-STATE.md, BOOK-TO-EVIDENCE-AUDIT.md, LAB-FIT-STATUS.md und AUTOPILOT-PROMPT-V2.md.
+`SOURCES-001` ist erledigt. Ohne Freigabe fuehre `GOVERNANCE-005-AUTONOMOUS-POSTING-POLICY-SYNC` als Governance-/State-Sync durch: Autopilot-V2.2-Aussage zu erweiterten autonomen Buchungsmoeglichkeiten gegen aktuelle Repo-Gates, UI-first-Regel, No-Doppelbuchungs-Locks und Freigabe-Logik synchronisieren; keine BC-Ausfuehrung, keine Buchung, keine Setup-Aenderung.
 ```
 
 ## Grenzen

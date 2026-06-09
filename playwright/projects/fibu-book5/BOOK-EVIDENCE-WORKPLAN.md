@@ -39,6 +39,7 @@ Dieser Arbeitsplan gleicht das Buch `FiBu_Buch_BC_Standardprozesse_DE_Master_Blu
 | Glossar Deutsch/Englisch/Tell-Me | Kapitel 37 als Such- und Begriffsschicht, nicht als neuer Klickpfadnachweis | `GLOSSARY-001` synchronisiert Kapitel 37 ohne BC-Lauf gegen UI-Inventar, Coverage und vorhandene Evidence; Begriffe werden als Buchsprache, Suchhilfe, belegter UI-Pfad oder offener Zielbegriff getrennt | Readiness/Buch-Sync belegt | Kapitel 38 ist mit `PAGESINDEX-001` erledigt; ohne Gate Kapitel 39 Projektartefakte/Handover/Repo-QA als Readiness-Sync. |
 | Seitenindex / Prozesskatalog / Qualitaetssicherung | Kapitel 38 als Index-, QA- und Prozesskatalogschicht, nicht als Sammelbeweis aller Klickpfade | `PAGESINDEX-001` synchronisiert Kapitel 38 ohne BC-Lauf gegen Coverage, UI-Inventar, Screenshot-QA, Autopilot-State und Gates; Indexeintrag, Zielpfad, praktische Evidence, Laborgrenze und DE-Finalnachweis sind getrennt | Readiness/Buch-Sync belegt | Ohne Gate Kapitel 39 Projektartefakte/Handover/Repo-QA als Readiness-Sync; praktische UI-/Setup-/Buchungslaeufe nur mit passendem Gate. |
 | Projektartefakte / Handover / Repo-QA | Kapitel 39 als Artefakt- und Uebergabeschicht, nicht als praktischer Prozessnachweis | `ARTIFACTS-001` synchronisiert Kapitel 39 ohne BC-Lauf gegen Evidence-Struktur, Autopilot-State, Gates und Artefakt-Governance; Templates, Handover-Dateien und Evidence-Pack-Platzhalter sind Kontrollartefakte, keine Prozess-Evidence | Readiness/Buch-Sync belegt | Ohne Gate Kapitel 40 Quellenverzeichnis als Readiness-Sync; praktische UI-/Setup-/Buchungslaeufe nur mit passendem Gate. |
+| Quellenverzeichnis / Primaerquellen | Kapitel 40 als Quellenregel, nicht als praktischer Prozessnachweis | `SOURCES-001` synchronisiert Kapitel 40 ohne BC-Lauf gegen Primaerquellenlogik, Microsoft-Learn-Bezug, amtliche Quellen, Vendor-Dokumentation, Evidence-Regeln und gestrichenen Shopify-Scope; Quellen sind Referenzen, keine RM-DEMO-Prozessbeweise | Readiness/Buch-Sync belegt | Ohne Gate `GOVERNANCE-005-AUTONOMOUS-POSTING-POLICY-SYNC`; praktische UI-/Setup-/Buchungslaeufe nur mit passendem Gate. |
 
 ## Kritische Buchdrift
 
@@ -199,7 +200,7 @@ Empfohlene Reihenfolge nach Reporting/Steuer:
 
 ## Sofort naechster sinnvoller Schritt
 
-Ohne Gate ist der naechste sichere Schritt `SOURCES-001-READINESS`.
+Ohne Gate ist der naechste sichere Schritt `GOVERNANCE-005-AUTONOMOUS-POSTING-POLICY-SYNC`.
 
 Begruendung:
 
@@ -212,14 +213,15 @@ Begruendung:
 - Kapitel 37 ist mit `GLOSSARY-001` als read-only/Buch-Zielbild-Sync erledigt.
 - Kapitel 38 ist mit `PAGESINDEX-001` als read-only/Buch-Zielbild-Sync erledigt.
 - Kapitel 39 ist mit `ARTIFACTS-001` als read-only/Buch-Zielbild-Sync erledigt.
-- Kapitel 40 kann als read-only/Buch-Zielbild-Sync vorbereitet werden, ohne neue Buchung, Setup-Aenderung oder neuen Prozesslauf praktisch umzusetzen.
+- Kapitel 40 ist mit `SOURCES-001` als read-only/Buch-Zielbild-Sync erledigt.
+- Der naechste sichere Schritt ist Governance, weil Autopilot-V2.2 erweiterte autonome Buchungsmoeglichkeiten formuliert, waehrend die aktuellen Repo-Gates praktische Buchungen und Setup-Aenderungen weiter sperren.
 
 Minimaler Prompt fuer den naechsten Lauf:
 
 ```text
 Arbeite auf Branch codex/playwright-bc-screenshot-foundation.
-Lies AUTOPILOT-STATE.json, POSTING-AND-SETUP-GATES.md, CURRENT-STATE.md, LAB-FIT-STATUS.md, BOOK-CLICK-GUIDE-COVERAGE.md und Kapitel 40.
-Fuehre `SOURCES-001-READINESS` als Buch-/Zielbild-Sync durch: Kapitel 40 Quellenverzeichnis gegen Primaerquellenlogik, Microsoft-Learn-Bezug, Quellen-/Evidence-Regeln und gestrichenen Shopify-Scope einordnen und keine neue Buchung, keine Setup-Aenderung und keinen neuen Prozesslauf starten.
+Lies AUTOPILOT-STATE.json, POSTING-AND-SETUP-GATES.md, AUTOPILOT-PROMPT-V2.md, CURRENT-STATE.md, LAB-FIT-STATUS.md und BOOK-CLICK-GUIDE-COVERAGE.md.
+Fuehre `GOVERNANCE-005-AUTONOMOUS-POSTING-POLICY-SYNC` als Governance-/State-Sync durch: Autopilot-V2.2-Aussage zu erweiterten autonomen Buchungsmoeglichkeiten gegen aktuelle Repo-Gates, UI-first-Regel, No-Doppelbuchungs-Locks und Freigabe-Logik synchronisieren; keine BC-Ausfuehrung, keine Buchung, keine Setup-Aenderung.
 ```
 
 ## Nicht jetzt tun

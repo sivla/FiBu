@@ -243,12 +243,13 @@ Wenn das Projekt fertig ist, kennen wir Business Central für den Buchumfang nic
 | Buch-Sync | Kapitel 37 | n/a | Statusbox `GLOSSARY-001` | Glossar Deutsch/Englisch/Tell-Me gegen vorhandene UI-Inventar- und Evidence-Begriffe einordnen; Begriff, Suchhilfe, praktischen Klickpfad und offenen Zielbegriff trennen | `GLOSSARY-001` | `evidence/glossary-001/` | erledigt als Buch-/Readiness-Sync; kein BC-Lauf, keine Setup-Aenderung, keine Buchung | Kapitel 37 |
 | Buch-Sync | Kapitel 38 | n/a | Statusbox `PAGESINDEX-001` | Seitenindex, Prozesskatalog und Qualitaetssicherung gegen Coverage, UI-Inventar, Screenshot-QA, Autopilot-State und Gates einordnen; Indexeintrag, Zielbild und praktischen Klickpfad trennen | `PAGESINDEX-001` | `evidence/pagesindex-001/` | erledigt als Buch-/Readiness-Sync; kein BC-Lauf, keine Setup-Aenderung, keine Buchung | Kapitel 38 |
 | Buch-Sync | Kapitel 39 | n/a | Statusbox `ARTIFACTS-001` | Projektartefakte, Handover, Repo-QA und Uebergabefaehigkeit gegen Evidence-Struktur, Autopilot-State, Gates und Artefakt-Governance einordnen; Templates von echter BC-Evidence trennen | `ARTIFACTS-001` | `evidence/artifacts-001/` | erledigt als Buch-/Readiness-Sync; kein BC-Lauf, keine Setup-Aenderung, keine Buchung | Kapitel 39 |
+| Buch-Sync | Kapitel 40 | n/a | Quellenregel `SOURCES-001` | Quellenverzeichnis gegen Primaerquellenlogik, Microsoft-Learn-Bezug, amtliche Quellen, Vendor-Dokumentation, Evidence-Regeln und gestrichenen Shopify-Scope einordnen; Quelle von RM-DEMO-Klickpfad trennen | `SOURCES-001` | `evidence/sources-001/` | erledigt als Buch-/Readiness-Sync; kein BC-Lauf, kein Live-URL-Audit, keine Setup-Aenderung, keine Buchung | Kapitel 40 |
 
 ## Naechste Inventarziele
 
 | Reihenfolge | Ziel |
 |---:|---|
-| 1 | Quellenverzeichnis: Kapitel 40 gegen Primaerquellenlogik, Microsoft-Learn-Bezug, Quellen-/Evidence-Regeln und gestrichenen Shopify-Scope synchronisieren; keine neue Buchung, keine Setup-Aenderung und kein neuer Prozesslauf |
+| 1 | Governance-Policy-Sync: Autopilot-V2.2-Aussage zu erweiterten autonomen Buchungsmoeglichkeiten gegen aktuelle Repo-Gates, UI-first-Regel und No-Doppelbuchungs-Locks synchronisieren; keine BC-Ausfuehrung, keine Setup-Aenderung und keine Buchung |
 | 2 | Intercompany-/Auslandprozess nur mit Gate fortsetzen: keine Company anlegen/wechseln, keinen IC-Partner, keinen Beleg `IC-7001`, keine Inbox/Outbox-Aktion und keine VAT-/Waehrungs-Aenderung ohne Freigabe |
 | 3 | Dropshipping-Setup nur mit Gate fortsetzen: `D11000`, `K20000`, `SP-PUMP-01` und Drop-Shipment-/Purchasing-Code-Logik bleiben UI-first Setup-Folgearbeit |
 | 4 | Project-Setup nur mit Gate fortsetzen: Projekt `PROJ-5001`, Ressource `RES-TECH`, Material `SP-SENSOR-02` und Lagerort `PROJ-LAG` bleiben UI-first Setup-Folgearbeit |

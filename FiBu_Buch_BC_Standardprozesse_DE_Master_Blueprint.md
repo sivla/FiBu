@@ -7416,6 +7416,17 @@ Merksatz:
 
 ## 40. Quellenverzeichnis
 
+Status des Evidence-Syncs in `RM-DEMO`: `SOURCES-001` vom 09.06.2026 ordnet dieses Quellenverzeichnis gegen Primaerquellenlogik, Microsoft-Learn-Bezug, amtliche Quellen, Vendor-Dokumentation, vorhandene Evidence und den gestrichenen Shopify-Scope ein. Das ist ein Buch-/Readiness-Sync, kein neuer Business-Central-Lauf und kein Live-URL-Audit.
+
+Quellenregel fuer dieses Buch:
+
+- Microsoft Learn und die Business-Central-Produktdokumentation sind die bevorzugten Referenzen fuer Standardfunktionen, Seiten, Prozesse, Training und MB-800-Bezug.
+- Amtliche Quellen und EU-/deutsche Rechtsquellen stuetzen Steuer-, Aufbewahrungs-, GoBD- und Compliance-Zielbilder, ersetzen aber keine Business-Central-Einrichtung und keinen VAT-/Posten-Nachweis.
+- Vendor-Dokumentation erklaert optionale Add-ons oder Integrationskandidaten. Sie ist kein Nachweis fuer den BC-Standard und kein Projektauftrag ohne eigenes Gate.
+- Gestrichene Quellen bleiben Scope-Abgrenzung. `Q10` zu Shopify/Online Store ist nur als bewusst gestrichener Buch-5-Scope zu lesen und reaktiviert keinen Shopify-Klickpfad.
+- Eine Quelle beweist nicht automatisch den Laborzustand. Praktische Aussagen im Buch brauchen weiter konkrete Evidence: Screenshot, Seitentext, JSON-Ergebnis, Beleg, Nebenbuchposten, Sachposten, Artikelposten, Wertposten, Bericht oder dokumentierten Fehlerfall.
+- CRONUS-USA-Laborbefunde bleiben Laborbefunde. Deutsche `19 %` USt, deutscher Kontenplan und finale deutsche Buchscreenshots bleiben offen, bis sie in einer passenden Zielumgebung belegt sind.
+
 - [Q1] Microsoft Learn: Business Central documentation: https://learn.microsoft.com/en-us/dynamics365/business-central/
 - [Q2] Microsoft Learn: Business functionality supported by Business Central: https://learn.microsoft.com/en-us/dynamics365/business-central/across-business-functionality
 - [Q3] Microsoft Learn: Set up companies: https://learn.microsoft.com/en-us/dynamics365/business-central/about-new-company

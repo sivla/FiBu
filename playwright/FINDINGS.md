@@ -38,6 +38,25 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 
 ## Aktuelle Fundstellen
 
+## FIND-BC-SOURCES-001 Quellen sind keine RM-DEMO-Prozess-Evidence
+
+| Feld | Wert |
+|---|---|
+| Status | erledigt als Buch-Sync; Quellen bleiben Referenz- und Zielbildschicht |
+| Quelle | `SOURCES-001` |
+| Screenshot | keine neuen Screenshots; Buch-/Readiness-Sync |
+| Evidence | `playwright/projects/fibu-book5/evidence/sources-001/SOURCES-001-READINESS.md`, `playwright/projects/fibu-book5/evidence/sources-001/SOURCES-001-result.json`, `playwright/projects/fibu-book5/evidence/sources-001/README.md` |
+| BC-Seite | nicht ausgefuehrt; Kapitel 40 Quellenverzeichnis |
+| sichtbarer Text / Werte | Microsoft Learn, amtliche Quellen, Vendor-Dokumentation, gestrichener Shopify-Scope, Projekt-Evidence |
+| Elementtyp | Quellenregel / Evidence-Grenze / Scope-Grenze |
+| erste Hypothese | Ein Quellenverweis kann so wirken, als sei der fachliche Prozess bereits praktisch bewiesen. Tatsaechlich erklaert eine Quelle nur Regel, Zielbild oder Recherchepfad; der Projektbeweis braucht konkrete RM-DEMO-Evidence. |
+| Recherchequelle | vorhandenes Quellenverzeichnis, `ARTIFACTS-001`, `LEARNPATH-001`, `MB800-001`, `SCOPE-001`, Autopilot-State und Gates; kein Live-URL-Audit in diesem Lauf |
+| Testergebnis | `SOURCES-001` hat Kapitel 40 ohne BC-Lauf synchronisiert. Quellen sind jetzt als Standardreferenz, amtliche Steuer-/Compliance-Quelle, optionale Vendor-Dokumentation, gestrichener Scope-Hinweis oder konkrete Projekt-Evidence eingeordnet. |
+| Entscheidung | Kapitel 40 trennt Quellen, Labor-Evidence und deutschen Finalnachweis. `Q10` Shopify bleibt nur Out-of-Scope-Marker. Naechster sicherer Block ist `GOVERNANCE-005-AUTONOMOUS-POSTING-POLICY-SYNC`. |
+| Buchstelle | Kapitel 40 Quellenverzeichnis |
+
+Fuer Anfaenger ist das wichtig, weil eine gute Quelle Orientierung gibt, aber nicht zeigt, was im eigenen Mandanten wirklich eingerichtet, geklickt, gebucht oder blockiert war.
+
 ## FIND-BC-ARTIFACTS-001 Projektartefakte sind keine BC-Prozess-Evidence
 
 | Feld | Wert |
@@ -49,10 +68,10 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 | BC-Seite | nicht ausgefuehrt; Kapitel 39 Zielbild |
 | sichtbarer Text / Werte | Fit-Gap-Matrix, Prozessaufnahme, Stammdaten-Template, Migration-Mapping, UAT-Testfall, Klickanleitungs-Template, Rollen-/Berechtigungsmatrix, ADR, Checklisten, Evidence Pack |
 | Elementtyp | Projektartefakt / Template / Handover / Evidence-Grenze |
-| erste Hypothese | Ein Template oder Handover-Dokument kann so wirken, als sei der Nachweis bereits erbracht. Tatsächlich ist es nur die Struktur, in die echte BC-Evidence eingeordnet wird. |
+| erste Hypothese | Ein Template oder Handover-Dokument kann so wirken, als sei der Nachweis bereits erbracht. Tatsaechlich ist es nur die Struktur, in die echte BC-Evidence eingeordnet wird. |
 | Recherchequelle | vorhandenes Evidence-Modell, Autopilot-State, Gates, Coverage, UI-Inventar und Kapitel 39; keine neue Microsoft-Learn-Behauptung in diesem Lauf |
 | Testergebnis | `ARTIFACTS-001` hat Kapitel 39 ohne BC-Lauf synchronisiert. Artefakte werden jetzt als Kontroll- und Uebergabeschicht erklaert, nicht als Prozess-, Screenshot-, Buchungs- oder deutscher Finalnachweis. |
-| Entscheidung | Kapitel 39 trennt Templates, Handover und echte Evidence. Naechster sicherer Block ist Kapitel 40 Quellenverzeichnis / `SOURCES-001-READINESS`. |
+| Entscheidung | Kapitel 39 trennt Templates, Handover und echte Evidence. `SOURCES-001` hat den Folgeblock inzwischen erledigt; naechster sicherer Block ist `GOVERNANCE-005-AUTONOMOUS-POSTING-POLICY-SYNC`. |
 | Buchstelle | Kapitel 39 Projektartefakte |
 
 Fuer Anfaenger ist das wichtig, weil eine gute Vorlage zwar sagt, was zu pruefen ist, aber noch nicht zeigt, dass Business Central den Prozess wirklich mit den richtigen Daten, Feldern, Posten und Berichten getragen hat.
@@ -71,7 +90,7 @@ Fuer Anfaenger ist das wichtig, weil eine gute Vorlage zwar sagt, was zu pruefen
 | erste Hypothese | Ein Indexeintrag oder eine hohe Reifegradbewertung darf nicht so wirken, als sei der jeweilige Prozess praktisch getestet, gebucht und final nachgewiesen. |
 | Recherchequelle | vorhandenes UI-Inventar, Coverage, Screenshot-QA, Autopilot-State und Gates; keine neue Microsoft-Learn-Behauptung in diesem Lauf |
 | Testergebnis | `PAGESINDEX-001` hat Kapitel 38 ohne BC-Lauf synchronisiert. Der Prozesskatalog ist jetzt Zielbild und Steuerungsrahmen, nicht Sammelbeweis fuer alle Business-Central-Prozesspfade. |
-| Entscheidung | Kapitel 38 trennt jetzt Index, Zielpfad, QA-Rahmen, echte Klickpfad-Evidence, Labor-Nachweis und offenen deutschen Finalnachweis. Naechster sicherer Block ist Kapitel 40 Quellenverzeichnis / SOURCES-001-READINESS. |
+| Entscheidung | Kapitel 38 trennt jetzt Index, Zielpfad, QA-Rahmen, echte Klickpfad-Evidence, Labor-Nachweis und offenen deutschen Finalnachweis. `SOURCES-001` hat Kapitel 40 inzwischen synchronisiert; naechster sicherer Block ist `GOVERNANCE-005-AUTONOMOUS-POSTING-POLICY-SYNC`. |
 | Buchstelle | Kapitel 38 Seitenindex, Prozesskatalog und Qualitaetssicherung |
 
 Fuer Anfaenger ist das wichtig, weil ein Buchindex beim Finden hilft, aber nicht beweist, dass der Prozess in Business Central schon richtig eingerichtet, gebucht, kontrolliert und mit Postenspur verstanden wurde.

@@ -123,7 +123,7 @@ Prioritaet:
 - Reporting zeigt `PRODUCTLINE`/`CHANNEL` am Artikelposten, aber keine belastbare Financial-Reports-Summenwirkung.
 - Deutsche `19 %` USt ist offen.
 - Deutscher Kontenplan ist offen.
-- `SOURCES-001-READINESS` ist laut aktuellem State der naechste sichere Schritt ohne Gate.
+- `SOURCES-001` ist erledigt. Laut aktuellem State ist `GOVERNANCE-005-AUTONOMOUS-POSTING-POLICY-SYNC` der naechste sichere Schritt ohne Gate.
 
 ## Evidence-Regeln
 
