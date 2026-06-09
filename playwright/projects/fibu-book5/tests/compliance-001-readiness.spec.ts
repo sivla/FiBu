@@ -288,7 +288,7 @@ test('COMPLIANCE-001 Kapitel-22-Readiness read-only pruefen', async ({ page }) =
       'Keine neue Buchung und keine neue Postenspur.'
     ],
     nextStep:
-      'COMPLIANCE-002-BOOK-SYNC: Kapitel 22 mit COMPLIANCE-001 synchronisieren; sichtbare Einstiegspfade als Readiness erklaeren und VAT/E-Rechnung/Change-Log-Setup weiterhin gate-locked lassen.'
+      'COMPLIANCE-002 ist erledigt. Ohne Gate naechster sicherer Schritt: SECURITY-001-READINESS fuer Benutzer-/Rollen-/Berechtigungs- und Admin-Kontexte read-only; keine Benutzeranlage, keine Berechtigungs- oder Change-Log-Aenderung, keine Einrichtung und keine Buchung.'
   };
 
   await writeJsonEvidence(complianceEvidencePath('COMPLIANCE-001-result.json'), result);

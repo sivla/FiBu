@@ -3911,6 +3911,21 @@ Dieses Kapitel zeigt, wie Rhein-Main Umsatzsteuer, E-Rechnungsstatus und deutsch
 | Solution-Architect-Relevanz | Ja: Steuerarchitektur, E-Rechnungsprozess, Standardgrenze, Nachweisführung |
 | Ergebnis nach dem Kapitel | Du kannst USt-Setup, USt-Posten, E-Rechnungsstatus und deutsche Nachweise für `SO-1001` prüfen und korrigieren. |
 
+### Aktueller Evidence-Stand fuer RM-DEMO
+
+Dieses Kapitel beschreibt das deutsche Zielbild. Der aktuelle Laborstand in `RM-DEMO` ist enger: `COMPLIANCE-001` hat nur read-only geprueft, welche Einstiegspunkte in Business Central sichtbar sind. Sichtbar oder kontextuell sichtbar waren `E-Rechnungen`, `VAT Entries`, `VAT Posting Setup`, `Document Sending Profiles`, `Change Log Entries`, `Change Log Setup` und im Role Center der Hinweis `Warten auf Ka E-Rechnungen 0`.
+
+Das beweist fuer das Buch: Ein Anfaenger kann die relevanten Such- und Navigationspfade finden. Es beweist noch nicht, dass eine Rechnung als E-Rechnung erzeugt, validiert, versendet, archiviert oder mit deutscher USt gebucht wurde. In `RM-DEMO` wurde in diesem Compliance-Lauf nichts eingerichtet, nichts gebucht und kein Change Log aktiviert.
+
+| Statusfrage | Aktueller Stand |
+|---|---|
+| Labor-Evidence | `COMPLIANCE-001`, `COMPLIANCE-002` |
+| Company/Sandbox | `RM-DEMO` in `MCP_1_20260210`, CRONUS-USA-Labor |
+| Nachgewiesen | sichtbare Einstiege fuer E-Rechnung, USt-/VAT-Posten, USt-/VAT-Setup, Versandprofile und Change Log |
+| Nicht nachgewiesen | deutsche `19 %` USt, Peppol-/Providerstatus, E-Rechnungsversand, Validierung, Archivnachweis, aktive Change-Log-Tabellen |
+| Buchwirkung | Die folgenden Schritte bleiben Zielpfad. Finale deutsche Screenshots entstehen erst in einem separaten DE-Finallauf. |
+| Gate | `COMPLIANCE-002-EINVOICE-SETUP` und `TAX-002-DE-VAT-FIT` muessen vor praktischer Einrichtung ausdruecklich freigegeben werden. |
+
 ### Alltagsszene bei Rhein-Main
 
 RM-SALES hat `SO-1001` an `D10000` fakturiert: `68.000 EUR` netto, `12.920 EUR` USt, `80.920 EUR` brutto. Das Steuerteam prüft, ob gebuchter Beleg, `USt-Posten (VAT Entries)`, `Sachposten (G/L Entries)`, `USt-Abrechnung (VAT Statement)` und E-Belegstatus dieselbe Steuerlogik zeigen.
@@ -3956,6 +3971,8 @@ Das Steuerteam prüft Posten und Meldelogik. Der Key User prüft USt-Gruppen und
 9. Öffne `E-Belege (E-Documents)` und prüfe Status, Empfänger und Referenz `SO-1001`.
 10. Öffne `USt-Abrechnung (VAT Statement)`, setze Zeitraum Juni 2026 und prüfe, dass die USt aus `SO-1001` enthalten ist.
 11. Exportiere USt-Posten, E-Belegstatus und USt-Abrechnung ins Evidence Pack.
+
+Laborhinweis: In `RM-DEMO` ist diese Schrittfolge noch kein abgeschlossener Nachweis. `COMPLIANCE-001` zeigt die Suchpfade und Einstiegspunkte, aber keine gebuchte deutsche E-Rechnung und keine `19 %`-USt-Posten. Wenn du dieses Kapitel praktisch wiederholst, pruefst du zuerst die Einstiege read-only. Erst nach freigegebenem Setup-Lauf duerfen USt-/VAT-Setup, Versandprofile, E-Documents oder Change Log geaendert werden.
 
 ### Warum diese Felder wichtig sind
 
@@ -4196,6 +4213,12 @@ Vor der Buchung ist die Korrektur einfach: Debitor, Artikel, USt-Gruppen und USt
 | Diagnosepfad | Gebuchte Rechnung, Artikelkarte, USt-Posten und USt-Buchungsmatrix vergleichen. |
 | Erlaubter Korrekturweg | Falsche Rechnung gutschreiben, Artikel-/Belegsetup korrigieren und Rechnung mit `USt-Produktbuchungsgruppe = FULL` neu buchen. |
 | Nicht erlaubt | USt-Posten direkt ändern, Steuerbetrag nur im Bericht korrigieren oder E-Rechnungsstatus ohne fachliche Korrektur freigeben. |
+
+Evidence-Pack-Hinweis fuer den aktuellen Laborstand:
+
+- Nutze `COMPLIANCE-001` nur als Navigations- und Readiness-Nachweis.
+- Kennzeichne alle Bilder zu `E-Rechnungen`, `VAT Entries`, `VAT Posting Setup`, `Document Sending Profiles`, `Change Log Entries` und `Change Log Setup` als Labor-Kandidaten, nicht als finale deutsche Compliance-Bilder.
+- Erwarte fuer einen finalen deutschen Fall zusaetzlich: gebuchten Beleg, USt-Posten mit deutschem Steuersatz, E-Dokument/Status, Versand-/Validierungsnachweis, Audit-/Archivnachweis und klaren Korrekturpfad.
 
 ### In 5 Minuten merken
 

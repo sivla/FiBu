@@ -1011,16 +1011,16 @@ Fuer Anfaenger ist das wichtig, weil Intercompany mehrere rechtliche Einheiten v
 
 | Feld | Wert |
 |---|---|
-| Status | offen fuer Buch-Sync; praktische Setup-/Buchungslinie gate-gesperrt |
+| Status | erledigt als Buch-Sync; praktische Setup-/Buchungslinie gate-gesperrt |
 | Quelle | `COMPLIANCE-001` |
 | Screenshot | `playwright/projects/fibu-book5/img/compliance-001-010-e-invoices-tell-me.png`, `playwright/projects/fibu-book5/img/compliance-001-020-vat-entries-tell-me.png`, `playwright/projects/fibu-book5/img/compliance-001-030-vat-posting-setup-tell-me.png`, `playwright/projects/fibu-book5/img/compliance-001-040-document-sending-profiles-tell-me.png`, `playwright/projects/fibu-book5/img/compliance-001-050-change-log-entries-tell-me.png`, `playwright/projects/fibu-book5/img/compliance-001-060-change-log-setup-tell-me.png` |
-| Evidence | `playwright/projects/fibu-book5/evidence/compliance-001/COMPLIANCE-001-result.json`, `playwright/projects/fibu-book5/evidence/compliance-001/COMPLIANCE-001-READINESS.md`, `playwright/projects/fibu-book5/evidence/compliance-001/README.md` |
+| Evidence | `playwright/projects/fibu-book5/evidence/compliance-001/COMPLIANCE-001-result.json`, `playwright/projects/fibu-book5/evidence/compliance-001/COMPLIANCE-001-READINESS.md`, `playwright/projects/fibu-book5/evidence/compliance-001/README.md`, `playwright/projects/fibu-book5/evidence/compliance-002/COMPLIANCE-002-BOOK-SYNC.md` |
 | BC-Seite | Tell-Me, Role Center |
 | sichtbarer Text / Werte | `E-Rechnungen`, `VAT Entries`, `VAT Posting Setup`, `Document Sending Profiles`, `Change Log Entries`, `Change Log Setup`; Role-Center-Aktion `Warten auf Ka E-Rechnungen 0` |
 | Elementtyp | Compliance-/E-Rechnungs-Readiness / Steuer- und Audit-Grenze |
 | erste Hypothese | Kapitel 22 braucht vor finalen deutschen Nachweisen zuerst eine Orientierung, welche BC-Einstiege sichtbar sind und welche Einrichtungsschichten getrennt bleiben muessen. |
 | Testergebnis | `COMPLIANCE-001` laeuft read-only erfolgreich. Der Lauf erzeugt Navigationsevidence und Screenshot-Kandidaten, aber keine VAT-Aenderung, keine E-Rechnungsvalidierung, keinen Versand, keinen Peppol-/Providerstatus, keine Change-Log-Aktivierung, kein Archiv und keine Buchung. |
-| Entscheidung | Kapitel 22 muss mit `COMPLIANCE-002` synchronisiert werden: sichtbare E-Rechnungs-/VAT-/Versandprofil-/Change-Log-Kontexte sind nur Readiness. Ein finaler deutscher Nachweis braucht eigenen UI-first Gate-Lauf mit Setupwerten, gebuchtem Beleg, USt-Posten, E-Dokument/Status und Audit-/Archivnachweis. |
+| Entscheidung | Kapitel 22 wurde mit `COMPLIANCE-002` synchronisiert: sichtbare E-Rechnungs-/VAT-/Versandprofil-/Change-Log-Kontexte sind nur Readiness. Ein finaler deutscher Nachweis braucht eigenen UI-first Gate-Lauf mit Setupwerten, gebuchtem Beleg, USt-Posten, E-Dokument/Status und Audit-/Archivnachweis. |
 | Buchstelle | Kapitel 22 USt, E-Rechnung und deutsche Nachweissicht |
 
-Fuer Anfaenger ist das besonders wichtig, weil Business Central Compliance-Funktionen als viele einzelne Einstiegspunkte zeigt. Ein sichtbarer Button wie `Warten auf Ka E-Rechnungen 0` ist ein Hinweis, aber kein Beweis, dass eine Rechnung strukturiert erzeugt, validiert, versendet, archiviert und steuerlich korrekt nachgewiesen wurde.
+Fuer Anfaenger ist das besonders wichtig, weil Business Central Compliance-Funktionen als viele einzelne Einstiegspunkte zeigt. Ein sichtbarer Button wie `Warten auf Ka E-Rechnungen 0` ist ein Hinweis, aber kein Beweis, dass eine Rechnung strukturiert erzeugt, validiert, versendet, archiviert und steuerlich korrekt nachgewiesen wurde. Diese Trennung steht jetzt in Kapitel 22; praktische Einrichtung bleibt gate-gesperrt.

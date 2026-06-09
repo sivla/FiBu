@@ -39,4 +39,4 @@ Status: `labor`, `read-only`, `compliance-readiness`, `no-posting`, `no-setup-ch
 
 ## Naechster Schritt
 
-COMPLIANCE-002-BOOK-SYNC: Kapitel 22 mit COMPLIANCE-001 synchronisieren; sichtbare Einstiegspfade als Readiness erklaeren und VAT/E-Rechnung/Change-Log-Setup weiterhin gate-locked lassen.
+COMPLIANCE-002 ist erledigt. Kapitel 22 ist mit COMPLIANCE-001 synchronisiert und markiert die sichtbaren Einstiegspfade als Readiness. VAT-, E-Rechnung-/E-Documents-, Versandprofil- und Change-Log-Setup bleiben gate-locked. Ohne Gate ist der naechste sichere Schritt `SECURITY-001-READINESS`.

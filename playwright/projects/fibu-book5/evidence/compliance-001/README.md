@@ -20,4 +20,4 @@ Status: `labor`, `read-only`, `compliance-readiness`, `no-posting`, `no-setup-ch
 
 ## Naechster Schritt
 
-`COMPLIANCE-002-BOOK-SYNC`: Kapitel 22 mit dieser Evidence synchronisieren. VAT-, E-Documents-, Versandprofil- und Change-Log-Setup bleiben ohne ausdrueckliches Gate gesperrt.
+`COMPLIANCE-002` ist erledigt. Kapitel 22 trennt diese Evidence jetzt vom deutschen Zielbild. VAT-, E-Documents-, Versandprofil- und Change-Log-Setup bleiben ohne ausdrueckliches Gate gesperrt. Ohne Gate ist der naechste sichere Schritt `SECURITY-001-READINESS` als read-only Admin-/Security-Orientierung.

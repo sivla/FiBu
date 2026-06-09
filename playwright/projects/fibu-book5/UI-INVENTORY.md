@@ -182,7 +182,7 @@ Wenn das Projekt fertig ist, kennen wir Business Central für den Buchumfang nic
 
 | Bereich | Seite | Page-ID | UI-Element | Funktion | Testfall | Screenshot/Evidence | Status | Buchstelle |
 |---|---|---:|---|---|---|---|---|---|
-| E-Rechnung | E-Rechnungen / E-Documents Kontext | n/a | Tell-Me-Suche, Role-Center-Aktion | Einstieg fuer strukturierte Rechnungen sichtbar machen, ohne E-Rechnung zu senden | `COMPLIANCE-001` | `playwright/projects/fibu-book5/img/compliance-001-010-e-invoices-tell-me.png`; `evidence/compliance-001/` | gesehen/verstanden als Orientierungsbild; `Warten auf Ka E-Rechnungen 0` ist sichtbar, aber kein Versand-/Validierungsnachweis | Kapitel 22 |
+| E-Rechnung | E-Rechnungen / E-Documents Kontext | n/a | Tell-Me-Suche, Role-Center-Aktion | Einstieg fuer strukturierte Rechnungen sichtbar machen, ohne E-Rechnung zu senden | `COMPLIANCE-001`, `COMPLIANCE-002` | `playwright/projects/fibu-book5/img/compliance-001-010-e-invoices-tell-me.png`; `evidence/compliance-001/`; `evidence/compliance-002/` | gesehen/verstanden als Orientierungsbild; `Warten auf Ka E-Rechnungen 0` ist sichtbar, aber kein Versand-/Validierungsnachweis; Kapitel 22 ist synchronisiert | Kapitel 22 |
 | Steuerposten | VAT Entries | n/a | Tell-Me-Suche | spaeteren Nachweispfad fuer USt-/Tax-Posten finden | `COMPLIANCE-001` | `playwright/projects/fibu-book5/img/compliance-001-020-vat-entries-tell-me.png`; `evidence/compliance-001/` | gesehen/verstanden als Nachweispfad; kein deutscher 19-%-USt-Nachweis | Kapitel 22 |
 | Steuer-Setup | VAT Posting Setup | n/a | Tell-Me-Suche | gesperrte Steuer-Matrix sichtbar machen, ohne Einrichtung zu aendern | `COMPLIANCE-001` | `playwright/projects/fibu-book5/img/compliance-001-030-vat-posting-setup-tell-me.png`; `evidence/compliance-001/` | gesehen/verstanden als Setup-Kontext; VAT19-Fit bleibt gate-gesperrt | Kapitel 22 |
 | Belegversand | Document Sending Profiles | n/a | Tell-Me-Suche | Versandprofil-Kontext fuer Rechnungen finden | `COMPLIANCE-001` | `playwright/projects/fibu-book5/img/compliance-001-040-document-sending-profiles-tell-me.png`; `evidence/compliance-001/` | gesehen/verstanden als Versandprofil-Kontext; keine E-Rechnungsvalidierung, kein Peppol-/Providerstatus | Kapitel 22 |
@@ -193,7 +193,7 @@ Wenn das Projekt fertig ist, kennen wir Business Central für den Buchumfang nic
 
 | Reihenfolge | Ziel |
 |---:|---|
-| 1 | Compliance-/E-Rechnung-Buch-Sync fuer Kapitel 22: `COMPLIANCE-001` als Readiness einarbeiten, aber keine E-Rechnungs-/VAT-/Change-Log-Finalbehauptung |
+| 1 | Security-/Admin-Readiness: Benutzer, Rollen, Berechtigungssaetze und Admin-Kontexte read-only als Buch-/Projektorientierung pruefen; keine Aenderung |
 | 2 | Intercompany-/Auslandprozess nur mit Gate fortsetzen: keine Company anlegen/wechseln, keinen IC-Partner, keinen Beleg `IC-7001`, keine Inbox/Outbox-Aktion und keine VAT-/Waehrungs-Aenderung ohne Freigabe |
 | 3 | Dropshipping-Setup nur mit Gate fortsetzen: `D11000`, `K20000`, `SP-PUMP-01` und Drop-Shipment-/Purchasing-Code-Logik bleiben UI-first Setup-Folgearbeit |
 | 4 | Project-Setup nur mit Gate fortsetzen: Projekt `PROJ-5001`, Ressource `RES-TECH`, Material `SP-SENSOR-02` und Lagerort `PROJ-LAG` bleiben UI-first Setup-Folgearbeit |
