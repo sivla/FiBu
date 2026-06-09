@@ -8,6 +8,8 @@ Update nach O2C-Sync: Die zentralen O2C-Buchstellen wurden auf den Laborstand `S
 
 Update nach `BOOK-O2C-FOUNDATION-DRIFT-SYNC`: Der nach `GOVERNANCE-009` geplante No-Approval-Buchsync ist erledigt. Die zentrale O2C-Stelle war bereits weitgehend synchron; nachgeschaerft wurden zwei Reporting-nahe Zielstellen, damit `UAT-K25-001`, `SO-1001`, `RM-GUV-MONAT`, Financial-Reports-Summenwirkung und deutsche `19 %` USt nicht als aktueller RM-DEMO-Beweis gelesen werden. Kein BC-Lauf, kein Setup, keine Buchung.
 
+Update nach `BOOK-REPORTING-UAT-K25-SYNC`: Der Reporting-UAT-Block in Kapitel 25 ist jetzt direkt in der UAT-Tabelle synchronisiert. `UAT-K25-001` ist Ziel-UAT fuer den deutschen Reportingfall; aktueller RM-DEMO-Anker bleibt `PS-INV103297` plus Artikelposten `Entry No. 792`. `RM-GUV-MONAT`, `SO-1001`, Financial-Reports-Summenwirkung, Power BI, deutsche `19 %` USt und deutscher Kontenplan bleiben offen. Kein BC-Lauf, kein Setup, keine Buchung.
+
 Update nach Stammdaten-Backlog: `MASTERDATA-BACKLOG.md` uebersetzt die Buchkapitel 3, 6 bis 18 und 19 bis 25 in priorisierte RM-DEMO-Testdaten- und Setup-Schritte. Der Audit bleibt die Buch-vs.-Evidence-Wahrheit; der Backlog entscheidet, welche Stammdaten/Setups als naechstes praktisch gebaut oder bewusst spaeter gehalten werden.
 
 Update nach `REPORTING-009`/`REPORTING-010`: Der einfache read-only Sachposten-Dimensionspfad ist geprueft und nur teilweise/negativ belegt. `G/L Entries` zu `PS-INV103297` sind in breiter Ansicht sichtbar und zeigen Shortcut-Spalten `Department Code`/`Customergroup Code`; `PRODUCTLINE`/`CHANNEL` und ein belastbarer `Entry` -> `Dimensions`-Dialog sind dort nicht sichtbar. Financial Reports bleiben fuer `PRODUCTLINE`/`CHANNEL` offen. Der naechste echte Reporting-Hebel ist nur mit Freigabe ein Analysis-View-Fit oder ein anderer belegbarer Standardpfad.
@@ -171,7 +173,7 @@ Update nach `GOVERNANCE-005`: Autopilot V2.2 ist gegen State und Gates synchroni
 ```text
 Arbeite auf Branch codex/playwright-bc-screenshot-foundation.
 Lies AUTOPILOT-STATE.json, POSTING-AND-SETUP-GATES.md, CURRENT-STATE.md, BOOK-TO-EVIDENCE-AUDIT.md, LAB-FIT-STATUS.md, AUTOPILOT-PROMPT-V2.md und evidence/governance-005/.
-`BOOK-O2C-FOUNDATION-DRIFT-SYNC` ist erledigt: kein BC-Lauf, keine Buchung, keine Setup-Aenderung. Fuehre als naechsten No-Approval-Schritt `BOOK-REPORTING-UAT-K25-SYNC` aus: Reporting-UAT-Block und Akzeptanzkriterien in Kapitel 25 gegen `REPORTING-001` bis `REPORTING-014` synchronisieren, ohne Financial-Reports-Summenwirkung, deutsche `19 %` USt oder Analysis-View-Setup als erledigt zu behaupten. Keine Zahlung, keine Bankabstimmung und keine Buchung ohne Gate.
+`BOOK-REPORTING-UAT-K25-SYNC` ist erledigt: kein BC-Lauf, keine Buchung, keine Setup-Aenderung. Fuehre als naechsten No-Approval-Schritt `GOVERNANCE-010-NEXT-NO-GATE-DECISION` aus: naechsten praktischen Block oder ein neues eng gescoptes Gate waehlen, ohne Financial-Reports-Summenwirkung, deutsche `19 %` USt, Analysis-View-Setup, Zahlung, Bankabstimmung oder Buchung als erledigt zu behaupten.
 ```
 
 ## Grenzen

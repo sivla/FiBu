@@ -5004,15 +5004,18 @@ Evidence-Hinweis: Die folgende Loesung ist die Zielanleitung fuer den deutschen 
 | Feld | Inhalt |
 |---|---|
 | ID | `UAT-K25-001` |
+| Status | Ziel-UAT fuer den deutschen Reportingfall; aktueller RM-DEMO-Stand ist Labor-/Negativbefund |
 | Ziel | GuV nach Produktlinie und Kanal bis zu den BC-Posten nachweisen |
 | Rolle | Controller, Finance-Leitung |
-| Voraussetzung | `SO-1001` ist geliefert und fakturiert; Dimensionen `PRODUCTLINE`, `CHANNEL`, `DEPARTMENT` sind gebucht; Analyseansicht `AN-RM-MARGE` ist vorhanden |
-| Testdaten | `RM-GUV-MONAT`, Zeitraum `01.06.2026..30.06.2026`, `PRODUCTLINE = MACHINE`, `CHANNEL = B2B`, `DEPARTMENT = SALES`, Beleg `SO-1001`, Debitor `D10000`, Artikel `RM-M100` |
+| Zielvoraussetzung | `SO-1001` ist geliefert und fakturiert; Dimensionen `PRODUCTLINE`, `CHANNEL`, `DEPARTMENT` sind gebucht; Analyseansicht `AN-RM-MARGE` ist vorhanden |
+| Aktueller RM-DEMO-Gegenstand | O2C-Laborrechnung `PS-INV103297`; `PRODUCTLINE = MACHINE` und `CHANNEL = B2B` sind am Artikelposten `Entry No. 792` sichtbar, aber nicht als Financial-Reports-Summe oder `RM-GUV-MONAT`-Nachweis |
+| Ziel-Testdaten | `RM-GUV-MONAT`, Zeitraum `01.06.2026..30.06.2026`, `PRODUCTLINE = MACHINE`, `CHANNEL = B2B`, `DEPARTMENT = SALES`, Beleg `SO-1001`, Debitor `D10000`, Artikel `RM-M100` |
 | Exakte Schrittfolge | 1. Öffne `Finanzberichte (Financial Reports)` über `Alt+Q`.<br>2. Öffne `RM-GUV-MONAT`.<br>3. Setze `Datumsfilter = 01.06.2026..30.06.2026`.<br>4. Setze `PRODUCTLINE = MACHINE`, `CHANNEL = B2B`, `DEPARTMENT = SALES`.<br>5. Aktualisiere den Bericht und öffne den Drilldown auf `Umsatzerlöse Maschinen`.<br>6. Filtere `Sachposten (G/L Entries)` auf `Belegnr. = SO-1001`.<br>7. Prüfe Konto `4000`, Betrag `-68.000 EUR`, Dimensionen `MACHINE/B2B/SALES`.<br>8. Öffne `Debitorenposten (Customer Ledger Entries)`, `USt-Posten (VAT Entries)`, `Artikelposten (Item Ledger Entries)` und `Wertposten (Value Entries)` mit Belegfilter `SO-1001`.<br>9. Öffne `Datenanalysemodus (Data Analysis Mode)` in den Sachposten und gruppiere nach `PRODUCTLINE` und `CHANNEL`.<br>10. Öffne Power BI `RM Management Cockpit` und prüfe denselben Zeitraum und dieselben Filter. |
 | Erwartete Belege | gebuchte Verkaufsrechnung `SO-1001` |
 | Erwartete Posten | `Debitorenposten (Customer Ledger Entries)`, `Sachposten (G/L Entries)`, `USt-Posten (VAT Entries)`, `Artikelposten (Item Ledger Entries)`, `Wertposten (Value Entries)` |
 | Kontrollbericht | `Finanzberichte (Financial Reports)`, `Analyseansichten (Analysis Views)`, `Datenanalysemodus (Data Analysis Mode)`, Power BI `RM Management Cockpit` |
-| Akzeptanzkriterium | Finanzbericht, Sachposten, Wertposten und Power-BI-Sicht zeigen denselben Zeitraum, dieselbe Produktlinie, denselben Kanal und nachvollziehbare Beträge. |
+| Ziel-Akzeptanzkriterium | Finanzbericht, Sachposten, Wertposten und Power-BI-Sicht zeigen denselben Zeitraum, dieselbe Produktlinie, denselben Kanal und nachvollziehbare Beträge. |
+| Aktueller RM-DEMO-Nachweis | `REPORTING-001` bis `REPORTING-014` belegen den Einstieg und mehrere Negativ-/Teilpfade: `Financial Reports` ist erreichbar, `REVENUE` nutzt nicht `PRODUCTLINE`/`CHANNEL`, Sachposten zeigen keine sichtbaren Ziel-Dimensionsspalten, `RM-PLCH` wurde nicht angelegt, und `New/Neu` fuer Analysis-View-Setup ist ohne Seitenkontext zu riskant. |
 | Evidence Pack | Finanzbericht mit Filtern, Sachpostenexport, Wertpostenexport, Analyseansicht-Zeitstempel, Power-BI-Screenshot, Negativtest, Korrekturentscheidung |
 | Absichtlich falsche Eingabe | GuV ohne Dimensionsfilter `CHANNEL = B2B` auswerten und als B2B-Marge interpretieren |
 | Erwartetes Fehlverhalten | Der Bericht enthaelt auch andere Kanaele, zum Beispiel `SERVICE`; die Marge fuer B2B ist fachlich falsch. |

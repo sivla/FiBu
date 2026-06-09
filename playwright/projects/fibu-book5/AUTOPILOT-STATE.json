@@ -7,7 +7,7 @@
   "company": "RM-DEMO",
   "dataBasis": "CRONUS USA",
   "activeArea": "book",
-  "lastCompletedRun": "BOOK-O2C-FOUNDATION-DRIFT-SYNC",
+  "lastCompletedRun": "BOOK-REPORTING-UAT-K25-SYNC",
   "lastWorkType": "book-sync-no-bc-run",
   "postedInLastRun": false,
   "latestPostedDocuments": {
@@ -115,7 +115,7 @@
     "PROJECTS-LAB-POSTING: only after UI-first setup readiness for project, tasks, resource/material/location and invoice/WIP path; current target objects are not ready.",
     "MANUFACTURING-LAB-POSTING: only after UI-first setup readiness for BOM/routing or assembly structure, components, order, consumption/output and cost trace; current target objects are not ready."
   ],
-  "nextBestStepWithoutApproval": "BOOK-REPORTING-UAT-K25-SYNC: no BC run; align the Reporting UAT block and acceptance criteria with REPORTING-001 to REPORTING-014 unless a new explicit Analysis View or reporting setup gate is approved.",
+  "nextBestStepWithoutApproval": "GOVERNANCE-010-NEXT-NO-GATE-DECISION: no BC run; choose the next practical block or formulate a fresh scoped gate after BOOK-REPORTING-UAT-K25-SYNC, without setup, posting, payment, bank reconciliation or company switch.",
   "nextBestStepWithApproval": {
     "payments": "Nur mit neuem Gate: weitere Zahlung, Kreditorenzahlung oder Bankabstimmung. PAYMENTS-011 darf nicht wiederholt werden.",
     "reporting": "Further Analysis View setup needs a new explicit gate and a scoped New/Card action proof. REPORTING-013 consumed the GOVERNANCE-007 gate and rejected setup because unscoped New/Neu is globally ambiguous in BC.",
@@ -168,6 +168,8 @@
     "Do not repeat TAX-002-DE-VAT-GATE-READINESS without new VAT approval or official documentation delta",
     "Do not repeat GOVERNANCE-009 without a new autonomous-posting-policy, gate or workplan delta",
     "Do not repeat BOOK-O2C-FOUNDATION-DRIFT-SYNC without a new book/evidence drift delta"
+    ,
+    "Do not repeat BOOK-REPORTING-UAT-K25-SYNC without a new chapter-25 reporting UAT evidence delta"
   ],
   "notes": [
     "AUTOPILOT-STATE.json and POSTING-AND-SETUP-GATES.md were introduced because the V2 autopilot prompt requires machine-readable state and explicit gates.",
@@ -219,6 +221,7 @@
     "GOVERNANCE-008 selected TAX-002-DE-VAT-GATE-READINESS as the next safe no-approval step. It did not run Business Central, did not change setup, did not post and did not open a gate. Actual TAX-002-DE-VAT-FIT remains locked until explicit approval.",
     "TAX-002 completed the VAT19 gate-readiness plan without a BC run: UI-first approval criteria, stop criteria and a suggested TAX-002A/TAX-002B/TAX-002C split are documented under evidence/tax-002. No setup, no posting, no company switch and no German VAT19 final claim.",
     "GOVERNANCE-009 reconciled Autopilot V2.2 with the machine-readable state: autonomousAllowed is no longer empty, but each autonomous lab posting remains constrained by POSTING-AND-SETUP-GATES.md, fresh UI preflight, no-repeat locks and a new evidence purpose. No BC run, no setup change and no posting.",
-    "BOOK-O2C-FOUNDATION-DRIFT-SYNC completed the no-approval book sync after GOVERNANCE-009. The central O2C book section already named MASTERDATA-009, S-ORD101068 and PS-INV103297; two Reporting/UAT target sections were clarified so Financial Reports dimension sums, SO-1001, RM-GUV-MONAT, German VAT19 and German final proof are not read as current RM-DEMO evidence. No BC run, no setup change and no posting."
+    "BOOK-O2C-FOUNDATION-DRIFT-SYNC completed the no-approval book sync after GOVERNANCE-009. The central O2C book section already named MASTERDATA-009, S-ORD101068 and PS-INV103297; two Reporting/UAT target sections were clarified so Financial Reports dimension sums, SO-1001, RM-GUV-MONAT, German VAT19 and German final proof are not read as current RM-DEMO evidence. No BC run, no setup change and no posting.",
+    "BOOK-REPORTING-UAT-K25-SYNC completed the no-approval chapter-25 UAT sync. UAT-K25-001 is now explicitly marked as a target UAT for the German reporting case; the current RM-DEMO proof remains PS-INV103297 plus item ledger entry 792 and partial/negative reporting evidence from REPORTING-001 to REPORTING-014. No BC run, no setup change and no posting."
   ]
 }

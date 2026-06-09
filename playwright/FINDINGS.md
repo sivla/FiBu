@@ -38,6 +38,25 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 
 ## Aktuelle Fundstellen
 
+## FIND-BC-BOOK-REPORTING-UAT-K25 Ziel-UAT ist kein RM-DEMO-Reportingbeweis
+
+| Feld | Wert |
+|---|---|
+| Status | erledigt als Buch-/Evidence-Sync |
+| Quelle | `BOOK-REPORTING-UAT-K25-SYNC`, `REPORTING-001` bis `REPORTING-014` |
+| Screenshot | keine neuen Screenshots; Buch-Sync ohne BC-Lauf |
+| Evidence | `playwright/projects/fibu-book5/evidence/book-reporting-uat-k25-sync/README.md`, `playwright/projects/fibu-book5/evidence/book-reporting-uat-k25-sync/BOOK-REPORTING-UAT-K25-SYNC.md`, `playwright/projects/fibu-book5/evidence/book-reporting-uat-k25-sync/BOOK-REPORTING-UAT-K25-SYNC-result.json` |
+| BC-Seite | nicht ausgefuehrt; Buchstelle in Kapitel 25 |
+| sichtbarer Text / Werte | `UAT-K25-001`, `RM-GUV-MONAT`, `SO-1001`, `PS-INV103297`, `Entry No. 792`, `PRODUCTLINE=MACHINE`, `CHANNEL=B2B` |
+| Elementtyp | Buch-Zielbild / UAT-Akzeptanzkriterium / Evidence-Grenze |
+| erste Hypothese | Die UAT-Tabelle in Kapitel 25 konnte trotz Evidence-Hinweis noch so gelesen werden, als seien `RM-GUV-MONAT`, `SO-1001` und die Financial-Reports-Summenwirkung bereits in `RM-DEMO` bewiesen. |
+| Recherchequelle | vorhandene Reporting-Evidence `REPORTING-001` bis `REPORTING-014`; kein neuer BC-Lauf |
+| Testergebnis | `UAT-K25-001` wurde als Ziel-UAT markiert. Die Tabelle trennt jetzt Zielvoraussetzung, Ziel-Testdaten und Ziel-Akzeptanzkriterium von aktuellem RM-DEMO-Gegenstand und aktuellem RM-DEMO-Nachweis. |
+| Entscheidung | Kapitel 25 darf den finalen Reporting-UAT lehren, aber nicht als aktuellen Laborbeweis ausgeben. Belegt sind `PS-INV103297` und Artikelposten `792`; offen bleiben `RM-GUV-MONAT`, `SO-1001`, Financial-Reports-Summe, Power BI, deutsche `19 %` USt und deutscher Kontenplan. |
+| Buchstelle | Kapitel 25 Reporting, Controlling, Finanzberichte und Power BI |
+
+Fuer Anfaenger ist das wichtig, weil ein UAT-Fall immer Ziel, Voraussetzung, Testdaten, Ist-Nachweis und offene Luecke trennen muss. Sonst wirkt ein gutes Zielskript wie ein bestandener Test, obwohl Business Central die Reportingwirkung noch nicht gezeigt hat.
+
 ## FIND-BC-BOOK-O2C-FOUNDATION-DRIFT Reporting-Zielbild darf nicht als Laborbeweis gelesen werden
 
 | Feld | Wert |
