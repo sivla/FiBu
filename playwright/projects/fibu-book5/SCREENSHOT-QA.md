@@ -354,6 +354,19 @@ Fuer `UAT-O2C-001` fasst `playwright/projects/fibu-book5/evidence/uat-o2c-001/RE
 | `playwright/projects/fibu-book5/img/projects-001-100-item-sp-sensor-02.png` | rejected Datenluecke | Items-Seite ist sichtbar, aber `SP-SENSOR-02` ist nicht sichtbar. | Nicht als Projektmaterial-Buchbild verwenden; vor Projektverbrauch braucht es UI-first Artikel-/Posting-Fit. |
 | `playwright/projects/fibu-book5/img/projects-001-110-location-proj-lag.png` | rejected Datenluecke | Locations-Seite ist sichtbar, aber `PROJ-LAG` ist nicht sichtbar. | Nicht als Projektlager-Buchbild verwenden; vor Projektmaterialverbrauch braucht es Lagerort-Readiness. |
 
+## `DROPSHIPPING-001` Screenshot Review
+
+| Screenshot | Bewertung | Befund | Entscheidung |
+|---|---|---|---|
+| `playwright/projects/fibu-book5/img/dropshipping-001-010-sales-orders-tell-me.png` | Navigationskandidat | Tell-Me zeigt `Sales Orders` als Einstieg. | Als Readiness-/Suchbild geeignet. Kein Verkaufsauftrag `DS-24001` und kein Dropshipping-Prozessnachweis. |
+| `playwright/projects/fibu-book5/img/dropshipping-001-020-purchase-orders-tell-me.png` | Navigationskandidat | Tell-Me zeigt `Purchase Orders`. | Als spaeterer Einkaufsbeleg-Einstieg geeignet. Keine Bestellung an `K20000`. |
+| `playwright/projects/fibu-book5/img/dropshipping-001-030-requisition-worksheets-tell-me.png` | Navigationskandidat | Tell-Me zeigt `Requisition Worksheets`. | Als moeglicher Beschaffungs-/Verknuepfungspfad geeignet. Keine Worksheet-Aktion. |
+| `playwright/projects/fibu-book5/img/dropshipping-001-040-drop-shipments-tell-me.png` | rejected Navigation | `Drop Shipments` wurde in diesem Lauf nicht stabil als Treffer sichtbar. | Nicht als Drop-Shipment-Einstiegsbild verwenden; alternativen BC-Standardpfad ueber Purchasing Code/Bestellvorschlag pruefen. |
+| `playwright/projects/fibu-book5/img/dropshipping-001-050-purchasing-codes-tell-me.png` | Setup-Kandidat | Tell-Me zeigt `Purchasing Codes`. | Als spaeterer Setup-/Pruefpfad geeignet. Keine Einrichtung ohne Gate aendern. |
+| `playwright/projects/fibu-book5/img/dropshipping-001-060-customer-d11000.png` | rejected Datenluecke | Customers-Seite ist sichtbar, aber `D11000` ist nicht sichtbar. | Nicht als Debitor-Buchbild verwenden; vor `DS-24001` braucht es UI-first Debitor-Fit. |
+| `playwright/projects/fibu-book5/img/dropshipping-001-070-vendor-k20000.png` | rejected Datenluecke | Vendors-Seite ist sichtbar, aber `K20000` ist nicht sichtbar. | Nicht als Direktlieferanten-Buchbild verwenden; vor Einkaufsbestellung braucht es UI-first Kreditor-Fit. |
+| `playwright/projects/fibu-book5/img/dropshipping-001-080-item-sp-pump-01.png` | rejected Datenluecke | Items-Seite ist sichtbar, aber `SP-PUMP-01` ist nicht sichtbar. | Nicht als Artikel-Buchbild verwenden; vor Dropshipping-Zeile braucht es UI-first Artikel-/Posting-Fit. |
+
 ## Harte Findings aus dem Review
 
 ### QA-O2C-001 Listenbild zeigt nicht den Buchfall

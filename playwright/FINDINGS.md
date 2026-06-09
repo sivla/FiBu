@@ -970,3 +970,21 @@ Fuer Anfaenger ist das wichtig, weil Service mehrere Welten verbindet: Kundenmas
 | Buchstelle | Kapitel 16 Projects |
 
 Fuer Anfaenger ist das wichtig, weil Projects Kosten, Verbrauch, WIP-nahe Sicht und Faktura ueber Zeit verbindet. Ein sichtbarer `Projects`-Treffer ist nur der Einstieg. Der Prozess beginnt erst, wenn Stammdaten, Projektaufgaben, Projektjournal, WIP-/Statistikpruefung und Meilensteinrechnung als zusammenhaengende Kette belegt sind. `PROJECTS-002` hat diese Grenze ins Buch uebertragen; die praktische Setup-/Buchungslinie bleibt Gate-Folgearbeit.
+
+## FIND-BC-DROP-001 Dropshipping-Readiness ist nicht Dropshipping-Prozess
+
+| Feld | Wert |
+|---|---|
+| Status | offen fuer Buch-Sync; praktische Setup-/Buchungslinie gate-gesperrt |
+| Quelle | `DROPSHIPPING-001` |
+| Screenshot | `playwright/projects/fibu-book5/img/dropshipping-001-010-sales-orders-tell-me.png`, `playwright/projects/fibu-book5/img/dropshipping-001-020-purchase-orders-tell-me.png`, `playwright/projects/fibu-book5/img/dropshipping-001-030-requisition-worksheets-tell-me.png`, `playwright/projects/fibu-book5/img/dropshipping-001-040-drop-shipments-tell-me.png`, `playwright/projects/fibu-book5/img/dropshipping-001-050-purchasing-codes-tell-me.png`, `playwright/projects/fibu-book5/img/dropshipping-001-060-customer-d11000.png`, `playwright/projects/fibu-book5/img/dropshipping-001-070-vendor-k20000.png`, `playwright/projects/fibu-book5/img/dropshipping-001-080-item-sp-pump-01.png` |
+| Evidence | `playwright/projects/fibu-book5/evidence/dropshipping-001/DROPSHIPPING-001-result.json`, `playwright/projects/fibu-book5/evidence/dropshipping-001/DROPSHIPPING-001-READINESS.md`, `playwright/projects/fibu-book5/evidence/dropshipping-001/README.md` |
+| BC-Seite | Tell-Me, Customers, Vendors, Items |
+| sichtbarer Text / Werte | Tell-Me zeigt `Sales Orders`, `Purchase Orders`, `Requisition Worksheets` und `Purchasing Codes`; `Drop Shipments` ist nicht stabil sichtbar; `D11000`, `K20000`, `SP-PUMP-01` sind als konkrete Zielnummern nicht sichtbar |
+| Elementtyp | Dropshipping-Readiness / Stammdatenluecke / Gate-Grenze |
+| erste Hypothese | Nach Projects soll Kapitel 17 ohne Shopify-Scope als BC-Standard-Dropshipping-/Sonderverkauf geprueft werden, aber vor einem Beleglauf muessen Kunde, Lieferant, Artikel und Beschaffungspfad tragen. |
+| Testergebnis | `DROPSHIPPING-001` laeuft read-only erfolgreich. Der Lauf erzeugt Navigationsevidence und Zielobjekt-Evidence, aber keine Einrichtung, keinen Verkaufsauftrag `DS-24001`, keine Einkaufsbestellung, keine Requisition-Worksheet-Aktion, keine Preview und keine Buchung. |
+| Entscheidung | Kapitel 17 braucht `DROPSHIPPING-002`: sichtbare BC-Einstiege sind nur Readiness. Der Buchfall `DS-24001` ist in `RM-DEMO` noch nicht dropshippingfaehig, solange `D11000`, `K20000`, `SP-PUMP-01` und Drop-Shipment-/Purchasing-Code-Logik nicht UI-first gefittet und belegt sind. Shopify bleibt gestrichen. |
+| Buchstelle | Kapitel 17 Dropshipping und Sonderverkauf |
+
+Fuer Anfaenger ist das wichtig, weil Dropshipping wie ein normaler Verkauf beginnt, aber fachlich zwei Belegketten verbindet: Verkaufsauftrag und Einkaufsbestellung. Ein sichtbarer `Sales Orders`-Treffer beweist noch nicht, dass die direkte Lieferung, der Lieferant, die Beschaffung, die Marge, die Steuer und der Lager-Negativnachweis stimmen. Der naechste sichere Schritt ist deshalb Buch-Sync, nicht sofortige Beleganlage.
