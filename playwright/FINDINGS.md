@@ -38,6 +38,24 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 
 ## Aktuelle Fundstellen
 
+## FIND-BC-TRAIN-001 Uebungsloesung ist kein praktischer Prozessnachweis
+
+| Feld | Wert |
+|---|---|
+| Status | erledigt als Buch-Sync; praktische Uebungsausfuehrung gate-/prozessabhaengig |
+| Quelle | `TRAINING-001` |
+| Screenshot | keine neuen Screenshots; Buch-/Readiness-Sync |
+| Evidence | `playwright/projects/fibu-book5/evidence/training-001/TRAINING-001-READINESS.md`, `playwright/projects/fibu-book5/evidence/training-001/TRAINING-001-result.json`, `playwright/projects/fibu-book5/evidence/training-001/README.md` |
+| BC-Seite | nicht ausgefuehrt; Kapitel 33 Zielbild |
+| sichtbarer Text / Werte | Uebungen und Loesungen, O2C `PS-INV103297`, P2P `108219`, Inventory `INV008-899959`, Payments Readiness, Reporting Teil-/Negativbefund |
+| Elementtyp | Training-Readiness / Loesungsbibliothek / Gate-Grenze |
+| erste Hypothese | Kapitel 33 darf nicht so wirken, als seien alle Uebungen praktisch geloest, nur weil Musterloesungen formuliert sind. |
+| Testergebnis | `TRAINING-001` hat Kapitel 33 ohne BC-Lauf synchronisiert. O2C, P2P und Inventory sind als CRONUS-USA-Labormuster nutzbar; Payments und Reporting bleiben Readiness beziehungsweise Teil-/Negativbefund. Es gab keine neue praktische Uebung, keine Schulungsabnahme, keine Setup-Aenderung und keine Buchung. |
+| Entscheidung | Kapitel 33 trennt jetzt Trainingsbibliothek, belastbare Labormuster und offene Final-/Gate-Nachweise. Praktische Uebungslaeufe bleiben an das jeweils passende Prozess-/Setup-/Posting-Gate gebunden. |
+| Buchstelle | Kapitel 33 Uebungen und Loesungen |
+
+Fuer Anfaenger ist das wichtig, weil eine Loesung mehr ist als ein Klickrezept. Eine belastbare Business-Central-Uebung muss zeigen, welche Einrichtung vorausgesetzt wird, welche Felder zu pflegen sind, welche Posten entstehen, welcher Bericht das Ergebnis beweist und wie typische Fehler fachlich korrigiert werden.
+
 ## FIND-BC-UAT-001 UAT-Bibliothek ist kein bestandener Gesamt-UAT
 
 | Feld | Wert |

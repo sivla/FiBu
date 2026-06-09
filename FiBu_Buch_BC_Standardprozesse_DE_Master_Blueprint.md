@@ -5721,6 +5721,12 @@ Teil F enthält Testbibliothek, Lösungen, MB-800-Abdeckung, Lernpfade, Glossar,
 
 Dieses Kapitel bündelt die Trainingspfade. Jede Schulung nutzt dieselbe Datenwelt.
 
+> **Status des Labor-Nachweises in `RM-DEMO` (`TRAINING-001`)**
+>
+> Kapitel 33 ist eine Übungs- und Lösungsbibliothek, kein Nachweis, dass alle Übungen praktisch abgeschlossen wurden. Der aktuelle Laborstand liefert belastbare Muster für Verkauf/O2C (`PS-INV103297`), Einkauf/P2P (`108219`) und Inventory (`INV008-899959`). Payments ist bis zum zahlungsreifen Journal, Apply-Entries-Kontext und Post-Dialog mit Abbruch belegt, aber ohne Zahlung oder OP-Ausgleich. Reporting ist nur teilweise belegt: `PRODUCTLINE=MACHINE` und `CHANNEL=B2B` sind am Artikelposten sichtbar, aber nicht als Financial-Reports-Summenwirkung nachgewiesen.
+>
+> Eine Übung gilt erst als praktisch gelöst, wenn Klickweg, Stammdaten/Setup, erwartete Wirkung, tatsächliche Postenspur, Kontrollbericht, typischer Fehlerfall und Korrekturweg mit Evidence verbunden sind. Sichtbare Einstiegspfade wie `Service Orders`, `Projects`, `FA Posting Groups` oder `Intercompany Setup` sind nur Readiness, solange Zielobjekte, Setup, Preview/Preflight, Buchung oder Postenspur fehlen. Deutsche `19 %` USt, deutscher Kontenplan und finale deutsche Screenshots bleiben offene Finalnachweise.
+
 ### Einkaufsschulung
 
 Ziel:
