@@ -1,0 +1,147 @@
+{
+  "testId": "security-001",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "dataBasis": "CRONUS USA",
+  "mode": "read-only",
+  "chapter": 27,
+  "tellMeEntries": [
+    {
+      "id": "010-users",
+      "searchedFor": "Users",
+      "expectedVisible": false,
+      "beginnerMeaning": "Benutzer sind Identitaeten im System; ein sichtbarer Benutzer beweist noch nicht, welche Rechte fachlich korrekt sind.",
+      "relevantButtons": [
+        "Job Queue Tasks",
+        "Pending User Tasks 0",
+        "Requests Sent  Approval 0"
+      ],
+      "wideLayoutActivated": true,
+      "screenshot": "security-001-010-users-tell-me.png",
+      "pageTextEvidenceFile": "010-users-page-text.txt",
+      "buttonsEvidenceFile": "010-users-buttons.json"
+    },
+    {
+      "id": "020-permission-sets",
+      "searchedFor": "Permission Sets",
+      "expectedVisible": true,
+      "beginnerMeaning": "Berechtigungssaetze bestimmen, was ein Benutzer darf; sie sind die Rechteebene, nicht das Rollencenter.",
+      "relevantButtons": [
+        "Job Queue Tasks",
+        "Nach Permission Sets suchen",
+        "Pending User Tasks 0",
+        "Requests Sent  Approval 0"
+      ],
+      "wideLayoutActivated": true,
+      "screenshot": "security-001-020-permission-sets-tell-me.png",
+      "pageTextEvidenceFile": "020-permission-sets-page-text.txt",
+      "buttonsEvidenceFile": "020-permission-sets-buttons.json"
+    },
+    {
+      "id": "030-profiles-roles",
+      "searchedFor": "Profiles Roles",
+      "expectedVisible": true,
+      "beginnerMeaning": "Profile/Rollen formen die Oberflaeche; sie ersetzen keine Berechtigungssaetze.",
+      "relevantButtons": [
+        "Job Queue Tasks",
+        "Nach Profiles Roles suchen",
+        "Pending User Tasks 0",
+        "Requests Sent  Approval 0"
+      ],
+      "wideLayoutActivated": true,
+      "screenshot": "security-001-030-profiles-roles-tell-me.png",
+      "pageTextEvidenceFile": "030-profiles-roles-page-text.txt",
+      "buttonsEvidenceFile": "030-profiles-roles-buttons.json"
+    },
+    {
+      "id": "040-security-groups",
+      "searchedFor": "Security Groups",
+      "expectedVisible": true,
+      "beginnerMeaning": "Security Groups koennen Zugriff organisatorisch buendeln; sichtbare Suche beweist noch keine Gruppenzuweisung.",
+      "relevantButtons": [
+        "Job Queue Tasks",
+        "Nach Security Groups suchen",
+        "Pending User Tasks 0",
+        "Requests Sent  Approval 0"
+      ],
+      "wideLayoutActivated": true,
+      "screenshot": "security-001-040-security-groups-tell-me.png",
+      "pageTextEvidenceFile": "040-security-groups-page-text.txt",
+      "buttonsEvidenceFile": "040-security-groups-buttons.json"
+    },
+    {
+      "id": "050-user-setup",
+      "searchedFor": "User Setup",
+      "expectedVisible": true,
+      "beginnerMeaning": "User Setup kann fachliche Grenzen wie Buchungszeitraeume oder Genehmigerlogik beeinflussen; ohne Gate wird nichts geaendert.",
+      "relevantButtons": [
+        "Job Queue Tasks",
+        "Nach User Setup suchen",
+        "Pending User Tasks 0",
+        "Requests Sent  Approval 0"
+      ],
+      "wideLayoutActivated": true,
+      "screenshot": "security-001-050-user-setup-tell-me.png",
+      "pageTextEvidenceFile": "050-user-setup-page-text.txt",
+      "buttonsEvidenceFile": "050-user-setup-buttons.json"
+    },
+    {
+      "id": "060-job-queue-entries",
+      "searchedFor": "Job Queue Entries",
+      "expectedVisible": true,
+      "beginnerMeaning": "Aufgabenwarteschlangen zeigen automatisierte Laeufe; sie sind Betriebsevidence, aber kein Benutzerrechte-Nachweis.",
+      "relevantButtons": [
+        "Job Queue Tasks",
+        "Nach Job Queue Entries suchen",
+        "Pending User Tasks 0",
+        "Requests Sent  Approval 0"
+      ],
+      "wideLayoutActivated": true,
+      "screenshot": "security-001-060-job-queue-entries-tell-me.png",
+      "pageTextEvidenceFile": "060-job-queue-entries-page-text.txt",
+      "buttonsEvidenceFile": "060-job-queue-entries-buttons.json"
+    },
+    {
+      "id": "070-change-log-entries",
+      "searchedFor": "Change Log Entries",
+      "expectedVisible": true,
+      "beginnerMeaning": "Aenderungsprotokollposten koennen kritische Aenderungen zeigen, wenn das Change Log passend eingerichtet ist.",
+      "relevantButtons": [
+        "Job Queue Tasks",
+        "Nach Change Log Entries suchen",
+        "Pending User Tasks 0",
+        "Requests Sent  Approval 0"
+      ],
+      "wideLayoutActivated": true,
+      "screenshot": "security-001-070-change-log-entries-tell-me.png",
+      "pageTextEvidenceFile": "070-change-log-entries-page-text.txt",
+      "buttonsEvidenceFile": "070-change-log-entries-buttons.json"
+    }
+  ],
+  "safety": {
+    "noPostingCommittedByTest": true,
+    "noSetupChangedByTest": true,
+    "noMasterDataChangedByTest": true,
+    "noCompanyChangedByTest": true,
+    "noUserChangedByTest": true,
+    "noPermissionChangedByTest": true,
+    "noProfileChangedByTest": true,
+    "noSecurityGroupChangedByTest": true,
+    "noChangeLogChangedByTest": true,
+    "noJobQueueChangedByTest": true
+  },
+  "proves": [
+    "Security-/Admin-Kontexte sind in RM-DEMO als Such- und Navigationspfade pruefbar.",
+    "Users, Permission Sets, Profiles/Roles, Security Groups, User Setup, Job Queue Entries und Change Log Entries sind getrennte Prueffelder.",
+    "Der Lauf erzeugt Buch-Evidence fuer Navigation und Grenzen, nicht fuer wirksame SoD- oder Berechtigungsfreigabe."
+  ],
+  "doesNotProve": [
+    "Keine neue Benutzeranlage.",
+    "Keine Berechtigungssatz-Zuweisung.",
+    "Keine Security-Group-Zuweisung.",
+    "Keine Profile-/Rollenanpassung.",
+    "Keine User-Setup-, Change-Log- oder Job-Queue-Aenderung.",
+    "Kein deutscher Security-/SoD-Finalnachweis."
+  ],
+  "nextStep": "SECURITY-002-BOOK-SYNC: Kapitel 27 mit SECURITY-001 synchronisieren; Rolle/Profil, Permission Sets, Security Groups, User Setup, Job Queue und Change Log als getrennte Prueffelder erklaeren. Ohne Gate keine Benutzer-, Berechtigungs-, Profil-, Security-Group-, User-Setup-, Change-Log- oder Job-Queue-Aenderung."
+}

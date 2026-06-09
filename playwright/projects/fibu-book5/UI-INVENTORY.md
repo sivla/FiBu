@@ -189,11 +189,23 @@ Wenn das Projekt fertig ist, kennen wir Business Central für den Buchumfang nic
 | Audit | Change Log Entries | n/a | Tell-Me-Suche | spaeteren Audit-/Aenderungsnachweis finden | `COMPLIANCE-001` | `playwright/projects/fibu-book5/img/compliance-001-050-change-log-entries-tell-me.png`; `evidence/compliance-001/` | gesehen/verstanden als Audit-Kontext; kein Nachweis aktiver Tabellenprotokollierung | Kapitel 22/Administration |
 | Audit-Setup | Change Log Setup | n/a | Tell-Me-Suche | gesperrten Audit-Setup-Pfad sichtbar machen | `COMPLIANCE-001` | `playwright/projects/fibu-book5/img/compliance-001-060-change-log-setup-tell-me.png`; `evidence/compliance-001/` | gesehen/verstanden als Setup-Kontext; keine Aktivierung und keine Einrichtung | Kapitel 22/Administration |
 
+## Security / Rollen
+
+| Bereich | Seite | Page-ID | UI-Element | Funktion | Testfall | Screenshot/Evidence | Status | Buchstelle |
+|---|---|---:|---|---|---|---|---|---|
+| Security | Users | n/a | Tell-Me-Suche | Benutzerverwaltung als moeglichen Admin-Kontext pruefen | `SECURITY-001` | `playwright/projects/fibu-book5/img/security-001-010-users-tell-me.png`; `evidence/security-001/` | nicht stabil sichtbar; kein Benutzer angelegt oder geaendert | Kapitel 27 |
+| Security | Permission Sets | n/a | Tell-Me-Suche | Berechtigungssaetze als Pruefkontext sichtbar machen | `SECURITY-001` | `playwright/projects/fibu-book5/img/security-001-020-permission-sets-tell-me.png`; `evidence/security-001/` | gesehen/verstanden als Readiness; keine Berechtigung geaendert | Kapitel 27 |
+| Rollen/Profile | Profiles Roles | n/a | Tell-Me-Suche | Rollen-/Profil-Kontext fuer Oberflaeche und Rollencenter sichtbar machen | `SECURITY-001` | `playwright/projects/fibu-book5/img/security-001-030-profiles-roles-tell-me.png`; `evidence/security-001/` | gesehen/verstanden als Readiness; kein Profil geaendert | Kapitel 27 |
+| Security | Security Groups | n/a | Tell-Me-Suche | Gruppierung von Benutzern/Rechten als Admin-Kontext sichtbar machen | `SECURITY-001` | `playwright/projects/fibu-book5/img/security-001-040-security-groups-tell-me.png`; `evidence/security-001/` | gesehen/verstanden als Readiness; keine Gruppe geaendert | Kapitel 27 |
+| Governance | User Setup | n/a | Tell-Me-Suche | Benutzerbezogene Freigabe-/Buchungsparameter als eigenen Setup-Kontext erkennen | `SECURITY-001` | `playwright/projects/fibu-book5/img/security-001-050-user-setup-tell-me.png`; `evidence/security-001/` | gesehen/verstanden als gesperrter Setup-Kontext; keine Einrichtung | Kapitel 27/Administration |
+| Betrieb | Job Queue Entries | n/a | Tell-Me-Suche | Hintergrundjobs/Betriebskontext sichtbar machen | `SECURITY-001` | `playwright/projects/fibu-book5/img/security-001-060-job-queue-entries-tell-me.png`; `evidence/security-001/` | gesehen/verstanden als Betriebs-Kontext; kein Job angelegt oder gestartet | Kapitel 27/39 |
+| Audit | Change Log Entries | n/a | Tell-Me-Suche | Audit-/Aenderungsnachweis sichtbar machen | `SECURITY-001` | `playwright/projects/fibu-book5/img/security-001-070-change-log-entries-tell-me.png`; `evidence/security-001/` | gesehen/verstanden als Audit-Kontext; keine Change-Log-Einrichtung oder Aenderung | Kapitel 27/39 |
+
 ## Naechste Inventarziele
 
 | Reihenfolge | Ziel |
 |---:|---|
-| 1 | Security-/Admin-Readiness: Benutzer, Rollen, Berechtigungssaetze und Admin-Kontexte read-only als Buch-/Projektorientierung pruefen; keine Aenderung |
+| 1 | Security-Buch-Sync: Kapitel 27 mit `SECURITY-001` abgleichen; sichtbare Admin-/Security-Kontexte als Readiness erklaeren, nicht als Berechtigungs-/SoD-/Audit-Finalnachweis |
 | 2 | Intercompany-/Auslandprozess nur mit Gate fortsetzen: keine Company anlegen/wechseln, keinen IC-Partner, keinen Beleg `IC-7001`, keine Inbox/Outbox-Aktion und keine VAT-/Waehrungs-Aenderung ohne Freigabe |
 | 3 | Dropshipping-Setup nur mit Gate fortsetzen: `D11000`, `K20000`, `SP-PUMP-01` und Drop-Shipment-/Purchasing-Code-Logik bleiben UI-first Setup-Folgearbeit |
 | 4 | Project-Setup nur mit Gate fortsetzen: Projekt `PROJ-5001`, Ressource `RES-TECH`, Material `SP-SENSOR-02` und Lagerort `PROJ-LAG` bleiben UI-first Setup-Folgearbeit |

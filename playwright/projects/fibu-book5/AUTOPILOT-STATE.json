@@ -6,9 +6,9 @@
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
   "dataBasis": "CRONUS USA",
-  "activeArea": "compliance",
-  "lastCompletedRun": "COMPLIANCE-002",
-  "lastWorkType": "book-sync",
+  "activeArea": "security",
+  "lastCompletedRun": "SECURITY-001",
+  "lastWorkType": "read-only-evidence-run",
   "postedInLastRun": false,
   "latestPostedDocuments": {
     "o2c": {
@@ -34,6 +34,7 @@
     "no bank reconciliation without explicit gate",
     "no VAT19 setup without explicit gate",
     "no E-Documents, e-invoice, document sending profile, Peppol, provider, validation or Change Log setup without explicit gate",
+    "no user, permission, profile, security group, user setup, job queue or change log setup without explicit gate",
     "no Analysis View setup without explicit gate",
     "no Fixed Assets setup or posting without explicit gate",
     "no Warehouse activation without explicit gate",
@@ -49,6 +50,7 @@
     "REPORTING-011-ANALYSIS-VIEW-FIT",
     "TAX-002-DE-VAT-FIT",
     "COMPLIANCE-002-EINVOICE-SETUP",
+    "SECURITY-002-USER-PERMISSION-SETUP",
     "FIXEDASSETS-004-SETUP-OR-POSTING",
     "WAREHOUSE-001-ACTIVATION",
     "MANUFACTURING-001-POSTING",
@@ -61,13 +63,14 @@
     "P2P-REPOST-001",
     "INVENTORY-REPOST-INV008"
   ],
-  "nextBestStepWithoutApproval": "SECURITY-001-READINESS: Benutzer-/Rollen-/Berechtigungs- und Admin-Kontexte read-only pruefen; keine Benutzeranlage, keine Berechtigungs- oder Change-Log-Aenderung, keine Einrichtung und keine Buchung.",
+  "nextBestStepWithoutApproval": "SECURITY-002-BOOK-SYNC: Kapitel 27 mit SECURITY-001 synchronisieren; Rolle/Profil, Permission Sets, Security Groups, User Setup, Job Queue und Change Log als getrennte Prueffelder erklaeren. Ohne Gate keine Benutzer-, Berechtigungs-, Profil-, Security-Group-, User-Setup-, Change-Log- oder Job-Queue-Aenderung.",
   "nextBestStepWithApproval": {
     "payments": "PAYMENTS-011-LAB-PAYMENT: kontrollierte Laborzahlung nur mit ausdruecklicher Freigabe, Postenspur und Bank-/OP-Evidence.",
     "reporting": "REPORTING-011-ANALYSIS-VIEW-FIT: idempotenten Analysis-View-Fit fuer PRODUCTLINE/CHANNEL nur mit Freigabe einrichten/aktualisieren.",
     "tax": "TAX-002-DE-VAT-FIT: deutsches VAT19-Setup nur mit Freigabe und separatem Preview-/VAT-Entries-Nachweis.",
     "compliance": "COMPLIANCE-002-EINVOICE-SETUP: E-Rechnungs-/E-Documents-/Versandprofil-/Change-Log-Setup nur mit Freigabe, UI-first Klickpfad, Validierungs-/Versand-/Auditnachweis und klarer Labor-/DE-Trennung.",
-    "fixedAssets": "FIXEDASSETS-004-SETUP-OR-POSTING: MACHINES, FA-CNC-01, HGB, K30000 oder Anlagenbuchung nur mit Freigabe und UI-first Evidence."
+    "fixedAssets": "FIXEDASSETS-004-SETUP-OR-POSTING: MACHINES, FA-CNC-01, HGB, K30000 oder Anlagenbuchung nur mit Freigabe und UI-first Evidence.",
+    "security": "SECURITY-002-USER-PERMISSION-SETUP: Benutzer-/Berechtigungs-/Profil-/Security-Group-/User-Setup-/Job-Queue-/Change-Log-Aenderungen nur mit Freigabe, UI-first Klickpfad, Rechte-/SoD-Matrix und Audit-/Review-Evidence."
   },
   "doNotRepeat": [
     "Do not repeat O2C posting for UAT-O2C-001",
@@ -97,6 +100,7 @@
     "INTERCOMPANY-001 checked chapter 18 read-only: Intercompany Setup, IC Partners, IC Inbox Transactions, IC Outbox Transactions and VAT Entries are visible Tell-Me/search paths; Currencies was not reliably visible in this run; D20000, D30000 and D90000 are not visible as concrete filtered customer targets in RM-DEMO; no company switch, no setup, no IC document and no posting.",
     "INTERCOMPANY-002 synced chapter 18 with INTERCOMPANY-001: chapter 18 now marks IC-7001 as target path, visible IC/VAT entry points as readiness only, missing D20000/D30000/D90000 as setup gaps and Intercompany process as gate-locked.",
     "COMPLIANCE-001 checked chapter 22 read-only: E-Rechnungen, VAT Entries, VAT Posting Setup, Document Sending Profiles, Change Log Entries and Change Log Setup are visible/contextually visible as Tell-Me/Role-Center readiness; no VAT setup, no e-invoice sending/validation, no Change Log setup, no posting and no German final compliance proof.",
-    "COMPLIANCE-002 synced chapter 22 with COMPLIANCE-001: the chapter now separates German target proof from RM-DEMO read-only navigation/readiness, keeps VAT19/e-invoice/Change-Log/GoBD final proof open and leaves COMPLIANCE-002-EINVOICE-SETUP plus TAX-002-DE-VAT-FIT gate-locked."
+    "COMPLIANCE-002 synced chapter 22 with COMPLIANCE-001: the chapter now separates German target proof from RM-DEMO read-only navigation/readiness, keeps VAT19/e-invoice/Change-Log/GoBD final proof open and leaves COMPLIANCE-002-EINVOICE-SETUP plus TAX-002-DE-VAT-FIT gate-locked.",
+    "SECURITY-001 checked chapter 27/admin contexts read-only: Permission Sets, Profiles Roles, Security Groups, User Setup, Job Queue Entries and Change Log Entries are visible/contextually visible; Users was not stable as a Tell-Me target in this run. No user, permission, profile, security group, user setup, job queue or change log changes were made."
   ]
 }

@@ -373,6 +373,18 @@ Fuer `UAT-O2C-001` fasst `playwright/projects/fibu-book5/evidence/uat-o2c-001/RE
 | `playwright/projects/fibu-book5/img/compliance-001-050-change-log-entries-tell-me.png` | Kandidat fuer Audit-/Change-Log-Kontext | Tell-Me-Kontext zu `Change Log Entries`. | Kein Beweis, dass kritische Tabellen bereits richtig protokolliert werden. |
 | `playwright/projects/fibu-book5/img/compliance-001-060-change-log-setup-tell-me.png` | Kandidat fuer gesperrten Audit-Setup-Kontext | Tell-Me-Kontext zu `Change Log Setup`. | Nicht als aktiviertes Change Log verwenden; Setup-Aenderung nur mit Gate und eigenem Klickpfad. |
 
+## `SECURITY-001` Screenshot Review
+
+| Screenshot | Bewertung | Befund | Entscheidung |
+|---|---|---|---|
+| `playwright/projects/fibu-book5/img/security-001-010-users-tell-me.png` | rejected/Teilbefund | Tell-Me liefert fuer `Users` in diesem Lauf keinen stabilen Zielkontext. | Nicht als Benutzerverwaltungs-Buchbild verwenden. Als Lernbild behalten: ein Suchbegriff reicht nicht fuer belastbare Admin-Evidence. |
+| `playwright/projects/fibu-book5/img/security-001-020-permission-sets-tell-me.png` | Readiness-Kandidat | `Permission Sets` ist sichtbar/kontextuell sichtbar. | Als Orientierungsbild fuer Berechtigungssaetze geeignet; keine Berechtigung wurde geaendert und kein SoD-Nachweis entsteht daraus. |
+| `playwright/projects/fibu-book5/img/security-001-030-profiles-roles-tell-me.png` | Readiness-Kandidat | `Profiles Roles` ist sichtbar/kontextuell sichtbar. | Als Orientierungsbild fuer Rolle/Profil nutzbar; kein Profil wurde geaendert und keine Rollenstrategie ist bewiesen. |
+| `playwright/projects/fibu-book5/img/security-001-040-security-groups-tell-me.png` | Readiness-Kandidat | `Security Groups` ist sichtbar/kontextuell sichtbar. | Als Orientierungsbild fuer Security Groups nutzbar; keine Gruppe wurde angelegt oder zugeordnet. |
+| `playwright/projects/fibu-book5/img/security-001-050-user-setup-tell-me.png` | gesperrter Setup-Kontext | `User Setup` ist sichtbar/kontextuell sichtbar. | Nur als Hinweis auf benutzerbezogene Setup-/Freigabefelder nutzen; keine Einrichtung ohne Gate. |
+| `playwright/projects/fibu-book5/img/security-001-060-job-queue-entries-tell-me.png` | Betriebs-Kontext-Kandidat | `Job Queue Entries` ist sichtbar/kontextuell sichtbar. | Als Betriebs-/Automatisierungs-Kontext nutzbar; kein Job wurde angelegt, gestartet oder geaendert. |
+| `playwright/projects/fibu-book5/img/security-001-070-change-log-entries-tell-me.png` | Audit-Kontext-Kandidat | `Change Log Entries` ist sichtbar/kontextuell sichtbar. | Als Audit-/Nachweispfad nutzbar; kein Beweis fuer aktive, korrekt konfigurierte Tabellenprotokollierung. |
+
 ## Harte Findings aus dem Review
 
 ### QA-O2C-001 Listenbild zeigt nicht den Buchfall

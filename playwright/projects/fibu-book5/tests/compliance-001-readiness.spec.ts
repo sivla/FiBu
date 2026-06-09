@@ -288,7 +288,7 @@ test('COMPLIANCE-001 Kapitel-22-Readiness read-only pruefen', async ({ page }) =
       'Keine neue Buchung und keine neue Postenspur.'
     ],
     nextStep:
-      'COMPLIANCE-002 ist erledigt. Ohne Gate naechster sicherer Schritt: SECURITY-001-READINESS fuer Benutzer-/Rollen-/Berechtigungs- und Admin-Kontexte read-only; keine Benutzeranlage, keine Berechtigungs- oder Change-Log-Aenderung, keine Einrichtung und keine Buchung.'
+      'COMPLIANCE-002 und SECURITY-001 sind erledigt. Ohne Gate naechster sicherer Schritt: SECURITY-002-BOOK-SYNC fuer Kapitel 27; keine Benutzer-, Berechtigungs-, Profil-/Rollen-, Security-Group-, User-Setup-, Change-Log- oder Job-Queue-Aenderung ohne Gate.'
   };
 
   await writeJsonEvidence(complianceEvidencePath('COMPLIANCE-001-result.json'), result);

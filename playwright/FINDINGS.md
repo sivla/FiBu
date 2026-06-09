@@ -1024,3 +1024,21 @@ Fuer Anfaenger ist das wichtig, weil Intercompany mehrere rechtliche Einheiten v
 | Buchstelle | Kapitel 22 USt, E-Rechnung und deutsche Nachweissicht |
 
 Fuer Anfaenger ist das besonders wichtig, weil Business Central Compliance-Funktionen als viele einzelne Einstiegspunkte zeigt. Ein sichtbarer Button wie `Warten auf Ka E-Rechnungen 0` ist ein Hinweis, aber kein Beweis, dass eine Rechnung strukturiert erzeugt, validiert, versendet, archiviert und steuerlich korrekt nachgewiesen wurde. Diese Trennung steht jetzt in Kapitel 22; praktische Einrichtung bleibt gate-gesperrt.
+
+## FIND-BC-SEC-001 Security-Readiness ist kein Berechtigungs-/SoD-Finalnachweis
+
+| Feld | Wert |
+|---|---|
+| Status | offen fuer Buch-Sync; praktische Setup-Linie gate-gesperrt |
+| Quelle | `SECURITY-001` |
+| Screenshot | `playwright/projects/fibu-book5/img/security-001-010-users-tell-me.png`, `playwright/projects/fibu-book5/img/security-001-020-permission-sets-tell-me.png`, `playwright/projects/fibu-book5/img/security-001-030-profiles-roles-tell-me.png`, `playwright/projects/fibu-book5/img/security-001-040-security-groups-tell-me.png`, `playwright/projects/fibu-book5/img/security-001-050-user-setup-tell-me.png`, `playwright/projects/fibu-book5/img/security-001-060-job-queue-entries-tell-me.png`, `playwright/projects/fibu-book5/img/security-001-070-change-log-entries-tell-me.png` |
+| Evidence | `playwright/projects/fibu-book5/evidence/security-001/SECURITY-001-result.json`, `playwright/projects/fibu-book5/evidence/security-001/SECURITY-001-READINESS.md`, `playwright/projects/fibu-book5/evidence/security-001/README.md` |
+| BC-Seite | Tell-Me, Role Center |
+| sichtbarer Text / Werte | `Permission Sets`, `Profiles Roles`, `Security Groups`, `User Setup`, `Job Queue Entries`, `Change Log Entries`; `Users` nicht stabil sichtbar |
+| Elementtyp | Security-/Admin-Readiness / Rechte- und Audit-Grenze |
+| erste Hypothese | Kapitel 27 braucht vor jeder Admin-Aenderung zuerst eine Orientierung, welche BC-Kontexte fuer Benutzer, Rollen/Profile, Permission Sets, Security Groups, User Setup, Job Queue und Audit sichtbar sind. |
+| Testergebnis | `SECURITY-001` laeuft read-only erfolgreich. Der Lauf erzeugt Navigations- und Screenshot-Evidence, aber keine Benutzeranlage, keine Permission-Set-Zuordnung, keine Profil-/Rollen-Aenderung, keine Security-Group-Aenderung, keine User-Setup-Aenderung, keine Job-Queue-Aenderung und keine Change-Log-Einrichtung. |
+| Entscheidung | Kapitel 27 muss mit `SECURITY-001` synchronisiert werden: sichtbare Admin-/Security-Kontexte sind Readiness, aber kein Rechtekonzept, kein SoD-Test, kein Betriebsnachweis und kein deutscher Audit-Finalnachweis. Praktische Aenderungen nur mit Gate `SECURITY-002-USER-PERMISSION-SETUP`. |
+| Buchstelle | Kapitel 27 Security, Rollen, Benutzer und Governance; Kapitel 39 Betrieb/Automatisierung |
+
+Fuer Anfaenger ist diese Trennung zentral: Business Central zeigt Benutzer, Rollen/Profile, Berechtigungssaetze, Security Groups, User Setup, Job Queue und Change Log als getrennte Arbeitsorte. Wer nur einen Suchtreffer sieht, hat noch nicht bewiesen, dass ein Benutzer richtig berechtigt ist, dass Funktionstrennung eingehalten wird oder dass Aenderungen revisionssicher protokolliert werden.

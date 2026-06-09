@@ -57,4 +57,4 @@ Ohne ausdrueckliche Freigabe darf daraus kein Setup-, Versand-, Validierungs- od
 
 ## Naechster sinnvoller Schritt ohne Freigabe
 
-`SECURITY-001-READINESS`: Benutzer-/Rollen-/Berechtigungs- und Admin-Kontexte read-only pruefen. Keine Benutzeranlage, keine Berechtigungs- oder Change-Log-Aenderung, keine Einrichtung und keine Buchung.
+`SECURITY-001` ist inzwischen read-only erledigt. Naechster Schritt ohne Gate: `SECURITY-002-BOOK-SYNC`, damit Kapitel 27 Rolle/Profil, Permission Sets, Security Groups, User Setup, Job Queue und Change Log als getrennte Prueffelder erklaert. Keine Benutzeranlage, keine Berechtigungs-, Profil-/Rollen-, Security-Group-, User-Setup-, Change-Log- oder Job-Queue-Aenderung ohne Gate.
