@@ -363,3 +363,18 @@ Jeder Eintrag muss außerdem gegen die betroffene Buchstelle geprüft werden. We
 | Pruefung nach Korrektur | `npm run fibu:reporting:analysis-view-fit` laeuft gruen und schreibt Evidence, aber mit `fitStatus=rejected`, `createdOrUpdatedByUi=false`, `noPostingCommittedByTest=true`, `noPaymentCommittedByTest=true`. |
 | Buchwirkung | Kapitel 10 und 25 duerfen weiter trennen: Dimension am Artikelposten ist belegt; Reporting nach `PRODUCTLINE`/`CHANNEL` ist noch nicht belegt. Eine passende Analysis View bleibt ein eigener Setup-Klickpfad, der erst bebildert werden darf, wenn die Anlageoberflaeche stabil dokumentiert ist. |
 | Kuenftige Regel | Keine Analysis View per API oder unsicherer Feldindex-Abkuerzung anlegen. Setup-Screenshots brauchen einen stabilen UI-Klickpfad, Vorher/Nachher-Evidence und ein eigenes Gate. |
+
+## WK-BC-REP-002 `New/Neu` in Business Central ist ohne Seitenkontext zu riskant
+
+| Feld | Wert |
+|---|---|
+| Status | geloest als Tool-/Anfaenger-Lernfall; Gate verbraucht; kein Setup-Fit |
+| Testfall | `REPORTING-013` |
+| Situation | Nach `GOVERNANCE-007` durfte genau ein Feldmapping-/Setup-Lauf fuer die Analysis View `RM-PLCH` erfolgen. Der Lauf sollte zuerst Feldpositionen belegen und nur bei sicherer UI-Zuordnung anlegen oder aendern. |
+| Symptom | `REPORTING-013` konnte die bestehende `REVENUE`-Karte oeffnen und Feldpositionen fuer `Code`, `Name`, `Dimension 1 Code` und `Dimension 2 Code` belegen. Ein kontrollierter Folgeversuch zeigte aber, dass ein ungescopter Klick auf `New/Neu` in den Role-Center-Kontext fallen kann. |
+| Ursache | Business Central zeigt Aktionen kontextabhaengig ueber Shell, Rollencenter, Listen, Karten und Aktionsleisten. Ein sichtbares `New/Neu` ist nicht automatisch die Neuanlage der fachlich gemeinten Liste oder Karte. |
+| Warum BC so reagiert | Der Webclient bietet globale und seitenbezogene Aktionen gleichzeitig an. Playwright findet nach Rollenname zuerst ein sichtbares Element; ohne Container-/Frame-/Seitenanker kann das die falsche Aktion sein. |
+| Loesung | `REPORTING-013` wurde bewusst als `rejected` geschlossen. `RM-PLCH` wurde nicht angelegt oder geaendert. Der Test schreibt Feldmapping-Evidence, klickt aber kein ungescopter `New/Neu` mehr. |
+| Pruefung nach Korrektur | `npm run fibu:reporting:analysis-view-fieldmapping` laeuft gruen. Evidence zeigt `fieldmappingSafe=true`, `setupAttempted=false`, `setupChanged=false`, `noPostingCommittedByTest=true`, `noPaymentCommittedByTest=true`. |
+| Buchwirkung | Eine Klickanleitung darf nicht nur sagen „Neu klicken“. Sie muss zeigen, auf welcher Seite, in welcher Liste/Karte und in welchem Kontext die Neuanlage erfolgt. Fuer Analysis Views bleibt der Setup-Klickpfad offen, bis `New/Neu` stabil gescoped ist. |
+| Kuenftige Regel | Keine generischen `New/Neu`-, `Post`-, `OK`- oder aehnlichen Aktionen fuer Setup/Buchung ohne fachlichen Containeranker. Bei mehrdeutigen Aktionen lieber abbrechen, Evidence schreiben und einen Lernfall dokumentieren. |
