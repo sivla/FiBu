@@ -38,6 +38,25 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 
 ## Aktuelle Fundstellen
 
+## FIND-BC-EXAMTRAINING-001 Pruefungstraining ist kein bestandener Test
+
+| Feld | Wert |
+|---|---|
+| Status | erledigt als Buch-Sync; praktische Pruefungssimulation und Zertifizierung bleiben ausserhalb dieses Nachweises |
+| Quelle | `EXAMTRAINING-001` |
+| Screenshot | keine neuen Screenshots; Buch-/Readiness-Sync |
+| Evidence | `playwright/projects/fibu-book5/evidence/examtraining-001/EXAMTRAINING-001-READINESS.md`, `playwright/projects/fibu-book5/evidence/examtraining-001/EXAMTRAINING-001-result.json`, `playwright/projects/fibu-book5/evidence/examtraining-001/README.md` |
+| BC-Seite | nicht ausgefuehrt; Kapitel 36 Zielbild |
+| sichtbarer Text / Werte | MB-800-Pruefungsfallen, Kapitel 34/35, O2C `PS-INV103297`, P2P `108219`, Inventory `INV008-899959`, Payments Readiness, Reporting Teil-/Negativbefund |
+| Elementtyp | Pruefungstraining / Readiness / Gate-Grenze |
+| erste Hypothese | Kapitel 36 darf nicht so wirken, als sei eine Pruefungssimulation abgeschlossen oder eine MB-800-Pruefung bestanden, nur weil typische Fallen erklaert sind. |
+| Recherchequelle | Microsoft Learn Study Guide fuer Exam MB-800: https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/mb-800 |
+| Testergebnis | `EXAMTRAINING-001` hat Kapitel 36 ohne BC-Lauf synchronisiert. Die Fallen werden als Denkmodelle gegen vorhandene Evidence eingeordnet: Welche Seite, Einrichtung, Belegart, Postenart und Laborgrenze ist betroffen? |
+| Entscheidung | Kapitel 36 trennt jetzt Pruefungsvorbereitung, Pruefungssimulation, Zertifizierung, Labor-Evidence und deutsche Finalnachweise. Praktische Uebungs- oder Pruefungslaeufe bleiben an das passende Prozess-/Setup-/Posting-Gate gebunden. |
+| Buchstelle | Kapitel 36 MB-800-Pruefungstraining |
+
+Fuer Anfaenger ist das wichtig, weil richtige Antworten in Business Central aus Unterscheidungen entstehen: Oberflaeche vs. Rechte, Beleg vs. Posten, Nebenbuch vs. Hauptbuch, Setup-Matrix vs. Steuermatrix, Laborbefund vs. deutscher Finalnachweis.
+
 ## FIND-BC-LEARNPATH-001 Lernpfad-Mapping ist kein absolvierter Lernpfad
 
 | Feld | Wert |

@@ -6167,6 +6167,8 @@ Dieses Kapitel bildet MB-800 und die Business-Central-Produktlandkarte auf das B
 
 ## 36. MB-800-Prüfungstraining
 
+Status des Evidence-Syncs in `RM-DEMO`: `EXAMTRAINING-001` vom 09.06.2026 ordnet dieses Kapitel gegen Kapitel 34, Kapitel 35, den offiziellen Microsoft-Learn-Study-Guide zu MB-800 und vorhandene Projekt-Evidence ein. Das ist Pruefungsvorbereitung, kein bestandener Test, keine abgeschlossene Pruefungssimulation, keine Zertifizierung und kein deutscher Finalnachweis. Die Fallen sind als Denkmodelle zu lesen: Welche BC-Seite ist betroffen, welche Einrichtung entscheidet, welcher Beleg oder Posten beweist die Wirkung, und ist der Nachweis Labor, Readiness oder offen?
+
 | Falle | Erklärung | Praxisbeispiel | MB-800-Relevanz | typische falsche Antwort | richtige Denkweise |
 |---|---|---|---|---|---|
 | Personalisieren vs. Anpassen vs. Design | persönlicher Arbeitsbereich, Profilanpassung, Entwickler-/Designänderung | Feld nur für einen Nutzer sichtbar | hoch | alles ist Customizing | Wirkungskreis unterscheiden |
