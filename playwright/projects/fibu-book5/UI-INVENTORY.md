@@ -237,12 +237,13 @@ Wenn das Projekt fertig ist, kennen wir Business Central für den Buchumfang nic
 | Bereich | Seite | Page-ID | UI-Element | Funktion | Testfall | Screenshot/Evidence | Status | Buchstelle |
 |---|---|---:|---|---|---|---|---|---|
 | Buch-Sync | Kapitel 33 | n/a | Statusbox `Status des Labor-Nachweises in RM-DEMO` | Uebungen und Loesungen gegen vorhandene Evidence einordnen und von bestandener Schulung/praktischer Ausfuehrung trennen | `TRAINING-001` | `evidence/training-001/` | erledigt als Buch-/Readiness-Sync; kein BC-Lauf, keine Setup-Aenderung, keine Buchung | Kapitel 33 |
+| Buch-Sync | Kapitel 34 | n/a | Statusbox `Evidence-Status MB800-001` | MB-800-Kompetenzmatrix gegen Microsoft Learn und vorhandene Evidence einordnen; Lernabdeckung von Zertifizierungserfolg und Finalnachweisen trennen | `MB800-001` | `evidence/mb800-001/` | erledigt als Buch-/Readiness-Sync; kein BC-Lauf, keine Pruefungssimulation, keine Setup-Aenderung, keine Buchung | Kapitel 34 |
 
 ## Naechste Inventarziele
 
 | Reihenfolge | Ziel |
 |---:|---|
-| 1 | MB-800-Readiness: Kapitel 34 Kompetenzmatrix als read-only/Buch-Zielbild-Sync vorbereiten; vorhandene Evidence in Lern-/Kompetenzlogik einordnen, keine neue Buchung, keine Setup-Aenderung und kein neuer Prozesslauf |
+| 1 | Microsoft-Learn-Lernpfad-Mapping: Kapitel 35 als read-only/Buch-Zielbild-Sync vorbereiten; offizielle Learn-Pfade gegen vorhandene Evidence einordnen, keine neue Buchung, keine Setup-Aenderung und kein neuer Prozesslauf |
 | 2 | Intercompany-/Auslandprozess nur mit Gate fortsetzen: keine Company anlegen/wechseln, keinen IC-Partner, keinen Beleg `IC-7001`, keine Inbox/Outbox-Aktion und keine VAT-/Waehrungs-Aenderung ohne Freigabe |
 | 3 | Dropshipping-Setup nur mit Gate fortsetzen: `D11000`, `K20000`, `SP-PUMP-01` und Drop-Shipment-/Purchasing-Code-Logik bleiben UI-first Setup-Folgearbeit |
 | 4 | Project-Setup nur mit Gate fortsetzen: Projekt `PROJ-5001`, Ressource `RES-TECH`, Material `SP-SENSOR-02` und Lagerort `PROJ-LAG` bleiben UI-first Setup-Folgearbeit |

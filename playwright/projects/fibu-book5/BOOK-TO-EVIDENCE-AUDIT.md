@@ -28,6 +28,8 @@ Update nach `UAT-001`: Kapitel 32 ist als Read-only-/Buch-Zielbild-Sync dokument
 
 Update nach `TRAINING-001`: Kapitel 33 ist als Read-only-/Buch-Zielbild-Sync dokumentiert. Uebungen und Loesungen sind jetzt gegen vorhandene Labor-Evidence eingeordnet: O2C, P2P und Inventory koennen als Labormuster fuer Loesungen dienen; Payments und Reporting bleiben Readiness beziehungsweise Teil-/Negativbefund. Es gab keinen BC-Lauf, keine praktische Uebungsausfuehrung, keine Schulungsabnahme, keine Setup-Aenderung und keine Buchung. Praktische Uebungslaeufe brauchen je nach Fall das passende Prozess-/Setup-/Posting-Gate.
 
+Update nach `MB800-001`: Kapitel 34 ist als Read-only-/Buch-Zielbild-Sync dokumentiert. Die MB-800-Kompetenzmatrix ist gegen den Microsoft-Learn-Study-Guide und vorhandene Labor-Evidence eingeordnet. Der Audit trennt jetzt Lernabdeckung von Zertifizierungsnachweis, deutscher Final-Evidence und vollstaendiger praktischer Kompetenzabdeckung. Es gab keinen BC-Lauf, keine Pruefungssimulation, keine Setup-Aenderung und keine Buchung.
+
 ## Leitentscheidung
 
 `RM-DEMO` bleibt der konsolidierte Lern- und Labor-Mandant in Sandbox `MCP_1_20260210`. Die Ziel-Companies `RM-PROD`, `RM-SALES`, `RM-SERVICE`, `RM-SHARED` und `RM-AT` sind Buchziel fuer einen spaeteren Mehr-Company-/Greenfield-Block. Sie werden nicht als naechster Reflex angelegt. Zuerst werden Buchanforderungen, aktuelle Evidence und RM-DEMO-Setup synchronisiert.
@@ -144,7 +146,7 @@ Fazit: O2C ist als CRONUS-USA-Laborprozess fachlich weitgehend synchronisiert, a
 ```text
 Arbeite auf Branch codex/playwright-bc-screenshot-foundation.
 Lies AUTOPILOT-STATE.json, POSTING-AND-SETUP-GATES.md, CURRENT-STATE.md, BOOK-TO-EVIDENCE-AUDIT.md, LAB-FIT-STATUS.md und Kapitel 34.
-`TRAINING-001` ist erledigt. Ohne Freigabe fuehre `MB800-001-READINESS` als read-only/Buch-Zielbild-Sync fuer Kapitel 34 durch: vorhandene Evidence in die Kompetenzmatrix einordnen; keine neue Buchung, keine Setup-Aenderung und kein neuer Prozesslauf.
+`MB800-001` ist erledigt. Ohne Freigabe fuehre `LEARNPATH-001-READINESS` als read-only/Buch-Zielbild-Sync fuer Kapitel 35 durch: offizielle Microsoft-Learn-Pfade gegen vorhandene Evidence einordnen; keine neue Buchung, keine Setup-Aenderung und kein neuer Prozesslauf.
 ```
 
 ## Grenzen

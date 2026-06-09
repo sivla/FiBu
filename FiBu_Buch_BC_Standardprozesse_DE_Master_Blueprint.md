@@ -6090,7 +6090,9 @@ Merksatz:
 
 ## 34. MB-800-Kompetenzmatrix [Q86][Q87][Q88]
 
-Dieses Kapitel weist die MB-800-Abdeckung nach. Die offiziellen Skills measured seit `17.12.2025` umfassen vier Skill Areas: Business Central einrichten, Finanzen konfigurieren, Verkauf/Einkauf konfigurieren und Business-Central-Operationen durchführen. [Q86]
+**Evidence-Status `MB800-001` vom 09.06.2026:** Dieses Kapitel ist ein Lern- und Readiness-Mapping gegen den Microsoft-Learn-Study-Guide zu MB-800, kein Zertifizierungsnachweis. O2C, P2P und Inventory sind als CRONUS-USA-Laborprozesse belegt; Payments, Reporting, Security, Migration, Integrationen, Betrieb, UAT und Training sind je nach Bereich Readiness, Teilbefund oder Buch-Sync. Deutsche `19 %` USt, deutscher Kontenplan, finale deutsche Screenshots, Security-/Migration-/Integrations-/Operations-Finalnachweise und eine bestandene MB-800-Prüfung bleiben offen. Der Status `abgedeckt` in der Matrix meint daher Lernabdeckung im Buch, nicht vollständige praktische Zielumsetzung.
+
+Dieses Kapitel ordnet die MB-800-Abdeckung ein. Die offiziellen Skills measured laut Microsoft Learn umfassen vier Skill Areas: Business Central einrichten, Finanzen konfigurieren, Verkauf/Einkauf konfigurieren und Business-Central-Operationen durchführen. [Q86]
 
 | MB-800 Skill Area | Objective | Sub-Skill | Prüfungsgewichtung | Microsoft-Learn-Modul/Unit | Buchkapitel | Praxisübung | UAT-Fall | Prüfungsfalle | Status |
 |---|---|---|---|---|---|---|---|---|---|

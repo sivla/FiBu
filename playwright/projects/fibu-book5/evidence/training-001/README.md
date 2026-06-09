@@ -11,4 +11,4 @@
 
 ## Naechster Schritt
 
-Ohne Gate ist der naechste sichere Schritt `MB800-001-READINESS`: Kapitel 34 Kompetenzmatrix gegen vorhandene Evidence einordnen, dabei keine Pruefungs-/Zertifizierungsabdeckung staerker behaupten als die Laborbelege tragen.
+`MB800-001` ist inzwischen erledigt. Ohne Gate ist der naechste sichere Schritt `LEARNPATH-001-READINESS`: Kapitel 35 Microsoft-Learn-Lernpfad-Mapping gegen offizielle Learn-Pfade und vorhandene Evidence einordnen.

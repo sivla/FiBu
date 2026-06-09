@@ -33,6 +33,7 @@ Dieser Arbeitsplan gleicht das Buch `FiBu_Buch_BC_Standardprozesse_DE_Master_Blu
 | Solution Architect | Kapitel 31 als Entscheidungsrahmen, nicht als umgesetzte Architekturentscheidung | `SOLUTIONARCHITECT-001` synchronisiert Kapitel 31 ohne BC-Lauf; keine AL-/Extension-Entwicklung, keine AppSource-Installation, kein API-/Connector-/Power-Platform-/Power-BI-Setup, keine Architekturentscheidung und keine Buchung | Readiness/Buch-Sync belegt | Praktische Architekturentscheidung/ADR nur mit Gate; ohne Gate Kapitel 32 UAT-Testbibliothek als Readiness-Sync. |
 | UAT-Testbibliothek | Kapitel 32 als UAT-Zielbibliothek, nicht als bestandener Gesamt-UAT | `UAT-001` synchronisiert Kapitel 32 ohne BC-Lauf; vorhandene O2C-, P2P-, Inventory-, Payments- und Reporting-Evidence ist der Master-UAT-Logik zugeordnet; kein Sign-off, keine neue Ausfuehrung und keine Buchung | Readiness/Buch-Sync belegt | Praktische UAT-Ausfuehrung nur mit passendem Prozess-/Setup-/Posting-Gate; `TRAINING-001` ist erledigt, ohne Gate Kapitel 34 MB-800-Kompetenzmatrix als Readiness-Sync. |
 | Uebungen und Loesungen | Kapitel 33 als Trainingsbibliothek, nicht als bestandene Schulung | `TRAINING-001` synchronisiert Kapitel 33 ohne BC-Lauf; O2C, P2P und Inventory sind als Labormuster nutzbar; Payments und Reporting bleiben Readiness/Teilbefund; keine neue Ausfuehrung und keine Buchung | Readiness/Buch-Sync belegt | Praktische Uebungslaeufe nur mit passendem Prozess-/Setup-/Posting-Gate; ohne Gate Kapitel 34 MB-800-Kompetenzmatrix als Readiness-Sync. |
+| MB-800-Kompetenzmatrix | Kapitel 34 als Lern-/Readiness-Matrix, nicht als bestandene Zertifizierung | `MB800-001` synchronisiert Kapitel 34 ohne BC-Lauf gegen Microsoft Learn und vorhandene Evidence; O2C/P2P/Inventory sind Laborbelege, andere Bereiche Readiness/Teilbefund/Gate | Readiness/Buch-Sync belegt | Ohne Gate Kapitel 35 Microsoft-Learn-Lernpfad-Mapping als Readiness-Sync; praktische Kompetenznachweise nur mit passendem Prozess-/Setup-/Posting-Gate. |
 
 ## Kritische Buchdrift
 
@@ -193,21 +194,22 @@ Empfohlene Reihenfolge nach Reporting/Steuer:
 
 ## Sofort naechster sinnvoller Schritt
 
-Ohne Gate ist der naechste sichere Schritt `MB800-001-READINESS`.
+Ohne Gate ist der naechste sichere Schritt `LEARNPATH-001-READINESS`.
 
 Begruendung:
 
 - `SECURITY-002`, `MIGRATION-001`, `INTEGRATIONS-001`, `OPERATIONS-001`, `SOLUTIONARCHITECT-001` und `UAT-001` sind erledigt.
 - Praktische Zahlungen, Reporting-Setup, DE-VAT, Security-Setup, Migration/Import, Opening Balances, Operations-/Monitoring-/Telemetry-/Admin-Aenderungen, neue Companies und Wiederholungsbuchungen bleiben gate-gesperrt.
 - Kapitel 33 ist mit `TRAINING-001` als read-only/Buch-Zielbild-Sync erledigt.
-- Kapitel 34 kann als read-only/Buch-Zielbild-Sync vorbereitet werden, ohne neue Buchung, Setup-Aenderung oder neuen Prozesslauf praktisch umzusetzen.
+- Kapitel 34 ist mit `MB800-001` als read-only/Buch-Zielbild-Sync erledigt.
+- Kapitel 35 kann als read-only/Buch-Zielbild-Sync vorbereitet werden, ohne neue Buchung, Setup-Aenderung oder neuen Prozesslauf praktisch umzusetzen.
 
 Minimaler Prompt fuer den naechsten Lauf:
 
 ```text
 Arbeite auf Branch codex/playwright-bc-screenshot-foundation.
 Lies AUTOPILOT-STATE.json, POSTING-AND-SETUP-GATES.md, CURRENT-STATE.md, LAB-FIT-STATUS.md, BOOK-CLICK-GUIDE-COVERAGE.md und Kapitel 34.
-Fuehre `MB800-001-READINESS` als Buch-/Zielbild-Sync durch: Kompetenzmatrix gegen vorhandene Evidence einordnen, Lernabdeckung von Zertifizierungs-/Finalnachweisen trennen und keine neue Buchung, keine Setup-Aenderung und keinen neuen Prozesslauf starten.
+Fuehre `LEARNPATH-001-READINESS` als Buch-/Zielbild-Sync durch: Kapitel 35 gegen offizielle Microsoft-Learn-Pfade und vorhandene Evidence einordnen, Lernpfad-Mapping von praktischen Finalnachweisen trennen und keine neue Buchung, keine Setup-Aenderung und keinen neuen Prozesslauf starten.
 ```
 
 ## Nicht jetzt tun

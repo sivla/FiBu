@@ -38,6 +38,25 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 
 ## Aktuelle Fundstellen
 
+## FIND-BC-MB800-001 Kompetenzmatrix ist kein Zertifizierungsnachweis
+
+| Feld | Wert |
+|---|---|
+| Status | erledigt als Buch-Sync; praktische Kompetenz- und Pruefungsvorbereitung bleibt Folgearbeit |
+| Quelle | `MB800-001` |
+| Screenshot | keine neuen Screenshots; Buch-/Readiness-Sync |
+| Evidence | `playwright/projects/fibu-book5/evidence/mb800-001/MB800-001-READINESS.md`, `playwright/projects/fibu-book5/evidence/mb800-001/MB800-001-result.json`, `playwright/projects/fibu-book5/evidence/mb800-001/README.md` |
+| BC-Seite | nicht ausgefuehrt; Kapitel 34 Zielbild |
+| sichtbarer Text / Werte | MB-800 Skill Areas, O2C `PS-INV103297`, P2P `108219`, Inventory `INV008-899959`, Payments Readiness, Reporting Teil-/Negativbefund |
+| Elementtyp | Zertifizierungs-Readiness / Kompetenzmatrix / Gate-Grenze |
+| erste Hypothese | Kapitel 34 darf nicht so wirken, als sei durch Buchstruktur und Labor-Evidence bereits eine bestandene MB-800-Pruefung oder vollstaendige praktische Kompetenzabdeckung bewiesen. |
+| Recherchequelle | Microsoft Learn Study Guide fuer Exam MB-800: https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/mb-800 |
+| Testergebnis | `MB800-001` hat Kapitel 34 ohne BC-Lauf synchronisiert. Die Matrix ordnet offizielle Skill-Areas gegen vorhandene Evidence ein. O2C, P2P und Inventory sind starke Laborbelege; Payments, Reporting und mehrere Governance-/Setup-Bereiche bleiben Readiness, Teilbefund oder Gate-Folgearbeit. |
+| Entscheidung | Kapitel 34 trennt jetzt Lernabdeckung, Evidence-Stand, deutsche Finalnachweise und Zertifizierungs-/Pruefungserfolg. Praktische MB-800-Uebungslaeufe bleiben an das passende Prozess-/Setup-/Posting-Gate gebunden. |
+| Buchstelle | Kapitel 34 MB-800-Kompetenzmatrix |
+
+Fuer Anfaenger ist das wichtig, weil eine Zertifizierungsmatrix Orientierung gibt, aber keine Praxisleistung ersetzt. Erst wenn Aufgabe, Einrichtung, Beleg, Postenspur, Fehlerfall, Bericht und Wiederholung belastbar funktionieren, entsteht Kompetenznachweis.
+
 ## FIND-BC-TRAIN-001 Uebungsloesung ist kein praktischer Prozessnachweis
 
 | Feld | Wert |

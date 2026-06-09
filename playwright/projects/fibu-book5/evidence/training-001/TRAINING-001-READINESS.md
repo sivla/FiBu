@@ -46,4 +46,4 @@ Kapitel 33 darf Uebungen und Loesungen weiterhin als Trainingsbibliothek zeigen.
 
 ## Naechster Schritt
 
-Ohne Gate ist `MB800-001-READINESS` sinnvoll: Kapitel 34 Kompetenzmatrix gegen vorhandene Evidence einordnen und klar trennen zwischen Lernabdeckung, Labor-Evidence und offizieller Pruefungsvorbereitung.
+`MB800-001` ist inzwischen erledigt. Ohne Gate ist `LEARNPATH-001-READINESS` sinnvoll: Kapitel 35 Microsoft-Learn-Lernpfad-Mapping gegen offizielle Learn-Pfade und vorhandene Evidence einordnen.
