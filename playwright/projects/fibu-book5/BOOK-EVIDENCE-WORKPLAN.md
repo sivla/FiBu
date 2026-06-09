@@ -39,7 +39,7 @@ Dieser Arbeitsplan gleicht das Buch `FiBu_Buch_BC_Standardprozesse_DE_Master_Blu
 | Glossar Deutsch/Englisch/Tell-Me | Kapitel 37 als Such- und Begriffsschicht, nicht als neuer Klickpfadnachweis | `GLOSSARY-001` synchronisiert Kapitel 37 ohne BC-Lauf gegen UI-Inventar, Coverage und vorhandene Evidence; Begriffe werden als Buchsprache, Suchhilfe, belegter UI-Pfad oder offener Zielbegriff getrennt | Readiness/Buch-Sync belegt | Kapitel 38 ist mit `PAGESINDEX-001` erledigt; ohne Gate Kapitel 39 Projektartefakte/Handover/Repo-QA als Readiness-Sync. |
 | Seitenindex / Prozesskatalog / Qualitaetssicherung | Kapitel 38 als Index-, QA- und Prozesskatalogschicht, nicht als Sammelbeweis aller Klickpfade | `PAGESINDEX-001` synchronisiert Kapitel 38 ohne BC-Lauf gegen Coverage, UI-Inventar, Screenshot-QA, Autopilot-State und Gates; Indexeintrag, Zielpfad, praktische Evidence, Laborgrenze und DE-Finalnachweis sind getrennt | Readiness/Buch-Sync belegt | Ohne Gate Kapitel 39 Projektartefakte/Handover/Repo-QA als Readiness-Sync; praktische UI-/Setup-/Buchungslaeufe nur mit passendem Gate. |
 | Projektartefakte / Handover / Repo-QA | Kapitel 39 als Artefakt- und Uebergabeschicht, nicht als praktischer Prozessnachweis | `ARTIFACTS-001` synchronisiert Kapitel 39 ohne BC-Lauf gegen Evidence-Struktur, Autopilot-State, Gates und Artefakt-Governance; Templates, Handover-Dateien und Evidence-Pack-Platzhalter sind Kontrollartefakte, keine Prozess-Evidence | Readiness/Buch-Sync belegt | Ohne Gate Kapitel 40 Quellenverzeichnis als Readiness-Sync; praktische UI-/Setup-/Buchungslaeufe nur mit passendem Gate. |
-| Quellenverzeichnis / Primaerquellen | Kapitel 40 als Quellenregel, nicht als praktischer Prozessnachweis | `SOURCES-001` synchronisiert Kapitel 40 ohne BC-Lauf gegen Primaerquellenlogik, Microsoft-Learn-Bezug, amtliche Quellen, Vendor-Dokumentation, Evidence-Regeln und gestrichenen Shopify-Scope; Quellen sind Referenzen, keine RM-DEMO-Prozessbeweise | Readiness/Buch-Sync belegt | `GOVERNANCE-005`, `PAYMENTS-011`, `PAYMENTS-014`, `GOVERNANCE-006`, `REPORTING-011`, `REPORTING-012`, `GOVERNANCE-007`, `REPORTING-013`, `REPORTING-014`, `GOVERNANCE-008`, `TAX-002`, `GOVERNANCE-009`, `BOOK-O2C-FOUNDATION-DRIFT-SYNC` und `BOOK-REPORTING-UAT-K25-SYNC` sind erledigt; naechster sicherer No-Approval-Block ist `GOVERNANCE-010-NEXT-NO-GATE-DECISION`, nicht ein Wiederholungslauf. |
+| Quellenverzeichnis / Primaerquellen | Kapitel 40 als Quellenregel, nicht als praktischer Prozessnachweis | `SOURCES-001` synchronisiert Kapitel 40 ohne BC-Lauf gegen Primaerquellenlogik, Microsoft-Learn-Bezug, amtliche Quellen, Vendor-Dokumentation, Evidence-Regeln und gestrichenen Shopify-Scope; Quellen sind Referenzen, keine RM-DEMO-Prozessbeweise | Readiness/Buch-Sync belegt | `GOVERNANCE-005`, `PAYMENTS-011`, `PAYMENTS-014`, `GOVERNANCE-006`, `REPORTING-011`, `REPORTING-012`, `GOVERNANCE-007`, `REPORTING-013`, `REPORTING-014`, `GOVERNANCE-008`, `TAX-002`, `GOVERNANCE-009`, `BOOK-O2C-FOUNDATION-DRIFT-SYNC`, `BOOK-REPORTING-UAT-K25-SYNC` und `GOVERNANCE-010` sind erledigt; naechster sicherer No-Approval-Block ist `FIXEDASSETS-009-SETUP-GATE-READINESS`, nicht ein Wiederholungslauf. |
 
 ## Kritische Buchdrift
 
@@ -212,7 +212,7 @@ Empfohlene Reihenfolge nach Reporting/Steuer:
 
 ## Sofort naechster sinnvoller Schritt
 
-Der naechste sichere Schritt nach `BOOK-REPORTING-UAT-K25-SYNC` ist kein Wiederholungslauf und kein praktischer BC-Lauf, sondern ein kleiner Governance-/Arbeitsplan-Sync, der den naechsten Block oder ein neues eng gescoptes Gate bestimmt.
+Der naechste sichere Schritt nach `GOVERNANCE-010-NEXT-NO-GATE-DECISION` ist kein Wiederholungslauf und kein praktischer BC-Lauf, sondern `FIXEDASSETS-009-SETUP-GATE-READINESS`. Dieser Lauf konsolidiert vorhandene Anlagen-Evidence und formuliert ein enges Setup-Gate, ohne Setup, Buchung oder Company-Wechsel.
 
 Begruendung:
 
@@ -229,14 +229,14 @@ Begruendung:
 - `GOVERNANCE-005` hat Autopilot-V2.2 mit den Gates synchronisiert. `PAYMENTS-011` hat danach die eng begrenzte Payment-Laborzahlung genau einmal ausgefuehrt. `PAYMENTS-013` hat den Bankpostenpfad Page `372` belegt, und `PAYMENTS-014` hat Kapitel 20 damit synchronisiert.
 - `GOVERNANCE-006` gab `REPORTING-011` genau einmal frei. `REPORTING-011` ist verbraucht und rejected; `REPORTING-012` synchronisiert den Blocker. `GOVERNANCE-007` gab `REPORTING-013` genau einmal frei. `REPORTING-013` ist ebenfalls verbraucht und rejected, weil `New/Neu` ungescoped in den falschen BC-Kontext fallen kann. Deshalb ist die naechste Arbeit kein zweiter Feldmapping-/Setup-Lauf, keine Wiederholung und keine Bankabstimmung.
 - `GOVERNANCE-008` waehlt `TAX-002-DE-VAT-GATE-READINESS`; `TAX-002` ist inzwischen erledigt und dokumentiert Freigabekriterien, Stop-Kriterien und UI-first Testplan. Deshalb ist die naechste Arbeit auch kein zweiter VAT-Readiness-Lauf.
-- `GOVERNANCE-009` synchronisiert Autopilot V2.2 mit `AUTOPILOT-STATE.json`: autonome Laborfaelle sind kontrolliert erlaubt, aber nicht als Wiederholungsfreigabe fuer alte Referenzbelege. `BOOK-O2C-FOUNDATION-DRIFT-SYNC` hat die dokumentierte Foundation/O2C-Drift aus Phase 3 reduziert; `BOOK-REPORTING-UAT-K25-SYNC` hat den Reporting-UAT-Block in Kapitel 25 gegen `REPORTING-001` bis `REPORTING-014` synchronisiert.
+- `GOVERNANCE-009` synchronisiert Autopilot V2.2 mit `AUTOPILOT-STATE.json`: autonome Laborfaelle sind kontrolliert erlaubt, aber nicht als Wiederholungsfreigabe fuer alte Referenzbelege. `BOOK-O2C-FOUNDATION-DRIFT-SYNC` hat die dokumentierte Foundation/O2C-Drift aus Phase 3 reduziert; `BOOK-REPORTING-UAT-K25-SYNC` hat den Reporting-UAT-Block in Kapitel 25 gegen `REPORTING-001` bis `REPORTING-014` synchronisiert. `GOVERNANCE-010` hat danach Fixed Assets als naechsten No-Approval-Gate-Readiness-Block gewaehlt.
 
 Minimaler Prompt fuer den naechsten Lauf:
 
 ```text
 Arbeite auf Branch codex/playwright-bc-screenshot-foundation.
 Lies AUTOPILOT-STATE.json, POSTING-AND-SETUP-GATES.md, CURRENT-STATE.md, BOOK-EVIDENCE-WORKPLAN.md, BOOK-TO-EVIDENCE-AUDIT.md und FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md.
-`BOOK-REPORTING-UAT-K25-SYNC` ist erledigt: kein BC-Lauf, keine Buchung, keine Setup-Aenderung. Fuehre als naechsten No-Approval-Schritt `GOVERNANCE-010-NEXT-NO-GATE-DECISION` aus: naechsten praktischen Block oder ein frisches eng gescoptes Gate bestimmen, ohne Financial-Reports-Summenwirkung, deutsche `19 %` USt oder Analysis-View-Setup als erledigt zu behaupten.
+`GOVERNANCE-010-NEXT-NO-GATE-DECISION` ist erledigt: kein BC-Lauf, keine Buchung, keine Setup-Aenderung. Fuehre als naechsten No-Approval-Schritt `FIXEDASSETS-009-SETUP-GATE-READINESS` aus: vorhandene `FIXEDASSETS-001` bis `FIXEDASSETS-008` konsolidieren und ein frisches eng gescoptes UI-first Setup-Gate fuer `MACHINES`, `HGB`, `FA-CNC-01` und `K30000` formulieren, ohne etwas anzulegen, zu aendern oder zu buchen.
 ```
 
 ## Nicht jetzt tun

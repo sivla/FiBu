@@ -38,6 +38,25 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 
 ## Aktuelle Fundstellen
 
+## FIND-BC-GOV-010 No-Gate-Entscheidung ist keine Setup-Freigabe
+
+| Feld | Wert |
+|---|---|
+| Status | erledigt als Governance-/State-Sync |
+| Quelle | `GOVERNANCE-010-NEXT-NO-GATE-DECISION` |
+| Screenshot | keine Screenshots; Governance-/State-Sync ohne BC-Lauf |
+| Evidence | `playwright/projects/fibu-book5/evidence/governance-010/README.md`, `playwright/projects/fibu-book5/evidence/governance-010/GOVERNANCE-010-NEXT-NO-GATE-DECISION.md`, `playwright/projects/fibu-book5/evidence/governance-010/GOVERNANCE-010-result.json` |
+| BC-Seite | nicht ausgefuehrt; State-/Gate-Dateien und Fixed-Assets-Evidence |
+| sichtbarer Text / Werte | `FIXEDASSETS-009-SETUP-GATE-READINESS`, `FA-CNC-01`, `HGB`, `MACHINES`, `K30000` |
+| Elementtyp | Governance-Regel / Setup-Gate-Readiness / Evidence-Grenze |
+| erste Hypothese | Nach einem erledigten Buch-/Reporting-Sync koennte ein Folge-Agent direkt einen Anlagen-Setup- oder Buchungslauf starten, obwohl die Zielobjekte in `RM-DEMO` noch fehlen und Fixed Assets laut Gate-Datei gesperrt ist. |
+| Recherchequelle | vorhandene Evidence `FIXEDASSETS-004` bis `FIXEDASSETS-008`, `AUTOPILOT-STATE.json`, `POSTING-AND-SETUP-GATES.md`, `BOOK-EVIDENCE-WORKPLAN.md`; kein BC-Lauf |
+| Testergebnis | `GOVERNANCE-010` entscheidet ohne BC-Ausfuehrung: Der naechste No-Approval-Schritt ist nur `FIXEDASSETS-009-SETUP-GATE-READINESS`. Er darf ein enges UI-first Gate formulieren, aber noch keine Anlage, kein AfA-Buch, keine Anlagenbuchungsgruppe, keinen Kreditor und keine Buchung erzeugen. |
+| Entscheidung | Projekt und Buch behandeln Fixed Assets als naechsten fachlichen Block, aber Setup und Buchung bleiben gatepflichtig. `GOVERNANCE-010` oeffnet kein Setup-Gate; es bereitet nur den naechsten sicheren Gate-Readiness-Lauf vor. |
+| Buchstelle | Kapitel 21 Anlagen; Projekt-Governance |
+
+Fuer Anfaenger ist das wichtig, weil Anlagenbuchhaltung in Business Central mehrere Einrichtungsschichten vor der ersten Buchung braucht. Sichtbare Seiten und eine gute Schrittfolge reichen nicht: Erst Stammdatum, AfA-Buch, Anlagenbuchungsgruppe, Kreditor oder Journalpfad, Vorschau/Preflight und Postenspur machen den Prozess buchungsfaehig.
+
 ## FIND-BC-BOOK-REPORTING-UAT-K25 Ziel-UAT ist kein RM-DEMO-Reportingbeweis
 
 | Feld | Wert |

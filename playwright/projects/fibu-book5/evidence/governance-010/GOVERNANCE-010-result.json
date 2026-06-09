@@ -1,0 +1,72 @@
+{
+  "testId": "GOVERNANCE-010-NEXT-NO-GATE-DECISION",
+  "date": "2026-06-09",
+  "mode": [
+    "governance",
+    "no-bc-run",
+    "no-setup-change",
+    "no-posting",
+    "no-payment",
+    "no-company-switch"
+  ],
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "dataBasis": "CRONUS USA",
+  "sourceRun": "BOOK-REPORTING-UAT-K25-SYNC",
+  "decision": {
+    "nextBestStepWithoutApproval": "FIXEDASSETS-009-SETUP-GATE-READINESS",
+    "reason": "Fixed Assets has an existing read-only readiness chain and chapter 21 needs a scoped setup gate before any asset, depreciation book, FA posting group, vendor or acquisition posting can be attempted.",
+    "nextPrompt": "FIXEDASSETS-009-SETUP-GATE-READINESS: no BC run; consolidate FIXEDASSETS-001 to FIXEDASSETS-008 and define the exact UI-first setup gate for MACHINES, HGB, FA-CNC-01 and K30000, without creating, changing or posting anything."
+  },
+  "candidateAssessment": [
+    {
+      "candidate": "Reporting / Analysis View setup",
+      "decision": "not-selected",
+      "reason": "REPORTING-011 and REPORTING-013 consumed explicit gates and rejected setup; another setup attempt needs a fresh scoped New/Card action gate."
+    },
+    {
+      "candidate": "German VAT19 setup",
+      "decision": "not-selected",
+      "reason": "TAX-002 only prepared criteria; practical VAT19 setup remains locked and must not be implied by CRONUS-USA Sales Tax."
+    },
+    {
+      "candidate": "Payments / Bank reconciliation",
+      "decision": "not-selected",
+      "reason": "PAYMENTS-011 payment and PAYMENTS-013 bank ledger proof are done; bank reconciliation and further payments need a new purpose or gate."
+    },
+    {
+      "candidate": "Fixed Assets setup gate readiness",
+      "decision": "selected",
+      "reason": "FIXEDASSETS-001 to FIXEDASSETS-008 already prove readiness and missing target objects; the next safe move is to define a scoped UI-first setup gate, not to run BC or post."
+    }
+  ],
+  "safety": {
+    "bcRunExecuted": false,
+    "setupChanged": false,
+    "posted": false,
+    "paymentPosted": false,
+    "bankReconciliationExecuted": false,
+    "companySwitched": false,
+    "newCompanyCreated": false,
+    "vat19Claimed": false,
+    "germanFinalClaimed": false
+  },
+  "fixedAssetsReadinessInputs": [
+    "FIXEDASSETS-004: FA-CNC-01, HGB, MACHINES and K30000 not visible; purchase invoice path reachable",
+    "FIXEDASSETS-005: FA Posting Groups UI path reachable; MACHINES missing",
+    "FIXEDASSETS-006: existing CRONUS FA Posting Group accounts read-only; no account guessed",
+    "FIXEDASSETS-007: Depreciation Book COMPANY visible, HGB missing; FA Classes visible",
+    "FIXEDASSETS-008: chapter 21 synced with readiness and gate boundaries"
+  ],
+  "doesNotProve": [
+    "Fixed Assets setup exists",
+    "FA-CNC-01 exists",
+    "HGB depreciation book exists",
+    "MACHINES FA posting group exists",
+    "K30000 exists",
+    "asset acquisition can be posted",
+    "depreciation can be posted",
+    "German HGB or German chart-of-accounts final state"
+  ],
+  "status": "done-governance"
+}

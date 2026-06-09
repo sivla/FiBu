@@ -50,6 +50,8 @@ Regel: Ein Gate ist gesperrt, solange der aktuelle Prompt oder diese Datei es ni
 
 ## Aktuelle Konsequenz
 
+`GOVERNANCE-010-NEXT-NO-GATE-DECISION` ist erledigt. Der Lauf hat keinen BC-Lauf gestartet, kein Setup geaendert, nichts gebucht, keine Zahlung oder Bankabstimmung ausgefuehrt und keine Company gewechselt. Die Entscheidung lautet: Naechster No-Approval-Schritt ist `FIXEDASSETS-009-SETUP-GATE-READINESS`. Dieser naechste Schritt darf nur die vorhandene Fixed-Assets-Readiness (`FIXEDASSETS-001` bis `FIXEDASSETS-008`) konsolidieren und ein eng gescoptes UI-first Setup-Gate fuer `MACHINES`, `HGB`, `FA-CNC-01` und `K30000` formulieren. Er oeffnet noch kein Setup- oder Buchungsgate.
+
 `FIXEDASSETS-008` hat Kapitel 21 mit der Readiness-Kette `FIXEDASSETS-005` bis `FIXEDASSETS-007` abgeglichen. Ohne ausdrueckliche Freigabe bleibt Fixed Assets danach fuer Setup und Buchung gesperrt. `FIXEDASSETS-006` hat vorhandene CRONUS-Konten in `FA Posting Groups` gelesen; `FIXEDASSETS-007` hat `Depreciation Books` und `FA Classes` gelesen. Diese Schritte sollen nicht wiederholt werden, solange kein neuer Hebel vorliegt.
 
 `WAREHOUSE-001` hat `FRA-ZL` und Warehouse-Einstiegspfade read-only geprueft; `WAREHOUSE-002` hat Kapitel 13 mit diesem Befund synchronisiert. Ohne ausdrueckliche Freigabe bleibt Warehouse-Aktivierung gesperrt: keine Bins anlegen, keine Lagerortfelder aktivieren, keine Warehouse Receipts/Put-aways/Picks/Shipments erzeugen oder buchen.
