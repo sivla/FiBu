@@ -3311,6 +3311,19 @@ Dieses Kapitel zeigt, wie Rhein-Main einen Intercompany-Verkauf und einen Auslan
 | Solution-Architect-Relevanz | Ja: Company-Architektur, IC-Partner, Steuerlogik, Konsolidierungsnähe |
 | Ergebnis nach dem Kapitel | Du kannst Intercompany-Verkauf, Partnerannahme, EU-/Ausland-USt, IC-Abstimmung und Korrekturfall für `IC-7001` ausführen. |
 
+### Status und Evidence
+
+| Feld | Stand |
+|---|---|
+| Buchziel | Intercompany-Verkauf `IC-7001` zwischen RM-PROD und RM-SALES, anschliessender Ausland-/EU-Nachweis, IC Inbox/Outbox, VAT Entries und IC-Abstimmung |
+| RM-DEMO-Labor | `INTERCOMPANY-001` ist nur Readiness: `Intercompany Setup`, `IC Partners`, `IC Inbox Transactions`, `IC Outbox Transactions` und `VAT Entries` sind als Einstiegspfade sichtbar; `Currencies` ist nicht stabil sichtbar. |
+| Fehlende Zielobjekte | `D20000`, `D30000` und `D90000` sind in `RM-DEMO` nicht als konkrete Debitoren sichtbar. |
+| DE-Finalnachweis | offen: keine deutsche Zielcompany, keine deutsche EU-/Export-/IC-USt, keine finalen deutschen Buchscreenshots |
+| Buchung erfolgt | nein |
+| Evidence Pack | `playwright/projects/fibu-book5/evidence/intercompany-001/README.md` und `playwright/projects/fibu-book5/evidence/intercompany-002/README.md` |
+| Offene Grenzen | keine neue Company, kein Company-Wechsel, kein IC-Partner-Setup, kein Beleg `IC-7001`, keine IC Inbox/Outbox-Wirkung, keine VAT-/Waehrungs-Aenderung, keine Postenspur |
+| Nicht behaupten | Sichtbare IC-Seiten beweisen noch keinen Intercompany-Prozess und keine steuerlich abnahmefaehige Auslandslogik. |
+
 ### Alltagsszene bei Rhein-Main
 
 RM-PROD verkauft eine Maschine `RM-M100` für `42.000 EUR` an RM-SALES. RM-SALES verkauft später an EU-Kunde `D-AT100`. Finance muss sehen, dass RM-PROD einen IC-Verkauf, RM-SALES den korrespondierenden IC-Einkauf und das Steuerteam die richtige EU-/IC-USt-Logik nachweisen kann.
@@ -3343,6 +3356,8 @@ Die Gruppe produziert, verkauft und betreut über mehrere Gesellschaften. Ohne I
 - `Sachposten (G/L Entries)`
 
 ### Schritt-für-Schritt
+
+Die folgende Schrittfolge ist im aktuellen Projektstand ein Zielpfad fuer einen spaeteren freigegebenen Mehr-Company-Lauf. In `RM-DEMO` wurde dieser Prozess noch nicht ausgefuehrt. Praktisch belegt sind bisher nur die Einstiegspfade und die Stammdatenluecken aus `INTERCOMPANY-001`.
 
 1. Öffne in RM-PROD `Verkaufsaufträge (Sales Orders)` über `Alt+Q`.
 2. Lege `IC-7001` für IC-Partner `RM-SALES` an.
@@ -3402,6 +3417,8 @@ Ungebuchte IC-Belege werden korrigiert. Gebuchte IC-Belege werden über Gutschri
 | Fehlerfrage | Warum ist eine Inland-USt-Gruppe bei einem EU-/IC-Fall fachlich gefährlich? |
 
 ### Lösung
+
+Diese Loesung beschreibt den Sollablauf. Sie ist noch kein RM-DEMO-Laborbeleg. Vor einer praktischen Durchfuehrung muessen Zielcompanies, IC-Partner, EU-/Export-/IC-Debitoren, VAT-/Waehrungslogik und das Gate `INTERCOMPANY-001-PROCESS` freigegeben und UI-first vorbereitet sein.
 
 1. Öffne in RM-PROD `Verkaufsaufträge (Sales Orders)` über `Alt+Q`.
 2. Erstelle `IC-7001` mit `Debitor/IC-Partner = RM-SALES`.

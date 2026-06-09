@@ -182,7 +182,7 @@ Wenn das Projekt fertig ist, kennen wir Business Central für den Buchumfang nic
 
 | Reihenfolge | Ziel |
 |---:|---|
-| 1 | Intercompany-Buch-Sync: `INTERCOMPANY-001` in Kapitel 18 einarbeiten; IC-/VAT-Einstiege als Readiness und fehlende Zieldebitoren `D20000`, `D30000`, `D90000` als Setup-Luecke markieren |
+| 1 | Compliance-/E-Rechnung-Readiness fuer Kapitel 22 read-only pruefen: nur Einstiegspfade und sichtbare Standardseiten dokumentieren, keine Steuer-/E-Rechnungs-Einrichtung aendern |
 | 2 | Intercompany-/Auslandprozess nur mit Gate fortsetzen: keine Company anlegen/wechseln, keinen IC-Partner, keinen Beleg `IC-7001`, keine Inbox/Outbox-Aktion und keine VAT-/Waehrungs-Aenderung ohne Freigabe |
 | 3 | Dropshipping-Setup nur mit Gate fortsetzen: `D11000`, `K20000`, `SP-PUMP-01` und Drop-Shipment-/Purchasing-Code-Logik bleiben UI-first Setup-Folgearbeit |
 | 4 | Project-Setup nur mit Gate fortsetzen: Projekt `PROJ-5001`, Ressource `RES-TECH`, Material `SP-SENSOR-02` und Lagerort `PROJ-LAG` bleiben UI-first Setup-Folgearbeit |

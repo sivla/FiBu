@@ -12,4 +12,4 @@ Ziel: Kapitel 18 als Intercompany-/Ausland-Readiness read-only pruefen, ohne neu
 
 ## Kernaussage
 
-INTERCOMPANY-002 als Buch-/Evidence-Sync fuer Kapitel 18: Readiness-Befunde einarbeiten und danach nur mit ausdruecklichem Gate Mehr-Company-/IC-Partner-/Steuer-Setup und IC-7001 UI-first vorbereiten.
+INTERCOMPANY-002 hat Kapitel 18 als Buch-/Evidence-Sync aktualisiert. Danach nur mit ausdruecklichem Gate Mehr-Company-/IC-Partner-/Steuer-Setup und IC-7001 UI-first vorbereiten.
