@@ -21,7 +21,7 @@ Dieser Arbeitsplan gleicht das Buch `FiBu_Buch_BC_Standardprozesse_DE_Master_Blu
 | Foundation / Stammdaten | Spielwiese, Company, Dimensionen, Lagerort, Debitor, Artikel vorbereiten | `FOUNDATION-*`, `MASTERDATA-001` bis `MASTERDATA-007` | Labor belegt | Behalten; bei deutscher Umgebung neu fotografieren. |
 | Inventory Posting Setup | Lagerbuchungsmatrix fuer `FRA-ZL` + `RESALE` pruefen und fitten | `MASTERDATA-008` Diagnose, `MASTERDATA-009` Fit `Inventory Account = 14140` | Labor belegt | Buchstelle aktualisieren, falls sie noch `Kontoentscheidung offen` oder nur Diagnose nennt. |
 | O2C `UAT-O2C-001` | Auftrag, Preview, Buchung, Postenspur, Dimensionen, 19 % USt | O2C bis Laborbuchung `PS-INV103297`, Postenspur und Artikelposten-Dimension belegt; Steuer 0 % | Labor belegt, Steuer offen | O2C als CRONUS-Labor stark nutzen; keine zweite Buchung; deutsche USt als separaten Finalblock fuehren. |
-| Reporting / Financial Reports | GuV nach `PRODUCTLINE=MACHINE`, `CHANNEL=B2B`, `DEPARTMENT=SALES` | `REPORTING-001` bis `REPORTING-013` belegen Einstieg, Artikelposten-Dimension, mehrere Negativpfade und die verbrauchten Analysis-View-Gates; `REPORTING-013` zeigt Feldpositionen, rejected aber Setup wegen global mehrdeutigem `New/Neu` | teilweise belegt / gate-rejected / setup locked | Keinen gleichen read-only Pfad und `REPORTING-011`/`REPORTING-013` nicht wiederholen; naechster echter Hebel ist `REPORTING-014`: Buch-/Governance-Sync, danach Setup nur mit neuem Gate und gescoptem New-/Kartenaktionsmuster. |
+| Reporting / Financial Reports | GuV nach `PRODUCTLINE=MACHINE`, `CHANNEL=B2B`, `DEPARTMENT=SALES` | `REPORTING-001` bis `REPORTING-014` belegen Einstieg, Artikelposten-Dimension, mehrere Negativpfade, die verbrauchten Analysis-View-Gates und den Buch-/Governance-Sync; `REPORTING-013` zeigt Feldpositionen, rejected aber Setup wegen global mehrdeutigem `New/Neu` | teilweise belegt / gate-rejected / setup locked / book-synced | Keinen gleichen read-only Pfad und `REPORTING-011`/`REPORTING-013`/`REPORTING-014` nicht wiederholen; naechster echter Hebel ist nur neues Gate mit gescoptem New-/Kartenaktionsmuster oder alternativer offizieller Reportingpfad. |
 | Sachposten-Dimensionen | Dimensionen nach Buchung in Sachposten zeigen | `REPORTING-009` zeigt G/L Entries zu `PS-INV103297` in breiter Ansicht mit `Department Code`/`Customergroup Code`; `PRODUCTLINE`/`CHANNEL` und `Entry` -> `Dimensions` bleiben dort nicht sichtbar | teilweise belegt, Labor-Negativbefund | Im Buch als Unterschied zwischen Shortcut-Spalten, Postendimensionen und Reportingachsen erklaeren; nicht als erledigten Sachposten-Dimensionsnachweis formulieren. |
 | Tax / VAT / 19 % | Deutsche USt `19 %`, USt-Posten, Brutto `80.920 EUR` | CRONUS-USA zeigt `FURNITURE`, `taxPercent = 0`; `TAX-001` dokumentiert die Grenze und den DE-VAT-Readiness-Pfad | offen, Readiness dokumentiert | Nicht im US-Labor erzwingen; DE-Zielmandant oder explizit freigegebenes VAT-Setup vorbereiten. |
 | P2P / Kreditoren | Einkaufsprozess und Kreditorenpostenspur | CRONUS-USA-Laborprozess `106049` -> `108219` ist gebucht; Kreditorenposten, Sachposten, Wertposten und Artikelposten `793` sind belegt; deutsche Vorsteuer offen | Labor belegt, Steuer offen | Keine zweite P2P-Buchung; P2P als Laborbeleg nutzen und deutsche VAT-/Kontenplan-Grenze offen halten. |
@@ -39,7 +39,7 @@ Dieser Arbeitsplan gleicht das Buch `FiBu_Buch_BC_Standardprozesse_DE_Master_Blu
 | Glossar Deutsch/Englisch/Tell-Me | Kapitel 37 als Such- und Begriffsschicht, nicht als neuer Klickpfadnachweis | `GLOSSARY-001` synchronisiert Kapitel 37 ohne BC-Lauf gegen UI-Inventar, Coverage und vorhandene Evidence; Begriffe werden als Buchsprache, Suchhilfe, belegter UI-Pfad oder offener Zielbegriff getrennt | Readiness/Buch-Sync belegt | Kapitel 38 ist mit `PAGESINDEX-001` erledigt; ohne Gate Kapitel 39 Projektartefakte/Handover/Repo-QA als Readiness-Sync. |
 | Seitenindex / Prozesskatalog / Qualitaetssicherung | Kapitel 38 als Index-, QA- und Prozesskatalogschicht, nicht als Sammelbeweis aller Klickpfade | `PAGESINDEX-001` synchronisiert Kapitel 38 ohne BC-Lauf gegen Coverage, UI-Inventar, Screenshot-QA, Autopilot-State und Gates; Indexeintrag, Zielpfad, praktische Evidence, Laborgrenze und DE-Finalnachweis sind getrennt | Readiness/Buch-Sync belegt | Ohne Gate Kapitel 39 Projektartefakte/Handover/Repo-QA als Readiness-Sync; praktische UI-/Setup-/Buchungslaeufe nur mit passendem Gate. |
 | Projektartefakte / Handover / Repo-QA | Kapitel 39 als Artefakt- und Uebergabeschicht, nicht als praktischer Prozessnachweis | `ARTIFACTS-001` synchronisiert Kapitel 39 ohne BC-Lauf gegen Evidence-Struktur, Autopilot-State, Gates und Artefakt-Governance; Templates, Handover-Dateien und Evidence-Pack-Platzhalter sind Kontrollartefakte, keine Prozess-Evidence | Readiness/Buch-Sync belegt | Ohne Gate Kapitel 40 Quellenverzeichnis als Readiness-Sync; praktische UI-/Setup-/Buchungslaeufe nur mit passendem Gate. |
-| Quellenverzeichnis / Primaerquellen | Kapitel 40 als Quellenregel, nicht als praktischer Prozessnachweis | `SOURCES-001` synchronisiert Kapitel 40 ohne BC-Lauf gegen Primaerquellenlogik, Microsoft-Learn-Bezug, amtliche Quellen, Vendor-Dokumentation, Evidence-Regeln und gestrichenen Shopify-Scope; Quellen sind Referenzen, keine RM-DEMO-Prozessbeweise | Readiness/Buch-Sync belegt | `GOVERNANCE-005`, `PAYMENTS-011`, `PAYMENTS-014`, `GOVERNANCE-006`, `REPORTING-011`, `REPORTING-012`, `GOVERNANCE-007` und `REPORTING-013` sind erledigt; naechster sicherer Block ist `REPORTING-014`, nicht ein Wiederholungslauf. |
+| Quellenverzeichnis / Primaerquellen | Kapitel 40 als Quellenregel, nicht als praktischer Prozessnachweis | `SOURCES-001` synchronisiert Kapitel 40 ohne BC-Lauf gegen Primaerquellenlogik, Microsoft-Learn-Bezug, amtliche Quellen, Vendor-Dokumentation, Evidence-Regeln und gestrichenen Shopify-Scope; Quellen sind Referenzen, keine RM-DEMO-Prozessbeweise | Readiness/Buch-Sync belegt | `GOVERNANCE-005`, `PAYMENTS-011`, `PAYMENTS-014`, `GOVERNANCE-006`, `REPORTING-011`, `REPORTING-012`, `GOVERNANCE-007`, `REPORTING-013` und `REPORTING-014` sind erledigt; naechster sicherer Entscheidungsblock ist `GOVERNANCE-008`, nicht ein Wiederholungslauf. |
 
 ## Kritische Buchdrift
 
@@ -123,12 +123,15 @@ Status nach `REPORTING-001` bis `GOVERNANCE-007`:
 8. `REPORTING-011`: Analysis Views erreichbar, aber Fit `RM-PLCH` rejected.
 9. `REPORTING-012`: Blocker synchronisiert; kein erneuter Setup-Versuch ohne neues Gate.
 10. `GOVERNANCE-007`: `REPORTING-013` fuer genau den naechsten Feldmapping-/Setup-Lauf freigegeben.
+11. `REPORTING-013`: Feldpositionen auf der bestehenden `REVENUE`-Karte belegt, Setup aber wegen global mehrdeutigem `New/Neu` rejected; `RM-PLCH` wurde nicht angelegt.
+12. `REPORTING-014`: Buch-/Governance-Sync ohne BC-Lauf; `REPORTING-013` ist verbraucht, weiteres Analysis-View-Setup bleibt gatepflichtig.
 
 Akzeptanz:
 
 - Buch und Arbeitsplan nennen diese Kette als Labor-/Negativbefund.
 - Kein weiterer gleicher read-only Reportinglauf wird als naechster Schritt vorgeschlagen.
-- Naechster praktischer Reportinglauf ist `REPORTING-013`: Feldmapping zuerst, Setup nur bei sicherer UI-Zuordnung.
+- Naechster praktischer Reportinglauf ist nicht mehr `REPORTING-013`; dieser Lauf ist verbraucht und rejected.
+- Ein weiterer praktischer Reportinglauf braucht ein neues Gate mit gescoptem New-/Kartenaktionsmuster oder einen alternativen offiziellen Standardpfad.
 
 ### Phase 2: Analysis-View-Feldmapping nur mit neuem Gate
 
@@ -208,7 +211,7 @@ Empfohlene Reihenfolge nach Reporting/Steuer:
 
 ## Sofort naechster sinnvoller Schritt
 
-Der naechste sichere Schritt ist `REPORTING-013-ANALYSIS-VIEW-FIELDMAPPING-SETUP`.
+Der naechste sichere Schritt nach diesem Sync ist kein Wiederholungslauf, sondern eine Gate-Entscheidung oder ein anderer no-gate Readiness-/Buch-Sync-Block.
 
 Begruendung:
 
@@ -223,14 +226,14 @@ Begruendung:
 - Kapitel 39 ist mit `ARTIFACTS-001` als read-only/Buch-Zielbild-Sync erledigt.
 - Kapitel 40 ist mit `SOURCES-001` als read-only/Buch-Zielbild-Sync erledigt.
 - `GOVERNANCE-005` hat Autopilot-V2.2 mit den Gates synchronisiert. `PAYMENTS-011` hat danach die eng begrenzte Payment-Laborzahlung genau einmal ausgefuehrt. `PAYMENTS-013` hat den Bankpostenpfad Page `372` belegt, und `PAYMENTS-014` hat Kapitel 20 damit synchronisiert.
-- `GOVERNANCE-006` gab `REPORTING-011` genau einmal frei. `REPORTING-011` ist verbraucht und rejected; `REPORTING-012` synchronisiert den Blocker. `GOVERNANCE-007` gibt jetzt `REPORTING-013` genau einmal frei. Deshalb ist die naechste Arbeit ein Feldmapping-/Setup-Lauf, keine Wiederholung und keine Bankabstimmung.
+- `GOVERNANCE-006` gab `REPORTING-011` genau einmal frei. `REPORTING-011` ist verbraucht und rejected; `REPORTING-012` synchronisiert den Blocker. `GOVERNANCE-007` gab `REPORTING-013` genau einmal frei. `REPORTING-013` ist ebenfalls verbraucht und rejected, weil `New/Neu` ungescoped in den falschen BC-Kontext fallen kann. Deshalb ist die naechste Arbeit kein zweiter Feldmapping-/Setup-Lauf, keine Wiederholung und keine Bankabstimmung.
 
 Minimaler Prompt fuer den naechsten Lauf:
 
 ```text
 Arbeite auf Branch codex/playwright-bc-screenshot-foundation.
 Lies AUTOPILOT-STATE.json, POSTING-AND-SETUP-GATES.md, CURRENT-STATE.md, LAB-FIT-STATUS.md, BOOK-CLICK-GUIDE-COVERAGE.md und evidence/governance-007/.
-`GOVERNANCE-007` hat `REPORTING-013-ANALYSIS-VIEW-FIELDMAPPING-SETUP` fuer genau den naechsten Lauf freigegeben. Oeffne `Analysis Views`, dokumentiere zuerst das Feldmapping fuer `Code`, `Name`, `Dimension 1 Code` und `Dimension 2 Code`. Nur wenn diese Zuordnung sicher ist, `RM-PLCH` idempotent mit `PRODUCTLINE`/`CHANNEL` anlegen oder aktualisieren und danach `Analysis by Dimensions` pruefen. Wenn das Mapping unsicher ist: abbrechen, Evidence schreiben, kein Setup. Keine Zahlung, keine Bankabstimmung und keine Buchung.
+`REPORTING-013-ANALYSIS-VIEW-FIELDMAPPING-SETUP` ist verbraucht und rejected. Lies `AUTOPILOT-STATE.json`, `POSTING-AND-SETUP-GATES.md`, `CURRENT-STATE.md`, `LAB-FIT-STATUS.md` und `MASTERDATA-BACKLOG.md`. Waehle keinen Wiederholungspfad. Wenn Reporting fortgesetzt werden soll, braucht es ein neues ausdrueckliches Gate mit gescoptem New-/Kartenaktionsmuster oder einen alternativen offiziellen Standardpfad; andernfalls einen anderen no-gate Readiness-/Buch-Sync-Block bestimmen. Keine Zahlung, keine Bankabstimmung und keine Buchung.
 ```
 
 ## Nicht jetzt tun
