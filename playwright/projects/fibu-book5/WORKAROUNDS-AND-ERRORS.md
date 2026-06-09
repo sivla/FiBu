@@ -19,6 +19,21 @@ Jeder relevante Fehler oder Workaround bekommt:
 
 Jeder Eintrag muss außerdem gegen die betroffene Buchstelle geprüft werden. Wenn der Workaround zeigt, dass der Buchtext zu knapp, falsch oder missverständlich ist, wird die Buchstelle im selben Arbeitsgang korrigiert oder als offene Buch-Fundstelle in `playwright/FINDINGS.md` markiert.
 
+## WK-BC-PAY-011 Bank Account Ledger Entries ueber Page 371 nicht belastbar sichtbar
+
+| Feld | Wert |
+|---|---|
+| Status | offen als read-only Folgepfad; Zahlung nicht wiederholen |
+| Testfall | `PAYMENTS-011` |
+| Situation | Nach der kontrollierten Laborzahlung `PAY011-PS103297` sollte die Postenspur neben Debitorenposten, detaillierten Debitorenposten und Sachposten auch Bank Account Ledger Entries sichern. |
+| Symptom | Der getestete direkte Page-371-Pfad zeigte keinen belastbaren `Bank Account Ledger Entries`-Kontext und die Zahlung `PAY011-PS103297` war dort nicht sichtbar. |
+| Sichtbarer Beleg | `playwright/projects/fibu-book5/img/payments-011-063-bank-account-ledger-payment.png`, `playwright/projects/fibu-book5/evidence/payments-011/063-bank-account-ledger-payment-page-text.txt`, `playwright/projects/fibu-book5/evidence/payments-011/PAYMENTS-011-result.json` |
+| Ursache | Der direkte Page-ID-/Listenpfad war fuer diese Bankpostenpruefung im Labor nicht stabil genug. Das widerlegt nicht die Zahlungsbuchung: Debitorenposten, Detailed Customer Ledger Entries und G/L Entries sind sichtbar. Es zeigt nur, dass der Bank-Account-Ledger-UI-Pfad separat geklaert werden muss. |
+| Warum BC so reagiert | Business Central trennt Journalbuchung, Debitorenposten, Sachposten und Bankposten in unterschiedliche Seiten/Kontexte. Eine falsche oder unpassende Listenseite kann leer bleiben oder keinen Zielkontext zeigen, obwohl andere Postenarten korrekt gebucht wurden. |
+| Loesung | Nicht erneut zahlen. Fuer den naechsten Lauf einen read-only Pfad ueber Bank Account Card `BANK-RM-01`, Related Entries/Navigate/Find Entries oder korrekte Bank Account Ledger Entries Seite suchen und nur den vorhandenen Zahlungsbeleg `PAY011-PS103297` pruefen. |
+| Buchwirkung | Kapitel 19/20 duerfen die Laborzahlung, OP-Ausgleich, Payment Discount und Sachposten als belegt erklaeren. Bank Account Ledger Entries und Bankabstimmung bleiben offen. |
+| Kuenftige Regel | Bei Postenspur-Folgepruefungen nicht blind dieselbe Page-ID wiederholen. Wenn eine Postenart nicht sichtbar wird, als rejected UI-Pfad dokumentieren und einen alternativen read-only Einstieg suchen; keine neue Buchung erzeugen. |
+
 ## WK-BC-PAY-001 Zielbankkonto `BANK-RM-01` fehlt vor Zahlungsbuchung
 
 | Feld | Wert |

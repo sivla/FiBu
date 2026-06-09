@@ -3487,16 +3487,16 @@ Dieses Kapitel zeigt, wie Rhein-Main offene Posten ausgleicht. Nach dem Kapitel 
 Eine Rechnung ist offen, bis eine Zahlung mit ihr verbunden wird. Diese Verbindung heißt Ausgleich. Eine gebuchte Zahlung ohne Ausgleich ist nicht genug: Dann stehen Zahlung und Rechnung nebeneinander offen und die OP-Liste ist falsch.
 
 Laborbefund `PAYMENTS-001`:
-Im aktuellen `RM-DEMO`-Labor wurde noch keine Zahlung gebucht. Nachgewiesen ist der Startpunkt: Die gebuchte Verkaufsrechnung `PS-INV103297` erscheint in `Customer Ledger Entries` als offener Debitorenposten zu `D10000`; die gebuchte Einkaufsrechnung `108219` erscheint in `Vendor Ledger Entries` als offener Kreditorenposten zu `K10000`. Dort sieht der Anwender Restbetrag, Faelligkeit, Waehrung und Ausgleichs-/Payment-Kontext. Fuer Anfaenger ist das die wichtigste Kontrollfrage vor jedem Zahlungsjournal: Welcher Posten ist offen und welcher Betrag soll ausgeglichen werden? Zahlung, Ausgleich, Bankkonto und Bankabstimmung sind damit noch nicht bewiesen; sie folgen erst nach einem getrennten Readiness-Schritt.
+Zum Zeitpunkt von `PAYMENTS-001` war noch keine Zahlung gebucht. Nachgewiesen war der Startpunkt: Die gebuchte Verkaufsrechnung `PS-INV103297` erschien in `Customer Ledger Entries` als offener Debitorenposten zu `D10000`; die gebuchte Einkaufsrechnung `108219` erschien in `Vendor Ledger Entries` als offener Kreditorenposten zu `K10000`. Dort sieht der Anwender Restbetrag, Faelligkeit, Waehrung und Ausgleichs-/Payment-Kontext. Fuer Anfaenger ist das die wichtigste Kontrollfrage vor jedem Zahlungsjournal: Welcher Posten ist offen und welcher Betrag soll ausgeglichen werden? Zahlung, Ausgleich, Bankkonto und Bankabstimmung waren damit zu diesem Readiness-Zeitpunkt noch nicht bewiesen; die Debitorenzahlung wurde erst spaeter in `PAYMENTS-011` als Laborbuchung nachgewiesen.
 
 Laborbefund `PAYMENTS-002`:
-Die naechste Readiness-Pruefung oeffnet `Bank Accounts`, `Cash Receipt Journals`, `Payment Journals` und `Apply Entries` aus Debitoren- und Kreditorenposten. Das Labor zeigt vorhandene CRONUS-Bankkonten `CHECKING` und `SAVINGS`, aber nicht das Buchziel `BANK-RM-01`. Deshalb darf noch keine Zahlung gebucht werden. Ein sichtbarer `Post`-Button im Journal ist keine fachliche Freigabe; zuerst muessen Bankkonto, Gegenkonto, Betrag, Ausgleichsbezug und Vorabkontrolle passen.
+Die naechste Readiness-Pruefung oeffnete `Bank Accounts`, `Cash Receipt Journals`, `Payment Journals` und `Apply Entries` aus Debitoren- und Kreditorenposten. Das Labor zeigte vorhandene CRONUS-Bankkonten `CHECKING` und `SAVINGS`, aber noch nicht das Buchziel `BANK-RM-01`. Deshalb durfte zu diesem Zeitpunkt noch keine Zahlung gebucht werden. Ein sichtbarer `Post`-Button im Journal ist keine fachliche Freigabe; zuerst muessen Bankkonto, Gegenkonto, Betrag, Ausgleichsbezug und Vorabkontrolle passen.
 
 Laborbefund `PAYMENTS-003`:
 `BANK-RM-01` wurde danach als CRONUS-USA-Laborbankkonto per Standard-API angelegt und in `Bank Accounts` sichtbar geprueft. Das loest nur den Stammdatenblocker. Fuer das Buch ist das noch keine Klickanleitung zur Bankkontoanlage; wenn die Bankkontoanlage erklaert werden soll, braucht sie einen eigenen UI-Pfad oder wird als vorbereitete Voraussetzung genannt.
 
-Laborbefund `PAYMENTS-004` bis `PAYMENTS-008`:
-Das Cash Receipt Journal zeigt die noetigen Felder und Aktionen: Buchungsdatum, Belegart, Belegnr., Kontenart, Kontonr., Betrag, Gegenkonto, Ausgleichsbezug, `Apply Entries`, `Journal Check` und `Post`. In `PAYMENTS-005` wurde eine Zahlungsjournalzeile vollstaendig ueber die UI vorbereitet: `D10000`, Betrag `-68.000`, Gegenkonto `BANK-RM-01`, Ausgleichsbezug `PS-INV103297`. Der Entwurf wurde danach wieder geloescht. `PAYMENTS-006` zeigt die wichtige Detailregel: Die Rohzahl `-68000` fuehrt im Labor zur `Amount`-Validierung, das lokale Format `-68.000,00` loest den Amount-Fehler. Danach meldete `Journal Check` den naechsten Setup-Blocker: `Bank Account Posting Group` fehlte fuer das Gegenkonto `BANK-RM-01`. `PAYMENTS-007` fittet dieses Bankkonto ueber die UI auf `Bank Acc. Posting Group = CHECKING`. `PAYMENTS-008` zeigt danach in breiter Ansicht den Unterschied zwischen `Amount = -68.000,00` und `Amount ($) = -67.673,60`; nach `Refresh` meldet `Journal Check` `1 Lines checked`, `0 Lines with issues`, `0 Issues Total` und `No issues found`. Damit ist der nicht buchende Journal-Preflight im CRONUS-Labor positiv nachgewiesen. Es ist weiterhin keine Zahlung, kein OP-Ausgleich und keine Bankabstimmung nachgewiesen.
+Laborbefund `PAYMENTS-004` bis `PAYMENTS-011`:
+Das Cash Receipt Journal zeigt die noetigen Felder und Aktionen: Buchungsdatum, Belegart, Belegnr., Kontenart, Kontonr., Betrag, Gegenkonto, Ausgleichsbezug, `Apply Entries`, `Journal Check` und `Post`. In `PAYMENTS-005` wurde eine Zahlungsjournalzeile vollstaendig ueber die UI vorbereitet: `D10000`, Betrag `-68.000`, Gegenkonto `BANK-RM-01`, Ausgleichsbezug `PS-INV103297`. Der Entwurf wurde danach wieder geloescht. `PAYMENTS-006` zeigt die wichtige Detailregel: Die Rohzahl `-68000` fuehrt im Labor zur `Amount`-Validierung, das lokale Format `-68.000,00` loest den Amount-Fehler. Danach meldete `Journal Check` den naechsten Setup-Blocker: `Bank Account Posting Group` fehlte fuer das Gegenkonto `BANK-RM-01`. `PAYMENTS-007` fittet dieses Bankkonto ueber die UI auf `Bank Acc. Posting Group = CHECKING`. `PAYMENTS-008` zeigt danach in breiter Ansicht den Unterschied zwischen `Amount = -68.000,00` und `Amount ($) = -67.673,60`; nach `Refresh` meldet `Journal Check` `1 Lines checked`, `0 Lines with issues`, `0 Issues Total` und `No issues found`. `PAYMENTS-010` zeigt den Post-Dialog mit `Ja`/`Nein` und bricht noch ab. `PAYMENTS-011` bucht dann genau eine UI-first Laborzahlung `PAY011-PS103297`. Danach zeigt die Rechnung `PS-INV103297` im Debitorenposten `Remaining Amount = 0,00` und `Applied Entries = 1`; detaillierte Debitorenposten zeigen `Initial Entry`, `Payment Discount` und `Application`; Sachposten zeigen `15110`, `18200` und `40910`. Damit sind Zahlung und OP-Ausgleich als CRONUS-USA-Labor nachgewiesen. Bank Account Ledger Entries wurden ueber den getesteten Page-371-Pfad noch nicht belastbar sichtbar, und eine Bankabstimmung ist nicht nachgewiesen.
 
 ### Warum braucht Rhein-Main diesen Prozess?
 
@@ -3521,6 +3521,7 @@ Rhein-Main braucht verlässliche offene Posten für Mahnwesen, Liquidität und M
    Laborhinweis aus `PAYMENTS-008`: Nutze fuer diesen Kontrollpunkt eine breite Layoutansicht. Unterscheide das eigentliche `Amount`-Feld von `Amount ($)`: Im Labor steht der Zahlungsbetrag in `Amount = -68.000,00`; `Amount ($) = -67.673,60` ist die umgerechnete Anzeige. Nach `Refresh` muss rechts im `Journal Check` `0 Issues Total` sichtbar sein.
    Laborhinweis aus `PAYMENTS-009`: `Applies-to Doc. Type` und `Applies-to Doc. No.` zeigen im Entwurf den Zielbeleg `PS-INV103297`. `Posten ausgleichen (Apply Entries)` kann read-only geoeffnet werden und zeigt `Amount to Apply`/`Remaining Amount`. Das Oeffnen dieser Seite ist noch kein OP-Ausgleich; riskante Aktionen wie `Post`, `OK`, `Set Applies-to ID` oder `Post Application` duerfen nur in einem freigegebenen Buchungsschritt ausgefuehrt werden. `Preview Posting` war im aktuellen Cash-Receipt-Journal-Labor nicht direkt sichtbar und ist deshalb noch kein Zahlungsfreigabenachweis.
    Laborhinweis aus `PAYMENTS-010`: Wenn `Post` im Cash Receipt Journal geklickt wird, zeigt BC im Labor einen Bestaetigungsdialog mit `Ja` und `Nein`. Der Test hat `Nein` gewaehlt und den Entwurf danach geloescht. Fuer Anfaenger ist das wichtig: Ein sichtbarer `Post`-Button und sogar ein geoeffneter Dialog sind noch keine Zahlung. Erst die Bestaetigung mit `Ja` wuerde die riskante Buchung ausloesen.
+   Laborhinweis aus `PAYMENTS-011`: Im freigegebenen Laborlauf wurde `Ja` genau einmal bestaetigt und die Zahlung `PAY011-PS103297` gebucht. Danach ist nicht nur der Zahlungsbeleg wichtig, sondern die Postenspur: Die Rechnung `PS-INV103297` zeigt `Remaining Amount = 0,00` und `Applied Entries = 1`; die detaillierten Debitorenposten zeigen ausserdem eine `Payment Discount`-Zeile. Das ist die Stelle, an der Anfaenger verstehen, warum Zahlungsbedingungen, Skonto und Ausgleich zusammengehoeren.
 7. Pruefe zuerst den rechten Bereich `Journal Check`. Solange dort Issues sichtbar sind, darf nicht gebucht werden.
 8. Wenn `Bank Account Posting Group` fehlt, ist nicht der Debitor falsch, sondern das Bankkonto/Gegenkonto noch nicht buchungsfaehig eingerichtet.
 9. Pruefe danach `Buchungsvorschau (Preview Posting)`, falls die Aktion in der Umgebung verfuegbar ist.
@@ -3568,7 +3569,7 @@ Falsche Ausgleiche werden über `Ausgleich aufheben (Unapply Entries)` gelöst u
 | Fehlerfrage | Woran erkennst du, dass die Zahlung zwar gebucht, aber nicht mit `SO-1001` ausgeglichen wurde? |
 
 Laborstatus zu dieser Uebung:
-Die folgende Uebung beschreibt das deutsche Zielbild. Im aktuellen `RM-DEMO`-Labor ist noch keine Zahlung gebucht. Praktisch belegt ist bis `PAYMENTS-010` der sichere Vorlauf: Journalzeile fuer `D10000` und `PS-INV103297`, Betrag `-68.000,00`, Gegenkonto `BANK-RM-01`, `Journal Check = 0 Issues`, `Apply Entries` read-only und der `Post`-Bestaetigungsdialog mit `Ja`/`Nein`. Der Test hat `Nein` gewaehlt. Erst ein spaeter ausdruecklich freigegebener Lauf darf die Zahlung wirklich buchen und danach Debitorenposten, detaillierte Debitorenposten, Bankposten und Sachposten nachweisen.
+Die folgende Uebung beschreibt das deutsche Zielbild. Im aktuellen `RM-DEMO`-Labor wurde `PAYMENTS-011` als genau eine kontrollierte Laborzahlung gebucht: `PAY011-PS103297` fuer `D10000` und `PS-INV103297`, Betrag `-68.000,00`, Gegenkonto `BANK-RM-01`. Praktisch belegt sind der UI-Preflight, `Journal Check = 0 Issues`, `Apply Entries` read-only, der Post-Dialog vor Bestaetigung und danach Debitorenposten, detaillierte Debitorenposten und Sachposten. Die Rechnung zeigt `Remaining Amount = 0,00` und `Applied Entries = 1`. Detaillierte Debitorenposten zeigen eine `Payment Discount`-Zeile; die Sachposten zeigen `15110`, `18200` und `40910`. Offen bleiben ein belastbarer UI-Nachweis fuer Bank Account Ledger Entries, Bankabstimmung, Kreditorenzahlung und der deutsche Finalnachweis.
 
 ### Lösung
 
@@ -3599,8 +3600,8 @@ Die folgende Uebung beschreibt das deutsche Zielbild. Im aktuellen `RM-DEMO`-Lab
 | Erwartete Belege | gebuchte Zahlung |
 | Erwartete Posten | `Debitorenposten`, `Detaillierte Debitorenposten`, `Bankkontoposten`, `Sachposten` |
 | Kontrollbericht | OP-Liste Debitoren |
-| Akzeptanzkriterium | Zielbild: Rechnung `SO-1001` ist nicht mehr offen; Zahlung und Rechnung sind in detaillierten Debitorenposten verbunden. Aktueller Laborstand: nur Vorlauf bis `Post`-Dialog nachgewiesen, noch keine Zahlung. |
-| Evidence Pack | Aktuell vorhanden: Buch.-Blatt-Zeile, Apply-Entries-Readiness, Journal Check, Post-Dialog mit Abbruch. Fuer den Final-/Zahlungsnachweis fehlen noch gebuchte Zahlung, Debitorenposten nach Ausgleich, detaillierte Debitorenposten, Bankposten, Sachposten und OP-Liste. |
+| Akzeptanzkriterium | Zielbild: Rechnung `SO-1001` ist nicht mehr offen; Zahlung und Rechnung sind in detaillierten Debitorenposten verbunden. Aktueller Laborstand: `PAY011-PS103297` gleicht `PS-INV103297` aus; Rechnung zeigt `Remaining Amount = 0,00`, `Applied Entries = 1`; detaillierte Debitorenposten zeigen Zahlung, Skonto/Payment Discount und Application. |
+| Evidence Pack | Aktuell vorhanden: Buch.-Blatt-Zeile, Apply-Entries-Readiness, Journal Check, Post-Dialog, gebuchte Laborzahlung, Debitorenposten nach Ausgleich, detaillierte Debitorenposten und Sachposten. Offen: belastbarer Bank-Account-Ledger-UI-Pfad, Bankabstimmung, deutscher Finalnachweis. |
 | Absichtlich falsche Eingabe | Zahlung buchen, ohne `Posten ausgleichen (Apply Entries)` zu verwenden |
 | Erwartetes Fehlverhalten | Zahlung und Rechnung stehen beide als offene Debitorenposten; OP-Liste ist falsch. |
 | Diagnosepfad | `Debitorenposten (Customer Ledger Entries)` auf `D10000` filtern und offene Restbeträge prüfen. |
@@ -7229,20 +7230,20 @@ Fuer eine belastbare Buchanleitung gehoeren deshalb drei Bilder zusammen: die Re
 | Überzahlung | Klärung/Restposten |
 | unbekannte Zahlung | Klärposten |
 
-Aktueller Laborstand aus `PAYMENTS-001` bis `PAYMENTS-010`:
+Aktueller Laborstand aus `PAYMENTS-001` bis `PAYMENTS-011`:
 
-Der Zahlungsfall zur gebuchten Verkaufsrechnung `PS-INV103297` ist bis zur letzten Sicherheitsgrenze vorbereitet, aber noch nicht gebucht. Business Central zeigt den offenen Debitorenposten, das Zahlungseingangsjournal, das Laborbankkonto `BANK-RM-01`, den Betrag `-68.000,00`, den Rechnungsbezug über `Applies-to Doc. No. = PS-INV103297`, `Apply Entries` und `Journal Check = 0 Issues`. In `PAYMENTS-010` wurde `Post` nur so weit geklickt, dass der Bestätigungsdialog mit `Ja` und `Nein` sichtbar wurde. Der Lauf klickte `Nein` und löschte den Draft. Deshalb ist dieser Stand ein starker Nachweis für Vorbereitung, Prüfung und Risikoabgrenzung, aber kein Zahlungs-, Ausgleichs- oder Bankpostennachweis.
+Der Zahlungsfall zur gebuchten Verkaufsrechnung `PS-INV103297` ist als CRONUS-USA-Laborzahlung gebucht. Business Central zeigt den frueher offenen Debitorenposten, das Zahlungseingangsjournal, das Laborbankkonto `BANK-RM-01`, den Betrag `-68.000,00`, den Rechnungsbezug ueber `Applies-to Doc. No. = PS-INV103297`, `Apply Entries`, `Journal Check = 0 Issues` und den Post-Dialog. In `PAYMENTS-011` wurde `Ja` genau einmal bestaetigt. Danach zeigt die Rechnung `PS-INV103297` `Remaining Amount = 0,00` und `Applied Entries = 1`. Detaillierte Debitorenposten zeigen `Initial Entry`, `Payment Discount` und `Application`; Sachposten zeigen `15110`, `18200` und `40910`. Deshalb ist dieser Stand ein starker Nachweis fuer Zahlung, Ausgleich, Skonto-/Payment-Discount-Wirkung und Hauptbuchspur im Labor. Er ist kein deutscher Finalnachweis, kein Bankabstimmungsnachweis und noch kein belastbarer Bank-Account-Ledger-UI-Nachweis.
 
-Prüfregel für Anfänger:
+Pruefregel fuer Anfaenger:
 
 | Schwelle | Bedeutung | Aktueller Laborstatus |
 |---|---|---|
-| Offener Posten | Welche Rechnung soll bezahlt oder ausgeglichen werden? | `PS-INV103297` sichtbar |
+| Offener Posten | Welche Rechnung soll bezahlt oder ausgeglichen werden? | `PS-INV103297` war vor Zahlung sichtbar; nach `PAYMENTS-011` `Remaining Amount = 0,00` |
 | Journal-Draft | Welche Zahlung wird vorbereitet? | `D10000`, `BANK-RM-01`, `-68.000,00` sichtbar |
 | Journal Check | Ist die Journalzeile fachlich buchungsreif? | `0 Issues` sichtbar |
-| Apply Entries | Welche Rechnung wird zugeordnet? | read-only geprüft |
-| Post-Dialog | Wird wirklich gebucht? | Dialog sichtbar, mit `Nein` abgebrochen |
-| Postenspur nach Zahlung | Wurden Zahlung und Ausgleich erzeugt? | offen, keine Buchung |
+| Apply Entries | Welche Rechnung wird zugeordnet? | read-only geprueft; Zielbeleg `PS-INV103297` |
+| Post-Dialog | Wird wirklich gebucht? | `PAYMENTS-010` Dialog sichtbar mit Abbruch; `PAYMENTS-011` genau einmal mit `Ja` bestaetigt |
+| Postenspur nach Zahlung | Wurden Zahlung und Ausgleich erzeugt? | Zahlung `PAY011-PS103297`, Rechnung `Remaining Amount = 0,00`, Detailed Entries mit `Payment Discount`/`Application`, G/L Entries sichtbar; Bank Account Ledger Entries offen |
 
 ### Fehlerdiagnose nach Symptom
 

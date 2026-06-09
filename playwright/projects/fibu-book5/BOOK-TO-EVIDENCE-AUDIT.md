@@ -132,7 +132,7 @@ Fazit: O2C ist als CRONUS-USA-Laborprozess fachlich weitgehend synchronisiert, a
 
 Update nach `SOURCES-001`: Kapitel 40 ist als Quellen-/Readiness-Sync dokumentiert. Quellen sind als Microsoft-Learn-/Standardreferenzen, amtliche Steuer-/Compliance-Quellen, Vendor-Dokumentation, gestrichene Scope-Hinweise oder konkrete Projekt-Evidence eingeordnet. Eine Quelle stuetzt eine Regel oder ein Zielbild, beweist aber keinen RM-DEMO-Klickpfad, keine Postenspur, keine Buchung und keinen deutschen Finalnachweis. Es gab keinen BC-Lauf, keinen Live-URL-Audit, keine Setup-Aenderung, keine Buchung und keine neuen Screenshots.
 
-Update nach `GOVERNANCE-005`: Autopilot V2.2 ist gegen State und Gates synchronisiert. `PAYMENTS-011-LAB-PAYMENT` ist der erste autonome Kandidat, aber nur als kontrollierte Laborzahlung fuer `D10000` / `PS-INV103297` nach frischem UI-Preflight. Dieser Governance-Lauf hat keine BC-Ausfuehrung, keine Zahlung, keine Setup-Aenderung und keine neue Company erzeugt.
+Update nach `GOVERNANCE-005`: Autopilot V2.2 ist gegen State und Gates synchronisiert. `PAYMENTS-011-LAB-PAYMENT` war der erste autonome Kandidat und ist inzwischen erledigt: `PAY011-PS103297` wurde genau einmal fuer `D10000` / `PS-INV103297` gebucht. Dieser Governance-Lauf selbst hat keine BC-Ausfuehrung, keine Zahlung, keine Setup-Aenderung und keine neue Company erzeugt.
 
 ## PRODUCTLINE=MACHINE harter Pruefstand
 
@@ -149,7 +149,7 @@ Update nach `GOVERNANCE-005`: Autopilot V2.2 ist gegen State und Gates synchroni
 
 ## Prioritaeten
 
-1. Payment-Folgeentscheidung: `PAYMENTS-011-LAB-PAYMENT` ist seit `GOVERNANCE-005` autonom erlaubt, aber nur fuer `D10000` / `PS-INV103297` nach frischem UI-Preflight; keine Bankabstimmung und keine DE-Finalbehauptung.
+1. Payment-Folgeentscheidung: `PAYMENTS-011-LAB-PAYMENT` ist erledigt und darf nicht wiederholt werden; offen bleiben `PAYMENTS-012` Buch-/Evidence-Sync und der Bank-Ledger-read-only-Folgepfad.
 2. Reporting-Freigabeentscheidung: Analysis-View-Fit fuer `PRODUCTLINE`/`CHANNEL` nur mit ausdruecklicher Freigabe; ohne Freigabe keinen gleichen read-only Pfad wiederholen.
 2. `MASTERDATA-BACKLOG.md` als Pflichtquelle nutzen, bevor P2P, Inventory, Warehouse, Manufacturing, Service, Project-Setup, Payments oder Reporting-Finallogik praktisch gestartet werden.
 3. `UAT-O2C-001` nicht erneut buchen; Sachposten-Dimensionspfad aus `REPORTING-009` als Laborgrenze nutzen.
@@ -161,7 +161,7 @@ Update nach `GOVERNANCE-005`: Autopilot V2.2 ist gegen State und Gates synchroni
 ```text
 Arbeite auf Branch codex/playwright-bc-screenshot-foundation.
 Lies AUTOPILOT-STATE.json, POSTING-AND-SETUP-GATES.md, CURRENT-STATE.md, BOOK-TO-EVIDENCE-AUDIT.md, LAB-FIT-STATUS.md, AUTOPILOT-PROMPT-V2.md und evidence/governance-005/.
-`GOVERNANCE-005` ist erledigt. Starte als naechsten Lauf `PAYMENTS-011-LAB-PAYMENT` nur als kontrollierten UI-first Laborlauf fuer `D10000` / `PS-INV103297`: frischer Preflight, Apply Entries, `Journal Check = 0 Issues`, Post-Dialog fotografieren, dann nur bei passenden Signalen genau einmal buchen und Postenspur sichern. Bei jeder Abweichung nicht buchen.
+`GOVERNANCE-005` und `PAYMENTS-011` sind erledigt. Starte als naechsten Lauf `PAYMENTS-012`: Kapitel 19/20, Coverage, Findings und Evidence-Pack mit `PAY011-PS103297` synchronisieren; Bank Account Ledger Entries nur read-only klaeren, keine weitere Zahlung und keine Bankabstimmung ohne neues Gate.
 ```
 
 ## Grenzen
