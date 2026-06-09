@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "testCase": "MANUFACTURING-002",
+  "workType": "book-sync-run",
+  "date": "2026-06-09",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "dataBasis": "CRONUS USA",
+  "status": "done-labor-book-sync",
+  "postingPerformed": false,
+  "setupChanged": false,
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/manufacturing-001/MANUFACTURING-001-result.json",
+    "playwright/projects/fibu-book5/evidence/manufacturing-001/MANUFACTURING-001-READINESS.md",
+    "playwright/projects/fibu-book5/evidence/manufacturing-001/README.md"
+  ],
+  "proved": {
+    "navigationEntryPointsVisible": [
+      "Planning Worksheet",
+      "Production BOMs",
+      "Routings",
+      "Released Production Orders",
+      "Consumption Journal",
+      "Output Journal"
+    ],
+    "itemsVisible": [
+      "RM-M100",
+      "RAW-STEEL"
+    ],
+    "bookChapter14SyncedWithLabTruth": true,
+    "inventoryPostingInv008NotManufacturingOutput": true
+  },
+  "notProved": {
+    "assemblyOrdersStableVisibility": true,
+    "componentCompCtrlExistence": true,
+    "kitMaintExistence": true,
+    "productionBomBomRmM100": true,
+    "routingRouteM100": true,
+    "productionOrderProd3001": true,
+    "consumptionPosted": true,
+    "outputPosted": true,
+    "capacityEntries": true,
+    "valueEntriesFromManufacturing": true,
+    "glEntriesFromManufacturing": true,
+    "germanFinalEvidence": true
+  },
+  "gate": {
+    "id": "MANUFACTURING-001-POSTING",
+    "status": "locked",
+    "effect": "No Production BOM/Routing/Assembly setup, no production or assembly order, no consumption, no output and no manufacturing posting without explicit approval."
+  },
+  "bookImpact": [
+    "Chapter 14 now distinguishes the book target PROD-3001 from the RM-DEMO read-only readiness state.",
+    "Beginner explanation now states why visible pages are not enough for a manufacturing process.",
+    "The existing INV008 inventory adjustment is explicitly not presented as manufacturing output."
+  ],
+  "nextStepWithoutApproval": "SERVICE-001-READINESS: read-only Service entry-point and masterdata readiness for chapter 15; no service posting.",
+  "nextStepWithApproval": "MANUFACTURING-003-SETUP-READINESS: UI-first setup/readiness for missing components, Production BOM/Routing or Assembly structure before any production posting."
+}

@@ -2538,6 +2538,21 @@ Dieses Kapitel zeigt, wie RM-PROD aus Bedarf einen Fertigungsauftrag für `RM-M1
 | Solution-Architect-Relevanz | Ja: Make-to-stock, Make-to-order, Standardfertigung vs. Custom |
 | Ergebnis nach dem Kapitel | Du kannst Planung, Fertigungsauftrag, Verbrauch, Output, Artikelposten, Wertposten und Fertigungsauftragsstatistik für `PROD-3001` ausführen und erklären. |
 
+### Status dieses Kapitels im RM-DEMO-Labor
+
+Der aktuelle Laborstand ist `MANUFACTURING-001`/`MANUFACTURING-002`. Er beweist noch keinen ausgefuehrten Fertigungsprozess, sondern nur die Readiness davor.
+
+| Ebene | Buchziel | RM-DEMO-Laborstand | Status |
+|---|---|---|---|
+| Navigation | `Planungsarbeitsblatt`, `Fertigungsstuecklisten`, `Arbeitsplaene`, `Freigegebene Fertigungsauftraege`, `Verbrauch Buch.-Blatt`, `Istmeldung Buch.-Blatt` | Die entsprechenden BC-/Tell-Me-Einstiege sind sichtbar; `Assembly Orders` ist nicht belastbar sichtbar. | Labor-Readiness |
+| Artikel | `RM-M100`, `RAW-STEEL`, `COMP-CTRL`, `KIT-MAINT` | `RM-M100` und `RAW-STEEL` sind sichtbar; `COMP-CTRL` und `KIT-MAINT` sind nicht sichtbar. | teilweise |
+| Struktur | `BOM-RM-M100` und `ROUTE-M100` | Keine sichtbaren BOM-/Routing-/Manufacturing-Marker auf den Artikelkarten nachgewiesen. | offen |
+| Prozess | `PROD-3001`, Verbrauch, Output, Statistik | Kein Fertigungsauftrag, kein Verbrauch, kein Output und keine Fertigungsbuchung. | offen/gate-gesperrt |
+| Postenspur | Artikelposten, Wertposten, Kapazitaetsposten, Sachposten aus Fertigung | Nicht nachgewiesen. `INV008-899959` ist nur ein Trainings-/Opening-Balance-Zugang im Item Journal und kein Manufacturing-Output. | offen |
+| Finalbild | deutscher Mandant, deutsche Oberflaeche, deutscher Kontenplan | Noch offen. | DE-final offen |
+
+Fuer Anfaenger ist diese Trennung wichtig: Business Central kann Produktionsseiten anzeigen, ohne dass ein Produktionsfall buchbar ist. Erst wenn Artikel, Komponenten, Stueckliste oder Montage-/Fertigungsstruktur, Arbeitsplan, Lager-/Posting-Setup und Auftrag zusammenpassen, wird aus Navigation ein belastbarer Manufacturing-Prozess. Setup oder Buchung bleibt im Projekt durch Gate `MANUFACTURING-001-POSTING` gesperrt, bis ein eigener UI-first Setup- und Buchungslauf freigegeben ist.
+
 ### Alltagsszene bei Rhein-Main
 
 RM-SALES hat drei Maschinen `RM-M100` verkauft. Die Produktionsplanerin öffnet das Planungsarbeitsblatt und erzeugt daraus den Fertigungsauftrag `PROD-3001`. Der Meister prüft Stückliste und Arbeitsplan. Danach werden `RAW-STEEL` und Komponenten verbraucht, die fertigen Maschinen als Output gemeldet und die Kosten in Wertposten nachvollzogen.
@@ -2596,6 +2611,12 @@ Diese Seiten öffnest du über `Alt+Q`. Der deutsche Begriff ist führend; der e
 - `Verbrauch Buch.-Blätter (Consumption Journals)`
 - `Istmeldung Buch.-Blätter (Output Journals)`
 - `Fertigungsauftragsstatistik (Production Order Statistics)`
+
+### Readiness vor der Schrittfolge
+
+Bevor du die folgende Schrittfolge ausfuehrst, pruefst du im Labor zuerst die Voraussetzungen. `RM-M100` und `RAW-STEEL` muessen sichtbar sein. `COMP-CTRL` und `KIT-MAINT` muessen entweder vorhanden oder bewusst aus dem ersten Laborfall herausgenommen sein. Fuer `PROD-3001` muss klar sein, welche Stueckliste oder Montage-/Fertigungsstruktur und welcher Arbeitsplan gelten. Wenn diese Grundlage fehlt, wird nicht gebucht. Dann ist der korrekte Lernschritt: Datenluecke dokumentieren, Setup-Entscheidung treffen, danach erneut pruefen.
+
+Im aktuellen `RM-DEMO`-Stand ist diese Voraussetzung noch nicht erfuellt. Die folgende Schrittfolge ist deshalb das fachliche Zielbild fuer den naechsten freigegebenen Manufacturing-Lauf, nicht der bereits belegte Laborstand.
 
 ### Schritt-für-Schritt
 

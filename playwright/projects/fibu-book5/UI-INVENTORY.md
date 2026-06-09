@@ -132,18 +132,19 @@ Wenn das Projekt fertig ist, kennen wir Business Central für den Buchumfang nic
 | Manufacturing | Output Journal | n/a | Tell-Me-Suche | spaeteren Ort fuer Output/Istmeldung finden | `MANUFACTURING-001` | `playwright/projects/fibu-book5/img/manufacturing-001-060-output-journal-tell-me.png`; `evidence/manufacturing-001/` | gesehen/verstanden als gesperrter Buchungsort; kein Output gebucht | Kapitel 14 |
 | Assembly | Assembly Orders | n/a | Tell-Me-Suche | moeglichen Montagepfad fuer Kits finden | `MANUFACTURING-001` | `playwright/projects/fibu-book5/img/manufacturing-001-070-assembly-orders-tell-me.png`; `evidence/manufacturing-001/` | nicht belastbar sichtbar; kein Montageauftrag | Kapitel 14 |
 | Artikel | RM-M100 / RAW-STEEL / COMP-CTRL / KIT-MAINT | 31 | gefilterte Artikelkarte, breite Layoutansicht | Zielartikel und Material-/Kit-Datenluecken pruefen | `MANUFACTURING-001` | `playwright/projects/fibu-book5/img/manufacturing-001-080-item-rm-m100.png`; `playwright/projects/fibu-book5/img/manufacturing-001-090-item-raw-steel.png`; `playwright/projects/fibu-book5/img/manufacturing-001-100-item-comp-ctrl.png`; `playwright/projects/fibu-book5/img/manufacturing-001-110-item-kit-maint.png`; `evidence/manufacturing-001/` | `RM-M100` und `RAW-STEEL` sichtbar; `COMP-CTRL` und `KIT-MAINT` nicht sichtbar; keine BOM-/Routing-Marker nachgewiesen | Kapitel 14 |
+| Buch-Sync | Kapitel 14 | n/a | Statusbox, Readiness vor Schrittfolge | sichtbare Manufacturing-Seiten als Readiness statt Produktionsfaehigkeit erklaeren | `MANUFACTURING-002` | `evidence/manufacturing-002/` | erledigt als Buch-/Evidence-Sync; `INV008-899959` ist Trainingsbestand, kein Manufacturing-Output | Kapitel 14 |
 
 ## Naechste Inventarziele
 
 | Reihenfolge | Ziel |
 |---:|---|
-| 1 | `MANUFACTURING-002`: Kapitel 14 mit `MANUFACTURING-001` synchronisieren; Readiness, Datenluecken und Gate-Grenze erklaeren; keine Produktion, kein Verbrauch, kein Output, keine Buchung |
+| 1 | `SERVICE-001-READINESS`: Kapitel 15 read-only starten; Service-Einstiege, Serviceartikel/Ressourcen/Ersatzteil-Readiness und Gate-Grenze klaeren; keine Servicebuchung, kein Ersatzteilverbrauch, keine Rechnung |
 | 2 | `PAYMENTS-011` nur mit ausdruecklicher Freigabe als kontrollierte Laborzahlung; `PAYMENTS-EVIDENCE-PACK-SYNC.md` hat den nicht buchenden Payments-Lernpfad bereits abgerundet |
 | 3 | Reporting weiterfuehren: `REPORTING-009` hat den einfachen Sachposten-Dimensionspfad read-only ausgeschoepft; `REPORTING-008` definiert den Analysis-View-Fit fuer `PRODUCTLINE=MACHINE` und `CHANNEL=B2B` als naechsten Hebel; nur mit eigener Freigabe umsetzen, sonst keinen weiteren gleichen read-only Reportingpfad wiederholen |
 | 4 | Postenspur-Lernatlas `POSTING-TRACE-001` ist erledigt: O2C, P2P und Inventory erklaeren Beleg, Nebenbuchposten, Sachposten, Artikelposten, Wertposten und Bericht als gemeinsame Anfaengerkette; keine weitere `INV008`-Buchung |
 | 5 | Sachposten-Dimensionspfad nicht erneut als naechstes Ziel einplanen: `REPORTING-009` hat ihn read-only geprueft und als Teil-/Negativbefund dokumentiert |
 | 6 | Steuerfit: CRONUS-USA-Probelauf weiter vom deutschen Ziel-Fall `19 %` trennen |
-| 7 | Warehouse-Block: `WAREHOUSE-001` und `WAREHOUSE-002` sind als Readiness/Buch-Sync erledigt; `FRA-ZL` spaeter nur mit Gate mit Bins/Receipts/Picks ausbauen |
+| 7 | Warehouse- und Manufacturing-Setup nur mit Gate: `WAREHOUSE-002` und `MANUFACTURING-002` sind als Buch-Sync erledigt |
 
 ## Definition of Done fuer eine Funktion
 Eine Funktion gilt erst als erledigt, wenn:

@@ -1,6 +1,6 @@
 # Buch-zu-Evidence-Audit
 
-Stand: 08.06.2026
+Stand: 09.06.2026
 
 Dieser Audit ist die harte Abgleichdatei zwischen Buch, `RM-DEMO`-Laborstand und Evidence. Er ersetzt keine Tests. Er sagt, welche Buchaussagen bereits praktisch tragen, welche nur im CRONUS-USA-Labor gelten und welche noch als offene These behandelt werden muessen.
 
@@ -13,6 +13,8 @@ Update nach `REPORTING-009`/`REPORTING-010`: Der einfache read-only Sachposten-D
 Update nach `TAX-001`: Die Steuergrenze ist jetzt als eigener Readiness-/Buch-Sync dokumentiert. O2C `PS-INV103297` und P2P `108219` sind Laborbelege mit `0 %` Tax; `Tax Group Code = FURNITURE` ist kein deutscher VAT19-Endstand. Praktischer deutscher `19 %`-Nachweis braucht eigene Setup-/Umgebungsfreigabe.
 
 Update nach `POSTING-TRACE-002`: Die O2C-Postenspur ist im Buch nicht mehr nur als abstrakter Evidence-Pack-Punkt beschrieben. Kapitel 11 nutzt vorhandene O2C-Screenshotpfade, markiert `Preview Posting` nach `MASTERDATA-009` als erfolgreichen Laborzustand, nennt die Laborbuchung `PS-INV103297` und trennt Debitorenposten, Sachposten, Wertposten, Artikelposten, Reportinggrenze und deutsche VAT-Grenze als Kontrollfragen.
+
+Update nach `MANUFACTURING-002`: Kapitel 14 ist mit der read-only Manufacturing-Readiness synchronisiert. Sichtbare Manufacturing-Einstiege und Artikel `RM-M100`/`RAW-STEEL` beweisen noch keine Produktionsfaehigkeit; `COMP-CTRL`, `KIT-MAINT`, BOM/Routing, `PROD-3001`, Verbrauch, Output und Postenspur bleiben offen/gate-gesperrt. `INV008-899959` ist Trainingsbestand und kein Manufacturing-Output.
 
 ## Leitentscheidung
 
@@ -70,7 +72,7 @@ Update nach `POSTING-TRACE-002`: Die O2C-Postenspur ist im Buch nicht mehr nur a
 | Financial Reports nach `PRODUCTLINE=MACHINE` | 10, 25 | nicht belegt; vorhandene `REVENUE` Analysis View nutzt nicht `PRODUCTLINE`/`CHANNEL` | ja als Negativ-/Readinessbefund | ja | ja | missing-final-evidence | nur mit Freigabe: Analysis-View-Fit oder anderer Standardpfad |
 | P2P-Stammdaten/Kreditoren | 7, 12 | Kreditor `K10000`, Artikel `RAW-STEEL`, Einkaufslaborbuchung `106049` -> `108219` und Postenspur sind belegt; deutsche Vorsteuer offen | ja, `p2p-001` | ja | ja | done-labor / VAT offen | keine zweite P2P-Buchung; deutsche VAT-/Kontenplan-Grenze spaeter |
 | Bank/Payments | 19, 20 | `PAYMENTS-001` bis `PAYMENTS-010` belegen offene Posten, Cash-Receipt-Draft, `BANK-RM-01`, Journal Check, Apply Entries und Post-Dialog mit Abbruch; keine Zahlung | ja, `payments-001` bis `payments-010` | ja | ja | readiness-labor | `PAYMENTS-011` nur mit ausdruecklicher Zahlungsfreigabe |
-| Anlagen/Projekte/Service/Manufacturing | 14-16, 21 | Buchmodell/Testdaten teilweise, keine praktische Evidence | nein | nein | nein | not-yet-started | spaeter blockweise |
+| Anlagen/Projekte/Service/Manufacturing | 14-16, 21 | Fixed Assets/Warehouse/Manufacturing sind als Readiness bzw. Buch-Sync teilweise belegt; Service und Projects noch nicht gestartet | teilweise | teilweise | teilweise | partial-readiness | Service-Readiness read-only als naechster nicht gesperrter Prozessblock |
 
 ## Veraltete oder irrefuehrende Buchstellen
 
