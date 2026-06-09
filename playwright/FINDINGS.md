@@ -38,6 +38,25 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 
 ## Aktuelle Fundstellen
 
+## FIND-BC-GOV-009 Autonome Laborbuchung braucht neuen Evidence-Zweck
+
+| Feld | Wert |
+|---|---|
+| Status | erledigt als Governance-/State-Sync |
+| Quelle | `GOVERNANCE-009`, Autopilot V2.2, `POSTING-AND-SETUP-GATES.md` |
+| Screenshot | keine neuen Screenshots; Governance-/State-Sync |
+| Evidence | `playwright/projects/fibu-book5/evidence/governance-009/README.md`, `playwright/projects/fibu-book5/evidence/governance-009/GOVERNANCE-009-AUTONOMOUS-POLICY-SYNC.md`, `playwright/projects/fibu-book5/evidence/governance-009/GOVERNANCE-009-result.json` |
+| BC-Seite | nicht ausgefuehrt; State-/Gate-Dateien |
+| sichtbarer Text / Werte | `autonomousAllowed`, `autonomous-allowed`, `PS-INV103297`, `108219`, `INV008-899959`, `PAY011-PS103297` |
+| Elementtyp | Governance-Regel / Laborbuchung / No-Repeat-Lock |
+| erste Hypothese | Wenn ein Prompt autonome Laborbuchungen erlaubt, kann ein spaeterer Agent das als freie Wiederholungsbuchung lesen. Das wuerde Referenzbelege, offene Posten, Lagerwerte und Buchwahrheit verwischen. |
+| Recherchequelle | vorhandene Projekt-Evidence und Gate-Matrix; kein BC-Lauf in `GOVERNANCE-009` |
+| Testergebnis | `GOVERNANCE-009` fuellt `autonomousAllowed` im maschinenlesbaren State, koppelt diese Erlaubnis aber an `POSTING-AND-SETUP-GATES.md`, frischen UI-Preflight, neuen Evidence-Zweck und No-Repeat-Locks. |
+| Entscheidung | Das Buch und die Projektregeln behandeln autonome Laborbuchungen als kontrollierten Lernmodus. Alte Referenzen wie `PS-INV103297`, `108219`, `INV008-899959` und `PAY011-PS103297` duerfen nicht erneut gebucht werden. |
+| Buchstelle | Projekt-Governance, Kapitel 11 O2C, Kapitel 12 P2P, Kapitel 19/20 Payments, Kapitel 23 Inventory, Kapitel 39 Evidence Pack |
+
+Fuer Anfaenger ist das wichtig, weil Business Central jede Buchung als neue fachliche Wahrheit speichert. In einer Sandbox darf man bewusst lernen und buchen, aber nur wenn Ziel, Preflight, Belegnummer, Postenspur und Grenzen dokumentiert sind.
+
 ## FIND-BC-TAX-002 VAT19-Gate-Kriterien sind kein Steuerbeleg
 
 | Feld | Wert |

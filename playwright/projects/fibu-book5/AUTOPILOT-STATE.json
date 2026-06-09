@@ -6,9 +6,9 @@
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
   "dataBasis": "CRONUS USA",
-  "activeArea": "tax",
-  "lastCompletedRun": "TAX-002",
-  "lastWorkType": "tax-gate-readiness-no-bc-run",
+  "activeArea": "governance",
+  "lastCompletedRun": "GOVERNANCE-009",
+  "lastWorkType": "governance-autonomous-policy-sync-no-bc-run",
   "postedInLastRun": false,
   "latestPostedDocuments": {
     "o2c": {
@@ -106,8 +106,16 @@
     "P2P-REPOST-001",
     "INVENTORY-REPOST-INV008"
   ],
-  "autonomousAllowed": [],
-  "nextBestStepWithoutApproval": "GOVERNANCE-009-NEXT-READINESS-DECISION: no BC run; either request explicit approval for TAX-002-DE-VAT-FIT/TAX-002A preflight or choose another no-gate evidence/book-sync block with real delta.",
+  "autonomousAllowed": [
+    "O2C-NEW-LAB-POSTING: only one new O2C lab case with a new evidence purpose, fresh UI preflight, Preview Posting where available and full posting trace; never repeat UAT-O2C-001 / PS-INV103297.",
+    "P2P-NEW-LAB-POSTING: only one new P2P lab case with a new evidence purpose, fresh UI preflight, Preview Posting where available and full posting trace; never repeat purchase order 106049 / posted purchase invoice 108219.",
+    "INVENTORY-JOURNAL-LAB-POSTING: only one new target inventory journal case after UI-first target stock plan and Journal Check/equivalent proof; never repeat INV008-899959.",
+    "FIXEDASSETS-LAB-POSTING: only after UI-first setup readiness for target asset, depreciation book, FA posting group, vendor or journal path and posting trace; current FA target objects are not ready.",
+    "SERVICE-LAB-POSTING: only after UI-first setup readiness for service item, item/resource/location and service order path; current target objects are not ready.",
+    "PROJECTS-LAB-POSTING: only after UI-first setup readiness for project, tasks, resource/material/location and invoice/WIP path; current target objects are not ready.",
+    "MANUFACTURING-LAB-POSTING: only after UI-first setup readiness for BOM/routing or assembly structure, components, order, consumption/output and cost trace; current target objects are not ready."
+  ],
+  "nextBestStepWithoutApproval": "BOOK-O2C-FOUNDATION-DRIFT-SYNC: no BC run; update the book's Foundation/O2C status where it still lags behind MASTERDATA-009, PS-INV103297, the one-time lab postings, open VAT19 and reporting limitations.",
   "nextBestStepWithApproval": {
     "payments": "Nur mit neuem Gate: weitere Zahlung, Kreditorenzahlung oder Bankabstimmung. PAYMENTS-011 darf nicht wiederholt werden.",
     "reporting": "Further Analysis View setup needs a new explicit gate and a scoped New/Card action proof. REPORTING-013 consumed the GOVERNANCE-007 gate and rejected setup because unscoped New/Neu is globally ambiguous in BC.",
@@ -157,7 +165,8 @@
     "Do not use unscoped New/Neu for Analysis View setup",
     "Do not repeat REPORTING-014 without a new stale-state or book-governance delta",
     "Do not repeat GOVERNANCE-008 without a new decision delta",
-    "Do not repeat TAX-002-DE-VAT-GATE-READINESS without new VAT approval or official documentation delta"
+    "Do not repeat TAX-002-DE-VAT-GATE-READINESS without new VAT approval or official documentation delta",
+    "Do not repeat GOVERNANCE-009 without a new autonomous-posting-policy, gate or workplan delta"
   ],
   "notes": [
     "AUTOPILOT-STATE.json and POSTING-AND-SETUP-GATES.md were introduced because the V2 autopilot prompt requires machine-readable state and explicit gates.",
@@ -207,6 +216,7 @@
     "REPORTING-013 consumed the GOVERNANCE-007 gate. Analysis Views opened UI-first in RM-DEMO and the existing REVENUE card proved field positions for Code, Name, Dimension 1 and Dimension 2, but RM-PLCH was not created or updated because unscoped New/Neu is globally ambiguous and a controlled attempt showed it can fall back to the Role Center context. Status rejected; no setup change, no posting, no payment and no bank reconciliation.",
     "REPORTING-014 synced the consumed/rejected REPORTING-013 gate into audit, workplan, current state and evidence without a BC run. Analysis View setup remains locked until a fresh explicit gate defines a scoped New/Card action pattern or another official reporting path is chosen.",
     "GOVERNANCE-008 selected TAX-002-DE-VAT-GATE-READINESS as the next safe no-approval step. It did not run Business Central, did not change setup, did not post and did not open a gate. Actual TAX-002-DE-VAT-FIT remains locked until explicit approval.",
-    "TAX-002 completed the VAT19 gate-readiness plan without a BC run: UI-first approval criteria, stop criteria and a suggested TAX-002A/TAX-002B/TAX-002C split are documented under evidence/tax-002. No setup, no posting, no company switch and no German VAT19 final claim."
+    "TAX-002 completed the VAT19 gate-readiness plan without a BC run: UI-first approval criteria, stop criteria and a suggested TAX-002A/TAX-002B/TAX-002C split are documented under evidence/tax-002. No setup, no posting, no company switch and no German VAT19 final claim.",
+    "GOVERNANCE-009 reconciled Autopilot V2.2 with the machine-readable state: autonomousAllowed is no longer empty, but each autonomous lab posting remains constrained by POSTING-AND-SETUP-GATES.md, fresh UI preflight, no-repeat locks and a new evidence purpose. No BC run, no setup change and no posting."
   ]
 }

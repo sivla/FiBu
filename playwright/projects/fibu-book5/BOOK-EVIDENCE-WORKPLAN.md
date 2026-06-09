@@ -39,7 +39,7 @@ Dieser Arbeitsplan gleicht das Buch `FiBu_Buch_BC_Standardprozesse_DE_Master_Blu
 | Glossar Deutsch/Englisch/Tell-Me | Kapitel 37 als Such- und Begriffsschicht, nicht als neuer Klickpfadnachweis | `GLOSSARY-001` synchronisiert Kapitel 37 ohne BC-Lauf gegen UI-Inventar, Coverage und vorhandene Evidence; Begriffe werden als Buchsprache, Suchhilfe, belegter UI-Pfad oder offener Zielbegriff getrennt | Readiness/Buch-Sync belegt | Kapitel 38 ist mit `PAGESINDEX-001` erledigt; ohne Gate Kapitel 39 Projektartefakte/Handover/Repo-QA als Readiness-Sync. |
 | Seitenindex / Prozesskatalog / Qualitaetssicherung | Kapitel 38 als Index-, QA- und Prozesskatalogschicht, nicht als Sammelbeweis aller Klickpfade | `PAGESINDEX-001` synchronisiert Kapitel 38 ohne BC-Lauf gegen Coverage, UI-Inventar, Screenshot-QA, Autopilot-State und Gates; Indexeintrag, Zielpfad, praktische Evidence, Laborgrenze und DE-Finalnachweis sind getrennt | Readiness/Buch-Sync belegt | Ohne Gate Kapitel 39 Projektartefakte/Handover/Repo-QA als Readiness-Sync; praktische UI-/Setup-/Buchungslaeufe nur mit passendem Gate. |
 | Projektartefakte / Handover / Repo-QA | Kapitel 39 als Artefakt- und Uebergabeschicht, nicht als praktischer Prozessnachweis | `ARTIFACTS-001` synchronisiert Kapitel 39 ohne BC-Lauf gegen Evidence-Struktur, Autopilot-State, Gates und Artefakt-Governance; Templates, Handover-Dateien und Evidence-Pack-Platzhalter sind Kontrollartefakte, keine Prozess-Evidence | Readiness/Buch-Sync belegt | Ohne Gate Kapitel 40 Quellenverzeichnis als Readiness-Sync; praktische UI-/Setup-/Buchungslaeufe nur mit passendem Gate. |
-| Quellenverzeichnis / Primaerquellen | Kapitel 40 als Quellenregel, nicht als praktischer Prozessnachweis | `SOURCES-001` synchronisiert Kapitel 40 ohne BC-Lauf gegen Primaerquellenlogik, Microsoft-Learn-Bezug, amtliche Quellen, Vendor-Dokumentation, Evidence-Regeln und gestrichenen Shopify-Scope; Quellen sind Referenzen, keine RM-DEMO-Prozessbeweise | Readiness/Buch-Sync belegt | `GOVERNANCE-005`, `PAYMENTS-011`, `PAYMENTS-014`, `GOVERNANCE-006`, `REPORTING-011`, `REPORTING-012`, `GOVERNANCE-007`, `REPORTING-013`, `REPORTING-014`, `GOVERNANCE-008` und `TAX-002` sind erledigt; naechster sicherer Entscheidungsblock ist `GOVERNANCE-009`, nicht ein Wiederholungslauf. |
+| Quellenverzeichnis / Primaerquellen | Kapitel 40 als Quellenregel, nicht als praktischer Prozessnachweis | `SOURCES-001` synchronisiert Kapitel 40 ohne BC-Lauf gegen Primaerquellenlogik, Microsoft-Learn-Bezug, amtliche Quellen, Vendor-Dokumentation, Evidence-Regeln und gestrichenen Shopify-Scope; Quellen sind Referenzen, keine RM-DEMO-Prozessbeweise | Readiness/Buch-Sync belegt | `GOVERNANCE-005`, `PAYMENTS-011`, `PAYMENTS-014`, `GOVERNANCE-006`, `REPORTING-011`, `REPORTING-012`, `GOVERNANCE-007`, `REPORTING-013`, `REPORTING-014`, `GOVERNANCE-008`, `TAX-002` und `GOVERNANCE-009` sind erledigt; naechster sicherer No-Approval-Block ist `BOOK-O2C-FOUNDATION-DRIFT-SYNC`, nicht ein Wiederholungslauf. |
 
 ## Kritische Buchdrift
 
@@ -200,10 +200,9 @@ Akzeptanz:
 
 Empfohlene Reihenfolge nach Reporting/Steuer:
 
-1. Payment-Folgearbeit:
-   - `PAYMENTS-001` bis `PAYMENTS-010` sind bis Post-Dialog/Abbruch belegt.
-   - `GOVERNANCE-005` erlaubt `PAYMENTS-011` autonom, aber nur fuer `D10000` / `PS-INV103297` nach frischem UI-Preflight.
-   - Bankabstimmung und weitere Zahlungsvarianten bleiben gesperrt.
+1. Buchdrift Foundation/O2C:
+   - `MASTERDATA-009`, `PS-INV103297`, `PAYMENTS-011`, `INVENTORY-008`, offene VAT19-Grenze und Reporting-Limit muessen an alten Foundation-/O2C-Buchstellen nachgezogen werden.
+   - Kein BC-Lauf, keine Buchung und keine Setup-Aenderung.
 2. Reporting-Freigabeentscheidung:
    - Analysis-View-Fit fuer `PRODUCTLINE`/`CHANNEL` nur mit neuem ausdruecklichem Feldmapping-/Setup-Gate.
 3. DE-VAT-Freigabeentscheidung:
@@ -213,7 +212,7 @@ Empfohlene Reihenfolge nach Reporting/Steuer:
 
 ## Sofort naechster sinnvoller Schritt
 
-Der naechste sichere Schritt nach diesem Sync ist kein Wiederholungslauf, sondern eine Gate-Entscheidung oder ein anderer no-gate Readiness-/Buch-Sync-Block.
+Der naechste sichere Schritt nach `GOVERNANCE-009` ist kein Wiederholungslauf und keine neue Gate-Entscheidung, sondern ein no-gate Buch-Sync mit echtem Delta.
 
 Begruendung:
 
@@ -230,13 +229,14 @@ Begruendung:
 - `GOVERNANCE-005` hat Autopilot-V2.2 mit den Gates synchronisiert. `PAYMENTS-011` hat danach die eng begrenzte Payment-Laborzahlung genau einmal ausgefuehrt. `PAYMENTS-013` hat den Bankpostenpfad Page `372` belegt, und `PAYMENTS-014` hat Kapitel 20 damit synchronisiert.
 - `GOVERNANCE-006` gab `REPORTING-011` genau einmal frei. `REPORTING-011` ist verbraucht und rejected; `REPORTING-012` synchronisiert den Blocker. `GOVERNANCE-007` gab `REPORTING-013` genau einmal frei. `REPORTING-013` ist ebenfalls verbraucht und rejected, weil `New/Neu` ungescoped in den falschen BC-Kontext fallen kann. Deshalb ist die naechste Arbeit kein zweiter Feldmapping-/Setup-Lauf, keine Wiederholung und keine Bankabstimmung.
 - `GOVERNANCE-008` waehlt `TAX-002-DE-VAT-GATE-READINESS`; `TAX-002` ist inzwischen erledigt und dokumentiert Freigabekriterien, Stop-Kriterien und UI-first Testplan. Deshalb ist die naechste Arbeit auch kein zweiter VAT-Readiness-Lauf.
+- `GOVERNANCE-009` synchronisiert Autopilot V2.2 mit `AUTOPILOT-STATE.json`: autonome Laborfaelle sind kontrolliert erlaubt, aber nicht als Wiederholungsfreigabe fuer alte Referenzbelege. Die naechste Arbeit soll deshalb die dokumentierte Buchdrift aus Phase 3 korrigieren.
 
 Minimaler Prompt fuer den naechsten Lauf:
 
 ```text
 Arbeite auf Branch codex/playwright-bc-screenshot-foundation.
-Lies AUTOPILOT-STATE.json, POSTING-AND-SETUP-GATES.md, CURRENT-STATE.md, LAB-FIT-STATUS.md, BOOK-CLICK-GUIDE-COVERAGE.md, MASTERDATA-BACKLOG.md und evidence/tax-002/.
-`REPORTING-013-ANALYSIS-VIEW-FIELDMAPPING-SETUP` ist verbraucht und rejected. `TAX-002-DE-VAT-GATE-READINESS` ist erledigt; praktischer `TAX-002-DE-VAT-FIT` bleibt gesperrt. Waehle keinen Wiederholungspfad. Entweder explizite Freigabe fuer `TAX-002A-DE-VAT-SETUP-PREFLIGHT` einholen oder einen anderen no-gate Readiness-/Buch-Sync-Block mit echtem Delta bestimmen. Keine Zahlung, keine Bankabstimmung, keine Buchung und keine Setup-Aenderung ohne Gate.
+Lies AUTOPILOT-STATE.json, POSTING-AND-SETUP-GATES.md, CURRENT-STATE.md, BOOK-EVIDENCE-WORKPLAN.md, BOOK-TO-EVIDENCE-AUDIT.md und FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md.
+`GOVERNANCE-009` ist erledigt: Autopilot V2.2, Gate-Matrix und AUTOPILOT-STATE.json sind synchron; autonome Laborfaelle sind nur kontrolliert mit neuem Evidence-Zweck erlaubt. Fuehre `BOOK-O2C-FOUNDATION-DRIFT-SYNC` aus: kein BC-Lauf, keine Buchung, keine Setup-Aenderung. Aktualisiere gezielt die Foundation-/O2C-Buchstelle, die noch hinter MASTERDATA-009, PS-INV103297, offener VAT19-Grenze und Reporting-Limit zurueckliegt.
 ```
 
 ## Nicht jetzt tun
