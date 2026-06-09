@@ -18,6 +18,8 @@ Update nach `REPORTING-013`/`REPORTING-014`: Das Feldmapping-/Setup-Gate aus `GO
 
 Update nach `TAX-001`: Die Steuergrenze ist jetzt als eigener Readiness-/Buch-Sync dokumentiert. O2C `PS-INV103297` und P2P `108219` sind Laborbelege mit `0 %` Tax; `Tax Group Code = FURNITURE` ist kein deutscher VAT19-Endstand. Praktischer deutscher `19 %`-Nachweis braucht eigene Setup-/Umgebungsfreigabe.
 
+Update nach `TAX-002`: Die Freigabe- und Stop-Kriterien fuer einen spaeteren UI-first VAT19-Ziellauf sind dokumentiert. `TAX-002` hat keinen BC-Lauf, kein Setup, keine Buchung, keinen Company-Wechsel und keinen deutschen VAT19-Finalnachweis erzeugt. Der praktische `TAX-002-DE-VAT-FIT` bleibt gesperrt.
+
 Update nach `POSTING-TRACE-002`: Die O2C-Postenspur ist im Buch nicht mehr nur als abstrakter Evidence-Pack-Punkt beschrieben. Kapitel 11 nutzt vorhandene O2C-Screenshotpfade, markiert `Preview Posting` nach `MASTERDATA-009` als erfolgreichen Laborzustand, nennt die Laborbuchung `PS-INV103297` und trennt Debitorenposten, Sachposten, Wertposten, Artikelposten, Reportinggrenze und deutsche VAT-Grenze als Kontrollfragen.
 
 Update nach `MANUFACTURING-002`: Kapitel 14 ist mit der read-only Manufacturing-Readiness synchronisiert. Sichtbare Manufacturing-Einstiege und Artikel `RM-M100`/`RAW-STEEL` beweisen noch keine Produktionsfaehigkeit; `COMP-CTRL`, `KIT-MAINT`, BOM/Routing, `PROD-3001`, Verbrauch, Output und Postenspur bleiben offen/gate-gesperrt. `INV008-899959` ist Trainingsbestand und kein Manufacturing-Output.
@@ -83,7 +85,7 @@ Update nach `ARTIFACTS-001`: Kapitel 39 ist als Read-only-/Buch-Zielbild-Sync do
 | Lagerort `FRA-ZL` | 7, 13 | einfacher Lagerort existiert | ja | ja | ja | done-labor | Warehouse-Logik spaeter |
 | Inventory Posting Setup `FRA-ZL` + `RESALE` | 9, 11, 13 | Laborfit `Inventory Account = 14140` gesetzt | ja, `masterdata-008/009` | ja | ja | done-labor | Buchstelle aktualisieren; kein DE-Kontenplan behaupten |
 | O2C Verkaufsauftrag mit `D10000`, `RM-M100`, Menge 1, `FRA-ZL`, `68.000 EUR` | 11 | praktisch belegt | ja | ja | ja | done-labor | nicht erneut buchen |
-| O2C deutsche `19 %` USt, Brutto `80.920 EUR` | 9, 11, 22 | nicht erreicht; CRONUS-USA zeigt Tax 0 %; `TAX-001` dokumentiert DE-VAT-Readiness | ja als Negativ-/Delta-Evidence und `tax-001` | ja | Tax-Spalten-Laborbild | missing-setup | praktischen DE-VAT-Ziellauf nur mit Freigabe starten |
+| O2C deutsche `19 %` USt, Brutto `80.920 EUR` | 9, 11, 22 | nicht erreicht; CRONUS-USA zeigt Tax 0 %; `TAX-001` dokumentiert DE-VAT-Readiness; `TAX-002` dokumentiert Freigabe- und Stop-Kriterien | ja als Negativ-/Delta-Evidence und `tax-001`/`tax-002` | ja | Tax-Spalten-Laborbild | missing-setup / fit-locked | praktischen DE-VAT-Ziellauf nur mit Freigabe starten; `TAX-002` nicht wiederholen |
 | O2C Preview Posting | 11 | echte Vorschauzeilen erreicht | ja, `060/061` | ja | ja | done-labor | Betragsspalten in G/L-Preview optional verbessern |
 | O2C Laborbuchung | 11 | genau einmal `Ship and Invoice`: `S-ORD101068` -> `PS-INV103297` | ja, `080` | ja | ja | done-labor | keine zweite Buchung ohne neuen Readiness-Grund |
 | Debitorenposten zu `PS-INV103297` | 11, 19 | sichtbar, Betrag `68.000`, Kunde `D10000` | ja, `082` Trace | ja | ja | done-labor | Zahlungs-/Ausgleichsblock spaeter |
@@ -159,7 +161,7 @@ Update nach `GOVERNANCE-005`: Autopilot V2.2 ist gegen State und Gates synchroni
 2. Reporting-Freigabeentscheidung: Analysis-View-Fit fuer `PRODUCTLINE`/`CHANNEL` nur mit neuem ausdruecklichem Feldmapping-/Setup-Gate; ohne Freigabe keinen gleichen read-only oder rejected Setup-Pfad wiederholen.
 2. `MASTERDATA-BACKLOG.md` als Pflichtquelle nutzen, bevor P2P, Inventory, Warehouse, Manufacturing, Service, Project-Setup, Payments oder Reporting-Finallogik praktisch gestartet werden.
 3. `UAT-O2C-001` nicht erneut buchen; Sachposten-Dimensionspfad aus `REPORTING-009` als Laborgrenze nutzen.
-4. DE-VAT-Readiness ist mit `TAX-001` geplant; praktische Umsetzung nicht in CRONUS-USA improvisieren, sondern nur mit Freigabe.
+4. DE-VAT-Readiness ist mit `TAX-001` geplant und mit `TAX-002` als Gate-Kriterienpaket konkretisiert; praktische Umsetzung nicht in CRONUS-USA improvisieren, sondern nur mit Freigabe.
 5. Erst danach P2P-Stammdaten und Kreditorenprozess starten.
 
 ## Naechster sinnvoller Queue-Prompt

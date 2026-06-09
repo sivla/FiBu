@@ -38,6 +38,25 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 
 ## Aktuelle Fundstellen
 
+## FIND-BC-TAX-002 VAT19-Gate-Kriterien sind kein Steuerbeleg
+
+| Feld | Wert |
+|---|---|
+| Status | erledigt als Steuer-Gate-Readiness |
+| Quelle | `TAX-002`, `TAX-001`, `GOVERNANCE-008` |
+| Screenshot | keine neuen Screenshots; Governance-/Readiness-Sync |
+| Evidence | `playwright/projects/fibu-book5/evidence/tax-002/README.md`, `playwright/projects/fibu-book5/evidence/tax-002/TAX-002-DE-VAT-GATE-READINESS.md`, `playwright/projects/fibu-book5/evidence/tax-002/TAX-002-result.json` |
+| BC-Seite | nicht ausgefuehrt; State-/Gate-Dateien |
+| sichtbarer Text / Werte | `VAT Business Posting Groups`, `VAT Product Posting Groups`, `VAT Posting Setup`, `Preview Posting`, `VAT Entries`, `0 %`, `19 %` |
+| Elementtyp | Steuer-Gate / Evidence-Grenze / Buch-Lernfall |
+| erste Hypothese | Ein sauberer Plan fuer VAT19 kann fuer Anfaenger so wirken, als sei die Steuer bereits bewiesen. Tatsaechlich beweist er nur, welche UI-Nachweise vor einem praktischen Steuerlauf erforderlich sind. |
+| Recherchequelle | vorhandene Evidence `TAX-001`, `GOVERNANCE-008`, O2C/P2P-Laborbelege und `POSTING-AND-SETUP-GATES.md`; kein BC-Lauf in `TAX-002` |
+| Testergebnis | `TAX-002` dokumentiert Freigabe- und Stop-Kriterien fuer einen spaeteren UI-first VAT19-Ziellauf. Es gab keine BC-Ausfuehrung, keine Setup-Aenderung, keine Buchung und keinen Company-Wechsel. |
+| Entscheidung | Buch und Projekt duerfen `TAX-002` als Gate-Readiness nutzen, aber nicht als deutschen Steuerbeleg. Praktischer `TAX-002-DE-VAT-FIT` bleibt gesperrt und braucht eigene Freigabe. |
+| Buchstelle | Kapitel 9 Posting Setup, Kapitel 11 O2C, Kapitel 12 P2P, Kapitel 22 Compliance/E-Rechnung |
+
+Fuer Anfaenger ist das wichtig, weil Business Central Steuerlogik ueber mehrere Schichten nachweist: Gruppen, Setup-Zeile, Belegzeile, Vorschau und VAT Entries. Erst die sichtbare Kette macht aus einem Steuerziel einen belastbaren Nachweis.
+
 ## FIND-BC-GOV-008 VAT-Gate-Readiness ist noch kein VAT19-Setup
 
 | Feld | Wert |

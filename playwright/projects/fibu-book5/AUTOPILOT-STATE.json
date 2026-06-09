@@ -7,8 +7,8 @@
   "company": "RM-DEMO",
   "dataBasis": "CRONUS USA",
   "activeArea": "tax",
-  "lastCompletedRun": "GOVERNANCE-008",
-  "lastWorkType": "governance-readiness-decision-no-bc-run",
+  "lastCompletedRun": "TAX-002",
+  "lastWorkType": "tax-gate-readiness-no-bc-run",
   "postedInLastRun": false,
   "latestPostedDocuments": {
     "o2c": {
@@ -107,7 +107,7 @@
     "INVENTORY-REPOST-INV008"
   ],
   "autonomousAllowed": [],
-  "nextBestStepWithoutApproval": "TAX-002-DE-VAT-GATE-READINESS: no BC run; prepare exact UI-first approval criteria/test plan for German VAT19 based on TAX-001, without setup changes, postings, company switch or VAT19 claims.",
+  "nextBestStepWithoutApproval": "GOVERNANCE-009-NEXT-READINESS-DECISION: no BC run; either request explicit approval for TAX-002-DE-VAT-FIT/TAX-002A preflight or choose another no-gate evidence/book-sync block with real delta.",
   "nextBestStepWithApproval": {
     "payments": "Nur mit neuem Gate: weitere Zahlung, Kreditorenzahlung oder Bankabstimmung. PAYMENTS-011 darf nicht wiederholt werden.",
     "reporting": "Further Analysis View setup needs a new explicit gate and a scoped New/Card action proof. REPORTING-013 consumed the GOVERNANCE-007 gate and rejected setup because unscoped New/Neu is globally ambiguous in BC.",
@@ -156,7 +156,8 @@
     "Do not repeat REPORTING-013 under the consumed GOVERNANCE-007 gate",
     "Do not use unscoped New/Neu for Analysis View setup",
     "Do not repeat REPORTING-014 without a new stale-state or book-governance delta",
-    "Do not repeat GOVERNANCE-008 without a new decision delta"
+    "Do not repeat GOVERNANCE-008 without a new decision delta",
+    "Do not repeat TAX-002-DE-VAT-GATE-READINESS without new VAT approval or official documentation delta"
   ],
   "notes": [
     "AUTOPILOT-STATE.json and POSTING-AND-SETUP-GATES.md were introduced because the V2 autopilot prompt requires machine-readable state and explicit gates.",
@@ -205,6 +206,7 @@
     "GOVERNANCE-007 approved exactly one next run for REPORTING-013-ANALYSIS-VIEW-FIELDMAPPING-SETUP: field mapping first, idempotent RM-PLCH setup only if safe, otherwise reject without setup; no BC run, no setup change and no posting in GOVERNANCE-007.",
     "REPORTING-013 consumed the GOVERNANCE-007 gate. Analysis Views opened UI-first in RM-DEMO and the existing REVENUE card proved field positions for Code, Name, Dimension 1 and Dimension 2, but RM-PLCH was not created or updated because unscoped New/Neu is globally ambiguous and a controlled attempt showed it can fall back to the Role Center context. Status rejected; no setup change, no posting, no payment and no bank reconciliation.",
     "REPORTING-014 synced the consumed/rejected REPORTING-013 gate into audit, workplan, current state and evidence without a BC run. Analysis View setup remains locked until a fresh explicit gate defines a scoped New/Card action pattern or another official reporting path is chosen.",
-    "GOVERNANCE-008 selected TAX-002-DE-VAT-GATE-READINESS as the next safe no-approval step. It did not run Business Central, did not change setup, did not post and did not open a gate. Actual TAX-002-DE-VAT-FIT remains locked until explicit approval."
+    "GOVERNANCE-008 selected TAX-002-DE-VAT-GATE-READINESS as the next safe no-approval step. It did not run Business Central, did not change setup, did not post and did not open a gate. Actual TAX-002-DE-VAT-FIT remains locked until explicit approval.",
+    "TAX-002 completed the VAT19 gate-readiness plan without a BC run: UI-first approval criteria, stop criteria and a suggested TAX-002A/TAX-002B/TAX-002C split are documented under evidence/tax-002. No setup, no posting, no company switch and no German VAT19 final claim."
   ]
 }

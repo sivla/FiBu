@@ -23,7 +23,7 @@ Dieser Arbeitsplan gleicht das Buch `FiBu_Buch_BC_Standardprozesse_DE_Master_Blu
 | O2C `UAT-O2C-001` | Auftrag, Preview, Buchung, Postenspur, Dimensionen, 19 % USt | O2C bis Laborbuchung `PS-INV103297`, Postenspur und Artikelposten-Dimension belegt; Steuer 0 % | Labor belegt, Steuer offen | O2C als CRONUS-Labor stark nutzen; keine zweite Buchung; deutsche USt als separaten Finalblock fuehren. |
 | Reporting / Financial Reports | GuV nach `PRODUCTLINE=MACHINE`, `CHANNEL=B2B`, `DEPARTMENT=SALES` | `REPORTING-001` bis `REPORTING-014` belegen Einstieg, Artikelposten-Dimension, mehrere Negativpfade, die verbrauchten Analysis-View-Gates und den Buch-/Governance-Sync; `REPORTING-013` zeigt Feldpositionen, rejected aber Setup wegen global mehrdeutigem `New/Neu` | teilweise belegt / gate-rejected / setup locked / book-synced | Keinen gleichen read-only Pfad und `REPORTING-011`/`REPORTING-013`/`REPORTING-014` nicht wiederholen; naechster echter Hebel ist nur neues Gate mit gescoptem New-/Kartenaktionsmuster oder alternativer offizieller Reportingpfad. |
 | Sachposten-Dimensionen | Dimensionen nach Buchung in Sachposten zeigen | `REPORTING-009` zeigt G/L Entries zu `PS-INV103297` in breiter Ansicht mit `Department Code`/`Customergroup Code`; `PRODUCTLINE`/`CHANNEL` und `Entry` -> `Dimensions` bleiben dort nicht sichtbar | teilweise belegt, Labor-Negativbefund | Im Buch als Unterschied zwischen Shortcut-Spalten, Postendimensionen und Reportingachsen erklaeren; nicht als erledigten Sachposten-Dimensionsnachweis formulieren. |
-| Tax / VAT / 19 % | Deutsche USt `19 %`, USt-Posten, Brutto `80.920 EUR` | CRONUS-USA zeigt `FURNITURE`, `taxPercent = 0`; `TAX-001` dokumentiert die Grenze und den DE-VAT-Readiness-Pfad | offen, Readiness dokumentiert | Nicht im US-Labor erzwingen; DE-Zielmandant oder explizit freigegebenes VAT-Setup vorbereiten. |
+| Tax / VAT / 19 % | Deutsche USt `19 %`, USt-Posten, Brutto `80.920 EUR` | CRONUS-USA zeigt `FURNITURE`, `taxPercent = 0`; `TAX-001` dokumentiert die Grenze, `TAX-002` dokumentiert Freigabe- und Stop-Kriterien fuer den spaeteren UI-first VAT19-Ziellauf | offen, Readiness dokumentiert, Fit gesperrt | Nicht im US-Labor erzwingen; DE-Zielmandant oder explizit freigegebenes VAT-Setup vorbereiten. |
 | P2P / Kreditoren | Einkaufsprozess und Kreditorenpostenspur | CRONUS-USA-Laborprozess `106049` -> `108219` ist gebucht; Kreditorenposten, Sachposten, Wertposten und Artikelposten `793` sind belegt; deutsche Vorsteuer offen | Labor belegt, Steuer offen | Keine zweite P2P-Buchung; P2P als Laborbeleg nutzen und deutsche VAT-/Kontenplan-Grenze offen halten. |
 | Bank / Payments | Ausgleich, Zahlung, Bankposten | `PAYMENTS-001` bis `PAYMENTS-010` belegen offene Posten, Cash-Receipt-Draft, `BANK-RM-01`, Journal Check, Apply Entries und Post-Dialog mit Abbruch; `PAYMENTS-011` bucht genau eine UI-first Laborzahlung `PAY011-PS103297`; `PAYMENTS-012` synchronisiert Buch/Evidence; `PAYMENTS-013` belegt Bank Account Ledger Entries ueber Page `372`; `PAYMENTS-014` synchronisiert Kapitel 20 mit dieser Bankpostenlogik | Labor belegt fuer Zahlung, OP-Ausgleich, Sachposten und Bankposten; Bankabstimmung offen | Keine weitere Zahlung und keine Bankabstimmung ohne neues Gate; Reporting ist nach `GOVERNANCE-007` der naechste praktische Gate-Lauf. |
 | Anlagen, Projekte, Service, Manufacturing | Weitere Buchkapitel praktisch lernen | Fixed Assets/Warehouse/Manufacturing/Service/Projects sind als Readiness bzw. Buch-Sync teilweise belegt; Projects ist mit `PROJECTS-001`/`PROJECTS-002` synchronisiert: Einstiege sichtbar, Zielobjekte fehlen | teilweise belegt | Ohne Gate keine Setup-/Buchungslaeufe; naechster sicherer Block ist Kapitel 17 als Dropshipping/Sonderverkauf ohne Shopify-Connector-Scope read-only. |
@@ -39,7 +39,7 @@ Dieser Arbeitsplan gleicht das Buch `FiBu_Buch_BC_Standardprozesse_DE_Master_Blu
 | Glossar Deutsch/Englisch/Tell-Me | Kapitel 37 als Such- und Begriffsschicht, nicht als neuer Klickpfadnachweis | `GLOSSARY-001` synchronisiert Kapitel 37 ohne BC-Lauf gegen UI-Inventar, Coverage und vorhandene Evidence; Begriffe werden als Buchsprache, Suchhilfe, belegter UI-Pfad oder offener Zielbegriff getrennt | Readiness/Buch-Sync belegt | Kapitel 38 ist mit `PAGESINDEX-001` erledigt; ohne Gate Kapitel 39 Projektartefakte/Handover/Repo-QA als Readiness-Sync. |
 | Seitenindex / Prozesskatalog / Qualitaetssicherung | Kapitel 38 als Index-, QA- und Prozesskatalogschicht, nicht als Sammelbeweis aller Klickpfade | `PAGESINDEX-001` synchronisiert Kapitel 38 ohne BC-Lauf gegen Coverage, UI-Inventar, Screenshot-QA, Autopilot-State und Gates; Indexeintrag, Zielpfad, praktische Evidence, Laborgrenze und DE-Finalnachweis sind getrennt | Readiness/Buch-Sync belegt | Ohne Gate Kapitel 39 Projektartefakte/Handover/Repo-QA als Readiness-Sync; praktische UI-/Setup-/Buchungslaeufe nur mit passendem Gate. |
 | Projektartefakte / Handover / Repo-QA | Kapitel 39 als Artefakt- und Uebergabeschicht, nicht als praktischer Prozessnachweis | `ARTIFACTS-001` synchronisiert Kapitel 39 ohne BC-Lauf gegen Evidence-Struktur, Autopilot-State, Gates und Artefakt-Governance; Templates, Handover-Dateien und Evidence-Pack-Platzhalter sind Kontrollartefakte, keine Prozess-Evidence | Readiness/Buch-Sync belegt | Ohne Gate Kapitel 40 Quellenverzeichnis als Readiness-Sync; praktische UI-/Setup-/Buchungslaeufe nur mit passendem Gate. |
-| Quellenverzeichnis / Primaerquellen | Kapitel 40 als Quellenregel, nicht als praktischer Prozessnachweis | `SOURCES-001` synchronisiert Kapitel 40 ohne BC-Lauf gegen Primaerquellenlogik, Microsoft-Learn-Bezug, amtliche Quellen, Vendor-Dokumentation, Evidence-Regeln und gestrichenen Shopify-Scope; Quellen sind Referenzen, keine RM-DEMO-Prozessbeweise | Readiness/Buch-Sync belegt | `GOVERNANCE-005`, `PAYMENTS-011`, `PAYMENTS-014`, `GOVERNANCE-006`, `REPORTING-011`, `REPORTING-012`, `GOVERNANCE-007`, `REPORTING-013` und `REPORTING-014` sind erledigt; naechster sicherer Entscheidungsblock ist `GOVERNANCE-008`, nicht ein Wiederholungslauf. |
+| Quellenverzeichnis / Primaerquellen | Kapitel 40 als Quellenregel, nicht als praktischer Prozessnachweis | `SOURCES-001` synchronisiert Kapitel 40 ohne BC-Lauf gegen Primaerquellenlogik, Microsoft-Learn-Bezug, amtliche Quellen, Vendor-Dokumentation, Evidence-Regeln und gestrichenen Shopify-Scope; Quellen sind Referenzen, keine RM-DEMO-Prozessbeweise | Readiness/Buch-Sync belegt | `GOVERNANCE-005`, `PAYMENTS-011`, `PAYMENTS-014`, `GOVERNANCE-006`, `REPORTING-011`, `REPORTING-012`, `GOVERNANCE-007`, `REPORTING-013`, `REPORTING-014`, `GOVERNANCE-008` und `TAX-002` sind erledigt; naechster sicherer Entscheidungsblock ist `GOVERNANCE-009`, nicht ein Wiederholungslauf. |
 
 ## Kritische Buchdrift
 
@@ -182,17 +182,19 @@ Ziel:
 
 Die Luecke zwischen CRONUS-USA-Sales-Tax und deutschem VAT-Zielmodell beherrschbar machen.
 
-Status nach `TAX-001`:
+Status nach `TAX-002`:
 
 1. DE-VAT-Readiness ist dokumentiert.
 2. Benoetigte Ebenen sind benannt: VAT Business Posting Group, VAT Product Posting Group, VAT Posting Setup, Belegzeile, Preview, VAT Entries.
 3. O2C `PS-INV103297` und P2P `108219` bleiben Laborbelege mit `0 %`.
-4. Praktischer `19 %`-Ziellauf braucht eigene Setup-/Umgebungsfreigabe.
+4. `TAX-002` definiert Freigabe- und Stop-Kriterien, oeffnet aber kein Gate.
+5. Praktischer `19 %`-Ziellauf braucht eigene Setup-/Umgebungsfreigabe.
 
 Akzeptanz:
 
 - USt-Kapitel hat klare Labor-/Final-Trennung.
 - O2C-Finalbild wird erst erzeugt, wenn 19-%-Setup wirklich nachgewiesen ist.
+- Ohne Freigabe wird `TAX-002` nicht wiederholt; der naechste sichere Schritt ist eine neue Governance-Entscheidung.
 
 ### Phase 5: Naechsten Prozessblock vorbereiten
 
@@ -205,7 +207,7 @@ Empfohlene Reihenfolge nach Reporting/Steuer:
 2. Reporting-Freigabeentscheidung:
    - Analysis-View-Fit fuer `PRODUCTLINE`/`CHANNEL` nur mit neuem ausdruecklichem Feldmapping-/Setup-Gate.
 3. DE-VAT-Freigabeentscheidung:
-   - praktischer `19 %`-Ziellauf nur mit Setup-/Umgebungsfreigabe.
+   - `TAX-002` ist erledigt; praktischer `19 %`-Ziellauf nur mit Setup-/Umgebungsfreigabe.
 4. Anlagen:
    - erst wenn Finance/Postenspur-Grundlogik stabil ist.
 
@@ -227,13 +229,14 @@ Begruendung:
 - Kapitel 40 ist mit `SOURCES-001` als read-only/Buch-Zielbild-Sync erledigt.
 - `GOVERNANCE-005` hat Autopilot-V2.2 mit den Gates synchronisiert. `PAYMENTS-011` hat danach die eng begrenzte Payment-Laborzahlung genau einmal ausgefuehrt. `PAYMENTS-013` hat den Bankpostenpfad Page `372` belegt, und `PAYMENTS-014` hat Kapitel 20 damit synchronisiert.
 - `GOVERNANCE-006` gab `REPORTING-011` genau einmal frei. `REPORTING-011` ist verbraucht und rejected; `REPORTING-012` synchronisiert den Blocker. `GOVERNANCE-007` gab `REPORTING-013` genau einmal frei. `REPORTING-013` ist ebenfalls verbraucht und rejected, weil `New/Neu` ungescoped in den falschen BC-Kontext fallen kann. Deshalb ist die naechste Arbeit kein zweiter Feldmapping-/Setup-Lauf, keine Wiederholung und keine Bankabstimmung.
+- `GOVERNANCE-008` waehlt `TAX-002-DE-VAT-GATE-READINESS`; `TAX-002` ist inzwischen erledigt und dokumentiert Freigabekriterien, Stop-Kriterien und UI-first Testplan. Deshalb ist die naechste Arbeit auch kein zweiter VAT-Readiness-Lauf.
 
 Minimaler Prompt fuer den naechsten Lauf:
 
 ```text
 Arbeite auf Branch codex/playwright-bc-screenshot-foundation.
-Lies AUTOPILOT-STATE.json, POSTING-AND-SETUP-GATES.md, CURRENT-STATE.md, LAB-FIT-STATUS.md, BOOK-CLICK-GUIDE-COVERAGE.md und evidence/governance-007/.
-`REPORTING-013-ANALYSIS-VIEW-FIELDMAPPING-SETUP` ist verbraucht und rejected. Lies `AUTOPILOT-STATE.json`, `POSTING-AND-SETUP-GATES.md`, `CURRENT-STATE.md`, `LAB-FIT-STATUS.md` und `MASTERDATA-BACKLOG.md`. Waehle keinen Wiederholungspfad. Wenn Reporting fortgesetzt werden soll, braucht es ein neues ausdrueckliches Gate mit gescoptem New-/Kartenaktionsmuster oder einen alternativen offiziellen Standardpfad; andernfalls einen anderen no-gate Readiness-/Buch-Sync-Block bestimmen. Keine Zahlung, keine Bankabstimmung und keine Buchung.
+Lies AUTOPILOT-STATE.json, POSTING-AND-SETUP-GATES.md, CURRENT-STATE.md, LAB-FIT-STATUS.md, BOOK-CLICK-GUIDE-COVERAGE.md, MASTERDATA-BACKLOG.md und evidence/tax-002/.
+`REPORTING-013-ANALYSIS-VIEW-FIELDMAPPING-SETUP` ist verbraucht und rejected. `TAX-002-DE-VAT-GATE-READINESS` ist erledigt; praktischer `TAX-002-DE-VAT-FIT` bleibt gesperrt. Waehle keinen Wiederholungspfad. Entweder explizite Freigabe fuer `TAX-002A-DE-VAT-SETUP-PREFLIGHT` einholen oder einen anderen no-gate Readiness-/Buch-Sync-Block mit echtem Delta bestimmen. Keine Zahlung, keine Bankabstimmung, keine Buchung und keine Setup-Aenderung ohne Gate.
 ```
 
 ## Nicht jetzt tun
