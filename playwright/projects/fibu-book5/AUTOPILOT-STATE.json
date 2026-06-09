@@ -6,9 +6,9 @@
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
   "dataBasis": "CRONUS USA",
-  "activeArea": "dropshipping",
-  "lastCompletedRun": "DROPSHIPPING-002",
-  "lastWorkType": "book-sync-run",
+  "activeArea": "intercompany",
+  "lastCompletedRun": "INTERCOMPANY-001",
+  "lastWorkType": "read-only-evidence-run",
   "postedInLastRun": false,
   "latestPostedDocuments": {
     "o2c": {
@@ -53,12 +53,13 @@
     "SERVICE-001-POSTING",
     "PROJECTS-001-POSTING",
     "DROPSHIPPING-001-PROCESS",
+    "INTERCOMPANY-001-PROCESS",
     "NEW-COMPANY-001",
     "O2C-REPOST-001",
     "P2P-REPOST-001",
     "INVENTORY-REPOST-INV008"
   ],
-  "nextBestStepWithoutApproval": "State ist nach DROPSHIPPING-002 synchron. Ohne Gate einen anderen sicheren read-only oder Buch-Sync-Block waehlen; Dropshipping-Prozess nur mit Gate DROPSHIPPING-001-PROCESS fortsetzen.",
+  "nextBestStepWithoutApproval": "INTERCOMPANY-002-BOOK-SYNC: Kapitel 18 mit INTERCOMPANY-001 synchronisieren; IC-/Ausland-Einstiege als Readiness, fehlende Zieldebitoren D20000/D30000/D90000 und fehlenden Mehr-Company-/IC-/VAT-Fit als Setup-Luecke markieren; keine Company anlegen/wechseln, kein IC-Partner-Setup, kein IC-Beleg und keine Buchung.",
   "nextBestStepWithApproval": {
     "payments": "PAYMENTS-011-LAB-PAYMENT: kontrollierte Laborzahlung nur mit ausdruecklicher Freigabe, Postenspur und Bank-/OP-Evidence.",
     "reporting": "REPORTING-011-ANALYSIS-VIEW-FIT: idempotenten Analysis-View-Fit fuer PRODUCTLINE/CHANNEL nur mit Freigabe einrichten/aktualisieren.",
@@ -89,6 +90,7 @@
     "PROJECTS-001 checked Projects read-only: Projects, Project Planning Lines, Project Journals, Project Ledger Entries, Project Statistics and Project WIP are visible via Tell-Me; D10000 is visible as customer; PROJ-5001, RES-TECH, SP-SENSOR-02 and PROJ-LAG are not visible as concrete filtered target objects in RM-DEMO; no setup, no WIP, no invoice and no posting.",
     "PROJECTS-002 synced chapter 16 with PROJECTS-001: Projects entry points are readiness only, missing target objects are explained as setup/masterdata gaps, and PROJ-5001 remains a target path requiring a future UI-first gate.",
     "DROPSHIPPING-001 checked chapter 17 read-only without Shopify: Sales Orders, Purchase Orders, Requisition Worksheets and Purchasing Codes are visible as entry points; Drop Shipments is not a reliable Tell-Me entry in this run; D11000, K20000 and SP-PUMP-01 are not visible as concrete filtered target objects in RM-DEMO; no setup, no sales order, no purchase order and no posting.",
-    "DROPSHIPPING-002 synced chapter 17 with DROPSHIPPING-001: chapter 17 now separates target path DS-24001 from RM-DEMO readiness, marks missing D11000/K20000/SP-PUMP-01 as setup/masterdata gaps, keeps Shopify out of scope and keeps the dropshipping process gate locked."
+    "DROPSHIPPING-002 synced chapter 17 with DROPSHIPPING-001: chapter 17 now separates target path DS-24001 from RM-DEMO readiness, marks missing D11000/K20000/SP-PUMP-01 as setup/masterdata gaps, keeps Shopify out of scope and keeps the dropshipping process gate locked.",
+    "INTERCOMPANY-001 checked chapter 18 read-only: Intercompany Setup, IC Partners, IC Inbox Transactions, IC Outbox Transactions and VAT Entries are visible Tell-Me/search paths; Currencies was not reliably visible in this run; D20000, D30000 and D90000 are not visible as concrete filtered customer targets in RM-DEMO; no company switch, no setup, no IC document and no posting."
   ]
 }

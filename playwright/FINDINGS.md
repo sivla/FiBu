@@ -988,3 +988,21 @@ Fuer Anfaenger ist das wichtig, weil Projects Kosten, Verbrauch, WIP-nahe Sicht 
 | Buchstelle | Kapitel 17 Dropshipping und Sonderverkauf |
 
 Fuer Anfaenger ist das wichtig, weil Dropshipping wie ein normaler Verkauf beginnt, aber fachlich zwei Belegketten verbindet: Verkaufsauftrag und Einkaufsbestellung. Ein sichtbarer `Sales Orders`-Treffer beweist noch nicht, dass die direkte Lieferung, der Lieferant, die Beschaffung, die Marge, die Steuer und der Lager-Negativnachweis stimmen. `DROPSHIPPING-002` hat diese Grenze ins Buch uebertragen; die praktische Setup-/Buchungslinie bleibt Gate-Folgearbeit.
+
+## FIND-BC-IC-001 Intercompany-Readiness ist nicht Intercompany-Prozess
+
+| Feld | Wert |
+|---|---|
+| Status | offen fuer Buch-Sync; praktische Setup-/Buchungslinie gate-gesperrt |
+| Quelle | `INTERCOMPANY-001` |
+| Screenshot | `playwright/projects/fibu-book5/img/intercompany-001-010-intercompany-setup-tell-me.png`, `playwright/projects/fibu-book5/img/intercompany-001-020-ic-partners-tell-me.png`, `playwright/projects/fibu-book5/img/intercompany-001-030-ic-inbox-tell-me.png`, `playwright/projects/fibu-book5/img/intercompany-001-040-ic-outbox-tell-me.png`, `playwright/projects/fibu-book5/img/intercompany-001-050-vat-entries-tell-me.png`, `playwright/projects/fibu-book5/img/intercompany-001-060-currencies-tell-me.png`, `playwright/projects/fibu-book5/img/intercompany-001-070-customer-d20000-eu.png`, `playwright/projects/fibu-book5/img/intercompany-001-080-customer-d30000-export.png`, `playwright/projects/fibu-book5/img/intercompany-001-090-customer-d90000-ic.png` |
+| Evidence | `playwright/projects/fibu-book5/evidence/intercompany-001/INTERCOMPANY-001-result.json`, `playwright/projects/fibu-book5/evidence/intercompany-001/INTERCOMPANY-001-READINESS.md`, `playwright/projects/fibu-book5/evidence/intercompany-001/README.md` |
+| BC-Seite | Tell-Me, Customers |
+| sichtbarer Text / Werte | Tell-Me zeigt `Intercompany Setup`, `IC Partners`, `IC Inbox Transactions`, `IC Outbox Transactions`, `VAT Entries`; `Currencies` ist nicht stabil sichtbar; `D20000`, `D30000`, `D90000` sind als konkrete Zielnummern nicht sichtbar |
+| Elementtyp | Intercompany-/Ausland-Readiness / Mehr-Company-Grenze / Stammdatenluecke |
+| erste Hypothese | Kapitel 18 braucht vor IC-7001 zuerst den Nachweis, ob IC-Setup, IC-Partner, Inbox/Outbox, Auslandskunden, VAT und Waehrung in `RM-DEMO` ueberhaupt als Einstieg tragfaehig sind. |
+| Testergebnis | `INTERCOMPANY-001` laeuft read-only erfolgreich. Der Lauf erzeugt Navigationsevidence und Zielobjekt-Evidence, aber keine neue Company, keinen Company-Wechsel, kein IC-Partner-Setup, keinen IC-Beleg, keine Inbox-/Outbox-Aktion, keine VAT-/Waehrungs-Aenderung und keine Buchung. |
+| Entscheidung | Kapitel 18 muss mit `INTERCOMPANY-002` synchronisiert werden: sichtbare IC-Seiten sind nur Readiness. Der Buchfall `IC-7001` ist in `RM-DEMO` noch nicht intercompanyfaehig, solange Zielcompanies, IC-Partner, Zieldebitoren, Steuer-/Waehrungsfit und IC-Abstimmung nicht UI-first gefittet und belegt sind. |
+| Buchstelle | Kapitel 18 Intercompany und Ausland |
+
+Fuer Anfaenger ist das wichtig, weil Intercompany mehrere rechtliche Einheiten verbindet. Ein sichtbarer `IC Inbox`- oder `IC Outbox`-Treffer beweist noch nicht, dass Partner, Gegenbeleg, Steuerlogik, Waehrung, Abstimmung und Postenspur in beiden Companies tragen.

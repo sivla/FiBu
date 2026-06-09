@@ -168,17 +168,29 @@ Wenn das Projekt fertig ist, kennen wir Business Central für den Buchumfang nic
 | Stammdaten | Customer / Vendor / Item | 22/27/31 | gefilterte Listen, breite Layoutansicht | Dropshipping-Kunde, Direktlieferant und Ersatzteil pruefen | `DROPSHIPPING-001` | `playwright/projects/fibu-book5/img/dropshipping-001-060-customer-d11000.png`; `playwright/projects/fibu-book5/img/dropshipping-001-070-vendor-k20000.png`; `playwright/projects/fibu-book5/img/dropshipping-001-080-item-sp-pump-01.png`; `evidence/dropshipping-001/` | `D11000`, `K20000` und `SP-PUMP-01` nicht sichtbar; keine Anlage, keine Buchung | Kapitel 17 |
 | Buch-Sync | Kapitel 17 | n/a | Statusbox vor Schrittfolge | sichtbare Dropshipping-Einstiege als Readiness statt Prozessfaehigkeit erklaeren | `DROPSHIPPING-002` | `evidence/dropshipping-002/` | erledigt als Buch-/Evidence-Sync; `DS-24001` bleibt Zielpfad, Setup und Buchung gate-gesperrt | Kapitel 17 |
 
+## Intercompany / Ausland
+
+| Bereich | Seite | Page-ID | UI-Element | Funktion | Testfall | Screenshot/Evidence | Status | Buchstelle |
+|---|---|---:|---|---|---|---|---|---|
+| Intercompany Setup | Intercompany Setup | n/a | Tell-Me-Suche | IC-Einrichtung als spaeteren Setup-Kontext finden, ohne Einrichtung zu aendern | `INTERCOMPANY-001` | `playwright/projects/fibu-book5/img/intercompany-001-010-intercompany-setup-tell-me.png`; `evidence/intercompany-001/` | gesehen/verstanden als Navigationskandidat; kein IC-Setup | Kapitel 18 |
+| Intercompany Partner | IC Partners | n/a | Tell-Me-Suche | IC-Partner als Voraussetzung fuer IC-Belege finden, ohne Partner anzulegen | `INTERCOMPANY-001` | `playwright/projects/fibu-book5/img/intercompany-001-020-ic-partners-tell-me.png`; `evidence/intercompany-001/` | gesehen/verstanden als Navigationskandidat; kein IC-Partner | Kapitel 18 |
+| Intercompany Belege | IC Inbox / IC Outbox | n/a | Tell-Me-Suche | spaetere Annahme-/Sendepfade sichtbar machen, ohne Transaktion zu senden oder anzunehmen | `INTERCOMPANY-001` | `playwright/projects/fibu-book5/img/intercompany-001-030-ic-inbox-tell-me.png`; `playwright/projects/fibu-book5/img/intercompany-001-040-ic-outbox-tell-me.png`; `evidence/intercompany-001/` | gesehen/verstanden als gesperrter Prozesspfad; keine Inbox-/Outbox-Wirkung | Kapitel 18 |
+| Steuer / Waehrung | VAT Entries / Currencies | n/a | Tell-Me-Suche | Steuer- und Waehrungsnachweise fuer Ausland/IC vorbereiten | `INTERCOMPANY-001` | `playwright/projects/fibu-book5/img/intercompany-001-050-vat-entries-tell-me.png`; `playwright/projects/fibu-book5/img/intercompany-001-060-currencies-tell-me.png`; `evidence/intercompany-001/` | `VAT Entries` sichtbar; `Currencies` nicht stabil sichtbar; keine VAT-/Waehrungs-Aenderung | Kapitel 18/22 |
+| Stammdaten | Customers | 22 | gefilterte Listen, breite Layoutansicht | EU-, Export- und IC-Zieldebitoren pruefen | `INTERCOMPANY-001` | `playwright/projects/fibu-book5/img/intercompany-001-070-customer-d20000-eu.png`; `playwright/projects/fibu-book5/img/intercompany-001-080-customer-d30000-export.png`; `playwright/projects/fibu-book5/img/intercompany-001-090-customer-d90000-ic.png`; `evidence/intercompany-001/` | `D20000`, `D30000` und `D90000` nicht sichtbar; keine Anlage, keine Buchung | Kapitel 18 |
+
 ## Naechste Inventarziele
 
 | Reihenfolge | Ziel |
 |---:|---|
-| 1 | Dropshipping-Setup nur mit Gate fortsetzen: `D11000`, `K20000`, `SP-PUMP-01` und Drop-Shipment-/Purchasing-Code-Logik bleiben UI-first Setup-Folgearbeit |
-| 2 | Project-Setup nur mit Gate fortsetzen: Projekt `PROJ-5001`, Ressource `RES-TECH`, Material `SP-SENSOR-02` und Lagerort `PROJ-LAG` bleiben UI-first Setup-Folgearbeit |
-| 3 | Reporting weiterfuehren: `REPORTING-009` hat den einfachen Sachposten-Dimensionspfad read-only ausgeschoepft; `REPORTING-008` definiert den Analysis-View-Fit fuer `PRODUCTLINE=MACHINE` und `CHANNEL=B2B` als naechsten Hebel; nur mit eigener Freigabe umsetzen, sonst keinen weiteren gleichen read-only Reportingpfad wiederholen |
-| 4 | Postenspur-Lernatlas `POSTING-TRACE-001` ist erledigt: O2C, P2P und Inventory erklaeren Beleg, Nebenbuchposten, Sachposten, Artikelposten, Wertposten und Bericht als gemeinsame Anfaengerkette; keine weitere `INV008`-Buchung |
-| 5 | Sachposten-Dimensionspfad nicht erneut als naechstes Ziel einplanen: `REPORTING-009` hat ihn read-only geprueft und als Teil-/Negativbefund dokumentiert |
-| 6 | Steuerfit: CRONUS-USA-Probelauf weiter vom deutschen Ziel-Fall `19 %` trennen |
-| 7 | Warehouse- und Manufacturing-Setup nur mit Gate: `WAREHOUSE-002` und `MANUFACTURING-002` sind als Buch-Sync erledigt |
+| 1 | Intercompany-Buch-Sync: `INTERCOMPANY-001` in Kapitel 18 einarbeiten; IC-/VAT-Einstiege als Readiness und fehlende Zieldebitoren `D20000`, `D30000`, `D90000` als Setup-Luecke markieren |
+| 2 | Intercompany-/Auslandprozess nur mit Gate fortsetzen: keine Company anlegen/wechseln, keinen IC-Partner, keinen Beleg `IC-7001`, keine Inbox/Outbox-Aktion und keine VAT-/Waehrungs-Aenderung ohne Freigabe |
+| 3 | Dropshipping-Setup nur mit Gate fortsetzen: `D11000`, `K20000`, `SP-PUMP-01` und Drop-Shipment-/Purchasing-Code-Logik bleiben UI-first Setup-Folgearbeit |
+| 4 | Project-Setup nur mit Gate fortsetzen: Projekt `PROJ-5001`, Ressource `RES-TECH`, Material `SP-SENSOR-02` und Lagerort `PROJ-LAG` bleiben UI-first Setup-Folgearbeit |
+| 5 | Reporting weiterfuehren: `REPORTING-009` hat den einfachen Sachposten-Dimensionspfad read-only ausgeschoepft; `REPORTING-008` definiert den Analysis-View-Fit fuer `PRODUCTLINE=MACHINE` und `CHANNEL=B2B` als naechsten Hebel; nur mit eigener Freigabe umsetzen, sonst keinen weiteren gleichen read-only Reportingpfad wiederholen |
+| 6 | Postenspur-Lernatlas `POSTING-TRACE-001` ist erledigt: O2C, P2P und Inventory erklaeren Beleg, Nebenbuchposten, Sachposten, Artikelposten, Wertposten und Bericht als gemeinsame Anfaengerkette; keine weitere `INV008`-Buchung |
+| 7 | Sachposten-Dimensionspfad nicht erneut als naechstes Ziel einplanen: `REPORTING-009` hat ihn read-only geprueft und als Teil-/Negativbefund dokumentiert |
+| 8 | Steuerfit: CRONUS-USA-Probelauf weiter vom deutschen Ziel-Fall `19 %` trennen |
+| 9 | Warehouse- und Manufacturing-Setup nur mit Gate: `WAREHOUSE-002` und `MANUFACTURING-002` sind als Buch-Sync erledigt |
 
 ## Definition of Done fuer eine Funktion
 Eine Funktion gilt erst als erledigt, wenn:
