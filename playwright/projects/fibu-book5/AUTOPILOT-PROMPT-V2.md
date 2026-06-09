@@ -123,7 +123,7 @@ Prioritaet:
 - Reporting zeigt `PRODUCTLINE`/`CHANNEL` am Artikelposten, aber keine belastbare Financial-Reports-Summenwirkung.
 - Deutsche `19 %` USt ist offen.
 - Deutscher Kontenplan ist offen.
-- `PAGESINDEX-001-READINESS` ist laut aktuellem State der naechste sichere Schritt ohne Gate.
+- `ARTIFACTS-001-READINESS` ist laut aktuellem State der naechste sichere Schritt ohne Gate.
 
 ## Evidence-Regeln
 

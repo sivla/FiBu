@@ -38,6 +38,25 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 
 ## Aktuelle Fundstellen
 
+## FIND-BC-PAGESINDEX-001 Seitenindex ist kein Prozessnachweis
+
+| Feld | Wert |
+|---|---|
+| Status | erledigt als Buch-Sync; praktische Klickpfade bleiben nur dort abgedeckt, wo konkrete Evidence und Screenshots existieren |
+| Quelle | `PAGESINDEX-001` |
+| Screenshot | keine neuen Screenshots; Buch-/Readiness-Sync |
+| Evidence | `playwright/projects/fibu-book5/evidence/pagesindex-001/PAGESINDEX-001-READINESS.md`, `playwright/projects/fibu-book5/evidence/pagesindex-001/PAGESINDEX-001-result.json`, `playwright/projects/fibu-book5/evidence/pagesindex-001/README.md` |
+| BC-Seite | nicht ausgefuehrt; Kapitel 38 Zielbild |
+| sichtbarer Text / Werte | Seitenindex, Prozesskatalog, Reifegradmatrix, Screenshot-QA, Coverage, vorhandene O2C-/P2P-/Inventory-/Payments-/Reporting-Evidence |
+| Elementtyp | Seitenindex / Prozesskatalog / Evidence-Grenze |
+| erste Hypothese | Ein Indexeintrag oder eine hohe Reifegradbewertung darf nicht so wirken, als sei der jeweilige Prozess praktisch getestet, gebucht und final nachgewiesen. |
+| Recherchequelle | vorhandenes UI-Inventar, Coverage, Screenshot-QA, Autopilot-State und Gates; keine neue Microsoft-Learn-Behauptung in diesem Lauf |
+| Testergebnis | `PAGESINDEX-001` hat Kapitel 38 ohne BC-Lauf synchronisiert. Der Prozesskatalog ist jetzt Zielbild und Steuerungsrahmen, nicht Sammelbeweis fuer alle Business-Central-Prozesspfade. |
+| Entscheidung | Kapitel 38 trennt jetzt Index, Zielpfad, QA-Rahmen, echte Klickpfad-Evidence, Labor-Nachweis und offenen deutschen Finalnachweis. Naechster sicherer Block ist Kapitel 39 Projektartefakte/Handover/Repo-QA. |
+| Buchstelle | Kapitel 38 Seitenindex, Prozesskatalog und Qualitaetssicherung |
+
+Fuer Anfaenger ist das wichtig, weil ein Buchindex beim Finden hilft, aber nicht beweist, dass der Prozess in Business Central schon richtig eingerichtet, gebucht, kontrolliert und mit Postenspur verstanden wurde.
+
 ## FIND-BC-GLOSSARY-001 Glossarbegriffe sind keine Klickpfad-Evidence
 
 | Feld | Wert |
@@ -52,7 +71,7 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 | erste Hypothese | Ein Glossarbegriff darf nicht so wirken, als sei der zugehoerige BC-Klickpfad bereits praktisch getestet. |
 | Recherchequelle | vorhandenes UI-Inventar, Coverage und Evidence; keine neue Microsoft-Learn-Behauptung in diesem Lauf |
 | Testergebnis | `GLOSSARY-001` hat Kapitel 37 ohne BC-Lauf synchronisiert. Begriffe werden als Buchsprache, englische Suchhilfe, praktisch belegter UI-Pfad oder offener Zielbegriff eingeordnet. |
-| Entscheidung | Kapitel 37 trennt jetzt Terminologie, Tell-Me-Suchhilfe und echte Klickpfad-Evidence. Der naechste sichere Block ist Kapitel 38 Seitenindex/Prozesskatalog/Qualitaetssicherung. |
+| Entscheidung | Kapitel 37 trennt jetzt Terminologie, Tell-Me-Suchhilfe und echte Klickpfad-Evidence. Der naechste sichere Block wurde mit `PAGESINDEX-001` erledigt; jetzt ist Kapitel 39 Projektartefakte/Handover/Repo-QA der sichere Folgeblock. |
 | Buchstelle | Kapitel 37 Glossar Deutsch / Englisch / Tell-Me |
 
 Fuer Anfaenger ist das wichtig, weil Business Central in deutscher Zielumgebung, englischer Laboroberflaeche und Tell-Me-Suche unterschiedliche Begriffe zeigen kann. Das Glossar hilft beim Finden, ersetzt aber keinen belegten Klickpfad mit Screenshot, Feldpruefung und Evidence.

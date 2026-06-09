@@ -6675,11 +6675,15 @@ Merksatz:
 
 ## 38. Seitenindex, Prozesskatalog und Qualitätssicherung
 
+Status des Evidence-Syncs in `RM-DEMO`: `PAGESINDEX-001` vom 09.06.2026 ordnet dieses Kapitel gegen `BOOK-CLICK-GUIDE-COVERAGE.md`, `UI-INVENTORY.md`, `SCREENSHOT-QA.md`, `AUTOPILOT-STATE.json` und `POSTING-AND-SETUP-GATES.md` ein. Das ist ein Buch-/Evidence-Sync, kein neuer Business-Central-Lauf. Der Seitenindex, der Prozesskatalog und die Reifegradmatrix sind deshalb als Zielbild, Kontrollrahmen und Navigationshilfe zu lesen. Sie beweisen nicht automatisch, dass jeder gelistete Prozess bereits praktisch geklickt, gebucht, fotografiert und in deutscher Umgebung final nachgewiesen wurde.
+
+Aktueller Evidence-Stand: O2C, P2P und Inventory sind als CRONUS-USA-Laboranker belegt. Payments ist bis zum Journal-/Apply-/Post-Dialog-Abbruch belegt, aber ohne Zahlung, OP-Ausgleich und Bankabstimmung. Reporting zeigt `PRODUCTLINE=MACHINE` und `CHANNEL=B2B` am Artikelposten, aber noch keine belastbare Financial-Reports-Summenwirkung. Deutsche `19 %` USt, deutsche Finalscreenshots, deutscher Kontenplan, Fixed Assets, Warehouse-Aktivierung, Manufacturing, Service, Projects, Dropshipping/Sonderverkauf, Intercompany/Ausland, Security-Setup, Migration, Integrationen, Betrieb und echte Gesamt-UATs bleiben offen, readiness-belegt oder gatepflichtig.
+
 ### Qualitätsprinzipien und Vollständigkeitslogik
 
 Dieses Buch ist ein vollumfängliches Business-Central-Einführungs-, Schulungs-, Projekt-, Nachschlage- und Architekturhandbuch für den deutschen Unternehmenskontext. Es verbindet BC-Standardprozesse, deutsche Finance-/Compliance-Perspektive, praktische Bedienung, Buchungsspur, Fehlerdiagnose, UAT, Evidence Packs, MB-800-Abdeckung, Microsoft-Learn-Lernpfade und Solution-Architect-Denken in einer einheitlichen Lern- und Projektstruktur.
 
-Die folgende Matrix ist eine ehrliche Reifegradprüfung. Sie bewertet nicht, was das Buch sein soll, sondern was der aktuelle Kapiteltext tatsächlich leistet. Eine `10/10` steht nur dort, wo der Text bereits durchgängig erklärend, nachklickbar, postensicher, fehlerdiagnostisch und UAT-fähig ist. Kapitel mit `8/10` oder `9/10` sind fachlich gut, brauchen aber noch mehr Fließtext, Feldlogik, Varianten oder durchgehende Abnahmefälle.
+Die folgende Matrix ist eine redaktionelle Reifegradprüfung des Kapiteltexts. Sie bewertet nicht automatisch den aktuellen Playwright-/BC-Evidence-Stand. Eine hohe Textbewertung bedeutet: Das Kapitel ist didaktisch stark vorbereitet. Sie bedeutet erst dann praktische Abdeckung, wenn `BOOK-CLICK-GUIDE-COVERAGE.md`, Evidence, Screenshots und Projektstatus denselben Prozess als praktisch nachgewiesen markieren. Kapitel mit `8/10` oder `9/10` sind fachlich gut, brauchen aber noch mehr Fließtext, Feldlogik, Varianten oder durchgehende Abnahmefälle.
 
 | Kapitel | Aktuelle Bewertung /10 | Ziel /10 | Warum noch keine 10/10? | Konkrete Lücke | Nächste Verbesserung |
 |---|---:|---:|---|---|---|
@@ -6700,7 +6704,7 @@ Die folgende Matrix ist eine ehrliche Reifegradprüfung. Sie bewertet nicht, was
 | 25. Reporting, Controlling, Finanzberichte und Power BI | 10 | 10 | Der konkrete Reportingfall `RM-GUV-MONAT` mit Zeitraum Juni 2026, `PRODUCTLINE = MACHINE`, optional `CHANNEL = B2B`, `SO-1001`, Erlös `68.000 EUR`, separater USt, Wareneinsatz, Bruttomarge, Kostenregulierungswirkung aus Kapitel 23 und Drilldown bis Wertposten/Sachposten ist enthalten. | Keine Lücke für die aktuell geforderte Verbindung zwischen Reporting und Inventory Costing. | Spätere Vertiefung: Plan/Ist, Berichtslayout-Governance und Power-BI-Berechtigungsmodell als eigene UAT-Fälle. |
 | 29. Integrationen | 8 | 10 | Architekturentscheidung ist deutlich stärker, aber viele Integrationsklassen sind noch in einer Matrix statt als volle Entscheidungsfälle ausgearbeitet. | Für Expense, DATEV, Shipping, WMS und Reporting/BI fehlen noch eigene vollständige Schrittfolgen wie bei Document Capture. | Je Integrationsklasse einen kurzen Testcompany-Fall mit UAT, Rollback und Supportübergabe ergänzen. |
 
-Praktische Einordnung: Der aktuelle Stand ist kein fertiges `10/10`-Endurteil. Die Matrix zeigt, welche Kapitel bereits als starke Schulungskapitel funktionieren und wo der nächste redaktionelle Ausbau ansetzen muss. In dieser Überarbeitung wurden Kapitel 22, 23, 24 und 29 direkt verbessert, weil dort die größte Lücke zwischen behaupteter und tatsächlich sichtbarer Tiefe bestand.
+Praktische Einordnung: Der aktuelle Stand ist kein fertiges `10/10`-Endurteil und kein automatischer Labor- oder DE-Finalnachweis. Die Matrix zeigt, welche Kapitel als Schulungskapitel funktionieren und wo der nächste redaktionelle Ausbau ansetzen muss. Die Evidence entscheidet separat, ob ein Klickpfad wirklich gelaufen ist, ob Screenshots vorliegen, ob eine Buchung erfolgt ist und ob der Nachweis nur CRONUS-USA-Labor oder deutscher Finalstand ist.
 
 Vollständigkeit bedeutet in diesem Buch:
 - Alle relevanten BC-Standardbereiche werden fachlich erklärt und praktisch durchgespielt.

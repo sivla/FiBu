@@ -36,6 +36,8 @@ Update nach `EXAMTRAINING-001`: Kapitel 36 ist als Read-only-/Buch-Zielbild-Sync
 
 Update nach `GLOSSARY-001`: Kapitel 37 ist als Read-only-/Buch-Zielbild-Sync dokumentiert. Glossar, deutsche Buchsprache, englische Tell-Me-/Microsoft-Learn-Suchhilfen, praktisch belegte UI-Pfade und offene Zielbegriffe sind gegen UI-Inventar, Coverage und vorhandene Evidence eingeordnet. Es gab keinen BC-Lauf, keine Setup-Aenderung, keine Buchung und keine neuen Screenshots.
 
+Update nach `PAGESINDEX-001`: Kapitel 38 ist als Read-only-/Buch-Zielbild-Sync dokumentiert. Seitenindex, Prozesskatalog und Qualitaetssicherung sind gegen Coverage, UI-Inventar, Screenshot-QA, Autopilot-State, Gates und vorhandene Evidence eingeordnet. Ein Indexeintrag, eine Prozessliste oder eine Reifegradbewertung ist kein praktischer Klickpfad- oder Finalnachweis. Es gab keinen BC-Lauf, keine Setup-Aenderung, keine Buchung und keine neuen Screenshots.
+
 ## Leitentscheidung
 
 `RM-DEMO` bleibt der konsolidierte Lern- und Labor-Mandant in Sandbox `MCP_1_20260210`. Die Ziel-Companies `RM-PROD`, `RM-SALES`, `RM-SERVICE`, `RM-SHARED` und `RM-AT` sind Buchziel fuer einen spaeteren Mehr-Company-/Greenfield-Block. Sie werden nicht als naechster Reflex angelegt. Zuerst werden Buchanforderungen, aktuelle Evidence und RM-DEMO-Setup synchronisiert.
@@ -151,8 +153,8 @@ Fazit: O2C ist als CRONUS-USA-Laborprozess fachlich weitgehend synchronisiert, a
 
 ```text
 Arbeite auf Branch codex/playwright-bc-screenshot-foundation.
-Lies AUTOPILOT-STATE.json, POSTING-AND-SETUP-GATES.md, CURRENT-STATE.md, BOOK-TO-EVIDENCE-AUDIT.md, LAB-FIT-STATUS.md und Kapitel 34.
-`GLOSSARY-001` ist erledigt. Ohne Freigabe fuehre `PAGESINDEX-001-READINESS` als read-only/Buch-Zielbild-Sync fuer Kapitel 38 durch: Seitenindex, Prozesskatalog und Qualitaetssicherung gegen Coverage, UI-Inventar, Screenshot-QA und vorhandene Evidence einordnen; keine neue Buchung, keine Setup-Aenderung und kein neuer Prozesslauf.
+Lies AUTOPILOT-STATE.json, POSTING-AND-SETUP-GATES.md, CURRENT-STATE.md, BOOK-TO-EVIDENCE-AUDIT.md, LAB-FIT-STATUS.md und Kapitel 39.
+`PAGESINDEX-001` ist erledigt. Ohne Freigabe fuehre `ARTIFACTS-001-READINESS` als read-only/Buch-Zielbild-Sync fuer Kapitel 39 durch: Projektartefakte, Handover, Repo-QA und Uebergabefaehigkeit gegen Evidence-Struktur, Autopilot-State, Gates und Artefakt-Governance einordnen; keine neue Buchung, keine Setup-Aenderung und kein neuer Prozesslauf.
 ```
 
 ## Grenzen
