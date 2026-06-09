@@ -5272,6 +5272,17 @@ Merksatz:
 
 Business Central ist nur so gut wie seine Stammdaten. Falsche Debitoren, Kreditoren, Artikel, Buchungsgruppen oder Dimensionen erzeugen falsche Buchungen, schlechte Berichte und unnötige Korrekturen.
 
+### Status des Labor-Nachweises in RM-DEMO
+
+Status:
+- Buchziel: Migration, Opening Balances und Cutover als kontrollierte Projektphase mit Datenowner, Mapping, Testimport, Saldenabstimmung, Freigabe und Rueckfallplan.
+- RM-DEMO-Labor: `MIGRATION-001` ist ein Read-only-/Buch-Sync. Es wurde keine Datenmigration ausgefuehrt, kein Konfigurationspaket angelegt, kein Import gestartet, keine neue Company angelegt und keine Opening-Balance-Buchung erzeugt.
+- DE-Finalnachweis: offen. Ein finaler Nachweis braucht eine passende deutsche Zielcompany, freigegebene Import-/Opening-Balance-Strategie, Abstimmprotokolle und Cutover-Freigabe.
+- Buchung erfolgt: nein. Die bereits vorhandene Laborbuchung `INV008-899959` bleibt ein kontrollierter Trainings-/Opening-Balance-Zugang fuer Inventory-Bilder, kein produktiver Migrationsendstand.
+- Evidence Pack: `playwright/projects/fibu-book5/evidence/migration-001/`.
+- Offene Grenzen: Configuration Packages wurden nicht praktisch geoeffnet oder befuellt; Datenimport, Saldenjournal, OP-Uebernahme, Lageranfangsbestaende, Bankabstimmung und neue Company bleiben Folgearbeit.
+- Nicht behaupten: sichtbare oder beschriebene Migrationswerkzeuge sind noch kein freigegebener Cutover, kein importierter Produktivdatenbestand und kein deutscher Opening-Balance-Finalnachweis.
+
 ### Stammdaten-Governance
 
 | Stammdatenobjekt | Datenverantwortlicher (Data Owner) | Pflichtprüfung |
@@ -5312,6 +5323,8 @@ Stolpersteine:
 
 Merksatz:
 - Migration ist kein technischer Import. Migration ist fachliche Datenqualität mit technischem Werkzeug.
+- Opening Balances sind keine Stammdaten. Sie erzeugen Buchungs- und Nebenbuchwirkung und brauchen deshalb eigene Vorpruefung, Abstimmung und Freigabe.
+- Cutover ist die kontrollierte Uebergabe vom alten System in Business Central: Freeze, Export, Import, Salden, Validierung, Freigabe und Rueckfallplan gehoeren zusammen.
 
 ---
 

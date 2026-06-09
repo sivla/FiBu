@@ -27,6 +27,7 @@ Dieser Arbeitsplan gleicht das Buch `FiBu_Buch_BC_Standardprozesse_DE_Master_Blu
 | P2P / Kreditoren | Einkaufsprozess und Kreditorenpostenspur | CRONUS-USA-Laborprozess `106049` -> `108219` ist gebucht; Kreditorenposten, Sachposten, Wertposten und Artikelposten `793` sind belegt; deutsche Vorsteuer offen | Labor belegt, Steuer offen | Keine zweite P2P-Buchung; P2P als Laborbeleg nutzen und deutsche VAT-/Kontenplan-Grenze offen halten. |
 | Bank / Payments | Ausgleich, Zahlung, Bankposten | `PAYMENTS-001` bis `PAYMENTS-010` belegen offene Posten, Cash-Receipt-Draft, `BANK-RM-01`, Journal Check, Apply Entries und Post-Dialog mit Abbruch; keine Zahlung gebucht | Readiness belegt, Buchung offen | `PAYMENTS-011` nur mit ausdruecklicher Freigabe; bis dahin keine Zahlungs- oder Ausgleichsbuchung. |
 | Anlagen, Projekte, Service, Manufacturing | Weitere Buchkapitel praktisch lernen | Fixed Assets/Warehouse/Manufacturing/Service/Projects sind als Readiness bzw. Buch-Sync teilweise belegt; Projects ist mit `PROJECTS-001`/`PROJECTS-002` synchronisiert: Einstiege sichtbar, Zielobjekte fehlen | teilweise belegt | Ohne Gate keine Setup-/Buchungslaeufe; naechster sicherer Block ist Kapitel 17 als Dropshipping/Sonderverkauf ohne Shopify-Connector-Scope read-only. |
+| Migration / Opening Balances / Cutover | Kapitel 28 als Zielbild, nicht als ungepruefter Import | `MIGRATION-001` synchronisiert Kapitel 28 ohne BC-Lauf; kein Konfigurationspaket, kein Import, keine neue Company und keine Opening-Balance-Buchung | Readiness/Buch-Sync belegt | Praktischer Migrations-/Opening-Balance-Lauf nur mit Gate; ohne Gate Kapitel 29 Integrationen als Readiness-Sync. |
 
 ## Kritische Buchdrift
 
@@ -187,21 +188,20 @@ Empfohlene Reihenfolge nach Reporting/Steuer:
 
 ## Sofort naechster sinnvoller Schritt
 
-Der naechste praktische Reporting-Schritt ist nicht mehr `REPORTING-002`, sondern eine Freigabeentscheidung.
+Ohne Gate ist der naechste sichere Schritt `INTEGRATIONS-001-READINESS`.
 
 Begruendung:
 
-- `REPORTING-001` bis `REPORTING-009` haben die risikoarmen read-only Pfade bereits abgearbeitet.
-- `PRODUCTLINE`/`CHANNEL` sind am Artikelposten belegt, aber nicht in Sachposten/Financial Reports sichtbar.
-- Ein weiterer gleicher read-only Lauf wuerde voraussichtlich nur denselben Negativbefund wiederholen.
-- Der naechste echte Hebel ist ein freigegebener Analysis-View-Fit oder ein anderer klar begruendeter Standardpfad.
+- `SECURITY-002` und `MIGRATION-001` sind erledigt.
+- Praktische Zahlungen, Reporting-Setup, DE-VAT, Security-Setup, Migration/Import, Opening Balances, neue Companies und Wiederholungsbuchungen bleiben gate-gesperrt.
+- Kapitel 29 kann als read-only/Buch-Zielbild-Sync vorbereitet werden, ohne Connector, Extension, API, Power Platform oder Power BI praktisch einzurichten.
 
 Minimaler Prompt fuer den naechsten Lauf:
 
 ```text
 Arbeite auf Branch codex/playwright-bc-screenshot-foundation.
-Lies CURRENT-STATE.md, LAB-FIT-STATUS.md, BOOK-EVIDENCE-WORKPLAN.md und evidence/reporting-008/REPORTING-008-ANALYSIS-VIEW-FIT-READINESS.md.
-Wenn eine ausdrueckliche Freigabe vorliegt, fuehre einen idempotenten Analysis-View-Laborfit fuer PRODUCTLINE/CHANNEL durch und pruefe danach Analysis by Dimensions/Financial Reports. Ohne Freigabe keinen weiteren gleichen read-only Reportingpfad wiederholen; stattdessen Buch-/Evidence-Sync oder einen anderen freigegebenen Block bearbeiten.
+Lies AUTOPILOT-STATE.json, POSTING-AND-SETUP-GATES.md, CURRENT-STATE.md, LAB-FIT-STATUS.md, BOOK-CLICK-GUIDE-COVERAGE.md und Kapitel 29.
+Führe `INTEGRATIONS-001-READINESS` als Buch-/Zielbild-Sync durch: keine Extension installieren, keine API-/Connector-Einrichtung, kein Power-Platform-/Power-BI-Setup und kein produktiver Integrationslauf. Dokumentiere Integrationen als Zielbild, Gate-Grenze und nächsten freigabepflichtigen praktischen Hebel.
 ```
 
 ## Nicht jetzt tun

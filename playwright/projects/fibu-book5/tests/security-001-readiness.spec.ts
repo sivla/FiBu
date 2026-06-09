@@ -306,7 +306,7 @@ test('SECURITY-001 Admin-/Security-Readiness read-only pruefen', async ({ page }
       'Kein deutscher Security-/SoD-Finalnachweis.'
     ],
     nextStep:
-      'SECURITY-002 ist erledigt. Ohne Gate naechster sicherer Schritt: MIGRATION-001-READINESS fuer Kapitel 28 als read-only/Buch-Zielbild-Sync; keine Datenmigration, keine Opening-Balance-Buchung, kein Import und keine neue Company.'
+      'SECURITY-002 und MIGRATION-001 sind erledigt. Ohne Gate naechster sicherer Schritt: INTEGRATIONS-001-READINESS fuer Kapitel 29 als read-only/Buch-Zielbild-Sync; keine Extension installieren, keine API-/Connector-Einrichtung, kein Power-Platform-/Power-BI-Setup und kein produktiver Integrationslauf.'
   };
 
   await writeJsonEvidence(securityEvidencePath('SECURITY-001-result.json'), result);

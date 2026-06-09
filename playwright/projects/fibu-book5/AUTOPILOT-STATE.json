@@ -6,8 +6,8 @@
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
   "dataBasis": "CRONUS USA",
-  "activeArea": "security",
-  "lastCompletedRun": "SECURITY-002",
+  "activeArea": "migration",
+  "lastCompletedRun": "MIGRATION-001",
   "lastWorkType": "book-sync",
   "postedInLastRun": false,
   "latestPostedDocuments": {
@@ -35,6 +35,7 @@
     "no VAT19 setup without explicit gate",
     "no E-Documents, e-invoice, document sending profile, Peppol, provider, validation or Change Log setup without explicit gate",
     "no user, permission, profile, security group, user setup, job queue or change log setup without explicit gate",
+    "no configuration package, data import, opening-balance posting or cutover execution without explicit gate",
     "no Analysis View setup without explicit gate",
     "no Fixed Assets setup or posting without explicit gate",
     "no Warehouse activation without explicit gate",
@@ -51,6 +52,7 @@
     "TAX-002-DE-VAT-FIT",
     "COMPLIANCE-002-EINVOICE-SETUP",
     "SECURITY-002-USER-PERMISSION-SETUP",
+    "MIGRATION-002-CONFIGURATION-PACKAGES-IMPORT",
     "FIXEDASSETS-004-SETUP-OR-POSTING",
     "WAREHOUSE-001-ACTIVATION",
     "MANUFACTURING-001-POSTING",
@@ -63,14 +65,15 @@
     "P2P-REPOST-001",
     "INVENTORY-REPOST-INV008"
   ],
-  "nextBestStepWithoutApproval": "MIGRATION-001-READINESS: Kapitel 28 Migration, Opening Balances und Cutover als read-only/Buch-Zielbild-Sync vorbereiten; keine Datenmigration, keine Opening-Balance-Buchung, kein Import und keine neue Company.",
+  "nextBestStepWithoutApproval": "INTEGRATIONS-001-READINESS: Kapitel 29 Integrationen als read-only/Buch-Zielbild-Sync vorbereiten; keine Extension installieren, keine API-/Connector-Einrichtung, kein Power-Platform-/Power-BI-Setup und kein produktiver Integrationslauf.",
   "nextBestStepWithApproval": {
     "payments": "PAYMENTS-011-LAB-PAYMENT: kontrollierte Laborzahlung nur mit ausdruecklicher Freigabe, Postenspur und Bank-/OP-Evidence.",
     "reporting": "REPORTING-011-ANALYSIS-VIEW-FIT: idempotenten Analysis-View-Fit fuer PRODUCTLINE/CHANNEL nur mit Freigabe einrichten/aktualisieren.",
     "tax": "TAX-002-DE-VAT-FIT: deutsches VAT19-Setup nur mit Freigabe und separatem Preview-/VAT-Entries-Nachweis.",
     "compliance": "COMPLIANCE-002-EINVOICE-SETUP: E-Rechnungs-/E-Documents-/Versandprofil-/Change-Log-Setup nur mit Freigabe, UI-first Klickpfad, Validierungs-/Versand-/Auditnachweis und klarer Labor-/DE-Trennung.",
     "fixedAssets": "FIXEDASSETS-004-SETUP-OR-POSTING: MACHINES, FA-CNC-01, HGB, K30000 oder Anlagenbuchung nur mit Freigabe und UI-first Evidence.",
-    "security": "SECURITY-002-USER-PERMISSION-SETUP: Benutzer-/Berechtigungs-/Profil-/Security-Group-/User-Setup-/Job-Queue-/Change-Log-Aenderungen nur mit Freigabe, UI-first Klickpfad, Rechte-/SoD-Matrix und Audit-/Review-Evidence."
+    "security": "SECURITY-002-USER-PERMISSION-SETUP: Benutzer-/Berechtigungs-/Profil-/Security-Group-/User-Setup-/Job-Queue-/Change-Log-Aenderungen nur mit Freigabe, UI-first Klickpfad, Rechte-/SoD-Matrix und Audit-/Review-Evidence.",
+    "migration": "MIGRATION-002-CONFIGURATION-PACKAGES-IMPORT: Configuration Packages, Datenimport, Opening-Balance-Journale oder Cutover-Ausfuehrung nur mit Freigabe, UI-first Klickpfad, Abstimmprotokoll und Rueckfallregel."
   },
   "doNotRepeat": [
     "Do not repeat O2C posting for UAT-O2C-001",
@@ -103,6 +106,7 @@
     "COMPLIANCE-001 checked chapter 22 read-only: E-Rechnungen, VAT Entries, VAT Posting Setup, Document Sending Profiles, Change Log Entries and Change Log Setup are visible/contextually visible as Tell-Me/Role-Center readiness; no VAT setup, no e-invoice sending/validation, no Change Log setup, no posting and no German final compliance proof.",
     "COMPLIANCE-002 synced chapter 22 with COMPLIANCE-001: the chapter now separates German target proof from RM-DEMO read-only navigation/readiness, keeps VAT19/e-invoice/Change-Log/GoBD final proof open and leaves COMPLIANCE-002-EINVOICE-SETUP plus TAX-002-DE-VAT-FIT gate-locked.",
     "SECURITY-001 checked chapter 27/admin contexts read-only: Permission Sets, Profiles Roles, Security Groups, User Setup, Job Queue Entries and Change Log Entries are visible/contextually visible; Users was not stable as a Tell-Me target in this run. No user, permission, profile, security group, user setup, job queue or change log changes were made.",
-    "SECURITY-002 synced chapter 27 with SECURITY-001: the chapter now separates profile/role, permission sets, security groups, user setup, job queue and change log as different check fields. It explicitly marks SECURITY-001 as read-only readiness, not SoD/security final proof. Practical security setup remains gate-locked."
+    "SECURITY-002 synced chapter 27 with SECURITY-001: the chapter now separates profile/role, permission sets, security groups, user setup, job queue and change log as different check fields. It explicitly marks SECURITY-001 as read-only readiness, not SoD/security final proof. Practical security setup remains gate-locked.",
+    "MIGRATION-001 synced chapter 28 without a BC run: migration, opening balances and cutover are now separated as target fields. No configuration package, import, new company, opening-balance posting, setup change or masterdata change was executed. INV008-899959 remains training/opening-balance lab logic, not production migration proof."
   ]
 }

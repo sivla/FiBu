@@ -69,6 +69,6 @@ Ohne Gate:
 
 ## Naechster Schritt
 
-Ohne Freigabe: `MIGRATION-001-READINESS` fuer Kapitel 28 als read-only/Buch-Zielbild-Sync vorbereiten. Keine Datenmigration, keine Opening-Balance-Buchung, kein Import und keine neue Company.
+Ohne Freigabe: `MIGRATION-001` ist erledigt. Naechster sicherer Schritt ist `INTEGRATIONS-001-READINESS` fuer Kapitel 29 als read-only/Buch-Zielbild-Sync. Keine Extension installieren, keine API-/Connector-Einrichtung, kein Power-Platform-/Power-BI-Setup und kein produktiver Integrationslauf.
 
 Mit Freigabe: `SECURITY-002-USER-PERMISSION-SETUP` als UI-first Admin-Lauf mit Testbenutzer, Rollen-/Permission-Set-/Security-Group-Matrix, SoD-Review und Audit-Evidence.

@@ -13,6 +13,6 @@ Status: `book-sync`, `labor`, `no-posting`, `no-setup-change`, `not-final`, `de-
 
 ## Naechster Schritt
 
-Ohne Gate: `MIGRATION-001-READINESS` fuer Kapitel 28 als read-only/Buch-Zielbild-Sync.
+Ohne Gate: `MIGRATION-001` ist erledigt. Naechster sicherer Schritt ist `INTEGRATIONS-001-READINESS` fuer Kapitel 29 als read-only/Buch-Zielbild-Sync.
 
 Mit Gate: `SECURITY-002-USER-PERMISSION-SETUP` fuer einen echten UI-first Security-Setup-Lauf.

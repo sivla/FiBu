@@ -57,4 +57,4 @@ Ohne ausdrueckliche Freigabe darf daraus kein Setup-, Versand-, Validierungs- od
 
 ## Naechster sinnvoller Schritt ohne Freigabe
 
-`SECURITY-001` und `SECURITY-002` sind inzwischen erledigt. Naechster Schritt ohne Gate: `MIGRATION-001-READINESS`, Kapitel 28 als read-only/Buch-Zielbild-Sync vorbereiten. Keine Datenmigration, keine Opening-Balance-Buchung, kein Import und keine neue Company.
+`SECURITY-001`, `SECURITY-002` und `MIGRATION-001` sind inzwischen erledigt. Naechster Schritt ohne Gate: `INTEGRATIONS-001-READINESS`, Kapitel 29 als read-only/Buch-Zielbild-Sync vorbereiten. Keine Extension installieren, keine API-/Connector-Einrichtung, kein Power-Platform-/Power-BI-Setup und kein produktiver Integrationslauf.

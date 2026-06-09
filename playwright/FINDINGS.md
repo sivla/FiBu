@@ -1042,3 +1042,21 @@ Fuer Anfaenger ist das besonders wichtig, weil Business Central Compliance-Funkt
 | Buchstelle | Kapitel 27 Security, Rollen, Benutzer und Governance; Kapitel 39 Betrieb/Automatisierung |
 
 Fuer Anfaenger ist diese Trennung zentral: Business Central zeigt Benutzer, Rollen/Profile, Berechtigungssaetze, Security Groups, User Setup, Job Queue und Change Log als getrennte Arbeitsorte. Wer nur einen Suchtreffer sieht, hat noch nicht bewiesen, dass ein Benutzer richtig berechtigt ist, dass Funktionstrennung eingehalten wird oder dass Aenderungen revisionssicher protokolliert werden.
+
+## FIND-BC-MIG-001 Migration ist kein Import-Klick
+
+| Feld | Wert |
+|---|---|
+| Status | erledigt als Buch-Sync; praktische Migration-/Opening-Balance-Linie gate-gesperrt |
+| Quelle | `MIGRATION-001` |
+| Screenshot | keine neuen Screenshots; Buch-/Readiness-Sync |
+| Evidence | `playwright/projects/fibu-book5/evidence/migration-001/MIGRATION-001-READINESS.md`, `playwright/projects/fibu-book5/evidence/migration-001/MIGRATION-001-result.json`, `playwright/projects/fibu-book5/evidence/migration-001/README.md` |
+| BC-Seite | nicht ausgefuehrt; Kapitel 28 Zielbild |
+| sichtbarer Text / Werte | `Configuration Packages`, `Opening Balances`, `Cutover`, `INV008-899959` |
+| Elementtyp | Migration-/Opening-Balance-Readiness / Gate-Grenze |
+| erste Hypothese | Kapitel 28 darf nicht so wirken, als sei ein Import oder eine Saldenuebernahme nur ein technischer Klick. |
+| Testergebnis | `MIGRATION-001` hat Kapitel 28 gegen den aktuellen Laborstand synchronisiert. Es gab keinen BC-Lauf, kein Konfigurationspaket, keinen Import, keine neue Company und keine Opening-Balance-Buchung. |
+| Entscheidung | Kapitel 28 trennt jetzt Datenqualitaet/Migration, Opening-Balance-Buchungslogik und Cutover. `INV008-899959` bleibt Trainings-/Opening-Balance-Laborlogik und kein produktiver Migrationsendstand. |
+| Buchstelle | Kapitel 28 Migration, Opening Balances und Cutover |
+
+Fuer Anfaenger ist das wichtig, weil Migration sonst wie ein Excel-Upload wirkt. In Business Central muessen Stammdatenqualitaet, Buchungsgruppen, Dimensionen, Anfangssalden, Nebenbuecher, Lagerwerte und Freigaben zusammenpassen. Ein Importwerkzeug ersetzt keine fachliche Abstimmung.

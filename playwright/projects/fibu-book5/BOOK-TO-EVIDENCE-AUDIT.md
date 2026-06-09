@@ -16,6 +16,8 @@ Update nach `POSTING-TRACE-002`: Die O2C-Postenspur ist im Buch nicht mehr nur a
 
 Update nach `MANUFACTURING-002`: Kapitel 14 ist mit der read-only Manufacturing-Readiness synchronisiert. Sichtbare Manufacturing-Einstiege und Artikel `RM-M100`/`RAW-STEEL` beweisen noch keine Produktionsfaehigkeit; `COMP-CTRL`, `KIT-MAINT`, BOM/Routing, `PROD-3001`, Verbrauch, Output und Postenspur bleiben offen/gate-gesperrt. `INV008-899959` ist Trainingsbestand und kein Manufacturing-Output.
 
+Update nach `MIGRATION-001`: Kapitel 28 ist als Read-only-/Buch-Zielbild-Sync dokumentiert. Migration, Opening Balances und Cutover werden getrennt; es gab keinen BC-Lauf, kein Konfigurationspaket, keinen Import, keine neue Company und keine Opening-Balance-Buchung. `INV008-899959` bleibt Trainings-/Opening-Balance-Laborlogik, kein produktiver Migration- oder Cutover-Finalnachweis.
+
 ## Leitentscheidung
 
 `RM-DEMO` bleibt der konsolidierte Lern- und Labor-Mandant in Sandbox `MCP_1_20260210`. Die Ziel-Companies `RM-PROD`, `RM-SALES`, `RM-SERVICE`, `RM-SHARED` und `RM-AT` sind Buchziel fuer einen spaeteren Mehr-Company-/Greenfield-Block. Sie werden nicht als naechster Reflex angelegt. Zuerst werden Buchanforderungen, aktuelle Evidence und RM-DEMO-Setup synchronisiert.
@@ -131,8 +133,8 @@ Fazit: O2C ist als CRONUS-USA-Laborprozess fachlich weitgehend synchronisiert, a
 
 ```text
 Arbeite auf Branch codex/playwright-bc-screenshot-foundation.
-Lies CURRENT-STATE.md, BOOK-TO-EVIDENCE-AUDIT.md, LAB-FIT-STATUS.md und evidence/reporting-008/REPORTING-008-ANALYSIS-VIEW-FIT-READINESS.md.
-Wenn eine ausdrueckliche Freigabe vorliegt, fuehre einen idempotenten Analysis-View-Laborfit fuer PRODUCTLINE/CHANNEL durch und pruefe danach Analysis by Dimensions/Financial Reports. Ohne Freigabe keinen weiteren gleichen read-only Reportingpfad wiederholen; stattdessen Buch-/Evidence-Sync oder einen anderen freigegebenen Block bearbeiten.
+Lies AUTOPILOT-STATE.json, POSTING-AND-SETUP-GATES.md, CURRENT-STATE.md, BOOK-TO-EVIDENCE-AUDIT.md, LAB-FIT-STATUS.md und Kapitel 29.
+`MIGRATION-001` ist erledigt. Ohne Freigabe fuehre `INTEGRATIONS-001-READINESS` als read-only/Buch-Zielbild-Sync durch: keine Extension installieren, keine API-/Connector-Einrichtung, kein Power-Platform-/Power-BI-Setup und kein produktiver Integrationslauf.
 ```
 
 ## Grenzen
