@@ -78,6 +78,6 @@ Kapitel 29 wurde so eingeordnet, dass es keine produktive Integration simuliert.
 
 ## Naechster Schritt
 
-Ohne Gate: `OPERATIONS-001-READINESS` als Kapitel-30-Buch-/Zielbild-Sync vorbereiten. Keine Job Queue anlegen oder starten, kein Monitoring-Connector einrichten, keine Telemetrie-/Admin-Aenderung und keine Produktivumgebung anfassen.
+Ohne Gate: `OPERATIONS-001` ist inzwischen erledigt. Naechster sicherer Block ist `SOLUTIONARCHITECT-001-READINESS` als Kapitel-31-Buch-/Zielbild-Sync. Keine AL-/Extension-Entwicklung, keine produktive Architekturentscheidung umsetzen und keine Setup-/Buchungs-/Integrationsaenderung.
 
 Mit Gate: spaeter `INTEGRATIONS-002-SETUP-OR-CONNECTOR` fuer genau einen Integrationskandidaten freigeben, inklusive UI-first Klickpfad, UAT, Rollen/Berechtigungen, Fehlerfall, Rollback, Monitoring und Support Owner.

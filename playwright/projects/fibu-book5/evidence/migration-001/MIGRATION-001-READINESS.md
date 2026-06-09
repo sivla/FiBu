@@ -70,6 +70,6 @@ Kapitel 28 wurde so eingeordnet, dass `RM-DEMO` keine produktive Migration simul
 
 ## Naechster Schritt
 
-Ohne Gate: `INTEGRATIONS-001` ist inzwischen erledigt. Naechster sicherer Block ist `OPERATIONS-001-READINESS` als Kapitel-30-Buch-/Zielbild-Sync. Keine Job Queue anlegen oder starten, kein Monitoring-Connector einrichten, keine Telemetrie-/Admin-Aenderung und keine Produktivumgebung anfassen.
+Ohne Gate: `INTEGRATIONS-001` und `OPERATIONS-001` sind inzwischen erledigt. Naechster sicherer Block ist `SOLUTIONARCHITECT-001-READINESS` als Kapitel-31-Buch-/Zielbild-Sync. Keine AL-/Extension-Entwicklung, keine produktive Architekturentscheidung umsetzen und keine Setup-/Buchungs-/Integrationsaenderung.
 
 Mit Gate: spaeter einen UI-first Migrations-Readiness-Lauf fuer Configuration Packages planen, aber erst nach ausdruecklicher Freigabe und ohne Import in Produktiv- oder Fremdmandanten.

@@ -1,0 +1,52 @@
+{
+  "testId": "OPERATIONS-001",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "dataBasis": "CRONUS USA",
+  "workType": "book-sync",
+  "mode": "read-only",
+  "chapter": 30,
+  "title": "Betrieb Monitoring Hypercare Readiness",
+  "bcExecution": false,
+  "posting": false,
+  "setupChanged": false,
+  "masterDataChanged": false,
+  "jobQueueChanged": false,
+  "jobQueueStarted": false,
+  "telemetryChanged": false,
+  "adminCenterChanged": false,
+  "monitoringConnectorSetupChanged": false,
+  "productionEnvironmentTouched": false,
+  "sources": [
+    "FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md#30",
+    "playwright/projects/fibu-book5/AUTOPILOT-STATE.json",
+    "playwright/projects/fibu-book5/POSTING-AND-SETUP-GATES.md",
+    "playwright/projects/fibu-book5/evidence/integrations-001/README.md",
+    "https://learn.microsoft.com/en-us/dynamics365/business-central/admin-job-queues-schedule-tasks",
+    "https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/administration/telemetry-overview",
+    "https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/administration/tenant-admin-center"
+  ],
+  "proves": [
+    "Kapitel 30 ist als Betriebs-, Monitoring- und Hypercare-Zielbild gegen den aktuellen RM-DEMO-Laborstand synchronisiert.",
+    "Job Queues, Telemetrie, Admin Center, Monitoring und Hypercare werden als eigene Betriebsnachweise statt als Prozessbuchung behandelt.",
+    "Der naechste praktische Operations-Hebel ist gatepflichtig."
+  ],
+  "doesNotProve": [
+    "Keine Job Queue wurde angelegt, gestartet oder geaendert.",
+    "Keine Job-Queue-Log Entries wurden live gelesen.",
+    "Keine Telemetrie- oder Application-Insights-Konfiguration wurde geaendert.",
+    "Kein Admin Center wurde geoeffnet oder veraendert.",
+    "Kein Monitoring-Connector wurde eingerichtet.",
+    "Keine Produktivumgebung wurde geoeffnet.",
+    "Kein deutscher Betriebs-, Support-, Release-Wave- oder Hypercare-Finalnachweis."
+  ],
+  "gateRelevant": [
+    "OPERATIONS-002-JOB-QUEUE-OR-MONITORING-SETUP",
+    "SECURITY-002-USER-PERMISSION-SETUP",
+    "INTEGRATIONS-002-SETUP-OR-CONNECTOR",
+    "COMPLIANCE-002-EINVOICE-SETUP"
+  ],
+  "gateApproved": false,
+  "nextBestStepWithoutApproval": "SOLUTIONARCHITECT-001-READINESS: Kapitel 31 Business Central Solution Architect Pfad als read-only/Buch-Zielbild-Sync vorbereiten; keine AL-/Extension-Entwicklung, keine produktive Architekturentscheidung umsetzen und keine Setup-/Buchungs-/Integrationsaenderung.",
+  "nextBestStepWithApproval": "OPERATIONS-002-JOB-QUEUE-OR-MONITORING-SETUP: genau einen Betriebshebel UI-first freigeben, zum Beispiel Job Queue Log/Status oder Monitoring-/Telemetry-Kontext, mit Vorher/Nachher, Support Owner, Rueckfallregel und klarer Labor-/DE-Trennung."
+}

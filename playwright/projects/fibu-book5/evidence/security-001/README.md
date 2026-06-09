@@ -15,4 +15,4 @@ Status: `labor`, `read-only`, `security-readiness`, `no-posting`, `no-setup-chan
 
 ## Naechster Schritt
 
-SECURITY-002, MIGRATION-001 und INTEGRATIONS-001 sind erledigt. Kapitel 27, 28 und 29 sind synchronisiert. Ohne Gate ist der naechste sichere Schritt `OPERATIONS-001-READINESS`: Kapitel 30 als read-only/Buch-Zielbild-Sync vorbereiten, keine Job Queue anlegen oder starten, kein Monitoring-Connector einrichten, keine Telemetrie-/Admin-Aenderung und keine Produktivumgebung anfassen.
+SECURITY-002, MIGRATION-001, INTEGRATIONS-001 und OPERATIONS-001 sind erledigt. Kapitel 27, 28, 29 und 30 sind synchronisiert. Ohne Gate ist der naechste sichere Schritt `SOLUTIONARCHITECT-001-READINESS`: Kapitel 31 als read-only/Buch-Zielbild-Sync vorbereiten, keine AL-/Extension-Entwicklung, keine produktive Architekturentscheidung umsetzen und keine Setup-/Buchungs-/Integrationsaenderung.

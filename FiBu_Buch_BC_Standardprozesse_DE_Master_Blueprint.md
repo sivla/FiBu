@@ -5516,6 +5516,20 @@ Akzeptanzkriterium: Monatsrechnung, Abgrenzung, Mietobjektstatus und Rückgabe s
 
 Nach dem Go-Live beginnt die eigentliche Bewährungsprobe. Business Central muss überwacht, erklärt, korrigiert und stabilisiert werden. Hypercare ist die Phase, in der kleine Fehler noch schnell sichtbar werden, bevor sie Monatsabschluss oder Tagesgeschäft gefährden.
 
+### Status des Labor-Nachweises in `RM-DEMO`
+
+| Feld | Stand |
+|---|---|
+| Evidence | `OPERATIONS-001` |
+| Laborstatus | Buch-/Zielbild-Sync ohne BC-Lauf |
+| Praktisch ausgefuehrt | keine Job Queue angelegt oder gestartet, kein Monitoring-Connector eingerichtet, keine Telemetrie-/Admin-Aenderung, keine Produktivumgebung geoeffnet |
+| Was das belegt | Betrieb, Monitoring und Hypercare sind eigene Nachweisschichten nach Prozess, Postenspur, Security, Migration und Integration |
+| Was offen bleibt | Live-Nachweis fuer Job-Queue-Status, Job-Queue-Log, Telemetrie/Application Insights, Admin Center, Support Owner, Hypercare-Tickets, Release-Wave-Nachtest und Betriebsreview |
+| Gate | `OPERATIONS-002-JOB-QUEUE-OR-MONITORING-SETUP` erforderlich, bevor Job Queue, Monitoring, Telemetrie, Admin Center oder produktionsnahe Betriebsfunktionen praktisch geaendert werden |
+| Deutscher Finalnachweis | offen; Zielumgebung, deutsche Rollen/Supportverantwortung, Monitoring-Prozess und Release-Wave-Nachtest muessen spaeter separat belegt werden |
+
+Fuer Einsteiger ist der wichtigste Punkt: Ein sichtbarer Einstieg wie `Aufgabenwarteschlangenposten (Job Queue Entries)` beweist noch keinen stabilen Betrieb. Er zeigt nur, wo automatische Laeufe spaeter kontrolliert werden. Ein belastbarer Betriebsnachweis braucht immer Kontext: betroffene Company, Seite, Benutzer, Uhrzeit mit Zeitzone, Fehlerbild, Job-/Integrationsbezug, verantwortlicher Owner, Massnahme und Nachtest.
+
 ### Hypercare-Plan
 
 | Zeitraum | Fokus | tägliche Fragen |

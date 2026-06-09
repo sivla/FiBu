@@ -38,6 +38,24 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 
 ## Aktuelle Fundstellen
 
+## FIND-BC-OPS-001 Operations-Readiness ist kein eingerichtetes Monitoring
+
+| Feld | Wert |
+|---|---|
+| Status | erledigt als Buch-Sync; praktische Operations-/Monitoring-Linie gate-gesperrt |
+| Quelle | `OPERATIONS-001` |
+| Screenshot | keine neuen Screenshots; Buch-/Readiness-Sync |
+| Evidence | `playwright/projects/fibu-book5/evidence/operations-001/OPERATIONS-001-READINESS.md`, `playwright/projects/fibu-book5/evidence/operations-001/OPERATIONS-001-result.json`, `playwright/projects/fibu-book5/evidence/operations-001/README.md` |
+| BC-Seite | nicht ausgefuehrt; Kapitel 30 Zielbild |
+| sichtbarer Text / Werte | `Aufgabenwarteschlangenposten (Job Queue Entries)`, Telemetrie/Application Insights, Admin Center, Support Owner, Hypercare-Protokoll |
+| Elementtyp | Operations-/Monitoring-/Hypercare-Readiness / Gate-Grenze |
+| erste Hypothese | Kapitel 30 darf nicht so wirken, als sei Betrieb schon bewiesen, nur weil Job Queue, Telemetrie oder Admin Center als Begriffe bekannt sind. |
+| Testergebnis | `OPERATIONS-001` hat Kapitel 30 gegen den aktuellen Laborstand synchronisiert. Es gab keinen BC-Lauf, keine Job Queue, keinen Monitoring-Connector, keine Telemetrie-/Admin-Aenderung, keine Produktivumgebung und keine Buchung. |
+| Entscheidung | Kapitel 30 trennt jetzt Betriebszielbild und Laborstatus. Praktisches Operations-Setup bleibt Gate-Folgearbeit mit `OPERATIONS-002-JOB-QUEUE-OR-MONITORING-SETUP`. |
+| Buchstelle | Kapitel 30 Betrieb, Monitoring und Hypercare |
+
+Fuer Anfaenger ist das wichtig, weil Betrieb nicht bedeutet, irgendwo eine Admin-Seite zu oeffnen. Ein belastbarer Betriebsnachweis braucht Fehlerbild, Uhrzeit, Company, Benutzer, Job-/Integrationskontext, Telemetrie- oder Log-Hinweis, Support Owner, Massnahme und Nachtest.
+
 ## FIND-BC-INT-001 Integrations-Readiness ist keine eingerichtete Integration
 
 | Feld | Wert |

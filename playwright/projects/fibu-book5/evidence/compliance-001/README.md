@@ -20,4 +20,4 @@ Status: `labor`, `read-only`, `compliance-readiness`, `no-posting`, `no-setup-ch
 
 ## Naechster Schritt
 
-`COMPLIANCE-002`, `SECURITY-001`, `SECURITY-002`, `MIGRATION-001` und `INTEGRATIONS-001` sind erledigt. Kapitel 22, 27, 28 und 29 trennen diese Evidence jetzt vom deutschen Zielbild. VAT-, E-Documents-, Versandprofil-, Change-Log-, Security-, Migration- und Integrations-Setup bleiben ohne ausdrueckliches Gate gesperrt. Ohne Gate ist der naechste sichere Schritt `OPERATIONS-001-READINESS`.
+`COMPLIANCE-002`, `SECURITY-001`, `SECURITY-002`, `MIGRATION-001`, `INTEGRATIONS-001` und `OPERATIONS-001` sind erledigt. Kapitel 22, 27, 28, 29 und 30 trennen diese Evidence jetzt vom deutschen Zielbild. VAT-, E-Documents-, Versandprofil-, Change-Log-, Security-, Migration-, Integrations- und Operations-Setup bleiben ohne ausdrueckliches Gate gesperrt. Ohne Gate ist der naechste sichere Schritt `SOLUTIONARCHITECT-001-READINESS`.

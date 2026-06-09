@@ -15,4 +15,4 @@ Dieser Lauf hat keine Business-Central-Oberflaeche geoeffnet und keine technisch
 
 ## Naechste Grenze
 
-Ohne Gate ist Kapitel 29 erledigt als Buch-/Readiness-Sync. Naechster sicherer Block ohne Setup- oder Buchungsfreigabe ist `OPERATIONS-001-READINESS` fuer Kapitel 30 Betrieb, Monitoring und Hypercare.
+Ohne Gate ist Kapitel 29 erledigt als Buch-/Readiness-Sync. `OPERATIONS-001` hat den naechsten sicheren Block inzwischen erledigt. Naechster sicherer Block ohne Setup- oder Buchungsfreigabe ist jetzt `SOLUTIONARCHITECT-001-READINESS` fuer Kapitel 31.

@@ -57,4 +57,4 @@ Ohne ausdrueckliche Freigabe darf daraus kein Setup-, Versand-, Validierungs- od
 
 ## Naechster sinnvoller Schritt ohne Freigabe
 
-`SECURITY-001`, `SECURITY-002`, `MIGRATION-001` und `INTEGRATIONS-001` sind inzwischen erledigt. Naechster Schritt ohne Gate: `OPERATIONS-001-READINESS`, Kapitel 30 als read-only/Buch-Zielbild-Sync vorbereiten. Keine Job Queue anlegen oder starten, kein Monitoring-Connector einrichten, keine Telemetrie-/Admin-Aenderung und keine Produktivumgebung anfassen.
+`SECURITY-001`, `SECURITY-002`, `MIGRATION-001`, `INTEGRATIONS-001` und `OPERATIONS-001` sind inzwischen erledigt. Naechster Schritt ohne Gate: `SOLUTIONARCHITECT-001-READINESS`, Kapitel 31 als read-only/Buch-Zielbild-Sync vorbereiten. Keine AL-/Extension-Entwicklung, keine produktive Architekturentscheidung umsetzen und keine Setup-/Buchungs-/Integrationsaenderung.
