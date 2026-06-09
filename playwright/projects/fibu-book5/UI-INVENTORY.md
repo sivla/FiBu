@@ -166,19 +166,19 @@ Wenn das Projekt fertig ist, kennen wir Business Central für den Buchumfang nic
 | Planning / Purchase | Requisition Worksheets | n/a | Tell-Me-Suche | moeglichen BC-Standardpfad fuer Beschaffungs-/Drop-Shipment-Verknuepfung finden | `DROPSHIPPING-001` | `playwright/projects/fibu-book5/img/dropshipping-001-030-requisition-worksheets-tell-me.png`; `evidence/dropshipping-001/` | gesehen/verstanden als Navigationskandidat; keine Worksheet-Aktion | Kapitel 17 |
 | Setup / Purchase | Drop Shipments / Purchasing Codes | n/a | Tell-Me-Suche | Drop-Shipment-/Purchasing-Code-Kontext vor Prozesslauf finden | `DROPSHIPPING-001` | `playwright/projects/fibu-book5/img/dropshipping-001-040-drop-shipments-tell-me.png`; `playwright/projects/fibu-book5/img/dropshipping-001-050-purchasing-codes-tell-me.png`; `evidence/dropshipping-001/` | `Purchasing Codes` sichtbar; `Drop Shipments` nicht stabil sichtbar; kein Setup | Kapitel 17 |
 | Stammdaten | Customer / Vendor / Item | 22/27/31 | gefilterte Listen, breite Layoutansicht | Dropshipping-Kunde, Direktlieferant und Ersatzteil pruefen | `DROPSHIPPING-001` | `playwright/projects/fibu-book5/img/dropshipping-001-060-customer-d11000.png`; `playwright/projects/fibu-book5/img/dropshipping-001-070-vendor-k20000.png`; `playwright/projects/fibu-book5/img/dropshipping-001-080-item-sp-pump-01.png`; `evidence/dropshipping-001/` | `D11000`, `K20000` und `SP-PUMP-01` nicht sichtbar; keine Anlage, keine Buchung | Kapitel 17 |
+| Buch-Sync | Kapitel 17 | n/a | Statusbox vor Schrittfolge | sichtbare Dropshipping-Einstiege als Readiness statt Prozessfaehigkeit erklaeren | `DROPSHIPPING-002` | `evidence/dropshipping-002/` | erledigt als Buch-/Evidence-Sync; `DS-24001` bleibt Zielpfad, Setup und Buchung gate-gesperrt | Kapitel 17 |
 
 ## Naechste Inventarziele
 
 | Reihenfolge | Ziel |
 |---:|---|
-| 1 | `DROPSHIPPING-002-BOOK-SYNC` starten: Kapitel 17 mit der Readiness synchronisieren, Zielpfad `DS-24001` von Laborstand trennen |
-| 2 | Dropshipping-Setup nur mit Gate fortsetzen: `D11000`, `K20000`, `SP-PUMP-01` und Drop-Shipment-/Purchasing-Code-Logik bleiben UI-first Setup-Folgearbeit |
-| 3 | Project-Setup nur mit Gate fortsetzen: Projekt `PROJ-5001`, Ressource `RES-TECH`, Material `SP-SENSOR-02` und Lagerort `PROJ-LAG` bleiben UI-first Setup-Folgearbeit |
-| 4 | Reporting weiterfuehren: `REPORTING-009` hat den einfachen Sachposten-Dimensionspfad read-only ausgeschoepft; `REPORTING-008` definiert den Analysis-View-Fit fuer `PRODUCTLINE=MACHINE` und `CHANNEL=B2B` als naechsten Hebel; nur mit eigener Freigabe umsetzen, sonst keinen weiteren gleichen read-only Reportingpfad wiederholen |
-| 5 | Postenspur-Lernatlas `POSTING-TRACE-001` ist erledigt: O2C, P2P und Inventory erklaeren Beleg, Nebenbuchposten, Sachposten, Artikelposten, Wertposten und Bericht als gemeinsame Anfaengerkette; keine weitere `INV008`-Buchung |
-| 6 | Sachposten-Dimensionspfad nicht erneut als naechstes Ziel einplanen: `REPORTING-009` hat ihn read-only geprueft und als Teil-/Negativbefund dokumentiert |
-| 7 | Steuerfit: CRONUS-USA-Probelauf weiter vom deutschen Ziel-Fall `19 %` trennen |
-| 8 | Warehouse- und Manufacturing-Setup nur mit Gate: `WAREHOUSE-002` und `MANUFACTURING-002` sind als Buch-Sync erledigt |
+| 1 | Dropshipping-Setup nur mit Gate fortsetzen: `D11000`, `K20000`, `SP-PUMP-01` und Drop-Shipment-/Purchasing-Code-Logik bleiben UI-first Setup-Folgearbeit |
+| 2 | Project-Setup nur mit Gate fortsetzen: Projekt `PROJ-5001`, Ressource `RES-TECH`, Material `SP-SENSOR-02` und Lagerort `PROJ-LAG` bleiben UI-first Setup-Folgearbeit |
+| 3 | Reporting weiterfuehren: `REPORTING-009` hat den einfachen Sachposten-Dimensionspfad read-only ausgeschoepft; `REPORTING-008` definiert den Analysis-View-Fit fuer `PRODUCTLINE=MACHINE` und `CHANNEL=B2B` als naechsten Hebel; nur mit eigener Freigabe umsetzen, sonst keinen weiteren gleichen read-only Reportingpfad wiederholen |
+| 4 | Postenspur-Lernatlas `POSTING-TRACE-001` ist erledigt: O2C, P2P und Inventory erklaeren Beleg, Nebenbuchposten, Sachposten, Artikelposten, Wertposten und Bericht als gemeinsame Anfaengerkette; keine weitere `INV008`-Buchung |
+| 5 | Sachposten-Dimensionspfad nicht erneut als naechstes Ziel einplanen: `REPORTING-009` hat ihn read-only geprueft und als Teil-/Negativbefund dokumentiert |
+| 6 | Steuerfit: CRONUS-USA-Probelauf weiter vom deutschen Ziel-Fall `19 %` trennen |
+| 7 | Warehouse- und Manufacturing-Setup nur mit Gate: `WAREHOUSE-002` und `MANUFACTURING-002` sind als Buch-Sync erledigt |
 
 ## Definition of Done fuer eine Funktion
 Eine Funktion gilt erst als erledigt, wenn:

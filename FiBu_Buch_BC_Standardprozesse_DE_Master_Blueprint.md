@@ -3119,7 +3119,20 @@ Dieses Kapitel zeigt, wie Rhein-Main einen Dropshipping- und Sonderverkaufsfall 
 | Betroffene Companies | RM-SALES, RM-SHARED |
 | MB-800-Relevanz | Ja: Verkaufsauftrag, Einkaufsbestellung, Preise, USt, Belegkorrektur, Integrationsgrundlagen |
 | Solution-Architect-Relevanz | Ja: Dropshipping-Prozessdesign, Belegverknuepfung, Steuerlogik, Extension-Grenze |
-| Ergebnis nach dem Kapitel | Du kannst Verkaufsauftrag, Dropshipping-Verknuepfung, USt-Pruefung, Marge und Korrekturfall fuer `DS-24001` ausfuehren. |
+| Ergebnis nach dem Kapitel | Du verstehst den Zielpfad fuer Verkaufsauftrag, Dropshipping-Verknuepfung, USt-Pruefung, Marge und Korrekturfall fuer `DS-24001`; die praktische Ausfuehrung braucht vorher den belegten Stammdaten- und Setup-Fit. |
+
+### Status des Kapitels im Projekt
+
+| Feld | Stand |
+|---|---|
+| Buchziel | Sonderverkaufsauftrag `DS-24001` fuer Debitor `D11000`, Artikel `SP-PUMP-01`, Menge `2`, Preis `850 EUR`, Direktlieferant `K20000`, Dimension `CHANNEL = B2B`, deutscher 19-%-USt-Zielfall |
+| RM-DEMO-Labor | `DROPSHIPPING-001` ist nur Readiness: `Sales Orders`, `Purchase Orders`, `Requisition Worksheets` und `Purchasing Codes` sind sichtbar; `Drop Shipments` ist in diesem Lauf kein stabiler Treffer |
+| Fehlende Zielobjekte | `D11000`, `K20000` und `SP-PUMP-01` sind in `RM-DEMO` nicht als konkrete Nummern sichtbar |
+| Buchung erfolgt | nein |
+| Setup geaendert | nein |
+| Evidence Pack | `playwright/projects/fibu-book5/evidence/dropshipping-001/` |
+| Offene Grenzen | Debitor, Kreditor, Artikel, Purchasing-Code-/Drop-Shipment-Logik, Auftrag `DS-24001`, Einkaufsbestellung, Preview Posting, Postenspur, deutscher Finalnachweis |
+| Nicht behaupten | keinen fertigen Dropshipping-Prozess, keine gebuchte Verkaufs-/Einkaufsrechnung, keine deutsche `19 %` USt, keinen Shopify-/Online-Store-Scope |
 
 ### Alltagsszene bei Rhein-Main
 
@@ -3128,6 +3141,8 @@ Um 7:45 Uhr erfasst RM-SALES einen Sonderverkaufsauftrag `DS-24001` fuer Debitor
 ### Für absolute Einsteiger erklärt
 
 Ein Dropshipping-Auftrag ist in Business Central ein Verkaufsfall mit fremder Direktlieferung. Rhein-Main verkauft an den Kunden, aber der Lieferant liefert direkt. Dadurch entsteht im Standard kein normaler Lagerabgang aus dem eigenen Lager. Entscheidend sind Debitor, Artikel, Preis, USt, Dropshipping-Kennzeichen und die Verbindung zur Einkaufsbestellung.
+
+Im aktuellen `RM-DEMO`-Labor ist das noch kein ausfuehrbarer Klickpfad. Die Menueeinstiege sind sichtbar, aber die konkreten Zielstammdaten fehlen. Fuer Einsteiger ist das ein wichtiger Befund: Wenn `D11000`, `K20000` oder `SP-PUMP-01` nicht gefunden werden, ist nicht der Klickpfad falsch. Dann fehlt die Voraussetzung fuer den Prozess.
 
 ### Warum braucht Rhein-Main diesen Prozess?
 
@@ -3171,8 +3186,8 @@ Rhein-Main nutzt eine klare Regel: Dropshipping wird vor der Buchung entschieden
 5. Oeffne `Einkaufsbestellungen (Purchase Orders)` und erstelle oder verknuepfe die Bestellung an Kreditor `K20000`.
 6. Pruefe in der Einkaufszeile den Bezug zum Verkaufsauftrag `DS-24001` beziehungsweise zur erzeugten Verkaufsauftragsnummer.
 7. Oeffne den Verkaufsauftrag und waehle `Buchungsvorschau (Preview Posting)`.
-8. Buche die Verkaufsrechnung erst, wenn Preview und Einkaufsbezug stimmen.
-9. Buche die verknuepfte Einkaufsrechnung von `K20000`.
+8. Buche die Verkaufsrechnung erst, wenn Preview, Einkaufsbezug, Steuerlogik und Lager-Negativnachweis fachlich freigegeben sind.
+9. Buche die verknuepfte Einkaufsrechnung von `K20000` erst nach derselben Freigabe.
 10. Oeffne `Debitorenposten`, `Kreditorenposten`, `Sachposten` und `USt-Posten` mit Belegnummerfilter.
 11. Oeffne `Artikelposten (Item Ledger Entries)`; bei reinem Dropshipping darf kein eigener Lagerabgang aus `FRA-ZL` entstehen.
 12. Dokumentiere Verkaufserloes, Einkaufskosten, USt und Kanal `B2B` beziehungsweise den spaeter freigegebenen Zielkanal.
@@ -3185,7 +3200,7 @@ Ein Dropshipping-Fall wirkt fuer Einsteiger wie ein normaler Verkauf. In Busines
 
 Der Payment-Status ist ein eigener Kontrollpunkt. Eine gebuchte Verkaufsrechnung ist noch nicht bezahlt, solange Debitorenposten, Zahlung und Ausgleich nicht zusammenpassen. Wenn der Auftrag fakturiert ist, Business Central aber einen offenen Debitorenposten ohne Zahlung hat, ist der Prozess nicht abgeschlossen.
 
-Retouren sind ebenfalls kein Lagertrick. Wenn `D11000` einen Shopartikel zurücksendet, entscheidet Rhein-Main zuerst, ob die Ware physisch zurückkommt, ob sie direkt zum Lieferanten geht oder ob nur eine Gutschrift ohne Warenrücklauf erfolgt. Daraus folgt, ob eine Verkaufsgutschrift, Einkaufsrücksendung, Lagerbewegung oder reine Finanzkorrektur nötig ist.
+Retouren sind ebenfalls kein Lagertrick. Wenn `D11000` einen Sonderverkaufsartikel zuruecksendet, entscheidet Rhein-Main zuerst, ob die Ware physisch zurueckkommt, ob sie direkt zum Lieferanten geht oder ob nur eine Gutschrift ohne Warenruecklauf erfolgt. Daraus folgt, ob eine Verkaufsgutschrift, Einkaufsruecksendung, Lagerbewegung oder reine Finanzkorrektur noetig ist.
 
 ### Buchungsspur
 
@@ -3227,13 +3242,15 @@ Ungebuchte Verkaufsauftraege und Einkaufsbestellungen werden korrigiert oder neu
 | Konkrete Testdaten | Sonderverkaufsauftrag `DS-24001`, Debitor `D11000`, Artikel `SP-PUMP-01`, Menge `2`, Verkaufspreis `850 EUR` je Stueck, Dropshipping-Kreditor `K20000`, `CHANNEL = B2B`, Inland USt `19 %` als deutsches Zielbild |
 | Startseite ueber `Alt+Q` | `Verkaufsauftraege (Sales Orders)` und `Einkaufsbestellungen (Purchase Orders)` |
 | Exakte Felder und Werte | `Debitorennr. = D11000`, `Art = Artikel`, `Nr. = SP-PUMP-01`, `Menge = 2`, `VK-Preis = 850`, `Dropshipping = Ja`, `Einkauf von Kreditor = K20000`, Dimension `CHANNEL = B2B` |
-| Auszufuehrende Aktion | Verkaufsauftrag pruefen, Dropshipping-Einkaufsbestellung erstellen/verknuepfen, Verkauf fakturieren und Einkaufseingangsrechnung pruefen |
+| Auszufuehrende Aktion | Zielpfad nach Stammdaten-/Setup-Fit: Verkaufsauftrag pruefen, Dropshipping-Einkaufsbestellung erstellen/verknuepfen, Verkauf fakturieren und Einkaufseingangsrechnung pruefen |
 | Erwartete Belege | Verkaufsauftrag `DS-24001`, Dropshipping-Einkaufsbestellung, gebuchte Verkaufsrechnung, gebuchte Einkaufsrechnung |
 | Erwartete Posten | `Debitorenposten (Customer Ledger Entries)`, `Kreditorenposten (Vendor Ledger Entries)`, `Sachposten (G/L Entries)`, `USt-Posten (VAT Entries)` |
-| Kontrollbericht | Shop-Abstimmung, Margenbericht, `USt-Posten (VAT Entries)` |
+| Kontrollbericht | Dropshipping-/Margenabstimmung, Margenbericht, `USt-Posten (VAT Entries)` |
 | Fehlerfrage | Woran erkennst du, ob `SP-PUMP-01` wirklich als Dropshipping und nicht als eigener Lagerabgang gebucht wurde? |
 
 ### Lösung
+
+Aktueller Laborhinweis: `DROPSHIPPING-001` hat diese Loesung noch nicht ausgefuehrt. Die Schritte sind der Zielpfad fuer einen spaeteren UI-first Lauf nach Gate-Freigabe. Vorher muessen `D11000`, `K20000`, `SP-PUMP-01` und die Drop-Shipment-/Purchasing-Code-Logik in `RM-DEMO` sichtbar belegt sein.
 
 1. Oeffne `Alt+Q`, suche `Verkaufsauftraege (Sales Orders)` und erstelle oder oeffne den Auftrag `DS-24001`.
 2. Pruefe Debitor `D11000`, Artikel `SP-PUMP-01`, Menge `2`, Preis `850 EUR` und `CHANNEL = B2B`.
@@ -3258,17 +3275,17 @@ Ungebuchte Verkaufsauftraege und Einkaufsbestellungen werden korrigiert oder neu
 | Rolle | Vertrieb, Einkauf, Finance |
 | Voraussetzung | `D11000`, `SP-PUMP-01`, `K20000` und Dimension `CHANNEL = B2B` sind vorhanden; deutscher USt-Finalnachweis bleibt separater Zielmandant |
 | Testdaten | `DS-24001`, `D11000`, `SP-PUMP-01`, Menge `2`, `850 EUR`, `K20000`, Inland USt `19 %` als deutsches Zielbild |
-| Exakte Schrittfolge | 1. Oeffne `Verkaufsauftraege (Sales Orders)` ueber `Alt+Q`.<br>2. Erstelle oder oeffne `DS-24001` und pruefe Debitor `D11000`.<br>3. Pruefe Artikel `SP-PUMP-01`, Menge `2`, Preis `850 EUR`.<br>4. Setze/pruefe `Dropshipping = Ja`.<br>5. Oeffne `Einkaufsbestellungen (Purchase Orders)` und verknuepfe Kreditor `K20000`.<br>6. Buche Verkauf und Einkauf mit `Buchungsvorschau (Preview Posting)`.<br>7. Pruefe `Debitorenposten`, `Kreditorenposten`, `Sachposten` und `USt-Posten`.<br>8. Pruefe, dass kein eigener `Artikelposten` aus `FRA-ZL` gebucht wurde.<br>9. Oeffne Margenbericht. |
+| Exakte Schrittfolge | Zielpfad nach Gate: 1. Oeffne `Verkaufsauftraege (Sales Orders)` ueber `Alt+Q`.<br>2. Erstelle oder oeffne `DS-24001` und pruefe Debitor `D11000`.<br>3. Pruefe Artikel `SP-PUMP-01`, Menge `2`, Preis `850 EUR`.<br>4. Setze/pruefe `Dropshipping = Ja`.<br>5. Oeffne `Einkaufsbestellungen (Purchase Orders)` und verknuepfe Kreditor `K20000`.<br>6. Pruefe die Buchungsvorschau, bevor Verkauf oder Einkauf gebucht werden.<br>7. Pruefe `Debitorenposten`, `Kreditorenposten`, `Sachposten` und `USt-Posten`.<br>8. Pruefe, dass kein eigener `Artikelposten` aus `FRA-ZL` gebucht wurde.<br>9. Oeffne Margenbericht. |
 | Erwartete Belege | Verkaufsauftrag, Einkaufsbestellung, gebuchte Verkaufsrechnung, gebuchte Einkaufsrechnung |
 | Erwartete Posten | `Debitorenposten (Customer Ledger Entries)`, `Kreditorenposten (Vendor Ledger Entries)`, `Sachposten (G/L Entries)`, `USt-Posten (VAT Entries)`; keine eigene Lagerbewegung bei reinem Dropshipping |
-| Kontrollbericht | Shop-Abstimmung, Margenbericht, `USt-Posten (VAT Entries)` |
+| Kontrollbericht | Dropshipping-/Margenabstimmung, Margenbericht, `USt-Posten (VAT Entries)` |
 | Akzeptanzkriterium | Verkauf, Einkauf, USt und Marge sind ueber Belegnummern verbunden; Lager wird bei Dropshipping nicht faelschlich belastet. |
 | Evidence Pack | Verkaufsauftrag, Einkaufsbestellung, gebuchte Rechnungen, Postenfilter, Margenbericht, Negativtest |
 | Absichtlich falsche Eingabe | Artikelmapping auf `SP-PUMP-99` statt `SP-PUMP-01` setzen |
 | Erwartetes Fehlverhalten | Der falsche Artikel wird verkauft oder beschafft; Marge und Nachlieferlogik stimmen nicht. |
 | Diagnosepfad | Verkaufszeile, Einkaufszeile und Margenbericht auf Artikelnummer vergleichen; `Artikelposten (Item Ledger Entries)` auf falsche Nummer pruefen. |
 | Erlaubter Korrekturweg | Mapping korrigieren, ungebuchten Auftrag neu erzeugen; bei gebuchter falscher Rechnung Verkaufs- und Einkaufsgutschrift erstellen und Auftrag mit `SP-PUMP-01` neu buchen. |
-| Nicht erlaubt | Gebuchte Rechnung direkt ändern, Shopdaten ohne BC-Korrektur überschreiben oder Lagerposten manuell löschen. |
+| Nicht erlaubt | Gebuchte Rechnung direkt aendern, Dropshipping-/Sonderverkaufsdaten ohne BC-Korrektur ueberschreiben oder Lagerposten manuell loeschen. |
 
 ### In 5 Minuten merken
 
