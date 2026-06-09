@@ -42,16 +42,16 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 
 | Feld | Wert |
 |---|---|
-| Status | erledigt als Laborbuchung, Buch-/Evidence-Sync und Bankposten-read-only `PAYMENTS-013` |
-| Quelle | `PAYMENTS-011`, `PAYMENTS-012`, `PAYMENTS-013` |
+| Status | erledigt als Laborbuchung, Buch-/Evidence-Sync, Bankposten-read-only und Bankposten-Buch-Sync `PAYMENTS-014` |
+| Quelle | `PAYMENTS-011`, `PAYMENTS-012`, `PAYMENTS-013`, `PAYMENTS-014` |
 | Screenshot | `playwright/projects/fibu-book5/img/payments-011-060-customer-ledger-invoice-after-payment.png`, `playwright/projects/fibu-book5/img/payments-011-062-detailed-customer-ledger-payment.png`, `playwright/projects/fibu-book5/img/payments-011-064-gl-entries-payment.png`, `playwright/projects/fibu-book5/img/payments-013-020-page-372-document-no.png` |
-| Evidence | `playwright/projects/fibu-book5/evidence/payments-011/README.md`, `playwright/projects/fibu-book5/evidence/payments-011/PAYMENTS-011-result.json`, `playwright/projects/fibu-book5/evidence/payments-011/PAYMENTS-011-LAB-PAYMENT.md`, `playwright/projects/fibu-book5/evidence/payments-012/PAYMENTS-012-BOOK-SYNC.md`, `playwright/projects/fibu-book5/evidence/payments-013/PAYMENTS-013-result.json` |
+| Evidence | `playwright/projects/fibu-book5/evidence/payments-011/README.md`, `playwright/projects/fibu-book5/evidence/payments-011/PAYMENTS-011-result.json`, `playwright/projects/fibu-book5/evidence/payments-011/PAYMENTS-011-LAB-PAYMENT.md`, `playwright/projects/fibu-book5/evidence/payments-012/PAYMENTS-012-BOOK-SYNC.md`, `playwright/projects/fibu-book5/evidence/payments-013/PAYMENTS-013-result.json`, `playwright/projects/fibu-book5/evidence/payments-014/PAYMENTS-014-BANK-LEDGER-BOOK-SYNC.md` |
 | BC-Seite | Cash Receipt Journal, Customer Ledger Entries, Detailed Customer Ledger Entries, G/L Entries, Bank Account Ledger Entries |
 | sichtbarer Text / Werte | `PAY011-PS103297`, `PS-INV103297`, `Remaining Amount = 0,00`, `Applied Entries = 1`, `Payment Discount`, `Application`, `15110`, `18200`, `40910`, `BANK-RM-01`, `67.673,60`, `Entry No. 4995` |
 | Elementtyp | Buchung / Postenspur / Zahlungsbedingung / Skonto |
 | erste Hypothese | Eine Zahlung ist fuer Anfaenger oft nur eine Bankbewegung. Business Central erzeugt aber je nach Zahlungsbedingung zusaetzlich Ausgleichs- und Skonto-/Discount-Posten. |
 | Testergebnis | `PAYMENTS-011` hat genau eine UI-first Laborzahlung gebucht. Die Rechnung ist im Debitorenposten ausgeglichen; Detailed Customer Ledger Entries zeigen `Initial Entry`, `Payment Discount` und `Application`; G/L Entries zeigen Forderung, Bankwirkung und Discounts. `PAYMENTS-013` zeigt Bank Account Ledger Entries ueber Page `372`; der alte Page-371-Pfad bleibt rejected. |
-| Entscheidung | Kapitel 19/20 erklaeren Zahlung, Ausgleich, Skonto, Sachposten und Bankposten als unterschiedliche Nachweisschichten. Bankabstimmung bleibt ein separater Gate-Prozess. |
+| Entscheidung | Kapitel 19/20 erklaeren Zahlung, Ausgleich, Skonto, Sachposten und Bankposten als unterschiedliche Nachweisschichten. Kapitel 20 ist seit `PAYMENTS-014` mit dem Page-372-Bankpostenpfad synchronisiert. Bankabstimmung bleibt ein separater Gate-Prozess. |
 | Buchstelle | Kapitel 19 Debitoren, Kreditoren und OP-Ausgleich; Kapitel 20 Bank, Payments und Bankabstimmung |
 
 Fuer Anfaenger ist das wichtig, weil die OP-Wahrheit nicht am Journal endet. Nach dem Buchen muss man Rechnung, Zahlungsbeleg, detaillierte Debitorenposten und Sachposten lesen: Erst dort sieht man, ob der Posten wirklich ausgeglichen ist und ob Skonto/Payment Discount gebucht wurde.
@@ -70,7 +70,7 @@ Fuer Anfaenger ist das wichtig, weil die OP-Wahrheit nicht am Journal endet. Nac
 | erste Hypothese | Der vorherige Page-371-Pfad war die falsche oder nicht belastbare Zielseite fuer Bank Account Ledger Entries. |
 | Recherchequelle | praktischer UI-Lauf `PAYMENTS-013`; kein Setup, keine API, keine Bankabstimmung |
 | Testergebnis | Tell-Me zeigt `Bank Account Ledger Entries` als Kandidat. Page `372` mit Filter auf `Document No. = PAY011-PS103297` und auf `Bank Account No. = BANK-RM-01` zeigt den Bankposten. Page `371` bleibt als Legacy-Pfad rejected. |
-| Entscheidung | Buch und Evidence-Pack sollen erklaeren: Bankwirkung in Sachposten ist nicht identisch mit Bankposten. Fuer den Bankposten-Nachweis wird Page `372` genutzt; Bankabstimmung bleibt offen und braucht ein eigenes Gate. |
+| Entscheidung | Buch und Evidence-Pack erklaeren seit `PAYMENTS-014`: Bankwirkung in Sachposten ist nicht identisch mit Bankposten. Fuer den Bankposten-Nachweis wird Page `372` genutzt; Bankabstimmung bleibt offen und braucht ein eigenes Gate. |
 | Buchstelle | Kapitel 20 Bank, Payments und Bankabstimmung |
 
 Fuer Anfaenger ist das ein sauberer Bedienhinweis: Wenn ein Bankposten gesucht wird, muss die Seite wirklich `Bankposten / Bank Account Ledger Entries` zeigen. Ein technisch falscher Page-ID-Pfad kann leer wirken, obwohl die Buchung fachlich korrekt ist.
@@ -108,7 +108,7 @@ Fuer Anfaenger ist das wichtig, weil Business Central im Zahlungsjournal schnell
 | erste Hypothese | Ein Quellenverweis kann so wirken, als sei der fachliche Prozess bereits praktisch bewiesen. Tatsaechlich erklaert eine Quelle nur Regel, Zielbild oder Recherchepfad; der Projektbeweis braucht konkrete RM-DEMO-Evidence. |
 | Recherchequelle | vorhandenes Quellenverzeichnis, `ARTIFACTS-001`, `LEARNPATH-001`, `MB800-001`, `SCOPE-001`, Autopilot-State und Gates; kein Live-URL-Audit in diesem Lauf |
 | Testergebnis | `SOURCES-001` hat Kapitel 40 ohne BC-Lauf synchronisiert. Quellen sind jetzt als Standardreferenz, amtliche Steuer-/Compliance-Quelle, optionale Vendor-Dokumentation, gestrichener Scope-Hinweis oder konkrete Projekt-Evidence eingeordnet. |
-| Entscheidung | Kapitel 40 trennt Quellen, Labor-Evidence und deutschen Finalnachweis. `Q10` Shopify bleibt nur Out-of-Scope-Marker. `PAYMENTS-012` ist inzwischen erledigt; naechster sicherer Block ist `PAYMENTS-014-BANK-LEDGER-BOOK-SYNC`. |
+| Entscheidung | Kapitel 40 trennt Quellen, Labor-Evidence und deutschen Finalnachweis. `Q10` Shopify bleibt nur Out-of-Scope-Marker. `PAYMENTS-012` ist inzwischen erledigt; naechster sicherer Block ist `GOVERNANCE-006-NEXT-GATE-DECISION`. |
 | Buchstelle | Kapitel 40 Quellenverzeichnis |
 
 Fuer Anfaenger ist das wichtig, weil eine gute Quelle Orientierung gibt, aber nicht zeigt, was im eigenen Mandanten wirklich eingerichtet, geklickt, gebucht oder blockiert war.
@@ -127,7 +127,7 @@ Fuer Anfaenger ist das wichtig, weil eine gute Quelle Orientierung gibt, aber ni
 | erste Hypothese | Ein Template oder Handover-Dokument kann so wirken, als sei der Nachweis bereits erbracht. Tatsaechlich ist es nur die Struktur, in die echte BC-Evidence eingeordnet wird. |
 | Recherchequelle | vorhandenes Evidence-Modell, Autopilot-State, Gates, Coverage, UI-Inventar und Kapitel 39; keine neue Microsoft-Learn-Behauptung in diesem Lauf |
 | Testergebnis | `ARTIFACTS-001` hat Kapitel 39 ohne BC-Lauf synchronisiert. Artefakte werden jetzt als Kontroll- und Uebergabeschicht erklaert, nicht als Prozess-, Screenshot-, Buchungs- oder deutscher Finalnachweis. |
-| Entscheidung | Kapitel 39 trennt Templates, Handover und echte Evidence. `SOURCES-001` hat den Folgeblock inzwischen erledigt; `PAYMENTS-012` ist inzwischen erledigt; naechster sicherer Block ist `PAYMENTS-014-BANK-LEDGER-BOOK-SYNC`. |
+| Entscheidung | Kapitel 39 trennt Templates, Handover und echte Evidence. `SOURCES-001` hat den Folgeblock inzwischen erledigt; `PAYMENTS-012` ist inzwischen erledigt; naechster sicherer Block ist `GOVERNANCE-006-NEXT-GATE-DECISION`. |
 | Buchstelle | Kapitel 39 Projektartefakte |
 
 Fuer Anfaenger ist das wichtig, weil eine gute Vorlage zwar sagt, was zu pruefen ist, aber noch nicht zeigt, dass Business Central den Prozess wirklich mit den richtigen Daten, Feldern, Posten und Berichten getragen hat.
@@ -146,7 +146,7 @@ Fuer Anfaenger ist das wichtig, weil eine gute Vorlage zwar sagt, was zu pruefen
 | erste Hypothese | Ein Indexeintrag oder eine hohe Reifegradbewertung darf nicht so wirken, als sei der jeweilige Prozess praktisch getestet, gebucht und final nachgewiesen. |
 | Recherchequelle | vorhandenes UI-Inventar, Coverage, Screenshot-QA, Autopilot-State und Gates; keine neue Microsoft-Learn-Behauptung in diesem Lauf |
 | Testergebnis | `PAGESINDEX-001` hat Kapitel 38 ohne BC-Lauf synchronisiert. Der Prozesskatalog ist jetzt Zielbild und Steuerungsrahmen, nicht Sammelbeweis fuer alle Business-Central-Prozesspfade. |
-| Entscheidung | Kapitel 38 trennt jetzt Index, Zielpfad, QA-Rahmen, echte Klickpfad-Evidence, Labor-Nachweis und offenen deutschen Finalnachweis. `SOURCES-001` hat Kapitel 40 inzwischen synchronisiert; `PAYMENTS-012` ist inzwischen erledigt; naechster sicherer Block ist `PAYMENTS-014-BANK-LEDGER-BOOK-SYNC`. |
+| Entscheidung | Kapitel 38 trennt jetzt Index, Zielpfad, QA-Rahmen, echte Klickpfad-Evidence, Labor-Nachweis und offenen deutschen Finalnachweis. `SOURCES-001` hat Kapitel 40 inzwischen synchronisiert; `PAYMENTS-012` ist inzwischen erledigt; naechster sicherer Block ist `GOVERNANCE-006-NEXT-GATE-DECISION`. |
 | Buchstelle | Kapitel 38 Seitenindex, Prozesskatalog und Qualitaetssicherung |
 
 Fuer Anfaenger ist das wichtig, weil ein Buchindex beim Finden hilft, aber nicht beweist, dass der Prozess in Business Central schon richtig eingerichtet, gebucht, kontrolliert und mit Postenspur verstanden wurde.

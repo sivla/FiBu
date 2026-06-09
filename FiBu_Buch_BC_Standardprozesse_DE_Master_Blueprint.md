@@ -3620,6 +3620,15 @@ Die folgende Uebung beschreibt das deutsche Zielbild. Im aktuellen `RM-DEMO`-Lab
 ## 20. Bank, Payments und Bankabstimmung
 Dieses Kapitel zeigt, wie Rhein-Main Bankumsätze importiert, zuordnet und abstimmt. Nach dem Kapitel kannst du den Zahlungseingang zu `SO-1001` über das Zahlungsabstimmungs Buch.-Blatt buchen und die Bankkontenabstimmung nachweisen.
 
+Status:
+- Buchziel: Bankumsatz importieren oder erfassen, Zahlung dem richtigen offenen Debitorenposten zuordnen, Bankposten erzeugen und Bankkonto abstimmen.
+- RM-DEMO-Labor: `PAYMENTS-011` bucht die Zahlung `PAY011-PS103297` zu `PS-INV103297`; `PAYMENTS-013` belegt den Bankposten ueber `Bank Account Ledger Entries` / Page `372` mit `BANK-RM-01`, Betrag `67.673,60` und Entry No. `4995`.
+- DE-Finalnachweis: offen; deutsche Bank-/Compliance-/Kontoauszugslogik wurde nicht final nachgewiesen.
+- Buchung erfolgt: ja, genau eine CRONUS-USA-Laborzahlung in `PAYMENTS-011`; keine weitere Zahlung in `PAYMENTS-013` oder `PAYMENTS-014`.
+- Evidence Pack: `evidence/payments-011/`, `evidence/payments-012/`, `evidence/payments-013/`, `evidence/payments-014/`.
+- Offene Grenzen: keine Bankabstimmung, kein Kontoauszugsimport, keine Kreditorenzahlung, kein deutscher Finalnachweis.
+- Nicht behaupten: Der sichtbare Bankposten ist keine gebuchte Bankabstimmung. Page `371` ist fuer diesen Nachweis verworfen; der belastbare Laborpfad ist Page `372`.
+
 ### Kapitelbox
 
 | Feld | Inhalt |
@@ -3639,6 +3648,9 @@ Auf `BANK-RM-01` geht am `30.06.2026` eine Zahlung über `80.920 EUR` ein. Der V
 ### Für absolute Einsteiger erklärt
 
 Bankabstimmung bedeutet: Der Bankauszug und Business Central müssen denselben Kontostand erklären. Eine Zahlung im Bankauszug ist erst dann fachlich erledigt, wenn sie in BC gebucht, dem richtigen Debitor zugeordnet und mit dem offenen Posten ausgeglichen ist.
+
+Laborbefund `PAYMENTS-013`/`PAYMENTS-014`:
+Die Zahlung `PAY011-PS103297` ist nicht nur im Debitorenposten und in den Sachposten sichtbar. Business Central zeigt dazu auch einen Bankposten. Der belastbare UI-Pfad im Labor ist `Bank Account Ledger Entries` / Page `372`. Dort sind `PAY011-PS103297`, `BANK-RM-01`, Betrag `67.673,60`, Entry No. `4995` und `Related G/L Entries` sichtbar. Das beweist die Bankposten-Schicht, aber noch nicht die Bankabstimmung. Fuer Anfaenger ist das eine wichtige Grenze: Bankposten erklaeren, dass BC eine Bankbewegung gebucht hat; Bankabstimmung erklaert erst, ob diese Bewegung mit einem Kontoauszug abgestimmt wurde.
 
 ### Deutsche BC-Seiten
 
