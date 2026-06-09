@@ -7,8 +7,8 @@
   "company": "RM-DEMO",
   "dataBasis": "CRONUS USA",
   "activeArea": "security",
-  "lastCompletedRun": "SECURITY-001",
-  "lastWorkType": "read-only-evidence-run",
+  "lastCompletedRun": "SECURITY-002",
+  "lastWorkType": "book-sync",
   "postedInLastRun": false,
   "latestPostedDocuments": {
     "o2c": {
@@ -63,7 +63,7 @@
     "P2P-REPOST-001",
     "INVENTORY-REPOST-INV008"
   ],
-  "nextBestStepWithoutApproval": "SECURITY-002-BOOK-SYNC: Kapitel 27 mit SECURITY-001 synchronisieren; Rolle/Profil, Permission Sets, Security Groups, User Setup, Job Queue und Change Log als getrennte Prueffelder erklaeren. Ohne Gate keine Benutzer-, Berechtigungs-, Profil-, Security-Group-, User-Setup-, Change-Log- oder Job-Queue-Aenderung.",
+  "nextBestStepWithoutApproval": "MIGRATION-001-READINESS: Kapitel 28 Migration, Opening Balances und Cutover als read-only/Buch-Zielbild-Sync vorbereiten; keine Datenmigration, keine Opening-Balance-Buchung, kein Import und keine neue Company.",
   "nextBestStepWithApproval": {
     "payments": "PAYMENTS-011-LAB-PAYMENT: kontrollierte Laborzahlung nur mit ausdruecklicher Freigabe, Postenspur und Bank-/OP-Evidence.",
     "reporting": "REPORTING-011-ANALYSIS-VIEW-FIT: idempotenten Analysis-View-Fit fuer PRODUCTLINE/CHANNEL nur mit Freigabe einrichten/aktualisieren.",
@@ -77,6 +77,7 @@
     "Do not repeat P2P posting for UAT-P2P-001",
     "Do not repeat INV008 inventory posting",
     "Do not repeat reporting read-only negative paths REPORTING-003 to REPORTING-009 without a new approved setup or official path",
+    "Do not repeat SECURITY-001 read-only admin/security Tell-Me checks without a new UI path or setup gate",
     "Do not plan Shopify/Online Store scope"
   ],
   "notes": [
@@ -101,6 +102,7 @@
     "INTERCOMPANY-002 synced chapter 18 with INTERCOMPANY-001: chapter 18 now marks IC-7001 as target path, visible IC/VAT entry points as readiness only, missing D20000/D30000/D90000 as setup gaps and Intercompany process as gate-locked.",
     "COMPLIANCE-001 checked chapter 22 read-only: E-Rechnungen, VAT Entries, VAT Posting Setup, Document Sending Profiles, Change Log Entries and Change Log Setup are visible/contextually visible as Tell-Me/Role-Center readiness; no VAT setup, no e-invoice sending/validation, no Change Log setup, no posting and no German final compliance proof.",
     "COMPLIANCE-002 synced chapter 22 with COMPLIANCE-001: the chapter now separates German target proof from RM-DEMO read-only navigation/readiness, keeps VAT19/e-invoice/Change-Log/GoBD final proof open and leaves COMPLIANCE-002-EINVOICE-SETUP plus TAX-002-DE-VAT-FIT gate-locked.",
-    "SECURITY-001 checked chapter 27/admin contexts read-only: Permission Sets, Profiles Roles, Security Groups, User Setup, Job Queue Entries and Change Log Entries are visible/contextually visible; Users was not stable as a Tell-Me target in this run. No user, permission, profile, security group, user setup, job queue or change log changes were made."
+    "SECURITY-001 checked chapter 27/admin contexts read-only: Permission Sets, Profiles Roles, Security Groups, User Setup, Job Queue Entries and Change Log Entries are visible/contextually visible; Users was not stable as a Tell-Me target in this run. No user, permission, profile, security group, user setup, job queue or change log changes were made.",
+    "SECURITY-002 synced chapter 27 with SECURITY-001: the chapter now separates profile/role, permission sets, security groups, user setup, job queue and change log as different check fields. It explicitly marks SECURITY-001 as read-only readiness, not SoD/security final proof. Practical security setup remains gate-locked."
   ]
 }

@@ -306,7 +306,7 @@ test('SECURITY-001 Admin-/Security-Readiness read-only pruefen', async ({ page }
       'Kein deutscher Security-/SoD-Finalnachweis.'
     ],
     nextStep:
-      'SECURITY-002-BOOK-SYNC: Kapitel 27 mit SECURITY-001 synchronisieren; Rolle/Profil, Permission Sets, Security Groups, User Setup, Job Queue und Change Log als getrennte Prueffelder erklaeren. Ohne Gate keine Benutzer-, Berechtigungs-, Profil-, Security-Group-, User-Setup-, Change-Log- oder Job-Queue-Aenderung.'
+      'SECURITY-002 ist erledigt. Ohne Gate naechster sicherer Schritt: MIGRATION-001-READINESS fuer Kapitel 28 als read-only/Buch-Zielbild-Sync; keine Datenmigration, keine Opening-Balance-Buchung, kein Import und keine neue Company.'
   };
 
   await writeJsonEvidence(securityEvidencePath('SECURITY-001-result.json'), result);

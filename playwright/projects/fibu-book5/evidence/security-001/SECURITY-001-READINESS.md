@@ -39,4 +39,4 @@ Status: `labor`, `read-only`, `security-readiness`, `no-posting`, `no-setup-chan
 
 ## Naechster Schritt
 
-SECURITY-002-BOOK-SYNC: Kapitel 27 mit SECURITY-001 synchronisieren; Rolle/Profil, Permission Sets, Security Groups, User Setup, Job Queue und Change Log als getrennte Prueffelder erklaeren. Ohne Gate keine Benutzer-, Berechtigungs-, Profil-, Security-Group-, User-Setup-, Change-Log- oder Job-Queue-Aenderung.
+SECURITY-002 ist erledigt. Kapitel 27 ist mit SECURITY-001 synchronisiert. Ohne Gate ist der naechste sichere Schritt `MIGRATION-001-READINESS`: Kapitel 28 als read-only/Buch-Zielbild-Sync vorbereiten, keine Datenmigration, keine Opening-Balance-Buchung, kein Import und keine neue Company.

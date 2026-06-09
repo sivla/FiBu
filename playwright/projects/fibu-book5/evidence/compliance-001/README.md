@@ -20,4 +20,4 @@ Status: `labor`, `read-only`, `compliance-readiness`, `no-posting`, `no-setup-ch
 
 ## Naechster Schritt
 
-`COMPLIANCE-002` ist erledigt. Kapitel 22 trennt diese Evidence jetzt vom deutschen Zielbild. VAT-, E-Documents-, Versandprofil- und Change-Log-Setup bleiben ohne ausdrueckliches Gate gesperrt. `SECURITY-001` ist inzwischen read-only erledigt; ohne Gate ist der naechste sichere Schritt `SECURITY-002-BOOK-SYNC` als Buch-/Anfaenger-Sync fuer Admin-/Security-Kontexte.
+`COMPLIANCE-002`, `SECURITY-001` und `SECURITY-002` sind erledigt. Kapitel 22 trennt diese Evidence jetzt vom deutschen Zielbild. VAT-, E-Documents-, Versandprofil- und Change-Log-Setup bleiben ohne ausdrueckliches Gate gesperrt. Ohne Gate ist der naechste sichere Schritt `MIGRATION-001-READINESS`.

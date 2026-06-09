@@ -5115,6 +5115,22 @@ Business Central lebt nicht nur durch operative Buchungen. Das System bleibt nur
 
 Microsoft Learn beschreibt Admin-Aufgaben wie Benutzer, Berechtigungen, UI-Anpassung, Setup Guides, Job Queues, Datenmigration und Troubleshooting. [Q69]
 
+### Status des Labor-Nachweises in RM-DEMO
+
+Status:
+- Buchziel: Benutzer, Rollen/Profile, Berechtigungssaetze, Security Groups, User Setup, Aufgabenwarteschlange und Change Log werden als getrennte Security- und Governance-Prueffelder verstanden.
+- RM-DEMO-Labor: `SECURITY-001` hat die Admin-/Security-Kontexte read-only geprueft. Sichtbar oder kontextuell sichtbar waren `Permission Sets`, `Profiles Roles`, `Security Groups`, `User Setup`, `Job Queue Entries` und `Change Log Entries`. `Users` war in diesem Tell-Me-Lauf nicht stabil sichtbar.
+- DE-Finalnachweis: offen. Ein deutscher Finalnachweis braucht Zielrollen, Testbenutzer, Permission Sets, Security Groups, SoD-Matrix, Review-Evidence und Audit-/Betriebsnachweise.
+- Buchung erfolgt: nein.
+- Setup/Stammdaten geaendert: nein.
+- Evidence Pack: `playwright/projects/fibu-book5/evidence/security-001/`.
+- Offene Grenzen: kein Benutzer wurde angelegt, keine Berechtigung zugewiesen, kein Profil geaendert, keine Security Group gepflegt, kein User Setup geaendert, kein Job Queue Entry angelegt oder gestartet und kein Change Log aktiviert.
+- Nicht behaupten: Sichtbare Admin-Seiten beweisen kein Rechtekonzept, keinen SoD-Test, keine aktive Protokollierung und keine deutsche Security-Finalabnahme.
+
+Fuer Einsteiger ist die wichtigste Trennung: Ein Profil oder eine Rolle formt vor allem die Oberflaeche und das Rollencenter. Ein Berechtigungssatz entscheidet, was ein Benutzer fachlich und technisch darf. Security Groups koennen Berechtigungen organisatorisch buendeln. User Setup kann fachliche Grenzen wie Buchungszeitraeume oder Genehmigerlogik beeinflussen. Job Queue Entries zeigen automatische Laeufe. Change Log Entries sind nur dann ein belastbarer Audit-Nachweis, wenn das Change Log vorher passend eingerichtet wurde.
+
+Im Laborlauf wurden diese Orte nur sichtbar gemacht. Das ist ein Orientierungsnachweis fuer das Buch, aber noch keine Admin-Einrichtung. Praktische Aenderungen an Benutzern, Berechtigungen, Profilen/Rollen, Security Groups, User Setup, Job Queue oder Change Log brauchen im Projekt ein eigenes Gate `SECURITY-002-USER-PERMISSION-SETUP`.
+
 ### Grundeinrichtung: Reihenfolge
 
 1. Companies anlegen.
