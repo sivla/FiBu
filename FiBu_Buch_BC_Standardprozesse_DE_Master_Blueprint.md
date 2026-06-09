@@ -2922,6 +2922,17 @@ Dieses Kapitel zeigt, wie RM-SERVICE eine Projektinstallation mit Aufgaben, Ress
 | Solution-Architect-Relevanz | Ja: Projektstruktur, WIP, Meilensteinrechnung, Projektreporting |
 | Ergebnis nach dem Kapitel | Du kannst Projektverbrauch, Projektposten, Meilensteinrechnung, Projektmarge und UAT-Nachweis für `PROJ-5001` ausführen und erklären. |
 
+### Evidence-Status PROJECTS-002
+
+| Ebene | Stand |
+|---|---|
+| Buchziel | `PROJ-5001` mit Debitor `D10000`, Projektaufgaben `1000`/`2000`/`3000`, Ressource `RES-TECH`, Material `SP-SENSOR-02`, Lagerort `PROJ-LAG`, WIP-/Statistikpruefung und Meilensteinrechnung. |
+| RM-DEMO-Labor | `PROJECTS-001` hat read-only nachgewiesen: `Projects`, `Project Planning Lines`, `Project Journals`, `Project Ledger Entries`, `Project Statistics` und `Project WIP` sind als Einstiege sichtbar; `D10000` ist sichtbar. |
+| Fehlende Zielobjekte | `PROJ-5001`, `RES-TECH`, `SP-SENSOR-02` und `PROJ-LAG` sind in `RM-DEMO` nicht als konkrete Nummern sichtbar. |
+| Nicht behaupten | Kein Projekt angelegt, keine Projektaufgaben, keine Projektplanzeilen, kein Projektjournal, keine WIP-Berechnung, keine Meilensteinrechnung, keine Projektposten und keine Buchung. |
+| Finalnachweis | Deutscher Zielmandant und finaler Projekt-End-to-End-Nachweis sind offen. |
+| Evidence Pack | `playwright/projects/fibu-book5/evidence/projects-001/` und `playwright/projects/fibu-book5/evidence/projects-002/`. |
+
 ### Alltagsszene bei Rhein-Main
 
 RM-SERVICE installiert für `D10000` die Sondermaschine `RM-X500`. Das Projekt `PROJ-5001` läuft über mehrere Wochen. Der Projektleiter plant Aufgaben, Technikerstunden, Sensoren und Fremdleistung. Nach Erreichen des Meilensteins erstellt Finance eine Rechnung über 40 Prozent.
@@ -2929,6 +2940,8 @@ RM-SERVICE installiert für `D10000` die Sondermaschine `RM-X500`. Das Projekt `
 ### Für absolute Einsteiger erklärt
 
 Ein Projekt sammelt Kosten und Erlöse über Zeit. Anders als ein einfacher Verkaufsauftrag ist nicht alles an einem Tag erledigt. Business Central nutzt Projektaufgaben, Projektplanzeilen, Projekt Buch.-Blätter und Projektposten, damit Material, Arbeit, Fremdleistung und Rechnung zusammenpassen.
+
+Ein sichtbarer Treffer `Projekte (Projects)` bedeutet nur: Der Arbeitsbereich ist erreichbar. Er beweist noch nicht, dass ein konkretes Projekt fertig eingerichtet ist. Fuer den Buchfall muessen vor der ersten Erfassung mindestens Projekt, Projektaufgaben, Debitor, Ressource, Materialartikel und Lagerort vorhanden sein. Wenn `PROJ-5001`, `RES-TECH`, `SP-SENSOR-02` oder `PROJ-LAG` fehlen, ist das kein Bedienfehler. Business Central kann dann keine saubere Kette aus Planzeile, Verbrauch, WIP-nahem Blick, Rechnung und Posten bilden.
 
 ### Warum braucht Rhein-Main diesen Prozess?
 
@@ -2982,6 +2995,8 @@ Diese Seiten öffnest du über `Alt+Q`. Der deutsche Begriff ist führend; der e
 - `Verkaufsrechnungen erstellen (Create Sales Invoice)`
 
 ### Schritt-für-Schritt
+
+Die folgende Schrittfolge ist der Zielpfad nach einem freigegebenen UI-first Projekt-Setup-Fit. Im aktuellen `RM-DEMO`-Labor ist sie noch nicht als End-to-End-Prozess auszufuehren, weil `PROJECTS-001` die noetigen Zielobjekte nicht gefunden hat und das Projekt-Gate gesperrt ist.
 
 1. Öffne `Alt+Q` und suche `Projekte (Projects)`.
 2. Öffne Projekt `PROJ-5001` für Debitor `D10000`.

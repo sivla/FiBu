@@ -155,12 +155,13 @@ Wenn das Projekt fertig ist, kennen wir Business Central für den Buchumfang nic
 | Projects | Project Ledger Entries | n/a | Tell-Me-Suche | spaeteren Nachweispfad fuer Projektposten finden | `PROJECTS-001` | `playwright/projects/fibu-book5/img/projects-001-040-project-ledger-entries-tell-me.png`; `evidence/projects-001/` | gesehen/verstanden als Postenpfad; keine Projektposten aus Zielprojekt | Kapitel 16 |
 | Projects | Project Statistics / Project WIP | n/a | Tell-Me-Suche | Kontrollbericht und WIP-Kontext sichtbar machen | `PROJECTS-001` | `playwright/projects/fibu-book5/img/projects-001-050-project-statistics-tell-me.png`; `playwright/projects/fibu-book5/img/projects-001-060-project-wip-tell-me.png`; `evidence/projects-001/` | gesehen/verstanden als Readiness; keine Statistik, keine WIP-Berechnung | Kapitel 16 |
 | Stammdaten | Customer / Resource / Item / Location | 22/77/31/15 | gefilterte Listen, breite Layoutansicht | Projektkunde, Technikerressource, Projektmaterial und Projektlager pruefen | `PROJECTS-001` | `playwright/projects/fibu-book5/img/projects-001-080-customer-d10000.png`; `playwright/projects/fibu-book5/img/projects-001-090-resource-res-tech.png`; `playwright/projects/fibu-book5/img/projects-001-100-item-sp-sensor-02.png`; `playwright/projects/fibu-book5/img/projects-001-110-location-proj-lag.png`; `evidence/projects-001/` | `D10000` sichtbar; `RES-TECH`, `SP-SENSOR-02` und `PROJ-LAG` nicht sichtbar; keine Anlage, keine Buchung | Kapitel 16 |
+| Buch-Sync | Kapitel 16 | n/a | Statusbox vor Schrittfolge | sichtbare Project-/Job-Seiten als Readiness statt Projektfaehigkeit erklaeren | `PROJECTS-002` | `evidence/projects-002/` | erledigt als Buch-/Evidence-Sync; `PROJ-5001` bleibt Zielpfad, Setup, WIP und Buchung gate-gesperrt | Kapitel 16 |
 
 ## Naechste Inventarziele
 
 | Reihenfolge | Ziel |
 |---:|---|
-| 1 | `PROJECTS-002-BOOK-SYNC` starten; `PROJECTS-001` hat Readiness belegt, aber Zielobjekte fehlen |
+| 1 | `DROPSHIPPING-001-READINESS` starten: Kapitel 17 als Dropshipping/Sonderverkauf ohne Shopify-Connector-Scope read-only pruefen; keine Verkaufs-/Einkaufsbuchung |
 | 2 | Project-Setup nur mit Gate fortsetzen: Projekt `PROJ-5001`, Ressource `RES-TECH`, Material `SP-SENSOR-02` und Lagerort `PROJ-LAG` bleiben UI-first Setup-Folgearbeit |
 | 3 | Reporting weiterfuehren: `REPORTING-009` hat den einfachen Sachposten-Dimensionspfad read-only ausgeschoepft; `REPORTING-008` definiert den Analysis-View-Fit fuer `PRODUCTLINE=MACHINE` und `CHANNEL=B2B` als naechsten Hebel; nur mit eigener Freigabe umsetzen, sonst keinen weiteren gleichen read-only Reportingpfad wiederholen |
 | 4 | Postenspur-Lernatlas `POSTING-TRACE-001` ist erledigt: O2C, P2P und Inventory erklaeren Beleg, Nebenbuchposten, Sachposten, Artikelposten, Wertposten und Bericht als gemeinsame Anfaengerkette; keine weitere `INV008`-Buchung |
