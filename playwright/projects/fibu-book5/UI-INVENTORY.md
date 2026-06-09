@@ -254,7 +254,7 @@ Wenn das Projekt fertig ist, kennen wir Business Central für den Buchumfang nic
 
 | Reihenfolge | Ziel |
 |---:|---|
-| 1 | `FIXEDASSETS-009-SETUP-GATE-READINESS`: kein BC-Lauf; vorhandene `FIXEDASSETS-001` bis `FIXEDASSETS-008` konsolidieren und ein eng gescoptes UI-first Setup-Gate fuer `MACHINES`, `HGB`, `FA-CNC-01` und `K30000` formulieren |
+| 1 | `FIXEDASSETS-010-SETUP-PREFLIGHT-READONLY`: UI-first read-only die sicheren Seitenanker, Feldpositionen und gescopten New-/Card-Aktionen fuer FA Posting Groups, Depreciation Books, Fixed Assets und Vendors pruefen; kein Setup, keine Buchung |
 | 2 | Intercompany-/Auslandprozess nur mit Gate fortsetzen: keine Company anlegen/wechseln, keinen IC-Partner, keinen Beleg `IC-7001`, keine Inbox/Outbox-Aktion und keine VAT-/Waehrungs-Aenderung ohne Freigabe |
 | 3 | Dropshipping-Setup nur mit Gate fortsetzen: `D11000`, `K20000`, `SP-PUMP-01` und Drop-Shipment-/Purchasing-Code-Logik bleiben UI-first Setup-Folgearbeit |
 | 4 | Project-Setup nur mit Gate fortsetzen: Projekt `PROJ-5001`, Ressource `RES-TECH`, Material `SP-SENSOR-02` und Lagerort `PROJ-LAG` bleiben UI-first Setup-Folgearbeit |

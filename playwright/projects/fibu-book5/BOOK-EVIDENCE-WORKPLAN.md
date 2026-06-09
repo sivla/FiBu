@@ -39,7 +39,7 @@ Dieser Arbeitsplan gleicht das Buch `FiBu_Buch_BC_Standardprozesse_DE_Master_Blu
 | Glossar Deutsch/Englisch/Tell-Me | Kapitel 37 als Such- und Begriffsschicht, nicht als neuer Klickpfadnachweis | `GLOSSARY-001` synchronisiert Kapitel 37 ohne BC-Lauf gegen UI-Inventar, Coverage und vorhandene Evidence; Begriffe werden als Buchsprache, Suchhilfe, belegter UI-Pfad oder offener Zielbegriff getrennt | Readiness/Buch-Sync belegt | Kapitel 38 ist mit `PAGESINDEX-001` erledigt; ohne Gate Kapitel 39 Projektartefakte/Handover/Repo-QA als Readiness-Sync. |
 | Seitenindex / Prozesskatalog / Qualitaetssicherung | Kapitel 38 als Index-, QA- und Prozesskatalogschicht, nicht als Sammelbeweis aller Klickpfade | `PAGESINDEX-001` synchronisiert Kapitel 38 ohne BC-Lauf gegen Coverage, UI-Inventar, Screenshot-QA, Autopilot-State und Gates; Indexeintrag, Zielpfad, praktische Evidence, Laborgrenze und DE-Finalnachweis sind getrennt | Readiness/Buch-Sync belegt | Ohne Gate Kapitel 39 Projektartefakte/Handover/Repo-QA als Readiness-Sync; praktische UI-/Setup-/Buchungslaeufe nur mit passendem Gate. |
 | Projektartefakte / Handover / Repo-QA | Kapitel 39 als Artefakt- und Uebergabeschicht, nicht als praktischer Prozessnachweis | `ARTIFACTS-001` synchronisiert Kapitel 39 ohne BC-Lauf gegen Evidence-Struktur, Autopilot-State, Gates und Artefakt-Governance; Templates, Handover-Dateien und Evidence-Pack-Platzhalter sind Kontrollartefakte, keine Prozess-Evidence | Readiness/Buch-Sync belegt | Ohne Gate Kapitel 40 Quellenverzeichnis als Readiness-Sync; praktische UI-/Setup-/Buchungslaeufe nur mit passendem Gate. |
-| Quellenverzeichnis / Primaerquellen | Kapitel 40 als Quellenregel, nicht als praktischer Prozessnachweis | `SOURCES-001` synchronisiert Kapitel 40 ohne BC-Lauf gegen Primaerquellenlogik, Microsoft-Learn-Bezug, amtliche Quellen, Vendor-Dokumentation, Evidence-Regeln und gestrichenen Shopify-Scope; Quellen sind Referenzen, keine RM-DEMO-Prozessbeweise | Readiness/Buch-Sync belegt | `GOVERNANCE-005`, `PAYMENTS-011`, `PAYMENTS-014`, `GOVERNANCE-006`, `REPORTING-011`, `REPORTING-012`, `GOVERNANCE-007`, `REPORTING-013`, `REPORTING-014`, `GOVERNANCE-008`, `TAX-002`, `GOVERNANCE-009`, `BOOK-O2C-FOUNDATION-DRIFT-SYNC`, `BOOK-REPORTING-UAT-K25-SYNC` und `GOVERNANCE-010` sind erledigt; naechster sicherer No-Approval-Block ist `FIXEDASSETS-009-SETUP-GATE-READINESS`, nicht ein Wiederholungslauf. |
+| Quellenverzeichnis / Primaerquellen | Kapitel 40 als Quellenregel, nicht als praktischer Prozessnachweis | `SOURCES-001` synchronisiert Kapitel 40 ohne BC-Lauf gegen Primaerquellenlogik, Microsoft-Learn-Bezug, amtliche Quellen, Vendor-Dokumentation, Evidence-Regeln und gestrichenen Shopify-Scope; Quellen sind Referenzen, keine RM-DEMO-Prozessbeweise | Readiness/Buch-Sync belegt | `GOVERNANCE-005`, `PAYMENTS-011`, `PAYMENTS-014`, `GOVERNANCE-006`, `REPORTING-011`, `REPORTING-012`, `GOVERNANCE-007`, `REPORTING-013`, `REPORTING-014`, `GOVERNANCE-008`, `TAX-002`, `GOVERNANCE-009`, `BOOK-O2C-FOUNDATION-DRIFT-SYNC`, `BOOK-REPORTING-UAT-K25-SYNC`, `GOVERNANCE-010` und `FIXEDASSETS-009` sind erledigt; naechster sicherer No-Approval-Block ist `FIXEDASSETS-010-SETUP-PREFLIGHT-READONLY`, nicht ein Setup- oder Buchungslauf. |
 
 ## Kritische Buchdrift
 
@@ -212,7 +212,7 @@ Empfohlene Reihenfolge nach Reporting/Steuer:
 
 ## Sofort naechster sinnvoller Schritt
 
-Der naechste sichere Schritt nach `GOVERNANCE-010-NEXT-NO-GATE-DECISION` ist kein Wiederholungslauf und kein praktischer BC-Lauf, sondern `FIXEDASSETS-009-SETUP-GATE-READINESS`. Dieser Lauf konsolidiert vorhandene Anlagen-Evidence und formuliert ein enges Setup-Gate, ohne Setup, Buchung oder Company-Wechsel.
+Der naechste sichere Schritt nach `FIXEDASSETS-009-SETUP-GATE-READINESS` ist kein Setup- oder Buchungslauf, sondern `FIXEDASSETS-010-SETUP-PREFLIGHT-READONLY`. Dieser Lauf prueft Business Central nur read-only auf sichere UI-Kontexte, Feldpositionen und gescopte New-/Card-Aktionen fuer den spaeteren Anlagen-Setup-Fit.
 
 Begruendung:
 
@@ -236,7 +236,7 @@ Minimaler Prompt fuer den naechsten Lauf:
 ```text
 Arbeite auf Branch codex/playwright-bc-screenshot-foundation.
 Lies AUTOPILOT-STATE.json, POSTING-AND-SETUP-GATES.md, CURRENT-STATE.md, BOOK-EVIDENCE-WORKPLAN.md, BOOK-TO-EVIDENCE-AUDIT.md und FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md.
-`GOVERNANCE-010-NEXT-NO-GATE-DECISION` ist erledigt: kein BC-Lauf, keine Buchung, keine Setup-Aenderung. Fuehre als naechsten No-Approval-Schritt `FIXEDASSETS-009-SETUP-GATE-READINESS` aus: vorhandene `FIXEDASSETS-001` bis `FIXEDASSETS-008` konsolidieren und ein frisches eng gescoptes UI-first Setup-Gate fuer `MACHINES`, `HGB`, `FA-CNC-01` und `K30000` formulieren, ohne etwas anzulegen, zu aendern oder zu buchen.
+`FIXEDASSETS-009-SETUP-GATE-READINESS` ist erledigt: kein BC-Lauf, keine Buchung, keine Setup-Aenderung. Fuehre als naechsten No-Approval-Schritt `FIXEDASSETS-010-SETUP-PREFLIGHT-READONLY` aus: Business Central nur read-only oeffnen und fuer FA Posting Groups, Depreciation Books, Fixed Assets und Vendors die konkreten UI-Kontexte, Feldpositionen und sicher gescopten New-/Card-Aktionen pruefen, ohne etwas anzulegen, zu aendern oder zu buchen.
 ```
 
 ## Nicht jetzt tun

@@ -6,9 +6,9 @@
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
   "dataBasis": "CRONUS USA",
-  "activeArea": "governance",
-  "lastCompletedRun": "GOVERNANCE-010-NEXT-NO-GATE-DECISION",
-  "lastWorkType": "governance-state-sync-no-bc-run",
+  "activeArea": "fixedassets",
+  "lastCompletedRun": "FIXEDASSETS-009-SETUP-GATE-READINESS",
+  "lastWorkType": "fixedassets-gate-readiness-no-bc-run",
   "postedInLastRun": false,
   "latestPostedDocuments": {
     "o2c": {
@@ -115,13 +115,13 @@
     "PROJECTS-LAB-POSTING: only after UI-first setup readiness for project, tasks, resource/material/location and invoice/WIP path; current target objects are not ready.",
     "MANUFACTURING-LAB-POSTING: only after UI-first setup readiness for BOM/routing or assembly structure, components, order, consumption/output and cost trace; current target objects are not ready."
   ],
-  "nextBestStepWithoutApproval": "FIXEDASSETS-009-SETUP-GATE-READINESS: no BC run; consolidate FIXEDASSETS-001 to FIXEDASSETS-008 and define the exact UI-first setup gate for MACHINES, HGB, FA-CNC-01 and K30000, without creating, changing or posting anything.",
+  "nextBestStepWithoutApproval": "FIXEDASSETS-010-SETUP-PREFLIGHT-READONLY: run BC read-only to confirm safe UI field mapping and scoped New/Card actions for FA Posting Groups, Depreciation Books, Fixed Assets and Vendors; no setup, no posting.",
   "nextBestStepWithApproval": {
     "payments": "Nur mit neuem Gate: weitere Zahlung, Kreditorenzahlung oder Bankabstimmung. PAYMENTS-011 darf nicht wiederholt werden.",
     "reporting": "Further Analysis View setup needs a new explicit gate and a scoped New/Card action proof. REPORTING-013 consumed the GOVERNANCE-007 gate and rejected setup because unscoped New/Neu is globally ambiguous in BC.",
     "tax": "TAX-002-DE-VAT-FIT: only with explicit approval; UI-first VAT Business/Product Posting Groups, VAT Posting Setup, document preview and VAT Entries proof; no German final claim until proven.",
     "compliance": "COMPLIANCE-002-EINVOICE-SETUP: E-Rechnungs-/E-Documents-/Versandprofil-/Change-Log-Setup nur mit Freigabe, UI-first Klickpfad, Validierungs-/Versand-/Auditnachweis und klarer Labor-/DE-Trennung.",
-    "fixedAssets": "FIXEDASSETS-004-SETUP-OR-POSTING remains locked. The next no-approval step is only FIXEDASSETS-009-SETUP-GATE-READINESS: consolidate existing readiness and formulate a scoped UI-first setup gate. MACHINES, FA-CNC-01, HGB, K30000 or any asset posting require a later explicit gate.",
+    "fixedAssets": "FIXEDASSETS-004-SETUP-OR-POSTING remains locked. FIXEDASSETS-009 consolidated existing readiness and formulated the gate chain. With approval only after FIXEDASSETS-010 proves scoped UI actions and field mappings: FIXEDASSETS-011-UI-SETUP-FIT for MACHINES, HGB or an approved lab mapping, FA-CNC-01 and K30000; posting remains a separate later gate.",
     "security": "SECURITY-002-USER-PERMISSION-SETUP: Benutzer-/Berechtigungs-/Profil-/Security-Group-/User-Setup-/Job-Queue-/Change-Log-Aenderungen nur mit Freigabe, UI-first Klickpfad, Rechte-/SoD-Matrix und Audit-/Review-Evidence.",
     "migration": "MIGRATION-002-CONFIGURATION-PACKAGES-IMPORT: Configuration Packages, Datenimport, Opening-Balance-Journale oder Cutover-Ausfuehrung nur mit Freigabe, UI-first Klickpfad, Abstimmprotokoll und Rueckfallregel.",
     "integrations": "INTEGRATIONS-002-SETUP-OR-CONNECTOR: Extension, AppSource-App, API/Web Service, Connector, Power Platform, Power BI, Job Queue oder produktiven Integrationslauf nur mit Freigabe, UI-first Klickpfad, UAT, Rollen/Berechtigungen, Fehlerfall, Rollback, Monitoring und Support Owner.",
@@ -169,7 +169,9 @@
     "Do not repeat GOVERNANCE-009 without a new autonomous-posting-policy, gate or workplan delta",
     "Do not repeat BOOK-O2C-FOUNDATION-DRIFT-SYNC without a new book/evidence drift delta",
     "Do not repeat BOOK-REPORTING-UAT-K25-SYNC without a new chapter-25 reporting UAT evidence delta",
-    "Do not repeat GOVERNANCE-010-NEXT-NO-GATE-DECISION without a new no-gate decision delta"
+    "Do not repeat GOVERNANCE-010-NEXT-NO-GATE-DECISION without a new no-gate decision delta",
+    "Do not repeat FIXEDASSETS-009-SETUP-GATE-READINESS without a new Fixed Assets readiness delta",
+    "Do not create MACHINES, HGB, FA-CNC-01 or K30000 before FIXEDASSETS-010 read-only preflight and an explicit setup gate"
   ],
   "notes": [
     "AUTOPILOT-STATE.json and POSTING-AND-SETUP-GATES.md were introduced because the V2 autopilot prompt requires machine-readable state and explicit gates.",
@@ -223,6 +225,7 @@
     "GOVERNANCE-009 reconciled Autopilot V2.2 with the machine-readable state: autonomousAllowed is no longer empty, but each autonomous lab posting remains constrained by POSTING-AND-SETUP-GATES.md, fresh UI preflight, no-repeat locks and a new evidence purpose. No BC run, no setup change and no posting.",
     "BOOK-O2C-FOUNDATION-DRIFT-SYNC completed the no-approval book sync after GOVERNANCE-009. The central O2C book section already named MASTERDATA-009, S-ORD101068 and PS-INV103297; two Reporting/UAT target sections were clarified so Financial Reports dimension sums, SO-1001, RM-GUV-MONAT, German VAT19 and German final proof are not read as current RM-DEMO evidence. No BC run, no setup change and no posting.",
     "BOOK-REPORTING-UAT-K25-SYNC completed the no-approval chapter-25 UAT sync. UAT-K25-001 is now explicitly marked as a target UAT for the German reporting case; the current RM-DEMO proof remains PS-INV103297 plus item ledger entry 792 and partial/negative reporting evidence from REPORTING-001 to REPORTING-014. No BC run, no setup change and no posting.",
-    "GOVERNANCE-010 completed the no-gate decision after BOOK-REPORTING-UAT-K25-SYNC. No BC run, no setup change, no posting, no payment, no bank reconciliation and no company switch were executed. The next no-approval step is FIXEDASSETS-009-SETUP-GATE-READINESS: consolidate FIXEDASSETS-001 to FIXEDASSETS-008 and formulate a scoped UI-first setup gate for MACHINES, HGB, FA-CNC-01 and K30000; do not create, change or post anything in that step."
+    "GOVERNANCE-010 completed the no-gate decision after BOOK-REPORTING-UAT-K25-SYNC. No BC run, no setup change, no posting, no payment, no bank reconciliation and no company switch were executed. The next no-approval step was FIXEDASSETS-009-SETUP-GATE-READINESS.",
+    "FIXEDASSETS-009 consolidated FIXEDASSETS-004 to FIXEDASSETS-008 and formulated the scoped Fixed Assets gate chain without a BC run. MACHINES, HGB, FA-CNC-01 and K30000 remain missing/not proven; no setup, no purchase invoice, no acquisition, no depreciation and no posting were executed. Next no-approval step is FIXEDASSETS-010-SETUP-PREFLIGHT-READONLY."
   ]
 }

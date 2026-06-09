@@ -38,6 +38,25 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 
 ## Aktuelle Fundstellen
 
+## FIND-BC-FA-009 Fixed-Assets-Gate-Readiness ist noch kein Anlagen-Setup
+
+| Feld | Wert |
+|---|---|
+| Status | erledigt als Gate-Readiness-Sync |
+| Quelle | `FIXEDASSETS-009-SETUP-GATE-READINESS` |
+| Screenshot | keine neuen Screenshots; nutzt vorhandene `fixedassets-004` bis `fixedassets-008` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-009/README.md`, `playwright/projects/fibu-book5/evidence/fixedassets-009/FIXEDASSETS-009-SETUP-GATE-READINESS.md`, `playwright/projects/fibu-book5/evidence/fixedassets-009/FIXEDASSETS-009-result.json` |
+| BC-Seite | nicht ausgefuehrt; konsolidiert Fixed Assets, FA Posting Groups, Depreciation Books, FA Classes, Vendors und Purchase Invoices aus vorhandener Evidence |
+| sichtbarer Text / Werte | `FA-CNC-01`, `HGB`, `MACHINES`, `K30000`, `COMPANY`, `EQUIPMENT`, `12210`, `82000` |
+| Elementtyp | Setup-Gate / Anlagenbuchhaltung / Evidence-Grenze |
+| erste Hypothese | Nach mehreren sichtbaren Fixed-Assets-Seiten koennte ein Folge-Agent direkt `MACHINES`, `HGB`, `FA-CNC-01` oder `K30000` anlegen, obwohl die UI-Kontexte und fachlichen Mapping-Entscheidungen noch nicht freigegeben sind. |
+| Recherchequelle | vorhandene Evidence `FIXEDASSETS-004` bis `FIXEDASSETS-008`, `GOVERNANCE-010`, `AUTOPILOT-STATE.json`, `POSTING-AND-SETUP-GATES.md`; kein BC-Lauf |
+| Testergebnis | `FIXEDASSETS-009` formuliert eine Gate-Kette: zuerst `FIXEDASSETS-010-SETUP-PREFLIGHT-READONLY` fuer Seitenanker, Feldpositionen und gescopte New-/Card-Aktionen; erst danach ein freigegebener Setup-Fit; Aktivierung und AfA bleiben separate Posting-Gates. |
+| Entscheidung | Das Buch behandelt Kapitel 21 weiter als Zielprozess, aber der aktuelle `RM-DEMO`-Stand ist nur Readiness. `MACHINES`, `HGB`, `FA-CNC-01` und `K30000` bleiben missing/not-proven; kein Setup und keine Buchung wurden ausgefuehrt. |
+| Buchstelle | Kapitel 21 Anlagen / Fixed Assets |
+
+Fuer Anfaenger ist das wichtig, weil Anlagenbuchhaltung mehrere Schichten hat: Anlagenkarte, AfA-Buch, Anlagenbuchungsgruppe, Kreditor oder Journalpfad, Preview/Preflight und Postenspur. Sichtbare Listen beweisen den Einstieg, aber nicht die Buchungsfaehigkeit.
+
 ## FIND-BC-GOV-010 No-Gate-Entscheidung ist keine Setup-Freigabe
 
 | Feld | Wert |
