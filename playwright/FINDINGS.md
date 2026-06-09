@@ -918,3 +918,19 @@ Das ist ein sehr guter Anfaenger-Lernfall. Die Zeile sieht fachlich einfach aus,
 | Buchstelle | Kapitel 13 Inventory/Warehouse |
 
 Fuer Anfaenger ist das wichtig, weil `Location Code = FRA-ZL` nicht automatisch bedeutet, dass BC schon Warehouse Receipts, Put-aways, Picks und Bins erzwingt. Ein Lagerort ist die Ortsdimension der Bewegung; Warehouse-Aktivierung ist zusaetzliches Setup, das den Prozesspfad aendert.
+
+## FIND-BC-MFG-001 Manufacturing-Readiness ist nicht Produktionsfaehigkeit
+
+| Feld | Wert |
+|---|---|
+| Status | erledigt als read-only Readiness; Setup und Buchung offen/gate-gesperrt |
+| Quelle | `MANUFACTURING-001` |
+| BC-Seite | Tell-Me, Item Card Page `31` |
+| sichtbarer Text / Werte | `Planning Worksheet`, `Production BOMs`, `Routings`, `Released Production Orders`, `Consumption Journal`, `Output Journal`; `RM-M100`, `RAW-STEEL`; `COMP-CTRL` und `KIT-MAINT` nicht sichtbar |
+| Elementtyp | Planning-/Manufacturing-/Assembly-Einstiege und Artikel-Readiness |
+| erste Hypothese | Nach Inventory/Warehouse muss zuerst geklaert werden, ob Kapitel 14 ueberhaupt die noetigen Einstiege und Zielartikel in `RM-DEMO` findet, bevor BOM/Routing, Fertigungsauftrag, Verbrauch oder Output geplant werden. |
+| Testergebnis | `MANUFACTURING-001` findet die zentralen Manufacturing-Einstiege ueber Tell-Me, aber `Assembly Orders` nicht belastbar. `RM-M100` und `RAW-STEEL` sind als Artikel sichtbar; `COMP-CTRL` und `KIT-MAINT` sind nicht sichtbar. Auf den Artikelkarten wurden keine sichtbaren BOM-/Routing-/Manufacturing-Marker nachgewiesen. Keine Einrichtung, kein Fertigungsauftrag, kein Montageauftrag, kein Verbrauch, kein Output und keine Buchung. |
+| Entscheidung | Kapitel 14 braucht vor einem Produktionslauf eine eigene Readiness-Statusbox: sichtbare Menueinstiege reichen nicht. Fuer einen belastbaren Manufacturing-Fall fehlen mindestens Komponenten-/Kit-Stammdaten, BOM/Routing- oder Assembly-Struktur, ein freigegebener Auftrag, Preview/Pruefung soweit verfuegbar und danach Postenspur. Der vorhandene Inventory-Zugang `INV008-899959` bleibt Trainingsbestand und kein Manufacturing-Output. |
+| Buchstelle | Kapitel 14 Planning, Assembly und Manufacturing |
+
+Fuer Anfaenger ist das der Kern: Business Central zeigt viele Produktionsseiten, aber Seitenzugriff ist noch kein Produktionsprozess. Erst wenn Stammdaten, Struktur, Auftrag, Verbrauch, Output und Kostenposten zusammenpassen, darf aus einem Navigationsbild ein Buchungsfall werden.

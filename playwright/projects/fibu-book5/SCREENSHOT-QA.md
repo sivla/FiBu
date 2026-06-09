@@ -236,6 +236,22 @@ Fuer `UAT-O2C-001` fasst `playwright/projects/fibu-book5/evidence/uat-o2c-001/RE
 | `playwright/projects/fibu-book5/img/warehouse-001-050-warehouse-shipments-tell-me.png` | rejected/Teilbefund | `Warehouse Shipments` wurde in diesem Lauf nicht belastbar sichtbar erreicht. | Nicht als Buchbild fuer Warenausgang verwenden; als Negativbefund fuer Suchpfad behalten. |
 | `playwright/projects/fibu-book5/img/warehouse-001-060-bins-tell-me.png` | Navigationskandidat | Tell-Me zeigt `Bins`/Lagerplatzkontext als Einstiegspfad. | Als Einstiegshinweis geeignet; keine Bins angelegt und keine Lagerplatzpflicht aktiviert. |
 
+## `MANUFACTURING-001` Screenshot Review
+
+| Screenshot | Bewertung | Befund | Entscheidung |
+|---|---|---|---|
+| `playwright/projects/fibu-book5/img/manufacturing-001-010-planning-worksheet-tell-me.png` | Navigationskandidat | Tell-Me zeigt `Planning Worksheet` als Einstieg in Planung. | Als Readiness-Bild fuer Kapitel 14 geeignet. Kein Plan berechnet und kein Fertigungsauftrag erzeugt. |
+| `playwright/projects/fibu-book5/img/manufacturing-001-020-production-boms-tell-me.png` | Navigationskandidat | Tell-Me zeigt `Production BOMs` als Einstieg fuer Materialstruktur. | Als Voraussetzungshinweis geeignet. Keine BOM `BOM-RM-M100` angelegt oder geoeffnet. |
+| `playwright/projects/fibu-book5/img/manufacturing-001-030-routings-tell-me.png` | Navigationskandidat | Tell-Me zeigt `Routings` als Einstieg fuer Arbeitsplaene. | Als Voraussetzungshinweis geeignet. Kein Routing `ROUTE-M100` angelegt oder geoeffnet. |
+| `playwright/projects/fibu-book5/img/manufacturing-001-040-released-production-orders-tell-me.png` | Navigationskandidat | Tell-Me zeigt `Released Production Orders` als spaeteren Prozessort. | Als Einstiegshinweis geeignet. Kein Fertigungsauftrag `PROD-3001` erzeugt. |
+| `playwright/projects/fibu-book5/img/manufacturing-001-050-consumption-journal-tell-me.png` | gesperrter Buchungsort | Tell-Me zeigt `Consumption Journal` als Verbrauchsbuchblatt. | Nur als Lernbild verwenden: dieser Ort ist buchungsrelevant und bleibt ohne Gate gesperrt. |
+| `playwright/projects/fibu-book5/img/manufacturing-001-060-output-journal-tell-me.png` | gesperrter Buchungsort | Tell-Me zeigt `Output Journal` als Istmeldungs-/Output-Buchblatt. | Nur als Lernbild verwenden: Output erzeugt Bestands-/Kostenwirkung und bleibt ohne Gate gesperrt. |
+| `playwright/projects/fibu-book5/img/manufacturing-001-070-assembly-orders-tell-me.png` | rejected/Teilbefund | `Assembly Orders` wurde in diesem Lauf nicht belastbar sichtbar erreicht. | Nicht als Montagepfad-Buchbild verwenden; als Suchpfad-Luecke behalten. |
+| `playwright/projects/fibu-book5/img/manufacturing-001-080-item-rm-m100.png` | Labor-Readiness-Kandidat | Artikel `RM-M100` ist sichtbar; BOM-/Routing-/Manufacturing-Marker sind im Seitentext nicht nachgewiesen. | Als Zielartikel-Bild geeignet, aber nicht als Fertigungsfaehigkeitsnachweis. |
+| `playwright/projects/fibu-book5/img/manufacturing-001-090-item-raw-steel.png` | Labor-Readiness-Kandidat | Artikel `RAW-STEEL` ist sichtbar; keine Produktionsverbrauchsbuchung. | Als Materialartikel-Bild geeignet, aber nicht als Verbrauchsnachweis. |
+| `playwright/projects/fibu-book5/img/manufacturing-001-100-item-comp-ctrl.png` | rejected Datenluecke | `COMP-CTRL` ist im gefilterten Artikelkontext nicht sichtbar. | Als Datenlueckenbild geeignet; nicht ins Buch als vorhandene Komponente aufnehmen. |
+| `playwright/projects/fibu-book5/img/manufacturing-001-110-item-kit-maint.png` | rejected Datenluecke | `KIT-MAINT` ist im gefilterten Artikelkontext nicht sichtbar. | Als Datenlueckenbild geeignet; nicht ins Buch als vorhandenen Montageartikel aufnehmen. |
+
 ## `PAYMENTS-001` Screenshot Review
 
 | Screenshot | Bewertung | Befund | Entscheidung |

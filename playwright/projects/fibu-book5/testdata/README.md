@@ -13,7 +13,7 @@ Diese Testdaten beschreiben den Lern- und Laborstand fuer `RM-DEMO`. Sie sind ke
 | `masterdata/dimensions.json` | Dimensionen und Dimensionswerte fuer O2C und spaetere Prozesse | Kernwerte belegt; Erweiterungen geplant |
 | `masterdata/customers.json` | Debitorenmodell fuer O2C, Dropshipping/Sonderverkauf, EU, Export und IC | `D10000` belegt; weitere Debitoren geplant |
 | `masterdata/vendors.json` | Kreditorenmodell fuer P2P, Dropship, Zoll, Fremdarbeit | `K10000` als CRONUS-USA-P2P-Labor belegt; weitere Kreditoren geplant |
-| `masterdata/items.json` | Artikel fuer Maschine, Ersatzteile, Rohmaterial und Kits | `RM-M100` belegt; `RAW-STEEL` als P2P-Laborartikel mit Postenspur belegt |
+| `masterdata/items.json` | Artikel fuer Maschine, Ersatzteile, Rohmaterial und Kits | `RM-M100` belegt; `RAW-STEEL` als P2P-Laborartikel mit Postenspur belegt; `COMP-CTRL` und `KIT-MAINT` in `MANUFACTURING-001` read-only nicht sichtbar |
 | `masterdata/locations.json` | Lagerorte fuer einfaches Lager, Warehouse, Servicefahrzeug und Projekt | `FRA-ZL` belegt; weitere Lagerorte geplant |
 | `masterdata/process-cases.json` | fachliche Prozessfaelle aus dem Buch | O2C praktisch belegt; andere Faelle geplant |
 | `masterdata/resources-assets-projects.json` | Ressourcen, Anlagen, Projekte und Bankkonto | Bankkonto `BANK-RM-01` als CRONUS-USA-Laborfit belegt; `FA-CNC-01` ist auf Buchziel `120000` harmonisiert, aber laut `FIXEDASSETS-004` noch nicht in BC sichtbar; `HGB`, `MACHINES` und `K30000` fehlen ebenfalls als Laborzielwerte; `FIXEDASSETS-005` hat den UI-Pfad zu `FA Posting Groups` geloest, aber `MACHINES` nicht angelegt; Ressourcen/Projekte geplant |
@@ -53,10 +53,10 @@ Diese Testdaten beschreiben den Lern- und Laborstand fuer `RM-DEMO`. Sie sind ke
 |---|---|
 | Debitoren | `D11000`, `D20000`, `D30000`, `D90000` |
 | Kreditoren | `K10000`, `K11000`, `K20000`, `K30000`, `K40000` |
-| Artikel | `SP-PUMP-01`, `SP-SENSOR-02`, `RAW-STEEL`, `COMP-CTRL`, `KIT-MAINT` |
+| Artikel | `SP-PUMP-01`, `SP-SENSOR-02`, `COMP-CTRL`, `KIT-MAINT`; `RAW-STEEL` ist bereits Laborartikel, `COMP-CTRL` und `KIT-MAINT` wurden in `MANUFACTURING-001` nicht sichtbar gefunden |
 | Lagerorte | `MZ-EINFACH`, `VAN-SERV`, `PROJ-LAG` |
 | Ressourcen/Anlagen/Projekte | `RES-TECH`, `FA-CNC-01` mit Zugangsbetrag `120.000 EUR`, `PROJ-5001`; `FIXEDASSETS-002` hat Zielwert-/Suchpfad-Readiness belegt, `FIXEDASSETS-003` direkte Zielseitenkandidaten fuer Anlagenliste, AfA-Buecher, Einkaufsrechnungen und Anlagenposten, `FIXEDASSETS-004` zeigt fehlende Zielobjekte `FA-CNC-01`, `HGB`, `MACHINES`, `K30000`; `FIXEDASSETS-005` erreicht `FA Posting Groups` und zeigt vorhandene CRONUS-Gruppen, aber kein `MACHINES`; keine Anlage in BC |
-| Prozesse | Warehouse, Manufacturing, Service, Projects, Payments, Fixed Assets; P2P und Inventory sind als CRONUS-USA-Laborprozesse belegt, aber deutsche Finalnachweise bleiben offen |
+| Prozesse | Manufacturing ist seit `MANUFACTURING-001` nur als read-only Readiness belegt; Warehouse, Service, Projects, Payments, Fixed Assets bleiben fuer Setup/Buchung offen; P2P und Inventory sind als CRONUS-USA-Laborprozesse belegt, aber deutsche Finalnachweise bleiben offen |
 
 ## Laborgrenzen
 
