@@ -38,6 +38,23 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 
 ## Aktuelle Fundstellen
 
+## FIND-BC-GOV-008 VAT-Gate-Readiness ist noch kein VAT19-Setup
+
+| Feld | Wert |
+|---|---|
+| Status | erledigt als Governance-/Readiness-Entscheidung |
+| Quelle | `GOVERNANCE-008`, `TAX-001`, `REPORTING-014` |
+| Screenshot | keine neuen Screenshots; Governance-/State-Sync |
+| Evidence | `playwright/projects/fibu-book5/evidence/governance-008/README.md`, `playwright/projects/fibu-book5/evidence/governance-008/GOVERNANCE-008-result.json`, `playwright/projects/fibu-book5/evidence/governance-008/GOVERNANCE-008-NEXT-READINESS-DECISION.md` |
+| BC-Seite | nicht ausgefuehrt; State-/Gate-Dateien |
+| sichtbarer Text / Werte | `TAX-002-DE-VAT-GATE-READINESS`, `TAX-002-DE-VAT-FIT`, `0 %`, `19 %`, `VAT Entries` |
+| Elementtyp | Governance-Regel / Steuer-Gate / Evidence-Grenze |
+| erste Hypothese | Nach einem guten O2C-/P2P-Laborbeleg kann die Steuerwirkung zu schnell als fachlich erledigt wirken. Tatsaechlich beweisen CRONUS-USA-Belege mit `0 %` keine deutsche `19 %`-USt. |
+| Recherchequelle | vorhandene Evidence `TAX-001`, `REPORTING-014`, `AUTOPILOT-STATE.json`, `POSTING-AND-SETUP-GATES.md`; kein BC-Lauf in `GOVERNANCE-008` |
+| Testergebnis | `GOVERNANCE-008` entscheidet ohne BC-Lauf: Naechster No-Approval-Schritt ist nur die Vorbereitung der Freigabekriterien fuer deutschen VAT19. Der eigentliche `TAX-002-DE-VAT-FIT` bleibt gesperrt, bis er ausdruecklich freigegeben wird. |
+| Entscheidung | Buch und Projekt duerfen die Gate-Readiness erklaeren, aber keine deutsche Steuerwirkung behaupten. Anfaenger sollen lernen: Steuer-Setup, Belegvorschau und VAT Entries sind eigene Nachweisschichten. |
+| Buchstelle | Kapitel 9 Posting Setup, Kapitel 11 O2C, Kapitel 12 P2P, Kapitel 22 Compliance/E-Rechnung |
+
 ## FIND-BC-PAY-011 Zahlung erzeugt Ausgleich und Payment Discount
 
 | Feld | Wert |
