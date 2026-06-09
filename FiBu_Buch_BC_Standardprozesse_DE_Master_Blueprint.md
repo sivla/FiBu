@@ -7264,6 +7264,8 @@ Prüfregel für Anfänger:
 
 ## 39. Projektartefakte
 
+Status des Evidence-Syncs in `RM-DEMO`: `ARTIFACTS-001` vom 09.06.2026 ordnet dieses Kapitel gegen Evidence-Struktur, Autopilot-State, Posting-/Setup-Gates, Coverage, UI-Inventar und Artefakt-Governance ein. Das ist ein Buch-/Readiness-Sync, kein neuer Business-Central-Lauf. Projektartefakte, Templates und Handover-Dateien sind deshalb als Kontroll- und Uebergabeschicht zu lesen. Sie beweisen nicht automatisch, dass ein Prozess bereits praktisch geklickt, gebucht, fotografiert oder im deutschen Zielmandanten final nachgewiesen wurde.
+
 Dieses Kapitel liefert direkt nutzbare Templates.
 
 ### Artefaktlandkarte für das Buchprojekt
@@ -7284,6 +7286,10 @@ Die folgenden Projektdateien steuern die bebilderten Business-Central-Anleitunge
 Regel:
 
 Wenn ein Testlauf eine Abweichung findet, werden Buch, Coverage, Findings, Workaround-Journal und Evidence gemeinsam aktualisiert. Nur so lernt das Projekt nicht nur den Klickpfad, sondern auch die Business-Central-Logik hinter dem Fehler.
+
+Evidence-Regel:
+
+Ein Artefakt ist erst dann belastbarer Nachweis, wenn es auf konkrete Business-Central-Evidence verweist: Screenshot, Seitentext, JSON-Ergebnis, Beleg, gebuchter Beleg, Debitoren-/Kreditorenposten, Sachposten, Artikelposten, Wertposten, Bericht oder dokumentiertes Fehlerbild mit Ursache und Korrektur. Ein leeres Template, ein Indexeintrag oder eine Checkliste ist nur Vorbereitung.
 
 ### Fit-Gap-Matrix
 

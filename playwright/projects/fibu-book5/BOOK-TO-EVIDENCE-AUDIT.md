@@ -38,6 +38,8 @@ Update nach `GLOSSARY-001`: Kapitel 37 ist als Read-only-/Buch-Zielbild-Sync dok
 
 Update nach `PAGESINDEX-001`: Kapitel 38 ist als Read-only-/Buch-Zielbild-Sync dokumentiert. Seitenindex, Prozesskatalog und Qualitaetssicherung sind gegen Coverage, UI-Inventar, Screenshot-QA, Autopilot-State, Gates und vorhandene Evidence eingeordnet. Ein Indexeintrag, eine Prozessliste oder eine Reifegradbewertung ist kein praktischer Klickpfad- oder Finalnachweis. Es gab keinen BC-Lauf, keine Setup-Aenderung, keine Buchung und keine neuen Screenshots.
 
+Update nach `ARTIFACTS-001`: Kapitel 39 ist als Read-only-/Buch-Zielbild-Sync dokumentiert. Projektartefakte, Templates, Handover-Dateien und Repo-QA sind gegen Evidence-Struktur, Autopilot-State, Gates und Artefakt-Governance eingeordnet. Ein Template, ein Handover-Dokument oder ein Evidence-Pack-Platzhalter ist kein praktischer BC-Nachweis; belastbar wird es erst durch konkrete Screenshots, Seitentexte, JSON-Ergebnisse, Belege, Posten, Berichte oder Fehlerbilder. Es gab keinen BC-Lauf, keine Setup-Aenderung, keine Buchung und keine neuen Screenshots.
+
 ## Leitentscheidung
 
 `RM-DEMO` bleibt der konsolidierte Lern- und Labor-Mandant in Sandbox `MCP_1_20260210`. Die Ziel-Companies `RM-PROD`, `RM-SALES`, `RM-SERVICE`, `RM-SHARED` und `RM-AT` sind Buchziel fuer einen spaeteren Mehr-Company-/Greenfield-Block. Sie werden nicht als naechster Reflex angelegt. Zuerst werden Buchanforderungen, aktuelle Evidence und RM-DEMO-Setup synchronisiert.
@@ -153,8 +155,8 @@ Fazit: O2C ist als CRONUS-USA-Laborprozess fachlich weitgehend synchronisiert, a
 
 ```text
 Arbeite auf Branch codex/playwright-bc-screenshot-foundation.
-Lies AUTOPILOT-STATE.json, POSTING-AND-SETUP-GATES.md, CURRENT-STATE.md, BOOK-TO-EVIDENCE-AUDIT.md, LAB-FIT-STATUS.md und Kapitel 39.
-`PAGESINDEX-001` ist erledigt. Ohne Freigabe fuehre `ARTIFACTS-001-READINESS` als read-only/Buch-Zielbild-Sync fuer Kapitel 39 durch: Projektartefakte, Handover, Repo-QA und Uebergabefaehigkeit gegen Evidence-Struktur, Autopilot-State, Gates und Artefakt-Governance einordnen; keine neue Buchung, keine Setup-Aenderung und kein neuer Prozesslauf.
+Lies AUTOPILOT-STATE.json, POSTING-AND-SETUP-GATES.md, CURRENT-STATE.md, BOOK-TO-EVIDENCE-AUDIT.md, LAB-FIT-STATUS.md und Kapitel 40.
+`ARTIFACTS-001` ist erledigt. Ohne Freigabe fuehre `SOURCES-001-READINESS` als read-only/Buch-Zielbild-Sync fuer Kapitel 40 durch: Quellenverzeichnis gegen Primaerquellenlogik, Microsoft-Learn-Bezug, Quellen-/Evidence-Regeln und gestrichenen Shopify-Scope synchronisieren; keine neue Buchung, keine Setup-Aenderung und kein neuer Prozesslauf.
 ```
 
 ## Grenzen

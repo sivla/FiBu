@@ -38,6 +38,7 @@ Dieser Arbeitsplan gleicht das Buch `FiBu_Buch_BC_Standardprozesse_DE_Master_Blu
 | MB-800-Pruefungstraining | Kapitel 36 als Pruefungsfallen-Katalog, nicht als bestandener Test | `EXAMTRAINING-001` synchronisiert Kapitel 36 ohne BC-Lauf gegen Kapitel 34/35, Microsoft Learn und vorhandene Evidence; O2C/P2P/Inventory sind Laboranker, Payments/Reporting und Gate-Themen liefern Grenzen und Lernfallen | Readiness/Buch-Sync belegt | Ohne Gate Kapitel 37 Glossar Deutsch/Englisch/Tell-Me als Readiness-Sync; praktische Pruefungs- oder Uebungslaeufe nur mit passendem Prozess-/Setup-/Posting-Gate. |
 | Glossar Deutsch/Englisch/Tell-Me | Kapitel 37 als Such- und Begriffsschicht, nicht als neuer Klickpfadnachweis | `GLOSSARY-001` synchronisiert Kapitel 37 ohne BC-Lauf gegen UI-Inventar, Coverage und vorhandene Evidence; Begriffe werden als Buchsprache, Suchhilfe, belegter UI-Pfad oder offener Zielbegriff getrennt | Readiness/Buch-Sync belegt | Kapitel 38 ist mit `PAGESINDEX-001` erledigt; ohne Gate Kapitel 39 Projektartefakte/Handover/Repo-QA als Readiness-Sync. |
 | Seitenindex / Prozesskatalog / Qualitaetssicherung | Kapitel 38 als Index-, QA- und Prozesskatalogschicht, nicht als Sammelbeweis aller Klickpfade | `PAGESINDEX-001` synchronisiert Kapitel 38 ohne BC-Lauf gegen Coverage, UI-Inventar, Screenshot-QA, Autopilot-State und Gates; Indexeintrag, Zielpfad, praktische Evidence, Laborgrenze und DE-Finalnachweis sind getrennt | Readiness/Buch-Sync belegt | Ohne Gate Kapitel 39 Projektartefakte/Handover/Repo-QA als Readiness-Sync; praktische UI-/Setup-/Buchungslaeufe nur mit passendem Gate. |
+| Projektartefakte / Handover / Repo-QA | Kapitel 39 als Artefakt- und Uebergabeschicht, nicht als praktischer Prozessnachweis | `ARTIFACTS-001` synchronisiert Kapitel 39 ohne BC-Lauf gegen Evidence-Struktur, Autopilot-State, Gates und Artefakt-Governance; Templates, Handover-Dateien und Evidence-Pack-Platzhalter sind Kontrollartefakte, keine Prozess-Evidence | Readiness/Buch-Sync belegt | Ohne Gate Kapitel 40 Quellenverzeichnis als Readiness-Sync; praktische UI-/Setup-/Buchungslaeufe nur mit passendem Gate. |
 
 ## Kritische Buchdrift
 
@@ -198,7 +199,7 @@ Empfohlene Reihenfolge nach Reporting/Steuer:
 
 ## Sofort naechster sinnvoller Schritt
 
-Ohne Gate ist der naechste sichere Schritt `ARTIFACTS-001-READINESS`.
+Ohne Gate ist der naechste sichere Schritt `SOURCES-001-READINESS`.
 
 Begruendung:
 
@@ -210,14 +211,15 @@ Begruendung:
 - Kapitel 36 ist mit `EXAMTRAINING-001` als read-only/Buch-Zielbild-Sync erledigt.
 - Kapitel 37 ist mit `GLOSSARY-001` als read-only/Buch-Zielbild-Sync erledigt.
 - Kapitel 38 ist mit `PAGESINDEX-001` als read-only/Buch-Zielbild-Sync erledigt.
-- Kapitel 39 kann als read-only/Buch-Zielbild-Sync vorbereitet werden, ohne neue Buchung, Setup-Aenderung oder neuen Prozesslauf praktisch umzusetzen.
+- Kapitel 39 ist mit `ARTIFACTS-001` als read-only/Buch-Zielbild-Sync erledigt.
+- Kapitel 40 kann als read-only/Buch-Zielbild-Sync vorbereitet werden, ohne neue Buchung, Setup-Aenderung oder neuen Prozesslauf praktisch umzusetzen.
 
 Minimaler Prompt fuer den naechsten Lauf:
 
 ```text
 Arbeite auf Branch codex/playwright-bc-screenshot-foundation.
-Lies AUTOPILOT-STATE.json, POSTING-AND-SETUP-GATES.md, CURRENT-STATE.md, LAB-FIT-STATUS.md, BOOK-CLICK-GUIDE-COVERAGE.md und Kapitel 39.
-Fuehre `ARTIFACTS-001-READINESS` als Buch-/Zielbild-Sync durch: Kapitel 39 Projektartefakte, Handover, Repo-QA und Uebergabefaehigkeit gegen Evidence-Struktur, Autopilot-State, Gates und Artefakt-Governance einordnen und keine neue Buchung, keine Setup-Aenderung und keinen neuen Prozesslauf starten.
+Lies AUTOPILOT-STATE.json, POSTING-AND-SETUP-GATES.md, CURRENT-STATE.md, LAB-FIT-STATUS.md, BOOK-CLICK-GUIDE-COVERAGE.md und Kapitel 40.
+Fuehre `SOURCES-001-READINESS` als Buch-/Zielbild-Sync durch: Kapitel 40 Quellenverzeichnis gegen Primaerquellenlogik, Microsoft-Learn-Bezug, Quellen-/Evidence-Regeln und gestrichenen Shopify-Scope einordnen und keine neue Buchung, keine Setup-Aenderung und keinen neuen Prozesslauf starten.
 ```
 
 ## Nicht jetzt tun

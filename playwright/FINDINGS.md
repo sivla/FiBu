@@ -38,6 +38,25 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 
 ## Aktuelle Fundstellen
 
+## FIND-BC-ARTIFACTS-001 Projektartefakte sind keine BC-Prozess-Evidence
+
+| Feld | Wert |
+|---|---|
+| Status | erledigt als Buch-Sync; Artefakte bleiben Kontroll- und Uebergabeschicht |
+| Quelle | `ARTIFACTS-001` |
+| Screenshot | keine neuen Screenshots; Buch-/Readiness-Sync |
+| Evidence | `playwright/projects/fibu-book5/evidence/artifacts-001/ARTIFACTS-001-READINESS.md`, `playwright/projects/fibu-book5/evidence/artifacts-001/ARTIFACTS-001-result.json`, `playwright/projects/fibu-book5/evidence/artifacts-001/README.md` |
+| BC-Seite | nicht ausgefuehrt; Kapitel 39 Zielbild |
+| sichtbarer Text / Werte | Fit-Gap-Matrix, Prozessaufnahme, Stammdaten-Template, Migration-Mapping, UAT-Testfall, Klickanleitungs-Template, Rollen-/Berechtigungsmatrix, ADR, Checklisten, Evidence Pack |
+| Elementtyp | Projektartefakt / Template / Handover / Evidence-Grenze |
+| erste Hypothese | Ein Template oder Handover-Dokument kann so wirken, als sei der Nachweis bereits erbracht. Tatsächlich ist es nur die Struktur, in die echte BC-Evidence eingeordnet wird. |
+| Recherchequelle | vorhandenes Evidence-Modell, Autopilot-State, Gates, Coverage, UI-Inventar und Kapitel 39; keine neue Microsoft-Learn-Behauptung in diesem Lauf |
+| Testergebnis | `ARTIFACTS-001` hat Kapitel 39 ohne BC-Lauf synchronisiert. Artefakte werden jetzt als Kontroll- und Uebergabeschicht erklaert, nicht als Prozess-, Screenshot-, Buchungs- oder deutscher Finalnachweis. |
+| Entscheidung | Kapitel 39 trennt Templates, Handover und echte Evidence. Naechster sicherer Block ist Kapitel 40 Quellenverzeichnis / `SOURCES-001-READINESS`. |
+| Buchstelle | Kapitel 39 Projektartefakte |
+
+Fuer Anfaenger ist das wichtig, weil eine gute Vorlage zwar sagt, was zu pruefen ist, aber noch nicht zeigt, dass Business Central den Prozess wirklich mit den richtigen Daten, Feldern, Posten und Berichten getragen hat.
+
 ## FIND-BC-PAGESINDEX-001 Seitenindex ist kein Prozessnachweis
 
 | Feld | Wert |
@@ -52,7 +71,7 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 | erste Hypothese | Ein Indexeintrag oder eine hohe Reifegradbewertung darf nicht so wirken, als sei der jeweilige Prozess praktisch getestet, gebucht und final nachgewiesen. |
 | Recherchequelle | vorhandenes UI-Inventar, Coverage, Screenshot-QA, Autopilot-State und Gates; keine neue Microsoft-Learn-Behauptung in diesem Lauf |
 | Testergebnis | `PAGESINDEX-001` hat Kapitel 38 ohne BC-Lauf synchronisiert. Der Prozesskatalog ist jetzt Zielbild und Steuerungsrahmen, nicht Sammelbeweis fuer alle Business-Central-Prozesspfade. |
-| Entscheidung | Kapitel 38 trennt jetzt Index, Zielpfad, QA-Rahmen, echte Klickpfad-Evidence, Labor-Nachweis und offenen deutschen Finalnachweis. Naechster sicherer Block ist Kapitel 39 Projektartefakte/Handover/Repo-QA. |
+| Entscheidung | Kapitel 38 trennt jetzt Index, Zielpfad, QA-Rahmen, echte Klickpfad-Evidence, Labor-Nachweis und offenen deutschen Finalnachweis. Naechster sicherer Block ist Kapitel 40 Quellenverzeichnis / SOURCES-001-READINESS. |
 | Buchstelle | Kapitel 38 Seitenindex, Prozesskatalog und Qualitaetssicherung |
 
 Fuer Anfaenger ist das wichtig, weil ein Buchindex beim Finden hilft, aber nicht beweist, dass der Prozess in Business Central schon richtig eingerichtet, gebucht, kontrolliert und mit Postenspur verstanden wurde.
