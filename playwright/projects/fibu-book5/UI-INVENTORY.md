@@ -252,7 +252,7 @@ Wenn das Projekt fertig ist, kennen wir Business Central für den Buchumfang nic
 
 | Reihenfolge | Ziel |
 |---:|---|
-| 1 | `GOVERNANCE-006-NEXT-GATE-DECISION`: naechsten praktischen Gate-Hebel festlegen; ohne Gate keine weitere Zahlung, keine Bankabstimmung und keine Setup-Aenderung |
+| 1 | `REPORTING-011-ANALYSIS-VIEW-FIT`: den durch `GOVERNANCE-006` freigegebenen Analysis-View-Laborfit fuer `PRODUCTLINE`/`CHANNEL` UI-first und idempotent ausfuehren; keine Zahlung, keine Bankabstimmung und keine Buchung |
 | 2 | Intercompany-/Auslandprozess nur mit Gate fortsetzen: keine Company anlegen/wechseln, keinen IC-Partner, keinen Beleg `IC-7001`, keine Inbox/Outbox-Aktion und keine VAT-/Waehrungs-Aenderung ohne Freigabe |
 | 3 | Dropshipping-Setup nur mit Gate fortsetzen: `D11000`, `K20000`, `SP-PUMP-01` und Drop-Shipment-/Purchasing-Code-Logik bleiben UI-first Setup-Folgearbeit |
 | 4 | Project-Setup nur mit Gate fortsetzen: Projekt `PROJ-5001`, Ressource `RES-TECH`, Material `SP-SENSOR-02` und Lagerort `PROJ-LAG` bleiben UI-first Setup-Folgearbeit |

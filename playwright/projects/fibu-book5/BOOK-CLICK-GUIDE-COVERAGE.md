@@ -122,7 +122,7 @@ Gate-Regel: Sobald eine Klickanleitung eine Buchung, Zahlung, Setup-Aenderung, n
 
 | Priorität | Buchbereich | Klickanleitung | Blocker |
 |---:|---|---|---|
-| 1 | Payments / OP-Ausgleich | `GOVERNANCE-006-NEXT-GATE-DECISION`: naechsten praktischen Gate-Hebel festlegen | `PAYMENTS-013` hat Bank Account Ledger Entries read-only belegt; Bankabstimmung und weitere Zahlungen brauchen ein neues Gate |
+| 1 | Reporting / Financial Reports | `REPORTING-011-ANALYSIS-VIEW-FIT`: den freigegebenen Analysis-View-Laborfit fuer `PRODUCTLINE`/`CHANNEL` UI-first ausfuehren | `GOVERNANCE-006` hat den Gate-Hebel freigegeben; Bankabstimmung und weitere Zahlungen bleiben gesperrt |
 | 2 | Dropshipping / Sonderverkauf | UI-first Stammdaten-/Setup-Fit fuer `D11000`, `K20000`, `SP-PUMP-01` und Drop-Shipment-/Purchasing-Code-Logik vorbereiten | nur mit Gate `DROPSHIPPING-001-PROCESS`; `DROPSHIPPING-001` hat die fehlenden Zielobjekte belegt und `DROPSHIPPING-002` hat Kapitel 17 synchronisiert |
 | 3 | Intercompany / Ausland | Praktischen IC-/Auslandprozess `IC-7001` vorbereiten | nur mit Gate `INTERCOMPANY-001-PROCESS`, `NEW-COMPANY-001` und ggf. `TAX-002-DE-VAT-FIT`; `INTERCOMPANY-002` hat Kapitel 18 synchronisiert |
 | 4 | Migration / Opening Balances | Praktischen Configuration-Package-/Opening-Balance-Ziellauf vorbereiten | nur mit eigenem Gate; `MIGRATION-001` ist Buch-/Readiness-Sync ohne Import, neue Company oder Saldenbuchung |

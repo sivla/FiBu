@@ -161,7 +161,7 @@ Update nach `GOVERNANCE-005`: Autopilot V2.2 ist gegen State und Gates synchroni
 ```text
 Arbeite auf Branch codex/playwright-bc-screenshot-foundation.
 Lies AUTOPILOT-STATE.json, POSTING-AND-SETUP-GATES.md, CURRENT-STATE.md, BOOK-TO-EVIDENCE-AUDIT.md, LAB-FIT-STATUS.md, AUTOPILOT-PROMPT-V2.md und evidence/governance-005/.
-`GOVERNANCE-005`, `PAYMENTS-011`, `PAYMENTS-013` und `PAYMENTS-014` sind erledigt. Starte als naechsten Lauf `GOVERNANCE-006-NEXT-GATE-DECISION`: naechsten praktischen Gate-Hebel festlegen, z. B. Analysis-View-Fit, Bankabstimmung-Readiness mit Gate oder Fixed-Assets-Setup; keine weitere Zahlung und keine Bankabstimmung ohne neues Gate.
+`GOVERNANCE-005`, `PAYMENTS-011`, `PAYMENTS-013`, `PAYMENTS-014` und `GOVERNANCE-006` sind erledigt. Starte als naechsten Lauf `REPORTING-011-ANALYSIS-VIEW-FIT`: den freigegebenen Analysis-View-Laborfit fuer `PRODUCTLINE`/`CHANNEL` UI-first und idempotent ausfuehren, Reportingwirkung oder Blocker dokumentieren; keine weitere Zahlung, keine Bankabstimmung und keine Buchung.
 ```
 
 ## Grenzen
