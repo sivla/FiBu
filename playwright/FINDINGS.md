@@ -38,6 +38,25 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 
 ## Aktuelle Fundstellen
 
+## FIND-BC-GLOSSARY-001 Glossarbegriffe sind keine Klickpfad-Evidence
+
+| Feld | Wert |
+|---|---|
+| Status | erledigt als Buch-Sync; praktische Klickpfade bleiben nur dort abgedeckt, wo konkrete Evidence existiert |
+| Quelle | `GLOSSARY-001` |
+| Screenshot | keine neuen Screenshots; Buch-/Readiness-Sync |
+| Evidence | `playwright/projects/fibu-book5/evidence/glossary-001/GLOSSARY-001-READINESS.md`, `playwright/projects/fibu-book5/evidence/glossary-001/GLOSSARY-001-result.json`, `playwright/projects/fibu-book5/evidence/glossary-001/README.md` |
+| BC-Seite | nicht ausgefuehrt; Kapitel 37 Zielbild |
+| sichtbarer Text / Werte | deutsche Buchbegriffe, englische Such-/UI-Begriffe, Tell-Me, vorhandene O2C-/P2P-/Inventory-/Reporting-/Payment-Evidence |
+| Elementtyp | Glossar / Suchhilfe / Evidence-Grenze |
+| erste Hypothese | Ein Glossarbegriff darf nicht so wirken, als sei der zugehoerige BC-Klickpfad bereits praktisch getestet. |
+| Recherchequelle | vorhandenes UI-Inventar, Coverage und Evidence; keine neue Microsoft-Learn-Behauptung in diesem Lauf |
+| Testergebnis | `GLOSSARY-001` hat Kapitel 37 ohne BC-Lauf synchronisiert. Begriffe werden als Buchsprache, englische Suchhilfe, praktisch belegter UI-Pfad oder offener Zielbegriff eingeordnet. |
+| Entscheidung | Kapitel 37 trennt jetzt Terminologie, Tell-Me-Suchhilfe und echte Klickpfad-Evidence. Der naechste sichere Block ist Kapitel 38 Seitenindex/Prozesskatalog/Qualitaetssicherung. |
+| Buchstelle | Kapitel 37 Glossar Deutsch / Englisch / Tell-Me |
+
+Fuer Anfaenger ist das wichtig, weil Business Central in deutscher Zielumgebung, englischer Laboroberflaeche und Tell-Me-Suche unterschiedliche Begriffe zeigen kann. Das Glossar hilft beim Finden, ersetzt aber keinen belegten Klickpfad mit Screenshot, Feldpruefung und Evidence.
+
 ## FIND-BC-EXAMTRAINING-001 Pruefungstraining ist kein bestandener Test
 
 | Feld | Wert |

@@ -36,6 +36,7 @@ Dieser Arbeitsplan gleicht das Buch `FiBu_Buch_BC_Standardprozesse_DE_Master_Blu
 | MB-800-Kompetenzmatrix | Kapitel 34 als Lern-/Readiness-Matrix, nicht als bestandene Zertifizierung | `MB800-001` synchronisiert Kapitel 34 ohne BC-Lauf gegen Microsoft Learn und vorhandene Evidence; O2C/P2P/Inventory sind Laborbelege, andere Bereiche Readiness/Teilbefund/Gate | Readiness/Buch-Sync belegt | Kapitel 35 ist mit `LEARNPATH-001` erledigt; praktische Kompetenznachweise nur mit passendem Prozess-/Setup-/Posting-Gate. |
 | Microsoft-Learn-Lernpfad-Mapping | Kapitel 35 als Lernlandkarte, nicht als abgeschlossene Learn- oder Zertifizierungsleistung | `LEARNPATH-001` synchronisiert Kapitel 35 ohne BC-Lauf gegen offizielle Microsoft-Learn-Quellen und vorhandene Evidence; O2C/P2P/Inventory sind Laboranker, andere Bereiche Readiness/Teilbefund/Gate | Readiness/Buch-Sync belegt | Ohne Gate Kapitel 36 MB-800-Pruefungstraining als Readiness-Sync; praktische Pruefungs- oder Uebungslaeufe nur mit passendem Prozess-/Setup-/Posting-Gate. |
 | MB-800-Pruefungstraining | Kapitel 36 als Pruefungsfallen-Katalog, nicht als bestandener Test | `EXAMTRAINING-001` synchronisiert Kapitel 36 ohne BC-Lauf gegen Kapitel 34/35, Microsoft Learn und vorhandene Evidence; O2C/P2P/Inventory sind Laboranker, Payments/Reporting und Gate-Themen liefern Grenzen und Lernfallen | Readiness/Buch-Sync belegt | Ohne Gate Kapitel 37 Glossar Deutsch/Englisch/Tell-Me als Readiness-Sync; praktische Pruefungs- oder Uebungslaeufe nur mit passendem Prozess-/Setup-/Posting-Gate. |
+| Glossar Deutsch/Englisch/Tell-Me | Kapitel 37 als Such- und Begriffsschicht, nicht als neuer Klickpfadnachweis | `GLOSSARY-001` synchronisiert Kapitel 37 ohne BC-Lauf gegen UI-Inventar, Coverage und vorhandene Evidence; Begriffe werden als Buchsprache, Suchhilfe, belegter UI-Pfad oder offener Zielbegriff getrennt | Readiness/Buch-Sync belegt | Ohne Gate Kapitel 38 Seitenindex/Prozesskatalog/Qualitaetssicherung als Readiness-Sync; praktische UI-/Setup-/Buchungslaeufe nur mit passendem Gate. |
 
 ## Kritische Buchdrift
 
@@ -196,7 +197,7 @@ Empfohlene Reihenfolge nach Reporting/Steuer:
 
 ## Sofort naechster sinnvoller Schritt
 
-Ohne Gate ist der naechste sichere Schritt `GLOSSARY-001-READINESS`.
+Ohne Gate ist der naechste sichere Schritt `PAGESINDEX-001-READINESS`.
 
 Begruendung:
 
@@ -206,14 +207,15 @@ Begruendung:
 - Kapitel 34 ist mit `MB800-001` als read-only/Buch-Zielbild-Sync erledigt.
 - Kapitel 35 ist mit `LEARNPATH-001` als read-only/Buch-Zielbild-Sync erledigt.
 - Kapitel 36 ist mit `EXAMTRAINING-001` als read-only/Buch-Zielbild-Sync erledigt.
-- Kapitel 37 kann als read-only/Buch-Zielbild-Sync vorbereitet werden, ohne neue Buchung, Setup-Aenderung oder neuen Prozesslauf praktisch umzusetzen.
+- Kapitel 37 ist mit `GLOSSARY-001` als read-only/Buch-Zielbild-Sync erledigt.
+- Kapitel 38 kann als read-only/Buch-Zielbild-Sync vorbereitet werden, ohne neue Buchung, Setup-Aenderung oder neuen Prozesslauf praktisch umzusetzen.
 
 Minimaler Prompt fuer den naechsten Lauf:
 
 ```text
 Arbeite auf Branch codex/playwright-bc-screenshot-foundation.
 Lies AUTOPILOT-STATE.json, POSTING-AND-SETUP-GATES.md, CURRENT-STATE.md, LAB-FIT-STATUS.md, BOOK-CLICK-GUIDE-COVERAGE.md und Kapitel 34.
-Fuehre `GLOSSARY-001-READINESS` als Buch-/Zielbild-Sync durch: Kapitel 37 Glossar Deutsch/Englisch/Tell-Me gegen vorhandene UI-Inventar- und Evidence-Begriffe einordnen, Glossarbegriffe von praktisch getesteten Klickpfaden trennen und keine neue Buchung, keine Setup-Aenderung und keinen neuen Prozesslauf starten.
+Fuehre `PAGESINDEX-001-READINESS` als Buch-/Zielbild-Sync durch: Kapitel 38 Seitenindex, Prozesskatalog und Qualitaetssicherung gegen Coverage, UI-Inventar, Screenshot-QA und vorhandene Evidence einordnen, Indexeintraege von praktisch abgedeckten Klickpfaden trennen und keine neue Buchung, keine Setup-Aenderung und keinen neuen Prozesslauf starten.
 ```
 
 ## Nicht jetzt tun

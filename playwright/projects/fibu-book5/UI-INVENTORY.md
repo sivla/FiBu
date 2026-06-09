@@ -240,12 +240,13 @@ Wenn das Projekt fertig ist, kennen wir Business Central für den Buchumfang nic
 | Buch-Sync | Kapitel 34 | n/a | Statusbox `Evidence-Status MB800-001` | MB-800-Kompetenzmatrix gegen Microsoft Learn und vorhandene Evidence einordnen; Lernabdeckung von Zertifizierungserfolg und Finalnachweisen trennen | `MB800-001` | `evidence/mb800-001/` | erledigt als Buch-/Readiness-Sync; kein BC-Lauf, keine Pruefungssimulation, keine Setup-Aenderung, keine Buchung | Kapitel 34 |
 | Buch-Sync | Kapitel 35 | n/a | Statusbox `LEARNPATH-001` | Microsoft-Learn-Lernpfad-Mapping gegen offizielle Learn-/Produktdoku und vorhandene Evidence einordnen; Lernlandkarte von absolvierten Learn-Modulen, Zertifizierung und Finalnachweis trennen | `LEARNPATH-001` | `evidence/learnpath-001/` | erledigt als Buch-/Readiness-Sync; kein BC-Lauf, keine Setup-Aenderung, keine Buchung | Kapitel 35 |
 | Buch-Sync | Kapitel 36 | n/a | Statusbox `EXAMTRAINING-001` | MB-800-Pruefungsfallen gegen Kapitel 34/35, Microsoft Learn und vorhandene Evidence einordnen; Pruefungsvorbereitung von Pruefungssimulation, Zertifizierung und Finalnachweis trennen | `EXAMTRAINING-001` | `evidence/examtraining-001/` | erledigt als Buch-/Readiness-Sync; kein BC-Lauf, keine Setup-Aenderung, keine Buchung | Kapitel 36 |
+| Buch-Sync | Kapitel 37 | n/a | Statusbox `GLOSSARY-001` | Glossar Deutsch/Englisch/Tell-Me gegen vorhandene UI-Inventar- und Evidence-Begriffe einordnen; Begriff, Suchhilfe, praktischen Klickpfad und offenen Zielbegriff trennen | `GLOSSARY-001` | `evidence/glossary-001/` | erledigt als Buch-/Readiness-Sync; kein BC-Lauf, keine Setup-Aenderung, keine Buchung | Kapitel 37 |
 
 ## Naechste Inventarziele
 
 | Reihenfolge | Ziel |
 |---:|---|
-| 1 | Glossar Deutsch/Englisch/Tell-Me: Kapitel 37 gegen vorhandene UI-Inventar- und Evidence-Begriffe einordnen, keine neue Buchung, keine Setup-Aenderung und kein neuer Prozesslauf |
+| 1 | Seitenindex, Prozesskatalog und Qualitaetssicherung: Kapitel 38 gegen Coverage, UI-Inventar, Screenshot-QA und vorhandene Evidence einordnen, keine neue Buchung, keine Setup-Aenderung und kein neuer Prozesslauf |
 | 2 | Intercompany-/Auslandprozess nur mit Gate fortsetzen: keine Company anlegen/wechseln, keinen IC-Partner, keinen Beleg `IC-7001`, keine Inbox/Outbox-Aktion und keine VAT-/Waehrungs-Aenderung ohne Freigabe |
 | 3 | Dropshipping-Setup nur mit Gate fortsetzen: `D11000`, `K20000`, `SP-PUMP-01` und Drop-Shipment-/Purchasing-Code-Logik bleiben UI-first Setup-Folgearbeit |
 | 4 | Project-Setup nur mit Gate fortsetzen: Projekt `PROJ-5001`, Ressource `RES-TECH`, Material `SP-SENSOR-02` und Lagerort `PROJ-LAG` bleiben UI-first Setup-Folgearbeit |

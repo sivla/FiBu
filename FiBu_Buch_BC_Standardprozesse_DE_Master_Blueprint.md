@@ -6201,6 +6201,8 @@ Status des Evidence-Syncs in `RM-DEMO`: `EXAMTRAINING-001` vom 09.06.2026 ordnet
 
 ## 37. Glossar Deutsch / Englisch / Tell-Me
 
+Status des Evidence-Syncs in `RM-DEMO`: `GLOSSARY-001` vom 09.06.2026 ordnet dieses Kapitel gegen `UI-INVENTORY.md`, die Klickanleitungs-Coverage und vorhandene Evidence ein. Das ist ein Glossar- und Suchhilfe-Sync, kein neuer Business-Central-Lauf. Begriffe duerfen deshalb nur dann als getesteter Klickpfad gelesen werden, wenn eine konkrete Evidence genannt ist. Deutsche Bezeichnungen bleiben fuer das Buch fuehrend; englische Begriffe sind Suchhilfe, Microsoft-Learn-Begriff oder aktuelle Labor-UI in der gemischtsprachigen CRONUS-USA-Company.
+
 Dieses Kapitel ist für Mitarbeiter gedacht, die noch nie mit ERP gearbeitet haben. Der wichtigste Satz lautet: Business Central speichert nicht „irgendeinen Bildschirm“, sondern Geschäftsvorfälle. Jede Eingabe kann Belege, Posten, Berichte und Rechte beeinflussen.
 
 ### Was ist ERP?

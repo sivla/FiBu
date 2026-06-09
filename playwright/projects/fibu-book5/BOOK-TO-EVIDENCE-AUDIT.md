@@ -34,6 +34,8 @@ Update nach `LEARNPATH-001`: Kapitel 35 ist als Read-only-/Buch-Zielbild-Sync do
 
 Update nach `EXAMTRAINING-001`: Kapitel 36 ist als Read-only-/Buch-Zielbild-Sync dokumentiert. Das MB-800-Pruefungstraining ist gegen Kapitel 34/35, den Microsoft-Learn-Study-Guide und vorhandene Evidence eingeordnet. Der Audit trennt jetzt Pruefungsfallen, Denkmodelle, Laboranker, offene Finalnachweise, Pruefungssimulation und Zertifizierung. Es gab keinen BC-Lauf, keine Setup-Aenderung, keine Buchung und keine Pruefungssimulation.
 
+Update nach `GLOSSARY-001`: Kapitel 37 ist als Read-only-/Buch-Zielbild-Sync dokumentiert. Glossar, deutsche Buchsprache, englische Tell-Me-/Microsoft-Learn-Suchhilfen, praktisch belegte UI-Pfade und offene Zielbegriffe sind gegen UI-Inventar, Coverage und vorhandene Evidence eingeordnet. Es gab keinen BC-Lauf, keine Setup-Aenderung, keine Buchung und keine neuen Screenshots.
+
 ## Leitentscheidung
 
 `RM-DEMO` bleibt der konsolidierte Lern- und Labor-Mandant in Sandbox `MCP_1_20260210`. Die Ziel-Companies `RM-PROD`, `RM-SALES`, `RM-SERVICE`, `RM-SHARED` und `RM-AT` sind Buchziel fuer einen spaeteren Mehr-Company-/Greenfield-Block. Sie werden nicht als naechster Reflex angelegt. Zuerst werden Buchanforderungen, aktuelle Evidence und RM-DEMO-Setup synchronisiert.
@@ -150,7 +152,7 @@ Fazit: O2C ist als CRONUS-USA-Laborprozess fachlich weitgehend synchronisiert, a
 ```text
 Arbeite auf Branch codex/playwright-bc-screenshot-foundation.
 Lies AUTOPILOT-STATE.json, POSTING-AND-SETUP-GATES.md, CURRENT-STATE.md, BOOK-TO-EVIDENCE-AUDIT.md, LAB-FIT-STATUS.md und Kapitel 34.
-`EXAMTRAINING-001` ist erledigt. Ohne Freigabe fuehre `GLOSSARY-001-READINESS` als read-only/Buch-Zielbild-Sync fuer Kapitel 37 durch: Glossar Deutsch/Englisch/Tell-Me gegen vorhandene UI-Inventar- und Evidence-Begriffe einordnen; keine neue Buchung, keine Setup-Aenderung und kein neuer Prozesslauf.
+`GLOSSARY-001` ist erledigt. Ohne Freigabe fuehre `PAGESINDEX-001-READINESS` als read-only/Buch-Zielbild-Sync fuer Kapitel 38 durch: Seitenindex, Prozesskatalog und Qualitaetssicherung gegen Coverage, UI-Inventar, Screenshot-QA und vorhandene Evidence einordnen; keine neue Buchung, keine Setup-Aenderung und kein neuer Prozesslauf.
 ```
 
 ## Grenzen
