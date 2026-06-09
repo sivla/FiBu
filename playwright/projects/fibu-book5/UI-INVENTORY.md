@@ -178,11 +178,22 @@ Wenn das Projekt fertig ist, kennen wir Business Central für den Buchumfang nic
 | Steuer / Waehrung | VAT Entries / Currencies | n/a | Tell-Me-Suche | Steuer- und Waehrungsnachweise fuer Ausland/IC vorbereiten | `INTERCOMPANY-001` | `playwright/projects/fibu-book5/img/intercompany-001-050-vat-entries-tell-me.png`; `playwright/projects/fibu-book5/img/intercompany-001-060-currencies-tell-me.png`; `evidence/intercompany-001/` | `VAT Entries` sichtbar; `Currencies` nicht stabil sichtbar; keine VAT-/Waehrungs-Aenderung | Kapitel 18/22 |
 | Stammdaten | Customers | 22 | gefilterte Listen, breite Layoutansicht | EU-, Export- und IC-Zieldebitoren pruefen | `INTERCOMPANY-001` | `playwright/projects/fibu-book5/img/intercompany-001-070-customer-d20000-eu.png`; `playwright/projects/fibu-book5/img/intercompany-001-080-customer-d30000-export.png`; `playwright/projects/fibu-book5/img/intercompany-001-090-customer-d90000-ic.png`; `evidence/intercompany-001/` | `D20000`, `D30000` und `D90000` nicht sichtbar; keine Anlage, keine Buchung | Kapitel 18 |
 
+## Compliance / E-Rechnung
+
+| Bereich | Seite | Page-ID | UI-Element | Funktion | Testfall | Screenshot/Evidence | Status | Buchstelle |
+|---|---|---:|---|---|---|---|---|---|
+| E-Rechnung | E-Rechnungen / E-Documents Kontext | n/a | Tell-Me-Suche, Role-Center-Aktion | Einstieg fuer strukturierte Rechnungen sichtbar machen, ohne E-Rechnung zu senden | `COMPLIANCE-001` | `playwright/projects/fibu-book5/img/compliance-001-010-e-invoices-tell-me.png`; `evidence/compliance-001/` | gesehen/verstanden als Orientierungsbild; `Warten auf Ka E-Rechnungen 0` ist sichtbar, aber kein Versand-/Validierungsnachweis | Kapitel 22 |
+| Steuerposten | VAT Entries | n/a | Tell-Me-Suche | spaeteren Nachweispfad fuer USt-/Tax-Posten finden | `COMPLIANCE-001` | `playwright/projects/fibu-book5/img/compliance-001-020-vat-entries-tell-me.png`; `evidence/compliance-001/` | gesehen/verstanden als Nachweispfad; kein deutscher 19-%-USt-Nachweis | Kapitel 22 |
+| Steuer-Setup | VAT Posting Setup | n/a | Tell-Me-Suche | gesperrte Steuer-Matrix sichtbar machen, ohne Einrichtung zu aendern | `COMPLIANCE-001` | `playwright/projects/fibu-book5/img/compliance-001-030-vat-posting-setup-tell-me.png`; `evidence/compliance-001/` | gesehen/verstanden als Setup-Kontext; VAT19-Fit bleibt gate-gesperrt | Kapitel 22 |
+| Belegversand | Document Sending Profiles | n/a | Tell-Me-Suche | Versandprofil-Kontext fuer Rechnungen finden | `COMPLIANCE-001` | `playwright/projects/fibu-book5/img/compliance-001-040-document-sending-profiles-tell-me.png`; `evidence/compliance-001/` | gesehen/verstanden als Versandprofil-Kontext; keine E-Rechnungsvalidierung, kein Peppol-/Providerstatus | Kapitel 22 |
+| Audit | Change Log Entries | n/a | Tell-Me-Suche | spaeteren Audit-/Aenderungsnachweis finden | `COMPLIANCE-001` | `playwright/projects/fibu-book5/img/compliance-001-050-change-log-entries-tell-me.png`; `evidence/compliance-001/` | gesehen/verstanden als Audit-Kontext; kein Nachweis aktiver Tabellenprotokollierung | Kapitel 22/Administration |
+| Audit-Setup | Change Log Setup | n/a | Tell-Me-Suche | gesperrten Audit-Setup-Pfad sichtbar machen | `COMPLIANCE-001` | `playwright/projects/fibu-book5/img/compliance-001-060-change-log-setup-tell-me.png`; `evidence/compliance-001/` | gesehen/verstanden als Setup-Kontext; keine Aktivierung und keine Einrichtung | Kapitel 22/Administration |
+
 ## Naechste Inventarziele
 
 | Reihenfolge | Ziel |
 |---:|---|
-| 1 | Compliance-/E-Rechnung-Readiness fuer Kapitel 22 read-only pruefen: nur Einstiegspfade und sichtbare Standardseiten dokumentieren, keine Steuer-/E-Rechnungs-Einrichtung aendern |
+| 1 | Compliance-/E-Rechnung-Buch-Sync fuer Kapitel 22: `COMPLIANCE-001` als Readiness einarbeiten, aber keine E-Rechnungs-/VAT-/Change-Log-Finalbehauptung |
 | 2 | Intercompany-/Auslandprozess nur mit Gate fortsetzen: keine Company anlegen/wechseln, keinen IC-Partner, keinen Beleg `IC-7001`, keine Inbox/Outbox-Aktion und keine VAT-/Waehrungs-Aenderung ohne Freigabe |
 | 3 | Dropshipping-Setup nur mit Gate fortsetzen: `D11000`, `K20000`, `SP-PUMP-01` und Drop-Shipment-/Purchasing-Code-Logik bleiben UI-first Setup-Folgearbeit |
 | 4 | Project-Setup nur mit Gate fortsetzen: Projekt `PROJ-5001`, Ressource `RES-TECH`, Material `SP-SENSOR-02` und Lagerort `PROJ-LAG` bleiben UI-first Setup-Folgearbeit |
