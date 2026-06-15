@@ -1,0 +1,72 @@
+{
+  "testId": "FIXEDASSETS-015",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "dataBasis": "CRONUS USA",
+  "mode": "account-mapping-decision-no-bc-run-no-setup-change-no-posting",
+  "target": {
+    "objectType": "FA Posting Group",
+    "code": "MACHINES",
+    "statusBeforeDecision": "missing-not-created",
+    "decision": "approve-next-narrow-ui-first-setup-fit"
+  },
+  "evidenceUsed": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-006/FIXEDASSETS-006-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-006/FIXEDASSETS-006-FA-POSTING-GROUP-ACCOUNTS.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-014/FIXEDASSETS-014-result.json"
+  ],
+  "referenceGroup": {
+    "code": "EQUIPMENT",
+    "reason": "closest visible CRONUS-USA fixed asset group for machine/equipment-like assets",
+    "visibleAccounts": [
+      "12210",
+      "82000"
+    ],
+    "visibleRawPattern": "EQUIPMENT 12210 12210 12210 12210 12210 12210 82000 82000 82000",
+    "limitation": "The evidence shows visible CRONUS-USA list values and field headers, but it is not a German chart-of-accounts decision."
+  },
+  "officialSources": [
+    "https://learn.microsoft.com/en-au/dynamics365/business-central/fa-how-setup-general",
+    "https://learn.microsoft.com/en-us/dynamics365/business-central/application/base-application/page/microsoft.fixedassets.fixedasset.fa-posting-groups",
+    "https://learn.microsoft.com/en-us/dynamics365/business-central/application/base-application/page/microsoft.fixedassets.fixedasset.fa-posting-group-card",
+    "https://learn.microsoft.com/en-us/dynamics365/business-central/fa-how-acquire"
+  ],
+  "allowedNextRun": {
+    "caseId": "FIXEDASSETS-016-MACHINES-FA-POSTING-GROUP-FIT",
+    "allowed": [
+      "Open FA Posting Groups UI-first in RM-DEMO.",
+      "Check if MACHINES already exists.",
+      "If missing, create exactly one FA Posting Group MACHINES using the visible EQUIPMENT account pattern.",
+      "Capture before/after evidence and screenshot where MACHINES and account values are visible."
+    ],
+    "notAllowed": [
+      "Do not create FA-CNC-01.",
+      "Do not create K30000.",
+      "Do not create a purchase invoice.",
+      "Do not post acquisition or depreciation.",
+      "Do not claim German HGB or chart-of-accounts final proof."
+    ]
+  },
+  "safety": {
+    "bcRun": false,
+    "setupChanged": false,
+    "postingGroupCreated": false,
+    "fixedAssetCreated": false,
+    "vendorCreated": false,
+    "posted": false,
+    "companySwitched": false
+  },
+  "proves": [
+    "A narrow next MACHINES setup-fit can be justified from existing CRONUS EQUIPMENT evidence.",
+    "The next fit must be UI-first, idempotent, and limited to the FA Posting Group.",
+    "MACHINES remains not created in this decision run."
+  ],
+  "doesNotProve": [
+    "No German chart-of-accounts target.",
+    "No MACHINES setup result yet.",
+    "No FA-CNC-01 fixed asset.",
+    "No K30000 vendor.",
+    "No acquisition, depreciation, fixed asset ledger or G/L trace."
+  ],
+  "nextStep": "FIXEDASSETS-016-MACHINES-FA-POSTING-GROUP-FIT"
+}

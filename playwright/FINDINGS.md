@@ -75,6 +75,25 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 
 Fuer Anfaenger ist das wichtig, weil ein AfA-Buch nur die Bewertungs-/Abschreibungsebene vorbereitet. Es macht eine Anlage noch nicht buchungsfaehig: Die Kontenfindung ueber Anlagenbuchungsgruppen, Anlagenkarte, Zugang und spaetere AfA brauchen eigene Nachweise.
 
+## FIND-BC-FA-015 MACHINES darf nur als CRONUS-Laboralias von EQUIPMENT vorbereitet werden
+
+| Feld | Wert |
+|---|---|
+| Status | erledigt als Account-Mapping-Decision ohne BC-Lauf |
+| Projekt | fibu-book5 |
+| Testfall | `FIXEDASSETS-015` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-015/README.md`, `playwright/projects/fibu-book5/evidence/fixedassets-015/FIXEDASSETS-015-MACHINES-ACCOUNT-MAPPING-DECISION.md`, `playwright/projects/fibu-book5/evidence/fixedassets-015/FIXEDASSETS-015-result.json` |
+| BC-Seite | kein neuer BC-Lauf; Entscheidung basiert auf `FA Posting Groups` aus `FIXEDASSETS-006` |
+| sichtbarer Text / Werte | `EQUIPMENT`, `12210`, `82000`, `MACHINES` als Zielwert |
+| Elementtyp | Anlagenbuchungsgruppe / Kontenfindung / Setup-Decision |
+| erste Hypothese | Nach `HGB` koennte `MACHINES` als naechstes Setup-Objekt vorbereitet werden, aber nur wenn die Konten nicht geraten werden. |
+| Recherchequelle | `FIXEDASSETS-006`, `FIXEDASSETS-014`, Microsoft Learn zu Fixed Assets Posting Groups und FA Posting Group Card |
+| Testergebnis | `MACHINES` ist im Labor weiterhin nicht angelegt. Die naechste Anlage ist nur als enger UI-first Fit erlaubt: `MACHINES` wird als CRONUS-USA-Laboralias der bestehenden Gruppe `EQUIPMENT` vorbereitet. |
+| Entscheidung | `FIXEDASSETS-016` darf nur `MACHINES` pruefen/anlegen und muss im Nachher-Bild Code plus relevante Konten zeigen. `FA-CNC-01`, `K30000`, Zugang, AfA und Buchung bleiben gesperrt. |
+| Buchstelle | Kapitel 21 Anlagen / Fixed Assets |
+
+Fuer Anfaenger ist das wichtig, weil die Anlagenbuchungsgruppe eine Kontenentscheidung ist. Wer `MACHINES` falsch anlegt, erzeugt spaeter falsche Sachposten. Deshalb ist die Reihenfolge: `HGB` AfA-Buch sichtbar, dann `MACHINES` Konten-Setup, dann erst Anlagenkarte, Kreditor/Zugang und AfA.
+
 ## FIND-BC-FA-013 Fixed Assets darf mit `HGB` anfangen, aber nicht mit Anlage oder Kontenmapping
 
 | Feld | Wert |
