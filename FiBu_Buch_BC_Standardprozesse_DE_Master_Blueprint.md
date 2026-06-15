@@ -3810,7 +3810,7 @@ Status vor dem ersten bebilderten Anlagenlauf:
 | Kreditor | `K30000` | nicht sichtbar | Kreditorenanlage bleibt eigener Klickpfad |
 | Zugang/AfA | Einkaufsrechnung, Anlagenposten, AfA bis `30.06.2026` | nicht gebucht | keine Laborbuchung ohne neues Gate |
 
-Evidence-Pack-Stand: `FIXEDASSETS-005` belegt den UI-Pfad zu `FA Posting Groups`, `FIXEDASSETS-006` belegt vorhandene CRONUS-Konten, `FIXEDASSETS-007` belegt AfA-Bücher und Anlagenklassen. Diese Evidence ist ein Labor-Nachweis für die Setup-Reihenfolge, kein finaler deutscher Anlagenprozess. Für finale Buchscreenshots fehlen weiterhin `FA-CNC-01`, `HGB`, `MACHINES`, `K30000`, Zugang, Anlagenposten, AfA-Posten und deutscher Kontenplan-/USt-Nachweis.
+Evidence-Pack-Stand: `FIXEDASSETS-005` belegt den UI-Pfad zu `FA Posting Groups`, `FIXEDASSETS-006` belegt vorhandene CRONUS-Konten, `FIXEDASSETS-007` belegt AfA-Bücher und Anlagenklassen. `FIXEDASSETS-012` zeigt nur leere Karten und den Vendor-Template-Dialog; diese Bilder sind keine Zielstammdaten-Screenshots. `FIXEDASSETS-013` entscheidet deshalb als Labor-Gate: Als nächster enger Setup-Fit ist nur das AfA-Buch `HGB` vertretbar. `MACHINES` braucht vorher eine Kontenentscheidung, `FA-CNC-01` die Setup-Kette und `K30000` einen eigenen Vendor-Klickpfad. Diese Evidence ist ein Labor-Nachweis für die Setup-Reihenfolge, kein finaler deutscher Anlagenprozess. Für finale Buchscreenshots fehlen weiterhin `FA-CNC-01`, sichtbar gefittetes `HGB`, `MACHINES`, `K30000`, Zugang, Anlagenposten, AfA-Posten und deutscher Kontenplan-/USt-Nachweis.
 
 ### Schritt-für-Schritt
 

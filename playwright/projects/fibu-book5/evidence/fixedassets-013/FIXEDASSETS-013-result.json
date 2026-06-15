@@ -1,0 +1,96 @@
+{
+  "caseId": "FIXEDASSETS-013",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "mode": "setup-fit-decision-no-bc-run",
+  "status": "done-decision-no-bc-run",
+  "date": "2026-06-16",
+  "setupChanged": false,
+  "posted": false,
+  "companySwitched": false,
+  "companyCreated": false,
+  "inputs": {
+    "evidence": [
+      "playwright/projects/fibu-book5/evidence/fixedassets-009/FIXEDASSETS-009-SETUP-GATE-READINESS.md",
+      "playwright/projects/fibu-book5/evidence/fixedassets-010/FIXEDASSETS-010-SETUP-PREFLIGHT-READONLY.md",
+      "playwright/projects/fibu-book5/evidence/fixedassets-011/FIXEDASSETS-011-SETUP-GATE-DECISION.md",
+      "playwright/projects/fibu-book5/evidence/fixedassets-012/FIXEDASSETS-012-SCOPED-NEW-CARD-PREFLIGHT.md",
+      "playwright/projects/fibu-book5/evidence/fixedassets-012/FIXEDASSETS-012-result.json"
+    ],
+    "screenshotsInspected": [
+      "playwright/projects/fibu-book5/img/fixedassets-012-010-fa-posting-groups-new-preflight.png",
+      "playwright/projects/fibu-book5/img/fixedassets-012-020-depreciation-books-new-preflight.png",
+      "playwright/projects/fibu-book5/img/fixedassets-012-030-fixed-assets-new-preflight.png",
+      "playwright/projects/fibu-book5/img/fixedassets-012-040-vendors-new-preflight.png"
+    ],
+    "microsoftLearnSources": [
+      {
+        "title": "Set Up Fixed Asset Depreciation",
+        "url": "https://learn.microsoft.com/en-us/dynamics365/business-central/fa-how-setup-depreciation"
+      },
+      {
+        "title": "Set Up General Fixed Assets Information",
+        "url": "https://learn.microsoft.com/en-au/dynamics365/business-central/fa-how-setup-general"
+      },
+      {
+        "title": "Acquire fixed assets",
+        "url": "https://learn.microsoft.com/en-us/dynamics365/business-central/fa-how-acquire"
+      }
+    ]
+  },
+  "decision": {
+    "approvedCandidateForNextRun": "HGB",
+    "nextRun": "FIXEDASSETS-014-HGB-DEPRECIATION-BOOK-FIT",
+    "decisionStatus": "approved-for-next-explicit-ui-first-setup-fit",
+    "reason": "HGB is the smallest isolated setup layer after the cancel-safe Depreciation Book Card preflight. It does not require FA posting account mapping and does not post ledger entries."
+  },
+  "targetAssessment": [
+    {
+      "target": "HGB",
+      "type": "Depreciation Book",
+      "decision": "approved-candidate-for-next-run",
+      "reason": "Depreciation Book Card was opened cancel-safe; visible required setup appears narrow; depreciation book is a prerequisite setup layer before acquisition."
+    },
+    {
+      "target": "MACHINES",
+      "type": "FA Posting Group",
+      "decision": "not-approved",
+      "reason": "FA Posting Group Card has many G/L account fields. Account mapping must not be guessed from incomplete evidence."
+    },
+    {
+      "target": "FA-CNC-01",
+      "type": "Fixed Asset",
+      "decision": "not-approved",
+      "reason": "Asset creation depends on depreciation book, posting group and acquisition path. Current evidence proves only an empty Fixed Asset Card."
+    },
+    {
+      "target": "K30000",
+      "type": "Vendor",
+      "decision": "not-approved",
+      "reason": "Vendor flow reached only the template dialog. Downstream vendor card fields and posting/payment defaults are not mapped for this Fixed Assets purpose."
+    }
+  ],
+  "allowedNextRun": {
+    "caseId": "FIXEDASSETS-014-HGB-DEPRECIATION-BOOK-FIT",
+    "scope": "Create or confirm exactly one depreciation book HGB in RM-DEMO via UI-first idempotent setup fit.",
+    "allowedActions": [
+      "open Depreciation Books",
+      "check whether HGB already exists",
+      "if missing, create Code HGB and Description HGB depreciation book",
+      "capture before and after UI evidence",
+      "write JSON and Markdown evidence"
+    ],
+    "forbiddenActions": [
+      "create MACHINES",
+      "create FA-CNC-01",
+      "create K30000",
+      "create purchase invoice",
+      "post acquisition",
+      "run depreciation",
+      "post anything",
+      "claim German final proof"
+    ]
+  },
+  "bookImpact": "Chapter 21 should treat the RM-DEMO Fixed Assets path as setup-first. The next practical setup step is HGB depreciation book only; asset, posting group, vendor, acquisition and depreciation remain later gates.",
+  "nextStep": "Run FIXEDASSETS-014-HGB-DEPRECIATION-BOOK-FIT as exactly one idempotent UI-first setup fit, or stop if HGB cannot be created safely."
+}

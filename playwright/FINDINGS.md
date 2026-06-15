@@ -52,8 +52,27 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 | erste Hypothese | Fuer mehr Lernfortschritt soll der Autopilot Companies innerhalb der Sandbox nutzen oder anlegen koennen. |
 | Recherchequelle | Autopilot-Prompt V5/V6, `testdata/masterdata/companies.json`, Projekt-State und Gate-Dateien, `evidence/governance-013/` |
 | Testergebnis | Company-Autonomie ist fachlich sinnvoll, aber nur instanzgebunden. `GOVERNANCE-013` hat die Companies-Liste read-only geoeffnet: sichtbar sind `CRONUS USA, Inc.`, `My Company` und `RM-DEMO`; die Zielcompanies sind noch nicht sichtbar und wurden nicht angelegt. |
-| Entscheidung | `COMPANY-REGISTRY.md/json`, Gates, State, Coverage und Matrix wurden synchronisiert. Company-Aktionen sind nur innerhalb `MCP_1_20260210` mit Registry-Eintrag, Zweck, Risiko, Evidence-Plan und Rueckfalllogik erlaubt. Nach dem UI-Nachweis kehrt der No-Approval-Fokus zu `FIXEDASSETS-013-SETUP-FIT-DECISION` zurueck. |
+| Entscheidung | `COMPANY-REGISTRY.md/json`, Gates, State, Coverage und Matrix wurden synchronisiert. Company-Aktionen sind nur innerhalb `MCP_1_20260210` mit Registry-Eintrag, Zweck, Risiko, Evidence-Plan und Rueckfalllogik erlaubt. Der Company-Nachweis ist erledigt; der aktuelle No-Approval-Fokus liegt nach `FIXEDASSETS-013` auf `FIXEDASSETS-014-HGB-DEPRECIATION-BOOK-FIT`. |
 | Buchstelle | Kapitel 18 Intercompany/Ausland, Kapitel 28 Migration/Opening Balances, Kapitel 39 Projektartefakte/Handover |
+
+## FIND-BC-FA-013 Fixed Assets darf mit `HGB` anfangen, aber nicht mit Anlage oder Kontenmapping
+
+| Feld | Wert |
+|---|---|
+| Status | erledigt als Setup-Fit-Entscheidung ohne BC-Lauf |
+| Projekt | fibu-book5 |
+| Testfall | `FIXEDASSETS-013` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-013/README.md`, `playwright/projects/fibu-book5/evidence/fixedassets-013/FIXEDASSETS-013-SETUP-FIT-DECISION.md`, `playwright/projects/fibu-book5/evidence/fixedassets-013/FIXEDASSETS-013-result.json` |
+| BC-Seite | kein neuer BC-Lauf; Entscheidung basiert auf `Depreciation Book Card`, `FA Posting Group Card`, `Fixed Asset Card`, Vendor Template Dialog aus `FIXEDASSETS-012` |
+| sichtbarer Text / Werte | `HGB`, `MACHINES`, `FA-CNC-01`, `K30000` als Zielwerte; in `FIXEDASSETS-012` noch nicht als fertige Zielcodes sichtbar |
+| Elementtyp | Setup-Gate / Anlagen-Setup / AfA-Buch |
+| erste Hypothese | Nach dem Formular-Preflight koennte ein kleiner Setup-Fit moeglich sein, aber nicht zwingend fuer alle Zielobjekte. |
+| Recherchequelle | `FIXEDASSETS-009` bis `FIXEDASSETS-012`, Screenshot-Sichtpruefung, Microsoft Learn Fixed Assets Depreciation/Setup/Acquire |
+| Testergebnis | `HGB` ist der kleinste unabhaengige naechste Setup-Fit-Kandidat, weil das AfA-Buch vor der Anlagenaktivierung steht und kein komplettes Sachkonto-Mapping verlangt. `MACHINES` bleibt wegen vieler Konto-Felder gesperrt, `FA-CNC-01` wegen fehlender Setup-Kette und `K30000` wegen unvollstaendig gemapptem Vendor-Template-/Kartenpfad. |
+| Entscheidung | Naechster Lauf darf nur `FIXEDASSETS-014-HGB-DEPRECIATION-BOOK-FIT` sein: UI-first, idempotent, `HGB` pruefen/anlegen, Vorher/Nachher-Bild; keine Anlage, keine Anlagenbuchungsgruppe, kein Kreditor, keine Einkaufsrechnung, keine Buchung. |
+| Buchstelle | Kapitel 21 Anlagen / Fixed Assets |
+
+Fuer Anfaenger ist das wichtig, weil Business Central Anlagen in Schichten aufbaut: AfA-Buch, Kontenfindung, Anlagenkarte, Zugang und AfA. Ein kleines Setup-Objekt kann als naechster Lernschritt sinnvoll sein, waehrend die eigentliche Buchung noch klar gesperrt bleibt.
 
 ## FIND-BC-SHOT-001 Buchbild braucht sichtbaren fachlichen Pruefpunkt
 

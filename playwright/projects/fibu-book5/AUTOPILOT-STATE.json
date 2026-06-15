@@ -10,8 +10,8 @@
   "companyRegistry": "playwright/projects/fibu-book5/COMPANY-REGISTRY.json",
   "dataBasis": "CRONUS USA",
   "activeArea": "fixedassets",
-  "lastCompletedRun": "GOVERNANCE-013-COMPANY-LIST-READONLY",
-  "lastWorkType": "read-only-company-list",
+  "lastCompletedRun": "FIXEDASSETS-013-SETUP-FIT-DECISION",
+  "lastWorkType": "setup-fit-decision-no-bc-run",
   "postedInLastRun": false,
   "latestPostedDocuments": {
     "o2c": {
@@ -107,7 +107,8 @@
     "INTERCOMPANY-001-PROCESS",
     "O2C-REPOST-001",
     "P2P-REPOST-001",
-    "INVENTORY-REPOST-INV008"
+    "INVENTORY-REPOST-INV008",
+    "FIXEDASSETS-014-HGB-DEPRECIATION-BOOK-FIT"
   ],
   "autonomousAllowed": [
     "O2C-NEW-LAB-POSTING: only one new O2C lab case with a new evidence purpose, fresh UI preflight, Preview Posting where available and full posting trace; never repeat UAT-O2C-001 / PS-INV103297.",
@@ -133,14 +134,14 @@
     },
     "nextCompanyEvidenceStep": "Only with a new documented company action purpose; otherwise continue with process/setup work."
   },
-  "nextBestStepWithoutApproval": "FIXEDASSETS-013-SETUP-FIT-DECISION: no new BC run. Use existing fixedassets-009 to fixedassets-012 evidence, gates and screenshot QA to decide whether one narrow idempotent UI-first setup fit is safe for exactly one target value. Do not create, save, change setup or post in this decision run.",
+  "nextBestStepWithoutApproval": "FIXEDASSETS-014-HGB-DEPRECIATION-BOOK-FIT: exactly one idempotent UI-first setup fit for depreciation book HGB in RM-DEMO. First check whether HGB already exists; if missing, create only Code HGB and Description HGB depreciation book via the scoped Depreciation Books card. Capture before/after UI evidence. Do not create MACHINES, FA-CNC-01 or K30000 and do not post.",
   "nextBestStepWithApproval": {
     "payments": "Nur mit neuem Gate: weitere Zahlung, Kreditorenzahlung oder Bankabstimmung. PAYMENTS-011 darf nicht wiederholt werden.",
     "companies": "Company-Aktionen sind innerhalb MCP_1_20260210 erlaubt, aber nur mit COMPANY-REGISTRY-Eintrag, dokumentiertem Zweck/Risiko/Evidence-Plan und sofortigem State-/Evidence-Sync. Naechster Company-Schritt ist read-only Enumeration, keine Anlage.",
     "reporting": "Further Analysis View setup needs a new explicit gate and a scoped New/Card action proof. REPORTING-013 consumed the GOVERNANCE-007 gate and rejected setup because unscoped New/Neu is globally ambiguous in BC.",
     "tax": "TAX-002-DE-VAT-FIT: only with explicit approval; UI-first VAT Business/Product Posting Groups, VAT Posting Setup, document preview and VAT Entries proof; no German final claim until proven.",
     "compliance": "COMPLIANCE-002-EINVOICE-SETUP: E-Rechnungs-/E-Documents-/Versandprofil-/Change-Log-Setup nur mit Freigabe, UI-first Klickpfad, Validierungs-/Versand-/Auditnachweis und klarer Labor-/DE-Trennung.",
-    "fixedAssets": "FIXEDASSETS-004-SETUP-OR-POSTING remains locked for data-changing setup and posting. FIXEDASSETS-012 proved only empty cards/template dialog and abort paths; MACHINES, HGB, FA-CNC-01 and K30000 are not visible target-code screenshots and were not created. With a later explicit setup gate only: a narrow UI-first setup fit; posting remains a separate later gate.",
+    "fixedAssets": "FIXEDASSETS-013 approved exactly one next setup-fit candidate: HGB depreciation book. MACHINES, FA-CNC-01, K30000, acquisition and depreciation posting remain locked. FIXEDASSETS-014 may create or confirm only HGB via UI-first idempotent setup fit with before/after evidence; posting remains a separate later gate.",
     "security": "SECURITY-002-USER-PERMISSION-SETUP: Benutzer-/Berechtigungs-/Profil-/Security-Group-/User-Setup-/Job-Queue-/Change-Log-Aenderungen nur mit Freigabe, UI-first Klickpfad, Rechte-/SoD-Matrix und Audit-/Review-Evidence.",
     "migration": "MIGRATION-002-CONFIGURATION-PACKAGES-IMPORT: Configuration Packages, Datenimport, Opening-Balance-Journale oder Cutover-Ausfuehrung nur mit Freigabe, UI-first Klickpfad, Abstimmprotokoll und Rueckfallregel.",
     "integrations": "INTEGRATIONS-002-SETUP-OR-CONNECTOR: Extension, AppSource-App, API/Web Service, Connector, Power Platform, Power BI, Job Queue oder produktiven Integrationslauf nur mit Freigabe, UI-first Klickpfad, UAT, Rollen/Berechtigungen, Fehlerfall, Rollback, Monitoring und Support Owner.",
@@ -193,9 +194,10 @@
     "Do not repeat FIXEDASSETS-010-SETUP-PREFLIGHT-READONLY without a new UI mapping delta",
     "Do not repeat FIXEDASSETS-011-SETUP-GATE-DECISION without a new setup-gate decision delta",
     "Do not save or create any Fixed Assets target object during FIXEDASSETS-012-SCOPED-NEW-CARD-PREFLIGHT",
-    "Do not create MACHINES, HGB, FA-CNC-01 or K30000 without an explicit setup gate after the completed FIXEDASSETS-010 read-only preflight",
+    "Do not create MACHINES, FA-CNC-01 or K30000 without an explicit setup gate after the completed FIXEDASSETS-010 read-only preflight; HGB is only allowed in FIXEDASSETS-014.",
     "Do not repeat FIXEDASSETS-012-SCOPED-NEW-CARD-PREFLIGHT without a new form-mapping delta",
     "Do not treat FIXEDASSETS-012 screenshots as target-code proof; they show empty cards/template dialog only",
+    "Do not create MACHINES, FA-CNC-01 or K30000 during FIXEDASSETS-014; the only approved Fixed Assets setup target is depreciation book HGB.",
     "Do not mark any screenshot as book-ready unless the intended visible learning/proof target is actually visible in the image: code, name, amount, status, posting option, entry type, account, dimension, filter, error, report line, dialog choice or equivalent.",
     "Do not repeat GOVERNANCE-011-DOCUMENTATION-STRUCTURE without a documentation-structure delta.",
     "Do not repeat PLAYWRIGHT-BC-OPTIMIZATION-AUDIT without a new helper, pattern, action-map or validation delta."
@@ -261,6 +263,7 @@
     "PLAYWRIGHT-BC-OPTIMIZATION-AUDIT was a technical foundation run without setup change, posting, payment, bank reconciliation, company switch or new fachprozess screenshots. A read-only BC smoke refreshed existing smoke screenshots. Added PLAYWRIGHT-BC-OPTIMIZATION-AUDIT.md, expanded BC-PLAYWRIGHT-PATTERNS.md, upgraded BC-PAGE-ACTION-MAP.json to schema 2 and added helper functions waitForBcReady, waitForPageText, openBcPageById and compactPageText. openSearchResult was fixed after a read-only smoke failure: exact Tell-Me labels no longer test the full body text, blocked background hits are skipped and BC result rows such as Customers Listen can be clicked. npm run fibu:smoke:bc passed 6/6 after the fix. Next no-approval step remains FIXEDASSETS-013-SETUP-FIT-DECISION.",
     "PLAYWRIGHT-BC-ACTIONS-DIALOGS-HELPERS was a technical helper run without BC execution, setup change, posting, payment, bank reconciliation, company switch or fachprozess screenshots. Added playwright/core/bc/actions.ts with clickBcAction()/isBcActionVisible() and playwright/core/bc/dialogs.ts with expectBcDialog()/isBcDialogVisible()/clickBcDialogButton(). BC-PLAYWRIGHT-PATTERNS.md, PLAYWRIGHT-BC-OPTIMIZATION-AUDIT.md and BC-PAGE-ACTION-MAP.json now mark these helpers as the preferred next pattern for cancel-safe action/dialog migrations. No Fachtest was migrated yet; next technical step is one read-only migration before dangerous posting/payment contexts.",
     "GOVERNANCE-012-COMPANY-AUTONOMY-REGISTRY created COMPANY-REGISTRY.md/json and changed company autonomy from RM-DEMO-only hardlock to instance-scoped governance within MCP_1_20260210. RM-DEMO remains the active proven CRONUS-USA lab company; RM-PROD, RM-SALES, RM-SERVICE, RM-SHARED and RM-AT are planned-only target companies. No BC run, no company switch, no company creation, no setup change and no posting. Next step is GOVERNANCE-013-COMPANY-LIST-READONLY.",
-    "GOVERNANCE-013-COMPANY-LIST-READONLY opened the Companies list read-only in MCP_1_20260210 from RM-DEMO. Visible companies: CRONUS USA, Inc.; My Company; RM-DEMO. Planned target companies RM-PROD, RM-SALES, RM-SERVICE, RM-SHARED and RM-AT were not visible in the UI page text. No company switch, no company creation, no setup change and no posting. Playwright learning: searchFor now fills the Tell-Me textbox directly; Companies list entry path uses Companies Listen and page 357. Next no-approval step returns to FIXEDASSETS-013-SETUP-FIT-DECISION."
+    "GOVERNANCE-013-COMPANY-LIST-READONLY opened the Companies list read-only in MCP_1_20260210 from RM-DEMO. Visible companies: CRONUS USA, Inc.; My Company; RM-DEMO. Planned target companies RM-PROD, RM-SALES, RM-SERVICE, RM-SHARED and RM-AT were not visible in the UI page text. No company switch, no company creation, no setup change and no posting. Playwright learning: searchFor now fills the Tell-Me textbox directly; Companies list entry path uses Companies Listen and page 357. Next no-approval step returns to FIXEDASSETS-013-SETUP-FIT-DECISION.",
+    "FIXEDASSETS-013 decided without a BC run that exactly one narrow next setup fit is safe enough: HGB depreciation book. MACHINES is blocked by account mapping, FA-CNC-01 by missing setup chain and K30000 by the unmapped vendor template/card flow. No setup change, no posting, no company switch. Next no-approval step is FIXEDASSETS-014-HGB-DEPRECIATION-BOOK-FIT."
   ]
 }
