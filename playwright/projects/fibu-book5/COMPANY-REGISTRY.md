@@ -22,6 +22,8 @@ Pflichtfelder: Zielcompany, Zweck, Buchkapitel, Datenbasis, erwartete Nutzung, R
 
 | Company | Zweck | Datenbasis | Sprache/Lokalisierung | Status | Buchkapitel | Erlaubte Nutzung | Letzter Nachweis |
 |---|---|---|---|---|---|---|---|
+| `CRONUS USA, Inc.` | sichtbare CRONUS-Quell-/Referenzcompany in der Sandbox | CRONUS USA | gemischt Deutsch/Englisch, US-Steuerlogik | actual-visible / reference-only | 6, 10-12, 39 | read-only Referenz und moegliche Kopiervorlage; keine Prozessbuchungen ohne eigenen Company-Aktionsplan | `GOVERNANCE-013` Companies-Liste |
+| `My Company` | sichtbare Standard-/Altcompany in der Sandbox, nicht aktueller Buchzielmandant | Standard-/Altcompany, Details nicht geprueft | gemischt, Lokalisierung nicht geprueft | actual-visible / do-not-use-until-profiled | 39 | nicht fuer Buchprozesse nutzen, bis Zweck, Datenbasis und Risiken profiliert sind | `GOVERNANCE-013` Companies-Liste |
 | `RM-DEMO` | aktueller konsolidierter Lern- und Labor-Mandant fuer Buch 5 | CRONUS USA | gemischt Deutsch/Englisch, US-Steuerlogik | praktisch belegt / aktiv | 6-25, 39-40 | UI-first Lernen, Screenshots, Evidence, kontrollierte Laborbuchungen mit Gates/Preflight/Postenspur | `foundation/rm-demo-company.json`, O2C `PS-INV103297`, P2P `108219`, Inventory `INV008-899959`, Payment `PAY011-PS103297` |
 | `RM-PROD` | spaetere Produktions-/Manufacturing-/Warehouse-Zielcompany | geplant, Vorlage noch offen | Ziel: deutsch, DE-Final offen | planned-only / not-created | 13, 14, 18, 23, 25 | erst nach Registry-gestuetztem Company-Setup; keine Nutzung ohne Company-Aktionsplan | bisher kein BC-Nachweis |
 | `RM-SALES` | spaetere Vertriebs-/Sonderverkaufs-/Dropshipping-Zielcompany ohne Shopify-Scope | geplant, Vorlage noch offen | Ziel: deutsch, DE-Final offen | planned-only / not-created | 11, 17, 18, 25 | erst nach Registry-gestuetztem Company-Setup; keine Nutzung ohne Company-Aktionsplan | bisher kein BC-Nachweis |
@@ -31,11 +33,11 @@ Pflichtfelder: Zielcompany, Zweck, Buchkapitel, Datenbasis, erwartete Nutzung, R
 
 ## Aktuelle Grenze
 
-Dieser Governance-Lauf hat keine Business-Central-UI geoeffnet und keine Company-Liste live aus `MCP_1_20260210` ausgelesen. Die Registry basiert auf dem aktuellen Repo-Stand und dem vorhandenen Testdatenmodell. Der naechste Company-spezifische technische Schritt ist daher ein read-only UI-Lauf:
+`GOVERNANCE-013` hat die Companies-Liste in `MCP_1_20260210` read-only geoeffnet. Sichtbar waren `CRONUS USA, Inc.`, `My Company` und `RM-DEMO`; die geplanten Zielcompanies `RM-PROD`, `RM-SALES`, `RM-SERVICE`, `RM-SHARED` und `RM-AT` waren im sichtbaren Seitentext nicht vorhanden.
 
-`GOVERNANCE-013-COMPANY-LIST-READONLY`
+Der naechste Company-spezifische technische Schritt ist nur dann eine Company-Aktion, wenn vorher ein konkreter Company-Aktionsplan geschrieben wird. Ohne neuen Company-Zweck ist der naechste fachliche Lauf wieder der hoechstwertige Prozess-/Setup-Block.
 
-Ziel: Companies-Seite innerhalb `MCP_1_20260210` oeffnen, sichtbare Companies erfassen, Screenshot/Evidence sichern, Registry mit `actual-visible` oder `not-visible` synchronisieren. Keine Company anlegen, nicht wechseln, nichts einrichten.
+Naheliegender fachlicher Folgeschritt: `FIXEDASSETS-013-SETUP-FIT-DECISION` oder ein besser bewerteter Setup-/Buchblock aus `AUTOPILOT-STATE.json`.
 
 ## Rueckfalllogik
 
@@ -43,4 +45,3 @@ Ziel: Companies-Seite innerhalb `MCP_1_20260210` oeffnen, sichtbare Companies er
 - Wenn eine Zielcompany fehlt: nicht still wechseln oder anlegen; erst Company-Aktionsplan dokumentieren.
 - Wenn eine neue Company angelegt wird: Registry, `AUTOPILOT-STATE.json`, `MASTERDATA-BACKLOG.md`, Evidence und Current State sofort aktualisieren.
 - Wenn ein Prozess eine deutsche Finalbehauptung braucht: `RM-DEMO` reicht nicht; Zielcompany und steuerlicher/kontenplanbezogener Finalnachweis muessen getrennt belegt werden.
-

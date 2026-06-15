@@ -39,6 +39,8 @@ Update nach `PLAYWRIGHT-BC-ACTIONS-DIALOGS-HELPERS`: Dieser Lauf war ein technis
 
 Update nach `GOVERNANCE-012-COMPANY-AUTONOMY-REGISTRY`: Die neue instanzgebundene Multi-Company-Autonomie ist als Registry- und Gate-Regel dokumentiert. `COMPANY-REGISTRY.md` und `COMPANY-REGISTRY.json` wurden angelegt. `RM-DEMO` bleibt die aktive und belegte CRONUS-USA-Lern-/Laborcompany; `RM-PROD`, `RM-SALES`, `RM-SERVICE`, `RM-SHARED` und `RM-AT` sind geplante, noch nicht angelegte Zielcompanies. Es gab keinen BC-Lauf, keinen Company-Wechsel, keine Company-Anlage, keine Setup-Aenderung und keine Buchung. Der naechste sinnvolle Schritt ist `GOVERNANCE-013-COMPANY-LIST-READONLY`: innerhalb `MCP_1_20260210` die Companies-Liste read-only oeffnen und pruefen, welche Companies wirklich sichtbar sind.
 
+Update nach `GOVERNANCE-013-COMPANY-LIST-READONLY`: Die Companies-Liste wurde in `MCP_1_20260210` read-only ueber die UI geoeffnet. Sichtbar sind `CRONUS USA, Inc.`, `My Company` und `RM-DEMO`; die geplanten Zielcompanies `RM-PROD`, `RM-SALES`, `RM-SERVICE`, `RM-SHARED` und `RM-AT` sind im UI-Seitentext nicht sichtbar. Es gab keinen Company-Wechsel, keine Company-Anlage, keine Setup-Aenderung und keine Buchung. Playwright-Learning: `searchFor()` fuellt die Tell-Me-Textbox jetzt gezielt, und fuer Companies ist `Companies Listen`/Page `357` der belegte Einstieg. Der naechste sinnvolle fachliche Schritt ist wieder `FIXEDASSETS-013-SETUP-FIT-DECISION`.
+
 ## Projektmission
 
 Das Projekt verfolgt vier gleichrangige Ziele:
@@ -75,7 +77,7 @@ Definition: Eine Anleitung ist erst abgesichert, wenn der Klickpfad in BC funkti
 
 | Bereich | Stand |
 |---|---|
-| Company / Mandanten | `RM-DEMO` existiert als CRONUS-basierte Trainingscompany und ist die aktive Laborcompany; `COMPANY-REGISTRY.md/json` erlaubt weitere Companies nur innerhalb `MCP_1_20260210`, mit Registry-Eintrag, Zweck, Risiko, Evidence-Plan und State-Sync |
+| Company / Mandanten | `RM-DEMO` existiert als CRONUS-basierte Trainingscompany und ist die aktive Laborcompany; `GOVERNANCE-013` zeigt in der Companies-Liste ausserdem `CRONUS USA, Inc.` und `My Company`. Zielcompanies `RM-PROD`, `RM-SALES`, `RM-SERVICE`, `RM-SHARED`, `RM-AT` sind geplant, aber nicht sichtbar. Company-Aktionen bleiben nur innerhalb `MCP_1_20260210` mit Registry, Zweck, Risiko, Evidence-Plan und State-Sync erlaubt |
 | Dimensionen | `DEPARTMENT`, `CHANNEL`, `PRODUCTLINE`, `LOCATION-GROUP` existieren; `COMPANY-GROUP` fehlt im Labor und bleibt Folgearbeit |
 | Dimensionswerte | O2C-Kernwerte `PRODUCTLINE=MACHINE`, `CHANNEL=B2B`, `DEPARTMENT=SALES`, `LOCATION-GROUP=DIRECTED` und P1-Werte `DEPARTMENT=PURCH`, `DEPARTMENT=WHSE`, `PRODUCTLINE=SPARE`, `LOCATION-GROUP=SIMPLE` existieren; Service/Project/IC-/Dropshipping-Werte bleiben spaeter |
 | Lagerort | `FRA-ZL` existiert als einfacher Lagerort |
@@ -453,6 +455,7 @@ Danach `.env` mit der konkreten Business-Central-URL fuellen.
 | `playwright/projects/fibu-book5/evidence/payments-014/README.md` | Evidence-Index fuer den Buch-/Evidence-Sync: Kapitel 20 erklaert Page `372` als Bankpostenpfad und trennt Bankposten von Bankabstimmung |
 | `playwright/projects/fibu-book5/evidence/book-reporting-uat-k25-sync/README.md` | Evidence-Index fuer Kapitel-25-UAT-Sync: `UAT-K25-001` ist Ziel-UAT, aktueller RM-DEMO-Stand bleibt Reporting-Teil-/Negativbefund ohne BC-Lauf, Setup oder Buchung |
 | `playwright/projects/fibu-book5/evidence/governance-010/README.md` | Evidence-Index fuer die No-Gate-Entscheidung nach `BOOK-REPORTING-UAT-K25-SYNC`: naechster No-Approval-Schritt ist `FIXEDASSETS-009-SETUP-GATE-READINESS`; kein BC-Lauf, kein Setup, keine Buchung |
+| `playwright/projects/fibu-book5/evidence/governance-013/README.md` | Evidence-Index fuer die read-only Companies-Liste: sichtbare Companies `CRONUS USA, Inc.`, `My Company`, `RM-DEMO`; Zielcompanies nicht sichtbar; keine Company-Aktion |
 | `playwright/projects/fibu-book5/evidence/fixedassets-009/README.md` | Evidence-Index fuer die Anlagen-Setup-Gate-Readiness: vorhandene Fixed-Assets-Evidence konsolidiert, Gate-Kette formuliert, naechster Schritt `FIXEDASSETS-010-SETUP-PREFLIGHT-READONLY`; kein BC-Lauf, kein Setup, keine Buchung |
 | `playwright/projects/fibu-book5/evidence/fixedassets-010/README.md` | Evidence-Index fuer den praktischen Fixed-Assets-UI-Preflight: `FA Posting Groups`, `Depreciation Books`, `Fixed Assets` und `Vendors` sichtbar; Zielwerte fehlen weiter; kein Setup, keine Buchung |
 | `playwright/projects/fibu-book5/evidence/fixedassets-011/README.md` | Evidence-Index fuer die Gate-Entscheidung nach `FIXEDASSETS-010`: naechster Schritt ist cancel-sicherer Formular-Preflight, kein Daten-Setup und keine Buchung |
@@ -484,6 +487,6 @@ Danach `.env` mit der konkreten Business-Central-URL fuellen.
 ```text
 Arbeite auf Branch codex/playwright-bc-screenshot-foundation.
 Lies AUTOPILOT-STATE.json, CURRENT-STATE.md, DOCUMENTATION-MAP.md, COMPANY-REGISTRY.md, COMPANY-REGISTRY.json, POSTING-AND-SETUP-GATES.md, SETUP-READINESS-MATRIX.md, PROCESS-CASE-REGISTRY.json, BC-PLAYWRIGHT-PATTERNS.md, BC-PAGE-ACTION-MAP.json, BOOK-CLICK-GUIDE-COVERAGE.md, LAB-FIT-STATUS.md und MASTERDATA-BACKLOG.md.
-GOVERNANCE-012-COMPANY-AUTONOMY-REGISTRY ist erledigt: Registry angelegt, keine BC-Ausfuehrung, keine Company-Anlage, kein Company-Wechsel, kein Setup, keine Buchung.
-Fuehre GOVERNANCE-013-COMPANY-LIST-READONLY aus: innerhalb `MCP_1_20260210` die Companies-Liste read-only oeffnen, pruefen welche Companies tatsaechlich sichtbar sind, Registry/State/Gates bei Bedarf aktualisieren, Screenshot/Evidence sichern. Keine neue Company anlegen, keine Company wechseln, keine Einrichtung, keine Buchung.
+GOVERNANCE-013-COMPANY-LIST-READONLY ist erledigt: Companies-Liste read-only in MCP_1_20260210 geoeffnet. Sichtbar: CRONUS USA, Inc.; My Company; RM-DEMO. Nicht sichtbar: RM-PROD, RM-SALES, RM-SERVICE, RM-SHARED, RM-AT. Keine Company-Anlage, kein Company-Wechsel, kein Setup, keine Buchung.
+Fuehre FIXEDASSETS-013-SETUP-FIT-DECISION aus: kein neuer BC-Lauf, sondern aus Evidence, Gates, Screenshot-QA und Kapitel 21 entscheiden, ob ein kleiner idempotenter UI-first Setup-Fit fuer genau einen Zielwert sicher ist. Nicht anlegen, nicht speichern, nicht buchen. Fuer spaetere Buchscreenshots gilt: Das Bild muss den fachlichen Zielzustand sichtbar zeigen, also je nach Schritt Code, Betrag, Status, Buchungsoption, Postenart, Konto, Dimension, Filter, Fehler oder Reportzeile.
 ```

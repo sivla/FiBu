@@ -17,6 +17,8 @@ Diese Datei sammelt wiederverwendbare Muster aus belegten Laeufen. Sie ist keine
 - Tell-Me niemals mit blindem `Enter` bedienen, wenn mehrere Treffer moeglich sind.
 - Erst Trefferkandidaten sammeln, fachlichen Treffer anklicken und danach Zielseitenkontext pruefen.
 - Exakte Treffer koennen in BC als Ergebniszeile mit Zusatztext erscheinen, zum Beispiel `Customers Listen`. Helper muessen deshalb die Tell-Me-Ergebniszeile und nicht den gleichnamigen Hintergrund-Link treffen.
+- `searchFor()` muss die sichtbare Tell-Me-Textbox gezielt befuellen. `GOVERNANCE-013` zeigte, dass reines Tastatur-Tippen bei offenem Suchdialog leer bleiben kann.
+- Bei `Companies` ist der belegte Treffer `Companies Listen`; der nackte Text `Companies` ist zu breit und kann im Suchdialog oder Hintergrundkontext landen.
 - Sichtbarer Suchtreffer beweist nur Navigation, nicht Prozessfaehigkeit.
 - Bei gemischter deutscher/englischer UI beide Begriffe als Suchhilfe dokumentieren, aber die Buchsprache deutsch halten.
 - Wenn Microsoft Learn oder Supportseiten im Browser aufpoppen, gilt das nicht als BC-Nachweis; Business-Central-Seiten muessen im BC-Kontext bleiben.

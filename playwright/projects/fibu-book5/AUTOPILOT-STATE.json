@@ -10,8 +10,8 @@
   "companyRegistry": "playwright/projects/fibu-book5/COMPANY-REGISTRY.json",
   "dataBasis": "CRONUS USA",
   "activeArea": "fixedassets",
-  "lastCompletedRun": "GOVERNANCE-012-COMPANY-AUTONOMY-REGISTRY",
-  "lastWorkType": "governance-company-registry",
+  "lastCompletedRun": "GOVERNANCE-013-COMPANY-LIST-READONLY",
+  "lastWorkType": "read-only-company-list",
   "postedInLastRun": false,
   "latestPostedDocuments": {
     "o2c": {
@@ -124,9 +124,16 @@
     "registryRequired": true,
     "companyActionsAllowedInsideEnvironment": ["read-only company list", "company switch", "new lab company"],
     "mustDocumentBeforeAction": ["target company", "purpose", "book chapters", "data basis or template", "expected usage", "risks", "evidence plan", "fallback"],
-    "nextCompanyEvidenceStep": "GOVERNANCE-013-COMPANY-LIST-READONLY"
+    "lastCompanyEnumeration": {
+      "caseId": "GOVERNANCE-013-COMPANY-LIST-READONLY",
+      "visibleCompanies": ["CRONUS USA, Inc.", "My Company", "RM-DEMO"],
+      "plannedCompaniesNotVisible": ["RM-PROD", "RM-SALES", "RM-SERVICE", "RM-SHARED", "RM-AT"],
+      "companyCreated": false,
+      "companySwitched": false
+    },
+    "nextCompanyEvidenceStep": "Only with a new documented company action purpose; otherwise continue with process/setup work."
   },
-  "nextBestStepWithoutApproval": "GOVERNANCE-013-COMPANY-LIST-READONLY: read-only UI enumeration of Companies inside MCP_1_20260210. Open the Companies list, prove current instance/company context, capture visible companies, update COMPANY-REGISTRY.md/json with actual-visible or not-visible. No company creation, no company switch, no setup, no posting. After that, continue with FIXEDASSETS-013-SETUP-FIT-DECISION or a better scored company/setup step.",
+  "nextBestStepWithoutApproval": "FIXEDASSETS-013-SETUP-FIT-DECISION: no new BC run. Use existing fixedassets-009 to fixedassets-012 evidence, gates and screenshot QA to decide whether one narrow idempotent UI-first setup fit is safe for exactly one target value. Do not create, save, change setup or post in this decision run.",
   "nextBestStepWithApproval": {
     "payments": "Nur mit neuem Gate: weitere Zahlung, Kreditorenzahlung oder Bankabstimmung. PAYMENTS-011 darf nicht wiederholt werden.",
     "companies": "Company-Aktionen sind innerhalb MCP_1_20260210 erlaubt, aber nur mit COMPANY-REGISTRY-Eintrag, dokumentiertem Zweck/Risiko/Evidence-Plan und sofortigem State-/Evidence-Sync. Naechster Company-Schritt ist read-only Enumeration, keine Anlage.",
@@ -253,6 +260,7 @@
     "GOVERNANCE-011 added the reusable documentation structure without a BC run: DOCUMENTATION-MAP.md, BC-PLAYWRIGHT-PATTERNS.md, BC-PAGE-ACTION-MAP.json, SETUP-READINESS-MATRIX.md and PROCESS-CASE-REGISTRY.json. SCREENSHOT-QA.md now defines screenshot types and required metadata. No screenshots or Evidence were deleted or archived. Next no-approval step remains FIXEDASSETS-013-SETUP-FIT-DECISION, now with the new structure files as required reading.",
     "PLAYWRIGHT-BC-OPTIMIZATION-AUDIT was a technical foundation run without setup change, posting, payment, bank reconciliation, company switch or new fachprozess screenshots. A read-only BC smoke refreshed existing smoke screenshots. Added PLAYWRIGHT-BC-OPTIMIZATION-AUDIT.md, expanded BC-PLAYWRIGHT-PATTERNS.md, upgraded BC-PAGE-ACTION-MAP.json to schema 2 and added helper functions waitForBcReady, waitForPageText, openBcPageById and compactPageText. openSearchResult was fixed after a read-only smoke failure: exact Tell-Me labels no longer test the full body text, blocked background hits are skipped and BC result rows such as Customers Listen can be clicked. npm run fibu:smoke:bc passed 6/6 after the fix. Next no-approval step remains FIXEDASSETS-013-SETUP-FIT-DECISION.",
     "PLAYWRIGHT-BC-ACTIONS-DIALOGS-HELPERS was a technical helper run without BC execution, setup change, posting, payment, bank reconciliation, company switch or fachprozess screenshots. Added playwright/core/bc/actions.ts with clickBcAction()/isBcActionVisible() and playwright/core/bc/dialogs.ts with expectBcDialog()/isBcDialogVisible()/clickBcDialogButton(). BC-PLAYWRIGHT-PATTERNS.md, PLAYWRIGHT-BC-OPTIMIZATION-AUDIT.md and BC-PAGE-ACTION-MAP.json now mark these helpers as the preferred next pattern for cancel-safe action/dialog migrations. No Fachtest was migrated yet; next technical step is one read-only migration before dangerous posting/payment contexts.",
-    "GOVERNANCE-012-COMPANY-AUTONOMY-REGISTRY created COMPANY-REGISTRY.md/json and changed company autonomy from RM-DEMO-only hardlock to instance-scoped governance within MCP_1_20260210. RM-DEMO remains the active proven CRONUS-USA lab company; RM-PROD, RM-SALES, RM-SERVICE, RM-SHARED and RM-AT are planned-only target companies. No BC run, no company switch, no company creation, no setup change and no posting. Next step is GOVERNANCE-013-COMPANY-LIST-READONLY."
+    "GOVERNANCE-012-COMPANY-AUTONOMY-REGISTRY created COMPANY-REGISTRY.md/json and changed company autonomy from RM-DEMO-only hardlock to instance-scoped governance within MCP_1_20260210. RM-DEMO remains the active proven CRONUS-USA lab company; RM-PROD, RM-SALES, RM-SERVICE, RM-SHARED and RM-AT are planned-only target companies. No BC run, no company switch, no company creation, no setup change and no posting. Next step is GOVERNANCE-013-COMPANY-LIST-READONLY.",
+    "GOVERNANCE-013-COMPANY-LIST-READONLY opened the Companies list read-only in MCP_1_20260210 from RM-DEMO. Visible companies: CRONUS USA, Inc.; My Company; RM-DEMO. Planned target companies RM-PROD, RM-SALES, RM-SERVICE, RM-SHARED and RM-AT were not visible in the UI page text. No company switch, no company creation, no setup change and no posting. Playwright learning: searchFor now fills the Tell-Me textbox directly; Companies list entry path uses Companies Listen and page 357. Next no-approval step returns to FIXEDASSETS-013-SETUP-FIT-DECISION."
   ]
 }

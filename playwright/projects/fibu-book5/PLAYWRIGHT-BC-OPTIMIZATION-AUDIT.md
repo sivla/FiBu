@@ -10,7 +10,7 @@ Ziel: Playwright so weiterentwickeln, dass Business-Central-Klickpfade fuer Buch
 
 | Bereich | Aktueller Stand | Problem | Empfehlung | Prioritaet | Umsetzung in diesem Lauf |
 |---|---|---|---|---|---|
-| Tell-Me | `searchFor()` und mehrere lokale Suchhelfer existieren; Treffer werden teils ueber Text und Index angeklickt. | BC-Suche ist dynamisch, gemischt DE/EN und oeffnet auch Learn-/Support-Kontexte; erster Treffer ist oft falsch. | Treffer sichtbar sammeln, fachlichen Treffer anklicken, Zielseitenkontext danach mit Seitentext/Screenshot pruefen; kein blinder Enter-Fallback. | P0 | Als Pattern verschaerft; bestehender `openSearchResult()` bleibt ohne Enter-Fallback. |
+| Tell-Me | `searchFor()` und mehrere lokale Suchhelfer existieren; Treffer werden teils ueber Text und Index angeklickt. | BC-Suche ist dynamisch, gemischt DE/EN und oeffnet auch Learn-/Support-Kontexte; erster Treffer ist oft falsch; `GOVERNANCE-013` zeigte, dass Tastatur-Tippen den Tell-Me-Dialog leer lassen kann. | Treffer sichtbar sammeln, fachlichen Treffer anklicken, Zielseitenkontext danach mit Seitentext/Screenshot pruefen; sichtbare Tell-Me-Textbox gezielt `fill()`en; kein blinder Enter-Fallback. | P0 | `searchFor()` fuellt seit GOV-013 die sichtbare Tell-Me-Textbox direkt; `Companies Listen` ist als sicherer Companies-Pfad belegt. |
 | Page-ID Navigation | Tests nutzen Page-IDs fuer Ledger, Journale und Setup-Kontexte. | Page-ID beweist Kontext, nicht Anfaenger-Klickpfad; kann Buchdidaktik verdecken. | Page-ID als stabile Labor-/Regressionseinstieg markieren, Tell-Me/Klickpfad separat fuer Buchbilder nachziehen. | P1 | `openBcPageById()` als zentraler Helper ergaenzt und in Patterns eingeordnet. |
 | Frame Handling | Helper iterieren ueber `page.frames()` und lokale Tests duplizieren dieses Muster. | Frame-Wechsel erzeugen viele lokale Spezialhelfer und schwer lesbare Fallbacks. | Kleine BC-Komponenten statt grosser Page Objects: Shell, Tell-Me, Actions, Dialoge, Grids, Journale, Evidence. | P1 | Component-Start fuer `actions` und `dialogs` angelegt; keine Migration gefaehrlicher Fachtests in diesem Lauf. |
 | Action Bar / Menu | Viele Tests suchen Buttons/Menuitems in allen Frames. | Gleiche Aktion kann mehrfach sichtbar sein; `first()` ist nicht immer fachlich richtig. | Aktion an Seitenkontext binden, danach Seitentext oder Dialogziel pruefen. | P0 | `playwright/core/bc/actions.ts` ergaenzt: `clickBcAction()` bindet Aktionen an sichtbare Rollen, optionale Kontexttexte und Zieltextpruefung. |
@@ -38,6 +38,7 @@ Ziel: Playwright so weiterentwickeln, dass Business-Central-Klickpfade fuer Buch
 - `waitForPageText(page, expected)`: kapselt `expect.poll()` fuer BC-Seitentext.
 - `openBcPageById(page, pageId, options)`: zentraler Page-ID-Einstieg mit Shell-Check und Teaching-Tip-Cleanup.
 - `openSearchResult(page, label, options)`: zaehlt Tell-Me-Treffer jetzt ueber Locator statt Body-Text, ueberspringt nicht klickbare Hintergrundtreffer und kann BC-Ergebniszeilen wie `Customers Listen` anklicken.
+- `searchFor(page, term)`: fuellt seit `GOVERNANCE-013` die sichtbare Tell-Me-Textbox direkt; Tastatur-Tippen bleibt nur Fallback, wenn kein sichtbares Suchfeld gefunden wird.
 - `compactPageText(page, options)`: fokussiert Roh-Seitentext fuer kompakte Evidence.
 - `openSecondSearchBlockResult()` ist als Legacy-Koordinatenfallback markiert.
 
@@ -70,6 +71,7 @@ Dieser technische Nachtrag hat keine BC-Ausfuehrung, keine Setup-Aenderung, kein
 - Nachtrag Actions/Dialoge: `npx tsx playwright/core/bc/actions.ts` und `npx tsx playwright/core/bc/dialogs.ts` erfolgreich als Syntax-/Load-Check.
 - Nachtrag Actions/Dialoge: JSON-Validierung fuer `AUTOPILOT-STATE.json` und `BC-PAGE-ACTION-MAP.json` erfolgreich; `npm run check:encoding` und `git diff --check` erfolgreich.
 - Nachtrag Actions/Dialoge: `npx --no-install tsc --noEmit` weiterhin nicht verwertbar, weil kein echter TypeScript-Compiler installiert ist.
+- Nachtrag `GOVERNANCE-013`: `npm run fibu:governance:company-list` erfolgreich; der Lauf bestaetigt `searchFor()` mit direktem Tell-Me-Textbox-`fill()` und den Companies-Einstieg ueber `Companies Listen` / Page `357`.
 
 ## Naechster technischer Optimierungsschritt
 

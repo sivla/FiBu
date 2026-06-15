@@ -124,6 +124,19 @@ export async function searchFor(page: Page, term: string) {
   await page.keyboard.press('Escape');
   await page.getByRole('button', { name: /Suchen|Search/i }).click();
   await page.waitForTimeout(500);
+
+  const scopes = [page, ...page.frames()];
+  for (const scope of scopes) {
+    const textbox = scope
+      .getByRole('textbox', { name: /Was m.chten Sie tun|Wie m.chten Sie weiter verfahren|Tell me|Search|Suchen/i })
+      .first();
+    if (await textbox.isVisible({ timeout: 500 }).catch(() => false)) {
+      await textbox.fill(term);
+      await page.waitForTimeout(2500);
+      return;
+    }
+  }
+
   await page.keyboard.type(term);
   await page.waitForTimeout(2500);
 }
