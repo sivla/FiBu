@@ -69,6 +69,14 @@ Diese Datei sammelt wiederverwendbare Muster aus belegten Laeufen. Sie ist keine
 - Tabellenbilder muessen den Zielwert zeigen, nicht nur irgendeine Liste.
 - Geometrie- und Koordinatenklicks sind nur begruendete Fallbacks; danach muss ein sichtbarer fachlicher Zustand nachgewiesen werden.
 
+## Personalisieren und Einstellungen
+
+- Personalisieren ist ein UI-Diagnosewerkzeug: Es zeigt, welche Felder, Spalten oder Aktionen auf einer Page verfuegbar, aber aktuell ausgeblendet sind.
+- Wenn ein erwartetes Feld, eine Spalte oder eine Aktion in einer Klickanleitung fehlt, zuerst pruefen, ob sie ueber `Personalisieren`, Ansichten, Seiteneinstellungen oder Roll-/Profilanpassung sichtbar gemacht werden kann.
+- Personalisierung ist nutzer-, rollen- und profilabhaengig. Screenshots muessen deshalb markieren, ob sie Standardansicht, Nutzer-Personalisierung oder Profilanpassung zeigen.
+- Personalisieren beweist keine Tabellen-, Posting- oder Steuerlogik. Es beweist nur, dass ein UI-Element fuer diese Page verfuegbar gemacht werden kann.
+- Personalisierungsmodus nur als Debug-/Lernbild fotografieren. Fuer Buchbilder danach in die normale Ansicht zurueckkehren und erneut pruefen, ob das fachliche Ziel sichtbar ist.
+
 ## FactBox und breite Layouts
 
 - FactBox einklappen, wenn sie Tabellenfelder verdeckt.

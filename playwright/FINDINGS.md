@@ -38,6 +38,24 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 
 ## Aktuelle Fundstellen
 
+## FIND-BC-UI-002 Personalisieren erklaert fehlende Felder, Spalten und Aktionen
+
+| Feld | Wert |
+|---|---|
+| Status | erledigt als Projekt-/Buchregel ohne BC-Lauf |
+| Projekt | fibu-book5 |
+| Testfall | `GOVERNANCE-014-PERSONALIZATION-PATTERN` |
+| Screenshot | keiner; Quellen-/Pattern-Sync |
+| Evidence | `playwright/projects/fibu-book5/evidence/governance-014/README.md`, `playwright/projects/fibu-book5/evidence/governance-014/GOVERNANCE-014-PERSONALIZATION-PATTERN.md` |
+| BC-Seite | querschnittlich fuer Business-Central-Pages |
+| sichtbarer Text | nicht praktisch geprueft in diesem Lauf |
+| Elementtyp | Personalisierung / Page Customization / UI-Sichtbarkeit |
+| erste Hypothese | Fehlende Felder, Spalten oder Aktionen in Klickanleitungen koennen durch Personalisierung, Profilanpassung, Ansicht, Rolle oder Einstellungen verursacht sein. |
+| Recherchequelle | Microsoft Learn: `Personalise your workspace`, `Customize pages for profiles`, 2025 Wave 2 Release Plan zu mehr Feldern/Spalten in der Personalisierung |
+| Testergebnis | Als Regel aufgenommen: Personalisieren ist ein Diagnosewerkzeug fuer sichtbare Page-Elemente, aber kein Beweis fuer Tabellen-, Posting-, Steuer- oder Berechtigungslogik. |
+| Entscheidung | Buch, Pattern, Workaround-Journal, Coverage und Microsoft-Doc-Validation wurden aktualisiert. Kuenftige Screenshots muessen markieren, ob sie Standardansicht, Nutzer-Personalisierung oder Profilanpassung zeigen. |
+| Buchstelle | Kapitel 37 Glossar/Bedienlogik; querschnittlich fuer Klickanleitungen |
+
 ## FIND-BC-GOV-012 Company-Autonomie braucht Registry und Instanzgrenze
 
 | Feld | Wert |

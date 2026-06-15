@@ -6266,6 +6266,13 @@ Einsteiger-Best-Practice:
 - Nie raten. Erst Suchbegriff, Seite, Feldhilfe, dann Buchung.
 - Wenn eine Seite fehlt, liegt es oft an Rolle, Berechtigung, Sprache, Lizenz, Company oder Personalisierung.
 
+Personalisieren als Diagnose:
+- Wenn ein erwartetes Feld, eine Spalte oder eine Aktion nicht sichtbar ist, ist das zuerst ein Sichtbarkeitsproblem und noch kein Beweis fuer falsche Buchungslogik.
+- Mit `Personalisieren` prueft man, ob ein Feld oder eine Spalte auf der Page verfuegbar, aber ausgeblendet ist. Bei Listen und Belegzeilen gilt das besonders fuer Spalten wie Lagerort, Dimension, Buchungsgruppe, Steuergruppe oder Betrag.
+- Manche Dinge werden nicht ueber Personalisieren, sondern ueber Ansichten, Seiteneinstellungen, Rolle/Profil, Berechtigungen oder Erweiterungen sichtbar.
+- Fuer dieses Buch gilt: Ein Screenshot muss sagen, ob er die Standardansicht, eine Nutzer-Personalisierung oder eine Profilanpassung zeigt. Der Personalisierungsmodus selbst ist ein Debug- und Lernbild, aber kein finaler Prozess-Screenshot.
+- Grenze: Personalisieren zeigt verfuegbare UI-Elemente. Es erklaert nicht die ganze Tabellen-, Posting-, Steuer- oder Berechtigungslogik.
+
 ### Was muss man einstellen, damit Mitarbeiter Dinge finden?
 
 | Thema | Einstellung | Warum wichtig |

@@ -49,6 +49,8 @@ Update nach `FIXEDASSETS-015-MACHINES-ACCOUNT-MAPPING-DECISION`: Die Kontenentsc
 
 Update nach `FIXEDASSETS-016-MACHINES-FA-POSTING-GROUP-FIT`: Der enge UI-first Setup-Fit ist praktisch in `RM-DEMO` gelaufen. `MACHINES` war vorher nicht sichtbar und wurde als CRONUS-USA-Laboralias der vorhandenen Gruppe `EQUIPMENT` angelegt. Das Nachherbild zeigt `MACHINES` auf der `FA Posting Group Card` zusammen mit den relevanten Kontenwerten `12210` und `82000`; das ist ein brauchbarer Labor-/Setup-Screenshot. Es gab keine Anlage `FA-CNC-01`, keinen Kreditor `K30000`, keine Einkaufsrechnung, keinen Zugang, keine AfA, keine Buchung und keinen Company-Wechsel. Der naechste sinnvolle Lauf ist `FIXEDASSETS-017-FA-CNC-01-SETUP-READINESS`: genau eine naechste UI-first Readiness-Schicht entscheiden, aber weiterhin keine Anlagenbuchung ohne frisches Gate.
 
+Update nach `GOVERNANCE-014-PERSONALIZATION-PATTERN`: Personalisieren ist jetzt als UI-Diagnose- und Klickanleitungsregel dokumentiert. Es gab keinen BC-Lauf, keine Setup-Aenderung, keine Buchung und keinen Company-Wechsel. Der Quellenabgleich haelt fest: Personalisieren kann ausgeblendete Page-Felder/-Spalten/-Aktionen sichtbar machen und bei Bugfixing helfen, beweist aber keine Tabellen-, Posting-, Steuer- oder Berechtigungslogik. Buchscreenshots muessen kuenftig markieren, ob sie Standardansicht, Nutzer-Personalisierung oder Profilanpassung zeigen. Der naechste fachliche Lauf bleibt `FIXEDASSETS-017-FA-CNC-01-SETUP-READINESS`.
+
 ## Projektmission
 
 Das Projekt verfolgt vier gleichrangige Ziele:

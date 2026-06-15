@@ -19,6 +19,20 @@ Jeder relevante Fehler oder Workaround bekommt:
 
 Jeder Eintrag muss außerdem gegen die betroffene Buchstelle geprüft werden. Wenn der Workaround zeigt, dass der Buchtext zu knapp, falsch oder missverständlich ist, wird die Buchstelle im selben Arbeitsgang korrigiert oder als offene Buch-Fundstelle in `playwright/FINDINGS.md` markiert.
 
+## WK-BC-UI-002 Personalisieren als Diagnose, wenn Felder, Spalten oder Aktionen fehlen
+
+| Feld | Wert |
+|---|---|
+| Status | als Projektregel aufgenommen; noch kein konkreter BC-Lauf in `RM-DEMO` |
+| Situation | In Klickanleitungen, Ledger-Listen, Verkaufs-/Einkaufszeilen, Journalzeilen oder Setup-Seiten kann ein erwartetes Feld, eine Spalte oder Aktion fehlen. |
+| Symptom | Der Leser oder Testlauf findet das erwartete UI-Element nicht, obwohl Buchziel oder fachlicher Prozess es benoetigt. |
+| Sichtbarer Beleg | Quellenabgleich in `MICROSOFT-DOC-VALIDATION.md`; Pattern in `BC-PLAYWRIGHT-PATTERNS.md`; Governance-Evidence `playwright/projects/fibu-book5/evidence/governance-014/`. |
+| Ursache | Business Central zeigt Seiten je nach Page-Design, Rolle, Profilanpassung, Nutzer-Personalisierung, Ansicht, Sprache und Berechtigungen unterschiedlich. Ein Feld kann vorhanden, aber ausgeblendet sein; eine Aktion kann im Menue oder durch Einstellungen sichtbar werden. |
+| Warum BC so reagiert | Personalisierung und Profilanpassung sind bewusste BC-Mechanismen: Nutzer und Administratoren koennen Oberflaechen vereinfachen oder erweitern, ohne die zugrunde liegende Tabelle oder Buchungslogik zu aendern. |
+| Loesung | Bei fehlenden UI-Elementen vor einer Buchkorrektur pruefen: `Personalisieren`, Spalten/Felder hinzufuegen, Ansichten, Seiteneinstellungen, Profilanpassung und Rolle/Berechtigung. Wenn das Element einblendbar ist, als Nutzer-/Profilzustand markieren. Wenn es nicht verfuegbar ist, als Page-, Extension-, Setup- oder Berechtigungsgrenze dokumentieren. |
+| Buchwirkung | Klickanleitungen muessen erklaeren, ob ein Screenshot die Standardansicht oder eine personalisierte/profilangepasste Ansicht zeigt. Ein Debug-Bild im Personalisierungsmodus ist nuetzlich, aber kein finales Buchbild fuer einen Prozessschritt. |
+| Kuenftige Regel | Wenn ein Feld, eine Spalte oder Aktion fehlt, nicht sofort von falschem Buchtext ausgehen. Erst UI-Sichtbarkeit pruefen, dann fachliche Ursache. Personalisieren beweist Sichtbarkeit, nicht Tabellen-, Posting- oder Steuerlogik. |
+
 ## WK-BC-SHOT-001 Screenshot muss den behaupteten fachlichen Zielzustand sichtbar zeigen
 
 | Feld | Wert |
