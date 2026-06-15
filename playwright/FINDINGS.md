@@ -38,6 +38,24 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 
 ## Aktuelle Fundstellen
 
+## FIND-BC-FA-011 Setup-Gate-Entscheidung verlangt Formular-Preflight vor Datenanlage
+
+| Feld | Wert |
+|---|---|
+| Status | erledigt als Governance-/Gate-Decision ohne BC-Lauf |
+| Bereich | Fixed Assets / Anlagen-Setup |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-011/README.md`, `playwright/projects/fibu-book5/evidence/fixedassets-011/FIXEDASSETS-011-SETUP-GATE-DECISION.md`, `playwright/projects/fibu-book5/evidence/fixedassets-011/FIXEDASSETS-011-result.json` |
+| BC-Seite | kein neuer BC-Lauf; Entscheidung basiert auf `FA Posting Groups`, `Depreciation Books`, `Fixed Assets`, `Vendors` aus `FIXEDASSETS-010` |
+| sichtbarer Text / Werte | `MACHINES`, `HGB`, `FA-CNC-01`, `K30000`, `New/Neu` |
+| Elementtyp | Setup-Gate / Formular-Preflight / Anfaengerfehler |
+| erste Hypothese | Nach sichtbaren Zielseiten und sichtbarem `New/Neu` koennte der naechste Lauf direkt Stammdaten anlegen. |
+| Recherchequelle | Evidence `fixedassets-009`, `fixedassets-010`, Gate-Datei und Autopilot-State; kein BC-Lauf |
+| Testergebnis | Die Seitenkontexte sind belastbar, aber gescopte `New/Neu`-Formulare, Pflichtfelder, Defaults/Templates und sichere Abbruchwege sind noch nicht nachgewiesen. |
+| Entscheidung | Kein Daten-Setup in `FIXEDASSETS-011`. Naechster Schritt ist `FIXEDASSETS-012-SCOPED-NEW-CARD-PREFLIGHT`: Formulare nur cancel-safe inspizieren, nichts speichern, keine Buchung. |
+| Buchstelle | Kapitel 21 Anlagen / Fixed Assets |
+
+Fuer Anfaenger ist das wichtig, weil ein sichtbarer `Neu`-Button nur die technische Anlageoption zeigt. Fachlich sicher wird die Anlage erst, wenn klar ist, welche Felder Pflicht sind, welche Vorlagen oder Defaults Business Central setzt und wie man ohne Datensatzanlage wieder abbricht.
+
 ## FIND-BC-FA-010 Setup-Preflight zeigt sichtbare Kontexte, aber kein Setup
 
 | Feld | Wert |
