@@ -13,8 +13,9 @@ FiBu Buch 5 ist dabei nicht nur ein Screenshot-Ziel. Es ist der fachliche Lernpf
 Aktiver Fokus:
 
 - Projekt `fibu-book5`
-- Trainingscompany `RM-DEMO`
 - Umgebung `MCP_1_20260210`
+- primaere Trainingscompany `RM-DEMO`
+- Company-Modus: instanzgebundene Multi-Company-Autonomie mit `COMPANY-REGISTRY.md` und `COMPANY-REGISTRY.json`
 - Datenbasis CRONUS USA
 - Zielprozess zuerst `UAT-O2C-001`
 - UI aktuell gemischt Deutsch/Englisch
@@ -36,6 +37,8 @@ Update nach `PLAYWRIGHT-BC-OPTIMIZATION-AUDIT`: Dieser Lauf war ein technischer 
 
 Update nach `PLAYWRIGHT-BC-ACTIONS-DIALOGS-HELPERS`: Dieser Lauf war ein technischer Playwright-Helper-Lauf ohne BC-Ausfuehrung, ohne Setup-Aenderung, ohne Stammdatenanlage, ohne Buchung, ohne Zahlung, ohne Bankabstimmung, ohne Company-Wechsel und ohne neue Fachprozess-Screenshots. Neu sind `playwright/core/bc/actions.ts` mit `clickBcAction()`/`isBcActionVisible()` und `playwright/core/bc/dialogs.ts` mit `expectBcDialog()`/`isBcDialogVisible()`/`clickBcDialogButton()`. Ziel ist, lokale Action-Bar- und Dialogmuster schrittweise von `force`, Koordinatenklicks und ungescopten `first()`-Treffern wegzufuehren. `BC-PLAYWRIGHT-PATTERNS.md`, `BC-PAGE-ACTION-MAP.json` und `PLAYWRIGHT-BC-OPTIMIZATION-AUDIT.md` sind darauf synchronisiert. Noch nicht erledigt: Migration eines bestehenden read-only Fachtests auf diese Helper. Der fachliche No-Approval-Schritt bleibt `FIXEDASSETS-013-SETUP-FIT-DECISION`; technisch ist der naechste sinnvolle Schritt eine cancel-safe Migration, bevor gefaehrliche Kontexte wie `Post`, `Apply Entries`, `Journal Check` oder `New/Neu` umgestellt werden.
 
+Update nach `GOVERNANCE-012-COMPANY-AUTONOMY-REGISTRY`: Die neue instanzgebundene Multi-Company-Autonomie ist als Registry- und Gate-Regel dokumentiert. `COMPANY-REGISTRY.md` und `COMPANY-REGISTRY.json` wurden angelegt. `RM-DEMO` bleibt die aktive und belegte CRONUS-USA-Lern-/Laborcompany; `RM-PROD`, `RM-SALES`, `RM-SERVICE`, `RM-SHARED` und `RM-AT` sind geplante, noch nicht angelegte Zielcompanies. Es gab keinen BC-Lauf, keinen Company-Wechsel, keine Company-Anlage, keine Setup-Aenderung und keine Buchung. Der naechste sinnvolle Schritt ist `GOVERNANCE-013-COMPANY-LIST-READONLY`: innerhalb `MCP_1_20260210` die Companies-Liste read-only oeffnen und pruefen, welche Companies wirklich sichtbar sind.
+
 ## Projektmission
 
 Das Projekt verfolgt vier gleichrangige Ziele:
@@ -53,24 +56,26 @@ Definition: Eine Anleitung ist erst abgesichert, wenn der Klickpfad in BC funkti
 2. `playwright/projects/fibu-book5/CURRENT-STATE.md`
 3. `playwright/projects/fibu-book5/DOCUMENTATION-MAP.md`
 4. `playwright/projects/fibu-book5/AUTOPILOT-STATE.json`
-5. `playwright/projects/fibu-book5/POSTING-AND-SETUP-GATES.md`
-6. `playwright/projects/fibu-book5/BC-PLAYWRIGHT-PATTERNS.md`
-7. `playwright/projects/fibu-book5/PLAYWRIGHT-BC-OPTIMIZATION-AUDIT.md`
-8. `playwright/projects/fibu-book5/BC-PAGE-ACTION-MAP.json`
-9. `playwright/projects/fibu-book5/SETUP-READINESS-MATRIX.md`
-10. `playwright/projects/fibu-book5/PROCESS-CASE-REGISTRY.json`
-11. `playwright/projects/fibu-book5/README.md`
-12. `playwright/projects/fibu-book5/ARTIFACT-GOVERNANCE.md`
-13. `playwright/projects/fibu-book5/LAB-FIT-STATUS.md`
-14. `playwright/projects/fibu-book5/WORKAROUNDS-AND-ERRORS.md`
-15. `playwright/FINDINGS.md`
-16. relevante Buchstelle in `FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md`
+5. `playwright/projects/fibu-book5/COMPANY-REGISTRY.md`
+6. `playwright/projects/fibu-book5/COMPANY-REGISTRY.json`
+7. `playwright/projects/fibu-book5/POSTING-AND-SETUP-GATES.md`
+8. `playwright/projects/fibu-book5/BC-PLAYWRIGHT-PATTERNS.md`
+9. `playwright/projects/fibu-book5/PLAYWRIGHT-BC-OPTIMIZATION-AUDIT.md`
+10. `playwright/projects/fibu-book5/BC-PAGE-ACTION-MAP.json`
+11. `playwright/projects/fibu-book5/SETUP-READINESS-MATRIX.md`
+12. `playwright/projects/fibu-book5/PROCESS-CASE-REGISTRY.json`
+13. `playwright/projects/fibu-book5/README.md`
+14. `playwright/projects/fibu-book5/ARTIFACT-GOVERNANCE.md`
+15. `playwright/projects/fibu-book5/LAB-FIT-STATUS.md`
+16. `playwright/projects/fibu-book5/WORKAROUNDS-AND-ERRORS.md`
+17. `playwright/FINDINGS.md`
+18. relevante Buchstelle in `FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md`
 
 ## Aktueller fachlicher Stand
 
 | Bereich | Stand |
 |---|---|
-| Company | `RM-DEMO` existiert als CRONUS-basierte Trainingscompany |
+| Company / Mandanten | `RM-DEMO` existiert als CRONUS-basierte Trainingscompany und ist die aktive Laborcompany; `COMPANY-REGISTRY.md/json` erlaubt weitere Companies nur innerhalb `MCP_1_20260210`, mit Registry-Eintrag, Zweck, Risiko, Evidence-Plan und State-Sync |
 | Dimensionen | `DEPARTMENT`, `CHANNEL`, `PRODUCTLINE`, `LOCATION-GROUP` existieren; `COMPANY-GROUP` fehlt im Labor und bleibt Folgearbeit |
 | Dimensionswerte | O2C-Kernwerte `PRODUCTLINE=MACHINE`, `CHANNEL=B2B`, `DEPARTMENT=SALES`, `LOCATION-GROUP=DIRECTED` und P1-Werte `DEPARTMENT=PURCH`, `DEPARTMENT=WHSE`, `PRODUCTLINE=SPARE`, `LOCATION-GROUP=SIMPLE` existieren; Service/Project/IC-/Dropshipping-Werte bleiben spaeter |
 | Lagerort | `FRA-ZL` existiert als einfacher Lagerort |
@@ -378,6 +383,8 @@ Danach `.env` mit der konkreten Business-Central-URL fuellen.
 | Datei | Zweck |
 |---|---|
 | `playwright/projects/fibu-book5/AUTOPILOT-STATE.json` | maschinenlesbarer Autopilot-Status mit Sandbox, Company, letzten Laborbuchungen, Locks und naechstem Schritt |
+| `playwright/projects/fibu-book5/COMPANY-REGISTRY.md` | menschenlesbare Registry fuer Companies in `MCP_1_20260210`, erlaubte Nutzung, Status, Buchbezug und offene Grenzen |
+| `playwright/projects/fibu-book5/COMPANY-REGISTRY.json` | maschinenlesbare Company Registry fuer Autopilot-Laeufe, Company-Aktionen und spaetere Multi-Company-Prozesse |
 | `playwright/projects/fibu-book5/POSTING-AND-SETUP-GATES.md` | Freigabe-Gates fuer Setup-Aenderungen, Zahlungen, neue Companies und Wiederholungsbuchungen |
 | `playwright/projects/fibu-book5/testdata/sales/uat-o2c-001.json` | Zielwerte fuer O2C |
 | `playwright/projects/fibu-book5/tests/uat-o2c-001-sales-order.spec.ts` | aktueller O2C-Test |
@@ -469,13 +476,14 @@ Danach `.env` mit der konkreten Business-Central-URL fuellen.
 - Nicht globale `Escape`-Workarounds nutzen, um Popups zu schliessen.
 - Nicht den Hauptteil von `Post...` klicken, wenn `Preview Posting` gemeint ist; das oeffnet den normalen Buchungsdialog `Ship / Invoice / Ship and Invoice`.
 - Nicht aus freiem Seitentext ungescopte Belegnummern fuer Cleanup ableiten.
+- Nicht die Company wechseln oder neu anlegen, ohne vorher `COMPANY-REGISTRY.md/json`, Zweck, Risiko, Evidence-Plan und Rueckfalllogik zu aktualisieren.
 - Nicht `.env`, `playwright/.auth/`, Playwright-Reports oder Test-Traces committen.
 
 ## Naechster konkreter Prompt
 
 ```text
 Arbeite auf Branch codex/playwright-bc-screenshot-foundation.
-Lies AUTOPILOT-STATE.json, POSTING-AND-SETUP-GATES.md, CURRENT-STATE.md, DOCUMENTATION-MAP.md, BC-PLAYWRIGHT-PATTERNS.md, PLAYWRIGHT-BC-OPTIMIZATION-AUDIT.md, BC-PAGE-ACTION-MAP.json, SETUP-READINESS-MATRIX.md, PROCESS-CASE-REGISTRY.json, BOOK-EVIDENCE-WORKPLAN.md, BOOK-TO-EVIDENCE-AUDIT.md und FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md.
-FIXEDASSETS-012-SCOPED-NEW-CARD-PREFLIGHT ist erledigt: BC-Lauf ja, aber kein Speichern, kein Setup, keine Buchung. Die Bilder zeigen leere Karten beziehungsweise den Vendor-Template-Dialog; `MACHINES`, `HGB`, `FA-CNC-01` und `K30000` sind nicht sichtbar und nicht angelegt.
-Fuehre FIXEDASSETS-013-SETUP-FIT-DECISION aus: kein neuer BC-Lauf, sondern aus Evidence, Gates, Screenshot-QA und Kapitel 21 entscheiden, ob ein kleiner idempotenter UI-first Setup-Fit fuer genau einen Zielwert sicher ist. Nicht anlegen, nicht speichern, nicht buchen. Fuer spaetere Buchscreenshots gilt: Das Bild muss den fachlichen Zielzustand sichtbar zeigen, also je nach Schritt Code, Betrag, Status, Buchungsoption, Postenart, Konto, Dimension, Filter, Fehler oder Reportzeile.
+Lies AUTOPILOT-STATE.json, CURRENT-STATE.md, DOCUMENTATION-MAP.md, COMPANY-REGISTRY.md, COMPANY-REGISTRY.json, POSTING-AND-SETUP-GATES.md, SETUP-READINESS-MATRIX.md, PROCESS-CASE-REGISTRY.json, BC-PLAYWRIGHT-PATTERNS.md, BC-PAGE-ACTION-MAP.json, BOOK-CLICK-GUIDE-COVERAGE.md, LAB-FIT-STATUS.md und MASTERDATA-BACKLOG.md.
+GOVERNANCE-012-COMPANY-AUTONOMY-REGISTRY ist erledigt: Registry angelegt, keine BC-Ausfuehrung, keine Company-Anlage, kein Company-Wechsel, kein Setup, keine Buchung.
+Fuehre GOVERNANCE-013-COMPANY-LIST-READONLY aus: innerhalb `MCP_1_20260210` die Companies-Liste read-only oeffnen, pruefen welche Companies tatsaechlich sichtbar sind, Registry/State/Gates bei Bedarf aktualisieren, Screenshot/Evidence sichern. Keine neue Company anlegen, keine Company wechseln, keine Einrichtung, keine Buchung.
 ```

@@ -1,11 +1,14 @@
 # Setup-Readiness-Matrix
 
-Stand: 15.06.2026
+Stand: 16.06.2026
 
 Diese Matrix zeigt, ob ein Prozess in `RM-DEMO` praktisch tragfaehig ist. Sie ist keine Freigabe fuer Buchungen oder Setup-Aenderungen. Gates aus `POSTING-AND-SETUP-GATES.md` bleiben vorrangig.
 
+Company-Kontext: Alle Prozesszeilen gelten aktuell fuer `RM-DEMO`, solange keine andere Company explizit genannt ist. Seit `GOVERNANCE-012` ist `COMPANY-REGISTRY.md/json` die Pflichtquelle fuer Multi-Company-Arbeit in `MCP_1_20260210`. Neue Prozessfaelle muessen ihren Company-Kontext in Evidence und `PROCESS-CASE-REGISTRY.json` fuehren.
+
 | Prozess | Stammdaten | Setup | Preflight | Buchung erlaubt? | Luecken | Naechster Schritt |
 |---|---|---|---|---|---|---|
+| Company Registry | `RM-DEMO` belegt; `RM-PROD`, `RM-SALES`, `RM-SERVICE`, `RM-SHARED`, `RM-AT` geplant | Registry angelegt, Live-Enumeration offen | kein BC-Lauf in `GOVERNANCE-012` | nein | sichtbare Company-Liste in BC noch offen; Zielcompanies noch nicht als existent belegt | `GOVERNANCE-013-COMPANY-LIST-READONLY` |
 | O2C | `D10000`, `RM-M100`, `FRA-ZL`, `EUR`, `PRODUCTLINE=MACHINE`, `CHANNEL=B2B` belegt | CRONUS-Laborfit inkl. `FRA-ZL` + `RESALE` -> `14140` | Preview Posting und Postenspur belegt | nein, Referenzbuchung `PS-INV103297` nicht wiederholen | deutsche 19-%-USt, deutscher Kontenplan, finaler DE-Screenshot | nur read-only oder Buch-Sync; keine zweite O2C-Buchung |
 | P2P | `K10000`, `RAW-STEEL`, `FRA-ZL` belegt | Vendor Template und CRONUS-Posting tragen im Labor | Preview/Buchung/Postenspur belegt | nein, Rechnung `108219` nicht wiederholen | deutsche Vorsteuer, deutscher Kontenplan, Kreditorenzahlung | nur Folge-Evidence oder Payment-Gate |
 | Inventory | `RM-M100`, `RAW-STEEL`, `FRA-ZL` belegt | Inventory Posting Setup traegt im Labor | Journal Check und Inventory Valuation belegt | nein, `INV008-899959` nicht wiederholen | keine finalen DE-Lagerwerte, Warehouse nicht aktiv | nur read-only Trace oder neues Ziel mit Gate/Zweck |
@@ -23,4 +26,3 @@ Diese Matrix zeigt, ob ein Prozess in `RM-DEMO` praktisch tragfaehig ist. Sie is
 | Security / Rollen | keine User-/Permission-Aenderung | Admin-Kontexte nur read-only | Readiness sichtbar | nein | SoD, Profile, Permission Sets, Security Groups | eigenes Gate erforderlich |
 | Migration / Cutover | Zielstruktur beschrieben | kein Import/Opening Balance | Buch-Sync | nein | Configuration Packages, Salden, Abstimmung | eigenes Gate erforderlich |
 | Integrationen / Operations | Zielbild beschrieben | keine Extension/API/Job Queue/Monitoring-Aenderung | Buch-Sync | nein | Connector, Power BI, Power Platform, Job Queue, Telemetry | eigenes Gate erforderlich |
-

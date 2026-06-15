@@ -1,14 +1,17 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "updatedAt": "2026-06-16",
   "repository": "sivla/FiBu",
   "branch": "codex/playwright-bc-screenshot-foundation",
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
+  "primaryCompany": "RM-DEMO",
+  "companyMode": "instance-bound-multi-company",
+  "companyRegistry": "playwright/projects/fibu-book5/COMPANY-REGISTRY.json",
   "dataBasis": "CRONUS USA",
   "activeArea": "fixedassets",
-  "lastCompletedRun": "PLAYWRIGHT-BC-ACTIONS-DIALOGS-HELPERS",
-  "lastWorkType": "playwright-actions-dialogs-optimization",
+  "lastCompletedRun": "GOVERNANCE-012-COMPANY-AUTONOMY-REGISTRY",
+  "lastWorkType": "governance-company-registry",
   "postedInLastRun": false,
   "latestPostedDocuments": {
     "o2c": {
@@ -73,7 +76,8 @@
     "no Service posting without explicit gate",
     "no Projects posting without explicit gate",
     "no Dropshipping sales/purchase process without explicit gate",
-    "no new company without explicit gate",
+    "no company action outside MCP_1_20260210",
+    "no company action without COMPANY-REGISTRY.md/json entry and documented purpose, risk, evidence plan and fallback",
     "no Shopify scope",
     "no repeat payment for PAY011-PS103297 / PS-INV103297 without explicit new gate",
     "no repeat PAYMENTS-012 book-sync without evidence delta",
@@ -101,7 +105,6 @@
     "PROJECTS-001-POSTING",
     "DROPSHIPPING-001-PROCESS",
     "INTERCOMPANY-001-PROCESS",
-    "NEW-COMPANY-001",
     "O2C-REPOST-001",
     "P2P-REPOST-001",
     "INVENTORY-REPOST-INV008"
@@ -115,9 +118,18 @@
     "PROJECTS-LAB-POSTING: only after UI-first setup readiness for project, tasks, resource/material/location and invoice/WIP path; current target objects are not ready.",
     "MANUFACTURING-LAB-POSTING: only after UI-first setup readiness for BOM/routing or assembly structure, components, order, consumption/output and cost trace; current target objects are not ready."
   ],
-  "nextBestStepWithoutApproval": "FIXEDASSETS-013-SETUP-FIT-DECISION: no BC run required unless a fresh gate says otherwise. Read DOCUMENTATION-MAP.md, BC-PLAYWRIGHT-PATTERNS.md, PLAYWRIGHT-BC-OPTIMIZATION-AUDIT.md, BC-PAGE-ACTION-MAP.json, SETUP-READINESS-MATRIX.md and PROCESS-CASE-REGISTRY.json before deciding. Decide from FIXEDASSETS-012 whether exactly one small idempotent UI-first setup fit is safe. FIXEDASSETS-012 screenshots show only empty cards/template dialog; they do not show MACHINES, HGB, FA-CNC-01 or K30000 as existing target codes. No setup, no save, no posting in the decision run. Technical note: for future cancel-safe UI preflights prefer clickBcAction()/expectBcDialog() over local force/coordinate action helpers where possible.",
+  "companyAutonomy": {
+    "status": "instance-scoped-allowed-with-registry",
+    "environmentBoundary": "MCP_1_20260210",
+    "registryRequired": true,
+    "companyActionsAllowedInsideEnvironment": ["read-only company list", "company switch", "new lab company"],
+    "mustDocumentBeforeAction": ["target company", "purpose", "book chapters", "data basis or template", "expected usage", "risks", "evidence plan", "fallback"],
+    "nextCompanyEvidenceStep": "GOVERNANCE-013-COMPANY-LIST-READONLY"
+  },
+  "nextBestStepWithoutApproval": "GOVERNANCE-013-COMPANY-LIST-READONLY: read-only UI enumeration of Companies inside MCP_1_20260210. Open the Companies list, prove current instance/company context, capture visible companies, update COMPANY-REGISTRY.md/json with actual-visible or not-visible. No company creation, no company switch, no setup, no posting. After that, continue with FIXEDASSETS-013-SETUP-FIT-DECISION or a better scored company/setup step.",
   "nextBestStepWithApproval": {
     "payments": "Nur mit neuem Gate: weitere Zahlung, Kreditorenzahlung oder Bankabstimmung. PAYMENTS-011 darf nicht wiederholt werden.",
+    "companies": "Company-Aktionen sind innerhalb MCP_1_20260210 erlaubt, aber nur mit COMPANY-REGISTRY-Eintrag, dokumentiertem Zweck/Risiko/Evidence-Plan und sofortigem State-/Evidence-Sync. Naechster Company-Schritt ist read-only Enumeration, keine Anlage.",
     "reporting": "Further Analysis View setup needs a new explicit gate and a scoped New/Card action proof. REPORTING-013 consumed the GOVERNANCE-007 gate and rejected setup because unscoped New/Neu is globally ambiguous in BC.",
     "tax": "TAX-002-DE-VAT-FIT: only with explicit approval; UI-first VAT Business/Product Posting Groups, VAT Posting Setup, document preview and VAT Entries proof; no German final claim until proven.",
     "compliance": "COMPLIANCE-002-EINVOICE-SETUP: E-Rechnungs-/E-Documents-/Versandprofil-/Change-Log-Setup nur mit Freigabe, UI-first Klickpfad, Validierungs-/Versand-/Auditnachweis und klarer Labor-/DE-Trennung.",
@@ -240,6 +252,7 @@
     "FIXEDASSETS-012 ran in BC and proved only the empty FA Posting Group Card, empty Depreciation Book Card, empty Fixed Asset Card and Vendor template dialog. The screenshots do not show target codes MACHINES, HGB, FA-CNC-01 or K30000 and are not book-ready target-stammdaten images. No save, setup change, posting or company switch. Next no-approval step is FIXEDASSETS-013-SETUP-FIT-DECISION.",
     "GOVERNANCE-011 added the reusable documentation structure without a BC run: DOCUMENTATION-MAP.md, BC-PLAYWRIGHT-PATTERNS.md, BC-PAGE-ACTION-MAP.json, SETUP-READINESS-MATRIX.md and PROCESS-CASE-REGISTRY.json. SCREENSHOT-QA.md now defines screenshot types and required metadata. No screenshots or Evidence were deleted or archived. Next no-approval step remains FIXEDASSETS-013-SETUP-FIT-DECISION, now with the new structure files as required reading.",
     "PLAYWRIGHT-BC-OPTIMIZATION-AUDIT was a technical foundation run without setup change, posting, payment, bank reconciliation, company switch or new fachprozess screenshots. A read-only BC smoke refreshed existing smoke screenshots. Added PLAYWRIGHT-BC-OPTIMIZATION-AUDIT.md, expanded BC-PLAYWRIGHT-PATTERNS.md, upgraded BC-PAGE-ACTION-MAP.json to schema 2 and added helper functions waitForBcReady, waitForPageText, openBcPageById and compactPageText. openSearchResult was fixed after a read-only smoke failure: exact Tell-Me labels no longer test the full body text, blocked background hits are skipped and BC result rows such as Customers Listen can be clicked. npm run fibu:smoke:bc passed 6/6 after the fix. Next no-approval step remains FIXEDASSETS-013-SETUP-FIT-DECISION.",
-    "PLAYWRIGHT-BC-ACTIONS-DIALOGS-HELPERS was a technical helper run without BC execution, setup change, posting, payment, bank reconciliation, company switch or fachprozess screenshots. Added playwright/core/bc/actions.ts with clickBcAction()/isBcActionVisible() and playwright/core/bc/dialogs.ts with expectBcDialog()/isBcDialogVisible()/clickBcDialogButton(). BC-PLAYWRIGHT-PATTERNS.md, PLAYWRIGHT-BC-OPTIMIZATION-AUDIT.md and BC-PAGE-ACTION-MAP.json now mark these helpers as the preferred next pattern for cancel-safe action/dialog migrations. No Fachtest was migrated yet; next technical step is one read-only migration before dangerous posting/payment contexts."
+    "PLAYWRIGHT-BC-ACTIONS-DIALOGS-HELPERS was a technical helper run without BC execution, setup change, posting, payment, bank reconciliation, company switch or fachprozess screenshots. Added playwright/core/bc/actions.ts with clickBcAction()/isBcActionVisible() and playwright/core/bc/dialogs.ts with expectBcDialog()/isBcDialogVisible()/clickBcDialogButton(). BC-PLAYWRIGHT-PATTERNS.md, PLAYWRIGHT-BC-OPTIMIZATION-AUDIT.md and BC-PAGE-ACTION-MAP.json now mark these helpers as the preferred next pattern for cancel-safe action/dialog migrations. No Fachtest was migrated yet; next technical step is one read-only migration before dangerous posting/payment contexts.",
+    "GOVERNANCE-012-COMPANY-AUTONOMY-REGISTRY created COMPANY-REGISTRY.md/json and changed company autonomy from RM-DEMO-only hardlock to instance-scoped governance within MCP_1_20260210. RM-DEMO remains the active proven CRONUS-USA lab company; RM-PROD, RM-SALES, RM-SERVICE, RM-SHARED and RM-AT are planned-only target companies. No BC run, no company switch, no company creation, no setup change and no posting. Next step is GOVERNANCE-013-COMPANY-LIST-READONLY."
   ]
 }

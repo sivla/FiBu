@@ -9,6 +9,7 @@ Leitregel: aktuelle Wahrheit kurz halten, Evidence lokal beweisen, wiederverwend
 | Datei | Rolle | Soll sie lang sein? | Quelle der Wahrheit fuer | Pflege-Regel |
 |---|---|---|---|---|
 | `AUTOPILOT-STATE.json` | maschinenlesbarer Laufzustand | nein | naechster Autopilot-Schritt, Sperren, letzte belegte Referenzen | nur aktuelle Steuerwahrheit, keine Laufchronik als Prosa |
+| `COMPANY-REGISTRY.md` / `COMPANY-REGISTRY.json` | Mandanten-/Company-Steuerregister | nein | welche Companies innerhalb `MCP_1_20260210` bekannt, geplant oder nutzbar sind | vor Company-Wechsel oder neuer Company zwingend lesen und aktualisieren |
 | `POSTING-AND-SETUP-GATES.md` | Sicherheitsgates | mittel | erlaubte/gesperrte Setup-, Posting-, Payment- und Company-Aktionen | vor riskanten Aktionen zwingend lesen; Gate nicht durch Coverage ersetzen |
 | `CURRENT-STATE.md` | menschlicher Handover | mittel | aktueller Projektstand und naechster sinnvoller Schritt | am Ende jedes Laufs aktualisieren; alte Historie knapp halten |
 | `DOCUMENTATION-MAP.md` | Rollenkarte der Dokumentation | nein | welche Datei welchen Zweck hat | nur bei Struktur- oder Governance-Aenderung pflegen |

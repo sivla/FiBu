@@ -6,7 +6,7 @@ Dieser Backlog uebersetzt die Buchanforderungen aus den Kapiteln 3, 6 bis 18 und
 
 ## Leitplanken
 
-`RM-DEMO` bleibt der aktuelle Lern- und Labor-Mandant in Sandbox `MCP_1_20260210`. Der Mandant ist CRONUS-USA-basiert und eignet sich fuer Bedienpfade, Playwright-Robustheit, Stammdatenanlage, Screenshots, Posting-Preview, Postenspur und Lernfaelle.
+`RM-DEMO` bleibt der aktuelle belegte Lern- und Labor-Mandant in Sandbox `MCP_1_20260210`. Seit `GOVERNANCE-012` ist das Projekt aber instanzgebunden multi-company-faehig: Weitere Labor-Companies duerfen innerhalb `MCP_1_20260210` genutzt oder angelegt werden, wenn `COMPANY-REGISTRY.md/json` vorher Ziel, Zweck, Risiko, Evidence-Plan und Rueckfalllogik dokumentiert.
 
 Update nach `FIXEDASSETS-009-SETUP-GATE-READINESS`: Der Fixed-Assets-Block ist als naechster fachlicher Setup-Gate-Bereich konsolidiert. `FIXEDASSETS-009` hat keinen BC-Lauf gestartet, nichts angelegt, nichts geaendert und nichts gebucht. `MACHINES`, `HGB`, `FA-CNC-01` und `K30000` bleiben planned-only/missing. Naechster No-Approval-Schritt ist `FIXEDASSETS-010-SETUP-PREFLIGHT-READONLY`, also nur UI-read-only Feld- und Aktionsmapping.
 
@@ -14,7 +14,7 @@ Update nach `FIXEDASSETS-010-SETUP-PREFLIGHT-READONLY`: Der UI-Preflight ist pra
 
 Update nach `FIXEDASSETS-011-SETUP-GATE-DECISION`: Die Entscheidung ist ohne BC-Lauf gefallen. Die Evidence reicht fuer einen cancel-sicheren Formular-Preflight, aber nicht fuer einen datenveraendernden Setup-Fit. `MACHINES`, `HGB`, `FA-CNC-01` und `K30000` bleiben planned-only/missing. Naechster No-Approval-Schritt ist `FIXEDASSETS-012-SCOPED-NEW-CARD-PREFLIGHT`; dort nur Formulare, Pflichtfelder, Defaults/Templates und Abbruchwege inspizieren, nichts speichern.
 
-Die Ziel-Companies `RM-PROD`, `RM-SALES`, `RM-SERVICE`, `RM-SHARED` und `RM-AT` bleiben ein spaeterer Mehr-Company-/Intercompany-Block. Sie werden nicht als naechste Sofortmassnahme angelegt.
+Die Ziel-Companies `RM-PROD`, `RM-SALES`, `RM-SERVICE`, `RM-SHARED` und `RM-AT` sind jetzt in `COMPANY-REGISTRY.md/json` als geplante Mandanten gefuehrt. Sie sind noch nicht als live sichtbare BC-Companies belegt und werden nicht ohne Company-Aktionsplan angelegt. Naechster Company-Schritt ist zuerst `GOVERNANCE-013-COMPANY-LIST-READONLY`.
 
 Deutsche `19 %` USt, deutscher Kontenplan, deutsche Steuerreports und finale deutsche Buchscreenshots werden in `RM-DEMO` nicht als erledigt markiert, solange sie nicht in einer passenden deutschen Umgebung oder durch ein explizit freigegebenes deutsches VAT-Setup nachgewiesen sind.
 
@@ -45,7 +45,7 @@ Autonome Folge-Laeufe muessen zusaetzlich `AUTOPILOT-STATE.json` und `POSTING-AN
 | Objekt | Buchkapitel | Sollwert | aktueller Stand | Testdaten vorhanden | Evidence vorhanden | Status | Prioritaet | naechster Schritt |
 |---|---|---|---|---|---|---|---|---|
 | Trainingscompany | 6, 8 | `RM-DEMO` als konsolidierte Spielwiese | existiert aus CRONUS USA | ja, `foundation/rm-demo-company.json` | ja, Foundation | `done-labor` | P0 | In deutscher Umgebung neu belegen, aber jetzt nicht neu anlegen. |
-| Ziel-Companies | 3, 6, 18 | `RM-PROD`, `RM-SALES`, `RM-SERVICE`, `RM-SHARED`, `RM-AT` | nur Buchziel; `INTERCOMPANY-001` bestaetigt, dass kein Company-Wechsel oder neue Company angelegt wurde | ja, `masterdata/companies.json` | ja als Gate-/Readiness-Grenze, `intercompany-001` | `later-multicompany / gate-locked` | P3 | Erst nach RM-DEMO-Lernlauf als eigener Mehr-Company-Block mit Gate `NEW-COMPANY-001` und IC-Prozessfreigabe. |
+| Ziel-Companies | 3, 6, 18 | `RM-PROD`, `RM-SALES`, `RM-SERVICE`, `RM-SHARED`, `RM-AT` | Buchziel und Registry-Eintrag; `INTERCOMPANY-001` bestaetigt historisch, dass damals kein Company-Wechsel oder neue Company angelegt wurde; `GOVERNANCE-012` macht Company-Aktionen innerhalb `MCP_1_20260210` registry-pflichtig autonom moeglich | ja, `masterdata/companies.json`, `COMPANY-REGISTRY.json` | ja als Governance-/Readiness-Grenze, `governance-012`, `intercompany-001` | `planned-only / registry-created / live-visibility-open` | P3 | Zuerst `GOVERNANCE-013-COMPANY-LIST-READONLY`; danach ggf. Company-Aktionsplan vor Anlage/Wechsel. |
 | Dimensionen | 7, 10, 25 | `PRODUCTLINE`, `CHANNEL`, `DEPARTMENT`, `LOCATION-GROUP`, spaeter `COMPANY-GROUP`/`PROJECT` | `DEPARTMENT`, `CHANNEL`, `PRODUCTLINE`, `LOCATION-GROUP` existieren; `COMPANY-GROUP` fehlt im Labor und wurde nicht per API angelegt | ja, `masterdata/dimensions.json` | ja, `masterdata-002/003/007`, `masterdata-dimensions`, O2C | `partial` | P0 | Fehlende Erweiterungsdimension/-werte gezielt per UI-Setup-Lauf planen; Reportingwirkung pruefen. |
 | Dimensionswerte Kern | 7, 10, 11 | `MACHINE`, `B2B`, `SALES`, `DIRECTED` | in `RM-DEMO` nachgewiesen | ja | ja | `done-labor` | P0 | Keine Sofortaktion. |
 | Dimensionswerte Erweiterung P1 | 7, 10, 12-13 | `PURCH`, `WHSE`, `SPARE`, `SIMPLE` | per UI-Lauf angelegt und nach Neuoeffnen geprueft | ja | ja, `masterdata-010` | `done-labor` | P1 | Fuer P2P/Inventory nutzbar; Default Dimensions an neuen Stammdaten spaeter separat setzen. |
@@ -137,7 +137,7 @@ Autonome Folge-Laeufe muessen zusaetzlich `AUTOPILOT-STATE.json` und `POSTING-AN
 
 ## Nicht jetzt
 
-- Keine neue Company anlegen.
+- Keine Company-Aktion ohne `COMPANY-REGISTRY.md/json`, dokumentierten Zweck, Risiko, Evidence-Plan und Rueckfalllogik.
 - Keine zweite O2C-Buchung.
 - Keine deutsche `19 %` USt aus CRONUS-USA-Sales-Tax ableiten.
 - Keine beliebigen Konten fuer deutsche Zielaussagen setzen.
@@ -150,6 +150,6 @@ Autonome Folge-Laeufe muessen zusaetzlich `AUTOPILOT-STATE.json` und `POSTING-AN
 ```text
 Arbeite auf Branch codex/playwright-bc-screenshot-foundation.
 Lies CURRENT-STATE.md, AUTOPILOT-STATE.json, POSTING-AND-SETUP-GATES.md, LAB-FIT-STATUS.md und BOOK-CLICK-GUIDE-COVERAGE.md.
-`ARTIFACTS-001` ist als Buch-/Readiness-Sync erledigt: Kapitel 39 ist gegen Evidence-Struktur, Autopilot-State, Posting-/Setup-Gates, Coverage, UI-Inventar und Artefakt-Governance eingeordnet. Ohne Gate-Freigabe keine Setup-Aenderung, keine Buchung, keine Zahlung, keine neue Company und keine neue BC-Ausfuehrung erzeugen.
-Naechster Schritt: `GOVERNANCE-010-NEXT-NO-GATE-DECISION`; `BOOK-O2C-FOUNDATION-DRIFT-SYNC`, `BOOK-REPORTING-UAT-K25-SYNC`, `GOVERNANCE-008`, `TAX-002-DE-VAT-GATE-READINESS` und `GOVERNANCE-009` sind erledigt. `REPORTING-014` ist erledigt, `REPORTING-013` ist verbraucht und rejected, `RM-PLCH` wurde nicht angelegt/geaendert, und weiteres Analysis-View-Setup braucht ein neues Gate mit gescoptem New-/Kartenaktionsmuster. Keine Zahlung, keine Bankabstimmung, keine Buchung, kein Analysis-View-Setup und kein praktischer `TAX-002-DE-VAT-FIT` ohne neues Gate.
+`GOVERNANCE-012` hat die Company Registry angelegt und die alte Pauschalsperre fuer neue Companies in eine instanzgebundene Registry-Regel umgewandelt. Keine Setup-Aenderung, keine Buchung, keine Zahlung und kein Company-Wechsel in diesem Lauf.
+Naechster Schritt: `GOVERNANCE-013-COMPANY-LIST-READONLY`; danach kann wieder `FIXEDASSETS-013-SETUP-FIT-DECISION` oder ein besser begruendeter Company-/Setup-Schritt gewaehlt werden. Keine Zahlung, keine Bankabstimmung, keine Buchung, kein Analysis-View-Setup und kein praktischer `TAX-002-DE-VAT-FIT` ohne passendes Gate beziehungsweise dokumentierte Company-/Setup-Aktionsregel.
 ```

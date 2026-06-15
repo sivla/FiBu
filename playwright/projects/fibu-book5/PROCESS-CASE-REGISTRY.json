@@ -1,9 +1,27 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-15",
+  "updatedAt": "2026-06-16",
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
+  "companyMode": "instance-bound-multi-company",
+  "companyRegistry": "playwright/projects/fibu-book5/COMPANY-REGISTRY.json",
+  "caseCompanyRule": "Every new case must name the BC company; cross-company cases must list all affected companies.",
   "cases": [
+    {
+      "caseId": "GOVERNANCE-012",
+      "process": "Company Governance",
+      "status": "done-governance-no-bc-run",
+      "mode": "company-registry-created",
+      "company": "RM-DEMO",
+      "documents": [],
+      "screenshots": [],
+      "evidence": ["playwright/projects/fibu-book5/evidence/governance-012/README.md", "playwright/projects/fibu-book5/COMPANY-REGISTRY.md", "playwright/projects/fibu-book5/COMPANY-REGISTRY.json"],
+      "proves": ["Company registry exists", "RM-DEMO is the active proven lab company", "planned target companies are governed before use"],
+      "doesNotProve": ["live BC company list", "new company creation", "company switch"],
+      "reusablePatterns": ["instance-bound company autonomy", "registry before company action"],
+      "bookChapters": ["3", "6", "18", "25", "39"],
+      "nextStep": "GOVERNANCE-013-COMPANY-LIST-READONLY"
+    },
     {
       "caseId": "UAT-O2C-001",
       "process": "Order-to-Cash",
@@ -216,4 +234,3 @@
     }
   ]
 }
-

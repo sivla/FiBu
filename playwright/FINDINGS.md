@@ -38,6 +38,23 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 
 ## Aktuelle Fundstellen
 
+## FIND-BC-GOV-012 Company-Autonomie braucht Registry und Instanzgrenze
+
+| Feld | Wert |
+|---|---|
+| Status | erledigt als Governance-/Registry-Regel |
+| Projekt | fibu-book5 |
+| Testfall | `GOVERNANCE-012` |
+| Screenshot | keine Screenshots; naechster Lauf `GOVERNANCE-013-COMPANY-LIST-READONLY` soll Live-Company-Sichtbarkeit bebildern |
+| BC-Seite | keine BC-Ausfuehrung in diesem Lauf |
+| sichtbarer Text | `MCP_1_20260210`, `RM-DEMO`, `RM-PROD`, `RM-SALES`, `RM-SERVICE`, `RM-SHARED`, `RM-AT` |
+| Elementtyp | Governance / Company Registry / Sandbox-Grenze |
+| erste Hypothese | Fuer mehr Lernfortschritt soll der Autopilot Companies innerhalb der Sandbox nutzen oder anlegen koennen. |
+| Recherchequelle | Autopilot-Prompt V5/V6, `testdata/masterdata/companies.json`, Projekt-State und Gate-Dateien |
+| Testergebnis | Company-Autonomie ist fachlich sinnvoll, aber nur instanzgebunden. Ohne Registry koennte ein Agent alte RM-DEMO-only-Regeln, neue Zielcompanies und Intercompany-/Migration-Ziele widerspruechlich interpretieren. |
+| Entscheidung | `COMPANY-REGISTRY.md/json`, Gates, State, Coverage und Matrix wurden synchronisiert. Company-Aktionen sind nur innerhalb `MCP_1_20260210` mit Registry-Eintrag, Zweck, Risiko, Evidence-Plan und Rueckfalllogik erlaubt. |
+| Buchstelle | Kapitel 18 Intercompany/Ausland, Kapitel 28 Migration/Opening Balances, Kapitel 39 Projektartefakte/Handover |
+
 ## FIND-BC-SHOT-001 Buchbild braucht sichtbaren fachlichen Pruefpunkt
 
 | Feld | Wert |
