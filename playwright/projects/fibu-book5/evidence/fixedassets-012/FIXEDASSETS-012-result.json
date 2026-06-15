@@ -1,0 +1,751 @@
+{
+  "testId": "FIXEDASSETS-012",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "dataBasis": "CRONUS USA",
+  "mode": "ui-first-scoped-new-card-preflight-no-save-no-setup-change-no-posting",
+  "autonomyJustification": {
+    "purpose": "Pflichtfelder, Defaults/Templates und Abbruchwege fuer Fixed-Assets-Zielobjekte vor spaeterem Setup-Fit verstehen.",
+    "evidenceGap": "FIXEDASSETS-011 erlaubte nur Formular-Preflight; gescopte New/Card-Kontexte waren noch nicht praktisch nachgewiesen.",
+    "affectedObjects": [
+      "MACHINES",
+      "HGB",
+      "FA-CNC-01",
+      "K30000"
+    ],
+    "expectedEffect": "Keine Datenwirkung; nur Evidence zu Formular-/Folgekontexten.",
+    "risk": "Unbeabsichtigtes Speichern eines Zielobjekts; mitigiert durch keine Eingaben, sofortige Evidence und Schliessen/Abbrechen ohne Speichern.",
+    "rollback": "Bei unerwartetem Speichern sofort dokumentieren und Zielwert in spaeterem Cleanup-/Korrekturlauf behandeln; dieser Lauf gibt keine Buchung frei.",
+    "laborBoundary": "Nur RM-DEMO / CRONUS USA, kein deutscher Finalnachweis."
+  },
+  "checks": [
+    {
+      "id": "010-fa-posting-groups",
+      "label": "FA Posting Groups",
+      "targetValue": "MACHINES",
+      "fieldIntent": "Anlagenbuchungsgruppe fuer Maschinen",
+      "contextCheck": {
+        "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5613&dc=0&bookmark=1D_5hUAAAJ7_0UAUQBVAEkAUABNAEUATgBU",
+        "urlOk": true,
+        "textOk": true
+      },
+      "newAttempt": {
+        "clicked": true,
+        "status": "opened",
+        "method": "scoped-dom-preferred-new",
+        "candidates": [
+          {
+            "index": 371,
+            "text": "New ",
+            "aria": "New",
+            "title": "",
+            "role": "menuitem",
+            "tag": "BUTTON",
+            "x": 1661,
+            "y": 197,
+            "width": 94,
+            "height": 28,
+            "visible": true,
+            "matches": true
+          },
+          {
+            "index": 374,
+            "text": "New",
+            "aria": "",
+            "title": "",
+            "role": "",
+            "tag": "SPAN",
+            "x": 1682,
+            "y": 201,
+            "width": 32,
+            "height": 21,
+            "visible": true,
+            "matches": true
+          },
+          {
+            "index": 375,
+            "text": "New",
+            "aria": "",
+            "title": "",
+            "role": "",
+            "tag": "SPAN",
+            "x": 1682,
+            "y": 201,
+            "width": 32,
+            "height": 21,
+            "visible": true,
+            "matches": true
+          },
+          {
+            "index": 376,
+            "text": "New",
+            "aria": "New",
+            "title": "",
+            "role": "",
+            "tag": "SPAN",
+            "x": 1682,
+            "y": 201,
+            "width": 32,
+            "height": 21,
+            "visible": true,
+            "matches": true
+          },
+          {
+            "index": 1975,
+            "text": "Neu",
+            "aria": "",
+            "title": "",
+            "role": "",
+            "tag": "DIV",
+            "x": 853,
+            "y": 63,
+            "width": 68,
+            "height": 38,
+            "visible": true,
+            "matches": true
+          },
+          {
+            "index": 1976,
+            "text": "Neu",
+            "aria": "",
+            "title": "",
+            "role": "",
+            "tag": "DIV",
+            "x": 853,
+            "y": 63,
+            "width": 68,
+            "height": 38,
+            "visible": true,
+            "matches": true
+          },
+          {
+            "index": 1977,
+            "text": "Neu",
+            "aria": "",
+            "title": "",
+            "role": "",
+            "tag": "DIV",
+            "x": 853,
+            "y": 63,
+            "width": 68,
+            "height": 38,
+            "visible": true,
+            "matches": true
+          },
+          {
+            "index": 1978,
+            "text": "Neu",
+            "aria": "",
+            "title": "",
+            "role": "",
+            "tag": "DIV",
+            "x": 853,
+            "y": 63,
+            "width": 68,
+            "height": 38,
+            "visible": true,
+            "matches": true
+          },
+          {
+            "index": 1979,
+            "text": "Neu",
+            "aria": "Neu",
+            "title": "Erstellen Sie einen neuen Eintrag.",
+            "role": "menuitem",
+            "tag": "BUTTON",
+            "x": 853,
+            "y": 63,
+            "width": 68,
+            "height": 38,
+            "visible": true,
+            "matches": true
+          },
+          {
+            "index": 1980,
+            "text": "Neu",
+            "aria": "",
+            "title": "",
+            "role": "",
+            "tag": "SPAN",
+            "x": 864,
+            "y": 64,
+            "width": 46,
+            "height": 36,
+            "visible": true,
+            "matches": true
+          },
+          {
+            "index": 1982,
+            "text": "Neu",
+            "aria": "",
+            "title": "",
+            "role": "",
+            "tag": "SPAN",
+            "x": 884,
+            "y": 73,
+            "width": 26,
+            "height": 19,
+            "visible": true,
+            "matches": true
+          },
+          {
+            "index": 1983,
+            "text": "Neu",
+            "aria": "",
+            "title": "",
+            "role": "",
+            "tag": "SPAN",
+            "x": 884,
+            "y": 73,
+            "width": 26,
+            "height": 21,
+            "visible": true,
+            "matches": true
+          },
+          {
+            "index": 1984,
+            "text": "Neu",
+            "aria": "Neu",
+            "title": "",
+            "role": "",
+            "tag": "SPAN",
+            "x": 884,
+            "y": 73,
+            "width": 26,
+            "height": 19,
+            "visible": true,
+            "matches": true
+          }
+        ]
+      },
+      "formContextCaptured": true,
+      "fieldCount": 38,
+      "actionCount": 13,
+      "relevantButtons": [
+        "Created Date-Time",
+        "New Intercom Transactions 0 Gnstig",
+        "New Time Sheets 0",
+        "Verbindung zu Banken herstellen, um Bank-Feeds zu importieren."
+      ],
+      "closeResult": {
+        "closed": true,
+        "method": "escape-and-back",
+        "attempts": [
+          "keyboard:Escape",
+          "browser:back"
+        ]
+      },
+      "closedExternalPages": [],
+      "screenshot": "playwright/projects/fibu-book5/img/fixedassets-012-010-fa-posting-groups-new-preflight.png",
+      "status": "candidate-form-preflight"
+    },
+    {
+      "id": "020-depreciation-books",
+      "label": "Depreciation Books",
+      "targetValue": "HGB",
+      "fieldIntent": "AfA-Buch fuer Labor-HGB-Zielbild",
+      "contextCheck": {
+        "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5611&dc=0&bookmark=19_6xUAAAJ7_0MATwBNAFAAQQBOAFk",
+        "urlOk": true,
+        "textOk": true
+      },
+      "newAttempt": {
+        "clicked": true,
+        "status": "opened",
+        "method": "scoped-dom-preferred-new",
+        "candidates": [
+          {
+            "index": 265,
+            "text": "Neu",
+            "aria": "",
+            "title": "",
+            "role": "",
+            "tag": "DIV",
+            "x": 467,
+            "y": 51,
+            "width": 68,
+            "height": 38,
+            "visible": true,
+            "matches": true
+          },
+          {
+            "index": 266,
+            "text": "Neu",
+            "aria": "",
+            "title": "",
+            "role": "",
+            "tag": "DIV",
+            "x": 467,
+            "y": 51,
+            "width": 68,
+            "height": 38,
+            "visible": true,
+            "matches": true
+          },
+          {
+            "index": 267,
+            "text": "Neu",
+            "aria": "",
+            "title": "",
+            "role": "",
+            "tag": "DIV",
+            "x": 467,
+            "y": 51,
+            "width": 68,
+            "height": 38,
+            "visible": true,
+            "matches": true
+          },
+          {
+            "index": 268,
+            "text": "Neu",
+            "aria": "",
+            "title": "",
+            "role": "",
+            "tag": "DIV",
+            "x": 467,
+            "y": 51,
+            "width": 68,
+            "height": 38,
+            "visible": true,
+            "matches": true
+          },
+          {
+            "index": 269,
+            "text": "Neu",
+            "aria": "Neu",
+            "title": "Erstellen Sie einen neuen Eintrag.",
+            "role": "menuitem",
+            "tag": "BUTTON",
+            "x": 467,
+            "y": 51,
+            "width": 68,
+            "height": 38,
+            "visible": true,
+            "matches": true
+          },
+          {
+            "index": 270,
+            "text": "Neu",
+            "aria": "",
+            "title": "",
+            "role": "",
+            "tag": "SPAN",
+            "x": 478,
+            "y": 52,
+            "width": 46,
+            "height": 36,
+            "visible": true,
+            "matches": true
+          },
+          {
+            "index": 272,
+            "text": "Neu",
+            "aria": "",
+            "title": "",
+            "role": "",
+            "tag": "SPAN",
+            "x": 498,
+            "y": 61,
+            "width": 26,
+            "height": 19,
+            "visible": true,
+            "matches": true
+          },
+          {
+            "index": 273,
+            "text": "Neu",
+            "aria": "",
+            "title": "",
+            "role": "",
+            "tag": "SPAN",
+            "x": 498,
+            "y": 61,
+            "width": 26,
+            "height": 19,
+            "visible": true,
+            "matches": true
+          },
+          {
+            "index": 274,
+            "text": "Neu",
+            "aria": "Neu",
+            "title": "",
+            "role": "",
+            "tag": "SPAN",
+            "x": 498,
+            "y": 61,
+            "width": 26,
+            "height": 19,
+            "visible": true,
+            "matches": true
+          }
+        ]
+      },
+      "formContextCaptured": true,
+      "fieldCount": 5,
+      "actionCount": 9,
+      "relevantButtons": [
+        "Default Ending Book Value",
+        "Depreciation Books:"
+      ],
+      "closeResult": {
+        "closed": true,
+        "method": "escape-and-back",
+        "attempts": [
+          "keyboard:Escape",
+          "browser:back"
+        ]
+      },
+      "closedExternalPages": [],
+      "screenshot": "playwright/projects/fibu-book5/img/fixedassets-012-020-depreciation-books-new-preflight.png",
+      "status": "candidate-form-preflight"
+    },
+    {
+      "id": "030-fixed-assets",
+      "label": "Fixed Assets",
+      "targetValue": "FA-CNC-01",
+      "fieldIntent": "Anlagenkarte fuer CNC-Anlage",
+      "contextCheck": {
+        "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5601&dc=0&bookmark=1B_4BUAAAJ7_0YAQQAwADAAMAAwADEAMA",
+        "urlOk": true,
+        "textOk": true
+      },
+      "newAttempt": {
+        "clicked": true,
+        "status": "opened",
+        "method": "scoped-dom-preferred-new",
+        "candidates": [
+          {
+            "index": 286,
+            "text": "Neu",
+            "aria": "",
+            "title": "",
+            "role": "",
+            "tag": "DIV",
+            "x": 513,
+            "y": 51,
+            "width": 68,
+            "height": 38,
+            "visible": true,
+            "matches": true
+          },
+          {
+            "index": 287,
+            "text": "Neu",
+            "aria": "",
+            "title": "",
+            "role": "",
+            "tag": "DIV",
+            "x": 513,
+            "y": 51,
+            "width": 68,
+            "height": 38,
+            "visible": true,
+            "matches": true
+          },
+          {
+            "index": 288,
+            "text": "Neu",
+            "aria": "",
+            "title": "",
+            "role": "",
+            "tag": "DIV",
+            "x": 513,
+            "y": 51,
+            "width": 68,
+            "height": 38,
+            "visible": true,
+            "matches": true
+          },
+          {
+            "index": 289,
+            "text": "Neu",
+            "aria": "",
+            "title": "",
+            "role": "",
+            "tag": "DIV",
+            "x": 513,
+            "y": 51,
+            "width": 68,
+            "height": 38,
+            "visible": true,
+            "matches": true
+          },
+          {
+            "index": 290,
+            "text": "Neu",
+            "aria": "Neu",
+            "title": "Erstellen Sie einen neuen Eintrag.",
+            "role": "menuitem",
+            "tag": "BUTTON",
+            "x": 513,
+            "y": 51,
+            "width": 68,
+            "height": 38,
+            "visible": true,
+            "matches": true
+          },
+          {
+            "index": 291,
+            "text": "Neu",
+            "aria": "",
+            "title": "",
+            "role": "",
+            "tag": "SPAN",
+            "x": 524,
+            "y": 52,
+            "width": 46,
+            "height": 36,
+            "visible": true,
+            "matches": true
+          },
+          {
+            "index": 293,
+            "text": "Neu",
+            "aria": "",
+            "title": "",
+            "role": "",
+            "tag": "SPAN",
+            "x": 544,
+            "y": 61,
+            "width": 26,
+            "height": 19,
+            "visible": true,
+            "matches": true
+          },
+          {
+            "index": 294,
+            "text": "Neu",
+            "aria": "",
+            "title": "",
+            "role": "",
+            "tag": "SPAN",
+            "x": 544,
+            "y": 61,
+            "width": 26,
+            "height": 19,
+            "visible": true,
+            "matches": true
+          },
+          {
+            "index": 295,
+            "text": "Neu",
+            "aria": "Neu",
+            "title": "",
+            "role": "",
+            "tag": "SPAN",
+            "x": 544,
+            "y": 61,
+            "width": 26,
+            "height": 19,
+            "visible": true,
+            "matches": true
+          }
+        ]
+      },
+      "formContextCaptured": true,
+      "fieldCount": 20,
+      "actionCount": 8,
+      "relevantButtons": [
+        "Book Value",
+        "Depreciation Book"
+      ],
+      "closeResult": {
+        "closed": true,
+        "method": "escape-and-back",
+        "attempts": [
+          "keyboard:Escape",
+          "browser:back"
+        ]
+      },
+      "closedExternalPages": [],
+      "screenshot": "playwright/projects/fibu-book5/img/fixedassets-012-030-fixed-assets-new-preflight.png",
+      "status": "candidate-form-preflight"
+    },
+    {
+      "id": "040-vendors",
+      "label": "Vendors",
+      "targetValue": "K30000",
+      "fieldIntent": "Kreditor fuer spaetere Anlagen-Einkaufsrechnung",
+      "contextCheck": {
+        "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=27&filter=Vendor.%27No.%27%20IS%20%27K30000%27&dc=0",
+        "urlOk": true,
+        "textOk": true
+      },
+      "newAttempt": {
+        "clicked": true,
+        "status": "opened",
+        "method": "scoped-dom-preferred-new",
+        "candidates": [
+          {
+            "index": 286,
+            "text": "Neu",
+            "aria": "",
+            "title": "",
+            "role": "",
+            "tag": "DIV",
+            "x": 487,
+            "y": 51,
+            "width": 68,
+            "height": 38,
+            "visible": true,
+            "matches": true
+          },
+          {
+            "index": 287,
+            "text": "Neu",
+            "aria": "",
+            "title": "",
+            "role": "",
+            "tag": "DIV",
+            "x": 487,
+            "y": 51,
+            "width": 68,
+            "height": 38,
+            "visible": true,
+            "matches": true
+          },
+          {
+            "index": 288,
+            "text": "Neu",
+            "aria": "",
+            "title": "",
+            "role": "",
+            "tag": "DIV",
+            "x": 487,
+            "y": 51,
+            "width": 68,
+            "height": 38,
+            "visible": true,
+            "matches": true
+          },
+          {
+            "index": 289,
+            "text": "Neu",
+            "aria": "",
+            "title": "",
+            "role": "",
+            "tag": "DIV",
+            "x": 487,
+            "y": 51,
+            "width": 68,
+            "height": 38,
+            "visible": true,
+            "matches": true
+          },
+          {
+            "index": 290,
+            "text": "Neu",
+            "aria": "Neu",
+            "title": "Erstellen Sie einen neuen Eintrag.",
+            "role": "menuitem",
+            "tag": "BUTTON",
+            "x": 487,
+            "y": 51,
+            "width": 68,
+            "height": 38,
+            "visible": true,
+            "matches": true
+          },
+          {
+            "index": 291,
+            "text": "Neu",
+            "aria": "",
+            "title": "",
+            "role": "",
+            "tag": "SPAN",
+            "x": 498,
+            "y": 52,
+            "width": 46,
+            "height": 36,
+            "visible": true,
+            "matches": true
+          },
+          {
+            "index": 293,
+            "text": "Neu",
+            "aria": "",
+            "title": "",
+            "role": "",
+            "tag": "SPAN",
+            "x": 518,
+            "y": 61,
+            "width": 26,
+            "height": 19,
+            "visible": true,
+            "matches": true
+          },
+          {
+            "index": 294,
+            "text": "Neu",
+            "aria": "",
+            "title": "",
+            "role": "",
+            "tag": "SPAN",
+            "x": 518,
+            "y": 61,
+            "width": 26,
+            "height": 19,
+            "visible": true,
+            "matches": true
+          },
+          {
+            "index": 295,
+            "text": "Neu",
+            "aria": "Neu",
+            "title": "",
+            "role": "",
+            "tag": "SPAN",
+            "x": 518,
+            "y": 61,
+            "width": 26,
+            "height": 19,
+            "visible": true,
+            "matches": true
+          }
+        ]
+      },
+      "formContextCaptured": true,
+      "fieldCount": 0,
+      "actionCount": 6,
+      "relevantButtons": [
+        "Abbrechen",
+        "OK"
+      ],
+      "closeResult": {
+        "closed": true,
+        "method": "click:^Cancel$|^Abbrechen$:button",
+        "attempts": [
+          "click:^Cancel$|^Abbrechen$:button"
+        ]
+      },
+      "closedExternalPages": [],
+      "screenshot": "playwright/projects/fibu-book5/img/fixedassets-012-040-vendors-new-preflight.png",
+      "status": "candidate-form-preflight"
+    }
+  ],
+  "safety": {
+    "posted": false,
+    "setupChanged": false,
+    "fixedAssetCreated": false,
+    "vendorCreated": false,
+    "depreciationBookCreated": false,
+    "faPostingGroupCreated": false,
+    "purchaseInvoiceCreated": false,
+    "saved": false
+  },
+  "proves": [
+    "Scoped New/Card Preflight wurde fuer Fixed-Assets-Zielkontexte versucht.",
+    "Der Lauf erzeugt Formular-/Feld-/Abbruch-Evidence statt Stammdaten.",
+    "Es wurde nichts gespeichert, nichts angelegt und nichts gebucht."
+  ],
+  "doesNotProve": [
+    "Kein Setup-Fit fuer MACHINES, HGB, FA-CNC-01 oder K30000.",
+    "Keine Zielcodes im Screenshot sichtbar; Bilder sind Formular-/Template-Preflight, keine Zielstammdatenbilder.",
+    "Kein buchfaehiger visueller Nachweis des fachlichen Zielzustands.",
+    "Keine Anlagenaktivierung, keine AfA und keine FA Ledger Entries.",
+    "Kein deutscher HGB-/Kontenplan-Endstand."
+  ],
+  "nextStep": "FIXEDASSETS-013-SETUP-FIT-DECISION: Aus FIXEDASSETS-012 entscheiden, ob ein kleiner idempotenter UI-first Setup-Fit fuer genau einen Zielwert sicher ist, oder ob ein Formularpfad rejected/blockiert bleibt."
+}

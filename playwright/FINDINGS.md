@@ -38,6 +38,23 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 
 ## Aktuelle Fundstellen
 
+## FIND-BC-SHOT-001 Buchbild braucht sichtbaren fachlichen Pruefpunkt
+
+| Feld | Wert |
+|---|---|
+| Status | erledigt als Screenshot-QA-/Workaround-Regel |
+| Projekt | fibu-book5 |
+| Testfall | `FIXEDASSETS-012` |
+| Screenshot | `playwright/projects/fibu-book5/img/fixedassets-012-010-fa-posting-groups-new-preflight.png`, `playwright/projects/fibu-book5/img/fixedassets-012-020-depreciation-books-new-preflight.png`, `playwright/projects/fibu-book5/img/fixedassets-012-030-fixed-assets-new-preflight.png`, `playwright/projects/fibu-book5/img/fixedassets-012-040-vendors-new-preflight.png` |
+| BC-Seite | FA Posting Group Card, Depreciation Book Card, Fixed Asset Card, Vendor Template Dialog |
+| sichtbarer Text | leere Karten/Felder beziehungsweise Vendor-Templates; `MACHINES`, `HGB`, `FA-CNC-01`, `K30000` nicht sichtbar |
+| Elementtyp | Screenshot-QA / Formular-Preflight / Buchbild-Grenze |
+| erste Hypothese | Ein geoeffneter Formular- oder Template-Kontext koennte als ausreichender Buch-Screenshot fuer den naechsten Anlagen-Setup-Schritt wirken. |
+| Recherchequelle | Sichtpruefung der `FIXEDASSETS-012`-Screenshots und Evidence |
+| Testergebnis | Der Lauf beweist den Formular-/Template-Kontext und sichere Abbruchwege, aber nicht den fachlichen Zielzustand. Fuer Buchbilder muss das sichtbar sein, was der Leser lernen oder pruefen soll: Code, Name, Betrag, Status, Buchungsoption, Postenart, Konto, Dimension, Filter, Fehlermeldung, Reportzeile oder Dialogauswahl. |
+| Entscheidung | `SCREENSHOT-QA.md`, `WORKAROUNDS-AND-ERRORS.md`, Coverage, Evidence und Testmetadaten wurden korrigiert. |
+| Buchstelle | Kapitel 21 Anlagen; allgemeine Screenshot-QA fuer alle Kapitel |
+
 ## FIND-BC-FA-011 Setup-Gate-Entscheidung verlangt Formular-Preflight vor Datenanlage
 
 | Feld | Wert |

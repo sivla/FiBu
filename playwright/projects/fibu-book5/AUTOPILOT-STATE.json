@@ -7,8 +7,8 @@
   "company": "RM-DEMO",
   "dataBasis": "CRONUS USA",
   "activeArea": "fixedassets",
-  "lastCompletedRun": "FIXEDASSETS-011-SETUP-GATE-DECISION",
-  "lastWorkType": "fixedassets-governance-setup-gate-decision",
+  "lastCompletedRun": "FIXEDASSETS-012-SCOPED-NEW-CARD-PREFLIGHT",
+  "lastWorkType": "fixedassets-ui-form-preflight-no-save",
   "postedInLastRun": false,
   "latestPostedDocuments": {
     "o2c": {
@@ -95,7 +95,6 @@
     "SOLUTIONARCHITECT-002-ARCHITECTURE-DECISION-OR-ADR",
     "UAT-002-PRACTICAL-REGRESSION-OR-NEW-UAT",
     "FIXEDASSETS-004-SETUP-OR-POSTING",
-    "FIXEDASSETS-012-SCOPED-NEW-CARD-PREFLIGHT",
     "WAREHOUSE-001-ACTIVATION",
     "MANUFACTURING-001-POSTING",
     "SERVICE-001-POSTING",
@@ -116,13 +115,13 @@
     "PROJECTS-LAB-POSTING: only after UI-first setup readiness for project, tasks, resource/material/location and invoice/WIP path; current target objects are not ready.",
     "MANUFACTURING-LAB-POSTING: only after UI-first setup readiness for BOM/routing or assembly structure, components, order, consumption/output and cost trace; current target objects are not ready."
   ],
-  "nextBestStepWithoutApproval": "FIXEDASSETS-012-SCOPED-NEW-CARD-PREFLIGHT: UI-first and cancel-safe inspect scoped New/Card forms for FA Posting Groups, Depreciation Books, Fixed Assets and Vendors. Capture mandatory fields, defaults/templates and abort paths for MACHINES, HGB, FA-CNC-01 and K30000. Do not save, create, change setup, post or open a purchase/acquisition/depreciation process.",
+  "nextBestStepWithoutApproval": "FIXEDASSETS-013-SETUP-FIT-DECISION: no BC run required unless a fresh gate says otherwise. Decide from FIXEDASSETS-012 whether exactly one small idempotent UI-first setup fit is safe. FIXEDASSETS-012 screenshots show only empty cards/template dialog; they do not show MACHINES, HGB, FA-CNC-01 or K30000 as existing target codes.",
   "nextBestStepWithApproval": {
     "payments": "Nur mit neuem Gate: weitere Zahlung, Kreditorenzahlung oder Bankabstimmung. PAYMENTS-011 darf nicht wiederholt werden.",
     "reporting": "Further Analysis View setup needs a new explicit gate and a scoped New/Card action proof. REPORTING-013 consumed the GOVERNANCE-007 gate and rejected setup because unscoped New/Neu is globally ambiguous in BC.",
     "tax": "TAX-002-DE-VAT-FIT: only with explicit approval; UI-first VAT Business/Product Posting Groups, VAT Posting Setup, document preview and VAT Entries proof; no German final claim until proven.",
     "compliance": "COMPLIANCE-002-EINVOICE-SETUP: E-Rechnungs-/E-Documents-/Versandprofil-/Change-Log-Setup nur mit Freigabe, UI-first Klickpfad, Validierungs-/Versand-/Auditnachweis und klarer Labor-/DE-Trennung.",
-    "fixedAssets": "FIXEDASSETS-004-SETUP-OR-POSTING remains locked for data-changing setup and posting. FIXEDASSETS-011 decided that FIXEDASSETS-010 is sufficient for a cancel-safe form-preflight, not for creating MACHINES, HGB, FA-CNC-01 or K30000. With a later explicit setup gate only: a narrow UI-first setup fit; posting remains a separate later gate.",
+    "fixedAssets": "FIXEDASSETS-004-SETUP-OR-POSTING remains locked for data-changing setup and posting. FIXEDASSETS-012 proved only empty cards/template dialog and abort paths; MACHINES, HGB, FA-CNC-01 and K30000 are not visible target-code screenshots and were not created. With a later explicit setup gate only: a narrow UI-first setup fit; posting remains a separate later gate.",
     "security": "SECURITY-002-USER-PERMISSION-SETUP: Benutzer-/Berechtigungs-/Profil-/Security-Group-/User-Setup-/Job-Queue-/Change-Log-Aenderungen nur mit Freigabe, UI-first Klickpfad, Rechte-/SoD-Matrix und Audit-/Review-Evidence.",
     "migration": "MIGRATION-002-CONFIGURATION-PACKAGES-IMPORT: Configuration Packages, Datenimport, Opening-Balance-Journale oder Cutover-Ausfuehrung nur mit Freigabe, UI-first Klickpfad, Abstimmprotokoll und Rueckfallregel.",
     "integrations": "INTEGRATIONS-002-SETUP-OR-CONNECTOR: Extension, AppSource-App, API/Web Service, Connector, Power Platform, Power BI, Job Queue oder produktiven Integrationslauf nur mit Freigabe, UI-first Klickpfad, UAT, Rollen/Berechtigungen, Fehlerfall, Rollback, Monitoring und Support Owner.",
@@ -175,7 +174,10 @@
     "Do not repeat FIXEDASSETS-010-SETUP-PREFLIGHT-READONLY without a new UI mapping delta",
     "Do not repeat FIXEDASSETS-011-SETUP-GATE-DECISION without a new setup-gate decision delta",
     "Do not save or create any Fixed Assets target object during FIXEDASSETS-012-SCOPED-NEW-CARD-PREFLIGHT",
-    "Do not create MACHINES, HGB, FA-CNC-01 or K30000 without an explicit setup gate after the completed FIXEDASSETS-010 read-only preflight"
+    "Do not create MACHINES, HGB, FA-CNC-01 or K30000 without an explicit setup gate after the completed FIXEDASSETS-010 read-only preflight",
+    "Do not repeat FIXEDASSETS-012-SCOPED-NEW-CARD-PREFLIGHT without a new form-mapping delta",
+    "Do not treat FIXEDASSETS-012 screenshots as target-code proof; they show empty cards/template dialog only",
+    "Do not mark any screenshot as book-ready unless the intended visible learning/proof target is actually visible in the image: code, name, amount, status, posting option, entry type, account, dimension, filter, error, report line, dialog choice or equivalent."
   ],
   "notes": [
     "AUTOPILOT-STATE.json and POSTING-AND-SETUP-GATES.md were introduced because the V2 autopilot prompt requires machine-readable state and explicit gates.",
@@ -232,6 +234,7 @@
     "BOOK-REPORTING-UAT-K25-SYNC completed the no-approval chapter-25 UAT sync. UAT-K25-001 is now explicitly marked as a target UAT for the German reporting case; the current RM-DEMO proof remains PS-INV103297 plus item ledger entry 792 and partial/negative reporting evidence from REPORTING-001 to REPORTING-014. No BC run, no setup change and no posting.",
     "GOVERNANCE-010 completed the no-gate decision after BOOK-REPORTING-UAT-K25-SYNC. No BC run, no setup change, no posting, no payment, no bank reconciliation and no company switch were executed. The next no-approval step was FIXEDASSETS-009-SETUP-GATE-READINESS.",
     "FIXEDASSETS-009 consolidated FIXEDASSETS-004 to FIXEDASSETS-008 and formulated the scoped Fixed Assets gate chain without a BC run. MACHINES, HGB, FA-CNC-01 and K30000 remain missing/not proven; no setup, no purchase invoice, no acquisition, no depreciation and no posting were executed.",
-    "FIXEDASSETS-011 decided without a BC run that FIXEDASSETS-010 is sufficient for a cancel-safe scoped New/Card form-preflight, but not for a data-changing setup fit. Next no-approval step is FIXEDASSETS-012-SCOPED-NEW-CARD-PREFLIGHT; it may inspect forms and abort paths, but must not save, create, change setup or post."
+    "FIXEDASSETS-011 decided without a BC run that FIXEDASSETS-010 is sufficient for a cancel-safe scoped New/Card form-preflight, but not for a data-changing setup fit. Next no-approval step is FIXEDASSETS-012-SCOPED-NEW-CARD-PREFLIGHT; it may inspect forms and abort paths, but must not save, create, change setup or post.",
+    "FIXEDASSETS-012 ran in BC and proved only the empty FA Posting Group Card, empty Depreciation Book Card, empty Fixed Asset Card and Vendor template dialog. The screenshots do not show target codes MACHINES, HGB, FA-CNC-01 or K30000 and are not book-ready target-stammdaten images. No save, setup change, posting or company switch. Next no-approval step is FIXEDASSETS-013-SETUP-FIT-DECISION."
   ]
 }

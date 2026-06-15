@@ -19,6 +19,21 @@ Jeder relevante Fehler oder Workaround bekommt:
 
 Jeder Eintrag muss außerdem gegen die betroffene Buchstelle geprüft werden. Wenn der Workaround zeigt, dass der Buchtext zu knapp, falsch oder missverständlich ist, wird die Buchstelle im selben Arbeitsgang korrigiert oder als offene Buch-Fundstelle in `playwright/FINDINGS.md` markiert.
 
+## WK-BC-SHOT-001 Screenshot muss den behaupteten fachlichen Zielzustand sichtbar zeigen
+
+| Feld | Wert |
+|---|---|
+| Status | geloest als QA-Regel nach `FIXEDASSETS-012`; fuer kuenftige Screenshots zwingend |
+| Testfall | `FIXEDASSETS-012` |
+| Situation | Der Formular-Preflight oeffnete leere Karten fuer FA Posting Groups, Depreciation Books und Fixed Assets sowie den Vendor-Template-Dialog. |
+| Symptom | Die Screenshots waren technisch sauber, zeigten aber nicht den behaupteten fachlichen Zielzustand: hier also nicht die Zielcodes `MACHINES`, `HGB`, `FA-CNC-01` oder `K30000`. Sie duerfen deshalb nicht als Buchbilder fuer fertige Zielstammdaten gelten. |
+| Sichtbarer Beleg | `playwright/projects/fibu-book5/img/fixedassets-012-010-fa-posting-groups-new-preflight.png`, `playwright/projects/fibu-book5/img/fixedassets-012-020-depreciation-books-new-preflight.png`, `playwright/projects/fibu-book5/img/fixedassets-012-030-fixed-assets-new-preflight.png`, `playwright/projects/fibu-book5/img/fixedassets-012-040-vendors-new-preflight.png`; QA-Korrektur in `SCREENSHOT-QA.md`. |
+| Ursache | Der Lauf belegte den Formular-/Template-Kontext, nicht den fachlichen Zielzustand. Ein leerer Kartenkontext ist fachlich nuetzlich, aber er beweist keinen angelegten Code und keinen fertigen Stammdatensatz. |
+| Warum BC so reagiert | Business Central trennt Liste, neue Karte, Vorlagenauswahl, Pflichtfelder und Speichern. Vor dem Speichern ist ein Code nur dann Belegbestandteil, wenn er im Feld sichtbar eingegeben oder als vorhandener Datensatz in der Liste/Karte sichtbar ist. |
+| Loesung | Screenshot-Metadaten und Coverage wurden auf `form-preflight-only-target-code-not-visible` beziehungsweise Labor-Formular-Preflight korrigiert. Der Test schreibt diese Grenze kuenftig direkt in `bookUse` und `knownLimitations`. |
+| Buchwirkung | Kapitel 21 darf die Bilder nur als Lernbilder fuer Pflichtfelder, Vorlagen und sicheren Abbruch nutzen. Buchbilder fuer Zielstammdaten brauchen spaeter den jeweils behaupteten Zustand sichtbar im Bild, zum Beispiel Code, Name, Pflichtfelder, Buchungsgruppe oder Status. |
+| Kuenftige Regel | Kein Screenshot wird als Zielwert-, Buchungs-, Reporting- oder Buchbildnachweis eingestuft, wenn das, was der Leser sehen soll, nicht im Bild sichtbar ist. Das kann je nach Schritt Code, Name, Betrag, Waehrung, Steuer, Status, Buchungsoption, Postenart, Konto, Dimension, Filter, Fehlermeldung, Reportzeile oder Dialogauswahl sein. Page-Text, JSON oder ein geoeffnetes leeres Formular koennen Evidence sein, ersetzen aber keine visuelle Buchfreigabe. |
+
 ## WK-BC-FA-010 Tell-Me-Treffer ist sichtbar, aber nicht per Role-Selector klickbar
 
 | Feld | Wert |

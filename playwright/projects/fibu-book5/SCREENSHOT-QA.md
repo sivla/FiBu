@@ -13,6 +13,8 @@ Ein Screenshot ist erst buchfaehig, wenn er:
 5. Sprache, Company, Waehrung, Steuerlogik und Testdaten zum erklaerten Ziel passen
 6. durch Evidence ergaenzt wird, die denselben Zustand prueft
 
+Zusaetzliche harte Regel nach `FIXEDASSETS-012`: Das Bild muss sichtbar machen, was der Leser in diesem Schritt lernen oder pruefen soll. Das ist nicht immer nur ein Code. Je nach Klickanleitung kann es ein Code, Name, Betrag, Waehrung, Steuer, Status, Buchungsoption, Postenart, Konto, Dimension, Filter, Fehlermeldung, Reportzeile, Dialogauswahl oder Pflichtfeld sein. Wenn genau dieser fachliche Zielzustand nicht im Bild sichtbar ist, ist der Screenshot nur Labor-/Kontext-Evidence und nicht buchfaehig.
+
 Laborbilder duerfen abweichen. Dann muessen Abweichung, Ursache und Buchwirkung dokumentiert sein.
 
 Zu jedem automatisiert erzeugten O2C-Screenshot schreibt der Screenshot-Helper eine Metadatendatei unter `evidence/<testfall>/...screenshot.json`. Diese Datei enthaelt Status, Buchnutzung, Zweck, erwartete Werte im BC-Seitentext und bekannte Grenzen. Die PNG-Datei allein ist deshalb nicht mehr die ganze Wahrheit.
@@ -163,6 +165,15 @@ Fuer `UAT-O2C-001` fasst `playwright/projects/fibu-book5/evidence/uat-o2c-001/RE
 | `playwright/projects/fibu-book5/img/fixedassets-010-020-depreciation-books-preflight.png` | guter Labor-Preflight-Kandidat | `Depreciation Books` ist in breiter Ansicht sichtbar; `COMPANY` ist sichtbar, `HGB` nicht. | Als Lernbild fuer AfA-Buch-Readiness geeignet. Nicht als HGB-Endstand, AfA-Berechnung oder Buchungsnachweis verwenden. |
 | `playwright/projects/fibu-book5/img/fixedassets-010-030-fixed-assets-preflight.png` | guter Labor-Preflight-Kandidat | `Fixed Assets` ist als Anlagenlisten-Kontext sichtbar; `FA-CNC-01` ist nicht sichtbar. | Als Lernbild fuer fehlendes Anlagenstammdatum geeignet. Nicht als Anlagenkarte oder Aktivierungsnachweis verwenden. |
 | `playwright/projects/fibu-book5/img/fixedassets-010-040-vendors-preflight.png` | guter Labor-Preflight-Kandidat | Gefilterter `Vendors`-Kontext fuer `K30000` ist sichtbar, der Zielkreditor selbst nicht. | Als Lernbild fuer fehlenden Kreditor vor Anlagen-Einkaufsrechnung geeignet. Nicht als Kreditoranlage oder Einkaufsrechnung verwenden. |
+
+## `FIXEDASSETS-012` Screenshot Review
+
+| Screenshot | Bewertung | Befund | Entscheidung |
+|---|---|---|---|
+| `playwright/projects/fibu-book5/img/fixedassets-012-010-fa-posting-groups-new-preflight.png` | Labor-Formular-Preflight, nicht buchfaehig als Zielcode-Bild | Leere `FA Posting Group Card` mit Pflichtfeld `Code` und Konto-/Disposal-Feldern. `MACHINES` ist nicht sichtbar. | Nur als Lernbild fuer Pflichtfelder und Anlagenbuchungsgruppen-Setup verwenden. Fuer Buchziel `MACHINES` braucht es spaeter ein Bild mit sichtbarem Code. |
+| `playwright/projects/fibu-book5/img/fixedassets-012-020-depreciation-books-new-preflight.png` | Labor-Formular-Preflight, nicht buchfaehig als Zielcode-Bild | Leere `Depreciation Book Card` mit Pflichtfeld `Code`, Defaults und G/L-Integration-Schaltern. `HGB` ist nicht sichtbar. | Nur als Lernbild fuer AfA-Buch-Felder verwenden. Kein HGB-/DE-Finalnachweis. |
+| `playwright/projects/fibu-book5/img/fixedassets-012-030-fixed-assets-new-preflight.png` | Labor-Formular-Preflight, nicht buchfaehig als Zielcode-Bild | Leere `Fixed Asset Card` mit Pflichtfeldern und AfA-Feldern. `FA-CNC-01` ist nicht sichtbar. | Nur als Lernbild fuer Anlagenkarten-Pflichtfelder verwenden. Kein Anlagenstamm- oder Aktivierungsnachweis. |
+| `playwright/projects/fibu-book5/img/fixedassets-012-040-vendors-new-preflight.png` | Labor-Template-Preflight, nicht buchfaehig als Zielcode-Bild | Dialog `Select a template for a new vendor` mit Vendor-Templates. `K30000` ist nicht sichtbar. | Nur als Lernbild fuer Vorlagenauswahl verwenden. Kein Kreditorenanlage-Nachweis. |
 
 ## `P2P-001` Screenshot Review
 
