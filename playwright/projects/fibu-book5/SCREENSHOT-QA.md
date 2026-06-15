@@ -203,6 +203,7 @@ Nicht noetig ist ein Screenshot, wenn er nur eine technische Zwischenstation ohn
 | `playwright/projects/fibu-book5/img/fixedassets-012-020-depreciation-books-new-preflight.png` | Labor-Formular-Preflight, nicht buchfaehig als Zielcode-Bild | Leere `Depreciation Book Card` mit Pflichtfeld `Code`, Defaults und G/L-Integration-Schaltern. `HGB` ist nicht sichtbar. | Nur als Lernbild fuer AfA-Buch-Felder verwenden. Kein HGB-/DE-Finalnachweis. |
 | `playwright/projects/fibu-book5/img/fixedassets-012-030-fixed-assets-new-preflight.png` | Labor-Formular-Preflight, nicht buchfaehig als Zielcode-Bild | Leere `Fixed Asset Card` mit Pflichtfeldern und AfA-Feldern. `FA-CNC-01` ist nicht sichtbar. | Nur als Lernbild fuer Anlagenkarten-Pflichtfelder verwenden. Kein Anlagenstamm- oder Aktivierungsnachweis. |
 | `playwright/projects/fibu-book5/img/fixedassets-012-040-vendors-new-preflight.png` | Labor-Template-Preflight, nicht buchfaehig als Zielcode-Bild | Dialog `Select a template for a new vendor` mit Vendor-Templates. `K30000` ist nicht sichtbar. | Nur als Lernbild fuer Vorlagenauswahl verwenden. Kein Kreditorenanlage-Nachweis. |
+| `playwright/projects/fibu-book5/img/fixedassets-014-020-depreciation-books-after-hgb.png` | guter Labor-Setup-Proof / Buchkandidat | `Depreciation Books` zeigt `HGB` und `HGB depreciation book` in einer sichtbaren Tabellenzeile. | Als Buch-/Lernbild fuer den HGB-AfA-Buch-Fit geeignet. Kein deutscher Finalnachweis, keine Anlagenbuchungsgruppe, keine Anlage, keine AfA und keine Buchung. |
 
 ## `P2P-001` Screenshot Review
 

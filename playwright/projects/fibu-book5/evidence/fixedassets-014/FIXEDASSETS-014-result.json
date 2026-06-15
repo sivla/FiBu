@@ -1,0 +1,45 @@
+{
+  "testId": "FIXEDASSETS-014",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "dataBasis": "CRONUS USA",
+  "mode": "ui-first-idempotent-setup-fit-no-posting",
+  "target": {
+    "code": "HGB",
+    "description": "HGB depreciation book"
+  },
+  "action": "created-hgb",
+  "beforeHgbVisible": false,
+  "afterHgbVisible": true,
+  "createAttempt": {
+    "clickedNew": true
+  },
+  "visibleRows": [
+    "Code Description on",
+    "HGB HGB depreciation book on"
+  ],
+  "screenshots": [
+    "fixedassets-014-010-depreciation-books-before-hgb.png",
+    "fixedassets-014-020-depreciation-books-after-hgb.png"
+  ],
+  "safety": {
+    "posted": false,
+    "fixedAssetCreated": false,
+    "faPostingGroupCreated": false,
+    "vendorCreated": false,
+    "purchaseInvoiceCreated": false,
+    "depreciationBookTargetOnly": "HGB"
+  },
+  "proves": [
+    "HGB is visible on Depreciation Books after the UI-first fit.",
+    "The run stayed in MCP_1_20260210 / RM-DEMO.",
+    "The setup fit was idempotent: existing HGB was accepted, missing HGB was created exactly once."
+  ],
+  "doesNotProve": [
+    "No German final HGB accounting setup.",
+    "No MACHINES FA Posting Group account mapping.",
+    "No FA-CNC-01 fixed asset master data.",
+    "No acquisition, depreciation, FA ledger entries or posting trace."
+  ],
+  "nextStep": "FIXEDASSETS-015-MACHINES-ACCOUNT-MAPPING-DECISION: read existing CRONUS FA Posting Groups and decide whether a narrow MACHINES setup-fit is safe; do not create FA-CNC-01 yet."
+}

@@ -37,7 +37,7 @@ Pflichtfelder: Zielcompany, Zweck, Buchkapitel, Datenbasis, erwartete Nutzung, R
 
 Der naechste Company-spezifische technische Schritt ist nur dann eine Company-Aktion, wenn vorher ein konkreter Company-Aktionsplan geschrieben wird. Ohne neuen Company-Zweck ist der naechste fachliche Lauf wieder der hoechstwertige Prozess-/Setup-Block.
 
-Naheliegender fachlicher Folgeschritt: `FIXEDASSETS-014-HGB-DEPRECIATION-BOOK-FIT` oder ein besser bewerteter Setup-/Buchblock aus `AUTOPILOT-STATE.json`.
+Naheliegender fachlicher Folgeschritt: `FIXEDASSETS-015-MACHINES-ACCOUNT-MAPPING-DECISION` oder ein besser bewerteter Setup-/Buchblock aus `AUTOPILOT-STATE.json`.
 
 ## Rueckfalllogik
 

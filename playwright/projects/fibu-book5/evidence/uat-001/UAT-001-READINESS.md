@@ -26,7 +26,7 @@ Microsofts Dynamics-365-Teststrategie beschreibt UAT als Business-User-Test in e
 | `UAT-006`/`UAT-007` | Purchasing/P2P | P2P `106049` -> `108219` ist als CRONUS-USA-Laborbuchung mit Kreditoren-, Sach-, Wert- und Artikelposten belegt; E-Rechnung/XML und deutsche Vorsteuer offen | laborbelegt, fachlich teilweise |
 | `UAT-009` | Inventory | `INV008-899959` belegt positiven RM-M100-Laborzugang, Artikelposten, Wertposten, Sachposten und Inventory Valuation | laborbelegt |
 | `UAT-016` | Bank / Teilzahlung | `PAYMENTS-001` bis `PAYMENTS-010` belegen offene Posten, Journal-Draft, Apply Entries und Post-Dialog mit Abbruch; keine Zahlung und kein Ausgleich | readiness, gate-locked |
-| `UAT-017` | Fixed Assets | Kapitel 21 ist als Readiness/Setup-Reihenfolge synchronisiert; `FA-CNC-01`, `HGB`, `MACHINES`, `K30000` fehlen | readiness, gate-locked |
+| `UAT-017` | Fixed Assets | Kapitel 21 ist als Readiness/Setup-Reihenfolge synchronisiert; `HGB` ist seit `FIXEDASSETS-014` sichtbar, aber `FA-CNC-01`, `MACHINES`, `K30000`, Zugang und AfA fehlen | readiness, gate-locked |
 | `UAT-020` | Reporting | Financial Reports und mehrere Reportingpfade sind read-only geprueft; keine belastbare Summenwirkung nach `PRODUCTLINE`/`CHANNEL` | partial-negativ, gate-locked fuer Analysis-View-Fit |
 
 ## Was dieser Lauf beweist

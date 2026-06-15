@@ -52,8 +52,28 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 | erste Hypothese | Fuer mehr Lernfortschritt soll der Autopilot Companies innerhalb der Sandbox nutzen oder anlegen koennen. |
 | Recherchequelle | Autopilot-Prompt V5/V6, `testdata/masterdata/companies.json`, Projekt-State und Gate-Dateien, `evidence/governance-013/` |
 | Testergebnis | Company-Autonomie ist fachlich sinnvoll, aber nur instanzgebunden. `GOVERNANCE-013` hat die Companies-Liste read-only geoeffnet: sichtbar sind `CRONUS USA, Inc.`, `My Company` und `RM-DEMO`; die Zielcompanies sind noch nicht sichtbar und wurden nicht angelegt. |
-| Entscheidung | `COMPANY-REGISTRY.md/json`, Gates, State, Coverage und Matrix wurden synchronisiert. Company-Aktionen sind nur innerhalb `MCP_1_20260210` mit Registry-Eintrag, Zweck, Risiko, Evidence-Plan und Rueckfalllogik erlaubt. Der Company-Nachweis ist erledigt; der aktuelle No-Approval-Fokus liegt nach `FIXEDASSETS-013` auf `FIXEDASSETS-014-HGB-DEPRECIATION-BOOK-FIT`. |
+| Entscheidung | `COMPANY-REGISTRY.md/json`, Gates, State, Coverage und Matrix wurden synchronisiert. Company-Aktionen sind nur innerhalb `MCP_1_20260210` mit Registry-Eintrag, Zweck, Risiko, Evidence-Plan und Rueckfalllogik erlaubt. Der Company-Nachweis ist erledigt; nach `FIXEDASSETS-014` liegt der aktuelle No-Approval-Fokus auf `FIXEDASSETS-015-MACHINES-ACCOUNT-MAPPING-DECISION`. |
 | Buchstelle | Kapitel 18 Intercompany/Ausland, Kapitel 28 Migration/Opening Balances, Kapitel 39 Projektartefakte/Handover |
+
+## FIND-BC-FA-014 HGB ist als AfA-Buch sichtbar, aber kein Anlagenprozess
+
+| Feld | Wert |
+|---|---|
+| Status | erledigt als UI-first Labor-Setup-Proof |
+| Projekt | fibu-book5 |
+| Testfall | `FIXEDASSETS-014` |
+| Screenshot | `playwright/projects/fibu-book5/img/fixedassets-014-020-depreciation-books-after-hgb.png` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-014/README.md`, `playwright/projects/fibu-book5/evidence/fixedassets-014/FIXEDASSETS-014-HGB-DEPRECIATION-BOOK-FIT.md`, `playwright/projects/fibu-book5/evidence/fixedassets-014/FIXEDASSETS-014-result.json` |
+| BC-Seite | `Depreciation Books`, Page `5611` |
+| sichtbarer Text / Werte | `HGB`, `HGB depreciation book` |
+| Elementtyp | Setup-Fit / AfA-Buch / Buchbild-Kandidat |
+| erste Hypothese | Nach `FIXEDASSETS-013` sollte genau ein kleiner UI-first Setup-Fit fuer `HGB` moeglich sein, ohne die weiteren Anlagenobjekte anzulegen. |
+| Recherchequelle | `FIXEDASSETS-013`, `FIXEDASSETS-014`, Screenshot-Sichtpruefung |
+| Testergebnis | `HGB` war vorher nicht sichtbar und wurde in `RM-DEMO` angelegt. Das Nachher-Bild zeigt Code und Beschreibung lesbar in der Liste. Keine Anlage, keine Anlagenbuchungsgruppe, kein Kreditor, keine Einkaufsrechnung, keine Aktivierung, keine AfA und keine Buchung wurden erzeugt. |
+| Entscheidung | Kapitel 21 darf `HGB` jetzt als RM-DEMO-Labor-Prerequisite zeigen. `MACHINES`, `FA-CNC-01`, `K30000`, Zugang und AfA bleiben gesperrt; naechster Schritt ist eine Kontenmapping-Entscheidung fuer `MACHINES`, nicht sofort Setup. |
+| Buchstelle | Kapitel 21 Anlagen / Fixed Assets |
+
+Fuer Anfaenger ist das wichtig, weil ein AfA-Buch nur die Bewertungs-/Abschreibungsebene vorbereitet. Es macht eine Anlage noch nicht buchungsfaehig: Die Kontenfindung ueber Anlagenbuchungsgruppen, Anlagenkarte, Zugang und spaetere AfA brauchen eigene Nachweise.
 
 ## FIND-BC-FA-013 Fixed Assets darf mit `HGB` anfangen, aber nicht mit Anlage oder Kontenmapping
 

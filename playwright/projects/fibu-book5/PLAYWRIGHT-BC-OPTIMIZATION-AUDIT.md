@@ -79,4 +79,4 @@ Genau einen bestehenden read-only Test auf `clickBcAction()`/`expectBcDialog()` 
 
 ## Naechster fachlicher Autopilot-Schritt
 
-Der fachliche No-Approval-Schritt ist nach `FIXEDASSETS-013` jetzt `FIXEDASSETS-014-HGB-DEPRECIATION-BOOK-FIT`: genau ein kleiner idempotenter UI-first Setup-Fit fuer das AfA-Buch `HGB`; keine Anlagenbuchungsgruppe, keine Anlage, kein Kreditor und keine Buchung.
+Der fachliche No-Approval-Schritt ist nach `FIXEDASSETS-014` jetzt `FIXEDASSETS-015-MACHINES-ACCOUNT-MAPPING-DECISION`: keine Einrichtung, sondern Kontenentscheidung fuer eine spaetere Anlagenbuchungsgruppe; keine Anlage, kein Kreditor und keine Buchung.
