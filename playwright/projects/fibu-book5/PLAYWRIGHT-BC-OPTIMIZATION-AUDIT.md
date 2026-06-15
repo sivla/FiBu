@@ -12,11 +12,11 @@ Ziel: Playwright so weiterentwickeln, dass Business-Central-Klickpfade fuer Buch
 |---|---|---|---|---|---|
 | Tell-Me | `searchFor()` und mehrere lokale Suchhelfer existieren; Treffer werden teils ueber Text und Index angeklickt. | BC-Suche ist dynamisch, gemischt DE/EN und oeffnet auch Learn-/Support-Kontexte; erster Treffer ist oft falsch. | Treffer sichtbar sammeln, fachlichen Treffer anklicken, Zielseitenkontext danach mit Seitentext/Screenshot pruefen; kein blinder Enter-Fallback. | P0 | Als Pattern verschaerft; bestehender `openSearchResult()` bleibt ohne Enter-Fallback. |
 | Page-ID Navigation | Tests nutzen Page-IDs fuer Ledger, Journale und Setup-Kontexte. | Page-ID beweist Kontext, nicht Anfaenger-Klickpfad; kann Buchdidaktik verdecken. | Page-ID als stabile Labor-/Regressionseinstieg markieren, Tell-Me/Klickpfad separat fuer Buchbilder nachziehen. | P1 | `openBcPageById()` als zentraler Helper ergaenzt und in Patterns eingeordnet. |
-| Frame Handling | Helper iterieren ueber `page.frames()` und lokale Tests duplizieren dieses Muster. | Frame-Wechsel erzeugen viele lokale Spezialhelfer und schwer lesbare Fallbacks. | Kleine BC-Komponenten statt grosser Page Objects: Shell, Tell-Me, Actions, Dialoge, Grids, Journale, Evidence. | P1 | Strategie dokumentiert; keine riskante Ordner-Extraktion in diesem Lauf. |
-| Action Bar / Menu | Viele Tests suchen Buttons/Menuitems in allen Frames. | Gleiche Aktion kann mehrfach sichtbar sein; `first()` ist nicht immer fachlich richtig. | Aktion an Seitenkontext binden, danach Seitentext oder Dialogziel pruefen. | P0 | Pattern dokumentiert; Audit markiert `first/last/nth` als kontrollpflichtig. |
+| Frame Handling | Helper iterieren ueber `page.frames()` und lokale Tests duplizieren dieses Muster. | Frame-Wechsel erzeugen viele lokale Spezialhelfer und schwer lesbare Fallbacks. | Kleine BC-Komponenten statt grosser Page Objects: Shell, Tell-Me, Actions, Dialoge, Grids, Journale, Evidence. | P1 | Component-Start fuer `actions` und `dialogs` angelegt; keine Migration gefaehrlicher Fachtests in diesem Lauf. |
+| Action Bar / Menu | Viele Tests suchen Buttons/Menuitems in allen Frames. | Gleiche Aktion kann mehrfach sichtbar sein; `first()` ist nicht immer fachlich richtig. | Aktion an Seitenkontext binden, danach Seitentext oder Dialogziel pruefen. | P0 | `playwright/core/bc/actions.ts` ergaenzt: `clickBcAction()` bindet Aktionen an sichtbare Rollen, optionale Kontexttexte und Zieltextpruefung. |
 | Post / Preview | O2C/P2P/Payments/Inventory haben Sicherheitslogik, aber teils geometrische Dropdown-Klicks. | Hauptaktion `Post...` und `Preview Posting` liegen nah beieinander; falscher Klick kann Buchungsdialog oeffnen. | `Preview Posting` und `Post` als getrennte Helfer mit Pflichtnachweis, Dialog-Screenshot und No-Repeat-Lock. | P0 | Pattern und Action Map verschaerft; keine Buchung ausgefuehrt. |
 | New / Neu | `REPORTING-013` hat global mehrdeutiges `New/Neu` als Rejected Path belegt; `FIXEDASSETS-012` zeigt nur leere Karten. | Unscoped `New/Neu` kann in Role Center oder falschen Kontext fallen. | Kein Daten-Setup ohne gescopten Seitenanker, sichtbare Karte, Pflichtfelder, Abbruchweg und Gate. | P0 | Audit und Patterns markieren `New/Neu` als P0-Sicherheitsgrenze. |
-| Dialoge | Posting-, Template-, Apply-Entries- und Confirm-Dialoge werden fallweise behandelt. | Dialoge sind letzte Sicherheitsgrenze; falsches OK kann buchen oder speichern. | Zentrale Dialog-Regeln: Dialogtitel, Option, Zielbeleg, Screenshot, dann OK oder Abbruch. | P0 | Dokumentiert; keine Dialoghelper-Extraktion in diesem Lauf. |
+| Dialoge | Posting-, Template-, Apply-Entries- und Confirm-Dialoge werden fallweise behandelt. | Dialoge sind letzte Sicherheitsgrenze; falsches OK kann buchen oder speichern. | Zentrale Dialog-Regeln: Dialogtitel, Option, Zielbeleg, Screenshot, dann OK oder Abbruch. | P0 | `playwright/core/bc/dialogs.ts` ergaenzt: Dialogtext zuerst pruefen, dann gezielten Dialogbutton klicken. |
 | Tabellen / Grids | Breite Ansicht und FactBox-Hide sind vorhanden; Grid-Scroll oft lokal. | Screenshots zeigen manchmal nicht den Zielcode oder Zielwert. | Vor Screenshot sichtbares Lernziel erzwingen: Code, Betrag, Konto, Dimension, Status, Filter oder Fehler. | P0 | Pattern verschaerft; `compactPageText()` fuer fokussierte Evidence ergaenzt. |
 | FactBox | `hideFactBoxPane()` existiert; FactBox bleibt bei Journal Check absichtlich sichtbar. | Einklappen kann Beweis verdecken, sichtbar lassen kann Tabelle verdecken. | Vor Screenshot entscheiden: Tabelle braucht Platz, Journal Check braucht FactBox. | P1 | In Patterns und Audit klar getrennt. |
 | Teaching Tips | `dismissTours()` existiert. | Teaching Tips verdecken Tabellen und koennen Screenshots entwerten. | Gezieltes Wegklicken dokumentieren; wenn Tip Lernwert hat, separat als UI-Fundstelle sichern. | P1 | Patterns bestaetigt; keine neue BC-Ausfuehrung. |
@@ -41,11 +41,20 @@ Ziel: Playwright so weiterentwickeln, dass Business-Central-Klickpfade fuer Buch
 - `compactPageText(page, options)`: fokussiert Roh-Seitentext fuer kompakte Evidence.
 - `openSecondSearchBlockResult()` ist als Legacy-Koordinatenfallback markiert.
 
+## Nachtrag: Actions-/Dialog-Helper
+
+Dieser technische Nachtrag hat keine BC-Ausfuehrung, keine Setup-Aenderung, keine Stammdatenanlage, keine Buchung, keine Zahlung und keine Bankabstimmung ausgefuehrt.
+
+- `playwright/core/bc/actions.ts` legt `clickBcAction()` und `isBcActionVisible()` an. Der Helper durchsucht Page und Frames nach sichtbaren Rollen (`button`, `menuitem`, `link`), kann einen Seitentextanker verlangen und nach dem Klick einen erwarteten Zieltext pruefen.
+- `playwright/core/bc/dialogs.ts` legt `expectBcDialog()`, `isBcDialogVisible()` und `clickBcDialogButton()` an. Der Buttonklick erfolgt erst nach nachgewiesenem Dialogtext.
+- Zweck: gefaehrliche lokale Muster wie ungescopte Actions, `first()` ohne Nachpruefung, Koordinatenklicks und direkte Dialog-OKs schrittweise ersetzen.
+- Grenze: Die Helper sind noch nicht in einen Fachtest migriert. Vor Migration in `Post`, `Apply Entries`, `New/Neu` oder Journal-Kontexte muss je Test ein fachlicher Zielzustand und ein Abbruch-/No-Repeat-Gate definiert werden.
+
 ## Nicht umgesetzt in diesem Lauf
 
 - Keine Migration bestehender Fachtests auf neue Helper.
 - Keine neue BC-Ausfuehrung und kein Screenshot-Neulauf.
-- Keine neue Component-Object-Ordnerstruktur.
+- Keine Migration der neuen Component-Helper in bestehende Fachtests.
 - Keine Bereinigung aller `waitForTimeout`-Vorkommen.
 - Keine Aenderung historischer API-/Direktdatenpfade; diese bleiben als Labor-/Legacy-Pfade zu bewerten.
 - Kein erfolgreicher TypeScript-Compilerlauf: es gibt kein `tsconfig.json` und kein `typescript`-DevDependency; `npx tsc` traf deshalb nicht den echten TypeScript-Compiler.
@@ -58,10 +67,13 @@ Ziel: Playwright so weiterentwickeln, dass Business-Central-Klickpfade fuer Buch
 - `npx tsx playwright/core/bc-helpers.ts`: erfolgreich als Syntax-/Load-Check.
 - `npx tsc --noEmit ...`: nicht verwertbar, weil `typescript` nicht installiert und kein `tsconfig.json` vorhanden ist.
 - `npm run fibu:smoke:bc`: zunaechst fehlgeschlagen, weil `openSearchResult()` exakte Treffer gegen den gesamten Body pruefte und danach einen Hintergrund-Link statt der Tell-Me-Zeile traf. Nach Helper-Fix: 6/6 read-only Smoke-Tests erfolgreich.
+- Nachtrag Actions/Dialoge: `npx tsx playwright/core/bc/actions.ts` und `npx tsx playwright/core/bc/dialogs.ts` erfolgreich als Syntax-/Load-Check.
+- Nachtrag Actions/Dialoge: JSON-Validierung fuer `AUTOPILOT-STATE.json` und `BC-PAGE-ACTION-MAP.json` erfolgreich; `npm run check:encoding` und `git diff --check` erfolgreich.
+- Nachtrag Actions/Dialoge: `npx --no-install tsc --noEmit` weiterhin nicht verwertbar, weil kein echter TypeScript-Compiler installiert ist.
 
 ## Naechster technischer Optimierungsschritt
 
-Genau einen kleinen Komponentenblock extrahieren, bevorzugt `actions` oder `dialogs`, weil dort die groessten Sicherheitsfolgen liegen: `Preview Posting`, `Post`, `Apply Entries`, `Journal Check`, `New/Neu` und Confirm-/Template-Dialoge. Danach einen bestehenden read-only Test auf diesen Helper migrieren.
+Genau einen bestehenden read-only Test auf `clickBcAction()`/`expectBcDialog()` migrieren, bevorzugt einen Cancel-safe Fixed-Assets- oder Reporting-Preflight. Danach erst gefaehrlichere Kontexte wie `Preview Posting`, `Post`, `Apply Entries`, `Journal Check` oder `New/Neu` anfassen.
 
 ## Naechster fachlicher Autopilot-Schritt
 

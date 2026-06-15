@@ -38,6 +38,7 @@ Diese Datei sammelt wiederverwendbare Muster aus belegten Laeufen. Sie ist keine
 ## Action Bar
 
 - Aktionen muessen an den Seitenkontext gebunden werden. `first()`/`last()` ist nur akzeptabel, wenn danach der Zielzustand geprueft wird.
+- Neuer Helper-Baustein: `playwright/core/bc/actions.ts` mit `clickBcAction()` und `isBcActionVisible()`. Er sucht sichtbare `button`/`menuitem`/`link`-Aktionen ueber Page und Frames, kann optional Seitentext als Kontextanker verlangen und nach dem Klick einen erwarteten Zieltext pruefen.
 - `New/Neu` ist global mehrdeutig. Kein Setup oder Stammdaten-Fit mit ungescoptem `New/Neu`.
 - `REPORTING-013` ist der belegte Rejected Path: ungescopter `New/Neu` kann in den Role-Center-Kontext fallen.
 - `FIXEDASSETS-012` zeigt nur leere Karten/Template-Dialoge; das ist kein Zielcode-Beweis.
@@ -81,6 +82,7 @@ Diese Datei sammelt wiederverwendbare Muster aus belegten Laeufen. Sie ist keine
 ## Dialoge
 
 - Dialoge sind Sicherheitsgrenzen: Posting, Apply Entries, Templates, Confirm, Delete, OK/Cancel.
+- Neuer Helper-Baustein: `playwright/core/bc/dialogs.ts` mit `expectBcDialog()`, `isBcDialogVisible()` und `clickBcDialogButton()`. Vor einem Buttonklick wird der erwartete Dialogtext als Sicherheitsanker gelesen.
 - Vor `OK` oder `Ja/Yes` muessen Dialogtitel, Option und fachliches Ziel klar sein.
 - Bei Setup-/Stammdaten-Preflight ist `Cancel/Abbrechen` der Standardabschluss.
 - Template-Dialoge wie bei Vendor Cards sind eigener Nachweis: sie zeigen, dass Anlage nicht einfach "New und fertig" ist.

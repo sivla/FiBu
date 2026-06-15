@@ -19,7 +19,7 @@
       },
       "dangerousActions": ["Post...", "Ship", "Invoice", "Ship and Invoice", "New without list context"],
       "knownPitfalls": ["Sales tax remains CRONUS-USA lab, not German VAT19", "FactBox may hide line columns"],
-      "recommendedHelpers": ["openBcPageById", "waitForPageText", "dismissTours", "hideFactBoxPane", "screenshot"],
+      "recommendedHelpers": ["openBcPageById", "waitForPageText", "clickBcAction", "expectBcDialog", "dismissTours", "hideFactBoxPane", "screenshot"],
       "evidenceExamples": ["uat-o2c-001", "masterdata-009"]
     },
     "Sales Order": {
@@ -34,7 +34,7 @@
       },
       "dangerousActions": ["Post...", "Delete", "Release/Reopen if not part of test"],
       "knownPitfalls": ["Line grid needs wide layout for visible item, quantity, location, price and dimensions"],
-      "recommendedHelpers": ["waitForPageText", "compactPageText", "screenshot"],
+      "recommendedHelpers": ["waitForPageText", "clickBcAction", "expectBcDialog", "compactPageText", "screenshot"],
       "evidenceExamples": ["uat-o2c-001"]
     },
     "Posted Sales Invoice": {
@@ -62,7 +62,7 @@
       },
       "dangerousActions": ["Unapply Entries", "Apply Entries"],
       "knownPitfalls": ["Remaining Amount = 0,00 after payment is not bank reconciliation proof"],
-      "recommendedHelpers": ["waitForPageText", "compactPageText", "screenshot"],
+      "recommendedHelpers": ["waitForPageText", "clickBcAction", "expectBcDialog", "compactPageText", "screenshot"],
       "evidenceExamples": ["payments-011", "payments-012"]
     },
     "G/L Entries": {
@@ -89,7 +89,7 @@
       },
       "dangerousActions": ["Adjustment actions outside read-only proof"],
       "knownPitfalls": ["Filtering by Order No. may stay empty; use Value Entry link if needed"],
-      "recommendedHelpers": ["openBcPageById", "waitForPageText", "screenshot"],
+      "recommendedHelpers": ["openBcPageById", "waitForPageText", "clickBcAction", "screenshot"],
       "evidenceExamples": ["uat-o2c-001", "reporting-002", "inventory-001", "inventory-008"]
     },
     "Value Entries": {
@@ -132,7 +132,7 @@
       },
       "dangerousActions": ["Reconciliation-related actions"],
       "knownPitfalls": ["Page 371 path remains rejected", "Bank ledger proof is not bank reconciliation"],
-      "recommendedHelpers": ["openBcPageById", "waitForPageText", "screenshot"],
+      "recommendedHelpers": ["openBcPageById", "waitForPageText", "clickBcAction", "screenshot"],
       "evidenceExamples": ["payments-013", "payments-014"]
     },
     "Financial Reports": {
@@ -161,7 +161,7 @@
       },
       "dangerousActions": ["New", "Edit List", "Update"],
       "knownPitfalls": ["Existing REVENUE view uses AREA/DEPARTMENT/CUSTOMERGROUP, not PRODUCTLINE/CHANNEL", "Unscoped New/Neu can fall back to Role Center context"],
-      "recommendedHelpers": ["openBcPageById", "waitForPageText", "screenshot"],
+      "recommendedHelpers": ["openBcPageById", "waitForPageText", "clickBcAction", "expectBcDialog", "screenshot"],
       "evidenceExamples": ["reporting-004", "reporting-011", "reporting-013", "reporting-014"]
     },
     "Fixed Assets": {
@@ -174,7 +174,7 @@
       },
       "dangerousActions": ["New", "Post Acquisition Cost", "Calculate Depreciation"],
       "knownPitfalls": ["FA-CNC-01 is not visible or created", "No acquisition/depreciation without explicit gates"],
-      "recommendedHelpers": ["openBcPageById", "waitForPageText", "screenshot"],
+      "recommendedHelpers": ["openBcPageById", "waitForPageText", "clickBcAction", "expectBcDialog", "screenshot"],
       "evidenceExamples": ["fixedassets-003", "fixedassets-004", "fixedassets-010", "fixedassets-012"]
     },
     "FA Posting Groups": {
@@ -188,7 +188,7 @@
       },
       "dangerousActions": ["New", "Edit List"],
       "knownPitfalls": ["MACHINES is not visible or created", "Empty card is not a target-code proof"],
-      "recommendedHelpers": ["searchFor", "openSearchResult", "screenshot"],
+      "recommendedHelpers": ["searchFor", "openSearchResult", "clickBcAction", "expectBcDialog", "screenshot"],
       "evidenceExamples": ["fixedassets-005", "fixedassets-006", "fixedassets-010", "fixedassets-012"]
     },
     "Depreciation Books": {
@@ -202,7 +202,7 @@
       },
       "dangerousActions": ["New", "Edit List"],
       "knownPitfalls": ["Do not create HGB without setup gate", "Empty card is not a book-ready HGB proof"],
-      "recommendedHelpers": ["openBcPageById", "screenshot"],
+      "recommendedHelpers": ["openBcPageById", "clickBcAction", "expectBcDialog", "screenshot"],
       "evidenceExamples": ["fixedassets-007", "fixedassets-010", "fixedassets-012"]
     },
     "Vendors": {
@@ -215,7 +215,7 @@
       },
       "dangerousActions": ["New", "Create from template", "Delete"],
       "knownPitfalls": ["K30000 is not visible or created", "Template dialog is its own required setup step"],
-      "recommendedHelpers": ["openBcPageById", "waitForPageText", "screenshot"],
+      "recommendedHelpers": ["openBcPageById", "waitForPageText", "clickBcAction", "expectBcDialog", "screenshot"],
       "evidenceExamples": ["fixedassets-010", "fixedassets-012", "p2p-001"]
     },
     "Item Journals": {
@@ -230,7 +230,7 @@
       },
       "dangerousActions": ["Post", "Delete wrong line", "Applies-to Entry editing"],
       "knownPitfalls": ["Do not type cost into Applies-to Entry", "Do not repeat INV008-899959"],
-      "recommendedHelpers": ["openBcPageById", "waitForPageText", "compactPageText", "screenshot"],
+      "recommendedHelpers": ["openBcPageById", "waitForPageText", "clickBcAction", "expectBcDialog", "compactPageText", "screenshot"],
       "evidenceExamples": ["inventory-005", "inventory-006", "inventory-007", "inventory-008"]
     }
   }
