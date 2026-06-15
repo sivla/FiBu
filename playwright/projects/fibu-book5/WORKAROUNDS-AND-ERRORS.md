@@ -50,6 +50,21 @@ Jeder Eintrag muss außerdem gegen die betroffene Buchstelle geprüft werden. We
 | Buchwirkung | Kapitel 21 kann `FA Posting Groups` als erreichbaren Setup-Kontext zeigen, muss aber weiterhin erklaeren: Sichtbarer Setup-Ort ist noch kein Setup-Fit. |
 | Kuenftige Regel | Bei Tell-Me nicht blind Enter druecken. Erst Trefferkandidaten sammeln, gezielt klicken, danach den Zielseitenkontext pruefen. DOM-Fallback nur fuer den konkreten Treffer und immer mit Nachpruefung des Seitentextes. |
 
+## WK-BC-FA-016 `New/Neu` kann auf Karten nur als Icon-Titel sichtbar sein
+
+| Feld | Wert |
+|---|---|
+| Status | geloest im Test `FIXEDASSETS-016`; Regel fuer kuenftige Setup-Fits behalten |
+| Testfall | `FIXEDASSETS-016` |
+| Situation | `MACHINES` sollte auf der `FA Posting Group Card` UI-first als CRONUS-Laboralias von `EQUIPMENT` angelegt werden. |
+| Symptom | Der erste Lauf fand keinen `New/Neu`-Kandidaten, obwohl die Seite die Aktion anzeigt. Im Playwright-Snapshot war der relevante Button nur als Icon mit Titel `Erstellen Sie einen neuen Eintrag.` sichtbar, nicht als Text `Neu`. |
+| Sichtbarer Beleg | Fehlkontext im lokalen Playwright-Error-Snapshot; geloester Lauf mit `playwright/projects/fibu-book5/evidence/fixedassets-016/014-scoped-new-candidates.json` und Nachherbild `playwright/projects/fibu-book5/img/fixedassets-016-020-fa-posting-groups-after-machines.png`. |
+| Ursache | Business Central rendert Kartenaktionen teilweise als Icon-Buttons mit Titel/Tooltip. Ein Helper, der nur sichtbaren Text oder `aria-label` `New/Neu` akzeptiert, uebersieht diese Aktion. |
+| Warum BC so reagiert | Karten- und Aktionsleisten sparen Platz und zeigen oft nur Symbole. Der fachliche Kontext entsteht aus Karte, Titel, Tooltip und Nachherzustand, nicht nur aus dem sichtbaren Buttontext. |
+| Loesung | Der `FIXEDASSETS-016`-Helper bewertet `New/Neu` jetzt auch titelbasierte Kandidaten und prueft danach den Zielzustand: `MACHINES`, `12210` und `82000` muessen sichtbar sein. |
+| Buchwirkung | Die Anleitung darf nicht nur „Neu klicken“ sagen. Sie muss im Screenshot oder Text klar machen, dass der Plus-/Neu-Icon auf der `FA Posting Group Card` gemeint ist und dass der Erfolg erst am sichtbaren Code/Konto-Set erkennbar ist. |
+| Kuenftige Regel | Bei Kartenaktionen immer Text, `aria-label`, Titel/Tooltip und Seitenkontext bewerten. Danach nicht dem Klick vertrauen, sondern den sichtbaren Zielzustand als Screenshot und Evidence pruefen. |
+
 ## WK-BC-PAY-011 Bank Account Ledger Entries ueber Page 371 nicht belastbar sichtbar
 
 | Feld | Wert |

@@ -94,6 +94,26 @@ Fuer Anfaenger ist das wichtig, weil ein AfA-Buch nur die Bewertungs-/Abschreibu
 
 Fuer Anfaenger ist das wichtig, weil die Anlagenbuchungsgruppe eine Kontenentscheidung ist. Wer `MACHINES` falsch anlegt, erzeugt spaeter falsche Sachposten. Deshalb ist die Reihenfolge: `HGB` AfA-Buch sichtbar, dann `MACHINES` Konten-Setup, dann erst Anlagenkarte, Kreditor/Zugang und AfA.
 
+## FIND-BC-FA-016 MACHINES ist sichtbar, aber noch kein Anlagenprozess
+
+| Feld | Wert |
+|---|---|
+| Status | erledigt als UI-first Labor-Setup-Proof |
+| Projekt | fibu-book5 |
+| Testfall | `FIXEDASSETS-016` |
+| Screenshot | `playwright/projects/fibu-book5/img/fixedassets-016-020-fa-posting-groups-after-machines.png` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-016/README.md`, `playwright/projects/fibu-book5/evidence/fixedassets-016/FIXEDASSETS-016-MACHINES-FA-POSTING-GROUP-FIT.md`, `playwright/projects/fibu-book5/evidence/fixedassets-016/FIXEDASSETS-016-result.json` |
+| BC-Seite | `FA Posting Group Card` |
+| sichtbarer Text / Werte | `MACHINES`, `12210`, `82000` |
+| Elementtyp | Anlagenbuchungsgruppe / Kontenfindung / Setup-Fit |
+| erste Hypothese | Nach der Kontenentscheidung aus `FIXEDASSETS-015` kann `MACHINES` als kleinster naechster Setup-Baustein UI-first angelegt werden, wenn das Nachherbild Code und Konten zeigt. |
+| Recherchequelle | `FIXEDASSETS-006`, `FIXEDASSETS-015`, praktischer Lauf `FIXEDASSETS-016`, Screenshot-Sichtpruefung |
+| Testergebnis | `MACHINES` war vorher nicht sichtbar und wurde in `RM-DEMO` angelegt. Das Nachherbild zeigt `MACHINES` mit relevanten CRONUS-Kontenwerten `12210` und `82000`. Keine Anlage, kein Kreditor, keine Einkaufsrechnung, kein Zugang, keine AfA und keine Buchung wurden erzeugt. |
+| Entscheidung | Kapitel 21 darf `MACHINES` jetzt als RM-DEMO-Labor-Prerequisite zeigen. `FA-CNC-01`, `K30000`, Zugang und AfA bleiben gesperrt; naechster Schritt ist eine Readiness-Entscheidung fuer die naechste Stammdaten-/Setup-Schicht. |
+| Buchstelle | Kapitel 21 Anlagen / Fixed Assets |
+
+Fuer Anfaenger ist das wichtig, weil `MACHINES` nicht die Maschine selbst ist. Es ist das Konto-Set, das Business Central spaeter bei Zugang, Abschreibung und Abgang verwendet. Erst wenn Anlage, Kreditor oder Zugangspfad ebenfalls belegt sind, darf ueber eine Anlagenbuchung nachgedacht werden.
+
 ## FIND-BC-FA-013 Fixed Assets darf mit `HGB` anfangen, aber nicht mit Anlage oder Kontenmapping
 
 | Feld | Wert |

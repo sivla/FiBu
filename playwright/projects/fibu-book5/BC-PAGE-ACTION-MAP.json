@@ -9,243 +9,614 @@
     "Companies": {
       "page": "Companies",
       "pageId": 357,
-      "searchTerms": ["Companies", "Unternehmen"],
-      "reliableEntryPaths": ["Tell-Me result Companies Listen plus Companies list context", "Direct URL page 357 for read-only company registry evidence"],
+      "searchTerms": [
+        "Companies",
+        "Unternehmen"
+      ],
+      "reliableEntryPaths": [
+        "Tell-Me result Companies Listen plus Companies list context",
+        "Direct URL page 357 for read-only company registry evidence"
+      ],
       "knownActions": {
         "Open list": "shows company names including CRONUS USA, Inc., My Company and RM-DEMO in GOVERNANCE-013",
         "Edit List": "not used in GOVERNANCE-013"
       },
-      "dangerousActions": ["New", "Copy", "Delete", "Edit List", "company switch without registry plan"],
-      "knownPitfalls": ["Clicking bare Companies text in Tell-Me can remain in the search dialog or hit background context; use Companies Listen", "Visible company row is not permission to switch or create companies"],
-      "recommendedHelpers": ["searchFor", "openSearchResult", "waitForPageText", "screenshot", "compactPageText"],
-      "evidenceExamples": ["governance-013"]
+      "dangerousActions": [
+        "New",
+        "Copy",
+        "Delete",
+        "Edit List",
+        "company switch without registry plan"
+      ],
+      "knownPitfalls": [
+        "Clicking bare Companies text in Tell-Me can remain in the search dialog or hit background context; use Companies Listen",
+        "Visible company row is not permission to switch or create companies"
+      ],
+      "recommendedHelpers": [
+        "searchFor",
+        "openSearchResult",
+        "waitForPageText",
+        "screenshot",
+        "compactPageText"
+      ],
+      "evidenceExamples": [
+        "governance-013"
+      ]
     },
     "Sales Orders": {
       "page": "Sales Orders",
       "pageId": 9305,
-      "searchTerms": ["Sales Orders", "Verkaufsauftraege"],
-      "reliableEntryPaths": ["Page-ID 9305 for lab regression", "Tell-Me with explicit Sales Orders result and context check"],
+      "searchTerms": [
+        "Sales Orders",
+        "Verkaufsauftraege"
+      ],
+      "reliableEntryPaths": [
+        "Page-ID 9305 for lab regression",
+        "Tell-Me with explicit Sales Orders result and context check"
+      ],
       "knownActions": {
         "New": "opens a Sales Order card only when scoped to the Sales Orders list",
         "Post...": "opens posting action menu; distinguish Preview Posting from normal posting",
         "Preview Posting": "safe O2C preflight; proved real preview entry categories after MASTERDATA-009",
         "Ship and Invoice": "used once in UAT-O2C-001 for lab posting"
       },
-      "dangerousActions": ["Post...", "Ship", "Invoice", "Ship and Invoice", "New without list context"],
-      "knownPitfalls": ["Sales tax remains CRONUS-USA lab, not German VAT19", "FactBox may hide line columns"],
-      "recommendedHelpers": ["openBcPageById", "waitForPageText", "clickBcAction", "expectBcDialog", "dismissTours", "hideFactBoxPane", "screenshot"],
-      "evidenceExamples": ["uat-o2c-001", "masterdata-009"]
+      "dangerousActions": [
+        "Post...",
+        "Ship",
+        "Invoice",
+        "Ship and Invoice",
+        "New without list context"
+      ],
+      "knownPitfalls": [
+        "Sales tax remains CRONUS-USA lab, not German VAT19",
+        "FactBox may hide line columns"
+      ],
+      "recommendedHelpers": [
+        "openBcPageById",
+        "waitForPageText",
+        "clickBcAction",
+        "expectBcDialog",
+        "dismissTours",
+        "hideFactBoxPane",
+        "screenshot"
+      ],
+      "evidenceExamples": [
+        "uat-o2c-001",
+        "masterdata-009"
+      ]
     },
     "Sales Order": {
       "page": "Sales Order",
       "pageId": 42,
-      "searchTerms": ["Sales Order", "Verkaufsauftrag"],
-      "reliableEntryPaths": ["Open from Sales Orders list", "Direct URL only with known document context"],
+      "searchTerms": [
+        "Sales Order",
+        "Verkaufsauftrag"
+      ],
+      "reliableEntryPaths": [
+        "Open from Sales Orders list",
+        "Direct URL only with known document context"
+      ],
       "knownActions": {
         "Line Dimensions": "proved PRODUCTLINE=MACHINE and CHANNEL=B2B in O2C document line",
         "Preview Posting": "requires menu scoping before any posting action",
         "Post...": "final gate before posting dialog"
       },
-      "dangerousActions": ["Post...", "Delete", "Release/Reopen if not part of test"],
-      "knownPitfalls": ["Line grid needs wide layout for visible item, quantity, location, price and dimensions"],
-      "recommendedHelpers": ["waitForPageText", "clickBcAction", "expectBcDialog", "compactPageText", "screenshot"],
-      "evidenceExamples": ["uat-o2c-001"]
+      "dangerousActions": [
+        "Post...",
+        "Delete",
+        "Release/Reopen if not part of test"
+      ],
+      "knownPitfalls": [
+        "Line grid needs wide layout for visible item, quantity, location, price and dimensions"
+      ],
+      "recommendedHelpers": [
+        "waitForPageText",
+        "clickBcAction",
+        "expectBcDialog",
+        "compactPageText",
+        "screenshot"
+      ],
+      "evidenceExamples": [
+        "uat-o2c-001"
+      ]
     },
     "Posted Sales Invoice": {
       "page": "Posted Sales Invoice",
       "pageId": 132,
-      "searchTerms": ["Posted Sales Invoices", "Gebuchte Verkaufsrechnungen"],
-      "reliableEntryPaths": ["Tell-Me Posted Sales Invoices plus filter document number", "Open posted document from posting result when available"],
+      "searchTerms": [
+        "Posted Sales Invoices",
+        "Gebuchte Verkaufsrechnungen"
+      ],
+      "reliableEntryPaths": [
+        "Tell-Me Posted Sales Invoices plus filter document number",
+        "Open posted document from posting result when available"
+      ],
       "knownActions": {
         "Find entries...": "shows related entries but did not directly expose Item Ledger Entry in UAT-O2C-001",
         "Related G/L Entries": "use for posting trace where visible"
       },
-      "dangerousActions": ["Correct", "Cancel", "Create Corrective Credit Memo"],
-      "knownPitfalls": ["Posted document is read-only evidence; do not infer German final VAT from CRONUS lab invoice"],
-      "recommendedHelpers": ["openBcPageById", "waitForPageText", "screenshot"],
-      "evidenceExamples": ["uat-o2c-001", "posting-trace-002"]
+      "dangerousActions": [
+        "Correct",
+        "Cancel",
+        "Create Corrective Credit Memo"
+      ],
+      "knownPitfalls": [
+        "Posted document is read-only evidence; do not infer German final VAT from CRONUS lab invoice"
+      ],
+      "recommendedHelpers": [
+        "openBcPageById",
+        "waitForPageText",
+        "screenshot"
+      ],
+      "evidenceExamples": [
+        "uat-o2c-001",
+        "posting-trace-002"
+      ]
     },
     "Customer Ledger Entries": {
       "page": "Customer Ledger Entries",
       "pageId": 25,
-      "searchTerms": ["Customer Ledger Entries", "Debitorenposten"],
-      "reliableEntryPaths": ["Filter by Document No. PS-INV103297 or PAY011-PS103297", "Open from customer card or posted invoice related entries"],
+      "searchTerms": [
+        "Customer Ledger Entries",
+        "Debitorenposten"
+      ],
+      "reliableEntryPaths": [
+        "Filter by Document No. PS-INV103297 or PAY011-PS103297",
+        "Open from customer card or posted invoice related entries"
+      ],
       "knownActions": {
         "Applied Entries": "shows application state after payment",
         "Detailed Ledger Entries": "shows payment discount and application lines"
       },
-      "dangerousActions": ["Unapply Entries", "Apply Entries"],
-      "knownPitfalls": ["Remaining Amount = 0,00 after payment is not bank reconciliation proof"],
-      "recommendedHelpers": ["waitForPageText", "clickBcAction", "expectBcDialog", "compactPageText", "screenshot"],
-      "evidenceExamples": ["payments-011", "payments-012"]
+      "dangerousActions": [
+        "Unapply Entries",
+        "Apply Entries"
+      ],
+      "knownPitfalls": [
+        "Remaining Amount = 0,00 after payment is not bank reconciliation proof"
+      ],
+      "recommendedHelpers": [
+        "waitForPageText",
+        "clickBcAction",
+        "expectBcDialog",
+        "compactPageText",
+        "screenshot"
+      ],
+      "evidenceExamples": [
+        "payments-011",
+        "payments-012"
+      ]
     },
     "G/L Entries": {
       "page": "G/L Entries",
       "pageId": 20,
-      "searchTerms": ["G/L Entries", "Sachposten"],
-      "reliableEntryPaths": ["Page-ID 20 plus Document No. filter", "Related G/L Entries where visible"],
+      "searchTerms": [
+        "G/L Entries",
+        "Sachposten"
+      ],
+      "reliableEntryPaths": [
+        "Page-ID 20 plus Document No. filter",
+        "Related G/L Entries where visible"
+      ],
       "knownActions": {
         "Filter Document No.": "used for PS-INV103297, 108219, INV008-899959 and PAY011-PS103297",
         "Related Entries": "can expose linked posting trace depending on context"
       },
-      "dangerousActions": ["Edit in Excel", "Open in Excel if evidence target is UI-only"],
-      "knownPitfalls": ["PRODUCTLINE/CHANNEL were not visible in tested O2C G/L paths", "Wide layout helps; image must show intended accounts, amounts or dimensions"],
-      "recommendedHelpers": ["openBcPageById", "hideFactBoxPane", "compactPageText", "screenshot"],
-      "evidenceExamples": ["uat-o2c-001", "p2p-001", "inventory-008", "payments-011", "reporting-009"]
+      "dangerousActions": [
+        "Edit in Excel",
+        "Open in Excel if evidence target is UI-only"
+      ],
+      "knownPitfalls": [
+        "PRODUCTLINE/CHANNEL were not visible in tested O2C G/L paths",
+        "Wide layout helps; image must show intended accounts, amounts or dimensions"
+      ],
+      "recommendedHelpers": [
+        "openBcPageById",
+        "hideFactBoxPane",
+        "compactPageText",
+        "screenshot"
+      ],
+      "evidenceExamples": [
+        "uat-o2c-001",
+        "p2p-001",
+        "inventory-008",
+        "payments-011",
+        "reporting-009"
+      ]
     },
     "Item Ledger Entries": {
       "page": "Item Ledger Entries",
       "pageId": 38,
-      "searchTerms": ["Item Ledger Entries", "Artikelposten"],
-      "reliableEntryPaths": ["Filter Entry No. from Value Entry", "Filter Item No. plus Document No. where visible"],
+      "searchTerms": [
+        "Item Ledger Entries",
+        "Artikelposten"
+      ],
+      "reliableEntryPaths": [
+        "Filter Entry No. from Value Entry",
+        "Filter Item No. plus Document No. where visible"
+      ],
       "knownActions": {
         "Entry -> Dimensions": "proved PRODUCTLINE=MACHINE and CHANNEL=B2B on item ledger entry 792"
       },
-      "dangerousActions": ["Adjustment actions outside read-only proof"],
-      "knownPitfalls": ["Filtering by Order No. may stay empty; use Value Entry link if needed"],
-      "recommendedHelpers": ["openBcPageById", "waitForPageText", "clickBcAction", "screenshot"],
-      "evidenceExamples": ["uat-o2c-001", "reporting-002", "inventory-001", "inventory-008"]
+      "dangerousActions": [
+        "Adjustment actions outside read-only proof"
+      ],
+      "knownPitfalls": [
+        "Filtering by Order No. may stay empty; use Value Entry link if needed"
+      ],
+      "recommendedHelpers": [
+        "openBcPageById",
+        "waitForPageText",
+        "clickBcAction",
+        "screenshot"
+      ],
+      "evidenceExamples": [
+        "uat-o2c-001",
+        "reporting-002",
+        "inventory-001",
+        "inventory-008"
+      ]
     },
     "Value Entries": {
       "page": "Value Entries",
       "pageId": 5802,
-      "searchTerms": ["Value Entries", "Wertposten"],
-      "reliableEntryPaths": ["Filter by Document No.", "Bridge to Item Ledger Entry No."],
+      "searchTerms": [
+        "Value Entries",
+        "Wertposten"
+      ],
+      "reliableEntryPaths": [
+        "Filter by Document No.",
+        "Bridge to Item Ledger Entry No."
+      ],
       "knownActions": {
         "Read Item Ledger Entry No.": "bridge to Item Ledger Entry",
         "Filter Document No.": "used for O2C/P2P/Inventory value trace"
       },
       "dangerousActions": [],
-      "knownPitfalls": ["Value Entry screenshot may prove amount/item but not dimensions unless dimension dialog is visible"],
-      "recommendedHelpers": ["openBcPageById", "hideFactBoxPane", "screenshot"],
-      "evidenceExamples": ["uat-o2c-001", "p2p-001", "inventory-008"]
+      "knownPitfalls": [
+        "Value Entry screenshot may prove amount/item but not dimensions unless dimension dialog is visible"
+      ],
+      "recommendedHelpers": [
+        "openBcPageById",
+        "hideFactBoxPane",
+        "screenshot"
+      ],
+      "evidenceExamples": [
+        "uat-o2c-001",
+        "p2p-001",
+        "inventory-008"
+      ]
     },
     "Cash Receipt Journals": {
       "page": "Cash Receipt Journals",
       "pageId": null,
-      "searchTerms": ["Cash Receipt Journals", "Zahlungseingangs Buch.-Blaetter"],
-      "reliableEntryPaths": ["Tell-Me exact result plus journal context check"],
+      "searchTerms": [
+        "Cash Receipt Journals",
+        "Zahlungseingangs Buch.-Blaetter"
+      ],
+      "reliableEntryPaths": [
+        "Tell-Me exact result plus journal context check"
+      ],
       "knownActions": {
         "Apply Entries": "opens application context for customer payment",
         "Journal Check": "FactBox preflight; read before posting",
         "Post": "opens final posting confirmation"
       },
-      "dangerousActions": ["Post", "Apply Entries with OK", "Delete draft line if wrong line is selected"],
-      "knownPitfalls": ["Amount must be localized such as -68.000,00", "Do not repeat payment PAY011-PS103297"],
-      "recommendedHelpers": ["waitForPageText", "compactPageText", "screenshot"],
-      "evidenceExamples": ["payments-004", "payments-008", "payments-009", "payments-011"]
+      "dangerousActions": [
+        "Post",
+        "Apply Entries with OK",
+        "Delete draft line if wrong line is selected"
+      ],
+      "knownPitfalls": [
+        "Amount must be localized such as -68.000,00",
+        "Do not repeat payment PAY011-PS103297"
+      ],
+      "recommendedHelpers": [
+        "waitForPageText",
+        "compactPageText",
+        "screenshot"
+      ],
+      "evidenceExamples": [
+        "payments-004",
+        "payments-008",
+        "payments-009",
+        "payments-011"
+      ]
     },
     "Bank Account Ledger Entries": {
       "page": "Bank Account Ledger Entries",
       "pageId": 372,
-      "searchTerms": ["Bank Account Ledger Entries", "Bankposten"],
-      "reliableEntryPaths": ["Page-ID 372 plus Document No. PAY011-PS103297", "Tell-Me candidate plus page context check"],
+      "searchTerms": [
+        "Bank Account Ledger Entries",
+        "Bankposten"
+      ],
+      "reliableEntryPaths": [
+        "Page-ID 372 plus Document No. PAY011-PS103297",
+        "Tell-Me candidate plus page context check"
+      ],
       "knownActions": {
         "Filter Document No.": "Page 372 shows PAY011-PS103297 and BANK-RM-01",
         "Related G/L Entries": "shows related G/L accounts for payment"
       },
-      "dangerousActions": ["Reconciliation-related actions"],
-      "knownPitfalls": ["Page 371 path remains rejected", "Bank ledger proof is not bank reconciliation"],
-      "recommendedHelpers": ["openBcPageById", "waitForPageText", "clickBcAction", "screenshot"],
-      "evidenceExamples": ["payments-013", "payments-014"]
+      "dangerousActions": [
+        "Reconciliation-related actions"
+      ],
+      "knownPitfalls": [
+        "Page 371 path remains rejected",
+        "Bank ledger proof is not bank reconciliation"
+      ],
+      "recommendedHelpers": [
+        "openBcPageById",
+        "waitForPageText",
+        "clickBcAction",
+        "screenshot"
+      ],
+      "evidenceExamples": [
+        "payments-013",
+        "payments-014"
+      ]
     },
     "Financial Reports": {
       "page": "Financial Reports",
       "pageId": null,
-      "searchTerms": ["Financial Reports", "Finanzberichte"],
-      "reliableEntryPaths": ["Tell-Me exact Financial Reports result plus list context check"],
+      "searchTerms": [
+        "Financial Reports",
+        "Finanzberichte"
+      ],
+      "reliableEntryPaths": [
+        "Tell-Me exact Financial Reports result plus list context check"
+      ],
       "knownActions": {
         "Open list": "shows Balance Sheet, Income Statement, Revenue",
         "Definitions -> Dimension Perspective": "tested as read-only path; did not expose PRODUCTLINE/CHANNEL context"
       },
-      "dangerousActions": ["Edit report definitions without gate"],
-      "knownPitfalls": ["Opening Financial Reports is not proof of dimension filter/sum effect", "Teaching Tips may need dismissal"],
-      "recommendedHelpers": ["searchFor", "openSearchResult", "dismissTours", "screenshot"],
-      "evidenceExamples": ["reporting-001", "reporting-002", "reporting-003"]
+      "dangerousActions": [
+        "Edit report definitions without gate"
+      ],
+      "knownPitfalls": [
+        "Opening Financial Reports is not proof of dimension filter/sum effect",
+        "Teaching Tips may need dismissal"
+      ],
+      "recommendedHelpers": [
+        "searchFor",
+        "openSearchResult",
+        "dismissTours",
+        "screenshot"
+      ],
+      "evidenceExamples": [
+        "reporting-001",
+        "reporting-002",
+        "reporting-003"
+      ]
     },
     "Analysis Views": {
       "page": "Analysis Views",
       "pageId": 556,
-      "searchTerms": ["Analysis Views", "Analyseansichten"],
-      "reliableEntryPaths": ["Page-ID 556 plus Analysis Views context", "Tell-Me exact result plus context check"],
+      "searchTerms": [
+        "Analysis Views",
+        "Analyseansichten"
+      ],
+      "reliableEntryPaths": [
+        "Page-ID 556 plus Analysis Views context",
+        "Tell-Me exact result plus context check"
+      ],
       "knownActions": {
         "Open REVENUE card": "field positions visible in REPORTING-013",
         "Analysis by Dimensions": "visible action candidate",
         "Update": "visible action candidate"
       },
-      "dangerousActions": ["New", "Edit List", "Update"],
-      "knownPitfalls": ["Existing REVENUE view uses AREA/DEPARTMENT/CUSTOMERGROUP, not PRODUCTLINE/CHANNEL", "Unscoped New/Neu can fall back to Role Center context"],
-      "recommendedHelpers": ["openBcPageById", "waitForPageText", "clickBcAction", "expectBcDialog", "screenshot"],
-      "evidenceExamples": ["reporting-004", "reporting-011", "reporting-013", "reporting-014"]
+      "dangerousActions": [
+        "New",
+        "Edit List",
+        "Update"
+      ],
+      "knownPitfalls": [
+        "Existing REVENUE view uses AREA/DEPARTMENT/CUSTOMERGROUP, not PRODUCTLINE/CHANNEL",
+        "Unscoped New/Neu can fall back to Role Center context"
+      ],
+      "recommendedHelpers": [
+        "openBcPageById",
+        "waitForPageText",
+        "clickBcAction",
+        "expectBcDialog",
+        "screenshot"
+      ],
+      "evidenceExamples": [
+        "reporting-004",
+        "reporting-011",
+        "reporting-013",
+        "reporting-014"
+      ]
     },
     "Fixed Assets": {
       "page": "Fixed Assets",
       "pageId": 5601,
-      "searchTerms": ["Fixed Assets", "Anlagen"],
-      "reliableEntryPaths": ["Page-ID 5601 plus list context", "Tell-Me exact result plus context check"],
+      "searchTerms": [
+        "Fixed Assets",
+        "Anlagen"
+      ],
+      "reliableEntryPaths": [
+        "Page-ID 5601 plus list context",
+        "Tell-Me exact result plus context check"
+      ],
       "knownActions": {
         "New": "empty Fixed Asset Card preflight proved; no save"
       },
-      "dangerousActions": ["New", "Post Acquisition Cost", "Calculate Depreciation"],
-      "knownPitfalls": ["FA-CNC-01 is not visible or created", "No acquisition/depreciation without explicit gates"],
-      "recommendedHelpers": ["openBcPageById", "waitForPageText", "clickBcAction", "expectBcDialog", "screenshot"],
-      "evidenceExamples": ["fixedassets-003", "fixedassets-004", "fixedassets-010", "fixedassets-012"]
+      "dangerousActions": [
+        "New",
+        "Post Acquisition Cost",
+        "Calculate Depreciation"
+      ],
+      "knownPitfalls": [
+        "FA-CNC-01 is not visible or created",
+        "No acquisition/depreciation without explicit gates"
+      ],
+      "recommendedHelpers": [
+        "openBcPageById",
+        "waitForPageText",
+        "clickBcAction",
+        "expectBcDialog",
+        "screenshot"
+      ],
+      "evidenceExamples": [
+        "fixedassets-003",
+        "fixedassets-004",
+        "fixedassets-010",
+        "fixedassets-012"
+      ]
     },
     "FA Posting Groups": {
       "page": "FA Posting Groups",
       "pageId": null,
-      "searchTerms": ["FA Posting Groups", "Anlagenbuchungsgruppen"],
-      "reliableEntryPaths": ["Tell-Me exact result plus list context"],
+      "searchTerms": [
+        "FA Posting Groups",
+        "Anlagenbuchungsgruppen"
+      ],
+      "reliableEntryPaths": [
+        "Tell-Me exact result plus list context"
+      ],
       "knownActions": {
         "Open list": "visible via UI in FIXEDASSETS-005/010",
-        "New": "form-preflight proved in FIXEDASSETS-012; FIXEDASSETS-015 approves only the next narrow MACHINES fit from EQUIPMENT reference accounts"
+        "New": "form-preflight proved in FIXEDASSETS-012; FIXEDASSETS-016 created/confirmed MACHINES using the title-only New icon on the FA Posting Group Card"
       },
-      "dangerousActions": ["New", "Edit List"],
-      "knownPitfalls": ["MACHINES is not visible or created until FIXEDASSETS-016 runs", "Empty card is not a target-code proof", "After screenshot must show MACHINES and relevant account values, not just the list context"],
-      "recommendedHelpers": ["searchFor", "openSearchResult", "clickBcAction", "expectBcDialog", "screenshot"],
-      "evidenceExamples": ["fixedassets-005", "fixedassets-006", "fixedassets-010", "fixedassets-012", "fixedassets-015"]
+      "dangerousActions": [
+        "New",
+        "Edit List"
+      ],
+      "knownPitfalls": [
+        "MACHINES is visible after FIXEDASSETS-016, but only as CRONUS-USA lab setup, not German chart-of-accounts final proof",
+        "Empty card is not a target-code proof",
+        "The New action can be title-only icon text such as Erstellen Sie einen neuen Eintrag.; evaluate title candidates and verify target after click",
+        "After screenshot must show MACHINES and relevant account values, not just the list context"
+      ],
+      "recommendedHelpers": [
+        "searchFor",
+        "openSearchResult",
+        "clickBcAction",
+        "expectBcDialog",
+        "screenshot",
+        "scored title-based New action fallback for card icon actions"
+      ],
+      "evidenceExamples": [
+        "fixedassets-005",
+        "fixedassets-006",
+        "fixedassets-010",
+        "fixedassets-012",
+        "fixedassets-015",
+        "fixedassets-016"
+      ]
     },
     "Depreciation Books": {
       "page": "Depreciation Books",
       "pageId": 5611,
-      "searchTerms": ["Depreciation Books", "AfA-Buecher"],
-      "reliableEntryPaths": ["Page-ID 5611 plus list context", "Tell-Me exact result plus context check"],
+      "searchTerms": [
+        "Depreciation Books",
+        "AfA-Buecher"
+      ],
+      "reliableEntryPaths": [
+        "Page-ID 5611 plus list context",
+        "Tell-Me exact result plus context check"
+      ],
       "knownActions": {
         "Open list": "HGB visible after FIXEDASSETS-014; COMPANY was the prior CRONUS reference",
         "New": "scoped UI-first fit proved for exactly HGB in FIXEDASSETS-014"
       },
-      "dangerousActions": ["New", "Edit List"],
-      "knownPitfalls": ["Do not repeat HGB without a new evidence delta", "Empty card is not a book-ready HGB proof; the after screenshot must show code and description"],
-      "recommendedHelpers": ["openBcPageById", "clickBcAction", "expectBcDialog", "screenshot"],
-      "evidenceExamples": ["fixedassets-007", "fixedassets-010", "fixedassets-012", "fixedassets-014"]
+      "dangerousActions": [
+        "New",
+        "Edit List"
+      ],
+      "knownPitfalls": [
+        "Do not repeat HGB without a new evidence delta",
+        "Empty card is not a book-ready HGB proof; the after screenshot must show code and description"
+      ],
+      "recommendedHelpers": [
+        "openBcPageById",
+        "clickBcAction",
+        "expectBcDialog",
+        "screenshot"
+      ],
+      "evidenceExamples": [
+        "fixedassets-007",
+        "fixedassets-010",
+        "fixedassets-012",
+        "fixedassets-014"
+      ]
     },
     "Vendors": {
       "page": "Vendors",
       "pageId": 27,
-      "searchTerms": ["Vendors", "Kreditoren"],
-      "reliableEntryPaths": ["Page-ID 27 plus list context", "Tell-Me exact result plus context check"],
+      "searchTerms": [
+        "Vendors",
+        "Kreditoren"
+      ],
+      "reliableEntryPaths": [
+        "Page-ID 27 plus list context",
+        "Tell-Me exact result plus context check"
+      ],
       "knownActions": {
         "New": "can open template dialog before card creation"
       },
-      "dangerousActions": ["New", "Create from template", "Delete"],
-      "knownPitfalls": ["K30000 is not visible or created", "Template dialog is its own required setup step"],
-      "recommendedHelpers": ["openBcPageById", "waitForPageText", "clickBcAction", "expectBcDialog", "screenshot"],
-      "evidenceExamples": ["fixedassets-010", "fixedassets-012", "p2p-001"]
+      "dangerousActions": [
+        "New",
+        "Create from template",
+        "Delete"
+      ],
+      "knownPitfalls": [
+        "K30000 is not visible or created",
+        "Template dialog is its own required setup step"
+      ],
+      "recommendedHelpers": [
+        "openBcPageById",
+        "waitForPageText",
+        "clickBcAction",
+        "expectBcDialog",
+        "screenshot"
+      ],
+      "evidenceExamples": [
+        "fixedassets-010",
+        "fixedassets-012",
+        "p2p-001"
+      ]
     },
     "Item Journals": {
       "page": "Item Journals",
       "pageId": 40,
-      "searchTerms": ["Item Journals", "Artikel Buch.-Blaetter"],
-      "reliableEntryPaths": ["Page-ID 40 plus journal context", "Tell-Me exact result plus journal context"],
+      "searchTerms": [
+        "Item Journals",
+        "Artikel Buch.-Blaetter"
+      ],
+      "reliableEntryPaths": [
+        "Page-ID 40 plus journal context",
+        "Tell-Me exact result plus journal context"
+      ],
       "knownActions": {
         "Line -> Dimensions": "proved PRODUCTLINE=MACHINE on draft line",
         "Journal Check": "preflight when Preview Posting is not available",
         "Post": "used once for INV008-899959 after preflight"
       },
-      "dangerousActions": ["Post", "Delete wrong line", "Applies-to Entry editing"],
-      "knownPitfalls": ["Do not type cost into Applies-to Entry", "Do not repeat INV008-899959"],
-      "recommendedHelpers": ["openBcPageById", "waitForPageText", "clickBcAction", "expectBcDialog", "compactPageText", "screenshot"],
-      "evidenceExamples": ["inventory-005", "inventory-006", "inventory-007", "inventory-008"]
+      "dangerousActions": [
+        "Post",
+        "Delete wrong line",
+        "Applies-to Entry editing"
+      ],
+      "knownPitfalls": [
+        "Do not type cost into Applies-to Entry",
+        "Do not repeat INV008-899959"
+      ],
+      "recommendedHelpers": [
+        "openBcPageById",
+        "waitForPageText",
+        "clickBcAction",
+        "expectBcDialog",
+        "compactPageText",
+        "screenshot"
+      ],
+      "evidenceExamples": [
+        "inventory-005",
+        "inventory-006",
+        "inventory-007",
+        "inventory-008"
+      ]
     }
   }
 }

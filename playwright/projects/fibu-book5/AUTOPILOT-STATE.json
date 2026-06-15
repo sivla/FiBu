@@ -10,8 +10,8 @@
   "companyRegistry": "playwright/projects/fibu-book5/COMPANY-REGISTRY.json",
   "dataBasis": "CRONUS USA",
   "activeArea": "fixedassets",
-  "lastCompletedRun": "FIXEDASSETS-015-MACHINES-ACCOUNT-MAPPING-DECISION",
-  "lastWorkType": "account-mapping-decision-no-bc-run",
+  "lastCompletedRun": "FIXEDASSETS-016-MACHINES-FA-POSTING-GROUP-FIT",
+  "lastWorkType": "ui-first-idempotent-setup-fit-no-posting",
   "postedInLastRun": false,
   "latestPostedDocuments": {
     "o2c": {
@@ -67,7 +67,19 @@
         ],
         "nextAllowedCase": "FIXEDASSETS-016-MACHINES-FA-POSTING-GROUP-FIT"
       },
-      "limitation": "CRONUS-USA lab setup only; HGB is visible and MACHINES is approved only for a future narrow UI-first setup fit from EQUIPMENT reference accounts. No FA-CNC-01, no K30000, no acquisition, no depreciation and no German final proof."
+      "limitation": "CRONUS-USA lab setup only; HGB and MACHINES are now visible setup prerequisites. MACHINES is only a lab alias based on EQUIPMENT reference accounts 12210/82000. No FA-CNC-01, no K30000, no acquisition, no depreciation and no German final proof.",
+      "faPostingGroup": "MACHINES",
+      "machinesFit": {
+        "caseId": "FIXEDASSETS-016",
+        "action": "created-machines",
+        "referenceGroup": "EQUIPMENT",
+        "visibleProofAccounts": [
+          "12210",
+          "82000"
+        ],
+        "screenshot": "playwright/projects/fibu-book5/img/fixedassets-016-020-fa-posting-groups-after-machines.png",
+        "noPosting": true
+      }
     }
   },
   "hardLocks": [
@@ -103,7 +115,8 @@
     "no repeat GOVERNANCE-007 without a new gate-decision delta",
     "no Analysis View setup outside a fresh explicit gate",
     "no repeat REPORTING-013 under the consumed GOVERNANCE-007 gate",
-    "no unscoped New/Neu click for Analysis View setup"
+    "no unscoped New/Neu click for Analysis View setup",
+    "no repeat FIXEDASSETS-016-MACHINES-FA-POSTING-GROUP-FIT without a new MACHINES evidence delta"
   ],
   "openGates": [
     "TAX-002-DE-VAT-FIT",
@@ -115,7 +128,6 @@
     "SOLUTIONARCHITECT-002-ARCHITECTURE-DECISION-OR-ADR",
     "UAT-002-PRACTICAL-REGRESSION-OR-NEW-UAT",
     "FIXEDASSETS-004-SETUP-OR-POSTING",
-    "FIXEDASSETS-016-MACHINES-FA-POSTING-GROUP-FIT",
     "WAREHOUSE-001-ACTIVATION",
     "MANUFACTURING-001-POSTING",
     "SERVICE-001-POSTING",
@@ -139,25 +151,48 @@
     "status": "instance-scoped-allowed-with-registry",
     "environmentBoundary": "MCP_1_20260210",
     "registryRequired": true,
-    "companyActionsAllowedInsideEnvironment": ["read-only company list", "company switch", "new lab company"],
-    "mustDocumentBeforeAction": ["target company", "purpose", "book chapters", "data basis or template", "expected usage", "risks", "evidence plan", "fallback"],
+    "companyActionsAllowedInsideEnvironment": [
+      "read-only company list",
+      "company switch",
+      "new lab company"
+    ],
+    "mustDocumentBeforeAction": [
+      "target company",
+      "purpose",
+      "book chapters",
+      "data basis or template",
+      "expected usage",
+      "risks",
+      "evidence plan",
+      "fallback"
+    ],
     "lastCompanyEnumeration": {
       "caseId": "GOVERNANCE-013-COMPANY-LIST-READONLY",
-      "visibleCompanies": ["CRONUS USA, Inc.", "My Company", "RM-DEMO"],
-      "plannedCompaniesNotVisible": ["RM-PROD", "RM-SALES", "RM-SERVICE", "RM-SHARED", "RM-AT"],
+      "visibleCompanies": [
+        "CRONUS USA, Inc.",
+        "My Company",
+        "RM-DEMO"
+      ],
+      "plannedCompaniesNotVisible": [
+        "RM-PROD",
+        "RM-SALES",
+        "RM-SERVICE",
+        "RM-SHARED",
+        "RM-AT"
+      ],
       "companyCreated": false,
       "companySwitched": false
     },
     "nextCompanyEvidenceStep": "Only with a new documented company action purpose; otherwise continue with process/setup work."
   },
-  "nextBestStepWithoutApproval": "FIXEDASSETS-016-MACHINES-FA-POSTING-GROUP-FIT: UI-first and idempotent check/create only FA Posting Group MACHINES in RM-DEMO using the CRONUS EQUIPMENT account pattern from FIXEDASSETS-006. Do not create FA-CNC-01, do not create K30000, do not create a purchase invoice, do not post acquisition or depreciation and do not claim German final proof.",
+  "nextBestStepWithoutApproval": "FIXEDASSETS-017-FA-CNC-01-SETUP-READINESS: evaluate the next narrow UI-first readiness layer after HGB and MACHINES, likely fixed asset card FA-CNC-01 or vendor K30000 readiness. No acquisition, depreciation, purchase invoice or posting without a fresh gate.",
   "nextBestStepWithApproval": {
     "payments": "Nur mit neuem Gate: weitere Zahlung, Kreditorenzahlung oder Bankabstimmung. PAYMENTS-011 darf nicht wiederholt werden.",
     "companies": "Company-Aktionen sind innerhalb MCP_1_20260210 erlaubt, aber nur mit COMPANY-REGISTRY-Eintrag, dokumentiertem Zweck/Risiko/Evidence-Plan und sofortigem State-/Evidence-Sync. Naechster Company-Schritt ist read-only Enumeration, keine Anlage.",
     "reporting": "Further Analysis View setup needs a new explicit gate and a scoped New/Card action proof. REPORTING-013 consumed the GOVERNANCE-007 gate and rejected setup because unscoped New/Neu is globally ambiguous in BC.",
     "tax": "TAX-002-DE-VAT-FIT: only with explicit approval; UI-first VAT Business/Product Posting Groups, VAT Posting Setup, document preview and VAT Entries proof; no German final claim until proven.",
     "compliance": "COMPLIANCE-002-EINVOICE-SETUP: E-Rechnungs-/E-Documents-/Versandprofil-/Change-Log-Setup nur mit Freigabe, UI-first Klickpfad, Validierungs-/Versand-/Auditnachweis und klarer Labor-/DE-Trennung.",
-    "fixedAssets": "FIXEDASSETS-015 approved exactly one narrow next setup fit: create/check FA Posting Group MACHINES as CRONUS-USA lab alias of EQUIPMENT using visible reference accounts 12210/82000. FA-CNC-01, K30000, acquisition and depreciation posting remain locked.",
+    "fixedAssets": "After FIXEDASSETS-016, HGB and MACHINES are visible CRONUS-USA lab prerequisites. Next approval/readiness should target exactly one next layer, such as FA-CNC-01 fixed asset card or K30000 vendor readiness. Acquisition, depreciation and fixed-asset posting remain locked until full setup, preflight and posting-trace plan exist.",
     "security": "SECURITY-002-USER-PERMISSION-SETUP: Benutzer-/Berechtigungs-/Profil-/Security-Group-/User-Setup-/Job-Queue-/Change-Log-Aenderungen nur mit Freigabe, UI-first Klickpfad, Rechte-/SoD-Matrix und Audit-/Review-Evidence.",
     "migration": "MIGRATION-002-CONFIGURATION-PACKAGES-IMPORT: Configuration Packages, Datenimport, Opening-Balance-Journale oder Cutover-Ausfuehrung nur mit Freigabe, UI-first Klickpfad, Abstimmprotokoll und Rueckfallregel.",
     "integrations": "INTEGRATIONS-002-SETUP-OR-CONNECTOR: Extension, AppSource-App, API/Web Service, Connector, Power Platform, Power BI, Job Queue oder produktiven Integrationslauf nur mit Freigabe, UI-first Klickpfad, UAT, Rollen/Berechtigungen, Fehlerfall, Rollback, Monitoring und Support Owner.",
@@ -218,7 +253,9 @@
     "Do not create FA-CNC-01 or K30000 after FIXEDASSETS-015; only MACHINES as a narrow FA Posting Group setup fit is approved for the next run.",
     "Do not mark any screenshot as book-ready unless the intended visible learning/proof target is actually visible in the image: code, name, amount, status, posting option, entry type, account, dimension, filter, error, report line, dialog choice or equivalent.",
     "Do not repeat GOVERNANCE-011-DOCUMENTATION-STRUCTURE without a documentation-structure delta.",
-    "Do not repeat PLAYWRIGHT-BC-OPTIMIZATION-AUDIT without a new helper, pattern, action-map or validation delta."
+    "Do not repeat PLAYWRIGHT-BC-OPTIMIZATION-AUDIT without a new helper, pattern, action-map or validation delta.",
+    "Do not repeat FIXEDASSETS-016-MACHINES-FA-POSTING-GROUP-FIT without a new MACHINES evidence delta; MACHINES is now visible in RM-DEMO.",
+    "Do not create FA-CNC-01 or K30000 after FIXEDASSETS-016 without the next explicit readiness/setup gate; acquisition and depreciation remain locked."
   ],
   "notes": [
     "AUTOPILOT-STATE.json and POSTING-AND-SETUP-GATES.md were introduced because the V2 autopilot prompt requires machine-readable state and explicit gates.",
@@ -284,6 +321,7 @@
     "GOVERNANCE-013-COMPANY-LIST-READONLY opened the Companies list read-only in MCP_1_20260210 from RM-DEMO. Visible companies: CRONUS USA, Inc.; My Company; RM-DEMO. Planned target companies RM-PROD, RM-SALES, RM-SERVICE, RM-SHARED and RM-AT were not visible in the UI page text. No company switch, no company creation, no setup change and no posting. Playwright learning: searchFor now fills the Tell-Me textbox directly; Companies list entry path uses Companies Listen and page 357. Next no-approval step returns to FIXEDASSETS-013-SETUP-FIT-DECISION.",
     "FIXEDASSETS-013 decided without a BC run that exactly one narrow next setup fit is safe enough: HGB depreciation book. MACHINES is blocked by account mapping, FA-CNC-01 by missing setup chain and K30000 by the unmapped vendor template/card flow. No setup change, no posting, no company switch. Next no-approval step was FIXEDASSETS-014-HGB-DEPRECIATION-BOOK-FIT.",
     "FIXEDASSETS-014 ran UI-first in RM-DEMO and created HGB depreciation book with description HGB depreciation book. Before HGB was not visible; after HGB is visible in the Depreciation Books list and the screenshot clearly shows code and description. No MACHINES, no FA-CNC-01, no K30000, no acquisition, no depreciation, no posting and no company switch.",
-    "FIXEDASSETS-015 decided without a BC run that exactly one narrow next setup fit is safe enough: FA Posting Group MACHINES as CRONUS-USA lab alias of EQUIPMENT using visible reference accounts 12210/82000 from FIXEDASSETS-006. No setup change, no posting, no company switch. Next no-approval step is FIXEDASSETS-016-MACHINES-FA-POSTING-GROUP-FIT."
+    "FIXEDASSETS-015 decided without a BC run that exactly one narrow next setup fit is safe enough: FA Posting Group MACHINES as CRONUS-USA lab alias of EQUIPMENT using visible reference accounts 12210/82000 from FIXEDASSETS-006. No setup change, no posting, no company switch. Next no-approval step is FIXEDASSETS-016-MACHINES-FA-POSTING-GROUP-FIT.",
+    "FIXEDASSETS-016 ran UI-first in RM-DEMO and created FA Posting Group MACHINES as a CRONUS-USA lab alias based on EQUIPMENT reference accounts. The after screenshot shows MACHINES with 12210 and 82000 visible. No FA-CNC-01, no K30000, no purchase invoice, no acquisition, no depreciation, no posting and no company switch. The first attempt learned that FA Posting Group Card exposes New as a title-only icon button; the helper now accepts title-based New action candidates."
   ]
 }

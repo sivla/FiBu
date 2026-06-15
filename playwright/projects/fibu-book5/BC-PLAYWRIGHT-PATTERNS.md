@@ -44,6 +44,7 @@ Diese Datei sammelt wiederverwendbare Muster aus belegten Laeufen. Sie ist keine
 - `New/Neu` ist global mehrdeutig. Kein Setup oder Stammdaten-Fit mit ungescoptem `New/Neu`.
 - `REPORTING-013` ist der belegte Rejected Path: ungescopter `New/Neu` kann in den Role-Center-Kontext fallen.
 - `FIXEDASSETS-012` zeigt nur leere Karten/Template-Dialoge; das ist kein Zielcode-Beweis.
+- `FIXEDASSETS-016` zeigt das Gegenmuster: Auf der `FA Posting Group Card` ist `New/Neu` als titelbasierter Icon-Button sichtbar (`Erstellen Sie einen neuen Eintrag.`), nicht zwingend als Textlabel. Der Helper muss solche titelbasierten Aktionskandidaten bewerten und danach den Zielzustand sichtbar pruefen.
 
 ## Post / Preview
 
@@ -93,6 +94,7 @@ Diese Datei sammelt wiederverwendbare Muster aus belegten Laeufen. Sie ist keine
 
 - Screenshot-Typen: Navigation, Setup Before/After, Preflight, Posting Dialog, Posted Document, Ledger Trace, Report, Error, Rejected Path, Book Candidate.
 - Buchkandidat nur, wenn das sichtbare Lernziel im Bild erkennbar ist.
+- `FIXEDASSETS-016` ist ein positives Beispiel: Das Nachherbild zeigt nicht nur den Seitenkontext, sondern `MACHINES` plus `12210`/`82000` im sichtbaren Kartenbereich.
 - Metadaten muessen Status, Zweck, sichtbares Ziel, Labor/final-Grenze, Buchwirkung und Limitationen nennen.
 - `pageText()` kann Screenshot-Kontext absichern, ersetzt aber keinen visuellen Beweis.
 
