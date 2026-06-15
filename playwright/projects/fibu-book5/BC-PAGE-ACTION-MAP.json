@@ -1,0 +1,279 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-06-15",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "scope": "FiBu Buch 5 reusable Business Central page/action knowledge",
+  "pages": {
+    "Sales Orders": {
+      "pageId": 9305,
+      "searchTerms": ["Sales Orders", "Verkaufsauftraege"],
+      "knownActions": {
+        "New": "opens a new Sales Order card when scoped to Sales Orders list",
+        "Post...": "opens posting action menu; distinguish Preview Posting from normal posting",
+        "Preview Posting": "safe preflight; O2C shows G/L, customer, item, detailed customer and value entry preview",
+        "Ship and Invoice": "used once in UAT-O2C-001 for lab posting"
+      },
+      "knownPitfalls": [
+        "Do not click the main Post action when Preview Posting is intended",
+        "Sales tax remains CRONUS-USA lab, not German VAT19",
+        "FactBox may hide line columns; hide it for table screenshots"
+      ],
+      "evidence": ["uat-o2c-001", "masterdata-009"]
+    },
+    "Posted Sales Invoice": {
+      "pageId": 132,
+      "searchTerms": ["Posted Sales Invoices", "Gebuchte Verkaufsrechnungen"],
+      "knownActions": {
+        "Find entries...": "shows related entries but did not directly expose Item Ledger Entry in UAT-O2C-001",
+        "Related G/L Entries": "use for posting trace where visible"
+      },
+      "knownPitfalls": [
+        "Posted document is read-only evidence; do not infer German final VAT from CRONUS lab invoice"
+      ],
+      "evidence": ["uat-o2c-001", "posting-trace-002"]
+    },
+    "G/L Entries": {
+      "pageId": 20,
+      "searchTerms": ["G/L Entries", "Sachposten"],
+      "knownActions": {
+        "Filter Document No.": "used for PS-INV103297, 108219, INV008-899959 and PAY011-PS103297",
+        "Related Entries": "can expose linked posting trace depending on context"
+      },
+      "knownPitfalls": [
+        "G/L Entries show accounts and shortcut columns, but PRODUCTLINE/CHANNEL were not visible in tested O2C reporting paths",
+        "Wide layout helps; screenshot must show the intended accounts, amounts or dimensions"
+      ],
+      "evidence": ["uat-o2c-001", "p2p-001", "inventory-008", "payments-011", "reporting-009"]
+    },
+    "Item Ledger Entries": {
+      "pageId": 38,
+      "searchTerms": ["Item Ledger Entries", "Artikelposten"],
+      "knownActions": {
+        "Filter Entry No.": "reliable for O2C item ledger entry 792 from Value Entry",
+        "Entry -> Dimensions": "proved PRODUCTLINE=MACHINE and CHANNEL=B2B on item ledger entry 792"
+      },
+      "knownPitfalls": [
+        "Filtering by Order No. may stay empty; use Value Entry link if needed"
+      ],
+      "evidence": ["uat-o2c-001", "reporting-002", "inventory-001", "inventory-008"]
+    },
+    "Value Entries": {
+      "pageId": 5802,
+      "searchTerms": ["Value Entries", "Wertposten"],
+      "knownActions": {
+        "Filter Document No.": "used for O2C/P2P/Inventory value trace",
+        "Read Item Ledger Entry No.": "bridge to Item Ledger Entry"
+      },
+      "knownPitfalls": [
+        "Value Entry screenshot may prove amount/item but not dimensions unless dimension dialog is visible"
+      ],
+      "evidence": ["uat-o2c-001", "p2p-001", "inventory-008"]
+    },
+    "Financial Reports": {
+      "pageId": null,
+      "searchTerms": ["Financial Reports", "Finanzberichte"],
+      "knownActions": {
+        "Open list": "shows Balance Sheet, Income Statement, Revenue",
+        "Definitions -> Dimension Perspective": "tested as read-only path; did not expose PRODUCTLINE/CHANNEL context in REPORTING-003"
+      },
+      "knownPitfalls": [
+        "Opening Financial Reports is not proof of dimension filter/sum effect",
+        "Teaching Tips may need dismissal or explanation"
+      ],
+      "evidence": ["reporting-001", "reporting-002", "reporting-003"]
+    },
+    "Analysis Views": {
+      "pageId": 556,
+      "searchTerms": ["Analysis Views", "Analyseansichten"],
+      "knownActions": {
+        "Open REVENUE card": "field positions visible in REPORTING-013",
+        "Analysis by Dimensions": "visible action candidate",
+        "Update": "visible action candidate"
+      },
+      "knownPitfalls": [
+        "Existing REVENUE view uses AREA/DEPARTMENT/CUSTOMERGROUP, not PRODUCTLINE/CHANNEL",
+        "Unscoped New/Neu can fall back to Role Center context",
+        "Do not create RM-PLCH without a fresh gate and scoped New/Card action proof"
+      ],
+      "evidence": ["reporting-004", "reporting-011", "reporting-013", "reporting-014"]
+    },
+    "Cash Receipt Journals": {
+      "pageId": null,
+      "searchTerms": ["Cash Receipt Journals", "Zahlungseingangs Buch.-Blaetter"],
+      "knownActions": {
+        "Apply Entries": "opens application context for customer payment",
+        "Journal Check": "FactBox preflight; read before posting",
+        "Post": "opens final posting confirmation"
+      },
+      "knownPitfalls": [
+        "Amount must be entered in localized format such as -68.000,00",
+        "BANK-RM-01 needed Bank Account Posting Group CHECKING",
+        "Do not repeat payment PAY011-PS103297"
+      ],
+      "evidence": ["payments-004", "payments-008", "payments-009", "payments-011"]
+    },
+    "Bank Account Ledger Entries": {
+      "pageId": 372,
+      "searchTerms": ["Bank Account Ledger Entries", "Bankposten"],
+      "knownActions": {
+        "Filter Document No.": "Page 372 shows PAY011-PS103297 and BANK-RM-01",
+        "Related G/L Entries": "shows related G/L accounts for payment"
+      },
+      "knownPitfalls": [
+        "Page 371 path remains rejected for this project",
+        "Bank ledger proof is not bank reconciliation"
+      ],
+      "evidence": ["payments-013", "payments-014"]
+    },
+    "Item Journals": {
+      "pageId": 40,
+      "searchTerms": ["Item Journals", "Artikel Buch.-Blaetter"],
+      "knownActions": {
+        "Line -> Dimensions": "proved PRODUCTLINE=MACHINE on draft line",
+        "Journal Check": "preflight when Preview Posting is not available",
+        "Post": "used once for INV008-899959 after preflight"
+      },
+      "knownPitfalls": [
+        "Do not type cost into Applies-to Entry",
+        "Journal Check counters and current-line status may update asynchronously",
+        "Do not repeat INV008-899959"
+      ],
+      "evidence": ["inventory-005", "inventory-006", "inventory-007", "inventory-008"]
+    },
+    "Inventory Valuation": {
+      "pageId": null,
+      "searchTerms": ["Inventory Valuation", "Lagerbewertung"],
+      "knownActions": {
+        "Request Page": "set As Of Date, No. filter and Location Filter",
+        "Preview": "report viewer values are lab evidence"
+      },
+      "knownPitfalls": [
+        "Report screenshots need stable viewport and visible requested values",
+        "Negative inventory value is a learning case, not a final target"
+      ],
+      "evidence": ["inventory-002", "inventory-008"]
+    },
+    "Purchase Orders": {
+      "pageId": null,
+      "searchTerms": ["Purchase Orders", "Einkaufsbestellungen"],
+      "knownActions": {
+        "Preview Posting": "preflight before P2P posting",
+        "Receive and Invoice": "used once for P2P lab posting 106049 -> 108219"
+      },
+      "knownPitfalls": [
+        "Vendor Invoice No. is required before preview/posting",
+        "Do not repeat posted purchase invoice 108219"
+      ],
+      "evidence": ["p2p-001"]
+    },
+    "FA Posting Groups": {
+      "pageId": null,
+      "searchTerms": ["FA Posting Groups", "Anlagenbuchungsgruppen"],
+      "knownActions": {
+        "Open list": "visible via UI in FIXEDASSETS-005/010",
+        "New": "only form-preflight proved in FIXEDASSETS-012; no target code created"
+      },
+      "knownPitfalls": [
+        "MACHINES is not visible or created",
+        "Empty card is not a target-code proof"
+      ],
+      "evidence": ["fixedassets-005", "fixedassets-006", "fixedassets-010", "fixedassets-012"]
+    },
+    "Depreciation Books": {
+      "pageId": 5611,
+      "searchTerms": ["Depreciation Books", "AfA-Buecher"],
+      "knownActions": {
+        "Open list": "COMPANY visible, HGB missing",
+        "New": "only empty card preflight proved"
+      },
+      "knownPitfalls": [
+        "Do not create HGB without setup gate",
+        "Empty card is not a book-ready HGB proof"
+      ],
+      "evidence": ["fixedassets-007", "fixedassets-010", "fixedassets-012"]
+    },
+    "Fixed Assets": {
+      "pageId": 5601,
+      "searchTerms": ["Fixed Assets", "Anlagen"],
+      "knownActions": {
+        "Open list": "visible read-only",
+        "New": "empty Fixed Asset Card preflight proved; no save"
+      },
+      "knownPitfalls": [
+        "FA-CNC-01 is not visible or created",
+        "No acquisition/depreciation without explicit gates"
+      ],
+      "evidence": ["fixedassets-003", "fixedassets-004", "fixedassets-010", "fixedassets-012"]
+    },
+    "Warehouse Entry Points": {
+      "pageId": null,
+      "searchTerms": ["Warehouse Receipts", "Warehouse Put-aways", "Warehouse Picks", "Bins"],
+      "knownActions": {
+        "Open/read Tell-Me or list context": "readiness only"
+      },
+      "knownPitfalls": [
+        "FRA-ZL is a simple location in current proof, not activated directed warehouse"
+      ],
+      "evidence": ["warehouse-001", "warehouse-002"]
+    },
+    "Manufacturing Entry Points": {
+      "pageId": null,
+      "searchTerms": ["Planning Worksheet", "Production BOMs", "Routings", "Released Production Orders", "Consumption Journal", "Output Journal"],
+      "knownActions": {
+        "Open/read Tell-Me contexts": "readiness only"
+      },
+      "knownPitfalls": [
+        "COMP-CTRL and KIT-MAINT are not visible",
+        "INV008-899959 is inventory training stock, not manufacturing output"
+      ],
+      "evidence": ["manufacturing-001", "manufacturing-002"]
+    },
+    "Service Entry Points": {
+      "pageId": null,
+      "searchTerms": ["Service Orders", "Service Items", "Resources", "Service Management Setup", "Service Contracts", "Service Ledger Entries"],
+      "knownActions": {
+        "Open/read Tell-Me contexts": "readiness only"
+      },
+      "knownPitfalls": [
+        "RM-M100-SN1001, SP-PUMP-01, RES-TECH and VAN-SERV are not visible target objects"
+      ],
+      "evidence": ["service-001", "service-002"]
+    },
+    "Projects Entry Points": {
+      "pageId": null,
+      "searchTerms": ["Projects", "Project Planning Lines", "Project Journals", "Project Ledger Entries", "Project Statistics", "Project WIP"],
+      "knownActions": {
+        "Open/read Tell-Me contexts": "readiness only"
+      },
+      "knownPitfalls": [
+        "PROJ-5001, RES-TECH, SP-SENSOR-02 and PROJ-LAG are not visible target objects"
+      ],
+      "evidence": ["projects-001", "projects-002"]
+    },
+    "Intercompany Entry Points": {
+      "pageId": null,
+      "searchTerms": ["Intercompany Setup", "IC Partners", "IC Inbox Transactions", "IC Outbox Transactions"],
+      "knownActions": {
+        "Open/read Tell-Me contexts": "readiness only"
+      },
+      "knownPitfalls": [
+        "No new company, no company switch and no IC setup without gate"
+      ],
+      "evidence": ["intercompany-001", "intercompany-002"]
+    },
+    "VAT and Compliance Entry Points": {
+      "pageId": null,
+      "searchTerms": ["VAT Entries", "VAT Posting Setup", "E-Rechnungen", "Document Sending Profiles", "Change Log Entries", "Change Log Setup"],
+      "knownActions": {
+        "Open/read Tell-Me contexts": "readiness only"
+      },
+      "knownPitfalls": [
+        "CRONUS-USA Sales Tax is not German VAT19",
+        "Compliance entry point is not e-invoice final proof"
+      ],
+      "evidence": ["tax-001", "tax-002", "compliance-001", "compliance-002"]
+    }
+  }
+}
+

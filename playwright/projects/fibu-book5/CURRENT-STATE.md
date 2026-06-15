@@ -30,6 +30,8 @@ Update nach `FIXEDASSETS-011-SETUP-GATE-DECISION`: Die Gate-Entscheidung ist ohn
 
 Update nach `FIXEDASSETS-012-SCOPED-NEW-CARD-PREFLIGHT`: Der Formular-Preflight ist praktisch in `RM-DEMO` gelaufen. Sichtbar sind leere Karten fuer `FA Posting Group`, `Depreciation Book`, `Fixed Asset` sowie der Vendor-Template-Dialog. Die Bilder zeigen nicht die Zielcodes `MACHINES`, `HGB`, `FA-CNC-01` oder `K30000`; sie sind daher nur Labor-Formular-/Template-Evidence und keine buchfaehigen Zielstammdaten-Screenshots. Es wurde nichts gespeichert, nichts angelegt, nichts gebucht und keine Company gewechselt. Der naechste No-Approval-Schritt ist `FIXEDASSETS-013-SETUP-FIT-DECISION`: entscheiden, ob ein kleiner idempotenter UI-first Setup-Fit fuer genau einen Zielwert sicher ist; Setup/Buchung bleiben bis zu einem passenden Gate gesperrt.
 
+Update nach `GOVERNANCE-011-DOCUMENTATION-STRUCTURE`: Dieser Lauf war ein Struktur-/Governance-Lauf ohne BC-Ausfuehrung, ohne Setup-Aenderung, ohne Stammdatenanlage, ohne Buchung, ohne Company-Wechsel und ohne Screenshot-/Evidence-Loeschung. Neu sind `DOCUMENTATION-MAP.md`, `BC-PLAYWRIGHT-PATTERNS.md`, `BC-PAGE-ACTION-MAP.json`, `SETUP-READINESS-MATRIX.md` und `PROCESS-CASE-REGISTRY.json`. `SCREENSHOT-QA.md` enthaelt jetzt Screenshot-Typen, Pflichtmetadaten und die Regel, dass ein Buchbild das konkrete sichtbare Lernziel zeigen muss. Stichproben bei `uat-o2c-001`, `p2p-001`, `inventory-008`, `payments-011`, `reporting-013` und `fixedassets-010` zeigten bereits brauchbare Evidence-Struktur; nichts wurde archiviert oder geloescht. Der naechste No-Approval-Schritt bleibt `FIXEDASSETS-013-SETUP-FIT-DECISION`, jetzt mit Pflichtlekture der neuen Strukturdateien.
+
 ## Projektmission
 
 Das Projekt verfolgt vier gleichrangige Ziele:
@@ -45,14 +47,19 @@ Definition: Eine Anleitung ist erst abgesichert, wenn der Klickpfad in BC funkti
 
 1. `HANDOVER.md`
 2. `playwright/projects/fibu-book5/CURRENT-STATE.md`
-3. `playwright/projects/fibu-book5/README.md`
-4. `playwright/projects/fibu-book5/ARTIFACT-GOVERNANCE.md`
-5. `playwright/projects/fibu-book5/LAB-FIT-STATUS.md`
-6. `playwright/projects/fibu-book5/AUTOPILOT-STATE.json`
-7. `playwright/projects/fibu-book5/POSTING-AND-SETUP-GATES.md`
-8. `playwright/projects/fibu-book5/WORKAROUNDS-AND-ERRORS.md`
-9. `playwright/FINDINGS.md`
-10. relevante Buchstelle in `FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md`
+3. `playwright/projects/fibu-book5/DOCUMENTATION-MAP.md`
+4. `playwright/projects/fibu-book5/AUTOPILOT-STATE.json`
+5. `playwright/projects/fibu-book5/POSTING-AND-SETUP-GATES.md`
+6. `playwright/projects/fibu-book5/BC-PLAYWRIGHT-PATTERNS.md`
+7. `playwright/projects/fibu-book5/BC-PAGE-ACTION-MAP.json`
+8. `playwright/projects/fibu-book5/SETUP-READINESS-MATRIX.md`
+9. `playwright/projects/fibu-book5/PROCESS-CASE-REGISTRY.json`
+10. `playwright/projects/fibu-book5/README.md`
+11. `playwright/projects/fibu-book5/ARTIFACT-GOVERNANCE.md`
+12. `playwright/projects/fibu-book5/LAB-FIT-STATUS.md`
+13. `playwright/projects/fibu-book5/WORKAROUNDS-AND-ERRORS.md`
+14. `playwright/FINDINGS.md`
+15. relevante Buchstelle in `FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md`
 
 ## Aktueller fachlicher Stand
 
@@ -463,7 +470,7 @@ Danach `.env` mit der konkreten Business-Central-URL fuellen.
 
 ```text
 Arbeite auf Branch codex/playwright-bc-screenshot-foundation.
-Lies AUTOPILOT-STATE.json, POSTING-AND-SETUP-GATES.md, CURRENT-STATE.md, BOOK-EVIDENCE-WORKPLAN.md, BOOK-TO-EVIDENCE-AUDIT.md und FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md.
+Lies AUTOPILOT-STATE.json, POSTING-AND-SETUP-GATES.md, CURRENT-STATE.md, DOCUMENTATION-MAP.md, BC-PLAYWRIGHT-PATTERNS.md, BC-PAGE-ACTION-MAP.json, SETUP-READINESS-MATRIX.md, PROCESS-CASE-REGISTRY.json, BOOK-EVIDENCE-WORKPLAN.md, BOOK-TO-EVIDENCE-AUDIT.md und FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md.
 FIXEDASSETS-012-SCOPED-NEW-CARD-PREFLIGHT ist erledigt: BC-Lauf ja, aber kein Speichern, kein Setup, keine Buchung. Die Bilder zeigen leere Karten beziehungsweise den Vendor-Template-Dialog; `MACHINES`, `HGB`, `FA-CNC-01` und `K30000` sind nicht sichtbar und nicht angelegt.
 Fuehre FIXEDASSETS-013-SETUP-FIT-DECISION aus: kein neuer BC-Lauf, sondern aus Evidence, Gates, Screenshot-QA und Kapitel 21 entscheiden, ob ein kleiner idempotenter UI-first Setup-Fit fuer genau einen Zielwert sicher ist. Nicht anlegen, nicht speichern, nicht buchen. Fuer spaetere Buchscreenshots gilt: Das Bild muss den fachlichen Zielzustand sichtbar zeigen, also je nach Schritt Code, Betrag, Status, Buchungsoption, Postenart, Konto, Dimension, Filter, Fehler oder Reportzeile.
 ```

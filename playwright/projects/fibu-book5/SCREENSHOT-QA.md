@@ -21,6 +21,35 @@ Zu jedem automatisiert erzeugten O2C-Screenshot schreibt der Screenshot-Helper e
 
 Fuer `UAT-O2C-001` fasst `playwright/projects/fibu-book5/evidence/uat-o2c-001/README.md` die Screenshot-Metadaten, Rohtexte, API-Nachweise, Preview-Evidence und Cleanup-Evidence zusammen. Vor Buchverwendung zuerst diesen Index lesen.
 
+## Screenshot-Typen und Pflichtmetadaten
+
+| Screenshot-Typ | Zweck | Pflichtpruefung |
+|---|---|---|
+| `navigation` | zeigt Einstieg, Tell-Me, Suchpfad oder Trefferliste | richtige Treffergruppe sichtbar, keine Behauptung ueber Prozessfaehigkeit |
+| `setup-before` | zeigt Ausgangszustand vor Setup-Fit | Zielzeile/Zielobjekt oder Luecke sichtbar; kein Endstand behaupten |
+| `setup-after` | zeigt geaenderten Setup-Zustand | Zielwert sichtbar und durch Result-/Seitentext-Evidence gestuetzt |
+| `preflight` | zeigt Preview Posting, Journal Check, Pflichtfelder oder Pruefstatus | Preflight-Status muss sichtbar sein; FactBox nicht ausblenden, wenn sie der Nachweis ist |
+| `posting-dialog` | zeigt letzte Sicherheitsgrenze vor Buchung | Option und Kontext sichtbar; nur bei ausdruecklich erlaubter Buchung |
+| `posted-document` | zeigt gebuchten Beleg | Belegnummer, Debitor/Kreditor/Artikel/Betrag oder relevanter Status sichtbar |
+| `ledger-trace` | zeigt Nebenbuch-, Sach-, Artikel-, Wert- oder Bankposten | Belegnummer/Filter und die relevante Postenart sichtbar |
+| `report` | zeigt Bericht, Financial Report oder Auswertung | Filter, Berichtstitel, relevante Zeile/Betrag/Achse sichtbar |
+| `error` | zeigt Blocker oder Fehlermeldung | Fehlermeldung oder Symptom vollstaendig genug sichtbar |
+| `rejected-path` | zeigt bewusst gescheiterten Pfad | sichtbar machen, warum der Pfad nicht als Buchbild taugt |
+| `book-candidate` | potenzielles finales Buchbild | sichtbares Lernziel, Zielmandant/-sprache/-daten und Evidence muessen passen |
+
+Metadaten oder README muessen fuer jedes notwendige Bild klaeren:
+
+- was man im Bild sehen soll
+- warum das Bild noetig ist
+- Status `labor`, `candidate`, `final` oder `rejected`
+- Sandbox/Company, soweit fuer den Nachweis relevant
+- Buchabschnitt oder Prozessfall
+- sichtbares Ziel, zum Beispiel Code, Name, Betrag, Status, Konto, Dimension, Filter, Reportzeile oder Fehler
+- was das Bild nicht beweist
+- naechster Bild-/Evidence-Schritt, falls offen
+
+Nicht noetig ist ein Screenshot, wenn er nur eine technische Zwischenstation ohne Lern-, Fehler-, Setup-, Preflight-, Posting-, Postenspur-, Reporting- oder Buchwirkung zeigt. Solche Zustaende gehoeren, wenn ueberhaupt, in kompakte Text-/JSON-Evidence. Screenshots werden aber nicht geloescht, wenn sie bereits referenziert sind, einen Fehlerpfad erklaeren, einen Vorher/Nachher-Zustand tragen oder spaeter als Buchkandidat dienen koennen.
+
 ## `MASTERDATA-007` Screenshot Review
 
 | Screenshot | Bewertung | Befund | Entscheidung |
