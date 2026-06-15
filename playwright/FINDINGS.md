@@ -1525,3 +1525,21 @@ Fuer Anfaenger ist diese Trennung zentral: Business Central zeigt Benutzer, Roll
 | Buchstelle | Kapitel 28 Migration, Opening Balances und Cutover |
 
 Fuer Anfaenger ist das wichtig, weil Migration sonst wie ein Excel-Upload wirkt. In Business Central muessen Stammdatenqualitaet, Buchungsgruppen, Dimensionen, Anfangssalden, Nebenbuecher, Lagerwerte und Freigaben zusammenpassen. Ein Importwerkzeug ersetzt keine fachliche Abstimmung.
+
+## FIND-BC-PW-001 Playwright-Bilder muessen sichtbare fachliche Ziele beweisen
+
+| Feld | Wert |
+|---|---|
+| Status | technischer Foundation-Finding; Patterns und Action Map aktualisiert |
+| Quelle | `PLAYWRIGHT-BC-OPTIMIZATION-AUDIT` |
+| Screenshot | keine neuen Screenshots; technischer Audit ohne BC-Lauf |
+| Evidence | `playwright/projects/fibu-book5/PLAYWRIGHT-BC-OPTIMIZATION-AUDIT.md`, `playwright/projects/fibu-book5/BC-PLAYWRIGHT-PATTERNS.md`, `playwright/projects/fibu-book5/BC-PAGE-ACTION-MAP.json` |
+| BC-Seite | nicht ausgefuehrt |
+| sichtbarer Text / Werte | Audit zaehlt technische Risikomuster: viele feste Waits, Koordinatenklicks, `force: true`, `first/last/nth` |
+| Elementtyp | Playwright-/Screenshot-QA-Finding |
+| erste Hypothese | Technisch erzeugte Screenshots koennen unbrauchbar sein, wenn sie den eigentlichen Code, Betrag, Filter, Status, Dialog oder Zielwert nicht sichtbar zeigen. |
+| Testergebnis | Kein neuer BC-Test. Der Audit hat die Regeln geschaerft: Screenshot-Kandidaten brauchen sichtbare fachliche Ziele; Action-Map-Eintraege nennen gefaehrliche Aktionen und empfohlene Helper; `bc-helpers.ts` enthaelt web-first Shell-/Seitentext-Helfer. |
+| Entscheidung | Kuenftige Tests sollen vor Buch- oder Evidence-Screenshots pruefen, ob wirklich das beabsichtigte Lernziel sichtbar ist. Koordinaten-/Force-/Index-Fallbacks bleiben nur mit anschliessender Kontextpruefung akzeptabel. |
+| Buchstelle | alle bebilderten Klickanleitungen, besonders Ledger-, Setup-, Journal-, Dialog- und Reporting-Screenshots |
+
+Fuer Anfaenger ist das entscheidend, weil ein Bild nicht nur beweisen soll, dass Business Central offen war. Es soll zeigen, woran man fachlich erkennt, dass der Schritt stimmt: den Code, das Konto, die Dimension, den Betrag, die Buchungsoption, den Fehler oder den Reportwert.

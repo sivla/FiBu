@@ -22,6 +22,16 @@ type ScreenshotOptions = {
   bookUse?: 'navigation' | 'process-proof' | 'field-proof' | 'evidence' | 'do-not-use';
 };
 
+type WaitForBcReadyOptions = {
+  timeout?: number;
+  expectedText?: RegExp;
+};
+
+type OpenBcPageOptions = WaitForBcReadyOptions & {
+  envPrefix?: string;
+  dismissTeachingTips?: boolean;
+};
+
 export function requireBcUrl(envPrefix?: string) {
   const prefixedKey = envPrefix ? `${envPrefix}_BC_URL` : undefined;
   const bcUrl = (prefixedKey ? process.env[prefixedKey] : undefined) ?? process.env.BC_URL;
@@ -77,9 +87,37 @@ export async function screenshot(page: Page, fileName: string, options: Screensh
   }
 }
 
+export async function waitForPageText(page: Page, expected: RegExp, options: { timeout?: number } = {}) {
+  await expect
+    .poll(async () => pageText(page), {
+      timeout: options.timeout ?? 60_000,
+      intervals: [500, 1000, 2500, 5000]
+    })
+    .toMatch(expected);
+}
+
+export async function waitForBcReady(page: Page, options: WaitForBcReadyOptions = {}) {
+  const timeout = options.timeout ?? 120_000;
+  await expect(page.getByRole('button', { name: /Suchen|Search/i })).toBeVisible({ timeout });
+
+  await waitForPageText(
+    page,
+    options.expectedText ?? /Business Central|Tell me|Was m.chten Sie tun|Search|Suchen|My Settings|Meine Einstellungen/i,
+    { timeout }
+  );
+}
+
 export async function waitForBusinessCentralShell(page: Page) {
-  await expect(page.getByRole('button', { name: /Suchen|Search/i })).toBeVisible({ timeout: 120_000 });
-  await page.waitForTimeout(10_000);
+  await waitForBcReady(page);
+}
+
+export async function openBcPageById(page: Page, pageId: number, options: OpenBcPageOptions = {}) {
+  await page.goto(bcPageUrl(pageId, options.envPrefix));
+  await waitForBcReady(page, options);
+
+  if (options.dismissTeachingTips ?? true) {
+    await dismissTours(page);
+  }
 }
 
 export async function searchFor(page: Page, term: string) {
@@ -95,27 +133,55 @@ type OpenSearchResultOptions = {
   requireUnique?: boolean;
 };
 
+function relaxedAnchoredLabel(label: RegExp) {
+  const source = label.source;
+  if (!source.startsWith('^') || !source.endsWith('$')) {
+    return label;
+  }
+
+  return new RegExp(source.slice(1, -1), label.flags.replace('g', ''));
+}
+
 export async function openSearchResult(page: Page, label: RegExp, options: OpenSearchResultOptions = {}) {
   const occurrence = options.occurrence ?? 0;
   const scopes = [page, ...page.frames()];
+  const relaxedLabel = relaxedAnchoredLabel(label);
 
   for (const scope of scopes) {
-    const bodyText = await scope.locator('body').innerText({ timeout: 1000 }).catch(() => '');
-    if (label.test(bodyText)) {
-      const matches = scope.getByText(label);
+    const locators = [
+      scope.getByText(label),
+      scope.getByRole('row', { name: relaxedLabel }),
+      scope.getByRole('button', { name: relaxedLabel }),
+      scope.getByRole('menuitem', { name: relaxedLabel })
+    ];
+
+    for (const matches of locators) {
       const count = await matches.count().catch(() => 0);
+
+      if (count === 0) {
+        continue;
+      }
 
       if (options.requireUnique && count !== 1) {
         throw new Error(`Tell-Me Treffer ${label} ist nicht eindeutig. Treffer: ${count}. Trefferindex explizit setzen.`);
       }
 
       if (count <= occurrence) {
-        throw new Error(`Tell-Me Treffer ${label} hat nur ${count} Treffer. Gewünscht war Trefferindex ${occurrence}.`);
+        throw new Error(`Tell-Me Treffer ${label} hat nur ${count} Treffer. Gewuenscht war Trefferindex ${occurrence}.`);
       }
 
-      await matches.nth(occurrence).click();
-      await page.waitForTimeout(5000);
-      return;
+      for (let index = occurrence; index < count; index += 1) {
+        const clicked = await matches
+          .nth(index)
+          .click({ timeout: 3000 })
+          .then(() => true)
+          .catch(() => false);
+
+        if (clicked) {
+          await waitForPageText(page, /Business Central|Search|Suchen|Filter|Liste|List|Card|Karte/i, { timeout: 30_000 });
+          return;
+        }
+      }
     }
   }
 
@@ -123,6 +189,7 @@ export async function openSearchResult(page: Page, label: RegExp, options: OpenS
 }
 
 export async function openSecondSearchBlockResult(page: Page) {
+  // Legacy coordinate fallback. Prefer openSearchResult() or a scoped role/text locator.
   await page.mouse.click(520, 320);
   await page.waitForTimeout(5000);
 }
@@ -133,6 +200,32 @@ export async function pageText(page: Page) {
   );
 
   return texts.join('\n');
+}
+
+export async function compactPageText(
+  page: Page,
+  options: { include?: RegExp[]; maxLines?: number; maxLineLength?: number } = {}
+) {
+  const include = options.include ?? [];
+  const maxLines = options.maxLines ?? 80;
+  const maxLineLength = options.maxLineLength ?? 180;
+  const seen = new Set<string>();
+  const lines = (await pageText(page))
+    .split('\n')
+    .map((line) => line.replace(/\s+/g, ' ').trim())
+    .filter((line) => line.length > 0)
+    .filter((line) => (include.length ? include.some((pattern) => pattern.test(line)) : true))
+    .map((line) => (line.length > maxLineLength ? `${line.slice(0, maxLineLength - 3)}...` : line))
+    .filter((line) => {
+      if (seen.has(line)) {
+        return false;
+      }
+
+      seen.add(line);
+      return true;
+    });
+
+  return lines.slice(0, maxLines).join('\n');
 }
 
 export async function visibleButtonNames(page: Page) {

@@ -32,6 +32,8 @@ Update nach `FIXEDASSETS-012-SCOPED-NEW-CARD-PREFLIGHT`: Der Formular-Preflight 
 
 Update nach `GOVERNANCE-011-DOCUMENTATION-STRUCTURE`: Dieser Lauf war ein Struktur-/Governance-Lauf ohne BC-Ausfuehrung, ohne Setup-Aenderung, ohne Stammdatenanlage, ohne Buchung, ohne Company-Wechsel und ohne Screenshot-/Evidence-Loeschung. Neu sind `DOCUMENTATION-MAP.md`, `BC-PLAYWRIGHT-PATTERNS.md`, `BC-PAGE-ACTION-MAP.json`, `SETUP-READINESS-MATRIX.md` und `PROCESS-CASE-REGISTRY.json`. `SCREENSHOT-QA.md` enthaelt jetzt Screenshot-Typen, Pflichtmetadaten und die Regel, dass ein Buchbild das konkrete sichtbare Lernziel zeigen muss. Stichproben bei `uat-o2c-001`, `p2p-001`, `inventory-008`, `payments-011`, `reporting-013` und `fixedassets-010` zeigten bereits brauchbare Evidence-Struktur; nichts wurde archiviert oder geloescht. Der naechste No-Approval-Schritt bleibt `FIXEDASSETS-013-SETUP-FIT-DECISION`, jetzt mit Pflichtlekture der neuen Strukturdateien.
 
+Update nach `PLAYWRIGHT-BC-OPTIMIZATION-AUDIT`: Dieser Lauf war ein technischer Playwright-Foundation-Lauf ohne Setup-Aenderung, ohne Stammdatenanlage, ohne Buchung, ohne Zahlung, ohne Bankabstimmung, ohne Company-Wechsel und ohne neue Fachprozess-Screenshots. Es gab einen read-only BC-Smoke zur Helper-Validierung; dadurch wurden die bestehenden Smoke-Screenshots aktualisiert. Neu ist `PLAYWRIGHT-BC-OPTIMIZATION-AUDIT.md`. `BC-PLAYWRIGHT-PATTERNS.md` trennt jetzt klar Tell-Me, Page-ID, Listen/Karten, Action Bar, Post/Preview, Journale, Tabellen/Grid, FactBox/breite Layouts, Teaching Tips, Dialoge, Screenshots, Evidence, Rejected Paths, Anti-Patterns, API-Ausnahmen und UI-first-Pflicht. `BC-PAGE-ACTION-MAP.json` nutzt Schema `2` mit `page`, `pageId`, `reliableEntryPaths`, `knownActions`, `dangerousActions`, `knownPitfalls`, `recommendedHelpers` und `evidenceExamples`. `playwright/core/bc-helpers.ts` enthaelt jetzt `waitForBcReady`, `waitForPageText`, `openBcPageById` und `compactPageText`; `waitForBusinessCentralShell` nutzt web-first Seitentext statt pauschal 10 Sekunden. `openSearchResult` wurde praktisch korrigiert: exakte Tell-Me-Treffer werden nicht mehr gegen den gesamten Body verworfen, nicht klickbare Hintergrundtreffer werden uebersprungen und BC-Ergebniszeilen wie `Customers Listen` koennen geklickt werden. Validierung: `npm run fibu:smoke:bc` ist nach dem Fix mit 6/6 read-only Tests erfolgreich. Der fachliche No-Approval-Schritt bleibt `FIXEDASSETS-013-SETUP-FIT-DECISION`.
+
 ## Projektmission
 
 Das Projekt verfolgt vier gleichrangige Ziele:
@@ -51,15 +53,16 @@ Definition: Eine Anleitung ist erst abgesichert, wenn der Klickpfad in BC funkti
 4. `playwright/projects/fibu-book5/AUTOPILOT-STATE.json`
 5. `playwright/projects/fibu-book5/POSTING-AND-SETUP-GATES.md`
 6. `playwright/projects/fibu-book5/BC-PLAYWRIGHT-PATTERNS.md`
-7. `playwright/projects/fibu-book5/BC-PAGE-ACTION-MAP.json`
-8. `playwright/projects/fibu-book5/SETUP-READINESS-MATRIX.md`
-9. `playwright/projects/fibu-book5/PROCESS-CASE-REGISTRY.json`
-10. `playwright/projects/fibu-book5/README.md`
-11. `playwright/projects/fibu-book5/ARTIFACT-GOVERNANCE.md`
-12. `playwright/projects/fibu-book5/LAB-FIT-STATUS.md`
-13. `playwright/projects/fibu-book5/WORKAROUNDS-AND-ERRORS.md`
-14. `playwright/FINDINGS.md`
-15. relevante Buchstelle in `FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md`
+7. `playwright/projects/fibu-book5/PLAYWRIGHT-BC-OPTIMIZATION-AUDIT.md`
+8. `playwright/projects/fibu-book5/BC-PAGE-ACTION-MAP.json`
+9. `playwright/projects/fibu-book5/SETUP-READINESS-MATRIX.md`
+10. `playwright/projects/fibu-book5/PROCESS-CASE-REGISTRY.json`
+11. `playwright/projects/fibu-book5/README.md`
+12. `playwright/projects/fibu-book5/ARTIFACT-GOVERNANCE.md`
+13. `playwright/projects/fibu-book5/LAB-FIT-STATUS.md`
+14. `playwright/projects/fibu-book5/WORKAROUNDS-AND-ERRORS.md`
+15. `playwright/FINDINGS.md`
+16. relevante Buchstelle in `FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md`
 
 ## Aktueller fachlicher Stand
 
@@ -470,7 +473,7 @@ Danach `.env` mit der konkreten Business-Central-URL fuellen.
 
 ```text
 Arbeite auf Branch codex/playwright-bc-screenshot-foundation.
-Lies AUTOPILOT-STATE.json, POSTING-AND-SETUP-GATES.md, CURRENT-STATE.md, DOCUMENTATION-MAP.md, BC-PLAYWRIGHT-PATTERNS.md, BC-PAGE-ACTION-MAP.json, SETUP-READINESS-MATRIX.md, PROCESS-CASE-REGISTRY.json, BOOK-EVIDENCE-WORKPLAN.md, BOOK-TO-EVIDENCE-AUDIT.md und FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md.
+Lies AUTOPILOT-STATE.json, POSTING-AND-SETUP-GATES.md, CURRENT-STATE.md, DOCUMENTATION-MAP.md, BC-PLAYWRIGHT-PATTERNS.md, PLAYWRIGHT-BC-OPTIMIZATION-AUDIT.md, BC-PAGE-ACTION-MAP.json, SETUP-READINESS-MATRIX.md, PROCESS-CASE-REGISTRY.json, BOOK-EVIDENCE-WORKPLAN.md, BOOK-TO-EVIDENCE-AUDIT.md und FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md.
 FIXEDASSETS-012-SCOPED-NEW-CARD-PREFLIGHT ist erledigt: BC-Lauf ja, aber kein Speichern, kein Setup, keine Buchung. Die Bilder zeigen leere Karten beziehungsweise den Vendor-Template-Dialog; `MACHINES`, `HGB`, `FA-CNC-01` und `K30000` sind nicht sichtbar und nicht angelegt.
 Fuehre FIXEDASSETS-013-SETUP-FIT-DECISION aus: kein neuer BC-Lauf, sondern aus Evidence, Gates, Screenshot-QA und Kapitel 21 entscheiden, ob ein kleiner idempotenter UI-first Setup-Fit fuer genau einen Zielwert sicher ist. Nicht anlegen, nicht speichern, nicht buchen. Fuer spaetere Buchscreenshots gilt: Das Bild muss den fachlichen Zielzustand sichtbar zeigen, also je nach Schritt Code, Betrag, Status, Buchungsoption, Postenart, Konto, Dimension, Filter, Fehler oder Reportzeile.
 ```

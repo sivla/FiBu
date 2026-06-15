@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-15",
+  "updatedAt": "2026-06-16",
   "repository": "sivla/FiBu",
   "branch": "codex/playwright-bc-screenshot-foundation",
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
   "dataBasis": "CRONUS USA",
   "activeArea": "fixedassets",
-  "lastCompletedRun": "GOVERNANCE-011-DOCUMENTATION-STRUCTURE",
-  "lastWorkType": "governance-documentation-structure",
+  "lastCompletedRun": "PLAYWRIGHT-BC-OPTIMIZATION-AUDIT",
+  "lastWorkType": "playwright-foundation-optimization",
   "postedInLastRun": false,
   "latestPostedDocuments": {
     "o2c": {
@@ -115,7 +115,7 @@
     "PROJECTS-LAB-POSTING: only after UI-first setup readiness for project, tasks, resource/material/location and invoice/WIP path; current target objects are not ready.",
     "MANUFACTURING-LAB-POSTING: only after UI-first setup readiness for BOM/routing or assembly structure, components, order, consumption/output and cost trace; current target objects are not ready."
   ],
-  "nextBestStepWithoutApproval": "FIXEDASSETS-013-SETUP-FIT-DECISION: no BC run required unless a fresh gate says otherwise. Read DOCUMENTATION-MAP.md, BC-PLAYWRIGHT-PATTERNS.md, BC-PAGE-ACTION-MAP.json, SETUP-READINESS-MATRIX.md and PROCESS-CASE-REGISTRY.json before deciding. Decide from FIXEDASSETS-012 whether exactly one small idempotent UI-first setup fit is safe. FIXEDASSETS-012 screenshots show only empty cards/template dialog; they do not show MACHINES, HGB, FA-CNC-01 or K30000 as existing target codes. No setup, no save, no posting in the decision run.",
+  "nextBestStepWithoutApproval": "FIXEDASSETS-013-SETUP-FIT-DECISION: no BC run required unless a fresh gate says otherwise. Read DOCUMENTATION-MAP.md, BC-PLAYWRIGHT-PATTERNS.md, PLAYWRIGHT-BC-OPTIMIZATION-AUDIT.md, BC-PAGE-ACTION-MAP.json, SETUP-READINESS-MATRIX.md and PROCESS-CASE-REGISTRY.json before deciding. Decide from FIXEDASSETS-012 whether exactly one small idempotent UI-first setup fit is safe. FIXEDASSETS-012 screenshots show only empty cards/template dialog; they do not show MACHINES, HGB, FA-CNC-01 or K30000 as existing target codes. No setup, no save, no posting in the decision run.",
   "nextBestStepWithApproval": {
     "payments": "Nur mit neuem Gate: weitere Zahlung, Kreditorenzahlung oder Bankabstimmung. PAYMENTS-011 darf nicht wiederholt werden.",
     "reporting": "Further Analysis View setup needs a new explicit gate and a scoped New/Card action proof. REPORTING-013 consumed the GOVERNANCE-007 gate and rejected setup because unscoped New/Neu is globally ambiguous in BC.",
@@ -178,7 +178,8 @@
     "Do not repeat FIXEDASSETS-012-SCOPED-NEW-CARD-PREFLIGHT without a new form-mapping delta",
     "Do not treat FIXEDASSETS-012 screenshots as target-code proof; they show empty cards/template dialog only",
     "Do not mark any screenshot as book-ready unless the intended visible learning/proof target is actually visible in the image: code, name, amount, status, posting option, entry type, account, dimension, filter, error, report line, dialog choice or equivalent.",
-    "Do not repeat GOVERNANCE-011-DOCUMENTATION-STRUCTURE without a documentation-structure delta."
+    "Do not repeat GOVERNANCE-011-DOCUMENTATION-STRUCTURE without a documentation-structure delta.",
+    "Do not repeat PLAYWRIGHT-BC-OPTIMIZATION-AUDIT without a new helper, pattern, action-map or validation delta."
   ],
   "notes": [
     "AUTOPILOT-STATE.json and POSTING-AND-SETUP-GATES.md were introduced because the V2 autopilot prompt requires machine-readable state and explicit gates.",
@@ -237,6 +238,7 @@
     "FIXEDASSETS-009 consolidated FIXEDASSETS-004 to FIXEDASSETS-008 and formulated the scoped Fixed Assets gate chain without a BC run. MACHINES, HGB, FA-CNC-01 and K30000 remain missing/not proven; no setup, no purchase invoice, no acquisition, no depreciation and no posting were executed.",
     "FIXEDASSETS-011 decided without a BC run that FIXEDASSETS-010 is sufficient for a cancel-safe scoped New/Card form-preflight, but not for a data-changing setup fit. Next no-approval step is FIXEDASSETS-012-SCOPED-NEW-CARD-PREFLIGHT; it may inspect forms and abort paths, but must not save, create, change setup or post.",
     "FIXEDASSETS-012 ran in BC and proved only the empty FA Posting Group Card, empty Depreciation Book Card, empty Fixed Asset Card and Vendor template dialog. The screenshots do not show target codes MACHINES, HGB, FA-CNC-01 or K30000 and are not book-ready target-stammdaten images. No save, setup change, posting or company switch. Next no-approval step is FIXEDASSETS-013-SETUP-FIT-DECISION.",
-    "GOVERNANCE-011 added the reusable documentation structure without a BC run: DOCUMENTATION-MAP.md, BC-PLAYWRIGHT-PATTERNS.md, BC-PAGE-ACTION-MAP.json, SETUP-READINESS-MATRIX.md and PROCESS-CASE-REGISTRY.json. SCREENSHOT-QA.md now defines screenshot types and required metadata. No screenshots or Evidence were deleted or archived. Next no-approval step remains FIXEDASSETS-013-SETUP-FIT-DECISION, now with the new structure files as required reading."
+    "GOVERNANCE-011 added the reusable documentation structure without a BC run: DOCUMENTATION-MAP.md, BC-PLAYWRIGHT-PATTERNS.md, BC-PAGE-ACTION-MAP.json, SETUP-READINESS-MATRIX.md and PROCESS-CASE-REGISTRY.json. SCREENSHOT-QA.md now defines screenshot types and required metadata. No screenshots or Evidence were deleted or archived. Next no-approval step remains FIXEDASSETS-013-SETUP-FIT-DECISION, now with the new structure files as required reading.",
+    "PLAYWRIGHT-BC-OPTIMIZATION-AUDIT was a technical foundation run without setup change, posting, payment, bank reconciliation, company switch or new fachprozess screenshots. A read-only BC smoke refreshed existing smoke screenshots. Added PLAYWRIGHT-BC-OPTIMIZATION-AUDIT.md, expanded BC-PLAYWRIGHT-PATTERNS.md, upgraded BC-PAGE-ACTION-MAP.json to schema 2 and added helper functions waitForBcReady, waitForPageText, openBcPageById and compactPageText. openSearchResult was fixed after a read-only smoke failure: exact Tell-Me labels no longer test the full body text, blocked background hits are skipped and BC result rows such as Customers Listen can be clicked. npm run fibu:smoke:bc passed 6/6 after the fix. Next no-approval step remains FIXEDASSETS-013-SETUP-FIT-DECISION."
   ]
 }

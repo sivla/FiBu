@@ -13,6 +13,7 @@ Leitregel: aktuelle Wahrheit kurz halten, Evidence lokal beweisen, wiederverwend
 | `CURRENT-STATE.md` | menschlicher Handover | mittel | aktueller Projektstand und naechster sinnvoller Schritt | am Ende jedes Laufs aktualisieren; alte Historie knapp halten |
 | `DOCUMENTATION-MAP.md` | Rollenkarte der Dokumentation | nein | welche Datei welchen Zweck hat | nur bei Struktur- oder Governance-Aenderung pflegen |
 | `BC-PLAYWRIGHT-PATTERNS.md` | wiederverwendbare UI-/Toolmuster | mittel | robuste BC-Klickpfade und Anti-Patterns | aus belegten Laeufen ergaenzen, keine ungetesteten Tricks behaupten |
+| `PLAYWRIGHT-BC-OPTIMIZATION-AUDIT.md` | technischer Playwright-Audit | mittel | aktuelle Helper-/Pattern-Schwaechen und naechste technische Optimierung | nach gezielten Playwright-Foundation-Laeufen pflegen; keine Fachprozess-Evidence ersetzen |
 | `BC-PAGE-ACTION-MAP.json` | maschinenlesbare Seiten-/Aktionskarte | mittel | bekannte Seiten, Suchbegriffe, Aktionen, Fallen, Evidence | nur kompakte bewiesene oder klar markierte Kandidaten aufnehmen |
 | `SETUP-READINESS-MATRIX.md` | Prozess-Setup-Ampel | mittel | ob ein Prozess praktisch setup-/buchungsreif ist | pro Lauf betroffene Zeile aktualisieren, Labor/final trennen |
 | `PROCESS-CASE-REGISTRY.json` | maschinenlesbares Fallregister | mittel | Case-ID, Status, Belege, Evidence, Grenzen, naechster Schritt | neue Prozessfaelle hier auffindbar machen |
@@ -38,4 +39,3 @@ Leitregel: aktuelle Wahrheit kurz halten, Evidence lokal beweisen, wiederverwend
 3. Buchwahrheit: Buchdatei, `BOOK-TO-EVIDENCE-AUDIT.md`, `BOOK-CLICK-GUIDE-COVERAGE.md`.
 4. Fall-Evidence: `evidence/<case-id>/README.md`, Result-JSON, Sync-/Trace-Dateien, kompakte Seitentexte.
 5. Archiv: nur fuer ueberholte Historie, nie als Ersatz fuer aktuelle Wahrheit.
-
