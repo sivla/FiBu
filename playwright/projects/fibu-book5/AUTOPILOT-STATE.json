@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "updatedAt": "2026-06-16T19:42:38.334Z",
+  "updatedAt": "2026-06-16T19:57:18.932Z",
   "repository": "sivla/FiBu",
   "branch": "codex/playwright-bc-screenshot-foundation",
   "environment": "MCP_1_20260210",
@@ -10,8 +10,8 @@
   "companyRegistry": "playwright/projects/fibu-book5/COMPANY-REGISTRY.json",
   "dataBasis": "CRONUS USA",
   "activeArea": "fixedassets",
-  "lastCompletedRun": "FIXEDASSETS-030-FA-CNC-01-CORRECTION-GATE-DECISION",
-  "lastWorkType": "decision-no-bc-run-existing-asset-correction-gate",
+  "lastCompletedRun": "FIXEDASSETS-031-FA-CNC-01-EXISTING-CARD-CORRECTION",
+  "lastWorkType": "ui-first-existing-fixed-asset-card-correction-partial",
   "postedInLastRun": false,
   "latestPostedDocuments": {
     "o2c": {
@@ -67,7 +67,7 @@
         ],
         "nextAllowedCase": "FIXEDASSETS-016-MACHINES-FA-POSTING-GROUP-FIT"
       },
-      "limitation": "CRONUS-USA lab setup only; HGB and MACHINES are visible setup prerequisites. FIXEDASSETS-030 decides that the incomplete existing FA-CNC-01 card should be corrected UI-first in the next run rather than replaced by a new target code. No K30000, no acquisition, no depreciation and no German final proof.",
+      "limitation": "CRONUS-USA lab setup only. FIXEDASSETS-031 partially corrected the existing FA-CNC-01 card after safety checks: HGB and MACHINES are visible on the card and Book Value is 0,00, but Description, Class/Subclass and depreciation years/dates are not fit. No K30000, no purchase invoice, no acquisition, no depreciation, no posting and no German final proof.",
       "faPostingGroup": "MACHINES",
       "machinesFit": {
         "caseId": "FIXEDASSETS-016",
@@ -425,6 +425,35 @@
         "noSetupChangeInDecisionRun": true,
         "noPosting": true,
         "evidence": "playwright/projects/fibu-book5/evidence/fixedassets-030/FIXEDASSETS-030-result.json"
+      },
+      "fixedAssetNo": "FA-CNC-01",
+      "existingCardCorrection": {
+        "caseId": "FIXEDASSETS-031",
+        "status": "blocked-correction-not-fully-visible",
+        "mode": "ui-first-existing-card-correction",
+        "safetyBlocked": false,
+        "masterdataChanged": true,
+        "visibleAfter": {
+          "fixedAssetNo": "FA-CNC-01",
+          "depreciationBookCode": "HGB",
+          "postingGroup": "MACHINES",
+          "bookValue": "0,00"
+        },
+        "notFitAfter": [
+          "Description remains blank/not visibly fit",
+          "FA Class Code remains blank/not visibly fit",
+          "FA Subclass Code remains blank/not visibly fit",
+          "No. of Depreciation Years remains 0,00/not visibly fit",
+          "Depreciation dates remain blank and were not guessed"
+        ],
+        "noPosting": true,
+        "screenshots": [
+          "playwright/projects/fibu-book5/img/fixedassets-031-010-filtered-list-before-correction.png",
+          "playwright/projects/fibu-book5/img/fixedassets-031-020-card-before-correction.png",
+          "playwright/projects/fibu-book5/img/fixedassets-031-040-card-after-correction.png"
+        ],
+        "evidence": "playwright/projects/fibu-book5/evidence/fixedassets-031/FIXEDASSETS-031-result.json",
+        "nextAllowedCase": "FIXEDASSETS-032-FA-CNC-01-CORRECTION-BLOCKER-DIAGNOSIS"
       }
     }
   },
@@ -546,7 +575,7 @@
     },
     "nextCompanyEvidenceStep": "Only with a new documented company action purpose; otherwise continue with process/setup work."
   },
-  "nextBestStepWithoutApproval": "FIXEDASSETS-029-FA-CNC-01-CONTROLLED-ASSET-SAVE: UI-first in RM-DEMO genau die Zielanlage FA-CNC-01 speichern, wenn Stop-Kriterien bestanden sind; Auto-Number sofort auf FA-CNC-01 korrigieren oder Entwurf per UI bereinigen; kein K30000, keine Einkaufsrechnung, kein Zugang, keine AfA und keine Buchung.",
+  "nextBestStepWithoutApproval": "FIXEDASSETS-032-FA-CNC-01-CORRECTION-BLOCKER-DIAGNOSIS: sichtbaren Feld-/Save-Blocker der bestehenden FA-CNC-01-Karte analysieren; keine Einkaufsrechnung, kein Zugang, keine AfA und keine Buchung.",
   "nextBestStepWithApproval": {
     "payments": "Nur mit neuem Gate: weitere Zahlung, Kreditorenzahlung oder Bankabstimmung. PAYMENTS-011 darf nicht wiederholt werden.",
     "companies": "Company-Aktionen sind innerhalb MCP_1_20260210 erlaubt, aber nur mit COMPANY-REGISTRY-Eintrag, dokumentiertem Zweck/Risiko/Evidence-Plan und sofortigem State-/Evidence-Sync. Naechster Company-Schritt ist read-only Enumeration, keine Anlage.",
@@ -752,5 +781,23 @@
     "FIXEDASSETS-027 ran UI-first in RM-DEMO. It proved lookup/reference values HGB/COMPANY, MACHINES/EQUIPMENT and class/subclass values on the Fixed Asset Card context, but it also exposed that New-card lookup preflight auto-created temporary draft FA000110. FA000110 was deleted via the UI and the filtered after-check no longer shows it. FA-CNC-01 was not saved; no setup, K30000, purchase invoice, acquisition, depreciation, posting or company switch. Next step is FIXEDASSETS-028 save-gate decision with auto-number strategy.",
     "FIXEDASSETS-026 ran UI-first in RM-DEMO without saving. The run recovered Depreciation Book Code and Posting Group as active Fixed Asset Card controls and mapped 6/6 target controls after small FastTab-near Show more clicks. FA-CNC-01 was not saved; no values, setup, K30000, purchase invoice, acquisition, depreciation, posting or company switch. Next no-approval step is FIXEDASSETS-027 no-save value/lookup preflight.",
     "FIXEDASSETS-025 corrected the overclaim around FIXEDASSETS-024: active card control proof is partial (4/6), so value lookup/save gate remains blocked until Depreciation Book Code and Posting Group are recovered on the active card. No BC run, no save, no setup and no posting."
+  ],
+  "prohibitedActions": [
+    "Do not treat FIXEDASSETS-031 as a completed fixed-asset master-data proof: only HGB and MACHINES are visibly fit; Description, Class/Subclass and depreciation years/dates remain blocked.",
+    "No K30000, purchase invoice, acquisition, depreciation or fixed-asset posting before FIXEDASSETS-032 diagnoses and resolves the FA-CNC-01 correction blocker."
+  ],
+  "runHistory": [
+    {
+      "caseId": "FIXEDASSETS-031",
+      "result": "Existing FA-CNC-01 card opened directly via Fixed Asset Card page 5600 after filtered-list preflight. Safety check found no FA Ledger Entries for FA-CNC-01 and no blocking acquisition/book-value state. UI-first correction partially succeeded: HGB and MACHINES are visible after the run and Book Value remains 0,00. Description, FA Class Code, FA Subclass Code and No. of Depreciation Years are not visibly fit, so the card remains blocked for K30000, purchase invoice, acquisition, depreciation and posting.",
+      "evidence": "playwright/projects/fibu-book5/evidence/fixedassets-031/",
+      "screenshots": [
+        "playwright/projects/fibu-book5/img/fixedassets-031-020-card-before-correction.png",
+        "playwright/projects/fibu-book5/img/fixedassets-031-040-card-after-correction.png"
+      ],
+      "noPosting": true,
+      "company": "RM-DEMO",
+      "nextStep": "FIXEDASSETS-032-FA-CNC-01-CORRECTION-BLOCKER-DIAGNOSIS"
+    }
   ]
 }

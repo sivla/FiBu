@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-16T19:42:38.334Z",
+  "updatedAt": "2026-06-16T19:57:36.629Z",
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
   "companyMode": "instance-bound-multi-company",
@@ -1500,6 +1500,49 @@
         "38"
       ],
       "nextStep": "FIXEDASSETS-031-FA-CNC-01-EXISTING-CARD-CORRECTION"
+    },
+    {
+      "caseId": "FIXEDASSETS-031",
+      "process": "Fixed Assets",
+      "status": "blocked-correction-not-fully-visible",
+      "mode": "ui-first-existing-card-correction",
+      "company": "RM-DEMO",
+      "documents": [
+        "FA-CNC-01"
+      ],
+      "screenshots": [
+        "playwright/projects/fibu-book5/img/fixedassets-031-010-filtered-list-before-correction.png",
+        "playwright/projects/fibu-book5/img/fixedassets-031-020-card-before-correction.png",
+        "playwright/projects/fibu-book5/img/fixedassets-031-040-card-after-correction.png"
+      ],
+      "evidence": [
+        "playwright/projects/fibu-book5/evidence/fixedassets-031/README.md",
+        "playwright/projects/fibu-book5/evidence/fixedassets-031/FIXEDASSETS-031-result.json",
+        "playwright/projects/fibu-book5/evidence/fixedassets-031/FIXEDASSETS-031-FA-CNC-01-EXISTING-CARD-CORRECTION.md"
+      ],
+      "proves": [
+        "Existing Fixed Asset Card page 5600 can be opened directly for FA-CNC-01",
+        "Safety check found no FA Ledger Entries for FA-CNC-01",
+        "HGB and MACHINES are visible on the FA-CNC-01 card after correction attempt",
+        "Book Value remains 0,00 in the visible card context",
+        "No posting was executed"
+      ],
+      "doesNotProve": [
+        "Description, FA Class Code, FA Subclass Code or No. of Depreciation Years are fully fit",
+        "Depreciation date logic",
+        "Fixed asset acquisition, depreciation or ledger trace",
+        "Vendor K30000 or purchase invoice readiness",
+        "German fixed-assets final proof"
+      ],
+      "reusablePatterns": [
+        "Open existing Fixed Asset Card directly via page 5600 with record filter",
+        "Screenshot QA rejects list-only images when card values are required",
+        "Safety check before correcting existing master data"
+      ],
+      "bookChapters": [
+        "21"
+      ],
+      "nextStep": "FIXEDASSETS-032-FA-CNC-01-CORRECTION-BLOCKER-DIAGNOSIS"
     }
   ]
 }

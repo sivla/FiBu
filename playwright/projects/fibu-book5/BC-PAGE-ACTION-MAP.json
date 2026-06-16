@@ -437,12 +437,14 @@
       ],
       "reliableEntryPaths": [
         "Page-ID 5601 plus list context",
-        "Tell-Me exact result plus context check"
+        "Tell-Me exact result plus context check",
+        "Direct Page-ID 5600 Fixed Asset Card with record filter for existing asset-card value proof"
       ],
       "knownActions": {
         "New": "FIXEDASSETS-028 turns New into a controlled target-masterdata save gate: next run may save only FA-CNC-01 if Auto-Number can be corrected, target values are visible and cleanup/stop criteria are met.",
         "Mehr anzeigen": "FIXEDASSETS-026 accepts only small FastTab-near Show more/Mehr anzeigen controls with matching aria-label/title; large card containers are rejected. General and Depreciation Book were expanded no-save.",
-        "Lookup values": "FIXEDASSETS-027 proved visible lookup/value candidates TANGIBLE, EQUIPMENT, HGB and MACHINES on the Fixed Asset Card; this is value-path evidence, not a saved FA-CNC-01."
+        "Lookup values": "FIXEDASSETS-027 proved visible lookup/value candidates TANGIBLE, EQUIPMENT, HGB and MACHINES on the Fixed Asset Card; this is value-path evidence, not a saved FA-CNC-01.",
+        "Existing card correction": "FIXEDASSETS-031 opens the existing FA-CNC-01 card directly via Fixed Asset Card page 5600 with a record filter; use this when card values, not list codes, are the proof target."
       },
       "dangerousActions": [
         "New",
@@ -470,7 +472,10 @@
         "A negative filter for FA-CNC-01 alone is insufficient after New; also check and clean auto-numbered drafts such as FA000110.",
         "Delete/Informationen loeschen is only acceptable as documented cleanup after confirming the exact temporary number in the dialog and proving the filtered list is empty afterwards.",
         "After FIXEDASSETS-028, do not run another open-ended preflight on New; either save exactly FA-CNC-01 under the gate or abort and clean up.",
-        "Do not proceed from saved FA-CNC-01 directly to K30000, purchase invoice, acquisition or depreciation; those need later gates."
+        "Do not proceed from saved FA-CNC-01 directly to K30000, purchase invoice, acquisition or depreciation; those need later gates.",
+        "FIXEDASSETS-031 proves direct page 5600 card opening is safer than accepting list text when card values are required.",
+        "After FIXEDASSETS-031, HGB and MACHINES on FA-CNC-01 are only partial master-data proof; Description, Class/Subclass and depreciation years/dates remain blockers.",
+        "Do not mark a Fixed Asset Card screenshot as book-ready unless the exact values claimed by the caption are visible in the screenshot."
       ],
       "recommendedHelpers": [
         "openBcPageById",
@@ -485,7 +490,9 @@
         "auto-number-draft-detection",
         "cleanup-after-temporary-masterdata-card",
         "target-masterdata-save-gate",
-        "auto-number-correction-or-cleanup"
+        "auto-number-correction-or-cleanup",
+        "direct-card-page-5600-filter",
+        "screenshot-claimed-values-visible"
       ],
       "evidenceExamples": [
         "fixedassets-003",
@@ -501,7 +508,8 @@
         "fixedassets-024",
         "fixedassets-026",
         "fixedassets-027",
-        "fixedassets-028"
+        "fixedassets-028",
+        "fixedassets-031"
       ]
     },
     "FA Posting Groups": {

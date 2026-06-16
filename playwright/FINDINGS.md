@@ -38,6 +38,25 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 
 ## Aktuelle Fundstellen
 
+## FIND-BC-FA-031 Teilkorrigierte FA-CNC-01-Karte ist noch nicht buchungsreif
+
+| Feld | Wert |
+|---|---|
+| Status | getestet, buch-update, blocker |
+| Projekt | fibu-book5 |
+| Testfall | `FIXEDASSETS-031-FA-CNC-01-EXISTING-CARD-CORRECTION` |
+| Screenshot | `playwright/projects/fibu-book5/img/fixedassets-031-040-card-after-correction.png` |
+| BC-Seite | `Fixed Asset Card` Page `5600`, `FA-CNC-01`, Company `RM-DEMO` |
+| sichtbarer Text | `FA-CNC-01`, `Depreciation Book Code = HGB`, `Posting Group = MACHINES`, `Book Value = 0,00`; nicht fit: Beschreibung, Klasse/Unterklasse, AfA-Jahre und AfA-Daten |
+| Elementtyp | Stammdatenkarte / FastTab / Feldwerte |
+| erste Hypothese | Nach dem Korrektur-Gate koennte die bestehende Karte vollstaendig korrigierbar sein. |
+| Recherchequelle | `evidence/fixedassets-031/README.md`, `evidence/fixedassets-031/FIXEDASSETS-031-result.json` |
+| Testergebnis | Der direkte Kartenpfad ueber Page `5600` ist stabiler als Listenbild/Doppelklick. Der Safety-Check fand keine Anlagenposten fuer `FA-CNC-01`; es wurde nichts gebucht. `HGB` und `MACHINES` sind sichtbar, aber nicht alle Zielwerte tragen. |
+| Entscheidung | Kapitel 21 darf das Nachherbild nur als Labor-Teilnachweis verwenden. `FA-CNC-01` bleibt fuer `K30000`, Einkaufsrechnung, Zugang und AfA gesperrt; naechster Schritt ist `FIXEDASSETS-032-FA-CNC-01-CORRECTION-BLOCKER-DIAGNOSIS`. |
+| Buchstelle | Kapitel 21 Anlagen: Stammdatenkontrolle vor Zugang/AfA |
+
+Fuer Anfaenger ist der Befund wichtig: Ein teilweise gefuellter Stammdatensatz ist kein fertiger Stammdatensatz. Vor der Anlagenaktivierung muessen nicht nur AfA-Buch und Buchungsgruppe sichtbar sein, sondern auch Beschreibung, Klasse/Unterklasse, Nutzungsdauer und Datumslogik nachvollziehbar tragen.
+
 ## FIND-BC-FA-030 Bestehende FA-CNC-01-Karte korrigieren statt Zielcode wechseln
 
 | Feld | Wert |
