@@ -1,0 +1,59 @@
+{
+  "caseId": "FIXEDASSETS-021",
+  "caseName": "FA-CNC-01 setup-fit decision",
+  "status": "done-decision-no-bc-run",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "basis": [
+    "FIXEDASSETS-018-FA-CNC-01-CARD-PREFLIGHT",
+    "FIXEDASSETS-019-FA-CNC-01-CARD-FIELD-MAPPING-DECISION",
+    "FIXEDASSETS-020-FA-CNC-01-CARD-MORE-FIELDS-MAPPING"
+  ],
+  "decision": "do-not-save-fa-cnc-01-yet",
+  "reason": "FIXEDASSETS-020 proves the field paths for Depreciation Book Code and Posting Group, but not selectable or assigned target values HGB and MACHINES. Required FA Class/Subclass and depreciation date/value decisions are still open.",
+  "proves": [
+    "field visibility is not sufficient for saving FA-CNC-01",
+    "next step must be a lookup/value preflight",
+    "K30000, purchase invoice, acquisition, depreciation and posting remain locked"
+  ],
+  "doesNotProve": [
+    "saved FA-CNC-01",
+    "HGB assigned on the asset card",
+    "MACHINES assigned on the asset card",
+    "valid FA Class/Subclass mapping",
+    "acquisition or depreciation posting",
+    "German fixed-asset final proof"
+  ],
+  "allowedNextCase": "FIXEDASSETS-022-FA-CNC-01-LOOKUP-VALUE-PREFLIGHT",
+  "allowedNextActions": [
+    "open Fixed Assets in RM-DEMO",
+    "open a new empty Fixed Asset Card for lookup/value preflight only",
+    "inspect lookups for FA Class Code, FA Subclass Code, Depreciation Book Code and Posting Group",
+    "document whether HGB and MACHINES are selectable",
+    "document available class/subclass values",
+    "close without saving"
+  ],
+  "forbiddenNextActions": [
+    "save FA-CNC-01",
+    "create FA Class or FA Subclass values",
+    "create K30000",
+    "create a purchase invoice",
+    "post acquisition",
+    "post depreciation",
+    "claim German HGB/accounting final proof"
+  ],
+  "stopCriteria": [
+    "HGB is not selectable in the Depreciation Book Code lookup",
+    "MACHINES is not selectable in the Posting Group lookup",
+    "no suitable existing FA Class/Subclass value can be evidenced",
+    "Business Central shows a save, required-field or template dialog",
+    "Business Central leaves MCP_1_20260210 or RM-DEMO unexpectedly"
+  ],
+  "noBcRun": true,
+  "noScreenshot": true,
+  "noSave": true,
+  "noSetupChange": true,
+  "noPosting": true,
+  "bookImpact": "Chapter 21 must insert a lookup/value preflight before the first saved FA-CNC-01 master-data screenshot.",
+  "nextStep": "FIXEDASSETS-022-FA-CNC-01-LOOKUP-VALUE-PREFLIGHT"
+}

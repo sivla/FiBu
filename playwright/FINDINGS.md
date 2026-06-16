@@ -260,6 +260,24 @@ Fuer Anfaenger ist das wichtig, weil `MACHINES` nicht die Maschine selbst ist. E
 
 Fuer Anfaenger ist das wichtig, weil eine Anlagenbuchung nicht mit dem Lieferanten beginnt. Business Central braucht zuerst ein belastbares Anlagenstammdatum. Das Buch soll daher zeigen, wo `FA-CNC-01` auf der Anlagenkarte gepflegt wird, welche Setup-Bezuege sichtbar sind und woran man erkennt, dass die Anlage bereit fuer den spaeteren Zugang ist.
 
+## FIND-BC-FA-021 Feldpfade sind keine Speicherfreigabe fuer FA-CNC-01
+
+| Feld | Wert |
+|---|---|
+| Status | erledigt als Setup-Fit-Entscheidung ohne BC-Lauf |
+| Projekt | fibu-book5 |
+| Testfall | `FIXEDASSETS-021` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-021/README.md`, `playwright/projects/fibu-book5/evidence/fixedassets-021/FIXEDASSETS-021-FA-CNC-01-SETUP-FIT-DECISION.md`, `playwright/projects/fibu-book5/evidence/fixedassets-021/FIXEDASSETS-021-result.json` |
+| BC-Seite | kein neuer BC-Lauf; Entscheidung basiert auf `FIXEDASSETS-020` |
+| sichtbarer Text / Werte | Feldpfade `Depreciation Book Code`, `Posting Group`; Zielwerte `FA-CNC-01`, `CNC Maschine FRA`, `HGB`, `MACHINES` noch nicht gesetzt |
+| Elementtyp | Anlagenkarte / Setup-Fit-Entscheidung / Screenshot-QA |
+| erste Hypothese | Nach sichtbaren Feldpfaden koennte ein enger UI-first Speicherlauf fuer `FA-CNC-01` vorbereitet werden. |
+| Testergebnis | Speichern bleibt gesperrt. `HGB` und `MACHINES` sind zwar als Setup-Prerequisites belegt, aber noch nicht als auswaehlbare oder gesetzte Werte auf der Anlagenkarte. `FA Class Code`, `FA Subclass Code` und AfA-Daten sind ebenfalls noch nicht sicher belegt. |
+| Entscheidung | Naechster Schritt ist nur `FIXEDASSETS-022-FA-CNC-01-LOOKUP-VALUE-PREFLIGHT`: Lookups/Werte pruefen, ohne `FA-CNC-01` zu speichern, ohne neue Klassen/Unterklassen, ohne `K30000`, ohne Einkaufsrechnung, ohne Zugang, ohne AfA und ohne Buchung. |
+| Buchstelle | Kapitel 21 Anlagen / Fixed Assets |
+
+Fuer Anfaenger ist das wichtig, weil Business Central bei Anlagen nicht nur Felder braucht, sondern fachlich gueltige Referenzwerte. Ein Screenshot muss deshalb nicht nur den Feldnamen zeigen, sondern den Wert, den BC spaeter fuer Kontenfindung und AfA verwendet.
+
 ## FIND-BC-FA-013 Fixed Assets darf mit `HGB` anfangen, aber nicht mit Anlage oder Kontenmapping
 
 | Feld | Wert |
