@@ -31,6 +31,16 @@ Ziel: Playwright so weiterentwickeln, dass Business-Central-Klickpfade fuer Buch
 | JSON/Markdown Evidence | Struktur ist tragfaehig; `DOCUMENTATION-MAP.md` ordnet Rollen. | Nicht jede technische Evidence sagt klar, was sie nicht beweist. | Jede Evidence mit Status, Laborgrenze, sichtbarem Ziel, Buchwirkung, naechstem Schritt. | P1 | Audit-Datei und Current-State-Sync ergaenzt. |
 | npm Scripts | Scripts sind fachlich breit, aber keine Typecheck- oder Helper-Audit-Scripts. | Helper-Aenderungen werden nicht automatisch typgeprueft. | Bei Helper-Aenderung `npx tsc --noEmit ...` oder spaeter eigenes `check:ts` einrichten. | P2 | TypeScript-Einzelcheck versucht; kein `tsconfig.json` vorhanden. |
 
+## Strictness-Migration nach `FIXEDASSETS-023`
+
+Dieser technische Lauf hat genau einen cancel-safe Test migriert: `playwright/projects/fibu-book5/tests/fixedassets-023-fa-cnc-01-card-technical-diagnosis.spec.ts`. Es gab keine Setup-Aenderung, keine Stammdatenanlage, keine Buchung, keine Zahlung, keine Bankabstimmung, keine neue Company und kein Speichern von `FA-CNC-01`.
+
+| Datei | Altes Muster | Neues Muster | Warum besser | Validierung |
+| ----- | ------------ | ------------ | ------------ | ----------- |
+| `playwright/projects/fibu-book5/tests/fixedassets-023-fa-cnc-01-card-technical-diagnosis.spec.ts` | Direkter Page-URL-Aufruf fuer die Fixed-Assets-Liste | `openBcPageById(page, 5601, expectedText)` fuer den Standardkontext | Zentraler BC-Page-Einstieg mit Shell-/Seitentextcheck statt lokalem Page-Goto | `npm run fibu:fixedassets:fa-cnc-01-card-technical-diagnosis` passed |
+| `playwright/projects/fibu-book5/tests/fixedassets-023-fa-cnc-01-card-technical-diagnosis.spec.ts` | Lokaler DOM-Buttonscan fuer `New/Neu` als erster Pfad | `clickBcAction()` mit `scopeText = Fixed Assets` und `expectedAfterClick = Fixed Asset Card / FA Class Code / Depreciation Book` | Der Klick beweist jetzt nicht nur "geklickt", sondern den erwarteten Kartenzustand; lokaler Titel-Icon-Fallback bleibt dokumentiert, wurde aber nicht genutzt | Strictness-Evidence `evidence/playwright-strictness-001/PLAYWRIGHT-STRICTNESS-001-result.json` zeigt `helper = clickBcAction`, `role = menuitem`, `fallbackUsed = false` |
+| `playwright/projects/fibu-book5/tests/fixedassets-023-fa-cnc-01-card-technical-diagnosis.spec.ts` | Feste `waitForTimeout` nach Page Open, New, Show More und Page Inspection | `waitForPageText()` beziehungsweise `expect.poll(pageText)` mit konkreten Zieltexten | Wartet auf fachlichen BC-Zustand statt Zeitablauf; reduziert Flakiness und Laufzeit | Testlauf passed in ca. 12,5 s |
+
 ## Sofort umgesetzte Helper-Aenderungen
 
 - `waitForBcReady(page, options)`: wartet web-first auf BC-Shell und erwartbaren Seitentext.

@@ -337,7 +337,7 @@
     },
     "nextCompanyEvidenceStep": "Only with a new documented company action purpose; otherwise continue with process/setup work."
   },
-  "nextBestStepWithoutApproval": "FIXEDASSETS-024-FA-CNC-01-ACTIVE-CARD-CONTROL-HELPER-OR-MANUAL-DIAGNOSIS: UI-first and no-save improve the card-control locator so it scopes to the foreground Fixed Asset Card instead of the background Fixed Assets list, or use manual Page Inspection/Personalize to map the exact card controls. Do not save FA-CNC-01, do not create setup values, no K30000, no purchase invoice, no acquisition, no depreciation and no posting.",
+  "nextBestStepWithoutApproval": "FIXEDASSETS-024-FA-CNC-01-ACTIVE-CARD-CONTROL-HELPER-OR-MANUAL-DIAGNOSIS remains the fachlicher next step. Technical strictness improved FIXEDASSETS-023, but FA-CNC-01 must still not be saved before active-card controls are mapped.",
   "nextBestStepWithApproval": {
     "payments": "Nur mit neuem Gate: weitere Zahlung, Kreditorenzahlung oder Bankabstimmung. PAYMENTS-011 darf nicht wiederholt werden.",
     "companies": "Company-Aktionen sind innerhalb MCP_1_20260210 erlaubt, aber nur mit COMPANY-REGISTRY-Eintrag, dokumentiertem Zweck/Risiko/Evidence-Plan und sofortigem State-/Evidence-Sync. Naechster Company-Schritt ist read-only Enumeration, keine Anlage.",
@@ -500,7 +500,8 @@
     "FIXEDASSETS-020 ran UI-first in RM-DEMO. The scoped New action opened the empty Fixed Asset Card; exactly the card-local Mehr anzeigen controls for General and Depreciation Book were expanded. Visible fields now include No., Description, FA Class Code, FA Subclass Code, Blocked, Depreciation Book Code and Posting Group. Target values FA-CNC-01, CNC Maschine FRA, HGB and MACHINES were not set or visible as values. No save, no setup change, no K30000, no purchase invoice, no acquisition, no depreciation, no posting and no company switch. Next no-approval step is FIXEDASSETS-021-FA-CNC-01-SETUP-FIT-DECISION.",
     "FIXEDASSETS-021 decided without a BC run that FA-CNC-01 must not be saved yet. FIXEDASSETS-020 proves field paths, but not selectable/assigned HGB and MACHINES values, not FA Class/Subclass mapping and not depreciation date decisions. No save, no setup change, no K30000, no purchase invoice, no acquisition, no depreciation, no posting and no company switch. Next no-approval step is FIXEDASSETS-022-FA-CNC-01-LOOKUP-VALUE-PREFLIGHT.",
     "FIXEDASSETS-022 ran UI-first in RM-DEMO with a corrected screenshot-QA rule: only visible codes in the correct context count. The first optimistic locator attempt was rejected because it opened Number Series instead of the intended FA Class/Subclass lookup; the final run keeps only the empty Fixed Asset Card context image and documents HGB/MACHINES and FA Class/Subclass lookup values as not proven. FA-CNC-01 was not saved; no setup change, no K30000, no purchase invoice, no acquisition, no depreciation, no posting and no company switch. Next no-approval step is FIXEDASSETS-023-FA-CNC-01-CARD-TECHNICAL-DIAGNOSIS.",
-    "FIXEDASSETS-023 ran UI-first in RM-DEMO without saving. Page Inspection opened from the unsaved Fixed Asset Card and shows Fixed Asset Card (5600, Document) with source table Fixed Asset (5600). The visual card shows FA Class Code, FA Subclass Code, Depreciation Book Code and Posting Group controls, but the DOM diagnosis explains why the previous locator failed: unscoped caption search can hit the background Fixed Assets list headers instead of the foreground card controls. Save gate remains blocked; no setup change, no FA-CNC-01, no K30000, no purchase invoice, no acquisition, no depreciation, no posting and no company switch. Next no-approval step is FIXEDASSETS-024-FA-CNC-01-ACTIVE-CARD-CONTROL-HELPER-OR-MANUAL-DIAGNOSIS."
+    "FIXEDASSETS-023 ran UI-first in RM-DEMO without saving. Page Inspection opened from the unsaved Fixed Asset Card and shows Fixed Asset Card (5600, Document) with source table Fixed Asset (5600). The visual card shows FA Class Code, FA Subclass Code, Depreciation Book Code and Posting Group controls, but the DOM diagnosis explains why the previous locator failed: unscoped caption search can hit the background Fixed Assets list headers instead of the foreground card controls. Save gate remains blocked; no setup change, no FA-CNC-01, no K30000, no purchase invoice, no acquisition, no depreciation, no posting and no company switch. Next no-approval step is FIXEDASSETS-024-FA-CNC-01-ACTIVE-CARD-CONTROL-HELPER-OR-MANUAL-DIAGNOSIS.",
+    "PLAYWRIGHT-STRICTNESS-001 migrated FIXEDASSETS-023 to openBcPageById, clickBcAction and state-based waits; no setup, save or posting."
   ],
   "currentPrompt": {
     "name": "Codex Superautopilot Prompt V6.2",
@@ -508,5 +509,28 @@
     "caseId": "GOVERNANCE-018",
     "status": "active-guidance",
     "note": "State-driven prompt with run decision, change types, update matrix, single source of truth, self-healing/retry and definition of done. AUTOPILOT-STATE.json remains the source for current next step and locks."
-  }
+  },
+  "lastTechnicalRun": {
+    "caseId": "PLAYWRIGHT-STRICTNESS-001-FIXEDASSETS-023-MIGRATION",
+    "workType": "technical-playwright-strictness-migration",
+    "migratedTest": "playwright/projects/fibu-book5/tests/fixedassets-023-fa-cnc-01-card-technical-diagnosis.spec.ts",
+    "replacedPatterns": [
+      "direct page goto for unfiltered Fixed Assets list -> openBcPageById with expectedText",
+      "local DOM New/Neu scan as primary path -> clickBcAction with scopeText and expectedAfterClick",
+      "fixed waits after page open/New/Show more/Page Inspection -> waitForPageText or expect.poll(pageText)"
+    ],
+    "validation": [
+      "npm run fibu:fixedassets:fa-cnc-01-card-technical-diagnosis passed",
+      "npm run check:encoding passed",
+      "git diff --check passed",
+      "npx tsx playwright/core/bc/actions.ts passed",
+      "npx tsx playwright/core/bc/dialogs.ts passed",
+      "npx tsc --noEmit remains unavailable because TypeScript compiler is not installed"
+    ],
+    "noSetupChange": true,
+    "noSave": true,
+    "noPosting": true,
+    "reusablePattern": "Use clickBcAction with scopeText plus expectedAfterClick for cancel-safe BC action clicks; use local DOM fallback only after helper failure and document fallbackUsed."
+  },
+  "nextTechnicalStep": "PLAYWRIGHT-STRICTNESS-002: migrate exactly one additional read-only/cancel-safe test, preferably Fixed Assets 020/022 or Bank Ledger read-only, replacing local waits/actions with clickBcAction/waitForPageText without touching posting flows."
 }

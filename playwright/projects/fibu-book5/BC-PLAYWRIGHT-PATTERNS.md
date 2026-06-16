@@ -48,6 +48,7 @@ Diese Datei sammelt wiederverwendbare Muster aus belegten Laeufen. Sie ist keine
 - `FIXEDASSETS-012` zeigt nur leere Karten/Template-Dialoge; das ist kein Zielcode-Beweis.
 - `FIXEDASSETS-016` zeigt das Gegenmuster: Auf der `FA Posting Group Card` ist `New/Neu` als titelbasierter Icon-Button sichtbar (`Erstellen Sie einen neuen Eintrag.`), nicht zwingend als Textlabel. Der Helper muss solche titelbasierten Aktionskandidaten bewerten und danach den Zielzustand sichtbar pruefen.
 - `FIXEDASSETS-020` zeigt ein zweites Scoping-Muster: `Mehr anzeigen` nicht als jedes `aria-expanded=false` klicken. Nur explizite, kartennahe `Mehr anzeigen`-/`Show more`-Labels mit Feldkontext sind akzeptabel; globale Navigation, Agentenleisten oder Shell-Controls gehoeren nicht zum Kartenfeldmapping.
+- Strictness-Migration nach `FIXEDASSETS-023`: `New/Neu` auf der Anlagenliste kann mit `clickBcAction()` genutzt werden, wenn `scopeText` den Listen-/Seitenkontext bindet und `expectedAfterClick` den Kartenkontext beweist. Der lokale Titel-Icon-Fallback bleibt nur Ausnahme; im migrierten Lauf wurde er nicht mehr gebraucht.
 
 ## Post / Preview
 

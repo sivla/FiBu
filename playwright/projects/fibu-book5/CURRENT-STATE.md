@@ -73,6 +73,8 @@ Update nach `FIXEDASSETS-022-FA-CNC-01-LOOKUP-VALUE-PREFLIGHT`: Der praktische U
 
 Update nach `FIXEDASSETS-023-FA-CNC-01-CARD-TECHNICAL-DIAGNOSIS`: Der praktische no-save Diagnoselauf ist in `RM-DEMO` gelaufen. Page Inspection wurde per `Control+Alt+F1` geoeffnet und belegt technisch `Fixed Asset Card (5600, Document)` mit Source Table `Fixed Asset (5600)`. Das Kartenbild zeigt die relevanten Felder `FA Class Code`, `FA Subclass Code`, `Depreciation Book Code` und `Posting Group` im Vordergrund, aber noch keine Zielwerte. Der wichtige Playwright-Befund: ungescopte DOM-/Caption-Suche kann weiterhin die im Hintergrund sichtbare Anlagenliste treffen; der naechste Helper muss deshalb auf die aktive Vordergrund-Karte beziehungsweise Card Surface scopen. `FA-CNC-01` wurde nicht gespeichert; kein Setup, kein `K30000`, keine Einkaufsrechnung, kein Zugang, keine AfA, keine Buchung und kein Company-Wechsel. Der naechste No-Approval-Schritt ist `FIXEDASSETS-024-FA-CNC-01-ACTIVE-CARD-CONTROL-HELPER-OR-MANUAL-DIAGNOSIS`.
 
+Update nach `PLAYWRIGHT-STRICTNESS-001-FIXEDASSETS-023-MIGRATION`: Technischer Qualitaetslauf ohne fachliche Aenderung. Der bestehende no-save Test `FIXEDASSETS-023` nutzt fuer den normalen Fixed-Assets-Listeneinstieg jetzt `openBcPageById()` und fuer `New/Neu` zuerst `clickBcAction()` mit `scopeText = Fixed Assets` und sichtbarem Zielzustand `Fixed Asset Card`/`FA Class Code`/`Depreciation Book`. Feste Wartezeiten nach Page Open, New, Show More und Page Inspection wurden durch `waitForPageText()` beziehungsweise `expect.poll(pageText)` ersetzt. Der Lauf hat nichts gespeichert, nichts eingerichtet und nichts gebucht; fachlich bleibt `FIXEDASSETS-024` offen.
+
 ## Projektmission
 
 Das Projekt verfolgt vier gleichrangige Ziele:

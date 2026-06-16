@@ -440,7 +440,7 @@
         "Tell-Me exact result plus context check"
       ],
       "knownActions": {
-        "New": "FIXEDASSETS-018 opens an empty Fixed Asset Card from the Fixed Assets list with a scored context-bound New action; FIXEDASSETS-019 keeps saving locked until HGB and MACHINES are visibly mapped; FIXEDASSETS-021 keeps saving locked until lookup/value preflight proves selectable values; FIXEDASSETS-022 keeps saving locked because lookup values were not visually proven; FIXEDASSETS-023 shows the next helper must scope controls to the foreground Fixed Asset Card, not the background list",
+        "New": "FIXEDASSETS-018 opens an empty Fixed Asset Card from the Fixed Assets list. FIXEDASSETS-023 strictness migration now opens New through clickBcAction with Fixed Assets scopeText and Fixed Asset Card/FA Class/Depreciation Book expectedAfterClick; fallback local title-icon scan was not used. Saving stays locked until active-card control mapping is proven.",
         "Mehr anzeigen": "FIXEDASSETS-020 uses only card-local More/Show more controls in General and Depreciation Book to expose Depreciation Book Code and Posting Group without saving"
       },
       "dangerousActions": [
@@ -457,7 +457,8 @@
         "FIXEDASSETS-023 shows that Page Inspection can confirm Fixed Asset Card (5600, Document) / Fixed Asset table (5600), while DOM label searches still need foreground-card scoping because the background list remains visible",
         "Do not click every aria-expanded=false control as Show more; scope More/Show more to card-local labels and verify field text afterwards",
         "Do not save a fixed asset from an empty card until the setup reference fields are visible/settable",
-        "No acquisition/depreciation without explicit gates"
+        "No acquisition/depreciation without explicit gates",
+        "After FIXEDASSETS-023 strictness migration, New must keep scopeText and expectedAfterClick; do not reintroduce local unscoped button scans as primary path."
       ],
       "recommendedHelpers": [
         "openBcPageById",

@@ -3,14 +3,15 @@ import 'dotenv/config';
 import { mkdir, readdir, rm, unlink, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import {
-  bcPageUrl,
   compactPageText,
   dismissTours,
   hideFactBoxPane,
+  openBcPageById,
   pageText,
   screenshot,
-  waitForBusinessCentralShell,
+  waitForPageText,
 } from '../../../core/bc-helpers';
+import { clickBcAction } from '../../../core/bc/actions';
 import { project } from '../project';
 
 test.use({
@@ -162,9 +163,10 @@ async function prepareRunArtifacts() {
 }
 
 function fixedAssetsUrl(filterToTarget = false): string {
-  const url = new URL(bcPageUrl(5601, project.envPrefix));
+  const url = new URL(process.env[`${project.envPrefix}_BC_URL`] ?? process.env.BC_URL ?? '');
 
   if (filterToTarget) {
+    url.searchParams.set('page', '5601');
     url.searchParams.set('filter', `'Fixed Asset'.'No.' IS '${target.fixedAssetNo}'`);
   }
 
@@ -172,11 +174,18 @@ function fixedAssetsUrl(filterToTarget = false): string {
 }
 
 async function openFixedAssets(page: Page, filterToTarget = false) {
-  await page.goto(fixedAssetsUrl(filterToTarget), { waitUntil: 'domcontentloaded', timeout: 120_000 });
-  await waitForBusinessCentralShell(page);
+  if (filterToTarget) {
+    await page.goto(fixedAssetsUrl(true), { waitUntil: 'domcontentloaded', timeout: 120_000 });
+    await waitForPageText(page, /Fixed Assets|Anlagen|No\.|Description/i, { timeout: 120_000 });
+  } else {
+    await openBcPageById(page, 5601, {
+      envPrefix: project.envPrefix,
+      expectedText: /Fixed Assets|Anlagen|No\.|Description/i,
+    });
+  }
   await dismissTours(page);
   await hideFactBoxPane(page).catch(() => undefined);
-  await page.waitForTimeout(1_500);
+  await waitForPageText(page, /Fixed Assets|Anlagen/i, { timeout: 30_000 });
 }
 
 async function assertRmDemoContext(page: Page) {
@@ -211,6 +220,26 @@ async function findFixedAssetFrame(page: Page): Promise<Frame> {
 }
 
 async function clickScopedNew(page: Page) {
+  const helperResult = await clickBcAction(page, {
+    name: /New|Neu|Erstellen Sie einen neuen Eintrag/i,
+    roles: ['button', 'menuitem'],
+    scopeText: /Fixed Assets|Anlagen/i,
+    expectedAfterClick: /Fixed Asset Card|FA Class Code|FA Subclass Code|Depreciation Book/i,
+    timeout: 5000,
+    afterClickTimeout: 30_000,
+  });
+
+  if (helperResult.clicked) {
+    await writeJson('010-new-action-candidates.json', {
+      helper: 'clickBcAction',
+      result: helperResult,
+      fallbackUsed: false,
+    });
+    await dismissTours(page);
+    await hideFactBoxPane(page);
+    return;
+  }
+
   const frame = await findFixedAssetFrame(page);
   const actionResult = await frame.evaluate(() => {
     const visible = (element: Element) => {
@@ -252,10 +281,17 @@ async function clickScopedNew(page: Page) {
     };
   });
 
-  await writeJson('010-new-action-candidates.json', actionResult);
+  await writeJson('010-new-action-candidates.json', {
+    helper: 'local-title-icon-fallback',
+    helperResult,
+    fallbackUsed: true,
+    fallbackReason:
+      'BC may expose the Fixed Asset Card New icon through title/aria text that is not always matched by role locator. Fallback is still scoped by Fixed Assets frame and followed by visible card-state proof.',
+    actionResult,
+  });
   expect(actionResult.clicked, 'Scoped New action auf Fixed Assets muss verfuegbar sein').toBeTruthy();
   await page.waitForLoadState('domcontentloaded').catch(() => undefined);
-  await page.waitForTimeout(2_000);
+  await waitForPageText(page, /Fixed Asset Card|FA Class Code|FA Subclass Code|Depreciation Book/i, { timeout: 30_000 });
   await dismissTours(page);
   await hideFactBoxPane(page);
 }
@@ -302,7 +338,7 @@ async function clickAllCardShowMore(page: Page) {
   });
 
   await writeJson('020-show-more-diagnosis.json', result);
-  await page.waitForTimeout(1_000);
+  await waitForPageText(page, /Depreciation Book Code|Posting Group|FA Class Code|FA Subclass Code/i, { timeout: 30_000 });
   return result;
 }
 
@@ -414,7 +450,13 @@ async function collectFieldDiagnostics(page: Page): Promise<FieldDiagnostic[]> {
 async function tryOpenPageInspection(page: Page) {
   const before = await pageText(page);
   await page.keyboard.press('Control+Alt+F1').catch(() => undefined);
-  await page.waitForTimeout(2_000);
+  await expect
+    .poll(async () => pageText(page), {
+      timeout: 8_000,
+      intervals: [500, 1000, 2000],
+    })
+    .toMatch(/Page Inspection|Inspect pages and data|Page ID|Source Table|Table ID|Fixed Asset/i)
+    .catch(() => undefined);
   const after = await pageText(page);
   const opened = /Page Inspection|Inspect pages and data|Page ID|Source Table|Table ID|Extension/i.test(after) && after !== before;
   const pageInspectionText = sanitizePageEvidenceText(

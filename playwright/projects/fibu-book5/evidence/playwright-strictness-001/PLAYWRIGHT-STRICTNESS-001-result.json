@@ -1,0 +1,39 @@
+{
+  "caseId": "PLAYWRIGHT-STRICTNESS-001-FIXEDASSETS-023-MIGRATION",
+  "generatedAt": "2026-06-16T12:00:09.568Z",
+  "mode": "technical-playwright-strictness-migration",
+  "migratedTest": "playwright/projects/fibu-book5/tests/fixedassets-023-fa-cnc-01-card-technical-diagnosis.spec.ts",
+  "changedPatterns": [
+    "open Fixed Assets list through openBcPageById for unfiltered context",
+    "open New Fixed Asset Card through clickBcAction with scopeText and expectedAfterClick",
+    "replace fixed waits after page open/New/Show more/Page Inspection with waitForPageText or expect.poll(pageText)"
+  ],
+  "observedActionResult": {
+    "helper": "clickBcAction",
+    "result": {
+      "clicked": true,
+      "role": "menuitem",
+      "index": 0,
+      "scopeUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5601&aadTenantId=b8fd10d1-3599-4721-8651-f95bd868aba7&startTraceId=c5b7765b80c84d3c81a463506b39189f&tid=868f7382-5e01-4c8d-8849-9a60c1fd31cd&runinframe=1",
+      "attempts": []
+    },
+    "fallbackUsed": false
+  },
+  "validation": {
+    "test": "npm run fibu:fixedassets:fa-cnc-01-card-technical-diagnosis passed",
+    "encoding": "npm run check:encoding passed",
+    "diffCheck": "git diff --check passed",
+    "helperLoadChecks": [
+      "npx tsx playwright/core/bc/actions.ts passed",
+      "npx tsx playwright/core/bc/dialogs.ts passed"
+    ]
+  },
+  "boundaries": [
+    "No setup change",
+    "No master data creation",
+    "No Fixed Asset save",
+    "No posting",
+    "No company switch"
+  ],
+  "note": "The rerun is validation for the strictness migration. Existing FIXEDASSETS-023 page-inspection evidence remains the fachliche diagnosis baseline and is not downgraded by this technical run."
+}
