@@ -6273,6 +6273,13 @@ Personalisieren als Diagnose:
 - Fuer dieses Buch gilt: Ein Screenshot muss sagen, ob er die Standardansicht, eine Nutzer-Personalisierung oder eine Profilanpassung zeigt. Der Personalisierungsmodus selbst ist ein Debug- und Lernbild, aber kein finaler Prozess-Screenshot.
 - Grenze: Personalisieren zeigt verfuegbare UI-Elemente. Es erklaert nicht die ganze Tabellen-, Posting-, Steuer- oder Berechtigungslogik.
 
+Seitenpruefung / Page Inspection als technische Diagnose:
+- Mit `Strg+Alt+F1` oeffnet Business Central die Seitenpruefung. Wenn die Tastenkombination vom Browser, Remote Desktop oder Windows abgefangen wird, fuehrt der Weg meist ueber `?` -> `Help & Support` -> `Inspect pages and data`.
+- Die Seitenpruefung zeigt technische Informationen zur aktuellen Page: Page Name, Page ID, Page Type, Source Table, Table ID, Felder, Filter und Hinweise auf Extensions.
+- Fuer Klickanleitungen ist das wichtig, weil der Autor nicht nur sieht, wie die Seite heisst, sondern welche BC-Page und Tabelle wirklich dahinterstehen.
+- Fuer Bugfixing hilft es bei Fragen wie: Bin ich auf der richtigen Page? Ist das ein ListPart? Kommt das Feld aus Standard-BC oder aus einer Extension? Ist ein Filter aktiv?
+- Grenze: Page Inspection ist technischer Kontext. Sie ersetzt kein finales Anwenderbild, keinen Buchungsnachweis und keine fachliche Erklaerung fuer Posten, Steuer oder Kontenfindung.
+
 ### Was muss man einstellen, damit Mitarbeiter Dinge finden?
 
 | Thema | Einstellung | Warum wichtig |

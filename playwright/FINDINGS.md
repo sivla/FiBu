@@ -56,6 +56,24 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 | Entscheidung | Buch, Pattern, Workaround-Journal, Coverage und Microsoft-Doc-Validation wurden aktualisiert. Kuenftige Screenshots muessen markieren, ob sie Standardansicht, Nutzer-Personalisierung oder Profilanpassung zeigen. |
 | Buchstelle | Kapitel 37 Glossar/Bedienlogik; querschnittlich fuer Klickanleitungen |
 
+## FIND-BC-UI-003 Page Inspection erklaert technische Page-/Tabellenkontexte
+
+| Feld | Wert |
+|---|---|
+| Status | erledigt als Projekt-/Buchregel ohne BC-Lauf |
+| Projekt | fibu-book5 |
+| Testfall | `GOVERNANCE-015-PAGE-INSPECTION-PATTERN` |
+| Screenshot | keiner; Quellen-/Pattern-Sync |
+| Evidence | `playwright/projects/fibu-book5/evidence/governance-015/README.md`, `playwright/projects/fibu-book5/evidence/governance-015/GOVERNANCE-015-PAGE-INSPECTION-PATTERN.md` |
+| BC-Seite | querschnittlich fuer Business-Central-Pages |
+| sichtbarer Text | nicht praktisch geprueft in diesem Lauf |
+| Elementtyp | Page Inspection / Seitenpruefung / technische Diagnose |
+| erste Hypothese | `Ctrl+Alt+F1` beziehungsweise Help & Support / `Inspect pages and data` hilft, Page Name, Page ID, Page Type, Source Table, Felder, Filter und Extensions fuer Klickpfade zu dokumentieren. |
+| Recherchequelle | Microsoft Learn: `Inspecting pages in Business Central`, `Keyboard shortcuts`, Developer-Doku `Inspecting pages` |
+| Testergebnis | Als Regel aufgenommen: Page Inspection ist technischer Kontext fuer Klickanleitungen und Bugfixing, aber kein finales Anwenderbild und kein fachlicher Buchungsnachweis. |
+| Entscheidung | Buch, Pattern, Workaround-Journal, Coverage und Microsoft-Doc-Validation wurden aktualisiert. Kuenftige unklare Page-/Feld-/Locator-Kontexte sollen Page Inspection nutzen, bevor Buchtext oder Helper groesser geaendert werden. |
+| Buchstelle | Kapitel 37 Glossar/Bedienlogik; querschnittlich fuer Klickanleitungen |
+
 ## FIND-BC-GOV-012 Company-Autonomie braucht Registry und Instanzgrenze
 
 | Feld | Wert |

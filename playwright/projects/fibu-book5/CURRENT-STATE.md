@@ -51,6 +51,8 @@ Update nach `FIXEDASSETS-016-MACHINES-FA-POSTING-GROUP-FIT`: Der enge UI-first S
 
 Update nach `GOVERNANCE-014-PERSONALIZATION-PATTERN`: Personalisieren ist jetzt als UI-Diagnose- und Klickanleitungsregel dokumentiert. Es gab keinen BC-Lauf, keine Setup-Aenderung, keine Buchung und keinen Company-Wechsel. Der Quellenabgleich haelt fest: Personalisieren kann ausgeblendete Page-Felder/-Spalten/-Aktionen sichtbar machen und bei Bugfixing helfen, beweist aber keine Tabellen-, Posting-, Steuer- oder Berechtigungslogik. Buchscreenshots muessen kuenftig markieren, ob sie Standardansicht, Nutzer-Personalisierung oder Profilanpassung zeigen. Der naechste fachliche Lauf bleibt `FIXEDASSETS-017-FA-CNC-01-SETUP-READINESS`.
 
+Update nach `GOVERNANCE-015-PAGE-INSPECTION-PATTERN`: Page Inspection / Seitenpruefung ist jetzt als technisches Diagnosewerkzeug dokumentiert. Es gab keinen BC-Lauf, keine Setup-Aenderung, keine Buchung und keinen Company-Wechsel. Der Quellenabgleich haelt fest: `Ctrl+Alt+F1` beziehungsweise Help & Support / `Inspect pages and data` oeffnet Page Inspection und hilft bei Page Name, Page ID, Page Type, Source Table, Feldern, Filtern und Extensions. Page Inspection ist Debug-/Evidence-Kontext, aber kein finales Anwenderbild und kein fachlicher Buchungsnachweis. Der naechste fachliche Lauf bleibt `FIXEDASSETS-017-FA-CNC-01-SETUP-READINESS`.
+
 ## Projektmission
 
 Das Projekt verfolgt vier gleichrangige Ziele:

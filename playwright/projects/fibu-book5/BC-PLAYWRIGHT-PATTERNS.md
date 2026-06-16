@@ -77,6 +77,15 @@ Diese Datei sammelt wiederverwendbare Muster aus belegten Laeufen. Sie ist keine
 - Personalisieren beweist keine Tabellen-, Posting- oder Steuerlogik. Es beweist nur, dass ein UI-Element fuer diese Page verfuegbar gemacht werden kann.
 - Personalisierungsmodus nur als Debug-/Lernbild fotografieren. Fuer Buchbilder danach in die normale Ansicht zurueckkehren und erneut pruefen, ob das fachliche Ziel sichtbar ist.
 
+## Page Inspection / Seitenpruefung
+
+- `Ctrl+Alt+F1` oeffnet laut Microsoft die Page Inspection. Alternativ: `?` / Help & Support / `Inspect pages and data`.
+- Page Inspection ist ein technisches Diagnosewerkzeug: Page Name, Page ID, Page Type, Source Table, Table ID, Felder, Filter und Extensions helfen zu klaeren, auf welcher BC-Page ein Klickpfad wirklich steht.
+- Fuer Klickanleitungen Page Inspection nutzen, wenn Seitenname, Page-ID, Tabellenbezug, Feldherkunft oder Extension-Einfluss unklar sind.
+- Page Inspection ist besonders nuetzlich fuer Bugfixing: falsche Page, falscher ListPart, andere Tabelle, Extension-Feld oder versteckter Filter lassen sich schneller erkennen.
+- Page-Inspection-Screenshots sind Debug-/Evidence-Bilder, aber keine finalen Prozessbilder. Fuer Buchbilder danach wieder die normale Anwendersicht zeigen.
+- Manche Browser, Remote-Desktop- oder Windows-Konfigurationen koennen `Ctrl+Alt+F1` abfangen. Dann den Help-&-Support-Pfad oder die BC-Suche nach `Page Inspection` / `Seitenpruefung` pruefen.
+
 ## FactBox und breite Layouts
 
 - FactBox einklappen, wenn sie Tabellenfelder verdeckt.

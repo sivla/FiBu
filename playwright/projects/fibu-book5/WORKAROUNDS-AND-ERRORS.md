@@ -33,6 +33,20 @@ Jeder Eintrag muss außerdem gegen die betroffene Buchstelle geprüft werden. We
 | Buchwirkung | Klickanleitungen muessen erklaeren, ob ein Screenshot die Standardansicht oder eine personalisierte/profilangepasste Ansicht zeigt. Ein Debug-Bild im Personalisierungsmodus ist nuetzlich, aber kein finales Buchbild fuer einen Prozessschritt. |
 | Kuenftige Regel | Wenn ein Feld, eine Spalte oder Aktion fehlt, nicht sofort von falschem Buchtext ausgehen. Erst UI-Sichtbarkeit pruefen, dann fachliche Ursache. Personalisieren beweist Sichtbarkeit, nicht Tabellen-, Posting- oder Steuerlogik. |
 
+## WK-BC-UI-003 Page Inspection als technische Diagnose fuer Page, Tabelle, Felder und Extensions
+
+| Feld | Wert |
+|---|---|
+| Status | als Projektregel aufgenommen; noch kein konkreter BC-Lauf in `RM-DEMO` |
+| Situation | Ein Klickpfad landet auf einer Seite, aber Seitenname, Page-ID, Tabellenbezug, Feldherkunft, Filter oder Extension-Einfluss sind unklar. |
+| Symptom | Der sichtbare Bildschirm sieht fachlich richtig aus, aber Playwright-Locators, Buchtext oder Screenshot-Erklaerung sind unsicher: falscher ListPart, falsche Page, anderer Tabellenkontext oder nicht erkannte Erweiterung. |
+| Sichtbarer Beleg | Quellenabgleich in `MICROSOFT-DOC-VALIDATION.md`; Pattern in `BC-PLAYWRIGHT-PATTERNS.md`; Governance-Evidence `playwright/projects/fibu-book5/evidence/governance-015/`. |
+| Ursache | Business Central-Seiten koennen Karten, Listen, Parts, FactBoxes, Dialoge und Extensions kombinieren. Die sichtbare Ueberschrift allein reicht nicht immer, um Page, Tabelle und Feldquelle sicher zu bestimmen. |
+| Warum BC so reagiert | BC trennt Page-Objekte, Source Tables, Felddefinitionen, Filter und Erweiterungen. Page Inspection macht diesen technischen Kontext sichtbar, ohne die fachliche Buchungslogik zu ersetzen. |
+| Loesung | Bei technischem Zweifel `Ctrl+Alt+F1` nutzen. Falls die Tastenkombination abgefangen wird, Help & Support / `Inspect pages and data` oder Suche nach `Page Inspection` / `Seitenpruefung` versuchen. Page Name, Page ID, Source Table, Feld/Filter und Extension-Hinweise als Evidence notieren. |
+| Buchwirkung | Das Buch sollte Page Inspection als Diagnosekapitel erklaeren: Es hilft Autoren und Consultants, Klickpfade technisch sauber zu dokumentieren. Finale Buchbilder bleiben normale Anwendersicht, Page-Inspection-Bilder sind Debug-/Evidence-Bilder. |
+| Kuenftige Regel | Wenn ein Locator, Feld oder Page-Kontext unklar ist, Page Inspection vor groesserem Refactoring oder falscher Buchkorrektur nutzen. Page Inspection beweist technischen Kontext, nicht automatisch fachliche Richtigkeit. |
+
 ## WK-BC-SHOT-001 Screenshot muss den behaupteten fachlichen Zielzustand sichtbar zeigen
 
 | Feld | Wert |
