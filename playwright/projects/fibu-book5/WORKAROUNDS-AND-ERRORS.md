@@ -19,6 +19,21 @@ Jeder relevante Fehler oder Workaround bekommt:
 
 Jeder Eintrag muss außerdem gegen die betroffene Buchstelle geprüft werden. Wenn der Workaround zeigt, dass der Buchtext zu knapp, falsch oder missverständlich ist, wird die Buchstelle im selben Arbeitsgang korrigiert oder als offene Buch-Fundstelle in `playwright/FINDINGS.md` markiert.
 
+## WK-BC-FA-029 Breite Caption-Suche fuellt falsche Anlagenkartenfelder
+
+| Feld | Wert |
+|---|---|
+| Status | technisch im Test verbessert; fachlicher Zielstammsatz bleibt blockiert |
+| Testfall | `FIXEDASSETS-029-FA-CNC-01-CONTROLLED-ASSET-SAVE` |
+| Situation | Der kontrollierte Save-Lauf sollte auf der `Fixed Asset Card` `FA-CNC-01`, Beschreibung, Klasse/Unterklasse, `HGB`, `MACHINES` und Nutzungsdauer setzen. |
+| Symptom | Visuell war die Anlagenkarte offen, aber die erste Implementierung schrieb mehrere Zielwerte in falsche Eingabefelder. Danach zeigte der Rerun `FA-CNC-01` bereits in der Liste und stoppte korrekt ohne Ueberschreiben. |
+| Sichtbarer Beleg | `playwright/projects/fibu-book5/img/fixedassets-029-010-target-already-visible.png`; Evidence `playwright/projects/fibu-book5/evidence/fixedassets-029/`. |
+| Ursache | Business Central haelt auf Karten viele Feldcaptions und Controls in gemeinsamen DOM-Bereichen. Eine Suche ueber Parent-/Ancestor-Text findet deshalb zwar die gesuchte Caption irgendwo im Umfeld, aber nicht zwingend das editierbare Control derselben sichtbaren Kartenzeile. |
+| Warum BC so reagiert | Die Anwenderoberflaeche ist als Karte eindeutig, der DOM-Kontext enthaelt aber FastTabs, Hintergrundliste, Infotexte, Lookup-Buttons und mehrere benachbarte Felder. Playwright muss daher enger scopen als ein Mensch visuell lesen wuerde. |
+| Loesung | `FIXEDASSETS-029` nutzt jetzt zeilen-/positionsbezogenes Card-Filling: Eine Caption wird nur mit einem sichtbaren editierbaren Control derselben Kartenzeile verbunden. Bestehende Zielcodes werden nicht ueberschrieben. |
+| Buchwirkung | Kapitel 21 darf `FA-CNC-01` noch nicht als fertigen Stammsatz zeigen. Kapitel 37/38 sollten diesen Fall als Debugging- und Screenshot-QA-Regel nutzen: Ein Bild oder Locator muss genau den behaupteten fachlichen Zustand zeigen. |
+| Kuenftige Regel | Bei BC-Cards keine breite Caption-/Ancestor-Suche fuer Werteingabe verwenden. Erst Page/Surface/Zeile beweisen, dann Wert setzen, danach sichtbare Kartenwerte pruefen. |
+
 ## WK-BC-UI-002 Personalisieren als Diagnose, wenn Felder, Spalten oder Aktionen fehlen
 
 | Feld | Wert |

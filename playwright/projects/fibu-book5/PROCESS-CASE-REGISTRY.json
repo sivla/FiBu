@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-16",
+  "updatedAt": "2026-06-16T19:17:48.569Z",
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
   "companyMode": "instance-bound-multi-company",
@@ -1377,6 +1377,45 @@
         "37"
       ],
       "nextStep": "FIXEDASSETS-029-FA-CNC-01-CONTROLLED-ASSET-SAVE"
+    },
+    {
+      "caseId": "FIXEDASSETS-029",
+      "process": "Fixed Assets",
+      "status": "blocked-target-already-exists-no-overwrite",
+      "mode": "ui-first-controlled-target-masterdata-save",
+      "company": "RM-DEMO",
+      "documents": [],
+      "screenshots": [
+        "playwright/projects/fibu-book5/img/fixedassets-029-010-target-already-visible.png"
+      ],
+      "evidence": [
+        "playwright/projects/fibu-book5/evidence/fixedassets-029/README.md",
+        "playwright/projects/fibu-book5/evidence/fixedassets-029/FIXEDASSETS-029-FA-CNC-01-CONTROLLED-ASSET-SAVE.md",
+        "playwright/projects/fibu-book5/evidence/fixedassets-029/FIXEDASSETS-029-result.json"
+      ],
+      "proves": [
+        "FA-CNC-01 was visible in the filtered Fixed Assets list before the rerun",
+        "the controlled save test stops instead of overwriting an existing target asset",
+        "broad caption-based card filling is unsafe and must be row/geometry scoped"
+      ],
+      "doesNotProve": [
+        "FA-CNC-01 has correct description/class/subclass/depreciation book/posting group values",
+        "asset acquisition or depreciation readiness",
+        "K30000 vendor",
+        "purchase invoice or acquisition posting",
+        "German final fixed-asset accounting"
+      ],
+      "reusablePatterns": [
+        "target master-data save tests must preflight existing target records and stop on existing target",
+        "card field writes must bind caption and editable control by visible row geometry, not broad ancestor text",
+        "a screenshot must show the claimed fields, not only the code column"
+      ],
+      "bookChapters": [
+        "21",
+        "37",
+        "38"
+      ],
+      "nextStep": "FIXEDASSETS-029-EXISTING-ASSET-READONLY-VERIFY"
     }
   ]
 }

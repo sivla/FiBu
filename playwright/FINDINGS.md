@@ -38,6 +38,26 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 
 ## Aktuelle Fundstellen
 
+## FIND-BC-FA-029 Sichtbarer Zielcode ist kein Anlagenstamm-Nachweis
+
+| Feld | Wert |
+|---|---|
+| Status | erledigt |
+| Projekt | fibu-book5 |
+| Testfall | `FIXEDASSETS-029-FA-CNC-01-CONTROLLED-ASSET-SAVE` |
+| Screenshot | `playwright/projects/fibu-book5/img/fixedassets-029-010-target-already-visible.png` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-029/README.md`, `playwright/projects/fibu-book5/evidence/fixedassets-029/FIXEDASSETS-029-result.json` |
+| BC-Seite | `Fixed Assets` in `RM-DEMO` / Sandbox `MCP_1_20260210` |
+| sichtbarer Text | `FA-CNC-01` in der gefilterten Anlagenliste |
+| Elementtyp | Liste / Stammdaten-Stop-Kriterium / Playwright-Feldmapping |
+| erste Hypothese | Nach dem Save-Gate koennte `FA-CNC-01` kontrolliert neu gespeichert werden. |
+| Recherchequelle | Projekt-Evidence `FIXEDASSETS-029`; kein externer Quellenbefund, weil der Lauf konkrete UI-/Persistenzwahrheit pruefte. |
+| Testergebnis | Der Rerun stoppte korrekt, weil `FA-CNC-01` bereits sichtbar war. Das Listenbild beweist nur den Zielcode, nicht Beschreibung, Anlagenklasse, Anlagenunterklasse, AfA-Buch `HGB`, Posting Group `MACHINES`, Zugang oder AfA. Ein vorheriger Versuch zeigte zudem, dass breite Caption-Suche auf Karten falsche Eingabefelder treffen kann; der Test nutzt jetzt zeilen-/positionsbezogenes Card-Filling. |
+| Entscheidung | Kapitel 21 und die Playwright-Regeln muessen bestehende Zielstammsaetze zuerst read-only klassifizieren. Kein Ueberschreiben und kein Folgeprozess, solange die Anlage nicht fachlich validiert ist. |
+| Buchstelle | Kapitel 21 Anlagen; Kapitel 37 Debugging und technische Nachweisfuehrung; Kapitel 38 Screenshot-QA |
+
+Fuer Anfaenger ist der Befund wichtig, weil ein Code in einer Liste noch nicht beweist, dass ein Stammdatensatz fachlich fertig ist. Ein gutes Buchbild muss zeigen, was man wirklich pruefen will: bei Anlagen also mindestens Nummer, Beschreibung, Klasse/Unterklasse, AfA-Buch und Anlagenbuchungsgruppe oder klar markieren, dass nur ein Blocker/Stop-Kriterium gezeigt wird.
+
 ## FIND-BC-FA-028 Save-Gate trennt Anlagenstamm von Anlagenbuchung
 
 | Feld | Wert |

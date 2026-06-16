@@ -16,6 +16,8 @@ Ein Screenshot ist erst buchfaehig, wenn er:
 
 Zusaetzliche harte Regel nach `FIXEDASSETS-012`: Das Bild muss sichtbar machen, was der Leser in diesem Schritt lernen oder pruefen soll. Das ist nicht immer nur ein Code. Je nach Klickanleitung kann es ein Code, Name, Betrag, Waehrung, Steuer, Status, Buchungsoption, Postenart, Konto, Dimension, Filter, Fehlermeldung, Reportzeile, Dialogauswahl oder Pflichtfeld sein. Wenn genau dieser fachliche Zielzustand nicht im Bild sichtbar ist, ist der Screenshot nur Labor-/Kontext-Evidence und nicht buchfaehig.
 
+Ergaenzung nach `FIXEDASSETS-029`: Ein Code in einer Liste ist nur dann ein Buchbild, wenn genau die Existenz dieses Codes das Lernziel ist. Fuer Stammdatenkarten reicht der Code allein nicht. Ein Anlagenbild muss zum Beispiel auch die fachlich behaupteten Felder wie Beschreibung, Klasse/Unterklasse, AfA-Buch, Posting Group oder relevante Pflichtfelder zeigen; sonst ist es nur Stop-/Blocker-Evidence.
+
 Laborbilder duerfen abweichen. Dann muessen Abweichung, Ursache und Buchwirkung dokumentiert sein.
 
 Zu jedem automatisiert erzeugten O2C-Screenshot schreibt der Screenshot-Helper eine Metadatendatei unter `evidence/<testfall>/...screenshot.json`. Diese Datei enthaelt Status, Buchnutzung, Zweck, erwartete Werte im BC-Seitentext und bekannte Grenzen. Die PNG-Datei allein ist deshalb nicht mehr die ganze Wahrheit.

@@ -46,6 +46,7 @@ Diese Datei sammelt wiederverwendbare Muster aus belegten Laeufen. Sie ist keine
 - Nach `FIXEDASSETS-026` ist das Muster fuer leere Karten: zuerst Kartenkontext beweisen, dann aktive Controls vollstaendig mappen, danach separat Werte/Lookups pruefen. Eine erfolgreiche Control-Recovery ist keine Speicherfreigabe und kein Nachweis fuer `HGB`, `MACHINES` oder `FA-CNC-01`.
 - Nach `FIXEDASSETS-027` ist klar: New-Card-Lookup-Preflight ist nicht automatisch no-save. Tests muessen neben der Zielnummer auch automatisch erzeugte Nummern erkennen, Cleanup-Evidence sichern oder vor dem Lauf ein ausdrueckliches Save-Gate einholen.
 - Nach `FIXEDASSETS-028` gilt fuer Anlagen: Der naechste Lauf ist kein weiterer Preflight, sondern ein kontrollierter Zielstammdaten-Save. Das Testziel muss enger sein als der Gesamtprozess: erst `FA-CNC-01` speichern und visuell pruefen, danach spaeter separat Kreditor, Einkauf, Zugang, AfA und Postenspur.
+- Nach `FIXEDASSETS-029` gilt zusaetzlich: Ein sichtbarer Zielcode in der Liste ist ein Stop-Kriterium, aber kein fachlicher Stammdatenbeweis. Kartenfelder duerfen nicht ueber breite Ancestor-/Parent-Texte gefuellt werden, weil Business-Central-Cards viele Feldcaptions im gleichen DOM-Bereich enthalten. Fuer Werteingabe muss die Caption mit einem editierbaren Control derselben sichtbaren Kartenzeile verknuepft werden. Wenn ein Zielcode bereits existiert, wird nicht ueberschrieben; der naechste Lauf ist read-only Detailklassifizierung.
 
 ## Action Bar
 
