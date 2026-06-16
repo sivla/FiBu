@@ -37,7 +37,7 @@ Diese Datei sammelt wiederverwendbare Muster aus belegten Laeufen. Sie ist keine
 - Eine Karte beweist nur dann einen Zielstammsatz, wenn der Zielcode und relevante Felder sichtbar sind.
 - Ein leeres Formular ist Formular-Preflight, kein Stammdaten-Nachweis.
 - Zielobjekt-Nachweise brauchen konkrete sichtbare Werte, zum Beispiel `D10000`, `RM-M100`, `FA-CNC-01`, `K30000`.
-- `FIXEDASSETS-018` ist das aktuelle Anlagen-Beispiel: Die gefilterte Liste beweist, dass `FA-CNC-01` fehlt; die leere `Fixed Asset Card` beweist Kartenfelder/Pflichtfelder, aber nicht den Zielstammsatz. `FIXEDASSETS-019` haelt fest: Vor dem Speichern eines Stammsatzes muessen die relevanten Setup-Referenzfelder sichtbar/setzbar gemappt sein, hier `HGB` und `MACHINES`. Ein spaeteres Buchbild fuer die Anlage muss `FA-CNC-01`, Beschreibung und relevante Setupwerte sichtbar zeigen.
+- `FIXEDASSETS-018` ist das aktuelle Anlagen-Beispiel: Die gefilterte Liste beweist, dass `FA-CNC-01` fehlt; die leere `Fixed Asset Card` beweist Kartenfelder/Pflichtfelder, aber nicht den Zielstammsatz. `FIXEDASSETS-019` haelt fest: Vor dem Speichern eines Stammsatzes muessen die relevanten Setup-Referenzfelder sichtbar/setzbar gemappt sein, hier `HGB` und `MACHINES`. `FIXEDASSETS-020` zeigt danach: kartennahe `Mehr anzeigen`-Kontrollen koennen `Depreciation Book Code` und `Posting Group` sichtbar machen; das ist Feldpfad-Evidence, aber noch kein Wertebeweis fuer `FA-CNC-01`, `HGB` oder `MACHINES`. Ein spaeteres Buchbild fuer die Anlage muss Zielcode, Beschreibung und relevante Setupwerte sichtbar zeigen.
 
 ## Action Bar
 
@@ -47,6 +47,7 @@ Diese Datei sammelt wiederverwendbare Muster aus belegten Laeufen. Sie ist keine
 - `REPORTING-013` ist der belegte Rejected Path: ungescopter `New/Neu` kann in den Role-Center-Kontext fallen.
 - `FIXEDASSETS-012` zeigt nur leere Karten/Template-Dialoge; das ist kein Zielcode-Beweis.
 - `FIXEDASSETS-016` zeigt das Gegenmuster: Auf der `FA Posting Group Card` ist `New/Neu` als titelbasierter Icon-Button sichtbar (`Erstellen Sie einen neuen Eintrag.`), nicht zwingend als Textlabel. Der Helper muss solche titelbasierten Aktionskandidaten bewerten und danach den Zielzustand sichtbar pruefen.
+- `FIXEDASSETS-020` zeigt ein zweites Scoping-Muster: `Mehr anzeigen` nicht als jedes `aria-expanded=false` klicken. Nur explizite, kartennahe `Mehr anzeigen`-/`Show more`-Labels mit Feldkontext sind akzeptabel; globale Navigation, Agentenleisten oder Shell-Controls gehoeren nicht zum Kartenfeldmapping.
 
 ## Post / Preview
 
@@ -114,6 +115,7 @@ Diese Datei sammelt wiederverwendbare Muster aus belegten Laeufen. Sie ist keine
 - Screenshot-Typen: Navigation, Setup Before/After, Preflight, Posting Dialog, Posted Document, Ledger Trace, Report, Error, Rejected Path, Book Candidate.
 - Buchkandidat nur, wenn das sichtbare Lernziel im Bild erkennbar ist.
 - `FIXEDASSETS-016` ist ein positives Beispiel: Das Nachherbild zeigt nicht nur den Seitenkontext, sondern `MACHINES` plus `12210`/`82000` im sichtbaren Kartenbereich.
+- `FIXEDASSETS-020` ist ein gutes Zwischenbild: Es beweist sichtbare Anlagenkartenfelder nach `Mehr anzeigen`, aber nicht die fertige Anlage. Solche Bilder muessen als Feldmapping-/Preflight-Kandidaten markiert werden.
 - Metadaten muessen Status, Zweck, sichtbares Ziel, Labor/final-Grenze, Buchwirkung und Limitationen nennen.
 - `pageText()` kann Screenshot-Kontext absichern, ersetzt aber keinen visuellen Beweis.
 

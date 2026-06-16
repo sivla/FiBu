@@ -2620,6 +2620,8 @@ Bevor du die folgende Schrittfolge ausfuehrst, pruefst du im Labor zuerst die Vo
 
 Im aktuellen `RM-DEMO`-Stand ist diese Voraussetzung noch nicht erfuellt. Die folgende Schrittfolge ist deshalb das fachliche Zielbild fuer den naechsten freigegebenen Manufacturing-Lauf, nicht der bereits belegte Laborstand.
 
+Nachweis nach `FIXEDASSETS-020`: Der UI-first Lauf hat die Anlagenkarte ohne Speichern erneut geoeffnet und nur kartennahe `Mehr anzeigen`-Steuerelemente genutzt. Sichtbar erreichbar sind jetzt die fachlichen Eingabepfade `No.`, `Description`, `FA Class Code`, `FA Subclass Code`, `Depreciation Book Code` und `Posting Group`. Das ist ein wichtiger Zwischenbeweis fuer die Klickanleitung: Der Leser sieht, wo AfA-Buch und Anlagenbuchungsgruppe auf der Karte gepflegt werden. Es ist aber noch kein Stammdatennachweis, weil die Zielwerte `FA-CNC-01`, `CNC Maschine FRA`, `HGB` und `MACHINES` im Screenshot noch nicht gesetzt sind. Der naechste Schritt ist deshalb eine enge Setup-Fit-Entscheidung fuer die Anlagenkarte, nicht Einkaufsrechnung, Zugang oder AfA.
+
 ### Schritt-für-Schritt
 
 1. Öffne `Alt+Q` und suche `Planungsarbeitsblatt (Planning Worksheet)`.
@@ -3805,7 +3807,7 @@ Status vor dem ersten bebilderten Anlagenlauf:
 
 | Prüfpunkt | Buchziel | RM-DEMO-Laborbefund | Konsequenz |
 |---|---|---|---|
-| Anlage | `FA-CNC-01` | im Listen-/Seitentext vor `Neu` nicht sichtbar; leere `Fixed Asset Card` als Preflight sichtbar | Anlagenkarte erst nach Feldmapping-/Setup-Fit-Entscheidung speichern; Listenbild nicht als harten Nicht-Existenz-Beweis und Preflight-Bild nicht als fertigen Stammsatz verwenden |
+| Anlage | `FA-CNC-01` | im Listen-/Seitentext vor `Neu` nicht sichtbar; leere `Fixed Asset Card` als Preflight sichtbar; nach `FIXEDASSETS-020` sind die Feldpfade fuer `No.`, `Description`, `FA Class Code`, `FA Subclass Code`, `Depreciation Book Code` und `Posting Group` nach `Mehr anzeigen` sichtbar | Anlagenkarte erst nach Setup-Fit-Entscheidung speichern; `FIXEDASSETS-020` beweist Feldsichtbarkeit, aber noch keine Zielwerte `FA-CNC-01`, `HGB` oder `MACHINES` |
 | AfA-Buch | `HGB` | `HGB` sichtbar nach `FIXEDASSETS-014`; `COMPANY = Company Book` bleibt CRONUS-Referenz | deutscher HGB-Endstand offen; Labor-Fit ist kein Anlagenzugang |
 | Anlagenklasse | `MASCHINE`/`CNC` | `FINANCIAL`, `INTANGIBLE`, `TANGIBLE` sichtbar | Zielklassifizierung muss später bewusst eingerichtet oder auf vorhandene Klasse gemappt werden |
 | Anlagenbuchungsgruppe | `MACHINES` | sichtbar nach `FIXEDASSETS-016`; Nachherbild zeigt `MACHINES`, `12210` und `82000` als CRONUS-Laboralias von `EQUIPMENT` | kein deutscher Kontenplan; Setup-Baustein sichtbar, aber noch keine Anlage und keine Buchung |

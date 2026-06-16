@@ -38,6 +38,26 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 
 ## Aktuelle Fundstellen
 
+## FIND-BC-FA-020 Anlagenkartenfelder sind nach kartennahem Mehr anzeigen sichtbar
+
+| Feld | Wert |
+|---|---|
+| Status | erledigt |
+| Projekt | fibu-book5 |
+| Testfall | `FIXEDASSETS-020-FA-CNC-01-CARD-MORE-FIELDS-MAPPING` |
+| Screenshot | `playwright/projects/fibu-book5/img/fixedassets-020-020-card-more-fields-mapping.png` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-020/README.md`, `playwright/projects/fibu-book5/evidence/fixedassets-020/FIXEDASSETS-020-FA-CNC-01-CARD-MORE-FIELDS-MAPPING.md`, `playwright/projects/fibu-book5/evidence/fixedassets-020/FIXEDASSETS-020-result.json` |
+| BC-Seite | `Fixed Asset Card` |
+| sichtbarer Text | `No.`, `Description`, `FA Class Code`, `FA Subclass Code`, `Depreciation Book Code`, `Posting Group`; nicht sichtbar gesetzt: `FA-CNC-01`, `CNC Maschine FRA`, `HGB`, `MACHINES` |
+| Elementtyp | Karte / `Mehr anzeigen` / Feldmapping / Screenshot-QA |
+| erste Hypothese | Die leere Anlagenkarte koennte die relevanten Setup-Referenzfelder erst nach dem Aufklappen der FastTabs zeigen. |
+| Recherchequelle | Projekt-Evidence `FIXEDASSETS-020`; keine neue Microsoft-Learn-Recherche, weil der Lauf eine konkrete UI-Sichtbarkeit pruefte. |
+| Testergebnis | Der Lauf klickte nur kartennahe `Mehr anzeigen`-Steuerelemente in `General` und `Depreciation Book`. Danach sind die benoetigten Feldpfade sichtbar. Der Screenshot ist ein guter Feldmapping-Kandidat, aber kein Stammdatennachweis. |
+| Entscheidung | Kapitel 21, Audit, State, Coverage, Matrix, Gates, Screenshot-QA, Patterns und Action Map wurden auf `FIXEDASSETS-021-FA-CNC-01-SETUP-FIT-DECISION` als naechsten Schritt synchronisiert. |
+| Buchstelle | Kapitel 21 Anlagen |
+
+Fuer Anfaenger ist das wichtig, weil ein Feldbereich nicht dasselbe ist wie ein gesetzter Wert. Erst wenn `Depreciation Book Code` und `Posting Group` sichtbar sind, kann man sinnvoll erklaeren, wo `HGB` und `MACHINES` spaeter gepflegt werden. Das Bild zeigt den Ort, aber noch nicht die fertige Anlage.
+
 ## FIND-BC-FA-019 Setup-Felder muessen vor dem Speichern sichtbar gemappt sein
 
 | Feld | Wert |

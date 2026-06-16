@@ -10,8 +10,8 @@
   "companyRegistry": "playwright/projects/fibu-book5/COMPANY-REGISTRY.json",
   "dataBasis": "CRONUS USA",
   "activeArea": "fixedassets",
-  "lastCompletedRun": "FIXEDASSETS-019-FA-CNC-01-CARD-FIELD-MAPPING-DECISION",
-  "lastWorkType": "field-mapping-decision-no-bc-run",
+  "lastCompletedRun": "FIXEDASSETS-020-FA-CNC-01-CARD-MORE-FIELDS-MAPPING",
+  "lastWorkType": "ui-first-card-more-fields-mapping",
   "postedInLastRun": false,
   "latestPostedDocuments": {
     "o2c": {
@@ -139,6 +139,40 @@
         "noSave": true,
         "noSetupChangeInDecisionRun": true,
         "noPosting": true
+      },
+      "assetCardMoreFieldsMapping": {
+        "caseId": "FIXEDASSETS-020",
+        "targetFixedAssetNo": "FA-CNC-01",
+        "newCardOpened": true,
+        "showMoreClicks": [
+          "General",
+          "Depreciation Book"
+        ],
+        "visibleFields": [
+          "No.",
+          "Description",
+          "FA Class Code",
+          "FA Subclass Code",
+          "Blocked",
+          "Depreciation Book Code",
+          "Posting Group",
+          "Depreciation Method",
+          "Depreciation Starting Date",
+          "Depreciation Ending Date",
+          "Book Value",
+          "Depreciation Table Code"
+        ],
+        "targetValuesVisible": {
+          "FA-CNC-01": false,
+          "CNC Maschine FRA": false,
+          "HGB": false,
+          "MACHINES": false
+        },
+        "decision": "field-paths-visible-but-target-values-not-set",
+        "nextAllowedCase": "FIXEDASSETS-021-FA-CNC-01-SETUP-FIT-DECISION",
+        "noSave": true,
+        "noSetupChange": true,
+        "noPosting": true
       }
     }
   },
@@ -180,6 +214,7 @@
     "no repeat FIXEDASSETS-017-FA-CNC-01-SETUP-READINESS without a new asset-card readiness delta",
     "no repeat FIXEDASSETS-018-FA-CNC-01-CARD-PREFLIGHT without a new card-field or visibility delta",
     "no repeat FIXEDASSETS-019-FA-CNC-01-CARD-FIELD-MAPPING-DECISION without a new card-field mapping delta",
+    "no repeat FIXEDASSETS-020-FA-CNC-01-CARD-MORE-FIELDS-MAPPING without a new fixed-asset-card field or visual QA delta",
     "no K30000, purchase invoice, acquisition or depreciation before FA-CNC-01 setup-fit decision is complete"
   ],
   "openGates": [
@@ -249,14 +284,14 @@
     },
     "nextCompanyEvidenceStep": "Only with a new documented company action purpose; otherwise continue with process/setup work."
   },
-  "nextBestStepWithoutApproval": "FIXEDASSETS-020-FA-CNC-01-CARD-MORE-FIELDS-MAPPING: open the Fixed Asset Card UI-first without saving, use More/Mehr anzeigen and diagnosis only as needed, and prove whether HGB and MACHINES are visibly reachable before any FA-CNC-01 setup fit. No K30000, no purchase invoice, no acquisition, no depreciation and no posting.",
+  "nextBestStepWithoutApproval": "FIXEDASSETS-021-FA-CNC-01-SETUP-FIT-DECISION: decide from FIXEDASSETS-020 evidence whether a narrow UI-first setup fit for FA-CNC-01 may be prepared. Field paths No., Description, Depreciation Book Code and Posting Group are visible, but target values FA-CNC-01, CNC Maschine FRA, HGB and MACHINES were not set. No K30000, no purchase invoice, no acquisition, no depreciation and no posting.",
   "nextBestStepWithApproval": {
     "payments": "Nur mit neuem Gate: weitere Zahlung, Kreditorenzahlung oder Bankabstimmung. PAYMENTS-011 darf nicht wiederholt werden.",
     "companies": "Company-Aktionen sind innerhalb MCP_1_20260210 erlaubt, aber nur mit COMPANY-REGISTRY-Eintrag, dokumentiertem Zweck/Risiko/Evidence-Plan und sofortigem State-/Evidence-Sync. Naechster Company-Schritt ist read-only Enumeration, keine Anlage.",
     "reporting": "Further Analysis View setup needs a new explicit gate and a scoped New/Card action proof. REPORTING-013 consumed the GOVERNANCE-007 gate and rejected setup because unscoped New/Neu is globally ambiguous in BC.",
     "tax": "TAX-002-DE-VAT-FIT: only with explicit approval; UI-first VAT Business/Product Posting Groups, VAT Posting Setup, document preview and VAT Entries proof; no German final claim until proven.",
     "compliance": "COMPLIANCE-002-EINVOICE-SETUP: E-Rechnungs-/E-Documents-/Versandprofil-/Change-Log-Setup nur mit Freigabe, UI-first Klickpfad, Validierungs-/Versand-/Auditnachweis und klarer Labor-/DE-Trennung.",
-    "fixedAssets": "After FIXEDASSETS-019, FA-CNC-01 is still not saved. The project decided that the empty card preflight is not enough for a setup fit because HGB and MACHINES are not yet visibly/settable mapped on the Fixed Asset Card. K30000 vendor setup, purchase invoice, acquisition, depreciation and fixed-asset posting remain locked until card field mapping proves the setup references.",
+    "fixedAssets": "After FIXEDASSETS-020, FA-CNC-01 is still not saved. The Fixed Asset Card shows field paths for Depreciation Book Code and Posting Group after Mehr anzeigen, but target values HGB and MACHINES were not set. Next step is a setup-fit decision, not K30000, purchase invoice, acquisition, depreciation or posting.",
     "security": "SECURITY-002-USER-PERMISSION-SETUP: Benutzer-/Berechtigungs-/Profil-/Security-Group-/User-Setup-/Job-Queue-/Change-Log-Aenderungen nur mit Freigabe, UI-first Klickpfad, Rechte-/SoD-Matrix und Audit-/Review-Evidence.",
     "migration": "MIGRATION-002-CONFIGURATION-PACKAGES-IMPORT: Configuration Packages, Datenimport, Opening-Balance-Journale oder Cutover-Ausfuehrung nur mit Freigabe, UI-first Klickpfad, Abstimmprotokoll und Rueckfallregel.",
     "integrations": "INTEGRATIONS-002-SETUP-OR-CONNECTOR: Extension, AppSource-App, API/Web Service, Connector, Power Platform, Power BI, Job Queue oder produktiven Integrationslauf nur mit Freigabe, UI-first Klickpfad, UAT, Rollen/Berechtigungen, Fehlerfall, Rollback, Monitoring und Support Owner.",
@@ -324,6 +359,7 @@
     "Do not create K30000, purchase invoice, acquisition or depreciation before FA-CNC-01 card preflight is complete.",
     "Do not repeat FIXEDASSETS-018-FA-CNC-01-CARD-PREFLIGHT without a new card-field, visual QA or setup-fit decision delta.",
     "Do not repeat FIXEDASSETS-019-FA-CNC-01-CARD-FIELD-MAPPING-DECISION without a new card-field mapping delta.",
+    "Do not repeat FIXEDASSETS-020-FA-CNC-01-CARD-MORE-FIELDS-MAPPING without a new fixed-asset-card field or visual QA delta.",
     "Do not treat fixedassets-018-030-fixed-asset-card-preflight.png as a target master-data proof; it shows an empty card, not FA-CNC-01.",
     "Do not repeat GOVERNANCE-014-PERSONALIZATION-PATTERN without a new missing-field, personalization or profile-customization evidence delta.",
     "Do not repeat GOVERNANCE-015-PAGE-INSPECTION-PATTERN without a new page-inspection, locator, page/table/field or extension-context evidence delta.",
@@ -404,7 +440,8 @@
     "GOVERNANCE-018 stored AUTOPILOT-PROMPT-V6.2.md without a BC run. V6.2 adds state-driven run planning, change types, update matrix, single source of truth, self-healing/retry and definition of done. Next fachlicher step remains FIXEDASSETS-017.",
     "FIXEDASSETS-017 decided without a BC run that the next narrow layer after HGB and MACHINES is FA-CNC-01 fixed asset card preflight. K30000, purchase invoice, acquisition, depreciation and posting remain locked until the asset card layer is understood and evidenced.",
     "FIXEDASSETS-018 ran UI-first in RM-DEMO. The Fixed Assets list/page text check shows FA-CNC-01 is not visible before New, but the screenshot is only a limited list-context proof, not a clean empty-filter proof. A scoped New action opened the empty Fixed Asset Card; visible preflight fields include No., Description, FA Class Code, FA Subclass Code, Depreciation Method, Depreciation Starting/Ending Date and Book Value 0,00. No save, no setup change, no K30000, no purchase invoice, no acquisition, no depreciation, no posting and no company switch. Next no-approval step is FIXEDASSETS-019-FA-CNC-01-CARD-FIELD-MAPPING-DECISION.",
-    "FIXEDASSETS-019 decided without a BC run that FIXEDASSETS-018 is not sufficient for a safe FA-CNC-01 setup fit. The empty card proves basic fields and the Depreciation Book area, but not the exact visible/settable HGB and MACHINES fields on the asset card. No setup change, no master data, no K30000, no purchase invoice, no acquisition, no depreciation, no posting and no company switch. Next no-approval step is FIXEDASSETS-020-FA-CNC-01-CARD-MORE-FIELDS-MAPPING."
+    "FIXEDASSETS-019 decided without a BC run that FIXEDASSETS-018 is not sufficient for a safe FA-CNC-01 setup fit. The empty card proves basic fields and the Depreciation Book area, but not the exact visible/settable HGB and MACHINES fields on the asset card. No setup change, no master data, no K30000, no purchase invoice, no acquisition, no depreciation, no posting and no company switch. Next no-approval step is FIXEDASSETS-020-FA-CNC-01-CARD-MORE-FIELDS-MAPPING.",
+    "FIXEDASSETS-020 ran UI-first in RM-DEMO. The scoped New action opened the empty Fixed Asset Card; exactly the card-local Mehr anzeigen controls for General and Depreciation Book were expanded. Visible fields now include No., Description, FA Class Code, FA Subclass Code, Blocked, Depreciation Book Code and Posting Group. Target values FA-CNC-01, CNC Maschine FRA, HGB and MACHINES were not set or visible as values. No save, no setup change, no K30000, no purchase invoice, no acquisition, no depreciation, no posting and no company switch. Next no-approval step is FIXEDASSETS-021-FA-CNC-01-SETUP-FIT-DECISION."
   ],
   "currentPrompt": {
     "name": "Codex Superautopilot Prompt V6.2",

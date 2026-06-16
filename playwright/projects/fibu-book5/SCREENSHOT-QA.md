@@ -214,6 +214,12 @@ Nicht noetig ist ein Screenshot, wenn er nur eine technische Zwischenstation ohn
 | `playwright/projects/fibu-book5/img/fixedassets-018-010-fixed-assets-list-target-not-visible.png` | begrenzter Labor-Preflight-Kandidat | Die Anlagenliste ist sichtbar; `FA-CNC-01` ist im sichtbaren Ausschnitt nicht zu sehen. Das Bild zeigt keinen sauber leeren Filterzustand und beweist deshalb nicht allein die Nicht-Existenz des Zielstammsatzes. | Als Kontext-/Preflightbild geeignet. Nicht als harter fehlender-Stammsatz-Beweis, Anlagenkarte oder Aktivierungsnachweis verwenden. |
 | `playwright/projects/fibu-book5/img/fixedassets-018-030-fixed-asset-card-preflight.png` | guter Labor-Karten-Preflight, kein Zielstammdatenbild | Die leere `Fixed Asset Card` zeigt `No.`, `Description`, `FA Class Code`, `FA Subclass Code`, AfA-Felder, `Depreciation Method = Straight-Line` und `Book Value = 0,00`. `FA-CNC-01`, `CNC Maschine FRA`, `HGB` und `MACHINES` sind nicht gesetzt/sichtbar. | Als Buch-/Lernbild fuer Pflichtfelder und Kartenaufbau geeignet. Nicht als Beweis fuer angelegte Anlage verwenden; der spaetere Ziel-Screenshot muss `FA-CNC-01` und die relevanten Werte sichtbar zeigen. |
 
+## `FIXEDASSETS-020` Screenshot Review
+
+| Screenshot | Bewertung | Befund | Entscheidung |
+|---|---|---|---|
+| `playwright/projects/fibu-book5/img/fixedassets-020-020-card-more-fields-mapping.png` | guter Labor-Feldmapping-Kandidat, kein Zielstammdatenbild | Die leere `Fixed Asset Card` zeigt nach kartennahem `Mehr anzeigen` die Feldpfade `No.`, `Description`, `FA Class Code`, `FA Subclass Code`, `Depreciation Book Code` und `Posting Group`. Die Zielwerte `FA-CNC-01`, `CNC Maschine FRA`, `HGB` und `MACHINES` sind nicht gesetzt. | Als Buch-/Lernbild fuer Feldsichtbarkeit und die Bedeutung von `Mehr anzeigen` geeignet. Nicht als angelegte Anlage, Setup-Fit, Zugang, AfA oder deutscher Finalnachweis verwenden. Naechstes Bild muss die bewusst gesetzten Zielwerte sichtbar zeigen. |
+
 ## `P2P-001` Screenshot Review
 
 | Screenshot | Bewertung | Befund | Entscheidung |
