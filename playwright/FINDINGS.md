@@ -38,6 +38,26 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 
 ## Aktuelle Fundstellen
 
+## FIND-BC-FA-029B `FA-CNC-01` existiert, ist aber als Anlagenstamm leer
+
+| Feld | Wert |
+|---|---|
+| Status | erledigt als Read-only-Blocker; Korrektur-Gate offen |
+| Projekt | fibu-book5 |
+| Testfall | `FIXEDASSETS-029-EXISTING-ASSET-READONLY-VERIFY` |
+| Screenshot | `playwright/projects/fibu-book5/img/fixedassets-029-existing-asset-readonly-010-filtered-list.png`, `playwright/projects/fibu-book5/img/fixedassets-029-existing-asset-readonly-020-existing-card-readonly.png` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-029-existing-asset-readonly/README.md`, `playwright/projects/fibu-book5/evidence/fixedassets-029-existing-asset-readonly/FIXEDASSETS-029-existing-readonly-result.json`, `playwright/projects/fibu-book5/evidence/fixedassets-029-existing-asset-readonly/030-card-field-values.json` |
+| BC-Seite | `Fixed Assets` / `Fixed Asset Card` in `RM-DEMO` / Sandbox `MCP_1_20260210` |
+| sichtbarer Text | `FA-CNC-01`; auf der Karte fehlen Beschreibung, `FA Class Code`, `FA Subclass Code`, `Depreciation Book Code`, `Posting Group` und AfA-Daten; `Book Value = 0,00` |
+| Elementtyp | Stammdatenkarte / Read-only-Klassifizierung / Screenshot-QA / Anlagen-Gate |
+| erste Hypothese | Der vorhandene Zielcode koennte bereits der fachlich nutzbare Anlagenstamm fuer Kapitel 21 sein. |
+| Recherchequelle | Projekt-Evidence `FIXEDASSETS-029-EXISTING-ASSET-READONLY-VERIFY`; kein externer Quellenbefund, weil konkrete UI-/Persistenzwahrheit geprueft wurde. |
+| Testergebnis | Der Lauf oeffnete die vorhandene Karte read-only und aenderte nichts. Der Zielcode existiert, aber nur `No.` passt. Alle fachlich relevanten Zielwerte fuer die Anlagenbuchhaltung sind nicht als Kartenwerte sichtbar. |
+| Entscheidung | Kein `K30000`, keine Einkaufsrechnung, kein Zugang, keine AfA und keine Anlagenbuchung. Naechster Schritt ist ein Korrektur-Gate: vorhandene Karte UI-first korrigieren oder neuen Zielcode waehlen. |
+| Buchstelle | Kapitel 21 Anlagen; Kapitel 37 Debugging und technische Nachweisfuehrung; Kapitel 38 Screenshot-QA |
+
+Fuer Anfaenger ist der Befund zentral: Eine vorhandene Nummer ist nicht dasselbe wie ein eingerichteter Anlagenstammsatz. Das Buchbild muss die Felder zeigen, die fachlich pruefbar sein sollen. Ein Bild mit leerer Karte ist hier kein Zielbild, sondern ein Lern- und Fehlerbild.
+
 ## FIND-BC-FA-029 Sichtbarer Zielcode ist kein Anlagenstamm-Nachweis
 
 | Feld | Wert |

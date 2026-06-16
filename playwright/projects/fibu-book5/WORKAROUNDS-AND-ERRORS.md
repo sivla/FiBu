@@ -34,6 +34,22 @@ Jeder Eintrag muss außerdem gegen die betroffene Buchstelle geprüft werden. We
 | Buchwirkung | Kapitel 21 darf `FA-CNC-01` noch nicht als fertigen Stammsatz zeigen. Kapitel 37/38 sollten diesen Fall als Debugging- und Screenshot-QA-Regel nutzen: Ein Bild oder Locator muss genau den behaupteten fachlichen Zustand zeigen. |
 | Kuenftige Regel | Bei BC-Cards keine breite Caption-/Ancestor-Suche fuer Werteingabe verwenden. Erst Page/Surface/Zeile beweisen, dann Wert setzen, danach sichtbare Kartenwerte pruefen. |
 
+## WK-BC-FA-029B Bestehender Anlagen-Code ist keine fachlich vollstaendige Anlage
+
+| Feld | Wert |
+|---|---|
+| Status | Blocker read-only bewiesen; Korrektur-Gate offen |
+| Testfall | `FIXEDASSETS-029-EXISTING-ASSET-READONLY-VERIFY` |
+| Situation | Nach dem gestoppten Save-Lauf wurde `FA-CNC-01` bewusst read-only aus der gefilterten `Fixed Assets`-Liste geoeffnet, um zu klaeren, ob der vorhandene Zielcode fachlich nutzbar ist. |
+| Symptom | Die Karte zeigt `No. = FA-CNC-01`, aber Beschreibung, `FA Class Code`, `FA Subclass Code`, `Depreciation Book Code`, `Posting Group`, AfA-Daten und `Book Value` sind leer beziehungsweise `0,00`. |
+| Sichtbarer Beleg | `playwright/projects/fibu-book5/img/fixedassets-029-existing-asset-readonly-010-filtered-list.png`, `playwright/projects/fibu-book5/img/fixedassets-029-existing-asset-readonly-020-existing-card-readonly.png`; Evidence `playwright/projects/fibu-book5/evidence/fixedassets-029-existing-asset-readonly/`. |
+| Ursache | Irgendwann existiert der Nummern-/Stammdatensatz `FA-CNC-01`, aber die fachlichen Pflicht-/Zielwerte des Buchfalls wurden nicht vollstaendig gesetzt oder nicht validiert. |
+| Warum BC so reagiert | Business Central kann einen Anlagenstammsatz mit Nummer speichern, ohne dass daraus schon ein buchungsfaehiger Zielstammsatz fuer Zugang, AfA und Postenspur wird. Die Nummer ist Identitaet, nicht fachlicher Setup-Fit. |
+| Loesung oder Laborgrenze | Nicht weiter mit `K30000`, Einkaufsrechnung, Zugang oder AfA. Naechster Schritt ist `FIXEDASSETS-030-FA-CNC-01-CORRECTION-GATE-DECISION`: vorhandene Karte UI-first korrigieren oder neuen Zielcode definieren. |
+| Pruefung nach Korrektur | Ein spaeterer Lauf muss in der normalen Kartenansicht Zielnummer, Beschreibung, Klasse/Unterklasse, `HGB`, `MACHINES`, AfA-Daten und erwarteten Buchwert-/Zugangsstatus sichtbar nachweisen, bevor ein Posting-Gate geoeffnet wird. |
+| Buchwirkung | Kapitel 21 braucht diesen Lernfall: Ein Code in der Liste ist nur ein Identifikator. Fuer eine bebilderte Anleitung muss das Bild die fachlichen Felder zeigen, die der Leser pruefen soll. |
+| Kuenftige Regel | Vor Folgeprozessen immer Kartenwerte read-only klassifizieren. Ein Screenshot ist nur Buchkandidat, wenn er das behauptete Lernziel sichtbar zeigt; sonst ist er Error-/Rejected-/Debug-Evidence. |
+
 ## WK-BC-UI-002 Personalisieren als Diagnose, wenn Felder, Spalten oder Aktionen fehlen
 
 | Feld | Wert |

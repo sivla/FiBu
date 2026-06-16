@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-16T19:17:48.569Z",
+  "updatedAt": "2026-06-16T19:31:24.297Z",
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
   "companyMode": "instance-bound-multi-company",
@@ -1416,6 +1416,51 @@
         "38"
       ],
       "nextStep": "FIXEDASSETS-029-EXISTING-ASSET-READONLY-VERIFY"
+    },
+    {
+      "caseId": "FIXEDASSETS-029-EXISTING-ASSET-READONLY-VERIFY",
+      "process": "Fixed Assets",
+      "status": "blocked-existing-target-values-incomplete-readonly",
+      "mode": "ui-first-existing-target-readonly-verification",
+      "company": "RM-DEMO",
+      "environment": "MCP_1_20260210",
+      "documents": [
+        "FA-CNC-01"
+      ],
+      "screenshots": [
+        "playwright/projects/fibu-book5/img/fixedassets-029-existing-asset-readonly-010-filtered-list.png",
+        "playwright/projects/fibu-book5/img/fixedassets-029-existing-asset-readonly-020-existing-card-readonly.png"
+      ],
+      "evidence": [
+        "playwright/projects/fibu-book5/evidence/fixedassets-029-existing-asset-readonly/README.md",
+        "playwright/projects/fibu-book5/evidence/fixedassets-029-existing-asset-readonly/FIXEDASSETS-029-EXISTING-ASSET-READONLY-VERIFY.md",
+        "playwright/projects/fibu-book5/evidence/fixedassets-029-existing-asset-readonly/FIXEDASSETS-029-existing-readonly-result.json",
+        "playwright/projects/fibu-book5/evidence/fixedassets-029-existing-asset-readonly/030-card-field-values.json"
+      ],
+      "proves": [
+        "FA-CNC-01 can be opened from the filtered Fixed Assets list in RM-DEMO",
+        "No. = FA-CNC-01 is visible on the existing Fixed Asset Card",
+        "Description, FA Class Code, FA Subclass Code, Depreciation Book Code, Posting Group, depreciation years and depreciation dates are blank or not fit",
+        "the previous list-code screenshot is not a sufficient master-data or book screenshot proof",
+        "no setup change, asset change, K30000, purchase invoice, acquisition, depreciation or posting happened"
+      ],
+      "doesNotProve": [
+        "valid FA-CNC-01 target master data",
+        "HGB or MACHINES assigned to the asset",
+        "purchase/acquisition/depreciation readiness",
+        "German final fixed-asset accounting"
+      ],
+      "reusablePatterns": [
+        "row/list code visibility is not card-value proof",
+        "frame-aware list row opening may require row focus and Enter/dblclick fallback",
+        "read-only classification before correction or overwrite"
+      ],
+      "bookChapters": [
+        "21",
+        "37",
+        "38"
+      ],
+      "nextStep": "FIXEDASSETS-030-FA-CNC-01-CORRECTION-GATE-DECISION"
     }
   ]
 }

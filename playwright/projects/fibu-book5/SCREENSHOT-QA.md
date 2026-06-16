@@ -252,6 +252,13 @@ Nicht noetig ist ein Screenshot, wenn er nur eine technische Zwischenstation ohn
 | `playwright/projects/fibu-book5/img/fixedassets-027-097-card-delete-confirmation.png` | Cleanup-/Fehlerlernfall | Der Dialog `FA000110 loeschen?` zeigt, dass der vermeintliche Preflight bereits einen Auto-Number-Entwurf erzeugt hatte. | Als Lernbild fuer Cleanup und Auto-Number-Falle behalten; nicht als Prozess- oder Buchungsbild verwenden. |
 | `playwright/projects/fibu-book5/img/fixedassets-027-100-cleanup-after-filter.png` | Support-Evidence, nicht alleinstehend | Das Bild zeigt eine leere Fixed-Assets-Liste mit aktivem Filter, aber der konkrete Filterwert `FA000110` ist im Bild selbst nicht sichtbar. | Nicht als alleinstehendes Buchbild verwenden. Nur zusammen mit `100-auto-number-draft-cleanup-coordinate-result.json` und dem Cleanup-Text als Bereinigungsnachweis einsetzen. |
 
+## `FIXEDASSETS-029-EXISTING` Screenshot Review
+
+| Screenshot | Bewertung | Befund | Entscheidung |
+|---|---|---|---|
+| `playwright/projects/fibu-book5/img/fixedassets-029-existing-asset-readonly-010-filtered-list.png` | Stop-/Kontext-Evidence | Die gefilterte Fixed-Assets-Liste zeigt `FA-CNC-01` als vorhandenen Code. | Als Nachweis geeignet, dass der Zielcode existiert und nicht blind neu angelegt werden darf. Nicht als fertiger Anlagenstamm verwenden. |
+| `playwright/projects/fibu-book5/img/fixedassets-029-existing-asset-readonly-020-existing-card-readonly.png` | Error-/Learning-Bild, kein Zielbild | Die Karte zeigt `No. = FA-CNC-01`, aber Beschreibung, Klasse/Unterklasse, AfA-Buch, Posting Group und AfA-Daten sind leer beziehungsweise `0,00`. | Als Lernbild fuer "Code vorhanden, Stammdaten fachlich unvollstaendig" geeignet. Nicht als Buchbild fuer fertige Anlage, Zugang, AfA, Setup-Fit oder deutschen Finalnachweis verwenden. |
+
 ## `P2P-001` Screenshot Review
 
 | Screenshot | Bewertung | Befund | Entscheidung |
