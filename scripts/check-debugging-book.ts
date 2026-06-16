@@ -16,7 +16,17 @@ const expectedScripts = [
   'check:safe-policy',
   'check:templates',
   'check:privacy',
+  'check:runtime',
+  'check:api',
+  'check:scaffold',
+  'new:evidence',
   'bc:sample'
+];
+
+const expectedFiles = [
+  path.join(root, 'playwright', 'core', 'bc-runtime-config.ts'),
+  path.join(root, 'playwright', 'core', 'bc-readonly-api.ts'),
+  path.join(root, 'scripts', 'new-evidence-pack.ts')
 ];
 
 const ticketTemplateSections = [
@@ -114,6 +124,7 @@ const evidence = checkEvidencePacks();
 const templates = checkTemplates();
 const privacy = checkPrivacy();
 const missingScripts = expectedScripts.filter((script) => !packageJson.scripts?.[script]);
+const missingFiles = expectedFiles.filter((filePath) => !fs.existsSync(filePath));
 
 console.log('BC Debugging Book Check');
 console.log(`- Evidence packs: ${evidence.ok ? 'OK' : 'Fehler'}`);
@@ -121,11 +132,12 @@ console.log(`- Templates: ${templates.ok ? 'OK' : 'Fehler'}`);
 console.log(`- Privacy scan: ${privacy.ok ? 'OK' : 'Findings'}`);
 console.log('- Safe policy: run npm run check:safe-policy');
 console.log(`- Scripts: ${missingScripts.length === 0 ? 'OK' : `Fehlen ${missingScripts.join(', ')}`}`);
+console.log(`- Runtime layer files: ${missingFiles.length === 0 ? 'OK' : `Fehlen ${missingFiles.map((file) => path.relative(root, file)).join(', ')}`}`);
 
 for (const message of [...evidence.messages, ...templates.messages, ...privacy.messages]) {
   console.error(message);
 }
 
-if (!evidence.ok || !templates.ok || !privacy.ok || missingScripts.length > 0) {
+if (!evidence.ok || !templates.ok || !privacy.ok || missingScripts.length > 0 || missingFiles.length > 0) {
   process.exit(1);
 }

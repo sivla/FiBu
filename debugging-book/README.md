@@ -50,6 +50,10 @@ npm run check:evidence
 npm run check:safe-policy
 npm run check:templates
 npm run check:privacy
+npm run check:runtime
+npm run check:api
+npm run check:scaffold
+npm run new:evidence -- SAMPLE-002 "Permission error on posting preview"
 ```
 
 Optionaler Live-BC-Smoke:
@@ -71,8 +75,17 @@ Der Branch hat lokale Governance-Checks, die ohne BC-Zugang laufen:
 | `npm run check:safe-policy` | Safe-Action-Entscheidungen fuer Environment, Risiko, Freigabe und kritische Buttons |
 | `npm run check:templates` | Pflichtabschnitte in Ticketanalyse- und Evidence-Pack-Template |
 | `npm run check:privacy` | Privacy-Scanner gegen saubere und absichtlich schmutzige Fixtures |
+| `npm run check:runtime` | sichere Runtime-Konfiguration, Schreibflags und optionale BC-Variablen |
+| `npm run check:api` | mock-faehiger GET-only API/OData-Client mit URL-Redaktion |
+| `npm run check:scaffold` | Evidence-Pack-Generator in Temp-Verzeichnissen |
 
 Ein neuer Evidence-Fall wird als Ordner unter `evidence/` angelegt. Die Dateien `00-ticket-summary.md` bis `11-book-chapter-draft.md` sind Pflicht und muessen Inhalt haben. `12-lessons-learned.md`, `13-follow-up-questions.md` und `14-risk-notes.md` sind empfohlen; fehlende Dateien sind Warnungen, keine harten Fehler.
+
+Neues Pack erzeugen:
+
+```powershell
+npm run new:evidence -- SAMPLE-002 "Permission error on posting preview"
+```
 
 Production bleibt read-only. Erlaubt sind Diagnose, Page Inspection und strukturierte Lesezugriffe mit minimalen Feldern. Jede Aktion mit Wirkung, zum Beispiel `Post`, `OK`, `Send`, `Start`, Buchung, Zahlung, Job Queue, Integration, Setup-, Stammdaten- oder Berechtigungsaenderung, braucht ausdrueckliche Freigabe mit Environment, Company, Zweck, Evidence-Plan und Rollback-Plan.
 

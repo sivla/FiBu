@@ -25,6 +25,22 @@ Beweist Page Caption, Page Name, Page ID, Page Type, Source Table, Feld-/Filterk
 
 Beweist Datensatzexistenz, gespeicherte Feldwerte, technische IDs, Dimension Set ID, Posting Groups und Entries, wenn passende Endpunkte verfuegbar sind. Beweist nicht, was der User gesehen hat oder ob ein Feld im aktuellen Profil sichtbar ist.
 
+Der aktuelle Branch hat dafuer erst ein sicheres Fundament:
+
+- `playwright/core/bc-readonly-api.ts` erlaubt nur `GET`.
+- Query-Parameter wie Tokens, Codes, Signaturen und Client Secrets werden in Ausgaben redigiert.
+- Es gibt noch keine Authorization-Header und keinen echten Secret-Flow.
+- Tests nutzen Mock-Fetch und fuehren keine echten BC-Aufrufe aus.
+- Echte API/OData-Zugriffe brauchen lokale `.env`-Werte und duerfen nur minimale Felder lesen.
+
+## Runtime-Konfiguration
+
+`playwright/core/bc-runtime-config.ts` liest optionale BC-Variablen. `BC_URL` aktiviert den UI-Smoke, `BC_API_BASE_URL` aktiviert API/OData-Kontext. Fehlende optionale Werte sind Warnungen.
+
+`BC_ALLOW_WRITE=true` und `BC_ALLOW_PRODUCTION_WRITE=true` sind harte Fehler. Dieser Branch bleibt read-only.
+
+Details stehen in `BC_RUNTIME_CONFIGURATION.md`.
+
 ## Telemetry/Application Insights
 
 Beweist AL Exceptions, API-Fehler, Permission Errors, langsame Operationen, Object IDs, Extension-Hinweise und Correlation IDs. Beweist nicht automatisch die fachliche Ursache.

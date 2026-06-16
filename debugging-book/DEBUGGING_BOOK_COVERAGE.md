@@ -28,6 +28,9 @@ Diese Datei bewertet ehrlich, wie weit das Business Central Debugging Book und d
 | Playwright fuer BC-Debugging | Grundlage vorhanden | 3 | Live-Smoke mit Auth | `bc:sample` mit Sandbox laufen lassen |
 | Evidence Packs schreiben | Template + Samples + Validator | 5 | echte Kundendaten-Anonymisierung | ersten echten read-only Fall validieren |
 | Datenschutz/Anonymisierung | Privacy-Scanner vorhanden | 4 | kein vollstaendiges DLP, keine Bildanalyse | Scanner-Regeln anhand echter Review-Funde schaerfen |
+| Runtime-Konfiguration | lokal getestet | 4 | keine echte Auth-/Login-Strecke | Sandbox-Setup dokumentiert ausfuehren |
+| Read-only API Client | mock-getestet | 3 | kein echter Auth-Flow, keine BC-Endpunkte | ersten erlaubten GET gegen Sandbox modellieren |
+| Evidence Scaffold | lokal getestet | 5 | kein interaktiver Generator | bei echten Tickets als Startpunkt nutzen |
 
 ## Template-Coverage
 
@@ -55,8 +58,10 @@ Diese Datei bewertet ehrlich, wie weit das Business Central Debugging Book und d
 | Template-Sektionen | getestet | 5 | keine Feldwert-Pruefung | bei Bedarf Pflichtfeldwerte pruefen |
 | Privacy-Scanner | getestet | 4 | keine Bildanalyse, kein volles DLP | Scanner gegen neue Leak-Muster erweitern |
 | Live-BC-Smoke | optional, skippt ohne `BC_URL` | 2 | Browser/Auth/BC_URL nicht eingerichtet | Sandbox-Konfiguration dokumentieren |
-| API/OData/MCP | Strategie vorhanden | 2 | keine Implementierung | erster read-only Datencheck |
+| API/OData/MCP | GET-only Client-Fundament vorhanden | 3 | keine Auth-Implementierung, kein echter BC-Call | erster mockbarer read-only Datencheck |
 | Telemetry | Strategie vorhanden | 2 | keine Implementierung | Beispiel-Query/Logstruktur spaeter |
+| Runtime Config | lokal getestet | 4 | keine echte `.env` im Repo | echte Sandbox-Werte lokal setzen |
+| Evidence Scaffold | lokal getestet | 5 | keine | fuer neue synthetische und echte Faelle verwenden |
 
 ## Risiken
 
@@ -65,13 +70,15 @@ Diese Datei bewertet ehrlich, wie weit das Business Central Debugging Book und d
 - Synthetische Evidence ist Lernmaterial, nicht automatisch ein Live-Beleg.
 - Page IDs und Table IDs in synthetischen Faellen sind Annahmen, bis Page Inspection sie bestaetigt.
 - Playwright kann ohne Browser/Auth/BC_URL nur lokale Strukturchecks ausfuehren.
+- Der Read-only API Client ist mock-getestet, aber noch kein vollstaendiger BC-Auth-Client.
+- Runtime Config prueft Sicherheitsflags, stellt aber keine Secrets bereit.
+- Telemetry bleibt Strategie, solange keine Application-Insights-Anbindung existiert.
 - Privacy-Scanner findet typische Text-Leaks, ist aber kein vollstaendiges DLP und prueft keine Bilder.
 - Safe-Action-Policy ist getestet, muss aber in echten Agentenlaeufen vor kritischen Klicks konsequent aufgerufen werden.
 
 ## Naechste 5 Prioritaeten
 
 1. Ersten echten read-only Sandbox-Fall mit Page Inspection und Screenshot-Evidence erzeugen.
-2. Safe-Action-Policy in echte Agenten-/Playwright-Flows integrieren.
-3. Evidence-Scaffold fuer neue Faelle erzeugen.
-4. API/OData/MCP-Read-only-Datencheck als kleines Beispiel ergaenzen.
+2. Erste lokale Sandbox-Konfiguration mit `BC_URL` und Auth-State dokumentiert testen.
+3. API/OData/MCP-Read-only-Datencheck als kleines GET-Beispiel ergaenzen.
 5. Anonymisierungs- und Screenshot-Governance weiter schaerfen.

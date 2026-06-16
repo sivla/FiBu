@@ -24,6 +24,10 @@ npm run check:evidence
 npm run check:safe-policy
 npm run check:templates
 npm run check:privacy
+npm run check:runtime
+npm run check:api
+npm run check:scaffold
+npm run new:evidence -- SAMPLE-002 "Permission error on posting preview"
 ```
 
 ## Automatische Checks
@@ -35,6 +39,9 @@ Lokale Checks ohne Business-Central-Zugriff:
 - `npm run check:safe-policy` prueft die maschinenlesbare Safe-Action-Policy.
 - `npm run check:templates` prueft Pflichtabschnitte der Buch-Templates.
 - `npm run check:privacy` prueft Scanner-Fixtures fuer saubere und problematische Inhalte.
+- `npm run check:runtime` prueft sichere `.env`-/Runtime-Konfiguration ohne echte BC-Werte.
+- `npm run check:api` prueft den mock-faehigen GET-only API/OData-Client.
+- `npm run check:scaffold` prueft das Evidence-Pack-Scaffold.
 
 BC-Zugriff bleibt getrennt:
 
@@ -45,3 +52,11 @@ npm run bc:sample
 Ohne `BC_URL` skippt der Live-Smoke. Production bleibt fuer Agenten read-only: Page oeffnen, Page Inspection und strukturierte Lesezugriffe sind erlaubt; Buchen, Senden, Zahlen, Job Queue, Integrationen, Setup-, Stammdaten- oder Berechtigungsaenderungen brauchen ausdrueckliche Freigabe mit Evidence- und Rollback-Plan.
 
 Neue Evidence-Faelle entstehen unter `debugging-book/evidence/[ticket-id]-[kurztitel]/`. Mindestens die Dateien `00` bis `11` muessen gefuellt sein; `12` bis `14` sind empfohlen und erzeugen Warnungen, wenn sie fehlen.
+
+Ein neuer Fall kann standardisiert erzeugt werden:
+
+```powershell
+npm run new:evidence -- SAMPLE-002 "Permission error on posting preview"
+```
+
+Runtime-Details stehen in `debugging-book/BC_RUNTIME_CONFIGURATION.md`. `.env`, Auth-State, Cookies und Tokens bleiben lokal und werden nicht committed.

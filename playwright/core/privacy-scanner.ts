@@ -28,14 +28,25 @@ const rules: Rule[] = [
     warningOnly: (match) => /@(example\.invalid|example\.com|example\.org|example\.net)$/i.test(match)
   },
   { type: 'iban', pattern: /\b[A-Z]{2}\d{2}[A-Z0-9]{11,30}\b/g },
-  { type: 'secret', pattern: /\bclient[_-]?secret\b\s*[:=]\s*["']?[^"'\s,;]+/gi },
-  { type: 'token', pattern: /\b(access[_-]?token|refresh[_-]?token)\b\s*[:=]\s*["']?[^"'\s,;]+/gi },
+  {
+    type: 'secret',
+    pattern: /\bclient[_-]?secret\b\s*[:=]\s*["']?[^"'\s,;]+/gi,
+    warningOnly: (_match, line) => /value\(env|ParamName/i.test(line)
+  },
+  {
+    type: 'token',
+    pattern: /\b(access[_-]?token|refresh[_-]?token)\b\s*[:=]\s*["']?[^"'\s,;]+/gi,
+    warningOnly: (_match, line) => /ParamName/i.test(line)
+  },
   { type: 'connection-string', pattern: /\b(connectionString|APPLICATIONINSIGHTS_CONNECTION_STRING)\b\s*[:=]\s*["']?[^"'\n]+/gi },
   { type: 'connection-string', pattern: /\bInstrumentationKey\s*=\s*[^;\s]+/gi },
   {
     type: 'auth-state',
     pattern: /\.auth|storageState|cookie/gi,
-    warningOnly: (_match, line) => /process\.env|keine |nicht versionieren/i.test(line)
+    warningOnly: (_match, line) =>
+      /process\.env|runtimeConfig|playwright\/\.auth|keine |nicht versionieren|niemals|nicht committed|lokal|fehlt|separat/i.test(
+        line
+      )
   },
   { type: 'token', pattern: /\bBearer\s+[A-Za-z0-9._~+/=-]{8,}/g }
 ];
