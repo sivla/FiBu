@@ -38,25 +38,25 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 
 ## Aktuelle Fundstellen
 
-## FIND-BC-FA-033 FA-CNC-01 ist weiter nur Teilfit: Subclass bleibt leer
+## FIND-BC-FA-033 FA-CNC-01-Subclass-Blocker wurde in FIXEDASSETS-034 geloest
 
 | Feld | Wert |
 |---|---|
-| Status | getestet, buch-update, blocker |
+| Status | erledigt |
 | Projekt | fibu-book5 |
-| Testfall | `FIXEDASSETS-033-FA-CNC-01-FIELD-EDITABILITY-HELPER-OR-MANUAL-PATH` |
-| Screenshot | `playwright/projects/fibu-book5/img/fixedassets-033-060-card-final-values.png` |
-| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-033/README.md`, `playwright/projects/fibu-book5/evidence/fixedassets-033/FIXEDASSETS-033-result.json` |
+| Testfall | `FIXEDASSETS-033-FA-CNC-01-FIELD-EDITABILITY-HELPER-OR-MANUAL-PATH`, geloest durch `FIXEDASSETS-034-FA-CNC-01-SUBCLASS-FIELD-DIAGNOSIS` |
+| Screenshot | `playwright/projects/fibu-book5/img/fixedassets-033-060-card-final-values.png`, `playwright/projects/fibu-book5/img/fixedassets-034-050-final-subclass-state.png` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-033/README.md`, `playwright/projects/fibu-book5/evidence/fixedassets-034/README.md`, `playwright/projects/fibu-book5/evidence/fixedassets-034/FIXEDASSETS-034-result.json` |
 | BC-Seite | `Fixed Asset Card` Page `5600`, `FA-CNC-01`, Company `RM-DEMO` |
-| sichtbarer Text | `FA-CNC-01`, `Description = CNC Maschine FRA`, `FA Class Code = TANGIBLE`, `Depreciation Book Code = HGB`, `Posting Group = MACHINES`, AfA-Start `01.01.2026`, Nutzungsdauer `8,00`, AfA-Ende `31.12.2033`, `Book Value = 0,00`; weiter leer: `FA Subclass Code` |
+| sichtbarer Text | `FA-CNC-01`, `Description = CNC Maschine FRA`, `FA Class Code = TANGIBLE`, `FA Subclass Code = EQUIPMENT`, `Depreciation Book Code = HGB`, `Posting Group = MACHINES`, AfA-Start `01.01.2026`, Nutzungsdauer `8,00`, AfA-Ende `31.12.2033`, `Book Value = 0,00` |
 | Elementtyp | Stammdatenkarte / Top-Icon-Helper / Feld-Editierbarkeit / Anlagen-Gate |
 | erste Hypothese | Nach `FIXEDASSETS-032` koennte der Stift-/Edit-Pfad Beschreibung, Klasse und Unterklasse vollstaendig korrigieren. |
-| Recherchequelle | Projekt-Evidence `FIXEDASSETS-033`; kein externer Quellenbefund, weil der Lauf konkrete UI-/Persistenzwahrheit pruefte. |
-| Testergebnis | Der Stift-/Edit-Top-Icon-Pfad wurde stabilisiert und breite Layoutansicht genutzt. Beschreibung und Anlagenklasse sind sichtbar fit. Direkte Eingabe von `EQUIPMENT` in `FA Subclass Code` wird von BC geleert; der Lookup-/Full-List-Pfad setzte den Wert nicht sichtbar. Der Safety-Check fand keine Anlagenposten; es wurde nichts gebucht. |
-| Entscheidung | Kapitel 21 darf den Screenshot nur als Labor-Teilnachweis verwenden. `FA-CNC-01` bleibt fuer `K30000`, Einkaufsrechnung, Zugang, AfA und Anlagenbuchung gesperrt, bis `FA Subclass Code` sichtbar traegt oder der UI-/Berechtigungs-/Personalisierungsblocker sauber belegt ist. |
+| Recherchequelle | Projekt-Evidence `FIXEDASSETS-033` und `FIXEDASSETS-034`; kein externer Quellenbefund, weil der Lauf konkrete UI-/Persistenzwahrheit pruefte. |
+| Testergebnis | `FIXEDASSETS-033` stabilisierte den Stift-/Edit-Top-Icon-Pfad und setzte Beschreibung/Klasse. `FIXEDASSETS-034` zeigt im idempotenten Rerun `FA Subclass Code = EQUIPMENT` persistent. Der Safety-Check fand keine Anlagenposten; es wurde nichts gebucht. |
+| Entscheidung | Kapitel 21 darf `FA-CNC-01` jetzt als CRONUS-USA-Labor-Stammdatenfit aus `FIXEDASSETS-033` plus `FIXEDASSETS-034` verwenden. Das ist keine Freigabe fuer `K30000`, Einkaufsrechnung, Zugang, AfA oder Anlagenbuchung; der naechste Schritt ist ein eigener Kreditor-Readiness-Entscheid. |
 | Buchstelle | Kapitel 21 Anlagen; Kapitel 37 Debugging und technische Nachweisfuehrung; Kapitel 38 Screenshot-QA |
 
-Fuer Anfaenger ist der Befund wichtig: Ein Screenshot kann viele richtige Werte zeigen und trotzdem nicht die naechste Prozessfreigabe beweisen. Bei Stammdaten zaehlt immer der komplette fachliche Zielzustand, nicht der optisch groesste Teil davon.
+Fuer Anfaenger ist der Befund wichtig: Ein geloester Stammdatenblocker ist noch keine Buchungsfreigabe. Der sichtbare Anlagenstamm ist nur die Voraussetzung fuer den naechsten Readiness-Schritt.
 
 ## FIND-BC-FA-032 AfA-Daten auf FA-CNC-01 sind sichtbar, Stammdatenkopf bleibt blockiert
 

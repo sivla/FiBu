@@ -1637,6 +1637,52 @@
         "38"
       ],
       "nextStep": "FIXEDASSETS-034-FA-CNC-01-SUBCLASS-FIELD-DIAGNOSIS"
+    },
+    {
+      "caseId": "FIXEDASSETS-034",
+      "process": "Fixed Assets",
+      "status": "done-labor-masterdata-fit-no-posting",
+      "mode": "ui-first-existing-card-subclass-idempotent-verification",
+      "company": "RM-DEMO",
+      "environment": "MCP_1_20260210",
+      "documents": [
+        "FA-CNC-01"
+      ],
+      "screenshots": [
+        "playwright/projects/fibu-book5/img/fixedassets-034-010-card-before-subclass-diagnosis.png",
+        "playwright/projects/fibu-book5/img/fixedassets-034-040-subclass-lookup-open.png",
+        "playwright/projects/fibu-book5/img/fixedassets-034-050-final-subclass-state.png"
+      ],
+      "evidence": [
+        "playwright/projects/fibu-book5/evidence/fixedassets-034/README.md",
+        "playwright/projects/fibu-book5/evidence/fixedassets-034/FIXEDASSETS-034-result.json",
+        "playwright/projects/fibu-book5/evidence/fixedassets-034/FIXEDASSETS-034-FA-CNC-01-SUBCLASS-DIAGNOSIS.md",
+        "playwright/projects/fibu-book5/evidence/fixedassets-034/050-subclass-selection-result.json"
+      ],
+      "proves": [
+        "Existing Fixed Asset Card page 5600 can be opened directly for FA-CNC-01 in wide layout",
+        "Safety check found no FA Ledger Entries for FA-CNC-01",
+        "FA Subclass Code = EQUIPMENT is visible and persistent on FA-CNC-01",
+        "Together with FIXEDASSETS-033 the FA-CNC-01 card is fit as CRONUS-USA lab master data",
+        "No posting, purchase invoice, acquisition or depreciation was executed"
+      ],
+      "doesNotProve": [
+        "Vendor K30000 or purchase invoice readiness",
+        "fixed asset acquisition, depreciation or ledger trace",
+        "German fixed-assets final proof",
+        "that the FIXEDASSETS-034 final screenshot alone shows HGB and MACHINES"
+      ],
+      "reusablePatterns": [
+        "idempotent setup tests should treat already-fit visible values as successful evidence",
+        "book-ready screenshot claims must match what is actually visible in that screenshot",
+        "composite master-data proof may cite multiple screenshots only when the source split is explicit"
+      ],
+      "bookChapters": [
+        "21",
+        "37",
+        "38"
+      ],
+      "nextStep": "FIXEDASSETS-035-K30000-VENDOR-READINESS-DECISION"
     }
   ]
 }

@@ -53,6 +53,7 @@ Diese Datei sammelt wiederverwendbare Muster aus belegten Laeufen. Sie ist keine
 - Nach `FIXEDASSETS-032` gilt fuer bestehende Fixed-Asset-Karten: Felddiagnose muss drei Dinge trennen: sichtbare Caption, sichtbarer Wert und tatsaechlich editierbares Control. Ein erfolgreich gefuelltes AfA-Datum beweist nicht, dass Beschreibung, Klasse oder Unterklasse ebenfalls editierbar sind. Wenn Felder leer und nicht editierbar bleiben, ist der naechste Schritt Helper-/Personalisieren-/Page-Inspection-Diagnose, nicht Einkauf oder Posting.
 - Nach `FIXEDASSETS-033` gilt fuer bestehende Fixed-Asset-Karten: Top-Icons koennen bei `y=14` liegen und werden von Helfern uebersehen, wenn sie erst ab Inhaltsbereich suchen. `clickBcTopIconAction()` sucht deshalb gezielt in der oberen BC-Leiste nach `title`/`aria-label` und prueft optional eine Nachbedingung. Breite Layoutansicht verschiebt Kartenfelder deutlich nach links; zeilenbasierte Feldfinder duerfen nicht mit starren `x>230`-Grenzen arbeiten.
 - Lookup-Erfolg zaehlt erst, wenn der Zielwert danach sichtbar im Kartenfeld steht. Bei `FA Subclass Code` hat `FIXEDASSETS-033` gezeigt: direkte Texteingabe kann von BC geleert werden, und ein nicht geoeffneter oder nicht bestaetigter Full-List-Lookup ist nur Blocker-Evidence, kein Wertebeweis.
+- Nach `FIXEDASSETS-034` gilt fuer idempotente Setup-/Stammdatenlaeufe: Wenn der Zielwert bereits sichtbar fit ist, darf der Test nicht kuenstlich erneut klicken. Er soll den `already-fit`-Zustand als Erfolg mit Screenshot, JSON und klarer Grenze dokumentieren. Zusammengesetzte Stammdatenbeweise muessen offen sagen, welche Werte auf welchem Bild sichtbar sind.
 
 ## Action Bar
 
@@ -141,6 +142,7 @@ Diese Datei sammelt wiederverwendbare Muster aus belegten Laeufen. Sie ist keine
 - `FIXEDASSETS-023` ist ein Debug-Bild-Beispiel: Die Page-Inspection-Aufnahme darf fuer technische Nachweisfuehrung und Bugfixing genutzt werden, aber nicht als finales Anwenderbild fuer die Anlage.
 - `FIXEDASSETS-029-EXISTING` ist ein Error-/Learning-Bild: Die Karte zeigt `FA-CNC-01`, aber die relevanten Anlagenfelder sind leer. Es ist deshalb kein Zielbild fuer Kapitel 21, sondern ein gutes Bild fuer "Code vorhanden, Stammdatensatz fachlich unvollstaendig".
 - `FIXEDASSETS-032` ist ein gutes Teilfit-/Debugging-Bild: Das Bild zeigt die relevanten AfA-Werte wirklich, aber auch die weiter leeren Stammdatenfelder im Kopf. Es darf fuer "teilweise korrigiert, noch nicht buchungsreif" genutzt werden, nicht als finales Anlagenbild.
+- `FIXEDASSETS-034` ist ein Composite-Proof-Beispiel: Das Finalbild zeigt `FA Subclass Code = EQUIPMENT` und AfA-Zeilen, aber nicht gleichzeitig `HGB` und `MACHINES`. Buch- oder Evidence-Text darf deshalb nur sagen: 034 belegt die Unterklasse, 033+034 zusammen belegen den Labor-Stammdatenfit.
 - Metadaten muessen Status, Zweck, sichtbares Ziel, Labor/final-Grenze, Buchwirkung und Limitationen nennen.
 - `pageText()` kann Screenshot-Kontext absichern, ersetzt aber keinen visuellen Beweis.
 
