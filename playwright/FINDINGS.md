@@ -38,6 +38,26 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 
 ## Aktuelle Fundstellen
 
+## FIND-BC-FA-026 Depreciation-Book-Controls auf aktiver Anlagenkarte recovered
+
+| Feld | Wert |
+|---|---|
+| Status | erledigt |
+| Projekt | fibu-book5 |
+| Testfall | `FIXEDASSETS-026-FA-CNC-01-DEPRECIATION-BOOK-CONTROL-RECOVERY` |
+| Screenshot | `playwright/projects/fibu-book5/img/fixedassets-026-030-depreciation-book-controls-recovery.png` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-026/README.md`, `playwright/projects/fibu-book5/evidence/fixedassets-026/FIXEDASSETS-026-FA-CNC-01-DEPRECIATION-BOOK-CONTROL-RECOVERY.md`, `playwright/projects/fibu-book5/evidence/fixedassets-026/FIXEDASSETS-026-result.json`, `playwright/projects/fibu-book5/evidence/fixedassets-026/050-active-card-control-recovery.json` |
+| BC-Seite | `Fixed Asset Card` in `RM-DEMO` / Sandbox `MCP_1_20260210` |
+| sichtbarer Text | `Depreciation Book Code`, `Posting Group`, `Depreciation Method`, `Book Value` |
+| Elementtyp | Karte / FastTab / Helper / Locator-Diagnose / Screenshot-QA |
+| erste Hypothese | Die in `FIXEDASSETS-024` fehlenden Controls koennen durch gezieltes Oeffnen der richtigen FastTabs und echte kleine `Mehr anzeigen`-Buttons wiedergefunden werden. |
+| Recherchequelle | Projekt-Evidence `FIXEDASSETS-026`; Helper `clickBcAction()` und `collectActiveCardControlDiagnostics()`; keine neue externe Recherche, weil der Lauf eine konkrete UI-/Locator-Wahrheit pruefte. |
+| Testergebnis | Der Standard-Helper `clickBcAction()` war allein nicht ausreichend beweisfaehig, weil er den erwarteten Vordergrundkarten-Zustand nicht stabil erreichte. Ein gescopter Fixed-Assets-Fallback oeffnete die Karte, kleine FastTab-nahe `Mehr anzeigen`-Buttons klappten `General` und `Depreciation Book` auf, und die Diagnose fand 6/6 Zielcontrols inklusive `Depreciation Book Code` und `Posting Group`. `FA-CNC-01` wurde nicht gespeichert; keine Setup-Aenderung und keine Buchung. |
+| Entscheidung | `FIXEDASSETS-026` hebt den partiellen Control-Blocker aus `FIXEDASSETS-024/025` auf, aber nur fuer Controls. Naechster Schritt bleibt ein eigener no-save Werte-/Lookup-Preflight fuer `HGB`, `MACHINES`, Klasse/Unterklasse und AfA-Daten; kein Save-Gate. |
+| Buchstelle | Kapitel 21 Anlagen; Kapitel 37/Debugging und technische Nachweisfuehrung |
+
+Fuer Anfaenger ist der Befund didaktisch stark: Ein sichtbares Feld ist noch kein gesetzter Wert. Ein gutes Buchbild muss genau das zeigen, was behauptet wird. Das `FIXEDASSETS-026`-Bild darf also Feldsichtbarkeit und breite Anlagenkartenansicht erklaeren, aber nicht als Beweis fuer `FA-CNC-01`, `HGB` oder `MACHINES` dienen.
+
 ## FIND-BC-FA-024 Active-Card-Control-Helper trennt Vordergrundkarte von Hintergrundliste
 
 | Feld | Wert |

@@ -47,11 +47,15 @@ Dieser technische/fachliche Lauf hat genau einen no-save Karten-Diagnosefall erg
 
 Nachtraegliche Projektsynchronisierung in `FIXEDASSETS-025`: Die committed `FIXEDASSETS-024`-Evidence ist nur partiell. `FA Class Code`, `FA Subclass Code` und AfA-Datumsfelder werden aktiv erkannt; `Depreciation Book Code` und `Posting Group` sind `caption-not-visible`. Der Helper ist damit wertvoll fuer Debugging und Scope-Trennung, aber noch kein vollstaendiger Save-Gate-Nachweis.
 
+Nachtraegliche Control-Recovery in `FIXEDASSETS-026`: Der fehlende Teil wurde no-save recovered. Wichtiges Playwright-Learning: `clickBcAction()` darf nicht nur den Klick melden, sondern braucht eine nachweisbare Ziel-Nachbedingung; wenn diese nicht erreicht wird, muss der Fallback ebenfalls den Vordergrundkarten-Zustand beweisen. Fuer `Mehr anzeigen` muessen grosse Kartencontainer verworfen werden; nur kleine FastTab-nahe Buttons mit passendem `aria-label`/`title` sind valide. Das Ergebnis ist 6/6 aktive Controls, aber weiterhin kein Werte- oder Save-Gate.
+
 | Datei | Neues Muster | Warum besser | Validierung |
 |---|---|---|---|
 | `playwright/core/bc/cards.ts` | `collectActiveCardControlDiagnostics()` bewertet Feldcaptions, aktive Kartenzeilen, nahe Controls und verworfene Grid-/Columnheader-Kandidaten | Trennt Vordergrundkarte von Hintergrundliste; verhindert, dass ein sichtbarer Spaltenkopf als Kartenfeld gilt | `npx tsx playwright/core/bc/cards.ts` passed |
 | `playwright/projects/fibu-book5/tests/fixedassets-024-fa-cnc-01-active-card-control-diagnosis.spec.ts` | No-save Diagnose fuer `FA Class Code`, `FA Subclass Code`, `Depreciation Book Code`, `Posting Group` und AfA-Datumsfelder | Belegt Scope-Trennung und 4/6 aktive Kartencontrols; `Depreciation Book Code` und `Posting Group` fehlen in der aktuellen Diagnose | `npm run fibu:fixedassets:fa-cnc-01-active-card-controls` passed, Ergebnis fachlich partial |
+| `playwright/projects/fibu-book5/tests/fixedassets-026-fa-cnc-01-depreciation-book-control-recovery.spec.ts` | No-save Recovery mit Vordergrundkarten-Pruefung, gescopter `New`-Fallback und kleinen FastTab-`Mehr anzeigen`-Buttons | Recovered `Depreciation Book Code` und `Posting Group` als aktive Kartencontrols und verhindert False-Positive-Screenshots, die nur den Listen- oder Containerkontext zeigen | `npm run fibu:fixedassets:fa-cnc-01-depreciation-control-recovery` passed, Ergebnis 6/6 Controls, `FA-CNC-01` nicht gespeichert |
 | `playwright/projects/fibu-book5/evidence/fixedassets-024/030-active-card-control-diagnosis.json` | Strukturierte Kandidaten- und Hintergrundtreffer-Evidence | Macht sichtbar, was der Helper beweist und was nicht: 4 aktive Controls ja, Zielwerte nein, fehlende Controls ja | JSON-Validierung vor Commit |
+| `playwright/projects/fibu-book5/evidence/fixedassets-026/050-active-card-control-recovery.json` | Strukturierte Recovery-Evidence fuer alle sechs Zielcaptions | Belegt Control-Erreichbarkeit auf der aktiven Karte, aber trennt sie weiterhin von Wertebeweis, Speichern, Setup und Buchung | JSON-Validierung vor Commit |
 
 ## Sofort umgesetzte Helper-Aenderungen
 

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "updatedAt": "2026-06-16",
+  "updatedAt": "2026-06-16T13:09:36.389Z",
   "repository": "sivla/FiBu",
   "branch": "codex/playwright-bc-screenshot-foundation",
   "environment": "MCP_1_20260210",
@@ -10,8 +10,8 @@
   "companyRegistry": "playwright/projects/fibu-book5/COMPANY-REGISTRY.json",
   "dataBasis": "CRONUS USA",
   "activeArea": "fixedassets",
-  "lastCompletedRun": "FIXEDASSETS-025-FA-CNC-01-VALUE-LOOKUP-OR-SAVE-GATE-DECISION",
-  "lastWorkType": "decision-no-bc-run-fixed-assets-save-gate",
+  "lastCompletedRun": "FIXEDASSETS-026-FA-CNC-01-DEPRECIATION-BOOK-CONTROL-RECOVERY",
+  "lastWorkType": "ui-first-no-save-control-recovery",
   "postedInLastRun": false,
   "latestPostedDocuments": {
     "o2c": {
@@ -272,6 +272,25 @@
         "noSetupChange": true,
         "noPosting": true,
         "nextAllowedCase": "FIXEDASSETS-026-FA-CNC-01-DEPRECIATION-BOOK-CONTROL-RECOVERY"
+      },
+      "assetCardDepreciationBookControlRecovery": {
+        "caseId": "FIXEDASSETS-026",
+        "targetFixedAssetNo": "FA-CNC-01",
+        "decision": "control-recovery-success-no-save",
+        "result": "The no-save Fixed Asset Card run recovered Depreciation Book Code and Posting Group as active foreground-card controls. General and Depreciation Book were expanded with small FastTab-near Show more controls. 6/6 target controls are mapped, but no values were entered and FA-CNC-01 was not saved.",
+        "recoveredControls": [
+          "Depreciation Book Code",
+          "Posting Group"
+        ],
+        "activeControlProof": true,
+        "allRequiredControlsRecovered": true,
+        "targetNotSaved": true,
+        "screenshot": "playwright/projects/fibu-book5/img/fixedassets-026-030-depreciation-book-controls-recovery.png",
+        "evidence": "playwright/projects/fibu-book5/evidence/fixedassets-026/FIXEDASSETS-026-result.json",
+        "noSave": true,
+        "noSetupChange": true,
+        "noPosting": true,
+        "nextAllowedCase": "FIXEDASSETS-027-FA-CNC-01-VALUE-LOOKUP-PREFLIGHT-DECISION"
       }
     }
   },
@@ -319,7 +338,8 @@
     "no repeat FIXEDASSETS-023-FA-CNC-01-CARD-TECHNICAL-DIAGNOSIS without a new active-card locator or manual Page Inspection/Personalize delta",
     "no K30000, purchase invoice, acquisition or depreciation before FA-CNC-01 technical card diagnosis and explicit save gate are complete",
     "no repeat FIXEDASSETS-024-FA-CNC-01-ACTIVE-CARD-CONTROL-DIAGNOSIS without a new value/lookup or save-gate delta",
-    "no repeat FIXEDASSETS-025-FA-CNC-01-VALUE-LOOKUP-OR-SAVE-GATE-DECISION without a new control-recovery delta"
+    "no repeat FIXEDASSETS-025-FA-CNC-01-VALUE-LOOKUP-OR-SAVE-GATE-DECISION without a new control-recovery delta",
+    "no repeat FIXEDASSETS-026-FA-CNC-01-DEPRECIATION-BOOK-CONTROL-RECOVERY without a new value/lookup or save-gate delta"
   ],
   "openGates": [
     "TAX-002-DE-VAT-FIT",
@@ -388,14 +408,14 @@
     },
     "nextCompanyEvidenceStep": "Only with a new documented company action purpose; otherwise continue with process/setup work."
   },
-  "nextBestStepWithoutApproval": "FIXEDASSETS-026-FA-CNC-01-DEPRECIATION-BOOK-CONTROL-RECOVERY: recover or diagnose the missing active Fixed Asset Card controls for Depreciation Book Code and Posting Group; no save, no setup, no K30000, no purchase invoice, no acquisition, no depreciation and no posting.",
+  "nextBestStepWithoutApproval": "FIXEDASSETS-027-FA-CNC-01-VALUE-LOOKUP-PREFLIGHT-DECISION: no-save pruefen, ob HGB und MACHINES sowie Klasse/Unterklasse und AfA-Daten als richtige Kartenwerte oder Lookupwerte erreichbar sind; kein Speichern von FA-CNC-01, kein K30000, keine Einkaufsrechnung, kein Zugang, keine AfA und keine Buchung.",
   "nextBestStepWithApproval": {
     "payments": "Nur mit neuem Gate: weitere Zahlung, Kreditorenzahlung oder Bankabstimmung. PAYMENTS-011 darf nicht wiederholt werden.",
     "companies": "Company-Aktionen sind innerhalb MCP_1_20260210 erlaubt, aber nur mit COMPANY-REGISTRY-Eintrag, dokumentiertem Zweck/Risiko/Evidence-Plan und sofortigem State-/Evidence-Sync. Naechster Company-Schritt ist read-only Enumeration, keine Anlage.",
     "reporting": "Further Analysis View setup needs a new explicit gate and a scoped New/Card action proof. REPORTING-013 consumed the GOVERNANCE-007 gate and rejected setup because unscoped New/Neu is globally ambiguous in BC.",
     "tax": "TAX-002-DE-VAT-FIT: only with explicit approval; UI-first VAT Business/Product Posting Groups, VAT Posting Setup, document preview and VAT Entries proof; no German final claim until proven.",
     "compliance": "COMPLIANCE-002-EINVOICE-SETUP: E-Rechnungs-/E-Documents-/Versandprofil-/Change-Log-Setup nur mit Freigabe, UI-first Klickpfad, Validierungs-/Versand-/Auditnachweis und klarer Labor-/DE-Trennung.",
-    "fixedAssets": "FIXEDASSETS-025 blocks saving: FIXEDASSETS-024 is only 4/6 active-control proof. Next useful fixed-assets step is FIXEDASSETS-026 control recovery for Depreciation Book Code and Posting Group, not acquisition or depreciation.",
+    "fixedAssets": "FIXEDASSETS-027 remains no-save: value/lookup preflight for HGB, MACHINES, FA class/subclass and depreciation data on the Fixed Asset Card. No FA-CNC-01 save, no K30000, no purchase invoice, no acquisition, no depreciation and no posting without a later explicit save/posting gate.",
     "security": "SECURITY-002-USER-PERMISSION-SETUP: Benutzer-/Berechtigungs-/Profil-/Security-Group-/User-Setup-/Job-Queue-/Change-Log-Aenderungen nur mit Freigabe, UI-first Klickpfad, Rechte-/SoD-Matrix und Audit-/Review-Evidence.",
     "migration": "MIGRATION-002-CONFIGURATION-PACKAGES-IMPORT: Configuration Packages, Datenimport, Opening-Balance-Journale oder Cutover-Ausfuehrung nur mit Freigabe, UI-first Klickpfad, Abstimmprotokoll und Rueckfallregel.",
     "integrations": "INTEGRATIONS-002-SETUP-OR-CONNECTOR: Extension, AppSource-App, API/Web Service, Connector, Power Platform, Power BI, Job Queue oder produktiven Integrationslauf nur mit Freigabe, UI-first Klickpfad, UAT, Rollen/Berechtigungen, Fehlerfall, Rollback, Monitoring und Support Owner.",
@@ -586,6 +606,7 @@
   },
   "nextTechnicalStep": "PLAYWRIGHT-STRICTNESS-002: migrate exactly one additional read-only/cancel-safe test, preferably Fixed Assets 020/022 or Bank Ledger read-only, replacing local waits/actions with clickBcAction/waitForPageText without touching posting flows.",
   "sessionNotes": [
+    "FIXEDASSETS-026 ran UI-first in RM-DEMO without saving. The run recovered Depreciation Book Code and Posting Group as active Fixed Asset Card controls and mapped 6/6 target controls after small FastTab-near Show more clicks. FA-CNC-01 was not saved; no values, setup, K30000, purchase invoice, acquisition, depreciation, posting or company switch. Next no-approval step is FIXEDASSETS-027 no-save value/lookup preflight.",
     "FIXEDASSETS-025 corrected the overclaim around FIXEDASSETS-024: active card control proof is partial (4/6), so value lookup/save gate remains blocked until Depreciation Book Code and Posting Group are recovered on the active card. No BC run, no save, no setup and no posting."
   ]
 }

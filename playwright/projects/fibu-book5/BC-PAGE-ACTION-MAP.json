@@ -440,8 +440,8 @@
         "Tell-Me exact result plus context check"
       ],
       "knownActions": {
-        "New": "FIXEDASSETS-024 keeps the scoped clickBcAction New path and then maps active Fixed Asset Card controls with collectActiveCardControlDiagnostics, but the latest evidence is partial because Depreciation Book Code and Posting Group are caption-not-visible. FIXEDASSETS-025 keeps saving and value entry locked until control recovery succeeds.",
-        "Mehr anzeigen": "FIXEDASSETS-020 uses only card-local More/Show more controls in General and Depreciation Book to expose Depreciation Book Code and Posting Group without saving"
+        "New": "FIXEDASSETS-026 shows that clickBcAction alone must be followed by a foreground Fixed Asset Card proof. A scoped Fixed-Assets fallback opened the no-save card and then active-card diagnosis recovered 6/6 controls; no FA-CNC-01 value was saved.",
+        "Mehr anzeigen": "FIXEDASSETS-026 accepts only small FastTab-near Show more/Mehr anzeigen controls with matching aria-label/title; large card containers are rejected. General and Depreciation Book were expanded no-save."
       },
       "dangerousActions": [
         "New",
@@ -459,7 +459,10 @@
         "Do not save a fixed asset from an empty card until the setup reference fields are visible/settable",
         "No acquisition/depreciation without explicit gates",
         "After FIXEDASSETS-023 strictness migration, New must keep scopeText and expectedAfterClick; do not reintroduce local unscoped button scans as primary path.",
-        "FIXEDASSETS-024 proves partial active card control diagnosis only; do not treat mapped controls as saved FA-CNC-01, HGB or MACHINES, and do not proceed until Depreciation Book Code and Posting Group are recovered on the active card."
+        "FIXEDASSETS-024 proves partial active card control diagnosis only; do not treat mapped controls as saved FA-CNC-01, HGB or MACHINES, and do not proceed until Depreciation Book Code and Posting Group are recovered on the active card.",
+        "FIXEDASSETS-026 proves active controls for Depreciation Book Code and Posting Group, but not values HGB or MACHINES and not a save gate.",
+        "A clicked New/Neu action is not enough; the test must prove the foreground Fixed Asset Card and expected field areas after the click.",
+        "Do not accept large card containers as Show more buttons; restrict to small visible FastTab-near controls with matching labels or titles."
       ],
       "recommendedHelpers": [
         "openBcPageById",
@@ -468,7 +471,9 @@
         "expectBcDialog",
         "screenshot",
         "active-card-control-scope",
-        "collectActiveCardControlDiagnostics"
+        "collectActiveCardControlDiagnostics",
+        "foreground-card-postcondition",
+        "small-fasttab-show-more-filter"
       ],
       "evidenceExamples": [
         "fixedassets-003",
@@ -481,7 +486,8 @@
         "fixedassets-021",
         "fixedassets-022",
         "fixedassets-023",
-        "fixedassets-024"
+        "fixedassets-024",
+        "fixedassets-026"
       ]
     },
     "FA Posting Groups": {

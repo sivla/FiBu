@@ -233,6 +233,12 @@ Nicht noetig ist ein Screenshot, wenn er nur eine technische Zwischenstation ohn
 |---|---|---|---|
 | `playwright/projects/fibu-book5/img/fixedassets-024-020-active-card-control-diagnosis.png` | technischer Labor-Control-Nachweis, nur teilweise; kein Zielstammdatenbild | Die `Fixed Asset Card` ist im Vordergrund sichtbar. Die aktuelle JSON-Evidence mappt `FA Class Code`, `FA Subclass Code`, `Depreciation Starting Date` und `Depreciation Ending Date` als aktive Controls; `Depreciation Book Code` und `Posting Group` sind dagegen `caption-not-visible`. Die Zielwerte `FA-CNC-01`, `CNC Maschine FRA`, `HGB`, `MACHINES`, Klasse, Unterklasse und AfA-Daten sind nicht gesetzt. | Als Debug-/Locator-Evidence behalten, aber nicht als vollstaendigen Save-Gate-Nachweis verwenden. Naechstes Bild/Evidence muss die fehlenden aktiven Controls oder die Begrenzung klar zeigen. Ein spaeteres Buchbild muss die behaupteten Werte selbst sichtbar zeigen. |
 
+## `FIXEDASSETS-026` Screenshot Review
+
+| Screenshot | Bewertung | Befund | Entscheidung |
+|---|---|---|---|
+| `playwright/projects/fibu-book5/img/fixedassets-026-030-depreciation-book-controls-recovery.png` | guter no-save Labor-Control-Proof; kein Zielstammdatenbild | Die `Fixed Asset Card` ist sichtbar und der Bereich `Depreciation Book` zeigt die Controls `Depreciation Book Code` und `Posting Group`. Die JSON-Evidence mappt 6/6 Zielcontrols auf der aktiven Karte. Zielwerte wie `FA-CNC-01`, `CNC Maschine FRA`, `HGB`, `MACHINES`, Klasse, Unterklasse und AfA-Daten sind noch nicht gesetzt. | Als Buch-/Lernbild fuer Feldsichtbarkeit, breite Kartenansicht und Control-Recovery geeignet. Nicht als gespeicherte Anlage, Wertebeweis, Setup-Fit, Zugang, AfA, Buchung oder deutscher Finalnachweis verwenden. Der naechste Screenshot muss die behaupteten Werte selbst sichtbar zeigen. |
+
 ## `P2P-001` Screenshot Review
 
 | Screenshot | Bewertung | Befund | Entscheidung |
