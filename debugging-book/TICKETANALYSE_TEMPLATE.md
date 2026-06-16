@@ -20,6 +20,42 @@
 | Betroffene Daten |  |
 | Datenschutzstatus |  |
 
+## Datenschutzpruefung
+
+| Pruefpunkt | Ergebnis |
+|---|---|
+| Personenbezogene Daten sichtbar? | nein / ja / unbekannt |
+| Bank-/Zahlungsdaten sichtbar? | nein / ja / unbekannt |
+| Steuer-/Compliance-Daten sichtbar? | nein / ja / unbekannt |
+| Screenshot/Log anonymisiert? | nein / ja / nicht noetig |
+| Darf Material ins Buch/Evidence Pack? | nein / ja / nur anonymisiert |
+
+## Environment-Risiko
+
+| Punkt | Ergebnis |
+|---|---|
+| Environment | Production / Sandbox / Test / Local / unbekannt |
+| Company |  |
+| Risiko der naechsten Aktion | niedrig / mittel / hoch / sehr hoch |
+| Safe-Action-Policy geprueft? | nein / ja |
+
+## Freigabestatus
+
+| Aktion | Status |
+|---|---|
+| read-only Analyse | erlaubt / unklar |
+| Personalisierung | erlaubt / braucht Freigabe / verboten |
+| Stammdaten/Setup-Aenderung | braucht Freigabe / verboten |
+| Buchung/Zahlung/E-Mail/Job/Integration | braucht ausdrueckliche Freigabe / verboten |
+
+## Was darf ich jetzt sicher tun?
+
+- [ ] Tickettext auswerten.
+- [ ] Screenshots anonymisiert analysieren.
+- [ ] Page-/Datenkontext read-only pruefen.
+- [ ] Rueckfragen stellen.
+- [ ] Keine schreibende Aktion ohne Freigabe.
+
 ## 3. Screenshot-/Textanalyse
 
 | Hinweis | Fakt oder Hypothese | Bedeutung |
@@ -47,6 +83,17 @@
 | Hypothese | Wahrscheinlichkeit | Warum | Wie pruefen? | Risiko | Status |
 |---|---:|---|---|---|---|
 |  | niedrig |  |  | niedrig | offen |
+
+Statuswerte:
+
+- offen
+- bestaetigt
+- widerlegt
+- teilweise bestaetigt
+- nicht testbar
+- braucht Kundenzugriff
+- braucht Entwicklerpruefung
+- blockiert wegen Sicherheitsregel
 
 ## 7. Sicherer Repro-Plan
 

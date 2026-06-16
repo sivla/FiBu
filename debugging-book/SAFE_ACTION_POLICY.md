@@ -76,6 +76,41 @@ Sofort stoppen und Evidence schreiben, wenn:
 - ein Locator mehrere kritische Treffer hat.
 - ein Setup-Feld geraten werden muesste.
 
+## Datenschutzregeln
+
+- Echte Kunden-, Bank-, Steuer- und Personendaten nur erfassen, wenn sie fuer den Fall noetig sind.
+- Vor Commit oder Buchtext anonymisieren.
+- Logs und Telemetry nur auszugsweise und mit minimalem Kontext dokumentieren.
+- API/OData/MCP-Ausgaben auf benoetigte Felder begrenzen.
+- Keine Secrets, Tokens, Cookies, Auth-State-Dateien oder Connection Strings versionieren.
+
+## Screenshot-Anonymisierung
+
+Screenshots duerfen nur dauerhaft ins Repo, wenn keine echten sensiblen Daten sichtbar sind, die Daten anonymisiert sind oder der Screenshot synthetisch/Demo ist. Diagnose-Screenshots mit Kundendaten bleiben lokal und werden nicht committed.
+
+## Produktionsdaten-Regeln
+
+Production-Daten werden als Belegquelle read-only behandelt. Sie duerfen helfen, Symptom und Kontext zu verstehen, aber Repro, Test und Fix gehoeren zuerst in Sandbox/Testumgebung.
+
+## Erlaubte Aktionen ohne Freigabe
+
+- Tickettext analysieren.
+- anonymisierte Screenshots lesen.
+- Page read-only oeffnen.
+- Page Inspection read-only dokumentieren.
+- API/OData/MCP GET mit erlaubtem Zugriff und minimalen Feldern ausfuehren.
+- Hypothesenmatrix und Repro-Plan schreiben.
+
+## Verbotene Aktionen ohne ausdrueckliche Freigabe
+
+- `Post`, `Receive`, `Invoice`, `Release`, `Send`, `Apply`, `Start`, `OK` mit Wirkung klicken.
+- Stammdaten, Setup, Profile oder Berechtigungen aendern.
+- Zahlungsdateien erzeugen oder exportieren.
+- E-Mails versenden.
+- Job Queue starten oder reaktivieren.
+- Integrationen, Webhooks oder Power Automate Flows ausloesen.
+- Produktive Daten exportieren, wenn sie nicht anonymisiert oder freigegeben sind.
+
 ## Maschinenlesbare Umsetzung
 
 Die TypeScript-Funktion `decideSafeAction()` in `playwright/core/safe-actions.ts` bildet diese Grundregeln fuer Tests und Agent-Checks ab.

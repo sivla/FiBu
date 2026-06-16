@@ -74,6 +74,20 @@ Warte auf Business-Central-Shell, Page Caption, Zielwert, abgeschlossenen Speich
 
 BC-Grids, FactBoxes und Journal Checks koennen kurz unterschiedliche Staende zeigen. Ein Test muss relevante Statusquellen zusammen pruefen und bei widerspruechlichen Signalen warten oder abbrechen.
 
+## Umgang mit Grids
+
+- Grid-Spalten nie per Hoffnung oder blindem Index fuellen.
+- Vor Eingabe Feldlabel, Spaltenposition und Zeilenkontext belegen.
+- Nach Eingabe gespeicherten oder sichtbaren Zielwert pruefen.
+- Bei Journals zusaetzlich Journal Check, Current Line und Issues getrennt lesen.
+
+## Umgang mit Dialogen und Teaching Tips
+
+- Teaching Tips duerfen Screenshots ueberlagern und muessen als eigener UI-Zustand behandelt werden.
+- Dialoge brauchen Titel- oder Textanker.
+- `OK`, `Yes`, `Ja`, `Cancel`, `Abbrechen` nie generisch klicken, wenn die Wirkung nicht klar ist.
+- Wenn ein Dialog eine Buchung, Zahlung, Freigabe oder Versand bestaetigt, greift die Safe-Action-Policy.
+
 ## Datenschutz bei Screenshots
 
 Echte Namen, Bankdaten, Steuerdaten, E-Mail-Adressen und Belegdetails anonymisieren. Roh-Traces nicht dauerhaft versionieren, wenn sie sensible Daten enthalten.
@@ -81,3 +95,13 @@ Echte Namen, Bankdaten, Steuerdaten, E-Mail-Adressen und Belegdetails anonymisie
 ## Regressionstest-Regeln
 
 Ein Regressionstest muss sagen, welcher alte Fehler verhindert wird, welche Page/Table/Felder betroffen sind, welche Evidence entsteht, ob der Test read-only bleibt, welche Aktion verboten bleibt und welche Daten anonym oder synthetisch sind.
+
+## Anti-Patterns
+
+- Ersten Tell-Me-Treffer blind klicken.
+- `Post`, `OK`, `New`, `Release` oder `Send` ohne Kontextanker klicken.
+- Seitentitel als Zielwert werten.
+- Grid-Spalten nach Index fuellen, ohne Feldbedeutung zu belegen.
+- Screenshot als Root Cause ausgeben, obwohl er nur Symptom zeigt.
+- Fixed Timeout statt fachlicher Wartebedingung verwenden.
+- Playwright-Test gruen machen, indem Assertions abgeschwaecht werden.

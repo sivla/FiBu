@@ -71,7 +71,20 @@ Ein Repro-Plan enthaelt Startzustand, read-only Checks, Page Inspection, Datench
 
 Output: `03-repro-plan.md`.
 
-## 8. Schritt 6: Page Inspection / UI-Kontext pruefen
+## 8. Schritt 6: UI- und Page-Kontext pruefen
+
+Pruefe zuerst, was der User wirklich sieht:
+
+- richtige Company?
+- richtige Page?
+- richtige Ansicht/Filter?
+- richtiger Datensatz?
+- sichtbarer Fehler oder fehlendes Feld?
+- Profil, Rolle oder Personalisierung auffaellig?
+
+Output: UI-Kontext in `01-screenshot-analysis.md` und `03-repro-plan.md`.
+
+## 9. Schritt 7: Page Inspection dokumentieren
 
 | Merkmal | Zweck |
 |---|---|
@@ -85,19 +98,19 @@ Output: `03-repro-plan.md`.
 
 Output: `04-page-inspection.md`.
 
-## 9. Schritt 7: Daten pruefen
+## 10. Schritt 8: Daten ueber UI/API/OData/MCP pruefen
 
 UI beweist, was sichtbar ist. API/OData/MCP beweist gespeicherte Werte besser. Pruefe Existenz, Feldwerte, Dimension Set ID, Posting Groups, Entries, Filter und Statuswerte.
 
 Output: `05-data-checks.md`.
 
-## 10. Schritt 8: Telemetry pruefen
+## 11. Schritt 9: Telemetry/Logs pruefen
 
 Telemetry ist besonders nuetzlich bei AL Exceptions, Permission Errors, API Calls, langsamen Pages, Job Queue Fehlern, Extension-Problemen und Correlation IDs.
 
 Output: `06-telemetry.md`.
 
-## 11. Schritt 9: Repro in Sandbox
+## 12. Schritt 10: Repro in Sandbox/Testumgebung
 
 Nur wenn sicher:
 
@@ -110,13 +123,13 @@ Nur wenn sicher:
 
 Output: `07-repro-steps.md`.
 
-## 12. Schritt 10: Root Cause bestaetigen
+## 13. Schritt 11: Root Cause bestaetigen
 
 Eine Ursache ist erst bestaetigt, wenn sie alle beobachteten Fakten erklaert und alternative Hypothesen begruendet ausgeschlossen sind.
 
 Output: `08-root-cause.md` mit bestaetigter Ursache, Evidence, technischer Erklaerung, fachlicher Erklaerung, ausgeschlossenen Hypothesen, betroffenen BC-Objekten und moeglichen Nebenwirkungen.
 
-## 13. Schritt 11: Workaround / Fix beschreiben
+## 14. Schritt 12: Workaround oder Fix beschreiben
 
 | Typ | Bedeutung |
 |---|---|
@@ -127,19 +140,19 @@ Output: `08-root-cause.md` mit bestaetigter Ursache, Evidence, technischer Erkla
 
 Output: `09-fix-or-workaround.md`.
 
-## 14. Schritt 12: Regressionstest formulieren
+## 15. Schritt 13: Regressionstest formulieren
 
 Ein Regressionstest sagt, welcher alte Fehler nicht wieder auftreten darf, welcher Zustand erwartet wird, welche Evidence entsteht, ob gebucht wird und welche Stop-Kriterien gelten.
 
 Output: `10-regression-test.md`.
 
-## 15. Schritt 13: Buchregel ableiten
+## 16. Schritt 14: Buchregel ableiten
 
 Aus jedem wiederverwendbaren Fall entsteht mindestens eine Regel im `FEHLERJOURNAL.md`, eine Checkliste, ein Kapitelbaustein, ein Playwright-Pattern oder eine Safe-Action-Ergaenzung.
 
 Output: `11-book-chapter-draft.md`.
 
-## 16. Output-Formate
+## 17. Output-Formate
 
 Pflichtformat fuer Evidence Packs:
 
@@ -160,11 +173,11 @@ Pflichtformat fuer Evidence Packs:
 
 Fuer Ticketantworten gilt `TICKETANALYSE_TEMPLATE.md`.
 
-## 17. Abbruchbedingungen
+## 18. Abbruchbedingungen
 
 Sofort abbrechen, wenn Environment unklar ist, Production mehr als read-only erfordern wuerde, Freigabe fehlt, Kundendaten nicht anonymisiert werden koennen, ein Locator mehrere kritische Treffer hat, Setupwerte geraten werden muessten oder ein Klick Buchung, Zahlung, Versand, Job Queue oder Integration ausloesen koennte.
 
-## 18. Was der Agent niemals tun darf
+## 19. Was der Agent niemals tun darf
 
 - Nie Production veraendern.
 - Nie `Post`, `Release`, `Send`, `Apply`, `Start`, `OK` oder aehnliche Wirkungsklicks generisch klicken.
@@ -173,3 +186,19 @@ Sofort abbrechen, wenn Environment unklar ist, Production mehr als read-only erf
 - Nie Hypothesen als Ursache formulieren.
 - Nie Setupwerte raten.
 - Nie einen Fix ohne Regressionstest oder Testplan abschliessen.
+
+## Runbook-Kurzcheckliste
+
+- [ ] Ticket gelesen und Fehlermeldung exakt kopiert.
+- [ ] Fakten, Hinweise, Hypothesen, Rueckfragen und Tests getrennt.
+- [ ] Environment, Company, User/Rolle und Datenschutzstatus geklaert.
+- [ ] Safe-Action-Policy angewendet.
+- [ ] Repro-Plan mit Stop-Kriterien erstellt.
+- [ ] Page/UI-Kontext dokumentiert.
+- [ ] Page Inspection geplant oder erfasst.
+- [ ] Datencheck ueber UI/API/OData/MCP geplant oder erfasst.
+- [ ] Telemetry/Logs geprueft oder begruendet nicht relevant.
+- [ ] Root Cause nur mit Evidence bestaetigt.
+- [ ] Workaround/Fix mit Risiko beschrieben.
+- [ ] Regressionstest oder Testplan formuliert.
+- [ ] Buchregel oder Fehlerjournal-Eintrag abgeleitet.

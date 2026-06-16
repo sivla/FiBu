@@ -12,6 +12,29 @@ Das zentrale Denkmodell lautet:
 Fehlermeldung -> Page -> Table -> Field -> Setup -> Posting Result -> Evidence -> Regressionstest -> Buchregel
 ```
 
+## Wie dieses Buch mit dem Evidence-System zusammenarbeitet
+
+Das Buch erklaert Denkmodelle und typische Diagnosepfade. Es ist nicht selbst der Beweis.
+
+| Baustein | Aufgabe |
+|---|---|
+| `TICKETANALYSE_TEMPLATE.md` | reale Tickets in Fakten, Hinweise, Hypothesen, Rueckfragen und Tests zerlegen |
+| `EVIDENCE_PACK_TEMPLATE.md` | Repro, Kontext, Root Cause, Workaround/Fix und Regression strukturiert belegen |
+| `FEHLERJOURNAL.md` | wiederkehrende Faelle zu Regeln verdichten |
+| `PLAYWRIGHT_DEBUGGING_FOUNDATION.md` | UI-Repro und Screenshot-Evidence reproduzierbar machen |
+| `BC_DATA_ACCESS_STRATEGY.md` | entscheiden, wann UI, Page Inspection, API/OData/MCP oder Telemetry passt |
+| `SAFE_ACTION_POLICY.md` | verhindern, dass Debugging unbeabsichtigt Produktion, Buchung, Zahlung, Versand oder Integration ausloest |
+
+Playwright, API/OData/MCP und Telemetry sind Werkzeuge. Sie sind kein Selbstzweck. Entscheidend ist, ob sie eine konkrete Aussage pruefbar machen.
+
+## Vom Ticket zur Buchregel
+
+```text
+Ticket -> Analyse -> Hypothesen -> Repro -> Evidence -> Root Cause -> Regressionstest -> Fehlerjournal -> Buchkapitel
+```
+
+Eine Regel wandert erst ins Buch, wenn sie mehr ist als ein Einzelfall: Sie muss einem spaeteren Consultant, Support-Mitarbeiter oder Agenten helfen, schneller und sicherer zu diagnostizieren.
+
 ## Inhaltsverzeichnis
 
 1. Was BC-Debugging bedeutet
@@ -300,3 +323,4 @@ Die folgenden Kapitel werden als naechstes ausgebaut:
 | `BC_DATA_ACCESS_STRATEGY.md` | Entscheidung, welche Datenquelle welche Frage beantwortet |
 | `OBJECT_MAPPING_STARTER.md` | Startpunkt fuer Page/Table/Entry-Mapping |
 | `evidence/SAMPLE-001-missing-field/` | Demo fuer fehlende Spalte, Personalisierung und Page Inspection |
+| `DEBUGGING_BOOK_COVERAGE.md` | Reifegradmatrix und naechste Prioritaeten |

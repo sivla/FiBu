@@ -4,6 +4,10 @@
 
 Dieses Mapping hilft, Ticketanalysen schneller von der sichtbaren Page zu den wahrscheinlichen Tabellen, gebuchten Dokumenten und Entries zu fuehren. Es ist ein Starter, kein vollstaendiges Objektlexikon.
 
+## Warum Object Mapping beim Debugging hilft
+
+Tickets beginnen oft mit einer Page oder Fehlermeldung. Object Mapping hilft, daraus die naechsten Pruefpunkte abzuleiten: Header, Zeilen, Posted Document, Entries, Setup und moegliche Datenquellen.
+
 ## Sales
 
 | Prozess | Page | Header Table | Line Table | Posted Document | Entries |
@@ -59,6 +63,14 @@ Dieses Mapping hilft, Ticketanalysen schneller von der sichtbaren Page zu den wa
 
 Das Mapping hilft bei Page Inspection, Hypothesenbildung, Datenchecks, Entry-Nachweisen und Regressionstests.
 
+## Typische Debugging-Fragen
+
+- Welche Tabelle speichert den sichtbaren Wert?
+- Kommt der Wert aus Kopf, Zeile, Stammdaten oder Setup?
+- Welche Entries muessten nach einer Buchung entstehen?
+- Ist der sichtbare Beleg offen oder bereits posted?
+- Welche Page Inspection brauche ich, um Annahmen zu bestaetigen?
+
 ## Wie dieses Mapping in Ticketanalysen genutzt wird
 
 1. Sichtbare Page aus Ticket oder Screenshot bestimmen.
@@ -66,3 +78,10 @@ Das Mapping hilft bei Page Inspection, Hypothesenbildung, Datenchecks, Entry-Nac
 3. wahrscheinliche Header-/Line-Tabellen notieren.
 4. Posted Document und Entries als Nachweisziel festlegen.
 5. Unsichere Objektangaben als Annahme markieren und per Page Inspection/API pruefen.
+
+## Grenzen dieses Mappings
+
+- Es ist kein vollstaendiger Objektkatalog.
+- Lokalisierung, Extensions und Branchenloesungen koennen Pages und Tabellen veraendern.
+- Unsichere Angaben muessen per Page Inspection bestaetigt werden.
+- Entries haengen von Prozess, Setup, Artikelart, Steuer, Dimensionen und Buchungsoptionen ab.

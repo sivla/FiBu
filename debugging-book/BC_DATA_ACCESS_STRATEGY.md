@@ -52,3 +52,12 @@ Beweist installierte Apps/PTEs und Versionen. Beweist ohne Page Inspection, Tele
 - Telemetry: technischer Fehler, aber nicht zwingend fachliche Ursache.
 - Page Inspection: Kontext, aber nicht Prozessbeweis.
 - Log: Ereignis, aber nicht vollstaendige User-Story.
+
+## Datenschutz und Zugriff
+
+- Zugriff muss zur Umgebung und Rolle passen.
+- Datenabfragen auf benoetigte Felder begrenzen.
+- Personen-, Bank-, Steuer- und Kundendaten vor Commit anonymisieren.
+- Production nur read-only.
+- Logs und Telemetry koennen sensible Payloads enthalten; nur relevante Ausschnitte verwenden.
+- MCP/API/OData-Ausgaben nicht als Rohdump versionieren, wenn sie mehr Daten enthalten als fuer die Ursache noetig.

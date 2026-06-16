@@ -3,10 +3,12 @@
 Fuer jeden reproduzierten Fall wird ein Ordner erzeugt:
 
 ```text
-evidence/[ticket-id]-[kurztitel]/
+debugging-book/evidence/[ticket-id]-[kurztitel]/
 ```
 
 ## Pflichtstruktur
+
+Pflichtdateien:
 
 ```text
 00-ticket-summary.md
@@ -21,11 +23,30 @@ evidence/[ticket-id]-[kurztitel]/
 09-fix-or-workaround.md
 10-regression-test.md
 11-book-chapter-draft.md
+12-lessons-learned.md
+13-follow-up-questions.md
+14-risk-notes.md
+```
+
+Optionale Unterordner, wenn Material entsteht:
+
+```text
 img/
 logs/
 api/
 playwright/
 ```
+
+## Evidence-Arten
+
+Jedes Evidence Pack trennt:
+
+| Evidence-Art | Zweck | Beispiel |
+|---|---|---|
+| Symptom-Evidence | zeigt, was der User sieht | Screenshot der fehlenden Spalte |
+| Kontext-Evidence | zeigt Page/Table/Feld/Umgebung | Page Inspection |
+| Root-Cause-Evidence | belegt die Ursache | Datencheck, Telemetry, Setup-Wert |
+| Regression-Evidence | zeigt, dass der alte Fehler abgefangen wird | Playwright-Test, Testplan |
 
 ## 00-ticket-summary.md
 
@@ -60,6 +81,7 @@ Statuswerte:
 - nicht testbar
 - braucht Kundenzugriff
 - braucht Entwicklerpruefung
+- blockiert wegen Sicherheitsregel
 
 ## 04-page-inspection.md
 
@@ -104,3 +126,15 @@ Muss enthalten:
 - betroffene BC-Objekte
 - betroffene Daten
 - moegliche Nebenwirkungen
+
+## 12-lessons-learned.md
+
+Enthaelt die wiederverwendbare Regel fuer `FEHLERJOURNAL.md` oder das Buch.
+
+## 13-follow-up-questions.md
+
+Enthaelt offene Rueckfragen an Kunde, Consultant, Entwickler oder Admin.
+
+## 14-risk-notes.md
+
+Enthaelt Datenschutz-, Production-, Buchungs-, Zahlungs-, Integrations- und Nebenwirkungsrisiken.

@@ -53,7 +53,7 @@ Mit Testuser und Testprofil Sales Order oeffnen, Verkaufszeilen fotografieren un
 
 ## Evidence Pack
 
-Der Sample-Fall `evidence/SAMPLE-001-missing-field/` zeigt die komplette Struktur.
+Der Sample-Fall `debugging-book/evidence/SAMPLE-001-missing-field/` zeigt die komplette Struktur.
 
 ## Fix / Workaround
 

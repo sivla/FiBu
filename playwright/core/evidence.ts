@@ -11,7 +11,7 @@ export type EvidenceStatus =
   | 'blocked';
 
 export function evidencePath(caseId: string, fileName: string) {
-  return path.resolve('evidence', caseId, fileName);
+  return path.resolve('debugging-book', 'evidence', caseId, fileName);
 }
 
 export async function writeJsonEvidence(filePath: string, value: unknown) {

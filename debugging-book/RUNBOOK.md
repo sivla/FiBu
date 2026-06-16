@@ -13,7 +13,7 @@ Dieses Runbook beschreibt den Weg vom Ticket zum Evidence Pack und von dort zum 
 ## 1. Ticket anlegen
 
 1. Kurztitel und Case-ID bilden: `ticket-id-kurztitel`.
-2. Evidence-Ordner anlegen: `evidence/[case-id]/`.
+2. Evidence-Ordner anlegen: `debugging-book/evidence/[case-id]/`.
 3. Dateien aus `EVIDENCE_PACK_TEMPLATE.md` erzeugen.
 4. `00-ticket-summary.md` ausfuellen.
 5. Fakten, sichtbare Hinweise, Hypothesen, Rueckfragen und Tests getrennt notieren.
