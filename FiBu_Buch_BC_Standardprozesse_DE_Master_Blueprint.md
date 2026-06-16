@@ -6280,6 +6280,14 @@ Seitenpruefung / Page Inspection als technische Diagnose:
 - Fuer Bugfixing hilft es bei Fragen wie: Bin ich auf der richtigen Page? Ist das ein ListPart? Kommt das Feld aus Standard-BC oder aus einer Extension? Ist ein Filter aktiv?
 - Grenze: Page Inspection ist technischer Kontext. Sie ersetzt kein finales Anwenderbild, keinen Buchungsnachweis und keine fachliche Erklaerung fuer Posten, Steuer oder Kontenfindung.
 
+Fehler systematisch analysieren:
+- Erst Fehlerklasse bestimmen, dann klicken. Typische Ebenen sind Oberflaeche, Page/Tabelle, Berechtigung, Stammdaten, Prozessstatus, Posting Setup, Extension, Daten/Filter, Integration und Performance.
+- Bei fehlenden Feldern: Personalisieren, Rolle/Profil, Berechtigung und Page Inspection pruefen.
+- Bei Buchungsfehlern: Kopf- und Zeilenwerte zusammen lesen. Ein Fehler entsteht oft aus Customer/Vendor, Artikel/Konto, Lagerort, Posting Groups, Steuergruppe, Dimensionen, Datum oder Waehrung.
+- Bei Rechtefehlern: nicht pauschal mehr Rechte geben. Page, Aktion, Tabelle, Permission Set und effektive Berechtigung pruefen.
+- Bei langsamen Seiten: FactBox einklappen, Filter setzen, anderen Browser/User/Company vergleichen und erst dann Telemetry oder Performanceanalyse nutzen.
+- Bei Extension-Verdacht: Page Inspection, Extension Management, Event Recorder und saubere Ticket-Dokumentation verwenden.
+
 ### Was muss man einstellen, damit Mitarbeiter Dinge finden?
 
 | Thema | Einstellung | Warum wichtig |

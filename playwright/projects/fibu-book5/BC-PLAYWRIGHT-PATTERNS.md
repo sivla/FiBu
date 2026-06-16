@@ -11,6 +11,7 @@ Diese Datei sammelt wiederverwendbare Muster aus belegten Laeufen. Sie ist keine
 - API-/Direktdatenwege sind nur Diagnose, historischer Laborfit oder technische Hilfsevidence. Sie ersetzen keinen Buch-Klickpfad.
 - Jeder Screenshot braucht ein sichtbares Lernziel. Ein Bild ist nur brauchbar, wenn der behauptete Code, Betrag, Status, Button, Dialog, Filter, Fehler, Reportwert oder Postentyp wirklich sichtbar ist.
 - CRONUS-USA-Labor, gemischte Sprache und deutsche Zielbilder werden immer getrennt.
+- Bei Fehlern zuerst Fehlerklasse bestimmen: Oberflaeche, Page/Tabelle, Berechtigung, Stammdaten, Prozessstatus, Posting Setup, Extension, Daten/Filter, Integration oder Performance. Details stehen in `BC-BUGFIXING-PLAYBOOK.md`.
 
 ## Tell-Me
 

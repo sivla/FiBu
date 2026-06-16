@@ -14,6 +14,7 @@ Leitregel: aktuelle Wahrheit kurz halten, Evidence lokal beweisen, wiederverwend
 | `CURRENT-STATE.md` | menschlicher Handover | mittel | aktueller Projektstand und naechster sinnvoller Schritt | am Ende jedes Laufs aktualisieren; alte Historie knapp halten |
 | `DOCUMENTATION-MAP.md` | Rollenkarte der Dokumentation | nein | welche Datei welchen Zweck hat | nur bei Struktur- oder Governance-Aenderung pflegen |
 | `BC-PLAYWRIGHT-PATTERNS.md` | wiederverwendbare UI-/Toolmuster | mittel | robuste BC-Klickpfade und Anti-Patterns | aus belegten Laeufen ergaenzen, keine ungetesteten Tricks behaupten |
+| `BC-BUGFIXING-PLAYBOOK.md` | wiederverwendbares Fehleranalyse-Playbook | mittel | Fehlerklasse, Diagnoseablauf, Support-/Bugfixing-Denkweise | bei wiederkehrenden BC-Fehlern, Buchungsblockern, UI-Abweichungen oder Supportmustern pflegen |
 | `PLAYWRIGHT-BC-OPTIMIZATION-AUDIT.md` | technischer Playwright-Audit | mittel | aktuelle Helper-/Pattern-Schwaechen und naechste technische Optimierung | nach gezielten Playwright-Foundation-Laeufen pflegen; keine Fachprozess-Evidence ersetzen |
 | `BC-PAGE-ACTION-MAP.json` | maschinenlesbare Seiten-/Aktionskarte | mittel | bekannte Seiten, Suchbegriffe, Aktionen, Fallen, Evidence | nur kompakte bewiesene oder klar markierte Kandidaten aufnehmen |
 | `playwright/core/bc/` | kleine BC-Helper-Komponenten | mittel | wiederverwendbare Shell-/Action-/Dialog-/Grid-Muster fuer Tests | lieber gezielt erweitern als lokale Force-/Koordinatenhelfer duplizieren; Fachtests erst nach sicherem Zielzustand migrieren |
@@ -37,7 +38,7 @@ Leitregel: aktuelle Wahrheit kurz halten, Evidence lokal beweisen, wiederverwend
 ## Ebenenmodell
 
 1. Autopilot-Steuerung: `AUTOPILOT-STATE.json`, `POSTING-AND-SETUP-GATES.md`, `CURRENT-STATE.md`.
-2. Wiederverwendbares Wissen: `BC-PLAYWRIGHT-PATTERNS.md`, `BC-PAGE-ACTION-MAP.json`, `SETUP-READINESS-MATRIX.md`, `PROCESS-CASE-REGISTRY.json`.
+2. Wiederverwendbares Wissen: `BC-PLAYWRIGHT-PATTERNS.md`, `BC-BUGFIXING-PLAYBOOK.md`, `BC-PAGE-ACTION-MAP.json`, `SETUP-READINESS-MATRIX.md`, `PROCESS-CASE-REGISTRY.json`.
 3. Buchwahrheit: Buchdatei, `BOOK-TO-EVIDENCE-AUDIT.md`, `BOOK-CLICK-GUIDE-COVERAGE.md`.
 4. Fall-Evidence: `evidence/<case-id>/README.md`, Result-JSON, Sync-/Trace-Dateien, kompakte Seitentexte.
 5. Archiv: nur fuer ueberholte Historie, nie als Ersatz fuer aktuelle Wahrheit.

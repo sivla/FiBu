@@ -74,6 +74,24 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 | Entscheidung | Buch, Pattern, Workaround-Journal, Coverage und Microsoft-Doc-Validation wurden aktualisiert. Kuenftige unklare Page-/Feld-/Locator-Kontexte sollen Page Inspection nutzen, bevor Buchtext oder Helper groesser geaendert werden. |
 | Buchstelle | Kapitel 37 Glossar/Bedienlogik; querschnittlich fuer Klickanleitungen |
 
+## FIND-BC-BUG-001 BC-Fehler brauchen Ebenenmodell statt Schnellfix
+
+| Feld | Wert |
+|---|---|
+| Status | erledigt als Playbook-/Buchregel ohne BC-Lauf |
+| Projekt | fibu-book5 |
+| Testfall | `GOVERNANCE-016-BC-BUGFIXING-PLAYBOOK` |
+| Screenshot | keiner; Quellen-/Pattern-Sync |
+| Evidence | `playwright/projects/fibu-book5/evidence/governance-016/README.md`, `playwright/projects/fibu-book5/evidence/governance-016/GOVERNANCE-016-BC-BUGFIXING-PLAYBOOK.md`, `playwright/projects/fibu-book5/BC-BUGFIXING-PLAYBOOK.md` |
+| BC-Seite | querschnittlich fuer BC-Fehleranalyse |
+| sichtbarer Text | nicht praktisch geprueft in diesem Lauf |
+| Elementtyp | Fehleranalyse / Support / Bugfixing / Consultant-Denkweise |
+| erste Hypothese | BC-Fehler muessen nach Oberflaeche, Page/Tabelle, Berechtigung, Stammdaten, Prozessstatus, Posting Setup, Extension, Daten/Filter, Integration und Performance klassifiziert werden, bevor gefixt wird. |
+| Recherchequelle | Microsoft Learn Troubleshooting Tools, Permission Error Telemetry, Event Recorder, Telemetry Overview, Performance Troubleshooting, Page View Telemetry, Webservice Telemetry |
+| Testergebnis | `BC-BUGFIXING-PLAYBOOK.md` wurde angelegt und Kapitel 37 um eine kompakte Fehleranalyse-Denkweise erweitert. |
+| Entscheidung | Kuenftige Fehlerlaeufe sollen erst Fehlerklasse und Diagnosewerkzeug dokumentieren, dann Setup, Buchtext oder Playwright aendern. |
+| Buchstelle | Kapitel 37 Glossar/Bedienlogik; querschnittlich fuer Fehlerbilder in Klickanleitungen |
+
 ## FIND-BC-GOV-012 Company-Autonomie braucht Registry und Instanzgrenze
 
 | Feld | Wert |

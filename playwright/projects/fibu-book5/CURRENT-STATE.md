@@ -53,6 +53,8 @@ Update nach `GOVERNANCE-014-PERSONALIZATION-PATTERN`: Personalisieren ist jetzt 
 
 Update nach `GOVERNANCE-015-PAGE-INSPECTION-PATTERN`: Page Inspection / Seitenpruefung ist jetzt als technisches Diagnosewerkzeug dokumentiert. Es gab keinen BC-Lauf, keine Setup-Aenderung, keine Buchung und keinen Company-Wechsel. Der Quellenabgleich haelt fest: `Ctrl+Alt+F1` beziehungsweise Help & Support / `Inspect pages and data` oeffnet Page Inspection und hilft bei Page Name, Page ID, Page Type, Source Table, Feldern, Filtern und Extensions. Page Inspection ist Debug-/Evidence-Kontext, aber kein finales Anwenderbild und kein fachlicher Buchungsnachweis. Der naechste fachliche Lauf bleibt `FIXEDASSETS-017-FA-CNC-01-SETUP-READINESS`.
 
+Update nach `GOVERNANCE-016-BC-BUGFIXING-PLAYBOOK`: Das Projekt hat jetzt mit `BC-BUGFIXING-PLAYBOOK.md` ein zentrales Fehleranalyse-Playbook. Es gab keinen BC-Lauf, keine Setup-Aenderung, keine Buchung und keinen Company-Wechsel. Der Quellenabgleich haelt fest: BC-Fehler werden kuenftig zuerst nach Oberflaeche, Page/Tabelle, Berechtigung, Stammdaten, Prozessstatus, Posting Setup, Extension, Daten/Filter, Integration und Performance klassifiziert. Das Playbook soll bei echten Blockern angewendet werden, bevor Buchtext, Setup, Rechte oder Playwright-Helper geaendert werden. Der naechste fachliche Lauf bleibt `FIXEDASSETS-017-FA-CNC-01-SETUP-READINESS`.
+
 ## Projektmission
 
 Das Projekt verfolgt vier gleichrangige Ziele:

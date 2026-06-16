@@ -47,6 +47,20 @@ Jeder Eintrag muss außerdem gegen die betroffene Buchstelle geprüft werden. We
 | Buchwirkung | Das Buch sollte Page Inspection als Diagnosekapitel erklaeren: Es hilft Autoren und Consultants, Klickpfade technisch sauber zu dokumentieren. Finale Buchbilder bleiben normale Anwendersicht, Page-Inspection-Bilder sind Debug-/Evidence-Bilder. |
 | Kuenftige Regel | Wenn ein Locator, Feld oder Page-Kontext unklar ist, Page Inspection vor groesserem Refactoring oder falscher Buchkorrektur nutzen. Page Inspection beweist technischen Kontext, nicht automatisch fachliche Richtigkeit. |
 
+## WK-BC-BUG-001 Fehler zuerst klassifizieren, dann loesen
+
+| Feld | Wert |
+|---|---|
+| Status | als Projektregel und Playbook aufgenommen; noch kein neuer konkreter Fehlerlauf |
+| Situation | BC-Fehler koennen aus UI, Page/Tabelle, Berechtigung, Stammdaten, Prozessstatus, Posting Setup, Extension, Daten/Filter, Integration oder Performance entstehen. |
+| Symptom | Ein Test oder Anwender meldet: Feld fehlt, Aktion funktioniert nicht, Beleg laesst sich nicht buchen, User sieht Daten nicht, Seite ist langsam oder eine Integration scheitert. |
+| Sichtbarer Beleg | `BC-BUGFIXING-PLAYBOOK.md`, Quellenabgleich in `MICROSOFT-DOC-VALIDATION.md`, Governance-Evidence `playwright/projects/fibu-book5/evidence/governance-016/`. |
+| Ursache | Ohne Fehlerklassifikation wird zu schnell an der falschen Stelle repariert: Buchtext, Playwright-Locator, Rechte, Stammdaten oder Setup werden geaendert, obwohl eine andere Ebene ursächlich ist. |
+| Warum BC so reagiert | Business Central verbindet UI, Rollen/Profile, Tabellen, Berechtigungen, Stammdaten, Posting-Matrizen, Dimensionen, Extensions, Hintergrundjobs, Integrationen und Telemetry. Ein sichtbarer Fehler ist oft nur die Oberflaeche einer tieferen Kombination. |
+| Loesung | Vor Fix: Fehler aufnehmen, reproduzieren, Page Inspection/Personalisierung nutzen, Kopf-/Zeilenwerte und Setup pruefen, Berechtigungen und Datenfilter pruefen, bei Bedarf Event Recorder/Telemetry/Job Queue/Integration analysieren. |
+| Buchwirkung | Das Buch bekommt eine systematische Fehleranalyse-Denkweise. Fehlerbilder werden als Lernfaelle dokumentiert, statt nur als Testabbruch oder Workaround behandelt zu werden. |
+| Kuenftige Regel | Kein groesserer Fix ohne Fehlerklasse. Bei Buchungsfehlern immer Kopf plus Zeile plus Posting Setup pruefen; bei UI-Fehlern Sichtbarkeit/Page-Kontext pruefen; bei Rechte/Extension/Integration/Performance nur mit passendem Diagnosewerkzeug weitergehen. |
+
 ## WK-BC-SHOT-001 Screenshot muss den behaupteten fachlichen Zielzustand sichtbar zeigen
 
 | Feld | Wert |
