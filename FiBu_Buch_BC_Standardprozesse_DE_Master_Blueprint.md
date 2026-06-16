@@ -3824,6 +3824,8 @@ Entscheidung nach `FIXEDASSETS-019`: Die leere Anlagenkarte reicht noch nicht al
 
 Entscheidung nach `FIXEDASSETS-021`: Der Setup-Fit wird noch nicht ausgefuehrt. `FIXEDASSETS-020` zeigt die richtigen Feldorte, aber nicht die gueltigen Werte. Fuer das Buch ist das ein eigener Kontrollpunkt: Vor dem Speichern muss der Leser sehen, ob `HGB` und `MACHINES` in den jeweiligen Lookups wirklich auswaehlbar sind und welche vorhandene Laborzuordnung fuer Anlagenklasse und Anlagenunterklasse genutzt wird. Ohne diesen Nachweis koennte ein Screenshot zwar eine Anlage zeigen, aber die dahinterliegende Kontenfindung oder AfA-Logik waere unklar.
 
+Nachweis nach `FIXEDASSETS-022`: Der no-save Lookup-/Werte-Preflight hat die Speicherfreigabe noch nicht erbracht. Die leere Anlagenkarte ist als Kontextbild brauchbar, aber `HGB`, `MACHINES`, Anlagenklasse und Anlagenunterklasse sind im korrigierten Lauf nicht als sichtbare, richtige Kartenwerte belegt. Ein Screenshot darf hier also nicht nur ein Feld oder irgendeinen Dialog zeigen; er muss den behaupteten Code im passenden Business-Central-Kontext zeigen. Der naechste Lernschritt ist technische Diagnose mit Seitenpruefung, Personalisieren oder engerem Locator-Mapping, nicht das Speichern der Anlage.
+
 ### Schritt-für-Schritt
 
 1. Öffne `Anlagen (Fixed Assets)` und lege `FA-CNC-01` an.

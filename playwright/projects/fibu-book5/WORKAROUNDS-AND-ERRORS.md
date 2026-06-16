@@ -76,6 +76,21 @@ Jeder Eintrag muss außerdem gegen die betroffene Buchstelle geprüft werden. We
 | Buchwirkung | Kapitel 21 darf die Bilder nur als Lernbilder fuer Pflichtfelder, Vorlagen und sicheren Abbruch nutzen. Buchbilder fuer Zielstammdaten brauchen spaeter den jeweils behaupteten Zustand sichtbar im Bild, zum Beispiel Code, Name, Pflichtfelder, Buchungsgruppe oder Status. |
 | Kuenftige Regel | Kein Screenshot wird als Zielwert-, Buchungs-, Reporting- oder Buchbildnachweis eingestuft, wenn das, was der Leser sehen soll, nicht im Bild sichtbar ist. Das kann je nach Schritt Code, Name, Betrag, Waehrung, Steuer, Status, Buchungsoption, Postenart, Konto, Dimension, Filter, Fehlermeldung, Reportzeile oder Dialogauswahl sein. Page-Text, JSON oder ein geoeffnetes leeres Formular koennen Evidence sein, ersetzen aber keine visuelle Buchfreigabe. |
 
+## WK-BC-FA-022 Falscher Lookup-Kontext darf nicht als Wertnachweis zaehlen
+
+| Feld | Wert |
+|---|---|
+| Status | geloest als Rejected-QA-/Locator-Regel nach `FIXEDASSETS-022`; Folgearbeit ist technische Diagnose, kein Speicherlauf |
+| Testfall | `FIXEDASSETS-022` |
+| Situation | Auf der leeren `Fixed Asset Card` sollten no-save die Lookups fuer `FA Class Code`, `FA Subclass Code`, `Depreciation Book Code` und `Posting Group` geprueft werden. |
+| Symptom | Ein erster optimistischer Locator-Versuch erzeugte Bilder, deren Seitentext Zielwerte vermuten liess. Die visuelle Pruefung zeigte aber einen Nummernserien-Dialog, nicht den behaupteten FA-Class-/Subclass-Lookup. |
+| Sichtbarer Beleg | Korrigierte Evidence unter `playwright/projects/fibu-book5/evidence/fixedassets-022/`; retained Screenshot nur `playwright/projects/fibu-book5/img/fixedassets-022-020-empty-card-context.png`. |
+| Ursache | Der Locator hatte das Feldlabel ueber zu breite Umgebungstexte gesucht und dadurch faktisch das falsche Control beziehungsweise den falschen Dialog bedient. Business Central-Seitentext kann im Hintergrund weiterhin andere Feldnamen enthalten. |
+| Warum BC so reagiert | Business Central-Karten enthalten viele Labels, Controls, AssistEdit-/Lookup-Buttons und Hintergrundlisten gleichzeitig. Ein Seitentexttreffer beweist nicht, dass der sichtbare Dialog fachlich zum Ziel-Feld gehoert. |
+| Loesung | Artefakte vor jedem Lauf fuer den Testfall bereinigen; nur Screenshots behalten, die den behaupteten Code im richtigen Kontext zeigen. Der korrigierte Lauf behaelt nur das leere Kartenkontextbild und dokumentiert Lookup-Werte als nicht belegt. |
+| Buchwirkung | Kapitel 21 bekommt keinen Speicherlauf fuer `FA-CNC-01`. Die Anleitung muss vor dem Speichern technische Felder/Lookups sicher klaeren; dieser Fall gehoert auch ins spaetere Kapitel zu BC-Debugging und technischer Nachweisfuehrung. |
+| Kuenftige Regel | Bei Lookup-/AssistEdit-Screenshots immer visuell pruefen: Dialogtitel, Spalten, Code und fachlicher Kontext muessen zur Behauptung passen. Page Inspection oder Personalisieren nutzen, wenn sichtbare Labels nicht robust anklickbar sind. |
+
 ## WK-BC-FA-010 Tell-Me-Treffer ist sichtbar, aber nicht per Role-Selector klickbar
 
 | Feld | Wert |

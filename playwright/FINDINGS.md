@@ -278,6 +278,24 @@ Fuer Anfaenger ist das wichtig, weil eine Anlagenbuchung nicht mit dem Lieferant
 
 Fuer Anfaenger ist das wichtig, weil Business Central bei Anlagen nicht nur Felder braucht, sondern fachlich gueltige Referenzwerte. Ein Screenshot muss deshalb nicht nur den Feldnamen zeigen, sondern den Wert, den BC spaeter fuer Kontenfindung und AfA verwendet.
 
+## FIND-BC-FA-022 Lookup-Screenshots zaehlen nur mit sichtbarem richtigem Code
+
+| Feld | Wert |
+|---|---|
+| Projekt | fibu-book5 |
+| Testfall | `FIXEDASSETS-022` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-022/README.md`, `playwright/projects/fibu-book5/evidence/fixedassets-022/FIXEDASSETS-022-FA-CNC-01-LOOKUP-VALUE-PREFLIGHT.md`, `playwright/projects/fibu-book5/evidence/fixedassets-022/FIXEDASSETS-022-result.json` |
+| Screenshot | `playwright/projects/fibu-book5/img/fixedassets-022-020-empty-card-context.png` |
+| BC-Seite | `Fixed Asset Card` |
+| sichtbarer Text / Werte | leere Anlagenkarte; keine sichtbaren Lookup-Werte `HGB`, `MACHINES`, Klasse oder Unterklasse im richtigen Kontext |
+| Elementtyp | Anlagenkarte / Lookup-Preflight / Screenshot-QA / technischer Diagnosefall |
+| erste Hypothese | Nach sichtbaren Feldpfaden koennte ein Lookup-Preflight die benoetigten Kartenwerte `HGB`, `MACHINES`, Klasse und Unterklasse direkt belegen. |
+| Testergebnis | Der korrigierte UI-first Lauf beweist no-save und Kartenkontext, aber keinen sicheren Lookup-Wertnachweis. Ein erster optimistischer Locator-/Screenshot-Versuch zeigte eine Nummernserie statt des behaupteten FA-Class/Subclass-Kontexts und wurde deshalb verworfen. |
+| Entscheidung | `FA-CNC-01` bleibt gesperrt. Naechster Schritt ist technische Karten-/Lookup-Diagnose mit Page Inspection, Personalisieren oder engerem Locator-Mapping. Kein Speichern, kein `K30000`, kein Kaufbeleg, kein Zugang, keine AfA, keine Buchung. |
+| Buchstelle | Kapitel 21 Anlagen / Fixed Assets; spaeter Kapitel BC-Debugging und technische Nachweisfuehrung |
+
+Fuer Anfaenger und Buchautoren ist das wichtig, weil ein Bild nicht nur technisch entstehen, sondern die richtige fachliche Aussage sichtbar machen muss. Wenn der Code im Bild nicht zu sehen ist oder der Dialog fachlich ein anderer ist, ist das Bild hoechstens Kontext oder Rejected Evidence.
+
 ## FIND-BC-FA-013 Fixed Assets darf mit `HGB` anfangen, aber nicht mit Anlage oder Kontenmapping
 
 | Feld | Wert |
