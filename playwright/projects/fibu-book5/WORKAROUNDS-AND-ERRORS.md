@@ -496,3 +496,18 @@ Jeder Eintrag muss außerdem gegen die betroffene Buchstelle geprüft werden. We
 | Pruefung nach Korrektur | `npm run fibu:reporting:analysis-view-fieldmapping` laeuft gruen. Evidence zeigt `fieldmappingSafe=true`, `setupAttempted=false`, `setupChanged=false`, `noPostingCommittedByTest=true`, `noPaymentCommittedByTest=true`. |
 | Buchwirkung | Eine Klickanleitung darf nicht nur sagen „Neu klicken“. Sie muss zeigen, auf welcher Seite, in welcher Liste/Karte und in welchem Kontext die Neuanlage erfolgt. Fuer Analysis Views bleibt der Setup-Klickpfad offen, bis `New/Neu` stabil gescoped ist. |
 | Kuenftige Regel | Keine generischen `New/Neu`-, `Post`-, `OK`- oder aehnlichen Aktionen fuer Setup/Buchung ohne fachlichen Containeranker. Bei mehrdeutigen Aktionen lieber abbrechen, Evidence schreiben und einen Lernfall dokumentieren. |
+
+## WK-BC-FA-001 Anlagenkarte kann bei Lookup-Preflight automatisch eine Nummer speichern
+
+| Feld | Wert |
+|---|---|
+| Status | erkannt, eigener Entwurf per UI bereinigt; Save-Gate bleibt blockiert |
+| Testfall | `FIXEDASSETS-027` |
+| Situation | Nach `FIXEDASSETS-026` waren alle relevanten Anlagenkarten-Controls sichtbar. Der naechste Schritt sollte nur pruefen, ob `HGB`, `MACHINES` und Klassen-/Unterklassenwerte im Lookup sichtbar sind. |
+| Symptom | Die Lookup-Screenshots zeigen die richtigen Werte, aber oben auch die automatisch erzeugte Nummer `FA000110` und den Status `Gespeichert`. Der urspruengliche reine No-Save-Anspruch war damit falsch. |
+| Ursache | Business Central kann beim Oeffnen einer neuen Karte und beim Arbeiten mit Lookup-/Pflichtfeldern eine Nummer aus der Nummernserie zuweisen und den Datensatz speichern, auch wenn der fachliche Zielwert noch nicht ausgefuellt ist. |
+| Warum BC so reagiert | Karten sind editierbare Stammdatenobjekte. Eine automatisch vergebene `No.` ist selbst ein persistenter Zustand; Lookups und Pflichtfeldvalidierung finden auf diesem Kartenobjekt statt. |
+| Loesung | Der eigene Entwurf `FA000110` wurde ueber die `Fixed Asset Card` geloescht. Evidence zeigt den Dialog `FA000110 loeschen?` und den gefilterten Nachlauf, in dem `FA000110` nicht mehr sichtbar ist. Der 027-Test wurde gegen Wiederholung gesperrt, bis ein cleanup-aware Pattern existiert. |
+| Pruefung nach Korrektur | `playwright/projects/fibu-book5/evidence/fixedassets-027/100-auto-number-draft-cleanup-coordinate-result.json` meldet `stillVisibleAfterCleanup=false`; Screenshot `fixedassets-027-100-cleanup-after-filter.png` zeigt die leere Filteransicht. |
+| Buchwirkung | Kapitel 21 muss erklaeren: Ein Lookup-Preflight auf einer neuen Anlage ist nicht automatisch no-save. Fuer Anfaenger braucht die Klickanleitung entweder einen bewusst freigegebenen Speicherschritt oder einen klaren Abbruch-/Cleanup-Pfad. |
+| Kuenftige Regel | Vor Stammdaten-Preflights nicht nur die Zielnummer pruefen. Auch automatisch erzeugte Nummern erkennen, dokumentieren und bereinigen. Kein Save-Gate fuer `FA-CNC-01`, bevor Klasse/Unterklasse, AfA-Daten und Auto-Number-Strategie entschieden sind. |

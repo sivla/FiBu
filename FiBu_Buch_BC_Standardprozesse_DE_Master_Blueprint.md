@@ -3832,6 +3832,8 @@ Nachweis nach `FIXEDASSETS-025`: Der Active-Card-Control-Helper trennt die sicht
 
 Nachweis nach `FIXEDASSETS-026`: Die fehlenden Controls wurden no-save wiedergefunden. In breiter Kartenansicht und nach gezieltem Aufklappen der echten kleinen `Mehr anzeigen`-Controls sind `Depreciation Book Code` und `Posting Group` auf der aktiven `Fixed Asset Card` sichtbar. Das ist fuer Anfaenger ein wichtiger Zwischenbeweis: Jetzt ist klar, wo AfA-Buch und Anlagenbuchungsgruppe spaeter gepflegt werden. Es ist aber noch kein Stammdatenbild. Die Werte `FA-CNC-01`, `CNC Maschine FRA`, `HGB`, `MACHINES`, Klasse/Unterklasse und AfA-Daten sind noch nicht gesetzt. Der naechste sichere Schritt ist deshalb ein no-save Werte-/Lookup-Preflight; erst danach kann ueber ein Speicher-Gate entschieden werden.
 
+
+Nachweis nach `FIXEDASSETS-027`: Der Lookup-/Werte-Preflight hat sichtbar gemacht, dass `HGB`, `MACHINES` sowie vorhandene Klassen-/Unterklassenwerte im Kartenkontext erreichbar sind. Gleichzeitig hat der Lauf eine wichtige Business-Central-Falle gezeigt: Beim Arbeiten auf einer neuen Anlagenkarte kann BC ueber die Nummernserie bereits einen temporaeren Datensatz erzeugen. Im Labor entstand `FA000110`; dieser Entwurf wurde danach bewusst ueber die UI geloescht und per leerem Nachfilter belegt. Fuer die Klickanleitung bedeutet das: `Neu` ist bei Stammdaten kein harmloser Sichttest. Vor einem finalen Stammdatenscreenshot braucht das Buch jetzt ein eigenes Save-Gate fuer `FA-CNC-01`, inklusive Auto-Number-Strategie, konkreter Klasse/Unterklasse, AfA-Daten und Cleanup-Regel. Bis dahin ist `FA-CNC-01` weiterhin nicht gespeichert.
 ### Schritt-für-Schritt
 
 1. Öffne `Anlagen (Fixed Assets)` und lege `FA-CNC-01` an.

@@ -239,6 +239,17 @@ Nicht noetig ist ein Screenshot, wenn er nur eine technische Zwischenstation ohn
 |---|---|---|---|
 | `playwright/projects/fibu-book5/img/fixedassets-026-030-depreciation-book-controls-recovery.png` | guter no-save Labor-Control-Proof; kein Zielstammdatenbild | Die `Fixed Asset Card` ist sichtbar und der Bereich `Depreciation Book` zeigt die Controls `Depreciation Book Code` und `Posting Group`. Die JSON-Evidence mappt 6/6 Zielcontrols auf der aktiven Karte. Zielwerte wie `FA-CNC-01`, `CNC Maschine FRA`, `HGB`, `MACHINES`, Klasse, Unterklasse und AfA-Daten sind noch nicht gesetzt. | Als Buch-/Lernbild fuer Feldsichtbarkeit, breite Kartenansicht und Control-Recovery geeignet. Nicht als gespeicherte Anlage, Wertebeweis, Setup-Fit, Zugang, AfA, Buchung oder deutscher Finalnachweis verwenden. Der naechste Screenshot muss die behaupteten Werte selbst sichtbar zeigen. |
 
+## `FIXEDASSETS-027` Screenshot Review
+
+| Screenshot | Bewertung | Befund | Entscheidung |
+|---|---|---|---|
+| `playwright/projects/fibu-book5/img/fixedassets-027-030-fa-class-code-lookup.png` | Labor-Wertbild mit Auto-Number-Grenze | Der Lookup zeigt `TANGIBLE`, `FINANCIAL` und `INTANGIBLE`. Gleichzeitig ist oben die automatisch erzeugte Nummer `FA000110` sichtbar. | Als Lernbild fuer auswaehlbare Anlagenklassen geeignet, aber nicht als No-Save- oder `FA-CNC-01`-Speicherbild verwenden. |
+| `playwright/projects/fibu-book5/img/fixedassets-027-040-fa-subclass-code-lookup.png` | Labor-Wertbild mit Auto-Number-Grenze | Der Lookup zeigt u. a. `EQUIPMENT`, `VEHICLE` und `COMPUTER`. Gleichzeitig gehoert das Bild zum automatisch erzeugten Entwurf `FA000110`. | Als Lernbild fuer Unterklassen nutzbar; naechster Save-Gate-Lauf muss entscheiden, welcher Wert fuer `FA-CNC-01` fachlich korrekt ist. |
+| `playwright/projects/fibu-book5/img/fixedassets-027-050-depreciation-book-code-lookup.png` | gutes Labor-Wertbild, nicht final | Der Lookup zeigt `COMPANY` und `HGB` inklusive Beschreibung `HGB depreciation book`. | Als Buch-/Lernbild fuer AfA-Buch-Auswahl geeignet, aber nicht als gespeicherte Zielanlage, deutscher HGB-Endstand oder Buchungsnachweis verwenden. |
+| `playwright/projects/fibu-book5/img/fixedassets-027-060-posting-group-lookup.png` | gutes Labor-Wertbild, nicht final | Der Lookup zeigt `MACHINES` und `EQUIPMENT`. | Als Buch-/Lernbild fuer Anlagenbuchungsgruppen-Auswahl geeignet; kein deutscher Kontenplan-Endstand und kein Save-Gate. |
+| `playwright/projects/fibu-book5/img/fixedassets-027-097-card-delete-confirmation.png` | Cleanup-/Fehlerlernfall | Der Dialog `FA000110 loeschen?` zeigt, dass der vermeintliche Preflight bereits einen Auto-Number-Entwurf erzeugt hatte. | Als Lernbild fuer Cleanup und Auto-Number-Falle behalten; nicht als Prozess- oder Buchungsbild verwenden. |
+| `playwright/projects/fibu-book5/img/fixedassets-027-100-cleanup-after-filter.png` | Support-Evidence, nicht alleinstehend | Das Bild zeigt eine leere Fixed-Assets-Liste mit aktivem Filter, aber der konkrete Filterwert `FA000110` ist im Bild selbst nicht sichtbar. | Nicht als alleinstehendes Buchbild verwenden. Nur zusammen mit `100-auto-number-draft-cleanup-coordinate-result.json` und dem Cleanup-Text als Bereinigungsnachweis einsetzen. |
+
 ## `P2P-001` Screenshot Review
 
 | Screenshot | Bewertung | Befund | Entscheidung |

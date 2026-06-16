@@ -38,6 +38,26 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 
 ## Aktuelle Fundstellen
 
+## FIND-BC-FA-027 New-Card-Lookup kann eine Auto-Number-Anlage speichern
+
+| Feld | Wert |
+|---|---|
+| Status | erledigt |
+| Projekt | fibu-book5 |
+| Testfall | `FIXEDASSETS-027-FA-CNC-01-VALUE-LOOKUP-PREFLIGHT-DECISION` |
+| Screenshot | `playwright/projects/fibu-book5/img/fixedassets-027-097-card-delete-confirmation.png`, `playwright/projects/fibu-book5/img/fixedassets-027-100-cleanup-after-filter.png` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-027/README.md`, `playwright/projects/fibu-book5/evidence/fixedassets-027/FIXEDASSETS-027-FA-CNC-01-VALUE-LOOKUP-PREFLIGHT-DECISION.md`, `playwright/projects/fibu-book5/evidence/fixedassets-027/FIXEDASSETS-027-result.json`, `playwright/projects/fibu-book5/evidence/fixedassets-027/100-auto-number-draft-cleanup-coordinate-result.json` |
+| BC-Seite | `Fixed Asset Card` und `Fixed Assets` in `RM-DEMO` / Sandbox `MCP_1_20260210` |
+| sichtbarer Text | `TANGIBLE`, `EQUIPMENT`, `HGB`, `MACHINES`, temporaer `FA000110`, Loeschdialog `FA000110 loeschen?` |
+| Elementtyp | Stammdatenkarte / Lookup / Nummernserie / Cleanup / Screenshot-QA |
+| erste Hypothese | Ein Lookup-Preflight auf einer neuen Anlagenkarte koennte no-save bleiben, solange `FA-CNC-01` nicht als Zielnummer gespeichert wird. |
+| Recherchequelle | Projekt-Evidence `FIXEDASSETS-027`; kein neuer externer Quellenbefund, weil der Lauf eine konkrete UI-/BC-Verhaltenswahrheit pruefte. |
+| Testergebnis | Die Lookupwerte fuer Klasse/Unterklasse, `HGB` und `MACHINES` wurden sichtbar. Gleichzeitig zog Business Central temporaer die Nummer `FA000110` und zeigte `Gespeichert`. Der Datensatz wurde danach ueber den Karten-Loeschdialog entfernt; der Filter auf `FA000110` war anschliessend leer. `FA-CNC-01` wurde nicht gespeichert, kein Setup und keine Buchung. |
+| Entscheidung | Das Buch und die Playwright-Regeln muessen New-Card-Preflights als Auto-Number-Risiko behandeln. Der naechste Schritt ist kein weiterer Lookup-Lauf, sondern `FIXEDASSETS-028-FA-CNC-01-AUTO-NUMBER-SAVE-GATE-DECISION`. |
+| Buchstelle | Kapitel 21 Anlagen; Kapitel 37 Debugging und technische Nachweisfuehrung; allgemeine Klickanleitungs-QA |
+
+Fuer Anfaenger ist der Befund wichtig, weil Business Central Stammdatenkarten oft schon beim Oeffnen oder Bearbeiten mit Nummernserien verbindet. Ein Screenshot mit sichtbaren Lookupwerten beweist dann zwar die Auswahlmoeglichkeit, aber nicht automatisch, dass nichts gespeichert wurde. Eine gute Anleitung muss deshalb erklaeren, wann ein Datensatz wirklich entsteht, wie man ihn erkennt und wie ein versehentlicher Laborentwurf sauber geloescht wird.
+
 ## FIND-BC-FA-026 Depreciation-Book-Controls auf aktiver Anlagenkarte recovered
 
 | Feld | Wert |

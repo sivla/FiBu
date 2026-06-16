@@ -1052,6 +1052,53 @@
       "nextStep": "FIXEDASSETS-027-FA-CNC-01-VALUE-LOOKUP-PREFLIGHT-DECISION"
     },
     {
+      "caseId": "FIXEDASSETS-027",
+      "process": "Fixed Assets",
+      "type": "ui-first-lookup-preflight-with-auto-number-cleanup",
+      "company": "RM-DEMO",
+      "environment": "MCP_1_20260210",
+      "status": "labor-lookup-values-visible-save-gate-blocked-auto-number-cleaned",
+      "screenshots": [
+        "playwright/projects/fibu-book5/img/fixedassets-027-030-fa-class-code-lookup.png",
+        "playwright/projects/fibu-book5/img/fixedassets-027-040-fa-subclass-code-lookup.png",
+        "playwright/projects/fibu-book5/img/fixedassets-027-050-depreciation-book-code-lookup.png",
+        "playwright/projects/fibu-book5/img/fixedassets-027-060-posting-group-lookup.png",
+        "playwright/projects/fibu-book5/img/fixedassets-027-097-card-delete-confirmation.png",
+        "playwright/projects/fibu-book5/img/fixedassets-027-100-cleanup-after-filter.png"
+      ],
+      "evidence": [
+        "playwright/projects/fibu-book5/evidence/fixedassets-027/README.md",
+        "playwright/projects/fibu-book5/evidence/fixedassets-027/FIXEDASSETS-027-FA-CNC-01-VALUE-LOOKUP-PREFLIGHT-DECISION.md",
+        "playwright/projects/fibu-book5/evidence/fixedassets-027/FIXEDASSETS-027-result.json",
+        "playwright/projects/fibu-book5/evidence/fixedassets-027/100-auto-number-draft-cleanup-coordinate-result.json"
+      ],
+      "proves": [
+        "HGB and COMPANY visible in Depreciation Book Code lookup context",
+        "MACHINES and EQUIPMENT visible in Posting Group lookup context",
+        "FA Class and FA Subclass reference values visible",
+        "New-card lookup preflight can auto-create a temporary fixed asset number",
+        "FA000110 was deleted through the UI and no longer visible after filter",
+        "FA-CNC-01 was not saved"
+      ],
+      "doesNotProve": [
+        "safe save gate for FA-CNC-01",
+        "final selected FA Class/Subclass and depreciation dates",
+        "K30000, purchase invoice, acquisition, depreciation or posting",
+        "German final fixed-assets proof"
+      ],
+      "reusablePatterns": [
+        "lookup value screenshots require visible code and correct context",
+        "new master-data cards can auto-number before the author thinks a record was saved",
+        "cleanup evidence must check generated numbers, not only target numbers"
+      ],
+      "bookChapters": [
+        "21",
+        "37",
+        "BC-Debugging"
+      ],
+      "nextStep": "FIXEDASSETS-028-FA-CNC-01-AUTO-NUMBER-SAVE-GATE-DECISION"
+    },
+    {
       "caseId": "WAREHOUSE-001",
       "process": "Warehouse",
       "status": "readiness-only-gate-locked",
