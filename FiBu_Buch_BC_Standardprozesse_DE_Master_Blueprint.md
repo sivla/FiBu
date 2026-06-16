@@ -3809,7 +3809,7 @@ Status vor dem ersten bebilderten Anlagenlauf:
 
 | Prüfpunkt | Buchziel | RM-DEMO-Laborbefund | Konsequenz |
 |---|---|---|---|
-| Anlage | `FA-CNC-01` | `FIXEDASSETS-029-EXISTING` zeigt: Der Code existiert in `RM-DEMO`, aber die geoeffnete Karte enthaelt nur `No. = FA-CNC-01`; Beschreibung, Klasse/Unterklasse, AfA-Buch, Posting Group und AfA-Daten sind leer beziehungsweise `0,00` | Nicht als fertige Anlage verwenden. Vor Kreditor, Einkaufsrechnung, Zugang oder AfA braucht es ein Korrektur-Gate: vorhandene Karte UI-first vervollstaendigen oder neuen Zielcode waehlen |
+| Anlage | `FA-CNC-01` | `FIXEDASSETS-029-EXISTING` zeigt: Der Code existiert in `RM-DEMO`, aber die geoeffnete Karte enthaelt nur `No. = FA-CNC-01`; Beschreibung, Klasse/Unterklasse, AfA-Buch, Posting Group und AfA-Daten sind leer beziehungsweise `0,00`. `FIXEDASSETS-030` entscheidet: Zielcode behalten und vorhandene Karte UI-first korrigieren | Nicht als fertige Anlage verwenden. Vor Kreditor, Einkaufsrechnung, Zugang oder AfA muss die vorhandene Karte mit Vorher/Nachher-Evidence korrigiert werden |
 | AfA-Buch | `HGB` | `HGB` sichtbar nach `FIXEDASSETS-014`; `COMPANY = Company Book` bleibt CRONUS-Referenz | deutscher HGB-Endstand offen; Labor-Fit ist kein Anlagenzugang |
 | Anlagenklasse | `MASCHINE`/`CNC` | `FINANCIAL`, `INTANGIBLE`, `TANGIBLE` sichtbar | Zielklassifizierung muss später bewusst eingerichtet oder auf vorhandene Klasse gemappt werden |
 | Anlagenbuchungsgruppe | `MACHINES` | sichtbar nach `FIXEDASSETS-016`; Nachherbild zeigt `MACHINES`, `12210` und `82000` als CRONUS-Laboralias von `EQUIPMENT` | kein deutscher Kontenplan; Setup-Baustein sichtbar, aber noch keine Anlage und keine Buchung |
@@ -3817,6 +3817,8 @@ Status vor dem ersten bebilderten Anlagenlauf:
 | Zugang/AfA | Einkaufsrechnung, Anlagenposten, AfA bis `30.06.2026` | nicht gebucht | keine Laborbuchung ohne neues Gate |
 
 Evidence-Pack-Stand: `FIXEDASSETS-005` belegt den UI-Pfad zu `FA Posting Groups`, `FIXEDASSETS-006` belegt vorhandene CRONUS-Konten, `FIXEDASSETS-007` belegt AfA-Bücher und Anlagenklassen. `FIXEDASSETS-012` zeigt nur leere Karten und den Vendor-Template-Dialog; diese Bilder sind keine Zielstammdaten-Screenshots. `FIXEDASSETS-014` hat `HGB` praktisch ausgeführt: `HGB` ist in `Depreciation Books` sichtbar. `FIXEDASSETS-016` hat danach `MACHINES` praktisch ausgeführt: `MACHINES` ist auf der `FA Posting Group Card` sichtbar, inklusive `12210` und `82000`. `FIXEDASSETS-018` hat anschließend den Anlagenlisten-Kontext geprüft: `FA-CNC-01` ist im sichtbaren Ausschnitt/Seitentext vor `Neu` nicht sichtbar, das Listenbild ist aber kein sauberer leerer Filterbeweis. Danach wurde die leere `Fixed Asset Card` als Preflight geöffnet. Das zeigt Pflichtfelder und Kartenaufbau, beweist aber noch keine gespeicherte Anlage. `FIXEDASSETS-019` entscheidet deshalb: Noch nicht speichern, bevor `HGB` und `MACHINES` auf der Anlagenkarte sichtbar und setzbar gemappt sind. `K30000`, Einkaufsrechnung, Zugang und AfA bleiben eigene, spätere Klickpfade. Diese Evidence ist ein Labor-Nachweis für die Setup-Reihenfolge, kein finaler deutscher Anlagenprozess. Für finale Buchscreenshots fehlen weiterhin ein sichtbarer Stammsatz `FA-CNC-01`, `HGB`/`MACHINES` auf der Anlagenkarte, `K30000`, Zugang, Anlagenposten, AfA-Posten und deutscher Kontenplan-/USt-Nachweis.
+
+Korrekturentscheidung nach `FIXEDASSETS-030`: `FA-CNC-01` bleibt der Zielcode. Die vorhandene Karte wird nicht durch einen neuen Laborcode ersetzt, weil Buch, Testdaten und spaetere Postenspur sonst auseinanderlaufen wuerden. Der naechste praktische Buchbild-Kandidat ist deshalb eine korrigierte `FA-CNC-01`-Karte mit Vorher/Nachher-Nachweis: Beschreibung `CNC Maschine FRA`, Labor-Klasse `TANGIBLE`, Labor-Unterklasse `EQUIPMENT`, AfA-Buch `HGB`, Anlagenbuchungsgruppe `MACHINES` und Nutzungsdauer `8 Jahre`. AfA-Start-/Enddatum duerfen erst gesetzt werden, wenn die Datumslogik im UI-Lauf belegbar ist. Bis dahin bleiben Kreditor `K30000`, Einkaufsrechnung, Zugang, AfA und Postenspur gesperrt.
 
 Didaktische Konsequenz nach `FIXEDASSETS-018`: Zwei Bilder sind fachlich sauber, aber unterschiedlich zu lesen. Die Anlagenliste zeigt nur: Im sichtbaren Ausschnitt ist `FA-CNC-01` nicht zu sehen; sie ersetzt keinen sauberen Filter- oder Stammdatennachweis. Die leere Karte zeigt dagegen den Eingaberaum: `No.`, `Description`, `FA Class Code`, `FA Subclass Code`, AfA-Methode, AfA-Start-/Enddatum und `Book Value`. Für Anfänger ist das wichtig, weil Business Central hier Stammdaten, AfA-Logik und spätere Kontenfindung vorbereitet. Ein finales Stammdatenbild darf erst entstehen, wenn `FA-CNC-01`, Beschreibung, AfA-Buch `HGB` und Anlagenbuchungsgruppe `MACHINES` tatsächlich sichtbar gesetzt sind. Genau deshalb kommt die Anlagenkarte vor Kreditor `K30000` und vor der Einkaufsrechnung.
 
@@ -3895,18 +3897,19 @@ Gebuchte Anlagenzugänge werden nicht durch Direktänderung der Anlagenposten ko
 
 ### Lösung
 
-1. Öffne `Anlagen (Fixed Assets)` über `Alt+Q` und wähle `Neu`.
-2. Erfasse `Anlagennr. = FA-CNC-01`, `Beschreibung = CNC Maschine FRA`, `Anlagenklasse = MASCHINE`, `Anlagenunterklasse = CNC`.
-3. Öffne das AfA-Buch und setze `AfA-Buchcode = HGB`, `AfA-Methode = Linear`, `Nutzungsdauer = 8 Jahre`, `Anlagenbuchungsgruppe = MACHINES`.
-4. Öffne `Einkaufsrechnungen (Purchase Invoices)` über `Alt+Q`.
-5. Lege Rechnung für Kreditor `K30000` an.
-6. Erfasse Zeile `Art = Anlage`, `Nr. = FA-CNC-01`, `Menge = 1`, `Direkte Einstandskosten = 120.000`.
-7. Wähle `Buchungsvorschau (Preview Posting)` und prüfe Kreditoren-, Sach- und Anlagenposten.
-8. Buche die Einkaufsrechnung.
-9. Öffne `Anlagenposten (FA Ledger Entries)` und filtere `Anlagennr. = FA-CNC-01`; prüfe Anschaffungskosten `120.000 EUR`.
-10. Öffne `AfA berechnen (Calculate Depreciation)`, setze `AfA-Buchcode = HGB`, `Anlagennr. = FA-CNC-01`, Periodenende `30.06.2026`.
-11. Öffne das erzeugte Anlagen Buch.-Blatt, prüfe AfA-Betrag und wähle `Buchen`.
-12. Prüfe `Sachposten (G/L Entries)`, `Anlagenposten (FA Ledger Entries)` und Anlagenspiegel.
+1. Öffne `Anlagen (Fixed Assets)` über `Alt+Q` und prüfe zuerst, ob `FA-CNC-01` bereits existiert.
+2. Wenn `FA-CNC-01` existiert, öffne die Karte und prüfe, ob Beschreibung, Anlagenklasse, Anlagenunterklasse, AfA-Buch, Anlagenbuchungsgruppe und Nutzungsdauer bereits fachlich tragen; wenn nicht, korrigiere die vorhandene Karte statt einen neuen Zielcode anzulegen.
+3. Erfasse oder korrigiere `Anlagennr. = FA-CNC-01`, `Beschreibung = CNC Maschine FRA`, im aktuellen RM-DEMO-Labor `Anlagenklasse = TANGIBLE`, `Anlagenunterklasse = EQUIPMENT`.
+4. Öffne das AfA-Buch und setze `AfA-Buchcode = HGB`, `AfA-Methode = Linear`, `Nutzungsdauer = 8 Jahre`, `Anlagenbuchungsgruppe = MACHINES`.
+5. Öffne `Einkaufsrechnungen (Purchase Invoices)` über `Alt+Q`.
+6. Lege Rechnung für Kreditor `K30000` an.
+7. Erfasse Zeile `Art = Anlage`, `Nr. = FA-CNC-01`, `Menge = 1`, `Direkte Einstandskosten = 120.000`.
+8. Wähle `Buchungsvorschau (Preview Posting)` und prüfe Kreditoren-, Sach- und Anlagenposten.
+9. Buche die Einkaufsrechnung.
+10. Öffne `Anlagenposten (FA Ledger Entries)` und filtere `Anlagennr. = FA-CNC-01`; prüfe Anschaffungskosten `120.000 EUR`.
+11. Öffne `AfA berechnen (Calculate Depreciation)`, setze `AfA-Buchcode = HGB`, `Anlagennr. = FA-CNC-01`, Periodenende `30.06.2026`.
+12. Öffne das erzeugte Anlagen Buch.-Blatt, prüfe AfA-Betrag und wähle `Buchen`.
+13. Prüfe `Sachposten (G/L Entries)`, `Anlagenposten (FA Ledger Entries)` und Anlagenspiegel.
 
 ### UAT-Fall
 

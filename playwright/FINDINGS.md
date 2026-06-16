@@ -38,6 +38,26 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 
 ## Aktuelle Fundstellen
 
+## FIND-BC-FA-030 Bestehende FA-CNC-01-Karte korrigieren statt Zielcode wechseln
+
+| Feld | Wert |
+|---|---|
+| Status | erledigt als Korrektur-Gate; praktischer Korrekturlauf offen |
+| Projekt | fibu-book5 |
+| Testfall | `FIXEDASSETS-030-FA-CNC-01-CORRECTION-GATE-DECISION` |
+| Screenshot | keiner, Decision-Lauf ohne BC-Ausfuehrung; nutzt `fixedassets-029-existing-asset-readonly-*` als Eingangsbeleg |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-030/README.md`, `playwright/projects/fibu-book5/evidence/fixedassets-030/FIXEDASSETS-030-result.json` |
+| BC-Seite | nicht neu ausgefuehrt; Entscheidung basiert auf `Fixed Asset Card` / `FA-CNC-01` in `RM-DEMO` |
+| sichtbarer Text | Eingangsbeleg zeigt `FA-CNC-01`, aber fehlende Beschreibung, Klasse/Unterklasse, AfA-Buch, Posting Group und AfA-Daten |
+| Elementtyp | Governance / Stammdatenkorrektur / Klickanleitungs-QA / Anlagen-Gate |
+| erste Hypothese | Nach der leeren vorhandenen Karte koennte ein neuer Zielcode einfacher wirken. |
+| Recherchequelle | Projekt-Evidence `FIXEDASSETS-029-EXISTING-ASSET-READONLY-VERIFY`; keine externe Quelle, weil es um konkrete Projekt-/Buchzielentscheidung geht. |
+| Testergebnis | Kein BC-Lauf. Die Entscheidung haelt `FA-CNC-01` als Buch- und Laborziel fest. Der naechste Lauf darf nur die bestehende Karte UI-first korrigieren, wenn sie weiterhin keinen Zugang, Buchwert, AfA oder Postenspur zeigt. |
+| Entscheidung | Nicht auf `FA-CNC-02` oder andere Ersatzcodes ausweichen. Erst Karte `FA-CNC-01` korrigieren und danach neu entscheiden, ob Kreditor, Einkaufsrechnung, Zugang und AfA vorbereitet werden duerfen. |
+| Buchstelle | Kapitel 21 Anlagen; Kapitel 37 Debugging und technische Nachweisfuehrung; Kapitel 38 Screenshot-QA |
+
+Fuer Anfaenger ist der Befund wichtig, weil Stammdatenfehler nicht durch neue Nummern versteckt werden sollten. Wenn das Buch einen Zielcode nennt, muss die Anleitung zeigen, wie man genau diesen Datensatz prueft und korrigiert, bevor daraus Belege oder Posten entstehen.
+
 ## FIND-BC-FA-029B `FA-CNC-01` existiert, ist aber als Anlagenstamm leer
 
 | Feld | Wert |

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "updatedAt": "2026-06-16T19:31:05.786Z",
+  "updatedAt": "2026-06-16T19:42:38.334Z",
   "repository": "sivla/FiBu",
   "branch": "codex/playwright-bc-screenshot-foundation",
   "environment": "MCP_1_20260210",
@@ -10,8 +10,8 @@
   "companyRegistry": "playwright/projects/fibu-book5/COMPANY-REGISTRY.json",
   "dataBasis": "CRONUS USA",
   "activeArea": "fixedassets",
-  "lastCompletedRun": "FIXEDASSETS-029-EXISTING-ASSET-READONLY-VERIFY",
-  "lastWorkType": "ui-first-readonly-existing-target-classification-blocked-incomplete",
+  "lastCompletedRun": "FIXEDASSETS-030-FA-CNC-01-CORRECTION-GATE-DECISION",
+  "lastWorkType": "decision-no-bc-run-existing-asset-correction-gate",
   "postedInLastRun": false,
   "latestPostedDocuments": {
     "o2c": {
@@ -67,7 +67,7 @@
         ],
         "nextAllowedCase": "FIXEDASSETS-016-MACHINES-FA-POSTING-GROUP-FIT"
       },
-      "limitation": "CRONUS-USA lab setup only; HGB and MACHINES are visible setup prerequisites. FIXEDASSETS-029-EXISTING-ASSET-READONLY-VERIFY proves FA-CNC-01 exists but is incomplete: only No. = FA-CNC-01 fits; Description, FA Class/Subclass, Depreciation Book Code HGB, Posting Group MACHINES, depreciation years and dates are blank/not fit. No K30000, no acquisition, no depreciation and no German final proof.",
+      "limitation": "CRONUS-USA lab setup only; HGB and MACHINES are visible setup prerequisites. FIXEDASSETS-030 decides that the incomplete existing FA-CNC-01 card should be corrected UI-first in the next run rather than replaced by a new target code. No K30000, no acquisition, no depreciation and no German final proof.",
       "faPostingGroup": "MACHINES",
       "machinesFit": {
         "caseId": "FIXEDASSETS-016",
@@ -404,6 +404,27 @@
         "noSetupChange": true,
         "noPosting": true,
         "nextAllowedCase": "FIXEDASSETS-030-FA-CNC-01-CORRECTION-GATE-DECISION"
+      },
+      "assetCorrectionGateDecision": {
+        "caseId": "FIXEDASSETS-030",
+        "decision": "correct-existing-fa-cnc-01-ui-first",
+        "rejectedPath": "create-new-target-fixed-asset-code",
+        "reason": "FA-CNC-01 is the consistent book/testdata target and FIXEDASSETS-029-EXISTING proves an incomplete, not posted/acquired, card.",
+        "nextAllowedCase": "FIXEDASSETS-031-FA-CNC-01-EXISTING-CARD-CORRECTION",
+        "allowedTargetValues": {
+          "fixedAssetNo": "FA-CNC-01",
+          "description": "CNC Maschine FRA",
+          "faClassCode": "TANGIBLE",
+          "faSubclassCode": "EQUIPMENT",
+          "depreciationBookCode": "HGB",
+          "postingGroup": "MACHINES",
+          "depreciationYears": 8,
+          "depreciationDates": "open-ui-dependent-before-save"
+        },
+        "noBcRun": true,
+        "noSetupChangeInDecisionRun": true,
+        "noPosting": true,
+        "evidence": "playwright/projects/fibu-book5/evidence/fixedassets-030/FIXEDASSETS-030-result.json"
       }
     }
   },
@@ -455,7 +476,8 @@
     "no repeat FIXEDASSETS-026-FA-CNC-01-DEPRECIATION-BOOK-CONTROL-RECOVERY without a new value/lookup or save-gate delta",
     "no repeat FIXEDASSETS-027 without a cleanup-aware auto-number pattern and explicit new evidence purpose",
     "no overwrite or reuse of existing FA-CNC-01 until FIXEDASSETS-029-EXISTING-ASSET-READONLY-VERIFY classifies the visible asset",
-    "no use of FA-CNC-01 for K30000, purchase invoice, acquisition, depreciation or fixed-asset posting until FIXEDASSETS-030 decides correction/new-code gate after the incomplete read-only card proof"
+    "no use of FA-CNC-01 for K30000, purchase invoice, acquisition, depreciation or fixed-asset posting until FIXEDASSETS-030 decides correction/new-code gate after the incomplete read-only card proof",
+    "FIXEDASSETS-030 permits only FIXEDASSETS-031 as the next fixed-asset data-changing step: UI-first correction of existing FA-CNC-01 card values after safety checks. No new fixed asset target code, no K30000, no purchase invoice, no acquisition, no depreciation and no posting until the corrected card is proven."
   ],
   "openGates": [
     "TAX-002-DE-VAT-FIT",
@@ -723,6 +745,7 @@
   },
   "nextTechnicalStep": "PLAYWRIGHT-STRICTNESS-002: extract or reuse a row/geometry-scoped card field fill helper after FIXEDASSETS-029 showed broad caption text can write into the wrong card input.",
   "sessionNotes": [
+    "FIXEDASSETS-030 completed as a decision run without BC execution. The existing incomplete FA-CNC-01 remains the book/lab target and should be corrected UI-first in FIXEDASSETS-031, provided the card still has no acquisition/book-value/posting state. No setup change, no K30000, no purchase invoice, no acquisition, no depreciation, no posting and no company switch.",
     "FIXEDASSETS-029-EXISTING-ASSET-READONLY-VERIFY ran UI-first read-only in RM-DEMO. It opened the existing Fixed Asset Card and proved the previous list screenshot was insufficient: only No. FA-CNC-01 fits; Description, FA Class Code, FA Subclass Code, Depreciation Book Code HGB, Posting Group MACHINES, depreciation years and dates are blank/not fit. No setup change, no K30000, no purchase invoice, no acquisition, no depreciation, no posting and no company switch. Next step is FIXEDASSETS-030-FA-CNC-01-CORRECTION-GATE-DECISION.",
     "FIXEDASSETS-029 ran UI-first in RM-DEMO. A first attempt exposed an unsafe broad caption-fill pattern: the Fixed Asset Card was open, but repeated caption matching wrote target values into the wrong fields and left a Business Central related-records confirmation. The test was tightened to row/geometry-scoped field filling. The rerun stopped correctly because FA-CNC-01 was already visible in the filtered Fixed Assets list before the run. No overwrite, no K30000, no purchase invoice, no acquisition, no depreciation, no posting and no company switch. Next step is FIXEDASSETS-029-EXISTING-ASSET-READONLY-VERIFY.",
     "FIXEDASSETS-028 completed as a no-BC decision run. It approves only the next controlled target master-data save for FA-CNC-01 with Auto-Number stop criteria and cleanup rules. No setup, K30000, purchase invoice, acquisition, depreciation, posting or company switch. Next step is FIXEDASSETS-029-FA-CNC-01-CONTROLLED-ASSET-SAVE.",

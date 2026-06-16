@@ -1,0 +1,69 @@
+{
+  "caseId": "FIXEDASSETS-030-FA-CNC-01-CORRECTION-GATE-DECISION",
+  "generatedAt": "2026-06-16T19:42:38.334Z",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "mode": "decision-no-bc-run",
+  "status": "done-decision-correction-gate-no-bc-run",
+  "inputEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-029-existing-asset-readonly/FIXEDASSETS-029-existing-readonly-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-029-existing-asset-readonly/030-card-field-values.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-029-existing-asset-readonly/README.md"
+  ],
+  "decision": {
+    "selectedPath": "correct-existing-fa-cnc-01-ui-first",
+    "rejectedPath": "create-new-target-fixed-asset-code",
+    "reason": [
+      "The book and test data consistently use FA-CNC-01.",
+      "FIXEDASSETS-029-EXISTING proves the current card is incomplete, not a posted or acquired asset.",
+      "Correcting the existing target card keeps future screenshots, posting trace and book text aligned."
+    ],
+    "nextAllowedCase": "FIXEDASSETS-031-FA-CNC-01-EXISTING-CARD-CORRECTION"
+  },
+  "targetValuesForNextRun": {
+    "fixedAssetNo": "FA-CNC-01",
+    "description": "CNC Maschine FRA",
+    "faClassCode": "TANGIBLE",
+    "faSubclassCode": "EQUIPMENT",
+    "depreciationBookCode": "HGB",
+    "postingGroup": "MACHINES",
+    "depreciationYears": 8,
+    "depreciationDates": "open-ui-dependent-before-save"
+  },
+  "allowedNextActions": [
+    "open existing FA-CNC-01 in Fixed Assets",
+    "capture before screenshot and field-values JSON",
+    "verify no acquired/posting/book-value state is present",
+    "set only master-data card values if the safety checks pass",
+    "capture after screenshot and field-values JSON",
+    "update chapter 21 and evidence coverage"
+  ],
+  "forbiddenNextActions": [
+    "create K30000",
+    "create or post purchase invoice",
+    "post acquisition",
+    "calculate or post depreciation",
+    "post any document or journal",
+    "claim German final chart-of-accounts or HGB proof",
+    "create a new fixed asset target code unless correction is blocked with evidence and a new decision"
+  ],
+  "stopCriteria": [
+    "environment is not MCP_1_20260210",
+    "company is not RM-DEMO",
+    "FA-CNC-01 has acquisition, book value, acquired flag or posted ledger traces",
+    "target card is not editable or target fields are not visible in the active card context",
+    "HGB, MACHINES, TANGIBLE or EQUIPMENT are not selectable",
+    "depreciation date logic cannot be explained safely",
+    "Business Central asks for unrelated related-record modification"
+  ],
+  "safety": {
+    "bcRun": false,
+    "setupChanged": false,
+    "masterdataChanged": false,
+    "posted": false,
+    "companyChanged": false
+  },
+  "bookImpact": "Chapter 21 must explain that the existing FA-CNC-01 number is a correction case, not a valid asset master-data screenshot. The next book-ready screenshot must show the corrected card values.",
+  "laborBoundary": "CRONUS-USA lab decision only; no German final fixed-asset, HGB, chart-of-accounts or posting proof.",
+  "nextStep": "FIXEDASSETS-031-FA-CNC-01-EXISTING-CARD-CORRECTION"
+}

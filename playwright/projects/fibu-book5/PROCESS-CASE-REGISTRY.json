@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-16T19:31:24.297Z",
+  "updatedAt": "2026-06-16T19:42:38.334Z",
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
   "companyMode": "instance-bound-multi-company",
@@ -1461,6 +1461,45 @@
         "38"
       ],
       "nextStep": "FIXEDASSETS-030-FA-CNC-01-CORRECTION-GATE-DECISION"
+    },
+    {
+      "caseId": "FIXEDASSETS-030",
+      "process": "Fixed Assets",
+      "status": "done-decision-correction-gate-no-bc-run",
+      "mode": "existing-fa-cnc-01-correction-gate-decision",
+      "company": "RM-DEMO",
+      "environment": "MCP_1_20260210",
+      "documents": [
+        "FA-CNC-01"
+      ],
+      "screenshots": [],
+      "evidence": [
+        "playwright/projects/fibu-book5/evidence/fixedassets-030/README.md",
+        "playwright/projects/fibu-book5/evidence/fixedassets-030/FIXEDASSETS-030-FA-CNC-01-CORRECTION-GATE-DECISION.md",
+        "playwright/projects/fibu-book5/evidence/fixedassets-030/FIXEDASSETS-030-result.json"
+      ],
+      "proves": [
+        "existing FA-CNC-01 should be corrected UI-first instead of replaced by a new target code",
+        "next run may only correct master-data card values after safety checks",
+        "K30000, purchase invoice, acquisition, depreciation and posting remain locked"
+      ],
+      "doesNotProve": [
+        "corrected FA-CNC-01 card values",
+        "asset acquisition or depreciation readiness",
+        "fixed asset ledger entries",
+        "German final fixed-asset accounting"
+      ],
+      "reusablePatterns": [
+        "decision before correcting an existing target master record",
+        "do not fork target codes when the book target can be safely corrected",
+        "visible record number is not enough; card values must be proven before posting"
+      ],
+      "bookChapters": [
+        "21",
+        "37",
+        "38"
+      ],
+      "nextStep": "FIXEDASSETS-031-FA-CNC-01-EXISTING-CARD-CORRECTION"
     }
   ]
 }
