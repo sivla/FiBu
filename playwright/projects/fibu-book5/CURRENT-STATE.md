@@ -57,6 +57,8 @@ Update nach `GOVERNANCE-016-BC-BUGFIXING-PLAYBOOK`: Das Projekt hat jetzt mit `B
 
 Update nach `GOVERNANCE-017-EVIDENCE-PACK-STANDARD`: Das Projekt hat jetzt mit `EVIDENCE-PACK-STANDARD.md` eine strengere Finalitaetsregel fuer grosse Klickanleitungen. Es gab keinen BC-Lauf, keine Setup-Aenderung, keine Buchung und keinen Company-Wechsel. Eine grosse Anleitung ist erst final buchfaehig, wenn UI-Nachweis, technischer Page-/Table-Nachweis, fachlicher Prozesszustand und Posten-/Persistenznachweis zusammenpassen. Bestehende Laborpacks bleiben dadurch nicht automatisch final. Der naechste fachliche Lauf bleibt `FIXEDASSETS-017-FA-CNC-01-SETUP-READINESS`.
 
+Update nach `GOVERNANCE-018-AUTOPILOT-PROMPT-V6.2`: Der aktuelle Queue-/Autopilot-Prompt liegt jetzt als `AUTOPILOT-PROMPT-V6.2.md` im Projekt. Es gab keinen BC-Lauf, keine Setup-Aenderung, keine Buchung und keinen Company-Wechsel. V6.2 ergaenzt vor allem Laufentscheidung, Aenderungstypen, Update-Matrix, Single Source of Truth, Self-Healing/Retry und Definition of Done. Der naechste fachliche Lauf bleibt `FIXEDASSETS-017-FA-CNC-01-SETUP-READINESS`.
+
 ## Projektmission
 
 Das Projekt verfolgt vier gleichrangige Ziele:

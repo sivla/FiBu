@@ -9,6 +9,7 @@ Leitregel: aktuelle Wahrheit kurz halten, Evidence lokal beweisen, wiederverwend
 | Datei | Rolle | Soll sie lang sein? | Quelle der Wahrheit fuer | Pflege-Regel |
 |---|---|---|---|---|
 | `AUTOPILOT-STATE.json` | maschinenlesbarer Laufzustand | nein | naechster Autopilot-Schritt, Sperren, letzte belegte Referenzen | nur aktuelle Steuerwahrheit, keine Laufchronik als Prosa |
+| `AUTOPILOT-PROMPT-V6.2.md` | aktueller Queue-/Autopilot-Prompt | mittel | state-driven Laufprinzip, Update-Matrix, Self-Healing, Definition of Done | bei Prompt-/Governance-Delta pflegen; aktuelle Steuerwahrheit bleibt trotzdem in `AUTOPILOT-STATE.json` |
 | `COMPANY-REGISTRY.md` / `COMPANY-REGISTRY.json` | Mandanten-/Company-Steuerregister | nein | welche Companies innerhalb `MCP_1_20260210` bekannt, geplant oder nutzbar sind | vor Company-Wechsel oder neuer Company zwingend lesen und aktualisieren |
 | `POSTING-AND-SETUP-GATES.md` | Sicherheitsgates | mittel | erlaubte/gesperrte Setup-, Posting-, Payment- und Company-Aktionen | vor riskanten Aktionen zwingend lesen; Gate nicht durch Coverage ersetzen |
 | `CURRENT-STATE.md` | menschlicher Handover | mittel | aktueller Projektstand und naechster sinnvoller Schritt | am Ende jedes Laufs aktualisieren; alte Historie knapp halten |
@@ -38,7 +39,7 @@ Leitregel: aktuelle Wahrheit kurz halten, Evidence lokal beweisen, wiederverwend
 
 ## Ebenenmodell
 
-1. Autopilot-Steuerung: `AUTOPILOT-STATE.json`, `POSTING-AND-SETUP-GATES.md`, `CURRENT-STATE.md`.
+1. Autopilot-Steuerung: `AUTOPILOT-STATE.json`, `AUTOPILOT-PROMPT-V6.2.md`, `POSTING-AND-SETUP-GATES.md`, `CURRENT-STATE.md`.
 2. Wiederverwendbares Wissen: `BC-PLAYWRIGHT-PATTERNS.md`, `BC-BUGFIXING-PLAYBOOK.md`, `BC-PAGE-ACTION-MAP.json`, `SETUP-READINESS-MATRIX.md`, `PROCESS-CASE-REGISTRY.json`.
 3. Buchwahrheit: Buchdatei, `BOOK-TO-EVIDENCE-AUDIT.md`, `BOOK-CLICK-GUIDE-COVERAGE.md`.
 4. Fall-Evidence: `evidence/<case-id>/README.md`, Result-JSON, Sync-/Trace-Dateien, kompakte Seitentexte.
