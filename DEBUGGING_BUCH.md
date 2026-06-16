@@ -289,3 +289,14 @@ Die folgenden Kapitel werden als naechstes ausgebaut:
 | 25 Playwright | Entwurf | reproduzierbare Klickpfade, Screenshots, Regression |
 | 26 Kundentickets | Entwurf | Ticketanalyse-Schema |
 | 27 Evidence Packs | Entwurf | Pflichtdateien, Datenschutz, Root Cause |
+
+## Projektartefakte fuer Agenten
+
+| Artefakt | Rolle im System |
+|---|---|
+| `DEBUGGING_AGENT_RUNBOOK.md` | konkrete Schrittfolge vom Ticket bis zur Buchregel |
+| `SAFE_ACTION_POLICY.md` | Sicherheitsmatrix und Abbruchregeln |
+| `PLAYWRIGHT_DEBUGGING_FOUNDATION.md` | UI-/Playwright-Regeln fuer reproduzierbare Evidence |
+| `BC_DATA_ACCESS_STRATEGY.md` | Entscheidung, welche Datenquelle welche Frage beantwortet |
+| `OBJECT_MAPPING_STARTER.md` | Startpunkt fuer Page/Table/Entry-Mapping |
+| `evidence/SAMPLE-001-missing-field/` | Demo fuer fehlende Spalte, Personalisierung und Page Inspection |

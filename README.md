@@ -21,7 +21,12 @@ Der neue Fokus ist ein eigenstaendiges Debugging-Buch und ein spaeter ausfuehrba
 | `AGENT_REGELN.md` | Sicherheits-, Arbeits- und Schreibregeln fuer den Debugging-Agent |
 | `SAFE_ACTION_POLICY.md` | klare Erlaubnis-/Stop-Regeln fuer autonome Aktionen |
 | `RUNBOOK.md` | Schritt-fuer-Schritt-Ablauf vom Ticket zum Buchwissen |
+| `DEBUGGING_AGENT_RUNBOOK.md` | operatives Runbook fuer Agenten, Consultants und Support |
+| `PLAYWRIGHT_DEBUGGING_FOUNDATION.md` | Playwright-Regeln fuer BC-Debugging |
+| `BC_DATA_ACCESS_STRATEGY.md` | wann UI, Page Inspection, API/OData/MCP und Telemetry genutzt werden |
+| `OBJECT_MAPPING_STARTER.md` | Starter-Mapping von Page zu Table, Posted Document und Entries |
 | `evidence/sample-001-inventory-posting-setup-missing/` | erster Sample-Evidence-Fall |
+| `evidence/SAMPLE-001-missing-field/` | synthetischer Missing-Field-/Personalisierungsfall |
 | `playwright/` | minimale ausfuehrbare Test- und Evidence-Grundstruktur |
 
 ## Arbeitsregel

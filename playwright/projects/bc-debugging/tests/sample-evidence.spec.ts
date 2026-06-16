@@ -3,9 +3,6 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { evidenceFileExists, readTextEvidence } from '../../../core/evidence';
 
-const caseId = 'sample-001-inventory-posting-setup-missing';
-const caseDir = path.resolve('evidence', caseId);
-
 const requiredFiles = [
   '00-ticket-summary.md',
   '01-screenshot-analysis.md',
@@ -21,26 +18,39 @@ const requiredFiles = [
   '11-book-chapter-draft.md'
 ];
 
-test('Sample-Evidence-Pack enthaelt alle Pflichtdateien', async () => {
-  for (const fileName of requiredFiles) {
-    await expect(evidenceFileExists(path.join(caseDir, fileName)), fileName).resolves.toBe(true);
+const sampleCases = [
+  'sample-001-inventory-posting-setup-missing',
+  'SAMPLE-001-missing-field'
+];
+
+test('Sample-Evidence-Packs enthalten alle Pflichtdateien', async () => {
+  for (const caseId of sampleCases) {
+    const caseDir = path.resolve('evidence', caseId);
+    for (const fileName of requiredFiles) {
+      await expect(evidenceFileExists(path.join(caseDir, fileName)), `${caseId}/${fileName}`).resolves.toBe(true);
+    }
   }
 });
 
-test('Sample Root Cause trennt Fakt, Ursache und Regression', async () => {
-  const rootCause = await readTextEvidence(path.join(caseDir, '08-root-cause.md'));
-  expect(rootCause).toContain('Bestaetigte Ursache');
-  expect(rootCause).toContain('Technische Erklaerung');
-  expect(rootCause).toContain('Fachliche Erklaerung');
-  expect(rootCause).toContain('Ausgeschlossene Hypothesen');
+test('Sample Root Causes trennen Ursache, Technik, Fachlichkeit und ausgeschlossene Hypothesen', async () => {
+  for (const caseId of sampleCases) {
+    const rootCause = await readTextEvidence(path.resolve('evidence', caseId, '08-root-cause.md'));
+    expect(rootCause, caseId).toContain('Bestaetigte Ursache');
+    expect(rootCause, caseId).toContain('Technische Erklaerung');
+    expect(rootCause, caseId).toContain('Fachliche Erklaerung');
+    expect(rootCause, caseId).toContain('Ausgeschlossene Hypothesen');
+  }
 });
 
-test('Sample Evidence Pack ist frei von offensichtlichen Roh-Kundendaten', async () => {
-  const files = await fs.readdir(caseDir);
-  const textFiles = files.filter((file) => file.endsWith('.md'));
-  const joined = (
-    await Promise.all(textFiles.map((file) => fs.readFile(path.join(caseDir, file), 'utf8')))
-  ).join('\n');
+test('Sample Evidence Packs sind frei von offensichtlichen Roh-Kundendaten', async () => {
+  for (const caseId of sampleCases) {
+    const caseDir = path.resolve('evidence', caseId);
+    const files = await fs.readdir(caseDir);
+    const textFiles = files.filter((file) => file.endsWith('.md'));
+    const joined = (
+      await Promise.all(textFiles.map((file) => fs.readFile(path.join(caseDir, file), 'utf8')))
+    ).join('\n');
 
-  expect(joined).not.toMatch(/IBAN|BIC|Kontonummer|@|Telefon|phone/i);
+    expect(joined, caseId).not.toMatch(/IBAN|BIC|Kontonummer|@|Telefon|phone/i);
+  }
 });

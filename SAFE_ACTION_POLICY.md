@@ -1,25 +1,30 @@
-# Safe-Action-Policy
+# Safe Action Policy
 
-Diese Policy ist die Leitplanke fuer autonome Agentenlaeufe in Business Central.
+## Ziel
 
-## Grundsatz
+Diese Policy ist die Leitplanke fuer autonome Agentenlaeufe in Business Central. Read-only kommt zuerst. Schreibende, buchende, zahlende, versendende, planende oder integrierende Aktionen brauchen eine explizite Freigabe mit Evidence-Plan.
 
-Read-only zuerst. Schreibende, buchende, zahlende, versendende, planende oder integrierende Aktionen brauchen eine explizite Freigabe mit Evidence-Plan.
+## Environment-Klassen
 
-## Action-Klassen
+| Environment | Standardverhalten |
+|---|---|
+| Production | read-only |
+| Sandbox | kontrollierte Tests |
+| Test/Training | kontrollierte Schreibtests |
+| Local/Mock | frei testbar |
 
-| Klasse | Beispiele | Ohne Freigabe erlaubt? |
-|---|---|---|
-| `read-only` | Page oeffnen, Seitentext lesen, Page Inspection, Screenshot | ja, wenn Datenschutz beachtet wird |
-| `ui-navigation` | Suche, Filter, Ansichten wechseln | ja, wenn keine Daten geaendert werden |
-| `data-export` | Logs, Tabellenwerte, API-Auszug | nur anonymisiert oder freigegeben |
-| `setup-change` | Posting Setup, Dimensionen, Nummernserien, Profile | nein |
-| `posting` | Belege buchen, Journale buchen, Storno | nein |
-| `payment` | Zahlungsjournal, Zahlungsdatei, OP-Ausgleich | nein |
-| `email` | Belegversand, Erinnerungen, E-Mail-Ausgang | nein |
-| `job-queue` | Job starten, planen, reaktivieren | nein |
-| `integration` | API/Web Service/Connector aktivieren, Power Automate starten | nein |
-| `company-change` | Company anlegen, kopieren, wechseln mit Setup-Folge | nein |
+## Aktionsklassen
+
+| Aktion | Risiko | Erlaubt ohne Freigabe? | Beispiele |
+|---|---|---|---|
+| Lesen | niedrig | ja | Page oeffnen, Screenshot, Page Inspection |
+| Strukturierte Daten lesen | niedrig/mittel | ja, wenn Zugriff erlaubt | API/OData/MCP GET |
+| Personalisieren | niedrig/mittel | nur gezielt | Feld einblenden |
+| Stammdaten aendern | mittel | nein | Debitor, Artikel, Posting Group |
+| Beleg erfassen | mittel/hoch | nein | Sales Order, Purchase Order |
+| Buchen/Posten | hoch | nie ohne Freigabe | Post, Receive and Invoice |
+| Zahlung/E-Mail/Job Queue | sehr hoch | nie ohne Freigabe | Payment Export, Send Email, Job starten |
+| Integration ausloesen | sehr hoch | nie ohne Freigabe | EDI, Webhook, Power Automate |
 
 ## Production
 
@@ -42,17 +47,34 @@ Nicht erlaubt:
 - Integrationen anwerfen
 - Setup aendern
 
-## Stop-Kriterien
+## Freigabe-Mindestinhalt
+
+Eine Freigabe fuer eine riskante Aktion muss konkret sein:
+
+| Feld | Muss geklaert sein |
+|---|---|
+| Environment | Production, Sandbox, Test/Training oder Local/Mock |
+| Company | genaue Company |
+| Aktion | konkrete Page, Funktion, Beleg oder Setup-Stelle |
+| Zweck | warum die Aktion noetig ist |
+| Risiko | fachliche und technische Nebenwirkungen |
+| Evidence-Plan | welche Vorher/Nachher-Nachweise entstehen |
+| Rueckfall | wie abgebrochen oder zurueckgerollt wird |
+
+## Abbruchregeln
 
 Sofort stoppen und Evidence schreiben, wenn:
 
-- Environment nicht sicher identifiziert ist
-- Production sichtbar ist und eine Aktion mehr als read-only waere
-- echte Kunden-, Bank-, Steuer- oder Personendaten sichtbar sind und nicht anonymisiert werden koennen
-- ein Button `Post`, `OK`, `Send`, `Start`, `Process`, `Apply`, `Release` oder vergleichbar sichtbar wird und der naechste Klick Wirkung haette
-- ein Test einen Zielwert nicht sicher erkennt
-- ein Locator mehrere kritische Treffer hat
-- ein Setup-Feld geraten werden muesste
+- Environment nicht sicher identifiziert ist.
+- Freigabe unklar ist.
+- Production sichtbar ist und eine Aktion mehr als read-only waere.
+- echte Zahlungs-, Steuer-, Kunden-, Bank- oder Personendaten sichtbar sind und nicht anonymisiert werden koennen.
+- eine Aktion Buchung, Versand, Zahlung oder externe Integration ausloesen koennte.
+- Telemetry oder Logs sensible Daten enthalten und nicht anonymisiert sind.
+- ein Button `Post`, `OK`, `Send`, `Start`, `Process`, `Apply`, `Release` oder vergleichbar sichtbar wird und der naechste Klick Wirkung haette.
+- ein Test einen Zielwert nicht sicher erkennt.
+- ein Locator mehrere kritische Treffer hat.
+- ein Setup-Feld geraten werden muesste.
 
 ## Maschinenlesbare Umsetzung
 
