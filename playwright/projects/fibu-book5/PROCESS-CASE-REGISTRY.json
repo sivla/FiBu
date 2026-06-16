@@ -937,7 +937,7 @@
       "type": "ui-first-no-save-active-card-control-diagnosis",
       "company": "RM-DEMO",
       "environment": "MCP_1_20260210",
-      "status": "labor-active-card-control-mapped-no-save",
+      "status": "labor-active-card-control-partial-no-save",
       "screenshots": [
         "playwright/projects/fibu-book5/img/fixedassets-024-020-active-card-control-diagnosis.png"
       ],
@@ -948,11 +948,13 @@
         "playwright/projects/fibu-book5/evidence/fixedassets-024/030-active-card-control-diagnosis.json"
       ],
       "proves": [
-        "active Fixed Asset Card controls can be distinguished from background Fixed Assets list candidates",
-        "FA Class Code, FA Subclass Code, Depreciation Book Code, Posting Group and depreciation date fields map to active card rows",
+        "active Fixed Asset Card controls can be distinguished from background Fixed Assets list candidates for the successfully mapped rows",
+        "FA Class Code, FA Subclass Code, Depreciation Starting Date and Depreciation Ending Date map to active card rows",
+        "Depreciation Book Code and Posting Group are not visible in the latest active-card diagnosis",
         "FA-CNC-01 was not saved"
       ],
       "doesNotProve": [
+        "active-card controls for Depreciation Book Code and Posting Group in the latest committed run",
         "HGB or MACHINES selected as card values",
         "FA Class/Subclass values selected",
         "saved FA-CNC-01",
@@ -970,6 +972,42 @@
         "BC-Debugging"
       ],
       "nextStep": "FIXEDASSETS-025-FA-CNC-01-VALUE-LOOKUP-OR-SAVE-GATE-DECISION"
+    },
+    {
+      "caseId": "FIXEDASSETS-025",
+      "process": "Fixed Assets",
+      "type": "decision-no-bc-run-save-gate",
+      "company": "RM-DEMO",
+      "environment": "MCP_1_20260210",
+      "status": "done-decision-no-save-gate",
+      "screenshots": [],
+      "evidence": [
+        "playwright/projects/fibu-book5/evidence/fixedassets-025/README.md",
+        "playwright/projects/fibu-book5/evidence/fixedassets-025/FIXEDASSETS-025-FA-CNC-01-VALUE-LOOKUP-OR-SAVE-GATE-DECISION.md",
+        "playwright/projects/fibu-book5/evidence/fixedassets-025/FIXEDASSETS-025-result.json"
+      ],
+      "proves": [
+        "FIXEDASSETS-024 is partial active-control evidence, not a full save gate",
+        "Depreciation Book Code and Posting Group must be recovered on the active card before value lookup, value entry or saving FA-CNC-01",
+        "No BC run, save, setup change or posting happened in the decision run"
+      ],
+      "doesNotProve": [
+        "HGB or MACHINES as selected card values",
+        "safe save gate for FA-CNC-01",
+        "K30000, purchase invoice, acquisition, depreciation or posting",
+        "German final fixed-assets proof"
+      ],
+      "reusablePatterns": [
+        "partial control proof blocks save gates",
+        "debug screenshots require explicit target visibility review",
+        "use Personalize/Page Inspection only as diagnostic support when fields disappear"
+      ],
+      "bookChapters": [
+        "21",
+        "37",
+        "BC-Debugging"
+      ],
+      "nextStep": "FIXEDASSETS-026-FA-CNC-01-DEPRECIATION-BOOK-CONTROL-RECOVERY"
     },
     {
       "caseId": "WAREHOUSE-001",

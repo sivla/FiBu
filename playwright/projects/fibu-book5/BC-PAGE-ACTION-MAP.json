@@ -440,7 +440,7 @@
         "Tell-Me exact result plus context check"
       ],
       "knownActions": {
-        "New": "FIXEDASSETS-024 keeps the scoped clickBcAction New path and then maps active Fixed Asset Card controls with collectActiveCardControlDiagnostics. Saving stays locked until a separate value/lookup or save-gate decision proves target values.",
+        "New": "FIXEDASSETS-024 keeps the scoped clickBcAction New path and then maps active Fixed Asset Card controls with collectActiveCardControlDiagnostics, but the latest evidence is partial because Depreciation Book Code and Posting Group are caption-not-visible. FIXEDASSETS-025 keeps saving and value entry locked until control recovery succeeds.",
         "Mehr anzeigen": "FIXEDASSETS-020 uses only card-local More/Show more controls in General and Depreciation Book to expose Depreciation Book Code and Posting Group without saving"
       },
       "dangerousActions": [
@@ -459,7 +459,7 @@
         "Do not save a fixed asset from an empty card until the setup reference fields are visible/settable",
         "No acquisition/depreciation without explicit gates",
         "After FIXEDASSETS-023 strictness migration, New must keep scopeText and expectedAfterClick; do not reintroduce local unscoped button scans as primary path.",
-        "FIXEDASSETS-024 proves active card controls, but not target values; do not treat mapped controls as saved FA-CNC-01, HGB or MACHINES."
+        "FIXEDASSETS-024 proves partial active card control diagnosis only; do not treat mapped controls as saved FA-CNC-01, HGB or MACHINES, and do not proceed until Depreciation Book Code and Posting Group are recovered on the active card."
       ],
       "recommendedHelpers": [
         "openBcPageById",

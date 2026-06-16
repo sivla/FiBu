@@ -1,0 +1,50 @@
+{
+  "testId": "fixedassets-025",
+  "generatedAt": "2026-06-16T00:00:00.000Z",
+  "mode": "decision-no-bc-run-fixed-assets-save-gate",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "done-decision-no-save-gate",
+  "inputEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-024/FIXEDASSETS-024-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-024/030-active-card-control-diagnosis.json"
+  ],
+  "fixedAssets024Truth": {
+    "activeControlProof": false,
+    "captionsExpected": 6,
+    "activeCardLabelWithControl": 4,
+    "captionNotVisible": 2,
+    "mappedControls": [
+      "FA Class Code",
+      "FA Subclass Code",
+      "Depreciation Starting Date",
+      "Depreciation Ending Date"
+    ],
+    "missingControls": [
+      "Depreciation Book Code",
+      "Posting Group"
+    ]
+  },
+  "decision": "Do not start value lookup, value entry or save gate for FA-CNC-01 yet.",
+  "reason": "Depreciation Book Code and Posting Group are not active-card controls in the latest committed FIXEDASSETS-024 diagnosis.",
+  "noBcRun": true,
+  "noSave": true,
+  "noSetupChange": true,
+  "noPosting": true,
+  "forbiddenNextActions": [
+    "save FA-CNC-01",
+    "enter HGB or MACHINES as card values",
+    "create K30000",
+    "create purchase invoice",
+    "post acquisition",
+    "post depreciation"
+  ],
+  "allowedNextActions": [
+    "recover active card controls for Depreciation Book Code and Posting Group",
+    "use card-local Show More / More fields as diagnosis",
+    "use Personalize or Page Inspection as diagnostic support if fields remain hidden",
+    "keep the run no-save and no-posting"
+  ],
+  "bookImpact": "Chapter 21 must treat FIXEDASSETS-024 as partial technical debug evidence, not as a complete save gate or target-value proof.",
+  "nextStep": "FIXEDASSETS-026-FA-CNC-01-DEPRECIATION-BOOK-CONTROL-RECOVERY"
+}
