@@ -27,6 +27,8 @@ npm run check:privacy
 npm run check:runtime
 npm run check:api
 npm run check:scaffold
+npm run check:mcp
+npm run check:telemetry
 npm run new:evidence -- SAMPLE-002 "Permission error on posting preview"
 ```
 
@@ -42,6 +44,8 @@ Lokale Checks ohne Business-Central-Zugriff:
 - `npm run check:runtime` prueft sichere `.env`-/Runtime-Konfiguration ohne echte BC-Werte.
 - `npm run check:api` prueft den mock-faehigen GET-only API/OData-Client.
 - `npm run check:scaffold` prueft das Evidence-Pack-Scaffold.
+- `npm run check:mcp` prueft die read-only BC-MCP-Tool-Registry.
+- `npm run check:telemetry` prueft lokale KQL-Query-Templates ohne Live-Ausfuehrung.
 
 BC-Zugriff bleibt getrennt:
 
@@ -60,3 +64,11 @@ npm run new:evidence -- SAMPLE-002 "Permission error on posting preview"
 ```
 
 Runtime-Details stehen in `debugging-book/BC_RUNTIME_CONFIGURATION.md`. `.env`, Auth-State, Cookies und Tokens bleiben lokal und werden nicht committed.
+
+Die Evidence-Kanaele sind getrennt:
+
+- Playwright MCP = UI explorieren.
+- Normal Playwright = reproduzierbar testen.
+- BC MCP = read-only Daten/Evidence strukturieren.
+- Telemetry = technische Fehler, Performance, Permission, API und Extension analysieren.
+- Evidence Pack = alles zusammenfuehren.

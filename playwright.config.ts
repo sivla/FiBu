@@ -7,7 +7,7 @@ export default defineConfig({
   expect: {
     timeout: 15_000
   },
-  reporter: [['list'], ['html', { open: 'never' }]],
+  reporter: [['list']],
   use: {
     browserName: 'chromium',
     headless: true,

@@ -53,6 +53,8 @@ npm run check:privacy
 npm run check:runtime
 npm run check:api
 npm run check:scaffold
+npm run check:mcp
+npm run check:telemetry
 npm run new:evidence -- SAMPLE-002 "Permission error on posting preview"
 ```
 
@@ -78,6 +80,8 @@ Der Branch hat lokale Governance-Checks, die ohne BC-Zugang laufen:
 | `npm run check:runtime` | sichere Runtime-Konfiguration, Schreibflags und optionale BC-Variablen |
 | `npm run check:api` | mock-faehiger GET-only API/OData-Client mit URL-Redaktion |
 | `npm run check:scaffold` | Evidence-Pack-Generator in Temp-Verzeichnissen |
+| `npm run check:mcp` | read-only BC-MCP-Tool-Registry und Sicherheitsklassifizierung |
+| `npm run check:telemetry` | lokale KQL-Templates fuer Permission, Performance, API, Job Queue, Extension und Session |
 
 Ein neuer Evidence-Fall wird als Ordner unter `evidence/` angelegt. Die Dateien `00-ticket-summary.md` bis `11-book-chapter-draft.md` sind Pflicht und muessen Inhalt haben. `12-lessons-learned.md`, `13-follow-up-questions.md` und `14-risk-notes.md` sind empfohlen; fehlende Dateien sind Warnungen, keine harten Fehler.
 
@@ -90,3 +94,13 @@ npm run new:evidence -- SAMPLE-002 "Permission error on posting preview"
 Production bleibt read-only. Erlaubt sind Diagnose, Page Inspection und strukturierte Lesezugriffe mit minimalen Feldern. Jede Aktion mit Wirkung, zum Beispiel `Post`, `OK`, `Send`, `Start`, Buchung, Zahlung, Job Queue, Integration, Setup-, Stammdaten- oder Berechtigungsaenderung, braucht ausdrueckliche Freigabe mit Environment, Company, Zweck, Evidence-Plan und Rollback-Plan.
 
 Grenzen: Die Validatoren pruefen Textstruktur und typische Leak-Muster in Markdown/JSON/TypeScript. Sie pruefen keine Screenshots, keine Binaerdateien, keine echten BC-Berechtigungen und ersetzen keinen Live-Test in Sandbox oder Production.
+
+## Evidence-Kanaele
+
+| Kanal | Rolle |
+|---|---|
+| UI Evidence | Playwright und Playwright MCP zeigen, was der User sieht |
+| Data Evidence | BC MCP/API/OData strukturieren gespeicherte Werte read-only |
+| Telemetry Evidence | KQL-Templates helfen bei technischen Fehlern und Timing |
+
+Alle drei Kanaele muessen in einem Evidence Pack zusammengefuehrt werden, bevor daraus Root Cause oder Buchwissen entsteht.

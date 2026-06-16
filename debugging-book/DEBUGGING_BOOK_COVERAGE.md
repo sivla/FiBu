@@ -31,6 +31,9 @@ Diese Datei bewertet ehrlich, wie weit das Business Central Debugging Book und d
 | Runtime-Konfiguration | lokal getestet | 4 | keine echte Auth-/Login-Strecke | Sandbox-Setup dokumentiert ausfuehren |
 | Read-only API Client | mock-getestet | 3 | kein echter Auth-Flow, keine BC-Endpunkte | ersten erlaubten GET gegen Sandbox modellieren |
 | Evidence Scaffold | lokal getestet | 5 | kein interaktiver Generator | bei echten Tickets als Startpunkt nutzen |
+| BC MCP Tool Spec | dokumentiert + Registry getestet | 3 | kein echter MCP-Server | read-only Server-Adapter spaeter |
+| Playwright MCP Strategy | dokumentiert | 2 | nicht angebunden | Explorationsablauf mit Safe Checks testen |
+| Telemetry Query Builder | lokal getestet | 3 | keine Live Application Insights | read-only AI-Verbindung spaeter |
 
 ## Template-Coverage
 
@@ -48,6 +51,7 @@ Diese Datei bewertet ehrlich, wie weit das Business Central Debugging Book und d
 |---|---|---:|---|---|
 | `SAMPLE-001-missing-field` | synthetisch, vollstaendig | 4 | keine echte Page Inspection | in Sandbox read-only gegen Sales Order pruefen |
 | `sample-001-inventory-posting-setup-missing` | synthetisch/laborbasiert | 4 | keine aktuelle Live-Repro | Datencheck-Variante per API/OData skizzieren |
+| `SAMPLE-003-permission-telemetry` | synthetisch | 4 | keine echte Telemetry | als Vorlage fuer Permission+Telemetry-Faelle nutzen |
 
 ## Playwright-/Ausfuehrbarkeits-Coverage
 
@@ -62,6 +66,9 @@ Diese Datei bewertet ehrlich, wie weit das Business Central Debugging Book und d
 | Telemetry | Strategie vorhanden | 2 | keine Implementierung | Beispiel-Query/Logstruktur spaeter |
 | Runtime Config | lokal getestet | 4 | keine echte `.env` im Repo | echte Sandbox-Werte lokal setzen |
 | Evidence Scaffold | lokal getestet | 5 | keine | fuer neue synthetische und echte Faelle verwenden |
+| BC MCP Runtime | Mock/Registry vorhanden | 3 | kein echter MCP-Server, kein Tenant-Zugriff | Tool-Adapter fuer read-only Daten bauen |
+| Telemetry Query Builder | lokal getestet | 3 | keine Live-Ausfuehrung | Application-Insights-Zugriff separat klaeren |
+| Live App Insights | Strategie vorhanden | 1 | keine Verbindung, keine Freigabe | read-only Zugriffskonzept erstellen |
 
 ## Risiken
 
@@ -71,6 +78,9 @@ Diese Datei bewertet ehrlich, wie weit das Business Central Debugging Book und d
 - Page IDs und Table IDs in synthetischen Faellen sind Annahmen, bis Page Inspection sie bestaetigt.
 - Playwright kann ohne Browser/Auth/BC_URL nur lokale Strukturchecks ausfuehren.
 - Der Read-only API Client ist mock-getestet, aber noch kein vollstaendiger BC-Auth-Client.
+- BC MCP ist Tool-Spec und Registry, aber noch kein Live-MCP-Server.
+- Playwright MCP ist Strategie, aber noch nicht angebunden.
+- Telemetry Query Builder erzeugt Templates, fuehrt aber keine Application-Insights-Queries aus.
 - Runtime Config prueft Sicherheitsflags, stellt aber keine Secrets bereit.
 - Telemetry bleibt Strategie, solange keine Application-Insights-Anbindung existiert.
 - Privacy-Scanner findet typische Text-Leaks, ist aber kein vollstaendiges DLP und prueft keine Bilder.
@@ -81,4 +91,5 @@ Diese Datei bewertet ehrlich, wie weit das Business Central Debugging Book und d
 1. Ersten echten read-only Sandbox-Fall mit Page Inspection und Screenshot-Evidence erzeugen.
 2. Erste lokale Sandbox-Konfiguration mit `BC_URL` und Auth-State dokumentiert testen.
 3. API/OData/MCP-Read-only-Datencheck als kleines GET-Beispiel ergaenzen.
+4. Telemetry-Query gegen anonymisierte Demo-Daten validieren.
 5. Anonymisierungs- und Screenshot-Governance weiter schaerfen.
