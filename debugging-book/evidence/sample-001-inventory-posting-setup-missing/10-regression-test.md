@@ -4,7 +4,7 @@
 
 Der Test soll sicherstellen, dass die Kombination `FRA-ZL` + `RESALE` nicht mehr ohne Inventory Account bleibt und dass Preview Posting nicht mehr an diesem alten Fehler stoppt.
 
-## Testidee
+## Testplan
 
 1. Read-only Setup pruefen.
 2. Erwartete Kombination suchen.
@@ -13,7 +13,7 @@ Der Test soll sicherstellen, dass die Kombination `FRA-ZL` + `RESALE` nicht mehr
 5. Alter Fehlertext darf nicht erscheinen.
 6. Es wird nicht gebucht, ausser es gibt ein separates Posting-Gate.
 
-## Assertion
+## Assertions
 
 ```text
 oldInventoryPostingErrorPresent = false

@@ -1,7 +1,16 @@
 import { expect, test } from '@playwright/test';
-import fs from 'node:fs/promises';
+import fs from 'node:fs';
 import path from 'node:path';
-import { evidenceFileExists, readTextEvidence } from '../../../core/evidence';
+import { validateEvidencePack } from '../../../core/evidence-validator';
+
+const samplePack = path.resolve('debugging-book', 'evidence', 'SAMPLE-001-missing-field');
+const incompletePack = path.resolve(
+  'playwright',
+  'projects',
+  'bc-debugging',
+  'fixtures',
+  'incomplete-evidence-pack'
+);
 
 const requiredFiles = [
   '00-ticket-summary.md',
@@ -15,45 +24,36 @@ const requiredFiles = [
   '08-root-cause.md',
   '09-fix-or-workaround.md',
   '10-regression-test.md',
-  '11-book-chapter-draft.md',
-  '12-lessons-learned.md',
-  '13-follow-up-questions.md',
-  '14-risk-notes.md'
+  '11-book-chapter-draft.md'
 ];
 
-const sampleCases = [
-  'sample-001-inventory-posting-setup-missing',
-  'SAMPLE-001-missing-field'
-];
-
-test('Sample-Evidence-Packs enthalten alle Pflichtdateien', async () => {
-  for (const caseId of sampleCases) {
-    const caseDir = path.resolve('debugging-book', 'evidence', caseId);
-    for (const fileName of requiredFiles) {
-      await expect(evidenceFileExists(path.join(caseDir, fileName)), `${caseId}/${fileName}`).resolves.toBe(true);
-    }
+test('SAMPLE-001-missing-field enthaelt alle Pflichtdateien und keine leeren Pflichtdateien', () => {
+  for (const fileName of requiredFiles) {
+    const filePath = path.join(samplePack, fileName);
+    expect(fs.existsSync(filePath), fileName).toBe(true);
+    expect(fs.readFileSync(filePath, 'utf8').trim().length, fileName).toBeGreaterThan(0);
   }
 });
 
-test('Sample Root Causes trennen Ursache, Technik, Fachlichkeit und ausgeschlossene Hypothesen', async () => {
-  for (const caseId of sampleCases) {
-    const rootCause = await readTextEvidence(path.resolve('debugging-book', 'evidence', caseId, '08-root-cause.md'));
-    expect(rootCause, caseId).toContain('Bestaetigte Ursache');
-    expect(rootCause, caseId).toContain('Technische Erklaerung');
-    expect(rootCause, caseId).toContain('Fachliche Erklaerung');
-    expect(rootCause, caseId).toContain('Ausgeschlossene Hypothesen');
-  }
+test('SAMPLE-001-missing-field erfuellt Root-Cause-, Regression- und Page-Inspection-Struktur', () => {
+  const result = validateEvidencePack(samplePack);
+
+  expect(result.ok).toBe(true);
+  expect(result.missingFiles).toEqual([]);
+  expect(result.missingSections).toEqual({});
 });
 
-test('Sample Evidence Packs sind frei von offensichtlichen Roh-Kundendaten', async () => {
-  for (const caseId of sampleCases) {
-    const caseDir = path.resolve('debugging-book', 'evidence', caseId);
-    const files = await fs.readdir(caseDir);
-    const textFiles = files.filter((file) => file.endsWith('.md'));
-    const joined = (
-      await Promise.all(textFiles.map((file) => fs.readFile(path.join(caseDir, file), 'utf8')))
-    ).join('\n');
+test('Synthetische Page Inspection erzeugt Warnung, aber keinen Fehler', () => {
+  const result = validateEvidencePack(samplePack);
 
-    expect(joined, caseId).not.toMatch(/IBAN|BIC|Kontonummer|@|Telefon|phone/i);
-  }
+  expect(result.ok).toBe(true);
+  expect(result.warnings).toContain('04-page-inspection.md wirkt synthetisch oder nicht live belegt.');
+});
+
+test('Unvollstaendiges Evidence-Fixture faellt durch', () => {
+  const result = validateEvidencePack(incompletePack);
+
+  expect(result.ok).toBe(false);
+  expect(result.missingFiles).toContain('01-screenshot-analysis.md');
+  expect(result.missingSections['08-root-cause.md']).toBeTruthy();
 });

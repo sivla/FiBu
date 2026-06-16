@@ -26,16 +26,17 @@ Diese Datei bewertet ehrlich, wie weit das Business Central Debugging Book und d
 | Berechtigungen debuggen | Backlog | 1 | Permission-Beispiel | synthetischen Permission-Fall anlegen |
 | Posting Groups debuggen | Sample vorhanden | 4 | Live-Regression | Inventory-Posting-Sample als Testplan schaerfen |
 | Playwright fuer BC-Debugging | Grundlage vorhanden | 3 | Live-Smoke mit Auth | `bc:sample` mit Sandbox laufen lassen |
-| Evidence Packs schreiben | Template + Samples | 4 | echte Kundendaten-Anonymisierung | Anonymisierungscheck ausbauen |
+| Evidence Packs schreiben | Template + Samples + Validator | 5 | echte Kundendaten-Anonymisierung | ersten echten read-only Fall validieren |
+| Datenschutz/Anonymisierung | Privacy-Scanner vorhanden | 4 | kein vollstaendiges DLP, keine Bildanalyse | Scanner-Regeln anhand echter Review-Funde schaerfen |
 
 ## Template-Coverage
 
 | Artefakt | Status | Score | Fehlende Bausteine | Naechster Schritt |
 |---|---|---:|---|---|
-| `TICKETANALYSE_TEMPLATE.md` | brauchbar | 4 | automatische Pflichtfeldpruefung | Test fuer Template-Abschnitte schreiben |
-| `EVIDENCE_PACK_TEMPLATE.md` | brauchbar | 4 | optionale Ordner nicht getestet | Generator/Scaffold-Skript spaeter |
+| `TICKETANALYSE_TEMPLATE.md` | getestet | 5 | keine Pflichtfeldwerte-Pruefung | Feldwert-Validator spaeter |
+| `EVIDENCE_PACK_TEMPLATE.md` | getestet | 5 | optionale Ordner nicht getestet | Generator/Scaffold-Skript spaeter |
 | `DEBUGGING_AGENT_RUNBOOK.md` | brauchbar | 3 | noch nicht in echtem Fall genutzt | ersten echten read-only Fall abarbeiten |
-| `SAFE_ACTION_POLICY.md` | testbar | 4 | mehr Aktionsklassen in TS abbilden | `safe-actions.ts` an Markdown angleichen |
+| `SAFE_ACTION_POLICY.md` | maschinenlesbar getestet | 5 | UI-Integration in echte Agentenlaeufe | Policy vor jedem kritischen Locator-Klick nutzen |
 | `PLAYWRIGHT_DEBUGGING_FOUNDATION.md` | brauchbar | 3 | konkrete Codebeispiele | kleine Locator-Beispiele ergaenzen |
 
 ## Evidence-Coverage
@@ -49,24 +50,28 @@ Diese Datei bewertet ehrlich, wie weit das Business Central Debugging Book und d
 
 | Bereich | Status | Score | Fehlende Bausteine | Naechster Schritt |
 |---|---|---:|---|---|
-| Evidence-Pack-Pflichtdateien | getestet | 5 | keine | beibehalten |
-| Safe-Action-Policy | teilweise getestet | 4 | Markdown/TS nicht voll synchron | weitere Tests fuer Datenexport/Integration |
+| Evidence-Pack-Pflichtdateien | getestet + strukturvalidiert | 5 | keine | beibehalten |
+| Safe-Action-Policy | breit getestet | 5 | echte Laufzeit-Integration | Policy in Agent-Routinen erzwingen |
+| Template-Sektionen | getestet | 5 | keine Feldwert-Pruefung | bei Bedarf Pflichtfeldwerte pruefen |
+| Privacy-Scanner | getestet | 4 | keine Bildanalyse, kein volles DLP | Scanner gegen neue Leak-Muster erweitern |
 | Live-BC-Smoke | optional, skippt ohne `BC_URL` | 2 | Browser/Auth/BC_URL nicht eingerichtet | Sandbox-Konfiguration dokumentieren |
 | API/OData/MCP | Strategie vorhanden | 2 | keine Implementierung | erster read-only Datencheck |
 | Telemetry | Strategie vorhanden | 2 | keine Implementierung | Beispiel-Query/Logstruktur spaeter |
 
 ## Risiken
 
+- Lokale Validatoren sind Governance-Checks, aber kein Ersatz fuer echte Business-Central-Tests.
 - Sample-Faelle sind nicht gleich echte Kundentickets.
+- Synthetische Evidence ist Lernmaterial, nicht automatisch ein Live-Beleg.
 - Page IDs und Table IDs in synthetischen Faellen sind Annahmen, bis Page Inspection sie bestaetigt.
 - Playwright kann ohne Browser/Auth/BC_URL nur lokale Strukturchecks ausfuehren.
-- Safe-Action-Policy ist streng, aber noch nicht vollstaendig automatisiert.
-- Datenschutzpruefung ist textuell vorhanden, aber noch kein robuster Scanner.
+- Privacy-Scanner findet typische Text-Leaks, ist aber kein vollstaendiges DLP und prueft keine Bilder.
+- Safe-Action-Policy ist getestet, muss aber in echten Agentenlaeufen vor kritischen Klicks konsequent aufgerufen werden.
 
 ## Naechste 5 Prioritaeten
 
 1. Ersten echten read-only Sandbox-Fall mit Page Inspection und Screenshot-Evidence erzeugen.
-2. `safe-actions.ts` an die vollstaendige `SAFE_ACTION_POLICY.md` angleichen.
-3. Template-Pflichtabschnitte maschinell pruefen.
+2. Safe-Action-Policy in echte Agenten-/Playwright-Flows integrieren.
+3. Evidence-Scaffold fuer neue Faelle erzeugen.
 4. API/OData/MCP-Read-only-Datencheck als kleines Beispiel ergaenzen.
 5. Anonymisierungs- und Screenshot-Governance weiter schaerfen.

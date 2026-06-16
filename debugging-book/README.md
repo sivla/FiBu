@@ -45,8 +45,11 @@ Das Buch ist praxisnah, aber nicht mehr an das alte Vollstaendigkeitsziel gebund
 
 ```powershell
 npm install
+npm run check:debugging-book
 npm run check:evidence
 npm run check:safe-policy
+npm run check:templates
+npm run check:privacy
 ```
 
 Optionaler Live-BC-Smoke:
@@ -56,3 +59,21 @@ npm run bc:sample
 ```
 
 Der Live-Smoke laeuft nur, wenn `BC_URL` und ein gueltiger Auth-State vorhanden sind. Ohne `BC_URL` wird er uebersprungen.
+
+## Governance as Code
+
+Der Branch hat lokale Governance-Checks, die ohne BC-Zugang laufen:
+
+| Kommando | Prueft |
+|---|---|
+| `npm run check:debugging-book` | Evidence Packs, Templates, Privacy Scan und Script-Setup |
+| `npm run check:evidence` | Sample-Evidence-Struktur, Pflichtdateien, Root Cause, Regressionstest |
+| `npm run check:safe-policy` | Safe-Action-Entscheidungen fuer Environment, Risiko, Freigabe und kritische Buttons |
+| `npm run check:templates` | Pflichtabschnitte in Ticketanalyse- und Evidence-Pack-Template |
+| `npm run check:privacy` | Privacy-Scanner gegen saubere und absichtlich schmutzige Fixtures |
+
+Ein neuer Evidence-Fall wird als Ordner unter `evidence/` angelegt. Die Dateien `00-ticket-summary.md` bis `11-book-chapter-draft.md` sind Pflicht und muessen Inhalt haben. `12-lessons-learned.md`, `13-follow-up-questions.md` und `14-risk-notes.md` sind empfohlen; fehlende Dateien sind Warnungen, keine harten Fehler.
+
+Production bleibt read-only. Erlaubt sind Diagnose, Page Inspection und strukturierte Lesezugriffe mit minimalen Feldern. Jede Aktion mit Wirkung, zum Beispiel `Post`, `OK`, `Send`, `Start`, Buchung, Zahlung, Job Queue, Integration, Setup-, Stammdaten- oder Berechtigungsaenderung, braucht ausdrueckliche Freigabe mit Environment, Company, Zweck, Evidence-Plan und Rollback-Plan.
+
+Grenzen: Die Validatoren pruefen Textstruktur und typische Leak-Muster in Markdown/JSON/TypeScript. Sie pruefen keine Screenshots, keine Binaerdateien, keine echten BC-Berechtigungen und ersetzen keinen Live-Test in Sandbox oder Production.
