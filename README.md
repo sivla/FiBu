@@ -19,6 +19,10 @@ Der neue Fokus ist ein eigenstaendiges Debugging-Buch und ein spaeter ausfuehrba
 | `TICKETANALYSE_TEMPLATE.md` | Antwortstruktur fuer Kundentickets |
 | `EVIDENCE_PACK_TEMPLATE.md` | Ordner- und Dateistruktur fuer Evidence Packs |
 | `AGENT_REGELN.md` | Sicherheits-, Arbeits- und Schreibregeln fuer den Debugging-Agent |
+| `SAFE_ACTION_POLICY.md` | klare Erlaubnis-/Stop-Regeln fuer autonome Aktionen |
+| `RUNBOOK.md` | Schritt-fuer-Schritt-Ablauf vom Ticket zum Buchwissen |
+| `evidence/sample-001-inventory-posting-setup-missing/` | erster Sample-Evidence-Fall |
+| `playwright/` | minimale ausfuehrbare Test- und Evidence-Grundstruktur |
 
 ## Arbeitsregel
 
@@ -31,3 +35,19 @@ Das Buch ist praxisnah, aber nicht mehr an das alte Vollstaendigkeitsziel gebund
 - Kundendaten anonymisieren, wenn sie in Buchtexte oder Screenshots wandern.
 - Jede bestaetigte Ursache braucht Evidence.
 - Jeder Fix braucht einen Regressionstest oder mindestens einen klaren Testplan.
+
+## Start
+
+```powershell
+npm install
+npm run check:evidence
+npm run check:safe-policy
+```
+
+Optionaler Live-BC-Smoke:
+
+```powershell
+npm run bc:sample
+```
+
+Der Live-Smoke laeuft nur, wenn `BC_URL` und ein gueltiger Auth-State vorhanden sind. Ohne `BC_URL` wird er uebersprungen.
