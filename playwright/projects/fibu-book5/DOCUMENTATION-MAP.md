@@ -24,6 +24,7 @@ Leitregel: aktuelle Wahrheit kurz halten, Evidence lokal beweisen, wiederverwend
 | `MASTERDATA-BACKLOG.md` | Stammdaten-/Setup-Roadmap | ja | geplante, fehlende und belegte Zielobjekte | keine Datenanlage ohne Backlog-/Gate-Bezug |
 | `BOOK-TO-EVIDENCE-AUDIT.md` | Buch-vs.-Evidence-Kritik | ja | welche Buchaussage praktisch belegt ist | Zielbild, Laborstand und DE-Finalnachweis strikt trennen |
 | `BOOK-CLICK-GUIDE-COVERAGE.md` | redaktionelle Klickanleitungs-Ampel | ja | welche Anleitung bebildert und nachgewiesen ist | nur als abgedeckt markieren, wenn Screenshot, Evidence und Buchwirkung passen |
+| `EVIDENCE-PACK-STANDARD.md` | Standard fuer buchfaehige Klickanleitungen | mittel | UI-, technischer, fachlicher und Posten-/Persistenznachweis | bei grossen Prozessanleitungen als Checkliste nutzen; Page Inspection und Postenspur nicht vergessen |
 | `UI-INVENTORY.md` | sichtbare BC-Funktionen | ja | Seiten, Buttons, Felder, Dialoge, Status | neue UI-Elemente mit Zweck und Evidence aufnehmen |
 | `SCREENSHOT-QA.md` | visuelle Bildfreigabe | ja | ob ein Screenshot Buchbild, Laborbild oder rejected ist | ein Bild ist nur buchfaehig, wenn das sichtbare Lernziel im Bild zu sehen ist |
 | `playwright/FINDINGS.md` | Buch-/UI-Fundstellen | ja | sichtbare BC-Elemente oder Buchluecken mit Lernwert | neue Fundstellen nur bei Buch-/Projektwirkung; erledigte Befunde nicht duplizieren |

@@ -12,6 +12,7 @@ Ein Screenshot ist erst buchfaehig, wenn er:
 4. Stoerer wie Popover, Touren, Resize-Hinweise oder Copilot-Karten bewusst enthaelt oder gezielt entfernt
 5. Sprache, Company, Waehrung, Steuerlogik und Testdaten zum erklaerten Ziel passen
 6. durch Evidence ergaenzt wird, die denselben Zustand prueft
+7. bei grossen Prozessanleitungen in ein Evidence Pack eingebettet ist, das UI-Nachweis, technischen Page-/Table-Nachweis, fachlichen Prozesszustand und Posten-/Persistenznachweis trennt
 
 Zusaetzliche harte Regel nach `FIXEDASSETS-012`: Das Bild muss sichtbar machen, was der Leser in diesem Schritt lernen oder pruefen soll. Das ist nicht immer nur ein Code. Je nach Klickanleitung kann es ein Code, Name, Betrag, Waehrung, Steuer, Status, Buchungsoption, Postenart, Konto, Dimension, Filter, Fehlermeldung, Reportzeile, Dialogauswahl oder Pflichtfeld sein. Wenn genau dieser fachliche Zielzustand nicht im Bild sichtbar ist, ist der Screenshot nur Labor-/Kontext-Evidence und nicht buchfaehig.
 

@@ -92,6 +92,24 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 | Entscheidung | Kuenftige Fehlerlaeufe sollen erst Fehlerklasse und Diagnosewerkzeug dokumentieren, dann Setup, Buchtext oder Playwright aendern. |
 | Buchstelle | Kapitel 37 Glossar/Bedienlogik; querschnittlich fuer Fehlerbilder in Klickanleitungen |
 
+## FIND-BC-GOV-017 Buchfaehige Klickanleitungen brauchen vier Evidence-Ebenen
+
+| Feld | Wert |
+|---|---|
+| Status | erledigt als Struktur-/Buchregel ohne BC-Lauf |
+| Projekt | fibu-book5 |
+| Testfall | `GOVERNANCE-017-EVIDENCE-PACK-STANDARD` |
+| Screenshot | keiner; Struktur-/Standard-Sync |
+| Evidence | `playwright/projects/fibu-book5/EVIDENCE-PACK-STANDARD.md`, `playwright/projects/fibu-book5/evidence/governance-017/README.md` |
+| BC-Seite | querschnittlich fuer grosse Prozessanleitungen |
+| sichtbarer Text | nicht praktisch geprueft in diesem Lauf |
+| Elementtyp | Evidence Pack / Screenshot-QA / technische Nachweisfuehrung |
+| erste Hypothese | Eine grosse Klickanleitung ist erst final buchfaehig, wenn UI-Nachweis, technischer Page-/Table-Nachweis, fachlicher Prozesszustand und Posten-/Persistenznachweis zusammenpassen. |
+| Recherchequelle | Projekt-Evidence, Page Inspection/Personalisierung/Bugfixing-Pattern und Blueprint-Review aus dem Nutzeranhang |
+| Testergebnis | `EVIDENCE-PACK-STANDARD.md` wurde angelegt und in Coverage, Screenshot-QA, Artifact-Governance und Buchkapitel 37 verankert. |
+| Entscheidung | Bestehende Laborpacks bleiben Labor, bis die vier Ebenen pro Prozess erfuellt sind. Kuenftige Prozess-Upgrades sollen die Tabelle `Page -> Table -> Fields -> Posting Result -> Evidence` nutzen. |
+| Buchstelle | Kapitel 37 Glossar/Bedienlogik; querschnittlich fuer alle grossen Klickanleitungen |
+
 ## FIND-BC-GOV-012 Company-Autonomie braucht Registry und Instanzgrenze
 
 | Feld | Wert |

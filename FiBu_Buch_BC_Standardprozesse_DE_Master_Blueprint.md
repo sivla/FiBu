@@ -6288,6 +6288,13 @@ Fehler systematisch analysieren:
 - Bei langsamen Seiten: FactBox einklappen, Filter setzen, anderen Browser/User/Company vergleichen und erst dann Telemetry oder Performanceanalyse nutzen.
 - Bei Extension-Verdacht: Page Inspection, Extension Management, Event Recorder und saubere Ticket-Dokumentation verwenden.
 
+Evidence Pack fuer grosse Klickanleitungen:
+- Eine Anleitung ist erst final buchfaehig, wenn vier Nachweise zusammenpassen: UI-Nachweis, technischer Page-/Table-Nachweis, fachlicher Prozesszustand und Posten-/Persistenznachweis.
+- UI-Nachweis bedeutet: Der Screenshot zeigt die richtige Seite, den richtigen Datensatz und das konkrete Lernziel.
+- Technischer Nachweis bedeutet: Page Inspection dokumentiert Page Name, Page ID, Page Type, Source Table, wichtige Felder, Filter und Extensions.
+- Fachlicher Nachweis bedeutet: Der erwartete Zustand ist erreicht, zum Beispiel offen, freigegeben, gebucht, geliefert, ausgeglichen oder im Preview Posting plausibel.
+- Posten-/Persistenznachweis bedeutet: Nach erneutem Oeffnen oder ueber gebuchte Belege, Ledger Entries, Berichte oder Kontrolllisten bleibt die Wirkung belegbar.
+
 ### Was muss man einstellen, damit Mitarbeiter Dinge finden?
 
 | Thema | Einstellung | Warum wichtig |

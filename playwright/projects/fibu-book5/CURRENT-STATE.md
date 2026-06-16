@@ -55,6 +55,8 @@ Update nach `GOVERNANCE-015-PAGE-INSPECTION-PATTERN`: Page Inspection / Seitenpr
 
 Update nach `GOVERNANCE-016-BC-BUGFIXING-PLAYBOOK`: Das Projekt hat jetzt mit `BC-BUGFIXING-PLAYBOOK.md` ein zentrales Fehleranalyse-Playbook. Es gab keinen BC-Lauf, keine Setup-Aenderung, keine Buchung und keinen Company-Wechsel. Der Quellenabgleich haelt fest: BC-Fehler werden kuenftig zuerst nach Oberflaeche, Page/Tabelle, Berechtigung, Stammdaten, Prozessstatus, Posting Setup, Extension, Daten/Filter, Integration und Performance klassifiziert. Das Playbook soll bei echten Blockern angewendet werden, bevor Buchtext, Setup, Rechte oder Playwright-Helper geaendert werden. Der naechste fachliche Lauf bleibt `FIXEDASSETS-017-FA-CNC-01-SETUP-READINESS`.
 
+Update nach `GOVERNANCE-017-EVIDENCE-PACK-STANDARD`: Das Projekt hat jetzt mit `EVIDENCE-PACK-STANDARD.md` eine strengere Finalitaetsregel fuer grosse Klickanleitungen. Es gab keinen BC-Lauf, keine Setup-Aenderung, keine Buchung und keinen Company-Wechsel. Eine grosse Anleitung ist erst final buchfaehig, wenn UI-Nachweis, technischer Page-/Table-Nachweis, fachlicher Prozesszustand und Posten-/Persistenznachweis zusammenpassen. Bestehende Laborpacks bleiben dadurch nicht automatisch final. Der naechste fachliche Lauf bleibt `FIXEDASSETS-017-FA-CNC-01-SETUP-READINESS`.
+
 ## Projektmission
 
 Das Projekt verfolgt vier gleichrangige Ziele:

@@ -67,10 +67,13 @@ Jeder fachliche Testfall soll am Ende diese Mindestnachweise haben:
 | Nachweis | Beispiel |
 |---|---|
 | Screenshot-Metadaten | `uat-o2c-001-040-zeile-artikel-rm-m100.screenshot.json` |
+| Technischer Page-/Table-Nachweis | Page Inspection: Page, Page ID, Page Type, Source Table, wichtige Felder, Filter, Extensions |
 | fachlicher Seitentext oder API-Beleg | `040-zeile-artikel-rm-m100-api-result.json` |
 | Soll-Ist-Abgleich | `045-target-vs-labor-delta.md` |
 | Cleanup-Nachweis | `999-cleanup.json` |
 | Buchwirkung | Eintrag in Buch, Coverage oder Findings |
+
+Fuer grosse Prozessanleitungen gilt zusaetzlich `EVIDENCE-PACK-STANDARD.md`: UI-Nachweis, technischer Nachweis, fachlicher Prozesszustand und Posten-/Persistenznachweis muessen getrennt dokumentiert sein.
 
 JSON-Dateien muessen gueltiges JSON sein. Textdateien duerfen frei sein, sollen aber sprechende Namen tragen.
 
