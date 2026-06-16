@@ -1,0 +1,81 @@
+{
+  "testId": "FIXEDASSETS-019",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "dataBasis": "CRONUS USA",
+  "mode": "field-mapping-decision-no-bc-run-no-setup-no-posting",
+  "basedOn": [
+    "FIXEDASSETS-014-HGB-DEPRECIATION-BOOK-FIT",
+    "FIXEDASSETS-016-MACHINES-FA-POSTING-GROUP-FIT",
+    "FIXEDASSETS-018-FA-CNC-01-CARD-PREFLIGHT"
+  ],
+  "target": {
+    "fixedAssetNo": "FA-CNC-01",
+    "description": "CNC Maschine FRA",
+    "depreciationBook": "HGB",
+    "faPostingGroup": "MACHINES",
+    "amount": "120000 EUR",
+    "depreciationYears": 8
+  },
+  "decision": {
+    "setupFitApprovedForNextRun": false,
+    "reason": "The empty Fixed Asset Card shows basic fields and the Depreciation Book area, but the exact visible/settable fields for HGB and MACHINES are not yet proven. A saved target asset would risk a misleading master-data proof.",
+    "nextAllowedCase": "FIXEDASSETS-020-FA-CNC-01-CARD-MORE-FIELDS-MAPPING"
+  },
+  "visibleEnoughFor": [
+    "beginner explanation of the empty Fixed Asset Card",
+    "preflight discussion before vendor or purchase invoice",
+    "planning the next field-mapping run"
+  ],
+  "notVisibleEnoughFor": [
+    "saving FA-CNC-01",
+    "claiming HGB is assigned on the asset",
+    "claiming MACHINES is assigned on the asset",
+    "starting K30000 vendor setup",
+    "creating a purchase invoice",
+    "posting acquisition or depreciation"
+  ],
+  "allowedNextRun": {
+    "caseId": "FIXEDASSETS-020-FA-CNC-01-CARD-MORE-FIELDS-MAPPING",
+    "allowedActions": [
+      "open Fixed Assets and a new Fixed Asset Card UI-first",
+      "use More/Mehr anzeigen on General and Depreciation Book FastTabs",
+      "use Personalize or Page Inspection only as diagnosis if fields remain hidden",
+      "capture compact evidence of HGB and MACHINES field visibility",
+      "close without saving"
+    ],
+    "forbiddenActions": [
+      "save FA-CNC-01",
+      "create K30000",
+      "create a purchase invoice",
+      "post acquisition",
+      "calculate or post depreciation",
+      "claim German final proof"
+    ]
+  },
+  "safety": {
+    "bcRun": false,
+    "posted": false,
+    "setupChanged": false,
+    "fixedAssetCreated": false,
+    "vendorCreated": false,
+    "purchaseInvoiceCreated": false,
+    "acquisitionPosted": false,
+    "depreciationCalculatedOrPosted": false,
+    "companySwitched": false
+  },
+  "proves": [
+    "FIXEDASSETS-018 evidence is not sufficient for a safe FA-CNC-01 setup fit.",
+    "The next safe step is additional card field mapping, not saving the fixed asset.",
+    "K30000, purchase invoice, acquisition, depreciation and posting remain locked."
+  ],
+  "doesNotProve": [
+    "saved FA-CNC-01 fixed asset card",
+    "HGB or MACHINES assigned on a fixed asset",
+    "vendor K30000",
+    "purchase invoice, acquisition, depreciation, FA ledger entries or G/L trace",
+    "German final fixed-asset accounting proof"
+  ],
+  "bookImpact": "Chapter 21 should keep the empty-card screenshot as preflight/learning evidence and add that a book-ready fixed-asset master-data screenshot must visibly show FA-CNC-01, CNC Maschine FRA, HGB and MACHINES.",
+  "nextStep": "FIXEDASSETS-020-FA-CNC-01-CARD-MORE-FIELDS-MAPPING: expand/diagnose card fields without saving and prove whether HGB and MACHINES are visibly reachable."
+}

@@ -38,6 +38,24 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 
 ## Aktuelle Fundstellen
 
+## FIND-BC-FA-019 Setup-Felder muessen vor dem Speichern sichtbar gemappt sein
+
+| Feld | Wert |
+|---|---|
+| Status | erledigt |
+| Projekt | fibu-book5 |
+| Testfall | `FIXEDASSETS-019-FA-CNC-01-CARD-FIELD-MAPPING-DECISION` |
+| Screenshot | kein neuer Screenshot; nutzt `playwright/projects/fibu-book5/img/fixedassets-018-030-fixed-asset-card-preflight.png` als Negativ-/Preflight-Kontext |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-019/README.md`, `playwright/projects/fibu-book5/evidence/fixedassets-019/FIXEDASSETS-019-FA-CNC-01-CARD-FIELD-MAPPING-DECISION.md` |
+| BC-Seite | `Fixed Asset Card` |
+| sichtbarer Text | `No.`, `Description`, `FA Class Code`, `FA Subclass Code`, `Depreciation Book`, `Depreciation Method`, AfA-Datumsfelder; nicht sichtbar belegt: konkrete Zuordnung `HGB` und `MACHINES` |
+| Elementtyp | Karte / Pflichtfelder / Setup-Referenzfelder / Decision |
+| erste Hypothese | Eine leere Stammdatenkarte darf nicht gespeichert werden, bevor die fuer spaetere Buchungen relevanten Setup-Referenzfelder sichtbar und setzbar sind. |
+| Recherchequelle | Projekt-Evidence `FIXEDASSETS-018` und `FIXEDASSETS-019`; keine neue Microsoft-Learn-Recherche, weil die Entscheidung aus konkreter UI-Evidence folgt. |
+| Testergebnis | Setup-Fit fuer `FA-CNC-01` noch nicht freigegeben. `HGB` und `MACHINES` muessen auf der Anlagenkarte erst per `Mehr anzeigen`, Personalisieren oder Page Inspection als sichtbare/setzbare Felder belegt werden. |
+| Entscheidung | Kapitel 21, Gates, State, Backlog, Coverage, Patterns und Action Map wurden auf `FIXEDASSETS-020-FA-CNC-01-CARD-MORE-FIELDS-MAPPING` als naechsten Schritt synchronisiert. |
+| Buchstelle | Kapitel 21 Anlagen |
+
 ## FIND-BC-FA-018 Leere Anlagenkarte ist Preflight, kein Zielstammsatz
 
 | Feld | Wert |

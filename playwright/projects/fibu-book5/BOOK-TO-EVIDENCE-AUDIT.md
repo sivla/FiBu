@@ -24,6 +24,8 @@ Update nach `FIXEDASSETS-016`: `MACHINES` ist in `RM-DEMO` UI-first als FA Posti
 
 Update nach `FIXEDASSETS-018`: Der Anlagenkarten-Preflight ist praktisch gelaufen. `FA-CNC-01` ist im Listen-/Seitentext vor `New` nicht sichtbar; das Listenbild ist nur begrenzter Kontextnachweis, kein sauberer leerer Filterbeweis. Die leere `Fixed Asset Card` zeigt Pflichtfelder und AfA-Bereich, aber keinen gespeicherten Zielstammsatz. Kapitel 21 darf die Karte jetzt als Lern- und Feldmapping-Schritt erklaeren, aber noch nicht als angelegte Anlage, Einkaufsrechnung, Zugang, AfA oder deutschen Finalnachweis.
 
+Update nach `FIXEDASSETS-019`: Der Feldmapping-Entscheid ist ohne BC-Lauf erledigt. Die leere Anlagenkarte aus `FIXEDASSETS-018` reicht noch nicht fuer einen sicheren Setup-Fit, weil `HGB` und `MACHINES` nicht sichtbar/setzbar auf der Anlagenkarte belegt sind. Kapitel 21 muss deshalb vor dem Speichern von `FA-CNC-01` einen Zwischenkontrollpunkt setzen: `Mehr anzeigen`/Diagnose/Feldmapping, erst danach Stammdatenscreenshot. Keine Anlage, keine Einkaufsrechnung, kein Zugang, keine AfA und kein deutscher Finalnachweis.
+
 Update nach Stammdaten-Backlog: `MASTERDATA-BACKLOG.md` uebersetzt die Buchkapitel 3, 6 bis 18 und 19 bis 25 in priorisierte RM-DEMO-Testdaten- und Setup-Schritte. Der Audit bleibt die Buch-vs.-Evidence-Wahrheit; der Backlog entscheidet, welche Stammdaten/Setups als naechstes praktisch gebaut oder bewusst spaeter gehalten werden.
 
 Update nach `REPORTING-009`/`REPORTING-010`: Der einfache read-only Sachposten-Dimensionspfad ist geprueft und nur teilweise/negativ belegt. `G/L Entries` zu `PS-INV103297` sind in breiter Ansicht sichtbar und zeigen Shortcut-Spalten `Department Code`/`Customergroup Code`; `PRODUCTLINE`/`CHANNEL` und ein belastbarer `Entry` -> `Dimensions`-Dialog sind dort nicht sichtbar. Financial Reports bleiben fuer `PRODUCTLINE`/`CHANNEL` offen. Der naechste echte Reporting-Hebel ist nur mit Freigabe ein Analysis-View-Fit oder ein anderer belegbarer Standardpfad.
@@ -187,7 +189,7 @@ Update nach `GOVERNANCE-005`: Autopilot V2.2 ist gegen State und Gates synchroni
 ```text
 Arbeite auf Branch codex/playwright-bc-screenshot-foundation.
 Lies AUTOPILOT-STATE.json, POSTING-AND-SETUP-GATES.md, CURRENT-STATE.md, BOOK-TO-EVIDENCE-AUDIT.md, LAB-FIT-STATUS.md, AUTOPILOT-PROMPT-V2.md und evidence/governance-005/.
-`FIXEDASSETS-018-FA-CNC-01-CARD-PREFLIGHT` ist erledigt: `FA-CNC-01` ist im Listen-/Seitentext vor `New` nicht sichtbar; das Listenbild ist nur begrenzter Kontextnachweis. Die leere Anlagenkarte zeigt Pflichtfelder, aber keinen Zielstammsatz. Fuehre als naechsten No-Approval-Schritt `FIXEDASSETS-019-FA-CNC-01-CARD-FIELD-MAPPING-DECISION` aus: entscheiden, ob ein enger UI-first Setup-Fit fuer `FA-CNC-01` sicher ist oder ob zuerst zusaetzliches Feldmapping/Debugging noetig ist. Keine Einkaufsrechnung, kein Zugang, keine AfA, keine Buchung und keine deutsche Finalbehauptung.
+`FIXEDASSETS-019-FA-CNC-01-CARD-FIELD-MAPPING-DECISION` ist erledigt: Die leere Anlagenkarte zeigt Grundfelder, aber noch nicht sichtbar `HGB` und `MACHINES` als setzbare Anlagenkartenfelder. Fuehre als naechsten No-Approval-Schritt `FIXEDASSETS-020-FA-CNC-01-CARD-MORE-FIELDS-MAPPING` aus: Karte ohne Speichern oeffnen, `Mehr anzeigen`/Diagnose nutzen und HGB-/MACHINES-Feldsichtbarkeit belegen. Keine gespeicherte Anlage, keine Einkaufsrechnung, kein Zugang, keine AfA, keine Buchung und keine deutsche Finalbehauptung.
 ```
 
 ## Grenzen
