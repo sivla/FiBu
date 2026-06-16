@@ -38,6 +38,26 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 
 ## Aktuelle Fundstellen
 
+## FIND-BC-FA-028 Save-Gate trennt Anlagenstamm von Anlagenbuchung
+
+| Feld | Wert |
+|---|---|
+| Status | erledigt |
+| Projekt | fibu-book5 |
+| Testfall | `FIXEDASSETS-028-FA-CNC-01-AUTO-NUMBER-SAVE-GATE-DECISION` |
+| Screenshot | keiner, Decision-Lauf ohne BC-Ausfuehrung |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-028/README.md`, `playwright/projects/fibu-book5/evidence/fixedassets-028/FIXEDASSETS-028-FA-CNC-01-AUTO-NUMBER-SAVE-GATE-DECISION.md`, `playwright/projects/fibu-book5/evidence/fixedassets-028/FIXEDASSETS-028-result.json` |
+| BC-Seite | `Fixed Asset Card` als naechster geplanter UI-Pfad in `RM-DEMO` / Sandbox `MCP_1_20260210` |
+| sichtbarer Text | noch nicht neu geprueft; Zielwerte fuer den naechsten Lauf sind `FA-CNC-01`, `CNC Maschine FRA`, `TANGIBLE`, `EQUIPMENT`, `HGB`, `MACHINES` |
+| Elementtyp | Governance / Save-Gate / Klickanleitungs-QA / Debugging-Regel |
+| erste Hypothese | Nach einem Auto-Number-Cleanup darf der naechste Agent nicht direkt in Einkauf, Zugang oder AfA springen, sondern muss erst den Zielstammsatz kontrolliert speichern. |
+| Recherchequelle | Projekt-Evidence `FIXEDASSETS-027` und Save-Gate-Entscheidung `FIXEDASSETS-028`; kein neuer externer Quellenbefund, weil hier Projektgovernance und UI-Evidence zusammengefuehrt wurden. |
+| Testergebnis | Kein BC-Lauf und keine neue Buchung. Die Entscheidung erlaubt fuer `FIXEDASSETS-029` nur den engen UI-first Zielstammdaten-Save fuer `FA-CNC-01` mit harten Stop-Kriterien. `K30000`, Einkaufsrechnung, Zugang, AfA und Buchung bleiben gesperrt. |
+| Entscheidung | Buch, Coverage, Gates und Autopilot-State muessen den Anlagenprozess in kleine beweisbare Stufen trennen: Stammsatz speichern, danach spaeter Kreditor/Einkauf, danach Zugang, danach AfA/Postenspur. |
+| Buchstelle | Kapitel 21 Anlagen; Kapitel 37 Debugging und technische Nachweisfuehrung; allgemeine Klickanleitungs-QA |
+
+Fuer Anfaenger ist der Befund wichtig, weil eine Anlage in Business Central nicht mit dem ersten Kauf oder der ersten AfA beginnt. Zuerst muss klar sein, welcher Stammsatz existiert, welche Nummer er hat und welches AfA-Buch beziehungsweise welche Buchungsgruppe daran haengt. Das Save-Gate verhindert, dass eine Anleitung mehrere fachliche Risiken in einem Bild versteckt.
+
 ## FIND-BC-FA-027 New-Card-Lookup kann eine Auto-Number-Anlage speichern
 
 | Feld | Wert |

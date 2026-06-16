@@ -45,6 +45,7 @@ Diese Datei sammelt wiederverwendbare Muster aus belegten Laeufen. Sie ist keine
 - Der Helper ist Diagnose, keine Speicherfreigabe. Er beantwortet: "Treffe ich die Vordergrundkarte?" Nicht: "Ist der fachliche Zielwert bereits gesetzt?"
 - Nach `FIXEDASSETS-026` ist das Muster fuer leere Karten: zuerst Kartenkontext beweisen, dann aktive Controls vollstaendig mappen, danach separat Werte/Lookups pruefen. Eine erfolgreiche Control-Recovery ist keine Speicherfreigabe und kein Nachweis fuer `HGB`, `MACHINES` oder `FA-CNC-01`.
 - Nach `FIXEDASSETS-027` ist klar: New-Card-Lookup-Preflight ist nicht automatisch no-save. Tests muessen neben der Zielnummer auch automatisch erzeugte Nummern erkennen, Cleanup-Evidence sichern oder vor dem Lauf ein ausdrueckliches Save-Gate einholen.
+- Nach `FIXEDASSETS-028` gilt fuer Anlagen: Der naechste Lauf ist kein weiterer Preflight, sondern ein kontrollierter Zielstammdaten-Save. Das Testziel muss enger sein als der Gesamtprozess: erst `FA-CNC-01` speichern und visuell pruefen, danach spaeter separat Kreditor, Einkauf, Zugang, AfA und Postenspur.
 
 ## Action Bar
 

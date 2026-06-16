@@ -1341,6 +1341,42 @@
         "27"
       ],
       "nextStep": "Compliance setup only with explicit gate."
+    },
+    {
+      "caseId": "FIXEDASSETS-028",
+      "process": "Fixed Assets",
+      "status": "done-decision-save-gate-no-bc-run",
+      "mode": "fa-cnc-01-auto-number-save-gate-decision",
+      "company": "RM-DEMO",
+      "documents": [],
+      "screenshots": [],
+      "evidence": [
+        "playwright/projects/fibu-book5/evidence/fixedassets-028/README.md",
+        "playwright/projects/fibu-book5/evidence/fixedassets-028/FIXEDASSETS-028-FA-CNC-01-AUTO-NUMBER-SAVE-GATE-DECISION.md",
+        "playwright/projects/fibu-book5/evidence/fixedassets-028/FIXEDASSETS-028-result.json"
+      ],
+      "proves": [
+        "FIXEDASSETS-027 lookup values are sufficient to prepare a controlled target master-data save",
+        "Auto-number side effects must be handled as persistence risk, not ignored as no-save noise",
+        "Next practical run may save only FA-CNC-01 and must stop or clean up on any number/control mismatch"
+      ],
+      "doesNotProve": [
+        "saved FA-CNC-01",
+        "K30000 vendor",
+        "purchase invoice or acquisition posting",
+        "depreciation posting",
+        "German final fixed-asset accounting"
+      ],
+      "reusablePatterns": [
+        "turn Auto-Number side effects into explicit save gates",
+        "separate target master-data save from purchase/acquisition/depreciation posting",
+        "stop criteria must include generated-number cleanup before claiming a clean run"
+      ],
+      "bookChapters": [
+        "21",
+        "37"
+      ],
+      "nextStep": "FIXEDASSETS-029-FA-CNC-01-CONTROLLED-ASSET-SAVE"
     }
   ]
 }

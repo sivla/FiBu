@@ -1,0 +1,66 @@
+{
+  "testId": "FIXEDASSETS-028",
+  "generatedAt": "2026-06-16T18:56:50.588Z",
+  "status": "done-decision-save-gate-approved-for-target-masterdata-only",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "dataBasis": "CRONUS USA",
+  "mode": "decision-no-bc-run-no-posting",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-027/FIXEDASSETS-027-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-027/100-auto-number-draft-cleanup-coordinate-result.json"
+  ],
+  "decision": {
+    "nextAllowedCase": "FIXEDASSETS-029-FA-CNC-01-CONTROLLED-ASSET-SAVE",
+    "allowed": [
+      "Open Fixed Assets in RM-DEMO",
+      "Confirm FA-CNC-01 does not already exist",
+      "Open New Fixed Asset Card",
+      "Set No. to FA-CNC-01 if BC auto-numbered the card",
+      "Set Description to CNC Maschine FRA",
+      "Set FA Class Code to TANGIBLE",
+      "Set FA Subclass Code to EQUIPMENT",
+      "Set Depreciation Book Code to HGB",
+      "Set Posting Group to MACHINES",
+      "Set or document depreciation duration/date fields only when the UI makes the required fields explicit",
+      "Save exactly one FA-CNC-01 master record",
+      "Screenshot the saved card and filter the list afterwards"
+    ],
+    "forbidden": [
+      "Create K30000",
+      "Create purchase invoice",
+      "Post acquisition",
+      "Calculate or post depreciation",
+      "Post any document or journal",
+      "Claim German final chart-of-accounts or HGB final proof"
+    ],
+    "stopCriteria": [
+      "Environment is not MCP_1_20260210",
+      "Company is not RM-DEMO",
+      "FA-CNC-01 already exists before the run",
+      "Auto-numbered No. cannot be changed safely to FA-CNC-01",
+      "Unexpected temporary draft cannot be deleted through UI",
+      "HGB or MACHINES are not visible/selectable",
+      "Required depreciation fields cannot be explained safely"
+    ]
+  },
+  "selectedLaborValues": {
+    "fixedAssetNo": "FA-CNC-01",
+    "description": "CNC Maschine FRA",
+    "faClassCode": "TANGIBLE",
+    "faSubclassCode": "EQUIPMENT",
+    "depreciationBookCode": "HGB",
+    "postingGroup": "MACHINES",
+    "depreciationYears": 8,
+    "depreciationDates": "open-ui-dependent"
+  },
+  "safety": {
+    "bcRun": false,
+    "posted": false,
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "saveGateDecisionOnly": true
+  },
+  "bookImpact": "Kapitel 21 darf den naechsten Schritt als bewusstes Speichern des Zielstammsatzes erklaeren, nicht mehr als unverbindlichen Preflight. Die Auto-Number-Falle aus FIXEDASSETS-027 muss als Anfaengerfehler und Kontrollpunkt sichtbar bleiben.",
+  "nextStep": "FIXEDASSETS-029-FA-CNC-01-CONTROLLED-ASSET-SAVE"
+}

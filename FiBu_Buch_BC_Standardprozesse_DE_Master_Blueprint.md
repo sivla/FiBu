@@ -3834,6 +3834,8 @@ Nachweis nach `FIXEDASSETS-026`: Die fehlenden Controls wurden no-save wiedergef
 
 
 Nachweis nach `FIXEDASSETS-027`: Der Lookup-/Werte-Preflight hat sichtbar gemacht, dass `HGB`, `MACHINES` sowie vorhandene Klassen-/Unterklassenwerte im Kartenkontext erreichbar sind. Gleichzeitig hat der Lauf eine wichtige Business-Central-Falle gezeigt: Beim Arbeiten auf einer neuen Anlagenkarte kann BC ueber die Nummernserie bereits einen temporaeren Datensatz erzeugen. Im Labor entstand `FA000110`; dieser Entwurf wurde danach bewusst ueber die UI geloescht und per leerem Nachfilter belegt. Fuer die Klickanleitung bedeutet das: `Neu` ist bei Stammdaten kein harmloser Sichttest. Vor einem finalen Stammdatenscreenshot braucht das Buch jetzt ein eigenes Save-Gate fuer `FA-CNC-01`, inklusive Auto-Number-Strategie, konkreter Klasse/Unterklasse, AfA-Daten und Cleanup-Regel. Bis dahin ist `FA-CNC-01` weiterhin nicht gespeichert.
+
+Entscheidung nach `FIXEDASSETS-028`: Der naechste praktische Schritt darf genau die Zielanlage `FA-CNC-01` speichern, aber noch keine Einkaufsrechnung, keinen Zugang und keine AfA ausloesen. Vor dem Speichern muss die Anleitung zeigen, dass die automatisch gezogene Nummer kontrolliert wird, `No. = FA-CNC-01` sichtbar ist und die Werte `CNC Maschine FRA`, `TANGIBLE`, `EQUIPMENT`, `HGB` und `MACHINES` auf der Karte stehen. Wenn BC die Nummer oder Pflichtfelder nicht sauber traegt, wird abgebrochen und ein Entwurf per UI bereinigt. Das ist die Sicherheitslinie zwischen Stammdatenanlage und Anlagenbuchung.
 ### Schritt-für-Schritt
 
 1. Öffne `Anlagen (Fixed Assets)` und lege `FA-CNC-01` an.

@@ -440,7 +440,7 @@
         "Tell-Me exact result plus context check"
       ],
       "knownActions": {
-        "New": "FIXEDASSETS-027 shows that New on Fixed Assets can create an auto-numbered draft (FA000110) during lookup preflight. Treat New as persistent-risk unless a cleanup-aware pattern or explicit save gate is active.",
+        "New": "FIXEDASSETS-028 turns New into a controlled target-masterdata save gate: next run may save only FA-CNC-01 if Auto-Number can be corrected, target values are visible and cleanup/stop criteria are met.",
         "Mehr anzeigen": "FIXEDASSETS-026 accepts only small FastTab-near Show more/Mehr anzeigen controls with matching aria-label/title; large card containers are rejected. General and Depreciation Book were expanded no-save.",
         "Lookup values": "FIXEDASSETS-027 proved visible lookup/value candidates TANGIBLE, EQUIPMENT, HGB and MACHINES on the Fixed Asset Card; this is value-path evidence, not a saved FA-CNC-01."
       },
@@ -468,7 +468,9 @@
         "Do not accept large card containers as Show more buttons; restrict to small visible FastTab-near controls with matching labels or titles.",
         "FIXEDASSETS-027 proves that lookup preflight on a new Fixed Asset Card can auto-create a temporary numbered asset; do not call such a run no-save unless generated numbers are checked too.",
         "A negative filter for FA-CNC-01 alone is insufficient after New; also check and clean auto-numbered drafts such as FA000110.",
-        "Delete/Informationen loeschen is only acceptable as documented cleanup after confirming the exact temporary number in the dialog and proving the filtered list is empty afterwards."
+        "Delete/Informationen loeschen is only acceptable as documented cleanup after confirming the exact temporary number in the dialog and proving the filtered list is empty afterwards.",
+        "After FIXEDASSETS-028, do not run another open-ended preflight on New; either save exactly FA-CNC-01 under the gate or abort and clean up.",
+        "Do not proceed from saved FA-CNC-01 directly to K30000, purchase invoice, acquisition or depreciation; those need later gates."
       ],
       "recommendedHelpers": [
         "openBcPageById",
@@ -481,7 +483,9 @@
         "foreground-card-postcondition",
         "small-fasttab-show-more-filter",
         "auto-number-draft-detection",
-        "cleanup-after-temporary-masterdata-card"
+        "cleanup-after-temporary-masterdata-card",
+        "target-masterdata-save-gate",
+        "auto-number-correction-or-cleanup"
       ],
       "evidenceExamples": [
         "fixedassets-003",
@@ -496,7 +500,8 @@
         "fixedassets-023",
         "fixedassets-024",
         "fixedassets-026",
-        "fixedassets-027"
+        "fixedassets-027",
+        "fixedassets-028"
       ]
     },
     "FA Posting Groups": {
