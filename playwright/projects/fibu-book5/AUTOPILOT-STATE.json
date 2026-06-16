@@ -10,8 +10,8 @@
   "companyRegistry": "playwright/projects/fibu-book5/COMPANY-REGISTRY.json",
   "dataBasis": "CRONUS USA",
   "activeArea": "fixedassets",
-  "lastCompletedRun": "FIXEDASSETS-023-FA-CNC-01-CARD-TECHNICAL-DIAGNOSIS",
-  "lastWorkType": "ui-first-no-save-technical-diagnosis",
+  "lastCompletedRun": "FIXEDASSETS-024-FA-CNC-01-ACTIVE-CARD-CONTROL-DIAGNOSIS",
+  "lastWorkType": "ui-first-active-card-control-diagnosis-no-save",
   "postedInLastRun": false,
   "latestPostedDocuments": {
     "o2c": {
@@ -223,6 +223,17 @@
         "noSetupChange": true,
         "noPosting": true,
         "nextAllowedCase": "FIXEDASSETS-024-FA-CNC-01-ACTIVE-CARD-CONTROL-HELPER-OR-MANUAL-DIAGNOSIS"
+      },
+      "assetCardActiveControlDiagnosis": {
+        "caseId": "FIXEDASSETS-024",
+        "decision": "active-card-controls-mapped-no-save",
+        "result": "The active Fixed Asset Card controls for FA Class Code, FA Subclass Code, Depreciation Book Code, Posting Group and depreciation date fields were mapped with collectActiveCardControlDiagnostics. Background Fixed Assets list candidates are rejected separately. FA-CNC-01 was not saved.",
+        "screenshot": "playwright/projects/fibu-book5/img/fixedassets-024-020-active-card-control-diagnosis.png",
+        "evidence": "playwright/projects/fibu-book5/evidence/fixedassets-024/FIXEDASSETS-024-result.json",
+        "noSave": true,
+        "noSetupChange": true,
+        "noPosting": true,
+        "nextAllowedCase": "FIXEDASSETS-025-FA-CNC-01-VALUE-LOOKUP-OR-SAVE-GATE-DECISION"
       }
     }
   },
@@ -268,7 +279,8 @@
     "no repeat FIXEDASSETS-021-FA-CNC-01-SETUP-FIT-DECISION without a new lookup/value readiness delta",
     "no repeat FIXEDASSETS-022-FA-CNC-01-LOOKUP-VALUE-PREFLIGHT without a new technical card/lookup diagnosis delta",
     "no repeat FIXEDASSETS-023-FA-CNC-01-CARD-TECHNICAL-DIAGNOSIS without a new active-card locator or manual Page Inspection/Personalize delta",
-    "no K30000, purchase invoice, acquisition or depreciation before FA-CNC-01 technical card diagnosis and explicit save gate are complete"
+    "no K30000, purchase invoice, acquisition or depreciation before FA-CNC-01 technical card diagnosis and explicit save gate are complete",
+    "no repeat FIXEDASSETS-024-FA-CNC-01-ACTIVE-CARD-CONTROL-DIAGNOSIS without a new value/lookup or save-gate delta"
   ],
   "openGates": [
     "TAX-002-DE-VAT-FIT",
@@ -337,14 +349,14 @@
     },
     "nextCompanyEvidenceStep": "Only with a new documented company action purpose; otherwise continue with process/setup work."
   },
-  "nextBestStepWithoutApproval": "FIXEDASSETS-024-FA-CNC-01-ACTIVE-CARD-CONTROL-HELPER-OR-MANUAL-DIAGNOSIS remains the fachlicher next step. Technical strictness improved FIXEDASSETS-023, but FA-CNC-01 must still not be saved before active-card controls are mapped.",
+  "nextBestStepWithoutApproval": "FIXEDASSETS-025-FA-CNC-01-VALUE-LOOKUP-OR-SAVE-GATE-DECISION: use the active-card-control helper to decide the next no-save value/lookup step or save-gate plan. Still no save, no setup, no K30000, no purchase invoice, no acquisition, no depreciation and no posting.",
   "nextBestStepWithApproval": {
     "payments": "Nur mit neuem Gate: weitere Zahlung, Kreditorenzahlung oder Bankabstimmung. PAYMENTS-011 darf nicht wiederholt werden.",
     "companies": "Company-Aktionen sind innerhalb MCP_1_20260210 erlaubt, aber nur mit COMPANY-REGISTRY-Eintrag, dokumentiertem Zweck/Risiko/Evidence-Plan und sofortigem State-/Evidence-Sync. Naechster Company-Schritt ist read-only Enumeration, keine Anlage.",
     "reporting": "Further Analysis View setup needs a new explicit gate and a scoped New/Card action proof. REPORTING-013 consumed the GOVERNANCE-007 gate and rejected setup because unscoped New/Neu is globally ambiguous in BC.",
     "tax": "TAX-002-DE-VAT-FIT: only with explicit approval; UI-first VAT Business/Product Posting Groups, VAT Posting Setup, document preview and VAT Entries proof; no German final claim until proven.",
     "compliance": "COMPLIANCE-002-EINVOICE-SETUP: E-Rechnungs-/E-Documents-/Versandprofil-/Change-Log-Setup nur mit Freigabe, UI-first Klickpfad, Validierungs-/Versand-/Auditnachweis und klarer Labor-/DE-Trennung.",
-    "fixedAssets": "After FIXEDASSETS-023, Page Inspection proves Fixed Asset Card (5600, Document) / Fixed Asset table (5600), but save remains blocked. The next useful step is an active-card control helper or manual Page Inspection/Personalize mapping so the foreground card controls are used instead of background list headers. Not K30000, purchase invoice, acquisition, depreciation or posting.",
+    "fixedAssets": "After FIXEDASSETS-024, active Fixed Asset Card controls are mapped no-save. The next useful fixed-assets step is not acquisition or depreciation, but a value/lookup or explicit save-gate decision for FA-CNC-01 using the active-card helper.",
     "security": "SECURITY-002-USER-PERMISSION-SETUP: Benutzer-/Berechtigungs-/Profil-/Security-Group-/User-Setup-/Job-Queue-/Change-Log-Aenderungen nur mit Freigabe, UI-first Klickpfad, Rechte-/SoD-Matrix und Audit-/Review-Evidence.",
     "migration": "MIGRATION-002-CONFIGURATION-PACKAGES-IMPORT: Configuration Packages, Datenimport, Opening-Balance-Journale oder Cutover-Ausfuehrung nur mit Freigabe, UI-first Klickpfad, Abstimmprotokoll und Rueckfallregel.",
     "integrations": "INTEGRATIONS-002-SETUP-OR-CONNECTOR: Extension, AppSource-App, API/Web Service, Connector, Power Platform, Power BI, Job Queue oder produktiven Integrationslauf nur mit Freigabe, UI-first Klickpfad, UAT, Rollen/Berechtigungen, Fehlerfall, Rollback, Monitoring und Support Owner.",
@@ -501,7 +513,8 @@
     "FIXEDASSETS-021 decided without a BC run that FA-CNC-01 must not be saved yet. FIXEDASSETS-020 proves field paths, but not selectable/assigned HGB and MACHINES values, not FA Class/Subclass mapping and not depreciation date decisions. No save, no setup change, no K30000, no purchase invoice, no acquisition, no depreciation, no posting and no company switch. Next no-approval step is FIXEDASSETS-022-FA-CNC-01-LOOKUP-VALUE-PREFLIGHT.",
     "FIXEDASSETS-022 ran UI-first in RM-DEMO with a corrected screenshot-QA rule: only visible codes in the correct context count. The first optimistic locator attempt was rejected because it opened Number Series instead of the intended FA Class/Subclass lookup; the final run keeps only the empty Fixed Asset Card context image and documents HGB/MACHINES and FA Class/Subclass lookup values as not proven. FA-CNC-01 was not saved; no setup change, no K30000, no purchase invoice, no acquisition, no depreciation, no posting and no company switch. Next no-approval step is FIXEDASSETS-023-FA-CNC-01-CARD-TECHNICAL-DIAGNOSIS.",
     "FIXEDASSETS-023 ran UI-first in RM-DEMO without saving. Page Inspection opened from the unsaved Fixed Asset Card and shows Fixed Asset Card (5600, Document) with source table Fixed Asset (5600). The visual card shows FA Class Code, FA Subclass Code, Depreciation Book Code and Posting Group controls, but the DOM diagnosis explains why the previous locator failed: unscoped caption search can hit the background Fixed Assets list headers instead of the foreground card controls. Save gate remains blocked; no setup change, no FA-CNC-01, no K30000, no purchase invoice, no acquisition, no depreciation, no posting and no company switch. Next no-approval step is FIXEDASSETS-024-FA-CNC-01-ACTIVE-CARD-CONTROL-HELPER-OR-MANUAL-DIAGNOSIS.",
-    "PLAYWRIGHT-STRICTNESS-001 migrated FIXEDASSETS-023 to openBcPageById, clickBcAction and state-based waits; no setup, save or posting."
+    "PLAYWRIGHT-STRICTNESS-001 migrated FIXEDASSETS-023 to openBcPageById, clickBcAction and state-based waits; no setup, save or posting.",
+    "FIXEDASSETS-024 mapped active Fixed Asset Card controls with collectActiveCardControlDiagnostics and rejected background list candidates; FA-CNC-01 was not saved."
   ],
   "currentPrompt": {
     "name": "Codex Superautopilot Prompt V6.2",

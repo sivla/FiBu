@@ -440,7 +440,7 @@
         "Tell-Me exact result plus context check"
       ],
       "knownActions": {
-        "New": "FIXEDASSETS-018 opens an empty Fixed Asset Card from the Fixed Assets list. FIXEDASSETS-023 strictness migration now opens New through clickBcAction with Fixed Assets scopeText and Fixed Asset Card/FA Class/Depreciation Book expectedAfterClick; fallback local title-icon scan was not used. Saving stays locked until active-card control mapping is proven.",
+        "New": "FIXEDASSETS-024 keeps the scoped clickBcAction New path and then maps active Fixed Asset Card controls with collectActiveCardControlDiagnostics. Saving stays locked until a separate value/lookup or save-gate decision proves target values.",
         "Mehr anzeigen": "FIXEDASSETS-020 uses only card-local More/Show more controls in General and Depreciation Book to expose Depreciation Book Code and Posting Group without saving"
       },
       "dangerousActions": [
@@ -458,7 +458,8 @@
         "Do not click every aria-expanded=false control as Show more; scope More/Show more to card-local labels and verify field text afterwards",
         "Do not save a fixed asset from an empty card until the setup reference fields are visible/settable",
         "No acquisition/depreciation without explicit gates",
-        "After FIXEDASSETS-023 strictness migration, New must keep scopeText and expectedAfterClick; do not reintroduce local unscoped button scans as primary path."
+        "After FIXEDASSETS-023 strictness migration, New must keep scopeText and expectedAfterClick; do not reintroduce local unscoped button scans as primary path.",
+        "FIXEDASSETS-024 proves active card controls, but not target values; do not treat mapped controls as saved FA-CNC-01, HGB or MACHINES."
       ],
       "recommendedHelpers": [
         "openBcPageById",
@@ -466,7 +467,8 @@
         "clickBcAction",
         "expectBcDialog",
         "screenshot",
-        "active-card-control-scope"
+        "active-card-control-scope",
+        "collectActiveCardControlDiagnostics"
       ],
       "evidenceExamples": [
         "fixedassets-003",
@@ -478,7 +480,8 @@
         "fixedassets-020",
         "fixedassets-021",
         "fixedassets-022",
-        "fixedassets-023"
+        "fixedassets-023",
+        "fixedassets-024"
       ]
     },
     "FA Posting Groups": {

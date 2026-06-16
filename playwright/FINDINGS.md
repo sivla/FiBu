@@ -38,6 +38,26 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 
 ## Aktuelle Fundstellen
 
+## FIND-BC-FA-024 Active-Card-Control-Helper trennt Vordergrundkarte von Hintergrundliste
+
+| Feld | Wert |
+|---|---|
+| Status | erledigt |
+| Projekt | fibu-book5 |
+| Testfall | `FIXEDASSETS-024-FA-CNC-01-ACTIVE-CARD-CONTROL-DIAGNOSIS` |
+| Screenshot | `playwright/projects/fibu-book5/img/fixedassets-024-020-active-card-control-diagnosis.png` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-024/README.md`, `playwright/projects/fibu-book5/evidence/fixedassets-024/FIXEDASSETS-024-FA-CNC-01-ACTIVE-CARD-CONTROL-DIAGNOSIS.md`, `playwright/projects/fibu-book5/evidence/fixedassets-024/FIXEDASSETS-024-result.json`, `playwright/projects/fibu-book5/evidence/fixedassets-024/030-active-card-control-diagnosis.json` |
+| BC-Seite | `Fixed Asset Card` in `RM-DEMO` / Sandbox `MCP_1_20260210` |
+| sichtbarer Text | `FA Class Code`, `FA Subclass Code`, `Depreciation Book Code`, `Posting Group`, `Depreciation Starting Date`, `Depreciation Ending Date` |
+| Elementtyp | Karte / Helper / Locator-Diagnose / Screenshot-QA |
+| erste Hypothese | Nach `FIXEDASSETS-023` braucht Playwright einen wiederverwendbaren Weg, Feldcaption und editierbares Control der aktiven Vordergrundkarte zu verbinden, ohne Labels aus der Hintergrundliste als Beweis zu akzeptieren. |
+| Recherchequelle | Projekt-Evidence `FIXEDASSETS-024`; Helper `playwright/core/bc/cards.ts`; keine neue externe Recherche, weil der Lauf eine konkrete UI-/Locator-Wahrheit pruefte. |
+| Testergebnis | `collectActiveCardControlDiagnostics()` mappt sechs Zielcaptions als aktive Kartenlabels mit nahem Control und verwirft Hintergrundlistentreffer. `FA-CNC-01` wurde nicht gespeichert; keine Setup-Aenderung und keine Buchung. |
+| Entscheidung | Buch, Gates, Backlog, Coverage, Screenshot-QA, Patterns und Action Map werden auf `FIXEDASSETS-025-FA-CNC-01-VALUE-LOOKUP-OR-SAVE-GATE-DECISION` synchronisiert. |
+| Buchstelle | Kapitel 21 Anlagen; Kapitel 37/Debugging und technische Nachweisfuehrung |
+
+Fuer Anfaenger ist der Befund didaktisch wertvoll: Ein Feld kann technisch vorhanden und anklickbar sein, ohne dass der fachlich gewuenschte Wert schon gesetzt ist. Ein finaler Anlagen-Screenshot muss deshalb nicht nur die Feldnamen, sondern die Werte `FA-CNC-01`, Beschreibung, `HGB`, `MACHINES`, Klasse/Unterklasse und AfA-Daten im richtigen Kartenkontext zeigen.
+
 ## FIND-BC-FA-023 Page Inspection bestaetigt Kartenkontext, ersetzt aber keinen aktiven Karten-Locator
 
 | Feld | Wert |

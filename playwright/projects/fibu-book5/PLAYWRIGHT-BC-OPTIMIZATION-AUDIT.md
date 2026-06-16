@@ -41,6 +41,16 @@ Dieser technische Lauf hat genau einen cancel-safe Test migriert: `playwright/pr
 | `playwright/projects/fibu-book5/tests/fixedassets-023-fa-cnc-01-card-technical-diagnosis.spec.ts` | Lokaler DOM-Buttonscan fuer `New/Neu` als erster Pfad | `clickBcAction()` mit `scopeText = Fixed Assets` und `expectedAfterClick = Fixed Asset Card / FA Class Code / Depreciation Book` | Der Klick beweist jetzt nicht nur "geklickt", sondern den erwarteten Kartenzustand; lokaler Titel-Icon-Fallback bleibt dokumentiert, wurde aber nicht genutzt | Strictness-Evidence `evidence/playwright-strictness-001/PLAYWRIGHT-STRICTNESS-001-result.json` zeigt `helper = clickBcAction`, `role = menuitem`, `fallbackUsed = false` |
 | `playwright/projects/fibu-book5/tests/fixedassets-023-fa-cnc-01-card-technical-diagnosis.spec.ts` | Feste `waitForTimeout` nach Page Open, New, Show More und Page Inspection | `waitForPageText()` beziehungsweise `expect.poll(pageText)` mit konkreten Zieltexten | Wartet auf fachlichen BC-Zustand statt Zeitablauf; reduziert Flakiness und Laufzeit | Testlauf passed in ca. 12,5 s |
 
+## Active-Card-Control-Helper nach `FIXEDASSETS-024`
+
+Dieser technische/fachliche Lauf hat genau einen no-save Karten-Diagnosefall ergaenzt: `playwright/projects/fibu-book5/tests/fixedassets-024-fa-cnc-01-active-card-control-diagnosis.spec.ts`. Es gab keine Setup-Aenderung, keine Stammdatenanlage, keine Buchung, keine Zahlung, keine Bankabstimmung, keine neue Company und kein Speichern von `FA-CNC-01`.
+
+| Datei | Neues Muster | Warum besser | Validierung |
+|---|---|---|---|
+| `playwright/core/bc/cards.ts` | `collectActiveCardControlDiagnostics()` bewertet Feldcaptions, aktive Kartenzeilen, nahe Controls und verworfene Grid-/Columnheader-Kandidaten | Trennt Vordergrundkarte von Hintergrundliste; verhindert, dass ein sichtbarer Spaltenkopf als Kartenfeld gilt | `npx tsx playwright/core/bc/cards.ts` passed |
+| `playwright/projects/fibu-book5/tests/fixedassets-024-fa-cnc-01-active-card-control-diagnosis.spec.ts` | No-save Diagnose fuer `FA Class Code`, `FA Subclass Code`, `Depreciation Book Code`, `Posting Group` und AfA-Datumsfelder | Belegt aktive Kartencontrols, ohne Werte zu setzen oder `FA-CNC-01` zu speichern | `npm run fibu:fixedassets:fa-cnc-01-active-card-controls` passed |
+| `playwright/projects/fibu-book5/evidence/fixedassets-024/030-active-card-control-diagnosis.json` | Strukturierte Kandidaten- und Hintergrundtreffer-Evidence | Macht sichtbar, was der Helper beweist und was nicht: Controls ja, Zielwerte nein | JSON-Validierung vor Commit |
+
 ## Sofort umgesetzte Helper-Aenderungen
 
 - `waitForBcReady(page, options)`: wartet web-first auf BC-Shell und erwartbaren Seitentext.
@@ -50,6 +60,7 @@ Dieser technische Lauf hat genau einen cancel-safe Test migriert: `playwright/pr
 - `openSearchResult(page, label, options)`: zaehlt Tell-Me-Treffer jetzt ueber Locator statt Body-Text, ueberspringt nicht klickbare Hintergrundtreffer und kann BC-Ergebniszeilen wie `Customers Listen` anklicken.
 - `searchFor(page, term)`: fuellt seit `GOVERNANCE-013` die sichtbare Tell-Me-Textbox direkt; Tastatur-Tippen bleibt nur Fallback, wenn kein sichtbares Suchfeld gefunden wird.
 - `compactPageText(page, options)`: fokussiert Roh-Seitentext fuer kompakte Evidence.
+- `collectActiveCardControlDiagnostics(page, captions)`: fokussiert aktive Kartencontrols und dokumentiert verworfene Hintergrundlisten-Treffer.
 - `openSecondSearchBlockResult()` ist als Legacy-Koordinatenfallback markiert.
 
 ## Nachtrag: Actions-/Dialog-Helper
