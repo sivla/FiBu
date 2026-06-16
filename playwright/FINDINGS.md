@@ -186,6 +186,24 @@ Fuer Anfaenger ist das wichtig, weil die Anlagenbuchungsgruppe eine Kontenentsch
 
 Fuer Anfaenger ist das wichtig, weil `MACHINES` nicht die Maschine selbst ist. Es ist das Konto-Set, das Business Central spaeter bei Zugang, Abschreibung und Abgang verwendet. Erst wenn Anlage, Kreditor oder Zugangspfad ebenfalls belegt sind, darf ueber eine Anlagenbuchung nachgedacht werden.
 
+## FIND-BC-FA-017 Nach HGB und MACHINES kommt zuerst die Anlagenkarte, nicht der Kreditor
+
+| Feld | Wert |
+|---|---|
+| Status | erledigt als Readiness-Entscheidung ohne BC-Lauf |
+| Projekt | fibu-book5 |
+| Testfall | `FIXEDASSETS-017` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-017/README.md`, `playwright/projects/fibu-book5/evidence/fixedassets-017/FIXEDASSETS-017-FA-CNC-01-SETUP-READINESS.md`, `playwright/projects/fibu-book5/evidence/fixedassets-017/FIXEDASSETS-017-result.json` |
+| BC-Seite | kein neuer BC-Lauf; Entscheidung basiert auf `HGB` aus `FIXEDASSETS-014` und `MACHINES` aus `FIXEDASSETS-016` |
+| sichtbarer Text / Werte | Zielwerte `FA-CNC-01`, `CNC Maschine FRA`, `HGB`, `MACHINES`, `K30000`, `120.000 EUR` |
+| Elementtyp | Anlagen-Readiness / Stammdatenreihenfolge / Anfaengerfehler |
+| erste Hypothese | Nach `HGB` und `MACHINES` koennte man direkt `K30000` oder eine Einkaufsrechnung vorbereiten. |
+| Testergebnis | Die sichere Reihenfolge ist enger: zuerst `FA-CNC-01` als Anlagenkarte verstehen und belegen. Kreditor, Einkaufsrechnung, Zugang und AfA bleiben nachgelagert. |
+| Entscheidung | Naechster Lauf ist `FIXEDASSETS-018-FA-CNC-01-CARD-PREFLIGHT`; kein `K30000`, kein Kaufbeleg, kein Zugang, keine AfA, keine Buchung. |
+| Buchstelle | Kapitel 21 Anlagen / Fixed Assets |
+
+Fuer Anfaenger ist das wichtig, weil eine Anlagenbuchung nicht mit dem Lieferanten beginnt. Business Central braucht zuerst ein belastbares Anlagenstammdatum. Das Buch soll daher zeigen, wo `FA-CNC-01` auf der Anlagenkarte gepflegt wird, welche Setup-Bezuege sichtbar sind und woran man erkennt, dass die Anlage bereit fuer den spaeteren Zugang ist.
+
 ## FIND-BC-FA-013 Fixed Assets darf mit `HGB` anfangen, aber nicht mit Anlage oder Kontenmapping
 
 | Feld | Wert |

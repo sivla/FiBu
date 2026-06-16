@@ -1,0 +1,86 @@
+{
+  "testId": "FIXEDASSETS-017",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "dataBasis": "CRONUS USA",
+  "mode": "readiness-decision-no-bc-run",
+  "posted": false,
+  "setupChanged": false,
+  "companyChanged": false,
+  "evidenceStatus": [
+    "labor",
+    "readiness-decision",
+    "ui-first-next-step",
+    "no-bc-run",
+    "no-posting",
+    "not-final",
+    "de-final-open"
+  ],
+  "inputs": {
+    "depreciationBook": {
+      "code": "HGB",
+      "proofCase": "FIXEDASSETS-014",
+      "status": "visible-in-rm-demo"
+    },
+    "faPostingGroup": {
+      "code": "MACHINES",
+      "proofCase": "FIXEDASSETS-016",
+      "status": "visible-in-rm-demo",
+      "visibleProofAccounts": [
+        "12210",
+        "82000"
+      ],
+      "limit": "CRONUS-USA lab alias of EQUIPMENT, not German chart-of-accounts final proof"
+    },
+    "targetFixedAsset": {
+      "code": "FA-CNC-01",
+      "descriptionTarget": "CNC Maschine FRA",
+      "acquisitionAmountTarget": 120000,
+      "currencyTarget": "EUR",
+      "status": "not-created-not-proven"
+    },
+    "targetVendor": {
+      "code": "K30000",
+      "status": "not-created-not-proven"
+    }
+  },
+  "decision": {
+    "selectedNextLayer": "fixed-asset-card-preflight",
+    "selectedNextCase": "FIXEDASSETS-018-FA-CNC-01-CARD-PREFLIGHT",
+    "rejectedForNow": [
+      "K30000 vendor setup",
+      "purchase invoice",
+      "fixed asset acquisition",
+      "depreciation calculation or posting"
+    ],
+    "reason": "The fixed asset card is the central business object after HGB and MACHINES. Vendor and purchase invoice readiness should wait until the asset card fields, FastTabs, depreciation-book relation and FA posting-group relation are understood and visible."
+  },
+  "allowedNextRun": [
+    "Open Fixed Assets in RM-DEMO.",
+    "Search/filter FA-CNC-01 and prove whether it already exists.",
+    "If missing, open New only as a controlled card preflight.",
+    "Document visible required fields, FastTabs, defaults, HGB/MACHINES placement and safe cancel/save boundaries.",
+    "Use Personalize or Page Inspection only as debug evidence if fields are missing or page context is unclear."
+  ],
+  "forbiddenNextRun": [
+    "No K30000 creation.",
+    "No purchase invoice.",
+    "No acquisition posting.",
+    "No depreciation calculation or posting.",
+    "No FA Ledger Entries or G/L Entries claim unless a later approved posting creates them.",
+    "No German final chart-of-accounts or HGB final claim."
+  ],
+  "proves": [
+    "The next Fixed Assets step is deliberately narrowed to FA-CNC-01 card readiness.",
+    "HGB and MACHINES are enough to inspect the asset card layer, but not enough for acquisition or depreciation.",
+    "K30000 is intentionally postponed until the asset card is understood."
+  ],
+  "doesNotProve": [
+    "FA-CNC-01 exists in Business Central.",
+    "K30000 exists in Business Central.",
+    "A purchase invoice can be posted.",
+    "Any fixed asset ledger entry or depreciation entry exists.",
+    "German final fixed-asset accounting is ready."
+  ],
+  "nextStep": "FIXEDASSETS-018-FA-CNC-01-CARD-PREFLIGHT"
+}
