@@ -38,6 +38,26 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 
 ## Aktuelle Fundstellen
 
+## FIND-BC-FA-023 Page Inspection bestaetigt Kartenkontext, ersetzt aber keinen aktiven Karten-Locator
+
+| Feld | Wert |
+|---|---|
+| Status | erledigt |
+| Projekt | fibu-book5 |
+| Testfall | `FIXEDASSETS-023-FA-CNC-01-CARD-TECHNICAL-DIAGNOSIS` |
+| Screenshot | `playwright/projects/fibu-book5/img/fixedassets-023-020-card-context-after-show-more.png`, `playwright/projects/fibu-book5/img/fixedassets-023-040-page-inspection-diagnosis.png` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-023/README.md`, `playwright/projects/fibu-book5/evidence/fixedassets-023/FIXEDASSETS-023-FA-CNC-01-CARD-TECHNICAL-DIAGNOSIS.md`, `playwright/projects/fibu-book5/evidence/fixedassets-023/FIXEDASSETS-023-result.json` |
+| BC-Seite | `Fixed Asset Card (5600, Document)` / Source Table `Fixed Asset (5600)` |
+| sichtbarer Text | `FA Class Code`, `FA Subclass Code`, `Depreciation Book Code`, `Posting Group`; Page Inspection zeigt `Fixed Asset Card (5600)` und `Fixed Asset (5600)` |
+| Elementtyp | Page Inspection / Karte / Locator-Diagnose / Screenshot-QA |
+| erste Hypothese | Die vorherigen Lookup-/Feldprobleme koennen aus ungescopten Locators entstehen, weil die Fixed-Assets-Liste hinter der Karte weiter im DOM sichtbar bleibt. |
+| Recherchequelle | Projekt-Evidence `FIXEDASSETS-023`; Page-Inspection-Regel aus `GOVERNANCE-015`. |
+| Testergebnis | Page Inspection oeffnet praktisch und bestaetigt den technischen Karten-/Tabellenkontext. Die normale Karte zeigt die relevanten Controls, aber noch keine Zielwerte. Save-Gate bleibt blockiert, bis Playwright die aktive Vordergrundkarte beziehungsweise editierbare Control-Zeilen sicher adressiert. |
+| Entscheidung | Buch, Patterns, Action Map, Backlog, Matrix und Gates werden auf `FIXEDASSETS-024-FA-CNC-01-ACTIVE-CARD-CONTROL-HELPER-OR-MANUAL-DIAGNOSIS` synchronisiert. |
+| Buchstelle | Kapitel 21 Anlagen; Kapitel 37/Debugging und technische Nachweisfuehrung |
+
+Fuer Anfaenger und Autoren ist das ein sehr guter Debugging-Fall: Die Seitenpruefung sagt, auf welcher technischen Page man ist. Sie beweist aber nicht, dass ein Feldwert fachlich gesetzt wurde. Ein finaler Buch-Screenshot muss weiterhin die normale Anwendersicht mit `FA-CNC-01`, Beschreibung, `HGB`, `MACHINES` und den relevanten Werten zeigen.
+
 ## FIND-BC-FA-020 Anlagenkartenfelder sind nach kartennahem Mehr anzeigen sichtbar
 
 | Feld | Wert |

@@ -47,6 +47,21 @@ Jeder Eintrag muss außerdem gegen die betroffene Buchstelle geprüft werden. We
 | Buchwirkung | Das Buch sollte Page Inspection als Diagnosekapitel erklaeren: Es hilft Autoren und Consultants, Klickpfade technisch sauber zu dokumentieren. Finale Buchbilder bleiben normale Anwendersicht, Page-Inspection-Bilder sind Debug-/Evidence-Bilder. |
 | Kuenftige Regel | Wenn ein Locator, Feld oder Page-Kontext unklar ist, Page Inspection vor groesserem Refactoring oder falscher Buchkorrektur nutzen. Page Inspection beweist technischen Kontext, nicht automatisch fachliche Richtigkeit. |
 
+## WK-BC-FA-023 Hintergrundliste verfaelscht ungescopte Karten-Locators
+
+| Feld | Wert |
+|---|---|
+| Status | geloest als Diagnosebefund; Speicherfreigabe bleibt offen |
+| Testfall | `FIXEDASSETS-023-FA-CNC-01-CARD-TECHNICAL-DIAGNOSIS` |
+| Situation | Die leere Anlagenkarte wurde ueber die Fixed-Assets-Liste geoeffnet und fuer `FA-CNC-01` weiter no-save diagnostiziert. |
+| Symptom | Visuell ist die `Fixed Asset Card` im Vordergrund; ungescopte DOM-/Label-Suchen koennen aber weiterhin Spalten- oder Headertexte aus der dahinterliegenden Fixed-Assets-Liste finden. Dadurch wirken Feldnachweise technisch plausibel, obwohl sie nicht sicher zur aktiven Karten-Control-Zeile gehoeren. |
+| Sichtbarer Beleg | `playwright/projects/fibu-book5/img/fixedassets-023-020-card-context-after-show-more.png` zeigt die leere Karte mit relevanten Controls; `playwright/projects/fibu-book5/img/fixedassets-023-040-page-inspection-diagnosis.png` zeigt Page Inspection mit `Fixed Asset Card (5600, Document)` und `Fixed Asset (5600)`. |
+| Ursache | Business Central laesst Listen-/Seitenkontext im DOM, waehrend eine Karte oder ein Detailkontext im Vordergrund angezeigt wird. Playwright findet ohne engen Container-Scope sichtbare oder halb sichtbare Texte aus dem falschen Oberflaechenbereich. |
+| Warum BC so reagiert | BC Pages koennen Liste, Karte, FactBox, FastTabs, Dialoge und Shell gleichzeitig halten. Die Anwendersicht ist eindeutig, aber der DOM-Kontext ist groesser als der aktuell fachlich relevante Eingabebereich. |
+| Loesung | Naechster Helper muss auf aktive Vordergrundkarte, sichtbare FastTab-Region oder editierbare Control-Zeile scopen. Page Inspection darf den Page-/Tabellenkontext bestaetigen, ersetzt aber keine sichtbare Werteingabe und keinen Screenshot in normaler Anwendersicht. |
+| Buchwirkung | Kapitel 21 und das Debugging-Kapitel muessen erklaeren: Technischer Seitenbezug ist ein Diagnoseanker; ein Stammdatenscreenshot zaehlt erst, wenn Zielcode und Werte im richtigen Anwenderkontext sichtbar sind. |
+| Kuenftige Regel | Keine Speicherfreigabe fuer `FA-CNC-01`, solange `HGB`, `MACHINES`, Klasse/Unterklasse und AfA-Daten nicht auf der aktiven Anlagenkarte sichtbar/setzbar nachgewiesen sind. |
+
 ## WK-BC-BUG-001 Fehler zuerst klassifizieren, dann loesen
 
 | Feld | Wert |

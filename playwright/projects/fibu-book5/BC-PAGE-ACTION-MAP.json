@@ -440,7 +440,7 @@
         "Tell-Me exact result plus context check"
       ],
       "knownActions": {
-        "New": "FIXEDASSETS-018 opens an empty Fixed Asset Card from the Fixed Assets list with a scored context-bound New action; FIXEDASSETS-019 keeps saving locked until HGB and MACHINES are visibly mapped; FIXEDASSETS-021 keeps saving locked until lookup/value preflight proves selectable values; FIXEDASSETS-022 keeps saving locked because lookup values were not visually proven",
+        "New": "FIXEDASSETS-018 opens an empty Fixed Asset Card from the Fixed Assets list with a scored context-bound New action; FIXEDASSETS-019 keeps saving locked until HGB and MACHINES are visibly mapped; FIXEDASSETS-021 keeps saving locked until lookup/value preflight proves selectable values; FIXEDASSETS-022 keeps saving locked because lookup values were not visually proven; FIXEDASSETS-023 shows the next helper must scope controls to the foreground Fixed Asset Card, not the background list",
         "Mehr anzeigen": "FIXEDASSETS-020 uses only card-local More/Show more controls in General and Depreciation Book to expose Depreciation Book Code and Posting Group without saving"
       },
       "dangerousActions": [
@@ -454,6 +454,7 @@
         "FIXEDASSETS-020 proves field-path visibility for Depreciation Book Code and Posting Group, not target values FA-CNC-01, HGB or MACHINES",
         "FIXEDASSETS-021 decides that field-path visibility is not save permission; HGB/MACHINES and FA Class/Subclass values need lookup/value proof first",
         "FIXEDASSETS-022 shows that wrong-context dialogs such as Number Series must not be treated as FA Class/Subclass lookup proof",
+        "FIXEDASSETS-023 shows that Page Inspection can confirm Fixed Asset Card (5600, Document) / Fixed Asset table (5600), while DOM label searches still need foreground-card scoping because the background list remains visible",
         "Do not click every aria-expanded=false control as Show more; scope More/Show more to card-local labels and verify field text afterwards",
         "Do not save a fixed asset from an empty card until the setup reference fields are visible/settable",
         "No acquisition/depreciation without explicit gates"
@@ -463,7 +464,8 @@
         "waitForPageText",
         "clickBcAction",
         "expectBcDialog",
-        "screenshot"
+        "screenshot",
+        "active-card-control-scope"
       ],
       "evidenceExamples": [
         "fixedassets-003",
@@ -474,7 +476,8 @@
         "fixedassets-019",
         "fixedassets-020",
         "fixedassets-021",
-        "fixedassets-022"
+        "fixedassets-022",
+        "fixedassets-023"
       ]
     },
     "FA Posting Groups": {

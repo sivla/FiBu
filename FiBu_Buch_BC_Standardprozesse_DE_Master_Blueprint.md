@@ -3826,6 +3826,8 @@ Entscheidung nach `FIXEDASSETS-021`: Der Setup-Fit wird noch nicht ausgefuehrt. 
 
 Nachweis nach `FIXEDASSETS-022`: Der no-save Lookup-/Werte-Preflight hat die Speicherfreigabe noch nicht erbracht. Die leere Anlagenkarte ist als Kontextbild brauchbar, aber `HGB`, `MACHINES`, Anlagenklasse und Anlagenunterklasse sind im korrigierten Lauf nicht als sichtbare, richtige Kartenwerte belegt. Ein Screenshot darf hier also nicht nur ein Feld oder irgendeinen Dialog zeigen; er muss den behaupteten Code im passenden Business-Central-Kontext zeigen. Der naechste Lernschritt ist technische Diagnose mit Seitenpruefung, Personalisieren oder engerem Locator-Mapping, nicht das Speichern der Anlage.
 
+Nachweis nach `FIXEDASSETS-023`: Die technische Diagnose bestaetigt mit Seitenpruefung/Page Inspection die Page `Fixed Asset Card (5600, Document)` und die Tabelle `Fixed Asset (5600)`. Damit ist klar, dass der sichtbare Vordergrund fachlich die Anlagenkarte ist. Fuer die Klickanleitung reicht das aber noch nicht als Speicherfreigabe: Playwright kann ohne engen Scope weiterhin Labels aus der dahinterliegenden Anlagenliste finden. Fuer Autoren ist das ein wichtiger Debugging-Fall. Seitenpruefung zeigt die technische Wahrheit der Page; der finale Buch-Screenshot muss trotzdem die normale Kartenansicht mit `FA-CNC-01`, Beschreibung, `HGB`, `MACHINES`, Klasse/Unterklasse und AfA-Daten sichtbar zeigen.
+
 ### Schritt-für-Schritt
 
 1. Öffne `Anlagen (Fixed Assets)` und lege `FA-CNC-01` an.

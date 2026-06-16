@@ -220,6 +220,13 @@ Nicht noetig ist ein Screenshot, wenn er nur eine technische Zwischenstation ohn
 |---|---|---|---|
 | `playwright/projects/fibu-book5/img/fixedassets-020-020-card-more-fields-mapping.png` | guter Labor-Feldmapping-Kandidat, kein Zielstammdatenbild | Die leere `Fixed Asset Card` zeigt nach kartennahem `Mehr anzeigen` die Feldpfade `No.`, `Description`, `FA Class Code`, `FA Subclass Code`, `Depreciation Book Code` und `Posting Group`. Die Zielwerte `FA-CNC-01`, `CNC Maschine FRA`, `HGB` und `MACHINES` sind nicht gesetzt. | Als Buch-/Lernbild fuer Feldsichtbarkeit und die Bedeutung von `Mehr anzeigen` geeignet. Nicht als angelegte Anlage, Setup-Fit, Zugang, AfA oder deutscher Finalnachweis verwenden. Naechstes Bild muss die bewusst gesetzten Zielwerte sichtbar zeigen. |
 
+## `FIXEDASSETS-023` Screenshot Review
+
+| Screenshot | Bewertung | Befund | Entscheidung |
+|---|---|---|---|
+| `playwright/projects/fibu-book5/img/fixedassets-023-020-card-context-after-show-more.png` | guter Labor-Kontext-/Feldmapping-Kandidat, kein Zielstammdatenbild | Die leere `Fixed Asset Card` zeigt die relevanten Controls `FA Class Code`, `FA Subclass Code`, `Depreciation Book Code` und `Posting Group`; Zielwerte wie `FA-CNC-01`, `HGB` und `MACHINES` sind nicht gesetzt. | Als Lernbild fuer Kartenkontext und Setup-Felder geeignet. Nicht als gespeicherte Anlage, Setup-Fit, Zugang, AfA oder deutscher Finalnachweis verwenden. |
+| `playwright/projects/fibu-book5/img/fixedassets-023-040-page-inspection-diagnosis.png` | guter technischer Debug-Nachweis, kein finales Buchbild | Page Inspection zeigt `Fixed Asset Card (5600, Document)` und Source Table `Fixed Asset (5600)`. Das bestaetigt Page und Tabelle, aber keine gesetzten Stammdatenwerte. | Als Evidence fuer technische Nachweisfuehrung und Locator-Bugfixing geeignet. Fuer das Buch nur im Debugging-/Autorenkapitel verwenden; Prozessbilder muessen normale Anwendersicht zeigen. |
+
 ## `P2P-001` Screenshot Review
 
 | Screenshot | Bewertung | Befund | Entscheidung |
