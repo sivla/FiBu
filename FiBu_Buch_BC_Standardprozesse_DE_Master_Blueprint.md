@@ -3845,13 +3845,15 @@ Nachweis nach `FIXEDASSETS-032`: Die vorhandene Karte ist jetzt teilweise besser
 
 Nachweis nach `FIXEDASSETS-034`: Der zuvor offene Unterklassenblocker ist geloest. `FA Subclass Code = EQUIPMENT` ist auf `FA-CNC-01` sichtbar und im idempotenten Wiederholungslauf persistent. Fuer Einsteiger ist das ein guter Abschluss des Stammdaten-Lernfalls: Ein Anlagenstamm wird nicht durch eine Nummer allein korrekt, sondern durch die Kombination aus Beschreibung, Klasse, Unterklasse, AfA-Buch, Anlagenbuchungsgruppe und AfA-Daten. Trotzdem ist das noch keine Anlagenbuchung. Solange kein Kreditor `K30000`, keine Einkaufsrechnung, keine Buchungsvorschau und keine Anlagenposten belegt sind, bleibt der Prozess vor Zugang und AfA stehen.
 
+Entscheidung nach `FIXEDASSETS-035`: Der naechste Schritt ist nicht sofort die Einkaufsrechnung, sondern ein eigener Kreditoren-Preflight fuer `K30000`. Ein Kreditor ist in Business Central nicht nur Name und Adresse. Die Kreditorenkarte kann Zahlungsbedingungen, Waehrung, Kreditorenbuchungsgruppe, Geschaeftsbuchungsgruppe, VAT-/Tax-Kontext, Sperrstatus und spaetere Verbindlichkeitsposten beeinflussen. Deshalb muss die Klickanleitung vor Schritt 4/5 zuerst `Kreditoren (Vendors)` oeffnen, `K30000` suchen oder filtern und sichtbar belegen, ob der Zielkreditor existiert. Der alte Vendor-Template-Dialog aus `FIXEDASSETS-012` ist nur Kontext, kein Nachweis fuer `K30000`. Bis dieser Preflight erledigt ist, bleiben Kreditoranlage, Einkaufsrechnung, Anlagenzugang, AfA und Postenspur Zielbild, nicht Labor-Endstand.
+
 ### Schritt-für-Schritt
 
 1. Öffne `Anlagen (Fixed Assets)` und lege `FA-CNC-01` an.
 2. Setze `Beschreibung = CNC Maschine FRA`, `Anlagenklasse = MASCHINE`, `Anlagenunterklasse = CNC`.
 3. Öffne das AfA-Buch und setze `AfA-Buchcode = HGB`, `AfA-Methode = Linear`, `Nutzungsdauer = 8 Jahre`, `Anlagenbuchungsgruppe = MACHINES`.
-4. Öffne `Einkaufsrechnungen (Purchase Invoices)`.
-5. Erfasse Kreditor `K30000`.
+4. Pruefe zuerst in `Kreditoren (Vendors)`, ob `K30000` als Zielkreditor sichtbar ist; falls nicht, ist ein eigener Kreditoren-Setup-Klickpfad noetig.
+5. Pruefe zuerst in `Kreditoren (Vendors)`, ob `K30000` sichtbar und fachlich passend ist; wenn nicht, erst separaten Kreditoren-Setup-Klickpfad ausfuehren.
 6. Erfasse Zeile `Art = Anlage`, `Nr. = FA-CNC-01`, `Menge = 1`, `Direkte Einstandskosten = 120.000`.
 7. Prüfe `Buchungsvorschau (Preview Posting)`.
 8. Buche die Einkaufsrechnung.
@@ -3891,7 +3893,7 @@ Gebuchte Anlagenzugänge werden nicht durch Direktänderung der Anlagenposten ko
 | Rolle | Anlagenbuchhalterin bei RM-SHARED |
 | Alltagssituation | RM-PROD kauft eine CNC-Maschine `FA-CNC-01` für `120.000 EUR`. Die Maschine muss aktiviert und monatlich abgeschrieben werden. |
 | Konkrete Testdaten | Anlage `FA-CNC-01`, Kreditor `K30000`, Anschaffung `120.000 EUR`, AfA-Buch `HGB`, Nutzungsdauer `8 Jahre`, Anlagenbuchungsgruppe `MACHINES` |
-| Startseite über `Alt+Q` | `Anlagen (Fixed Assets)`, `Einkaufsrechnungen (Purchase Invoices)`, `AfA berechnen (Calculate Depreciation)` |
+| Startseite ueber `Alt+Q` | `Anlagen (Fixed Assets)`, `Kreditoren (Vendors)`, `Einkaufsrechnungen (Purchase Invoices)`, `AfA berechnen (Calculate Depreciation)` |
 | Exakte Felder und Werte | `Anlagennr. = FA-CNC-01`, `Beschreibung = CNC Maschine FRA`, `AfA-Buchcode = HGB`, `Anlagenbuchungsgruppe = MACHINES`, `Kreditor = K30000`, `Betrag = 120.000` |
 | Auszuführende Aktion | Anlage anlegen, Einkaufsrechnung mit Zeilenart `Anlage (Fixed Asset)` buchen, AfA berechnen und AfA-Buch.-Blatt buchen |
 | Erwartete Belege | Anlagenkarte, gebuchte Einkaufsrechnung, gebuchte AfA-Journalzeile |
@@ -3905,8 +3907,8 @@ Gebuchte Anlagenzugänge werden nicht durch Direktänderung der Anlagenposten ko
 2. Wenn `FA-CNC-01` existiert, öffne die Karte und prüfe, ob Beschreibung, Anlagenklasse, Anlagenunterklasse, AfA-Buch, Anlagenbuchungsgruppe und Nutzungsdauer bereits fachlich tragen; wenn nicht, korrigiere die vorhandene Karte statt einen neuen Zielcode anzulegen.
 3. Erfasse oder korrigiere `Anlagennr. = FA-CNC-01`, `Beschreibung = CNC Maschine FRA`, im aktuellen RM-DEMO-Labor `Anlagenklasse = TANGIBLE`, `Anlagenunterklasse = EQUIPMENT`.
 4. Öffne das AfA-Buch und setze `AfA-Buchcode = HGB`, `AfA-Methode = Linear`, `Nutzungsdauer = 8 Jahre`, `Anlagenbuchungsgruppe = MACHINES`.
-5. Öffne `Einkaufsrechnungen (Purchase Invoices)` über `Alt+Q`.
-6. Lege Rechnung für Kreditor `K30000` an.
+5. Pruefe zuerst in `Kreditoren (Vendors)`, ob `K30000` sichtbar und fachlich passend ist; wenn nicht, erst separaten Kreditoren-Setup-Klickpfad ausfuehren.
+6. Oeffne erst danach `Einkaufsrechnungen (Purchase Invoices)` ueber `Alt+Q` und lege die Rechnung fuer Kreditor `K30000` an.
 7. Erfasse Zeile `Art = Anlage`, `Nr. = FA-CNC-01`, `Menge = 1`, `Direkte Einstandskosten = 120.000`.
 8. Wähle `Buchungsvorschau (Preview Posting)` und prüfe Kreditoren-, Sach- und Anlagenposten.
 9. Buche die Einkaufsrechnung.
@@ -3922,9 +3924,9 @@ Gebuchte Anlagenzugänge werden nicht durch Direktänderung der Anlagenposten ko
 | ID | `UAT-K21-001` |
 | Ziel | Zugang und AfA für Anlage `FA-CNC-01` abnehmen |
 | Rolle | Anlagenbuchhaltung, Kreditorenbuchhaltung |
-| Voraussetzung | AfA-Buch `HGB`, Anlagenbuchungsgruppe `MACHINES` und Kreditor `K30000` sind eingerichtet |
+| Voraussetzung | AfA-Buch `HGB`, Anlagenbuchungsgruppe `MACHINES` und Kreditor `K30000` sind sichtbar eingerichtet; im aktuellen RM-DEMO-Labor ist `K30000` nach `FIXEDASSETS-035` noch nicht nachgewiesen |
 | Testdaten | `FA-CNC-01`, `120.000 EUR`, Nutzungsdauer `8 Jahre`, `K30000` |
-| Exakte Schrittfolge | 1. Öffne `Anlagen (Fixed Assets)` und lege `FA-CNC-01` an.<br>2. Setze AfA-Buch `HGB`, Methode `Linear`, Nutzungsdauer `8 Jahre`.<br>3. Öffne `Einkaufsrechnungen (Purchase Invoices)`.<br>4. Erfasse Kreditor `K30000`, Zeile `Art = Anlage`, `Nr. = FA-CNC-01`, Betrag `120.000 EUR`.<br>5. Prüfe `Buchungsvorschau (Preview Posting)` und buche.<br>6. Öffne `Anlagenposten (FA Ledger Entries)` und prüfe Zugang.<br>7. Starte `AfA berechnen (Calculate Depreciation)` für `30.06.2026`.<br>8. Buche AfA und prüfe Sachposten sowie Anlagenspiegel. |
+| Exakte Schrittfolge | 1. Oeffne `Anlagen (Fixed Assets)` und lege `FA-CNC-01` an.<br>2. Setze AfA-Buch `HGB`, Methode `Linear`, Nutzungsdauer `8 Jahre`.<br>3. Pruefe `Kreditoren (Vendors)` und belege `K30000` sichtbar.<br>4. Oeffne danach `Einkaufsrechnungen (Purchase Invoices)` und erfasse Kreditor `K30000`, Zeile `Art = Anlage`, `Nr. = FA-CNC-01`, Betrag `120.000 EUR`.<br>5. Pruefe `Buchungsvorschau (Preview Posting)` und buche.<br>6. Oeffne `Anlagenposten (FA Ledger Entries)` und pruefe Zugang.<br>7. Starte `AfA berechnen (Calculate Depreciation)` fuer `30.06.2026`.<br>8. Buche AfA und pruefe Sachposten sowie Anlagenspiegel. |
 | Erwartete Belege | Anlagenkarte, gebuchte Einkaufsrechnung, gebuchtes AfA-Journal |
 | Erwartete Posten | `Anlagenposten`, `Kreditorenposten`, `Sachposten` |
 | Kontrollbericht | Anlagenspiegel und `Anlagenstatistik` |

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "updatedAt": "2026-06-16T21:20:00.000Z",
+  "updatedAt": "2026-06-16T22:05:00.000Z",
   "repository": "sivla/FiBu",
   "branch": "codex/playwright-bc-screenshot-foundation",
   "environment": "MCP_1_20260210",
@@ -10,8 +10,8 @@
   "companyRegistry": "playwright/projects/fibu-book5/COMPANY-REGISTRY.json",
   "dataBasis": "CRONUS USA",
   "activeArea": "fixedassets",
-  "lastCompletedRun": "FIXEDASSETS-034-FA-CNC-01-SUBCLASS-FIELD-DIAGNOSIS",
-  "lastWorkType": "ui-first-existing-fixed-asset-card-subclass-fit-idempotent",
+  "lastCompletedRun": "FIXEDASSETS-035-K30000-VENDOR-READINESS-DECISION",
+  "lastWorkType": "fixedassets-vendor-readiness-decision-no-bc-run",
   "postedInLastRun": false,
   "latestPostedDocuments": {
     "o2c": {
@@ -533,6 +533,21 @@
         ],
         "evidence": "playwright/projects/fibu-book5/evidence/fixedassets-032/FIXEDASSETS-032-result.json",
         "nextAllowedCase": "FIXEDASSETS-033-FA-CNC-01-FIELD-EDITABILITY-HELPER-OR-MANUAL-PATH"
+      },
+      "vendorReadinessDecision": {
+        "caseId": "FIXEDASSETS-035",
+        "vendorNo": "K30000",
+        "decision": "do-not-create-yet",
+        "result": "K30000 remains not proven. The next allowed step is read-only UI preflight on Vendors/Kreditoren in RM-DEMO, wide layout, no save, no purchase invoice, no acquisition, no depreciation and no posting.",
+        "inputEvidence": [
+          "playwright/projects/fibu-book5/evidence/fixedassets-012/",
+          "playwright/projects/fibu-book5/evidence/fixedassets-033/",
+          "playwright/projects/fibu-book5/evidence/fixedassets-034/"
+        ],
+        "noBcRun": true,
+        "noSetupChange": true,
+        "noPosting": true,
+        "nextAllowedCase": "FIXEDASSETS-036-K30000-VENDOR-PREFLIGHT-READONLY"
       }
     }
   },
@@ -851,8 +866,9 @@
     "noPosting": true,
     "reusablePattern": "Use clickBcAction with scopeText plus expectedAfterClick for cancel-safe BC action clicks; use local DOM fallback only after helper failure and document fallbackUsed."
   },
-  "nextTechnicalStep": "FIXEDASSETS-035: decide K30000 vendor readiness before any purchase invoice, acquisition, depreciation or posting; use UI-first Vendor/Vendor Template evidence planning and do not post.",
+  "nextTechnicalStep": "FIXEDASSETS-036: run a UI-first read-only Vendor/Kreditoren preflight for K30000 in RM-DEMO, preferably wide layout; prove whether K30000 exists or is missing, capture screenshot/evidence, do not save, create purchase invoice, post acquisition, calculate depreciation or post.",
   "sessionNotes": [
+    "FIXEDASSETS-035 completed as a no-BC decision run. K30000 remains not proven and was not created. Next allowed step is FIXEDASSETS-036-K30000-VENDOR-PREFLIGHT-READONLY: open Vendors/Kreditoren read-only in RM-DEMO, use wide layout, filter/search K30000, optionally inspect template/card context cancel-safe, and stop without saving, purchase invoice, acquisition, depreciation or posting.",
     "FIXEDASSETS-030 completed as a decision run without BC execution. The existing incomplete FA-CNC-01 remains the book/lab target and should be corrected UI-first in FIXEDASSETS-031, provided the card still has no acquisition/book-value/posting state. No setup change, no K30000, no purchase invoice, no acquisition, no depreciation, no posting and no company switch.",
     "FIXEDASSETS-029-EXISTING-ASSET-READONLY-VERIFY ran UI-first read-only in RM-DEMO. It opened the existing Fixed Asset Card and proved the previous list screenshot was insufficient: only No. FA-CNC-01 fits; Description, FA Class Code, FA Subclass Code, Depreciation Book Code HGB, Posting Group MACHINES, depreciation years and dates are blank/not fit. No setup change, no K30000, no purchase invoice, no acquisition, no depreciation, no posting and no company switch. Next step is FIXEDASSETS-030-FA-CNC-01-CORRECTION-GATE-DECISION.",
     "FIXEDASSETS-029 ran UI-first in RM-DEMO. A first attempt exposed an unsafe broad caption-fill pattern: the Fixed Asset Card was open, but repeated caption matching wrote target values into the wrong fields and left a Business Central related-records confirmation. The test was tightened to row/geometry-scoped field filling. The rerun stopped correctly because FA-CNC-01 was already visible in the filtered Fixed Assets list before the run. No overwrite, no K30000, no purchase invoice, no acquisition, no depreciation, no posting and no company switch. Next step is FIXEDASSETS-029-EXISTING-ASSET-READONLY-VERIFY.",
@@ -862,8 +878,8 @@
     "FIXEDASSETS-025 corrected the overclaim around FIXEDASSETS-024: active card control proof is partial (4/6), so value lookup/save gate remains blocked until Depreciation Book Code and Posting Group are recovered on the active card. No BC run, no save, no setup and no posting."
   ],
   "prohibitedActions": [
-    "Do not treat FIXEDASSETS-034 as a purchase/acquisition/depreciation proof: it only proves the FA-CNC-01 Subclass fit and, together with FIXEDASSETS-033, the CRONUS-USA lab master-data fit.",
-    "No K30000, purchase invoice, acquisition, depreciation or fixed-asset posting before FIXEDASSETS-035 documents vendor readiness and a later explicit posting gate permits the process."
+    "Do not treat FIXEDASSETS-035 as a vendor proof: it only decides the K30000 readiness path and keeps K30000 not proven.",
+    "No K30000 save/create, purchase invoice, acquisition, depreciation or fixed-asset posting before FIXEDASSETS-036 read-only vendor preflight and a later explicit setup/posting gate permits the process."
   ],
   "runHistory": [
     {

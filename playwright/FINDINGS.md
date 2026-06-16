@@ -38,6 +38,25 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 
 ## Aktuelle Fundstellen
 
+## FIND-BC-FA-035 K30000 ist ein eigener Kreditor-Readiness-Pfad vor Anlagenzugang
+
+| Feld | Wert |
+|---|---|
+| Status | erledigt |
+| Projekt | fibu-book5 |
+| Testfall | `FIXEDASSETS-035-K30000-VENDOR-READINESS-DECISION` |
+| Screenshot | keiner; Decision-Lauf ohne BC-Ausfuehrung |
+| BC-Seite | kein neuer BC-Lauf; Entscheidung basiert auf `FIXEDASSETS-012`, `FIXEDASSETS-033`, `FIXEDASSETS-034` und Gate-Dateien |
+| sichtbarer Text / Werte | Zielkreditor `K30000`, Anlagenkarte `FA-CNC-01`, Vendor-Template-Dialog aus `FIXEDASSETS-012` |
+| Elementtyp | Anlagen-Readiness / Kreditorenstamm / Anfaengerfehler |
+| erste Hypothese | Nach fertiger `FA-CNC-01`-Labor-Anlagenkarte koennte der Prozess direkt zur Einkaufsrechnung springen. |
+| Recherchequelle | vorhandene Evidence `fixedassets-012`, `fixedassets-033`, `fixedassets-034`, `POSTING-AND-SETUP-GATES.md`; kein neuer BC-Lauf |
+| Testergebnis | `K30000` ist weiter nicht nachgewiesen und wurde nicht angelegt. Der Vendor-Template-Dialog beweist nur einen Erfassungskontext, keinen Zielkreditor. |
+| Entscheidung | Kapitel 21 und Projekt-State behandeln `K30000` als eigenen UI-first read-only Preflight vor jeder Einkaufsrechnung, jedem Anlagenzugang und jeder AfA. |
+| Buchstelle | Kapitel 21 Anlagen / Fixed Assets; spaeter Kapitel BC-Debugging und technische Nachweisfuehrung |
+
+Fuer Anfaenger ist das wichtig, weil die Kreditorenkarte nicht nur eine Adresse ist. Sie beeinflusst Zahlungsbedingungen, Waehrung, Kreditorenbuchungsgruppe, Geschaeftsbuchungsgruppe, VAT/Tax-Kontext und Sperrstatus. Ein Anlagenstamm mit `Book Value = 0,00` ist deshalb noch keine Freigabe fuer den Einkaufsbeleg.
+
 ## FIND-BC-FA-033 FA-CNC-01-Subclass-Blocker wurde in FIXEDASSETS-034 geloest
 
 | Feld | Wert |
