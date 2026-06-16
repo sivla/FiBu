@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "updatedAt": "2026-06-16T19:57:18.932Z",
+  "updatedAt": "2026-06-16T20:22:19.369Z",
   "repository": "sivla/FiBu",
   "branch": "codex/playwright-bc-screenshot-foundation",
   "environment": "MCP_1_20260210",
@@ -10,8 +10,8 @@
   "companyRegistry": "playwright/projects/fibu-book5/COMPANY-REGISTRY.json",
   "dataBasis": "CRONUS USA",
   "activeArea": "fixedassets",
-  "lastCompletedRun": "FIXEDASSETS-031-FA-CNC-01-EXISTING-CARD-CORRECTION",
-  "lastWorkType": "ui-first-existing-fixed-asset-card-correction-partial",
+  "lastCompletedRun": "FIXEDASSETS-032-FA-CNC-01-CORRECTION-BLOCKER-DIAGNOSIS",
+  "lastWorkType": "ui-first-existing-fixed-asset-card-correction-blocker-diagnosis-partial",
   "postedInLastRun": false,
   "latestPostedDocuments": {
     "o2c": {
@@ -67,7 +67,7 @@
         ],
         "nextAllowedCase": "FIXEDASSETS-016-MACHINES-FA-POSTING-GROUP-FIT"
       },
-      "limitation": "CRONUS-USA lab setup only. FIXEDASSETS-031 partially corrected the existing FA-CNC-01 card after safety checks: HGB and MACHINES are visible on the card and Book Value is 0,00, but Description, Class/Subclass and depreciation years/dates are not fit. No K30000, no purchase invoice, no acquisition, no depreciation, no posting and no German final proof.",
+      "limitation": "CRONUS-USA lab setup only. FIXEDASSETS-032 partially corrected the existing FA-CNC-01 card after safety checks: HGB, MACHINES, depreciation start 01.01.2026, 8.00 years, depreciation ending date 31.12.2033 and Book Value 0.00 are visible. Description, FA Class Code and FA Subclass Code remain blank/not fit. No K30000, no purchase invoice, no acquisition, no depreciation, no posting and no German final proof.",
       "faPostingGroup": "MACHINES",
       "machinesFit": {
         "caseId": "FIXEDASSETS-016",
@@ -454,6 +454,40 @@
         ],
         "evidence": "playwright/projects/fibu-book5/evidence/fixedassets-031/FIXEDASSETS-031-result.json",
         "nextAllowedCase": "FIXEDASSETS-032-FA-CNC-01-CORRECTION-BLOCKER-DIAGNOSIS"
+      },
+      "assetCorrectionBlockerDiagnosis": {
+        "caseId": "FIXEDASSETS-032",
+        "targetFixedAssetNo": "FA-CNC-01",
+        "decision": "partial-fit-field-editability-blocker-open",
+        "visibleFit": {
+          "depreciationBookCode": "HGB",
+          "postingGroup": "MACHINES",
+          "bookValue": "0,00",
+          "depreciationStartingDate": "01.01.2026",
+          "noOfDepreciationYears": "8,00",
+          "depreciationEndingDate": "31.12.2033"
+        },
+        "stillBlocked": [
+          "Description",
+          "FA Class Code",
+          "FA Subclass Code"
+        ],
+        "safety": {
+          "faLedgerEntriesForTarget": false,
+          "posted": false,
+          "vendorCreated": false,
+          "purchaseInvoiceCreated": false,
+          "acquisitionPosted": false,
+          "depreciationCalculatedOrPosted": false,
+          "companyChanged": false
+        },
+        "screenshots": [
+          "playwright/projects/fibu-book5/img/fixedassets-032-010-card-before-edit.png",
+          "playwright/projects/fibu-book5/img/fixedassets-032-040-card-after-edit-mode.png",
+          "playwright/projects/fibu-book5/img/fixedassets-032-060-card-final-diagnosis.png"
+        ],
+        "evidence": "playwright/projects/fibu-book5/evidence/fixedassets-032/FIXEDASSETS-032-result.json",
+        "nextAllowedCase": "FIXEDASSETS-033-FA-CNC-01-FIELD-EDITABILITY-HELPER-OR-MANUAL-PATH"
       }
     }
   },
@@ -772,7 +806,7 @@
     "noPosting": true,
     "reusablePattern": "Use clickBcAction with scopeText plus expectedAfterClick for cancel-safe BC action clicks; use local DOM fallback only after helper failure and document fallbackUsed."
   },
-  "nextTechnicalStep": "PLAYWRIGHT-STRICTNESS-002: extract or reuse a row/geometry-scoped card field fill helper after FIXEDASSETS-029 showed broad caption text can write into the wrong card input.",
+  "nextTechnicalStep": "PLAYWRIGHT-STRICTNESS-002 / FIXEDASSETS-033: improve or document the field-editability path for Description, FA Class Code and FA Subclass Code on the existing FA-CNC-01 Fixed Asset Card before any purchase/acquisition/depreciation.",
   "sessionNotes": [
     "FIXEDASSETS-030 completed as a decision run without BC execution. The existing incomplete FA-CNC-01 remains the book/lab target and should be corrected UI-first in FIXEDASSETS-031, provided the card still has no acquisition/book-value/posting state. No setup change, no K30000, no purchase invoice, no acquisition, no depreciation, no posting and no company switch.",
     "FIXEDASSETS-029-EXISTING-ASSET-READONLY-VERIFY ran UI-first read-only in RM-DEMO. It opened the existing Fixed Asset Card and proved the previous list screenshot was insufficient: only No. FA-CNC-01 fits; Description, FA Class Code, FA Subclass Code, Depreciation Book Code HGB, Posting Group MACHINES, depreciation years and dates are blank/not fit. No setup change, no K30000, no purchase invoice, no acquisition, no depreciation, no posting and no company switch. Next step is FIXEDASSETS-030-FA-CNC-01-CORRECTION-GATE-DECISION.",
@@ -783,8 +817,8 @@
     "FIXEDASSETS-025 corrected the overclaim around FIXEDASSETS-024: active card control proof is partial (4/6), so value lookup/save gate remains blocked until Depreciation Book Code and Posting Group are recovered on the active card. No BC run, no save, no setup and no posting."
   ],
   "prohibitedActions": [
-    "Do not treat FIXEDASSETS-031 as a completed fixed-asset master-data proof: only HGB and MACHINES are visibly fit; Description, Class/Subclass and depreciation years/dates remain blocked.",
-    "No K30000, purchase invoice, acquisition, depreciation or fixed-asset posting before FIXEDASSETS-032 diagnoses and resolves the FA-CNC-01 correction blocker."
+    "Do not treat FIXEDASSETS-032 as a completed fixed-asset master-data proof: HGB, MACHINES and depreciation dates/years are visible, but Description, FA Class Code and FA Subclass Code remain blank/not fit.",
+    "No K30000, purchase invoice, acquisition, depreciation or fixed-asset posting before FIXEDASSETS-033 resolves or documents the FA-CNC-01 field-editability blocker."
   ],
   "runHistory": [
     {
@@ -798,6 +832,19 @@
       "noPosting": true,
       "company": "RM-DEMO",
       "nextStep": "FIXEDASSETS-032-FA-CNC-01-CORRECTION-BLOCKER-DIAGNOSIS"
+    },
+    {
+      "caseId": "FIXEDASSETS-032",
+      "result": "Existing FA-CNC-01 card opened directly via Fixed Asset Card page 5600 after safety check. No FA Ledger Entries for FA-CNC-01 were found and no posting was executed. UI-first correction partially succeeded: HGB, MACHINES, depreciation start 01.01.2026, 8.00 years and depreciation ending date 31.12.2033 are visible. Description, FA Class Code and FA Subclass Code remain blank/not fit because no editable controls were found by the current diagnosis path.",
+      "evidence": "playwright/projects/fibu-book5/evidence/fixedassets-032/",
+      "screenshots": [
+        "playwright/projects/fibu-book5/img/fixedassets-032-010-card-before-edit.png",
+        "playwright/projects/fibu-book5/img/fixedassets-032-040-card-after-edit-mode.png",
+        "playwright/projects/fibu-book5/img/fixedassets-032-060-card-final-diagnosis.png"
+      ],
+      "noPosting": true,
+      "company": "RM-DEMO",
+      "nextStep": "FIXEDASSETS-033-FA-CNC-01-FIELD-EDITABILITY-HELPER-OR-MANUAL-PATH"
     }
   ]
 }

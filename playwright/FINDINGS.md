@@ -38,6 +38,26 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 
 ## Aktuelle Fundstellen
 
+## FIND-BC-FA-032 AfA-Daten auf FA-CNC-01 sind sichtbar, Stammdatenkopf bleibt blockiert
+
+| Feld | Wert |
+|---|---|
+| Status | getestet, buch-update, blocker |
+| Projekt | fibu-book5 |
+| Testfall | `FIXEDASSETS-032-FA-CNC-01-CORRECTION-BLOCKER-DIAGNOSIS` |
+| Screenshot | `playwright/projects/fibu-book5/img/fixedassets-032-060-card-final-diagnosis.png` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-032/README.md`, `playwright/projects/fibu-book5/evidence/fixedassets-032/FIXEDASSETS-032-result.json` |
+| BC-Seite | `Fixed Asset Card` Page `5600`, `FA-CNC-01`, Company `RM-DEMO` |
+| sichtbarer Text | `FA-CNC-01`, `Depreciation Book Code = HGB`, `Posting Group = MACHINES`, `Book Value = 0,00`, `Depreciation Starting Date = 01.01.2026`, `No. of Depreciation Years = 8,00`, `Depreciation Ending Date = 31.12.2033`; weiter leer: `Description`, `FA Class Code`, `FA Subclass Code` |
+| Elementtyp | Stammdatenkarte / Feld-Editierbarkeit / Anlagen-Gate |
+| erste Hypothese | Nach dem Teilfit aus `FIXEDASSETS-031` koennte der restliche Anlagenstamm direkt ueber dieselbe Karte vervollstaendigt werden. |
+| Recherchequelle | Projekt-Evidence `FIXEDASSETS-032`; kein externer Quellenbefund, weil der Lauf konkrete UI-/Persistenzwahrheit pruefte. |
+| Testergebnis | Der Lauf setzte AfA-Start und Nutzungsdauer erfolgreich; Business Central berechnete und speicherte das AfA-Enddatum. Fuer Beschreibung, Anlagenklasse und Anlagenunterklasse fand der aktuelle Feldpfad keine editierbaren Controls. Der Safety-Check fand keine Anlagenposten; es wurde nichts gebucht. |
+| Entscheidung | Kapitel 21 darf das finale Bild nur als Labor-Teilnachweis und Debugging-Beispiel verwenden. `FA-CNC-01` bleibt fuer `K30000`, Einkaufsrechnung, Zugang, AfA und Anlagenbuchung gesperrt, bis Beschreibung/Klasse/Unterklasse sichtbar tragen oder der UI-/Berechtigungs-/Personalisierungsblocker sauber belegt ist. |
+| Buchstelle | Kapitel 21 Anlagen; Kapitel 37 Debugging und technische Nachweisfuehrung; Kapitel 38 Screenshot-QA |
+
+Fuer Anfaenger ist der Befund wichtig: Business Central kann auf derselben Karte einzelne Felder editierbar anbieten und andere Felder nur als leere, nicht editierbare Werte zeigen. Ein guter Screenshot muss deshalb nicht nur irgendeinen Code zeigen, sondern genau die fachlichen Kontrollpunkte, die fuer den naechsten Prozessschritt erforderlich sind.
+
 ## FIND-BC-FA-031 Teilkorrigierte FA-CNC-01-Karte ist noch nicht buchungsreif
 
 | Feld | Wert |
