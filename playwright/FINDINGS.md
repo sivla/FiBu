@@ -38,6 +38,24 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 
 ## Aktuelle Fundstellen
 
+## FIND-BC-FA-018 Leere Anlagenkarte ist Preflight, kein Zielstammsatz
+
+| Feld | Wert |
+|---|---|
+| Status | erledigt |
+| Projekt | fibu-book5 |
+| Testfall | `FIXEDASSETS-018-FA-CNC-01-CARD-PREFLIGHT` |
+| Screenshot | `playwright/projects/fibu-book5/img/fixedassets-018-010-fixed-assets-list-target-not-visible.png`, `playwright/projects/fibu-book5/img/fixedassets-018-030-fixed-asset-card-preflight.png` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-018/README.md`, `playwright/projects/fibu-book5/evidence/fixedassets-018/FIXEDASSETS-018-FA-CNC-01-CARD-PREFLIGHT.md` |
+| BC-Seite | `Fixed Assets` / `Fixed Asset Card` |
+| sichtbarer Text | Anlagenliste ohne sichtbaren Zielcode `FA-CNC-01` im Ausschnitt; leere Karte mit `No.`, `Description`, `FA Class Code`, `FA Subclass Code`, `Depreciation Method`, AfA-Datumsfeldern und `Book Value = 0,00` |
+| Elementtyp | Liste / Karte / Pflichtfelder / Preflight |
+| erste Hypothese | Ein Kartenbild darf nur als Stammdatennachweis gelten, wenn Zielcode und relevante Werte sichtbar sind. |
+| Recherchequelle | Projekt-Evidence `FIXEDASSETS-018`; Microsoft-Learn-Quellen wurden in diesem Lauf nicht neu benoetigt, weil es um konkrete UI-/Screenshot-Wahrheit geht. |
+| Testergebnis | `FA-CNC-01` ist im Listen-/Seitentext vor `New` nicht sichtbar und wurde nicht gespeichert. Das Listenbild ist nur ein begrenzter Kontextnachweis, kein harter Nicht-Existenz-Beweis. Die leere Karte ist als Lernbild fuer Pflichtfelder brauchbar, aber kein Buchbild fuer eine angelegte Anlage. |
+| Entscheidung | Buchkapitel 21, Coverage, Screenshot-QA, State, Gates, Patterns und Action Map wurden aktualisiert. Naechster Schritt ist Feldmapping-/Setup-Fit-Entscheidung, nicht Kreditor oder Einkaufsrechnung. |
+| Buchstelle | Kapitel 21 Anlagen |
+
 ## FIND-BC-UI-002 Personalisieren erklaert fehlende Felder, Spalten und Aktionen
 
 | Feld | Wert |

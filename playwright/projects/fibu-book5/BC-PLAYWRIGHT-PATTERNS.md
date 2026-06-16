@@ -37,6 +37,7 @@ Diese Datei sammelt wiederverwendbare Muster aus belegten Laeufen. Sie ist keine
 - Eine Karte beweist nur dann einen Zielstammsatz, wenn der Zielcode und relevante Felder sichtbar sind.
 - Ein leeres Formular ist Formular-Preflight, kein Stammdaten-Nachweis.
 - Zielobjekt-Nachweise brauchen konkrete sichtbare Werte, zum Beispiel `D10000`, `RM-M100`, `FA-CNC-01`, `K30000`.
+- `FIXEDASSETS-018` ist das aktuelle Anlagen-Beispiel: Die gefilterte Liste beweist, dass `FA-CNC-01` fehlt; die leere `Fixed Asset Card` beweist Kartenfelder/Pflichtfelder, aber nicht den Zielstammsatz. Ein spaeteres Buchbild fuer die Anlage muss `FA-CNC-01`, Beschreibung und relevante Setupwerte sichtbar zeigen.
 
 ## Action Bar
 
