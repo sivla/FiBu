@@ -1588,6 +1588,55 @@
         "38"
       ],
       "nextStep": "FIXEDASSETS-033-FA-CNC-01-FIELD-EDITABILITY-HELPER-OR-MANUAL-PATH"
+    },
+    {
+      "caseId": "FIXEDASSETS-033",
+      "process": "Fixed Assets",
+      "status": "blocked-subclass-partial-fit-no-posting",
+      "mode": "ui-first-existing-card-field-editability-helper",
+      "company": "RM-DEMO",
+      "environment": "MCP_1_20260210",
+      "documents": [
+        "FA-CNC-01"
+      ],
+      "screenshots": [
+        "playwright/projects/fibu-book5/img/fixedassets-033-010-card-before-edit-icon.png",
+        "playwright/projects/fibu-book5/img/fixedassets-033-040-card-after-edit-icon.png",
+        "playwright/projects/fibu-book5/img/fixedassets-033-060-card-final-values.png"
+      ],
+      "evidence": [
+        "playwright/projects/fibu-book5/evidence/fixedassets-033/README.md",
+        "playwright/projects/fibu-book5/evidence/fixedassets-033/FIXEDASSETS-033-result.json",
+        "playwright/projects/fibu-book5/evidence/fixedassets-033/FIXEDASSETS-033-FA-CNC-01-FIELD-EDITABILITY-PATH.md",
+        "playwright/projects/fibu-book5/evidence/fixedassets-033/050-fill-results.json",
+        "playwright/projects/fibu-book5/evidence/fixedassets-033/060-final-visible-rows.json"
+      ],
+      "proves": [
+        "Existing Fixed Asset Card page 5600 can be opened directly for FA-CNC-01 in wide layout",
+        "Top Edit/Stift icon can be clicked via clickBcTopIconAction",
+        "Safety check found no FA Ledger Entries for FA-CNC-01",
+        "Description = CNC Maschine FRA and FA Class Code = TANGIBLE are visible on FA-CNC-01",
+        "HGB, MACHINES, depreciation start 01.01.2026, 8.00 years, depreciation ending date 31.12.2033 and Book Value 0.00 remain visible",
+        "No posting, purchase invoice, acquisition or depreciation was executed"
+      ],
+      "doesNotProve": [
+        "FA Subclass Code = EQUIPMENT is fit",
+        "fixed asset acquisition, depreciation or ledger trace",
+        "Vendor K30000 or purchase invoice readiness",
+        "German fixed-assets final proof"
+      ],
+      "reusablePatterns": [
+        "top icon actions may require y=14 title/aria based scanning",
+        "wide layout can shift card fields left and requires less rigid x-coordinate filters",
+        "lookup success counts only if the target value is visible after selection",
+        "partial card correction must keep posting gates locked until all required target values are visible"
+      ],
+      "bookChapters": [
+        "21",
+        "37",
+        "38"
+      ],
+      "nextStep": "FIXEDASSETS-034-FA-CNC-01-SUBCLASS-FIELD-DIAGNOSIS"
     }
   ]
 }

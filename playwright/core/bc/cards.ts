@@ -20,6 +20,10 @@ export type BcCardControlDiagnostic = {
     placeholder: string;
     value: string;
     text: string;
+    disabled: boolean;
+    readOnly: boolean;
+    editable: boolean;
+    checked: boolean | null;
     rect: { x: number; y: number; width: number; height: number };
   }>;
   nearbyButtons: Array<{
@@ -223,6 +227,16 @@ export async function collectActiveCardControlDiagnostics(
                   placeholder: normalize((element as HTMLInputElement).placeholder),
                   value: normalize((element as HTMLInputElement).value),
                   text: normalize(element.textContent),
+                  disabled: 'disabled' in element ? Boolean((element as HTMLInputElement).disabled) : false,
+                  readOnly: 'readOnly' in element ? Boolean((element as HTMLInputElement).readOnly) : false,
+                  editable:
+                    (element.getAttribute('contenteditable') === 'true' || element.tagName.toUpperCase() === 'SELECT' || 'value' in element) &&
+                    !('disabled' in element && Boolean((element as HTMLInputElement).disabled)) &&
+                    !('readOnly' in element && Boolean((element as HTMLInputElement).readOnly)),
+                  checked:
+                    element instanceof HTMLInputElement && element.type === 'checkbox'
+                      ? element.checked
+                      : null,
                   rect: rectOf(element),
                 }))
                 .slice(0, 4)

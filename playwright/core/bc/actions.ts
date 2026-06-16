@@ -21,6 +21,29 @@ export type ClickBcActionResult = {
   attempts: string[];
 };
 
+export type ClickBcTopIconActionOptions = {
+  title: RegExp;
+  scopeText?: RegExp;
+  expectedAfterClick?: RegExp;
+  yMax?: number;
+};
+
+export type ClickBcTopIconActionResult = {
+  clicked: boolean;
+  scopeUrl?: string;
+  candidate?: {
+    index: number;
+    text: string;
+    ariaLabel: string;
+    title: string;
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+  };
+  attempts: string[];
+};
+
 async function textMatches(scope: Page | Frame, pattern?: RegExp): Promise<boolean> {
   if (!pattern) {
     return true;
@@ -120,4 +143,91 @@ export async function isBcActionVisible(
   }
 
   return false;
+}
+
+export async function clickBcTopIconAction(
+  page: Page,
+  options: ClickBcTopIconActionOptions,
+): Promise<ClickBcTopIconActionResult> {
+  const attempts: string[] = [];
+  const scopes: Array<Page | Frame> = [page, ...page.frames()];
+
+  for (const scope of scopes) {
+    if (!(await textMatches(scope, options.scopeText))) {
+      continue;
+    }
+
+    const candidate = await scope
+      .evaluate(
+        ({ titleSource, titleFlags, yMax }) => {
+          const titlePattern = new RegExp(titleSource, titleFlags);
+          const normalize = (value: string | null | undefined) => (value || '').replace(/\s+/g, ' ').trim();
+          const visible = (element: Element) => {
+            const rect = element.getBoundingClientRect();
+            const style = window.getComputedStyle(element);
+            return rect.width > 0 && rect.height > 0 && style.visibility !== 'hidden' && style.display !== 'none';
+          };
+
+          const candidates = Array.from(document.querySelectorAll<HTMLElement>('button,a,[role="button"],[title],[aria-label]'))
+            .filter((element) => visible(element))
+            .map((element, index) => {
+              const rect = element.getBoundingClientRect();
+              const entry = {
+                element,
+                index,
+                text: normalize(element.innerText || element.textContent),
+                ariaLabel: normalize(element.getAttribute('aria-label')),
+                title: normalize(element.getAttribute('title')),
+                x: Math.round(rect.x),
+                y: Math.round(rect.y),
+                width: Math.round(rect.width),
+                height: Math.round(rect.height),
+              };
+              return entry;
+            })
+            .filter((entry) => entry.y >= 0 && entry.y <= yMax)
+            .filter((entry) => titlePattern.test([entry.text, entry.ariaLabel, entry.title].join(' ')))
+            .sort((left, right) => left.y - right.y || left.x - right.x);
+
+          const chosen = candidates[0];
+          if (!chosen) {
+            return null;
+          }
+
+          chosen.element.click();
+          const { element, ...serializable } = chosen;
+          return serializable;
+        },
+        {
+          titleSource: options.title.source,
+          titleFlags: options.title.flags.replace('g', ''),
+          yMax: options.yMax ?? 90,
+        },
+      )
+      .catch((error) => {
+        attempts.push(`top icon action failed in ${scopeUrl(scope)}: ${String(error)}`);
+        return null;
+      });
+
+    if (!candidate) {
+      attempts.push(`no matching top icon action in ${scopeUrl(scope)}`);
+      continue;
+    }
+
+    if (options.expectedAfterClick) {
+      await waitForPageText(page, options.expectedAfterClick, { timeout: 20_000 });
+    }
+
+    return {
+      clicked: true,
+      scopeUrl: scopeUrl(scope),
+      candidate,
+      attempts,
+    };
+  }
+
+  return {
+    clicked: false,
+    attempts,
+  };
 }
