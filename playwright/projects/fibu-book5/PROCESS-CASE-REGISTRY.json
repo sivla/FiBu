@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-17T07:28:41.137Z",
+  "updatedAt": "2026-06-17T08:12:00.000Z",
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
   "companyMode": "instance-bound-multi-company",
@@ -2161,6 +2161,47 @@
         "39"
       ],
       "nextStep": "FIXEDASSETS-046-K30000-VENDOR-DEFAULTS-GATE-DECISION"
+    },
+    {
+      "caseId": "FIXEDASSETS-046",
+      "process": "Fixed Assets",
+      "status": "done-decision-no-bc-run",
+      "mode": "k30000-vendor-defaults-gate-decision",
+      "company": "RM-DEMO",
+      "environment": "MCP_1_20260210",
+      "documents": [
+        "K30000",
+        "FA-CNC-01"
+      ],
+      "screenshots": [],
+      "evidence": [
+        "playwright/projects/fibu-book5/evidence/fixedassets-046/README.md",
+        "playwright/projects/fibu-book5/evidence/fixedassets-046/FIXEDASSETS-046-K30000-VENDOR-DEFAULTS-GATE-DECISION.md",
+        "playwright/projects/fibu-book5/evidence/fixedassets-046/FIXEDASSETS-046-result.json"
+      ],
+      "proves": [
+        "FIXEDASSETS-045 is not sufficient for a K30000 setup/default fit",
+        "Personalize visible in Settings is a diagnostic entry point, not a default-value proof",
+        "the next safe step is read-only visibility/value discovery"
+      ],
+      "doesNotProve": [
+        "Vendor Posting Group, Gen. Bus. Posting Group, Currency Code or VAT Bus. Posting Group values on K30000",
+        "purchase invoice readiness",
+        "fixed asset acquisition, depreciation or ledger trace",
+        "German fixed-assets final proof"
+      ],
+      "reusablePatterns": [
+        "do not guess hidden default values from partial card evidence",
+        "Personalize and Page Inspection are diagnostic layers before setup mutation",
+        "a setup/default fit needs visible UI values or a separate explicit gate"
+      ],
+      "bookChapters": [
+        "21",
+        "37",
+        "38",
+        "39"
+      ],
+      "nextStep": "FIXEDASSETS-047-K30000-VENDOR-DEFAULTS-VISIBILITY-VALUE-DISCOVERY-READONLY"
     }
   ]
 }

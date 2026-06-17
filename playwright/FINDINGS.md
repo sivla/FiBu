@@ -1,4 +1,23 @@
 
+## FIND-BC-FA-046 K30000-Defaults duerfen nicht geraten werden
+
+| Feld | Wert |
+|---|---|
+| Bereich | Fixed Assets / Kreditoren-Defaults / Gate-Entscheidung |
+| Projekt | fibu-book5 |
+| Testfall | `FIXEDASSETS-046-K30000-VENDOR-DEFAULTS-GATE-DECISION` |
+| Screenshot | keine neuen Screenshots; Entscheidung nutzt `FIXEDASSETS-045` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-046/` |
+| BC-Seite | Ziel fuer Folgelauf: `Vendor Card` Page `26`, Company `RM-DEMO` |
+| sichtbarer Text / Werte | aus `FIXEDASSETS-045`: `K30000`, `Zollspedition Nord GmbH`, `Tax Liable`, `Tax Area Code`, `1M(8D)`, `BANK`, `Personalisieren` |
+| nicht sichtbar | `Vendor Posting Group`, `Gen. Bus. Posting Group`, `Currency Code`, `VAT Bus. Posting Group` |
+| Elementtyp | Kreditorenkarte / Default-Werte / Kaufbeleg-Gate / Screenshot-QA |
+| Testergebnis | Kein neuer BC-Lauf. Ein Setup-/Default-Fit wird nicht freigegeben, weil die fehlenden Werte nicht sichtbar oder technisch stabil nachgewiesen sind. |
+| Entscheidung | Naechster Schritt ist `FIXEDASSETS-047-K30000-VENDOR-DEFAULTS-VISIBILITY-VALUE-DISCOVERY-READONLY`; keine Einkaufsrechnung, kein Anlagenzugang, keine AfA, keine Buchung, keine Kreditor-/Setup-Aenderung und kein API-Shortcut. |
+| Buchstelle | Kapitel 21 Anlagen; Kapitel Debugging/technische Nachweisfuehrung; Screenshot-QA |
+
+Fuer Anfaenger ist der Fall zentral: Nicht sichtbare Default-Felder duerfen nicht geraten werden. Erst wenn Business Central die Felder, Lookup-Optionen oder Werte in der UI zeigt, kann eine Anleitung erklaeren, welche Einrichtung dahinter steckt und ob ein spaeterer Fit fachlich sicher ist.
+
 ## FIND-BC-FA-045 Personalisieren ist sichtbar, aber kein Default-Wertebeweis
 
 | Feld | Wert |

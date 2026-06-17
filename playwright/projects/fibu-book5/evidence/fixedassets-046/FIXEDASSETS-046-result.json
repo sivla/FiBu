@@ -1,0 +1,64 @@
+{
+  "caseId": "FIXEDASSETS-046",
+  "title": "K30000 Vendor Defaults Gate Decision",
+  "status": "done-decision-no-bc-run",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "gate-decision",
+  "bcRun": false,
+  "posting": false,
+  "setupChanged": false,
+  "vendorChanged": false,
+  "purchaseInvoiceCreated": false,
+  "inputEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-045/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-045/FIXEDASSETS-045-K30000-VENDOR-PERSONALIZE-PAGEINSPECTION-DIAGNOSIS-READONLY.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-045/FIXEDASSETS-045-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-045/020-visual-qa.md"
+  ],
+  "visibleFromPreviousRun": [
+    "K30000",
+    "Zollspedition Nord GmbH",
+    "Tax Liable",
+    "Tax Area Code",
+    "Payment Terms Code = 1M(8D)",
+    "Payment Method Code = BANK",
+    "Settings pane: Personalize"
+  ],
+  "notProven": [
+    "Vendor Posting Group",
+    "Gen. Bus. Posting Group",
+    "Currency Code",
+    "VAT Bus. Posting Group",
+    "field availability after saved personalization",
+    "Page Inspection page/table screenshot for the K30000 Vendor Card",
+    "purchase invoice readiness",
+    "fixed asset acquisition readiness",
+    "depreciation readiness",
+    "German fixed-assets final proof"
+  ],
+  "decision": "do-not-approve-default-fit-yet",
+  "decisionReason": "FIXEDASSETS-045 proves only the Personalize diagnostic entry point and partial visible vendor card state. It does not prove which missing default values exist or should be set. A setup/default fit would therefore be guessed rather than evidence-based.",
+  "nextAllowedCase": "FIXEDASSETS-047-K30000-VENDOR-DEFAULTS-VISIBILITY-VALUE-DISCOVERY-READONLY",
+  "allowedNextActions": [
+    "open K30000 Vendor Card UI-first in RM-DEMO",
+    "use wide layout and close side panes when they hide target fields",
+    "expand relevant FastTabs with visible target-caption or target-value postconditions",
+    "use Personalize only as visibility diagnosis",
+    "use Page Inspection only as technical diagnosis if stable in the browser context",
+    "document visible captions, lookup options and default values"
+  ],
+  "forbiddenNextActions": [
+    "create purchase invoice",
+    "post acquisition",
+    "calculate depreciation",
+    "post depreciation",
+    "change K30000 vendor data",
+    "change posting setup",
+    "save personalization silently as final book state",
+    "use API or direct data access as substitute for UI click path",
+    "claim German VAT or chart-of-accounts final proof"
+  ],
+  "bookImpact": "Chapter 21 remains gated before purchase invoice. The book should explain that Personalize and Page Inspection are diagnostic tools; a book screenshot must show the actual default fields or codes before the process can continue.",
+  "nextStep": "Run FIXEDASSETS-047 as read-only visibility/value discovery before any default fit or purchase invoice preflight."
+}

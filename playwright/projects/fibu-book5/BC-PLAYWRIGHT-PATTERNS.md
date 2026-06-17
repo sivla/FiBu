@@ -46,6 +46,7 @@ Diese Datei sammelt wiederverwendbare Muster aus belegten Laeufen. Sie ist keine
 - BC-Vorlagen und Nummernserien koennen schon beim `New/Neu`- oder Template-Schritt einen Entwurf erzeugen. `FIXEDASSETS-038` ist das Muster: `V00030` wurde erst durch echte UI-Eingabe und sichtbaren Nachfilter zu `K30000`; `V00020` wurde als leerer versehentlicher Draft per UI geloescht.
 - Fuer Kartenfelder mit Seiteneffekten keine direkte DOM-Wertsetzung verwenden. Stattdessen sichtbare Inputs mit Playwright fuellen, Tab/Blur ausloesen und BC-Dialoge gezielt bestaetigen.
 - Ein Screenshot zaehlt nur, wenn er den Zielwert oder den bewusst dokumentierten Fehler sichtbar zeigt. Template-Dialoge sind Kontext, aber kein Zielstammdatenbeweis.
+- Nach `FIXEDASSETS-046` gilt fuer Kreditoren-Defaults: Ein sichtbarer Einstellungen-/`Personalisieren`-Einstieg ist nur Diagnose-Evidence. Er beweist keine ausgeblendeten Feldwerte und erlaubt keinen geratenen Setup-/Default-Fit. Der naechste Test muss die Feldcaption, den Lookup-Wert oder den Nicht-Sichtbar-Befund selbst sichtbar machen.
 
 ## Kartencontrol-Diagnose
 
