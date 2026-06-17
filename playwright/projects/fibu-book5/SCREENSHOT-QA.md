@@ -24,6 +24,8 @@ Ergaenzung nach `FIXEDASSETS-042`: Der naechste brauchbare Screenshot-Typ ist ei
 
 Ergaenzung nach `FIXEDASSETS-043`: Der neue Invoicing-Screenshot ist ein Teilbeleg, kein Vollbeleg. Er zeigt `K30000`, den geoeffneten `Invoicing`-Bereich, `Tax Liable`, `Tax Area Code`, `Posting Details` und Withholding-Tax-Felder. Er zeigt nicht `Vendor Posting Group`, `Gen. Bus. Posting Group`, `Currency Code` oder `VAT Bus. Posting Group`. Fuer Buch und Evidence gilt deshalb: das Bild darf nur die sichtbaren Tax-/Invoicing-Felder erklaeren, nicht die Buchungsgruppen-/Waehrungs-Readiness.
 
+Ergaenzung nach `FIXEDASSETS-045`: Das Settings-/Personalisieren-Bild ist ein Diagnosebild. Es zeigt `K30000`, die `Vendor Card` und den Einstieg `Personalisieren`; es beweist aber nicht, dass `Vendor Posting Group`, `Gen. Bus. Posting Group`, `Currency Code` oder `VAT Bus. Posting Group` verfuegbar, eingeblendet oder gefuellt sind. Page Inspection wurde per Shortcut in diesem Browserkontext nicht stabil geoeffnet; daher gibt es keinen neuen technischen Page-Inspection-Screenshot. Ein Folgebild darf erst als Buchkandidat gelten, wenn die konkret behaupteten Codes/Felder wirklich im Bild sichtbar sind.
+
 Laborbilder duerfen abweichen. Dann muessen Abweichung, Ursache und Buchwirkung dokumentiert sein.
 
 Zu jedem automatisiert erzeugten O2C-Screenshot schreibt der Screenshot-Helper eine Metadatendatei unter `evidence/<testfall>/...screenshot.json`. Diese Datei enthaelt Status, Buchnutzung, Zweck, erwartete Werte im BC-Seitentext und bekannte Grenzen. Die PNG-Datei allein ist deshalb nicht mehr die ganze Wahrheit.

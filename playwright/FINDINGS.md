@@ -1,4 +1,23 @@
 
+## FIND-BC-FA-045 Personalisieren ist sichtbar, aber kein Default-Wertebeweis
+
+| Feld | Wert |
+|---|---|
+| Bereich | Fixed Assets / Kreditoren-Defaults / Personalisieren / Page Inspection |
+| Projekt | fibu-book5 |
+| Testfall | `FIXEDASSETS-045-K30000-VENDOR-PERSONALIZE-PAGEINSPECTION-DIAGNOSIS-READONLY` |
+| Screenshot | `playwright/projects/fibu-book5/img/fixedassets-045-010-k30000-vendor-card-before-technical-diagnosis.png`, `playwright/projects/fibu-book5/img/fixedassets-045-020-k30000-settings-personalize-entry.png` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-045/` |
+| BC-Seite | `Vendor Card` Page `26`, Company `RM-DEMO` |
+| sichtbarer Text / Werte | `K30000`, `Zollspedition Nord GmbH`, `Tax Liable`, `Tax Area Code`, `Payment Terms Code = 1M(8D)`, `Payment Method Code = BANK`, Einstellungen-Pane mit `Personalisieren` |
+| nicht sichtbar | `Vendor Posting Group`, `Gen. Bus. Posting Group`, `Currency Code`, `VAT Bus. Posting Group` |
+| Elementtyp | Kreditorenkarte / UI-Sichtbarkeit / Debugging / Kaufbeleg-Gate |
+| Testergebnis | Der praktische read-only Lauf beweist den Personalisieren-Einstieg, aber keine Feldverfuegbarkeit und keine Werte fuer die fehlenden Defaults. `Ctrl+Alt+F1`/Page Inspection war im Playwright-/Browserkontext nicht stabil verfuegbar. |
+| Entscheidung | Keine Einkaufsrechnung, kein Anlagenzugang, keine AfA und keine Buchung. Naechster Schritt ist `FIXEDASSETS-046-K30000-VENDOR-DEFAULTS-GATE-DECISION`. |
+| Buchstelle | Kapitel 21 Anlagen; Kapitel Debugging/technische Nachweisfuehrung; Screenshot-QA |
+
+Fuer Anfaenger ist der Fall sauber: Wenn Felder fehlen, prueft man zuerst Sichtbarkeit und technischen Kontext. Aber ein Screenshot des Settings-Menues beweist nur, dass man `Personalisieren` oeffnen kann. Er beweist nicht, dass der fehlende Code im Beleg- oder Stammdatenprozess fachlich korrekt gesetzt ist.
+
 ## FIND-BC-FA-043 K30000-Invoicing-FastTab zeigt Tax-Felder, aber keine Buchungsgruppen
 
 | Feld | Wert |
