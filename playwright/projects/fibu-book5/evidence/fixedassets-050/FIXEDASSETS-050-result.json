@@ -1,0 +1,70 @@
+{
+  "caseId": "FIXEDASSETS-050-K30000-VENDOR-DEFAULTS-PAGEINSPECTION-OR-SETUP-GATE-DECISION",
+  "generatedAt": "2026-06-17T09:20:00.000Z",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "dataBasis": "CRONUS USA",
+  "mode": "decision-no-bc-run",
+  "workTypes": [
+    "readiness",
+    "evidence",
+    "governance"
+  ],
+  "inputEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-039/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-043/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-045/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-047/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-049/"
+  ],
+  "vendor": {
+    "no": "K30000",
+    "name": "Zollspedition Nord GmbH",
+    "visibleLaborValues": [
+      "Tax Area Code",
+      "Tax Liable",
+      "Payment Terms Code = 1M(8D)",
+      "Payment Method Code = BANK"
+    ],
+    "notVisiblyProven": [
+      "Vendor Posting Group",
+      "Gen. Bus. Posting Group",
+      "Currency Code",
+      "VAT Bus. Posting Group"
+    ]
+  },
+  "decision": "do-not-fit-setup-yet-use-readonly-page-inspection-next",
+  "approvedNextCase": "FIXEDASSETS-051-K30000-VENDOR-PAGEINSPECTION-READONLY",
+  "approvedNextActions": [
+    "open K30000 Vendor Card page 26 read-only in RM-DEMO",
+    "try Page Inspection via Ctrl+Alt+F1",
+    "if shortcut is intercepted, try Help & Support / Inspect pages and data or BC search",
+    "capture Page Name, Page ID, Source Table and critical field values if visible",
+    "classify screenshots as technical diagnosis, not final book images"
+  ],
+  "rejectedNow": [
+    "purchase invoice preflight",
+    "fixed asset acquisition",
+    "depreciation",
+    "posting",
+    "K30000 vendor default edit",
+    "posting group, currency or VAT setup fit",
+    "saved personalization",
+    "API shortcut",
+    "company switch"
+  ],
+  "safety": {
+    "bcRunExecuted": false,
+    "posted": false,
+    "purchaseInvoiceCreated": false,
+    "acquisitionPosted": false,
+    "depreciationCalculatedOrPosted": false,
+    "vendorChanged": false,
+    "setupChanged": false,
+    "apiShortcutUsed": false,
+    "companyChanged": false,
+    "personalizationSaved": false
+  },
+  "bookImpact": "Chapter 21 remains gated before purchase invoice and acquisition. The debugging/evidence chapter should use this as a rule: if a field is neither visible in the normal page nor proven via Personalize, Page Inspection is the next technical diagnosis path before any setup change.",
+  "nextStep": "FIXEDASSETS-051-K30000-VENDOR-PAGEINSPECTION-READONLY"
+}
