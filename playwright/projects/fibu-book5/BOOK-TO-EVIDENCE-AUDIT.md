@@ -1,5 +1,7 @@
 # Buch-zu-Evidence-Audit
 
+Update nach `FIXEDASSETS-039`: Die `K30000`-Kreditorenkarte ist in `RM-DEMO` read-only erreichbar und zeigt Zielnummer, Zielname, `Payment Terms Code = 1M(8D)` sowie `Payment Method Code = BANK`. Kapitel 21 darf das als Labor-Kontrollpunkt vor einer Anlagen-Einkaufsrechnung beschreiben. Es darf aber noch keine Einkaufsrechnung, keinen Anlagenzugang und keine Buchung ableiten, weil `Vendor Posting Group`, `Gen. Bus. Posting Group`, `Currency Code` und Tax/VAT-Felder in der aktuellen Kartenansicht nicht sichtbar belegt sind. Naechster Buch-/Evidence-Schritt ist eine Default-Entscheidung oder Diagnose mit `Mehr anzeigen`, Personalisieren, Page Inspection oder enger Feld-/Setup-Pruefung.
+
 Update nach `FIXEDASSETS-038`: `K30000` / `Zollspedition Nord GmbH` ist in `RM-DEMO` UI-first als Labor-Kreditor sichtbar. Kapitel 21 darf die Kreditorenanlage jetzt als belegten Labor-Stammdatenschritt beschreiben, muss aber die Auto-Number-Falle erklaeren: Business Central kann nach Vendor-Template-Auswahl einen Entwurf wie `V00030` erzeugen, der erst durch echte UI-Eingabe und sichtbaren Nachweis zum Zielcode `K30000` wird. `V00020` wurde als leerer versehentlicher Draft per UI geloescht. Keine Einkaufsrechnung, kein Zugang, keine AfA, keine Buchung und kein deutscher Finalnachweis.
 Stand: 09.06.2026
 

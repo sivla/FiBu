@@ -609,11 +609,14 @@
       "reliableEntryPaths": [
         "Page-ID 27 plus list context",
         "Tell-Me exact result plus context check",
-        "Page-ID 27 plus No. filter and visible filter pane for negative K30000 preflight"
+        "Page-ID 27 plus No. filter and visible filter pane for negative K30000 preflight",
+        "Vendor Card Page-ID 26 plus filter Vendor.No.=K30000 for read-only defaults proof"
       ],
       "knownActions": {
         "New": "can open template dialog before card creation",
-        "Filter pane": "FIXEDASSETS-036 opened page 27 filtered No.=K30000 and made the left filter pane visible; the grid showed the empty filtered view."
+        "Filter pane": "FIXEDASSETS-036 opened page 27 filtered No.=K30000 and made the left filter pane visible; the grid showed the empty filtered view.",
+        "Open card": "Open K30000 from the list or Page-ID 26 filtered by Vendor.No.; use only read-only checks before purchase invoice gates.",
+        "Show more / Mehr anzeigen": "Use card-local expansion and lower-card scroll to reveal payment/invoicing/default fields, but treat non-visible fields as open evidence."
       },
       "dangerousActions": [
         "New",
@@ -625,7 +628,8 @@
         "Template dialog is its own required setup step",
         "After FIXEDASSETS-036, K30000 is not visible in the filtered Vendors page; this is a setup blocker, not permission to start a purchase invoice.",
         "A negative Vendor screenshot is only useful when it visibly shows No.=K30000 or the active filter context plus the empty list state.",
-        "BC list/filter controls can live inside the runinframe frame; main-document-only scans miss the actual filter pane."
+        "BC list/filter controls can live inside the runinframe frame; main-document-only scans miss the actual filter pane.",
+        "After FIXEDASSETS-039, K30000 and payment defaults are visible, but Vendor Posting Group, Gen. Bus. Posting Group, Currency and Tax/VAT are not visibly proven; no purchase invoice until a defaults diagnosis/gate resolves this."
       ],
       "recommendedHelpers": [
         "openBcPageById",
@@ -635,13 +639,16 @@
         "screenshot",
         "frame-aware-filter-pane-diagnosis",
         "screenshot-claimed-filter-visible",
-        "negative-list-empty-state-proof"
+        "negative-list-empty-state-proof",
+        "open-vendor-card-page-26-filtered"
       ],
       "evidenceExamples": [
         "fixedassets-010",
         "fixedassets-012",
         "p2p-001",
-        "fixedassets-036"
+        "fixedassets-036",
+        "fixedassets-038",
+        "fixedassets-039"
       ]
     },
     "Item Journals": {

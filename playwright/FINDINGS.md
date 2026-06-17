@@ -1,3 +1,21 @@
+
+## FIND-BC-FA-039 K30000-Kreditorenkarte zeigt nur Teil-Defaults sichtbar
+
+| Feld | Wert |
+|---|---|
+| Status | getestet / buch-update / Labor-Teilnachweis |
+| Projekt | fibu-book5 |
+| Testfall | `FIXEDASSETS-039-K30000-VENDOR-CARD-DEFAULTS-READONLY` |
+| Screenshot | `playwright/projects/fibu-book5/img/fixedassets-039-010-k30000-vendor-card-defaults.png`, `playwright/projects/fibu-book5/img/fixedassets-039-020-k30000-vendor-card-payments-defaults.png` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-039/` |
+| BC-Seite | `Vendor Card` Page `26`, Company `RM-DEMO` |
+| sichtbarer Text / Werte | `K30000`, `Zollspedition Nord GmbH`, `Payment Terms Code = 1M(8D)`, `Payment Method Code = BANK` |
+| Elementtyp | Kreditorenkarte / Zahlungsdefaults / Default-Diagnose |
+| Testergebnis | Die Kreditorenkarte ist erreichbar und erste Zahlungsdefaults sind sichtbar. Vendor Posting Group, Gen. Bus. Posting Group, Currency Code und Tax/VAT-Felder sind in der aktuellen Kartenansicht nicht sichtbar belegt. |
+| Entscheidung | Kapitel 21 darf K30000 als Labor-Kreditorenkarte zeigen, aber nicht zur Einkaufsrechnung springen. Erst `FIXEDASSETS-040` muss klaeren, ob die fehlenden Defaults nur ausgeblendet sind oder Setup-/Field-Diagnose brauchen. |
+| Buchstelle | Kapitel 21 Anlagen; Kapitel 37 Debugging; Kapitel 38 Screenshot-QA |
+
+Fuer Anfaenger ist der Befund wichtig: Eine sichtbare Kreditorenkarte mit Name reicht nicht. Vor einem Anlagenkauf muss klar sein, welche Buchungsgruppen, Waehrung und Steuer-/Tax-Logik Business Central verwenden wuerde. Wenn diese Felder nicht sichtbar sind, ist das ein Diagnosepunkt, kein Buchungstor.
 ﻿# Business-Central-Fundstellen
 
 Diese Datei sammelt Dinge, die Playwright-Läufe, Screenshots oder manuelle Sichtprüfungen in Business Central sichtbar machen, die im Buch aber noch nicht ausreichend erklärt sind.

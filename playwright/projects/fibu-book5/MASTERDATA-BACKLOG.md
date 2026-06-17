@@ -1,5 +1,7 @@
 # Stammdaten- und Setup-Backlog fuer FiBu Buch 5
 
+Update nach `FIXEDASSETS-039-K30000-VENDOR-CARD-DEFAULTS-READONLY`: Der Backlog-Hebel wechselt von Kreditorenkarte lesen zu Default-Diagnose. `K30000` / `Zollspedition Nord GmbH` ist sichtbar; `Payment Terms Code = 1M(8D)` und `Payment Method Code = BANK` sind sichtbar. Buchungsgruppen, Waehrung und Tax/VAT sind in der aktuellen Kartenansicht nicht sichtbar belegt. Deshalb bleibt `K30000` vor Einkaufsrechnung/Zugang/AfA/Buchung weiter gatepflichtig; naechster Schritt ist `FIXEDASSETS-040-K30000-VENDOR-DEFAULTS-DECISION`.
+
 Update nach `FIXEDASSETS-038-K30000-VENDOR-SETUP-FIT`: `K30000` / `Zollspedition Nord GmbH` ist in `RM-DEMO` UI-first als Labor-Kreditor sichtbar. Der Lauf hat die Auto-Number-Falle dokumentiert: `V00030` wurde kontrolliert in `K30000` umbenannt, `V00020` wurde als versehentlicher leerer Draft per UI geloescht. Der Backlog-Hebel wechselt damit von Kreditoranlage zu `FIXEDASSETS-039-K30000-VENDOR-CARD-DEFAULTS-READONLY`: Vendor Posting Group, Gen. Bus. Posting Group, Payment Terms Code, Currency Code, Tax/VAT-Kontext und Blocked-Status read-only lesen. Einkaufsrechnung, Anlagenzugang, AfA, Buchung, Kreditorbankdaten und API-Shortcut bleiben gesperrt.
 Stand: 08.06.2026
 

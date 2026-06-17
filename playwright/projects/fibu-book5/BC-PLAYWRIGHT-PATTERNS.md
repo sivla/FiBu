@@ -100,6 +100,7 @@ Diese Datei sammelt wiederverwendbare Muster aus belegten Laeufen. Sie ist keine
 - Tabellenbilder muessen den Zielwert zeigen, nicht nur irgendeine Liste.
 - Geometrie- und Koordinatenklicks sind nur begruendete Fallbacks; danach muss ein sichtbarer fachlicher Zustand nachgewiesen werden.
 - Bei bestehenden Listendatensaetzen reicht der Listentreffer nicht. Fuer Buch-/Setup-Reife immer die Karte oder Detailseite oeffnen und die Werte pruefen, die der Screenshot behauptet.
+- `FIXEDASSETS-039` zeigt die Grenze bei Karten-Defaults: Eine Vendor Card mit `K30000` und Name ist ein Stammdatenbeweis, aber kein vollstaendiger Buchungsdefault-Beweis. Wenn Payment Terms/Payment Method sichtbar sind, Posting Groups, Currency oder Tax/VAT aber nicht, muss der Lauf als partieller Read-only-Nachweis enden und eine Diagnose mit `Mehr anzeigen`, Personalisieren oder Page Inspection vorbereiten.
 
 ## Personalisieren und Einstellungen
 
@@ -144,6 +145,7 @@ Diese Datei sammelt wiederverwendbare Muster aus belegten Laeufen. Sie ist keine
 
 - Screenshot-Typen: Navigation, Setup Before/After, Preflight, Posting Dialog, Posted Document, Ledger Trace, Report, Error, Rejected Path, Book Candidate.
 - Buchkandidat nur, wenn das sichtbare Lernziel im Bild erkennbar ist.
+- Wenn ein Screenshot mehrere fachliche Aussagen stuetzen soll, muessen alle behaupteten Codes/Werte sichtbar sein. Sonst ist das Bild nur partieller Kandidat und die nicht sichtbaren Werte bleiben offen.
 - `FIXEDASSETS-016` ist ein positives Beispiel: Das Nachherbild zeigt nicht nur den Seitenkontext, sondern `MACHINES` plus `12210`/`82000` im sichtbaren Kartenbereich.
 - `FIXEDASSETS-020` ist ein gutes Zwischenbild: Es beweist sichtbare Anlagenkartenfelder nach `Mehr anzeigen`, aber nicht die fertige Anlage. Solche Bilder muessen als Feldmapping-/Preflight-Kandidaten markiert werden.
 - `FIXEDASSETS-022` ist ein Rejected-QA-Beispiel: Ein Bild, das nicht den behaupteten Code oder sogar den falschen Dialog zeigt, muss geloescht oder als `rejected/do-not-use` dokumentiert werden. Seitentext-Treffer allein reichen nicht, wenn das sichtbare Bild den Wert nicht zeigt.
@@ -151,6 +153,7 @@ Diese Datei sammelt wiederverwendbare Muster aus belegten Laeufen. Sie ist keine
 - `FIXEDASSETS-029-EXISTING` ist ein Error-/Learning-Bild: Die Karte zeigt `FA-CNC-01`, aber die relevanten Anlagenfelder sind leer. Es ist deshalb kein Zielbild fuer Kapitel 21, sondern ein gutes Bild fuer "Code vorhanden, Stammdatensatz fachlich unvollstaendig".
 - `FIXEDASSETS-032` ist ein gutes Teilfit-/Debugging-Bild: Das Bild zeigt die relevanten AfA-Werte wirklich, aber auch die weiter leeren Stammdatenfelder im Kopf. Es darf fuer "teilweise korrigiert, noch nicht buchungsreif" genutzt werden, nicht als finales Anlagenbild.
 - `FIXEDASSETS-034` ist ein Composite-Proof-Beispiel: Das Finalbild zeigt `FA Subclass Code = EQUIPMENT` und AfA-Zeilen, aber nicht gleichzeitig `HGB` und `MACHINES`. Buch- oder Evidence-Text darf deshalb nur sagen: 034 belegt die Unterklasse, 033+034 zusammen belegen den Labor-Stammdatenfit.
+- `FIXEDASSETS-039` ist ein partieller Vendor-Card-Proof: Die Bilder duerfen `K30000`, Name, `1M(8D)` und `BANK` belegen, aber nicht die nicht sichtbaren Buchungsgruppen, Waehrung oder Tax/VAT-Defaults.
 - Metadaten muessen Status, Zweck, sichtbares Ziel, Labor/final-Grenze, Buchwirkung und Limitationen nennen.
 - `pageText()` kann Screenshot-Kontext absichern, ersetzt aber keinen visuellen Beweis.
 

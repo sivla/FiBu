@@ -1,3 +1,5 @@
+
+Update nach `FIXEDASSETS-039-K30000-VENDOR-CARD-DEFAULTS-READONLY`: `K30000` / `Zollspedition Nord GmbH` ist als Kreditorenkarte read-only erreichbar. Sichtbar sind `Payment Terms Code = 1M(8D)` und `Payment Method Code = BANK`; nicht sichtbar belegt sind Vendor Posting Group, Gen. Bus. Posting Group, Currency Code und Tax/VAT-Kontext. Status: Labor-Teilnachweis, keine Einkaufsrechnungsfreigabe. Naechster Schritt: `FIXEDASSETS-040-K30000-VENDOR-DEFAULTS-DECISION`, keine Buchung.
 ﻿# Lab-Fit-Status fuer FiBu Buch 5
 
 Update nach `FIXEDASSETS-038-K30000-VENDOR-SETUP-FIT`: `K30000` / `Zollspedition Nord GmbH` ist in `RM-DEMO` UI-first als Labor-Kreditor sichtbar belegt. Der Lauf dokumentiert die Vendor-Auto-Number-Falle: `V00030` wurde kontrolliert auf `K30000` umgesetzt; der versehentliche Draft `V00020` wurde per UI geloescht und im leeren Nachfilter bestaetigt. Keine Einkaufsrechnung, kein Anlagenzugang, keine AfA, keine Buchung, keine Kreditorbankdaten, kein API-Shortcut und kein deutscher Finalnachweis. Naechster Schritt: `FIXEDASSETS-039-K30000-VENDOR-CARD-DEFAULTS-READONLY`, nur Karten-Defaults read-only.

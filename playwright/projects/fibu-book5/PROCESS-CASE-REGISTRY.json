@@ -1858,6 +1858,49 @@
         "38"
       ],
       "nextStep": "FIXEDASSETS-039-K30000-VENDOR-CARD-DEFAULTS-READONLY"
+    },
+    {
+      "caseId": "FIXEDASSETS-039",
+      "process": "Fixed Assets",
+      "status": "done-labor-readonly-partial-defaults",
+      "mode": "k30000-vendor-card-defaults-readonly",
+      "company": "RM-DEMO",
+      "environment": "MCP_1_20260210",
+      "documents": [
+        "K30000",
+        "FA-CNC-01"
+      ],
+      "screenshots": [
+        "playwright/projects/fibu-book5/img/fixedassets-039-010-k30000-vendor-card-defaults.png",
+        "playwright/projects/fibu-book5/img/fixedassets-039-020-k30000-vendor-card-payments-defaults.png"
+      ],
+      "evidence": [
+        "playwright/projects/fibu-book5/evidence/fixedassets-039/README.md",
+        "playwright/projects/fibu-book5/evidence/fixedassets-039/FIXEDASSETS-039-K30000-VENDOR-CARD-DEFAULTS-READONLY.md",
+        "playwright/projects/fibu-book5/evidence/fixedassets-039/FIXEDASSETS-039-result.json"
+      ],
+      "proves": [
+        "K30000 / Zollspedition Nord GmbH is visible on the Vendor Card in RM-DEMO",
+        "Payment Terms Code 1M(8D) and Payment Method Code BANK are visible as card defaults",
+        "the run was read-only and did not create a purchase invoice, acquisition, depreciation or posting"
+      ],
+      "doesNotProve": [
+        "Vendor Posting Group, Gen. Bus. Posting Group, Currency Code or Tax/VAT defaults on K30000",
+        "purchase invoice readiness",
+        "fixed asset acquisition, depreciation or ledger trace",
+        "German fixed-assets final proof"
+      ],
+      "reusablePatterns": [
+        "Vendor Card screenshots must show the actual default fields that the book wants to explain",
+        "non-visible posting/tax/currency defaults are a diagnosis point, not a posting gate",
+        "read-only card proof can be partial and still valuable if it blocks unsafe next steps"
+      ],
+      "bookChapters": [
+        "21",
+        "37",
+        "38"
+      ],
+      "nextStep": "FIXEDASSETS-040-K30000-VENDOR-DEFAULTS-DECISION"
     }
   ]
 }
