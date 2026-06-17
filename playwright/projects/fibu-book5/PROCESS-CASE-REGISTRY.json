@@ -1769,6 +1769,47 @@
         "38"
       ],
       "nextStep": "FIXEDASSETS-037-K30000-VENDOR-SETUP-GATE-DECISION"
+    },
+    {
+      "caseId": "FIXEDASSETS-037",
+      "process": "Fixed Assets",
+      "status": "done-decision-no-bc-run",
+      "mode": "k30000-vendor-setup-gate-decision",
+      "company": "RM-DEMO",
+      "environment": "MCP_1_20260210",
+      "documents": [
+        "K30000",
+        "FA-CNC-01"
+      ],
+      "screenshots": [],
+      "evidence": [
+        "playwright/projects/fibu-book5/evidence/fixedassets-037/README.md",
+        "playwright/projects/fibu-book5/evidence/fixedassets-037/FIXEDASSETS-037-K30000-VENDOR-SETUP-GATE-DECISION.md",
+        "playwright/projects/fibu-book5/evidence/fixedassets-037/FIXEDASSETS-037-result.json"
+      ],
+      "proves": [
+        "K30000 remains missing after FIXEDASSETS-036 and must be created or confirmed before purchase invoice/acquisition",
+        "the next allowed practical action is exactly one UI-first vendor setup fit",
+        "purchase invoice, fixed-asset acquisition, depreciation, posting, vendor bank details and API shortcuts remain forbidden"
+      ],
+      "doesNotProve": [
+        "K30000 exists or was created",
+        "vendor card fields such as posting groups, payment terms, currency, tax/VAT or blocked status",
+        "purchase invoice readiness",
+        "fixed asset acquisition, depreciation or ledger trace",
+        "German fixed-assets final proof"
+      ],
+      "reusablePatterns": [
+        "negative vendor preflight can open a narrow setup gate",
+        "vendor setup fit must read actual card defaults instead of guessing posting/tax fields",
+        "fixed asset purchase invoice remains a later gate after vendor card proof"
+      ],
+      "bookChapters": [
+        "21",
+        "37",
+        "38"
+      ],
+      "nextStep": "FIXEDASSETS-038-K30000-VENDOR-SETUP-FIT"
     }
   ]
 }

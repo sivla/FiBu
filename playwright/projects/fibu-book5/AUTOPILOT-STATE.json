@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "updatedAt": "2026-06-17T05:20:00.000Z",
+  "updatedAt": "2026-06-17T05:45:00.000Z",
   "repository": "sivla/FiBu",
   "branch": "codex/playwright-bc-screenshot-foundation",
   "environment": "MCP_1_20260210",
@@ -10,8 +10,8 @@
   "companyRegistry": "playwright/projects/fibu-book5/COMPANY-REGISTRY.json",
   "dataBasis": "CRONUS USA",
   "activeArea": "fixedassets",
-  "lastCompletedRun": "FIXEDASSETS-036-K30000-VENDOR-PREFLIGHT-READONLY",
-  "lastWorkType": "ui-first-read-only-vendor-preflight",
+  "lastCompletedRun": "FIXEDASSETS-037-K30000-VENDOR-SETUP-GATE-DECISION",
+  "lastWorkType": "vendor-setup-gate-decision-no-bc-run",
   "postedInLastRun": false,
   "latestPostedDocuments": {
     "o2c": {
@@ -567,6 +567,34 @@
         "noDepreciation": true,
         "noPosting": true,
         "nextAllowedCase": "FIXEDASSETS-037-K30000-VENDOR-SETUP-GATE-DECISION"
+      },
+      "vendorSetupGateDecision": {
+        "caseId": "FIXEDASSETS-037",
+        "targetVendorNo": "K30000",
+        "targetVendorName": "Zollspedition Nord GmbH",
+        "decision": "approve-next-explicit-ui-first-vendor-setup-fit",
+        "reason": "FIXEDASSETS-036 proves K30000 is not visible in filtered Vendors page 27. A purchase invoice or fixed-asset acquisition would skip the payables master-data layer.",
+        "allowedNextCase": "FIXEDASSETS-038-K30000-VENDOR-SETUP-FIT",
+        "allowedNextActions": [
+          "open Vendors page 27 in RM-DEMO",
+          "filter No.=K30000 again",
+          "if still missing, create exactly vendor K30000 UI-first from the Vendors context",
+          "set or confirm No.=K30000 and Name=Zollspedition Nord GmbH",
+          "read and document visible Vendor Posting Group, Gen. Bus. Posting Group, Payment Terms Code, Currency Code, Tax/VAT context and Blocked status after save"
+        ],
+        "forbiddenNextActions": [
+          "create purchase invoice",
+          "post purchase invoice",
+          "post fixed asset acquisition",
+          "calculate or post depreciation",
+          "create vendor bank details",
+          "claim German VAT, chart-of-accounts or HGB final proof",
+          "use API shortcuts for vendor creation"
+        ],
+        "noBcRun": true,
+        "noSetupChangeInDecisionRun": true,
+        "noPosting": true,
+        "evidence": "playwright/projects/fibu-book5/evidence/fixedassets-037/"
       }
     }
   },
@@ -885,8 +913,9 @@
     "noPosting": true,
     "reusablePattern": "Use clickBcAction with scopeText plus expectedAfterClick for cancel-safe BC action clicks; use local DOM fallback only after helper failure and document fallbackUsed."
   },
-  "nextTechnicalStep": "FIXEDASSETS-037-K30000-VENDOR-SETUP-GATE-DECISION: no-BC-change decision whether and how K30000 may be created UI-first as fixed-asset vendor; keep purchase invoice, acquisition, depreciation and posting locked.",
+  "nextTechnicalStep": "FIXEDASSETS-038-K30000-VENDOR-SETUP-FIT: create or confirm exactly K30000 UI-first as RM-DEMO lab vendor, then read card defaults; keep purchase invoice, acquisition, depreciation and posting locked.",
   "sessionNotes": [
+    "FIXEDASSETS-037 completed as a no-BC decision run. Because FIXEDASSETS-036 proves K30000 is not visible in filtered Vendors page 27, the next practical step is exactly one UI-first vendor setup fit for K30000 / Zollspedition Nord GmbH. The following run may create or confirm only the vendor card and must document visible defaults such as Vendor Posting Group, Gen. Bus. Posting Group, Payment Terms Code, Currency Code, Tax/VAT context and Blocked status. Purchase invoice, acquisition, depreciation, posting, vendor bank details, API shortcuts and German final claims remain locked.",
     "FIXEDASSETS-036 ran UI-first read-only in RM-DEMO. Vendors page 27 was opened in wide layout with filter No.=K30000; the filter pane and empty list state are visible, and no K30000 vendor row is visible. No vendor was created or saved, no purchase invoice, acquisition, depreciation or posting happened. The screenshot is a candidate negative filter/list proof, not a vendor-card proof. Next step is FIXEDASSETS-037-K30000-VENDOR-SETUP-GATE-DECISION.",
     "FIXEDASSETS-035 completed as a no-BC decision run. K30000 remains not proven and was not created. Next allowed step is FIXEDASSETS-036-K30000-VENDOR-PREFLIGHT-READONLY: open Vendors/Kreditoren read-only in RM-DEMO, use wide layout, filter/search K30000, optionally inspect template/card context cancel-safe, and stop without saving, purchase invoice, acquisition, depreciation or posting.",
     "FIXEDASSETS-030 completed as a decision run without BC execution. The existing incomplete FA-CNC-01 remains the book/lab target and should be corrected UI-first in FIXEDASSETS-031, provided the card still has no acquisition/book-value/posting state. No setup change, no K30000, no purchase invoice, no acquisition, no depreciation, no posting and no company switch.",
@@ -898,10 +927,10 @@
     "FIXEDASSETS-025 corrected the overclaim around FIXEDASSETS-024: active card control proof is partial (4/6), so value lookup/save gate remains blocked until Depreciation Book Code and Posting Group are recovered on the active card. No BC run, no save, no setup and no posting."
   ],
   "prohibitedActions": [
-    "No K30000 create/save, purchase invoice, acquisition, depreciation or fixed-asset posting before FIXEDASSETS-037 explicitly defines the UI-first setup gate.",
+    "K30000 create/save is allowed only in FIXEDASSETS-038 as exactly scoped UI-first vendor setup fit; no purchase invoice, acquisition, depreciation or fixed-asset posting.",
     "Do not treat FIXEDASSETS-036 as a K30000 vendor-card proof: it proves only that filtered Vendors page 27 shows no visible K30000 row.",
     "Do not treat FIXEDASSETS-035 as a vendor proof: it only decides the K30000 readiness path and keeps K30000 not proven.",
-    "No K30000 save/create, purchase invoice, acquisition, depreciation or fixed-asset posting before FIXEDASSETS-036 read-only vendor preflight and a later explicit setup/posting gate permits the process."
+    "No purchase invoice, acquisition, depreciation or fixed-asset posting before a later explicit setup/posting gate permits the process."
   ],
   "runHistory": [
     {

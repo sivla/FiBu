@@ -38,6 +38,26 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 
 ## Aktuelle Fundstellen
 
+## FIND-BC-FA-037 K30000-Setup-Fit ist erlaubt, aber nur als Kreditorenkarte
+
+| Feld | Wert |
+|---|---|
+| Status | erledigt als Gate-Entscheidung ohne BC-Lauf |
+| Projekt | fibu-book5 |
+| Testfall | `FIXEDASSETS-037-K30000-VENDOR-SETUP-GATE-DECISION` |
+| Screenshot | keiner; nutzt den negativen Vendor-Preflight aus `FIXEDASSETS-036` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-037/README.md`, `playwright/projects/fibu-book5/evidence/fixedassets-037/FIXEDASSETS-037-result.json`, `playwright/projects/fibu-book5/evidence/fixedassets-037/FIXEDASSETS-037-K30000-VENDOR-SETUP-GATE-DECISION.md` |
+| BC-Seite | kein neuer BC-Lauf; naechster erlaubter Kontext ist `Vendors` Page `27`, Company `RM-DEMO` |
+| sichtbarer Text / Werte | Zielkreditor `K30000`, Zielname `Zollspedition Nord GmbH`, vorheriger Filterbefund `No. = K30000` mit leerer Liste |
+| Elementtyp | Setup-Gate / Kreditorenstamm / Anlagen-Readiness / Klickanleitungsgrenze |
+| erste Hypothese | Nach einem leeren Vendor-Filter koennte der naechste Lauf entweder direkt eine Einkaufsrechnung versuchen oder den Kreditor ueber eine Abkuerzung/API herstellen. |
+| Recherchequelle | Projekt-Evidence `FIXEDASSETS-036`; Microsoft Learn zu Vendor Cards, Posting Groups und Fixed-Asset-Acquisition; Gate-Dateien des Projekts |
+| Testergebnis | Kein BC-Lauf. Die Entscheidung erlaubt genau den UI-first Vendor-Setup-Fit: `K30000` in `Vendors` suchen, falls fehlend kontrolliert als Kreditorenkarte anlegen oder bei unsicherem Template/Kartenkontext stoppen, danach nur Karten-Defaults lesen. |
+| Entscheidung | Kapitel 21 und die Playwright-Gates duerfen nicht zur Einkaufsrechnung springen. Erlaubt ist nur `FIXEDASSETS-038-K30000-VENDOR-SETUP-FIT`; Einkaufsrechnung, Anlagenzugang, AfA, Posting, Vendor-Bankdaten, API-Abkuerzungen und deutscher Finalnachweis bleiben gesperrt. |
+| Buchstelle | Kapitel 21 Anlagen / Fixed Assets; Kapitel 37 Debugging und technische Nachweisfuehrung; Kapitel 38 Screenshot-QA |
+
+Fuer Anfaenger ist der Befund wichtig: Ein fehlender Kreditor wird nicht durch einen Kaufbeleg "nebenbei" geloest. Die Kreditorenkarte ist eine eigene Einrichtungsschicht mit Posting Groups, Zahlungsbedingungen, Waehrung, Tax/VAT-Kontext und Sperrstatus. Erst wenn diese Karte sichtbar traegt, darf der Anlagenkauf als naechster Gate-Schritt vorbereitet werden.
+
 ## FIND-BC-FA-036 K30000 fehlt im gefilterten Vendor-Kontext
 
 | Feld | Wert |

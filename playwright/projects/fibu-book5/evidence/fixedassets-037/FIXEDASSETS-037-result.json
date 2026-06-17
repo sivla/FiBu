@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-037-K30000-VENDOR-SETUP-GATE-DECISION",
+  "generatedAt": "2026-06-17T05:45:00.000Z",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "dataBasis": "CRONUS USA",
+  "status": "done-decision-no-bc-run",
+  "mode": "vendor-setup-gate-decision",
+  "noBcRun": true,
+  "noSetupChange": true,
+  "noPosting": true,
+  "inputEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-035/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-036/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-012/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-033/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-034/",
+    "FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md#21-anlagen-fixed-assets"
+  ],
+  "microsoftLearnSources": [
+    {
+      "title": "Register a new vendor - Business Central",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/business-central/purchasing-how-register-new-vendors",
+      "use": "Vendor setup uses template selection and then the vendor card; after the card is completed it can be used on purchase documents."
+    },
+    {
+      "title": "Posting group setup - Business Central",
+      "url": "https://learn.microsoft.com/en-au/dynamics365/business-central/finance-posting-groups",
+      "use": "Posting groups map vendors, items, resources and documents to G/L accounts and reduce posting mistakes."
+    },
+    {
+      "title": "Acquire fixed assets - Business Central",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/business-central/fa-how-acquire",
+      "use": "Fixed-asset acquisition can be posted through a vendor, but only after the fixed asset and depreciation book setup are ready."
+    }
+  ],
+  "decision": {
+    "vendorNo": "K30000",
+    "vendorName": "Zollspedition Nord GmbH",
+    "approvedNextRun": "FIXEDASSETS-038-K30000-VENDOR-SETUP-FIT",
+    "decisionStatus": "approved-for-next-explicit-ui-first-vendor-setup-fit",
+    "vendorCreatedInThisRun": false,
+    "purchaseInvoiceAllowed": false,
+    "fixedAssetAcquisitionAllowed": false,
+    "depreciationAllowed": false,
+    "postingAllowed": false,
+    "reason": "FIXEDASSETS-036 proves that K30000 is not visible in the filtered Vendors page. A purchase invoice or fixed-asset acquisition would therefore skip a mandatory master-data layer. The next safe step is exactly one UI-first vendor setup fit or a documented stop if template/card prerequisites are not visible."
+  },
+  "approvedNextRunScope": {
+    "caseId": "FIXEDASSETS-038-K30000-VENDOR-SETUP-FIT",
+    "goal": "Create or confirm exactly vendor K30000 as CRONUS-USA lab vendor master data, then read the visible card defaults.",
+    "allowedActions": [
+      "open Vendors page 27 in RM-DEMO",
+      "filter No.=K30000 and confirm whether it is still missing",
+      "if missing, start New only from the Vendors list context",
+      "select a vendor template only if the dialog is visible and can be cancelled or confirmed safely",
+      "set or confirm No.=K30000 and Name=Zollspedition Nord GmbH",
+      "fill only visible non-posting descriptive fields when required by the UI",
+      "save only the vendor card, then reopen/read it",
+      "document visible Vendor Posting Group, Gen. Bus. Posting Group, Payment Terms Code, Currency Code, Tax/VAT context and Blocked status as actual lab defaults",
+      "capture before, template/card, after and final-card screenshots"
+    ],
+    "stopCriteria": [
+      "BC opens a different environment than MCP_1_20260210",
+      "company is not RM-DEMO",
+      "New opens an unrelated page or ambiguous Role Center action",
+      "template dialog cannot be scoped to vendor creation",
+      "No. cannot be set to K30000 or another record already owns K30000",
+      "required posting, payment, currency or tax fields are blank but not visibly/default safely supplied",
+      "a purchase invoice, acquisition, depreciation or posting dialog appears unexpectedly"
+    ],
+    "forbiddenActions": [
+      "create purchase invoice",
+      "post purchase invoice",
+      "post fixed asset acquisition",
+      "calculate or post depreciation",
+      "create vendor bank details",
+      "claim German 19-percent VAT, German chart-of-accounts or German HGB final proof",
+      "use API shortcuts for vendor creation"
+    ]
+  },
+  "bookImpact": "Chapter 21 now needs a visible K30000 setup checkpoint between the fitted FA-CNC-01 card and any purchase invoice/acquisition step. The book should explain that a missing vendor is not a minor lookup inconvenience but a payables, posting-group, payment-term and tax-context gate.",
+  "beginnerLearning": "A filtered empty Vendors list means the target vendor is not available for a purchase invoice. The correct reaction is not to force the invoice but to create or confirm the vendor card first and then inspect the defaults Business Central will use for payables and posting.",
+  "nextStep": "FIXEDASSETS-038-K30000-VENDOR-SETUP-FIT"
+}

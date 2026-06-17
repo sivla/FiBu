@@ -3849,20 +3849,24 @@ Entscheidung nach `FIXEDASSETS-035`: Der naechste Schritt ist nicht sofort die E
 
 Nachweis nach `FIXEDASSETS-036`: Der Kreditoren-Preflight ist in `RM-DEMO` read-only gelaufen. Die Seite `Kreditoren (Vendors)` / Page `27` zeigt den Filter `No. = K30000` und eine leere Listenansicht. Damit ist im aktuellen Labor nicht belegt, dass `K30000` existiert. Fuer die Klickanleitung ist das ein guter Anfaenger-Kontrollpunkt: Wenn der Filter leer bleibt, wird nicht zur Einkaufsrechnung gewechselt. Stattdessen braucht es zuerst eine eigene Setup-Gate-Entscheidung fuer die UI-first Kreditoranlage mit Vorlage, Pflichtfeldern, Buchungsgruppen, Zahlungsbedingungen, Waehrung und Tax-/VAT-Kontext.
 
+Entscheidung nach `FIXEDASSETS-037`: Nach dem leeren `K30000`-Filter ist der naechste praktische Labor-Klickpfad genau ein Kreditoren-Setup-Fit, keine Einkaufsrechnung. Der Zielkreditor lautet `K30000` / `Zollspedition Nord GmbH`. In Business Central muss die Anleitung zuerst auf `Kreditoren (Vendors)` bleiben, den Datensatz suchen und bei weiterhin fehlendem Datensatz nur dort kontrolliert eine Kreditorenkarte anlegen oder abbrechen, wenn Vorlage, Kartenkontext oder Pflichtfelder nicht eindeutig sind. Danach werden nur die sichtbaren Defaults geprueft: Kreditorenbuchungsgruppe, Geschaeftsbuchungsgruppe, Zahlungsbedingung, Waehrung, Tax-/VAT-Kontext und Sperrstatus. Anlagen-Einkaufsrechnung, Zugang, AfA, Buchung und Postenspur bleiben Zielbild, bis dieser Stammdatenschritt belegt ist.
+
 ### Schritt-für-Schritt
 
 1. Öffne `Anlagen (Fixed Assets)` und lege `FA-CNC-01` an.
 2. Setze `Beschreibung = CNC Maschine FRA`, `Anlagenklasse = MASCHINE`, `Anlagenunterklasse = CNC`.
 3. Öffne das AfA-Buch und setze `AfA-Buchcode = HGB`, `AfA-Methode = Linear`, `Nutzungsdauer = 8 Jahre`, `Anlagenbuchungsgruppe = MACHINES`.
 4. Pruefe zuerst in `Kreditoren (Vendors)`, ob `K30000` als Zielkreditor sichtbar ist; falls nicht, ist ein eigener Kreditoren-Setup-Klickpfad noetig.
-5. Pruefe zuerst in `Kreditoren (Vendors)`, ob `K30000` sichtbar und fachlich passend ist; wenn nicht, erst separaten Kreditoren-Setup-Klickpfad ausfuehren.
-6. Erfasse Zeile `Art = Anlage`, `Nr. = FA-CNC-01`, `Menge = 1`, `Direkte Einstandskosten = 120.000`.
-7. Prüfe `Buchungsvorschau (Preview Posting)`.
-8. Buche die Einkaufsrechnung.
-9. Öffne `Anlagenposten (FA Ledger Entries)` und prüfe Anschaffungskosten `120.000 EUR`.
-10. Öffne `AfA berechnen (Calculate Depreciation)` und berechne AfA bis `30.06.2026`.
-11. Buche das AfA-Buch.-Blatt.
-12. Prüfe Anlagenposten, Sachposten und Anlagenspiegel.
+5. Wenn `K30000` fehlt, fuehre zuerst den separaten Kreditoren-Setup-Klickpfad aus: `K30000` / `Zollspedition Nord GmbH` als Kreditorenkarte anlegen oder bestaetigen und die Defaults pruefen.
+6. Oeffne erst danach `Einkaufsrechnungen (Purchase Invoices)`.
+7. Erfasse Zeile `Art = Anlage`, `Nr. = FA-CNC-01`, `Menge = 1`, `Direkte Einstandskosten = 120.000`.
+8. Pruefe `Buchungsvorschau (Preview Posting)`.
+9. Buche die Einkaufsrechnung.
+10. Oeffne `Anlagenposten (FA Ledger Entries)` und pruefe Anschaffungskosten `120.000 EUR`.
+11. Oeffne `AfA berechnen (Calculate Depreciation)` und berechne AfA bis `30.06.2026`.
+12. Buche das AfA-Buch.-Blatt.
+13. Pruefe Anlagenposten, Sachposten und Anlagenspiegel.
+
 
 ### Buchungsspur
 
