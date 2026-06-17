@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-040-K30000-VENDOR-DEFAULTS-DECISION",
+  "generatedAt": "2026-06-17T00:00:00.000Z",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "dataBasis": "CRONUS USA",
+  "workType": "decision-no-bc-run",
+  "bcRun": false,
+  "posted": false,
+  "targetVendor": {
+    "no": "K30000",
+    "name": "Zollspedition Nord GmbH"
+  },
+  "inputEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-039/FIXEDASSETS-039-K30000-VENDOR-CARD-DEFAULTS-READONLY.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-039/FIXEDASSETS-039-result.json",
+    "playwright/projects/fibu-book5/CURRENT-STATE.md",
+    "playwright/projects/fibu-book5/POSTING-AND-SETUP-GATES.md",
+    "FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md"
+  ],
+  "visibleProofFromPreviousRun": {
+    "vendorCardReachable": true,
+    "vendorNo": "K30000",
+    "vendorName": "Zollspedition Nord GmbH",
+    "paymentTermsCode": "1M(8D)",
+    "paymentMethodCode": "BANK"
+  },
+  "notYetVisibleProof": [
+    "Vendor Posting Group",
+    "Gen. Bus. Posting Group",
+    "Currency Code",
+    "Tax Area Code",
+    "Tax Liable",
+    "VAT Bus. Posting Group"
+  ],
+  "decision": "do-not-start-purchase-invoice-before-readonly-field-diagnosis",
+  "nextAllowedCase": "FIXEDASSETS-041-K30000-VENDOR-DEFAULTS-FIELD-DIAGNOSIS-READONLY",
+  "nextAllowedActions": [
+    "open Vendor Card for K30000 read-only in RM-DEMO",
+    "use wide layout and hide FactBox if useful",
+    "expand card-local More/Mehr anzeigen controls",
+    "use Personalize only to diagnose hidden fields or actions",
+    "use Page Inspection only to diagnose page/table/field context",
+    "capture screenshots only when target fields or a clear not-visible diagnosis are shown"
+  ],
+  "forbiddenActions": [
+    "create purchase invoice",
+    "post acquisition",
+    "run depreciation",
+    "post fixed asset transaction",
+    "change K30000",
+    "use API shortcut for setup or master data",
+    "claim German 19 percent VAT final proof",
+    "claim German chart-of-accounts final proof"
+  ],
+  "bookImpact": "Chapter 21 should keep the K30000 vendor card as a pre-invoice control point. Visible payment defaults are not enough for purchase invoice readiness; posting, currency and tax defaults require a narrow UI-first field diagnosis.",
+  "learningValue": "A vendor card can look usable while posting, currency or tax defaults are still hidden. Beginners should learn to diagnose hidden fields before creating a purchase document.",
+  "status": [
+    "labor",
+    "decision",
+    "no-bc-run",
+    "no-posting",
+    "not-final",
+    "de-final-open"
+  ]
+}

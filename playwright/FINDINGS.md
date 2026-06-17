@@ -1,4 +1,22 @@
 
+## FIND-BC-FA-040 K30000 bleibt vor Kaufbeleg ein Default-Diagnose-Gate
+
+| Feld | Wert |
+|---|---|
+| Status | entschieden / Labor-Gate / kein BC-Lauf |
+| Projekt | fibu-book5 |
+| Testfall | `FIXEDASSETS-040-K30000-VENDOR-DEFAULTS-DECISION` |
+| Screenshot | keiner; Entscheidungslauf ohne BC-Ausfuehrung |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-040/` |
+| BC-Seite | Ziel fuer Folgelauf: `Vendor Card` Page `26`, Company `RM-DEMO` |
+| sichtbarer Text / Werte | aus `FIXEDASSETS-039`: `K30000`, `Zollspedition Nord GmbH`, `Payment Terms Code = 1M(8D)`, `Payment Method Code = BANK` |
+| Elementtyp | Kreditorenkarte / Buchungsdefaults / Sichtbarkeitsdiagnose |
+| Testergebnis | Die bisher sichtbaren Zahlungsdefaults reichen nicht fuer eine Anlagen-Einkaufsrechnung. Posting-, Currency- und Tax/VAT-Defaults muessen zuerst UI-first/read-only sichtbar oder als Nicht-Sichtbar-Befund dokumentiert werden. |
+| Entscheidung | Naechster Schritt ist `FIXEDASSETS-041-K30000-VENDOR-DEFAULTS-FIELD-DIAGNOSIS-READONLY`; keine Einkaufsrechnung, kein Anlagenzugang, keine AfA und keine Buchung. |
+| Buchstelle | Kapitel 21 Anlagen; Kapitel Debugging/technische Nachweisfuehrung; Screenshot-QA |
+
+Fuer Anfaenger ist der Punkt zentral: Nicht jedes fehlende Feld ist ein fachlich fehlender Wert, manchmal ist es nur ausgeblendet. Genau dafuer sind `Mehr anzeigen`, Personalisieren und Seitenpruefung nuetzlich. Als Buchbild zaehlt aber erst ein Screenshot, der das fachliche Lernziel sichtbar macht.
+
 ## FIND-BC-FA-039 K30000-Kreditorenkarte zeigt nur Teil-Defaults sichtbar
 
 | Feld | Wert |

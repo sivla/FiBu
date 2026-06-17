@@ -1,3 +1,5 @@
+Update nach `FIXEDASSETS-040-K30000-VENDOR-DEFAULTS-DECISION`: Kein BC-Lauf, keine Setup-Aenderung und keine Buchung. `K30000` bleibt als CRONUS-USA-Labor-Kreditor nutzbar, aber nur teilweise default-geprueft: Zahlungsbedingungen und Zahlungsmethode sind sichtbar, Posting-/Currency-/Tax-Defaults nicht. Der Anlagenkauf bleibt gesperrt, bis `FIXEDASSETS-041` diese Defaults UI-first/read-only sichtbar macht oder als begrenzten Nicht-Sichtbar-Befund dokumentiert.
+
 
 Update nach `FIXEDASSETS-039-K30000-VENDOR-CARD-DEFAULTS-READONLY`: `K30000` / `Zollspedition Nord GmbH` ist als Kreditorenkarte read-only erreichbar. Sichtbar sind `Payment Terms Code = 1M(8D)` und `Payment Method Code = BANK`; nicht sichtbar belegt sind Vendor Posting Group, Gen. Bus. Posting Group, Currency Code und Tax/VAT-Kontext. Status: Labor-Teilnachweis, keine Einkaufsrechnungsfreigabe. Naechster Schritt: `FIXEDASSETS-040-K30000-VENDOR-DEFAULTS-DECISION`, keine Buchung.
 ﻿# Lab-Fit-Status fuer FiBu Buch 5
