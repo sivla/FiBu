@@ -28,6 +28,8 @@ Ergaenzung nach `FIXEDASSETS-045`: Das Settings-/Personalisieren-Bild ist ein Di
 
 Ergaenzung nach `FIXEDASSETS-047`: Die neuen breiten `K30000`-Bilder sind Diagnose-/Teilbelege. Sie zeigen den Kreditorenkontext, `Tax Area Code`, `Tax Liable`, `Payment Terms Code = 1M(8D)` und `Payment Method Code = BANK`; sie zeigen aber nicht `Vendor Posting Group`, `Gen. Bus. Posting Group`, `Currency Code` oder `VAT Bus. Posting Group`. Fuer das Buch duerfen sie nur erklaeren, wie man sichtbare Teilwerte liest und warum fehlende Pflichtdefaults ein Gate bleiben.
 
+Ergaenzung nach `FIXEDASSETS-049`: Die neuen Personalisieren-Bilder zeigen `Wird personalisiert: Vendor Card` und den K30000-Kontext, aber keine Feldliste und keine kritischen Feldcaptions. Sie sind Diagnosebilder fuer den Einstieg in Personalisieren, nicht Buchbilder fuer `Vendor Posting Group`, `Gen. Bus. Posting Group`, `Currency Code` oder `VAT Bus. Posting Group`. Ein Personalize-Screenshot ist erst Feldverfuegbarkeitsbeweis, wenn der behauptete Feldname oder Wert im Bild lesbar ist.
+
 Laborbilder duerfen abweichen. Dann muessen Abweichung, Ursache und Buchwirkung dokumentiert sein.
 
 Zu jedem automatisiert erzeugten O2C-Screenshot schreibt der Screenshot-Helper eine Metadatendatei unter `evidence/<testfall>/...screenshot.json`. Diese Datei enthaelt Status, Buchnutzung, Zweck, erwartete Werte im BC-Seitentext und bekannte Grenzen. Die PNG-Datei allein ist deshalb nicht mehr die ganze Wahrheit.

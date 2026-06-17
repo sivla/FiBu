@@ -2295,6 +2295,56 @@
         "39"
       ],
       "nextStep": "FIXEDASSETS-049-K30000-VENDOR-PERSONALIZE-FIELD-AVAILABILITY-READONLY"
+    },
+    {
+      "caseId": "FIXEDASSETS-049",
+      "process": "Fixed Assets",
+      "status": "done-labor-readonly-personalize-fields-not-visible",
+      "mode": "k30000-vendor-personalize-field-availability-readonly",
+      "company": "RM-DEMO",
+      "environment": "MCP_1_20260210",
+      "documents": [
+        "K30000",
+        "FA-CNC-01"
+      ],
+      "screenshots": [
+        "playwright/projects/fibu-book5/img/fixedassets-049-010-k30000-vendor-card-before-personalize.png",
+        "playwright/projects/fibu-book5/img/fixedassets-049-020-personalize-mode-or-entry.png",
+        "playwright/projects/fibu-book5/img/fixedassets-049-030-personalize-field-availability.png"
+      ],
+      "evidence": [
+        "playwright/projects/fibu-book5/evidence/fixedassets-049/README.md",
+        "playwright/projects/fibu-book5/evidence/fixedassets-049/FIXEDASSETS-049-K30000-VENDOR-PERSONALIZE-FIELD-AVAILABILITY-READONLY.md",
+        "playwright/projects/fibu-book5/evidence/fixedassets-049/FIXEDASSETS-049-result.json",
+        "playwright/projects/fibu-book5/evidence/fixedassets-049/020-personalize-field-availability.json",
+        "playwright/projects/fibu-book5/evidence/fixedassets-049/020-visual-qa.md"
+      ],
+      "proves": [
+        "K30000 Vendor Card can enter Personalize mode in RM-DEMO",
+        "the generated screenshots show Personalize mode and K30000 context",
+        "the Add field/field-list path was not stable in this run",
+        "none of the four critical default captions were visible in Personalize diagnostics",
+        "no personalization, vendor/default/setup change, purchase invoice, acquisition, depreciation or posting was executed"
+      ],
+      "doesNotProve": [
+        "K30000 Vendor Posting Group, Gen. Bus. Posting Group, Currency Code or VAT Bus. Posting Group values",
+        "field availability for the critical defaults",
+        "purchase invoice readiness",
+        "fixed asset acquisition, depreciation or ledger trace",
+        "German fixed-assets final proof"
+      ],
+      "reusablePatterns": [
+        "Personalize mode is only field availability evidence when the field list or concrete caption is visible",
+        "diagnostic screenshots must not be used as proof for invisible codes",
+        "after failed Personalize field-list discovery, decide Page Inspection/manual diagnosis versus narrow setup gate before mutation"
+      ],
+      "bookChapters": [
+        "21",
+        "37",
+        "38",
+        "39"
+      ],
+      "nextStep": "FIXEDASSETS-050-K30000-VENDOR-DEFAULTS-PAGEINSPECTION-OR-SETUP-GATE-DECISION"
     }
   ]
 }

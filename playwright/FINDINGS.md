@@ -1,4 +1,21 @@
 
+## FIND-BC-FA-049 Personalisieren-Modus zeigt K30000-Kontext, aber keine kritischen Default-Felder
+
+| Feld | Wert |
+|---|---|
+| Projekt | fibu-book5 |
+| Testfall | `FIXEDASSETS-049-K30000-VENDOR-PERSONALIZE-FIELD-AVAILABILITY-READONLY` |
+| Screenshot | `playwright/projects/fibu-book5/img/fixedassets-049-020-personalize-mode-or-entry.png`, `playwright/projects/fibu-book5/img/fixedassets-049-030-personalize-field-availability.png` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-049/` |
+| BC-Seite | `Vendor Card` Page `26`, Company `RM-DEMO` |
+| sichtbarer Text / Werte | `Wird personalisiert: Vendor Card`, `K30000`, `Zollspedition Nord GmbH`, `1M(8D)`, `BANK` |
+| nicht sichtbar | `Vendor Posting Group`, `Gen. Bus. Posting Group`, `Currency Code`, `VAT Bus. Posting Group`; kein stabil sichtbarer Feldlisten-/`Add field`-Pane |
+| Elementtyp | Kreditorenkarte / Personalisieren / Missing-Field-Diagnose / Screenshot-QA |
+| Testergebnis | Der praktische read-only Lauf beweist den Personalisieren-Modus als Debugging-Kontext, aber keine Feldverfuegbarkeit fuer die vier kritischen Einkaufsdefaults. Es wurde keine Personalisierung gespeichert. |
+| Entscheidung | Keine Einkaufsrechnung, kein Anlagenzugang, keine AfA und keine Buchung. Naechster Schritt ist `FIXEDASSETS-050-K30000-VENDOR-DEFAULTS-PAGEINSPECTION-OR-SETUP-GATE-DECISION`. |
+| Buchstelle | Kapitel 21 Anlagen; Kapitel Debugging/technische Nachweisfuehrung; Screenshot-QA |
+
+
 ## FIND-BC-FA-048 K30000 braucht Personalisieren-Diagnose vor jedem Default-Fit
 
 | Feld | Wert |

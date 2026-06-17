@@ -19,6 +19,21 @@ Jeder relevante Fehler oder Workaround bekommt:
 
 Jeder Eintrag muss außerdem gegen die betroffene Buchstelle geprüft werden. Wenn der Workaround zeigt, dass der Buchtext zu knapp, falsch oder missverständlich ist, wird die Buchstelle im selben Arbeitsgang korrigiert oder als offene Buch-Fundstelle in `playwright/FINDINGS.md` markiert.
 
+## WK-BC-FA-049 Personalisieren geoeffnet, aber Feldliste nicht sichtbar
+
+| Feld | Wert |
+|---|---|
+| Status | Labor-Lernfall / kein Setup-Fix |
+| Testfall | `FIXEDASSETS-049-K30000-VENDOR-PERSONALIZE-FIELD-AVAILABILITY-READONLY` |
+| Situation | Fuer `K30000` sollte read-only geprueft werden, ob `Vendor Posting Group`, `Gen. Bus. Posting Group`, `Currency Code` oder `VAT Bus. Posting Group` ueber Personalisieren sichtbar gemacht werden koennen. |
+| Symptom | BC oeffnete `Wird personalisiert: Vendor Card`, aber der Lauf bekam keine stabile `Add field`-/Feldlistenansicht und kein Screenshot zeigt die kritischen Feldcaptions. |
+| Sichtbarer Beleg | `playwright/projects/fibu-book5/evidence/fixedassets-049/`; Screenshots `playwright/projects/fibu-book5/img/fixedassets-049-*`. |
+| Ursache | Personalisieren ist ein Oberflaechenmodus. Der Modus allein beweist nur, dass die Page personalisierbar ist; er beweist nicht, dass ein bestimmtes Feld auf der Page verfuegbar, eingeblendet oder fachlich gefuellt ist. |
+| Warum BC so reagiert | Business Central trennt Page-Sichtbarkeit, Nutzer-/Profil-Personalisierung, Page-Design und Tabellen-/Posting-Logik. Eine Feldverfuegbarkeit muss visuell oder technisch konkret am Feld nachgewiesen werden. |
+| Loesung oder Laborgrenze | Keine Einkaufsrechnung und kein Anlagenzugang. Naechster Schritt ist `FIXEDASSETS-050`: Page Inspection, manuelle Personalisieren-Diagnose oder Setup-Gate-Entscheidung fuer die K30000-Defaults. |
+| Buchwirkung | Kapitel 21 darf die Personalisieren-Bilder nur als Debug-/Diagnosebilder verwenden. Kapitel 37/38 sollte erklaeren, dass ein Personalize-Screenshot erst dann Buch-Evidence ist, wenn der konkrete Feldname oder Wert sichtbar ist. |
+| Kuenftige Regel | Bei fehlenden Feldern nicht den Personalize-Modus selbst als Feldbeweis werten. Screenshot-QA muss pruefen, ob genau das behauptete Feld oder der behauptete Wert lesbar ist. |
+
 ## WK-BC-FA-038 Vendor-Auto-Number-Draft bei K30000
 
 | Feld | Wert |
