@@ -38,6 +38,24 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 
 ## Aktuelle Fundstellen
 
+## FIND-BC-FA-038 Vendor-Template erzeugt Auto-Number-Draft vor Zielnummer
+
+| Feld | Wert |
+|---|---|
+| Status | erledigt / Labor-Lernfall |
+| Projekt | fibu-book5 |
+| Testfall | `FIXEDASSETS-038-K30000-VENDOR-SETUP-FIT` |
+| Screenshot | `playwright/projects/fibu-book5/img/fixedassets-038-*` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-038/` |
+| BC-Seite | `Vendors` Page `27`, Company `RM-DEMO` |
+| sichtbarer Text / Werte | `K30000`, `Zollspedition Nord GmbH`; Cleanup-Nachfilter fuer `V00020` leer |
+| Elementtyp | Kreditorenkarte / Nummernserie / Template-Dialog / Cleanup-Lernfall |
+| Testergebnis | Business Central kann nach Template-Auswahl einen Auto-Number-Draft erzeugen. `V00030` wurde ueber echte UI-Eingaben und BC-Dialogbestaetigung auf `K30000` umgesetzt; ein leerer versehentlicher Draft `V00020` wurde per UI geloescht. |
+| Entscheidung | Kapitel 21 und Kapitel 37/38 muessen erklaeren: Template-Dialog ist kein Zielstammdatenbeweis. Erst sichtbarer Zielkreditor nach Save/Neuoeffnen/Filter zaehlt. |
+| Buchstelle | Kapitel 21 Anlagen; Kapitel 37 Debugging; Kapitel 38 Screenshot-QA |
+
+Fuer Anfaenger ist der Befund wichtig: Nummernserien und Vorlagen sind fachliche Einrichtung. Wer einen Zielkreditor anlegt, muss danach die Zielnummer, den Namen und spaeter die Karten-Defaults sichtbar pruefen. Leere Auto-Number-Entwuerfe duerfen nur bewusst und mit Nachweis geloescht werden.
+
 ## FIND-BC-FA-037 K30000-Setup-Fit ist erlaubt, aber nur als Kreditorenkarte
 
 | Feld | Wert |

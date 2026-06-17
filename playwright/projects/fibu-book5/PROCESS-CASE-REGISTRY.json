@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-17T05:20:00.000Z",
+  "updatedAt": "2026-06-17T06:05:00.000Z",
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
   "companyMode": "instance-bound-multi-company",
@@ -1810,6 +1810,54 @@
         "38"
       ],
       "nextStep": "FIXEDASSETS-038-K30000-VENDOR-SETUP-FIT"
+    },
+    {
+      "caseId": "FIXEDASSETS-038",
+      "process": "Fixed Assets",
+      "status": "done-labor-vendor-setup-fit-no-posting",
+      "mode": "ui-first-k30000-vendor-setup-fit-with-cleanup",
+      "company": "RM-DEMO",
+      "environment": "MCP_1_20260210",
+      "documents": [
+        "K30000",
+        "FA-CNC-01"
+      ],
+      "screenshots": [
+        "playwright/projects/fibu-book5/img/fixedassets-038-010-before-vendors-k30000.png",
+        "playwright/projects/fibu-book5/img/fixedassets-038-020-after-new-or-template.png",
+        "playwright/projects/fibu-book5/img/fixedassets-038-030-filled-vendor-card-before-save.png",
+        "playwright/projects/fibu-book5/img/fixedassets-038-040-after-vendors-k30000.png",
+        "playwright/projects/fibu-book5/img/fixedassets-038-090-cleanup-V00020-before.png"
+      ],
+      "evidence": [
+        "playwright/projects/fibu-book5/evidence/fixedassets-038/README.md",
+        "playwright/projects/fibu-book5/evidence/fixedassets-038/FIXEDASSETS-038-K30000-VENDOR-SETUP-FIT.md",
+        "playwright/projects/fibu-book5/evidence/fixedassets-038/FIXEDASSETS-038-result.json"
+      ],
+      "proves": [
+        "K30000 / Zollspedition Nord GmbH is visible in the RM-DEMO Vendors list",
+        "BC vendor template and number series can create auto-number drafts before target No. proof",
+        "V00030 was converted to K30000 through UI input and related-record confirmation",
+        "accidental empty draft V00020 was deleted UI-first",
+        "no purchase invoice, acquisition, depreciation or posting happened"
+      ],
+      "doesNotProve": [
+        "K30000 vendor card defaults such as posting groups, payment terms, currency, tax/VAT or blocked status",
+        "purchase invoice readiness",
+        "fixed asset acquisition, depreciation or ledger trace",
+        "German final fixed-assets accounting"
+      ],
+      "reusablePatterns": [
+        "real UI input instead of DOM value assignment for BC card fields",
+        "target master-data proof requires visible target row after reopening/filtering",
+        "auto-number draft cleanup only when draft origin and empty state are clear"
+      ],
+      "bookChapters": [
+        "21",
+        "37",
+        "38"
+      ],
+      "nextStep": "FIXEDASSETS-039-K30000-VENDOR-CARD-DEFAULTS-READONLY"
     }
   ]
 }

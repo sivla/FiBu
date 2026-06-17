@@ -19,6 +19,22 @@ Jeder relevante Fehler oder Workaround bekommt:
 
 Jeder Eintrag muss außerdem gegen die betroffene Buchstelle geprüft werden. Wenn der Workaround zeigt, dass der Buchtext zu knapp, falsch oder missverständlich ist, wird die Buchstelle im selben Arbeitsgang korrigiert oder als offene Buch-Fundstelle in `playwright/FINDINGS.md` markiert.
 
+## WK-BC-FA-038 Vendor-Auto-Number-Draft bei K30000
+
+| Feld | Wert |
+|---|---|
+| Status | geloest / Labor-Lernfall |
+| Testfall | `FIXEDASSETS-038-K30000-VENDOR-SETUP-FIT` |
+| Situation | `K30000` sollte UI-first als Kreditor fuer den spaeteren Anlagenprozess vorbereitet werden. |
+| Symptom | Nach Vendor-Template-Auswahl erzeugte BC zunaechst Auto-Number-Drafts wie `V00020`/`V00030`; direkte DOM-Wertsetzung war kein belastbarer sichtbarer BC-Save-Nachweis. |
+| Sichtbarer Beleg | `playwright/projects/fibu-book5/evidence/fixedassets-038/`; Screenshots `playwright/projects/fibu-book5/img/fixedassets-038-*`. |
+| Ursache | Nummernserien und Vorlagen koennen beim Erstellen einer Kreditorenkarte sofort einen Datensatz anlegen. BC-Karten muessen ueber echte UI-Eingaben und relevante BC-Dialoge bedient werden. |
+| Warum BC so reagiert | Business Central behandelt `No.` als identitaetsbildendes Feld; eine spaetere Aenderung kann verbundene Datensaetze betreffen und braucht daher eine Bestaetigung. |
+| Loesung | Reale Playwright-Eingaben auf der Vendor Card verwenden, den Dialog zur Aenderung verbundener Datensaetze bestaetigen, danach die Vendors-Liste mit Filter `No. = K30000` neu oeffnen. Den leeren Draft `V00020` nur nach sichtbarem Nachweis per UI loeschen. |
+| Pruefung nach Korrektur | `K30000 Zollspedition Nord GmbH` ist sichtbar; `V00020` zeigt nach Cleanup einen leeren Nachfilter. Keine Einkaufsrechnung, kein Zugang, keine AfA, keine Buchung. |
+| Buchwirkung | Kapitel 21 muss Nummernserie, Vorlage, Zielnummer-Kontrolle und Draft-Cleanup als Anfaengerfehler erklaeren. |
+| Kuenftige Regel | Bei BC-Karten keine DOM-Wertsetzung als Erfolg werten. Zielstammdaten zaehlen erst nach sichtbarem Neuoeffnen/Filter. |
+
 ## WK-BC-FA-029 Breite Caption-Suche fuellt falsche Anlagenkartenfelder
 
 | Feld | Wert |

@@ -1,5 +1,6 @@
 # Buch-zu-Evidence-Audit
 
+Update nach `FIXEDASSETS-038`: `K30000` / `Zollspedition Nord GmbH` ist in `RM-DEMO` UI-first als Labor-Kreditor sichtbar. Kapitel 21 darf die Kreditorenanlage jetzt als belegten Labor-Stammdatenschritt beschreiben, muss aber die Auto-Number-Falle erklaeren: Business Central kann nach Vendor-Template-Auswahl einen Entwurf wie `V00030` erzeugen, der erst durch echte UI-Eingabe und sichtbaren Nachweis zum Zielcode `K30000` wird. `V00020` wurde als leerer versehentlicher Draft per UI geloescht. Keine Einkaufsrechnung, kein Zugang, keine AfA, keine Buchung und kein deutscher Finalnachweis.
 Stand: 09.06.2026
 
 Dieser Audit ist die harte Abgleichdatei zwischen Buch, `RM-DEMO`-Laborstand und Evidence. Er ersetzt keine Tests. Er sagt, welche Buchaussagen bereits praktisch tragen, welche nur im CRONUS-USA-Labor gelten und welche noch als offene These behandelt werden muessen.

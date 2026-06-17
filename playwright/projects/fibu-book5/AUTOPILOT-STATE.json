@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "updatedAt": "2026-06-17T05:45:00.000Z",
+  "updatedAt": "2026-06-17T06:05:00.000Z",
   "repository": "sivla/FiBu",
   "branch": "codex/playwright-bc-screenshot-foundation",
   "environment": "MCP_1_20260210",
@@ -10,8 +10,8 @@
   "companyRegistry": "playwright/projects/fibu-book5/COMPANY-REGISTRY.json",
   "dataBasis": "CRONUS USA",
   "activeArea": "fixedassets",
-  "lastCompletedRun": "FIXEDASSETS-037-K30000-VENDOR-SETUP-GATE-DECISION",
-  "lastWorkType": "vendor-setup-gate-decision-no-bc-run",
+  "lastCompletedRun": "FIXEDASSETS-038-K30000-VENDOR-SETUP-FIT",
+  "lastWorkType": "ui-first-vendor-setup-fit-with-cleanup",
   "postedInLastRun": false,
   "latestPostedDocuments": {
     "o2c": {
@@ -595,6 +595,27 @@
         "noSetupChangeInDecisionRun": true,
         "noPosting": true,
         "evidence": "playwright/projects/fibu-book5/evidence/fixedassets-037/"
+      },
+      "vendorSetupFit": {
+        "caseId": "FIXEDASSETS-038",
+        "vendorNo": "K30000",
+        "vendorName": "Zollspedition Nord GmbH",
+        "result": "fit-visible-cleanup-done",
+        "autoNumberDraftConverted": "V00030 -> K30000",
+        "cleanup": "V00020 deleted UI-first and verified by empty filter",
+        "noPurchaseInvoice": true,
+        "noAcquisition": true,
+        "noDepreciation": true,
+        "noPosting": true,
+        "evidence": "playwright/projects/fibu-book5/evidence/fixedassets-038/",
+        "screenshots": [
+          "playwright/projects/fibu-book5/img/fixedassets-038-010-before-vendors-k30000.png",
+          "playwright/projects/fibu-book5/img/fixedassets-038-020-after-new-or-template.png",
+          "playwright/projects/fibu-book5/img/fixedassets-038-030-filled-vendor-card-before-save.png",
+          "playwright/projects/fibu-book5/img/fixedassets-038-040-after-vendors-k30000.png",
+          "playwright/projects/fibu-book5/img/fixedassets-038-090-cleanup-V00020-before.png"
+        ],
+        "nextAllowedCase": "FIXEDASSETS-039-K30000-VENDOR-CARD-DEFAULTS-READONLY"
       }
     }
   },
@@ -913,8 +934,9 @@
     "noPosting": true,
     "reusablePattern": "Use clickBcAction with scopeText plus expectedAfterClick for cancel-safe BC action clicks; use local DOM fallback only after helper failure and document fallbackUsed."
   },
-  "nextTechnicalStep": "FIXEDASSETS-038-K30000-VENDOR-SETUP-FIT: create or confirm exactly K30000 UI-first as RM-DEMO lab vendor, then read card defaults; keep purchase invoice, acquisition, depreciation and posting locked.",
+  "nextTechnicalStep": "FIXEDASSETS-039-K30000-VENDOR-CARD-DEFAULTS-READONLY: open K30000 vendor card read-only and document Vendor Posting Group, Gen. Bus. Posting Group, Payment Terms Code, Currency Code, Tax/VAT context and Blocked status; no purchase invoice, acquisition, depreciation or posting.",
   "sessionNotes": [
+    "FIXEDASSETS-038 ran UI-first in RM-DEMO. K30000 / Zollspedition Nord GmbH is visible as a lab vendor. BC auto-numbered draft V00030 was converted to K30000; accidental empty draft V00020 was deleted through the UI and verified by an empty filtered list. No purchase invoice, acquisition, depreciation, posting, vendor bank details, API shortcut, company switch or German final proof. Next step is FIXEDASSETS-039 read-only vendor card defaults.",
     "FIXEDASSETS-037 completed as a no-BC decision run. Because FIXEDASSETS-036 proves K30000 is not visible in filtered Vendors page 27, the next practical step is exactly one UI-first vendor setup fit for K30000 / Zollspedition Nord GmbH. The following run may create or confirm only the vendor card and must document visible defaults such as Vendor Posting Group, Gen. Bus. Posting Group, Payment Terms Code, Currency Code, Tax/VAT context and Blocked status. Purchase invoice, acquisition, depreciation, posting, vendor bank details, API shortcuts and German final claims remain locked.",
     "FIXEDASSETS-036 ran UI-first read-only in RM-DEMO. Vendors page 27 was opened in wide layout with filter No.=K30000; the filter pane and empty list state are visible, and no K30000 vendor row is visible. No vendor was created or saved, no purchase invoice, acquisition, depreciation or posting happened. The screenshot is a candidate negative filter/list proof, not a vendor-card proof. Next step is FIXEDASSETS-037-K30000-VENDOR-SETUP-GATE-DECISION.",
     "FIXEDASSETS-035 completed as a no-BC decision run. K30000 remains not proven and was not created. Next allowed step is FIXEDASSETS-036-K30000-VENDOR-PREFLIGHT-READONLY: open Vendors/Kreditoren read-only in RM-DEMO, use wide layout, filter/search K30000, optionally inspect template/card context cancel-safe, and stop without saving, purchase invoice, acquisition, depreciation or posting.",
@@ -927,7 +949,7 @@
     "FIXEDASSETS-025 corrected the overclaim around FIXEDASSETS-024: active card control proof is partial (4/6), so value lookup/save gate remains blocked until Depreciation Book Code and Posting Group are recovered on the active card. No BC run, no save, no setup and no posting."
   ],
   "prohibitedActions": [
-    "K30000 create/save is allowed only in FIXEDASSETS-038 as exactly scoped UI-first vendor setup fit; no purchase invoice, acquisition, depreciation or fixed-asset posting.",
+    "Do not create/save K30000 again after FIXEDASSETS-038; K30000 is visible as a lab vendor. Next allowed step is read-only vendor card defaults only.",
     "Do not treat FIXEDASSETS-036 as a K30000 vendor-card proof: it proves only that filtered Vendors page 27 shows no visible K30000 row.",
     "Do not treat FIXEDASSETS-035 as a vendor proof: it only decides the K30000 readiness path and keeps K30000 not proven.",
     "No purchase invoice, acquisition, depreciation or fixed-asset posting before a later explicit setup/posting gate permits the process."
