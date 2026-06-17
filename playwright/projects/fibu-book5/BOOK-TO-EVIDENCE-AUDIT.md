@@ -238,3 +238,4 @@ Lies AUTOPILOT-STATE.json, POSTING-AND-SETUP-GATES.md, CURRENT-STATE.md, BOOK-TO
 - `RM-DEMO` ist Lern-/Laborcompany, nicht finale deutsche Zielcompany.
 - Mehr-Company-Aufbau bleibt spaeterer Block.
 - Dieser Audit erzeugt keine neue BC-Evidence; er synchronisiert Buch-, Projekt- und Evidence-Wahrheit.
+Update nach `FIXEDASSETS-044-K30000-VENDOR-PURCHASE-INVOICE-GATE-DECISION`: Kapitel 21 ist evidence-basiert weiter vor dem Kaufbeleg gesperrt. `FIXEDASSETS-043` wird als FastTab-/Tax-Sichtbarkeit eingeordnet; der Buchtext darf daraus keine Einkaufsrechnungsbereitschaft ableiten. Offener Evidence-Hebel: `FIXEDASSETS-045` fuer Personalisieren/Page Inspection der fehlenden K30000-Defaults.

@@ -2209,3 +2209,8 @@ Fuer Anfaenger ist das wichtig, weil Migration sonst wie ein Excel-Upload wirkt.
 | Buchstelle | alle bebilderten Klickanleitungen, besonders Ledger-, Setup-, Journal-, Dialog- und Reporting-Screenshots |
 
 Fuer Anfaenger ist das entscheidend, weil ein Bild nicht nur beweisen soll, dass Business Central offen war. Es soll zeigen, woran man fachlich erkennt, dass der Schritt stimmt: den Code, das Konto, die Dimension, den Betrag, die Buchungsoption, den Fehler oder den Reportwert.
+# FIND-BC-FA-044 - K30000-Teilbild reicht nicht fuer Einkaufsrechnung
+
+Status: `labor`, `decision`, `fixed-assets`, `book-screenshot-quality`, `no-posting`.
+
+`FIXEDASSETS-044` entscheidet auf Basis von `FIXEDASSETS-043`, dass die sichtbaren K30000-/Invoicing-Felder keinen Kaufbeleg-Preflight freigeben. Der Screenshot zeigt `Tax Liable`, `Tax Area Code` und Zahlungswerte, aber nicht `Vendor Posting Group`, `Gen. Bus. Posting Group`, `Currency Code` oder `VAT Bus. Posting Group`. Buchwirkung: Kapitel 21 braucht vor der Einkaufsrechnung einen Diagnose-/Gate-Schritt fuer ausgeblendete oder technisch anders liegende Defaults. Naechster Schritt ist `FIXEDASSETS-045` mit Personalisieren/Page Inspection read-only.
