@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "updatedAt": "2026-06-17T00:00:00.000Z",
+  "updatedAt": "2026-06-17T12:00:00.000+02:00",
   "repository": "sivla/FiBu",
   "branch": "codex/playwright-bc-screenshot-foundation",
   "environment": "MCP_1_20260210",
@@ -10,8 +10,8 @@
   "companyRegistry": "playwright/projects/fibu-book5/COMPANY-REGISTRY.json",
   "dataBasis": "CRONUS USA",
   "activeArea": "fixedassets",
-  "lastCompletedRun": "FIXEDASSETS-040-K30000-VENDOR-DEFAULTS-DECISION",
-  "lastWorkType": "decision-no-bc-run",
+  "lastCompletedRun": "FIXEDASSETS-041-K30000-VENDOR-DEFAULTS-FIELD-DIAGNOSIS-READONLY",
+  "lastWorkType": "read-only-ui-field-diagnosis",
   "postedInLastRun": false,
   "latestPostedDocuments": {
     "o2c": {
@@ -658,6 +658,41 @@
         "noSetupChange": true,
         "noPosting": true,
         "nextAllowedCase": "FIXEDASSETS-041-K30000-VENDOR-DEFAULTS-FIELD-DIAGNOSIS-READONLY"
+      },
+      "vendorDefaultsFieldDiagnosis": {
+        "caseId": "FIXEDASSETS-041",
+        "targetVendorNo": "K30000",
+        "targetVendorName": "Zollspedition Nord GmbH",
+        "result": "vendor-defaults-diagnosis-partial",
+        "visibleUiProof": {
+          "paymentTermsCode": "1M(8D)",
+          "paymentMethodCode": "BANK"
+        },
+        "notVisibleInCapturedView": [
+          "Vendor Posting Group",
+          "Gen. Bus. Posting Group",
+          "Currency Code",
+          "Tax Area Code",
+          "Tax Liable",
+          "VAT Bus. Posting Group"
+        ],
+        "screenshotQuality": "candidate/limited: correct vendor and payment values visible, critical default fields not visible",
+        "evidence": "playwright/projects/fibu-book5/evidence/fixedassets-041/",
+        "screenshots": [
+          "playwright/projects/fibu-book5/img/fixedassets-041-010-k30000-vendor-card-top-diagnosis.png",
+          "playwright/projects/fibu-book5/img/fixedassets-041-020-k30000-vendor-card-mid-diagnosis.png"
+        ],
+        "safety": {
+          "noPosting": true,
+          "noPurchaseInvoice": true,
+          "noAcquisition": true,
+          "noDepreciation": true,
+          "noSetupChange": true,
+          "noVendorChange": true,
+          "noApiShortcut": true,
+          "noCompanySwitch": true
+        },
+        "nextAllowedCase": "FIXEDASSETS-042-K30000-VENDOR-DEFAULTS-VISIBILITY-DECISION"
       }
     }
   },
@@ -779,7 +814,7 @@
     },
     "nextCompanyEvidenceStep": "Only with a new documented company action purpose; otherwise continue with process/setup work."
   },
-  "nextBestStepWithoutApproval": "FIXEDASSETS-041-K30000-VENDOR-DEFAULTS-FIELD-DIAGNOSIS-READONLY: open K30000 Vendor Card read-only in RM-DEMO, use wide layout/FactBox off/Mehr anzeigen and only diagnostic Personalize or Page Inspection to prove or explain Vendor Posting Group, Gen. Bus. Posting Group, Currency Code and Tax/VAT defaults before any purchase invoice.",
+  "nextBestStepWithoutApproval": "FIXEDASSETS-042-K30000-VENDOR-DEFAULTS-VISIBILITY-DECISION: decide whether missing K30000 defaults require targeted FastTab chevron handling, Personalize/Page Inspection, or a narrow field/setup gate before any purchase invoice.",
   "nextBestStepWithApproval": {
     "payments": "Nur mit neuem Gate: weitere Zahlung, Kreditorenzahlung oder Bankabstimmung. PAYMENTS-011 darf nicht wiederholt werden.",
     "companies": "Company-Aktionen sind innerhalb MCP_1_20260210 erlaubt, aber nur mit COMPANY-REGISTRY-Eintrag, dokumentiertem Zweck/Risiko/Evidence-Plan und sofortigem State-/Evidence-Sync. Naechster Company-Schritt ist read-only Enumeration, keine Anlage.",
@@ -976,8 +1011,9 @@
     "noPosting": true,
     "reusablePattern": "Use clickBcAction with scopeText plus expectedAfterClick for cancel-safe BC action clicks; use local DOM fallback only after helper failure and document fallbackUsed."
   },
-  "nextTechnicalStep": "FIXEDASSETS-041-K30000-VENDOR-DEFAULTS-FIELD-DIAGNOSIS-READONLY: open K30000 Vendor Card read-only in RM-DEMO, use wide layout/FactBox off/Mehr anzeigen and only diagnostic Personalize or Page Inspection to prove or explain Vendor Posting Group, Gen. Bus. Posting Group, Currency Code and Tax/VAT defaults before any purchase invoice.",
+  "nextTechnicalStep": "FIXEDASSETS-042-K30000-VENDOR-DEFAULTS-VISIBILITY-DECISION: decide whether missing K30000 defaults require targeted FastTab chevron handling, Personalize/Page Inspection, or a narrow field/setup gate before any purchase invoice.",
   "sessionNotes": [
+    "FIXEDASSETS-041 ran UI-first/read-only in RM-DEMO. K30000 / Zollspedition Nord GmbH, Payment Terms Code 1M(8D) and Payment Method Code BANK are visible. Vendor Posting Group, Gen. Bus. Posting Group, Currency Code and Tax/VAT fields are not visible in the generated screenshots; FastTab expansion is not sufficiently proven. No purchase invoice, acquisition, depreciation, posting, setup/vendor change, API shortcut or company switch. Next no-approval step is FIXEDASSETS-042 visibility decision.",
     "FIXEDASSETS-040 completed as a no-BC decision run. Because FIXEDASSETS-039 proves only K30000 plus payment terms/method but not Vendor Posting Group, Gen. Bus. Posting Group, Currency Code or Tax/VAT defaults, purchase invoice, acquisition, depreciation and posting remain locked. Next no-approval step is FIXEDASSETS-041 read-only UI field diagnosis using wide layout, card-local Mehr anzeigen, and only diagnostic Personalize/Page Inspection.",
     "FIXEDASSETS-039 ran UI-first/read-only in RM-DEMO. The K30000 Vendor Card is reachable and shows K30000 / Zollspedition Nord GmbH plus Payment Terms Code 1M(8D) and Payment Method Code BANK. Vendor Posting Group, Gen. Bus. Posting Group, Currency Code and Tax/VAT fields were not visibly proven in the current card view. No purchase invoice, acquisition, depreciation, posting, setup change, vendor change, API shortcut or company switch. Next step is FIXEDASSETS-040 vendor-defaults decision/diagnosis before any purchase invoice.",
     "FIXEDASSETS-038 ran UI-first in RM-DEMO. K30000 / Zollspedition Nord GmbH is visible as a lab vendor. BC auto-numbered draft V00030 was converted to K30000; accidental empty draft V00020 was deleted through the UI and verified by an empty filtered list. No purchase invoice, acquisition, depreciation, posting, vendor bank details, API shortcut, company switch or German final proof. Next step is FIXEDASSETS-039 read-only vendor card defaults.",
@@ -993,6 +1029,7 @@
     "FIXEDASSETS-025 corrected the overclaim around FIXEDASSETS-024: active card control proof is partial (4/6), so value lookup/save gate remains blocked until Depreciation Book Code and Posting Group are recovered on the active card. No BC run, no save, no setup and no posting."
   ],
   "prohibitedActions": [
+    "After FIXEDASSETS-041, do not create a K30000 purchase invoice, acquisition, depreciation or posting until FIXEDASSETS-042 decides how to prove or explain missing K30000 default fields.",
     "After FIXEDASSETS-040, do not create a K30000 purchase invoice, acquisition, depreciation or posting until FIXEDASSETS-041 proves or explains the missing K30000 Vendor Card defaults read-only.",
     "Do not start a K30000 purchase invoice or fixed-asset acquisition after FIXEDASSETS-039: posting groups, currency and Tax/VAT defaults are not visibly proven on the Vendor Card. First run FIXEDASSETS-040 decision/diagnosis.",
     "Do not create/save K30000 again after FIXEDASSETS-038; K30000 is visible as a lab vendor. Next allowed step is read-only vendor card defaults only.",

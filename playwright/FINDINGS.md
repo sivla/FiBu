@@ -1,4 +1,23 @@
 
+## FIND-BC-FA-041 K30000-FastTabs zeigen Payment-Werte, aber keine Posting-/Tax-Defaults
+
+| Feld | Wert |
+|---|---|
+| Bereich | Fixed Assets / Kreditoren-Defaults / Screenshot-QA |
+| Projekt | fibu-book5 |
+| Testfall | `FIXEDASSETS-041-K30000-VENDOR-DEFAULTS-FIELD-DIAGNOSIS-READONLY` |
+| Screenshot | `playwright/projects/fibu-book5/img/fixedassets-041-010-k30000-vendor-card-top-diagnosis.png`, `playwright/projects/fibu-book5/img/fixedassets-041-020-k30000-vendor-card-mid-diagnosis.png` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-041/` |
+| BC-Seite | `Vendor Card` Page `26`, Company `RM-DEMO` |
+| sichtbarer Text / Werte | `K30000`, `Zollspedition Nord GmbH`, `Payment Terms Code = 1M(8D)`, `Payment Method Code = BANK` |
+| nicht sichtbar | `Vendor Posting Group`, `Gen. Bus. Posting Group`, `Currency Code`, `Tax Area Code`, `Tax Liable`, `VAT Bus. Posting Group` |
+| Elementtyp | Kreditorenkarte / FastTab-Sichtbarkeit / Buchungsdefault-Diagnose |
+| Testergebnis | Der praktische read-only Lauf beweist den K30000-Kontext und Zahlungswerte, aber keinen vollstaendigen Default-/Buchungsgruppen-Nachweis. Ein registrierter FastTab-Header-Klick beweist keine Expansion, solange die Zielcaptions und Zielwerte nicht sichtbar sind. |
+| Entscheidung | Keine Einkaufsrechnung, kein Anlagenzugang, keine AfA und keine Buchung. Naechster Schritt ist `FIXEDASSETS-042-K30000-VENDOR-DEFAULTS-VISIBILITY-DECISION` mit gezieltem FastTab-Chevron, Personalisieren oder Page Inspection. |
+| Buchstelle | Kapitel 21 Anlagen; Kapitel Debugging/technische Nachweisfuehrung; Screenshot-QA |
+
+Fuer Anfaenger ist der Fall gut: Business Central kann Werte in FastTab-Headern anzeigen, waehrend andere fachlich wichtige Felder ausgeblendet bleiben. Das ist kein Beweis fuer fehlendes Setup. Es ist ein Sichtbarkeits- und Nachweisproblem, das mit besserem UI-Pfad oder technischer Seitenpruefung geklaert werden muss.
+
 ## FIND-BC-FA-040 K30000 bleibt vor Kaufbeleg ein Default-Diagnose-Gate
 
 | Feld | Wert |

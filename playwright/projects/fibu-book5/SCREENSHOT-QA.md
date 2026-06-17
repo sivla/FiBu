@@ -18,6 +18,8 @@ Zusaetzliche harte Regel nach `FIXEDASSETS-012`: Das Bild muss sichtbar machen, 
 
 Ergaenzung nach `FIXEDASSETS-029`: Ein Code in einer Liste ist nur dann ein Buchbild, wenn genau die Existenz dieses Codes das Lernziel ist. Fuer Stammdatenkarten reicht der Code allein nicht. Ein Anlagenbild muss zum Beispiel auch die fachlich behaupteten Felder wie Beschreibung, Klasse/Unterklasse, AfA-Buch, Posting Group oder relevante Pflichtfelder zeigen; sonst ist es nur Stop-/Blocker-Evidence.
 
+Ergaenzung nach `FIXEDASSETS-041`: Ein FastTab-Header mit sichtbaren Kurzinfos zaehlt nur fuer diese Kurzinfos. `Payments 1M(8D) BANK` beweist Zahlungsbedingungen und Zahlungsart, aber nicht, dass `Invoicing`, `Receiving`, Posting Groups, Currency oder Tax/VAT sichtbar geoeffnet wurden. Wenn die gesuchten Codes im Screenshot nicht lesbar sind, bleibt das Bild ein Diagnosekandidat und darf nicht als Field-Proof genutzt werden.
+
 Laborbilder duerfen abweichen. Dann muessen Abweichung, Ursache und Buchwirkung dokumentiert sein.
 
 Zu jedem automatisiert erzeugten O2C-Screenshot schreibt der Screenshot-Helper eine Metadatendatei unter `evidence/<testfall>/...screenshot.json`. Diese Datei enthaelt Status, Buchnutzung, Zweck, erwartete Werte im BC-Seitentext und bekannte Grenzen. Die PNG-Datei allein ist deshalb nicht mehr die ganze Wahrheit.
@@ -113,6 +115,13 @@ Nicht noetig ist ein Screenshot, wenn er nur eine technische Zwischenstation ohn
 | `playwright/projects/fibu-book5/img/reporting-002-020-gl-entry-dimensions.png` | verworfener Dimensionsdialogversuch | Der Test konnte im aktuellen G/L-Entries-Kontext `Entry` -> `Dimensions` nicht oeffnen; Screenshot entspricht deshalb weiter der Sachpostenliste. | Nicht als Dimensionsnachweis verwenden; naechster Lauf braucht gezielten Sachposten-Dimensionspfad. |
 | `playwright/projects/fibu-book5/img/reporting-002-046-item-ledger-entry-792-dimensions.png` | guter Labor-Dimensionsnachweis | `Entry` -> `Dimensions` am Artikelposten `792` zeigt `PRODUCTLINE=MACHINE` und `CHANNEL=B2B`. | Als Laborbild fuer Dimensionsvererbung in Artikelposten geeignet; kein Financial-Reports-Endnachweis. |
 | `playwright/projects/fibu-book5/img/reporting-002-055-financial-reports-list.png` | guter Labor-Startpunkt fuer naechsten Reporting-Schritt | Financial Reports ist erreichbar; sichtbar sind u. a. `Income Statement`, `Revenue`, `Balance Sheet`, `Dimension Perspective` und `Column Definition`. `PRODUCTLINE`/`CHANNEL` sind noch nicht als Filter oder Auswertungsachse sichtbar. | Als Laborbild fuer Reporting-Navigation geeignet. Naechster Bildschritt: `Dimension Perspective` oder Dimensionsbericht gezielt oeffnen. |
+
+## `FIXEDASSETS-041` Screenshot Review
+
+| Screenshot | Bewertung | Befund | Entscheidung |
+|---|---|---|---|
+| `playwright/projects/fibu-book5/img/fixedassets-041-010-k30000-vendor-card-top-diagnosis.png` | Labor-Kontext-/Diagnosebild | Zeigt den K30000-Kreditorenkontext und am unteren Bildrand Payment-Werte. Die gesuchten Posting-/Currency-/Tax-Codes sind nicht sichtbar. | Als Evidence fuer den aktuellen UI-Zustand behalten; nicht als Buchbild fuer Vendor Posting Group, Gen. Bus. Posting Group, Currency oder Tax/VAT verwenden. |
+| `playwright/projects/fibu-book5/img/fixedassets-041-020-k30000-vendor-card-mid-diagnosis.png` | limitierter Kandidat / kein finaler Field-Proof | Zeigt im Wesentlichen weiter den Kartenkontext und Payment-Header. Eine geoeffnete Invoicing-/Receiving-FastTab-Ansicht ist nicht bewiesen. | Nicht als finales Buchbild verwenden; Folgelauf braucht gezielten FastTab-Chevron, Personalisieren oder Page Inspection. |
 
 ## `REPORTING-003` Screenshot Review
 

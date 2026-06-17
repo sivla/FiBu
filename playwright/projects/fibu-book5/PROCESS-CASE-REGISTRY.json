@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-17T00:00:00.000Z",
+  "updatedAt": "2026-06-17T12:00:00.000+02:00",
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
   "companyMode": "instance-bound-multi-company",
@@ -1936,6 +1936,52 @@
         "39"
       ],
       "nextStep": "FIXEDASSETS-041-K30000-VENDOR-DEFAULTS-FIELD-DIAGNOSIS-READONLY"
+    },
+    {
+      "caseId": "FIXEDASSETS-041",
+      "process": "Fixed Assets",
+      "status": "done-labor-readonly-ui-partial-defaults",
+      "mode": "k30000-vendor-defaults-field-diagnosis-readonly",
+      "company": "RM-DEMO",
+      "environment": "MCP_1_20260210",
+      "documents": [
+        "K30000",
+        "FA-CNC-01"
+      ],
+      "screenshots": [
+        "playwright/projects/fibu-book5/img/fixedassets-041-010-k30000-vendor-card-top-diagnosis.png",
+        "playwright/projects/fibu-book5/img/fixedassets-041-020-k30000-vendor-card-mid-diagnosis.png"
+      ],
+      "evidence": [
+        "playwright/projects/fibu-book5/evidence/fixedassets-041/README.md",
+        "playwright/projects/fibu-book5/evidence/fixedassets-041/FIXEDASSETS-041-K30000-VENDOR-DEFAULTS-FIELD-DIAGNOSIS-READONLY.md",
+        "playwright/projects/fibu-book5/evidence/fixedassets-041/FIXEDASSETS-041-result.json",
+        "playwright/projects/fibu-book5/evidence/fixedassets-041/020-k30000-vendor-defaults-field-diagnostics.json",
+        "playwright/projects/fibu-book5/evidence/fixedassets-041/030-visual-qa.md"
+      ],
+      "proves": [
+        "K30000 / Zollspedition Nord GmbH is visible on Vendor Card page 26 in RM-DEMO",
+        "Payment Terms Code 1M(8D) and Payment Method Code BANK are visible on the Payments FastTab header",
+        "The run was UI-first/read-only and did not create a purchase invoice, acquisition, depreciation or posting"
+      ],
+      "doesNotProve": [
+        "Vendor Posting Group, Gen. Bus. Posting Group, Currency Code, Tax Area Code, Tax Liable or VAT Bus. Posting Group values on K30000",
+        "that missing fields are missing setup rather than hidden UI/personalization/FastTab state",
+        "purchase invoice readiness",
+        "fixed asset acquisition, depreciation or ledger trace",
+        "German fixed-assets final proof"
+      ],
+      "reusablePatterns": [
+        "FastTab click must have visible target-caption/target-value postcondition",
+        "Payment header values prove only those payment values, not hidden posting/currency/tax fields",
+        "Screenshot status must be candidate/limited when requested codes are not visible"
+      ],
+      "bookChapters": [
+        "21",
+        "37",
+        "38"
+      ],
+      "nextStep": "FIXEDASSETS-042-K30000-VENDOR-DEFAULTS-VISIBILITY-DECISION"
     }
   ]
 }

@@ -101,6 +101,7 @@ Diese Datei sammelt wiederverwendbare Muster aus belegten Laeufen. Sie ist keine
 - Geometrie- und Koordinatenklicks sind nur begruendete Fallbacks; danach muss ein sichtbarer fachlicher Zustand nachgewiesen werden.
 - Bei bestehenden Listendatensaetzen reicht der Listentreffer nicht. Fuer Buch-/Setup-Reife immer die Karte oder Detailseite oeffnen und die Werte pruefen, die der Screenshot behauptet.
 - `FIXEDASSETS-039` zeigt die Grenze bei Karten-Defaults: Eine Vendor Card mit `K30000` und Name ist ein Stammdatenbeweis, aber kein vollstaendiger Buchungsdefault-Beweis. Wenn Payment Terms/Payment Method sichtbar sind, Posting Groups, Currency oder Tax/VAT aber nicht, muss der Lauf als partieller Read-only-Nachweis enden und eine Diagnose mit `Mehr anzeigen`, Personalisieren oder Page Inspection vorbereiten.
+- `FIXEDASSETS-041` verschaerft die FastTab-Regel: Ein registrierter Klick auf einen FastTab-Header oder Wertstreifen zaehlt nicht als aufgeklappt, solange danach nicht konkrete Zielcaptions oder Zielwerte sichtbar sind. `Payments 1M(8D) BANK` ist ein sichtbarer Zahlungswert, aber kein Beweis fuer `Vendor Posting Group`, `Gen. Bus. Posting Group`, `Currency Code` oder Tax/VAT. Fuer Folgelaeufe braucht es einen gezielten Chevron-/aria-expanded-Helfer oder eine bewusste Diagnose mit Personalisieren/Page Inspection.
 
 ## Personalisieren und Einstellungen
 
@@ -146,6 +147,7 @@ Diese Datei sammelt wiederverwendbare Muster aus belegten Laeufen. Sie ist keine
 - Screenshot-Typen: Navigation, Setup Before/After, Preflight, Posting Dialog, Posted Document, Ledger Trace, Report, Error, Rejected Path, Book Candidate.
 - Buchkandidat nur, wenn das sichtbare Lernziel im Bild erkennbar ist.
 - Wenn ein Screenshot mehrere fachliche Aussagen stuetzen soll, muessen alle behaupteten Codes/Werte sichtbar sein. Sonst ist das Bild nur partieller Kandidat und die nicht sichtbaren Werte bleiben offen.
+- `FIXEDASSETS-041` ist ein aktuelles Negativbeispiel fuer Buchbilder: Die K30000-Bilder zeigen den Kreditor und Payment-Werte, aber nicht die gesuchten Posting-/Currency-/Tax-Codes. Sie bleiben Evidence, duerfen aber nicht als Field-Proof fuer die fehlenden Codes verwendet werden.
 - `FIXEDASSETS-016` ist ein positives Beispiel: Das Nachherbild zeigt nicht nur den Seitenkontext, sondern `MACHINES` plus `12210`/`82000` im sichtbaren Kartenbereich.
 - `FIXEDASSETS-020` ist ein gutes Zwischenbild: Es beweist sichtbare Anlagenkartenfelder nach `Mehr anzeigen`, aber nicht die fertige Anlage. Solche Bilder muessen als Feldmapping-/Preflight-Kandidaten markiert werden.
 - `FIXEDASSETS-022` ist ein Rejected-QA-Beispiel: Ein Bild, das nicht den behaupteten Code oder sogar den falschen Dialog zeigt, muss geloescht oder als `rejected/do-not-use` dokumentiert werden. Seitentext-Treffer allein reichen nicht, wenn das sichtbare Bild den Wert nicht zeigt.
