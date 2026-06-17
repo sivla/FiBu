@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "updatedAt": "2026-06-17T08:20:00.000Z",
+  "updatedAt": "2026-06-17T08:45:00.000Z",
   "repository": "sivla/FiBu",
   "branch": "codex/playwright-bc-screenshot-foundation",
   "environment": "MCP_1_20260210",
@@ -10,8 +10,8 @@
   "companyRegistry": "playwright/projects/fibu-book5/COMPANY-REGISTRY.json",
   "dataBasis": "CRONUS USA",
   "activeArea": "fixedassets",
-  "lastCompletedRun": "FIXEDASSETS-047-K30000-VENDOR-DEFAULTS-VISIBILITY-VALUE-DISCOVERY-READONLY",
-  "lastWorkType": "read-only-ui-evidence",
+  "lastCompletedRun": "FIXEDASSETS-048-K30000-VENDOR-DEFAULTS-MANUAL-PERSONALIZE-OR-SETUP-GATE-DECISION",
+  "lastWorkType": "decision-no-bc-run",
   "postedInLastRun": false,
   "latestPostedDocuments": {
     "o2c": {
@@ -788,6 +788,27 @@
         "noVendorChange": true,
         "noPurchaseInvoice": true,
         "nextAllowedCase": "FIXEDASSETS-048-K30000-VENDOR-DEFAULTS-MANUAL-PERSONALIZE-OR-SETUP-GATE-DECISION"
+      },
+      "k30000DefaultsPersonalizeOrSetupGateDecision": {
+        "caseId": "FIXEDASSETS-048",
+        "decision": "do-not-approve-default-setup-fit-yet",
+        "result": "No BC run. FIXEDASSETS-047 proves only K30000 context plus Tax/Payment partials. Vendor Posting Group, Gen. Bus. Posting Group, Currency Code and VAT Bus. Posting Group remain not visible in UI screenshots, active-card diagnostics or focused page text. The next safe step is read-only Personalize field availability diagnosis, not vendor/setup mutation.",
+        "evidence": "playwright/projects/fibu-book5/evidence/fixedassets-048/",
+        "approvedNextCase": "FIXEDASSETS-049-K30000-VENDOR-PERSONALIZE-FIELD-AVAILABILITY-READONLY",
+        "forbiddenUntilNextGate": [
+          "purchase invoice",
+          "fixed asset acquisition",
+          "depreciation",
+          "posting",
+          "K30000 vendor default changes",
+          "posting group/currency/VAT setup changes",
+          "API shortcut for business data"
+        ],
+        "noBcRun": true,
+        "noPosting": true,
+        "noSetupChange": true,
+        "noVendorChange": true,
+        "noPurchaseInvoice": true
       }
     }
   },
@@ -909,14 +930,14 @@
     },
     "nextCompanyEvidenceStep": "Only with a new documented company action purpose; otherwise continue with process/setup work."
   },
-  "nextBestStepWithoutApproval": "FIXEDASSETS-048-K30000-VENDOR-DEFAULTS-MANUAL-PERSONALIZE-OR-SETUP-GATE-DECISION: decide without posting whether the missing K30000 defaults must be made visible manually via Personalize or require a narrow UI-first default/setup gate; no purchase invoice, no acquisition, no depreciation and no posting.",
+  "nextBestStepWithoutApproval": "FIXEDASSETS-049-K30000-VENDOR-PERSONALIZE-FIELD-AVAILABILITY-READONLY: open K30000 Vendor Card in RM-DEMO, use Personalize only as diagnostic mode, check whether Vendor Posting Group, Gen. Bus. Posting Group, Currency Code and VAT Bus. Posting Group are available as Page fields; no vendor/setup changes, no purchase invoice, no acquisition, no depreciation and no posting.",
   "nextBestStepWithApproval": {
     "payments": "Nur mit neuem Gate: weitere Zahlung, Kreditorenzahlung oder Bankabstimmung. PAYMENTS-011 darf nicht wiederholt werden.",
     "companies": "Company-Aktionen sind innerhalb MCP_1_20260210 erlaubt, aber nur mit COMPANY-REGISTRY-Eintrag, dokumentiertem Zweck/Risiko/Evidence-Plan und sofortigem State-/Evidence-Sync. Naechster Company-Schritt ist read-only Enumeration, keine Anlage.",
     "reporting": "Further Analysis View setup needs a new explicit gate and a scoped New/Card action proof. REPORTING-013 consumed the GOVERNANCE-007 gate and rejected setup because unscoped New/Neu is globally ambiguous in BC.",
     "tax": "TAX-002-DE-VAT-FIT: only with explicit approval; UI-first VAT Business/Product Posting Groups, VAT Posting Setup, document preview and VAT Entries proof; no German final claim until proven.",
     "compliance": "COMPLIANCE-002-EINVOICE-SETUP: E-Rechnungs-/E-Documents-/Versandprofil-/Change-Log-Setup nur mit Freigabe, UI-first Klickpfad, Validierungs-/Versand-/Auditnachweis und klarer Labor-/DE-Trennung.",
-    "fixedAssets": "No purchase invoice/acquisition/depreciation yet. FIXEDASSETS-047 confirms that Vendor Posting Group, Gen. Bus. Posting Group, Currency Code and VAT Bus. Posting Group are still not visibly proven; next allowed work is a no-BC/no-posting gate decision for manual personalization vs narrow UI-first default/setup fit.",
+    "fixedAssets": "No purchase invoice/acquisition/depreciation yet. FIXEDASSETS-048 rejects a default/setup fit because the critical K30000 defaults are still not visibly proven; next allowed work is read-only Personalize field availability diagnosis only.",
     "security": "SECURITY-002-USER-PERMISSION-SETUP: Benutzer-/Berechtigungs-/Profil-/Security-Group-/User-Setup-/Job-Queue-/Change-Log-Aenderungen nur mit Freigabe, UI-first Klickpfad, Rechte-/SoD-Matrix und Audit-/Review-Evidence.",
     "migration": "MIGRATION-002-CONFIGURATION-PACKAGES-IMPORT: Configuration Packages, Datenimport, Opening-Balance-Journale oder Cutover-Ausfuehrung nur mit Freigabe, UI-first Klickpfad, Abstimmprotokoll und Rueckfallregel.",
     "integrations": "INTEGRATIONS-002-SETUP-OR-CONNECTOR: Extension, AppSource-App, API/Web Service, Connector, Power Platform, Power BI, Job Queue oder produktiven Integrationslauf nur mit Freigabe, UI-first Klickpfad, UAT, Rollen/Berechtigungen, Fehlerfall, Rollback, Monitoring und Support Owner.",
@@ -1106,8 +1127,9 @@
     "noPosting": true,
     "reusablePattern": "Use clickBcAction with scopeText plus expectedAfterClick for cancel-safe BC action clicks; use local DOM fallback only after helper failure and document fallbackUsed."
   },
-  "nextTechnicalStep": "FIXEDASSETS-048-K30000-VENDOR-DEFAULTS-MANUAL-PERSONALIZE-OR-SETUP-GATE-DECISION: decide without BC posting whether the missing K30000 defaults require a manual Personalize visibility path or a narrow UI-first default/setup gate; no purchase invoice, no acquisition, no depreciation and no posting.",
+  "nextTechnicalStep": "FIXEDASSETS-049-K30000-VENDOR-PERSONALIZE-FIELD-AVAILABILITY-READONLY: use existing BC UI helpers to open K30000 Vendor Card page 26 and inspect Personalize field availability without saving vendor/setup data or starting purchase/acquisition/depreciation/posting.",
   "sessionNotes": [
+    "FIXEDASSETS-048 completed as a no-BC decision run. Because FIXEDASSETS-047 still does not prove Vendor Posting Group, Gen. Bus. Posting Group, Currency Code or VAT Bus. Posting Group values, no K30000 default/setup fit and no purchase-invoice preflight are approved. Next allowed case is FIXEDASSETS-049 K30000 vendor Personalize field availability read-only: diagnose whether the missing fields are available on the page, without vendor/setup changes, purchase invoice, acquisition, depreciation, posting, API shortcut or company switch.",
     "FIXEDASSETS-047 ran UI-first/read-only in RM-DEMO. The K30000 Vendor Card page 26 was opened in wide layout; Invoicing expanded and shows Tax Liable and Tax Area Code; Payments values 1M(8D) and BANK are visible. Vendor Posting Group, Gen. Bus. Posting Group, Currency Code and VAT Bus. Posting Group remain not visible in active card diagnostics or focused page text. No purchase invoice, acquisition, depreciation, posting, setup/vendor change, API shortcut or company switch. Next step is FIXEDASSETS-048 K30000 vendor defaults manual personalization or setup gate decision.",
     "FIXEDASSETS-046 completed as a no-BC gate decision. Because FIXEDASSETS-045 proves only the Personalize diagnostic entry point and partial visible K30000 Vendor Card values, no setup/default fit is approved yet. Missing defaults must first be discovered read-only via UI visibility, lookup/value evidence, Personalize as diagnosis or stable Page Inspection. No purchase invoice, acquisition, depreciation, posting, setup/vendor change, API shortcut or company switch. Next step is FIXEDASSETS-047 K30000 vendor defaults visibility/value discovery read-only.",
     "FIXEDASSETS-045 ran UI-first/read-only in RM-DEMO. The K30000 Vendor Card page 26 was opened in wide layout; Tax Liable, Tax Area Code, Payment Terms Code 1M(8D) and Payment Method Code BANK are visible. Vendor Posting Group, Gen. Bus. Posting Group, Currency Code and VAT Bus. Posting Group remain not visibly proven. The Settings pane shows Personalize as a diagnostic entry point, but no personalization was started or saved. Ctrl+Alt+F1 Page Inspection was not stable in this browser context. No purchase invoice, acquisition, depreciation, posting, setup/vendor change, API shortcut or company switch. Next step is FIXEDASSETS-046 K30000 vendor defaults gate decision.",
@@ -1130,6 +1152,7 @@
     "FIXEDASSETS-025 corrected the overclaim around FIXEDASSETS-024: active card control proof is partial (4/6), so value lookup/save gate remains blocked until Depreciation Book Code and Posting Group are recovered on the active card. No BC run, no save, no setup and no posting."
   ],
   "prohibitedActions": [
+    "After FIXEDASSETS-048, do not create a K30000 purchase invoice, acquisition, depreciation or posting and do not change K30000 vendor/setup defaults. The only approved next work is read-only Personalize field availability diagnosis for Vendor Posting Group, Gen. Bus. Posting Group, Currency Code and VAT Bus. Posting Group.",
     "After FIXEDASSETS-047, do not create a K30000 purchase invoice, acquisition, depreciation or posting and do not change K30000 vendor/setup defaults. Vendor Posting Group, Gen. Bus. Posting Group, Currency Code and VAT Bus. Posting Group remain not visibly proven; the next allowed work is a no-posting gate decision for manual personalization vs narrow UI-first default/setup fit.",
     "After FIXEDASSETS-046, do not create a K30000 purchase invoice, acquisition, depreciation or posting and do not change K30000 vendor/setup defaults. The next allowed work is read-only visibility/value discovery for Vendor Posting Group, Gen. Bus. Posting Group, Currency Code and VAT Bus. Posting Group.",
     "After FIXEDASSETS-045, do not create a K30000 purchase invoice, acquisition, depreciation or posting until FIXEDASSETS-046 explicitly decides whether a narrow UI-first setup/default fit or a manual visibility path is allowed; Vendor Posting Group, Gen. Bus. Posting Group, Currency Code and VAT Bus. Posting Group remain not visibly proven.",

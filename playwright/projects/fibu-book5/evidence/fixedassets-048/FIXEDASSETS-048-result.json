@@ -1,0 +1,53 @@
+{
+  "caseId": "FIXEDASSETS-048-K30000-VENDOR-DEFAULTS-MANUAL-PERSONALIZE-OR-SETUP-GATE-DECISION",
+  "generatedAt": "2026-06-17T08:45:00.000Z",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "dataBasis": "CRONUS USA",
+  "mode": "decision-no-bc-run",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-046/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-047/"
+  ],
+  "status": "done-decision-setup-fit-not-approved-personalize-readonly-next",
+  "decision": {
+    "approvePurchaseInvoicePreflight": false,
+    "approveDefaultSetupFit": false,
+    "approvePosting": false,
+    "approveNextReadOnlyPersonalizeAvailabilityRun": true,
+    "nextAllowedCase": "FIXEDASSETS-049-K30000-VENDOR-PERSONALIZE-FIELD-AVAILABILITY-READONLY"
+  },
+  "visibleFrom047": [
+    "K30000",
+    "Zollspedition Nord GmbH",
+    "Tax Area Code",
+    "Tax Liable",
+    "Payment Terms Code = 1M(8D)",
+    "Payment Method Code = BANK"
+  ],
+  "notVisibleFrom047": [
+    "Vendor Posting Group",
+    "Gen. Bus. Posting Group",
+    "Currency Code",
+    "VAT Bus. Posting Group"
+  ],
+  "reason": "FIXEDASSETS-047 still does not show the critical purchase/default fields on the Vendor Card or in focused page text. A setup/default fit would guess values. The next safe step is a UI-first Personalize availability diagnosis, not a data change.",
+  "allowedNextActions": [
+    "open K30000 Vendor Card in RM-DEMO",
+    "open Personalize as diagnostic mode",
+    "search/check whether the four critical fields are available for personalization",
+    "capture screenshots only when the intended field/caption/value is visible",
+    "document if a field is available, unavailable, hidden by role/profile, or requires another gate"
+  ],
+  "forbiddenNextActions": [
+    "change K30000 vendor values",
+    "change posting groups, currency or VAT/Tax setup",
+    "create a purchase invoice",
+    "post acquisition",
+    "calculate or post depreciation",
+    "use API shortcuts for business data",
+    "present a personalized screenshot as default BC standard view"
+  ],
+  "bookImpact": "Chapter 21 must keep the fixed-asset purchase path gated. Personalize can be taught as a missing-field diagnostic tool, but visible payment/tax partials do not prove purchase readiness.",
+  "nextStep": "FIXEDASSETS-049-K30000-VENDOR-PERSONALIZE-FIELD-AVAILABILITY-READONLY"
+}

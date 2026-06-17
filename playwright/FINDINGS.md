@@ -1,4 +1,23 @@
 
+## FIND-BC-FA-048 K30000 braucht Personalisieren-Diagnose vor jedem Default-Fit
+
+| Feld | Wert |
+|---|---|
+| Bereich | Fixed Assets / Kreditoren-Defaults / Gate-Entscheidung |
+| Projekt | fibu-book5 |
+| Testfall | `FIXEDASSETS-048-K30000-VENDOR-DEFAULTS-MANUAL-PERSONALIZE-OR-SETUP-GATE-DECISION` |
+| Screenshot | keine neuen Screenshots; Entscheidung nutzt `FIXEDASSETS-047` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-048/` |
+| BC-Seite | Ziel fuer Folgelauf: `Vendor Card` Page `26`, Company `RM-DEMO` |
+| sichtbarer Text / Werte | aus `FIXEDASSETS-047`: `K30000`, `Zollspedition Nord GmbH`, `Tax Area Code`, `Tax Liable`, `1M(8D)`, `BANK` |
+| nicht sichtbar | `Vendor Posting Group`, `Gen. Bus. Posting Group`, `Currency Code`, `VAT Bus. Posting Group` |
+| Elementtyp | Kreditorenkarte / Personalisieren / Missing-Field-Diagnose / Kaufbeleg-Gate |
+| Testergebnis | Kein neuer BC-Lauf. Ein Default-/Setup-Fit wird nicht freigegeben, weil die kritischen Felder weiterhin nicht sichtbar belegt sind. |
+| Entscheidung | Naechster Schritt ist `FIXEDASSETS-049-K30000-VENDOR-PERSONALIZE-FIELD-AVAILABILITY-READONLY`; keine Einkaufsrechnung, kein Anlagenzugang, keine AfA, keine Buchung, keine Kreditor-/Setup-Aenderung und kein API-Shortcut. |
+| Buchstelle | Kapitel 21 Anlagen; Kapitel Debugging/technische Nachweisfuehrung; Screenshot-QA |
+
+Fuer Anfaenger ist der Fall wichtig: Wenn Felder fehlen, prueft man zuerst, ob sie in der Page nur ausgeblendet sind. `Personalisieren` ist dafuer ein gutes Diagnosewerkzeug, aber ein personalisierter Screenshot ist nicht automatisch Standard-BC und kein fachlicher Default-Wertebeweis.
+
 ## FIND-BC-FA-047 K30000 zeigt Tax/Payment-Teilwerte, aber keine kritischen Einkaufsdefaults
 
 | Feld | Wert |
