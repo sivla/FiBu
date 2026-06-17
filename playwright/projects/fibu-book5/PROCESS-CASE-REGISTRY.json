@@ -2202,6 +2202,56 @@
         "39"
       ],
       "nextStep": "FIXEDASSETS-047-K30000-VENDOR-DEFAULTS-VISIBILITY-VALUE-DISCOVERY-READONLY"
+    },
+    {
+      "caseId": "FIXEDASSETS-047",
+      "process": "Fixed Assets",
+      "status": "done-labor-readonly-critical-defaults-still-not-visibly-proven",
+      "mode": "k30000-vendor-defaults-visibility-value-discovery-readonly",
+      "company": "RM-DEMO",
+      "environment": "MCP_1_20260210",
+      "documents": [
+        "K30000",
+        "FA-CNC-01"
+      ],
+      "screenshots": [
+        "playwright/projects/fibu-book5/img/fixedassets-047-010-k30000-vendor-card-context.png",
+        "playwright/projects/fibu-book5/img/fixedassets-047-020-k30000-invoicing-visibility.png",
+        "playwright/projects/fibu-book5/img/fixedassets-047-030-k30000-payments-visibility.png",
+        "playwright/projects/fibu-book5/img/fixedassets-047-040-k30000-receiving-visibility.png"
+      ],
+      "evidence": [
+        "playwright/projects/fibu-book5/evidence/fixedassets-047/README.md",
+        "playwright/projects/fibu-book5/evidence/fixedassets-047/FIXEDASSETS-047-K30000-VENDOR-DEFAULTS-VISIBILITY-VALUE-DISCOVERY-READONLY.md",
+        "playwright/projects/fibu-book5/evidence/fixedassets-047/FIXEDASSETS-047-result.json",
+        "playwright/projects/fibu-book5/evidence/fixedassets-047/020-field-value-diagnostics.json",
+        "playwright/projects/fibu-book5/evidence/fixedassets-047/020-visual-qa.md"
+      ],
+      "proves": [
+        "K30000 / Zollspedition Nord GmbH remains reachable on Vendor Card page 26 in RM-DEMO",
+        "Tax Liable and Tax Area Code are visible in the Invoicing area",
+        "Payment Terms Code 1M(8D) and Payment Method Code BANK remain visible",
+        "Vendor Posting Group, Gen. Bus. Posting Group, Currency Code and VAT Bus. Posting Group are not visible in active card diagnostics or focused page text",
+        "No purchase invoice, fixed-asset acquisition, depreciation or posting was executed"
+      ],
+      "doesNotProve": [
+        "purchase invoice readiness",
+        "K30000 Vendor Posting Group, Gen. Bus. Posting Group, Currency Code or VAT Bus. Posting Group values",
+        "fixed asset acquisition, depreciation or ledger trace",
+        "German fixed-assets final proof"
+      ],
+      "reusablePatterns": [
+        "wide layout plus hidden FactBox helps expose Vendor Card FastTabs",
+        "screenshots only prove captions and values that are visible in the image",
+        "Tax or Payment partial defaults do not release a purchase-invoice gate"
+      ],
+      "bookChapters": [
+        "21",
+        "37",
+        "38",
+        "39"
+      ],
+      "nextStep": "FIXEDASSETS-048-K30000-VENDOR-DEFAULTS-MANUAL-PERSONALIZE-OR-SETUP-GATE-DECISION"
     }
   ]
 }

@@ -47,6 +47,7 @@ Diese Datei sammelt wiederverwendbare Muster aus belegten Laeufen. Sie ist keine
 - Fuer Kartenfelder mit Seiteneffekten keine direkte DOM-Wertsetzung verwenden. Stattdessen sichtbare Inputs mit Playwright fuellen, Tab/Blur ausloesen und BC-Dialoge gezielt bestaetigen.
 - Ein Screenshot zaehlt nur, wenn er den Zielwert oder den bewusst dokumentierten Fehler sichtbar zeigt. Template-Dialoge sind Kontext, aber kein Zielstammdatenbeweis.
 - Nach `FIXEDASSETS-046` gilt fuer Kreditoren-Defaults: Ein sichtbarer Einstellungen-/`Personalisieren`-Einstieg ist nur Diagnose-Evidence. Er beweist keine ausgeblendeten Feldwerte und erlaubt keinen geratenen Setup-/Default-Fit. Der naechste Test muss die Feldcaption, den Lookup-Wert oder den Nicht-Sichtbar-Befund selbst sichtbar machen.
+- Nach `FIXEDASSETS-047` gilt zusaetzlich: Tax-/Payment-Teilwerte auf derselben Vendor Card sind kein Ersatz fuer kritische Einkaufsdefaults. Wenn `Tax Area Code`, `Tax Liable`, `1M(8D)` und `BANK` sichtbar sind, aber `Vendor Posting Group`, `Gen. Bus. Posting Group`, `Currency Code` und `VAT Bus. Posting Group` fehlen, bleibt der Kaufbeleg gesperrt. Screenshots duerfen nur fuer die jeweils lesbaren Captions/Werte freigegeben werden.
 
 ## Kartencontrol-Diagnose
 

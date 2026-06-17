@@ -1,4 +1,23 @@
 
+## FIND-BC-FA-047 K30000 zeigt Tax/Payment-Teilwerte, aber keine kritischen Einkaufsdefaults
+
+| Feld | Wert |
+|---|---|
+| Bereich | Fixed Assets / Kreditoren-Defaults / Sichtbarkeits- und Wertdiagnose |
+| Projekt | fibu-book5 |
+| Testfall | `FIXEDASSETS-047-K30000-VENDOR-DEFAULTS-VISIBILITY-VALUE-DISCOVERY-READONLY` |
+| Screenshot | `playwright/projects/fibu-book5/img/fixedassets-047-020-k30000-invoicing-visibility.png`, `playwright/projects/fibu-book5/img/fixedassets-047-030-k30000-payments-visibility.png` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-047/` |
+| BC-Seite | `Vendor Card` Page `26`, Company `RM-DEMO` |
+| sichtbarer Text / Werte | `K30000`, `Zollspedition Nord GmbH`, `Tax Liable`, `Tax Area Code`, `Payment Terms Code = 1M(8D)`, `Payment Method Code = BANK` |
+| nicht sichtbar | `Vendor Posting Group`, `Gen. Bus. Posting Group`, `Currency Code`, `VAT Bus. Posting Group` |
+| Elementtyp | Kreditorenkarte / FastTab / Default-Preflight / Screenshot-QA |
+| Testergebnis | Der praktische read-only Lauf bestaetigt die Teilwerte, aber kein kritischer Einkaufs-/Posting-Default ist sichtbar. Der fokussierte Seitentext enthaelt die kritischen Captions ebenfalls nicht. |
+| Entscheidung | Keine Einkaufsrechnung, kein Anlagenzugang, keine AfA und keine Buchung. Naechster Schritt ist `FIXEDASSETS-048-K30000-VENDOR-DEFAULTS-MANUAL-PERSONALIZE-OR-SETUP-GATE-DECISION`. |
+| Buchstelle | Kapitel 21 Anlagen; Kapitel Debugging/technische Nachweisfuehrung; Screenshot-QA |
+
+Fuer Anfaenger ist der Fall wichtig: Eine Kreditorenkarte kann echte sichtbare Teilwerte zeigen und trotzdem nicht kaufbelegreif sein. Vor einem Anlagenkauf muessen die buchungsrelevanten Defaults sichtbar oder ueber ein eigenes Gate bewusst gefittet werden.
+
 ## FIND-BC-FA-046 K30000-Defaults duerfen nicht geraten werden
 
 | Feld | Wert |

@@ -1,6 +1,6 @@
 # Posting- und Setup-Gates fuer FiBu Buch 5
 
-Stand: 2026-06-16
+Stand: 2026-06-17
 
 Diese Datei ist die Freigabe-Leitplanke fuer autonome Laeufe in `MCP_1_20260210`. Sie verhindert versehentliche Doppelbuchungen, Setup-Aenderungen ohne dokumentierten Zweck, Company-Aktionen ohne Registry und das Umdeuten von CRONUS-USA-Laborbefunden in deutsche Finalnachweise.
 
@@ -82,6 +82,8 @@ Regel: Ein Gate ist gesperrt, solange der aktuelle Prompt oder diese Datei es ni
 - `rejected`: der Pfad wurde versucht und als nicht tragfaehig dokumentiert.
 
 ## Aktuelle Konsequenz
+
+`FIXEDASSETS-047-K30000-VENDOR-DEFAULTS-VISIBILITY-VALUE-DISCOVERY-READONLY` ist erledigt. Der read-only UI-Lauf bestaetigt die Teilwerte `Tax Liable`, `Tax Area Code`, `Payment Terms Code = 1M(8D)` und `Payment Method Code = BANK`, aber `Vendor Posting Group`, `Gen. Bus. Posting Group`, `Currency Code` und `VAT Bus. Posting Group` sind weiterhin nicht sichtbar belegt. Das gibt keine Kaufbeleg-, Anlagenzugangs-, AfA- oder Buchungsfreigabe und keine Setup-Aenderungsfreigabe. Naechster No-Approval-Schritt ist `FIXEDASSETS-048-K30000-VENDOR-DEFAULTS-MANUAL-PERSONALIZE-OR-SETUP-GATE-DECISION`: ohne BC-Aenderung entscheiden, ob ein manueller Personalisieren-Sichtbarkeitspfad oder ein enger UI-first Default-/Setup-Fit als naechster Schritt erlaubt wird.
 
 `FIXEDASSETS-044-K30000-VENDOR-PURCHASE-INVOICE-GATE-DECISION` ist erledigt. Der 043-Teilnachweis reicht nicht fuer einen Kaufbeleg-Preflight, weil `Vendor Posting Group`, `Gen. Bus. Posting Group`, `Currency Code` und `VAT Bus. Posting Group` nicht sichtbar belegt sind. Naechster No-Approval-Schritt ist `FIXEDASSETS-045-K30000-VENDOR-PERSONALIZE-PAGEINSPECTION-DIAGNOSIS-READONLY`: fehlende Defaults read-only als UI-Verfuegbarkeits- oder technische Page-/Feldfrage klaeren. Einkaufsrechnung, Anlagenzugang, AfA, Kreditor-/Setup-Aenderung und Anlagenbuchung bleiben gesperrt.
 
