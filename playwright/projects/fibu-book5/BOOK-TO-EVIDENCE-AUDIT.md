@@ -1,5 +1,7 @@
 # Buch-zu-Evidence-Audit
 
+Update nach `FIXEDASSETS-042-K30000-VENDOR-DEFAULTS-VISIBILITY-DECISION`: Kapitel 21 bleibt vor dem Kaufbeleg gesperrt. Die fehlenden K30000-Buchungsgruppen-/Waehrungs-/Tax-Felder werden nicht als fehlendes Setup behauptet, sondern als Sichtbarkeitsfrage. Naechster Buch-/Evidence-Schritt ist ein read-only FastTab-Sichtbarkeitsbild: `Invoicing`/`Payments`/ggf. `Receiving` muessen so geoeffnet sein, dass die behaupteten Felder oder Werte sichtbar sind. Kein Kaufbeleg, kein Zugang, keine AfA, keine Buchung.
+
 Update nach `FIXEDASSETS-041-K30000-VENDOR-DEFAULTS-FIELD-DIAGNOSIS-READONLY`: Kapitel 21 hat jetzt einen praktischen UI-Befund zur K30000-Default-Diagnose, aber keinen Kaufbeleg-Startpunkt. `K30000`, `Zollspedition Nord GmbH`, `1M(8D)` und `BANK` sind sichtbar. Die gesuchten Buchungsgruppen-, Waehrungs- und Tax/VAT-Felder sind im Screenshot nicht sichtbar. Das Buch darf daraus nicht ableiten, dass das Setup fehlt; es muss erklaeren, dass zuerst Sichtbarkeit, FastTab, Personalisieren oder Seitenpruefung zu klaeren sind.
 
 Update nach `FIXEDASSETS-040-K30000-VENDOR-DEFAULTS-DECISION`: Kapitel 21 bleibt evidence-basiert blockiert vor dem Kaufbeleg. Der Buchtext darf `K30000` plus Zahlungsdefaults als Laborbefund nennen, aber keine Einkaufsrechnungs-, Anlagenzugangs-, AfA- oder deutsche Finalfreigabe ableiten. Naechste Buch-/Screenshot-Luecke ist die read-only Feld-Diagnose der nicht sichtbaren Kreditor-Defaults in `FIXEDASSETS-041`.

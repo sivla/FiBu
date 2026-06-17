@@ -20,6 +20,8 @@ Ergaenzung nach `FIXEDASSETS-029`: Ein Code in einer Liste ist nur dann ein Buch
 
 Ergaenzung nach `FIXEDASSETS-041`: Ein FastTab-Header mit sichtbaren Kurzinfos zaehlt nur fuer diese Kurzinfos. `Payments 1M(8D) BANK` beweist Zahlungsbedingungen und Zahlungsart, aber nicht, dass `Invoicing`, `Receiving`, Posting Groups, Currency oder Tax/VAT sichtbar geoeffnet wurden. Wenn die gesuchten Codes im Screenshot nicht lesbar sind, bleibt das Bild ein Diagnosekandidat und darf nicht als Field-Proof genutzt werden.
 
+Ergaenzung nach `FIXEDASSETS-042`: Der naechste brauchbare Screenshot-Typ ist ein FastTab Visibility Proof. Das Bild muss `K30000`, den geoeffneten FastTab und die behaupteten Feldcaptions oder Werte zeigen. Ein Screenshot ohne `Vendor Posting Group`, `Gen. Bus. Posting Group`, `Currency Code` oder Tax/VAT-Feld bleibt ein Negativ-/Diagnosebild und darf nicht als Kaufbeleg-Readiness verwendet werden.
+
 Laborbilder duerfen abweichen. Dann muessen Abweichung, Ursache und Buchwirkung dokumentiert sein.
 
 Zu jedem automatisiert erzeugten O2C-Screenshot schreibt der Screenshot-Helper eine Metadatendatei unter `evidence/<testfall>/...screenshot.json`. Diese Datei enthaelt Status, Buchnutzung, Zweck, erwartete Werte im BC-Seitentext und bekannte Grenzen. Die PNG-Datei allein ist deshalb nicht mehr die ganze Wahrheit.

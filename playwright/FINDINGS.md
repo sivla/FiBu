@@ -1,4 +1,23 @@
 
+## FIND-BC-FA-042 K30000-Default-Luecke ist zuerst FastTab-Sichtbarkeit, nicht Setup-Fit
+
+| Feld | Wert |
+|---|---|
+| Bereich | Fixed Assets / Kreditoren-Defaults / FastTab-Sichtbarkeit |
+| Projekt | fibu-book5 |
+| Testfall | `FIXEDASSETS-042-K30000-VENDOR-DEFAULTS-VISIBILITY-DECISION` |
+| Screenshot | keiner; Entscheidungslauf ohne BC-Ausfuehrung |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-042/` |
+| BC-Seite | Ziel fuer Folgelauf: `Vendor Card` Page `26`, Company `RM-DEMO` |
+| sichtbarer Text / Werte | aus `FIXEDASSETS-041`: `K30000`, `Zollspedition Nord GmbH`, `Payment Terms Code = 1M(8D)`, `Payment Method Code = BANK` |
+| nicht sichtbar | `Vendor Posting Group`, `Gen. Bus. Posting Group`, `Currency Code`, `Tax Area Code`, `Tax Liable`, `VAT Bus. Posting Group` |
+| Elementtyp | Kreditorenkarte / FastTab / Screenshot-QA / Setup-Gate |
+| Testergebnis | Kein neuer BC-Lauf. Die fehlenden Defaults werden nicht als fehlendes Setup behauptet. Erst muss ein read-only FastTab-Sichtbarkeitslauf mit Chevron/`aria-expanded` und Zielcaption-/Zielwert-Nachbedingung klaeren, ob die Felder sichtbar gemacht werden koennen. |
+| Entscheidung | Naechster Schritt ist `FIXEDASSETS-043-K30000-VENDOR-INVOICING-FASTTAB-VISIBILITY-READONLY`; keine Einkaufsrechnung, kein Anlagenzugang, keine AfA, keine Buchung, keine Kreditor-/Setup-Aenderung und kein API-Shortcut. |
+| Buchstelle | Kapitel 21 Anlagen; Kapitel Debugging/technische Nachweisfuehrung; Screenshot-QA |
+
+Fuer Anfaenger ist der Fall wichtig: Wenn Felder nicht zu sehen sind, ist das zuerst ein Sichtbarkeitsproblem. Man prueft FastTabs, Personalisieren und Seitenpruefung, bevor man Einrichtung aendert oder einen Kaufbeleg startet.
+
 ## FIND-BC-FA-041 K30000-FastTabs zeigen Payment-Werte, aber keine Posting-/Tax-Defaults
 
 | Feld | Wert |

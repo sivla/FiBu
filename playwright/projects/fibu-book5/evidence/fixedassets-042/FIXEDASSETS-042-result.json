@@ -1,0 +1,52 @@
+{
+  "caseId": "FIXEDASSETS-042-K30000-VENDOR-DEFAULTS-VISIBILITY-DECISION",
+  "timestamp": "2026-06-17T08:57:54.440+02:00",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "decision-no-bc-run",
+  "status": "done-decision-no-bc-run",
+  "inputEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-041/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-041/FIXEDASSETS-041-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-041/030-visual-qa.md"
+  ],
+  "visibleFromPreviousRun": [
+    "K30000",
+    "Zollspedition Nord GmbH",
+    "Payment Terms Code = 1M(8D)",
+    "Payment Method Code = BANK"
+  ],
+  "notVisibleFromPreviousRun": [
+    "Vendor Posting Group",
+    "Gen. Bus. Posting Group",
+    "Currency Code",
+    "Tax Area Code",
+    "Tax Liable",
+    "VAT Bus. Posting Group"
+  ],
+  "decision": "Do not proceed to purchase invoice or setup mutation. First run a narrow read-only Vendor Card FastTab visibility proof for Invoicing/Payments/Receiving using target captions or target values as postconditions.",
+  "nextAllowedCase": "FIXEDASSETS-043-K30000-VENDOR-INVOICING-FASTTAB-VISIBILITY-READONLY",
+  "recommendedPath": [
+    "Open Vendor Card page 26 for K30000 in RM-DEMO",
+    "Use wide layout and hide FactBox if needed",
+    "Expand FastTabs via small chevron or aria-expanded controls",
+    "Accept expansion only when target captions or target values are visible",
+    "Use Personalize only as diagnosis if fields remain hidden",
+    "Use Page Inspection only as technical page/table/field evidence if UI remains unclear"
+  ],
+  "forbiddenActions": [
+    "create purchase invoice",
+    "post fixed asset acquisition",
+    "post depreciation",
+    "change K30000 vendor defaults",
+    "change posting setup",
+    "use API shortcut",
+    "claim German VAT or chart of accounts final proof"
+  ],
+  "bookImpact": "Chapter 21 must keep K30000 as partial lab vendor evidence until posting groups, currency and tax/VAT context are visibly or technically diagnosed. The next click guide should teach FastTab visibility checks before purchase invoice readiness.",
+  "noBcRun": true,
+  "noPosting": true,
+  "noSetupChange": true,
+  "noVendorChange": true,
+  "deFinalProof": false
+}
