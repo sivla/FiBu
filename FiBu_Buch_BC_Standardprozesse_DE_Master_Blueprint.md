@@ -3847,6 +3847,8 @@ Nachweis nach `FIXEDASSETS-034`: Der zuvor offene Unterklassenblocker ist geloes
 
 Entscheidung nach `FIXEDASSETS-035`: Der naechste Schritt ist nicht sofort die Einkaufsrechnung, sondern ein eigener Kreditoren-Preflight fuer `K30000`. Ein Kreditor ist in Business Central nicht nur Name und Adresse. Die Kreditorenkarte kann Zahlungsbedingungen, Waehrung, Kreditorenbuchungsgruppe, Geschaeftsbuchungsgruppe, VAT-/Tax-Kontext, Sperrstatus und spaetere Verbindlichkeitsposten beeinflussen. Deshalb muss die Klickanleitung vor Schritt 4/5 zuerst `Kreditoren (Vendors)` oeffnen, `K30000` suchen oder filtern und sichtbar belegen, ob der Zielkreditor existiert. Der alte Vendor-Template-Dialog aus `FIXEDASSETS-012` ist nur Kontext, kein Nachweis fuer `K30000`. Bis dieser Preflight erledigt ist, bleiben Kreditoranlage, Einkaufsrechnung, Anlagenzugang, AfA und Postenspur Zielbild, nicht Labor-Endstand.
 
+Nachweis nach `FIXEDASSETS-036`: Der Kreditoren-Preflight ist in `RM-DEMO` read-only gelaufen. Die Seite `Kreditoren (Vendors)` / Page `27` zeigt den Filter `No. = K30000` und eine leere Listenansicht. Damit ist im aktuellen Labor nicht belegt, dass `K30000` existiert. Fuer die Klickanleitung ist das ein guter Anfaenger-Kontrollpunkt: Wenn der Filter leer bleibt, wird nicht zur Einkaufsrechnung gewechselt. Stattdessen braucht es zuerst eine eigene Setup-Gate-Entscheidung fuer die UI-first Kreditoranlage mit Vorlage, Pflichtfeldern, Buchungsgruppen, Zahlungsbedingungen, Waehrung und Tax-/VAT-Kontext.
+
 ### Schritt-für-Schritt
 
 1. Öffne `Anlagen (Fixed Assets)` und lege `FA-CNC-01` an.
@@ -3924,7 +3926,7 @@ Gebuchte Anlagenzugänge werden nicht durch Direktänderung der Anlagenposten ko
 | ID | `UAT-K21-001` |
 | Ziel | Zugang und AfA für Anlage `FA-CNC-01` abnehmen |
 | Rolle | Anlagenbuchhaltung, Kreditorenbuchhaltung |
-| Voraussetzung | AfA-Buch `HGB`, Anlagenbuchungsgruppe `MACHINES` und Kreditor `K30000` sind sichtbar eingerichtet; im aktuellen RM-DEMO-Labor ist `K30000` nach `FIXEDASSETS-035` noch nicht nachgewiesen |
+| Voraussetzung | AfA-Buch `HGB`, Anlagenbuchungsgruppe `MACHINES` und Kreditor `K30000` sind sichtbar eingerichtet; im aktuellen RM-DEMO-Labor ist `K30000` nach `FIXEDASSETS-036` im gefilterten Vendor-Kontext nicht sichtbar |
 | Testdaten | `FA-CNC-01`, `120.000 EUR`, Nutzungsdauer `8 Jahre`, `K30000` |
 | Exakte Schrittfolge | 1. Oeffne `Anlagen (Fixed Assets)` und lege `FA-CNC-01` an.<br>2. Setze AfA-Buch `HGB`, Methode `Linear`, Nutzungsdauer `8 Jahre`.<br>3. Pruefe `Kreditoren (Vendors)` und belege `K30000` sichtbar.<br>4. Oeffne danach `Einkaufsrechnungen (Purchase Invoices)` und erfasse Kreditor `K30000`, Zeile `Art = Anlage`, `Nr. = FA-CNC-01`, Betrag `120.000 EUR`.<br>5. Pruefe `Buchungsvorschau (Preview Posting)` und buche.<br>6. Oeffne `Anlagenposten (FA Ledger Entries)` und pruefe Zugang.<br>7. Starte `AfA berechnen (Calculate Depreciation)` fuer `30.06.2026`.<br>8. Buche AfA und pruefe Sachposten sowie Anlagenspiegel. |
 | Erwartete Belege | Anlagenkarte, gebuchte Einkaufsrechnung, gebuchtes AfA-Journal |

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "updatedAt": "2026-06-16T20:22:19.369Z",
+  "updatedAt": "2026-06-17T05:20:00.000Z",
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
   "scope": "FiBu Buch 5 reusable Business Central page/action knowledge",
@@ -608,10 +608,12 @@
       ],
       "reliableEntryPaths": [
         "Page-ID 27 plus list context",
-        "Tell-Me exact result plus context check"
+        "Tell-Me exact result plus context check",
+        "Page-ID 27 plus No. filter and visible filter pane for negative K30000 preflight"
       ],
       "knownActions": {
-        "New": "can open template dialog before card creation"
+        "New": "can open template dialog before card creation",
+        "Filter pane": "FIXEDASSETS-036 opened page 27 filtered No.=K30000 and made the left filter pane visible; the grid showed the empty filtered view."
       },
       "dangerousActions": [
         "New",
@@ -620,19 +622,26 @@
       ],
       "knownPitfalls": [
         "K30000 is not visible or created",
-        "Template dialog is its own required setup step"
+        "Template dialog is its own required setup step",
+        "After FIXEDASSETS-036, K30000 is not visible in the filtered Vendors page; this is a setup blocker, not permission to start a purchase invoice.",
+        "A negative Vendor screenshot is only useful when it visibly shows No.=K30000 or the active filter context plus the empty list state.",
+        "BC list/filter controls can live inside the runinframe frame; main-document-only scans miss the actual filter pane."
       ],
       "recommendedHelpers": [
         "openBcPageById",
         "waitForPageText",
         "clickBcAction",
         "expectBcDialog",
-        "screenshot"
+        "screenshot",
+        "frame-aware-filter-pane-diagnosis",
+        "screenshot-claimed-filter-visible",
+        "negative-list-empty-state-proof"
       ],
       "evidenceExamples": [
         "fixedassets-010",
         "fixedassets-012",
-        "p2p-001"
+        "p2p-001",
+        "fixedassets-036"
       ]
     },
     "Item Journals": {

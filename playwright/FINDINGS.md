@@ -38,6 +38,26 @@ Eine Fundstelle ist keine Störung. Sie ist Lernmaterial.
 
 ## Aktuelle Fundstellen
 
+## FIND-BC-FA-036 K30000 fehlt im gefilterten Vendor-Kontext
+
+| Feld | Wert |
+|---|---|
+| Status | erledigt |
+| Projekt | fibu-book5 |
+| Testfall | `FIXEDASSETS-036-K30000-VENDOR-PREFLIGHT-READONLY` |
+| Screenshot | `playwright/projects/fibu-book5/img/fixedassets-036-010-vendors-k30000-readonly.png` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-036/README.md`, `playwright/projects/fibu-book5/evidence/fixedassets-036/FIXEDASSETS-036-result.json` |
+| BC-Seite | `Vendors` Page `27`, Company `RM-DEMO` |
+| sichtbarer Text / Werte | `Vendors: Benutzerdefinierte Filter`, `Liste filtern nach:`, `No.`, `K30000` im Filterkontext, `(In dieser Ansicht kann nichts angezeigt werden)` |
+| Elementtyp | Kreditorenliste / Filterbereich / negativer Stammdatenbefund / Screenshot-QA |
+| erste Hypothese | Nach fertigem Anlagenstammdatenfit koennte `K30000` vielleicht als vorhandener Kreditor genutzt werden. |
+| Recherchequelle | Projekt-Evidence `FIXEDASSETS-036`; kein externer Quellenbefund, weil der Lauf konkrete UI-Wirklichkeit pruefte. |
+| Testergebnis | `K30000` ist im gefilterten Vendor-Listenbild nicht als Datensatz sichtbar. Der Screenshot ist nur deshalb brauchbar, weil Filterkontext und leere Liste sichtbar sind; ein leeres Grid ohne Filterwert waere als Buchbild unbrauchbar. |
+| Entscheidung | Kapitel 21 muss vor Einkaufsrechnung/Zugang den Kontrollschritt "Kreditor suchen" zeigen. Wenn `K30000` fehlt, folgt ein eigenes Setup-Gate fuer Kreditoranlage, keine Einkaufsrechnung. |
+| Buchstelle | Kapitel 21 Anlagen / Fixed Assets; Kapitel 37 Debugging und technische Nachweisfuehrung; Kapitel 38 Screenshot-QA |
+
+Fuer Anfaenger ist der Befund wichtig: Ein fehlender Kreditor ist kein kleiner kosmetischer Mangel. Ohne Kreditorenkarte fehlen Zahlungsbedingungen, Waehrung, Kreditorenbuchungsgruppe, Geschaeftsbuchungsgruppe, Tax/VAT-Kontext und Sperrstatus. Business Central kann daraus keine belastbare Einkaufsrechnung oder Anlagenaktivierung machen.
+
 ## FIND-BC-FA-035 K30000 ist ein eigener Kreditor-Readiness-Pfad vor Anlagenzugang
 
 | Feld | Wert |

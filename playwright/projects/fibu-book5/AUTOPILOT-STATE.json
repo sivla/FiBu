@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "updatedAt": "2026-06-16T22:05:00.000Z",
+  "updatedAt": "2026-06-17T05:20:00.000Z",
   "repository": "sivla/FiBu",
   "branch": "codex/playwright-bc-screenshot-foundation",
   "environment": "MCP_1_20260210",
@@ -10,8 +10,8 @@
   "companyRegistry": "playwright/projects/fibu-book5/COMPANY-REGISTRY.json",
   "dataBasis": "CRONUS USA",
   "activeArea": "fixedassets",
-  "lastCompletedRun": "FIXEDASSETS-035-K30000-VENDOR-READINESS-DECISION",
-  "lastWorkType": "fixedassets-vendor-readiness-decision-no-bc-run",
+  "lastCompletedRun": "FIXEDASSETS-036-K30000-VENDOR-PREFLIGHT-READONLY",
+  "lastWorkType": "ui-first-read-only-vendor-preflight",
   "postedInLastRun": false,
   "latestPostedDocuments": {
     "o2c": {
@@ -548,6 +548,25 @@
         "noSetupChange": true,
         "noPosting": true,
         "nextAllowedCase": "FIXEDASSETS-036-K30000-VENDOR-PREFLIGHT-READONLY"
+      },
+      "vendorPreflight": {
+        "caseId": "FIXEDASSETS-036",
+        "targetVendorNo": "K30000",
+        "result": "not-visible-readonly",
+        "page": "Vendors",
+        "pageId": 27,
+        "environment": "MCP_1_20260210",
+        "company": "RM-DEMO",
+        "evidence": "playwright/projects/fibu-book5/evidence/fixedassets-036/",
+        "screenshot": "playwright/projects/fibu-book5/img/fixedassets-036-010-vendors-k30000-readonly.png",
+        "screenshotStatus": "candidate-negative-filter-proof",
+        "noSetupChange": true,
+        "noVendorCreated": true,
+        "noPurchaseInvoice": true,
+        "noAcquisition": true,
+        "noDepreciation": true,
+        "noPosting": true,
+        "nextAllowedCase": "FIXEDASSETS-037-K30000-VENDOR-SETUP-GATE-DECISION"
       }
     }
   },
@@ -866,8 +885,9 @@
     "noPosting": true,
     "reusablePattern": "Use clickBcAction with scopeText plus expectedAfterClick for cancel-safe BC action clicks; use local DOM fallback only after helper failure and document fallbackUsed."
   },
-  "nextTechnicalStep": "FIXEDASSETS-036: run a UI-first read-only Vendor/Kreditoren preflight for K30000 in RM-DEMO, preferably wide layout; prove whether K30000 exists or is missing, capture screenshot/evidence, do not save, create purchase invoice, post acquisition, calculate depreciation or post.",
+  "nextTechnicalStep": "FIXEDASSETS-037-K30000-VENDOR-SETUP-GATE-DECISION: no-BC-change decision whether and how K30000 may be created UI-first as fixed-asset vendor; keep purchase invoice, acquisition, depreciation and posting locked.",
   "sessionNotes": [
+    "FIXEDASSETS-036 ran UI-first read-only in RM-DEMO. Vendors page 27 was opened in wide layout with filter No.=K30000; the filter pane and empty list state are visible, and no K30000 vendor row is visible. No vendor was created or saved, no purchase invoice, acquisition, depreciation or posting happened. The screenshot is a candidate negative filter/list proof, not a vendor-card proof. Next step is FIXEDASSETS-037-K30000-VENDOR-SETUP-GATE-DECISION.",
     "FIXEDASSETS-035 completed as a no-BC decision run. K30000 remains not proven and was not created. Next allowed step is FIXEDASSETS-036-K30000-VENDOR-PREFLIGHT-READONLY: open Vendors/Kreditoren read-only in RM-DEMO, use wide layout, filter/search K30000, optionally inspect template/card context cancel-safe, and stop without saving, purchase invoice, acquisition, depreciation or posting.",
     "FIXEDASSETS-030 completed as a decision run without BC execution. The existing incomplete FA-CNC-01 remains the book/lab target and should be corrected UI-first in FIXEDASSETS-031, provided the card still has no acquisition/book-value/posting state. No setup change, no K30000, no purchase invoice, no acquisition, no depreciation, no posting and no company switch.",
     "FIXEDASSETS-029-EXISTING-ASSET-READONLY-VERIFY ran UI-first read-only in RM-DEMO. It opened the existing Fixed Asset Card and proved the previous list screenshot was insufficient: only No. FA-CNC-01 fits; Description, FA Class Code, FA Subclass Code, Depreciation Book Code HGB, Posting Group MACHINES, depreciation years and dates are blank/not fit. No setup change, no K30000, no purchase invoice, no acquisition, no depreciation, no posting and no company switch. Next step is FIXEDASSETS-030-FA-CNC-01-CORRECTION-GATE-DECISION.",
@@ -878,6 +898,8 @@
     "FIXEDASSETS-025 corrected the overclaim around FIXEDASSETS-024: active card control proof is partial (4/6), so value lookup/save gate remains blocked until Depreciation Book Code and Posting Group are recovered on the active card. No BC run, no save, no setup and no posting."
   ],
   "prohibitedActions": [
+    "No K30000 create/save, purchase invoice, acquisition, depreciation or fixed-asset posting before FIXEDASSETS-037 explicitly defines the UI-first setup gate.",
+    "Do not treat FIXEDASSETS-036 as a K30000 vendor-card proof: it proves only that filtered Vendors page 27 shows no visible K30000 row.",
     "Do not treat FIXEDASSETS-035 as a vendor proof: it only decides the K30000 readiness path and keeps K30000 not proven.",
     "No K30000 save/create, purchase invoice, acquisition, depreciation or fixed-asset posting before FIXEDASSETS-036 read-only vendor preflight and a later explicit setup/posting gate permits the process."
   ],
