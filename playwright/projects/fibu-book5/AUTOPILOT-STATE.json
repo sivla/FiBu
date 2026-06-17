@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "updatedAt": "2026-06-17T08:57:54.440+02:00",
+  "updatedAt": "2026-06-17T07:17:00.942Z",
   "repository": "sivla/FiBu",
   "branch": "codex/playwright-bc-screenshot-foundation",
   "environment": "MCP_1_20260210",
@@ -10,8 +10,8 @@
   "companyRegistry": "playwright/projects/fibu-book5/COMPANY-REGISTRY.json",
   "dataBasis": "CRONUS USA",
   "activeArea": "fixedassets",
-  "lastCompletedRun": "FIXEDASSETS-042-K30000-VENDOR-DEFAULTS-VISIBILITY-DECISION",
-  "lastWorkType": "decision-no-bc-run",
+  "lastCompletedRun": "FIXEDASSETS-043-K30000-VENDOR-INVOICING-FASTTAB-VISIBILITY-READONLY",
+  "lastWorkType": "read-only-ui-fasttab-visibility-proof",
   "postedInLastRun": false,
   "latestPostedDocuments": {
     "o2c": {
@@ -703,6 +703,19 @@
         "noPosting": true,
         "noSetupChange": true,
         "noVendorChange": true
+      },
+      "k30000FastTabVisibility": {
+        "caseId": "FIXEDASSETS-043",
+        "result": "Invoicing FastTab opened via small aria-expanded=false control; Tax Liable and Tax Area Code visible, Payment Terms Code 1M(8D) and Payment Method Code BANK visible; Vendor Posting Group, Gen. Bus. Posting Group, Currency Code and VAT Bus. Posting Group remain not visible.",
+        "evidence": "playwright/projects/fibu-book5/evidence/fixedassets-043/",
+        "screenshots": [
+          "playwright/projects/fibu-book5/img/fixedassets-043-020-k30000-vendor-invoicing-fasttab-proof.png",
+          "playwright/projects/fibu-book5/img/fixedassets-043-030-k30000-vendor-payments-fasttab-proof.png"
+        ],
+        "noPosting": true,
+        "noSetupChange": true,
+        "noVendorChange": true,
+        "nextAllowedCase": "FIXEDASSETS-044-K30000-VENDOR-PURCHASE-INVOICE-GATE-DECISION"
       }
     }
   },
@@ -1021,8 +1034,9 @@
     "noPosting": true,
     "reusablePattern": "Use clickBcAction with scopeText plus expectedAfterClick for cancel-safe BC action clicks; use local DOM fallback only after helper failure and document fallbackUsed."
   },
-  "nextTechnicalStep": "FIXEDASSETS-043-K30000-VENDOR-INVOICING-FASTTAB-VISIBILITY-READONLY: open K30000 Vendor Card read-only and prove Invoicing/Payments/Receiving FastTab expansion via chevron/aria-expanded plus visible target captions or values before any purchase invoice.",
+  "nextTechnicalStep": "FIXEDASSETS-044-K30000-VENDOR-PURCHASE-INVOICE-GATE-DECISION: decide whether the partial K30000 Invoicing proof is sufficient for a no-posting purchase-invoice preflight or whether Personalize/Page Inspection must first prove hidden Vendor Posting Group, Gen. Bus. Posting Group and Currency Code.",
   "sessionNotes": [
+    "FIXEDASSETS-043 ran UI-first/read-only in RM-DEMO. The K30000 Vendor Card was opened through Page 26 in wide layout. Invoicing was expanded with a small aria-expanded=false FastTab control; the screenshot visibly shows Tax Liable, Tax Area Code, Posting Details and Withholding Tax fields. It does not show Vendor Posting Group, Gen. Bus. Posting Group, Currency Code or VAT Bus. Posting Group. Payments still shows 1M(8D) and BANK. No purchase invoice, acquisition, depreciation, posting, setup/vendor change, API shortcut or company switch. Next step is a gate decision before any purchase-invoice preflight.",
     "FIXEDASSETS-042 completed as a decision/no-BC run. Because FIXEDASSETS-041 proves only K30000 plus payment values, the next safe step is a narrow UI-first FastTab visibility proof: open Vendor Card page 26 for K30000, use chevron/aria-expanded controls, and accept expansion only when target captions or values are visible. No purchase invoice, acquisition, depreciation, posting, setup/vendor change, API shortcut or German final proof.",
     "FIXEDASSETS-041 ran UI-first/read-only in RM-DEMO. K30000 / Zollspedition Nord GmbH, Payment Terms Code 1M(8D) and Payment Method Code BANK are visible. Vendor Posting Group, Gen. Bus. Posting Group, Currency Code and Tax/VAT fields are not visible in the generated screenshots; FastTab expansion is not sufficiently proven. No purchase invoice, acquisition, depreciation, posting, setup/vendor change, API shortcut or company switch. Next no-approval step is FIXEDASSETS-042 visibility decision.",
     "FIXEDASSETS-040 completed as a no-BC decision run. Because FIXEDASSETS-039 proves only K30000 plus payment terms/method but not Vendor Posting Group, Gen. Bus. Posting Group, Currency Code or Tax/VAT defaults, purchase invoice, acquisition, depreciation and posting remain locked. Next no-approval step is FIXEDASSETS-041 read-only UI field diagnosis using wide layout, card-local Mehr anzeigen, and only diagnostic Personalize/Page Inspection.",
@@ -1040,6 +1054,7 @@
     "FIXEDASSETS-025 corrected the overclaim around FIXEDASSETS-024: active card control proof is partial (4/6), so value lookup/save gate remains blocked until Depreciation Book Code and Posting Group are recovered on the active card. No BC run, no save, no setup and no posting."
   ],
   "prohibitedActions": [
+    "After FIXEDASSETS-043, do not create a K30000 purchase invoice, acquisition, depreciation or posting until FIXEDASSETS-044 explicitly decides whether the partial FastTab proof is sufficient for a no-posting purchase-invoice preflight; Vendor Posting Group, Gen. Bus. Posting Group and Currency Code are still not visibly proven.",
     "After FIXEDASSETS-042, do not create a K30000 purchase invoice, acquisition, depreciation or posting until FIXEDASSETS-043 proves or technically diagnoses K30000 Invoicing/Payment/Receiving default field visibility read-only.",
     "After FIXEDASSETS-041, do not create a K30000 purchase invoice, acquisition, depreciation or posting until FIXEDASSETS-042 decides how to prove or explain missing K30000 default fields.",
     "After FIXEDASSETS-040, do not create a K30000 purchase invoice, acquisition, depreciation or posting until FIXEDASSETS-041 proves or explains the missing K30000 Vendor Card defaults read-only.",

@@ -1,4 +1,23 @@
 
+## FIND-BC-FA-043 K30000-Invoicing-FastTab zeigt Tax-Felder, aber keine Buchungsgruppen
+
+| Feld | Wert |
+|---|---|
+| Bereich | Fixed Assets / Kreditoren-Defaults / FastTab-Sichtbarkeit |
+| Projekt | fibu-book5 |
+| Testfall | `FIXEDASSETS-043-K30000-VENDOR-INVOICING-FASTTAB-VISIBILITY-READONLY` |
+| Screenshot | `playwright/projects/fibu-book5/img/fixedassets-043-020-k30000-vendor-invoicing-fasttab-proof.png`, `playwright/projects/fibu-book5/img/fixedassets-043-030-k30000-vendor-payments-fasttab-proof.png` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-043/` |
+| BC-Seite | `Vendor Card` Page `26`, Company `RM-DEMO` |
+| sichtbarer Text / Werte | `K30000`, `Zollspedition Nord GmbH`, `Tax Liable`, `Tax Area Code`, `Posting Details`, Withholding-Tax-Felder, `Payment Terms Code = 1M(8D)`, `Payment Method Code = BANK` |
+| nicht sichtbar | `Vendor Posting Group`, `Gen. Bus. Posting Group`, `Currency Code`, `VAT Bus. Posting Group` |
+| Elementtyp | Kreditorenkarte / FastTab / Screenshot-QA / Kaufbeleg-Gate |
+| Testergebnis | Der praktische read-only Lauf beweist, dass `Invoicing` per kleinem `aria-expanded=false`-FastTab-Control geoeffnet werden kann. Das Bild traegt Tax-/Invoicing-Teilfelder, aber weiterhin nicht die buchungsgruppen- und waehrungsrelevanten Defaults. |
+| Entscheidung | Keine Einkaufsrechnung, kein Anlagenzugang, keine AfA und keine Buchung. Naechster Schritt ist `FIXEDASSETS-044-K30000-VENDOR-PURCHASE-INVOICE-GATE-DECISION`, bevor ein Kaufbeleg-Preflight geplant wird. |
+| Buchstelle | Kapitel 21 Anlagen; Kapitel Debugging/technische Nachweisfuehrung; Screenshot-QA |
+
+Fuer Anfaenger ist der Fall stark: Ein geoeffneter FastTab kann einzelne fachliche Felder sichtbar machen, aber trotzdem nicht alle Werte zeigen, die fuer eine sichere Buchung relevant sind. Ein Screenshot erklaert deshalb immer genau das, was sichtbar ist, und nicht mehr.
+
 ## FIND-BC-FA-042 K30000-Default-Luecke ist zuerst FastTab-Sichtbarkeit, nicht Setup-Fit
 
 | Feld | Wert |

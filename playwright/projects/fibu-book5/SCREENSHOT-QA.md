@@ -22,6 +22,8 @@ Ergaenzung nach `FIXEDASSETS-041`: Ein FastTab-Header mit sichtbaren Kurzinfos z
 
 Ergaenzung nach `FIXEDASSETS-042`: Der naechste brauchbare Screenshot-Typ ist ein FastTab Visibility Proof. Das Bild muss `K30000`, den geoeffneten FastTab und die behaupteten Feldcaptions oder Werte zeigen. Ein Screenshot ohne `Vendor Posting Group`, `Gen. Bus. Posting Group`, `Currency Code` oder Tax/VAT-Feld bleibt ein Negativ-/Diagnosebild und darf nicht als Kaufbeleg-Readiness verwendet werden.
 
+Ergaenzung nach `FIXEDASSETS-043`: Der neue Invoicing-Screenshot ist ein Teilbeleg, kein Vollbeleg. Er zeigt `K30000`, den geoeffneten `Invoicing`-Bereich, `Tax Liable`, `Tax Area Code`, `Posting Details` und Withholding-Tax-Felder. Er zeigt nicht `Vendor Posting Group`, `Gen. Bus. Posting Group`, `Currency Code` oder `VAT Bus. Posting Group`. Fuer Buch und Evidence gilt deshalb: das Bild darf nur die sichtbaren Tax-/Invoicing-Felder erklaeren, nicht die Buchungsgruppen-/Waehrungs-Readiness.
+
 Laborbilder duerfen abweichen. Dann muessen Abweichung, Ursache und Buchwirkung dokumentiert sein.
 
 Zu jedem automatisiert erzeugten O2C-Screenshot schreibt der Screenshot-Helper eine Metadatendatei unter `evidence/<testfall>/...screenshot.json`. Diese Datei enthaelt Status, Buchnutzung, Zweck, erwartete Werte im BC-Seitentext und bekannte Grenzen. Die PNG-Datei allein ist deshalb nicht mehr die ganze Wahrheit.

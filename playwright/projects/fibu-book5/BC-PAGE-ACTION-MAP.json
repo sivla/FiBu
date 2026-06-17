@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "updatedAt": "2026-06-17T08:57:54.440+02:00",
+  "updatedAt": "2026-06-17T07:17:00.942Z",
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
   "scope": "FiBu Buch 5 reusable Business Central page/action knowledge",
@@ -610,13 +610,16 @@
         "Page-ID 27 plus list context",
         "Tell-Me exact result plus context check",
         "Page-ID 27 plus No. filter and visible filter pane for negative K30000 preflight",
-        "Vendor Card Page-ID 26 plus filter Vendor.No.=K30000 for read-only defaults proof"
+        "Vendor Card Page-ID 26 plus filter Vendor.No.=K30000 for read-only defaults proof",
+        "Vendor Card Page-ID 26 plus Vendor.No.=K30000 filter; FIXEDASSETS-043 proves Invoicing FastTab expansion via a small aria-expanded=false control"
       ],
       "knownActions": {
         "New": "can open template dialog before card creation",
         "Filter pane": "FIXEDASSETS-036 opened page 27 filtered No.=K30000 and made the left filter pane visible; the grid showed the empty filtered view.",
         "Open card": "Open K30000 from the list or Page-ID 26 filtered by Vendor.No.; use only read-only checks before purchase invoice gates.",
-        "Show more / Mehr anzeigen": "Use card-local expansion and lower-card scroll to reveal payment/invoicing/default fields, but treat non-visible fields as open evidence."
+        "Show more / Mehr anzeigen": "Use card-local expansion and lower-card scroll to reveal payment/invoicing/default fields, but treat non-visible fields as open evidence.",
+        "Invoicing FastTab": "FIXEDASSETS-043: open only via small FastTab/aria-expanded control and accept proof only when target captions or values are visible; Tax Liable and Tax Area Code were visible, but Vendor Posting Group, Gen. Bus. Posting Group and Currency Code were not.",
+        "Payments FastTab": "Payment Terms Code 1M(8D) and Payment Method Code BANK are visible in FIXEDASSETS-039/041/043; this does not prove Invoicing defaults."
       },
       "dangerousActions": [
         "New",
@@ -629,7 +632,9 @@
         "After FIXEDASSETS-036, K30000 is not visible in the filtered Vendors page; this is a setup blocker, not permission to start a purchase invoice.",
         "A negative Vendor screenshot is only useful when it visibly shows No.=K30000 or the active filter context plus the empty list state.",
         "BC list/filter controls can live inside the runinframe frame; main-document-only scans miss the actual filter pane.",
-        "After FIXEDASSETS-039, K30000 and payment defaults are visible, but Vendor Posting Group, Gen. Bus. Posting Group, Currency and Tax/VAT are not visibly proven; no purchase invoice until a defaults diagnosis/gate resolves this."
+        "After FIXEDASSETS-039, K30000 and payment defaults are visible, but Vendor Posting Group, Gen. Bus. Posting Group, Currency and Tax/VAT are not visibly proven; no purchase invoice until a defaults diagnosis/gate resolves this.",
+        "After FIXEDASSETS-043, Tax Liable and Tax Area Code are visible on Invoicing, but Vendor Posting Group, Gen. Bus. Posting Group, Currency Code and VAT Bus. Posting Group remain not visible; no purchase invoice gate yet.",
+        "Do not use broad body/header matches as FastTab proof; the screenshot must show the claimed captions or values."
       ],
       "recommendedHelpers": [
         "openBcPageById",
@@ -640,7 +645,9 @@
         "frame-aware-filter-pane-diagnosis",
         "screenshot-claimed-filter-visible",
         "negative-list-empty-state-proof",
-        "open-vendor-card-page-26-filtered"
+        "open-vendor-card-page-26-filtered",
+        "small-fasttab-aria-expanded-control",
+        "collectActiveCardControlDiagnostics"
       ],
       "evidenceExamples": [
         "fixedassets-010",
@@ -648,7 +655,8 @@
         "p2p-001",
         "fixedassets-036",
         "fixedassets-038",
-        "fixedassets-039"
+        "fixedassets-039",
+        "fixedassets-043"
       ]
     },
     "Item Journals": {
