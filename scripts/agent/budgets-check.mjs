@@ -12,6 +12,7 @@ const current = readJson('.agent/state/current.json');
 const errors = [];
 const defaults = budgets.defaults ?? {};
 const policy = budgets.dependencyPolicy ?? {};
+const profiles = budgets.budgetProfiles ?? {};
 
 for (const [key, min] of [
   ['maxFilesToReadPerRun', 1],
@@ -25,6 +26,33 @@ for (const [key, min] of [
   if (!Number.isInteger(defaults[key]) || defaults[key] < min) {
     errors.push(`budgets.defaults.${key} must be an integer >= ${min}`);
   }
+}
+
+if (!profiles[defaults.budgetProfile]) {
+  errors.push(`budgets.defaults.budgetProfile must reference a known profile: ${defaults.budgetProfile}`);
+}
+
+for (const [profileName, profile] of Object.entries(profiles)) {
+  for (const [key, min] of [
+  ['maxFilesToReadPerRun', 1],
+  ['maxEvidenceFilesToReadPerRun', 0],
+  ['maxScreenshotMetadataFilesToReadPerRun', 0],
+  ['maxSkillsPerRun', 1],
+  ['maxPatchFilesPerRun', 0],
+]) {
+    if (!Number.isInteger(profile[key]) || profile[key] < min) {
+      errors.push(`budgets.budgetProfiles.${profileName}.${key} must be an integer >= ${min}`);
+    }
+  }
+}
+
+function profileForCase(activeCase) {
+  const requested = activeCase.budgetProfile ?? defaults.budgetProfile;
+  if (!profiles[requested]) {
+    errors.push(`active case budgetProfile references unknown profile: ${requested}`);
+    return profiles[defaults.budgetProfile] ?? defaults;
+  }
+  return profiles[requested];
 }
 
 if (defaults.readWholeBook !== false) {
@@ -45,11 +73,13 @@ if (policy.lockfileRequired !== true) {
 
 if (current.active_case_file) {
   const activeCase = readJson(current.active_case_file);
-  if ((activeCase.mustRead?.length ?? 0) > defaults.maxFilesToReadPerRun) {
-    errors.push(`active case mustRead exceeds maxFilesToReadPerRun: ${activeCase.mustRead.length} > ${defaults.maxFilesToReadPerRun}`);
+  const activeProfile = profileForCase(activeCase);
+  const activeProfileName = activeCase.budgetProfile ?? defaults.budgetProfile;
+  if ((activeCase.mustRead?.length ?? 0) > activeProfile.maxFilesToReadPerRun) {
+    errors.push(`active case mustRead exceeds ${activeProfileName}.maxFilesToReadPerRun: ${activeCase.mustRead.length} > ${activeProfile.maxFilesToReadPerRun}`);
   }
-  if ((activeCase.recommendedSkills?.length ?? 0) > defaults.maxSkillsPerRun) {
-    errors.push(`active case recommendedSkills exceeds maxSkillsPerRun: ${activeCase.recommendedSkills.length} > ${defaults.maxSkillsPerRun}`);
+  if ((activeCase.recommendedSkills?.length ?? 0) > activeProfile.maxSkillsPerRun) {
+    errors.push(`active case recommendedSkills exceeds ${activeProfileName}.maxSkillsPerRun: ${activeCase.recommendedSkills.length} > ${activeProfile.maxSkillsPerRun}`);
   }
 }
 

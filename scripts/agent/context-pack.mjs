@@ -51,12 +51,15 @@ const coverage = readJson('.agent/state/coverage_state.json');
 const lastRun = readJson('.agent/state/last_run_summary.json');
 const routing = readJson('.agent/model-routing.json');
 const capabilityRegistry = readJson('.agent/capabilities.json');
+const budgets = readJson('.agent/budgets.json');
 
 if (!existsSync(current.active_case_file)) {
   throw new Error(`active case file not found: ${current.active_case_file}`);
 }
 
 const activeCase = readJson(current.active_case_file);
+const budgetProfileName = activeCase.budgetProfile ?? budgets.defaults?.budgetProfile ?? 'standard';
+const budgetProfile = budgets.budgetProfiles?.[budgetProfileName] ?? budgets.defaults ?? {};
 const taskClass = chooseTaskClass(current, activeCase);
 const route = routing.taskClasses?.[taskClass];
 
@@ -105,6 +108,9 @@ const contextPack = {
     allowedActionCount: firstItems(activeCase.allowedActions ?? current.allowedActions, 99).length,
     forbiddenActionCount: firstItems(activeCase.forbiddenActions ?? current.forbiddenActions, 99).length,
     selectedTaskClass: taskClass,
+    budgetProfile: budgetProfileName,
+    maxFilesToReadPerRun: budgetProfile.maxFilesToReadPerRun,
+    maxSkillsPerRun: budgetProfile.maxSkillsPerRun,
   },
   capabilityMaturity: {
     areaStatus: activeAreaCoverage.status,

@@ -2,6 +2,7 @@
   "schemaVersion": 1,
   "purpose": "Token- und Artefaktbudget fuer autonome FiBu-Buch-5-Laeufe.",
   "defaults": {
+    "budgetProfile": "standard",
     "maxFilesToReadPerRun": 8,
     "maxMarkdownLinesPerLargeFile": 120,
     "maxEvidenceFilesToReadPerRun": 5,
@@ -39,6 +40,47 @@
       "state-contradicts-evidence"
     ]
   },
+  "budgetProfiles": {
+    "small": {
+      "purpose": "Monkey- oder enges Wizard-Reading; schnell, billig, wenig Kontext.",
+      "maxFilesToReadPerRun": 5,
+      "maxEvidenceFilesToReadPerRun": 2,
+      "maxScreenshotMetadataFilesToReadPerRun": 3,
+      "maxSkillsPerRun": 2,
+      "maxPatchFilesPerRun": 3
+    },
+    "standard": {
+      "purpose": "Default fuer normale Autopilot-Laeufe.",
+      "maxFilesToReadPerRun": 8,
+      "maxEvidenceFilesToReadPerRun": 5,
+      "maxScreenshotMetadataFilesToReadPerRun": 6,
+      "maxSkillsPerRun": 3,
+      "maxPatchFilesPerRun": 8
+    },
+    "expanded": {
+      "purpose": "Wizard-/Judge-Lauf mit mehreren verbundenen Capabilities, aber ohne breite Inventur.",
+      "maxFilesToReadPerRun": 14,
+      "maxEvidenceFilesToReadPerRun": 8,
+      "maxScreenshotMetadataFilesToReadPerRun": 10,
+      "maxSkillsPerRun": 5,
+      "maxPatchFilesPerRun": 12
+    },
+    "deep": {
+      "purpose": "Seltene Architektur-, Review- oder Big-Brain-Laeufe mit klarer Begruendung.",
+      "maxFilesToReadPerRun": 24,
+      "maxEvidenceFilesToReadPerRun": 12,
+      "maxScreenshotMetadataFilesToReadPerRun": 16,
+      "maxSkillsPerRun": 10,
+      "maxPatchFilesPerRun": 16
+    }
+  },
+  "budgetProfileRules": [
+    "Default ist standard.",
+    "small fuer monkey_work oder sehr enges Lesen.",
+    "expanded nur, wenn aktive Case-Datei oder Context-Pack mehr Skills/Dateien begruendet.",
+    "deep nur fuer seltene Architektur-, Review- oder Big-Brain-Laeufe.",
+    "Mehr Skills sind erlaubt, wenn sie fokussiert sind; ungezielte Skill-Sammlung ist ineffizient."
+  ],
   "dependencyPolicy": {
     "noNewDependenciesByDefault": true,
     "allowedRuntimeDependencies": [],
