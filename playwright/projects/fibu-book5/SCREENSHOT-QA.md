@@ -34,6 +34,8 @@ Ergaenzung nach `FIXEDASSETS-051`: Das Page-Inspection-Bild zeigt `Vendor Card (
 
 Ergaenzung nach `FIXEDASSETS-060`: Das neue Purchase-Invoice-Bild ist ein Preflight-/Kontextkandidat. Es zeigt `Purchase Invoice`, Pflichtfelder wie `Vendor Name` und `Vendor Invoice No.` sowie den Lines-/Gridbereich. Es zeigt aber keinen Anlagenkauf: kein `K30000`, keine `Vendor Invoice No.`, kein Zeilentyp `Fixed Asset`, kein `FA-CNC-01`, keine Preview und keine Buchung. Weil die FactBox offen ist und die erste Zeile default auf `Item` steht, darf das Bild nur den Karten-/Lines-Kontext nach `Neu` erklaeren, nicht einen Zielbeleg.
 
+Ergaenzung nach `FIXEDASSETS-061`: Fuer den naechsten Anlagen-Einkaufsrechnungs-Screenshot reicht kein einzelner sichtbarer Code. Ein Field-Mapping-Bild ist nur brauchbar, wenn `Purchase Invoice`, `K30000`, ein sichtbarer `Vendor Invoice No.`-Wert, der Lines-/Gridbereich, Zeilentyp `Fixed Asset` und `FA-CNC-01` im selben Vordergrundkontext sichtbar sind. Fehlt einer dieser Bestandteile, ist das Bild nur Kontext-, Diagnose- oder Rejected-Evidence.
+
 Laborbilder duerfen abweichen. Dann muessen Abweichung, Ursache und Buchwirkung dokumentiert sein.
 
 Zu jedem automatisiert erzeugten O2C-Screenshot schreibt der Screenshot-Helper eine Metadatendatei unter `evidence/<testfall>/...screenshot.json`. Diese Datei enthaelt Status, Buchnutzung, Zweck, erwartete Werte im BC-Seitentext und bekannte Grenzen. Die PNG-Datei allein ist deshalb nicht mehr die ganze Wahrheit.

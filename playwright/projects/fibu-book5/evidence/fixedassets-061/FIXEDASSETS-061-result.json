@@ -1,0 +1,68 @@
+{
+  "caseId": "FIXEDASSETS-061-K30000-FA-CNC-01-TARGET-FIELD-MAPPING-GATE",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "gate-decision-no-bc-run",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-056/FIXEDASSETS-056-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-057/FIXEDASSETS-057-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-060/FIXEDASSETS-060-result.json"
+  ],
+  "decision": "approve-one-narrow-target-field-mapping-preflight",
+  "nextAllowedCase": "FIXEDASSETS-062-K30000-FA-CNC-01-TARGET-FIELD-MAPPING-NO-POSTING",
+  "mustUseNewTest": true,
+  "requiredGuard": "playwright/core/bc/purchase-invoice-guards.ts::classifyCurrentPurchaseInvoiceFieldMappingPage",
+  "allowedActions": [
+    "Open Purchase Invoices page in MCP_1_20260210 / RM-DEMO",
+    "Click scoped New/Neu only in Purchase Invoices context",
+    "Prove active Purchase Invoice card/lines context before target entry",
+    "Enter/select K30000 in invoice header only while card/lines context remains visible",
+    "Enter a unique Vendor Invoice No. only as field-mapping/preflight value",
+    "Select or enter line Type = Fixed Asset only if the Lines/Grid context is visible",
+    "Select or enter FA-CNC-01 only after line Type = Fixed Asset is visibly set",
+    "Run guard after each header/line action",
+    "Capture a screenshot only if the screenshot shows the claimed target context",
+    "Clean up any draft or accidental object through the UI before ending"
+  ],
+  "forbiddenActions": [
+    "Preview Posting",
+    "Post",
+    "Receive",
+    "Invoice",
+    "Receive and Invoice",
+    "fixed asset acquisition posting",
+    "depreciation posting",
+    "setup changes",
+    "API shortcut",
+    "company switch",
+    "leaving a draft behind"
+  ],
+  "stopCriteria": [
+    "Environment is not MCP_1_20260210",
+    "Company is not RM-DEMO",
+    "Vendor registration dialog visible",
+    "Vendor Card visible",
+    "Accidental vendor number visible",
+    "Purchase Invoice card/lines context lost",
+    "FA-CNC-01 visible without line Type = Fixed Asset",
+    "Any Preview Posting or posting dialog opens",
+    "Temporary draft cannot be cleaned up through UI"
+  ],
+  "successCriteria": [
+    "Purchase Invoice card remains visible",
+    "K30000 is visible in header",
+    "Vendor Invoice No. is visible if entered",
+    "Lines/Grid context remains visible",
+    "Line Type is visibly Fixed Asset",
+    "FA-CNC-01 is visible in the invoice line",
+    "Guard status is safe purchase invoice line candidate or equivalent",
+    "No Preview Posting, no Post, no acquisition and no depreciation",
+    "Temporary draft is cleaned up through UI"
+  ],
+  "bookImpact": "Chapter 21 may describe the next step as target field mapping only: vendor header plus Fixed Asset line plus FA-CNC-01 must be visible together before a screenshot can support the click guide.",
+  "posted": false,
+  "bcRun": false,
+  "setupChanged": false,
+  "documentsCreated": false,
+  "deFinalProof": false
+}

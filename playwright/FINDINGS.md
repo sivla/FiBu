@@ -1,4 +1,22 @@
 
+## FIND-BC-FA-061 Zielwerte-Preflight ist freigegeben, aber nicht buchungsreif
+
+| Feld | Wert |
+|---|---|
+| Projekt | fibu-book5 |
+| Testfall | `FIXEDASSETS-061-K30000-FA-CNC-01-TARGET-FIELD-MAPPING-GATE` |
+| Screenshot | keine neuen Screenshots; Gate-Entscheidung |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-061/` |
+| BC-Seite | Ziel fuer Folgelauf: `Purchase Invoices` Page `9308` / `Purchase Invoice` Page `51`, Company `RM-DEMO` |
+| sichtbar / belegt aus Vorlauf | aktiver `Purchase Invoice`-Karten-/Lines-Kontext aus `FIXEDASSETS-060` |
+| nicht sichtbar / nicht bewiesen | `K30000`, `Vendor Invoice No.`, Zeilentyp `Fixed Asset`, `FA-CNC-01`, Preview, Zugang, AfA, Anlagenposten, deutscher Finalnachweis |
+| Elementtyp | Gate-Entscheidung / Screenshot-QA / Anlagenkauf-Feldmapping |
+| Testergebnis | Kein BC-Lauf. Genau ein neuer enger Zielwerte-Preflight `FIXEDASSETS-062` ist erlaubt, aber ohne Preview, `Post`, Zugang, AfA oder Setup-Aenderung. |
+| Entscheidung | Der naechste Screenshot zaehlt nur, wenn Kopf und Anlagenzeile zusammen sichtbar sind: `K30000`, `Vendor Invoice No.`, `Fixed Asset` und `FA-CNC-01` im selben Vordergrundkontext. |
+| Buchstelle | Kapitel 21 Anlagen; Kapitel Debugging/technische Nachweisfuehrung; Screenshot-QA |
+
+Fuer Anfaenger ist das der entscheidende Unterschied zwischen "ich sehe irgendwo einen Code" und "ich habe den richtigen Beleg fachlich verstanden". Bei einer Anlagen-Einkaufsrechnung muss der Kreditor im Kopf und die Anlage in der passenden Zeile stehen; erst diese Kombination ist ein belastbares Buchbild.
+
 ## FIND-BC-FA-060 Purchase-Invoice-Card-/Lines-Kontext nach `Neu` ist jetzt belegbar
 
 | Feld | Wert |
