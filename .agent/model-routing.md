@@ -19,6 +19,25 @@ Ziel ist nicht, immer das kleinste Modell zu nehmen. Ziel ist das beste Verhaelt
 - `judge_work` entscheidet, wenn fachliche Wahrheit oder Risiko betroffen ist: BC-/FiBu-Urteil, Posting-Gates, Steuer-/Compliance-Aussagen, Buch-vs-Evidence-Konflikte.
 - `big_brain_review` ist selten. `gpt-5.5-high` darf pro groesserem Lauf maximal einmal genutzt werden und ist nie Default.
 
+## Subagent-Policy
+
+Subagents erben ohne Override das Parent-Modell. Das ist fuer dieses Projekt zu teuer.
+
+Deshalb gilt bei `spawn_agent`:
+
+| Taskclass | Spawn-Modell | Reasoning | Typischer Agent |
+|---|---|---|---|
+| `monkey_work` | `gpt-5.4-mini` | `low` | `explorer` |
+| `wizard_work` | `gpt-5.4` | `medium` | `worker` oder `explorer` |
+| `judge_work` | `gpt-5.5` | `medium` | `explorer` |
+| `big_brain_review` | `gpt-5.5` | `high` | `default` |
+
+Wichtig:
+
+- Monkey- und Wizard-Subagents duerfen nicht das Parent-Modell erben.
+- Judge-Subagents brauchen eine klare Urteilsbegruendung.
+- Big-Brain-Subagents sind selten und muessen geloggt werden.
+
 ## Projektbeispiele
 
 | Situation | Taskclass |

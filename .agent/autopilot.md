@@ -15,6 +15,8 @@ Zweck: kleiner Einstiegspunkt fuer Codex-Laeufe, die nicht den gesamten Projektv
    - `wizard_work` fuer Tool-, Script-, Helper- und Refactor-Arbeit
    - `judge_work` fuer BC-/FiBu-Urteil, Buch-vs-Evidence und Risikoentscheidungen
    - `big_brain_review` nur als seltene Endabnahme
+   - Bei `spawn_agent` immer `subagentSpawn.spawnModel` und `subagentSpawn.reasoningEffort` aus `.agent/model-routing.json` setzen; nicht das Parent-Modell erben lassen.
+   - Beispiele stehen in `.agent/subagent-routing.md`.
 5. Nur diese Kernstate-Dateien lesen, falls der Context-Pack nicht ausreicht:
    - `.agent/state/current.json`
    - `.agent/state/project_state.json`

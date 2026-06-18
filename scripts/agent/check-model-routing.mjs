@@ -79,6 +79,25 @@ for (const taskClass of schema.requiredTaskClasses ?? []) {
   if (!expectedModels.has(task.defaultModel)) {
     errors.push(`${taskClass}.defaultModel is not allowed for this task class: ${task.defaultModel}`);
   }
+
+  const subagentSpawn = task.subagentSpawn ?? {};
+  for (const field of schema.requiredSubagentSpawnFields ?? []) {
+    if (!(field in subagentSpawn)) {
+      errors.push(`${taskClass}.subagentSpawn.${field} is required`);
+    }
+  }
+
+  if (subagentSpawn.mustSetModelOverride !== true) {
+    errors.push(`${taskClass}.subagentSpawn.mustSetModelOverride must be true`);
+  }
+  if (subagentSpawn.doNotInheritParentModel !== true) {
+    errors.push(`${taskClass}.subagentSpawn.doNotInheritParentModel must be true`);
+  }
+
+  const allowedSpawnModels = new Set(schema.allowedSpawnModels ?? []);
+  if (!allowedSpawnModels.has(subagentSpawn.spawnModel)) {
+    errors.push(`${taskClass}.subagentSpawn.spawnModel is not allowed: ${subagentSpawn.spawnModel}`);
+  }
 }
 
 if (routing.defaultTaskClass !== 'monkey_work') {
@@ -103,6 +122,31 @@ for (const [taskClass, task] of Object.entries(taskClasses)) {
 }
 
 const usageLog = routing.usageLog ?? {};
+const subagentPolicy = routing.subagentPolicy ?? {};
+const allowedPolicySpawnModels = requireArray(
+  subagentPolicy.allowedSpawnModels,
+  'subagentPolicy.allowedSpawnModels',
+  errors,
+);
+for (const model of allowedPolicySpawnModels) {
+  if (!(schema.allowedSpawnModels ?? []).includes(model)) {
+    errors.push(`subagentPolicy.allowedSpawnModels contains unknown spawn model: ${model}`);
+  }
+}
+
+if (taskClasses.monkey_work?.subagentSpawn?.spawnModel !== 'gpt-5.4-mini') {
+  errors.push('monkey_work subagents must spawn with gpt-5.4-mini');
+}
+if (taskClasses.wizard_work?.subagentSpawn?.spawnModel !== 'gpt-5.4') {
+  errors.push('wizard_work subagents must spawn with gpt-5.4');
+}
+if (taskClasses.judge_work?.subagentSpawn?.spawnModel !== 'gpt-5.5') {
+  errors.push('judge_work subagents must spawn with gpt-5.5');
+}
+if (taskClasses.big_brain_review?.subagentSpawn?.spawnModel !== 'gpt-5.5') {
+  errors.push('big_brain_review subagents must spawn with gpt-5.5');
+}
+
 const requiredForTaskClasses = requireArray(
   usageLog.requiredForTaskClasses,
   'usageLog.requiredForTaskClasses',

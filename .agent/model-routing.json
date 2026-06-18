@@ -40,6 +40,13 @@
         "task-needs-business-central-judgment",
         "posting-or-setup-risk"
       ],
+      "subagentSpawn": {
+        "mustSetModelOverride": true,
+        "spawnModel": "gpt-5.4-mini",
+        "reasoningEffort": "low",
+        "preferredAgentType": "explorer",
+        "doNotInheritParentModel": true
+      },
       "usageLogRequired": false
     },
     "wizard_work": {
@@ -67,6 +74,13 @@
         "final-review-before-posting",
         "architecture-decision-with-large-followup"
       ],
+      "subagentSpawn": {
+        "mustSetModelOverride": true,
+        "spawnModel": "gpt-5.4",
+        "reasoningEffort": "medium",
+        "preferredAgentType": "worker",
+        "doNotInheritParentModel": true
+      },
       "usageLogRequired": false
     },
     "judge_work": {
@@ -91,6 +105,14 @@
         "safety-or-architecture-final-approval-needed",
         "repeated-lower-model-loops-would-be-riskier"
       ],
+      "subagentSpawn": {
+        "mustSetModelOverride": true,
+        "spawnModel": "gpt-5.5",
+        "reasoningEffort": "medium",
+        "preferredAgentType": "explorer",
+        "doNotInheritParentModel": true,
+        "usageLogReasonRequired": true
+      },
       "usageLogRequired": true
     },
     "big_brain_review": {
@@ -107,8 +129,32 @@
         "high-impact-business-central-decision"
       ],
       "maxUsesPerMajorRun": 1,
+      "subagentSpawn": {
+        "mustSetModelOverride": true,
+        "spawnModel": "gpt-5.5",
+        "reasoningEffort": "high",
+        "preferredAgentType": "default",
+        "doNotInheritParentModel": true,
+        "usageLogReasonRequired": true
+      },
       "usageLogRequired": true
     }
+  },
+  "subagentPolicy": {
+    "default": "Do not let subagents inherit an expensive parent model for monkey_work or wizard_work.",
+    "allowedSpawnModels": [
+      "gpt-5.4-mini",
+      "gpt-5.4",
+      "gpt-5.5"
+    ],
+    "rules": [
+      "Before spawn_agent, choose taskClass from this routing file.",
+      "For monkey_work, pass model=gpt-5.4-mini and reasoning_effort=low.",
+      "For wizard_work, pass model=gpt-5.4 and reasoning_effort=medium unless the task is tiny.",
+      "For judge_work, pass model=gpt-5.5 only with a clear judgment reason.",
+      "For big_brain_review, pass model=gpt-5.5 with high reasoning and log the reason.",
+      "Never spawn inherited-model subagents for cheap read-only exploration."
+    ]
   },
   "routingRules": [
     {
