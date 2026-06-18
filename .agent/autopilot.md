@@ -7,19 +7,21 @@ Zweck: kleiner Einstiegspunkt fuer Codex-Laeufe, die nicht den gesamten Projektv
 1. `git branch --show-current`, `git status --short` und `git pull --ff-only` pruefen.
 2. Lokale Agent-Checks laufen lassen, bevor ein Fachlauf startet:
    - `npm run agent:preflight`
-3. Modell-/Reasoning-Klasse aus `.agent/model-routing.json` waehlen:
+3. Kompakten Lauf-Steckbrief erzeugen:
+   - `npm run agent:context`
+4. Modell-/Reasoning-Klasse aus `.agent/model-routing.json` waehlen:
    - `monkey_work` fuer billige Fleissarbeit
    - `wizard_work` fuer Tool-, Script-, Helper- und Refactor-Arbeit
    - `judge_work` fuer BC-/FiBu-Urteil, Buch-vs-Evidence und Risikoentscheidungen
    - `big_brain_review` nur als seltene Endabnahme
-4. Nur diese Kernstate-Dateien lesen:
+5. Nur diese Kernstate-Dateien lesen, falls der Context-Pack nicht ausreicht:
    - `.agent/state/current.json`
    - `.agent/state/project_state.json`
    - `.agent/state/coverage_state.json`
    - `.agent/state/last_run_summary.json`
    - die in `current.json.active_case_file` genannte Case-Datei
-5. Danach maximal drei Skills laden, die fuer den gewaehlten Lauf gebraucht werden.
-6. Alte grosse Projektdateien nur gezielt lesen, wenn der State oder ein Skill sie ausdruecklich verlangt.
+6. Danach maximal drei Skills laden, die fuer den gewaehlten Lauf gebraucht werden.
+7. Alte grosse Projektdateien nur gezielt lesen, wenn der State oder ein Skill sie ausdruecklich verlangt.
 
 ## Arbeitsprinzip
 
