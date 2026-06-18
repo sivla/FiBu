@@ -1,0 +1,78 @@
+{
+  "id": "FIXEDASSETS-051-K30000-VENDOR-PAGEINSPECTION-READONLY",
+  "status": "labor-readonly-pageinspection-opened",
+  "runType": "read-only-ui-evidence",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "target": {
+    "vendorNo": "K30000",
+    "vendorName": "Zollspedition Nord GmbH",
+    "expectedPageId": 26,
+    "expectedSourceTable": "Vendor",
+    "expectedSourceTableId": 23
+  },
+  "safety": {
+    "setupChanged": false,
+    "personalizationSaved": false,
+    "purchaseInvoiceCreated": false,
+    "postingAttempted": false,
+    "companySwitched": false,
+    "apiUsed": false
+  },
+  "vendorCardContext": {
+    "k30000Visible": true,
+    "vendorNameVisible": true,
+    "provesHiddenDefaultCodes": false
+  },
+  "pageInspection": {
+    "opened": true,
+    "attempts": [
+      {
+        "method": "keyboard-control-alt-f1",
+        "opened": true,
+        "closedExternalPages": []
+      }
+    ],
+    "pageId26Visible": true,
+    "vendorCardVisible": true,
+    "sourceTableVendorVisible": true,
+    "criticalFieldCaptionsVisible": {
+      "vendorPostingGroup": true,
+      "genBusPostingGroup": false,
+      "currencyCode": true,
+      "vatBusPostingGroup": false,
+      "taxAreaCode": false,
+      "taxLiable": false,
+      "paymentTermsCode": true,
+      "paymentMethodCode": true
+    },
+    "fieldBlocksEvidence": "playwright/projects/fibu-book5/evidence/fixedassets-051/030-pageinspection-critical-field-blocks.json",
+    "explicitValueCandidates": {
+      "Vendor Posting Group": [
+        "DOMESTIC"
+      ],
+      "Gen. Bus. Posting Group": [
+        "DOMESTIC"
+      ],
+      "Currency Code": [],
+      "VAT Bus. Posting Group": [],
+      "Tax Area Code": [],
+      "Tax Liable": [
+        "Nein"
+      ],
+      "Payment Terms Code": [
+        "1M(8D)"
+      ],
+      "Payment Method Code": [
+        "BANK"
+      ]
+    },
+    "provesCriticalDefaultValues": true,
+    "focusedTextEvidence": "playwright/projects/fibu-book5/evidence/fixedassets-051/020-pageinspection-focused-text.txt"
+  },
+  "screenshots": [
+    "playwright/projects/fibu-book5/img/fixedassets-051-010-k30000-vendor-card-before-pageinspection.png",
+    "playwright/projects/fibu-book5/img/fixedassets-051-020-pageinspection-context.png"
+  ],
+  "nextStep": "Use the visible Page Inspection proof to decide whether K30000 defaults can be trusted for the FA purchase preflight, or perform a UI-first setup/default fit if critical values remain hidden."
+}

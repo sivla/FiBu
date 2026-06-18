@@ -30,6 +30,8 @@ Ergaenzung nach `FIXEDASSETS-047`: Die neuen breiten `K30000`-Bilder sind Diagno
 
 Ergaenzung nach `FIXEDASSETS-049`: Die neuen Personalisieren-Bilder zeigen `Wird personalisiert: Vendor Card` und den K30000-Kontext, aber keine Feldliste und keine kritischen Feldcaptions. Sie sind Diagnosebilder fuer den Einstieg in Personalisieren, nicht Buchbilder fuer `Vendor Posting Group`, `Gen. Bus. Posting Group`, `Currency Code` oder `VAT Bus. Posting Group`. Ein Personalize-Screenshot ist erst Feldverfuegbarkeitsbeweis, wenn der behauptete Feldname oder Wert im Bild lesbar ist.
 
+Ergaenzung nach `FIXEDASSETS-051`: Das Page-Inspection-Bild zeigt `Vendor Card (26, Card)` und `Vendor (23)` und ist damit ein guter technischer Page-/Table-Kontext. Es zeigt aber nicht alle kritischen Codes als gut lesbare Bildwerte. `Vendor Posting Group = DOMESTIC`, `Gen. Bus. Posting Group = DOMESTIC`, leere Currency/VAT/Tax-Felder, `Tax Liable = Nein`, `1M(8D)` und `BANK` sind in strukturierter Evidence belegt. Fuer Buchscreenshots gilt weiter: Bild und Aussage muessen zusammenpassen; wenn Codes nicht sichtbar sind, ist das Bild Debugging-/Evidence-Kontext und kein Feldwerte-Buchbild.
+
 Laborbilder duerfen abweichen. Dann muessen Abweichung, Ursache und Buchwirkung dokumentiert sein.
 
 Zu jedem automatisiert erzeugten O2C-Screenshot schreibt der Screenshot-Helper eine Metadatendatei unter `evidence/<testfall>/...screenshot.json`. Diese Datei enthaelt Status, Buchnutzung, Zweck, erwartete Werte im BC-Seitentext und bekannte Grenzen. Die PNG-Datei allein ist deshalb nicht mehr die ganze Wahrheit.

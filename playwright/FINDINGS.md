@@ -1,4 +1,22 @@
 
+## FIND-BC-FA-051 Page Inspection beweist K30000 technisch, aber nicht als perfektes Buchbild
+
+| Feld | Wert |
+|---|---|
+| Projekt | fibu-book5 |
+| Testfall | `FIXEDASSETS-051-K30000-VENDOR-PAGEINSPECTION-READONLY` |
+| Screenshot | `playwright/projects/fibu-book5/img/fixedassets-051-010-k30000-vendor-card-before-pageinspection.png`, `playwright/projects/fibu-book5/img/fixedassets-051-020-pageinspection-context.png` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-051/` |
+| BC-Seite | `Vendor Card` Page `26`, Source Table `Vendor (23)`, Company `RM-DEMO` |
+| sichtbarer Text / Werte | Page Inspection zeigt `Vendor Card (26, Card)` und `Vendor (23)`; strukturierte Feldblock-Evidence zeigt `Vendor Posting Group = DOMESTIC`, `Gen. Bus. Posting Group = DOMESTIC`, `Currency Code = Leer`, `VAT Bus. Posting Group = Leer`, `Tax Liable = Nein`, `1M(8D)`, `BANK` |
+| nicht als Bild sichtbar | nicht alle kritischen Codes sind im Page-Inspection-Screenshot gut lesbar |
+| Elementtyp | Kreditorenkarte / Page Inspection / technische Nachweisfuehrung / Screenshot-QA |
+| Testergebnis | Der praktische read-only Lauf beweist Page, Source Table und technische Feldwerte. Er beweist keine Einkaufsrechnung, keinen Anlagenzugang, keine AfA, keine Buchung und kein deutsches VAT-/Kontenplanfinale. |
+| Entscheidung | Naechster Schritt ist `FIXEDASSETS-052-K30000-VENDOR-PURCHASE-INVOICE-PREFLIGHT-GATE-DECISION`; kein Kaufbeleg ohne neues Gate. |
+| Buchstelle | Kapitel 21 Anlagen; Kapitel Debugging/technische Nachweisfuehrung; Screenshot-QA |
+
+Fuer Anfaenger ist der Fall wichtig: Page Inspection kann verborgene technische Werte klaeren, aber das Buch muss klar unterscheiden zwischen Anwender-Screenshot und technischem Nachweis.
+
 ## FIND-BC-FA-049 Personalisieren-Modus zeigt K30000-Kontext, aber keine kritischen Default-Felder
 
 | Feld | Wert |

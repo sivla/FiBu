@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-17T09:20:00.000Z",
+  "updatedAt": "2026-06-18T00:00:00.000Z",
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
   "companyMode": "instance-bound-multi-company",
@@ -2385,6 +2385,50 @@
         "company switch"
       ],
       "nextStep": "FIXEDASSETS-051-K30000-VENDOR-PAGEINSPECTION-READONLY"
+    },
+    {
+      "caseId": "FIXEDASSETS-051",
+      "process": "Fixed Assets",
+      "status": "done-labor-read-only",
+      "mode": "vendor-card-pageinspection-readonly",
+      "company": "RM-DEMO",
+      "documents": [],
+      "screenshots": [
+        "playwright/projects/fibu-book5/img/fixedassets-051-010-k30000-vendor-card-before-pageinspection.png",
+        "playwright/projects/fibu-book5/img/fixedassets-051-020-pageinspection-context.png"
+      ],
+      "evidence": [
+        "playwright/projects/fibu-book5/evidence/fixedassets-051/README.md",
+        "playwright/projects/fibu-book5/evidence/fixedassets-051/FIXEDASSETS-051-result.json",
+        "playwright/projects/fibu-book5/evidence/fixedassets-051/FIXEDASSETS-051-K30000-VENDOR-PAGEINSPECTION-READONLY.md",
+        "playwright/projects/fibu-book5/evidence/fixedassets-051/030-pageinspection-critical-field-blocks.json"
+      ],
+      "proves": [
+        "K30000 Vendor Card page 26 opens read-only in RM-DEMO",
+        "Page Inspection opens via Ctrl+Alt+F1",
+        "Page Inspection proves Vendor Card (26, Card) and Vendor (23)",
+        "Page Inspection field blocks prove DOMESTIC vendor and business posting groups, blank currency/VAT/tax-area fields, Tax Liable Nein, payment terms 1M(8D), payment method BANK"
+      ],
+      "doesNotProve": [
+        "purchase invoice readiness gate approval",
+        "fixed asset acquisition",
+        "depreciation",
+        "posting",
+        "German VAT or German chart-of-accounts final proof",
+        "all critical codes as readable screenshot values"
+      ],
+      "reusablePatterns": [
+        "Ctrl+Alt+F1 Page Inspection opening",
+        "Page Inspection field block collection with scroll",
+        "separate screenshot context from structured field-value proof"
+      ],
+      "bookChapters": [
+        "21",
+        "37",
+        "38",
+        "39"
+      ],
+      "nextStep": "FIXEDASSETS-052-K30000-VENDOR-PURCHASE-INVOICE-PREFLIGHT-GATE-DECISION"
     }
   ]
 }
