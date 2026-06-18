@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "repository": "sivla/FiBu",
+  "primaryProject": "fibu-book5",
+  "businessCentral": {
+    "instance": "MCP_1_20260210",
+    "primaryCompany": "RM-DEMO",
+    "dataBasis": "CRONUS USA",
+    "companyMode": "instance-bound-multi-company",
+    "companyRegistry": "playwright/projects/fibu-book5/COMPANY-REGISTRY.json"
+  },
+  "book": {
+    "mainFile": "FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md",
+    "currentFocusChapter": "Kapitel 21 Fixed Assets",
+    "finalGermanProofOpen": true,
+    "shopifyScope": "excluded-hard-lock"
+  },
+  "localSetup": {
+    "node": "npm install",
+    "playwrightBrowsers": "npx playwright install",
+    "auth": "npm run auth:bc",
+    "envTemplate": ".env.example",
+    "handoverDocs": [
+      "docs/LOCAL-SETUP.md",
+      "docs/HANDOVER-MAC.md"
+    ]
+  },
+  "safety": {
+    "doNotLeaveInstance": true,
+    "doNotCommitSecrets": true,
+    "uiFirstByDefault": true,
+    "apiShortcutsRequireExplicitException": true,
+    "postingRequiresGate": true
+  }
+}

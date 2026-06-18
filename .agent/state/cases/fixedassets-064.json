@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-064-PURCHASE-INVOICE-LINE-TYPE-UI-PROBE-NO-TARGET",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "rejected-cleaned-up",
+  "workType": "ui-first-line-type-probe",
+  "evidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-064/FIXEDASSETS-064-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-064/README.md"
+  ],
+  "screenshots": [
+    {
+      "path": "playwright/projects/fibu-book5/img/fixedassets-064-050-line-type-fixed-asset-visible.png",
+      "status": "rejected-do-not-use-as-target-proof",
+      "reason": "Shows Type = Item and vendor registration dialog, not a valid Fixed Asset line."
+    }
+  ],
+  "proved": [
+    "Purchase Invoice context can be reached.",
+    "Line context stayed visible with Type = Item.",
+    "Typing/clicking around line type can trigger vendor registration logic.",
+    "Draft invoice 107209 was cleaned up through UI."
+  ],
+  "notProved": [
+    "Type = Fixed Asset in purchase invoice line",
+    "FA-CNC-01 as purchase invoice line",
+    "Preview Posting",
+    "Posting",
+    "Acquisition",
+    "Depreciation"
+  ],
+  "safety": {
+    "posted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "apiShortcutUsed": false,
+    "companySwitched": false,
+    "draftCleanup": "107209 cleaned-up"
+  },
+  "bookImpact": "Debugging-/Lernfall: Freitext in der Zeilentyp-/No.-Zone kann in Vendor-Registrierungslogik kippen. Gueltiger Anlagenkauf braucht echten Dropdown-/Auswahlpfad fuer Type = Fixed Asset.",
+  "nextCase": "FIXEDASSETS-065-PURCHASE-INVOICE-LINE-TYPE-HELPER-DIAGNOSIS"
+}

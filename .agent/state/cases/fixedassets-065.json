@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-065-PURCHASE-INVOICE-LINE-TYPE-HELPER-DIAGNOSIS",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "helper-diagnosis-before-next-ui-run",
+  "goal": "Zeilentyp-Auswahl fuer Einkaufsrechnungszeilen so diagnostizieren, dass Type = Fixed Asset erst sichtbar bewiesen wird, bevor Zielwerte eingegeben werden.",
+  "mustRead": [
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-064.json",
+    "playwright/core/bc/purchase-invoice-guards.ts",
+    "playwright/projects/fibu-book5/tests/fixedassets-064-purchase-invoice-line-type-ui-probe-no-target.spec.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-064/FIXEDASSETS-064-result.json"
+  ],
+  "allowedActions": [
+    "static-helper-analysis",
+    "read-only-ui-probe-without-target-values-if-gate-confirms",
+    "screenshot-qa",
+    "evidence-summary"
+  ],
+  "forbiddenActions": [
+    "enter-FA-CNC-01",
+    "enter-K30000-in-purchase-invoice",
+    "preview-posting",
+    "post",
+    "keep-draft",
+    "setup-change",
+    "api-shortcut",
+    "company-switch"
+  ],
+  "acceptanceCriteria": [
+    "A future runner can distinguish valid Purchase Invoice line context from Vendor Card or vendor registration context.",
+    "A valid screenshot is only accepted if the visible target is actually visible, not just mentioned in metadata.",
+    "If a draft is created during a practical follow-up, cleanup is mandatory and documented."
+  ],
+  "recommendedSkills": [
+    "posting-gate",
+    "screenshot-qa",
+    "evidence-writer",
+    "error-recovery"
+  ]
+}
