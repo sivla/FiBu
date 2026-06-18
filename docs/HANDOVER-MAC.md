@@ -12,11 +12,21 @@ cp .env.example .env
 npm run auth:bc
 ```
 
+Before running any Business Central workflow, validate the compact agent layer:
+
+```bash
+npm run agent:preflight
+npm run agent:state:validate
+npm run agent:budgets:check
+npm run agent:safety:check
+```
+
 ## Path rules
 
 - Treat repo-relative paths as the source of truth.
 - Do not write absolute Windows paths into committed state or evidence.
 - Use Node path helpers in scripts when adding cross-platform code.
+- Agent tools must not add npm dependencies by default; use Node standard library first.
 - Screenshots and evidence stay under `playwright/projects/fibu-book5/`.
 
 ## Agent startup

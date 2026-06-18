@@ -1,12 +1,18 @@
 {
   "schemaVersion": 1,
-  "runId": "TOKEN-AUTOPILOT-STATE-BOOTSTRAP",
+  "runId": "TOKEN-AUTOPILOT-TOOLING-BOOTSTRAP",
   "date": "2026-06-19",
-  "workType": "structure-and-handover",
+  "workType": "token-budget-and-safety-tooling",
   "branch": "codex/token-efficient-autopilot-state",
   "bcRun": false,
   "posted": false,
   "companySwitched": false,
-  "summary": "Initiale kompakte Agentenstruktur vorbereitet. Kein Business-Central-Lauf, keine Buchung, keine Fachdatei umgebaut.",
+  "summary": "Token- und Sicherheitsfundament erweitert: Agent-Tools bleiben Node-Standardbibliothek, neue npm-Abhaengigkeiten sind per Budgetpolicy gesperrt, Preflight-Checks fuer State, Budget und Safety sind vorgesehen. Kein Business-Central-Lauf, keine Buchung, keine Fachdatei umgebaut.",
+  "commandsToRunBeforeAutopilot": [
+    "npm run agent:preflight",
+    "npm run agent:state:validate",
+    "npm run agent:budgets:check",
+    "npm run agent:safety:check"
+  ],
   "nextStep": "FIXEDASSETS-065-PURCHASE-INVOICE-LINE-TYPE-HELPER-DIAGNOSIS"
 }

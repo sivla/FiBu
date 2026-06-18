@@ -1,0 +1,84 @@
+import { existsSync, readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
+
+function readJson(path) {
+  try {
+    return JSON.parse(readFileSync(resolve(path), 'utf8'));
+  } catch (error) {
+    throw new Error(`${path}: ${error.message}`);
+  }
+}
+
+function requireString(obj, key, file, errors) {
+  if (typeof obj[key] !== 'string' || obj[key].trim() === '') {
+    errors.push(`${file}.${key} must be a non-empty string`);
+  }
+}
+
+function requireArray(obj, key, file, errors) {
+  if (!Array.isArray(obj[key])) {
+    errors.push(`${file}.${key} must be an array`);
+  }
+}
+
+const errors = [];
+
+const files = {
+  project: '.agent/state/project_state.json',
+  current: '.agent/state/current.json',
+  coverage: '.agent/state/coverage_state.json',
+  lastRun: '.agent/state/last_run_summary.json',
+  budgets: '.agent/budgets.json',
+};
+
+for (const path of Object.values(files)) {
+  if (!existsSync(path)) {
+    errors.push(`missing required file: ${path}`);
+  }
+}
+
+const project = readJson(files.project);
+const current = readJson(files.current);
+const coverage = readJson(files.coverage);
+const lastRun = readJson(files.lastRun);
+readJson(files.budgets);
+
+requireString(project, 'repository', files.project, errors);
+requireString(project, 'primaryProject', files.project, errors);
+requireString(current, 'instance', files.current, errors);
+requireString(current, 'company', files.current, errors);
+requireString(current, 'activeArea', files.current, errors);
+requireString(current, 'activeCase', files.current, errors);
+requireString(current, 'active_case_file', files.current, errors);
+requireArray(current, 'allowedActions', files.current, errors);
+requireArray(current, 'forbiddenActions', files.current, errors);
+requireString(lastRun, 'runId', files.lastRun, errors);
+requireString(lastRun, 'nextStep', files.lastRun, errors);
+
+if (!existsSync(current.active_case_file)) {
+  errors.push(`current.active_case_file does not exist: ${current.active_case_file}`);
+} else {
+  const activeCase = readJson(current.active_case_file);
+  if (activeCase.caseId !== current.activeCase) {
+    errors.push(`active case mismatch: current=${current.activeCase}, case file=${activeCase.caseId}`);
+  }
+}
+
+if (typeof coverage.areas !== 'object' || coverage.areas === null) {
+  errors.push(`${files.coverage}.areas must be an object`);
+}
+
+if (project.businessCentral?.instance !== current.instance) {
+  errors.push(`project/current instance mismatch: ${project.businessCentral?.instance} vs ${current.instance}`);
+}
+
+if (project.businessCentral?.primaryCompany !== current.company) {
+  errors.push(`project/current company mismatch: ${project.businessCentral?.primaryCompany} vs ${current.company}`);
+}
+
+if (errors.length) {
+  console.error(`Agent state validation failed:\n- ${errors.join('\n- ')}`);
+  process.exit(1);
+}
+
+console.log('Agent state validation OK');

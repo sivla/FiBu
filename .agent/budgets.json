@@ -6,14 +6,49 @@
     "maxMarkdownLinesPerLargeFile": 120,
     "maxEvidenceFilesToReadPerRun": 5,
     "maxScreenshotMetadataFilesToReadPerRun": 6,
+    "maxSkillsPerRun": 3,
+    "maxPatchFilesPerRun": 8,
+    "maxOutputTokensPerSkill": 1200,
     "readWholeBook": false,
     "loadPngOnlyForScreenshotQa": true,
+    "newNpmDependenciesAllowed": false,
+    "agentToolsRuntime": "node-stdlib-only",
     "strongModelOnlyFor": [
       "business-central-fibu-judgment",
       "posting-or-setup-decision",
       "book-chapter-rewrite",
-      "ambiguous-error-analysis"
+      "ambiguous-error-analysis",
+      "tax-or-compliance-claim",
+      "final-review-before-posting"
+    ],
+    "weakModelAllowedFor": [
+      "state-routing",
+      "json-validation",
+      "evidence-field-extraction",
+      "screenshot-metadata-reading",
+      "coverage-normalization",
+      "formatting",
+      "local-artifact-categorization"
+    ],
+    "escalateIf": [
+      "company-or-instance-unclear",
+      "posting-or-preview-might-happen",
+      "setup-change-might-happen",
+      "book-claim-needs-fibu-judgment",
+      "screenshot-does-not-show-claimed-proof",
+      "state-contradicts-evidence"
     ]
+  },
+  "dependencyPolicy": {
+    "noNewDependenciesByDefault": true,
+    "allowedRuntimeDependencies": [],
+    "allowedDevDependencies": [
+      "@playwright/test",
+      "dotenv",
+      "tsx"
+    ],
+    "packageManager": "npm",
+    "lockfileRequired": true
   },
   "neverReadOrCommit": [
     ".env",
