@@ -1,4 +1,22 @@
 
+## FIND-BC-FA-064 Blindes Tippen setzt den Purchase-Invoice-Zeilentyp nicht belastbar
+
+| Feld | Wert |
+|---|---|
+| Projekt | fibu-book5 |
+| Testfall | `FIXEDASSETS-064-PURCHASE-INVOICE-LINE-TYPE-UI-PROBE-NO-TARGET` |
+| Screenshot | `playwright/projects/fibu-book5/img/fixedassets-064-050-line-type-fixed-asset-visible.png` (`rejected/do-not-use`) |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-064/` |
+| BC-Seite | `Purchase Invoices` Page `9308` / `Purchase Invoice` in `RM-DEMO` |
+| sichtbar | Einkaufsrechnungskarte, Lines/Grid, Zeile weiter `Type = Item`, Vendor-Registrierungsdialog mit Text `Create a new vendor card for Fixed Asset` |
+| nicht sichtbar / nicht bewiesen | `Type = Fixed Asset` als Feldwert, `FA-CNC-01`, Preview, `Post`, Anlagenzugang, AfA |
+| Elementtyp | Rejected Path / Grid-Bedienung / BC-Debugging |
+| Testergebnis | Kein Zielcode, keine Buchung, kein Setup. Entwurf `107209` wurde nach separatem UI-Cleanup geloescht. |
+| Entscheidung | Der naechste Lauf muss die echte Dropdown-/Lookup-Auswahl fuer das Type-Feld diagnostizieren. Freitext-Tippen ist als Zeilentypwechsel nicht ausreichend. |
+| Buchstelle | Kapitel 21 Anlagen; Kapitel BC-Debugging und technische Nachweisfuehrung; Screenshot-QA |
+
+Fuer Anfaenger ist dieser Fall sehr lehrreich: Dass in einem Dialog `Fixed Asset` steht, heisst nicht, dass das Feld `Type` auf `Fixed Asset` gesetzt wurde. Der Feldwert in der Zeile ist die Wahrheit.
+
 ## FIND-BC-FA-063 Zeilentyp ist der Schalter fuer Anlagenzeilen
 
 | Feld | Wert |

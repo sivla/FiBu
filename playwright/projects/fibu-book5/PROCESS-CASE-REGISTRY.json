@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-18T20:57:25.469Z",
+  "updatedAt": "2026-06-18T21:12:07.061Z",
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
   "companyMode": "instance-bound-multi-company",
@@ -2896,6 +2896,38 @@
         "39"
       ],
       "nextStep": "FIXEDASSETS-064-PURCHASE-INVOICE-LINE-TYPE-UI-PROBE-NO-TARGET"
+    },
+    {
+      "id": "FIXEDASSETS-064",
+      "title": "Purchase Invoice line type UI probe without target number",
+      "company": "RM-DEMO",
+      "environment": "MCP_1_20260210",
+      "status": "done-rejected-cleaned-up",
+      "mode": "ui-first-line-type-probe-no-target",
+      "evidence": [
+        "playwright/projects/fibu-book5/evidence/fixedassets-064/FIXEDASSETS-064-result.json",
+        "playwright/projects/fibu-book5/evidence/fixedassets-064/FIXEDASSETS-064-PURCHASE-INVOICE-LINE-TYPE-UI-PROBE-NO-TARGET.md",
+        "playwright/projects/fibu-book5/evidence/fixedassets-064/README.md",
+        "playwright/projects/fibu-book5/evidence/fixedassets-064/094-purchase-invoice-107209-cleanup-result.json"
+      ],
+      "screenshots": [
+        "playwright/projects/fibu-book5/img/fixedassets-064-050-line-type-fixed-asset-visible.png",
+        "playwright/projects/fibu-book5/img/fixedassets-064-092-purchase-invoice-107209-before-cleanup.png",
+        "playwright/projects/fibu-book5/img/fixedassets-064-093-purchase-invoice-107209-after-cleanup.png"
+      ],
+      "proves": [
+        "Blind typing Fixed Asset after clicking Item does not prove a Purchase Invoice line Type change.",
+        "The attempted value produced a vendor registration dialog while the line remained Type = Item.",
+        "Draft purchase invoice 107209 was cleaned up via the UI."
+      ],
+      "doesNotProve": [
+        "No valid Type = Fixed Asset line.",
+        "No FA-CNC-01 target line.",
+        "No Preview Posting.",
+        "No posting/acquisition/depreciation.",
+        "No German final proof."
+      ],
+      "nextStep": "FIXEDASSETS-065-PURCHASE-INVOICE-LINE-TYPE-HELPER-DIAGNOSIS"
     }
   ]
 }

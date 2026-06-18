@@ -1,5 +1,21 @@
 # Workarounds und Fehlerjournal
 
+## WK-BC-FA-064 Freitext `Fixed Asset` erzeugt Vendor-Registrierungsdialog statt Zeilentypwechsel
+
+| Feld | Wert |
+|---|---|
+| Status | geloest als Rejected Path / Draft `107209` bereinigt / Folgediagnose noetig |
+| Testfall | `FIXEDASSETS-064-PURCHASE-INVOICE-LINE-TYPE-UI-PROBE-NO-TARGET` |
+| Situation | Nach 063 durfte nur der Zeilentyp `Fixed Asset` in einer Einkaufsrechnungszeile getestet werden, noch ohne `FA-CNC-01`. |
+| Symptom | Nach Klick auf `Item` und Tippen von `Fixed Asset` blieb die Zeile sichtbar `Type = Item`; BC zeigte einen Dialog `This vendor is not registered... Create a new vendor card for Fixed Asset`. |
+| Sichtbarer Beleg | `fixedassets-064-050-line-type-fixed-asset-visible.png` ist `rejected/do-not-use`; Cleanup-Evidence fuer `107209` liegt unter `evidence/fixedassets-064/`. |
+| Ursache | Der Playwright-Pfad hat offenbar nicht die echte Dropdown-/Optionsauswahl des Type-Felds bedient. Die Tastatureingabe wurde von BC als Wert in einem falschen Feld-/Lookup-Kontext interpretiert. |
+| Warum BC so reagiert | In BC-Belegzeilen sind `Type` und `No.` eng gekoppelt. Wenn der Fokus nicht eindeutig auf dem editierbaren Type-Optionsfeld liegt, kann Text in eine Stammdaten-/Vendor-Erkennungslogik laufen. |
+| Loesung | Der Lauf wurde als Rejected Path dokumentiert. Der versehentlich entstandene Entwurf `107209` wurde in einem separaten UI-Cleanup-Lauf geloescht. |
+| Pruefung | `094-purchase-invoice-107209-cleanup-result.json` zeigt `status = cleaned-up` und `invoiceVisibleAfter = false`. |
+| Buchwirkung | Kapitel 21 muss den Zeilentyp als bewusst auszuwaehlende Option erklaeren. Das Debugging-Kapitel kann zeigen, warum Dialogtext kein Feldnachweis ist. |
+| Kuenftige Regel | Naechster Lauf: Dropdown-/Lookup-Strategie fuer `Type = Fixed Asset` diagnostizieren; kein `FA-CNC-01`, keine Preview, kein `Post`. |
+
 ## WK-BC-FA-062 FA-CNC-01 im falschen Lookup-/Vendor-Card-Kontext
 
 | Feld | Wert |
@@ -19,13 +35,13 @@
 
 | Feld | Wert |
 |---|---|
-| Status | Gate/Pattern definiert; praktischer UI-Probe-Lauf offen |
+| Status | Gate/Pattern definiert; praktischer UI-Probe-Lauf `FIXEDASSETS-064` erledigt/rejected |
 | Testfall | `FIXEDASSETS-063-PURCHASE-INVOICE-LINE-TYPE-STRICTNESS` |
 | Situation | Nach 062 war klar, dass der aktive Einkaufsrechnungs-Kontext allein nicht reicht. Der Default-Zeilentyp `Item` fuehrte den `No.`-Lookup in die falsche fachliche Richtung. |
 | Symptom | Kein neuer BC-Fehler; 063 wertet vorhandene 062-Evidence aus und macht den Fehler maschinenlesbar. |
 | Sichtbarer Beleg | `playwright/projects/fibu-book5/evidence/fixedassets-063/`; Quelle bleibt der rejected Screenshot `fixedassets-062-050-target-field-mapping.png`. |
 | Ursache | In Business Central bestimmt der Zeilentyp, welche Tabelle das `No.`-Feld bedient. Ohne sichtbaren Wechsel auf `Fixed Asset` ist `FA-CNC-01` kein Anlagenbezug. |
-| Loesung oder Laborgrenze | Naechster UI-Lauf darf nur den Zeilentyp `Fixed Asset` in der Einkaufsrechnungszeile stabil sichtbar machen und den Draft bereinigen. `FA-CNC-01`, Preview, `Post`, Zugang und AfA bleiben gesperrt. |
+| Loesung oder Laborgrenze | Der Folgelauf `FIXEDASSETS-064` bestaetigte die Grenze: blindes Tippen von `Fixed Asset` ist kein sicherer Zeilentypwechsel. `FA-CNC-01`, Preview, `Post`, Zugang und AfA bleiben gesperrt, bis ein Dropdown-/Lookup-Pfad belegt ist. |
 | Buchwirkung | Kapitel 21 kann den Zeilentyp als fachlichen Schalter erklaeren: Erst Zeilentyp, dann Nummer. Das Debugging-Kapitel bekommt einen klaren Screenshot-QA-Grundsatz. |
 | Kuenftige Regel | Zielcodes duerfen erst eingegeben werden, wenn die sichtbare Zeile den passenden fachlichen Typ zeigt. |
 
