@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "runId": "TOKEN-AUTOPILOT-SKILL-CONTRACTS",
+  "runId": "TOKEN-AUTOPILOT-DRY-RUN-QUALITY",
   "date": "2026-06-19",
-  "workType": "token-efficient-agent-skill-contracts",
+  "workType": "token-efficient-agent-dry-run-and-skill-quality",
   "branch": "codex/token-efficient-autopilot-state",
   "bcRun": false,
   "posted": false,
   "companySwitched": false,
-  "summary": "Agent-Skills sind auf einen maschinenpruefbaren Vertrag normalisiert. Preflight prueft jetzt Skills, Capabilities, Modellrouting, Safety und State. BC Operating Model dokumentiert UI-first, Screenshot-Wahrheit, Safety-Gates und evidence-basiertes Buchpatching. Kein Business-Central-Lauf, keine Playwright-Ausfuehrung, keine Buchung, keine Fachdatei umgebaut.",
+  "summary": "Agent-Skills sind nicht nur strukturell, sondern auch qualitativ pruefbar: Inputs, Stop-Regeln, Safety-Gates, Modellklasse, Kontextlimit, Outputlimit und JSON-Schema werden lokal validiert. Zusaetzlich plant agent:dry-run den naechsten Lauf ohne BC- oder Playwright-Ausfuehrung. Kein Business-Central-Lauf, keine Playwright-Ausfuehrung, keine Buchung, keine Fachdatei umgebaut.",
   "commandsToRunBeforeAutopilot": [
     "npm run agent:preflight",
     "npm run agent:context",
@@ -17,7 +17,9 @@
     "npm run agent:safety:check",
     "npm run agent:model-routing:check",
     "npm run agent:capabilities:check",
-    "npm run agent:skills:validate"
+    "npm run agent:skills:validate",
+    "npm run agent:skills:quality",
+    "npm run agent:dry-run"
   ],
   "routingState": {
     "defaultTaskClass": "monkey_work",
@@ -27,7 +29,9 @@
     "primarySkillLimit": 3,
     "capabilityRegistry": ".agent/capabilities.json",
     "skillContract": ".agent/skills/SKILL-CONTRACT.md",
-    "operatingModel": ".agent/BC-OPERATING-MODEL.md"
+    "operatingModel": ".agent/BC-OPERATING-MODEL.md",
+    "dryRun": "scripts/agent/dry-run.mjs",
+    "skillQualityCheck": "scripts/agent/skills-quality-check.mjs"
   },
   "nextStep": "FIXEDASSETS-065-PURCHASE-INVOICE-LINE-TYPE-HELPER-DIAGNOSIS"
 }

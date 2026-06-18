@@ -42,6 +42,8 @@ npm run agent:budgets:check
 npm run agent:safety:check
 npm run agent:capabilities:check
 npm run agent:skills:validate
+npm run agent:skills:quality
+npm run agent:dry-run
 npm run check:encoding
 git diff --check
 ```

@@ -10,6 +10,7 @@ Zweck: kleiner Einstiegspunkt fuer Codex-Laeufe, die nicht den gesamten Projektv
    - Der Preflight prueft State, Budgets, Safety, Modellrouting, Capability-Links und Skill-Vertrag.
 3. Kompakten Lauf-Steckbrief erzeugen:
    - `npm run agent:context`
+   - `npm run agent:dry-run`, wenn ein Lauf erst geplant und ohne BC/Playwright validiert werden soll.
    - optional `npm run agent:usage:summary`, wenn `judge_work` oder `big_brain_review` genutzt wurde
 4. Modell-/Reasoning-Klasse aus `.agent/model-routing.json` waehlen:
    - `monkey_work` fuer billige Fleissarbeit

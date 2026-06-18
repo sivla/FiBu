@@ -19,6 +19,7 @@ Choose exactly one next useful run from compact project state without reading ol
 ## Inputs
 - current state
 - project state
+- instance and company from current state
 - coverage state
 - active case
 - allowed and forbidden actions

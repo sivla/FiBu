@@ -18,6 +18,7 @@ Synchronize a small book or guide passage with proven Business Central evidence.
 
 ## Inputs
 - book file and section
+- instance and company behind the evidence
 - evidence file or screenshot metadata
 - current claim
 - corrected claim

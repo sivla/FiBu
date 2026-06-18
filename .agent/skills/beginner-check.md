@@ -18,6 +18,7 @@ Check whether a Business Central instruction explains what a beginner sees, does
 
 ## Inputs
 - evidence reference
+- instance and company
 - screenshot status
 - target book or guide section
 - lab/final status
