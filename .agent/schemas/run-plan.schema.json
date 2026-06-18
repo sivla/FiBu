@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "description": "Documentation schema for JSON emitted by scripts/agent/run-plan.mjs.",
+  "requiredTopLevelFields": [
+    "schemaVersion",
+    "purpose",
+    "runPlanId",
+    "caseId",
+    "sourceDryRun",
+    "canProceed",
+    "steps",
+    "blockedLiveActions",
+    "approvalRequiredBefore",
+    "safetyGates",
+    "stopConditions",
+    "validationCommands",
+    "nextSafeAction"
+  ],
+  "purpose": "autopilot-run-plan",
+  "allowedStepTypes": [
+    "run-command",
+    "read-file",
+    "load-skill",
+    "inspect-capability",
+    "local-analysis",
+    "propose-playwright-change",
+    "execute-playwright",
+    "execute-business-central",
+    "write-book-content",
+    "state-update-plan"
+  ],
+  "notes": [
+    "Run-plan must never execute Business Central or Playwright.",
+    "Run-plan converts dry-run output into ordered local steps.",
+    "Live actions stay blocked until a separate approval and runner layer exists."
+  ]
+}

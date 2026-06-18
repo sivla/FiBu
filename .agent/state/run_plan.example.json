@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-run-plan",
+  "runPlanId": "EXAMPLE-PLAN",
+  "caseId": "EXAMPLE",
+  "sourceDryRun": {
+    "canProceed": true,
+    "selectedTaskClass": "wizard_work",
+    "selectedModelClass": "gpt-4-medium",
+    "budgetProfile": "standard",
+    "requiresHumanApproval": false
+  },
+  "canProceed": true,
+  "steps": [
+    {
+      "type": "run-command",
+      "command": "npm run agent:preflight",
+      "reason": "Validate local agent state before planning.",
+      "allowed": true
+    },
+    {
+      "type": "read-file",
+      "path": ".agent/state/current.json",
+      "reason": "Required by active case mustRead within dry-run budget.",
+      "allowed": true
+    },
+    {
+      "type": "execute-playwright",
+      "allowed": false,
+      "reason": "Run-plan must not start Playwright."
+    }
+  ],
+  "blockedLiveActions": [
+    "business-central-execution",
+    "playwright-execution"
+  ],
+  "approvalRequiredBefore": [
+    "playwright",
+    "business-central",
+    "posting",
+    "book-edit"
+  ],
+  "safetyGates": [
+    "instance-boundary-gate"
+  ],
+  "stopConditions": [],
+  "validationCommands": [
+    "npm run agent:preflight",
+    "npm run agent:dry-run",
+    "npm run agent:run-plan",
+    "npm run check:encoding",
+    "git diff --check"
+  ],
+  "nextSafeAction": "Execute only the allowed local-analysis steps. Do not run Playwright or Business Central."
+}

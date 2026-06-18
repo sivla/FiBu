@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "runId": "TOKEN-AUTOPILOT-DRY-RUN-QUALITY",
+  "runId": "TOKEN-AUTOPILOT-RUN-PLAN",
   "date": "2026-06-19",
-  "workType": "token-efficient-agent-dry-run-and-skill-quality",
+  "workType": "token-efficient-agent-run-plan",
   "branch": "codex/token-efficient-autopilot-state",
   "bcRun": false,
   "posted": false,
   "companySwitched": false,
-  "summary": "agent:dry-run erzeugt jetzt einen konkreten Autopilot-Laufplan mit canProceed, Taskclass, Modellklasse, Budgetprofil, Skills, Capabilities, filesToRead/filesNotToRead, Safety Gates, Stop Conditions, Human-Approval-Flag und Validation Commands. Er startet weder Business Central noch Playwright und aendert keine Buchinhalte.",
+  "summary": "agent:run-plan erzeugt aus agent:dry-run eine konkrete lokale Schrittfolge fuer den naechsten Autopilot-Lauf. Der Plan erlaubt nur lokale Reads, Skill-Laden, Capability-Inspektion und lokale Analyse; Playwright, Business Central, Buchpatches und Binary-/Screenshot-Lesen bleiben explizit blockiert.",
   "commandsToRunBeforeAutopilot": [
     "npm run agent:preflight",
     "npm run agent:context",
@@ -19,7 +19,8 @@
     "npm run agent:capabilities:check",
     "npm run agent:skills:validate",
     "npm run agent:skills:quality",
-    "npm run agent:dry-run"
+    "npm run agent:dry-run",
+    "npm run agent:run-plan"
   ],
   "routingState": {
     "defaultTaskClass": "monkey_work",
@@ -31,6 +32,7 @@
     "skillContract": ".agent/skills/SKILL-CONTRACT.md",
     "operatingModel": ".agent/BC-OPERATING-MODEL.md",
     "dryRun": "scripts/agent/dry-run.mjs",
+    "runPlan": "scripts/agent/run-plan.mjs",
     "skillQualityCheck": "scripts/agent/skills-quality-check.mjs"
   },
   "nextStep": "FIXEDASSETS-065-PURCHASE-INVOICE-LINE-TYPE-HELPER-DIAGNOSIS"

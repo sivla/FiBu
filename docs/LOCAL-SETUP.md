@@ -44,11 +44,13 @@ npm run agent:capabilities:check
 npm run agent:skills:validate
 npm run agent:skills:quality
 npm run agent:dry-run
+npm run agent:run-plan
 npm run check:encoding
 git diff --check
 ```
 
 `npm run agent:dry-run` erzeugt nur einen lokalen JSON-Laufplan. Es startet weder Business Central noch Playwright und liest keine Screenshot-/Binary-Artefakte.
+`npm run agent:run-plan` wandelt diesen Dry-Run in eine konkrete Schrittfolge um. Auch dieser Befehl ist plan-only und startet weder Business Central noch Playwright.
 
 If TypeScript files changed, also run:
 
