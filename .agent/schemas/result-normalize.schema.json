@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "description": "Documentation schema for JSON emitted by scripts/agent/result-normalize.mjs.",
+  "requiredTopLevelFields": [
+    "schemaVersion",
+    "purpose",
+    "caseId",
+    "source",
+    "resultStatus",
+    "runPlanId",
+    "selectedTaskClass",
+    "selectedModelClass",
+    "proved",
+    "notProved",
+    "changedFiles",
+    "statePatch",
+    "evidenceRefs",
+    "warnings",
+    "blockedBy",
+    "requiresReview",
+    "safeToFinalizeState",
+    "reason",
+    "validationCommands"
+  ],
+  "purpose": "autopilot-result-normalized",
+  "allowedSources": [
+    "local-analysis",
+    "playwright-result",
+    "manual-note"
+  ],
+  "allowedResultStatus": [
+    "pending",
+    "observed",
+    "blocked",
+    "failed"
+  ],
+  "notes": [
+    "The normalizer does not update state files.",
+    "safeToFinalizeState defaults to false until a later state-finalize gate validates the result.",
+    "No Business Central or Playwright execution is allowed in this layer."
+  ]
+}

@@ -14,6 +14,8 @@ Zweck: kleiner Einstiegspunkt fuer Codex-Laeufe, die nicht den gesamten Projektv
    - Der Dry-Run gibt `canProceed`, Budget, Skills, Capabilities, Safety Gates, Stop Conditions und `nextSafeAction` als JSON aus.
    - `npm run agent:run-plan`, wenn aus dem Dry-Run eine konkrete lokale Schrittfolge entstehen soll.
    - Der Run-Plan blockiert Playwright, Business Central, Buchpatches und Binary-/Screenshot-Lesen weiterhin.
+   - `npm run agent:result-normalize`, wenn ein lokales Analyseergebnis in ein einheitliches Result-JSON ueberfuehrt werden soll.
+   - Der Result-Normalizer schreibt noch keinen State; State-Finalisierung bleibt eine spaetere Gate-Schicht.
    - optional `npm run agent:usage:summary`, wenn `judge_work` oder `big_brain_review` genutzt wurde
 4. Modell-/Reasoning-Klasse aus `.agent/model-routing.json` waehlen:
    - `monkey_work` fuer billige Fleissarbeit

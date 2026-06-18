@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "runId": "TOKEN-AUTOPILOT-RUN-PLAN",
+  "runId": "TOKEN-AUTOPILOT-RESULT-NORMALIZE",
   "date": "2026-06-19",
-  "workType": "token-efficient-agent-run-plan",
+  "workType": "token-efficient-agent-result-normalize",
   "branch": "codex/token-efficient-autopilot-state",
   "bcRun": false,
   "posted": false,
   "companySwitched": false,
-  "summary": "agent:run-plan erzeugt aus agent:dry-run eine konkrete lokale Schrittfolge fuer den naechsten Autopilot-Lauf. Der Plan erlaubt nur lokale Reads, Skill-Laden, Capability-Inspektion und lokale Analyse; Playwright, Business Central, Buchpatches und Binary-/Screenshot-Lesen bleiben explizit blockiert.",
+  "summary": "agent:result-normalize erzeugt ein einheitliches Ergebnis-JSON fuer lokale Analyse-, Playwright- oder Manual-Resultate. Ohne Input gibt es einen sicheren pending-Befund aus dem aktuellen Run-Plan aus. Der Normalizer schreibt noch keinen State und startet weder Business Central noch Playwright.",
   "commandsToRunBeforeAutopilot": [
     "npm run agent:preflight",
     "npm run agent:context",
@@ -20,7 +20,8 @@
     "npm run agent:skills:validate",
     "npm run agent:skills:quality",
     "npm run agent:dry-run",
-    "npm run agent:run-plan"
+    "npm run agent:run-plan",
+    "npm run agent:result-normalize"
   ],
   "routingState": {
     "defaultTaskClass": "monkey_work",
@@ -33,6 +34,7 @@
     "operatingModel": ".agent/BC-OPERATING-MODEL.md",
     "dryRun": "scripts/agent/dry-run.mjs",
     "runPlan": "scripts/agent/run-plan.mjs",
+    "resultNormalize": "scripts/agent/result-normalize.mjs",
     "skillQualityCheck": "scripts/agent/skills-quality-check.mjs"
   },
   "nextStep": "FIXEDASSETS-065-PURCHASE-INVOICE-LINE-TYPE-HELPER-DIAGNOSIS"

@@ -45,12 +45,14 @@ npm run agent:skills:validate
 npm run agent:skills:quality
 npm run agent:dry-run
 npm run agent:run-plan
+npm run agent:result-normalize
 npm run check:encoding
 git diff --check
 ```
 
 `npm run agent:dry-run` erzeugt nur einen lokalen JSON-Laufplan. Es startet weder Business Central noch Playwright und liest keine Screenshot-/Binary-Artefakte.
 `npm run agent:run-plan` wandelt diesen Dry-Run in eine konkrete Schrittfolge um. Auch dieser Befehl ist plan-only und startet weder Business Central noch Playwright.
+`npm run agent:result-normalize` normalisiert ein Ergebnisformat fuer spaetere State-Finalisierung. Ohne Input erzeugt es einen sicheren `pending`-Befund aus dem aktuellen Run-Plan.
 
 If TypeScript files changed, also run:
 
