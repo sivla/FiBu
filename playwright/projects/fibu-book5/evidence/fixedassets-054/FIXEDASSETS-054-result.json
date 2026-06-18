@@ -1,0 +1,70 @@
+{
+  "caseId": "FIXEDASSETS-054",
+  "title": "K30000 / FA-CNC-01 Purchase Invoice Field-Mapping Gate",
+  "generatedAt": "2026-06-18T19:30:00.000Z",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "dataBasis": "CRONUS USA",
+  "workType": "gate-decision-no-bc-run",
+  "status": "done-decision-no-bc",
+  "inputEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-053/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-053/FIXEDASSETS-053-K30000-PURCHASE-INVOICE-PREFLIGHT-NO-POSTING.md",
+    "playwright/projects/fibu-book5/img/fixedassets-053-030-purchase-invoice-after-new.png"
+  ],
+  "decision": {
+    "approvedNextCase": "FIXEDASSETS-055-K30000-FA-CNC-01-PURCHASE-INVOICE-FIELD-MAPPING-NO-POSTING",
+    "approved": true,
+    "scope": "one narrow UI-first field-mapping run only",
+    "reason": "FIXEDASSETS-053 proves the Purchase Invoice page, required fields, line context and Post danger boundary but not target values. The next book-useful step is controlled target field mapping with mandatory draft cleanup and no posting."
+  },
+  "allowedActions": [
+    "open Purchase Invoices page 9308 in RM-DEMO",
+    "open one new Purchase Invoice context",
+    "test K30000 as Vendor in the header",
+    "enter a unique lab Vendor Invoice No. only if BC requires it for validation",
+    "test the purchase line Type needed for fixed assets",
+    "test FA-CNC-01 line selection only if the UI context is clear",
+    "capture screenshots only when target values or cleanup status are visible",
+    "delete or cancel any created draft through the UI before ending"
+  ],
+  "forbiddenActions": [
+    "Preview Posting",
+    "Post",
+    "fixed asset acquisition",
+    "depreciation",
+    "posting",
+    "setup change",
+    "vendor change",
+    "fixed asset masterdata change",
+    "saved personalization",
+    "API shortcut",
+    "company switch",
+    "German VAT/HGB/chart-of-accounts final claim",
+    "leaving a draft purchase invoice behind"
+  ],
+  "stopCriteria": [
+    "wrong environment or company",
+    "unscoped New/Neu target",
+    "unexpected K30000 validation error",
+    "fixed asset line type is not visible or not selectable",
+    "FA-CNC-01 is not visibly found",
+    "Preview/Post action becomes focused",
+    "draft cannot be cleaned through the UI"
+  ],
+  "proves": [
+    "the next field-mapping run is allowed with strict no-posting boundaries",
+    "FIXEDASSETS-053 is only preflight evidence and not target invoice proof",
+    "draft cleanup is mandatory before any target value entry run can be useful"
+  ],
+  "doesNotProve": [
+    "K30000 entered on a purchase invoice",
+    "FA-CNC-01 selected on a line",
+    "Preview Posting",
+    "fixed asset acquisition",
+    "FA Ledger Entries",
+    "G/L trace",
+    "German final proof"
+  ],
+  "nextStep": "FIXEDASSETS-055-K30000-FA-CNC-01-PURCHASE-INVOICE-FIELD-MAPPING-NO-POSTING"
+}

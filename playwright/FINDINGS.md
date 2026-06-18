@@ -1,4 +1,22 @@
 
+## FIND-BC-FA-054 Zielwert-Mapping braucht eigenes Gate vor jedem Purchase-Invoice-Draft
+
+| Feld | Wert |
+|---|---|
+| Projekt | fibu-book5 |
+| Testfall | `FIXEDASSETS-054-K30000-FA-CNC-01-PURCHASE-INVOICE-FIELD-MAPPING-GATE` |
+| Screenshot | keine neuen Screenshots; Entscheidung nutzt `FIXEDASSETS-053` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-054/` |
+| BC-Seite | Naechster Zielkontext: `Purchase Invoices` Page `9308`, `Purchase Invoice` Page `51`, Company `RM-DEMO` |
+| sichtbarer Text / Werte | aus `FIXEDASSETS-053`: `Purchase Invoice`, `Vendor Name`, `Vendor Invoice No.`, `Type`, `No.`, `Post` |
+| nicht sichtbar / nicht bewiesen | `K30000` im Belegkopf, `FA-CNC-01` in der Zeile, Preview Posting, Anlagenzugang, Anlagenposten, deutscher Finalnachweis |
+| Elementtyp | Gate-Entscheidung / Einkaufsrechnung / Anlagenkauf-Feldmapping / Draft-Cleanup |
+| Testergebnis | Kein neuer BC-Lauf. Der naechste Lauf darf Zielwerte nur als Feldmapping testen und muss jeden Draft per UI bereinigen. |
+| Entscheidung | Naechster Schritt ist `FIXEDASSETS-055-K30000-FA-CNC-01-PURCHASE-INVOICE-FIELD-MAPPING-NO-POSTING`; `Preview Posting`, `Post`, Zugang und AfA bleiben gesperrt. |
+| Buchstelle | Kapitel 21 Anlagen; Kapitel Debugging/technische Nachweisfuehrung; Screenshot-QA |
+
+Fuer Anfaenger ist der Fall wichtig: Ein Belegkontext in Business Central kann schon beim Erfassen von Kopf- oder Zeilenwerten einen Entwurf erzeugen. Deshalb muss das Buch vor dem Anlagenzugang erst erklaeren, wie man Kreditor, Zeilentyp und Anlagen-Nr. sichtbar prueft und wie ein Testentwurf wieder sauber entfernt wird.
+
 ## FIND-BC-FA-053 Purchase Invoice Preflight zeigt Pflichtfelder, aber keinen Zielbeleg
 
 | Feld | Wert |
