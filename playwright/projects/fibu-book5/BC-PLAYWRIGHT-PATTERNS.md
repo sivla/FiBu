@@ -101,6 +101,7 @@ Diese Datei sammelt wiederverwendbare Muster aus belegten Laeufen. Sie ist keine
 ## Tabellen / Grid
 
 - Nach `FIXEDASSETS-055` gilt fuer Belegzeilen: Zielcode-Sichtbarkeit allein reicht nicht. `FA-CNC-01` in einer `Vendor Card` ist kein Anlagenzeilennachweis. Ein Belegzeilen-Helper muss nach jedem Klick/Tab pruefen, dass der aktive Kontext weiterhin Purchase Invoice plus Lines/Grid ist; `Vendor Card`, Vendor-Registrierungsdialoge oder Stammdaten-Popups sind harte Stop-/Rejected-Kriterien. Entstandene Drafts muessen sofort per UI bereinigt und als Cleanup-Evidence dokumentiert werden.
+- Nach `FIXEDASSETS-056` gibt es dafuer den wiederverwendbaren Guard `classifyPurchaseInvoiceFieldMappingText()` in `playwright/core/bc/purchase-invoice-guards.ts`. Fuer Anlagen-Einkaufsrechnungszeilen ist Erfolg nur `Purchase Invoice` + Lines/Grid + Vendor `K30000` + Zeilentyp `Fixed Asset` + `FA-CNC-01` im Zeilenkontext. `Create a new vendor card`, `Vendor Card`, `V00040` oder `FA-CNC-01` ohne sichtbaren `Fixed Asset`-Zeilentyp stoppen den Lauf.
 
 - Breiter Viewport und breite Layoutansicht sind erlaubt, wenn dadurch der fachliche Zielbereich sichtbar wird.
 - Horizontalen Grid-Scroll gezielt am BC-Container nutzen und visuell pruefen, ob die Zielspalten sichtbar sind.

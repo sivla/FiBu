@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "updatedAt": "2026-06-18T19:36:00.000Z",
+  "updatedAt": "2026-06-18T20:20:00.000Z",
   "repository": "sivla/FiBu",
   "branch": "codex/playwright-bc-screenshot-foundation",
   "environment": "MCP_1_20260210",
@@ -10,8 +10,8 @@
   "companyRegistry": "playwright/projects/fibu-book5/COMPANY-REGISTRY.json",
   "dataBasis": "CRONUS USA",
   "activeArea": "fixedassets",
-  "lastCompletedRun": "FIXEDASSETS-055-K30000-FA-CNC-01-PURCHASE-INVOICE-FIELD-MAPPING-NO-POSTING",
-  "lastWorkType": "ui-first-anti-pattern-cleanup-no-posting",
+  "lastCompletedRun": "FIXEDASSETS-056-PURCHASE-INVOICE-FIELD-MAPPING-BLOCKER-DIAGNOSIS",
+  "lastWorkType": "playwright-helper-and-evidence-no-bc-run",
   "postedInLastRun": false,
   "latestPostedDocuments": {
     "o2c": {
@@ -908,6 +908,33 @@
         ],
         "noBcRun": true,
         "noPosting": true
+      },
+      "purchaseInvoiceFieldMappingGuard": {
+        "caseId": "FIXEDASSETS-056",
+        "workType": "playwright-helper-and-evidence-no-bc-run",
+        "sourceEvidence": [
+          "playwright/projects/fibu-book5/evidence/fixedassets-055/036-after-header-focused-text.txt",
+          "playwright/projects/fibu-book5/evidence/fixedassets-055/050-target-values-focused-text.txt"
+        ],
+        "helper": "playwright/core/bc/purchase-invoice-guards.ts",
+        "result": "FIXEDASSETS-055 is blocked as purchase-invoice-line proof: vendor registration dialog and Vendor Card V00040/FA-CNC-01 are wrong contexts.",
+        "stopCriteria": [
+          "Vendor registration dialog visible",
+          "Vendor Card visible",
+          "Accidental vendor number visible",
+          "FA-CNC-01 visible without Fixed Asset line type",
+          "Purchase Invoice page no longer visible after field action"
+        ],
+        "futureSuccessCriteria": [
+          "Purchase Invoice page remains visible",
+          "Lines/Grid context remains visible",
+          "Vendor K30000 remains in invoice header",
+          "Line Type is visible as Fixed Asset",
+          "No. / target field shows FA-CNC-01 in the invoice line, not in a Vendor Card"
+        ],
+        "noBcRun": true,
+        "noPosting": true,
+        "nextAllowedCase": "FIXEDASSETS-057-K30000-FA-CNC-01-PURCHASE-INVOICE-FIELD-MAPPING-RETRY-GATE"
       }
     }
   },
@@ -1347,7 +1374,7 @@
       "nextStep": "FIXEDASSETS-056-PURCHASE-INVOICE-FIELD-MAPPING-BLOCKER-DIAGNOSIS"
     }
   ],
-  "nextStep": "FIXEDASSETS-056-PURCHASE-INVOICE-FIELD-MAPPING-BLOCKER-DIAGNOSIS",
+  "nextStep": "FIXEDASSETS-057-K30000-FA-CNC-01-PURCHASE-INVOICE-FIELD-MAPPING-RETRY-GATE",
   "nextRecommendedRun": "FIXEDASSETS-056-PURCHASE-INVOICE-FIELD-MAPPING-BLOCKER-DIAGNOSIS",
   "latestFixedAssetsRun": {
     "caseId": "FIXEDASSETS-055",
@@ -1362,5 +1389,6 @@
     "noPosting": true,
     "cleanupDone": true,
     "nextAllowedCase": "FIXEDASSETS-056-PURCHASE-INVOICE-FIELD-MAPPING-BLOCKER-DIAGNOSIS"
-  }
+  },
+  "nextBestStep": "FIXEDASSETS-057-K30000-FA-CNC-01-PURCHASE-INVOICE-FIELD-MAPPING-RETRY-GATE"
 }

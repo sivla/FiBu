@@ -1,4 +1,23 @@
 
+## FIND-BC-FA-056 Purchase-Invoice-Guard verhindert falschen FA-CNC-01-Erfolg
+
+| Feld | Wert |
+|---|---|
+| Projekt | fibu-book5 |
+| Testfall | `FIXEDASSETS-056-PURCHASE-INVOICE-FIELD-MAPPING-BLOCKER-DIAGNOSIS` |
+| Screenshot | keine neuen Screenshots; Auswertung nutzt rejected/cleanup Evidence aus `FIXEDASSETS-055` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-056/` |
+| Code | `playwright/core/bc/purchase-invoice-guards.ts`, `playwright/projects/fibu-book5/tests/fixedassets-056-purchase-invoice-field-mapping-blocker-diagnosis.spec.ts` |
+| BC-Seite | kein neuer BC-Lauf; Auswertung von `Purchase Invoice`/`Vendor Card`-Seitentext aus 055 |
+| sichtbarer Text / Werte | `Create a new vendor card`, `Vendor Card - V00040 - FA-CNC-01`, `107222`, `K30000` |
+| nicht sichtbar / nicht bewiesen | gueltiger Purchase-Invoice-Zeilenkontext mit `Type = Fixed Asset` und `No. = FA-CNC-01`, Preview, Zugang, AfA, Anlagenposten |
+| Elementtyp | Playwright-Guard / Screenshot-QA / Fehleranalyse / Anlagenkauf |
+| Testergebnis | Der Guard klassifiziert 055 als `blocked-vendor-registration-dialog` beziehungsweise `blocked-wrong-vendor-card-context`; kein neuer BC-Lauf und keine Buchung. |
+| Entscheidung | Kein erneuter Field-Mapping-Lauf ohne neues Gate. Naechster Schritt ist `FIXEDASSETS-057-K30000-FA-CNC-01-PURCHASE-INVOICE-FIELD-MAPPING-RETRY-GATE`. |
+| Buchstelle | Kapitel 21 Anlagen; Kapitel Debugging/technische Nachweisfuehrung; Screenshot-QA |
+
+Fuer Anfaenger ist die Lehre jetzt technisch abgesichert: Ein Screenshot muss nicht nur den Code zeigen, sondern den richtigen Seiten-, Tabellen- und Zeilenkontext. `FA-CNC-01` in einer Kreditorenkarte ist ein Warnsignal, kein Erfolg.
+
 ## FIND-BC-FA-055 Purchase-Invoice-Feldmapping sprang in falschen Vendor-Kontext
 
 | Feld | Wert |

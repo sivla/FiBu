@@ -1,0 +1,95 @@
+{
+  "caseId": "FIXEDASSETS-056-PURCHASE-INVOICE-FIELD-MAPPING-BLOCKER-DIAGNOSIS",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-055/036-after-header-focused-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-055/050-target-values-focused-text.txt"
+  ],
+  "workType": "playwright-helper-and-evidence-no-bc-run",
+  "posted": false,
+  "bcRun": false,
+  "setupChanged": false,
+  "documentsCreated": false,
+  "classifications": {
+    "header": {
+      "status": "blocked-vendor-registration-dialog",
+      "success": false,
+      "stopReasons": [
+        "Vendor registration dialog is visible; the field entry is no longer a clean purchase-invoice-line proof."
+      ],
+      "visibleSignals": {
+        "purchaseInvoice": true,
+        "purchaseInvoicesList": true,
+        "linesOrLineColumns": true,
+        "fixedAssetNo": false,
+        "fixedAssetLineType": false,
+        "vendorNo": true,
+        "vendorRegistrationDialog": true,
+        "vendorCard": false,
+        "accidentalVendorNo": false,
+        "postingAction": true
+      }
+    },
+    "line": {
+      "status": "blocked-wrong-vendor-card-context",
+      "success": false,
+      "stopReasons": [
+        "Vendor Card context is visible; a fixed-asset number in this context is not a purchase-invoice-line proof.",
+        "Accidental vendor number V00040 is visible; this indicates wrong lookup/card context.",
+        "FA-CNC-01 is visible without a visible Fixed Asset line type."
+      ],
+      "visibleSignals": {
+        "purchaseInvoice": true,
+        "purchaseInvoicesList": false,
+        "linesOrLineColumns": true,
+        "fixedAssetNo": true,
+        "fixedAssetLineType": false,
+        "vendorNo": true,
+        "vendorRegistrationDialog": false,
+        "vendorCard": true,
+        "accidentalVendorNo": true,
+        "postingAction": true
+      }
+    },
+    "combined": {
+      "status": "blocked-vendor-registration-dialog",
+      "success": false,
+      "stopReasons": [
+        "Vendor registration dialog is visible; the field entry is no longer a clean purchase-invoice-line proof.",
+        "Vendor Card context is visible; a fixed-asset number in this context is not a purchase-invoice-line proof.",
+        "Accidental vendor number V00040 is visible; this indicates wrong lookup/card context.",
+        "FA-CNC-01 is visible without a visible Fixed Asset line type."
+      ],
+      "visibleSignals": {
+        "purchaseInvoice": true,
+        "purchaseInvoicesList": true,
+        "linesOrLineColumns": true,
+        "fixedAssetNo": true,
+        "fixedAssetLineType": false,
+        "vendorNo": true,
+        "vendorRegistrationDialog": true,
+        "vendorCard": true,
+        "accidentalVendorNo": true,
+        "postingAction": true
+      }
+    }
+  },
+  "decision": "do-not-rerun-field-mapping-before-a-new-gate",
+  "stopCriteriaForNextUiRun": [
+    "Vendor registration dialog visible",
+    "Vendor Card visible",
+    "Accidental vendor number visible",
+    "FA-CNC-01 visible without Fixed Asset line type",
+    "Purchase Invoice page no longer visible after a field action"
+  ],
+  "successCriteriaForFutureRetry": [
+    "Purchase Invoice page remains visible",
+    "Lines/Grid context remains visible",
+    "Vendor K30000 remains in the invoice header",
+    "Line Type is visible as Fixed Asset",
+    "No. / target field shows FA-CNC-01 in the invoice line, not in a Vendor Card"
+  ],
+  "bookImpact": "Use FIXEDASSETS-055/056 as Debugging- und Screenshot-QA-Lernfall. Do not use the 055 target-value screenshots as Anlagenkauf evidence.",
+  "nextStep": "FIXEDASSETS-057-K30000-FA-CNC-01-PURCHASE-INVOICE-FIELD-MAPPING-RETRY-GATE"
+}
