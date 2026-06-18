@@ -7,6 +7,7 @@ function readJson(path) {
 
 const budgets = readJson('.agent/budgets.json');
 const pkg = readJson('package.json');
+const current = readJson('.agent/state/current.json');
 
 const errors = [];
 const defaults = budgets.defaults ?? {};
@@ -40,6 +41,16 @@ if (defaults.agentToolsRuntime !== 'node-stdlib-only') {
 
 if (policy.lockfileRequired !== true) {
   errors.push('budgets.dependencyPolicy.lockfileRequired must be true');
+}
+
+if (current.active_case_file) {
+  const activeCase = readJson(current.active_case_file);
+  if ((activeCase.mustRead?.length ?? 0) > defaults.maxFilesToReadPerRun) {
+    errors.push(`active case mustRead exceeds maxFilesToReadPerRun: ${activeCase.mustRead.length} > ${defaults.maxFilesToReadPerRun}`);
+  }
+  if ((activeCase.recommendedSkills?.length ?? 0) > defaults.maxSkillsPerRun) {
+    errors.push(`active case recommendedSkills exceeds maxSkillsPerRun: ${activeCase.recommendedSkills.length} > ${defaults.maxSkillsPerRun}`);
+  }
 }
 
 const runtimeDeps = Object.keys(pkg.dependencies ?? {});

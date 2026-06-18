@@ -50,6 +50,7 @@ const project = readJson('.agent/state/project_state.json');
 const coverage = readJson('.agent/state/coverage_state.json');
 const lastRun = readJson('.agent/state/last_run_summary.json');
 const routing = readJson('.agent/model-routing.json');
+const capabilityRegistry = readJson('.agent/capabilities.json');
 
 if (!existsSync(current.active_case_file)) {
   throw new Error(`active case file not found: ${current.active_case_file}`);
@@ -62,6 +63,25 @@ const route = routing.taskClasses?.[taskClass];
 if (!route) {
   throw new Error(`model route not found for task class: ${taskClass}`);
 }
+
+const recommendedSkills = firstItems(activeCase.recommendedSkills, 3);
+const recommendedCapabilities = capabilityRegistry.capabilities
+  ?.filter((capability) =>
+    capability.taskClass === taskClass ||
+    capability.linkedSkills?.some((skill) => recommendedSkills.includes(skill)))
+  .slice(0, 5)
+  .map((capability) => ({
+    id: capability.id,
+    maturity: capability.maturity,
+    taskClass: capability.taskClass,
+  })) ?? [];
+
+const activeAreaCoverage = coverage.areas?.[current.activeArea] ?? {};
+const bookScreenshots = activeAreaCoverage.bookScreenshots ?? {};
+const bookScreenshotValues = Object.values(bookScreenshots);
+const openProofs = bookScreenshotValues.filter((value) => value === 'open').length;
+const availableProofs = bookScreenshotValues.filter((value) =>
+  typeof value === 'string' && value.includes('available')).length;
 
 const contextPack = {
   schemaVersion: 1,
@@ -79,7 +99,22 @@ const contextPack = {
   selectedRole: route.roleName,
   defaultModelClass: route.defaultModel,
   usageLogRequired: route.usageLogRequired,
-  recommendedSkills: firstItems(activeCase.recommendedSkills, 3),
+  efficiencyMetrics: {
+    mustReadCount: firstItems(activeCase.mustRead, 99).length,
+    recommendedSkillCount: recommendedSkills.length,
+    allowedActionCount: firstItems(activeCase.allowedActions ?? current.allowedActions, 99).length,
+    forbiddenActionCount: firstItems(activeCase.forbiddenActions ?? current.forbiddenActions, 99).length,
+    selectedTaskClass: taskClass,
+  },
+  capabilityMaturity: {
+    areaStatus: activeAreaCoverage.status,
+    currentBlock: activeAreaCoverage.currentBlock,
+    openProofs,
+    availableProofs,
+    finalProofOpen: activeAreaCoverage.finalGermanProof === 'open',
+  },
+  recommendedSkills,
+  recommendedCapabilities,
   mustRead: firstItems(activeCase.mustRead, 8),
   allowedActions: firstItems(activeCase.allowedActions ?? current.allowedActions, 12),
   forbiddenActions: firstItems(activeCase.forbiddenActions ?? current.forbiddenActions, 16),

@@ -40,6 +40,7 @@ npm run agent:usage:summary
 npm run agent:state:validate
 npm run agent:budgets:check
 npm run agent:safety:check
+npm run agent:capabilities:check
 npm run check:encoding
 git diff --check
 ```

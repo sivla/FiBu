@@ -1,0 +1,502 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Reproduzierbare Faehigkeiten fuer Business-Central-Steuerung mit Playwright und kompakte Agentenlaeufe.",
+  "maturityLevels": [
+    "draft",
+    "lab-reusable",
+    "book-ready",
+    "final-proof-ready"
+  ],
+  "capabilities": [
+    {
+      "id": "bc_navigation_control",
+      "name": "Business Central Navigation Control",
+      "maturity": "lab-reusable",
+      "taskClass": "wizard_work",
+      "linkedSkills": [
+        "bc-navigation"
+      ],
+      "purpose": "BC-Seiten gezielt oeffnen, Company-Kontext sichern und mehrdeutige Tell-Me-Navigation vermeiden.",
+      "inputs": [
+        "instance",
+        "company",
+        "targetPageOrPath",
+        "knownPageEvidence"
+      ],
+      "outputs": [
+        "confirmedPageContext",
+        "navigationEvidence",
+        "screenshotCandidate"
+      ],
+      "gates": [
+        "stay-in-instance",
+        "confirm-company-before-data-change",
+        "avoid-blind-tell-me-enter"
+      ],
+      "playwrightTouchpoints": [
+        "page.keyboard",
+        "page.getByRole",
+        "playwright/core/bc"
+      ],
+      "improvementBacklog": [
+        "Page-ID- und Action-Map staerker mit getesteten Pfaden verknuepfen."
+      ]
+    },
+    {
+      "id": "posting_safety_gate",
+      "name": "Posting Safety Gate",
+      "maturity": "lab-reusable",
+      "taskClass": "judge_work",
+      "linkedSkills": [
+        "posting-gate"
+      ],
+      "purpose": "Preview, Post, Ship, Invoice, Payment, Acquisition und Setup-Aenderungen nur mit belegter Freigabe zulassen.",
+      "inputs": [
+        "activeCase",
+        "allowedActions",
+        "forbiddenActions",
+        "setupProof",
+        "evidencePlan"
+      ],
+      "outputs": [
+        "gateDecision",
+        "blockedReason",
+        "requiredNextProof"
+      ],
+      "gates": [
+        "default-locked",
+        "company-and-instance-confirmed",
+        "entry-types-defined",
+        "cleanup-or-no-duplicate-rule"
+      ],
+      "playwrightTouchpoints": [
+        "posting dialogs",
+        "preview posting dialogs",
+        "journal checks"
+      ],
+      "improvementBacklog": [
+        "Gate-Entscheidungen optional als JSON Evidence standardisieren."
+      ]
+    },
+    {
+      "id": "screenshot_truth_gate",
+      "name": "Screenshot Truth Gate",
+      "maturity": "book-ready",
+      "taskClass": "monkey_work",
+      "linkedSkills": [
+        "screenshot-qa"
+      ],
+      "purpose": "Screenshots nur akzeptieren, wenn das sichtbare Bild den behaupteten fachlichen Beweis tatsaechlich zeigt.",
+      "inputs": [
+        "screenshotMetadata",
+        "claimedProof",
+        "bookPurpose"
+      ],
+      "outputs": [
+        "screenshotStatus",
+        "retakeReason",
+        "bookCandidateDecision"
+      ],
+      "gates": [
+        "visible-proof-required",
+        "wrong-page-rejected",
+        "hidden-columns-retake-wide-layout"
+      ],
+      "playwrightTouchpoints": [
+        "page.screenshot",
+        "wide layout",
+        "FactBox hiding"
+      ],
+      "improvementBacklog": [
+        "Automatische Metadaten-Pruefung um erwartete sichtbare Werte erweitern."
+      ]
+    },
+    {
+      "id": "evidence_pack_writer",
+      "name": "Evidence Pack Writer",
+      "maturity": "lab-reusable",
+      "taskClass": "monkey_work",
+      "linkedSkills": [
+        "evidence-writer"
+      ],
+      "purpose": "Kompakte Evidence erzeugen, die sagt, was bewiesen wurde, was nicht bewiesen wurde und was als naechstes folgt.",
+      "inputs": [
+        "caseId",
+        "environment",
+        "company",
+        "workType",
+        "proofs",
+        "screenshots"
+      ],
+      "outputs": [
+        "evidenceMarkdown",
+        "evidenceJson",
+        "nextStep"
+      ],
+      "gates": [
+        "no-raw-dumps",
+        "repo-relative-paths",
+        "labor-vs-final-label"
+      ],
+      "playwrightTouchpoints": [
+        "playwright/core/evidence.ts",
+        "test result JSON",
+        "screenshot metadata"
+      ],
+      "improvementBacklog": [
+        "Einheitliche Minimalfelder fuer alle neuen Evidence-JSON-Dateien pruefbar machen."
+      ]
+    },
+    {
+      "id": "bc_error_recovery_pattern",
+      "name": "BC Error Recovery Pattern",
+      "maturity": "lab-reusable",
+      "taskClass": "judge_work",
+      "linkedSkills": [
+        "error-recovery"
+      ],
+      "purpose": "BC-Fehler nicht wegklicken, sondern in wiederverwendbare Lern- und Fixmuster ueberfuehren.",
+      "inputs": [
+        "situation",
+        "visibleMessage",
+        "pageContext",
+        "lastAction"
+      ],
+      "outputs": [
+        "rootCauseHypothesis",
+        "safeFixOrBoundary",
+        "bookImpact",
+        "nextStep"
+      ],
+      "gates": [
+        "capture-error-before-fix",
+        "no-silent-workaround",
+        "cleanup-requirement-if-draft-created"
+      ],
+      "playwrightTouchpoints": [
+        "dialog capture",
+        "page text capture",
+        "error screenshots"
+      ],
+      "improvementBacklog": [
+        "Wiederkehrende BC-Fehler mit Capability-IDs im Workaround-Journal verknuepfen."
+      ]
+    },
+    {
+      "id": "book_beginner_learning_check",
+      "name": "Beginner Learning Check",
+      "maturity": "lab-reusable",
+      "taskClass": "judge_work",
+      "linkedSkills": [
+        "beginner-check",
+        "book-sync"
+      ],
+      "purpose": "Buchtexte so pruefen, dass Anfaenger sehen, was BC zeigt, warum der Schritt noetig ist und wie Erfolg erkannt wird.",
+      "inputs": [
+        "bookSection",
+        "evidenceReference",
+        "screenshotStatus",
+        "laborOrFinalStatus"
+      ],
+      "outputs": [
+        "beginnerGapList",
+        "safeBookPatchPlan",
+        "notClaimedBoundaries"
+      ],
+      "gates": [
+        "evidence-backed-only",
+        "german-terms-leading",
+        "no-german-vat-final-without-proof"
+      ],
+      "playwrightTouchpoints": [
+        "book screenshot candidates",
+        "visible UI proof",
+        "page inspection evidence"
+      ],
+      "improvementBacklog": [
+        "Statusboxen aus Evidence automatisch fuer Buchkapitel vorbereiten."
+      ]
+    },
+    {
+      "id": "next_case_selection",
+      "name": "Next Case Selection",
+      "maturity": "lab-reusable",
+      "taskClass": "monkey_work",
+      "linkedSkills": [
+        "next-test-selector"
+      ],
+      "purpose": "Genau einen naechsten sinnvollen Lauf aus kompaktem State bestimmen, ohne alte Chat-Historie zu laden.",
+      "inputs": [
+        "currentState",
+        "coverageState",
+        "activeCase",
+        "postingGateIfNeeded"
+      ],
+      "outputs": [
+        "selectedCase",
+        "workType",
+        "whyThisStep",
+        "allowedActions",
+        "forbiddenActions"
+      ],
+      "gates": [
+        "finish-started-block-first",
+        "shopify-hard-excluded",
+        "no-repeat-without-new-purpose"
+      ],
+      "playwrightTouchpoints": [
+        "npm script selection",
+        "case state",
+        "coverage state"
+      ],
+      "improvementBacklog": [
+        "Context-Pack kann spaeter eine einfache Kandidatenliste ausgeben."
+      ]
+    },
+    {
+      "id": "state_compression",
+      "name": "State Compression",
+      "maturity": "lab-reusable",
+      "taskClass": "monkey_work",
+      "linkedSkills": [
+        "state-compressor"
+      ],
+      "purpose": "Am Laufende nur aktuelle Wahrheit, neuesten Beweis, Blocker und naechste Aktion in kompakten State schreiben.",
+      "inputs": [
+        "runResult",
+        "activeCase",
+        "evidenceLinks",
+        "coverageDelta"
+      ],
+      "outputs": [
+        "currentStatePatch",
+        "lastRunSummaryPatch",
+        "caseStatePatch",
+        "coveragePatch"
+      ],
+      "gates": [
+        "no-long-history-in-state",
+        "source-evidence-linked",
+        "next-step-required"
+      ],
+      "playwrightTouchpoints": [
+        "test result summary",
+        "evidence links",
+        "agent context pack"
+      ],
+      "improvementBacklog": [
+        "State-Updates spaeter gegen Capability-Registry plausibilisieren."
+      ]
+    },
+    {
+      "id": "bc_scoped_action_click",
+      "name": "BC Scoped Action Click",
+      "maturity": "draft",
+      "taskClass": "wizard_work",
+      "linkedSkills": [
+        "bc-navigation"
+      ],
+      "purpose": "Business-Central-Aktionen in einem belegten Frame, Seiten- oder Text-Scope klicken statt globale Treffer zu verwenden.",
+      "inputs": [
+        "actionName",
+        "scopeText",
+        "expectedAfterClick",
+        "currentFrameUrl"
+      ],
+      "outputs": [
+        "clickedCandidate",
+        "attemptsLog",
+        "postClickEvidence"
+      ],
+      "gates": [
+        "scope-required-for-ambiguous-action",
+        "candidate-list-before-click",
+        "expected-after-click-required"
+      ],
+      "playwrightTouchpoints": [
+        "playwright/core/bc/actions.ts",
+        "page.getByRole",
+        "frameLocator"
+      ],
+      "improvementBacklog": [
+        "Action-Kandidaten als kompaktes JSON fuer Fehleranalyse sichern."
+      ]
+    },
+    {
+      "id": "bc_card_field_diagnostics",
+      "name": "BC Card Field Diagnostics",
+      "maturity": "draft",
+      "taskClass": "wizard_work",
+      "linkedSkills": [
+        "bc-navigation",
+        "error-recovery"
+      ],
+      "purpose": "Kartenfelder caption-nah diagnostizieren, bevor Werte in potentiell falsche Controls geschrieben werden.",
+      "inputs": [
+        "caption",
+        "pageContext",
+        "expectedFieldType",
+        "readonlyAllowed"
+      ],
+      "outputs": [
+        "controlCandidates",
+        "bestCandidate",
+        "editability",
+        "diagnosisClass"
+      ],
+      "gates": [
+        "no-fill-without-best-candidate",
+        "readonly-field-stops-write",
+        "wrong-page-stops-write"
+      ],
+      "playwrightTouchpoints": [
+        "playwright/core/bc/cards.ts",
+        "locator.boundingBox",
+        "caption-near-control scoring"
+      ],
+      "improvementBacklog": [
+        "Lokale Fixed-Assets-Feldfuell-Helper in zentrale Card-Control-Capability ueberfuehren."
+      ]
+    },
+    {
+      "id": "bc_dialog_gate",
+      "name": "BC Dialog Gate",
+      "maturity": "draft",
+      "taskClass": "wizard_work",
+      "linkedSkills": [
+        "posting-gate",
+        "error-recovery"
+      ],
+      "purpose": "BC-Dialoge nur nach Textnachweis und erwarteter Wirkung bestaetigen oder abbrechen.",
+      "inputs": [
+        "expectedDialogText",
+        "allowedButton",
+        "expectedAfterDialog",
+        "riskClass"
+      ],
+      "outputs": [
+        "dialogText",
+        "buttonClicked",
+        "afterDialogEvidence"
+      ],
+      "gates": [
+        "text-proof-before-click",
+        "cancel-default-for-risky-dialogs",
+        "posting-dialog-requires-judge-work"
+      ],
+      "playwrightTouchpoints": [
+        "playwright/core/bc/dialogs.ts",
+        "dialog role locators",
+        "modal screenshots"
+      ],
+      "improvementBacklog": [
+        "Dialogentscheidungen mit Posting-Gate-Evidence verknuepfen."
+      ]
+    },
+    {
+      "id": "purchase_invoice_context_guard",
+      "name": "Purchase Invoice Context Guard",
+      "maturity": "lab-reusable",
+      "taskClass": "wizard_work",
+      "linkedSkills": [
+        "posting-gate",
+        "screenshot-qa"
+      ],
+      "purpose": "Einkaufsrechnungs-Kontext hart klassifizieren, bevor Kreditor, Anlage oder Zeilenwerte eingegeben werden.",
+      "inputs": [
+        "pageText",
+        "visibleControls",
+        "expectedDocumentType",
+        "targetLineType"
+      ],
+      "outputs": [
+        "contextClass",
+        "stopReason",
+        "safeToEnterTargetValues"
+      ],
+      "gates": [
+        "vendor-card-is-wrong-context",
+        "item-line-stops-fixed-asset-entry",
+        "fixed-asset-line-type-visible-before-asset-no"
+      ],
+      "playwrightTouchpoints": [
+        "playwright/core/bc/purchase-invoice-guards.ts",
+        "fixedassets-063 strictness test",
+        "fixedassets-064 ui probe"
+      ],
+      "improvementBacklog": [
+        "FIXEDASSETS-065 soll diese Capability als naechsten Helper-Diagnoseanker nutzen."
+      ]
+    },
+    {
+      "id": "bc_scoped_new_action",
+      "name": "BC Scoped New Action",
+      "maturity": "draft",
+      "taskClass": "wizard_work",
+      "linkedSkills": [
+        "bc-navigation"
+      ],
+      "purpose": "Mehrdeutige New/Neu-Aktionen nur in belegtem Listen- oder Kartenscope ausloesen.",
+      "inputs": [
+        "targetPage",
+        "scopeEvidence",
+        "candidateActions",
+        "forbiddenModules"
+      ],
+      "outputs": [
+        "selectedNewAction",
+        "candidateScore",
+        "newPageEvidence"
+      ],
+      "gates": [
+        "no-unscoped-new",
+        "wrong-module-candidate-rejected",
+        "new-page-context-required"
+      ],
+      "playwrightTouchpoints": [
+        "fixedassets-055 local helper",
+        "page.getByRole",
+        "candidate scoring"
+      ],
+      "improvementBacklog": [
+        "Lokalen New/Neu-Helper in playwright/core/bc ueberfuehren, wenn FIXEDASSETS-065 stabil ist."
+      ]
+    },
+    {
+      "id": "journal_line_control_snapshot",
+      "name": "Journal Line Control Snapshot",
+      "maturity": "draft",
+      "taskClass": "wizard_work",
+      "linkedSkills": [
+        "evidence-writer",
+        "screenshot-qa"
+      ],
+      "purpose": "Journal-Zeilencontrols sortieren, indexieren und vor dem Fuellen als reproduzierbaren Snapshot sichern.",
+      "inputs": [
+        "journalPage",
+        "visibleControls",
+        "targetColumns",
+        "rowIndex"
+      ],
+      "outputs": [
+        "controlSnapshot",
+        "fieldIndexMap",
+        "fillPlan",
+        "validationEvidence"
+      ],
+      "gates": [
+        "snapshot-before-fill",
+        "field-index-validation",
+        "no-posting-without-preview-or-journal-check"
+      ],
+      "playwrightTouchpoints": [
+        "payments-011 journal helpers",
+        "payments-008 amount diagnosis",
+        "locator sorting by x/y"
+      ],
+      "improvementBacklog": [
+        "Payments-Journal-Helfer spaeter zentralisieren und fuer Bank/Inventory/FA-Journale wiederverwenden."
+      ]
+    }
+  ]
+}
