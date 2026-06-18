@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-18T00:00:00.000Z",
+  "updatedAt": "2026-06-18T19:10:00.000Z",
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
   "companyMode": "instance-bound-multi-company",
@@ -2471,6 +2471,55 @@
         "39"
       ],
       "nextStep": "FIXEDASSETS-053-K30000-PURCHASE-INVOICE-PREFLIGHT-NO-POSTING"
+    },
+    {
+      "caseId": "FIXEDASSETS-053",
+      "process": "Fixed Assets",
+      "status": "done-labor-preflight-no-posting",
+      "mode": "purchase-invoice-preflight-no-target-entry",
+      "company": "RM-DEMO",
+      "environment": "MCP_1_20260210",
+      "documents": [
+        "K30000",
+        "FA-CNC-01"
+      ],
+      "screenshots": [
+        "playwright/projects/fibu-book5/img/fixedassets-053-010-purchase-invoices-list.png",
+        "playwright/projects/fibu-book5/img/fixedassets-053-030-purchase-invoice-after-new.png",
+        "playwright/projects/fibu-book5/img/fixedassets-053-050-after-close-list.png"
+      ],
+      "evidence": [
+        "playwright/projects/fibu-book5/evidence/fixedassets-053/README.md",
+        "playwright/projects/fibu-book5/evidence/fixedassets-053/FIXEDASSETS-053-result.json",
+        "playwright/projects/fibu-book5/evidence/fixedassets-053/FIXEDASSETS-053-K30000-PURCHASE-INVOICE-PREFLIGHT-NO-POSTING.md"
+      ],
+      "proves": [
+        "Purchase Invoices page 9308 opens in RM-DEMO",
+        "Scoped New/Neu reaches Purchase Invoice page 51",
+        "Required fields Vendor Name and Vendor Invoice No. are visible",
+        "Post action is visible as danger boundary but was not clicked",
+        "No posting, no setup change, no API shortcut and no company switch happened"
+      ],
+      "doesNotProve": [
+        "K30000 entered as purchase invoice vendor",
+        "FA-CNC-01 selected on a purchase invoice line",
+        "Preview Posting result",
+        "fixed asset acquisition",
+        "FA Ledger Entries or G/L trace for acquisition",
+        "German VAT, HGB or chart-of-accounts final proof"
+      ],
+      "reusablePatterns": [
+        "wide Purchase Invoice preflight screenshot with visible required fields",
+        "danger action boundary: visible Post is evidence, not a clicked action",
+        "field mapping gate before target value entry on auto-save documents"
+      ],
+      "bookChapters": [
+        "21",
+        "37",
+        "38",
+        "39"
+      ],
+      "nextStep": "FIXEDASSETS-054-K30000-FA-CNC-01-PURCHASE-INVOICE-FIELD-MAPPING-GATE"
     }
   ]
 }

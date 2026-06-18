@@ -1,4 +1,22 @@
 
+## FIND-BC-FA-053 Purchase Invoice Preflight zeigt Pflichtfelder, aber keinen Zielbeleg
+
+| Feld | Wert |
+|---|---|
+| Projekt | fibu-book5 |
+| Testfall | `FIXEDASSETS-053-K30000-PURCHASE-INVOICE-PREFLIGHT-NO-POSTING` |
+| Screenshot | `playwright/projects/fibu-book5/img/fixedassets-053-010-purchase-invoices-list.png`, `playwright/projects/fibu-book5/img/fixedassets-053-030-purchase-invoice-after-new.png`, `playwright/projects/fibu-book5/img/fixedassets-053-050-after-close-list.png` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-053/` |
+| BC-Seite | `Purchase Invoices` Page `9308`, `Purchase Invoice` Page `51`, Company `RM-DEMO` |
+| sichtbarer Text / Werte | `Purchase Invoice`, `Vendor Name`, `Vendor Invoice No.`, `Document Date`, `Posting Date`, `Due Date`, `Type`, `No.`, `Post` |
+| nicht sichtbar / nicht bewiesen | `K30000`, `FA-CNC-01`, `Preview Posting`, Anlagenzugang, Buchung, Anlagenposten, deutsches Steuer-/Kontenplanfinale |
+| Elementtyp | Einkaufsrechnung / Pflichtfeld-Preflight / Screenshot-QA / Buchungsgrenze |
+| Testergebnis | Der UI-first Preflight ist praktisch nachgewiesen: Die Liste laesst sich oeffnen, `New` ist scoped erreichbar, die neue Einkaufsrechnung zeigt Pflichtfelder und die riskante `Post`-Aktion. Es wurde kein Zielwert eingetragen und nichts gebucht. |
+| Entscheidung | Der Screenshot `fixedassets-053-030-purchase-invoice-after-new.png` ist ein gutes Lernbild fuer Belegstruktur und Pflichtfelder, aber kein finaler Buch-Screenshot fuer `K30000` oder `FA-CNC-01`. Naechster Schritt ist `FIXEDASSETS-054-K30000-FA-CNC-01-PURCHASE-INVOICE-FIELD-MAPPING-GATE`. |
+| Buchstelle | Kapitel 21 Anlagen; Kapitel Debugging/technische Nachweisfuehrung; Screenshot-QA |
+
+Fuer Anfaenger ist der Fall nuetzlich: Eine leere Einkaufsrechnung zeigt, welche Felder Business Central vor dem Speichern/Buchen verlangt und wo die Buchungsgrenze liegt. Fuer das Buch darf dieses Bild nur als Preflight erklaert werden; der eigentliche Anlagenkauf braucht einen spaeteren Nachweis mit sichtbarem Kreditor, Anlagenzeile, Vorschau und Postenspur.
+
 ## FIND-BC-FA-052 Page Inspection reicht fuer Preflight, nicht fuer Buchung
 
 | Feld | Wert |

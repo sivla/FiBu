@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "updatedAt": "2026-06-18T00:00:00.000Z",
+  "updatedAt": "2026-06-18T19:10:00.000Z",
   "repository": "sivla/FiBu",
   "branch": "codex/playwright-bc-screenshot-foundation",
   "environment": "MCP_1_20260210",
@@ -10,8 +10,8 @@
   "companyRegistry": "playwright/projects/fibu-book5/COMPANY-REGISTRY.json",
   "dataBasis": "CRONUS USA",
   "activeArea": "fixedassets",
-  "lastCompletedRun": "FIXEDASSETS-052-K30000-VENDOR-PURCHASE-INVOICE-PREFLIGHT-GATE-DECISION",
-  "lastWorkType": "gate-decision-no-bc-run",
+  "lastCompletedRun": "FIXEDASSETS-053-K30000-PURCHASE-INVOICE-PREFLIGHT-NO-POSTING",
+  "lastWorkType": "ui-first-preflight-no-posting",
   "postedInLastRun": false,
   "latestPostedDocuments": {
     "o2c": {
@@ -1255,6 +1255,7 @@
     "FIXEDASSETS-025 corrected the overclaim around FIXEDASSETS-024: active card control proof is partial (4/6), so value lookup/save gate remains blocked until Depreciation Book Code and Posting Group are recovered on the active card. No BC run, no save, no setup and no posting."
   ],
   "prohibitedActions": [
+    "After FIXEDASSETS-053, do not enter K30000 or FA-CNC-01 into a Purchase Invoice, do not run Preview Posting, and do not post acquisition until FIXEDASSETS-054 explicitly approves a narrow field-mapping/preflight gate.",
     "After FIXEDASSETS-052, do not post, acquire, depreciate, edit vendor/setup, use API shortcuts, switch company, or leave a Purchase Invoice draft behind. Only FIXEDASSETS-053 no-posting Purchase Invoice preflight is allowed.",
     "After FIXEDASSETS-049, do not create a K30000 purchase invoice, acquisition, depreciation or posting and do not change K30000 vendor/setup defaults. Personalize mode opened but did not expose Vendor Posting Group, Gen. Bus. Posting Group, Currency Code or VAT Bus. Posting Group; the next allowed work is only the FIXEDASSETS-050 gate decision.",
     "After FIXEDASSETS-048, do not create a K30000 purchase invoice, acquisition, depreciation or posting and do not change K30000 vendor/setup defaults. The only approved next work is read-only Personalize field availability diagnosis for Vendor Posting Group, Gen. Bus. Posting Group, Currency Code and VAT Bus. Posting Group.",
@@ -1310,6 +1311,28 @@
       "noPosting": true,
       "company": "RM-DEMO",
       "nextStep": "FIXEDASSETS-034-FA-CNC-01-SUBCLASS-FIELD-DIAGNOSIS"
+    },
+    {
+      "caseId": "FIXEDASSETS-053",
+      "result": "Purchase Invoice preflight proved page/action/required-field context without posting or target value entry.",
+      "evidence": "playwright/projects/fibu-book5/evidence/fixedassets-053/",
+      "noPosting": true,
+      "company": "RM-DEMO",
+      "nextStep": "FIXEDASSETS-054-K30000-FA-CNC-01-PURCHASE-INVOICE-FIELD-MAPPING-GATE"
     }
-  ]
+  ],
+  "nextStep": "FIXEDASSETS-054-K30000-FA-CNC-01-PURCHASE-INVOICE-FIELD-MAPPING-GATE",
+  "nextRecommendedRun": "FIXEDASSETS-054-K30000-FA-CNC-01-PURCHASE-INVOICE-FIELD-MAPPING-GATE",
+  "latestFixedAssetsRun": {
+    "caseId": "FIXEDASSETS-053",
+    "result": "Purchase Invoices page 9308 opened in RM-DEMO. Scoped New/Neu reached Purchase Invoice page 51 with visible required Vendor Name and Vendor Invoice No. fields, line Type/No. context and visible Post danger boundary. The context was closed via Back; no posting, no setup/vendor/fixed-asset change, no K30000 header entry and no FA-CNC-01 line entry.",
+    "evidence": "playwright/projects/fibu-book5/evidence/fixedassets-053/",
+    "screenshots": [
+      "playwright/projects/fibu-book5/img/fixedassets-053-010-purchase-invoices-list.png",
+      "playwright/projects/fibu-book5/img/fixedassets-053-030-purchase-invoice-after-new.png",
+      "playwright/projects/fibu-book5/img/fixedassets-053-050-after-close-list.png"
+    ],
+    "noPosting": true,
+    "nextAllowedCase": "FIXEDASSETS-054-K30000-FA-CNC-01-PURCHASE-INVOICE-FIELD-MAPPING-GATE"
+  }
 }
