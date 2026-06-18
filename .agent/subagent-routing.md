@@ -8,6 +8,7 @@ Vor jedem `spawn_agent`:
 2. `subagentSpawn.spawnModel` als `model` setzen.
 3. `reasoning_effort` aus `subagentSpawn.allowedReasoningEfforts` waehlen. Der gespeicherte `reasoningEffort` ist nur der Default.
 4. Nur bei `judge_work` oder `big_brain_review` teure Modelle nutzen und begruenden.
+5. Bei `judge_work` oder `big_brain_review` Ergebnis spaeter in `.agent/state/model_usage_log.jsonl` mit Outcome-Feldern loggen.
 
 ## Beispiele
 

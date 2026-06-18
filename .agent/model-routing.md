@@ -71,5 +71,16 @@ Jede Nutzung von `judge_work` oder `big_brain_review` muss im Model-Usage-Log be
 - `reason`
 - `expectedRisk`
 - `expectedRetryAvoidance`
+- `actualOutcome`
+- `filesRead`
+- `skillsLoaded`
+- `followupRequired`
+
+`npm run agent:usage:summary` wertet diese Felder aus. Wichtig sind nicht perfekte Zahlen, sondern Trends:
+
+- Wird `judge_work` seltener, weil Capabilities reifer werden?
+- Entstehen weniger Follow-up-Laeufe?
+- Bleiben Dateien und Skills unter Budget?
+- Ist ein teurer Lauf wirklich weniger teuer als drei billige Korrekturschleifen?
 
 Beispiele stehen in `.agent/state/model_usage_log.example.jsonl`.
