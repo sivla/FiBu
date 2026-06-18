@@ -1,4 +1,22 @@
 
+## FIND-BC-FA-063 Zeilentyp ist der Schalter fuer Anlagenzeilen
+
+| Feld | Wert |
+|---|---|
+| Projekt | fibu-book5 |
+| Testfall | `FIXEDASSETS-063-PURCHASE-INVOICE-LINE-TYPE-STRICTNESS` |
+| Screenshot | keine neuen Screenshots; nutzt 062 als rejected/debugging Input |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-063/` |
+| BC-Seite | kein neuer BC-Lauf; Auswertung der `Purchase Invoice`-/Vendor-Card-Evidence aus `FIXEDASSETS-062` |
+| sichtbar / belegt | 062 zeigte Default-Zeilentyp `Item`, falschen `Vendor Card - V00060 - FA-CNC-01`-Kontext und erledigte Cleanup-Nachweise |
+| nicht sichtbar / nicht bewiesen | `Type = Fixed Asset` in derselben Einkaufsrechnungszeile, `FA-CNC-01` als Anlagenzeile, Preview, `Post`, Zugang, AfA |
+| Elementtyp | Playwright-Strictness / Screenshot-QA / BC-Debugging |
+| Testergebnis | Der No-BC-Test laeuft gruen und definiert ein Gate: naechster praktischer Lauf nur Zeilentyp-Probe, noch kein Anlagenzielcode. |
+| Entscheidung | `FA-CNC-01` bleibt gesperrt, bis `Type = Fixed Asset` sichtbar und stabil in der Zielzeile steht. |
+| Buchstelle | Kapitel 21 Anlagen; Kapitel BC-Debugging und technische Nachweisfuehrung; Screenshot-QA |
+
+Fuer Anfaenger ist das die wichtigste Lehre aus dem Fehler: In einer Einkaufsrechnungszeile bestimmt nicht der getippte Code allein den fachlichen Bezug, sondern zuerst der Zeilentyp. Erst `Fixed Asset` macht aus dem `No.`-Feld eine Anlagen-Auswahl.
+
 ## FIND-BC-FA-062 Sichtbarer Code im falschen Kontext ist kein Anlagenzeilenbeweis
 
 | Feld | Wert |

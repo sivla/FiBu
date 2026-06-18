@@ -1,5 +1,7 @@
 # Stammdaten- und Setup-Backlog fuer FiBu Buch 5
 
+Update nach `FIXEDASSETS-063-PURCHASE-INVOICE-LINE-TYPE-STRICTNESS`: Kein Stammdatum und kein Setup wurden geaendert. Der Backlog-Hebel bleibt beim Anlagenkauf-Preflight, aber der naechste Schritt ist enger: `FA-CNC-01` bleibt gesperrt, bis der Zeilentyp `Fixed Asset` in derselben Einkaufsrechnungszeile sichtbar/stabil ist. Naechster praktischer Hebel ist `FIXEDASSETS-064-PURCHASE-INVOICE-LINE-TYPE-UI-PROBE-NO-TARGET`: nur Zeilentyp pruefen und Draft bereinigen; keine Preview, kein `Post`, kein Zugang, keine AfA.
+
 Update nach `FIXEDASSETS-061-K30000-FA-CNC-01-TARGET-FIELD-MAPPING-GATE`: Kein Stammdatum und kein Setup wurden geaendert. Der Backlog-Hebel bleibt beim Anlagenkauf-Preflight, aber jetzt mit enger Freigabe fuer genau einen UI-first Zielwerte-Lauf: `K30000`, `Vendor Invoice No.`, `Type = Fixed Asset` und `FA-CNC-01` sichtbar im selben Einkaufsrechnungs-/Lines-Kontext. Keine Preview, kein `Post`, kein Zugang, keine AfA und keine neue Stammdaten-/Setup-Aenderung ohne neues Gate.
 
 Update nach `FIXEDASSETS-054-K30000-FA-CNC-01-PURCHASE-INVOICE-FIELD-MAPPING-GATE`: Kein neues Stammdatum und kein Setup wurden geaendert. Die vorhandenen Laborstammdaten `K30000` und `FA-CNC-01` sind fuer einen engen Purchase-Invoice-Field-Mapping-Lauf freigegeben, aber nicht fuer Preview, Posting, Anlagenzugang oder AfA. Naechster Schritt ist ein UI-first Feldmapping mit Draft-Cleanup.

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "updatedAt": "2026-06-18T20:48:26.137Z",
+  "updatedAt": "2026-06-18T20:57:25.469Z",
   "repository": "sivla/FiBu",
   "branch": "codex/playwright-bc-screenshot-foundation",
   "environment": "MCP_1_20260210",
@@ -10,8 +10,8 @@
   "companyRegistry": "playwright/projects/fibu-book5/COMPANY-REGISTRY.json",
   "dataBasis": "CRONUS USA",
   "activeArea": "fixedassets",
-  "lastCompletedRun": "FIXEDASSETS-062-K30000-FA-CNC-01-TARGET-FIELD-MAPPING-NO-POSTING",
-  "lastWorkType": "ui-first-target-field-mapping-rejected-cleaned-up",
+  "lastCompletedRun": "FIXEDASSETS-063-PURCHASE-INVOICE-LINE-TYPE-STRICTNESS",
+  "lastWorkType": "no-bc-helper-strictness-decision",
   "postedInLastRun": false,
   "latestPostedDocuments": {
     "o2c": {
@@ -1322,6 +1322,7 @@
     "FIXEDASSETS-025 corrected the overclaim around FIXEDASSETS-024: active card control proof is partial (4/6), so value lookup/save gate remains blocked until Depreciation Book Code and Posting Group are recovered on the active card. No BC run, no save, no setup and no posting."
   ],
   "prohibitedActions": [
+    "After FIXEDASSETS-063, do not enter FA-CNC-01 in Purchase Invoice lines. First run FIXEDASSETS-064 to prove Type = Fixed Asset visibly in the same line, then clean up any draft. No Preview Posting, Post, acquisition, depreciation, setup change, API shortcut or company switch.",
     "After FIXEDASSETS-062, do not run Preview Posting, Post, acquisition or depreciation. Do not enter FA-CNC-01 again until a strict line-type helper proves Type = Fixed Asset visibly in the same Purchase Invoice line; Vendor Card popups and accidental vendor drafts are hard stop criteria.",
     "After FIXEDASSETS-061 do not run Preview Posting, Post, acquisition, depreciation, setup changes or company switch in the fixed-assets purchase invoice path; the only allowed next step is FIXEDASSETS-062 target field mapping with guard and cleanup.",
     "After FIXEDASSETS-060, do not enter K30000, Vendor Invoice No. or FA-CNC-01 into a Purchase Invoice until FIXEDASSETS-061 explicitly gates a new target field-mapping run. No Preview Posting, Post, acquisition, depreciation, setup change, API shortcut or company switch.",
@@ -1488,36 +1489,42 @@
       "cleanupDone": true,
       "company": "RM-DEMO",
       "nextStep": "FIXEDASSETS-063-PURCHASE-INVOICE-LINE-TYPE-STRICTNESS"
+    },
+    {
+      "caseId": "FIXEDASSETS-063",
+      "result": "No-BC strictness decision: 062 evidence proves the line type remained Item and FA-CNC-01 was shown in a wrong Vendor Card context. Cleanup evidence is consistent. Next practical step is a no-target line-type UI probe.",
+      "evidence": "playwright/projects/fibu-book5/evidence/fixedassets-063/",
+      "screenshots": [],
+      "noBcRun": true,
+      "noPosting": true,
+      "company": "RM-DEMO",
+      "nextStep": "FIXEDASSETS-064-PURCHASE-INVOICE-LINE-TYPE-UI-PROBE-NO-TARGET"
     }
   ],
-  "nextStep": "FIXEDASSETS-063-PURCHASE-INVOICE-LINE-TYPE-STRICTNESS",
-  "nextRecommendedRun": "FIXEDASSETS-063-PURCHASE-INVOICE-LINE-TYPE-STRICTNESS",
+  "nextStep": "FIXEDASSETS-064-PURCHASE-INVOICE-LINE-TYPE-UI-PROBE-NO-TARGET",
+  "nextRecommendedRun": "FIXEDASSETS-064-PURCHASE-INVOICE-LINE-TYPE-UI-PROBE-NO-TARGET",
   "latestFixedAssetsRun": {
-    "caseId": "FIXEDASSETS-062-K30000-FA-CNC-01-TARGET-FIELD-MAPPING-NO-POSTING",
-    "result": "UI-first target field mapping reached Purchase Invoice card/lines context, but the line mapping is rejected: FA-CNC-01 opened Vendor Card V00060 while the purchase invoice line remained Type = Item. Draft purchase invoices 107223 and 107224 plus accidental vendor V00060 were cleaned up through the UI. No preview, posting, acquisition, depreciation, setup change, API shortcut or company switch.",
-    "evidence": "playwright/projects/fibu-book5/evidence/fixedassets-062/",
-    "screenshots": [
-      "playwright/projects/fibu-book5/img/fixedassets-062-050-target-field-mapping.png (rejected/debugging)",
-      "playwright/projects/fibu-book5/img/fixedassets-062-092-accidental-purchase-invoice-107223-before-cleanup.png (rejected)",
-      "playwright/projects/fibu-book5/img/fixedassets-062-093-accidental-purchase-invoice-107223-after-cleanup.png",
-      "playwright/projects/fibu-book5/img/fixedassets-062-095-accidental-vendor-V00060-before-cleanup.png (rejected)",
-      "playwright/projects/fibu-book5/img/fixedassets-062-096-accidental-vendor-V00060-after-cleanup.png"
-    ],
+    "caseId": "FIXEDASSETS-063-PURCHASE-INVOICE-LINE-TYPE-STRICTNESS",
+    "result": "No-BC Strictness-Gate: FIXEDASSETS-062 bleibt rejected, weil die Purchase-Invoice-Zeile Type = Item zeigte und FA-CNC-01 im falschen Vendor-Card-Kontext landete. Cleanup fuer 107223, 107224 und V00060 ist konsistent belegt. Naechster praktischer Lauf darf nur den Zeilentyp Fixed Asset in einer Einkaufsrechnungszeile sichtbar pruefen; FA-CNC-01 bleibt gesperrt.",
+    "evidence": "playwright/projects/fibu-book5/evidence/fixedassets-063/",
+    "screenshots": [],
+    "noBcRun": true,
     "noPosting": true,
     "noPreview": true,
     "noSetupChange": true,
     "cleanupDone": true,
     "company": "RM-DEMO",
-    "nextStep": "FIXEDASSETS-063-PURCHASE-INVOICE-LINE-TYPE-STRICTNESS"
+    "nextStep": "FIXEDASSETS-064-PURCHASE-INVOICE-LINE-TYPE-UI-PROBE-NO-TARGET"
   },
-  "nextBestStep": "FIXEDASSETS-063-PURCHASE-INVOICE-LINE-TYPE-STRICTNESS",
+  "nextBestStep": "FIXEDASSETS-064-PURCHASE-INVOICE-LINE-TYPE-UI-PROBE-NO-TARGET",
   "gateLocks": {
     "fixedAssets": {
-      "status": "purchase-invoice-line-type-strictness-needed",
-      "lastGate": "FIXEDASSETS-062-K30000-FA-CNC-01-TARGET-FIELD-MAPPING-NO-POSTING",
-      "nextAllowedCase": "FIXEDASSETS-063-PURCHASE-INVOICE-LINE-TYPE-STRICTNESS",
-      "allowedOnly": "No Preview/Post. Improve or prove a strict UI-first line-type/lookup helper: Type = Fixed Asset must be visible in the target Purchase Invoice line before FA-CNC-01 is entered or selected.",
+      "status": "purchase-invoice-line-type-ui-probe-needed",
+      "lastGate": "FIXEDASSETS-063-PURCHASE-INVOICE-LINE-TYPE-STRICTNESS",
+      "nextAllowedCase": "FIXEDASSETS-064-PURCHASE-INVOICE-LINE-TYPE-UI-PROBE-NO-TARGET",
+      "allowedOnly": "UI-first Purchase Invoice probe may set/verify only the line Type = Fixed Asset in a visible line and then clean up any draft. Do not enter FA-CNC-01 yet.",
       "forbidden": [
+        "FA-CNC-01 entry or lookup",
         "Preview Posting",
         "Post",
         "Receive",
@@ -1528,15 +1535,14 @@
         "setup changes",
         "API shortcut",
         "company switch",
-        "leaving a draft behind",
-        "entering FA-CNC-01 before Type = Fixed Asset is visibly confirmed"
+        "leaving a draft behind"
       ],
       "stopIf": [
         "wrong environment/company",
         "Vendor registration dialog",
         "Vendor Card",
         "lost Purchase Invoice context",
-        "FA-CNC-01 without Fixed Asset line type",
+        "line type remains Item after attempted change",
         "posting or preview dialog",
         "draft cleanup failure"
       ]

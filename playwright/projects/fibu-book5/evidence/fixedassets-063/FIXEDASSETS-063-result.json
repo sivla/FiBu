@@ -1,0 +1,67 @@
+{
+  "caseId": "FIXEDASSETS-063-PURCHASE-INVOICE-LINE-TYPE-STRICTNESS",
+  "generatedAt": "2026-06-18T20:59:28.617Z",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "dataBasis": "CRONUS USA",
+  "mode": "no-bc-helper-strictness-decision",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-062/FIXEDASSETS-062-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-062/090-cleanup-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-062/094-accidental-purchase-invoice-107223-cleanup-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-062/097-accidental-vendor-V00060-cleanup-result.json"
+  ],
+  "status": "strictness-gate-defined",
+  "checks": {
+    "rejectedWrongContext": true,
+    "clickedOnlyDefaultItemType": true,
+    "cleanup107224Done": true,
+    "cleanup107223Done": true,
+    "cleanupVendorDone": true,
+    "noPostingOrPreview": true,
+    "noSetupOrApi": true
+  },
+  "decision": "FIXEDASSETS-062 is a valid rejected-path learning case, not a valid fixed-asset purchase-invoice preflight. The next practical run must isolate the line-type problem before entering the target fixed asset number.",
+  "strictRule": {
+    "requiredBeforeFixedAssetNoEntry": [
+      "active Purchase Invoice card context",
+      "visible Lines/Grid context",
+      "same visible line shows Type = Fixed Asset",
+      "no Vendor Card or vendor-registration dialog visible"
+    ],
+    "rejectIf": [
+      "line type remains Item",
+      "FA-CNC-01 opens or creates a Vendor Card",
+      "Purchase Invoice context is lost",
+      "Preview Posting or Post dialog appears",
+      "draft cleanup cannot be verified"
+    ],
+    "screenshotRule": "A book candidate screenshot must show K30000/header context and the fixed-asset line together; a target code alone is not enough."
+  },
+  "safety": {
+    "noBcRun": true,
+    "apiShortcutUsed": false,
+    "companySwitched": false,
+    "setupChanged": false,
+    "clickedPreviewPosting": false,
+    "clickedPost": false,
+    "posted": false,
+    "acquisitionPosted": false,
+    "depreciationPosted": false
+  },
+  "proves": [
+    "FIXEDASSETS-062 is consistently rejected because the line type was not proven as Fixed Asset.",
+    "The accidental purchase invoice drafts and vendor draft from 062 are documented as cleaned up.",
+    "The next practical step must probe line-type selection without entering FA-CNC-01."
+  ],
+  "doesNotProve": [
+    "No new Business Central UI state.",
+    "No valid FA-CNC-01 purchase invoice line.",
+    "No Preview Posting.",
+    "No fixed asset acquisition.",
+    "No depreciation.",
+    "No German final proof."
+  ],
+  "bookImpact": "Kapitel 21 und das Debugging-/Screenshot-QA-Kapitel muessen erklaeren: Bei Anlagen-Einkaufsrechnungen ist der Zeilentyp der fachliche Schalter. Ein Code im falschen Lookup-Kontext ist kein Beweis.",
+  "nextStep": "FIXEDASSETS-064-PURCHASE-INVOICE-LINE-TYPE-UI-PROBE-NO-TARGET"
+}

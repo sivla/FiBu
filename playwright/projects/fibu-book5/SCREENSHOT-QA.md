@@ -38,6 +38,8 @@ Ergaenzung nach `FIXEDASSETS-061`: Fuer den naechsten Anlagen-Einkaufsrechnungs-
 
 Ergaenzung nach `FIXEDASSETS-062`: `fixedassets-062-050-target-field-mapping.png` ist `rejected/debugging`. Es zeigt `FA-CNC-01` in einer `Vendor Card - V00060 - FA-CNC-01`, waehrend die Einkaufsrechnungszeile im Hintergrund weiter `Type = Item` zeigt. Genau deshalb darf ein sichtbarer Code nie allein als Buchbild gelten. Fuer Kapitel 21 bleibt der Ziel-Screenshot offen, bis `Type = Fixed Asset` und `FA-CNC-01` sichtbar in derselben Einkaufsrechnungszeile stehen.
 
+Ergaenzung nach `FIXEDASSETS-063`: Es gibt bewusst kein neues Bild. Der Lauf ist ein Screenshot-Gate: Vor jedem neuen `FA-CNC-01`-Bild muss zuerst ein separater UI-Probe-Screenshot zeigen, dass in einer sichtbaren Einkaufsrechnungszeile der Zeilentyp `Fixed Asset` wirklich gesetzt ist. Ein Screenshot, der nur den Zielcode, eine Lookup-Karte oder eine Hintergrundzeile mit `Type = Item` zeigt, bleibt `rejected`.
+
 Laborbilder duerfen abweichen. Dann muessen Abweichung, Ursache und Buchwirkung dokumentiert sein.
 
 Zu jedem automatisiert erzeugten O2C-Screenshot schreibt der Screenshot-Helper eine Metadatendatei unter `evidence/<testfall>/...screenshot.json`. Diese Datei enthaelt Status, Buchnutzung, Zweck, erwartete Werte im BC-Seitentext und bekannte Grenzen. Die PNG-Datei allein ist deshalb nicht mehr die ganze Wahrheit.
