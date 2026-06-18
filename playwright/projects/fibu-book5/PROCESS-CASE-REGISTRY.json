@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-18T20:10:23.066Z",
+  "updatedAt": "2026-06-18T20:20:14.068Z",
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
   "companyMode": "instance-bound-multi-company",
@@ -2721,6 +2721,57 @@
         "39"
       ],
       "nextStep": "FIXEDASSETS-060-PURCHASE-INVOICE-CARD-CONTEXT-PREFLIGHT-NO-TARGET-ENTRY"
+    },
+    {
+      "caseId": "FIXEDASSETS-060",
+      "process": "Fixed Assets",
+      "status": "done-labor-preflight-no-target-entry",
+      "mode": "purchase-invoice-card-context-preflight",
+      "company": "RM-DEMO",
+      "environment": "MCP_1_20260210",
+      "dataBasis": "CRONUS USA",
+      "documents": [
+        "K30000",
+        "FA-CNC-01"
+      ],
+      "screenshots": [
+        "playwright/projects/fibu-book5/img/fixedassets-060-030-after-new-context-preflight.png"
+      ],
+      "evidence": [
+        "playwright/projects/fibu-book5/evidence/fixedassets-060/README.md",
+        "playwright/projects/fibu-book5/evidence/fixedassets-060/FIXEDASSETS-060-result.json",
+        "playwright/projects/fibu-book5/evidence/fixedassets-060/FIXEDASSETS-060-PURCHASE-INVOICE-CARD-CONTEXT-PREFLIGHT.md",
+        "playwright/projects/fibu-book5/evidence/fixedassets-060/031-after-new-card-context-signals.json"
+      ],
+      "proves": [
+        "Purchase Invoices page 9308 can reach an active Purchase Invoice card/lines context after scoped New/Neu",
+        "Required fields Vendor Name, Vendor Invoice No., Document Date and Posting Date are visible",
+        "Lines/Grid columns Type, No. and Description are visible",
+        "No target values, Preview Posting, Post, acquisition, depreciation, setup change, API shortcut or company switch were executed"
+      ],
+      "doesNotProve": [
+        "K30000 purchase invoice header",
+        "Vendor Invoice No. value",
+        "Fixed Asset line type",
+        "FA-CNC-01 purchase invoice line",
+        "Preview Posting",
+        "fixed asset acquisition",
+        "depreciation",
+        "ledger trace",
+        "German final proof"
+      ],
+      "reusablePatterns": [
+        "after New/Neu, require singular card title plus required fields plus Lines/Grid before target entry",
+        "preflight screenshots must state visible default line type and FactBox limitations",
+        "context proof is not a target-value or posting gate"
+      ],
+      "bookChapters": [
+        "21",
+        "37",
+        "38",
+        "39"
+      ],
+      "nextStep": "FIXEDASSETS-061-K30000-FA-CNC-01-TARGET-FIELD-MAPPING-GATE"
     }
   ]
 }

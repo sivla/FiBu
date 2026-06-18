@@ -1,5 +1,20 @@
 # Workarounds und Fehlerjournal
 
+## WK-BC-FA-060 Card-/Lines-Kontext nach `Neu` positiv nachgewiesen, aber Zielwerte bleiben gesperrt
+
+| Feld | Wert |
+|---|---|
+| Status | geloest als Kontext-Preflight / kein Zielwerte-Lauf |
+| Testfall | `FIXEDASSETS-060-PURCHASE-INVOICE-CARD-CONTEXT-PREFLIGHT-NO-TARGET-ENTRY` |
+| Situation | Nach 058/059 war offen, ob `Neu` ueberhaupt stabil in einen aktiven Purchase-Invoice-Belegkopf mit Lines/Grid fuehrt. |
+| Symptom | Vorherige Laeufe stoppten, weil Listen-/Inline-Signale noch kein sicherer Belegkontext waren. |
+| Sichtbarer Beleg | `playwright/projects/fibu-book5/img/fixedassets-060-030-after-new-context-preflight.png` und `playwright/projects/fibu-book5/evidence/fixedassets-060/`. |
+| Ursache | Business Central zeigt nach `Neu` mehrere UI-Schichten: Liste im Hintergrund, Kartenkopf, Lines/Grid, FactBox und Aktionsleiste. Der Test muss den Vordergrundkontext anhand mehrerer sichtbarer Signale pruefen. |
+| Warum BC so reagiert | Der Webclient laesst den Listenhintergrund sichtbar und oeffnet den Beleg als Vordergrundbereich. Fuer Menschen ist das visuell erkennbar; Playwright braucht harte Kriterien. |
+| Loesung | 060 akzeptiert den Kontext erst, wenn singularer `Purchase Invoice`-Titel, Pflichtfelder und Lines-/Gridspalten sichtbar sind. Zielwerte bleiben bis zu einem eigenen 061-Gate gesperrt. |
+| Buchwirkung | Kapitel 21 kann diesen Screenshot als Preflight-Bild fuer den Aufbau einer Einkaufsrechnung nutzen. Es darf nicht als Anlagenkauf-, Preview- oder Buchungsbild verwendet werden. |
+| Kuenftige Regel | Erst nach einem eigenen Gate duerfen `K30000`, `Vendor Invoice No.`, Zeilentyp `Fixed Asset` und `FA-CNC-01` in einem neuen Lauf getestet werden. |
+
 ## WK-BC-FA-059 Listen-/Inline-Kontext nach `Neu` spezifisch stoppen
 
 | Feld | Wert |

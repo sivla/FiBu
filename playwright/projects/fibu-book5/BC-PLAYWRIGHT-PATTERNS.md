@@ -73,6 +73,7 @@ Diese Datei sammelt wiederverwendbare Muster aus belegten Laeufen. Sie ist keine
 - Aktionen muessen an den Seitenkontext gebunden werden. `first()`/`last()` ist nur akzeptabel, wenn danach der Zielzustand geprueft wird.
 - Neuer Helper-Baustein: `playwright/core/bc/actions.ts` mit `clickBcAction()` und `isBcActionVisible()`. Er sucht sichtbare `button`/`menuitem`/`link`-Aktionen ueber Page und Frames, kann optional Seitentext als Kontextanker verlangen und nach dem Klick einen erwarteten Zieltext pruefen.
 - `New/Neu` ist global mehrdeutig. Kein Setup oder Stammdaten-Fit mit ungescoptem `New/Neu`.
+- `FIXEDASSETS-060` ergaenzt fuer Purchase Invoices: Ein gescopter `Neu`-Klick reicht erst dann als aktiver Belegkontext, wenn danach ein singularer `Purchase Invoice`-Titel, Pflichtfelder wie `Vendor Name`/`Vendor Invoice No.` und Lines-/Gridspalten wie `Type`, `No.` und `Description` sichtbar sind. Dieser Kontextnachweis erlaubt noch keine Zielwerte, Preview oder Buchung.
 - `REPORTING-013` ist der belegte Rejected Path: ungescopter `New/Neu` kann in den Role-Center-Kontext fallen.
 - `FIXEDASSETS-012` zeigt nur leere Karten/Template-Dialoge; das ist kein Zielcode-Beweis.
 - `FIXEDASSETS-016` zeigt das Gegenmuster: Auf der `FA Posting Group Card` ist `New/Neu` als titelbasierter Icon-Button sichtbar (`Erstellen Sie einen neuen Eintrag.`), nicht zwingend als Textlabel. Der Helper muss solche titelbasierten Aktionskandidaten bewerten und danach den Zielzustand sichtbar pruefen.

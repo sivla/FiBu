@@ -32,6 +32,8 @@ Ergaenzung nach `FIXEDASSETS-049`: Die neuen Personalisieren-Bilder zeigen `Wird
 
 Ergaenzung nach `FIXEDASSETS-051`: Das Page-Inspection-Bild zeigt `Vendor Card (26, Card)` und `Vendor (23)` und ist damit ein guter technischer Page-/Table-Kontext. Es zeigt aber nicht alle kritischen Codes als gut lesbare Bildwerte. `Vendor Posting Group = DOMESTIC`, `Gen. Bus. Posting Group = DOMESTIC`, leere Currency/VAT/Tax-Felder, `Tax Liable = Nein`, `1M(8D)` und `BANK` sind in strukturierter Evidence belegt. Fuer Buchscreenshots gilt weiter: Bild und Aussage muessen zusammenpassen; wenn Codes nicht sichtbar sind, ist das Bild Debugging-/Evidence-Kontext und kein Feldwerte-Buchbild.
 
+Ergaenzung nach `FIXEDASSETS-060`: Das neue Purchase-Invoice-Bild ist ein Preflight-/Kontextkandidat. Es zeigt `Purchase Invoice`, Pflichtfelder wie `Vendor Name` und `Vendor Invoice No.` sowie den Lines-/Gridbereich. Es zeigt aber keinen Anlagenkauf: kein `K30000`, keine `Vendor Invoice No.`, kein Zeilentyp `Fixed Asset`, kein `FA-CNC-01`, keine Preview und keine Buchung. Weil die FactBox offen ist und die erste Zeile default auf `Item` steht, darf das Bild nur den Karten-/Lines-Kontext nach `Neu` erklaeren, nicht einen Zielbeleg.
+
 Laborbilder duerfen abweichen. Dann muessen Abweichung, Ursache und Buchwirkung dokumentiert sein.
 
 Zu jedem automatisiert erzeugten O2C-Screenshot schreibt der Screenshot-Helper eine Metadatendatei unter `evidence/<testfall>/...screenshot.json`. Diese Datei enthaelt Status, Buchnutzung, Zweck, erwartete Werte im BC-Seitentext und bekannte Grenzen. Die PNG-Datei allein ist deshalb nicht mehr die ganze Wahrheit.

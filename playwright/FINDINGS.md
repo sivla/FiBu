@@ -1,4 +1,22 @@
 
+## FIND-BC-FA-060 Purchase-Invoice-Card-/Lines-Kontext nach `Neu` ist jetzt belegbar
+
+| Feld | Wert |
+|---|---|
+| Projekt | fibu-book5 |
+| Testfall | `FIXEDASSETS-060-PURCHASE-INVOICE-CARD-CONTEXT-PREFLIGHT-NO-TARGET-ENTRY` |
+| Screenshot | `playwright/projects/fibu-book5/img/fixedassets-060-030-after-new-context-preflight.png` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-060/` |
+| BC-Seite | `Purchase Invoices` Page `9308` / `Purchase Invoice`-Kartenkontext, Company `RM-DEMO` |
+| sichtbar | `Purchase Invoice`, `Vendor Name`, `Vendor Invoice No.`, Datumsfelder, Lines/Grid mit `Type`, `No.`, `Description`, sichtbare `Post`-Gefahrengrenze |
+| nicht sichtbar / nicht bewiesen | `K30000`, konkrete `Vendor Invoice No.`, Zeilentyp `Fixed Asset`, `FA-CNC-01`, Preview Posting, Anlagenzugang, AfA, Anlagenposten, deutscher Finalnachweis |
+| Elementtyp | UI-first Preflight / Screenshot-QA / Anlagenkauf-Vorbereitung |
+| Testergebnis | Der Lauf beweist den aktiven Purchase-Invoice-Card-/Lines-Kontext nach gescoptem `Neu`, aber absichtlich ohne Zielwerteingabe. |
+| Entscheidung | Kein Zielbeleg und kein Preview-/Post-Gate. Naechster Schritt ist `FIXEDASSETS-061-K30000-FA-CNC-01-TARGET-FIELD-MAPPING-GATE`. |
+| Buchstelle | Kapitel 21 Anlagen; Kapitel Debugging/technische Nachweisfuehrung; Screenshot-QA |
+
+Fuer Anfaenger ist das ein guter Zwischenschritt: Man sieht jetzt, welche Felder und Zeilenbereiche eine Einkaufsrechnung grundsaetzlich hat. Das Bild erklaert aber noch nicht den Anlagenkauf, weil die fachlichen Zielwerte und der Anlagen-Zeilentyp fehlen.
+
 ## FIND-BC-FA-059 Purchase-Invoice-Listen-/Inline-Kontext ist kein Card-/Lines-Nachweis
 
 | Feld | Wert |
