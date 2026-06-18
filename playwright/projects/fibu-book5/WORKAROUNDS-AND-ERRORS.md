@@ -1,5 +1,20 @@
 # Workarounds und Fehlerjournal
 
+## WK-BC-FA-055 Falscher Vendor-Card-Kontext beim Purchase-Invoice-Feldmapping
+
+| Feld | Wert |
+|---|---|
+| Status | geloest als Cleanup, Feldmapping bleibt blockiert |
+| Testfall | `FIXEDASSETS-055-K30000-FA-CNC-01-PURCHASE-INVOICE-FIELD-MAPPING-NO-POSTING` |
+| Situation | `K30000` sollte im Purchase-Invoice-Kopf und `FA-CNC-01` nur im richtigen Anlagenzeilenkontext sichtbar getestet werden. |
+| Symptom | Der Lauf blieb nicht stabil im Belegzeilenkontext. Sichtbar wurden ein Vendor-Registrierungsdialog und danach `Vendor Card - V00040 - FA-CNC-01`; ausserdem entstand der Purchase-Invoice-Draft `107222`. |
+| Sichtbarer Beleg | Rejected-Bilder `fixedassets-055-030-header-k30000-visible.png`, `fixedassets-055-050-line-fa-cnc-01-visible.png`; Cleanup-Bilder `fixedassets-055-071-accidental-vendor-after-cleanup.png`, `fixedassets-055-081-accidental-purchase-invoice-after-cleanup.png`; Evidence `playwright/projects/fibu-book5/evidence/fixedassets-055/`. |
+| Ursache | Die Zeilen-/Lookup-Bedienung war nicht ausreichend auf den Purchase-Invoice-Zeilenbereich gescopt. Zielcode-Sichtbarkeit allein war zu schwach, weil `FA-CNC-01` in einer falschen Vendor Card sichtbar wurde. |
+| Warum BC so reagiert | Business Central oeffnet bei unklaren oder nicht registrierten Eingaben Dialoge und Karten fuer verwandte Stammdaten. Das ist fachlich plausibel, aber fuer eine Klickanleitung gefaehrlich: Der sichtbare Code kann dann zum falschen Objekt gehoeren. |
+| Loesung | `V00040` und `107222` wurden ueber die UI geloescht und in gefilterten Nachweisen als nicht mehr sichtbar belegt. Der 055-Test wurde verschaerft: Vendor-Registrierungsdialoge und Vendor-Card-Popups sind Stop-/Rejected-Kriterien. |
+| Buchwirkung | Kapitel 21 darf 055 nicht als Anlagenkauf-Bild verwenden. Das Debugging-/Nachweiskapitel sollte diesen Fall erklaeren: Ein Screenshot muss den richtigen fachlichen Kontext zeigen, nicht nur irgendeinen Zielcode. |
+| Kuenftige Regel | Vor einem neuen Field-Mapping-Lauf braucht es `FIXEDASSETS-056`: sicheren Zeilenkontext-Helper bauen, Zeilentyp und Anlagen-Nr. im selben Gridbereich pruefen, und falsche Popups sofort abbrechen. |
+
 Diese Datei dokumentiert technische Stolperstellen, Workarounds und gelöste Fehler aus den Business-Central-Playwright-Läufen für Buch 5.
 
 Ziel ist nicht nur, dass der Test am Ende grün ist. Ziel ist, dass ein späterer Autor, Consultant oder Codex-Account versteht, was schiefging, wie es sichtbar wurde und welche Regel daraus entstanden ist.

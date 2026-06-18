@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "updatedAt": "2026-06-18T19:30:00.000Z",
+  "updatedAt": "2026-06-18T19:36:00.000Z",
   "repository": "sivla/FiBu",
   "branch": "codex/playwright-bc-screenshot-foundation",
   "environment": "MCP_1_20260210",
@@ -10,8 +10,8 @@
   "companyRegistry": "playwright/projects/fibu-book5/COMPANY-REGISTRY.json",
   "dataBasis": "CRONUS USA",
   "activeArea": "fixedassets",
-  "lastCompletedRun": "FIXEDASSETS-054-K30000-FA-CNC-01-PURCHASE-INVOICE-FIELD-MAPPING-GATE",
-  "lastWorkType": "gate-decision-no-bc-run",
+  "lastCompletedRun": "FIXEDASSETS-055-K30000-FA-CNC-01-PURCHASE-INVOICE-FIELD-MAPPING-NO-POSTING",
+  "lastWorkType": "ui-first-anti-pattern-cleanup-no-posting",
   "postedInLastRun": false,
   "latestPostedDocuments": {
     "o2c": {
@@ -1255,6 +1255,7 @@
     "FIXEDASSETS-025 corrected the overclaim around FIXEDASSETS-024: active card control proof is partial (4/6), so value lookup/save gate remains blocked until Depreciation Book Code and Posting Group are recovered on the active card. No BC run, no save, no setup and no posting."
   ],
   "prohibitedActions": [
+    "After FIXEDASSETS-055, do not run Preview Posting, Post, acquisition or depreciation. Do not rerun Purchase Invoice field mapping until FIXEDASSETS-056 builds a safer line-context helper and treats Vendor registration dialogs / Vendor Card popups as hard stop criteria.",
     "After FIXEDASSETS-054, do not run Preview Posting, Post, fixed asset acquisition, depreciation, setup/vendor/fixed-asset changes, API shortcuts or company switches. FIXEDASSETS-055 may only test K30000 and FA-CNC-01 field mapping in Purchase Invoice with mandatory UI draft cleanup.",
     "After FIXEDASSETS-052, do not post, acquire, depreciate, edit vendor/setup, use API shortcuts, switch company, or leave a Purchase Invoice draft behind. Only FIXEDASSETS-053 no-posting Purchase Invoice preflight is allowed.",
     "After FIXEDASSETS-049, do not create a K30000 purchase invoice, acquisition, depreciation or posting and do not change K30000 vendor/setup defaults. Personalize mode opened but did not expose Vendor Posting Group, Gen. Bus. Posting Group, Currency Code or VAT Bus. Posting Group; the next allowed work is only the FIXEDASSETS-050 gate decision.",
@@ -1329,17 +1330,37 @@
       "noBcRun": true,
       "company": "RM-DEMO",
       "nextStep": "FIXEDASSETS-055-K30000-FA-CNC-01-PURCHASE-INVOICE-FIELD-MAPPING-NO-POSTING"
+    },
+    {
+      "caseId": "FIXEDASSETS-055",
+      "result": "Rejected anti-pattern: K30000/FA-CNC-01 field mapping did not stay in a valid Purchase Invoice fixed-asset line context. Accidental Vendor V00040 / FA-CNC-01 and Purchase Invoice draft 107222 were deleted through the UI. No posting.",
+      "evidence": "playwright/projects/fibu-book5/evidence/fixedassets-055/",
+      "screenshots": [
+        "playwright/projects/fibu-book5/img/fixedassets-055-030-header-k30000-visible.png (rejected)",
+        "playwright/projects/fibu-book5/img/fixedassets-055-050-line-fa-cnc-01-visible.png (rejected)",
+        "playwright/projects/fibu-book5/img/fixedassets-055-071-accidental-vendor-after-cleanup.png",
+        "playwright/projects/fibu-book5/img/fixedassets-055-081-accidental-purchase-invoice-after-cleanup.png"
+      ],
+      "noPosting": true,
+      "cleanupDone": true,
+      "company": "RM-DEMO",
+      "nextStep": "FIXEDASSETS-056-PURCHASE-INVOICE-FIELD-MAPPING-BLOCKER-DIAGNOSIS"
     }
   ],
-  "nextStep": "FIXEDASSETS-055-K30000-FA-CNC-01-PURCHASE-INVOICE-FIELD-MAPPING-NO-POSTING",
-  "nextRecommendedRun": "FIXEDASSETS-055-K30000-FA-CNC-01-PURCHASE-INVOICE-FIELD-MAPPING-NO-POSTING",
+  "nextStep": "FIXEDASSETS-056-PURCHASE-INVOICE-FIELD-MAPPING-BLOCKER-DIAGNOSIS",
+  "nextRecommendedRun": "FIXEDASSETS-056-PURCHASE-INVOICE-FIELD-MAPPING-BLOCKER-DIAGNOSIS",
   "latestFixedAssetsRun": {
-    "caseId": "FIXEDASSETS-054",
-    "result": "Gate decision approved exactly one narrow UI-first Purchase Invoice field-mapping run. K30000 may be tested in the header and FA-CNC-01 may be tested in the line only when the UI context is clear. Preview Posting, Post, acquisition, depreciation, setup changes, API shortcuts, company switch and leftover drafts remain forbidden.",
-    "evidence": "playwright/projects/fibu-book5/evidence/fixedassets-054/",
-    "screenshots": [],
+    "caseId": "FIXEDASSETS-055",
+    "result": "UI-first Purchase Invoice field mapping ran in RM-DEMO and is rejected as a success proof: the flow reached a wrong Vendor Card/lookup context (V00040 / FA-CNC-01) and left Purchase Invoice draft 107222. Both accidental artifacts were cleaned up through the UI. No Preview Posting, no Post, no acquisition, no depreciation, no setup/API shortcut and no company switch.",
+    "evidence": "playwright/projects/fibu-book5/evidence/fixedassets-055/",
+    "screenshots": [
+      "playwright/projects/fibu-book5/img/fixedassets-055-030-header-k30000-visible.png (rejected)",
+      "playwright/projects/fibu-book5/img/fixedassets-055-050-line-fa-cnc-01-visible.png (rejected)",
+      "playwright/projects/fibu-book5/img/fixedassets-055-071-accidental-vendor-after-cleanup.png",
+      "playwright/projects/fibu-book5/img/fixedassets-055-081-accidental-purchase-invoice-after-cleanup.png"
+    ],
     "noPosting": true,
-    "noBcRun": true,
-    "nextAllowedCase": "FIXEDASSETS-055-K30000-FA-CNC-01-PURCHASE-INVOICE-FIELD-MAPPING-NO-POSTING"
+    "cleanupDone": true,
+    "nextAllowedCase": "FIXEDASSETS-056-PURCHASE-INVOICE-FIELD-MAPPING-BLOCKER-DIAGNOSIS"
   }
 }

@@ -100,6 +100,8 @@ Diese Datei sammelt wiederverwendbare Muster aus belegten Laeufen. Sie ist keine
 
 ## Tabellen / Grid
 
+- Nach `FIXEDASSETS-055` gilt fuer Belegzeilen: Zielcode-Sichtbarkeit allein reicht nicht. `FA-CNC-01` in einer `Vendor Card` ist kein Anlagenzeilennachweis. Ein Belegzeilen-Helper muss nach jedem Klick/Tab pruefen, dass der aktive Kontext weiterhin Purchase Invoice plus Lines/Grid ist; `Vendor Card`, Vendor-Registrierungsdialoge oder Stammdaten-Popups sind harte Stop-/Rejected-Kriterien. Entstandene Drafts muessen sofort per UI bereinigt und als Cleanup-Evidence dokumentiert werden.
+
 - Breiter Viewport und breite Layoutansicht sind erlaubt, wenn dadurch der fachliche Zielbereich sichtbar wird.
 - Horizontalen Grid-Scroll gezielt am BC-Container nutzen und visuell pruefen, ob die Zielspalten sichtbar sind.
 - Tabellenbilder muessen den Zielwert zeigen, nicht nur irgendeine Liste.

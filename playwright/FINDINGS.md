@@ -1,4 +1,22 @@
 
+## FIND-BC-FA-055 Purchase-Invoice-Feldmapping sprang in falschen Vendor-Kontext
+
+| Feld | Wert |
+|---|---|
+| Projekt | fibu-book5 |
+| Testfall | `FIXEDASSETS-055-K30000-FA-CNC-01-PURCHASE-INVOICE-FIELD-MAPPING-NO-POSTING` |
+| Screenshot | rejected: `playwright/projects/fibu-book5/img/fixedassets-055-030-header-k30000-visible.png`, `playwright/projects/fibu-book5/img/fixedassets-055-050-line-fa-cnc-01-visible.png`; Cleanup: `playwright/projects/fibu-book5/img/fixedassets-055-071-accidental-vendor-after-cleanup.png`, `playwright/projects/fibu-book5/img/fixedassets-055-081-accidental-purchase-invoice-after-cleanup.png` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-055/` |
+| BC-Seite | `Purchase Invoices` Page `9308`, `Purchase Invoice` Page `51`, falscher `Vendor Card`-Kontext, Company `RM-DEMO` |
+| sichtbarer Text / Werte | `107222`, `K30000`, `Vendor Card - V00040 - FA-CNC-01`, gefilterte leere Listen nach Cleanup |
+| nicht sichtbar / nicht bewiesen | gueltige `Fixed Asset`-Zeile mit `FA-CNC-01`, Preview Posting, Anlagenzugang, Anlagenposten, deutscher Finalnachweis |
+| Elementtyp | Einkaufsrechnung / Anlagenkauf / Zeilen-Feldmapping / falscher Lookup-Kontext / Cleanup |
+| Testergebnis | Kein Erfolg fuer den Anlagenkauf. Der Lauf wurde als Anti-Pattern rejected; `V00040` und `107222` wurden ueber UI geloescht. |
+| Entscheidung | Naechster Schritt ist `FIXEDASSETS-056-PURCHASE-INVOICE-FIELD-MAPPING-BLOCKER-DIAGNOSIS`: sicherer Zeilenkontext-Helper und Stop-Kriterien fuer Vendor-Registrierungsdialoge/Vendor-Card-Popups. |
+| Buchstelle | Kapitel 21 Anlagen; Kapitel Debugging/technische Nachweisfuehrung; Screenshot-QA |
+
+Fuer Anfaenger ist der Fall sehr wertvoll: Man darf nicht nur fragen, ob ein Code sichtbar ist, sondern wo er sichtbar ist. `FA-CNC-01` in einer Vendor Card ist fachlich falsch; eine Klickanleitung braucht den korrekten Seiten- und Zeilenkontext.
+
 ## FIND-BC-FA-054 Zielwert-Mapping braucht eigenes Gate vor jedem Purchase-Invoice-Draft
 
 | Feld | Wert |
