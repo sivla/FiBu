@@ -3762,7 +3762,7 @@ Vor Buchung wird die Abstimmungszeile korrigiert. Nach Buchung wird ein falscher
 
 
 ## 21. Anlagen (Fixed Assets)
-Dieses Kapitel zeigt, wie Rhein-Main eine Anlage kauft, aktiviert und abschreibt. Nach dem Kapitel kannst du `FA-CNC-01` anlegen, den Zugang über Einkaufsrechnung buchen, AfA berechnen und Anlagenposten mit Sachposten abstimmen.
+Dieses Kapitel zeigt, wie Rhein-Main eine Anlage kauft, aktiviert und abschreibt. Nach dem Kapitel kannst du `FA-CNC-01` anlegen, den Zugang ueber Einkaufsrechnung buchen, AfA berechnen und Anlagenposten mit Sachposten abstimmen.
 
 ### Kapitelbox
 
@@ -3772,33 +3772,33 @@ Dieses Kapitel zeigt, wie Rhein-Main eine Anlage kauft, aktiviert und abschreibt
 | Schwierigkeit | Intermediate |
 | Prozessbereich | Anlagen (Fixed Assets) |
 | Betroffene Companies | RM-PROD, RM-SHARED |
-| MB-800-Relevanz | Ja: Anlagen, AfA-Bücher, Anlagenbuchungsgruppen, Zugang, AfA, Abgang |
+| MB-800-Relevanz | Ja: Anlagen, AfA-Buecher, Anlagenbuchungsgruppen, Zugang, AfA, Abgang |
 | Solution-Architect-Relevanz | Ja: Anlagenarchitektur, HGB-AfA, Komponenten, Kontenfindung |
-| Ergebnis nach dem Kapitel | Du kannst Anlage `FA-CNC-01` anlegen, Zugang buchen, AfA berechnen, Anlagenposten prüfen und Fehlbuchungen korrigieren. |
+| Ergebnis nach dem Kapitel | Du kannst Anlage `FA-CNC-01` anlegen, Zugang buchen, AfA berechnen, Anlagenposten pruefen und Fehlbuchungen korrigieren. |
 
 ### Alltagsszene bei Rhein-Main
 
-RM-PROD kauft eine CNC-Maschine `FA-CNC-01` für `120.000 EUR`. Die Maschine soll nicht als einfacher Aufwand gebucht werden. Sie wird aktiviert und über acht Jahre abgeschrieben.
+RM-PROD kauft eine CNC-Maschine `FA-CNC-01` fuer `120.000 EUR`. Die Maschine soll nicht als einfacher Aufwand gebucht werden. Sie wird aktiviert und ueber acht Jahre abgeschrieben.
 
-### Für absolute Einsteiger erklärt
+### Fuer absolute Einsteiger erklaert
 
-Eine Anlage ist ein langfristig genutztes Wirtschaftsgut. In Business Central reicht eine Buchung auf ein Sachkonto nicht aus. Die Anlage braucht eine Anlagenkarte, ein AfA-Buch und Anlagenposten. Nur dann kann BC Anschaffung, Abschreibung und Buchwert sauber verfolgen.
+Eine Anlage ist ein langfristig genutztes Wirtschaftsgut. In Business Central reicht eine Buchung auf ein Sachkonto nicht aus. Eine Anlage braucht eine Anlagenkarte, ein AfA-Buch, eine passende Anlagenbuchungsgruppe und am Ende Anlagenposten. Erst dann kann BC Anschaffung, Abschreibung und Buchwert sauber verfolgen.
 
 Status:
 - Buchziel: `FA-CNC-01` als CNC-Maschine anlegen, Zugang ueber Einkaufsrechnung buchen, AfA berechnen und Anlagenposten/Sachposten abstimmen.
 - Mandant: Aktuelle Bilder stammen aus `RM-DEMO` in `MCP_1_20260210` auf CRONUS-USA-Datenbasis.
 - Laborstand: `HGB`, `MACHINES`, `FA-CNC-01` und `K30000` sind als Labor-/Readiness-Schichten belegt; ein Anlagenzugang ist nicht gebucht.
-- Screenshots: Die folgenden Bilder sind Labor-Screenshots. Sie erklaeren Klickpfad, Feldlogik, Debugging und Grenzen, sind aber keine deutschen Finalbilder.
+- Screenshots: Die folgenden Bilder sind Labor- oder Diagnose-Screenshots. Sie erklaeren Klickpfad, Feldlogik, Debugging und Grenzen, sind aber keine deutschen Finalbilder.
 - Evidence Pack: `playwright/projects/fibu-book5/evidence/fixedassets-014/`, `fixedassets-016/`, `fixedassets-033/`, `fixedassets-034/`, `fixedassets-043/`, `fixedassets-053/`, `fixedassets-064/`.
-- Was ist praktisch belegt: AfA-Buch `HGB`, Anlagenbuchungsgruppe `MACHINES`, Anlagenkarte `FA-CNC-01` mit Stammdatenfit und `Book Value = 0,00`, Teilbefunde zu `K30000`, leere Einkaufsrechnung als Preflight und ein abgelehnter Zeilentyp-Pfad.
-- Was ist nicht belegt: Einkaufsrechnung fuer `K30000`, Zeile `Art/Type = Fixed Asset` mit `FA-CNC-01`, Buchungsvorschau, Anlagenzugang, AfA, Anlagenposten, deutscher Kontenplan und deutsche USt.
+- Praktisch belegt: AfA-Buch `HGB`, Anlagenbuchungsgruppe `MACHINES`, Anlagenkarte `FA-CNC-01` mit Stammdatenfit und `Book Value = 0,00`, Teilbefunde zu `K30000`, leere Einkaufsrechnung als Preflight und ein abgelehnter Zeilentyp-Pfad.
+- Offen: Einkaufsrechnung fuer `K30000`, Zeile `Art/Type = Fixed Asset` mit `FA-CNC-01`, Buchungsvorschau, Anlagenzugang, AfA, Anlagenposten, deutscher Kontenplan und deutsche USt.
 - DE-Finalnachweis: offen.
 - Nicht behaupten: `HGB` im Labor ist kein deutscher HGB-Endstand, `MACHINES` ist kein deutscher Kontenplan, `Book Value = 0,00` ist kein Anlagenzugang, ein Dialogtext `Fixed Asset` ist kein sichtbarer Zeilentyp.
 
 ### Deutsche BC-Seiten
 
 - `Anlagen (Fixed Assets)`
-- `AfA-Bücher (Depreciation Books)`
+- `AfA-Buecher (Depreciation Books)`
 - `Einkaufsrechnungen (Purchase Invoices)`
 - `AfA berechnen (Calculate Depreciation)`
 - `Anlagenposten (FA Ledger Entries)`
@@ -3806,126 +3806,73 @@ Status:
 
 ### Setup-Check vor dem ersten Anlagenzugang
 
-Bevor du `FA-CNC-01` anlegst oder eine Einkaufsrechnung buchst, prüfe die Einrichtung. Im aktuellen CRONUS-USA-Labor `RM-DEMO` ist der UI-Pfad zu `FA Posting Groups` über `Alt+Q` praktisch nachgewiesen: Die Seite zeigt vorhandene CRONUS-Anlagenbuchungsgruppen und Kontenfelder wie `Acquisition Cost Account`, `Accum. Depreciation Account` und `Maintenance Expense Account`. Seit `FIXEDASSETS-016` ist die Laborgruppe `MACHINES` sichtbar; das Nachherbild zeigt `MACHINES` zusammen mit den relevanten Kontenwerten `12210` und `82000`. Das ist ein Laborbefund, kein deutscher Endstand.
+Bevor du `FA-CNC-01` anlegst oder eine Einkaufsrechnung buchst, pruefe die Einrichtung:
 
-Für Einsteiger ist die Regel wichtig: Eine Anlagenbuchungsgruppe ist keine Beschreibung der Maschine, sondern Kontenfindung. Sie entscheidet, welche Sachkonten Business Central beim Zugang, bei Abschreibung, Abgang und Buchwert anspricht. Fehlt `MACHINES` oder sind die Konten falsch, darf der Anlagenzugang nicht gebucht werden. Vor einem Setup-Fit müssen vorhandene Gruppen und ihre Konten gelesen werden; kein Konto wird geraten.
+1. `FA Posting Groups` ueber `Alt+Q` oeffnen und die Kontenlogik lesen.
+2. `Depreciation Books` pruefen und `HGB` bestaetigen.
+3. `Kreditoren (Vendors)` ueber `Alt+Q` oeffnen und `K30000` read-only suchen.
+4. Erst danach `Purchase Invoices` oeffnen und die Belegkarte als Preflight lesen.
 
-Laborbefund in `RM-DEMO`: `FIXEDASSETS-006` liest vorhandene CRONUS-Anlagenbuchungsgruppen read-only. Sichtbar sind unter anderem `EQUIPMENT` mit Konten `12210`/`82000`, `GOODWILL` mit `11300`, `PLANT` mit `12110`/`81000`, `PROPERTY` mit `12130`/`81000` und `VEHICLES` mit `12230`/`82000`. Diese Werte sind nur CRONUS-USA-Laborreferenz. Sie beweisen, dass BC mehrere Konten je Anlagenbuchungsgruppe erwartet; sie beweisen keinen deutschen HGB-Kontenplan.
+Fuer Einsteiger ist die Regel wichtig: Eine Anlagenbuchungsgruppe ist keine Beschreibung der Maschine, sondern Kontenfindung. Sie entscheidet, welche Sachkonten Business Central beim Zugang, bei Abschreibung, Abgang und Buchwert anspricht. Fehlt `MACHINES` oder sind die Konten falsch, darf der Anlagenzugang nicht gebucht werden.
 
-Kontenentscheidung und Fit nach `FIXEDASSETS-015`/`FIXEDASSETS-016`: `MACHINES` wurde genau als CRONUS-USA-Laboralias der vorhandenen Gruppe `EQUIPMENT` vorbereitet. Das ist didaktisch sinnvoll, weil eine CNC-Maschine fachlich eher Ausruestung/Maschine als Goodwill, Grundstueck oder Fahrzeug ist. Es bleibt aber ein Laborentscheid: Der spaetere deutsche Zielmandant braucht eine eigene Kontenplanentscheidung. Fuer Anfaenger ist die Lehre: `MACHINES` ist kein Name fuer die Maschine, sondern ein Konto-Set, das Business Central spaeter beim Zugang, bei Abschreibung, Abgang und Wartung verwendet. Deshalb ist `MACHINES` jetzt ein Setup-Baustein vor `FA-CNC-01`, aber noch kein Grund, einen Anlagenzugang zu buchen.
+### Was die Evidence zeigt
 
-Weiterer Laborbefund: `FIXEDASSETS-007` liest die angrenzenden Setup-Seiten read-only. `Depreciation Books` zeigte in `RM-DEMO` zuerst nur `COMPANY = Company Book`; `FIXEDASSETS-014` hat danach genau das AfA-Buch `HGB` UI-first angelegt und mit sichtbarem Code `HGB` sowie Beschreibung `HGB depreciation book` nachgewiesen. `FA Classes` zeigt `FINANCIAL`, `INTANGIBLE` und `TANGIBLE`. Für Anfänger ist das wichtig: AfA-Buch, Anlagenklasse und Anlagenbuchungsgruppe sind drei unterschiedliche Dinge. Das AfA-Buch beschreibt Bewertungs-/Abschreibungslogik, die Anlagenklasse strukturiert die Anlage fachlich, und die Anlagenbuchungsgruppe steuert die Sachkonten. Erst wenn diese Ebenen zusammenpassen, darf ein Anlagenzugang vorbereitet werden.
+| Evidence | Beweis | Lernwert |
+|---|---|---|
+| `fixedassets-014` | `HGB` ist als AfA-Buch sichtbar | AfA-Buch ist Setup, nicht Buchung |
+| `fixedassets-016` | `MACHINES` ist als Anlagenbuchungsgruppe sichtbar, inkl. `12210` und `82000` | Anlagenbuchungsgruppe ist Kontenfindung |
+| `fixedassets-033` + `034` | `FA-CNC-01` ist als Labor-Stammdatenfit belegt, inkl. `Book Value = 0,00` und `FA Subclass Code = EQUIPMENT` | Stammdaten-Readiness ist noch kein Zugang |
+| `fixedassets-043` | `K30000` zeigt Invoicing-/Tax-Teilsicht | Teilfelder reichen noch nicht fuer Kaufbeleg-Readiness |
+| `fixedassets-053` | Leere Purchase Invoice mit Pflichtfeldern und `Post`-Gefahrengrenze | richtiger Belegraum, aber noch kein Zielbeleg |
+| `fixedassets-064` | Rejected Path: `Type = Item` blieb bestehen, Vendor-Dialog statt Anlagenzeile | Dialogtext ist kein Zeilentyp-Nachweis |
 
-Status vor dem ersten bebilderten Anlagenlauf:
+### Bilder richtig lesen
 
-| Prüfpunkt | Buchziel | RM-DEMO-Laborbefund | Konsequenz |
-|---|---|---|---|
-| Anlage | `FA-CNC-01` | `FIXEDASSETS-033` und `FIXEDASSETS-034` zeigen: Der Code existiert in `RM-DEMO`; auf der geoeffneten Karte sind `Beschreibung = CNC Maschine FRA`, Labor-Klasse `TANGIBLE`, Labor-Unterklasse `EQUIPMENT`, AfA-Buch `HGB`, Anlagenbuchungsgruppe `MACHINES`, `Book Value = 0,00`, AfA-Start `01.01.2026`, Nutzungsdauer `8,00` und AfA-Ende `31.12.2033` belegt. Das 034-Finalbild zeigt vor allem Unterklasse und AfA-Zeilen; der Gesamtfit entsteht aus 033 plus 034 | Als CRONUS-USA-Labor-Stammdatensatz nutzbar. Nicht als Zugang, AfA, Anlagenposten oder deutscher HGB-Finalnachweis verwenden. Vor Einkaufsrechnung, Zugang oder AfA muss zuerst `K30000` als Kreditor-Readiness separat geklaert werden |
-| AfA-Buch | `HGB` | `HGB` sichtbar nach `FIXEDASSETS-014`; `COMPANY = Company Book` bleibt CRONUS-Referenz | deutscher HGB-Endstand offen; Labor-Fit ist kein Anlagenzugang |
-| Anlagenklasse | `MASCHINE`/`CNC` | `FINANCIAL`, `INTANGIBLE`, `TANGIBLE` sichtbar | Zielklassifizierung muss später bewusst eingerichtet oder auf vorhandene Klasse gemappt werden |
-| Anlagenbuchungsgruppe | `MACHINES` | sichtbar nach `FIXEDASSETS-016`; Nachherbild zeigt `MACHINES`, `12210` und `82000` als CRONUS-Laboralias von `EQUIPMENT` | kein deutscher Kontenplan; Setup-Baustein sichtbar, aber noch keine Anlage und keine Buchung |
-| Kreditor | `K30000` | sichtbar als `Zollspedition Nord GmbH` nach `FIXEDASSETS-038`; `FIXEDASSETS-039` und `FIXEDASSETS-041` zeigen auf der Kreditorenkarte beziehungsweise im Payments-FastTab-Header `Payment Terms Code = 1M(8D)` und `Payment Method Code = BANK`; `FIXEDASSETS-043` zeigt im geoeffneten `Invoicing`-FastTab `Tax Liable`, `Tax Area Code`, `Posting Details` und Withholding-Tax-Felder, aber weiterhin nicht sichtbar Vendor Posting Group, Gen. Bus. Posting Group, Currency Code oder VAT Bus. Posting Group | Labor-Kreditor ist angelegt/bestaetigt, aber nur teilweise purchase-invoice-ready geprueft. Vor Einkaufsrechnung oder Anlagenzugang muss die fehlende Buchungsgruppen-/Waehrungs-/VAT-Sichtbarkeit ueber Gate-Entscheidung, Personalisieren, Seitenpruefung oder Field-/Setup-Diagnose geklaert werden |
-| Zugang/AfA | Einkaufsrechnung, Anlagenposten, AfA bis `30.06.2026` | nicht gebucht | keine Laborbuchung ohne neues Gate |
-
-Evidence-Pack-Stand: `FIXEDASSETS-005` belegt den UI-Pfad zu `FA Posting Groups`, `FIXEDASSETS-006` belegt vorhandene CRONUS-Konten, `FIXEDASSETS-007` belegt AfA-Bücher und Anlagenklassen. `FIXEDASSETS-012` zeigt nur leere Karten und den Vendor-Template-Dialog; diese Bilder sind keine Zielstammdaten-Screenshots. `FIXEDASSETS-014` hat `HGB` praktisch ausgeführt: `HGB` ist in `Depreciation Books` sichtbar. `FIXEDASSETS-016` hat danach `MACHINES` praktisch ausgeführt: `MACHINES` ist auf der `FA Posting Group Card` sichtbar, inklusive `12210` und `82000`. `FIXEDASSETS-033` und `FIXEDASSETS-034` belegen die vorhandene Anlagenkarte `FA-CNC-01` als CRONUS-USA-Labor-Stammdatenfit: Beschreibung, Klasse, Unterklasse, AfA-Buch, Anlagenbuchungsgruppe, Buchwert und AfA-Daten sind sichtbar beziehungsweise persistent. `FIXEDASSETS-038` belegt `K30000` als Labor-Kreditor; `FIXEDASSETS-039` und `FIXEDASSETS-041` belegen dazu nur einen Teil der Karten-Defaults: Zahlungsbedingungen `1M(8D)` und Zahlungsart `BANK` sind sichtbar, Buchungsgruppen, Waehrung und Tax/VAT aber noch nicht. `FIXEDASSETS-041` zeigt ausserdem eine Screenshot-QA-Grenze: Ein Payments-Header mit Kurzinfos beweist nicht, dass Invoicing-/Tax-/Posting-Felder sichtbar sind. Diese Evidence ist ein Labor-Nachweis für die Stammdaten- und Setup-Reihenfolge, kein finaler deutscher Anlagenprozess. Für finale Buchscreenshots fehlen weiterhin Einkaufsrechnung, Zugang, Anlagenposten, AfA-Posten und deutscher Kontenplan-/USt-Nachweis.
-
-### Laborbilder richtig lesen
-
-Die folgenden Bilder sind bewusst keine fertige deutsche Buchstrecke. Sie zeigen, was im aktuellen Labor wirklich sichtbar wurde und welche Lernentscheidung daraus folgt. Damit wird das Kapitel ehrlicher: Business Central fuehrt Anfaenger nicht automatisch von der Anlage zur richtigen Buchung; jede Schicht braucht einen sichtbaren Kontrollpunkt.
+Die folgenden Bilder sind bewusst keine fertige deutsche Buchstrecke. Sie zeigen, was im aktuellen Labor wirklich sichtbar wurde und welche Lernentscheidung daraus folgt.
 
 ![HGB als Labor-AfA-Buch](playwright/projects/fibu-book5/img/fixedassets-014-020-depreciation-books-after-hgb.png)
 
-Was zeigt der Screenshot? Die Seite `Depreciation Books` zeigt den Code `HGB` mit Beschreibung `HGB depreciation book`. Warum ist das wichtig? Ohne AfA-Buch fehlt Business Central die Bewertungs-/Abschreibungslogik fuer die Anlage. Was lernt der Leser daraus? Ein AfA-Buch ist eine Setup-Voraussetzung, aber noch keine Anlage und keine AfA-Buchung. Labor oder final? Labor-Screenshot aus `RM-DEMO` / CRONUS USA, kein deutscher HGB-Finalnachweis. Evidence: `playwright/projects/fibu-book5/evidence/fixedassets-014/`. Offen bleibt der deutsche Zielmandant mit finaler Konten-/Bewertungsentscheidung.
+Die Seite `Depreciation Books` zeigt `HGB` mit der Beschreibung `HGB depreciation book`. Das ist die Setup-Voraussetzung fuer Abschreibung, aber noch keine Anlage und keine AfA-Buchung.
 
 ![MACHINES als Labor-Anlagenbuchungsgruppe](playwright/projects/fibu-book5/img/fixedassets-016-020-fa-posting-groups-after-machines.png)
 
-Was zeigt der Screenshot? Die Anlagenbuchungsgruppe `MACHINES` ist sichtbar und nutzt im CRONUS-USA-Labor Konten wie `12210` und `82000`. Warum ist das wichtig? Die Anlagenbuchungsgruppe ist Kontenfindung: Sie entscheidet spaeter, auf welche Sachkonten Zugang, Abschreibung, Abgang und Buchwert laufen. Was lernt der Leser daraus? `MACHINES` ist nicht der Maschinenname, sondern ein Konto-Set. Labor oder final? Labor-Screenshot, kein deutscher Kontenplan-Endstand. Evidence: `playwright/projects/fibu-book5/evidence/fixedassets-016/`. Offen bleibt die deutsche Kontenentscheidung.
+Die Anlagenbuchungsgruppe `MACHINES` ist sichtbar und nutzt im CRONUS-USA-Labor Konten wie `12210` und `82000`. Das ist Kontenfindung, nicht der Maschinenname.
 
 ![FA-CNC-01 mit Stammdatenfit und Book Value 0,00](playwright/projects/fibu-book5/img/fixedassets-033-060-card-final-values.png)
 
-Was zeigt der Screenshot? Die Karte `FA-CNC-01` zeigt den Labor-Stammdatenstand mit Beschreibung, AfA-Buch `HGB`, Anlagenbuchungsgruppe `MACHINES`, AfA-Daten und `Book Value = 0,00`; zusammen mit `FIXEDASSETS-034` ist auch `FA Subclass Code = EQUIPMENT` belegt. Warum ist das wichtig? Eine gespeicherte Anlagenkarte ist nur Stammdaten-Readiness. Was lernt der Leser daraus? `Book Value = 0,00` bedeutet gerade: Es gibt noch keinen gebuchten Zugang. Labor oder final? Labor-Screenshot. Evidence: `playwright/projects/fibu-book5/evidence/fixedassets-033/` und `playwright/projects/fibu-book5/evidence/fixedassets-034/`. Offen bleiben Einkaufsrechnung, Anlagenposten, AfA und deutscher Finalnachweis.
+Die Karte `FA-CNC-01` zeigt den Labor-Stammdatenstand mit Beschreibung, AfA-Buch `HGB`, Anlagenbuchungsgruppe `MACHINES`, AfA-Daten und `Book Value = 0,00`; zusammen mit `FIXEDASSETS-034` ist auch `FA Subclass Code = EQUIPMENT` belegt. Das ist Stammdaten-Readiness, kein Zugang.
 
 ![K30000 Invoicing-FastTab als Teilnachweis](playwright/projects/fibu-book5/img/fixedassets-043-020-k30000-vendor-invoicing-fasttab-proof.png)
 
-Was zeigt der Screenshot? Die Kreditorenkarte `K30000` ist read-only geoeffnet; im Bereich `Invoicing` sind unter anderem `Tax Liable`, `Tax Area Code`, `Posting Details` und Withholding-Tax-Felder sichtbar. Warum ist das wichtig? Vor einer Anlagen-Einkaufsrechnung muss der Kreditor fachlich und buchungslogisch passen. Was lernt der Leser daraus? Sichtbare Teilfelder sind hilfreich, aber sie ersetzen nicht die fehlenden Default-Felder `Vendor Posting Group`, `Gen. Bus. Posting Group`, `Currency Code` und `VAT Bus. Posting Group`. Labor oder final? Labor-/Diagnosebild. Evidence: `playwright/projects/fibu-book5/evidence/fixedassets-043/`. Offen bleibt ein belastbarer Kaufbeleg-Gate-Nachweis.
+Die Kreditorenkarte `K30000` zeigt read-only den `Invoicing`-Bereich mit `Tax Liable`, `Tax Area Code`, `Posting Details` und Withholding-Tax-Feldern. Die fehlenden Default-Felder fuer den Kaufbeleg sind damit noch nicht belegt.
 
 ![Leere Einkaufsrechnung als Anlagen-Preflight](playwright/projects/fibu-book5/img/fixedassets-053-030-purchase-invoice-after-new.png)
 
-Was zeigt der Screenshot? Nach `Purchase Invoices` -> `Neu` ist eine leere `Purchase Invoice` sichtbar, mit Pflichtfeldern wie `Vendor Name`, `Vendor Invoice No.` und dem Zeilenbereich mit `Type` und `No.`. Warum ist das wichtig? Das Bild zeigt den richtigen Belegraum und die Gefahrengrenze vor jeder Buchung. Was lernt der Leser daraus? Erst wenn Kopf, Zeilentyp und Zielanlage im selben Vordergrundkontext sichtbar sind, darf ein weiterer Preflight entstehen. Labor oder final? Labor-Preflight. Evidence: `playwright/projects/fibu-book5/evidence/fixedassets-053/`. Offen bleiben `K30000`, `Type = Fixed Asset`, `FA-CNC-01`, Preview Posting und Buchung.
+Nach `Purchase Invoices` -> `Neu` ist eine leere `Purchase Invoice` sichtbar, mit Pflichtfeldern wie `Vendor Name`, `Vendor Invoice No.` und dem Zeilenbereich mit `Type` und `No.`. Das ist der richtige Belegraum vor jeder Buchung.
 
 ![Rejected Path: Dialogtext ist kein Zeilentypnachweis](playwright/projects/fibu-book5/img/fixedassets-064-050-line-type-fixed-asset-visible.png)
 
-Fehlerbild: Das Bild zeigt weiter `Type = Item` und einen Vendor-Registrierungsdialog fuer den Text `Fixed Asset`. Ursache: Blindes Tippen nach Klick auf die Tabellenzelle hat nicht die echte Zeilentyp-Auswahl gesetzt, sondern eine andere BC-Logik angestossen. Was man daraus lernt: Der Zeilentyp muss im eigentlichen Tabellenfeld sichtbar `Fixed Asset` sein; ein Dialogtext oder ein Lookup-Kontext mit demselben Wort zaehlt nicht. Besserer Klickpfad: Im naechsten Lauf muss die echte Dropdown-/Lookup-Auswahl fuer `Type` diagnostiziert werden, weiterhin ohne `FA-CNC-01`. Buchregel: Rejected-Path-Bilder duerfen ins Buch, wenn sie erklaeren, warum ein Screenshot nicht als Zielnachweis taugt. Evidence: `playwright/projects/fibu-book5/evidence/fixedassets-064/`. Laborgrenze: kein Zielbeleg, keine Preview, kein Anlagenzugang, keine AfA; der Entwurf `107209` wurde per UI-Cleanup geloescht.
+Das Bild zeigt weiter `Type = Item` und einen Vendor-Registrierungsdialog fuer `Fixed Asset`. Ein Dialogtext oder Lookup-Kontext ersetzt nicht den sichtbaren Zeilentyp `Fixed Asset`.
 
-Nachweis nach `FIXEDASSETS-053`/`FIXEDASSETS-054`: Die leere Einkaufsrechnung ist jetzt als Preflight-Bild belegt. Sie zeigt Seite, Pflichtfelder, Zeilenbereich und `Post` als Gefahrengrenze, aber noch nicht den Zielkreditor `K30000` und nicht die Zielanlage `FA-CNC-01`. Deshalb ist der naechste Klickpfad kein Anlagenzugang, sondern nur Field-Mapping: Kreditor im Kopf sichtbar pruefen, passenden Anlagen-/Fixed-Asset-Zeilentyp finden, `FA-CNC-01` in der Zeile sichtbar pruefen und einen eventuell entstandenen Entwurf wieder per UI bereinigen. `Preview Posting`, `Post`, Anlagenposten und AfA bleiben bis zu einem spaeteren Gate gesperrt.
+### Schritt-fuer-Schritt
 
-Nachweis nach `FIXEDASSETS-039`: Eine Kreditorenkarte ist erst dann als Vorbereitung fuer einen Anlagenkauf ausreichend, wenn nicht nur Nummer und Name sichtbar sind. Fuer Anfaenger ist wichtig: Zahlungsbedingungen steuern Fälligkeit und Skonto, Zahlungsart steuert den spaeteren Zahlungsweg, aber Buchungsgruppen und Steuer-/Waehrungslogik steuern die Kontenfindung und Belegverarbeitung. Wenn `Vendor Posting Group`, `Gen. Bus. Posting Group`, `Currency Code` oder Tax/VAT-Felder im Screenshot nicht sichtbar sind, darf die Anleitung nicht zur Einkaufsrechnung springen. Der naechste Klickpfad ist eine Diagnose: `Mehr anzeigen`, Personalisieren oder Seitenpruefung nutzen, um zu klaeren, ob die Felder nur ausgeblendet sind oder ob ein Setup-/Default-Fit fehlt.
-
-Entscheidung nach `FIXEDASSETS-040`: Der Anlagenkauf bleibt gesperrt, bis die fehlenden K30000-Defaults in einem eigenen read-only UI-Lauf sichtbar oder sauber als nicht sichtbar dokumentiert sind. Fuer Buchscreenshots gilt dabei die harte Sichtbarkeitsregel: Nicht der konkrete Code allein zaehlt, sondern das fachliche Lernziel. Ein Bild muss also Feld und Wert oder den begruendeten Diagnosebefund zeigen. Personalisieren und Seitenpruefung sind hier Hilfsmittel fuer die Fehleranalyse, aber kein Ersatz fuer einen finalen Anwender-Screenshot und keine Buchungsfreigabe.
-
-Nachweis nach `FIXEDASSETS-041`: Der eigene read-only UI-Lauf hat den Kreditorenkontext bestaetigt, aber den Kaufbeleg noch nicht freigegeben. Sichtbar sind `K30000`, `Zollspedition Nord GmbH`, `Payment Terms Code = 1M(8D)` und `Payment Method Code = BANK`. Nicht sichtbar sind `Vendor Posting Group`, `Gen. Bus. Posting Group`, `Currency Code`, `Tax Area Code`, `Tax Liable` und `VAT Bus. Posting Group`. Fuer Anfaenger ist der Unterschied wichtig: Nicht sichtbar heisst nicht automatisch falsch oder fehlend eingerichtet. Es kann auch bedeuten, dass die FastTab nicht richtig geoeffnet wurde, dass ein Feld ueber Personalisieren eingeblendet werden muss oder dass die Seitenpruefung zur technischen Klaerung noetig ist. Deshalb folgt vor der Einkaufsrechnung erst `FIXEDASSETS-042`: Sichtbarkeit entscheiden, dann erst ueber einen Kaufbeleg nachdenken.
-
-Nachweis nach `FIXEDASSETS-043`: Die breite Kreditorenkarte von `K30000` wurde read-only erneut geoeffnet und der echte kleine FastTab-Schalter fuer `Invoicing` genutzt. Das Bild zeigt jetzt fachlich brauchbar den Kreditorenkontext und Teile der Steuer-/Rechnungslogik: `Tax Liable`, `Tax Area Code`, `Posting Details` und Withholding-Tax-Felder sind sichtbar. Es zeigt aber nicht die fuer eine Einkaufsrechnung besonders wichtigen Default-Felder `Vendor Posting Group`, `Gen. Bus. Posting Group`, `Currency Code` und `VAT Bus. Posting Group`. Fuer die Anleitung heisst das: Der Screenshot ist ein Kandidat fuer den Lernpunkt "FastTab sichtbar machen", aber noch kein Gate fuer Anlagenzugang oder Einkaufsrechnung. Der naechste Schritt ist eine Purchase-Invoice-Gate-Entscheidung: Reicht diese Teilsicht fuer einen vorsichtigen Beleg-Preflight, oder muss zuerst per Personalisieren/Seitenpruefung geklaert werden, ob die Buchungsgruppen nur ausgeblendet sind?
-
-Entscheidung nach `FIXEDASSETS-044`: Die Teilsicht reicht noch nicht fuer einen Kaufbeleg-Preflight. Business Central wuerde eine Einkaufsrechnung spaeter aus der Kombination von Kreditor, Belegkopf, Zeile, Waehrung, Buchungsgruppen und VAT-/Tax-Kontext verarbeiten. Wenn `Vendor Posting Group`, `Gen. Bus. Posting Group`, `Currency Code` und `VAT Bus. Posting Group` im Buchbild nicht sichtbar sind, darf ein Anfaenger nicht daraus ableiten, dass der Anlagenkauf bereit ist. Der naechste Klickpfad bleibt deshalb read-only: Personalisieren beziehungsweise Seitenpruefung nutzen, um zu klaeren, ob die fehlenden Defaults nur ausgeblendet sind oder ob ein eigenes Setup-/Default-Gate noetig wird.
-
-Entscheidung nach `FIXEDASSETS-046`: Ein sichtbarer `Personalisieren`-Eintrag reicht nicht fuer einen Default-Fit. Er beweist nur, dass Business Central ein Diagnosewerkzeug anbietet. Er beweist nicht, welche Werte in `Vendor Posting Group`, `Gen. Bus. Posting Group`, `Currency Code` oder `VAT Bus. Posting Group` stehen. Deshalb darf die Anleitung keine Werte raten und nicht zur Einkaufsrechnung springen. Der naechste Buchbild-Kandidat ist ein read-only Sichtbarkeits-/Werte-Nachweis: Die Seite muss die fehlenden Feldbeschriftungen, Lookup-Optionen oder Werte selbst zeigen, oder sauber dokumentieren, dass sie im aktuellen Labor nicht sichtbar sind.
-
-Korrekturentscheidung nach `FIXEDASSETS-030`: `FA-CNC-01` bleibt der Zielcode. Die vorhandene Karte wird nicht durch einen neuen Laborcode ersetzt, weil Buch, Testdaten und spaetere Postenspur sonst auseinanderlaufen wuerden. Der naechste praktische Buchbild-Kandidat ist deshalb eine korrigierte `FA-CNC-01`-Karte mit Vorher/Nachher-Nachweis: Beschreibung `CNC Maschine FRA`, Labor-Klasse `TANGIBLE`, Labor-Unterklasse `EQUIPMENT`, AfA-Buch `HGB`, Anlagenbuchungsgruppe `MACHINES` und Nutzungsdauer `8 Jahre`. AfA-Start-/Enddatum duerfen erst gesetzt werden, wenn die Datumslogik im UI-Lauf belegbar ist. Bis dahin bleiben Kreditor `K30000`, Einkaufsrechnung, Zugang, AfA und Postenspur gesperrt.
-
-Didaktische Konsequenz nach `FIXEDASSETS-018`: Zwei Bilder sind fachlich sauber, aber unterschiedlich zu lesen. Die Anlagenliste zeigt nur: Im sichtbaren Ausschnitt ist `FA-CNC-01` nicht zu sehen; sie ersetzt keinen sauberen Filter- oder Stammdatennachweis. Die leere Karte zeigt dagegen den Eingaberaum: `No.`, `Description`, `FA Class Code`, `FA Subclass Code`, AfA-Methode, AfA-Start-/Enddatum und `Book Value`. Für Anfänger ist das wichtig, weil Business Central hier Stammdaten, AfA-Logik und spätere Kontenfindung vorbereitet. Ein finales Stammdatenbild darf erst entstehen, wenn `FA-CNC-01`, Beschreibung, AfA-Buch `HGB` und Anlagenbuchungsgruppe `MACHINES` tatsächlich sichtbar gesetzt sind. Genau deshalb kommt die Anlagenkarte vor Kreditor `K30000` und vor der Einkaufsrechnung.
-
-Entscheidung nach `FIXEDASSETS-019`: Die leere Anlagenkarte reicht noch nicht als Speicherfreigabe. Für Anfänger ist das ein wichtiger Lernpunkt: Ein Feldbereich mit dem Namen `Depreciation Book` bedeutet noch nicht, dass das konkrete AfA-Buch `HGB` und die Anlagenbuchungsgruppe `MACHINES` bereits auf der Karte gesetzt sind. Vor dem ersten gespeicherten Stammdatenscreenshot muss die Anleitung deshalb zeigen, wie man die relevanten Felder sichtbar macht, etwa über `Mehr anzeigen` oder als Diagnose über Personalisieren beziehungsweise Seitenprüfung. Erst wenn diese Werte sichtbar erreichbar sind, darf ein Setup-Fit für `FA-CNC-01` vorbereitet werden.
-
-Entscheidung nach `FIXEDASSETS-021`: Der Setup-Fit wird noch nicht ausgefuehrt. `FIXEDASSETS-020` zeigt die richtigen Feldorte, aber nicht die gueltigen Werte. Fuer das Buch ist das ein eigener Kontrollpunkt: Vor dem Speichern muss der Leser sehen, ob `HGB` und `MACHINES` in den jeweiligen Lookups wirklich auswaehlbar sind und welche vorhandene Laborzuordnung fuer Anlagenklasse und Anlagenunterklasse genutzt wird. Ohne diesen Nachweis koennte ein Screenshot zwar eine Anlage zeigen, aber die dahinterliegende Kontenfindung oder AfA-Logik waere unklar.
-
-Nachweis nach `FIXEDASSETS-022`: Der no-save Lookup-/Werte-Preflight hat die Speicherfreigabe noch nicht erbracht. Die leere Anlagenkarte ist als Kontextbild brauchbar, aber `HGB`, `MACHINES`, Anlagenklasse und Anlagenunterklasse sind im korrigierten Lauf nicht als sichtbare, richtige Kartenwerte belegt. Ein Screenshot darf hier also nicht nur ein Feld oder irgendeinen Dialog zeigen; er muss den behaupteten Code im passenden Business-Central-Kontext zeigen. Der naechste Lernschritt ist technische Diagnose mit Seitenpruefung, Personalisieren oder engerem Locator-Mapping, nicht das Speichern der Anlage.
-
-Nachweis nach `FIXEDASSETS-023`: Die technische Diagnose bestaetigt mit Seitenpruefung/Page Inspection die Page `Fixed Asset Card (5600, Document)` und die Tabelle `Fixed Asset (5600)`. Damit ist klar, dass der sichtbare Vordergrund fachlich die Anlagenkarte ist. Fuer die Klickanleitung reicht das aber noch nicht als Speicherfreigabe: Playwright kann ohne engen Scope weiterhin Labels aus der dahinterliegenden Anlagenliste finden. Fuer Autoren ist das ein wichtiger Debugging-Fall. Seitenpruefung zeigt die technische Wahrheit der Page; der finale Buch-Screenshot muss trotzdem die normale Kartenansicht mit `FA-CNC-01`, Beschreibung, `HGB`, `MACHINES`, Klasse/Unterklasse und AfA-Daten sichtbar zeigen.
-
-Nachweis nach `FIXEDASSETS-025`: Der Active-Card-Control-Helper trennt die sichtbare Anlagenkarte von der Hintergrundliste, aber der aktuelle Befund ist nur teilweise tragfaehig. Aktiv gemappt sind `FA Class Code`, `FA Subclass Code` und AfA-Datumsfelder; `Depreciation Book Code` und `Posting Group` sind in der letzten Diagnose nicht als aktive Kartencontrols sichtbar. Das ist ein technischer Fortschritt fuer stabile Klickanleitungen, aber noch kein Stammdatennachweis und kein Speicher-Gate. Fuer Leser heisst das: Ein Feldpfad, ein technischer Treffer und ein gesetzter Wert sind getrennte Nachweise. Der naechste Schritt muss deshalb zuerst die fehlenden Controls no-save wiederfinden; `FA-CNC-01` bleibt bis dahin ungespeichert.
-
-Nachweis nach `FIXEDASSETS-026`: Die fehlenden Controls wurden no-save wiedergefunden. In breiter Kartenansicht und nach gezieltem Aufklappen der echten kleinen `Mehr anzeigen`-Controls sind `Depreciation Book Code` und `Posting Group` auf der aktiven `Fixed Asset Card` sichtbar. Das ist fuer Anfaenger ein wichtiger Zwischenbeweis: Jetzt ist klar, wo AfA-Buch und Anlagenbuchungsgruppe spaeter gepflegt werden. Es ist aber noch kein Stammdatenbild. Die Werte `FA-CNC-01`, `CNC Maschine FRA`, `HGB`, `MACHINES`, Klasse/Unterklasse und AfA-Daten sind noch nicht gesetzt. Der naechste sichere Schritt ist deshalb ein no-save Werte-/Lookup-Preflight; erst danach kann ueber ein Speicher-Gate entschieden werden.
-
-
-Nachweis nach `FIXEDASSETS-027`: Der Lookup-/Werte-Preflight hat sichtbar gemacht, dass `HGB`, `MACHINES` sowie vorhandene Klassen-/Unterklassenwerte im Kartenkontext erreichbar sind. Gleichzeitig hat der Lauf eine wichtige Business-Central-Falle gezeigt: Beim Arbeiten auf einer neuen Anlagenkarte kann BC ueber die Nummernserie bereits einen temporaeren Datensatz erzeugen. Im Labor entstand `FA000110`; dieser Entwurf wurde danach bewusst ueber die UI geloescht und per leerem Nachfilter belegt. Fuer die Klickanleitung bedeutet das: `Neu` ist bei Stammdaten kein harmloser Sichttest. Vor einem finalen Stammdatenscreenshot braucht das Buch jetzt ein eigenes Save-Gate fuer `FA-CNC-01`, inklusive Auto-Number-Strategie, konkreter Klasse/Unterklasse, AfA-Daten und Cleanup-Regel. Bis dahin ist `FA-CNC-01` weiterhin nicht gespeichert.
-
-Entscheidung nach `FIXEDASSETS-028`: Der naechste praktische Schritt darf genau die Zielanlage `FA-CNC-01` speichern, aber noch keine Einkaufsrechnung, keinen Zugang und keine AfA ausloesen. Vor dem Speichern muss die Anleitung zeigen, dass die automatisch gezogene Nummer kontrolliert wird, `No. = FA-CNC-01` sichtbar ist und die Werte `CNC Maschine FRA`, `TANGIBLE`, `EQUIPMENT`, `HGB` und `MACHINES` auf der Karte stehen. Wenn BC die Nummer oder Pflichtfelder nicht sauber traegt, wird abgebrochen und ein Entwurf per UI bereinigt. Das ist die Sicherheitslinie zwischen Stammdatenanlage und Anlagenbuchung.
-
-Nachweis nach `FIXEDASSETS-029-EXISTING`: Die Sicherheitslinie war richtig. `FA-CNC-01` ist in `RM-DEMO` bereits als vorhandener Code sichtbar, aber die Kartenwerte tragen den Buchfall noch nicht. Die Karte zeigt keine Beschreibung, keine Anlagenklasse, keine Anlagenunterklasse, kein AfA-Buch `HGB`, keine Anlagenbuchungsgruppe `MACHINES` und keine AfA-Daten. Fuer Einsteiger ist das ein wichtiger Unterschied: Eine Nummer beweist Identitaet, aber nicht fachlichen Setup-Fit. Deshalb sind die folgenden Schritte weiter Zielbild, nicht aktueller Labor-Endstand. Vor Schritt 4 muss erst entschieden und bebildert werden, ob `FA-CNC-01` korrigiert oder ein sauberer neuer Zielstammsatz angelegt wird.
-
-Nachweis nach `FIXEDASSETS-032`: Die vorhandene Karte ist jetzt teilweise besser, aber noch nicht buchungsreif. Sichtbar sind `FA-CNC-01`, AfA-Buch `HGB`, Anlagenbuchungsgruppe `MACHINES`, Buchwert `0,00`, AfA-Start `01.01.2026`, Nutzungsdauer `8,00` und AfA-Ende `31.12.2033`. Weiter leer bleiben Beschreibung, `FA Class Code` und `FA Subclass Code`. Fuer Einsteiger ist das ein guter Debugging-Fall: Ein Feldbereich kann korrekt gefuellt sein, waehrend ein anderer fachlich zwingender Stammdatenbereich noch fehlt. Deshalb darf die Anleitung noch nicht zu `K30000`, Einkaufsrechnung, Zugang oder AfA springen. Der naechste Klickpfad muss zuerst klaeren, ob Beschreibung, Klasse und Unterklasse ueber Bearbeiten, Personalisieren, Seitenpruefung oder einen besseren Feldpfad sichtbar editierbar sind.
-
-Nachweis nach `FIXEDASSETS-034`: Der zuvor offene Unterklassenblocker ist geloest. `FA Subclass Code = EQUIPMENT` ist auf `FA-CNC-01` sichtbar und im idempotenten Wiederholungslauf persistent. Fuer Einsteiger ist das ein guter Abschluss des Stammdaten-Lernfalls: Ein Anlagenstamm wird nicht durch eine Nummer allein korrekt, sondern durch die Kombination aus Beschreibung, Klasse, Unterklasse, AfA-Buch, Anlagenbuchungsgruppe und AfA-Daten. Trotzdem ist das noch keine Anlagenbuchung. Solange kein Kreditor `K30000`, keine Einkaufsrechnung, keine Buchungsvorschau und keine Anlagenposten belegt sind, bleibt der Prozess vor Zugang und AfA stehen.
-
-Entscheidung nach `FIXEDASSETS-035`: Der naechste Schritt ist nicht sofort die Einkaufsrechnung, sondern ein eigener Kreditoren-Preflight fuer `K30000`. Ein Kreditor ist in Business Central nicht nur Name und Adresse. Die Kreditorenkarte kann Zahlungsbedingungen, Waehrung, Kreditorenbuchungsgruppe, Geschaeftsbuchungsgruppe, VAT-/Tax-Kontext, Sperrstatus und spaetere Verbindlichkeitsposten beeinflussen. Deshalb muss die Klickanleitung vor Schritt 4/5 zuerst `Kreditoren (Vendors)` oeffnen, `K30000` suchen oder filtern und sichtbar belegen, ob der Zielkreditor existiert. Der alte Vendor-Template-Dialog aus `FIXEDASSETS-012` ist nur Kontext, kein Nachweis fuer `K30000`. Bis dieser Preflight erledigt ist, bleiben Kreditoranlage, Einkaufsrechnung, Anlagenzugang, AfA und Postenspur Zielbild, nicht Labor-Endstand.
-
-Nachweis nach `FIXEDASSETS-036`: Der Kreditoren-Preflight ist in `RM-DEMO` read-only gelaufen. Die Seite `Kreditoren (Vendors)` / Page `27` zeigt den Filter `No. = K30000` und eine leere Listenansicht. Damit ist im aktuellen Labor nicht belegt, dass `K30000` existiert. Fuer die Klickanleitung ist das ein guter Anfaenger-Kontrollpunkt: Wenn der Filter leer bleibt, wird nicht zur Einkaufsrechnung gewechselt. Stattdessen braucht es zuerst eine eigene Setup-Gate-Entscheidung fuer die UI-first Kreditoranlage mit Vorlage, Pflichtfeldern, Buchungsgruppen, Zahlungsbedingungen, Waehrung und Tax-/VAT-Kontext.
-
-Entscheidung nach `FIXEDASSETS-037`: Nach dem leeren `K30000`-Filter ist der naechste praktische Labor-Klickpfad genau ein Kreditoren-Setup-Fit, keine Einkaufsrechnung. Der Zielkreditor lautet `K30000` / `Zollspedition Nord GmbH`. In Business Central muss die Anleitung zuerst auf `Kreditoren (Vendors)` bleiben, den Datensatz suchen und bei weiterhin fehlendem Datensatz nur dort kontrolliert eine Kreditorenkarte anlegen oder abbrechen, wenn Vorlage, Kartenkontext oder Pflichtfelder nicht eindeutig sind. Danach werden nur die sichtbaren Defaults geprueft: Kreditorenbuchungsgruppe, Geschaeftsbuchungsgruppe, Zahlungsbedingung, Waehrung, Tax-/VAT-Kontext und Sperrstatus. Anlagen-Einkaufsrechnung, Zugang, AfA, Buchung und Postenspur bleiben Zielbild, bis dieser Stammdatenschritt belegt ist.
-
-Nachweis nach `FIXEDASSETS-038`: `K30000` / `Zollspedition Nord GmbH` ist in `RM-DEMO` als Labor-Kreditor sichtbar. Der Lauf ist zugleich ein wichtiger Anfaenger- und Debugging-Fall: Nach Auswahl einer Kreditorenvorlage kann Business Central zuerst eine Nummer aus der Nummernserie vergeben. Im Labor wurde `V00030` kontrolliert auf `K30000` geaendert und ein frueher leerer Entwurf `V00020` per UI geloescht. Fuer die Klickanleitung bedeutet das: Erst der sichtbare Zielkreditor nach Neuoeffnen/Filter ist der Nachweis. Der naechste Schritt ist nur die read-only Pruefung der Kreditorenkarten-Defaults; Einkaufsrechnung, Zugang, AfA und Buchung bleiben gesperrt.
-
-### Schritt-für-Schritt
-
-1. Öffne `Anlagen (Fixed Assets)` und lege `FA-CNC-01` an.
-2. Setze `Beschreibung = CNC Maschine FRA`, `Anlagenklasse = MASCHINE`, `Anlagenunterklasse = CNC`.
-3. Öffne das AfA-Buch und setze `AfA-Buchcode = HGB`, `AfA-Methode = Linear`, `Nutzungsdauer = 8 Jahre`, `Anlagenbuchungsgruppe = MACHINES`.
-4. Pruefe zuerst in `Kreditoren (Vendors)`, ob `K30000` als Zielkreditor sichtbar ist; falls nicht, ist ein eigener Kreditoren-Setup-Klickpfad noetig.
-5. Wenn `K30000` fehlt, fuehre zuerst den separaten Kreditoren-Setup-Klickpfad aus: `K30000` / `Zollspedition Nord GmbH` als Kreditorenkarte anlegen oder bestaetigen und die Defaults pruefen. Wenn `K30000` sichtbar ist, aber Buchungsgruppen, Waehrung oder Tax/VAT nicht sichtbar sind, nicht zur Einkaufsrechnung springen und keine Werte raten. Zuerst Sichtbarkeit und moegliche Werte per FastTab, Personalisieren oder Seitenpruefung read-only klaeren.
-6. Oeffne erst danach `Einkaufsrechnungen (Purchase Invoices)`.
-7. Erfasse Zeile `Art = Anlage`, `Nr. = FA-CNC-01`, `Menge = 1`, `Direkte Einstandskosten = 120.000`.
+1. Oeffne `Anlagen (Fixed Assets)` und pruefe zuerst, ob `FA-CNC-01` bereits existiert.
+2. Wenn `FA-CNC-01` existiert, oeffne die Karte und pruefe, ob Beschreibung, Anlagenklasse, Anlagenunterklasse, AfA-Buch, Anlagenbuchungsgruppe und Nutzungsdauer fachlich tragen.
+3. Korrigiere oder ergaenze `FA-CNC-01` auf `Beschreibung = CNC Maschine FRA`, im aktuellen RM-DEMO-Labor `Anlagenklasse = TANGIBLE`, `Anlagenunterklasse = EQUIPMENT`.
+4. Oeffne das AfA-Buch und setze `AfA-Buchcode = HGB`, `AfA-Methode = Linear`, `Nutzungsdauer = 8 Jahre`, `Anlagenbuchungsgruppe = MACHINES`.
+5. Pruefe zuerst in `Kreditoren (Vendors)`, ob `K30000` sichtbar und fachlich passend ist; wenn nicht, zuerst den separaten Kreditoren-Setup-Klickpfad ausfuehren.
+6. Wenn `K30000` sichtbar ist, aber Buchungsgruppen, Waehrung oder Tax/VAT nicht sichtbar sind, nicht zur Einkaufsrechnung springen und keine Werte raten. Zuerst Sichtbarkeit und moegliche Werte per FastTab, Personalisieren oder Seitenpruefung read-only klaeren.
+7. Oeffne erst danach `Einkaufsrechnungen (Purchase Invoices)` und erfasse die Zeile `Art = Anlage`, `Nr. = FA-CNC-01`, `Menge = 1`, `Direkte Einstandskosten = 120.000`.
 8. Pruefe `Buchungsvorschau (Preview Posting)`.
 9. Buche die Einkaufsrechnung.
-10. Oeffne `Anlagenposten (FA Ledger Entries)` und pruefe Anschaffungskosten `120.000 EUR`.
+10. Oeffne `Anlagenposten (FA Ledger Entries)` und pruefe die Anschaffungskosten.
 11. Oeffne `AfA berechnen (Calculate Depreciation)` und berechne AfA bis `30.06.2026`.
 12. Buche das AfA-Buch.-Blatt.
 13. Pruefe Anlagenposten, Sachposten und Anlagenspiegel.
 
-
 ### Buchungsspur
 
-| Ebene | Rhein-Main-Nachweis | Wo prüfen? |
+| Ebene | Rhein-Main-Nachweis | Wo pruefen? |
 |---|---|---|
 | Anlage | `FA-CNC-01` | Anlagenkarte |
 | Zugang | Einkaufsrechnung `K30000` | gebuchte Einkaufsrechnung |
@@ -3938,75 +3885,42 @@ Nachweis nach `FIXEDASSETS-038`: `K30000` / `Zollspedition Nord GmbH` ist in `RM
 
 | Fehler | Symptom | Ursache | Diagnosepfad | Korrekturweg |
 |---|---|---|---|---|
-| Sachkonto statt Anlage | keine Anlagenposten | falsche Zeilenart | gebuchte Einkaufsrechnung und Anlagenposten prüfen | Gutschrift und Neubuchung mit `Art = Anlage` |
-| falsches AfA-Buch | AfA fehlt oder falsch | AfA-Buch nicht gepflegt | Anlagenkarte und AfA-Buch prüfen | AfA-Buch korrigieren, AfA neu berechnen |
-| falsche Anlagenbuchungsgruppe | falsche Sachkonten | Setupfehler | Buchungsvorschau/Sachposten prüfen | vor Buchung korrigieren; nach Buchung Gutschrift/Neubuchung |
+| Sachkonto statt Anlage | keine Anlagenposten | falsche Zeilenart | gebuchte Einkaufsrechnung und Anlagenposten pruefen | Gutschrift und Neubuchung mit `Art = Anlage` |
+| falsches AfA-Buch | AfA fehlt oder falsch | AfA-Buch nicht gepflegt | Anlagenkarte und AfA-Buch pruefen | AfA-Buch korrigieren, AfA neu berechnen |
+| falsche Anlagenbuchungsgruppe | falsche Sachkonten | Setupfehler | Buchungsvorschau/Sachposten pruefen | vor Buchung korrigieren; nach Buchung Gutschrift/Neubuchung |
 
 ### Korrekturweg
 
-Gebuchte Anlagenzugänge werden nicht durch Direktänderung der Anlagenposten korrigiert. Rhein-Main nutzt Gutschrift, Neubuchung oder Anlagenjournal mit dokumentiertem Freigabeweg.
-
-
-### Übung
-
-| Feld | Inhalt |
-|---|---|
-| Rolle | Anlagenbuchhalterin bei RM-SHARED |
-| Alltagssituation | RM-PROD kauft eine CNC-Maschine `FA-CNC-01` für `120.000 EUR`. Die Maschine muss aktiviert und monatlich abgeschrieben werden. |
-| Konkrete Testdaten | Anlage `FA-CNC-01`, Kreditor `K30000`, Anschaffung `120.000 EUR`, AfA-Buch `HGB`, Nutzungsdauer `8 Jahre`, Anlagenbuchungsgruppe `MACHINES` |
-| Startseite ueber `Alt+Q` | `Anlagen (Fixed Assets)`, `Kreditoren (Vendors)`, `Einkaufsrechnungen (Purchase Invoices)`, `AfA berechnen (Calculate Depreciation)` |
-| Exakte Felder und Werte | `Anlagennr. = FA-CNC-01`, `Beschreibung = CNC Maschine FRA`, `AfA-Buchcode = HGB`, `Anlagenbuchungsgruppe = MACHINES`, `Kreditor = K30000`, `Betrag = 120.000` |
-| Auszuführende Aktion | Anlage anlegen, Einkaufsrechnung mit Zeilenart `Anlage (Fixed Asset)` buchen, AfA berechnen und AfA-Buch.-Blatt buchen |
-| Erwartete Belege | Anlagenkarte, gebuchte Einkaufsrechnung, gebuchte AfA-Journalzeile |
-| Erwartete Posten | `Anlagenposten (FA Ledger Entries)`, `Kreditorenposten (Vendor Ledger Entries)`, `Sachposten (G/L Entries)` |
-| Kontrollbericht | `Anlagenstatistik`, `Anlagenposten (FA Ledger Entries)`, Anlagenspiegel |
-| Fehlerfrage | Warum reicht eine Sachkontobuchung auf Maschinen nicht aus, um eine Anlage in BC korrekt zu führen? |
-
-### Lösung
-
-1. Öffne `Anlagen (Fixed Assets)` über `Alt+Q` und prüfe zuerst, ob `FA-CNC-01` bereits existiert.
-2. Wenn `FA-CNC-01` existiert, öffne die Karte und prüfe, ob Beschreibung, Anlagenklasse, Anlagenunterklasse, AfA-Buch, Anlagenbuchungsgruppe und Nutzungsdauer bereits fachlich tragen; wenn nicht, korrigiere die vorhandene Karte statt einen neuen Zielcode anzulegen.
-3. Erfasse oder korrigiere `Anlagennr. = FA-CNC-01`, `Beschreibung = CNC Maschine FRA`, im aktuellen RM-DEMO-Labor `Anlagenklasse = TANGIBLE`, `Anlagenunterklasse = EQUIPMENT`.
-4. Öffne das AfA-Buch und setze `AfA-Buchcode = HGB`, `AfA-Methode = Linear`, `Nutzungsdauer = 8 Jahre`, `Anlagenbuchungsgruppe = MACHINES`.
-5. Pruefe zuerst in `Kreditoren (Vendors)`, ob `K30000` sichtbar und fachlich passend ist; wenn nicht, erst separaten Kreditoren-Setup-Klickpfad ausfuehren. Wenn Zahlungsbedingungen sichtbar sind, aber Buchungsgruppen, Waehrung oder Tax/VAT fehlen, ist das ein Sichtbarkeits-/Diagnosepunkt und noch keine Freigabe fuer die Einkaufsrechnung.
-6. Oeffne erst danach `Einkaufsrechnungen (Purchase Invoices)` ueber `Alt+Q` und lege die Rechnung fuer Kreditor `K30000` an.
-7. Erfasse Zeile `Art = Anlage`, `Nr. = FA-CNC-01`, `Menge = 1`, `Direkte Einstandskosten = 120.000`.
-8. Wähle `Buchungsvorschau (Preview Posting)` und prüfe Kreditoren-, Sach- und Anlagenposten.
-9. Buche die Einkaufsrechnung.
-10. Öffne `Anlagenposten (FA Ledger Entries)` und filtere `Anlagennr. = FA-CNC-01`; prüfe Anschaffungskosten `120.000 EUR`.
-11. Öffne `AfA berechnen (Calculate Depreciation)`, setze `AfA-Buchcode = HGB`, `Anlagennr. = FA-CNC-01`, Periodenende `30.06.2026`.
-12. Öffne das erzeugte Anlagen Buch.-Blatt, prüfe AfA-Betrag und wähle `Buchen`.
-13. Prüfe `Sachposten (G/L Entries)`, `Anlagenposten (FA Ledger Entries)` und Anlagenspiegel.
+Gebuchte Anlagenzugange werden nicht durch Direktaenderung der Anlagenposten korrigiert. Rhein-Main nutzt Gutschrift, Neubuchung oder Anlagenjournal mit dokumentiertem Freigabeweg.
 
 ### UAT-Fall
 
 | Feld | Inhalt |
 |---|---|
 | ID | `UAT-K21-001` |
-| Ziel | Zugang und AfA für Anlage `FA-CNC-01` abnehmen |
+| Ziel | Zugang und AfA fuer Anlage `FA-CNC-01` abnehmen |
 | Rolle | Anlagenbuchhaltung, Kreditorenbuchhaltung |
-| Voraussetzung | AfA-Buch `HGB`, Anlagenbuchungsgruppe `MACHINES` und Kreditor `K30000` sind sichtbar eingerichtet; im aktuellen RM-DEMO-Labor ist `K30000` sichtbar, aber nach `FIXEDASSETS-041` sind Buchungsgruppen, Waehrung und Tax/VAT auf der Kreditorenkarte noch kein sichtbarer Field-Proof |
+| Voraussetzung | AfA-Buch `HGB`, Anlagenbuchungsgruppe `MACHINES` und Kreditor `K30000` sind sichtbar eingerichtet; im aktuellen RM-DEMO-Labor ist `K30000` sichtbar, aber Buchungsgruppen, Waehrung und Tax/VAT sind noch kein sichtbarer Field-Proof |
 | Testdaten | `FA-CNC-01`, `120.000 EUR`, Nutzungsdauer `8 Jahre`, `K30000` |
-| Exakte Schrittfolge | 1. Oeffne `Anlagen (Fixed Assets)` und lege `FA-CNC-01` an.<br>2. Setze AfA-Buch `HGB`, Methode `Linear`, Nutzungsdauer `8 Jahre`.<br>3. Pruefe `Kreditoren (Vendors)` und belege `K30000` sichtbar.<br>4. Oeffne danach `Einkaufsrechnungen (Purchase Invoices)` und erfasse Kreditor `K30000`, Zeile `Art = Anlage`, `Nr. = FA-CNC-01`, Betrag `120.000 EUR`.<br>5. Pruefe `Buchungsvorschau (Preview Posting)` und buche.<br>6. Oeffne `Anlagenposten (FA Ledger Entries)` und pruefe Zugang.<br>7. Starte `AfA berechnen (Calculate Depreciation)` fuer `30.06.2026`.<br>8. Buche AfA und pruefe Sachposten sowie Anlagenspiegel. |
+| Exakte Schrittfolge | 1. Oeffne `Anlagen (Fixed Assets)` und lege oder korrigiere `FA-CNC-01`.<br>2. Setze AfA-Buch `HGB`, Methode `Linear`, Nutzungsdauer `8 Jahre`.<br>3. Pruefe `Kreditoren (Vendors)` und belege `K30000` sichtbar.<br>4. Oeffne danach `Einkaufsrechnungen (Purchase Invoices)` und erfasse Kreditor `K30000`, Zeile `Art = Anlage`, `Nr. = FA-CNC-01`, Betrag `120.000 EUR`.<br>5. Pruefe `Buchungsvorschau (Preview Posting)` und buche.<br>6. Oeffne `Anlagenposten (FA Ledger Entries)` und pruefe Zugang.<br>7. Starte `AfA berechnen (Calculate Depreciation)` fuer `30.06.2026`.<br>8. Buche AfA und pruefe Sachposten sowie Anlagenspiegel. |
 | Erwartete Belege | Anlagenkarte, gebuchte Einkaufsrechnung, gebuchtes AfA-Journal |
 | Erwartete Posten | `Anlagenposten`, `Kreditorenposten`, `Sachposten` |
 | Kontrollbericht | Anlagenspiegel und `Anlagenstatistik` |
-| Akzeptanzkriterium | Anschaffung, AfA und Buchwerte stimmen in Anlagenposten, Sachposten und Anlagenspiegel überein. |
+| Akzeptanzkriterium | Anschaffung, AfA und Buchwerte stimmen in Anlagenposten, Sachposten und Anlagenspiegel ueberein. |
 | Evidence Pack | Anlagenkarte, gebuchte Einkaufsrechnung, Anlagenposten, AfA-Journal, Sachposten, Anlagenspiegel, Negativtest |
 | Absichtlich falsche Eingabe | Einkaufsrechnung mit `Art = Sachkonto` statt `Art = Anlage` buchen |
-| Erwartetes Fehlverhalten | Kein Anlagenposten entsteht; AfA kann für `FA-CNC-01` nicht korrekt berechnet werden. |
-| Diagnosepfad | `Anlagenposten (FA Ledger Entries)` auf `FA-CNC-01` filtern und gebuchte Einkaufsrechnung prüfen. |
+| Erwartetes Fehlverhalten | Kein Anlagenposten entsteht; AfA kann fuer `FA-CNC-01` nicht korrekt berechnet werden. |
+| Diagnosepfad | `Anlagenposten (FA Ledger Entries)` auf `FA-CNC-01` filtern und gebuchte Einkaufsrechnung pruefen. |
 | Erlaubter Korrekturweg | Einkaufsrechnung stornieren/gutschreiben und mit Zeilenart `Anlage (Fixed Asset)` neu buchen. |
-| Nicht erlaubt | Sachposten manuell zur Anlage erklären oder AfA außerhalb von BC rechnen. |
+| Nicht erlaubt | Sachposten manuell zur Anlage erklaeren oder AfA ausserhalb von BC rechnen. |
 
 ### In 5 Minuten merken
 
-- Erst den Geschäftsfall verstehen, dann klicken.
-- Deutsche BC-Seite über `Alt+Q` öffnen.
+- Erst den Geschaeftsfall verstehen, dann klicken.
+- Deutsche BC-Seite ueber `Alt+Q` oeffnen.
 - Posten beweisen die Buchung, nicht der Bildschirm.
-- Kontrollbericht und Evidence Pack gehören zum Prozess.
+- Kontrollbericht und Evidence Pack gehoeren zum Prozess.
 - Praxisregel: Kein UAT ohne Beleg, Posten, Bericht und Korrekturtest.
-
 
 ## 22. USt, E-Rechnung und deutsche Nachweissicht [Q20][Q21][Q22][Q23][Q24][Q75][Q76][Q77][Q78]
 Dieses Kapitel zeigt, wie Rhein-Main Umsatzsteuer, E-Rechnungsstatus und deutsche Nachweise direkt aus Business Central prüft. Nach dem Kapitel kannst du aus einer gebuchten Verkaufsrechnung die USt-Posten, Sachposten, E-Belege und USt-Abrechnung nachvollziehen und eine falsche USt-Gruppe sauber korrigieren.
