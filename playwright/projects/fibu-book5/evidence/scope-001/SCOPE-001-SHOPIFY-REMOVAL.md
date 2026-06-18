@@ -4,6 +4,8 @@ Status: `scope-decision`
 
 Datum: 08.06.2026
 
+Update 18.06.2026: Bestaetigt. Shopify wird im Projekt nicht gemacht. Diese Entscheidung ist keine spaetere Backlog-Idee, sondern eine harte Scope-Grenze fuer Buch 5.
+
 ## Entscheidung
 
 Shopify/Online Store ist fuer `FiBu Buch 5` aus dem aktiven Lern-, Playwright- und Evidence-Scope gestrichen.
@@ -21,6 +23,8 @@ Nicht mehr Teil des aktuellen Projekts:
 - Shopify-Connector einrichten
 - Shopify-Auftraege importieren
 - Shopify-Produkte oder Mapping testen
+- Shopify-Seiten in Business Central oeffnen oder als Klickpfad dokumentieren
+- Shopify-Connector-Setup diagnostizieren
 - `WEB-24001` als Shopauftrag
 - Dimension `CHANNEL=SHOP` als aufzubauender Zielwert
 - Shop-Abstimmung oder Payment-Provider-Reconciliation als Buch-5-Pflichtpfad
@@ -39,7 +43,9 @@ Die Buchstellen duerfen Shopify nur noch als bewusst gestrichenes Out-of-Scope-T
 
 ## Naechster Schritt
 
-Wenn Kapitel 17 praktisch bearbeitet wird, dann als neuer UI-first Dropshipping-Lauf:
+Kein Shopify-Schritt. Kein Shopify-Test. Kein Shopify-Setup. Kein Connector-Klickpfad.
+
+Kapitel 17 ist aktuell nicht der naechste priorisierte Arbeitsblock. Falls es spaeter fachlich wieder aufgenommen wird, dann ausschliesslich als Business-Central-Standardfall `Dropshipping/Sonderverkauf` ohne Shopify:
 
 1. Debitor `D11000` pruefen oder per UI anlegen.
 2. Artikel `SP-PUMP-01` pruefen oder per UI anlegen.

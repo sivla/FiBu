@@ -1529,13 +1529,13 @@ Fuer Anfaenger ist das wichtig, weil Integration schnell nach Technik klingt. In
 | Elementtyp | Scope / Buchplanung / Testdatenmodell |
 | erste Hypothese | Shopify erzeugt einen eigenen Connector-/Integrationsscope und lenkt vom aktuellen UI-first Business-Central-Lernpfad ab. |
 | Recherchequelle | Projektentscheidung vom 08.06.2026 und Buch-/Backlog-Sync |
-| Testergebnis | Kapitel 17, Backlog, Testdaten und Datenluecken wurden auf Dropshipping/Sonderverkauf umgestellt. `WEB-24001`, `CHANNEL=SHOP` und Shopify-Klickpfade sind kein aktives Ziel mehr. |
-| Entscheidung | Shopify/Online Store ist out of scope. Dropshipping bleibt als BC-Standardprozess ohne Connector-Scope erhalten. |
+| Testergebnis | Kapitel 17, Backlog, Testdaten und Datenluecken wurden auf Dropshipping/Sonderverkauf umgestellt. `WEB-24001`, `CHANNEL=SHOP`, Shopify-Seiten, Shopify-Klickpfade, Connector-Diagnose und Shopify-Setup sind kein aktives Ziel mehr. |
+| Entscheidung | Shopify/Online Store ist hart out of scope und darf in Buch 5 nicht als spaeterer Backlog-Punkt reaktiviert werden. Dropshipping bleibt nur als moeglicher BC-Standardprozess ohne Connector-Scope erhalten. |
 | Buchstelle | Kapitel 17, Kapitel 1/3/7/10/25/29/38 |
 
 Bewertung:
 
-Fuer Anfaenger ist das wichtig, weil Shopify nicht nur eine BC-Seite ist, sondern Connector, Mapping, Integration und Payment-Provider-Logik nach sich zieht. Das aktuelle Buchprojekt soll zuerst die BC-Standardprozesse ueber UI-Klickpfade lernen.
+Fuer Anfaenger ist das wichtig, weil Shopify nicht nur eine BC-Seite ist, sondern Connector, Mapping, Integration und Payment-Provider-Logik nach sich zieht. Das aktuelle Buchprojekt soll Business-Central-Standardprozesse ueber UI-Klickpfade lernen; sichtbare Shopify-Menues oder Quellenlinks sind deshalb nur Scope-Abgrenzung, kein Arbeitsauftrag.
 
 ## FIND-BC-FA-001 Anlagenkapitel braucht Zielwertabgleich vor Setup und Buchung
 

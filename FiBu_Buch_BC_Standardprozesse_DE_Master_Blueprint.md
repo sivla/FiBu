@@ -3113,7 +3113,7 @@ Projektfehler werden über Projektjournale, Gutschriften oder Korrekturrechnunge
 
 
 ## 17. Dropshipping und Sonderverkauf [Q73][Q74]
-Dieses Kapitel zeigt, wie Rhein-Main einen Dropshipping- und Sonderverkaufsfall im Business-Central-Standard abwickelt. Shopify/Online Store ist fuer dieses Buch-5-Projekt bewusst gestrichen; der Lernpfad startet deshalb mit Verkaufsauftrag, Dropshipping-Kennzeichen, verknuepfter Einkaufsbestellung, USt-/Margenpruefung und Korrekturfall.
+Dieses Kapitel zeigt, wie Rhein-Main einen Dropshipping- und Sonderverkaufsfall im Business-Central-Standard abwickelt. Shopify/Online Store ist fuer dieses Buch-5-Projekt bewusst gestrichen; der Lernpfad startet deshalb mit Verkaufsauftrag, Dropshipping-Kennzeichen, verknuepfter Einkaufsbestellung, USt-/Margenpruefung und Korrekturfall. Sichtbare Shopify-Menues, Microsoft-Learn-Links oder historische Quellenhinweise reaktivieren keinen Shopify-Klickpfad: Es gibt in Buch 5 kein Shopify-Setup, keine Connector-Diagnose und keine Shopify-Screenshots.
 
 ### Kapitelbox
 
@@ -3138,7 +3138,7 @@ Dieses Kapitel zeigt, wie Rhein-Main einen Dropshipping- und Sonderverkaufsfall 
 | Setup geaendert | nein |
 | Evidence Pack | `playwright/projects/fibu-book5/evidence/dropshipping-001/` |
 | Offene Grenzen | Debitor, Kreditor, Artikel, Purchasing-Code-/Drop-Shipment-Logik, Auftrag `DS-24001`, Einkaufsbestellung, Preview Posting, Postenspur, deutscher Finalnachweis |
-| Nicht behaupten | keinen fertigen Dropshipping-Prozess, keine gebuchte Verkaufs-/Einkaufsrechnung, keine deutsche `19 %` USt, keinen Shopify-/Online-Store-Scope |
+| Nicht behaupten | keinen fertigen Dropshipping-Prozess, keine gebuchte Verkaufs-/Einkaufsrechnung, keine deutsche `19 %` USt, keinen Shopify-/Online-Store-Scope, keine spaetere Shopify-Reaktivierung |
 
 ### Alltagsszene bei Rhein-Main
 
