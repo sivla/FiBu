@@ -48,6 +48,8 @@ npm run check:encoding
 git diff --check
 ```
 
+`npm run agent:dry-run` erzeugt nur einen lokalen JSON-Laufplan. Es startet weder Business Central noch Playwright und liest keine Screenshot-/Binary-Artefakte.
+
 If TypeScript files changed, also run:
 
 ```bash

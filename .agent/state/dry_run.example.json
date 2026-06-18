@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-dry-run",
+  "canProceed": true,
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-medium",
+  "usageLogRequired": false,
+  "budgetProfile": "standard",
+  "selectedCapabilities": [
+    {
+      "id": "bc_navigation_control",
+      "maturity": "lab-reusable",
+      "taskClass": "wizard_work",
+      "gates": [
+        "stay-in-instance",
+        "confirm-company-before-data-change",
+        "avoid-blind-tell-me-enter"
+      ]
+    }
+  ],
+  "selectedSkills": [
+    "posting-gate",
+    "screenshot-qa",
+    "evidence-writer"
+  ],
+  "filesToRead": [
+    ".agent/state/current.json"
+  ],
+  "filesNotToRead": [
+    ".env",
+    "playwright/.auth/",
+    "playwright-report/",
+    "test-results/"
+  ],
+  "allowedActions": [
+    "static-helper-analysis"
+  ],
+  "forbiddenActions": [
+    "post",
+    "api-shortcut"
+  ],
+  "safetyGates": [
+    "instance-boundary-gate",
+    "no-bc-execution-in-dry-run",
+    "no-playwright-execution-in-dry-run",
+    "posting_safety_gate",
+    "api-shortcut-exception-gate",
+    "forbidden-actions-win"
+  ],
+  "stopConditions": [],
+  "nextSafeAction": "Run local diagnosis/plan only; do not execute Business Central or Playwright from dry-run.",
+  "requiresHumanApproval": false,
+  "reason": "Example dry-run output.",
+  "validationCommands": [
+    "npm run agent:preflight",
+    "npm run agent:dry-run",
+    "npm run check:encoding",
+    "git diff --check"
+  ]
+}

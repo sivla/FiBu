@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "description": "Documentation schema for the JSON emitted by scripts/agent/dry-run.mjs.",
+  "requiredTopLevelFields": [
+    "schemaVersion",
+    "purpose",
+    "canProceed",
+    "selectedTaskClass",
+    "selectedModelClass",
+    "usageLogRequired",
+    "budgetProfile",
+    "selectedCapabilities",
+    "selectedSkills",
+    "filesToRead",
+    "filesNotToRead",
+    "allowedActions",
+    "forbiddenActions",
+    "safetyGates",
+    "stopConditions",
+    "nextSafeAction",
+    "requiresHumanApproval",
+    "reason",
+    "validationCommands"
+  ],
+  "purpose": "autopilot-dry-run",
+  "notes": [
+    "Dry-run must never execute Business Central or Playwright.",
+    "filesToRead and selectedSkills must stay within budget profile limits.",
+    "Risky forbidden actions must produce safety gates.",
+    "judge_work and big_brain_review require usage logging."
+  ]
+}

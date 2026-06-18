@@ -11,6 +11,7 @@ Zweck: kleiner Einstiegspunkt fuer Codex-Laeufe, die nicht den gesamten Projektv
 3. Kompakten Lauf-Steckbrief erzeugen:
    - `npm run agent:context`
    - `npm run agent:dry-run`, wenn ein Lauf erst geplant und ohne BC/Playwright validiert werden soll.
+   - Der Dry-Run gibt `canProceed`, Budget, Skills, Capabilities, Safety Gates, Stop Conditions und `nextSafeAction` als JSON aus.
    - optional `npm run agent:usage:summary`, wenn `judge_work` oder `big_brain_review` genutzt wurde
 4. Modell-/Reasoning-Klasse aus `.agent/model-routing.json` waehlen:
    - `monkey_work` fuer billige Fleissarbeit
