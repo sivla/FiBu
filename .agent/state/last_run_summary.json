@@ -1,18 +1,27 @@
 {
   "schemaVersion": 1,
-  "runId": "TOKEN-AUTOPILOT-TOOLING-BOOTSTRAP",
+  "runId": "TOKEN-AUTOPILOT-CONTEXT-ROUTING",
   "date": "2026-06-19",
-  "workType": "token-budget-and-safety-tooling",
+  "workType": "token-efficient-agent-routing-and-context",
   "branch": "codex/token-efficient-autopilot-state",
   "bcRun": false,
   "posted": false,
   "companySwitched": false,
-  "summary": "Token- und Sicherheitsfundament erweitert: Agent-Tools bleiben Node-Standardbibliothek, neue npm-Abhaengigkeiten sind per Budgetpolicy gesperrt, Preflight-Checks fuer State, Budget und Safety sind vorgesehen. Kein Business-Central-Lauf, keine Buchung, keine Fachdatei umgebaut.",
+  "summary": "Agent-Routing und Context-Pack sind eingerichtet: Monkey/Wizard/Judge/Big-Brain-Taskclasses sind maschinenlesbar, Preflight prueft das Routing, agent:context erzeugt den naechsten Lauf-Steckbrief und agent:usage:summary bereitet spaetere Modellnutzungs-Auswertung vor. Kein Business-Central-Lauf, keine Buchung, keine Fachdatei umgebaut.",
   "commandsToRunBeforeAutopilot": [
     "npm run agent:preflight",
+    "npm run agent:context",
+    "npm run agent:usage:summary",
     "npm run agent:state:validate",
     "npm run agent:budgets:check",
-    "npm run agent:safety:check"
+    "npm run agent:safety:check",
+    "npm run agent:model-routing:check"
   ],
+  "routingState": {
+    "defaultTaskClass": "monkey_work",
+    "currentCaseSuggestedTaskClass": "wizard_work",
+    "currentCaseSuggestedRole": "Wizard Bench",
+    "usageLogRequiredForCurrentCase": false
+  },
   "nextStep": "FIXEDASSETS-065-PURCHASE-INVOICE-LINE-TYPE-HELPER-DIAGNOSIS"
 }

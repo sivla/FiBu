@@ -36,6 +36,7 @@ This creates local Playwright auth state under `playwright/.auth/`.
 ```bash
 npm run agent:preflight
 npm run agent:context
+npm run agent:usage:summary
 npm run agent:state:validate
 npm run agent:budgets:check
 npm run agent:safety:check

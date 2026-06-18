@@ -9,6 +9,7 @@ Zweck: kleiner Einstiegspunkt fuer Codex-Laeufe, die nicht den gesamten Projektv
    - `npm run agent:preflight`
 3. Kompakten Lauf-Steckbrief erzeugen:
    - `npm run agent:context`
+   - optional `npm run agent:usage:summary`, wenn `judge_work` oder `big_brain_review` genutzt wurde
 4. Modell-/Reasoning-Klasse aus `.agent/model-routing.json` waehlen:
    - `monkey_work` fuer billige Fleissarbeit
    - `wizard_work` fuer Tool-, Script-, Helper- und Refactor-Arbeit
@@ -30,6 +31,7 @@ Zweck: kleiner Einstiegspunkt fuer Codex-Laeufe, die nicht den gesamten Projektv
 - Auth, `.env`, Reports, Traces, Videos und Rohsnapshots bleiben lokal.
 - Screenshots und Evidence werden projekt-relativ referenziert.
 - Jeder Lauf muss `last_run_summary.json` und den betroffenen Case-State aktualisieren.
+- Bei `judge_work` oder `big_brain_review` muss ein Eintrag in `.agent/state/model_usage_log.jsonl` entstehen.
 - Keine neue npm-Abhaengigkeit ohne ausdrueckliche Freigabe. Agent-Tools nutzen Node-Standardbibliothek.
 - `monkey_work` darf nur Routing, Extraktion, Formatierung und Validierung ausfuehren; BC-/FiBu-Urteil, Posting-/Setup-Gates und Buchtext-Freigabe muessen zu `judge_work` oder `big_brain_review` eskalieren.
 
