@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "updatedAt": "2026-06-18T20:45:00.000Z",
+  "updatedAt": "2026-06-18T20:01:50.458Z",
   "repository": "sivla/FiBu",
   "branch": "codex/playwright-bc-screenshot-foundation",
   "environment": "MCP_1_20260210",
@@ -10,8 +10,8 @@
   "companyRegistry": "playwright/projects/fibu-book5/COMPANY-REGISTRY.json",
   "dataBasis": "CRONUS USA",
   "activeArea": "fixedassets",
-  "lastCompletedRun": "FIXEDASSETS-057-K30000-FA-CNC-01-PURCHASE-INVOICE-FIELD-MAPPING-RETRY-GATE",
-  "lastWorkType": "gate-decision-no-bc-run",
+  "lastCompletedRun": "FIXEDASSETS-058-K30000-FA-CNC-01-PURCHASE-INVOICE-FIELD-MAPPING-RETRY-NO-POSTING",
+  "lastWorkType": "guarded-ui-first-retry-no-posting",
   "postedInLastRun": false,
   "latestPostedDocuments": {
     "o2c": {
@@ -1298,6 +1298,7 @@
     "FIXEDASSETS-025 corrected the overclaim around FIXEDASSETS-024: active card control proof is partial (4/6), so value lookup/save gate remains blocked until Depreciation Book Code and Posting Group are recovered on the active card. No BC run, no save, no setup and no posting."
   ],
   "prohibitedActions": [
+    "After FIXEDASSETS-058, do not run Preview Posting, Post, fixed asset acquisition or depreciation. Do not enter K30000 or FA-CNC-01 into a Purchase Invoice until FIXEDASSETS-059 proves a stable active Purchase Invoice card/lines context after New or documents a manual UI path. No API shortcut, no setup change and no company switch.",
     "After FIXEDASSETS-055, do not run Preview Posting, Post, acquisition or depreciation. Do not rerun Purchase Invoice field mapping until FIXEDASSETS-056 builds a safer line-context helper and treats Vendor registration dialogs / Vendor Card popups as hard stop criteria.",
     "After FIXEDASSETS-054, do not run Preview Posting, Post, fixed asset acquisition, depreciation, setup/vendor/fixed-asset changes, API shortcuts or company switches. FIXEDASSETS-055 may only test K30000 and FA-CNC-01 field mapping in Purchase Invoice with mandatory UI draft cleanup.",
     "After FIXEDASSETS-052, do not post, acquire, depreciate, edit vendor/setup, use API shortcuts, switch company, or leave a Purchase Invoice draft behind. Only FIXEDASSETS-053 no-posting Purchase Invoice preflight is allowed.",
@@ -1398,19 +1399,31 @@
       "noBcRun": true,
       "company": "RM-DEMO",
       "nextStep": "FIXEDASSETS-058-K30000-FA-CNC-01-PURCHASE-INVOICE-FIELD-MAPPING-RETRY-NO-POSTING"
+    },
+    {
+      "caseId": "FIXEDASSETS-058",
+      "result": "Guarded retry stopped before target field entry because the active Purchase Invoice card/lines context was not stable after scoped New/Neu. No draft, no preview and no posting.",
+      "evidence": "playwright/projects/fibu-book5/evidence/fixedassets-058/",
+      "screenshots": [],
+      "noPosting": true,
+      "noPreview": true,
+      "noDraftCreated": true,
+      "company": "RM-DEMO",
+      "nextStep": "FIXEDASSETS-059-PURCHASE-INVOICE-FIELD-MAPPING-HELPER-REFINEMENT-OR-MANUAL-PATH"
     }
   ],
-  "nextStep": "FIXEDASSETS-058-K30000-FA-CNC-01-PURCHASE-INVOICE-FIELD-MAPPING-RETRY-NO-POSTING",
-  "nextRecommendedRun": "FIXEDASSETS-058-K30000-FA-CNC-01-PURCHASE-INVOICE-FIELD-MAPPING-RETRY-NO-POSTING",
+  "nextStep": "FIXEDASSETS-059-PURCHASE-INVOICE-FIELD-MAPPING-HELPER-REFINEMENT-OR-MANUAL-PATH",
+  "nextRecommendedRun": "FIXEDASSETS-059-PURCHASE-INVOICE-FIELD-MAPPING-HELPER-REFINEMENT-OR-MANUAL-PATH",
   "latestFixedAssetsRun": {
-    "caseId": "FIXEDASSETS-057",
-    "result": "Gate decision approved one guarded no-posting retry for K30000/FA-CNC-01 Purchase Invoice field mapping. No BC run, no setup change, no posting.",
-    "evidence": "playwright/projects/fibu-book5/evidence/fixedassets-057/",
+    "caseId": "FIXEDASSETS-058",
+    "result": "Guarded UI-first Purchase Invoice field-mapping retry ran in RM-DEMO. Purchase Invoices page 9308 opened and scoped New/Neu was clicked, but no stable Purchase Invoice card/lines context was detected after New. The guard stopped before target value entry. No draft, no cleanup needed, no screenshots, no Preview, no Post, no acquisition, no depreciation, no setup change and no company switch.",
+    "evidence": "playwright/projects/fibu-book5/evidence/fixedassets-058/",
     "screenshots": [],
     "noPosting": true,
-    "noBcRun": true,
+    "noPreview": true,
+    "noDraftCreated": true,
     "company": "RM-DEMO",
-    "nextStep": "FIXEDASSETS-058-K30000-FA-CNC-01-PURCHASE-INVOICE-FIELD-MAPPING-RETRY-NO-POSTING"
+    "nextStep": "FIXEDASSETS-059-PURCHASE-INVOICE-FIELD-MAPPING-HELPER-REFINEMENT-OR-MANUAL-PATH"
   },
-  "nextBestStep": "FIXEDASSETS-058-K30000-FA-CNC-01-PURCHASE-INVOICE-FIELD-MAPPING-RETRY-NO-POSTING"
+  "nextBestStep": "FIXEDASSETS-059-PURCHASE-INVOICE-FIELD-MAPPING-HELPER-REFINEMENT-OR-MANUAL-PATH"
 }

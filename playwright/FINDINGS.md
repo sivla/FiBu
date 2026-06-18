@@ -1,4 +1,22 @@
 
+## FIND-BC-FA-058 `Neu` reicht nicht als Purchase-Invoice-Card-Nachweis
+
+| Feld | Wert |
+|---|---|
+| Projekt | fibu-book5 |
+| Testfall | `FIXEDASSETS-058-K30000-FA-CNC-01-PURCHASE-INVOICE-FIELD-MAPPING-RETRY-NO-POSTING` |
+| Screenshot | keine Screenshots; der Guard stoppte vor Zielwerteingabe |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-058/` |
+| BC-Seite | `Purchase Invoices` Page `9308`, Company `RM-DEMO` |
+| sichtbarer Text / Werte | fokussierter Text zeigt `Purchase Invoices`, `Neu`, `Post`, `Invoice`, `Vendor Invoice No.` und Listen-/Gridkontext |
+| nicht sichtbar / nicht bewiesen | stabiler `Purchase Invoice`-Card-/Zeilenkontext nach `Neu`, `K30000` im Kopf, Zeilentyp `Fixed Asset`, `FA-CNC-01` in der Zeile, Preview, Zugang, AfA, Anlagenposten, deutscher Finalnachweis |
+| Elementtyp | Purchase-Invoice-Field-Mapping / Playwright-Guard / Screenshot-QA / Debugging |
+| Testergebnis | Der erlaubte guarded Retry lief praktisch in `MCP_1_20260210` / `RM-DEMO`, stoppte aber mit `blocked-before-field-entry`, bevor Zielwerte eingegeben wurden. Kein Entwurf, kein Cleanup, keine Preview und keine Buchung. |
+| Entscheidung | Kein Preview-/Post-Gate. Naechster Schritt ist `FIXEDASSETS-059-PURCHASE-INVOICE-FIELD-MAPPING-HELPER-REFINEMENT-OR-MANUAL-PATH`: erst den aktiven Beleg-/Zeilenkontext nach `Neu` robust beweisen oder einen manuellen Pfad dokumentieren. |
+| Buchstelle | Kapitel 21 Anlagen; Kapitel Debugging/technische Nachweisfuehrung; Screenshot-QA |
+
+Fuer Anfaenger und Folge-Agenten ist die Lehre scharf: Ein geklickter `Neu`-Button ist nur ein Aktionsnachweis. Fuer eine Klickanleitung zaehlt erst der sichtbare fachliche Zielzustand: Belegkopf, Zeilenbereich, Zeilentyp und Zielwert im selben Kontext.
+
 ## FIND-BC-FA-057 Neuer Purchase-Invoice-Retry nur mit Guard erlaubt
 
 | Feld | Wert |

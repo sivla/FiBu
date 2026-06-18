@@ -1,0 +1,125 @@
+{
+  "testId": "FIXEDASSETS-058-K30000-FA-CNC-01-PURCHASE-INVOICE-FIELD-MAPPING-RETRY-NO-POSTING",
+  "generatedAt": "2026-06-18T19:57:33.027Z",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "dataBasis": "CRONUS USA",
+  "mode": "guarded-ui-first-field-mapping-retry-no-preview-no-posting",
+  "target": {
+    "environment": "MCP_1_20260210",
+    "company": "RM-DEMO",
+    "vendorNo": "K30000",
+    "vendorName": "Zollspedition Nord GmbH",
+    "fixedAssetNo": "FA-CNC-01",
+    "fixedAssetDescription": "CNC Maschine FRA",
+    "vendorInvoiceNo": "FA058-12639409"
+  },
+  "context": {
+    "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=9308&dc=0&bookmark=1D_JgAAAACLAgAAAAJ7BjEAMAA3ADIAMAA5",
+    "environmentInUrl": true,
+    "companyInUrl": true,
+    "companyInText": true,
+    "wrongEnvironmentVisible": false
+  },
+  "openResult": {
+    "closedExternalPages": []
+  },
+  "newAttempt": {
+    "clicked": true,
+    "chosen": {
+      "text": "Neu",
+      "aria": "Neu",
+      "title": "Erstellen Sie einen neuen Eintrag.",
+      "x": 548,
+      "y": 51,
+      "width": 62,
+      "height": 38
+    },
+    "candidates": [
+      {
+        "text": "Neu",
+        "aria": "Neu",
+        "title": "Erstellen Sie einen neuen Eintrag.",
+        "x": 548,
+        "y": 51,
+        "width": 62,
+        "height": 38,
+        "score": -80
+      },
+      {
+        "text": "Neu ",
+        "aria": "Neu",
+        "title": "",
+        "x": 548,
+        "y": 51,
+        "width": 89,
+        "height": 38,
+        "score": -60
+      },
+      {
+        "text": "Neu",
+        "aria": "Neu",
+        "title": "",
+        "x": 578,
+        "y": 61,
+        "width": 26,
+        "height": 19,
+        "score": -60
+      }
+    ]
+  },
+  "guardChecks": [
+    {
+      "checkpoint": "after-new",
+      "guard": {
+        "status": "unknown-context",
+        "success": false,
+        "stopReasons": [],
+        "visibleSignals": {
+          "purchaseInvoice": false,
+          "purchaseInvoicesList": false,
+          "linesOrLineColumns": false,
+          "fixedAssetNo": false,
+          "fixedAssetLineType": false,
+          "vendorNo": false,
+          "vendorRegistrationDialog": false,
+          "vendorCard": false,
+          "accidentalVendorNo": false,
+          "postingAction": false
+        }
+      }
+    }
+  ],
+  "status": "blocked-before-field-entry",
+  "summary": "Der neue Purchase-Invoice-Kontext wurde nicht stabil erreicht; deshalb wurden keine Zielwerte eingetragen.",
+  "cleanup": {
+    "status": "not-needed"
+  },
+  "safety": {
+    "apiShortcutUsed": false,
+    "companySwitched": false,
+    "setupChanged": false,
+    "clickedPreviewPosting": false,
+    "clickedPost": false,
+    "posted": false,
+    "acquisitionPosted": false,
+    "depreciationPosted": false
+  },
+  "proves": [
+    "The guarded retry ran within MCP_1_20260210 / RM-DEMO.",
+    "The purchase-invoice field-mapping guard was executed after risky field actions.",
+    "No Preview Posting or Post action was clicked.",
+    "The run stopped or ended based on guard status, not on optimistic target-code visibility."
+  ],
+  "doesNotProve": [
+    "No valid fixed-asset purchase invoice line unless status is safe-purchase-invoice-line-candidate.",
+    "No Preview Posting result.",
+    "No fixed asset acquisition.",
+    "No FA Ledger Entry.",
+    "No depreciation.",
+    "No German final proof."
+  ],
+  "screenshots": [],
+  "bookImpact": "Kapitel 21 und das Debugging-Kapitel bekommen einen besseren Lernfall: Der Guard verhindert, dass falsche Vendor-/Dialogkontexte als Anlagenzeile gelesen werden.",
+  "nextStep": "FIXEDASSETS-059-PURCHASE-INVOICE-FIELD-MAPPING-HELPER-REFINEMENT-OR-MANUAL-PATH"
+}

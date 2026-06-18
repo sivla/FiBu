@@ -1,5 +1,20 @@
 # Workarounds und Fehlerjournal
 
+## WK-BC-FA-058 `Neu` geklickt, aber kein stabiler Purchase-Invoice-Card-Kontext
+
+| Feld | Wert |
+|---|---|
+| Status | Labor-Lernfall / blockiert vor Werteingabe |
+| Testfall | `FIXEDASSETS-058-K30000-FA-CNC-01-PURCHASE-INVOICE-FIELD-MAPPING-RETRY-NO-POSTING` |
+| Situation | Nach dem 055-Fehler durfte genau ein neuer guarded UI-first Retry fuer `K30000` und `FA-CNC-01` laufen. |
+| Symptom | `Purchase Invoices` Page `9308` wurde geoeffnet und der gescopte `Neu`-Kandidat wurde geklickt, aber der Guard erkannte danach keinen stabilen `Purchase Invoice`-Card-/Zeilenkontext. |
+| Sichtbarer Beleg | `playwright/projects/fibu-book5/evidence/fixedassets-058/`; keine Screenshots, weil der Lauf vor Zielwerteingabe stoppte. |
+| Ursache | Der Aktionsklick allein genuegt als Automatisierungsnachweis nicht. Business Central kann Fokus, Listen-/Card-Kontext und Hintergrundtexte so darstellen, dass der aktive Belegkontext erst separat nachgewiesen werden muss. |
+| Warum BC so reagiert | Aus Anwendersicht kann ein Beleg ueber `Neu` entstehen; fuer Playwright/Evidence muss aber maschinenlesbar und visuell klar sein, ob wirklich die Vordergrundkarte beziehungsweise der Zeilenbereich aktiv ist. |
+| Loesung oder Laborgrenze | Keine Zielwerte eingeben, keinen Draft erzeugen, keine Preview und kein Posting. Naechster Schritt ist ein Helper-/Manual-Path-Refinement, das den aktiven Card-/Lines-Kontext nach `Neu` beweist. |
+| Buchwirkung | Kapitel 21 bekommt keine neue Anlagenkauf-Abbildung. Das Debugging-/Nachweiskapitel kann diesen Fall nutzen: Ein Klickpfad braucht nicht nur die Aktion `Neu`, sondern den sichtbaren Zielzustand danach. |
+| Kuenftige Regel | Nach `Neu` immer eine harte Nachbedingung pruefen: `Purchase Invoice`-Card, relevante Pflichtfelder und Lines/Grid muessen sichtbar sein, bevor Zielwerte eingegeben werden. |
+
 ## WK-BC-FA-055 Falscher Vendor-Card-Kontext beim Purchase-Invoice-Feldmapping
 
 | Feld | Wert |
