@@ -1,28 +1,74 @@
 # Skill: next-test-selector
 
-Use this skill to choose exactly one next run.
+## Skill name
+next-test-selector
+
+## Purpose
+Choose exactly one next useful run from compact project state without reading old chat history.
+
+## Use when
+- The agent must decide the next case.
+- Multiple open areas exist.
+- A previous run ended with a blocker or incomplete evidence.
+
+## Do not use when
+- The user gave one explicit case to run.
+- A safety gate blocks all BC work and must be resolved first.
+- Required state files are missing.
 
 ## Inputs
+- current state
+- project state
+- coverage state
+- active case
+- allowed and forbidden actions
+- budget profile
 
-- `.agent/state/current.json`
-- `.agent/state/coverage_state.json`
-- active case file
-- relevant gate only if posting, setup or company action might happen
+## Output JSON schema
+```json
+{
+  "skill": "next-test-selector",
+  "selectedCase": "string",
+  "workType": "string",
+  "taskClass": "string",
+  "why": "string",
+  "mustRead": ["string"],
+  "allowedActions": ["string"],
+  "forbiddenActions": ["string"]
+}
+```
 
-## Decision order
+## Rules
+- Finish started blocks before jumping.
+- Prefer evidence gaps that unblock later processes.
+- Do not repeat old reference documents without a new purpose.
+- Shopify remains excluded.
 
-1. Finish a started evidence/process block before starting a new area.
-2. Prefer the active case in `current.json` unless a hard safety blocker exists.
-3. Never choose Shopify/Online Store for FiBu Buch 5.
-4. Do not repeat old reference postings without a new explicit evidence purpose.
-5. If the next case could create setup, drafts or postings, load `posting-gate.md`.
+## Stop if
+- State contradicts evidence.
+- The selected next step might post or change setup without a gate.
+- The active case is missing.
 
-## Output
+## Safety gates
+- finish-started-block-first
+- no-repeat-without-new-purpose
+- posting-and-setup-default-locked
+- shopify-hard-excluded
 
-Write one short decision into `last_run_summary.json` and the active case file:
+## Preferred taskClass
+monkey_work
 
-- selected case
-- work type
-- allowed actions
-- forbidden actions
-- why this is the next smallest useful step
+## Default model class
+gpt-4-mini-high
+
+## Max context lines
+160
+
+## Max output tokens
+700
+
+## Tool preferred
+yes: `npm run agent:context`.
+
+## Updates state
+no, unless the selected next step is written to current state.

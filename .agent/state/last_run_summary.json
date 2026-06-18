@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "runId": "TOKEN-AUTOPILOT-CONTEXT-ROUTING",
+  "runId": "TOKEN-AUTOPILOT-SKILL-CONTRACTS",
   "date": "2026-06-19",
-  "workType": "token-efficient-agent-routing-and-context",
+  "workType": "token-efficient-agent-skill-contracts",
   "branch": "codex/token-efficient-autopilot-state",
   "bcRun": false,
   "posted": false,
   "companySwitched": false,
-  "summary": "Agent-Routing und Context-Pack sind eingerichtet: Monkey/Wizard/Judge/Big-Brain-Taskclasses sind maschinenlesbar, Preflight prueft das Routing, agent:context erzeugt den naechsten Lauf-Steckbrief und agent:usage:summary bereitet spaetere Modellnutzungs-Auswertung vor. Kein Business-Central-Lauf, keine Buchung, keine Fachdatei umgebaut.",
+  "summary": "Agent-Skills sind auf einen maschinenpruefbaren Vertrag normalisiert. Preflight prueft jetzt Skills, Capabilities, Modellrouting, Safety und State. BC Operating Model dokumentiert UI-first, Screenshot-Wahrheit, Safety-Gates und evidence-basiertes Buchpatching. Kein Business-Central-Lauf, keine Playwright-Ausfuehrung, keine Buchung, keine Fachdatei umgebaut.",
   "commandsToRunBeforeAutopilot": [
     "npm run agent:preflight",
     "npm run agent:context",
@@ -15,7 +15,9 @@
     "npm run agent:state:validate",
     "npm run agent:budgets:check",
     "npm run agent:safety:check",
-    "npm run agent:model-routing:check"
+    "npm run agent:model-routing:check",
+    "npm run agent:capabilities:check",
+    "npm run agent:skills:validate"
   ],
   "routingState": {
     "defaultTaskClass": "monkey_work",
@@ -23,7 +25,9 @@
     "currentCaseSuggestedRole": "Wizard Bench",
     "usageLogRequiredForCurrentCase": false,
     "primarySkillLimit": 3,
-    "capabilityRegistry": ".agent/capabilities.json"
+    "capabilityRegistry": ".agent/capabilities.json",
+    "skillContract": ".agent/skills/SKILL-CONTRACT.md",
+    "operatingModel": ".agent/BC-OPERATING-MODEL.md"
   },
   "nextStep": "FIXEDASSETS-065-PURCHASE-INVOICE-LINE-TYPE-HELPER-DIAGNOSIS"
 }

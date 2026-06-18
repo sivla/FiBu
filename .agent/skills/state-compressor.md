@@ -1,25 +1,72 @@
 # Skill: state-compressor
 
-Use this skill at the end of a run.
+## Skill name
+state-compressor
 
-## Update targets
+## Purpose
+Compress a run result into compact state files that the next agent can use without old chat history.
 
-- `.agent/state/current.json`
-- `.agent/state/last_run_summary.json`
-- active case file
-- `.agent/state/coverage_state.json` if coverage changed
+## Use when
+- A run ends with new evidence, blocker, capability, setup status or next step.
+- `last_run_summary.json` is stale.
+- A case state needs a concise handover.
 
-## Compression rule
+## Do not use when
+- No real project truth changed.
+- The update would add long history or raw logs.
+- Evidence links are unknown.
 
-Do not copy long Markdown history into compact state.
+## Inputs
+- run result
+- active case
+- evidence links
+- changed files
+- validation results
+- next step
 
-Keep:
+## Output JSON schema
+```json
+{
+  "skill": "state-compressor",
+  "currentStatePatch": {},
+  "lastRunSummaryPatch": {},
+  "caseStatePatch": {},
+  "coveragePatch": {},
+  "nextStep": "string"
+}
+```
 
-- current focus
-- latest proof
-- latest blocker
-- next action
-- allowed/forbidden actions
-- links to source evidence
+## Rules
+- Keep current truth at the top.
+- Link evidence instead of copying it.
+- State what is open, blocked or final-open.
+- Remove stale next-step wording when it is superseded.
 
-Large historical project files remain human-readable references, not the default agent context.
+## Stop if
+- There is no evidence or changed decision to summarize.
+- The proposed state contradicts source evidence.
+- Next step is vague.
+
+## Safety gates
+- state-over-chat
+- evidence-linked
+- no-long-history-in-state
+- next-step-required
+
+## Preferred taskClass
+monkey_work
+
+## Default model class
+gpt-4-mini-medium
+
+## Max context lines
+140
+
+## Max output tokens
+700
+
+## Tool preferred
+yes: JSON validation.
+
+## Updates state
+yes: current state, last run summary, active case or coverage.

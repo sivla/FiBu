@@ -394,6 +394,82 @@
       ]
     },
     {
+      "id": "bc_page_context_guard",
+      "name": "BC Page Context Guard",
+      "maturity": "draft",
+      "taskClass": "wizard_work",
+      "linkedSkills": [
+        "bc-navigation",
+        "safety-gate-checker",
+        "screenshot-qa"
+      ],
+      "purpose": "Page, Table, Company und sichtbaren Kontext sichern, bevor ein UI-Schritt Daten aendert oder einen Screenshot als Beweis nutzt.",
+      "inputs": [
+        "instance",
+        "company",
+        "expectedPage",
+        "visibleText",
+        "pageInspectionIfAvailable"
+      ],
+      "outputs": [
+        "pageContextDecision",
+        "safeForAction",
+        "contextEvidence"
+      ],
+      "gates": [
+        "instance-confirmed",
+        "company-confirmed",
+        "page-context-before-action",
+        "screenshot-purpose-required"
+      ],
+      "playwrightTouchpoints": [
+        "Page Inspection",
+        "page text capture",
+        "scoped locators"
+      ],
+      "improvementBacklog": [
+        "Page-Inspection-Daten spaeter als kompaktes Context-JSON standardisieren."
+      ]
+    },
+    {
+      "id": "book_patch_only_writer",
+      "name": "Book Patch Only Writer",
+      "maturity": "draft",
+      "taskClass": "judge_work",
+      "linkedSkills": [
+        "guide-patcher",
+        "book-sync",
+        "beginner-check"
+      ],
+      "purpose": "Buch- und Klickanleitungs-Aenderungen nur klein, evidence-basiert und mit klarer Labor-/Final-Grenze schreiben.",
+      "inputs": [
+        "targetSection",
+        "evidenceReference",
+        "screenshotQaStatus",
+        "claimToChange",
+        "labOrFinalStatus"
+      ],
+      "outputs": [
+        "patchPlan",
+        "changedClaims",
+        "remainingBoundaries"
+      ],
+      "gates": [
+        "evidence-backed-only",
+        "patch-small-scope",
+        "no-final-claim-from-lab",
+        "beginner-can-understand"
+      ],
+      "playwrightTouchpoints": [
+        "book screenshot candidate metadata",
+        "evidence README",
+        "screenshot truth gate"
+      ],
+      "improvementBacklog": [
+        "Statusboxen spaeter aus Evidence-Feldern vorbereiten."
+      ]
+    },
+    {
       "id": "purchase_invoice_context_guard",
       "name": "Purchase Invoice Context Guard",
       "maturity": "lab-reusable",

@@ -35,6 +35,8 @@ Dieses Projekt soll Business Central nicht nur irgendwie bedienen, sondern Playw
 - `bc_scoped_action_click`: BC-Aktionen nur mit Scope und Erwartungsnachweis klicken.
 - `bc_card_field_diagnostics`: Kartenfelder caption-nah diagnostizieren.
 - `bc_dialog_gate`: Dialoge nur mit Textnachweis und Erwartung bestaetigen.
+- `bc_page_context_guard`: Page, Table, Company und sichtbaren Kontext vor riskanten UI-Schritten sichern.
+- `book_patch_only_writer`: Buch-/Guide-Patches nur klein, evidence-basiert und statusmarkiert schreiben.
 - `purchase_invoice_context_guard`: Einkaufsrechnungskontext vor Zielwerten hart pruefen.
 - `bc_scoped_new_action`: `New/Neu` nur im richtigen Page-Scope ausloesen.
 - `journal_line_control_snapshot`: Journal-Zeilencontrols vor dem Fuellen indexieren.

@@ -12,6 +12,14 @@ Ziel ist nicht, immer das kleinste Modell zu nehmen. Ziel ist das beste Verhaelt
 | `judge_work` | Judge Panel | `gpt-5.5-low/medium` | Urteil: BC-/FiBu-Logik, Buch-vs-Evidence, Setup-/Posting-Risiko |
 | `big_brain_review` | Big Brain | `gpt-5.5-high` | Seltene Endabnahme bei grosser Folgewirkung |
 
+## Begriffe
+
+| Begriff | Bedeutung |
+|---|---|
+| `modelClass` | Interne Routingklasse in Skills und Budgets, zum Beispiel `gpt-4-mini-low` oder `gpt-5.5-low`. |
+| `spawnModel` | Tatsaechlicher Modell-Override fuer Subagents, zum Beispiel `gpt-5.4-mini`, `gpt-5.4` oder `gpt-5.5`. |
+| `reasoningEffort` | Tiefe `low/medium/high` innerhalb der Modellfamilie. Nicht linear mit Modellfamilie verwechseln. |
+
 ## Routing-Leitplanken
 
 - `monkey_work` ist fuer Masse da: JSON pruefen, State lesen, Screenshot-Metadaten auswerten, Evidence-Felder extrahieren.

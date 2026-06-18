@@ -1,30 +1,75 @@
 # Skill: posting-gate
 
-Use this skill before Preview Posting, Post, Ship, Invoice, payment, acquisition, depreciation or any setup-changing action.
+## Skill name
+posting-gate
 
-## Gate decision
+## Purpose
+Decide whether risky BC actions such as Preview Posting, Post, Ship, Invoice, Payment, acquisition, depreciation or setup changes are allowed.
 
-Default is locked.
+## Use when
+- A run may open Preview Posting or a posting dialog.
+- A setup or master-data change is considered.
+- A payment, application, invoice or shipment might be posted.
 
-Allow only if all are true:
+## Do not use when
+- The task is read-only file validation.
+- The active case explicitly forbids the risky action and no new evidence exists.
+- Company or instance is unclear.
 
-- active case explicitly allows the action
-- company and instance are confirmed
-- required master data and setup are visible or documented
-- expected entry types are defined
-- screenshot/evidence plan exists
-- cleanup or no-duplicate rule exists
+## Inputs
+- active case
+- allowed actions
+- forbidden actions
+- company and instance proof
+- setup proof
+- expected entry types
+- evidence plan
+- cleanup or no-duplicate rule
 
-## Fixed Assets current lock
+## Output JSON schema
+```json
+{
+  "skill": "posting-gate",
+  "decision": "locked",
+  "allowedAction": null,
+  "blockedReason": "string",
+  "requiredProof": ["string"],
+  "mayProceed": false
+}
+```
 
-For `FIXEDASSETS-065` the following remain forbidden:
+## Rules
+- Default is locked.
+- Unlock only for the exact active action.
+- Define expected entries before posting.
+- Screenshot or evidence plan must exist before confirmation.
 
-- `FA-CNC-01` entry in Purchase Invoice
-- `K30000` entry in Purchase Invoice
-- Preview Posting
-- Post
-- acquisition
-- depreciation
-- setup change
-- company switch
-- API shortcut
+## Stop if
+- The action is not explicitly allowed.
+- Preview/Post/Ship/Invoice/Payment dialog appears unexpectedly.
+- Setup proof is missing.
+- Cleanup or no-duplicate rule is missing.
+
+## Safety gates
+- default-locked
+- explicit-active-case-allowance
+- company-and-instance-confirmed
+- evidence-plan-before-risky-action
+
+## Preferred taskClass
+judge_work
+
+## Default model class
+gpt-5.5-low
+
+## Max context lines
+180
+
+## Max output tokens
+800
+
+## Tool preferred
+yes: local state validation and dialog evidence.
+
+## Updates state
+yes: active case or current state when a gate changes status.

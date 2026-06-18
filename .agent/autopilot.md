@@ -7,6 +7,7 @@ Zweck: kleiner Einstiegspunkt fuer Codex-Laeufe, die nicht den gesamten Projektv
 1. `git branch --show-current`, `git status --short` und `git pull --ff-only` pruefen.
 2. Lokale Agent-Checks laufen lassen, bevor ein Fachlauf startet:
    - `npm run agent:preflight`
+   - Der Preflight prueft State, Budgets, Safety, Modellrouting, Capability-Links und Skill-Vertrag.
 3. Kompakten Lauf-Steckbrief erzeugen:
    - `npm run agent:context`
    - optional `npm run agent:usage:summary`, wenn `judge_work` oder `big_brain_review` genutzt wurde
@@ -24,6 +25,8 @@ Zweck: kleiner Einstiegspunkt fuer Codex-Laeufe, die nicht den gesamten Projektv
    - `.agent/state/last_run_summary.json`
    - die in `current.json.active_case_file` genannte Case-Datei
 6. Danach maximal drei Skills laden, die fuer den gewaehlten Lauf gebraucht werden.
+   - Jeder Skill muss dem Vertrag in `.agent/skills/SKILL-CONTRACT.md` folgen.
+   - Fuer BC-UI-Arbeit gilt zusaetzlich `.agent/BC-OPERATING-MODEL.md`.
 7. Alte grosse Projektdateien nur gezielt lesen, wenn der State oder ein Skill sie ausdruecklich verlangt.
 
 ## Arbeitsprinzip
