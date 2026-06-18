@@ -36,6 +36,8 @@ Ergaenzung nach `FIXEDASSETS-060`: Das neue Purchase-Invoice-Bild ist ein Prefli
 
 Ergaenzung nach `FIXEDASSETS-061`: Fuer den naechsten Anlagen-Einkaufsrechnungs-Screenshot reicht kein einzelner sichtbarer Code. Ein Field-Mapping-Bild ist nur brauchbar, wenn `Purchase Invoice`, `K30000`, ein sichtbarer `Vendor Invoice No.`-Wert, der Lines-/Gridbereich, Zeilentyp `Fixed Asset` und `FA-CNC-01` im selben Vordergrundkontext sichtbar sind. Fehlt einer dieser Bestandteile, ist das Bild nur Kontext-, Diagnose- oder Rejected-Evidence.
 
+Ergaenzung nach `FIXEDASSETS-062`: `fixedassets-062-050-target-field-mapping.png` ist `rejected/debugging`. Es zeigt `FA-CNC-01` in einer `Vendor Card - V00060 - FA-CNC-01`, waehrend die Einkaufsrechnungszeile im Hintergrund weiter `Type = Item` zeigt. Genau deshalb darf ein sichtbarer Code nie allein als Buchbild gelten. Fuer Kapitel 21 bleibt der Ziel-Screenshot offen, bis `Type = Fixed Asset` und `FA-CNC-01` sichtbar in derselben Einkaufsrechnungszeile stehen.
+
 Laborbilder duerfen abweichen. Dann muessen Abweichung, Ursache und Buchwirkung dokumentiert sein.
 
 Zu jedem automatisiert erzeugten O2C-Screenshot schreibt der Screenshot-Helper eine Metadatendatei unter `evidence/<testfall>/...screenshot.json`. Diese Datei enthaelt Status, Buchnutzung, Zweck, erwartete Werte im BC-Seitentext und bekannte Grenzen. Die PNG-Datei allein ist deshalb nicht mehr die ganze Wahrheit.

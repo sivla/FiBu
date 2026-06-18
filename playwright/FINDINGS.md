@@ -1,4 +1,22 @@
 
+## FIND-BC-FA-062 Sichtbarer Code im falschen Kontext ist kein Anlagenzeilenbeweis
+
+| Feld | Wert |
+|---|---|
+| Projekt | fibu-book5 |
+| Testfall | `FIXEDASSETS-062-K30000-FA-CNC-01-TARGET-FIELD-MAPPING-NO-POSTING` |
+| Screenshot | `playwright/projects/fibu-book5/img/fixedassets-062-050-target-field-mapping.png` (`rejected/debugging`) |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-062/` |
+| BC-Seite | `Purchase Invoices` Page `9308` / Purchase-Invoice-Karte in `RM-DEMO`, falscher `Vendor Card`-Lookup im Vordergrund |
+| sichtbar | `Purchase Invoice`, `K30000`/Zollspedition-Kontext, `FA-CNC-01` in `Vendor Card - V00060 - FA-CNC-01`, Zeile im Hintergrund mit `Type = Item` |
+| nicht sichtbar / nicht bewiesen | `Type = Fixed Asset` und `FA-CNC-01` in derselben Einkaufsrechnungszeile, Preview, `Post`, Anlagenzugang, AfA, Anlagenposten |
+| Elementtyp | Rejected Path / Screenshot-QA / BC-Debugging |
+| Testergebnis | Der Lauf blieb in `MCP_1_20260210` / `RM-DEMO`, buchte nichts und bereinigte die Artefakte `107223`, `107224` und `V00060` UI-first. |
+| Entscheidung | Vor einem weiteren Zielmapping muss ein strenger Zeilentyp-/Lookup-Helper beweisen, dass `Type = Fixed Asset` gesetzt und sichtbar ist, bevor `FA-CNC-01` eingegeben wird. |
+| Buchstelle | Kapitel 21 Anlagen; Kapitel BC-Debugging und technische Nachweisfuehrung; Screenshot-QA |
+
+Fuer Anfaenger ist dieser Fehler wertvoll: Ein Code im Bild ist nur dann aussagekraeftig, wenn auch die fachliche Umgebung stimmt. `FA-CNC-01` auf einer Kreditorenkarte ist ein Fehlerbild; `FA-CNC-01` in einer Einkaufsrechnungszeile mit `Type = Fixed Asset` waere der gesuchte Anlagenbezug.
+
 ## FIND-BC-FA-061 Zielwerte-Preflight ist freigegeben, aber nicht buchungsreif
 
 | Feld | Wert |

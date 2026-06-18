@@ -1,5 +1,20 @@
 # Workarounds und Fehlerjournal
 
+## WK-BC-FA-062 FA-CNC-01 im falschen Lookup-/Vendor-Card-Kontext
+
+| Feld | Wert |
+|---|---|
+| Status | geloest als Rejected Path / Cleanup erledigt / kein Posting |
+| Testfall | `FIXEDASSETS-062-K30000-FA-CNC-01-TARGET-FIELD-MAPPING-NO-POSTING` |
+| Situation | Im Anlagen-Einkaufsrechnungs-Preflight sollte `K30000` im Kopf und `FA-CNC-01` in einer Zeile mit `Type = Fixed Asset` sichtbar werden. |
+| Symptom | Nach der Zeilenbedienung blieb die Zeile sichtbar auf `Type = Item`; `FA-CNC-01` oeffnete stattdessen `Vendor Card - V00060 - FA-CNC-01`. |
+| Sichtbarer Beleg | `playwright/projects/fibu-book5/img/fixedassets-062-050-target-field-mapping.png` ist `rejected/debugging`; Cleanup-Evidence liegt unter `evidence/fixedassets-062/`. |
+| Ursache | Der Playwright-Pfad hat den Zeilentyp nicht belastbar auf `Fixed Asset` gesetzt, bevor `FA-CNC-01` im aktiven `No.`-/Lookup-Kontext eingegeben wurde. |
+| Warum BC so reagiert | In Belegzeilen bestimmt der Zeilentyp, aus welcher Stammdatentabelle das `No.`-Feld sucht. Solange der Typ nicht sicher `Fixed Asset` ist, ist `FA-CNC-01` nur Text im falschen Kontext, kein Anlagenbezug. |
+| Loesung | Der Lauf wurde als Rejected Path dokumentiert. Die versehentlichen Artefakte wurden UI-first bereinigt: Einkaufsrechnungsentwuerfe `107223` und `107224`, Vendor-Draft `V00060`. |
+| Pruefung | `090-cleanup-result.json`, `094-accidental-purchase-invoice-107223-cleanup-result.json` und `097-accidental-vendor-V00060-cleanup-result.json` zeigen bereinigte Nachzustaende. |
+| Buchwirkung | Kapitel 21 braucht vor Preview/Post einen strengeren Zeilentyp-/Lookup-Schritt. Ein Screenshot mit sichtbarem `FA-CNC-01` zaehlt nur, wenn `Type = Fixed Asset` in derselben Zeile sichtbar ist. |
+
 ## WK-BC-FA-060 Card-/Lines-Kontext nach `Neu` positiv nachgewiesen, aber Zielwerte bleiben gesperrt
 
 | Feld | Wert |
