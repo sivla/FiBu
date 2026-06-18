@@ -1,5 +1,7 @@
 # Screenshot-QA fuer Buch 5
 
+Update nach `BOOK-FIXEDASSETS-LAB-SCREENSHOT-SYNC`: Kapitel 21 nutzt jetzt mehrere vorhandene Fixed-Assets-Bilder als Buch-Laborbilder. `fixedassets-014-020-depreciation-books-after-hgb.png`, `fixedassets-016-020-fa-posting-groups-after-machines.png`, `fixedassets-033-060-card-final-values.png`, `fixedassets-043-020-k30000-vendor-invoicing-fasttab-proof.png` und `fixedassets-053-030-purchase-invoice-after-new.png` sind im Buch nur mit Laborgrenze nutzbar. `fixedassets-064-050-line-type-fixed-asset-visible.png` bleibt `rejected/do-not-use` als Zielbild, wird aber als Fehlerbild im Buch erklaert. Keine dieser Abbildungen beweist deutschen Finalstand, Anlagenzugang, AfA oder Anlagenposten.
+
 Diese Datei bewertet, ob erzeugte Business-Central-Screenshots bereits als Buchbilder taugen oder nur Labor-/Evidence-Material sind.
 
 ## Bewertungsregel

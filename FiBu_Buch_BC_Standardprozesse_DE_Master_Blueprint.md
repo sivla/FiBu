@@ -3784,6 +3784,17 @@ RM-PROD kauft eine CNC-Maschine `FA-CNC-01` für `120.000 EUR`. Die Maschine sol
 
 Eine Anlage ist ein langfristig genutztes Wirtschaftsgut. In Business Central reicht eine Buchung auf ein Sachkonto nicht aus. Die Anlage braucht eine Anlagenkarte, ein AfA-Buch und Anlagenposten. Nur dann kann BC Anschaffung, Abschreibung und Buchwert sauber verfolgen.
 
+Status:
+- Buchziel: `FA-CNC-01` als CNC-Maschine anlegen, Zugang ueber Einkaufsrechnung buchen, AfA berechnen und Anlagenposten/Sachposten abstimmen.
+- Mandant: Aktuelle Bilder stammen aus `RM-DEMO` in `MCP_1_20260210` auf CRONUS-USA-Datenbasis.
+- Laborstand: `HGB`, `MACHINES`, `FA-CNC-01` und `K30000` sind als Labor-/Readiness-Schichten belegt; ein Anlagenzugang ist nicht gebucht.
+- Screenshots: Die folgenden Bilder sind Labor-Screenshots. Sie erklaeren Klickpfad, Feldlogik, Debugging und Grenzen, sind aber keine deutschen Finalbilder.
+- Evidence Pack: `playwright/projects/fibu-book5/evidence/fixedassets-014/`, `fixedassets-016/`, `fixedassets-033/`, `fixedassets-034/`, `fixedassets-043/`, `fixedassets-053/`, `fixedassets-064/`.
+- Was ist praktisch belegt: AfA-Buch `HGB`, Anlagenbuchungsgruppe `MACHINES`, Anlagenkarte `FA-CNC-01` mit Stammdatenfit und `Book Value = 0,00`, Teilbefunde zu `K30000`, leere Einkaufsrechnung als Preflight und ein abgelehnter Zeilentyp-Pfad.
+- Was ist nicht belegt: Einkaufsrechnung fuer `K30000`, Zeile `Art/Type = Fixed Asset` mit `FA-CNC-01`, Buchungsvorschau, Anlagenzugang, AfA, Anlagenposten, deutscher Kontenplan und deutsche USt.
+- DE-Finalnachweis: offen.
+- Nicht behaupten: `HGB` im Labor ist kein deutscher HGB-Endstand, `MACHINES` ist kein deutscher Kontenplan, `Book Value = 0,00` ist kein Anlagenzugang, ein Dialogtext `Fixed Asset` ist kein sichtbarer Zeilentyp.
+
 ### Deutsche BC-Seiten
 
 - `Anlagen (Fixed Assets)`
@@ -3817,6 +3828,34 @@ Status vor dem ersten bebilderten Anlagenlauf:
 | Zugang/AfA | Einkaufsrechnung, Anlagenposten, AfA bis `30.06.2026` | nicht gebucht | keine Laborbuchung ohne neues Gate |
 
 Evidence-Pack-Stand: `FIXEDASSETS-005` belegt den UI-Pfad zu `FA Posting Groups`, `FIXEDASSETS-006` belegt vorhandene CRONUS-Konten, `FIXEDASSETS-007` belegt AfA-Bücher und Anlagenklassen. `FIXEDASSETS-012` zeigt nur leere Karten und den Vendor-Template-Dialog; diese Bilder sind keine Zielstammdaten-Screenshots. `FIXEDASSETS-014` hat `HGB` praktisch ausgeführt: `HGB` ist in `Depreciation Books` sichtbar. `FIXEDASSETS-016` hat danach `MACHINES` praktisch ausgeführt: `MACHINES` ist auf der `FA Posting Group Card` sichtbar, inklusive `12210` und `82000`. `FIXEDASSETS-033` und `FIXEDASSETS-034` belegen die vorhandene Anlagenkarte `FA-CNC-01` als CRONUS-USA-Labor-Stammdatenfit: Beschreibung, Klasse, Unterklasse, AfA-Buch, Anlagenbuchungsgruppe, Buchwert und AfA-Daten sind sichtbar beziehungsweise persistent. `FIXEDASSETS-038` belegt `K30000` als Labor-Kreditor; `FIXEDASSETS-039` und `FIXEDASSETS-041` belegen dazu nur einen Teil der Karten-Defaults: Zahlungsbedingungen `1M(8D)` und Zahlungsart `BANK` sind sichtbar, Buchungsgruppen, Waehrung und Tax/VAT aber noch nicht. `FIXEDASSETS-041` zeigt ausserdem eine Screenshot-QA-Grenze: Ein Payments-Header mit Kurzinfos beweist nicht, dass Invoicing-/Tax-/Posting-Felder sichtbar sind. Diese Evidence ist ein Labor-Nachweis für die Stammdaten- und Setup-Reihenfolge, kein finaler deutscher Anlagenprozess. Für finale Buchscreenshots fehlen weiterhin Einkaufsrechnung, Zugang, Anlagenposten, AfA-Posten und deutscher Kontenplan-/USt-Nachweis.
+
+### Laborbilder richtig lesen
+
+Die folgenden Bilder sind bewusst keine fertige deutsche Buchstrecke. Sie zeigen, was im aktuellen Labor wirklich sichtbar wurde und welche Lernentscheidung daraus folgt. Damit wird das Kapitel ehrlicher: Business Central fuehrt Anfaenger nicht automatisch von der Anlage zur richtigen Buchung; jede Schicht braucht einen sichtbaren Kontrollpunkt.
+
+![HGB als Labor-AfA-Buch](playwright/projects/fibu-book5/img/fixedassets-014-020-depreciation-books-after-hgb.png)
+
+Was zeigt der Screenshot? Die Seite `Depreciation Books` zeigt den Code `HGB` mit Beschreibung `HGB depreciation book`. Warum ist das wichtig? Ohne AfA-Buch fehlt Business Central die Bewertungs-/Abschreibungslogik fuer die Anlage. Was lernt der Leser daraus? Ein AfA-Buch ist eine Setup-Voraussetzung, aber noch keine Anlage und keine AfA-Buchung. Labor oder final? Labor-Screenshot aus `RM-DEMO` / CRONUS USA, kein deutscher HGB-Finalnachweis. Evidence: `playwright/projects/fibu-book5/evidence/fixedassets-014/`. Offen bleibt der deutsche Zielmandant mit finaler Konten-/Bewertungsentscheidung.
+
+![MACHINES als Labor-Anlagenbuchungsgruppe](playwright/projects/fibu-book5/img/fixedassets-016-020-fa-posting-groups-after-machines.png)
+
+Was zeigt der Screenshot? Die Anlagenbuchungsgruppe `MACHINES` ist sichtbar und nutzt im CRONUS-USA-Labor Konten wie `12210` und `82000`. Warum ist das wichtig? Die Anlagenbuchungsgruppe ist Kontenfindung: Sie entscheidet spaeter, auf welche Sachkonten Zugang, Abschreibung, Abgang und Buchwert laufen. Was lernt der Leser daraus? `MACHINES` ist nicht der Maschinenname, sondern ein Konto-Set. Labor oder final? Labor-Screenshot, kein deutscher Kontenplan-Endstand. Evidence: `playwright/projects/fibu-book5/evidence/fixedassets-016/`. Offen bleibt die deutsche Kontenentscheidung.
+
+![FA-CNC-01 mit Stammdatenfit und Book Value 0,00](playwright/projects/fibu-book5/img/fixedassets-033-060-card-final-values.png)
+
+Was zeigt der Screenshot? Die Karte `FA-CNC-01` zeigt den Labor-Stammdatenstand mit Beschreibung, AfA-Buch `HGB`, Anlagenbuchungsgruppe `MACHINES`, AfA-Daten und `Book Value = 0,00`; zusammen mit `FIXEDASSETS-034` ist auch `FA Subclass Code = EQUIPMENT` belegt. Warum ist das wichtig? Eine gespeicherte Anlagenkarte ist nur Stammdaten-Readiness. Was lernt der Leser daraus? `Book Value = 0,00` bedeutet gerade: Es gibt noch keinen gebuchten Zugang. Labor oder final? Labor-Screenshot. Evidence: `playwright/projects/fibu-book5/evidence/fixedassets-033/` und `playwright/projects/fibu-book5/evidence/fixedassets-034/`. Offen bleiben Einkaufsrechnung, Anlagenposten, AfA und deutscher Finalnachweis.
+
+![K30000 Invoicing-FastTab als Teilnachweis](playwright/projects/fibu-book5/img/fixedassets-043-020-k30000-vendor-invoicing-fasttab-proof.png)
+
+Was zeigt der Screenshot? Die Kreditorenkarte `K30000` ist read-only geoeffnet; im Bereich `Invoicing` sind unter anderem `Tax Liable`, `Tax Area Code`, `Posting Details` und Withholding-Tax-Felder sichtbar. Warum ist das wichtig? Vor einer Anlagen-Einkaufsrechnung muss der Kreditor fachlich und buchungslogisch passen. Was lernt der Leser daraus? Sichtbare Teilfelder sind hilfreich, aber sie ersetzen nicht die fehlenden Default-Felder `Vendor Posting Group`, `Gen. Bus. Posting Group`, `Currency Code` und `VAT Bus. Posting Group`. Labor oder final? Labor-/Diagnosebild. Evidence: `playwright/projects/fibu-book5/evidence/fixedassets-043/`. Offen bleibt ein belastbarer Kaufbeleg-Gate-Nachweis.
+
+![Leere Einkaufsrechnung als Anlagen-Preflight](playwright/projects/fibu-book5/img/fixedassets-053-030-purchase-invoice-after-new.png)
+
+Was zeigt der Screenshot? Nach `Purchase Invoices` -> `Neu` ist eine leere `Purchase Invoice` sichtbar, mit Pflichtfeldern wie `Vendor Name`, `Vendor Invoice No.` und dem Zeilenbereich mit `Type` und `No.`. Warum ist das wichtig? Das Bild zeigt den richtigen Belegraum und die Gefahrengrenze vor jeder Buchung. Was lernt der Leser daraus? Erst wenn Kopf, Zeilentyp und Zielanlage im selben Vordergrundkontext sichtbar sind, darf ein weiterer Preflight entstehen. Labor oder final? Labor-Preflight. Evidence: `playwright/projects/fibu-book5/evidence/fixedassets-053/`. Offen bleiben `K30000`, `Type = Fixed Asset`, `FA-CNC-01`, Preview Posting und Buchung.
+
+![Rejected Path: Dialogtext ist kein Zeilentypnachweis](playwright/projects/fibu-book5/img/fixedassets-064-050-line-type-fixed-asset-visible.png)
+
+Fehlerbild: Das Bild zeigt weiter `Type = Item` und einen Vendor-Registrierungsdialog fuer den Text `Fixed Asset`. Ursache: Blindes Tippen nach Klick auf die Tabellenzelle hat nicht die echte Zeilentyp-Auswahl gesetzt, sondern eine andere BC-Logik angestossen. Was man daraus lernt: Der Zeilentyp muss im eigentlichen Tabellenfeld sichtbar `Fixed Asset` sein; ein Dialogtext oder ein Lookup-Kontext mit demselben Wort zaehlt nicht. Besserer Klickpfad: Im naechsten Lauf muss die echte Dropdown-/Lookup-Auswahl fuer `Type` diagnostiziert werden, weiterhin ohne `FA-CNC-01`. Buchregel: Rejected-Path-Bilder duerfen ins Buch, wenn sie erklaeren, warum ein Screenshot nicht als Zielnachweis taugt. Evidence: `playwright/projects/fibu-book5/evidence/fixedassets-064/`. Laborgrenze: kein Zielbeleg, keine Preview, kein Anlagenzugang, keine AfA; der Entwurf `107209` wurde per UI-Cleanup geloescht.
 
 Nachweis nach `FIXEDASSETS-053`/`FIXEDASSETS-054`: Die leere Einkaufsrechnung ist jetzt als Preflight-Bild belegt. Sie zeigt Seite, Pflichtfelder, Zeilenbereich und `Post` als Gefahrengrenze, aber noch nicht den Zielkreditor `K30000` und nicht die Zielanlage `FA-CNC-01`. Deshalb ist der naechste Klickpfad kein Anlagenzugang, sondern nur Field-Mapping: Kreditor im Kopf sichtbar pruefen, passenden Anlagen-/Fixed-Asset-Zeilentyp finden, `FA-CNC-01` in der Zeile sichtbar pruefen und einen eventuell entstandenen Entwurf wieder per UI bereinigen. `Preview Posting`, `Post`, Anlagenposten und AfA bleiben bis zu einem spaeteren Gate gesperrt.
 
