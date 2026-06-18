@@ -1,0 +1,63 @@
+{
+  "caseId": "FIXEDASSETS-057-K30000-FA-CNC-01-PURCHASE-INVOICE-FIELD-MAPPING-RETRY-GATE",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "gate-decision-no-bc-run",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-055/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-056/FIXEDASSETS-056-result.json"
+  ],
+  "decision": "approve-one-narrow-guarded-retry",
+  "nextAllowedCase": "FIXEDASSETS-058-K30000-FA-CNC-01-PURCHASE-INVOICE-FIELD-MAPPING-RETRY-NO-POSTING",
+  "mustUseNewTest": true,
+  "doNotRerunCase": "FIXEDASSETS-055",
+  "requiredGuard": "playwright/core/bc/purchase-invoice-guards.ts::classifyCurrentPurchaseInvoiceFieldMappingPage",
+  "allowedActions": [
+    "Open Purchase Invoices page in MCP_1_20260210 / RM-DEMO",
+    "Create exactly one temporary Purchase Invoice draft if needed for field mapping",
+    "Enter or select K30000 in the invoice header",
+    "Map the first line only if the page remains in Purchase Invoice plus Lines/Grid context",
+    "Select or enter line Type = Fixed Asset only if visibly supported",
+    "Select or enter FA-CNC-01 only after line Type = Fixed Asset is visible",
+    "Run the purchase-invoice field-mapping guard after each header or line action",
+    "Clean up any draft or accidental object through the UI before ending"
+  ],
+  "forbiddenActions": [
+    "Preview Posting",
+    "Post",
+    "Receive",
+    "Invoice",
+    "Receive and Invoice",
+    "fixed asset acquisition posting",
+    "depreciation posting",
+    "setup changes",
+    "API shortcut",
+    "company switch",
+    "leaving a draft behind"
+  ],
+  "stopCriteria": [
+    "Vendor registration dialog visible",
+    "Vendor Card visible",
+    "Accidental vendor number visible",
+    "FA-CNC-01 visible without Fixed Asset line type",
+    "Purchase Invoice page no longer visible after field action",
+    "Lines/Grid context no longer visible",
+    "Any posting dialog opens"
+  ],
+  "successCriteria": [
+    "Purchase Invoice page remains visible",
+    "Vendor K30000 is visible in the header",
+    "Lines/Grid context remains visible",
+    "Line Type is visibly Fixed Asset",
+    "FA-CNC-01 is visible in the invoice line No./target field",
+    "Guard status is safe-purchase-invoice-line-candidate",
+    "No Preview Posting, no Post, no acquisition and no depreciation",
+    "Any temporary draft is cleaned up through UI"
+  ],
+  "bookImpact": "Kapitel 21 darf den erneuten Lauf nur als Feldmapping-/Debugging-Schritt nutzen. Ein Buchbild fuer Anlagenkauf entsteht erst, wenn K30000, Fixed-Asset-Zeilentyp und FA-CNC-01 im selben sichtbaren Einkaufsrechnungs-Zeilenkontext stehen.",
+  "posted": false,
+  "bcRun": false,
+  "setupChanged": false,
+  "documentsCreated": false,
+  "deFinalProof": false
+}

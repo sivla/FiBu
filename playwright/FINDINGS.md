@@ -1,4 +1,22 @@
 
+## FIND-BC-FA-057 Neuer Purchase-Invoice-Retry nur mit Guard erlaubt
+
+| Feld | Wert |
+|---|---|
+| Projekt | fibu-book5 |
+| Testfall | `FIXEDASSETS-057-K30000-FA-CNC-01-PURCHASE-INVOICE-FIELD-MAPPING-RETRY-GATE` |
+| Screenshot | keine neuen Screenshots; Gate-Entscheidung nutzt `FIXEDASSETS-055` und `FIXEDASSETS-056` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-057/` |
+| BC-Seite | Ziel fuer Folgelauf: `Purchase Invoices` Page `9308`, `Purchase Invoice` Page `51`, Company `RM-DEMO` |
+| sichtbarer Text / Werte | aus Vorlaeufen: `Purchase Invoice`, `K30000`, `Vendor Card - V00040 - FA-CNC-01`, Guard-Stop-Kriterien |
+| nicht sichtbar / nicht bewiesen | gueltige Anlagenzeile, Preview, Zugang, AfA, Anlagenposten, deutscher Finalnachweis |
+| Elementtyp | Gate-Entscheidung / Anlagenkauf-Feldmapping / Playwright-Guard |
+| Testergebnis | Kein BC-Lauf. Genau ein neuer Testfall 058 darf als guarded Retry laufen; 055 darf nicht wiederholt werden. |
+| Entscheidung | 058 muss Guard nach jeder Kopf-/Zeilenaktion nutzen, jeden falschen Kontext stoppen und alle Entwuerfe per UI bereinigen. |
+| Buchstelle | Kapitel 21 Anlagen; Kapitel Debugging/technische Nachweisfuehrung; Screenshot-QA |
+
+Fuer Anfaenger ist die Regel: Ein Retry ist nur sinnvoll, wenn man vorher gelernt hat, woran der alte Fehler erkennbar war. Sonst klickt man denselben falschen Pfad nur schneller.
+
 ## FIND-BC-FA-056 Purchase-Invoice-Guard verhindert falschen FA-CNC-01-Erfolg
 
 | Feld | Wert |

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-18T20:20:00.000Z",
+  "updatedAt": "2026-06-18T20:45:00.000Z",
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
   "companyMode": "instance-bound-multi-company",
@@ -2603,6 +2603,50 @@
         "39"
       ],
       "nextStep": "FIXEDASSETS-057-K30000-FA-CNC-01-PURCHASE-INVOICE-FIELD-MAPPING-RETRY-GATE"
+    },
+    {
+      "caseId": "FIXEDASSETS-057",
+      "process": "Fixed Assets",
+      "status": "done-gate-decision-no-bc-run",
+      "mode": "guarded-purchase-invoice-field-mapping-retry-approved",
+      "company": "RM-DEMO",
+      "documents": [
+        "K30000",
+        "FA-CNC-01"
+      ],
+      "screenshots": [],
+      "evidence": [
+        "playwright/projects/fibu-book5/evidence/fixedassets-057/README.md",
+        "playwright/projects/fibu-book5/evidence/fixedassets-057/FIXEDASSETS-057-result.json",
+        "playwright/projects/fibu-book5/evidence/fixedassets-057/FIXEDASSETS-057-K30000-FA-CNC-01-PURCHASE-INVOICE-FIELD-MAPPING-RETRY-GATE.md"
+      ],
+      "proves": [
+        "one new guarded retry is allowed",
+        "055 must not be rerun as-is",
+        "the next retry must use purchase-invoice context guard after every header/line action",
+        "Preview, posting, acquisition and depreciation remain forbidden"
+      ],
+      "doesNotProve": [
+        "new BC state",
+        "valid purchase invoice line for FA-CNC-01",
+        "Preview Posting",
+        "fixed asset acquisition",
+        "depreciation",
+        "ledger trace",
+        "German final proof"
+      ],
+      "reusablePatterns": [
+        "gate after rejected wrong-context screenshot",
+        "guarded retry instead of blind rerun",
+        "success requires same visible page and line context as the claimed values"
+      ],
+      "bookChapters": [
+        "21",
+        "37",
+        "38",
+        "39"
+      ],
+      "nextStep": "FIXEDASSETS-058-K30000-FA-CNC-01-PURCHASE-INVOICE-FIELD-MAPPING-RETRY-NO-POSTING"
     }
   ]
 }

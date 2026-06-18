@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "updatedAt": "2026-06-17T07:17:00.942Z",
+  "updatedAt": "2026-06-18T20:45:00.000Z",
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
   "scope": "FiBu Buch 5 reusable Business Central page/action knowledge",
@@ -707,6 +707,90 @@
         "inventory-006",
         "inventory-007",
         "inventory-008"
+      ]
+    },
+    "Purchase Invoices": {
+      "page": "Purchase Invoices",
+      "pageId": 9308,
+      "searchTerms": [
+        "Purchase Invoices",
+        "Einkaufsrechnungen"
+      ],
+      "reliableEntryPaths": [
+        "Direct URL page 9308 for guarded RM-DEMO lab field-mapping retries",
+        "Tell-Me only with explicit Purchase Invoices list context and postcondition"
+      ],
+      "knownActions": {
+        "New": "FIXEDASSETS-053 proved scoped New/Neu can open Purchase Invoice page 51; target values remain gated.",
+        "Open draft": "Only for cleanup or explicitly allowed no-posting field-mapping evidence."
+      },
+      "dangerousActions": [
+        "New without list context",
+        "Post",
+        "Preview Posting",
+        "Delete without cleanup evidence"
+      ],
+      "knownPitfalls": [
+        "FIXEDASSETS-055 showed that K30000/FA-CNC-01 entry can leave the intended invoice line context and open a vendor registration dialog or Vendor Card.",
+        "A visible FA-CNC-01 code is rejected unless Fixed Asset line type and Purchase Invoice line context are visible at the same time.",
+        "Any draft created during no-posting tests must be cleaned up through the UI before ending the run."
+      ],
+      "recommendedHelpers": [
+        "openBcPageById",
+        "waitForPageText",
+        "clickBcAction",
+        "classifyCurrentPurchaseInvoiceFieldMappingPage",
+        "screenshot",
+        "compactPageText"
+      ],
+      "evidenceExamples": [
+        "fixedassets-053",
+        "fixedassets-055",
+        "fixedassets-056",
+        "fixedassets-057"
+      ]
+    },
+    "Purchase Invoice": {
+      "page": "Purchase Invoice",
+      "pageId": 51,
+      "searchTerms": [
+        "Purchase Invoice",
+        "Einkaufsrechnung"
+      ],
+      "reliableEntryPaths": [
+        "Open from scoped Purchase Invoices New/Neu action",
+        "Direct URL only with known no-posting test context"
+      ],
+      "knownActions": {
+        "Header vendor entry": "Allowed in FIXEDASSETS-058 only with guard after the action.",
+        "Line Type / No. entry": "Allowed in FIXEDASSETS-058 only if Purchase Invoice plus Lines/Grid remains visible and line type Fixed Asset is visible before FA-CNC-01.",
+        "Post": "Forbidden until a later explicit Preview/Posting gate."
+      },
+      "dangerousActions": [
+        "Post",
+        "Preview Posting",
+        "Receive",
+        "Invoice",
+        "Receive and Invoice",
+        "lookup actions that open Vendor Card or new vendor registration"
+      ],
+      "knownPitfalls": [
+        "Do not accept body text alone as line proof; the screenshot/evidence must show the claimed values in the invoice line context.",
+        "Vendor registration dialogs and Vendor Cards are stop criteria, not recovery contexts.",
+        "No Preview Posting in field-mapping retries."
+      ],
+      "recommendedHelpers": [
+        "classifyCurrentPurchaseInvoiceFieldMappingPage",
+        "waitForPageText",
+        "expectBcDialog",
+        "compactPageText",
+        "screenshot"
+      ],
+      "evidenceExamples": [
+        "fixedassets-053",
+        "fixedassets-055",
+        "fixedassets-056",
+        "fixedassets-057"
       ]
     }
   },

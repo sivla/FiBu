@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "updatedAt": "2026-06-18T20:20:00.000Z",
+  "updatedAt": "2026-06-18T20:45:00.000Z",
   "repository": "sivla/FiBu",
   "branch": "codex/playwright-bc-screenshot-foundation",
   "environment": "MCP_1_20260210",
@@ -10,8 +10,8 @@
   "companyRegistry": "playwright/projects/fibu-book5/COMPANY-REGISTRY.json",
   "dataBasis": "CRONUS USA",
   "activeArea": "fixedassets",
-  "lastCompletedRun": "FIXEDASSETS-056-PURCHASE-INVOICE-FIELD-MAPPING-BLOCKER-DIAGNOSIS",
-  "lastWorkType": "playwright-helper-and-evidence-no-bc-run",
+  "lastCompletedRun": "FIXEDASSETS-057-K30000-FA-CNC-01-PURCHASE-INVOICE-FIELD-MAPPING-RETRY-GATE",
+  "lastWorkType": "gate-decision-no-bc-run",
   "postedInLastRun": false,
   "latestPostedDocuments": {
     "o2c": {
@@ -935,6 +935,22 @@
         "noBcRun": true,
         "noPosting": true,
         "nextAllowedCase": "FIXEDASSETS-057-K30000-FA-CNC-01-PURCHASE-INVOICE-FIELD-MAPPING-RETRY-GATE"
+      },
+      "purchaseInvoiceFieldMappingRetryGate": {
+        "caseId": "FIXEDASSETS-057",
+        "workType": "gate-decision-no-bc-run",
+        "decision": "approve-one-narrow-guarded-retry",
+        "nextAllowedCase": "FIXEDASSETS-058-K30000-FA-CNC-01-PURCHASE-INVOICE-FIELD-MAPPING-RETRY-NO-POSTING",
+        "mustUseNewTest": true,
+        "doNotRerunCase": "FIXEDASSETS-055",
+        "requiredGuard": "playwright/core/bc/purchase-invoice-guards.ts::classifyCurrentPurchaseInvoiceFieldMappingPage",
+        "noPreview": true,
+        "noPosting": true,
+        "noAcquisition": true,
+        "noDepreciation": true,
+        "noSetupChange": true,
+        "noCompanySwitch": true,
+        "cleanupRequired": true
       }
     }
   },
@@ -1056,14 +1072,14 @@
     },
     "nextCompanyEvidenceStep": "Only with a new documented company action purpose; otherwise continue with process/setup work."
   },
-  "nextBestStepWithoutApproval": "FIXEDASSETS-053-K30000-PURCHASE-INVOICE-PREFLIGHT-NO-POSTING: open Purchase Invoices UI-first in RM-DEMO and prove page, required fields, K30000, FA-CNC-01, draft/cleanup behavior and dangerous posting actions without posting, acquisition, depreciation, setup change, API shortcut or company switch.",
+  "nextBestStepWithoutApproval": "FIXEDASSETS-058-K30000-FA-CNC-01-PURCHASE-INVOICE-FIELD-MAPPING-RETRY-NO-POSTING: create a new guarded UI-first Purchase Invoice field-mapping retry in RM-DEMO; use the purchase-invoice guard after every header/line action; no Preview Posting, no Post, no acquisition, no depreciation, no setup change, no API shortcut, no company switch, and cleanup every draft through the UI.",
   "nextBestStepWithApproval": {
     "payments": "Nur mit neuem Gate: weitere Zahlung, Kreditorenzahlung oder Bankabstimmung. PAYMENTS-011 darf nicht wiederholt werden.",
     "companies": "Company-Aktionen sind innerhalb MCP_1_20260210 erlaubt, aber nur mit COMPANY-REGISTRY-Eintrag, dokumentiertem Zweck/Risiko/Evidence-Plan und sofortigem State-/Evidence-Sync. Naechster Company-Schritt ist read-only Enumeration, keine Anlage.",
     "reporting": "Further Analysis View setup needs a new explicit gate and a scoped New/Card action proof. REPORTING-013 consumed the GOVERNANCE-007 gate and rejected setup because unscoped New/Neu is globally ambiguous in BC.",
     "tax": "TAX-002-DE-VAT-FIT: only with explicit approval; UI-first VAT Business/Product Posting Groups, VAT Posting Setup, document preview and VAT Entries proof; no German final claim until proven.",
     "compliance": "COMPLIANCE-002-EINVOICE-SETUP: E-Rechnungs-/E-Documents-/Versandprofil-/Change-Log-Setup nur mit Freigabe, UI-first Klickpfad, Validierungs-/Versand-/Auditnachweis und klarer Labor-/DE-Trennung.",
-    "fixedAssets": "No purchase invoice/acquisition/depreciation yet. FIXEDASSETS-048 rejects a default/setup fit because the critical K30000 defaults are still not visibly proven; next allowed work is read-only Personalize field availability diagnosis only.",
+    "fixedAssets": "Only after FIXEDASSETS-058 succeeds and a later explicit gate approves it: Preview Posting, fixed asset acquisition, depreciation or ledger trace. Current approval is field mapping only, no posting.",
     "security": "SECURITY-002-USER-PERMISSION-SETUP: Benutzer-/Berechtigungs-/Profil-/Security-Group-/User-Setup-/Job-Queue-/Change-Log-Aenderungen nur mit Freigabe, UI-first Klickpfad, Rechte-/SoD-Matrix und Audit-/Review-Evidence.",
     "migration": "MIGRATION-002-CONFIGURATION-PACKAGES-IMPORT: Configuration Packages, Datenimport, Opening-Balance-Journale oder Cutover-Ausfuehrung nur mit Freigabe, UI-first Klickpfad, Abstimmprotokoll und Rueckfallregel.",
     "integrations": "INTEGRATIONS-002-SETUP-OR-CONNECTOR: Extension, AppSource-App, API/Web Service, Connector, Power Platform, Power BI, Job Queue oder produktiven Integrationslauf nur mit Freigabe, UI-first Klickpfad, UAT, Rollen/Berechtigungen, Fehlerfall, Rollback, Monitoring und Support Owner.",
@@ -1372,23 +1388,29 @@
       "cleanupDone": true,
       "company": "RM-DEMO",
       "nextStep": "FIXEDASSETS-056-PURCHASE-INVOICE-FIELD-MAPPING-BLOCKER-DIAGNOSIS"
+    },
+    {
+      "caseId": "FIXEDASSETS-057",
+      "result": "No-BC gate decision approved exactly one new guarded Purchase Invoice field-mapping retry. 055 must not be repeated. The next test must stop on vendor registration dialog, Vendor Card, lost Purchase Invoice/Lines context or any posting dialog, and must clean up all drafts through the UI.",
+      "evidence": "playwright/projects/fibu-book5/evidence/fixedassets-057/",
+      "screenshots": [],
+      "noPosting": true,
+      "noBcRun": true,
+      "company": "RM-DEMO",
+      "nextStep": "FIXEDASSETS-058-K30000-FA-CNC-01-PURCHASE-INVOICE-FIELD-MAPPING-RETRY-NO-POSTING"
     }
   ],
-  "nextStep": "FIXEDASSETS-057-K30000-FA-CNC-01-PURCHASE-INVOICE-FIELD-MAPPING-RETRY-GATE",
-  "nextRecommendedRun": "FIXEDASSETS-056-PURCHASE-INVOICE-FIELD-MAPPING-BLOCKER-DIAGNOSIS",
+  "nextStep": "FIXEDASSETS-058-K30000-FA-CNC-01-PURCHASE-INVOICE-FIELD-MAPPING-RETRY-NO-POSTING",
+  "nextRecommendedRun": "FIXEDASSETS-058-K30000-FA-CNC-01-PURCHASE-INVOICE-FIELD-MAPPING-RETRY-NO-POSTING",
   "latestFixedAssetsRun": {
-    "caseId": "FIXEDASSETS-055",
-    "result": "UI-first Purchase Invoice field mapping ran in RM-DEMO and is rejected as a success proof: the flow reached a wrong Vendor Card/lookup context (V00040 / FA-CNC-01) and left Purchase Invoice draft 107222. Both accidental artifacts were cleaned up through the UI. No Preview Posting, no Post, no acquisition, no depreciation, no setup/API shortcut and no company switch.",
-    "evidence": "playwright/projects/fibu-book5/evidence/fixedassets-055/",
-    "screenshots": [
-      "playwright/projects/fibu-book5/img/fixedassets-055-030-header-k30000-visible.png (rejected)",
-      "playwright/projects/fibu-book5/img/fixedassets-055-050-line-fa-cnc-01-visible.png (rejected)",
-      "playwright/projects/fibu-book5/img/fixedassets-055-071-accidental-vendor-after-cleanup.png",
-      "playwright/projects/fibu-book5/img/fixedassets-055-081-accidental-purchase-invoice-after-cleanup.png"
-    ],
+    "caseId": "FIXEDASSETS-057",
+    "result": "Gate decision approved one guarded no-posting retry for K30000/FA-CNC-01 Purchase Invoice field mapping. No BC run, no setup change, no posting.",
+    "evidence": "playwright/projects/fibu-book5/evidence/fixedassets-057/",
+    "screenshots": [],
     "noPosting": true,
-    "cleanupDone": true,
-    "nextAllowedCase": "FIXEDASSETS-056-PURCHASE-INVOICE-FIELD-MAPPING-BLOCKER-DIAGNOSIS"
+    "noBcRun": true,
+    "company": "RM-DEMO",
+    "nextStep": "FIXEDASSETS-058-K30000-FA-CNC-01-PURCHASE-INVOICE-FIELD-MAPPING-RETRY-NO-POSTING"
   },
-  "nextBestStep": "FIXEDASSETS-057-K30000-FA-CNC-01-PURCHASE-INVOICE-FIELD-MAPPING-RETRY-GATE"
+  "nextBestStep": "FIXEDASSETS-058-K30000-FA-CNC-01-PURCHASE-INVOICE-FIELD-MAPPING-RETRY-NO-POSTING"
 }
