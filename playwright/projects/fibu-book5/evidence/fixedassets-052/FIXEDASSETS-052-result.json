@@ -1,0 +1,80 @@
+{
+  "caseId": "FIXEDASSETS-052-K30000-VENDOR-PURCHASE-INVOICE-PREFLIGHT-GATE-DECISION",
+  "generatedAt": "2026-06-18T00:00:00.000Z",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "dataBasis": "CRONUS USA",
+  "mode": "decision-no-bc-run",
+  "workTypes": [
+    "readiness",
+    "gate-decision",
+    "evidence"
+  ],
+  "inputEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-051/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-051/FIXEDASSETS-051-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-051/030-pageinspection-critical-field-blocks.json"
+  ],
+  "decision": "approve-next-narrow-purchase-invoice-preflight-no-posting",
+  "approvedNextCase": "FIXEDASSETS-053-K30000-PURCHASE-INVOICE-PREFLIGHT-NO-POSTING",
+  "approvedNextActions": [
+    "open Purchase Invoices UI-first in RM-DEMO",
+    "use wide layout and hide FactBox if it blocks important fields",
+    "inspect page, required fields, vendor defaults and line mapping without posting",
+    "use K30000 and FA-CNC-01 only as preflight context",
+    "document any auto-save draft and clean it up through the UI",
+    "capture only screenshots that visibly show the intended page, field, action or cleanup status"
+  ],
+  "technicalBasisFromFixedassets051": {
+    "vendorCardPage": "Vendor Card",
+    "vendorCardPageId": 26,
+    "sourceTable": "Vendor",
+    "sourceTableId": 23,
+    "vendorPostingGroup": "DOMESTIC",
+    "genBusPostingGroup": "DOMESTIC",
+    "currencyCode": "",
+    "vatBusPostingGroup": "",
+    "taxAreaCode": "",
+    "taxLiable": "Nein",
+    "paymentTermsCode": "1M(8D)",
+    "paymentMethodCode": "BANK",
+    "proofType": "Page Inspection technical field proof",
+    "screenshotLimitation": "The screenshots show page/table context, not all field codes as readable book values."
+  },
+  "rejectedNow": [
+    "posting a purchase invoice",
+    "fixed asset acquisition posting",
+    "depreciation calculation or posting",
+    "vendor default edit",
+    "posting group, currency or VAT setup fit",
+    "saved personalization",
+    "API shortcut",
+    "company switch",
+    "German VAT, HGB or chart-of-accounts final proof"
+  ],
+  "stopCriteriaForNextCase": [
+    "environment is not MCP_1_20260210",
+    "company is not RM-DEMO",
+    "Purchase Invoices page is not clearly identified",
+    "New/Neu action is unscoped or opens an unexpected context",
+    "an auto-created draft cannot be cleaned up through the UI",
+    "a posting action becomes focused unexpectedly",
+    "K30000 or FA-CNC-01 cannot be selected or verified safely",
+    "BC shows a setup or required-field blocker that needs its own gate"
+  ],
+  "safety": {
+    "bcRunExecuted": false,
+    "posted": false,
+    "purchaseInvoiceCreated": false,
+    "purchaseInvoicePosted": false,
+    "acquisitionPosted": false,
+    "depreciationCalculatedOrPosted": false,
+    "vendorChanged": false,
+    "setupChanged": false,
+    "apiShortcutUsed": false,
+    "companyChanged": false,
+    "personalizationSaved": false
+  },
+  "bookImpact": "Chapter 21 may proceed to a Purchase Invoice preflight, but must label it as no-posting field/action/draft diagnosis. The debugging chapter should explain that Page Inspection can clear technical field uncertainty while final user screenshots still need visible business targets.",
+  "nextStep": "FIXEDASSETS-053-K30000-PURCHASE-INVOICE-PREFLIGHT-NO-POSTING"
+}

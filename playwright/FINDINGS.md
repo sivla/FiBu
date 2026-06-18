@@ -1,4 +1,21 @@
 
+## FIND-BC-FA-052 Page Inspection reicht fuer Preflight, nicht fuer Buchung
+
+| Feld | Wert |
+|---|---|
+| Projekt | fibu-book5 |
+| Testfall | `FIXEDASSETS-052-K30000-VENDOR-PURCHASE-INVOICE-PREFLIGHT-GATE-DECISION` |
+| Screenshot | keine neuen Screenshots; Entscheidung nutzt `FIXEDASSETS-051` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-052/` |
+| BC-Seite | Naechster Zielkontext: `Purchase Invoices` in `RM-DEMO` |
+| sichtbarer Text / Werte | aus `FIXEDASSETS-051`: `Vendor Card (26)`, `Vendor (23)`, `DOMESTIC`, leere Currency-/VAT-/Tax-Felder, `Nein`, `1M(8D)`, `BANK` |
+| Elementtyp | Gate-Entscheidung / Anlagenkauf-Preflight / Screenshot-QA / technische Nachweisfuehrung |
+| Testergebnis | Kein neuer BC-Lauf. Der technische K30000-Nachweis reicht fuer einen engen Purchase-Invoice-Preflight ohne Buchung, aber nicht fuer Anlagenzugang, AfA, Buchung oder deutsche Finalaussagen. |
+| Entscheidung | Naechster Schritt ist `FIXEDASSETS-053-K30000-PURCHASE-INVOICE-PREFLIGHT-NO-POSTING`; Screenshots muessen konkrete sichtbare Ziele zeigen und Entwuerfe muessen bereinigt werden. |
+| Buchstelle | Kapitel 21 Anlagen; Kapitel Debugging/technische Nachweisfuehrung; Screenshot-QA |
+
+Fuer Anfaenger ist der Fall wichtig: Technische Feldwerte koennen einen Preflight erlauben, aber erst der Beleg selbst zeigt, welche Felder, Aktionen und Risiken im Prozess sichtbar werden. Ein Preflight ist noch keine Buchung.
+
 ## FIND-BC-FA-051 Page Inspection beweist K30000 technisch, aber nicht als perfektes Buchbild
 
 | Feld | Wert |

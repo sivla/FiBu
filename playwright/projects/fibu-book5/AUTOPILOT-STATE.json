@@ -10,8 +10,8 @@
   "companyRegistry": "playwright/projects/fibu-book5/COMPANY-REGISTRY.json",
   "dataBasis": "CRONUS USA",
   "activeArea": "fixedassets",
-  "lastCompletedRun": "FIXEDASSETS-051-K30000-VENDOR-PAGEINSPECTION-READONLY",
-  "lastWorkType": "read-only-ui-evidence",
+  "lastCompletedRun": "FIXEDASSETS-052-K30000-VENDOR-PURCHASE-INVOICE-PREFLIGHT-GATE-DECISION",
+  "lastWorkType": "gate-decision-no-bc-run",
   "postedInLastRun": false,
   "latestPostedDocuments": {
     "o2c": {
@@ -885,6 +885,29 @@
         "noPurchaseInvoice": true,
         "noApi": true,
         "limitation": "Screenshots prove card and Page/Table context; not all critical codes are readable in the image itself. Field-value proof is in 030-pageinspection-critical-field-blocks.json. CRONUS-USA lab only; no German final proof."
+      },
+      "purchaseInvoicePreflightGateDecision": {
+        "caseId": "FIXEDASSETS-052",
+        "decision": "approve-next-narrow-purchase-invoice-preflight-no-posting",
+        "basis": "FIXEDASSETS-051 Page Inspection technical field proof for K30000 Vendor Card (26) / Vendor (23)",
+        "approvedNextCase": "FIXEDASSETS-053-K30000-PURCHASE-INVOICE-PREFLIGHT-NO-POSTING",
+        "allowed": [
+          "open Purchase Invoices UI-first in RM-DEMO",
+          "inspect page, required fields, K30000, FA-CNC-01 and action boundaries without posting",
+          "document and clean up any auto-created draft through UI",
+          "capture only screenshots with visible business targets"
+        ],
+        "forbidden": [
+          "Post",
+          "fixed asset acquisition posting",
+          "depreciation",
+          "vendor/setup edit",
+          "API shortcut",
+          "company switch",
+          "German final proof claim"
+        ],
+        "noBcRun": true,
+        "noPosting": true
       }
     }
   },
@@ -1006,7 +1029,7 @@
     },
     "nextCompanyEvidenceStep": "Only with a new documented company action purpose; otherwise continue with process/setup work."
   },
-  "nextBestStepWithoutApproval": "FIXEDASSETS-052-K30000-VENDOR-PURCHASE-INVOICE-PREFLIGHT-GATE-DECISION: decide whether the technical Page Inspection proof for K30000 is enough to allow a read-only/no-posting purchase-invoice preflight, or whether the default values must first be made UI-visible through a narrow setup/default visibility path.",
+  "nextBestStepWithoutApproval": "FIXEDASSETS-053-K30000-PURCHASE-INVOICE-PREFLIGHT-NO-POSTING: open Purchase Invoices UI-first in RM-DEMO and prove page, required fields, K30000, FA-CNC-01, draft/cleanup behavior and dangerous posting actions without posting, acquisition, depreciation, setup change, API shortcut or company switch.",
   "nextBestStepWithApproval": {
     "payments": "Nur mit neuem Gate: weitere Zahlung, Kreditorenzahlung oder Bankabstimmung. PAYMENTS-011 darf nicht wiederholt werden.",
     "companies": "Company-Aktionen sind innerhalb MCP_1_20260210 erlaubt, aber nur mit COMPANY-REGISTRY-Eintrag, dokumentiertem Zweck/Risiko/Evidence-Plan und sofortigem State-/Evidence-Sync. Naechster Company-Schritt ist read-only Enumeration, keine Anlage.",
@@ -1203,8 +1226,9 @@
     "noPosting": true,
     "reusablePattern": "Use clickBcAction with scopeText plus expectedAfterClick for cancel-safe BC action clicks; use local DOM fallback only after helper failure and document fallbackUsed."
   },
-  "nextTechnicalStep": "FIXEDASSETS-052-K30000-VENDOR-PURCHASE-INVOICE-PREFLIGHT-GATE-DECISION: decide whether the technical Page Inspection proof for K30000 is enough to allow a read-only/no-posting purchase-invoice preflight, or whether the default values must first be made UI-visible through a narrow setup/default visibility path.",
+  "nextTechnicalStep": "FIXEDASSETS-053-K30000-PURCHASE-INVOICE-PREFLIGHT-NO-POSTING: open Purchase Invoices UI-first in RM-DEMO and prove page, required fields, K30000, FA-CNC-01, draft/cleanup behavior and dangerous posting actions without posting, acquisition, depreciation, setup change, API shortcut or company switch.",
   "sessionNotes": [
+    "FIXEDASSETS-052 completed as a no-BC gate decision. The technical K30000 Page Inspection proof from FIXEDASSETS-051 is sufficient for exactly one narrow Purchase Invoice preflight without posting. Next run may open Purchase Invoices UI-first, prove page/required fields/draft cleanup/K30000/FA-CNC-01/action boundaries, and must stop before Post/acquisition/depreciation/setup/vendor changes/API/company switch.",
     "FIXEDASSETS-051 ran UI-first/read-only in RM-DEMO. K30000 Vendor Card page 26 opened in wide layout; Ctrl+Alt+F1 opened Page Inspection. Technical proof: Vendor Card (26, Card), Vendor (23), Vendor Posting Group DOMESTIC, Gen. Bus. Posting Group DOMESTIC, blank Currency Code, blank VAT Bus. Posting Group, blank Tax Area Code, Tax Liable Nein, Payment Terms Code 1M(8D), Payment Method Code BANK. Screenshots are context/technical images, not full field-value book screenshots. No vendor/setup change, no saved personalization, no purchase invoice, no acquisition, no depreciation, no posting, no API shortcut and no company switch. Next step is FIXEDASSETS-052 purchase-invoice-preflight gate decision.",
     "FIXEDASSETS-050 completed as a no-BC gate decision. After FIXEDASSETS-049, no K30000 default/setup fit and no purchase-invoice preflight are approved. The next allowed practical step is FIXEDASSETS-051 K30000 Vendor Page Inspection read-only on Vendor Card page 26 to prove Page, Source Table and critical field values. No vendor/setup change, no saved personalization, no purchase invoice, no acquisition, no depreciation, no posting, no API shortcut and no company switch.",
     "FIXEDASSETS-049 ran UI-first/read-only in RM-DEMO. The K30000 Vendor Card opened in wide layout and Personalize mode displayed Wird personalisiert: Vendor Card. The Add field/field-list path was not stable and none of Vendor Posting Group, Gen. Bus. Posting Group, Currency Code or VAT Bus. Posting Group were visible. No personalization was saved, no vendor/setup change, no purchase invoice, no acquisition, no depreciation, no posting, no API shortcut and no company switch. Next step is FIXEDASSETS-050 gate decision for Page Inspection/manual UI diagnosis versus narrow default/setup fit.",
@@ -1231,7 +1255,7 @@
     "FIXEDASSETS-025 corrected the overclaim around FIXEDASSETS-024: active card control proof is partial (4/6), so value lookup/save gate remains blocked until Depreciation Book Code and Posting Group are recovered on the active card. No BC run, no save, no setup and no posting."
   ],
   "prohibitedActions": [
-    "After FIXEDASSETS-051, do not create a K30000 purchase invoice, acquisition, depreciation or posting until FIXEDASSETS-052 explicitly decides whether Page Inspection proof is enough for a read-only/no-posting purchase-invoice preflight or whether more UI-visible default proof is required.",
+    "After FIXEDASSETS-052, do not post, acquire, depreciate, edit vendor/setup, use API shortcuts, switch company, or leave a Purchase Invoice draft behind. Only FIXEDASSETS-053 no-posting Purchase Invoice preflight is allowed.",
     "After FIXEDASSETS-049, do not create a K30000 purchase invoice, acquisition, depreciation or posting and do not change K30000 vendor/setup defaults. Personalize mode opened but did not expose Vendor Posting Group, Gen. Bus. Posting Group, Currency Code or VAT Bus. Posting Group; the next allowed work is only the FIXEDASSETS-050 gate decision.",
     "After FIXEDASSETS-048, do not create a K30000 purchase invoice, acquisition, depreciation or posting and do not change K30000 vendor/setup defaults. The only approved next work is read-only Personalize field availability diagnosis for Vendor Posting Group, Gen. Bus. Posting Group, Currency Code and VAT Bus. Posting Group.",
     "After FIXEDASSETS-047, do not create a K30000 purchase invoice, acquisition, depreciation or posting and do not change K30000 vendor/setup defaults. Vendor Posting Group, Gen. Bus. Posting Group, Currency Code and VAT Bus. Posting Group remain not visibly proven; the next allowed work is a no-posting gate decision for manual personalization vs narrow UI-first default/setup fit.",
