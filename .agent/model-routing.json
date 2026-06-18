@@ -1,0 +1,151 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Modell- und Reasoning-Routing fuer token-effiziente FiBu-Buch-5-Agentenlaeufe.",
+  "defaultTaskClass": "monkey_work",
+  "modelClasses": [
+    "gpt-4-mini-low",
+    "gpt-4-mini-medium",
+    "gpt-4-mini-high",
+    "gpt-4-low",
+    "gpt-4-medium",
+    "gpt-4-high",
+    "gpt-5.5-low",
+    "gpt-5.5-medium",
+    "gpt-5.5-high"
+  ],
+  "taskClasses": {
+    "monkey_work": {
+      "roleName": "Monkey Crew",
+      "purpose": "Billige Fleissarbeit fuer enge, strukturierte und gut pruefbare Aufgaben.",
+      "allowedModels": [
+        "gpt-4-mini-low",
+        "gpt-4-mini-medium",
+        "gpt-4-mini-high"
+      ],
+      "defaultModel": "gpt-4-mini-low",
+      "typicalTasks": [
+        "json-validation",
+        "state-reading",
+        "skill-registry-listing",
+        "local-artifact-categorization",
+        "screenshot-metadata-reading",
+        "simple-formatting",
+        "coverage-normalization",
+        "evidence-field-extraction"
+      ],
+      "mustEscalateIf": [
+        "state-contradicts-evidence",
+        "screenshot-does-not-show-claimed-proof",
+        "task-needs-code-change",
+        "task-needs-business-central-judgment",
+        "posting-or-setup-risk"
+      ],
+      "usageLogRequired": false
+    },
+    "wizard_work": {
+      "roleName": "Wizard Bench",
+      "purpose": "Solide Codex-, Tool-, Script-, Helper- und Refactor-Arbeit.",
+      "allowedModels": [
+        "gpt-4-low",
+        "gpt-4-medium",
+        "gpt-4-high"
+      ],
+      "defaultModel": "gpt-4-medium",
+      "typicalTasks": [
+        "node-stdlib-tooling",
+        "schema-maintenance",
+        "package-json-script-maintenance",
+        "playwright-helper-diagnosis",
+        "small-refactor",
+        "safety-gate-implementation",
+        "agent-loop-tooling"
+      ],
+      "mustEscalateIf": [
+        "business-central-fibu-judgment",
+        "ambiguous-error-analysis",
+        "tax-or-compliance-claim",
+        "final-review-before-posting",
+        "architecture-decision-with-large-followup"
+      ],
+      "usageLogRequired": false
+    },
+    "judge_work": {
+      "roleName": "Judge Panel",
+      "purpose": "Urteilskraft fuer BC-/FiBu-Entscheidungen, Risiko, Buch-vs-Evidence und Setup-/Posting-Gates.",
+      "allowedModels": [
+        "gpt-5.5-low",
+        "gpt-5.5-medium"
+      ],
+      "defaultModel": "gpt-5.5-low",
+      "typicalTasks": [
+        "business-central-fibu-judgment",
+        "posting-or-setup-decision",
+        "book-vs-evidence-contradiction",
+        "ambiguous-error-analysis",
+        "tax-or-compliance-claim",
+        "next-action-risk-decision",
+        "architecture-plan-review"
+      ],
+      "mustEscalateIf": [
+        "single-review-has-large-project-impact",
+        "safety-or-architecture-final-approval-needed",
+        "repeated-lower-model-loops-would-be-riskier"
+      ],
+      "usageLogRequired": true
+    },
+    "big_brain_review": {
+      "roleName": "Big Brain",
+      "purpose": "Seltene Endabnahme fuer Architektur, Safety oder fachliche Entscheidungen mit grosser Folgewirkung.",
+      "allowedModels": [
+        "gpt-5.5-high"
+      ],
+      "defaultModel": "gpt-5.5-high",
+      "typicalTasks": [
+        "supervisor-review",
+        "architecture-final-approval",
+        "safety-final-approval",
+        "high-impact-business-central-decision"
+      ],
+      "maxUsesPerMajorRun": 1,
+      "usageLogRequired": true
+    }
+  },
+  "routingRules": [
+    {
+      "rule": "strict-output-cheap-first",
+      "description": "Wenn Aufgabe eng, lokal und maschinenlesbar ist, zuerst monkey_work nutzen."
+    },
+    {
+      "rule": "code-and-tooling-to-wizards",
+      "description": "Wenn Scripts, Schemas, Helper oder Refactors geaendert werden, wizard_work nutzen."
+    },
+    {
+      "rule": "risk-and-judgment-to-judges",
+      "description": "Wenn BC-/FiBu-Urteil, Setup, Posting, Steuer, Compliance oder Buchwahrheit betroffen sind, judge_work nutzen."
+    },
+    {
+      "rule": "big-brain-is-rare",
+      "description": "big_brain_review ist nie Default und maximal einmal pro groesserem Lauf erlaubt."
+    },
+    {
+      "rule": "avoid-false-economy",
+      "description": "Direkt hoeher routen, wenn mehrere billige Loops voraussichtlich teurer oder riskanter waeren."
+    }
+  ],
+  "usageLog": {
+    "path": ".agent/state/model_usage_log.jsonl",
+    "requiredForTaskClasses": [
+      "judge_work",
+      "big_brain_review"
+    ],
+    "requiredFields": [
+      "timestamp",
+      "task",
+      "taskClass",
+      "chosenModelClass",
+      "reason",
+      "expectedRisk",
+      "expectedRetryAvoidance"
+    ]
+  }
+}

@@ -1,0 +1,55 @@
+# Modell-Routing fuer FiBu Buch 5
+
+Diese Datei erklaert die Routing-Rollen aus `.agent/model-routing.json`.
+Ziel ist nicht, immer das kleinste Modell zu nehmen. Ziel ist das beste Verhaeltnis aus Verbrauch, Qualitaet und Wiederholungsrisiko.
+
+## Rollen
+
+| Taskclass | Rolle | Modellfamilie | Zweck |
+|---|---|---|---|
+| `monkey_work` | Monkey Crew | `gpt-4-mini-*` | Billige Fleissarbeit: lesen, sortieren, validieren, extrahieren, normalisieren |
+| `wizard_work` | Wizard Bench | `gpt-4-*` | Toolwork: Scripts, Checks, Helper, Schemas, Refactors |
+| `judge_work` | Judge Panel | `gpt-5.5-low/medium` | Urteil: BC-/FiBu-Logik, Buch-vs-Evidence, Setup-/Posting-Risiko |
+| `big_brain_review` | Big Brain | `gpt-5.5-high` | Seltene Endabnahme bei grosser Folgewirkung |
+
+## Routing-Leitplanken
+
+- `monkey_work` ist fuer Masse da: JSON pruefen, State lesen, Screenshot-Metadaten auswerten, Evidence-Felder extrahieren.
+- `wizard_work` baut und repariert die Werkbank: Node-Tools, Playwright-Helper, Schemas, `package.json`-Skripte.
+- `judge_work` entscheidet, wenn fachliche Wahrheit oder Risiko betroffen ist: BC-/FiBu-Urteil, Posting-Gates, Steuer-/Compliance-Aussagen, Buch-vs-Evidence-Konflikte.
+- `big_brain_review` ist selten. `gpt-5.5-high` darf pro groesserem Lauf maximal einmal genutzt werden und ist nie Default.
+
+## Projektbeispiele
+
+| Situation | Taskclass |
+|---|---|
+| `current.json` lesen und aktiven Case finden | `monkey_work` |
+| Screenshot-Metadaten pruefen, ob Status und Zweck gepflegt sind | `monkey_work` |
+| `scripts/agent/*` erweitern oder ein Schema pruefen | `wizard_work` |
+| Playwright-Helper fuer BC-Dialoge robuster machen | `wizard_work` |
+| Entscheiden, ob ein BC-Blocker Setup, Daten, UI oder Playwright ist | `judge_work` |
+| Entscheiden, ob eine Buchstelle trotz CRONUS-USA-Labor so stehen darf | `judge_work` |
+| Endabnahme einer neuen Agenten-Architektur oder riskanten Posting-Strategie | `big_brain_review` |
+
+## Eskalation
+
+Kleine Modelle sparen nur dann, wenn sie nicht drei Korrekturschleifen erzeugen. Deshalb gilt:
+
+- Erst Tool/Skript nutzen, wenn es die Frage deterministisch klaert.
+- Niedrig routen, wenn Risiko niedrig und Outputformat strikt ist.
+- Direkt `judge_work` nutzen, wenn BC-/FiBu-Urteil oder Buchwahrheit betroffen ist.
+- Direkt `big_brain_review` nur mit expliziter Begruendung und maximal einmal pro groesserem Lauf.
+
+## Logging
+
+Jede Nutzung von `judge_work` oder `big_brain_review` muss im Model-Usage-Log begruendet werden:
+
+- `timestamp`
+- `task`
+- `taskClass`
+- `chosenModelClass`
+- `reason`
+- `expectedRisk`
+- `expectedRetryAvoidance`
+
+Beispiele stehen in `.agent/state/model_usage_log.example.jsonl`.

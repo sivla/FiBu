@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "description": "Lightweight documentation schema for .agent/model-routing.json. Enforced by scripts/agent/check-model-routing.mjs.",
+  "requiredTopLevelFields": [
+    "schemaVersion",
+    "purpose",
+    "defaultTaskClass",
+    "modelClasses",
+    "taskClasses",
+    "routingRules",
+    "usageLog"
+  ],
+  "requiredTaskClasses": [
+    "monkey_work",
+    "wizard_work",
+    "judge_work",
+    "big_brain_review"
+  ],
+  "requiredTaskClassFields": [
+    "roleName",
+    "purpose",
+    "allowedModels",
+    "defaultModel",
+    "typicalTasks",
+    "usageLogRequired"
+  ],
+  "allowedModelsByTaskClass": {
+    "monkey_work": [
+      "gpt-4-mini-low",
+      "gpt-4-mini-medium",
+      "gpt-4-mini-high"
+    ],
+    "wizard_work": [
+      "gpt-4-low",
+      "gpt-4-medium",
+      "gpt-4-high"
+    ],
+    "judge_work": [
+      "gpt-5.5-low",
+      "gpt-5.5-medium"
+    ],
+    "big_brain_review": [
+      "gpt-5.5-high"
+    ]
+  }
+}
