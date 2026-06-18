@@ -1,4 +1,23 @@
 
+## FIND-BC-FA-059 Purchase-Invoice-Listen-/Inline-Kontext ist kein Card-/Lines-Nachweis
+
+| Feld | Wert |
+|---|---|
+| Projekt | fibu-book5 |
+| Testfall | `FIXEDASSETS-059-PURCHASE-INVOICE-FIELD-MAPPING-HELPER-REFINEMENT-OR-MANUAL-PATH` |
+| Screenshot | keine Screenshots; No-BC-Helper-Evidence auf Basis `FIXEDASSETS-058` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-059/` |
+| Code | `playwright/core/bc/purchase-invoice-guards.ts`, `playwright/projects/fibu-book5/tests/fixedassets-059-purchase-invoice-field-mapping-helper-refinement.spec.ts` |
+| BC-Seite | kein neuer BC-Lauf; Auswertung von 058-Text nach `Neu` auf `Purchase Invoices` Page `9308`, Company `RM-DEMO` |
+| sichtbarer Text / Werte | `Purchase Invoices`, `Neu`, `Post`, `Invoice`, `Vendor Invoice No.`, Listen-/Inline-Signale |
+| nicht sichtbar / nicht bewiesen | stabiler `Purchase Invoice`-Card-/Lines-Kontext, `K30000`, Zeilentyp `Fixed Asset`, `FA-CNC-01`, Preview, Zugang, AfA, Anlagenposten, deutscher Finalnachweis |
+| Elementtyp | Playwright-Guard / Screenshot-QA / Anlagenkauf-Feldmapping / Debugging |
+| Testergebnis | Der Guard klassifiziert 058 nun spezifischer als `blocked-list-or-inline-row-context`. Damit wird klarer, dass nach `Neu` ein Listen-/Inline-Zustand sichtbar war, aber kein Belegkontext, in den Zielwerte sicher eingegeben werden duerfen. |
+| Entscheidung | Kein Zielwert, kein Draft, keine Preview und keine Buchung. Naechster Schritt ist `FIXEDASSETS-060-PURCHASE-INVOICE-CARD-CONTEXT-PREFLIGHT-NO-TARGET-ENTRY`: nur Card-/Lines-Kontext beweisen, weiterhin ohne Zielwerteingabe. |
+| Buchstelle | Kapitel 21 Anlagen; Kapitel Debugging/technische Nachweisfuehrung; Screenshot-QA |
+
+Fuer Anfaenger ist der Unterschied wichtig: Eine Liste oder Inline-Zeile kann nach `Neu` wie ein Beleganfang wirken. Fuer eine belastbare Klickanleitung muss aber der Belegkopf und der Zeilenbereich als aktiver Prozesskontext sichtbar sein, bevor Werte eingetragen werden.
+
 ## FIND-BC-FA-058 `Neu` reicht nicht als Purchase-Invoice-Card-Nachweis
 
 | Feld | Wert |

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "updatedAt": "2026-06-18T20:01:50.458Z",
+  "updatedAt": "2026-06-18T20:10:23.066Z",
   "repository": "sivla/FiBu",
   "branch": "codex/playwright-bc-screenshot-foundation",
   "environment": "MCP_1_20260210",
@@ -10,8 +10,8 @@
   "companyRegistry": "playwright/projects/fibu-book5/COMPANY-REGISTRY.json",
   "dataBasis": "CRONUS USA",
   "activeArea": "fixedassets",
-  "lastCompletedRun": "FIXEDASSETS-058-K30000-FA-CNC-01-PURCHASE-INVOICE-FIELD-MAPPING-RETRY-NO-POSTING",
-  "lastWorkType": "guarded-ui-first-retry-no-posting",
+  "lastCompletedRun": "FIXEDASSETS-059-PURCHASE-INVOICE-FIELD-MAPPING-HELPER-REFINEMENT-OR-MANUAL-PATH",
+  "lastWorkType": "playwright-helper-and-evidence-no-bc-run",
   "postedInLastRun": false,
   "latestPostedDocuments": {
     "o2c": {
@@ -910,31 +910,12 @@
         "noPosting": true
       },
       "purchaseInvoiceFieldMappingGuard": {
-        "caseId": "FIXEDASSETS-056",
-        "workType": "playwright-helper-and-evidence-no-bc-run",
-        "sourceEvidence": [
-          "playwright/projects/fibu-book5/evidence/fixedassets-055/036-after-header-focused-text.txt",
-          "playwright/projects/fibu-book5/evidence/fixedassets-055/050-target-values-focused-text.txt"
-        ],
-        "helper": "playwright/core/bc/purchase-invoice-guards.ts",
-        "result": "FIXEDASSETS-055 is blocked as purchase-invoice-line proof: vendor registration dialog and Vendor Card V00040/FA-CNC-01 are wrong contexts.",
-        "stopCriteria": [
-          "Vendor registration dialog visible",
-          "Vendor Card visible",
-          "Accidental vendor number visible",
-          "FA-CNC-01 visible without Fixed Asset line type",
-          "Purchase Invoice page no longer visible after field action"
-        ],
-        "futureSuccessCriteria": [
-          "Purchase Invoice page remains visible",
-          "Lines/Grid context remains visible",
-          "Vendor K30000 remains in invoice header",
-          "Line Type is visible as Fixed Asset",
-          "No. / target field shows FA-CNC-01 in the invoice line, not in a Vendor Card"
-        ],
-        "noBcRun": true,
+        "caseId": "FIXEDASSETS-059",
+        "status": "blocked-list-or-inline-row-context",
+        "result": "Purchase Invoices list/inline-row context after New is a hard stop until active card/lines context is proven.",
+        "evidence": "playwright/projects/fibu-book5/evidence/fixedassets-059/FIXEDASSETS-059-result.json",
         "noPosting": true,
-        "nextAllowedCase": "FIXEDASSETS-057-K30000-FA-CNC-01-PURCHASE-INVOICE-FIELD-MAPPING-RETRY-GATE"
+        "nextAllowedCase": "FIXEDASSETS-060-PURCHASE-INVOICE-CARD-CONTEXT-PREFLIGHT-NO-TARGET-ENTRY"
       },
       "purchaseInvoiceFieldMappingRetryGate": {
         "caseId": "FIXEDASSETS-057",
@@ -1072,7 +1053,7 @@
     },
     "nextCompanyEvidenceStep": "Only with a new documented company action purpose; otherwise continue with process/setup work."
   },
-  "nextBestStepWithoutApproval": "FIXEDASSETS-058-K30000-FA-CNC-01-PURCHASE-INVOICE-FIELD-MAPPING-RETRY-NO-POSTING: create a new guarded UI-first Purchase Invoice field-mapping retry in RM-DEMO; use the purchase-invoice guard after every header/line action; no Preview Posting, no Post, no acquisition, no depreciation, no setup change, no API shortcut, no company switch, and cleanup every draft through the UI.",
+  "nextBestStepWithoutApproval": "FIXEDASSETS-060-PURCHASE-INVOICE-CARD-CONTEXT-PREFLIGHT-NO-TARGET-ENTRY: prove active Purchase Invoice card, required fields and Lines/Grid context after New without entering K30000, Vendor Invoice No. or FA-CNC-01; no Preview Posting, no Post, no acquisition, no depreciation, no setup change, no API shortcut and no company switch.",
   "nextBestStepWithApproval": {
     "payments": "Nur mit neuem Gate: weitere Zahlung, Kreditorenzahlung oder Bankabstimmung. PAYMENTS-011 darf nicht wiederholt werden.",
     "companies": "Company-Aktionen sind innerhalb MCP_1_20260210 erlaubt, aber nur mit COMPANY-REGISTRY-Eintrag, dokumentiertem Zweck/Risiko/Evidence-Plan und sofortigem State-/Evidence-Sync. Naechster Company-Schritt ist read-only Enumeration, keine Anlage.",
@@ -1298,6 +1279,7 @@
     "FIXEDASSETS-025 corrected the overclaim around FIXEDASSETS-024: active card control proof is partial (4/6), so value lookup/save gate remains blocked until Depreciation Book Code and Posting Group are recovered on the active card. No BC run, no save, no setup and no posting."
   ],
   "prohibitedActions": [
+    "After FIXEDASSETS-059, do not enter K30000, Vendor Invoice No. or FA-CNC-01 into a Purchase Invoice until FIXEDASSETS-060 proves active Purchase Invoice card, required fields and Lines/Grid context after New. No Preview Posting, Post, acquisition, depreciation, setup change, API shortcut or company switch.",
     "After FIXEDASSETS-058, do not run Preview Posting, Post, fixed asset acquisition or depreciation. Do not enter K30000 or FA-CNC-01 into a Purchase Invoice until FIXEDASSETS-059 proves a stable active Purchase Invoice card/lines context after New or documents a manual UI path. No API shortcut, no setup change and no company switch.",
     "After FIXEDASSETS-055, do not run Preview Posting, Post, acquisition or depreciation. Do not rerun Purchase Invoice field mapping until FIXEDASSETS-056 builds a safer line-context helper and treats Vendor registration dialogs / Vendor Card popups as hard stop criteria.",
     "After FIXEDASSETS-054, do not run Preview Posting, Post, fixed asset acquisition, depreciation, setup/vendor/fixed-asset changes, API shortcuts or company switches. FIXEDASSETS-055 may only test K30000 and FA-CNC-01 field mapping in Purchase Invoice with mandatory UI draft cleanup.",
@@ -1410,20 +1392,34 @@
       "noDraftCreated": true,
       "company": "RM-DEMO",
       "nextStep": "FIXEDASSETS-059-PURCHASE-INVOICE-FIELD-MAPPING-HELPER-REFINEMENT-OR-MANUAL-PATH"
+    },
+    {
+      "caseId": "FIXEDASSETS-059",
+      "result": "No-BC helper refinement classified the 058 after-New focused text as blocked-list-or-inline-row-context. This prevents target values on Purchase Invoice until active card/lines context is proven.",
+      "evidence": "playwright/projects/fibu-book5/evidence/fixedassets-059/",
+      "screenshots": [],
+      "noBcRun": true,
+      "noPosting": true,
+      "company": "RM-DEMO",
+      "nextStep": "FIXEDASSETS-060-PURCHASE-INVOICE-CARD-CONTEXT-PREFLIGHT-NO-TARGET-ENTRY"
     }
   ],
-  "nextStep": "FIXEDASSETS-059-PURCHASE-INVOICE-FIELD-MAPPING-HELPER-REFINEMENT-OR-MANUAL-PATH",
-  "nextRecommendedRun": "FIXEDASSETS-059-PURCHASE-INVOICE-FIELD-MAPPING-HELPER-REFINEMENT-OR-MANUAL-PATH",
+  "nextStep": "FIXEDASSETS-060-PURCHASE-INVOICE-CARD-CONTEXT-PREFLIGHT-NO-TARGET-ENTRY",
+  "nextRecommendedRun": "FIXEDASSETS-060-PURCHASE-INVOICE-CARD-CONTEXT-PREFLIGHT-NO-TARGET-ENTRY",
   "latestFixedAssetsRun": {
-    "caseId": "FIXEDASSETS-058",
-    "result": "Guarded UI-first Purchase Invoice field-mapping retry ran in RM-DEMO. Purchase Invoices page 9308 opened and scoped New/Neu was clicked, but no stable Purchase Invoice card/lines context was detected after New. The guard stopped before target value entry. No draft, no cleanup needed, no screenshots, no Preview, no Post, no acquisition, no depreciation, no setup change and no company switch.",
-    "evidence": "playwright/projects/fibu-book5/evidence/fixedassets-058/",
+    "caseId": "FIXEDASSETS-059",
+    "result": "No-BC helper/evidence refinement. Existing FIXEDASSETS-058 after-New focused text is now classified as blocked-list-or-inline-row-context. The guard detects Purchase Invoices list/inline-row signals but no stable Purchase Invoice card/lines context. No BC execution, target entry, draft, preview, posting, acquisition, depreciation, setup change or company switch.",
+    "evidence": "playwright/projects/fibu-book5/evidence/fixedassets-059/",
     "screenshots": [],
+    "noBcRun": true,
     "noPosting": true,
     "noPreview": true,
     "noDraftCreated": true,
     "company": "RM-DEMO",
-    "nextStep": "FIXEDASSETS-059-PURCHASE-INVOICE-FIELD-MAPPING-HELPER-REFINEMENT-OR-MANUAL-PATH"
+    "nextStep": "FIXEDASSETS-060-PURCHASE-INVOICE-CARD-CONTEXT-PREFLIGHT-NO-TARGET-ENTRY"
   },
-  "nextBestStep": "FIXEDASSETS-059-PURCHASE-INVOICE-FIELD-MAPPING-HELPER-REFINEMENT-OR-MANUAL-PATH"
+  "nextBestStep": "FIXEDASSETS-060-PURCHASE-INVOICE-CARD-CONTEXT-PREFLIGHT-NO-TARGET-ENTRY",
+  "gateLocks": {
+    "fixedAssets": "After FIXEDASSETS-059, Purchase Invoice field mapping remains locked until FIXEDASSETS-060 proves active card/lines context with no target entry. Preview Posting, Post, acquisition and depreciation remain forbidden."
+  }
 }

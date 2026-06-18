@@ -5,6 +5,7 @@ export type PurchaseInvoiceFieldMappingStatus =
   | 'blocked-vendor-registration-dialog'
   | 'blocked-wrong-vendor-card-context'
   | 'blocked-missing-fixed-asset-line'
+  | 'blocked-list-or-inline-row-context'
   | 'unknown-context';
 
 export type PurchaseInvoiceFieldMappingClassification = {
@@ -22,6 +23,7 @@ export type PurchaseInvoiceFieldMappingClassification = {
     vendorCard: boolean;
     accidentalVendorNo: boolean;
     postingAction: boolean;
+    purchaseInvoiceListOrInlineRow: boolean;
   };
 };
 
@@ -52,7 +54,11 @@ export function classifyPurchaseInvoiceFieldMappingText(
     vendorCard: has(normalized, /\bVendor Card\s*-|\bKreditorenkarte\s*-/i),
     accidentalVendorNo: normalized.includes(accidentalVendorNo),
     postingAction: has(normalized, /\bPost\b|\bBuchen\b/i),
+    purchaseInvoiceListOrInlineRow: false,
   };
+  visibleSignals.purchaseInvoiceListOrInlineRow =
+    visibleSignals.purchaseInvoicesList &&
+    has(normalized, /\bBuy-from Vendor No\.\b|\bBuy-from Vendor Name\b|\bVendor Invoice No\.\b|\bListe mit Titel\b/i);
 
   const stopReasons: string[] = [];
   if (visibleSignals.vendorRegistrationDialog) {
@@ -66,6 +72,9 @@ export function classifyPurchaseInvoiceFieldMappingText(
   }
   if (visibleSignals.fixedAssetNo && !visibleSignals.fixedAssetLineType) {
     stopReasons.push(`${fixedAssetNo} is visible without a visible Fixed Asset line type.`);
+  }
+  if (visibleSignals.purchaseInvoiceListOrInlineRow && !visibleSignals.vendorNo && !visibleSignals.fixedAssetNo) {
+    stopReasons.push('Purchase Invoices list or inline-row context is visible; target values must not be entered before a stable Purchase Invoice card and Lines context is proven.');
   }
 
   let status: PurchaseInvoiceFieldMappingStatus = 'unknown-context';
@@ -84,6 +93,8 @@ export function classifyPurchaseInvoiceFieldMappingText(
     status = 'safe-purchase-invoice-line-candidate';
   } else if (visibleSignals.purchaseInvoice && visibleSignals.vendorNo && visibleSignals.fixedAssetNo) {
     status = 'blocked-missing-fixed-asset-line';
+  } else if (visibleSignals.purchaseInvoiceListOrInlineRow) {
+    status = 'blocked-list-or-inline-row-context';
   }
 
   return {

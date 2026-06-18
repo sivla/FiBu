@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-18T20:45:00.000Z",
+  "updatedAt": "2026-06-18T20:10:23.066Z",
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
   "companyMode": "instance-bound-multi-company",
@@ -2675,6 +2675,52 @@
         "German final proof"
       ],
       "nextStep": "FIXEDASSETS-059-PURCHASE-INVOICE-FIELD-MAPPING-HELPER-REFINEMENT-OR-MANUAL-PATH"
+    },
+    {
+      "caseId": "FIXEDASSETS-059",
+      "process": "Fixed Assets",
+      "status": "done-helper-evidence-no-bc-run",
+      "mode": "purchase-invoice-field-mapping-helper-refinement",
+      "company": "RM-DEMO",
+      "environment": "MCP_1_20260210",
+      "dataBasis": "CRONUS USA",
+      "documents": [
+        "K30000",
+        "FA-CNC-01"
+      ],
+      "screenshots": [],
+      "evidence": [
+        "playwright/projects/fibu-book5/evidence/fixedassets-059/README.md",
+        "playwright/projects/fibu-book5/evidence/fixedassets-059/FIXEDASSETS-059-result.json",
+        "playwright/projects/fibu-book5/evidence/fixedassets-059/FIXEDASSETS-059-PURCHASE-INVOICE-FIELD-MAPPING-HELPER-REFINEMENT.md",
+        "playwright/projects/fibu-book5/evidence/fixedassets-059/010-after-new-list-context-classification.json"
+      ],
+      "proves": [
+        "058 after-New text is classified as blocked-list-or-inline-row-context",
+        "Purchase Invoices list/inline-row signals are not enough for target value entry",
+        "Future run must first prove active Purchase Invoice card/lines context"
+      ],
+      "doesNotProve": [
+        "new BC UI state",
+        "K30000 purchase invoice header",
+        "FA-CNC-01 fixed-asset line",
+        "Preview Posting",
+        "fixed asset acquisition",
+        "depreciation",
+        "German final proof"
+      ],
+      "reusablePatterns": [
+        "blocked-list-or-inline-row-context guard status",
+        "do not enter target values after New until active card/lines context is proven",
+        "reuse existing focused text evidence for guard regression tests"
+      ],
+      "bookChapters": [
+        "21",
+        "37",
+        "38",
+        "39"
+      ],
+      "nextStep": "FIXEDASSETS-060-PURCHASE-INVOICE-CARD-CONTEXT-PREFLIGHT-NO-TARGET-ENTRY"
     }
   ]
 }

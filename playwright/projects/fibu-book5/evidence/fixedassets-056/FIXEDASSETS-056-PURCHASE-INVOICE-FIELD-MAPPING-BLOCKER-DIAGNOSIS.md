@@ -61,7 +61,8 @@ Siehe `FIXEDASSETS-056-result.json` und `010-guard-classification.json`.
         "vendorRegistrationDialog": true,
         "vendorCard": false,
         "accidentalVendorNo": false,
-        "postingAction": true
+        "postingAction": true,
+        "purchaseInvoiceListOrInlineRow": true
       }
     },
     "line": {
@@ -82,7 +83,8 @@ Siehe `FIXEDASSETS-056-result.json` und `010-guard-classification.json`.
         "vendorRegistrationDialog": false,
         "vendorCard": true,
         "accidentalVendorNo": true,
-        "postingAction": true
+        "postingAction": true,
+        "purchaseInvoiceListOrInlineRow": false
       }
     },
     "combined": {
@@ -104,7 +106,8 @@ Siehe `FIXEDASSETS-056-result.json` und `010-guard-classification.json`.
         "vendorRegistrationDialog": true,
         "vendorCard": true,
         "accidentalVendorNo": true,
-        "postingAction": true
+        "postingAction": true,
+        "purchaseInvoiceListOrInlineRow": true
       }
     }
   },

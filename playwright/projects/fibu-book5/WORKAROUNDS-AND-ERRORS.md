@@ -1,5 +1,20 @@
 # Workarounds und Fehlerjournal
 
+## WK-BC-FA-059 Listen-/Inline-Kontext nach `Neu` spezifisch stoppen
+
+| Feld | Wert |
+|---|---|
+| Status | geloest als Guard-Verfeinerung / kein BC-Lauf |
+| Testfall | `FIXEDASSETS-059-PURCHASE-INVOICE-FIELD-MAPPING-HELPER-REFINEMENT-OR-MANUAL-PATH` |
+| Situation | `FIXEDASSETS-058` stoppte nach `Neu`, weil kein stabiler Purchase-Invoice-Card-/Lines-Kontext bewiesen war. |
+| Symptom | Der fokussierte Seitentext enthaelt `Purchase Invoices`, `Neu`, `Post`, `Invoice`, `Vendor Invoice No.` und Listen-/Inline-Signale, aber keine sichere aktive Belegkarte mit Zielzeilenkontext. |
+| Sichtbarer Beleg | `playwright/projects/fibu-book5/evidence/fixedassets-059/`; kein neuer Screenshot, weil 059 vorhandene 058-Evidence maschinenlesbar neu klassifiziert. |
+| Ursache | Business Central kann nach `Neu` weiterhin Listen-/Inline-Kontext, Hintergrundtexte oder noch nicht eindeutig aktive Belegflaechen zeigen. Playwright darf daraus keine sichere Werteingabe ableiten. |
+| Warum BC so reagiert | Der Webclient kombiniert Liste, Aktion, Beleganfang und Shell. Ein Mensch erkennt oft visuell, ob er wirklich im Belegkopf steht; der Test braucht dafuer harte sichtbare Signale. |
+| Loesung | `purchase-invoice-guards.ts` klassifiziert diesen Zustand jetzt als `blocked-list-or-inline-row-context`. Zielwerte werden erst erlaubt, wenn aktive Card, Pflichtfelder und Lines/Grid als Vordergrundkontext bewiesen sind. |
+| Buchwirkung | Kapitel 21 bekommt noch kein Anlagenkauf-Bild. Das Debugging-/Nachweiskapitel kann erklaeren, warum ein Nach-`Neu`-Bild nur dann zaehlt, wenn der fachliche Zielbereich sichtbar ist. |
+| Kuenftige Regel | Naechster Lauf `FIXEDASSETS-060`: Card-/Lines-Kontext ohne Zielwerteingabe pruefen; kein `K30000`, kein `FA-CNC-01`, keine Preview, kein Post. |
+
 ## WK-BC-FA-058 `Neu` geklickt, aber kein stabiler Purchase-Invoice-Card-Kontext
 
 | Feld | Wert |
