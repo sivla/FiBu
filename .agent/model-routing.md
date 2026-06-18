@@ -27,14 +27,15 @@ Deshalb gilt bei `spawn_agent`:
 
 | Taskclass | Spawn-Modell | Reasoning | Typischer Agent |
 |---|---|---|---|
-| `monkey_work` | `gpt-5.4-mini` | `low` | `explorer` |
-| `wizard_work` | `gpt-5.4` | `medium` | `worker` oder `explorer` |
-| `judge_work` | `gpt-5.5` | `medium` | `explorer` |
-| `big_brain_review` | `gpt-5.5` | `high` | `default` |
+| `monkey_work` | `gpt-5.4-mini` | `low/medium/high`, Default `low` | `explorer` |
+| `wizard_work` | `gpt-5.4` | `low/medium/high`, Default `medium` | `worker` oder `explorer` |
+| `judge_work` | `gpt-5.5` | `low/medium/high`, Default `medium` | `explorer` |
+| `big_brain_review` | `gpt-5.5` | `low/medium/high`, Default `high` | `default` |
 
 Wichtig:
 
 - Monkey- und Wizard-Subagents duerfen nicht das Parent-Modell erben.
+- Jede Rolle hat `low/medium/high`; die Rolle bestimmt die Modellfamilie, Reasoning bestimmt die Tiefe.
 - Judge-Subagents brauchen eine klare Urteilsbegruendung.
 - Big-Brain-Subagents sind selten und muessen geloggt werden.
 

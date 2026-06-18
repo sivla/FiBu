@@ -43,6 +43,11 @@
       "subagentSpawn": {
         "mustSetModelOverride": true,
         "spawnModel": "gpt-5.4-mini",
+        "allowedReasoningEfforts": [
+          "low",
+          "medium",
+          "high"
+        ],
         "reasoningEffort": "low",
         "preferredAgentType": "explorer",
         "doNotInheritParentModel": true
@@ -77,6 +82,11 @@
       "subagentSpawn": {
         "mustSetModelOverride": true,
         "spawnModel": "gpt-5.4",
+        "allowedReasoningEfforts": [
+          "low",
+          "medium",
+          "high"
+        ],
         "reasoningEffort": "medium",
         "preferredAgentType": "worker",
         "doNotInheritParentModel": true
@@ -108,6 +118,11 @@
       "subagentSpawn": {
         "mustSetModelOverride": true,
         "spawnModel": "gpt-5.5",
+        "allowedReasoningEfforts": [
+          "low",
+          "medium",
+          "high"
+        ],
         "reasoningEffort": "medium",
         "preferredAgentType": "explorer",
         "doNotInheritParentModel": true,
@@ -132,6 +147,11 @@
       "subagentSpawn": {
         "mustSetModelOverride": true,
         "spawnModel": "gpt-5.5",
+        "allowedReasoningEfforts": [
+          "low",
+          "medium",
+          "high"
+        ],
         "reasoningEffort": "high",
         "preferredAgentType": "default",
         "doNotInheritParentModel": true,
@@ -149,10 +169,10 @@
     ],
     "rules": [
       "Before spawn_agent, choose taskClass from this routing file.",
-      "For monkey_work, pass model=gpt-5.4-mini and reasoning_effort=low.",
-      "For wizard_work, pass model=gpt-5.4 and reasoning_effort=medium unless the task is tiny.",
-      "For judge_work, pass model=gpt-5.5 only with a clear judgment reason.",
-      "For big_brain_review, pass model=gpt-5.5 with high reasoning and log the reason.",
+      "For monkey_work, pass model=gpt-5.4-mini and choose reasoning_effort low/medium/high by task complexity.",
+      "For wizard_work, pass model=gpt-5.4 and choose reasoning_effort low/medium/high by task complexity.",
+      "For judge_work, pass model=gpt-5.5 and choose reasoning_effort low/medium/high with a clear judgment reason.",
+      "For big_brain_review, pass model=gpt-5.5, choose reasoning_effort low/medium/high consciously and log the reason.",
       "Never spawn inherited-model subagents for cheap read-only exploration."
     ]
   },

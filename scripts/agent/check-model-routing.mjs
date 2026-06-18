@@ -98,6 +98,21 @@ for (const taskClass of schema.requiredTaskClasses ?? []) {
   if (!allowedSpawnModels.has(subagentSpawn.spawnModel)) {
     errors.push(`${taskClass}.subagentSpawn.spawnModel is not allowed: ${subagentSpawn.spawnModel}`);
   }
+
+  const allowedReasoningEfforts = requireArray(
+    subagentSpawn.allowedReasoningEfforts,
+    `${taskClass}.subagentSpawn.allowedReasoningEfforts`,
+    errors,
+  );
+  const expectedReasoningEfforts = schema.allowedReasoningEfforts ?? [];
+  for (const effort of expectedReasoningEfforts) {
+    if (!allowedReasoningEfforts.includes(effort)) {
+      errors.push(`${taskClass}.subagentSpawn.allowedReasoningEfforts must include ${effort}`);
+    }
+  }
+  if (!allowedReasoningEfforts.includes(subagentSpawn.reasoningEffort)) {
+    errors.push(`${taskClass}.subagentSpawn.reasoningEffort must be one of allowedReasoningEfforts`);
+  }
 }
 
 if (routing.defaultTaskClass !== 'monkey_work') {
