@@ -54,6 +54,14 @@ function evidenceUrl(value: string) {
   return url.toString();
 }
 
+function isBusinessCentralFrameUrl(value: string) {
+  try {
+    return new URL(value).hostname === 'businesscentral.dynamics.com';
+  } catch {
+    return false;
+  }
+}
+
 async function sandboxContext(page: Page) {
   const url = page.url();
   const decodedUrl = decodeURIComponent(url);
@@ -144,7 +152,7 @@ async function journalControlSnapshot(page: Page) {
   const snapshots = [];
 
   for (const frame of page.frames()) {
-    if (!frame.url().includes('businesscentral.dynamics.com')) {
+    if (!isBusinessCentralFrameUrl(frame.url())) {
       continue;
     }
 

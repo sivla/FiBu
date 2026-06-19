@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-090-FA-GL-JOURNAL-CLEANUP-ACTION-INVENTORY-READONLY",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "fixed-asset-gl-journal-cleanup-action-inventory-readonly",
+  "goal": "Open Fixed Asset G/L Journals read-only and inventory Manage/Line/Page actions to prove whether a cleanup or keep-draft route exists before any value entry.",
+  "basedOn": [
+    ".agent/state/cases/fixedassets-089-fa-gl-journal-draft-line-gate-decision.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-089/FIXEDASSETS-089-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-088/020-fa-journal-control-snapshot.json"
+  ],
+  "knownTruth": [
+    "FA-088 proved page 5628, Batch Name DEFAULT and required field signals read-only.",
+    "FA-089 keeps draft value entry locked because cleanup/delete or keep-draft ownership is not proven.",
+    "Post is visible on the journal page and must not be clicked.",
+    "No journal line, preview or posting has been created for the FA journal route."
+  ],
+  "allowedActions": [
+    "open-business-central-in-MCP_1_20260210",
+    "confirm-company-RM-DEMO",
+    "open-fixed-asset-gl-journals-readonly",
+    "inventory-manage-line-page-actions-readonly",
+    "capture-cleanup-action-candidates-readonly",
+    "write-json-evidence",
+    "write-compact-learning-note",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "new-journal-line",
+    "edit-journal-line",
+    "enter-K30000",
+    "enter-amount",
+    "enter-FA-CNC-01-in-document-or-journal",
+    "execute-delete",
+    "insert-fa-bal-account",
+    "reconcile",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "api-shortcut",
+    "book-edit",
+    "click-ok-or-yes-on-confirmation",
+    "keep-draft"
+  ],
+  "defaultLockedActionsUnlockedForThisCase": [],
+  "acceptanceCriteria": [
+    "Instance MCP_1_20260210 and company RM-DEMO are confirmed.",
+    "Fixed Asset G/L Journals page 5628 is opened read-only.",
+    "Manage, Line and Page action labels are inventoried without executing destructive or posting actions.",
+    "Potential cleanup/delete candidates are documented as candidates only, not clicked.",
+    "The result decides whether a later no-post draft line probe can include cleanup."
+  ],
+  "stopConditions": [
+    "Business Central is not in MCP_1_20260210 / RM-DEMO.",
+    "The page does not open as Fixed Asset G/L Journals.",
+    "A menu action would execute Delete, Insert FA Bal. Account, Reconcile, Preview, Post or confirmation.",
+    "Capturing actions would require entering a value or saving a line."
+  ],
+  "recommendedSkills": [
+    "bc-navigation",
+    "safety-gate-checker",
+    "evidence-writer"
+  ],
+  "nextSafeAction": "Run read-only action inventory. Do not enter FA-CNC-01, K30000 or amount.",
+  "mustRead": [
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-089-fa-gl-journal-draft-line-gate-decision.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-089/FIXEDASSETS-089-result.json",
+    "playwright/projects/fibu-book5/tests/fixedassets-088-fa-gl-journal-control-snapshot-readonly.spec.ts",
+    "package.json"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-090/FIXEDASSETS-090-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-090/FIXEDASSETS-090-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-090/README.md"
+  ]
+}

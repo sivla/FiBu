@@ -1,46 +1,41 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-088-FA-GL-JOURNAL-CONTROL-SNAPSHOT-READONLY",
+  "runId": "FIXEDASSETS-089-FA-GL-JOURNAL-DRAFT-LINE-GATE-DECISION",
   "date": "2026-06-19",
-  "workType": "fixed-asset-gl-journal-control-snapshot-readonly",
+  "workType": "fixed-asset-gl-journal-draft-line-gate-decision",
   "branch": "codex/token-efficient-autopilot-state",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "bcRun": true,
+  "bcRun": false,
   "posted": false,
   "preview": false,
   "setupChanged": false,
   "companySwitched": false,
   "resultStatus": "observed",
-  "summary": "FA-088 opened Fixed Asset G/L Journals page 5628 directly in MCP_1_20260210 / RM-DEMO and captured batch, row and control context read-only. Required field signals were visible; no value, row, preview, post, payment, setup change or company switch occurred.",
+  "summary": "FA-089 decided that no-post draft line entry is not safe yet. FA-088 proves journal controls, but cleanup/delete or keep-draft ownership is not proven. Next is a read-only cleanup/action inventory.",
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/fixedassets-088/FIXEDASSETS-088-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-088/FIXEDASSETS-088-learning.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-088/README.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-088/010-fa-journal-control-context.txt",
-    "playwright/projects/fibu-book5/evidence/fixedassets-088/020-fa-journal-control-snapshot.json"
+    "playwright/projects/fibu-book5/evidence/fixedassets-089/FIXEDASSETS-089-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-089/FIXEDASSETS-089-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-089/README.md"
   ],
   "changedFiles": [
     ".agent/state/current.json",
-    ".agent/state/cases/fixedassets-088-fa-gl-journal-control-snapshot-readonly.json",
     ".agent/state/cases/fixedassets-089-fa-gl-journal-draft-line-gate-decision.json",
+    ".agent/state/cases/fixedassets-090-fa-gl-journal-cleanup-action-inventory-readonly.json",
     ".agent/state/coverage_state.json",
     ".agent/state/last_run_summary.json",
-    "package.json",
-    "playwright/projects/fibu-book5/tests/fixedassets-088-fa-gl-journal-control-snapshot-readonly.spec.ts",
-    "playwright/projects/fibu-book5/evidence/fixedassets-088/FIXEDASSETS-088-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-088/FIXEDASSETS-088-learning.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-088/README.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-088/010-fa-journal-control-context.txt",
-    "playwright/projects/fibu-book5/evidence/fixedassets-088/020-fa-journal-control-snapshot.json"
+    ".agent/state/model_usage_log.jsonl",
+    "playwright/projects/fibu-book5/evidence/fixedassets-089/FIXEDASSETS-089-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-089/FIXEDASSETS-089-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-089/README.md"
   ],
   "validationCommands": [
     "npm run agent:preflight",
-    "npm run fibu:fixedassets:fa-gl-journal-control-snapshot",
-    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-088/FIXEDASSETS-088-result.json",
-    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-088/FIXEDASSETS-088-result.json",
+    "npm run agent:context",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-089/FIXEDASSETS-089-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-089/FIXEDASSETS-089-result.json",
     "npm run check:encoding",
     "git diff --check"
   ],
-  "nextStep": "FIXEDASSETS-089-FA-GL-JOURNAL-DRAFT-LINE-GATE-DECISION: decide whether a no-post draft line probe is safe based on FA-088 control evidence, including required field sequence, cleanup/keep rule and preview gate."
+  "nextStep": "FIXEDASSETS-090-FA-GL-JOURNAL-CLEANUP-ACTION-INVENTORY-READONLY: open Fixed Asset G/L Journals read-only and inventory Manage/Line/Page actions to prove a cleanup or keep-draft route before any value entry."
 }
