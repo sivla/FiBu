@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-19T21:35:00.000Z",
+  "updatedAt": "2026-06-19T21:55:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "fixedassets",
-  "activeCase": "FIXEDASSETS-101-FA-GL-JOURNAL-OWNERSHIP-GATE",
-  "active_case_file": ".agent/state/cases/fixedassets-101-fa-gl-journal-ownership-gate.json",
-  "lastReferenceCase": "FIXEDASSETS-100-PURCHASE-INVOICE-TYPE-DROPDOWN-REVIEW",
-  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-100-purchase-invoice-type-dropdown-review.json",
+  "activeCase": "FIXEDASSETS-102-FA-GL-JOURNAL-CONTROLLED-DRAFT-PROBE",
+  "active_case_file": ".agent/state/cases/fixedassets-102-fa-gl-journal-controlled-draft-probe.json",
+  "lastReferenceCase": "FIXEDASSETS-101-FA-GL-JOURNAL-OWNERSHIP-GATE",
+  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-101-fa-gl-journal-ownership-gate.json",
   "mode": "token-efficient-autopilot-tooling-bootstrap",
   "requiresStrongModel": false,
   "requiredPreflightChecks": [
@@ -19,9 +19,14 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "read-fixedassets-journal-evidence",
-    "review-draft-ownership-risk",
-    "decide-journal-route-unlock",
+    "open-business-central",
+    "run-playwright",
+    "confirm-instance-and-company",
+    "open-fa-gl-journals",
+    "capture-before-journal-row",
+    "enter-one-controlled-fa-journal-draft-line",
+    "capture-after-journal-row",
+    "document-cleanup-or-keep-trace",
     "state-patch-plan-only"
   ],
   "forbiddenActions": [
@@ -30,15 +35,8 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
-    "open-business-central",
-    "run-playwright",
     "company-switch",
-    "enter-K30000",
-    "enter-FA-CNC-01",
     "enter-vendor",
-    "enter-fixed-asset-no",
-    "enter-amount",
-    "enter-quantity",
     "preview-posting",
     "post",
     "ship",
@@ -47,10 +45,9 @@
     "setup-change",
     "api-shortcut",
     "book-edit",
-    "click-finish",
-    "keep-draft"
+    "click-finish"
   ],
-  "nextStep": "FIXEDASSETS-101: review FA G/L Journal draft ownership locally before any value-entry attempt; decide whether a case may unlock one controlled journal draft with explicit cleanup or keep-trace.",
+  "nextStep": "FIXEDASSETS-102: run one controlled FA G/L Journal draft probe in RM-DEMO. No Preview Posting, no posting, no setup change. If no cleanup path is visible, keep exactly one documented laboratory draft line as evidence.",
   "subagentPlanPolicy": {
     "default": "optional",
     "execution": "plan-only-no-subagents-spawned",

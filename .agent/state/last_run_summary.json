@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-100-PURCHASE-INVOICE-TYPE-DROPDOWN-REVIEW",
+  "runId": "FIXEDASSETS-101-FA-GL-JOURNAL-OWNERSHIP-GATE",
   "date": "2026-06-19",
   "workType": "local-evidence-review",
   "branch": "codex/token-efficient-autopilot-state",
@@ -12,32 +12,32 @@
   "setupChanged": false,
   "companySwitched": false,
   "resultStatus": "observed",
-  "summary": "FA-100 reviewed FA-099 locally and classified the Purchase Invoice Type button route as exhausted for now. The observed Item role=button behaved like an Item record drilldown, not a Type option dropdown; Fixed Asset was not visible/selectable after click, Alt+ArrowDown or F4.",
+  "summary": "FA-101 reviewed the FA G/L Journal evidence locally and reopened the route under strict draft ownership. One controlled laboratory journal draft line may be created in FA-102; Preview Posting, posting and setup changes remain locked.",
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/fixedassets-100/FIXEDASSETS-100-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-100/FIXEDASSETS-100-decision.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-100/README.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-099/FIXEDASSETS-099-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-099/030-type-dropdown-button-probe.json"
+    "playwright/projects/fibu-book5/evidence/fixedassets-101/FIXEDASSETS-101-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-101/FIXEDASSETS-101-decision.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-101/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-088/FIXEDASSETS-088-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-092/FIXEDASSETS-092-result.json"
   ],
   "changedFiles": [
     ".agent/state/current.json",
-    ".agent/state/cases/fixedassets-100-purchase-invoice-type-dropdown-review.json",
     ".agent/state/cases/fixedassets-101-fa-gl-journal-ownership-gate.json",
+    ".agent/state/cases/fixedassets-102-fa-gl-journal-controlled-draft-probe.json",
     ".agent/state/last_run_summary.json",
     ".agent/state/model_usage_log.jsonl",
-    "playwright/projects/fibu-book5/evidence/fixedassets-100/FIXEDASSETS-100-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-100/FIXEDASSETS-100-decision.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-100/README.md"
+    "playwright/projects/fibu-book5/evidence/fixedassets-101/FIXEDASSETS-101-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-101/FIXEDASSETS-101-decision.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-101/README.md"
   ],
   "validationCommands": [
     "npm run agent:preflight",
     "npm run agent:dry-run",
     "npm run agent:run-plan",
-    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-100/FIXEDASSETS-100-result.json",
-    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-100/FIXEDASSETS-100-result.json",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-101/FIXEDASSETS-101-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-101/FIXEDASSETS-101-result.json",
     "npm run check:encoding",
     "git diff --check"
   ],
-  "nextStep": "Run FIXEDASSETS-101 local FA G/L Journal draft ownership gate before any journal value-entry attempt."
+  "nextStep": "Run FIXEDASSETS-102 controlled FA G/L Journal draft probe. No Preview Posting, no posting and no setup change."
 }

@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-102-FA-GL-JOURNAL-CONTROLLED-DRAFT-PROBE",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "controlled-sandbox-ui-probe",
+  "taskClass": "wizard_work",
+  "goal": "Create or update exactly one controlled Fixed Asset G/L Journal laboratory draft line to prove whether FA-CNC-01 acquisition values can be entered without preview or posting.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-088/FIXEDASSETS-088-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-092/FIXEDASSETS-092-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-101/FIXEDASSETS-101-result.json"
+  ],
+  "knownTruth": [
+    "Fixed Asset G/L Journals page 5628 and relevant columns are proven visible in RM-DEMO.",
+    "No Delete cleanup action was visible in prior frame-scoped action inventory.",
+    "The active sandbox policy allows case-controlled keep-draft only when explicitly documented.",
+    "This case allows one controlled laboratory draft line and forbids preview posting and posting."
+  ],
+  "allowedActions": [
+    "open-business-central",
+    "run-playwright",
+    "confirm-instance-and-company",
+    "open-fa-gl-journals",
+    "capture-before-journal-row",
+    "edit-one-journal-row-only",
+    "enter-FA-CNC-01",
+    "enter-K30000-if-required-by-balancing-field",
+    "enter-amount-for-labor-draft-only",
+    "capture-after-journal-row",
+    "document-cleanup-or-keep-trace",
+    "keep-one-controlled-draft-if-cleanup-not-visible",
+    "state-patch-plan-only"
+  ],
+  "defaultLockedActionsUnlockedForThisCase": [
+    "edit-record",
+    "keep-draft"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "new-company",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "api-shortcut",
+    "book-edit",
+    "click-finish",
+    "create-more-than-one-draft-line"
+  ],
+  "acceptanceCriteria": [
+    "The run stays in MCP_1_20260210 and RM-DEMO.",
+    "Before and after journal row evidence is captured.",
+    "At most one controlled laboratory draft line is created or modified.",
+    "If a draft line remains, the result records document number, batch, visible fields and keep-trace status.",
+    "No Preview Posting, posting, setup change, company switch or API shortcut occurs.",
+    "If a risky dialog appears, the run stops and documents the blocker."
+  ],
+  "stopConditions": [
+    "Instance or company is not clearly MCP_1_20260210 / RM-DEMO.",
+    "The page is not Fixed Asset G/L Journals.",
+    "More than one editable target row would be affected.",
+    "Preview Posting, Post, setup, payment, invoice or ship dialog appears.",
+    "The run cannot identify the draft line it would leave behind."
+  ],
+  "recommendedSkills": [
+    "bc-navigation",
+    "posting-gate",
+    "evidence-writer"
+  ],
+  "requiresUsageLog": false,
+  "nextSafeAction": "Run the controlled FA G/L Journal draft probe; no preview or posting."
+}
