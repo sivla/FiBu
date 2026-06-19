@@ -2,43 +2,26 @@
   "schemaVersion": 1,
   "runId": "FIXEDASSETS-072-TYPE-DROPDOWN-SELECTOR-FIX",
   "date": "2026-06-19",
-  "workType": "type-dropdown-selector-probe",
+  "workType": "type-dropdown-selector-probe-and-cleanup-hardening",
   "branch": "codex/token-efficient-autopilot-state",
   "bcRun": true,
   "posted": false,
   "companySwitched": false,
-  "summary": "FA-072 opened the real Purchase Invoice Lines Type context but did not open/select Fixed Asset; the leaked draft 107225 was removed through UI cleanup retry. Target values remain locked.",
-  "commandsToRunBeforeAutopilot": [
+  "summary": "FA-072 improved the Type-cell probe and draft cleanup. The run proved the Purchase Invoice draft 107228 was created and deleted through UI cleanup, but Type = Fixed Asset is still not visible/selectable; the current Type route exposes only Option Values: Item. Target values remain locked.",
+  "commandsRun": [
     "npm run agent:preflight",
     "npm run agent:context",
-    "npm run agent:usage:summary",
-    "npm run agent:state:validate",
-    "npm run agent:budgets:check",
-    "npm run agent:safety:check",
-    "npm run agent:model-routing:check",
-    "npm run agent:capabilities:check",
-    "npm run agent:skills:validate",
-    "npm run agent:skills:quality",
     "npm run agent:dry-run",
     "npm run agent:run-plan",
-    "npm run agent:result-normalize",
-    "npm run agent:state-finalize",
-    "npm run agent:state-finalize:test"
+    "npm run fibu:fixedassets:type-dropdown-selector-probe",
+    "npm run fibu:fixedassets:cleanup-072-purchase-invoice for 107226",
+    "npm run fibu:fixedassets:type-dropdown-selector-probe"
   ],
-  "routingState": {
-    "defaultTaskClass": "monkey_work",
-    "currentCaseSuggestedTaskClass": "wizard_work",
-    "currentCaseSuggestedRole": "Wizard Bench",
-    "usageLogRequiredForCurrentCase": false,
-    "primarySkillLimit": 3,
-    "capabilityRegistry": ".agent/capabilities.json",
-    "skillContract": ".agent/skills/SKILL-CONTRACT.md",
-    "operatingModel": ".agent/BC-OPERATING-MODEL.md",
-    "dryRun": "scripts/agent/dry-run.mjs",
-    "runPlan": "scripts/agent/run-plan.mjs",
-    "resultNormalize": "scripts/agent/result-normalize.mjs",
-    "stateFinalize": "scripts/agent/state-finalize.mjs",
-    "skillQualityCheck": "scripts/agent/skills-quality-check.mjs"
-  },
-  "nextStep": "Improve the Type dropdown selector before entering target values."
+  "evidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-072/FIXEDASSETS-072-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-072/030-type-dropdown-probe.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-072/090-cleanup-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-072/091-cleanup-retry-result.json"
+  ],
+  "nextStep": "Run FIXEDASSETS-073: alternative UI route diagnosis for Type = Fixed Asset; target values remain locked."
 }

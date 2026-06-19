@@ -7,7 +7,7 @@
   "workType": "type-dropdown-selector-probe",
   "goal": "Open one sandbox Purchase Invoice draft, inspect the Purchase Invoice Lines Type dropdown, prove whether Type = Fixed Asset is reachable, and clean up the draft.",
   "blockedBy": [
-    "Type = Fixed Asset not visible or not selectable through the attempted dropdown route."
+    "Type = Fixed Asset not visible or selectable; current Type route exposes only Option Values: Item."
   ],
   "mustRead": [
     ".agent/state/current.json",
@@ -55,10 +55,12 @@
   "sourceEvidence": [
     "playwright/projects/fibu-book5/evidence/fixedassets-071/FIXEDASSETS-071-result.json"
   ],
-  "nextSafeAction": "Do not enter K30000 or FA-CNC-01 until Type = Fixed Asset is proven.",
+  "nextSafeAction": "Use FIXEDASSETS-073 to try an alternative UI route. Do not enter K30000 or FA-CNC-01 yet.",
   "lastResult": {
     "status": "blocked-cleanup-complete",
     "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-072/FIXEDASSETS-072-result.json",
-    "summary": "FA-072 opened the real Purchase Invoice Lines Type context but did not open/select Fixed Asset; the leaked draft 107225 was removed through UI cleanup retry. Target values remain locked."
+    "summary": "FA-072 improved the Type-cell probe and draft cleanup. The run proved the Purchase Invoice draft 107228 was created and deleted through UI cleanup, but Type = Fixed Asset is still not visible/selectable; the current Type route exposes only Option Values: Item. Target values remain locked.",
+    "draftInvoiceNo": "107228",
+    "cleanupStatus": "deleted"
   }
 }

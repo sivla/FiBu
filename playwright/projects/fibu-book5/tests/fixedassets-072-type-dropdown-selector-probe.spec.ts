@@ -79,9 +79,15 @@ async function clickScopedNew(page: Page) {
 }
 
 async function extractPurchaseInvoiceDraftNo(page: Page) {
-  const text = await pageText(page);
-  const headerMatch = text.match(/\b(10\d{3,})\b/);
-  return headerMatch?.[1] ?? null;
+  for (let attempt = 0; attempt < 12; attempt += 1) {
+    const text = await pageText(page);
+    const headerMatch = text.match(/\b(10\d{3,})\b/);
+    if (headerMatch?.[1]) {
+      return headerMatch[1];
+    }
+    await page.waitForTimeout(500);
+  }
+  return null;
 }
 
 async function collectLineTypeSignals(page: Page) {
@@ -181,9 +187,32 @@ async function clickCurrentItemTypeCell(page: Page) {
         if (!chosen) {
           return { clicked: false, reason: 'item-type-cell-not-found', candidates: [] };
         }
-        chosen.element.dispatchEvent(new MouseEvent('mousedown', { bubbles: true, cancelable: true }));
-        chosen.element.click();
-        chosen.element.dispatchEvent(new MouseEvent('mouseup', { bubbles: true, cancelable: true }));
+        const clickPoints = [
+          { name: 'cell-center', x: chosen.rect.x + Math.round(chosen.rect.width / 2), y: chosen.rect.y + Math.round(chosen.rect.height / 2) },
+          { name: 'cell-right-edge', x: chosen.rect.x + chosen.rect.width - 8, y: chosen.rect.y + Math.round(chosen.rect.height / 2) },
+          { name: 'cell-left-body', x: chosen.rect.x + 12, y: chosen.rect.y + Math.round(chosen.rect.height / 2) },
+        ];
+        const dispatched = [];
+        for (const point of clickPoints) {
+          const target = document.elementFromPoint(point.x, point.y) || chosen.element;
+          for (const eventType of ['pointerdown', 'mousedown', 'mouseup', 'click']) {
+            const event =
+              eventType.startsWith('pointer')
+                ? new PointerEvent(eventType, { bubbles: true, cancelable: true, clientX: point.x, clientY: point.y, pointerType: 'mouse' })
+                : new MouseEvent(eventType, { bubbles: true, cancelable: true, clientX: point.x, clientY: point.y });
+            target.dispatchEvent(event);
+          }
+          chosen.element.focus();
+          dispatched.push({
+            ...point,
+            targetText: normalize(target.textContent),
+            targetRole: normalize(target.getAttribute('role')),
+            targetAria: normalize(target.getAttribute('aria-label')),
+            activeText: normalize(document.activeElement?.textContent),
+            activeRole: normalize(document.activeElement?.getAttribute('role')),
+            activeAria: normalize(document.activeElement?.getAttribute('aria-label')),
+          });
+        }
         return {
           clicked: true,
           chosen: {
@@ -191,6 +220,7 @@ async function clickCurrentItemTypeCell(page: Page) {
             rect: chosen.rect,
             score: chosen.score,
           },
+          dispatched,
           candidates: candidates.slice(0, 8).map(({ element: _element, ...entry }) => entry),
         };
       })
@@ -250,6 +280,65 @@ async function confirmYes(page: Page) {
   return { confirmed: false, button: 'not-found' };
 }
 
+async function clickDeleteSelectedInvoice(page: Page, invoiceNo: string) {
+  for (const frame of page.frames()) {
+    const body = await frame.locator('body').innerText({ timeout: 1000 }).catch(() => '');
+    if (!new RegExp(invoiceNo).test(body)) continue;
+    const result = await frame
+      .evaluate(() => {
+        const normalize = (value: string | null | undefined) => (value || '').replace(/\s+/g, ' ').trim();
+        const visible = (element: Element) => {
+          const rect = element.getBoundingClientRect();
+          const style = window.getComputedStyle(element);
+          return rect.width > 0 && rect.height > 0 && style.visibility !== 'hidden' && style.display !== 'none';
+        };
+        const candidates = Array.from(document.querySelectorAll<HTMLElement>('button,[role="button"],[aria-label],[title],span,div'))
+          .filter(visible)
+          .map((element) => {
+            const clickable = (element.closest('button,[role="button"]') as HTMLElement | null) ?? element;
+            const rect = clickable.getBoundingClientRect();
+            const text = normalize(element.innerText || element.textContent);
+            const aria = normalize(element.getAttribute('aria-label') || clickable.getAttribute('aria-label'));
+            const title = normalize(element.getAttribute('title') || clickable.getAttribute('title'));
+            const label = `${text} ${aria} ${title}`;
+            let score = 0;
+            if (/^(Delete|L.*schen)$/i.test(text) || /^(Delete|L.*schen)$/i.test(aria)) score -= 60;
+            if (/Delete|L.*schen/i.test(title)) score -= 30;
+            if (rect.y >= 35 && rect.y <= 135) score -= 20;
+            if (/Post|Preview|Buchen|Vorschau|Invoice|Rechnung|New|Neu/i.test(label)) score += 200;
+            return {
+              element,
+              clickable,
+              text,
+              aria,
+              title,
+              label,
+              rect: { x: Math.round(rect.x), y: Math.round(rect.y), width: Math.round(rect.width), height: Math.round(rect.height) },
+              score,
+            };
+          })
+          .filter((entry) => /Delete|L.*schen/i.test(entry.label))
+          .sort((left, right) => left.score - right.score || left.rect.y - right.rect.y || left.rect.x - right.rect.x);
+        const chosen = candidates[0];
+        if (!chosen) {
+          return { clicked: false, reason: 'delete-action-not-found', candidates: candidates.slice(0, 20).map(({ element: _e, clickable: _c, ...entry }) => entry) };
+        }
+        chosen.clickable.click();
+        return {
+          clicked: true,
+          chosen: { text: chosen.text, aria: chosen.aria, title: chosen.title, label: chosen.label, rect: chosen.rect, score: chosen.score },
+          candidates: candidates.slice(0, 8).map(({ element: _e, clickable: _c, ...entry }) => entry),
+        };
+      })
+      .catch((error) => ({ clicked: false, reason: String(error), candidates: [] }));
+    if (result.clicked) {
+      await page.waitForTimeout(1500);
+      return result;
+    }
+  }
+  return { clicked: false, reason: 'invoice-row-not-found', candidates: [] };
+}
+
 async function cleanupDraft(page: Page, invoiceNo: string) {
   await page.goto(purchaseInvoicesFilteredUrl(invoiceNo), { waitUntil: 'domcontentloaded', timeout: 120_000 });
   await waitForBusinessCentralShell(page);
@@ -263,15 +352,7 @@ async function cleanupDraft(page: Page, invoiceNo: string) {
     return { status: 'not-visible-before-cleanup', invoiceNo, visibleBefore, visibleAfter: false };
   }
 
-  const deleteAction = await clickBcScoredAction(page, {
-    scopeText: new RegExp(invoiceNo),
-    actionPattern: /Delete|L.schen/i,
-    rejectPattern: /line|zeile|posted|gebucht|archive|archiv|Post|Preview|New|Neu/i,
-    preferredYMin: 35,
-    preferredYMax: 135,
-    candidateLimit: 15,
-    waitAfterClick: 0,
-  });
+  const deleteAction = await clickDeleteSelectedInvoice(page, invoiceNo);
   const confirmation = deleteAction.clicked ? await confirmYes(page) : { confirmed: false, button: 'not-needed' };
   await page.waitForTimeout(2500);
   await page.goto(purchaseInvoicesFilteredUrl(invoiceNo), { waitUntil: 'domcontentloaded', timeout: 120_000 });
@@ -349,7 +430,7 @@ test('FIXEDASSETS-072 probes Type dropdown and attempts Fixed Asset selection', 
   const newAttempt = await clickScopedNew(page);
   await writeJsonEvidence(fixedAssetsEvidencePath('020-scoped-new-attempt.json'), newAttempt);
 
-  const draftInvoiceNo = await extractPurchaseInvoiceDraftNo(page);
+  let draftInvoiceNo = await extractPurchaseInvoiceDraftNo(page);
   const beforeDropdownSignals = await collectLineTypeSignals(page);
   const dropdownProbe = await openTypeDropdown(page);
   await writeJsonEvidence(fixedAssetsEvidencePath('030-type-dropdown-probe.json'), {
@@ -374,6 +455,7 @@ test('FIXEDASSETS-072 probes Type dropdown and attempts Fixed Asset selection', 
       maxLineLength: 220,
     }),
   );
+  draftInvoiceNo = draftInvoiceNo ?? (await extractPurchaseInvoiceDraftNo(page));
 
   const cleanup =
     draftInvoiceNo && /^\d+$/.test(draftInvoiceNo)

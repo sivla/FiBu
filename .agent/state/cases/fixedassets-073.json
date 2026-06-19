@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-073-TYPE-DROPDOWN-ALTERNATIVE-ROUTE",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "purchase-invoice-line-type-alternative-route-diagnosis",
+  "goal": "Find a safer alternative UI route to expose or select Purchase Invoice Line Type = Fixed Asset without entering K30000 or FA-CNC-01.",
+  "basedOn": [
+    ".agent/state/cases/fixedassets-072.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-072/FIXEDASSETS-072-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-072/030-type-dropdown-probe.json"
+  ],
+  "knownTruth": [
+    "FA-072 stayed in MCP_1_20260210 / RM-DEMO.",
+    "The current Type-cell route opens or exposes only Option Values: Item.",
+    "Draft 107228 was deleted through UI cleanup in the final FA-072 run.",
+    "K30000 and FA-CNC-01 remain locked."
+  ],
+  "allowedActions": [
+    "open-business-central-in-MCP_1_20260210",
+    "confirm-company-RM-DEMO",
+    "click-scoped-New-Neu-on-Purchase-Invoices",
+    "inspect-Purchase-Invoice-Lines-Type-control",
+    "try-alternative-Type-field-ui-route-before-target-values",
+    "write-json-evidence",
+    "cleanup-draft-if-created"
+  ],
+  "forbiddenActions": [
+    "enter-K30000",
+    "enter-FA-CNC-01",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "api-shortcut",
+    "book-edit",
+    "keep-draft"
+  ],
+  "acceptanceCriteria": [
+    "The run must stay in MCP_1_20260210 and RM-DEMO.",
+    "No target vendor or fixed asset number may be entered.",
+    "A temporary Purchase Invoice draft must be deleted before the run ends.",
+    "Evidence must distinguish field value, option-value popup and wrong lookup/card contexts.",
+    "If Fixed Asset is not visible, the result must be blocked-cleanup-complete."
+  ],
+  "recommendedSkills": [
+    "bc-navigation",
+    "evidence-writer"
+  ],
+  "nextSafeAction": "Implement or run one bounded alternative route diagnosis; do not repeat the FA-072 cell-click path without a new selector idea.",
+  "mustRead": [
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-072.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-072/FIXEDASSETS-072-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-072/030-type-dropdown-probe.json",
+    "playwright/core/bc/purchase-invoice-guards.ts",
+    "playwright/projects/fibu-book5/tests/fixedassets-072-type-dropdown-selector-probe.spec.ts"
+  ]
+}
