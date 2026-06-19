@@ -1,0 +1,164 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-acquisition-route-decision",
+  "caseId": "FIXEDASSETS-079-FIXED-ASSET-ACQUISITION-ROUTE-DECISION",
+  "source": "static-evidence-and-microsoft-learn-review",
+  "resultStatus": "observed",
+  "runPlanId": "FIXEDASSETS-079-FIXED-ASSET-ACQUISITION-ROUTE-DECISION-PLAN",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-medium",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "inputs": {
+    "priorEvidence": [
+      "playwright/projects/fibu-book5/evidence/fixedassets-074/FIXEDASSETS-074-result.json",
+      "playwright/projects/fibu-book5/evidence/fixedassets-076/FIXEDASSETS-076-result.json",
+      "playwright/projects/fibu-book5/evidence/fixedassets-077/FIXEDASSETS-077-result.json",
+      "playwright/projects/fibu-book5/evidence/fixedassets-078/FIXEDASSETS-078-result.json"
+    ],
+    "microsoftLearnSources": [
+      {
+        "title": "Acquire fixed assets - Business Central",
+        "url": "https://learn.microsoft.com/en-us/dynamics365/business-central/fa-how-acquire",
+        "usedFor": "Documents Fixed Asset Card / Acquire action, Fixed Asset G/L Journal, and purchase order/invoice fixed-asset acquisition routes."
+      },
+      {
+        "title": "Purchase fixed assets in Dynamics 365 Business Central - Training",
+        "url": "https://learn.microsoft.com/en-us/training/modules/purchase-fixed-assets/",
+        "usedFor": "Documents purchase invoice learning objective for posting acquisition cost to a fixed asset."
+      }
+    ]
+  },
+  "routeCandidates": [
+    {
+      "id": "fixed-asset-card-acquire-action",
+      "microsoftLearnSupport": "strong",
+      "rmDemoEvidence": "FA-078 observed Fixed Assets list and FA-CNC-01 read-only visible; HGB Depreciation Book is visible.",
+      "risk": "medium-before-clicking-acquire",
+      "nextGateNeeded": "read-only card preflight: open FA-CNC-01 card, inspect Depreciation Book/Book Value/Acquire visibility; do not click Acquire yet.",
+      "decision": "preferred-next-route"
+    },
+    {
+      "id": "fixed-asset-gl-journal-acquisition",
+      "microsoftLearnSupport": "strong",
+      "rmDemoEvidence": "FA-078 strict Tell-Me did not prove Fixed Asset G/L Journals visible; journal route remains candidate/open.",
+      "risk": "medium-high-before-journal-line-entry",
+      "nextGateNeeded": "separate journal route discovery and journal line preflight before any amount or posting.",
+      "decision": "fallback-after-card-preflight-or-if-acquire-action-unavailable"
+    },
+    {
+      "id": "purchase-document-fixed-asset-line",
+      "microsoftLearnSupport": "strong",
+      "rmDemoEvidence": "FA-076 and FA-077 did not prove stable visible Type = Fixed Asset in Purchase Invoice/Order lines.",
+      "risk": "high-retry-cost-and-wrong-context-risk",
+      "nextGateNeeded": "only revisit after Page/Personalization/role/setup proof explains missing line type.",
+      "decision": "defer-do-not-repeat-now"
+    }
+  ],
+  "selectedRoute": {
+    "id": "fixed-asset-card-acquire-action-readonly-preflight",
+    "reason": "It uses the strongest RM-DEMO evidence from FA-078: the target fixed asset exists/read-only-visible and Microsoft Learn describes Acquire from the Fixed Asset Card. It avoids the repeated purchase-line Type blocker and avoids journal-line entry before the journal page route is proven.",
+    "nextCase": "FIXEDASSETS-080-FA-CNC-01-ACQUIRE-ACTION-READONLY-PREFLIGHT",
+    "nextCaseType": "read-only-ui-context-diagnosis",
+    "targetObject": "FA-CNC-01 Fixed Asset Card",
+    "unlockedActionsForNextCase": [
+      "open-fixed-asset-card-readonly",
+      "inspect-visible-actions-readonly",
+      "capture-compact-page-text",
+      "write-evidence"
+    ],
+    "remainsLockedForNextCase": [
+      "click-acquire-action",
+      "enter-K30000",
+      "enter-amount",
+      "preview-posting",
+      "post",
+      "setup-change",
+      "api-shortcut",
+      "book-edit"
+    ]
+  },
+  "proved": [
+    "FA-079 selected a preferred next route without opening BC, changing setup, creating drafts, entering target values, previewing or posting.",
+    "Microsoft Learn supports multiple fixed-asset acquisition routes; purchase document route remains possible in product terms but blocked in current RM-DEMO UI evidence.",
+    "FA-078 proved FA-CNC-01 and HGB are visible read-only context in RM-DEMO.",
+    "The preferred next route is Fixed Asset Card / Acquire action read-only preflight, not immediate acquisition."
+  ],
+  "notProved": [
+    "Acquire action visibility on the FA-CNC-01 card is not yet proven.",
+    "Fixed Asset G/L Journal route is not yet proven in RM-DEMO.",
+    "Purchase document Type = Fixed Asset remains unproven in RM-DEMO.",
+    "No acquisition, no preview, no posting and no German final proof."
+  ],
+  "changedFiles": [
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-079.json",
+    ".agent/state/cases/fixedassets-080.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-079/FIXEDASSETS-079-route-decision.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-079/FIXEDASSETS-079-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-079/README.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-079/FIXEDASSETS-079-route-decision.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-079/FIXEDASSETS-079-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-079/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-078/FIXEDASSETS-078-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-078/010-microsoft-learn-route-basis.md"
+  ],
+  "warnings": [
+    "Route decision only; no BC execution in this case.",
+    "Microsoft Learn support is not the same as RM-DEMO UI proof.",
+    "Next case must remain read-only until Acquire action visibility and card context are proven."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "flags": {
+    "noBcExecution": true,
+    "noPlaywrightExecution": true,
+    "noBookChange": true,
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noNewDraft": true,
+    "noEditRecord": true,
+    "noDeleteRecord": true,
+    "noTargetVendorEntry": true,
+    "noTargetFixedAssetEntryInDocumentOrJournal": true
+  },
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-080-FA-CNC-01-ACQUIRE-ACTION-READONLY-PREFLIGHT",
+      "active_case_file": ".agent/state/cases/fixedassets-080.json",
+      "lastReferenceCase": "FIXEDASSETS-079-FIXED-ASSET-ACQUISITION-ROUTE-DECISION",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-079.json",
+      "nextStep": "FA-079 selected Fixed Asset Card / Acquire action read-only preflight as the safest next route. FA-080 should open FA-CNC-01 card read-only and inspect Acquire/Depreciation/Book Value context without clicking Acquire or entering values."
+    },
+    "lastRunSummary": {
+      "schemaVersion": 1,
+      "runId": "FIXEDASSETS-079-FIXED-ASSET-ACQUISITION-ROUTE-DECISION",
+      "date": "2026-06-19",
+      "workType": "fixed-asset-acquisition-route-decision",
+      "branch": "codex/token-efficient-autopilot-state",
+      "bcRun": false,
+      "posted": false,
+      "companySwitched": false,
+      "summary": "FA-079 selected Fixed Asset Card / Acquire action read-only preflight as preferred next route, because FA-CNC-01 and HGB are read-only visible and purchase-document Type=Fixed Asset remains unproven in RM-DEMO.",
+      "nextStep": "Run FA-080 read-only on FA-CNC-01 card. Do not click Acquire yet."
+    },
+    "activeCase": {
+      "status": "observed-route-decision",
+      "lastResult": {
+        "status": "observed",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-079/FIXEDASSETS-079-route-decision.json",
+        "summary": "Preferred next route: Fixed Asset Card / Acquire action read-only preflight."
+      },
+      "nextSafeAction": "Open FA-CNC-01 card read-only and inspect Acquire action visibility."
+    }
+  },
+  "nextStep": "Run FA-080 as read-only FA-CNC-01 card Acquire-action preflight."
+}

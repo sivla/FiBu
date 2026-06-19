@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-080-FA-CNC-01-ACQUIRE-ACTION-READONLY-PREFLIGHT",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "fixed-asset-card-acquire-action-readonly-preflight",
+  "goal": "Open existing fixed asset FA-CNC-01 read-only and inspect whether the Fixed Asset Card exposes Acquire/action/depreciation context before any acquisition, target value entry, preview or posting.",
+  "basedOn": [
+    ".agent/state/cases/fixedassets-078.json",
+    ".agent/state/cases/fixedassets-079.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-079/FIXEDASSETS-079-route-decision.json"
+  ],
+  "knownTruth": [
+    "FA-CNC-01 is visible in the Fixed Assets list as read-only context in RM-DEMO.",
+    "HGB is visible in Depreciation Books as read-only context.",
+    "Microsoft Learn documents Acquire from the Fixed Asset Card and Fixed Asset G/L Journal routes.",
+    "Purchase document Type=Fixed Asset remains unproven in RM-DEMO after FA-076/FA-077."
+  ],
+  "allowedActions": [
+    "open-business-central-in-MCP_1_20260210",
+    "confirm-company-RM-DEMO",
+    "open-existing-FA-CNC-01-fixed-asset-card-readonly",
+    "inspect-visible-actions-readonly",
+    "capture-compact-page-text",
+    "write-json-evidence",
+    "write-compact-learning-note",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "click-acquire-action",
+    "enter-K30000",
+    "enter-amount",
+    "enter-FA-CNC-01-in-document-or-journal",
+    "new-draft",
+    "edit-record",
+    "delete-record",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "api-shortcut",
+    "book-edit"
+  ],
+  "defaultLockedActionsUnlockedForThisCase": [],
+  "acceptanceCriteria": [
+    "Instance MCP_1_20260210 and company RM-DEMO are confirmed before opening the card.",
+    "FA-CNC-01 card context is visible read-only.",
+    "Acquire/action/depreciation/book-value context is captured as compact evidence.",
+    "No Acquire action is clicked and no values are entered.",
+    "The next case is either Acquire wizard preflight or a fallback journal route discovery."
+  ],
+  "stopConditions": [
+    "Business Central is not in MCP_1_20260210 / RM-DEMO.",
+    "Opening the card would require New/Edit/Delete/Post/Acquire confirmation.",
+    "FA-CNC-01 card context is not clearly visible.",
+    "Any dialog asks to acquire, post, preview, edit, delete or setup."
+  ],
+  "recommendedSkills": [
+    "bc-navigation",
+    "safety-gate-checker",
+    "evidence-writer"
+  ],
+  "nextSafeAction": "Run read-only FA-CNC-01 card preflight; do not click Acquire.",
+  "mustRead": [
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-079.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-079/FIXEDASSETS-079-route-decision.json",
+    ".agent/capabilities.json",
+    "package.json"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-080/FIXEDASSETS-080-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-080/FIXEDASSETS-080-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-080/README.md"
+  ]
+}

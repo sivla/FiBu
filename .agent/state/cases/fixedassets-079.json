@@ -3,7 +3,7 @@
   "caseId": "FIXEDASSETS-079-FIXED-ASSET-ACQUISITION-ROUTE-DECISION",
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "status": "planned",
+  "status": "observed-route-decision",
   "workType": "fixed-asset-acquisition-route-decision",
   "goal": "Choose the safest next fixed-asset acquisition route for Kapitel 21 based on Microsoft Learn and RM-DEMO evidence, before any target-value entry, setup change, preview or posting.",
   "basedOn": [
@@ -64,7 +64,7 @@
     "evidence-writer",
     "beginner-check"
   ],
-  "nextSafeAction": "Create a compact acquisition-route decision. Likely candidates: Fixed Asset G/L Journal / Acquire action as safer alternative, or a separately gated purchase-document route if page capability can be proven.",
+  "nextSafeAction": "Run FIXEDASSETS-080 read-only on FA-CNC-01 card. Inspect Acquire action visibility; do not click Acquire.",
   "mustRead": [
     ".agent/state/current.json",
     ".agent/state/cases/fixedassets-078.json",
@@ -76,5 +76,40 @@
     "playwright/projects/fibu-book5/evidence/fixedassets-079/FIXEDASSETS-079-route-decision.json",
     "playwright/projects/fibu-book5/evidence/fixedassets-079/FIXEDASSETS-079-learning.md",
     "playwright/projects/fibu-book5/evidence/fixedassets-079/README.md"
-  ]
+  ],
+  "lastResult": {
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-079/FIXEDASSETS-079-route-decision.json",
+    "evidenceFolder": "playwright/projects/fibu-book5/evidence/fixedassets-079/",
+    "resultStatus": "observed",
+    "summary": "Preferred next route: Fixed Asset Card / Acquire action read-only preflight. Purchase-document Type=Fixed Asset remains deferred until page/setup capability is explained.",
+    "bcRun": false,
+    "playwrightRun": false,
+    "posted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "selectedRoute": {
+      "id": "fixed-asset-card-acquire-action-readonly-preflight",
+      "reason": "It uses the strongest RM-DEMO evidence from FA-078: the target fixed asset exists/read-only-visible and Microsoft Learn describes Acquire from the Fixed Asset Card. It avoids the repeated purchase-line Type blocker and avoids journal-line entry before the journal page route is proven.",
+      "nextCase": "FIXEDASSETS-080-FA-CNC-01-ACQUIRE-ACTION-READONLY-PREFLIGHT",
+      "nextCaseType": "read-only-ui-context-diagnosis",
+      "targetObject": "FA-CNC-01 Fixed Asset Card",
+      "unlockedActionsForNextCase": [
+        "open-fixed-asset-card-readonly",
+        "inspect-visible-actions-readonly",
+        "capture-compact-page-text",
+        "write-evidence"
+      ],
+      "remainsLockedForNextCase": [
+        "click-acquire-action",
+        "enter-K30000",
+        "enter-amount",
+        "preview-posting",
+        "post",
+        "setup-change",
+        "api-shortcut",
+        "book-edit"
+      ]
+    },
+    "nextStep": "Run FA-080 as read-only FA-CNC-01 card Acquire-action preflight."
+  }
 }

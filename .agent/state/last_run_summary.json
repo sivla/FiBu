@@ -1,25 +1,27 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-078-SETUP-PAGE-CAPABILITY-REVIEW",
+  "runId": "FIXEDASSETS-079-FIXED-ASSET-ACQUISITION-ROUTE-DECISION",
   "date": "2026-06-19",
-  "workType": "fixed-asset-setup-page-capability-review",
+  "workType": "fixed-asset-acquisition-route-decision",
   "branch": "codex/token-efficient-autopilot-state",
-  "bcRun": true,
+  "bcRun": false,
   "posted": false,
   "companySwitched": false,
-  "summary": "FA-078 stayed in MCP_1_20260210 / RM-DEMO and reviewed fixed-asset acquisition capability read-only. Visible route contexts: 020-fixed-assets-list, 030-depreciation-books, 040-purchase-invoices-list, 050-purchase-orders-list. The blocker is now classified as route-decision-open: Microsoft Learn supports multiple acquisition routes, while RM-DEMO still lacks a proven purchase-document line Type=Fixed Asset path.",
+  "summary": "FA-079 selected Fixed Asset Card / Acquire action read-only preflight as preferred next route, because FA-CNC-01 and HGB are read-only visible and purchase-document Type=Fixed Asset remains unproven in RM-DEMO.",
+  "nextStep": "Run FA-080 read-only on FA-CNC-01 card. Do not click Acquire yet.",
   "commandsRun": [
+    "git branch --show-current",
+    "git status --short",
+    "git pull --ff-only",
     "npm run agent:preflight",
     "npm run agent:context",
-    "npm run check:encoding",
-    "git diff --check",
-    "npm run fibu:fixedassets:setup-page-capability-review"
+    "static evidence/source review only"
   ],
   "evidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-079/FIXEDASSETS-079-route-decision.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-079/FIXEDASSETS-079-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-079/README.md",
     "playwright/projects/fibu-book5/evidence/fixedassets-078/FIXEDASSETS-078-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-078/FIXEDASSETS-078-learning.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-078/README.md",
     "playwright/projects/fibu-book5/evidence/fixedassets-078/010-microsoft-learn-route-basis.md"
-  ],
-  "nextStep": "Run FA-079 as a compact route decision. Do not enter target values or create drafts until a route and gates are selected."
+  ]
 }
