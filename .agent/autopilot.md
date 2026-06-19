@@ -43,7 +43,9 @@ Zweck: kleiner Einstiegspunkt fuer Codex-Laeufe, die nicht den gesamten Projektv
 ## Arbeitsprinzip
 
 - Repo-State ist die Wahrheit, nicht alte Chat-Historie.
-- Business Central bleibt in `MCP_1_20260210`.
+- Business Central bleibt in `MCP_1_20260210`; das ist die harte Instanzgrenze.
+- Innerhalb `MCP_1_20260210` darf der Autopilot breit experimentieren, wenn der aktive Case es erlaubt und Evidence entsteht: Company wechseln, Test-Company anlegen, Drafts erzeugen, editieren, loeschen, Dialoge bestaetigen, Fehler provozieren, Preview/Post/Setup ausfuehren.
+- Diese Sandbox-Freiheit ist immer case-/gate-gesteuert: jede Daten-, Setup-, Posting- oder Company-Aktion braucht dokumentierte Instanz, Company, Zweck, Ergebnis und Cleanup-/Trace-Status.
 - Auth, `.env`, Reports, Traces, Videos und Rohsnapshots bleiben lokal.
 - Screenshots und Evidence werden projekt-relativ referenziert.
 - Jeder Lauf muss `last_run_summary.json` und den betroffenen Case-State aktualisieren.

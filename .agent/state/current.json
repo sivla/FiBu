@@ -27,7 +27,7 @@
   ],
   "forbiddenActions": [
     "leave-instance",
-    "company-switch",
+    "company-switch-without-documentation",
     "company-switch-without-registry-update",
     "enter-FA-CNC-01",
     "enter-K30000-in-purchase-invoice",
@@ -61,6 +61,38 @@
       "clear-next-case",
       "local-script-or-doc-update-with-low-risk",
       "preflight-context-dry-run-run-plan-are-unambiguous"
+    ]
+  },
+  "sandboxInstancePolicy": {
+    "hardBoundary": "MCP_1_20260210",
+    "autonomyInsideInstance": "broad-case-controlled",
+    "allowedWhenCaseAllows": [
+      "company-switch",
+      "new-company",
+      "new-draft",
+      "edit-record",
+      "delete-record",
+      "preview-posting",
+      "posting",
+      "setup-change",
+      "dialog-confirmation",
+      "error-probe"
+    ],
+    "alwaysDocument": [
+      "instance",
+      "company",
+      "previousCompany-if-changed",
+      "record-or-document-no-if-any",
+      "purpose",
+      "result",
+      "cleanup-or-trace-status"
+    ],
+    "neverAllowed": [
+      "leave-instance",
+      "commit-secrets",
+      "show-env-or-auth",
+      "fake-evidence",
+      "book-claim-without-evidence"
     ]
   }
 }

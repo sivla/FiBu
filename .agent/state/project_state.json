@@ -7,7 +7,18 @@
     "primaryCompany": "RM-DEMO",
     "dataBasis": "CRONUS USA",
     "companyMode": "instance-bound-multi-company",
-    "companyRegistry": "playwright/projects/fibu-book5/COMPANY-REGISTRY.json"
+    "companyRegistry": "playwright/projects/fibu-book5/COMPANY-REGISTRY.json",
+    "instanceBoundaryPolicy": "hard-instance-boundary-broad-sandbox-autonomy",
+    "allowedInsideInstanceWhenCaseAllows": [
+      "company-switch",
+      "new-company",
+      "drafts",
+      "edit-delete",
+      "preview-posting",
+      "posting",
+      "setup-change",
+      "error-probes"
+    ]
   },
   "book": {
     "mainFile": "FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md",
@@ -30,6 +41,9 @@
     "doNotCommitSecrets": true,
     "uiFirstByDefault": true,
     "apiShortcutsRequireExplicitException": true,
-    "postingRequiresGate": true
+    "postingRequiresGate": true,
+    "companySwitchAllowedInsideInstance": true,
+    "companySwitchRequiresDocumentation": true,
+    "setupAndPostingRequireActiveCaseGate": true
   }
 }

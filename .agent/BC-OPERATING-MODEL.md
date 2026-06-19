@@ -15,6 +15,16 @@ Every Business Central step must have:
 
 If one of these is missing, the agent must stop or downgrade the action to read-only diagnosis.
 
+## Sandbox instance boundary
+
+The hard Business Central boundary is the sandbox instance `MCP_1_20260210`.
+
+- Never leave `MCP_1_20260210`.
+- Company switches are allowed inside `MCP_1_20260210` when the active case allows them and the result documents previous company, target company, purpose, timestamp and reuse/cleanup status.
+- New sandbox companies are allowed inside `MCP_1_20260210` only with clear test names, source/template notes, purpose, setup status and registry/state evidence.
+- Evidence must always state the instance and company.
+- If the visible URL or shell suggests another instance, stop immediately and write a blocked result.
+
 ## UI-first rule
 
 - Business Central work is UI-first by default.
@@ -44,10 +54,13 @@ These actions are default locked:
 - acquisition
 - depreciation
 - setup change
-- company switch
 - API shortcut
 
-Unlock only when the active case allows it, the company and instance are confirmed, expected result and evidence plan are known, and cleanup/no-duplicate rules are clear.
+Company switch is not a global hard lock inside `MCP_1_20260210`; it is a case-controlled sandbox action with mandatory documentation.
+
+Unlock risky actions only when the active case allows them, the company and instance are confirmed, expected result and evidence plan are known, and cleanup/no-duplicate rules are clear.
+
+Posting-like actions are not never-actions inside `MCP_1_20260210`; they are default-locked actions that become allowed only when the active case explicitly unlocks them. The evidence plan must name the source document, expected posted document or register if visible, expected ledger/entry trace and whether the result is intentionally kept or cleaned up.
 
 ## Screenshot truth
 
