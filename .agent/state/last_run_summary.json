@@ -2,12 +2,12 @@
   "schemaVersion": 1,
   "runId": "FIXEDASSETS-066-PURCHASE-INVOICE-LINE-TYPE-GUARDED-PROBE-PREP",
   "date": "2026-06-19",
-  "workType": "state-and-safety-preparation",
+  "workType": "guarded-runner-preparation",
   "branch": "codex/token-efficient-autopilot-state",
   "bcRun": false,
   "posted": false,
   "companySwitched": false,
-  "summary": "FIXEDASSETS-066 was prepared as the next guarded no-target UI-probe case. It keeps K30000 and FA-CNC-01 locked and requires classifyPurchaseInvoiceLineTypeVisibility before any future target value entry.",
+  "summary": "FIXEDASSETS-066 prepared a dedicated guarded no-target UI-probe runner. It keeps K30000 and FA-CNC-01 locked, calls classifyPurchaseInvoiceLineTypeVisibility and writes blocked evidence if Item line or vendor-registration dialog appears.",
   "commandsToRunBeforeAutopilot": [
     "npm run agent:preflight",
     "npm run agent:context",
@@ -40,5 +40,5 @@
     "stateFinalize": "scripts/agent/state-finalize.mjs",
     "skillQualityCheck": "scripts/agent/skills-quality-check.mjs"
   },
-  "nextStep": "Prepare/update the no-target UI probe runner with classifyPurchaseInvoiceLineTypeVisibility; do not execute BC/Playwright until the runner is reviewed."
+  "nextStep": "Review and then run npm run fibu:fixedassets:purchase-invoice-line-type-guarded-probe when a practical UI probe is desired."
 }
