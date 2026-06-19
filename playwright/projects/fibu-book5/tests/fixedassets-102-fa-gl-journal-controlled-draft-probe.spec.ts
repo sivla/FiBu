@@ -267,6 +267,44 @@ function targetSignals(snapshot: Awaited<ReturnType<typeof rowSnapshot>>) {
   };
 }
 
+function compactJournalEvidence(
+  phase: 'before' | 'after',
+  context: Awaited<ReturnType<typeof sandboxContext>> | undefined,
+  frameUrl: string,
+  snapshot: Awaited<ReturnType<typeof rowSnapshot>> | undefined,
+  signals?: ReturnType<typeof targetSignals>,
+) {
+  const text = snapshot?.fullText ?? '';
+  const pageSignals = signals ?? (snapshot ? targetSignals(snapshot) : undefined);
+  return {
+    schemaVersion: 1,
+    purpose: `fixedassets-102-${phase}-journal-row-compact-evidence`,
+    status: phase === 'before' ? 'labor-before-snapshot-compact' : 'partial-draft-signal-compact',
+    [phase === 'before' ? 'contextBefore' : 'contextAfter']: context,
+    frameUrl,
+    visiblePageSignals: {
+      pageTitleVisible: /Fixed Asset G\/L Journals/i.test(text),
+      faCnc01Visible: Boolean(pageSignals?.faCnc01Visible),
+      k30000Visible: Boolean(pageSignals?.k30000Visible),
+      hgbVisible: Boolean(pageSignals?.hgbVisible),
+      documentNoVisible: Boolean(pageSignals?.documentNoVisible),
+      fixedAssetVisible: Boolean(pageSignals?.fixedAssetVisible),
+      acquisitionCostVisible: Boolean(pageSignals?.acquisitionCostVisible),
+      amount68000Visible: Boolean(pageSignals?.amountVisible),
+      pageErrorVisible: /Account Type or Bal\. Account Type must be a G\/L Account or Bank Account/i.test(text),
+      noSuggestionsForK30000Visible: /K30000/i.test(text) && /keine Vorschl|No suggestions/i.test(text),
+    },
+    relevantRows: (snapshot?.rows ?? [])
+      .filter((row) => /Posting Date|Document No\.|Amount|Bal\. Account|Number of Lines|Balance|No\.Name/i.test(row))
+      .slice(0, 4),
+    conclusion:
+      phase === 'after'
+        ? 'Partial signal only unless all target signals including amount 68000 are visible; no preview and no posting are performed by this probe.'
+        : 'Before context only; no journal booking effect.',
+    omitted: 'Full control list, control rectangles and full page text intentionally omitted to avoid raw dumps.',
+  };
+}
+
 function statePatch(status: 'observed' | 'blocked', summary: string) {
   return {
     current: {
@@ -333,11 +371,7 @@ test('FIXEDASSETS-102 creates one controlled FA G/L Journal laboratory draft lin
       const frame = await targetFrame(page);
       frameUrl = safeUrl(frame.url());
       beforeSnapshot = await rowSnapshot(frame);
-      await writeJsonEvidence(faEvidencePath('010-before-journal-row.json'), {
-        contextBefore,
-        frameUrl,
-        snapshot: beforeSnapshot,
-      });
+      await writeJsonEvidence(faEvidencePath('010-before-journal-row.json'), compactJournalEvidence('before', contextBefore, frameUrl, beforeSnapshot));
       probe = await performControlledDraftProbe(frame);
       await page.waitForTimeout(2500);
       afterSnapshot = await rowSnapshot(frame);
@@ -404,11 +438,7 @@ test('FIXEDASSETS-102 creates one controlled FA G/L Journal laboratory draft lin
     afterSignals: signals,
     blockedBy,
   });
-  await writeJsonEvidence(faEvidencePath('030-after-journal-row.json'), {
-    contextAfter,
-    frameUrl,
-    snapshot: afterSnapshot,
-  });
+  await writeJsonEvidence(faEvidencePath('030-after-journal-row.json'), compactJournalEvidence('after', contextAfter, frameUrl, afterSnapshot, signals));
   await writeTextEvidence(
     faEvidencePath('031-after-journal-row-focused-text.txt'),
     await compactPageText(page, {
@@ -453,9 +483,15 @@ test('FIXEDASSETS-102 creates one controlled FA G/L Journal laboratory draft lin
         company: EXPECTED_COMPANY,
         type: 'Fixed Asset G/L Journal Line',
         documentNo: TARGET.documentNo,
-        fields: TARGET,
-        purpose: 'Labor draft evidence only; no preview and no posting.',
-        cleanupStatus: status === 'observed' ? 'kept-by-case-approval' : 'not-applicable-or-unknown',
+        fieldsAttempted: TARGET,
+        visibleSignals: Object.entries(signals)
+          .filter(([, visible]) => visible)
+          .map(([key]) => key),
+        missingVisibleSignals: Object.entries(signals)
+          .filter(([, visible]) => !visible)
+          .map(([key]) => key),
+        purpose: 'Labor draft evidence only; no preview and no posting. Attempted values are not treated as proven unless visible in after-evidence.',
+        cleanupStatus: status === 'observed' ? 'kept-by-case-approval' : 'kept-by-case-approval-review-required',
       },
     ],
     postedRecords: [],
@@ -484,7 +520,7 @@ test('FIXEDASSETS-102 creates one controlled FA G/L Journal laboratory draft lin
       'No setup change was executed.',
     ],
     notProved: [
-      ...(status === 'observed' ? [] : ['A controlled FA G/L Journal draft line was not proven.']),
+      ...(status === 'observed' ? [] : ['A complete controlled FA G/L Journal draft line with amount 68000 is not proven.']),
       'No Preview Posting result.',
       'No posting result.',
       'No FA Ledger Entry.',
@@ -524,7 +560,7 @@ test('FIXEDASSETS-102 creates one controlled FA G/L Journal laboratory draft lin
     ],
     blockedBy,
     requiresReview: status === 'blocked',
-    safeToFinalizeState: true,
+    safeToFinalizeState: status === 'observed',
     statePatch: patch,
     observed: {
       startedAt,

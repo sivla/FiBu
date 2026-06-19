@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-104-FA-GL-JOURNAL-BAL-ACCOUNT-DIAGNOSIS",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "controlled-sandbox-ui-diagnosis",
+  "taskClass": "wizard_work",
+  "goal": "Open Fixed Asset G/L Journals in RM-DEMO and diagnose the current Bal. Account Type / Account Type error before any amount retry, Preview Posting or posting.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-102/FIXEDASSETS-102-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-103/FIXEDASSETS-103-result.json"
+  ],
+  "knownTruth": [
+    "FA-102 produced only a partial FA G/L Journal draft signal.",
+    "Amount 68000 is not proven visible.",
+    "BC showed: Account Type or Bal. Account Type must be a G/L Account or Bank Account.",
+    "Vendor balancing with K30000 must not be repeated as if it were valid."
+  ],
+  "allowedActions": [
+    "open-business-central",
+    "run-playwright",
+    "confirm-instance-and-company",
+    "open-fa-gl-journals",
+    "capture-current-journal-error",
+    "inspect-bal-account-type-options-readonly",
+    "capture-current-row-signals",
+    "write-evidence",
+    "state-patch-plan-only"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "new-company",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "api-shortcut",
+    "book-edit",
+    "click-finish",
+    "repeat-vendor-balancing-as-valid",
+    "change-amount",
+    "change-account-no",
+    "change-bal-account-no"
+  ],
+  "acceptanceCriteria": [
+    "The run stays in MCP_1_20260210 and RM-DEMO.",
+    "The current journal error is captured if visible.",
+    "Bal. Account Type options are captured without saving a new value.",
+    "The run decides whether a later case may test G/L Account or Bank Account balancing.",
+    "No Preview Posting, posting, setup change, company switch or API shortcut occurs."
+  ],
+  "stopConditions": [
+    "Instance or company is not clearly MCP_1_20260210 / RM-DEMO.",
+    "The page is not Fixed Asset G/L Journals.",
+    "A dialog asks to post, preview, delete, finish or confirm a risky change.",
+    "The diagnosis would require changing amount, account number or balancing account number."
+  ],
+  "recommendedSkills": [
+    "bc-navigation",
+    "evidence-writer",
+    "posting-gate"
+  ],
+  "requiresUsageLog": false,
+  "nextSafeAction": "Run a narrow UI-first Bal. Account Type diagnosis; no Preview Posting and no posting."
+}
