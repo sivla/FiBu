@@ -1,0 +1,307 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-setup-page-capability-review-result",
+  "caseId": "FIXEDASSETS-078-SETUP-PAGE-CAPABILITY-REVIEW",
+  "source": "playwright-sandbox-readonly-page-capability-review",
+  "resultStatus": "observed",
+  "runPlanId": "FIXEDASSETS-078-SETUP-PAGE-CAPABILITY-REVIEW-PLAN",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "environment": {
+    "expectedInstance": "MCP_1_20260210",
+    "expectedCompany": "RM-DEMO",
+    "context": {
+      "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO",
+      "environmentInUrl": true,
+      "companyInUrl": true,
+      "companyInText": true,
+      "wrongEnvironmentVisible": false
+    },
+    "urlAfterProbe": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO"
+  },
+  "microsoftLearn": {
+    "acquireFixedAssets": "https://learn.microsoft.com/en-us/dynamics365/business-central/fa-how-acquire",
+    "purchaseFixedAssetsTraining": "https://learn.microsoft.com/en-us/training/modules/purchase-fixed-assets/",
+    "summary": [
+      "Microsoft Learn documents fixed asset acquisition through Fixed Asset G/L Journal and assisted acquisition from a Fixed Asset Card.",
+      "Microsoft Learn training also describes purchase invoices for posting acquisition cost to a fixed asset.",
+      "Therefore the current RM-DEMO blocker should be treated as page/setup/role/automation route uncertainty, not as proof that Business Central cannot acquire fixed assets through purchasing."
+    ]
+  },
+  "observedRoutes": {
+    "fixedAssetMasterVisible": true,
+    "setupPagesVisible": true,
+    "purchaseDocumentPagesVisible": true,
+    "journalRouteVisible": false,
+    "visibleRoutes": [
+      "020-fixed-assets-list",
+      "030-depreciation-books",
+      "040-purchase-invoices-list",
+      "050-purchase-orders-list"
+    ],
+    "blockedRoutes": [
+      {
+        "id": "060-fa-posting-groups",
+        "route": "tell-me-read-only"
+      },
+      {
+        "id": "070-fixed-asset-gl-journals",
+        "route": "tell-me-read-only"
+      }
+    ],
+    "targetSignals": {
+      "fixedAssetNoVisibleInFixedAssetsList": true,
+      "hgbVisibleInDepreciationBooksList": true,
+      "targetValuesWereReadOnlyObservedNotEntered": true
+    }
+  },
+  "createdRecords": [],
+  "changedRecords": [],
+  "postedRecords": [],
+  "setupChanges": [],
+  "cleanup": {
+    "required": false,
+    "completed": true,
+    "method": "not-needed-read-only",
+    "blockedBy": []
+  },
+  "proved": [
+    "The run stayed in MCP_1_20260210 / RM-DEMO.",
+    "The run performed read-only page/context diagnosis only.",
+    "Fixed Asset master/list context was checked without opening a New card.",
+    "Depreciation Books and FA Posting Groups were checked as setup/capability context.",
+    "Purchase Invoices and Purchase Orders list contexts were checked without creating documents.",
+    "Microsoft Learn documents multiple fixed-asset acquisition routes; the current blocker is route selection/setup/page capability, not absence of a BC fixed-asset concept.",
+    "FA-CNC-01 was visible in the Fixed Assets list as read-only context; it was not entered into a document.",
+    "HGB was visible in the Depreciation Books list as read-only context."
+  ],
+  "notProved": [
+    "No Type = Fixed Asset was selected in a purchase line.",
+    "No K30000 was entered.",
+    "No fixed asset acquisition was posted.",
+    "No Preview Posting.",
+    "No setup change.",
+    "No German final proof.",
+    "FA-CNC-01 was observed read-only in the Fixed Assets list, but not entered into a purchase document or journal."
+  ],
+  "changedFiles": [
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-078.json",
+    ".agent/state/cases/fixedassets-079.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/coverage_state.json",
+    "package.json",
+    "playwright/projects/fibu-book5/tests/fixedassets-078-setup-page-capability-review.spec.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-078/FIXEDASSETS-078-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-078/FIXEDASSETS-078-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-078/README.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-078/FIXEDASSETS-078-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-078/FIXEDASSETS-078-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-078/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-078/010-microsoft-learn-route-basis.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-078/020-fixed-assets-list-page-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-078/020-fixed-assets-list-buttons.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-078/030-depreciation-books-page-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-078/030-depreciation-books-buttons.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-078/040-purchase-invoices-list-page-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-078/040-purchase-invoices-list-buttons.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-078/050-purchase-orders-list-page-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-078/050-purchase-orders-list-buttons.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-078/060-fa-posting-groups-tell-me-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-078/060-fa-posting-groups-page-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-078/060-fa-posting-groups-buttons.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-078/070-fixed-asset-gl-journals-tell-me-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-078/070-fixed-asset-gl-journals-page-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-078/070-fixed-asset-gl-journals-buttons.json"
+  ],
+  "warnings": [
+    "Sandbox/Labor evidence only.",
+    "Read-only route/capability review, not a posting proof.",
+    "Microsoft Learn source is used as route basis; RM-DEMO visibility still requires separate UI proof before target entry."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-079-FIXED-ASSET-ACQUISITION-ROUTE-DECISION",
+      "active_case_file": ".agent/state/cases/fixedassets-079.json",
+      "lastReferenceCase": "FIXEDASSETS-078-SETUP-PAGE-CAPABILITY-REVIEW",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-078.json",
+      "nextStep": "FA-078 showed the next useful path is a route decision, not another document-line retry: compare Microsoft Learn acquisition options with visible RM-DEMO pages, then choose either Fixed Asset G/L Journal / Acquire action or a documented purchase-document route."
+    },
+    "lastRunSummary": {
+      "schemaVersion": 1,
+      "runId": "FIXEDASSETS-078-SETUP-PAGE-CAPABILITY-REVIEW",
+      "date": "2026-06-19",
+      "workType": "fixed-asset-setup-page-capability-review",
+      "branch": "codex/token-efficient-autopilot-state",
+      "bcRun": true,
+      "posted": false,
+      "companySwitched": false,
+      "summary": "FA-078 stayed in MCP_1_20260210 / RM-DEMO and reviewed fixed-asset acquisition capability read-only. Visible route contexts: 020-fixed-assets-list, 030-depreciation-books, 040-purchase-invoices-list, 050-purchase-orders-list. The blocker is now classified as route-decision-open: Microsoft Learn supports multiple acquisition routes, while RM-DEMO still lacks a proven purchase-document line Type=Fixed Asset path.",
+      "nextStep": "Plan FA-079 as an acquisition-route decision. Do not enter K30000 or FA-CNC-01 until the selected route has explicit preflight and setup gates."
+    },
+    "activeCase": {
+      "status": "observed-readonly",
+      "lastResult": {
+        "status": "observed",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-078/FIXEDASSETS-078-result.json",
+        "summary": "FA-078 stayed in MCP_1_20260210 / RM-DEMO and reviewed fixed-asset acquisition capability read-only. Visible route contexts: 020-fixed-assets-list, 030-depreciation-books, 040-purchase-invoices-list, 050-purchase-orders-list. The blocker is now classified as route-decision-open: Microsoft Learn supports multiple acquisition routes, while RM-DEMO still lacks a proven purchase-document line Type=Fixed Asset path."
+      },
+      "nextSafeAction": "Decide the fixed-asset acquisition route before target values or setup changes."
+    }
+  },
+  "flags": {
+    "stayedInExpectedInstance": true,
+    "companyContextDocumented": true,
+    "noBookChange": true,
+    "secretsUntouched": true,
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noNewDraft": true,
+    "noEditRecord": true,
+    "noDeleteRecord": true,
+    "noTargetVendorEntry": true,
+    "noTargetFixedAssetEntry": true,
+    "cleanupCompleted": true
+  },
+  "observed": {
+    "startedAt": "2026-06-19T08:17:39.271Z",
+    "finishedAt": "2026-06-19T08:18:39.911Z",
+    "pages": [
+      {
+        "id": "020-fixed-assets-list",
+        "route": "direct-page-id",
+        "pageId": 5601,
+        "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5601&dc=0&bookmark=1B_4BUAAAJ7_0YAQQAwADAAMAAwADEAMA",
+        "contextVisible": true,
+        "interestingSignals": {
+          "fixedAsset": true,
+          "purchase": false,
+          "journal": false,
+          "postingGroup": false,
+          "depreciationBook": false,
+          "newVisible": false,
+          "postVisible": false
+        },
+        "evidence": {
+          "text": "playwright/projects/fibu-book5/evidence/fixedassets-078/020-fixed-assets-list-page-text.txt",
+          "buttons": "playwright/projects/fibu-book5/evidence/fixedassets-078/020-fixed-assets-list-buttons.json"
+        }
+      },
+      {
+        "id": "030-depreciation-books",
+        "route": "direct-page-id",
+        "pageId": 5611,
+        "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5611&dc=0&bookmark=19_6xUAAAJ7_0MATwBNAFAAQQBOAFk",
+        "contextVisible": true,
+        "interestingSignals": {
+          "fixedAsset": false,
+          "purchase": false,
+          "journal": false,
+          "postingGroup": false,
+          "depreciationBook": true,
+          "newVisible": false,
+          "postVisible": false
+        },
+        "evidence": {
+          "text": "playwright/projects/fibu-book5/evidence/fixedassets-078/030-depreciation-books-page-text.txt",
+          "buttons": "playwright/projects/fibu-book5/evidence/fixedassets-078/030-depreciation-books-buttons.json"
+        }
+      },
+      {
+        "id": "040-purchase-invoices-list",
+        "route": "direct-page-id",
+        "pageId": 9308,
+        "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=9308&dc=0",
+        "contextVisible": true,
+        "interestingSignals": {
+          "fixedAsset": false,
+          "purchase": true,
+          "journal": false,
+          "postingGroup": false,
+          "depreciationBook": false,
+          "newVisible": true,
+          "postVisible": true
+        },
+        "evidence": {
+          "text": "playwright/projects/fibu-book5/evidence/fixedassets-078/040-purchase-invoices-list-page-text.txt",
+          "buttons": "playwright/projects/fibu-book5/evidence/fixedassets-078/040-purchase-invoices-list-buttons.json"
+        }
+      },
+      {
+        "id": "050-purchase-orders-list",
+        "route": "direct-page-id",
+        "pageId": 9307,
+        "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=9307&dc=0&bookmark=1D_JgAAAACLAQAAAAJ7BjEAMAA2ADAAMAAy",
+        "contextVisible": true,
+        "interestingSignals": {
+          "fixedAsset": false,
+          "purchase": true,
+          "journal": false,
+          "postingGroup": false,
+          "depreciationBook": false,
+          "newVisible": false,
+          "postVisible": false
+        },
+        "evidence": {
+          "text": "playwright/projects/fibu-book5/evidence/fixedassets-078/050-purchase-orders-list-page-text.txt",
+          "buttons": "playwright/projects/fibu-book5/evidence/fixedassets-078/050-purchase-orders-list-buttons.json"
+        }
+      },
+      {
+        "id": "060-fa-posting-groups",
+        "route": "tell-me-read-only",
+        "searchTerm": "FA Posting Groups",
+        "opened": false,
+        "openError": "Error: Tell-Me Treffer /^FA Posting Groups$|^Anlagenbuchungsgruppen$/i wurde nicht gefunden. Kein Enter-Fallback, weil BC-Suche mehrdeutig ist.",
+        "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO",
+        "contextVisible": false,
+        "interestingSignals": {
+          "fixedAsset": false,
+          "journal": false,
+          "postingGroup": false,
+          "setup": false,
+          "postVisible": true,
+          "newVisible": false
+        },
+        "evidence": {
+          "tellMeText": "playwright/projects/fibu-book5/evidence/fixedassets-078/060-fa-posting-groups-tell-me-text.txt",
+          "text": "playwright/projects/fibu-book5/evidence/fixedassets-078/060-fa-posting-groups-page-text.txt",
+          "buttons": "playwright/projects/fibu-book5/evidence/fixedassets-078/060-fa-posting-groups-buttons.json"
+        }
+      },
+      {
+        "id": "070-fixed-asset-gl-journals",
+        "route": "tell-me-read-only",
+        "searchTerm": "Fixed Asset G/L Journals",
+        "opened": false,
+        "openError": "Error: Tell-Me Treffer /^Fixed Asset G\\/L Journals$|^FA G\\/L Journals$|^Anlagen Fibu Buch.-Bl.*tter$|^Anlagen Fibu Buchbl.*tter$/i wurde nicht gefunden. Kein Enter-Fallback, weil BC-Suche mehrdeutig ist.",
+        "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO",
+        "contextVisible": false,
+        "interestingSignals": {
+          "fixedAsset": false,
+          "journal": false,
+          "postingGroup": false,
+          "setup": false,
+          "postVisible": true,
+          "newVisible": false
+        },
+        "evidence": {
+          "tellMeText": "playwright/projects/fibu-book5/evidence/fixedassets-078/070-fixed-asset-gl-journals-tell-me-text.txt",
+          "text": "playwright/projects/fibu-book5/evidence/fixedassets-078/070-fixed-asset-gl-journals-page-text.txt",
+          "buttons": "playwright/projects/fibu-book5/evidence/fixedassets-078/070-fixed-asset-gl-journals-buttons.json"
+        }
+      }
+    ]
+  },
+  "nextStep": "Create FA-079 as an acquisition-route decision: choose the safest next route between Fixed Asset G/L Journal / Acquire action and purchase-document acquisition, with explicit preflight before any target values."
+}

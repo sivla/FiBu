@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-079-FIXED-ASSET-ACQUISITION-ROUTE-DECISION",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "fixed-asset-acquisition-route-decision",
+  "goal": "Choose the safest next fixed-asset acquisition route for Kapitel 21 based on Microsoft Learn and RM-DEMO evidence, before any target-value entry, setup change, preview or posting.",
+  "basedOn": [
+    ".agent/state/cases/fixedassets-074.json",
+    ".agent/state/cases/fixedassets-076.json",
+    ".agent/state/cases/fixedassets-077.json",
+    ".agent/state/cases/fixedassets-078.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-078/FIXEDASSETS-078-result.json"
+  ],
+  "knownTruth": [
+    "FA-076 and FA-077 did not prove a stable Purchase Invoice/Purchase Order line Type = Fixed Asset route in RM-DEMO.",
+    "FA-078 observed Fixed Assets, Depreciation Books, Purchase Invoices and Purchase Orders read-only in MCP_1_20260210 / RM-DEMO.",
+    "FA-078 observed FA-CNC-01 in the Fixed Assets list and HGB in Depreciation Books as read-only context; neither value was entered into a document or journal.",
+    "FA-078 did not open a Fixed Asset G/L Journal route through the strict Tell-Me matcher, so that route remains candidate/open rather than proven.",
+    "Microsoft Learn documents multiple fixed-asset acquisition routes, including Fixed Asset G/L Journal / assisted acquisition and purchase-document acquisition."
+  ],
+  "allowedActions": [
+    "static-evidence-review",
+    "read-only-ui-context-diagnosis-if-needed",
+    "compare-microsoft-learn-route-options",
+    "write-route-decision-json",
+    "write-compact-learning-note",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "enter-K30000",
+    "enter-FA-CNC-01-in-document-or-journal",
+    "new-draft",
+    "edit-record",
+    "delete-record",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "api-shortcut",
+    "book-edit",
+    "repeat-purchase-invoice-direct-type-entry",
+    "repeat-purchase-order-line-type-route"
+  ],
+  "defaultLockedActionsUnlockedForThisCase": [],
+  "acceptanceCriteria": [
+    "The decision names one preferred next route and one fallback route.",
+    "The decision separates Microsoft Learn route support from RM-DEMO UI evidence.",
+    "The decision states whether the next practical case needs read-only preflight, setup-fit, target-value entry, preview, or posting gates.",
+    "No target value, draft, setup change, preview or posting is performed in the decision case."
+  ],
+  "stopConditions": [
+    "The decision would require entering K30000 or FA-CNC-01 in a document or journal during this case.",
+    "The evidence does not support choosing a route.",
+    "The route would repeat FA-076 or FA-077 without a new reason."
+  ],
+  "recommendedSkills": [
+    "safety-gate-checker",
+    "evidence-writer",
+    "beginner-check"
+  ],
+  "nextSafeAction": "Create a compact acquisition-route decision. Likely candidates: Fixed Asset G/L Journal / Acquire action as safer alternative, or a separately gated purchase-document route if page capability can be proven.",
+  "mustRead": [
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-078.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-078/FIXEDASSETS-078-result.json",
+    ".agent/capabilities.json",
+    "package.json"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-079/FIXEDASSETS-079-route-decision.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-079/FIXEDASSETS-079-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-079/README.md"
+  ]
+}

@@ -3,7 +3,7 @@
   "caseId": "FIXEDASSETS-078-SETUP-PAGE-CAPABILITY-REVIEW",
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "status": "planned",
+  "status": "observed-readonly",
   "workType": "fixed-asset-setup-page-capability-review",
   "goal": "Stop repeating document-line Type retries and review, read-only first, which BC page/setup/capability route explains why Type = Fixed Asset is not reachable in Purchase Invoice or Purchase Order lines in the current RM-DEMO UI state.",
   "basedOn": [
@@ -70,7 +70,7 @@
     "safety-gate-checker",
     "evidence-writer"
   ],
-  "nextSafeAction": "Run a read-only setup/page capability review for Fixed Asset acquisition routes before any further document-line or target-value entry.",
+  "nextSafeAction": "Switch to FIXEDASSETS-079 acquisition-route decision; choose a route before any target-value or setup action.",
   "mustRead": [
     ".agent/state/current.json",
     ".agent/state/cases/fixedassets-077.json",
@@ -82,5 +82,42 @@
     "playwright/projects/fibu-book5/evidence/fixedassets-078/FIXEDASSETS-078-result.json",
     "playwright/projects/fibu-book5/evidence/fixedassets-078/FIXEDASSETS-078-learning.md",
     "playwright/projects/fibu-book5/evidence/fixedassets-078/README.md"
-  ]
+  ],
+  "lastResult": {
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-078/FIXEDASSETS-078-result.json",
+    "evidenceFolder": "playwright/projects/fibu-book5/evidence/fixedassets-078/",
+    "resultStatus": "observed",
+    "summary": "FA-078 stayed in MCP_1_20260210 / RM-DEMO and reviewed fixed-asset acquisition capability read-only. Visible route contexts: 020-fixed-assets-list, 030-depreciation-books, 040-purchase-invoices-list, 050-purchase-orders-list. The blocker is now classified as route-decision-open: Microsoft Learn supports multiple acquisition routes, while RM-DEMO still lacks a proven purchase-document line Type=Fixed Asset path.",
+    "bcRun": true,
+    "playwrightRun": true,
+    "posted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "companySwitched": false,
+    "targetVendorEntered": false,
+    "targetFixedAssetEntered": false,
+    "targetSignals": {
+      "fixedAssetNoVisibleInFixedAssetsList": true,
+      "hgbVisibleInDepreciationBooksList": true,
+      "targetValuesWereReadOnlyObservedNotEntered": true
+    },
+    "visibleRoutes": [
+      "020-fixed-assets-list",
+      "030-depreciation-books",
+      "040-purchase-invoices-list",
+      "050-purchase-orders-list"
+    ],
+    "blockedRoutes": [
+      {
+        "id": "060-fa-posting-groups",
+        "route": "tell-me-read-only"
+      },
+      {
+        "id": "070-fixed-asset-gl-journals",
+        "route": "tell-me-read-only"
+      }
+    ],
+    "cleanupCompleted": true,
+    "nextStep": "Create FA-079 as an acquisition-route decision: choose the safest next route between Fixed Asset G/L Journal / Acquire action and purchase-document acquisition, with explicit preflight before any target values."
+  }
 }

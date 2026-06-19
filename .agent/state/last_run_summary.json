@@ -1,30 +1,25 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-077-PURCHASE-ORDER-LINE-TYPE-ROUTE-PROBE",
+  "runId": "FIXEDASSETS-078-SETUP-PAGE-CAPABILITY-REVIEW",
   "date": "2026-06-19",
-  "workType": "purchase-order-line-type-route-probe",
+  "workType": "fixed-asset-setup-page-capability-review",
   "branch": "codex/token-efficient-autopilot-state",
   "bcRun": true,
   "posted": false,
   "companySwitched": false,
-  "summary": "FA-077 ran in MCP_1_20260210 / RM-DEMO and attempted only Purchase Order Line Type = Fixed Asset through a scoped Purchase Orders route. The result is blocked: Fixed Asset did not become visible. Temporary draft 106001 was deleted through UI cleanup. No K30000, no FA-CNC-01, no Preview Posting, no posting, no setup change, no company switch and no API shortcut occurred.",
+  "summary": "FA-078 stayed in MCP_1_20260210 / RM-DEMO and reviewed fixed-asset acquisition capability read-only. Visible route contexts: 020-fixed-assets-list, 030-depreciation-books, 040-purchase-invoices-list, 050-purchase-orders-list. The blocker is now classified as route-decision-open: Microsoft Learn supports multiple acquisition routes, while RM-DEMO still lacks a proven purchase-document line Type=Fixed Asset path.",
   "commandsRun": [
-    "node -e \"JSON.parse(fs.readFileSync('package.json','utf8'))\"",
-    "npm run check:encoding",
-    "git diff --check",
-    "npm run fibu:fixedassets:purchase-order-line-type-route-probe",
     "npm run agent:preflight",
     "npm run agent:context",
-    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-077/FIXEDASSETS-077-result.json",
-    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-077/FIXEDASSETS-077-result.json"
+    "npm run check:encoding",
+    "git diff --check",
+    "npm run fibu:fixedassets:setup-page-capability-review"
   ],
   "evidence": [
-    "playwright/projects/fibu-book5/evidence/fixedassets-077/FIXEDASSETS-077-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-077/030-purchase-order-line-type-route.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-077/031-after-route-focused-text.txt",
-    "playwright/projects/fibu-book5/evidence/fixedassets-077/090-cleanup-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-077/FIXEDASSETS-077-learning.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-077/README.md"
+    "playwright/projects/fibu-book5/evidence/fixedassets-078/FIXEDASSETS-078-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-078/FIXEDASSETS-078-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-078/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-078/010-microsoft-learn-route-basis.md"
   ],
-  "nextStep": "Run FA-078 as a read-only setup/page capability review. Do not repeat document-line Type retries until the page/setup capability cause is understood."
+  "nextStep": "Run FA-079 as a compact route decision. Do not enter target values or create drafts until a route and gates are selected."
 }
