@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "caseId": "LIVE-SMOKE-BC-004-READONLY-VISIBLE-COMPANY-CONTEXT",
+  "title": "Read-only Business Central visible company context smoke test",
+  "status": "planned",
+  "workType": "read-only-tool-live-smoke-visible-company-context",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Open Business Central read-only, confirm the expected sandbox and company URL context, and try to prove whether the current company is visibly present in shell/page text without opening settings or changing company.",
+  "budgetProfile": "standard",
+  "taskClass": "wizard_work",
+  "modelClass": "gpt-4-medium",
+  "mustRead": [
+    ".agent/state/current.json",
+    "playwright/projects/fibu-book5/project.ts",
+    "playwright/core/bc-helpers.ts",
+    "playwright/core/evidence.ts",
+    "playwright/projects/fibu-book5/tests/live-smoke-bc-003-readonly-action-inventory.spec.ts"
+  ],
+  "allowedActions": [
+    "read-only-bc-open",
+    "read-only-shell-context-check",
+    "read-only-page-text-extract",
+    "read-only-visible-company-text-check",
+    "write-json-evidence",
+    "result-normalize",
+    "state-patch-plan-only"
+  ],
+  "forbiddenActions": [
+    "post",
+    "preview-posting",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "company-switch",
+    "settings-open",
+    "new",
+    "edit",
+    "delete",
+    "draft",
+    "api-shortcut",
+    "book-edit",
+    "screenshot-binary-commit",
+    "action-click"
+  ],
+  "safetyGates": [
+    "Abort if URL does not contain MCP_1_20260210.",
+    "Abort if company URL parameter is not RM-DEMO.",
+    "Do not open My Settings or company switch dialogs.",
+    "Do not click actions, menus or role-center tiles.",
+    "If company is not visible in shell/page text, record notProved instead of forcing navigation."
+  ],
+  "acceptanceCriteria": [
+    "Business Central opens with existing storageState.",
+    "Instance MCP_1_20260210 is confirmed from URL.",
+    "Company RM-DEMO is confirmed from URL parameter.",
+    "Visible shell/page text is searched for RM-DEMO without clicking any action.",
+    "Result JSON distinguishes URL proof from visible UI proof.",
+    "Result JSON contains no-write, no-post, no-preview, no-draft, no-setup-change, no-company-switch, no-settings-open and no-action-click flags.",
+    "No state is written automatically."
+  ],
+  "evidenceTargets": [
+    "playwright/projects/fibu-book5/evidence/live-smoke-bc-004/result.json"
+  ],
+  "nextSafeAction": "Create and run a read-only Playwright smoke that checks whether RM-DEMO is visible in shell/page text without opening settings or clicking actions, after agent:run-plan and agent:subagent-plan pass."
+}
