@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-087-FA-GL-JOURNAL-LINE-READINESS-DECISION",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "fixed-asset-gl-journal-line-readiness-decision",
+  "goal": "Decide whether a controlled Fixed Asset G/L Journal line probe is ready, based only on FA-086 evidence, before any target value or draft line is entered.",
+  "basedOn": [
+    ".agent/state/cases/fixedassets-086-fa-journal-candidate-route-probe.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-086/FIXEDASSETS-086-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-086/030-fa-journal-route-signals.json"
+  ],
+  "knownTruth": [
+    "FA-086 opened the `Fixed Asset G/L Journals` Tell-Me candidate read-only.",
+    "The resulting URL contained page=5628 in MCP_1_20260210 / RM-DEMO.",
+    "Visible journal signals include Batch Name, Posting Date, Document No., Account Type, Account No., FA Posting Type, Fixed Asset No., Amount and Bal. Account fields.",
+    "The Post action is visible on the page, but was not clicked.",
+    "No journal line, target value, preview, posting, setup change or draft keep occurred."
+  ],
+  "allowedActions": [
+    "read-existing-fa-086-evidence",
+    "decide-required-fa-gl-journal-line-fields",
+    "define-safe-draft-policy",
+    "define-cleanup-or-keep-rule",
+    "define-preview-and-posting-gates",
+    "write-json-evidence",
+    "write-compact-learning-note",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "open-business-central",
+    "company-switch",
+    "new-journal-line",
+    "edit-journal-line",
+    "enter-K30000",
+    "enter-amount",
+    "enter-FA-CNC-01-in-document-or-journal",
+    "delete-record",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "api-shortcut",
+    "book-edit",
+    "click-finish",
+    "click-ok-or-yes-on-confirmation",
+    "keep-draft"
+  ],
+  "defaultLockedActionsUnlockedForThisCase": [],
+  "acceptanceCriteria": [
+    "Decision is based on FA-086 evidence, not a new BC run.",
+    "Required fields and unknowns are listed before any later journal-line probe.",
+    "Cleanup or keep-draft policy is explicit.",
+    "Preview/Post gates are explicit and remain locked for this case.",
+    "The next case either unlocks a no-post journal-line draft probe or sends the work to setup/readiness diagnostics."
+  ],
+  "stopConditions": [
+    "Decision would require opening BC.",
+    "Decision would require entering target values.",
+    "FA-086 evidence is insufficient to define required fields or safety gates."
+  ],
+  "recommendedSkills": [
+    "safety-gate-checker",
+    "evidence-writer",
+    "next-test-selector"
+  ],
+  "nextSafeAction": "Perform a local readiness decision for a controlled FA G/L Journal line probe; do not open BC in this case.",
+  "mustRead": [
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-086-fa-journal-candidate-route-probe.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-086/FIXEDASSETS-086-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-086/030-fa-journal-route-signals.json",
+    "package.json"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-087/FIXEDASSETS-087-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-087/FIXEDASSETS-087-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-087/README.md"
+  ]
+}
