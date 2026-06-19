@@ -3,7 +3,7 @@
   "caseId": "FIXEDASSETS-065-PURCHASE-INVOICE-LINE-TYPE-HELPER-DIAGNOSIS",
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "status": "planned",
+  "status": "observed-local-analysis",
   "workType": "helper-diagnosis-before-next-ui-run",
   "goal": "Zeilentyp-Auswahl fuer Einkaufsrechnungszeilen so diagnostizieren, dass Type = Fixed Asset erst sichtbar bewiesen wird, bevor Zielwerte eingegeben werden.",
   "mustRead": [
@@ -38,5 +38,11 @@
     "posting-gate",
     "screenshot-qa",
     "evidence-writer"
-  ]
+  ],
+  "lastResult": {
+    "status": "observed",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-065/FIXEDASSETS-065-result.json",
+    "summary": "Existing 064 evidence proves a blocker: Type remained Item and a vendor-registration dialog appeared. No target values may be entered until the line-type helper is refined."
+  },
+  "nextSafeAction": "Refine the purchase-invoice line-type guard/helper locally, then run a no-target UI probe only if the helper can stop Item-line/vendor-dialog contexts."
 }

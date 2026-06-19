@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-065-ACTIVE-CASE-STATE-SYNC",
+  "runId": "FIXEDASSETS-065-PURCHASE-INVOICE-LINE-TYPE-HELPER-DIAGNOSIS",
   "date": "2026-06-19",
-  "workType": "agent-state-sync",
+  "workType": "local-static-helper-diagnosis",
   "branch": "codex/token-efficient-autopilot-state",
   "bcRun": false,
   "posted": false,
   "companySwitched": false,
-  "summary": "Autopilot-State wurde vom finalisierten LIVE-SMOKE-BC-004 zurueck auf den laut Autopilot und Coverage naechsten praktischen Block FIXEDASSETS-065 gesetzt. Keine Business-Central- oder Playwright-Ausfuehrung.",
+  "summary": "FIXEDASSETS-065 analysed existing 064 evidence without BC/Playwright execution. It confirms that Type remained Item and a vendor-registration dialog appeared; the next helper must stop this path before target values.",
   "commandsToRunBeforeAutopilot": [
     "npm run agent:preflight",
     "npm run agent:context",
@@ -40,5 +40,5 @@
     "stateFinalize": "scripts/agent/state-finalize.mjs",
     "skillQualityCheck": "scripts/agent/skills-quality-check.mjs"
   },
-  "nextStep": "FIXEDASSETS-065 ausfuehren oder vorbereiten: statische Helper-/Guard-Diagnose fuer Purchase-Invoice-Line-Type, damit Type = Fixed Asset erst sichtbar bewiesen wird, bevor Zielwerte eingegeben werden."
+  "nextStep": "Implement or refine a local guard/helper for Purchase Invoice line type selection: Item line + vendor-registration dialog must be classified as a hard blocker before any K30000 or FA-CNC-01 entry."
 }
