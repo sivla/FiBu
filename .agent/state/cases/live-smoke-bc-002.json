@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "caseId": "LIVE-SMOKE-BC-002-READONLY-PAGE-CONTEXT",
+  "title": "Read-only Business Central page context smoke test",
+  "status": "planned",
+  "workType": "read-only-tool-live-smoke-page-context",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Open Business Central read-only, confirm the expected sandbox and company URL context, and collect stronger shell/page context without data changes.",
+  "budgetProfile": "standard",
+  "taskClass": "wizard_work",
+  "modelClass": "gpt-4-medium",
+  "mustRead": [
+    ".agent/state/current.json",
+    "playwright/projects/fibu-book5/project.ts",
+    "playwright/core/bc-helpers.ts",
+    "playwright/core/evidence.ts",
+    "playwright/projects/fibu-book5/tests/live-smoke-bc-002-readonly-page-context.spec.ts"
+  ],
+  "allowedActions": [
+    "read-only-bc-open",
+    "read-only-shell-context-check",
+    "read-only-page-text-extract",
+    "write-json-evidence",
+    "result-normalize",
+    "state-patch-plan-only"
+  ],
+  "forbiddenActions": [
+    "post",
+    "preview-posting",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "company-switch",
+    "new",
+    "edit",
+    "delete",
+    "draft",
+    "api-shortcut",
+    "book-edit",
+    "screenshot-binary-commit"
+  ],
+  "safetyGates": [
+    "Abort if URL does not contain MCP_1_20260210.",
+    "Abort if company URL parameter is not RM-DEMO.",
+    "Abort if a dialog with OK, Yes, Ja, Post, Preview, Delete, New or Edit appears.",
+    "Do not click global actions or unsafe buttons.",
+    "Stay on the initial Role Center or shell context if page opening would be ambiguous."
+  ],
+  "acceptanceCriteria": [
+    "Business Central opens with existing storageState.",
+    "Instance MCP_1_20260210 is confirmed from URL.",
+    "Company RM-DEMO is confirmed from URL parameter.",
+    "Business Central shell/search context is visible.",
+    "Compact read-only shell/page context is captured.",
+    "Result JSON contains no-write, no-post, no-preview, no-draft and no-setup-change flags.",
+    "No state is written automatically."
+  ],
+  "evidenceTargets": [
+    "playwright/projects/fibu-book5/evidence/live-smoke-bc-002/result.json"
+  ],
+  "nextSafeAction": "Run npm run fibu:live-smoke:readonly-page-context after agent:run-plan passes."
+}

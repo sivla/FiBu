@@ -1,0 +1,271 @@
+import { expect, test, type Page } from '@playwright/test';
+
+import { pageText, requireBcUrl, visibleButtonNames, waitForBusinessCentralShell } from '../../../core/bc-helpers';
+import { writeJsonEvidence } from '../../../core/evidence';
+import { project } from '../project';
+
+const CASE_ID = 'LIVE-SMOKE-BC-002-READONLY-PAGE-CONTEXT';
+const EXPECTED_INSTANCE = 'MCP_1_20260210';
+const EXPECTED_COMPANY = project.defaultCompany;
+const RESULT_PATH = 'playwright/projects/fibu-book5/evidence/live-smoke-bc-002/result.json';
+
+const forbiddenDialogAction = /\b(OK|Yes|Ja|Post|Preview|Delete|New|Edit|Buchen|Vorschau|Loeschen|Neu|Bearbeiten)\b/i;
+const shellButton = /Search|Suchen|Tell me|Was moechten Sie tun|Settings|Einstellungen|Help|Hilfe|My Settings|Meine Einstellungen/i;
+
+test.use({ storageState: 'playwright/.auth/bc-user.json' });
+
+function buildTargetUrl() {
+  const target = new URL(requireBcUrl(project.envPrefix));
+  if (!target.toString().includes(EXPECTED_INSTANCE)) {
+    throw new Error(`Configured BC URL does not target ${EXPECTED_INSTANCE}.`);
+  }
+
+  target.searchParams.set('company', EXPECTED_COMPANY);
+  return target;
+}
+
+async function readDialogTexts(page: Page) {
+  const texts: string[] = [];
+  const scopes = [page, ...page.frames()];
+
+  for (const scope of scopes) {
+    const dialogs = scope.locator('[role="dialog"], [aria-modal="true"], .ms-Dialog-main');
+    const count = await dialogs.count().catch(() => 0);
+    for (let index = 0; index < count; index += 1) {
+      const text = await dialogs.nth(index).innerText({ timeout: 500 }).catch(() => '');
+      const normalized = text.replace(/\s+/g, ' ').trim();
+      if (normalized) {
+        texts.push(normalized);
+      }
+    }
+  }
+
+  return [...new Set(texts)];
+}
+
+async function visibleShellButtons(page: Page) {
+  return (await visibleButtonNames(page))
+    .filter((name) => shellButton.test(name))
+    .slice(0, 20);
+}
+
+async function shellSignals(page: Page) {
+  const searchButtonVisible = await page.getByRole('button', { name: /Search|Suchen/i }).isVisible({ timeout: 1000 }).catch(() => false);
+  const bodyHasBusinessCentralText = /Business Central|Dynamics 365/i.test(await page.locator('body').innerText({ timeout: 1000 }).catch(() => ''));
+  return {
+    searchButtonVisible,
+    bodyHasBusinessCentralText,
+    visibleShellButtonNames: await visibleShellButtons(page)
+  };
+}
+
+function compactSafePageLines(text: string) {
+  const keep =
+    /Business Central|Role Center|Search|Suchen|Tell me|Was moechten Sie tun|Meine Einstellungen|My Settings|RM-DEMO|CRONUS|Activities|Aktivitaeten|Insights|Einblicke|Finance|Sales|Purchase|Inventory/i;
+  const seen = new Set<string>();
+  return text
+    .split('\n')
+    .map((line) => line.replace(/\s+/g, ' ').trim())
+    .filter((line) => line && keep.test(line))
+    .filter((line) => {
+      if (seen.has(line)) {
+        return false;
+      }
+      seen.add(line);
+      return true;
+    })
+    .slice(0, 50);
+}
+
+function frameContext(page: Page) {
+  return page.frames().map((frame) => ({
+    name: frame.name(),
+    urlContainsInstance: frame.url().includes(EXPECTED_INSTANCE),
+    isBusinessCentralFrame: /businesscentral\.dynamics\.com|bc\.dynamics\.com/i.test(frame.url()),
+    urlSample: frame.url().slice(0, 160)
+  }));
+}
+
+function baseResult() {
+  return {
+    schemaVersion: 1,
+    purpose: 'autopilot-live-smoke-result',
+    caseId: CASE_ID,
+    source: 'playwright-readonly-smoke',
+    runPlanId: `${CASE_ID}-PLAN`,
+    selectedTaskClass: 'wizard_work',
+    selectedModelClass: 'gpt-4-medium',
+    changedFiles: [RESULT_PATH],
+    evidenceRefs: [RESULT_PATH],
+    statePatch: {},
+    safeToFinalizeState: false,
+    flags: {
+      noWrite: true,
+      noPost: true,
+      noPreview: true,
+      noShip: true,
+      noInvoice: true,
+      noPayment: true,
+      noDraft: true,
+      noSetupChange: true,
+      noCompanySwitch: true,
+      noApiShortcut: true,
+      noBookChange: true,
+      noScreenshot: true
+    }
+  };
+}
+
+function safeStatePatch(status: 'observed' | 'blocked', resultFile: string, reason: string) {
+  return {
+    lastRunSummary: {
+      schemaVersion: 1,
+      runId: CASE_ID,
+      date: '2026-06-19',
+      workType: 'playwright-readonly-smoke-page-context',
+      branch: 'codex/token-efficient-autopilot-state',
+      bcRun: true,
+      posted: false,
+      companySwitched: false,
+      summary: reason,
+      nextStep:
+        status === 'observed'
+          ? 'Review the state-finalize plan or continue with the next explicitly read-only page-context smoke. Do not use --write without explicit approval.'
+          : 'Resolve the live-smoke blocker before any further live Business Central run.'
+    },
+    activeCase: {
+      status,
+      lastResult: {
+        status,
+        resultFile,
+        summary: reason
+      },
+      nextSafeAction:
+        status === 'observed'
+          ? 'Result is safe for a state-finalize patch plan only. Wait for explicit approval before --write.'
+          : 'Fix blocker and rerun read-only smoke before any state finalization.'
+    }
+  };
+}
+
+test('LIVE-SMOKE-BC-002 confirms BC shell and page context without writing', async ({ page }) => {
+  const startedAt = new Date().toISOString();
+  let finalUrl = '';
+  let title = '';
+
+  try {
+    const targetUrl = buildTargetUrl();
+    await page.goto(targetUrl.toString(), { waitUntil: 'domcontentloaded' });
+    await waitForBusinessCentralShell(page);
+
+    finalUrl = page.url();
+    title = await page.title();
+    const parsedFinalUrl = new URL(finalUrl);
+    const detectedInstance = parsedFinalUrl.toString().includes(EXPECTED_INSTANCE) ? EXPECTED_INSTANCE : null;
+    const detectedCompany = parsedFinalUrl.searchParams.get('company');
+    const text = await pageText(page);
+    const dialogTexts = await readDialogTexts(page);
+    const dangerousDialogs = dialogTexts.filter((dialogText) => forbiddenDialogAction.test(dialogText));
+    const shell = await shellSignals(page);
+    const companyTextVisible = new RegExp(`\\b${EXPECTED_COMPANY}\\b`, 'i').test(text);
+
+    if (detectedInstance !== EXPECTED_INSTANCE) {
+      throw new Error(`Detected instance mismatch: ${detectedInstance ?? 'not detected'}.`);
+    }
+    if (detectedCompany !== EXPECTED_COMPANY) {
+      throw new Error(`Detected company mismatch: ${detectedCompany ?? 'not detected'}.`);
+    }
+    if (dangerousDialogs.length > 0) {
+      throw new Error(`Unsafe dialog detected: ${dangerousDialogs.join(' | ')}`);
+    }
+    if (!shell.searchButtonVisible && shell.visibleShellButtonNames.length === 0) {
+      throw new Error('Business Central shell context was not readable.');
+    }
+
+    const result = {
+      ...baseResult(),
+      resultStatus: 'observed',
+      proved: [
+        `Business Central URL stayed in ${EXPECTED_INSTANCE}.`,
+        `Company URL parameter stayed ${EXPECTED_COMPANY}.`,
+        'Business Central shell was visible with existing storageState.',
+        shell.searchButtonVisible
+          ? 'Business Central Search/Suchen shell button was visible without clicking it.'
+          : 'Business Central shell button labels were readable without clicking them.',
+        'Business Central frame/page context was captured read-only.',
+        'BC read-only was reachable.',
+        'No booking was triggered.',
+        'No Preview Posting was triggered.',
+        'No Post was triggered.',
+        'No draft was created.',
+        'No setup change was triggered.',
+        'No company switch was triggered.'
+      ],
+      notProved: [
+        'No business process, posting readiness, ledger trace or book screenshot was tested.',
+        companyTextVisible
+          ? 'Company was confirmed from URL and also appeared in page text.'
+          : 'Company was confirmed from URL context only; no separate UI text confirmation was visible in this read-only smoke.',
+        'No separate Business Central page was opened because read-only Role Center shell context was sufficient and safer for this smoke.'
+      ],
+      warnings: companyTextVisible ? [] : ['Company RM-DEMO was not visible in compact page text; URL parameter is the company proof.'],
+      blockedBy: [],
+      requiresReview: false,
+      safeToFinalizeState: true,
+      statePatch: safeStatePatch(
+        'observed',
+        RESULT_PATH,
+        'LIVE-SMOKE-BC-002 ran read-only in MCP_1_20260210 / RM-DEMO and captured stronger shell/page context evidence. No posting, preview, draft, setup change, company switch or book change.'
+      ),
+      environment: {
+        instance: detectedInstance,
+        company: detectedCompany,
+        expectedInstance: EXPECTED_INSTANCE,
+        expectedCompany: EXPECTED_COMPANY,
+        companyTextVisible
+      },
+      observed: {
+        startedAt,
+        finishedAt: new Date().toISOString(),
+        url: finalUrl,
+        title,
+        dialogCount: dialogTexts.length,
+        shell,
+        frameContext: frameContext(page),
+        safePageTextLines: compactSafePageLines(text)
+      }
+    };
+
+    await writeJsonEvidence(RESULT_PATH, result);
+    expect(result.resultStatus).toBe('observed');
+  } catch (error) {
+    const reason = error instanceof Error ? error.message : String(error);
+    const blockedResult = {
+      ...baseResult(),
+      resultStatus: 'blocked',
+      proved: [],
+      notProved: [
+        'Business Central read-only page-context smoke did not complete.',
+        'No write/post/preview/draft/setup/company-switch action is claimed.'
+      ],
+      warnings: [],
+      blockedBy: [reason],
+      requiresReview: true,
+      safeToFinalizeState: false,
+      statePatch: safeStatePatch('blocked', RESULT_PATH, `LIVE-SMOKE-BC-002 blocked: ${reason}`),
+      environment: {
+        expectedInstance: EXPECTED_INSTANCE,
+        expectedCompany: EXPECTED_COMPANY
+      },
+      observed: {
+        startedAt,
+        finishedAt: new Date().toISOString(),
+        url: finalUrl || page.url(),
+        title
+      }
+    };
+
+    await writeJsonEvidence(RESULT_PATH, blockedResult);
+    throw error;
+  }
+});

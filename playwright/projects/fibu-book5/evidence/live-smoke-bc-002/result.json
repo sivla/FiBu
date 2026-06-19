@@ -1,0 +1,157 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-live-smoke-result",
+  "caseId": "LIVE-SMOKE-BC-002-READONLY-PAGE-CONTEXT",
+  "source": "playwright-readonly-smoke",
+  "runPlanId": "LIVE-SMOKE-BC-002-READONLY-PAGE-CONTEXT-PLAN",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-medium",
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/live-smoke-bc-002/result.json"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/live-smoke-bc-002/result.json"
+  ],
+  "statePatch": {
+    "lastRunSummary": {
+      "schemaVersion": 1,
+      "runId": "LIVE-SMOKE-BC-002-READONLY-PAGE-CONTEXT",
+      "date": "2026-06-19",
+      "workType": "playwright-readonly-smoke-page-context",
+      "branch": "codex/token-efficient-autopilot-state",
+      "bcRun": true,
+      "posted": false,
+      "companySwitched": false,
+      "summary": "LIVE-SMOKE-BC-002 ran read-only in MCP_1_20260210 / RM-DEMO and captured stronger shell/page context evidence. No posting, preview, draft, setup change, company switch or book change.",
+      "nextStep": "Review the state-finalize plan or continue with the next explicitly read-only page-context smoke. Do not use --write without explicit approval."
+    },
+    "activeCase": {
+      "status": "observed",
+      "lastResult": {
+        "status": "observed",
+        "resultFile": "playwright/projects/fibu-book5/evidence/live-smoke-bc-002/result.json",
+        "summary": "LIVE-SMOKE-BC-002 ran read-only in MCP_1_20260210 / RM-DEMO and captured stronger shell/page context evidence. No posting, preview, draft, setup change, company switch or book change."
+      },
+      "nextSafeAction": "Result is safe for a state-finalize patch plan only. Wait for explicit approval before --write."
+    }
+  },
+  "safeToFinalizeState": true,
+  "flags": {
+    "noWrite": true,
+    "noPost": true,
+    "noPreview": true,
+    "noShip": true,
+    "noInvoice": true,
+    "noPayment": true,
+    "noDraft": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true,
+    "noScreenshot": true
+  },
+  "resultStatus": "observed",
+  "proved": [
+    "Business Central URL stayed in MCP_1_20260210.",
+    "Company URL parameter stayed RM-DEMO.",
+    "Business Central shell was visible with existing storageState.",
+    "Business Central Search/Suchen shell button was visible without clicking it.",
+    "Business Central frame/page context was captured read-only.",
+    "BC read-only was reachable.",
+    "No booking was triggered.",
+    "No Preview Posting was triggered.",
+    "No Post was triggered.",
+    "No draft was created.",
+    "No setup change was triggered.",
+    "No company switch was triggered."
+  ],
+  "notProved": [
+    "No business process, posting readiness, ledger trace or book screenshot was tested.",
+    "Company was confirmed from URL context only; no separate UI text confirmation was visible in this read-only smoke.",
+    "No separate Business Central page was opened because read-only Role Center shell context was sufficient and safer for this smoke."
+  ],
+  "warnings": [
+    "Company RM-DEMO was not visible in compact page text; URL parameter is the company proof."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "environment": {
+    "instance": "MCP_1_20260210",
+    "company": "RM-DEMO",
+    "expectedInstance": "MCP_1_20260210",
+    "expectedCompany": "RM-DEMO",
+    "companyTextVisible": false
+  },
+  "observed": {
+    "startedAt": "2026-06-19T00:29:07.995Z",
+    "finishedAt": "2026-06-19T00:29:16.212Z",
+    "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO",
+    "title": "Dynamics 365 Business Central",
+    "dialogCount": 0,
+    "shell": {
+      "searchButtonVisible": true,
+      "bodyHasBusinessCentralText": true,
+      "visibleShellButtonNames": []
+    },
+    "frameContext": [
+      {
+        "name": "",
+        "urlContainsInstance": true,
+        "isBusinessCentralFrame": true,
+        "urlSample": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO"
+      },
+      {
+        "name": "",
+        "urlContainsInstance": true,
+        "isBusinessCentralFrame": true,
+        "urlSample": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&aadTenantId=b8fd10d1-3599-4721-8651-f95bd868aba7&startT"
+      },
+      {
+        "name": "b3lcontrolAddIn",
+        "urlContainsInstance": false,
+        "isBusinessCentralFrame": false,
+        "urlSample": "about:blank"
+      },
+      {
+        "name": "o365shellwcssframe",
+        "urlContainsInstance": false,
+        "isBusinessCentralFrame": true,
+        "urlSample": "https://webshell.suite.office.com/iframe/TokenFactoryIframe?origin=https%3A%2F%2Fbusinesscentral.dynamics.com&shsid=74c8d7bf-2b9e-4b54-999e-14af8ba39c5a&apiver="
+      },
+      {
+        "name": "",
+        "urlContainsInstance": false,
+        "isBusinessCentralFrame": false,
+        "urlSample": "https://webshell.suite.office.com/iframe/TokenFactoryIframe"
+      },
+      {
+        "name": "",
+        "urlContainsInstance": false,
+        "isBusinessCentralFrame": false,
+        "urlSample": "https://webshell.suite.office.com/iframe/TokenFactoryIframe"
+      }
+    ],
+    "safePageTextLines": [
+      "Dynamics 365 Business Central",
+      "Finance",
+      "Sales",
+      "Want to learn more about Business Central?",
+      "Sales Quote",
+      "Sales Order",
+      "Sales Invoice",
+      "Purchase Quote",
+      "Purchase Order",
+      "Purchase Invoice",
+      "Activities",
+      "Sales This Month",
+      "Overdue Sales Invoice",
+      "Ongoing Sales",
+      "Sales Quotes",
+      "Sales Orders",
+      "Sales Invoices",
+      "Ongoing Purchases",
+      "Purchase Orders",
+      "Einblicke"
+    ]
+  }
+}
