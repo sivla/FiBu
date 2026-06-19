@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-fa-gl-journal-line-ownership-readonly-result",
+  "caseId": "FIXEDASSETS-106-FA-GL-JOURNAL-LINE-OWNERSHIP-READONLY",
+  "source": "playwright-sandbox-readonly-diagnosis",
+  "resultStatus": "observed",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-medium",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "environment": {
+    "expectedInstance": "MCP_1_20260210",
+    "expectedCompany": "RM-DEMO",
+    "context": {
+      "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5628&dc=0&bookmark=30_UQAAAAJ7_0EAUwBTAEUAVABTAAAAAnv_RABFAEYAQQBVAEwAVAAAAACHECc",
+      "environmentInUrl": true,
+      "companyInUrl": true,
+      "companyInText": false,
+      "wrongEnvironmentVisible": false
+    },
+    "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5628&runinframe=1",
+    "urlAfterDiagnosis": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5628&dc=0&bookmark=30_UQAAAAJ7_0EAUwBTAEUAVABTAAAAAnv_RABFAEYAQQBVAEwAVAAAAACHECc"
+  },
+  "proved": [
+    "The run stayed in MCP_1_20260210.",
+    "The run stayed in RM-DEMO.",
+    "Balance summary is visible: {\"numberOfLines\":\"1\",\"balance\":\"0,00\",\"totalBalance\":\"0,00\"}.",
+    "Target signal visibility was evaluated read-only.",
+    "No value correction was made.",
+    "No line was inserted or deleted.",
+    "No Preview Posting was opened.",
+    "No posting was executed.",
+    "No setup change was executed."
+  ],
+  "notProved": [
+    "Amount 68000 is not visible.",
+    "No corrected balancing account.",
+    "No Preview Posting result.",
+    "No posting result.",
+    "No FA Ledger Entry or G/L Entry trace.",
+    "No German final proof."
+  ],
+  "diagnosisSummary": {
+    "balanceSummary": {
+      "numberOfLines": "1",
+      "balance": "0,00",
+      "totalBalance": "0,00"
+    },
+    "targetSignals": {
+      "g05001Visible": true,
+      "faCnc01Visible": true,
+      "k30000Visible": false,
+      "hgbVisible": true,
+      "amount68000Visible": false,
+      "fixedAssetVisible": true,
+      "acquisitionCostVisible": true,
+      "glAccountVisible": true,
+      "bankAccountVisible": true
+    },
+    "lineOwnership": {
+      "targetLineLooksVisible": true,
+      "targetAmountLooksVisible": false,
+      "balanceLooksZero": true
+    },
+    "relevantRowsCount": 3,
+    "relevantControlsCount": 5
+  },
+  "changedFiles": [
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-106-fa-gl-journal-line-ownership-readonly.json",
+    ".agent/state/cases/fixedassets-107-fa-gl-journal-line-ownership-decision.json",
+    ".agent/state/last_run_summary.json",
+    "package.json",
+    "playwright/projects/fibu-book5/tests/fixedassets-106-fa-gl-journal-line-ownership-readonly.spec.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-106/FIXEDASSETS-106-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-106/010-current-line-ownership.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-106/020-focused-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-106/README.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-106/FIXEDASSETS-106-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-106/010-current-line-ownership.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-106/020-focused-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-106/README.md"
+  ],
+  "warnings": [
+    "Read-only diagnostic run.",
+    "Do not unlock Preview Posting or posting from FA-106 alone.",
+    "If target line and amount are not visible, decide cleanup or rebuild locally before changing values."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-107-FA-GL-JOURNAL-LINE-OWNERSHIP-DECISION",
+      "active_case_file": ".agent/state/cases/fixedassets-107-fa-gl-journal-line-ownership-decision.json",
+      "lastReferenceCase": "FIXEDASSETS-106-FA-GL-JOURNAL-LINE-OWNERSHIP-READONLY",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-106-fa-gl-journal-line-ownership-readonly.json",
+      "nextStep": "FIXEDASSETS-107: review FA-106 line ownership locally and decide whether cleanup, target-line rebuild or a later guarded balancing probe is next."
+    },
+    "lastRunSummary": {
+      "schemaVersion": 1,
+      "runId": "FIXEDASSETS-106-FA-GL-JOURNAL-LINE-OWNERSHIP-READONLY",
+      "date": "2026-06-19",
+      "workType": "fixed-asset-gl-journal-line-ownership-readonly",
+      "branch": "codex/token-efficient-autopilot-state",
+      "instance": "MCP_1_20260210",
+      "company": "RM-DEMO",
+      "bcRun": true,
+      "posted": false,
+      "preview": false,
+      "setupChanged": false,
+      "companySwitched": false,
+      "resultStatus": "observed",
+      "summary": "FA-106 captured current FA G/L Journal line ownership read-only. Target line visible: true; amount visible: false; balance summary: {\"numberOfLines\":\"1\",\"balance\":\"0,00\",\"totalBalance\":\"0,00\"}.",
+      "nextStep": "Run FIXEDASSETS-107 local decision before any cleanup, value correction, Preview Posting or posting."
+    },
+    "activeCase": {
+      "status": "observed-readonly",
+      "lastResult": {
+        "status": "observed",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-106/FIXEDASSETS-106-result.json",
+        "summary": "FA-106 captured current FA G/L Journal line ownership read-only. Target line visible: true; amount visible: false; balance summary: {\"numberOfLines\":\"1\",\"balance\":\"0,00\",\"totalBalance\":\"0,00\"}."
+      },
+      "nextSafeAction": "Run FIXEDASSETS-107 local decision; do not preview or post."
+    }
+  },
+  "flags": {
+    "noValueCorrection": true,
+    "noInsertLine": true,
+    "noDeleteLine": true,
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "nextStep": "FIXEDASSETS-107: review FA-106 line ownership locally and decide whether cleanup, target-line rebuild or a later guarded balancing probe is next."
+}

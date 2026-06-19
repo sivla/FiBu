@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-107-FA-GL-JOURNAL-LINE-OWNERSHIP-DECISION",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "local-evidence-review",
+  "taskClass": "judge_work",
+  "goal": "Review FA-106 locally and decide whether the next Fixed Asset G/L Journal step should be amount/balancing readiness, target-line rebuild, or cleanup.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-102/FIXEDASSETS-102-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-105/FIXEDASSETS-105-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-106/FIXEDASSETS-106-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-106/010-current-line-ownership.json"
+  ],
+  "knownTruth": [
+    "FA-106 stayed in MCP_1_20260210 / RM-DEMO and made no value correction, no insert/delete, no Preview Posting, no posting and no setup change.",
+    "The current FA G/L Journal has Number of Lines / Balance / Total Balance = 1 / 0,00 / 0,00.",
+    "The current line controls show G05001, Account Type Fixed Asset, Account No. FA-CNC-01, Depreciation Book HGB and Bal. Account Type G/L Account.",
+    "Amount 68000 is not visible.",
+    "K30000 is not visible.",
+    "The current line is a target-line shell, but not a complete acquisition draft."
+  ],
+  "allowedActions": [
+    "read-fa-102-105-106-evidence",
+    "classify-current-line-readiness",
+    "decide-next-safe-case",
+    "write-local-decision-evidence",
+    "state-patch-plan-only"
+  ],
+  "forbiddenActions": [
+    "open-business-central",
+    "run-playwright",
+    "leave-instance",
+    "company-switch",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "api-shortcut",
+    "book-edit",
+    "change-amount",
+    "change-account-no",
+    "change-bal-account-no",
+    "delete-line",
+    "insert-line",
+    "fake-evidence"
+  ],
+  "acceptanceCriteria": [
+    "The decision preserves no-preview/no-post until amount and balancing are proven.",
+    "The decision says whether cleanup is unnecessary because the line is a useful target shell.",
+    "The decision names the next practical case exactly.",
+    "The decision does not claim FA acquisition or posting readiness."
+  ],
+  "stopConditions": [
+    "Evidence is contradictory and cannot support a next case.",
+    "The next step would require Preview Posting or posting without amount proof.",
+    "The next step would repeat Vendor/K30000 balancing as valid."
+  ],
+  "recommendedSkills": [
+    "evidence-reviewer",
+    "posting-gate",
+    "fixed-assets"
+  ],
+  "requiresUsageLog": true,
+  "nextSafeAction": "Perform local FA-107 decision review; do not open Business Central."
+}

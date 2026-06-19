@@ -3,7 +3,7 @@
   "caseId": "FIXEDASSETS-106-FA-GL-JOURNAL-LINE-OWNERSHIP-READONLY",
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "status": "planned",
+  "status": "observed-readonly",
   "workType": "controlled-sandbox-ui-readonly-diagnosis",
   "taskClass": "wizard_work",
   "goal": "Open Fixed Asset G/L Journals read-only and prove what the current single visible journal line contains before any correction, cleanup, Preview Posting or posting.",
@@ -66,5 +66,10 @@
     "posting-gate"
   ],
   "requiresUsageLog": false,
-  "nextSafeAction": "Run a narrow read-only current-line ownership diagnosis; no edit, no cleanup, no Preview Posting and no posting."
+  "lastResult": {
+    "status": "observed",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-106/FIXEDASSETS-106-result.json",
+    "summary": "FA-106 proved the current target-line shell: G05001, FA-CNC-01, HGB, Fixed Asset and Bal. Account Type G/L Account are visible as control values. Amount 68000 and K30000 are not visible; balance is 0,00."
+  },
+  "nextSafeAction": "Run FIXEDASSETS-107 local decision; do not edit, cleanup, preview or post."
 }

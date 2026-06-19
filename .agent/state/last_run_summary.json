@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-105-FA-GL-JOURNAL-BAL-ACCOUNT-DECISION",
+  "runId": "FIXEDASSETS-106-FA-GL-JOURNAL-LINE-OWNERSHIP-READONLY",
   "date": "2026-06-19",
-  "workType": "local-fixed-asset-journal-bal-account-decision",
+  "workType": "fixed-asset-gl-journal-line-ownership-readonly",
   "branch": "codex/token-efficient-autopilot-state",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "bcRun": false,
+  "bcRun": true,
   "posted": false,
   "preview": false,
   "setupChanged": false,
@@ -14,32 +14,36 @@
   "apiShortcut": false,
   "bookChanged": false,
   "resultStatus": "observed",
-  "summary": "FA-105 reviewed FA-102 to FA-104 locally. G/L/Bank Account options are visible, but target line and amount are not proven; next step must read current journal line ownership before any fix, cleanup, Preview Posting or posting.",
+  "summary": "FA-106 proved the current FA G/L Journal target-line shell read-only: G05001, Account Type Fixed Asset, FA-CNC-01, HGB and Bal. Account Type G/L Account are visible as control values. Amount 68000 and K30000 are not visible; Number of Lines / Balance / Total Balance is 1 / 0,00 / 0,00.",
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/fixedassets-105/FIXEDASSETS-105-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-105/FIXEDASSETS-105-review.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-105/README.md"
+    "playwright/projects/fibu-book5/evidence/fixedassets-106/FIXEDASSETS-106-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-106/010-current-line-ownership.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-106/020-focused-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-106/README.md"
   ],
   "changedFiles": [
     ".agent/state/current.json",
-    ".agent/state/cases/fixedassets-105-fa-gl-journal-bal-account-decision.json",
     ".agent/state/cases/fixedassets-106-fa-gl-journal-line-ownership-readonly.json",
+    ".agent/state/cases/fixedassets-107-fa-gl-journal-line-ownership-decision.json",
     ".agent/state/last_run_summary.json",
-    ".agent/state/model_usage_log.jsonl",
+    "package.json",
     "playwright/projects/fibu-book5/CURRENT-STATE.md",
     "playwright/projects/fibu-book5/LAB-FIT-STATUS.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-105/FIXEDASSETS-105-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-105/FIXEDASSETS-105-review.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-105/README.md"
+    "playwright/projects/fibu-book5/tests/fixedassets-106-fa-gl-journal-line-ownership-readonly.spec.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-106/FIXEDASSETS-106-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-106/010-current-line-ownership.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-106/020-focused-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-106/README.md"
   ],
   "validationCommands": [
     "npm run agent:preflight",
     "npm run agent:dry-run",
     "npm run agent:run-plan",
-    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-105/FIXEDASSETS-105-result.json",
-    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-105/FIXEDASSETS-105-result.json",
+    "npm run fibu:fixedassets:fa-gl-journal-line-ownership-readonly",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-106/FIXEDASSETS-106-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-106/FIXEDASSETS-106-result.json",
     "npm run check:encoding",
     "git diff --check"
   ],
-  "nextStep": "Run FIXEDASSETS-106 as read-only current journal line ownership check."
+  "nextStep": "Run FIXEDASSETS-107 as local decision before any amount correction, cleanup, Preview Posting or posting."
 }

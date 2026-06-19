@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-19T23:40:00.000Z",
+  "updatedAt": "2026-06-20T00:05:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "fixedassets",
-  "activeCase": "FIXEDASSETS-106-FA-GL-JOURNAL-LINE-OWNERSHIP-READONLY",
-  "active_case_file": ".agent/state/cases/fixedassets-106-fa-gl-journal-line-ownership-readonly.json",
-  "lastReferenceCase": "FIXEDASSETS-105-FA-GL-JOURNAL-BAL-ACCOUNT-DECISION",
-  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-105-fa-gl-journal-bal-account-decision.json",
+  "activeCase": "FIXEDASSETS-107-FA-GL-JOURNAL-LINE-OWNERSHIP-DECISION",
+  "active_case_file": ".agent/state/cases/fixedassets-107-fa-gl-journal-line-ownership-decision.json",
+  "lastReferenceCase": "FIXEDASSETS-106-FA-GL-JOURNAL-LINE-OWNERSHIP-READONLY",
+  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-106-fa-gl-journal-line-ownership-readonly.json",
   "mode": "token-efficient-autopilot-tooling-bootstrap",
-  "requiresStrongModel": false,
+  "requiresStrongModel": true,
   "requiredPreflightChecks": [
     "agent:preflight",
     "agent:state:validate",
@@ -19,13 +19,10 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "open-business-central",
-    "run-playwright",
-    "confirm-instance-and-company",
-    "open-fa-gl-journals",
-    "read-current-journal-line-grid",
-    "capture-focused-text",
-    "write-evidence",
+    "read-fa-102-105-106-evidence",
+    "classify-current-line-readiness",
+    "decide-next-safe-case",
+    "write-local-decision-evidence",
     "state-patch-plan-only"
   ],
   "forbiddenActions": [
@@ -34,6 +31,8 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright",
     "company-switch",
     "preview-posting",
     "post",
@@ -50,7 +49,7 @@
     "insert-line",
     "click-finish"
   ],
-  "nextStep": "FIXEDASSETS-106: open Fixed Asset G/L Journals read-only and prove what the current single journal line contains before any correction, cleanup, Preview Posting or posting.",
+  "nextStep": "FIXEDASSETS-107: review FA-106 locally and decide whether the current target-line shell should be completed, rebuilt or cleaned up. No BC execution in FA-107.",
   "subagentPlanPolicy": {
     "default": "optional",
     "execution": "plan-only-no-subagents-spawned",
