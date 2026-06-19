@@ -56,6 +56,15 @@ Zweck: kleiner Einstiegspunkt fuer Codex-Laeufe, die nicht den gesamten Projektv
 - Keine neue npm-Abhaengigkeit ohne ausdrueckliche Freigabe. Agent-Tools nutzen Node-Standardbibliothek.
 - `monkey_work` darf nur Routing, Extraktion, Formatierung und Validierung ausfuehren; BC-/FiBu-Urteil, Posting-/Setup-Gates und Buchtext-Freigabe muessen zu `judge_work` oder `big_brain_review` eskalieren.
 
+## Skill-/Capability-Lernen
+
+- Skills, Capabilities und Playwright-Helper duerfen nur evidence-getrieben erweitert werden.
+- Erlaubt ist Lernen, wenn ein aktuelles Result oder ein wiederholter Blocker zeigt, dass ein Muster fehlt: BC Lines/Subform Handling, Dropdown Value Discovery, Dialog/Confirm/Error Handling, Draft Lifecycle und Cleanup Proof, Posting/Preview Evidence Trace, Company-/Context-Dokumentation oder fokussierte Action-Inventare.
+- Nicht erlaubt sind Skills auf Vorrat, Agenten-/Framework-Ausbau ohne aktuellen Blocker, grosse Architekturumbauten ohne praktischen Nutzen oder neue Dependencies ohne ausdrueckliche Freigabe.
+- Neue oder geaenderte Skills muessen dem Vertrag in `.agent/skills/SKILL-CONTRACT.md` folgen und Zweck, Use/Do-not-use, Inputs, Output JSON Schema, Safety/Boundary Rules, Stop-if, Preferred taskClass, Kontextlimit und State-Update-Verhalten enthalten.
+- Neue oder geaenderte Capabilities muessen eine reproduzierbare Faehigkeit, Inputs, Outputs, Gates/Boundaries, Playwright Touchpoints, Maturity und die begruendende Evidence oder den Blocker dokumentieren.
+- Helper-Aenderungen brauchen einen kleinen passenden Probe/Test oder eine konkrete Evidence-Begruendung. Nach Skill-/Capability-/Helper-Aenderungen laufen mindestens `npm run agent:preflight`, `npm run check:encoding` und `git diff --check`.
+
 ## Aktueller Einstieg
 
 Der aktuelle kompakte State verweist auf die in `.agent/state/current.json` genannte aktive Case-Datei.

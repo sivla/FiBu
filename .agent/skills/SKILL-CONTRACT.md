@@ -20,8 +20,8 @@ Bullets naming required input facts or files.
 ## Output JSON schema
 A compact JSON object shape the skill should produce or update.
 
-## Rules
-Operational rules.
+## Safety/Boundary Rules
+Operational rules, safety boundaries, and evidence requirements.
 
 ## Stop if
 Conditions that force stop, escalation or downgrade to read-only diagnosis.
