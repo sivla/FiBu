@@ -1,39 +1,36 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-082-ACQUIRE-ACTION-DISABLED-DIAGNOSIS",
+  "runId": "FIXEDASSETS-083-ACQUIRE-ROUTE-DECISION",
   "date": "2026-06-19",
-  "workType": "fixed-asset-acquire-disabled-diagnosis",
+  "workType": "fixed-asset-acquire-route-decision",
   "branch": "codex/token-efficient-autopilot-state",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "bcRun": true,
+  "bcRun": false,
   "posted": false,
   "preview": false,
   "setupChanged": false,
   "companySwitched": false,
   "resultStatus": "observed",
-  "summary": "FA-082 confirmed read-only that Acquire remains visible but disabled on FA-CNC-01. UI evidence shows Book Value 0,00 and no specific depreciation-book value such as HGB in this compact card view. The cause is not proven; the next case must decide between edit-mode/Page Inspection diagnosis or an alternate acquisition route.",
+  "summary": "FA-083 selected the Fixed Asset G/L Journal route as the next route to discover read-only. FA-082 proved Acquire is visible but disabled; edit-mode and Page Inspection remain useful diagnostics, but the journal route is the most direct next step toward a controlled acquisition process and posting trace.",
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/fixedassets-082/FIXEDASSETS-082-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-082/FIXEDASSETS-082-learning.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-082/README.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-082/010-card-state-readonly.txt",
-    "playwright/projects/fibu-book5/evidence/fixedassets-082/020-acquire-disabled-diagnostics.json"
+    "playwright/projects/fibu-book5/evidence/fixedassets-083/FIXEDASSETS-083-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-083/FIXEDASSETS-083-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-083/README.md"
   ],
   "changedFiles": [
     ".agent/state/current.json",
-    ".agent/state/cases/fixedassets-082-acquire-action-disabled-diagnosis.json",
     ".agent/state/cases/fixedassets-083-acquire-route-decision.json",
+    ".agent/state/cases/fixedassets-084-fa-gl-journal-route-readonly-discovery.json",
     ".agent/state/coverage_state.json",
     ".agent/state/last_run_summary.json",
-    "package.json",
-    "playwright/projects/fibu-book5/tests/fixedassets-082-acquire-action-disabled-diagnosis.spec.ts",
-    "playwright/projects/fibu-book5/evidence/fixedassets-082/FIXEDASSETS-082-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-082/FIXEDASSETS-082-learning.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-082/README.md"
+    "playwright/projects/fibu-book5/evidence/fixedassets-083/FIXEDASSETS-083-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-083/FIXEDASSETS-083-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-083/README.md"
   ],
   "validationCommands": [
-    "npm run fibu:fixedassets:acquire-action-disabled-diagnosis"
+    "npm run agent:preflight",
+    "npm run agent:dry-run"
   ],
-  "nextStep": "FIXEDASSETS-083-ACQUIRE-ROUTE-DECISION: decide whether to unlock a controlled edit-mode/Page Inspection probe or switch to an alternate acquisition route such as Fixed Asset G/L Journal."
+  "nextStep": "FIXEDASSETS-084-FA-GL-JOURNAL-ROUTE-READONLY-DISCOVERY: open the Fixed Asset G/L Journal route read-only, prove page/context/actions, and stop before any new line, value entry, preview or posting."
 }

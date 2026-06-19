@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-084-FA-GL-JOURNAL-ROUTE-READONLY-DISCOVERY",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "fixed-asset-gl-journal-route-readonly-discovery",
+  "goal": "Open the Fixed Asset G/L Journal route read-only and prove page/context/actions before any journal line, value entry, preview or posting.",
+  "basedOn": [
+    ".agent/state/cases/fixedassets-083-acquire-route-decision.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-083/FIXEDASSETS-083-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-082/FIXEDASSETS-082-result.json"
+  ],
+  "knownTruth": [
+    "FA-082 proved the card Acquire action is visible but disabled on FA-CNC-01.",
+    "FA-083 selected Fixed Asset G/L Journal route discovery as the next standard-path investigation.",
+    "No journal page, line, amount, preview or posting has been proven for FA-CNC-01 yet."
+  ],
+  "allowedActions": [
+    "open-business-central-in-MCP_1_20260210",
+    "confirm-company-RM-DEMO",
+    "open-fixed-asset-gl-journal-readonly",
+    "capture-journal-page-context-readonly",
+    "capture-visible-actions-and-column-signals-readonly",
+    "write-json-evidence",
+    "write-compact-learning-note",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "new-journal-line",
+    "edit-journal-line",
+    "enter-K30000",
+    "enter-amount",
+    "enter-FA-CNC-01-in-document-or-journal",
+    "delete-record",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "api-shortcut",
+    "book-edit",
+    "click-finish",
+    "click-ok-or-yes-on-confirmation",
+    "keep-draft"
+  ],
+  "defaultLockedActionsUnlockedForThisCase": [],
+  "acceptanceCriteria": [
+    "Instance MCP_1_20260210 and company RM-DEMO are confirmed.",
+    "Fixed Asset G/L Journal or equivalent journal route is opened read-only.",
+    "Visible page title, action labels and relevant columns are captured compactly.",
+    "No new line, edit, value entry, preview, posting, setup change or draft keep occurs.",
+    "If the route is not found or opens an unsafe context, stop and document the blocker."
+  ],
+  "stopConditions": [
+    "Business Central is not in MCP_1_20260210 / RM-DEMO.",
+    "Navigation would require creating a new journal line or confirming a dialog.",
+    "Any dialog asks to post, preview, edit, delete, setup, keep a draft, enter amount or enter vendor.",
+    "The route is ambiguous between general journals and FA-specific journals."
+  ],
+  "recommendedSkills": [
+    "bc-navigation",
+    "safety-gate-checker",
+    "evidence-writer"
+  ],
+  "nextSafeAction": "Run FA-084 as read-only Fixed Asset G/L Journal route discovery. Do not create or edit any journal line.",
+  "mustRead": [
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-083-acquire-route-decision.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-083/FIXEDASSETS-083-result.json",
+    ".agent/capabilities.json",
+    "package.json"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-084/FIXEDASSETS-084-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-084/FIXEDASSETS-084-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-084/README.md"
+  ]
+}

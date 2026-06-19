@@ -3,7 +3,7 @@
   "caseId": "FIXEDASSETS-083-ACQUIRE-ROUTE-DECISION",
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "status": "planned",
+  "status": "observed-route-decision",
   "workType": "fixed-asset-acquire-route-decision",
   "goal": "Decide the next acquisition route after FA-082 proved Acquire is visible but disabled on FA-CNC-01.",
   "basedOn": [
@@ -83,7 +83,7 @@
     "error-recovery",
     "next-test-selector"
   ],
-  "nextSafeAction": "Run FA-083 as local route decision only: choose edit-mode read-only probe, Page Inspection probe, or Fixed Asset G/L Journal read-only route discovery as exactly one next case.",
+  "nextSafeAction": "FIXEDASSETS-084-FA-GL-JOURNAL-ROUTE-READONLY-DISCOVERY: open the Fixed Asset G/L Journal route read-only, prove page/context/actions, and stop before any new line, value entry, preview or posting.",
   "mustRead": [
     ".agent/state/current.json",
     ".agent/state/cases/fixedassets-082-acquire-action-disabled-diagnosis.json",
@@ -95,5 +95,46 @@
     "playwright/projects/fibu-book5/evidence/fixedassets-083/FIXEDASSETS-083-result.json",
     "playwright/projects/fibu-book5/evidence/fixedassets-083/FIXEDASSETS-083-learning.md",
     "playwright/projects/fibu-book5/evidence/fixedassets-083/README.md"
-  ]
+  ],
+  "lastResult": {
+    "status": "observed",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-083/FIXEDASSETS-083-result.json",
+    "selectedRoute": "fixed-asset-gl-journal-route",
+    "summary": "FA-083 selected the Fixed Asset G/L Journal route as the next route to discover read-only. FA-082 proved Acquire is visible but disabled; edit-mode and Page Inspection remain useful diagnostics, but the journal route is the most direct next step toward a controlled acquisition process and posting trace.",
+    "routeScores": [
+      {
+        "id": "edit-mode-readonly-probe",
+        "score": 11,
+        "bookValue": 2,
+        "bcValue": 3,
+        "evidenceValue": 2,
+        "riskControl": 1,
+        "nextRunValue": 3,
+        "decision": "defer",
+        "reason": "Could test whether Acquire depends on card edit mode, but it unlocks Edit and still does not prove the standard acquisition posting route."
+      },
+      {
+        "id": "page-inspection-probe",
+        "score": 12,
+        "bookValue": 2,
+        "bcValue": 3,
+        "evidenceValue": 3,
+        "riskControl": 3,
+        "nextRunValue": 1,
+        "decision": "defer",
+        "reason": "Useful for the debugging chapter, but unlikely to produce the next executable acquisition path by itself."
+      },
+      {
+        "id": "fixed-asset-gl-journal-route",
+        "score": 18,
+        "bookValue": 5,
+        "bcValue": 4,
+        "evidenceValue": 4,
+        "riskControl": 2,
+        "nextRunValue": 3,
+        "decision": "selected",
+        "reason": "Most directly advances the book goal: find a standard UI-first acquisition route after Purchase Invoice line type and card Acquire are blocked."
+      }
+    ]
+  }
 }
