@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-106-FA-GL-JOURNAL-LINE-OWNERSHIP-READONLY",
-  "date": "2026-06-19",
-  "workType": "fixed-asset-gl-journal-line-ownership-readonly",
+  "runId": "FIXEDASSETS-107-FA-GL-JOURNAL-LINE-OWNERSHIP-DECISION",
+  "date": "2026-06-20",
+  "workType": "local-fixed-asset-journal-line-ownership-decision",
   "branch": "codex/token-efficient-autopilot-state",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "bcRun": true,
+  "bcRun": false,
   "posted": false,
   "preview": false,
   "setupChanged": false,
@@ -14,36 +14,32 @@
   "apiShortcut": false,
   "bookChanged": false,
   "resultStatus": "observed",
-  "summary": "FA-106 proved the current FA G/L Journal target-line shell read-only: G05001, Account Type Fixed Asset, FA-CNC-01, HGB and Bal. Account Type G/L Account are visible as control values. Amount 68000 and K30000 are not visible; Number of Lines / Balance / Total Balance is 1 / 0,00 / 0,00.",
+  "summary": "FA-107 reviewed FA-106 locally. The current FA G/L Journal line is a useful target-line shell, but amount 68000 and Bal. Account No. are not proven. Cleanup, rebuild, write, Preview Posting and posting remain locked; next step is a read-only full line control map.",
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/fixedassets-106/FIXEDASSETS-106-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-106/010-current-line-ownership.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-106/020-focused-text.txt",
-    "playwright/projects/fibu-book5/evidence/fixedassets-106/README.md"
+    "playwright/projects/fibu-book5/evidence/fixedassets-107/FIXEDASSETS-107-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-107/FIXEDASSETS-107-review.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-107/README.md"
   ],
   "changedFiles": [
     ".agent/state/current.json",
-    ".agent/state/cases/fixedassets-106-fa-gl-journal-line-ownership-readonly.json",
     ".agent/state/cases/fixedassets-107-fa-gl-journal-line-ownership-decision.json",
+    ".agent/state/cases/fixedassets-108-fa-gl-journal-full-line-control-map-readonly.json",
     ".agent/state/last_run_summary.json",
-    "package.json",
+    ".agent/state/model_usage_log.jsonl",
     "playwright/projects/fibu-book5/CURRENT-STATE.md",
     "playwright/projects/fibu-book5/LAB-FIT-STATUS.md",
-    "playwright/projects/fibu-book5/tests/fixedassets-106-fa-gl-journal-line-ownership-readonly.spec.ts",
-    "playwright/projects/fibu-book5/evidence/fixedassets-106/FIXEDASSETS-106-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-106/010-current-line-ownership.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-106/020-focused-text.txt",
-    "playwright/projects/fibu-book5/evidence/fixedassets-106/README.md"
+    "playwright/projects/fibu-book5/evidence/fixedassets-107/FIXEDASSETS-107-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-107/FIXEDASSETS-107-review.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-107/README.md"
   ],
   "validationCommands": [
     "npm run agent:preflight",
     "npm run agent:dry-run",
     "npm run agent:run-plan",
-    "npm run fibu:fixedassets:fa-gl-journal-line-ownership-readonly",
-    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-106/FIXEDASSETS-106-result.json",
-    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-106/FIXEDASSETS-106-result.json",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-107/FIXEDASSETS-107-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-107/FIXEDASSETS-107-result.json",
     "npm run check:encoding",
     "git diff --check"
   ],
-  "nextStep": "Run FIXEDASSETS-107 as local decision before any amount correction, cleanup, Preview Posting or posting."
+  "nextStep": "Run FIXEDASSETS-108 as read-only full line control map."
 }
