@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-106-FA-GL-JOURNAL-LINE-OWNERSHIP-READONLY",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "controlled-sandbox-ui-readonly-diagnosis",
+  "taskClass": "wizard_work",
+  "goal": "Open Fixed Asset G/L Journals read-only and prove what the current single visible journal line contains before any correction, cleanup, Preview Posting or posting.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-102/FIXEDASSETS-102-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-104/FIXEDASSETS-104-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-105/FIXEDASSETS-105-result.json"
+  ],
+  "knownTruth": [
+    "FA-102 created or updated a partial controlled FA G/L Journal draft signal G05001, but amount 68000 was not proven visible.",
+    "FA-104 shows one visible line/balance signal with Number of Lines / Balance / Total Balance = 1 / 0,00 / 0,00.",
+    "FA-104 did not show G05001, FA-CNC-01, HGB, K30000 or 68000.",
+    "G/L Account and Bank Account are visible account-type options, but that does not prove a corrected target line."
+  ],
+  "allowedActions": [
+    "open-business-central",
+    "run-playwright",
+    "confirm-instance-and-company",
+    "open-fa-gl-journals",
+    "read-current-journal-line-grid",
+    "capture-focused-text",
+    "write-evidence",
+    "state-patch-plan-only"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "api-shortcut",
+    "book-edit",
+    "change-amount",
+    "change-account-no",
+    "change-bal-account-no",
+    "delete-line",
+    "insert-line",
+    "click-finish",
+    "fake-evidence"
+  ],
+  "acceptanceCriteria": [
+    "The run stays in MCP_1_20260210 and RM-DEMO.",
+    "The run captures current line count, balance and visible row/grid signals.",
+    "The run explicitly states whether G05001, FA-CNC-01, HGB, K30000 and 68000 are visible.",
+    "The run does not edit, delete, insert, preview or post.",
+    "The result decides whether the next step is cleanup, target-line rebuild or a later guarded balancing probe."
+  ],
+  "stopConditions": [
+    "Instance or company is not clearly MCP_1_20260210 / RM-DEMO.",
+    "The page is not Fixed Asset G/L Journals.",
+    "A dialog asks to post, preview, delete, finish or confirm a risky change.",
+    "Reading the current line would require entering edit mode or changing focus in a way that saves data."
+  ],
+  "recommendedSkills": [
+    "bc-navigation",
+    "evidence-writer",
+    "posting-gate"
+  ],
+  "requiresUsageLog": false,
+  "nextSafeAction": "Run a narrow read-only current-line ownership diagnosis; no edit, no cleanup, no Preview Posting and no posting."
+}

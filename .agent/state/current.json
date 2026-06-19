@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-19T23:15:00.000Z",
+  "updatedAt": "2026-06-19T23:40:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "fixedassets",
-  "activeCase": "FIXEDASSETS-105-FA-GL-JOURNAL-BAL-ACCOUNT-DECISION",
-  "active_case_file": ".agent/state/cases/fixedassets-105-fa-gl-journal-bal-account-decision.json",
-  "lastReferenceCase": "FIXEDASSETS-104-FA-GL-JOURNAL-BAL-ACCOUNT-DIAGNOSIS",
-  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-104-fa-gl-journal-bal-account-diagnosis.json",
+  "activeCase": "FIXEDASSETS-106-FA-GL-JOURNAL-LINE-OWNERSHIP-READONLY",
+  "active_case_file": ".agent/state/cases/fixedassets-106-fa-gl-journal-line-ownership-readonly.json",
+  "lastReferenceCase": "FIXEDASSETS-105-FA-GL-JOURNAL-BAL-ACCOUNT-DECISION",
+  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-105-fa-gl-journal-bal-account-decision.json",
   "mode": "token-efficient-autopilot-tooling-bootstrap",
-  "requiresStrongModel": true,
+  "requiresStrongModel": false,
   "requiredPreflightChecks": [
     "agent:preflight",
     "agent:state:validate",
@@ -19,10 +19,13 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "read-fa-102-103-104-evidence",
-    "classify-fa-104-as-partial-or-ready",
-    "decide-next-safe-case",
-    "write-local-decision-evidence",
+    "open-business-central",
+    "run-playwright",
+    "confirm-instance-and-company",
+    "open-fa-gl-journals",
+    "read-current-journal-line-grid",
+    "capture-focused-text",
+    "write-evidence",
     "state-patch-plan-only"
   ],
   "forbiddenActions": [
@@ -31,8 +34,6 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
-    "open-business-central",
-    "run-playwright",
     "company-switch",
     "preview-posting",
     "post",
@@ -42,12 +43,14 @@
     "setup-change",
     "api-shortcut",
     "book-edit",
-    "repeat-vendor-balancing-as-valid",
     "change-amount",
     "change-account-no",
-    "change-bal-account-no"
+    "change-bal-account-no",
+    "delete-line",
+    "insert-line",
+    "click-finish"
   ],
-  "nextStep": "FIXEDASSETS-105: review FA-104 locally and decide whether the next guarded UI case must first read/clean the current journal line or may test a G/L Account / Bank Account balancing path. No BC execution in FA-105.",
+  "nextStep": "FIXEDASSETS-106: open Fixed Asset G/L Journals read-only and prove what the current single journal line contains before any correction, cleanup, Preview Posting or posting.",
   "subagentPlanPolicy": {
     "default": "optional",
     "execution": "plan-only-no-subagents-spawned",

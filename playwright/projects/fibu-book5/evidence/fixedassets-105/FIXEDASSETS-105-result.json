@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-fa-gl-journal-bal-account-decision-result",
+  "caseId": "FIXEDASSETS-105-FA-GL-JOURNAL-BAL-ACCOUNT-DECISION",
+  "source": "local-evidence-review",
+  "resultStatus": "observed",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "bcRun": false,
+  "playwrightRun": false,
+  "proved": [
+    "FA-104 stayed in MCP_1_20260210 / RM-DEMO.",
+    "FA-104 did not change values, did not open Preview Posting and did not post.",
+    "G/L Account and Bank Account are visible account-type options in FA-104.",
+    "The old balancing/account error was not visible in FA-104.",
+    "FA-104 did not visibly prove FA-CNC-01, K30000, HGB, G05001 or amount 68000.",
+    "FA-104 page text indicates Number of Lines / Balance / Total Balance = 1 / 0,00 / 0,00."
+  ],
+  "notProved": [
+    "No current complete FA G/L Journal target line.",
+    "No amount 68000 proof.",
+    "No corrected balancing account.",
+    "No Preview Posting result.",
+    "No posting result.",
+    "No FA Ledger Entry or G/L Entry trace.",
+    "No German final proof."
+  ],
+  "decision": {
+    "classification": "blocked-partial-read-current-line-first",
+    "previewPostingUnlocked": false,
+    "postingUnlocked": false,
+    "balancingAccountProbeUnlocked": false,
+    "nextCase": "FIXEDASSETS-106-FA-GL-JOURNAL-LINE-OWNERSHIP-READONLY",
+    "reason": "The project must first determine whether the existing journal line is the partial FA-102 line, a neutralized line, or only a non-target row. G/L/Bank Account options alone do not prove a safe balancing fix or posting readiness."
+  },
+  "changedFiles": [
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-105-fa-gl-journal-bal-account-decision.json",
+    ".agent/state/cases/fixedassets-106-fa-gl-journal-line-ownership-readonly.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/model_usage_log.jsonl",
+    "playwright/projects/fibu-book5/CURRENT-STATE.md",
+    "playwright/projects/fibu-book5/LAB-FIT-STATUS.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-105/FIXEDASSETS-105-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-105/FIXEDASSETS-105-review.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-105/README.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-102/FIXEDASSETS-102-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-103/FIXEDASSETS-103-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-104/FIXEDASSETS-104-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-104/010-bal-account-diagnosis.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-105/FIXEDASSETS-105-review.md"
+  ],
+  "warnings": [
+    "Local review only.",
+    "Do not unlock Preview Posting or posting from FA-105.",
+    "Do not repeat Vendor balancing as a valid target route.",
+    "Read the current line before any correction or cleanup decision."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-106-FA-GL-JOURNAL-LINE-OWNERSHIP-READONLY",
+      "active_case_file": ".agent/state/cases/fixedassets-106-fa-gl-journal-line-ownership-readonly.json",
+      "lastReferenceCase": "FIXEDASSETS-105-FA-GL-JOURNAL-BAL-ACCOUNT-DECISION",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-105-fa-gl-journal-bal-account-decision.json",
+      "nextStep": "FIXEDASSETS-106: open Fixed Asset G/L Journals read-only and prove what the current single journal line contains before any correction, Preview Posting or posting."
+    },
+    "lastRunSummary": {
+      "schemaVersion": 1,
+      "runId": "FIXEDASSETS-105-FA-GL-JOURNAL-BAL-ACCOUNT-DECISION",
+      "date": "2026-06-19",
+      "workType": "local-fixed-asset-journal-bal-account-decision",
+      "branch": "codex/token-efficient-autopilot-state",
+      "instance": "MCP_1_20260210",
+      "company": "RM-DEMO",
+      "bcRun": false,
+      "posted": false,
+      "preview": false,
+      "setupChanged": false,
+      "companySwitched": false,
+      "resultStatus": "observed",
+      "summary": "FA-105 reviewed FA-102 to FA-104 locally. G/L/Bank Account options are visible, but target line and amount are not proven; next step must read current journal line ownership before any fix, Preview Posting or posting.",
+      "nextStep": "Run FIXEDASSETS-106 as read-only current journal line ownership check."
+    },
+    "activeCase": {
+      "status": "completed",
+      "lastResult": {
+        "status": "observed",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-105/FIXEDASSETS-105-result.json",
+        "summary": "FA-105 keeps Preview/Post locked and selects FA-106 read-only line ownership as the next practical step."
+      },
+      "nextSafeAction": "Run FIXEDASSETS-106 read-only; no correction, Preview Posting or posting."
+    }
+  },
+  "flags": {
+    "noBcRun": true,
+    "noPlaywrightRun": true,
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "nextStep": "FIXEDASSETS-106-FA-GL-JOURNAL-LINE-OWNERSHIP-READONLY"
+}
