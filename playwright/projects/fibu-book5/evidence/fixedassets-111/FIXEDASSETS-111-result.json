@@ -1,0 +1,114 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-fa-gl-journal-control-route-decision-result",
+  "caseId": "FIXEDASSETS-111-FA-GL-JOURNAL-CONTROL-ROUTE-DECISION",
+  "source": "local-evidence-review",
+  "resultStatus": "observed",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "decision": {
+    "guardedWriteCaseAllowedNow": false,
+    "activeCellProbeAllowedNext": true,
+    "nextCase": "FIXEDASSETS-112-FA-GL-JOURNAL-ACTIVE-CELL-ROUTE-READONLY",
+    "reason": "FA-110 shows Amount and Bal. Account No. headers but zero exact control candidates; a read-only active-cell probe is the next narrow diagnostic route."
+  },
+  "proved": [
+    "FA-110 stayed in MCP_1_20260210 / RM-DEMO.",
+    "FA-110 kept the current FA G/L Journal target-line shell visible.",
+    "FA-110 showed Amount and Bal. Account No. headers read-only.",
+    "FA-110 did not enter or change any value.",
+    "FA-110 did not open Preview Posting and did not post."
+  ],
+  "notProved": [
+    "No exact Amount control candidate is proven.",
+    "No exact Bal. Account No. control candidate is proven.",
+    "No value entry is allowed.",
+    "Amount 68000 is not visible as an existing value.",
+    "K30000 is not visible as an existing balancing value.",
+    "No Preview Posting result.",
+    "No posting result.",
+    "No FA Ledger Entry or G/L Entry trace.",
+    "No German final proof."
+  ],
+  "changedFiles": [
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-111-fa-gl-journal-control-route-decision.json",
+    ".agent/state/cases/fixedassets-112-fa-gl-journal-active-cell-route-readonly.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/model_usage_log.jsonl",
+    "playwright/projects/fibu-book5/CURRENT-STATE.md",
+    "playwright/projects/fibu-book5/LAB-FIT-STATUS.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-111/FIXEDASSETS-111-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-111/FIXEDASSETS-111-review.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-111/README.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-110/FIXEDASSETS-110-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-111/FIXEDASSETS-111-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-111/FIXEDASSETS-111-review.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-111/README.md"
+  ],
+  "warnings": [
+    "No write-case is unlocked by FA-111.",
+    "The next probe may focus cells but must not enter values.",
+    "Preview Posting and Post remain locked."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "updatedAt": "2026-06-20T02:40:00.000Z",
+      "activeCase": "FIXEDASSETS-112-FA-GL-JOURNAL-ACTIVE-CELL-ROUTE-READONLY",
+      "active_case_file": ".agent/state/cases/fixedassets-112-fa-gl-journal-active-cell-route-readonly.json",
+      "lastReferenceCase": "FIXEDASSETS-111-FA-GL-JOURNAL-CONTROL-ROUTE-DECISION",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-111-fa-gl-journal-control-route-decision.json",
+      "requiresStrongModel": false,
+      "nextStep": "FIXEDASSETS-112: run a read-only active-cell/focus probe for Amount and Bal. Account No.; no value entry, no Preview Posting, no Post."
+    },
+    "lastRunSummary": {
+      "schemaVersion": 1,
+      "runId": "FIXEDASSETS-111-FA-GL-JOURNAL-CONTROL-ROUTE-DECISION",
+      "date": "2026-06-20",
+      "workType": "local-fixed-asset-journal-control-route-decision",
+      "branch": "codex/token-efficient-autopilot-state",
+      "instance": "MCP_1_20260210",
+      "company": "RM-DEMO",
+      "bcRun": false,
+      "posted": false,
+      "preview": false,
+      "setupChanged": false,
+      "companySwitched": false,
+      "apiShortcut": false,
+      "bookChanged": false,
+      "resultStatus": "observed",
+      "summary": "FA-111 reviewed FA-110 locally. Write remains locked because exact controls are not proven; a final read-only active-cell/focus probe is allowed as FA-112.",
+      "nextStep": "Run FIXEDASSETS-112 read-only; do not enter Amount or Bal. Account No."
+    },
+    "activeCase": {
+      "status": "completed",
+      "lastResult": {
+        "status": "observed",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-111/FIXEDASSETS-111-result.json",
+        "summary": "No write-case unlocked; FA-112 read-only active-cell probe is allowed."
+      },
+      "nextSafeAction": "Run FIXEDASSETS-112 read-only; no value entry, no Preview Posting, no Post."
+    }
+  },
+  "flags": {
+    "noBcRun": true,
+    "noPlaywrightRun": true,
+    "noValueCorrection": true,
+    "noInsertLine": true,
+    "noDeleteLine": true,
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "nextStep": "FIXEDASSETS-112-FA-GL-JOURNAL-ACTIVE-CELL-ROUTE-READONLY"
+}

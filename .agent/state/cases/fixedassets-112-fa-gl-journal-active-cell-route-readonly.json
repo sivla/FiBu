@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-112-FA-GL-JOURNAL-ACTIVE-CELL-ROUTE-READONLY",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "controlled-sandbox-ui-readonly-diagnosis",
+  "taskClass": "wizard_work",
+  "goal": "Focus Amount and Bal. Account No. cells read-only on the current FA G/L Journal target-line shell and observe whether concrete controls appear without entering values.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-110/FIXEDASSETS-110-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-111/FIXEDASSETS-111-result.json"
+  ],
+  "knownTruth": [
+    "FA-110 showed Amount and Bal. Account No. headers but zero exact control candidates.",
+    "FA-111 did not unlock a write probe.",
+    "Business Central grids may create edit controls only after a cell is focused.",
+    "Amount 68000 and K30000 must not be entered in this case.",
+    "Preview Posting and Post remain locked."
+  ],
+  "allowedActions": [
+    "open-business-central",
+    "run-playwright",
+    "confirm-instance-and-company",
+    "open-fa-gl-journals",
+    "read-current-journal-line-grid",
+    "horizontal-scroll-readonly-if-needed",
+    "focus-amount-cell-readonly",
+    "focus-bal-account-no-cell-readonly",
+    "capture-active-cell-controls",
+    "write-evidence",
+    "state-patch-plan-only"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "api-shortcut",
+    "book-edit",
+    "change-amount",
+    "change-account-no",
+    "change-bal-account-no",
+    "delete-line",
+    "insert-line",
+    "click-finish",
+    "fake-evidence"
+  ],
+  "acceptanceCriteria": [
+    "The run stays in MCP_1_20260210 and RM-DEMO.",
+    "The run opens Fixed Asset G/L Journals read-only.",
+    "The run focuses Amount and Bal. Account No. cells only if it can do so without typing or confirming.",
+    "The run records whether concrete active-cell controls appear.",
+    "The run does not enter values, delete, insert, preview or post."
+  ],
+  "stopConditions": [
+    "Instance or company is not clearly MCP_1_20260210 / RM-DEMO.",
+    "The page is not Fixed Asset G/L Journals.",
+    "The current line no longer shows G05001 and FA-CNC-01.",
+    "Focusing would require typing, accepting a dialog or confirming a change.",
+    "A dialog asks to post, preview, delete, finish or confirm a risky change."
+  ],
+  "recommendedSkills": [
+    "bc-navigation",
+    "evidence-writer",
+    "posting-gate"
+  ],
+  "requiresUsageLog": false,
+  "nextSafeAction": "Run a narrow read-only active-cell probe; no typing, no value entry, no cleanup, no Preview Posting and no posting."
+}
