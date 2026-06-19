@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-096-PURCHASE-INVOICE-DRAFT-LINE-TYPE-GATE-DECISION",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "fixed-asset-purchase-invoice-draft-line-type-gate-decision",
+  "taskClass": "judge_work",
+  "goal": "Decide from existing evidence whether a tightly guarded Purchase Invoice draft proof may be unlocked to prove Type = Fixed Asset in a real purchase invoice line.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-053/FIXEDASSETS-053-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-074/FIXEDASSETS-074-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-077/FIXEDASSETS-077-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-095/FIXEDASSETS-095-result.json"
+  ],
+  "knownTruth": [
+    "Read-only Purchase Invoices list context cannot prove editable line dropdown values.",
+    "Previous draft probes created cleanup-sensitive purchase invoice contexts and must not be repeated casually.",
+    "FA G/L Journal value entry remains locked because cleanup/keep-draft semantics are not acceptable yet.",
+    "No fixed-asset acquisition value entry has been posted."
+  ],
+  "allowedActions": [
+    "local-evidence-review",
+    "compare-existing-fixedassets-evidence",
+    "decide-next-gate",
+    "capture-compact-evidence",
+    "state-patch-plan-only"
+  ],
+  "forbiddenActions": [
+    "open-business-central",
+    "run-playwright",
+    "new-document",
+    "new-line",
+    "edit-record",
+    "enter-K30000",
+    "enter-FA-CNC-01",
+    "enter-amount",
+    "delete-record",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "api-shortcut",
+    "book-edit",
+    "keep-draft"
+  ],
+  "defaultLockedActionsUnlockedForThisCase": [],
+  "acceptanceCriteria": [
+    "Decision uses only existing evidence; no BC or Playwright run.",
+    "Decision states whether a guarded draft proof is justified, rejected or still blocked.",
+    "If a draft proof is recommended, it must define scope, stop conditions, cleanup/keep policy and exact evidence target.",
+    "No value entry, posting, preview posting or setup change is unlocked by this case."
+  ],
+  "stopConditions": [
+    "FIXEDASSETS-095 result is missing or blocked.",
+    "Existing evidence is contradictory about cleanup/keep-draft safety.",
+    "Decision would require posting, preview posting or setup change."
+  ],
+  "recommendedSkills": [
+    "evidence-review",
+    "bc-posting-safety-gate"
+  ],
+  "requiresUsageLog": true,
+  "nextSafeAction": "Review FIXEDASSETS-095 and prior purchase-invoice draft evidence locally; decide whether a guarded draft line-type proof should be created as a new case."
+}

@@ -3,7 +3,7 @@
   "caseId": "FIXEDASSETS-095-PURCHASE-INVOICE-LINE-TYPE-CAPABILITY-DIAGNOSIS-READONLY",
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "status": "planned",
+  "status": "observed",
   "workType": "fixed-asset-purchase-invoice-line-type-capability-diagnosis-readonly",
   "taskClass": "wizard_work",
   "goal": "Diagnose read-only whether Purchase Invoice lines can expose Type = Fixed Asset through visible columns, actions, personalization/page metadata or safe UI context before any document creation or value entry.",
@@ -70,7 +70,7 @@
     "evidence-writer"
   ],
   "requiresUsageLog": false,
-  "nextSafeAction": "Run a read-only Purchase Invoice line capability diagnosis; do not create, edit, preview or post.",
+  "nextSafeAction": "Local gate decision only. No New/Neu, no K30000, no FA-CNC-01, no value entry until a case unlocks a guarded draft proof.",
   "mustRead": [
     ".agent/state/current.json",
     "playwright/projects/fibu-book5/evidence/fixedassets-094/FIXEDASSETS-094-result.json",
@@ -82,5 +82,10 @@
     "playwright/projects/fibu-book5/evidence/fixedassets-095/FIXEDASSETS-095-result.json",
     "playwright/projects/fibu-book5/evidence/fixedassets-095/FIXEDASSETS-095-learning.md",
     "playwright/projects/fibu-book5/evidence/fixedassets-095/README.md"
-  ]
+  ],
+  "lastResult": {
+    "status": "observed",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-095/FIXEDASSETS-095-result.json",
+    "summary": "FIXEDASSETS-095 opened Purchase Invoices read-only in MCP_1_20260210 / RM-DEMO. Visible list context was captured without New/Edit/Delete/Post/Preview. Type=Fixed Asset proof: not-proved-readonly."
+  }
 }

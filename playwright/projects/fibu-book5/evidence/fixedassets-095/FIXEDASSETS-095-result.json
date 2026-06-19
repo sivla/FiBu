@@ -1,0 +1,166 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-purchase-invoice-line-type-capability-diagnosis-readonly-result",
+  "caseId": "FIXEDASSETS-095-PURCHASE-INVOICE-LINE-TYPE-CAPABILITY-DIAGNOSIS-READONLY",
+  "source": "playwright-readonly-ui-diagnosis",
+  "runPlanId": "FIXEDASSETS-095-PURCHASE-INVOICE-LINE-TYPE-CAPABILITY-DIAGNOSIS-READONLY-PLAN",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-medium",
+  "changedFiles": [
+    ".agent/state/cases/fixedassets-095-purchase-invoice-line-type-capability-diagnosis-readonly.json",
+    ".agent/state/cases/fixedassets-096-purchase-invoice-draft-line-type-gate-decision.json",
+    "package.json",
+    "playwright/projects/fibu-book5/tests/fixedassets-095-purchase-invoice-line-type-capability-diagnosis-readonly.spec.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-095/FIXEDASSETS-095-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-095/FIXEDASSETS-095-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-095/010-purchase-invoices-readonly-context.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-095/020-visible-action-inventory.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-095/README.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-095/FIXEDASSETS-095-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-095/FIXEDASSETS-095-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-095/010-purchase-invoices-readonly-context.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-095/020-visible-action-inventory.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-095/README.md"
+  ],
+  "flags": {
+    "noWrite": true,
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noBookChange": true,
+    "noApiShortcut": true,
+    "noActionClick": true,
+    "noRecordOpen": true,
+    "noScreenshot": true
+  },
+  "resultStatus": "observed",
+  "environment": {
+    "expectedInstance": "MCP_1_20260210",
+    "expectedCompany": "RM-DEMO",
+    "detectedInstance": "MCP_1_20260210",
+    "detectedCompany": "RM-DEMO",
+    "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=9308&dc=0",
+    "title": "Purchase Invoices"
+  },
+  "proved": [
+    "Business Central URL stayed in MCP_1_20260210.",
+    "Company URL parameter stayed RM-DEMO.",
+    "Purchase Invoices list context was visible.",
+    "Focused UI text and action signals were captured without clicking New, Edit, Delete, Post or Preview.",
+    "No draft was created and no purchase invoice record or line was opened."
+  ],
+  "notProved": [
+    "Type = Fixed Asset was not selected.",
+    "Type = Fixed Asset is still not proven visible/selectable from the read-only list context.",
+    "K30000 and FA-CNC-01 were not entered.",
+    "No acquisition, depreciation, preview posting, posting or German final proof.",
+    "Read-only list evidence cannot prove editable line dropdown values hidden behind a draft document."
+  ],
+  "warnings": [
+    "Risky actions were visible in inventory only; this run did not click them."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-096-PURCHASE-INVOICE-DRAFT-LINE-TYPE-GATE-DECISION",
+      "active_case_file": ".agent/state/cases/fixedassets-096-purchase-invoice-draft-line-type-gate-decision.json",
+      "lastReferenceCase": "FIXEDASSETS-095-PURCHASE-INVOICE-LINE-TYPE-CAPABILITY-DIAGNOSIS-READONLY",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-095-purchase-invoice-line-type-capability-diagnosis-readonly.json",
+      "nextStep": "FIXEDASSETS-096: decide whether a tightly guarded Purchase Invoice draft line-type proof is justified, using FIXEDASSETS-095 read-only evidence."
+    },
+    "lastRunSummary": {
+      "schemaVersion": 1,
+      "runId": "FIXEDASSETS-095-PURCHASE-INVOICE-LINE-TYPE-CAPABILITY-DIAGNOSIS-READONLY",
+      "date": "2026-06-19",
+      "workType": "purchase-invoice-line-type-capability-diagnosis-readonly",
+      "branch": "codex/token-efficient-autopilot-state",
+      "bcRun": true,
+      "posted": false,
+      "companySwitched": false,
+      "summary": "FIXEDASSETS-095 opened Purchase Invoices read-only in MCP_1_20260210 / RM-DEMO. Visible list context was captured without New/Edit/Delete/Post/Preview. Type=Fixed Asset proof: not-proved-readonly.",
+      "nextStep": "Run FIXEDASSETS-096 as a local gate decision. Do not create a draft unless that case explicitly unlocks it."
+    },
+    "activeCase": {
+      "status": "observed",
+      "lastResult": {
+        "status": "observed",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-095/FIXEDASSETS-095-result.json",
+        "summary": "FIXEDASSETS-095 opened Purchase Invoices read-only in MCP_1_20260210 / RM-DEMO. Visible list context was captured without New/Edit/Delete/Post/Preview. Type=Fixed Asset proof: not-proved-readonly."
+      },
+      "nextSafeAction": "Local gate decision only. No New/Neu, no K30000, no FA-CNC-01, no value entry until a case unlocks a guarded draft proof."
+    }
+  },
+  "observed": {
+    "startedAt": "2026-06-19T10:32:11.010Z",
+    "finishedAt": "2026-06-19T10:32:17.038Z",
+    "pageInspectionUsed": false,
+    "pageInspectionReason": "Skipped to avoid external Learn/help popups and because this case only needed safe read-only list context.",
+    "signals": {
+      "purchaseInvoicesVisible": true,
+      "purchaseInvoiceVisible": true,
+      "lineContextVisible": true,
+      "typeTextVisible": false,
+      "fixedAssetTextVisible": false,
+      "itemTextVisible": false,
+      "newActionVisible": true,
+      "editActionVisible": false,
+      "deleteActionVisible": false,
+      "postOrPreviewVisible": true,
+      "focusedLines": [
+        "Purchase Invoices:",
+        "Neu",
+        "Post",
+        "Invoice",
+        "No.",
+        "Buy-from Vendor No.",
+        "Buy-from Vendor Name",
+        "Vendor Invoice No.",
+        "New from PDF",
+        "Vendor Details",
+        "Vendor No.",
+        "Phone No.",
+        "Fax No.",
+        "No., Sortierreihenfolge Aufsteigend",
+        "authority: \"https\\u003A//login.microsoftonline.com/organizations\","
+      ]
+    },
+    "fixedAssetLineTypeProved": false,
+    "actionInventory": {
+      "actionCount": 104,
+      "relevantActionCount": 14,
+      "riskyVisibleButNotClickedLabels": [
+        "Neu Neu Neu",
+        "Neu Neu Neu Erstellen Sie einen neuen Eintrag.",
+        "Verwandte Aktionen fur Neu Verwandte Aktionen fur Neu",
+        "Loschen Loschen Loschen Die ausgewahlte Zeile loschen",
+        "Post Post Post",
+        "Post Post Post Finalize the document or journal by posting the amounts and quantities to the related accounts in your company books. (F9)",
+        "Verwandte Aktionen fur Post Verwandte Aktionen fur Post",
+        "Invoice Invoice Invoice",
+        "Vendor Invoice No. Vendor Invoice No. Sortieren nach 'Vendor Invoice No.'",
+        "Menu fur Vendor Invoice No. offnen Menu offnen",
+        "New from PDF New from PDF Upload a PDF invoice to create a purchase invoice with agent assistance."
+      ],
+      "relevantActionLabels": [
+        "Neu Neu Neu",
+        "Neu Neu Neu Erstellen Sie einen neuen Eintrag.",
+        "Verwandte Aktionen fur Neu Verwandte Aktionen fur Neu",
+        "Loschen Loschen Loschen Die ausgewahlte Zeile loschen",
+        "Post Post Post",
+        "Post Post Post Finalize the document or journal by posting the amounts and quantities to the related accounts in your company books. (F9)",
+        "Verwandte Aktionen fur Post Verwandte Aktionen fur Post",
+        "Invoice Invoice Invoice",
+        "Vendor Invoice No. Vendor Invoice No. Sortieren nach 'Vendor Invoice No.'",
+        "Menu fur Vendor Invoice No. offnen Menu offnen",
+        "New from PDF New from PDF Upload a PDF invoice to create a purchase invoice with agent assistance."
+      ]
+    }
+  },
+  "nextStep": "Run FIXEDASSETS-096 as a local gate decision: decide whether a guarded Purchase Invoice draft line-type proof should be unlocked."
+}
