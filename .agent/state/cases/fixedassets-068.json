@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-068-PURCHASE-INVOICES-PAGEINSPECTION-READONLY",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "observed",
+  "workType": "read-only-page-inspection",
+  "goal": "Purchase Invoices / Einkaufsrechnungen read-only oeffnen und per Page Inspection technischen Page-/Tabellenkontext pruefen, ohne Aktionen oder Datensaetze zu klicken.",
+  "mustRead": [
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-068.json",
+    "playwright/core/bc-helpers.ts",
+    "playwright/core/evidence.ts",
+    "playwright/projects/fibu-book5/tests/fixedassets-068-purchase-invoices-pageinspection-readonly.spec.ts"
+  ],
+  "allowedActions": [
+    "open-business-central-readonly",
+    "read-url-instance-company",
+    "read-page-text",
+    "open-page-inspection-with-keyboard-shortcut",
+    "write-json-evidence",
+    "result-normalize",
+    "state-patch-plan-only"
+  ],
+  "forbiddenActions": [
+    "new",
+    "edit",
+    "delete",
+    "preview-posting",
+    "post",
+    "keep-draft",
+    "setup-change",
+    "api-shortcut",
+    "company-switch",
+    "book-edit",
+    "record-open"
+  ],
+  "acceptanceCriteria": [
+    "The test opens only the Purchase Invoices page in MCP_1_20260210 / RM-DEMO.",
+    "The test uses Page Inspection only as read-only technical diagnosis.",
+    "No visible Purchase Invoice record, action candidate, New/Neu, Edit, Delete, Preview or Post action is clicked.",
+    "The result JSON clearly states whether Page Inspection exposed page/table context."
+  ],
+  "recommendedSkills": [
+    "posting-gate",
+    "screenshot-qa",
+    "evidence-writer"
+  ],
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-067/FIXEDASSETS-067-result.json"
+  ],
+  "nextSafeAction": "Use Page Inspection context for safer Purchase Invoice field-mapping decisions. Do not click New/Neu without explicit approval.",
+  "lastResult": {
+    "status": "observed",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-068/FIXEDASSETS-068-result.json",
+    "summary": "FIXEDASSETS-068 opened Purchase Invoices read-only in MCP_1_20260210 / RM-DEMO and opened Page Inspection with Control+Alt+F1 without clicking New/Neu, records or posting actions."
+  }
+}
