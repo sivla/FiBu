@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-121-PURCHASE-INVOICE-LINE-TYPE-PAGEINSPECTION-PERSONALIZE-DIAGNOSIS",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "guarded-ui-pageinspection-personalize-line-type-diagnosis",
+  "taskClass": "wizard_work",
+  "goal": "Use UI-first Page Inspection and/or Personalize diagnostics to identify the Purchase Invoice line Type page/table/field context before any further line type selection attempt.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-119/FIXEDASSETS-119-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-120/FIXEDASSETS-120-route-decision.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-120/FIXEDASSETS-120-result.json"
+  ],
+  "knownTruth": [
+    "The Type menu-button route is blocked as a value-list proof.",
+    "Fixed Asset/Anlage is not yet proven as a visible Purchase Invoice line Type option.",
+    "FA-121 is a technical context diagnosis only, not a target value or posting run."
+  ],
+  "allowedActions": [
+    "open-business-central",
+    "run-playwright",
+    "confirm-instance-and-company",
+    "open-purchase-invoices",
+    "scoped-new-purchase-invoice-if-needed",
+    "observe-purchase-invoice-lines",
+    "focus-type-gridcell",
+    "open-page-inspection",
+    "capture-page-table-field-context",
+    "open-personalize-diagnostics-no-save",
+    "capture-personalize-field-context-or-blocker",
+    "capture-compact-evidence",
+    "cleanup-draft-if-created"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "api-shortcut",
+    "book-edit",
+    "select-fixed-asset-line-type",
+    "enter-K30000-in-purchase-invoice",
+    "enter-FA-CNC-01",
+    "enter-amount",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "save-personalization",
+    "keep-draft-without-explicit-gate",
+    "delete-non-test-data",
+    "fake-evidence"
+  ],
+  "acceptanceCriteria": [
+    "The test aborts if instance or company is not clearly MCP_1_20260210 / RM-DEMO.",
+    "No line type option is selected.",
+    "No K30000, FA-CNC-01 or amount is entered.",
+    "Page Inspection evidence captures page/table/field context if available.",
+    "Personalize is used only as diagnostic mode and is not saved.",
+    "If a draft document is created, cleanup or explicit no-persisted-draft evidence is written."
+  ],
+  "recommendedSkills": [
+    "evidence-writer",
+    "screenshot-qa"
+  ],
+  "requiresUsageLog": false,
+  "nextSafeAction": "Run guarded Page Inspection/Personalize diagnosis for the Purchase Invoice line Type field."
+}

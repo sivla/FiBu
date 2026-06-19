@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-119-PURCHASE-INVOICE-LINE-TYPE-MENU-BUTTON-OPTIONS-NO-SELECTION",
+  "runId": "FIXEDASSETS-120-PURCHASE-INVOICE-LINE-TYPE-OPTIONS-ROUTE-DECISION",
   "date": "2026-06-20",
-  "workType": "fixed-asset-purchase-invoice-line-type-menu-button-options-probe",
+  "workType": "local-fixed-asset-purchase-invoice-line-type-route-review",
   "branch": "codex/token-efficient-autopilot-state",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "bcRun": true,
+  "bcRun": false,
   "posted": false,
   "preview": false,
   "setupChanged": false,
@@ -14,48 +14,37 @@
   "apiShortcut": false,
   "bookChanged": false,
   "resultStatus": "observed",
-  "summary": "FA-119 activated the small Purchase Invoice line Type menu button without selecting a value. No real option list was visible; sanitized options remained only Item and Fixed Asset/Anlage is still unproven. Cleanup was not needed because no persisted draft number was detected.",
+  "summary": "FA-120 reviewed FA-119 and rejected another blind Type menu-button repetition. The next route is FA-121: Page Inspection/Personalize diagnosis for the Purchase Invoice line Type field, with no selection or target values.",
   "evidenceRefs": [
     "playwright/projects/fibu-book5/evidence/fixedassets-119/FIXEDASSETS-119-result.json",
     "playwright/projects/fibu-book5/evidence/fixedassets-119/030-type-menu-button-options-probe.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-119/031-after-type-menu-button-probe-focused-text.txt",
-    "playwright/projects/fibu-book5/evidence/fixedassets-119/090-cleanup-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-119/README.md",
     "playwright/projects/fibu-book5/evidence/fixedassets-119/fixedassets-119-030-type-menu-button-options-probe.screenshot.json",
-    "playwright/projects/fibu-book5/img/fixedassets-119-030-type-menu-button-options-probe.png"
+    "playwright/projects/fibu-book5/evidence/fixedassets-120/FIXEDASSETS-120-route-decision.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-120/FIXEDASSETS-120-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-120/README.md"
   ],
   "changedFiles": [
     ".agent/state/current.json",
     ".agent/state/coverage_state.json",
-    ".agent/state/cases/fixedassets-119-purchase-invoice-line-type-menu-button-options-no-selection.json",
     ".agent/state/cases/fixedassets-120-purchase-invoice-line-type-options-route-decision.json",
+    ".agent/state/cases/fixedassets-121-purchase-invoice-line-type-pageinspection-personalize-diagnosis.json",
     ".agent/state/last_run_summary.json",
-    "package.json",
-    "playwright/projects/fibu-book5/BC-PLAYWRIGHT-PATTERNS.md",
+    ".agent/state/model_usage_log.jsonl",
     "playwright/projects/fibu-book5/CURRENT-STATE.md",
     "playwright/projects/fibu-book5/LAB-FIT-STATUS.md",
-    "playwright/projects/fibu-book5/tests/fixedassets-119-purchase-invoice-line-type-menu-button-options-no-selection.spec.ts",
-    "playwright/projects/fibu-book5/evidence/fixedassets-119/FIXEDASSETS-119-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-119/030-type-menu-button-options-probe.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-119/031-after-type-menu-button-probe-focused-text.txt",
-    "playwright/projects/fibu-book5/evidence/fixedassets-119/090-cleanup-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-119/README.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-119/fixedassets-119-030-type-menu-button-options-probe.screenshot.json",
-    "playwright/projects/fibu-book5/img/fixedassets-119-030-type-menu-button-options-probe.png"
+    "playwright/projects/fibu-book5/evidence/fixedassets-120/FIXEDASSETS-120-route-decision.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-120/FIXEDASSETS-120-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-120/README.md"
   ],
   "validationCommands": [
     "JSON parse for changed state/evidence files",
-    "rg secret scan for fixedassets-119 evidence",
     "npm run agent:preflight",
-    "npm run agent:dry-run",
     "npm run agent:run-plan",
     "npm run agent:subagent-plan",
-    "npm run fibu:fixedassets:purchase-invoice-line-type-menu-button-options",
-    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-119/FIXEDASSETS-119-result.json",
-    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-119/FIXEDASSETS-119-result.json",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-120/FIXEDASSETS-120-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-120/FIXEDASSETS-120-result.json",
     "npm run check:encoding",
-    "git diff --check",
-    "npx tsc --noEmit (not available: TypeScript is not installed; no dependency installed)"
+    "git diff --check"
   ],
-  "nextStep": "Run FIXEDASSETS-120 local evidence review before any Type selection or target values are unlocked."
+  "nextStep": "Run FIXEDASSETS-121 guarded UI-first technical diagnosis before any line type selection or target values are unlocked."
 }
