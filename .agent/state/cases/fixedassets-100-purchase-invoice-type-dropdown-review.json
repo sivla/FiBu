@@ -3,7 +3,7 @@
   "caseId": "FIXEDASSETS-100-PURCHASE-INVOICE-TYPE-DROPDOWN-REVIEW",
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "status": "planned",
+  "status": "observed-local-decision",
   "workType": "local-evidence-review",
   "taskClass": "judge_work",
   "goal": "Review FIXEDASSETS-099 evidence and decide whether Purchase Invoice acquisition can proceed to target field mapping or must switch route.",
@@ -48,5 +48,10 @@
     "posting-gate"
   ],
   "requiresUsageLog": true,
-  "nextSafeAction": "Review FIXEDASSETS-099 evidence locally and decide the next route."
+  "lastResult": {
+    "status": "observed",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-100/FIXEDASSETS-100-result.json",
+    "summary": "FA-100 classified the Purchase Invoice Type button route as exhausted for now. FA-099 targeted the Item role=button, but the visible title indicated an Item record drilldown and Fixed Asset never became visible/selectable. The next route is FA G/L Journal draft ownership review."
+  },
+  "nextSafeAction": "Run FIXEDASSETS-101 local FA G/L Journal ownership gate before any journal value entry."
 }

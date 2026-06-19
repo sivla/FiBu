@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-101-FA-GL-JOURNAL-OWNERSHIP-GATE",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "local-evidence-review",
+  "taskClass": "judge_work",
+  "goal": "Review whether the Fixed Asset G/L Journal route can be safely reopened with explicit draft ownership after Purchase Invoice Type selection failed twice.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-088/FIXEDASSETS-088-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-092/FIXEDASSETS-092-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-093/FIXEDASSETS-093-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-100/FIXEDASSETS-100-result.json"
+  ],
+  "knownTruth": [
+    "Purchase Invoice Type selection did not expose Type = Fixed Asset in FA-097 or FA-099.",
+    "The FA G/L Journal route was previously blocked by cleanup or keep-draft risk, not by page discovery.",
+    "Default-locked actions may be unlocked only by an explicit active case with evidence, trace and cleanup/keep status.",
+    "No journal value entry, preview posting or posting is approved by this gate."
+  ],
+  "allowedActions": [
+    "read-fixedassets-journal-evidence",
+    "review-draft-ownership-risk",
+    "decide-if-one-controlled-journal-draft-can-be-unlocked",
+    "create-next-case-plan",
+    "state-patch-plan-only"
+  ],
+  "forbiddenActions": [
+    "open-business-central",
+    "run-playwright",
+    "enter-FA-CNC-01",
+    "enter-K30000",
+    "enter-amount",
+    "enter-quantity",
+    "preview-posting",
+    "post",
+    "setup-change",
+    "api-shortcut",
+    "book-edit",
+    "fake-evidence"
+  ],
+  "acceptanceCriteria": [
+    "The review states whether FA G/L Journal is the next best acquisition route after Purchase Invoice Type selection failed.",
+    "The review states whether keep-draft may be case-unlocked for one controlled journal line or whether a cleanup proof is still required first.",
+    "The review chooses exactly one next safe case.",
+    "No Business Central or Playwright execution occurs in this gate."
+  ],
+  "stopConditions": [
+    "Required FA journal evidence is missing.",
+    "The decision would unlock posting, preview posting or setup change.",
+    "Draft ownership cannot be made explicit enough for a later live run."
+  ],
+  "recommendedSkills": [
+    "evidence-writer",
+    "posting-gate"
+  ],
+  "requiresUsageLog": true,
+  "nextSafeAction": "Review FA G/L Journal draft ownership locally; do not open BC yet."
+}

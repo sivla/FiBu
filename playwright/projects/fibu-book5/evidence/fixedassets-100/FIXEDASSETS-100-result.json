@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-purchase-invoice-type-dropdown-review-result",
+  "caseId": "FIXEDASSETS-100-PURCHASE-INVOICE-TYPE-DROPDOWN-REVIEW",
+  "source": "local-evidence-review",
+  "resultStatus": "observed",
+  "runPlanId": "FIXEDASSETS-100-PURCHASE-INVOICE-TYPE-DROPDOWN-REVIEW-PLAN",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "reviewedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-099/FIXEDASSETS-099-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-099/030-type-dropdown-button-probe.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-098/FIXEDASSETS-098-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-094/FIXEDASSETS-094-result.json"
+  ],
+  "proved": [
+    "FA-099 stayed in MCP_1_20260210 / RM-DEMO.",
+    "FA-099 targeted the smaller Purchase Invoice line Type Item role=button instead of the gridcell center.",
+    "The targeted Item role=button did not expose Type = Fixed Asset after click, Alt+ArrowDown or F4.",
+    "The button evidence title indicates an Item record drilldown, not a proven Type option dropdown.",
+    "No vendor, fixed asset number, amount, quantity, preview posting, posting or setup change was attempted.",
+    "No persisted Purchase Invoice draft number was detected, so cleanup was not needed."
+  ],
+  "notProved": [
+    "Type = Fixed Asset is not proven visible or selectable on Purchase Invoice lines.",
+    "Purchase Invoice acquisition for FA-CNC-01 is not ready for target value entry.",
+    "K30000 remains locked.",
+    "FA-CNC-01 remains locked.",
+    "No Preview Posting.",
+    "No posting.",
+    "No FA Ledger Entry or G/L trace.",
+    "No German final proof."
+  ],
+  "decision": {
+    "classification": "purchase-invoice-type-route-exhausted-for-now",
+    "reason": "FA-097 and FA-099 both reached a Purchase Invoice line context with Type=Item. FA-099 refined the selector to the smaller Item role=button, but the UI still did not expose Fixed Asset. Because the selected element appears to open the current Item record rather than a Type dropdown, another similar Purchase Invoice Type probe would likely repeat cost without new learning.",
+    "doNotRepeatWithoutNewEvidence": [
+      "center-click Item Type gridcell probe",
+      "Item role=button Type probe",
+      "Alt+ArrowDown/F4 Type probe before a different BC pattern is identified"
+    ],
+    "nextRoute": "fixed-asset-gl-journal-with-explicit-draft-ownership-gate",
+    "nextCaseId": "FIXEDASSETS-101-FA-GL-JOURNAL-OWNERSHIP-GATE",
+    "targetValuesRemainLocked": true,
+    "previewApproved": false,
+    "postingApproved": false,
+    "setupChangeApproved": false
+  },
+  "changedFiles": [
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-100-purchase-invoice-type-dropdown-review.json",
+    ".agent/state/cases/fixedassets-101-fa-gl-journal-ownership-gate.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/model_usage_log.jsonl",
+    "playwright/projects/fibu-book5/evidence/fixedassets-100/FIXEDASSETS-100-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-100/FIXEDASSETS-100-decision.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-100/README.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-100/FIXEDASSETS-100-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-100/FIXEDASSETS-100-decision.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-100/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-099/FIXEDASSETS-099-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-099/030-type-dropdown-button-probe.json"
+  ],
+  "warnings": [
+    "Local review only; Business Central was not opened in FA-100.",
+    "This is CRONUS/RM-DEMO sandbox evidence only.",
+    "The next case must not enter journal values; it only decides draft ownership and cleanup/keep policy."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-101-FA-GL-JOURNAL-OWNERSHIP-GATE",
+      "active_case_file": ".agent/state/cases/fixedassets-101-fa-gl-journal-ownership-gate.json",
+      "lastReferenceCase": "FIXEDASSETS-100-PURCHASE-INVOICE-TYPE-DROPDOWN-REVIEW",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-100-purchase-invoice-type-dropdown-review.json",
+      "nextStep": "FIXEDASSETS-101: review FA G/L Journal draft ownership locally before any value-entry attempt; decide whether a case may unlock one controlled journal draft with explicit cleanup or keep-trace."
+    },
+    "lastRunSummary": {
+      "schemaVersion": 1,
+      "runId": "FIXEDASSETS-100-PURCHASE-INVOICE-TYPE-DROPDOWN-REVIEW",
+      "date": "2026-06-19",
+      "workType": "local-evidence-review",
+      "branch": "codex/token-efficient-autopilot-state",
+      "instance": "MCP_1_20260210",
+      "company": "RM-DEMO",
+      "bcRun": false,
+      "posted": false,
+      "preview": false,
+      "setupChanged": false,
+      "companySwitched": false,
+      "resultStatus": "observed",
+      "summary": "FA-100 reviewed FA-099 locally and classified the Purchase Invoice Type button route as exhausted for now. The next safe route is FA G/L Journal draft ownership review.",
+      "nextStep": "FIXEDASSETS-101-FA-GL-JOURNAL-OWNERSHIP-GATE"
+    },
+    "activeCase": {
+      "status": "observed-local-decision",
+      "lastResult": {
+        "status": "observed",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-100/FIXEDASSETS-100-result.json",
+        "summary": "Purchase Invoice Type route exhausted for now; next route is FA G/L Journal draft ownership gate."
+      },
+      "nextSafeAction": "Run FIXEDASSETS-101 local FA G/L Journal ownership gate."
+    }
+  },
+  "flags": {
+    "bcRun": false,
+    "noPlaywright": true,
+    "noBookChange": true,
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "targetValuesRemainLocked": true
+  },
+  "nextStep": "Run FIXEDASSETS-101 local FA G/L Journal draft ownership gate."
+}

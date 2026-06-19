@@ -1,47 +1,43 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-099-PURCHASE-INVOICE-TYPE-DROPDOWN-BUTTON-PROBE",
+  "runId": "FIXEDASSETS-100-PURCHASE-INVOICE-TYPE-DROPDOWN-REVIEW",
   "date": "2026-06-19",
-  "workType": "fixed-asset-purchase-invoice-type-dropdown-button-probe",
+  "workType": "local-evidence-review",
   "branch": "codex/token-efficient-autopilot-state",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "bcRun": true,
+  "bcRun": false,
   "posted": false,
   "preview": false,
   "setupChanged": false,
   "companySwitched": false,
-  "resultStatus": "blocked",
-  "summary": "FA-099 targeted the smaller Purchase Invoice Type-cell Item button/dropdown area in MCP_1_20260210 / RM-DEMO. Fixed Asset was still not visible/selectable, no target values were entered, no preview/posting occurred, and no persisted draft number was detected.",
+  "resultStatus": "observed",
+  "summary": "FA-100 reviewed FA-099 locally and classified the Purchase Invoice Type button route as exhausted for now. The observed Item role=button behaved like an Item record drilldown, not a Type option dropdown; Fixed Asset was not visible/selectable after click, Alt+ArrowDown or F4.",
   "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-100/FIXEDASSETS-100-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-100/FIXEDASSETS-100-decision.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-100/README.md",
     "playwright/projects/fibu-book5/evidence/fixedassets-099/FIXEDASSETS-099-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-099/030-type-dropdown-button-probe.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-099/031-after-button-probe-focused-text.txt",
-    "playwright/projects/fibu-book5/evidence/fixedassets-099/090-cleanup-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-099/README.md"
+    "playwright/projects/fibu-book5/evidence/fixedassets-099/030-type-dropdown-button-probe.json"
   ],
   "changedFiles": [
     ".agent/state/current.json",
-    ".agent/state/cases/fixedassets-099-purchase-invoice-type-dropdown-button-probe.json",
     ".agent/state/cases/fixedassets-100-purchase-invoice-type-dropdown-review.json",
+    ".agent/state/cases/fixedassets-101-fa-gl-journal-ownership-gate.json",
     ".agent/state/last_run_summary.json",
-    "package.json",
-    "playwright/projects/fibu-book5/tests/fixedassets-099-purchase-invoice-type-dropdown-button-probe.spec.ts",
-    "playwright/projects/fibu-book5/evidence/fixedassets-099/FIXEDASSETS-099-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-099/030-type-dropdown-button-probe.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-099/031-after-button-probe-focused-text.txt",
-    "playwright/projects/fibu-book5/evidence/fixedassets-099/090-cleanup-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-099/README.md"
+    ".agent/state/model_usage_log.jsonl",
+    "playwright/projects/fibu-book5/evidence/fixedassets-100/FIXEDASSETS-100-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-100/FIXEDASSETS-100-decision.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-100/README.md"
   ],
   "validationCommands": [
     "npm run agent:preflight",
     "npm run agent:dry-run",
     "npm run agent:run-plan",
-    "npm run fibu:fixedassets:purchase-invoice-type-dropdown-button-probe",
-    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-099/FIXEDASSETS-099-result.json",
-    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-099/FIXEDASSETS-099-result.json",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-100/FIXEDASSETS-100-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-100/FIXEDASSETS-100-result.json",
     "npm run check:encoding",
     "git diff --check"
   ],
-  "nextStep": "Run FIXEDASSETS-100 local evidence review. Decide whether to abandon the Purchase Invoice Type route or use a different BC acquisition mechanism."
+  "nextStep": "Run FIXEDASSETS-101 local FA G/L Journal draft ownership gate before any journal value-entry attempt."
 }
