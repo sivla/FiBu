@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-live-smoke-result",
+  "caseId": "LIVE-SMOKE-BC-003-READONLY-ACTION-INVENTORY",
+  "source": "playwright-readonly-smoke",
+  "runPlanId": "LIVE-SMOKE-BC-003-READONLY-ACTION-INVENTORY-PLAN",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-medium",
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/live-smoke-bc-003/result.json"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/live-smoke-bc-003/result.json"
+  ],
+  "statePatch": {
+    "lastRunSummary": {
+      "schemaVersion": 1,
+      "runId": "LIVE-SMOKE-BC-003-READONLY-ACTION-INVENTORY",
+      "date": "2026-06-19",
+      "workType": "playwright-readonly-smoke-action-inventory",
+      "branch": "codex/token-efficient-autopilot-state",
+      "bcRun": true,
+      "posted": false,
+      "companySwitched": false,
+      "summary": "LIVE-SMOKE-BC-003 ran read-only in MCP_1_20260210 / RM-DEMO and inventoried visible shell/page actions without clicking them. No posting, preview, draft, setup change, company switch or book change.",
+      "nextStep": "Review the state-finalize plan for LIVE-SMOKE-BC-003. Do not use --write without explicit approval."
+    },
+    "activeCase": {
+      "status": "observed",
+      "lastResult": {
+        "status": "observed",
+        "resultFile": "playwright/projects/fibu-book5/evidence/live-smoke-bc-003/result.json",
+        "summary": "LIVE-SMOKE-BC-003 ran read-only in MCP_1_20260210 / RM-DEMO and inventoried visible shell/page actions without clicking them. No posting, preview, draft, setup change, company switch or book change."
+      },
+      "nextSafeAction": "Result is safe for a state-finalize patch plan only. Wait for explicit approval before --write."
+    }
+  },
+  "safeToFinalizeState": true,
+  "flags": {
+    "noWrite": true,
+    "noPost": true,
+    "noPreview": true,
+    "noShip": true,
+    "noInvoice": true,
+    "noPayment": true,
+    "noDraft": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true,
+    "noScreenshot": true,
+    "noActionClick": true
+  },
+  "resultStatus": "observed",
+  "proved": [
+    "Business Central URL stayed in MCP_1_20260210.",
+    "Company URL parameter stayed RM-DEMO.",
+    "Business Central shell was visible with existing storageState.",
+    "Visible shell/page action names were inventoried without clicking.",
+    "Risky action names, if visible, were recorded as forbidden-not-clicked only.",
+    "No booking was triggered.",
+    "No Preview Posting was triggered.",
+    "No Post was triggered.",
+    "No draft was created.",
+    "No setup change was triggered.",
+    "No company switch was triggered.",
+    "No action was clicked."
+  ],
+  "notProved": [
+    "No business process, posting readiness, ledger trace or book screenshot was tested.",
+    "Company was confirmed from URL context only; no separate UI text confirmation was visible in this read-only smoke.",
+    "Action availability was inventoried from visible button labels only; hidden menu actions were not opened."
+  ],
+  "warnings": [
+    "Company RM-DEMO was not visible in compact page text; URL parameter is the company proof."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "environment": {
+    "instance": "MCP_1_20260210",
+    "company": "RM-DEMO",
+    "expectedInstance": "MCP_1_20260210",
+    "expectedCompany": "RM-DEMO",
+    "companyTextVisible": false
+  },
+  "observed": {
+    "startedAt": "2026-06-19T00:50:15.501Z",
+    "finishedAt": "2026-06-19T00:50:23.840Z",
+    "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO",
+    "title": "Dynamics 365 Business Central",
+    "dialogCount": 0,
+    "actionInventory": {
+      "visibleActionCount": 60,
+      "safeVisibleActions": [],
+      "riskyVisibleActionsNotClicked": [
+        "New Intercom... Transactions",
+        "New Time Sheets",
+        "Overdue Purch. Invoice Amount 129.433 $ Ungunstig Weitere Informationen",
+        "Overdue Sales Invoice Amount 68.882 $ Nicht eindeutig Weitere Informationen"
+      ]
+    },
+    "safePageTextLines": [
+      "Dynamics 365 Business Central",
+      "Finance",
+      "Sales",
+      "Want to learn more about Business Central?",
+      "Sales Quote",
+      "Sales Order",
+      "Sales Invoice",
+      "Purchase Quote",
+      "Purchase Order",
+      "Purchase Invoice",
+      "Activities",
+      "Sales This Month",
+      "Overdue Sales Invoice",
+      "Ongoing Sales",
+      "Sales Quotes",
+      "Sales Orders",
+      "Sales Invoices",
+      "Ongoing Purchases",
+      "Purchase Orders",
+      "Einblicke"
+    ]
+  }
+}
