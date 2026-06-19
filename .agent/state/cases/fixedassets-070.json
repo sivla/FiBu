@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-070-LINE-TYPE-SELECTION-DIAGNOSIS",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "line-type-selection-diagnosis",
+  "goal": "Diagnose how Purchase Invoice Lines can expose or select Type = Fixed Asset without entering K30000 or FA-CNC-01 and without creating another kept draft.",
+  "mustRead": [
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-070.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-066/FIXEDASSETS-066-result.json",
+    "playwright/core/bc/purchase-invoice-guards.ts",
+    "playwright/core/bc/actions.ts"
+  ],
+  "allowedActions": [
+    "static-helper-analysis",
+    "read-only-ui-context-diagnosis",
+    "read-only-action-inventory",
+    "page-inspection-read-only",
+    "personalize-mode-research-plan",
+    "result-normalize",
+    "state-patch-plan-only"
+  ],
+  "forbiddenActions": [
+    "enter-FA-CNC-01",
+    "enter-K30000-in-purchase-invoice",
+    "new-without-explicit-approval",
+    "edit",
+    "delete",
+    "preview-posting",
+    "post",
+    "keep-draft",
+    "setup-change",
+    "api-shortcut",
+    "company-switch",
+    "book-edit"
+  ],
+  "acceptanceCriteria": [
+    "The next run must explain why the FIXEDASSETS-066 line remained Item.",
+    "If Business Central is opened, the run must be read-only unless explicit approval is given for a new guarded draft.",
+    "Personalize/Page Inspection may be used only read-only to identify available fields/actions and page/table context.",
+    "K30000 and FA-CNC-01 remain forbidden until Type = Fixed Asset is visibly proven in Purchase Invoice Lines.",
+    "No Preview Posting, Post, setup change, company switch or kept draft is allowed."
+  ],
+  "recommendedSkills": [
+    "screenshot-qa",
+    "evidence-writer"
+  ],
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-066/FIXEDASSETS-066-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-066/030-line-type-guard-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-066/091-cleanup-retry-result.json"
+  ],
+  "lastResult": {
+    "status": "planned",
+    "resultFile": "",
+    "summary": "Created from FIXEDASSETS-066 blocker: Purchase Invoice Lines context was visible, but Type remained Item and Fixed Asset was not visible."
+  },
+  "nextSafeAction": "Perform a small read-only diagnosis of Purchase Invoice Lines Type selection via static helper review, Page Inspection evidence, or Personalize/action inventory. Do not click New/Edit/Delete and do not enter target values without explicit approval."
+}

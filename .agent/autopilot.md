@@ -54,6 +54,6 @@ Zweck: kleiner Einstiegspunkt fuer Codex-Laeufe, die nicht den gesamten Projektv
 ## Aktueller Einstieg
 
 Der aktuelle kompakte State verweist auf die in `.agent/state/current.json` genannte aktive Case-Datei.
-Aktuell ist das `FIXEDASSETS-066-PURCHASE-INVOICE-LINE-TYPE-GUARDED-PROBE-PREP`.
-Der vorbereitete Runner ist nicht read-only: Er klickt `New/Neu` und kann einen temporaeren Draft erzeugen.
-Er darf daher nur mit ausdruecklicher Freigabe laufen. Ohne Freigabe ist der naechste sichere Schritt ein read-only Kontext- oder Action-Inventar-Lauf.
+Aktuell ist das `FIXEDASSETS-070-LINE-TYPE-SELECTION-DIAGNOSIS`.
+Der naechste sichere Schritt ist eine read-only Diagnose der Purchase-Invoice-Lines-Zeilentypauswahl.
+`K30000`, `FA-CNC-01`, `New/Neu`, `Edit`, `Delete`, `Preview Posting`, `Post`, Setup-Aenderung und Company-Wechsel bleiben ohne ausdrueckliche Freigabe verboten.

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-070-LINE-TYPE-SELECTION-DIAGNOSIS",
+  "source": "local-state-consistency",
+  "resultStatus": "observed",
+  "proved": [
+    "Coverage already named FIXEDASSETS-070-LINE-TYPE-SELECTION-DIAGNOSIS as the next Fixed Assets case.",
+    "FIXEDASSETS-066 is complete enough for handoff: it blocked on Item line type and cleanup removed temporary draft 107210.",
+    "Current state now points to a dedicated read-only-oriented FIXEDASSETS-070 diagnosis case."
+  ],
+  "notProved": [
+    "No Business Central UI was opened in this run.",
+    "No Fixed Asset line type was proven in Purchase Invoice Lines.",
+    "No K30000 or FA-CNC-01 field mapping was tested.",
+    "No Preview Posting, posting, acquisition or depreciation evidence was produced."
+  ],
+  "changedFiles": [
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-070.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/autopilot.md",
+    ".agent/state/local_results/fixedassets-070-state-activation.json"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-066/FIXEDASSETS-066-result.json"
+  ],
+  "warnings": [
+    "This is a local state-consistency result, not a BC field proof.",
+    "FIXEDASSETS-070 must remain read-only unless the user explicitly approves a new guarded draft-capable probe."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": false,
+  "statePatch": {},
+  "flags": {
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noBookChange": true,
+    "noPlaywrightRun": true,
+    "noBcRun": true
+  },
+  "reason": "Small safe Autopilot progress: align active state with the already documented next Fixed Assets case and keep dangerous actions locked."
+}

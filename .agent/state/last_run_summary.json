@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-066-PURCHASE-INVOICE-LINE-TYPE-GUARDED-PROBE",
+  "runId": "FIXEDASSETS-070-LINE-TYPE-SELECTION-DIAGNOSIS-STATE-ACTIVATION",
   "date": "2026-06-19",
-  "workType": "guarded-ui-probe-execution-and-cleanup",
+  "workType": "state-consistency-update",
   "branch": "codex/token-efficient-autopilot-state",
-  "bcRun": true,
+  "bcRun": false,
   "posted": false,
   "companySwitched": false,
-  "summary": "FIXEDASSETS-066 ran once with explicit approval. The guard proved Purchase Invoice Lines context but stopped because Type remained Item; K30000/FA-CNC-01 were not entered, no Preview/Post happened, and temporary draft 107210 was removed via UI cleanup retry.",
+  "summary": "Activated FIXEDASSETS-070 as the next safe Fixed Assets step after FIXEDASSETS-066. No BC or Playwright run was executed; the change only aligns current state with coverage nextCase and keeps target values locked.",
   "commandsToRunBeforeAutopilot": [
     "npm run agent:preflight",
     "npm run agent:context",
@@ -40,5 +40,5 @@
     "stateFinalize": "scripts/agent/state-finalize.mjs",
     "skillQualityCheck": "scripts/agent/skills-quality-check.mjs"
   },
-  "nextStep": "Diagnose Purchase Invoice Lines Type selection, personalization, or page metadata so Type = Fixed Asset can be made visible before any target values are entered."
+  "nextStep": "Run a small read-only FIXEDASSETS-070 diagnosis of Purchase Invoice Lines Type selection, personalization, or page metadata so Type = Fixed Asset can be made visible before any target values are entered."
 }
