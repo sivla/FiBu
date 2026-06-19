@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "caseId": "LIVE-SMOKE-BC-003-READONLY-ACTION-INVENTORY",
+  "title": "Read-only Business Central shell action inventory smoke test",
+  "status": "planned",
+  "workType": "read-only-tool-live-smoke-action-inventory",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Open Business Central read-only, confirm the expected sandbox and company URL context, and inventory harmless visible shell/page actions without clicking them.",
+  "budgetProfile": "standard",
+  "taskClass": "wizard_work",
+  "modelClass": "gpt-4-medium",
+  "mustRead": [
+    ".agent/state/current.json",
+    "playwright/projects/fibu-book5/project.ts",
+    "playwright/core/bc-helpers.ts",
+    "playwright/core/evidence.ts",
+    "playwright/projects/fibu-book5/tests/live-smoke-bc-002-readonly-page-context.spec.ts"
+  ],
+  "allowedActions": [
+    "read-only-bc-open",
+    "read-only-shell-context-check",
+    "read-only-page-text-extract",
+    "read-only-action-inventory",
+    "write-json-evidence",
+    "result-normalize",
+    "state-patch-plan-only"
+  ],
+  "forbiddenActions": [
+    "post",
+    "preview-posting",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "company-switch",
+    "new",
+    "edit",
+    "delete",
+    "draft",
+    "api-shortcut",
+    "book-edit",
+    "screenshot-binary-commit",
+    "action-click"
+  ],
+  "safetyGates": [
+    "Abort if URL does not contain MCP_1_20260210.",
+    "Abort if company URL parameter is not RM-DEMO.",
+    "Inventory visible actions only; do not click them.",
+    "Abort if a dialog with OK, Yes, Ja, Post, Preview, Delete, New or Edit appears.",
+    "Do not open a new BC page unless a later run-plan explicitly permits it."
+  ],
+  "acceptanceCriteria": [
+    "Business Central opens with existing storageState.",
+    "Instance MCP_1_20260210 is confirmed from URL.",
+    "Company RM-DEMO is confirmed from URL parameter.",
+    "Visible safe shell/page actions are listed without clicking.",
+    "Risky actions are either absent from the inventory or recorded as forbidden-not-clicked.",
+    "Result JSON contains no-write, no-post, no-preview, no-draft, no-setup-change, no-company-switch and no-action-click flags.",
+    "No state is written automatically."
+  ],
+  "evidenceTargets": [
+    "playwright/projects/fibu-book5/evidence/live-smoke-bc-003/result.json"
+  ],
+  "nextSafeAction": "Create and run a read-only Playwright smoke that inventories visible shell/page actions without clicking them, after agent:run-plan and agent:subagent-plan pass."
+}
