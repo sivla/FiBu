@@ -1,36 +1,40 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-083-ACQUIRE-ROUTE-DECISION",
+  "runId": "FIXEDASSETS-084-FA-GL-JOURNAL-ROUTE-READONLY-DISCOVERY",
   "date": "2026-06-19",
-  "workType": "fixed-asset-acquire-route-decision",
+  "workType": "fixed-asset-gl-journal-route-readonly-discovery",
   "branch": "codex/token-efficient-autopilot-state",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "bcRun": false,
+  "bcRun": true,
   "posted": false,
   "preview": false,
   "setupChanged": false,
   "companySwitched": false,
-  "resultStatus": "observed",
-  "summary": "FA-083 selected the Fixed Asset G/L Journal route as the next route to discover read-only. FA-082 proved Acquire is visible but disabled; edit-mode and Page Inspection remain useful diagnostics, but the journal route is the most direct next step toward a controlled acquisition process and posting trace.",
+  "resultStatus": "blocked",
+  "summary": "FA-084 stayed read-only in MCP_1_20260210 / RM-DEMO, but Tell-Me did not expose a unique Fixed Asset G/L Journal result. The run stopped without Enter fallback, without journal line, without preview, without posting and without setup change.",
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/fixedassets-083/FIXEDASSETS-083-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-083/FIXEDASSETS-083-learning.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-083/README.md"
+    "playwright/projects/fibu-book5/evidence/fixedassets-084/FIXEDASSETS-084-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-084/FIXEDASSETS-084-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-084/README.md"
   ],
   "changedFiles": [
     ".agent/state/current.json",
-    ".agent/state/cases/fixedassets-083-acquire-route-decision.json",
     ".agent/state/cases/fixedassets-084-fa-gl-journal-route-readonly-discovery.json",
+    ".agent/state/cases/fixedassets-085-fa-gl-journal-route-blocker-diagnosis.json",
     ".agent/state/coverage_state.json",
     ".agent/state/last_run_summary.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-083/FIXEDASSETS-083-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-083/FIXEDASSETS-083-learning.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-083/README.md"
+    "package.json",
+    "playwright/projects/fibu-book5/tests/fixedassets-084-fa-gl-journal-route-readonly-discovery.spec.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-084/FIXEDASSETS-084-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-084/FIXEDASSETS-084-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-084/README.md"
   ],
   "validationCommands": [
     "npm run agent:preflight",
-    "npm run agent:dry-run"
+    "npm run fibu:fixedassets:fa-gl-journal-route-readonly-discovery",
+    "npm run check:encoding",
+    "git diff --check"
   ],
-  "nextStep": "FIXEDASSETS-084-FA-GL-JOURNAL-ROUTE-READONLY-DISCOVERY: open the Fixed Asset G/L Journal route read-only, prove page/context/actions, and stop before any new line, value entry, preview or posting."
+  "nextStep": "FIXEDASSETS-085-FA-GL-JOURNAL-ROUTE-BLOCKER-DIAGNOSIS: diagnose why Tell-Me did not expose a unique Fixed Asset G/L Journal result, using read-only search/result inventory only."
 }

@@ -1,0 +1,171 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-fa-gl-journal-route-readonly-discovery-result",
+  "caseId": "FIXEDASSETS-084-FA-GL-JOURNAL-ROUTE-READONLY-DISCOVERY",
+  "source": "playwright-result",
+  "resultStatus": "blocked",
+  "runPlanId": "FIXEDASSETS-084-FA-GL-JOURNAL-ROUTE-READONLY-DISCOVERY-PLAN",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-medium",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "proved": [
+    "The run stayed in MCP_1_20260210 / RM-DEMO.",
+    "The run used Tell-Me without blind Enter fallback and required a unique FA G/L Journal result.",
+    "The run did not create, edit, delete, preview, post, pay, invoice, ship or change setup."
+  ],
+  "notProved": [
+    "No journal line was created.",
+    "No FA-CNC-01 was entered in a journal.",
+    "No K30000 was entered.",
+    "No amount was entered.",
+    "No Preview Posting.",
+    "No acquisition posting.",
+    "No German final proof.",
+    "The journal route was not proven open."
+  ],
+  "changedFiles": [
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-084-fa-gl-journal-route-readonly-discovery.json",
+    ".agent/state/cases/fixedassets-085-fa-gl-journal-route-blocker-diagnosis.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    "package.json",
+    "playwright/projects/fibu-book5/tests/fixedassets-084-fa-gl-journal-route-readonly-discovery.spec.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-084/FIXEDASSETS-084-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-084/FIXEDASSETS-084-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-084/README.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-084/FIXEDASSETS-084-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-084/FIXEDASSETS-084-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-084/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-084/010-tell-me-fixed-asset-gl-journal.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-084/020-fa-gl-journal-page-context.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-084/030-fa-gl-journal-ui-signals.json"
+  ],
+  "warnings": [
+    "CRONUS/RM-DEMO Labor only.",
+    "Read-only route discovery, not a posting or setup proof.",
+    "Visible Post/Preview/New/Edit/Delete actions, if present, were not clicked."
+  ],
+  "blockedBy": [
+    "Error: Tell-Me Treffer /^Fixed Asset G\\/L Journals$|^FA G\\/L Journals$|^Anlagen Fibu Buch.-Bl.*tter$|^Anlagen Fibu Buchbl.*tter$/i wurde nicht gefunden. Kein Enter-Fallback, weil BC-Suche mehrdeutig ist."
+  ],
+  "requiresReview": true,
+  "safeToFinalizeState": false,
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-085-FA-GL-JOURNAL-ROUTE-BLOCKER-DIAGNOSIS",
+      "active_case_file": ".agent/state/cases/fixedassets-085-fa-gl-journal-route-blocker-diagnosis.json",
+      "lastReferenceCase": "FIXEDASSETS-084-FA-GL-JOURNAL-ROUTE-READONLY-DISCOVERY",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-084-fa-gl-journal-route-readonly-discovery.json",
+      "nextStep": "Diagnose why the FA G/L Journal route did not open without using New/Edit/Post/Preview."
+    },
+    "lastRunSummary": {
+      "schemaVersion": 1,
+      "runId": "FIXEDASSETS-084-FA-GL-JOURNAL-ROUTE-READONLY-DISCOVERY",
+      "date": "2026-06-19",
+      "workType": "fixed-asset-gl-journal-route-readonly-discovery",
+      "branch": "codex/token-efficient-autopilot-state",
+      "instance": "MCP_1_20260210",
+      "company": "RM-DEMO",
+      "bcRun": true,
+      "posted": false,
+      "preview": false,
+      "setupChanged": false,
+      "companySwitched": false,
+      "resultStatus": "blocked",
+      "summary": "FA-084 stayed read-only but did not prove the Fixed Asset G/L Journal route. Blocker: Error: Tell-Me Treffer /^Fixed Asset G\\/L Journals$|^FA G\\/L Journals$|^Anlagen Fibu Buch.-Bl.*tter$|^Anlagen Fibu Buchbl.*tter$/i wurde nicht gefunden. Kein Enter-Fallback, weil BC-Suche mehrdeutig ist..",
+      "nextStep": "Diagnose why the FA G/L Journal route did not open without using New/Edit/Post/Preview."
+    },
+    "activeCase": {
+      "status": "blocked-readonly",
+      "lastResult": {
+        "status": "blocked",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-084/FIXEDASSETS-084-result.json",
+        "summary": "FA-084 stayed read-only but did not prove the Fixed Asset G/L Journal route. Blocker: Error: Tell-Me Treffer /^Fixed Asset G\\/L Journals$|^FA G\\/L Journals$|^Anlagen Fibu Buch.-Bl.*tter$|^Anlagen Fibu Buchbl.*tter$/i wurde nicht gefunden. Kein Enter-Fallback, weil BC-Suche mehrdeutig ist.."
+      },
+      "nextSafeAction": "Diagnose why the FA G/L Journal route did not open without using New/Edit/Post/Preview."
+    },
+    "coverage": {
+      "areas": {
+        "fixedassets": {
+          "currentBlock": "fa-gl-journal-route-blocker-diagnosis",
+          "latestPracticalCase": "FIXEDASSETS-084",
+          "nextCase": "FIXEDASSETS-085-FA-GL-JOURNAL-ROUTE-BLOCKER-DIAGNOSIS"
+        }
+      }
+    }
+  },
+  "route": {
+    "routeOpened": false,
+    "routeOpenError": "Error: Tell-Me Treffer /^Fixed Asset G\\/L Journals$|^FA G\\/L Journals$|^Anlagen Fibu Buch.-Bl.*tter$|^Anlagen Fibu Buchbl.*tter$/i wurde nicht gefunden. Kein Enter-Fallback, weil BC-Suche mehrdeutig ist.",
+    "routeContextVisible": false,
+    "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO",
+    "contextBefore": {
+      "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO",
+      "environmentInUrl": true,
+      "companyInUrl": true,
+      "companyInText": true,
+      "wrongEnvironmentVisible": false
+    },
+    "contextAfter": {
+      "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO",
+      "environmentInUrl": true,
+      "companyInUrl": true,
+      "companyInText": true,
+      "wrongEnvironmentVisible": false
+    },
+    "columnSignals": {
+      "journalBatch": false,
+      "postingDate": false,
+      "documentNo": false,
+      "accountType": false,
+      "accountNo": true,
+      "faPostingType": false,
+      "fixedAssetNo": false,
+      "amount": true,
+      "balancingAccount": false
+    },
+    "actionSignals": {
+      "newVisible": false,
+      "editVisible": false,
+      "deleteVisible": false,
+      "postVisible": true,
+      "previewVisible": false,
+      "journalCheckVisible": false
+    },
+    "evidence": {
+      "tellMeText": "playwright/projects/fibu-book5/evidence/fixedassets-084/010-tell-me-fixed-asset-gl-journal.txt",
+      "pageContextText": "playwright/projects/fibu-book5/evidence/fixedassets-084/020-fa-gl-journal-page-context.txt",
+      "uiSignals": "playwright/projects/fibu-book5/evidence/fixedassets-084/030-fa-gl-journal-ui-signals.json"
+    }
+  },
+  "flags": {
+    "stayedInExpectedInstance": true,
+    "companyContextDocumented": true,
+    "noBookChange": true,
+    "noPost": true,
+    "noPreview": true,
+    "noShip": true,
+    "noInvoice": true,
+    "noPayment": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noNewDraft": true,
+    "noEditRecord": true,
+    "noDeleteRecord": true,
+    "noJournalLineCreated": true,
+    "noTargetVendorEntry": true,
+    "noTargetFixedAssetEntry": true,
+    "cleanupRequired": false,
+    "cleanupCompleted": true
+  },
+  "observed": {
+    "startedAt": "2026-06-19T09:03:33.237Z",
+    "finishedAt": "2026-06-19T09:03:50.152Z"
+  },
+  "nextStep": "Diagnose why the FA G/L Journal route did not open without using New/Edit/Post/Preview."
+}

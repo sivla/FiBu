@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-085-FA-GL-JOURNAL-ROUTE-BLOCKER-DIAGNOSIS",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "fixed-asset-gl-journal-route-blocker-diagnosis",
+  "goal": "Diagnose why Tell-Me did not expose a unique Fixed Asset G/L Journal result, without creating or editing any journal line.",
+  "basedOn": [
+    ".agent/state/cases/fixedassets-084-fa-gl-journal-route-readonly-discovery.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-084/FIXEDASSETS-084-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-084/010-tell-me-fixed-asset-gl-journal.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-084/030-fa-gl-journal-ui-signals.json"
+  ],
+  "knownTruth": [
+    "FA-084 stayed in MCP_1_20260210 / RM-DEMO.",
+    "FA-084 used Tell-Me without blind Enter fallback.",
+    "FA-084 did not create a journal line, enter FA-CNC-01, enter K30000, enter amount, preview, post or change setup.",
+    "The exact Fixed Asset G/L Journal Tell-Me route was not proven because no unique matching result was found."
+  ],
+  "allowedActions": [
+    "open-business-central-in-MCP_1_20260210",
+    "confirm-company-RM-DEMO",
+    "search-fixed-asset-journal-terms-readonly",
+    "capture-tell-me-result-inventory-readonly",
+    "capture-visible-role-center-context-readonly",
+    "write-json-evidence",
+    "write-compact-learning-note",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "new-journal-line",
+    "edit-journal-line",
+    "enter-K30000",
+    "enter-amount",
+    "enter-FA-CNC-01-in-document-or-journal",
+    "delete-record",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "api-shortcut",
+    "book-edit",
+    "click-finish",
+    "click-ok-or-yes-on-confirmation",
+    "keep-draft"
+  ],
+  "defaultLockedActionsUnlockedForThisCase": [],
+  "acceptanceCriteria": [
+    "Instance MCP_1_20260210 and company RM-DEMO are confirmed.",
+    "Tell-Me result inventories for several FA journal search terms are captured compactly.",
+    "No result is clicked unless it is clearly a read-only navigation target and unique.",
+    "No New, Edit, Delete, Preview, Post, setup, target value or journal line action occurs.",
+    "The next route is either a safer exact navigation target or a documented blocker for a different acquisition route."
+  ],
+  "stopConditions": [
+    "Business Central is not in MCP_1_20260210 / RM-DEMO.",
+    "A search result is ambiguous between unrelated pages.",
+    "Navigation would require creating a new line or confirming a dialog.",
+    "The only available route would require Preview, Post, setup, edit or a target value."
+  ],
+  "recommendedSkills": [
+    "bc-navigation",
+    "safety-gate-checker",
+    "evidence-writer"
+  ],
+  "nextSafeAction": "Run a read-only Tell-Me result inventory for fixed asset journal terms and choose a safer route only if a unique target is visible.",
+  "mustRead": [
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-084-fa-gl-journal-route-readonly-discovery.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-084/FIXEDASSETS-084-result.json",
+    "playwright/core/bc-helpers.ts",
+    "package.json"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-085/FIXEDASSETS-085-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-085/FIXEDASSETS-085-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-085/README.md"
+  ]
+}
