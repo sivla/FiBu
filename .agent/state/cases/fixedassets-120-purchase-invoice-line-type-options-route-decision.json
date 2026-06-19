@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-120-PURCHASE-INVOICE-LINE-TYPE-OPTIONS-ROUTE-DECISION",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "local-fixed-asset-purchase-invoice-line-type-route-review",
+  "taskClass": "judge_work",
+  "requiresStrongModel": true,
+  "requiresUsageLog": true,
+  "goal": "Review FA-119 evidence and decide the next safe route for proving Purchase Invoice line Type = Fixed Asset/Anlage without repeating the blocked Type menu-button path blindly.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-117/FIXEDASSETS-117-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-118/FIXEDASSETS-118-route-decision.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-119/FIXEDASSETS-119-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-119/030-type-menu-button-options-probe.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-119/fixedassets-119-030-type-menu-button-options-probe.screenshot.json"
+  ],
+  "knownTruth": [
+    "FA-119 stayed inside MCP_1_20260210 / RM-DEMO.",
+    "FA-119 activated the small Type menu button without selecting a line type.",
+    "After activation no real Type option list was visible; the sanitized option result remained only Item.",
+    "Fixed Asset/Anlage remains unproven as a visible Purchase Invoice line Type option.",
+    "After Alt+ArrowDown focus can move to Groesse aendern, which is not the Type value list.",
+    "The FA-119 screenshot is rejected/do-not-use because it does not show the target option values.",
+    "No K30000, FA-CNC-01, amount, Preview Posting, Post, setup change, API shortcut or company switch occurred.",
+    "No persisted draft required cleanup."
+  ],
+  "allowedActions": [
+    "read-local-evidence",
+    "review-fixedassets-119-type-menu-button-evidence",
+    "classify-route-blocker",
+    "decide-next-safe-fixed-assets-route",
+    "write-compact-decision-evidence",
+    "update-state-and-coverage"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "open-business-central",
+    "run-playwright",
+    "company-switch",
+    "api-shortcut",
+    "book-edit",
+    "select-fixed-asset-line-type",
+    "enter-K30000-in-purchase-invoice",
+    "enter-FA-CNC-01",
+    "enter-amount",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "keep-draft-without-explicit-gate",
+    "delete-non-test-data",
+    "fake-evidence"
+  ],
+  "acceptanceCriteria": [
+    "No BC or Playwright run is performed.",
+    "FA-119 is classified as evidence of a blocked or unproven Type menu-button route, not as dropdown success.",
+    "The next route is selected based on evidence rather than another blind menu-button repetition.",
+    "Any recommendation preserves locks on K30000, FA-CNC-01, amount, Preview Posting, Post and setup changes until a new explicit case unlocks them.",
+    "Model usage above gpt-4-high is logged because this is judge_work."
+  ],
+  "recommendedSkills": [
+    "evidence-writer",
+    "screenshot-qa"
+  ],
+  "nextSafeAction": "Run a local judge review of FA-119 and choose the next route before another live UI probe."
+}
