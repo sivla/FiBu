@@ -41,5 +41,26 @@
     "keep-draft",
     "api-shortcut"
   ],
-  "nextStep": "FA-072 did not prove Type = Fixed Asset selection. Draft 107225 was removed through UI cleanup retry. Next step is a narrower Type dropdown selector diagnosis or an alternative UI route; do not enter K30000 or FA-CNC-01 yet."
+  "nextStep": "FA-072 did not prove Type = Fixed Asset selection. Draft 107225 was removed through UI cleanup retry. Next step is a narrower Type dropdown selector diagnosis or an alternative UI route; do not enter K30000 or FA-CNC-01 yet.",
+  "subagentPlanPolicy": {
+    "default": "optional",
+    "execution": "plan-only-no-subagents-spawned",
+    "standardRun": "single-agent-phases",
+    "runWhen": [
+      "requiresStrongModel=true",
+      "book-change-planned",
+      "posting-or-setup-result-needs-judgement",
+      "evidence-state-conflict",
+      "large-diff",
+      "blocked-or-failed-live-run",
+      "unclear-next-case-selection"
+    ],
+    "skipWhen": [
+      "routine-sandbox-probe",
+      "small-evidence-sync",
+      "clear-next-case",
+      "local-script-or-doc-update-with-low-risk",
+      "preflight-context-dry-run-run-plan-are-unambiguous"
+    ]
+  }
 }

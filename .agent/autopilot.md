@@ -14,6 +14,8 @@ Zweck: kleiner Einstiegspunkt fuer Codex-Laeufe, die nicht den gesamten Projektv
    - Der Dry-Run gibt `canProceed`, Budget, Skills, Capabilities, Safety Gates, Stop Conditions und `nextSafeAction` als JSON aus.
    - `npm run agent:run-plan`, wenn aus dem Dry-Run eine konkrete lokale Schrittfolge entstehen soll.
    - Der Run-Plan blockiert Playwright, Business Central, Buchpatches und Binary-/Screenshot-Lesen weiterhin.
+   - Standard ist danach ein Single-Agent-Lauf mit klaren Phasen. `npm run agent:subagent-plan` ist optional und kein echter Subagent-Start.
+   - `agent:subagent-plan` nur ausfuehren, wenn Review/Eskalation noetig ist: `requiresStrongModel=true`, geplante Buchaenderung, Posting-/Setup-Bewertung, widerspruechliche Evidence/State, grosser Diff, blocked/failed Live-Lauf oder unklare naechste Case-Auswahl.
    - `npm run agent:result-normalize`, wenn ein lokales Analyseergebnis in ein einheitliches Result-JSON ueberfuehrt werden soll.
    - Der Result-Normalizer schreibt noch keinen State; State-Finalisierung bleibt eine spaetere Gate-Schicht.
    - `npm run agent:state-finalize`, wenn aus einem normalisierten Result ein State-Patch-Plan entstehen soll.
@@ -46,6 +48,9 @@ Zweck: kleiner Einstiegspunkt fuer Codex-Laeufe, die nicht den gesamten Projektv
 - Screenshots und Evidence werden projekt-relativ referenziert.
 - Jeder Lauf muss `last_run_summary.json` und den betroffenen Case-State aktualisieren.
 - Bei `judge_work` oder `big_brain_review` muss ein Eintrag in `.agent/state/model_usage_log.jsonl` entstehen.
+- `agent:subagent-plan` erzeugt nur einen budgetierten Review-/Delegationsplan. Er fuehrt keine KI-Subagents aus und sein Output wird im Standardlauf nicht automatisch konsumiert.
+- Fuer normale Sandbox-Probes, kleine Evidence-Syncs und enge Playwright-Fixes gilt: kein Subagent-Plan als Pflicht, solange `context`, `dry-run` und `run-plan` eindeutig sind.
+- Subagent-/Review-Planung bleibt Pflicht, wenn starke Urteilskraft oder zweite Sicht noetig ist: riskante fachliche Bewertung, Buchfreigabe, Posting-/Setup-Ergebnis, widerspruechliche Projektwahrheit, grosser Diff, fehlgeschlagener Live-Lauf oder unklare Case-Auswahl.
 - Neue wiederverwendbare Playwright-/BC-Faehigkeiten werden in `.agent/capabilities.json` als Capability mit Inputs, Outputs, Gates und Reifegrad gepflegt.
 - Datei-/Skill-Limits sind adaptive Budget-Profile aus `.agent/budgets.json`; fuer grosse Laeufe bewusst `expanded` oder `deep` im Case setzen statt heimlich mehr Kontext zu laden.
 - Keine neue npm-Abhaengigkeit ohne ausdrueckliche Freigabe. Agent-Tools nutzen Node-Standardbibliothek.
