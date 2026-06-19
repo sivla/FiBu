@@ -3,7 +3,7 @@
   "caseId": "FIXEDASSETS-121-PURCHASE-INVOICE-LINE-TYPE-PAGEINSPECTION-PERSONALIZE-DIAGNOSIS",
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "status": "planned",
+  "status": "observed-cleanup-complete",
   "workType": "guarded-ui-pageinspection-personalize-line-type-diagnosis",
   "taskClass": "wizard_work",
   "goal": "Use UI-first Page Inspection and/or Personalize diagnostics to identify the Purchase Invoice line Type page/table/field context before any further line type selection attempt.",
@@ -65,5 +65,17 @@
     "screenshot-qa"
   ],
   "requiresUsageLog": false,
-  "nextSafeAction": "Run guarded Page Inspection/Personalize diagnosis for the Purchase Invoice line Type field."
+  "nextSafeAction": "Run FIXEDASSETS-122 local evidence review.",
+  "lastResult": {
+    "status": "observed",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-121/FIXEDASSETS-121-result.json",
+    "summary": "FA-121 opened Page Inspection from the focused Purchase Invoice line Type cell. The technical context resolved to Purchase Invoice / Purchase Header, not Purchase Line. The Type help text mentions fixed asset as possible buying type, but no selectable Fixed Asset/Anlage option was proven. Personalisieren was clicked but blocked because Page Inspection was still active. No target values, no Preview Posting, no posting, no setup change and no persisted draft.",
+    "evidenceRefs": [
+      "playwright/projects/fibu-book5/evidence/fixedassets-121/FIXEDASSETS-121-result.json",
+      "playwright/projects/fibu-book5/evidence/fixedassets-121/030-page-inspection-line-type-context.json",
+      "playwright/projects/fibu-book5/evidence/fixedassets-121/040-personalize-line-type-context.json",
+      "playwright/projects/fibu-book5/evidence/fixedassets-121/090-cleanup-result.json"
+    ]
+  },
+  "nextCase": "FIXEDASSETS-122-PURCHASE-INVOICE-LINE-TYPE-DIAGNOSIS-REVIEW"
 }

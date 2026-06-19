@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-120-PURCHASE-INVOICE-LINE-TYPE-OPTIONS-ROUTE-DECISION",
+  "runId": "FIXEDASSETS-121-PURCHASE-INVOICE-LINE-TYPE-PAGEINSPECTION-PERSONALIZE-DIAGNOSIS",
   "date": "2026-06-20",
-  "workType": "local-fixed-asset-purchase-invoice-line-type-route-review",
+  "workType": "fixed-asset-purchase-invoice-line-type-pageinspection-personalize-diagnosis",
   "branch": "codex/token-efficient-autopilot-state",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "bcRun": false,
+  "bcRun": true,
   "posted": false,
   "preview": false,
   "setupChanged": false,
@@ -14,37 +14,40 @@
   "apiShortcut": false,
   "bookChanged": false,
   "resultStatus": "observed",
-  "summary": "FA-120 reviewed FA-119 and rejected another blind Type menu-button repetition. The next route is FA-121: Page Inspection/Personalize diagnosis for the Purchase Invoice line Type field, with no selection or target values.",
+  "summary": "FA-121 opened Page Inspection from the focused Purchase Invoice line Type cell. The technical context resolved to Purchase Invoice / Purchase Header, not Purchase Line. The Type help text mentions fixed asset as possible buying type, but no selectable Fixed Asset/Anlage option was proven. Personalisieren was attempted and correctly classified as blocked because Page Inspection was still active. No target values, no Preview Posting, no posting, no setup change and no persisted draft.",
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/fixedassets-119/FIXEDASSETS-119-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-119/030-type-menu-button-options-probe.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-119/fixedassets-119-030-type-menu-button-options-probe.screenshot.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-120/FIXEDASSETS-120-route-decision.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-120/FIXEDASSETS-120-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-120/README.md"
+    "playwright/projects/fibu-book5/evidence/fixedassets-121/FIXEDASSETS-121-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-121/030-page-inspection-line-type-context.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-121/031-page-inspection-focused-lines.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-121/040-personalize-line-type-context.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-121/041-personalize-focused-lines.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-121/090-cleanup-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-121/README.md"
   ],
   "changedFiles": [
     ".agent/state/current.json",
     ".agent/state/coverage_state.json",
-    ".agent/state/cases/fixedassets-120-purchase-invoice-line-type-options-route-decision.json",
     ".agent/state/cases/fixedassets-121-purchase-invoice-line-type-pageinspection-personalize-diagnosis.json",
+    ".agent/state/cases/fixedassets-122-purchase-invoice-line-type-diagnosis-review.json",
     ".agent/state/last_run_summary.json",
-    ".agent/state/model_usage_log.jsonl",
+    "package.json",
     "playwright/projects/fibu-book5/CURRENT-STATE.md",
     "playwright/projects/fibu-book5/LAB-FIT-STATUS.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-120/FIXEDASSETS-120-route-decision.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-120/FIXEDASSETS-120-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-120/README.md"
+    "playwright/projects/fibu-book5/BC-PLAYWRIGHT-PATTERNS.md",
+    "playwright/projects/fibu-book5/tests/fixedassets-121-purchase-invoice-line-type-pageinspection-personalize-diagnosis.spec.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-121/FIXEDASSETS-121-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-121/030-page-inspection-line-type-context.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-121/040-personalize-line-type-context.json"
   ],
   "validationCommands": [
-    "JSON parse for changed state/evidence files",
     "npm run agent:preflight",
+    "npm run agent:dry-run",
     "npm run agent:run-plan",
-    "npm run agent:subagent-plan",
-    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-120/FIXEDASSETS-120-result.json",
-    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-120/FIXEDASSETS-120-result.json",
+    "npm run fibu:fixedassets:purchase-invoice-line-type-pageinspection-personalize",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-121/FIXEDASSETS-121-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-121/FIXEDASSETS-121-result.json",
     "npm run check:encoding",
     "git diff --check"
   ],
-  "nextStep": "Run FIXEDASSETS-121 guarded UI-first technical diagnosis before any line type selection or target values are unlocked."
+  "nextStep": "Run FIXEDASSETS-122 local evidence review before any Purchase Invoice line Type selection or target values are unlocked."
 }

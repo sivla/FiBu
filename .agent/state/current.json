@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-20T08:05:00.000Z",
+  "updatedAt": "2026-06-20T00:00:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "fixedassets",
-  "activeCase": "FIXEDASSETS-121-PURCHASE-INVOICE-LINE-TYPE-PAGEINSPECTION-PERSONALIZE-DIAGNOSIS",
-  "active_case_file": ".agent/state/cases/fixedassets-121-purchase-invoice-line-type-pageinspection-personalize-diagnosis.json",
-  "lastReferenceCase": "FIXEDASSETS-120-PURCHASE-INVOICE-LINE-TYPE-OPTIONS-ROUTE-DECISION",
-  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-120-purchase-invoice-line-type-options-route-decision.json",
+  "activeCase": "FIXEDASSETS-122-PURCHASE-INVOICE-LINE-TYPE-DIAGNOSIS-REVIEW",
+  "active_case_file": ".agent/state/cases/fixedassets-122-purchase-invoice-line-type-diagnosis-review.json",
+  "lastReferenceCase": "FIXEDASSETS-121-PURCHASE-INVOICE-LINE-TYPE-PAGEINSPECTION-PERSONALIZE-DIAGNOSIS",
+  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-121-purchase-invoice-line-type-pageinspection-personalize-diagnosis.json",
   "mode": "token-efficient-autopilot-tooling-bootstrap",
-  "requiresStrongModel": false,
+  "requiresStrongModel": true,
   "requiredPreflightChecks": [
     "agent:preflight",
     "agent:state:validate",
@@ -19,19 +19,12 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "open-business-central",
-    "run-playwright",
-    "confirm-instance-and-company",
-    "open-purchase-invoices",
-    "scoped-new-purchase-invoice-if-needed",
-    "observe-purchase-invoice-lines",
-    "focus-type-gridcell",
-    "open-page-inspection",
-    "capture-page-table-field-context",
-    "open-personalize-diagnostics-no-save",
-    "capture-personalize-field-context-or-blocker",
-    "capture-compact-evidence",
-    "cleanup-draft-if-created"
+    "local-evidence-review",
+    "read-fixedassets-121-evidence",
+    "classify-pageinspection-result",
+    "classify-personalize-blocker",
+    "decide-next-safe-purchase-invoice-line-type-route",
+    "update-state-and-evidence-only"
   ],
   "forbiddenActions": [
     "leave-instance",
@@ -41,6 +34,8 @@
     "book-claim-without-evidence",
     "company-switch",
     "api-shortcut",
+    "open-business-central",
+    "run-playwright",
     "book-edit",
     "enter-K30000-in-purchase-invoice",
     "enter-FA-CNC-01",
@@ -56,7 +51,7 @@
     "click-finish",
     "delete-non-test-data"
   ],
-  "nextStep": "FIXEDASSETS-121: run a guarded UI-first Page Inspection/Personalize diagnosis for the Purchase Invoice line Type field; no selection, no K30000, no FA-CNC-01, no Preview Posting and no posting.",
+  "nextStep": "FIXEDASSETS-122: review FA-121 Page Inspection/Personalize diagnosis. Page Inspection opened on Purchase Invoice/Purchase Header and Type help mentions fixed asset, but Purchase Line source table and selectable Fixed Asset/Anlage option remain unproved; Personalisieren was blocked because Page Inspection was still active.",
   "subagentPlanPolicy": {
     "default": "optional",
     "execution": "plan-only-no-subagents-spawned",

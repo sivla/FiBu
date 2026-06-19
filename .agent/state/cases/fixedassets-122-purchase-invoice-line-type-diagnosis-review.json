@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-122-PURCHASE-INVOICE-LINE-TYPE-DIAGNOSIS-REVIEW",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "local-fixed-asset-purchase-invoice-line-type-diagnosis-review",
+  "taskClass": "judge_work",
+  "requiresUsageLog": true,
+  "goal": "Review FA-121 technical Page Inspection/Personalize evidence and decide the next safe route before any Purchase Invoice line Type selection or target value entry.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-121/FIXEDASSETS-121-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-121/030-page-inspection-line-type-context.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-121/040-personalize-line-type-context.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-121/090-cleanup-result.json"
+  ],
+  "knownTruth": [
+    "Page Inspection opened from the focused Purchase Invoice line Type cell.",
+    "Page Inspection resolved to Purchase Invoice / Purchase Header technical context, not Purchase Line.",
+    "The Type help text mentions fixed asset as a possible buying type, but a selectable Fixed Asset/Anlage option is still not proven.",
+    "Personalisieren was attempted but blocked because Page Inspection was still active.",
+    "No K30000, FA-CNC-01, amount, Preview Posting, posting, setup change, company switch or API shortcut occurred.",
+    "No persisted Purchase Invoice draft number was detected; cleanup was not needed."
+  ],
+  "allowedActions": [
+    "local-evidence-review",
+    "read-fixedassets-121-evidence",
+    "classify-pageinspection-result",
+    "classify-personalize-blocker",
+    "decide-next-safe-purchase-invoice-line-type-route",
+    "update-state-and-evidence-only"
+  ],
+  "forbiddenActions": [
+    "open-business-central",
+    "run-playwright",
+    "leave-instance",
+    "company-switch",
+    "api-shortcut",
+    "book-edit",
+    "select-fixed-asset-line-type",
+    "enter-K30000-in-purchase-invoice",
+    "enter-FA-CNC-01",
+    "enter-amount",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "save-personalization",
+    "fake-evidence"
+  ],
+  "acceptanceCriteria": [
+    "The review must not treat Type help text as a selectable option proof.",
+    "The review must classify the Personalisieren attempt as blocked by active Page Inspection unless evidence proves otherwise.",
+    "The next practical route must be narrower than repeating the old menu-button path.",
+    "No BC or Playwright execution is performed in FA-122."
+  ],
+  "recommendedSkills": [
+    "evidence-writer",
+    "screenshot-qa"
+  ],
+  "nextSafeAction": "Run local FA-122 evidence review and decide whether to build a Page-Inspection-close + Personalize retry, a true subpage inspection route, or a different Purchase Invoice line Type strategy."
+}
