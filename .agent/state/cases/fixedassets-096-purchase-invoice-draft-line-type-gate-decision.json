@@ -3,7 +3,7 @@
   "caseId": "FIXEDASSETS-096-PURCHASE-INVOICE-DRAFT-LINE-TYPE-GATE-DECISION",
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "status": "planned",
+  "status": "observed",
   "workType": "fixed-asset-purchase-invoice-draft-line-type-gate-decision",
   "taskClass": "judge_work",
   "goal": "Decide from existing evidence whether a tightly guarded Purchase Invoice draft proof may be unlocked to prove Type = Fixed Asset in a real purchase invoice line.",
@@ -59,9 +59,14 @@
     "Decision would require posting, preview posting or setup change."
   ],
   "recommendedSkills": [
-    "evidence-review",
-    "bc-posting-safety-gate"
+    "evidence-writer",
+    "posting-gate"
   ],
   "requiresUsageLog": true,
-  "nextSafeAction": "Review FIXEDASSETS-095 and prior purchase-invoice draft evidence locally; decide whether a guarded draft line-type proof should be created as a new case."
+  "nextSafeAction": "Run FA-097 only if the script enforces no vendor, no fixed asset number, no amount, no preview and cleanup if a draft number exists.",
+  "lastResult": {
+    "status": "observed",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-096/FIXEDASSETS-096-result.json",
+    "summary": "FA-096 approved one guarded Purchase Invoice draft line Type proof and kept all acquisition/posting actions locked."
+  }
 }

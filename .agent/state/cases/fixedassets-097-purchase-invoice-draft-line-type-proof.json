@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-097-PURCHASE-INVOICE-DRAFT-LINE-TYPE-PROOF",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "fixed-asset-purchase-invoice-draft-line-type-proof",
+  "taskClass": "wizard_work",
+  "goal": "Open one tightly guarded Purchase Invoice draft only to prove whether the line Type dropdown can expose or select Fixed Asset; do not enter vendor, fixed asset number, amount, preview or post.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-074/FIXEDASSETS-074-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-095/FIXEDASSETS-095-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-096/FIXEDASSETS-096-result.json"
+  ],
+  "knownTruth": [
+    "Read-only list context does not prove editable Purchase Invoice line Type values.",
+    "FA-074 reached a real Purchase Invoice draft line context and Page Inspection help text mentioned fixed asset.",
+    "No vendor, fixed asset number, amount, preview posting or posting is needed to prove the line Type capability.",
+    "Any persisted draft number must be cleaned up through UI; keep-draft remains locked."
+  ],
+  "allowedActions": [
+    "open-business-central",
+    "run-playwright",
+    "confirm-instance-and-company",
+    "open-purchase-invoices",
+    "new-purchase-invoice-draft",
+    "focus-purchase-invoice-line-type-cell",
+    "open-line-type-dropdown-or-technical-value-help",
+    "select-or-detect-fixed-asset-line-type-only",
+    "capture-compact-evidence",
+    "cleanup-draft-if-number-exists",
+    "state-patch-plan-only"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "enter-K30000",
+    "enter-FA-CNC-01",
+    "enter-vendor",
+    "enter-fixed-asset-no",
+    "enter-amount",
+    "enter-quantity",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "api-shortcut",
+    "book-edit",
+    "keep-draft"
+  ],
+  "defaultLockedActionsUnlockedForThisCase": [
+    "new-draft",
+    "edit-record",
+    "delete-record"
+  ],
+  "acceptanceCriteria": [
+    "The run stays in MCP_1_20260210 and RM-DEMO.",
+    "A Purchase Invoice draft is opened only to reach line Type context.",
+    "No vendor, FA-CNC-01, amount, quantity, preview posting or posting is entered.",
+    "Evidence proves one of: Fixed Asset selectable, Fixed Asset visible but not selectable, or still blocked.",
+    "If a draft number is detected, cleanup evidence proves deletion or the run is marked blocked."
+  ],
+  "stopConditions": [
+    "Instance or company is not clearly MCP_1_20260210 / RM-DEMO.",
+    "Page opens outside Purchase Invoice context.",
+    "The probe would require entering vendor, fixed asset number, amount or quantity.",
+    "A posting, preview, invoice, payment or setup dialog appears.",
+    "A persisted draft number appears and no safe UI cleanup route is available."
+  ],
+  "recommendedSkills": [
+    "bc-navigation",
+    "posting-gate",
+    "evidence-writer"
+  ],
+  "requiresUsageLog": false,
+  "nextSafeAction": "Implement and run one guarded Purchase Invoice draft line Type proof. No target vendor, no target fixed asset, no amount, no preview and no posting."
+}

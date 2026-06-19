@@ -1,50 +1,41 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-095-PURCHASE-INVOICE-LINE-TYPE-CAPABILITY-DIAGNOSIS-READONLY",
+  "runId": "FIXEDASSETS-096-PURCHASE-INVOICE-DRAFT-LINE-TYPE-GATE-DECISION",
   "date": "2026-06-19",
-  "workType": "purchase-invoice-line-type-capability-diagnosis-readonly",
+  "workType": "fixed-asset-purchase-invoice-draft-line-type-gate-decision",
   "branch": "codex/token-efficient-autopilot-state",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "bcRun": true,
+  "bcRun": false,
   "posted": false,
   "preview": false,
   "setupChanged": false,
   "companySwitched": false,
   "resultStatus": "observed",
-  "summary": "FIXEDASSETS-095 opened Purchase Invoices read-only in MCP_1_20260210 / RM-DEMO. Visible list context was captured without New/Edit/Delete/Post/Preview. Type=Fixed Asset proof: not-proved-readonly.",
+  "summary": "FA-096 approved one narrow guarded Purchase Invoice draft line Type proof. It unlocks only Type capability evidence, not vendor, asset number, amount, preview or posting.",
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/fixedassets-095/FIXEDASSETS-095-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-095/FIXEDASSETS-095-learning.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-095/010-purchase-invoices-readonly-context.txt",
-    "playwright/projects/fibu-book5/evidence/fixedassets-095/020-visible-action-inventory.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-095/README.md"
+    "playwright/projects/fibu-book5/evidence/fixedassets-096/FIXEDASSETS-096-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-096/FIXEDASSETS-096-gate-decision.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-096/README.md"
   ],
   "changedFiles": [
     ".agent/state/current.json",
-    ".agent/state/cases/fixedassets-095-purchase-invoice-line-type-capability-diagnosis-readonly.json",
     ".agent/state/cases/fixedassets-096-purchase-invoice-draft-line-type-gate-decision.json",
+    ".agent/state/cases/fixedassets-097-purchase-invoice-draft-line-type-proof.json",
     ".agent/state/last_run_summary.json",
     ".agent/state/model_usage_log.jsonl",
-    "package.json",
-    "playwright/projects/fibu-book5/tests/fixedassets-095-purchase-invoice-line-type-capability-diagnosis-readonly.spec.ts",
-    "playwright/projects/fibu-book5/evidence/fixedassets-095/FIXEDASSETS-095-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-095/FIXEDASSETS-095-learning.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-095/010-purchase-invoices-readonly-context.txt",
-    "playwright/projects/fibu-book5/evidence/fixedassets-095/020-visible-action-inventory.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-095/README.md"
+    "playwright/projects/fibu-book5/evidence/fixedassets-096/FIXEDASSETS-096-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-096/FIXEDASSETS-096-gate-decision.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-096/README.md"
   ],
   "validationCommands": [
     "npm run agent:preflight",
-    "npm run agent:context",
     "npm run agent:dry-run",
     "npm run agent:run-plan",
-    "npm run fibu:fixedassets:purchase-invoice-line-type-capability-diagnosis",
-    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-095/FIXEDASSETS-095-result.json",
-    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-095/FIXEDASSETS-095-result.json",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-096/FIXEDASSETS-096-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-096/FIXEDASSETS-096-result.json",
     "npm run check:encoding",
-    "git diff --check",
-    "npx tsc --noEmit (blocked: typescript is not installed as project dependency)"
+    "git diff --check"
   ],
-  "nextStep": "Run FIXEDASSETS-096 as a local gate decision. Do not create a draft unless that case explicitly unlocks it."
+  "nextStep": "Run FIXEDASSETS-097 only as a guarded draft line Type proof. Stop before K30000, FA-CNC-01, amount, preview or posting."
 }
