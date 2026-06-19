@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-116-PURCHASE-INVOICE-LINE-TYPE-DROPDOWN-REVIEW",
+  "runId": "FIXEDASSETS-117-PURCHASE-INVOICE-LINE-TYPE-GRIDCELL-CONTROL-DIAGNOSIS",
   "date": "2026-06-20",
-  "workType": "local-fixed-asset-purchase-invoice-line-type-route-review",
+  "workType": "fixed-asset-purchase-invoice-line-type-gridcell-control-diagnosis",
   "branch": "codex/token-efficient-autopilot-state",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "bcRun": false,
+  "bcRun": true,
   "posted": false,
   "preview": false,
   "setupChanged": false,
@@ -14,33 +14,44 @@
   "apiShortcut": false,
   "bookChanged": false,
   "resultStatus": "observed",
-  "summary": "FA-116 rejects repeating the Item-button route from FA-115 and selects a narrower gridcell/control diagnosis for the Purchase Invoice line Type field.",
+  "summary": "FA-117 observed the Type gridcell/control route without target values. Direct click reached Details anzeigen; Alt+ArrowDown focused the Type menu button, but meaningfulOptions=none and fixedAssetVisible=false. Cleanup status=not-created-or-draft-number-not-found.",
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/fixedassets-116/FIXEDASSETS-116-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-116/FIXEDASSETS-116-route-decision.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-116/README.md"
+    "playwright/projects/fibu-book5/evidence/fixedassets-117/FIXEDASSETS-117-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-117/030-type-gridcell-control-diagnosis.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-117/031-after-gridcell-probe-focused-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-117/090-cleanup-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-117/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-117/fixedassets-117-030-type-gridcell-control-diagnosis.screenshot.json",
+    "playwright/projects/fibu-book5/img/fixedassets-117-030-type-gridcell-control-diagnosis.png"
   ],
   "changedFiles": [
     ".agent/state/current.json",
-    ".agent/state/cases/fixedassets-116-purchase-invoice-line-type-dropdown-review.json",
     ".agent/state/cases/fixedassets-117-purchase-invoice-line-type-gridcell-control-diagnosis.json",
+    ".agent/state/cases/fixedassets-118-purchase-invoice-line-type-route-decision.json",
     ".agent/state/coverage_state.json",
     ".agent/state/last_run_summary.json",
-    ".agent/state/model_usage_log.jsonl",
+    "package.json",
+    "playwright/projects/fibu-book5/tests/fixedassets-117-purchase-invoice-line-type-gridcell-control-diagnosis.spec.ts",
     "playwright/projects/fibu-book5/CURRENT-STATE.md",
     "playwright/projects/fibu-book5/LAB-FIT-STATUS.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-116/FIXEDASSETS-116-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-116/FIXEDASSETS-116-route-decision.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-116/README.md"
+    "playwright/projects/fibu-book5/BC-PLAYWRIGHT-PATTERNS.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-117/FIXEDASSETS-117-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-117/030-type-gridcell-control-diagnosis.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-117/031-after-gridcell-probe-focused-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-117/090-cleanup-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-117/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-117/fixedassets-117-030-type-gridcell-control-diagnosis.screenshot.json",
+    "playwright/projects/fibu-book5/img/fixedassets-117-030-type-gridcell-control-diagnosis.png"
   ],
   "validationCommands": [
     "npm run agent:preflight",
     "npm run agent:dry-run",
     "npm run agent:run-plan",
-    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-116/FIXEDASSETS-116-result.json",
-    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-116/FIXEDASSETS-116-result.json",
+    "npm run fibu:fixedassets:purchase-invoice-line-type-gridcell-control-diagnosis",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-117/FIXEDASSETS-117-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-117/FIXEDASSETS-117-result.json",
     "npm run check:encoding",
     "git diff --check"
   ],
-  "nextStep": "Run FIXEDASSETS-117 controlled UI-first gridcell/control diagnosis before any Type selection or target values are unlocked."
+  "nextStep": "Run FIXEDASSETS-118 local evidence review before any Type selection or target values are unlocked."
 }

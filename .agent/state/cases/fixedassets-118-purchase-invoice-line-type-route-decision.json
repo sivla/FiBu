@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-118-PURCHASE-INVOICE-LINE-TYPE-ROUTE-DECISION",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "local-fixed-asset-purchase-invoice-line-type-route-review",
+  "taskClass": "judge_work",
+  "requiresStrongModel": true,
+  "requiresUsageLog": true,
+  "goal": "Review FA-117 evidence and decide the next safe UI-first route for proving Purchase Invoice line Type = Fixed Asset/Anlage without selecting target values prematurely.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-117/FIXEDASSETS-117-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-117/030-type-gridcell-control-diagnosis.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-117/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-117/fixedassets-117-030-type-gridcell-control-diagnosis.screenshot.json"
+  ],
+  "knownTruth": [
+    "FA-117 stayed in MCP_1_20260210 / RM-DEMO.",
+    "The direct Type gridcell click still reached a context/detail menu state with Details anzeigen.",
+    "Alt+ArrowDown focused a small Type menu button labelled approximately Menu fuer Type oeffnen.",
+    "No meaningful option list was captured; optionTexts remained Item only.",
+    "Fixed Asset/Anlage was not proven and not selected.",
+    "No K30000, FA-CNC-01, amount, Preview Posting, posting, setup change, API shortcut or company switch occurred.",
+    "The FA-117 screenshot is rejected/do-not-use because it does not show the claimed target options."
+  ],
+  "allowedActions": [
+    "read-local-evidence",
+    "review-gridcell-control-diagnostics",
+    "review-screenshot-metadata",
+    "decide-if-type-menu-button-probe-is-safe",
+    "decide-if-page-inspection-or-personalize-should-be-used-first",
+    "write-compact-decision-evidence",
+    "update-state-and-coverage"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "open-business-central",
+    "run-playwright",
+    "company-switch",
+    "api-shortcut",
+    "book-edit",
+    "select-fixed-asset-line-type",
+    "enter-K30000-in-purchase-invoice",
+    "enter-FA-CNC-01",
+    "enter-amount",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "keep-draft-without-explicit-gate",
+    "delete-non-test-data",
+    "fake-evidence"
+  ],
+  "acceptanceCriteria": [
+    "Decision names exactly one next route or blocks the Purchase Invoice line-type path.",
+    "Decision distinguishes observed Type menu-button focus from a real option-list proof.",
+    "Decision does not unlock K30000, FA-CNC-01, amount, Preview Posting or posting.",
+    "Decision records why FA-117 screenshot remains rejected/do-not-use.",
+    "If a next Playwright probe is proposed, it must be no-target and must stop before selecting Fixed Asset/Anlage."
+  ],
+  "recommendedSkills": [
+    "evidence-writer",
+    "screenshot-qa",
+    "route-decision"
+  ],
+  "nextSafeAction": "Run a local evidence review and choose the next safe no-target route for Purchase Invoice line Type."
+}
