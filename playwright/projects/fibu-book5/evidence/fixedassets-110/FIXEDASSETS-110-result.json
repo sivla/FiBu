@@ -1,0 +1,133 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-fa-gl-journal-amount-balaccount-control-route-readonly-result",
+  "caseId": "FIXEDASSETS-110-FA-GL-JOURNAL-AMOUNT-BALACCOUNT-CONTROL-ROUTE-READONLY",
+  "source": "playwright-sandbox-readonly-diagnosis",
+  "resultStatus": "observed",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-medium",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "environment": {
+    "expectedInstance": "MCP_1_20260210",
+    "expectedCompany": "RM-DEMO",
+    "context": {
+      "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5628&dc=0&bookmark=30_UQAAAAJ7_0EAUwBTAEUAVABTAAAAAnv_RABFAEYAQQBVAEwAVAAAAACHECc",
+      "environmentInUrl": true,
+      "companyInUrl": true,
+      "companyInText": false,
+      "wrongEnvironmentVisible": false
+    },
+    "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5628&runinframe=1",
+    "urlAfterDiagnosis": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5628&dc=0&bookmark=30_UQAAAAJ7_0EAUwBTAEUAVABTAAAAAnv_RABFAEYAQQBVAEwAVAAAAACHECc"
+  },
+  "proved": [
+    "The run stayed in MCP_1_20260210.",
+    "The run stayed in RM-DEMO.",
+    "The current FA G/L Journal target-line shell is still visible.",
+    "An Amount header/route signal is visible read-only.",
+    "A Bal. Account No. header/route signal is visible read-only.",
+    "No value was entered or changed.",
+    "No line was inserted or deleted.",
+    "No Preview Posting was opened.",
+    "No posting was executed.",
+    "No setup change was executed."
+  ],
+  "notProved": [
+    "No exact Amount control candidate is proven.",
+    "No exact Bal. Account No. control candidate is proven.",
+    "Amount 68000 is not visible as an existing value.",
+    "K30000 is not visible as an existing balancing value.",
+    "No value entry.",
+    "No corrected balancing account.",
+    "No Preview Posting result.",
+    "No posting result.",
+    "No FA Ledger Entry or G/L Entry trace.",
+    "No German final proof."
+  ],
+  "diagnosisSummary": {
+    "snapshotCount": 7,
+    "scrollables": 2,
+    "routeSignals": {
+      "amountHeaderVisible": true,
+      "balAccountNoHeaderVisible": true,
+      "amountControlCandidates": 0,
+      "balAccountControlCandidates": 0,
+      "amount68000Visible": false,
+      "k30000Visible": false
+    },
+    "relevantHeadersCount": 40,
+    "relevantControlsCount": 0,
+    "relevantRowsCount": 7
+  },
+  "changedFiles": [
+    "package.json",
+    "playwright/projects/fibu-book5/tests/fixedassets-110-fa-gl-journal-amount-balaccount-control-route-readonly.spec.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-110/FIXEDASSETS-110-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-110/010-amount-balaccount-control-routes.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-110/020-focused-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-110/README.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-110/FIXEDASSETS-110-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-110/010-amount-balaccount-control-routes.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-110/020-focused-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-110/README.md"
+  ],
+  "warnings": [
+    "Read-only route-mapping run.",
+    "Do not enter Amount or Bal. Account No. from FA-110 alone; run FA-111 local decision first.",
+    "Header visibility is not the same as safe write readiness."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-111-FA-GL-JOURNAL-CONTROL-ROUTE-DECISION",
+      "active_case_file": ".agent/state/cases/fixedassets-111-fa-gl-journal-control-route-decision.json",
+      "lastReferenceCase": "FIXEDASSETS-110-FA-GL-JOURNAL-AMOUNT-BALACCOUNT-CONTROL-ROUTE-READONLY",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-110-fa-gl-journal-amount-balaccount-control-route-readonly.json",
+      "requiresStrongModel": true,
+      "nextStep": "FIXEDASSETS-111: decide locally whether FA-110 proves enough exact control route evidence for a later guarded write probe."
+    },
+    "lastRunSummary": {
+      "schemaVersion": 1,
+      "runId": "FIXEDASSETS-110-FA-GL-JOURNAL-AMOUNT-BALACCOUNT-CONTROL-ROUTE-READONLY",
+      "date": "2026-06-20",
+      "workType": "fixed-asset-gl-journal-amount-balaccount-control-route-readonly",
+      "branch": "codex/token-efficient-autopilot-state",
+      "instance": "MCP_1_20260210",
+      "company": "RM-DEMO",
+      "bcRun": true,
+      "posted": false,
+      "preview": false,
+      "setupChanged": false,
+      "companySwitched": false,
+      "resultStatus": "observed",
+      "summary": "FA-110 mapped Amount/Bal. Account routes read-only. Amount header: true; Bal. Account header: true; amount candidates: 0; bal-account candidates: 0; 68000 visible: false; K30000 visible: false.",
+      "nextStep": "Run FIXEDASSETS-111 local decision before any value entry, Preview Posting or posting."
+    },
+    "activeCase": {
+      "status": "observed-readonly",
+      "lastResult": {
+        "status": "observed",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-110/FIXEDASSETS-110-result.json",
+        "summary": "FA-110 mapped Amount/Bal. Account routes read-only. Amount header: true; Bal. Account header: true; amount candidates: 0; bal-account candidates: 0; 68000 visible: false; K30000 visible: false."
+      },
+      "nextSafeAction": "Run FIXEDASSETS-111 local decision; do not edit, preview or post."
+    }
+  },
+  "flags": {
+    "noValueCorrection": true,
+    "noInsertLine": true,
+    "noDeleteLine": true,
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "nextStep": "FIXEDASSETS-111: decide locally whether FA-110 proves enough exact control route evidence for a later guarded write probe."
+}

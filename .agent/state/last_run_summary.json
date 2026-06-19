@@ -1,46 +1,47 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-109-FA-GL-JOURNAL-WRITE-READINESS-DECISION",
+  "runId": "FIXEDASSETS-110-FA-GL-JOURNAL-AMOUNT-BALACCOUNT-CONTROL-ROUTE-READONLY",
   "date": "2026-06-20",
-  "workType": "local-fixed-asset-journal-write-readiness-decision",
+  "workType": "fixed-asset-gl-journal-amount-balaccount-control-route-readonly",
   "branch": "codex/token-efficient-autopilot-state",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "bcRun": false,
+  "bcRun": true,
   "posted": false,
   "preview": false,
   "setupChanged": false,
   "companySwitched": false,
   "resultStatus": "observed",
-  "apiShortcut": false,
-  "bookChanged": false,
-  "summary": "FA-109 reviewed FA-108 locally. A guarded write-case is not unlocked: Amount and Bal. Account No. signals are reachable, but exact editable controls are not proven. Next step is FA-110 read-only field-route mapping.",
+  "summary": "FA-110 mapped Amount/Bal. Account routes read-only. Amount header: true; Bal. Account header: true; amount candidates: 0; bal-account candidates: 0; 68000 visible: false; K30000 visible: false.",
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/fixedassets-109/FIXEDASSETS-109-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-109/FIXEDASSETS-109-review.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-109/README.md"
+    "playwright/projects/fibu-book5/evidence/fixedassets-110/FIXEDASSETS-110-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-110/010-amount-balaccount-control-routes.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-110/020-focused-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-110/README.md"
   ],
   "changedFiles": [
     ".agent/state/current.json",
-    ".agent/state/cases/fixedassets-109-fa-gl-journal-write-readiness-decision.json",
     ".agent/state/cases/fixedassets-110-fa-gl-journal-amount-balaccount-control-route-readonly.json",
+    ".agent/state/cases/fixedassets-111-fa-gl-journal-control-route-decision.json",
     ".agent/state/last_run_summary.json",
-    ".agent/state/model_usage_log.jsonl",
+    "package.json",
+    "playwright/projects/fibu-book5/tests/fixedassets-110-fa-gl-journal-amount-balaccount-control-route-readonly.spec.ts",
     "playwright/projects/fibu-book5/CURRENT-STATE.md",
     "playwright/projects/fibu-book5/LAB-FIT-STATUS.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-109/FIXEDASSETS-109-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-109/FIXEDASSETS-109-review.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-109/README.md"
+    "playwright/projects/fibu-book5/evidence/fixedassets-110/FIXEDASSETS-110-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-110/010-amount-balaccount-control-routes.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-110/020-focused-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-110/README.md"
   ],
   "validationCommands": [
     "npm run agent:preflight",
     "npm run agent:dry-run",
     "npm run agent:run-plan",
-    "npm run agent:subagent-plan",
-    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-109/FIXEDASSETS-109-result.json",
-    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-109/FIXEDASSETS-109-result.json",
+    "npm run fibu:fixedassets:fa-gl-journal-amount-balaccount-control-route-readonly",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-110/FIXEDASSETS-110-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-110/FIXEDASSETS-110-result.json",
     "npm run check:encoding",
     "git diff --check"
   ],
-  "nextStep": "Run FIXEDASSETS-110 read-only; do not enter Amount or Bal. Account No."
+  "nextStep": "Run FIXEDASSETS-111 local decision before any value entry, Preview Posting or posting."
 }

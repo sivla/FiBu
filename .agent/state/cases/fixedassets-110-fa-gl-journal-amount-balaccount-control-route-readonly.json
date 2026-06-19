@@ -3,7 +3,7 @@
   "caseId": "FIXEDASSETS-110-FA-GL-JOURNAL-AMOUNT-BALACCOUNT-CONTROL-ROUTE-READONLY",
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "status": "planned",
+  "status": "observed-readonly",
   "workType": "controlled-sandbox-ui-readonly-diagnosis",
   "taskClass": "wizard_work",
   "goal": "Map the exact read-only field/control route for Amount and Bal. Account No. on the current FA G/L Journal target-line shell before any write probe is considered.",
@@ -68,5 +68,10 @@
     "posting-gate"
   ],
   "requiresUsageLog": false,
-  "nextSafeAction": "Run a narrow read-only field-route probe for Amount and Bal. Account No.; no edit, no cleanup, no Preview Posting and no posting."
+  "lastResult": {
+    "status": "observed",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-110/FIXEDASSETS-110-result.json",
+    "summary": "FA-110 mapped Amount/Bal. Account routes read-only. Amount header: true; Bal. Account header: true; amount candidates: 0; bal-account candidates: 0; 68000 visible: false; K30000 visible: false."
+  },
+  "nextSafeAction": "Run FIXEDASSETS-111 local decision; do not edit, preview or post."
 }
