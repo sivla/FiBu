@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-088-FA-GL-JOURNAL-CONTROL-SNAPSHOT-READONLY",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "fixed-asset-gl-journal-control-snapshot-readonly",
+  "goal": "Open Fixed Asset G/L Journals read-only and capture journal batch, row and control context before any target value entry.",
+  "basedOn": [
+    ".agent/state/cases/fixedassets-087-fa-gl-journal-line-readiness-decision.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-087/FIXEDASSETS-087-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-086/030-fa-journal-route-signals.json"
+  ],
+  "knownTruth": [
+    "FA-086 opened Fixed Asset G/L Journals page 5628 in MCP_1_20260210 / RM-DEMO.",
+    "FA-087 keeps target values, Preview Posting and Post locked.",
+    "Visible fields include Batch Name, Posting Date, Document No., Account Type, Account No., FA Posting Type, Fixed Asset No., Amount and Bal. Account fields.",
+    "No editable row, blank-line state, cleanup rule or keep-draft rule is proven yet."
+  ],
+  "allowedActions": [
+    "open-business-central-in-MCP_1_20260210",
+    "confirm-company-RM-DEMO",
+    "open-fixed-asset-gl-journals-readonly",
+    "capture-journal-batch-and-row-context-readonly",
+    "capture-control-snapshot-readonly",
+    "write-json-evidence",
+    "write-compact-learning-note",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "new-journal-line",
+    "edit-journal-line",
+    "enter-K30000",
+    "enter-amount",
+    "enter-FA-CNC-01-in-document-or-journal",
+    "delete-record",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "api-shortcut",
+    "book-edit",
+    "click-finish",
+    "click-ok-or-yes-on-confirmation",
+    "keep-draft"
+  ],
+  "defaultLockedActionsUnlockedForThisCase": [],
+  "acceptanceCriteria": [
+    "Instance MCP_1_20260210 and company RM-DEMO are confirmed.",
+    "Fixed Asset G/L Journals page 5628 is opened read-only.",
+    "Batch, row and visible control context are captured compactly.",
+    "No value is typed and no row is deliberately created or edited.",
+    "Post and Preview remain unclicked.",
+    "The result decides whether a later no-post draft line probe is safe."
+  ],
+  "stopConditions": [
+    "Business Central is not in MCP_1_20260210 / RM-DEMO.",
+    "The page does not open as Fixed Asset G/L Journals.",
+    "A dialog asks for posting, preview, setup, edit, delete or confirmation.",
+    "Capturing controls would require entering a value or saving a line."
+  ],
+  "recommendedSkills": [
+    "bc-navigation",
+    "safety-gate-checker",
+    "evidence-writer"
+  ],
+  "nextSafeAction": "Run a read-only journal control snapshot. Do not enter FA-CNC-01, K30000 or amount.",
+  "mustRead": [
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-087-fa-gl-journal-line-readiness-decision.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-087/FIXEDASSETS-087-result.json",
+    "playwright/core/bc-helpers.ts",
+    "package.json"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-088/FIXEDASSETS-088-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-088/FIXEDASSETS-088-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-088/README.md"
+  ]
+}
