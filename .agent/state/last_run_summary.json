@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "runId": "TOKEN-AUTOPILOT-RESULT-NORMALIZE",
+  "runId": "TOKEN-AUTOPILOT-STATE-FINALIZE",
   "date": "2026-06-19",
-  "workType": "token-efficient-agent-result-normalize",
+  "workType": "token-efficient-agent-state-finalize",
   "branch": "codex/token-efficient-autopilot-state",
   "bcRun": false,
   "posted": false,
   "companySwitched": false,
-  "summary": "agent:result-normalize erzeugt ein einheitliches Ergebnis-JSON fuer lokale Analyse-, Playwright- oder Manual-Resultate. Ohne Input gibt es einen sicheren pending-Befund aus dem aktuellen Run-Plan aus. Der Normalizer schreibt noch keinen State und startet weder Business Central noch Playwright.",
+  "summary": "agent:state-finalize erzeugt aus normalisierten Resultaten konservative State-Patch-Plaene. Standard ist plan-only; --write ist nur erlaubt, wenn safeToFinalizeState=true, blockedBy leer, requiresReview=false und statePatch nicht leer ist. Kein Business Central, kein Playwright, keine Buchaenderung.",
   "commandsToRunBeforeAutopilot": [
     "npm run agent:preflight",
     "npm run agent:context",
@@ -21,7 +21,8 @@
     "npm run agent:skills:quality",
     "npm run agent:dry-run",
     "npm run agent:run-plan",
-    "npm run agent:result-normalize"
+    "npm run agent:result-normalize",
+    "npm run agent:state-finalize"
   ],
   "routingState": {
     "defaultTaskClass": "monkey_work",
@@ -35,6 +36,7 @@
     "dryRun": "scripts/agent/dry-run.mjs",
     "runPlan": "scripts/agent/run-plan.mjs",
     "resultNormalize": "scripts/agent/result-normalize.mjs",
+    "stateFinalize": "scripts/agent/state-finalize.mjs",
     "skillQualityCheck": "scripts/agent/skills-quality-check.mjs"
   },
   "nextStep": "FIXEDASSETS-065-PURCHASE-INVOICE-LINE-TYPE-HELPER-DIAGNOSIS"

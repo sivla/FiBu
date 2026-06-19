@@ -16,6 +16,8 @@ Zweck: kleiner Einstiegspunkt fuer Codex-Laeufe, die nicht den gesamten Projektv
    - Der Run-Plan blockiert Playwright, Business Central, Buchpatches und Binary-/Screenshot-Lesen weiterhin.
    - `npm run agent:result-normalize`, wenn ein lokales Analyseergebnis in ein einheitliches Result-JSON ueberfuehrt werden soll.
    - Der Result-Normalizer schreibt noch keinen State; State-Finalisierung bleibt eine spaetere Gate-Schicht.
+   - `npm run agent:state-finalize`, wenn aus einem normalisierten Result ein State-Patch-Plan entstehen soll.
+   - State-Finalisierung schreibt standardmaessig nicht; `--write` ist nur mit `safeToFinalizeState=true`, Review-freiem Result und nichtleerem `statePatch` moeglich.
    - optional `npm run agent:usage:summary`, wenn `judge_work` oder `big_brain_review` genutzt wurde
 4. Modell-/Reasoning-Klasse aus `.agent/model-routing.json` waehlen:
    - `monkey_work` fuer billige Fleissarbeit

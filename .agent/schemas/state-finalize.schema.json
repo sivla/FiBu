@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "description": "Documentation schema for JSON emitted by scripts/agent/state-finalize.mjs.",
+  "requiredTopLevelFields": [
+    "schemaVersion",
+    "purpose",
+    "caseId",
+    "sourceResult",
+    "canWrite",
+    "writeMode",
+    "targetFiles",
+    "proposedPatches",
+    "blockedBy",
+    "requiresReview",
+    "reason",
+    "validationCommands"
+  ],
+  "purpose": "autopilot-state-finalize",
+  "rules": [
+    "Default is plan-only.",
+    "--write is allowed only when canWrite is true.",
+    "canWrite is false when safeToFinalizeState is false.",
+    "canWrite is false when blockedBy is non-empty.",
+    "canWrite is false when requiresReview is true.",
+    "canWrite is false when statePatch is empty.",
+    "No Business Central, Playwright, book patch or binary read is allowed."
+  ]
+}

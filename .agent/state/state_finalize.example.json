@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-state-finalize",
+  "caseId": "EXAMPLE",
+  "sourceResult": ".agent/state/result_normalize.example.json",
+  "canWrite": false,
+  "writeMode": false,
+  "targetFiles": [],
+  "proposedPatches": [],
+  "blockedBy": [
+    "safeToFinalizeState is false",
+    "statePatch is empty"
+  ],
+  "requiresReview": false,
+  "reason": "State finalization blocked by safety gates; no files were written.",
+  "validationCommands": [
+    "npm run agent:preflight",
+    "npm run agent:run-plan",
+    "npm run agent:result-normalize",
+    "npm run agent:state-finalize",
+    "npm run check:encoding",
+    "git diff --check"
+  ]
+}
