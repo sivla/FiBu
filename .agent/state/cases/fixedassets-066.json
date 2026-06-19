@@ -17,6 +17,7 @@
   "allowedActions": [
     "prepare-guarded-no-target-ui-probe",
     "static-helper-analysis",
+    "read-only-context-or-action-inventory",
     "result-normalize",
     "state-patch-plan-only"
   ],
@@ -26,6 +27,7 @@
     "preview-posting",
     "post",
     "keep-draft",
+    "run-draft-capable-probe-without-explicit-user-approval",
     "setup-change",
     "api-shortcut",
     "company-switch",
@@ -47,10 +49,10 @@
     "playwright/projects/fibu-book5/evidence/fixedassets-065/FIXEDASSETS-065-result.json",
     "playwright/projects/fibu-book5/evidence/fixedassets-065/020-line-type-guard-regression.json"
   ],
-  "nextSafeAction": "Run the guarded no-target UI probe if a practical BC run is desired; clickBcScoredAction is now centralized in playwright/core/bc/actions.ts. Still no K30000, no FA-CNC-01, no Preview and no Post.",
+  "nextSafeAction": "Do not run the guarded no-target UI probe automatically. Because it clicks New/Neu and may create a temporary draft, it requires explicit user approval; otherwise perform only a read-only context/action-inventory step. Still no K30000, no FA-CNC-01, no Preview and no Post.",
   "lastResult": {
     "status": "observed",
     "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-066/FIXEDASSETS-066-result.json",
-    "summary": "Dedicated guarded no-target UI-probe runner exists, uses centralized clickBcScoredAction, and is wired to npm script; it has not been executed."
+    "summary": "Dedicated guarded no-target UI-probe runner exists, uses centralized clickBcScoredAction, and is wired to npm script; it has not been executed and now requires explicit approval before any draft-capable run."
   }
 }

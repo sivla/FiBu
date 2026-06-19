@@ -13,19 +13,23 @@
     "playwright/projects/fibu-book5/evidence/fixedassets-065/FIXEDASSETS-065-result.json",
     "playwright/projects/fibu-book5/evidence/fixedassets-065/020-line-type-guard-regression.json"
   ],
-  "decision": "FIXEDASSETS-066 prepared a dedicated guarded no-target UI-probe runner and centralized ambiguous action scoring in clickBcScoredAction. The runner must use classifyPurchaseInvoiceLineTypeVisibility and stop on Item line or vendor-registration dialog before any target value entry.",
+  "decision": "FIXEDASSETS-066 prepared a dedicated guarded no-target UI-probe runner and centralized ambiguous action scoring in clickBcScoredAction. The runner must use classifyPurchaseInvoiceLineTypeVisibility and stop on Item line or vendor-registration dialog before any target value entry. Because it clicks New/Neu and may create a temporary draft, execution is approval-gated.",
   "runner": {
     "status": "prepared-not-executed",
     "testFile": "playwright/projects/fibu-book5/tests/fixedassets-066-purchase-invoice-line-type-guarded-probe.spec.ts",
     "npmScript": "fibu:fixedassets:purchase-invoice-line-type-guarded-probe",
     "scopedActionHelper": "playwright/core/bc/actions.ts::clickBcScoredAction",
-    "guard": "playwright/core/bc/purchase-invoice-guards.ts::classifyPurchaseInvoiceLineTypeVisibility"
+    "guard": "playwright/core/bc/purchase-invoice-guards.ts::classifyPurchaseInvoiceLineTypeVisibility",
+    "requiresExplicitApprovalBeforeRun": true,
+    "approvalReason": "Runner clicks New/Neu and may create a temporary draft; current live rules forbid New/Draft without explicit approval."
   },
   "proved": [
     "The next active case is explicitly scoped to guarded probe preparation, not this run's BC execution.",
     "The required guard is classifyPurchaseInvoiceLineTypeVisibility.",
     "A dedicated Playwright runner exists for the guarded no-target probe.",
     "Ambiguous New/Delete action scoring is centralized in clickBcScoredAction for reuse.",
+    "Runner execution is approval-gated because New/Neu and temporary draft creation are not read-only.",
+    "Autopilot state now directs the next run to request explicit approval or choose read-only context/action inventory.",
     "K30000 and FA-CNC-01 remain forbidden for the next preparation step.",
     "Preview Posting, Post, setup change, API shortcut and company switch remain forbidden."
   ],
@@ -48,10 +52,7 @@
     ".agent/state/cases/fixedassets-066.json",
     ".agent/state/current.json",
     ".agent/state/last_run_summary.json",
-    ".agent/capabilities.json",
-    "package.json",
-    "playwright/core/bc/actions.ts",
-    "playwright/projects/fibu-book5/tests/fixedassets-066-purchase-invoice-line-type-guarded-probe.spec.ts",
+    ".agent/autopilot.md",
     "playwright/projects/fibu-book5/evidence/fixedassets-066/FIXEDASSETS-066-result.json",
     "playwright/projects/fibu-book5/evidence/fixedassets-066/README.md"
   ],
@@ -63,7 +64,7 @@
     "current": {
       "activeCase": "FIXEDASSETS-066-PURCHASE-INVOICE-LINE-TYPE-GUARDED-PROBE-PREP",
       "active_case_file": ".agent/state/cases/fixedassets-066.json",
-      "nextStep": "Run npm run fibu:fixedassets:purchase-invoice-line-type-guarded-probe when a practical BC probe is desired. The runner now uses centralized clickBcScoredAction; it may create a temporary draft only for line-type evidence and must clean it up; still no K30000, no FA-CNC-01, no Preview and no Post."
+      "nextStep": "Do not run FIXEDASSETS-066 automatically. The prepared runner would click New/Neu and may create a temporary draft, so it requires explicit user approval for a draft-capable guarded probe. Without that approval, choose a read-only context/action-inventory step instead. Still no K30000, no FA-CNC-01, no Preview and no Post."
     },
     "lastRunSummary": {
       "schemaVersion": 1,
@@ -74,17 +75,17 @@
       "bcRun": false,
       "posted": false,
       "companySwitched": false,
-      "summary": "FIXEDASSETS-066 prepared a dedicated guarded no-target UI-probe runner and moved scoped action scoring into playwright/core/bc/actions.ts. It keeps K30000 and FA-CNC-01 locked, calls classifyPurchaseInvoiceLineTypeVisibility and writes blocked evidence if Item line or vendor-registration dialog appears.",
-      "nextStep": "Run npm run fibu:fixedassets:purchase-invoice-line-type-guarded-probe when a practical UI probe is desired."
+      "summary": "FIXEDASSETS-066 prepared a dedicated guarded no-target UI-probe runner and moved scoped action scoring into playwright/core/bc/actions.ts. Because the runner clicks New/Neu and may create a temporary draft, it is approval-gated; without explicit approval the next safe action is read-only context/action inventory.",
+      "nextStep": "Ask for explicit approval before running npm run fibu:fixedassets:purchase-invoice-line-type-guarded-probe, or choose a read-only context/action-inventory step."
     },
     "activeCase": {
       "status": "runner-prepared",
       "lastResult": {
         "status": "observed",
         "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-066/FIXEDASSETS-066-result.json",
-        "summary": "Dedicated guarded no-target UI-probe runner exists, uses centralized clickBcScoredAction, and is wired to npm script; it has not been executed."
+        "summary": "Dedicated guarded no-target UI-probe runner exists, uses centralized clickBcScoredAction, and is wired to npm script; it has not been executed and now requires explicit approval before any draft-capable run."
       },
-      "nextSafeAction": "Run the guarded no-target UI probe if a practical BC run is desired; clickBcScoredAction is now centralized in playwright/core/bc/actions.ts. Still no K30000, no FA-CNC-01, no Preview and no Post."
+      "nextSafeAction": "Do not run the guarded no-target UI probe automatically. Because it clicks New/Neu and may create a temporary draft, it requires explicit user approval; otherwise perform only a read-only context/action-inventory step. Still no K30000, no FA-CNC-01, no Preview and no Post."
     }
   },
   "flags": {

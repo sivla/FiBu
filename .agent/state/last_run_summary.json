@@ -7,7 +7,7 @@
   "bcRun": false,
   "posted": false,
   "companySwitched": false,
-  "summary": "FIXEDASSETS-066 prepared a dedicated guarded no-target UI-probe runner and moved scoped action scoring into playwright/core/bc/actions.ts. It keeps K30000 and FA-CNC-01 locked, calls classifyPurchaseInvoiceLineTypeVisibility and writes blocked evidence if Item line or vendor-registration dialog appears.",
+  "summary": "FIXEDASSETS-066 prepared a dedicated guarded no-target UI-probe runner and moved scoped action scoring into playwright/core/bc/actions.ts. Because the runner clicks New/Neu and may create a temporary draft, it is approval-gated; without explicit approval the next safe action is read-only context/action inventory.",
   "commandsToRunBeforeAutopilot": [
     "npm run agent:preflight",
     "npm run agent:context",
@@ -40,5 +40,5 @@
     "stateFinalize": "scripts/agent/state-finalize.mjs",
     "skillQualityCheck": "scripts/agent/skills-quality-check.mjs"
   },
-  "nextStep": "Run npm run fibu:fixedassets:purchase-invoice-line-type-guarded-probe when a practical UI probe is desired."
+  "nextStep": "Ask for explicit approval before running npm run fibu:fixedassets:purchase-invoice-line-type-guarded-probe, or choose a read-only context/action-inventory step."
 }

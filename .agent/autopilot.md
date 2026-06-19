@@ -53,5 +53,7 @@ Zweck: kleiner Einstiegspunkt fuer Codex-Laeufe, die nicht den gesamten Projektv
 
 ## Aktueller Einstieg
 
-Der aktuelle kompakte State verweist auf `FIXEDASSETS-065-PURCHASE-INVOICE-LINE-TYPE-HELPER-DIAGNOSIS`.
-Dieser Schritt ist ein Diagnose-/Helper-Schritt. Er darf nicht buchen, keine Zielwerte eingeben und `FA-CNC-01` nicht verwenden.
+Der aktuelle kompakte State verweist auf die in `.agent/state/current.json` genannte aktive Case-Datei.
+Aktuell ist das `FIXEDASSETS-066-PURCHASE-INVOICE-LINE-TYPE-GUARDED-PROBE-PREP`.
+Der vorbereitete Runner ist nicht read-only: Er klickt `New/Neu` und kann einen temporaeren Draft erzeugen.
+Er darf daher nur mit ausdruecklicher Freigabe laufen. Ohne Freigabe ist der naechste sichere Schritt ein read-only Kontext- oder Action-Inventar-Lauf.
