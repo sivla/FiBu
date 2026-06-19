@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-066-PURCHASE-INVOICE-LINE-TYPE-GUARDED-PROBE-PREP",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "guarded-ui-probe-preparation",
+  "goal": "Naechsten no-target UI-Probe fuer Einkaufsrechnungs-Zeilentyp vorbereiten: Der Lauf muss den neuen Zeilentyp-Guard nutzen und bei Item-Zeile oder Vendor-Registrierungsdialog sofort stoppen.",
+  "mustRead": [
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-066.json",
+    "playwright/core/bc/purchase-invoice-guards.ts",
+    "playwright/core/bc/purchase-invoice-guards.selftest.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-065/FIXEDASSETS-065-result.json"
+  ],
+  "allowedActions": [
+    "prepare-guarded-no-target-ui-probe",
+    "static-helper-analysis",
+    "result-normalize",
+    "state-patch-plan-only"
+  ],
+  "forbiddenActions": [
+    "enter-FA-CNC-01",
+    "enter-K30000-in-purchase-invoice",
+    "preview-posting",
+    "post",
+    "keep-draft",
+    "setup-change",
+    "api-shortcut",
+    "company-switch",
+    "book-edit"
+  ],
+  "acceptanceCriteria": [
+    "The next practical probe must call classifyPurchaseInvoiceLineTypeVisibility before any target value entry.",
+    "If Item line type remains visible, the probe must stop and write blocked evidence.",
+    "If a vendor-registration dialog appears, the probe must stop and write blocked evidence.",
+    "K30000 and FA-CNC-01 remain forbidden until Type = Fixed Asset is visibly proven in the same Purchase Invoice line context.",
+    "No Preview Posting, Post, setup change or company switch is allowed."
+  ],
+  "recommendedSkills": [
+    "posting-gate",
+    "screenshot-qa",
+    "evidence-writer"
+  ],
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-065/FIXEDASSETS-065-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-065/020-line-type-guard-regression.json"
+  ],
+  "nextSafeAction": "Prepare or update the no-target UI probe runner so it uses classifyPurchaseInvoiceLineTypeVisibility and cannot enter K30000 or FA-CNC-01."
+}

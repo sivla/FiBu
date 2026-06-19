@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-065-PURCHASE-INVOICE-LINE-TYPE-HELPER-DIAGNOSIS",
+  "runId": "FIXEDASSETS-066-PURCHASE-INVOICE-LINE-TYPE-GUARDED-PROBE-PREP",
   "date": "2026-06-19",
-  "workType": "local-static-helper-diagnosis",
+  "workType": "state-and-safety-preparation",
   "branch": "codex/token-efficient-autopilot-state",
   "bcRun": false,
   "posted": false,
   "companySwitched": false,
-  "summary": "FIXEDASSETS-065 refined the Purchase Invoice line-type guard without BC/Playwright browser execution. Existing 064 evidence is now classified as blocked-item-line-type-visible before the failed entry and blocked-vendor-registration-dialog after it.",
+  "summary": "FIXEDASSETS-066 was prepared as the next guarded no-target UI-probe case. It keeps K30000 and FA-CNC-01 locked and requires classifyPurchaseInvoiceLineTypeVisibility before any future target value entry.",
   "commandsToRunBeforeAutopilot": [
     "npm run agent:preflight",
     "npm run agent:context",
@@ -40,5 +40,5 @@
     "stateFinalize": "scripts/agent/state-finalize.mjs",
     "skillQualityCheck": "scripts/agent/skills-quality-check.mjs"
   },
-  "nextStep": "Run a no-target UI probe only after using the refined guard: the next probe must stop on Item line or vendor-registration dialog and may not enter K30000 or FA-CNC-01."
+  "nextStep": "Prepare/update the no-target UI probe runner with classifyPurchaseInvoiceLineTypeVisibility; do not execute BC/Playwright until the runner is reviewed."
 }
