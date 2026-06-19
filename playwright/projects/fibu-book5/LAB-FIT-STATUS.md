@@ -1,3 +1,5 @@
+Update nach `FIXEDASSETS-113-FA-GL-JOURNAL-ACTIVE-CELL-ROUTE-DECISION`: Lokaler Gate-Review. Der FA-G/L-Journal-Active-Cell-Pfad bleibt fuer Werteingabe, Preview und Buchung gesperrt. Grund: keine konkreten Controls und Kontextverlust nach Fokus. Naechster Fit-Hebel ist `FIXEDASSETS-114`, lokale Routen-Neuplanung.
+
 Update nach `FIXEDASSETS-112-FA-GL-JOURNAL-ACTIVE-CELL-ROUTE-READONLY`: Praktischer Read-only-Laborlauf in `RM-DEMO`. Der Fokus auf die `Amount`-Route hat keine belegbaren aktiven Controls erzeugt und verlor Page-/Zielzeilen-Signale. Keine Werteingabe, keine Preview, kein `Post`, kein Setup. Status: FA-G/L-Journal-Wertkorrektur bleibt gesperrt bis zur lokalen `FIXEDASSETS-113`-Entscheidung.
 
 Update nach `FIXEDASSETS-111-FA-GL-JOURNAL-CONTROL-ROUTE-DECISION`: Lokaler Review ohne BC-Lauf. Kein Write-Probe freigegeben: FA-110 findet Header, aber keine konkreten Controls. Ein letzter read-only Active-Cell-/Focus-Probe ist als `FIXEDASSETS-112` erlaubt, weil BC-Grids Controls oft erst bei fokussierter Zelle erzeugen. Weiterhin keine Wertschreibung, keine Preview, kein `Post`, kein Setup.

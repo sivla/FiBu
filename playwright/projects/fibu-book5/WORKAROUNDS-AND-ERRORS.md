@@ -1,5 +1,19 @@
 # Workarounds und Fehlerjournal
 
+## WK-BC-FA-113 FA-G/L-Journal-Zellfokus beweist keine sichere Wert-Eingabe
+
+| Feld | Wert |
+|---|---|
+| Status | blockiert / Rejected Path fuer Werteingabe / kein Posting |
+| Testfall | `FIXEDASSETS-113-FA-GL-JOURNAL-ACTIVE-CELL-ROUTE-DECISION` |
+| Situation | Nach FA-110 und FA-112 sollte entschieden werden, ob `Amount` und `Bal. Account No.` im `Fixed Asset G/L Journals`-Grid sicher fuer Werteingabe nutzbar sind. |
+| Symptom | FA-110 zeigte Header fuer `Amount` und `Bal. Account No.`, aber `0` konkrete Controls. FA-112 fokussierte read-only, verlor danach Page-/Target-Line-Signale und bewies weiter keine aktiven Controls. |
+| Sichtbarer Beleg | `playwright/projects/fibu-book5/evidence/fixedassets-110/` und `playwright/projects/fibu-book5/evidence/fixedassets-112/`; Entscheidung unter `evidence/fixedassets-113/`. |
+| Ursache | Business-Central-Journalgrids sind dynamische Controls. Eine sichtbare Spalte ist nicht automatisch ein editierbares Playwright-Control, und koordinatenbasierter Fokus kann den stabilen Kontext verlieren. |
+| Loesung oder Laborgrenze | Kein Wert in `Amount` oder `Bal. Account No.` eingeben. Kein Preview Posting, kein `Post`. Der naechste Lauf `FIXEDASSETS-114` replante lokal eine andere Anlagen-Zugangsroute. |
+| Buchwirkung | Kapitel 21 darf den FA-G/L-Journal-Pfad noch nicht als Klickanleitung fuer Anlagenzugang zeigen. Das Debugging-Kapitel bekommt einen Lernfall: Header, Fokus und DOM-Signale muessen getrennt von Wertschreibreife bewertet werden. |
+| Kuenftige Regel | Keine koordinatenbasierte Werteingabe in BC-Journalgrids ohne feld-/zeilenbasierten Control-Nachweis und Nachbedingung, dass Page, Zielzeile und Zielwerte weiterhin sichtbar sind. |
+
 ## WK-BC-FA-064 Freitext `Fixed Asset` erzeugt Vendor-Registrierungsdialog statt Zeilentypwechsel
 
 | Feld | Wert |

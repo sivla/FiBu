@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-114-FA-ACQUISITION-ROUTE-REPLAN",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "local-route-replan",
+  "taskClass": "judge_work",
+  "goal": "Choose the next safe fixed-asset acquisition route after FA G/L Journal active-cell value entry was rejected.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-110/FIXEDASSETS-110-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-112/FIXEDASSETS-112-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-113/FIXEDASSETS-113-result.json"
+  ],
+  "knownTruth": [
+    "The current FA G/L Journal active-cell route is blocked/rejected for value entry.",
+    "No Preview Posting or posting is allowed from the FA G/L Journal evidence.",
+    "Any next route must first prove a stable page, line and field context before values are entered.",
+    "Coordinate/focus probing in Business Central grids is not sufficient evidence for write readiness."
+  ],
+  "allowedActions": [
+    "read-fixedassets-evidence",
+    "compare-known-acquisition-routes",
+    "select-next-safe-case",
+    "write-route-plan-evidence",
+    "state-patch-plan-only"
+  ],
+  "forbiddenActions": [
+    "open-business-central",
+    "run-playwright",
+    "leave-instance",
+    "company-switch",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "api-shortcut",
+    "book-edit",
+    "change-amount",
+    "change-account-no",
+    "change-bal-account-no",
+    "delete-line",
+    "insert-line",
+    "click-finish",
+    "fake-evidence"
+  ],
+  "acceptanceCriteria": [
+    "The selected next route is evidence-backed and does not repeat a rejected path without a new lever.",
+    "The next case defines exactly what can be tested and what remains locked.",
+    "No BC or Playwright execution happens in FA-114."
+  ],
+  "recommendedSkills": [
+    "evidence-writer",
+    "posting-gate"
+  ],
+  "requiresUsageLog": true,
+  "nextSafeAction": "Locally compare acquisition route options and choose one narrow next case."
+}

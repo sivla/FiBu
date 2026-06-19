@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-20T03:15:00.000Z",
+  "updatedAt": "2026-06-20T03:35:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "fixedassets",
-  "activeCase": "FIXEDASSETS-113-FA-GL-JOURNAL-ACTIVE-CELL-ROUTE-DECISION",
-  "active_case_file": ".agent/state/cases/fixedassets-113-fa-gl-journal-active-cell-route-decision.json",
-  "lastReferenceCase": "FIXEDASSETS-112-FA-GL-JOURNAL-ACTIVE-CELL-ROUTE-READONLY",
-  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-112-fa-gl-journal-active-cell-route-readonly.json",
+  "activeCase": "FIXEDASSETS-114-FA-ACQUISITION-ROUTE-REPLAN",
+  "active_case_file": ".agent/state/cases/fixedassets-114-fa-acquisition-route-replan.json",
+  "lastReferenceCase": "FIXEDASSETS-113-FA-GL-JOURNAL-ACTIVE-CELL-ROUTE-DECISION",
+  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-113-fa-gl-journal-active-cell-route-decision.json",
   "mode": "token-efficient-autopilot-tooling-bootstrap",
   "requiresStrongModel": true,
   "requiredPreflightChecks": [
@@ -19,10 +19,10 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "read-fa-112-evidence",
-    "read-fa-110-evidence",
-    "local-route-decision",
-    "write-decision-evidence",
+    "read-fixedassets-evidence",
+    "compare-known-acquisition-routes",
+    "select-next-safe-case",
+    "write-route-plan-evidence",
     "write-evidence",
     "state-patch-plan-only"
   ],
@@ -50,7 +50,7 @@
     "insert-line",
     "click-finish"
   ],
-  "nextStep": "FIXEDASSETS-113: review FA-112 blocker locally and decide whether the FA G/L Journal value-entry route remains blocked or needs a different UI pattern; no BC and no Playwright.",
+  "nextStep": "FIXEDASSETS-114: locally replan the fixed-asset acquisition route; do not use coordinate-based FA G/L Journal value entry.",
   "subagentPlanPolicy": {
     "default": "optional",
     "execution": "plan-only-no-subagents-spawned",

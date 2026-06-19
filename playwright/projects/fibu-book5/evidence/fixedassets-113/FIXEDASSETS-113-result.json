@@ -1,0 +1,115 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-fa-gl-journal-active-cell-route-decision-result",
+  "caseId": "FIXEDASSETS-113-FA-GL-JOURNAL-ACTIVE-CELL-ROUTE-DECISION",
+  "source": "local-evidence-review",
+  "resultStatus": "observed",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "decision": {
+    "faGlJournalActiveCellRouteStatus": "blocked-rejected-for-value-entry",
+    "writeCaseAllowedNow": false,
+    "previewPostingAllowedNow": false,
+    "postingAllowedNow": false,
+    "nextCase": "FIXEDASSETS-114-FA-ACQUISITION-ROUTE-REPLAN",
+    "reason": "FA-110 found only headers and zero concrete controls; FA-112 lost page and target-line signals after a coordinate-like focus probe. This is not a safe route for value entry."
+  },
+  "proved": [
+    "FA-110 proves the FA G/L Journal page can show Amount and Bal. Account No. headers.",
+    "FA-110 proves zero exact Amount control candidates and zero exact Bal. Account No. control candidates.",
+    "FA-112 proves a read-only focus/click probe did not enter values, did not preview and did not post.",
+    "FA-112 proves no active-cell control route for Amount or Bal. Account No.",
+    "FA-112 proves the focus probe can lose page/title and target-line signals."
+  ],
+  "notProved": [
+    "No safe Amount value-entry control.",
+    "No safe Bal. Account No. value-entry control.",
+    "No visibility of Amount 68000 as an existing value.",
+    "No visibility of K30000 as an existing balancing value.",
+    "No Preview Posting result.",
+    "No posting result.",
+    "No FA Ledger Entry or G/L Entry trace.",
+    "No German final proof."
+  ],
+  "changedFiles": [
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-113-fa-gl-journal-active-cell-route-decision.json",
+    ".agent/state/cases/fixedassets-114-fa-acquisition-route-replan.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/model_usage_log.jsonl",
+    "playwright/projects/fibu-book5/BC-PLAYWRIGHT-PATTERNS.md",
+    "playwright/projects/fibu-book5/WORKAROUNDS-AND-ERRORS.md",
+    "playwright/projects/fibu-book5/CURRENT-STATE.md",
+    "playwright/projects/fibu-book5/LAB-FIT-STATUS.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-113/FIXEDASSETS-113-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-113/FIXEDASSETS-113-review.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-113/README.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-110/FIXEDASSETS-110-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-112/FIXEDASSETS-112-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-113/FIXEDASSETS-113-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-113/FIXEDASSETS-113-review.md"
+  ],
+  "warnings": [
+    "Do not continue the FA G/L Journal value-entry route by coordinate clicks.",
+    "Header visibility is not write readiness.",
+    "A focus probe that loses target-line signals is blocker evidence, not a reason to type into the grid."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "updatedAt": "2026-06-20T03:35:00.000Z",
+      "activeCase": "FIXEDASSETS-114-FA-ACQUISITION-ROUTE-REPLAN",
+      "active_case_file": ".agent/state/cases/fixedassets-114-fa-acquisition-route-replan.json",
+      "lastReferenceCase": "FIXEDASSETS-113-FA-GL-JOURNAL-ACTIVE-CELL-ROUTE-DECISION",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-113-fa-gl-journal-active-cell-route-decision.json",
+      "requiresStrongModel": true,
+      "nextStep": "FIXEDASSETS-114: locally replan the fixed-asset acquisition route; do not use coordinate-based FA G/L Journal value entry."
+    },
+    "lastRunSummary": {
+      "schemaVersion": 1,
+      "runId": "FIXEDASSETS-113-FA-GL-JOURNAL-ACTIVE-CELL-ROUTE-DECISION",
+      "date": "2026-06-20",
+      "workType": "local-fixed-asset-route-decision",
+      "branch": "codex/token-efficient-autopilot-state",
+      "instance": "MCP_1_20260210",
+      "company": "RM-DEMO",
+      "bcRun": false,
+      "posted": false,
+      "preview": false,
+      "setupChanged": false,
+      "companySwitched": false,
+      "resultStatus": "observed",
+      "summary": "FA-113 rejects the current FA G/L Journal active-cell route for value entry. FA-110/112 prove headers and safe no-write behavior, but no safe controls; coordinate/focus probing lost target context.",
+      "nextStep": "Run FIXEDASSETS-114 local route replan before any further BC/Playwright action."
+    },
+    "activeCase": {
+      "status": "completed",
+      "lastResult": {
+        "status": "observed",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-113/FIXEDASSETS-113-result.json",
+        "summary": "FA G/L Journal active-cell value-entry route is blocked/rejected for now."
+      },
+      "nextSafeAction": "Run FIXEDASSETS-114 local route replan; no BC, no Playwright, no value entry."
+    }
+  },
+  "flags": {
+    "noBcRun": true,
+    "noPlaywrightRun": true,
+    "noValueCorrection": true,
+    "noInsertLine": true,
+    "noDeleteLine": true,
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "nextStep": "FIXEDASSETS-114-FA-ACQUISITION-ROUTE-REPLAN"
+}

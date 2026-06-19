@@ -1,49 +1,48 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-112-FA-GL-JOURNAL-ACTIVE-CELL-ROUTE-READONLY",
+  "runId": "FIXEDASSETS-113-FA-GL-JOURNAL-ACTIVE-CELL-ROUTE-DECISION",
   "date": "2026-06-20",
-  "workType": "fixed-asset-gl-journal-active-cell-route-readonly",
+  "workType": "local-fixed-asset-route-decision",
   "branch": "codex/token-efficient-autopilot-state",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "bcRun": true,
+  "bcRun": false,
   "posted": false,
   "preview": false,
   "setupChanged": false,
   "companySwitched": false,
   "apiShortcut": false,
   "bookChanged": false,
-  "resultStatus": "blocked",
-  "summary": "FA-112 stayed in MCP_1_20260210 / RM-DEMO and did not change values, but the active-cell probe did not prove a stable Amount or Bal. Account No. control route; the page/title and target-line signals were lost after focus.",
+  "resultStatus": "observed",
+  "summary": "FA-113 rejects the current FA G/L Journal active-cell route for value entry. FA-110/112 prove headers and safe no-write behavior, but no safe controls; coordinate/focus probing lost target context.",
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/fixedassets-112/FIXEDASSETS-112-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-112/010-active-cell-route-probe.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-112/020-active-cell-focused-text.txt",
-    "playwright/projects/fibu-book5/evidence/fixedassets-112/README.md"
+    "playwright/projects/fibu-book5/evidence/fixedassets-113/FIXEDASSETS-113-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-113/FIXEDASSETS-113-review.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-113/README.md"
   ],
   "changedFiles": [
     ".agent/state/current.json",
-    ".agent/state/cases/fixedassets-112-fa-gl-journal-active-cell-route-readonly.json",
     ".agent/state/cases/fixedassets-113-fa-gl-journal-active-cell-route-decision.json",
+    ".agent/state/cases/fixedassets-114-fa-acquisition-route-replan.json",
     ".agent/state/last_run_summary.json",
-    "package.json",
-    "playwright/projects/fibu-book5/tests/fixedassets-112-fa-gl-journal-active-cell-route-readonly.spec.ts",
+    ".agent/state/model_usage_log.jsonl",
+    "playwright/projects/fibu-book5/BC-PLAYWRIGHT-PATTERNS.md",
+    "playwright/projects/fibu-book5/WORKAROUNDS-AND-ERRORS.md",
     "playwright/projects/fibu-book5/CURRENT-STATE.md",
     "playwright/projects/fibu-book5/LAB-FIT-STATUS.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-112/FIXEDASSETS-112-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-112/010-active-cell-route-probe.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-112/020-active-cell-focused-text.txt",
-    "playwright/projects/fibu-book5/evidence/fixedassets-112/README.md"
+    "playwright/projects/fibu-book5/evidence/fixedassets-113/FIXEDASSETS-113-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-113/FIXEDASSETS-113-review.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-113/README.md"
   ],
   "validationCommands": [
     "npm run agent:preflight",
     "npm run agent:dry-run",
     "npm run agent:run-plan",
-    "npm run fibu:fixedassets:fa-gl-journal-active-cell-route-readonly",
-    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-112/FIXEDASSETS-112-result.json",
-    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-112/FIXEDASSETS-112-result.json",
+    "npm run agent:subagent-plan",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-113/FIXEDASSETS-113-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-113/FIXEDASSETS-113-result.json",
     "npm run check:encoding",
     "git diff --check"
   ],
-  "nextStep": "Run FIXEDASSETS-113 local decision; no BC, no Playwright, no value entry."
+  "nextStep": "Run FIXEDASSETS-114 local route replan before any further BC/Playwright action."
 }
