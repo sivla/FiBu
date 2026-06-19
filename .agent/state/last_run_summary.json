@@ -1,41 +1,46 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-089-FA-GL-JOURNAL-DRAFT-LINE-GATE-DECISION",
+  "runId": "FIXEDASSETS-090-FA-GL-JOURNAL-CLEANUP-ACTION-INVENTORY-READONLY",
   "date": "2026-06-19",
-  "workType": "fixed-asset-gl-journal-draft-line-gate-decision",
+  "workType": "fixed-asset-gl-journal-cleanup-action-inventory-readonly",
   "branch": "codex/token-efficient-autopilot-state",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "bcRun": false,
+  "bcRun": true,
   "posted": false,
   "preview": false,
   "setupChanged": false,
   "companySwitched": false,
   "resultStatus": "observed",
-  "summary": "FA-089 decided that no-post draft line entry is not safe yet. FA-088 proves journal controls, but cleanup/delete or keep-draft ownership is not proven. Next is a read-only cleanup/action inventory.",
+  "summary": "FA-090 opened Fixed Asset G/L Journals read-only and captured action inventory. The safe scan did not prove a Delete cleanup route; Post is visible and remains locked. Draft value entry remains blocked until a cleanup or keep-draft route is explicitly decided.",
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/fixedassets-089/FIXEDASSETS-089-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-089/FIXEDASSETS-089-learning.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-089/README.md"
+    "playwright/projects/fibu-book5/evidence/fixedassets-090/FIXEDASSETS-090-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-090/FIXEDASSETS-090-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-090/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-090/020-fa-journal-action-inventory.json"
   ],
   "changedFiles": [
     ".agent/state/current.json",
-    ".agent/state/cases/fixedassets-089-fa-gl-journal-draft-line-gate-decision.json",
     ".agent/state/cases/fixedassets-090-fa-gl-journal-cleanup-action-inventory-readonly.json",
+    ".agent/state/cases/fixedassets-091-fa-gl-journal-cleanup-route-decision.json",
     ".agent/state/coverage_state.json",
     ".agent/state/last_run_summary.json",
-    ".agent/state/model_usage_log.jsonl",
-    "playwright/projects/fibu-book5/evidence/fixedassets-089/FIXEDASSETS-089-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-089/FIXEDASSETS-089-learning.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-089/README.md"
+    "package.json",
+    "playwright/projects/fibu-book5/tests/fixedassets-090-fa-gl-journal-cleanup-action-inventory-readonly.spec.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-090/FIXEDASSETS-090-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-090/FIXEDASSETS-090-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-090/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-090/010-fa-journal-action-context.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-090/020-fa-journal-action-inventory.json"
   ],
   "validationCommands": [
     "npm run agent:preflight",
     "npm run agent:context",
-    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-089/FIXEDASSETS-089-result.json",
-    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-089/FIXEDASSETS-089-result.json",
+    "npm run fibu:fixedassets:fa-gl-journal-cleanup-action-inventory",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-090/FIXEDASSETS-090-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-090/FIXEDASSETS-090-result.json",
     "npm run check:encoding",
     "git diff --check"
   ],
-  "nextStep": "FIXEDASSETS-090-FA-GL-JOURNAL-CLEANUP-ACTION-INVENTORY-READONLY: open Fixed Asset G/L Journals read-only and inventory Manage/Line/Page actions to prove a cleanup or keep-draft route before any value entry."
+  "nextStep": "FIXEDASSETS-091-FA-GL-JOURNAL-CLEANUP-ROUTE-DECISION: decide whether FA journal value probing requires a keep-draft policy, a safer cleanup discovery route, or remains blocked."
 }

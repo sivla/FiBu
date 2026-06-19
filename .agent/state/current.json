@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-19T13:22:00.000Z",
+  "updatedAt": "2026-06-19T13:54:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "fixedassets",
-  "activeCase": "FIXEDASSETS-090-FA-GL-JOURNAL-CLEANUP-ACTION-INVENTORY-READONLY",
-  "active_case_file": ".agent/state/cases/fixedassets-090-fa-gl-journal-cleanup-action-inventory-readonly.json",
-  "lastReferenceCase": "FIXEDASSETS-089-FA-GL-JOURNAL-DRAFT-LINE-GATE-DECISION",
-  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-089-fa-gl-journal-draft-line-gate-decision.json",
+  "activeCase": "FIXEDASSETS-091-FA-GL-JOURNAL-CLEANUP-ROUTE-DECISION",
+  "active_case_file": ".agent/state/cases/fixedassets-091-fa-gl-journal-cleanup-route-decision.json",
+  "lastReferenceCase": "FIXEDASSETS-090-FA-GL-JOURNAL-CLEANUP-ACTION-INVENTORY-READONLY",
+  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-090-fa-gl-journal-cleanup-action-inventory-readonly.json",
   "mode": "token-efficient-autopilot-tooling-bootstrap",
   "requiresStrongModel": false,
   "requiredPreflightChecks": [
@@ -19,13 +19,10 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "open-business-central-in-MCP_1_20260210",
-    "confirm-company-RM-DEMO",
-    "open-fixed-asset-gl-journals-readonly",
-    "inventory-manage-line-page-actions-readonly",
-    "capture-cleanup-action-candidates-readonly",
-    "write-json-evidence",
-    "write-compact-learning-note",
+    "read-fixedassets-088-090-evidence",
+    "decide-cleanup-or-keep-draft-route",
+    "write-compact-decision-evidence",
+    "prepare-next-safe-case",
     "state-patch-plan-only"
   ],
   "forbiddenActions": [
@@ -35,6 +32,7 @@
     "fake-evidence",
     "book-claim-without-evidence",
     "company-switch",
+    "open-business-central",
     "new-journal-line",
     "edit-journal-line",
     "enter-K30000",
@@ -53,7 +51,7 @@
     "click-ok-or-yes-on-confirmation",
     "keep-draft"
   ],
-  "nextStep": "FIXEDASSETS-090-FA-GL-JOURNAL-CLEANUP-ACTION-INVENTORY-READONLY: open Fixed Asset G/L Journals read-only and inventory Manage/Line/Page actions to prove a cleanup or keep-draft route before any value entry.",
+  "nextStep": "FIXEDASSETS-091-FA-GL-JOURNAL-CLEANUP-ROUTE-DECISION: decide from FA-088 to FA-090 evidence whether the next FA journal value probe needs a keep-draft policy, a safer cleanup discovery route, or remains blocked.",
   "subagentPlanPolicy": {
     "default": "optional",
     "execution": "plan-only-no-subagents-spawned",

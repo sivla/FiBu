@@ -1,0 +1,215 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-fa-gl-journal-cleanup-action-inventory-readonly-result",
+  "caseId": "FIXEDASSETS-090-FA-GL-JOURNAL-CLEANUP-ACTION-INVENTORY-READONLY",
+  "source": "playwright-result",
+  "resultStatus": "observed",
+  "runPlanId": "FIXEDASSETS-090-FA-GL-JOURNAL-CLEANUP-ACTION-INVENTORY-READONLY-PLAN",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-medium",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "proved": [
+    "The run stayed in MCP_1_20260210.",
+    "The run stayed in RM-DEMO.",
+    "Fixed Asset G/L Journals action inventory was captured read-only.",
+    "The run did not create, edit, delete, preview, post, reconcile, insert balancing account, pay, invoice, ship or change setup."
+  ],
+  "notProved": [
+    "No Delete cleanup route is proven.",
+    "The safe action scan does not prove that Delete is impossible; it only did not surface a safe Delete route.",
+    "Group probing can return Role Center context, so grouped action evidence is limited.",
+    "No journal line was created.",
+    "No FA-CNC-01 was entered in a journal.",
+    "No K30000 was entered.",
+    "No amount was entered.",
+    "No Preview Posting.",
+    "No acquisition posting.",
+    "No German final proof."
+  ],
+  "changedFiles": [
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-090-fa-gl-journal-cleanup-action-inventory-readonly.json",
+    ".agent/state/cases/fixedassets-091-fa-gl-journal-cleanup-route-decision.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    "package.json",
+    "playwright/projects/fibu-book5/tests/fixedassets-090-fa-gl-journal-cleanup-action-inventory-readonly.spec.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-090/FIXEDASSETS-090-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-090/FIXEDASSETS-090-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-090/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-090/010-fa-journal-action-context.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-090/020-fa-journal-action-inventory.json"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-090/FIXEDASSETS-090-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-090/FIXEDASSETS-090-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-090/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-090/010-fa-journal-action-context.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-090/020-fa-journal-action-inventory.json"
+  ],
+  "warnings": [
+    "Action inventory only. Candidate labels are not executed actions.",
+    "Cleanup remains unproven, not disproven.",
+    "If group probing returns Role Center context, use the result as a conservative blocker, not as a complete action map.",
+    "Post, Reconcile and Insert FA Bal. Account may be visible but remain forbidden.",
+    "CRONUS/RM-DEMO labor only."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-091-FA-GL-JOURNAL-CLEANUP-ROUTE-DECISION",
+      "active_case_file": ".agent/state/cases/fixedassets-091-fa-gl-journal-cleanup-route-decision.json",
+      "lastReferenceCase": "FIXEDASSETS-090-FA-GL-JOURNAL-CLEANUP-ACTION-INVENTORY-READONLY",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-090-fa-gl-journal-cleanup-action-inventory-readonly.json",
+      "nextStep": "Decide whether cleanup must use a keep-draft policy, a safer cleanup discovery route or another route before any journal value entry."
+    },
+    "lastRunSummary": {
+      "schemaVersion": 1,
+      "runId": "FIXEDASSETS-090-FA-GL-JOURNAL-CLEANUP-ACTION-INVENTORY-READONLY",
+      "date": "2026-06-19",
+      "workType": "fixed-asset-gl-journal-cleanup-action-inventory-readonly",
+      "branch": "codex/token-efficient-autopilot-state",
+      "instance": "MCP_1_20260210",
+      "company": "RM-DEMO",
+      "bcRun": true,
+      "posted": false,
+      "preview": false,
+      "setupChanged": false,
+      "companySwitched": false,
+      "resultStatus": "observed",
+      "summary": "FA-090 captured read-only journal action inventory. Post is visible and remains locked. A safe Delete cleanup route was not proven; group probing can return Role Center context, so cleanup remains unproven rather than disproven.",
+      "nextStep": "Decide whether cleanup must use a keep-draft policy, a safer cleanup discovery route or another route before any journal value entry."
+    },
+    "activeCase": {
+      "status": "observed-readonly",
+      "lastResult": {
+        "status": "observed",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-090/FIXEDASSETS-090-result.json",
+        "summary": "FA-090 captured read-only journal action inventory. Post is visible and remains locked. A safe Delete cleanup route was not proven; group probing can return Role Center context, so cleanup remains unproven rather than disproven."
+      },
+      "nextSafeAction": "Decide whether cleanup must use a keep-draft policy, a safer cleanup discovery route or another route before any journal value entry."
+    },
+    "coverage": {
+      "areas": {
+        "fixedassets": {
+          "currentBlock": "fa-gl-journal-cleanup-route-decision",
+          "latestPracticalCase": "FIXEDASSETS-090",
+          "nextCase": "FIXEDASSETS-091-FA-GL-JOURNAL-CLEANUP-ROUTE-DECISION"
+        }
+      }
+    }
+  },
+  "actionInventory": {
+    "actionFlags": {
+      "deleteVisible": false,
+      "newVisible": false,
+      "editVisible": false,
+      "postVisible": true,
+      "previewVisible": false,
+      "insertFaBalAccountVisible": false,
+      "reconcileVisible": false,
+      "applyEntriesVisible": false
+    },
+    "cleanupCandidateFound": false,
+    "openedGroups": [
+      {
+        "group": "^Verwalten$|^Manage$",
+        "clicked": true,
+        "visibleAfter": []
+      },
+      {
+        "group": "^Line$",
+        "clicked": true,
+        "visibleAfter": []
+      },
+      {
+        "group": "^Page$",
+        "clicked": false,
+        "visibleAfter": [
+          "Account No.",
+          "Activities",
+          "Aktualisierungen ...eitete Auftrage 0",
+          "Approved Time Sheets 0",
+          "Average Collec... Days 0,0 Gunstig",
+          "Balance",
+          "Completely Re... from Stock 0",
+          "Description",
+          "E-Mail-Entwurf... Postausgang 0",
+          "Fehler bei Lieferungen 0",
+          "Fehlerhafte E-... im Postausgang 0",
+          "Gesendete ...etzten 30 Tage 0",
+          "Intercompany ... to Send 0",
+          "Kreis Open My Curre... Sheet",
+          "My Incoming Documents 1",
+          "Name",
+          "New Intercom... Transactions 0",
+          "New Time Sheets 0",
+          "Nicht zugeord... Kunden 0",
+          "Nicht zugeord... Produkte 0",
+          "Ongoing Purc... Invoices 0",
+          "Outstanding V... Invoices 22",
+          "Overdue Purch. Invoice Amount 129.433 $ Ungunstig Weitere Informationen",
+          "Overdue Sales Invoice Amount 0 Weitere Informationen",
+          "Overdue Sales Invoice Amount 68.882 $ Nicht eindeutig Weitere Informationen",
+          "Pending User Tasks 0",
+          "Purch. Invoices... Next Week 0",
+          "Purchase Orders 28",
+          "Rejected ...er Companies 0",
+          "Rejected Time Sheets 0",
+          "Requests Sent ... Approval 0",
+          "Requests to Approve 0",
+          "Sales Invoices 7",
+          "Sales Orders 7",
+          "Sales Quotes 18 Nicht eindeutig",
+          "Sales This Month 0 $ Nicht eindeutig Weitere Informationen",
+          "Sales This Month 0 Weitere Informationen",
+          "Submitted Time Sheets 0",
+          "Synchronisieru... 0",
+          "Tasks Failed 0",
+          "Tasks In Process 0",
+          "Tasks In Process 0 Gunstig",
+          "Tasks In Queue 2 Gunstig",
+          "Time Sheets In progress 0",
+          "Uberfallige Verkaufsrechnungen 0 Weitere Informationen",
+          "Unprocessed Payments 1",
+          "Unverarbeitete Auftrage 0",
+          "Unverarbeitete Lieferungen 0",
+          "Verbindung zu Banken herstellen, um Bank-Feeds zu importieren.",
+          "Verknupfte Bestellungen 0",
+          "Want to learn more about Business Central?",
+          "Warten auf Ka... E-Rechnungen 0",
+          "Zum Hauptinhalt wechseln"
+        ]
+      }
+    ]
+  },
+  "flags": {
+    "stayedInExpectedInstance": true,
+    "companyContextDocumented": true,
+    "noBookChange": true,
+    "noPost": true,
+    "noPreview": true,
+    "noReconcile": true,
+    "noInsertFaBalAccount": true,
+    "noShip": true,
+    "noInvoice": true,
+    "noPayment": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noNewDraft": true,
+    "noEditRecord": true,
+    "noDeleteExecuted": true,
+    "noJournalLineCreated": true,
+    "cleanupRequired": false,
+    "cleanupCompleted": true
+  },
+  "observed": {
+    "startedAt": "2026-06-19T09:55:53.437Z",
+    "finishedAt": "2026-06-19T09:56:13.199Z"
+  },
+  "nextStep": "Decide whether cleanup must use a keep-draft policy, a safer cleanup discovery route or another route before any journal value entry."
+}

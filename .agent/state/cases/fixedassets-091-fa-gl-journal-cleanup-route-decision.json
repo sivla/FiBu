@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-091-FA-GL-JOURNAL-CLEANUP-ROUTE-DECISION",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "fixed-asset-gl-journal-cleanup-route-decision",
+  "taskClass": "judge_work",
+  "goal": "Decide from FA-088 to FA-090 evidence whether the next Fixed Asset G/L Journal value probe needs a keep-draft policy, a safer cleanup discovery route, or must remain blocked.",
+  "basedOn": [
+    ".agent/state/cases/fixedassets-088-fa-gl-journal-control-snapshot-readonly.json",
+    ".agent/state/cases/fixedassets-089-fa-gl-journal-draft-line-gate-decision.json",
+    ".agent/state/cases/fixedassets-090-fa-gl-journal-cleanup-action-inventory-readonly.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-088/020-fa-journal-control-snapshot.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-089/FIXEDASSETS-089-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-090/FIXEDASSETS-090-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-090/020-fa-journal-action-inventory.json"
+  ],
+  "knownTruth": [
+    "FA-088 proved Fixed Asset G/L Journals page 5628 and Batch Name DEFAULT read-only.",
+    "FA-089 blocked draft value entry because cleanup/delete or keep-draft ownership was not proven.",
+    "FA-090 captured read-only action inventory and proved Post is visible but locked.",
+    "FA-090 did not prove a Delete cleanup route; this is a limitation of the safe scan, not proof that Delete cannot exist.",
+    "No FA journal line, preview posting or acquisition posting has been created."
+  ],
+  "allowedActions": [
+    "read-existing-evidence",
+    "make-cleanup-route-decision",
+    "write-compact-decision-evidence",
+    "create-next-case-plan",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "open-business-central",
+    "run-playwright",
+    "company-switch",
+    "new-journal-line",
+    "edit-journal-line",
+    "enter-K30000",
+    "enter-amount",
+    "enter-FA-CNC-01-in-document-or-journal",
+    "delete-record",
+    "insert-fa-bal-account",
+    "reconcile",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "api-shortcut",
+    "book-edit",
+    "click-ok-or-yes-on-confirmation"
+  ],
+  "defaultLockedActionsUnlockedForThisCase": [],
+  "acceptanceCriteria": [
+    "Decision is based only on FA-088 to FA-090 evidence.",
+    "The decision distinguishes cleanup unproven from cleanup impossible.",
+    "No BC or Playwright execution occurs in this decision case.",
+    "The next case either plans a safer cleanup discovery run, explicitly accepts a keep-draft policy, or keeps value entry blocked."
+  ],
+  "stopConditions": [
+    "Evidence is insufficient to choose a safe next action.",
+    "Decision would require executing BC or Playwright.",
+    "Decision would unlock journal value entry without cleanup or keep-draft ownership."
+  ],
+  "recommendedSkills": [
+    "safety-gate-checker",
+    "evidence-writer"
+  ],
+  "requiresUsageLog": true,
+  "nextSafeAction": "Review FA-088 to FA-090 evidence and write a route decision before any journal value entry.",
+  "mustRead": [
+    ".agent/state/current.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-088/020-fa-journal-control-snapshot.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-089/FIXEDASSETS-089-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-090/FIXEDASSETS-090-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-090/020-fa-journal-action-inventory.json"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-091/FIXEDASSETS-091-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-091/FIXEDASSETS-091-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-091/README.md"
+  ]
+}
