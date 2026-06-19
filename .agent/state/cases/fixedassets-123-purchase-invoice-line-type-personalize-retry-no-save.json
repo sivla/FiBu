@@ -3,7 +3,7 @@
   "caseId": "FIXEDASSETS-123-PURCHASE-INVOICE-LINE-TYPE-PERSONALIZE-RETRY-NO-SAVE",
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "status": "planned",
+  "status": "observed-cleanup-complete",
   "workType": "guarded-ui-personalize-only-line-type-diagnosis-no-save",
   "taskClass": "wizard_work",
   "goal": "Run a fresh Purchase Invoice line Type Personalize diagnosis without opening Page Inspection first, to avoid the FA-121 blocker and learn whether useful field/page context can be captured no-save.",
@@ -65,5 +65,10 @@
     "screenshot-qa"
   ],
   "requiresUsageLog": false,
-  "nextSafeAction": "Implement and run the Personalize-only no-save diagnosis for Purchase Invoice line Type."
+  "lastResult": {
+    "status": "observed",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-123/FIXEDASSETS-123-result.json",
+    "summary": "Personalize opened without the FA-121 Page Inspection blocker and captured Type/Add-field context. Fixed Asset/Anlage was not visible or proven as selectable Type option. No Page Inspection, no line type selection, no target values, no preview, no post, no setup change and no persisted draft."
+  },
+  "nextSafeAction": "Run FIXEDASSETS-124 local evidence review before any Purchase Invoice line Type selection or target values are unlocked."
 }

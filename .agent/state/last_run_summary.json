@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-122-PURCHASE-INVOICE-LINE-TYPE-DIAGNOSIS-REVIEW",
+  "runId": "FIXEDASSETS-123-PURCHASE-INVOICE-LINE-TYPE-PERSONALIZE-RETRY-NO-SAVE",
   "date": "2026-06-20",
-  "workType": "local-fixed-asset-purchase-invoice-line-type-diagnosis-review",
+  "workType": "fixed-asset-purchase-invoice-line-type-personalize-only-no-save-diagnosis",
   "branch": "codex/token-efficient-autopilot-state",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "bcRun": false,
+  "bcRun": true,
   "posted": false,
   "preview": false,
   "setupChanged": false,
@@ -14,38 +14,40 @@
   "apiShortcut": false,
   "bookChanged": false,
   "resultStatus": "observed",
-  "summary": "FA-122 reviewed FA-121 and selected a fresh Personalize-only no-save diagnosis. Page Inspection help text remains technical context only; selectable Fixed Asset/Anlage is still unproved, and Personalisieren must not be attempted while Page Inspection is active.",
+  "summary": "FA-123 ran a Personalize-only no-save diagnosis in MCP_1_20260210 / RM-DEMO. Personalisieren opened without the FA-121 Page Inspection blocker and captured Type/Add-field context, but Fixed Asset/Anlage was not visible or proven as selectable Purchase Invoice line Type option. No Page Inspection, no target values, no Preview Posting, no Post, no setup change, no API shortcut, no Company switch and no persisted draft number.",
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/fixedassets-121/FIXEDASSETS-121-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-121/030-page-inspection-line-type-context.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-121/040-personalize-line-type-context.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-122/FIXEDASSETS-122-route-decision.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-122/FIXEDASSETS-122-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-122/README.md"
+    "playwright/projects/fibu-book5/evidence/fixedassets-123/FIXEDASSETS-123-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-123/030-personalize-line-type-context.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-123/031-personalize-focused-lines.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-123/090-cleanup-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-123/README.md"
   ],
   "changedFiles": [
     ".agent/state/current.json",
     ".agent/state/coverage_state.json",
-    ".agent/state/cases/fixedassets-122-purchase-invoice-line-type-diagnosis-review.json",
     ".agent/state/cases/fixedassets-123-purchase-invoice-line-type-personalize-retry-no-save.json",
+    ".agent/state/cases/fixedassets-124-purchase-invoice-line-type-personalize-result-review.json",
     ".agent/state/last_run_summary.json",
-    ".agent/state/model_usage_log.jsonl",
+    "package.json",
     "playwright/projects/fibu-book5/CURRENT-STATE.md",
     "playwright/projects/fibu-book5/LAB-FIT-STATUS.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-122/FIXEDASSETS-122-route-decision.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-122/FIXEDASSETS-122-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-122/README.md"
+    "playwright/projects/fibu-book5/tests/fixedassets-123-purchase-invoice-line-type-personalize-retry-no-save.spec.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-123/FIXEDASSETS-123-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-123/030-personalize-line-type-context.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-123/031-personalize-focused-lines.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-123/090-cleanup-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-123/README.md"
   ],
   "validationCommands": [
     "JSON parse for changed state/evidence files",
     "npm run agent:preflight",
     "npm run agent:dry-run",
     "npm run agent:run-plan",
-    "npm run agent:subagent-plan",
-    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-122/FIXEDASSETS-122-result.json",
-    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-122/FIXEDASSETS-122-result.json",
+    "npm run fibu:fixedassets:purchase-invoice-line-type-personalize-retry",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-123/FIXEDASSETS-123-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-123/FIXEDASSETS-123-result.json",
     "npm run check:encoding",
     "git diff --check"
   ],
-  "nextStep": "Run FIXEDASSETS-123 Personalize-only no-save diagnosis before any Purchase Invoice line Type selection or target values are unlocked."
+  "nextStep": "Run FIXEDASSETS-124 local evidence review before any Purchase Invoice line Type selection or target values are unlocked."
 }

@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-124-PURCHASE-INVOICE-LINE-TYPE-PERSONALIZE-RESULT-REVIEW",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "local-evidence-review",
+  "taskClass": "judge_work",
+  "goal": "Review the FA-123 Personalize-only result and decide the next safe Purchase Invoice line Type route without opening Business Central.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-121/FIXEDASSETS-121-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-122/FIXEDASSETS-122-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-123/FIXEDASSETS-123-result.json"
+  ],
+  "knownTruth": [
+    "FA-123 opened Personalisieren without the FA-121 Page Inspection blocker.",
+    "FA-123 captured Type/Add-field context but did not show Fixed Asset/Anlage as a selectable line Type option.",
+    "FA-123 did not open Page Inspection, did not select Type values, did not enter K30000, FA-CNC-01 or amount, and did not post or preview.",
+    "No persisted Purchase Invoice draft number was detected."
+  ],
+  "allowedActions": [
+    "local-evidence-review",
+    "compare-fa-121-fa-123",
+    "decide-next-purchase-invoice-line-type-route",
+    "update-state-only"
+  ],
+  "forbiddenActions": [
+    "open-business-central",
+    "run-playwright",
+    "leave-instance",
+    "company-switch",
+    "api-shortcut",
+    "book-edit",
+    "open-page-inspection",
+    "select-fixed-asset-line-type",
+    "enter-K30000-in-purchase-invoice",
+    "enter-FA-CNC-01",
+    "enter-amount",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "save-personalization",
+    "fake-evidence"
+  ],
+  "acceptanceCriteria": [
+    "Decide whether FA-123 is enough to keep using Personalize as a diagnostic helper.",
+    "Do not treat FA-123 as proof that Type = Fixed Asset is selectable.",
+    "Choose one next route only: safer dropdown route, Add-field/menu-context refinement, or alternative acquisition path.",
+    "Keep K30000, FA-CNC-01, amount, Preview Posting and Post locked unless the review explicitly creates a later gated case."
+  ],
+  "recommendedSkills": [
+    "evidence-writer"
+  ],
+  "requiresUsageLog": true,
+  "nextSafeAction": "Review FA-123 locally and set the next gated fixed-assets case."
+}
