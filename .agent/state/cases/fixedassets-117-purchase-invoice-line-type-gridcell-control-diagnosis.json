@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-117-PURCHASE-INVOICE-LINE-TYPE-GRIDCELL-CONTROL-DIAGNOSIS",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "controlled-ui-gridcell-control-diagnosis",
+  "taskClass": "wizard_work",
+  "goal": "Find the editable Gridcell/Control route for the Purchase Invoice line Type field without selecting Fixed Asset/Anlage or entering target values.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-115/FIXEDASSETS-115-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-116/FIXEDASSETS-116-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-116/FIXEDASSETS-116-route-decision.md"
+  ],
+  "knownTruth": [
+    "Clicking the visible Item open-record button did not expose useful Type options in FA-115.",
+    "Fixed Asset/Anlage is not yet proven as a selectable Purchase Invoice line Type option.",
+    "K30000, FA-CNC-01, amount, Preview Posting and posting remain locked."
+  ],
+  "allowedActions": [
+    "open-business-central",
+    "run-playwright",
+    "confirm-instance-and-company",
+    "open-purchase-invoices",
+    "scoped-new-purchase-invoice-if-needed",
+    "observe-purchase-invoice-lines",
+    "focus-type-gridcell",
+    "collect-active-element-and-nearby-control-map",
+    "try-readonly-f2-or-alt-down-on-focused-type-cell",
+    "capture-visible-options-or-control-blocker",
+    "capture-compact-evidence",
+    "cleanup-draft-if-created"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "api-shortcut",
+    "book-edit",
+    "select-fixed-asset-line-type",
+    "enter-K30000-in-purchase-invoice",
+    "enter-FA-CNC-01",
+    "enter-amount",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "keep-draft-without-explicit-gate",
+    "delete-non-test-data",
+    "fake-evidence"
+  ],
+  "acceptanceCriteria": [
+    "The test aborts if instance or company is not clearly MCP_1_20260210 / RM-DEMO.",
+    "The Item open-record/context-menu button is not counted as dropdown success.",
+    "The result records active element, role/title/aria data and nearby controls for the Type gridcell.",
+    "No line type option is selected and no target vendor, fixed asset or amount is entered.",
+    "If a dropdown/list opens, visible options are captured; if not, the blocker is documented.",
+    "If a draft document is created, cleanup or explicit keep-status evidence is written."
+  ],
+  "recommendedSkills": [
+    "evidence-writer",
+    "screenshot-qa"
+  ],
+  "requiresUsageLog": false,
+  "nextSafeAction": "Run a controlled Playwright UI gridcell/control diagnosis for the Purchase Invoice line Type field only."
+}
