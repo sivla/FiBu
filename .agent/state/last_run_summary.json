@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-084-FA-GL-JOURNAL-ROUTE-READONLY-DISCOVERY",
+  "runId": "FIXEDASSETS-085-FA-GL-JOURNAL-ROUTE-BLOCKER-DIAGNOSIS",
   "date": "2026-06-19",
-  "workType": "fixed-asset-gl-journal-route-readonly-discovery",
+  "workType": "fixed-asset-gl-journal-route-blocker-diagnosis",
   "branch": "codex/token-efficient-autopilot-state",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
@@ -11,30 +11,30 @@
   "preview": false,
   "setupChanged": false,
   "companySwitched": false,
-  "resultStatus": "blocked",
-  "summary": "FA-084 stayed read-only in MCP_1_20260210 / RM-DEMO, but Tell-Me did not expose a unique Fixed Asset G/L Journal result. The run stopped without Enter fallback, without journal line, without preview, without posting and without setup change.",
+  "resultStatus": "observed",
+  "summary": "FA-085 found the exact-like Tell-Me candidate `Fixed Asset G/L Journals` read-only. No candidate was clicked, no journal page opened, no journal line created, no preview and no posting.",
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/fixedassets-084/FIXEDASSETS-084-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-084/FIXEDASSETS-084-learning.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-084/README.md"
+    "playwright/projects/fibu-book5/evidence/fixedassets-085/FIXEDASSETS-085-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-085/FIXEDASSETS-085-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-085/README.md"
   ],
   "changedFiles": [
     ".agent/state/current.json",
-    ".agent/state/cases/fixedassets-084-fa-gl-journal-route-readonly-discovery.json",
     ".agent/state/cases/fixedassets-085-fa-gl-journal-route-blocker-diagnosis.json",
+    ".agent/state/cases/fixedassets-086-fa-journal-candidate-route-probe.json",
     ".agent/state/coverage_state.json",
     ".agent/state/last_run_summary.json",
     "package.json",
-    "playwright/projects/fibu-book5/tests/fixedassets-084-fa-gl-journal-route-readonly-discovery.spec.ts",
-    "playwright/projects/fibu-book5/evidence/fixedassets-084/FIXEDASSETS-084-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-084/FIXEDASSETS-084-learning.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-084/README.md"
+    "playwright/projects/fibu-book5/tests/fixedassets-085-fa-gl-journal-route-blocker-diagnosis.spec.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-085/FIXEDASSETS-085-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-085/FIXEDASSETS-085-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-085/README.md"
   ],
   "validationCommands": [
     "npm run agent:preflight",
-    "npm run fibu:fixedassets:fa-gl-journal-route-readonly-discovery",
+    "npm run fibu:fixedassets:fa-gl-journal-route-blocker-diagnosis",
     "npm run check:encoding",
     "git diff --check"
   ],
-  "nextStep": "FIXEDASSETS-085-FA-GL-JOURNAL-ROUTE-BLOCKER-DIAGNOSIS: diagnose why Tell-Me did not expose a unique Fixed Asset G/L Journal result, using read-only search/result inventory only."
+  "nextStep": "FIXEDASSETS-086-FA-JOURNAL-CANDIDATE-ROUTE-PROBE: click the unique `Fixed Asset G/L Journals` Tell-Me candidate read-only and stop before New/Edit/Preview/Post or target values."
 }
