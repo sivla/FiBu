@@ -1,30 +1,30 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-076-GUARDED-DIRECT-LINE-TYPE-VALUE-ENTRY",
+  "runId": "FIXEDASSETS-077-PURCHASE-ORDER-LINE-TYPE-ROUTE-PROBE",
   "date": "2026-06-19",
-  "workType": "purchase-invoice-line-type-direct-ui-probe",
+  "workType": "purchase-order-line-type-route-probe",
   "branch": "codex/token-efficient-autopilot-state",
   "bcRun": true,
   "posted": false,
   "companySwitched": false,
-  "summary": "FA-076 ran in MCP_1_20260210 / RM-DEMO and attempted only Purchase Invoice Line Type = Fixed Asset through guarded direct UI value entry. The result is blocked: Fixed Asset did not become visible, Item remained visible, guard=blocked-item-line-type-visible. No K30000, no FA-CNC-01, no Preview Posting, no posting, no setup change. No persisted draft number was detected, so cleanup was not needed.",
+  "summary": "FA-077 ran in MCP_1_20260210 / RM-DEMO and attempted only Purchase Order Line Type = Fixed Asset through a scoped Purchase Orders route. The result is blocked: Fixed Asset did not become visible. Temporary draft 106001 was deleted through UI cleanup. No K30000, no FA-CNC-01, no Preview Posting, no posting, no setup change, no company switch and no API shortcut occurred.",
   "commandsRun": [
+    "node -e \"JSON.parse(fs.readFileSync('package.json','utf8'))\"",
+    "npm run check:encoding",
+    "git diff --check",
+    "npm run fibu:fixedassets:purchase-order-line-type-route-probe",
     "npm run agent:preflight",
     "npm run agent:context",
-    "npm run agent:dry-run",
-    "npm run agent:run-plan",
-    "npm run agent:preflight",
-    "npm run agent:dry-run",
-    "npm run agent:run-plan",
-    "npm run fibu:fixedassets:guarded-direct-line-type-value-entry"
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-077/FIXEDASSETS-077-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-077/FIXEDASSETS-077-result.json"
   ],
   "evidence": [
-    "playwright/projects/fibu-book5/evidence/fixedassets-076/FIXEDASSETS-076-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-076/030-direct-line-type-entry.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-076/031-after-direct-entry-focused-text.txt",
-    "playwright/projects/fibu-book5/evidence/fixedassets-076/090-cleanup-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-076/FIXEDASSETS-076-learning.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-076/README.md"
+    "playwright/projects/fibu-book5/evidence/fixedassets-077/FIXEDASSETS-077-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-077/030-purchase-order-line-type-route.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-077/031-after-route-focused-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-077/090-cleanup-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-077/FIXEDASSETS-077-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-077/README.md"
   ],
-  "nextStep": "Run FA-077 with a different UI-first route on Purchase Orders. Keep K30000 and FA-CNC-01 locked until Type = Fixed Asset is visibly proven."
+  "nextStep": "Run FA-078 as a read-only setup/page capability review. Do not repeat document-line Type retries until the page/setup capability cause is understood."
 }

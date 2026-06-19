@@ -3,7 +3,7 @@
   "caseId": "FIXEDASSETS-077-PURCHASE-ORDER-LINE-TYPE-ROUTE-PROBE",
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "status": "planned",
+  "status": "blocked-cleanup-complete",
   "workType": "fixed-asset-purchase-order-line-type-route-probe",
   "goal": "Use a different UI-first route after FA-076: open Purchase Orders, create only a temporary purchase order draft, and test whether the line Type can visibly reach Fixed Asset without entering K30000 or FA-CNC-01.",
   "basedOn": [
@@ -75,7 +75,7 @@
     "safety-gate-checker",
     "evidence-writer"
   ],
-  "nextSafeAction": "Run a different UI-first route on Purchase Orders: prove or block only line Type = Fixed Asset, with target values still locked.",
+  "nextSafeAction": "Switch to FIXEDASSETS-078 setup/page capability review; do not repeat document-line Type retries until setup/page capability is understood.",
   "mustRead": [
     ".agent/state/current.json",
     ".agent/state/cases/fixedassets-076.json",
@@ -86,6 +86,57 @@
   "expectedEvidence": [
     "playwright/projects/fibu-book5/evidence/fixedassets-077/FIXEDASSETS-077-result.json",
     "playwright/projects/fibu-book5/evidence/fixedassets-077/FIXEDASSETS-077-learning.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-077/cleanup-result.json"
-  ]
+    "playwright/projects/fibu-book5/evidence/fixedassets-077/090-cleanup-result.json"
+  ],
+  "lastResult": {
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-077/FIXEDASSETS-077-result.json",
+    "evidenceFolder": "playwright/projects/fibu-book5/evidence/fixedassets-077/",
+    "resultStatus": "blocked",
+    "summary": "FA-077 ran in MCP_1_20260210 / RM-DEMO on the Purchase Orders route. It did not prove visible Type = Fixed Asset; status=blocked-fixed-asset-not-visible. A temporary Purchase Order draft 106001 was created for the route probe and deleted through UI cleanup. No K30000, no FA-CNC-01, no Preview Posting, no posting, no setup change, no company switch and no API shortcut occurred.",
+    "bcRun": true,
+    "playwrightRun": true,
+    "posted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "companySwitched": false,
+    "targetVendorEntered": false,
+    "targetFixedAssetEntered": false,
+    "cleanupCompleted": true,
+    "cleanupDetail": {
+      "required": true,
+      "completed": true,
+      "method": "filtered Purchase Orders list delete via UI",
+      "blockedBy": [],
+      "detail": {
+        "status": "deleted",
+        "orderNo": "106001",
+        "visibleBefore": true,
+        "visibleAfter": false,
+        "deleteAction": {
+          "clicked": true,
+          "chosen": {
+            "text": "Löschen",
+            "aria": "Löschen",
+            "title": "Die ausgewählte Zeile löschen",
+            "label": "Löschen Löschen Die ausgewählte Zeile löschen",
+            "rect": {
+              "x": 607,
+              "y": 51,
+              "width": 92,
+              "height": 38
+            },
+            "score": -110
+          }
+        },
+        "confirmation": {
+          "confirmed": true,
+          "button": "^Ja$"
+        }
+      }
+    },
+    "blockedBy": [
+      "Type = Fixed Asset not visible through Purchase Order line route."
+    ],
+    "nextStep": "Switch to setup/page capability review; do not repeat document-line Type retries."
+  }
 }

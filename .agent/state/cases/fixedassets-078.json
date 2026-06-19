@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-078-SETUP-PAGE-CAPABILITY-REVIEW",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "fixed-asset-setup-page-capability-review",
+  "goal": "Stop repeating document-line Type retries and review, read-only first, which BC page/setup/capability route explains why Type = Fixed Asset is not reachable in Purchase Invoice or Purchase Order lines in the current RM-DEMO UI state.",
+  "basedOn": [
+    ".agent/state/cases/fixedassets-074.json",
+    ".agent/state/cases/fixedassets-075.json",
+    ".agent/state/cases/fixedassets-076.json",
+    ".agent/state/cases/fixedassets-077.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-077/FIXEDASSETS-077-result.json"
+  ],
+  "knownTruth": [
+    "FA-074 opened Page Inspection from focused Type context, but captured technical source remained Purchase Header rather than a clean Purchase Line field proof.",
+    "FA-076 did not prove Type = Fixed Asset through direct Purchase Invoice Line Type value entry; Item remained visible.",
+    "FA-077 did not prove Type = Fixed Asset through the Purchase Orders route; the temporary order draft was deleted through UI cleanup.",
+    "K30000 and FA-CNC-01 have not been entered in these guarded line-type probes.",
+    "No Preview Posting, no posting, no setup change, no company switch and no API shortcut occurred in FA-077."
+  ],
+  "allowedActions": [
+    "open-business-central-in-MCP_1_20260210",
+    "confirm-company-RM-DEMO",
+    "read-only-page-context-diagnosis",
+    "open-page-inspection-if-safe",
+    "open-personalization-if-safe-readonly",
+    "inspect-fixed-asset-setup-pages-readonly",
+    "write-json-evidence",
+    "write-compact-learning-note",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "enter-K30000",
+    "enter-FA-CNC-01",
+    "new-draft",
+    "edit-record",
+    "delete-record",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "api-shortcut",
+    "book-edit",
+    "repeat-purchase-invoice-direct-type-entry",
+    "repeat-purchase-order-line-type-route"
+  ],
+  "defaultLockedActionsUnlockedForThisCase": [],
+  "acceptanceCriteria": [
+    "Instance MCP_1_20260210 and company RM-DEMO are confirmed before any page diagnosis.",
+    "The run is read-only unless a later case explicitly unlocks setup change.",
+    "The run explains whether the blocker is page capability, personalization, setup, localization, or helper limitation.",
+    "The run produces a concrete next case: either a safe setup-fit decision or a new proven page/action route.",
+    "No target vendor, target fixed asset, preview, posting or setup change occurs."
+  ],
+  "stopConditions": [
+    "Business Central is not in instance MCP_1_20260210.",
+    "Company is not RM-DEMO.",
+    "A page asks to create, edit, post, preview, pay, delete or change setup.",
+    "The UI attempts to enter K30000 or FA-CNC-01.",
+    "The route would repeat FA-076 or FA-077 without a new diagnostic signal."
+  ],
+  "recommendedSkills": [
+    "bc-navigation",
+    "safety-gate-checker",
+    "evidence-writer"
+  ],
+  "nextSafeAction": "Run a read-only setup/page capability review for Fixed Asset acquisition routes before any further document-line or target-value entry.",
+  "mustRead": [
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-077.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-077/FIXEDASSETS-077-result.json",
+    ".agent/capabilities.json",
+    "package.json"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-078/FIXEDASSETS-078-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-078/FIXEDASSETS-078-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-078/README.md"
+  ]
+}
