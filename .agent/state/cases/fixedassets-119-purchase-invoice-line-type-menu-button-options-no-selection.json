@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-119-PURCHASE-INVOICE-LINE-TYPE-MENU-BUTTON-OPTIONS-NO-SELECTION",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "guarded-ui-type-menu-button-options-probe",
+  "taskClass": "wizard_work",
+  "goal": "Activate only the small Purchase Invoice line Type menu button found in FA-117 and capture visible options without selecting Fixed Asset/Anlage or entering target values.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-117/FIXEDASSETS-117-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-117/030-type-gridcell-control-diagnosis.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-118/FIXEDASSETS-118-route-decision.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-118/FIXEDASSETS-118-result.json"
+  ],
+  "knownTruth": [
+    "The direct Item button/gridcell click routes are misleading and must not be repeated as success.",
+    "FA-117 found a small menu button for Type after Alt+ArrowDown.",
+    "Fixed Asset/Anlage is not yet proven as an option and must not be selected in this case.",
+    "K30000, FA-CNC-01, amount, Preview Posting and posting remain locked."
+  ],
+  "allowedActions": [
+    "open-business-central",
+    "run-playwright",
+    "confirm-instance-and-company",
+    "open-purchase-invoices",
+    "scoped-new-purchase-invoice-if-needed",
+    "observe-purchase-invoice-lines",
+    "focus-type-gridcell",
+    "focus-small-type-menu-button",
+    "activate-type-menu-button",
+    "capture-visible-type-options",
+    "capture-blocker-if-no-options",
+    "capture-compact-evidence",
+    "cleanup-draft-if-created"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "api-shortcut",
+    "book-edit",
+    "select-fixed-asset-line-type",
+    "enter-K30000-in-purchase-invoice",
+    "enter-FA-CNC-01",
+    "enter-amount",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "keep-draft-without-explicit-gate",
+    "delete-non-test-data",
+    "fake-evidence"
+  ],
+  "acceptanceCriteria": [
+    "The test aborts if instance or company is not clearly MCP_1_20260210 / RM-DEMO.",
+    "The run activates only the small Type menu button route; direct Item/open-record button is not counted as success.",
+    "Visible Type options are captured if a list opens.",
+    "Fixed Asset/Anlage is captured only as visible text, not selected.",
+    "No K30000, FA-CNC-01, amount, Preview Posting, posting or setup change occurs.",
+    "If a draft document is created, cleanup or explicit no-persisted-draft evidence is written."
+  ],
+  "recommendedSkills": [
+    "evidence-writer",
+    "screenshot-qa"
+  ],
+  "requiresUsageLog": false,
+  "nextSafeAction": "Run a guarded Playwright UI probe for the Type menu button options only."
+}

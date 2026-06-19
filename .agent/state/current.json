@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-20T06:15:00.000Z",
+  "updatedAt": "2026-06-20T06:45:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "fixedassets",
-  "activeCase": "FIXEDASSETS-118-PURCHASE-INVOICE-LINE-TYPE-ROUTE-DECISION",
-  "active_case_file": ".agent/state/cases/fixedassets-118-purchase-invoice-line-type-route-decision.json",
-  "lastReferenceCase": "FIXEDASSETS-117-PURCHASE-INVOICE-LINE-TYPE-GRIDCELL-CONTROL-DIAGNOSIS",
-  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-117-purchase-invoice-line-type-gridcell-control-diagnosis.json",
+  "activeCase": "FIXEDASSETS-119-PURCHASE-INVOICE-LINE-TYPE-MENU-BUTTON-OPTIONS-NO-SELECTION",
+  "active_case_file": ".agent/state/cases/fixedassets-119-purchase-invoice-line-type-menu-button-options-no-selection.json",
+  "lastReferenceCase": "FIXEDASSETS-118-PURCHASE-INVOICE-LINE-TYPE-ROUTE-DECISION",
+  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-118-purchase-invoice-line-type-route-decision.json",
   "mode": "token-efficient-autopilot-tooling-bootstrap",
-  "requiresStrongModel": true,
+  "requiresStrongModel": false,
   "requiredPreflightChecks": [
     "agent:preflight",
     "agent:state:validate",
@@ -19,12 +19,19 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "read-local-evidence",
-    "review-fa117-gridcell-control-diagnostics",
-    "classify-type-menu-button-route",
-    "decide-next-safe-fixedasset-line-type-route",
-    "write-compact-decision-evidence",
-    "update-state-only"
+    "open-business-central",
+    "run-playwright",
+    "confirm-instance-and-company",
+    "open-purchase-invoices",
+    "scoped-new-purchase-invoice-if-needed",
+    "observe-purchase-invoice-lines",
+    "focus-type-gridcell",
+    "focus-small-type-menu-button",
+    "activate-type-menu-button",
+    "capture-visible-type-options",
+    "capture-blocker-if-no-options",
+    "capture-compact-evidence",
+    "cleanup-draft-if-created"
   ],
   "forbiddenActions": [
     "leave-instance",
@@ -32,8 +39,6 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
-    "open-business-central",
-    "run-playwright",
     "company-switch",
     "api-shortcut",
     "book-edit",
@@ -50,7 +55,7 @@
     "click-finish",
     "delete-non-test-data"
   ],
-  "nextStep": "FIXEDASSETS-118: review FA-117 gridcell/control evidence locally and decide whether a guarded no-target Type menu-button probe is safe before any Type selection or target values are unlocked.",
+  "nextStep": "FIXEDASSETS-119: run a guarded no-target UI probe that activates only the small Purchase Invoice line Type menu button and captures visible options without selecting Fixed Asset/Anlage.",
   "subagentPlanPolicy": {
     "default": "optional",
     "execution": "plan-only-no-subagents-spawned",
