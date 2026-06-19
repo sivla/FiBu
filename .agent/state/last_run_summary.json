@@ -1,41 +1,46 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-091-FA-GL-JOURNAL-CLEANUP-ROUTE-DECISION",
+  "runId": "FIXEDASSETS-092-FA-GL-JOURNAL-FRAME-ACTION-DISCOVERY-READONLY",
   "date": "2026-06-19",
-  "workType": "fixed-asset-gl-journal-cleanup-route-decision",
+  "workType": "fixed-asset-gl-journal-frame-action-discovery-readonly",
   "branch": "codex/token-efficient-autopilot-state",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "bcRun": false,
+  "bcRun": true,
   "posted": false,
   "preview": false,
   "setupChanged": false,
   "companySwitched": false,
   "resultStatus": "observed",
-  "summary": "FA-091 rejected keep-draft and journal value entry for now. Delete cleanup remains unproven, so the next step is frame-scoped read-only action discovery.",
+  "summary": "FA-092 captured frame-scoped action inventory. Post, Insert FA Bal. Account, Reconcile and Apply Entries are visible and remain locked; no Delete cleanup candidate was visible in the frame.",
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/fixedassets-091/FIXEDASSETS-091-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-091/FIXEDASSETS-091-learning.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-091/README.md"
+    "playwright/projects/fibu-book5/evidence/fixedassets-092/FIXEDASSETS-092-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-092/FIXEDASSETS-092-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-092/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-092/020-frame-action-inventory.json"
   ],
   "changedFiles": [
     ".agent/state/current.json",
-    ".agent/state/cases/fixedassets-091-fa-gl-journal-cleanup-route-decision.json",
     ".agent/state/cases/fixedassets-092-fa-gl-journal-frame-action-discovery-readonly.json",
+    ".agent/state/cases/fixedassets-093-fa-gl-journal-value-entry-gate-decision.json",
     ".agent/state/coverage_state.json",
     ".agent/state/last_run_summary.json",
-    ".agent/state/model_usage_log.jsonl",
-    "playwright/projects/fibu-book5/evidence/fixedassets-091/FIXEDASSETS-091-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-091/FIXEDASSETS-091-learning.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-091/README.md"
+    "package.json",
+    "playwright/projects/fibu-book5/tests/fixedassets-092-fa-gl-journal-frame-action-discovery-readonly.spec.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-092/FIXEDASSETS-092-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-092/FIXEDASSETS-092-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-092/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-092/010-frame-action-context.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-092/020-frame-action-inventory.json"
   ],
   "validationCommands": [
     "npm run agent:preflight",
     "npm run agent:context",
-    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-091/FIXEDASSETS-091-result.json",
-    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-091/FIXEDASSETS-091-result.json",
+    "npm run fibu:fixedassets:fa-gl-journal-frame-action-discovery",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-092/FIXEDASSETS-092-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-092/FIXEDASSETS-092-result.json",
     "npm run check:encoding",
     "git diff --check"
   ],
-  "nextStep": "FIXEDASSETS-092-FA-GL-JOURNAL-FRAME-ACTION-DISCOVERY-READONLY: inspect journal-frame actions read-only before any value entry."
+  "nextStep": "FIXEDASSETS-093-FA-GL-JOURNAL-VALUE-ENTRY-GATE-DECISION: decide whether FA journal value entry can proceed only under a keep-draft policy or must remain blocked."
 }

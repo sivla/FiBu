@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-093-FA-GL-JOURNAL-VALUE-ENTRY-GATE-DECISION",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "fixed-asset-gl-journal-value-entry-gate-decision",
+  "taskClass": "judge_work",
+  "goal": "Decide whether the Fixed Asset G/L Journal route remains blocked, requires a documented keep-draft policy, or should switch route after frame-scoped action discovery did not show a Delete cleanup candidate.",
+  "basedOn": [
+    ".agent/state/cases/fixedassets-091-fa-gl-journal-cleanup-route-decision.json",
+    ".agent/state/cases/fixedassets-092-fa-gl-journal-frame-action-discovery-readonly.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-091/FIXEDASSETS-091-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-092/FIXEDASSETS-092-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-092/020-frame-action-inventory.json"
+  ],
+  "knownTruth": [
+    "FA-092 isolated the Business Central runinframe context for Fixed Asset G/L Journals page 5628.",
+    "Post, Insert FA Bal. Account, Reconcile and Apply Entries are visible in the frame.",
+    "No Delete cleanup candidate is visible in the frame inventory.",
+    "No journal line, Preview Posting or acquisition posting has been created.",
+    "Keep-draft is not approved yet."
+  ],
+  "allowedActions": [
+    "read-existing-evidence",
+    "make-value-entry-gate-decision",
+    "write-compact-decision-evidence",
+    "create-next-case-plan",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "open-business-central",
+    "run-playwright",
+    "company-switch",
+    "new-journal-line",
+    "edit-journal-line",
+    "enter-K30000",
+    "enter-amount",
+    "enter-FA-CNC-01-in-document-or-journal",
+    "delete-record",
+    "insert-fa-bal-account",
+    "reconcile",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "api-shortcut",
+    "book-edit",
+    "click-ok-or-yes-on-confirmation"
+  ],
+  "defaultLockedActionsUnlockedForThisCase": [],
+  "acceptanceCriteria": [
+    "Decision is based only on FA-088 to FA-092 evidence.",
+    "Decision explicitly handles the absence of a Delete cleanup candidate.",
+    "No BC or Playwright execution occurs in this decision case.",
+    "The next case either keeps journal value entry blocked, approves a tightly documented keep-draft probe, or switches to another acquisition route."
+  ],
+  "stopConditions": [
+    "Evidence is insufficient to choose a safe next action.",
+    "Decision would require executing BC or Playwright.",
+    "Decision would unlock Preview or Post."
+  ],
+  "recommendedSkills": [
+    "safety-gate-checker",
+    "evidence-writer"
+  ],
+  "requiresUsageLog": true,
+  "nextSafeAction": "Review FA-088 to FA-092 evidence and decide whether journal value entry can proceed only under a keep-draft policy or must remain blocked.",
+  "mustRead": [
+    ".agent/state/current.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-091/FIXEDASSETS-091-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-092/FIXEDASSETS-092-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-092/020-frame-action-inventory.json"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-093/FIXEDASSETS-093-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-093/FIXEDASSETS-093-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-093/README.md"
+  ]
+}
