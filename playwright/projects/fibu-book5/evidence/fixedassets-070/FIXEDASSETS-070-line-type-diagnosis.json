@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-070-LINE-TYPE-SELECTION-DIAGNOSIS",
+  "source": "local-analysis-from-fixedassets-066",
+  "resultStatus": "observed",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "inputEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-066/FIXEDASSETS-066-result.json",
+    "playwright/core/bc/purchase-invoice-guards.ts",
+    "playwright/core/bc/actions.ts"
+  ],
+  "diagnosis": {
+    "whyFixedassets066Stopped": "The Purchase Invoice and Lines context was visible, but the line type signal was Item and no Fixed Asset line type signal was visible.",
+    "guardDecision": "blocked-item-line-type-visible",
+    "riskIfContinuing": "Entering K30000 or FA-CNC-01 while the line is still Item would test the wrong business object and could create misleading book evidence.",
+    "cleanupTruth": "The temporary draft 107210 from FIXEDASSETS-066 was removed through a later UI cleanup retry.",
+    "technicalObservation": "The current line-type guard only accepts exact visible line type text Fixed Asset/Anlage. It intentionally rejects Item/Artikel-only evidence."
+  },
+  "nextReadOnlyOptions": [
+    {
+      "option": "page-inspection-read-only",
+      "goal": "Confirm the Purchase Invoice page/table context and identify whether the lines part exposes a line Type field on the current page.",
+      "allowed": true,
+      "limits": "Page Inspection can identify page/table metadata but may not prove the dropdown choices without a draft line."
+    },
+    {
+      "option": "personalize-or-action-inventory-read-only",
+      "goal": "Check whether Type or related line fields/actions are available or hidden in the page layout without entering target values.",
+      "allowed": true,
+      "limits": "No save of personalization should be required in the next safe diagnostic step."
+    },
+    {
+      "option": "guarded-draft-line-type-selection",
+      "goal": "Open one new Purchase Invoice and attempt only the Type dropdown/selection path until Fixed Asset is visible.",
+      "allowed": false,
+      "limits": "Requires explicit user approval because New/Neu may create a temporary draft."
+    }
+  ],
+  "proved": [
+    "FIXEDASSETS-066 proved Purchase Invoice Lines context but not Fixed Asset line type.",
+    "The guard correctly blocks target value entry when Item is visible and Fixed Asset is not visible.",
+    "The next step can be planned read-only around Page Inspection, Personalize, or action inventory before another draft-capable probe."
+  ],
+  "notProved": [
+    "No new Business Central UI was opened in this run.",
+    "No Fixed Asset dropdown choice was opened or selected.",
+    "No K30000 or FA-CNC-01 field mapping was tested.",
+    "No Preview Posting or posting was performed.",
+    "No German final proof was produced."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-070/FIXEDASSETS-070-line-type-diagnosis.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-070/FIXEDASSETS-070-line-type-diagnosis.md",
+    ".agent/state/cases/fixedassets-070.json",
+    ".agent/state/last_run_summary.json"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-066/FIXEDASSETS-066-result.json"
+  ],
+  "warnings": [
+    "This is local analysis from existing evidence, not a new BC observation.",
+    "A future draft-capable Type selection probe still requires explicit user approval."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": false,
+  "statePatch": {},
+  "flags": {
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noBookChange": true,
+    "noPlaywrightRun": true,
+    "noBcRun": true
+  },
+  "nextStep": "Run a read-only Page Inspection or Personalize/action inventory diagnostic for Purchase Invoice Lines. Do not click New/Neu or enter target values without explicit approval."
+}
