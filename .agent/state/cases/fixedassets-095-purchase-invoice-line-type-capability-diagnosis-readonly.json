@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-095-PURCHASE-INVOICE-LINE-TYPE-CAPABILITY-DIAGNOSIS-READONLY",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "fixed-asset-purchase-invoice-line-type-capability-diagnosis-readonly",
+  "taskClass": "wizard_work",
+  "goal": "Diagnose read-only whether Purchase Invoice lines can expose Type = Fixed Asset through visible columns, actions, personalization/page metadata or safe UI context before any document creation or value entry.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-053/FIXEDASSETS-053-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-077/FIXEDASSETS-077-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-094/FIXEDASSETS-094-result.json"
+  ],
+  "knownTruth": [
+    "Purchase Invoice is the selected next acquisition route for diagnosis.",
+    "Type = Fixed Asset has not yet been proven visible/selectable in purchase lines.",
+    "This case is read-only and must not create or edit a purchase document.",
+    "Page Inspection or personalization may be useful if they can be opened without changing data."
+  ],
+  "allowedActions": [
+    "open-business-central",
+    "run-playwright-readonly",
+    "confirm-instance-and-company",
+    "open-purchase-invoices-readonly",
+    "inspect-visible-line-context",
+    "capture-compact-evidence",
+    "state-patch-plan-only"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "new-document",
+    "new-line",
+    "edit-record",
+    "enter-K30000",
+    "enter-FA-CNC-01",
+    "enter-amount",
+    "delete-record",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "api-shortcut",
+    "book-edit",
+    "keep-draft",
+    "click-ok-or-yes-on-confirmation"
+  ],
+  "defaultLockedActionsUnlockedForThisCase": [
+    "open-business-central",
+    "run-playwright-readonly"
+  ],
+  "acceptanceCriteria": [
+    "The run stays in MCP_1_20260210 and RM-DEMO.",
+    "No document or line is created or edited.",
+    "Evidence states whether Type = Fixed Asset is visible, selectable, hidden, or still not proven.",
+    "If Page Inspection or personalization is used, it is used only as read-only metadata/context evidence.",
+    "The next case is chosen from evidence, not guesswork."
+  ],
+  "stopConditions": [
+    "Instance or company is not clearly MCP_1_20260210 / RM-DEMO.",
+    "Opening Purchase Invoices would require creating a document.",
+    "A dialog asks for OK/Yes, posting, preview, delete, new or edit confirmation.",
+    "The page context cannot be identified safely."
+  ],
+  "recommendedSkills": [
+    "bc-page-context-guard",
+    "evidence-writer"
+  ],
+  "requiresUsageLog": false,
+  "nextSafeAction": "Run a read-only Purchase Invoice line capability diagnosis; do not create, edit, preview or post.",
+  "mustRead": [
+    ".agent/state/current.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-094/FIXEDASSETS-094-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-053/FIXEDASSETS-053-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-077/FIXEDASSETS-077-result.json",
+    "playwright/projects/fibu-book5/tests/fixedassets-077-purchase-order-line-type-route-probe.spec.ts"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-095/FIXEDASSETS-095-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-095/FIXEDASSETS-095-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-095/README.md"
+  ]
+}

@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-19T15:05:00.000Z",
+  "updatedAt": "2026-06-19T15:35:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "fixedassets",
-  "activeCase": "FIXEDASSETS-094-FA-ACQUISITION-ROUTE-REVIEW",
-  "active_case_file": ".agent/state/cases/fixedassets-094-fa-acquisition-route-review.json",
-  "lastReferenceCase": "FIXEDASSETS-093-FA-GL-JOURNAL-VALUE-ENTRY-GATE-DECISION",
-  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-093-fa-gl-journal-value-entry-gate-decision.json",
+  "activeCase": "FIXEDASSETS-095-PURCHASE-INVOICE-LINE-TYPE-CAPABILITY-DIAGNOSIS-READONLY",
+  "active_case_file": ".agent/state/cases/fixedassets-095-purchase-invoice-line-type-capability-diagnosis-readonly.json",
+  "lastReferenceCase": "FIXEDASSETS-094-FA-ACQUISITION-ROUTE-REVIEW",
+  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-094-fa-acquisition-route-review.json",
   "mode": "token-efficient-autopilot-tooling-bootstrap",
   "requiresStrongModel": false,
   "requiredPreflightChecks": [
@@ -19,10 +19,12 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "read-fixedassets-acquisition-evidence",
-    "compare-acquisition-routes",
-    "write-compact-decision-evidence",
-    "prepare-next-safe-case",
+    "open-business-central",
+    "run-playwright-readonly",
+    "confirm-instance-and-company",
+    "open-purchase-invoices-readonly",
+    "inspect-visible-line-context",
+    "capture-compact-evidence",
     "state-patch-plan-only"
   ],
   "forbiddenActions": [
@@ -32,8 +34,9 @@
     "fake-evidence",
     "book-claim-without-evidence",
     "company-switch",
-    "new-journal-line",
-    "edit-journal-line",
+    "new-document",
+    "new-line",
+    "edit-record",
     "enter-K30000",
     "enter-amount",
     "enter-FA-CNC-01-in-document-or-journal",
@@ -50,7 +53,7 @@
     "click-ok-or-yes-on-confirmation",
     "keep-draft"
   ],
-  "nextStep": "FIXEDASSETS-094-FA-ACQUISITION-ROUTE-REVIEW: compare Purchase Invoice, Acquire action and FA G/L Journal evidence before choosing the next safe fixed-asset acquisition route.",
+  "nextStep": "FIXEDASSETS-095-PURCHASE-INVOICE-LINE-TYPE-CAPABILITY-DIAGNOSIS-READONLY: diagnose Purchase Invoice line Type capability read-only before any fixed-asset acquisition value entry.",
   "subagentPlanPolicy": {
     "default": "optional",
     "execution": "plan-only-no-subagents-spawned",

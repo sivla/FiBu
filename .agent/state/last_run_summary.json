@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-093-FA-GL-JOURNAL-VALUE-ENTRY-GATE-DECISION",
+  "runId": "FIXEDASSETS-094-FA-ACQUISITION-ROUTE-REVIEW",
   "date": "2026-06-19",
-  "workType": "fixed-asset-gl-journal-value-entry-gate-decision",
+  "workType": "fixed-asset-acquisition-route-review",
   "branch": "codex/token-efficient-autopilot-state",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
@@ -12,33 +12,32 @@
   "setupChanged": false,
   "companySwitched": false,
   "resultStatus": "observed",
-  "summary": "FA-093 kept Fixed Asset G/L Journal value entry locked because FA-092 did not prove a Delete cleanup route and showed a persistent journal row surface.",
+  "summary": "FA-094 selected a read-only Purchase Invoice line type capability diagnosis as the next route. Acquire remains disabled; FA G/L Journal value entry remains blocked by cleanup/keep-draft risk.",
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/fixedassets-093/FIXEDASSETS-093-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-093/FIXEDASSETS-093-learning.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-093/README.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-092/020-frame-action-inventory.json"
+    "playwright/projects/fibu-book5/evidence/fixedassets-094/FIXEDASSETS-094-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-094/FIXEDASSETS-094-route-review.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-094/README.md"
   ],
   "changedFiles": [
     ".agent/state/current.json",
-    ".agent/state/cases/fixedassets-093-fa-gl-journal-value-entry-gate-decision.json",
     ".agent/state/cases/fixedassets-094-fa-acquisition-route-review.json",
+    ".agent/state/cases/fixedassets-095-purchase-invoice-line-type-capability-diagnosis-readonly.json",
     ".agent/state/coverage_state.json",
     ".agent/state/last_run_summary.json",
     ".agent/state/model_usage_log.jsonl",
-    "scripts/agent/context-pack.mjs",
-    "scripts/agent/dry-run.mjs",
-    "playwright/projects/fibu-book5/evidence/fixedassets-093/FIXEDASSETS-093-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-093/FIXEDASSETS-093-learning.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-093/README.md"
+    "playwright/projects/fibu-book5/evidence/fixedassets-094/FIXEDASSETS-094-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-094/FIXEDASSETS-094-route-review.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-094/README.md"
   ],
   "validationCommands": [
     "npm run agent:preflight",
     "npm run agent:context",
-    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-093/FIXEDASSETS-093-result.json",
-    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-093/FIXEDASSETS-093-result.json",
+    "npm run agent:dry-run",
+    "npm run agent:run-plan",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-094/FIXEDASSETS-094-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-094/FIXEDASSETS-094-result.json",
     "npm run check:encoding",
     "git diff --check"
   ],
-  "nextStep": "FIXEDASSETS-094-FA-ACQUISITION-ROUTE-REVIEW: compare Purchase Invoice, Acquire action and FA G/L Journal evidence before choosing the next safe fixed-asset acquisition route."
+  "nextStep": "FIXEDASSETS-095-PURCHASE-INVOICE-LINE-TYPE-CAPABILITY-DIAGNOSIS-READONLY: diagnose Purchase Invoice line Type capability read-only before any fixed-asset acquisition value entry."
 }

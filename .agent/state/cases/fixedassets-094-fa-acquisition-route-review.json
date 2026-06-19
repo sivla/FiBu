@@ -3,7 +3,7 @@
   "caseId": "FIXEDASSETS-094-FA-ACQUISITION-ROUTE-REVIEW",
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "status": "planned",
+  "status": "observed-local-decision",
   "workType": "fixed-asset-acquisition-route-review",
   "taskClass": "judge_work",
   "goal": "Compare existing fixed-asset acquisition evidence and choose the next safe practical route before any further value entry, Preview Posting or posting.",
@@ -67,7 +67,12 @@
     "safety-gate-checker"
   ],
   "requiresUsageLog": true,
-  "nextSafeAction": "Review existing fixed-asset acquisition evidence and choose whether to revisit Purchase Invoice, diagnose Acquire action, or define an explicit journal keep-draft policy.",
+  "lastResult": {
+    "status": "observed",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-094/FIXEDASSETS-094-result.json",
+    "summary": "Purchase Invoice line type capability diagnosis selected as next safe route."
+  },
+  "nextSafeAction": "Run FA-095 read-only Purchase Invoice line capability diagnosis before any value entry.",
   "mustRead": [
     ".agent/state/current.json",
     "playwright/projects/fibu-book5/evidence/fixedassets-093/FIXEDASSETS-093-result.json",
