@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "runId": "TOKEN-AUTOPILOT-STATE-FINALIZE-DUMMY",
+  "runId": "LIVE-SMOKE-BC-002-READONLY-PAGE-CONTEXT",
   "date": "2026-06-19",
-  "workType": "token-efficient-agent-state-finalize",
+  "workType": "playwright-readonly-smoke-page-context",
   "branch": "codex/token-efficient-autopilot-state",
-  "bcRun": false,
+  "bcRun": true,
   "posted": false,
   "companySwitched": false,
-  "summary": "Ein kuenstliches sicheres Normalized-Result prueft die State-Finalize-Pipeline im Planmodus. agent:state-finalize:test erzeugt einen Patch-Plan fuer lastRunSummary, schreibt aber ohne --write nichts. Kein Business Central, kein Playwright, keine Buchaenderung.",
+  "summary": "LIVE-SMOKE-BC-002 ran read-only in MCP_1_20260210 / RM-DEMO and captured stronger shell/page context evidence. No posting, preview, draft, setup change, company switch or book change.",
   "commandsToRunBeforeAutopilot": [
     "npm run agent:preflight",
     "npm run agent:context",
@@ -40,5 +40,5 @@
     "stateFinalize": "scripts/agent/state-finalize.mjs",
     "skillQualityCheck": "scripts/agent/skills-quality-check.mjs"
   },
-  "nextStep": "FIXEDASSETS-065-PURCHASE-INVOICE-LINE-TYPE-HELPER-DIAGNOSIS"
+  "nextStep": "Review the state-finalize plan or continue with the next explicitly read-only page-context smoke. Do not use --write without explicit approval."
 }
