@@ -1,0 +1,107 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-purchase-invoice-line-type-proof-review-result",
+  "caseId": "FIXEDASSETS-098-PURCHASE-INVOICE-LINE-TYPE-PROOF-REVIEW",
+  "source": "local-evidence-review",
+  "resultStatus": "observed",
+  "runPlanId": "FIXEDASSETS-098-PURCHASE-INVOICE-LINE-TYPE-PROOF-REVIEW-PLAN",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "reviewedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-097/FIXEDASSETS-097-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-097/030-purchase-invoice-line-type-proof.json"
+  ],
+  "proved": [
+    "FA-097 stayed in MCP_1_20260210 / RM-DEMO.",
+    "FA-097 opened a scoped Purchase Invoice draft context without entering vendor, fixed asset number, amount, quantity, preview or posting.",
+    "FA-097 proved a real Purchase Invoice line context with Type=Item visible.",
+    "FA-097 did not prove Type=Fixed Asset visible or selectable.",
+    "FA-097 cleanup is complete because no persisted draft number was detected.",
+    "The FA-097 DOM evidence contains a smaller Type-cell Item button at the same row position as the Item gridcell."
+  ],
+  "notProved": [
+    "Type=Fixed Asset is not yet proven in Purchase Invoice Lines.",
+    "K30000 remains locked.",
+    "FA-CNC-01 remains locked.",
+    "No Preview Posting.",
+    "No posting.",
+    "No setup change.",
+    "No German final proof."
+  ],
+  "decision": {
+    "classification": "selector-route-not-business-rule-yet",
+    "reason": "FA-097 clicked and keyed from the Item gridcell center. Evidence also shows a smaller Item role=button at x=598/y=643. The most useful next step is to target that button/dropdown area before concluding that the Purchase Invoice page cannot expose Fixed Asset.",
+    "nextCaseId": "FIXEDASSETS-099-PURCHASE-INVOICE-TYPE-DROPDOWN-BUTTON-PROBE",
+    "targetValuesRemainLocked": true,
+    "uiRetryAllowed": true,
+    "uiRetryScope": "one guarded Type button/dropdown probe only"
+  },
+  "changedFiles": [
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-098-purchase-invoice-line-type-proof-review.json",
+    ".agent/state/cases/fixedassets-099-purchase-invoice-type-dropdown-button-probe.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/model_usage_log.jsonl",
+    "playwright/projects/fibu-book5/evidence/fixedassets-098/FIXEDASSETS-098-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-098/FIXEDASSETS-098-decision.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-098/README.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-098/FIXEDASSETS-098-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-098/FIXEDASSETS-098-decision.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-098/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-097/FIXEDASSETS-097-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-097/030-purchase-invoice-line-type-proof.json"
+  ],
+  "warnings": [
+    "Local review only; no Business Central execution.",
+    "The next case may open a draft, but only to probe the Type dropdown button and must still stop before target values, preview and posting."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-099-PURCHASE-INVOICE-TYPE-DROPDOWN-BUTTON-PROBE",
+      "active_case_file": ".agent/state/cases/fixedassets-099-purchase-invoice-type-dropdown-button-probe.json",
+      "lastReferenceCase": "FIXEDASSETS-098-PURCHASE-INVOICE-LINE-TYPE-PROOF-REVIEW",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-098-purchase-invoice-line-type-proof-review.json",
+      "nextStep": "FIXEDASSETS-099: run one guarded Purchase Invoice Type button/dropdown probe; target the smaller Item role=button area proven by FA-097, no target values, no preview, no posting."
+    },
+    "lastRunSummary": {
+      "schemaVersion": 1,
+      "runId": "FIXEDASSETS-098-PURCHASE-INVOICE-LINE-TYPE-PROOF-REVIEW",
+      "date": "2026-06-19",
+      "workType": "local-evidence-review",
+      "branch": "codex/token-efficient-autopilot-state",
+      "bcRun": false,
+      "posted": false,
+      "companySwitched": false,
+      "summary": "FA-098 reviewed FA-097 locally. FA-097 did not prove Type=Fixed Asset; however, its evidence shows a smaller Item role=button at the Type-cell position. The next safe step is a button/dropdown-targeted probe, not target value entry.",
+      "nextStep": "Run FIXEDASSETS-099 guarded Type button/dropdown probe. No target values, no preview and no posting."
+    },
+    "activeCase": {
+      "status": "observed",
+      "lastResult": {
+        "status": "observed",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-098/FIXEDASSETS-098-result.json",
+        "summary": "FA-098 reviewed FA-097 locally and chose a guarded Type button/dropdown probe as the next safe case."
+      },
+      "nextSafeAction": "Run FIXEDASSETS-099 guarded Type button/dropdown probe."
+    }
+  },
+  "flags": {
+    "bcRun": false,
+    "noPlaywright": true,
+    "noBookChange": true,
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "targetValuesRemainLocked": true
+  },
+  "nextStep": "Run FIXEDASSETS-099 as one guarded Type button/dropdown probe."
+}

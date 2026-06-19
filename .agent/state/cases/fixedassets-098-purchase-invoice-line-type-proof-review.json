@@ -3,7 +3,7 @@
   "caseId": "FIXEDASSETS-098-PURCHASE-INVOICE-LINE-TYPE-PROOF-REVIEW",
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "status": "planned",
+  "status": "observed",
   "workType": "local-evidence-review",
   "taskClass": "judge_work",
   "goal": "Review FIXEDASSETS-097 evidence and decide the next guarded Fixed Asset acquisition step without opening Business Central.",
@@ -48,5 +48,10 @@
     "posting-gate"
   ],
   "requiresUsageLog": true,
-  "nextSafeAction": "Review FIXEDASSETS-097 evidence locally and decide whether target field mapping may be unlocked in a later guarded case."
+  "lastResult": {
+    "status": "observed",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-098/FIXEDASSETS-098-result.json",
+    "summary": "FA-098 reviewed FA-097 locally. Target values remain locked. The next useful step is a guarded Type button/dropdown probe because FA-097 found a smaller Item role=button inside the Type cell while the centered gridcell click did not expose Fixed Asset."
+  },
+  "nextSafeAction": "Run FIXEDASSETS-099 as a guarded Purchase Invoice Type button/dropdown probe. No K30000, no FA-CNC-01, no amount, no preview and no posting."
 }

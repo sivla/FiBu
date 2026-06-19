@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-19T20:56:00.000Z",
+  "updatedAt": "2026-06-19T21:08:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "fixedassets",
-  "activeCase": "FIXEDASSETS-098-PURCHASE-INVOICE-LINE-TYPE-PROOF-REVIEW",
-  "active_case_file": ".agent/state/cases/fixedassets-098-purchase-invoice-line-type-proof-review.json",
-  "lastReferenceCase": "FIXEDASSETS-097-PURCHASE-INVOICE-DRAFT-LINE-TYPE-PROOF",
-  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-097-purchase-invoice-draft-line-type-proof.json",
+  "activeCase": "FIXEDASSETS-099-PURCHASE-INVOICE-TYPE-DROPDOWN-BUTTON-PROBE",
+  "active_case_file": ".agent/state/cases/fixedassets-099-purchase-invoice-type-dropdown-button-probe.json",
+  "lastReferenceCase": "FIXEDASSETS-098-PURCHASE-INVOICE-LINE-TYPE-PROOF-REVIEW",
+  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-098-purchase-invoice-line-type-proof-review.json",
   "mode": "token-efficient-autopilot-tooling-bootstrap",
   "requiresStrongModel": false,
   "requiredPreflightChecks": [
@@ -19,9 +19,17 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "read-fixedassets-097-evidence",
-    "classify-line-type-proof-result",
-    "create-next-case-plan",
+    "open-business-central",
+    "run-playwright",
+    "confirm-instance-and-company",
+    "open-purchase-invoices",
+    "new-purchase-invoice-draft",
+    "focus-purchase-invoice-line-type-button",
+    "open-line-type-dropdown-from-button-area",
+    "select-or-detect-fixed-asset-line-type-only",
+    "capture-compact-evidence",
+    "cleanup-draft-if-number-exists",
+    "confirm-delete-draft-only",
     "state-patch-plan-only"
   ],
   "forbiddenActions": [
@@ -30,8 +38,6 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
-    "open-business-central",
-    "run-playwright",
     "company-switch",
     "enter-K30000",
     "enter-FA-CNC-01",
@@ -47,11 +53,10 @@
     "setup-change",
     "api-shortcut",
     "book-edit",
-    "click-ok-or-yes-on-confirmation",
     "click-finish",
     "keep-draft"
   ],
-  "nextStep": "FIXEDASSETS-098: review FA-097 blocker evidence locally and choose a safer setup/page capability route before any further UI retry.",
+  "nextStep": "FIXEDASSETS-099: run one guarded Purchase Invoice Type button/dropdown probe; target the smaller Item role=button area proven by FA-097, no target values, no preview, no posting.",
   "subagentPlanPolicy": {
     "default": "optional",
     "execution": "plan-only-no-subagents-spawned",

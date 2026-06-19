@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-099-PURCHASE-INVOICE-TYPE-DROPDOWN-BUTTON-PROBE",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "fixed-asset-purchase-invoice-type-dropdown-button-probe",
+  "taskClass": "wizard_work",
+  "goal": "Run one guarded Purchase Invoice draft probe that targets the small Type-cell button/dropdown area proven by FA-097, instead of clicking the center of the Item gridcell.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-097/FIXEDASSETS-097-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-098/FIXEDASSETS-098-result.json"
+  ],
+  "knownTruth": [
+    "FA-097 proved a real Purchase Invoice line context with Type=Item visible.",
+    "FA-097 did not prove Type=Fixed Asset visible/selectable.",
+    "FA-097 evidence shows both an Item gridcell and a smaller Item role=button at the line Type position.",
+    "The next useful probe is a selector/helper refinement: click the Type button/dropdown area, not the middle of the gridcell."
+  ],
+  "allowedActions": [
+    "open-business-central",
+    "run-playwright",
+    "confirm-instance-and-company",
+    "open-purchase-invoices",
+    "new-purchase-invoice-draft",
+    "focus-purchase-invoice-line-type-button",
+    "open-line-type-dropdown-from-button-area",
+    "select-or-detect-fixed-asset-line-type-only",
+    "capture-compact-evidence",
+    "cleanup-draft-if-number-exists",
+    "confirm-delete-draft-only",
+    "state-patch-plan-only"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "enter-K30000",
+    "enter-FA-CNC-01",
+    "enter-vendor",
+    "enter-fixed-asset-no",
+    "enter-amount",
+    "enter-quantity",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "api-shortcut",
+    "book-edit",
+    "keep-draft"
+  ],
+  "defaultLockedActionsUnlockedForThisCase": [
+    "new-draft",
+    "edit-record",
+    "delete-record",
+    "dialog-confirmation-for-delete-cleanup-only"
+  ],
+  "acceptanceCriteria": [
+    "The run stays in MCP_1_20260210 and RM-DEMO.",
+    "A Purchase Invoice draft is opened only to reach line Type button/dropdown context.",
+    "The probe targets the smaller Type button/dropdown element, not the center of the Item gridcell.",
+    "No vendor, FA-CNC-01, amount, quantity, preview posting or posting is entered.",
+    "Evidence proves one of: Fixed Asset selectable, Fixed Asset visible but not selectable, dropdown/button route still blocked.",
+    "If a draft number is detected, cleanup evidence proves deletion or the run is marked blocked."
+  ],
+  "stopConditions": [
+    "Instance or company is not clearly MCP_1_20260210 / RM-DEMO.",
+    "Page opens outside Purchase Invoice context.",
+    "The probe would require entering vendor, fixed asset number, amount or quantity.",
+    "A posting, preview, invoice, payment or setup dialog appears.",
+    "A persisted draft number appears and no safe UI cleanup route is available."
+  ],
+  "recommendedSkills": [
+    "bc-navigation",
+    "posting-gate",
+    "evidence-writer"
+  ],
+  "requiresUsageLog": false,
+  "nextSafeAction": "Implement and run one guarded Type button/dropdown probe. No target vendor, no target fixed asset, no amount, no preview and no posting."
+}
