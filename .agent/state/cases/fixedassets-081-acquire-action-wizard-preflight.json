@@ -3,7 +3,7 @@
   "caseId": "FIXEDASSETS-081-ACQUIRE-ACTION-WIZARD-PREFLIGHT",
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "status": "planned",
+  "status": "blocked-acquire-action-disabled",
   "workType": "fixed-asset-acquire-action-wizard-preflight",
   "goal": "Open the visible Acquire action from the existing FA-CNC-01 Fixed Asset Card in a guarded UI-first case, capture the wizard/dialog context, and stop before values, Finish, Preview or Posting.",
   "basedOn": [
@@ -71,7 +71,7 @@
     "safety-gate-checker",
     "evidence-writer"
   ],
-  "nextSafeAction": "Run FA-081 as guarded Acquire wizard/dialog preflight. Do not enter values and do not confirm Finish/OK/Yes.",
+  "nextSafeAction": "FIXEDASSETS-082-ACQUIRE-ACTION-DISABLED-DIAGNOSIS: diagnose why Acquire is disabled on FA-CNC-01 before any value entry or posting.",
   "mustRead": [
     ".agent/state/current.json",
     ".agent/state/cases/fixedassets-080.json",
@@ -83,5 +83,28 @@
     "playwright/projects/fibu-book5/evidence/fixedassets-081/FIXEDASSETS-081-result.json",
     "playwright/projects/fibu-book5/evidence/fixedassets-081/FIXEDASSETS-081-learning.md",
     "playwright/projects/fibu-book5/evidence/fixedassets-081/README.md"
+  ],
+  "lastResult": {
+    "status": "blocked",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-081/FIXEDASSETS-081-result.json",
+    "summary": "FA-081 proved that the scoped Acquire action is visible on FA-CNC-01 but disabled. No wizard opened and no values/posting were touched.",
+    "acquireActionDisabled": true,
+    "acquireClicked": false,
+    "wizardOrDialogContextVisible": false,
+    "riskyImmediateConfirmationVisible": false,
+    "posted": false,
+    "preview": false,
+    "setupChanged": false,
+    "evidenceRefs": [
+      "playwright/projects/fibu-book5/evidence/fixedassets-081/FIXEDASSETS-081-result.json",
+      "playwright/projects/fibu-book5/evidence/fixedassets-081/FIXEDASSETS-081-learning.md",
+      "playwright/projects/fibu-book5/evidence/fixedassets-081/README.md",
+      "playwright/projects/fibu-book5/evidence/fixedassets-081/010-before-acquire-card-context.txt",
+      "playwright/projects/fibu-book5/evidence/fixedassets-081/020-after-acquire-context.txt",
+      "playwright/projects/fibu-book5/evidence/fixedassets-081/030-after-acquire-ui-labels.json"
+    ]
+  },
+  "blockedBy": [
+    "Acquire action is visible but disabled"
   ]
 }

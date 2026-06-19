@@ -1,28 +1,40 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-080-FA-CNC-01-ACQUIRE-ACTION-READONLY-PREFLIGHT",
+  "runId": "FIXEDASSETS-081-ACQUIRE-ACTION-WIZARD-PREFLIGHT",
   "date": "2026-06-19",
-  "workType": "fixed-asset-card-acquire-action-readonly-preflight",
+  "workType": "fixed-asset-acquire-action-wizard-preflight",
   "branch": "codex/token-efficient-autopilot-state",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
   "bcRun": true,
   "posted": false,
+  "preview": false,
+  "setupChanged": false,
   "companySwitched": false,
-  "summary": "FA-080 proved the existing FA-CNC-01 card context read-only and found an Acquire/Acquisition action signal. The next case may deliberately unlock only opening that action, not values or posting. Agent learning: state-finalize activeCase patch targeting was corrected after FA-080 exposed the next-case rollover ambiguity.",
-  "nextStep": "FIXEDASSETS-081-ACQUIRE-ACTION-WIZARD-PREFLIGHT: open the Acquire action in a guarded case only, then stop before values, Finish, Preview or Posting.",
-  "commandsRun": [
-    "git branch --show-current",
-    "git status --short",
-    "npm run agent:preflight",
-    "npm run agent:context",
-    "npm run fibu:fixedassets:fa-cnc-01-acquire-action-readonly-preflight",
-    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-080/FIXEDASSETS-080-result.json",
-    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-080/FIXEDASSETS-080-result.json"
+  "resultStatus": "blocked",
+  "summary": "FA-081 proved that the scoped Acquire action is visible on FA-CNC-01 but disabled. No wizard opened and no values/posting were touched.",
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-081/FIXEDASSETS-081-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-081/FIXEDASSETS-081-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-081/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-081/010-before-acquire-card-context.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-081/020-after-acquire-context.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-081/030-after-acquire-ui-labels.json"
   ],
-  "evidence": [
-    "playwright/projects/fibu-book5/evidence/fixedassets-080/FIXEDASSETS-080-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-080/FIXEDASSETS-080-learning.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-080/README.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-080/010-card-context-readonly.txt",
-    "playwright/projects/fibu-book5/evidence/fixedassets-080/020-visible-action-labels.json"
-  ]
+  "changedFiles": [
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-081-acquire-action-wizard-preflight.json",
+    ".agent/state/cases/fixedassets-082-acquire-action-disabled-diagnosis.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    "package.json",
+    "playwright/projects/fibu-book5/tests/fixedassets-081-acquire-action-wizard-preflight.spec.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-081/FIXEDASSETS-081-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-081/FIXEDASSETS-081-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-081/README.md"
+  ],
+  "validationCommands": [
+    "npm run fibu:fixedassets:acquire-action-wizard-preflight"
+  ],
+  "nextStep": "FIXEDASSETS-082-ACQUIRE-ACTION-DISABLED-DIAGNOSIS: diagnose why Acquire is disabled on FA-CNC-01 before any value entry or posting."
 }

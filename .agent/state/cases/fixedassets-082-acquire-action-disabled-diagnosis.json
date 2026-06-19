@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-082-ACQUIRE-ACTION-DISABLED-DIAGNOSIS",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "fixed-asset-acquire-action-disabled-diagnosis",
+  "goal": "Diagnose why the visible Acquire action is disabled on the existing FA-CNC-01 Fixed Asset Card before any value entry, setup change, preview or posting.",
+  "basedOn": [
+    ".agent/state/cases/fixedassets-080.json",
+    ".agent/state/cases/fixedassets-081-acquire-action-wizard-preflight.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-081/FIXEDASSETS-081-result.json"
+  ],
+  "knownTruth": [
+    "FA-080 proved the existing FA-CNC-01 Fixed Asset Card context read-only in MCP_1_20260210 / RM-DEMO.",
+    "FA-081 proved the scoped Acquire action is visible on FA-CNC-01 but disabled (aria-disabled/disabled true).",
+    "FA-081 did not open a wizard/dialog and did not enter values, preview or post.",
+    "Book Value is visible as 0,00 on the card; HGB was not proven visible from FA-080/FA-081 card context."
+  ],
+  "allowedActions": [
+    "open-business-central-in-MCP_1_20260210",
+    "confirm-company-RM-DEMO",
+    "open-existing-FA-CNC-01-fixed-asset-card-readonly",
+    "inspect-fixed-asset-card-state-readonly",
+    "inspect-acquire-action-enabled-disabled-state-readonly",
+    "capture-compact-page-text-and-action-evidence",
+    "write-json-evidence",
+    "write-compact-learning-note",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "click-disabled-acquire-action",
+    "enter-K30000",
+    "enter-amount",
+    "enter-FA-CNC-01-in-document-or-journal",
+    "new-draft",
+    "edit-record",
+    "delete-record",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "api-shortcut",
+    "book-edit",
+    "click-finish",
+    "click-ok-or-yes-on-acquisition-confirmation",
+    "keep-draft"
+  ],
+  "defaultLockedActionsUnlockedForThisCase": [],
+  "acceptanceCriteria": [
+    "Instance MCP_1_20260210 and company RM-DEMO are confirmed before diagnosis.",
+    "FA-CNC-01 card context is visible read-only.",
+    "Acquire disabled/enabled state is captured from scoped UI evidence.",
+    "The run explains likely BC reasons for a disabled visible action from observed page state only.",
+    "No click on the disabled Acquire action, no setup change, no value entry, no Preview Posting and no posting occurs."
+  ],
+  "stopConditions": [
+    "Business Central is not in MCP_1_20260210 / RM-DEMO.",
+    "FA-CNC-01 card context is not clearly visible.",
+    "The route requires Edit/New/setup change/value entry to continue.",
+    "Any dialog asks to post, preview, edit, delete, setup, keep a draft, enter amount or enter vendor."
+  ],
+  "recommendedSkills": [
+    "bc-navigation",
+    "safety-gate-checker",
+    "error-recovery"
+  ],
+  "nextSafeAction": "Run FA-082 as read-only disabled-action diagnosis. Do not click Acquire again unless a later case explicitly unlocks it after cause analysis.",
+  "mustRead": [
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-081-acquire-action-wizard-preflight.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-081/FIXEDASSETS-081-result.json",
+    ".agent/capabilities.json",
+    "package.json"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-082/FIXEDASSETS-082-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-082/FIXEDASSETS-082-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-082/README.md"
+  ]
+}
