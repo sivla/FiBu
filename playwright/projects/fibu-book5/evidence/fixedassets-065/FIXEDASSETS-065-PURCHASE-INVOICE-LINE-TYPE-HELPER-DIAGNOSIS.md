@@ -18,6 +18,13 @@ Der Lauf wiederholt `FIXEDASSETS-064` nicht. Er wertet vorhandene Evidence aus, 
 
 `Type = Item` plus Vendor-Registrierungsdialog ist ein harter Stop.
 
+Der lokale Helper wurde dafuer erweitert:
+
+- `classifyPurchaseInvoiceLineTypeVisibility()` bewertet strukturierte Zeilentyp-Evidence.
+- Nach `Neu` aus `FIXEDASSETS-064` lautet der Status `blocked-item-line-type-visible`.
+- Nach dem fehlerhaften Eingabeversuch lautet der Status `blocked-vendor-registration-dialog`.
+- Ein Dialogtext mit `Fixed Asset` zaehlt nicht als sichtbarer Zeilentyp `Fixed Asset`.
+
 Der naechste UI-Lauf darf keine Zielwerte wie `K30000` oder `FA-CNC-01` eingeben, bevor der Test sichtbar belegt:
 
 - Purchase Invoice Card ist stabil.
@@ -32,7 +39,7 @@ Das ist ein Debugging-/Lernfall fuer Kapitel 21 und das technische Nachweiskapit
 ## Grenzen
 
 - Kein neuer BC-Lauf.
-- Kein neuer Playwright-Lauf.
+- Kein neuer Playwright-Browser-Lauf.
 - Keine Preview.
 - Keine Buchung.
 - Kein Anlagenzugang.
@@ -41,5 +48,4 @@ Das ist ein Debugging-/Lernfall fuer Kapitel 21 und das technische Nachweiskapit
 
 ## Naechster Schritt
 
-Den Purchase-Invoice-Line-Type-Guard lokal verfeinern: `Item`-Zeile plus Vendor-Registrierungsdialog muss als harter Blocker erkannt werden, bevor ein weiterer no-target UI-Probe gestartet wird.
-
+Den naechsten no-target UI-Probe so vorbereiten, dass er `classifyPurchaseInvoiceLineTypeVisibility()` nutzt und bei `Item`-Zeile oder Vendor-Registrierungsdialog sofort stoppt. `K30000` und `FA-CNC-01` bleiben weiter gesperrt.

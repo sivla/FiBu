@@ -27,8 +27,89 @@ export type PurchaseInvoiceFieldMappingClassification = {
   };
 };
 
+export type PurchaseInvoiceLineTypeVisibilityStatus =
+  | 'safe-fixed-asset-line-type-visible'
+  | 'blocked-vendor-registration-dialog'
+  | 'blocked-wrong-vendor-card-context'
+  | 'blocked-target-visible-before-fixed-asset-line-type'
+  | 'blocked-item-line-type-visible'
+  | 'blocked-missing-purchase-invoice-lines-context'
+  | 'unknown-line-type-context';
+
+export type PurchaseInvoiceLineTypeVisibilityInput = {
+  purchaseInvoiceVisible?: boolean;
+  linesContextVisible?: boolean;
+  fixedAssetLineTypeVisible?: boolean;
+  itemLineTypeVisible?: boolean;
+  forbiddenFixedAssetNoVisible?: boolean;
+  vendorCardVisible?: boolean;
+  vendorRegistrationVisible?: boolean;
+  postingOrPreviewVisible?: boolean;
+};
+
+export type PurchaseInvoiceLineTypeVisibilityClassification = {
+  status: PurchaseInvoiceLineTypeVisibilityStatus;
+  success: boolean;
+  stopReasons: string[];
+  visibleSignals: Required<PurchaseInvoiceLineTypeVisibilityInput>;
+};
+
 function has(text: string, pattern: RegExp) {
   return pattern.test(text);
+}
+
+export function classifyPurchaseInvoiceLineTypeVisibility(
+  input: PurchaseInvoiceLineTypeVisibilityInput,
+): PurchaseInvoiceLineTypeVisibilityClassification {
+  const visibleSignals: Required<PurchaseInvoiceLineTypeVisibilityInput> = {
+    purchaseInvoiceVisible: Boolean(input.purchaseInvoiceVisible),
+    linesContextVisible: Boolean(input.linesContextVisible),
+    fixedAssetLineTypeVisible: Boolean(input.fixedAssetLineTypeVisible),
+    itemLineTypeVisible: Boolean(input.itemLineTypeVisible),
+    forbiddenFixedAssetNoVisible: Boolean(input.forbiddenFixedAssetNoVisible),
+    vendorCardVisible: Boolean(input.vendorCardVisible),
+    vendorRegistrationVisible: Boolean(input.vendorRegistrationVisible),
+    postingOrPreviewVisible: Boolean(input.postingOrPreviewVisible),
+  };
+
+  const stopReasons: string[] = [];
+  if (visibleSignals.vendorRegistrationVisible) {
+    stopReasons.push('Vendor registration dialog is visible; dialog text must not count as purchase-invoice line type proof.');
+  }
+  if (visibleSignals.vendorCardVisible) {
+    stopReasons.push('Vendor Card context is visible; this is not a purchase-invoice line proof.');
+  }
+  if (!visibleSignals.purchaseInvoiceVisible || !visibleSignals.linesContextVisible) {
+    stopReasons.push('Purchase Invoice and Lines context are not both visible.');
+  }
+  if (visibleSignals.forbiddenFixedAssetNoVisible && !visibleSignals.fixedAssetLineTypeVisible) {
+    stopReasons.push('Target fixed asset number is visible before a visible Fixed Asset line type.');
+  }
+  if (visibleSignals.itemLineTypeVisible && !visibleSignals.fixedAssetLineTypeVisible) {
+    stopReasons.push('Line type still appears as Item; target values must remain locked.');
+  }
+
+  let status: PurchaseInvoiceLineTypeVisibilityStatus = 'unknown-line-type-context';
+  if (visibleSignals.vendorRegistrationVisible) {
+    status = 'blocked-vendor-registration-dialog';
+  } else if (visibleSignals.vendorCardVisible) {
+    status = 'blocked-wrong-vendor-card-context';
+  } else if (!visibleSignals.purchaseInvoiceVisible || !visibleSignals.linesContextVisible) {
+    status = 'blocked-missing-purchase-invoice-lines-context';
+  } else if (visibleSignals.forbiddenFixedAssetNoVisible && !visibleSignals.fixedAssetLineTypeVisible) {
+    status = 'blocked-target-visible-before-fixed-asset-line-type';
+  } else if (visibleSignals.fixedAssetLineTypeVisible && !visibleSignals.itemLineTypeVisible && stopReasons.length === 0) {
+    status = 'safe-fixed-asset-line-type-visible';
+  } else if (visibleSignals.itemLineTypeVisible && !visibleSignals.fixedAssetLineTypeVisible) {
+    status = 'blocked-item-line-type-visible';
+  }
+
+  return {
+    status,
+    success: status === 'safe-fixed-asset-line-type-visible',
+    stopReasons,
+    visibleSignals,
+  };
 }
 
 export function classifyPurchaseInvoiceFieldMappingText(

@@ -7,7 +7,7 @@
   "bcRun": false,
   "posted": false,
   "companySwitched": false,
-  "summary": "FIXEDASSETS-065 analysed existing 064 evidence without BC/Playwright execution. It confirms that Type remained Item and a vendor-registration dialog appeared; the next helper must stop this path before target values.",
+  "summary": "FIXEDASSETS-065 refined the Purchase Invoice line-type guard without BC/Playwright browser execution. Existing 064 evidence is now classified as blocked-item-line-type-visible before the failed entry and blocked-vendor-registration-dialog after it.",
   "commandsToRunBeforeAutopilot": [
     "npm run agent:preflight",
     "npm run agent:context",
@@ -40,5 +40,5 @@
     "stateFinalize": "scripts/agent/state-finalize.mjs",
     "skillQualityCheck": "scripts/agent/skills-quality-check.mjs"
   },
-  "nextStep": "Implement or refine a local guard/helper for Purchase Invoice line type selection: Item line + vendor-registration dialog must be classified as a hard blocker before any K30000 or FA-CNC-01 entry."
+  "nextStep": "Run a no-target UI probe only after using the refined guard: the next probe must stop on Item line or vendor-registration dialog and may not enter K30000 or FA-CNC-01."
 }

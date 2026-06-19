@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-065-PURCHASE-INVOICE-LINE-TYPE-HELPER-DIAGNOSIS",
+  "source": "local-helper-regression",
+  "sourceEvidence": "playwright/projects/fibu-book5/evidence/fixedassets-064/FIXEDASSETS-064-result.json",
+  "helper": "playwright/core/bc/purchase-invoice-guards.ts::classifyPurchaseInvoiceLineTypeVisibility",
+  "selftest": "playwright/core/bc/purchase-invoice-guards.selftest.ts",
+  "bcRun": false,
+  "playwrightBrowserRun": false,
+  "classifications": {
+    "afterNew": {
+      "status": "blocked-item-line-type-visible",
+      "success": false,
+      "stopReasons": [
+        "Line type still appears as Item; target values must remain locked."
+      ],
+      "visibleSignals": {
+        "purchaseInvoiceVisible": true,
+        "linesContextVisible": true,
+        "fixedAssetLineTypeVisible": false,
+        "itemLineTypeVisible": true,
+        "forbiddenFixedAssetNoVisible": false,
+        "vendorCardVisible": false,
+        "vendorRegistrationVisible": false,
+        "postingOrPreviewVisible": true
+      }
+    },
+    "lineTypeAttempt": {
+      "status": "blocked-vendor-registration-dialog",
+      "success": false,
+      "stopReasons": [
+        "Vendor registration dialog is visible; dialog text must not count as purchase-invoice line type proof.",
+        "Line type still appears as Item; target values must remain locked."
+      ],
+      "visibleSignals": {
+        "purchaseInvoiceVisible": true,
+        "linesContextVisible": true,
+        "fixedAssetLineTypeVisible": false,
+        "itemLineTypeVisible": true,
+        "forbiddenFixedAssetNoVisible": false,
+        "vendorCardVisible": false,
+        "vendorRegistrationVisible": true,
+        "postingOrPreviewVisible": true
+      }
+    },
+    "final": {
+      "status": "blocked-vendor-registration-dialog",
+      "success": false,
+      "stopReasons": [
+        "Vendor registration dialog is visible; dialog text must not count as purchase-invoice line type proof.",
+        "Line type still appears as Item; target values must remain locked."
+      ],
+      "visibleSignals": {
+        "purchaseInvoiceVisible": true,
+        "linesContextVisible": true,
+        "fixedAssetLineTypeVisible": false,
+        "itemLineTypeVisible": true,
+        "forbiddenFixedAssetNoVisible": false,
+        "vendorCardVisible": false,
+        "vendorRegistrationVisible": true,
+        "postingOrPreviewVisible": true
+      }
+    },
+    "syntheticSafeCandidate": {
+      "status": "safe-fixed-asset-line-type-visible",
+      "success": true,
+      "meaning": "Only a visible Purchase Invoice + Lines context with Fixed Asset line type and no Item/vendor-dialog signal may unlock a future no-target UI probe."
+    }
+  },
+  "decision": "The guard now separates dialog text from line-type proof. Item line plus vendor-registration dialog remains a hard blocker.",
+  "proved": [
+    "Existing FIXEDASSETS-064 evidence is classified as blocked-item-line-type-visible before the failed entry attempt.",
+    "Existing FIXEDASSETS-064 evidence is classified as blocked-vendor-registration-dialog after the failed entry attempt.",
+    "A dialog mentioning Fixed Asset is not accepted as Fixed Asset line-type proof."
+  ],
+  "notProved": [
+    "No new Business Central UI state.",
+    "No visible Type = Fixed Asset line in RM-DEMO.",
+    "No K30000/FA-CNC-01 entry.",
+    "No Preview Posting, posting, acquisition, depreciation or German final proof."
+  ],
+  "flags": {
+    "noBcRun": true,
+    "noPlaywrightBrowserRun": true,
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noBookChange": true,
+    "noApiShortcut": true
+  }
+}

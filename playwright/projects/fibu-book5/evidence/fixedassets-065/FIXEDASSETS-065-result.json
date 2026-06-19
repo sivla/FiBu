@@ -25,12 +25,21 @@
     "guardDecision": "blocked-vendor-registration-dialog",
     "guardMeaning": "The page still shows Purchase Invoice and Lines context, but the visible line type remains Item and a vendor-registration dialog appears for the typed Fixed Asset text. This is not a valid Fixed Asset line-type proof."
   },
+  "helperUpdate": {
+    "status": "implemented-local-regression",
+    "helper": "playwright/core/bc/purchase-invoice-guards.ts::classifyPurchaseInvoiceLineTypeVisibility",
+    "selftest": "playwright/core/bc/purchase-invoice-guards.selftest.ts",
+    "regressionEvidence": "playwright/projects/fibu-book5/evidence/fixedassets-065/020-line-type-guard-regression.json",
+    "decision": "The helper now classifies structured line-type visibility evidence before target value entry. Item line and vendor-registration dialog are hard blockers."
+  },
   "proved": [
     "FIXEDASSETS-064 produced a purchase invoice line with visible Type = Item, not Type = Fixed Asset.",
     "The attempted text entry triggered a vendor-registration dialog mentioning Fixed Asset.",
     "The target fixed asset number FA-CNC-01 was not entered or visible.",
     "Draft invoice 107209 was cleaned up through UI evidence.",
-    "No posting, Preview Posting, setup change, API shortcut or company switch is evidenced in this local analysis."
+    "No posting, Preview Posting, setup change, API shortcut or company switch is evidenced in this local analysis.",
+    "The local guard regression classifies 064 after-New evidence as blocked-item-line-type-visible.",
+    "The local guard regression classifies 064 after-attempt/final evidence as blocked-vendor-registration-dialog."
   ],
   "notProved": [
     "Type = Fixed Asset in the purchase invoice line.",
@@ -48,16 +57,23 @@
   "requiresReview": false,
   "safeToFinalizeState": true,
   "changedFiles": [
+    "playwright/core/bc/purchase-invoice-guards.ts",
+    "playwright/core/bc/purchase-invoice-guards.selftest.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-065/020-line-type-guard-regression.json",
     "playwright/projects/fibu-book5/evidence/fixedassets-065/FIXEDASSETS-065-result.json",
     "playwright/projects/fibu-book5/evidence/fixedassets-065/FIXEDASSETS-065-PURCHASE-INVOICE-LINE-TYPE-HELPER-DIAGNOSIS.md",
     "playwright/projects/fibu-book5/evidence/fixedassets-065/README.md"
   ],
   "evidenceRefs": [
     "playwright/projects/fibu-book5/evidence/fixedassets-065/FIXEDASSETS-065-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-065/020-line-type-guard-regression.json",
     "playwright/projects/fibu-book5/evidence/fixedassets-065/FIXEDASSETS-065-PURCHASE-INVOICE-LINE-TYPE-HELPER-DIAGNOSIS.md",
     "playwright/projects/fibu-book5/evidence/fixedassets-065/README.md"
   ],
   "statePatch": {
+    "current": {
+      "nextStep": "Prepare the next no-target UI probe with classifyPurchaseInvoiceLineTypeVisibility: stop immediately on Item line or vendor-registration dialog; still no K30000, no FA-CNC-01, no Preview, no Post, no setup change."
+    },
     "lastRunSummary": {
       "schemaVersion": 1,
       "runId": "FIXEDASSETS-065-PURCHASE-INVOICE-LINE-TYPE-HELPER-DIAGNOSIS",
@@ -67,17 +83,17 @@
       "bcRun": false,
       "posted": false,
       "companySwitched": false,
-      "summary": "FIXEDASSETS-065 analysed existing 064 evidence without BC/Playwright execution. It confirms that Type remained Item and a vendor-registration dialog appeared; the next helper must stop this path before target values.",
-      "nextStep": "Implement or refine a local guard/helper for Purchase Invoice line type selection: Item line + vendor-registration dialog must be classified as a hard blocker before any K30000 or FA-CNC-01 entry."
+      "summary": "FIXEDASSETS-065 refined the Purchase Invoice line-type guard without BC/Playwright browser execution. Existing 064 evidence is now classified as blocked-item-line-type-visible before the failed entry and blocked-vendor-registration-dialog after it.",
+      "nextStep": "Run a no-target UI probe only after using the refined guard: the next probe must stop on Item line or vendor-registration dialog and may not enter K30000 or FA-CNC-01."
     },
     "activeCase": {
       "status": "observed-local-analysis",
       "lastResult": {
         "status": "observed",
         "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-065/FIXEDASSETS-065-result.json",
-        "summary": "Existing 064 evidence proves a blocker: Type remained Item and a vendor-registration dialog appeared. No target values may be entered until the line-type helper is refined."
+      "summary": "Existing 064 evidence proves a blocker and the refined helper now classifies it: Item line before the attempt, vendor-registration dialog after the attempt. No target values may be entered in the next probe."
       },
-      "nextSafeAction": "Refine the purchase-invoice line-type guard/helper locally, then run a no-target UI probe only if the helper can stop Item-line/vendor-dialog contexts."
+      "nextSafeAction": "Prepare the next no-target UI probe to call classifyPurchaseInvoiceLineTypeVisibility and stop immediately on Item line or vendor-registration dialog; still no K30000, no FA-CNC-01, no Preview and no Post."
     }
   },
   "flags": {
