@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-approval-gate-result",
+  "caseId": "FIXEDASSETS-069-PURCHASE-INVOICE-DRAFT-PROBE-APPROVAL-GATE",
+  "source": "local-state-and-evidence-review",
+  "runPlanId": "FIXEDASSETS-069-PURCHASE-INVOICE-DRAFT-PROBE-APPROVAL-GATE-PLAN",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-medium",
+  "resultStatus": "blocked",
+  "changedFiles": [
+    ".agent/state/current.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/cases/fixedassets-069.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-069/FIXEDASSETS-069-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-069/README.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-067/FIXEDASSETS-067-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-068/FIXEDASSETS-068-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-069/FIXEDASSETS-069-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-069/README.md"
+  ],
+  "flags": {
+    "noBcRun": true,
+    "noPlaywrightRun": true,
+    "noWrite": true,
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noBookChange": true,
+    "noApiShortcut": true,
+    "noActionClick": true,
+    "noRecordOpen": true,
+    "noScreenshot": true
+  },
+  "environment": {
+    "expectedInstance": "MCP_1_20260210",
+    "expectedCompany": "RM-DEMO"
+  },
+  "proved": [
+    "FIXEDASSETS-067 inventoried Purchase Invoices actions without clicking New/Neu, Post, Delete, Invoice or Preview.",
+    "FIXEDASSETS-068 proved technical Page Inspection context for Purchase Invoices: Page 9308 List with source table Purchase Header 38.",
+    "The next useful Purchase Invoice line-type probe requires a draft-capable New/Neu click and is therefore outside no-approval read-only rules."
+  ],
+  "notProved": [
+    "No Type = Fixed Asset line proof.",
+    "No K30000 header context.",
+    "No FA-CNC-01 line context.",
+    "No draft was created.",
+    "No posting, acquisition, depreciation or German final proof."
+  ],
+  "warnings": [
+    "Running FIXEDASSETS-066 without explicit approval would violate the current no-New/no-draft autopilot boundary.",
+    "Further read-only probes may add context but will not prove the Fixed Asset line type unless a record or draft-capable path is approved."
+  ],
+  "blockedBy": [
+    "explicit-user-approval-required-for-new-or-draft-capable-probe"
+  ],
+  "requiresReview": true,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-069-PURCHASE-INVOICE-DRAFT-PROBE-APPROVAL-GATE",
+      "active_case_file": ".agent/state/cases/fixedassets-069.json",
+      "nextStep": "Wait for explicit approval before running FIXEDASSETS-066 draft-capable guarded probe. Without approval, choose only another read-only context probe."
+    },
+    "lastRunSummary": {
+      "schemaVersion": 1,
+      "runId": "FIXEDASSETS-069-PURCHASE-INVOICE-DRAFT-PROBE-APPROVAL-GATE",
+      "date": "2026-06-19",
+      "workType": "approval-gate-decision",
+      "branch": "codex/token-efficient-autopilot-state",
+      "bcRun": false,
+      "posted": false,
+      "companySwitched": false,
+      "summary": "FIXEDASSETS-069 records the approval gate: after read-only action inventory and Page Inspection, the next useful line-type probe requires a New/Neu click and must not run without explicit user approval.",
+      "nextStep": "Ask for explicit approval for FIXEDASSETS-066, or choose only another read-only context probe."
+    },
+    "activeCase": {
+      "status": "blocked-awaiting-approval",
+      "lastResult": {
+        "status": "blocked",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-069/FIXEDASSETS-069-result.json",
+        "summary": "Draft-capable Purchase Invoice probe is blocked until explicit user approval is given."
+      },
+      "nextSafeAction": "Wait for explicit approval before New/Neu. Do not run Playwright or Business Central for this case."
+    }
+  }
+}

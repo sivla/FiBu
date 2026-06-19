@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-068-PURCHASE-INVOICES-PAGEINSPECTION-READONLY",
+  "runId": "FIXEDASSETS-069-PURCHASE-INVOICE-DRAFT-PROBE-APPROVAL-GATE",
   "date": "2026-06-19",
-  "workType": "read-only-page-inspection",
+  "workType": "approval-gate-decision",
   "branch": "codex/token-efficient-autopilot-state",
-  "bcRun": true,
+  "bcRun": false,
   "posted": false,
   "companySwitched": false,
-  "summary": "FIXEDASSETS-068 opened Purchase Invoices read-only in MCP_1_20260210 / RM-DEMO and opened Page Inspection with Control+Alt+F1 without clicking New/Neu, records or posting actions. Technical context shown: Purchase Invoices (9308, List) and Purchase Header (38).",
+  "summary": "FIXEDASSETS-069 records the approval gate: after read-only action inventory and Page Inspection, the next useful line-type probe requires a New/Neu click and must not run without explicit user approval.",
   "commandsToRunBeforeAutopilot": [
     "npm run agent:preflight",
     "npm run agent:context",
@@ -40,5 +40,5 @@
     "stateFinalize": "scripts/agent/state-finalize.mjs",
     "skillQualityCheck": "scripts/agent/skills-quality-check.mjs"
   },
-  "nextStep": "Review technical page/table context; do not run draft-capable probe without explicit approval."
+  "nextStep": "Ask for explicit approval for FIXEDASSETS-066, or choose only another read-only context probe."
 }

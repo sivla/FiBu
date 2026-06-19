@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-069-PURCHASE-INVOICE-DRAFT-PROBE-APPROVAL-GATE",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "blocked-awaiting-approval",
+  "workType": "approval-gate-decision",
+  "goal": "Nach FIXEDASSETS-067 und FIXEDASSETS-068 entscheiden, ob die draft-faehige Purchase-Invoice-Probe FIXEDASSETS-066 gestartet werden darf.",
+  "mustRead": [
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-069.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-067/FIXEDASSETS-067-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-068/FIXEDASSETS-068-result.json"
+  ],
+  "allowedActions": [
+    "state-patch-plan-only",
+    "result-normalize",
+    "evidence-summary"
+  ],
+  "forbiddenActions": [
+    "open-business-central",
+    "run-playwright",
+    "new",
+    "edit",
+    "delete",
+    "preview-posting",
+    "post",
+    "keep-draft",
+    "setup-change",
+    "api-shortcut",
+    "company-switch",
+    "book-edit"
+  ],
+  "basisEvidence": [
+    "FIXEDASSETS-067 proved visible Purchase Invoices actions without clicking them; risky actions are visible only as inventory.",
+    "FIXEDASSETS-068 proved Page Inspection context: Purchase Invoices (9308, List) and Purchase Header (38)."
+  ],
+  "decision": "Blocked until the user explicitly approves a draft-capable guarded probe that may click New/Neu but must still avoid posting, preview posting, setup changes, company switch and keeping drafts.",
+  "nextSafeAction": "Ask for or wait for explicit approval before running FIXEDASSETS-066. Without approval, choose only another read-only context probe."
+}
