@@ -1,27 +1,28 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-072-TYPE-DROPDOWN-SELECTOR-FIX",
+  "runId": "FIXEDASSETS-073-TYPE-DROPDOWN-ALTERNATIVE-ROUTE",
   "date": "2026-06-19",
-  "workType": "type-dropdown-selector-probe-and-cleanup-hardening",
+  "workType": "type-dropdown-alternative-route-probe",
   "branch": "codex/token-efficient-autopilot-state",
   "bcRun": true,
   "posted": false,
   "companySwitched": false,
-  "summary": "FA-072 improved the Type-cell probe and draft cleanup. The run proved the Purchase Invoice draft 107228 was created and deleted through UI cleanup, but Type = Fixed Asset is still not visible/selectable; the current Type route exposes only Option Values: Item. Target values remain locked.",
+  "summary": "FA-073 tested real pointer/keyboard alternative routes against the Purchase Invoice Lines Type cell in MCP_1_20260210 / RM-DEMO. Type = Fixed Asset was still not visible/selectable. No K30000, no FA-CNC-01, no Preview Posting, no posting, no setup change. No persisted Purchase Invoice draft number was detected, so cleanup was not needed.",
   "commandsRun": [
     "npm run agent:preflight",
     "npm run agent:context",
     "npm run agent:dry-run",
     "npm run agent:run-plan",
-    "npm run fibu:fixedassets:type-dropdown-selector-probe",
-    "npm run fibu:fixedassets:cleanup-072-purchase-invoice for 107226",
-    "npm run fibu:fixedassets:type-dropdown-selector-probe"
+    "npm run agent:preflight",
+    "npm run agent:dry-run",
+    "npm run agent:run-plan",
+    "npm run fibu:fixedassets:type-dropdown-alternative-route"
   ],
   "evidence": [
-    "playwright/projects/fibu-book5/evidence/fixedassets-072/FIXEDASSETS-072-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-072/030-type-dropdown-probe.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-072/090-cleanup-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-072/091-cleanup-retry-result.json"
+    "playwright/projects/fibu-book5/evidence/fixedassets-073/FIXEDASSETS-073-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-073/030-alternative-route-probe.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-073/040-after-route-line-type-context.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-073/090-cleanup-result.json"
   ],
-  "nextStep": "Run FIXEDASSETS-073: alternative UI route diagnosis for Type = Fixed Asset; target values remain locked."
+  "nextStep": "Do not repeat Type-cell pointer/key retries. Investigate Page Inspection/Personalization or setup/page capability before entering K30000 or FA-CNC-01."
 }

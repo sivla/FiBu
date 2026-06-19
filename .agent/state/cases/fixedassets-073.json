@@ -3,7 +3,7 @@
   "caseId": "FIXEDASSETS-073-TYPE-DROPDOWN-ALTERNATIVE-ROUTE",
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "status": "planned",
+  "status": "blocked-cleanup-complete",
   "workType": "purchase-invoice-line-type-alternative-route-diagnosis",
   "goal": "Find a safer alternative UI route to expose or select Purchase Invoice Line Type = Fixed Asset without entering K30000 or FA-CNC-01.",
   "basedOn": [
@@ -15,7 +15,9 @@
     "FA-072 stayed in MCP_1_20260210 / RM-DEMO.",
     "The current Type-cell route opens or exposes only Option Values: Item.",
     "Draft 107228 was deleted through UI cleanup in the final FA-072 run.",
-    "K30000 and FA-CNC-01 remain locked."
+    "K30000 and FA-CNC-01 remain locked.",
+    "FA-073 tested real pointer/keyboard alternatives on the Type cell and still did not expose Fixed Asset.",
+    "FA-073 detected no persisted Purchase Invoice draft number after the probe; cleanup was not needed."
   ],
   "allowedActions": [
     "open-business-central-in-MCP_1_20260210",
@@ -50,7 +52,12 @@
     "bc-navigation",
     "evidence-writer"
   ],
-  "nextSafeAction": "Implement or run one bounded alternative route diagnosis; do not repeat the FA-072 cell-click path without a new selector idea.",
+  "lastResult": {
+    "status": "blocked",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-073/FIXEDASSETS-073-result.json",
+    "summary": "FA-073 did not expose Type = Fixed Asset through pointer/keyboard alternative routes. No target values were entered, no preview/post/setup was run, and no persisted draft number was detected."
+  },
+  "nextSafeAction": "Do not repeat Type-cell pointer/key retries. Investigate Page Inspection/Personalization or page/setup capability before entering K30000 or FA-CNC-01.",
   "mustRead": [
     ".agent/state/current.json",
     ".agent/state/cases/fixedassets-072.json",
