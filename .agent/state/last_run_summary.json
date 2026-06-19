@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-081-ACQUIRE-ACTION-WIZARD-PREFLIGHT",
+  "runId": "FIXEDASSETS-082-ACQUIRE-ACTION-DISABLED-DIAGNOSIS",
   "date": "2026-06-19",
-  "workType": "fixed-asset-acquire-action-wizard-preflight",
+  "workType": "fixed-asset-acquire-disabled-diagnosis",
   "branch": "codex/token-efficient-autopilot-state",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
@@ -11,30 +11,29 @@
   "preview": false,
   "setupChanged": false,
   "companySwitched": false,
-  "resultStatus": "blocked",
-  "summary": "FA-081 proved that the scoped Acquire action is visible on FA-CNC-01 but disabled. No wizard opened and no values/posting were touched.",
+  "resultStatus": "observed",
+  "summary": "FA-082 confirmed read-only that Acquire remains visible but disabled on FA-CNC-01. UI evidence shows Book Value 0,00 and no specific depreciation-book value such as HGB in this compact card view. The cause is not proven; the next case must decide between edit-mode/Page Inspection diagnosis or an alternate acquisition route.",
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/fixedassets-081/FIXEDASSETS-081-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-081/FIXEDASSETS-081-learning.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-081/README.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-081/010-before-acquire-card-context.txt",
-    "playwright/projects/fibu-book5/evidence/fixedassets-081/020-after-acquire-context.txt",
-    "playwright/projects/fibu-book5/evidence/fixedassets-081/030-after-acquire-ui-labels.json"
+    "playwright/projects/fibu-book5/evidence/fixedassets-082/FIXEDASSETS-082-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-082/FIXEDASSETS-082-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-082/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-082/010-card-state-readonly.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-082/020-acquire-disabled-diagnostics.json"
   ],
   "changedFiles": [
     ".agent/state/current.json",
-    ".agent/state/cases/fixedassets-081-acquire-action-wizard-preflight.json",
     ".agent/state/cases/fixedassets-082-acquire-action-disabled-diagnosis.json",
+    ".agent/state/cases/fixedassets-083-acquire-route-decision.json",
     ".agent/state/coverage_state.json",
     ".agent/state/last_run_summary.json",
     "package.json",
-    "playwright/projects/fibu-book5/tests/fixedassets-081-acquire-action-wizard-preflight.spec.ts",
-    "playwright/projects/fibu-book5/evidence/fixedassets-081/FIXEDASSETS-081-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-081/FIXEDASSETS-081-learning.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-081/README.md"
+    "playwright/projects/fibu-book5/tests/fixedassets-082-acquire-action-disabled-diagnosis.spec.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-082/FIXEDASSETS-082-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-082/FIXEDASSETS-082-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-082/README.md"
   ],
   "validationCommands": [
-    "npm run fibu:fixedassets:acquire-action-wizard-preflight"
+    "npm run fibu:fixedassets:acquire-action-disabled-diagnosis"
   ],
-  "nextStep": "FIXEDASSETS-082-ACQUIRE-ACTION-DISABLED-DIAGNOSIS: diagnose why Acquire is disabled on FA-CNC-01 before any value entry or posting."
+  "nextStep": "FIXEDASSETS-083-ACQUIRE-ROUTE-DECISION: decide whether to unlock a controlled edit-mode/Page Inspection probe or switch to an alternate acquisition route such as Fixed Asset G/L Journal."
 }

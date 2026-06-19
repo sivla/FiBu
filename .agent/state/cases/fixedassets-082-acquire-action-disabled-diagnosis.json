@@ -3,7 +3,7 @@
   "caseId": "FIXEDASSETS-082-ACQUIRE-ACTION-DISABLED-DIAGNOSIS",
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "status": "planned",
+  "status": "observed-readonly-disabled-action-diagnosis",
   "workType": "fixed-asset-acquire-action-disabled-diagnosis",
   "goal": "Diagnose why the visible Acquire action is disabled on the existing FA-CNC-01 Fixed Asset Card before any value entry, setup change, preview or posting.",
   "basedOn": [
@@ -69,7 +69,7 @@
     "safety-gate-checker",
     "error-recovery"
   ],
-  "nextSafeAction": "Run FA-082 as read-only disabled-action diagnosis. Do not click Acquire again unless a later case explicitly unlocks it after cause analysis.",
+  "nextSafeAction": "FIXEDASSETS-083-ACQUIRE-ROUTE-DECISION: decide whether to unlock a controlled edit-mode/Page Inspection probe or switch to an alternate acquisition route such as Fixed Asset G/L Journal.",
   "mustRead": [
     ".agent/state/current.json",
     ".agent/state/cases/fixedassets-081-acquire-action-wizard-preflight.json",
@@ -81,5 +81,25 @@
     "playwright/projects/fibu-book5/evidence/fixedassets-082/FIXEDASSETS-082-result.json",
     "playwright/projects/fibu-book5/evidence/fixedassets-082/FIXEDASSETS-082-learning.md",
     "playwright/projects/fibu-book5/evidence/fixedassets-082/README.md"
-  ]
+  ],
+  "lastResult": {
+    "status": "observed",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-082/FIXEDASSETS-082-result.json",
+    "summary": "FA-082 confirmed read-only that Acquire remains visible but disabled on FA-CNC-01. UI evidence shows Book Value 0,00 and no specific depreciation-book value such as HGB in this compact card view. The cause is not proven; the next case must decide between edit-mode/Page Inspection diagnosis or an alternate acquisition route.",
+    "acquireVisible": true,
+    "acquireDisabled": true,
+    "bookValueZero": true,
+    "depreciationBookSpecificValueVisible": false,
+    "posted": false,
+    "preview": false,
+    "setupChanged": false,
+    "evidenceRefs": [
+      "playwright/projects/fibu-book5/evidence/fixedassets-082/FIXEDASSETS-082-result.json",
+      "playwright/projects/fibu-book5/evidence/fixedassets-082/FIXEDASSETS-082-learning.md",
+      "playwright/projects/fibu-book5/evidence/fixedassets-082/README.md",
+      "playwright/projects/fibu-book5/evidence/fixedassets-082/010-card-state-readonly.txt",
+      "playwright/projects/fibu-book5/evidence/fixedassets-082/020-acquire-disabled-diagnostics.json"
+    ]
+  },
+  "blockedBy": []
 }

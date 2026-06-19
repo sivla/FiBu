@@ -1,0 +1,99 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-083-ACQUIRE-ROUTE-DECISION",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "fixed-asset-acquire-route-decision",
+  "goal": "Decide the next acquisition route after FA-082 proved Acquire is visible but disabled on FA-CNC-01.",
+  "basedOn": [
+    ".agent/state/cases/fixedassets-080.json",
+    ".agent/state/cases/fixedassets-081-acquire-action-wizard-preflight.json",
+    ".agent/state/cases/fixedassets-082-acquire-action-disabled-diagnosis.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-082/FIXEDASSETS-082-result.json"
+  ],
+  "knownTruth": [
+    "FA-080 proved FA-CNC-01 Fixed Asset Card read-only and visible Acquire signal.",
+    "FA-081 proved the scoped Acquire action is visible but disabled and no wizard opened.",
+    "FA-082 confirmed the disabled Acquire state read-only and captured Book Value 0,00.",
+    "FA-082 did not prove the exact cause. It did not enter edit mode, capture Page Inspection metadata, inspect setup, or test an alternate journal route."
+  ],
+  "routeOptions": [
+    {
+      "id": "edit-mode-readonly-probe",
+      "value": "May reveal whether Acquire is disabled only because the card is not in edit mode.",
+      "risk": "Unlocks Edit as a default-locked action; must remain no value entry, no save, no setup change."
+    },
+    {
+      "id": "page-inspection-probe",
+      "value": "May identify page/table/action context without business data changes.",
+      "risk": "Keyboard shortcut/browser focus can be flaky; evidence must stay compact."
+    },
+    {
+      "id": "fixed-asset-gl-journal-route",
+      "value": "May be the more standard acquisition route for posting an FA acquisition later.",
+      "risk": "Journal route can create drafts and later posting gates; needs a separate preflight case before values."
+    }
+  ],
+  "allowedActions": [
+    "read-existing-evidence",
+    "compare-acquire-edit-mode-pageinspection-journal-routes",
+    "write-route-decision-evidence",
+    "write-json-evidence",
+    "write-compact-learning-note",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "open-business-central-without-new-case",
+    "click-disabled-acquire-action",
+    "enter-K30000",
+    "enter-amount",
+    "enter-FA-CNC-01-in-document-or-journal",
+    "new-draft",
+    "edit-record",
+    "delete-record",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "api-shortcut",
+    "book-edit",
+    "click-finish",
+    "click-ok-or-yes-on-acquisition-confirmation",
+    "keep-draft"
+  ],
+  "defaultLockedActionsUnlockedForThisCase": [],
+  "acceptanceCriteria": [
+    "Route decision is based only on existing FA-080/081/082 evidence and project state.",
+    "The decision does not open BC unless a follow-up case explicitly unlocks it.",
+    "The next case has one route only and clear forbidden actions.",
+    "No book claim presents Acquire as executable until the route is proven."
+  ],
+  "stopConditions": [
+    "Decision would require BC execution in this case.",
+    "Decision would require edit, draft, value entry, setup change, preview or posting without a new gate.",
+    "Evidence is insufficient to choose one next route."
+  ],
+  "recommendedSkills": [
+    "safety-gate-checker",
+    "error-recovery",
+    "next-test-selector"
+  ],
+  "nextSafeAction": "Run FA-083 as local route decision only: choose edit-mode read-only probe, Page Inspection probe, or Fixed Asset G/L Journal read-only route discovery as exactly one next case.",
+  "mustRead": [
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-082-acquire-action-disabled-diagnosis.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-082/FIXEDASSETS-082-result.json",
+    ".agent/capabilities.json",
+    "package.json"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-083/FIXEDASSETS-083-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-083/FIXEDASSETS-083-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-083/README.md"
+  ]
+}
