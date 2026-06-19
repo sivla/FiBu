@@ -122,7 +122,21 @@ async function collectVisibleActions(page: Page) {
       })),
   );
 
-  return { frameResults, riskyActions };
+  const actionLabels = frameResults.flatMap((frame) => frame.actions.map((action) => action.label));
+  const safeActionLabels = actionLabels.filter(
+    (label) => !/\b(New|Neu|Edit|Bearbeiten|Delete|Loeschen|Loschen|Post|Buchen|Preview|Vorschau|Ship|Liefern|Invoice|Fakturieren|Payment|Zahlung)\b/i.test(label),
+  );
+
+  return {
+    actionCount: actionLabels.length,
+    riskyActionCount: riskyActions.length,
+    sampleActionLabels: Array.from(new Set(safeActionLabels)).slice(0, 25),
+    riskyActions: riskyActions.slice(0, 30),
+    frames: frameResults.map((frame) => ({
+      frameUrl: frame.frameUrl,
+      actionCount: frame.actions.length,
+    })),
+  };
 }
 
 function statePatch(status: 'observed' | 'blocked', summary: string) {
@@ -227,7 +241,7 @@ test('FIXEDASSETS-067 inventories Purchase Invoices actions without clicking', a
     const actionInventory = await collectVisibleActions(page);
     const summary =
       `FIXEDASSETS-067 opened Purchase Invoices read-only in ${EXPECTED_INSTANCE} / ${EXPECTED_COMPANY} ` +
-      `and inventoried ${actionInventory.frameResults.reduce((sum, frame) => sum + frame.actions.length, 0)} visible action candidates without clicking them.`;
+      `and inventoried ${actionInventory.actionCount} visible action candidates without clicking them.`;
     const result = {
       ...baseResult(),
       resultStatus: 'observed',
