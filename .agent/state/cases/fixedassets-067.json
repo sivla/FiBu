@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-067-PURCHASE-INVOICE-READONLY-ACTION-INVENTORY",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "observed",
+  "workType": "read-only-action-inventory",
+  "goal": "Purchase Invoices / Einkaufsrechnungen read-only oeffnen und sichtbare Aktionen inventarisieren, ohne New/Neu, Edit, Delete, Preview, Post oder andere Aktionen zu klicken.",
+  "mustRead": [
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-067.json",
+    "playwright/core/bc-helpers.ts",
+    "playwright/core/evidence.ts",
+    "playwright/projects/fibu-book5/tests/fixedassets-067-purchase-invoice-readonly-action-inventory.spec.ts"
+  ],
+  "allowedActions": [
+    "open-business-central-readonly",
+    "read-url-instance-company",
+    "read-page-text",
+    "inventory-visible-actions-without-click",
+    "write-json-evidence",
+    "result-normalize",
+    "state-patch-plan-only"
+  ],
+  "forbiddenActions": [
+    "new",
+    "edit",
+    "delete",
+    "preview-posting",
+    "post",
+    "keep-draft",
+    "setup-change",
+    "api-shortcut",
+    "company-switch",
+    "book-edit"
+  ],
+  "acceptanceCriteria": [
+    "The test opens only the Purchase Invoices page in MCP_1_20260210 / RM-DEMO.",
+    "The test does not click any visible action candidate.",
+    "The result JSON lists visible risky actions as inventory, not as executed actions.",
+    "No draft, posting, preview, setup change or company switch happens."
+  ],
+  "recommendedSkills": [
+    "posting-gate",
+    "screenshot-qa",
+    "evidence-writer"
+  ],
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-066/FIXEDASSETS-066-result.json"
+  ],
+  "nextSafeAction": "Use the action inventory to plan the next read-only or approval-gated step. Do not click New/Neu without explicit approval.",
+  "lastResult": {
+    "status": "observed",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-067/FIXEDASSETS-067-result.json",
+    "summary": "FIXEDASSETS-067 opened Purchase Invoices read-only in MCP_1_20260210 / RM-DEMO and inventoried visible action candidates without clicking them."
+  }
+}
