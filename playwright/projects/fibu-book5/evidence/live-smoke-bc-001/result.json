@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "purpose": "autopilot-live-smoke-result",
   "caseId": "LIVE-SMOKE-BC-001-READONLY-CONTEXT",
-  "source": "playwright-result",
+  "source": "playwright-readonly-smoke",
   "runPlanId": "LIVE-SMOKE-BC-001-READONLY-CONTEXT-PLAN",
   "selectedTaskClass": "wizard_work",
   "selectedModelClass": "gpt-4-medium",
@@ -12,8 +12,30 @@
   "evidenceRefs": [
     "playwright/projects/fibu-book5/evidence/live-smoke-bc-001/result.json"
   ],
-  "statePatch": {},
-  "safeToFinalizeState": false,
+  "statePatch": {
+    "lastRunSummary": {
+      "schemaVersion": 1,
+      "runId": "LIVE-SMOKE-BC-001-READONLY-CONTEXT",
+      "date": "2026-06-19",
+      "workType": "playwright-readonly-smoke",
+      "branch": "codex/token-efficient-autopilot-state",
+      "bcRun": true,
+      "posted": false,
+      "companySwitched": false,
+      "summary": "LIVE-SMOKE-BC-001 ran read-only in MCP_1_20260210 / RM-DEMO and produced compact context evidence. No posting, preview, draft, setup change, company switch or book change.",
+      "nextStep": "Review the state-finalize plan or plan the next read-only page-context smoke. Do not use --write without explicit approval."
+    },
+    "activeCase": {
+      "status": "observed",
+      "lastResult": {
+        "status": "observed",
+        "resultFile": "playwright/projects/fibu-book5/evidence/live-smoke-bc-001/result.json",
+        "summary": "LIVE-SMOKE-BC-001 ran read-only in MCP_1_20260210 / RM-DEMO and produced compact context evidence. No posting, preview, draft, setup change, company switch or book change."
+      },
+      "nextSafeAction": "Result is safe for a state-finalize patch plan only. Wait for explicit approval before --write."
+    }
+  },
+  "safeToFinalizeState": true,
   "flags": {
     "noWrite": true,
     "noPost": true,
@@ -33,7 +55,12 @@
     "Business Central URL stayed in MCP_1_20260210.",
     "Company URL parameter stayed RM-DEMO.",
     "Business Central shell was visible with existing storageState.",
-    "No write/post/preview/draft/setup action was triggered by the smoke test."
+    "BC read-only was reachable.",
+    "No booking was triggered.",
+    "No Preview Posting was triggered.",
+    "No Post was triggered.",
+    "No draft was created.",
+    "No setup change was triggered."
   ],
   "notProved": [
     "No business process, posting readiness, ledger trace or book screenshot was tested.",
@@ -49,8 +76,8 @@
     "expectedCompany": "RM-DEMO"
   },
   "observed": {
-    "startedAt": "2026-06-19T00:13:32.962Z",
-    "finishedAt": "2026-06-19T00:13:39.690Z",
+    "startedAt": "2026-06-19T00:22:15.584Z",
+    "finishedAt": "2026-06-19T00:22:23.274Z",
     "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO",
     "title": "Dynamics 365 Business Central",
     "dialogCount": 0,

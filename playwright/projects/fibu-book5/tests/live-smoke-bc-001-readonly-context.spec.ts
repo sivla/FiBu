@@ -64,7 +64,7 @@ function baseResult() {
     schemaVersion: 1,
     purpose: 'autopilot-live-smoke-result',
     caseId: CASE_ID,
-    source: 'playwright-result',
+    source: 'playwright-readonly-smoke',
     runPlanId: `${CASE_ID}-PLAN`,
     selectedTaskClass: 'wizard_work',
     selectedModelClass: 'gpt-4-medium',
@@ -85,6 +85,38 @@ function baseResult() {
       noApiShortcut: true,
       noBookChange: true,
       noScreenshot: true
+    }
+  };
+}
+
+function safeStatePatch(status: 'observed' | 'blocked', resultFile: string, reason: string) {
+  return {
+    lastRunSummary: {
+      schemaVersion: 1,
+      runId: CASE_ID,
+      date: '2026-06-19',
+      workType: 'playwright-readonly-smoke',
+      branch: 'codex/token-efficient-autopilot-state',
+      bcRun: true,
+      posted: false,
+      companySwitched: false,
+      summary: reason,
+      nextStep:
+        status === 'observed'
+          ? 'Review the state-finalize plan or plan the next read-only page-context smoke. Do not use --write without explicit approval.'
+          : 'Resolve the live-smoke blocker before any further live Business Central run.'
+    },
+    activeCase: {
+      status,
+      lastResult: {
+        status,
+        resultFile,
+        summary: reason
+      },
+      nextSafeAction:
+        status === 'observed'
+          ? 'Result is safe for a state-finalize patch plan only. Wait for explicit approval before --write.'
+          : 'Fix blocker and rerun read-only smoke before any state finalization.'
     }
   };
 }
@@ -125,7 +157,12 @@ test('LIVE-SMOKE-BC-001 confirms BC context without writing', async ({ page }) =
         `Business Central URL stayed in ${EXPECTED_INSTANCE}.`,
         `Company URL parameter stayed ${EXPECTED_COMPANY}.`,
         'Business Central shell was visible with existing storageState.',
-        'No write/post/preview/draft/setup action was triggered by the smoke test.'
+        'BC read-only was reachable.',
+        'No booking was triggered.',
+        'No Preview Posting was triggered.',
+        'No Post was triggered.',
+        'No draft was created.',
+        'No setup change was triggered.'
       ],
       notProved: [
         'No business process, posting readiness, ledger trace or book screenshot was tested.',
@@ -134,6 +171,12 @@ test('LIVE-SMOKE-BC-001 confirms BC context without writing', async ({ page }) =
       warnings: [],
       blockedBy: [],
       requiresReview: false,
+      safeToFinalizeState: true,
+      statePatch: safeStatePatch(
+        'observed',
+        RESULT_PATH,
+        'LIVE-SMOKE-BC-001 ran read-only in MCP_1_20260210 / RM-DEMO and produced compact context evidence. No posting, preview, draft, setup change, company switch or book change.'
+      ),
       environment: {
         instance: detectedInstance,
         company: detectedCompany,
@@ -164,6 +207,12 @@ test('LIVE-SMOKE-BC-001 confirms BC context without writing', async ({ page }) =
       warnings: [],
       blockedBy: [error instanceof Error ? error.message : String(error)],
       requiresReview: true,
+      safeToFinalizeState: false,
+      statePatch: safeStatePatch(
+        'blocked',
+        RESULT_PATH,
+        `LIVE-SMOKE-BC-001 blocked: ${error instanceof Error ? error.message : String(error)}`
+      ),
       environment: {
         expectedInstance: EXPECTED_INSTANCE,
         expectedCompany: EXPECTED_COMPANY
