@@ -1,39 +1,49 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-103-FA-GL-JOURNAL-DRAFT-RESULT-REVIEW",
+  "runId": "FIXEDASSETS-104-FA-GL-JOURNAL-BAL-ACCOUNT-DIAGNOSIS",
   "date": "2026-06-19",
-  "workType": "local-fixed-asset-journal-evidence-review",
+  "workType": "fixed-asset-gl-journal-bal-account-readonly-diagnosis",
   "branch": "codex/token-efficient-autopilot-state",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "bcRun": false,
+  "bcRun": true,
   "posted": false,
   "preview": false,
   "setupChanged": false,
   "companySwitched": false,
-  "resultStatus": "observed",
-  "summary": "FA-103 reviewed FA-102 locally and kept Preview Posting/posting locked. Next step is Bal. Account Type diagnosis because BC requires Account Type or Bal. Account Type to be G/L Account or Bank Account.",
+  "apiShortcut": false,
+  "bookChanged": false,
+  "resultStatus": "blocked-partial",
+  "summary": "FA-104 opened Fixed Asset G/L Journals read-only and captured account-type option sets. The old balancing/account error was not visible in this session, so posting readiness is not proven. G/L Account and Bank Account options are visible; one option set appears selected Fixed Asset and another G/L Account. No values were changed.",
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/fixedassets-103/FIXEDASSETS-103-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-103/FIXEDASSETS-103-review.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-103/README.md"
+    "playwright/projects/fibu-book5/evidence/fixedassets-104/FIXEDASSETS-104-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-104/010-bal-account-diagnosis.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-104/020-focused-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-104/README.md"
   ],
   "changedFiles": [
     ".agent/state/current.json",
-    ".agent/state/cases/fixedassets-103-fa-gl-journal-draft-result-review.json",
     ".agent/state/cases/fixedassets-104-fa-gl-journal-bal-account-diagnosis.json",
+    ".agent/state/cases/fixedassets-105-fa-gl-journal-bal-account-decision.json",
     ".agent/state/last_run_summary.json",
-    "playwright/projects/fibu-book5/tests/fixedassets-102-fa-gl-journal-controlled-draft-probe.spec.ts",
-    "playwright/projects/fibu-book5/evidence/fixedassets-103/FIXEDASSETS-103-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-103/FIXEDASSETS-103-review.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-103/README.md"
+    "package.json",
+    "playwright/projects/fibu-book5/CURRENT-STATE.md",
+    "playwright/projects/fibu-book5/LAB-FIT-STATUS.md",
+    "playwright/projects/fibu-book5/tests/fixedassets-104-fa-gl-journal-bal-account-diagnosis.spec.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-104/FIXEDASSETS-104-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-104/010-bal-account-diagnosis.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-104/020-focused-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-104/README.md"
   ],
   "validationCommands": [
     "npm run agent:preflight",
-    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-103/FIXEDASSETS-103-result.json",
-    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-103/FIXEDASSETS-103-result.json",
+    "npm run agent:dry-run",
+    "npm run agent:run-plan",
     "npm run check:encoding",
-    "git diff --check"
+    "git diff --check",
+    "npm run fibu:fixedassets:fa-gl-journal-bal-account-diagnosis",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-104/FIXEDASSETS-104-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-104/FIXEDASSETS-104-result.json"
   ],
-  "nextStep": "Run FIXEDASSETS-104 as narrow UI-first Bal. Account Type diagnosis."
+  "nextStep": "Run FIXEDASSETS-105 as a local decision review before any further FA G/L Journal value correction, Preview Posting or posting."
 }

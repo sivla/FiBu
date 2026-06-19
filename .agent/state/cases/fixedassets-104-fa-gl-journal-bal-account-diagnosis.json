@@ -3,7 +3,7 @@
   "caseId": "FIXEDASSETS-104-FA-GL-JOURNAL-BAL-ACCOUNT-DIAGNOSIS",
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "status": "planned",
+  "status": "blocked-diagnosis-partial",
   "workType": "controlled-sandbox-ui-diagnosis",
   "taskClass": "wizard_work",
   "goal": "Open Fixed Asset G/L Journals in RM-DEMO and diagnose the current Bal. Account Type / Account Type error before any amount retry, Preview Posting or posting.",
@@ -65,5 +65,10 @@
     "posting-gate"
   ],
   "requiresUsageLog": false,
-  "nextSafeAction": "Run a narrow UI-first Bal. Account Type diagnosis; no Preview Posting and no posting."
+  "lastResult": {
+    "status": "blocked",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-104/FIXEDASSETS-104-result.json",
+    "summary": "FA-104 stayed in MCP_1_20260210 / RM-DEMO and captured account-type option sets, but the expected balancing/account error was not visible. G/L Account and Bank Account options are visible; no value correction, no Preview Posting and no posting occurred."
+  },
+  "nextSafeAction": "Run FIXEDASSETS-105 as a local decision review; do not open Business Central."
 }

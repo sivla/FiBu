@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-105-FA-GL-JOURNAL-BAL-ACCOUNT-DECISION",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "local-evidence-review",
+  "taskClass": "judge_work",
+  "goal": "Review FA-104 locally and decide the next safe Fixed Assets journal step without opening Business Central.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-102/FIXEDASSETS-102-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-103/FIXEDASSETS-103-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-104/FIXEDASSETS-104-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-104/010-bal-account-diagnosis.json"
+  ],
+  "knownTruth": [
+    "FA-102 is only a partial FA G/L Journal draft signal; amount 68000 is not proven visible.",
+    "FA-103 kept Preview Posting and posting locked because Vendor balancing must not be repeated as valid.",
+    "FA-104 stayed in MCP_1_20260210 / RM-DEMO and made no value correction, no Preview Posting, no posting and no setup change.",
+    "FA-104 did not show the old balancing/account error in the current UI session.",
+    "FA-104 did show Account Type option sets containing G/L Account and Bank Account.",
+    "FA-104 indicates one visible option set selected Fixed Asset and another selected G/L Account, but it does not prove a corrected journal line or amount."
+  ],
+  "allowedActions": [
+    "read-fa-102-103-104-evidence",
+    "classify-fa-104-as-partial-or-ready",
+    "decide-next-safe-case",
+    "write-local-decision-evidence",
+    "state-patch-plan-only"
+  ],
+  "forbiddenActions": [
+    "open-business-central",
+    "run-playwright",
+    "leave-instance",
+    "company-switch",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "api-shortcut",
+    "book-edit",
+    "change-amount",
+    "change-account-no",
+    "change-bal-account-no",
+    "fake-evidence"
+  ],
+  "acceptanceCriteria": [
+    "The decision names whether the next practical step should first read the current journal line/cleanup state or test a guarded G/L Account balancing path.",
+    "The decision preserves the no-preview/no-post gate until target line, amount and balancing logic are visible.",
+    "The decision does not claim FA-104 as posting readiness.",
+    "State points to the next specific case."
+  ],
+  "stopConditions": [
+    "Evidence is contradictory and cannot support a next case.",
+    "The next step would require Preview Posting or posting without a visible target line and amount.",
+    "The next step would repeat Vendor balancing as valid."
+  ],
+  "recommendedSkills": [
+    "evidence-reviewer",
+    "posting-gate",
+    "fixed-assets"
+  ],
+  "requiresUsageLog": true,
+  "nextSafeAction": "Perform a local FA-105 decision review; do not open Business Central."
+}
