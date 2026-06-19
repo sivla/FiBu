@@ -3,7 +3,7 @@
   "caseId": "FIXEDASSETS-070-LINE-TYPE-SELECTION-DIAGNOSIS",
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "status": "local-diagnosis-complete",
+  "status": "observed",
   "workType": "line-type-selection-diagnosis",
   "goal": "Diagnose how Purchase Invoice Lines can expose or select Type = Fixed Asset without entering K30000 or FA-CNC-01 and without creating another kept draft.",
   "mustRead": [
@@ -54,8 +54,8 @@
   ],
   "lastResult": {
     "status": "observed",
-    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-070/FIXEDASSETS-070-line-type-diagnosis.json",
-    "summary": "Local analysis from FIXEDASSETS-066: Purchase Invoice Lines context was visible, but Type remained Item and Fixed Asset was not visible. Next safe step is read-only Page Inspection or Personalize/action inventory."
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-070/FIXEDASSETS-070-readonly-ui-diagnosis-result.json",
+    "summary": "FIXEDASSETS-070 opened Purchase Invoices read-only in MCP_1_20260210 / RM-DEMO and captured focused line-type signals without clicking actions or creating a draft. The list context did not expose Lines, Type or Fixed Asset."
   },
-  "nextSafeAction": "Run a read-only Page Inspection or Personalize/action inventory diagnostic for Purchase Invoice Lines. Do not click New/Edit/Delete and do not enter target values without explicit approval."
+  "nextSafeAction": "Do not enter K30000 or FA-CNC-01 yet. Either inspect the Purchase Invoice Lines page/table context read-only or request explicit approval for a guarded draft Type-selection probe."
 }

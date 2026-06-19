@@ -1,0 +1,401 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-readonly-line-type-ui-diagnosis-result",
+  "caseId": "FIXEDASSETS-070-LINE-TYPE-SELECTION-DIAGNOSIS",
+  "source": "playwright-readonly-ui-diagnosis",
+  "runPlanId": "FIXEDASSETS-070-LINE-TYPE-SELECTION-DIAGNOSIS-PLAN",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-medium",
+  "changedFiles": [
+    ".agent/state/cases/fixedassets-070.json",
+    ".agent/state/last_run_summary.json",
+    "package.json",
+    "playwright/projects/fibu-book5/tests/fixedassets-070-purchase-invoice-line-type-readonly-diagnosis.spec.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-070/FIXEDASSETS-070-readonly-ui-diagnosis-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-070/010-purchase-invoices-readonly-focused-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-070/README.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-070/FIXEDASSETS-070-readonly-ui-diagnosis-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-070/010-purchase-invoices-readonly-focused-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-070/README.md"
+  ],
+  "flags": {
+    "noWrite": true,
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noBookChange": true,
+    "noApiShortcut": true,
+    "noActionClick": true,
+    "noRecordOpen": true,
+    "noScreenshot": true
+  },
+  "resultStatus": "observed",
+  "environment": {
+    "expectedInstance": "MCP_1_20260210",
+    "expectedCompany": "RM-DEMO",
+    "detectedInstance": "MCP_1_20260210",
+    "detectedCompany": "RM-DEMO",
+    "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=9308&dc=0&bookmark=1D_JgAAAACLAgAAAAJ7BjEAMAA3ADIAMQAx",
+    "title": "Purchase Invoices"
+  },
+  "proved": [
+    "Business Central URL stayed in MCP_1_20260210.",
+    "Company URL parameter stayed RM-DEMO.",
+    "Purchase Invoices context was visible.",
+    "Focused UI text/action signals were collected without clicking New, Edit, Delete, Post or Preview.",
+    "No draft was created and no record was opened."
+  ],
+  "notProved": [
+    "Type = Fixed Asset was not selected or proven in a purchase invoice line.",
+    "K30000 and FA-CNC-01 were not entered.",
+    "No acquisition, depreciation, posting, preview posting or German final proof.",
+    "Read-only visible text cannot prove dropdown values hidden behind an unclicked editable line."
+  ],
+  "warnings": [
+    "Risky actions are visible in inventory only; this run did not click them."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-070-LINE-TYPE-SELECTION-DIAGNOSIS",
+      "active_case_file": ".agent/state/cases/fixedassets-070.json",
+      "nextStep": "Review FIXEDASSETS-070 read-only UI diagnosis and decide whether a Page Inspection/Personalize probe or explicit approval for guarded draft line-type selection is the next safe step."
+    },
+    "lastRunSummary": {
+      "schemaVersion": 1,
+      "runId": "FIXEDASSETS-070-READONLY-UI-DIAGNOSIS",
+      "date": "2026-06-19",
+      "workType": "read-only-ui-context-diagnosis",
+      "branch": "codex/token-efficient-autopilot-state",
+      "bcRun": true,
+      "posted": false,
+      "companySwitched": false,
+      "summary": "FIXEDASSETS-070 opened Purchase Invoices read-only in MCP_1_20260210 / RM-DEMO and captured focused line-type signals without clicking actions or creating a draft.",
+      "nextStep": "Use the focused UI signals to choose the next read-only Page Inspection/Personalize step or request explicit approval for a guarded draft probe."
+    },
+    "activeCase": {
+      "status": "observed",
+      "lastResult": {
+        "status": "observed",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-070/FIXEDASSETS-070-readonly-ui-diagnosis-result.json",
+        "summary": "FIXEDASSETS-070 opened Purchase Invoices read-only in MCP_1_20260210 / RM-DEMO and captured focused line-type signals without clicking actions or creating a draft."
+      },
+      "nextSafeAction": "Do not enter K30000 or FA-CNC-01 yet. Either inspect the Purchase Invoice Lines page/table context read-only or request explicit approval for a guarded draft Type-selection probe."
+    }
+  },
+  "observed": {
+    "startedAt": "2026-06-19T02:11:50.473Z",
+    "finishedAt": "2026-06-19T02:11:56.693Z",
+    "signals": {
+      "purchaseInvoicesVisible": true,
+      "purchaseInvoiceVisible": true,
+      "linesVisible": false,
+      "typeVisible": false,
+      "itemVisible": true,
+      "fixedAssetVisible": false,
+      "selectItemsVisible": false,
+      "k30000Visible": false,
+      "faCnc01Visible": false,
+      "newVisible": true,
+      "previewOrPostVisible": true,
+      "focusedLines": [
+        "Purchase Invoices:",
+        "Neu",
+        "Post",
+        "Buy-from Vendor No.",
+        "Buy-from Vendor Name",
+        "Vendor Invoice No.",
+        "New from PDF",
+        "Vendor Details",
+        "Vendor No.",
+        "Liste mit Titel Purchase Invoices hat jetzt einen Artikel"
+      ]
+    },
+    "actionInventory": {
+      "actionCount": 108,
+      "riskyActions": [
+        {
+          "label": "Finance Post financial transactions, manage budgets, analyze G/L data, and prepare financial statements.",
+          "x": 471,
+          "y": 18,
+          "width": 71,
+          "height": 23,
+          "risky": true,
+          "relevant": false,
+          "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=9308&aadTenantId=b8fd10d1-3599-4721-8651-f95bd868aba7&startTraceId=2394368564e94025a8d294cf141a1143&tid=e05bdbfa-bc09-42ed-9baf-8ff3d1e7e8cb&runinframe=1"
+        },
+        {
+          "label": "Neu Neu",
+          "x": 548,
+          "y": 51,
+          "width": 89,
+          "height": 38,
+          "risky": true,
+          "relevant": true,
+          "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=9308&aadTenantId=b8fd10d1-3599-4721-8651-f95bd868aba7&startTraceId=2394368564e94025a8d294cf141a1143&tid=e05bdbfa-bc09-42ed-9baf-8ff3d1e7e8cb&runinframe=1"
+        },
+        {
+          "label": "Neu Neu Erstellen Sie einen neuen Eintrag.",
+          "x": 548,
+          "y": 51,
+          "width": 62,
+          "height": 38,
+          "risky": true,
+          "relevant": true,
+          "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=9308&aadTenantId=b8fd10d1-3599-4721-8651-f95bd868aba7&startTraceId=2394368564e94025a8d294cf141a1143&tid=e05bdbfa-bc09-42ed-9baf-8ff3d1e7e8cb&runinframe=1"
+        },
+        {
+          "label": "Verwandte Aktionen fur Neu Verwandte Aktionen fur Neu",
+          "x": 608,
+          "y": 51,
+          "width": 28,
+          "height": 38,
+          "risky": true,
+          "relevant": true,
+          "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=9308&aadTenantId=b8fd10d1-3599-4721-8651-f95bd868aba7&startTraceId=2394368564e94025a8d294cf141a1143&tid=e05bdbfa-bc09-42ed-9baf-8ff3d1e7e8cb&runinframe=1"
+        },
+        {
+          "label": "Loschen Loschen Die ausgewahlte Zeile loschen",
+          "x": 636,
+          "y": 51,
+          "width": 92,
+          "height": 38,
+          "risky": true,
+          "relevant": true,
+          "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=9308&aadTenantId=b8fd10d1-3599-4721-8651-f95bd868aba7&startTraceId=2394368564e94025a8d294cf141a1143&tid=e05bdbfa-bc09-42ed-9baf-8ff3d1e7e8cb&runinframe=1"
+        },
+        {
+          "label": "Post Post",
+          "x": 838,
+          "y": 51,
+          "width": 89,
+          "height": 38,
+          "risky": true,
+          "relevant": false,
+          "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=9308&aadTenantId=b8fd10d1-3599-4721-8651-f95bd868aba7&startTraceId=2394368564e94025a8d294cf141a1143&tid=e05bdbfa-bc09-42ed-9baf-8ff3d1e7e8cb&runinframe=1"
+        },
+        {
+          "label": "Post Post Finalize the document or journal by posting the amounts and quantities to the related accounts in your company books. (F9)",
+          "x": 838,
+          "y": 51,
+          "width": 62,
+          "height": 38,
+          "risky": true,
+          "relevant": false,
+          "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=9308&aadTenantId=b8fd10d1-3599-4721-8651-f95bd868aba7&startTraceId=2394368564e94025a8d294cf141a1143&tid=e05bdbfa-bc09-42ed-9baf-8ff3d1e7e8cb&runinframe=1"
+        },
+        {
+          "label": "Verwandte Aktionen fur Post Verwandte Aktionen fur Post",
+          "x": 899,
+          "y": 51,
+          "width": 28,
+          "height": 38,
+          "risky": true,
+          "relevant": false,
+          "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=9308&aadTenantId=b8fd10d1-3599-4721-8651-f95bd868aba7&startTraceId=2394368564e94025a8d294cf141a1143&tid=e05bdbfa-bc09-42ed-9baf-8ff3d1e7e8cb&runinframe=1"
+        },
+        {
+          "label": "Invoice Invoice",
+          "x": 927,
+          "y": 51,
+          "width": 86,
+          "height": 38,
+          "risky": true,
+          "relevant": false,
+          "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=9308&aadTenantId=b8fd10d1-3599-4721-8651-f95bd868aba7&startTraceId=2394368564e94025a8d294cf141a1143&tid=e05bdbfa-bc09-42ed-9baf-8ff3d1e7e8cb&runinframe=1"
+        },
+        {
+          "label": "Neu Neu",
+          "x": 578,
+          "y": 61,
+          "width": 26,
+          "height": 19,
+          "risky": true,
+          "relevant": true,
+          "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=9308&aadTenantId=b8fd10d1-3599-4721-8651-f95bd868aba7&startTraceId=2394368564e94025a8d294cf141a1143&tid=e05bdbfa-bc09-42ed-9baf-8ff3d1e7e8cb&runinframe=1"
+        },
+        {
+          "label": "Loschen Loschen",
+          "x": 667,
+          "y": 61,
+          "width": 50,
+          "height": 19,
+          "risky": true,
+          "relevant": false,
+          "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=9308&aadTenantId=b8fd10d1-3599-4721-8651-f95bd868aba7&startTraceId=2394368564e94025a8d294cf141a1143&tid=e05bdbfa-bc09-42ed-9baf-8ff3d1e7e8cb&runinframe=1"
+        },
+        {
+          "label": "Post Post",
+          "x": 868,
+          "y": 61,
+          "width": 26,
+          "height": 19,
+          "risky": true,
+          "relevant": false,
+          "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=9308&aadTenantId=b8fd10d1-3599-4721-8651-f95bd868aba7&startTraceId=2394368564e94025a8d294cf141a1143&tid=e05bdbfa-bc09-42ed-9baf-8ff3d1e7e8cb&runinframe=1"
+        },
+        {
+          "label": "Invoice Invoice",
+          "x": 938,
+          "y": 61,
+          "width": 44,
+          "height": 19,
+          "risky": true,
+          "relevant": false,
+          "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=9308&aadTenantId=b8fd10d1-3599-4721-8651-f95bd868aba7&startTraceId=2394368564e94025a8d294cf141a1143&tid=e05bdbfa-bc09-42ed-9baf-8ff3d1e7e8cb&runinframe=1"
+        },
+        {
+          "label": "Vendor Invoice No. Sortieren nach 'Vendor Invoice No.'",
+          "x": 897,
+          "y": 122,
+          "width": 101,
+          "height": 16,
+          "risky": true,
+          "relevant": false,
+          "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=9308&aadTenantId=b8fd10d1-3599-4721-8651-f95bd868aba7&startTraceId=2394368564e94025a8d294cf141a1143&tid=e05bdbfa-bc09-42ed-9baf-8ff3d1e7e8cb&runinframe=1"
+        },
+        {
+          "label": "Menu fur Vendor Invoice No. offnen Menu offnen",
+          "x": 1018,
+          "y": 122,
+          "width": 12,
+          "height": 16,
+          "risky": true,
+          "relevant": false,
+          "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=9308&aadTenantId=b8fd10d1-3599-4721-8651-f95bd868aba7&startTraceId=2394368564e94025a8d294cf141a1143&tid=e05bdbfa-bc09-42ed-9baf-8ff3d1e7e8cb&runinframe=1"
+        },
+        {
+          "label": "New from PDF Upload a PDF invoice to create a purchase invoice with agent assistance.",
+          "x": 828,
+          "y": 196,
+          "width": 144,
+          "height": 32,
+          "risky": true,
+          "relevant": true,
+          "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=9308&aadTenantId=b8fd10d1-3599-4721-8651-f95bd868aba7&startTraceId=2394368564e94025a8d294cf141a1143&tid=e05bdbfa-bc09-42ed-9baf-8ff3d1e7e8cb&runinframe=1"
+        }
+      ],
+      "relevantActions": [
+        {
+          "label": "Neu Neu",
+          "x": 548,
+          "y": 51,
+          "width": 89,
+          "height": 38,
+          "risky": true,
+          "relevant": true,
+          "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=9308&aadTenantId=b8fd10d1-3599-4721-8651-f95bd868aba7&startTraceId=2394368564e94025a8d294cf141a1143&tid=e05bdbfa-bc09-42ed-9baf-8ff3d1e7e8cb&runinframe=1"
+        },
+        {
+          "label": "Neu Neu Erstellen Sie einen neuen Eintrag.",
+          "x": 548,
+          "y": 51,
+          "width": 62,
+          "height": 38,
+          "risky": true,
+          "relevant": true,
+          "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=9308&aadTenantId=b8fd10d1-3599-4721-8651-f95bd868aba7&startTraceId=2394368564e94025a8d294cf141a1143&tid=e05bdbfa-bc09-42ed-9baf-8ff3d1e7e8cb&runinframe=1"
+        },
+        {
+          "label": "Verwandte Aktionen fur Neu Verwandte Aktionen fur Neu",
+          "x": 608,
+          "y": 51,
+          "width": 28,
+          "height": 38,
+          "risky": true,
+          "relevant": true,
+          "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=9308&aadTenantId=b8fd10d1-3599-4721-8651-f95bd868aba7&startTraceId=2394368564e94025a8d294cf141a1143&tid=e05bdbfa-bc09-42ed-9baf-8ff3d1e7e8cb&runinframe=1"
+        },
+        {
+          "label": "Loschen Loschen Die ausgewahlte Zeile loschen",
+          "x": 636,
+          "y": 51,
+          "width": 92,
+          "height": 38,
+          "risky": true,
+          "relevant": true,
+          "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=9308&aadTenantId=b8fd10d1-3599-4721-8651-f95bd868aba7&startTraceId=2394368564e94025a8d294cf141a1143&tid=e05bdbfa-bc09-42ed-9baf-8ff3d1e7e8cb&runinframe=1"
+        },
+        {
+          "label": "Neu Neu",
+          "x": 578,
+          "y": 61,
+          "width": 26,
+          "height": 19,
+          "risky": true,
+          "relevant": true,
+          "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=9308&aadTenantId=b8fd10d1-3599-4721-8651-f95bd868aba7&startTraceId=2394368564e94025a8d294cf141a1143&tid=e05bdbfa-bc09-42ed-9baf-8ff3d1e7e8cb&runinframe=1"
+        },
+        {
+          "label": "New from PDF Upload a PDF invoice to create a purchase invoice with agent assistance.",
+          "x": 828,
+          "y": 196,
+          "width": 144,
+          "height": 32,
+          "risky": true,
+          "relevant": true,
+          "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=9308&aadTenantId=b8fd10d1-3599-4721-8651-f95bd868aba7&startTraceId=2394368564e94025a8d294cf141a1143&tid=e05bdbfa-bc09-42ed-9baf-8ff3d1e7e8cb&runinframe=1"
+        }
+      ],
+      "sampleActionLabels": [
+        "App-Startfeld App-Startfeld",
+        "Rhein-Main Demo GmbH Rhein-Main Demo GmbH",
+        "Copilot Copilot",
+        "Suchen Suchen",
+        "Benachrichtigungen Benachrichtigungen",
+        "Einstellungen Einstellungen",
+        "Hilfe Hilfe",
+        "KK Konto-Manager fur Kajetan Kalicki Konto-Manager fur Kajetan Kalicki",
+        "Zum Hauptinhalt wechseln",
+        "Rhein-Main Demo GmbH Finance Cash Management Sales Purchasing Shopify Alle Berichte Agent A Payables Agent PA Verkaufsauftragsagent VA Hauptnavigation",
+        "Agent A Agent",
+        "Payables Agent PA Payables Agent",
+        "Verkaufsauftragsagent VA Verkaufsauftragsagent",
+        "Rhein-Main Demo GmbH Zum Rollencenter gehen",
+        "Nicht konfiguriert",
+        "Finance Post financial transactions, manage budgets, analyze G/L data, and prepare financial statements.",
+        "Cash Management Process incoming and outgoing payments. Set up bank accounts and service connections for electronic banking.",
+        "Sales Make quotes, orders, and credit memos to customers. Manage customers and view transaction history.",
+        "Purchasing Manage purchase invoices and credit memos. Maintain vendors and their history.",
+        "Shopify Verwalten Sie Shopify-Shops, Kunden, Produkte, Auftrage, Geschenkkarten, Transaktionen und Auszahlungen.",
+        "Alle Berichte Durchsucht alle Berichte in Business Central",
+        "Alle verfugbaren Geschaftsfunktionen fur meine Rolle in Business Central erkunden Alle verfugbaren Geschaftsfunktionen fur meine Rolle in Business Central erkunden",
+        "Finance Finance",
+        "Cash Management Cash Management",
+        "Sales Sales",
+        "Purchasing Purchasing",
+        "Shopify Shopify",
+        "Alle Berichte Alle Berichte",
+        "Alle Listenansicht wechseln",
+        "Hier sehen Sie, was Copilot auf dieser Seite tun kann Hier sehen Sie, was Copilot auf dieser Seite tun kann",
+        "Purchase Invoices suchen",
+        "In den Analysemodus wechseln In den Analysemodus wechseln",
+        "Neu Neu",
+        "Neu Neu Erstellen Sie einen neuen Eintrag.",
+        "Verwandte Aktionen fur Neu Verwandte Aktionen fur Neu",
+        "Loschen Loschen Die ausgewahlte Zeile loschen",
+        "Release Release",
+        "Release Release Release the document to the next stage of processing. You must reopen the document before you can make changes to it. (Ctrl+F9)",
+        "Verwandte Aktionen fur Release Verwandte Aktionen fur Release",
+        "Post Post"
+      ],
+      "frames": [
+        {
+          "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=9308&dc=0&bookmark=1D_JgAAAACLAgAAAAJ7BjEAMAA3ADIAMQAx",
+          "actionCount": 8
+        },
+        {
+          "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=9308&aadTenantId=b8fd10d1-3599-4721-8651-f95bd868aba7&startTraceId=2394368564e94025a8d294cf141a1143&tid=e05bdbfa-bc09-42ed-9baf-8ff3d1e7e8cb&runinframe=1",
+          "actionCount": 100
+        }
+      ]
+    }
+  },
+  "nextStep": "Use this read-only diagnosis to decide between Page Inspection/Personalize for Purchase Invoice Lines or explicit approval for a guarded draft line-type selection probe."
+}

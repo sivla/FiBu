@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-070-LINE-TYPE-SELECTION-DIAGNOSIS-LOCAL",
+  "runId": "FIXEDASSETS-070-READONLY-UI-DIAGNOSIS",
   "date": "2026-06-19",
-  "workType": "local-evidence-analysis",
+  "workType": "read-only-ui-context-diagnosis",
   "branch": "codex/token-efficient-autopilot-state",
-  "bcRun": false,
+  "bcRun": true,
   "posted": false,
   "companySwitched": false,
-  "summary": "Analyzed FIXEDASSETS-066 evidence locally: Purchase Invoice Lines context was visible, but Type remained Item and Fixed Asset was not visible. No BC or Playwright run was executed; target values remain locked.",
+  "summary": "Opened Purchase Invoices read-only in MCP_1_20260210 / RM-DEMO for FIXEDASSETS-070. The list page exposed Purchase Invoices, New/Neu, Post and vendor columns, but did not expose Lines, Type or Fixed Asset. No action was clicked and no draft was created.",
   "commandsToRunBeforeAutopilot": [
     "npm run agent:preflight",
     "npm run agent:context",
@@ -40,5 +40,5 @@
     "stateFinalize": "scripts/agent/state-finalize.mjs",
     "skillQualityCheck": "scripts/agent/skills-quality-check.mjs"
   },
-  "nextStep": "Run a small read-only Page Inspection or Personalize/action inventory diagnostic for Purchase Invoice Lines before any further draft-capable Type selection probe."
+  "nextStep": "Use the FIXEDASSETS-070 read-only UI diagnosis to choose either read-only Page Inspection/Personalize in the Purchase Invoice Lines context or request explicit approval for a guarded draft Type-selection probe."
 }
