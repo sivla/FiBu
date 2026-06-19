@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-19T21:55:00.000Z",
+  "updatedAt": "2026-06-19T22:20:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "fixedassets",
-  "activeCase": "FIXEDASSETS-102-FA-GL-JOURNAL-CONTROLLED-DRAFT-PROBE",
-  "active_case_file": ".agent/state/cases/fixedassets-102-fa-gl-journal-controlled-draft-probe.json",
-  "lastReferenceCase": "FIXEDASSETS-101-FA-GL-JOURNAL-OWNERSHIP-GATE",
-  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-101-fa-gl-journal-ownership-gate.json",
+  "activeCase": "FIXEDASSETS-103-FA-GL-JOURNAL-DRAFT-RESULT-REVIEW",
+  "active_case_file": ".agent/state/cases/fixedassets-103-fa-gl-journal-draft-result-review.json",
+  "lastReferenceCase": "FIXEDASSETS-102-FA-GL-JOURNAL-CONTROLLED-DRAFT-PROBE",
+  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-102-fa-gl-journal-controlled-draft-probe.json",
   "mode": "token-efficient-autopilot-tooling-bootstrap",
   "requiresStrongModel": false,
   "requiredPreflightChecks": [
@@ -19,14 +19,9 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "open-business-central",
-    "run-playwright",
-    "confirm-instance-and-company",
-    "open-fa-gl-journals",
-    "capture-before-journal-row",
-    "enter-one-controlled-fa-journal-draft-line",
-    "capture-after-journal-row",
-    "document-cleanup-or-keep-trace",
+    "read-fixedassets-102-evidence",
+    "classify-partial-draft-result",
+    "decide-next-safe-journal-step",
     "state-patch-plan-only"
   ],
   "forbiddenActions": [
@@ -47,7 +42,7 @@
     "book-edit",
     "click-finish"
   ],
-  "nextStep": "FIXEDASSETS-102: run one controlled FA G/L Journal draft probe in RM-DEMO. No Preview Posting, no posting, no setup change. If no cleanup path is visible, keep exactly one documented laboratory draft line as evidence.",
+  "nextStep": "FIXEDASSETS-103: review FA-102 partial journal draft evidence locally. Amount 68000 is not proven; do not unlock Preview Posting or posting.",
   "subagentPlanPolicy": {
     "default": "optional",
     "execution": "plan-only-no-subagents-spawned",

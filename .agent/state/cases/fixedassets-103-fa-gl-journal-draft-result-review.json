@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-103-FA-GL-JOURNAL-DRAFT-RESULT-REVIEW",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "local-evidence-review",
+  "taskClass": "judge_work",
+  "goal": "Review FA-102 partial FA G/L Journal draft evidence and decide the next safe step before any retry, Preview Posting or posting.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-102/FIXEDASSETS-102-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-102/020-draft-entry-probe.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-102/030-after-journal-row.json"
+  ],
+  "knownTruth": [
+    "FA-102 stayed in MCP_1_20260210 / RM-DEMO.",
+    "FA-102 did not open Preview Posting and did not post.",
+    "FA-CNC-01, HGB, Fixed Asset, Acquisition Cost and K30000 were visible after the probe.",
+    "Amount 68000 was not visible in the after-snapshot.",
+    "A partial laboratory draft signal may remain and must be treated as controlled-but-not-complete until reviewed."
+  ],
+  "allowedActions": [
+    "read-fixedassets-102-evidence",
+    "classify-partial-draft-result",
+    "decide-next-safe-journal-step",
+    "state-patch-plan-only"
+  ],
+  "forbiddenActions": [
+    "open-business-central",
+    "run-playwright",
+    "preview-posting",
+    "post",
+    "setup-change",
+    "company-switch",
+    "api-shortcut",
+    "book-edit",
+    "fake-evidence"
+  ],
+  "acceptanceCriteria": [
+    "The review states whether FA-102 is sufficient for a later amount retry, cleanup attempt or route change.",
+    "The review explicitly keeps Preview Posting and posting locked.",
+    "The review chooses exactly one next safe case.",
+    "No Business Central or Playwright execution occurs in this review."
+  ],
+  "stopConditions": [
+    "FA-102 evidence is missing.",
+    "The result would be used to claim complete journal readiness despite missing amount proof.",
+    "The decision would unlock Preview Posting or posting."
+  ],
+  "recommendedSkills": [
+    "evidence-writer",
+    "posting-gate"
+  ],
+  "requiresUsageLog": true,
+  "nextSafeAction": "Review FA-102 partial draft evidence locally."
+}
