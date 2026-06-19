@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-LINE-TYPE-BLOCKER-CONSOLIDATION",
+  "runId": "FIXEDASSETS-071-GUARDED-DRAFT-LINE-TYPE-CONTEXT-PROBE",
   "date": "2026-06-19",
-  "workType": "state-consolidation",
+  "workType": "guarded-draft-line-type-context-probe",
   "branch": "codex/token-efficient-autopilot-state",
-  "bcRun": false,
+  "bcRun": true,
   "posted": false,
   "companySwitched": false,
-  "summary": "Consolidated the Fixed Assets Purchase Invoice line-type blocker. FA-067, FA-068 and FA-069 are superseded by FA-070; FA-071 is prepared as a blocked approval gate for a future guarded draft Lines-context probe. No BC or Playwright run was executed.",
+  "summary": "FA-071 clicked scoped New/Neu, reached real Purchase Invoice Lines context, proved Type/No. columns and Item line type, did not enter K30000 or FA-CNC-01, did not preview/post, and removed draft 107211 through UI cleanup retry.",
   "commandsToRunBeforeAutopilot": [
     "npm run agent:preflight",
     "npm run agent:context",
@@ -40,5 +40,5 @@
     "stateFinalize": "scripts/agent/state-finalize.mjs",
     "skillQualityCheck": "scripts/agent/skills-quality-check.mjs"
   },
-  "nextStep": "Do not run more Purchase Invoices list diagnostics. Next useful progress requires real Purchase Invoice Lines context: read-only Page Inspection/Personalize in that context or explicit approval for FA-071 guarded draft Type-selection probe."
+  "nextStep": "Fix the Type selector/dropdown context for Purchase Invoice Lines. K30000 and FA-CNC-01 remain locked until Type = Fixed Asset is visibly or processually proven."
 }

@@ -3,11 +3,11 @@
   "caseId": "FIXEDASSETS-071-GUARDED-DRAFT-LINE-TYPE-CONTEXT-PROBE",
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "status": "blocked-awaiting-explicit-approval",
+  "status": "blocked-item-line-type-visible-cleanup-complete",
   "workType": "guarded-draft-line-type-context-probe",
   "goal": "Open exactly one guarded Purchase Invoice draft only after explicit user approval, inspect the real Lines context for Type / Fixed Asset selection, and clean up any draft immediately.",
   "blockedBy": [
-    "Explicit user approval is required before clicking New/Neu or creating any draft."
+    "Type still appears as Item in the Purchase Invoice Lines context; Fixed Asset is not visible yet."
   ],
   "mustRead": [
     ".agent/state/current.json",
@@ -56,5 +56,10 @@
     "playwright/projects/fibu-book5/evidence/fixedassets-066/FIXEDASSETS-066-result.json",
     "playwright/projects/fibu-book5/evidence/fixedassets-070/FIXEDASSETS-070-readonly-ui-diagnosis-result.json"
   ],
-  "nextSafeAction": "Wait for explicit user approval. Without approval, do not run Playwright, do not open Business Central, and do not click New/Neu."
+  "lastResult": {
+    "status": "blocked-item-line-type-visible-cleanup-complete",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-071/FIXEDASSETS-071-result.json",
+    "summary": "FA-071 clicked scoped New/Neu, reached real Purchase Invoice Lines context, proved Type/No. columns and Item line type, did not enter K30000 or FA-CNC-01, did not preview/post, and removed draft 107211 through UI cleanup retry."
+  },
+  "nextSafeAction": "Fix the Type selector/dropdown context for Purchase Invoice Lines. Do not enter K30000 or FA-CNC-01 until Type = Fixed Asset is visibly or processually proven."
 }
