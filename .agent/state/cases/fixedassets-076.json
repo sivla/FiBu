@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-076-GUARDED-DIRECT-LINE-TYPE-VALUE-ENTRY",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "purchase-invoice-line-type-direct-ui-probe",
+  "goal": "Create a temporary Purchase Invoice draft, focus the Purchase Invoice Lines Type cell, enter only Fixed Asset as the line type through guarded UI value entry, verify the visible line type, then cleanup the draft.",
+  "basedOn": [
+    ".agent/state/cases/fixedassets-072.json",
+    ".agent/state/cases/fixedassets-073.json",
+    ".agent/state/cases/fixedassets-074.json",
+    ".agent/state/cases/fixedassets-075.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-075/FIXEDASSETS-075-decision.json"
+  ],
+  "knownTruth": [
+    "Microsoft Learn documents fixed asset acquisition through purchase-document/purchase-invoice routes.",
+    "FA-074 Type help text mentions fixed asset as a possible buying type.",
+    "The current Playwright evidence does not yet show Type = Fixed Asset selected in Purchase Invoice Lines.",
+    "The current Playwright evidence does not yet prove Purchase Line source table via Page Inspection.",
+    "K30000 and FA-CNC-01 remain locked until the line Type is visibly Fixed Asset."
+  ],
+  "allowedActions": [
+    "open-business-central-in-MCP_1_20260210",
+    "confirm-company-RM-DEMO",
+    "click-scoped-New-Neu-on-Purchase-Invoices-for-temporary-draft",
+    "focus-purchase-invoice-lines-type-cell",
+    "enter-only-line-type-fixed-asset",
+    "verify-visible-line-type",
+    "write-json-evidence",
+    "write-compact-learning-note",
+    "cleanup-temporary-draft-if-created",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "enter-K30000",
+    "enter-FA-CNC-01",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "api-shortcut",
+    "book-edit",
+    "keep-draft"
+  ],
+  "defaultLockedActionsUnlockedForThisCase": [
+    "new-draft",
+    "edit-record-for-line-type-only",
+    "delete-record-for-cleanup-only"
+  ],
+  "acceptanceCriteria": [
+    "Instance MCP_1_20260210 and company RM-DEMO are confirmed before any New action.",
+    "The New action is scoped to Purchase Invoices, not global New.",
+    "No vendor number, fixed asset number, amount, posting group, preview or posting action is entered.",
+    "Only the line Type value may be attempted in the temporary draft.",
+    "If Fixed Asset becomes visible, the result records that the next case may map the No. field route without entering K30000 yet.",
+    "If direct Type value entry fails, the result records the exact blocker and rejects another identical retry.",
+    "Any persisted draft is deleted or, if cleanup fails, documented as a blocker before ending."
+  ],
+  "stopConditions": [
+    "Business Central is not in instance MCP_1_20260210.",
+    "Company is not RM-DEMO.",
+    "Purchase Invoices page context is not clear.",
+    "A dialog asks to post, preview, ship, invoice, pay, keep a draft or change setup.",
+    "The UI attempts to enter K30000 or FA-CNC-01.",
+    "Cleanup cannot be proven after a draft number was created."
+  ],
+  "recommendedSkills": [
+    "bc-navigation",
+    "safety-gate-checker",
+    "evidence-writer"
+  ],
+  "nextSafeAction": "Run a guarded UI-first Playwright probe that enters only Purchase Invoice Line Type = Fixed Asset in a temporary draft and cleans up before exit.",
+  "mustRead": [
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-075.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-075/FIXEDASSETS-075-decision.json",
+    ".agent/capabilities.json",
+    "package.json"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-076/FIXEDASSETS-076-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-076/FIXEDASSETS-076-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-076/cleanup-result.json"
+  ]
+}

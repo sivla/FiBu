@@ -1,0 +1,120 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-line-type-capability-decision",
+  "caseId": "FIXEDASSETS-075-LINE-TYPE-CAPABILITY-DECISION",
+  "source": "local-evidence-review-with-microsoft-learn-crosscheck",
+  "resultStatus": "observed",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "purchase-invoice-line-type-capability-decision",
+  "reviewedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-072/FIXEDASSETS-072-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-073/FIXEDASSETS-073-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-074/FIXEDASSETS-074-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-074/031-page-inspection-focused-lines.txt"
+  ],
+  "sourceRefs": [
+    {
+      "type": "microsoft-learn",
+      "title": "Acquire fixed assets - Business Central",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/business-central/fa-how-acquire",
+      "usedFor": "Business Central supports fixed asset acquisition through several routes, including purchase order and acquisition action/journal routes."
+    },
+    {
+      "type": "microsoft-learn",
+      "title": "Purchase fixed assets in Dynamics 365 Business Central",
+      "url": "https://learn.microsoft.com/en-us/training/modules/purchase-fixed-assets/",
+      "usedFor": "Microsoft Learn training module states that purchase invoices can post acquisition cost to a fixed asset."
+    },
+    {
+      "type": "microsoft-learn-release-plan",
+      "title": "Create multiple fixed asset cards",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/release-plan/2025wave2/smb/dynamics365-business-central/create-multiple-fixed-asset-cards",
+      "usedFor": "Release plan explicitly describes choosing Fixed Asset in the Type field on a purchase document line."
+    }
+  ],
+  "decision": {
+    "selectedRoute": "FIXEDASSETS-076-GUARDED-DIRECT-LINE-TYPE-VALUE-ENTRY",
+    "routeType": "ui-first-temporary-draft-probe",
+    "reason": "Evidence and Microsoft Learn indicate fixed asset purchase lines are functionally valid, but FA-072/073 could not expose the option through dropdown/pointer routes and FA-074 Page Inspection did not reach Purchase Line source table. The next distinct UI-first route is a guarded direct Type-cell value entry of Fixed Asset only, with target values still locked.",
+    "notSelected": [
+      {
+        "route": "repeat-type-cell-dropdown-clicks",
+        "reason": "Rejected because FA-072 and FA-073 already proved this loop does not expose Fixed Asset."
+      },
+      {
+        "route": "enter-K30000-and-FA-CNC-01-now",
+        "reason": "Rejected because Type = Fixed Asset is not yet visibly proven as the active line type."
+      },
+      {
+        "route": "setup-change",
+        "reason": "Rejected for this decision run; no setup blocker has been proven yet."
+      },
+      {
+        "route": "api-shortcut",
+        "reason": "Rejected because the project requires UI-first Klickpfad evidence."
+      }
+    ]
+  },
+  "proved": [
+    "FA-072 exposed only Option Values: Item through the first Type-cell route.",
+    "FA-073 pointer/keyboard alternatives still did not expose Type = Fixed Asset.",
+    "FA-074 Page Inspection opened after focusing Type, but resolved to Purchase Invoice / Purchase Header technical context, not Purchase Line.",
+    "FA-074 Type help text explicitly mentions fixed asset as a possible buying type.",
+    "Microsoft Learn supports fixed asset acquisition through purchase-document/purchase-invoice routes."
+  ],
+  "notProved": [
+    "Type = Fixed Asset is not yet visibly selected in the current Purchase Invoice Lines UI.",
+    "Purchase Line source table is not yet proven by Page Inspection in this Playwright context.",
+    "K30000 and FA-CNC-01 remain locked.",
+    "No Preview Posting, posting, setup change or German final proof."
+  ],
+  "nextCase": {
+    "caseId": "FIXEDASSETS-076-GUARDED-DIRECT-LINE-TYPE-VALUE-ENTRY",
+    "goal": "Create a temporary Purchase Invoice draft, focus the Type cell, enter only Fixed Asset as the line type through UI keyboard/value entry, verify whether the visible line type changes, then cleanup the draft.",
+    "allowedActions": [
+      "open-business-central-in-MCP_1_20260210",
+      "confirm-company-RM-DEMO",
+      "click-scoped-New-Neu-on-Purchase-Invoices-for-temporary-draft",
+      "focus-purchase-invoice-lines-type-cell",
+      "enter-only-line-type-fixed-asset",
+      "verify-visible-line-type",
+      "write-json-evidence",
+      "cleanup-temporary-draft-if-created"
+    ],
+    "forbiddenActions": [
+      "enter-K30000",
+      "enter-FA-CNC-01",
+      "preview-posting",
+      "post",
+      "ship",
+      "invoice",
+      "payment",
+      "setup-change",
+      "api-shortcut",
+      "book-edit",
+      "keep-draft"
+    ],
+    "acceptanceCriteria": [
+      "No vendor or fixed asset number is entered.",
+      "Only the line Type value may be changed in a temporary draft.",
+      "If Fixed Asset becomes visible, the next run may plan target field mapping.",
+      "If the direct value entry fails, the next run should switch to purchase order route or setup/page capability review instead of repeating the same route.",
+      "Any persisted draft must be deleted before the run ends."
+    ]
+  },
+  "safeToFinalizeState": true,
+  "requiresReview": false,
+  "blockedBy": [],
+  "flags": {
+    "bcExecuted": false,
+    "playwrightExecuted": false,
+    "noBookChange": true,
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noTargetVendorEntry": true,
+    "noTargetFixedAssetEntry": true,
+    "noApiShortcut": true
+  }
+}

@@ -3,7 +3,7 @@
   "caseId": "FIXEDASSETS-075-LINE-TYPE-CAPABILITY-DECISION",
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "status": "planned",
+  "status": "observed",
   "workType": "purchase-invoice-line-type-capability-decision",
   "goal": "Decide the next UI-first route for proving or enabling Purchase Invoice Line Type = Fixed Asset after FA-072/073/074 showed the Type field supports fixed asset conceptually but current UI automation does not expose the option.",
   "basedOn": [
@@ -19,7 +19,8 @@
     "FA-074 Page Inspection opened from focused Type context but resolved to Purchase Invoice / Purchase Header technical context, not Purchase Line.",
     "FA-074 Type help text explicitly mentions fixed asset as a possible buying type.",
     "K30000 and FA-CNC-01 remain locked until Type = Fixed Asset is visibly proven.",
-    "No Preview Posting, posting, payment, setup change or target value entry is proven for this block."
+    "No Preview Posting, posting, payment, setup change or target value entry is proven for this block.",
+    "FA-075 selected FA-076 as the next safe UI-first route: guarded direct Type-cell value entry of Fixed Asset only."
   ],
   "allowedActions": [
     "local-evidence-review",
@@ -53,7 +54,19 @@
     "evidence-writer",
     "next-test-selector"
   ],
-  "nextSafeAction": "Review FA-072/073/074 evidence and choose one concrete next route before any more Purchase Invoice target-value entry.",
+  "lastResult": {
+    "resultStatus": "observed",
+    "evidence": [
+      "playwright/projects/fibu-book5/evidence/fixedassets-075/FIXEDASSETS-075-decision.json",
+      "playwright/projects/fibu-book5/evidence/fixedassets-075/FIXEDASSETS-075-decision.md",
+      "playwright/projects/fibu-book5/evidence/fixedassets-075/README.md"
+    ],
+    "selectedNextCase": "FIXEDASSETS-076-GUARDED-DIRECT-LINE-TYPE-VALUE-ENTRY",
+    "bcRun": false,
+    "playwrightRun": false,
+    "bookChanged": false
+  },
+  "nextSafeAction": "Run FA-076: create a temporary Purchase Invoice draft, attempt only Type = Fixed Asset in the line Type cell, verify visible result, and cleanup.",
   "mustRead": [
     ".agent/state/current.json",
     ".agent/state/cases/fixedassets-074.json",
