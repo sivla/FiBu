@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-098-PURCHASE-INVOICE-LINE-TYPE-PROOF-REVIEW",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "local-evidence-review",
+  "taskClass": "judge_work",
+  "goal": "Review FIXEDASSETS-097 evidence and decide the next guarded Fixed Asset acquisition step without opening Business Central.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-097/FIXEDASSETS-097-result.json"
+  ],
+  "knownTruth": [
+    "FIXEDASSETS-097 is allowed to prove only the Purchase Invoice line Type route.",
+    "Target values K30000 and FA-CNC-01 remain locked until a separate case explicitly unlocks them.",
+    "Preview Posting and posting remain locked until line type and target field mapping are proven."
+  ],
+  "allowedActions": [
+    "read-fixedassets-097-evidence",
+    "classify-line-type-proof-result",
+    "create-next-case-plan",
+    "state-patch-plan-only"
+  ],
+  "forbiddenActions": [
+    "open-business-central",
+    "run-playwright",
+    "enter-K30000",
+    "enter-FA-CNC-01",
+    "preview-posting",
+    "post",
+    "setup-change",
+    "book-edit",
+    "api-shortcut",
+    "fake-evidence"
+  ],
+  "acceptanceCriteria": [
+    "The review states whether FIXEDASSETS-097 proved Type = Fixed Asset selectable/visible/blocked.",
+    "The review chooses exactly one next safe case.",
+    "No Business Central or Playwright execution occurs in this review case."
+  ],
+  "stopConditions": [
+    "FIXEDASSETS-097 evidence is missing.",
+    "FIXEDASSETS-097 cleanup is incomplete.",
+    "The evidence is ambiguous enough to require human review."
+  ],
+  "recommendedSkills": [
+    "evidence-writer",
+    "posting-gate"
+  ],
+  "requiresUsageLog": true,
+  "nextSafeAction": "Review FIXEDASSETS-097 evidence locally and decide whether target field mapping may be unlocked in a later guarded case."
+}

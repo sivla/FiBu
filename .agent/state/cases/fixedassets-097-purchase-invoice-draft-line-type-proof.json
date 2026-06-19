@@ -3,7 +3,7 @@
   "caseId": "FIXEDASSETS-097-PURCHASE-INVOICE-DRAFT-LINE-TYPE-PROOF",
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "status": "planned",
+  "status": "blocked-cleanup-complete",
   "workType": "fixed-asset-purchase-invoice-draft-line-type-proof",
   "taskClass": "wizard_work",
   "goal": "Open one tightly guarded Purchase Invoice draft only to prove whether the line Type dropdown can expose or select Fixed Asset; do not enter vendor, fixed asset number, amount, preview or post.",
@@ -29,6 +29,7 @@
     "select-or-detect-fixed-asset-line-type-only",
     "capture-compact-evidence",
     "cleanup-draft-if-number-exists",
+    "confirm-delete-draft-only",
     "state-patch-plan-only"
   ],
   "forbiddenActions": [
@@ -75,5 +76,10 @@
     "evidence-writer"
   ],
   "requiresUsageLog": false,
-  "nextSafeAction": "Implement and run one guarded Purchase Invoice draft line Type proof. No target vendor, no target fixed asset, no amount, no preview and no posting."
+  "lastResult": {
+    "status": "blocked",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-097/FIXEDASSETS-097-result.json",
+    "summary": "FA-097 did not prove Purchase Invoice Line Type = Fixed Asset; status=blocked-fixed-asset-not-visible, guard=blocked-item-line-type-visible. Cleanup status=not-created-or-draft-number-not-found."
+  },
+  "nextSafeAction": "Run FIXEDASSETS-098 local evidence review before another UI route is attempted."
 }

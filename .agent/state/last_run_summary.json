@@ -1,41 +1,48 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-096-PURCHASE-INVOICE-DRAFT-LINE-TYPE-GATE-DECISION",
+  "runId": "FIXEDASSETS-097-PURCHASE-INVOICE-DRAFT-LINE-TYPE-PROOF",
   "date": "2026-06-19",
-  "workType": "fixed-asset-purchase-invoice-draft-line-type-gate-decision",
+  "workType": "fixed-asset-purchase-invoice-draft-line-type-proof",
   "branch": "codex/token-efficient-autopilot-state",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "bcRun": false,
+  "bcRun": true,
   "posted": false,
   "preview": false,
   "setupChanged": false,
   "companySwitched": false,
-  "resultStatus": "observed",
-  "summary": "FA-096 approved one narrow guarded Purchase Invoice draft line Type proof. It unlocks only Type capability evidence, not vendor, asset number, amount, preview or posting.",
+  "resultStatus": "blocked",
+  "summary": "FA-097 opened a guarded Purchase Invoice draft context in MCP_1_20260210 / RM-DEMO, but did not prove Type = Fixed Asset visible/selectable. The line remained Item, no target values were entered, no preview/posting occurred, and no persisted draft number was detected.",
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/fixedassets-096/FIXEDASSETS-096-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-096/FIXEDASSETS-096-gate-decision.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-096/README.md"
+    "playwright/projects/fibu-book5/evidence/fixedassets-097/FIXEDASSETS-097-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-097/030-purchase-invoice-line-type-proof.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-097/031-after-route-focused-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-097/090-cleanup-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-097/README.md"
   ],
   "changedFiles": [
     ".agent/state/current.json",
-    ".agent/state/cases/fixedassets-096-purchase-invoice-draft-line-type-gate-decision.json",
     ".agent/state/cases/fixedassets-097-purchase-invoice-draft-line-type-proof.json",
+    ".agent/state/cases/fixedassets-098-purchase-invoice-line-type-proof-review.json",
     ".agent/state/last_run_summary.json",
-    ".agent/state/model_usage_log.jsonl",
-    "playwright/projects/fibu-book5/evidence/fixedassets-096/FIXEDASSETS-096-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-096/FIXEDASSETS-096-gate-decision.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-096/README.md"
+    "package.json",
+    "playwright/projects/fibu-book5/tests/fixedassets-097-purchase-invoice-draft-line-type-proof.spec.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-097/FIXEDASSETS-097-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-097/030-purchase-invoice-line-type-proof.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-097/031-after-route-focused-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-097/090-cleanup-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-097/FIXEDASSETS-097-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-097/README.md"
   ],
   "validationCommands": [
     "npm run agent:preflight",
     "npm run agent:dry-run",
     "npm run agent:run-plan",
-    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-096/FIXEDASSETS-096-result.json",
-    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-096/FIXEDASSETS-096-result.json",
+    "npm run fibu:fixedassets:purchase-invoice-draft-line-type-proof",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-097/FIXEDASSETS-097-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-097/FIXEDASSETS-097-result.json",
     "npm run check:encoding",
     "git diff --check"
   ],
-  "nextStep": "Run FIXEDASSETS-097 only as a guarded draft line Type proof. Stop before K30000, FA-CNC-01, amount, preview or posting."
+  "nextStep": "Run FIXEDASSETS-098 local evidence review. Do not repeat UI line Type retries before deciding a safer setup/page capability route."
 }
