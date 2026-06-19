@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-075-LINE-TYPE-CAPABILITY-DECISION",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "purchase-invoice-line-type-capability-decision",
+  "goal": "Decide the next UI-first route for proving or enabling Purchase Invoice Line Type = Fixed Asset after FA-072/073/074 showed the Type field supports fixed asset conceptually but current UI automation does not expose the option.",
+  "basedOn": [
+    ".agent/state/cases/fixedassets-072.json",
+    ".agent/state/cases/fixedassets-073.json",
+    ".agent/state/cases/fixedassets-074.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-074/FIXEDASSETS-074-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-074/031-page-inspection-focused-lines.txt"
+  ],
+  "knownTruth": [
+    "FA-072 exposed only Option Values: Item through the first Type-cell route.",
+    "FA-073 pointer/keyboard alternatives still did not expose Type = Fixed Asset.",
+    "FA-074 Page Inspection opened from focused Type context but resolved to Purchase Invoice / Purchase Header technical context, not Purchase Line.",
+    "FA-074 Type help text explicitly mentions fixed asset as a possible buying type.",
+    "K30000 and FA-CNC-01 remain locked until Type = Fixed Asset is visibly proven.",
+    "No Preview Posting, posting, payment, setup change or target value entry is proven for this block."
+  ],
+  "allowedActions": [
+    "local-evidence-review",
+    "microsoft-learn-check-if-needed",
+    "propose-ui-first-next-route",
+    "write-json-evidence",
+    "write-compact-decision-note",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "enter-K30000",
+    "enter-FA-CNC-01",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change-without-new-case",
+    "api-shortcut",
+    "book-edit",
+    "keep-draft"
+  ],
+  "acceptanceCriteria": [
+    "The run must not execute another Type-cell retry.",
+    "The decision must separate UI automation blocker from Business Central functional possibility.",
+    "The next route must be one of: documented UI action path, explicit setup/capability fit, or stronger manual/Page Inspection route.",
+    "No target values may be entered in this decision run.",
+    "Evidence must link to FA-072, FA-073 and FA-074."
+  ],
+  "recommendedSkills": [
+    "evidence-writer",
+    "next-test-selector"
+  ],
+  "nextSafeAction": "Review FA-072/073/074 evidence and choose one concrete next route before any more Purchase Invoice target-value entry.",
+  "mustRead": [
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-074.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-074/FIXEDASSETS-074-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-074/031-page-inspection-focused-lines.txt",
+    ".agent/capabilities.json"
+  ]
+}

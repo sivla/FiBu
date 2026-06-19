@@ -3,7 +3,7 @@
   "caseId": "FIXEDASSETS-074-PAGE-INSPECTION-PERSONALIZATION-ROUTE",
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "status": "planned",
+  "status": "observed-cleanup-complete",
   "workType": "purchase-invoice-line-type-page-capability-diagnosis",
   "goal": "Use Page Inspection, personalization, or safe page/setup capability checks to understand why Purchase Invoice Lines Type does not expose Fixed Asset through the current UI route.",
   "basedOn": [
@@ -16,6 +16,9 @@
     "FA-072 and FA-073 stayed in MCP_1_20260210 / RM-DEMO.",
     "FA-072 exposed only Option Values: Item through the first Type-cell route.",
     "FA-073 tested real pointer/keyboard alternatives and still did not expose Type = Fixed Asset.",
+    "FA-074 focused the Purchase Invoice Lines Type cell before Page Inspection.",
+    "FA-074 Page Inspection opened but resolved to Purchase Invoice / Purchase Header technical context, not Purchase Line.",
+    "FA-074 Type field help text explicitly mentioned fixed asset as a possible buying type.",
     "K30000 and FA-CNC-01 remain locked until Type = Fixed Asset is visibly proven.",
     "No Preview Posting, posting, payment, setup change or target value entry is proven for this block."
   ],
@@ -23,10 +26,13 @@
     "open-business-central-in-MCP_1_20260210",
     "confirm-company-RM-DEMO",
     "open-purchase-invoices-or-existing-safe-context",
+    "click-scoped-New-Neu-on-Purchase-Invoices-for-temporary-draft",
     "inspect-page-context",
+    "focus-purchase-invoice-lines-type-cell-before-page-inspection",
     "use-page-inspection-readonly-if-available",
     "use-personalization-readonly-if-available",
     "write-json-evidence",
+    "cleanup-temporary-draft-if-created",
     "document-blocker-or-next-ui-route"
   ],
   "forbiddenActions": [
@@ -46,14 +52,19 @@
     "The run must stay in MCP_1_20260210 and RM-DEMO.",
     "No target vendor or fixed asset number may be entered.",
     "Evidence must state whether Page Inspection or personalization can explain the Type field/page capability.",
-    "If a draft is created unexpectedly, it must be deleted before the run ends.",
+    "If a temporary draft is created for real line context, it must be deleted before the run ends.",
     "The next route must not be another blind Type-cell click retry."
   ],
   "recommendedSkills": [
     "bc-navigation",
     "evidence-writer"
   ],
-  "nextSafeAction": "Run a bounded readonly capability diagnosis using Page Inspection/Personalization before any further target value entry.",
+  "lastResult": {
+    "status": "observed",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-074/FIXEDASSETS-074-result.json",
+    "summary": "FA-074 opened Page Inspection after focusing the Type cell. It proved Purchase Invoice / Purchase Header technical context and Type help text mentioning fixed asset, but did not prove Purchase Line source table or Type = Fixed Asset selection."
+  },
+  "nextSafeAction": "Decide a setup/page-capability or alternate line-subpage route. Do not repeat Type-cell pointer/key retries and do not enter K30000 or FA-CNC-01 yet.",
   "mustRead": [
     ".agent/state/current.json",
     ".agent/state/cases/fixedassets-073.json",

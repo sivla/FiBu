@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-073-TYPE-DROPDOWN-ALTERNATIVE-ROUTE",
+  "runId": "FIXEDASSETS-074-PAGE-INSPECTION-PERSONALIZATION-ROUTE",
   "date": "2026-06-19",
-  "workType": "type-dropdown-alternative-route-probe",
+  "workType": "purchase-invoice-line-page-inspection-diagnosis",
   "branch": "codex/token-efficient-autopilot-state",
   "bcRun": true,
   "posted": false,
   "companySwitched": false,
-  "summary": "FA-073 tested real pointer/keyboard alternative routes against the Purchase Invoice Lines Type cell in MCP_1_20260210 / RM-DEMO. Type = Fixed Asset was still not visible/selectable. No K30000, no FA-CNC-01, no Preview Posting, no posting, no setup change. No persisted Purchase Invoice draft number was detected, so cleanup was not needed.",
+  "summary": "FA-074 focused the Purchase Invoice Lines Type cell and opened Page Inspection in MCP_1_20260210 / RM-DEMO. It proved Purchase Invoice / Purchase Header technical context and Type help text that explicitly mentions fixed asset, but did not prove Purchase Line source table or Type = Fixed Asset selection. No K30000, no FA-CNC-01, no Preview Posting, no posting, no setup change. No persisted Purchase Invoice draft number was detected, so cleanup was not needed.",
   "commandsRun": [
     "npm run agent:preflight",
     "npm run agent:context",
@@ -16,13 +16,13 @@
     "npm run agent:preflight",
     "npm run agent:dry-run",
     "npm run agent:run-plan",
-    "npm run fibu:fixedassets:type-dropdown-alternative-route"
+    "npm run fibu:fixedassets:pageinspection-personalization-route"
   ],
   "evidence": [
-    "playwright/projects/fibu-book5/evidence/fixedassets-073/FIXEDASSETS-073-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-073/030-alternative-route-probe.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-073/040-after-route-line-type-context.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-073/090-cleanup-result.json"
+    "playwright/projects/fibu-book5/evidence/fixedassets-074/FIXEDASSETS-074-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-074/030-page-inspection-line-context.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-074/031-page-inspection-focused-lines.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-074/090-cleanup-result.json"
   ],
-  "nextStep": "Do not repeat Type-cell pointer/key retries. Investigate Page Inspection/Personalization or setup/page capability before entering K30000 or FA-CNC-01."
+  "nextStep": "Run FA-075 as a decision/capability review. Do not repeat Type-cell retries and do not enter K30000 or FA-CNC-01 until a new UI-first route is selected."
 }
