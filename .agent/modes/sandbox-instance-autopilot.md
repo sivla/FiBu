@@ -25,6 +25,8 @@ Inside `MCP_1_20260210`, the autopilot may use sandbox freedom when the active c
 
 `Post`, `Preview Posting`, `Ship`, `Invoice`, `Payment`, acquisition and depreciation are not never-actions inside the sandbox instance. They are default-locked actions that become allowed when the active case explicitly unlocks them and defines the expected evidence trace.
 
+In state files, `forbiddenActions` means hard stop / never allowed. `defaultLockedActions` means locked by default, but unlockable by an explicit active case or gate with evidence, trace and cleanup/keep documentation.
+
 ## Documentation required
 
 Every sandbox-changing action must document:

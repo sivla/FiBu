@@ -23,9 +23,15 @@ if (project.safety?.doNotLeaveInstance !== true) {
   errors.push('project_state.safety.doNotLeaveInstance must be true');
 }
 
-for (const forbidden of ['post', 'preview-posting', 'api-shortcut']) {
+for (const forbidden of ['leave-instance', 'commit-secrets', 'show-env-or-auth', 'fake-evidence', 'book-claim-without-evidence']) {
   if (!current.forbiddenActions?.includes(forbidden)) {
-    errors.push(`current.forbiddenActions must include ${forbidden}`);
+    errors.push(`current.forbiddenActions must include hard stop ${forbidden}`);
+  }
+}
+
+for (const locked of ['post', 'preview-posting', 'api-shortcut']) {
+  if (!current.defaultLockedActions?.includes(locked)) {
+    errors.push(`current.defaultLockedActions must include default lock ${locked}`);
   }
 }
 

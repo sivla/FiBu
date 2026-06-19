@@ -27,19 +27,13 @@
   ],
   "forbiddenActions": [
     "leave-instance",
-    "company-switch-without-documentation",
-    "company-switch-without-registry-update",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
     "enter-FA-CNC-01",
     "enter-K30000-in-purchase-invoice",
-    "preview-posting",
-    "post",
-    "ship",
-    "invoice",
-    "ship-and-invoice",
-    "payment",
-    "setup-change",
-    "keep-draft",
-    "api-shortcut"
+    "api-shortcut-without-explicit-case-permission"
   ],
   "nextStep": "FA-072 did not prove Type = Fixed Asset selection. Draft 107225 was removed through UI cleanup retry. Next step is a narrower Type dropdown selector diagnosis or an alternative UI route; do not enter K30000 or FA-CNC-01 yet.",
   "subagentPlanPolicy": {
@@ -93,6 +87,23 @@
       "show-env-or-auth",
       "fake-evidence",
       "book-claim-without-evidence"
-    ]
-  }
+    ],
+    "actionSemantics": {
+      "forbiddenActions": "Never allowed. These are hard stops even inside MCP_1_20260210.",
+      "defaultLockedActions": "Allowed only when the active case or gate explicitly unlocks the action and evidence, trace and cleanup/keep status are documented."
+    }
+  },
+  "defaultLockedActions": [
+    "company-switch-without-documentation",
+    "company-switch-without-registry-update",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "ship-and-invoice",
+    "payment",
+    "setup-change",
+    "keep-draft",
+    "api-shortcut"
+  ]
 }
