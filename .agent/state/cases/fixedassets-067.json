@@ -3,7 +3,9 @@
   "caseId": "FIXEDASSETS-067-PURCHASE-INVOICE-READONLY-ACTION-INVENTORY",
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "status": "observed",
+  "status": "superseded",
+  "supersededBy": "FIXEDASSETS-070-LINE-TYPE-SELECTION-DIAGNOSIS",
+  "supersededReason": "Action inventory on the Purchase Invoices list is consolidated into FA-070. FA-070 proved that further read-only list runs do not expose Lines, Type or Fixed Asset and therefore add little value.",
   "workType": "read-only-action-inventory",
   "goal": "Purchase Invoices / Einkaufsrechnungen read-only oeffnen und sichtbare Aktionen inventarisieren, ohne New/Neu, Edit, Delete, Preview, Post oder andere Aktionen zu klicken.",
   "mustRead": [
@@ -48,7 +50,7 @@
   "sourceEvidence": [
     "playwright/projects/fibu-book5/evidence/fixedassets-066/FIXEDASSETS-066-result.json"
   ],
-  "nextSafeAction": "Use the action inventory to plan the next read-only or approval-gated step. Do not click New/Neu without explicit approval.",
+  "nextSafeAction": "Use FIXEDASSETS-070 as the consolidated line-type blocker. Do not run another Purchase Invoices list inventory for this blocker.",
   "lastResult": {
     "status": "observed",
     "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-067/FIXEDASSETS-067-result.json",

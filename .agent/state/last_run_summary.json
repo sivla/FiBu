@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-070-READONLY-UI-DIAGNOSIS",
+  "runId": "FIXEDASSETS-LINE-TYPE-BLOCKER-CONSOLIDATION",
   "date": "2026-06-19",
-  "workType": "read-only-ui-context-diagnosis",
+  "workType": "state-consolidation",
   "branch": "codex/token-efficient-autopilot-state",
-  "bcRun": true,
+  "bcRun": false,
   "posted": false,
   "companySwitched": false,
-  "summary": "Opened Purchase Invoices read-only in MCP_1_20260210 / RM-DEMO for FIXEDASSETS-070. The list page exposed Purchase Invoices, New/Neu, Post and vendor columns, but did not expose Lines, Type or Fixed Asset. No action was clicked and no draft was created.",
+  "summary": "Consolidated the Fixed Assets Purchase Invoice line-type blocker. FA-067, FA-068 and FA-069 are superseded by FA-070; FA-071 is prepared as a blocked approval gate for a future guarded draft Lines-context probe. No BC or Playwright run was executed.",
   "commandsToRunBeforeAutopilot": [
     "npm run agent:preflight",
     "npm run agent:context",
@@ -40,5 +40,5 @@
     "stateFinalize": "scripts/agent/state-finalize.mjs",
     "skillQualityCheck": "scripts/agent/skills-quality-check.mjs"
   },
-  "nextStep": "Use the FIXEDASSETS-070 read-only UI diagnosis to choose either read-only Page Inspection/Personalize in the Purchase Invoice Lines context or request explicit approval for a guarded draft Type-selection probe."
+  "nextStep": "Do not run more Purchase Invoices list diagnostics. Next useful progress requires real Purchase Invoice Lines context: read-only Page Inspection/Personalize in that context or explicit approval for FA-071 guarded draft Type-selection probe."
 }

@@ -15,9 +15,7 @@
   ],
   "allowedActions": [
     "static-helper-analysis",
-    "read-only-ui-context-diagnosis",
-    "read-only-action-inventory",
-    "page-inspection-read-only",
+    "read-only-page-inspection-in-lines-context",
     "personalize-mode-research-plan",
     "result-normalize",
     "state-patch-plan-only"
@@ -37,14 +35,15 @@
     "book-edit"
   ],
   "acceptanceCriteria": [
-    "The next run must explain why the FIXEDASSETS-066 line remained Item.",
+    "The blocker is consolidated here: FA-067, FA-068 and FA-069 are superseded by this case.",
+    "No further read-only Purchase Invoices list run should be started for this blocker.",
     "If Business Central is opened, the run must be read-only unless explicit approval is given for a new guarded draft.",
-    "Personalize/Page Inspection may be used only read-only to identify available fields/actions and page/table context.",
+    "Personalize/Page Inspection may be used only if it targets the real Purchase Invoice Lines context.",
     "K30000 and FA-CNC-01 remain forbidden until Type = Fixed Asset is visibly proven in Purchase Invoice Lines.",
     "No Preview Posting, Post, setup change, company switch or kept draft is allowed."
   ],
   "recommendedSkills": [
-    "screenshot-qa",
+    "bc-navigation",
     "evidence-writer"
   ],
   "sourceEvidence": [
@@ -57,5 +56,5 @@
     "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-070/FIXEDASSETS-070-readonly-ui-diagnosis-result.json",
     "summary": "FIXEDASSETS-070 opened Purchase Invoices read-only in MCP_1_20260210 / RM-DEMO and captured focused line-type signals without clicking actions or creating a draft. The list context did not expose Lines, Type or Fixed Asset."
   },
-  "nextSafeAction": "Do not enter K30000 or FA-CNC-01 yet. Either inspect the Purchase Invoice Lines page/table context read-only or request explicit approval for a guarded draft Type-selection probe."
+  "nextSafeAction": "Do not run another Purchase Invoices list read-only pass. Next useful progress requires real Purchase Invoice Lines context: either read-only Page Inspection/Personalize in that context or explicit approval for FA-071 guarded draft Type-selection probe. Do not enter K30000 or FA-CNC-01 yet."
 }

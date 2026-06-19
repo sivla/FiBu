@@ -69,6 +69,18 @@ async function visibleTextSignals(page: Page) {
   };
 }
 
+function isRelevantLineTypeAction(label: string) {
+  const irrelevantNavigation =
+    /Finance Post financial|Cash Management Process|Sales Make quotes|Purchasing Manage purchase invoices|Shopify|Alle Berichte|Rollencenter|Role Center|Hauptnavigation/i;
+  if (irrelevantNavigation.test(label)) {
+    return false;
+  }
+
+  return /\b(New|Neu|Delete|Loeschen|Loschen|Post|Preview|Vorschau|Invoice|Lines|Line|Zeilen|Zeile|Type|Art|Fixed Asset|Anlage|Item|Artikel|Vendor|Kreditor|Purchase Invoice|Purchase Invoices|Einkaufsrechnung|Einkaufsrechnungen)\b/i.test(
+    label,
+  );
+}
+
 async function collectActionInventory(page: Page) {
   const frames = [];
   for (const frame of page.frames()) {
@@ -128,11 +140,14 @@ async function collectActionInventory(page: Page) {
   }
 
   const allActions = frames.flatMap((frame) => frame.actions.map((action) => ({ ...action, frameUrl: frame.frameUrl })));
+  const evidenceActions = allActions.filter((action) => isRelevantLineTypeAction(action.label));
   return {
     actionCount: allActions.length,
-    riskyActions: allActions.filter((action) => action.risky).slice(0, 30),
-    relevantActions: allActions.filter((action) => action.relevant).slice(0, 30),
-    sampleActionLabels: Array.from(new Set(allActions.map((action) => action.label))).slice(0, 40),
+    evidenceActionCount: evidenceActions.length,
+    omittedIrrelevantActionCount: allActions.length - evidenceActions.length,
+    riskyActions: evidenceActions.filter((action) => action.risky).slice(0, 30),
+    relevantActions: evidenceActions.filter((action) => action.relevant).slice(0, 30),
+    sampleActionLabels: Array.from(new Set(evidenceActions.map((action) => action.label))).slice(0, 40),
     frames: frames.map((frame) => ({ frameUrl: frame.frameUrl, actionCount: frame.actions.length })),
   };
 }

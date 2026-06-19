@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-071-GUARDED-DRAFT-LINE-TYPE-CONTEXT-PROBE",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "blocked-awaiting-explicit-approval",
+  "workType": "guarded-draft-line-type-context-probe",
+  "goal": "Open exactly one guarded Purchase Invoice draft only after explicit user approval, inspect the real Lines context for Type / Fixed Asset selection, and clean up any draft immediately.",
+  "blockedBy": [
+    "Explicit user approval is required before clicking New/Neu or creating any draft."
+  ],
+  "mustRead": [
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-070.json",
+    ".agent/state/cases/fixedassets-071.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-070/FIXEDASSETS-070-readonly-ui-diagnosis-result.json",
+    "playwright/core/bc/purchase-invoice-guards.ts",
+    "playwright/core/bc/actions.ts"
+  ],
+  "allowedActionsAfterApproval": [
+    "open-business-central-in-MCP_1_20260210",
+    "confirm-company-RM-DEMO",
+    "click-scoped-New-Neu-on-Purchase-Invoices",
+    "inspect-lines-context",
+    "inspect-Type-dropdown-or-column-context",
+    "write-json-evidence",
+    "cleanup-draft-if-created"
+  ],
+  "forbiddenActions": [
+    "enter-K30000",
+    "enter-FA-CNC-01",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "api-shortcut",
+    "company-switch",
+    "book-edit",
+    "keep-draft"
+  ],
+  "acceptanceCriteria": [
+    "The run must not start unless the user explicitly approves this FA-071 guarded draft probe.",
+    "New/Neu may only be clicked in the scoped Purchase Invoices context.",
+    "The probe must stop before entering K30000 or FA-CNC-01.",
+    "The probe must inspect whether the real Purchase Invoice Lines context exposes Type, Item or Fixed Asset.",
+    "If a draft is created, cleanup is mandatory before the run ends.",
+    "No Preview Posting, Post, setup change, company switch, API shortcut or book edit is allowed."
+  ],
+  "recommendedSkills": [
+    "bc-navigation",
+    "evidence-writer"
+  ],
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-066/FIXEDASSETS-066-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-070/FIXEDASSETS-070-readonly-ui-diagnosis-result.json"
+  ],
+  "nextSafeAction": "Wait for explicit user approval. Without approval, do not run Playwright, do not open Business Central, and do not click New/Neu."
+}
