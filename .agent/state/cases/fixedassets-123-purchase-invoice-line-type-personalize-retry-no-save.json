@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-123-PURCHASE-INVOICE-LINE-TYPE-PERSONALIZE-RETRY-NO-SAVE",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "guarded-ui-personalize-only-line-type-diagnosis-no-save",
+  "taskClass": "wizard_work",
+  "goal": "Run a fresh Purchase Invoice line Type Personalize diagnosis without opening Page Inspection first, to avoid the FA-121 blocker and learn whether useful field/page context can be captured no-save.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-121/FIXEDASSETS-121-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-122/FIXEDASSETS-122-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-122/FIXEDASSETS-122-route-decision.md"
+  ],
+  "knownTruth": [
+    "Page Inspection can block Personalisieren if it remains active.",
+    "The next run must not open Page Inspection first.",
+    "Fixed Asset/Anlage is not yet proven as a selectable Purchase Invoice line Type option.",
+    "The run is diagnostic only and must not select line type values or enter target values."
+  ],
+  "allowedActions": [
+    "open-business-central",
+    "run-playwright",
+    "confirm-instance-and-company",
+    "open-purchase-invoices",
+    "scoped-new-purchase-invoice-if-needed",
+    "observe-purchase-invoice-lines",
+    "focus-type-gridcell",
+    "open-personalize-diagnostics-no-save",
+    "capture-personalize-field-context-or-blocker",
+    "capture-compact-evidence",
+    "cleanup-draft-if-created"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "api-shortcut",
+    "book-edit",
+    "open-page-inspection",
+    "select-fixed-asset-line-type",
+    "enter-K30000-in-purchase-invoice",
+    "enter-FA-CNC-01",
+    "enter-amount",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "save-personalization",
+    "keep-draft-without-explicit-gate",
+    "delete-non-test-data",
+    "fake-evidence"
+  ],
+  "acceptanceCriteria": [
+    "The test aborts if instance or company is not clearly MCP_1_20260210 / RM-DEMO.",
+    "Page Inspection is not opened before Personalisieren.",
+    "No line type option is selected.",
+    "No K30000, FA-CNC-01 or amount is entered.",
+    "Personalisieren is used only as diagnostic mode and is not saved.",
+    "If a draft document is created, cleanup or explicit no-persisted-draft evidence is written."
+  ],
+  "recommendedSkills": [
+    "evidence-writer",
+    "screenshot-qa"
+  ],
+  "requiresUsageLog": false,
+  "nextSafeAction": "Implement and run the Personalize-only no-save diagnosis for Purchase Invoice line Type."
+}
