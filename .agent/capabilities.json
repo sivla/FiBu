@@ -291,7 +291,7 @@
     {
       "id": "bc_scoped_action_click",
       "name": "BC Scoped Action Click",
-      "maturity": "draft",
+      "maturity": "lab-reusable",
       "taskClass": "wizard_work",
       "linkedSkills": [
         "bc-navigation"
@@ -315,11 +315,12 @@
       ],
       "playwrightTouchpoints": [
         "playwright/core/bc/actions.ts",
+        "clickBcScoredAction",
         "page.getByRole",
         "frameLocator"
       ],
       "improvementBacklog": [
-        "Action-Kandidaten als kompaktes JSON fuer Fehleranalyse sichern."
+        "Naechsten echten BC-Lauf mit FIXEDASSETS-066 auswerten und daraus entscheiden, ob Delete/New-Scoring weiter generalisiert werden muss."
       ]
     },
     {
@@ -530,12 +531,12 @@
         "new-page-context-required"
       ],
       "playwrightTouchpoints": [
-        "fixedassets-055 local helper",
+        "playwright/core/bc/actions.ts::clickBcScoredAction",
         "page.getByRole",
         "candidate scoring"
       ],
       "improvementBacklog": [
-        "Lokalen New/Neu-Helper in playwright/core/bc ueberfuehren, wenn FIXEDASSETS-065 stabil ist."
+        "Als Spezialfall von bc_scoped_action_click behandeln; keine zweite Helper-Schicht bauen, solange clickBcScoredAction reicht."
       ]
     },
     {

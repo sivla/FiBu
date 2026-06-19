@@ -10,6 +10,7 @@ import {
   waitForBusinessCentralShell,
   waitForPageText,
 } from '../../../core/bc-helpers';
+import { clickBcScoredAction } from '../../../core/bc/actions';
 import { classifyPurchaseInvoiceLineTypeVisibility } from '../../../core/bc/purchase-invoice-guards';
 import { evidencePath, writeJsonEvidence, writeTextEvidence } from '../../../core/evidence';
 import { project } from '../project';
@@ -81,62 +82,15 @@ async function openPurchaseInvoices(page: Page) {
 }
 
 async function clickScopedNew(page: Page) {
-  for (const frame of page.frames()) {
-    const body = await frame.locator('body').innerText({ timeout: 1000 }).catch(() => '');
-    if (!/Purchase Invoices|Einkaufsrechnungen/i.test(body)) continue;
-
-    const result = await frame
-      .evaluate(() => {
-        const normalize = (value: string | null | undefined) => (value || '').replace(/\s+/g, ' ').trim();
-        const visible = (element: Element) => {
-          const rect = element.getBoundingClientRect();
-          const style = window.getComputedStyle(element);
-          return rect.width > 0 && rect.height > 0 && style.visibility !== 'hidden' && style.display !== 'none';
-        };
-        const candidates = Array.from(document.querySelectorAll<HTMLElement>('button,[role="button"],[role="menuitem"],a,[aria-label],[title]'))
-          .filter(visible)
-          .map((element) => {
-            const rect = element.getBoundingClientRect();
-            const text = normalize(element.innerText || element.textContent);
-            const aria = normalize(element.getAttribute('aria-label'));
-            const title = normalize(element.getAttribute('title'));
-            const label = `${text} ${aria} ${title}`;
-            let score = 0;
-            if (/^(New|Neu)$/.test(text) || /^(New|Neu)$/.test(aria)) score -= 50;
-            if (/Create a new entry|Erstellen Sie einen neuen Eintrag|neuen Eintrag/i.test(title)) score -= 20;
-            if (rect.y >= 35 && rect.y <= 140) score -= 10;
-            if (/Sales|Order|Quote|Power BI|Intercompany|Time Sheet|Report/i.test(label)) score += 100;
-            return {
-              element,
-              text,
-              aria,
-              title,
-              x: Math.round(rect.x),
-              y: Math.round(rect.y),
-              width: Math.round(rect.width),
-              height: Math.round(rect.height),
-              score,
-            };
-          })
-          .filter((entry) => /^(New|Neu)$/.test(entry.text) || /^(New|Neu)$/.test(entry.aria) || /new entry|neuen Eintrag/i.test(entry.title))
-          .sort((left, right) => left.score - right.score || left.y - right.y || left.x - right.x);
-        const chosen = candidates[0];
-        if (!chosen) return { clicked: false, reason: 'no-scoped-new', candidates: candidates.slice(0, 20).map(({ element: _element, ...entry }) => entry) };
-        chosen.element.click();
-        return {
-          clicked: true,
-          chosen: { text: chosen.text, aria: chosen.aria, title: chosen.title, x: chosen.x, y: chosen.y, width: chosen.width, height: chosen.height },
-          candidates: candidates.slice(0, 20).map(({ element: _element, ...entry }) => entry),
-        };
-      })
-      .catch((error) => ({ clicked: false, reason: String(error), candidates: [] }));
-
-    if (result.clicked) {
-      await page.waitForTimeout(4500);
-      return result;
-    }
-  }
-  return { clicked: false, reason: 'purchase-invoices-frame-not-found', candidates: [] };
+  return clickBcScoredAction(page, {
+    scopeText: /Purchase Invoices|Einkaufsrechnungen/i,
+    actionPattern: /^(New|Neu)$|new entry|neuen Eintrag/i,
+    titleBonusPattern: /Create a new entry|Erstellen Sie einen neuen Eintrag|neuen Eintrag/i,
+    rejectPattern: /Sales|Order|Quote|Power BI|Intercompany|Time Sheet|Report/i,
+    preferredYMin: 35,
+    preferredYMax: 140,
+    waitAfterClick: 4500,
+  });
 }
 
 async function collectLineTypeEvidence(page: Page) {
@@ -232,44 +186,15 @@ async function deletePurchaseInvoiceDraftViaFilteredList(page: Page, invoiceNo: 
   for (const frame of page.frames()) {
     const body = await frame.locator('body').innerText({ timeout: 1000 }).catch(() => '');
     if (!new RegExp(invoiceNo).test(body)) continue;
-    const result = await frame
-      .evaluate(() => {
-        const normalize = (value: string | null | undefined) => (value || '').replace(/\s+/g, ' ').trim();
-        const visible = (element: Element) => {
-          const rect = element.getBoundingClientRect();
-          const style = window.getComputedStyle(element);
-          return rect.width > 0 && rect.height > 0 && style.visibility !== 'hidden' && style.display !== 'none';
-        };
-        const candidates = Array.from(document.querySelectorAll<HTMLElement>('button,[role="button"],[role="menuitem"],a,[aria-label],[title]'))
-          .filter(visible)
-          .map((element) => {
-            const rect = element.getBoundingClientRect();
-            const text = normalize(element.innerText || element.textContent);
-            const aria = normalize(element.getAttribute('aria-label'));
-            const title = normalize(element.getAttribute('title'));
-            const label = `${text} ${aria} ${title}`;
-            let score = 0;
-            if (/^(Delete|L.schen)$/i.test(text) || /^(Delete|L.schen)$/i.test(aria) || /Delete|L.schen/i.test(title)) score -= 50;
-            if (rect.y >= 35 && rect.y <= 135) score -= 20;
-            if (/line|zeile|posted|gebucht|archive|archiv|Post|Preview/i.test(label)) score += 100;
-            return {
-              element,
-              text,
-              aria,
-              title,
-              label,
-              rect: { x: Math.round(rect.x), y: Math.round(rect.y), width: Math.round(rect.width), height: Math.round(rect.height) },
-              score,
-            };
-          })
-          .filter((entry) => /Delete|L.schen/i.test(entry.label))
-          .sort((left, right) => left.score - right.score || left.rect.y - right.rect.y || left.rect.x - right.rect.x);
-        const chosen = candidates[0];
-        if (!chosen) return { clicked: false, reason: 'delete-action-not-found', candidates: candidates.slice(0, 15).map(({ element: _element, ...entry }) => entry) };
-        chosen.element.click();
-        return { clicked: true, chosen: { text: chosen.text, aria: chosen.aria, title: chosen.title, rect: chosen.rect, score: chosen.score } };
-      })
-      .catch((error) => ({ clicked: false, reason: String(error) }));
+    const result = await clickBcScoredAction(page, {
+      scopeText: new RegExp(invoiceNo),
+      actionPattern: /Delete|L.schen/i,
+      rejectPattern: /line|zeile|posted|gebucht|archive|archiv|Post|Preview/i,
+      preferredYMin: 35,
+      preferredYMax: 135,
+      candidateLimit: 15,
+      waitAfterClick: 0,
+    });
 
     if (result.clicked) {
       const confirmation = await confirmDialog(page);

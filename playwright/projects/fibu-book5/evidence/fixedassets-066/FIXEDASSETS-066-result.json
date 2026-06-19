@@ -13,17 +13,19 @@
     "playwright/projects/fibu-book5/evidence/fixedassets-065/FIXEDASSETS-065-result.json",
     "playwright/projects/fibu-book5/evidence/fixedassets-065/020-line-type-guard-regression.json"
   ],
-  "decision": "FIXEDASSETS-066 prepared a dedicated guarded no-target UI-probe runner. The runner must use classifyPurchaseInvoiceLineTypeVisibility and stop on Item line or vendor-registration dialog before any target value entry.",
+  "decision": "FIXEDASSETS-066 prepared a dedicated guarded no-target UI-probe runner and centralized ambiguous action scoring in clickBcScoredAction. The runner must use classifyPurchaseInvoiceLineTypeVisibility and stop on Item line or vendor-registration dialog before any target value entry.",
   "runner": {
     "status": "prepared-not-executed",
     "testFile": "playwright/projects/fibu-book5/tests/fixedassets-066-purchase-invoice-line-type-guarded-probe.spec.ts",
     "npmScript": "fibu:fixedassets:purchase-invoice-line-type-guarded-probe",
+    "scopedActionHelper": "playwright/core/bc/actions.ts::clickBcScoredAction",
     "guard": "playwright/core/bc/purchase-invoice-guards.ts::classifyPurchaseInvoiceLineTypeVisibility"
   },
   "proved": [
     "The next active case is explicitly scoped to guarded probe preparation, not this run's BC execution.",
     "The required guard is classifyPurchaseInvoiceLineTypeVisibility.",
     "A dedicated Playwright runner exists for the guarded no-target probe.",
+    "Ambiguous New/Delete action scoring is centralized in clickBcScoredAction for reuse.",
     "K30000 and FA-CNC-01 remain forbidden for the next preparation step.",
     "Preview Posting, Post, setup change, API shortcut and company switch remain forbidden."
   ],
@@ -46,7 +48,9 @@
     ".agent/state/cases/fixedassets-066.json",
     ".agent/state/current.json",
     ".agent/state/last_run_summary.json",
+    ".agent/capabilities.json",
     "package.json",
+    "playwright/core/bc/actions.ts",
     "playwright/projects/fibu-book5/tests/fixedassets-066-purchase-invoice-line-type-guarded-probe.spec.ts",
     "playwright/projects/fibu-book5/evidence/fixedassets-066/FIXEDASSETS-066-result.json",
     "playwright/projects/fibu-book5/evidence/fixedassets-066/README.md"
@@ -59,7 +63,7 @@
     "current": {
       "activeCase": "FIXEDASSETS-066-PURCHASE-INVOICE-LINE-TYPE-GUARDED-PROBE-PREP",
       "active_case_file": ".agent/state/cases/fixedassets-066.json",
-      "nextStep": "Review and, when ready, run npm run fibu:fixedassets:purchase-invoice-line-type-guarded-probe. The run may create a temporary draft only for line-type evidence and must clean it up; still no K30000, no FA-CNC-01, no Preview and no Post."
+      "nextStep": "Run npm run fibu:fixedassets:purchase-invoice-line-type-guarded-probe when a practical BC probe is desired. The runner now uses centralized clickBcScoredAction; it may create a temporary draft only for line-type evidence and must clean it up; still no K30000, no FA-CNC-01, no Preview and no Post."
     },
     "lastRunSummary": {
       "schemaVersion": 1,
@@ -70,17 +74,17 @@
       "bcRun": false,
       "posted": false,
       "companySwitched": false,
-      "summary": "FIXEDASSETS-066 prepared a dedicated guarded no-target UI-probe runner. It keeps K30000 and FA-CNC-01 locked, calls classifyPurchaseInvoiceLineTypeVisibility and writes blocked evidence if Item line or vendor-registration dialog appears.",
-      "nextStep": "Review and then run npm run fibu:fixedassets:purchase-invoice-line-type-guarded-probe when a practical UI probe is desired."
+      "summary": "FIXEDASSETS-066 prepared a dedicated guarded no-target UI-probe runner and moved scoped action scoring into playwright/core/bc/actions.ts. It keeps K30000 and FA-CNC-01 locked, calls classifyPurchaseInvoiceLineTypeVisibility and writes blocked evidence if Item line or vendor-registration dialog appears.",
+      "nextStep": "Run npm run fibu:fixedassets:purchase-invoice-line-type-guarded-probe when a practical UI probe is desired."
     },
     "activeCase": {
       "status": "runner-prepared",
       "lastResult": {
         "status": "observed",
         "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-066/FIXEDASSETS-066-result.json",
-        "summary": "Dedicated guarded no-target UI-probe runner exists and is wired to npm script; it has not been executed."
+        "summary": "Dedicated guarded no-target UI-probe runner exists, uses centralized clickBcScoredAction, and is wired to npm script; it has not been executed."
       },
-      "nextSafeAction": "Review and then run the guarded no-target UI probe if a practical BC run is desired; still no K30000, no FA-CNC-01, no Preview and no Post."
+      "nextSafeAction": "Run the guarded no-target UI probe if a practical BC run is desired; clickBcScoredAction is now centralized in playwright/core/bc/actions.ts. Still no K30000, no FA-CNC-01, no Preview and no Post."
     }
   },
   "flags": {
