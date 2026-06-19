@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-109-FA-GL-JOURNAL-WRITE-READINESS-DECISION",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "local-sandbox-gate-decision",
+  "taskClass": "judge_work",
+  "goal": "Decide locally whether the FA-108 read-only control map is sufficient to allow a later guarded write-case for Amount and Bal. Account No., or whether another read-only field route is needed first.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-106/FIXEDASSETS-106-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-107/FIXEDASSETS-107-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-108/FIXEDASSETS-108-result.json"
+  ],
+  "knownTruth": [
+    "The current target-line shell contains G05001, Fixed Asset, FA-CNC-01 and HGB.",
+    "FA-108 found Amount-labelled and Bal. Account No.-labelled signals reachable read-only.",
+    "Amount 68000 is not visible as an existing value.",
+    "K30000 is not visible as an existing balancing value.",
+    "No value was entered or changed in FA-108.",
+    "Preview Posting and Post remain locked."
+  ],
+  "allowedActions": [
+    "read-fa-108-evidence",
+    "review-write-readiness",
+    "decide-next-gate",
+    "write-evidence",
+    "state-patch-plan-only"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "open-business-central",
+    "run-playwright",
+    "company-switch",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "api-shortcut",
+    "book-edit",
+    "change-amount",
+    "change-account-no",
+    "change-bal-account-no",
+    "delete-line",
+    "insert-line",
+    "click-finish",
+    "fake-evidence"
+  ],
+  "acceptanceCriteria": [
+    "The decision uses only existing FA-106, FA-107 and FA-108 evidence.",
+    "The decision explicitly states whether a later write-case is safe enough to plan.",
+    "The decision keeps Preview Posting and posting locked unless a separate later gate unlocks them.",
+    "The decision creates compact evidence and updates state.",
+    "The decision does not run BC or Playwright."
+  ],
+  "stopConditions": [
+    "FA-108 evidence is missing or contradicts the case premise.",
+    "The decision would require guessing exact selectors for write actions.",
+    "The decision would unlock Preview Posting or posting directly."
+  ],
+  "recommendedSkills": [
+    "evidence-writer",
+    "posting-gate"
+  ],
+  "requiresUsageLog": true,
+  "nextSafeAction": "Review FA-108 locally and decide whether to plan a later guarded write-case; do not run BC, Playwright, Preview Posting or Post in FA-109."
+}
