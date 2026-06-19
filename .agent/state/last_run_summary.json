@@ -1,46 +1,41 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-090-FA-GL-JOURNAL-CLEANUP-ACTION-INVENTORY-READONLY",
+  "runId": "FIXEDASSETS-091-FA-GL-JOURNAL-CLEANUP-ROUTE-DECISION",
   "date": "2026-06-19",
-  "workType": "fixed-asset-gl-journal-cleanup-action-inventory-readonly",
+  "workType": "fixed-asset-gl-journal-cleanup-route-decision",
   "branch": "codex/token-efficient-autopilot-state",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "bcRun": true,
+  "bcRun": false,
   "posted": false,
   "preview": false,
   "setupChanged": false,
   "companySwitched": false,
   "resultStatus": "observed",
-  "summary": "FA-090 opened Fixed Asset G/L Journals read-only and captured action inventory. The safe scan did not prove a Delete cleanup route; Post is visible and remains locked. Draft value entry remains blocked until a cleanup or keep-draft route is explicitly decided.",
+  "summary": "FA-091 rejected keep-draft and journal value entry for now. Delete cleanup remains unproven, so the next step is frame-scoped read-only action discovery.",
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/fixedassets-090/FIXEDASSETS-090-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-090/FIXEDASSETS-090-learning.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-090/README.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-090/020-fa-journal-action-inventory.json"
+    "playwright/projects/fibu-book5/evidence/fixedassets-091/FIXEDASSETS-091-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-091/FIXEDASSETS-091-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-091/README.md"
   ],
   "changedFiles": [
     ".agent/state/current.json",
-    ".agent/state/cases/fixedassets-090-fa-gl-journal-cleanup-action-inventory-readonly.json",
     ".agent/state/cases/fixedassets-091-fa-gl-journal-cleanup-route-decision.json",
+    ".agent/state/cases/fixedassets-092-fa-gl-journal-frame-action-discovery-readonly.json",
     ".agent/state/coverage_state.json",
     ".agent/state/last_run_summary.json",
-    "package.json",
-    "playwright/projects/fibu-book5/tests/fixedassets-090-fa-gl-journal-cleanup-action-inventory-readonly.spec.ts",
-    "playwright/projects/fibu-book5/evidence/fixedassets-090/FIXEDASSETS-090-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-090/FIXEDASSETS-090-learning.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-090/README.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-090/010-fa-journal-action-context.txt",
-    "playwright/projects/fibu-book5/evidence/fixedassets-090/020-fa-journal-action-inventory.json"
+    ".agent/state/model_usage_log.jsonl",
+    "playwright/projects/fibu-book5/evidence/fixedassets-091/FIXEDASSETS-091-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-091/FIXEDASSETS-091-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-091/README.md"
   ],
   "validationCommands": [
     "npm run agent:preflight",
     "npm run agent:context",
-    "npm run fibu:fixedassets:fa-gl-journal-cleanup-action-inventory",
-    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-090/FIXEDASSETS-090-result.json",
-    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-090/FIXEDASSETS-090-result.json",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-091/FIXEDASSETS-091-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-091/FIXEDASSETS-091-result.json",
     "npm run check:encoding",
     "git diff --check"
   ],
-  "nextStep": "FIXEDASSETS-091-FA-GL-JOURNAL-CLEANUP-ROUTE-DECISION: decide whether FA journal value probing requires a keep-draft policy, a safer cleanup discovery route, or remains blocked."
+  "nextStep": "FIXEDASSETS-092-FA-GL-JOURNAL-FRAME-ACTION-DISCOVERY-READONLY: inspect journal-frame actions read-only before any value entry."
 }

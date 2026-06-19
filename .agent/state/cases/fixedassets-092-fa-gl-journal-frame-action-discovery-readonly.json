@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-092-FA-GL-JOURNAL-FRAME-ACTION-DISCOVERY-READONLY",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "fixed-asset-gl-journal-frame-action-discovery-readonly",
+  "goal": "Inspect Fixed Asset G/L Journal actions inside the Business Central runinframe context without creating a journal line, entering values, deleting, previewing or posting.",
+  "basedOn": [
+    ".agent/state/cases/fixedassets-091-fa-gl-journal-cleanup-route-decision.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-091/FIXEDASSETS-091-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-090/020-fa-journal-action-inventory.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-088/020-fa-journal-control-snapshot.json"
+  ],
+  "knownTruth": [
+    "Fixed Asset G/L Journals page 5628 and Batch Name DEFAULT are proven read-only in RM-DEMO.",
+    "Post is visible and remains locked.",
+    "Delete cleanup is unproven, not disproven.",
+    "FA-091 rejects keep-draft and value entry until a better cleanup or action route is known.",
+    "No FA journal line, Preview Posting or acquisition posting has been created."
+  ],
+  "allowedActions": [
+    "open-business-central-in-MCP_1_20260210",
+    "confirm-company-RM-DEMO",
+    "open-fixed-asset-gl-journals-readonly",
+    "inspect-businesscentral-frame-actions-readonly",
+    "capture-row-and-toolbar-action-candidates-readonly",
+    "write-json-evidence",
+    "write-compact-learning-note",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "new-journal-line",
+    "edit-journal-line",
+    "enter-K30000",
+    "enter-amount",
+    "enter-FA-CNC-01-in-document-or-journal",
+    "execute-delete",
+    "insert-fa-bal-account",
+    "reconcile",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "api-shortcut",
+    "book-edit",
+    "click-ok-or-yes-on-confirmation",
+    "keep-draft"
+  ],
+  "defaultLockedActionsUnlockedForThisCase": [],
+  "acceptanceCriteria": [
+    "Instance MCP_1_20260210 and company RM-DEMO are confirmed.",
+    "Business Central runinframe context for page 5628 is identified.",
+    "Action inventory is scoped to the journal frame instead of Role Center texts.",
+    "No values are entered and no journal line is created.",
+    "No Delete, Insert FA Bal. Account, Reconcile, Preview or Post action is executed."
+  ],
+  "stopConditions": [
+    "Business Central is not in MCP_1_20260210 / RM-DEMO.",
+    "The journal frame cannot be isolated safely.",
+    "Capturing actions would require entering a value, creating a line or confirming a dialog.",
+    "A menu action would execute Delete, Insert FA Bal. Account, Reconcile, Preview, Post or confirmation."
+  ],
+  "recommendedSkills": [
+    "bc-navigation",
+    "safety-gate-checker",
+    "evidence-writer"
+  ],
+  "nextSafeAction": "Run frame-scoped read-only action discovery only. Do not enter FA-CNC-01, K30000 or amount.",
+  "mustRead": [
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-091-fa-gl-journal-cleanup-route-decision.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-091/FIXEDASSETS-091-result.json",
+    "playwright/projects/fibu-book5/tests/fixedassets-090-fa-gl-journal-cleanup-action-inventory-readonly.spec.ts",
+    "package.json"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-092/FIXEDASSETS-092-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-092/FIXEDASSETS-092-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-092/README.md"
+  ]
+}

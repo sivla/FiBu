@@ -3,7 +3,7 @@
   "caseId": "FIXEDASSETS-091-FA-GL-JOURNAL-CLEANUP-ROUTE-DECISION",
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "status": "planned",
+  "status": "observed-local-decision",
   "workType": "fixed-asset-gl-journal-cleanup-route-decision",
   "taskClass": "judge_work",
   "goal": "Decide from FA-088 to FA-090 evidence whether the next Fixed Asset G/L Journal value probe needs a keep-draft policy, a safer cleanup discovery route, or must remain blocked.",
@@ -81,5 +81,17 @@
     "playwright/projects/fibu-book5/evidence/fixedassets-091/FIXEDASSETS-091-result.json",
     "playwright/projects/fibu-book5/evidence/fixedassets-091/FIXEDASSETS-091-learning.md",
     "playwright/projects/fibu-book5/evidence/fixedassets-091/README.md"
-  ]
+  ],
+  "decision": {
+    "selectedRoute": "safer-frame-action-discovery-readonly",
+    "keepDraftApproved": false,
+    "valueEntryApproved": false,
+    "reason": "FA-090 did not prove a Delete cleanup route and its group probing can return Role Center context. Keeping a draft without ownership would create avoidable posting risk. The next useful step is a better scoped read-only discovery inside the Business Central runinframe context."
+  },
+  "lastResult": {
+    "status": "observed",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-091/FIXEDASSETS-091-result.json",
+    "summary": "FA-091 rejected keep-draft and value entry for now. Next is frame-scoped read-only action discovery."
+  },
+  "nextSafeAction": "Run FA-092 frame-scoped read-only action discovery. Do not enter values or execute Delete/Post/Preview."
 }

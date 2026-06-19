@@ -1,0 +1,126 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-fa-gl-journal-cleanup-route-decision-result",
+  "caseId": "FIXEDASSETS-091-FA-GL-JOURNAL-CLEANUP-ROUTE-DECISION",
+  "source": "local-analysis",
+  "resultStatus": "observed",
+  "runPlanId": "FIXEDASSETS-092-FA-GL-JOURNAL-FRAME-ACTION-DISCOVERY-READONLY-PLAN",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "decision": {
+    "selectedRoute": "safer-frame-action-discovery-readonly",
+    "keepDraftApproved": false,
+    "valueEntryApproved": false,
+    "previewApproved": false,
+    "postingApproved": false,
+    "reason": "FA-090 did not prove a Delete cleanup route and its group probing can return Role Center context. Keeping an uncontrolled draft would create avoidable posting risk. The next useful step is a better scoped read-only discovery inside the Business Central runinframe context."
+  },
+  "proved": [
+    "FA-088 proved Fixed Asset G/L Journals page 5628, Batch Name DEFAULT and required field/control signals read-only.",
+    "FA-089 correctly blocked journal value entry because cleanup/delete or keep-draft ownership was not proven.",
+    "FA-090 proved Post is visible and remains locked.",
+    "FA-090 proved no journal line, Preview Posting, posting, deletion, setup change or company switch occurred.",
+    "FA-090 did not surface a safe Delete cleanup route."
+  ],
+  "notProved": [
+    "Delete cleanup is not proven.",
+    "Delete impossibility is not proven.",
+    "Keep-draft ownership is not approved.",
+    "FA-CNC-01 journal value entry is not approved.",
+    "K30000 or amount entry is not approved.",
+    "Preview Posting is not approved.",
+    "Acquisition posting is not approved.",
+    "No German final proof."
+  ],
+  "riskAssessment": {
+    "riskLevel": "medium",
+    "mainRisk": "A Fixed Asset G/L Journal line may persist once values are entered. Without a proven cleanup route or explicit keep-draft ownership, later runs could accidentally reuse or post the line.",
+    "mitigation": "Do not enter values yet. Run a frame-scoped read-only action discovery that isolates the Business Central runinframe context and avoids Role Center noise."
+  },
+  "changedFiles": [
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-091-fa-gl-journal-cleanup-route-decision.json",
+    ".agent/state/cases/fixedassets-092-fa-gl-journal-frame-action-discovery-readonly.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/model_usage_log.jsonl",
+    "playwright/projects/fibu-book5/evidence/fixedassets-091/FIXEDASSETS-091-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-091/FIXEDASSETS-091-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-091/README.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-088/020-fa-journal-control-snapshot.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-089/FIXEDASSETS-089-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-090/FIXEDASSETS-090-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-090/020-fa-journal-action-inventory.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-091/FIXEDASSETS-091-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-091/README.md"
+  ],
+  "warnings": [
+    "Local decision only. Business Central was not opened in FA-091.",
+    "Do not treat FA-090 as a complete action map.",
+    "Draft value entry, Preview and Post remain locked.",
+    "CRONUS/RM-DEMO labor only."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-092-FA-GL-JOURNAL-FRAME-ACTION-DISCOVERY-READONLY",
+      "active_case_file": ".agent/state/cases/fixedassets-092-fa-gl-journal-frame-action-discovery-readonly.json",
+      "lastReferenceCase": "FIXEDASSETS-091-FA-GL-JOURNAL-CLEANUP-ROUTE-DECISION",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-091-fa-gl-journal-cleanup-route-decision.json",
+      "nextStep": "Inspect actions inside the Business Central runinframe context without value entry, draft creation, delete, preview or posting."
+    },
+    "lastRunSummary": {
+      "schemaVersion": 1,
+      "runId": "FIXEDASSETS-091-FA-GL-JOURNAL-CLEANUP-ROUTE-DECISION",
+      "date": "2026-06-19",
+      "workType": "fixed-asset-gl-journal-cleanup-route-decision",
+      "branch": "codex/token-efficient-autopilot-state",
+      "instance": "MCP_1_20260210",
+      "company": "RM-DEMO",
+      "bcRun": false,
+      "posted": false,
+      "preview": false,
+      "setupChanged": false,
+      "companySwitched": false,
+      "resultStatus": "observed",
+      "summary": "FA-091 rejected keep-draft and journal value entry for now. Delete cleanup remains unproven, so the next step is frame-scoped read-only action discovery.",
+      "nextStep": "FIXEDASSETS-092-FA-GL-JOURNAL-FRAME-ACTION-DISCOVERY-READONLY"
+    },
+    "activeCase": {
+      "status": "observed-local-decision",
+      "lastResult": {
+        "status": "observed",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-091/FIXEDASSETS-091-result.json",
+        "summary": "FA-091 rejected keep-draft and value entry for now. Next is frame-scoped read-only action discovery."
+      },
+      "nextSafeAction": "Run FA-092 frame-scoped read-only action discovery. Do not enter values or execute Delete/Post/Preview."
+    },
+    "coverage": {
+      "areas": {
+        "fixedassets": {
+          "currentBlock": "fa-gl-journal-frame-action-discovery-readonly",
+          "latestPracticalCase": "FIXEDASSETS-090",
+          "latestDecisionCase": "FIXEDASSETS-091",
+          "nextCase": "FIXEDASSETS-092-FA-GL-JOURNAL-FRAME-ACTION-DISCOVERY-READONLY"
+        }
+      }
+    }
+  },
+  "flags": {
+    "bcRun": false,
+    "noBookChange": true,
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true
+  },
+  "nextStep": "FIXEDASSETS-092-FA-GL-JOURNAL-FRAME-ACTION-DISCOVERY-READONLY"
+}
