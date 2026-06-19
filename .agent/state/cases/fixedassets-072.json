@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-072-TYPE-DROPDOWN-SELECTOR-FIX",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "blocked-cleanup-complete",
+  "workType": "type-dropdown-selector-probe",
+  "goal": "Open one sandbox Purchase Invoice draft, inspect the Purchase Invoice Lines Type dropdown, prove whether Type = Fixed Asset is reachable, and clean up the draft.",
+  "blockedBy": [
+    "Type = Fixed Asset not visible or not selectable through the attempted dropdown route."
+  ],
+  "mustRead": [
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-071.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-071/FIXEDASSETS-071-result.json",
+    "playwright/core/bc/purchase-invoice-guards.ts",
+    "playwright/core/bc/actions.ts",
+    "playwright/projects/fibu-book5/tests/fixedassets-072-type-dropdown-selector-probe.spec.ts"
+  ],
+  "allowedActions": [
+    "open-business-central-in-MCP_1_20260210",
+    "confirm-company-RM-DEMO",
+    "click-scoped-New-Neu-on-Purchase-Invoices",
+    "open-Type-dropdown-in-Purchase-Invoice-Lines",
+    "select-Fixed-Asset-if-visible",
+    "write-json-evidence",
+    "cleanup-draft-if-created"
+  ],
+  "forbiddenActions": [
+    "enter-K30000",
+    "enter-FA-CNC-01",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "api-shortcut",
+    "book-edit",
+    "keep-draft"
+  ],
+  "acceptanceCriteria": [
+    "The run must stay in MCP_1_20260210.",
+    "The run must document RM-DEMO as the active company.",
+    "New/Neu may only be clicked in the scoped Purchase Invoices context.",
+    "The probe may open the Type dropdown and select Fixed Asset if the UI exposes it.",
+    "The probe must not enter K30000 or FA-CNC-01.",
+    "The probe must not Preview Posting or Post.",
+    "If a draft is created, cleanup is mandatory before the run ends."
+  ],
+  "recommendedSkills": [
+    "bc-navigation",
+    "evidence-writer"
+  ],
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-071/FIXEDASSETS-071-result.json"
+  ],
+  "nextSafeAction": "Do not enter K30000 or FA-CNC-01 until Type = Fixed Asset is proven.",
+  "lastResult": {
+    "status": "blocked-cleanup-complete",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-072/FIXEDASSETS-072-result.json",
+    "summary": "FA-072 opened the real Purchase Invoice Lines Type context but did not open/select Fixed Asset; the leaked draft 107225 was removed through UI cleanup retry. Target values remain locked."
+  }
+}

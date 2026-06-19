@@ -1,0 +1,1426 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-type-dropdown-selector-probe-result",
+  "caseId": "FIXEDASSETS-072-TYPE-DROPDOWN-SELECTOR-FIX",
+  "source": "playwright-sandbox-type-dropdown-probe",
+  "resultStatus": "blocked",
+  "runPlanId": "FIXEDASSETS-072-TYPE-DROPDOWN-SELECTOR-FIX-PLAN",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-medium",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "environment": {
+    "expectedInstance": "MCP_1_20260210",
+    "expectedCompany": "RM-DEMO",
+    "context": {
+      "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=9308&dc=0",
+      "environmentInUrl": true,
+      "companyInUrl": true,
+      "companyInText": true,
+      "wrongEnvironmentVisible": false
+    },
+    "urlAfterProbe": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=51&dc=0&bookmark=1D_JgAAAACLAgAAAAJ7BjEAMAA3ADIAMgA1"
+  },
+  "companyChanges": [
+    {
+      "fromCompany": "RM-DEMO",
+      "toCompany": "RM-DEMO",
+      "reason": "No company switch needed for FA-072.",
+      "changedAt": "2026-06-19T06:44:13.999Z",
+      "result": "not-needed"
+    }
+  ],
+  "createdCompanies": [],
+  "createdRecords": [
+    {
+      "company": "RM-DEMO",
+      "type": "Purchase Invoice",
+      "documentNo": "107225",
+      "purpose": "Sandbox Type dropdown selector probe; no vendor/fixed asset target values, no preview, no post.",
+      "createdAt": "2026-06-19T06:44:13.999Z",
+      "status": "deleted",
+      "cleanupStatus": "deleted"
+    }
+  ],
+  "changedRecords": [
+    {
+      "company": "RM-DEMO",
+      "type": "Purchase Invoice Line",
+      "documentNo": "107225",
+      "field": "Type",
+      "oldValue": "Item",
+      "newValue": "not-proven",
+      "purpose": "Probe whether the Type dropdown can reach Fixed Asset before target value entry.",
+      "cleanupStatus": "deleted-with-draft"
+    }
+  ],
+  "postedRecords": [],
+  "setupChanges": [],
+  "cleanup": {
+    "required": true,
+    "completed": true,
+    "method": "filtered Purchase Invoices list delete via UI cleanup retry",
+    "blockedBy": [],
+    "detail": {
+      "initialAttemptStatus": "draft-number-not-detected-by-too-narrow-regex",
+      "retryResult": "playwright/projects/fibu-book5/evidence/fixedassets-072/091-cleanup-retry-result.json",
+      "retryStatus": "cleaned-up"
+    }
+  },
+  "proved": [
+    "The run stayed in MCP_1_20260210 / RM-DEMO.",
+    "New/Neu was clicked once in the scoped Purchase Invoices context.",
+    "The run interacted only with Purchase Invoice Lines Type context before target value entry.",
+    "The first selector route clicked the Item line type cell but did not expose Fixed Asset.",
+    "Temporary Purchase Invoice draft 107225 was removed through UI cleanup retry."
+  ],
+  "notProved": [
+    "Type = Fixed Asset was not proven as selected or visible.",
+    "K30000 was not entered.",
+    "FA-CNC-01 was not entered.",
+    "No Preview Posting.",
+    "No posting.",
+    "No German final proof."
+  ],
+  "changedFiles": [
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-072.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/coverage_state.json",
+    "package.json",
+    "playwright/projects/fibu-book5/tests/fixedassets-072-type-dropdown-selector-probe.spec.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-072/FIXEDASSETS-072-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-072/030-type-dropdown-probe.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-072/040-after-selection-line-type-context.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-072/090-cleanup-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-072/README.md",
+    "playwright/projects/fibu-book5/tests/fixedassets-072-draft-cleanup-retry.spec.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-072/091-cleanup-retry-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-072/091-cleanup-retry-before-focused-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-072/092-cleanup-retry-after-focused-text.txt"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-072/FIXEDASSETS-072-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-072/030-type-dropdown-probe.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-072/040-after-selection-line-type-context.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-072/090-cleanup-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-072/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-072/091-cleanup-retry-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-072/091-cleanup-retry-before-focused-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-072/092-cleanup-retry-after-focused-text.txt"
+  ],
+  "warnings": [
+    "Sandbox/Labor evidence only.",
+    "This probe intentionally stops before K30000 and FA-CNC-01.",
+    "No Preview Posting or posting was attempted.",
+    "The initial draft-number detector missed 107225; the test regex was widened to 10\\d{3,}."
+  ],
+  "blockedBy": [
+    "Type = Fixed Asset not visible or not selectable through the attempted dropdown route."
+  ],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-072-TYPE-DROPDOWN-SELECTOR-FIX",
+      "active_case_file": ".agent/state/cases/fixedassets-072.json",
+      "nextStep": "FA-072 did not prove Type = Fixed Asset selection. Draft 107225 was removed through UI cleanup retry. Next step is a narrower Type dropdown selector diagnosis or an alternative UI route; do not enter K30000 or FA-CNC-01 yet."
+    },
+    "lastRunSummary": {
+      "schemaVersion": 1,
+      "runId": "FIXEDASSETS-072-TYPE-DROPDOWN-SELECTOR-FIX",
+      "date": "2026-06-19",
+      "workType": "type-dropdown-selector-probe",
+      "branch": "codex/token-efficient-autopilot-state",
+      "bcRun": true,
+      "posted": false,
+      "companySwitched": false,
+      "summary": "FA-072 opened the real Purchase Invoice Lines Type context but did not open/select Fixed Asset; the leaked draft 107225 was removed through UI cleanup retry. Target values remain locked.",
+      "nextStep": "Improve the Type dropdown selector before entering target values."
+    },
+    "activeCase": {
+      "status": "blocked-cleanup-complete",
+      "lastResult": {
+        "status": "blocked-cleanup-complete",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-072/FIXEDASSETS-072-result.json",
+        "summary": "FA-072 opened the real Purchase Invoice Lines Type context but did not open/select Fixed Asset; the leaked draft 107225 was removed through UI cleanup retry. Target values remain locked."
+      },
+      "nextSafeAction": "Do not enter K30000 or FA-CNC-01 until Type = Fixed Asset is proven."
+    }
+  },
+  "flags": {
+    "stayedInExpectedInstance": true,
+    "companyContextDocumented": true,
+    "noBookChange": true,
+    "secretsUntouched": true,
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noTargetVendorEntry": true,
+    "noTargetFixedAssetEntry": true
+  },
+  "observed": {
+    "startedAt": "2026-06-19T06:44:13.999Z",
+    "finishedAt": "2026-06-19T06:44:35.697Z",
+    "newAttempt": {
+      "clicked": true,
+      "scopeUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=9308&aadTenantId=b8fd10d1-3599-4721-8651-f95bd868aba7&startTraceId=76278dd0212c460e907a98fda98c75fd&tid=d8a7d581-5f3f-469c-bdd8-4b76223317a0&runinframe=1",
+      "chosen": {
+        "text": "Neu",
+        "aria": "Neu",
+        "title": "Erstellen Sie einen neuen Eintrag.",
+        "label": "Neu Neu Erstellen Sie einen neuen Eintrag.",
+        "x": 548,
+        "y": 51,
+        "width": 62,
+        "height": 38,
+        "score": -80
+      },
+      "candidates": [
+        {
+          "text": "Neu",
+          "aria": "Neu",
+          "title": "Erstellen Sie einen neuen Eintrag.",
+          "label": "Neu Neu Erstellen Sie einen neuen Eintrag.",
+          "x": 548,
+          "y": 51,
+          "width": 62,
+          "height": 38,
+          "score": -80
+        },
+        {
+          "text": "Neu ",
+          "aria": "Neu",
+          "title": "",
+          "label": "Neu  Neu ",
+          "x": 548,
+          "y": 51,
+          "width": 89,
+          "height": 38,
+          "score": -60
+        },
+        {
+          "text": "Neu",
+          "aria": "Neu",
+          "title": "",
+          "label": "Neu Neu ",
+          "x": 578,
+          "y": 61,
+          "width": 26,
+          "height": 19,
+          "score": -60
+        }
+      ],
+      "attempts": []
+    },
+    "draftInvoiceNo": null,
+    "beforeDropdownSignals": {
+      "purchaseInvoiceVisible": true,
+      "linesContextVisible": true,
+      "fixedAssetLineTypeVisible": false,
+      "itemLineTypeVisible": true,
+      "fixedAssetOptionVisible": false,
+      "dropdownOptionTexts": [
+        "Item"
+      ],
+      "frames": [
+        {
+          "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210",
+          "purchaseInvoiceVisible": false,
+          "linesContextVisible": false,
+          "fixedAssetLineTypeVisible": false,
+          "itemLineTypeVisible": false,
+          "fixedAssetOptionVisible": false,
+          "dropdownOptionTexts": [],
+          "entries": []
+        },
+        {
+          "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210",
+          "purchaseInvoiceVisible": true,
+          "linesContextVisible": true,
+          "fixedAssetLineTypeVisible": false,
+          "itemLineTypeVisible": true,
+          "fixedAssetOptionVisible": false,
+          "dropdownOptionTexts": [
+            "Item",
+            "Item"
+          ],
+          "entries": [
+            {
+              "text": "No.",
+              "role": "",
+              "aria": "",
+              "title": "",
+              "rect": {
+                "x": 200,
+                "y": 122,
+                "width": 210,
+                "height": 16
+              }
+            },
+            {
+              "text": "No.",
+              "role": "button",
+              "aria": "No., Sortierreihenfolge Aufsteigend",
+              "title": "Sortieren nach 'No.'",
+              "rect": {
+                "x": 200,
+                "y": 122,
+                "width": 19,
+                "height": 16
+              }
+            },
+            {
+              "text": "Type",
+              "role": "",
+              "aria": "",
+              "title": "",
+              "rect": {
+                "x": 602,
+                "y": 617,
+                "width": 110,
+                "height": 24
+              }
+            },
+            {
+              "text": "Type",
+              "role": "",
+              "aria": "Type",
+              "title": "",
+              "rect": {
+                "x": 602,
+                "y": 617,
+                "width": 25,
+                "height": 16
+              }
+            },
+            {
+              "text": "No.",
+              "role": "",
+              "aria": "",
+              "title": "",
+              "rect": {
+                "x": 764,
+                "y": 617,
+                "width": 80,
+                "height": 24
+              }
+            },
+            {
+              "text": "No.",
+              "role": "button",
+              "aria": "",
+              "title": "Sortieren nach 'No.'",
+              "rect": {
+                "x": 764,
+                "y": 617,
+                "width": 19,
+                "height": 16
+              }
+            },
+            {
+              "text": "Item",
+              "role": "gridcell",
+              "aria": "",
+              "title": "",
+              "rect": {
+                "x": 597,
+                "y": 641,
+                "width": 132,
+                "height": 28
+              }
+            },
+            {
+              "text": "Item",
+              "role": "button",
+              "aria": "",
+              "title": "Datensatz „Item“ öffnen",
+              "rect": {
+                "x": 598,
+                "y": 643,
+                "width": 33,
+                "height": 25
+              }
+            }
+          ]
+        },
+        {
+          "frameUrl": "[external-frame]",
+          "purchaseInvoiceVisible": false,
+          "linesContextVisible": false,
+          "fixedAssetLineTypeVisible": false,
+          "itemLineTypeVisible": false,
+          "fixedAssetOptionVisible": false,
+          "dropdownOptionTexts": [],
+          "entries": []
+        },
+        {
+          "frameUrl": "[external-frame]",
+          "purchaseInvoiceVisible": false,
+          "linesContextVisible": false,
+          "fixedAssetLineTypeVisible": false,
+          "itemLineTypeVisible": false,
+          "fixedAssetOptionVisible": false,
+          "dropdownOptionTexts": [],
+          "entries": []
+        },
+        {
+          "frameUrl": "[external-frame]",
+          "purchaseInvoiceVisible": false,
+          "linesContextVisible": false,
+          "fixedAssetLineTypeVisible": false,
+          "itemLineTypeVisible": false,
+          "fixedAssetOptionVisible": false,
+          "dropdownOptionTexts": [],
+          "entries": []
+        },
+        {
+          "frameUrl": "[external-frame]",
+          "purchaseInvoiceVisible": false,
+          "linesContextVisible": false,
+          "fixedAssetLineTypeVisible": false,
+          "itemLineTypeVisible": false,
+          "fixedAssetOptionVisible": false,
+          "dropdownOptionTexts": [],
+          "entries": []
+        },
+        {
+          "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210",
+          "purchaseInvoiceVisible": false,
+          "linesContextVisible": false,
+          "fixedAssetLineTypeVisible": false,
+          "itemLineTypeVisible": false,
+          "fixedAssetOptionVisible": false,
+          "dropdownOptionTexts": [],
+          "entries": []
+        }
+      ]
+    },
+    "dropdownProbe": {
+      "opened": false,
+      "attempts": [
+        {
+          "action": "click-current-item-type-cell",
+          "result": {
+            "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=9308&aadTenantId=b8fd10d1-3599-4721-8651-f95bd868aba7&startTraceId=76278dd0212c460e907a98fda98c75fd&tid=d8a7d581-5f3f-469c-bdd8-4b76223317a0&runinframe=1",
+            "clicked": true,
+            "chosen": {
+              "text": "Item",
+              "rect": {
+                "x": 597,
+                "y": 641,
+                "width": 132,
+                "height": 28
+              },
+              "score": -150
+            },
+            "candidates": [
+              {
+                "text": "Item",
+                "rect": {
+                  "x": 597,
+                  "y": 641,
+                  "width": 132,
+                  "height": 28
+                },
+                "score": -150
+              }
+            ]
+          }
+        },
+        {
+          "action": "keyboard-Alt+ArrowDown",
+          "signals": {
+            "purchaseInvoiceVisible": true,
+            "linesContextVisible": true,
+            "fixedAssetLineTypeVisible": false,
+            "itemLineTypeVisible": true,
+            "fixedAssetOptionVisible": false,
+            "dropdownOptionTexts": [
+              "Item"
+            ],
+            "frames": [
+              {
+                "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210",
+                "purchaseInvoiceVisible": false,
+                "linesContextVisible": false,
+                "fixedAssetLineTypeVisible": false,
+                "itemLineTypeVisible": false,
+                "fixedAssetOptionVisible": false,
+                "dropdownOptionTexts": [],
+                "entries": []
+              },
+              {
+                "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210",
+                "purchaseInvoiceVisible": true,
+                "linesContextVisible": true,
+                "fixedAssetLineTypeVisible": false,
+                "itemLineTypeVisible": true,
+                "fixedAssetOptionVisible": false,
+                "dropdownOptionTexts": [
+                  "Item",
+                  "Item"
+                ],
+                "entries": [
+                  {
+                    "text": "No.",
+                    "role": "",
+                    "aria": "",
+                    "title": "",
+                    "rect": {
+                      "x": 200,
+                      "y": 122,
+                      "width": 210,
+                      "height": 16
+                    }
+                  },
+                  {
+                    "text": "No.",
+                    "role": "button",
+                    "aria": "No., Sortierreihenfolge Aufsteigend",
+                    "title": "Sortieren nach 'No.'",
+                    "rect": {
+                      "x": 200,
+                      "y": 122,
+                      "width": 19,
+                      "height": 16
+                    }
+                  },
+                  {
+                    "text": "Type",
+                    "role": "",
+                    "aria": "",
+                    "title": "",
+                    "rect": {
+                      "x": 602,
+                      "y": 617,
+                      "width": 110,
+                      "height": 24
+                    }
+                  },
+                  {
+                    "text": "Type",
+                    "role": "",
+                    "aria": "Type",
+                    "title": "",
+                    "rect": {
+                      "x": 602,
+                      "y": 617,
+                      "width": 25,
+                      "height": 16
+                    }
+                  },
+                  {
+                    "text": "No.",
+                    "role": "",
+                    "aria": "",
+                    "title": "",
+                    "rect": {
+                      "x": 764,
+                      "y": 617,
+                      "width": 80,
+                      "height": 24
+                    }
+                  },
+                  {
+                    "text": "No.",
+                    "role": "button",
+                    "aria": "",
+                    "title": "Sortieren nach 'No.'",
+                    "rect": {
+                      "x": 764,
+                      "y": 617,
+                      "width": 19,
+                      "height": 16
+                    }
+                  },
+                  {
+                    "text": "Item",
+                    "role": "gridcell",
+                    "aria": "",
+                    "title": "",
+                    "rect": {
+                      "x": 597,
+                      "y": 641,
+                      "width": 132,
+                      "height": 28
+                    }
+                  },
+                  {
+                    "text": "Item",
+                    "role": "button",
+                    "aria": "",
+                    "title": "Datensatz „Item“ öffnen",
+                    "rect": {
+                      "x": 598,
+                      "y": 643,
+                      "width": 33,
+                      "height": 25
+                    }
+                  },
+                  {
+                    "text": "No.",
+                    "role": "",
+                    "aria": "",
+                    "title": "",
+                    "rect": {
+                      "x": 823,
+                      "y": 378,
+                      "width": 68,
+                      "height": 24
+                    }
+                  },
+                  {
+                    "text": "No.",
+                    "role": "button",
+                    "aria": "No., Sortierreihenfolge Aufsteigend",
+                    "title": "Sortieren nach 'No.'",
+                    "rect": {
+                      "x": 823,
+                      "y": 378,
+                      "width": 19,
+                      "height": 16
+                    }
+                  }
+                ]
+              },
+              {
+                "frameUrl": "[external-frame]",
+                "purchaseInvoiceVisible": false,
+                "linesContextVisible": false,
+                "fixedAssetLineTypeVisible": false,
+                "itemLineTypeVisible": false,
+                "fixedAssetOptionVisible": false,
+                "dropdownOptionTexts": [],
+                "entries": []
+              },
+              {
+                "frameUrl": "[external-frame]",
+                "purchaseInvoiceVisible": false,
+                "linesContextVisible": false,
+                "fixedAssetLineTypeVisible": false,
+                "itemLineTypeVisible": false,
+                "fixedAssetOptionVisible": false,
+                "dropdownOptionTexts": [],
+                "entries": []
+              },
+              {
+                "frameUrl": "[external-frame]",
+                "purchaseInvoiceVisible": false,
+                "linesContextVisible": false,
+                "fixedAssetLineTypeVisible": false,
+                "itemLineTypeVisible": false,
+                "fixedAssetOptionVisible": false,
+                "dropdownOptionTexts": [],
+                "entries": []
+              },
+              {
+                "frameUrl": "[external-frame]",
+                "purchaseInvoiceVisible": false,
+                "linesContextVisible": false,
+                "fixedAssetLineTypeVisible": false,
+                "itemLineTypeVisible": false,
+                "fixedAssetOptionVisible": false,
+                "dropdownOptionTexts": [],
+                "entries": []
+              },
+              {
+                "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210",
+                "purchaseInvoiceVisible": false,
+                "linesContextVisible": false,
+                "fixedAssetLineTypeVisible": false,
+                "itemLineTypeVisible": false,
+                "fixedAssetOptionVisible": false,
+                "dropdownOptionTexts": [],
+                "entries": []
+              }
+            ]
+          }
+        },
+        {
+          "action": "keyboard-F4",
+          "signals": {
+            "purchaseInvoiceVisible": true,
+            "linesContextVisible": true,
+            "fixedAssetLineTypeVisible": false,
+            "itemLineTypeVisible": true,
+            "fixedAssetOptionVisible": false,
+            "dropdownOptionTexts": [
+              "Item"
+            ],
+            "frames": [
+              {
+                "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210",
+                "purchaseInvoiceVisible": false,
+                "linesContextVisible": false,
+                "fixedAssetLineTypeVisible": false,
+                "itemLineTypeVisible": false,
+                "fixedAssetOptionVisible": false,
+                "dropdownOptionTexts": [],
+                "entries": []
+              },
+              {
+                "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210",
+                "purchaseInvoiceVisible": true,
+                "linesContextVisible": true,
+                "fixedAssetLineTypeVisible": false,
+                "itemLineTypeVisible": true,
+                "fixedAssetOptionVisible": false,
+                "dropdownOptionTexts": [
+                  "Item",
+                  "Item"
+                ],
+                "entries": [
+                  {
+                    "text": "No.",
+                    "role": "",
+                    "aria": "",
+                    "title": "",
+                    "rect": {
+                      "x": 200,
+                      "y": 122,
+                      "width": 210,
+                      "height": 16
+                    }
+                  },
+                  {
+                    "text": "No.",
+                    "role": "button",
+                    "aria": "No., Sortierreihenfolge Aufsteigend",
+                    "title": "Sortieren nach 'No.'",
+                    "rect": {
+                      "x": 200,
+                      "y": 122,
+                      "width": 19,
+                      "height": 16
+                    }
+                  },
+                  {
+                    "text": "Type",
+                    "role": "",
+                    "aria": "",
+                    "title": "",
+                    "rect": {
+                      "x": 602,
+                      "y": 617,
+                      "width": 110,
+                      "height": 24
+                    }
+                  },
+                  {
+                    "text": "Type",
+                    "role": "",
+                    "aria": "Type",
+                    "title": "",
+                    "rect": {
+                      "x": 602,
+                      "y": 617,
+                      "width": 25,
+                      "height": 16
+                    }
+                  },
+                  {
+                    "text": "No.",
+                    "role": "",
+                    "aria": "",
+                    "title": "",
+                    "rect": {
+                      "x": 764,
+                      "y": 617,
+                      "width": 80,
+                      "height": 24
+                    }
+                  },
+                  {
+                    "text": "No.",
+                    "role": "button",
+                    "aria": "",
+                    "title": "Sortieren nach 'No.'",
+                    "rect": {
+                      "x": 764,
+                      "y": 617,
+                      "width": 19,
+                      "height": 16
+                    }
+                  },
+                  {
+                    "text": "Item",
+                    "role": "gridcell",
+                    "aria": "",
+                    "title": "",
+                    "rect": {
+                      "x": 597,
+                      "y": 641,
+                      "width": 132,
+                      "height": 28
+                    }
+                  },
+                  {
+                    "text": "Item",
+                    "role": "button",
+                    "aria": "",
+                    "title": "Datensatz „Item“ öffnen",
+                    "rect": {
+                      "x": 598,
+                      "y": 643,
+                      "width": 33,
+                      "height": 25
+                    }
+                  },
+                  {
+                    "text": "No.",
+                    "role": "",
+                    "aria": "",
+                    "title": "",
+                    "rect": {
+                      "x": 823,
+                      "y": 378,
+                      "width": 68,
+                      "height": 24
+                    }
+                  },
+                  {
+                    "text": "No.",
+                    "role": "button",
+                    "aria": "No., Sortierreihenfolge Aufsteigend",
+                    "title": "Sortieren nach 'No.'",
+                    "rect": {
+                      "x": 823,
+                      "y": 378,
+                      "width": 19,
+                      "height": 16
+                    }
+                  }
+                ]
+              },
+              {
+                "frameUrl": "[external-frame]",
+                "purchaseInvoiceVisible": false,
+                "linesContextVisible": false,
+                "fixedAssetLineTypeVisible": false,
+                "itemLineTypeVisible": false,
+                "fixedAssetOptionVisible": false,
+                "dropdownOptionTexts": [],
+                "entries": []
+              },
+              {
+                "frameUrl": "[external-frame]",
+                "purchaseInvoiceVisible": false,
+                "linesContextVisible": false,
+                "fixedAssetLineTypeVisible": false,
+                "itemLineTypeVisible": false,
+                "fixedAssetOptionVisible": false,
+                "dropdownOptionTexts": [],
+                "entries": []
+              },
+              {
+                "frameUrl": "[external-frame]",
+                "purchaseInvoiceVisible": false,
+                "linesContextVisible": false,
+                "fixedAssetLineTypeVisible": false,
+                "itemLineTypeVisible": false,
+                "fixedAssetOptionVisible": false,
+                "dropdownOptionTexts": [],
+                "entries": []
+              },
+              {
+                "frameUrl": "[external-frame]",
+                "purchaseInvoiceVisible": false,
+                "linesContextVisible": false,
+                "fixedAssetLineTypeVisible": false,
+                "itemLineTypeVisible": false,
+                "fixedAssetOptionVisible": false,
+                "dropdownOptionTexts": [],
+                "entries": []
+              },
+              {
+                "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210",
+                "purchaseInvoiceVisible": false,
+                "linesContextVisible": false,
+                "fixedAssetLineTypeVisible": false,
+                "itemLineTypeVisible": false,
+                "fixedAssetOptionVisible": false,
+                "dropdownOptionTexts": [],
+                "entries": []
+              }
+            ]
+          }
+        },
+        {
+          "action": "keyboard-Enter",
+          "signals": {
+            "purchaseInvoiceVisible": true,
+            "linesContextVisible": true,
+            "fixedAssetLineTypeVisible": false,
+            "itemLineTypeVisible": true,
+            "fixedAssetOptionVisible": false,
+            "dropdownOptionTexts": [
+              "Item"
+            ],
+            "frames": [
+              {
+                "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210",
+                "purchaseInvoiceVisible": false,
+                "linesContextVisible": false,
+                "fixedAssetLineTypeVisible": false,
+                "itemLineTypeVisible": false,
+                "fixedAssetOptionVisible": false,
+                "dropdownOptionTexts": [],
+                "entries": []
+              },
+              {
+                "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210",
+                "purchaseInvoiceVisible": true,
+                "linesContextVisible": true,
+                "fixedAssetLineTypeVisible": false,
+                "itemLineTypeVisible": true,
+                "fixedAssetOptionVisible": false,
+                "dropdownOptionTexts": [
+                  "Item",
+                  "Item"
+                ],
+                "entries": [
+                  {
+                    "text": "No.",
+                    "role": "",
+                    "aria": "",
+                    "title": "",
+                    "rect": {
+                      "x": 200,
+                      "y": 122,
+                      "width": 210,
+                      "height": 16
+                    }
+                  },
+                  {
+                    "text": "No.",
+                    "role": "button",
+                    "aria": "No., Sortierreihenfolge Aufsteigend",
+                    "title": "Sortieren nach 'No.'",
+                    "rect": {
+                      "x": 200,
+                      "y": 122,
+                      "width": 19,
+                      "height": 16
+                    }
+                  },
+                  {
+                    "text": "Type",
+                    "role": "",
+                    "aria": "",
+                    "title": "",
+                    "rect": {
+                      "x": 602,
+                      "y": 617,
+                      "width": 110,
+                      "height": 24
+                    }
+                  },
+                  {
+                    "text": "Type",
+                    "role": "",
+                    "aria": "Type",
+                    "title": "",
+                    "rect": {
+                      "x": 602,
+                      "y": 617,
+                      "width": 25,
+                      "height": 16
+                    }
+                  },
+                  {
+                    "text": "No.",
+                    "role": "",
+                    "aria": "",
+                    "title": "",
+                    "rect": {
+                      "x": 764,
+                      "y": 617,
+                      "width": 80,
+                      "height": 24
+                    }
+                  },
+                  {
+                    "text": "No.",
+                    "role": "button",
+                    "aria": "",
+                    "title": "Sortieren nach 'No.'",
+                    "rect": {
+                      "x": 764,
+                      "y": 617,
+                      "width": 19,
+                      "height": 16
+                    }
+                  },
+                  {
+                    "text": "Item",
+                    "role": "gridcell",
+                    "aria": "",
+                    "title": "",
+                    "rect": {
+                      "x": 597,
+                      "y": 641,
+                      "width": 132,
+                      "height": 28
+                    }
+                  },
+                  {
+                    "text": "Item",
+                    "role": "button",
+                    "aria": "",
+                    "title": "Datensatz „Item“ öffnen",
+                    "rect": {
+                      "x": 598,
+                      "y": 643,
+                      "width": 33,
+                      "height": 25
+                    }
+                  }
+                ]
+              },
+              {
+                "frameUrl": "[external-frame]",
+                "purchaseInvoiceVisible": false,
+                "linesContextVisible": false,
+                "fixedAssetLineTypeVisible": false,
+                "itemLineTypeVisible": false,
+                "fixedAssetOptionVisible": false,
+                "dropdownOptionTexts": [],
+                "entries": []
+              },
+              {
+                "frameUrl": "[external-frame]",
+                "purchaseInvoiceVisible": false,
+                "linesContextVisible": false,
+                "fixedAssetLineTypeVisible": false,
+                "itemLineTypeVisible": false,
+                "fixedAssetOptionVisible": false,
+                "dropdownOptionTexts": [],
+                "entries": []
+              },
+              {
+                "frameUrl": "[external-frame]",
+                "purchaseInvoiceVisible": false,
+                "linesContextVisible": false,
+                "fixedAssetLineTypeVisible": false,
+                "itemLineTypeVisible": false,
+                "fixedAssetOptionVisible": false,
+                "dropdownOptionTexts": [],
+                "entries": []
+              },
+              {
+                "frameUrl": "[external-frame]",
+                "purchaseInvoiceVisible": false,
+                "linesContextVisible": false,
+                "fixedAssetLineTypeVisible": false,
+                "itemLineTypeVisible": false,
+                "fixedAssetOptionVisible": false,
+                "dropdownOptionTexts": [],
+                "entries": []
+              },
+              {
+                "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210",
+                "purchaseInvoiceVisible": false,
+                "linesContextVisible": false,
+                "fixedAssetLineTypeVisible": false,
+                "itemLineTypeVisible": false,
+                "fixedAssetOptionVisible": false,
+                "dropdownOptionTexts": [],
+                "entries": []
+              }
+            ]
+          }
+        }
+      ],
+      "signals": {
+        "purchaseInvoiceVisible": true,
+        "linesContextVisible": true,
+        "fixedAssetLineTypeVisible": false,
+        "itemLineTypeVisible": true,
+        "fixedAssetOptionVisible": false,
+        "dropdownOptionTexts": [
+          "Item"
+        ],
+        "frames": [
+          {
+            "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210",
+            "purchaseInvoiceVisible": false,
+            "linesContextVisible": false,
+            "fixedAssetLineTypeVisible": false,
+            "itemLineTypeVisible": false,
+            "fixedAssetOptionVisible": false,
+            "dropdownOptionTexts": [],
+            "entries": []
+          },
+          {
+            "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210",
+            "purchaseInvoiceVisible": true,
+            "linesContextVisible": true,
+            "fixedAssetLineTypeVisible": false,
+            "itemLineTypeVisible": true,
+            "fixedAssetOptionVisible": false,
+            "dropdownOptionTexts": [
+              "Item",
+              "Item"
+            ],
+            "entries": [
+              {
+                "text": "No.",
+                "role": "",
+                "aria": "",
+                "title": "",
+                "rect": {
+                  "x": 200,
+                  "y": 122,
+                  "width": 210,
+                  "height": 16
+                }
+              },
+              {
+                "text": "No.",
+                "role": "button",
+                "aria": "No., Sortierreihenfolge Aufsteigend",
+                "title": "Sortieren nach 'No.'",
+                "rect": {
+                  "x": 200,
+                  "y": 122,
+                  "width": 19,
+                  "height": 16
+                }
+              },
+              {
+                "text": "Type",
+                "role": "",
+                "aria": "",
+                "title": "",
+                "rect": {
+                  "x": 602,
+                  "y": 617,
+                  "width": 110,
+                  "height": 24
+                }
+              },
+              {
+                "text": "Type",
+                "role": "",
+                "aria": "Type",
+                "title": "",
+                "rect": {
+                  "x": 602,
+                  "y": 617,
+                  "width": 25,
+                  "height": 16
+                }
+              },
+              {
+                "text": "No.",
+                "role": "",
+                "aria": "",
+                "title": "",
+                "rect": {
+                  "x": 764,
+                  "y": 617,
+                  "width": 80,
+                  "height": 24
+                }
+              },
+              {
+                "text": "No.",
+                "role": "button",
+                "aria": "",
+                "title": "Sortieren nach 'No.'",
+                "rect": {
+                  "x": 764,
+                  "y": 617,
+                  "width": 19,
+                  "height": 16
+                }
+              },
+              {
+                "text": "Item",
+                "role": "gridcell",
+                "aria": "",
+                "title": "",
+                "rect": {
+                  "x": 597,
+                  "y": 641,
+                  "width": 132,
+                  "height": 28
+                }
+              },
+              {
+                "text": "Item",
+                "role": "button",
+                "aria": "",
+                "title": "Datensatz „Item“ öffnen",
+                "rect": {
+                  "x": 598,
+                  "y": 643,
+                  "width": 33,
+                  "height": 25
+                }
+              }
+            ]
+          },
+          {
+            "frameUrl": "[external-frame]",
+            "purchaseInvoiceVisible": false,
+            "linesContextVisible": false,
+            "fixedAssetLineTypeVisible": false,
+            "itemLineTypeVisible": false,
+            "fixedAssetOptionVisible": false,
+            "dropdownOptionTexts": [],
+            "entries": []
+          },
+          {
+            "frameUrl": "[external-frame]",
+            "purchaseInvoiceVisible": false,
+            "linesContextVisible": false,
+            "fixedAssetLineTypeVisible": false,
+            "itemLineTypeVisible": false,
+            "fixedAssetOptionVisible": false,
+            "dropdownOptionTexts": [],
+            "entries": []
+          },
+          {
+            "frameUrl": "[external-frame]",
+            "purchaseInvoiceVisible": false,
+            "linesContextVisible": false,
+            "fixedAssetLineTypeVisible": false,
+            "itemLineTypeVisible": false,
+            "fixedAssetOptionVisible": false,
+            "dropdownOptionTexts": [],
+            "entries": []
+          },
+          {
+            "frameUrl": "[external-frame]",
+            "purchaseInvoiceVisible": false,
+            "linesContextVisible": false,
+            "fixedAssetLineTypeVisible": false,
+            "itemLineTypeVisible": false,
+            "fixedAssetOptionVisible": false,
+            "dropdownOptionTexts": [],
+            "entries": []
+          },
+          {
+            "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210",
+            "purchaseInvoiceVisible": false,
+            "linesContextVisible": false,
+            "fixedAssetLineTypeVisible": false,
+            "itemLineTypeVisible": false,
+            "fixedAssetOptionVisible": false,
+            "dropdownOptionTexts": [],
+            "entries": []
+          }
+        ]
+      }
+    },
+    "selectResult": {
+      "selected": false,
+      "selector": "not-attempted",
+      "scopeUrl": ""
+    },
+    "afterSelectionSignals": {
+      "purchaseInvoiceVisible": true,
+      "linesContextVisible": true,
+      "fixedAssetLineTypeVisible": false,
+      "itemLineTypeVisible": true,
+      "fixedAssetOptionVisible": false,
+      "dropdownOptionTexts": [
+        "Item"
+      ],
+      "frames": [
+        {
+          "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210",
+          "purchaseInvoiceVisible": false,
+          "linesContextVisible": false,
+          "fixedAssetLineTypeVisible": false,
+          "itemLineTypeVisible": false,
+          "fixedAssetOptionVisible": false,
+          "dropdownOptionTexts": [],
+          "entries": []
+        },
+        {
+          "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210",
+          "purchaseInvoiceVisible": true,
+          "linesContextVisible": true,
+          "fixedAssetLineTypeVisible": false,
+          "itemLineTypeVisible": true,
+          "fixedAssetOptionVisible": false,
+          "dropdownOptionTexts": [
+            "Item",
+            "Item"
+          ],
+          "entries": [
+            {
+              "text": "No.",
+              "role": "",
+              "aria": "",
+              "title": "",
+              "rect": {
+                "x": 200,
+                "y": 122,
+                "width": 210,
+                "height": 16
+              }
+            },
+            {
+              "text": "No.",
+              "role": "button",
+              "aria": "No., Sortierreihenfolge Aufsteigend",
+              "title": "Sortieren nach 'No.'",
+              "rect": {
+                "x": 200,
+                "y": 122,
+                "width": 19,
+                "height": 16
+              }
+            },
+            {
+              "text": "Type",
+              "role": "",
+              "aria": "",
+              "title": "",
+              "rect": {
+                "x": 602,
+                "y": 617,
+                "width": 110,
+                "height": 24
+              }
+            },
+            {
+              "text": "Type",
+              "role": "",
+              "aria": "Type",
+              "title": "",
+              "rect": {
+                "x": 602,
+                "y": 617,
+                "width": 25,
+                "height": 16
+              }
+            },
+            {
+              "text": "No.",
+              "role": "",
+              "aria": "",
+              "title": "",
+              "rect": {
+                "x": 764,
+                "y": 617,
+                "width": 80,
+                "height": 24
+              }
+            },
+            {
+              "text": "No.",
+              "role": "button",
+              "aria": "",
+              "title": "Sortieren nach 'No.'",
+              "rect": {
+                "x": 764,
+                "y": 617,
+                "width": 19,
+                "height": 16
+              }
+            },
+            {
+              "text": "Item",
+              "role": "gridcell",
+              "aria": "",
+              "title": "",
+              "rect": {
+                "x": 597,
+                "y": 641,
+                "width": 132,
+                "height": 28
+              }
+            },
+            {
+              "text": "Item",
+              "role": "button",
+              "aria": "",
+              "title": "Datensatz „Item“ öffnen",
+              "rect": {
+                "x": 598,
+                "y": 643,
+                "width": 33,
+                "height": 25
+              }
+            }
+          ]
+        },
+        {
+          "frameUrl": "[external-frame]",
+          "purchaseInvoiceVisible": false,
+          "linesContextVisible": false,
+          "fixedAssetLineTypeVisible": false,
+          "itemLineTypeVisible": false,
+          "fixedAssetOptionVisible": false,
+          "dropdownOptionTexts": [],
+          "entries": []
+        },
+        {
+          "frameUrl": "[external-frame]",
+          "purchaseInvoiceVisible": false,
+          "linesContextVisible": false,
+          "fixedAssetLineTypeVisible": false,
+          "itemLineTypeVisible": false,
+          "fixedAssetOptionVisible": false,
+          "dropdownOptionTexts": [],
+          "entries": []
+        },
+        {
+          "frameUrl": "[external-frame]",
+          "purchaseInvoiceVisible": false,
+          "linesContextVisible": false,
+          "fixedAssetLineTypeVisible": false,
+          "itemLineTypeVisible": false,
+          "fixedAssetOptionVisible": false,
+          "dropdownOptionTexts": [],
+          "entries": []
+        },
+        {
+          "frameUrl": "[external-frame]",
+          "purchaseInvoiceVisible": false,
+          "linesContextVisible": false,
+          "fixedAssetLineTypeVisible": false,
+          "itemLineTypeVisible": false,
+          "fixedAssetOptionVisible": false,
+          "dropdownOptionTexts": [],
+          "entries": []
+        },
+        {
+          "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210",
+          "purchaseInvoiceVisible": false,
+          "linesContextVisible": false,
+          "fixedAssetLineTypeVisible": false,
+          "itemLineTypeVisible": false,
+          "fixedAssetOptionVisible": false,
+          "dropdownOptionTexts": [],
+          "entries": []
+        }
+      ]
+    },
+    "guard": {
+      "status": "blocked-item-line-type-visible",
+      "success": false,
+      "stopReasons": [
+        "Line type still appears as Item; target values must remain locked."
+      ],
+      "visibleSignals": {
+        "purchaseInvoiceVisible": true,
+        "linesContextVisible": true,
+        "fixedAssetLineTypeVisible": false,
+        "itemLineTypeVisible": true,
+        "forbiddenFixedAssetNoVisible": false,
+        "vendorCardVisible": false,
+        "vendorRegistrationVisible": false,
+        "postingOrPreviewVisible": false
+      }
+    }
+  },
+  "nextStep": "FA-072 did not prove Type = Fixed Asset selection. Draft 107225 was removed through UI cleanup retry. Next step is a narrower Type dropdown selector diagnosis or an alternative UI route; do not enter K30000 or FA-CNC-01 yet."
+}

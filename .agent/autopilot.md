@@ -54,6 +54,5 @@ Zweck: kleiner Einstiegspunkt fuer Codex-Laeufe, die nicht den gesamten Projektv
 ## Aktueller Einstieg
 
 Der aktuelle kompakte State verweist auf die in `.agent/state/current.json` genannte aktive Case-Datei.
-Aktuell ist das `FIXEDASSETS-070-LINE-TYPE-SELECTION-DIAGNOSIS`.
-Der naechste sichere Schritt ist eine read-only Diagnose der Purchase-Invoice-Lines-Zeilentypauswahl.
-`K30000`, `FA-CNC-01`, `New/Neu`, `Edit`, `Delete`, `Preview Posting`, `Post`, Setup-Aenderung und Company-Wechsel bleiben ohne ausdrueckliche Freigabe verboten.
+Die konkrete Case-ID und der naechste sichere Schritt werden nicht mehr hier dupliziert, sondern aus `current.json` gelesen.
+Fuer Fixed-Assets-Purchase-Invoice-Laeufe gilt: erst den echten Lines-/Type-Kontext beweisen, dann Zielwerte eingeben; Cleanup fuer Sandbox-Drafts bleibt Pflicht.
