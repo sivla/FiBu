@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "runId": "LIVE-SMOKE-BC-003-READONLY-ACTION-INVENTORY-PLAN",
+  "runId": "LIVE-SMOKE-BC-003-READONLY-ACTION-INVENTORY",
   "date": "2026-06-19",
-  "workType": "agent-case-planning",
+  "workType": "playwright-readonly-smoke-action-inventory",
   "branch": "codex/token-efficient-autopilot-state",
-  "bcRun": false,
+  "bcRun": true,
   "posted": false,
   "companySwitched": false,
-  "summary": "LIVE-SMOKE-BC-003 was created as the next planned read-only smoke. It targets visible shell/page action inventory without clicking actions. No Business Central or Playwright execution happened in this planning run.",
+  "summary": "LIVE-SMOKE-BC-003 ran read-only in MCP_1_20260210 / RM-DEMO and inventoried visible shell/page actions without clicking them. No posting, preview, draft, setup change, company switch or book change.",
   "commandsToRunBeforeAutopilot": [
     "npm run agent:preflight",
     "npm run agent:context",
@@ -40,5 +40,5 @@
     "stateFinalize": "scripts/agent/state-finalize.mjs",
     "skillQualityCheck": "scripts/agent/skills-quality-check.mjs"
   },
-  "nextStep": "Run agent:preflight, agent:dry-run, agent:run-plan and agent:subagent-plan for LIVE-SMOKE-BC-003; then implement or run only the read-only action-inventory smoke if the plan remains green."
+  "nextStep": "Plan the next small read-only smoke: improve visible company-context proof or inventory hidden action menus only with an explicit no-click gate and fresh run-plan."
 }
