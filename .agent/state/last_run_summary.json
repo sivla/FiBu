@@ -1,43 +1,47 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-098-PURCHASE-INVOICE-LINE-TYPE-PROOF-REVIEW",
+  "runId": "FIXEDASSETS-099-PURCHASE-INVOICE-TYPE-DROPDOWN-BUTTON-PROBE",
   "date": "2026-06-19",
-  "workType": "local-evidence-review",
+  "workType": "fixed-asset-purchase-invoice-type-dropdown-button-probe",
   "branch": "codex/token-efficient-autopilot-state",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "bcRun": false,
+  "bcRun": true,
   "posted": false,
   "preview": false,
   "setupChanged": false,
   "companySwitched": false,
-  "resultStatus": "observed",
-  "summary": "FA-098 reviewed FA-097 locally. FA-097 did not prove Type=Fixed Asset; however, its evidence shows a smaller Item role=button at the Type-cell position. The next safe step is a button/dropdown-targeted probe, not target value entry.",
+  "resultStatus": "blocked",
+  "summary": "FA-099 targeted the smaller Purchase Invoice Type-cell Item button/dropdown area in MCP_1_20260210 / RM-DEMO. Fixed Asset was still not visible/selectable, no target values were entered, no preview/posting occurred, and no persisted draft number was detected.",
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/fixedassets-098/FIXEDASSETS-098-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-098/FIXEDASSETS-098-decision.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-098/README.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-097/FIXEDASSETS-097-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-097/030-purchase-invoice-line-type-proof.json"
+    "playwright/projects/fibu-book5/evidence/fixedassets-099/FIXEDASSETS-099-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-099/030-type-dropdown-button-probe.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-099/031-after-button-probe-focused-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-099/090-cleanup-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-099/README.md"
   ],
   "changedFiles": [
     ".agent/state/current.json",
-    ".agent/state/cases/fixedassets-098-purchase-invoice-line-type-proof-review.json",
     ".agent/state/cases/fixedassets-099-purchase-invoice-type-dropdown-button-probe.json",
+    ".agent/state/cases/fixedassets-100-purchase-invoice-type-dropdown-review.json",
     ".agent/state/last_run_summary.json",
-    ".agent/state/model_usage_log.jsonl",
-    "playwright/projects/fibu-book5/evidence/fixedassets-098/FIXEDASSETS-098-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-098/FIXEDASSETS-098-decision.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-098/README.md"
+    "package.json",
+    "playwright/projects/fibu-book5/tests/fixedassets-099-purchase-invoice-type-dropdown-button-probe.spec.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-099/FIXEDASSETS-099-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-099/030-type-dropdown-button-probe.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-099/031-after-button-probe-focused-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-099/090-cleanup-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-099/README.md"
   ],
   "validationCommands": [
     "npm run agent:preflight",
     "npm run agent:dry-run",
     "npm run agent:run-plan",
-    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-098/FIXEDASSETS-098-result.json",
-    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-098/FIXEDASSETS-098-result.json",
+    "npm run fibu:fixedassets:purchase-invoice-type-dropdown-button-probe",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-099/FIXEDASSETS-099-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-099/FIXEDASSETS-099-result.json",
     "npm run check:encoding",
     "git diff --check"
   ],
-  "nextStep": "Run FIXEDASSETS-099 guarded Type button/dropdown probe. No target values, no preview and no posting."
+  "nextStep": "Run FIXEDASSETS-100 local evidence review. Decide whether to abandon the Purchase Invoice Type route or use a different BC acquisition mechanism."
 }
