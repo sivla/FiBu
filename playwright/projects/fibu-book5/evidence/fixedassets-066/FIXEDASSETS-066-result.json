@@ -1,102 +1,455 @@
 {
-  "schemaVersion": 1,
-  "purpose": "autopilot-case-preparation-result",
-  "caseId": "FIXEDASSETS-066-PURCHASE-INVOICE-LINE-TYPE-GUARDED-PROBE-PREP",
-  "source": "state-and-safety-preparation",
-  "resultStatus": "observed",
-  "runPlanId": "FIXEDASSETS-066-PURCHASE-INVOICE-LINE-TYPE-GUARDED-PROBE-PREP-PLAN",
-  "selectedTaskClass": "wizard_work",
-  "selectedModelClass": "gpt-4-medium",
+  "caseId": "FIXEDASSETS-066-PURCHASE-INVOICE-LINE-TYPE-GUARDED-PROBE",
+  "generatedAt": "2026-06-19T01:56:25.642Z",
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "sourceEvidence": [
-    "playwright/projects/fibu-book5/evidence/fixedassets-065/FIXEDASSETS-065-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-065/020-line-type-guard-regression.json"
-  ],
-  "decision": "FIXEDASSETS-066 prepared a dedicated guarded no-target UI-probe runner and centralized ambiguous action scoring in clickBcScoredAction. The runner must use classifyPurchaseInvoiceLineTypeVisibility and stop on Item line or vendor-registration dialog before any target value entry. Because it clicks New/Neu and may create a temporary draft, execution is approval-gated.",
-  "runner": {
-    "status": "prepared-not-executed",
-    "testFile": "playwright/projects/fibu-book5/tests/fixedassets-066-purchase-invoice-line-type-guarded-probe.spec.ts",
-    "npmScript": "fibu:fixedassets:purchase-invoice-line-type-guarded-probe",
-    "scopedActionHelper": "playwright/core/bc/actions.ts::clickBcScoredAction",
-    "guard": "playwright/core/bc/purchase-invoice-guards.ts::classifyPurchaseInvoiceLineTypeVisibility",
-    "requiresExplicitApprovalBeforeRun": true,
-    "approvalReason": "Runner clicks New/Neu and may create a temporary draft; current live rules forbid New/Draft without explicit approval."
+  "dataBasis": "CRONUS USA",
+  "mode": "guarded-no-target-line-type-probe-no-preview-no-posting",
+  "target": {
+    "environment": "MCP_1_20260210",
+    "company": "RM-DEMO",
+    "forbiddenVendorNo": "K30000",
+    "forbiddenFixedAssetNo": "FA-CNC-01"
+  },
+  "openResult": {
+    "closedExternalPages": []
+  },
+  "context": {
+    "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=9308&dc=0&bookmark=1D_JgAAAACLAgAAAAJ7BjEAMAA3ADIAMQAw",
+    "environmentInUrl": true,
+    "companyInUrl": true,
+    "companyInText": true,
+    "wrongEnvironmentVisible": false
+  },
+  "newAttempt": {
+    "clicked": true,
+    "scopeUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=9308&aadTenantId=b8fd10d1-3599-4721-8651-f95bd868aba7&startTraceId=d7ba65ba5f5546c5aa94155d608a9d99&tid=5b06a8eb-93da-4e56-9ece-b8b800b85676&runinframe=1",
+    "chosen": {
+      "text": "Neu",
+      "aria": "Neu",
+      "title": "Erstellen Sie einen neuen Eintrag.",
+      "label": "Neu Neu Erstellen Sie einen neuen Eintrag.",
+      "x": 548,
+      "y": 51,
+      "width": 62,
+      "height": 38,
+      "score": -80
+    },
+    "candidates": [
+      {
+        "text": "Neu",
+        "aria": "Neu",
+        "title": "Erstellen Sie einen neuen Eintrag.",
+        "label": "Neu Neu Erstellen Sie einen neuen Eintrag.",
+        "x": 548,
+        "y": 51,
+        "width": 62,
+        "height": 38,
+        "score": -80
+      },
+      {
+        "text": "Neu ",
+        "aria": "Neu",
+        "title": "",
+        "label": "Neu  Neu ",
+        "x": 548,
+        "y": 51,
+        "width": 89,
+        "height": 38,
+        "score": -60
+      },
+      {
+        "text": "Neu",
+        "aria": "Neu",
+        "title": "",
+        "label": "Neu Neu ",
+        "x": 578,
+        "y": 61,
+        "width": 26,
+        "height": 19,
+        "score": -60
+      }
+    ],
+    "attempts": []
+  },
+  "lineTypeEvidence": {
+    "purchaseInvoiceVisible": true,
+    "linesContextVisible": true,
+    "fixedAssetLineTypeVisible": false,
+    "itemLineTypeVisible": true,
+    "forbiddenVendorNoVisible": false,
+    "forbiddenFixedAssetNoVisible": false,
+    "vendorCardVisible": false,
+    "vendorRegistrationVisible": false,
+    "postingOrPreviewVisible": true,
+    "frameEvidence": [
+      {
+        "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210",
+        "purchaseInvoiceVisible": false,
+        "linesContextVisible": false,
+        "fixedAssetLineTypeVisible": false,
+        "itemLineTypeVisible": false,
+        "forbiddenVendorNoVisible": false,
+        "forbiddenFixedAssetNoVisible": false,
+        "vendorCardVisible": false,
+        "vendorRegistrationVisible": false,
+        "postingOrPreviewVisible": false,
+        "entries": []
+      },
+      {
+        "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210",
+        "purchaseInvoiceVisible": true,
+        "linesContextVisible": true,
+        "fixedAssetLineTypeVisible": false,
+        "itemLineTypeVisible": true,
+        "forbiddenVendorNoVisible": false,
+        "forbiddenFixedAssetNoVisible": false,
+        "vendorCardVisible": false,
+        "vendorRegistrationVisible": false,
+        "postingOrPreviewVisible": true,
+        "entries": [
+          {
+            "text": "Item",
+            "rect": {
+              "x": 597,
+              "y": 641,
+              "width": 132,
+              "height": 28
+            }
+          },
+          {
+            "text": "Item",
+            "rect": {
+              "x": 598,
+              "y": 643,
+              "width": 33,
+              "height": 25
+            }
+          }
+        ]
+      },
+      {
+        "frameUrl": "[external-frame]",
+        "purchaseInvoiceVisible": false,
+        "linesContextVisible": false,
+        "fixedAssetLineTypeVisible": false,
+        "itemLineTypeVisible": false,
+        "forbiddenVendorNoVisible": false,
+        "forbiddenFixedAssetNoVisible": false,
+        "vendorCardVisible": false,
+        "vendorRegistrationVisible": false,
+        "postingOrPreviewVisible": false,
+        "entries": []
+      },
+      {
+        "frameUrl": "[external-frame]",
+        "purchaseInvoiceVisible": false,
+        "linesContextVisible": false,
+        "fixedAssetLineTypeVisible": false,
+        "itemLineTypeVisible": false,
+        "forbiddenVendorNoVisible": false,
+        "forbiddenFixedAssetNoVisible": false,
+        "vendorCardVisible": false,
+        "vendorRegistrationVisible": false,
+        "postingOrPreviewVisible": false,
+        "entries": []
+      },
+      {
+        "frameUrl": "[external-frame]",
+        "purchaseInvoiceVisible": false,
+        "linesContextVisible": false,
+        "fixedAssetLineTypeVisible": false,
+        "itemLineTypeVisible": false,
+        "forbiddenVendorNoVisible": false,
+        "forbiddenFixedAssetNoVisible": false,
+        "vendorCardVisible": false,
+        "vendorRegistrationVisible": false,
+        "postingOrPreviewVisible": false,
+        "entries": []
+      },
+      {
+        "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210",
+        "purchaseInvoiceVisible": false,
+        "linesContextVisible": false,
+        "fixedAssetLineTypeVisible": false,
+        "itemLineTypeVisible": false,
+        "forbiddenVendorNoVisible": false,
+        "forbiddenFixedAssetNoVisible": false,
+        "vendorCardVisible": false,
+        "vendorRegistrationVisible": false,
+        "postingOrPreviewVisible": false,
+        "entries": []
+      }
+    ]
+  },
+  "guard": {
+    "status": "blocked-item-line-type-visible",
+    "success": false,
+    "stopReasons": [
+      "Line type still appears as Item; target values must remain locked."
+    ],
+    "visibleSignals": {
+      "purchaseInvoiceVisible": true,
+      "linesContextVisible": true,
+      "fixedAssetLineTypeVisible": false,
+      "itemLineTypeVisible": true,
+      "forbiddenFixedAssetNoVisible": false,
+      "vendorCardVisible": false,
+      "vendorRegistrationVisible": false,
+      "postingOrPreviewVisible": true
+    }
+  },
+  "draftInvoiceNo": "107210",
+  "cleanup": {
+    "status": "cleanup-clicked-but-still-visible",
+    "invoiceNo": "107210",
+    "deleteAction": {
+      "clicked": true,
+      "scopeUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=9308&filter=%27Purchase+Header%27.%27No.%27+IS+%27107210%27&aadTenantId=b8fd10d1-3599-4721-8651-f95bd868aba7&startTraceId=cf3cf75c1ec540e98aa7aab05fa5fb1f&tid=cfc4e9d1-2c90-4bd7-b263-1fc589e9a6e8&runinframe=1",
+      "chosen": {
+        "text": "Löschen",
+        "aria": "Löschen",
+        "title": "",
+        "label": "Löschen Löschen ",
+        "x": 667,
+        "y": 61,
+        "width": 50,
+        "height": 19,
+        "score": -60
+      },
+      "candidates": [
+        {
+          "text": "Löschen",
+          "aria": "Löschen",
+          "title": "",
+          "label": "Löschen Löschen ",
+          "x": 667,
+          "y": 61,
+          "width": 50,
+          "height": 19,
+          "score": -60
+        },
+        {
+          "text": "Löschen",
+          "aria": "Löschen",
+          "title": "Die ausgewählte Zeile löschen",
+          "label": "Löschen Löschen Die ausgewählte Zeile löschen",
+          "x": 636,
+          "y": 51,
+          "width": 92,
+          "height": 38,
+          "score": 40
+        },
+        {
+          "text": "Zum Hauptinhalt wechseln Rhein-Main Demo GmbH Finance Cash Management Sales Purc...",
+          "aria": "Purchase Invoices",
+          "title": "",
+          "label": "Zum Hauptinhalt wechseln Rhein-Main Demo GmbH Finance Cash Management Sales Purchasing Shopify Alle Berichte  Agent A Payables Agent PA Verkaufsauftragsagent VA Purchase Invoices:...",
+          "x": 0,
+          "y": 0,
+          "width": 2600,
+          "height": 1352,
+          "score": 50
+        }
+      ],
+      "attempts": []
+    },
+    "confirmation": {
+      "confirmed": false,
+      "button": "not-found"
+    },
+    "visibleAfter": true
+  },
+  "status": "blocked-blocked-item-line-type-visible",
+  "success": false,
+  "safety": {
+    "forbiddenVendorNoEntered": false,
+    "forbiddenFixedAssetNoEntered": false,
+    "forbiddenVendorNoVisible": false,
+    "forbiddenFixedAssetNoVisible": false,
+    "clickedPreviewPosting": false,
+    "clickedPost": false,
+    "posted": false,
+    "acquisitionPosted": false,
+    "depreciationPosted": false,
+    "setupChanged": false,
+    "apiShortcutUsed": false,
+    "companySwitched": false
+  },
+  "summary": "Der Guard stoppte korrekt, weil in den Einkaufsrechnungszeilen weiterhin Item statt Fixed Asset sichtbar war. Zielwerte blieben gesperrt; der temporaere Draft 107210 wurde danach per UI-Cleanup entfernt.",
+  "bookImpact": "Kapitel 21 bleibt beim Debugging-Hinweis: Ohne sichtbaren Zeilentyp Fixed Asset darf keine Anlagen-Nr. eingegeben werden.",
+  "nextStep": "Zeilentyp-Auswahl/Personalisierung fuer Purchase Invoice Lines diagnostizieren; keine Zielwerte eingeben, bevor Type = Fixed Asset sichtbar belegt ist.",
+  "schemaVersion": 1,
+  "purpose": "fixedassets-guarded-ui-probe-result",
+  "source": "playwright-guarded-ui-probe",
+  "resultStatus": "blocked",
+  "cleanupFinal": {
+    "caseId": "FIXEDASSETS-066-PURCHASE-INVOICE-DRAFT-CLEANUP",
+    "generatedAt": "2026-06-19T01:58:31.477Z",
+    "environment": "MCP_1_20260210",
+    "company": "RM-DEMO",
+    "context": {
+      "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=9308&filter=%27Purchase%20Header%27.%27No.%27%20IS%20%27107210%27&dc=0&bookmark=1D_JgAAAACLAgAAAAJ7BjEAMAA3ADIAMQAw",
+      "environmentInUrl": true,
+      "companyInUrl": true,
+      "companyInText": true,
+      "wrongEnvironmentVisible": false
+    },
+    "invoiceNo": "107210",
+    "visibleBefore": true,
+    "cleanup": {
+      "deleteResult": {
+        "clicked": true,
+        "chosen": {
+          "text": "Löschen",
+          "aria": "Löschen",
+          "title": "",
+          "label": "Löschen Löschen ",
+          "rect": {
+            "x": 667,
+            "y": 61,
+            "width": 50,
+            "height": 19
+          },
+          "score": -70
+        },
+        "candidates": [
+          {
+            "text": "Löschen",
+            "aria": "Löschen",
+            "title": "",
+            "label": "Löschen Löschen ",
+            "rect": {
+              "x": 667,
+              "y": 61,
+              "width": 50,
+              "height": 19
+            },
+            "score": -70
+          },
+          {
+            "text": "Löschen",
+            "aria": "Löschen",
+            "title": "Die ausgewählte Zeile löschen",
+            "label": "Löschen Löschen Die ausgewählte Zeile löschen",
+            "rect": {
+              "x": 636,
+              "y": 51,
+              "width": 92,
+              "height": 38
+            },
+            "score": 10
+          },
+          {
+            "text": "Zum Hauptinhalt wechseln Rhein-Main Demo GmbH Finance Cash Management Sales Purc...",
+            "aria": "Purchase Invoices",
+            "title": "",
+            "label": "Zum Hauptinhalt wechseln Rhein-Main Demo GmbH Finance Cash Management Sales Purchasing Shopify Alle Berichte  Agent A Payables Agent PA Verkaufsauftragsagent VA Purchase Invoices:...",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 2600,
+              "height": 1352
+            },
+            "score": 200
+          }
+        ]
+      },
+      "confirmation": {
+        "confirmed": true,
+        "button": "^Ja$"
+      }
+    },
+    "visibleAfter": false,
+    "status": "cleaned-up",
+    "safety": {
+      "apiShortcutUsed": false,
+      "companySwitched": false,
+      "setupChanged": false,
+      "clickedPreviewPosting": false,
+      "clickedPost": false,
+      "posted": false
+    },
+    "summary": "Temporary Purchase Invoice draft 107210 was removed through the UI.",
+    "nextStep": "Continue with line-type diagnosis; do not enter target values until Fixed Asset line type is visible."
   },
   "proved": [
-    "The next active case is explicitly scoped to guarded probe preparation, not this run's BC execution.",
-    "The required guard is classifyPurchaseInvoiceLineTypeVisibility.",
-    "A dedicated Playwright runner exists for the guarded no-target probe.",
-    "Ambiguous New/Delete action scoring is centralized in clickBcScoredAction for reuse.",
-    "Runner execution is approval-gated because New/Neu and temporary draft creation are not read-only.",
-    "Autopilot state now directs the next run to request explicit approval or choose read-only context/action inventory.",
-    "K30000 and FA-CNC-01 remain forbidden for the next preparation step.",
-    "Preview Posting, Post, setup change, API shortcut and company switch remain forbidden."
+    "Business Central instance MCP_1_20260210 was opened through the UI.",
+    "Company RM-DEMO context was confirmed by URL and visible page text.",
+    "Scoped New/Neu on Purchase Invoices opened a Purchase Invoice context.",
+    "Purchase Invoice Lines context was visible.",
+    "Line Type remained Item; Fixed Asset line type was not visible.",
+    "Guard stopped before entering K30000 or FA-CNC-01.",
+    "Temporary Purchase Invoice draft 107210 was removed through the UI."
   ],
   "notProved": [
-    "No new Business Central UI state.",
-    "No visible Type = Fixed Asset purchase invoice line.",
-    "No K30000 header context.",
-    "No FA-CNC-01 line context.",
-    "No Preview Posting, posting, acquisition, depreciation or German final proof."
+    "No Fixed Asset line type was proven in the Purchase Invoice line.",
+    "No vendor K30000 was entered or proven in this draft.",
+    "No fixed asset FA-CNC-01 was entered or proven in this draft.",
+    "No Preview Posting was opened.",
+    "No posting, acquisition posting, depreciation posting, or G/L trace was produced.",
+    "No German final proof."
   ],
-  "warnings": [
-    "Do not run a UI probe that types Fixed Asset as free text into an Item line.",
-    "Do not enter K30000 or FA-CNC-01 in the next probe.",
-    "If a probe creates a draft in a later approved run, cleanup is mandatory and must be evidenced."
-  ],
-  "blockedBy": [],
-  "requiresReview": false,
-  "safeToFinalizeState": true,
   "changedFiles": [
-    ".agent/state/cases/fixedassets-066.json",
-    ".agent/state/current.json",
-    ".agent/state/last_run_summary.json",
-    ".agent/autopilot.md",
     "playwright/projects/fibu-book5/evidence/fixedassets-066/FIXEDASSETS-066-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-066/README.md"
+    "playwright/projects/fibu-book5/evidence/fixedassets-066/030-line-type-guard-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-066/090-cleanup-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-066/091-cleanup-retry-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-066/092-cleanup-retry-after-focused-text.txt"
   ],
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/fixedassets-066/FIXEDASSETS-066-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-066/README.md"
+    "playwright/projects/fibu-book5/evidence/fixedassets-066/030-line-type-guard-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-066/091-cleanup-retry-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-066/092-cleanup-retry-after-focused-text.txt"
   ],
+  "warnings": [
+    "The first cleanup attempt did not find/confirm the delete dialog; a dedicated UI cleanup retry removed the draft.",
+    "Posting/Preview actions were visible as page actions but were not clicked."
+  ],
+  "blockedBy": [
+    "blocked-item-line-type-visible"
+  ],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "flags": {
+    "noPost": true,
+    "noPreview": true,
+    "noDraftKept": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true,
+    "scopedNewClickedWithApproval": true,
+    "cleanupViaUi": true
+  },
   "statePatch": {
     "current": {
       "activeCase": "FIXEDASSETS-066-PURCHASE-INVOICE-LINE-TYPE-GUARDED-PROBE-PREP",
-      "active_case_file": ".agent/state/cases/fixedassets-066.json",
-      "nextStep": "Do not run FIXEDASSETS-066 automatically. The prepared runner would click New/Neu and may create a temporary draft, so it requires explicit user approval for a draft-capable guarded probe. Without that approval, choose a read-only context/action-inventory step instead. Still no K30000, no FA-CNC-01, no Preview and no Post."
+      "nextStep": "Improve the Purchase Invoice line-type selection path; do not enter K30000 or FA-CNC-01 until Type = Fixed Asset is visibly proven in the line context."
     },
     "lastRunSummary": {
-      "schemaVersion": 1,
-      "runId": "FIXEDASSETS-066-PURCHASE-INVOICE-LINE-TYPE-GUARDED-PROBE-PREP",
-      "date": "2026-06-19",
-      "workType": "guarded-runner-preparation",
-      "branch": "codex/token-efficient-autopilot-state",
-      "bcRun": false,
+      "runId": "FIXEDASSETS-066-PURCHASE-INVOICE-LINE-TYPE-GUARDED-PROBE",
+      "bcRun": true,
       "posted": false,
       "companySwitched": false,
-      "summary": "FIXEDASSETS-066 prepared a dedicated guarded no-target UI-probe runner and moved scoped action scoring into playwright/core/bc/actions.ts. Because the runner clicks New/Neu and may create a temporary draft, it is approval-gated; without explicit approval the next safe action is read-only context/action inventory.",
-      "nextStep": "Ask for explicit approval before running npm run fibu:fixedassets:purchase-invoice-line-type-guarded-probe, or choose a read-only context/action-inventory step."
+      "summary": "Guarded Purchase Invoice probe stopped because line type remained Item; temporary draft 107210 was removed through UI cleanup retry."
     },
     "activeCase": {
-      "status": "runner-prepared",
+      "status": "blocked-item-line-type-visible-cleanup-complete",
       "lastResult": {
-        "status": "observed",
+        "status": "blocked-item-line-type-visible-cleanup-complete",
         "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-066/FIXEDASSETS-066-result.json",
-        "summary": "Dedicated guarded no-target UI-probe runner exists, uses centralized clickBcScoredAction, and is wired to npm script; it has not been executed and now requires explicit approval before any draft-capable run."
-      },
-      "nextSafeAction": "Do not run the guarded no-target UI probe automatically. Because it clicks New/Neu and may create a temporary draft, it requires explicit user approval; otherwise perform only a read-only context/action-inventory step. Still no K30000, no FA-CNC-01, no Preview and no Post."
+        "summary": "Line type remained Item; target values stayed locked; UI cleanup removed draft 107210."
+      }
+    },
+    "coverage": {
+      "areas": {
+        "fixedassets": {
+          "currentBlock": "purchase-invoice-line-type-diagnosis",
+          "latestPracticalCase": "FIXEDASSETS-066",
+          "nextCase": "FIXEDASSETS-070-LINE-TYPE-SELECTION-DIAGNOSIS"
+        }
+      }
     }
-  },
-  "flags": {
-    "noBcRun": true,
-    "noPlaywrightRun": true,
-    "noPost": true,
-    "noPreview": true,
-    "noDraft": true,
-    "noSetupChange": true,
-    "noCompanySwitch": true,
-    "noBookChange": true,
-    "noApiShortcut": true
   }
 }

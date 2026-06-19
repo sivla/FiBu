@@ -115,9 +115,9 @@ async function collectLineTypeEvidence(page: Page) {
               rect: { x: Math.round(rect.x), y: Math.round(rect.y), width: Math.round(rect.width), height: Math.round(rect.height) },
             };
           })
-          .filter((entry) => /^(Item|Artikel|Fixed Asset|Anlage)$/.test(entry.text) || /Fixed Asset|Anlage|Item|Artikel/i.test(entry.text))
+          .filter((entry) => /^(Item|Artikel|Fixed Asset|Anlage)$/.test(entry.text))
           .filter((entry) => entry.rect.y > 300)
-          .slice(0, 80);
+          .slice(0, 12);
         return {
           frameUrl: /businesscentral\.dynamics\.com$/i.test(location.hostname) ? `${location.origin}${location.pathname}` : '[external-frame]',
           purchaseInvoiceVisible: /Purchase Invoice|Einkaufsrechnung/i.test(bodyText),

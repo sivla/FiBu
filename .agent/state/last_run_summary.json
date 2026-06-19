@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-069-PURCHASE-INVOICE-DRAFT-PROBE-APPROVAL-GATE",
+  "runId": "FIXEDASSETS-066-PURCHASE-INVOICE-LINE-TYPE-GUARDED-PROBE",
   "date": "2026-06-19",
-  "workType": "approval-gate-decision",
+  "workType": "guarded-ui-probe-execution-and-cleanup",
   "branch": "codex/token-efficient-autopilot-state",
-  "bcRun": false,
+  "bcRun": true,
   "posted": false,
   "companySwitched": false,
-  "summary": "FIXEDASSETS-069 records the approval gate: after read-only action inventory and Page Inspection, the next useful line-type probe requires a New/Neu click and must not run without explicit user approval.",
+  "summary": "FIXEDASSETS-066 ran once with explicit approval. The guard proved Purchase Invoice Lines context but stopped because Type remained Item; K30000/FA-CNC-01 were not entered, no Preview/Post happened, and temporary draft 107210 was removed via UI cleanup retry.",
   "commandsToRunBeforeAutopilot": [
     "npm run agent:preflight",
     "npm run agent:context",
@@ -40,5 +40,5 @@
     "stateFinalize": "scripts/agent/state-finalize.mjs",
     "skillQualityCheck": "scripts/agent/skills-quality-check.mjs"
   },
-  "nextStep": "Ask for explicit approval for FIXEDASSETS-066, or choose only another read-only context probe."
+  "nextStep": "Diagnose Purchase Invoice Lines Type selection, personalization, or page metadata so Type = Fixed Asset can be made visible before any target values are entered."
 }

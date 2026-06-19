@@ -3,8 +3,8 @@
   "caseId": "FIXEDASSETS-066-PURCHASE-INVOICE-LINE-TYPE-GUARDED-PROBE-PREP",
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "status": "runner-prepared",
-  "workType": "guarded-ui-probe-preparation",
+  "status": "blocked-item-line-type-visible-cleanup-complete",
+  "workType": "guarded-ui-probe-execution",
   "goal": "Naechsten no-target UI-Probe fuer Einkaufsrechnungs-Zeilentyp vorbereiten: Der Lauf muss den neuen Zeilentyp-Guard nutzen und bei Item-Zeile oder Vendor-Registrierungsdialog sofort stoppen.",
   "mustRead": [
     ".agent/state/current.json",
@@ -27,7 +27,6 @@
     "preview-posting",
     "post",
     "keep-draft",
-    "run-draft-capable-probe-without-explicit-user-approval",
     "setup-change",
     "api-shortcut",
     "company-switch",
@@ -49,10 +48,15 @@
     "playwright/projects/fibu-book5/evidence/fixedassets-065/FIXEDASSETS-065-result.json",
     "playwright/projects/fibu-book5/evidence/fixedassets-065/020-line-type-guard-regression.json"
   ],
-  "nextSafeAction": "Do not run the guarded no-target UI probe automatically. Because it clicks New/Neu and may create a temporary draft, it requires explicit user approval; otherwise perform only a read-only context/action-inventory step. Still no K30000, no FA-CNC-01, no Preview and no Post.",
+  "nextSafeAction": "Diagnose Purchase Invoice Lines Type selection and page personalization/read-only metadata. Do not enter K30000 or FA-CNC-01 until Type = Fixed Asset is visibly proven in the same line context. No Preview, no Post, no setup change, no company switch and no kept draft.",
+  "approval": {
+    "approvedByUser": true,
+    "approvedAt": "2026-06-19T15:05:00.000Z",
+    "scope": "Exactly one guarded FIXEDASSETS-066 run may click scoped New/Neu on Purchase Invoices only. K30000, FA-CNC-01, Preview Posting, Post, setup change, company switch and kept draft remain forbidden."
+  },
   "lastResult": {
-    "status": "observed",
+    "status": "blocked-item-line-type-visible-cleanup-complete",
     "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-066/FIXEDASSETS-066-result.json",
-    "summary": "Dedicated guarded no-target UI-probe runner exists, uses centralized clickBcScoredAction, and is wired to npm script; it has not been executed and now requires explicit approval before any draft-capable run."
+    "summary": "Guarded no-target UI-probe ran once with explicit approval. It clicked scoped New/Neu, proved Purchase Invoice Lines context, stopped because Type remained Item, entered no target values, and removed temporary draft 107210 via UI cleanup retry."
   }
 }
