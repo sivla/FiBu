@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-113-FA-GL-JOURNAL-ACTIVE-CELL-ROUTE-DECISION",
+  "runId": "FIXEDASSETS-114-FA-ACQUISITION-ROUTE-REPLAN",
   "date": "2026-06-20",
-  "workType": "local-fixed-asset-route-decision",
+  "workType": "local-fixed-asset-route-replan",
   "branch": "codex/token-efficient-autopilot-state",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
@@ -14,35 +14,33 @@
   "apiShortcut": false,
   "bookChanged": false,
   "resultStatus": "observed",
-  "summary": "FA-113 rejects the current FA G/L Journal active-cell route for value entry. FA-110/112 prove headers and safe no-write behavior, but no safe controls; coordinate/focus probing lost target context.",
+  "summary": "FA-114 selects Purchase Invoice line Type dropdown discovery as the next safe fixed-asset acquisition route. FA G/L Journal active-cell value entry remains rejected; Acquire stays a later diagnostic route.",
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/fixedassets-113/FIXEDASSETS-113-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-113/FIXEDASSETS-113-review.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-113/README.md"
+    "playwright/projects/fibu-book5/evidence/fixedassets-114/FIXEDASSETS-114-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-114/FIXEDASSETS-114-route-plan.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-114/README.md"
   ],
   "changedFiles": [
     ".agent/state/current.json",
-    ".agent/state/cases/fixedassets-113-fa-gl-journal-active-cell-route-decision.json",
     ".agent/state/cases/fixedassets-114-fa-acquisition-route-replan.json",
+    ".agent/state/cases/fixedassets-115-purchase-invoice-line-type-dropdown-discovery.json",
     ".agent/state/last_run_summary.json",
     ".agent/state/model_usage_log.jsonl",
-    "playwright/projects/fibu-book5/BC-PLAYWRIGHT-PATTERNS.md",
-    "playwright/projects/fibu-book5/WORKAROUNDS-AND-ERRORS.md",
     "playwright/projects/fibu-book5/CURRENT-STATE.md",
     "playwright/projects/fibu-book5/LAB-FIT-STATUS.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-113/FIXEDASSETS-113-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-113/FIXEDASSETS-113-review.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-113/README.md"
+    "playwright/projects/fibu-book5/evidence/fixedassets-114/FIXEDASSETS-114-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-114/FIXEDASSETS-114-route-plan.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-114/README.md"
   ],
   "validationCommands": [
     "npm run agent:preflight",
     "npm run agent:dry-run",
     "npm run agent:run-plan",
     "npm run agent:subagent-plan",
-    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-113/FIXEDASSETS-113-result.json",
-    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-113/FIXEDASSETS-113-result.json",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-114/FIXEDASSETS-114-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-114/FIXEDASSETS-114-result.json",
     "npm run check:encoding",
     "git diff --check"
   ],
-  "nextStep": "Run FIXEDASSETS-114 local route replan before any further BC/Playwright action."
+  "nextStep": "Run FIXEDASSETS-115 controlled Purchase Invoice line Type dropdown discovery before any target values, Preview Posting or posting."
 }

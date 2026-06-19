@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-115-PURCHASE-INVOICE-LINE-TYPE-DROPDOWN-DISCOVERY",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "controlled-ui-capability-probe",
+  "taskClass": "wizard_work",
+  "goal": "Discover a stable UI route for the Purchase Invoice line Type dropdown and prove whether the Fixed Asset option is visible before any target values are entered.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-060/FIXEDASSETS-060-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-062/FIXEDASSETS-062-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-064/FIXEDASSETS-064-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-097/FIXEDASSETS-097-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-099/FIXEDASSETS-099-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-114/FIXEDASSETS-114-result.json"
+  ],
+  "knownTruth": [
+    "Purchase Invoice card and lines context is proven by FIXEDASSETS-060.",
+    "Blind text entry and previous dropdown attempts did not prove Type = Fixed Asset.",
+    "FA-CNC-01 must not be entered until the current line visibly shows Type = Fixed Asset.",
+    "Any created Purchase Invoice draft must be cleaned up or documented with explicit keep-status evidence."
+  ],
+  "allowedActions": [
+    "open-business-central",
+    "run-playwright",
+    "confirm-instance-and-company",
+    "open-purchase-invoices",
+    "scoped-new-purchase-invoice-if-needed",
+    "observe-purchase-invoice-lines",
+    "open-line-type-dropdown",
+    "capture-visible-dropdown-options",
+    "capture-compact-evidence",
+    "cleanup-draft-if-created"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "api-shortcut",
+    "book-edit",
+    "enter-K30000-in-purchase-invoice",
+    "enter-FA-CNC-01",
+    "enter-amount",
+    "enter-balancing-account",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "delete-non-test-data",
+    "fake-evidence"
+  ],
+  "acceptanceCriteria": [
+    "The test aborts if instance or company is not clearly MCP_1_20260210 / RM-DEMO.",
+    "The result records whether the Purchase Invoice line Type dropdown is reachable and which options are visible.",
+    "No target vendor, fixed asset, amount, balancing account, Preview Posting or posting is used.",
+    "If a draft document is created, cleanup or explicit keep-status evidence is written.",
+    "A screenshot is only accepted if it shows the actual dropdown/options or the clear blocker."
+  ],
+  "recommendedSkills": [
+    "evidence-writer"
+  ],
+  "requiresUsageLog": false,
+  "nextSafeAction": "Run a controlled Playwright UI probe for Purchase Invoice line Type dropdown discovery only."
+}
