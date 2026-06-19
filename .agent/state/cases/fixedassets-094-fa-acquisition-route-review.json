@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-094-FA-ACQUISITION-ROUTE-REVIEW",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "fixed-asset-acquisition-route-review",
+  "taskClass": "judge_work",
+  "goal": "Compare existing fixed-asset acquisition evidence and choose the next safe practical route before any further value entry, Preview Posting or posting.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-053/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-077/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-080/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-082/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-088/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-092/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-093/FIXEDASSETS-093-result.json"
+  ],
+  "knownTruth": [
+    "The Purchase Invoice route has prior evidence and blockers around line typing or field mapping.",
+    "The Acquire action route was visible but previously blocked or disabled.",
+    "The Fixed Asset G/L Journal route has strong page and column evidence but no safe cleanup or keep-draft approval.",
+    "No fixed-asset acquisition posting is approved for the next step."
+  ],
+  "allowedActions": [
+    "read-existing-fixedassets-evidence",
+    "compare-acquisition-routes",
+    "write-compact-route-review-evidence",
+    "prepare-next-safe-case",
+    "state-patch-plan-only"
+  ],
+  "forbiddenActions": [
+    "open-business-central",
+    "run-playwright",
+    "company-switch",
+    "new-document",
+    "new-journal-line",
+    "edit-record",
+    "enter-FA-CNC-01",
+    "enter-K30000",
+    "enter-amount",
+    "delete-record",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "api-shortcut",
+    "book-edit",
+    "keep-draft"
+  ],
+  "defaultLockedActionsUnlockedForThisCase": [],
+  "acceptanceCriteria": [
+    "Decision is based only on existing fixed-asset evidence.",
+    "Route comparison separates screenshot/page evidence from executable posting readiness.",
+    "Next case selects exactly one practical route or blocks with a clear missing proof.",
+    "No BC or Playwright execution occurs in this route-review case."
+  ],
+  "stopConditions": [
+    "Existing evidence is insufficient to compare routes.",
+    "Decision would require opening BC or Playwright.",
+    "Decision would unlock value entry, Preview or Post."
+  ],
+  "recommendedSkills": [
+    "evidence-reader",
+    "safety-gate-checker"
+  ],
+  "requiresUsageLog": true,
+  "nextSafeAction": "Review existing fixed-asset acquisition evidence and choose whether to revisit Purchase Invoice, diagnose Acquire action, or define an explicit journal keep-draft policy.",
+  "mustRead": [
+    ".agent/state/current.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-093/FIXEDASSETS-093-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-092/FIXEDASSETS-092-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-082/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-077/"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-094/FIXEDASSETS-094-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-094/FIXEDASSETS-094-route-review.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-094/README.md"
+  ]
+}

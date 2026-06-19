@@ -62,6 +62,10 @@ function isStateChangingAction(action) {
 }
 
 function chooseTaskClass(current, activeCase) {
+  if (typeof activeCase.taskClass === 'string' && activeCase.taskClass.length > 0) {
+    return activeCase.taskClass;
+  }
+
   if (current.requiresStrongModel === true) {
     return 'judge_work';
   }

@@ -1,46 +1,44 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-092-FA-GL-JOURNAL-FRAME-ACTION-DISCOVERY-READONLY",
+  "runId": "FIXEDASSETS-093-FA-GL-JOURNAL-VALUE-ENTRY-GATE-DECISION",
   "date": "2026-06-19",
-  "workType": "fixed-asset-gl-journal-frame-action-discovery-readonly",
+  "workType": "fixed-asset-gl-journal-value-entry-gate-decision",
   "branch": "codex/token-efficient-autopilot-state",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "bcRun": true,
+  "bcRun": false,
   "posted": false,
   "preview": false,
   "setupChanged": false,
   "companySwitched": false,
   "resultStatus": "observed",
-  "summary": "FA-092 captured frame-scoped action inventory. Post, Insert FA Bal. Account, Reconcile and Apply Entries are visible and remain locked; no Delete cleanup candidate was visible in the frame.",
+  "summary": "FA-093 kept Fixed Asset G/L Journal value entry locked because FA-092 did not prove a Delete cleanup route and showed a persistent journal row surface.",
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/fixedassets-092/FIXEDASSETS-092-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-092/FIXEDASSETS-092-learning.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-092/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-093/FIXEDASSETS-093-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-093/FIXEDASSETS-093-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-093/README.md",
     "playwright/projects/fibu-book5/evidence/fixedassets-092/020-frame-action-inventory.json"
   ],
   "changedFiles": [
     ".agent/state/current.json",
-    ".agent/state/cases/fixedassets-092-fa-gl-journal-frame-action-discovery-readonly.json",
     ".agent/state/cases/fixedassets-093-fa-gl-journal-value-entry-gate-decision.json",
+    ".agent/state/cases/fixedassets-094-fa-acquisition-route-review.json",
     ".agent/state/coverage_state.json",
     ".agent/state/last_run_summary.json",
-    "package.json",
-    "playwright/projects/fibu-book5/tests/fixedassets-092-fa-gl-journal-frame-action-discovery-readonly.spec.ts",
-    "playwright/projects/fibu-book5/evidence/fixedassets-092/FIXEDASSETS-092-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-092/FIXEDASSETS-092-learning.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-092/README.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-092/010-frame-action-context.txt",
-    "playwright/projects/fibu-book5/evidence/fixedassets-092/020-frame-action-inventory.json"
+    ".agent/state/model_usage_log.jsonl",
+    "scripts/agent/context-pack.mjs",
+    "scripts/agent/dry-run.mjs",
+    "playwright/projects/fibu-book5/evidence/fixedassets-093/FIXEDASSETS-093-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-093/FIXEDASSETS-093-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-093/README.md"
   ],
   "validationCommands": [
     "npm run agent:preflight",
     "npm run agent:context",
-    "npm run fibu:fixedassets:fa-gl-journal-frame-action-discovery",
-    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-092/FIXEDASSETS-092-result.json",
-    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-092/FIXEDASSETS-092-result.json",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-093/FIXEDASSETS-093-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-093/FIXEDASSETS-093-result.json",
     "npm run check:encoding",
     "git diff --check"
   ],
-  "nextStep": "FIXEDASSETS-093-FA-GL-JOURNAL-VALUE-ENTRY-GATE-DECISION: decide whether FA journal value entry can proceed only under a keep-draft policy or must remain blocked."
+  "nextStep": "FIXEDASSETS-094-FA-ACQUISITION-ROUTE-REVIEW: compare Purchase Invoice, Acquire action and FA G/L Journal evidence before choosing the next safe fixed-asset acquisition route."
 }

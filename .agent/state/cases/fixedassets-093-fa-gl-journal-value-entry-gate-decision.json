@@ -3,7 +3,7 @@
   "caseId": "FIXEDASSETS-093-FA-GL-JOURNAL-VALUE-ENTRY-GATE-DECISION",
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "status": "planned",
+  "status": "observed-local-decision",
   "workType": "fixed-asset-gl-journal-value-entry-gate-decision",
   "taskClass": "judge_work",
   "goal": "Decide whether the Fixed Asset G/L Journal route remains blocked, requires a documented keep-draft policy, or should switch route after frame-scoped action discovery did not show a Delete cleanup candidate.",
@@ -67,7 +67,12 @@
     "evidence-writer"
   ],
   "requiresUsageLog": true,
-  "nextSafeAction": "Review FA-088 to FA-092 evidence and decide whether journal value entry can proceed only under a keep-draft policy or must remain blocked.",
+  "lastResult": {
+    "status": "observed",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-093/FIXEDASSETS-093-result.json",
+    "summary": "Journal value entry remains blocked because no cleanup route or keep-draft policy is proven."
+  },
+  "nextSafeAction": "Run FA-094 local acquisition-route review before any further value entry.",
   "mustRead": [
     ".agent/state/current.json",
     "playwright/projects/fibu-book5/evidence/fixedassets-091/FIXEDASSETS-091-result.json",

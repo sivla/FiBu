@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-fa-gl-journal-value-entry-gate-decision-result",
+  "caseId": "FIXEDASSETS-093-FA-GL-JOURNAL-VALUE-ENTRY-GATE-DECISION",
+  "source": "local-analysis",
+  "resultStatus": "observed",
+  "runPlanId": "FIXEDASSETS-094-FA-ACQUISITION-ROUTE-REVIEW-PLAN",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "decision": {
+    "selectedRoute": "block-fa-gl-journal-value-entry-and-review-acquisition-routes",
+    "keepDraftApproved": false,
+    "valueEntryApproved": false,
+    "previewApproved": false,
+    "postingApproved": false,
+    "routeReviewRequired": true,
+    "reason": "FA-092 proved the Fixed Asset G/L Journals page and relevant columns, but also showed an already editable journal row surface with Posting Date 01.01.2027, Document No. G05001 and Amount 0,00 while no visible Delete cleanup candidate was found. Entering FA-CNC-01, K30000 or an amount would therefore create persistent draft risk without a proven cleanup path or approved keep-draft policy."
+  },
+  "proved": [
+    "FA-092 isolated the Fixed Asset G/L Journals runinframe context in MCP_1_20260210 and RM-DEMO.",
+    "FA-092 showed the target journal page with Batch Name DEFAULT and the relevant columns for a fixed-asset acquisition journal route.",
+    "FA-092 showed Post, Insert FA Bal. Account, Reconcile and Apply Entries as visible actions or menu entries, but none was executed.",
+    "FA-092 did not show a Delete cleanup candidate in the frame-scoped action inventory.",
+    "FA-092 showed a journal row surface with default values, including Posting Date 01.01.2027, Document No. G05001 and Amount 0,00.",
+    "No journal target values, Preview Posting, posting, deletion, setup change or company switch occurred in FA-092."
+  ],
+  "notProved": [
+    "A safe Delete cleanup path for Fixed Asset G/L Journals is not proven.",
+    "A keep-draft policy for FA-CNC-01 acquisition value entry is not approved.",
+    "Entering FA-CNC-01, K30000 or an amount in the journal is not approved.",
+    "Preview Posting from the FA G/L Journal route is not proven.",
+    "Acquisition posting from the FA G/L Journal route is not proven.",
+    "The FA G/L Journal route is not book-ready for screenshot instructions.",
+    "No German final proof."
+  ],
+  "riskAssessment": {
+    "riskLevel": "medium",
+    "mainRisk": "A value entry in Fixed Asset G/L Journals can persist as a draft journal line. Without a proven cleanup route, later automation or a user could accidentally reuse or post it.",
+    "mitigation": "Keep FA G/L Journal value entry locked and perform a local acquisition-route review before any further fixed-asset acquisition attempt."
+  },
+  "changedFiles": [
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-093-fa-gl-journal-value-entry-gate-decision.json",
+    ".agent/state/cases/fixedassets-094-fa-acquisition-route-review.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/model_usage_log.jsonl",
+    "scripts/agent/context-pack.mjs",
+    "scripts/agent/dry-run.mjs",
+    "playwright/projects/fibu-book5/evidence/fixedassets-093/FIXEDASSETS-093-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-093/FIXEDASSETS-093-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-093/README.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-091/FIXEDASSETS-091-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-092/FIXEDASSETS-092-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-092/020-frame-action-inventory.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-093/FIXEDASSETS-093-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-093/README.md"
+  ],
+  "warnings": [
+    "Local decision only. Business Central was not opened in FA-093.",
+    "Do not enter journal values until cleanup or keep-draft ownership is explicitly approved.",
+    "Visible Post/Reconcile/Insert FA Bal. Account actions remain locked.",
+    "FA-093 also fixed context-pack and dry-run routing so explicit activeCase.taskClass is not overwritten by heuristics.",
+    "CRONUS/RM-DEMO labor only."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-094-FA-ACQUISITION-ROUTE-REVIEW",
+      "active_case_file": ".agent/state/cases/fixedassets-094-fa-acquisition-route-review.json",
+      "lastReferenceCase": "FIXEDASSETS-093-FA-GL-JOURNAL-VALUE-ENTRY-GATE-DECISION",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-093-fa-gl-journal-value-entry-gate-decision.json",
+      "nextStep": "Review the fixed-asset acquisition routes from existing evidence and choose the next safe practical route before any further value entry."
+    },
+    "lastRunSummary": {
+      "schemaVersion": 1,
+      "runId": "FIXEDASSETS-093-FA-GL-JOURNAL-VALUE-ENTRY-GATE-DECISION",
+      "date": "2026-06-19",
+      "workType": "fixed-asset-gl-journal-value-entry-gate-decision",
+      "branch": "codex/token-efficient-autopilot-state",
+      "instance": "MCP_1_20260210",
+      "company": "RM-DEMO",
+      "bcRun": false,
+      "posted": false,
+      "preview": false,
+      "setupChanged": false,
+      "companySwitched": false,
+      "resultStatus": "observed",
+      "summary": "FA-093 kept Fixed Asset G/L Journal value entry locked because FA-092 did not prove a Delete cleanup route and showed a persistent journal row surface.",
+      "nextStep": "FIXEDASSETS-094-FA-ACQUISITION-ROUTE-REVIEW"
+    },
+    "activeCase": {
+      "status": "observed-local-decision",
+      "lastResult": {
+        "status": "observed",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-093/FIXEDASSETS-093-result.json",
+        "summary": "FA G/L Journal value entry remains locked; route review is required."
+      },
+      "nextSafeAction": "Run a local acquisition-route review. Do not enter journal values, keep a draft, preview or post."
+    },
+    "coverage": {
+      "areas": {
+        "fixedassets": {
+          "currentBlock": "fa-acquisition-route-review",
+          "latestPracticalCase": "FIXEDASSETS-092",
+          "latestDecisionCase": "FIXEDASSETS-093",
+          "nextCase": "FIXEDASSETS-094-FA-ACQUISITION-ROUTE-REVIEW"
+        }
+      }
+    }
+  },
+  "flags": {
+    "bcRun": false,
+    "noBookChange": true,
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true
+  },
+  "reason": "The journal route is promising for page/column evidence, but unsafe for value entry until cleanup or keep-draft ownership is proven. Small context-pack and dry-run routing fixes were included because this judge_work case exposed that explicit taskClass was being downgraded by heuristic routing.",
+  "validationCommands": [
+    "npm run agent:preflight",
+    "npm run agent:context",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-093/FIXEDASSETS-093-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-093/FIXEDASSETS-093-result.json",
+    "npm run check:encoding",
+    "git diff --check"
+  ],
+  "nextStep": "FIXEDASSETS-094-FA-ACQUISITION-ROUTE-REVIEW"
+}
