@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "caseId": "LIVE-SMOKE-BC-001-READONLY-CONTEXT",
+  "title": "Read-only Business Central context smoke test",
+  "status": "observed",
+  "workType": "read-only-tool-live-smoke-context",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Open Business Central with existing storageState, prove the expected sandbox instance and company context, and write compact no-write evidence.",
+  "budgetProfile": "standard",
+  "taskClass": "wizard_work",
+  "modelClass": "gpt-4-medium",
+  "mustRead": [
+    ".agent/state/current.json",
+    "playwright/projects/fibu-book5/project.ts",
+    "playwright/core/bc-helpers.ts",
+    "playwright/core/evidence.ts",
+    "playwright/projects/fibu-book5/tests/live-smoke-bc-001-readonly-context.spec.ts"
+  ],
+  "allowedActions": [
+    "read-only-bc-open",
+    "read-only-context-check",
+    "write-json-evidence",
+    "result-normalize",
+    "state-patch-plan-only"
+  ],
+  "forbiddenActions": [
+    "post",
+    "preview-posting",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "company-switch",
+    "new",
+    "edit",
+    "delete",
+    "draft",
+    "api-shortcut",
+    "book-edit",
+    "screenshot-binary-commit"
+  ],
+  "safetyGates": [
+    "Abort if URL does not contain MCP_1_20260210.",
+    "Abort if company URL parameter is not RM-DEMO.",
+    "Abort if a dialog with OK, Yes, Ja, Post, Preview, Delete, New or Edit appears.",
+    "Abort on any ambiguous company or instance context.",
+    "Do not click global actions or unsafe buttons."
+  ],
+  "acceptanceCriteria": [
+    "Business Central opens with existing storageState.",
+    "Instance MCP_1_20260210 is confirmed from URL.",
+    "Company RM-DEMO is confirmed from URL parameter.",
+    "Role Center or Business Central shell is visible.",
+    "Result JSON contains no-write, no-post, no-preview, no-draft and no-setup-change flags.",
+    "No state is written automatically."
+  ],
+  "evidenceTargets": [
+    "playwright/projects/fibu-book5/evidence/live-smoke-bc-001/result.json"
+  ],
+  "lastResult": {
+    "status": "observed",
+    "resultFile": "playwright/projects/fibu-book5/evidence/live-smoke-bc-001/result.json",
+    "proved": [
+      "Business Central URL stayed in MCP_1_20260210.",
+      "Company URL parameter stayed RM-DEMO.",
+      "Business Central shell was visible with existing storageState.",
+      "No write/post/preview/draft/setup action was triggered by the smoke test."
+    ],
+    "limits": [
+      "Company was confirmed from URL context only.",
+      "No business process, posting readiness, ledger trace or book screenshot was tested."
+    ]
+  },
+  "nextSafeAction": "Normalize result evidence and wait for explicit approval before any state-finalize --write."
+}

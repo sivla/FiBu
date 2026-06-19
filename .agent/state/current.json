@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-19T00:15:00.000Z",
+  "updatedAt": "2026-06-19T12:00:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "activeArea": "fixedassets",
-  "activeCase": "FIXEDASSETS-065-PURCHASE-INVOICE-LINE-TYPE-HELPER-DIAGNOSIS",
-  "active_case_file": ".agent/state/cases/fixedassets-065.json",
-  "lastReferenceCase": "FIXEDASSETS-064-PURCHASE-INVOICE-LINE-TYPE-UI-PROBE-NO-TARGET",
-  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-064.json",
+  "activeArea": "live-smoke",
+  "activeCase": "LIVE-SMOKE-BC-001-READONLY-CONTEXT",
+  "active_case_file": ".agent/state/cases/live-smoke-bc-001.json",
+  "lastReferenceCase": "FIXEDASSETS-065-PURCHASE-INVOICE-LINE-TYPE-HELPER-DIAGNOSIS",
+  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-065.json",
   "mode": "token-efficient-autopilot-tooling-bootstrap",
   "requiresStrongModel": false,
   "requiredPreflightChecks": [
@@ -19,23 +19,29 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "read-only-diagnosis",
-    "helper-analysis",
-    "state-and-evidence-sync",
-    "screenshot-qa"
+    "read-only-bc-open",
+    "read-only-context-check",
+    "write-json-evidence",
+    "result-normalize",
+    "state-patch-plan-only"
   ],
   "forbiddenActions": [
     "leave-instance",
+    "company-switch",
     "company-switch-without-registry-update",
-    "enter-FA-CNC-01",
-    "enter-K30000-in-purchase-invoice",
+    "new",
+    "edit",
+    "delete",
+    "draft",
     "preview-posting",
     "post",
     "ship",
     "invoice",
     "ship-and-invoice",
+    "payment",
+    "setup-change",
     "create-or-keep-draft-without-cleanup",
     "api-shortcut"
   ],
-  "nextStep": "FIXEDASSETS-065: Zeilentyp-Auswahl in Purchase-Invoice-Zeilen robust diagnostizieren, ohne FA-CNC-01 oder Zielwerte einzugeben."
+  "nextStep": "LIVE-SMOKE-BC-001 ist als read-only Kontext-Smoke beobachtet: Result normalisiert, kein state-finalize --write. Naechster sicherer Schritt: State-Patch-Plan reviewen oder einen zweiten read-only Page-Kontext-Smoke ohne Company-Wechsel planen."
 }
