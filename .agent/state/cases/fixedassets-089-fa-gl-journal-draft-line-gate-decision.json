@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-089-FA-GL-JOURNAL-DRAFT-LINE-GATE-DECISION",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "fixed-asset-gl-journal-draft-line-gate-decision",
+  "goal": "Decide whether a no-post Fixed Asset G/L Journal draft line probe is safe after FA-088 proved the read-only journal control context.",
+  "basedOn": [
+    ".agent/state/cases/fixedassets-088-fa-gl-journal-control-snapshot-readonly.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-088/FIXEDASSETS-088-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-088/020-fa-journal-control-snapshot.json"
+  ],
+  "knownTruth": [
+    "FA-088 opened Fixed Asset G/L Journals page 5628 directly in the browser inside MCP_1_20260210 / RM-DEMO.",
+    "FA-088 captured Batch Name DEFAULT and all required field signals read-only.",
+    "FA-088 showed Post is visible, but it was not clicked.",
+    "FA-088 did not create, edit, delete, preview, post, pay, invoice, ship, switch company or change setup.",
+    "The first visible row exposes selectable values, but no field sequence or cleanup/keep rule is approved yet."
+  ],
+  "allowedActions": [
+    "read-existing-fa-088-evidence",
+    "decide-fa-gl-journal-draft-line-gate",
+    "define-field-entry-sequence",
+    "define-cleanup-or-keep-rule",
+    "define-preview-gate",
+    "write-json-evidence",
+    "write-compact-learning-note",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "open-business-central",
+    "new-journal-line",
+    "edit-journal-line",
+    "enter-K30000",
+    "enter-amount",
+    "enter-FA-CNC-01-in-document-or-journal",
+    "delete-record",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "api-shortcut",
+    "book-edit",
+    "click-ok-or-yes-on-confirmation",
+    "keep-draft"
+  ],
+  "defaultLockedActionsUnlockedForThisCase": [],
+  "acceptanceCriteria": [
+    "FA-088 evidence is evaluated without opening BC.",
+    "A decision is made whether a later no-post draft line probe is safe.",
+    "If safe, the exact field sequence and stop conditions are documented.",
+    "Cleanup or keep-draft rule is documented before any later draft creation.",
+    "Preview and Post remain locked for this decision case."
+  ],
+  "stopConditions": [
+    "FA-088 evidence does not show enough control context.",
+    "The draft probe would require a value without cleanup or keep-draft policy.",
+    "The field sequence cannot prevent accidental posting or ambiguous row entry."
+  ],
+  "recommendedSkills": [
+    "safety-gate-checker",
+    "evidence-writer",
+    "next-test-selector"
+  ],
+  "nextSafeAction": "Read FA-088 evidence locally and decide whether a no-post draft line probe should be planned.",
+  "mustRead": [
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-088-fa-gl-journal-control-snapshot-readonly.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-088/FIXEDASSETS-088-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-088/020-fa-journal-control-snapshot.json",
+    "package.json"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-089/FIXEDASSETS-089-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-089/FIXEDASSETS-089-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-089/README.md"
+  ]
+}

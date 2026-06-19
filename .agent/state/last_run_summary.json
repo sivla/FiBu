@@ -1,41 +1,46 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-087-FA-GL-JOURNAL-LINE-READINESS-DECISION",
+  "runId": "FIXEDASSETS-088-FA-GL-JOURNAL-CONTROL-SNAPSHOT-READONLY",
   "date": "2026-06-19",
-  "workType": "fixed-asset-gl-journal-line-readiness-decision",
+  "workType": "fixed-asset-gl-journal-control-snapshot-readonly",
   "branch": "codex/token-efficient-autopilot-state",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "bcRun": false,
+  "bcRun": true,
   "posted": false,
   "preview": false,
   "setupChanged": false,
   "companySwitched": false,
   "resultStatus": "observed",
-  "summary": "FA-087 made the local readiness decision after FA-086: do not enter FA-CNC-01 or any target values yet. The next safe step is a read-only control snapshot of Fixed Asset G/L Journals so batch, row and field controls are mapped before any later draft line, preview or posting gate.",
+  "summary": "FA-088 opened Fixed Asset G/L Journals page 5628 directly in MCP_1_20260210 / RM-DEMO and captured batch, row and control context read-only. Required field signals were visible; no value, row, preview, post, payment, setup change or company switch occurred.",
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/fixedassets-087/FIXEDASSETS-087-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-087/FIXEDASSETS-087-learning.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-087/README.md"
+    "playwright/projects/fibu-book5/evidence/fixedassets-088/FIXEDASSETS-088-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-088/FIXEDASSETS-088-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-088/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-088/010-fa-journal-control-context.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-088/020-fa-journal-control-snapshot.json"
   ],
   "changedFiles": [
     ".agent/state/current.json",
-    ".agent/state/cases/fixedassets-087-fa-gl-journal-line-readiness-decision.json",
     ".agent/state/cases/fixedassets-088-fa-gl-journal-control-snapshot-readonly.json",
+    ".agent/state/cases/fixedassets-089-fa-gl-journal-draft-line-gate-decision.json",
     ".agent/state/coverage_state.json",
     ".agent/state/last_run_summary.json",
-    ".agent/state/model_usage_log.jsonl",
-    "playwright/projects/fibu-book5/evidence/fixedassets-087/FIXEDASSETS-087-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-087/FIXEDASSETS-087-learning.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-087/README.md"
+    "package.json",
+    "playwright/projects/fibu-book5/tests/fixedassets-088-fa-gl-journal-control-snapshot-readonly.spec.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-088/FIXEDASSETS-088-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-088/FIXEDASSETS-088-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-088/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-088/010-fa-journal-control-context.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-088/020-fa-journal-control-snapshot.json"
   ],
   "validationCommands": [
     "npm run agent:preflight",
-    "npm run agent:context",
-    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-087/FIXEDASSETS-087-result.json",
-    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-087/FIXEDASSETS-087-result.json",
+    "npm run fibu:fixedassets:fa-gl-journal-control-snapshot",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-088/FIXEDASSETS-088-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-088/FIXEDASSETS-088-result.json",
     "npm run check:encoding",
     "git diff --check"
   ],
-  "nextStep": "FIXEDASSETS-088-FA-GL-JOURNAL-CONTROL-SNAPSHOT-READONLY: reopen Fixed Asset G/L Journals read-only and capture batch, row, visible required fields and disabled/risky actions before any later line entry."
+  "nextStep": "FIXEDASSETS-089-FA-GL-JOURNAL-DRAFT-LINE-GATE-DECISION: decide whether a no-post draft line probe is safe based on FA-088 control evidence, including required field sequence, cleanup/keep rule and preview gate."
 }

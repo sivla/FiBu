@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-19T12:48:00.000Z",
+  "updatedAt": "2026-06-19T13:08:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "fixedassets",
-  "activeCase": "FIXEDASSETS-088-FA-GL-JOURNAL-CONTROL-SNAPSHOT-READONLY",
-  "active_case_file": ".agent/state/cases/fixedassets-088-fa-gl-journal-control-snapshot-readonly.json",
-  "lastReferenceCase": "FIXEDASSETS-087-FA-GL-JOURNAL-LINE-READINESS-DECISION",
-  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-087-fa-gl-journal-line-readiness-decision.json",
+  "activeCase": "FIXEDASSETS-089-FA-GL-JOURNAL-DRAFT-LINE-GATE-DECISION",
+  "active_case_file": ".agent/state/cases/fixedassets-089-fa-gl-journal-draft-line-gate-decision.json",
+  "lastReferenceCase": "FIXEDASSETS-088-FA-GL-JOURNAL-CONTROL-SNAPSHOT-READONLY",
+  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-088-fa-gl-journal-control-snapshot-readonly.json",
   "mode": "token-efficient-autopilot-tooling-bootstrap",
   "requiresStrongModel": false,
   "requiredPreflightChecks": [
@@ -19,11 +19,11 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "open-business-central-in-MCP_1_20260210",
-    "confirm-company-RM-DEMO",
-    "open-fixed-asset-gl-journals-readonly",
-    "capture-journal-batch-and-row-context-readonly",
-    "capture-control-snapshot-readonly",
+    "read-existing-fa-088-evidence",
+    "decide-fa-gl-journal-draft-line-gate",
+    "define-field-entry-sequence",
+    "define-cleanup-or-keep-rule",
+    "define-preview-gate",
     "write-json-evidence",
     "write-compact-learning-note",
     "state-patch-plan-only"
@@ -53,7 +53,7 @@
     "click-ok-or-yes-on-confirmation",
     "keep-draft"
   ],
-  "nextStep": "FIXEDASSETS-088-FA-GL-JOURNAL-CONTROL-SNAPSHOT-READONLY: open Fixed Asset G/L Journals read-only and capture batch, row and control context before any target value entry.",
+  "nextStep": "FIXEDASSETS-089-FA-GL-JOURNAL-DRAFT-LINE-GATE-DECISION: decide whether a no-post draft line probe is safe based on FA-088 control evidence, including required field sequence, cleanup/keep rule and preview gate.",
   "subagentPlanPolicy": {
     "default": "optional",
     "execution": "plan-only-no-subagents-spawned",
