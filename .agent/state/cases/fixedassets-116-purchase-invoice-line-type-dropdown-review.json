@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-116-PURCHASE-INVOICE-LINE-TYPE-DROPDOWN-REVIEW",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "local-evidence-route-review",
+  "taskClass": "judge_work",
+  "requiresUsageLog": true,
+  "goal": "Review the FA-115 blocker evidence before any further Purchase Invoice line Type action and choose the next safe UI route.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-115/FIXEDASSETS-115-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-115/030-line-type-dropdown-discovery.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-115/fixedassets-115-030-line-type-dropdown-discovery.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-115/README.md"
+  ],
+  "knownTruth": [
+    "FA-115 stayed in MCP_1_20260210 / RM-DEMO.",
+    "FA-115 did not prove Fixed Asset/Anlage as a Purchase Invoice line Type option.",
+    "The only sanitized option text detected by FA-115 was Item.",
+    "The screenshot is rejected/do-not-use for book purposes because it shows the blocker/context-menu situation, not a successful dropdown.",
+    "No K30000, FA-CNC-01, amount, Preview Posting, posting, setup change, API shortcut or company switch occurred.",
+    "No persisted draft number was detected, so cleanup was not needed."
+  ],
+  "allowedActions": [
+    "read-local-evidence",
+    "review-fixedassets-115-result",
+    "classify-dropdown-route-blocker",
+    "decide-next-ui-route",
+    "update-state-and-evidence-summary"
+  ],
+  "forbiddenActions": [
+    "open-business-central",
+    "run-playwright",
+    "leave-instance",
+    "company-switch",
+    "api-shortcut",
+    "book-edit",
+    "enter-K30000-in-purchase-invoice",
+    "enter-FA-CNC-01",
+    "enter-amount",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "keep-draft",
+    "delete-non-test-data",
+    "fake-evidence"
+  ],
+  "acceptanceCriteria": [
+    "The FA-115 screenshot and evidence are classified as blocker/rejected unless they visibly show the intended dropdown options.",
+    "The next practical step is not another blind click on the visible Item open-record button.",
+    "The review chooses one of: improve a line-dropdown helper, use Page Inspection/Personalize as a diagnostic route, or abandon the Purchase Invoice Type dropdown path for now.",
+    "No BC, Playwright, book edit, setup change, Preview Posting or posting is executed in this review."
+  ],
+  "recommendedSkills": [
+    "evidence-writer",
+    "playwright-pattern-reviewer"
+  ],
+  "nextSafeAction": "Run a local FA-116 evidence review and route decision before any further fixed-asset Purchase Invoice UI probe."
+}
