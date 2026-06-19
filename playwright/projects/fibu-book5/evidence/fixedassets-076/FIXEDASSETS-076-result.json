@@ -1,0 +1,474 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-guarded-direct-line-type-value-entry-result",
+  "caseId": "FIXEDASSETS-076-GUARDED-DIRECT-LINE-TYPE-VALUE-ENTRY",
+  "source": "playwright-sandbox-direct-line-type-probe",
+  "resultStatus": "blocked",
+  "runPlanId": "FIXEDASSETS-076-GUARDED-DIRECT-LINE-TYPE-VALUE-ENTRY-PLAN",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-medium",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "environment": {
+    "expectedInstance": "MCP_1_20260210",
+    "expectedCompany": "RM-DEMO",
+    "context": {
+      "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=9308&dc=0",
+      "environmentInUrl": true,
+      "companyInUrl": true,
+      "companyInText": true,
+      "wrongEnvironmentVisible": false
+    },
+    "urlAfterProbe": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=51&dc=0"
+  },
+  "createdRecords": [
+    {
+      "company": "RM-DEMO",
+      "type": "Purchase Invoice",
+      "documentNo": "",
+      "purpose": "Temporary sandbox draft to prove only Purchase Invoice Line Type = Fixed Asset; no vendor/fixed asset target values, no preview, no post.",
+      "createdAt": "2026-06-19T08:01:13.385Z",
+      "status": "no-persisted-number-detected",
+      "cleanupStatus": "not-needed"
+    }
+  ],
+  "changedRecords": [
+    {
+      "company": "RM-DEMO",
+      "type": "Purchase Invoice Line",
+      "documentNo": "",
+      "field": "Type",
+      "oldValue": "Item",
+      "newValue": "not-proven",
+      "purpose": "Probe only the line type before any target value entry.",
+      "cleanupStatus": "not-needed-no-persisted-draft-number"
+    }
+  ],
+  "postedRecords": [],
+  "setupChanges": [],
+  "cleanup": {
+    "required": false,
+    "completed": true,
+    "method": "not-needed",
+    "blockedBy": [],
+    "detail": {
+      "status": "not-created-or-draft-number-not-found",
+      "invoiceNo": null,
+      "visibleAfter": false
+    }
+  },
+  "proved": [
+    "The run stayed in MCP_1_20260210 / RM-DEMO.",
+    "New/Neu was clicked once in the scoped Purchase Invoices context.",
+    "The run attempted only Purchase Invoice Line Type = Fixed Asset.",
+    "No persisted Purchase Invoice draft number was detected after the probe; cleanup was not needed."
+  ],
+  "notProved": [
+    "Type = Fixed Asset was not proven as visible through direct UI value entry.",
+    "K30000 was not entered.",
+    "FA-CNC-01 was not entered.",
+    "No Preview Posting.",
+    "No posting.",
+    "No setup change.",
+    "No German final proof."
+  ],
+  "changedFiles": [
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-076.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/coverage_state.json",
+    "package.json",
+    "playwright/projects/fibu-book5/tests/fixedassets-076-guarded-direct-line-type-value-entry.spec.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-076/FIXEDASSETS-076-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-076/030-direct-line-type-entry.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-076/090-cleanup-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-076/README.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-076/FIXEDASSETS-076-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-076/030-direct-line-type-entry.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-076/031-after-direct-entry-focused-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-076/090-cleanup-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-076/README.md"
+  ],
+  "warnings": [
+    "Sandbox/Labor evidence only.",
+    "This probe intentionally stops before K30000 and FA-CNC-01.",
+    "No Preview Posting or posting was attempted."
+  ],
+  "blockedBy": [
+    "Type = Fixed Asset not visible through guarded direct UI value entry."
+  ],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-076-GUARDED-DIRECT-LINE-TYPE-VALUE-ENTRY",
+      "active_case_file": ".agent/state/cases/fixedassets-076.json",
+      "nextStep": "FA-076 did not prove visible Type = Fixed Asset through direct UI entry. Next: switch route to Purchase Order acquisition path or page/setup capability review; do not repeat the same direct entry probe."
+    },
+    "lastRunSummary": {
+      "schemaVersion": 1,
+      "runId": "FIXEDASSETS-076-GUARDED-DIRECT-LINE-TYPE-VALUE-ENTRY",
+      "date": "2026-06-19",
+      "workType": "purchase-invoice-line-type-direct-ui-probe",
+      "branch": "codex/token-efficient-autopilot-state",
+      "bcRun": true,
+      "posted": false,
+      "companySwitched": false,
+      "summary": "FA-076 did not prove visible Type = Fixed Asset through direct UI value entry; status=blocked-direct-entry-not-accepted, guard=blocked-item-line-type-visible. Cleanup status=not-created-or-draft-number-not-found.",
+      "nextStep": "Reject another identical direct Type-entry retry; choose Purchase Order route or setup/page capability review."
+    },
+    "activeCase": {
+      "status": "blocked-cleanup-complete",
+      "lastResult": {
+        "status": "blocked",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-076/FIXEDASSETS-076-result.json",
+        "summary": "FA-076 did not prove visible Type = Fixed Asset through direct UI value entry; status=blocked-direct-entry-not-accepted, guard=blocked-item-line-type-visible. Cleanup status=not-created-or-draft-number-not-found."
+      },
+      "nextSafeAction": "Use a different route; do not repeat direct Type value entry."
+    }
+  },
+  "flags": {
+    "stayedInExpectedInstance": true,
+    "companyContextDocumented": true,
+    "noBookChange": true,
+    "secretsUntouched": true,
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noTargetVendorEntry": true,
+    "noTargetFixedAssetEntry": true,
+    "cleanupCompleted": true
+  },
+  "observed": {
+    "startedAt": "2026-06-19T08:01:13.385Z",
+    "finishedAt": "2026-06-19T08:01:48.631Z",
+    "newAttempt": {
+      "clicked": true,
+      "scopeUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=9308&aadTenantId=b8fd10d1-3599-4721-8651-f95bd868aba7&startTraceId=754e64f9ce2a44738d186fdce2f45060&tid=52d23b69-c7ad-4fbc-8a45-b2b7b86eda4d&runinframe=1",
+      "chosen": {
+        "text": "Neu",
+        "aria": "Neu",
+        "title": "Erstellen Sie einen neuen Eintrag.",
+        "label": "Neu Neu Erstellen Sie einen neuen Eintrag.",
+        "x": 548,
+        "y": 51,
+        "width": 62,
+        "height": 38,
+        "score": -80
+      },
+      "candidates": [
+        {
+          "text": "Neu",
+          "aria": "Neu",
+          "title": "Erstellen Sie einen neuen Eintrag.",
+          "label": "Neu Neu Erstellen Sie einen neuen Eintrag.",
+          "x": 548,
+          "y": 51,
+          "width": 62,
+          "height": 38,
+          "score": -80
+        },
+        {
+          "text": "Neu ",
+          "aria": "Neu",
+          "title": "",
+          "label": "Neu  Neu ",
+          "x": 548,
+          "y": 51,
+          "width": 89,
+          "height": 38,
+          "score": -60
+        },
+        {
+          "text": "Neu",
+          "aria": "Neu",
+          "title": "",
+          "label": "Neu Neu ",
+          "x": 578,
+          "y": 61,
+          "width": 26,
+          "height": 19,
+          "score": -60
+        }
+      ],
+      "attempts": []
+    },
+    "draftInvoiceNo": null,
+    "beforeEntrySignals": {
+      "purchaseInvoiceVisible": true,
+      "linesContextVisible": true,
+      "fixedAssetLineTypeVisible": false,
+      "itemLineTypeVisible": true,
+      "forbiddenFixedAssetNoVisible": false,
+      "vendorCardVisible": false,
+      "vendorRegistrationVisible": false,
+      "postingOrPreviewVisible": true,
+      "frameCount": 7,
+      "matchingEntryCount": 74,
+      "lineTypeEntries": [
+        {
+          "text": "Item",
+          "role": "gridcell",
+          "rect": {
+            "x": 597,
+            "y": 641,
+            "width": 132,
+            "height": 28
+          }
+        },
+        {
+          "text": "Item",
+          "role": "button",
+          "rect": {
+            "x": 598,
+            "y": 643,
+            "width": 33,
+            "height": 25
+          }
+        }
+      ]
+    },
+    "directEntry": {
+      "status": "blocked-direct-entry-not-accepted",
+      "cell": {
+        "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=9308&aadTenantId=b8fd10d1-3599-4721-8651-f95bd868aba7&startTraceId=754e64f9ce2a44738d186fdce2f45060&tid=52d23b69-c7ad-4fbc-8a45-b2b7b86eda4d&runinframe=1",
+        "found": true,
+        "chosen": {
+          "text": "Item",
+          "role": "gridcell",
+          "aria": "",
+          "title": "",
+          "rect": {
+            "x": 597,
+            "y": 641,
+            "width": 132,
+            "height": 28
+          },
+          "score": -150
+        },
+        "candidates": [
+          {
+            "text": "Item",
+            "role": "gridcell",
+            "aria": "",
+            "title": "",
+            "rect": {
+              "x": 597,
+              "y": 641,
+              "width": 132,
+              "height": 28
+            },
+            "score": -150
+          }
+        ]
+      },
+      "attempts": [
+        {
+          "action": "type-fixed-asset",
+          "clickPoint": {
+            "x": 663,
+            "y": 655
+          },
+          "signals": {
+            "purchaseInvoiceVisible": true,
+            "linesContextVisible": true,
+            "fixedAssetLineTypeVisible": false,
+            "itemLineTypeVisible": true,
+            "forbiddenFixedAssetNoVisible": false,
+            "vendorCardVisible": false,
+            "vendorRegistrationVisible": false,
+            "postingOrPreviewVisible": true,
+            "frameCount": 7,
+            "matchingEntryCount": 74,
+            "lineTypeEntries": [
+              {
+                "text": "Item",
+                "role": "gridcell",
+                "rect": {
+                  "x": 597,
+                  "y": 641,
+                  "width": 132,
+                  "height": 28
+                }
+              },
+              {
+                "text": "Item",
+                "role": "button",
+                "rect": {
+                  "x": 598,
+                  "y": 643,
+                  "width": 33,
+                  "height": 25
+                }
+              }
+            ]
+          }
+        },
+        {
+          "action": "enter-after-typing",
+          "signals": {
+            "purchaseInvoiceVisible": true,
+            "linesContextVisible": true,
+            "fixedAssetLineTypeVisible": false,
+            "itemLineTypeVisible": true,
+            "forbiddenFixedAssetNoVisible": false,
+            "vendorCardVisible": false,
+            "vendorRegistrationVisible": false,
+            "postingOrPreviewVisible": true,
+            "frameCount": 7,
+            "matchingEntryCount": 74,
+            "lineTypeEntries": [
+              {
+                "text": "Item",
+                "role": "gridcell",
+                "rect": {
+                  "x": 597,
+                  "y": 641,
+                  "width": 132,
+                  "height": 28
+                }
+              },
+              {
+                "text": "Item",
+                "role": "button",
+                "rect": {
+                  "x": 598,
+                  "y": 643,
+                  "width": 33,
+                  "height": 25
+                }
+              }
+            ]
+          }
+        },
+        {
+          "action": "tab-after-typing",
+          "signals": {
+            "purchaseInvoiceVisible": true,
+            "linesContextVisible": true,
+            "fixedAssetLineTypeVisible": false,
+            "itemLineTypeVisible": true,
+            "forbiddenFixedAssetNoVisible": false,
+            "vendorCardVisible": false,
+            "vendorRegistrationVisible": false,
+            "postingOrPreviewVisible": true,
+            "frameCount": 7,
+            "matchingEntryCount": 74,
+            "lineTypeEntries": [
+              {
+                "text": "Item",
+                "role": "gridcell",
+                "rect": {
+                  "x": 597,
+                  "y": 641,
+                  "width": 132,
+                  "height": 28
+                }
+              },
+              {
+                "text": "Item",
+                "role": "button",
+                "rect": {
+                  "x": 598,
+                  "y": 643,
+                  "width": 33,
+                  "height": 25
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "signals": {
+        "purchaseInvoiceVisible": true,
+        "linesContextVisible": true,
+        "fixedAssetLineTypeVisible": false,
+        "itemLineTypeVisible": true,
+        "forbiddenFixedAssetNoVisible": false,
+        "vendorCardVisible": false,
+        "vendorRegistrationVisible": false,
+        "postingOrPreviewVisible": true,
+        "frameCount": 7,
+        "matchingEntryCount": 74,
+        "lineTypeEntries": [
+          {
+            "text": "Item",
+            "role": "gridcell",
+            "rect": {
+              "x": 597,
+              "y": 641,
+              "width": 132,
+              "height": 28
+            }
+          },
+          {
+            "text": "Item",
+            "role": "button",
+            "rect": {
+              "x": 598,
+              "y": 643,
+              "width": 33,
+              "height": 25
+            }
+          }
+        ]
+      }
+    },
+    "afterEntrySignals": {
+      "purchaseInvoiceVisible": true,
+      "linesContextVisible": true,
+      "fixedAssetLineTypeVisible": false,
+      "itemLineTypeVisible": true,
+      "forbiddenFixedAssetNoVisible": false,
+      "vendorCardVisible": false,
+      "vendorRegistrationVisible": false,
+      "postingOrPreviewVisible": true,
+      "frameCount": 7,
+      "matchingEntryCount": 74,
+      "lineTypeEntries": [
+        {
+          "text": "Item",
+          "role": "gridcell",
+          "rect": {
+            "x": 597,
+            "y": 641,
+            "width": 132,
+            "height": 28
+          }
+        },
+        {
+          "text": "Item",
+          "role": "button",
+          "rect": {
+            "x": 598,
+            "y": 643,
+            "width": 33,
+            "height": 25
+          }
+        }
+      ]
+    },
+    "guard": {
+      "status": "blocked-item-line-type-visible",
+      "success": false,
+      "stopReasons": [
+        "Line type still appears as Item; target values must remain locked."
+      ],
+      "visibleSignals": {
+        "purchaseInvoiceVisible": true,
+        "linesContextVisible": true,
+        "fixedAssetLineTypeVisible": false,
+        "itemLineTypeVisible": true,
+        "forbiddenFixedAssetNoVisible": false,
+        "vendorCardVisible": false,
+        "vendorRegistrationVisible": false,
+        "postingOrPreviewVisible": true
+      }
+    }
+  },
+  "nextStep": "Reject another identical direct Type-entry retry; choose Purchase Order route or setup/page capability review."
+}

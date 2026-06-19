@@ -3,7 +3,7 @@
   "caseId": "FIXEDASSETS-076-GUARDED-DIRECT-LINE-TYPE-VALUE-ENTRY",
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "status": "planned",
+  "status": "blocked-cleanup-complete",
   "workType": "purchase-invoice-line-type-direct-ui-probe",
   "goal": "Create a temporary Purchase Invoice draft, focus the Purchase Invoice Lines Type cell, enter only Fixed Asset as the line type through guarded UI value entry, verify the visible line type, then cleanup the draft.",
   "basedOn": [
@@ -74,7 +74,20 @@
     "safety-gate-checker",
     "evidence-writer"
   ],
-  "nextSafeAction": "Run a guarded UI-first Playwright probe that enters only Purchase Invoice Line Type = Fixed Asset in a temporary draft and cleans up before exit.",
+  "lastResult": {
+    "resultStatus": "blocked",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-076/FIXEDASSETS-076-result.json",
+    "summary": "FA-076 did not prove visible Type = Fixed Asset through direct UI value entry; status=blocked-direct-entry-not-accepted, guard=blocked-item-line-type-visible. Cleanup status=not-created-or-draft-number-not-found.",
+    "bcRun": true,
+    "playwrightRun": true,
+    "posted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "targetVendorEntered": false,
+    "targetFixedAssetEntered": false,
+    "cleanupCompleted": true
+  },
+  "nextSafeAction": "Run FA-077 with a different UI-first route on Purchase Orders; do not repeat Purchase Invoice direct Type value entry.",
   "mustRead": [
     ".agent/state/current.json",
     ".agent/state/cases/fixedassets-075.json",

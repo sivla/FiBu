@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-075-LINE-TYPE-CAPABILITY-DECISION",
+  "runId": "FIXEDASSETS-076-GUARDED-DIRECT-LINE-TYPE-VALUE-ENTRY",
   "date": "2026-06-19",
-  "workType": "purchase-invoice-line-type-capability-decision",
+  "workType": "purchase-invoice-line-type-direct-ui-probe",
   "branch": "codex/token-efficient-autopilot-state",
-  "bcRun": false,
+  "bcRun": true,
   "posted": false,
   "companySwitched": false,
-  "summary": "FA-075 reviewed FA-072/073/074 evidence and Microsoft Learn sources. The decision separates Business Central functional support for fixed asset purchase lines from the current UI automation blocker. The next case is FA-076: guarded direct Type-cell value entry of Fixed Asset only, with K30000 and FA-CNC-01 still locked.",
+  "summary": "FA-076 ran in MCP_1_20260210 / RM-DEMO and attempted only Purchase Invoice Line Type = Fixed Asset through guarded direct UI value entry. The result is blocked: Fixed Asset did not become visible, Item remained visible, guard=blocked-item-line-type-visible. No K30000, no FA-CNC-01, no Preview Posting, no posting, no setup change. No persisted draft number was detected, so cleanup was not needed.",
   "commandsRun": [
     "npm run agent:preflight",
     "npm run agent:context",
@@ -16,12 +16,15 @@
     "npm run agent:preflight",
     "npm run agent:dry-run",
     "npm run agent:run-plan",
-    "Microsoft Learn cross-check for fixed asset purchase/acquisition routes"
+    "npm run fibu:fixedassets:guarded-direct-line-type-value-entry"
   ],
   "evidence": [
-    "playwright/projects/fibu-book5/evidence/fixedassets-075/FIXEDASSETS-075-decision.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-075/FIXEDASSETS-075-decision.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-075/README.md"
+    "playwright/projects/fibu-book5/evidence/fixedassets-076/FIXEDASSETS-076-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-076/030-direct-line-type-entry.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-076/031-after-direct-entry-focused-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-076/090-cleanup-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-076/FIXEDASSETS-076-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-076/README.md"
   ],
-  "nextStep": "Run FA-076 with Playwright: create a temporary Purchase Invoice draft, enter only Type = Fixed Asset in the line Type cell, verify visible line type, and cleanup before exit."
+  "nextStep": "Run FA-077 with a different UI-first route on Purchase Orders. Keep K30000 and FA-CNC-01 locked until Type = Fixed Asset is visibly proven."
 }

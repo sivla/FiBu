@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-077-PURCHASE-ORDER-LINE-TYPE-ROUTE-PROBE",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "fixed-asset-purchase-order-line-type-route-probe",
+  "goal": "Use a different UI-first route after FA-076: open Purchase Orders, create only a temporary purchase order draft, and test whether the line Type can visibly reach Fixed Asset without entering K30000 or FA-CNC-01.",
+  "basedOn": [
+    ".agent/state/cases/fixedassets-075.json",
+    ".agent/state/cases/fixedassets-076.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-076/FIXEDASSETS-076-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-076/030-direct-line-type-entry.json"
+  ],
+  "knownTruth": [
+    "FA-076 stayed in MCP_1_20260210 / RM-DEMO and attempted only Purchase Invoice Line Type = Fixed Asset.",
+    "FA-076 did not prove visible Type = Fixed Asset through direct UI value entry.",
+    "FA-076 left Item visible and the guard status was blocked-item-line-type-visible.",
+    "No K30000, no FA-CNC-01, no Preview Posting, no posting and no setup change occurred.",
+    "No persisted Purchase Invoice draft number was detected, so cleanup was not needed.",
+    "The next route must be different from the Purchase Invoice direct Type-cell entry loop."
+  ],
+  "allowedActions": [
+    "open-business-central-in-MCP_1_20260210",
+    "confirm-company-RM-DEMO",
+    "open-purchase-orders-page",
+    "click-scoped-New-Neu-on-Purchase-Orders-for-temporary-draft",
+    "focus-purchase-order-lines-type-cell",
+    "probe-line-type-fixed-asset-visibility-only",
+    "write-json-evidence",
+    "write-compact-learning-note",
+    "cleanup-temporary-draft-if-created",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "enter-K30000",
+    "enter-FA-CNC-01",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "api-shortcut",
+    "book-edit",
+    "keep-draft",
+    "repeat-purchase-invoice-direct-type-entry"
+  ],
+  "defaultLockedActionsUnlockedForThisCase": [
+    "new-draft",
+    "edit-record-for-line-type-only",
+    "delete-record-for-cleanup-only"
+  ],
+  "acceptanceCriteria": [
+    "Instance MCP_1_20260210 and company RM-DEMO are confirmed before any New action.",
+    "The New action is scoped to Purchase Orders, not global New.",
+    "No vendor number, fixed asset number, amount, preview or posting action is entered.",
+    "Only line Type visibility/selection may be tested.",
+    "If Fixed Asset becomes visible, the next case may plan target field mapping in a separate run.",
+    "If Fixed Asset is still unavailable, the next case should switch to setup/page capability review instead of another document-line retry.",
+    "Any persisted draft is deleted or documented as a blocker before ending."
+  ],
+  "stopConditions": [
+    "Business Central is not in instance MCP_1_20260210.",
+    "Company is not RM-DEMO.",
+    "Purchase Orders page context is not clear.",
+    "A dialog asks to post, preview, ship, invoice, pay, keep a draft or change setup.",
+    "The UI attempts to enter K30000 or FA-CNC-01.",
+    "Cleanup cannot be proven after a draft number was created."
+  ],
+  "recommendedSkills": [
+    "bc-navigation",
+    "safety-gate-checker",
+    "evidence-writer"
+  ],
+  "nextSafeAction": "Run a different UI-first route on Purchase Orders: prove or block only line Type = Fixed Asset, with target values still locked.",
+  "mustRead": [
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-076.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-076/FIXEDASSETS-076-result.json",
+    ".agent/capabilities.json",
+    "package.json"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-077/FIXEDASSETS-077-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-077/FIXEDASSETS-077-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-077/cleanup-result.json"
+  ]
+}
