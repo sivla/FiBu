@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-110-FA-GL-JOURNAL-AMOUNT-BALACCOUNT-CONTROL-ROUTE-READONLY",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "controlled-sandbox-ui-readonly-diagnosis",
+  "taskClass": "wizard_work",
+  "goal": "Map the exact read-only field/control route for Amount and Bal. Account No. on the current FA G/L Journal target-line shell before any write probe is considered.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-108/FIXEDASSETS-108-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-109/FIXEDASSETS-109-result.json"
+  ],
+  "knownTruth": [
+    "FA-108 found Amount and Bal. Account No. signals reachable read-only.",
+    "FA-109 did not unlock a write-case because exact editable controls are not proven.",
+    "Amount 68000 and K30000 are not visible as current values.",
+    "Preview Posting and Post remain locked."
+  ],
+  "allowedActions": [
+    "open-business-central",
+    "run-playwright",
+    "confirm-instance-and-company",
+    "open-fa-gl-journals",
+    "read-current-journal-line-grid",
+    "horizontal-scroll-readonly-if-needed",
+    "map-amount-control-route-readonly",
+    "map-bal-account-control-route-readonly",
+    "write-evidence",
+    "state-patch-plan-only"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "api-shortcut",
+    "book-edit",
+    "change-amount",
+    "change-account-no",
+    "change-bal-account-no",
+    "delete-line",
+    "insert-line",
+    "click-finish",
+    "fake-evidence"
+  ],
+  "acceptanceCriteria": [
+    "The run stays in MCP_1_20260210 and RM-DEMO.",
+    "The run opens Fixed Asset G/L Journals read-only.",
+    "The run maps whether Amount and Bal. Account No. have concrete reachable controls in the current line context.",
+    "The run does not enter values, delete, insert, preview or post.",
+    "The result decides whether a later guarded write-case can be considered."
+  ],
+  "stopConditions": [
+    "Instance or company is not clearly MCP_1_20260210 / RM-DEMO.",
+    "The page is not Fixed Asset G/L Journals.",
+    "The current line no longer shows G05001 and FA-CNC-01.",
+    "Mapping would require entering or changing data.",
+    "A dialog asks to post, preview, delete, finish or confirm a risky change."
+  ],
+  "recommendedSkills": [
+    "bc-navigation",
+    "evidence-writer",
+    "posting-gate"
+  ],
+  "requiresUsageLog": false,
+  "nextSafeAction": "Run a narrow read-only field-route probe for Amount and Bal. Account No.; no edit, no cleanup, no Preview Posting and no posting."
+}

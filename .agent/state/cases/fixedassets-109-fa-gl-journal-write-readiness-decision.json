@@ -3,7 +3,7 @@
   "caseId": "FIXEDASSETS-109-FA-GL-JOURNAL-WRITE-READINESS-DECISION",
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "status": "planned",
+  "status": "completed",
   "workType": "local-sandbox-gate-decision",
   "taskClass": "judge_work",
   "goal": "Decide locally whether the FA-108 read-only control map is sufficient to allow a later guarded write-case for Amount and Bal. Account No., or whether another read-only field route is needed first.",
@@ -65,5 +65,10 @@
     "posting-gate"
   ],
   "requiresUsageLog": true,
-  "nextSafeAction": "Review FA-108 locally and decide whether to plan a later guarded write-case; do not run BC, Playwright, Preview Posting or Post in FA-109."
+  "lastResult": {
+    "status": "observed",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-109/FIXEDASSETS-109-result.json",
+    "summary": "No write-case unlocked; FA-110 read-only field-route probe is needed first."
+  },
+  "nextSafeAction": "Run FIXEDASSETS-110 read-only; no value entry, no Preview Posting, no Post."
 }

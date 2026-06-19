@@ -1,47 +1,46 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-108-FA-GL-JOURNAL-FULL-LINE-CONTROL-MAP-READONLY",
+  "runId": "FIXEDASSETS-109-FA-GL-JOURNAL-WRITE-READINESS-DECISION",
   "date": "2026-06-20",
-  "workType": "fixed-asset-gl-journal-full-line-control-map-readonly",
+  "workType": "local-fixed-asset-journal-write-readiness-decision",
   "branch": "codex/token-efficient-autopilot-state",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "bcRun": true,
+  "bcRun": false,
   "posted": false,
   "preview": false,
   "setupChanged": false,
   "companySwitched": false,
   "resultStatus": "observed",
-  "summary": "FA-108 mapped current FA G/L Journal controls read-only. Amount label reachable: true; Bal. Account No. label reachable: true; 68000 visible: false; K30000 visible: false.",
+  "apiShortcut": false,
+  "bookChanged": false,
+  "summary": "FA-109 reviewed FA-108 locally. A guarded write-case is not unlocked: Amount and Bal. Account No. signals are reachable, but exact editable controls are not proven. Next step is FA-110 read-only field-route mapping.",
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/fixedassets-108/FIXEDASSETS-108-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-108/010-full-line-control-map.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-108/020-focused-text.txt",
-    "playwright/projects/fibu-book5/evidence/fixedassets-108/README.md"
+    "playwright/projects/fibu-book5/evidence/fixedassets-109/FIXEDASSETS-109-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-109/FIXEDASSETS-109-review.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-109/README.md"
   ],
   "changedFiles": [
     ".agent/state/current.json",
-    ".agent/state/cases/fixedassets-108-fa-gl-journal-full-line-control-map-readonly.json",
     ".agent/state/cases/fixedassets-109-fa-gl-journal-write-readiness-decision.json",
+    ".agent/state/cases/fixedassets-110-fa-gl-journal-amount-balaccount-control-route-readonly.json",
     ".agent/state/last_run_summary.json",
-    "package.json",
-    "playwright/projects/fibu-book5/tests/fixedassets-108-fa-gl-journal-full-line-control-map-readonly.spec.ts",
+    ".agent/state/model_usage_log.jsonl",
     "playwright/projects/fibu-book5/CURRENT-STATE.md",
     "playwright/projects/fibu-book5/LAB-FIT-STATUS.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-108/FIXEDASSETS-108-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-108/010-full-line-control-map.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-108/020-focused-text.txt",
-    "playwright/projects/fibu-book5/evidence/fixedassets-108/README.md"
+    "playwright/projects/fibu-book5/evidence/fixedassets-109/FIXEDASSETS-109-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-109/FIXEDASSETS-109-review.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-109/README.md"
   ],
   "validationCommands": [
     "npm run agent:preflight",
     "npm run agent:dry-run",
     "npm run agent:run-plan",
-    "npm run fibu:fixedassets:fa-gl-journal-full-line-control-map-readonly",
-    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-108/FIXEDASSETS-108-result.json",
-    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-108/FIXEDASSETS-108-result.json",
+    "npm run agent:subagent-plan",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-109/FIXEDASSETS-109-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-109/FIXEDASSETS-109-result.json",
     "npm run check:encoding",
     "git diff --check"
   ],
-  "nextStep": "Run FIXEDASSETS-109 as local write-readiness decision; no BC, no Playwright, no value entry."
+  "nextStep": "Run FIXEDASSETS-110 read-only; do not enter Amount or Bal. Account No."
 }

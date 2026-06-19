@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-fa-gl-journal-write-readiness-decision-result",
+  "caseId": "FIXEDASSETS-109-FA-GL-JOURNAL-WRITE-READINESS-DECISION",
+  "source": "local-evidence-review",
+  "resultStatus": "observed",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "decision": {
+    "guardedWriteCaseAllowedNow": false,
+    "reason": "FA-108 proves Amount and Bal. Account No. text/control signals are reachable read-only, but it does not prove exact editable target controls for safe value entry.",
+    "nextCase": "FIXEDASSETS-110-FA-GL-JOURNAL-AMOUNT-BALACCOUNT-CONTROL-ROUTE-READONLY"
+  },
+  "proved": [
+    "FA-108 stayed in MCP_1_20260210 / RM-DEMO.",
+    "FA-108 kept the current FA G/L Journal target-line shell visible with G05001, FA-CNC-01 and HGB.",
+    "FA-108 found Amount-labelled and Bal. Account No.-labelled signals reachable read-only.",
+    "FA-108 did not enter or change any value.",
+    "FA-108 did not open Preview Posting and did not post."
+  ],
+  "notProved": [
+    "The exact editable Amount control for a safe write is not proven.",
+    "The exact editable Bal. Account No. control for a safe write is not proven.",
+    "Amount 68000 is not visible as an existing value.",
+    "K30000 is not visible as an existing balancing value.",
+    "No Preview Posting result.",
+    "No posting result.",
+    "No FA Ledger Entry or G/L Entry trace.",
+    "No German final proof."
+  ],
+  "changedFiles": [
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-109-fa-gl-journal-write-readiness-decision.json",
+    ".agent/state/cases/fixedassets-110-fa-gl-journal-amount-balaccount-control-route-readonly.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/model_usage_log.jsonl",
+    "playwright/projects/fibu-book5/CURRENT-STATE.md",
+    "playwright/projects/fibu-book5/LAB-FIT-STATUS.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-109/FIXEDASSETS-109-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-109/FIXEDASSETS-109-review.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-109/README.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-108/FIXEDASSETS-108-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-109/FIXEDASSETS-109-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-109/FIXEDASSETS-109-review.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-109/README.md"
+  ],
+  "warnings": [
+    "No write-case is unlocked by FA-109.",
+    "Preview Posting and Post remain locked.",
+    "The next step must remain read-only and must map exact field routes before value entry."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "updatedAt": "2026-06-20T01:40:00.000Z",
+      "activeCase": "FIXEDASSETS-110-FA-GL-JOURNAL-AMOUNT-BALACCOUNT-CONTROL-ROUTE-READONLY",
+      "active_case_file": ".agent/state/cases/fixedassets-110-fa-gl-journal-amount-balaccount-control-route-readonly.json",
+      "lastReferenceCase": "FIXEDASSETS-109-FA-GL-JOURNAL-WRITE-READINESS-DECISION",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-109-fa-gl-journal-write-readiness-decision.json",
+      "requiresStrongModel": false,
+      "nextStep": "FIXEDASSETS-110: run a read-only field-route probe for Amount and Bal. Account No. controls; no value entry, no Preview Posting, no Post."
+    },
+    "lastRunSummary": {
+      "schemaVersion": 1,
+      "runId": "FIXEDASSETS-109-FA-GL-JOURNAL-WRITE-READINESS-DECISION",
+      "date": "2026-06-20",
+      "workType": "local-fixed-asset-journal-write-readiness-decision",
+      "branch": "codex/token-efficient-autopilot-state",
+      "instance": "MCP_1_20260210",
+      "company": "RM-DEMO",
+      "bcRun": false,
+      "posted": false,
+      "preview": false,
+      "setupChanged": false,
+      "companySwitched": false,
+      "apiShortcut": false,
+      "bookChanged": false,
+      "resultStatus": "observed",
+      "summary": "FA-109 reviewed FA-108 locally. A guarded write-case is not unlocked: Amount and Bal. Account No. signals are reachable, but exact editable controls are not proven. Next step is FA-110 read-only field-route mapping.",
+      "nextStep": "Run FIXEDASSETS-110 read-only; do not enter Amount or Bal. Account No."
+    },
+    "activeCase": {
+      "status": "completed",
+      "lastResult": {
+        "status": "observed",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-109/FIXEDASSETS-109-result.json",
+        "summary": "No write-case unlocked; FA-110 read-only field-route probe is needed first."
+      },
+      "nextSafeAction": "Run FIXEDASSETS-110 read-only; no value entry, no Preview Posting, no Post."
+    }
+  },
+  "flags": {
+    "noBcRun": true,
+    "noPlaywrightRun": true,
+    "noValueCorrection": true,
+    "noInsertLine": true,
+    "noDeleteLine": true,
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "nextStep": "FIXEDASSETS-110-FA-GL-JOURNAL-AMOUNT-BALACCOUNT-CONTROL-ROUTE-READONLY"
+}
