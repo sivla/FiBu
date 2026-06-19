@@ -18,6 +18,7 @@ Zweck: kleiner Einstiegspunkt fuer Codex-Laeufe, die nicht den gesamten Projektv
    - Der Result-Normalizer schreibt noch keinen State; State-Finalisierung bleibt eine spaetere Gate-Schicht.
    - `npm run agent:state-finalize`, wenn aus einem normalisierten Result ein State-Patch-Plan entstehen soll.
    - State-Finalisierung schreibt standardmaessig nicht; `--write` ist nur mit `safeToFinalizeState=true`, Review-freiem Result und nichtleerem `statePatch` moeglich.
+   - `npm run agent:state-finalize:test` prueft die lokale Pipeline mit einem kuenstlichen sicheren Result im Planmodus.
    - optional `npm run agent:usage:summary`, wenn `judge_work` oder `big_brain_review` genutzt wurde
 4. Modell-/Reasoning-Klasse aus `.agent/model-routing.json` waehlen:
    - `monkey_work` fuer billige Fleissarbeit

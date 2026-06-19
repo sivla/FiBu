@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "LOCAL-PIPELINE-TEST",
+  "source": "local-analysis",
+  "resultStatus": "observed",
+  "runPlanId": "LOCAL-PIPELINE-TEST-PLAN",
+  "selectedTaskClass": "monkey_work",
+  "selectedModelClass": "gpt-4-mini-low",
+  "proved": [
+    "state-finalize can create a safe top-level patch plan from a normalized local result"
+  ],
+  "notProved": [
+    "No Business Central execution",
+    "No Playwright execution",
+    "No book content change"
+  ],
+  "changedFiles": [],
+  "statePatch": {
+    "lastRunSummary": {
+      "runId": "LOCAL-PIPELINE-TEST",
+      "bcRun": false,
+      "posted": false,
+      "companySwitched": false,
+      "summary": "Local state-finalize pipeline test only. No BC, no Playwright, no book change."
+    }
+  },
+  "evidenceRefs": [],
+  "warnings": [],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "reason": "Safe local pipeline test for plan-mode state finalization.",
+  "validationCommands": [
+    "npm run agent:preflight",
+    "npm run agent:state-finalize:test",
+    "npm run check:encoding",
+    "git diff --check"
+  ]
+}

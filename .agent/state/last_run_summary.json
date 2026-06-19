@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "runId": "TOKEN-AUTOPILOT-STATE-FINALIZE",
+  "runId": "TOKEN-AUTOPILOT-STATE-FINALIZE-DUMMY",
   "date": "2026-06-19",
   "workType": "token-efficient-agent-state-finalize",
   "branch": "codex/token-efficient-autopilot-state",
   "bcRun": false,
   "posted": false,
   "companySwitched": false,
-  "summary": "agent:state-finalize erzeugt aus normalisierten Resultaten konservative State-Patch-Plaene. Standard ist plan-only; --write ist nur erlaubt, wenn safeToFinalizeState=true, blockedBy leer, requiresReview=false und statePatch nicht leer ist. Kein Business Central, kein Playwright, keine Buchaenderung.",
+  "summary": "Ein kuenstliches sicheres Normalized-Result prueft die State-Finalize-Pipeline im Planmodus. agent:state-finalize:test erzeugt einen Patch-Plan fuer lastRunSummary, schreibt aber ohne --write nichts. Kein Business Central, kein Playwright, keine Buchaenderung.",
   "commandsToRunBeforeAutopilot": [
     "npm run agent:preflight",
     "npm run agent:context",
@@ -22,7 +22,8 @@
     "npm run agent:dry-run",
     "npm run agent:run-plan",
     "npm run agent:result-normalize",
-    "npm run agent:state-finalize"
+    "npm run agent:state-finalize",
+    "npm run agent:state-finalize:test"
   ],
   "routingState": {
     "defaultTaskClass": "monkey_work",

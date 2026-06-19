@@ -47,6 +47,7 @@ npm run agent:dry-run
 npm run agent:run-plan
 npm run agent:result-normalize
 npm run agent:state-finalize
+npm run agent:state-finalize:test
 npm run check:encoding
 git diff --check
 ```
@@ -55,6 +56,7 @@ git diff --check
 `npm run agent:run-plan` wandelt diesen Dry-Run in eine konkrete Schrittfolge um. Auch dieser Befehl ist plan-only und startet weder Business Central noch Playwright.
 `npm run agent:result-normalize` normalisiert ein Ergebnisformat fuer spaetere State-Finalisierung. Ohne Input erzeugt es einen sicheren `pending`-Befund aus dem aktuellen Run-Plan.
 `npm run agent:state-finalize` erzeugt standardmaessig nur einen State-Patch-Plan. Schreiben ist nur mit `--write` moeglich und nur, wenn das normalisierte Result `safeToFinalizeState=true` enthaelt.
+`npm run agent:state-finalize:test` nutzt ein kuenstliches sicheres Result und prueft nur den Planmodus. Es schreibt nichts.
 
 If TypeScript files changed, also run:
 
