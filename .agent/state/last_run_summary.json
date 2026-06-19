@@ -1,27 +1,28 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-079-FIXED-ASSET-ACQUISITION-ROUTE-DECISION",
+  "runId": "FIXEDASSETS-080-FA-CNC-01-ACQUIRE-ACTION-READONLY-PREFLIGHT",
   "date": "2026-06-19",
-  "workType": "fixed-asset-acquisition-route-decision",
+  "workType": "fixed-asset-card-acquire-action-readonly-preflight",
   "branch": "codex/token-efficient-autopilot-state",
-  "bcRun": false,
+  "bcRun": true,
   "posted": false,
   "companySwitched": false,
-  "summary": "FA-079 selected Fixed Asset Card / Acquire action read-only preflight as preferred next route, because FA-CNC-01 and HGB are read-only visible and purchase-document Type=Fixed Asset remains unproven in RM-DEMO.",
-  "nextStep": "Run FA-080 read-only on FA-CNC-01 card. Do not click Acquire yet.",
+  "summary": "FA-080 proved the existing FA-CNC-01 card context read-only and found an Acquire/Acquisition action signal. The next case may deliberately unlock only opening that action, not values or posting. Agent learning: state-finalize activeCase patch targeting was corrected after FA-080 exposed the next-case rollover ambiguity.",
+  "nextStep": "FIXEDASSETS-081-ACQUIRE-ACTION-WIZARD-PREFLIGHT: open the Acquire action in a guarded case only, then stop before values, Finish, Preview or Posting.",
   "commandsRun": [
     "git branch --show-current",
     "git status --short",
-    "git pull --ff-only",
     "npm run agent:preflight",
     "npm run agent:context",
-    "static evidence/source review only"
+    "npm run fibu:fixedassets:fa-cnc-01-acquire-action-readonly-preflight",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-080/FIXEDASSETS-080-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-080/FIXEDASSETS-080-result.json"
   ],
   "evidence": [
-    "playwright/projects/fibu-book5/evidence/fixedassets-079/FIXEDASSETS-079-route-decision.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-079/FIXEDASSETS-079-learning.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-079/README.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-078/FIXEDASSETS-078-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-078/010-microsoft-learn-route-basis.md"
+    "playwright/projects/fibu-book5/evidence/fixedassets-080/FIXEDASSETS-080-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-080/FIXEDASSETS-080-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-080/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-080/010-card-context-readonly.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-080/020-visible-action-labels.json"
   ]
 }

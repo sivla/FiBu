@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixed-asset-card-acquire-action-readonly-preflight-result",
+  "caseId": "FIXEDASSETS-080-FA-CNC-01-ACQUIRE-ACTION-READONLY-PREFLIGHT",
+  "source": "playwright-sandbox-readonly-fixed-asset-card-context",
+  "resultStatus": "observed",
+  "runPlanId": "FIXEDASSETS-080-FA-CNC-01-ACQUIRE-ACTION-READONLY-PREFLIGHT-PLAN",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-medium",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "targetAsset": "FA-CNC-01",
+  "observed": {
+    "startedAt": "2026-06-19T08:29:59.374Z",
+    "finishedAt": "2026-06-19T08:30:06.164Z",
+    "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5600&filter=%27Fixed%20Asset%27.%27No.%27%20IS%20%27FA-CNC-01%27&dc=0&bookmark=1D_4BUAAAJ7_0YAQQAtAEMATgBDAC0AMAAx",
+    "context": {
+      "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5600&filter=%27Fixed%20Asset%27.%27No.%27%20IS%20%27FA-CNC-01%27&dc=0&bookmark=1D_4BUAAAJ7_0YAQQAtAEMATgBDAC0AMAAx",
+      "environmentInUrl": true,
+      "companyInUrl": true,
+      "companyInText": false,
+      "wrongEnvironmentVisible": false
+    },
+    "cardContextVisible": true,
+    "hgbVisible": false,
+    "bookValueVisible": true,
+    "acquireActionVisible": true,
+    "postActionVisible": false,
+    "previewActionVisible": false,
+    "actionLabelCount": 22
+  },
+  "proved": [
+    "The run stayed in MCP_1_20260210 / RM-DEMO.",
+    "The existing FA-CNC-01 Fixed Asset Card context was opened read-only.",
+    "Book Value context was visible on the card.",
+    "An Acquire/Acquisition action signal was visible without clicking it.",
+    "No Acquire action was clicked.",
+    "No values were entered.",
+    "No preview, posting, setup change, draft, edit or delete was performed.",
+    "State-finalize now resolves activeCase patches by the result caseId instead of the currently active next case."
+  ],
+  "notProved": [
+    "No Acquire wizard behavior was tested.",
+    "No vendor K30000, amount or acquisition line was entered.",
+    "No Fixed Asset G/L Journal acquisition route was proven in this case.",
+    "No acquisition posting, no FA Ledger Entry and no German final proof."
+  ],
+  "changedFiles": [
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-080.json",
+    ".agent/state/cases/fixedassets-081-acquire-action-wizard-preflight.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    "package.json",
+    "playwright/projects/fibu-book5/tests/fixedassets-080-fa-cnc-01-acquire-action-readonly-preflight.spec.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-080/FIXEDASSETS-080-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-080/FIXEDASSETS-080-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-080/README.md",
+    ".agent/capabilities.json",
+    "scripts/agent/state-finalize.mjs"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-080/FIXEDASSETS-080-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-080/FIXEDASSETS-080-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-080/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-080/010-card-context-readonly.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-080/020-visible-action-labels.json"
+  ],
+  "warnings": [
+    "Read-only CRONUS-USA labor evidence only.",
+    "Visible action labels do not prove the wizard or posting behavior.",
+    "Next case must explicitly unlock any Acquire click and still forbid values, Finish, Preview and Posting until separately gated.",
+    "Agent learning: state-finalize activeCase target resolution was corrected after FA-080 exposed the next-case rollover ambiguity."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "flags": {
+    "noBookChange": true,
+    "secretsUntouched": true,
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noNewDraft": true,
+    "noEditRecord": true,
+    "noDeleteRecord": true,
+    "noAcquireClick": true,
+    "noTargetVendorEntry": true,
+    "noTargetFixedAssetEntryInDocumentOrJournal": true,
+    "cleanupCompleted": true
+  },
+  "statePatch": {
+    "current": {
+      "updatedAt": "2026-06-19T10:20:00.000Z",
+      "activeCase": "FIXEDASSETS-081-ACQUIRE-ACTION-WIZARD-PREFLIGHT",
+      "active_case_file": ".agent/state/cases/fixedassets-081-acquire-action-wizard-preflight.json",
+      "lastReferenceCase": "FIXEDASSETS-080-FA-CNC-01-ACQUIRE-ACTION-READONLY-PREFLIGHT",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-080.json",
+      "nextStep": "FIXEDASSETS-081-ACQUIRE-ACTION-WIZARD-PREFLIGHT: open the Acquire action in a guarded case only, then stop before values, Finish, Preview or Posting."
+    },
+    "lastRunSummary": {
+      "schemaVersion": 1,
+      "runId": "FIXEDASSETS-080-FA-CNC-01-ACQUIRE-ACTION-READONLY-PREFLIGHT",
+      "date": "2026-06-19",
+      "workType": "fixed-asset-card-acquire-action-readonly-preflight",
+      "branch": "codex/token-efficient-autopilot-state",
+      "bcRun": true,
+      "posted": false,
+      "companySwitched": false,
+      "summary": "FA-080 proved the existing FA-CNC-01 card context read-only and found an Acquire/Acquisition action signal. The next case may deliberately unlock only opening that action, not values or posting.",
+      "nextStep": "FIXEDASSETS-081-ACQUIRE-ACTION-WIZARD-PREFLIGHT: open the Acquire action in a guarded case only, then stop before values, Finish, Preview or Posting."
+    },
+    "activeCase": {
+      "status": "observed-readonly",
+      "lastResult": {
+        "status": "observed",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-080/FIXEDASSETS-080-result.json",
+        "summary": "FA-080 proved the existing FA-CNC-01 card context read-only and found an Acquire/Acquisition action signal. The next case may deliberately unlock only opening that action, not values or posting."
+      },
+      "nextSafeAction": "FIXEDASSETS-081-ACQUIRE-ACTION-WIZARD-PREFLIGHT: open the Acquire action in a guarded case only, then stop before values, Finish, Preview or Posting."
+    },
+    "coverage": {
+      "areas": {
+        "fixedassets": {
+          "latestPracticalCase": "FIXEDASSETS-080",
+          "currentBlock": "fixed-asset-card-acquire-action-wizard-preflight",
+          "nextCase": "FIXEDASSETS-081-ACQUIRE-ACTION-WIZARD-PREFLIGHT"
+        }
+      }
+    }
+  },
+  "bookImpact": "Kapitel 21 kann die Anlagenkarte als Einstieg vor dem Acquire-Wizard erklaeren. Der Screenshot-/Klickpfad darf aber erst nach einem eigenen Wizard-Preflight zeigen, was nach dem Klick passiert.",
+  "summary": "FA-080 proved the existing FA-CNC-01 card context read-only and found an Acquire/Acquisition action signal. The next case may deliberately unlock only opening that action, not values or posting.",
+  "nextStep": "FIXEDASSETS-081-ACQUIRE-ACTION-WIZARD-PREFLIGHT: open the Acquire action in a guarded case only, then stop before values, Finish, Preview or Posting."
+}

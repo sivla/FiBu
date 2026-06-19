@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-081-ACQUIRE-ACTION-WIZARD-PREFLIGHT",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "fixed-asset-acquire-action-wizard-preflight",
+  "goal": "Open the visible Acquire action from the existing FA-CNC-01 Fixed Asset Card in a guarded UI-first case, capture the wizard/dialog context, and stop before values, Finish, Preview or Posting.",
+  "basedOn": [
+    ".agent/state/cases/fixedassets-079.json",
+    ".agent/state/cases/fixedassets-080.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-080/FIXEDASSETS-080-result.json"
+  ],
+  "knownTruth": [
+    "FA-080 proved the existing FA-CNC-01 Fixed Asset Card context read-only in MCP_1_20260210 / RM-DEMO.",
+    "FA-080 proved an Acquire/Acquisition action signal is visible without clicking it.",
+    "FA-080 did not prove HGB visible on this card view; HGB remains proven separately from prior Depreciation Books/card evidence, not from FA-080.",
+    "No Acquire wizard behavior, amount entry, preview, posting or FA ledger trace is proven yet."
+  ],
+  "allowedActions": [
+    "open-business-central-in-MCP_1_20260210",
+    "confirm-company-RM-DEMO",
+    "open-existing-FA-CNC-01-fixed-asset-card-readonly",
+    "click-acquire-action-to-open-wizard-only",
+    "capture-wizard-or-dialog-context-readonly",
+    "close-or-cancel-wizard-if-safe",
+    "write-json-evidence",
+    "write-compact-learning-note",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "enter-K30000",
+    "enter-amount",
+    "enter-FA-CNC-01-in-document-or-journal",
+    "new-draft",
+    "edit-record",
+    "delete-record",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "api-shortcut",
+    "book-edit",
+    "click-finish",
+    "click-ok-or-yes-on-acquisition-confirmation",
+    "keep-draft"
+  ],
+  "defaultLockedActionsUnlockedForThisCase": [
+    "click-acquire-action-to-open-wizard-only"
+  ],
+  "acceptanceCriteria": [
+    "Instance MCP_1_20260210 and company RM-DEMO are confirmed before clicking Acquire.",
+    "The Acquire action is clicked only from the scoped FA-CNC-01 card context.",
+    "The resulting wizard/dialog/page context is captured as compact evidence.",
+    "No vendor, amount, fixed-asset target line, Finish, OK/Yes confirmation, Preview, Posting, draft keep or setup change is performed.",
+    "If Acquire opens an immediate risky confirmation instead of a safe wizard/page, stop and document the blocker."
+  ],
+  "stopConditions": [
+    "Business Central is not in MCP_1_20260210 / RM-DEMO.",
+    "FA-CNC-01 card context is not clearly visible.",
+    "Acquire action is no longer visible in scoped card context.",
+    "The next UI asks for OK/Yes/Finish/Acquire confirmation that could create or post data.",
+    "Any dialog asks to post, preview, edit, delete, setup, keep a draft, enter amount or enter vendor."
+  ],
+  "recommendedSkills": [
+    "bc-navigation",
+    "safety-gate-checker",
+    "evidence-writer"
+  ],
+  "nextSafeAction": "Run FA-081 as guarded Acquire wizard/dialog preflight. Do not enter values and do not confirm Finish/OK/Yes.",
+  "mustRead": [
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-080.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-080/FIXEDASSETS-080-result.json",
+    ".agent/capabilities.json",
+    "package.json"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-081/FIXEDASSETS-081-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-081/FIXEDASSETS-081-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-081/README.md"
+  ]
+}

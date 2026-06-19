@@ -1,5 +1,5 @@
 import { execSync } from 'node:child_process';
-import { existsSync, readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 
 function readJson(path) {
@@ -47,12 +47,45 @@ function unique(values) {
   return [...new Set(values.filter(Boolean))];
 }
 
-function buildPatchList(statePatch, current) {
+function findCaseFileForCaseId(caseId, current) {
+  if (!caseId) {
+    return current.active_case_file;
+  }
+
+  if (current.activeCase === caseId) {
+    return current.active_case_file;
+  }
+
+  const casesDir = resolve('.agent/state/cases');
+  if (!existsSync(casesDir)) {
+    return current.active_case_file;
+  }
+
+  for (const fileName of readdirSync(casesDir)) {
+    if (!fileName.endsWith('.json')) {
+      continue;
+    }
+
+    const filePath = `.agent/state/cases/${fileName}`;
+    try {
+      const candidate = readJson(filePath);
+      if (candidate.caseId === caseId) {
+        return filePath;
+      }
+    } catch {
+      // State validation reports malformed case files separately.
+    }
+  }
+
+  return current.active_case_file;
+}
+
+function buildPatchList(statePatch, current, normalized) {
   const patchList = [];
   const knownTargets = {
     current: '.agent/state/current.json',
     lastRunSummary: '.agent/state/last_run_summary.json',
-    activeCase: current.active_case_file,
+    activeCase: findCaseFileForCaseId(normalized.caseId, current),
     coverage: '.agent/state/coverage_state.json',
   };
 
@@ -85,7 +118,7 @@ const normalized = args.input && existsSync(args.input)
   ? readJson(args.input)
   : runJson('npm run --silent agent:result-normalize');
 
-const proposedPatches = buildPatchList(normalized.statePatch, current);
+const proposedPatches = buildPatchList(normalized.statePatch, current, normalized);
 const targetFiles = unique(proposedPatches.map((patch) => patch.targetFile));
 const blockedBy = unique([
   ...(normalized.blockedBy ?? []),
