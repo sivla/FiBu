@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "description": "Documentation schema for JSON emitted by scripts/agent/subagent-plan.mjs.",
+  "requiredTopLevelFields": [
+    "schemaVersion",
+    "purpose",
+    "caseId",
+    "canProceed",
+    "maxSubagents",
+    "subagents",
+    "joinStrategy",
+    "blockedLiveActions",
+    "requiresHumanApproval",
+    "reason",
+    "validationCommands"
+  ],
+  "purpose": "autopilot-subagent-plan",
+  "subagentRequiredFields": [
+    "id",
+    "taskClass",
+    "spawnModel",
+    "reasoningEffort",
+    "skills",
+    "inputs",
+    "outputName",
+    "outputJsonSchema",
+    "maxContextLines",
+    "maxOutputTokens",
+    "stopIf"
+  ],
+  "allowedTaskClasses": [
+    "monkey_work",
+    "wizard_work",
+    "judge_work",
+    "big_brain_review"
+  ],
+  "rules": [
+    "Subagent plan output is planning only and must not spawn agents.",
+    "Subagents must not inherit the parent model.",
+    "Default maximum is three subagents.",
+    "Subagents must receive scoped inputs only.",
+    "No BC, Playwright, book edit, screenshot read, binary read or state-finalize --write is allowed from this layer."
+  ]
+}
