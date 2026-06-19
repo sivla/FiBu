@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-live-smoke-result",
+  "caseId": "LIVE-SMOKE-BC-004-READONLY-VISIBLE-COMPANY-CONTEXT",
+  "source": "playwright-readonly-smoke",
+  "runPlanId": "LIVE-SMOKE-BC-004-READONLY-VISIBLE-COMPANY-CONTEXT-PLAN",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-medium",
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/live-smoke-bc-004/result.json"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/live-smoke-bc-004/result.json"
+  ],
+  "statePatch": {
+    "lastRunSummary": {
+      "schemaVersion": 1,
+      "runId": "LIVE-SMOKE-BC-004-READONLY-VISIBLE-COMPANY-CONTEXT",
+      "date": "2026-06-19",
+      "workType": "playwright-readonly-smoke-visible-company-context",
+      "branch": "codex/token-efficient-autopilot-state",
+      "bcRun": true,
+      "posted": false,
+      "companySwitched": false,
+      "summary": "LIVE-SMOKE-BC-004 ran read-only in MCP_1_20260210 / RM-DEMO; URL context was correct, but RM-DEMO was not visible in shell/page text without opening settings or actions.",
+      "nextStep": "Review the state-finalize plan for LIVE-SMOKE-BC-004. Do not use --write without explicit approval."
+    },
+    "activeCase": {
+      "status": "observed",
+      "lastResult": {
+        "status": "observed",
+        "resultFile": "playwright/projects/fibu-book5/evidence/live-smoke-bc-004/result.json",
+        "summary": "LIVE-SMOKE-BC-004 ran read-only in MCP_1_20260210 / RM-DEMO; URL context was correct, but RM-DEMO was not visible in shell/page text without opening settings or actions."
+      },
+      "nextSafeAction": "Result is safe for a state-finalize patch plan only. Wait for explicit approval before --write."
+    }
+  },
+  "safeToFinalizeState": true,
+  "flags": {
+    "noWrite": true,
+    "noPost": true,
+    "noPreview": true,
+    "noShip": true,
+    "noInvoice": true,
+    "noPayment": true,
+    "noDraft": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noSettingsOpen": true,
+    "noApiShortcut": true,
+    "noBookChange": true,
+    "noScreenshot": true,
+    "noActionClick": true
+  },
+  "resultStatus": "observed",
+  "proved": [
+    "Business Central URL stayed in MCP_1_20260210.",
+    "Company URL parameter stayed RM-DEMO.",
+    "Business Central shell was visible with existing storageState.",
+    "No settings page, company-switch dialog, menu, action or role-center tile was opened.",
+    "No booking was triggered.",
+    "No Preview Posting was triggered.",
+    "No Post was triggered.",
+    "No draft was created.",
+    "No setup change was triggered.",
+    "No company switch was triggered.",
+    "Company RM-DEMO was intentionally not forced through settings or navigation."
+  ],
+  "notProved": [
+    "No business process, posting readiness, ledger trace or book screenshot was tested.",
+    "Visible UI company proof is still open because RM-DEMO did not appear in shell/page text without opening settings or actions."
+  ],
+  "warnings": [
+    "Company RM-DEMO was confirmed from URL only; visible UI proof remains open for a later safe pattern."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "environment": {
+    "instance": "MCP_1_20260210",
+    "company": "RM-DEMO",
+    "expectedInstance": "MCP_1_20260210",
+    "expectedCompany": "RM-DEMO",
+    "companyTextVisible": false
+  },
+  "observed": {
+    "startedAt": "2026-06-19T00:59:41.994Z",
+    "finishedAt": "2026-06-19T00:59:48.720Z",
+    "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO",
+    "title": "Dynamics 365 Business Central",
+    "dialogCount": 0,
+    "visibleCompanyTextLines": [],
+    "safePageTextLines": [
+      "Dynamics 365 Business Central",
+      "Finance",
+      "Sales",
+      "Want to learn more about Business Central?",
+      "Sales Quote",
+      "Sales Order",
+      "Sales Invoice",
+      "Purchase Quote",
+      "Purchase Order",
+      "Purchase Invoice",
+      "Activities",
+      "Sales This Month",
+      "Overdue Sales Invoice",
+      "Ongoing Sales",
+      "Sales Quotes",
+      "Sales Orders",
+      "Sales Invoices",
+      "Ongoing Purchases",
+      "Purchase Orders",
+      "Intercompany",
+      "Intercompany ..."
+    ]
+  }
+}
