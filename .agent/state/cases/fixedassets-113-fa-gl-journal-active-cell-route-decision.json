@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-113-FA-GL-JOURNAL-ACTIVE-CELL-ROUTE-DECISION",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "local-evidence-review",
+  "taskClass": "judge_work",
+  "goal": "Review FA-112 and decide whether the Fixed Asset G/L Journal value-entry route remains blocked or whether a different UI pattern is justified.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-110/FIXEDASSETS-110-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-111/FIXEDASSETS-111-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-112/FIXEDASSETS-112-result.json"
+  ],
+  "knownTruth": [
+    "FA-110 found Amount and Bal. Account No. headers but no exact control candidates.",
+    "FA-111 did not unlock a write probe.",
+    "FA-112 did not enter values, did not preview and did not post.",
+    "FA-112 blocked because the focus probe lost the Fixed Asset G/L Journals page/title and target-line signals.",
+    "Amount 68000 and K30000 are still not proven as visible existing values."
+  ],
+  "allowedActions": [
+    "read-fa-112-evidence",
+    "read-fa-110-evidence",
+    "local-route-decision",
+    "write-decision-evidence",
+    "state-patch-plan-only"
+  ],
+  "forbiddenActions": [
+    "open-business-central",
+    "run-playwright",
+    "leave-instance",
+    "company-switch",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "api-shortcut",
+    "book-edit",
+    "change-amount",
+    "change-account-no",
+    "change-bal-account-no",
+    "delete-line",
+    "insert-line",
+    "click-finish",
+    "fake-evidence"
+  ],
+  "acceptanceCriteria": [
+    "The decision is based only on existing FA-110, FA-111 and FA-112 evidence.",
+    "No UI execution is performed.",
+    "The decision clearly states whether the current FA G/L Journal active-cell route remains blocked.",
+    "The next case is either a different safe UI pattern or a non-FA-Journal alternative, not a value-entry attempt."
+  ],
+  "stopConditions": [
+    "Evidence is contradictory and cannot support a decision.",
+    "A proposed next action would enter values, preview or post without a new explicit gate."
+  ],
+  "recommendedSkills": [
+    "evidence-writer",
+    "posting-gate"
+  ],
+  "requiresUsageLog": true,
+  "nextSafeAction": "Review FA-112 locally and keep value entry locked unless a new evidence-backed, safer UI pattern is defined."
+}

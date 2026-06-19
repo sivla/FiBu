@@ -1,46 +1,49 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-111-FA-GL-JOURNAL-CONTROL-ROUTE-DECISION",
+  "runId": "FIXEDASSETS-112-FA-GL-JOURNAL-ACTIVE-CELL-ROUTE-READONLY",
   "date": "2026-06-20",
-  "workType": "local-fixed-asset-journal-control-route-decision",
+  "workType": "fixed-asset-gl-journal-active-cell-route-readonly",
   "branch": "codex/token-efficient-autopilot-state",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "bcRun": false,
+  "bcRun": true,
   "posted": false,
   "preview": false,
   "setupChanged": false,
   "companySwitched": false,
-  "resultStatus": "observed",
   "apiShortcut": false,
   "bookChanged": false,
-  "summary": "FA-111 reviewed FA-110 locally. Write remains locked because exact controls are not proven; a final read-only active-cell/focus probe is allowed as FA-112.",
+  "resultStatus": "blocked",
+  "summary": "FA-112 stayed in MCP_1_20260210 / RM-DEMO and did not change values, but the active-cell probe did not prove a stable Amount or Bal. Account No. control route; the page/title and target-line signals were lost after focus.",
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/fixedassets-111/FIXEDASSETS-111-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-111/FIXEDASSETS-111-review.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-111/README.md"
+    "playwright/projects/fibu-book5/evidence/fixedassets-112/FIXEDASSETS-112-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-112/010-active-cell-route-probe.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-112/020-active-cell-focused-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-112/README.md"
   ],
   "changedFiles": [
     ".agent/state/current.json",
-    ".agent/state/cases/fixedassets-111-fa-gl-journal-control-route-decision.json",
     ".agent/state/cases/fixedassets-112-fa-gl-journal-active-cell-route-readonly.json",
+    ".agent/state/cases/fixedassets-113-fa-gl-journal-active-cell-route-decision.json",
     ".agent/state/last_run_summary.json",
-    ".agent/state/model_usage_log.jsonl",
+    "package.json",
+    "playwright/projects/fibu-book5/tests/fixedassets-112-fa-gl-journal-active-cell-route-readonly.spec.ts",
     "playwright/projects/fibu-book5/CURRENT-STATE.md",
     "playwright/projects/fibu-book5/LAB-FIT-STATUS.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-111/FIXEDASSETS-111-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-111/FIXEDASSETS-111-review.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-111/README.md"
+    "playwright/projects/fibu-book5/evidence/fixedassets-112/FIXEDASSETS-112-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-112/010-active-cell-route-probe.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-112/020-active-cell-focused-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-112/README.md"
   ],
   "validationCommands": [
     "npm run agent:preflight",
     "npm run agent:dry-run",
     "npm run agent:run-plan",
-    "npm run agent:subagent-plan",
-    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-111/FIXEDASSETS-111-result.json",
-    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-111/FIXEDASSETS-111-result.json",
+    "npm run fibu:fixedassets:fa-gl-journal-active-cell-route-readonly",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-112/FIXEDASSETS-112-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-112/FIXEDASSETS-112-result.json",
     "npm run check:encoding",
     "git diff --check"
   ],
-  "nextStep": "Run FIXEDASSETS-112 read-only; do not enter Amount or Bal. Account No."
+  "nextStep": "Run FIXEDASSETS-113 local decision; no BC, no Playwright, no value entry."
 }
