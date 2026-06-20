@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-165-FA-BALACCOUNT-SETUP-DECISION",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "local-setup-route-decision",
+  "taskClass": "judge_work",
+  "requiresStrongModel": true,
+  "goal": "Decide the next safe FA balancing-account route after FIXEDASSETS-164 showed Acquisition Cost Bal. Acc. on MACHINES but no concrete value.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-163/FIXEDASSETS-163-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-164/FIXEDASSETS-164-result.json"
+  ],
+  "allowedActions": [
+    "read-evidence",
+    "read-state",
+    "review-fa-posting-group-setup-gap",
+    "compare-book-claim-to-evidence",
+    "document-next-safe-action",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "company-switch",
+    "api-shortcut",
+    "book-edit-without-evidence",
+    "enter-amount",
+    "enter-balancing-account",
+    "create-journal-lines",
+    "delete-record",
+    "cleanup",
+    "preview-posting",
+    "post",
+    "setup-change-without-explicit-next-case"
+  ],
+  "targetQuestion": {
+    "source": "FA Posting Group MACHINES",
+    "observedField": "Acquisition Cost Bal. Acc.",
+    "observedValue": "",
+    "decisionNeeded": "Is the blank acquisition-cost balancing account intentional for the manual FA G/L Journal route, or should a separate UI-first setup-fit case populate/prove it before value entry?"
+  },
+  "safetyGates": [
+    "No Business Central live action is required for the decision.",
+    "Do not enter Amount or Bal. Account No. in FA G/L Journals.",
+    "Do not use account codes 12210/82000 as balancing accounts unless the exact field/value source is proven or a new setup-fit case explicitly sets the value.",
+    "Do not open Preview Posting or Post.",
+    "If setup fit is selected, create a separate case with before/after evidence, account rationale and rollback/trace plan."
+  ],
+  "acceptanceCriteria": [
+    "Decision states whether FA G/L Journal value entry remains blocked.",
+    "Decision states whether a setup-fit case is needed.",
+    "Decision names the exact field and page that would be changed if a setup-fit is later allowed.",
+    "Decision does not claim German final proof.",
+    "State points to one concrete next safe case."
+  ],
+  "nextSafeAction": "Review FIXEDASSETS-164 evidence locally and decide whether to create a separate setup-fit case for Acquisition Cost Bal. Acc. or keep the FA G/L Journal route blocked."
+}

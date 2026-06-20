@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-163-FA-GL-JOURNAL-GL-BALACCOUNT-READONLY",
-  "timestamp": "2026-06-20T23:55:00.000Z",
+  "runId": "FIXEDASSETS-164-FA-POSTING-GROUP-BALACCOUNT-FIELD-PROOF",
+  "timestamp": "2026-06-20T23:59:00.000Z",
   "date": "2026-06-20",
-  "workType": "fixed-asset-gl-journal-gl-balaccount-readonly",
+  "workType": "fa-posting-group-balaccount-field-proof-readonly",
   "taskClass": "wizard_work",
   "modelClass": "gpt-4-medium",
   "branch": "codex/token-efficient-autopilot-state",
@@ -18,26 +18,26 @@
   "apiShortcut": false,
   "bookChanged": false,
   "dataChanged": false,
-  "resultStatus": "blocked",
-  "summary": "FA-163 proved the FA G/L Journal context expects Bal. Account Type = G/L Account and that K30000 is not visible/current as a balancing value there. It did not reach FA Posting Groups through Tell-Me, so no account candidate was accepted and no target account is unlocked.",
+  "resultStatus": "observed-readonly-gap",
+  "summary": "FA-164 reached FA Posting Group Card MACHINES read-only and showed Balancing Account plus Acquisition Cost Bal. Acc., but no concrete account value was visible/proven next to the field. Value entry remains locked.",
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/fixedassets-163/README.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-163/010-readonly-target-account-signals.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-163/020-focused-target-account-text.txt",
-    "playwright/projects/fibu-book5/evidence/fixedassets-163/FIXEDASSETS-163-learning.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-163/FIXEDASSETS-163-result.json",
-    "playwright/projects/fibu-book5/img/fixedassets-163-010-fa-gl-journal-balaccount-type-readonly.png"
+    "playwright/projects/fibu-book5/evidence/fixedassets-164/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-164/010-fa-posting-group-balaccount-field-proof.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-164/020-focused-balaccount-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-164/FIXEDASSETS-164-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-164/FIXEDASSETS-164-result.json",
+    "playwright/projects/fibu-book5/img/fixedassets-164-010-fa-posting-group-balaccount-field-proof.png"
   ],
   "changedFiles": [
     "package.json",
     ".agent/state/current.json",
-    ".agent/state/cases/fixedassets-163-fa-gl-journal-gl-balaccount-readonly.json",
     ".agent/state/cases/fixedassets-164-fa-posting-group-balaccount-field-proof.json",
+    ".agent/state/cases/fixedassets-165-fa-balaccount-setup-decision.json",
     ".agent/state/coverage_state.json",
     ".agent/state/last_run_summary.json",
-    "playwright/projects/fibu-book5/tests/fixedassets-163-fa-gl-journal-gl-balaccount-readonly.spec.ts",
-    "playwright/projects/fibu-book5/evidence/fixedassets-163/",
-    "playwright/projects/fibu-book5/img/fixedassets-163-010-fa-gl-journal-balaccount-type-readonly.png",
+    "playwright/projects/fibu-book5/tests/fixedassets-164-fa-posting-group-balaccount-field-proof.spec.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-164/",
+    "playwright/projects/fibu-book5/img/fixedassets-164-010-fa-posting-group-balaccount-field-proof.png",
     "playwright/projects/fibu-book5/CURRENT-STATE.md",
     "playwright/projects/fibu-book5/LAB-FIT-STATUS.md",
     "playwright/projects/fibu-book5/BOOK-CLICK-GUIDE-COVERAGE.md",
@@ -48,9 +48,9 @@
     "npm run agent:preflight",
     "npm run agent:dry-run",
     "npm run agent:run-plan",
-    "npm run fibu:fixedassets:fa-gl-journal-gl-balaccount-readonly",
-    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-163/FIXEDASSETS-163-result.json",
-    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-163/FIXEDASSETS-163-result.json",
+    "npm run fibu:fixedassets:fa-posting-group-balaccount-field-proof",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-164/FIXEDASSETS-164-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-164/FIXEDASSETS-164-result.json",
     "npm run check:encoding",
     "git diff --check"
   ],
@@ -65,5 +65,5 @@
     "No API shortcut.",
     "No book change."
   ],
-  "nextStep": "FIXEDASSETS-164: reach FA Posting Groups with a scoped read-only route and prove the exact Acquisition Cost Bal. Acc. field/value pairing before any FA G/L Journal value-entry retry."
+  "nextStep": "FIXEDASSETS-165: decide whether the blank Acquisition Cost Bal. Acc. needs a separate setup-fit case or keeps the FA G/L Journal route blocked."
 }

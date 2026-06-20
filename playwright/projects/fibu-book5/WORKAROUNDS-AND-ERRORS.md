@@ -1,5 +1,19 @@
 # Workarounds und Fehlerjournal
 
+## WK-BC-FA-164 Acquisition Cost Bal. Acc. ist sichtbar, aber leer
+
+| Feld | Wert |
+|---|---|
+| Status | beobachtet / Werteingabe weiter gesperrt / Setup-Entscheidung noetig |
+| Testfall | `FIXEDASSETS-164-FA-POSTING-GROUP-BALACCOUNT-FIELD-PROOF` |
+| Situation | Nach FA-163 musste geklaert werden, ob die Anlagenbuchungsgruppe `MACHINES` ein konkretes G/L-Gegenkonto fuer die FA-G/L-Journalroute liefert. |
+| Symptom | Die `FA Posting Group Card` zeigt `MACHINES` und den Bereich `Balancing Account`; die Zeile `Acquisition Cost Bal. Acc.` ist sichtbar, aber ohne Wert. |
+| Sichtbarer Beleg | `fixedassets-164-010-fa-posting-group-balaccount-field-proof.png` zeigt die leere Zielzeile. `FIXEDASSETS-164-result.json` dokumentiert `exactBalAccountFieldProved = false`. |
+| Ursache | Die sichtbaren Konten `12210` und `82000` gehoeren zu anderen Feldern der Anlagenbuchungsgruppe. Ein leeres Balancing-Account-Feld ist kein G/L-Zielkonto fuer eine Journalwerteingabe. |
+| Warum BC so reagiert | Business Central trennt Konten fuer Anlagenzugang, Abgang, Aufwand und Gegenkonten. Ein Konto darf nur aus dem konkret passenden Feld abgeleitet werden, nicht aus irgendeinem sichtbaren Konto auf derselben Seite. |
+| Loesung oder Laborgrenze | Keine Werteingabe im FA G/L Journal. Naechster Schritt ist ein lokaler Entscheid, ob das leere Feld fachlich so bleiben darf oder ob ein eigener UI-first Setup-Fit mit Vorher/Nachher-Nachweis gebraucht wird. |
+| Buchwirkung | Kapitel 21 kann diesen Fall als wichtigen Anfaengerfehler erklaeren: Sichtbare Konten auf einer Setupseite sind nicht automatisch die richtigen Gegenkonten. Screenshot und Text muessen das konkrete Feld/Wert-Paar zeigen. |
+
 ## WK-BC-FA-163 FA Posting Groups ueber Tell-Me nicht belastbar erreicht
 
 | Feld | Wert |
