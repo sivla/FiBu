@@ -21,6 +21,7 @@ Diese Datei sammelt wiederverwendbare Muster aus belegten Laeufen. Sie ist keine
 - `searchFor()` muss die sichtbare Tell-Me-Textbox gezielt befuellen. `GOVERNANCE-013` zeigte, dass reines Tastatur-Tippen bei offenem Suchdialog leer bleiben kann.
 - Bei `Companies` ist der belegte Treffer `Companies Listen`; der nackte Text `Companies` ist zu breit und kann im Suchdialog oder Hintergrundkontext landen.
 - Sichtbarer Suchtreffer beweist nur Navigation, nicht Prozessfaehigkeit.
+- `FIXEDASSETS-130` verschaerft die Tell-Me-Regel: Suchoverlay-Text wie `Nach <Begriff> suchen` oder `keine Vorschlaege verfuegbar` darf niemals als geoeffnete Page/Wizard zaehlen. Ein Treffer ist erst dann ein Seitenbeweis, wenn das Suchoverlay geschlossen ist und echte Page-Felder, Seitentitel oder fachliche Controls sichtbar sind. Screenshots mit Tell-Me-Overlay sind Navigation-/Blocker-Evidence und muessen als `rejected/do-not-use-as-page-proof` markiert werden.
 - Bei gemischter deutscher/englischer UI beide Begriffe als Suchhilfe dokumentieren, aber die Buchsprache deutsch halten.
 - Wenn Microsoft Learn oder Supportseiten im Browser aufpoppen, gilt das nicht als BC-Nachweis; Business-Central-Seiten muessen im BC-Kontext bleiben.
 

@@ -1,44 +1,50 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-129-ACQUIRE-ROUTE-HOLD-OR-ALTERNATIVE-DECISION",
+  "runId": "FIXEDASSETS-130-ASSISTED-ACQUISITION-PAGE-PREFLIGHT-READONLY",
   "date": "2026-06-20",
-  "workType": "local-evidence-review",
+  "workType": "playwright-readonly-preflight",
   "branch": "codex/token-efficient-autopilot-state",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "bcRun": false,
+  "bcRun": true,
   "posted": false,
   "preview": false,
   "setupChanged": false,
   "companySwitched": false,
   "apiShortcut": false,
   "bookChanged": false,
-  "resultStatus": "observed",
-  "summary": "FA-129 reviewed FA-126/127/128 and holds the Fixed Asset Card Acquire route as blocked because Acquire stayed disabled even after the scoped edit/pencil probe. The next route is an official Microsoft Learn-backed Assisted Fixed Asset Acquisition page preflight, strictly read-only and stopped before values, journal creation, Preview Posting or posting.",
+  "resultStatus": "blocked",
+  "summary": "FA-130 blocked: Tell-Me did not provide a verifiable Assisted Fixed Asset Acquisition page result; the screenshot is rejected as page proof.",
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/fixedassets-129/README.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-129/FIXEDASSETS-129-acquire-route-decision.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-129/FIXEDASSETS-129-result.json"
+    "playwright/projects/fibu-book5/evidence/fixedassets-130/FIXEDASSETS-130-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-130/FIXEDASSETS-130-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-130/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-130/010-search-evidence.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-130/020-page-context.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-130/030-boundary-actions.json",
+    "playwright/projects/fibu-book5/img/fixedassets-130-040-assisted-acquisition-page-preflight.png"
   ],
   "changedFiles": [
     ".agent/state/current.json",
     ".agent/state/coverage_state.json",
-    ".agent/state/cases/fixedassets-129-acquire-route-hold-or-alternative-decision.json",
     ".agent/state/cases/fixedassets-130-assisted-acquisition-page-preflight-readonly.json",
+    ".agent/state/cases/fixedassets-131-assisted-acquisition-search-result-blocker-review.json",
     ".agent/state/last_run_summary.json",
-    ".agent/state/model_usage_log.jsonl",
-    "playwright/projects/fibu-book5/CURRENT-STATE.md",
-    "playwright/projects/fibu-book5/LAB-FIT-STATUS.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-129/"
+    "package.json",
+    "playwright/projects/fibu-book5/tests/fixedassets-130-assisted-acquisition-page-preflight-readonly.spec.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-130/FIXEDASSETS-130-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-130/FIXEDASSETS-130-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-130/README.md"
   ],
   "validationCommands": [
+    "npm run fibu:fixedassets:assisted-acquisition-page-preflight",
     "npm run agent:preflight",
     "npm run agent:dry-run",
     "npm run agent:run-plan",
-    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-129/FIXEDASSETS-129-result.json",
-    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-129/FIXEDASSETS-129-result.json",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-130/FIXEDASSETS-130-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-130/FIXEDASSETS-130-result.json",
     "npm run check:encoding",
     "git diff --check"
   ],
-  "nextStep": "FIXEDASSETS-130: guarded Playwright preflight for Assisted Fixed Asset Acquisition page context only."
+  "nextStep": "FIXEDASSETS-131: local review of the Tell-Me/search-overlay blocker and choose a safer official fixed-assets acquisition entry point."
 }

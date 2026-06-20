@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-131-ASSISTED-ACQUISITION-SEARCH-RESULT-BLOCKER-REVIEW",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "local-evidence-review",
+  "taskClass": "judge_work",
+  "requiresUsageLog": true,
+  "goal": "Review FA-130 blocked Tell-Me/search-overlay evidence and choose the next safe fixed-asset acquisition entry point without starting BC or Playwright.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-130/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-129/",
+    "https://learn.microsoft.com/en-us/dynamics365/business-central/fa-how-acquire"
+  ],
+  "knownTruth": [
+    "FA-130 stayed in MCP_1_20260210 / RM-DEMO and performed only read-only Tell-Me searches.",
+    "Tell-Me showed no verifiable Assisted Fixed Asset Acquisition / Acquire Fixed Assets page result.",
+    "The FA-130 screenshot is rejected as page/wizard proof because it shows search-overlay/blocker context only.",
+    "No value entry, journal line, Preview Posting, Post, setup change, draft, API shortcut or company switch occurred."
+  ],
+  "allowedActions": [
+    "read-local-state",
+    "read-fixedassets-130-evidence",
+    "review-microsoft-learn-reference",
+    "choose-next-fixed-asset-acquisition-route",
+    "write-compact-decision-evidence",
+    "update-state-and-coverage"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "run-playwright",
+    "open-business-central",
+    "company-switch",
+    "api-shortcut",
+    "book-edit",
+    "execute-acquire",
+    "enter-K30000-in-purchase-invoice",
+    "enter-FA-CNC-01",
+    "enter-amount",
+    "change-field-value",
+    "save-record",
+    "new-draft",
+    "finish-wizard",
+    "click-ok",
+    "create-journal-lines",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "delete-record",
+    "delete-non-test-data"
+  ],
+  "acceptanceCriteria": [
+    "FA-130 is classified without pretending that the Assisted Acquisition page was opened.",
+    "The next route is either a different safe UI entry point or a documented hold.",
+    "No BC or Playwright run occurs in FA-131 unless a later case explicitly allows it.",
+    "The screenshot QA rule is updated: Tell-Me overlay text is not page proof."
+  ],
+  "recommendedSkills": [
+    "evidence-writer"
+  ],
+  "nextSafeAction": "Local decision: choose a safer official fixed-assets acquisition entry point or hold acquisition until a new route is justified."
+}
