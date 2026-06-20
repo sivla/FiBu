@@ -3,7 +3,7 @@
   "caseId": "FIXEDASSETS-126-FA-CNC-01-ACQUIRE-ACTION-CAUSE-DIAGNOSIS-READONLY",
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "status": "planned",
+  "status": "observed-readonly-diagnosis",
   "workType": "playwright-readonly-diagnosis",
   "taskClass": "wizard_work",
   "goal": "Open FA-CNC-01 Fixed Asset Card and diagnose why Acquire is visible but disabled without executing Acquire or changing data.",
@@ -61,5 +61,14 @@
     "evidence-writer"
   ],
   "requiresUsageLog": false,
-  "nextSafeAction": "Run a guarded Playwright read-only diagnosis of Acquire action state on FA-CNC-01."
+  "lastResult": {
+    "status": "observed",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-126/FIXEDASSETS-126-result.json",
+    "summary": "FA-126 kept Acquire as a disabled-action diagnosis. The action was visible on FA-CNC-01, but acquisition execution remains locked because the exact executable path and posting effect are not proven.",
+    "acquireDisabledBefore": true,
+    "acquireEnabledAfterEdit": false,
+    "pageInspectionOpened": false,
+    "screenshot": "playwright/projects/fibu-book5/img/fixedassets-126-030-acquire-disabled-context.png"
+  },
+  "nextSafeAction": "FIXEDASSETS-127: local review of Acquire disabled cause before any new acquisition route or setup change."
 }

@@ -1,0 +1,167 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixed-asset-acquire-action-cause-diagnosis-result",
+  "caseId": "FIXEDASSETS-126-FA-CNC-01-ACQUIRE-ACTION-CAUSE-DIAGNOSIS-READONLY",
+  "source": "playwright-sandbox-readonly-diagnosis",
+  "resultStatus": "observed",
+  "runPlanId": "FIXEDASSETS-126-FA-CNC-01-ACQUIRE-ACTION-CAUSE-DIAGNOSIS-READONLY-PLAN",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-medium",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "targetAsset": "FA-CNC-01",
+  "observed": {
+    "startedAt": "2026-06-20T12:46:42.245Z",
+    "finishedAt": "2026-06-20T12:46:51.254Z",
+    "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5600&filter=%27Fixed%20Asset%27.%27No.%27%20IS%20%27FA-CNC-01%27&dc=0&bookmark=1D_4BUAAAJ7_0YAQQAtAEMATgBDAC0AMAAx",
+    "context": {
+      "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5600&filter=%27Fixed%20Asset%27.%27No.%27%20IS%20%27FA-CNC-01%27&dc=0&bookmark=1D_4BUAAAJ7_0YAQQAtAEMATgBDAC0AMAAx",
+      "environmentInUrl": true,
+      "companyInUrl": true,
+      "companyInText": false,
+      "wrongEnvironmentVisible": false
+    },
+    "cause": {
+      "acquireVisibleBefore": true,
+      "acquireDisabledBefore": true,
+      "editProbeAttempted": false,
+      "acquireVisibleAfterEdit": false,
+      "acquireDisabledAfterEdit": null,
+      "acquireEnabledAfterEdit": false,
+      "bookValueZero": true,
+      "hgbVisible": false,
+      "acquiredSignalVisible": false,
+      "pageInspectionOpened": false,
+      "pageInspectionMentionsFixedAssetTable": false,
+      "reasons": [
+        "Acquire is visible but disabled before any edit-mode probe.",
+        "Book Value 0,00 is visible: no acquisition value is posted yet, but that alone does not explain disabled Acquire."
+      ],
+      "conclusion": "Acquire remains a disabled-action diagnosis. The cause is narrowed, but acquisition execution is still locked."
+    },
+    "acquireCandidateCountBefore": 2,
+    "acquireCandidateCountAfterEdit": 0,
+    "pageInspection": {
+      "opened": false,
+      "mentionsFixedAssetTable": false,
+      "focusedText": "Fixed Asset Card\nFA-CNC-01 CNC Maschine FRA\nFixed Asset\nAcquire\nCopy Fixed Asset...\nFA-CNC-01\nFA-CNC-01 CNC Maschine FRA. Fixed Asset Card"
+    },
+    "editProbe": {
+      "attempted": false,
+      "reason": "No exact enabled Edit/Bearbeiten button was visible."
+    }
+  },
+  "proved": [
+    "The run stayed in MCP_1_20260210 / RM-DEMO.",
+    "FA-CNC-01 Fixed Asset Card was visible.",
+    "Acquire is visible on the FA-CNC-01 Fixed Asset Card.",
+    "Acquire is disabled before the edit-mode diagnosis.",
+    "No Acquire execution, value entry, Preview Posting, Post, setup change, delete, draft creation, company switch or API shortcut was performed."
+  ],
+  "notProved": [
+    "No acquisition wizard was opened.",
+    "No acquisition value or vendor was entered.",
+    "No Preview Posting or posting trace was produced.",
+    "No FA Ledger Entry or G/L acquisition trace is proven.",
+    "No German final fixed-assets proof is proven."
+  ],
+  "changedFiles": [
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-126-fa-cnc-01-acquire-action-cause-diagnosis-readonly.json",
+    ".agent/state/cases/fixedassets-127-acquire-disabled-cause-review.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    "package.json",
+    "playwright/projects/fibu-book5/tests/fixedassets-126-fa-cnc-01-acquire-action-cause-diagnosis-readonly.spec.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-126/FIXEDASSETS-126-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-126/FIXEDASSETS-126-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-126/README.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-126/FIXEDASSETS-126-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-126/FIXEDASSETS-126-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-126/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-126/010-card-state-readonly.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-126/020-acquire-action-diagnostics.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-126/040-page-inspection-focused-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-126/fixedassets-126-030-acquire-disabled-context.screenshot.json",
+    "playwright/projects/fibu-book5/img/fixedassets-126-030-acquire-disabled-context.png"
+  ],
+  "warnings": [
+    "Diagnostic UI run only.",
+    "Do not execute Acquire from FA-126 evidence.",
+    "If Acquire becomes enabled in edit mode, a separate gate is required before any click."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "flags": {
+    "noBookChange": true,
+    "secretsUntouched": true,
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noNewDraft": true,
+    "noFieldValueChanged": true,
+    "noSaveRecord": true,
+    "noDeleteRecord": true,
+    "noAcquireExecution": true,
+    "noAmountEntry": true,
+    "noTargetVendorEntry": true,
+    "cleanupCompleted": true
+  },
+  "statePatch": {
+    "current": {
+      "updatedAt": "2026-06-20T10:55:00.000Z",
+      "activeCase": "FIXEDASSETS-127-ACQUIRE-DISABLED-CAUSE-REVIEW",
+      "active_case_file": ".agent/state/cases/fixedassets-127-acquire-disabled-cause-review.json",
+      "lastReferenceCase": "FIXEDASSETS-126-FA-CNC-01-ACQUIRE-ACTION-CAUSE-DIAGNOSIS-READONLY",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-126-fa-cnc-01-acquire-action-cause-diagnosis-readonly.json",
+      "requiresStrongModel": true,
+      "nextStep": "FIXEDASSETS-127: local review of Acquire disabled cause before any new acquisition route or setup change."
+    },
+    "activeCase": {
+      "status": "observed-readonly-diagnosis",
+      "lastResult": {
+        "status": "observed",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-126/FIXEDASSETS-126-result.json",
+        "summary": "FA-126 kept Acquire as a disabled-action diagnosis. The action was visible on FA-CNC-01, but acquisition execution remains locked because the exact executable path and posting effect are not proven.",
+        "acquireDisabledBefore": true,
+        "acquireEnabledAfterEdit": false,
+        "pageInspectionOpened": false
+      },
+      "nextSafeAction": "FIXEDASSETS-127: local review of Acquire disabled cause before any new acquisition route or setup change."
+    },
+    "coverage": {
+      "schemaVersion": 1,
+      "purpose": "Kompakter Coverage-Index fuer schnelle Agentenlaeufe.",
+      "areas": {
+        "fixedassets": {
+          "chapter": "Kapitel 21",
+          "status": "in-progress",
+          "currentBlock": "acquire-disabled-cause-review",
+          "latestPracticalCase": "FIXEDASSETS-126",
+          "latestDecisionCase": "FIXEDASSETS-125",
+          "nextCase": "FIXEDASSETS-127-ACQUIRE-DISABLED-CAUSE-REVIEW",
+          "bookScreenshots": {
+            "setupProofs": "available-labor",
+            "purchaseInvoicePreflight": "available-labor",
+            "validFixedAssetLine": "blocked-personalize-opened-type-context-visible-but-fixed-asset-option-unproved",
+            "acquisitionPostingTrace": "open-after-acquire-cause-review-and-new-route-gate",
+            "depreciationPostingTrace": "open",
+            "acquisitionWizardPreflight": "blocked-acquire-disabled-cause-review"
+          },
+          "finalGermanProof": "open"
+        }
+      },
+      "hardExclusions": {
+        "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
+      }
+    }
+  },
+  "bookImpact": "Kapitel 21 muss Acquire weiterhin als blockierten Diagnosepfad behandeln. Sichtbare, aber deaktivierte Aktionen brauchen Page-/Status-/Setup-Erklaerung, bevor sie als Klickanleitung genutzt werden.",
+  "summary": "FA-126 kept Acquire as a disabled-action diagnosis. The action was visible on FA-CNC-01, but acquisition execution remains locked because the exact executable path and posting effect are not proven.",
+  "nextStep": "FIXEDASSETS-127: local review of Acquire disabled cause before any new acquisition route or setup change."
+}

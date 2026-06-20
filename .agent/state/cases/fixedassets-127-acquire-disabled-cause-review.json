@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-127-ACQUIRE-DISABLED-CAUSE-REVIEW",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "local-evidence-review",
+  "taskClass": "judge_work",
+  "goal": "Review FA-126 together with earlier Acquire and acquisition-route evidence to decide the next safest fixed-asset acquisition path.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-082/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-125/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-126/"
+  ],
+  "knownTruth": [
+    "FA-CNC-01 exists in RM-DEMO with Book Value 0,00.",
+    "Acquire is visible on FA-CNC-01 but disabled in FA-126.",
+    "FA-126 did not open Page Inspection and did not enter edit mode because no exact enabled Edit/Bearbeiten button was visible.",
+    "Purchase Invoice line Type = Fixed Asset/Anlage remains unproved after multiple probes.",
+    "FA G/L Journal has target-line evidence but no safe amount/balancing-account write route."
+  ],
+  "allowedActions": [
+    "read-repo-state",
+    "read-fixedassets-082-evidence",
+    "read-fixedassets-125-evidence",
+    "read-fixedassets-126-evidence",
+    "compare-acquisition-routes",
+    "write-compact-evidence",
+    "update-state-plan"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "open-business-central",
+    "run-playwright",
+    "company-switch",
+    "api-shortcut",
+    "book-edit",
+    "execute-acquire",
+    "enter-K30000-in-purchase-invoice",
+    "enter-FA-CNC-01",
+    "enter-amount",
+    "change-field-value",
+    "save-record",
+    "new-draft",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "delete-record",
+    "fake-evidence"
+  ],
+  "acceptanceCriteria": [
+    "Decision is based only on existing evidence.",
+    "Acquire disabled state is classified as blocked, rejected or requires a specific new hypothesis.",
+    "The next case is exactly one small step and does not repeat failed routes blindly.",
+    "No BC, Playwright, book, setup or posting action is executed."
+  ],
+  "recommendedSkills": [
+    "evidence-writer"
+  ],
+  "requiresUsageLog": true,
+  "nextSafeAction": "Perform local evidence review and choose one next acquisition-route hypothesis or hold the fixed-assets acquisition path as blocked."
+}

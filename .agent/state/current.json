@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-20T10:20:00.000Z",
+  "updatedAt": "2026-06-20T12:55:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "fixedassets",
-  "activeCase": "FIXEDASSETS-126-FA-CNC-01-ACQUIRE-ACTION-CAUSE-DIAGNOSIS-READONLY",
-  "active_case_file": ".agent/state/cases/fixedassets-126-fa-cnc-01-acquire-action-cause-diagnosis-readonly.json",
-  "lastReferenceCase": "FIXEDASSETS-125-FA-ACQUISITION-ROUTE-AUDIT-AFTER-PERSONALIZE",
-  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-125-fa-acquisition-route-audit-after-personalize.json",
+  "activeCase": "FIXEDASSETS-127-ACQUIRE-DISABLED-CAUSE-REVIEW",
+  "active_case_file": ".agent/state/cases/fixedassets-127-acquire-disabled-cause-review.json",
+  "lastReferenceCase": "FIXEDASSETS-126-FA-CNC-01-ACQUIRE-ACTION-CAUSE-DIAGNOSIS-READONLY",
+  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-126-fa-cnc-01-acquire-action-cause-diagnosis-readonly.json",
   "mode": "token-efficient-autopilot-tooling-bootstrap",
-  "requiresStrongModel": false,
+  "requiresStrongModel": true,
   "requiredPreflightChecks": [
     "agent:preflight",
     "agent:state:validate",
@@ -19,15 +19,12 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "open-business-central",
-    "run-playwright",
-    "open-fixed-asset-card-fa-cnc-01",
-    "verify-instance-company",
-    "inspect-acquire-action-state",
-    "open-page-inspection-if-needed",
-    "enter-edit-mode-no-field-change-if-needed",
-    "take-diagnostic-screenshot",
-    "write-compact-evidence"
+    "read-repo-state",
+    "read-fixedassets-126-evidence",
+    "review-acquire-disabled-cause",
+    "compare-acquisition-routes",
+    "write-compact-evidence",
+    "update-state-plan"
   ],
   "forbiddenActions": [
     "leave-instance",
@@ -38,6 +35,8 @@
     "company-switch",
     "api-shortcut",
     "book-edit",
+    "open-business-central",
+    "run-playwright",
     "enter-K30000-in-purchase-invoice",
     "execute-acquire",
     "select-fixed-asset-line-type",
@@ -54,7 +53,7 @@
     "delete-record",
     "delete-non-test-data"
   ],
-  "nextStep": "FIXEDASSETS-126: run a guarded read-only/diagnostic Playwright case on FA-CNC-01 Fixed Asset Card to determine why Acquire is visible but disabled. Do not execute Acquire, edit fields, preview, post, setup change, company switch or use API.",
+  "nextStep": "FIXEDASSETS-127: local review of Acquire disabled cause before any new acquisition route or setup change. Compare FA-126 with FA-082/FA-125 and decide whether Acquire stays rejected, needs setup/page-state diagnosis, or another acquisition route is safer.",
   "subagentPlanPolicy": {
     "default": "optional",
     "execution": "plan-only-no-subagents-spawned",
