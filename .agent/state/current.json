@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-21T02:05:00.000Z",
+  "updatedAt": "2026-06-21T02:25:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "fixedassets",
-  "activeCase": "FIXEDASSETS-150-FA-CNC-01-POSTING-GROUP-FIELDLOCAL-ASSIGNMENT-REVIEW",
-  "active_case_file": ".agent/state/cases/fixedassets-150-fa-cnc-01-posting-group-fieldlocal-assignment-review.json",
-  "lastReferenceCase": "FIXEDASSETS-149-FA-CNC-01-POSTING-GROUP-FIELDLOCAL-ASSIGNMENT-FIT",
-  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-149-fa-cnc-01-posting-group-fieldlocal-assignment-fit.json",
+  "activeCase": "FIXEDASSETS-151-FA-CNC-01-ACQUIRE-READINESS-AFTER-MACHINES-READONLY",
+  "active_case_file": ".agent/state/cases/fixedassets-151-fa-cnc-01-acquire-readiness-after-machines-readonly.json",
+  "lastReferenceCase": "FIXEDASSETS-150-FA-CNC-01-POSTING-GROUP-FIELDLOCAL-ASSIGNMENT-REVIEW",
+  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-150-fa-cnc-01-posting-group-fieldlocal-assignment-review.json",
   "mode": "token-efficient-autopilot-tooling-bootstrap",
-  "requiresStrongModel": true,
+  "requiresStrongModel": false,
   "requiredPreflightChecks": [
     "agent:preflight",
     "agent:state:validate",
@@ -19,12 +19,14 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "read-local-evidence",
-    "inspect-screenshot-metadata",
-    "inspect-result-json",
-    "review-setup-fit",
-    "choose-next-route",
-    "update-state-plan",
+    "open-business-central",
+    "run-playwright",
+    "open-fixed-asset-card",
+    "verify-instance-company",
+    "read-card-fields",
+    "inspect-action-state-readonly",
+    "capture-screenshot",
+    "write-evidence",
     "document-next-safe-action"
   ],
   "forbiddenActions": [
@@ -33,8 +35,6 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
-    "open-business-central",
-    "run-playwright",
     "company-switch",
     "api-shortcut",
     "book-edit",
@@ -56,7 +56,7 @@
     "delete-record",
     "delete-non-test-data"
   ],
-  "nextStep": "FIXEDASSETS-150: locally review FA-149 field-local assignment evidence before any acquisition route is unlocked.",
+  "nextStep": "FIXEDASSETS-151: run a read-only acquisition-readiness check after the MACHINES card fit; do not click Acquire.",
   "subagentPlanPolicy": {
     "default": "optional",
     "execution": "plan-only-no-subagents-spawned",
