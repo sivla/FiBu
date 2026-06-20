@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-20T21:20:00.000Z",
+  "updatedAt": "2026-06-20T21:45:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "fixedassets",
-  "activeCase": "FIXEDASSETS-140-FA-CNC-01-POSTING-GROUP-COMBOBOX-ROUTE",
-  "active_case_file": ".agent/state/cases/fixedassets-140-fa-cnc-01-posting-group-combobox-route.json",
-  "lastReferenceCase": "FIXEDASSETS-139-FA-CNC-01-ASSIGNMENT-FIT-REVIEW",
-  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-139-fa-cnc-01-assignment-fit-review.json",
+  "activeCase": "FIXEDASSETS-141-FA-CNC-01-COMBOBOX-RESULT-REVIEW",
+  "active_case_file": ".agent/state/cases/fixedassets-141-fa-cnc-01-combobox-result-review.json",
+  "lastReferenceCase": "FIXEDASSETS-140-FA-CNC-01-POSTING-GROUP-COMBOBOX-ROUTE",
+  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-140-fa-cnc-01-posting-group-combobox-route.json",
   "mode": "token-efficient-autopilot-tooling-bootstrap",
-  "requiresStrongModel": false,
+  "requiresStrongModel": true,
   "requiredPreflightChecks": [
     "agent:preflight",
     "agent:state:validate",
@@ -19,18 +19,11 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "open-business-central",
-    "run-playwright",
     "read-local-evidence",
     "inspect-screenshot-metadata",
-    "edit-playwright-test-or-helper",
-    "focus-posting-group-combobox",
-    "open-posting-group-lookup",
-    "select-MACHINES-if-visible",
-    "save-or-blur-field-only",
-    "reopen-fixed-asset-card",
-    "write-evidence",
-    "update-state-plan"
+    "review-result-json",
+    "update-state-plan",
+    "document-next-safe-action"
   ],
   "forbiddenActions": [
     "leave-instance",
@@ -58,7 +51,7 @@
     "delete-record",
     "delete-non-test-data"
   ],
-  "nextStep": "FIXEDASSETS-140: repair the UI-first Posting Group combobox route for FA-CNC-01 and prove MACHINES after reopen before any acquisition route is unlocked.",
+  "nextStep": "FIXEDASSETS-141: review FA-140 wrong-related-card route. The run opened Depreciation Book Card HGB instead of changing Posting Group to MACHINES; no acquisition, no Preview, no Post.",
   "subagentPlanPolicy": {
     "default": "optional",
     "execution": "plan-only-no-subagents-spawned",

@@ -1,45 +1,48 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-139-FA-CNC-01-ASSIGNMENT-FIT-REVIEW",
+  "runId": "FIXEDASSETS-140-FA-CNC-01-POSTING-GROUP-COMBOBOX-ROUTE",
   "date": "2026-06-20",
-  "workType": "local-evidence-review",
+  "workType": "ui-first-helper-repair-setup-fit",
   "branch": "codex/token-efficient-autopilot-state",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "bcRun": false,
+  "bcRun": true,
   "posted": false,
   "preview": false,
   "setupChanged": false,
   "companySwitched": false,
   "apiShortcut": false,
   "bookChanged": false,
-  "resultStatus": "reviewed-blocker",
-  "summary": "FA-139 reviewed FA-138 locally. The screenshot and JSON agree: FA-CNC-01 still shows Posting Group EQUIPMENT, not MACHINES. FA-138 is accepted as blocker evidence, not setup-fit success. The likely next technical route is not another generic text fill, but a narrow Posting Group combobox/lookup path with after-reopen proof.",
+  "resultStatus": "blocked-wrong-related-card-route",
+  "summary": "FA-140 ran the narrow Posting Group combobox route in MCP_1_20260210 / RM-DEMO. The run did not set MACHINES. It opened the related Depreciation Book Card HGB instead of a Posting Group MACHINES value list. No acquisition, no Preview, no Post, no draft, no company switch and no API shortcut occurred. Setup change is not accepted as proven.",
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/fixedassets-139/README.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-139/FIXEDASSETS-139-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-139/FIXEDASSETS-139-assignment-fit-review.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-138/FIXEDASSETS-138-result.json",
-    "playwright/projects/fibu-book5/img/fixedassets-138-060-fa-cnc-01-posting-group-machines.png"
+    "playwright/projects/fibu-book5/evidence/fixedassets-140/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-140/FIXEDASSETS-140-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-140/FIXEDASSETS-140-posting-group-assignment-fit.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-140/040-fill-result.json",
+    "playwright/projects/fibu-book5/img/fixedassets-140-060-fa-cnc-01-posting-group-machines.png"
   ],
   "changedFiles": [
     ".agent/state/current.json",
     ".agent/state/coverage_state.json",
-    ".agent/state/cases/fixedassets-139-fa-cnc-01-assignment-fit-review.json",
     ".agent/state/cases/fixedassets-140-fa-cnc-01-posting-group-combobox-route.json",
+    ".agent/state/cases/fixedassets-141-fa-cnc-01-combobox-result-review.json",
     ".agent/state/last_run_summary.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-139/README.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-139/FIXEDASSETS-139-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-139/FIXEDASSETS-139-assignment-fit-review.md"
+    "package.json",
+    "playwright/projects/fibu-book5/tests/fixedassets-140-fa-cnc-01-posting-group-combobox-route.spec.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-140/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-140/FIXEDASSETS-140-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-140/FIXEDASSETS-140-posting-group-assignment-fit.md"
   ],
   "validationCommands": [
     "npm run agent:preflight",
     "npm run agent:dry-run",
     "npm run agent:run-plan",
-    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-139/FIXEDASSETS-139-result.json",
-    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-139/FIXEDASSETS-139-result.json",
+    "npm run fibu:fixedassets:fa-cnc-01-posting-group-combobox-route",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-140/FIXEDASSETS-140-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-140/FIXEDASSETS-140-result.json",
     "npm run check:encoding",
     "git diff --check"
   ],
-  "nextStep": "FIXEDASSETS-140: repair the UI-first Posting Group combobox route for FA-CNC-01 and prove MACHINES after reopen before any acquisition route is unlocked."
+  "nextStep": "FIXEDASSETS-141: review the wrong related-card route and decide the next safe field-specific locator strategy before another setup-change attempt."
 }

@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-141-FA-CNC-01-COMBOBOX-RESULT-REVIEW",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "local-evidence-review",
+  "taskClass": "judge_work",
+  "requiresUsageLog": true,
+  "goal": "Review the FIXEDASSETS-140 combobox-route evidence before any acquisition, purchase-invoice or journal route is unlocked.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-140/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-139/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-138/"
+  ],
+  "allowedActions": [
+    "read-local-evidence",
+    "inspect-screenshot-metadata",
+    "review-result-json",
+    "update-state-plan",
+    "document-next-safe-action"
+  ],
+  "forbiddenActions": [
+    "open-business-central",
+    "run-playwright",
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "company-switch",
+    "api-shortcut",
+    "book-edit",
+    "click-acquire",
+    "execute-acquire",
+    "enter-K30000-in-purchase-invoice",
+    "enter-FA-CNC-01-in-document",
+    "enter-amount",
+    "new-draft",
+    "finish-wizard",
+    "create-journal-lines",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "delete-record",
+    "delete-non-test-data"
+  ],
+  "safetyGates": [
+    "Do not open BC in this review case.",
+    "Accept FA-140 as success only if screenshot and JSON prove Posting Group MACHINES after reopening FA-CNC-01.",
+    "If the screenshot does not visibly show MACHINES, keep acquisition routes locked.",
+    "Do not unlock acquisition unless no ledger/posting trace exists before assignment and the only changed field was Posting Group."
+  ],
+  "acceptanceCriteria": [
+    "FA-140 evidence is classified as success, already-fit or blocked.",
+    "Current State and next case are aligned with the evidence.",
+    "No BC, Playwright, book edit or posting occurs in this review case."
+  ],
+  "nextSafeAction": "Review FA-140 result and decide whether acquisition-route preflight can be unlocked."
+}

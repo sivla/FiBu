@@ -1,0 +1,305 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixed-asset-posting-group-assignment-fit-result",
+  "caseId": "FIXEDASSETS-140-FA-CNC-01-POSTING-GROUP-COMBOBOX-ROUTE",
+  "source": "playwright-sandbox-ui-setup-fit",
+  "resultStatus": "blocked-wrong-related-card-route",
+  "runPlanId": "FIXEDASSETS-140-FA-CNC-01-POSTING-GROUP-COMBOBOX-ROUTE-PLAN",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-medium",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "assetNo": "FA-CNC-01",
+  "changedPostingGroup": false,
+  "proved": [
+    "The attempted Posting Group route can open a related Depreciation Book Card instead of the Posting Group value list."
+  ],
+  "notProved": [
+    "No acquisition was executed.",
+    "No Preview Posting was opened.",
+    "No posting was executed.",
+    "No purchase invoice, journal line, amount, vendor or draft was created.",
+    "No German fixed-assets final proof is produced.",
+    "No MACHINES lookup option was visible.",
+    "The attempted route opened Depreciation Book Card HGB instead of changing the Posting Group field."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/tests/fixedassets-140-fa-cnc-01-posting-group-combobox-route.spec.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-140/"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-140/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-140/FIXEDASSETS-140-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-140/FIXEDASSETS-140-posting-group-assignment-fit.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-140/010-before-visible-rows.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-140/020-fa-ledger-entries-safety.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-140/fixedassets-140-060-fa-cnc-01-posting-group-machines.screenshot.json",
+    "playwright/projects/fibu-book5/img/fixedassets-140-060-fa-cnc-01-posting-group-machines.png"
+  ],
+  "warnings": [],
+  "blockedBy": [
+    "Posting Group combobox route opened the Depreciation Book Card for HGB; MACHINES was never visible or selected."
+  ],
+  "requiresReview": true,
+  "safeToFinalizeState": true,
+  "flags": {
+    "noBookChange": true,
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "setupChangeOnlyFaPostingGroup": false,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noNewDraft": true,
+    "noDeleteRecord": true,
+    "noAcquireExecution": true,
+    "noAmountEntry": true,
+    "noTargetVendorEntry": true
+  },
+  "statePatch": {
+    "current": {
+      "updatedAt": "2026-06-20T21:45:00.000Z",
+      "activeCase": "FIXEDASSETS-141-FA-CNC-01-COMBOBOX-RESULT-REVIEW",
+      "active_case_file": ".agent/state/cases/fixedassets-141-fa-cnc-01-combobox-result-review.json",
+      "lastReferenceCase": "FIXEDASSETS-140-FA-CNC-01-POSTING-GROUP-COMBOBOX-ROUTE",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-140-fa-cnc-01-posting-group-combobox-route.json",
+      "requiresStrongModel": true,
+      "nextStep": "FIXEDASSETS-141: review wrong-related-card route and plan a safer field-specific locator before another setup-change attempt."
+    },
+    "activeCase": {
+      "status": "blocked-wrong-related-card-route",
+      "lastResult": {
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-140/FIXEDASSETS-140-result.json",
+        "summary": "FA-140 blocked: the combobox route still did not set Posting Group to MACHINES and instead opened the related Depreciation Book Card for HGB."
+      },
+      "nextSafeAction": "FIXEDASSETS-141: local review of wrong related-card route."
+    }
+  },
+  "observed": {
+    "startedAt": "2026-06-20T15:01:27.552Z",
+    "finishedAt": "2026-06-20T15:01:53.051Z",
+    "context": {
+      "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5600&filter=%27Fixed%20Asset%27.%27No.%27%20IS%20%27FA-CNC-01%27&dc=0&bookmark=1D_4BUAAAJ7_0YAQQAtAEMATgBDAC0AMAAx",
+      "instanceInUrl": true,
+      "companyInUrl": true,
+      "companyInText": false,
+      "wrongEnvironmentVisible": false
+    },
+    "before": {
+      "postingGroup": "EQUIPMENT",
+      "bookValue": "0,00",
+      "acquired": "",
+      "rows": [
+        {
+          "caption": "No.",
+          "selectedValue": "FA-CNC-01",
+          "diagnosis": "visible-readonly-card-row-control",
+          "editable": false
+        },
+        {
+          "caption": "Description",
+          "selectedValue": "CNC Maschine FRA",
+          "diagnosis": "visible-readonly-card-row-control",
+          "editable": false
+        },
+        {
+          "caption": "FA Class Code",
+          "selectedValue": "TANGIBLE",
+          "diagnosis": "visible-readonly-card-row-control",
+          "editable": false
+        },
+        {
+          "caption": "FA Subclass Code",
+          "selectedValue": "EQUIPMENT",
+          "diagnosis": "visible-readonly-card-row-control",
+          "editable": false
+        },
+        {
+          "caption": "Depreciation Book Code",
+          "selectedValue": "HGB",
+          "diagnosis": "visible-readonly-card-row-control",
+          "editable": false
+        },
+        {
+          "caption": "Posting Group",
+          "selectedValue": "EQUIPMENT",
+          "diagnosis": "visible-editable-card-row-control",
+          "editable": true
+        },
+        {
+          "caption": "Book Value",
+          "selectedValue": "0,00",
+          "diagnosis": "visible-readonly-card-row-control",
+          "editable": false
+        },
+        {
+          "caption": "Acquired",
+          "selectedValue": "",
+          "diagnosis": "caption-visible-no-row-control",
+          "editable": false
+        }
+      ]
+    },
+    "ledgerSafety": {
+      "page": "FA Ledger Entries",
+      "pageId": 5604,
+      "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5604&filter=%27FA%20Ledger%20Entry%27.%27FA%20No.%27%20IS%20%27FA-CNC-01%27&dc=0",
+      "hasTargetLedgerTrace": false,
+      "compactText": "Document No.\nDepreciation Book Code\nAmount\nNo. of Depreciation Days\nG/L Entry No.\nEntry No.\nEntry No., Sortierreihenfolge Aufsteigend"
+    },
+    "fillResult": {
+      "attempted": true,
+      "filled": false,
+      "valueAfter": "EQUIPMENT",
+      "rowsAfter": [
+        {
+          "caption": "No.",
+          "selectedValue": "FA-CNC-01",
+          "diagnosis": "visible-readonly-card-row-control",
+          "editable": false
+        },
+        {
+          "caption": "Description",
+          "selectedValue": "HGB depreciation book",
+          "diagnosis": "visible-readonly-card-row-control",
+          "editable": false
+        },
+        {
+          "caption": "FA Class Code",
+          "selectedValue": "TANGIBLE",
+          "diagnosis": "visible-readonly-card-row-control",
+          "editable": false
+        },
+        {
+          "caption": "FA Subclass Code",
+          "selectedValue": "EQUIPMENT",
+          "diagnosis": "visible-readonly-card-row-control",
+          "editable": false
+        },
+        {
+          "caption": "Depreciation Book Code",
+          "selectedValue": "HGB",
+          "diagnosis": "visible-readonly-card-row-control",
+          "editable": false
+        },
+        {
+          "caption": "Posting Group",
+          "selectedValue": "EQUIPMENT",
+          "diagnosis": "visible-editable-card-row-control",
+          "editable": true
+        },
+        {
+          "caption": "Book Value",
+          "selectedValue": "0,00",
+          "diagnosis": "visible-readonly-card-row-control",
+          "editable": false
+        },
+        {
+          "caption": "Acquired",
+          "selectedValue": "",
+          "diagnosis": "caption-visible-no-row-control",
+          "editable": false
+        }
+      ],
+      "routeAttempts": [
+        {
+          "name": "alt-arrow-down",
+          "candidates": []
+        },
+        {
+          "name": "right-edge-dropdown-click",
+          "candidates": []
+        },
+        {
+          "name": "typed-value-arrowdown-enter",
+          "candidates": []
+        }
+      ],
+      "selected": false,
+      "selectionError": "",
+      "target": {
+        "found": true,
+        "label": {
+          "text": "Posting Group",
+          "x": 108,
+          "y": 571,
+          "width": 762
+        },
+        "inputIndex": 0,
+        "inputLabel": "",
+        "valueBefore": "EQUIPMENT",
+        "x": 464,
+        "y": 571,
+        "width": 406,
+        "height": 29
+      },
+      "blockerDiagnosis": "Wrong related-record route: screenshot shows Depreciation Book Card HGB in foreground, not a Posting Group MACHINES lookup/list."
+    }
+  },
+  "before": {
+    "postingGroup": "EQUIPMENT",
+    "bookValue": "0,00",
+    "acquired": "",
+    "rows": [
+      {
+        "caption": "No.",
+        "selectedValue": "FA-CNC-01",
+        "diagnosis": "visible-readonly-card-row-control",
+        "editable": false
+      },
+      {
+        "caption": "Description",
+        "selectedValue": "CNC Maschine FRA",
+        "diagnosis": "visible-readonly-card-row-control",
+        "editable": false
+      },
+      {
+        "caption": "FA Class Code",
+        "selectedValue": "TANGIBLE",
+        "diagnosis": "visible-readonly-card-row-control",
+        "editable": false
+      },
+      {
+        "caption": "FA Subclass Code",
+        "selectedValue": "EQUIPMENT",
+        "diagnosis": "visible-readonly-card-row-control",
+        "editable": false
+      },
+      {
+        "caption": "Depreciation Book Code",
+        "selectedValue": "HGB",
+        "diagnosis": "visible-readonly-card-row-control",
+        "editable": false
+      },
+      {
+        "caption": "Posting Group",
+        "selectedValue": "EQUIPMENT",
+        "diagnosis": "visible-editable-card-row-control",
+        "editable": true
+      },
+      {
+        "caption": "Book Value",
+        "selectedValue": "0,00",
+        "diagnosis": "visible-readonly-card-row-control",
+        "editable": false
+      },
+      {
+        "caption": "Acquired",
+        "selectedValue": "",
+        "diagnosis": "caption-visible-no-row-control",
+        "editable": false
+      }
+    ]
+  },
+  "ledgerSafety": {
+    "page": "FA Ledger Entries",
+    "pageId": 5604,
+    "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5604&filter=%27FA%20Ledger%20Entry%27.%27FA%20No.%27%20IS%20%27FA-CNC-01%27&dc=0",
+    "hasTargetLedgerTrace": false,
+    "compactText": "Document No.\nDepreciation Book Code\nAmount\nNo. of Depreciation Days\nG/L Entry No.\nEntry No.\nEntry No., Sortierreihenfolge Aufsteigend"
+  },
+  "screenshotCaptured": true,
+  "summary": "FA-140 blocked: the combobox route still did not set Posting Group to MACHINES and instead opened the related Depreciation Book Card for HGB.",
+  "bookImpact": "Kapitel 21 muss den Posting-Group-Kartenfit weiter offen halten; der neue Lernwert ist, dass Wert-/Related-Record-Klicks auf der Kartenzeile nicht als Combobox-Bedienung zaehlen.",
+  "nextStep": "FIXEDASSETS-141: review wrong-related-card route and plan a safer field-specific locator before another setup-change attempt."
+}
