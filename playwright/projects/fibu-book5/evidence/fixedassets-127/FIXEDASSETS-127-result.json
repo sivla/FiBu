@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "FIXEDASSETS-127-ACQUIRE-DISABLED-CAUSE-REVIEW",
+  "source": "local-analysis",
+  "resultStatus": "observed",
+  "runPlanId": "FIXEDASSETS-127-ACQUIRE-DISABLED-CAUSE-REVIEW-PLAN",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "proved": [
+    "Acquire is repeatedly visible but disabled on FA-CNC-01 in FA-082 and FA-126.",
+    "FA-126 did not execute Acquire and did not change any field value.",
+    "Book Value 0,00 is visible on FA-CNC-01, but this does not by itself explain why Acquire is disabled.",
+    "Purchase Invoice line Type = Fixed Asset/Anlage remains unproved after repeated UI diagnostics.",
+    "FA G/L Journal remains unsafe for value entry because amount and balancing-account controls are not proven."
+  ],
+  "notProved": [
+    "The exact Business Central rule that disables Acquire",
+    "Acquire wizard opening",
+    "Acquisition value entry",
+    "Preview Posting",
+    "Post",
+    "FA Ledger Entry",
+    "German final fixed-assets proof"
+  ],
+  "changedFiles": [
+    ".agent/state/current.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/cases/fixedassets-127-acquire-disabled-cause-review.json",
+    ".agent/state/cases/fixedassets-128-fa-cnc-01-edit-icon-action-state-probe.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/model_usage_log.jsonl",
+    "playwright/projects/fibu-book5/CURRENT-STATE.md",
+    "playwright/projects/fibu-book5/LAB-FIT-STATUS.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-127/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-127/FIXEDASSETS-127-acquire-disabled-cause-review.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-127/FIXEDASSETS-127-result.json"
+  ],
+  "statePatch": {
+    "current": {
+      "updatedAt": "2026-06-20T13:25:00.000Z",
+      "activeCase": "FIXEDASSETS-128-FA-CNC-01-EDIT-ICON-ACTION-STATE-PROBE",
+      "active_case_file": ".agent/state/cases/fixedassets-128-fa-cnc-01-edit-icon-action-state-probe.json",
+      "lastReferenceCase": "FIXEDASSETS-127-ACQUIRE-DISABLED-CAUSE-REVIEW",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-127-acquire-disabled-cause-review.json",
+      "requiresStrongModel": false,
+      "nextStep": "FIXEDASSETS-128: run a guarded UI-first diagnostic on FA-CNC-01 to identify the visible edit/pencil toolbar action and check whether Acquire remains disabled after a safe mode-state probe. Do not execute Acquire, change fields, preview, post, setup change, create drafts, delete records, use API or switch company."
+    },
+    "activeCase": {
+      "status": "completed",
+      "decision": "Keep Acquire blocked for execution; run exactly one narrow edit-icon/action-state probe before abandoning or further diagnosing the route."
+    },
+    "coverage": {
+      "schemaVersion": 1,
+      "purpose": "Kompakter Coverage-Index fuer schnelle Agentenlaeufe.",
+      "areas": {
+        "fixedassets": {
+          "chapter": "Kapitel 21",
+          "status": "in-progress",
+          "currentBlock": "edit-icon-action-state-probe",
+          "latestPracticalCase": "FIXEDASSETS-126",
+          "latestDecisionCase": "FIXEDASSETS-127",
+          "nextCase": "FIXEDASSETS-128-FA-CNC-01-EDIT-ICON-ACTION-STATE-PROBE",
+          "bookScreenshots": {
+            "setupProofs": "available-labor",
+            "purchaseInvoicePreflight": "available-labor",
+            "validFixedAssetLine": "blocked-personalize-opened-type-context-visible-but-fixed-asset-option-unproved",
+            "acquisitionPostingTrace": "open-after-edit-icon-action-state-probe",
+            "depreciationPostingTrace": "open",
+            "acquisitionWizardPreflight": "blocked-acquire-disabled-until-edit-icon-state-probe"
+          },
+          "finalGermanProof": "open"
+        }
+      },
+      "hardExclusions": {
+        "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
+      }
+    }
+  },
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-127/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-127/FIXEDASSETS-127-acquire-disabled-cause-review.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-127/FIXEDASSETS-127-result.json"
+  ],
+  "warnings": [
+    "Do not execute Acquire in the next case.",
+    "Do not treat edit-mode probe as a data change unless a value is changed or saved.",
+    "Stop if the edit/pencil action cannot be scoped safely."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "reason": "A narrow edit-icon/action-state probe has the best progress/risk ratio because FA-126 shows a visible toolbar edit signal while Acquire is disabled, and all broader acquisition routes remain blocked.",
+  "validationCommands": [
+    "npm run agent:preflight",
+    "npm run agent:dry-run",
+    "npm run agent:run-plan",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-127/FIXEDASSETS-127-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-127/FIXEDASSETS-127-result.json",
+    "npm run check:encoding",
+    "git diff --check"
+  ]
+}

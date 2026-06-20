@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-20T12:55:00.000Z",
+  "updatedAt": "2026-06-20T13:25:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "fixedassets",
-  "activeCase": "FIXEDASSETS-127-ACQUIRE-DISABLED-CAUSE-REVIEW",
-  "active_case_file": ".agent/state/cases/fixedassets-127-acquire-disabled-cause-review.json",
-  "lastReferenceCase": "FIXEDASSETS-126-FA-CNC-01-ACQUIRE-ACTION-CAUSE-DIAGNOSIS-READONLY",
-  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-126-fa-cnc-01-acquire-action-cause-diagnosis-readonly.json",
+  "activeCase": "FIXEDASSETS-128-FA-CNC-01-EDIT-ICON-ACTION-STATE-PROBE",
+  "active_case_file": ".agent/state/cases/fixedassets-128-fa-cnc-01-edit-icon-action-state-probe.json",
+  "lastReferenceCase": "FIXEDASSETS-127-ACQUIRE-DISABLED-CAUSE-REVIEW",
+  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-127-acquire-disabled-cause-review.json",
   "mode": "token-efficient-autopilot-tooling-bootstrap",
-  "requiresStrongModel": true,
+  "requiresStrongModel": false,
   "requiredPreflightChecks": [
     "agent:preflight",
     "agent:state:validate",
@@ -19,12 +19,15 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "read-repo-state",
-    "read-fixedassets-126-evidence",
-    "review-acquire-disabled-cause",
-    "compare-acquisition-routes",
-    "write-compact-evidence",
-    "update-state-plan"
+    "open-business-central",
+    "run-playwright",
+    "open-fixed-asset-card-fa-cnc-01",
+    "verify-instance-company",
+    "identify-edit-pencil-toolbar-action",
+    "enter-edit-mode-no-field-change-if-safely-scoped",
+    "inspect-acquire-action-state",
+    "take-diagnostic-screenshot",
+    "write-compact-evidence"
   ],
   "forbiddenActions": [
     "leave-instance",
@@ -35,8 +38,6 @@
     "company-switch",
     "api-shortcut",
     "book-edit",
-    "open-business-central",
-    "run-playwright",
     "enter-K30000-in-purchase-invoice",
     "execute-acquire",
     "select-fixed-asset-line-type",
@@ -53,7 +54,7 @@
     "delete-record",
     "delete-non-test-data"
   ],
-  "nextStep": "FIXEDASSETS-127: local review of Acquire disabled cause before any new acquisition route or setup change. Compare FA-126 with FA-082/FA-125 and decide whether Acquire stays rejected, needs setup/page-state diagnosis, or another acquisition route is safer.",
+  "nextStep": "FIXEDASSETS-128: run a guarded UI-first diagnostic on FA-CNC-01 to identify the visible edit/pencil toolbar action and check whether Acquire remains disabled after a safe mode-state probe. Do not execute Acquire, change fields, preview, post, setup change, create drafts, delete records, use API or switch company.",
   "subagentPlanPolicy": {
     "default": "optional",
     "execution": "plan-only-no-subagents-spawned",

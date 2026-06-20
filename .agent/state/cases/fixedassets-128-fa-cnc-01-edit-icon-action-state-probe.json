@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-128-FA-CNC-01-EDIT-ICON-ACTION-STATE-PROBE",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "playwright-readonly-diagnosis",
+  "taskClass": "wizard_work",
+  "goal": "Open FA-CNC-01 Fixed Asset Card, identify the visible edit/pencil toolbar action and check whether Acquire remains disabled after a safe mode-state probe without changing data.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-126/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-127/"
+  ],
+  "knownTruth": [
+    "FA-CNC-01 exists in RM-DEMO with Book Value 0,00.",
+    "Acquire is visible but disabled in FA-126.",
+    "FA-126 screenshot shows a visible top toolbar pencil/edit-like icon, but the test did not find an exact enabled Edit/Bearbeiten button.",
+    "Acquire must not be executed until a separate gate proves it is safe and useful."
+  ],
+  "allowedActions": [
+    "open-business-central",
+    "run-playwright",
+    "open-fixed-asset-card-fa-cnc-01",
+    "verify-instance-company",
+    "identify-edit-pencil-toolbar-action",
+    "enter-edit-mode-no-field-change-if-safely-scoped",
+    "inspect-acquire-action-state",
+    "take-diagnostic-screenshot",
+    "write-compact-evidence"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "api-shortcut",
+    "book-edit",
+    "execute-acquire",
+    "enter-K30000-in-purchase-invoice",
+    "enter-FA-CNC-01",
+    "enter-amount",
+    "change-field-value",
+    "save-record",
+    "new-draft",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "delete-record",
+    "fake-evidence"
+  ],
+  "acceptanceCriteria": [
+    "Instance MCP_1_20260210 and company RM-DEMO are confirmed.",
+    "FA-CNC-01 Fixed Asset Card is visible.",
+    "The edit/pencil toolbar action is inventoried with accessible name/title/aria-label if available.",
+    "If edit/mode action cannot be scoped safely, stop before clicking.",
+    "If edit/mode action is clicked, no fields are changed and no save is performed.",
+    "Acquire visible/enabled/disabled state is captured before and after any safe mode probe.",
+    "No Acquire execution, Preview Posting, posting, setup change, API shortcut, company switch or draft creation occurs."
+  ],
+  "recommendedSkills": [
+    "evidence-writer"
+  ],
+  "requiresUsageLog": false,
+  "nextSafeAction": "Run a guarded Playwright diagnosis of the edit/pencil toolbar state and Acquire enabled/disabled state."
+}

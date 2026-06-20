@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-126-FA-CNC-01-ACQUIRE-ACTION-CAUSE-DIAGNOSIS-READONLY",
+  "runId": "FIXEDASSETS-127-ACQUIRE-DISABLED-CAUSE-REVIEW",
   "date": "2026-06-20",
-  "workType": "playwright-readonly-diagnosis",
+  "workType": "local-evidence-review",
   "branch": "codex/token-efficient-autopilot-state",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "bcRun": true,
+  "bcRun": false,
   "posted": false,
   "preview": false,
   "setupChanged": false,
@@ -14,35 +14,31 @@
   "apiShortcut": false,
   "bookChanged": false,
   "resultStatus": "observed",
-  "summary": "FA-126 opened FA-CNC-01 read-only in RM-DEMO and confirmed the Acquire action is visible but disabled. Book Value 0,00 is visible; no Acquire execution, field value change, Preview Posting, posting, setup change, draft creation, delete, API shortcut or company switch occurred. Page Inspection did not open in this run, and edit mode was not entered because no exact enabled Edit/Bearbeiten button was visible.",
+  "summary": "FA-127 reviewed FA-082, FA-125 and FA-126 locally. Acquire remains visible but disabled on FA-CNC-01; Purchase Invoice line Type and FA G/L Journal value entry remain blocked. The next safe hypothesis is a narrow edit/pencil toolbar state probe on FA-CNC-01 without field changes, Acquire execution, Preview Posting or posting.",
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/fixedassets-126/README.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-126/FIXEDASSETS-126-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-126/FIXEDASSETS-126-learning.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-126/020-acquire-action-diagnostics.json",
-    "playwright/projects/fibu-book5/img/fixedassets-126-030-acquire-disabled-context.png"
+    "playwright/projects/fibu-book5/evidence/fixedassets-127/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-127/FIXEDASSETS-127-acquire-disabled-cause-review.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-127/FIXEDASSETS-127-result.json"
   ],
   "changedFiles": [
     ".agent/state/current.json",
     ".agent/state/coverage_state.json",
-    ".agent/state/cases/fixedassets-126-fa-cnc-01-acquire-action-cause-diagnosis-readonly.json",
     ".agent/state/cases/fixedassets-127-acquire-disabled-cause-review.json",
+    ".agent/state/cases/fixedassets-128-fa-cnc-01-edit-icon-action-state-probe.json",
     ".agent/state/last_run_summary.json",
-    "package.json",
+    ".agent/state/model_usage_log.jsonl",
     "playwright/projects/fibu-book5/CURRENT-STATE.md",
     "playwright/projects/fibu-book5/LAB-FIT-STATUS.md",
-    "playwright/projects/fibu-book5/tests/fixedassets-126-fa-cnc-01-acquire-action-cause-diagnosis-readonly.spec.ts",
-    "playwright/projects/fibu-book5/evidence/fixedassets-126/"
+    "playwright/projects/fibu-book5/evidence/fixedassets-127/"
   ],
   "validationCommands": [
     "npm run agent:preflight",
     "npm run agent:dry-run",
     "npm run agent:run-plan",
-    "npm run fibu:fixedassets:acquire-action-cause-diagnosis",
-    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-126/FIXEDASSETS-126-result.json",
-    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-126/FIXEDASSETS-126-result.json",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-127/FIXEDASSETS-127-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-127/FIXEDASSETS-127-result.json",
     "npm run check:encoding",
     "git diff --check"
   ],
-  "nextStep": "Run FIXEDASSETS-127 as a local evidence review: decide whether the disabled Acquire route needs a new specific hypothesis, should be rejected for now, or whether another acquisition path is safer."
+  "nextStep": "Run FIXEDASSETS-128 guarded UI-first edit/pencil toolbar state probe on FA-CNC-01."
 }
