@@ -1,0 +1,124 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-fa-gl-journal-route-result-review",
+  "caseId": "FIXEDASSETS-156-FA-GL-JOURNAL-ROUTE-RESULT-REVIEW",
+  "source": "local-evidence-review",
+  "resultStatus": "reviewed-route-accepted-write-held",
+  "runPlanId": "FIXEDASSETS-156-FA-GL-JOURNAL-ROUTE-RESULT-REVIEW-PLAN",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "proved": [
+    "FA-155 is sufficient as a laboratory route screenshot for Fixed Asset G/L Journals.",
+    "FA-155 proves the page, batch context, key line field labels and the Post action boundary.",
+    "FA-155 did not create a journal line, enter values, open Preview Posting or post.",
+    "The next step must remain read-only because line ownership/cleanup is not proven."
+  ],
+  "notProved": [
+    "No safe write route for amount or balancing account.",
+    "No guarded acquisition journal draft.",
+    "No cleanup or keep-draft ownership proof.",
+    "No Preview Posting.",
+    "No acquisition posting.",
+    "No FA Ledger Entry, G/L Entry or VAT/GST trace.",
+    "No German final proof."
+  ],
+  "decision": {
+    "fa155ScreenshotBookUse": "accepted-labor-route-image",
+    "writeReadiness": "held",
+    "reason": "The route image shows the correct page and fields, but row/control ownership and cleanup are not proven. A visible existing journal-line situation must be treated as a separate read-only ownership case before any draft or posting gate.",
+    "nextCase": "FIXEDASSETS-157-FA-GL-JOURNAL-LINE-OWNERSHIP-READONLY"
+  },
+  "changedFiles": [
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-156-fa-gl-journal-route-result-review.json",
+    ".agent/state/cases/fixedassets-157-fa-gl-journal-line-ownership-readonly.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/model_usage_log.jsonl",
+    "playwright/projects/fibu-book5/evidence/fixedassets-156/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-156/FIXEDASSETS-156-route-review.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-156/FIXEDASSETS-156-result.json",
+    "playwright/projects/fibu-book5/CURRENT-STATE.md",
+    "playwright/projects/fibu-book5/LAB-FIT-STATUS.md",
+    "playwright/projects/fibu-book5/BOOK-CLICK-GUIDE-COVERAGE.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-155/FIXEDASSETS-155-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-155/020-fa-gl-journal-ui-signals.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-155/fixedassets-155-010-fa-gl-journal-readonly-preflight.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-156/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-156/FIXEDASSETS-156-route-review.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-156/FIXEDASSETS-156-result.json"
+  ],
+  "warnings": [
+    "Local review only.",
+    "Do not use FA-155 as posting proof.",
+    "Do not enter values before journal line ownership/cleanup is proven."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-157-FA-GL-JOURNAL-LINE-OWNERSHIP-READONLY",
+      "active_case_file": ".agent/state/cases/fixedassets-157-fa-gl-journal-line-ownership-readonly.json",
+      "lastReferenceCase": "FIXEDASSETS-156-FA-GL-JOURNAL-ROUTE-RESULT-REVIEW",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-156-fa-gl-journal-route-result-review.json",
+      "requiresStrongModel": false,
+      "nextStep": "FIXEDASSETS-157: read-only ownership/cleanup preflight for the visible Fixed Asset G/L Journal line situation; no values, no Preview Posting, no Post, no delete."
+    },
+    "lastRunSummary": {
+      "schemaVersion": 1,
+      "runId": "FIXEDASSETS-156-FA-GL-JOURNAL-ROUTE-RESULT-REVIEW",
+      "date": "2026-06-20",
+      "workType": "local-evidence-review",
+      "branch": "codex/token-efficient-autopilot-state",
+      "instance": "MCP_1_20260210",
+      "company": "RM-DEMO",
+      "bcRun": false,
+      "playwrightRun": false,
+      "posted": false,
+      "previewPosting": false,
+      "setupChanged": false,
+      "companySwitched": false,
+      "apiShortcut": false,
+      "bookChanged": false,
+      "resultStatus": "reviewed-route-accepted-write-held",
+      "summary": "FA-156 accepts FA-155 as a laboratory route image for Fixed Asset G/L Journals, but keeps write/preview/posting locked until journal line ownership and cleanup are read-only proven.",
+      "nextStep": "Run FIXEDASSETS-157 read-only ownership/cleanup preflight; no values, no Preview Posting, no Post, no delete."
+    },
+    "activeCase": {
+      "status": "reviewed-route-accepted-write-held",
+      "lastResult": {
+        "status": "reviewed",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-156/FIXEDASSETS-156-result.json",
+        "summary": "FA-155 accepted as route image; write readiness held pending line ownership/cleanup proof."
+      },
+      "nextSafeAction": "Run FIXEDASSETS-157 read-only line ownership/cleanup preflight."
+    },
+    "coverage": {
+      "areas": {
+        "fixedassets": {
+          "currentBlock": "fa-gl-journal-line-ownership-readonly",
+          "latestPracticalCase": "FIXEDASSETS-155",
+          "latestReviewCase": "FIXEDASSETS-156",
+          "nextCase": "FIXEDASSETS-157-FA-GL-JOURNAL-LINE-OWNERSHIP-READONLY"
+        }
+      }
+    }
+  },
+  "flags": {
+    "noBusinessCentralRun": true,
+    "noPlaywrightRun": true,
+    "noBookChange": true,
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "writeReadinessHeld": true
+  },
+  "nextStep": "FIXEDASSETS-157: read-only ownership/cleanup preflight for the visible Fixed Asset G/L Journal line situation."
+}

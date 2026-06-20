@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-157-FA-GL-JOURNAL-LINE-OWNERSHIP-READONLY",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "playwright-readonly-line-ownership-preflight",
+  "taskClass": "wizard_work",
+  "requiresUsageLog": false,
+  "goal": "Open Fixed Asset G/L Journals read-only and document whether an existing journal line shell is present, what values are visible, and whether a later cleanup/keep-draft gate is needed before any acquisition value entry.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-155/FIXEDASSETS-155-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-156/FIXEDASSETS-156-result.json"
+  ],
+  "allowedActions": [
+    "open-business-central",
+    "run-playwright",
+    "open-fixed-asset-gl-journal",
+    "verify-instance-company",
+    "read-page-context",
+    "read-visible-fields",
+    "capture-screenshot",
+    "write-evidence",
+    "document-next-safe-action"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "company-switch",
+    "api-shortcut",
+    "book-edit",
+    "enter-FA-CNC-01-in-journal",
+    "enter-amount",
+    "enter-balancing-account",
+    "create-journal-lines",
+    "preview-posting",
+    "post",
+    "setup-change",
+    "delete-record",
+    "click-ok"
+  ],
+  "safetyGates": [
+    "Abort if URL does not contain MCP_1_20260210 and company=RM-DEMO.",
+    "Read only the current Fixed Asset G/L Journal page and visible line state.",
+    "Do not enter or change any value.",
+    "Do not create, delete, preview, post, confirm or cleanup.",
+    "If a line exists, classify it as existing-labor-line until ownership is proven."
+  ],
+  "acceptanceCriteria": [
+    "Instance and company are verified.",
+    "Existing line state is documented read-only or absence of line is documented.",
+    "Cleanup/keep-draft need is classified without performing cleanup.",
+    "No value entry, no Preview Posting, no Post, no delete and no setup change occurred."
+  ],
+  "nextSafeAction": "Run one read-only Fixed Asset G/L Journal line ownership preflight; no values and no cleanup."
+}

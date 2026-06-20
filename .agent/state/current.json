@@ -6,12 +6,12 @@
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "fixedassets",
-  "activeCase": "FIXEDASSETS-156-FA-GL-JOURNAL-ROUTE-RESULT-REVIEW",
-  "active_case_file": ".agent/state/cases/fixedassets-156-fa-gl-journal-route-result-review.json",
-  "lastReferenceCase": "FIXEDASSETS-155-FA-GL-JOURNAL-ACQUISITION-ROUTE-READONLY-PREFLIGHT",
-  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-155-fa-gl-journal-acquisition-route-readonly-preflight.json",
+  "activeCase": "FIXEDASSETS-157-FA-GL-JOURNAL-LINE-OWNERSHIP-READONLY",
+  "active_case_file": ".agent/state/cases/fixedassets-157-fa-gl-journal-line-ownership-readonly.json",
+  "lastReferenceCase": "FIXEDASSETS-156-FA-GL-JOURNAL-ROUTE-RESULT-REVIEW",
+  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-156-fa-gl-journal-route-result-review.json",
   "mode": "token-efficient-autopilot-tooling-bootstrap",
-  "requiresStrongModel": true,
+  "requiresStrongModel": false,
   "requiredPreflightChecks": [
     "agent:preflight",
     "agent:state:validate",
@@ -19,11 +19,14 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "read-evidence",
-    "review-screenshot-metadata",
-    "compare-route-signals",
-    "write-local-decision",
-    "update-state",
+    "open-business-central",
+    "run-playwright",
+    "open-fixed-asset-gl-journal",
+    "verify-instance-company",
+    "read-page-context",
+    "read-visible-fields",
+    "capture-screenshot",
+    "write-evidence",
     "document-next-safe-action"
   ],
   "forbiddenActions": [
@@ -32,8 +35,6 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
-    "open-business-central",
-    "run-playwright",
     "company-switch",
     "api-shortcut",
     "book-edit",
@@ -46,9 +47,10 @@
     "preview-posting",
     "post",
     "setup-change",
-    "delete-record"
+    "delete-record",
+    "click-ok"
   ],
-  "nextStep": "FIXEDASSETS-156: review FA-155 journal-route evidence locally before deciding whether a guarded acquisition journal draft is safe.",
+  "nextStep": "FIXEDASSETS-157: read-only ownership/cleanup preflight for the visible Fixed Asset G/L Journal line situation; no values, no Preview Posting, no Post, no delete.",
   "subagentPlanPolicy": {
     "default": "optional",
     "execution": "plan-only-no-subagents-spawned",
