@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-20T19:10:00.000Z",
+  "updatedAt": "2026-06-20T19:40:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "fixedassets",
-  "activeCase": "FIXEDASSETS-136-FA-CNC-01-PAGEINSPECTION-POSTING-GROUP-READONLY",
-  "active_case_file": ".agent/state/cases/fixedassets-136-fa-cnc-01-pageinspection-posting-group-readonly.json",
-  "lastReferenceCase": "FIXEDASSETS-135-FA-CNC-01-READINESS-FIELD-GAP-REVIEW",
-  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-135-fa-cnc-01-readiness-field-gap-review.json",
+  "activeCase": "FIXEDASSETS-137-FA-CNC-01-PAGEINSPECTION-RESULT-REVIEW",
+  "active_case_file": ".agent/state/cases/fixedassets-137-fa-cnc-01-pageinspection-result-review.json",
+  "lastReferenceCase": "FIXEDASSETS-136-FA-CNC-01-PAGEINSPECTION-POSTING-GROUP-READONLY",
+  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-136-fa-cnc-01-pageinspection-posting-group-readonly.json",
   "mode": "token-efficient-autopilot-tooling-bootstrap",
-  "requiresStrongModel": false,
+  "requiresStrongModel": true,
   "requiredPreflightChecks": [
     "agent:preflight",
     "agent:state:validate",
@@ -19,13 +19,11 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "open-business-central",
-    "run-playwright",
-    "read-fixed-asset-card",
-    "open-page-inspection-readonly",
-    "capture-compact-page-inspection-evidence",
-    "update-state-plan",
-    "write-compact-evidence"
+    "read-existing-evidence",
+    "review-pageinspection-result",
+    "compare-technical-field-context-with-visible-card-truth",
+    "write-compact-evidence",
+    "update-state-plan"
   ],
   "forbiddenActions": [
     "leave-instance",
@@ -33,6 +31,8 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright",
     "company-switch",
     "api-shortcut",
     "book-edit",
@@ -56,7 +56,7 @@
     "delete-record",
     "delete-non-test-data"
   ],
-  "nextStep": "FIXEDASSETS-136: open FA-CNC-01 read-only and use Page Inspection to prove the technical field context for HGB, Posting Group EQUIPMENT and acquisition/readiness fields; no Edit, no Acquire, no setup, no Preview, no Post.",
+  "nextStep": "FIXEDASSETS-137: locally review FA-136 Page Inspection evidence and decide whether a setup-change gate, another read-only field proof, or an acquisition route is now safe.",
   "subagentPlanPolicy": {
     "default": "optional",
     "execution": "plan-only-no-subagents-spawned",

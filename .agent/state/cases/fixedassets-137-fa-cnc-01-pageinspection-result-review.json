@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-137-FA-CNC-01-PAGEINSPECTION-RESULT-REVIEW",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "local-evidence-review",
+  "taskClass": "judge_work",
+  "requiresUsageLog": true,
+  "goal": "Review FA-136 Page Inspection evidence before any setup-change, Acquire, Purchase Invoice or FA G/L Journal route is retried.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-136/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-135/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-134/"
+  ],
+  "knownTruth": [
+    "FA-135 selected a read-only Page Inspection proof before any setup or acquisition route.",
+    "FA-134 showed HGB and visible Posting Group EQUIPMENT on FA-CNC-01.",
+    "MACHINES exists as a separate setup proof but is not proven as assigned to FA-CNC-01."
+  ],
+  "allowedActions": [
+    "read-existing-evidence",
+    "review-pageinspection-result",
+    "compare-technical-field-context-with-visible-card-truth",
+    "write-compact-evidence",
+    "update-state-plan"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright",
+    "company-switch",
+    "api-shortcut",
+    "book-edit",
+    "click-acquire",
+    "execute-acquire",
+    "enter-K30000-in-purchase-invoice",
+    "enter-FA-CNC-01-in-document",
+    "enter-amount",
+    "change-field-value",
+    "save-record",
+    "new-draft",
+    "finish-wizard",
+    "click-ok",
+    "create-journal-lines",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "delete-record",
+    "delete-non-test-data"
+  ],
+  "acceptanceCriteria": [
+    "Classify FA-136 as technical proof, partial proof or blocked.",
+    "Decide whether the next step is setup-change gate, another read-only proof, or acquisition route hold.",
+    "Do not open BC or Playwright in this review."
+  ],
+  "recommendedSkills": [
+    "evidence-writer"
+  ],
+  "nextSafeAction": "Read FA-136 result and decide the next safest fixed-assets step."
+}
