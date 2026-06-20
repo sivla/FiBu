@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixed-asset-posting-group-combobox-result-review",
+  "caseId": "FIXEDASSETS-141-FA-CNC-01-COMBOBOX-RESULT-REVIEW",
+  "source": "local-evidence-review",
+  "resultStatus": "observed-blocker-reviewed",
+  "runPlanId": "FIXEDASSETS-141-FA-CNC-01-COMBOBOX-RESULT-REVIEW-PLAN",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "assetNo": "FA-CNC-01",
+  "reviewedReferenceCase": "FIXEDASSETS-140-FA-CNC-01-POSTING-GROUP-COMBOBOX-ROUTE",
+  "decision": "blocked-not-fit",
+  "proved": [
+    "FA-140 is valid blocker evidence: the attempted Posting Group route opened Depreciation Book Card HGB instead of a Posting Group value list.",
+    "The FA-140 screenshot is useful as a rejected-path/debugging image, not as a MACHINES field proof.",
+    "The row value Description = HGB depreciation book is foreground related-card context leakage and must not be interpreted as an FA-CNC-01 field update."
+  ],
+  "notProved": [
+    "Posting Group MACHINES is not proven as assigned to FA-CNC-01.",
+    "No setup change is accepted as proven.",
+    "No acquisition, purchase invoice, journal, Preview Posting or posting is unlocked by FA-140.",
+    "No German fixed-assets final proof is produced."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-141/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-141/FIXEDASSETS-141-combobox-result-review.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-141/FIXEDASSETS-141-result.json"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-140/FIXEDASSETS-140-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-140/040-fill-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-140/fixedassets-140-060-fa-cnc-01-posting-group-machines.screenshot.json",
+    "playwright/projects/fibu-book5/img/fixedassets-140-060-fa-cnc-01-posting-group-machines.png",
+    "playwright/projects/fibu-book5/evidence/fixedassets-141/FIXEDASSETS-141-combobox-result-review.md"
+  ],
+  "warnings": [
+    "The FA-140 result references a screenshot metadata path under img, but the actual metadata file is stored in the fixedassets-140 evidence folder."
+  ],
+  "blockedBy": [
+    "Posting Group assignment requires a repaired field-specific locator with foreground-page validation."
+  ],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "flags": {
+    "noBcRun": true,
+    "noPlaywrightRun": true,
+    "noBookChange": true,
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noNewDraft": true,
+    "noDeleteRecord": true,
+    "noAcquireExecution": true
+  },
+  "statePatch": {
+    "current": {
+      "updatedAt": "2026-06-20T22:30:00.000Z",
+      "activeCase": "FIXEDASSETS-142-FA-CNC-01-POSTING-GROUP-FIELD-LOCATOR-REPAIR",
+      "active_case_file": ".agent/state/cases/fixedassets-142-fa-cnc-01-posting-group-field-locator-repair.json",
+      "lastReferenceCase": "FIXEDASSETS-141-FA-CNC-01-COMBOBOX-RESULT-REVIEW",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-141-fa-cnc-01-combobox-result-review.json",
+      "requiresStrongModel": false,
+      "nextStep": "FIXEDASSETS-142: repair the Posting Group field-locator strategy locally before another BC setup-change attempt."
+    },
+    "activeCase": {
+      "status": "completed",
+      "lastResult": {
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-141/FIXEDASSETS-141-result.json",
+        "summary": "FA-141 reviewed FA-140 as blocker evidence. The wrong related-card route is accepted as an anti-pattern; MACHINES is not proven on FA-CNC-01."
+      },
+      "nextSafeAction": "FIXEDASSETS-142: local locator/helper repair plan; no BC run yet."
+    }
+  },
+  "summary": "FA-141 local review closed FA-140 as a real blocker and prepared the next local locator repair step.",
+  "bookImpact": "Kapitel 21 darf den Screenshot nur als Debugging-/Fehlerbild fuer falsche Related-Record-Navigation verwenden. Er ist kein Buchkandidat fuer Posting Group MACHINES.",
+  "nextStep": "FIXEDASSETS-142-FA-CNC-01-POSTING-GROUP-FIELD-LOCATOR-REPAIR"
+}

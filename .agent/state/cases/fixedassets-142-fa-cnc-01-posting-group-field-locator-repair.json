@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-142-FA-CNC-01-POSTING-GROUP-FIELD-LOCATOR-REPAIR",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "local-playwright-helper-repair-plan",
+  "taskClass": "wizard_work",
+  "requiresUsageLog": false,
+  "goal": "Repair the field-specific Posting Group locator strategy after FA-140 opened the related Depreciation Book Card instead of the value list.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-140/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-141/"
+  ],
+  "allowedActions": [
+    "read-local-evidence",
+    "inspect-test-code",
+    "inspect-helper-code",
+    "patch-playwright-helper-or-test",
+    "update-pattern-docs",
+    "run-local-checks"
+  ],
+  "forbiddenActions": [
+    "open-business-central",
+    "run-playwright",
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "company-switch",
+    "api-shortcut",
+    "book-edit",
+    "click-acquire",
+    "execute-acquire",
+    "enter-K30000-in-purchase-invoice",
+    "enter-FA-CNC-01-in-document",
+    "enter-amount",
+    "new-draft",
+    "finish-wizard",
+    "create-journal-lines",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "delete-record",
+    "delete-non-test-data"
+  ],
+  "safetyGates": [
+    "Do not open BC in this local repair case.",
+    "Do not claim MACHINES is assigned until a later practical run proves the reopened Fixed Asset Card value.",
+    "Any helper/test change must reject foreground page changes to Depreciation Book Card or other related cards.",
+    "Any future live run must stop before acquisition, Preview Posting or posting."
+  ],
+  "acceptanceCriteria": [
+    "The next practical Posting Group route has explicit foreground-page validation.",
+    "The route treats related-card navigation as blocked, not as a fallback.",
+    "Rows are only read from the expected Fixed Asset Card context.",
+    "No BC, Playwright, book edit, setup change or posting occurs in this local repair case."
+  ],
+  "nextSafeAction": "Inspect FA-140 test/helper code and patch only the local locator strategy."
+}
