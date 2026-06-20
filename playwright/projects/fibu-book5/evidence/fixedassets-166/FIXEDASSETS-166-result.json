@@ -1,0 +1,176 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-fa-balaccount-candidate-readonly-result",
+  "caseId": "FIXEDASSETS-166-FA-BALACCOUNT-CANDIDATE-READONLY",
+  "source": "playwright-sandbox-readonly-diagnosis",
+  "resultStatus": "observed-candidates",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-medium",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "environment": {
+    "expectedInstance": "MCP_1_20260210",
+    "expectedCompany": "RM-DEMO",
+    "context": {
+      "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=16&dc=0&bookmark=15_DwAAAAJ7BTEAMAAwADAAMA",
+      "environmentInUrl": true,
+      "companyInUrl": true,
+      "companyInText": true,
+      "wrongEnvironmentVisible": false
+    },
+    "urlAfterRun": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=16&dc=0&bookmark=15_DwAAAAJ7BTEAMAAwADAAMA"
+  },
+  "proved": [
+    "The run stayed in MCP_1_20260210.",
+    "The run stayed in RM-DEMO.",
+    "Chart of Accounts / G/L account context was reached read-only.",
+    "One or more visible G/L account candidates were captured for later decision.",
+    "No field value was entered.",
+    "No setup value was changed.",
+    "No journal value was entered.",
+    "No Preview Posting was opened.",
+    "No posting was executed."
+  ],
+  "notProved": [
+    "No Acquisition Cost Bal. Acc. setup-fit.",
+    "No specific candidate was selected into FA Posting Group MACHINES.",
+    "No FA G/L Journal value-entry readiness.",
+    "No Preview Posting result.",
+    "No posting result.",
+    "No German final proof."
+  ],
+  "changedFiles": [
+    "package.json",
+    "playwright/projects/fibu-book5/tests/fixedassets-166-fa-balaccount-candidate-readonly.spec.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-166/",
+    "playwright/projects/fibu-book5/img/fixedassets-166-010-gl-account-candidates-readonly.png",
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-166-fa-balaccount-candidate-readonly.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    "playwright/projects/fibu-book5/CURRENT-STATE.md",
+    "playwright/projects/fibu-book5/LAB-FIT-STATUS.md",
+    "playwright/projects/fibu-book5/BOOK-CLICK-GUIDE-COVERAGE.md",
+    "playwright/projects/fibu-book5/SCREENSHOT-QA.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-166/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-166/010-gl-account-candidate-signals.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-166/020-focused-gl-account-candidate-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-166/FIXEDASSETS-166-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-166/FIXEDASSETS-166-result.json",
+    "playwright/projects/fibu-book5/img/fixedassets-166-010-gl-account-candidates-readonly.png"
+  ],
+  "candidateEvaluation": {
+    "candidateAccounts": [
+      {
+        "code": "14160",
+        "name": "Advanced Payments for goods and services Balance Sheet Assets Inventory Posting",
+        "score": 4,
+        "reasons": [
+          "row name suggests cash/bank/payment/clearing offset account"
+        ],
+        "rowText": "14160 Advanced Payments for goods and services Balance Sheet Assets Inventory Posting"
+      },
+      {
+        "code": "11400",
+        "name": "Advanced Payments for Intangible Fixed Assets Balance Sheet Assets Assets Posting",
+        "score": 2,
+        "reasons": [
+          "row name suggests cash/bank/payment/clearing offset account",
+          "row appears to be the asset/acquisition side, not necessarily the balancing side"
+        ],
+        "rowText": "11400 Advanced Payments for Intangible Fixed Assets Balance Sheet Assets Assets Posting"
+      }
+    ],
+    "hasCandidate": true,
+    "setupFitUnlocked": false,
+    "safeForValueEntry": false
+  },
+  "warnings": [
+    "Visible G/L accounts are candidates only.",
+    "This run does not choose or save Acquisition Cost Bal. Acc.",
+    "A separate setup-fit decision is required before any setup write."
+  ],
+  "blockedBy": [],
+  "requiresReview": true,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-167-FA-BALACCOUNT-SETUP-FIT-DECISION",
+      "active_case_file": ".agent/state/cases/fixedassets-167-fa-balaccount-setup-fit-decision.json",
+      "lastReferenceCase": "FIXEDASSETS-166-FA-BALACCOUNT-CANDIDATE-READONLY",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-166-fa-balaccount-candidate-readonly.json",
+      "requiresStrongModel": true,
+      "nextStep": "FIXEDASSETS-167: judge whether a visible G/L account candidate is safe enough for a separate UI-first setup-fit case; no setup change in FA-166."
+    },
+    "lastRunSummary": {
+      "schemaVersion": 1,
+      "runId": "FIXEDASSETS-166-FA-BALACCOUNT-CANDIDATE-READONLY",
+      "date": "2026-06-21",
+      "workType": "fa-balaccount-candidate-readonly",
+      "taskClass": "wizard_work",
+      "modelClass": "gpt-4-medium",
+      "branch": "codex/token-efficient-autopilot-state",
+      "instance": "MCP_1_20260210",
+      "company": "RM-DEMO",
+      "bcRun": true,
+      "playwrightRun": true,
+      "posted": false,
+      "previewPosting": false,
+      "setupChanged": false,
+      "companySwitched": false,
+      "apiShortcut": false,
+      "bookChanged": false,
+      "dataChanged": false,
+      "resultStatus": "observed-candidates",
+      "summary": "Chart of Accounts was read-only visible and produced G/L candidate accounts for a later Acquisition Cost Bal. Acc. setup decision: 14160 Advanced Payments for goods and services Balance Sheet Assets Inventory Posting; 11400 Advanced Payments for Intangible Fixed Assets Balance Sheet Assets Assets Posting.",
+      "nextStep": "Run FIXEDASSETS-167 setup-fit decision before any setup write."
+    },
+    "activeCase": {
+      "status": "observed-candidates",
+      "lastResult": {
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-166/FIXEDASSETS-166-result.json",
+        "candidateVisible": true,
+        "summary": "Chart of Accounts was read-only visible and produced G/L candidate accounts for a later Acquisition Cost Bal. Acc. setup decision: 14160 Advanced Payments for goods and services Balance Sheet Assets Inventory Posting; 11400 Advanced Payments for Intangible Fixed Assets Balance Sheet Assets Assets Posting."
+      },
+      "nextSafeAction": "Judge candidate account fit locally; setup change remains locked."
+    },
+    "coverage": {
+      "areas": {
+        "fixedassets": {
+          "currentBlock": "fa-balaccount-setup-fit-decision",
+          "latestPracticalCase": "FIXEDASSETS-166-FA-BALACCOUNT-CANDIDATE-READONLY",
+          "latestReviewCase": "FIXEDASSETS-165",
+          "nextCase": "FIXEDASSETS-167-FA-BALACCOUNT-SETUP-FIT-DECISION",
+          "bookScreenshots": {
+            "acquisitionPostingTrace": "candidate-gl-account-visible-no-setup-fit-yet"
+          }
+        }
+      },
+      "fixedAssets": {
+        "faCnc01": {
+          "nextAcquisitionRoute": "fa-balaccount-setup-fit-decision",
+          "acquisitionUnlocked": false
+        }
+      }
+    }
+  },
+  "flags": {
+    "noValueEntry": true,
+    "noInsertLine": true,
+    "noDeleteLine": true,
+    "noCleanup": true,
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "observed": {
+    "startedAt": "2026-06-20T22:16:39.653Z",
+    "finishedAt": "2026-06-20T22:16:49.823Z"
+  },
+  "nextStep": "FIXEDASSETS-167: judge whether a visible G/L account candidate is safe enough for a separate UI-first setup-fit case; no setup change in FA-166."
+}

@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-167-FA-BALACCOUNT-SETUP-FIT-DECISION",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "local-setup-fit-decision",
+  "taskClass": "judge_work",
+  "requiresStrongModel": true,
+  "goal": "Decide whether the read-only G/L account candidates from FIXEDASSETS-166 are safe enough to plan a separate UI-first setup-fit case for FA Posting Group MACHINES / Acquisition Cost Bal. Acc.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-164/FIXEDASSETS-164-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-165/FIXEDASSETS-165-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-166/FIXEDASSETS-166-result.json"
+  ],
+  "allowedActions": [
+    "read-fixedassets-166-evidence",
+    "review-gl-account-candidates",
+    "document-next-safe-action",
+    "write-result-json",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "company-switch",
+    "api-shortcut",
+    "book-edit",
+    "enter-amount",
+    "enter-balancing-account",
+    "create-journal-lines",
+    "delete-record",
+    "cleanup",
+    "preview-posting",
+    "post",
+    "setup-change"
+  ],
+  "targetQuestion": {
+    "candidateSource": "Chart of Accounts / G/L Accounts",
+    "targetPostingGroup": "MACHINES",
+    "targetField": "Acquisition Cost Bal. Acc.",
+    "candidateAccounts": [
+      "14160 Advanced Payments for goods and services",
+      "11400 Advanced Payments for Intangible Fixed Assets"
+    ],
+    "decisionNeeded": "Can one visible candidate justify a later setup-fit case, or is a different account/route required before any write?"
+  },
+  "safetyGates": [
+    "This case is local review only.",
+    "No setup value may be saved.",
+    "Do not enter Amount or Bal. Account No. in FA G/L Journals.",
+    "Do not open Preview Posting or Post.",
+    "Do not claim German final proof.",
+    "Decision must explain why a candidate is plausible or rejected."
+  ],
+  "acceptanceCriteria": [
+    "Decision states whether a UI-first setup-fit case may be planned.",
+    "Decision keeps setup change locked unless a later case explicitly unlocks it.",
+    "Decision keeps value entry, Preview Posting and Post locked.",
+    "Evidence explains that 14160/11400 are candidates, not final field values.",
+    "State points to one concrete next safe case."
+  ],
+  "nextSafeAction": "Review FA-166 candidate evidence locally; do not perform setup change, value entry, Preview Posting or Post."
+}
