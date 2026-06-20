@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "FIXEDASSETS-125-FA-ACQUISITION-ROUTE-AUDIT-AFTER-PERSONALIZE",
+  "source": "local-analysis",
+  "resultStatus": "observed",
+  "runPlanId": "FIXEDASSETS-125-FA-ACQUISITION-ROUTE-AUDIT-AFTER-PERSONALIZE-PLAN",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "proved": [
+    "Purchase Invoice line Type remains blocked after repeated UI, Page Inspection and Personalize diagnostics.",
+    "FA G/L Journal remains useful as context evidence but unsafe for value entry because amount and balancing-account controls are not proven.",
+    "Acquire is visible but disabled on FA-CNC-01 and its disablement cause is the best next practical diagnosis target.",
+    "The next practical case should diagnose Acquire action state without executing Acquire, Preview Posting, Post, setup change or field edits."
+  ],
+  "notProved": [
+    "Fixed Asset/Anlage selectable in Purchase Invoice Lines",
+    "safe FA G/L Journal amount and balancing account value entry",
+    "Acquire action cause",
+    "acquisition wizard",
+    "Preview Posting",
+    "Post",
+    "FA Ledger Entry",
+    "German final fixed-assets proof"
+  ],
+  "changedFiles": [
+    ".agent/state/current.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/cases/fixedassets-125-fa-acquisition-route-audit-after-personalize.json",
+    ".agent/state/cases/fixedassets-126-fa-cnc-01-acquire-action-cause-diagnosis-readonly.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/model_usage_log.jsonl",
+    "playwright/projects/fibu-book5/CURRENT-STATE.md",
+    "playwright/projects/fibu-book5/LAB-FIT-STATUS.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-125/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-125/FIXEDASSETS-125-acquisition-route-audit.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-125/FIXEDASSETS-125-result.json"
+  ],
+  "statePatch": {
+    "current": {
+      "updatedAt": "2026-06-20T10:20:00.000Z",
+      "activeCase": "FIXEDASSETS-126-FA-CNC-01-ACQUIRE-ACTION-CAUSE-DIAGNOSIS-READONLY",
+      "active_case_file": ".agent/state/cases/fixedassets-126-fa-cnc-01-acquire-action-cause-diagnosis-readonly.json",
+      "lastReferenceCase": "FIXEDASSETS-125-FA-ACQUISITION-ROUTE-AUDIT-AFTER-PERSONALIZE",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-125-fa-acquisition-route-audit-after-personalize.json",
+      "requiresStrongModel": false,
+      "nextStep": "FIXEDASSETS-126: run a guarded read-only/diagnostic Playwright case on FA-CNC-01 Fixed Asset Card to determine why Acquire is visible but disabled. Do not execute Acquire, edit fields, preview, post, setup change, company switch or use API."
+    },
+    "activeCase": {
+      "status": "completed",
+      "decision": "Select Acquire action cause diagnosis as next practical route; keep Purchase Invoice line Type and FA G/L Journal value entry locked."
+    },
+    "coverage": {
+      "schemaVersion": 1,
+      "purpose": "Kompakter Coverage-Index fuer schnelle Agentenlaeufe.",
+      "areas": {
+        "fixedassets": {
+          "chapter": "Kapitel 21",
+          "status": "in-progress",
+          "currentBlock": "acquire-action-cause-diagnosis-readonly",
+          "latestPracticalCase": "FIXEDASSETS-123",
+          "latestDecisionCase": "FIXEDASSETS-125",
+          "nextCase": "FIXEDASSETS-126-FA-CNC-01-ACQUIRE-ACTION-CAUSE-DIAGNOSIS-READONLY",
+          "bookScreenshots": {
+            "setupProofs": "available-labor",
+            "purchaseInvoicePreflight": "available-labor",
+            "validFixedAssetLine": "blocked-personalize-opened-type-context-visible-but-fixed-asset-option-unproved",
+            "acquisitionPostingTrace": "open-after-acquire-cause-diagnosis-and-new-route-gate",
+            "depreciationPostingTrace": "open",
+            "acquisitionWizardPreflight": "blocked-acquire-visible-but-disabled-diagnosis-next"
+          },
+          "finalGermanProof": "open"
+        }
+      },
+      "hardExclusions": {
+        "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
+      }
+    }
+  },
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-125/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-125/FIXEDASSETS-125-acquisition-route-audit.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-125/FIXEDASSETS-125-result.json"
+  ],
+  "warnings": [
+    "FA-126 must not execute Acquire; it is only a cause diagnosis.",
+    "Purchase Invoice line Type remains blocked and must not be used for target values.",
+    "FA G/L Journal value entry remains locked until a safer control or cleanup strategy exists."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "reason": "Local route audit completed. Acquire cause diagnosis has the best progress/risk ratio because it targets a visible BC action without editing values or creating a posting.",
+  "validationCommands": [
+    "npm run agent:preflight",
+    "npm run agent:dry-run",
+    "npm run agent:run-plan",
+    "npm run agent:subagent-plan",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-125/FIXEDASSETS-125-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-125/FIXEDASSETS-125-result.json",
+    "npm run check:encoding",
+    "git diff --check"
+  ]
+}

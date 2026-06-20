@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-124-PURCHASE-INVOICE-LINE-TYPE-PERSONALIZE-RESULT-REVIEW",
+  "runId": "FIXEDASSETS-125-FA-ACQUISITION-ROUTE-AUDIT-AFTER-PERSONALIZE",
   "date": "2026-06-20",
-  "workType": "fixed-asset-acquisition-route-local-decision",
+  "workType": "fixed-asset-acquisition-route-audit",
   "branch": "codex/token-efficient-autopilot-state",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
@@ -14,24 +14,24 @@
   "apiShortcut": false,
   "bookChanged": false,
   "resultStatus": "observed",
-  "summary": "FA-124 reviewed FA-121/FA-123 locally. FA-123 remains useful technical Personalize evidence, but not proof that Fixed Asset/Anlage is selectable as Purchase Invoice line Type. Blind Purchase Invoice Type dropdown/Personalize retries are stopped for now; FA-125 will audit Purchase Invoice, FA G/L Journal and Acquire evidence before another BC run.",
+  "summary": "FA-125 reviewed the three acquisition routes locally. Purchase Invoice line Type remains blocked after repeated diagnostics, FA G/L Journal value entry remains unsafe, and Acquire is visible but disabled with unproven cause. The next practical case is FA-126: guarded read-only Acquire action cause diagnosis on FA-CNC-01.",
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/fixedassets-124/README.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-124/FIXEDASSETS-124-route-decision.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-124/FIXEDASSETS-124-result.json"
+    "playwright/projects/fibu-book5/evidence/fixedassets-125/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-125/FIXEDASSETS-125-acquisition-route-audit.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-125/FIXEDASSETS-125-result.json"
   ],
   "changedFiles": [
     ".agent/state/current.json",
     ".agent/state/coverage_state.json",
-    ".agent/state/cases/fixedassets-124-purchase-invoice-line-type-personalize-result-review.json",
     ".agent/state/cases/fixedassets-125-fa-acquisition-route-audit-after-personalize.json",
+    ".agent/state/cases/fixedassets-126-fa-cnc-01-acquire-action-cause-diagnosis-readonly.json",
     ".agent/state/last_run_summary.json",
     ".agent/state/model_usage_log.jsonl",
     "playwright/projects/fibu-book5/CURRENT-STATE.md",
     "playwright/projects/fibu-book5/LAB-FIT-STATUS.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-124/README.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-124/FIXEDASSETS-124-route-decision.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-124/FIXEDASSETS-124-result.json"
+    "playwright/projects/fibu-book5/evidence/fixedassets-125/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-125/FIXEDASSETS-125-acquisition-route-audit.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-125/FIXEDASSETS-125-result.json"
   ],
   "validationCommands": [
     "JSON parse for changed state/evidence files",
@@ -39,10 +39,10 @@
     "npm run agent:dry-run",
     "npm run agent:run-plan",
     "npm run agent:subagent-plan",
-    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-124/FIXEDASSETS-124-result.json",
-    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-124/FIXEDASSETS-124-result.json",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-125/FIXEDASSETS-125-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-125/FIXEDASSETS-125-result.json",
     "npm run check:encoding",
     "git diff --check"
   ],
-  "nextStep": "Run FIXEDASSETS-125 local acquisition-route audit before any further fixed-asset acquisition UI run."
+  "nextStep": "Run FIXEDASSETS-126 guarded read-only Acquire action cause diagnosis on FA-CNC-01."
 }
