@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixed-asset-posting-group-affordance-result-review",
+  "caseId": "FIXEDASSETS-148-FA-CNC-01-POSTING-GROUP-AFFORDANCE-RESULT-REVIEW",
+  "source": "local-evidence-review",
+  "resultStatus": "reviewed-unlock-guarded-assignment-fit",
+  "runPlanId": "FIXEDASSETS-148-FA-CNC-01-POSTING-GROUP-AFFORDANCE-RESULT-REVIEW-PLAN",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "targetAsset": "FA-CNC-01",
+  "reviewedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-147/FIXEDASSETS-147-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-147/020-editmode-affordance.json",
+    "playwright/projects/fibu-book5/img/fixedassets-147-030-fa-cnc-01-posting-group-editmode-affordance.png",
+    "playwright/projects/fibu-book5/BC-PLAYWRIGHT-PATTERNS.md"
+  ],
+  "proved": [
+    "FA-147 is accepted as no-save affordance evidence for the Posting Group field.",
+    "FA-CNC-01 stayed in MCP_1_20260210 / RM-DEMO.",
+    "Posting Group before and after FA-147 was EQUIPMENT.",
+    "A field-local button with title/aria-label for selecting a Posting Group value is visible.",
+    "No MACHINES assignment, acquisition, Preview Posting, posting, setup change, draft, company switch or API shortcut occurred in FA-147."
+  ],
+  "notProved": [
+    "Posting Group MACHINES is not assigned to FA-CNC-01.",
+    "The MACHINES option has not yet been selected through this field-local button.",
+    "No fixed-asset acquisition readiness is proven.",
+    "No German fixed-assets final proof is produced."
+  ],
+  "decision": {
+    "unlockGuardedAssignmentFit": true,
+    "repeatOldRoute": false,
+    "allowedMechanism": "field-local select-value button for Posting Group only",
+    "rejectedMechanisms": [
+      "Alt+ArrowDown",
+      "right-edge value click",
+      "typed MACHINES into Posting Group",
+      "Related Depreciation Book Card navigation"
+    ],
+    "nextCase": "FIXEDASSETS-149-FA-CNC-01-POSTING-GROUP-FIELDLOCAL-ASSIGNMENT-FIT",
+    "nextCaseReason": "FA-147 proved a field-local selection affordance that is different from the rejected Related-Card route."
+  },
+  "changedFiles": [
+    ".agent/state/current.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/model_usage_log.jsonl",
+    ".agent/state/cases/fixedassets-148-fa-cnc-01-posting-group-affordance-result-review.json",
+    ".agent/state/cases/fixedassets-149-fa-cnc-01-posting-group-fieldlocal-assignment-fit.json",
+    "playwright/projects/fibu-book5/CURRENT-STATE.md",
+    "playwright/projects/fibu-book5/LAB-FIT-STATUS.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-148/"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-148/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-148/FIXEDASSETS-148-review.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-148/FIXEDASSETS-148-result.json"
+  ],
+  "warnings": [
+    "FA-148 unlocks only a later guarded assignment attempt; it does not assign MACHINES.",
+    "The next run must not click Acquire, Preview Posting, Post or any document process."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "flags": {
+    "noBcRun": true,
+    "noPlaywrightRun": true,
+    "noBookChange": true,
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noNewDraft": true,
+    "noMachinerySelection": true
+  },
+  "statePatch": {
+    "current": {
+      "updatedAt": "2026-06-21T01:35:00.000Z",
+      "activeCase": "FIXEDASSETS-149-FA-CNC-01-POSTING-GROUP-FIELDLOCAL-ASSIGNMENT-FIT",
+      "active_case_file": ".agent/state/cases/fixedassets-149-fa-cnc-01-posting-group-fieldlocal-assignment-fit.json",
+      "lastReferenceCase": "FIXEDASSETS-148-FA-CNC-01-POSTING-GROUP-AFFORDANCE-RESULT-REVIEW",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-148-fa-cnc-01-posting-group-affordance-result-review.json",
+      "requiresStrongModel": false,
+      "nextStep": "FIXEDASSETS-149: run exactly one guarded UI-first field-local assignment fit from EQUIPMENT to MACHINES; no acquisition, Preview Posting or posting."
+    },
+    "activeCase": {
+      "status": "reviewed-unlock-guarded-assignment-fit",
+      "lastResult": {
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-148/FIXEDASSETS-148-result.json",
+        "summary": "FA-148 accepts FA-147 as field-local Posting Group affordance evidence and unlocks one guarded assignment-fit attempt."
+      },
+      "nextSafeAction": "FIXEDASSETS-149: guarded field-local Posting Group assignment fit."
+    }
+  },
+  "summary": "FA-148 accepts FA-147 as field-local Posting Group affordance evidence and unlocks one guarded assignment-fit attempt. MACHINES is still not assigned.",
+  "bookImpact": "Kapitel 21 can later explain the difference between affordance proof and saved setup fit; no book final claim before FA-149 succeeds.",
+  "nextStep": "FIXEDASSETS-149-FA-CNC-01-POSTING-GROUP-FIELDLOCAL-ASSIGNMENT-FIT"
+}
