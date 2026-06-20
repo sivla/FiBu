@@ -1,5 +1,7 @@
 # Klickanleitungs-Abdeckung Buch 5
 
+Update nach `FIXEDASSETS-151-FA-CNC-01-ACQUIRE-READINESS-AFTER-MACHINES-READONLY`: Kapitel 21 hat einen neuen brauchbaren Lab-Screenshot-Kandidaten fuer die Anlagenkarten-Readiness nach dem `MACHINES`-Fit. `fixedassets-151-020-fa-cnc-01-acquire-readiness-after-machines.png` zeigt `FA-CNC-01`, `Posting Group = MACHINES`, `Book Value = 0,00`, AfA-Felder und `Acquire` sichtbar, aber deaktiviert. Das Bild eignet sich fuer die Erklaerung "Setup-Fit ist nicht gleich Anlagenzugang"; es ist kein Anschaffungs-, Preview-, Posting- oder deutscher Finalnachweis.
+
 Update nach `SCOPE-001-SHOPIFY-HARD-LOCK-REAFFIRMATION`: Shopify/Online Store ist kein Klickanleitungsziel fuer Buch 5. Es werden keine Shopify-Seiten, Connector-Einstellungen, Importpfade, Produkt-/Auftragsmappings oder Shopify-Debuggingpfade bebildert. Kapitel 17 bleibt nur als Business-Central-Standardthema `Dropshipping/Sonderverkauf` moeglich, falls spaeter ein eigenes Gate dafuer freigegeben wird; der aktuelle naechste praktische Schritt bleibt `FIXEDASSETS-065`.
 
 Update nach `BOOK-CHAPTER21-FIXEDASSETS-CLEANUP`: Kapitel 21 ist jetzt deutlich leaner und liest sich als Klickanleitung statt als Laufarchiv. Die vorhandenen Fixed-Assets-Laborscreenshots bleiben abgedeckt, aber die Wiederholungsblaetter wurden aus der Kapitelmitte entfernt. Das verbessert die Lernfuehrung fuer `HGB`, `MACHINES`, `FA-CNC-01`, `K30000`, Purchase-Invoice-Preflight und den rejected line-type path, ohne einen neuen BC-Lauf zu behaupten.

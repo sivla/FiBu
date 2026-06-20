@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-152-FA-CNC-01-ACQUIRE-READINESS-RESULT-REVIEW",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "local-evidence-review",
+  "taskClass": "judge_work",
+  "requiresUsageLog": true,
+  "requiresStrongModel": true,
+  "goal": "Review FA-151 read-only evidence and decide why Acquire remains disabled after Posting Group MACHINES is visible. Do not run BC or Playwright in this review case.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-149/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-150/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-151/"
+  ],
+  "allowedActions": [
+    "read-local-evidence",
+    "review-screenshot-metadata",
+    "review-playwright-result",
+    "decide-next-safe-fixed-asset-acquire-diagnosis",
+    "update-state",
+    "write-evidence",
+    "document-next-safe-action"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "run-playwright",
+    "open-business-central",
+    "company-switch",
+    "api-shortcut",
+    "book-edit",
+    "click-acquire",
+    "execute-acquire",
+    "enter-K30000-in-purchase-invoice",
+    "enter-FA-CNC-01-in-document",
+    "enter-amount",
+    "new-draft",
+    "finish-wizard",
+    "click-ok",
+    "create-journal-lines",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "delete-record",
+    "delete-non-test-data"
+  ],
+  "safetyGates": [
+    "No Business Central run in FA-152.",
+    "No Playwright run in FA-152.",
+    "Do not click Acquire or unlock acquisition until FA-151 evidence is reviewed.",
+    "Do not claim acquisition readiness only because Posting Group MACHINES is visible.",
+    "Treat disabled Acquire as a blocker requiring diagnosis or alternative route decision."
+  ],
+  "acceptanceCriteria": [
+    "FA-151 evidence is classified as observed read-only readiness, not acquisition proof.",
+    "MACHINES control-value evidence is accepted or rejected explicitly.",
+    "Disabled Acquire is explained as the next blocker.",
+    "A single next safe case is selected."
+  ],
+  "nextSafeAction": "Create local FA-152 review evidence and choose either a disabled-Acquire cause diagnosis or a different gated acquisition route."
+}
