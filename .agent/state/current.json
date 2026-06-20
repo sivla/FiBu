@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-20T17:55:00.000Z",
+  "updatedAt": "2026-06-20T18:30:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "fixedassets",
-  "activeCase": "FIXEDASSETS-134-FA-CNC-01-DEPRECIATION-BOOK-FIELDS-READONLY",
-  "active_case_file": ".agent/state/cases/fixedassets-134-fa-cnc-01-depreciation-book-fields-readonly.json",
-  "lastReferenceCase": "FIXEDASSETS-133-FA-CNC-01-ACQUISITION-READINESS-CAUSE-REVIEW",
-  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-133-fa-cnc-01-acquisition-readiness-cause-review.json",
+  "activeCase": "FIXEDASSETS-135-FA-CNC-01-READINESS-FIELD-GAP-REVIEW",
+  "active_case_file": ".agent/state/cases/fixedassets-135-fa-cnc-01-readiness-field-gap-review.json",
+  "lastReferenceCase": "FIXEDASSETS-134-FA-CNC-01-DEPRECIATION-BOOK-FIELDS-READONLY",
+  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-134-fa-cnc-01-depreciation-book-fields-readonly.json",
   "mode": "token-efficient-autopilot-tooling-bootstrap",
-  "requiresStrongModel": false,
+  "requiresStrongModel": true,
   "requiredPreflightChecks": [
     "agent:preflight",
     "agent:state:validate",
@@ -19,14 +19,10 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "open-business-central",
-    "run-playwright",
-    "verify-instance-company",
-    "open-fixed-asset-card-readonly",
-    "expand-depreciation-book-fields-readonly",
-    "capture-visible-card-fields",
-    "capture-fa-posting-and-acquired-signals",
-    "take-diagnostic-screenshot",
+    "read-existing-evidence",
+    "review-fixed-asset-readiness-gap",
+    "compare-visible-posting-group-with-setup-target",
+    "update-state-plan",
     "write-compact-evidence"
   ],
   "forbiddenActions": [
@@ -58,7 +54,7 @@
     "delete-record",
     "delete-non-test-data"
   ],
-  "nextStep": "FIXEDASSETS-134: open FA-CNC-01 read-only and expand/capture Depreciation Book fields, FA Posting Group and Acquired/readiness signals; no Edit, no Acquire, no values, no Preview, no Post.",
+  "nextStep": "FIXEDASSETS-135: local review of FA-134 field visibility and remaining acquisition-readiness gap before any Acquire, Purchase Invoice or FA G/L Journal route is retried.",
   "subagentPlanPolicy": {
     "default": "optional",
     "execution": "plan-only-no-subagents-spawned",

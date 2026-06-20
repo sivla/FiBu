@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-135-FA-CNC-01-READINESS-FIELD-GAP-REVIEW",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "local-evidence-review",
+  "taskClass": "judge_work",
+  "requiresUsageLog": true,
+  "goal": "Review FA-134 and prior fixed-assets evidence to decide the next safe acquisition-readiness step for FA-CNC-01 without opening Business Central.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-134/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-133/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-132/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-034/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-016/"
+  ],
+  "knownTruth": [
+    "FA-134 shows FA-CNC-01 on the Fixed Asset Card in MCP_1_20260210 / RM-DEMO.",
+    "FA-134 expanded Depreciation Book read-only.",
+    "FA-134 screenshot shows Depreciation Book Code HGB, Posting Group EQUIPMENT, depreciation dates, 8 years and Book Value 0,00.",
+    "FA-134 does not show MACHINES on the card, although prior setup evidence contains MACHINES as a lab posting group fit.",
+    "FA-134 does not show Acquired/readiness and Acquire remains disabled.",
+    "No Edit, Acquire, value entry, Preview Posting, Post, setup change, draft, API shortcut or company switch occurred."
+  ],
+  "allowedActions": [
+    "read-existing-evidence",
+    "review-fixed-asset-readiness-gap",
+    "compare-visible-posting-group-with-setup-target",
+    "write-compact-evidence",
+    "update-state-plan"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright",
+    "company-switch",
+    "api-shortcut",
+    "book-edit",
+    "click-acquire",
+    "execute-acquire",
+    "enter-K30000-in-purchase-invoice",
+    "enter-FA-CNC-01-in-document",
+    "enter-amount",
+    "change-field-value",
+    "save-record",
+    "new-draft",
+    "finish-wizard",
+    "click-ok",
+    "create-journal-lines",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "delete-record",
+    "delete-non-test-data"
+  ],
+  "acceptanceCriteria": [
+    "FA-134 is classified as field-proof, partial proof or rejected with reason.",
+    "The HGB vs EQUIPMENT/MACHINES discrepancy is described without inventing setup truth.",
+    "The next live step is either blocked, a new read-only proof, or an explicit gated setup/acquisition step.",
+    "No BC, Playwright, book, setup, draft, preview or posting action occurs in this review."
+  ],
+  "recommendedSkills": [
+    "evidence-writer"
+  ],
+  "nextSafeAction": "Read FA-134 evidence and decide whether the next step is a field-mapping review, setup correction gate, or a different acquisition route."
+}
