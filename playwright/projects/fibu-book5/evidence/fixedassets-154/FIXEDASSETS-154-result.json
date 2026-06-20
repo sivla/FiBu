@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixed-asset-acquire-editmode-result-review",
+  "caseId": "FIXEDASSETS-154-FA-CNC-01-ACQUIRE-EDITMODE-RESULT-REVIEW",
+  "source": "local-evidence-review",
+  "resultStatus": "reviewed-acquire-held-pivot-fa-gl-journal-readonly",
+  "runPlanId": "FIXEDASSETS-154-FA-CNC-01-ACQUIRE-EDITMODE-RESULT-REVIEW-PLAN",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "assetNo": "FA-CNC-01",
+  "proved": [
+    "FA-153 proves FA-CNC-01 with Posting Group MACHINES and Book Value 0.00 / 0,00.",
+    "FA-153 proves Acquire visible but disabled before and after a safe edit-state probe.",
+    "FA-153 did not click or execute Acquire.",
+    "Microsoft Learn identifies Fixed Asset G/L Journal with FA Posting Type Acquisition Cost as a manual acquisition route.",
+    "FA-154 did not run Business Central or Playwright and did not change book content."
+  ],
+  "notProved": [
+    "No acquisition wizard behavior is proven.",
+    "No Fixed Asset G/L Journal page context is proven in this run.",
+    "No journal line, amount, balancing account or acquisition posting is proven.",
+    "No Preview Posting or posting trace was produced.",
+    "No FA Ledger Entry or G/L acquisition trace is proven.",
+    "No German fixed-assets final proof is produced."
+  ],
+  "changedFiles": [
+    ".agent/state/current.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/model_usage_log.jsonl",
+    ".agent/state/cases/fixedassets-154-fa-cnc-01-acquire-editmode-result-review.json",
+    ".agent/state/cases/fixedassets-155-fa-gl-journal-acquisition-route-readonly-preflight.json",
+    "playwright/projects/fibu-book5/CURRENT-STATE.md",
+    "playwright/projects/fibu-book5/LAB-FIT-STATUS.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-154/"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-153/FIXEDASSETS-153-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-153/README.md",
+    "playwright/projects/fibu-book5/img/fixedassets-153-010-fa-cnc-01-before-editmode.png",
+    "playwright/projects/fibu-book5/img/fixedassets-153-020-fa-cnc-01-after-editmode.png",
+    "playwright/projects/fibu-book5/evidence/fixedassets-154/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-154/FIXEDASSETS-154-route-review.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-154/FIXEDASSETS-154-result.json",
+    "https://learn.microsoft.com/en-us/dynamics365/business-central/fa-how-acquire"
+  ],
+  "warnings": [
+    "CRONUS-USA laboratory evidence only.",
+    "Acquire is held as disabled for FA-CNC-01 in the current card route.",
+    "Fixed Asset G/L Journal is only selected as the next read-only route preflight, not as a posting approval."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "flags": {
+    "noBcRun": true,
+    "noPlaywrightRun": true,
+    "noBookChange": true,
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noNewDraft": true,
+    "noAcquireClick": true,
+    "noAcquireExecution": true,
+    "noJournalLine": true
+  },
+  "statePatch": {
+    "current": {
+      "updatedAt": "2026-06-20T21:00:00.000Z",
+      "activeCase": "FIXEDASSETS-155-FA-GL-JOURNAL-ACQUISITION-ROUTE-READONLY-PREFLIGHT",
+      "active_case_file": ".agent/state/cases/fixedassets-155-fa-gl-journal-acquisition-route-readonly-preflight.json",
+      "lastReferenceCase": "FIXEDASSETS-154-FA-CNC-01-ACQUIRE-EDITMODE-RESULT-REVIEW",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-154-fa-cnc-01-acquire-editmode-result-review.json",
+      "requiresStrongModel": false,
+      "nextStep": "FIXEDASSETS-155: run one read-only Fixed Asset G/L Journal acquisition route preflight; do not enter values or post."
+    },
+    "activeCase": {
+      "status": "reviewed-acquire-held-pivot-fa-gl-journal-readonly",
+      "lastResult": {
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-154/FIXEDASSETS-154-result.json",
+        "summary": "FA-154 holds Acquire as disabled after FA-153 and selects Fixed Asset G/L Journal as the next read-only route preflight."
+      },
+      "nextSafeAction": "FIXEDASSETS-155: read-only Fixed Asset G/L Journal route preflight."
+    }
+  },
+  "summary": "FA-154 holds Acquire as disabled after FA-153 and selects Fixed Asset G/L Journal as the next read-only route preflight.",
+  "bookImpact": "Kapitel 21 kann den deaktivierten Acquire-Status als Lernstop erklaeren und danach die Journalroute als getrennten, spaeter zu belegenden Anschaffungsweg einfuehren.",
+  "nextStep": "FIXEDASSETS-155-FA-GL-JOURNAL-ACQUISITION-ROUTE-READONLY-PREFLIGHT"
+}

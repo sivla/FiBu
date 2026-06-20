@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-155-FA-GL-JOURNAL-ACQUISITION-ROUTE-READONLY-PREFLIGHT",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "playwright-readonly-route-preflight",
+  "taskClass": "wizard_work",
+  "requiresUsageLog": false,
+  "goal": "Open the Fixed Asset G/L Journal route read-only and inspect whether the page, journal line structure and acquisition-relevant fields can be safely documented for a later guarded acquisition case. Do not enter amount, balancing account, FA-CNC-01 or post.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-153/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-154/",
+    "https://learn.microsoft.com/en-us/dynamics365/business-central/fa-how-acquire"
+  ],
+  "allowedActions": [
+    "open-business-central",
+    "run-playwright",
+    "open-fixed-asset-gl-journal",
+    "verify-instance-company",
+    "read-page-context",
+    "read-visible-fields",
+    "inspect-actions-readonly",
+    "capture-screenshot",
+    "write-evidence",
+    "document-next-safe-action"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "company-switch",
+    "api-shortcut",
+    "book-edit",
+    "click-acquire",
+    "execute-acquire",
+    "enter-K30000-in-purchase-invoice",
+    "enter-FA-CNC-01-in-document",
+    "enter-FA-CNC-01-in-journal",
+    "enter-amount",
+    "enter-balancing-account",
+    "new-draft",
+    "finish-wizard",
+    "click-ok",
+    "create-journal-lines",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "delete-record",
+    "delete-non-test-data"
+  ],
+  "safetyGates": [
+    "Abort if URL does not contain MCP_1_20260210 and company=RM-DEMO.",
+    "Open only Fixed Asset G/L Journal or a clearly equivalent fixed-assets journal page.",
+    "Read visible page, template/batch, lines and action context only.",
+    "Do not enter FA-CNC-01, K30000, amount, balancing account or FA Posting Type.",
+    "Do not create, save, preview, post or confirm dialogs.",
+    "If the page opens with existing lines, capture read-only context and stop before editing."
+  ],
+  "acceptanceCriteria": [
+    "Instance and company are verified.",
+    "The journal page or blocker is documented read-only.",
+    "Visible fields/actions relevant to acquisition route are listed.",
+    "No journal line, amount, account, preview, posting, draft, setup change or value entry occurred."
+  ],
+  "nextSafeAction": "Run exactly one read-only Fixed Asset G/L Journal route preflight; no value entry and no posting."
+}
