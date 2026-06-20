@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "FIXEDASSETS-162-FA-GL-JOURNAL-BALACCOUNT-TYPE-DECISION",
+  "source": "local-evidence-review",
+  "resultStatus": "observed",
+  "runPlanId": "FIXEDASSETS-162-LOCAL-DECISION",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "proved": [
+    "FA-161 is a valid stop before value entry because visible Bal. Account Type was G/L Account while K30000 is a vendor-context target.",
+    "The blocker is classified as journal-route-mismatch plus target-data-mismatch, not only a Playwright extraction limitation.",
+    "K30000 must not be retried as Bal. Account No. while Bal. Account Type remains G/L Account."
+  ],
+  "notProved": [
+    "No valid G/L or Bank balancing account target for FA G/L Journal has been selected.",
+    "No Amount 68000 was entered or proved in the journal line.",
+    "No Preview Posting was opened.",
+    "No posting or fixed asset acquisition occurred.",
+    "No German final fixed asset evidence exists."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-162/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-162/FIXEDASSETS-162-balaccount-type-decision.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-162/FIXEDASSETS-162-result.json",
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-162-fa-gl-journal-balaccount-type-decision.json",
+    ".agent/state/cases/fixedassets-163-fa-gl-journal-gl-balaccount-readonly.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/model_usage_log.jsonl",
+    "playwright/projects/fibu-book5/CURRENT-STATE.md",
+    "playwright/projects/fibu-book5/LAB-FIT-STATUS.md",
+    "playwright/projects/fibu-book5/BOOK-CLICK-GUIDE-COVERAGE.md",
+    "playwright/projects/fibu-book5/WORKAROUNDS-AND-ERRORS.md"
+  ],
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-163-FA-GL-JOURNAL-GL-BALACCOUNT-READONLY",
+      "active_case_file": ".agent/state/cases/fixedassets-163-fa-gl-journal-gl-balaccount-readonly.json",
+      "lastReferenceCase": "FIXEDASSETS-162-FA-GL-JOURNAL-BALACCOUNT-TYPE-DECISION",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-162-fa-gl-journal-balaccount-type-decision.json",
+      "requiresStrongModel": false,
+      "nextStep": "FIXEDASSETS-163: read-only determine a defensible G/L or Bank balancing-account target for the FA G/L Journal route before any value entry retry."
+    },
+    "lastRunSummary": {
+      "runId": "FIXEDASSETS-162-FA-GL-JOURNAL-BALACCOUNT-TYPE-DECISION",
+      "bcRun": false,
+      "playwrightRun": false,
+      "posted": false,
+      "previewPosting": false,
+      "setupChanged": false,
+      "bookChanged": false,
+      "summary": "FA-162 decided locally that K30000 is not a valid next Bal. Account No. retry while the FA G/L Journal line shows Bal. Account Type = G/L Account."
+    }
+  },
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-162/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-162/FIXEDASSETS-162-balaccount-type-decision.md"
+  ],
+  "warnings": [
+    "This is a local decision based on existing evidence, not a fresh BC run.",
+    "Do not treat it as a G/L account selection or posting readiness proof."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "reason": "The current evidence is sufficient to prevent a wrong K30000 write attempt and to select a safer read-only target-account readiness case."
+}

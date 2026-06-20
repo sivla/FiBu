@@ -3,7 +3,7 @@
   "caseId": "FIXEDASSETS-162-FA-GL-JOURNAL-BALACCOUNT-TYPE-DECISION",
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "status": "planned",
+  "status": "reviewed-journal-route-mismatch",
   "workType": "local-result-review",
   "taskClass": "judge_work",
   "requiresUsageLog": true,
@@ -52,5 +52,14 @@
     "Next route is either guarded G/L balancing account preflight, vendor purchase-invoice route, or blocked pending source confirmation.",
     "Preview Posting and Post remain locked unless a later case explicitly unlocks them."
   ],
-  "nextSafeAction": "Review FA-161 and earlier journal evidence locally; do not open BC, enter values, preview or post."
+  "nextSafeAction": "Run FIXEDASSETS-163 read-only target-account readiness; do not enter values, Preview Posting or Post.",
+  "lastResult": {
+    "status": "observed-local-decision",
+    "classification": [
+      "journal-route-mismatch",
+      "target-data-mismatch"
+    ],
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-162/FIXEDASSETS-162-result.json",
+    "summary": "K30000 remains a vendor-context target and must not be retried as Bal. Account No. while the visible FA G/L Journal line shows Bal. Account Type = G/L Account. Next step is read-only G/L/Bank target-account readiness."
+  }
 }

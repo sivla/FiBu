@@ -4,13 +4,13 @@
 
 | Feld | Wert |
 |---|---|
-| Status | blockiert vor Werteingabe / kein Posting |
+| Status | blockiert vor Werteingabe / lokal entschieden in FA-162 / kein Posting |
 | Testfall | `FIXEDASSETS-161-FA-GL-JOURNAL-GUARDED-VALUE-PREFLIGHT` |
 | Situation | Nach FA-159/FA-160 durfte ein eng gegateter Werte-Preflight fuer `Amount = 68.000` und `Bal. Account No. = K30000` vorbereitet werden. |
 | Symptom | Der Lauf stoppte vor Eingabe: Die sichtbare Zeile zeigt `Bal. Account Type = G/L Account`, aber `K30000` ist im Projektkontext ein Kreditor-/Vendor-Code. |
 | Sichtbarer Beleg | `fixedassets-161-010-fa-gl-journal-target-consistency-blocker.png` zeigt `Amount = 0,00`, `Bal. Account Type = G/L Account` und leere `Bal. Account No.`; `FIXEDASSETS-161-result.json` dokumentiert den Stop-Grund. |
 | Ursache | In BC-Journalzeilen bestimmt der Gegenkonto-Typ, welche Nummern fachlich und technisch gueltig sind. Ein Kreditorcode darf nicht blind in eine Zeile mit Gegenkonto-Typ `G/L Account` geschrieben werden. |
-| Loesung oder Laborgrenze | Keine Werteingabe. FA-162 muss lokal entscheiden, ob fuer die FA-G/L-Journalroute ein G/L-/Bank-Gegenkonto statt `K30000` genutzt wird oder ob der Kreditorfall zur Einkaufsrechnungsroute gehoert. |
+| Loesung oder Laborgrenze | Keine Werteingabe. FA-162 entscheidet: `K30000` gehoert nicht als naechster Schreibwert in eine Zeile mit `Bal. Account Type = G/L Account`. Fuer die Journalroute muss zuerst read-only ein gueltiges G/L-/Bank-Gegenkonto geklaert werden; andernfalls bleibt der Kreditorfall bei der Einkaufsrechnungsroute. |
 | Buchwirkung | Kapitel 21 sollte erklaeren: Nicht nur Betrag und Gegenkonto-Spalte sichtbar machen, sondern auch Gegenkonto-Typ und Gegenkonto-Code fachlich abgleichen. |
 
 ## WK-BC-FA-113 FA-G/L-Journal-Zellfokus beweist keine sichere Wert-Eingabe

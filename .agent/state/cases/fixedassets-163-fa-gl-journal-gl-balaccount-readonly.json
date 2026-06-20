@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-163-FA-GL-JOURNAL-GL-BALACCOUNT-READONLY",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "readonly-target-account-readiness",
+  "taskClass": "wizard_work",
+  "goal": "Read-only determine a defensible G/L or Bank balancing-account target for the FA G/L Journal route before any value-entry retry.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-161/FIXEDASSETS-161-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-162/FIXEDASSETS-162-result.json"
+  ],
+  "allowedActions": [
+    "open-business-central",
+    "run-playwright",
+    "read-existing-fa-gl-journal-line",
+    "read-gl-accounts-or-bank-accounts",
+    "read-fa-posting-setup-if-visible",
+    "capture-readonly-evidence",
+    "write-result-json",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "company-switch",
+    "api-shortcut",
+    "book-edit",
+    "enter-amount",
+    "enter-balancing-account",
+    "create-journal-lines",
+    "delete-record",
+    "cleanup",
+    "preview-posting",
+    "post",
+    "setup-change",
+    "click-ok-in-posting-or-preview-dialog"
+  ],
+  "targetQuestion": {
+    "journalRoute": "Fixed Asset G/L Journals",
+    "currentVisibleBalAccountType": "G/L Account",
+    "rejectedBalAccountNo": "K30000",
+    "decisionNeeded": "Which G/L or Bank balancing account is defensible for a future manual FA acquisition journal route?"
+  },
+  "safetyGates": [
+    "Instance URL must contain MCP_1_20260210.",
+    "Company URL or shell context must prove RM-DEMO.",
+    "Do not enter Amount.",
+    "Do not enter Bal. Account No.",
+    "Do not create, edit, delete or cleanup journal lines.",
+    "Do not open Preview Posting.",
+    "Do not post.",
+    "If only ambiguous or unsafe account candidates are visible, write blocked evidence and stop."
+  ],
+  "acceptanceCriteria": [
+    "Evidence states whether a plausible G/L or Bank balancing-account candidate was visible.",
+    "Evidence does not claim that the candidate is final posting setup unless source and screenshot prove it.",
+    "Result JSON states no value entry, no setup change, no preview and no posting.",
+    "Next action is either a guarded value-preflight with an explicit account target or a route back to Purchase Invoice."
+  ],
+  "nextSafeAction": "Run read-only FA G/L Journal target-account readiness; no value entry, no Preview Posting, no Post."
+}
