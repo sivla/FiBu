@@ -1,0 +1,148 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-fa-balaccount-setup-decision-result",
+  "caseId": "FIXEDASSETS-165-FA-BALACCOUNT-SETUP-DECISION",
+  "source": "local-evidence-review",
+  "resultStatus": "decided",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "reasoningEffort": "low",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "proved": [
+    "FA-164 proved FA Posting Group MACHINES and the Acquisition Cost Bal. Acc. caption.",
+    "FA-164 did not prove a concrete Acquisition Cost Bal. Acc. value.",
+    "Visible account codes 12210 and 82000 belong to other setup fields and are not a proven balancing-account target.",
+    "A separate read-only candidate-account case is required before any setup-fit or value-entry case."
+  ],
+  "notProved": [
+    "No concrete G/L balancing account for acquisition cost.",
+    "No setup-fit target value.",
+    "No FA G/L Journal value-entry readiness.",
+    "No Preview Posting result.",
+    "No posting result.",
+    "No German final proof."
+  ],
+  "decision": {
+    "journalValueEntryUnlocked": false,
+    "setupFitUnlocked": false,
+    "nextCase": "FIXEDASSETS-166-FA-BALACCOUNT-CANDIDATE-READONLY",
+    "nextCaseReason": "A G/L account candidate must be read-only proven and explained before changing Acquisition Cost Bal. Acc."
+  },
+  "sources": [
+    {
+      "type": "microsoft-learn",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/business-central/fa-how-acquire",
+      "relevance": "Manual fixed asset acquisition can use Fixed Asset G/L Journals with FA Posting Type = Acquisition Cost."
+    },
+    {
+      "type": "microsoft-learn",
+      "url": "https://learn.microsoft.com/en-au/dynamics365/business-central/fa-how-setup-general",
+      "relevance": "FA Posting Groups define G/L accounts for grouped fixed asset postings."
+    },
+    {
+      "type": "microsoft-learn",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/business-central/fa-how-revalue",
+      "relevance": "Insert FA Bal. Account behavior depends on matching balancing-account fields in the FA Posting Group Card."
+    }
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-165/",
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-165-fa-balaccount-setup-decision.json",
+    ".agent/state/cases/fixedassets-166-fa-balaccount-candidate-readonly.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/model_usage_log.jsonl",
+    "playwright/projects/fibu-book5/CURRENT-STATE.md",
+    "playwright/projects/fibu-book5/LAB-FIT-STATUS.md",
+    "playwright/projects/fibu-book5/BOOK-CLICK-GUIDE-COVERAGE.md",
+    "playwright/projects/fibu-book5/WORKAROUNDS-AND-ERRORS.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-163/FIXEDASSETS-163-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-164/FIXEDASSETS-164-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-165/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-165/FIXEDASSETS-165-decision.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-165/FIXEDASSETS-165-result.json"
+  ],
+  "warnings": [
+    "No arbitrary account may be set.",
+    "No visible account may be reused unless it is proven as the exact target field value or selected through a separate setup-fit case.",
+    "Do not enter Amount or Bal. Account No. in FA G/L Journals yet."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-166-FA-BALACCOUNT-CANDIDATE-READONLY",
+      "active_case_file": ".agent/state/cases/fixedassets-166-fa-balaccount-candidate-readonly.json",
+      "lastReferenceCase": "FIXEDASSETS-165-FA-BALACCOUNT-SETUP-DECISION",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-165-fa-balaccount-setup-decision.json",
+      "requiresStrongModel": false,
+      "nextStep": "FIXEDASSETS-166: read-only discover a plausible G/L account candidate for Acquisition Cost Bal. Acc.; no setup change, no value entry, no Preview Posting, no Post."
+    },
+    "lastRunSummary": {
+      "schemaVersion": 1,
+      "runId": "FIXEDASSETS-165-FA-BALACCOUNT-SETUP-DECISION",
+      "date": "2026-06-20",
+      "workType": "fa-balaccount-setup-decision",
+      "taskClass": "judge_work",
+      "modelClass": "gpt-5.5-low",
+      "branch": "codex/token-efficient-autopilot-state",
+      "instance": "MCP_1_20260210",
+      "company": "RM-DEMO",
+      "bcRun": false,
+      "playwrightRun": false,
+      "posted": false,
+      "previewPosting": false,
+      "setupChanged": false,
+      "companySwitched": false,
+      "apiShortcut": false,
+      "bookChanged": false,
+      "dataChanged": false,
+      "resultStatus": "decided",
+      "summary": "FA-165 decided that blank Acquisition Cost Bal. Acc. keeps FA G/L Journal value entry blocked; next step is read-only G/L account candidate discovery, not setup change.",
+      "nextStep": "Run FIXEDASSETS-166 read-only candidate discovery before any setup-fit case."
+    },
+    "activeCase": {
+      "status": "decided",
+      "lastResult": {
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-165/FIXEDASSETS-165-result.json",
+        "summary": "No arbitrary balancing account. Read-only candidate discovery required before setup fit."
+      },
+      "nextSafeAction": "Run FIXEDASSETS-166 read-only account-candidate discovery."
+    },
+    "coverage": {
+      "areas": {
+        "fixedassets": {
+          "currentBlock": "fa-balaccount-candidate-readonly",
+          "latestDecisionCase": "FIXEDASSETS-165-FA-BALACCOUNT-SETUP-DECISION",
+          "nextCase": "FIXEDASSETS-166-FA-BALACCOUNT-CANDIDATE-READONLY",
+          "bookScreenshots": {
+            "acquisitionPostingTrace": "blocked-until-balancing-account-candidate-readonly-proof"
+          }
+        }
+      },
+      "fixedAssets": {
+        "faCnc01": {
+          "nextAcquisitionRoute": "fa-balaccount-candidate-readonly",
+          "acquisitionUnlocked": false
+        }
+      }
+    }
+  },
+  "flags": {
+    "noBcRun": true,
+    "noPlaywrightRun": true,
+    "noValueEntry": true,
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "nextStep": "FIXEDASSETS-166: read-only discover a plausible G/L account candidate for Acquisition Cost Bal. Acc.; no setup change, no value entry, no Preview Posting, no Post."
+}

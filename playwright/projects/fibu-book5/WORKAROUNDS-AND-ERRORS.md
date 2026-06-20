@@ -13,6 +13,7 @@
 | Warum BC so reagiert | Business Central trennt Konten fuer Anlagenzugang, Abgang, Aufwand und Gegenkonten. Ein Konto darf nur aus dem konkret passenden Feld abgeleitet werden, nicht aus irgendeinem sichtbaren Konto auf derselben Seite. |
 | Loesung oder Laborgrenze | Keine Werteingabe im FA G/L Journal. Naechster Schritt ist ein lokaler Entscheid, ob das leere Feld fachlich so bleiben darf oder ob ein eigener UI-first Setup-Fit mit Vorher/Nachher-Nachweis gebraucht wird. |
 | Buchwirkung | Kapitel 21 kann diesen Fall als wichtigen Anfaengerfehler erklaeren: Sichtbare Konten auf einer Setupseite sind nicht automatisch die richtigen Gegenkonten. Screenshot und Text muessen das konkrete Feld/Wert-Paar zeigen. |
+| Folgeentscheidung | FA-165 entscheidet: kein beliebiges Konto setzen. Zuerst `FIXEDASSETS-166` als read-only G/L-Konto-Kandidatensuche, danach ggf. eigener Setup-Fit. |
 
 ## WK-BC-FA-163 FA Posting Groups ueber Tell-Me nicht belastbar erreicht
 

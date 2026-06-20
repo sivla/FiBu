@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-166-FA-BALACCOUNT-CANDIDATE-READONLY",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "readonly-gl-account-candidate-discovery",
+  "taskClass": "wizard_work",
+  "requiresStrongModel": false,
+  "goal": "Read-only discover and document a plausible G/L account candidate for FA Posting Group MACHINES / Acquisition Cost Bal. Acc. before any setup-fit or FA G/L Journal value entry.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-164/FIXEDASSETS-164-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-165/FIXEDASSETS-165-result.json"
+  ],
+  "allowedActions": [
+    "open-business-central",
+    "run-playwright",
+    "read-fa-posting-group-machines",
+    "read-gl-accounts-or-lookup-candidates",
+    "capture-readonly-evidence",
+    "write-result-json",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "company-switch",
+    "api-shortcut",
+    "book-edit",
+    "enter-amount",
+    "enter-balancing-account",
+    "create-journal-lines",
+    "delete-record",
+    "cleanup",
+    "preview-posting",
+    "post",
+    "setup-change"
+  ],
+  "targetQuestion": {
+    "sourcePage": "G/L Accounts or field-local lookup for Acquisition Cost Bal. Acc.",
+    "targetPostingGroup": "MACHINES",
+    "targetField": "Acquisition Cost Bal. Acc.",
+    "decisionNeeded": "Which existing G/L account, if any, is a plausible acquisition-cost balancing account candidate for the RM-DEMO lab setup?"
+  },
+  "safetyGates": [
+    "Instance URL must contain MCP_1_20260210.",
+    "Company URL or shell context must prove RM-DEMO.",
+    "No field value may be changed.",
+    "No setup value may be saved.",
+    "Do not enter Amount or Bal. Account No. in FA G/L Journals.",
+    "Do not open Preview Posting or Post.",
+    "Screenshot must show the account candidate context and not just an unrelated code."
+  ],
+  "acceptanceCriteria": [
+    "Evidence names any candidate account only if it is visibly in a G/L-account context.",
+    "Evidence explains why the candidate is or is not plausible.",
+    "Evidence does not mark setup fit as complete.",
+    "Result JSON keeps value entry, Preview Posting and Post locked.",
+    "Next action is either a separate setup-fit case or keeping FA G/L Journal acquisition blocked."
+  ],
+  "nextSafeAction": "Run read-only account-candidate discovery; no setup change, no value entry, no Preview Posting, no Post."
+}
