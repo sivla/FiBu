@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-132-FA-CNC-01-ACQUISITION-READINESS-CARD-READONLY",
+  "runId": "FIXEDASSETS-133-FA-CNC-01-ACQUISITION-READINESS-CAUSE-REVIEW",
   "date": "2026-06-20",
-  "workType": "playwright-readonly-diagnosis",
+  "workType": "local-evidence-review",
   "branch": "codex/token-efficient-autopilot-state",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "bcRun": true,
+  "bcRun": false,
   "posted": false,
   "preview": false,
   "setupChanged": false,
@@ -14,42 +14,34 @@
   "apiShortcut": false,
   "bookChanged": false,
   "resultStatus": "observed",
-  "summary": "FA-132 opened FA-CNC-01 read-only on the Fixed Asset Card. The reviewed screenshot shows FA-CNC-01, TANGIBLE, EQUIPMENT, depreciation values, Book Value 0,00 and a greyed/disabled Acquire action. No ready-to-acquire notification was visible. No Acquire click, field change, setup change, Preview Posting, posting, draft, delete, API shortcut or company switch occurred.",
+  "summary": "FA-133 reviewed FA-132 plus prior Acquire evidence. Decision: Acquire remains blocked because FA-132 shows disabled Acquire and no ready-to-acquire notification. Purchase Invoice and FA G/L Journal remain blocked by older UI-control gaps. The next safest step is a read-only FA-CNC-01 card run that expands/captures Depreciation Book, FA Posting Group and Acquired/readiness fields.",
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/fixedassets-132/README.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-132/FIXEDASSETS-132-learning.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-132/FIXEDASSETS-132-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-132/010-card-readiness-text.txt",
-    "playwright/projects/fibu-book5/evidence/fixedassets-132/020-acquire-readiness-diagnostics.json",
-    "playwright/projects/fibu-book5/img/fixedassets-132-030-fa-cnc-01-acquisition-readiness-card.png"
+    "playwright/projects/fibu-book5/evidence/fixedassets-133/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-133/FIXEDASSETS-133-acquisition-readiness-cause-review.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-133/FIXEDASSETS-133-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-132/FIXEDASSETS-132-result.json"
   ],
   "changedFiles": [
     ".agent/state/current.json",
     ".agent/state/coverage_state.json",
-    ".agent/state/cases/fixedassets-132-fa-cnc-01-acquisition-readiness-card-readonly.json",
     ".agent/state/cases/fixedassets-133-fa-cnc-01-acquisition-readiness-cause-review.json",
+    ".agent/state/cases/fixedassets-134-fa-cnc-01-depreciation-book-fields-readonly.json",
     ".agent/state/last_run_summary.json",
-    "package.json",
-    "playwright/projects/fibu-book5/tests/fixedassets-132-fa-cnc-01-acquisition-readiness-card-readonly.spec.ts",
+    ".agent/state/model_usage_log.jsonl",
     "playwright/projects/fibu-book5/CURRENT-STATE.md",
     "playwright/projects/fibu-book5/LAB-FIT-STATUS.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-132/README.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-132/FIXEDASSETS-132-learning.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-132/FIXEDASSETS-132-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-132/010-card-readiness-text.txt",
-    "playwright/projects/fibu-book5/evidence/fixedassets-132/020-acquire-readiness-diagnostics.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-132/fixedassets-132-030-fa-cnc-01-acquisition-readiness-card.screenshot.json",
-    "playwright/projects/fibu-book5/img/fixedassets-132-030-fa-cnc-01-acquisition-readiness-card.png"
+    "playwright/projects/fibu-book5/evidence/fixedassets-133/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-133/FIXEDASSETS-133-acquisition-readiness-cause-review.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-133/FIXEDASSETS-133-result.json"
   ],
   "validationCommands": [
     "npm run agent:preflight",
     "npm run agent:dry-run",
     "npm run agent:run-plan",
-    "npm run fibu:fixedassets:fa-cnc-01-acquisition-readiness",
-    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-132/FIXEDASSETS-132-result.json",
-    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-132/FIXEDASSETS-132-result.json",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-133/FIXEDASSETS-133-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-133/FIXEDASSETS-133-result.json",
     "npm run check:encoding",
     "git diff --check"
   ],
-  "nextStep": "FIXEDASSETS-133: local cause review of FA-CNC-01 acquisition readiness before another live acquisition route or setup change."
+  "nextStep": "FIXEDASSETS-134: guarded read-only Depreciation Book / FA Posting / Acquired field visibility diagnosis for FA-CNC-01."
 }

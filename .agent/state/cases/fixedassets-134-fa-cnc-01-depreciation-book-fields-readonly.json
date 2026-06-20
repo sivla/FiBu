@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-134-FA-CNC-01-DEPRECIATION-BOOK-FIELDS-READONLY",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "playwright-readonly-diagnosis",
+  "taskClass": "wizard_work",
+  "requiresUsageLog": false,
+  "goal": "Open FA-CNC-01 read-only and expand/capture Depreciation Book, FA Posting Group and Acquired/readiness fields without editing or clicking Acquire.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-133/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-132/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-034/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-016/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-014/"
+  ],
+  "knownTruth": [
+    "FA-CNC-01 card is visible in RM-DEMO.",
+    "FA-132 showed Book Value 0,00 and disabled Acquire.",
+    "FA-132 did not show HGB, MACHINES or Acquired/readiness details in the visible screenshot.",
+    "FA-133 selected a read-only Depreciation Book field visibility run as the next safest step."
+  ],
+  "allowedActions": [
+    "open-business-central",
+    "run-playwright",
+    "verify-instance-company",
+    "open-fixed-asset-card-readonly",
+    "expand-depreciation-book-fields-readonly",
+    "capture-visible-card-fields",
+    "capture-fa-posting-and-acquired-signals",
+    "take-diagnostic-screenshot",
+    "write-compact-evidence"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "company-switch",
+    "api-shortcut",
+    "book-edit",
+    "click-acquire",
+    "execute-acquire",
+    "enter-K30000-in-purchase-invoice",
+    "enter-FA-CNC-01-in-document",
+    "enter-amount",
+    "change-field-value",
+    "save-record",
+    "new-draft",
+    "finish-wizard",
+    "click-ok",
+    "create-journal-lines",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "delete-record",
+    "delete-non-test-data"
+  ],
+  "acceptanceCriteria": [
+    "Instance MCP_1_20260210 and company RM-DEMO are confirmed.",
+    "FA-CNC-01 Fixed Asset Card is visible.",
+    "Depreciation Book / More fields area is expanded or its unavailable state is documented.",
+    "Depreciation Book Code, FA Posting Group, Acquired/readiness and Book Value signals are captured if visible.",
+    "No Edit, Acquire, field value entry, Preview Posting, posting, setup, draft, delete, API shortcut or company switch occurs."
+  ],
+  "recommendedSkills": [
+    "evidence-writer"
+  ],
+  "nextSafeAction": "Run a guarded read-only Playwright diagnosis of FA-CNC-01 Depreciation Book field visibility."
+}

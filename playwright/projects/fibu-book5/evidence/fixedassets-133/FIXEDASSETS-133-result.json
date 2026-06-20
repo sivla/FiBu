@@ -1,0 +1,126 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixed-asset-acquisition-readiness-cause-review-result",
+  "caseId": "FIXEDASSETS-133-FA-CNC-01-ACQUISITION-READINESS-CAUSE-REVIEW",
+  "source": "local-evidence-review",
+  "resultStatus": "observed",
+  "runPlanId": "FIXEDASSETS-133-FA-CNC-01-ACQUISITION-READINESS-CAUSE-REVIEW-PLAN",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "decision": {
+    "acquireRoute": "hold-blocked",
+    "reason": "FA-132 shows Acquire visible but disabled and no ready-to-acquire notification. This is not acquisition readiness proof.",
+    "purchaseInvoiceRoute": "still-blocked-until-fixed-asset-line-type-is-proven",
+    "faGlJournalRoute": "still-blocked-until-amount-and-balancing-account-controls-are-proven",
+    "selectedNextRoute": "fixed-asset-card-depreciation-book-fields-readonly",
+    "selectedNextCase": "FIXEDASSETS-134-FA-CNC-01-DEPRECIATION-BOOK-FIELDS-READONLY"
+  },
+  "proved": [
+    "FA-132 proves the FA-CNC-01 Fixed Asset Card is visible in MCP_1_20260210 / RM-DEMO.",
+    "FA-132 screenshot and JSON prove Book Value 0,00 and visible but disabled Acquire.",
+    "FA-132 does not prove a ready-to-acquire notification.",
+    "FA-126, FA-128 and FA-132 consistently keep Acquire as a disabled or non-executable route.",
+    "FA-130 proves Tell-Me search is not a usable Assisted Acquisition page proof in this lab.",
+    "No BC run, Playwright run, setup change, draft, Preview Posting, posting, API shortcut or book edit occurred in FA-133."
+  ],
+  "notProved": [
+    "No acquisition wizard is opened.",
+    "No acquisition value or vendor is entered.",
+    "No Depreciation Book Code / FA Posting Group / Acquired detail is newly proven in FA-133.",
+    "No Preview Posting or posting trace is produced.",
+    "No FA Ledger Entry or G/L acquisition trace is proven.",
+    "No German final fixed-assets proof is proven."
+  ],
+  "changedFiles": [
+    ".agent/state/current.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/cases/fixedassets-133-fa-cnc-01-acquisition-readiness-cause-review.json",
+    ".agent/state/cases/fixedassets-134-fa-cnc-01-depreciation-book-fields-readonly.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/model_usage_log.jsonl",
+    "playwright/projects/fibu-book5/CURRENT-STATE.md",
+    "playwright/projects/fibu-book5/LAB-FIT-STATUS.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-133/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-133/FIXEDASSETS-133-acquisition-readiness-cause-review.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-133/FIXEDASSETS-133-result.json"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-133/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-133/FIXEDASSETS-133-acquisition-readiness-cause-review.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-133/FIXEDASSETS-133-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-132/FIXEDASSETS-132-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-132/fixedassets-132-030-fa-cnc-01-acquisition-readiness-card.screenshot.json"
+  ],
+  "warnings": [
+    "Do not click Acquire from FA-133 evidence.",
+    "Do not treat visible card fields as acquisition posting proof.",
+    "The next live run must stay read-only and only expand/capture field context."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "flags": {
+    "noBookChange": true,
+    "secretsUntouched": true,
+    "noBcRun": true,
+    "noPlaywrightRun": true,
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noNewDraft": true,
+    "noFieldValueChanged": true,
+    "noSaveRecord": true,
+    "noDeleteRecord": true,
+    "noAcquireExecution": true,
+    "noAmountEntry": true,
+    "noTargetVendorEntry": true
+  },
+  "statePatch": {
+    "current": {
+      "updatedAt": "2026-06-20T17:55:00.000Z",
+      "activeCase": "FIXEDASSETS-134-FA-CNC-01-DEPRECIATION-BOOK-FIELDS-READONLY",
+      "active_case_file": ".agent/state/cases/fixedassets-134-fa-cnc-01-depreciation-book-fields-readonly.json",
+      "lastReferenceCase": "FIXEDASSETS-133-FA-CNC-01-ACQUISITION-READINESS-CAUSE-REVIEW",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-133-fa-cnc-01-acquisition-readiness-cause-review.json",
+      "requiresStrongModel": false,
+      "nextStep": "FIXEDASSETS-134: open FA-CNC-01 read-only and expand/capture Depreciation Book fields, FA Posting Group and Acquired/readiness signals; no Edit, no Acquire, no values, no Preview, no Post."
+    },
+    "activeCase": {
+      "status": "completed",
+      "decision": "Hold disabled Acquire and inspect hidden Depreciation Book / FA Posting / Acquired readiness fields read-only next."
+    },
+    "coverage": {
+      "schemaVersion": 1,
+      "purpose": "Kompakter Coverage-Index fuer schnelle Agentenlaeufe.",
+      "areas": {
+        "fixedassets": {
+          "chapter": "Kapitel 21",
+          "status": "in-progress",
+          "currentBlock": "depreciation-book-fields-readonly",
+          "latestPracticalCase": "FIXEDASSETS-132",
+          "latestDecisionCase": "FIXEDASSETS-133",
+          "nextCase": "FIXEDASSETS-134-FA-CNC-01-DEPRECIATION-BOOK-FIELDS-READONLY",
+          "bookScreenshots": {
+            "setupProofs": "available-labor",
+            "purchaseInvoicePreflight": "available-labor",
+            "validFixedAssetLine": "blocked-personalize-opened-type-context-visible-but-fixed-asset-option-unproved",
+            "acquisitionPostingTrace": "blocked-acquisition-readiness-not-proven",
+            "depreciationPostingTrace": "open",
+            "acquisitionWizardPreflight": "blocked-until-depreciation-book-fields-readonly"
+          },
+          "finalGermanProof": "open"
+        }
+      },
+      "hardExclusions": {
+        "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
+      }
+    }
+  },
+  "bookImpact": "Kapitel 21 should show the FA-CNC-01 card as a pre-acquisition checkpoint and explain that disabled Acquire plus Book Value 0,00 means no acquisition posting is proven. The next screenshot should make the hidden Depreciation Book / posting readiness fields clearer for beginners.",
+  "summary": "FA-133 holds Acquire as blocked and selects a read-only Depreciation Book / FA Posting / Acquired field visibility run as the next safest step.",
+  "nextStep": "FIXEDASSETS-134: read-only expansion/capture of FA-CNC-01 Depreciation Book fields."
+}
