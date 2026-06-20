@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-20T09:05:00.000Z",
+  "updatedAt": "2026-06-20T09:45:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "fixedassets",
-  "activeCase": "FIXEDASSETS-124-PURCHASE-INVOICE-LINE-TYPE-PERSONALIZE-RESULT-REVIEW",
-  "active_case_file": ".agent/state/cases/fixedassets-124-purchase-invoice-line-type-personalize-result-review.json",
-  "lastReferenceCase": "FIXEDASSETS-123-PURCHASE-INVOICE-LINE-TYPE-PERSONALIZE-RETRY-NO-SAVE",
-  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-123-purchase-invoice-line-type-personalize-retry-no-save.json",
+  "activeCase": "FIXEDASSETS-125-FA-ACQUISITION-ROUTE-AUDIT-AFTER-PERSONALIZE",
+  "active_case_file": ".agent/state/cases/fixedassets-125-fa-acquisition-route-audit-after-personalize.json",
+  "lastReferenceCase": "FIXEDASSETS-124-PURCHASE-INVOICE-LINE-TYPE-PERSONALIZE-RESULT-REVIEW",
+  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-124-purchase-invoice-line-type-personalize-result-review.json",
   "mode": "token-efficient-autopilot-tooling-bootstrap",
   "requiresStrongModel": true,
   "requiredPreflightChecks": [
@@ -20,9 +20,8 @@
   ],
   "allowedActions": [
     "local-evidence-review",
-    "review-fixedassets-123-result",
-    "compare-personalize-result-with-fa-121",
-    "decide-next-purchase-invoice-line-type-route",
+    "compare-purchase-invoice-fa-gl-journal-acquire-routes",
+    "choose-one-next-fixed-asset-acquisition-route",
     "update-state-only"
   ],
   "forbiddenActions": [
@@ -46,12 +45,9 @@
     "invoice",
     "payment",
     "setup-change",
-    "open-page-inspection",
-    "save-personalization",
-    "click-finish",
     "delete-non-test-data"
   ],
-  "nextStep": "FIXEDASSETS-124: review FA-123 Personalize-only result. Personalisieren opened without the Page Inspection blocker and showed Type/Add-field context, but Fixed Asset/Anlage is still not proven as selectable Type option. Decide whether the next route is Add-field/menu-context refinement, a safer dropdown route, or a different acquisition path; do not run BC before the review.",
+  "nextStep": "FIXEDASSETS-125: audit existing acquisition-route evidence after the Personalize result. Compare Purchase Invoice line Type blockers, FA G/L Journal control blockers and Acquire disabled evidence; choose one next practical fixed-asset acquisition route before any BC run.",
   "subagentPlanPolicy": {
     "default": "optional",
     "execution": "plan-only-no-subagents-spawned",

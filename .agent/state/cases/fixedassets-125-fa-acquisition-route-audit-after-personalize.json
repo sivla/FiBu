@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-125-FA-ACQUISITION-ROUTE-AUDIT-AFTER-PERSONALIZE",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "local-evidence-review",
+  "taskClass": "judge_work",
+  "goal": "Audit the existing fixed-asset acquisition-route evidence after the Purchase Invoice Personalize result and choose one next practical route before another BC run.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-082/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-094/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-106/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-112/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-114/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-115/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-117/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-119/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-121/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-123/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-124/"
+  ],
+  "knownTruth": [
+    "Purchase Invoice line Type remains unproved after repeated UI probes and Personalize diagnosis.",
+    "FA G/L Journal has a visible target-line shell but amount and balancing-account controls remain unsafe for write.",
+    "Acquire remains known as a disabled/diagnostic route, not a proven acquisition action.",
+    "No Preview Posting, Post, setup change or German final proof is unlocked by FA-124."
+  ],
+  "allowedActions": [
+    "local-evidence-review",
+    "compare-purchase-invoice-fa-gl-journal-acquire-routes",
+    "choose-one-next-fixed-asset-acquisition-route",
+    "update-state-only"
+  ],
+  "forbiddenActions": [
+    "open-business-central",
+    "run-playwright",
+    "leave-instance",
+    "company-switch",
+    "api-shortcut",
+    "book-edit",
+    "enter-K30000-in-purchase-invoice",
+    "enter-FA-CNC-01",
+    "enter-amount",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "fake-evidence"
+  ],
+  "acceptanceCriteria": [
+    "Summarize why Purchase Invoice line Type is currently blocked.",
+    "Summarize why FA G/L Journal is currently blocked or usable.",
+    "Summarize why Acquire is currently blocked or usable.",
+    "Choose exactly one next practical case and keep all other acquisition actions locked.",
+    "Do not run BC or Playwright in this local audit."
+  ],
+  "recommendedSkills": [
+    "evidence-writer"
+  ],
+  "requiresUsageLog": true,
+  "nextSafeAction": "Review existing acquisition-route evidence and select one next practical route."
+}
