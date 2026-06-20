@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-168-FA-BALACCOUNT-FIELD-LOOKUP-READONLY",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "readonly-fieldlocal-lookup-proof",
+  "taskClass": "wizard_work",
+  "requiresStrongModel": false,
+  "goal": "Open the FA Posting Group Card for MACHINES read-only and prove the field-local context for Acquisition Cost Bal. Acc. before any setup write.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-164/FIXEDASSETS-164-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-166/FIXEDASSETS-166-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-167/FIXEDASSETS-167-result.json"
+  ],
+  "allowedActions": [
+    "open-business-central",
+    "run-playwright",
+    "verify-instance-and-company",
+    "open-fa-posting-group-card-machines",
+    "inspect-acquisition-cost-bal-account-field-readonly",
+    "open-field-lookup-readonly-if-no-selection-or-save",
+    "compare-existing-fa-posting-group-balancing-account-patterns-readonly",
+    "capture-screenshot",
+    "write-result-json",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "company-switch",
+    "api-shortcut",
+    "book-edit",
+    "select-lookup-value",
+    "enter-acquisition-cost-bal-account",
+    "save-setup-change",
+    "enter-amount",
+    "enter-balancing-account",
+    "create-journal-lines",
+    "delete-record",
+    "cleanup",
+    "preview-posting",
+    "post",
+    "click-ok-on-risk-dialog"
+  ],
+  "target": {
+    "page": "FA Posting Group Card",
+    "postingGroup": "MACHINES",
+    "field": "Acquisition Cost Bal. Acc.",
+    "preferredProof": "field-local lookup or existing FA Posting Group balancing-account pattern"
+  },
+  "safetyGates": [
+    "Abort if URL does not contain MCP_1_20260210.",
+    "Abort if company is not RM-DEMO.",
+    "Abort if target page or MACHINES context is not visible.",
+    "Do not select a lookup value.",
+    "Do not save a setup value.",
+    "Do not enter FA G/L Journal values.",
+    "Do not open Preview Posting or Post.",
+    "If lookup opens an unsafe confirmation dialog, capture evidence and abort."
+  ],
+  "acceptanceCriteria": [
+    "Evidence proves the field context for MACHINES / Acquisition Cost Bal. Acc.",
+    "If a lookup is opened, evidence proves it was read-only and no value was selected.",
+    "If existing patterns are used instead, evidence names the compared FA Posting Group fields and visible values.",
+    "Result explicitly states whether a later setup-fit case remains locked or may be planned.",
+    "No setup, journal value, Preview Posting or Post occurs."
+  ],
+  "nextSafeAction": "Run a read-only Playwright proof for the field-local Acquisition Cost Bal. Acc. context; do not select or save any value."
+}

@@ -1,0 +1,145 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-fa-balaccount-setup-fit-decision-result",
+  "caseId": "FIXEDASSETS-167-FA-BALACCOUNT-SETUP-FIT-DECISION",
+  "source": "local-judge",
+  "resultStatus": "candidate-rejected-needs-fieldlocal-proof",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "proved": [
+    "FA-166 produced visible G/L account candidates from Chart of Accounts.",
+    "14160 and 11400 are visible account candidates only.",
+    "Neither candidate is accepted as a safe Acquisition Cost Bal. Acc. setup value.",
+    "A later setup-fit case must first prove field-local lookup or existing FA Posting Group balancing-account pattern."
+  ],
+  "notProved": [
+    "No Acquisition Cost Bal. Acc. value for MACHINES.",
+    "No setup value selected or saved.",
+    "No FA G/L Journal amount or balancing account entered.",
+    "No Preview Posting.",
+    "No posting.",
+    "No German final proof."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-167/",
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-167-fa-balaccount-setup-fit-decision.json",
+    ".agent/state/cases/fixedassets-168-fa-balaccount-field-lookup-readonly.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/model_usage_log.jsonl",
+    "playwright/projects/fibu-book5/CURRENT-STATE.md",
+    "playwright/projects/fibu-book5/LAB-FIT-STATUS.md",
+    "playwright/projects/fibu-book5/BOOK-CLICK-GUIDE-COVERAGE.md",
+    "playwright/projects/fibu-book5/WORKAROUNDS-AND-ERRORS.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-167/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-167/FIXEDASSETS-167-decision.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-167/FIXEDASSETS-167-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-166/FIXEDASSETS-166-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-166/020-focused-gl-account-candidate-text.txt",
+    "playwright/projects/fibu-book5/img/fixedassets-166-010-gl-account-candidates-readonly.png"
+  ],
+  "candidateDecision": {
+    "targetPostingGroup": "MACHINES",
+    "targetField": "Acquisition Cost Bal. Acc.",
+    "candidateAccounts": [
+      {
+        "code": "14160",
+        "decision": "rejected-for-setup-fit",
+        "reason": "Visible as Advanced Payments for goods and services in inventory/advance-payment context; not proven as field-local fixed-asset acquisition balancing account."
+      },
+      {
+        "code": "11400",
+        "decision": "rejected-for-setup-fit",
+        "reason": "Visible as Advanced Payments for Intangible Fixed Assets; does not fit the MACHINES/equipment target and is not field-local proof."
+      }
+    ],
+    "setupFitUnlocked": false,
+    "valueEntryUnlocked": false,
+    "nextProofNeeded": "field-local Acquisition Cost Bal. Acc. lookup or existing FA Posting Group balancing-account pattern"
+  },
+  "warnings": [
+    "Do not turn Chart of Accounts visibility into a setup-write decision.",
+    "Do not use 14160 or 11400 as Acquisition Cost Bal. Acc. without field-local proof.",
+    "Do not enter FA G/L Journal values before the balancing-account setup is proven."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-168-FA-BALACCOUNT-FIELD-LOOKUP-READONLY",
+      "active_case_file": ".agent/state/cases/fixedassets-168-fa-balaccount-field-lookup-readonly.json",
+      "lastReferenceCase": "FIXEDASSETS-167-FA-BALACCOUNT-SETUP-FIT-DECISION",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-167-fa-balaccount-setup-fit-decision.json",
+      "requiresStrongModel": false,
+      "nextStep": "FIXEDASSETS-168: read-only field-local lookup or existing-pattern proof for MACHINES / Acquisition Cost Bal. Acc.; no selection, no setup save, no value entry, no Preview Posting, no Post."
+    },
+    "lastRunSummary": {
+      "schemaVersion": 1,
+      "runId": "FIXEDASSETS-167-FA-BALACCOUNT-SETUP-FIT-DECISION",
+      "date": "2026-06-21",
+      "workType": "fa-balaccount-setup-fit-decision",
+      "taskClass": "judge_work",
+      "modelClass": "gpt-5.5-low",
+      "branch": "codex/token-efficient-autopilot-state",
+      "instance": "MCP_1_20260210",
+      "company": "RM-DEMO",
+      "bcRun": false,
+      "playwrightRun": false,
+      "posted": false,
+      "previewPosting": false,
+      "setupChanged": false,
+      "companySwitched": false,
+      "apiShortcut": false,
+      "bookChanged": false,
+      "dataChanged": false,
+      "resultStatus": "candidate-rejected-needs-fieldlocal-proof",
+      "summary": "Visible accounts 14160 and 11400 from FA-166 are rejected as safe Acquisition Cost Bal. Acc. setup values because Chart of Accounts visibility is not field-local proof and the account meanings do not fit the MACHINES acquisition-balancing target strongly enough.",
+      "nextStep": "Run FIXEDASSETS-168 read-only field-local lookup or existing FA Posting Group pattern proof before any setup write."
+    },
+    "activeCase": {
+      "status": "decided",
+      "lastResult": {
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-167/FIXEDASSETS-167-result.json",
+        "decision": "candidate-rejected-needs-fieldlocal-proof",
+        "summary": "14160 and 11400 remain candidates only; no setup-fit unlocked."
+      },
+      "nextSafeAction": "Run FIXEDASSETS-168 read-only field-local lookup or existing-pattern proof."
+    },
+    "coverage": {
+      "areas": {
+        "fixedassets": {
+          "currentBlock": "fa-balaccount-field-lookup-readonly",
+          "latestDecisionCase": "FIXEDASSETS-167-FA-BALACCOUNT-SETUP-FIT-DECISION",
+          "nextCase": "FIXEDASSETS-168-FA-BALACCOUNT-FIELD-LOOKUP-READONLY",
+          "bookScreenshots": {
+            "acquisitionPostingTrace": "candidate-gl-account-visible-but-rejected-for-setup-fit"
+          }
+        }
+      },
+      "fixedAssets": {
+        "faCnc01": {
+          "nextAcquisitionRoute": "fa-balaccount-field-lookup-readonly",
+          "acquisitionUnlocked": false
+        }
+      }
+    }
+  },
+  "flags": {
+    "noBcRun": true,
+    "noPlaywrightRun": true,
+    "noValueEntry": true,
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "nextStep": "FIXEDASSETS-168: read-only field-local lookup or existing-pattern proof for MACHINES / Acquisition Cost Bal. Acc.; no selection, no setup save, no value entry, no Preview Posting, no Post."
+}

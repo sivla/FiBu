@@ -1,5 +1,19 @@
 # Workarounds und Fehlerjournal
 
+## WK-BC-FA-167 Sichtbare Kontenplan-Kandidaten sind keine Setup-Freigabe
+
+| Feld | Wert |
+|---|---|
+| Status | entschieden / Setup bleibt gesperrt / feldlokaler Nachweis noetig |
+| Testfall | `FIXEDASSETS-167-FA-BALACCOUNT-SETUP-FIT-DECISION` |
+| Situation | FA-166 zeigte im Kontenplan die Kandidaten `14160` und `11400`, nachdem FA-164 das Feld `Acquisition Cost Bal. Acc.` auf `MACHINES` sichtbar, aber leer gezeigt hatte. |
+| Symptom | Beide Konten sind sichtbar, aber keines ist im Ziel-Feld der `FA Posting Group Card` als Wert belegt oder ausgewaehlt. |
+| Sichtbarer Beleg | `fixedassets-166-010-gl-account-candidates-readonly.png` und `020-focused-gl-account-candidate-text.txt` zeigen die Kontozeilen; FA-167 dokumentiert die Ablehnung in `FIXEDASSETS-167-decision.md`. |
+| Ursache | Kontenplan-Sichtbarkeit ist nur Kandidatensichtung. Das richtige Gegenkonto fuer `Insert FA Bal. Account` beziehungsweise die Journalroute muss aus dem konkreten Balancing-Account-Feld oder einem belastbaren bestehenden Setup-Muster kommen. |
+| Warum BC so reagiert | Business Central trennt Sachkonten, Posting Groups und Balancing-Account-Felder. Ein sichtbares Sachkonto wird erst dann relevant, wenn es im richtigen Setupfeld verwendet wird oder im Feld-Lookup als fachlich passender Wert belegt ist. |
+| Loesung oder Laborgrenze | Kein Setup-Fit mit `14160` oder `11400`. Naechster Lauf: `FIXEDASSETS-168` soll read-only den feldlokalen Lookup oder bestehende FA-Posting-Group-Balancing-Muster pruefen. |
+| Buchwirkung | Kapitel 21 kann diesen Fall als Qualitaetsregel fuer Screenshots nutzen: Ein Bild muss nicht nur einen Code zeigen, sondern den Code im richtigen fachlichen Feld-/Seitenkontext. |
+
 ## WK-BC-FA-164 Acquisition Cost Bal. Acc. ist sichtbar, aber leer
 
 | Feld | Wert |
