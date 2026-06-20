@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-20T23:58:00.000Z",
+  "updatedAt": "2026-06-21T00:20:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "fixedassets",
-  "activeCase": "FIXEDASSETS-145-FA-CNC-01-POSTING-GROUP-PAGEINSPECTION-PERSONALIZE-NOSAVE",
-  "active_case_file": ".agent/state/cases/fixedassets-145-fa-cnc-01-posting-group-pageinspection-personalize-nosave.json",
-  "lastReferenceCase": "FIXEDASSETS-144-FA-CNC-01-POSTING-GROUP-ROUTE-DECISION",
-  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-144-fa-cnc-01-posting-group-route-decision.json",
+  "activeCase": "FIXEDASSETS-146-FA-CNC-01-POSTING-GROUP-DIAGNOSIS-RESULT-REVIEW",
+  "active_case_file": ".agent/state/cases/fixedassets-146-fa-cnc-01-posting-group-diagnosis-result-review.json",
+  "lastReferenceCase": "FIXEDASSETS-145-FA-CNC-01-POSTING-GROUP-PAGEINSPECTION-PERSONALIZE-NOSAVE",
+  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-145-fa-cnc-01-posting-group-pageinspection-personalize-nosave.json",
   "mode": "token-efficient-autopilot-tooling-bootstrap",
-  "requiresStrongModel": false,
+  "requiresStrongModel": true,
   "requiredPreflightChecks": [
     "agent:preflight",
     "agent:state:validate",
@@ -19,16 +19,10 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "open-business-central",
-    "run-playwright",
-    "read-fixed-asset-card",
-    "focus-posting-group-field",
-    "open-page-inspection",
-    "open-personalize-no-save",
-    "capture-technical-evidence",
-    "capture-debug-screenshot",
-    "close-diagnostic-pane",
-    "update-evidence",
+    "read-local-evidence",
+    "inspect-screenshot-metadata",
+    "inspect-pattern-docs",
+    "choose-next-route",
     "update-state-plan"
   ],
   "forbiddenActions": [
@@ -37,6 +31,8 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright",
     "company-switch",
     "api-shortcut",
     "book-edit",
@@ -60,7 +56,7 @@
     "delete-record",
     "delete-non-test-data"
   ],
-  "nextStep": "FIXEDASSETS-145: run no-save Page Inspection/Personalize diagnosis for FA-CNC-01 Posting Group; do not select or save MACHINES.",
+  "nextStep": "FIXEDASSETS-146: locally review FA-145 Page Inspection/Personalize diagnosis before any new write route is unlocked.",
   "subagentPlanPolicy": {
     "default": "optional",
     "execution": "plan-only-no-subagents-spawned",
