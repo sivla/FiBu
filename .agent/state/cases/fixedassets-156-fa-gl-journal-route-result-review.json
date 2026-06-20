@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-156-FA-GL-JOURNAL-ROUTE-RESULT-REVIEW",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "local-result-review",
+  "taskClass": "judge_work",
+  "requiresUsageLog": true,
+  "goal": "Review FIXEDASSETS-155 evidence locally before any guarded Fixed Asset G/L Journal draft or acquisition value entry is attempted.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-155/FIXEDASSETS-155-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-155/020-fa-gl-journal-ui-signals.json",
+    "playwright/projects/fibu-book5/img/fixedassets-155-010-fa-gl-journal-readonly-preflight.png"
+  ],
+  "allowedActions": [
+    "read-evidence",
+    "review-screenshot-metadata",
+    "compare-route-signals",
+    "write-local-decision",
+    "update-state",
+    "document-next-safe-action"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright",
+    "company-switch",
+    "api-shortcut",
+    "book-edit",
+    "enter-FA-CNC-01-in-journal",
+    "enter-amount",
+    "enter-balancing-account",
+    "create-journal-lines",
+    "preview-posting",
+    "post",
+    "setup-change",
+    "delete-record"
+  ],
+  "safetyGates": [
+    "Do not run Business Central or Playwright in this review case.",
+    "Use only FA-155 result, UI signals and screenshot metadata.",
+    "Decide whether the screenshot actually shows the fields a beginner needs to understand.",
+    "If the fields are not visibly useful, route to a better read-only screenshot or Page Inspection/Personalize proof.",
+    "If the evidence is sufficient, define the exact preflight gates for a later guarded draft case."
+  ],
+  "acceptanceCriteria": [
+    "FA-155 result is classified as sufficient, partial or rejected for book use.",
+    "Next safe action is either another read-only screenshot/page-inspection pass or a tightly gated draft preflight.",
+    "No BC, Playwright, book, setup or posting action occurs."
+  ],
+  "nextSafeAction": "Review FA-155 evidence locally; do not enter values or post."
+}

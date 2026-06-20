@@ -1,0 +1,166 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-fa-gl-journal-acquisition-route-readonly-preflight-result",
+  "caseId": "FIXEDASSETS-155-FA-GL-JOURNAL-ACQUISITION-ROUTE-READONLY-PREFLIGHT",
+  "source": "playwright-sandbox-readonly-preflight",
+  "resultStatus": "observed",
+  "runPlanId": "FIXEDASSETS-155-FA-GL-JOURNAL-ACQUISITION-ROUTE-READONLY-PREFLIGHT-PLAN",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-medium",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "environment": {
+    "expectedInstance": "MCP_1_20260210",
+    "expectedCompany": "RM-DEMO",
+    "context": {
+      "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5628&dc=0&bookmark=30_UQAAAAJ7_0EAUwBTAEUAVABTAAAAAnv_RABFAEYAQQBVAEwAVAAAAACHECc",
+      "environmentInUrl": true,
+      "companyInUrl": true,
+      "companyInText": false,
+      "wrongEnvironmentVisible": false
+    },
+    "urlAfterRun": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5628&dc=0&bookmark=30_UQAAAAJ7_0EAUwBTAEUAVABTAAAAAnv_RABFAEYAQQBVAEwAVAAAAACHECc"
+  },
+  "proved": [
+    "The run stayed in MCP_1_20260210.",
+    "The run stayed in RM-DEMO.",
+    "Fixed Asset G/L Journal route is visible read-only.",
+    "A labor screenshot of the FA G/L Journal route was captured.",
+    "No journal line was created.",
+    "No FA-CNC-01, amount or balancing account value was entered.",
+    "No Preview Posting was opened.",
+    "No posting was executed.",
+    "No setup change was executed."
+  ],
+  "notProved": [
+    "No guarded acquisition journal draft.",
+    "No journal check.",
+    "No Preview Posting result.",
+    "No acquisition posting.",
+    "No FA Ledger Entry, G/L Entry or VAT/GST trace.",
+    "No German final proof."
+  ],
+  "diagnosisSummary": {
+    "signalCount": 11,
+    "fieldSignals": {
+      "fixedAssetJournalPage": true,
+      "batchName": true,
+      "postingDate": true,
+      "documentNo": true,
+      "accountType": true,
+      "accountNo": true,
+      "faPostingType": true,
+      "fixedAssetNo": true,
+      "depreciationBook": true,
+      "amount": true,
+      "balancingAccount": true
+    },
+    "existingJournalLineVisible": false,
+    "relevantControlCount": 0,
+    "relevantRowCount": 0,
+    "screenshotCaptured": true
+  },
+  "changedFiles": [
+    "package.json",
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-155-fa-gl-journal-acquisition-route-readonly-preflight.json",
+    ".agent/state/cases/fixedassets-156-fa-gl-journal-route-result-review.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    "playwright/projects/fibu-book5/tests/fixedassets-155-fa-gl-journal-acquisition-route-readonly-preflight.spec.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-155/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-155/FIXEDASSETS-155-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-155/FIXEDASSETS-155-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-155/010-fa-gl-journal-readonly-context.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-155/020-fa-gl-journal-ui-signals.json",
+    "playwright/projects/fibu-book5/img/fixedassets-155-010-fa-gl-journal-readonly-preflight.png",
+    "playwright/projects/fibu-book5/evidence/fixedassets-155/fixedassets-155-010-fa-gl-journal-readonly-preflight.screenshot.json"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-155/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-155/FIXEDASSETS-155-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-155/FIXEDASSETS-155-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-155/010-fa-gl-journal-readonly-context.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-155/020-fa-gl-journal-ui-signals.json",
+    "playwright/projects/fibu-book5/img/fixedassets-155-010-fa-gl-journal-readonly-preflight.png",
+    "playwright/projects/fibu-book5/evidence/fixedassets-155/fixedassets-155-010-fa-gl-journal-readonly-preflight.screenshot.json"
+  ],
+  "warnings": [
+    "CRONUS/RM-DEMO labor only.",
+    "Read-only route preflight only; field visibility is not write-readiness.",
+    "Do not enter values, preview or post from FA-155 alone. Run FA-156 local review first."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-156-FA-GL-JOURNAL-ROUTE-RESULT-REVIEW",
+      "active_case_file": ".agent/state/cases/fixedassets-156-fa-gl-journal-route-result-review.json",
+      "lastReferenceCase": "FIXEDASSETS-155-FA-GL-JOURNAL-ACQUISITION-ROUTE-READONLY-PREFLIGHT",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-155-fa-gl-journal-acquisition-route-readonly-preflight.json",
+      "requiresStrongModel": true,
+      "nextStep": "FIXEDASSETS-156: review FA-155 journal-route evidence locally before deciding whether a guarded acquisition journal draft is safe."
+    },
+    "lastRunSummary": {
+      "schemaVersion": 1,
+      "runId": "FIXEDASSETS-155-FA-GL-JOURNAL-ACQUISITION-ROUTE-READONLY-PREFLIGHT",
+      "date": "2026-06-20",
+      "workType": "fixed-asset-gl-journal-acquisition-route-readonly-preflight",
+      "branch": "codex/token-efficient-autopilot-state",
+      "instance": "MCP_1_20260210",
+      "company": "RM-DEMO",
+      "bcRun": true,
+      "posted": false,
+      "preview": false,
+      "setupChanged": false,
+      "companySwitched": false,
+      "resultStatus": "observed",
+      "summary": "FA-155 proved the Fixed Asset G/L Journal route read-only in RM-DEMO. 11 acquisition-route field signals were visible; no journal line, value, preview or posting was created by this run.",
+      "nextStep": "Run FIXEDASSETS-156 local result review; do not enter FA-CNC-01, amount, balancing account, Preview Posting or Post."
+    },
+    "activeCase": {
+      "status": "observed-readonly",
+      "lastResult": {
+        "status": "observed",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-155/FIXEDASSETS-155-result.json",
+        "summary": "FA-155 proved the Fixed Asset G/L Journal route read-only in RM-DEMO. 11 acquisition-route field signals were visible; no journal line, value, preview or posting was created by this run."
+      },
+      "nextSafeAction": "Run FIXEDASSETS-156 local result review before any write probe."
+    },
+    "coverage": {
+      "areas": {
+        "fixedassets": {
+          "currentBlock": "fa-gl-journal-acquisition-route-review",
+          "latestPracticalCase": "FIXEDASSETS-155",
+          "nextCase": "FIXEDASSETS-156-FA-GL-JOURNAL-ROUTE-RESULT-REVIEW"
+        }
+      }
+    }
+  },
+  "flags": {
+    "noJournalLineCreated": true,
+    "noTargetFixedAssetEntry": true,
+    "noAmountEntry": true,
+    "noBalancingAccountEntry": true,
+    "noBookChange": true,
+    "noPost": true,
+    "noPreview": true,
+    "noShip": true,
+    "noInvoice": true,
+    "noPayment": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noNewDraft": true,
+    "noEditRecord": true,
+    "noDeleteRecord": true,
+    "cleanupRequired": false,
+    "cleanupCompleted": true
+  },
+  "observed": {
+    "startedAt": "2026-06-20T20:40:37.355Z",
+    "finishedAt": "2026-06-20T20:40:47.918Z"
+  },
+  "nextStep": "FIXEDASSETS-156: review FA-155 journal-route evidence locally before deciding whether a guarded acquisition journal draft is safe."
+}
