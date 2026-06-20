@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-154-FA-CNC-01-ACQUIRE-EDITMODE-RESULT-REVIEW",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "local-evidence-review",
+  "taskClass": "judge_work",
+  "requiresUsageLog": true,
+  "goal": "Review FA-153 evidence and decide the next fixed-assets acquisition route. Do not run Business Central, do not run Playwright and do not unlock Acquire before the disabled-action result is assessed.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-153/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-151/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-152/",
+    "https://learn.microsoft.com/en-us/dynamics365/business-central/fa-how-acquire"
+  ],
+  "allowedActions": [
+    "read-state",
+    "read-evidence",
+    "review-screenshots-metadata",
+    "review-microsoft-learn-source",
+    "document-route-decision",
+    "write-evidence-summary",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright",
+    "company-switch",
+    "api-shortcut",
+    "book-edit",
+    "click-acquire",
+    "execute-acquire",
+    "enter-K30000-in-purchase-invoice",
+    "enter-FA-CNC-01-in-document",
+    "enter-amount",
+    "new-draft",
+    "finish-wizard",
+    "click-ok",
+    "create-journal-lines",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "delete-record",
+    "delete-non-test-data"
+  ],
+  "safetyGates": [
+    "Use only existing FA-151/FA-152/FA-153 evidence and Microsoft Learn source.",
+    "Do not infer that Acquire can be executed.",
+    "If FA-153 proves Acquire still disabled, keep acquisition locked and decide whether a different route such as Fixed Asset G/L Journal should be prepared as a separate gated case.",
+    "No Business Central, no Playwright, no book edit."
+  ],
+  "acceptanceCriteria": [
+    "FA-153 screenshot and JSON evidence are classified.",
+    "Acquire route status is documented as enabled, disabled or blocked based only on evidence.",
+    "Next safe case is chosen without starting a new live process."
+  ],
+  "nextSafeAction": "Review FA-153 and decide whether to hold Acquire or prepare a different acquisition route."
+}

@@ -1,5 +1,7 @@
 # Screenshot-QA fuer Buch 5
 
+Update nach `FIXEDASSETS-153-FA-CNC-01-ACQUIRE-DISABLED-EDITMODE-DIAGNOSIS`: `fixedassets-153-010-fa-cnc-01-before-editmode.png` und `fixedassets-153-020-fa-cnc-01-after-editmode.png` wurden visuell geprueft. Beide Bilder zeigen den richtigen Datensatz `FA-CNC-01`, `Posting Group = MACHINES`, `Book Value = 0,00` und den `Acquire`-Kontext; `Acquire` bleibt ausgegraut/deaktiviert. Status: brauchbare Labor-/Diagnosebilder fuer Kapitel 21, aber keine Anschaffung, keine Preview, kein `Post`, keine Postenspur und kein deutscher Finalnachweis.
+
 Update nach `BOOK-FIXEDASSETS-LAB-SCREENSHOT-SYNC`: Kapitel 21 nutzt jetzt mehrere vorhandene Fixed-Assets-Bilder als Buch-Laborbilder. `fixedassets-014-020-depreciation-books-after-hgb.png`, `fixedassets-016-020-fa-posting-groups-after-machines.png`, `fixedassets-033-060-card-final-values.png`, `fixedassets-043-020-k30000-vendor-invoicing-fasttab-proof.png` und `fixedassets-053-030-purchase-invoice-after-new.png` sind im Buch nur mit Laborgrenze nutzbar. `fixedassets-064-050-line-type-fixed-asset-visible.png` bleibt `rejected/do-not-use` als Zielbild, wird aber als Fehlerbild im Buch erklaert. Keine dieser Abbildungen beweist deutschen Finalstand, Anlagenzugang, AfA oder Anlagenposten.
 
 Diese Datei bewertet, ob erzeugte Business-Central-Screenshots bereits als Buchbilder taugen oder nur Labor-/Evidence-Material sind.

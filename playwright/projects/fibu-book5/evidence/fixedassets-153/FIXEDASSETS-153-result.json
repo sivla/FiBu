@@ -1,0 +1,222 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixed-asset-acquire-disabled-editmode-diagnosis-result",
+  "caseId": "FIXEDASSETS-153-FA-CNC-01-ACQUIRE-DISABLED-EDITMODE-DIAGNOSIS",
+  "source": "playwright-sandbox-action-state-diagnosis",
+  "resultStatus": "observed-acquire-still-disabled-after-editmode",
+  "runPlanId": "FIXEDASSETS-153-FA-CNC-01-ACQUIRE-DISABLED-EDITMODE-DIAGNOSIS-PLAN",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-medium",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "assetNo": "FA-CNC-01",
+  "observed": {
+    "startedAt": "2026-06-20T20:22:24.433Z",
+    "finishedAt": "2026-06-20T20:22:35.665Z",
+    "context": {
+      "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5600&filter=%27Fixed%20Asset%27.%27No.%27%20IS%20%27FA-CNC-01%27&dc=0&bookmark=1D_4BUAAAJ7_0YAQQAtAEMATgBDAC0AMAAx",
+      "instanceInUrl": true,
+      "companyInUrl": true,
+      "wrongEnvironmentVisible": false
+    },
+    "expand": {
+      "candidateCount": 1,
+      "attempts": [
+        {
+          "index": 0,
+          "label": "Mehr anzeigen | Depreciation Book, Mehr anzeigen | Mehr Felder anzeigen",
+          "clicked": true
+        }
+      ],
+      "clicked": true
+    },
+    "before": {
+      "hasAssetNo": true,
+      "hasMachines": true,
+      "hasBookValueZero": true,
+      "acquireVisible": true,
+      "acquireDisabled": true,
+      "acquireCandidates": [
+        {
+          "tagName": "BUTTON",
+          "role": "menuitem",
+          "text": "Acquire",
+          "ariaLabel": "Acquire",
+          "title": "Acquire the fixed asset.",
+          "value": "",
+          "label": "Acquire | Acquire | Acquire the fixed asset.",
+          "disabled": true,
+          "readonly": false,
+          "rect": {
+            "x": 804,
+            "y": 162,
+            "width": 93,
+            "height": 38
+          }
+        },
+        {
+          "tagName": "SPAN",
+          "role": "",
+          "text": "Acquire",
+          "ariaLabel": "Acquire",
+          "title": "",
+          "value": "",
+          "label": "Acquire | Acquire",
+          "disabled": false,
+          "readonly": false,
+          "rect": {
+            "x": 837,
+            "y": 172,
+            "width": 47,
+            "height": 19
+          }
+        }
+      ],
+      "editCandidateCount": 1,
+      "pencilLikeCandidateCount": 1
+    },
+    "editProbe": {
+      "attempted": true,
+      "clicked": "named-edit-candidate",
+      "candidate": {
+        "tagName": "BUTTON",
+        "role": "",
+        "text": "",
+        "ariaLabel": "",
+        "title": "nderungen auf der Seite vornehmen",
+        "value": "",
+        "label": "| nderungen auf der Seite vornehmen",
+        "disabled": false,
+        "readonly": false,
+        "rect": {
+          "x": 1188,
+          "y": 14,
+          "width": 38,
+          "height": 38
+        }
+      },
+      "reason": "Clicked | nderungen auf der Seite vornehmen"
+    },
+    "after": {
+      "acquireVisible": true,
+      "acquireDisabled": true,
+      "acquireEnabled": false,
+      "acquireCandidates": [
+        {
+          "tagName": "BUTTON",
+          "role": "menuitem",
+          "text": "Acquire",
+          "ariaLabel": "Acquire",
+          "title": "Acquire the fixed asset.",
+          "value": "",
+          "label": "Acquire | Acquire | Acquire the fixed asset.",
+          "disabled": true,
+          "readonly": false,
+          "rect": {
+            "x": 804,
+            "y": 162,
+            "width": 93,
+            "height": 38
+          }
+        },
+        {
+          "tagName": "SPAN",
+          "role": "",
+          "text": "Acquire",
+          "ariaLabel": "Acquire",
+          "title": "",
+          "value": "",
+          "label": "Acquire | Acquire",
+          "disabled": false,
+          "readonly": false,
+          "rect": {
+            "x": 837,
+            "y": 172,
+            "width": 47,
+            "height": 19
+          }
+        }
+      ]
+    },
+    "dangerousDialogVisible": false
+  },
+  "proved": [
+    "The run stayed in MCP_1_20260210 / RM-DEMO.",
+    "FA-CNC-01 was visible with Posting Group MACHINES.",
+    "FA-CNC-01 was visible with Book Value 0.00 / 0,00.",
+    "Acquire action candidate was visible before the edit-state probe.",
+    "Acquire action candidate was disabled before the edit-state probe.",
+    "A scoped edit/pencil state probe was attempted without field value entry.",
+    "Acquire action candidate was still disabled after the edit-state probe.",
+    "Acquire was not clicked or executed.",
+    "No values, Preview Posting, posting, setup change, draft, company switch or API shortcut occurred."
+  ],
+  "notProved": [
+    "No acquisition wizard behavior was tested.",
+    "No fixed asset acquisition was executed.",
+    "No Preview Posting or posting trace was produced.",
+    "No FA Ledger Entry or G/L acquisition trace is proven.",
+    "No German fixed-assets final proof is produced."
+  ],
+  "changedFiles": [
+    "package.json",
+    "playwright/projects/fibu-book5/tests/fixedassets-153-fa-cnc-01-acquire-disabled-editmode-diagnosis.spec.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-153/"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-153/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-153/FIXEDASSETS-153-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-153/FIXEDASSETS-153-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-153/010-action-state-diagnostics.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-153/011-card-context-before.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-153/012-card-context-after.txt",
+    "playwright/projects/fibu-book5/img/fixedassets-153-010-fa-cnc-01-before-editmode.png",
+    "playwright/projects/fibu-book5/img/fixedassets-153-020-fa-cnc-01-after-editmode.png"
+  ],
+  "warnings": [
+    "CRONUS-USA laboratory evidence only.",
+    "Visible Acquire action is not execution."
+  ],
+  "blockedBy": [],
+  "requiresReview": true,
+  "safeToFinalizeState": true,
+  "flags": {
+    "noBookChange": true,
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noNewDraft": true,
+    "noDeleteRecord": true,
+    "noAcquireClick": true,
+    "noAcquireExecution": true,
+    "noAmountEntry": true,
+    "noTargetVendorEntry": true,
+    "noFieldValueChanged": true
+  },
+  "statePatch": {
+    "current": {
+      "updatedAt": "2026-06-20T20:22:35.665Z",
+      "activeCase": "FIXEDASSETS-154-FA-CNC-01-ACQUIRE-EDITMODE-RESULT-REVIEW",
+      "active_case_file": ".agent/state/cases/fixedassets-154-fa-cnc-01-acquire-editmode-result-review.json",
+      "lastReferenceCase": "FIXEDASSETS-153-FA-CNC-01-ACQUIRE-DISABLED-EDITMODE-DIAGNOSIS",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-153-fa-cnc-01-acquire-disabled-editmode-diagnosis.json",
+      "requiresStrongModel": true,
+      "nextStep": "FIXEDASSETS-154: local route review; decide whether to hold Acquire as disabled and pivot to another acquisition path."
+    },
+    "activeCase": {
+      "status": "observed-acquire-still-disabled-after-editmode",
+      "lastResult": {
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-153/FIXEDASSETS-153-result.json",
+        "summary": "FA-153 proved in the UI that FA-CNC-01 still shows Acquire disabled after a safe edit-state probe; no acquisition route is unlocked.",
+        "editProbeAttempted": true,
+        "acquireEnabledAfterProbe": false
+      },
+      "nextSafeAction": "FIXEDASSETS-154: local route review; decide whether to hold Acquire as disabled and pivot to another acquisition path."
+    }
+  },
+  "summary": "FA-153 proved in the UI that FA-CNC-01 still shows Acquire disabled after a safe edit-state probe; no acquisition route is unlocked.",
+  "bookImpact": "Kapitel 21 darf den Editmodus nicht als Freigabe fuer Acquire erklaeren; die Karte bleibt ein Readiness-/Blockerbild, kein Anschaffungsprozess.",
+  "nextStep": "FIXEDASSETS-154: local route review; decide whether to hold Acquire as disabled and pivot to another acquisition path."
+}
