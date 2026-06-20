@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-20T16:05:00.000Z",
+  "updatedAt": "2026-06-20T17:20:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "fixedassets",
-  "activeCase": "FIXEDASSETS-132-FA-CNC-01-ACQUISITION-READINESS-CARD-READONLY",
-  "active_case_file": ".agent/state/cases/fixedassets-132-fa-cnc-01-acquisition-readiness-card-readonly.json",
-  "lastReferenceCase": "FIXEDASSETS-131-ASSISTED-ACQUISITION-SEARCH-RESULT-BLOCKER-REVIEW",
-  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-131-assisted-acquisition-search-result-blocker-review.json",
+  "activeCase": "FIXEDASSETS-133-FA-CNC-01-ACQUISITION-READINESS-CAUSE-REVIEW",
+  "active_case_file": ".agent/state/cases/fixedassets-133-fa-cnc-01-acquisition-readiness-cause-review.json",
+  "lastReferenceCase": "FIXEDASSETS-132-FA-CNC-01-ACQUISITION-READINESS-CARD-READONLY",
+  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-132-fa-cnc-01-acquisition-readiness-card-readonly.json",
   "mode": "token-efficient-autopilot-tooling-bootstrap",
-  "requiresStrongModel": false,
+  "requiresStrongModel": true,
   "requiredPreflightChecks": [
     "agent:preflight",
     "agent:state:validate",
@@ -19,15 +19,12 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "open-business-central",
-    "run-playwright",
-    "verify-instance-company",
-    "open-fixed-asset-card-readonly",
-    "capture-visible-card-fields",
-    "capture-acquire-action-state",
-    "capture-ready-to-acquire-notification-if-visible",
-    "take-diagnostic-screenshot",
-    "write-compact-evidence"
+    "local-evidence-review",
+    "read-fixedassets-132-evidence",
+    "compare-fixed-asset-card-readiness-against-microsoft-learn",
+    "choose-next-safe-fixed-asset-acquisition-route",
+    "write-compact-evidence",
+    "update-state-plan"
   ],
   "forbiddenActions": [
     "leave-instance",
@@ -35,6 +32,8 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright",
     "company-switch",
     "api-shortcut",
     "book-edit",
@@ -58,7 +57,7 @@
     "delete-record",
     "delete-non-test-data"
   ],
-  "nextStep": "FIXEDASSETS-132: open FA-CNC-01 Fixed Asset Card read-only and verify acquisition-readiness signals before any Acquire/Assisted Acquisition action.",
+  "nextStep": "FIXEDASSETS-133: local cause review of FA-CNC-01 acquisition readiness before another live acquisition route or setup change.",
   "subagentPlanPolicy": {
     "default": "optional",
     "execution": "plan-only-no-subagents-spawned",
