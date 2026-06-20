@@ -3,7 +3,7 @@
   "caseId": "FIXEDASSETS-143-FA-CNC-01-POSTING-GROUP-GUARDED-RETRY",
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "status": "planned",
+  "status": "blocked-wrong-related-card-route",
   "workType": "guarded-ui-first-setup-fit-retry",
   "taskClass": "wizard_work",
   "requiresUsageLog": false,
@@ -66,5 +66,9 @@
     "No acquisition, Preview Posting, posting, new draft, company switch or API shortcut occurs."
   ],
   "command": "npm run fibu:fixedassets:fa-cnc-01-posting-group-combobox-route",
-  "nextSafeAction": "Run the guarded retry once, then normalize/finalize only as a plan unless evidence is unambiguous."
+  "lastResult": {
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-143/FIXEDASSETS-143-result.json",
+    "summary": "FA-143 confirmed the guard works, but the route still opens Depreciation Book Card HGB instead of assigning MACHINES."
+  },
+  "nextSafeAction": "FIXEDASSETS-144: local route decision before any further live attempt."
 }

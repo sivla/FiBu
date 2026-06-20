@@ -11,17 +11,13 @@
   "company": "RM-DEMO",
   "assetNo": "FA-CNC-01",
   "changedPostingGroup": false,
-  "proved": [
-    "The attempted Posting Group route can open a related Depreciation Book Card instead of the Posting Group value list."
-  ],
+  "proved": [],
   "notProved": [
     "No acquisition was executed.",
     "No Preview Posting was opened.",
     "No posting was executed.",
     "No purchase invoice, journal line, amount, vendor or draft was created.",
-    "No German fixed-assets final proof is produced.",
-    "No MACHINES lookup option was visible.",
-    "The attempted route opened Depreciation Book Card HGB instead of changing the Posting Group field."
+    "No German fixed-assets final proof is produced."
   ],
   "changedFiles": [
     "playwright/projects/fibu-book5/tests/fixedassets-140-fa-cnc-01-posting-group-combobox-route.spec.ts",
@@ -38,7 +34,7 @@
   ],
   "warnings": [],
   "blockedBy": [
-    "Posting Group combobox route opened the Depreciation Book Card for HGB; MACHINES was never visible or selected."
+    "Posting Group route opened a related Depreciation Book Card instead of the value list."
   ],
   "requiresReview": true,
   "safeToFinalizeState": true,
@@ -59,25 +55,25 @@
   "statePatch": {
     "current": {
       "updatedAt": "2026-06-20T21:45:00.000Z",
-      "activeCase": "FIXEDASSETS-141-FA-CNC-01-COMBOBOX-RESULT-REVIEW",
-      "active_case_file": ".agent/state/cases/fixedassets-141-fa-cnc-01-combobox-result-review.json",
-      "lastReferenceCase": "FIXEDASSETS-140-FA-CNC-01-POSTING-GROUP-COMBOBOX-ROUTE",
-      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-140-fa-cnc-01-posting-group-combobox-route.json",
+      "activeCase": "FIXEDASSETS-144-FA-CNC-01-POSTING-GROUP-ROUTE-DECISION",
+      "active_case_file": ".agent/state/cases/fixedassets-144-fa-cnc-01-posting-group-route-decision.json",
+      "lastReferenceCase": "FIXEDASSETS-143-FA-CNC-01-POSTING-GROUP-GUARDED-RETRY",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-143-fa-cnc-01-posting-group-guarded-retry.json",
       "requiresStrongModel": true,
-      "nextStep": "FIXEDASSETS-141: review wrong-related-card route and plan a safer field-specific locator before another setup-change attempt."
+      "nextStep": "FIXEDASSETS-144: local route decision after guarded retry; do not repeat the same Related-Card path."
     },
     "activeCase": {
       "status": "blocked-wrong-related-card-route",
       "lastResult": {
         "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-140/FIXEDASSETS-140-result.json",
-        "summary": "FA-140 blocked: the combobox route still did not set Posting Group to MACHINES and instead opened the related Depreciation Book Card for HGB."
+        "summary": "FA-140 blocked: Posting Group route lost the Fixed Asset Card foreground and opened the related Depreciation Book Card."
       },
-      "nextSafeAction": "FIXEDASSETS-141: local review of wrong related-card route."
+      "nextSafeAction": "FIXEDASSETS-144: local route decision before any further live attempt."
     }
   },
   "observed": {
-    "startedAt": "2026-06-20T15:01:27.552Z",
-    "finishedAt": "2026-06-20T15:01:53.051Z",
+    "startedAt": "2026-06-20T15:20:33.175Z",
+    "finishedAt": "2026-06-20T15:20:59.037Z",
     "context": {
       "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5600&filter=%27Fixed%20Asset%27.%27No.%27%20IS%20%27FA-CNC-01%27&dc=0&bookmark=1D_4BUAAAJ7_0YAQQAtAEMATgBDAC0AMAAx",
       "instanceInUrl": true,
@@ -145,66 +141,26 @@
       "pageId": 5604,
       "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5604&filter=%27FA%20Ledger%20Entry%27.%27FA%20No.%27%20IS%20%27FA-CNC-01%27&dc=0",
       "hasTargetLedgerTrace": false,
-      "compactText": "Document No.\nDepreciation Book Code\nAmount\nNo. of Depreciation Days\nG/L Entry No.\nEntry No.\nEntry No., Sortierreihenfolge Aufsteigend"
+      "compactText": "Document No.\nDepreciation Book Code\nAmount\nNo. of Depreciation Days\nG/L Entry No.\nEntry No.\nSpecifies the number of depreciation days that were used for calculating depreciation for the fixed asset entry.\nEntry No., Sortierreihenfolge Aufsteigend"
     },
     "fillResult": {
       "attempted": true,
       "filled": false,
-      "valueAfter": "EQUIPMENT",
-      "rowsAfter": [
-        {
-          "caption": "No.",
-          "selectedValue": "FA-CNC-01",
-          "diagnosis": "visible-readonly-card-row-control",
-          "editable": false
-        },
-        {
-          "caption": "Description",
-          "selectedValue": "HGB depreciation book",
-          "diagnosis": "visible-readonly-card-row-control",
-          "editable": false
-        },
-        {
-          "caption": "FA Class Code",
-          "selectedValue": "TANGIBLE",
-          "diagnosis": "visible-readonly-card-row-control",
-          "editable": false
-        },
-        {
-          "caption": "FA Subclass Code",
-          "selectedValue": "EQUIPMENT",
-          "diagnosis": "visible-readonly-card-row-control",
-          "editable": false
-        },
-        {
-          "caption": "Depreciation Book Code",
-          "selectedValue": "HGB",
-          "diagnosis": "visible-readonly-card-row-control",
-          "editable": false
-        },
-        {
-          "caption": "Posting Group",
-          "selectedValue": "EQUIPMENT",
-          "diagnosis": "visible-editable-card-row-control",
-          "editable": true
-        },
-        {
-          "caption": "Book Value",
-          "selectedValue": "0,00",
-          "diagnosis": "visible-readonly-card-row-control",
-          "editable": false
-        },
-        {
-          "caption": "Acquired",
-          "selectedValue": "",
-          "diagnosis": "caption-visible-no-row-control",
-          "editable": false
-        }
-      ],
+      "valueAfter": "",
+      "rowsAfter": [],
       "routeAttempts": [
         {
           "name": "alt-arrow-down",
-          "candidates": []
+          "foreground": {
+            "phase": "alt-arrow-down",
+            "hasFixedAssetCard": true,
+            "hasAssetNo": true,
+            "hasWrongRelatedDepreciationBookCard": true,
+            "hasPostingGroupText": true,
+            "compactText": "Fixed Asset Card\nFA-CNC-01 ∙ CNC Maschine FRA\nFA-CNC-01\nEQUIPMENT\nPosting Group\nBook Value\nHGB depreciation book\nFA-CNC-01 ∙ CNC Maschine FRA. Fixed Asset Card",
+            "ok": false
+          },
+          "stopped": "fixed-asset-card-foreground-lost"
         },
         {
           "name": "right-edge-dropdown-click",
@@ -233,7 +189,16 @@
         "width": 406,
         "height": 29
       },
-      "blockerDiagnosis": "Wrong related-record route: screenshot shows Depreciation Book Card HGB in foreground, not a Posting Group MACHINES lookup/list."
+      "blockerDiagnosis": "wrong-related-card-route",
+      "foreground": {
+        "phase": "after-fill",
+        "hasFixedAssetCard": true,
+        "hasAssetNo": true,
+        "hasWrongRelatedDepreciationBookCard": true,
+        "hasPostingGroupText": true,
+        "compactText": "Fixed Asset Card\nFA-CNC-01 ∙ CNC Maschine FRA\nFA-CNC-01\nEQUIPMENT\nPosting Group\nBook Value\nDepreciation Book Card\nHGB ∙ HGB depreciation book\nHGB depreciation book\nDefault Ending Book Value\nFA-CNC-01 ∙ CNC Maschine FRA. Fixed Asset Card\nHGB ∙ HGB depreciation book. Depreciation Book Card",
+        "ok": false
+      }
     }
   },
   "before": {
@@ -296,10 +261,10 @@
     "pageId": 5604,
     "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5604&filter=%27FA%20Ledger%20Entry%27.%27FA%20No.%27%20IS%20%27FA-CNC-01%27&dc=0",
     "hasTargetLedgerTrace": false,
-    "compactText": "Document No.\nDepreciation Book Code\nAmount\nNo. of Depreciation Days\nG/L Entry No.\nEntry No.\nEntry No., Sortierreihenfolge Aufsteigend"
+    "compactText": "Document No.\nDepreciation Book Code\nAmount\nNo. of Depreciation Days\nG/L Entry No.\nEntry No.\nSpecifies the number of depreciation days that were used for calculating depreciation for the fixed asset entry.\nEntry No., Sortierreihenfolge Aufsteigend"
   },
   "screenshotCaptured": true,
-  "summary": "FA-140 blocked: the combobox route still did not set Posting Group to MACHINES and instead opened the related Depreciation Book Card for HGB.",
-  "bookImpact": "Kapitel 21 muss den Posting-Group-Kartenfit weiter offen halten; der neue Lernwert ist, dass Wert-/Related-Record-Klicks auf der Kartenzeile nicht als Combobox-Bedienung zaehlen.",
-  "nextStep": "FIXEDASSETS-141: review wrong-related-card route and plan a safer field-specific locator before another setup-change attempt."
+  "summary": "FA-140 blocked: Posting Group route lost the Fixed Asset Card foreground and opened the related Depreciation Book Card.",
+  "bookImpact": "Kapitel 21 muss den Posting-Group-Kartenfit weiter offen halten.",
+  "nextStep": "FIXEDASSETS-144: local route decision; do not repeat the same Related-Card path."
 }

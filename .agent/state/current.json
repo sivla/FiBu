@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-20T23:05:00.000Z",
+  "updatedAt": "2026-06-20T23:35:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "fixedassets",
-  "activeCase": "FIXEDASSETS-143-FA-CNC-01-POSTING-GROUP-GUARDED-RETRY",
-  "active_case_file": ".agent/state/cases/fixedassets-143-fa-cnc-01-posting-group-guarded-retry.json",
-  "lastReferenceCase": "FIXEDASSETS-142-FA-CNC-01-POSTING-GROUP-FIELD-LOCATOR-REPAIR",
-  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-142-fa-cnc-01-posting-group-field-locator-repair.json",
+  "activeCase": "FIXEDASSETS-144-FA-CNC-01-POSTING-GROUP-ROUTE-DECISION",
+  "active_case_file": ".agent/state/cases/fixedassets-144-fa-cnc-01-posting-group-route-decision.json",
+  "lastReferenceCase": "FIXEDASSETS-143-FA-CNC-01-POSTING-GROUP-GUARDED-RETRY",
+  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-143-fa-cnc-01-posting-group-guarded-retry.json",
   "mode": "token-efficient-autopilot-tooling-bootstrap",
-  "requiresStrongModel": false,
+  "requiresStrongModel": true,
   "requiredPreflightChecks": [
     "agent:preflight",
     "agent:state:validate",
@@ -19,13 +19,12 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "run-playwright-test",
-    "open-business-central",
     "read-local-evidence",
     "inspect-test-result",
-    "set-fa-cnc-01-posting-group-only-if-foreground-and-safety-gates-pass",
-    "write-evidence",
-    "update-state"
+    "inspect-pattern-docs",
+    "choose-next-route",
+    "update-state-plan",
+    "document-next-safe-action"
   ],
   "forbiddenActions": [
     "leave-instance",
@@ -53,7 +52,7 @@
     "delete-record",
     "delete-non-test-data"
   ],
-  "nextStep": "FIXEDASSETS-143: run the repaired guarded Posting Group route once in BC; stop on wrong related-card navigation and do not unlock acquisition, Preview or posting.",
+  "nextStep": "FIXEDASSETS-144: local route decision after guarded retry; do not repeat the same Related-Card path.",
   "subagentPlanPolicy": {
     "default": "optional",
     "execution": "plan-only-no-subagents-spawned",

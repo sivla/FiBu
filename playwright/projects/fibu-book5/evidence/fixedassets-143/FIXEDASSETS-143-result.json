@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixed-asset-posting-group-guarded-retry-result",
+  "caseId": "FIXEDASSETS-143-FA-CNC-01-POSTING-GROUP-GUARDED-RETRY",
+  "source": "playwright-sandbox-ui-setup-fit",
+  "resultStatus": "blocked-wrong-related-card-route",
+  "runPlanId": "FIXEDASSETS-143-FA-CNC-01-POSTING-GROUP-GUARDED-RETRY-PLAN",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-medium",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "assetNo": "FA-CNC-01",
+  "posted": false,
+  "preview": false,
+  "setupChanged": false,
+  "companySwitched": false,
+  "apiShortcut": false,
+  "bookChanged": false,
+  "proved": [
+    "The guarded retry ran in MCP_1_20260210 / RM-DEMO.",
+    "Before the route, FA-CNC-01 was visible with Posting Group EQUIPMENT and Book Value 0,00.",
+    "The repaired guard detected wrong related-card foreground after the Posting Group route.",
+    "The foreground contained Depreciation Book Card and HGB depreciation book.",
+    "No acquisition, Preview Posting, posting, draft, company switch or API shortcut occurred."
+  ],
+  "notProved": [
+    "Posting Group MACHINES is not proven as assigned to FA-CNC-01.",
+    "No setup change is accepted as proven.",
+    "No fixed-asset acquisition route is unlocked.",
+    "No German fixed-assets final proof is produced."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-140/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-143/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-143/FIXEDASSETS-143-guarded-retry.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-143/FIXEDASSETS-143-result.json"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-140/FIXEDASSETS-140-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-140/040-fill-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-140/fixedassets-140-060-fa-cnc-01-posting-group-machines.screenshot.json",
+    "playwright/projects/fibu-book5/img/fixedassets-140-060-fa-cnc-01-posting-group-machines.png",
+    "playwright/projects/fibu-book5/evidence/fixedassets-143/FIXEDASSETS-143-guarded-retry.md"
+  ],
+  "blockedBy": [
+    "The Posting Group route still opens the related Depreciation Book Card HGB instead of a MACHINES value list."
+  ],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "flags": {
+    "noBookChange": true,
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noNewDraft": true,
+    "noDeleteRecord": true,
+    "noAcquireExecution": true,
+    "noAmountEntry": true,
+    "noTargetVendorEntry": true
+  },
+  "statePatch": {
+    "current": {
+      "updatedAt": "2026-06-20T23:35:00.000Z",
+      "activeCase": "FIXEDASSETS-144-FA-CNC-01-POSTING-GROUP-ROUTE-DECISION",
+      "active_case_file": ".agent/state/cases/fixedassets-144-fa-cnc-01-posting-group-route-decision.json",
+      "lastReferenceCase": "FIXEDASSETS-143-FA-CNC-01-POSTING-GROUP-GUARDED-RETRY",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-143-fa-cnc-01-posting-group-guarded-retry.json",
+      "requiresStrongModel": true,
+      "nextStep": "FIXEDASSETS-144: local route decision after guarded retry; do not repeat the same Related-Card path."
+    },
+    "activeCase": {
+      "status": "blocked-wrong-related-card-route",
+      "lastResult": {
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-143/FIXEDASSETS-143-result.json",
+        "summary": "FA-143 confirmed the guard works, but the route still opens Depreciation Book Card HGB instead of assigning MACHINES."
+      },
+      "nextSafeAction": "FIXEDASSETS-144: local route decision before any further live attempt."
+    }
+  },
+  "summary": "FA-143 confirmed the foreground guard but did not fit MACHINES; the route remains blocked by related-card navigation.",
+  "bookImpact": "Kapitel 21 must keep the Posting Group card fit open. The screenshot is a debugging/error image, not a MACHINES field proof.",
+  "nextStep": "FIXEDASSETS-144-FA-CNC-01-POSTING-GROUP-ROUTE-DECISION"
+}

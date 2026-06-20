@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-144-FA-CNC-01-POSTING-GROUP-ROUTE-DECISION",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "local-route-decision",
+  "taskClass": "judge_work",
+  "requiresUsageLog": true,
+  "goal": "Decide the next safe route after the guarded retry again opened Depreciation Book Card HGB instead of a Posting Group MACHINES value list.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-140/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-141/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-142/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-143/"
+  ],
+  "allowedActions": [
+    "read-local-evidence",
+    "inspect-test-result",
+    "inspect-pattern-docs",
+    "choose-next-route",
+    "update-state-plan",
+    "document-next-safe-action"
+  ],
+  "forbiddenActions": [
+    "open-business-central",
+    "run-playwright",
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "company-switch",
+    "api-shortcut",
+    "book-edit",
+    "click-acquire",
+    "execute-acquire",
+    "enter-K30000-in-purchase-invoice",
+    "enter-FA-CNC-01-in-document",
+    "enter-amount",
+    "new-draft",
+    "finish-wizard",
+    "create-journal-lines",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "delete-record",
+    "delete-non-test-data"
+  ],
+  "safetyGates": [
+    "Do not open BC in this decision case.",
+    "Do not repeat the same Alt+ArrowDown/right-edge/typed-value route unless a new UI mechanism is identified.",
+    "Do not claim MACHINES is assigned to FA-CNC-01.",
+    "Do not unlock acquisition, Preview Posting or posting."
+  ],
+  "acceptanceCriteria": [
+    "The repeated related-card blocker is classified.",
+    "The next route is either a genuinely new UI mechanism or a deliberate hold.",
+    "State and Current State identify one concrete next safe action."
+  ],
+  "nextSafeAction": "Review FA-143 and choose whether to use Page Inspection/Personalize/another lookup action or hold the Posting Group assignment path."
+}
