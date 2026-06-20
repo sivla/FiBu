@@ -1,0 +1,133 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixed-asset-assisted-acquisition-blocker-review-result",
+  "caseId": "FIXEDASSETS-131-ASSISTED-ACQUISITION-SEARCH-RESULT-BLOCKER-REVIEW",
+  "source": "local-analysis-with-microsoft-learn-reference",
+  "resultStatus": "observed",
+  "runPlanId": "FIXEDASSETS-131-ASSISTED-ACQUISITION-SEARCH-RESULT-BLOCKER-REVIEW-PLAN",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "decision": {
+    "tellMeAssistedAcquisitionRoute": "hold-blocked",
+    "reason": "FA-130 proved only Tell-Me/search-overlay blocker context; Microsoft Learn positions Assisted Fixed Asset Acquisition behind the fixed asset card Acquire action, not as a proven free Tell-Me page in this lab.",
+    "purchaseInvoiceRoute": "still-blocked-until-fixed-asset-line-type-is-proven",
+    "faGlJournalRoute": "still-blocked-until-amount-and-balancing-account-controls-are-proven",
+    "selectedNextRoute": "fixed-asset-card-acquisition-readiness-readonly",
+    "selectedNextCase": "FIXEDASSETS-132-FA-CNC-01-ACQUISITION-READINESS-CARD-READONLY"
+  },
+  "sources": [
+    {
+      "title": "Acquire fixed assets - Business Central",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/business-central/fa-how-acquire",
+      "usedFor": "Confirms that a fixed asset must be set up and assigned a depreciation book before acquisition, and that the Assisted Fixed Asset Acquisition flow is reached from the Acquire action."
+    },
+    {
+      "title": "Purchase fixed assets in Dynamics 365 Business Central",
+      "url": "https://learn.microsoft.com/en-us/training/modules/purchase-fixed-assets/",
+      "usedFor": "Confirms purchase document route is valid but remains blocked in this lab by missing line-type proof."
+    }
+  ],
+  "proved": [
+    "FA-130 did not prove an Assisted Fixed Asset Acquisition page or wizard.",
+    "The FA-130 screenshot is rejected as page proof and retained only as Tell-Me/search-overlay blocker evidence.",
+    "Microsoft Learn supports the next diagnostic focus on Fixed Asset Card acquisition readiness and the Acquire action boundary.",
+    "No BC run, Playwright run, setup change, draft, Preview Posting, posting, API shortcut or book edit occurred in FA-131."
+  ],
+  "notProved": [
+    "No ready-to-acquire notification is proven for FA-CNC-01.",
+    "No Assisted Fixed Asset Acquisition wizard is opened.",
+    "No acquisition value is entered.",
+    "No journal lines, Preview Posting, posting trace, FA Ledger Entries or G/L acquisition trace are proven.",
+    "No German final fixed-assets proof is proven."
+  ],
+  "changedFiles": [
+    ".agent/state/current.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/cases/fixedassets-131-assisted-acquisition-search-result-blocker-review.json",
+    ".agent/state/cases/fixedassets-132-fa-cnc-01-acquisition-readiness-card-readonly.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/model_usage_log.jsonl",
+    "playwright/projects/fibu-book5/CURRENT-STATE.md",
+    "playwright/projects/fibu-book5/LAB-FIT-STATUS.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-131/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-131/FIXEDASSETS-131-assisted-acquisition-blocker-review.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-131/FIXEDASSETS-131-result.json"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-131/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-131/FIXEDASSETS-131-assisted-acquisition-blocker-review.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-131/FIXEDASSETS-131-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-130/FIXEDASSETS-130-result.json"
+  ],
+  "warnings": [
+    "Do not repeat Tell-Me search for Assisted Fixed Asset Acquisition without a new route hypothesis.",
+    "Do not click Acquire until the Fixed Asset Card readiness state has been read and a separate case unlocks the action.",
+    "Do not return to Purchase Invoice or FA G/L Journal value entry without resolving their existing blockers."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "flags": {
+    "noBookChange": true,
+    "secretsUntouched": true,
+    "noBcRun": true,
+    "noPlaywrightRun": true,
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noNewDraft": true,
+    "noFieldValueChanged": true,
+    "noSaveRecord": true,
+    "noDeleteRecord": true,
+    "noAcquireExecution": true,
+    "noJournalLinesCreated": true
+  },
+  "statePatch": {
+    "current": {
+      "updatedAt": "2026-06-20T16:05:00.000Z",
+      "activeCase": "FIXEDASSETS-132-FA-CNC-01-ACQUISITION-READINESS-CARD-READONLY",
+      "active_case_file": ".agent/state/cases/fixedassets-132-fa-cnc-01-acquisition-readiness-card-readonly.json",
+      "lastReferenceCase": "FIXEDASSETS-131-ASSISTED-ACQUISITION-SEARCH-RESULT-BLOCKER-REVIEW",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-131-assisted-acquisition-search-result-blocker-review.json",
+      "requiresStrongModel": false,
+      "nextStep": "FIXEDASSETS-132: open FA-CNC-01 Fixed Asset Card read-only and verify acquisition-readiness signals before any Acquire/Assisted Acquisition action."
+    },
+    "activeCase": {
+      "status": "completed",
+      "decision": "Hold the Tell-Me Assisted Acquisition route as blocked and pivot to Fixed Asset Card acquisition-readiness diagnostics."
+    },
+    "coverage": {
+      "schemaVersion": 1,
+      "purpose": "Kompakter Coverage-Index fuer schnelle Agentenlaeufe.",
+      "areas": {
+        "fixedassets": {
+          "chapter": "Kapitel 21",
+          "status": "in-progress",
+          "currentBlock": "fa-card-acquisition-readiness-readonly",
+          "latestPracticalCase": "FIXEDASSETS-130",
+          "latestDecisionCase": "FIXEDASSETS-131",
+          "nextCase": "FIXEDASSETS-132-FA-CNC-01-ACQUISITION-READINESS-CARD-READONLY",
+          "bookScreenshots": {
+            "setupProofs": "available-labor",
+            "purchaseInvoicePreflight": "available-labor",
+            "validFixedAssetLine": "blocked-personalize-opened-type-context-visible-but-fixed-asset-option-unproved",
+            "acquisitionPostingTrace": "blocked-until-fa-card-ready-to-acquire-state-is-proven",
+            "depreciationPostingTrace": "open",
+            "acquisitionWizardPreflight": "blocked-tell-me-search-overlay-only-next-card-readiness"
+          },
+          "finalGermanProof": "open"
+        }
+      },
+      "hardExclusions": {
+        "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
+      }
+    }
+  },
+  "bookImpact": "Kapitel 21 should explain Assisted Fixed Asset Acquisition as an Acquire-action path from a ready fixed asset card, not as a proven Tell-Me page in the current lab.",
+  "summary": "FA-131 holds the Tell-Me Assisted Acquisition route as blocked and selects a read-only Fixed Asset Card readiness check for FA-CNC-01 as the next safe practical step.",
+  "nextStep": "FIXEDASSETS-132: read-only acquisition-readiness check on FA-CNC-01 Fixed Asset Card."
+}

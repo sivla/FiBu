@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-132-FA-CNC-01-ACQUISITION-READINESS-CARD-READONLY",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "playwright-readonly-diagnosis",
+  "taskClass": "wizard_work",
+  "requiresUsageLog": false,
+  "goal": "Open FA-CNC-01 on the Fixed Asset Card read-only and verify acquisition-readiness signals before any Acquire/Assisted Acquisition action.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-131/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-130/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-126/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-128/",
+    "https://learn.microsoft.com/en-us/dynamics365/business-central/fa-how-acquire"
+  ],
+  "knownTruth": [
+    "FA-CNC-01 exists and has visible fixed asset masterdata from earlier evidence.",
+    "Acquire is visible but disabled in FA-126 and FA-128.",
+    "FA-130 did not prove a Tell-Me route to Assisted Fixed Asset Acquisition.",
+    "Microsoft Learn indicates acquisition readiness is tied to the fixed asset card and the Acquire action after required setup."
+  ],
+  "allowedActions": [
+    "open-business-central",
+    "run-playwright",
+    "verify-instance-company",
+    "open-fixed-asset-card-readonly",
+    "capture-visible-card-fields",
+    "capture-acquire-action-state",
+    "capture-ready-to-acquire-notification-if-visible",
+    "take-diagnostic-screenshot",
+    "write-compact-evidence"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "company-switch",
+    "api-shortcut",
+    "book-edit",
+    "click-acquire",
+    "execute-acquire",
+    "enter-K30000-in-purchase-invoice",
+    "enter-FA-CNC-01-in-document",
+    "enter-amount",
+    "change-field-value",
+    "save-record",
+    "new-draft",
+    "finish-wizard",
+    "click-ok",
+    "create-journal-lines",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "delete-record",
+    "delete-non-test-data"
+  ],
+  "acceptanceCriteria": [
+    "Instance MCP_1_20260210 and company RM-DEMO are confirmed.",
+    "FA-CNC-01 Fixed Asset Card is visible.",
+    "Relevant card fields and Book Value are captured read-only.",
+    "Ready-to-acquire notification presence or absence is documented.",
+    "Acquire action state is captured but not clicked.",
+    "No field value, draft, setup, journal line, Preview Posting, posting, API shortcut or company switch occurs."
+  ],
+  "recommendedSkills": [
+    "evidence-writer"
+  ],
+  "nextSafeAction": "Run a guarded read-only Playwright diagnosis of FA-CNC-01 Fixed Asset Card acquisition readiness."
+}
