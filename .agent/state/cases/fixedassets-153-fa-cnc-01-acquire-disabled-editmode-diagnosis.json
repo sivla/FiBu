@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-153-FA-CNC-01-ACQUIRE-DISABLED-EDITMODE-DIAGNOSIS",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "playwright-readonly-action-state-diagnosis",
+  "taskClass": "wizard_work",
+  "requiresUsageLog": false,
+  "goal": "Open FA-CNC-01 after FA-152 review, prove MACHINES and Book Value 0.00, then diagnose whether the safe Edit/pencil state changes the visible disabled Acquire action. Do not click Acquire and do not enter values.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-151/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-152/",
+    "https://learn.microsoft.com/en-us/dynamics365/business-central/fa-how-acquire"
+  ],
+  "allowedActions": [
+    "open-business-central",
+    "run-playwright",
+    "open-fixed-asset-card",
+    "verify-instance-company",
+    "read-card-fields",
+    "click-safe-edit-icon-without-field-change",
+    "inspect-action-state-readonly",
+    "capture-screenshot",
+    "write-evidence",
+    "document-next-safe-action"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "company-switch",
+    "api-shortcut",
+    "book-edit",
+    "click-acquire",
+    "execute-acquire",
+    "enter-K30000-in-purchase-invoice",
+    "enter-FA-CNC-01-in-document",
+    "enter-amount",
+    "new-draft",
+    "finish-wizard",
+    "click-ok",
+    "create-journal-lines",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "delete-record",
+    "delete-non-test-data"
+  ],
+  "safetyGates": [
+    "Abort if URL does not contain MCP_1_20260210 and company=RM-DEMO.",
+    "Abort if foreground is not Fixed Asset Card for FA-CNC-01.",
+    "Prove Posting Group MACHINES and Book Value 0.00 before any action-state probe.",
+    "Only click the safe card Edit/pencil affordance if it is clearly not Acquire, New, Delete, Post, Preview or OK.",
+    "Read Acquire action state only; do not click Acquire.",
+    "Abort if any wizard, confirmation dialog, Preview Posting or posting dialog appears.",
+    "Do not create purchase invoice, journal line, draft or amount entry."
+  ],
+  "acceptanceCriteria": [
+    "Instance and company are verified.",
+    "FA-CNC-01 is visible with Posting Group MACHINES and Book Value 0.00.",
+    "Acquire action state before and after safe edit-state probe is documented.",
+    "No acquisition, Preview Posting, posting, draft, setup change or value entry occurred."
+  ],
+  "nextSafeAction": "Run exactly one guarded action-state diagnosis; no click on Acquire."
+}

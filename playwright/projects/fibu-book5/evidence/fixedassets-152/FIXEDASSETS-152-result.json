@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixed-asset-acquire-readiness-result-review",
+  "caseId": "FIXEDASSETS-152-FA-CNC-01-ACQUIRE-READINESS-RESULT-REVIEW",
+  "source": "local-evidence-review",
+  "resultStatus": "reviewed-acquire-disabled-after-machines",
+  "runPlanId": "FIXEDASSETS-152-FA-CNC-01-ACQUIRE-READINESS-RESULT-REVIEW-PLAN",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "assetNo": "FA-CNC-01",
+  "proved": [
+    "FA-151 is accepted as read-only card-readiness evidence.",
+    "FA-CNC-01 shows Posting Group MACHINES as a visible card field value.",
+    "Book Value 0.00 is visible on the Fixed Asset Card.",
+    "Acquire is visible but disabled.",
+    "No Acquire click, Preview Posting, posting, setup change, draft, company switch or API shortcut occurred in FA-151 or FA-152."
+  ],
+  "notProved": [
+    "The reason why Acquire is disabled is not proven.",
+    "No Assisted Fixed Asset Acquisition wizard behavior is proven.",
+    "No fixed asset acquisition was executed.",
+    "No FA Ledger Entry or G/L acquisition trace is proven.",
+    "No German fixed-assets final proof is produced."
+  ],
+  "changedFiles": [
+    ".agent/state/current.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/model_usage_log.jsonl",
+    ".agent/state/cases/fixedassets-152-fa-cnc-01-acquire-readiness-result-review.json",
+    ".agent/state/cases/fixedassets-153-fa-cnc-01-acquire-disabled-editmode-diagnosis.json",
+    "playwright/projects/fibu-book5/CURRENT-STATE.md",
+    "playwright/projects/fibu-book5/LAB-FIT-STATUS.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-152/"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-151/FIXEDASSETS-151-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-151/fixedassets-151-020-fa-cnc-01-acquire-readiness-after-machines.screenshot.json",
+    "playwright/projects/fibu-book5/img/fixedassets-151-020-fa-cnc-01-acquire-readiness-after-machines.png",
+    "playwright/projects/fibu-book5/evidence/fixedassets-152/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-152/FIXEDASSETS-152-review.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-152/FIXEDASSETS-152-result.json",
+    "https://learn.microsoft.com/en-us/dynamics365/business-central/fa-how-acquire"
+  ],
+  "warnings": [
+    "CRONUS-USA laboratory evidence only.",
+    "MACHINES is setup/card readiness, not acquisition proof.",
+    "Disabled Acquire remains a blocker."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "flags": {
+    "noBcRun": true,
+    "noPlaywrightRun": true,
+    "noBookChange": true,
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noNewDraft": true,
+    "noAcquireClick": true,
+    "noAcquireExecution": true
+  },
+  "statePatch": {
+    "current": {
+      "updatedAt": "2026-06-20T20:45:00.000Z",
+      "activeCase": "FIXEDASSETS-153-FA-CNC-01-ACQUIRE-DISABLED-EDITMODE-DIAGNOSIS",
+      "active_case_file": ".agent/state/cases/fixedassets-153-fa-cnc-01-acquire-disabled-editmode-diagnosis.json",
+      "lastReferenceCase": "FIXEDASSETS-152-FA-CNC-01-ACQUIRE-READINESS-RESULT-REVIEW",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-152-fa-cnc-01-acquire-readiness-result-review.json",
+      "requiresStrongModel": false,
+      "nextStep": "FIXEDASSETS-153: run one guarded read-only/Edit-state diagnosis for disabled Acquire after MACHINES; do not click Acquire."
+    },
+    "activeCase": {
+      "status": "reviewed-acquire-disabled-after-machines",
+      "lastResult": {
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-152/FIXEDASSETS-152-result.json",
+        "summary": "FA-152 accepts FA-151 as card-readiness evidence but keeps acquisition locked because Acquire is visible and disabled."
+      },
+      "nextSafeAction": "FIXEDASSETS-153: diagnose disabled Acquire action state without clicking Acquire."
+    }
+  },
+  "summary": "FA-152 accepts FA-151 as card-readiness evidence: FA-CNC-01 has MACHINES and Book Value 0.00 visible, but Acquire is disabled. Acquisition remains locked.",
+  "bookImpact": "Kapitel 21 kann den Screenshot als Lernbild nutzen: Setup-Fit und Kartenbereitschaft sind nicht dasselbe wie Anlagenzugang. Disabled Acquire braucht einen separaten Diagnose-/Gate-Schritt.",
+  "nextStep": "FIXEDASSETS-153-FA-CNC-01-ACQUIRE-DISABLED-EDITMODE-DIAGNOSIS"
+}
