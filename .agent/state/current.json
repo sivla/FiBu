@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-21T00:45:00.000Z",
+  "updatedAt": "2026-06-21T01:10:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "fixedassets",
-  "activeCase": "FIXEDASSETS-147-FA-CNC-01-POSTING-GROUP-EDITMODE-AFFORDANCE-NOSAVE",
-  "active_case_file": ".agent/state/cases/fixedassets-147-fa-cnc-01-posting-group-editmode-affordance-nosave.json",
-  "lastReferenceCase": "FIXEDASSETS-146-FA-CNC-01-POSTING-GROUP-DIAGNOSIS-RESULT-REVIEW",
-  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-146-fa-cnc-01-posting-group-diagnosis-result-review.json",
+  "activeCase": "FIXEDASSETS-148-FA-CNC-01-POSTING-GROUP-AFFORDANCE-RESULT-REVIEW",
+  "active_case_file": ".agent/state/cases/fixedassets-148-fa-cnc-01-posting-group-affordance-result-review.json",
+  "lastReferenceCase": "FIXEDASSETS-147-FA-CNC-01-POSTING-GROUP-EDITMODE-AFFORDANCE-NOSAVE",
+  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-147-fa-cnc-01-posting-group-editmode-affordance-nosave.json",
   "mode": "token-efficient-autopilot-tooling-bootstrap",
-  "requiresStrongModel": false,
+  "requiresStrongModel": true,
   "requiredPreflightChecks": [
     "agent:preflight",
     "agent:state:validate",
@@ -19,15 +19,11 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "open-business-central",
-    "run-playwright",
-    "open-fixed-asset-card",
-    "verify-instance-company",
-    "click-edit-mode-if-safe",
-    "focus-posting-group-field",
-    "inspect-field-local-affordance",
-    "capture-screenshot",
-    "write-evidence",
+    "read-local-evidence",
+    "inspect-screenshot-metadata",
+    "inspect-pattern-docs",
+    "choose-next-route",
+    "update-state-plan",
     "document-next-safe-action"
   ],
   "forbiddenActions": [
@@ -36,6 +32,8 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright",
     "company-switch",
     "api-shortcut",
     "book-edit",
@@ -59,7 +57,7 @@
     "delete-record",
     "delete-non-test-data"
   ],
-  "nextStep": "FIXEDASSETS-147: run a no-save edit-mode affordance probe for the Posting Group field on FA-CNC-01; do not select MACHINES and do not save.",
+  "nextStep": "FIXEDASSETS-148: locally review FA-147 no-save affordance evidence before any MACHINES assignment route is unlocked.",
   "subagentPlanPolicy": {
     "default": "optional",
     "execution": "plan-only-no-subagents-spawned",

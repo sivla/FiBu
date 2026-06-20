@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-148-FA-CNC-01-POSTING-GROUP-AFFORDANCE-RESULT-REVIEW",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "local-result-review",
+  "taskClass": "judge_work",
+  "requiresUsageLog": true,
+  "goal": "Review FA-147 no-save affordance evidence and decide whether a later MACHINES assignment route can be safely unlocked.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-147/"
+  ],
+  "allowedActions": [
+    "read-local-evidence",
+    "inspect-screenshot-metadata",
+    "inspect-pattern-docs",
+    "choose-next-route",
+    "update-state-plan",
+    "document-next-safe-action"
+  ],
+  "forbiddenActions": [
+    "open-business-central",
+    "run-playwright",
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "company-switch",
+    "api-shortcut",
+    "book-edit",
+    "select-MACHINES",
+    "write-posting-group",
+    "click-acquire",
+    "execute-acquire",
+    "enter-K30000-in-purchase-invoice",
+    "enter-FA-CNC-01-in-document",
+    "enter-amount",
+    "new-draft",
+    "finish-wizard",
+    "create-journal-lines",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "delete-record",
+    "delete-non-test-data"
+  ],
+  "safetyGates": [
+    "Do not open BC in this review case.",
+    "Do not claim MACHINES is assigned to FA-CNC-01.",
+    "Do not unlock a write route unless FA-147 proves a field-local affordance that can be used with a later explicit write gate.",
+    "Treat FA-147 screenshot as no-save affordance evidence, not final book proof."
+  ],
+  "acceptanceCriteria": [
+    "FA-147 screenshot and JSON are classified.",
+    "The field-local Posting Group dropdown/lookup affordance is accepted or rejected.",
+    "The next route is either a later guarded assignment attempt, another diagnostic, or a deliberate hold."
+  ],
+  "nextSafeAction": "Review FA-147 evidence before any MACHINES assignment route is attempted."
+}
