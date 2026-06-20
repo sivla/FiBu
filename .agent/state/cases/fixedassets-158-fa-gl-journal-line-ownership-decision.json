@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-158-FA-GL-JOURNAL-LINE-OWNERSHIP-DECISION",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "local-result-review",
+  "taskClass": "judge_work",
+  "requiresUsageLog": true,
+  "goal": "Review FIXEDASSETS-157 line ownership evidence locally and decide whether the visible Fixed Asset G/L Journal line can be kept, must be cleaned up, or should be rebuilt before any value entry, Preview Posting or posting.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-156/FIXEDASSETS-156-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-157/FIXEDASSETS-157-result.json"
+  ],
+  "allowedActions": [
+    "read-evidence",
+    "review-screenshot-metadata",
+    "compare-line-signals",
+    "write-local-decision",
+    "update-state",
+    "document-next-safe-action"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright",
+    "company-switch",
+    "api-shortcut",
+    "book-edit",
+    "enter-FA-CNC-01-in-journal",
+    "enter-amount",
+    "enter-balancing-account",
+    "create-journal-lines",
+    "preview-posting",
+    "post",
+    "setup-change",
+    "delete-record",
+    "click-ok"
+  ],
+  "safetyGates": [
+    "No BC or Playwright in this local review case.",
+    "Do not turn a visible line signal into write approval.",
+    "If ownership is unclear, keep values, cleanup, Preview Posting and Post locked.",
+    "If cleanup or keep-draft is proposed, require a separate gated case."
+  ],
+  "acceptanceCriteria": [
+    "FA-157 evidence is classified as keep, cleanup-needed, rebuild-needed or blocked.",
+    "Preview Posting, Post and value entry remain locked unless a later case explicitly unlocks them.",
+    "Current State and coverage reflect the decision."
+  ],
+  "nextSafeAction": "Review FA-157 evidence locally; do not open BC, enter values, cleanup, preview or post."
+}

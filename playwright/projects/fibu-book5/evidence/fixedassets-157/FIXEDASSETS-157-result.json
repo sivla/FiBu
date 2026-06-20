@@ -1,0 +1,187 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-fa-gl-journal-line-ownership-readonly-result",
+  "caseId": "FIXEDASSETS-157-FA-GL-JOURNAL-LINE-OWNERSHIP-READONLY",
+  "source": "playwright-sandbox-readonly-diagnosis",
+  "resultStatus": "observed-visual-technical-extraction-blocked",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-medium",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "environment": {
+    "expectedInstance": "MCP_1_20260210",
+    "expectedCompany": "RM-DEMO",
+    "context": {
+      "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5628&dc=0&bookmark=30_UQAAAAJ7_0EAUwBTAEUAVABTAAAAAnv_RABFAEYAQQBVAEwAVAAAAACHECc",
+      "environmentInUrl": true,
+      "companyInUrl": true,
+      "companyInText": false,
+      "wrongEnvironmentVisible": false
+    },
+    "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5628&dc=0&bookmark=30_UQAAAAJ7_0EAUwBTAEUAVABTAAAAAnv_RABFAEYAQQBVAEwAVAAAAACHECc",
+    "urlAfterRun": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5628&dc=0&bookmark=30_UQAAAAJ7_0EAUwBTAEUAVABTAAAAAnv_RABFAEYAQQBVAEwAVAAAAACHECc"
+  },
+  "proved": [
+    "The run stayed in MCP_1_20260210.",
+    "The run stayed in RM-DEMO.",
+    "Target line signals were evaluated read-only, but the DOM/text extractor captured only the Business Central shell.",
+    "A line ownership diagnostic screenshot was captured.",
+    "Visual screenshot QA shows Fixed Asset G/L Journals, Batch Name DEFAULT, one visible journal line, Document No. G05001, Account Type Fixed Asset, Account No. FA-CNC-01, Depreciation Book Code HGB and Description CNC Maschine FRA.",
+    "No value entry was made.",
+    "No line was inserted or deleted.",
+    "No Preview Posting was opened.",
+    "No posting was executed.",
+    "No setup change was executed."
+  ],
+  "notProved": [
+    "Machine-readable DOM/text extraction did not capture the journal grid values.",
+    "Amount 68000 is not visible.",
+    "No ownership decision: existing line is not yet approved for keep, cleanup or rebuild.",
+    "No corrected balancing account.",
+    "No Preview Posting result.",
+    "No posting result.",
+    "No FA Ledger Entry or G/L Entry trace.",
+    "No German final proof."
+  ],
+  "diagnosisSummary": {
+    "balanceSummary": null,
+    "pageSignals": {
+      "titleVisible": false,
+      "postVisible": false,
+      "previewVisible": false
+    },
+    "targetSignals": {
+      "g05001Visible": false,
+      "faCnc01Visible": false,
+      "k30000Visible": false,
+      "hgbVisible": false,
+      "amount68000Visible": false,
+      "fixedAssetVisible": false,
+      "acquisitionCostVisible": false,
+      "glAccountVisible": false,
+      "bankAccountVisible": false
+    },
+    "interpretedOwnership": {
+      "existingLineCount": null,
+      "targetLineLooksVisible": false,
+      "targetAmountLooksVisible": false,
+      "lineNeedsDecisionBeforeWrite": true,
+      "cleanupPerformed": false,
+      "keepDraftApproved": false
+    },
+    "relevantRowsCount": 0,
+    "relevantControlsCount": 0,
+    "screenshotCaptured": true,
+    "visualQa": {
+      "screenshotShowsJournalPage": true,
+      "screenshotShowsBatchDefault": true,
+      "screenshotShowsOneLine": true,
+      "screenshotShowsDocumentNoG05001": true,
+      "screenshotShowsFixedAssetAccountType": true,
+      "screenshotShowsFaCnc01": true,
+      "screenshotShowsDepreciationBookHgb": true,
+      "screenshotShowsDescriptionCncMaschineFra": true,
+      "screenshotShowsAmount68000": false,
+      "domExtractionCapturedGrid": false
+    }
+  },
+  "changedFiles": [
+    "package.json",
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-157-fa-gl-journal-line-ownership-readonly.json",
+    ".agent/state/cases/fixedassets-158-fa-gl-journal-line-ownership-decision.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    "playwright/projects/fibu-book5/tests/fixedassets-157-fa-gl-journal-line-ownership-readonly.spec.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-157/",
+    "playwright/projects/fibu-book5/img/fixedassets-157-010-fa-gl-journal-line-ownership-readonly.png"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-157/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-157/FIXEDASSETS-157-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-157/FIXEDASSETS-157-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-157/010-fa-gl-journal-line-ownership-context.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-157/020-focused-line-ownership-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-157/030-line-ownership-signals.json",
+    "playwright/projects/fibu-book5/img/fixedassets-157-010-fa-gl-journal-line-ownership-readonly.png",
+    "playwright/projects/fibu-book5/evidence/fixedassets-157/fixedassets-157-010-fa-gl-journal-line-ownership-readonly.screenshot.json"
+  ],
+  "warnings": [
+    "Read-only diagnostic run.",
+    "Do not enter FA-CNC-01, amount or balancing account from FA-157 alone.",
+    "Do not cleanup, preview or post before FA-158 local decision."
+  ],
+  "blockedBy": [
+    "DOM/text extraction captured only the Business Central shell, while the screenshot visibly shows the journal page and line."
+  ],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-158-FA-GL-JOURNAL-LINE-OWNERSHIP-DECISION",
+      "active_case_file": ".agent/state/cases/fixedassets-158-fa-gl-journal-line-ownership-decision.json",
+      "lastReferenceCase": "FIXEDASSETS-157-FA-GL-JOURNAL-LINE-OWNERSHIP-READONLY",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-157-fa-gl-journal-line-ownership-readonly.json",
+      "requiresStrongModel": true,
+      "nextStep": "FIXEDASSETS-158: review FA-157 line ownership locally and decide whether the existing line can be kept, needs cleanup, or must be rebuilt before any value entry."
+    },
+    "lastRunSummary": {
+      "schemaVersion": 1,
+      "runId": "FIXEDASSETS-157-FA-GL-JOURNAL-LINE-OWNERSHIP-READONLY",
+      "date": "2026-06-20",
+      "workType": "fixed-asset-gl-journal-line-ownership-readonly",
+      "branch": "codex/token-efficient-autopilot-state",
+      "instance": "MCP_1_20260210",
+      "company": "RM-DEMO",
+      "bcRun": true,
+      "playwrightRun": true,
+      "posted": false,
+      "previewPosting": false,
+      "setupChanged": false,
+      "companySwitched": false,
+      "apiShortcut": false,
+      "bookChanged": false,
+      "resultStatus": "observed-visual-technical-extraction-blocked",
+      "summary": "FA-157 visually proved the current Fixed Asset G/L Journal line situation, but DOM/text extraction captured only the BC shell. The screenshot shows one line with G05001 / Fixed Asset / FA-CNC-01 / HGB; amount 68000 remains not visible.",
+      "nextStep": "Run FIXEDASSETS-158 local decision before cleanup, value entry, Preview Posting or posting."
+    },
+    "activeCase": {
+      "status": "observed-visual-technical-extraction-blocked",
+      "lastResult": {
+        "status": "observed-visual-technical-extraction-blocked",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-157/FIXEDASSETS-157-result.json",
+        "summary": "FA-157 visually proved the current Fixed Asset G/L Journal line situation, but DOM/text extraction captured only the BC shell. The screenshot shows one line with G05001 / Fixed Asset / FA-CNC-01 / HGB; amount 68000 remains not visible."
+      },
+      "nextSafeAction": "Run FIXEDASSETS-158 local decision; do not enter values, cleanup, preview or post."
+    },
+    "coverage": {
+      "areas": {
+        "fixedassets": {
+          "currentBlock": "fa-gl-journal-line-ownership-decision",
+          "latestPracticalCase": "FIXEDASSETS-157",
+          "latestReviewCase": "FIXEDASSETS-156",
+          "nextCase": "FIXEDASSETS-158-FA-GL-JOURNAL-LINE-OWNERSHIP-DECISION"
+        }
+      }
+    }
+  },
+  "flags": {
+    "noValueEntry": true,
+    "noInsertLine": true,
+    "noDeleteLine": true,
+    "noCleanup": true,
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true,
+    "domExtractionBlocked": true,
+    "visualScreenshotQaPerformed": true
+  },
+  "observed": {
+    "startedAt": "2026-06-20T20:51:58.776Z",
+    "finishedAt": "2026-06-20T20:52:07.197Z"
+  },
+  "nextStep": "FIXEDASSETS-158: review FA-157 line ownership locally and decide whether the existing line can be kept, needs cleanup, or must be rebuilt before any value entry."
+}
