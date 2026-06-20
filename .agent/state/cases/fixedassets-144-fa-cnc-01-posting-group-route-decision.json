@@ -3,7 +3,7 @@
   "caseId": "FIXEDASSETS-144-FA-CNC-01-POSTING-GROUP-ROUTE-DECISION",
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "status": "planned",
+  "status": "decision-next-diagnostic-route",
   "workType": "local-route-decision",
   "taskClass": "judge_work",
   "requiresUsageLog": true,
@@ -60,5 +60,18 @@
     "The next route is either a genuinely new UI mechanism or a deliberate hold.",
     "State and Current State identify one concrete next safe action."
   ],
-  "nextSafeAction": "Review FA-143 and choose whether to use Page Inspection/Personalize/another lookup action or hold the Posting Group assignment path."
+  "decision": {
+    "selectedRoute": "FIXEDASSETS-145-FA-CNC-01-POSTING-GROUP-PAGEINSPECTION-PERSONALIZE-NOSAVE",
+    "rejectedRoutes": [
+      "repeat Alt+ArrowDown on Posting Group",
+      "repeat right-edge dropdown click on Posting Group",
+      "repeat typed MACHINES + ArrowDown/Enter fallback"
+    ],
+    "reason": "FA-140 and FA-143 both show the route opening Depreciation Book Card HGB instead of a MACHINES value list."
+  },
+  "lastResult": {
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-144/FIXEDASSETS-144-result.json",
+    "summary": "FA-144 rejects the repeated Related-Card route and selects FA-145 no-save Page Inspection/Personalize diagnosis."
+  },
+  "nextSafeAction": "FIXEDASSETS-145: run exactly one no-save Page Inspection/Personalize diagnostic test for FA-CNC-01 Posting Group."
 }

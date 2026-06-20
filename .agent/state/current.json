@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-20T23:35:00.000Z",
+  "updatedAt": "2026-06-20T23:58:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "fixedassets",
-  "activeCase": "FIXEDASSETS-144-FA-CNC-01-POSTING-GROUP-ROUTE-DECISION",
-  "active_case_file": ".agent/state/cases/fixedassets-144-fa-cnc-01-posting-group-route-decision.json",
-  "lastReferenceCase": "FIXEDASSETS-143-FA-CNC-01-POSTING-GROUP-GUARDED-RETRY",
-  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-143-fa-cnc-01-posting-group-guarded-retry.json",
+  "activeCase": "FIXEDASSETS-145-FA-CNC-01-POSTING-GROUP-PAGEINSPECTION-PERSONALIZE-NOSAVE",
+  "active_case_file": ".agent/state/cases/fixedassets-145-fa-cnc-01-posting-group-pageinspection-personalize-nosave.json",
+  "lastReferenceCase": "FIXEDASSETS-144-FA-CNC-01-POSTING-GROUP-ROUTE-DECISION",
+  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-144-fa-cnc-01-posting-group-route-decision.json",
   "mode": "token-efficient-autopilot-tooling-bootstrap",
-  "requiresStrongModel": true,
+  "requiresStrongModel": false,
   "requiredPreflightChecks": [
     "agent:preflight",
     "agent:state:validate",
@@ -19,12 +19,17 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "read-local-evidence",
-    "inspect-test-result",
-    "inspect-pattern-docs",
-    "choose-next-route",
-    "update-state-plan",
-    "document-next-safe-action"
+    "open-business-central",
+    "run-playwright",
+    "read-fixed-asset-card",
+    "focus-posting-group-field",
+    "open-page-inspection",
+    "open-personalize-no-save",
+    "capture-technical-evidence",
+    "capture-debug-screenshot",
+    "close-diagnostic-pane",
+    "update-evidence",
+    "update-state-plan"
   ],
   "forbiddenActions": [
     "leave-instance",
@@ -35,6 +40,9 @@
     "company-switch",
     "api-shortcut",
     "book-edit",
+    "select-MACHINES",
+    "save-personalization",
+    "write-posting-group",
     "click-acquire",
     "execute-acquire",
     "enter-K30000-in-purchase-invoice",
@@ -52,7 +60,7 @@
     "delete-record",
     "delete-non-test-data"
   ],
-  "nextStep": "FIXEDASSETS-144: local route decision after guarded retry; do not repeat the same Related-Card path.",
+  "nextStep": "FIXEDASSETS-145: run no-save Page Inspection/Personalize diagnosis for FA-CNC-01 Posting Group; do not select or save MACHINES.",
   "subagentPlanPolicy": {
     "default": "optional",
     "execution": "plan-only-no-subagents-spawned",

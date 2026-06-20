@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixed-asset-posting-group-route-decision-result",
+  "caseId": "FIXEDASSETS-144-FA-CNC-01-POSTING-GROUP-ROUTE-DECISION",
+  "source": "local-evidence-review",
+  "resultStatus": "decision-next-diagnostic-route",
+  "runPlanId": "FIXEDASSETS-144-FA-CNC-01-POSTING-GROUP-ROUTE-DECISION-PLAN",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "assetNo": "FA-CNC-01",
+  "bcRun": false,
+  "posted": false,
+  "preview": false,
+  "setupChanged": false,
+  "companySwitched": false,
+  "apiShortcut": false,
+  "bookChanged": false,
+  "proved": [
+    "FA-140 and FA-143 consistently classify the Posting Group field route as wrong-related-card-route.",
+    "The old Alt+ArrowDown, right-edge click and typed-value fallback route is rejected for this field until a genuinely different mechanism is identified.",
+    "The next safe step is a no-save Page Inspection/Personalize diagnostic route, not another write attempt."
+  ],
+  "notProved": [
+    "Posting Group MACHINES is not assigned to FA-CNC-01.",
+    "No setup change happened in FA-144.",
+    "No fixed-asset acquisition route is unlocked.",
+    "No German fixed-assets final proof is produced."
+  ],
+  "changedFiles": [
+    ".agent/state/current.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/cases/fixedassets-144-fa-cnc-01-posting-group-route-decision.json",
+    ".agent/state/cases/fixedassets-145-fa-cnc-01-posting-group-pageinspection-personalize-nosave.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/model_usage_log.jsonl",
+    "playwright/projects/fibu-book5/CURRENT-STATE.md",
+    "playwright/projects/fibu-book5/LAB-FIT-STATUS.md",
+    "playwright/projects/fibu-book5/BC-PLAYWRIGHT-PATTERNS.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-144/"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-140/040-fill-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-141/FIXEDASSETS-141-combobox-result-review.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-142/FIXEDASSETS-142-locator-repair.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-143/FIXEDASSETS-143-guarded-retry.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-144/FIXEDASSETS-144-route-decision.md"
+  ],
+  "warnings": [
+    "Do not use the existing blocker screenshot as a MACHINES field proof."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "flags": {
+    "noBookChange": true,
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noNewDraft": true,
+    "noDeleteRecord": true,
+    "noAcquireExecution": true,
+    "noAmountEntry": true,
+    "noTargetVendorEntry": true
+  },
+  "statePatch": {
+    "current": {
+      "updatedAt": "2026-06-20T23:58:00.000Z",
+      "activeCase": "FIXEDASSETS-145-FA-CNC-01-POSTING-GROUP-PAGEINSPECTION-PERSONALIZE-NOSAVE",
+      "active_case_file": ".agent/state/cases/fixedassets-145-fa-cnc-01-posting-group-pageinspection-personalize-nosave.json",
+      "lastReferenceCase": "FIXEDASSETS-144-FA-CNC-01-POSTING-GROUP-ROUTE-DECISION",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-144-fa-cnc-01-posting-group-route-decision.json",
+      "requiresStrongModel": false,
+      "nextStep": "FIXEDASSETS-145: run no-save Page Inspection/Personalize diagnosis for FA-CNC-01 Posting Group; do not select or save MACHINES."
+    },
+    "activeCase": {
+      "status": "decision-next-diagnostic-route",
+      "lastResult": {
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-144/FIXEDASSETS-144-result.json",
+        "summary": "FA-144 rejects the repeated Related-Card route and selects FA-145 no-save Page Inspection/Personalize diagnosis."
+      },
+      "nextSafeAction": "FIXEDASSETS-145: UI-first no-save diagnostic route."
+    }
+  },
+  "summary": "FA-144 rejects the repeated Posting Group field route and selects a no-save technical diagnosis path for the next live run.",
+  "bookImpact": "Kapitel 21 keeps the MACHINES card fit open and should treat Page Inspection/Personalize as debugging tools, not final screenshots.",
+  "nextStep": "FIXEDASSETS-145-FA-CNC-01-POSTING-GROUP-PAGEINSPECTION-PERSONALIZE-NOSAVE"
+}

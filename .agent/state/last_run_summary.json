@@ -1,20 +1,20 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-143-FA-CNC-01-POSTING-GROUP-GUARDED-RETRY",
+  "runId": "FIXEDASSETS-144-FA-CNC-01-POSTING-GROUP-ROUTE-DECISION",
   "date": "2026-06-20",
-  "workType": "guarded-ui-first-setup-fit-retry",
+  "workType": "local-route-decision",
   "branch": "codex/token-efficient-autopilot-state",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "bcRun": true,
+  "bcRun": false,
   "posted": false,
   "preview": false,
   "setupChanged": false,
   "companySwitched": false,
   "apiShortcut": false,
   "bookChanged": false,
-  "resultStatus": "blocked-wrong-related-card-route",
-  "summary": "FA-143 ran the guarded Posting Group retry in MCP_1_20260210 / RM-DEMO. The guard worked: it detected that the route opened Depreciation Book Card HGB instead of a MACHINES value list. FA-CNC-01 remains at Posting Group EQUIPMENT. No setup change is accepted as proven, no Preview and no posting occurred.",
+  "resultStatus": "decision-next-diagnostic-route",
+  "summary": "FA-144 locally reviewed FA-140 through FA-143 and rejected the repeated Posting Group field route. The next safe live case is FA-145: no-save Page Inspection/Personalize diagnosis for FA-CNC-01 Posting Group. MACHINES remains unassigned on the card; no BC, Playwright, setup change, Preview or posting occurred in FA-144.",
   "evidenceRefs": [
     "playwright/projects/fibu-book5/evidence/fixedassets-140/FIXEDASSETS-140-result.json",
     "playwright/projects/fibu-book5/evidence/fixedassets-140/040-fill-result.json",
@@ -26,32 +26,33 @@
     "playwright/projects/fibu-book5/img/fixedassets-140-060-fa-cnc-01-posting-group-machines.png",
     "playwright/projects/fibu-book5/evidence/fixedassets-143/README.md",
     "playwright/projects/fibu-book5/evidence/fixedassets-143/FIXEDASSETS-143-guarded-retry.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-143/FIXEDASSETS-143-result.json"
+    "playwright/projects/fibu-book5/evidence/fixedassets-143/FIXEDASSETS-143-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-144/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-144/FIXEDASSETS-144-route-decision.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-144/FIXEDASSETS-144-result.json"
   ],
   "changedFiles": [
     ".agent/state/current.json",
     ".agent/state/coverage_state.json",
-    ".agent/state/cases/fixedassets-143-fa-cnc-01-posting-group-guarded-retry.json",
     ".agent/state/cases/fixedassets-144-fa-cnc-01-posting-group-route-decision.json",
+    ".agent/state/cases/fixedassets-145-fa-cnc-01-posting-group-pageinspection-personalize-nosave.json",
     ".agent/state/last_run_summary.json",
     "playwright/projects/fibu-book5/CURRENT-STATE.md",
     "playwright/projects/fibu-book5/LAB-FIT-STATUS.md",
     "playwright/projects/fibu-book5/BC-PLAYWRIGHT-PATTERNS.md",
     "playwright/projects/fibu-book5/evidence/fixedassets-140/README.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-140/FIXEDASSETS-140-posting-group-assignment-fit.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-143/README.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-143/FIXEDASSETS-143-guarded-retry.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-143/FIXEDASSETS-143-result.json"
+    "playwright/projects/fibu-book5/evidence/fixedassets-144/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-144/FIXEDASSETS-144-route-decision.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-144/FIXEDASSETS-144-result.json"
   ],
   "validationCommands": [
     "npm run agent:preflight",
     "npm run agent:dry-run",
     "npm run agent:run-plan",
-    "npm run fibu:fixedassets:fa-cnc-01-posting-group-combobox-route",
-    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-143/FIXEDASSETS-143-result.json",
-    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-143/FIXEDASSETS-143-result.json",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-144/FIXEDASSETS-144-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-144/FIXEDASSETS-144-result.json",
     "npm run check:encoding",
     "git diff --check"
   ],
-  "nextStep": "FIXEDASSETS-144: local route decision after guarded retry; do not repeat the same Related-Card path."
+  "nextStep": "FIXEDASSETS-145: run no-save Page Inspection/Personalize diagnosis for FA-CNC-01 Posting Group; do not select or save MACHINES."
 }

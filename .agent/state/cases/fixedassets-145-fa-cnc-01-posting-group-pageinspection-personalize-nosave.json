@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-145-FA-CNC-01-POSTING-GROUP-PAGEINSPECTION-PERSONALIZE-NOSAVE",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "ui-first-readonly-technical-diagnosis",
+  "taskClass": "wizard_work",
+  "requiresUsageLog": false,
+  "goal": "Open FA-CNC-01 read-only, focus the Posting Group context, and capture Page Inspection/Personalize diagnostics without selecting or saving MACHINES.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-140/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-143/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-144/"
+  ],
+  "allowedActions": [
+    "open-business-central",
+    "run-playwright",
+    "read-fixed-asset-card",
+    "focus-posting-group-field",
+    "open-page-inspection",
+    "open-personalize-no-save",
+    "capture-technical-evidence",
+    "capture-debug-screenshot",
+    "close-diagnostic-pane",
+    "update-evidence",
+    "update-state-plan"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "company-switch",
+    "api-shortcut",
+    "book-edit",
+    "select-MACHINES",
+    "save-personalization",
+    "write-posting-group",
+    "click-acquire",
+    "execute-acquire",
+    "enter-K30000-in-purchase-invoice",
+    "enter-FA-CNC-01-in-document",
+    "enter-amount",
+    "new-draft",
+    "finish-wizard",
+    "click-ok",
+    "create-journal-lines",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "delete-record",
+    "delete-non-test-data"
+  ],
+  "safetyGates": [
+    "Abort if URL does not contain MCP_1_20260210 and company RM-DEMO.",
+    "Abort if FA-CNC-01 is not visible on Fixed Asset Card.",
+    "Do not repeat the old Alt+ArrowDown/right-edge/typed-value write route.",
+    "Do not select MACHINES and do not save personalization.",
+    "Any OK/Yes/Ja/Finish/Post/Preview/Acquire/Delete dialog is a stop condition."
+  ],
+  "acceptanceCriteria": [
+    "Evidence states whether Page Inspection exposes Posting Group / FA Posting Group context for FA-CNC-01.",
+    "Evidence states whether Personalize opens no-save and shows useful field/control context.",
+    "No setup value is changed and no personalization is saved.",
+    "The next route is either a new safe UI mechanism or a deliberate hold."
+  ],
+  "nextSafeAction": "Run exactly one no-save Page Inspection/Personalize diagnostic test for FA-CNC-01 Posting Group."
+}
