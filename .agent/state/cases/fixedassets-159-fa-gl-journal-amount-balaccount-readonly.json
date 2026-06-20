@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-159-FA-GL-JOURNAL-AMOUNT-BALACCOUNT-READONLY",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "playwright-readonly-grid-visibility-proof",
+  "taskClass": "wizard_work",
+  "requiresUsageLog": false,
+  "goal": "Open Fixed Asset G/L Journals read-only and capture whether Amount and Bal. Account fields are visible for the protected existing line without entering values, cleaning up, previewing or posting.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-157/FIXEDASSETS-157-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-158/FIXEDASSETS-158-result.json"
+  ],
+  "allowedActions": [
+    "open-business-central",
+    "run-playwright",
+    "open-fixed-asset-gl-journal",
+    "verify-instance-company",
+    "read-page-context",
+    "read-visible-fields",
+    "horizontal-grid-scroll-readonly",
+    "capture-screenshot",
+    "write-evidence",
+    "document-next-safe-action"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "company-switch",
+    "api-shortcut",
+    "book-edit",
+    "enter-FA-CNC-01-in-journal",
+    "enter-amount",
+    "enter-balancing-account",
+    "create-journal-lines",
+    "preview-posting",
+    "post",
+    "setup-change",
+    "delete-record",
+    "click-ok"
+  ],
+  "safetyGates": [
+    "Abort if URL does not contain MCP_1_20260210 and company=RM-DEMO.",
+    "Read-only only: horizontal scroll and screenshot are allowed, value entry is not.",
+    "Do not create, delete, preview, post, confirm or cleanup.",
+    "If amount/balancing account are still not visible, document the limit instead of forcing controls."
+  ],
+  "acceptanceCriteria": [
+    "Instance and company are verified.",
+    "Amount/Bal. Account visibility or non-visibility is documented with screenshot and JSON.",
+    "No value entry, no cleanup, no Preview Posting, no Post and no setup change occurred."
+  ],
+  "nextSafeAction": "Run one read-only horizontal/grid visibility proof; no values and no cleanup."
+}

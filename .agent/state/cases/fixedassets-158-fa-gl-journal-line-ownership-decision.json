@@ -3,7 +3,7 @@
   "caseId": "FIXEDASSETS-158-FA-GL-JOURNAL-LINE-OWNERSHIP-DECISION",
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "status": "planned",
+  "status": "reviewed-keep-protected-existing-labor-line",
   "workType": "local-result-review",
   "taskClass": "judge_work",
   "requiresUsageLog": true,
@@ -52,5 +52,13 @@
     "Preview Posting, Post and value entry remain locked unless a later case explicitly unlocks them.",
     "Current State and coverage reflect the decision."
   ],
-  "nextSafeAction": "Review FA-157 evidence locally; do not open BC, enter values, cleanup, preview or post."
+  "result": {
+    "status": "keep-protected-existing-labor-line",
+    "summary": "FA-157 line matches the target context visually with G05001 / Fixed Asset / FA-CNC-01 / HGB / CNC Maschine FRA, but Amount, Bal. Account and machine-readable grid extraction remain unproved. The line is kept protected; cleanup and write readiness are held.",
+    "evidence": [
+      "playwright/projects/fibu-book5/evidence/fixedassets-158/FIXEDASSETS-158-line-ownership-decision.md",
+      "playwright/projects/fibu-book5/evidence/fixedassets-158/FIXEDASSETS-158-result.json"
+    ]
+  },
+  "nextSafeAction": "Run FIXEDASSETS-159 read-only grid visibility proof for Amount and Bal. Account; do not enter values, cleanup, preview or post."
 }

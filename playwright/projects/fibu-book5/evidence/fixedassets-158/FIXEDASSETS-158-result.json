@@ -1,0 +1,128 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-fa-gl-journal-line-ownership-decision-result",
+  "caseId": "FIXEDASSETS-158-FA-GL-JOURNAL-LINE-OWNERSHIP-DECISION",
+  "source": "local-evidence-review",
+  "resultStatus": "keep-protected-existing-labor-line",
+  "runPlanId": "FIXEDASSETS-158-FA-GL-JOURNAL-LINE-OWNERSHIP-DECISION-PLAN",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "proved": [
+    "FA-157 screenshot shows a visible Fixed Asset G/L Journal line with G05001 / Fixed Asset / FA-CNC-01 / HGB / CNC Maschine FRA.",
+    "The line is important enough to keep protected until ownership and missing fields are clarified.",
+    "No cleanup, value entry, Preview Posting or posting happened in FA-158.",
+    "The next step must remain read-only because amount, balancing account and machine-readable grid extraction are not proven."
+  ],
+  "notProved": [
+    "Amount 68000 is not visible.",
+    "Balancing account is not visible.",
+    "DOM/text extraction did not capture journal grid values in FA-157.",
+    "The line is not approved for value entry.",
+    "No Preview Posting result.",
+    "No posting result.",
+    "No FA Ledger Entry or G/L Entry trace.",
+    "No German final proof."
+  ],
+  "decision": {
+    "lineClassification": "keep-protected-existing-labor-line",
+    "cleanupDecision": "do-not-cleanup-yet",
+    "writeReadiness": "held",
+    "reason": "The line visibly matches the target asset context but lacks visible amount/balancing account and reliable machine-readable extraction. Deleting it would destroy useful laboratory context; writing into it would be premature.",
+    "nextCase": "FIXEDASSETS-159-FA-GL-JOURNAL-AMOUNT-BALACCOUNT-READONLY"
+  },
+  "changedFiles": [
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-158-fa-gl-journal-line-ownership-decision.json",
+    ".agent/state/cases/fixedassets-159-fa-gl-journal-amount-balaccount-readonly.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/model_usage_log.jsonl",
+    "playwright/projects/fibu-book5/evidence/fixedassets-158/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-158/FIXEDASSETS-158-line-ownership-decision.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-158/FIXEDASSETS-158-result.json",
+    "playwright/projects/fibu-book5/CURRENT-STATE.md",
+    "playwright/projects/fibu-book5/LAB-FIT-STATUS.md",
+    "playwright/projects/fibu-book5/BOOK-CLICK-GUIDE-COVERAGE.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-157/FIXEDASSETS-157-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-157/040-visual-qa.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-157/fixedassets-157-010-fa-gl-journal-line-ownership-readonly.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-158/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-158/FIXEDASSETS-158-line-ownership-decision.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-158/FIXEDASSETS-158-result.json"
+  ],
+  "warnings": [
+    "Local review only.",
+    "Do not delete the visible line before a separate cleanup gate.",
+    "Do not enter amount or balancing account before a separate write gate.",
+    "Do not preview or post from FA-158 alone."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-159-FA-GL-JOURNAL-AMOUNT-BALACCOUNT-READONLY",
+      "active_case_file": ".agent/state/cases/fixedassets-159-fa-gl-journal-amount-balaccount-readonly.json",
+      "lastReferenceCase": "FIXEDASSETS-158-FA-GL-JOURNAL-LINE-OWNERSHIP-DECISION",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-158-fa-gl-journal-line-ownership-decision.json",
+      "requiresStrongModel": false,
+      "nextStep": "FIXEDASSETS-159: read-only horizontal/grid proof for amount and balancing-account visibility; no values, no cleanup, no Preview Posting, no Post."
+    },
+    "lastRunSummary": {
+      "schemaVersion": 1,
+      "runId": "FIXEDASSETS-158-FA-GL-JOURNAL-LINE-OWNERSHIP-DECISION",
+      "date": "2026-06-20",
+      "workType": "local-evidence-review",
+      "branch": "codex/token-efficient-autopilot-state",
+      "instance": "MCP_1_20260210",
+      "company": "RM-DEMO",
+      "bcRun": false,
+      "playwrightRun": false,
+      "posted": false,
+      "previewPosting": false,
+      "setupChanged": false,
+      "companySwitched": false,
+      "apiShortcut": false,
+      "bookChanged": false,
+      "resultStatus": "keep-protected-existing-labor-line",
+      "summary": "FA-158 keeps the visible FA G/L Journal line protected. The line matches G05001 / FA-CNC-01 / HGB, but amount, balancing account and machine-readable grid extraction remain unproven.",
+      "nextStep": "Run FIXEDASSETS-159 read-only amount/balancing-account visibility proof; no values, no cleanup, no Preview Posting, no Post."
+    },
+    "activeCase": {
+      "status": "reviewed-keep-protected-existing-labor-line",
+      "lastResult": {
+        "status": "keep-protected-existing-labor-line",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-158/FIXEDASSETS-158-result.json",
+        "summary": "Visible FA G/L Journal line kept protected; amount and balancing account remain open."
+      },
+      "nextSafeAction": "Run FIXEDASSETS-159 read-only grid visibility proof."
+    },
+    "coverage": {
+      "areas": {
+        "fixedassets": {
+          "currentBlock": "fa-gl-journal-amount-balaccount-readonly",
+          "latestPracticalCase": "FIXEDASSETS-157",
+          "latestReviewCase": "FIXEDASSETS-158",
+          "nextCase": "FIXEDASSETS-159-FA-GL-JOURNAL-AMOUNT-BALACCOUNT-READONLY"
+        }
+      }
+    }
+  },
+  "flags": {
+    "noBusinessCentralRun": true,
+    "noPlaywrightRun": true,
+    "noBookChange": true,
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "cleanupHeld": true,
+    "writeReadinessHeld": true
+  },
+  "nextStep": "FIXEDASSETS-159: read-only amount/balancing-account visibility proof."
+}
