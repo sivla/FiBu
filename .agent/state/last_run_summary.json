@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-128-FA-CNC-01-EDIT-ICON-ACTION-STATE-PROBE",
+  "runId": "FIXEDASSETS-129-ACQUIRE-ROUTE-HOLD-OR-ALTERNATIVE-DECISION",
   "date": "2026-06-20",
-  "workType": "playwright-readonly-diagnosis",
+  "workType": "local-evidence-review",
   "branch": "codex/token-efficient-autopilot-state",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "bcRun": true,
+  "bcRun": false,
   "posted": false,
   "preview": false,
   "setupChanged": false,
@@ -14,39 +14,31 @@
   "apiShortcut": false,
   "bookChanged": false,
   "resultStatus": "observed",
-  "summary": "FA-128 opened FA-CNC-01, inventoried the toolbar/action state, clicked the scoped top toolbar edit/pencil action without field changes and confirmed that Acquire remains visible but disabled. No Acquire execution, Preview Posting, posting, setup change, draft, delete, API shortcut or company switch occurred.",
+  "summary": "FA-129 reviewed FA-126/127/128 and holds the Fixed Asset Card Acquire route as blocked because Acquire stayed disabled even after the scoped edit/pencil probe. The next route is an official Microsoft Learn-backed Assisted Fixed Asset Acquisition page preflight, strictly read-only and stopped before values, journal creation, Preview Posting or posting.",
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/fixedassets-128/README.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-128/FIXEDASSETS-128-learning.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-128/FIXEDASSETS-128-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-128/020-toolbar-action-diagnostics.json",
-    "playwright/projects/fibu-book5/img/fixedassets-128-030-edit-icon-before.png",
-    "playwright/projects/fibu-book5/img/fixedassets-128-040-edit-icon-after.png"
+    "playwright/projects/fibu-book5/evidence/fixedassets-129/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-129/FIXEDASSETS-129-acquire-route-decision.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-129/FIXEDASSETS-129-result.json"
   ],
   "changedFiles": [
     ".agent/state/current.json",
     ".agent/state/coverage_state.json",
-    ".agent/state/cases/fixedassets-128-fa-cnc-01-edit-icon-action-state-probe.json",
     ".agent/state/cases/fixedassets-129-acquire-route-hold-or-alternative-decision.json",
+    ".agent/state/cases/fixedassets-130-assisted-acquisition-page-preflight-readonly.json",
     ".agent/state/last_run_summary.json",
-    "package.json",
-    "playwright/projects/fibu-book5/BC-PLAYWRIGHT-PATTERNS.md",
+    ".agent/state/model_usage_log.jsonl",
     "playwright/projects/fibu-book5/CURRENT-STATE.md",
     "playwright/projects/fibu-book5/LAB-FIT-STATUS.md",
-    "playwright/projects/fibu-book5/tests/fixedassets-128-fa-cnc-01-edit-icon-action-state-probe.spec.ts",
-    "playwright/projects/fibu-book5/evidence/fixedassets-128/",
-    "playwright/projects/fibu-book5/img/fixedassets-128-030-edit-icon-before.png",
-    "playwright/projects/fibu-book5/img/fixedassets-128-040-edit-icon-after.png"
+    "playwright/projects/fibu-book5/evidence/fixedassets-129/"
   ],
   "validationCommands": [
     "npm run agent:preflight",
     "npm run agent:dry-run",
     "npm run agent:run-plan",
-    "npm run fibu:fixedassets:edit-icon-action-state-probe",
-    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-128/FIXEDASSETS-128-result.json",
-    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-128/FIXEDASSETS-128-result.json",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-129/FIXEDASSETS-129-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-129/FIXEDASSETS-129-result.json",
     "npm run check:encoding",
     "git diff --check"
   ],
-  "nextStep": "FIXEDASSETS-129: local evidence decision whether to hold the Acquire route as blocked/rejected or pivot to another fixed-assets acquisition learning path."
+  "nextStep": "FIXEDASSETS-130: guarded Playwright preflight for Assisted Fixed Asset Acquisition page context only."
 }

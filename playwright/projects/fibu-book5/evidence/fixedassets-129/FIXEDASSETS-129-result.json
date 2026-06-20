@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixed-asset-acquire-route-hold-or-alternative-decision-result",
+  "caseId": "FIXEDASSETS-129-ACQUIRE-ROUTE-HOLD-OR-ALTERNATIVE-DECISION",
+  "source": "local-analysis-with-microsoft-learn-reference",
+  "resultStatus": "observed",
+  "runPlanId": "FIXEDASSETS-129-ACQUIRE-ROUTE-HOLD-OR-ALTERNATIVE-DECISION-PLAN",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "targetAsset": "FA-CNC-01",
+  "decision": {
+    "acquireRoute": "hold-blocked",
+    "reason": "Acquire is visible but disabled before and after the FA-128 scoped edit/pencil toolbar probe.",
+    "purchaseInvoiceRoute": "still-blocked-until-line-type-is-proven",
+    "faGlJournalRoute": "still-blocked-until-amount-and-balancing-account-controls-are-proven",
+    "selectedNextRoute": "assisted-fixed-asset-acquisition-page-preflight-readonly",
+    "selectedNextCase": "FIXEDASSETS-130-ASSISTED-ACQUISITION-PAGE-PREFLIGHT-READONLY"
+  },
+  "sources": [
+    {
+      "title": "Acquire fixed assets - Business Central",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/business-central/fa-how-acquire",
+      "usedFor": "Official route reference for acquisition transaction and Assisted Fixed Asset Acquisition page."
+    },
+    {
+      "title": "Purchase fixed assets in Dynamics 365 Business Central",
+      "url": "https://learn.microsoft.com/en-us/training/modules/purchase-fixed-assets/",
+      "usedFor": "Confirms purchase document route remains a valid Business Central learning path, though currently blocked in this lab by UI line type proof."
+    }
+  ],
+  "proved": [
+    "FA-126 and FA-128 prove Acquire is visible on FA-CNC-01 but disabled.",
+    "FA-128 proves the scoped edit/pencil toolbar probe did not make Acquire executable.",
+    "FA-127 and prior Purchase Invoice diagnostics prove the Fixed Asset/Anlage line type route is not currently reliable enough to repeat blindly.",
+    "FA G/L Journal remains unsafe for value entry because amount and balancing-account controls are not proven.",
+    "Microsoft Learn documents Assisted Fixed Asset Acquisition as a relevant Business Central acquisition route."
+  ],
+  "notProved": [
+    "No acquisition wizard was opened in FA-129.",
+    "No Assisted Fixed Asset Acquisition page was opened in FA-129.",
+    "No acquisition value, vendor or balancing account was entered.",
+    "No Preview Posting or posting trace was produced.",
+    "No FA Ledger Entry or G/L acquisition trace is proven.",
+    "No German final fixed-assets proof is proven."
+  ],
+  "changedFiles": [
+    ".agent/state/current.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/cases/fixedassets-129-acquire-route-hold-or-alternative-decision.json",
+    ".agent/state/cases/fixedassets-130-assisted-acquisition-page-preflight-readonly.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/model_usage_log.jsonl",
+    "playwright/projects/fibu-book5/CURRENT-STATE.md",
+    "playwright/projects/fibu-book5/LAB-FIT-STATUS.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-129/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-129/FIXEDASSETS-129-acquire-route-decision.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-129/FIXEDASSETS-129-result.json"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-129/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-129/FIXEDASSETS-129-acquire-route-decision.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-129/FIXEDASSETS-129-result.json"
+  ],
+  "warnings": [
+    "Do not execute Acquire from FA-126/128 evidence.",
+    "Do not repeat Purchase Invoice Type dropdown probing without a new selector hypothesis.",
+    "Do not write FA G/L Journal values until concrete controls are proven.",
+    "Assisted Acquisition preflight must stop before Finish, OK, Preview, Post, journal creation or value entry."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "flags": {
+    "noBookChange": true,
+    "secretsUntouched": true,
+    "noBcRun": true,
+    "noPlaywrightRun": true,
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noNewDraft": true,
+    "noFieldValueChanged": true,
+    "noSaveRecord": true,
+    "noDeleteRecord": true,
+    "noAcquireExecution": true,
+    "noAmountEntry": true,
+    "noTargetVendorEntry": true
+  },
+  "statePatch": {
+    "current": {
+      "updatedAt": "2026-06-20T14:35:00.000Z",
+      "activeCase": "FIXEDASSETS-130-ASSISTED-ACQUISITION-PAGE-PREFLIGHT-READONLY",
+      "active_case_file": ".agent/state/cases/fixedassets-130-assisted-acquisition-page-preflight-readonly.json",
+      "lastReferenceCase": "FIXEDASSETS-129-ACQUIRE-ROUTE-HOLD-OR-ALTERNATIVE-DECISION",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-129-acquire-route-hold-or-alternative-decision.json",
+      "requiresStrongModel": false,
+      "nextStep": "FIXEDASSETS-130: open only the Assisted Fixed Asset Acquisition page or related safe page context in MCP_1_20260210 / RM-DEMO and stop before any value entry, journal creation, Preview Posting or posting."
+    },
+    "activeCase": {
+      "status": "completed",
+      "decision": "Hold Acquire as blocked and pivot to an Assisted Fixed Asset Acquisition page preflight as the next official-route UI hypothesis."
+    },
+    "coverage": {
+      "schemaVersion": 1,
+      "purpose": "Kompakter Coverage-Index fuer schnelle Agentenlaeufe.",
+      "areas": {
+        "fixedassets": {
+          "chapter": "Kapitel 21",
+          "status": "in-progress",
+          "currentBlock": "assisted-acquisition-page-preflight-readonly",
+          "latestPracticalCase": "FIXEDASSETS-128",
+          "latestDecisionCase": "FIXEDASSETS-129",
+          "nextCase": "FIXEDASSETS-130-ASSISTED-ACQUISITION-PAGE-PREFLIGHT-READONLY",
+          "bookScreenshots": {
+            "setupProofs": "available-labor",
+            "purchaseInvoicePreflight": "available-labor",
+            "validFixedAssetLine": "blocked-personalize-opened-type-context-visible-but-fixed-asset-option-unproved",
+            "acquisitionPostingTrace": "blocked-until-assisted-acquisition-or-other-route-proves-preflight",
+            "depreciationPostingTrace": "open",
+            "acquisitionWizardPreflight": "open-assisted-acquisition-page-preflight"
+          },
+          "finalGermanProof": "open"
+        }
+      },
+      "hardExclusions": {
+        "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
+      }
+    }
+  },
+  "bookImpact": "Kapitel 21 should not present Acquire on the Fixed Asset Card as executable for FA-CNC-01. The next teaching route should first show the safe boundary of the Assisted Fixed Asset Acquisition page before any posting claim.",
+  "summary": "FA-129 holds the card Acquire route as blocked and selects an official-route Assisted Fixed Asset Acquisition page preflight as the next practical learning step.",
+  "nextStep": "FIXEDASSETS-130: read-only/preflight Assisted Fixed Asset Acquisition page context check."
+}

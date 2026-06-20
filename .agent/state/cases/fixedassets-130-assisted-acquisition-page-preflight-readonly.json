@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-130-ASSISTED-ACQUISITION-PAGE-PREFLIGHT-READONLY",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "playwright-readonly-preflight",
+  "taskClass": "wizard_work",
+  "goal": "Open only the Assisted Fixed Asset Acquisition page or its safe page context and document the wizard/page boundary without entering values, creating journal lines, previewing or posting.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-129/",
+    "https://learn.microsoft.com/en-us/dynamics365/business-central/fa-how-acquire"
+  ],
+  "knownTruth": [
+    "Fixed Asset Card Acquire is visible but disabled on FA-CNC-01 after FA-128.",
+    "Microsoft Learn documents Assisted Fixed Asset Acquisition as a Business Central route for creating required journal lines.",
+    "This case is only a page/wizard preflight; it must not become acquisition or posting evidence."
+  ],
+  "allowedActions": [
+    "open-business-central",
+    "run-playwright",
+    "verify-instance-company",
+    "search-assisted-fixed-asset-acquisition",
+    "open-assisted-acquisition-page-readonly",
+    "capture-page-context",
+    "take-diagnostic-screenshot",
+    "write-compact-evidence"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "company-switch",
+    "api-shortcut",
+    "book-edit",
+    "execute-acquire",
+    "enter-K30000-in-purchase-invoice",
+    "enter-FA-CNC-01",
+    "enter-amount",
+    "change-field-value",
+    "save-record",
+    "new-draft",
+    "finish-wizard",
+    "click-ok",
+    "create-journal-lines",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "delete-record",
+    "delete-non-test-data"
+  ],
+  "acceptanceCriteria": [
+    "Instance MCP_1_20260210 and company RM-DEMO are confirmed.",
+    "The Assisted Fixed Asset Acquisition search result or page context is captured.",
+    "The run stops before value entry, target asset entry, OK/Finish, journal creation, Preview Posting or posting.",
+    "If the page cannot be found or opens a dangerous dialog immediately, the run is blocked and documented.",
+    "No acquisition, draft, setup change, API shortcut, company switch, Preview Posting or posting occurs."
+  ],
+  "recommendedSkills": [
+    "evidence-writer"
+  ],
+  "requiresUsageLog": false,
+  "nextSafeAction": "Run a guarded Playwright preflight for Assisted Fixed Asset Acquisition page context only."
+}
