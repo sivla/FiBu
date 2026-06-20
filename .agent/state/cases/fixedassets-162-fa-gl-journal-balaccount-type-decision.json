@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-162-FA-GL-JOURNAL-BALACCOUNT-TYPE-DECISION",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "local-result-review",
+  "taskClass": "judge_work",
+  "requiresUsageLog": true,
+  "goal": "Decide locally whether the FA G/L Journal route needs a G/L or Bank balancing account instead of K30000, or whether the vendor-based K30000 scenario must return to Purchase Invoice route.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-102/FIXEDASSETS-102-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-160/FIXEDASSETS-160-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-161/FIXEDASSETS-161-result.json"
+  ],
+  "allowedActions": [
+    "read-evidence",
+    "review-balancing-account-rules",
+    "write-local-decision",
+    "update-state",
+    "document-next-safe-action"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright",
+    "company-switch",
+    "api-shortcut",
+    "book-edit",
+    "enter-amount",
+    "enter-balancing-account",
+    "create-journal-lines",
+    "cleanup",
+    "preview-posting",
+    "post",
+    "setup-change",
+    "delete-record",
+    "click-ok"
+  ],
+  "safetyGates": [
+    "No BC or Playwright in this local review case.",
+    "Do not retry K30000 in FA G/L Journal until Bal. Account Type route is decided.",
+    "If FA G/L Journal requires G/L or Bank balancing account, choose a separate target account or route decision before value entry.",
+    "If vendor K30000 remains business target, do not force it into a journal route that rejects vendor balancing."
+  ],
+  "acceptanceCriteria": [
+    "FA-161 blocker is classified as target-data mismatch, journal-route mismatch, or Playwright extraction limitation.",
+    "Next route is either guarded G/L balancing account preflight, vendor purchase-invoice route, or blocked pending source confirmation.",
+    "Preview Posting and Post remain locked unless a later case explicitly unlocks them."
+  ],
+  "nextSafeAction": "Review FA-161 and earlier journal evidence locally; do not open BC, enter values, preview or post."
+}

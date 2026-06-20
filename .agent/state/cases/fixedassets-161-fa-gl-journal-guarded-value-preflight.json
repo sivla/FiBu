@@ -3,7 +3,7 @@
   "caseId": "FIXEDASSETS-161-FA-GL-JOURNAL-GUARDED-VALUE-PREFLIGHT",
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "status": "planned",
+  "status": "blocked-target-consistency",
   "workType": "guarded-ui-value-preflight",
   "taskClass": "wizard_work",
   "goal": "Run one narrow UI-first value-preflight on the protected FA G/L Journal line: target Amount = 68.000 and Bal. Account No. = K30000, then stop before Preview Posting or Post.",
@@ -66,5 +66,10 @@
     "Preview Posting and Post remain false.",
     "No setup, company switch, API shortcut, cleanup or book change occurred."
   ],
-  "nextSafeAction": "Implement or run one guarded Playwright value-preflight; stop before Preview Posting or Post."
+  "nextSafeAction": "Run FIXEDASSETS-162 local Bal. Account Type decision; do not enter values, Preview Posting or Post.",
+  "lastResult": {
+    "status": "blocked",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-161/FIXEDASSETS-161-result.json",
+    "summary": "FA-161 stopped before value entry because the protected target line was not fully visible in the right-side screenshot/extract and K30000 looks like a vendor code while the target Bal. Account Type was G/L Account."
+  }
 }
