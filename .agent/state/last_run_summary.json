@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-141-FA-CNC-01-COMBOBOX-RESULT-REVIEW",
+  "runId": "FIXEDASSETS-142-FA-CNC-01-POSTING-GROUP-FIELD-LOCATOR-REPAIR",
   "date": "2026-06-20",
-  "workType": "local-evidence-review",
+  "workType": "local-playwright-helper-repair",
   "branch": "codex/token-efficient-autopilot-state",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
@@ -13,38 +13,40 @@
   "companySwitched": false,
   "apiShortcut": false,
   "bookChanged": false,
-  "resultStatus": "observed-blocker-reviewed",
-  "summary": "FA-141 reviewed FA-140 locally. The Depreciation Book Card HGB foreground is accepted as blocker and anti-pattern evidence, not as a Posting Group MACHINES fit. No BC run, no Playwright run, no setup change, no Preview and no posting occurred.",
+  "resultStatus": "local-repair-completed",
+  "summary": "FA-142 repaired the FA-140 Posting Group route locally. The test now rejects Depreciation Book Card / HGB depreciation book as Fixed Asset Card foreground context, checks foreground before and after fill attempts, and classifies related-card navigation as blocked-wrong-related-card-route.",
   "evidenceRefs": [
     "playwright/projects/fibu-book5/evidence/fixedassets-140/FIXEDASSETS-140-result.json",
     "playwright/projects/fibu-book5/evidence/fixedassets-140/040-fill-result.json",
     "playwright/projects/fibu-book5/evidence/fixedassets-140/fixedassets-140-060-fa-cnc-01-posting-group-machines.screenshot.json",
     "playwright/projects/fibu-book5/img/fixedassets-140-060-fa-cnc-01-posting-group-machines.png",
-    "playwright/projects/fibu-book5/evidence/fixedassets-141/README.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-141/FIXEDASSETS-141-combobox-result-review.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-141/FIXEDASSETS-141-result.json"
+    "playwright/projects/fibu-book5/evidence/fixedassets-141/FIXEDASSETS-141-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-142/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-142/FIXEDASSETS-142-locator-repair.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-142/FIXEDASSETS-142-result.json"
   ],
   "changedFiles": [
     ".agent/state/current.json",
     ".agent/state/coverage_state.json",
-    ".agent/state/cases/fixedassets-141-fa-cnc-01-combobox-result-review.json",
     ".agent/state/cases/fixedassets-142-fa-cnc-01-posting-group-field-locator-repair.json",
+    ".agent/state/cases/fixedassets-143-fa-cnc-01-posting-group-guarded-retry.json",
     ".agent/state/last_run_summary.json",
     "playwright/projects/fibu-book5/CURRENT-STATE.md",
     "playwright/projects/fibu-book5/LAB-FIT-STATUS.md",
     "playwright/projects/fibu-book5/BC-PLAYWRIGHT-PATTERNS.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-141/README.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-141/FIXEDASSETS-141-combobox-result-review.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-141/FIXEDASSETS-141-result.json"
+    "playwright/projects/fibu-book5/tests/fixedassets-140-fa-cnc-01-posting-group-combobox-route.spec.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-142/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-142/FIXEDASSETS-142-locator-repair.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-142/FIXEDASSETS-142-result.json"
   ],
   "validationCommands": [
     "npm run agent:preflight",
     "npm run agent:dry-run",
     "npm run agent:run-plan",
-    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-141/FIXEDASSETS-141-result.json",
-    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-141/FIXEDASSETS-141-result.json",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-142/FIXEDASSETS-142-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-142/FIXEDASSETS-142-result.json",
     "npm run check:encoding",
     "git diff --check"
   ],
-  "nextStep": "FIXEDASSETS-142: repair the Posting Group field-locator strategy locally before another BC setup-change attempt."
+  "nextStep": "FIXEDASSETS-143: run the repaired guarded Posting Group route once in BC; stop on wrong related-card navigation and do not unlock acquisition, Preview or posting."
 }

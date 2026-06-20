@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixed-asset-posting-group-field-locator-repair-result",
+  "caseId": "FIXEDASSETS-142-FA-CNC-01-POSTING-GROUP-FIELD-LOCATOR-REPAIR",
+  "source": "local-playwright-helper-repair",
+  "resultStatus": "local-repair-completed",
+  "runPlanId": "FIXEDASSETS-142-FA-CNC-01-POSTING-GROUP-FIELD-LOCATOR-REPAIR-PLAN",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-medium",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "assetNo": "FA-CNC-01",
+  "proved": [
+    "The FA-140 test now rejects Depreciation Book Card / HGB depreciation book as Fixed Asset Card foreground context.",
+    "The fill route now checks the Fixed Asset Card foreground before and after dropdown or typed-value attempts.",
+    "Wrong related-card navigation is now represented as blocked-wrong-related-card-route instead of a generic field-fill failure.",
+    "Rows are only read after the expected Fixed Asset Card foreground is still proven."
+  ],
+  "notProved": [
+    "No Business Central run was executed.",
+    "No Playwright live run was executed.",
+    "Posting Group MACHINES is not yet proven as assigned to FA-CNC-01.",
+    "No setup change, acquisition, Preview Posting or posting occurred."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/tests/fixedassets-140-fa-cnc-01-posting-group-combobox-route.spec.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-142/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-142/FIXEDASSETS-142-locator-repair.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-142/FIXEDASSETS-142-result.json"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-141/FIXEDASSETS-141-result.json",
+    "playwright/projects/fibu-book5/tests/fixedassets-140-fa-cnc-01-posting-group-combobox-route.spec.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-142/FIXEDASSETS-142-locator-repair.md"
+  ],
+  "warnings": [
+    "TypeScript compiler is not installed locally in this branch; npx tsc --noEmit would require package download and was not used as a validation source."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "flags": {
+    "noBcRun": true,
+    "noPlaywrightRun": true,
+    "noBookChange": true,
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noNewDraft": true,
+    "noDeleteRecord": true,
+    "noAcquireExecution": true
+  },
+  "statePatch": {
+    "current": {
+      "updatedAt": "2026-06-20T23:05:00.000Z",
+      "activeCase": "FIXEDASSETS-143-FA-CNC-01-POSTING-GROUP-GUARDED-RETRY",
+      "active_case_file": ".agent/state/cases/fixedassets-143-fa-cnc-01-posting-group-guarded-retry.json",
+      "lastReferenceCase": "FIXEDASSETS-142-FA-CNC-01-POSTING-GROUP-FIELD-LOCATOR-REPAIR",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-142-fa-cnc-01-posting-group-field-locator-repair.json",
+      "requiresStrongModel": false,
+      "nextStep": "FIXEDASSETS-143: run the repaired guarded Posting Group route once in BC; stop on wrong related-card navigation and do not unlock acquisition, Preview or posting."
+    },
+    "activeCase": {
+      "status": "completed",
+      "lastResult": {
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-142/FIXEDASSETS-142-result.json",
+        "summary": "FA-142 repaired the FA-140 Posting Group route locally with Fixed Asset Card foreground guards and wrong-related-card blocking."
+      },
+      "nextSafeAction": "FIXEDASSETS-143: one guarded practical retry of the repaired Posting Group route."
+    }
+  },
+  "summary": "FA-142 completed a local locator repair for the FA-CNC-01 Posting Group route.",
+  "bookImpact": "No book text changed. The practical learning is stronger: future screenshots must prove the foreground page before field values are trusted.",
+  "nextStep": "FIXEDASSETS-143-FA-CNC-01-POSTING-GROUP-GUARDED-RETRY"
+}

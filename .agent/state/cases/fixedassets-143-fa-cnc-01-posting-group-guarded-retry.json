@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-143-FA-CNC-01-POSTING-GROUP-GUARDED-RETRY",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "guarded-ui-first-setup-fit-retry",
+  "taskClass": "wizard_work",
+  "requiresUsageLog": false,
+  "goal": "Run the repaired Posting Group route once and prove whether FA-CNC-01 can be set to MACHINES without losing Fixed Asset Card foreground context.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-140/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-141/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-142/"
+  ],
+  "allowedActions": [
+    "run-playwright-test",
+    "open-business-central",
+    "read-local-evidence",
+    "inspect-test-result",
+    "set-fa-cnc-01-posting-group-only-if-foreground-and-safety-gates-pass",
+    "write-evidence",
+    "update-state"
+  ],
+  "unlockedDefaultLockedActions": [
+    "setup-change"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "company-switch",
+    "api-shortcut",
+    "book-edit",
+    "click-acquire",
+    "execute-acquire",
+    "enter-K30000-in-purchase-invoice",
+    "enter-FA-CNC-01-in-document",
+    "enter-amount",
+    "new-draft",
+    "finish-wizard",
+    "create-journal-lines",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "delete-record",
+    "delete-non-test-data"
+  ],
+  "safetyGates": [
+    "Instance URL must contain MCP_1_20260210.",
+    "Company URL must contain RM-DEMO.",
+    "Before edit, FA-CNC-01 must be visible on Fixed Asset Card.",
+    "Before edit, Posting Group must be EQUIPMENT or already MACHINES.",
+    "Book Value must remain visibly zero and no FA Ledger Entries target trace may be present.",
+    "If foreground becomes Depreciation Book Card or another related page, stop as blocked-wrong-related-card-route.",
+    "Only the FA-CNC-01 Posting Group field may be changed.",
+    "Do not run acquisition, purchase invoice, journal, Preview Posting or posting."
+  ],
+  "acceptanceCriteria": [
+    "The result classifies the route as changed-labor-posting-group-fit, already-fit-labor-posting-group, blocked-wrong-related-card-route or blocked-safety-gate.",
+    "Evidence includes before value, after/reopen value or blocker foreground context.",
+    "No acquisition, Preview Posting, posting, new draft, company switch or API shortcut occurs."
+  ],
+  "command": "npm run fibu:fixedassets:fa-cnc-01-posting-group-combobox-route",
+  "nextSafeAction": "Run the guarded retry once, then normalize/finalize only as a plan unless evidence is unambiguous."
+}

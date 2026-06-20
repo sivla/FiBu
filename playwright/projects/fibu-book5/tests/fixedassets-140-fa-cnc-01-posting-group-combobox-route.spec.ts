@@ -41,7 +41,22 @@ type CardRow = {
 type RunStatus =
   | 'changed-labor-posting-group-fit'
   | 'already-fit-labor-posting-group'
-  | 'blocked-safety-gate';
+  | 'blocked-safety-gate'
+  | 'blocked-wrong-related-card-route';
+
+type FillPostingGroupResult = {
+  attempted: boolean;
+  filled: boolean;
+  reason?: string;
+  valueAfter?: string;
+  rowsAfter?: CardRow[];
+  routeAttempts?: Array<Record<string, unknown>>;
+  selected?: boolean;
+  selectionError?: string;
+  target?: unknown;
+  blockerDiagnosis?: 'wrong-related-card-route' | 'wrong-foreground-context' | string;
+  foreground?: Record<string, unknown>;
+};
 
 const captions = ['No.', 'Description', 'FA Class Code', 'FA Subclass Code', 'Depreciation Book Code', 'Posting Group', 'Book Value', 'Acquired'];
 
@@ -92,12 +107,32 @@ async function assertContext(page: Page) {
 async function findCardFrame(page: Page): Promise<Frame> {
   for (const frame of page.frames()) {
     const text = await frame.locator('body').innerText({ timeout: 1000 }).catch(() => '');
-    if (/\bFA-CNC-01\b/i.test(text) && /Fixed Asset Card|Fixed Asset|Depreciation Book|Posting Group|Book Value/i.test(text)) {
+    if (/\bFA-CNC-01\b/i.test(text) && /Fixed Asset Card|Fixed Asset|Posting Group|Book Value/i.test(text) && !/Depreciation Book Card|HGB depreciation book/i.test(text)) {
       return frame;
     }
   }
 
   return page.mainFrame();
+}
+
+async function fixedAssetForegroundStatus(page: Page, phase: string) {
+  const text = await compactPageText(page, {
+    include: [/Fixed Asset Card|Depreciation Book Card|FA-CNC-01|HGB depreciation book|Posting Group|MACHINES|EQUIPMENT|Book Value/i],
+    maxLines: 100,
+  }).catch(() => '');
+  const fullText = text || (await pageText(page).catch(() => ''));
+  const status = {
+    phase,
+    hasFixedAssetCard: /Fixed Asset Card/i.test(fullText),
+    hasAssetNo: /\bFA-CNC-01\b/i.test(fullText),
+    hasWrongRelatedDepreciationBookCard: /Depreciation Book Card|HGB depreciation book/i.test(fullText),
+    hasPostingGroupText: /Posting Group/i.test(fullText),
+    compactText: fullText,
+  };
+  return {
+    ...status,
+    ok: status.hasFixedAssetCard && status.hasAssetNo && status.hasPostingGroupText && !status.hasWrongRelatedDepreciationBookCard,
+  };
 }
 
 async function openAssetCard(page: Page) {
@@ -279,7 +314,18 @@ async function collectVisibleMachineCandidates(page: Page) {
   return candidates;
 }
 
-async function fillPostingGroup(page: Page) {
+async function fillPostingGroup(page: Page): Promise<FillPostingGroupResult> {
+  const initialForeground = await fixedAssetForegroundStatus(page, 'before-fill');
+  if (!initialForeground.ok) {
+    return {
+      attempted: false,
+      filled: false,
+      reason: 'fixed-asset-card-foreground-not-proven-before-fill',
+      blockerDiagnosis: initialForeground.hasWrongRelatedDepreciationBookCard ? 'wrong-related-card-route' : 'wrong-foreground-context',
+      foreground: initialForeground,
+    };
+  }
+
   const frame = await findCardFrame(page);
   const target = await frame.evaluate(() => {
     const clean = (value: string | null | undefined) => (value || '').replace(/\s+/g, ' ').trim();
@@ -373,6 +419,11 @@ async function fillPostingGroup(page: Page) {
   const clickAndTryVisibleMachine = async (name: string, x: number, y: number) => {
     await page.mouse.click(x, y);
     await page.waitForTimeout(1100);
+    const foreground = await fixedAssetForegroundStatus(page, name);
+    if (!foreground.ok) {
+      routeAttempts.push({ name, foreground, stopped: 'fixed-asset-card-foreground-lost' });
+      return false;
+    }
     const candidates = await collectVisibleMachineCandidates(page);
     routeAttempts.push({ name, candidates });
     for (const scope of [page, ...page.frames()]) {
@@ -412,17 +463,37 @@ async function fillPostingGroup(page: Page) {
 
   if (!selected) {
     await page.mouse.click(target.x + Math.min(target.width - 4, 120), target.y + Math.max(6, Math.floor(target.height / 2)));
-    await page.keyboard.press('Control+A').catch(() => undefined);
-    await page.keyboard.type(TO_POSTING_GROUP, { delay: 25 });
-    await page.waitForTimeout(500);
-    await page.keyboard.press('ArrowDown').catch(() => undefined);
-    await page.keyboard.press('Enter').catch(() => undefined);
-    await page.waitForTimeout(1400);
-    routeAttempts.push({ name: 'typed-value-arrowdown-enter', candidates: await collectVisibleMachineCandidates(page) });
+    const foregroundBeforeTyping = await fixedAssetForegroundStatus(page, 'before-typed-value-arrowdown-enter');
+    if (!foregroundBeforeTyping.ok) {
+      routeAttempts.push({ name: 'typed-value-arrowdown-enter', foreground: foregroundBeforeTyping, stopped: 'fixed-asset-card-foreground-lost-before-typing' });
+    } else {
+      await page.keyboard.press('Control+A').catch(() => undefined);
+      await page.keyboard.type(TO_POSTING_GROUP, { delay: 25 });
+      await page.waitForTimeout(500);
+      await page.keyboard.press('ArrowDown').catch(() => undefined);
+      await page.keyboard.press('Enter').catch(() => undefined);
+      await page.waitForTimeout(1400);
+      routeAttempts.push({ name: 'typed-value-arrowdown-enter', candidates: await collectVisibleMachineCandidates(page) });
+    }
   }
 
   await page.keyboard.press('Tab').catch(() => undefined);
   await page.waitForTimeout(1600);
+  const finalForeground = await fixedAssetForegroundStatus(page, 'after-fill');
+  if (!finalForeground.ok) {
+    return {
+      attempted: true,
+      filled: false,
+      valueAfter: '',
+      rowsAfter: [],
+      routeAttempts,
+      selected,
+      selectionError,
+      target,
+      blockerDiagnosis: finalForeground.hasWrongRelatedDepreciationBookCard ? 'wrong-related-card-route' : 'wrong-foreground-context',
+      foreground: finalForeground,
+    };
+  }
   const rowsAfter = await readVisibleRows(page);
   const valueAfter = valueOf(rowsAfter, 'Posting Group');
 
@@ -774,25 +845,34 @@ test('FIXEDASSETS-140 fits FA-CNC-01 Posting Group to MACHINES with UI-first saf
   const fillResult = await fillPostingGroup(page);
   await writeJsonEvidence(faEvidencePath('040-fill-result.json'), fillResult);
   if (!fillResult.filled) {
+    const wrongRelatedCard = fillResult.blockerDiagnosis === 'wrong-related-card-route';
     await screenshot(page, 'fixedassets-140-060-fa-cnc-01-posting-group-machines.png', {
       projectName: project.name,
       testId: TEST_ID,
       status: 'labor',
       bookUse: 'field-proof',
       purpose:
-        'FA-140 Feldfuell-Blocker: FA-CNC-01 zeigt weiter EQUIPMENT als Posting Group; Tippen/Dropdown-Fallback haben MACHINES nicht final gesetzt.',
+        wrongRelatedCard
+          ? 'FA-140 Related-Card-Blocker: Der Feldpfad hat die Depreciation Book Card HGB geoeffnet, nicht die Posting-Group-Werteliste.'
+          : 'FA-140 Feldfuell-Blocker: FA-CNC-01 zeigt weiter EQUIPMENT als Posting Group; Tippen/Dropdown-Fallback haben MACHINES nicht final gesetzt.',
       expectedPageText: [/\bFA-CNC-01\b/i],
       knownLimitations: ['Blockerbild nach Fill-Versuch; kein MACHINES-Fit, keine Anschaffung, keine Preview, keine Buchung.'],
     });
     await writeResult(page, {
-      resultStatus: 'blocked-safety-gate' satisfies RunStatus,
+      resultStatus: wrongRelatedCard ? ('blocked-wrong-related-card-route' satisfies RunStatus) : ('blocked-safety-gate' satisfies RunStatus),
       observed: { startedAt, finishedAt: new Date().toISOString(), context, before, ledgerSafety, fillResult },
       before,
       ledgerSafety,
-      blockedBy: [`Posting Group could not be filled: ${fillResult.reason ?? fillResult.valueAfter ?? 'unknown'}`],
+      blockedBy: [
+        wrongRelatedCard
+          ? 'Posting Group route opened a related Depreciation Book Card instead of the value list.'
+          : `Posting Group could not be filled: ${fillResult.reason ?? fillResult.valueAfter ?? 'unknown'}`,
+      ],
       requiresReview: true,
       screenshotCaptured: true,
-      summary: 'FA-140 blocked: Posting Group field was not filled to MACHINES.',
+      summary: wrongRelatedCard
+        ? 'FA-140 blocked: Posting Group route lost the Fixed Asset Card foreground and opened the related Depreciation Book Card.'
+        : 'FA-140 blocked: Posting Group field was not filled to MACHINES.',
       bookImpact: 'Kapitel 21 muss den Posting-Group-Kartenfit weiter offen halten.',
       nextStep: 'FIXEDASSETS-141: review wrong-related-card or field-fill blocker.',
     });
