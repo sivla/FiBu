@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-129-ACQUIRE-ROUTE-HOLD-OR-ALTERNATIVE-DECISION",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "local-evidence-review",
+  "taskClass": "judge_work",
+  "goal": "Decide whether the visible-but-disabled Acquire route for FA-CNC-01 should be held as blocked/rejected or whether the fixed-assets acquisition learning path should pivot to another UI-first route.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-126/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-127/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-128/"
+  ],
+  "knownTruth": [
+    "FA-CNC-01 exists in RM-DEMO and is visible on the Fixed Asset Card.",
+    "FA-CNC-01 has Book Value 0,00 in the current laboratory evidence.",
+    "Acquire is visible but disabled before and after the FA-128 scoped edit/pencil toolbar probe.",
+    "Purchase Invoice line Type Fixed Asset/Anlage remains unproved after multiple UI diagnostics.",
+    "FA G/L Journal has a useful target-line shell but remains unsafe for Amount and balancing-account value entry.",
+    "No acquisition wizard, Preview Posting, posting trace, FA Ledger Entry or G/L acquisition trace has been produced for FA-CNC-01."
+  ],
+  "allowedActions": [
+    "read-repo-state",
+    "read-fixedassets-126-evidence",
+    "read-fixedassets-127-evidence",
+    "read-fixedassets-128-evidence",
+    "review-acquire-route",
+    "compare-alternative-fixed-asset-learning-paths",
+    "write-compact-evidence",
+    "update-state-plan"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright",
+    "company-switch",
+    "api-shortcut",
+    "book-edit",
+    "execute-acquire",
+    "enter-K30000-in-purchase-invoice",
+    "enter-FA-CNC-01",
+    "enter-amount",
+    "change-field-value",
+    "save-record",
+    "new-draft",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "delete-record",
+    "delete-non-test-data"
+  ],
+  "acceptanceCriteria": [
+    "The decision cites FA-126, FA-127 and FA-128 evidence.",
+    "Acquire is not treated as executable unless separate future evidence proves it.",
+    "The decision separates laboratory evidence from German final fixed-assets proof.",
+    "The next case chooses exactly one practical next route or explicitly holds fixed-asset acquisition pending a better UI hypothesis.",
+    "No BC, Playwright, book edit, setup change, value entry, Preview Posting or posting occurs."
+  ],
+  "recommendedSkills": [
+    "evidence-writer"
+  ],
+  "requiresUsageLog": true,
+  "nextSafeAction": "Review FA-126/127/128 evidence locally and choose whether to hold Acquire as blocked/rejected or pivot to another fixed-assets acquisition route."
+}

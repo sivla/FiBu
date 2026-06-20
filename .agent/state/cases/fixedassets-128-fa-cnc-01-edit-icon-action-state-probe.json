@@ -3,7 +3,7 @@
   "caseId": "FIXEDASSETS-128-FA-CNC-01-EDIT-ICON-ACTION-STATE-PROBE",
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "status": "planned",
+  "status": "observed-diagnostic-probe",
   "workType": "playwright-readonly-diagnosis",
   "taskClass": "wizard_work",
   "goal": "Open FA-CNC-01 Fixed Asset Card, identify the visible edit/pencil toolbar action and check whether Acquire remains disabled after a safe mode-state probe without changing data.",
@@ -62,5 +62,20 @@
     "evidence-writer"
   ],
   "requiresUsageLog": false,
-  "nextSafeAction": "Run a guarded Playwright diagnosis of the edit/pencil toolbar state and Acquire enabled/disabled state."
+  "lastResult": {
+    "status": "observed",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-128/FIXEDASSETS-128-result.json",
+    "summary": "A scoped top toolbar edit/pencil action was clicked without field value changes; Acquire remained visible but disabled afterwards.",
+    "editProbeAttempted": true,
+    "clickedAction": "top toolbar edit/pencil action with title 'Aenderungen auf der Seite vornehmen'",
+    "acquireVisibleAfterProbe": true,
+    "acquireEnabledAfterProbe": false,
+    "dangerousDialogVisible": false,
+    "noFieldValueChanged": true,
+    "screenshots": [
+      "playwright/projects/fibu-book5/img/fixedassets-128-030-edit-icon-before.png",
+      "playwright/projects/fibu-book5/img/fixedassets-128-040-edit-icon-after.png"
+    ]
+  },
+  "nextSafeAction": "FIXEDASSETS-129: local decision whether to hold the Acquire route as blocked/rejected or pivot to a different fixed-assets acquisition learning path."
 }
