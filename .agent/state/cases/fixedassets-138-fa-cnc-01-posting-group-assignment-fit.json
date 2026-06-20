@@ -3,7 +3,7 @@
   "caseId": "FIXEDASSETS-138-FA-CNC-01-POSTING-GROUP-ASSIGNMENT-FIT",
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "status": "planned",
+  "status": "blocked-field-mapping",
   "workType": "ui-first-masterdata-setup-fit",
   "taskClass": "wizard_work",
   "requiresUsageLog": false,
@@ -80,5 +80,10 @@
     "playwright-bc-setup-fit",
     "evidence-writer"
   ],
-  "nextSafeAction": "Create/run a narrow guarded Playwright setup-fit test for FA-CNC-01 Posting Group assignment."
+  "lastResult": {
+    "status": "blocked-safety-gate",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-138/FIXEDASSETS-138-result.json",
+    "summary": "FA-138 proved FA-CNC-01 safety context, Book Value 0,00 and no FA ledger trace, but did not change Posting Group from EQUIPMENT to MACHINES. The current field-mapping/coordinate route leaves Posting Group at EQUIPMENT and needs review before another write attempt."
+  },
+  "nextSafeAction": "FIXEDASSETS-139: review the field-mapping blocker and improve the Posting Group control targeting before any further setup-change attempt."
 }

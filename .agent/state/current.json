@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-20T20:15:00.000Z",
+  "updatedAt": "2026-06-20T20:55:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "fixedassets",
-  "activeCase": "FIXEDASSETS-138-FA-CNC-01-POSTING-GROUP-ASSIGNMENT-FIT",
-  "active_case_file": ".agent/state/cases/fixedassets-138-fa-cnc-01-posting-group-assignment-fit.json",
-  "lastReferenceCase": "FIXEDASSETS-137-FA-CNC-01-PAGEINSPECTION-RESULT-REVIEW",
-  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-137-fa-cnc-01-pageinspection-result-review.json",
+  "activeCase": "FIXEDASSETS-139-FA-CNC-01-ASSIGNMENT-FIT-REVIEW",
+  "active_case_file": ".agent/state/cases/fixedassets-139-fa-cnc-01-assignment-fit-review.json",
+  "lastReferenceCase": "FIXEDASSETS-138-FA-CNC-01-POSTING-GROUP-ASSIGNMENT-FIT",
+  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-138-fa-cnc-01-posting-group-assignment-fit.json",
   "mode": "token-efficient-autopilot-tooling-bootstrap",
-  "requiresStrongModel": false,
+  "requiresStrongModel": true,
   "requiredPreflightChecks": [
     "agent:preflight",
     "agent:state:validate",
@@ -19,15 +19,11 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "open-business-central",
-    "run-playwright",
-    "read-fixed-asset-card",
-    "open-edit-mode-on-fixed-asset-card",
-    "change-fa-posting-group-equipment-to-machines-only-if-current-value-confirmed",
-    "save-record",
-    "capture-before-after-evidence",
-    "write-compact-evidence",
-    "update-state-plan"
+    "read-local-evidence",
+    "inspect-screenshot-metadata",
+    "review-result-json",
+    "update-state-plan",
+    "document-next-safe-action"
   ],
   "forbiddenActions": [
     "leave-instance",
@@ -35,6 +31,8 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright",
     "company-switch",
     "api-shortcut",
     "book-edit",
@@ -55,7 +53,7 @@
     "delete-record",
     "delete-non-test-data"
   ],
-  "nextStep": "FIXEDASSETS-138: controlled UI-first assignment fit for FA-CNC-01 Posting Group. Change EQUIPMENT to MACHINES only if current value and target are safely confirmed; no acquisition, no Preview, no Post.",
+  "nextStep": "FIXEDASSETS-139: review FA-138 assignment-fit blocker. The run proved the safety context but did not change FA-CNC-01 from EQUIPMENT to MACHINES because the current field-mapping/coordinate route targets the wrong control; no acquisition, no Preview, no Post.",
   "subagentPlanPolicy": {
     "default": "optional",
     "execution": "plan-only-no-subagents-spawned",
