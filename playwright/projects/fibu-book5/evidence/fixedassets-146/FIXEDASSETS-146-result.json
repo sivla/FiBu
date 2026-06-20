@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixed-asset-posting-group-diagnosis-result-review",
+  "caseId": "FIXEDASSETS-146-FA-CNC-01-POSTING-GROUP-DIAGNOSIS-RESULT-REVIEW",
+  "source": "local-evidence-review",
+  "resultStatus": "reviewed-hold-write-route",
+  "runPlanId": "FIXEDASSETS-146-FA-CNC-01-POSTING-GROUP-DIAGNOSIS-RESULT-REVIEW-PLAN",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "targetAsset": "FA-CNC-01",
+  "reviewedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-145/FIXEDASSETS-145-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-145/FIXEDASSETS-145-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-145/020-pageinspection-focused-lines.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-145/041-personalize-focused-lines.txt",
+    "playwright/projects/fibu-book5/img/fixedassets-145-030-fa-cnc-01-posting-group-pageinspection.png",
+    "playwright/projects/fibu-book5/img/fixedassets-145-040-fa-cnc-01-posting-group-personalize-nosave.png"
+  ],
+  "proved": [
+    "FA-145 is accepted as technical diagnosis evidence for Fixed Asset Card Page Inspection and Personalize.",
+    "Page Inspection identified Fixed Asset Card (5600), Fixed Asset (5600) and FA Posting Group (29, Code[20]).",
+    "Personalize opened no-save and showed Posting Group with EQUIPMENT in the Fixed Asset Card context.",
+    "FA-CNC-01 Posting Group remains EQUIPMENT in the available evidence.",
+    "No MACHINES assignment, acquisition, Preview Posting, posting, setup change, draft, company switch or API shortcut is proven."
+  ],
+  "notProved": [
+    "No safe write route for Posting Group = MACHINES is unlocked by FA-145.",
+    "No fixed-asset acquisition readiness is proven.",
+    "No German fixed-assets final proof is produced.",
+    "No book-ready final screenshot for MACHINES assignment exists."
+  ],
+  "decision": {
+    "unlockWriteRoute": false,
+    "repeatOldRoute": false,
+    "acceptedDiagnosticUse": [
+      "debugging chapter",
+      "technical evidence",
+      "Page Inspection / Personalize handling"
+    ],
+    "nextCase": "FIXEDASSETS-147-FA-CNC-01-POSTING-GROUP-EDITMODE-AFFORDANCE-NOSAVE",
+    "nextCaseReason": "A different no-save probe is needed to inspect edit-mode field affordances without selecting MACHINES or saving."
+  },
+  "changedFiles": [
+    ".agent/state/current.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/cases/fixedassets-146-fa-cnc-01-posting-group-diagnosis-result-review.json",
+    ".agent/state/cases/fixedassets-147-fa-cnc-01-posting-group-editmode-affordance-nosave.json",
+    "playwright/projects/fibu-book5/CURRENT-STATE.md",
+    "playwright/projects/fibu-book5/LAB-FIT-STATUS.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-146/"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-146/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-146/FIXEDASSETS-146-review.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-146/FIXEDASSETS-146-result.json"
+  ],
+  "warnings": [
+    "Do not treat Page Inspection or Personalize as a write mechanism.",
+    "Do not repeat the blocked Alt+ArrowDown/right-edge/typed-value route."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "flags": {
+    "noBcRun": true,
+    "noPlaywrightRun": true,
+    "noBookChange": true,
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noNewDraft": true,
+    "noMachinerySelection": true
+  },
+  "statePatch": {
+    "current": {
+      "updatedAt": "2026-06-21T00:45:00.000Z",
+      "activeCase": "FIXEDASSETS-147-FA-CNC-01-POSTING-GROUP-EDITMODE-AFFORDANCE-NOSAVE",
+      "active_case_file": ".agent/state/cases/fixedassets-147-fa-cnc-01-posting-group-editmode-affordance-nosave.json",
+      "lastReferenceCase": "FIXEDASSETS-146-FA-CNC-01-POSTING-GROUP-DIAGNOSIS-RESULT-REVIEW",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-146-fa-cnc-01-posting-group-diagnosis-result-review.json",
+      "requiresStrongModel": false,
+      "nextStep": "FIXEDASSETS-147: run a no-save edit-mode affordance probe for the Posting Group field on FA-CNC-01; do not select MACHINES and do not save."
+    },
+    "activeCase": {
+      "status": "reviewed-hold-write-route",
+      "lastResult": {
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-146/FIXEDASSETS-146-result.json",
+        "summary": "FA-146 accepts FA-145 as technical diagnosis but does not unlock a Posting Group write route. Next is a no-save edit-mode affordance probe."
+      },
+      "nextSafeAction": "FIXEDASSETS-147: no-save edit-mode affordance probe."
+    }
+  },
+  "summary": "FA-146 reviewed FA-145 and holds the Posting Group write route. Page Inspection and Personalize are accepted as diagnostics only; MACHINES remains not assigned to FA-CNC-01.",
+  "bookImpact": "Chapter 21 and the BC debugging chapter may use FA-145/FA-146 to explain Page Inspection and Personalize, but must not present MACHINES assignment or acquisition as complete.",
+  "nextStep": "FIXEDASSETS-147-FA-CNC-01-POSTING-GROUP-EDITMODE-AFFORDANCE-NOSAVE"
+}

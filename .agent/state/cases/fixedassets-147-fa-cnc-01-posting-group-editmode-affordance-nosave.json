@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-147-FA-CNC-01-POSTING-GROUP-EDITMODE-AFFORDANCE-NOSAVE",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "ui-first-no-save-affordance-probe",
+  "taskClass": "wizard_work",
+  "requiresUsageLog": false,
+  "goal": "Open FA-CNC-01 on the Fixed Asset Card and inspect, without saving or selecting a value, whether edit mode exposes a clear field-local lookup, dropdown or assist-edit affordance for Posting Group.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-145/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-146/"
+  ],
+  "allowedActions": [
+    "open-business-central",
+    "run-playwright",
+    "open-fixed-asset-card",
+    "verify-instance-company",
+    "click-edit-mode-if-safe",
+    "focus-posting-group-field",
+    "inspect-field-local-affordance",
+    "capture-screenshot",
+    "write-evidence",
+    "document-next-safe-action"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "company-switch",
+    "api-shortcut",
+    "book-edit",
+    "select-MACHINES",
+    "save-personalization",
+    "write-posting-group",
+    "click-acquire",
+    "execute-acquire",
+    "enter-K30000-in-purchase-invoice",
+    "enter-FA-CNC-01-in-document",
+    "enter-amount",
+    "new-draft",
+    "finish-wizard",
+    "create-journal-lines",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "delete-record",
+    "delete-non-test-data"
+  ],
+  "safetyGates": [
+    "Abort if URL does not contain MCP_1_20260210 and company=RM-DEMO.",
+    "Abort if foreground is not Fixed Asset Card for FA-CNC-01.",
+    "Do not open or accept any Post, Preview, Acquire, Delete, New or confirmation dialog.",
+    "Do not select MACHINES, type MACHINES, or save the card.",
+    "After the probe, reopen or reread the card and prove Posting Group remains EQUIPMENT."
+  ],
+  "acceptanceCriteria": [
+    "Instance and company are verified.",
+    "Posting Group before probe is EQUIPMENT.",
+    "A field-local lookup/dropdown/assist-edit affordance is found and documented, or its absence is documented.",
+    "Posting Group after probe is still EQUIPMENT.",
+    "No setup change, Preview Posting, posting, acquisition, draft or company switch occurred."
+  ],
+  "nextSafeAction": "Run only the no-save affordance probe; do not perform the actual MACHINES assignment."
+}

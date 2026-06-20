@@ -1,20 +1,20 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-145-FA-CNC-01-POSTING-GROUP-PAGEINSPECTION-PERSONALIZE-NOSAVE",
+  "runId": "FIXEDASSETS-146-FA-CNC-01-POSTING-GROUP-DIAGNOSIS-RESULT-REVIEW",
   "date": "2026-06-20",
-  "workType": "ui-first-readonly-technical-diagnosis",
+  "workType": "local-evidence-review",
   "branch": "codex/token-efficient-autopilot-state",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "bcRun": true,
+  "bcRun": false,
   "posted": false,
   "preview": false,
   "setupChanged": false,
   "companySwitched": false,
   "apiShortcut": false,
   "bookChanged": false,
-  "resultStatus": "observed-technical-diagnosis",
-  "summary": "FA-145 ran in MCP_1_20260210 / RM-DEMO. Page Inspection opened on FA-CNC-01 and showed Fixed Asset Card/Table plus FA Posting Group (29, Code[20]); Personalize opened no-save on the Fixed Asset Card and showed Posting Group with EQUIPMENT. Posting Group stayed EQUIPMENT before and after; MACHINES was not selected or saved. No setup change, Preview or posting occurred.",
+  "resultStatus": "reviewed-hold-write-route",
+  "summary": "FA-146 reviewed FA-145 locally. Page Inspection and Personalisieren are accepted as technical diagnosis only; they do not unlock a safe write route for Posting Group = MACHINES. FA-CNC-01 remains evidenced with Posting Group = EQUIPMENT. Next is FA-147: a no-save edit-mode affordance probe.",
   "evidenceRefs": [
     "playwright/projects/fibu-book5/evidence/fixedassets-140/FIXEDASSETS-140-result.json",
     "playwright/projects/fibu-book5/evidence/fixedassets-140/040-fill-result.json",
@@ -33,31 +33,31 @@
     "playwright/projects/fibu-book5/evidence/fixedassets-145/020-pageinspection-focused-lines.txt",
     "playwright/projects/fibu-book5/evidence/fixedassets-145/041-personalize-focused-lines.txt",
     "playwright/projects/fibu-book5/img/fixedassets-145-030-fa-cnc-01-posting-group-pageinspection.png",
-    "playwright/projects/fibu-book5/img/fixedassets-145-040-fa-cnc-01-posting-group-personalize-nosave.png"
+    "playwright/projects/fibu-book5/img/fixedassets-145-040-fa-cnc-01-posting-group-personalize-nosave.png",
+    "playwright/projects/fibu-book5/evidence/fixedassets-146/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-146/FIXEDASSETS-146-review.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-146/FIXEDASSETS-146-result.json"
   ],
   "changedFiles": [
     ".agent/state/current.json",
     ".agent/state/coverage_state.json",
-    ".agent/state/cases/fixedassets-145-fa-cnc-01-posting-group-pageinspection-personalize-nosave.json",
     ".agent/state/cases/fixedassets-146-fa-cnc-01-posting-group-diagnosis-result-review.json",
+    ".agent/state/cases/fixedassets-147-fa-cnc-01-posting-group-editmode-affordance-nosave.json",
     ".agent/state/last_run_summary.json",
     "playwright/projects/fibu-book5/CURRENT-STATE.md",
     "playwright/projects/fibu-book5/LAB-FIT-STATUS.md",
-    "playwright/projects/fibu-book5/BC-PLAYWRIGHT-PATTERNS.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-140/README.md",
-    "package.json",
-    "playwright/projects/fibu-book5/tests/fixedassets-145-fa-cnc-01-posting-group-pageinspection-personalize-nosave.spec.ts",
-    "playwright/projects/fibu-book5/evidence/fixedassets-145/"
+    "playwright/projects/fibu-book5/LAB-FIT-STATUS.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-146/"
   ],
   "validationCommands": [
     "npm run agent:preflight",
     "npm run agent:dry-run",
     "npm run agent:run-plan",
-    "npm run fibu:fixedassets:fa-cnc-01-posting-group-pageinspection-personalize",
     "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-145/FIXEDASSETS-145-result.json",
-    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-145/FIXEDASSETS-145-result.json",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-146/FIXEDASSETS-146-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-146/FIXEDASSETS-146-result.json",
     "npm run check:encoding",
     "git diff --check"
   ],
-  "nextStep": "FIXEDASSETS-146: locally review FA-145 Page Inspection/Personalize diagnosis before any new write route is unlocked."
+  "nextStep": "FIXEDASSETS-147: run a no-save edit-mode affordance probe for the Posting Group field on FA-CNC-01; do not select MACHINES and do not save."
 }
