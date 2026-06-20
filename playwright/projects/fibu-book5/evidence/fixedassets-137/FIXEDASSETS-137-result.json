@@ -1,0 +1,134 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixed-asset-pageinspection-result-review",
+  "caseId": "FIXEDASSETS-137-FA-CNC-01-PAGEINSPECTION-RESULT-REVIEW",
+  "source": "local-evidence-review",
+  "resultStatus": "observed",
+  "runPlanId": "FIXEDASSETS-137-FA-CNC-01-PAGEINSPECTION-RESULT-REVIEW-PLAN",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "decision": {
+    "fa136Classification": "accepted-labor-technical-proof",
+    "fieldLineProof": "Text-/JSON-Evidence proves FA Posting Group (29, Code[20]) and Acquired (30, Boolean).",
+    "screenshotClassification": "context-image-not-sole-field-proof",
+    "currentAssignedPostingGroup": "EQUIPMENT",
+    "targetPostingGroup": "MACHINES",
+    "setupTruth": "MACHINES exists as separate FA Posting Group setup from FIXEDASSETS-016.",
+    "assignmentTruth": "MACHINES is not proven as assigned to FA-CNC-01; EQUIPMENT is the current proven card value.",
+    "directAcquisitionRoute": "hold-until-assignment-decision",
+    "selectedNextRoute": "controlled-posting-group-assignment-fit",
+    "selectedNextCase": "FIXEDASSETS-138-FA-CNC-01-POSTING-GROUP-ASSIGNMENT-FIT"
+  },
+  "proved": [
+    "FA-136 is accepted as a technical Page Inspection proof for the Fixed Asset Card and FA Posting Group field context.",
+    "FA-CNC-01 currently has HGB and EQUIPMENT visible in the captured card context.",
+    "FA Posting Group (29, Code[20]) is proven by text/JSON evidence, not by screenshot alone.",
+    "Acquired (30, Boolean) is present in the technical field context, but no acquired/ready signal is proven as active.",
+    "MACHINES exists as a setup object from FA-016 but is not currently proven as assigned to FA-CNC-01.",
+    "No BC run, Playwright run, setup change, draft, Preview Posting, posting, API shortcut or book edit occurred in FA-137."
+  ],
+  "notProved": [
+    "No setup change from EQUIPMENT to MACHINES has been performed.",
+    "No decision is made to keep EQUIPMENT as the final book target.",
+    "No acquisition wizard is opened.",
+    "No acquisition value or vendor is entered.",
+    "No Preview Posting or posting trace is produced.",
+    "No FA Ledger Entry or G/L acquisition trace is proven.",
+    "No German final fixed-assets proof is proven."
+  ],
+  "changedFiles": [
+    ".agent/state/current.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/cases/fixedassets-137-fa-cnc-01-pageinspection-result-review.json",
+    ".agent/state/cases/fixedassets-138-fa-cnc-01-posting-group-assignment-fit.json",
+    ".agent/state/last_run_summary.json",
+    "playwright/projects/fibu-book5/CURRENT-STATE.md",
+    "playwright/projects/fibu-book5/LAB-FIT-STATUS.md",
+    "playwright/projects/fibu-book5/MASTERDATA-BACKLOG.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-137/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-137/FIXEDASSETS-137-pageinspection-result-review.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-137/FIXEDASSETS-137-result.json"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-137/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-137/FIXEDASSETS-137-pageinspection-result-review.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-137/FIXEDASSETS-137-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-136/FIXEDASSETS-136-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-136/020-pageinspection-focused-lines.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-136/030-pageinspection-signals.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-016/FIXEDASSETS-016-result.json"
+  ],
+  "warnings": [
+    "Do not claim MACHINES as currently assigned to FA-CNC-01 before a controlled assignment fit proves it.",
+    "Do not execute Acquire from FA-137 evidence.",
+    "Do not post acquisition until Posting Group assignment, acquisition route and Preview Posting have separate evidence."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "flags": {
+    "noBookChange": true,
+    "secretsUntouched": true,
+    "noBcRun": true,
+    "noPlaywrightRun": true,
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noNewDraft": true,
+    "noFieldValueChanged": true,
+    "noSaveRecord": true,
+    "noDeleteRecord": true,
+    "noAcquireExecution": true
+  },
+  "statePatch": {
+    "current": {
+      "updatedAt": "2026-06-20T20:15:00.000Z",
+      "activeCase": "FIXEDASSETS-138-FA-CNC-01-POSTING-GROUP-ASSIGNMENT-FIT",
+      "active_case_file": ".agent/state/cases/fixedassets-138-fa-cnc-01-posting-group-assignment-fit.json",
+      "lastReferenceCase": "FIXEDASSETS-137-FA-CNC-01-PAGEINSPECTION-RESULT-REVIEW",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-137-fa-cnc-01-pageinspection-result-review.json",
+      "requiresStrongModel": false,
+      "nextStep": "FIXEDASSETS-138: controlled UI-first assignment fit for FA-CNC-01 Posting Group. Change EQUIPMENT to MACHINES only if current value and target are safely confirmed; no acquisition, no Preview, no Post."
+    },
+    "activeCase": {
+      "status": "completed",
+      "decision": "Accept FA-136 as technical Page Inspection proof and select controlled UI-first Posting Group assignment fit as next step."
+    },
+    "coverage": {
+      "schemaVersion": 1,
+      "purpose": "Kompakter Coverage-Index fuer schnelle Agentenlaeufe.",
+      "areas": {
+        "fixedassets": {
+          "chapter": "Kapitel 21",
+          "status": "in-progress",
+          "currentBlock": "posting-group-assignment-fit",
+          "latestPracticalCase": "FIXEDASSETS-136",
+          "latestDecisionCase": "FIXEDASSETS-137",
+          "nextCase": "FIXEDASSETS-138-FA-CNC-01-POSTING-GROUP-ASSIGNMENT-FIT",
+          "bookScreenshots": {
+            "setupProofs": "available-labor",
+            "purchaseInvoicePreflight": "available-labor",
+            "validFixedAssetLine": "blocked-personalize-opened-type-context-visible-but-fixed-asset-option-unproved",
+            "acquisitionPostingTrace": "blocked-acquisition-readiness-not-proven",
+            "depreciationPostingTrace": "open",
+            "acquisitionWizardPreflight": "blocked-disabled-acquire-no-ready-signal",
+            "depreciationBookFields": "partial-labor-field-proof",
+            "fixedAssetTechnicalInspection": "accepted-labor-technical-proof",
+            "postingGroupAssignment": "open"
+          },
+          "finalGermanProof": "open"
+        }
+      },
+      "hardExclusions": {
+        "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
+      }
+    }
+  },
+  "bookImpact": "Kapitel 21 must separate setup availability (MACHINES exists), assigned card value (currently EQUIPMENT), and posting proof. The future debugging chapter can use FA-136/137 to explain why Page Inspection is evidence for fields, not a substitute for business setup decisions.",
+  "summary": "FA-137 accepts FA-136 as technical proof and selects a controlled UI-first Posting Group assignment fit before any acquisition route.",
+  "nextStep": "FIXEDASSETS-138: controlled UI-first assignment fit for FA-CNC-01 Posting Group; no acquisition, no Preview, no Post."
+}

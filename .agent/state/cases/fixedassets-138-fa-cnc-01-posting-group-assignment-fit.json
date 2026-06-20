@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-138-FA-CNC-01-POSTING-GROUP-ASSIGNMENT-FIT",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "ui-first-masterdata-setup-fit",
+  "taskClass": "wizard_work",
+  "requiresUsageLog": false,
+  "goal": "Controlled UI-first fit of FA-CNC-01 Posting Group from current EQUIPMENT to book-target MACHINES, only if all safety conditions are visible and no acquisition/posting action is triggered.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-137/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-136/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-016/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-034/"
+  ],
+  "knownTruth": [
+    "FA-136 proves FA Posting Group (29, Code[20]) technical field context.",
+    "FA-136/134 prove EQUIPMENT as current visible card value for FA-CNC-01.",
+    "FA-016 proves MACHINES exists as separate FA Posting Group lab setup.",
+    "No acquisition or FA posting is proven for FA-CNC-01 in this chain."
+  ],
+  "allowedActions": [
+    "open-business-central",
+    "run-playwright",
+    "read-fixed-asset-card",
+    "open-edit-mode-on-fixed-asset-card",
+    "change-fa-posting-group-equipment-to-machines-only-if-current-value-confirmed",
+    "save-record",
+    "capture-before-after-evidence",
+    "write-compact-evidence",
+    "update-state-plan"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "company-switch",
+    "api-shortcut",
+    "book-edit",
+    "click-acquire",
+    "execute-acquire",
+    "enter-K30000-in-purchase-invoice",
+    "enter-FA-CNC-01-in-document",
+    "enter-amount",
+    "new-draft",
+    "finish-wizard",
+    "click-ok-on-posting-or-acquisition-dialog",
+    "create-journal-lines",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "delete-record",
+    "delete-non-test-data"
+  ],
+  "defaultLockedActionsUnlocked": [
+    "setup-change"
+  ],
+  "safetyGates": [
+    "Stop if URL does not contain MCP_1_20260210 and company=RM-DEMO.",
+    "Stop if FA-CNC-01 is not visible on Fixed Asset Card.",
+    "Stop if current Posting Group is not visibly EQUIPMENT before edit.",
+    "Stop if MACHINES is not available as target value.",
+    "Stop if Book Value is not 0,00 or if any acquired/posting signal appears.",
+    "Stop if Acquire, Preview Posting, Post, Purchase Invoice or Journal dialog opens.",
+    "Capture before and after evidence if the value is changed.",
+    "No acquisition, no Preview, no Posting."
+  ],
+  "acceptanceCriteria": [
+    "The run stays in MCP_1_20260210 / RM-DEMO.",
+    "Before evidence shows FA-CNC-01 with current Posting Group EQUIPMENT.",
+    "After evidence shows FA-CNC-01 with Posting Group MACHINES, or the run cleanly blocks before change with reason.",
+    "No acquisition, Preview Posting, posting, amount entry, purchase invoice, journal line, API shortcut or company switch occurs."
+  ],
+  "recommendedSkills": [
+    "playwright-bc-setup-fit",
+    "evidence-writer"
+  ],
+  "nextSafeAction": "Create/run a narrow guarded Playwright setup-fit test for FA-CNC-01 Posting Group assignment."
+}

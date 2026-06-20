@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-136-FA-CNC-01-PAGEINSPECTION-POSTING-GROUP-READONLY",
+  "runId": "FIXEDASSETS-137-FA-CNC-01-PAGEINSPECTION-RESULT-REVIEW",
   "date": "2026-06-20",
-  "workType": "playwright-readonly-pageinspection-diagnosis",
+  "workType": "local-evidence-review",
   "branch": "codex/token-efficient-autopilot-state",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "bcRun": true,
+  "bcRun": false,
   "posted": false,
   "preview": false,
   "setupChanged": false,
@@ -14,43 +14,36 @@
   "apiShortcut": false,
   "bookChanged": false,
   "resultStatus": "observed",
-  "summary": "FA-136 opened FA-CNC-01 read-only and captured Page Inspection context. Text-/JSON-Evidence proves Fixed Asset Card (5600), Fixed Asset (5600), Depreciation Book Code, HGB, Posting Group, EQUIPMENT, FA Posting Group (29, Code[20]) and Acquired (30, Boolean). The screenshot is a card/Page-Inspection context image; the concrete field-line proof is in text/JSON evidence. MACHINES remains not proven as assigned value.",
+  "summary": "FA-137 reviewed FA-136 locally. FA-136 is accepted as technical Page Inspection proof for Fixed Asset Card (5600), Fixed Asset (5600), FA Posting Group (29, Code[20]) and Acquired (30, Boolean). Current assigned card truth is EQUIPMENT; MACHINES exists as setup but is not assigned to FA-CNC-01. Next step is a controlled UI-first assignment fit before any acquisition route.",
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/fixedassets-136/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-137/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-137/FIXEDASSETS-137-pageinspection-result-review.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-137/FIXEDASSETS-137-result.json",
     "playwright/projects/fibu-book5/evidence/fixedassets-136/FIXEDASSETS-136-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-136/FIXEDASSETS-136-learning.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-136/010-card-focused-text.txt",
-    "playwright/projects/fibu-book5/evidence/fixedassets-136/020-pageinspection-focused-lines.txt",
-    "playwright/projects/fibu-book5/evidence/fixedassets-136/030-pageinspection-signals.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-136/fixedassets-136-040-fa-cnc-01-pageinspection-context.screenshot.json",
-    "playwright/projects/fibu-book5/img/fixedassets-136-040-fa-cnc-01-pageinspection-context.png"
+    "playwright/projects/fibu-book5/evidence/fixedassets-016/FIXEDASSETS-016-result.json"
   ],
   "changedFiles": [
     ".agent/state/current.json",
     ".agent/state/coverage_state.json",
-    ".agent/state/cases/fixedassets-136-fa-cnc-01-pageinspection-posting-group-readonly.json",
     ".agent/state/cases/fixedassets-137-fa-cnc-01-pageinspection-result-review.json",
+    ".agent/state/cases/fixedassets-138-fa-cnc-01-posting-group-assignment-fit.json",
     ".agent/state/last_run_summary.json",
+    ".agent/state/model_usage_log.jsonl",
     "playwright/projects/fibu-book5/CURRENT-STATE.md",
     "playwright/projects/fibu-book5/LAB-FIT-STATUS.md",
-    "package.json",
-    "playwright/projects/fibu-book5/tests/fixedassets-136-fa-cnc-01-pageinspection-posting-group-readonly.spec.ts",
-    "playwright/projects/fibu-book5/evidence/fixedassets-136/README.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-136/FIXEDASSETS-136-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-136/FIXEDASSETS-136-learning.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-136/010-card-focused-text.txt",
-    "playwright/projects/fibu-book5/evidence/fixedassets-136/020-pageinspection-focused-lines.txt",
-    "playwright/projects/fibu-book5/evidence/fixedassets-136/030-pageinspection-signals.json"
+    "playwright/projects/fibu-book5/MASTERDATA-BACKLOG.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-137/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-137/FIXEDASSETS-137-pageinspection-result-review.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-137/FIXEDASSETS-137-result.json"
   ],
   "validationCommands": [
     "npm run agent:preflight",
     "npm run agent:dry-run",
     "npm run agent:run-plan",
-    "npm run fibu:fixedassets:fa-cnc-01-pageinspection-posting-group-readonly",
-    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-136/FIXEDASSETS-136-result.json",
-    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-136/FIXEDASSETS-136-result.json",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-137/FIXEDASSETS-137-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-137/FIXEDASSETS-137-result.json",
     "npm run check:encoding",
     "git diff --check"
   ],
-  "nextStep": "FIXEDASSETS-137: local review of Page Inspection result before any setup or acquisition route."
+  "nextStep": "FIXEDASSETS-138: controlled UI-first assignment fit for FA-CNC-01 Posting Group; no acquisition, no Preview, no Post."
 }
