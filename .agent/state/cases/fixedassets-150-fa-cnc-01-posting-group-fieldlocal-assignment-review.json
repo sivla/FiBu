@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-150-FA-CNC-01-POSTING-GROUP-FIELDLOCAL-ASSIGNMENT-REVIEW",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "local-evidence-review",
+  "taskClass": "judge_work",
+  "requiresUsageLog": true,
+  "goal": "Review FA-149 field-local Posting Group assignment evidence and decide whether it safely unlocks the next fixed-assets acquisition readiness route.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-149/"
+  ],
+  "allowedActions": [
+    "read-local-evidence",
+    "inspect-screenshot-metadata",
+    "inspect-result-json",
+    "review-setup-fit",
+    "choose-next-route",
+    "update-state-plan",
+    "document-next-safe-action"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright",
+    "company-switch",
+    "api-shortcut",
+    "book-edit",
+    "save-personalization",
+    "click-acquire",
+    "execute-acquire",
+    "enter-K30000-in-purchase-invoice",
+    "enter-FA-CNC-01-in-document",
+    "enter-amount",
+    "new-draft",
+    "finish-wizard",
+    "click-ok",
+    "create-journal-lines",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "delete-record",
+    "delete-non-test-data"
+  ],
+  "safetyGates": [
+    "Accept FA-149 as success only if result JSON and screenshot prove Posting Group MACHINES after reopening FA-CNC-01.",
+    "Do not unlock acquisition if result shows any posting, Preview Posting, purchase invoice, journal line, company switch or API shortcut.",
+    "Treat visible Acquire action as normal page context, not execution; only click/execute/acquisition dialog would be a blocker.",
+    "Do not claim German fixed-assets final proof."
+  ],
+  "acceptanceCriteria": [
+    "FA-149 result status and screenshot metadata are reviewed.",
+    "The review states whether MACHINES is accepted as current CRONUS-USA laboratory card value.",
+    "The next route is either acquisition readiness or a blocker review, not a direct posting route."
+  ],
+  "expectedInputs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-149/FIXEDASSETS-149-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-149/fixedassets-149-050-fa-cnc-01-posting-group-fieldlocal-fit.screenshot.json",
+    "playwright/projects/fibu-book5/img/fixedassets-149-050-fa-cnc-01-posting-group-fieldlocal-fit.png"
+  ],
+  "nextSafeAction": "Review FA-149 locally before any acquisition route is unlocked."
+}
