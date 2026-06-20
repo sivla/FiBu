@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-20T18:30:00.000Z",
+  "updatedAt": "2026-06-20T19:10:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "fixedassets",
-  "activeCase": "FIXEDASSETS-135-FA-CNC-01-READINESS-FIELD-GAP-REVIEW",
-  "active_case_file": ".agent/state/cases/fixedassets-135-fa-cnc-01-readiness-field-gap-review.json",
-  "lastReferenceCase": "FIXEDASSETS-134-FA-CNC-01-DEPRECIATION-BOOK-FIELDS-READONLY",
-  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-134-fa-cnc-01-depreciation-book-fields-readonly.json",
+  "activeCase": "FIXEDASSETS-136-FA-CNC-01-PAGEINSPECTION-POSTING-GROUP-READONLY",
+  "active_case_file": ".agent/state/cases/fixedassets-136-fa-cnc-01-pageinspection-posting-group-readonly.json",
+  "lastReferenceCase": "FIXEDASSETS-135-FA-CNC-01-READINESS-FIELD-GAP-REVIEW",
+  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-135-fa-cnc-01-readiness-field-gap-review.json",
   "mode": "token-efficient-autopilot-tooling-bootstrap",
-  "requiresStrongModel": true,
+  "requiresStrongModel": false,
   "requiredPreflightChecks": [
     "agent:preflight",
     "agent:state:validate",
@@ -19,9 +19,11 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "read-existing-evidence",
-    "review-fixed-asset-readiness-gap",
-    "compare-visible-posting-group-with-setup-target",
+    "open-business-central",
+    "run-playwright",
+    "read-fixed-asset-card",
+    "open-page-inspection-readonly",
+    "capture-compact-page-inspection-evidence",
     "update-state-plan",
     "write-compact-evidence"
   ],
@@ -54,7 +56,7 @@
     "delete-record",
     "delete-non-test-data"
   ],
-  "nextStep": "FIXEDASSETS-135: local review of FA-134 field visibility and remaining acquisition-readiness gap before any Acquire, Purchase Invoice or FA G/L Journal route is retried.",
+  "nextStep": "FIXEDASSETS-136: open FA-CNC-01 read-only and use Page Inspection to prove the technical field context for HGB, Posting Group EQUIPMENT and acquisition/readiness fields; no Edit, no Acquire, no setup, no Preview, no Post.",
   "subagentPlanPolicy": {
     "default": "optional",
     "execution": "plan-only-no-subagents-spawned",

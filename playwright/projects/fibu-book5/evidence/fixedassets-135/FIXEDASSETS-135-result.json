@@ -1,0 +1,132 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixed-asset-readiness-field-gap-review-result",
+  "caseId": "FIXEDASSETS-135-FA-CNC-01-READINESS-FIELD-GAP-REVIEW",
+  "source": "local-evidence-review",
+  "resultStatus": "observed",
+  "runPlanId": "FIXEDASSETS-135-FA-CNC-01-READINESS-FIELD-GAP-REVIEW-PLAN",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "decision": {
+    "fa134Classification": "partial-labor-field-proof",
+    "machinesSetupTruth": "MACHINES exists as FA Posting Group lab setup from FIXEDASSETS-016.",
+    "faCnc01VisiblePostingGroupTruth": "FA-134 screenshot shows Posting Group EQUIPMENT on FA-CNC-01; MACHINES is not visible on the card.",
+    "acquireRoute": "hold-blocked",
+    "setupChangeRoute": "hold-until-technical-field-context-is-proven",
+    "selectedNextRoute": "page-inspection-posting-group-readonly",
+    "selectedNextCase": "FIXEDASSETS-136-FA-CNC-01-PAGEINSPECTION-POSTING-GROUP-READONLY"
+  },
+  "proved": [
+    "FA-134 is usable as a labor field/control screenshot for FA-CNC-01 Depreciation Book context.",
+    "FA-134 proves HGB, visible Posting Group EQUIPMENT, depreciation dates, 8 years and Book Value 0,00 in the captured UI context.",
+    "FA-016 proves MACHINES exists as a separate FA Posting Group lab setup, not as the visible FA-CNC-01 card value.",
+    "FA-034 proves FA-CNC-01 has FA Subclass Code EQUIPMENT.",
+    "Acquire remains blocked as a route because FA-134 shows it visible but disabled and no acquired/readiness signal.",
+    "No BC run, Playwright run, setup change, draft, Preview Posting, posting, API shortcut or book edit occurred in FA-135."
+  ],
+  "notProved": [
+    "No technical Page Inspection proof of the exact Posting Group source field is produced in FA-135.",
+    "No setup decision to change FA-CNC-01 from EQUIPMENT to MACHINES is made.",
+    "No acquisition wizard is opened.",
+    "No acquisition value or vendor is entered.",
+    "No Preview Posting or posting trace is produced.",
+    "No FA Ledger Entry or G/L acquisition trace is proven.",
+    "No German final fixed-assets proof is proven."
+  ],
+  "changedFiles": [
+    ".agent/state/current.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/cases/fixedassets-135-fa-cnc-01-readiness-field-gap-review.json",
+    ".agent/state/cases/fixedassets-136-fa-cnc-01-pageinspection-posting-group-readonly.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/model_usage_log.jsonl",
+    "playwright/projects/fibu-book5/CURRENT-STATE.md",
+    "playwright/projects/fibu-book5/LAB-FIT-STATUS.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-135/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-135/FIXEDASSETS-135-readiness-field-gap-review.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-135/FIXEDASSETS-135-result.json"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-135/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-135/FIXEDASSETS-135-readiness-field-gap-review.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-135/FIXEDASSETS-135-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-134/FIXEDASSETS-134-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-134/FIXEDASSETS-134-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-016/FIXEDASSETS-016-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-034/FIXEDASSETS-034-result.json"
+  ],
+  "warnings": [
+    "Do not claim MACHINES as the assigned FA-CNC-01 Posting Group from current card evidence.",
+    "Do not click Acquire from FA-135 evidence.",
+    "Do not change Posting Group before technical field context is proven."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "flags": {
+    "noBookChange": true,
+    "secretsUntouched": true,
+    "noBcRun": true,
+    "noPlaywrightRun": true,
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noNewDraft": true,
+    "noFieldValueChanged": true,
+    "noSaveRecord": true,
+    "noDeleteRecord": true,
+    "noAcquireExecution": true,
+    "noAmountEntry": true,
+    "noTargetVendorEntry": true
+  },
+  "statePatch": {
+    "current": {
+      "updatedAt": "2026-06-20T19:10:00.000Z",
+      "activeCase": "FIXEDASSETS-136-FA-CNC-01-PAGEINSPECTION-POSTING-GROUP-READONLY",
+      "active_case_file": ".agent/state/cases/fixedassets-136-fa-cnc-01-pageinspection-posting-group-readonly.json",
+      "lastReferenceCase": "FIXEDASSETS-135-FA-CNC-01-READINESS-FIELD-GAP-REVIEW",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-135-fa-cnc-01-readiness-field-gap-review.json",
+      "requiresStrongModel": false,
+      "nextStep": "FIXEDASSETS-136: open FA-CNC-01 read-only and use Page Inspection to prove the technical field context for HGB, Posting Group EQUIPMENT and acquisition/readiness fields; no Edit, no Acquire, no setup, no Preview, no Post."
+    },
+    "activeCase": {
+      "status": "completed",
+      "decision": "Accept FA-134 as partial field proof, hold Acquire and setup change, and select read-only Page Inspection of Posting Group field context as next step."
+    },
+    "coverage": {
+      "schemaVersion": 1,
+      "purpose": "Kompakter Coverage-Index fuer schnelle Agentenlaeufe.",
+      "areas": {
+        "fixedassets": {
+          "chapter": "Kapitel 21",
+          "status": "in-progress",
+          "currentBlock": "pageinspection-posting-group-readonly",
+          "latestPracticalCase": "FIXEDASSETS-134",
+          "latestDecisionCase": "FIXEDASSETS-135",
+          "nextCase": "FIXEDASSETS-136-FA-CNC-01-PAGEINSPECTION-POSTING-GROUP-READONLY",
+          "bookScreenshots": {
+            "setupProofs": "available-labor",
+            "purchaseInvoicePreflight": "available-labor",
+            "validFixedAssetLine": "blocked-personalize-opened-type-context-visible-but-fixed-asset-option-unproved",
+            "acquisitionPostingTrace": "blocked-acquisition-readiness-not-proven",
+            "depreciationPostingTrace": "open",
+            "acquisitionWizardPreflight": "blocked-disabled-acquire-no-ready-signal",
+            "depreciationBookFields": "partial-labor-field-proof",
+            "fixedAssetTechnicalInspection": "open"
+          },
+          "finalGermanProof": "open"
+        }
+      },
+      "hardExclusions": {
+        "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
+      }
+    }
+  },
+  "bookImpact": "Kapitel 21 should use FA-134 as a field-control screenshot but explain that setup existence and assigned card value are different evidence layers. The next Page Inspection proof can also feed the future debugging/technical evidence chapter.",
+  "summary": "FA-135 accepts FA-134 as partial field proof, keeps Acquire and setup changes blocked, and selects a read-only Page Inspection proof for the Posting Group field context as the next safest step.",
+  "nextStep": "FIXEDASSETS-136: read-only Page Inspection proof of FA-CNC-01 Posting Group and acquisition/readiness field context."
+}

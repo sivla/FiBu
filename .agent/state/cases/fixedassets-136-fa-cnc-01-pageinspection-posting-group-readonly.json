@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-136-FA-CNC-01-PAGEINSPECTION-POSTING-GROUP-READONLY",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "playwright-readonly-pageinspection-diagnosis",
+  "taskClass": "wizard_work",
+  "requiresUsageLog": false,
+  "goal": "Open FA-CNC-01 read-only and use Page Inspection to prove the technical field/page/table context for Depreciation Book Code HGB, visible Posting Group EQUIPMENT and acquisition/readiness fields.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-135/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-134/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-016/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-034/"
+  ],
+  "knownTruth": [
+    "FA-134 screenshot shows FA-CNC-01 with Depreciation Book Code HGB and visible Posting Group EQUIPMENT.",
+    "MACHINES exists as a separate FA Posting Group lab setup from FA-016, but it is not visible on FA-CNC-01 in FA-134.",
+    "Acquire is visible but disabled in FA-134.",
+    "The exact technical source field for the visible Posting Group still needs Page Inspection proof."
+  ],
+  "allowedActions": [
+    "open-business-central",
+    "run-playwright",
+    "read-fixed-asset-card",
+    "open-page-inspection-readonly",
+    "capture-compact-page-inspection-evidence",
+    "write-compact-evidence",
+    "update-state-plan"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "company-switch",
+    "api-shortcut",
+    "book-edit",
+    "click-acquire",
+    "execute-acquire",
+    "enter-K30000-in-purchase-invoice",
+    "enter-FA-CNC-01-in-document",
+    "enter-amount",
+    "change-field-value",
+    "save-record",
+    "new-draft",
+    "finish-wizard",
+    "click-ok",
+    "create-journal-lines",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "delete-record",
+    "delete-non-test-data"
+  ],
+  "acceptanceCriteria": [
+    "The run stays in MCP_1_20260210 / RM-DEMO.",
+    "FA-CNC-01 Fixed Asset Card is opened read-only.",
+    "Page Inspection or an equivalent technical read-only context proves page/table/field context for at least the visible Fixed Asset Card and Posting Group area.",
+    "The evidence clearly separates MACHINES setup existence from EQUIPMENT as visible card value.",
+    "No Edit, Acquire, field change, setup, draft, Preview Posting, posting, API shortcut or company switch occurs."
+  ],
+  "recommendedSkills": [
+    "playwright-bc-readonly",
+    "evidence-writer"
+  ],
+  "nextSafeAction": "Create a narrow read-only Playwright Page Inspection test for FA-CNC-01 field context."
+}

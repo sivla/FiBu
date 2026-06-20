@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-134-FA-CNC-01-DEPRECIATION-BOOK-FIELDS-READONLY",
+  "runId": "FIXEDASSETS-135-FA-CNC-01-READINESS-FIELD-GAP-REVIEW",
   "date": "2026-06-20",
-  "workType": "playwright-readonly-diagnosis",
+  "workType": "local-evidence-review",
   "branch": "codex/token-efficient-autopilot-state",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "bcRun": true,
+  "bcRun": false,
   "posted": false,
   "preview": false,
   "setupChanged": false,
@@ -14,42 +14,32 @@
   "apiShortcut": false,
   "bookChanged": false,
   "resultStatus": "observed",
-  "summary": "FA-134 opened FA-CNC-01 read-only, expanded the Depreciation Book section and captured a corrected screenshot. The image shows Depreciation Book Code HGB, Posting Group EQUIPMENT, depreciation dates, 8 years and Book Value 0,00. MACHINES and Acquired/readiness are not visible; Acquire remains disabled. No Edit, Acquire, value entry, Preview Posting, Post, setup change, draft, API shortcut or company switch occurred.",
+  "summary": "FA-135 reviewed FA-134 and prior setup evidence locally. FA-134 is accepted as partial field proof for HGB, Posting Group EQUIPMENT, depreciation dates and Book Value 0,00. MACHINES remains a separate setup proof from FA-016, not a proven assigned value on FA-CNC-01. Acquire and setup changes remain blocked until a read-only Page Inspection field-context proof is captured.",
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/fixedassets-134/README.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-134/FIXEDASSETS-134-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-134/FIXEDASSETS-134-learning.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-134/030-depreciation-book-field-diagnostics.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-134/fixedassets-134-040-fa-cnc-01-depreciation-book-fields.screenshot.json",
-    "playwright/projects/fibu-book5/img/fixedassets-134-040-fa-cnc-01-depreciation-book-fields.png"
+    "playwright/projects/fibu-book5/evidence/fixedassets-135/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-135/FIXEDASSETS-135-readiness-field-gap-review.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-135/FIXEDASSETS-135-result.json"
   ],
   "changedFiles": [
     ".agent/state/current.json",
     ".agent/state/coverage_state.json",
-    ".agent/state/cases/fixedassets-134-fa-cnc-01-depreciation-book-fields-readonly.json",
     ".agent/state/cases/fixedassets-135-fa-cnc-01-readiness-field-gap-review.json",
+    ".agent/state/cases/fixedassets-136-fa-cnc-01-pageinspection-posting-group-readonly.json",
     ".agent/state/last_run_summary.json",
-    "package.json",
     "playwright/projects/fibu-book5/CURRENT-STATE.md",
     "playwright/projects/fibu-book5/LAB-FIT-STATUS.md",
-    "playwright/projects/fibu-book5/tests/fixedassets-134-fa-cnc-01-depreciation-book-fields-readonly.spec.ts",
-    "playwright/projects/fibu-book5/evidence/fixedassets-134/README.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-134/FIXEDASSETS-134-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-134/FIXEDASSETS-134-learning.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-134/010-before-expand-text.txt",
-    "playwright/projects/fibu-book5/evidence/fixedassets-134/020-after-expand-text.txt",
-    "playwright/projects/fibu-book5/evidence/fixedassets-134/030-depreciation-book-field-diagnostics.json"
+    "playwright/projects/fibu-book5/evidence/fixedassets-135/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-135/FIXEDASSETS-135-readiness-field-gap-review.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-135/FIXEDASSETS-135-result.json"
   ],
   "validationCommands": [
     "npm run agent:preflight",
     "npm run agent:dry-run",
     "npm run agent:run-plan",
-    "npm run fibu:fixedassets:fa-cnc-01-depreciation-book-fields-readonly",
-    "view_image playwright/projects/fibu-book5/img/fixedassets-134-040-fa-cnc-01-depreciation-book-fields.png",
-    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-134/FIXEDASSETS-134-result.json",
-    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-134/FIXEDASSETS-134-result.json",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-135/FIXEDASSETS-135-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-135/FIXEDASSETS-135-result.json",
     "npm run check:encoding",
     "git diff --check"
   ],
-  "nextStep": "FIXEDASSETS-135: local review of the FA-134 field gap, especially HGB visible but Posting Group EQUIPMENT instead of MACHINES, before any acquisition route is retried."
+  "nextStep": "FIXEDASSETS-136: read-only Page Inspection proof of FA-CNC-01 Posting Group and acquisition/readiness field context."
 }
