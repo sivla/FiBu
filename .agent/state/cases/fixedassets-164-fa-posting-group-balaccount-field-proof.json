@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-164-FA-POSTING-GROUP-BALACCOUNT-FIELD-PROOF",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "readonly-setup-field-proof",
+  "taskClass": "wizard_work",
+  "goal": "Reach FA Posting Groups through a scoped read-only route and prove the exact field/value pairing for the acquisition-cost balancing account before any FA G/L Journal value-entry retry.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-162/FIXEDASSETS-162-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-163/FIXEDASSETS-163-result.json"
+  ],
+  "allowedActions": [
+    "open-business-central",
+    "run-playwright",
+    "open-fa-posting-groups-readonly",
+    "read-visible-setup-fields",
+    "capture-readonly-evidence",
+    "write-result-json",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "company-switch",
+    "api-shortcut",
+    "book-edit",
+    "enter-amount",
+    "enter-balancing-account",
+    "create-journal-lines",
+    "delete-record",
+    "cleanup",
+    "preview-posting",
+    "post",
+    "setup-change",
+    "click-ok-in-posting-or-preview-dialog"
+  ],
+  "targetQuestion": {
+    "sourcePage": "FA Posting Groups",
+    "targetPostingGroup": "MACHINES",
+    "targetField": "Acquisition Cost Bal. Acc.",
+    "decisionNeeded": "Which visible G/L account is actually configured as the acquisition-cost balancing account for the FA Posting Group used by FA-CNC-01?"
+  },
+  "safetyGates": [
+    "Instance URL must contain MCP_1_20260210.",
+    "Company URL or shell context must prove RM-DEMO.",
+    "The foreground page must prove FA Posting Groups / Anlagenbuchungsgruppen before any screenshot is accepted.",
+    "Do not enter Amount.",
+    "Do not enter Bal. Account No.",
+    "Do not create, edit, delete or cleanup journal lines.",
+    "Do not open Preview Posting.",
+    "Do not post.",
+    "If the setup page cannot be reached, write a compact blocker without raw page dumps and stop."
+  ],
+  "acceptanceCriteria": [
+    "Evidence shows the FA Posting Groups page context, not only Role Center or Tell-Me.",
+    "Evidence states whether MACHINES is visible.",
+    "Evidence states whether Acquisition Cost Bal. Acc. and a concrete account number are visible together.",
+    "Result JSON states no value entry, no setup change, no preview and no posting.",
+    "Next action is either a guarded FA G/L Journal value-preflight with an explicit G/L account or another route decision."
+  ],
+  "nextSafeAction": "Run a scoped read-only FA Posting Groups field-proof; no value entry, no Preview Posting, no Post."
+}

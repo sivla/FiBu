@@ -3,7 +3,7 @@
   "caseId": "FIXEDASSETS-163-FA-GL-JOURNAL-GL-BALACCOUNT-READONLY",
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "status": "planned",
+  "status": "blocked-readonly",
   "workType": "readonly-target-account-readiness",
   "taskClass": "wizard_work",
   "goal": "Read-only determine a defensible G/L or Bank balancing-account target for the FA G/L Journal route before any value-entry retry.",
@@ -62,5 +62,10 @@
     "Result JSON states no value entry, no setup change, no preview and no posting.",
     "Next action is either a guarded value-preflight with an explicit account target or a route back to Purchase Invoice."
   ],
-  "nextSafeAction": "Run read-only FA G/L Journal target-account readiness; no value entry, no Preview Posting, no Post."
+  "lastResult": {
+    "status": "blocked",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-163/FIXEDASSETS-163-result.json",
+    "summary": "FA-163 proved the FA G/L Journal context expects Bal. Account Type = G/L Account and K30000 is not a valid current target there. The run did not reach FA Posting Groups through Tell-Me, so no G/L target account candidate was accepted."
+  },
+  "nextSafeAction": "Run FIXEDASSETS-164 with a scoped read-only FA Posting Groups route; do not enter values, Preview Posting or Post."
 }

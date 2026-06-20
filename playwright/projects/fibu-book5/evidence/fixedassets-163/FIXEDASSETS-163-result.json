@@ -1,0 +1,149 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-fa-gl-journal-gl-balaccount-readonly-result",
+  "caseId": "FIXEDASSETS-163-FA-GL-JOURNAL-GL-BALACCOUNT-READONLY",
+  "source": "playwright-sandbox-readonly-diagnosis",
+  "resultStatus": "blocked",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-medium",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "environment": {
+    "expectedInstance": "MCP_1_20260210",
+    "expectedCompany": "RM-DEMO",
+    "context": {
+      "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5628&dc=0&bookmark=30_UQAAAAJ7_0EAUwBTAEUAVABTAAAAAnv_RABFAEYAQQBVAEwAVAAAAACHECc",
+      "environmentInUrl": true,
+      "companyInUrl": true,
+      "companyInText": false,
+      "wrongEnvironmentVisible": false
+    },
+    "urlAfterRun": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&dc=0"
+  },
+  "proved": [
+    "The run stayed in MCP_1_20260210.",
+    "The run stayed in RM-DEMO.",
+    "The FA G/L Journal context expects Bal. Account Type = G/L Account.",
+    "K30000 is not visible as the current FA G/L Journal balancing value.",
+    "No Amount was entered or changed.",
+    "No Bal. Account No. was entered or changed.",
+    "No journal line was created or deleted.",
+    "No Preview Posting was opened.",
+    "No posting was executed.",
+    "No setup change was executed."
+  ],
+  "notProved": [
+    "The exact Acquisition Cost Bal. Acc. field/value pairing is not yet proven.",
+    "No G/L balancing account was selected for value entry.",
+    "No guarded value-entry case is unlocked yet.",
+    "No Preview Posting result.",
+    "No posting result.",
+    "No FA Ledger Entry or G/L Entry trace.",
+    "No German final proof."
+  ],
+  "changedFiles": [
+    "package.json",
+    "playwright/projects/fibu-book5/tests/fixedassets-163-fa-gl-journal-gl-balaccount-readonly.spec.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-163/",
+    "playwright/projects/fibu-book5/img/fixedassets-163-010-fa-gl-journal-balaccount-type-readonly.png",
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-163-fa-gl-journal-gl-balaccount-readonly.json",
+    ".agent/state/cases/fixedassets-164-fa-posting-group-balaccount-field-proof.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    "playwright/projects/fibu-book5/CURRENT-STATE.md",
+    "playwright/projects/fibu-book5/LAB-FIT-STATUS.md",
+    "playwright/projects/fibu-book5/BOOK-CLICK-GUIDE-COVERAGE.md",
+    "playwright/projects/fibu-book5/SCREENSHOT-QA.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-163/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-163/010-readonly-target-account-signals.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-163/020-focused-target-account-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-163/FIXEDASSETS-163-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-163/FIXEDASSETS-163-result.json",
+    "playwright/projects/fibu-book5/img/fixedassets-163-010-fa-gl-journal-balaccount-type-readonly.png"
+  ],
+  "candidateEvaluation": {
+    "hasCandidateAccount": false,
+    "candidateAccounts": [],
+    "exactBalAccountFieldProved": false,
+    "safeForValueEntry": false
+  },
+  "warnings": [
+    "Read-only target-account readiness only.",
+    "Visible account codes are candidates, not value-entry approval.",
+    "Do not enter Amount or Bal. Account No. until the exact field/value pairing is proven."
+  ],
+  "blockedBy": [
+    "FA Posting Groups target page was not reached/read after Tell-Me navigation; the page context stayed outside the target setup page, so no account-candidate screenshot was accepted."
+  ],
+  "requiresReview": false,
+  "safeToFinalizeState": false,
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-164-FA-POSTING-GROUP-BALACCOUNT-FIELD-PROOF",
+      "active_case_file": ".agent/state/cases/fixedassets-164-fa-posting-group-balaccount-field-proof.json",
+      "lastReferenceCase": "FIXEDASSETS-163-FA-GL-JOURNAL-GL-BALACCOUNT-READONLY",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-163-fa-gl-journal-gl-balaccount-readonly.json",
+      "requiresStrongModel": false,
+      "nextStep": "FIXEDASSETS-164: prove the exact FA Posting Group field label/value for the acquisition-cost balancing account before any FA G/L Journal value-entry retry."
+    },
+    "lastRunSummary": {
+      "schemaVersion": 1,
+      "runId": "FIXEDASSETS-163-FA-GL-JOURNAL-GL-BALACCOUNT-READONLY",
+      "date": "2026-06-20",
+      "workType": "fixed-asset-gl-journal-gl-balaccount-readonly",
+      "branch": "codex/token-efficient-autopilot-state",
+      "instance": "MCP_1_20260210",
+      "company": "RM-DEMO",
+      "bcRun": true,
+      "playwrightRun": true,
+      "posted": false,
+      "previewPosting": false,
+      "setupChanged": false,
+      "companySwitched": false,
+      "apiShortcut": false,
+      "bookChanged": false,
+      "resultStatus": "blocked",
+      "summary": "FA-163 blocked before a usable target-account candidate proof: FA Posting Groups target page was not reached/read after Tell-Me navigation; the page context stayed outside the target setup page, so no account-candidate screenshot was accepted.",
+      "nextStep": "Run FIXEDASSETS-164 field-proof before any value entry, Preview Posting or posting."
+    },
+    "activeCase": {
+      "status": "blocked-readonly",
+      "lastResult": {
+        "status": "blocked",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-163/FIXEDASSETS-163-result.json",
+        "summary": "FA-163 blocked before a usable target-account candidate proof: FA Posting Groups target page was not reached/read after Tell-Me navigation; the page context stayed outside the target setup page, so no account-candidate screenshot was accepted."
+      },
+      "nextSafeAction": "Run FIXEDASSETS-164 exact FA Posting Group field proof; do not enter values, Preview Posting or Post."
+    },
+    "coverage": {
+      "areas": {
+        "fixedassets": {
+          "currentBlock": "fa-posting-group-balaccount-field-proof",
+          "latestPracticalCase": "FIXEDASSETS-163",
+          "latestReviewCase": "FIXEDASSETS-162",
+          "nextCase": "FIXEDASSETS-164-FA-POSTING-GROUP-BALACCOUNT-FIELD-PROOF"
+        }
+      }
+    }
+  },
+  "flags": {
+    "noValueEntry": true,
+    "noInsertLine": true,
+    "noDeleteLine": true,
+    "noCleanup": true,
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "observed": {
+    "startedAt": "2026-06-20T21:40:14.390Z",
+    "finishedAt": "2026-06-20T21:40:31.652Z"
+  },
+  "nextStep": "FIXEDASSETS-164: prove the exact FA Posting Group field label/value for the acquisition-cost balancing account before any FA G/L Journal value-entry retry."
+}

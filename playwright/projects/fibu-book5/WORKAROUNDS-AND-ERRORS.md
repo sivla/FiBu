@@ -1,5 +1,19 @@
 # Workarounds und Fehlerjournal
 
+## WK-BC-FA-163 FA Posting Groups ueber Tell-Me nicht belastbar erreicht
+
+| Feld | Wert |
+|---|---|
+| Status | blockiert / sauberer Read-only-Stop / kein Setup-Fit |
+| Testfall | `FIXEDASSETS-163-FA-GL-JOURNAL-GL-BALACCOUNT-READONLY` |
+| Situation | Nach FA-162 sollte read-only geklaert werden, welches G/L- oder Bankkonto fuer eine FA-G/L-Journalzeile mit `Bal. Account Type = G/L Account` vertretbar waere. |
+| Symptom | Das Journalbild zeigt zwar `Bal. Account Type = G/L Account`, aber der anschliessende Versuch, `FA Posting Groups` ueber Tell-Me als Setup-Quelle zu oeffnen, erreichte die Zielseite nicht belastbar. |
+| Sichtbarer Beleg | `fixedassets-163-010-fa-gl-journal-balaccount-type-readonly.png` zeigt nur den Journal-Kontext. Es gibt bewusst kein akzeptiertes `FA Posting Groups`-Bild, weil die erwartete Zielseite nicht im Seitentext belegt war. |
+| Ursache | Tell-Me-/Suchnavigation kann in BC auf Role Center, Suchoverlay oder einen falschen Trefferkontext zurueckfallen. Ein Screenshot darf erst akzeptiert werden, wenn die Zielseite selbst sichtbar belegt ist. |
+| Loesung oder Laborgrenze | Kein Konto behaupten und keine Werteingabe. Der Test wurde so gehärtet, dass abgelehnte Screenshot-Kontexte keine Roh-Page-Dumps oder Shell-/Auth-Fragmente in Evidence schreiben. |
+| Buchwirkung | Kapitel 21 bekommt einen Debugging-Lernpunkt: Ein sichtbarer Journal-Gegenkonto-Typ ist noch kein Zielkonto. Setupseiten muessen separat und sichtbar belegt werden. |
+| Kuenftige Regel | `FIXEDASSETS-164` muss `FA Posting Groups` gezielt read-only erreichen und Feldlabel plus Kontowert gemeinsam zeigen; sonst bleibt die Journalroute fuer Werteingabe, Preview und `Post` gesperrt. |
+
 ## WK-BC-FA-161 Gegenkonto-Code passt nicht zum Gegenkonto-Typ
 
 | Feld | Wert |
