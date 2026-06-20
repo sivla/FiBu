@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-160-FA-GL-JOURNAL-WRITE-GATE-DECISION",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "local-result-review",
+  "taskClass": "judge_work",
+  "requiresUsageLog": true,
+  "goal": "Review FIXEDASSETS-159 Amount/Bal. Account visibility evidence locally and decide whether a later guarded FA G/L Journal write/preflight case is justified or whether the journal route remains blocked.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-158/FIXEDASSETS-158-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-159/FIXEDASSETS-159-result.json"
+  ],
+  "allowedActions": [
+    "read-evidence",
+    "review-screenshot-metadata",
+    "compare-grid-visibility-signals",
+    "write-local-decision",
+    "update-state",
+    "document-next-safe-action"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright",
+    "company-switch",
+    "api-shortcut",
+    "book-edit",
+    "enter-FA-CNC-01-in-journal",
+    "enter-amount",
+    "enter-balancing-account",
+    "create-journal-lines",
+    "preview-posting",
+    "post",
+    "setup-change",
+    "delete-record",
+    "click-ok"
+  ],
+  "safetyGates": [
+    "No BC or Playwright in this local review case.",
+    "Do not turn column visibility into write approval without explicit decision.",
+    "If Amount/Bal. Account remain not visible, keep write, cleanup, Preview Posting and Post locked.",
+    "If a later write/preflight case is proposed, it must define target values, cleanup/keep status and stop conditions separately."
+  ],
+  "acceptanceCriteria": [
+    "FA-159 visibility evidence is classified as sufficient-for-next-write-preflight, insufficient, or blocked.",
+    "Preview Posting, Post and value entry remain locked unless a later case explicitly unlocks them.",
+    "Current State and coverage reflect the decision."
+  ],
+  "nextSafeAction": "Review FA-159 evidence locally; do not open BC, enter values, cleanup, preview or post."
+}

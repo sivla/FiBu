@@ -3,7 +3,7 @@
   "caseId": "FIXEDASSETS-159-FA-GL-JOURNAL-AMOUNT-BALACCOUNT-READONLY",
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "status": "planned",
+  "status": "observed-readonly",
   "workType": "playwright-readonly-grid-visibility-proof",
   "taskClass": "wizard_work",
   "requiresUsageLog": false,
@@ -54,5 +54,14 @@
     "Amount/Bal. Account visibility or non-visibility is documented with screenshot and JSON.",
     "No value entry, no cleanup, no Preview Posting, no Post and no setup change occurred."
   ],
-  "nextSafeAction": "Run one read-only horizontal/grid visibility proof; no values and no cleanup."
+  "result": {
+    "status": "observed",
+    "summary": "FA-159 captured a readable horizontal-grid screenshot. Amount is visible as 0,00, Bal. Account Type is visible as G/L Account, and Bal. Account No. column is visible but empty. Target values 68.000 and K30000 are not visible.",
+    "evidence": [
+      "playwright/projects/fibu-book5/evidence/fixedassets-159/FIXEDASSETS-159-result.json",
+      "playwright/projects/fibu-book5/evidence/fixedassets-159/010-amount-balaccount-visibility.json",
+      "playwright/projects/fibu-book5/img/fixedassets-159-010-fa-gl-journal-amount-balaccount-readonly.png"
+    ]
+  },
+  "nextSafeAction": "Run FIXEDASSETS-160 local decision; do not edit, cleanup, preview or post."
 }

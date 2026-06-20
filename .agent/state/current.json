@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-20T21:40:00.000Z",
+  "updatedAt": "2026-06-20T22:10:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "fixedassets",
-  "activeCase": "FIXEDASSETS-159-FA-GL-JOURNAL-AMOUNT-BALACCOUNT-READONLY",
-  "active_case_file": ".agent/state/cases/fixedassets-159-fa-gl-journal-amount-balaccount-readonly.json",
-  "lastReferenceCase": "FIXEDASSETS-158-FA-GL-JOURNAL-LINE-OWNERSHIP-DECISION",
-  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-158-fa-gl-journal-line-ownership-decision.json",
+  "activeCase": "FIXEDASSETS-160-FA-GL-JOURNAL-WRITE-GATE-DECISION",
+  "active_case_file": ".agent/state/cases/fixedassets-160-fa-gl-journal-write-gate-decision.json",
+  "lastReferenceCase": "FIXEDASSETS-159-FA-GL-JOURNAL-AMOUNT-BALACCOUNT-READONLY",
+  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-159-fa-gl-journal-amount-balaccount-readonly.json",
   "mode": "token-efficient-autopilot-tooling-bootstrap",
-  "requiresStrongModel": false,
+  "requiresStrongModel": true,
   "requiredPreflightChecks": [
     "agent:preflight",
     "agent:state:validate",
@@ -19,15 +19,11 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "open-business-central",
-    "run-playwright",
-    "open-fixed-asset-gl-journal",
-    "verify-instance-company",
-    "read-page-context",
-    "read-visible-fields",
-    "horizontal-grid-scroll-readonly",
-    "capture-screenshot",
-    "write-evidence",
+    "read-evidence",
+    "review-screenshot-metadata",
+    "compare-grid-visibility-signals",
+    "write-local-decision",
+    "update-state",
     "document-next-safe-action"
   ],
   "forbiddenActions": [
@@ -36,6 +32,8 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright",
     "company-switch",
     "api-shortcut",
     "book-edit",
@@ -49,7 +47,7 @@
     "delete-record",
     "click-ok"
   ],
-  "nextStep": "FIXEDASSETS-159: read-only horizontal/grid proof for Amount and Bal. Account visibility on the protected FA G/L Journal line; no values, no cleanup, no Preview Posting, no Post.",
+  "nextStep": "FIXEDASSETS-160: decide locally whether FA-159 has enough visible Amount/Bal. Account evidence for a guarded write/preflight case, or whether the journal route remains blocked.",
   "subagentPlanPolicy": {
     "default": "optional",
     "execution": "plan-only-no-subagents-spawned",
