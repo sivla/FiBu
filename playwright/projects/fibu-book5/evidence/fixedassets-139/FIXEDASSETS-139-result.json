@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixed-asset-assignment-fit-review-result",
+  "caseId": "FIXEDASSETS-139-FA-CNC-01-ASSIGNMENT-FIT-REVIEW",
+  "source": "local-evidence-review",
+  "resultStatus": "reviewed-blocker",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "assetNo": "FA-CNC-01",
+  "reviewedCase": "FIXEDASSETS-138-FA-CNC-01-POSTING-GROUP-ASSIGNMENT-FIT",
+  "proved": [
+    "FA-138 is accepted as blocker evidence, not as setup-fit success.",
+    "The screenshot visibly supports the blocker: FA-CNC-01, HGB, Posting Group EQUIPMENT and Book Value 0,00 are visible.",
+    "No acquisition, Preview Posting, posting, draft, company switch or API shortcut occurred in FA-138."
+  ],
+  "notProved": [
+    "Posting Group MACHINES is not visible on FA-CNC-01.",
+    "No saved setup change is proven.",
+    "No acquisition readiness or posting readiness is proven.",
+    "No German fixed-assets final proof is produced."
+  ],
+  "blockedBy": [
+    "Posting Group combobox route did not set MACHINES; visible value remains EQUIPMENT."
+  ],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-139/FIXEDASSETS-139-assignment-fit-review.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-139/FIXEDASSETS-139-result.json"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-138/FIXEDASSETS-138-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-138/040-fill-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-138/fixedassets-138-060-fa-cnc-01-posting-group-machines.screenshot.json",
+    "playwright/projects/fibu-book5/img/fixedassets-138-060-fa-cnc-01-posting-group-machines.png",
+    "playwright/projects/fibu-book5/evidence/fixedassets-139/FIXEDASSETS-139-assignment-fit-review.md"
+  ],
+  "flags": {
+    "noBcRun": true,
+    "noPlaywrightRun": true,
+    "noBookChange": true,
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noNewDraft": true
+  },
+  "statePatch": {
+    "current": {
+      "updatedAt": "2026-06-20T21:20:00.000Z",
+      "activeCase": "FIXEDASSETS-140-FA-CNC-01-POSTING-GROUP-COMBOBOX-ROUTE",
+      "active_case_file": ".agent/state/cases/fixedassets-140-fa-cnc-01-posting-group-combobox-route.json",
+      "lastReferenceCase": "FIXEDASSETS-139-FA-CNC-01-ASSIGNMENT-FIT-REVIEW",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-139-fa-cnc-01-assignment-fit-review.json",
+      "requiresStrongModel": false,
+      "nextStep": "FIXEDASSETS-140: repair the UI-first Posting Group combobox route for FA-CNC-01 and prove MACHINES after reopen before any acquisition route is unlocked."
+    }
+  },
+  "summary": "FA-139 accepted FA-138 as blocker evidence and selected a narrow next combobox-route repair for Posting Group.",
+  "nextStep": "FIXEDASSETS-140-FA-CNC-01-POSTING-GROUP-COMBOBOX-ROUTE"
+}

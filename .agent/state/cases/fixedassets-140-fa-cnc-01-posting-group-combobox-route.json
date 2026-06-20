@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-140-FA-CNC-01-POSTING-GROUP-COMBOBOX-ROUTE",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "ui-first-helper-repair-setup-fit",
+  "taskClass": "wizard_work",
+  "requiresUsageLog": false,
+  "goal": "Repair the UI-first Posting Group combobox route on FA-CNC-01 and prove MACHINES after reopen before any acquisition route is unlocked.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-138/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-139/"
+  ],
+  "allowedActions": [
+    "open-business-central",
+    "run-playwright",
+    "read-local-evidence",
+    "inspect-screenshot-metadata",
+    "edit-playwright-test-or-helper",
+    "focus-posting-group-combobox",
+    "open-posting-group-lookup",
+    "select-MACHINES-if-visible",
+    "save-or-blur-field-only",
+    "reopen-fixed-asset-card",
+    "write-evidence",
+    "update-state-plan"
+  ],
+  "defaultLockedActionsUnlocked": [
+    "setup-change"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "company-switch",
+    "api-shortcut",
+    "book-edit",
+    "click-acquire",
+    "execute-acquire",
+    "enter-K30000-in-purchase-invoice",
+    "enter-FA-CNC-01-in-document",
+    "enter-amount",
+    "new-draft",
+    "finish-wizard",
+    "create-journal-lines",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "delete-record",
+    "delete-non-test-data"
+  ],
+  "safetyGates": [
+    "Stop if URL does not contain MCP_1_20260210 and company RM-DEMO.",
+    "Stop if FA-CNC-01 is not visible on Fixed Asset Card.",
+    "Stop if Book Value is not visibly 0,00 before the assignment attempt.",
+    "Stop if any FA Ledger Entry trace for FA-CNC-01 is visible.",
+    "Do not click Acquire, Preview Posting, Post, New, Delete, Finish, OK or Yes.",
+    "Only the Posting Group field on the FA-CNC-01 Fixed Asset Card may be changed.",
+    "Success requires reopening the card and visibly proving Posting Group MACHINES."
+  ],
+  "acceptanceCriteria": [
+    "Before evidence shows Posting Group EQUIPMENT or already MACHINES.",
+    "If changed, after evidence shows Posting Group MACHINES after reopening the card.",
+    "Evidence explicitly confirms no acquisition, no Preview Posting, no Post, no draft, no company switch and no API shortcut.",
+    "If the combobox route still fails, the blocker is documented with screenshot and JSON."
+  ],
+  "nextSafeAction": "Improve or replace the FA-138 Posting Group combobox selector, then run the narrow FA-140 UI-first setup-fit case."
+}
