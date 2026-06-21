@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-201-FA-GL-JOURNAL-FA-POSTING-TYPE-REVIEW",
+  "status": "planned",
+  "workType": "local-evidence-review",
+  "taskClass": "judge_work",
+  "requiresStrongModel": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Review FIXEDASSETS-200 evidence and decide whether the FA Posting Type journal-data blocker is resolved enough to unlock a later Preview Posting retry.",
+  "inputs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-200/FIXEDASSETS-200-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-200/010-before-fa-posting-type.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-200/020-after-fa-posting-type.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-200/030-after-reopen-persistence.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-199/FIXEDASSETS-199-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-198/FIXEDASSETS-198-result.json"
+  ],
+  "allowedActions": [
+    "read-local-evidence",
+    "classify-blocker",
+    "write-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright",
+    "preview-posting",
+    "post",
+    "post-and-print",
+    "setup-change",
+    "journal-edit",
+    "book-edit"
+  ],
+  "safetyGates": [
+    "local-only",
+    "evidence-files-exist",
+    "no-business-central-run",
+    "no-playwright-run",
+    "no-preview-posting",
+    "no-posting",
+    "no-book-change"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-201/FIXEDASSETS-201-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-201/FIXEDASSETS-201-decision.md"
+  ],
+  "acceptanceCriteria": [
+    "FA-200 result is read and classified.",
+    "The review states whether FA Posting Type = Acquisition Cost is proven after reopen.",
+    "The review does not authorize posting.",
+    "If persistence is proven, the next case may be a guarded Preview Posting retry only.",
+    "If persistence is blocked, the next case identifies the smallest helper or UI fix."
+  ],
+  "stopConditions": [
+    "FA-200 result file is missing.",
+    "FA-200 evidence contradicts itself.",
+    "Any decision would require opening Business Central.",
+    "Any decision would authorize posting."
+  ],
+  "nextSafeAction": "Review FIXEDASSETS-200 locally; do not open Business Central, Preview Posting or Post."
+}

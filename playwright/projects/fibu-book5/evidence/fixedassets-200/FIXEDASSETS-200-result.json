@@ -1,0 +1,298 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-200-fa-posting-type-acquisition-preflight-result",
+  "caseId": "FIXEDASSETS-200-FA-GL-JOURNAL-FA-POSTING-TYPE-ACQUISITION-PREFLIGHT",
+  "source": "playwright-guarded-journal-field-correction-preflight",
+  "resultStatus": "observed",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-medium",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "environment": {
+    "expectedInstance": "MCP_1_20260210",
+    "expectedCompany": "RM-DEMO",
+    "contextBefore": {
+      "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5628&dc=0&bookmark=30_UQAAAAJ7_0EAUwBTAEUAVABTAAAAAnv_RABFAEYAQQBVAEwAVAAAAACHECc",
+      "environmentInUrl": true,
+      "companyInUrl": true,
+      "companyInText": false,
+      "wrongEnvironmentVisible": false
+    },
+    "contextAfter": {
+      "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5628&dc=0&bookmark=30_UQAAAAJ7_0EAUwBTAEUAVABTAAAAAnv_RABFAEYAQQBVAEwAVAAAAACHECc",
+      "environmentInUrl": true,
+      "companyInUrl": true,
+      "companyInText": false,
+      "wrongEnvironmentVisible": false
+    },
+    "frameUrlBefore": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5628&runinframe=1",
+    "frameUrlAfter": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5628&runinframe=1",
+    "urlAfterRun": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5628&dc=0&bookmark=30_UQAAAAJ7_0EAUwBTAEUAVABTAAAAAnv_RABFAEYAQQBVAEwAVAAAAACHECc"
+  },
+  "proved": [
+    "The run stayed in MCP_1_20260210 before and after reopen.",
+    "The run started in RM-DEMO.",
+    "The run remained in RM-DEMO after reopen.",
+    "Fixed Asset G/L Journals context was visible before entry.",
+    "Geometry/header-order helper status before entry was single-editable-candidate.",
+    "FA Posting Type = Acquisition Cost was structurally selected/current before reopen.",
+    "FA Posting Type = Acquisition Cost was structurally selected/current after reopening the journal page.",
+    "No Preview Posting was opened.",
+    "No posting was executed.",
+    "No journal line was created or deleted.",
+    "No field except FA Posting Type was intentionally edited.",
+    "No setup change was made.",
+    "No company switch was performed.",
+    "No API shortcut was used.",
+    "No book content was changed."
+  ],
+  "notProved": [
+    "No Preview Posting result after correction.",
+    "No posting result.",
+    "No FA Ledger Entry or G/L Entry trace.",
+    "No German final proof."
+  ],
+  "changedFiles": [
+    "package.json",
+    "playwright/projects/fibu-book5/tests/fixedassets-200-fa-gl-journal-fa-posting-type-acquisition-preflight.spec.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-200/",
+    ".agent/state/cases/fixedassets-201-fa-gl-journal-fa-posting-type-review.json",
+    ".agent/state/current.json"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-200/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-200/010-before-fa-posting-type.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-200/020-after-fa-posting-type.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-200/030-after-reopen-persistence.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-200/FIXEDASSETS-200-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-200/FIXEDASSETS-200-result.json"
+  ],
+  "warnings": [
+    "Journal-data correction only.",
+    "Preview Posting remains locked until FIXEDASSETS-201 local review.",
+    "Posting remains locked.",
+    "No German final proof."
+  ],
+  "blockedBy": [],
+  "requiresReview": true,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-201-FA-GL-JOURNAL-FA-POSTING-TYPE-REVIEW",
+      "active_case_file": ".agent/state/cases/fixedassets-201-fa-gl-journal-fa-posting-type-review.json",
+      "lastReferenceCase": "FIXEDASSETS-200-FA-GL-JOURNAL-FA-POSTING-TYPE-ACQUISITION-PREFLIGHT",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-200-fa-gl-journal-fa-posting-type-acquisition-preflight.json",
+      "requiresStrongModel": true,
+      "nextStep": "FIXEDASSETS-201: locally review FA-200 FA Posting Type persistence evidence before any Preview Posting retry or Post."
+    },
+    "activeCase": {
+      "status": "observed-fa-posting-type-persistence",
+      "lastResult": {
+        "status": "observed",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-200/FIXEDASSETS-200-result.json",
+        "summary": "FA-200 proved FA Posting Type = Acquisition Cost persisted after reopening Fixed Asset G/L Journals."
+      },
+      "nextSafeAction": "Run FIXEDASSETS-201 local review; do not open Preview Posting or Post."
+    }
+  },
+  "flags": {
+    "onlyFaPostingTypeTargeted": true,
+    "noInsertLine": true,
+    "noDeleteLine": true,
+    "draftValueKept": true,
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "observed": {
+    "startedAt": "2026-06-21T17:20:52.674Z",
+    "finishedAt": "2026-06-21T17:21:05.320Z",
+    "helperBefore": {
+      "success": true,
+      "status": "single-editable-candidate",
+      "blockedBy": [],
+      "visibleSignals": {
+        "rowAnchorCount": 1,
+        "columnSignalVisible": true,
+        "forbiddenSignalsVisible": [],
+        "expectedValueVisible": false,
+        "controlCandidateCount": 1,
+        "editableCandidateCount": 1
+      },
+      "candidates": [
+        {
+          "index": 7,
+          "score": 9,
+          "reason": [
+            "column-signal-by-geometry",
+            "row-required-signals-by-geometry"
+          ],
+          "labelText": "Acquisition Cost Depreciation Write-Down Appreciation Custom 1 Custom 2 Disposal Maintenance",
+          "rowText": "Payment Invoice Credit Memo Finance Charge Memo Reminder Refund G/L Account Customer Vendor Bank Account Fixed Asset IC Partner Employee Allocation Account Acquisition Cost Depreciation Write-Down Appreciation Custom 1 Custom 2 Disposal Maintenance Purchase Sale Settlement G/L Account Customer Vendor Bank Account Fixed Asset IC Partner Employee Allocation Account Purchase Sale Settlement",
+          "cellText": "Acquisition Cost Depreciation Write-Down Appreciation Custom 1 Custom 2 Disposal Maintenance",
+          "valueText": "0",
+          "readOnly": false,
+          "disabled": false
+        }
+      ],
+      "editableCandidates": [
+        {
+          "index": 7,
+          "score": 9,
+          "reason": [
+            "column-signal-by-geometry",
+            "row-required-signals-by-geometry"
+          ],
+          "labelText": "Acquisition Cost Depreciation Write-Down Appreciation Custom 1 Custom 2 Disposal Maintenance",
+          "rowText": "Payment Invoice Credit Memo Finance Charge Memo Reminder Refund G/L Account Customer Vendor Bank Account Fixed Asset IC Partner Employee Allocation Account Acquisition Cost Depreciation Write-Down Appreciation Custom 1 Custom 2 Disposal Maintenance Purchase Sale Settlement G/L Account Customer Vendor Bank Account Fixed Asset IC Partner Employee Allocation Account Purchase Sale Settlement",
+          "cellText": "Acquisition Cost Depreciation Write-Down Appreciation Custom 1 Custom 2 Disposal Maintenance",
+          "valueText": "0",
+          "readOnly": false,
+          "disabled": false
+        }
+      ]
+    },
+    "helperAfterEntry": {
+      "success": true,
+      "status": "single-editable-candidate",
+      "blockedBy": [],
+      "visibleSignals": {
+        "rowAnchorCount": 1,
+        "columnSignalVisible": true,
+        "forbiddenSignalsVisible": [],
+        "expectedValueVisible": false,
+        "controlCandidateCount": 1,
+        "editableCandidateCount": 1
+      },
+      "candidates": [
+        {
+          "index": 7,
+          "score": 9,
+          "reason": [
+            "column-signal-by-geometry",
+            "row-required-signals-by-geometry"
+          ],
+          "labelText": "Acquisition Cost Acquisition Cost Depreciation Write-Down Appreciation Custom 1 Custom 2 Disposal Maintenance",
+          "rowText": "Payment Invoice Credit Memo Finance Charge Memo Reminder Refund G/L Account Customer Vendor Bank Account Fixed Asset IC Partner Employee Allocation Account Acquisition Cost Depreciation Write-Down Appreciation Custom 1 Custom 2 Disposal Maintenance Purchase Sale Settlement G/L Account Customer Vendor Bank Account Fixed Asset IC Partner Employee Allocation Account Purchase Sale Settlement",
+          "cellText": "Acquisition Cost Depreciation Write-Down Appreciation Custom 1 Custom 2 Disposal Maintenance",
+          "valueText": "1 Acquisition Cost",
+          "readOnly": false,
+          "disabled": false
+        }
+      ],
+      "editableCandidates": [
+        {
+          "index": 7,
+          "score": 9,
+          "reason": [
+            "column-signal-by-geometry",
+            "row-required-signals-by-geometry"
+          ],
+          "labelText": "Acquisition Cost Acquisition Cost Depreciation Write-Down Appreciation Custom 1 Custom 2 Disposal Maintenance",
+          "rowText": "Payment Invoice Credit Memo Finance Charge Memo Reminder Refund G/L Account Customer Vendor Bank Account Fixed Asset IC Partner Employee Allocation Account Acquisition Cost Depreciation Write-Down Appreciation Custom 1 Custom 2 Disposal Maintenance Purchase Sale Settlement G/L Account Customer Vendor Bank Account Fixed Asset IC Partner Employee Allocation Account Purchase Sale Settlement",
+          "cellText": "Acquisition Cost Depreciation Write-Down Appreciation Custom 1 Custom 2 Disposal Maintenance",
+          "valueText": "1 Acquisition Cost",
+          "readOnly": false,
+          "disabled": false
+        }
+      ]
+    },
+    "helperAfterReopen": {
+      "success": true,
+      "status": "single-editable-candidate",
+      "blockedBy": [],
+      "visibleSignals": {
+        "rowAnchorCount": 1,
+        "columnSignalVisible": true,
+        "forbiddenSignalsVisible": [],
+        "expectedValueVisible": false,
+        "controlCandidateCount": 1,
+        "editableCandidateCount": 1
+      },
+      "candidates": [
+        {
+          "index": 7,
+          "score": 9,
+          "reason": [
+            "column-signal-by-geometry",
+            "row-required-signals-by-geometry"
+          ],
+          "labelText": "Acquisition Cost Acquisition Cost Depreciation Write-Down Appreciation Custom 1 Custom 2 Disposal Maintenance",
+          "rowText": "Payment Invoice Credit Memo Finance Charge Memo Reminder Refund G/L Account Customer Vendor Bank Account Fixed Asset IC Partner Employee Allocation Account Acquisition Cost Depreciation Write-Down Appreciation Custom 1 Custom 2 Disposal Maintenance Purchase Sale Settlement G/L Account Customer Vendor Bank Account Fixed Asset IC Partner Employee Allocation Account Purchase Sale Settlement",
+          "cellText": "Acquisition Cost Depreciation Write-Down Appreciation Custom 1 Custom 2 Disposal Maintenance",
+          "valueText": "1 Acquisition Cost",
+          "readOnly": false,
+          "disabled": false
+        }
+      ],
+      "editableCandidates": [
+        {
+          "index": 7,
+          "score": 9,
+          "reason": [
+            "column-signal-by-geometry",
+            "row-required-signals-by-geometry"
+          ],
+          "labelText": "Acquisition Cost Acquisition Cost Depreciation Write-Down Appreciation Custom 1 Custom 2 Disposal Maintenance",
+          "rowText": "Payment Invoice Credit Memo Finance Charge Memo Reminder Refund G/L Account Customer Vendor Bank Account Fixed Asset IC Partner Employee Allocation Account Acquisition Cost Depreciation Write-Down Appreciation Custom 1 Custom 2 Disposal Maintenance Purchase Sale Settlement G/L Account Customer Vendor Bank Account Fixed Asset IC Partner Employee Allocation Account Purchase Sale Settlement",
+          "cellText": "Acquisition Cost Depreciation Write-Down Appreciation Custom 1 Custom 2 Disposal Maintenance",
+          "valueText": "1 Acquisition Cost",
+          "readOnly": false,
+          "disabled": false
+        }
+      ]
+    },
+    "candidateIndex": 7,
+    "markResult": {
+      "marked": true,
+      "tagName": "select",
+      "value": "0",
+      "title": " ",
+      "ariaLabel": ""
+    },
+    "entryResult": {
+      "handled": true,
+      "method": "select",
+      "selected": true,
+      "value": "1"
+    },
+    "dangerousDialogAfterEntry": {
+      "dialogCount": 0,
+      "textSample": "",
+      "postingDialog": false,
+      "okYesVisible": false,
+      "errorVisible": false
+    },
+    "actualBeforeMatches": false,
+    "actualAfterEntryMatches": true,
+    "actualAfterReopenMatches": true,
+    "snapshotBeforeSignals": {
+      "fixedAssetGlJournalsVisible": true,
+      "documentNoVisible": false,
+      "accountNoVisible": false,
+      "depreciationBookVisible": false,
+      "faPostingTypeHeaderVisible": true,
+      "acquisitionCostVisibleGlobal": true
+    },
+    "snapshotAfterEntrySignals": {
+      "fixedAssetGlJournalsVisible": true,
+      "documentNoVisible": false,
+      "accountNoVisible": false,
+      "depreciationBookVisible": false,
+      "faPostingTypeHeaderVisible": true,
+      "acquisitionCostVisibleGlobal": true
+    },
+    "snapshotAfterReopenSignals": {
+      "fixedAssetGlJournalsVisible": true,
+      "documentNoVisible": false,
+      "accountNoVisible": false,
+      "depreciationBookVisible": false,
+      "faPostingTypeHeaderVisible": true,
+      "acquisitionCostVisibleGlobal": true
+    }
+  },
+  "nextStep": "FIXEDASSETS-201: locally review FA-200 FA Posting Type persistence evidence before any Preview Posting retry or Post."
+}
