@@ -1,0 +1,191 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-fa-gl-journal-balaccount-82000-preflight-result",
+  "caseId": "FIXEDASSETS-172-FA-GL-JOURNAL-BALACCOUNT-82000-PREFLIGHT",
+  "source": "playwright-sandbox-guarded-preflight",
+  "resultStatus": "blocked",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-medium",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "environment": {
+    "expectedInstance": "MCP_1_20260210",
+    "expectedCompany": "RM-DEMO",
+    "context": {
+      "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5628&dc=0&bookmark=30_UQAAAAJ7_0EAUwBTAEUAVABTAAAAAnv_RABFAEYAQQBVAEwAVAAAAACHECc",
+      "environmentInUrl": true,
+      "companyInUrl": true,
+      "companyInText": false,
+      "wrongEnvironmentVisible": false
+    },
+    "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5628&runinframe=1",
+    "urlAfterRun": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5628&dc=0&bookmark=30_UQAAAAJ7_0EAUwBTAEUAVABTAAAAAnv_RABFAEYAQQBVAEwAVAAAAACHECc"
+  },
+  "proved": [
+    "The run stayed in MCP_1_20260210.",
+    "The run stayed in RM-DEMO.",
+    "The protected FA G/L Journal target line was visible before the preflight.",
+    "Bal. Account Type = G/L Account was visible before any write attempt.",
+    "No Preview Posting was opened.",
+    "No posting was executed.",
+    "No journal line was created or deleted.",
+    "No cleanup was executed.",
+    "No API shortcut was used.",
+    "No book content was changed."
+  ],
+  "notProved": [
+    "Bal. Account No. = 82000 is not visibly proven in the journal context.",
+    "Amount 68000 was not entered in this case.",
+    "No Preview Posting result.",
+    "No posting result.",
+    "No FA Ledger Entry or G/L Entry trace.",
+    "No German final proof."
+  ],
+  "changedFiles": [
+    "package.json",
+    "playwright/projects/fibu-book5/tests/fixedassets-172-fa-gl-journal-balaccount-82000-preflight.spec.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-172/",
+    "playwright/projects/fibu-book5/img/fixedassets-172-010-fa-gl-journal-balaccount-before.png",
+    "playwright/projects/fibu-book5/img/fixedassets-172-020-fa-gl-journal-balaccount-after.png"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-172/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-172/010-balaccount-82000-preflight-signals.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-172/FIXEDASSETS-172-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-172/FIXEDASSETS-172-result.json",
+    "playwright/projects/fibu-book5/img/fixedassets-172-010-fa-gl-journal-balaccount-before.png",
+    "playwright/projects/fibu-book5/img/fixedassets-172-020-fa-gl-journal-balaccount-after.png"
+  ],
+  "warnings": [
+    "Guarded balancing-account preflight only.",
+    "Do not open Preview Posting or Post until FA-173 reviews this result.",
+    "Do not use K30000 as G/L Bal. Account No."
+  ],
+  "blockedBy": [
+    "expected-one-editable-bal-account-no-candidate-but-found-0"
+  ],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-173-FA-GL-JOURNAL-BALACCOUNT-82000-RESULT-REVIEW",
+      "active_case_file": ".agent/state/cases/fixedassets-173-fa-gl-journal-balaccount-82000-result-review.json",
+      "lastReferenceCase": "FIXEDASSETS-172-FA-GL-JOURNAL-BALACCOUNT-82000-PREFLIGHT",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-172-fa-gl-journal-balaccount-82000-preflight.json",
+      "requiresStrongModel": true,
+      "nextStep": "FIXEDASSETS-173: locally review the FA-172 guarded journal preflight result before any Preview Posting, Post, cleanup or further value change."
+    },
+    "lastRunSummary": {
+      "schemaVersion": 1,
+      "runId": "FIXEDASSETS-172-FA-GL-JOURNAL-BALACCOUNT-82000-PREFLIGHT",
+      "date": "2026-06-21",
+      "workType": "fixed-asset-gl-journal-balaccount-82000-preflight",
+      "branch": "codex/token-efficient-autopilot-state",
+      "instance": "MCP_1_20260210",
+      "company": "RM-DEMO",
+      "bcRun": true,
+      "playwrightRun": true,
+      "posted": false,
+      "previewPosting": false,
+      "setupChanged": false,
+      "companySwitched": false,
+      "apiShortcut": false,
+      "bookChanged": false,
+      "resultStatus": "blocked",
+      "summary": "FA-172 stopped before a usable 82000 journal preflight proof: expected-one-editable-bal-account-no-candidate-but-found-0",
+      "nextStep": "Run FIXEDASSETS-173 local result review before any Preview Posting or posting."
+    },
+    "activeCase": {
+      "status": "blocked-guarded-preflight",
+      "lastResult": {
+        "status": "blocked",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-172/FIXEDASSETS-172-result.json",
+        "summary": "FA-172 stopped before a usable 82000 journal preflight proof: expected-one-editable-bal-account-no-candidate-but-found-0"
+      },
+      "nextSafeAction": "Run FIXEDASSETS-173 local review; do not open Preview Posting or Post."
+    },
+    "coverage": {
+      "areas": {
+        "fixedassets": {
+          "currentBlock": "fa-gl-journal-balaccount-82000-result-review",
+          "latestPracticalCase": "FIXEDASSETS-172",
+          "latestReviewCase": "FIXEDASSETS-171",
+          "nextCase": "FIXEDASSETS-173-FA-GL-JOURNAL-BALACCOUNT-82000-RESULT-REVIEW"
+        }
+      }
+    }
+  },
+  "flags": {
+    "noAmountEntry": true,
+    "noInsertLine": true,
+    "noDeleteLine": true,
+    "noCleanup": true,
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true,
+    "noK30000AsGlBalAccountNo": true
+  },
+  "observed": {
+    "startedAt": "2026-06-21T11:20:52.233Z",
+    "finishedAt": "2026-06-21T11:21:05.864Z",
+    "beforeSignals": {
+      "pageTitleVisible": true,
+      "targetLineVisible": true,
+      "targetLineCount": 0,
+      "accountNoVisible": true,
+      "documentNoVisible": true,
+      "depreciationBookVisible": true,
+      "amountHeaderVisible": true,
+      "balAccountTypeGlVisible": true,
+      "balAccountNoHeaderVisible": true,
+      "account82000Visible": false,
+      "k30000Visible": false,
+      "relevantHeaders": [
+        "Posting Date",
+        "FA Posting Type",
+        "Amount",
+        "Bal. Account Type",
+        "Bal. Account No.",
+        "Depr. until FA Posting Date"
+      ],
+      "relevantRows": [
+        "Posting Date Document Type Document No. Account Type Account No. Depreciation Book Code FA Posting Type Description Gen. Posting Type Gen. Bus. Posting Group Gen. Prod. Posting Group Amount Bal. Account Type Bal. Account No. Bal. Gen. Posting Type Bal. Gen. Prod. Posting Group Bal. Gen. Bus. Posting Group No. of Depreciation Days Depr. until FA Posting Date Depr. Acquisition Cost Budgeted FA No. FA Reclassification Entry FA Error Entry No. Department Code Customergroup Code"
+      ],
+      "balAccountCandidates": []
+    },
+    "afterSignals": {
+      "pageTitleVisible": true,
+      "targetLineVisible": true,
+      "targetLineCount": 0,
+      "accountNoVisible": true,
+      "documentNoVisible": true,
+      "depreciationBookVisible": true,
+      "amountHeaderVisible": true,
+      "balAccountTypeGlVisible": true,
+      "balAccountNoHeaderVisible": true,
+      "account82000Visible": false,
+      "k30000Visible": false,
+      "relevantHeaders": [
+        "Posting Date",
+        "FA Posting Type",
+        "Amount",
+        "Bal. Account Type",
+        "Bal. Account No.",
+        "Depr. until FA Posting Date"
+      ],
+      "relevantRows": [
+        "Posting Date Document Type Document No. Account Type Account No. Depreciation Book Code FA Posting Type Description Gen. Posting Type Gen. Bus. Posting Group Gen. Prod. Posting Group Amount Bal. Account Type Bal. Account No. Bal. Gen. Posting Type Bal. Gen. Prod. Posting Group Bal. Gen. Bus. Posting Group No. of Depreciation Days Depr. until FA Posting Date Depr. Acquisition Cost Budgeted FA No. FA Reclassification Entry FA Error Entry No. Department Code Customergroup Code"
+      ],
+      "balAccountCandidates": []
+    },
+    "writeAttempt": {
+      "attempted": false,
+      "reason": "expected-one-editable-bal-account-no-candidate-but-found-0",
+      "candidates": []
+    }
+  },
+  "nextStep": "FIXEDASSETS-173: locally review the FA-172 guarded journal preflight result before any Preview Posting, Post, cleanup or further value change."
+}

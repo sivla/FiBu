@@ -3,7 +3,7 @@
   "caseId": "FIXEDASSETS-172-FA-GL-JOURNAL-BALACCOUNT-82000-PREFLIGHT",
   "environment": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "status": "planned",
+  "status": "blocked-guarded-preflight",
   "workType": "guarded-ui-preflight",
   "taskClass": "wizard_work",
   "requiresStrongModel": false,
@@ -80,5 +80,10 @@
     "If a balancing account is prepared, it is 82000 and only in the target line.",
     "No Preview Posting, Post, new line, cleanup, API shortcut or book edit occurs."
   ],
-  "nextSafeAction": "Run the guarded FA G/L Journal balancing-account preflight only; stop after evidence and local result."
+  "lastResult": {
+    "status": "blocked",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-172/FIXEDASSETS-172-result.json",
+    "summary": "FA-172 stayed in MCP_1_20260210 / RM-DEMO and showed the protected journal context plus Bal. Account Type = G/L Account, but stopped before writing because no editable Bal. Account No. candidate was found."
+  },
+  "nextSafeAction": "Run FIXEDASSETS-173 local result review; do not open BC, Preview Posting or Post."
 }

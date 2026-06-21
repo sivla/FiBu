@@ -1,5 +1,19 @@
 # Workarounds und Fehlerjournal
 
+## WK-BC-FA-172 Bal. Account No. sichtbar, aber nicht als editierbare Zielzelle gefunden
+
+| Feld | Wert |
+|---|---|
+| Status | blockiert vor Werteingabe / lokaler Review noetig / kein Posting |
+| Testfall | `FIXEDASSETS-172-FA-GL-JOURNAL-BALACCOUNT-82000-PREFLIGHT` |
+| Situation | Nach dem Setup-Fit `MACHINES / Acquisition Cost Bal. Acc. = 82000` sollte die geschuetzte FA-G/L-Journal-Zeile eng gegatet pruefen, ob `Bal. Account No. = 82000` als G/L-Gegenkonto vorbereitet werden kann. |
+| Symptom | Die Seite und die relevante Spaltenzone sind sichtbar, aber Playwright fand `0` eindeutig editierbare Kandidaten fuer die Zelle `Bal. Account No.`. |
+| Sichtbarer Beleg | `fixedassets-172-010-fa-gl-journal-balaccount-before.png` und `fixedassets-172-020-fa-gl-journal-balaccount-after.png` zeigen `Amount = 0,00`, `Bal. Account Type = G/L Account` und die leere `Bal. Account No.`-Spalte. |
+| Ursache | Das ist wahrscheinlich ein Business-Central-Grid-/Subform-Automationsproblem, kein fachlich geloester Setup-Fehler: Eine sichtbare Spalte beweist nicht automatisch, dass Playwright die editierbare Zielzelle sicher adressiert. |
+| Warum BC so reagiert | BC-Journalzeilen sind dynamische Tabellen-/Subform-Controls. Header und sichtbarer Zelltext koennen im DOM anders repraesentiert sein als editierbare Eingabefelder. |
+| Loesung oder Laborgrenze | Keine Werteingabe und kein Preview. FA-173 muss lokal entscheiden, ob zuerst ein wiederverwendbares Lines/Subform-Handling verbessert, Page Inspection/Personalisieren ergaenzt oder die Journalroute gehalten wird. |
+| Buchwirkung | Kapitel 21 darf FA-172 nur als Lernfall "sichtbare Spalte ist kein Schreibnachweis" nutzen. Ein Zielbild fuer Anlagenanschaffung braucht spaeter `Amount = 68.000` und `Bal. Account No. = 82000` sichtbar in derselben Zeile. |
+
 ## WK-BC-FA-170 Kartenansicht zeigt Felder, ist aber nicht automatisch editierbar
 
 | Feld | Wert |
