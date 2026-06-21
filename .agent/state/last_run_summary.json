@@ -1,16 +1,16 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-184-FA-GL-JOURNAL-PREVIEW-POSTING-ONLY",
-  "timestamp": "2026-06-21T12:36:00.000Z",
+  "runId": "FIXEDASSETS-185-FA-GL-JOURNAL-PREVIEW-POSTING-REVIEW",
+  "timestamp": "2026-06-21T12:45:00.000Z",
   "date": "2026-06-21",
-  "workType": "playwright-preview-only",
-  "taskClass": "wizard_work",
-  "modelClass": "gpt-4-medium",
+  "workType": "local-evidence-review",
+  "taskClass": "judge_work",
+  "modelClass": "gpt-5.5-low",
   "branch": "codex/token-efficient-autopilot-state",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "bcRun": true,
-  "playwrightRun": true,
+  "bcRun": false,
+  "playwrightRun": false,
   "posted": false,
   "previewPosting": false,
   "setupChanged": false,
@@ -18,38 +18,40 @@
   "apiShortcut": false,
   "bookChanged": false,
   "dataChanged": false,
-  "resultStatus": "blocked",
-  "summary": "FA-184 opened the FA G/L Journal safely but blocked before Preview Posting because Bal. Account No. = 82000 was no longer visible/current. No Preview Posting and no Post occurred.",
+  "resultStatus": "observed",
+  "summary": "FA-185 rejects another Preview Posting attempt: FA-182 proved 82000 only immediately after fill, while FA-184 reopened the journal and found the same candidate blank. The missing proof is value persistence/commit across refresh or reopen.",
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/fixedassets-184/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-182/FIXEDASSETS-182-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-182/010-balaccount-82000-value-preflight.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-184/FIXEDASSETS-184-result.json",
     "playwright/projects/fibu-book5/evidence/fixedassets-184/010-journal-pre-preview-check.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-184/020-preview-posting-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-184/020-preview-posting-page-text.txt",
-    "playwright/projects/fibu-book5/evidence/fixedassets-184/FIXEDASSETS-184-learning.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-184/FIXEDASSETS-184-result.json"
+    "playwright/projects/fibu-book5/evidence/fixedassets-185/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-185/FIXEDASSETS-185-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-185/FIXEDASSETS-185-result.json"
   ],
   "changedFiles": [
-    "package.json",
-    "playwright/projects/fibu-book5/tests/fixedassets-184-fa-gl-journal-preview-posting-only.spec.ts",
-    "playwright/projects/fibu-book5/evidence/fixedassets-184/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-185/",
     ".agent/state/current.json",
-    ".agent/state/cases/fixedassets-184-fa-gl-journal-preview-posting-only.json",
     ".agent/state/cases/fixedassets-185-fa-gl-journal-preview-posting-review.json",
+    ".agent/state/cases/fixedassets-186-fa-gl-journal-balaccount-persistence-probe.json",
     ".agent/state/coverage_state.json",
-    ".agent/state/last_run_summary.json"
+    ".agent/state/last_run_summary.json",
+    ".agent/state/model_usage_log.jsonl",
+    "playwright/projects/fibu-book5/BC-PLAYWRIGHT-PATTERNS.md"
   ],
   "validationCommands": [
     "npm run agent:preflight",
     "npm run agent:dry-run",
     "npm run agent:run-plan",
-    "npm run fibu:fixedassets:fa-gl-journal-preview-posting-only",
-    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-184/FIXEDASSETS-184-result.json",
-    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-184/FIXEDASSETS-184-result.json",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-185/FIXEDASSETS-185-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-185/FIXEDASSETS-185-result.json",
     "npm run check:encoding",
     "git diff --check"
   ],
   "boundaries": [
-    "Preview Posting was not opened because the required Bal. Account No. = 82000 precondition was missing.",
+    "No BC run.",
+    "No Playwright run.",
+    "No Preview Posting.",
     "No Post.",
     "No setup change.",
     "No company switch.",
@@ -57,5 +59,5 @@
     "No book change.",
     "CRONUS-USA laboratory only; no German final proof."
   ],
-  "nextStep": "FIXEDASSETS-185: review FA-184 blocker evidence. Decide whether to re-run guarded value entry, improve value persistence, or clean/reset the journal line before another Preview Posting attempt. Do not open BC in the review."
+  "nextStep": "FIXEDASSETS-186: run a guarded value-persistence probe. Enter 82000, force a safe UI commit/reopen, verify persistence, and do not open Preview Posting or Post."
 }

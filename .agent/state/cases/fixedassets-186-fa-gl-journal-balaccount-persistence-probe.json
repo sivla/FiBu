@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-186-FA-GL-JOURNAL-BALACCOUNT-PERSISTENCE-PROBE",
+  "status": "planned",
+  "workType": "playwright-guarded-value-persistence-probe",
+  "taskClass": "wizard_work",
+  "requiresStrongModel": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Enter Bal. Account No. = 82000 in the already identified FA G/L Journal candidate, force a safe UI commit/reopen, and verify the value persists before any Preview Posting attempt.",
+  "inputs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-185/FIXEDASSETS-185-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-184/FIXEDASSETS-184-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-182/FIXEDASSETS-182-result.json",
+    "playwright/projects/fibu-book5/tests/fixedassets-182-fa-gl-journal-guarded-balaccount-value-preflight.spec.ts"
+  ],
+  "allowedActions": [
+    "open-business-central",
+    "run-playwright",
+    "read-current-journal-grid",
+    "enter-82000-in-bal-account-no",
+    "commit-current-line-by-ui",
+    "reopen-or-refresh-journal-readonly",
+    "verify-bal-account-no-82000-persists",
+    "write-result-json",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "book-edit",
+    "company-switch",
+    "create-journal-lines",
+    "enter-K30000-in-bal-account-no",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "delete-record",
+    "click-ok-on-risk-dialog"
+  ],
+  "acceptanceCriteria": [
+    "Confirm URL contains MCP_1_20260210 and RM-DEMO.",
+    "Confirm Fixed Asset G/L Journals context and the same single editable Bal. Account No. candidate.",
+    "Enter 82000 through UI only.",
+    "Force a safe UI commit by leaving the cell/row and reopening or refreshing the journal.",
+    "Verify Bal. Account No. = 82000 remains visible/current after reopen/refresh.",
+    "Do not open Preview Posting.",
+    "Do not post.",
+    "Do not create/delete journal lines or change setup."
+  ],
+  "stopConditions": [
+    "Instance or company is not confirmed.",
+    "A single candidate cannot be identified.",
+    "82000 cannot be verified after refresh/reopen.",
+    "Any posting or preview dialog appears.",
+    "Any action would require API journal data access."
+  ],
+  "nextSafeAction": "Run guarded persistence probe only; no Preview Posting and no Post."
+}

@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-185-preview-posting-blocker-review-result",
+  "caseId": "FIXEDASSETS-185-FA-GL-JOURNAL-PREVIEW-POSTING-REVIEW",
+  "source": "local-evidence-review",
+  "resultStatus": "observed",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "proved": [
+    "FA-182 entered Bal. Account No. = 82000 and saw the value immediately in the guarded candidate.",
+    "FA-182 did not prove the value persisted after refresh, save, reopen or page navigation.",
+    "FA-184 reopened Fixed Asset G/L Journals in the same instance/company/page and found the same candidate blank.",
+    "FA-184 did not open Preview Posting and did not post.",
+    "The blocker is a missing value-persistence proof, not a posting/setup result."
+  ],
+  "notProved": [
+    "No Preview Posting result exists.",
+    "No posting result exists.",
+    "No FA Ledger Entry or G/L Entry trace exists.",
+    "No German final proof exists.",
+    "The exact BC save mechanism for the Bal. Account No. field is not yet proven."
+  ],
+  "decision": {
+    "acceptedFor": [
+      "planning-a-value-persistence-probe"
+    ],
+    "notAcceptedFor": [
+      "preview-posting-retry",
+      "posting",
+      "ledger-trace",
+      "book-final-screenshot"
+    ],
+    "likelyCause": "FA-182 value was visible in the active UI control but not proven committed to the journal line; after reopening, BC showed the persisted field blank.",
+    "nextCase": "FIXEDASSETS-186-FA-GL-JOURNAL-BALACCOUNT-PERSISTENCE-PROBE"
+  },
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-182/FIXEDASSETS-182-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-182/010-balaccount-82000-value-preflight.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-184/FIXEDASSETS-184-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-184/010-journal-pre-preview-check.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-185/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-185/FIXEDASSETS-185-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-185/FIXEDASSETS-185-result.json"
+  ],
+  "warnings": [
+    "Do not retry Preview Posting until Bal. Account No. = 82000 persists across refresh or reopen.",
+    "Do not unlock Post.",
+    "No API shortcut for journal data."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-186-FA-GL-JOURNAL-BALACCOUNT-PERSISTENCE-PROBE",
+      "active_case_file": ".agent/state/cases/fixedassets-186-fa-gl-journal-balaccount-persistence-probe.json",
+      "lastReferenceCase": "FIXEDASSETS-185-FA-GL-JOURNAL-PREVIEW-POSTING-REVIEW",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-185-fa-gl-journal-preview-posting-review.json",
+      "requiresStrongModel": false,
+      "nextStep": "FIXEDASSETS-186: run a guarded value-persistence probe. Enter 82000, force a safe UI commit/reopen, verify persistence, and do not open Preview Posting or Post."
+    },
+    "activeCase": {
+      "status": "observed-review-complete",
+      "lastResult": {
+        "status": "observed",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-185/FIXEDASSETS-185-result.json",
+        "summary": "FA-185 rejects another Preview Posting attempt: FA-182 proved 82000 only immediately after fill, while FA-184 reopened the journal and found the same candidate blank. The missing proof is value persistence/commit across refresh or reopen."
+      },
+      "nextSafeAction": "Run FIXEDASSETS-186 guarded value-persistence probe; no Preview Posting and no Post."
+    }
+  },
+  "flags": {
+    "noBcRun": true,
+    "noPlaywrightRun": true,
+    "noPreview": true,
+    "noPost": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-185/",
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-185-fa-gl-journal-preview-posting-review.json",
+    ".agent/state/cases/fixedassets-186-fa-gl-journal-balaccount-persistence-probe.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/model_usage_log.jsonl",
+    "playwright/projects/fibu-book5/BC-PLAYWRIGHT-PATTERNS.md"
+  ]
+}

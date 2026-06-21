@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-21T12:36:00.000Z",
+  "updatedAt": "2026-06-21T12:45:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "fixedassets",
-  "activeCase": "FIXEDASSETS-185-FA-GL-JOURNAL-PREVIEW-POSTING-REVIEW",
-  "active_case_file": ".agent/state/cases/fixedassets-185-fa-gl-journal-preview-posting-review.json",
-  "lastReferenceCase": "FIXEDASSETS-184-FA-GL-JOURNAL-PREVIEW-POSTING-ONLY",
-  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-184-fa-gl-journal-preview-posting-only.json",
+  "activeCase": "FIXEDASSETS-186-FA-GL-JOURNAL-BALACCOUNT-PERSISTENCE-PROBE",
+  "active_case_file": ".agent/state/cases/fixedassets-186-fa-gl-journal-balaccount-persistence-probe.json",
+  "lastReferenceCase": "FIXEDASSETS-185-FA-GL-JOURNAL-PREVIEW-POSTING-REVIEW",
+  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-185-fa-gl-journal-preview-posting-review.json",
   "mode": "token-efficient-autopilot-tooling-bootstrap",
-  "requiresStrongModel": true,
+  "requiresStrongModel": false,
   "requiredPreflightChecks": [
     "agent:preflight",
     "agent:state:validate",
@@ -19,11 +19,14 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "local-evidence-review",
-    "read-result-json",
-    "read-compact-evidence",
-    "review-blocker",
-    "write-review-evidence",
+    "open-business-central",
+    "run-playwright",
+    "read-current-journal-grid",
+    "enter-82000-in-bal-account-no",
+    "commit-current-line-by-ui",
+    "reopen-or-refresh-journal-readonly",
+    "verify-bal-account-no-82000-persists",
+    "write-result-json",
     "update-state"
   ],
   "forbiddenActions": [
@@ -35,10 +38,7 @@
     "api-shortcut-without-explicit-case-permission",
     "book-edit",
     "company-switch",
-    "run-playwright",
-    "open-business-central",
     "create-journal-lines",
-    "enter-82000-in-bal-account-no",
     "enter-K30000-in-bal-account-no",
     "preview-posting",
     "post",
@@ -49,7 +49,7 @@
     "delete-record",
     "click-ok-on-risk-dialog"
   ],
-  "nextStep": "FIXEDASSETS-185: review FA-184 blocker evidence. Decide whether to re-run guarded value entry, improve value persistence, or clean/reset the journal line before another Preview Posting attempt. Do not open BC in the review.",
+  "nextStep": "FIXEDASSETS-186: run a guarded value-persistence probe. Enter 82000, force a safe UI commit/reopen, verify persistence, and do not open Preview Posting or Post.",
   "subagentPlanPolicy": {
     "default": "optional",
     "execution": "plan-only-no-subagents-spawned",

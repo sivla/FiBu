@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "FIXEDASSETS-185-FA-GL-JOURNAL-PREVIEW-POSTING-REVIEW",
-  "status": "planned",
+  "status": "observed-review-complete",
   "workType": "local-evidence-review",
   "taskClass": "judge_work",
   "requiresStrongModel": true,
@@ -52,5 +52,23 @@
     "Any proposed next step would use API shortcuts for journal data.",
     "Evidence is insufficient to distinguish missing visible value from a helper bug."
   ],
-  "nextSafeAction": "Local review only; likely next step is a guarded value-persistence/commit probe before another Preview Posting attempt."
+  "nextSafeAction": "Run FIXEDASSETS-186 guarded value-persistence probe; no Preview Posting and no Post.",
+  "lastResult": {
+    "status": "observed",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-185/FIXEDASSETS-185-result.json",
+    "summary": "FA-185 rejects another Preview Posting attempt: FA-182 proved 82000 only immediately after fill, while FA-184 reopened the journal and found the same candidate blank. The missing proof is value persistence/commit across refresh or reopen."
+  },
+  "decision": {
+    "acceptedFor": [
+      "planning-a-value-persistence-probe"
+    ],
+    "notAcceptedFor": [
+      "preview-posting-retry",
+      "posting",
+      "ledger-trace",
+      "book-final-screenshot"
+    ],
+    "likelyCause": "FA-182 value was visible in the active UI control but not proven committed to the journal line; after reopening, BC showed the persisted field blank.",
+    "nextCase": "FIXEDASSETS-186-FA-GL-JOURNAL-BALACCOUNT-PERSISTENCE-PROBE"
+  }
 }
