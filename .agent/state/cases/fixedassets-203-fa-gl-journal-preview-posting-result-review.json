@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-203-FA-GL-JOURNAL-PREVIEW-POSTING-RESULT-REVIEW",
+  "status": "planned",
+  "workType": "local-evidence-review",
+  "taskClass": "judge_work",
+  "requiresStrongModel": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Review FIXEDASSETS-202 evidence and classify the new Fixed Asset G/L Journal Preview Posting blocker before any Post, setup change or further journal edit.",
+  "inputs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-202/FIXEDASSETS-202-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-202/020-preview-posting-after-correction.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-202/030-preview-posting-result-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-200/FIXEDASSETS-200-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-198/FIXEDASSETS-198-result.json"
+  ],
+  "allowedActions": [
+    "read-local-evidence",
+    "classify-blocker",
+    "write-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "open-business-central",
+    "run-playwright",
+    "book-edit",
+    "company-switch",
+    "create-journal-lines",
+    "edit-journal-lines",
+    "preview-posting",
+    "post",
+    "post-and-print",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "delete-record",
+    "click-ok-on-posting-dialog",
+    "click-yes-on-posting-dialog"
+  ],
+  "reviewQuestions": [
+    "Does FA-202 prove the prior blank FA Posting Type blocker is gone?",
+    "What does the new error 'FA Posting Type Acquisition Cost must be posted in the FA journal' mean for the route?",
+    "Is the next safe action a different journal page/FA journal route, a line-context correction, or a setup/read-only diagnosis?",
+    "What remains locked before any posting?"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-203/FIXEDASSETS-203-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-203/FIXEDASSETS-203-decision.md"
+  ],
+  "acceptanceCriteria": [
+    "The review separates the old blank FA Posting Type blocker from the new FA journal route blocker.",
+    "No Business Central or Playwright run occurs.",
+    "No Post, setup change or journal edit is unlocked without a specific next case.",
+    "The next safe action is a single small case with explicit boundaries."
+  ],
+  "stopConditions": [
+    "The review would infer posted FA Ledger Entries.",
+    "The review would unlock Post without a Preview Posting entry proof.",
+    "The review would prescribe setup changes without evidence."
+  ],
+  "nextSafeAction": "Run local review; do not open Business Central, Preview Posting or Post."
+}
