@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-175-BC-LINES-JOURNAL-CELL-CANDIDATE-HELPER-REVIEW",
+  "status": "planned",
+  "workType": "local-helper-review",
+  "taskClass": "judge_work",
+  "requiresStrongModel": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Review whether the local journal-grid cell-candidate helper from FA-174 is sufficient to gate a later read-only or guarded FA G/L Journal live retry.",
+  "inputs": [
+    "playwright/core/bc/journal-grid-candidates.ts",
+    "playwright/core/bc/journal-grid-candidates.selftest.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-174/FIXEDASSETS-174-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-174/FIXEDASSETS-174-helper-decision.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-172/010-balaccount-82000-preflight-signals.json"
+  ],
+  "allowedActions": [
+    "read-local-evidence",
+    "review-helper-contract",
+    "run-local-helper-selftest",
+    "write-result-json",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "open-business-central",
+    "run-playwright",
+    "create-journal-lines",
+    "enter-82000-in-bal-account-no",
+    "enter-K30000-in-bal-account-no",
+    "preview-posting",
+    "post",
+    "setup-change",
+    "book-edit"
+  ],
+  "acceptanceCriteria": [
+    "No BC or Playwright execution.",
+    "The review decides whether helper output is sufficient for a later live probe.",
+    "If insufficient, the next action is another local helper improvement, not a live retry.",
+    "If sufficient, the next live case remains read-only or guarded and must still prove visible row, column and editable cell before writing."
+  ],
+  "nextSafeAction": "Run local helper review; keep FA G/L Journal live retry locked until this decision exists."
+}

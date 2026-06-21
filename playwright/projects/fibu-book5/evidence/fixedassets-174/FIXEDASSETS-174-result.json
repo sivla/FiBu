@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-174-bc-lines-journal-cell-candidate-helper-result",
+  "caseId": "FIXEDASSETS-174-BC-LINES-JOURNAL-CELL-CANDIDATE-HELPER",
+  "source": "local-helper-improvement",
+  "resultStatus": "observed",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-medium",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "proved": [
+    "A local journal-grid cell-candidate helper now separates visible column headers from row-anchored editable controls.",
+    "The helper classifies FA-172 evidence as blocked because no isolated target row anchor and no editable Bal. Account No. control candidate are present.",
+    "The helper rejects forbidden K30000 context for G/L Bal. Account No.",
+    "The helper accepts a synthetic single editable Bal. Account No. candidate only when row and column signals are both present."
+  ],
+  "notProved": [
+    "No Business Central live run was executed.",
+    "No Playwright browser run was executed.",
+    "Bal. Account No. = 82000 was not entered or proven visible in Business Central.",
+    "No Preview Posting result.",
+    "No posting result.",
+    "No German final proof."
+  ],
+  "changedFiles": [
+    "package.json",
+    "playwright/core/bc/journal-grid-candidates.ts",
+    "playwright/core/bc/journal-grid-candidates.selftest.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-174/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-174/FIXEDASSETS-174-helper-decision.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-174/FIXEDASSETS-174-result.json",
+    ".agent/state/cases/fixedassets-175-bc-lines-journal-cell-candidate-helper-review.json",
+    ".agent/state/current.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/coverage_state.json",
+    ".agent/capabilities.json",
+    "playwright/projects/fibu-book5/BC-PLAYWRIGHT-PATTERNS.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-174/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-174/FIXEDASSETS-174-helper-decision.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-174/FIXEDASSETS-174-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-172/010-balaccount-82000-preflight-signals.json"
+  ],
+  "warnings": [
+    "This is a local helper gate, not live BC evidence.",
+    "Do not retry the FA G/L Journal write path until FA-175 reviews the helper result.",
+    "Do not claim 82000 as visible or written from this case."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-175-BC-LINES-JOURNAL-CELL-CANDIDATE-HELPER-REVIEW",
+      "active_case_file": ".agent/state/cases/fixedassets-175-bc-lines-journal-cell-candidate-helper-review.json",
+      "lastReferenceCase": "FIXEDASSETS-174-BC-LINES-JOURNAL-CELL-CANDIDATE-HELPER",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-174-bc-lines-journal-cell-candidate-helper.json",
+      "requiresStrongModel": true,
+      "nextStep": "FIXEDASSETS-175: locally review the new journal-grid cell-candidate helper before any further live FA G/L Journal retry."
+    },
+    "lastRunSummary": {
+      "schemaVersion": 1,
+      "runId": "FIXEDASSETS-174-BC-LINES-JOURNAL-CELL-CANDIDATE-HELPER",
+      "date": "2026-06-21",
+      "workType": "local-playwright-helper-improvement",
+      "branch": "codex/token-efficient-autopilot-state",
+      "instance": "MCP_1_20260210",
+      "company": "RM-DEMO",
+      "bcRun": false,
+      "playwrightRun": false,
+      "posted": false,
+      "previewPosting": false,
+      "setupChanged": false,
+      "companySwitched": false,
+      "apiShortcut": false,
+      "bookChanged": false,
+      "resultStatus": "observed",
+      "summary": "FA-174 added a local journal-grid candidate helper and selftest. FA-172 remains blocker/context evidence; the next step is a local review before any live retry.",
+      "nextStep": "Run FIXEDASSETS-175 local helper review; do not open BC or Playwright for this review."
+    },
+    "activeCase": {
+      "status": "observed-local-helper",
+      "lastResult": {
+        "status": "observed",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-174/FIXEDASSETS-174-result.json",
+        "summary": "Local journal-grid candidate helper added and selftested against FA-172 blocker evidence."
+      },
+      "nextSafeAction": "Run FIXEDASSETS-175 local helper review before any live FA G/L Journal retry."
+    },
+    "coverage": {
+      "areas": {
+        "fixedassets": {
+          "currentBlock": "fa-gl-journal-cell-candidate-helper-review",
+          "latestPracticalCase": "FIXEDASSETS-172",
+          "latestLocalHelperCase": "FIXEDASSETS-174",
+          "nextCase": "FIXEDASSETS-175"
+        }
+      }
+    }
+  },
+  "flags": {
+    "noBcExecution": true,
+    "noPlaywrightExecution": true,
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "nextStep": "FIXEDASSETS-175: locally review the new journal-grid cell-candidate helper before any further live FA G/L Journal retry."
+}
