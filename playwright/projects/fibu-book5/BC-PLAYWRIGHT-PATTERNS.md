@@ -181,6 +181,7 @@ Diese Datei sammelt wiederverwendbare Muster aus belegten Laeufen. Sie ist keine
 - Vor `OK` oder `Ja/Yes` muessen Dialogtitel, Option und fachliches Ziel klar sein.
 - Bei Setup-/Stammdaten-Preflight ist `Cancel/Abbrechen` der Standardabschluss.
 - Template-Dialoge wie bei Vendor Cards sind eigener Nachweis: sie zeigen, dass Anlage nicht einfach "New und fertig" ist.
+- FA-188 ergaenzt fuer Journal-Preview-Pfade: Ein Klick auf den groben `Post`-Aktionspfad kann den normalen Buchungsdialog oeffnen, ohne dass `Preview Posting` ausgewaehlt wurde. Das ist ein Stop-/Rejected-Path, kein Preview-Nachweis. Vor einem weiteren Live-Retry braucht es eine gescopte Action-Inventory-Route oder einen eindeutigeren Preview-Posting-Selector; ein geoeffneter Posting-Dialog darf nicht mit `OK`/`Yes` bestaetigt werden.
 
 ## Screenshots
 

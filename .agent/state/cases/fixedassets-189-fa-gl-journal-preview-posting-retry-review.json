@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-189-FA-GL-JOURNAL-PREVIEW-POSTING-RETRY-REVIEW",
+  "status": "planned",
+  "workType": "local-evidence-review",
+  "taskClass": "judge_work",
+  "requiresStrongModel": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Review FA-188 evidence before any further Fixed Asset G/L Journal Preview Posting attempt. Decide a safer action route because the guarded Post menu path opened the posting dialog instead of Preview Posting.",
+  "inputs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-188/FIXEDASSETS-188-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-188/020-preview-posting-retry-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-188/FIXEDASSETS-188-learning.md",
+    "playwright/projects/fibu-book5/tests/fixedassets-188-fa-gl-journal-preview-posting-retry.spec.ts",
+    "playwright/projects/fibu-book5/BC-PLAYWRIGHT-PATTERNS.md"
+  ],
+  "allowedActions": [
+    "local-evidence-review",
+    "read-result-json",
+    "read-compact-evidence",
+    "review-preview-action-path-blocker",
+    "decide-next-preview-action-route",
+    "write-review-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "open-business-central",
+    "run-playwright",
+    "book-edit",
+    "company-switch",
+    "create-journal-lines",
+    "enter-82000-in-bal-account-no",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "delete-record",
+    "click-ok-on-risk-dialog"
+  ],
+  "acceptanceCriteria": [
+    "Classify FA-188 as a safe blocked Preview Posting retry, not as a Preview Posting proof.",
+    "Explain why the observed posting dialog is a rejected route for the next live attempt.",
+    "Name one safer next route, such as scoped action inventory or a more specific Preview Posting menu selector.",
+    "Keep Post locked."
+  ],
+  "stopConditions": [
+    "The review would require opening Business Central.",
+    "The review would require running Playwright.",
+    "The review would unlock Post without a real Preview Posting proof.",
+    "The review would change book content without Evidence."
+  ],
+  "nextSafeAction": "Perform local review and choose a safer Preview Posting action-discovery route."
+}

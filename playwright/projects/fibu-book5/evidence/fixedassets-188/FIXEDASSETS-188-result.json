@@ -1,0 +1,168 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-188-preview-posting-retry-result",
+  "caseId": "FIXEDASSETS-188-FA-GL-JOURNAL-PREVIEW-POSTING-RETRY",
+  "source": "playwright-preview-only-retry",
+  "resultStatus": "blocked",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-medium",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "environment": {
+    "expectedInstance": "MCP_1_20260210",
+    "expectedCompany": "RM-DEMO",
+    "context": {
+      "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5628&dc=0&bookmark=30_UQAAAAJ7_0EAUwBTAEUAVABTAAAAAnv_RABFAEYAQQBVAEwAVAAAAACHECc",
+      "environmentInUrl": true,
+      "companyInUrl": true,
+      "companyInText": false,
+      "wrongEnvironmentVisible": false
+    },
+    "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5628&runinframe=1",
+    "urlAfterRun": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5628&dc=0&bookmark=30_UQAAAAJ7_0EAUwBTAEUAVABTAAAAAnv_RABFAEYAQQBVAEwAVAAAAACHECc"
+  },
+  "proved": [
+    "The run stayed in MCP_1_20260210.",
+    "The run stayed in RM-DEMO.",
+    "Fixed Asset G/L Journals context was visible.",
+    "Bal. Account No. = 82000 was visible/current before Preview Posting retry.",
+    "No Post confirmation was accepted.",
+    "No journal line was created or deleted.",
+    "No setup change was made.",
+    "No API shortcut was used.",
+    "No book content was changed."
+  ],
+  "notProved": [
+    "Preview Posting did not produce a stable preview proof.",
+    "No Fixed Asset G/L Journal posting was executed.",
+    "No FA Ledger Entry or posted G/L Entry trace exists.",
+    "No German final proof exists."
+  ],
+  "changedFiles": [
+    "package.json",
+    "playwright/projects/fibu-book5/tests/fixedassets-188-fa-gl-journal-preview-posting-retry.spec.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-188/"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-188/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-188/010-journal-pre-preview-retry-check.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-188/020-preview-posting-retry-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-188/020-preview-posting-page-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-188/FIXEDASSETS-188-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-188/FIXEDASSETS-188-result.json"
+  ],
+  "warnings": [
+    "Preview Posting-only. Do not treat as posting permission.",
+    "Posting remains locked until FIXEDASSETS-189 local review.",
+    "No German final proof."
+  ],
+  "blockedBy": [
+    "preview-posting-action-not-clicked",
+    "posting-dialog-opened-instead-of-preview",
+    "preview-posting-did-not-open"
+  ],
+  "requiresReview": true,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-189-FA-GL-JOURNAL-PREVIEW-POSTING-RETRY-REVIEW",
+      "active_case_file": ".agent/state/cases/fixedassets-189-fa-gl-journal-preview-posting-retry-review.json",
+      "lastReferenceCase": "FIXEDASSETS-188-FA-GL-JOURNAL-PREVIEW-POSTING-RETRY",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-188-fa-gl-journal-preview-posting-retry.json",
+      "requiresStrongModel": true,
+      "nextStep": "FIXEDASSETS-189: locally review FA-188 Preview Posting-only evidence before any Fixed Asset G/L Journal posting."
+    },
+    "activeCase": {
+      "status": "blocked-preview-posting-retry",
+      "lastResult": {
+        "status": "blocked",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-188/FIXEDASSETS-188-result.json",
+        "summary": "FA-188 stayed safe but did not prove Preview Posting: preview-posting-action-not-clicked | posting-dialog-opened-instead-of-preview | preview-posting-did-not-open"
+      },
+      "nextSafeAction": "Run FIXEDASSETS-189 local review; do not post."
+    }
+  },
+  "flags": {
+    "noInsertLine": true,
+    "noDeleteLine": true,
+    "noPost": true,
+    "previewOnly": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "observed": {
+    "startedAt": "2026-06-21T13:01:04.428Z",
+    "finishedAt": "2026-06-21T13:01:21.691Z",
+    "helperResult": {
+      "success": true,
+      "status": "already-visible",
+      "blockedBy": [],
+      "visibleSignals": {
+        "rowAnchorCount": 1,
+        "columnSignalVisible": true,
+        "forbiddenSignalsVisible": [],
+        "expectedValueVisible": true,
+        "controlCandidateCount": 1,
+        "editableCandidateCount": 1
+      },
+      "candidates": [
+        {
+          "index": 14,
+          "score": 11,
+          "reason": [
+            "column-signal-by-geometry",
+            "row-required-signals-by-geometry",
+            "expected-value-currently-visible"
+          ],
+          "labelText": "",
+          "rowText": "Payment Invoice Credit Memo Finance Charge Memo Reminder Refund G/L Account Customer Vendor Bank Account Fixed Asset IC Partner Employee Allocation Account Acquisition Cost Depreciation Write-Down Appreciation Custom 1 Custom 2 Disposal Maintenance Purchase Sale Settlement G/L Account Customer Vendor Bank Account Fixed Asset IC Partner Employee Allocation Account Purchase Sale Settlement",
+          "cellText": "",
+          "valueText": "82000",
+          "readOnly": false,
+          "disabled": false
+        }
+      ],
+      "editableCandidates": [
+        {
+          "index": 14,
+          "score": 11,
+          "reason": [
+            "column-signal-by-geometry",
+            "row-required-signals-by-geometry",
+            "expected-value-currently-visible"
+          ],
+          "labelText": "",
+          "rowText": "Payment Invoice Credit Memo Finance Charge Memo Reminder Refund G/L Account Customer Vendor Bank Account Fixed Asset IC Partner Employee Allocation Account Acquisition Cost Depreciation Write-Down Appreciation Custom 1 Custom 2 Disposal Maintenance Purchase Sale Settlement G/L Account Customer Vendor Bank Account Fixed Asset IC Partner Employee Allocation Account Purchase Sale Settlement",
+          "cellText": "",
+          "valueText": "82000",
+          "readOnly": false,
+          "disabled": false
+        }
+      ]
+    },
+    "preview": {
+      "openedPostMenu": true,
+      "clickedPreview": false,
+      "previewOpened": false,
+      "openedPostingDialog": true,
+      "setupErrorVisible": false
+    },
+    "closeResult": {
+      "attempted": false,
+      "closed": true,
+      "reason": "preview-or-error-context-not-visible"
+    },
+    "snapshotSignals": {
+      "fixedAssetGlJournalsVisible": true,
+      "documentNoVisible": false,
+      "accountNoVisible": false,
+      "depreciationBookVisible": false,
+      "balAccountNoHeaderVisible": true,
+      "account82000VisibleGlobal": false,
+      "k30000VisibleGlobal": false
+    }
+  },
+  "nextStep": "FIXEDASSETS-189: locally review FA-188 Preview Posting-only evidence before any Fixed Asset G/L Journal posting."
+}

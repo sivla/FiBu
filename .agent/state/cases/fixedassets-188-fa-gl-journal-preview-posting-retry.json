@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "FIXEDASSETS-188-FA-GL-JOURNAL-PREVIEW-POSTING-RETRY",
-  "status": "planned",
+  "status": "blocked-preview-posting-retry",
   "workType": "playwright-preview-posting-only-retry",
   "taskClass": "wizard_work",
   "requiresStrongModel": false,
@@ -58,5 +58,15 @@
     "Any action would require clicking OK/Yes on a risky dialog.",
     "Any action would post or change setup."
   ],
-  "nextSafeAction": "Run guarded Preview Posting-only retry; no Post."
+  "lastResult": {
+    "status": "blocked",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-188/FIXEDASSETS-188-result.json",
+    "summary": "FA-188 stayed safe and proved the persisted Bal. Account No. = 82000 precondition, but the Post action path opened the posting dialog instead of a Preview Posting view.",
+    "blockedBy": [
+      "preview-posting-action-not-clicked",
+      "posting-dialog-opened-instead-of-preview",
+      "preview-posting-did-not-open"
+    ]
+  },
+  "nextSafeAction": "Run FIXEDASSETS-189 local review; do not retry live Preview Posting or Post until the action path is reviewed."
 }
