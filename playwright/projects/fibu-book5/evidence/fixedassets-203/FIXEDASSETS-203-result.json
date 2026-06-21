@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-203-preview-posting-result-review",
+  "caseId": "FIXEDASSETS-203-FA-GL-JOURNAL-PREVIEW-POSTING-RESULT-REVIEW",
+  "source": "local-evidence-review-with-microsoft-learn-validation",
+  "resultStatus": "observed",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "proved": [
+    "FA-202 stayed in MCP_1_20260210 / RM-DEMO.",
+    "FA-202 proved FA Posting Type = Acquisition Cost before Preview Posting.",
+    "FA-202 clicked only the exact Preview Posting menuitem.",
+    "The prior blank FA Posting Type blocker is gone.",
+    "Business Central now reports a different blocker: FA Posting Type Acquisition Cost must be posted in the FA journal.",
+    "Microsoft Learn confirms that Fixed Asset G/L Journal versus Fixed Asset Journal usage depends on fixed asset/depreciation-book G/L integration for the activity.",
+    "No Post, Post and Print, OK/Yes confirmation, setup change, journal edit, company switch, API shortcut or book change occurred in FA-202 or FA-203."
+  ],
+  "notProved": [
+    "No Preview Posting entry lines are proven.",
+    "No FA Ledger Entry or posted G/L Entry trace exists.",
+    "HGB G/L Integration for Acquisition Cost is not yet proven on or off.",
+    "No setup correction is authorized by this review.",
+    "No German final proof exists."
+  ],
+  "classification": {
+    "priorBlankFaPostingTypeBlockerResolved": true,
+    "newBlocker": "FA Posting Type Acquisition Cost must be posted in the FA journal.",
+    "probableMeaning": "Journal-route or depreciation-book G/L Integration mismatch. Acquisition Cost may need the FA Journal route unless HGB has Acquisition Cost enabled in G/L Integration.",
+    "nextRoute": "Read-only HGB depreciation book G/L Integration diagnosis before setup change or posting."
+  },
+  "sourceRefs": [
+    {
+      "label": "Microsoft Learn - Set up fixed asset depreciation",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/business-central/fa-how-setup-depreciation",
+      "usedFor": "G/L Integration determines which fixed asset activities use Fixed Asset G/L Journal."
+    },
+    {
+      "label": "Microsoft Learn - Acquire fixed assets",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/business-central/fa-how-acquire",
+      "usedFor": "Manual acquisition can be posted through Fixed Asset G/L Journal when the route is valid."
+    }
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-203/",
+    ".agent/state/cases/fixedassets-203-fa-gl-journal-preview-posting-result-review.json",
+    ".agent/state/cases/fixedassets-204-hgb-gl-integration-readonly.json",
+    ".agent/state/current.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/model_usage_log.jsonl"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-203/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-203/FIXEDASSETS-203-decision.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-203/FIXEDASSETS-203-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-202/FIXEDASSETS-202-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-202/020-preview-posting-after-correction.json"
+  ],
+  "warnings": [
+    "Do not post from this review.",
+    "Do not change HGB G/L Integration before read-only evidence.",
+    "Do not infer German final fixed-assets proof from CRONUS-USA laboratory evidence."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-204-HGB-GL-INTEGRATION-READONLY",
+      "active_case_file": ".agent/state/cases/fixedassets-204-hgb-gl-integration-readonly.json",
+      "lastReferenceCase": "FIXEDASSETS-203-FA-GL-JOURNAL-PREVIEW-POSTING-RESULT-REVIEW",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-203-fa-gl-journal-preview-posting-result-review.json",
+      "requiresStrongModel": false,
+      "nextStep": "FIXEDASSETS-204: read-only diagnose HGB G/L Integration for Acquisition Cost before any setup change or posting."
+    },
+    "activeCase": {
+      "status": "observed-new-fa-journal-route-blocker-classified",
+      "lastResult": {
+        "status": "observed",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-203/FIXEDASSETS-203-result.json",
+        "summary": "FA-203 separates the old blank FA Posting Type blocker from the new FA journal route blocker and selects a read-only HGB G/L Integration diagnosis."
+      },
+      "nextSafeAction": "Run FIXEDASSETS-204 HGB G/L Integration read-only diagnosis; do not change setup."
+    }
+  },
+  "flags": {
+    "localReviewOnly": true,
+    "noBusinessCentralRun": true,
+    "noPlaywrightRun": true,
+    "noPreview": true,
+    "noPost": true,
+    "noSetupChange": true,
+    "noJournalEdit": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "nextStep": "FIXEDASSETS-204: read-only diagnose HGB G/L Integration for Acquisition Cost before any setup change or posting."
+}
