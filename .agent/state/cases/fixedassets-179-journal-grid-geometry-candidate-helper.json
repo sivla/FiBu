@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-179-JOURNAL-GRID-GEOMETRY-CANDIDATE-HELPER",
+  "status": "planned",
+  "workType": "local-playwright-helper-improvement",
+  "taskClass": "wizard_work",
+  "requiresStrongModel": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Improve the journal-grid candidate helper so it can derive safe candidates from visible header geometry and control coordinates before another read-only FA G/L Journal probe.",
+  "inputs": [
+    "playwright/core/bc/journal-grid-candidates.ts",
+    "playwright/core/bc/journal-grid-candidates.selftest.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-177/010-refined-candidate-readonly.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-178/FIXEDASSETS-178-result.json"
+  ],
+  "allowedActions": [
+    "read-local-evidence",
+    "edit-playwright-helper",
+    "run-local-selftest",
+    "write-result-json",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "open-business-central",
+    "run-playwright",
+    "create-journal-lines",
+    "enter-82000-in-bal-account-no",
+    "enter-K30000-in-bal-account-no",
+    "preview-posting",
+    "post",
+    "setup-change",
+    "book-edit"
+  ],
+  "acceptanceCriteria": [
+    "No BC or Playwright execution.",
+    "Add or refine local selftests that reproduce FA-177 geometry/header-order conditions.",
+    "Do not unlock value entry directly from local helper logic.",
+    "Select a later read-only probe case if the helper selftests pass."
+  ],
+  "nextSafeAction": "Improve and selftest the local journal-grid geometry candidate helper; keep live UI and posting locked."
+}
