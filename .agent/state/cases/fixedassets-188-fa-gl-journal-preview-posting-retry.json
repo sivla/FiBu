@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-188-FA-GL-JOURNAL-PREVIEW-POSTING-RETRY",
+  "status": "planned",
+  "workType": "playwright-preview-posting-only-retry",
+  "taskClass": "wizard_work",
+  "requiresStrongModel": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Retry Preview Posting only for the existing Fixed Asset G/L Journal line after FA-186 proved Bal. Account No. = 82000 persists after reopen. Do not Post.",
+  "inputs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-187/FIXEDASSETS-187-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-186/FIXEDASSETS-186-result.json",
+    "playwright/projects/fibu-book5/tests/fixedassets-184-fa-gl-journal-preview-posting-only.spec.ts"
+  ],
+  "allowedActions": [
+    "open-business-central",
+    "run-playwright",
+    "read-current-journal-grid",
+    "verify-bal-account-no-82000-persists",
+    "open-preview-posting-only",
+    "capture-preview-or-error-evidence",
+    "close-preview-safely",
+    "write-result-json",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "book-edit",
+    "company-switch",
+    "create-journal-lines",
+    "enter-82000-in-bal-account-no",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "delete-record",
+    "click-ok-on-risk-dialog"
+  ],
+  "acceptanceCriteria": [
+    "Confirm URL contains MCP_1_20260210 and RM-DEMO.",
+    "Confirm Bal. Account No. = 82000 is visible/current before Preview Posting.",
+    "Click only Preview Posting, not Post confirmation.",
+    "Capture preview lines or a setup/error blocker as compact evidence.",
+    "Close Preview or error context safely.",
+    "Do not Post."
+  ],
+  "stopConditions": [
+    "Instance or company is not confirmed.",
+    "Bal. Account No. = 82000 is not visible/current before Preview Posting.",
+    "A posting confirmation dialog opens instead of Preview Posting.",
+    "Any action would require clicking OK/Yes on a risky dialog.",
+    "Any action would post or change setup."
+  ],
+  "nextSafeAction": "Run guarded Preview Posting-only retry; no Post."
+}
