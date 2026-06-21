@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-190-FA-GL-JOURNAL-ACTION-INVENTORY-READONLY",
+  "status": "planned",
+  "workType": "playwright-readonly-action-inventory",
+  "taskClass": "wizard_work",
+  "requiresStrongModel": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Open Fixed Asset G/L Journals in RM-DEMO and collect a read-only action inventory to find whether a scoped Preview Posting action candidate exists without clicking Post, Preview Posting, OK or Yes.",
+  "inputs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-188/FIXEDASSETS-188-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-189/FIXEDASSETS-189-result.json",
+    "playwright/projects/fibu-book5/BC-PAGE-ACTION-MAP.json",
+    "playwright/projects/fibu-book5/BC-PLAYWRIGHT-PATTERNS.md"
+  ],
+  "allowedActions": [
+    "open-business-central",
+    "run-playwright",
+    "verify-instance-company",
+    "open-fixed-asset-gl-journals",
+    "collect-visible-action-inventory",
+    "collect-preview-posting-action-candidates",
+    "write-readonly-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "book-edit",
+    "company-switch",
+    "create-journal-lines",
+    "enter-82000-in-bal-account-no",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "delete-record",
+    "click-ok-on-risk-dialog"
+  ],
+  "acceptanceCriteria": [
+    "Confirm URL contains MCP_1_20260210 and RM-DEMO.",
+    "Collect visible action/button/menu metadata without clicking Post or Preview Posting.",
+    "Classify whether a Preview Posting candidate is directly visible, hidden, ambiguous or absent.",
+    "Do not open a posting dialog."
+  ],
+  "stopConditions": [
+    "Instance or company is not confirmed.",
+    "The action inventory would require clicking Post.",
+    "A posting dialog opens.",
+    "Any action would change journal data, setup or company."
+  ],
+  "nextSafeAction": "Run read-only action inventory; no Preview Posting or Post."
+}

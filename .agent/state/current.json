@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-21T13:08:00.000Z",
+  "updatedAt": "2026-06-21T13:20:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "fixedassets",
-  "activeCase": "FIXEDASSETS-189-FA-GL-JOURNAL-PREVIEW-POSTING-RETRY-REVIEW",
-  "active_case_file": ".agent/state/cases/fixedassets-189-fa-gl-journal-preview-posting-retry-review.json",
-  "lastReferenceCase": "FIXEDASSETS-188-FA-GL-JOURNAL-PREVIEW-POSTING-RETRY",
-  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-188-fa-gl-journal-preview-posting-retry.json",
+  "activeCase": "FIXEDASSETS-190-FA-GL-JOURNAL-ACTION-INVENTORY-READONLY",
+  "active_case_file": ".agent/state/cases/fixedassets-190-fa-gl-journal-action-inventory-readonly.json",
+  "lastReferenceCase": "FIXEDASSETS-189-FA-GL-JOURNAL-PREVIEW-POSTING-RETRY-REVIEW",
+  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-189-fa-gl-journal-preview-posting-retry-review.json",
   "mode": "token-efficient-autopilot-tooling-bootstrap",
-  "requiresStrongModel": true,
+  "requiresStrongModel": false,
   "requiredPreflightChecks": [
     "agent:preflight",
     "agent:state:validate",
@@ -19,11 +19,13 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "local-evidence-review",
-    "read-fixedassets-188-result",
-    "review-preview-action-path-blocker",
-    "decide-next-preview-action-route",
-    "write-review-evidence",
+    "open-business-central",
+    "run-playwright",
+    "verify-instance-company",
+    "open-fixed-asset-gl-journals",
+    "collect-visible-action-inventory",
+    "collect-preview-posting-action-candidates",
+    "write-readonly-evidence",
     "update-state"
   ],
   "forbiddenActions": [
@@ -34,8 +36,6 @@
     "book-claim-without-evidence",
     "api-shortcut-without-explicit-case-permission",
     "book-edit",
-    "open-business-central",
-    "run-playwright",
     "company-switch",
     "create-journal-lines",
     "enter-82000-in-bal-account-no",
@@ -48,7 +48,7 @@
     "delete-record",
     "click-ok-on-risk-dialog"
   ],
-  "nextStep": "FIXEDASSETS-189: locally review FA-188 before any further live retry. Decide a safer Preview Posting action route because the FA-188 Post menu path opened the posting dialog instead of Preview Posting.",
+  "nextStep": "FIXEDASSETS-190: run a read-only Fixed Asset G/L Journals action inventory. Do not click Post or Preview Posting; first prove whether a scoped Preview Posting action candidate exists.",
   "subagentPlanPolicy": {
     "default": "optional",
     "execution": "plan-only-no-subagents-spawned",
