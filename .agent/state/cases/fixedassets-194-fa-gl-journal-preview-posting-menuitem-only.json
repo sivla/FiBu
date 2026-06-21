@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-194-FA-GL-JOURNAL-PREVIEW-POSTING-MENUITEM-ONLY",
+  "status": "planned",
+  "workType": "playwright-preview-posting-only",
+  "taskClass": "wizard_work",
+  "requiresStrongModel": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Run one guarded Preview Posting-only attempt from the Fixed Asset G/L Journal related-actions-for-Post menu.",
+  "inputs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-193/FIXEDASSETS-193-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-192/FIXEDASSETS-192-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-192/020-post-dropdown-menu-inventory.json",
+    "playwright/projects/fibu-book5/BC-PAGE-ACTION-MAP.json",
+    "playwright/projects/fibu-book5/BC-PLAYWRIGHT-PATTERNS.md"
+  ],
+  "allowedActions": [
+    "open-business-central",
+    "run-playwright",
+    "open-fixed-asset-gl-journals",
+    "confirm-instance-and-company",
+    "click-related-actions-for-post-split-button",
+    "click-exact-preview-posting-menuitem-only",
+    "capture-preview-result-or-error",
+    "write-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "book-edit",
+    "company-switch",
+    "create-journal-lines",
+    "enter-82000-in-bal-account-no",
+    "click-main-post-button",
+    "click-post-menuitem",
+    "click-post-and-print-menuitem",
+    "click-test-report-menuitem",
+    "click-insert-fa-bal-account",
+    "click-reconcile",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "delete-record",
+    "click-ok-on-posting-dialog",
+    "click-yes-on-posting-dialog"
+  ],
+  "safetyGates": [
+    "instance-url-contains-MCP_1_20260210",
+    "company-url-contains-RM-DEMO",
+    "exactly-one-related-actions-for-Post-split-button",
+    "exactly-one-Preview-Posting-menuitem-after-split-open",
+    "Preview-Posting-menuitem-text-and-aria-label-match",
+    "no-main-Post-click",
+    "no-OK-Yes-confirmation",
+    "stop-on-posting-dialog",
+    "stop-on-ambiguous-preview-candidate"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-194/FIXEDASSETS-194-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-194/FIXEDASSETS-194-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-194/010-preview-posting-menuitem-attempt.json"
+  ],
+  "acceptanceCriteria": [
+    "Preview Posting is clicked only through the exact menuitem candidate accepted by FA-193.",
+    "No normal Post or Post and Print is clicked.",
+    "If Preview Posting opens entries, capture entry categories without posting.",
+    "If Preview Posting opens an error or posting dialog, capture it and stop without OK/Yes.",
+    "Result clearly states whether Preview Posting was observed, blocked or rejected."
+  ],
+  "stopConditions": [
+    "Business Central is not in MCP_1_20260210.",
+    "Company is not RM-DEMO.",
+    "More than one Preview Posting candidate is visible.",
+    "The Preview Posting candidate is not a button menuitem with matching text/aria-label.",
+    "A posting dialog with OK/Yes appears.",
+    "Any action would require creating, editing, deleting or posting a journal line."
+  ],
+  "nextSafeAction": "Implement and run the guarded FA-194 Preview Posting-only Playwright case."
+}
