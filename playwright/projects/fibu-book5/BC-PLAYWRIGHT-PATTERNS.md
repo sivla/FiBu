@@ -190,6 +190,7 @@ Diese Datei sammelt wiederverwendbare Muster aus belegten Laeufen. Sie ist keine
 - FA-194 bestaetigt den gescopten Preview-Pfad: Nur der exakte `Preview Posting`-Menuepunkt wurde geklickt; danach oeffnete BC die Seite `Error Messages`. Das ist ein Preview-Fehlerbild und kein Buchungsnachweis. Der naechste Schritt muss die Fehlermeldung fachlich lesen, bevor Setup geaendert oder ein weiterer Preview-/Posting-Lauf geplant wird.
 - FA-195 Review-Regel: Eine erreichte `Error Messages`-Seite ist noch keine Fehlerursache. Vor Setup-Fit, Retry oder Posting muss ein eigener read-only Lauf die konkrete Fehlermeldung, betroffene Felder und moegliche Ursache sichern.
 - FA-196 zeigt die Grenze gespeicherter Error-Messages-URLs: Die Seite `Error Messages` kann spaeter read-only erreichbar sein, aber eine leere Liste anzeigen. Das beweist den Fehlerkontext nicht erneut. Wenn die Detailzeile leer ist, muss der naechste sichere Plan entscheiden, ob ein neuer Preview-only-Lauf die Error-Messages-Details unmittelbar nach dem Klick erfassen darf; keine Setup-Aenderung aus einer leeren Error-Messages-Liste ableiten.
+- FA-197 entscheidet daraus: Eine leere spaeter geoeffnete `Error Messages`-Liste ist kein Setup-Beweis. Erlaubt ist genau ein neuer, eng bewachter Preview-only-Lauf, der unmittelbar nach dem exakten `Preview Posting`-Klick Error-Messages-Zeilen, Details/Feldwerte und Seitentext sichert. `Post`, `Post and Print`, `OK`/`Yes`, Journal-Edit und Setup bleiben gesperrt.
 
 ## Screenshots
 

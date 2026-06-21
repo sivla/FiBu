@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-197-preview-blocker-decision-result",
+  "caseId": "FIXEDASSETS-197-FA-GL-JOURNAL-PREVIEW-BLOCKER-DECISION",
+  "source": "local-blocker-review",
+  "resultStatus": "observed",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "proved": [
+    "FA-194 proved that the exact Preview Posting menuitem opens Error Messages without posting.",
+    "FA-196 proved that the later direct Error Messages URL opens read-only but shows an empty list.",
+    "The empty direct Error Messages page is not a setup-root-cause proof.",
+    "A setup change is not justified from FA-196 evidence.",
+    "A posting is not justified from FA-196 evidence.",
+    "The next practical route may be a guarded Preview Posting-only rerun solely to capture immediate Error Messages details."
+  ],
+  "notProved": [
+    "The concrete original Error Messages row text is still not known.",
+    "No setup correction has been identified.",
+    "No Fixed Asset G/L Journal posting has been executed.",
+    "No FA Ledger Entry or posted G/L Entry trace exists.",
+    "No German final proof exists."
+  ],
+  "decision": {
+    "blockerClass": "transient-preview-error-detail-lost",
+    "setupChangeAllowed": false,
+    "postingAllowed": false,
+    "previewRetryAllowed": true,
+    "previewRetryScope": "one guarded Preview Posting-only rerun that immediately captures Error Messages DOM rows/text before closing or navigating away",
+    "requiredStops": [
+      "wrong instance or company",
+      "Preview Posting menuitem not exactly unique",
+      "Post or Post and Print candidate selected",
+      "posting confirmation dialog appears",
+      "OK/Yes confirmation would be required",
+      "journal line or setup change would be needed"
+    ]
+  },
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-197/",
+    ".agent/state/cases/fixedassets-197-fa-gl-journal-preview-blocker-decision.json",
+    ".agent/state/cases/fixedassets-198-fa-gl-journal-immediate-preview-error-capture.json",
+    ".agent/state/current.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/model_usage_log.jsonl",
+    "playwright/projects/fibu-book5/BC-PLAYWRIGHT-PATTERNS.md",
+    "playwright/projects/fibu-book5/BC-PAGE-ACTION-MAP.json"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-197/FIXEDASSETS-197-decision.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-197/FIXEDASSETS-197-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-194/FIXEDASSETS-194-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-196/FIXEDASSETS-196-result.json"
+  ],
+  "warnings": [
+    "Preview retry is authorized only for immediate error-detail capture, not for posting.",
+    "No setup cause may be claimed from an empty Error Messages list.",
+    "No German final proof."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-198-FA-GL-JOURNAL-IMMEDIATE-PREVIEW-ERROR-CAPTURE",
+      "active_case_file": ".agent/state/cases/fixedassets-198-fa-gl-journal-immediate-preview-error-capture.json",
+      "lastReferenceCase": "FIXEDASSETS-197-FA-GL-JOURNAL-PREVIEW-BLOCKER-DECISION",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-197-fa-gl-journal-preview-blocker-decision.json",
+      "requiresStrongModel": false,
+      "nextStep": "FIXEDASSETS-198: run one guarded Preview Posting-only rerun and capture Error Messages details immediately after the click; no posting, setup change or journal edit."
+    },
+    "activeCase": {
+      "status": "accepted-local-decision",
+      "lastResult": {
+        "status": "observed",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-197/FIXEDASSETS-197-result.json",
+        "summary": "FA-197 classifies FA-196 as a transient Error Messages blocker: the direct later page 700 route is read-only reachable but empty, so no setup cause can be inferred. The next safe practical route is one guarded Preview Posting-only rerun that captures Error Messages rows immediately after the Preview click; posting and setup remain locked."
+      },
+      "nextSafeAction": "Run FIXEDASSETS-198 guarded immediate Preview-error detail capture."
+    }
+  },
+  "flags": {
+    "localOnly": true,
+    "noBusinessCentralRun": true,
+    "noPlaywrightRun": true,
+    "noPreviewRetry": true,
+    "noPost": true,
+    "noSetupChange": true,
+    "noJournalEdit": true,
+    "noBookChange": true
+  },
+  "nextStep": "FIXEDASSETS-198: run one guarded Preview Posting-only rerun and capture Error Messages details immediately after the click; no posting, setup change or journal edit."
+}
