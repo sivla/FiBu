@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-199-preview-error-review-result",
+  "caseId": "FIXEDASSETS-199-FA-GL-JOURNAL-IMMEDIATE-PREVIEW-ERROR-REVIEW",
+  "source": "local-preview-error-review",
+  "resultStatus": "observed",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "proved": [
+    "FA-198 captured immediate Preview Posting Error Messages details without posting.",
+    "The affected record is Gen. Journal Line ASSETS / DEFAULT / 10000.",
+    "The concrete Business Central error says FA Posting Type must not be blank in Gen. Journal Line.",
+    "Microsoft Learn documents that manual acquisition in Fixed Asset G/L Journals requires FA Posting Type = Acquisition Cost.",
+    "The Batch Name hint is treated as UI/detail context because the record already identifies template ASSETS and batch DEFAULT.",
+    "No setup cause is proven by FA-198.",
+    "No posting is authorized by FA-199."
+  ],
+  "notProved": [
+    "FA Posting Type = Acquisition Cost is not yet set on the journal line.",
+    "The corrected journal line has not yet been reopened and proven.",
+    "Preview Posting after correcting FA Posting Type has not yet been rerun.",
+    "No FA Ledger Entry or posted G/L Entry trace exists.",
+    "No German final proof exists."
+  ],
+  "decision": {
+    "blockerClass": "journal-line-data-missing-fa-posting-type",
+    "primaryCause": "FA Posting Type is blank on Gen. Journal Line ASSETS / DEFAULT / 10000.",
+    "secondarySignal": "Batch Name picker hint is UI/details context, not the primary blocker.",
+    "setupChangeAllowed": false,
+    "postingAllowed": false,
+    "previewAllowed": false,
+    "journalDataCorrectionAllowed": true,
+    "nextCase": "FIXEDASSETS-200-FA-GL-JOURNAL-FA-POSTING-TYPE-ACQUISITION-PREFLIGHT",
+    "nextCaseScope": "Set only FA Posting Type = Acquisition Cost on the existing ASSETS/DEFAULT/10000 journal line and prove persistence after reopen. No Preview Posting and no Post."
+  },
+  "sources": [
+    {
+      "title": "Acquire fixed assets - Business Central",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/business-central/fa-how-acquire",
+      "supports": "Manual acquisition with Fixed Asset G/L Journal requires FA Posting Type = Acquisition Cost."
+    }
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-199/",
+    ".agent/state/cases/fixedassets-199-fa-gl-journal-immediate-preview-error-review.json",
+    ".agent/state/cases/fixedassets-200-fa-gl-journal-fa-posting-type-acquisition-preflight.json",
+    ".agent/state/current.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/model_usage_log.jsonl",
+    "playwright/projects/fibu-book5/BC-PLAYWRIGHT-PATTERNS.md",
+    "playwright/projects/fibu-book5/BC-PAGE-ACTION-MAP.json"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-199/FIXEDASSETS-199-decision.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-199/FIXEDASSETS-199-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-198/FIXEDASSETS-198-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-198/010-immediate-preview-error-capture.json"
+  ],
+  "warnings": [
+    "Journal-data correction is not posting permission.",
+    "Do not run Preview Posting in the next case.",
+    "Do not infer German final accounting proof from this CRONUS-USA laboratory review."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-200-FA-GL-JOURNAL-FA-POSTING-TYPE-ACQUISITION-PREFLIGHT",
+      "active_case_file": ".agent/state/cases/fixedassets-200-fa-gl-journal-fa-posting-type-acquisition-preflight.json",
+      "lastReferenceCase": "FIXEDASSETS-199-FA-GL-JOURNAL-IMMEDIATE-PREVIEW-ERROR-REVIEW",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-199-fa-gl-journal-immediate-preview-error-review.json",
+      "requiresStrongModel": false,
+      "nextStep": "FIXEDASSETS-200: set only FA Posting Type = Acquisition Cost on existing ASSETS/DEFAULT/10000 journal line and prove persistence after reopen; no Preview Posting and no Post."
+    },
+    "activeCase": {
+      "status": "accepted-local-decision",
+      "lastResult": {
+        "status": "observed",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-199/FIXEDASSETS-199-result.json",
+        "summary": "FA-199 classifies FA-198 as a journal-line data blocker: FA Posting Type is blank. Next case may correct only FA Posting Type to Acquisition Cost and prove persistence, without Preview or Post."
+      },
+      "nextSafeAction": "Run FIXEDASSETS-200 guarded FA Posting Type acquisition-cost preflight."
+    }
+  },
+  "flags": {
+    "localOnly": true,
+    "noBusinessCentralRun": true,
+    "noPlaywrightRun": true,
+    "noPreviewPosting": true,
+    "noPost": true,
+    "noSetupChange": true,
+    "noJournalEdit": true,
+    "noBookChange": true
+  },
+  "nextStep": "FIXEDASSETS-200: set only FA Posting Type = Acquisition Cost on existing ASSETS/DEFAULT/10000 journal line and prove persistence after reopen; no Preview Posting and no Post."
+}
