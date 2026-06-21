@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-21T15:05:00.000Z",
+  "updatedAt": "2026-06-21T15:25:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "fixedassets",
-  "activeCase": "FIXEDASSETS-180-JOURNAL-GRID-GEOMETRY-CANDIDATE-READONLY",
-  "active_case_file": ".agent/state/cases/fixedassets-180-journal-grid-geometry-candidate-readonly.json",
-  "lastReferenceCase": "FIXEDASSETS-179-JOURNAL-GRID-GEOMETRY-CANDIDATE-HELPER",
-  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-179-journal-grid-geometry-candidate-helper.json",
+  "activeCase": "FIXEDASSETS-181-JOURNAL-GRID-GEOMETRY-CANDIDATE-REVIEW",
+  "active_case_file": ".agent/state/cases/fixedassets-181-journal-grid-geometry-candidate-review.json",
+  "lastReferenceCase": "FIXEDASSETS-180-JOURNAL-GRID-GEOMETRY-CANDIDATE-READONLY",
+  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-180-journal-grid-geometry-candidate-readonly.json",
   "mode": "token-efficient-autopilot-tooling-bootstrap",
-  "requiresStrongModel": false,
+  "requiresStrongModel": true,
   "requiredPreflightChecks": [
     "agent:preflight",
     "agent:state:validate",
@@ -19,10 +19,8 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "open-business-central",
-    "run-playwright",
-    "read-current-journal-line-grid",
-    "capture-readonly-evidence",
+    "read-local-evidence",
+    "review-helper-output",
     "write-result-json",
     "update-state"
   ],
@@ -33,6 +31,8 @@
     "fake-evidence",
     "book-claim-without-evidence",
     "api-shortcut-without-explicit-case-permission",
+    "open-business-central",
+    "run-playwright",
     "book-edit",
     "company-switch",
     "create-journal-lines",
@@ -47,7 +47,7 @@
     "delete-record",
     "click-ok-on-risk-dialog"
   ],
-  "nextStep": "FIXEDASSETS-180: run one read-only live FA G/L Journal probe with the geometry/header-order helper. No value entry, no Preview Posting, no Post.",
+  "nextStep": "FIXEDASSETS-181: locally review FA-180 geometry/header-order candidate evidence before any value entry, Preview Posting or Post.",
   "subagentPlanPolicy": {
     "default": "optional",
     "execution": "plan-only-no-subagents-spawned",
