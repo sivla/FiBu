@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-21T14:05:00.000Z",
+  "updatedAt": "2026-06-21T14:20:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "fixedassets",
-  "activeCase": "FIXEDASSETS-177-FA-GL-JOURNAL-REFINED-CANDIDATE-READONLY",
-  "active_case_file": ".agent/state/cases/fixedassets-177-fa-gl-journal-refined-candidate-readonly.json",
-  "lastReferenceCase": "FIXEDASSETS-176-JOURNAL-GRID-CANDIDATE-HELPER-REFINEMENT",
-  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-176-journal-grid-candidate-helper-refinement.json",
+  "activeCase": "FIXEDASSETS-178-FA-GL-JOURNAL-REFINED-CANDIDATE-READONLY-REVIEW",
+  "active_case_file": ".agent/state/cases/fixedassets-178-fa-gl-journal-refined-candidate-readonly-review.json",
+  "lastReferenceCase": "FIXEDASSETS-177-FA-GL-JOURNAL-REFINED-CANDIDATE-READONLY",
+  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-177-fa-gl-journal-refined-candidate-readonly.json",
   "mode": "token-efficient-autopilot-tooling-bootstrap",
-  "requiresStrongModel": false,
+  "requiresStrongModel": true,
   "requiredPreflightChecks": [
     "agent:preflight",
     "agent:state:validate",
@@ -19,10 +19,8 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "open-business-central",
-    "run-playwright",
-    "read-current-journal-line-grid",
-    "capture-readonly-evidence",
+    "read-local-evidence",
+    "review-helper-output",
     "write-result-json",
     "update-state"
   ],
@@ -33,6 +31,8 @@
     "fake-evidence",
     "book-claim-without-evidence",
     "api-shortcut-without-explicit-case-permission",
+    "open-business-central",
+    "run-playwright",
     "book-edit",
     "company-switch",
     "create-journal-lines",
@@ -47,7 +47,7 @@
     "delete-record",
     "click-ok-on-risk-dialog"
   ],
-  "nextStep": "FIXEDASSETS-177: run one read-only FA G/L Journal helper probe with the refined row-anchored candidate logic. No value entry, no Preview Posting, no Post.",
+  "nextStep": "FIXEDASSETS-178: locally review FA-177 evidence and decide whether the next step is a helper improvement for BC virtualized journal grids. Do not enter values, Preview Posting or Post.",
   "subagentPlanPolicy": {
     "default": "optional",
     "execution": "plan-only-no-subagents-spawned",

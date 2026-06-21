@@ -247,3 +247,9 @@ Regeln:
 - Stammdaten- und Setup-Fits, sobald daraus Screenshots, Lernwert oder Buchanleitung entstehen.
 - Buchungen, Zahlungen, Ausgleich, Journale, Preview Posting, Posting Dialoge, Apply Entries und Fehlerbehebung.
 - Jeder Schritt, bei dem ein Anfaenger verstehen soll: Was sehe ich, was tue ich, warum reagiert BC so, woran erkenne ich den Erfolg?
+
+## Journal Grid Candidate Blocking
+
+- FA-177 belegt eine wichtige Sicherheitsgrenze fuer virtualisierte BC-Journalraster: Ein sichtbarer Zielkopf wie `Bal. Account No.` reicht nicht, um eine Werteingabe freizugeben.
+- Wenn Control-Text nicht eindeutig an einer fachlichen Zeile haengt oder durch Optionslisten-Text verunreinigt ist, muss der Helper mit `missing-row-anchor` blockieren, auch wenn zielartig wirkende Controls sichtbar sind.
+- Die naechste Helper-Verbesserung sollte einen stabilen Feldkandidaten aus Grid-Geometrie/Header-Reihenfolge plus Zeilenkontext ableiten und danach erneut read-only laufen, bevor irgendein Journalwert eingetragen wird.

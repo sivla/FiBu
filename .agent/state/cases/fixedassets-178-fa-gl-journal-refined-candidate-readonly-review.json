@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-178-FA-GL-JOURNAL-REFINED-CANDIDATE-READONLY-REVIEW",
+  "status": "planned",
+  "workType": "local-evidence-review",
+  "taskClass": "judge_work",
+  "requiresStrongModel": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Review the FA-177 read-only refined journal-grid helper probe before any FA G/L Journal value entry, Preview Posting or posting is considered.",
+  "inputs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-177/FIXEDASSETS-177-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-177/010-refined-candidate-readonly.json",
+    "playwright/core/bc/journal-grid-candidates.ts"
+  ],
+  "allowedActions": [
+    "read-local-evidence",
+    "review-helper-output",
+    "write-result-json",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "open-business-central",
+    "run-playwright",
+    "create-journal-lines",
+    "enter-82000-in-bal-account-no",
+    "enter-K30000-in-bal-account-no",
+    "preview-posting",
+    "post",
+    "setup-change",
+    "book-edit"
+  ],
+  "acceptanceCriteria": [
+    "No BC or Playwright execution.",
+    "Decide whether FA-177 is only blocker evidence or can unlock a later guarded value-entry case.",
+    "Do not unlock Preview Posting or Post from FA-177 alone.",
+    "If helper output is ambiguous, select another read-only/helper improvement step."
+  ],
+  "nextSafeAction": "Review FA-177 evidence locally; keep value entry, Preview Posting and Post locked."
+}
