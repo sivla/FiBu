@@ -1,0 +1,114 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-176-journal-grid-candidate-helper-refinement-result",
+  "caseId": "FIXEDASSETS-176-JOURNAL-GRID-CANDIDATE-HELPER-REFINEMENT",
+  "source": "local-helper-refinement",
+  "resultStatus": "observed",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-medium",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "proved": [
+    "The journal-grid helper now treats expectedValueVisible as row-anchored candidate evidence, not global snapshot evidence.",
+    "The selftest rejects 82000 when it is visible outside the target row.",
+    "The selftest accepts already-visible only when 82000 appears in a row-anchored Bal. Account No. candidate.",
+    "FA-172 remains blocked because no row-anchored editable Bal. Account No. candidate exists."
+  ],
+  "notProved": [
+    "No Business Central live run was executed.",
+    "No Playwright browser run was executed.",
+    "Bal. Account No. = 82000 was not entered or proven visible in Business Central.",
+    "No Preview Posting result.",
+    "No posting result.",
+    "No German final proof."
+  ],
+  "changedFiles": [
+    "playwright/core/bc/journal-grid-candidates.ts",
+    "playwright/core/bc/journal-grid-candidates.selftest.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-176/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-176/FIXEDASSETS-176-helper-refinement.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-176/FIXEDASSETS-176-result.json",
+    ".agent/state/cases/fixedassets-176-journal-grid-candidate-helper-refinement.json",
+    ".agent/state/cases/fixedassets-177-fa-gl-journal-refined-candidate-readonly.json",
+    ".agent/state/current.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/coverage_state.json",
+    ".agent/capabilities.json",
+    "playwright/projects/fibu-book5/BC-PLAYWRIGHT-PATTERNS.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-176/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-176/FIXEDASSETS-176-helper-refinement.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-176/FIXEDASSETS-176-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-175/FIXEDASSETS-175-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-172/010-balaccount-82000-preflight-signals.json"
+  ],
+  "warnings": [
+    "This is local helper evidence, not live BC evidence.",
+    "Do not enter 82000 until a later live read-only helper probe proves a safe row/column candidate.",
+    "Do not open Preview Posting or Post from this case."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-177-FA-GL-JOURNAL-REFINED-CANDIDATE-READONLY",
+      "active_case_file": ".agent/state/cases/fixedassets-177-fa-gl-journal-refined-candidate-readonly.json",
+      "lastReferenceCase": "FIXEDASSETS-176-JOURNAL-GRID-CANDIDATE-HELPER-REFINEMENT",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-176-journal-grid-candidate-helper-refinement.json",
+      "requiresStrongModel": false,
+      "nextStep": "FIXEDASSETS-177: run one read-only FA G/L Journal helper probe with the refined row-anchored candidate logic; do not enter values."
+    },
+    "lastRunSummary": {
+      "schemaVersion": 1,
+      "runId": "FIXEDASSETS-176-JOURNAL-GRID-CANDIDATE-HELPER-REFINEMENT",
+      "date": "2026-06-21",
+      "workType": "local-playwright-helper-refinement",
+      "branch": "codex/token-efficient-autopilot-state",
+      "instance": "MCP_1_20260210",
+      "company": "RM-DEMO",
+      "bcRun": false,
+      "playwrightRun": false,
+      "posted": false,
+      "previewPosting": false,
+      "setupChanged": false,
+      "companySwitched": false,
+      "apiShortcut": false,
+      "bookChanged": false,
+      "resultStatus": "observed",
+      "summary": "FA-176 refined the journal-grid helper so already-visible target values require row-anchored target column evidence.",
+      "nextStep": "Run FIXEDASSETS-177 read-only helper probe; no value entry."
+    },
+    "activeCase": {
+      "status": "observed-local-helper-refined",
+      "lastResult": {
+        "status": "observed",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-176/FIXEDASSETS-176-result.json",
+        "summary": "Journal-grid candidate helper now rejects globally visible 82000 unless it is row-anchored to the target Bal. Account No. candidate."
+      },
+      "nextSafeAction": "Run FIXEDASSETS-177 read-only helper probe; do not enter values."
+    },
+    "coverage": {
+      "areas": {
+        "fixedassets": {
+          "currentBlock": "fa-gl-journal-refined-candidate-readonly",
+          "latestPracticalCase": "FIXEDASSETS-172",
+          "latestLocalHelperCase": "FIXEDASSETS-176",
+          "nextCase": "FIXEDASSETS-177"
+        }
+      }
+    }
+  },
+  "flags": {
+    "noBcExecution": true,
+    "noPlaywrightExecution": true,
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "nextStep": "FIXEDASSETS-177: run one read-only FA G/L Journal helper probe with the refined row-anchored candidate logic; do not enter values."
+}

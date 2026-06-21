@@ -49,6 +49,43 @@ assert.equal(safeSynthetic.success, true);
 assert.equal(safeSynthetic.status, 'single-editable-candidate');
 assert.equal(safeSynthetic.editableCandidates.length, 1);
 
+const valueVisibleOutsideTargetRow = analyzeJournalCellCandidates(
+  {
+    headers: ['Document No.', 'Account No.', 'Depreciation Book Code', 'Bal. Account No.'],
+    rows: [
+      'G05001 Fixed Asset FA-CNC-01 HGB Acquisition Cost CNC Maschine FRA',
+      'G99999 Fixed Asset FA-OTHER HGB Bal. Account No. 82000',
+    ],
+    controls: [],
+  },
+  target,
+);
+assert.equal(valueVisibleOutsideTargetRow.success, false);
+assert.equal(valueVisibleOutsideTargetRow.status, 'blocked-no-editable-candidate');
+assert.equal(valueVisibleOutsideTargetRow.visibleSignals.expectedValueVisible, false);
+
+const rowAnchoredAlreadyVisible = analyzeJournalCellCandidates(
+  {
+    headers: ['Document No.', 'Account No.', 'Depreciation Book Code', 'Bal. Account No.'],
+    rows: ['G05001 Fixed Asset FA-CNC-01 HGB Acquisition Cost CNC Maschine FRA'],
+    controls: [
+      {
+        index: 5,
+        ariaLabel: 'Bal. Account No.',
+        rowText: 'G05001 Fixed Asset FA-CNC-01 HGB Acquisition Cost CNC Maschine FRA',
+        cellText: 'Bal. Account No. 82000',
+        value: '82000',
+        readOnly: true,
+        disabled: false,
+      },
+    ],
+  },
+  target,
+);
+assert.equal(rowAnchoredAlreadyVisible.success, true);
+assert.equal(rowAnchoredAlreadyVisible.status, 'already-visible');
+assert.equal(rowAnchoredAlreadyVisible.visibleSignals.expectedValueVisible, true);
+
 const forbiddenSynthetic = analyzeJournalCellCandidates(
   {
     headers: ['Bal. Account No.'],

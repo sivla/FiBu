@@ -134,8 +134,6 @@ export function analyzeJournalCellCandidates(
     headers.some((header) => includesAnySignal(header, target.columnSignals)) ||
     controls.some((control) => includesAnySignal(controlLabelText(control), target.columnSignals));
   const forbiddenSignalsVisible = (target.forbiddenSignals ?? []).filter((signal) => includesSignal(combined, signal));
-  const expectedValueVisible = target.expectedValue ? includesSignal(combined, target.expectedValue) : false;
-
   const candidates = controls
     .map<JournalCellCandidate>((control) => {
       const labelText = controlLabelText(control);
@@ -175,12 +173,20 @@ export function analyzeJournalCellCandidates(
     .filter((candidate) => candidate.score >= 9);
 
   const editableCandidates = candidates.filter((candidate) => !candidate.readOnly && !candidate.disabled);
+  const expectedValueCandidates = target.expectedValue
+    ? candidates.filter(
+        (candidate) =>
+          includesSignal(candidate.valueText, target.expectedValue ?? '') ||
+          includesSignal(candidate.cellText, target.expectedValue ?? ''),
+      )
+    : [];
+  const expectedValueVisible = expectedValueCandidates.length > 0;
   const blockedBy: string[] = [];
   if (forbiddenSignalsVisible.length > 0) blockedBy.push(`forbidden-signals-visible:${forbiddenSignalsVisible.join(',')}`);
   if (rowAnchors.length === 0) blockedBy.push('missing-row-anchor');
   if (!columnSignalVisible) blockedBy.push('missing-column-signal');
   if (candidates.length === 0) blockedBy.push('no-control-candidate');
-  if (editableCandidates.length === 0) blockedBy.push('no-editable-control-candidate');
+  if (!expectedValueVisible && editableCandidates.length === 0) blockedBy.push('no-editable-control-candidate');
   if (editableCandidates.length > 1) blockedBy.push(`multiple-editable-control-candidates:${editableCandidates.length}`);
 
   let status: JournalCellCandidateAnalysis['status'] = 'blocked-no-editable-candidate';
