@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-170-FA-BALACCOUNT-82000-SETUP-FIT",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "ui-first-setup-fit",
+  "taskClass": "wizard_work",
+  "requiresStrongModel": false,
+  "goal": "Set MACHINES / Acquisition Cost Bal. Acc. to 82000 in a controlled UI-first laboratory setup-fit and prove the before/after state.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-169/FIXEDASSETS-169-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-168/FIXEDASSETS-168-result.json",
+    "playwright/projects/fibu-book5/img/fixedassets-168-010-machines-balaccount-field-context.png",
+    "playwright/projects/fibu-book5/img/fixedassets-168-020-fa-posting-group-patterns-readonly.png"
+  ],
+  "allowedActions": [
+    "open-business-central",
+    "run-playwright",
+    "verify-instance-and-company",
+    "open-fa-posting-group-card-machines",
+    "capture-before-screenshot",
+    "set-acquisition-cost-bal-account-to-82000",
+    "save-or-leave-field-by-ui",
+    "reopen-fa-posting-group-card-machines",
+    "capture-after-screenshot",
+    "write-result-json",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "company-switch",
+    "api-shortcut",
+    "book-edit",
+    "enter-amount",
+    "enter-balancing-account",
+    "create-journal-lines",
+    "delete-record",
+    "cleanup",
+    "preview-posting",
+    "post",
+    "click-ok-on-risk-dialog"
+  ],
+  "target": {
+    "page": "FA Posting Group Card",
+    "postingGroup": "MACHINES",
+    "field": "Acquisition Cost Bal. Acc.",
+    "value": "82000",
+    "scope": "CRONUS-USA laboratory setup-fit only"
+  },
+  "safetyGates": [
+    "Abort if URL does not contain MCP_1_20260210.",
+    "Abort if company is not RM-DEMO.",
+    "Abort if target page or MACHINES context is not visible.",
+    "Capture before-state showing empty or current Acquisition Cost Bal. Acc.",
+    "Only set Acquisition Cost Bal. Acc. to 82000.",
+    "Do not enter journal values.",
+    "Do not open Preview Posting.",
+    "Do not click Post.",
+    "Reopen or refresh the card and capture after-state showing 82000."
+  ],
+  "acceptanceCriteria": [
+    "Before evidence shows MACHINES / Acquisition Cost Bal. Acc. before the fit.",
+    "After evidence shows MACHINES / Acquisition Cost Bal. Acc. = 82000.",
+    "Result explicitly states this is CRONUS-USA laboratory setup, not German final account proof.",
+    "No journal amount, no Preview Posting and no Post occurs."
+  ],
+  "nextSafeAction": "Run the controlled setup-fit in Business Central only if the test can prove target page, target field and target value before any write."
+}

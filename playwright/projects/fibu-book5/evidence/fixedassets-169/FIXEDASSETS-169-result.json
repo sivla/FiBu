@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-fa-balaccount-lookup-result-decision",
+  "caseId": "FIXEDASSETS-169-FA-BALACCOUNT-LOOKUP-RESULT-DECISION",
+  "source": "local-judge",
+  "resultStatus": "setup-fit-candidate-unlocked",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "proved": [
+    "FA-168 proved MACHINES / Acquisition Cost Bal. Acc. is visible but empty.",
+    "FA-168 proved EQUIPMENT / Acquisition Cost Bal. Acc. = 82000 as field-local pattern context.",
+    "82000 is stronger than the previously rejected Chart of Accounts-only candidates because it appears in the same balancing-account field type.",
+    "A controlled UI-first setup-fit case may be planned for MACHINES / Acquisition Cost Bal. Acc. = 82000."
+  ],
+  "notProved": [
+    "No setup value has been written to MACHINES yet.",
+    "82000 is not a German final account decision.",
+    "No FA G/L Journal value-entry readiness.",
+    "No Preview Posting result.",
+    "No posting result.",
+    "No German final proof."
+  ],
+  "decision": {
+    "targetPostingGroup": "MACHINES",
+    "targetField": "Acquisition Cost Bal. Acc.",
+    "candidateAccount": "82000",
+    "candidateSource": "EQUIPMENT / Acquisition Cost Bal. Acc. field-local pattern from FA-168",
+    "setupFitUnlocked": true,
+    "setupFitScope": "Exactly one UI-first laboratory setup-fit attempt for MACHINES / Acquisition Cost Bal. Acc. = 82000 with before/after evidence.",
+    "valueEntryUnlocked": false,
+    "previewPostingUnlocked": false,
+    "postingUnlocked": false
+  },
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-169/",
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-169-fa-balaccount-lookup-result-decision.json",
+    ".agent/state/cases/fixedassets-170-fa-balaccount-82000-setup-fit.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/model_usage_log.jsonl",
+    "playwright/projects/fibu-book5/CURRENT-STATE.md",
+    "playwright/projects/fibu-book5/LAB-FIT-STATUS.md",
+    "playwright/projects/fibu-book5/BOOK-CLICK-GUIDE-COVERAGE.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-169/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-169/FIXEDASSETS-169-decision.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-169/FIXEDASSETS-169-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-168/FIXEDASSETS-168-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-168/030-existing-patterns-readonly.json",
+    "playwright/projects/fibu-book5/img/fixedassets-168-010-machines-balaccount-field-context.png",
+    "playwright/projects/fibu-book5/img/fixedassets-168-020-fa-posting-group-patterns-readonly.png"
+  ],
+  "warnings": [
+    "Do not treat 82000 as a final German account.",
+    "Do not enter FA G/L Journal values until the setup-fit is executed and reviewed.",
+    "Do not open Preview Posting or Post in the setup-fit case."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-170-FA-BALACCOUNT-82000-SETUP-FIT",
+      "active_case_file": ".agent/state/cases/fixedassets-170-fa-balaccount-82000-setup-fit.json",
+      "lastReferenceCase": "FIXEDASSETS-169-FA-BALACCOUNT-LOOKUP-RESULT-DECISION",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-169-fa-balaccount-lookup-result-decision.json",
+      "requiresStrongModel": false,
+      "nextStep": "FIXEDASSETS-170: controlled UI-first setup-fit for MACHINES / Acquisition Cost Bal. Acc. = 82000 with before/after evidence; no journal values, no Preview Posting and no Post."
+    },
+    "lastRunSummary": {
+      "schemaVersion": 1,
+      "runId": "FIXEDASSETS-169-FA-BALACCOUNT-LOOKUP-RESULT-DECISION",
+      "date": "2026-06-21",
+      "workType": "fa-balaccount-lookup-result-decision",
+      "taskClass": "judge_work",
+      "modelClass": "gpt-5.5-low",
+      "branch": "codex/token-efficient-autopilot-state",
+      "instance": "MCP_1_20260210",
+      "company": "RM-DEMO",
+      "bcRun": false,
+      "playwrightRun": false,
+      "posted": false,
+      "previewPosting": false,
+      "setupChanged": false,
+      "companySwitched": false,
+      "apiShortcut": false,
+      "bookChanged": false,
+      "dataChanged": false,
+      "resultStatus": "setup-fit-candidate-unlocked",
+      "summary": "82000 is accepted as a CRONUS-USA laboratory candidate for exactly one later UI-first setup-fit of MACHINES / Acquisition Cost Bal. Acc.; no journal values, Preview Posting or Post are unlocked.",
+      "nextStep": "Run FIXEDASSETS-170 setup-fit with before/after evidence only."
+    },
+    "activeCase": {
+      "status": "decided",
+      "lastResult": {
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-169/FIXEDASSETS-169-result.json",
+        "decision": "setup-fit-candidate-unlocked",
+        "summary": "82000 may be used in one controlled setup-fit attempt for MACHINES / Acquisition Cost Bal. Acc.; no posting route unlocked."
+      },
+      "nextSafeAction": "Run FIXEDASSETS-170 controlled setup-fit only."
+    },
+    "coverage": {
+      "areas": {
+        "fixedassets": {
+          "currentBlock": "fa-balaccount-82000-setup-fit",
+          "latestDecisionCase": "FIXEDASSETS-169-FA-BALACCOUNT-LOOKUP-RESULT-DECISION",
+          "nextCase": "FIXEDASSETS-170-FA-BALACCOUNT-82000-SETUP-FIT",
+          "bookScreenshots": {
+            "acquisitionPostingTrace": "fieldlocal-pattern-82000-setup-fit-candidate"
+          }
+        }
+      },
+      "fixedAssets": {
+        "faCnc01": {
+          "nextAcquisitionRoute": "fa-balaccount-82000-setup-fit",
+          "acquisitionUnlocked": false
+        }
+      }
+    }
+  },
+  "flags": {
+    "noBcRun": true,
+    "noPlaywrightRun": true,
+    "noValueEntry": true,
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "nextStep": "FIXEDASSETS-170: controlled UI-first setup-fit for MACHINES / Acquisition Cost Bal. Acc. = 82000 with before/after evidence; no journal values, no Preview Posting and no Post."
+}
