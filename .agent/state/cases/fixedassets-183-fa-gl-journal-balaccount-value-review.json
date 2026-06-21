@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-183-FA-GL-JOURNAL-BALACCOUNT-VALUE-REVIEW",
+  "status": "planned",
+  "workType": "local-evidence-review",
+  "taskClass": "judge_work",
+  "requiresStrongModel": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Review FA-182 guarded value preflight evidence before any Preview Posting or posting is considered.",
+  "inputs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-182/FIXEDASSETS-182-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-182/010-balaccount-82000-value-preflight.json",
+    "playwright/projects/fibu-book5/img/fixedassets-182-010-balaccount-82000-value-preflight.png"
+  ],
+  "allowedActions": [
+    "read-local-evidence",
+    "review-helper-output",
+    "write-result-json",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "open-business-central",
+    "run-playwright",
+    "create-journal-lines",
+    "enter-82000-in-bal-account-no",
+    "enter-K30000-in-bal-account-no",
+    "preview-posting",
+    "post",
+    "setup-change",
+    "book-edit"
+  ],
+  "acceptanceCriteria": [
+    "No BC or Playwright execution.",
+    "Decide whether FA-182 proves Bal. Account No. = 82000 in the target journal candidate.",
+    "Do not unlock Preview Posting or Post unless FA-182 gives a visible value proof and no blocker.",
+    "If value proof is accepted, select a later preview-only case, not posting."
+  ],
+  "nextSafeAction": "Review FA-182 evidence locally; keep Preview Posting and Post locked until reviewed."
+}
