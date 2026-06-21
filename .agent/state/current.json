@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-21T12:35:00.000Z",
+  "updatedAt": "2026-06-21T12:55:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "fixedassets",
-  "activeCase": "FIXEDASSETS-173-FA-GL-JOURNAL-BALACCOUNT-82000-RESULT-REVIEW",
-  "active_case_file": ".agent/state/cases/fixedassets-173-fa-gl-journal-balaccount-82000-result-review.json",
-  "lastReferenceCase": "FIXEDASSETS-172-FA-GL-JOURNAL-BALACCOUNT-82000-PREFLIGHT",
-  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-172-fa-gl-journal-balaccount-82000-preflight.json",
+  "activeCase": "FIXEDASSETS-174-BC-LINES-JOURNAL-CELL-CANDIDATE-HELPER",
+  "active_case_file": ".agent/state/cases/fixedassets-174-bc-lines-journal-cell-candidate-helper.json",
+  "lastReferenceCase": "FIXEDASSETS-173-FA-GL-JOURNAL-BALACCOUNT-82000-RESULT-REVIEW",
+  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-173-fa-gl-journal-balaccount-82000-result-review.json",
   "mode": "token-efficient-autopilot-tooling-bootstrap",
-  "requiresStrongModel": true,
+  "requiresStrongModel": false,
   "requiredPreflightChecks": [
     "agent:preflight",
     "agent:state:validate",
@@ -20,9 +20,10 @@
   ],
   "allowedActions": [
     "read-local-evidence",
-    "review-screenshot-quality",
-    "classify-ui-blocker",
-    "decide-next-helper-or-route",
+    "inspect-existing-playwright-helpers",
+    "update-patterns-or-capability",
+    "small-helper-code-change-if-low-risk",
+    "add-small-local-selftest-if-helper-code-changes",
     "write-result-json",
     "update-state"
   ],
@@ -48,7 +49,7 @@
     "click-ok-on-risk-dialog",
     "enter-K30000-in-bal-account-no"
   ],
-  "nextStep": "FIXEDASSETS-173: locally review the FA-172 guarded journal preflight result. FA-172 proved the journal/page context and Bal. Account Type = G/L Account, but blocked before Bal. Account No. = 82000 because no editable Bal. Account No. candidate was found. Decide whether the next safe step is a BC Lines/Subform helper improvement or a different UI route; no BC, no Playwright, no Preview Posting and no Post in this review.",
+  "nextStep": "FIXEDASSETS-174: create a small local Playwright helper/pattern step for BC Lines/Subform journal cell candidates before any further FA G/L Journal live retry. No BC, no Playwright, no Preview Posting and no Post in the helper-planning step.",
   "subagentPlanPolicy": {
     "default": "optional",
     "execution": "plan-only-no-subagents-spawned",
