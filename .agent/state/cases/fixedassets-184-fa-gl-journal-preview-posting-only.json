@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-184-FA-GL-JOURNAL-PREVIEW-POSTING-ONLY",
+  "status": "planned",
+  "workType": "playwright-preview-only",
+  "taskClass": "wizard_work",
+  "requiresStrongModel": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Open Preview Posting for the existing FA-CNC-01 Fixed Asset G/L Journal line with Bal. Account No. = 82000, capture preview evidence, close the preview and do not post.",
+  "inputs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-183/FIXEDASSETS-183-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-182/FIXEDASSETS-182-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-182/010-balaccount-82000-value-preflight.json"
+  ],
+  "allowedActions": [
+    "open-business-central",
+    "run-playwright",
+    "read-current-journal-grid",
+    "confirm-bal-account-no-82000-visible",
+    "preview-posting",
+    "capture-preview-evidence",
+    "close-preview",
+    "write-result-json",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "company-switch",
+    "create-journal-lines",
+    "delete-record",
+    "enter-82000-in-bal-account-no",
+    "enter-K30000-in-bal-account-no",
+    "post",
+    "setup-change",
+    "book-edit",
+    "click-ok-on-post-dialog"
+  ],
+  "acceptanceCriteria": [
+    "Confirm URL contains MCP_1_20260210 and RM-DEMO before Preview Posting.",
+    "Open only the existing Fixed Asset G/L Journals context.",
+    "Confirm the existing line still shows Bal. Account No. = 82000.",
+    "Open Preview Posting only.",
+    "Capture visible preview rows or a compact blocked error if Preview Posting fails.",
+    "Close/cancel the preview safely.",
+    "Do not post.",
+    "Do not change setup.",
+    "Do not create or delete journal lines."
+  ],
+  "stopConditions": [
+    "Instance or company is not confirmed.",
+    "Fixed Asset G/L Journals context is not visible.",
+    "Bal. Account No. = 82000 is not visible/current.",
+    "A posting confirmation dialog appears.",
+    "Any dialog offers only Post/Yes/OK without a safe Cancel/Close route.",
+    "A setup or missing-data error appears before preview rows."
+  ],
+  "nextSafeAction": "Run exactly one Preview Posting-only proof; no Post."
+}

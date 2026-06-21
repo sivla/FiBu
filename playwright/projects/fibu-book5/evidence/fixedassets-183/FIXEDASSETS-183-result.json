@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-183-balaccount-value-review-result",
+  "caseId": "FIXEDASSETS-183-FA-GL-JOURNAL-BALACCOUNT-VALUE-REVIEW",
+  "source": "local-evidence-review",
+  "resultStatus": "observed",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "proved": [
+    "FA-182 stayed in MCP_1_20260210 and RM-DEMO.",
+    "FA-182 opened Fixed Asset G/L Journals.",
+    "FA-182 re-confirmed a single editable Bal. Account No. candidate before value entry.",
+    "FA-182 entered Bal. Account No. = 82000 through the UI.",
+    "FA-182 proved 82000 visible/current in the same candidate after entry.",
+    "FA-182 did not open Preview Posting.",
+    "FA-182 did not post.",
+    "FA-182 did not create or delete journal lines.",
+    "FA-182 did not change setup."
+  ],
+  "notProved": [
+    "No Preview Posting lines have been shown.",
+    "No posting result exists.",
+    "No FA Ledger Entry or G/L Entry trace exists.",
+    "No German final proof exists."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-183/",
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-183-fa-gl-journal-balaccount-value-review.json",
+    ".agent/state/cases/fixedassets-184-fa-gl-journal-preview-posting-only.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/model_usage_log.jsonl"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-183/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-183/FIXEDASSETS-183-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-183/FIXEDASSETS-183-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-182/FIXEDASSETS-182-result.json",
+    "playwright/projects/fibu-book5/img/fixedassets-182-010-balaccount-82000-value-preflight.png"
+  ],
+  "warnings": [
+    "This is a local review, not a new BC run.",
+    "Preview Posting may be opened only in the next dedicated preview-only case.",
+    "Posting remains locked."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-184-FA-GL-JOURNAL-PREVIEW-POSTING-ONLY",
+      "active_case_file": ".agent/state/cases/fixedassets-184-fa-gl-journal-preview-posting-only.json",
+      "lastReferenceCase": "FIXEDASSETS-183-FA-GL-JOURNAL-BALACCOUNT-VALUE-REVIEW",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-183-fa-gl-journal-balaccount-value-review.json",
+      "requiresStrongModel": false,
+      "nextStep": "FIXEDASSETS-184: preview-only run may open Preview Posting for the existing FA G/L Journal line with visible Bal. Account No. = 82000, then stop without Post."
+    },
+    "activeCase": {
+      "status": "observed-review-complete",
+      "lastResult": {
+        "status": "observed",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-183/FIXEDASSETS-183-result.json",
+        "summary": "FA-182 accepted as visible Bal. Account No. = 82000 proof; only Preview Posting is unlocked next, not Post."
+      },
+      "nextSafeAction": "Run FA-184 preview-only; do not post."
+    }
+  },
+  "flags": {
+    "noBcRun": true,
+    "noPlaywrightRun": true,
+    "noNewValueEntry": true,
+    "noInsertLine": true,
+    "noDeleteLine": true,
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "decision": {
+    "acceptedFor": [
+      "preview-posting-only"
+    ],
+    "notAcceptedFor": [
+      "posting",
+      "ledger-trace",
+      "book-final-screenshot"
+    ],
+    "nextCase": "FIXEDASSETS-184-FA-GL-JOURNAL-PREVIEW-POSTING-ONLY"
+  }
+}
