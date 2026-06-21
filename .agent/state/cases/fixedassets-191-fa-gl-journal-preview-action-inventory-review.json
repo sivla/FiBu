@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-191-FA-GL-JOURNAL-PREVIEW-ACTION-INVENTORY-REVIEW",
+  "status": "planned",
+  "workType": "local-evidence-review",
+  "taskClass": "judge_work",
+  "requiresStrongModel": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Review FA-190 read-only action inventory before any further Fixed Asset G/L Journal Preview Posting attempt. Decide whether a safe related-actions inventory route exists or whether Preview Posting remains blocked.",
+  "inputs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-190/FIXEDASSETS-190-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-190/020-action-inventory.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-190/FIXEDASSETS-190-learning.md",
+    "playwright/projects/fibu-book5/BC-PAGE-ACTION-MAP.json",
+    "playwright/projects/fibu-book5/BC-PLAYWRIGHT-PATTERNS.md"
+  ],
+  "allowedActions": [
+    "read-fa-190-evidence",
+    "review-action-inventory",
+    "classify-preview-action-availability",
+    "update-action-map",
+    "update-playwright-patterns",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "open-business-central",
+    "run-playwright",
+    "book-edit",
+    "company-switch",
+    "create-journal-lines",
+    "enter-82000-in-bal-account-no",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "delete-record",
+    "click-ok-on-risk-dialog"
+  ],
+  "acceptanceCriteria": [
+    "State that FA-190 did not find a direct frame Preview Posting candidate.",
+    "State that visible Post-related candidates are labels only and not executed actions.",
+    "Decide whether a future menu-inventory probe is safe enough to plan.",
+    "Do not plan normal Post as Preview Posting route."
+  ],
+  "stopConditions": [
+    "A review would require opening BC or Playwright.",
+    "A proposed next step would click normal Post.",
+    "A proposed next step would create, edit, delete or post a journal line.",
+    "The action inventory is too ambiguous to justify a live retry."
+  ],
+  "nextSafeAction": "Local review only. If accepted, create a separate no-post menu-inventory case; otherwise mark Preview Posting blocked and pivot to Journal Check/Reconcile or another documented preflight route."
+}

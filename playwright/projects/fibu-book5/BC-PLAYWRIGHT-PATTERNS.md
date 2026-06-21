@@ -183,6 +183,7 @@ Diese Datei sammelt wiederverwendbare Muster aus belegten Laeufen. Sie ist keine
 - Template-Dialoge wie bei Vendor Cards sind eigener Nachweis: sie zeigen, dass Anlage nicht einfach "New und fertig" ist.
 - FA-188 ergaenzt fuer Journal-Preview-Pfade: Ein Klick auf den groben `Post`-Aktionspfad kann den normalen Buchungsdialog oeffnen, ohne dass `Preview Posting` ausgewaehlt wurde. Das ist ein Stop-/Rejected-Path, kein Preview-Nachweis. Vor einem weiteren Live-Retry braucht es eine gescopte Action-Inventory-Route oder einen eindeutigeren Preview-Posting-Selector; ein geoeffneter Posting-Dialog darf nicht mit `OK`/`Yes` bestaetigt werden.
 - FA-189 entscheidet daraus: Der naechste Schritt ist read-only Action Inventory. Erst wenn `Preview Posting` als eigener sichtbarer/gescopter Kandidat belegt ist, darf ein neuer Preview-only Live-Versuch geplant werden. Der normale `Post`-Dialog bleibt ein Stop-Kriterium.
+- FA-190 zeigt fuer `Fixed Asset G/L Journals`: Eine read-only Frame-Aktionsinventur fand keinen direkten `Preview Posting`-Kandidaten. Sichtbare Kandidaten wie `Post`, `Verwandte Aktionen fuer Post`, `Insert FA Bal. Account`, `Reconcile` und deaktiviertes `Apply Entries...` sind nur Aktionslandschaft, keine Klickfreigabe. Ein weiterer Live-Schritt braucht erst Review und einen separaten No-Post-Menueinventur-Case oder einen anderen Preflight-Pfad.
 
 ## Screenshots
 
