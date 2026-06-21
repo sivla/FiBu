@@ -187,6 +187,7 @@ Diese Datei sammelt wiederverwendbare Muster aus belegten Laeufen. Sie ist keine
 - FA-191 Review-Regel: Wenn eine Page nur einen Post-Splitbutton zeigt, darf der naechste Live-Lauf hoechstens den Dropdown-/Splitbutton inventarisieren. Danach sofort Labels sichern und abbrechen; keine Menuepunkte klicken, keinen Haupt-`Post`-Button klicken, keine `OK`/`Yes`-Bestaetigung.
 - FA-192 zeigt: Der Splitbutton `Verwandte Aktionen fuer Post` kann ein Menue mit `Post`, `Preview Posting`, `Post and Print` und `Test Report...` oeffnen. Das ist ein Menueinventar, keine Ausfuehrung. Dialog-/Posting-Erkennung darf dabei nicht aus dem gesamten Seitentext auf `Post`/`Invoice` triggern, sondern nur echte Dialogcontainer oder eindeutige Confirm-Texte werten.
 - FA-193 entscheidet: Ein einzelner `button[role=menuitem]` mit Text/Aria-Label `Preview Posting` darf genau einen separaten Preview-only-Liveversuch freigeben. Der Test muss vorher erneut den Splitbutton oeffnen, exakt einen Preview-Kandidaten pruefen, nur diesen Kandidaten klicken und bei jedem Posting-Dialog ohne `OK`/`Yes` stoppen. `Post`, `Post and Print`, `Insert FA Bal. Account` und `Reconcile` bleiben gesperrt.
+- FA-194 bestaetigt den gescopten Preview-Pfad: Nur der exakte `Preview Posting`-Menuepunkt wurde geklickt; danach oeffnete BC die Seite `Error Messages`. Das ist ein Preview-Fehlerbild und kein Buchungsnachweis. Der naechste Schritt muss die Fehlermeldung fachlich lesen, bevor Setup geaendert oder ein weiterer Preview-/Posting-Lauf geplant wird.
 
 ## Screenshots
 

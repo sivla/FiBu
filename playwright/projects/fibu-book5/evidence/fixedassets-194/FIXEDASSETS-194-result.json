@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-194-preview-posting-menuitem-result",
+  "caseId": "FIXEDASSETS-194-FA-GL-JOURNAL-PREVIEW-POSTING-MENUITEM-ONLY",
+  "source": "playwright-preview-posting-menuitem-only",
+  "resultStatus": "observed",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-medium",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "environment": {
+    "expectedInstance": "MCP_1_20260210",
+    "expectedCompany": "RM-DEMO",
+    "context": {
+      "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5628&dc=0&bookmark=30_UQAAAAJ7_0EAUwBTAEUAVABTAAAAAnv_RABFAEYAQQBVAEwAVAAAAACHECc",
+      "environmentInUrl": true,
+      "companyInUrl": true,
+      "companyInText": false,
+      "wrongEnvironmentVisible": false
+    },
+    "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5628&runinframe=1",
+    "urlAfterRun": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=700&filter=%27Error+Message%27.Context+IS+%27Nein%27&dc=0&bookmark=C_vAIAAACHBA"
+  },
+  "proved": [
+    "The run stayed in MCP_1_20260210.",
+    "The run stayed in RM-DEMO.",
+    "Exactly one related-actions-for-Post split/dropdown button was found.",
+    "Only the related-actions-for-Post split/dropdown button was clicked before Preview Posting.",
+    "Exactly one exact Preview Posting menuitem candidate was found.",
+    "Only the exact Preview Posting menuitem was clicked.",
+    "Preview Posting or preview-error context became visible after the menuitem click.",
+    "The Preview Posting attempt opened the Error Messages page.",
+    "No main Post button was clicked.",
+    "No Post menuitem was clicked.",
+    "No Post and Print menuitem was clicked.",
+    "No OK/Yes confirmation was clicked.",
+    "No journal line was created, edited or deleted.",
+    "No setup change was made.",
+    "No API shortcut was used.",
+    "No book content was changed."
+  ],
+  "notProved": [
+    "No Fixed Asset G/L Journal posting was executed.",
+    "No FA Ledger Entry or posted G/L Entry trace exists.",
+    "No German final proof exists."
+  ],
+  "changedFiles": [
+    "package.json",
+    "playwright/projects/fibu-book5/tests/fixedassets-194-fa-gl-journal-preview-posting-menuitem-only.spec.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-194/"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-194/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-194/010-preview-posting-menuitem-attempt.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-194/020-preview-posting-result-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-194/FIXEDASSETS-194-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-194/FIXEDASSETS-194-result.json"
+  ],
+  "warnings": [
+    "Preview Posting-only. Do not treat as posting permission.",
+    "Posting remains locked until FIXEDASSETS-195 local review.",
+    "No German final proof."
+  ],
+  "blockedBy": [],
+  "requiresReview": true,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-195-FA-GL-JOURNAL-PREVIEW-POSTING-MENUITEM-REVIEW",
+      "active_case_file": ".agent/state/cases/fixedassets-195-fa-gl-journal-preview-posting-menuitem-review.json",
+      "lastReferenceCase": "FIXEDASSETS-194-FA-GL-JOURNAL-PREVIEW-POSTING-MENUITEM-ONLY",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-194-fa-gl-journal-preview-posting-menuitem-only.json",
+      "requiresStrongModel": true,
+      "nextStep": "FIXEDASSETS-195: locally review FA-194 Preview Posting menuitem result before any Fixed Asset G/L Journal posting."
+    },
+    "activeCase": {
+      "status": "observed-preview-menuitem-result",
+      "lastResult": {
+        "status": "observed",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-194/FIXEDASSETS-194-result.json",
+        "summary": "FA-194 clicked only the exact Preview Posting menuitem from related-actions-for-Post and captured the Error Messages page without posting."
+      },
+      "nextSafeAction": "Run FIXEDASSETS-195 local review; do not post."
+    }
+  },
+  "flags": {
+    "clickedSplitButton": true,
+    "clickedPreviewPosting": true,
+    "noMainPostClick": true,
+    "noPostMenuitemClick": true,
+    "noPostAndPrintClick": true,
+    "noInsertLine": true,
+    "noDeleteLine": true,
+    "noPost": true,
+    "noOkYesConfirmation": true,
+    "previewOnly": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "observed": {
+    "startedAt": "2026-06-21T13:43:16.094Z",
+    "finishedAt": "2026-06-21T13:43:30.956Z",
+    "dialogAfterPreview": {
+      "dialogCount": 0,
+      "dialogs": [],
+      "textSample": "",
+      "postingDialog": false,
+      "okYesVisible": false,
+      "previewDialog": false
+    },
+    "previewOutcomeKind": "error-messages-page"
+  },
+  "nextStep": "FIXEDASSETS-195: locally review FA-194 Preview Posting menuitem result before any Fixed Asset G/L Journal posting."
+}

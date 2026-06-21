@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-195-FA-GL-JOURNAL-PREVIEW-POSTING-MENUITEM-REVIEW",
+  "status": "planned",
+  "workType": "local-evidence-review",
+  "taskClass": "judge_work",
+  "requiresStrongModel": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Review FA-194 Preview Posting menuitem result before any Fixed Asset G/L Journal posting or setup change.",
+  "inputs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-194/FIXEDASSETS-194-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-194/010-preview-posting-menuitem-attempt.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-194/020-preview-posting-result-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-194/FIXEDASSETS-194-learning.md",
+    "playwright/projects/fibu-book5/BC-PAGE-ACTION-MAP.json",
+    "playwright/projects/fibu-book5/BC-PLAYWRIGHT-PATTERNS.md"
+  ],
+  "allowedActions": [
+    "read-fa-194-evidence",
+    "review-preview-error-messages-result",
+    "classify-error-message-followup",
+    "update-action-map",
+    "update-playwright-patterns",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "open-business-central",
+    "run-playwright",
+    "book-edit",
+    "company-switch",
+    "create-journal-lines",
+    "enter-82000-in-bal-account-no",
+    "click-main-post-button",
+    "click-post-menuitem",
+    "click-post-and-print-menuitem",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "delete-record",
+    "click-ok-on-posting-dialog",
+    "click-yes-on-posting-dialog"
+  ],
+  "acceptanceCriteria": [
+    "State that FA-194 clicked only the exact Preview Posting menuitem.",
+    "State that FA-194 opened the Error Messages page, not a normal posting dialog.",
+    "State that no OK/Yes/Post confirmation was clicked.",
+    "Decide whether the next step should inspect Error Messages read-only, improve error text capture, or fit setup.",
+    "Do not unlock posting until the error cause and preview/posting trace are reviewed."
+  ],
+  "stopConditions": [
+    "A review would require opening BC or Playwright.",
+    "A proposed next step would post without reviewing Error Messages.",
+    "A proposed next step would change setup without a documented error cause.",
+    "The result is treated as posted entry evidence."
+  ],
+  "nextSafeAction": "Local review only. Classify FA-194 Error Messages outcome and plan the smallest follow-up; posting remains locked."
+}
