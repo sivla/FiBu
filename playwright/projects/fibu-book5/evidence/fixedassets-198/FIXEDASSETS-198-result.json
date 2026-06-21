@@ -1,0 +1,212 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-198-immediate-preview-error-result",
+  "caseId": "FIXEDASSETS-198-FA-GL-JOURNAL-IMMEDIATE-PREVIEW-ERROR-CAPTURE",
+  "source": "playwright-preview-error-immediate-capture",
+  "resultStatus": "observed",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-medium",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "environment": {
+    "expectedInstance": "MCP_1_20260210",
+    "expectedCompany": "RM-DEMO",
+    "context": {
+      "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5628&dc=0&bookmark=30_UQAAAAJ7_0EAUwBTAEUAVABTAAAAAnv_RABFAEYAQQBVAEwAVAAAAACHECc",
+      "environmentInUrl": true,
+      "companyInUrl": true,
+      "companyInText": false,
+      "wrongEnvironmentVisible": false
+    },
+    "urlAfterRun": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=700&filter=%27Error+Message%27.Context+IS+%27Nein%27&dc=0&bookmark=C_vAIAAACHBA"
+  },
+  "proved": [
+    "The run stayed in MCP_1_20260210.",
+    "The run stayed in RM-DEMO.",
+    "Only the related-actions-for-Post split/dropdown button was clicked before Preview Posting.",
+    "Exactly one exact Preview Posting menuitem candidate was found.",
+    "Only the exact Preview Posting menuitem was clicked once.",
+    "Error Messages context was captured immediately after Preview Posting.",
+    "Concrete immediate Error Messages detail lines were captured (16).",
+    "Core error line(s) captured: Datensatz: Gen. Journal Line ASSETS / DEFAULT / 10000 | UI-Hinweis: Wa hlen Sie einen Wert fu r Batch Name | 'FA Posting Type' darf in 'Gen. Journal Line' nicht ' ' sein: 'Journal Template Name=ASSETS, Journal Batch Name=DEFAULT, Line No.=10000'",
+    "No main Post button was clicked.",
+    "No Post menuitem was clicked.",
+    "No Post and Print menuitem was clicked.",
+    "No OK/Yes confirmation was clicked.",
+    "No journal line was created, edited or deleted.",
+    "No setup change was made.",
+    "No API shortcut was used.",
+    "No book content was changed."
+  ],
+  "notProved": [
+    "No setup correction was executed.",
+    "No Fixed Asset G/L Journal posting was executed.",
+    "No FA Ledger Entry or posted G/L Entry trace exists.",
+    "No German final proof exists."
+  ],
+  "changedFiles": [
+    "package.json",
+    "playwright/projects/fibu-book5/tests/fixedassets-198-fa-gl-journal-immediate-preview-error-capture.spec.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-198/"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-198/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-198/010-immediate-preview-error-capture.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-198/020-immediate-preview-error-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-198/FIXEDASSETS-198-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-198/FIXEDASSETS-198-result.json"
+  ],
+  "warnings": [
+    "Preview-error capture only. Do not treat as posting permission.",
+    "No setup change has been made or authorized by this live run.",
+    "No German final proof."
+  ],
+  "blockedBy": [],
+  "requiresReview": true,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-199-FA-GL-JOURNAL-IMMEDIATE-PREVIEW-ERROR-REVIEW",
+      "active_case_file": ".agent/state/cases/fixedassets-199-fa-gl-journal-immediate-preview-error-review.json",
+      "lastReferenceCase": "FIXEDASSETS-198-FA-GL-JOURNAL-IMMEDIATE-PREVIEW-ERROR-CAPTURE",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-198-fa-gl-journal-immediate-preview-error-capture.json",
+      "requiresStrongModel": true,
+      "nextStep": "FIXEDASSETS-199: locally review the immediate Preview-error capture and decide whether setup/data correction, helper improvement or another route is warranted."
+    },
+    "activeCase": {
+      "status": "observed-immediate-preview-error-capture",
+      "lastResult": {
+        "status": "observed",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-198/FIXEDASSETS-198-result.json",
+        "summary": "FA-198 captured immediate Preview Posting Error Messages details (16 line(s)) without posting."
+      },
+      "nextSafeAction": "Run local review; do not post or change setup yet."
+    }
+  },
+  "flags": {
+    "clickedSplitButton": true,
+    "clickedPreviewPosting": true,
+    "noMainPostClick": true,
+    "noPostMenuitemClick": true,
+    "noPostAndPrintClick": true,
+    "noInsertLine": true,
+    "noDeleteLine": true,
+    "noPost": true,
+    "noOkYesConfirmation": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "observed": {
+    "startedAt": "2026-06-21T17:03:29.525Z",
+    "finishedAt": "2026-06-21T17:03:43.337Z",
+    "bestSample": {
+      "sampleName": "after-900ms",
+      "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=700&filter=%27Error+Message%27.Context+IS+%27Nein%27&dc=0&bookmark=C_vAIAAACHBA",
+      "errorMessagesVisible": true,
+      "emptyListVisible": false,
+      "entryCount": 54,
+      "errorLineCount": 16,
+      "coreErrorLines": [
+        "Datensatz: Gen. Journal Line ASSETS / DEFAULT / 10000",
+        "UI-Hinweis: Wa hlen Sie einen Wert fu r Batch Name",
+        "'FA Posting Type' darf in 'Gen. Journal Line' nicht ' ' sein: 'Journal Template Name=ASSETS, Journal Batch Name=DEFAULT, Line No.=10000'"
+      ],
+      "contextErrorLines": [
+        "FA Error Entry No.",
+        "Status",
+        "Error",
+        "DatensatzGen. Journal Line: ASSETS,DEFAULT,10000",
+        "Feldname",
+        "Datensatz",
+        "Liste mit Titel Error Messages hat jetzt einen Artikel",
+        "Wa hlen Sie einen Wert fu r Batch Name",
+        "Posting Date Document Type Document No. Account Type Account No. Depreciation Book Code FA Posting Type Description Gen. Posting Type Gen. Bus. Posting Group Gen. Prod. Posting Group Amount Bal. Account Type Bal. Account No. Bal. Gen. Posting Type Bal. Gen. Prod. Posting Group Bal. Gen. Bus. Posting Group No. of Depreciation Days Depr. until FA Posting Date Depr. Acquisition Cost Budgeted FA No. FA Reclassification Entry FA Error Entry No. Department Code Customergroup Code"
+      ],
+      "representativeEntries": [
+        {
+          "role": "button",
+          "text": "",
+          "ariaLabel": "Wa hlen Sie einen Wert fu r Batch Name",
+          "title": "Wa hlen Sie einen Wert fu r Batch Name"
+        },
+        {
+          "role": "row",
+          "text": "Posting Date Document Type Document No. Account Type Account No. Depreciation Book Code FA Posting Type Description Gen. Posting Type Gen. Bus. Posting Group Gen. Prod. Posting Group Amount Bal. Account Type Bal. Account No. Bal. Gen. Posting Type Bal. Gen. Prod. Posting Group Bal. Gen. Bus. Posting Group No. of Depreciation Days Depr. until FA Posting Date Depr. Acquisition Cost Budgeted FA No. FA Reclassification Entry FA Error Entry No. Department Code Customergroup Code",
+          "ariaLabel": "",
+          "title": ""
+        },
+        {
+          "role": "",
+          "text": "Error Messages Start Open related record Empfohlene Aktion annehmen Behobene Fehler ausblenden Description Empfohlene Aktion Message Type Status 'FA Posting Type' darf in 'Gen. Journal Line' nicht ' ' sein: 'Journal Template Name=ASSETS, Journal Batch Name=DEFAULT, Line No.=10000' Error Details Kontext DatensatzGen. Journal Line: ASSETS,DEFAULT,10000 Feldname Fehlerspeicherort Datensatz Feldname Quelle Datensatz Feldname Support Hilfe & Dokumentation Additional Information Troubleshooting Zeitstempel21.06.2026 19:03",
+          "ariaLabel": "Error Messages",
+          "title": ""
+        },
+        {
+          "role": "menuitem",
+          "text": "Behobene Fehler ausblenden",
+          "ariaLabel": "Behobene Fehler ausblenden",
+          "title": "Filter auf den Nachrichtenstatus anwenden, um alle Meldungen zu behobenen Fehlern auszublenden."
+        },
+        {
+          "role": "row",
+          "text": "Description Empfohlene Aktion Message Type Status",
+          "ariaLabel": "",
+          "title": ""
+        },
+        {
+          "role": "button",
+          "text": "Message Type",
+          "ariaLabel": "",
+          "title": "Sortieren nach 'Message Type'"
+        },
+        {
+          "role": "button",
+          "text": "",
+          "ariaLabel": "Menu fu r Message Type o ffnen",
+          "title": "Menu o ffnen"
+        },
+        {
+          "role": "button",
+          "text": "Status",
+          "ariaLabel": "",
+          "title": "Sortieren nach 'Status'"
+        },
+        {
+          "role": "button",
+          "text": "",
+          "ariaLabel": "Menu fu r Status o ffnen",
+          "title": "Menu o ffnen"
+        },
+        {
+          "role": "button",
+          "text": "",
+          "ariaLabel": "(Leer)",
+          "title": "Datensatz o ffnen"
+        },
+        {
+          "role": "button",
+          "text": "Gen. Journal Line: ASSETS,DEFAULT,10000",
+          "ariaLabel": "",
+          "title": "Details o ffnen fu r \"Datensatz\" \"Gen. Journal Line: ASSETS,DEFAULT,10000\""
+        },
+        {
+          "role": "button",
+          "text": "",
+          "ariaLabel": "(Leer)",
+          "title": "Details o ffnen fu r \"Datensatz\" \"\""
+        },
+        {
+          "role": "button",
+          "text": "",
+          "ariaLabel": "(Leer)",
+          "title": "Details o ffnen fu r \"Datensatz\" \"\""
+        }
+      ]
+    },
+    "sampleCount": 4,
+    "coreErrorSummary": "Datensatz: Gen. Journal Line ASSETS / DEFAULT / 10000 | UI-Hinweis: Wa hlen Sie einen Wert fu r Batch Name | 'FA Posting Type' darf in 'Gen. Journal Line' nicht ' ' sein: 'Journal Template Name=ASSETS, Journal Batch Name=DEFAULT, Line No.=10000'"
+  },
+  "nextStep": "FIXEDASSETS-199: locally review the immediate Preview-error capture and decide whether setup/data correction, helper improvement or another route is warranted."
+}

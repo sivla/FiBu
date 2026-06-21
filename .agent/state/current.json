@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-21T17:05:00.000Z",
+  "updatedAt": "2026-06-21T19:05:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "fixedassets",
-  "activeCase": "FIXEDASSETS-198-FA-GL-JOURNAL-IMMEDIATE-PREVIEW-ERROR-CAPTURE",
-  "active_case_file": ".agent/state/cases/fixedassets-198-fa-gl-journal-immediate-preview-error-capture.json",
-  "lastReferenceCase": "FIXEDASSETS-197-FA-GL-JOURNAL-PREVIEW-BLOCKER-DECISION",
-  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-197-fa-gl-journal-preview-blocker-decision.json",
+  "activeCase": "FIXEDASSETS-199-FA-GL-JOURNAL-IMMEDIATE-PREVIEW-ERROR-REVIEW",
+  "active_case_file": ".agent/state/cases/fixedassets-199-fa-gl-journal-immediate-preview-error-review.json",
+  "lastReferenceCase": "FIXEDASSETS-198-FA-GL-JOURNAL-IMMEDIATE-PREVIEW-ERROR-CAPTURE",
+  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-198-fa-gl-journal-immediate-preview-error-capture.json",
   "mode": "token-efficient-autopilot-tooling-bootstrap",
-  "requiresStrongModel": false,
+  "requiresStrongModel": true,
   "requiredPreflightChecks": [
     "agent:preflight",
     "agent:state:validate",
@@ -19,14 +19,9 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "open-business-central",
-    "run-playwright",
-    "confirm-instance-and-company",
-    "open-fixed-asset-gl-journals",
-    "open-related-actions-post-dropdown",
-    "click-exact-preview-posting-menuitem-once",
-    "capture-error-messages-immediately",
-    "write-evidence",
+    "read-evidence",
+    "review-preview-error",
+    "classify-next-safe-route",
     "update-state"
   ],
   "forbiddenActions": [
@@ -50,7 +45,7 @@
     "click-ok-on-posting-dialog",
     "click-yes-on-posting-dialog"
   ],
-  "nextStep": "FIXEDASSETS-198: run one guarded Preview Posting-only rerun and capture Error Messages details immediately after the click; no posting, setup change or journal edit.",
+  "nextStep": "FIXEDASSETS-199: locally review FA-198 immediate Preview-error evidence. Decide whether the blank FA Posting Type / Batch Name signal requires data correction, setup diagnosis, helper improvement or another guarded route; no live BC action in the review.",
   "subagentPlanPolicy": {
     "default": "optional",
     "execution": "plan-only-no-subagents-spawned",

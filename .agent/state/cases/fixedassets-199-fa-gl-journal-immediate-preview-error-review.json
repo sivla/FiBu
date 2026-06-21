@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-199-FA-GL-JOURNAL-IMMEDIATE-PREVIEW-ERROR-REVIEW",
+  "status": "planned",
+  "workType": "local-preview-error-review",
+  "taskClass": "judge_work",
+  "requiresStrongModel": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Review FA-198 immediate Preview Posting Error Messages evidence and classify the next safe route without running Business Central.",
+  "inputs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-198/FIXEDASSETS-198-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-198/010-immediate-preview-error-capture.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-198/020-immediate-preview-error-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-198/FIXEDASSETS-198-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-197/FIXEDASSETS-197-result.json",
+    "playwright/projects/fibu-book5/BC-PLAYWRIGHT-PATTERNS.md",
+    "playwright/projects/fibu-book5/BC-PAGE-ACTION-MAP.json"
+  ],
+  "allowedActions": [
+    "read-evidence",
+    "classify-error-cause",
+    "decide-next-safe-case",
+    "update-state",
+    "update-patterns"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright",
+    "post",
+    "preview-posting",
+    "setup-change",
+    "journal-edit",
+    "book-edit"
+  ],
+  "safetyGates": [
+    "local-review-only",
+    "do-not-infer-setup-cause-from-single-error-without-analysis",
+    "no-live-business-central",
+    "no-playwright",
+    "no-posting",
+    "no-setup-change"
+  ],
+  "observedFromFa198": {
+    "previewPath": "exact Preview Posting menuitem below related-actions-for-Post",
+    "coreErrorLines": [
+      "Datensatz: Gen. Journal Line ASSETS / DEFAULT / 10000",
+      "UI-Hinweis: Wa hlen Sie einen Wert fu r Batch Name",
+      "'FA Posting Type' darf in 'Gen. Journal Line' nicht ' ' sein: 'Journal Template Name=ASSETS, Journal Batch Name=DEFAULT, Line No.=10000'"
+    ],
+    "safety": "No Post, no Post and Print, no OK/Yes, no journal edit, no setup change."
+  },
+  "acceptanceCriteria": [
+    "Classify whether FA-198 indicates a journal-data issue, a UI/helper issue, a setup issue or an unresolved blocker.",
+    "Name one next safe case only.",
+    "Do not authorize posting.",
+    "Do not authorize setup change unless the evidence explicitly supports a small idempotent setup/readiness check.",
+    "Update current state and coverage with a conservative decision."
+  ],
+  "stopConditions": [
+    "Evidence is insufficient to classify cause.",
+    "The decision would require a live BC action.",
+    "The decision would imply posting or setup change without a separate gate."
+  ],
+  "nextSafeAction": "Perform local review and choose exactly one next case."
+}
