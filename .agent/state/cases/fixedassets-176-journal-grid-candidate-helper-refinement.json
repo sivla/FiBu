@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-176-JOURNAL-GRID-CANDIDATE-HELPER-REFINEMENT",
+  "status": "planned",
+  "workType": "local-playwright-helper-refinement",
+  "taskClass": "wizard_work",
+  "requiresStrongModel": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Refine the journal-grid candidate helper so already-visible target values are accepted only when row-anchored to the target journal line and target column.",
+  "inputs": [
+    "playwright/core/bc/journal-grid-candidates.ts",
+    "playwright/core/bc/journal-grid-candidates.selftest.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-175/FIXEDASSETS-175-helper-review.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-172/010-balaccount-82000-preflight-signals.json"
+  ],
+  "allowedActions": [
+    "read-local-evidence",
+    "small-helper-code-change-if-low-risk",
+    "add-small-local-selftest-if-helper-code-changes",
+    "write-result-json",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "open-business-central",
+    "run-playwright",
+    "create-journal-lines",
+    "enter-82000-in-bal-account-no",
+    "enter-K30000-in-bal-account-no",
+    "preview-posting",
+    "post",
+    "setup-change",
+    "book-edit"
+  ],
+  "acceptanceCriteria": [
+    "No BC or Playwright execution.",
+    "already-visible requires target row and target column context.",
+    "Selftest includes a negative case where 82000 is visible outside the target row and must not count as success.",
+    "Selftest includes a positive row-anchored already-visible case.",
+    "Next live retry remains locked until the refined helper is reviewed or accepted by result evidence."
+  ],
+  "nextSafeAction": "Refine journal-grid candidate helper locally and rerun core:journal-grid:selftest."
+}

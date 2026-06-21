@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-174-BC-LINES-JOURNAL-CELL-CANDIDATE-HELPER",
-  "timestamp": "2026-06-21T13:25:00.000Z",
+  "runId": "FIXEDASSETS-175-BC-LINES-JOURNAL-CELL-CANDIDATE-HELPER-REVIEW",
+  "timestamp": "2026-06-21T13:45:00.000Z",
   "date": "2026-06-21",
-  "workType": "local-playwright-helper-improvement",
-  "taskClass": "wizard_work",
-  "modelClass": "gpt-4-medium",
+  "workType": "local-helper-review",
+  "taskClass": "judge_work",
+  "modelClass": "gpt-5.5-low",
   "branch": "codex/token-efficient-autopilot-state",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
@@ -18,24 +18,22 @@
   "apiShortcut": false,
   "bookChanged": false,
   "dataChanged": false,
-  "resultStatus": "observed",
-  "summary": "FA-174 added a local journal-grid cell-candidate helper and selftest. FA-172 remains blocker/context evidence; the next step is local helper review before any live retry.",
+  "resultStatus": "blocked-next-live-retry",
+  "summary": "FA-175 accepted the FA-174 helper direction but blocked live retry until already-visible 82000 is row-anchored to the target journal line and Bal. Account No. column.",
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/fixedassets-174/README.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-174/FIXEDASSETS-174-helper-decision.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-174/FIXEDASSETS-174-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-172/010-balaccount-82000-preflight-signals.json"
+    "playwright/projects/fibu-book5/evidence/fixedassets-175/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-175/FIXEDASSETS-175-helper-review.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-175/FIXEDASSETS-175-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-174/FIXEDASSETS-174-result.json"
   ],
   "changedFiles": [
-    "package.json",
-    "playwright/core/bc/journal-grid-candidates.ts",
-    "playwright/core/bc/journal-grid-candidates.selftest.ts",
-    "playwright/projects/fibu-book5/evidence/fixedassets-174/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-175/",
     ".agent/state/current.json",
     ".agent/state/cases/fixedassets-175-bc-lines-journal-cell-candidate-helper-review.json",
+    ".agent/state/cases/fixedassets-176-journal-grid-candidate-helper-refinement.json",
     ".agent/state/coverage_state.json",
     ".agent/state/last_run_summary.json",
-    ".agent/capabilities.json",
+    ".agent/state/model_usage_log.jsonl",
     "playwright/projects/fibu-book5/BC-PLAYWRIGHT-PATTERNS.md"
   ],
   "validationCommands": [
@@ -43,8 +41,8 @@
     "npm run agent:preflight",
     "npm run agent:dry-run",
     "npm run agent:run-plan",
-    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-174/FIXEDASSETS-174-result.json",
-    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-174/FIXEDASSETS-174-result.json",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-175/FIXEDASSETS-175-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-175/FIXEDASSETS-175-result.json",
     "npm run check:encoding",
     "git diff --check"
   ],
@@ -62,5 +60,5 @@
     "Bal. Account No. = 82000 remains unproven in Business Central.",
     "CRONUS-USA laboratory only; no German final proof."
   ],
-  "nextStep": "FIXEDASSETS-175: local helper review before any further live FA G/L Journal retry."
+  "nextStep": "FIXEDASSETS-176: local helper refinement before any further live FA G/L Journal retry."
 }

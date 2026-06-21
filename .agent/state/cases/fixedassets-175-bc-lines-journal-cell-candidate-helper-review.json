@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "FIXEDASSETS-175-BC-LINES-JOURNAL-CELL-CANDIDATE-HELPER-REVIEW",
-  "status": "planned",
+  "status": "observed-live-retry-blocked",
   "workType": "local-helper-review",
   "taskClass": "judge_work",
   "requiresStrongModel": true,
@@ -39,5 +39,10 @@
     "If insufficient, the next action is another local helper improvement, not a live retry.",
     "If sufficient, the next live case remains read-only or guarded and must still prove visible row, column and editable cell before writing."
   ],
-  "nextSafeAction": "Run local helper review; keep FA G/L Journal live retry locked until this decision exists."
+  "nextSafeAction": "Run FIXEDASSETS-176 local helper refinement.",
+  "lastResult": {
+    "status": "blocked-next-live-retry",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-175/FIXEDASSETS-175-result.json",
+    "summary": "Helper direction accepted, but target-value visibility must be row-anchored before live retry."
+  }
 }
