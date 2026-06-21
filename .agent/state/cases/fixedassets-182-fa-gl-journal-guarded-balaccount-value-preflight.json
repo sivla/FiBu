@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-182-FA-GL-JOURNAL-GUARDED-BALACCOUNT-VALUE-PREFLIGHT",
+  "status": "planned",
+  "workType": "playwright-guarded-value-preflight",
+  "taskClass": "wizard_work",
+  "requiresStrongModel": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Enter exactly 82000 into the re-confirmed Bal. Account No. candidate of the existing FA-CNC-01 Fixed Asset G/L Journal line, prove the visible value, then stop without Preview Posting or posting.",
+  "inputs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-181/FIXEDASSETS-181-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-180/010-geometry-candidate-readonly.json",
+    "playwright/core/bc/journal-grid-candidates.ts"
+  ],
+  "allowedActions": [
+    "open-business-central",
+    "run-playwright",
+    "read-current-journal-grid",
+    "reconfirm-single-bal-account-no-candidate",
+    "enter-82000-in-bal-account-no",
+    "capture-evidence",
+    "write-result-json",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "company-switch",
+    "create-journal-lines",
+    "delete-record",
+    "enter-K30000-in-bal-account-no",
+    "preview-posting",
+    "post",
+    "setup-change",
+    "book-edit",
+    "click-ok-on-risk-dialog"
+  ],
+  "acceptanceCriteria": [
+    "Confirm URL contains MCP_1_20260210 and RM-DEMO before any value entry.",
+    "Open only the existing Fixed Asset G/L Journals context.",
+    "Re-run the journal-grid candidate analysis and require status single-editable-candidate.",
+    "Require exactly one editable candidate and no forbidden signals.",
+    "Enter exactly 82000 only into the re-confirmed candidate.",
+    "After entry, prove 82000 is visible/current in the same candidate or stop as blocked.",
+    "Do not open Preview Posting.",
+    "Do not post.",
+    "Do not create or delete journal lines.",
+    "Do not change setup.",
+    "Document whether the draft value is intentionally kept as laboratory preflight state."
+  ],
+  "stopConditions": [
+    "Instance or company is not confirmed.",
+    "Fixed Asset G/L Journals context is not visible.",
+    "Candidate count is not exactly 1.",
+    "Candidate index differs without a fresh single-candidate proof.",
+    "Any forbidden signal is visible.",
+    "A dialog offers OK/Yes/Post/Preview/Delete/New/Edit.",
+    "82000 is not visible in the same candidate after entry."
+  ],
+  "nextSafeAction": "Run exactly one guarded value preflight for Bal. Account No. = 82000; no Preview Posting or Post."
+}

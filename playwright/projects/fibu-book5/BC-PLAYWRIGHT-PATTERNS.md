@@ -259,3 +259,4 @@ Regeln:
 - FA-179 erweitert die Journalzellen-Kandidatenlogik um Header-/Control-Geometrie: Ein Control darf nur dann als Zielzelle gelten, wenn es im x-Bereich des Ziel-Headers liegt und auf derselben y-Zeile Controls mit den geforderten fachlichen Row-Signalen liegen.
 - Diese Logik ist nur ein lokaler Helper-Beweis. Sie ersetzt keinen Live-Nachweis und unlockt keine Werteingabe ohne anschliessende read-only Probe.
 - Bei virtualisierten BC-Journalrastern ist `rowText` allein zu schwach, weil Optionslisten und Fokuszustand den Text verunreinigen koennen.
+- FA-181 bewertet die FA-180-Live-Probe: Ein einzelner editierbarer Geometrie-Kandidat darf nur einen eng bewachten Werteingabe-Preflight freigeben. Vor der Eingabe muss der Kandidat erneut gefunden werden; danach muss der sichtbare Wert im selben Kandidaten bewiesen werden. Preview Posting oder Post werden daraus nicht freigegeben.

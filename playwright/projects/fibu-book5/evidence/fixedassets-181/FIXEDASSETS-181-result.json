@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-181-geometry-candidate-review-result",
+  "caseId": "FIXEDASSETS-181-JOURNAL-GRID-GEOMETRY-CANDIDATE-REVIEW",
+  "source": "local-evidence-review",
+  "resultStatus": "observed",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "proved": [
+    "FA-180 stayed in MCP_1_20260210 and RM-DEMO.",
+    "FA-180 opened Fixed Asset G/L Journals read-only.",
+    "FA-180 found exactly one editable Bal. Account No. candidate by geometry/header-order evidence.",
+    "The candidate was control index 14.",
+    "The candidate was empty, not read-only and not disabled.",
+    "The candidate row was connected to the FA journal control row containing G05001, FA-CNC-01 and HGB.",
+    "FA-180 did not enter values, preview or post."
+  ],
+  "notProved": [
+    "Bal. Account No. = 82000 is not yet entered in the journal.",
+    "No Preview Posting result exists for the FA journal acquisition route.",
+    "No posting or ledger trace exists for this FA journal route.",
+    "No German final proof exists."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-181/",
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-181-journal-grid-geometry-candidate-review.json",
+    ".agent/state/cases/fixedassets-182-fa-gl-journal-guarded-balaccount-value-preflight.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/model_usage_log.jsonl",
+    ".agent/capabilities.json",
+    "playwright/projects/fibu-book5/BC-PLAYWRIGHT-PATTERNS.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-181/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-181/FIXEDASSETS-181-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-181/FIXEDASSETS-181-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-180/FIXEDASSETS-180-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-180/010-geometry-candidate-readonly.json"
+  ],
+  "warnings": [
+    "This is a local review, not a new BC run.",
+    "The next case may enter exactly 82000 only after re-confirming the single candidate.",
+    "Preview Posting and Post remain locked."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-182-FA-GL-JOURNAL-GUARDED-BALACCOUNT-VALUE-PREFLIGHT",
+      "active_case_file": ".agent/state/cases/fixedassets-182-fa-gl-journal-guarded-balaccount-value-preflight.json",
+      "lastReferenceCase": "FIXEDASSETS-181-JOURNAL-GRID-GEOMETRY-CANDIDATE-REVIEW",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-181-journal-grid-geometry-candidate-review.json",
+      "requiresStrongModel": false,
+      "nextStep": "FIXEDASSETS-182: guarded UI value preflight may enter exactly 82000 in the re-confirmed Bal. Account No. candidate, then stop without Preview Posting or Post."
+    },
+    "activeCase": {
+      "status": "observed-review-complete",
+      "lastResult": {
+        "status": "observed",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-181/FIXEDASSETS-181-result.json",
+        "summary": "FA-180 accepted as sufficient only for a guarded Bal. Account No. value preflight; Preview Posting and Post remain locked."
+      },
+      "nextSafeAction": "Run FA-182 guarded value preflight; re-confirm single candidate before entering 82000."
+    },
+    "coverage": {
+      "activeArea": "fixedassets",
+      "currentBlock": "fa-gl-journal-guarded-balaccount-value-preflight",
+      "latestReviewCase": "FIXEDASSETS-181-JOURNAL-GRID-GEOMETRY-CANDIDATE-REVIEW",
+      "nextCase": "FIXEDASSETS-182-FA-GL-JOURNAL-GUARDED-BALACCOUNT-VALUE-PREFLIGHT"
+    },
+    "lastRunSummary": {
+      "runId": "FIXEDASSETS-181-JOURNAL-GRID-GEOMETRY-CANDIDATE-REVIEW",
+      "bcRun": false,
+      "playwrightRun": false,
+      "posted": false,
+      "previewPosting": false,
+      "summary": "Local review accepted FA-180 as single-candidate proof for a later guarded value preflight only."
+    }
+  },
+  "flags": {
+    "noBcRun": true,
+    "noPlaywrightRun": true,
+    "noValueEntry": true,
+    "noInsertLine": true,
+    "noDeleteLine": true,
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "decision": {
+    "acceptedFor": [
+      "guarded-value-preflight"
+    ],
+    "notAcceptedFor": [
+      "preview-posting",
+      "posting",
+      "ledger-trace",
+      "book-final-screenshot"
+    ],
+    "nextCase": "FIXEDASSETS-182-FA-GL-JOURNAL-GUARDED-BALACCOUNT-VALUE-PREFLIGHT"
+  }
+}
