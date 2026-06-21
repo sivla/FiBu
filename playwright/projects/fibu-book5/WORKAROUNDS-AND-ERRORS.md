@@ -1,5 +1,19 @@
 # Workarounds und Fehlerjournal
 
+## WK-BC-FA-168 Musterwert `EQUIPMENT = 82000` ist kein Setup-Fit fuer `MACHINES`
+
+| Feld | Wert |
+|---|---|
+| Status | beobachtet / Setup bleibt gesperrt / lokale Entscheidung noetig |
+| Testfall | `FIXEDASSETS-168-FA-BALACCOUNT-FIELD-LOOKUP-READONLY` |
+| Situation | Nach FA-167 sollte read-only geklaert werden, ob der feldlokale Kontext oder vorhandene FA-Posting-Group-Muster einen sicheren naechsten Schritt fuer `MACHINES / Acquisition Cost Bal. Acc.` liefern. |
+| Symptom | `MACHINES` zeigt das Feld `Acquisition Cost Bal. Acc.` sichtbar, aber leer. `EQUIPMENT` zeigt im selben Feld sichtbar `82000`. |
+| Sichtbarer Beleg | `fixedassets-168-010-machines-balaccount-field-context.png` zeigt die leere Zielzeile auf `MACHINES`; `fixedassets-168-020-fa-posting-group-patterns-readonly.png` zeigt `EQUIPMENT` mit `Acquisition Cost Bal. Acc. = 82000`. |
+| Ursache | Ein bestehender Wert in einer anderen Anlagenbuchungsgruppe ist Muster-/Kandidatenkontext, aber noch kein fachlicher Nachweis, dass derselbe Wert fuer `MACHINES` korrekt und sicher gesetzt werden darf. |
+| Warum BC so reagiert | Business Central trennt die Felder je Anlagenbuchungsgruppe. Die Kontierung kann pro Posting Group unterschiedlich sein; deshalb muss der Zielwert im richtigen Feld oder durch eine ausdrueckliche fachliche Entscheidung belegt werden. |
+| Loesung oder Laborgrenze | Keine Setup-Aenderung und keine Journalwerteingabe. Naechster Lauf: `FIXEDASSETS-169` entscheidet lokal, ob `82000` als spaeterer UI-first Setup-Fit-Kandidat reicht oder ob ein anderer Lookup-/Feldnachweis gebraucht wird. |
+| Buchwirkung | Kapitel 21 kann den Fall als Screenshot-QA-Regel nutzen: Ein Bild darf nicht nur irgendeinen passenden Code zeigen, sondern muss zeigen, ob der Wert im richtigen Feld und fuer den richtigen Datensatz gilt. |
+
 ## WK-BC-FA-167 Sichtbare Kontenplan-Kandidaten sind keine Setup-Freigabe
 
 | Feld | Wert |

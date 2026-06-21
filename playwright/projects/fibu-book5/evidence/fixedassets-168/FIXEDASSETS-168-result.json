@@ -1,0 +1,176 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-fa-balaccount-field-lookup-readonly-result",
+  "caseId": "FIXEDASSETS-168-FA-BALACCOUNT-FIELD-LOOKUP-READONLY",
+  "source": "playwright-sandbox-readonly-diagnosis",
+  "resultStatus": "observed-readonly-gap",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-medium",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "environment": {
+    "expectedInstance": "MCP_1_20260210",
+    "expectedCompany": "RM-DEMO",
+    "context": {
+      "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5612&filter=%27FA+Posting+Group%27.Code+IS+%27%40*MACHINES*%27&dc=0&bookmark=1B_5hUAAAJ7_00AQQBDAEgASQBOAEUAUw",
+      "environmentInUrl": true,
+      "companyInUrl": true,
+      "companyInText": false,
+      "wrongEnvironmentVisible": false
+    },
+    "urlAfterRun": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5612&dc=0&bookmark=1D_5hUAAAJ7_0UAUQBVAEkAUABNAEUATgBU"
+  },
+  "proved": [
+    "The run stayed in MCP_1_20260210.",
+    "The run stayed in RM-DEMO.",
+    "FA Posting Groups/Card context was reached read-only.",
+    "FA Posting Group MACHINES was visible in the setup context.",
+    "The Acquisition Cost Bal. Acc. caption was visible/readable.",
+    "Existing FA Posting Group rows were read as pattern context.",
+    "Another visible FA Posting Group card shows Acquisition Cost Bal. Acc. = 82000 as pattern context.",
+    "No lookup value was selected.",
+    "No setup value was changed.",
+    "No journal amount or balancing account was entered.",
+    "No Preview Posting was opened.",
+    "No posting was executed."
+  ],
+  "notProved": [
+    "No concrete Acquisition Cost Bal. Acc. account value was proven on MACHINES.",
+    "No setup-fit for Acquisition Cost Bal. Acc.",
+    "No FA G/L Journal value-entry readiness.",
+    "No Preview Posting result.",
+    "No posting result.",
+    "No German final proof."
+  ],
+  "changedFiles": [
+    "package.json",
+    "playwright/projects/fibu-book5/tests/fixedassets-168-fa-balaccount-field-lookup-readonly.spec.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-168/",
+    "playwright/projects/fibu-book5/img/fixedassets-168-010-machines-balaccount-field-context.png",
+    "playwright/projects/fibu-book5/img/fixedassets-168-020-fa-posting-group-patterns-readonly.png",
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-168-fa-balaccount-field-lookup-readonly.json",
+    ".agent/state/cases/fixedassets-169-fa-balaccount-lookup-result-decision.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    "playwright/projects/fibu-book5/CURRENT-STATE.md",
+    "playwright/projects/fibu-book5/LAB-FIT-STATUS.md",
+    "playwright/projects/fibu-book5/BOOK-CLICK-GUIDE-COVERAGE.md",
+    "playwright/projects/fibu-book5/SCREENSHOT-QA.md",
+    "playwright/projects/fibu-book5/WORKAROUNDS-AND-ERRORS.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-168/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-168/010-machines-field-context.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-168/020-machines-focused-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-168/030-existing-patterns-readonly.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-168/040-patterns-focused-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-168/FIXEDASSETS-168-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-168/FIXEDASSETS-168-result.json",
+    "playwright/projects/fibu-book5/img/fixedassets-168-010-machines-balaccount-field-context.png",
+    "playwright/projects/fibu-book5/img/fixedassets-168-020-fa-posting-group-patterns-readonly.png"
+  ],
+  "evaluation": {
+    "targetValue": "",
+    "concreteTargetValue": false,
+    "lookupButtonVisible": false,
+    "patternRows": [
+      {
+        "code": "EQUIPMENT",
+        "visibleAccounts": [],
+        "rawText": "EQUIPMENT"
+      }
+    ],
+    "patternRowsWithBalancingHints": [],
+    "patternTargetValue": "82000",
+    "patternTargetValueVisible": true,
+    "setupFitUnlocked": false,
+    "safeForValueEntry": false
+  },
+  "warnings": [
+    "Field context and pattern rows are read-only evidence only.",
+    "No setup-write is unlocked by this run.",
+    "Do not enter FA G/L Journal values before a separate judge case explicitly unlocks them."
+  ],
+  "blockedBy": [],
+  "requiresReview": true,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-169-FA-BALACCOUNT-LOOKUP-RESULT-DECISION",
+      "active_case_file": ".agent/state/cases/fixedassets-169-fa-balaccount-lookup-result-decision.json",
+      "lastReferenceCase": "FIXEDASSETS-168-FA-BALACCOUNT-FIELD-LOOKUP-READONLY",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-168-fa-balaccount-field-lookup-readonly.json",
+      "requiresStrongModel": true,
+      "nextStep": "FIXEDASSETS-169: locally review the read-only field/pattern evidence and decide whether a different proof route is needed; no setup write, no journal values, no Preview Posting and no Post."
+    },
+    "lastRunSummary": {
+      "schemaVersion": 1,
+      "runId": "FIXEDASSETS-168-FA-BALACCOUNT-FIELD-LOOKUP-READONLY",
+      "date": "2026-06-21",
+      "workType": "fa-balaccount-field-lookup-readonly",
+      "taskClass": "wizard_work",
+      "modelClass": "gpt-4-medium",
+      "branch": "codex/token-efficient-autopilot-state",
+      "instance": "MCP_1_20260210",
+      "company": "RM-DEMO",
+      "bcRun": true,
+      "playwrightRun": true,
+      "posted": false,
+      "previewPosting": false,
+      "setupChanged": false,
+      "companySwitched": false,
+      "apiShortcut": false,
+      "bookChanged": false,
+      "dataChanged": false,
+      "resultStatus": "observed-readonly-gap",
+      "summary": "MACHINES / Acquisition Cost Bal. Acc. is visible, but no concrete field value or safe selected lookup value is proven.",
+      "nextStep": "Run local lookup-result decision before any further write route."
+    },
+    "activeCase": {
+      "status": "observed-readonly-gap",
+      "lastResult": {
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-168/FIXEDASSETS-168-result.json",
+        "setupFitUnlocked": false,
+        "summary": "MACHINES / Acquisition Cost Bal. Acc. is visible, but no concrete field value or safe selected lookup value is proven."
+      },
+      "nextSafeAction": "Run a local result decision; setup change remains locked."
+    },
+    "coverage": {
+      "areas": {
+        "fixedassets": {
+          "currentBlock": "fa-balaccount-lookup-result-decision",
+          "latestPracticalCase": "FIXEDASSETS-168-FA-BALACCOUNT-FIELD-LOOKUP-READONLY",
+          "nextCase": "FIXEDASSETS-169-FA-BALACCOUNT-LOOKUP-RESULT-DECISION",
+          "bookScreenshots": {
+            "acquisitionPostingTrace": "fieldlocal-balaccount-proof-still-insufficient"
+          }
+        }
+      },
+      "fixedAssets": {
+        "faCnc01": {
+          "nextAcquisitionRoute": "fa-balaccount-lookup-result-decision",
+          "acquisitionUnlocked": false
+        }
+      }
+    }
+  },
+  "flags": {
+    "noLookupSelection": true,
+    "noValueEntry": true,
+    "noInsertLine": true,
+    "noDeleteLine": true,
+    "noCleanup": true,
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "observed": {
+    "startedAt": "2026-06-21T10:44:46.438Z",
+    "finishedAt": "2026-06-21T10:44:58.793Z"
+  },
+  "nextStep": "FIXEDASSETS-169: locally review the read-only field/pattern evidence and decide whether a different proof route is needed; no setup write, no journal values, no Preview Posting and no Post."
+}

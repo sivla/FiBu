@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-169-FA-BALACCOUNT-LOOKUP-RESULT-DECISION",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "local-lookup-result-decision",
+  "taskClass": "judge_work",
+  "requiresStrongModel": true,
+  "goal": "Review FIXEDASSETS-168 read-only evidence and decide whether the empty MACHINES balancing field plus EQUIPMENT=82000 pattern context can justify a later setup-fit route or whether another proof route is needed.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-168/FIXEDASSETS-168-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-168/010-machines-field-context.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-168/030-existing-patterns-readonly.json",
+    "playwright/projects/fibu-book5/img/fixedassets-168-010-machines-balaccount-field-context.png",
+    "playwright/projects/fibu-book5/img/fixedassets-168-020-fa-posting-group-patterns-readonly.png",
+    "playwright/projects/fibu-book5/evidence/fixedassets-167/FIXEDASSETS-167-result.json"
+  ],
+  "allowedActions": [
+    "read-fixedassets-168-evidence",
+    "review-machines-empty-balancing-account",
+    "review-equipment-82000-pattern-context",
+    "decide-next-safe-proof-route",
+    "write-result-json",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright",
+    "company-switch",
+    "api-shortcut",
+    "book-edit",
+    "select-lookup-value",
+    "enter-acquisition-cost-bal-account",
+    "save-setup-change",
+    "enter-amount",
+    "enter-balancing-account",
+    "create-journal-lines",
+    "delete-record",
+    "cleanup",
+    "preview-posting",
+    "post",
+    "click-ok-on-risk-dialog"
+  ],
+  "targetQuestion": {
+    "field": "MACHINES / Acquisition Cost Bal. Acc.",
+    "newEvidence": "MACHINES field is visible but empty; EQUIPMENT shows Acquisition Cost Bal. Acc. = 82000 as pattern context.",
+    "decisionNeeded": "Can 82000 be used as a later candidate for a controlled UI-first setup-fit, or must another field-local lookup/proof route be found first?"
+  },
+  "acceptanceCriteria": [
+    "Decision states whether setup fit remains locked.",
+    "Decision distinguishes MACHINES field evidence from EQUIPMENT pattern evidence.",
+    "Decision names exactly one next practical route.",
+    "No BC run, no Playwright run, no setup change, no journal value, no Preview Posting and no Post."
+  ],
+  "nextSafeAction": "Review FA-168 locally and decide one next route; do not perform setup change, value entry, Preview Posting or Post."
+}
