@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-21T11:05:00.000Z",
+  "updatedAt": "2026-06-21T11:42:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "fixedassets",
-  "activeCase": "FIXEDASSETS-170-FA-BALACCOUNT-82000-SETUP-FIT",
-  "active_case_file": ".agent/state/cases/fixedassets-170-fa-balaccount-82000-setup-fit.json",
-  "lastReferenceCase": "FIXEDASSETS-169-FA-BALACCOUNT-LOOKUP-RESULT-DECISION",
-  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-169-fa-balaccount-lookup-result-decision.json",
+  "activeCase": "FIXEDASSETS-171-FA-BALACCOUNT-SETUP-FIT-REVIEW",
+  "active_case_file": ".agent/state/cases/fixedassets-171-fa-balaccount-setup-fit-review.json",
+  "lastReferenceCase": "FIXEDASSETS-170-FA-BALACCOUNT-82000-SETUP-FIT",
+  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-170-fa-balaccount-82000-setup-fit.json",
   "mode": "token-efficient-autopilot-tooling-bootstrap",
   "requiresStrongModel": false,
   "requiredPreflightChecks": [
@@ -19,16 +19,9 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "open-business-central",
-    "run-playwright",
-    "verify-instance-and-company",
-    "open-fa-posting-group-card-machines",
-    "capture-before-screenshot",
-    "set-acquisition-cost-bal-account-to-82000",
-    "save-or-leave-field-by-ui",
-    "reopen-fa-posting-group-card-machines",
-    "capture-after-screenshot",
-    "write-result-json",
+    "read-fa170-evidence",
+    "evaluate-setup-fit-result",
+    "write-review-result",
     "update-state"
   ],
   "forbiddenActions": [
@@ -40,6 +33,9 @@
     "company-switch",
     "api-shortcut",
     "book-edit",
+    "open-business-central",
+    "run-playwright",
+    "setup-change",
     "enter-amount",
     "enter-balancing-account",
     "create-journal-lines",
@@ -50,7 +46,7 @@
     "click-ok",
     "click-ok-on-risk-dialog"
   ],
-  "nextStep": "FIXEDASSETS-170: controlled UI-first setup-fit for MACHINES / Acquisition Cost Bal. Acc. = 82000 with before/after evidence; no journal values, no Preview Posting and no Post.",
+  "nextStep": "FIXEDASSETS-171: locally review FA-170 evidence and decide whether the MACHINES / Acquisition Cost Bal. Acc. = 82000 setup-fit is strong enough to unlock a later guarded FA G/L Journal value preflight; no BC run, no Playwright run, no journal values, no Preview Posting and no Post.",
   "subagentPlanPolicy": {
     "default": "optional",
     "execution": "plan-only-no-subagents-spawned",

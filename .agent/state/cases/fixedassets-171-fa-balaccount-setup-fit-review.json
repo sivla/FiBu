@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-171-FA-BALACCOUNT-SETUP-FIT-REVIEW",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "status": "planned",
+  "workType": "local-evidence-review",
+  "taskClass": "judge_work",
+  "requiresStrongModel": false,
+  "goal": "Review FA-170 evidence and decide whether MACHINES / Acquisition Cost Bal. Acc. = 82000 is strong enough to unlock a later guarded Fixed Asset G/L Journal value preflight.",
+  "basedOn": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-170/FIXEDASSETS-170-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-170/010-before-context.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-170/020-after-context.json",
+    "playwright/projects/fibu-book5/img/fixedassets-170-010-machines-balaccount-before.png",
+    "playwright/projects/fibu-book5/img/fixedassets-170-020-machines-balaccount-after.png"
+  ],
+  "allowedActions": [
+    "read-fa170-evidence",
+    "evaluate-before-after-screenshot-fit",
+    "evaluate-result-json",
+    "write-review-result",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright",
+    "company-switch",
+    "api-shortcut",
+    "book-edit",
+    "setup-change",
+    "enter-amount",
+    "enter-balancing-account",
+    "create-journal-lines",
+    "delete-record",
+    "cleanup",
+    "preview-posting",
+    "post",
+    "click-ok-on-risk-dialog"
+  ],
+  "target": {
+    "page": "FA Posting Group Card",
+    "postingGroup": "MACHINES",
+    "field": "Acquisition Cost Bal. Acc.",
+    "value": "82000",
+    "scope": "CRONUS-USA laboratory setup-fit only"
+  },
+  "safetyGates": [
+    "Do not open Business Central.",
+    "Do not run Playwright.",
+    "Do not enter journal values.",
+    "Do not open Preview Posting.",
+    "Do not click Post.",
+    "Accept FA-170 only if before and after evidence prove the same target page, target group and target field.",
+    "Keep German final account, VAT and posting evidence open."
+  ],
+  "acceptanceCriteria": [
+    "FA-170 resultStatus is setup-fit-applied or already-fit.",
+    "FA-170 proves afterTargetValue = 82000.",
+    "FA-170 screenshots visibly show MACHINES and the target field after the fit.",
+    "No journal value, Preview Posting or Post happened.",
+    "The next unlocked action is only a guarded value preflight, not posting."
+  ],
+  "nextSafeAction": "Perform local evidence review; if accepted, create the next guarded FA G/L Journal value preflight case."
+}

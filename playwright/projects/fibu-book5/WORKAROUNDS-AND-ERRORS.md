@@ -1,5 +1,19 @@
 # Workarounds und Fehlerjournal
 
+## WK-BC-FA-170 Kartenansicht zeigt Felder, ist aber nicht automatisch editierbar
+
+| Feld | Wert |
+|---|---|
+| Status | geloest / Edit-Mode-Pfad nachgewiesen / Setup-Fit erreicht |
+| Testfall | `FIXEDASSETS-170-FA-BALACCOUNT-82000-SETUP-FIT` |
+| Situation | `MACHINES / Acquisition Cost Bal. Acc.` sollte UI-first von leer auf `82000` gesetzt werden. |
+| Symptom | Der erste Klick in die sichtbare Wertregion der `FA Posting Group Card` speicherte nichts; nach Neuoeffnen war das Feld weiterhin leer. |
+| Sichtbarer Beleg | `fixedassets-170-010-machines-balaccount-before.png` zeigt den leeren Vorherzustand; `020-after-context.json` aus dem erfolgreichen Lauf zeigt `afterTargetValue = 82000`. |
+| Ursache | Die Kartenansicht war im Ansichtsmodus. Sichtbare Werte auf einer BC-Card sind nicht automatisch editierbare Controls. |
+| Warum BC so reagiert | Business Central trennt Kartenanzeige und Bearbeitungsmodus. Auf Karten muss je nach Page/Profil erst das Edit-/Stift-Symbol aktiviert werden, bevor ein Feldwert geschrieben wird. |
+| Loesung oder Laborgrenze | Der erfolgreiche Lauf aktivierte zuerst das topnahe Edit-/Stift-Symbol `Make changes on the page`, setzte dann nur die Zielzeile und pruefte nach Neuoeffnen `Acquisition Cost Bal. Acc. = 82000`. Keine Journalwerte, keine Preview Posting und keine Buchung. |
+| Buchwirkung | Kapitel 21 und das spaetere Debugging-Kapitel sollten erklaeren: Wenn ein sichtbares Feld nicht reagiert, zuerst Edit-Modus, Personalisierung/Page Inspection und Feldkontext pruefen, nicht blind Koordinaten oder Freitext wiederholen. |
+
 ## WK-BC-FA-168 Musterwert `EQUIPMENT = 82000` ist kein Setup-Fit fuer `MACHINES`
 
 | Feld | Wert |
