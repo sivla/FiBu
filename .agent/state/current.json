@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-21T14:40:00.000Z",
+  "updatedAt": "2026-06-21T15:05:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "fixedassets",
-  "activeCase": "FIXEDASSETS-179-JOURNAL-GRID-GEOMETRY-CANDIDATE-HELPER",
-  "active_case_file": ".agent/state/cases/fixedassets-179-journal-grid-geometry-candidate-helper.json",
-  "lastReferenceCase": "FIXEDASSETS-178-FA-GL-JOURNAL-REFINED-CANDIDATE-READONLY-REVIEW",
-  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-178-fa-gl-journal-refined-candidate-readonly-review.json",
+  "activeCase": "FIXEDASSETS-180-JOURNAL-GRID-GEOMETRY-CANDIDATE-READONLY",
+  "active_case_file": ".agent/state/cases/fixedassets-180-journal-grid-geometry-candidate-readonly.json",
+  "lastReferenceCase": "FIXEDASSETS-179-JOURNAL-GRID-GEOMETRY-CANDIDATE-HELPER",
+  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-179-journal-grid-geometry-candidate-helper.json",
   "mode": "token-efficient-autopilot-tooling-bootstrap",
   "requiresStrongModel": false,
   "requiredPreflightChecks": [
@@ -19,9 +19,10 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "read-local-evidence",
-    "edit-playwright-helper",
-    "run-local-selftest",
+    "open-business-central",
+    "run-playwright",
+    "read-current-journal-line-grid",
+    "capture-readonly-evidence",
     "write-result-json",
     "update-state"
   ],
@@ -32,8 +33,6 @@
     "fake-evidence",
     "book-claim-without-evidence",
     "api-shortcut-without-explicit-case-permission",
-    "open-business-central",
-    "run-playwright",
     "book-edit",
     "company-switch",
     "create-journal-lines",
@@ -48,7 +47,7 @@
     "delete-record",
     "click-ok-on-risk-dialog"
   ],
-  "nextStep": "FIXEDASSETS-179: improve and selftest the local journal-grid helper for geometry/header-order candidates. No BC, no Playwright live run, no value entry.",
+  "nextStep": "FIXEDASSETS-180: run one read-only live FA G/L Journal probe with the geometry/header-order helper. No value entry, no Preview Posting, no Post.",
   "subagentPlanPolicy": {
     "default": "optional",
     "execution": "plan-only-no-subagents-spawned",

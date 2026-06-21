@@ -253,3 +253,9 @@ Regeln:
 - FA-177 belegt eine wichtige Sicherheitsgrenze fuer virtualisierte BC-Journalraster: Ein sichtbarer Zielkopf wie `Bal. Account No.` reicht nicht, um eine Werteingabe freizugeben.
 - Wenn Control-Text nicht eindeutig an einer fachlichen Zeile haengt oder durch Optionslisten-Text verunreinigt ist, muss der Helper mit `missing-row-anchor` blockieren, auch wenn zielartig wirkende Controls sichtbar sind.
 - Die naechste Helper-Verbesserung sollte einen stabilen Feldkandidaten aus Grid-Geometrie/Header-Reihenfolge plus Zeilenkontext ableiten und danach erneut read-only laufen, bevor irgendein Journalwert eingetragen wird.
+
+## Journal Grid Geometry Candidates
+
+- FA-179 erweitert die Journalzellen-Kandidatenlogik um Header-/Control-Geometrie: Ein Control darf nur dann als Zielzelle gelten, wenn es im x-Bereich des Ziel-Headers liegt und auf derselben y-Zeile Controls mit den geforderten fachlichen Row-Signalen liegen.
+- Diese Logik ist nur ein lokaler Helper-Beweis. Sie ersetzt keinen Live-Nachweis und unlockt keine Werteingabe ohne anschliessende read-only Probe.
+- Bei virtualisierten BC-Journalrastern ist `rowText` allein zu schwach, weil Optionslisten und Fokuszustand den Text verunreinigen koennen.

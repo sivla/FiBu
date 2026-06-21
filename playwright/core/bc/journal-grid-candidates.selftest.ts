@@ -13,6 +13,9 @@ const target = {
 const fa172 = JSON.parse(
   fs.readFileSync('playwright/projects/fibu-book5/evidence/fixedassets-172/010-balaccount-82000-preflight-signals.json', 'utf8'),
 );
+const fa177 = JSON.parse(
+  fs.readFileSync('playwright/projects/fibu-book5/evidence/fixedassets-177/010-refined-candidate-readonly.json', 'utf8'),
+);
 
 const fa172Before = analyzeJournalCellCandidates(
   {
@@ -85,6 +88,21 @@ const rowAnchoredAlreadyVisible = analyzeJournalCellCandidates(
 assert.equal(rowAnchoredAlreadyVisible.success, true);
 assert.equal(rowAnchoredAlreadyVisible.status, 'already-visible');
 assert.equal(rowAnchoredAlreadyVisible.visibleSignals.expectedValueVisible, true);
+
+const fa177GeometryCandidate = analyzeJournalCellCandidates(
+  {
+    headers: fa177.snapshot.headers,
+    rows: fa177.snapshot.rows,
+    controls: fa177.snapshot.controls,
+  },
+  target,
+);
+assert.equal(fa177GeometryCandidate.success, true);
+assert.equal(fa177GeometryCandidate.status, 'single-editable-candidate');
+assert.equal(fa177GeometryCandidate.editableCandidates.length, 1);
+assert.equal(fa177GeometryCandidate.editableCandidates[0].index, 14);
+assert.ok(fa177GeometryCandidate.editableCandidates[0].reason.includes('column-signal-by-geometry'));
+assert.ok(fa177GeometryCandidate.editableCandidates[0].reason.includes('row-required-signals-by-geometry'));
 
 const forbiddenSynthetic = analyzeJournalCellCandidates(
   {

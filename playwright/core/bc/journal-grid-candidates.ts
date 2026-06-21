@@ -9,7 +9,15 @@ export type JournalGridText =
       selectedText?: string;
       ariaLabel?: string;
       title?: string;
+      rect?: JournalGridRect;
     };
+
+export type JournalGridRect = {
+  x?: number;
+  y?: number;
+  width?: number;
+  height?: number;
+};
 
 export type JournalGridControl = {
   index?: number;
@@ -23,6 +31,7 @@ export type JournalGridControl = {
   cellText?: string;
   readOnly?: boolean;
   disabled?: boolean;
+  rect?: JournalGridRect;
 };
 
 export type JournalGridSnapshot = {
@@ -112,6 +121,34 @@ function controlValueText(control: JournalGridControl) {
   return normalizeJournalGridText([control.value, control.selectedText].join(' '));
 }
 
+function rectMidX(rect: JournalGridRect | undefined) {
+  if (typeof rect?.x !== 'number') return undefined;
+  const width = typeof rect.width === 'number' ? rect.width : 0;
+  return rect.x + width / 2;
+}
+
+function rectMidY(rect: JournalGridRect | undefined) {
+  if (typeof rect?.y !== 'number') return undefined;
+  const height = typeof rect.height === 'number' ? rect.height : 0;
+  return rect.y + height / 2;
+}
+
+function rectContainsX(rect: JournalGridRect | undefined, x: number | undefined) {
+  if (typeof rect?.x !== 'number' || typeof x !== 'number') return false;
+  const width = typeof rect.width === 'number' ? rect.width : 0;
+  return x >= rect.x - 2 && x <= rect.x + width + 2;
+}
+
+function objectsWithTextAndRect(values: JournalGridText[]) {
+  return values.filter((value): value is Exclude<JournalGridText, string> & { rect: JournalGridRect } => {
+    return typeof value !== 'string' && Boolean(value.rect) && typeof value.rect?.x === 'number';
+  });
+}
+
+function headerText(value: Exclude<JournalGridText, string>) {
+  return normalizeJournalGridText([value.text, value.label, value.ariaLabel, value.title].join(' '));
+}
+
 export function analyzeJournalCellCandidates(
   snapshot: JournalGridSnapshot,
   target: JournalCellCandidateTarget,
@@ -119,6 +156,20 @@ export function analyzeJournalCellCandidates(
   const headers = (snapshot.headers ?? []).map(textFrom).filter(Boolean);
   const rows = (snapshot.rows ?? []).map(textFrom).filter(Boolean);
   const controls = snapshot.controls ?? [];
+  const headerObjects = objectsWithTextAndRect(snapshot.headers ?? []);
+  const targetHeaderObjects = headerObjects.filter((header) => includesAnySignal(headerText(header), target.columnSignals));
+  const rowAnchorControls = controls.filter((control) => {
+    const y = rectMidY(control.rect);
+    if (typeof y !== 'number') return false;
+    const sameRowControls = controls.filter((other) => {
+      const otherY = rectMidY(other.rect);
+      return typeof otherY === 'number' && Math.abs(otherY - y) <= 4;
+    });
+    const sameRowText = normalizeJournalGridText(
+      sameRowControls.map((other) => [controlLabelText(other), other.rowText, other.cellText, controlValueText(other)].join(' ')).join(' '),
+    );
+    return includesAllSignals(sameRowText, target.rowRequiredSignals);
+  });
   const combined = normalizeJournalGridText(
     [
       headers.join(' '),
@@ -130,6 +181,12 @@ export function analyzeJournalCellCandidates(
   );
 
   const rowAnchors = rows.filter((row) => includesAllSignals(row, target.rowRequiredSignals));
+  const geometryRowAnchorCount = new Set(
+    rowAnchorControls.map((control) => {
+      const y = rectMidY(control.rect);
+      return typeof y === 'number' ? Math.round(y) : undefined;
+    }),
+  ).size;
   const columnSignalVisible =
     headers.some((header) => includesAnySignal(header, target.columnSignals)) ||
     controls.some((control) => includesAnySignal(controlLabelText(control), target.columnSignals));
@@ -153,6 +210,16 @@ export function analyzeJournalCellCandidates(
       if (includesAllSignals(rowText, target.rowRequiredSignals)) {
         score += 5;
         reason.push('row-required-signals');
+      }
+      const controlX = rectMidX(control.rect);
+      const geometryHeader = targetHeaderObjects.find((header) => rectContainsX(header.rect, controlX));
+      if (geometryHeader) {
+        score += 4;
+        reason.push('column-signal-by-geometry');
+      }
+      if (rowAnchorControls.includes(control)) {
+        score += 5;
+        reason.push('row-required-signals-by-geometry');
       }
       if (target.expectedValue && includesSignal(valueText, target.expectedValue)) {
         score += 2;
@@ -183,7 +250,7 @@ export function analyzeJournalCellCandidates(
   const expectedValueVisible = expectedValueCandidates.length > 0;
   const blockedBy: string[] = [];
   if (forbiddenSignalsVisible.length > 0) blockedBy.push(`forbidden-signals-visible:${forbiddenSignalsVisible.join(',')}`);
-  if (rowAnchors.length === 0) blockedBy.push('missing-row-anchor');
+  if (rowAnchors.length === 0 && geometryRowAnchorCount === 0) blockedBy.push('missing-row-anchor');
   if (!columnSignalVisible) blockedBy.push('missing-column-signal');
   if (candidates.length === 0) blockedBy.push('no-control-candidate');
   if (!expectedValueVisible && editableCandidates.length === 0) blockedBy.push('no-editable-control-candidate');
@@ -194,7 +261,7 @@ export function analyzeJournalCellCandidates(
     status = 'blocked-forbidden-signal-visible';
   } else if (target.expectedValue && expectedValueVisible) {
     status = 'already-visible';
-  } else if (rowAnchors.length === 0) {
+  } else if (rowAnchors.length === 0 && geometryRowAnchorCount === 0) {
     status = 'blocked-missing-row-anchor';
   } else if (!columnSignalVisible) {
     status = 'blocked-missing-column-signal';
@@ -209,7 +276,7 @@ export function analyzeJournalCellCandidates(
     status,
     blockedBy,
     visibleSignals: {
-      rowAnchorCount: rowAnchors.length,
+      rowAnchorCount: rowAnchors.length + geometryRowAnchorCount,
       columnSignalVisible,
       forbiddenSignalsVisible,
       expectedValueVisible,

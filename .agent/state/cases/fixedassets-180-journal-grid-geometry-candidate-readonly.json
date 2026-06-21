@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-180-JOURNAL-GRID-GEOMETRY-CANDIDATE-READONLY",
+  "status": "planned",
+  "workType": "playwright-readonly-helper-probe",
+  "taskClass": "wizard_work",
+  "requiresStrongModel": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Run one read-only live FA G/L Journal probe with the geometry/header-order journal-grid helper before any value entry is considered.",
+  "inputs": [
+    "playwright/core/bc/journal-grid-candidates.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-179/FIXEDASSETS-179-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-177/010-refined-candidate-readonly.json"
+  ],
+  "allowedActions": [
+    "open-business-central",
+    "run-playwright",
+    "read-current-journal-line-grid",
+    "capture-readonly-evidence",
+    "write-result-json",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "create-journal-lines",
+    "enter-82000-in-bal-account-no",
+    "enter-K30000-in-bal-account-no",
+    "preview-posting",
+    "post",
+    "setup-change",
+    "book-edit"
+  ],
+  "acceptanceCriteria": [
+    "Stay inside MCP_1_20260210 and RM-DEMO.",
+    "No value entry and no draft mutation.",
+    "No Preview Posting and no Post.",
+    "Evidence states whether the geometry/header-order helper finds exactly one candidate in the live UI.",
+    "If candidate evidence is ambiguous, do not unlock write retry."
+  ],
+  "nextSafeAction": "Run one read-only Playwright probe with the geometry/header-order helper; do not enter values."
+}

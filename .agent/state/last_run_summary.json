@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-178-FA-GL-JOURNAL-REFINED-CANDIDATE-READONLY-REVIEW",
-  "timestamp": "2026-06-21T14:40:00.000Z",
+  "runId": "FIXEDASSETS-179-JOURNAL-GRID-GEOMETRY-CANDIDATE-HELPER",
+  "timestamp": "2026-06-21T15:05:00.000Z",
   "date": "2026-06-21",
-  "workType": "local-evidence-review",
-  "taskClass": "judge_work",
-  "modelClass": "gpt-5.5-low",
+  "workType": "local-playwright-helper-improvement",
+  "taskClass": "wizard_work",
+  "modelClass": "gpt-4-medium",
   "branch": "codex/token-efficient-autopilot-state",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
@@ -19,34 +19,38 @@
   "bookChanged": false,
   "dataChanged": false,
   "resultStatus": "observed",
-  "summary": "FA-178 reviewed FA-177 and kept journal value entry locked: visible Bal. Account No. header plus polluted control rowText is not enough for safe target-cell ownership.",
+  "summary": "FA-179 added geometry/header-order candidate logic to the journal-grid helper and proved it with FA-177 local evidence selftests. Live value entry remains locked.",
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/fixedassets-178/README.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-178/FIXEDASSETS-178-learning.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-178/FIXEDASSETS-178-result.json"
+    "playwright/projects/fibu-book5/evidence/fixedassets-179/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-179/FIXEDASSETS-179-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-179/FIXEDASSETS-179-result.json"
   ],
   "changedFiles": [
-    "playwright/projects/fibu-book5/evidence/fixedassets-178/",
+    "playwright/core/bc/journal-grid-candidates.ts",
+    "playwright/core/bc/journal-grid-candidates.selftest.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-179/",
     ".agent/state/current.json",
-    ".agent/state/cases/fixedassets-178-fa-gl-journal-refined-candidate-readonly-review.json",
     ".agent/state/cases/fixedassets-179-journal-grid-geometry-candidate-helper.json",
+    ".agent/state/cases/fixedassets-180-journal-grid-geometry-candidate-readonly.json",
     ".agent/state/coverage_state.json",
     ".agent/state/last_run_summary.json",
-    ".agent/state/model_usage_log.jsonl",
-    ".agent/capabilities.json"
+    ".agent/capabilities.json",
+    "playwright/projects/fibu-book5/BC-PLAYWRIGHT-PATTERNS.md"
   ],
   "validationCommands": [
+    "npm run core:journal-grid:selftest",
+    "npx tsc --noEmit (blocked: local TypeScript compiler is not installed)",
     "npm run agent:preflight",
     "npm run agent:dry-run",
     "npm run agent:run-plan",
-    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-178/FIXEDASSETS-178-result.json",
-    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-178/FIXEDASSETS-178-result.json",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-179/FIXEDASSETS-179-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-179/FIXEDASSETS-179-result.json",
     "npm run check:encoding",
     "git diff --check"
   ],
   "boundaries": [
     "No BC run.",
-    "No Playwright run.",
+    "No Playwright live run.",
     "No value entry.",
     "No Preview Posting.",
     "No posting.",
@@ -54,8 +58,8 @@
     "No company switch.",
     "No API shortcut.",
     "No book change.",
-    "Bal. Account No. = 82000 remains unentered and unproven as journal value.",
+    "Bal. Account No. = 82000 remains unentered in Business Central.",
     "CRONUS-USA laboratory only; no German final proof."
   ],
-  "nextStep": "FIXEDASSETS-179: local geometry/header-order journal-grid helper improvement before any live retry."
+  "nextStep": "FIXEDASSETS-180: read-only live probe with geometry/header-order helper before any value entry."
 }

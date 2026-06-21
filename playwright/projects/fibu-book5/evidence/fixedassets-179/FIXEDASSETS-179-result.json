@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-179-journal-grid-geometry-candidate-helper-result",
+  "caseId": "FIXEDASSETS-179-JOURNAL-GRID-GEOMETRY-CANDIDATE-HELPER",
+  "source": "local-playwright-helper-improvement",
+  "resultStatus": "observed",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-medium",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "changedHelper": "playwright/core/bc/journal-grid-candidates.ts",
+  "changedSelftest": "playwright/core/bc/journal-grid-candidates.selftest.ts",
+  "proved": [
+    "The journal-grid helper now accepts optional rect geometry on headers and controls.",
+    "The helper can derive a column candidate from the target header x-range.",
+    "The helper can derive a row anchor from controls sharing the same y-range and target row values.",
+    "The FA-177 evidence selftest identifies control index 14 as the local Bal. Account No. candidate.",
+    "The existing blocker tests still pass."
+  ],
+  "notProved": [
+    "No live Business Central state was checked in this run.",
+    "No value was entered in Business Central.",
+    "Bal. Account No. = 82000 remains unentered.",
+    "No Preview Posting or posting result exists.",
+    "No German final proof exists."
+  ],
+  "validation": {
+    "selftest": "passed",
+    "commands": [
+      "npm run core:journal-grid:selftest"
+    ],
+    "typescriptCheck": "blocked-local-typescript-not-installed"
+  },
+  "changedFiles": [
+    "playwright/core/bc/journal-grid-candidates.ts",
+    "playwright/core/bc/journal-grid-candidates.selftest.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-179/",
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-179-journal-grid-geometry-candidate-helper.json",
+    ".agent/state/cases/fixedassets-180-journal-grid-geometry-candidate-readonly.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/capabilities.json",
+    "playwright/projects/fibu-book5/BC-PLAYWRIGHT-PATTERNS.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-179/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-179/FIXEDASSETS-179-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-179/FIXEDASSETS-179-result.json"
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-180-JOURNAL-GRID-GEOMETRY-CANDIDATE-READONLY",
+      "active_case_file": ".agent/state/cases/fixedassets-180-journal-grid-geometry-candidate-readonly.json",
+      "lastReferenceCase": "FIXEDASSETS-179-JOURNAL-GRID-GEOMETRY-CANDIDATE-HELPER",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-179-journal-grid-geometry-candidate-helper.json",
+      "requiresStrongModel": false,
+      "nextStep": "FIXEDASSETS-180: run a read-only live probe with the geometry/header-order journal-grid helper. Do not enter values, Preview Posting or Post."
+    }
+  },
+  "flags": {
+    "noBcRun": true,
+    "noPlaywrightLiveRun": true,
+    "noValueEntry": true,
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "nextStep": "FIXEDASSETS-180: read-only live probe before any journal value entry."
+}
