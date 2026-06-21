@@ -1,0 +1,224 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-186-balaccount-persistence-probe-result",
+  "caseId": "FIXEDASSETS-186-FA-GL-JOURNAL-BALACCOUNT-PERSISTENCE-PROBE",
+  "source": "playwright-guarded-value-persistence-probe",
+  "resultStatus": "observed",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-medium",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "environment": {
+    "expectedInstance": "MCP_1_20260210",
+    "expectedCompany": "RM-DEMO",
+    "contextBefore": {
+      "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5628&dc=0&bookmark=30_UQAAAAJ7_0EAUwBTAEUAVABTAAAAAnv_RABFAEYAQQBVAEwAVAAAAACHECc",
+      "environmentInUrl": true,
+      "companyInUrl": true,
+      "companyInText": false,
+      "wrongEnvironmentVisible": false
+    },
+    "contextAfter": {
+      "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5628&dc=0&bookmark=30_UQAAAAJ7_0EAUwBTAEUAVABTAAAAAnv_RABFAEYAQQBVAEwAVAAAAACHECc",
+      "environmentInUrl": true,
+      "companyInUrl": true,
+      "companyInText": false,
+      "wrongEnvironmentVisible": false
+    },
+    "frameUrlBefore": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5628&runinframe=1",
+    "frameUrlAfter": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5628&runinframe=1",
+    "urlAfterRun": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5628&dc=0&bookmark=30_UQAAAAJ7_0EAUwBTAEUAVABTAAAAAnv_RABFAEYAQQBVAEwAVAAAAACHECc"
+  },
+  "proved": [
+    "The run stayed in MCP_1_20260210 before and after reopen.",
+    "The run started in RM-DEMO.",
+    "The run remained in RM-DEMO after reopen.",
+    "Fixed Asset G/L Journals context was visible before entry.",
+    "Geometry/header-order helper status before entry was already-visible.",
+    "Bal. Account No. = 82000 was visible/current before reopen.",
+    "Bal. Account No. = 82000 was visible/current after reopening the journal page.",
+    "No Preview Posting was opened.",
+    "No posting was executed.",
+    "No journal line was created or deleted.",
+    "No setup change was made.",
+    "No company switch was performed.",
+    "No API shortcut was used.",
+    "No book content was changed."
+  ],
+  "notProved": [
+    "No Preview Posting result.",
+    "No posting result.",
+    "No FA Ledger Entry or G/L Entry trace.",
+    "No German final proof."
+  ],
+  "changedFiles": [
+    "package.json",
+    "playwright/projects/fibu-book5/tests/fixedassets-186-fa-gl-journal-balaccount-persistence-probe.spec.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-186/"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-186/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-186/010-before-persistence-probe.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-186/020-after-value-entry.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-186/030-after-reopen-persistence-check.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-186/FIXEDASSETS-186-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-186/FIXEDASSETS-186-result.json"
+  ],
+  "warnings": [
+    "Persistence probe only.",
+    "Preview Posting remains locked until FIXEDASSETS-187 local review.",
+    "Posting remains locked.",
+    "No German final proof."
+  ],
+  "blockedBy": [],
+  "requiresReview": true,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-187-FA-GL-JOURNAL-PERSISTENCE-REVIEW",
+      "active_case_file": ".agent/state/cases/fixedassets-187-fa-gl-journal-persistence-review.json",
+      "lastReferenceCase": "FIXEDASSETS-186-FA-GL-JOURNAL-BALACCOUNT-PERSISTENCE-PROBE",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-186-fa-gl-journal-balaccount-persistence-probe.json",
+      "requiresStrongModel": true,
+      "nextStep": "FIXEDASSETS-187: locally review FA-186 persistence evidence before any Preview Posting retry or Post."
+    },
+    "activeCase": {
+      "status": "observed-balaccount-persistence",
+      "lastResult": {
+        "status": "observed",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-186/FIXEDASSETS-186-result.json",
+        "summary": "FA-186 proved Bal. Account No. = 82000 persisted after reopening the Fixed Asset G/L Journals page."
+      },
+      "nextSafeAction": "Run FIXEDASSETS-187 local review; do not open Preview Posting or Post."
+    }
+  },
+  "flags": {
+    "noInsertLine": true,
+    "noDeleteLine": true,
+    "draftValueKept": true,
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "observed": {
+    "startedAt": "2026-06-21T12:49:38.140Z",
+    "finishedAt": "2026-06-21T12:49:51.376Z",
+    "helperBefore": {
+      "success": true,
+      "status": "already-visible",
+      "blockedBy": [],
+      "visibleSignals": {
+        "rowAnchorCount": 1,
+        "columnSignalVisible": true,
+        "forbiddenSignalsVisible": [],
+        "expectedValueVisible": true,
+        "controlCandidateCount": 1,
+        "editableCandidateCount": 1
+      },
+      "candidates": [
+        {
+          "index": 14,
+          "score": 11,
+          "reason": [
+            "column-signal-by-geometry",
+            "row-required-signals-by-geometry",
+            "expected-value-currently-visible"
+          ],
+          "labelText": "",
+          "rowText": "Payment Invoice Credit Memo Finance Charge Memo Reminder Refund G/L Account Customer Vendor Bank Account Fixed Asset IC Partner Employee Allocation Account Acquisition Cost Depreciation Write-Down Appreciation Custom 1 Custom 2 Disposal Maintenance Purchase Sale Settlement G/L Account Customer Vendor Bank Account Fixed Asset IC Partner Employee Allocation Account Purchase Sale Settlement",
+          "cellText": "",
+          "valueText": "82000",
+          "readOnly": false,
+          "disabled": false
+        }
+      ],
+      "editableCandidates": [
+        {
+          "index": 14,
+          "score": 11,
+          "reason": [
+            "column-signal-by-geometry",
+            "row-required-signals-by-geometry",
+            "expected-value-currently-visible"
+          ],
+          "labelText": "",
+          "rowText": "Payment Invoice Credit Memo Finance Charge Memo Reminder Refund G/L Account Customer Vendor Bank Account Fixed Asset IC Partner Employee Allocation Account Acquisition Cost Depreciation Write-Down Appreciation Custom 1 Custom 2 Disposal Maintenance Purchase Sale Settlement G/L Account Customer Vendor Bank Account Fixed Asset IC Partner Employee Allocation Account Purchase Sale Settlement",
+          "cellText": "",
+          "valueText": "82000",
+          "readOnly": false,
+          "disabled": false
+        }
+      ]
+    },
+    "helperAfterReopen": {
+      "success": true,
+      "status": "already-visible",
+      "blockedBy": [],
+      "visibleSignals": {
+        "rowAnchorCount": 1,
+        "columnSignalVisible": true,
+        "forbiddenSignalsVisible": [],
+        "expectedValueVisible": true,
+        "controlCandidateCount": 1,
+        "editableCandidateCount": 1
+      },
+      "candidates": [
+        {
+          "index": 14,
+          "score": 11,
+          "reason": [
+            "column-signal-by-geometry",
+            "row-required-signals-by-geometry",
+            "expected-value-currently-visible"
+          ],
+          "labelText": "",
+          "rowText": "Payment Invoice Credit Memo Finance Charge Memo Reminder Refund G/L Account Customer Vendor Bank Account Fixed Asset IC Partner Employee Allocation Account Acquisition Cost Depreciation Write-Down Appreciation Custom 1 Custom 2 Disposal Maintenance Purchase Sale Settlement G/L Account Customer Vendor Bank Account Fixed Asset IC Partner Employee Allocation Account Purchase Sale Settlement",
+          "cellText": "",
+          "valueText": "82000",
+          "readOnly": false,
+          "disabled": false
+        }
+      ],
+      "editableCandidates": [
+        {
+          "index": 14,
+          "score": 11,
+          "reason": [
+            "column-signal-by-geometry",
+            "row-required-signals-by-geometry",
+            "expected-value-currently-visible"
+          ],
+          "labelText": "",
+          "rowText": "Payment Invoice Credit Memo Finance Charge Memo Reminder Refund G/L Account Customer Vendor Bank Account Fixed Asset IC Partner Employee Allocation Account Acquisition Cost Depreciation Write-Down Appreciation Custom 1 Custom 2 Disposal Maintenance Purchase Sale Settlement G/L Account Customer Vendor Bank Account Fixed Asset IC Partner Employee Allocation Account Purchase Sale Settlement",
+          "cellText": "",
+          "valueText": "82000",
+          "readOnly": false,
+          "disabled": false
+        }
+      ]
+    },
+    "candidateIndex": 14,
+    "snapshotBeforeSignals": {
+      "fixedAssetGlJournalsVisible": true,
+      "documentNoVisible": false,
+      "accountNoVisible": false,
+      "depreciationBookVisible": false,
+      "balAccountNoHeaderVisible": true,
+      "account82000VisibleGlobal": false,
+      "k30000VisibleGlobal": false
+    },
+    "snapshotAfterReopenSignals": {
+      "fixedAssetGlJournalsVisible": true,
+      "documentNoVisible": false,
+      "accountNoVisible": false,
+      "depreciationBookVisible": false,
+      "balAccountNoHeaderVisible": true,
+      "account82000VisibleGlobal": false,
+      "k30000VisibleGlobal": false
+    }
+  },
+  "nextStep": "FIXEDASSETS-187: locally review FA-186 persistence evidence before any Preview Posting retry or Post."
+}

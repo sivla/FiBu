@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "FIXEDASSETS-186-FA-GL-JOURNAL-BALACCOUNT-PERSISTENCE-PROBE",
-  "status": "planned",
+  "status": "observed-balaccount-persistence",
   "workType": "playwright-guarded-value-persistence-probe",
   "taskClass": "wizard_work",
   "requiresStrongModel": false,
@@ -62,5 +62,32 @@
     "Any posting or preview dialog appears.",
     "Any action would require API journal data access."
   ],
-  "nextSafeAction": "Run guarded persistence probe only; no Preview Posting and no Post."
+  "nextSafeAction": "Run FIXEDASSETS-187 local review; do not open Preview Posting or Post.",
+  "lastResult": {
+    "status": "observed",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-186/FIXEDASSETS-186-result.json",
+    "summary": "FA-186 proved Bal. Account No. = 82000 persisted after reopening the Fixed Asset G/L Journals page."
+  },
+  "observedAt": "2026-06-21T12:49:51.376Z",
+  "decision": {
+    "acceptedFor": [
+      "local-persistence-review",
+      "planning-a-preview-only-retry-after-review"
+    ],
+    "notAcceptedFor": [
+      "posting",
+      "ledger-trace",
+      "book-final-screenshot",
+      "german-final-proof"
+    ],
+    "evidenceRefs": [
+      "playwright/projects/fibu-book5/evidence/fixedassets-186/README.md",
+      "playwright/projects/fibu-book5/evidence/fixedassets-186/010-before-persistence-probe.json",
+      "playwright/projects/fibu-book5/evidence/fixedassets-186/020-after-value-entry.json",
+      "playwright/projects/fibu-book5/evidence/fixedassets-186/030-after-reopen-persistence-check.json",
+      "playwright/projects/fibu-book5/evidence/fixedassets-186/FIXEDASSETS-186-learning.md",
+      "playwright/projects/fibu-book5/evidence/fixedassets-186/FIXEDASSETS-186-result.json"
+    ],
+    "boundary": "Persistence of the UI journal field is proven, but Preview Posting and Post remain locked until review."
+  }
 }
