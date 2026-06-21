@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-171-FA-BALACCOUNT-SETUP-FIT-REVIEW",
+  "source": "local-evidence-review",
+  "resultStatus": "observed",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "reviewedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-170/FIXEDASSETS-170-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-170/010-before-context.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-170/020-after-context.json",
+    "playwright/projects/fibu-book5/img/fixedassets-170-010-machines-balaccount-before.png",
+    "playwright/projects/fibu-book5/img/fixedassets-170-020-machines-balaccount-after.png"
+  ],
+  "decision": {
+    "accepted": true,
+    "acceptedAs": "CRONUS-USA laboratory setup-fit",
+    "setupFit": {
+      "page": "FA Posting Group Card",
+      "postingGroup": "MACHINES",
+      "field": "Acquisition Cost Bal. Acc.",
+      "value": "82000",
+      "beforeValue": "",
+      "afterValue": "82000"
+    },
+    "unlockedNextCase": "FIXEDASSETS-172-FA-GL-JOURNAL-BALACCOUNT-82000-PREFLIGHT",
+    "unlockedOnly": [
+      "guarded FA G/L Journal target-line preflight",
+      "visible Amount / Bal. Account Type / Bal. Account No. context",
+      "setup-derived G/L balancing account 82000 preflight"
+    ],
+    "stillLocked": [
+      "Preview Posting",
+      "Post",
+      "new journal lines",
+      "cleanup or delete",
+      "K30000 as G/L Bal. Account No.",
+      "German final account proof",
+      "book edit"
+    ]
+  },
+  "proved": [
+    "FA-170 proves MACHINES / Acquisition Cost Bal. Acc. = 82000 after controlled UI-first setup-fit.",
+    "The former empty-balancing-account setup gap is closed for the CRONUS-USA laboratory path.",
+    "A later guarded FA G/L Journal preflight may use 82000 as the only current G/L balancing account candidate."
+  ],
+  "notProved": [
+    "No journal amount is proved.",
+    "No Bal. Account No. is proved on the journal line.",
+    "No Preview Posting is proved.",
+    "No posting or ledger trace is proved.",
+    "No German final chart-of-accounts proof is made."
+  ],
+  "warnings": [
+    "Do not retry K30000 as Bal. Account No. while Bal. Account Type is G/L Account.",
+    "Do not treat FA Posting Group setup as posting evidence."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-172-FA-GL-JOURNAL-BALACCOUNT-82000-PREFLIGHT",
+      "active_case_file": ".agent/state/cases/fixedassets-172-fa-gl-journal-balaccount-82000-preflight.json"
+    },
+    "lastRunSummary": {
+      "runId": "FIXEDASSETS-171-FA-BALACCOUNT-SETUP-FIT-REVIEW",
+      "resultStatus": "observed",
+      "bcRun": false,
+      "company": "RM-DEMO",
+      "setupChanged": false,
+      "posted": false,
+      "previewPosting": false,
+      "summary": "FA-171 accepted FA-170 as CRONUS-USA laboratory setup-fit and unlocked only a later guarded FA G/L Journal preflight with setup-derived G/L balancing account 82000."
+    },
+    "activeCase": {
+      "status": "completed",
+      "lastResult": "observed",
+      "lastEvidence": "playwright/projects/fibu-book5/evidence/fixedassets-171/FIXEDASSETS-171-result.json"
+    }
+  },
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-171/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-171/FIXEDASSETS-171-decision.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-171/FIXEDASSETS-171-result.json"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-171/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-171/FIXEDASSETS-171-decision.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-171/FIXEDASSETS-171-result.json"
+  ],
+  "flags": {
+    "noBcRun": true,
+    "noPlaywrightRun": true,
+    "noJournalValue": true,
+    "noPreview": true,
+    "noPost": true,
+    "noDraft": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  }
+}
