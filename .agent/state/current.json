@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-21T13:50:00.000Z",
+  "updatedAt": "2026-06-21T14:05:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "fixedassets",
-  "activeCase": "FIXEDASSETS-192-FA-GL-JOURNAL-POST-DROPDOWN-MENU-INVENTORY",
-  "active_case_file": ".agent/state/cases/fixedassets-192-fa-gl-journal-post-dropdown-menu-inventory.json",
-  "lastReferenceCase": "FIXEDASSETS-191-FA-GL-JOURNAL-PREVIEW-ACTION-INVENTORY-REVIEW",
-  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-191-fa-gl-journal-preview-action-inventory-review.json",
+  "activeCase": "FIXEDASSETS-193-FA-GL-JOURNAL-POST-DROPDOWN-MENU-REVIEW",
+  "active_case_file": ".agent/state/cases/fixedassets-193-fa-gl-journal-post-dropdown-menu-review.json",
+  "lastReferenceCase": "FIXEDASSETS-192-FA-GL-JOURNAL-POST-DROPDOWN-MENU-INVENTORY",
+  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-192-fa-gl-journal-post-dropdown-menu-inventory.json",
   "mode": "token-efficient-autopilot-tooling-bootstrap",
-  "requiresStrongModel": false,
+  "requiresStrongModel": true,
   "requiredPreflightChecks": [
     "agent:preflight",
     "agent:state:validate",
@@ -19,14 +19,11 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "open-business-central",
-    "run-playwright",
-    "verify-instance-company",
-    "open-fixed-asset-gl-journals",
-    "find-related-actions-for-post-split-button",
-    "click-related-actions-for-post-split-button-only",
-    "collect-open-menu-item-labels",
-    "write-readonly-evidence",
+    "read-fa-192-evidence",
+    "review-menu-inventory",
+    "classify-preview-menu-candidate",
+    "update-action-map",
+    "update-playwright-patterns",
     "update-state"
   ],
   "forbiddenActions": [
@@ -37,6 +34,8 @@
     "book-claim-without-evidence",
     "api-shortcut-without-explicit-case-permission",
     "book-edit",
+    "open-business-central",
+    "run-playwright",
     "company-switch",
     "create-journal-lines",
     "enter-82000-in-bal-account-no",
@@ -52,7 +51,7 @@
     "click-ok-on-risk-dialog",
     "click-yes-on-risk-dialog"
   ],
-  "nextStep": "FIXEDASSETS-192: run a narrowly scoped no-post live menu inventory of the related-actions-for-Post split button. Do not click menu items, Preview Posting or Post.",
+  "nextStep": "FIXEDASSETS-193: locally review FA-192 related-actions-for-Post menu inventory before any Preview Posting or Reconcile attempt. A single Preview Posting menu candidate is visible, but not executed.",
   "subagentPlanPolicy": {
     "default": "optional",
     "execution": "plan-only-no-subagents-spawned",

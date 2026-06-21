@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-193-FA-GL-JOURNAL-POST-DROPDOWN-MENU-REVIEW",
+  "status": "planned",
+  "workType": "local-evidence-review",
+  "taskClass": "judge_work",
+  "requiresStrongModel": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Review FA-192 related-actions-for-Post menu inventory before any Preview Posting, Reconcile, Insert FA Bal. Account or Post attempt.",
+  "inputs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-192/FIXEDASSETS-192-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-192/020-post-dropdown-menu-inventory.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-192/FIXEDASSETS-192-learning.md",
+    "playwright/projects/fibu-book5/BC-PAGE-ACTION-MAP.json",
+    "playwright/projects/fibu-book5/BC-PLAYWRIGHT-PATTERNS.md"
+  ],
+  "allowedActions": [
+    "read-fa-192-evidence",
+    "review-menu-inventory",
+    "classify-preview-menu-candidate",
+    "update-action-map",
+    "update-playwright-patterns",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "open-business-central",
+    "run-playwright",
+    "book-edit",
+    "company-switch",
+    "create-journal-lines",
+    "enter-82000-in-bal-account-no",
+    "click-main-post-button",
+    "click-menu-item",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "delete-record",
+    "click-ok-on-risk-dialog",
+    "click-yes-on-risk-dialog"
+  ],
+  "acceptanceCriteria": [
+    "State that FA-192 found exactly one related-actions-for-Post split/dropdown button.",
+    "State that the split/dropdown button exposed a distinct Preview Posting menu candidate.",
+    "State that Preview Posting was not clicked and no Preview entries were visible.",
+    "Decide whether one separate Preview Posting-only live attempt is safe enough to plan.",
+    "Do not unlock normal Post, Post and Print, Insert FA Bal. Account or Reconcile."
+  ],
+  "stopConditions": [
+    "A review would require opening BC or Playwright.",
+    "A proposed next step would click normal Post or Post and Print.",
+    "A proposed next step would create, edit, delete or post a journal line.",
+    "The Preview Posting menu candidate is too ambiguous to justify a live retry."
+  ],
+  "nextSafeAction": "Local review only. If accepted, create a separate Preview Posting-only case that opens the split menu and clicks only the distinct Preview Posting menu item; Post remains locked."
+}
