@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-195-preview-error-messages-review-result",
+  "caseId": "FIXEDASSETS-195-FA-GL-JOURNAL-PREVIEW-POSTING-MENUITEM-REVIEW",
+  "source": "local-evidence-review",
+  "resultStatus": "accepted",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "bcRun": false,
+  "playwrightRun": false,
+  "posted": false,
+  "previewPosting": false,
+  "setupChanged": false,
+  "companySwitched": false,
+  "apiShortcut": false,
+  "bookChanged": false,
+  "proved": [
+    "FA-194 clicked only the exact Preview Posting menuitem.",
+    "FA-194 opened the Error Messages page.",
+    "FA-194 did not click normal Post, Post and Print, OK or Yes.",
+    "FA-194 did not create, edit or delete a journal line.",
+    "FA-195 classifies FA-194 as Preview-error evidence, not posting evidence.",
+    "FA-195 selects a read-only Error Messages detail run as the next smallest safe step."
+  ],
+  "notProved": [
+    "The detailed Business Central error message is not readable yet.",
+    "The exact setup or data cause is not known yet.",
+    "No Fixed Asset G/L Journal posting was executed.",
+    "No FA Ledger Entry or posted G/L Entry trace exists.",
+    "No German final proof exists."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-195/",
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-195-fa-gl-journal-preview-posting-menuitem-review.json",
+    ".agent/state/cases/fixedassets-196-fa-gl-journal-error-messages-readonly.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/model_usage_log.jsonl",
+    "playwright/projects/fibu-book5/BC-PAGE-ACTION-MAP.json",
+    "playwright/projects/fibu-book5/BC-PLAYWRIGHT-PATTERNS.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-194/FIXEDASSETS-194-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-194/010-preview-posting-menuitem-attempt.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-194/020-preview-posting-result-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-195/FIXEDASSETS-195-review.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-195/FIXEDASSETS-195-result.json"
+  ],
+  "warnings": [
+    "Error Messages page visibility is not enough; the next case must read the concrete error text.",
+    "Do not change setup before the error cause is documented.",
+    "Do not post from this result.",
+    "CRONUS-USA laboratory only; no German final proof."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-196-FA-GL-JOURNAL-ERROR-MESSAGES-READONLY",
+      "active_case_file": ".agent/state/cases/fixedassets-196-fa-gl-journal-error-messages-readonly.json",
+      "lastReferenceCase": "FIXEDASSETS-195-FA-GL-JOURNAL-PREVIEW-POSTING-MENUITEM-REVIEW",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-195-fa-gl-journal-preview-posting-menuitem-review.json",
+      "requiresStrongModel": false,
+      "nextStep": "FIXEDASSETS-196: read-only capture the Error Messages details produced by FA-194 before any setup change, retry or posting."
+    },
+    "activeCase": {
+      "status": "accepted-local-review",
+      "lastResult": {
+        "status": "accepted",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-195/FIXEDASSETS-195-result.json",
+        "summary": "FA-195 accepts FA-194 as Preview-error evidence and selects read-only Error Messages details as the next step."
+      },
+      "nextSafeAction": "Run FIXEDASSETS-196 read-only Error Messages detail capture; do not post or change setup."
+    }
+  },
+  "nextStep": "FIXEDASSETS-196-FA-GL-JOURNAL-ERROR-MESSAGES-READONLY"
+}

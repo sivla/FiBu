@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-196-FA-GL-JOURNAL-ERROR-MESSAGES-READONLY",
+  "status": "planned",
+  "workType": "playwright-readonly-error-details",
+  "taskClass": "wizard_work",
+  "requiresStrongModel": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Read-only capture the Error Messages details produced by FA-194 Preview Posting before any setup change, retry or posting.",
+  "inputs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-195/FIXEDASSETS-195-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-194/FIXEDASSETS-194-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-194/020-preview-posting-result-text.txt",
+    "playwright/projects/fibu-book5/BC-PAGE-ACTION-MAP.json",
+    "playwright/projects/fibu-book5/BC-PLAYWRIGHT-PATTERNS.md"
+  ],
+  "allowedActions": [
+    "open-business-central",
+    "run-playwright",
+    "confirm-instance-and-company",
+    "open-error-messages-readonly",
+    "capture-error-message-text",
+    "capture-error-message-fields",
+    "write-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "book-edit",
+    "company-switch",
+    "create-journal-lines",
+    "edit-journal-lines",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "delete-record",
+    "click-ok-on-posting-dialog",
+    "click-yes-on-posting-dialog"
+  ],
+  "safetyGates": [
+    "instance-url-contains-MCP_1_20260210",
+    "company-url-contains-RM-DEMO",
+    "error-messages-page-or-list-visible",
+    "no-edit-controls-used",
+    "no-preview-retry",
+    "no-posting-dialog-confirmation"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-196/FIXEDASSETS-196-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-196/010-error-messages-readonly.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-196/020-error-messages-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-196/FIXEDASSETS-196-learning.md"
+  ],
+  "acceptanceCriteria": [
+    "Concrete Error Messages text is captured read-only.",
+    "No setup value is changed.",
+    "No journal line is changed.",
+    "No Preview Posting retry is executed.",
+    "The result classifies whether the likely next step is setup-fit, data correction, UI route correction or review."
+  ],
+  "stopConditions": [
+    "Business Central is not in MCP_1_20260210.",
+    "Company is not RM-DEMO.",
+    "Opening the error context would require editing, posting or confirmation.",
+    "The Error Messages page cannot be reached read-only."
+  ],
+  "nextSafeAction": "Implement and run read-only Error Messages detail capture."
+}
