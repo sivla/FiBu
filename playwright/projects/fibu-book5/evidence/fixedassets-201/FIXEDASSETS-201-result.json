@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-201-fa-posting-type-review-result",
+  "caseId": "FIXEDASSETS-201-FA-GL-JOURNAL-FA-POSTING-TYPE-REVIEW",
+  "source": "local-fa-posting-type-persistence-review",
+  "resultStatus": "observed",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "proved": [
+    "FA-198 captured the prior Preview Posting blocker on Gen. Journal Line ASSETS / DEFAULT / 10000: FA Posting Type was blank.",
+    "FA-199 classified the blocker as journal-line data missing FA Posting Type, not as a proven setup failure.",
+    "FA-200 proved the target FA Posting Type field was blank before correction: selected option value 0 / empty.",
+    "FA-200 set only the target FA Posting Type field by guarded select route to value 1 / Acquisition Cost.",
+    "FA-200 proved FA Posting Type = Acquisition Cost remained selected after reopening Fixed Asset G/L Journals.",
+    "FA-200 did not open Preview Posting, did not post, did not change setup and did not switch company."
+  ],
+  "notProved": [
+    "Preview Posting after FA Posting Type correction has not yet been rerun.",
+    "No Preview Posting entry lines after correction are proven.",
+    "No FA Ledger Entry or posted G/L Entry trace exists.",
+    "No posting is authorized by this review.",
+    "No German final proof exists."
+  ],
+  "decision": {
+    "blockerClass": "journal-line-data-missing-fa-posting-type",
+    "priorBlockerResolved": true,
+    "basis": "FA-200 before/after/reopen evidence shows FA Posting Type changed from empty selected option to Acquisition Cost and persisted.",
+    "setupChangeAllowed": false,
+    "postingAllowed": false,
+    "previewAllowed": true,
+    "previewScope": "One guarded Preview Posting-only retry may run next, after re-checking FA Posting Type = Acquisition Cost immediately before the Preview click.",
+    "nextCase": "FIXEDASSETS-202-FA-GL-JOURNAL-PREVIEW-POSTING-AFTER-FA-POSTING-TYPE",
+    "nextCaseScope": "Verify corrected FA Posting Type, click exact Preview Posting menuitem once, then capture Preview entries or immediate Error Messages. No Post, no setup change and no journal edit."
+  },
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-201/",
+    ".agent/state/cases/fixedassets-201-fa-gl-journal-fa-posting-type-review.json",
+    ".agent/state/cases/fixedassets-202-fa-gl-journal-preview-posting-after-fa-posting-type.json",
+    ".agent/state/current.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/model_usage_log.jsonl"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-201/FIXEDASSETS-201-decision.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-201/FIXEDASSETS-201-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-200/FIXEDASSETS-200-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-200/010-before-fa-posting-type.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-200/020-after-fa-posting-type.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-200/030-after-reopen-persistence.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-198/FIXEDASSETS-198-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-199/FIXEDASSETS-199-result.json"
+  ],
+  "warnings": [
+    "Preview retry permission is not posting permission.",
+    "Normal Post and Post and Print remain locked.",
+    "If Error Messages appears again, the new error must become the next learning blocker.",
+    "Do not infer German final accounting proof from this CRONUS-USA laboratory review."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-202-FA-GL-JOURNAL-PREVIEW-POSTING-AFTER-FA-POSTING-TYPE",
+      "active_case_file": ".agent/state/cases/fixedassets-202-fa-gl-journal-preview-posting-after-fa-posting-type.json",
+      "lastReferenceCase": "FIXEDASSETS-201-FA-GL-JOURNAL-FA-POSTING-TYPE-REVIEW",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-201-fa-gl-journal-fa-posting-type-review.json",
+      "requiresStrongModel": false,
+      "nextStep": "FIXEDASSETS-202: run one guarded Preview Posting-only retry after proving FA Posting Type = Acquisition Cost; no Post, no setup change and no journal edit."
+    },
+    "activeCase": {
+      "status": "accepted-local-decision-preview-retry-unlocked",
+      "lastResult": {
+        "status": "observed",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-201/FIXEDASSETS-201-result.json",
+        "summary": "FA-201 accepts FA-200 as resolving the prior blank FA Posting Type blocker and unlocks exactly one guarded Preview Posting-only retry. Posting remains locked."
+      },
+      "nextSafeAction": "Run FIXEDASSETS-202 guarded Preview Posting-only retry; do not Post."
+    }
+  },
+  "flags": {
+    "localOnly": true,
+    "noBusinessCentralRun": true,
+    "noPlaywrightRun": true,
+    "previewRetryUnlocked": true,
+    "postingUnlocked": false,
+    "noPost": true,
+    "noSetupChange": true,
+    "noJournalEdit": true,
+    "noBookChange": true
+  },
+  "nextStep": "FIXEDASSETS-202: run one guarded Preview Posting-only retry after proving FA Posting Type = Acquisition Cost; no Post, no setup change and no journal edit."
+}
