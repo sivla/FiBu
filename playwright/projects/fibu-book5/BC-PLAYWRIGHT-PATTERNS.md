@@ -189,6 +189,7 @@ Diese Datei sammelt wiederverwendbare Muster aus belegten Laeufen. Sie ist keine
 - FA-193 entscheidet: Ein einzelner `button[role=menuitem]` mit Text/Aria-Label `Preview Posting` darf genau einen separaten Preview-only-Liveversuch freigeben. Der Test muss vorher erneut den Splitbutton oeffnen, exakt einen Preview-Kandidaten pruefen, nur diesen Kandidaten klicken und bei jedem Posting-Dialog ohne `OK`/`Yes` stoppen. `Post`, `Post and Print`, `Insert FA Bal. Account` und `Reconcile` bleiben gesperrt.
 - FA-194 bestaetigt den gescopten Preview-Pfad: Nur der exakte `Preview Posting`-Menuepunkt wurde geklickt; danach oeffnete BC die Seite `Error Messages`. Das ist ein Preview-Fehlerbild und kein Buchungsnachweis. Der naechste Schritt muss die Fehlermeldung fachlich lesen, bevor Setup geaendert oder ein weiterer Preview-/Posting-Lauf geplant wird.
 - FA-195 Review-Regel: Eine erreichte `Error Messages`-Seite ist noch keine Fehlerursache. Vor Setup-Fit, Retry oder Posting muss ein eigener read-only Lauf die konkrete Fehlermeldung, betroffene Felder und moegliche Ursache sichern.
+- FA-196 zeigt die Grenze gespeicherter Error-Messages-URLs: Die Seite `Error Messages` kann spaeter read-only erreichbar sein, aber eine leere Liste anzeigen. Das beweist den Fehlerkontext nicht erneut. Wenn die Detailzeile leer ist, muss der naechste sichere Plan entscheiden, ob ein neuer Preview-only-Lauf die Error-Messages-Details unmittelbar nach dem Klick erfassen darf; keine Setup-Aenderung aus einer leeren Error-Messages-Liste ableiten.
 
 ## Screenshots
 

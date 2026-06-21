@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-196-error-messages-readonly-result",
+  "caseId": "FIXEDASSETS-196-FA-GL-JOURNAL-ERROR-MESSAGES-READONLY",
+  "source": "playwright-readonly-error-messages",
+  "resultStatus": "blocked",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-medium",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "environment": {
+    "expectedInstance": "MCP_1_20260210",
+    "expectedCompany": "RM-DEMO",
+    "context": {
+      "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=700&filter=%27Error+Message%27.Context+IS+%270%27&dc=0",
+      "environmentInUrl": true,
+      "companyInUrl": true,
+      "companyInText": true,
+      "page700InUrl": true,
+      "errorMessagesVisible": true,
+      "wrongEnvironmentVisible": false
+    },
+    "sourceUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=700&filter=%27Error+Message%27.Context+IS+%27Nein%27&dc=0&bookmark=C_vAIAAACHBA",
+    "finalUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=700&filter=%27Error+Message%27.Context+IS+%270%27&dc=0"
+  },
+  "proved": [
+    "The run stayed in MCP_1_20260210.",
+    "The run stayed in RM-DEMO.",
+    "The Business Central Error Messages page 700 was opened read-only.",
+    "The Error Messages list was proven empty in this direct read-only route.",
+    "No Preview Posting retry was executed.",
+    "No main Post button or Post menuitem was clicked.",
+    "No OK/Yes confirmation was clicked.",
+    "No journal line was created, edited or deleted.",
+    "No setup change was made.",
+    "No API shortcut was used.",
+    "No book content was changed."
+  ],
+  "notProved": [
+    "Concrete Error Messages details were not readable in this route.",
+    "The original preview-error detail is not recoverable from the direct Error Messages URL because BC shows an empty list.",
+    "No setup correction was executed.",
+    "No Preview Posting retry after the error detail capture was executed.",
+    "No Fixed Asset G/L Journal posting was executed.",
+    "No FA Ledger Entry or posted G/L Entry trace exists.",
+    "No German final proof exists."
+  ],
+  "changedFiles": [
+    "package.json",
+    "playwright/projects/fibu-book5/tests/fixedassets-196-fa-gl-journal-error-messages-readonly.spec.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-196/"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-196/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-196/010-error-messages-readonly.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-196/020-error-messages-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-196/FIXEDASSETS-196-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-196/FIXEDASSETS-196-result.json"
+  ],
+  "warnings": [
+    "Read-only error-detail capture only. Do not treat as setup correction or posting permission.",
+    "Posting remains locked until a local decision review consumes the captured error detail.",
+    "No German final proof."
+  ],
+  "blockedBy": [
+    "Error Messages page is visible but the list is empty in this read-only route.",
+    "Error Messages page opened, but no concrete error detail beyond page/list labels was readable."
+  ],
+  "requiresReview": true,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-197-FA-GL-JOURNAL-PREVIEW-BLOCKER-DECISION",
+      "active_case_file": ".agent/state/cases/fixedassets-197-fa-gl-journal-preview-blocker-decision.json",
+      "lastReferenceCase": "FIXEDASSETS-196-FA-GL-JOURNAL-ERROR-MESSAGES-READONLY",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-196-fa-gl-journal-error-messages-readonly.json",
+      "requiresStrongModel": true,
+      "nextStep": "FIXEDASSETS-197: locally decide whether the empty direct Error Messages page means the next safe route must capture details immediately after Preview Posting."
+    },
+    "activeCase": {
+      "status": "blocked-error-message-details",
+      "lastResult": {
+        "status": "blocked",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-196/FIXEDASSETS-196-result.json",
+        "summary": "FA-196 stayed read-only but did not capture concrete Error Messages details. Blocker: Error Messages page is visible but the list is empty in this read-only route. | Error Messages page opened, but no concrete error detail beyond page/list labels was readable."
+      },
+      "nextSafeAction": "Run local blocker review; do not retry Preview Posting or change setup yet."
+    }
+  },
+  "flags": {
+    "noPreviewRetry": true,
+    "noMainPostClick": true,
+    "noPostMenuitemClick": true,
+    "noPostAndPrintClick": true,
+    "noInsertLine": true,
+    "noDeleteLine": true,
+    "noPost": true,
+    "noOkYesConfirmation": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "observed": {
+    "startedAt": "2026-06-21T16:50:32.223Z",
+    "finishedAt": "2026-06-21T16:50:39.950Z",
+    "concreteErrorLines": [],
+    "emptyListVisible": true,
+    "visibleEntryCount": 23
+  },
+  "nextStep": "FIXEDASSETS-197: locally decide whether the empty direct Error Messages page means the next safe route must capture details immediately after Preview Posting."
+}

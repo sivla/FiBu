@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-197-FA-GL-JOURNAL-PREVIEW-BLOCKER-DECISION",
+  "status": "planned",
+  "workType": "local-blocker-review",
+  "taskClass": "judge_work",
+  "requiresStrongModel": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Decide the next safe Fixed Asset G/L Journal Preview Posting route from FA-194 and FA-196 evidence before any setup change, preview retry or posting.",
+  "inputs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-194/FIXEDASSETS-194-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-194/020-preview-posting-result-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-195/FIXEDASSETS-195-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-196/FIXEDASSETS-196-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-196/010-error-messages-readonly.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-196/020-error-messages-text.txt"
+  ],
+  "allowedActions": [
+    "read-evidence",
+    "classify-blocker",
+    "write-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "open-business-central",
+    "run-playwright",
+    "book-edit",
+    "company-switch",
+    "create-journal-lines",
+    "edit-journal-lines",
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "payment",
+    "setup-change",
+    "delete-record",
+    "click-ok-on-posting-dialog",
+    "click-yes-on-posting-dialog"
+  ],
+  "safetyGates": [
+    "local-only-review",
+    "no-playwright",
+    "no-business-central",
+    "no-preview-retry",
+    "no-setup-change",
+    "no-posting"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-197/FIXEDASSETS-197-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-197/FIXEDASSETS-197-decision.md"
+  ],
+  "acceptanceCriteria": [
+    "Classify whether FA-196 proves a transient Error Messages context.",
+    "Decide the next safe route without running Business Central.",
+    "State explicitly whether the next practical run may retry Preview Posting only to capture immediate details.",
+    "Do not authorize posting."
+  ],
+  "stopConditions": [
+    "Evidence contradicts instance or company context.",
+    "Evidence is insufficient to choose between immediate-detail capture and setup diagnosis."
+  ],
+  "nextSafeAction": "Run local blocker review; do not retry Preview Posting or change setup yet."
+}
