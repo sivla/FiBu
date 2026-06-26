@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-220-FA-GL-JOURNAL-PREVIEW-AFTER-AMOUNT-VALUE",
+  "status": "planned",
+  "workType": "playwright-preview-posting-only",
+  "taskClass": "wizard_work",
+  "requiresStrongModel": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Run a guarded Preview Posting-only retry for the existing FA-CNC-01 Fixed Asset G/L Journal line after FA-218 proved Amount 120.000,00. Do not post.",
+  "inputs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-218/FIXEDASSETS-218-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-219/FIXEDASSETS-219-result.json",
+    "playwright/projects/fibu-book5/tests/fixedassets-218-fa-gl-journal-amount-value-preflight.spec.ts"
+  ],
+  "target": {
+    "documentNo": "G05001",
+    "accountType": "Fixed Asset",
+    "accountNo": "FA-CNC-01",
+    "depreciationBookCode": "HGB",
+    "faPostingType": "Acquisition Cost",
+    "balAccountNo": "82000",
+    "amountDisplay": "120.000,00"
+  },
+  "allowedActions": [
+    "open-business-central",
+    "run-playwright",
+    "verify-instance-url",
+    "verify-company-url",
+    "open-fa-gl-journal-page",
+    "verify-existing-fa-journal-line-context",
+    "verify-amount-120000-visible",
+    "open-preview-posting-menuitem-only",
+    "capture-preview-posting-entries-or-error",
+    "close-preview-without-posting",
+    "write-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "book-edit",
+    "company-switch",
+    "setup-change",
+    "journal-edit",
+    "insert-new-journal-line",
+    "delete-journal-line",
+    "change-document-no",
+    "change-account-no",
+    "change-depreciation-book-code",
+    "change-fa-posting-type",
+    "change-bal-account-no",
+    "change-amount",
+    "post",
+    "post-and-print",
+    "click-ok-on-posting-dialog",
+    "click-yes-on-posting-dialog",
+    "confirm-posting-dialog"
+  ],
+  "safetyGates": [
+    "must-stay-in-MCP_1_20260210",
+    "must-stay-in-RM-DEMO",
+    "target-line-must-be-unique",
+    "amount-120000-must-be-visible-before-preview",
+    "open-only-preview-posting-menuitem-not-post-action",
+    "no-posting",
+    "no-setup-change",
+    "no-journal-edit",
+    "no-company-switch",
+    "no-api-shortcut"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-220/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-220/010-preview-after-amount.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-220/020-preview-after-amount-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-220/FIXEDASSETS-220-result.json"
+  ],
+  "acceptanceCriteria": [
+    "Instance and company are verified before any preview action.",
+    "The existing target journal line is uniquely proven and Amount 120.000,00 is visible before Preview Posting.",
+    "Only Preview Posting is opened; normal Post and Post and Print are not clicked.",
+    "Preview result entries or the exact error are captured compactly.",
+    "No posting occurs."
+  ],
+  "stopConditions": [
+    "Wrong instance or company is detected.",
+    "The target line is not unique.",
+    "Amount 120.000,00 is not visible before Preview Posting.",
+    "The route would require editing the journal line.",
+    "A normal posting dialog appears.",
+    "An OK/Yes confirmation for posting appears."
+  ],
+  "nextSafeAction": "Run guarded Preview Posting-only retry; do not Post.",
+  "createdAt": "2026-06-26T18:45:00.000Z",
+  "updatedAt": "2026-06-26T18:45:00.000Z"
+}

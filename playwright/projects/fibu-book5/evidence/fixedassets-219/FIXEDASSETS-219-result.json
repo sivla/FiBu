@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-219-amount-value-review-result",
+  "caseId": "FIXEDASSETS-219-FA-GL-JOURNAL-AMOUNT-VALUE-REVIEW",
+  "source": "local-evidence-review",
+  "resultStatus": "accepted-preview-only-retry-unlocked-no-posting",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "proved": [
+    "FA-218 proves the existing FA-CNC-01 Fixed Asset G/L Journal target line context.",
+    "FA-218 proves Amount value 120.000,00 visible/current on the guarded target line.",
+    "The previous zero-amount blocker is sufficiently addressed for a Preview Posting-only retry.",
+    "No Preview Posting and no Post occurred in FA-218 or FA-219."
+  ],
+  "notProved": [
+    "No Preview Posting result after Amount value 120.000,00.",
+    "No FA Ledger Entry, G/L Entry or final posting trace after Amount value 120.000,00.",
+    "No posting permission.",
+    "No German final proof."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-219/",
+    ".agent/state/current.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/cases/fixedassets-219-fa-gl-journal-amount-value-review.json",
+    ".agent/state/cases/fixedassets-220-fa-gl-journal-preview-after-amount-value.json"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-219/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-219/FIXEDASSETS-219-decision.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-219/FIXEDASSETS-219-result.json"
+  ],
+  "warnings": [
+    "Preview Posting-only is unlocked; Posting remains locked.",
+    "Amount value remains laboratory draft state until next case confirms or changes it.",
+    "Do not treat CRONUS-USA laboratory evidence as German final proof."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-220-FA-GL-JOURNAL-PREVIEW-AFTER-AMOUNT-VALUE",
+      "active_case_file": ".agent/state/cases/fixedassets-220-fa-gl-journal-preview-after-amount-value.json",
+      "lastReferenceCase": "FIXEDASSETS-219-FA-GL-JOURNAL-AMOUNT-VALUE-REVIEW",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-219-fa-gl-journal-amount-value-review.json",
+      "requiresStrongModel": false,
+      "nextStep": "FIXEDASSETS-220: run guarded Preview Posting-only retry after FA-218 Amount value proof; do not Post."
+    },
+    "activeCase": {
+      "status": "accepted-preview-only-retry-unlocked-no-posting",
+      "lastResult": {
+        "status": "accepted-preview-only-retry-unlocked-no-posting",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-219/FIXEDASSETS-219-result.json",
+        "summary": "FA-219 accepts FA-218 as sufficient guarded Amount value proof to unlock a Preview Posting-only retry; posting remains locked."
+      },
+      "nextSafeAction": "Run FIXEDASSETS-220 Preview Posting-only retry; do not Post."
+    }
+  },
+  "flags": {
+    "noBcRun": true,
+    "noPlaywrightRun": true,
+    "noPreview": true,
+    "noPost": true,
+    "noSetupChange": true,
+    "noJournalEdit": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true,
+    "previewOnlyRetryUnlocked": true,
+    "postingUnlocked": false
+  },
+  "nextStep": "FIXEDASSETS-220: guarded Preview Posting-only retry after Amount value proof; no Post."
+}
