@@ -1,16 +1,16 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-206-HGB-PAGEINSPECTION-READONLY",
+  "runId": "FIXEDASSETS-207-HGB-PAGEINSPECTION-RESULT-REVIEW",
   "timestamp": "2026-06-26T00:00:00.000Z",
   "date": "2026-06-26",
-  "workType": "playwright-readonly-technical-diagnosis",
-  "taskClass": "wizard_work",
-  "modelClass": "gpt-4-medium",
+  "workType": "local-evidence-review",
+  "taskClass": "judge_work",
+  "modelClass": "gpt-5.5-low",
   "branch": "codex/token-efficient-autopilot-state",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "bcRun": true,
-  "playwrightRun": true,
+  "bcRun": false,
+  "playwrightRun": false,
   "posted": false,
   "previewPosting": false,
   "setupChanged": false,
@@ -19,37 +19,38 @@
   "bookChanged": false,
   "dataChanged": false,
   "resultStatus": "observed",
-  "summary": "FA-206 opened HGB Depreciation Book Card and Page Inspection read-only. Acq. Cost integration classification is not-visible; no setup, preview or post occurred.",
+  "summary": "FA-207 accepted FA-206 as field-existence proof but not value proof, and selected FA-208 controlled UI-first setup-fit for HGB G/L Integration - Acq. Cost.",
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/fixedassets-206/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-207/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-207/FIXEDASSETS-207-decision.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-207/FIXEDASSETS-207-result.json",
     "playwright/projects/fibu-book5/evidence/fixedassets-206/FIXEDASSETS-206-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-206/FIXEDASSETS-206-learning.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-206/010-hgb-pageinspection-fields.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-206/020-pageinspection-focused-lines.txt"
+    "playwright/projects/fibu-book5/evidence/fixedassets-202/FIXEDASSETS-202-result.json"
   ],
   "changedFiles": [
-    "package.json",
-    "playwright/projects/fibu-book5/tests/fixedassets-206-hgb-pageinspection-readonly.spec.ts",
-    "playwright/projects/fibu-book5/evidence/fixedassets-206/",
-    ".agent/state/cases/fixedassets-206-hgb-pageinspection-readonly.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-207/",
     ".agent/state/cases/fixedassets-207-hgb-pageinspection-result-review.json",
+    ".agent/state/cases/fixedassets-208-hgb-acq-cost-gl-integration-setup-fit.json",
     ".agent/state/current.json",
     ".agent/state/coverage_state.json",
-    ".agent/state/last_run_summary.json"
+    ".agent/state/last_run_summary.json",
+    ".agent/state/model_usage_log.jsonl"
   ],
   "validationCommands": [
-    "npm run fibu:fixedassets:hgb-pageinspection-readonly",
     "npm run agent:preflight",
-    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-206/FIXEDASSETS-206-result.json",
-    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-206/FIXEDASSETS-206-result.json",
     "npm run agent:dry-run",
     "npm run agent:run-plan",
+    "npm run agent:subagent-plan",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-207/FIXEDASSETS-207-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-207/FIXEDASSETS-207-result.json",
     "JSON parse changed files",
     "npm run check:encoding",
     "git diff --check"
   ],
   "boundaries": [
-    "Read-only Page Inspection only.",
+    "Local review only.",
+    "No BC run.",
+    "No Playwright run.",
     "No Preview Posting.",
     "No posting.",
     "No setup change.",
@@ -59,5 +60,5 @@
     "No book change.",
     "No German final proof."
   ],
-  "nextStep": "FIXEDASSETS-207: local judge review of FA-206 Page Inspection evidence before setup-fit, Preview Posting or posting decision."
+  "nextStep": "FIXEDASSETS-208: controlled UI-first setup-fit for HGB G/L Integration - Acq. Cost; no Preview Posting and no Post."
 }

@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-208-HGB-ACQ-COST-GL-INTEGRATION-SETUP-FIT",
+  "status": "planned",
+  "workType": "playwright-ui-first-setup-fit",
+  "taskClass": "wizard_work",
+  "requiresStrongModel": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Open HGB Depreciation Book Card in RM-DEMO and idempotently ensure only G/L Integration - Acq. Cost is on, with before/after evidence and no Preview Posting or posting.",
+  "inputs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-207/FIXEDASSETS-207-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-206/FIXEDASSETS-206-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-202/FIXEDASSETS-202-result.json"
+  ],
+  "allowedActions": [
+    "open-business-central",
+    "run-playwright",
+    "confirm-instance-and-company",
+    "open-depreciation-books",
+    "open-hgb-depreciation-book-card",
+    "enter-edit-mode-if-needed",
+    "read-gl-integration-acq-cost-checkbox-state",
+    "set-gl-integration-acq-cost-on-if-accessible",
+    "save-or-leave-record-after-setup-fit",
+    "write-before-after-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "book-edit",
+    "company-switch",
+    "create-depreciation-book",
+    "delete-depreciation-book",
+    "toggle-other-gl-integration-fields",
+    "create-journal-lines",
+    "edit-journal-lines",
+    "preview-posting",
+    "post",
+    "post-and-print",
+    "delete-record",
+    "click-ok-on-posting-dialog",
+    "click-yes-on-posting-dialog"
+  ],
+  "safetyGates": [
+    "instance-url-contains-MCP_1_20260210",
+    "company-url-contains-RM-DEMO",
+    "hgb-depreciation-book-card-visible",
+    "target-field-is-G/L-Integration-Acq-Cost",
+    "single-field-change-only",
+    "before-after-state-captured",
+    "no-preview-posting",
+    "no-post"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-208/FIXEDASSETS-208-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-208/010-hgb-acq-cost-gl-integration-before-after.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-208/FIXEDASSETS-208-learning.md"
+  ],
+  "acceptanceCriteria": [
+    "The run stays in MCP_1_20260210 / RM-DEMO.",
+    "Only HGB Depreciation Book Card is edited.",
+    "Only G/L Integration - Acq. Cost is set to on if safely accessible.",
+    "Before/after evidence proves already-fit, changed-to-on, or blocked.",
+    "No Preview Posting, Post, journal edit, company switch or API shortcut occurs."
+  ],
+  "stopConditions": [
+    "Business Central is not in MCP_1_20260210.",
+    "Company is not RM-DEMO.",
+    "HGB context is not uniquely reachable.",
+    "The target checkbox cannot be uniquely identified.",
+    "Changing the value would require touching another setup field.",
+    "Any posting or confirmation dialog appears."
+  ],
+  "nextSafeAction": "Implement one controlled UI-first setup-fit for HGB G/L Integration - Acq. Cost; no preview and no post."
+}

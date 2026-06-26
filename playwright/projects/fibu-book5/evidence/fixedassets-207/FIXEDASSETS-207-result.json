@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-207-hgb-pageinspection-result-review",
+  "caseId": "FIXEDASSETS-207-HGB-PAGEINSPECTION-RESULT-REVIEW",
+  "source": "local-evidence-review",
+  "resultStatus": "observed",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "proved": [
+    "FA-206 proved Page Inspection opened read-only on HGB Depreciation Book Card.",
+    "FA-206 proved Page 5610 and Source Table 5611 for the HGB Depreciation Book Card.",
+    "FA-206 proved the field caption G/L Integration - Acq. Cost (3, Boolean) exists.",
+    "FA-206 did not prove the actual checked/unchecked value.",
+    "FA-202 proved the current FA G/L Journal preview route is blocked by the message that Acquisition Cost must be posted in the FA journal.",
+    "No Business Central, Playwright, Preview Posting, Post, setup change, journal edit, company switch, API shortcut or book change occurred in FA-207."
+  ],
+  "notProved": [
+    "No current value for G/L Integration - Acq. Cost is proven on or off.",
+    "No setup change has been made yet.",
+    "No Preview Posting entry lines are proven after any setup fit.",
+    "No FA Ledger Entry or posted G/L Entry trace exists.",
+    "No German final proof exists."
+  ],
+  "decision": {
+    "classification": "controlled-ui-first-setup-fit",
+    "nextRoute": "FIXEDASSETS-208-HGB-ACQ-COST-GL-INTEGRATION-SETUP-FIT",
+    "reason": "A further read-only Page Inspection loop is unlikely to add the missing value. Existing evidence proves the field exists and the journal preview route is blocked by Acquisition Cost integration semantics. The safest next progress is a narrow idempotent setup-fit that sets only G/L Integration - Acq. Cost to on if the checkbox can be safely addressed.",
+    "rejectedRoutes": [
+      {
+        "route": "another-pageinspection-readonly-loop",
+        "reason": "Rejected because FA-206 already proved page, table and field but not the value."
+      },
+      {
+        "route": "rerun-preview-posting-now",
+        "reason": "Rejected because no setup changed after the previous preview blocker."
+      },
+      {
+        "route": "post-fa-journal-or-fa-gl-journal",
+        "reason": "Rejected because posting is not unlocked and no successful Preview Posting evidence exists."
+      }
+    ]
+  },
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-207/",
+    ".agent/state/cases/fixedassets-207-hgb-pageinspection-result-review.json",
+    ".agent/state/cases/fixedassets-208-hgb-acq-cost-gl-integration-setup-fit.json",
+    ".agent/state/current.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/model_usage_log.jsonl"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-207/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-207/FIXEDASSETS-207-decision.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-207/FIXEDASSETS-207-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-206/FIXEDASSETS-206-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-202/FIXEDASSETS-202-result.json"
+  ],
+  "warnings": [
+    "The next setup-fit may only touch G/L Integration - Acq. Cost.",
+    "Preview Posting and Post remain locked until a later case explicitly unlocks them.",
+    "CRONUS-USA laboratory evidence is not German final proof."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-208-HGB-ACQ-COST-GL-INTEGRATION-SETUP-FIT",
+      "active_case_file": ".agent/state/cases/fixedassets-208-hgb-acq-cost-gl-integration-setup-fit.json",
+      "lastReferenceCase": "FIXEDASSETS-207-HGB-PAGEINSPECTION-RESULT-REVIEW",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-207-hgb-pageinspection-result-review.json",
+      "requiresStrongModel": false,
+      "nextStep": "FIXEDASSETS-208: controlled UI-first setup-fit for HGB G/L Integration - Acq. Cost; no Preview Posting and no Post."
+    },
+    "activeCase": {
+      "status": "observed-next-route-selected",
+      "lastResult": {
+        "status": "observed",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-207/FIXEDASSETS-207-result.json",
+        "summary": "FA-207 accepted FA-206 as field-existence proof but not value proof, and selected a narrow idempotent UI-first setup-fit for HGB G/L Integration - Acq. Cost."
+      },
+      "nextSafeAction": "Run FIXEDASSETS-208 setup-fit only; no Preview Posting and no Post."
+    }
+  },
+  "flags": {
+    "localReviewOnly": true,
+    "noBusinessCentralRun": true,
+    "noPlaywrightRun": true,
+    "noPreview": true,
+    "noPost": true,
+    "noSetupChange": true,
+    "noJournalEdit": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "nextStep": "FIXEDASSETS-208: controlled UI-first setup-fit for HGB G/L Integration - Acq. Cost; no Preview Posting and no Post."
+}
