@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-207-HGB-PAGEINSPECTION-RESULT-REVIEW",
+  "status": "active",
+  "workType": "local-evidence-review",
+  "taskClass": "judge_work",
+  "requiresStrongModel": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Review FIXEDASSETS-206 Page Inspection evidence. It proved Page 5610/Table 5611 and the Acq. Cost Boolean field caption, but did not prove the actual value; decide whether another read-only proof, a controlled setup-fit, or a journal route is safest.",
+  "inputs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-206/FIXEDASSETS-206-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-206/010-hgb-pageinspection-fields.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-205/FIXEDASSETS-205-result.json"
+  ],
+  "allowedActions": [
+    "read-evidence",
+    "read-state",
+    "read-microsoft-learn",
+    "write-review-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "open-business-central",
+    "run-playwright",
+    "book-edit",
+    "company-switch",
+    "create-depreciation-book",
+    "edit-depreciation-book",
+    "toggle-gl-integration",
+    "create-journal-lines",
+    "edit-journal-lines",
+    "preview-posting",
+    "post",
+    "post-and-print",
+    "setup-change",
+    "delete-record",
+    "click-ok-on-posting-dialog",
+    "click-yes-on-posting-dialog"
+  ],
+  "safetyGates": [
+    "local-review-only",
+    "source-evidence-exists",
+    "no-business-central",
+    "no-playwright",
+    "no-setup-change",
+    "no-preview-posting",
+    "no-post"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-207/FIXEDASSETS-207-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-207/FIXEDASSETS-207-decision.md"
+  ],
+  "acceptanceCriteria": [
+    "FA-206 Page Inspection classification is reviewed.",
+    "The next safe route is selected without live action.",
+    "No Business Central, Playwright, setup, preview or posting run occurs."
+  ],
+  "stopConditions": [
+    "FA-206 result is missing.",
+    "FA-206 evidence is contradictory.",
+    "A route decision would require unverified setup assumptions."
+  ],
+  "nextSafeAction": "Local review only; decide next fixed-assets route after FA-206 showed field existence but not the value."
+}

@@ -6,12 +6,12 @@
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "fixedassets",
-  "activeCase": "FIXEDASSETS-206-HGB-PAGEINSPECTION-READONLY",
-  "active_case_file": ".agent/state/cases/fixedassets-206-hgb-pageinspection-readonly.json",
-  "lastReferenceCase": "FIXEDASSETS-205-HGB-GL-INTEGRATION-REVIEW",
-  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-205-hgb-gl-integration-review.json",
+  "activeCase": "FIXEDASSETS-207-HGB-PAGEINSPECTION-RESULT-REVIEW",
+  "active_case_file": ".agent/state/cases/fixedassets-207-hgb-pageinspection-result-review.json",
+  "lastReferenceCase": "FIXEDASSETS-206-HGB-PAGEINSPECTION-READONLY",
+  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-206-hgb-pageinspection-readonly.json",
   "mode": "token-efficient-autopilot-tooling-bootstrap",
-  "requiresStrongModel": false,
+  "requiresStrongModel": true,
   "requiredPreflightChecks": [
     "agent:preflight",
     "agent:state:validate",
@@ -19,14 +19,10 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "open-business-central",
-    "run-playwright",
-    "confirm-instance-and-company",
-    "open-depreciation-books",
-    "open-hgb-depreciation-book-card-readonly",
-    "open-page-inspection-readonly",
-    "capture-page-table-fields-readonly",
-    "write-evidence",
+    "read-evidence",
+    "read-state",
+    "read-microsoft-learn",
+    "write-review-evidence",
     "update-state"
   ],
   "forbiddenActions": [
@@ -36,6 +32,8 @@
     "fake-evidence",
     "book-claim-without-evidence",
     "api-shortcut-without-explicit-case-permission",
+    "open-business-central",
+    "run-playwright",
     "book-edit",
     "company-switch",
     "create-depreciation-book",
@@ -51,7 +49,7 @@
     "click-ok-on-posting-dialog",
     "click-yes-on-posting-dialog"
   ],
-  "nextStep": "FIXEDASSETS-206: read-only Page Inspection on HGB Depreciation Book Card to prove G/L Integration - Acq. Cost field value.",
+  "nextStep": "FIXEDASSETS-207: local judge review of FA-206 Page Inspection evidence; decide next safe route without BC, Playwright, setup, preview or posting.",
   "subagentPlanPolicy": {
     "default": "optional",
     "execution": "plan-only-no-subagents-spawned",

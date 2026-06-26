@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-206-hgb-pageinspection-readonly-result",
+  "caseId": "FIXEDASSETS-206-HGB-PAGEINSPECTION-READONLY",
+  "source": "playwright-readonly-pageinspection",
+  "resultStatus": "observed",
+  "runPlanId": "FIXEDASSETS-206-HGB-PAGEINSPECTION-READONLY-PLAN",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-medium",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "acquisitionCostIntegration": {
+    "status": "not-visible",
+    "basis": "caption-visible-value-not-readable",
+    "lines": [
+      "G/L Integration - Acq. Cost (3, Boolean)",
+      "Add-Curr Exch Rate - Acq. Cost (34, Boolean)",
+      "Allow Acq. Cost below Zero (47, Boolean)",
+      "G/L Integration - Acq. Cost"
+    ]
+  },
+  "observed": {
+    "startedAt": "2026-06-26T14:37:57.347Z",
+    "finishedAt": "2026-06-26T14:38:17.771Z",
+    "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5610&filter=%27Depreciation%20Book%27.Code%20IS%20%27HGB%27&dc=0&bookmark=11_6xUAAAJ7_0gARwBC",
+    "context": {
+      "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5610&filter=%27Depreciation%20Book%27.Code%20IS%20%27HGB%27&dc=0&bookmark=11_6xUAAAJ7_0gARwBC",
+      "environmentInUrl": true,
+      "companyInUrl": true,
+      "companyInText": true,
+      "wrongEnvironmentVisible": false
+    },
+    "cardOpen": {
+      "openedByRecordLink": true
+    },
+    "pageInspectionOpened": true,
+    "lineCount": 61
+  },
+  "proved": [
+    "The run stayed in MCP_1_20260210 / RM-DEMO.",
+    "The HGB Depreciation Book Card context was opened read-only.",
+    "Page Inspection opened read-only.",
+    "G/L Integration - Acq. Cost classification: not-visible.",
+    "No setup, Preview Posting, Post, journal edit, draft, company switch or API shortcut occurred."
+  ],
+  "notProved": [
+    "Page Inspection did not prove the exact Acq. Cost integration value.",
+    "No setup change is made by this run.",
+    "No Preview Posting rerun.",
+    "No FA Journal route tested.",
+    "No FA Ledger Entry or German final proof."
+  ],
+  "changedFiles": [
+    "package.json",
+    "playwright/projects/fibu-book5/tests/fixedassets-206-hgb-pageinspection-readonly.spec.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-206/",
+    ".agent/state/cases/fixedassets-206-hgb-pageinspection-readonly.json",
+    ".agent/state/cases/fixedassets-207-hgb-pageinspection-result-review.json",
+    ".agent/state/current.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-206/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-206/FIXEDASSETS-206-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-206/FIXEDASSETS-206-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-206/010-hgb-pageinspection-fields.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-206/020-pageinspection-focused-lines.txt"
+  ],
+  "warnings": [
+    "Page Inspection is technical evidence, not posting permission.",
+    "Do not toggle G/L Integration from this run alone.",
+    "CRONUS-USA laboratory evidence is not German final proof."
+  ],
+  "blockedBy": [],
+  "requiresReview": true,
+  "safeToFinalizeState": true,
+  "flags": {
+    "noBookChange": true,
+    "secretsUntouched": true,
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noNewDraft": true,
+    "noFieldValueChanged": true,
+    "noSaveRecord": true,
+    "noDeleteRecord": true
+  },
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-207-HGB-PAGEINSPECTION-RESULT-REVIEW",
+      "active_case_file": ".agent/state/cases/fixedassets-207-hgb-pageinspection-result-review.json",
+      "lastReferenceCase": "FIXEDASSETS-206-HGB-PAGEINSPECTION-READONLY",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-206-hgb-pageinspection-readonly.json",
+      "requiresStrongModel": true,
+      "nextStep": "FIXEDASSETS-207: locally review FA-206 Page Inspection result before any setup-fit, Preview Posting or posting decision."
+    },
+    "activeCase": {
+      "status": "observed-readonly-pageinspection",
+      "lastResult": {
+        "status": "observed",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-206/FIXEDASSETS-206-result.json",
+        "summary": "FA-206 opened HGB Depreciation Book Card and Page Inspection read-only. Acq. Cost integration classification is not-visible; no setup, preview or post occurred."
+      },
+      "nextSafeAction": "FIXEDASSETS-207: local review of Page Inspection result; no setup, no preview, no post."
+    }
+  },
+  "summary": "FA-206 opened HGB Depreciation Book Card and Page Inspection read-only. Acq. Cost integration classification is not-visible; no setup, preview or post occurred.",
+  "nextStep": "FIXEDASSETS-207: locally review FA-206 Page Inspection result before any setup-fit, Preview Posting or posting decision."
+}
