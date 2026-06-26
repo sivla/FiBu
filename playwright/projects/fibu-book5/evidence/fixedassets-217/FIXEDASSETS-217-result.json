@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-217-fa-ledger-entry-preview-detail-review-result",
+  "caseId": "FIXEDASSETS-217-FA-LEDGER-ENTRY-PREVIEW-DETAIL-REVIEW",
+  "source": "local-evidence-review",
+  "resultStatus": "accepted-preview-detail-but-posting-locked-zero-amount",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "reviewedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-216/FIXEDASSETS-216-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-216/010-fa-ledger-entry-detail-readonly.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-216/020-fa-ledger-entry-detail-text.txt"
+  ],
+  "proved": [
+    "FA-216 proves the Preview Posting FA Ledger Entry detail context for FA-CNC-01 / HGB / Acquisition Cost.",
+    "FA-216 proves no G/L Entry row was clicked and no posting/setup/journal edit occurred.",
+    "The current journal/preview evidence contains an amount signal but the visible value is 0,00."
+  ],
+  "notProved": [
+    "No posted FA Ledger Entry exists.",
+    "No posted G/L Entry exists.",
+    "No G/L Entry detail route is proven.",
+    "The target amount 120000 from testdata is not visible on the current journal line.",
+    "No German final proof exists."
+  ],
+  "decision": {
+    "fa216AcceptedAs": "preview-detail-context-proof-only",
+    "postingReadiness": "locked",
+    "lockReason": "Visible Amount is 0,00; a fixed asset acquisition posting would be misleading before a guarded amount value preflight.",
+    "nextCase": "FIXEDASSETS-218-FA-GL-JOURNAL-AMOUNT-VALUE-PREFLIGHT"
+  },
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-217/",
+    ".agent/state/current.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/cases/fixedassets-217-fa-ledger-entry-preview-detail-review.json",
+    ".agent/state/cases/fixedassets-218-fa-gl-journal-amount-value-preflight.json"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-217/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-217/FIXEDASSETS-217-decision.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-217/FIXEDASSETS-217-result.json"
+  ],
+  "warnings": [
+    "No posting permission from FA-217.",
+    "Amount 0,00 must be resolved before any posting case.",
+    "CRONUS-USA laboratory currency signal is not German EUR final proof."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-218-FA-GL-JOURNAL-AMOUNT-VALUE-PREFLIGHT",
+      "active_case_file": ".agent/state/cases/fixedassets-218-fa-gl-journal-amount-value-preflight.json",
+      "lastReferenceCase": "FIXEDASSETS-217-FA-LEDGER-ENTRY-PREVIEW-DETAIL-REVIEW",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-217-fa-ledger-entry-preview-detail-review.json",
+      "requiresStrongModel": false,
+      "nextStep": "FIXEDASSETS-218: guarded UI-first Amount value preflight for the existing FA-CNC-01 Fixed Asset G/L Journal line; no Preview Posting and no Post."
+    },
+    "activeCase": {
+      "status": "accepted-preview-detail-but-posting-locked-zero-amount",
+      "lastResult": {
+        "status": "accepted-preview-detail-but-posting-locked-zero-amount",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-217/FIXEDASSETS-217-result.json",
+        "summary": "FA-217 accepts FA-216 as Preview FA Ledger Entry detail proof but keeps posting locked because Amount is 0,00."
+      },
+      "nextSafeAction": "Run FIXEDASSETS-218 guarded Amount value preflight; do not Preview and do not Post."
+    }
+  },
+  "flags": {
+    "localOnly": true,
+    "noBcRun": true,
+    "noPlaywrightRun": true,
+    "noPreviewPostingInThisReview": true,
+    "noPost": true,
+    "noSetupChange": true,
+    "noJournalEdit": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true,
+    "amountZeroVisible": true,
+    "postingRemainsLocked": true
+  },
+  "nextStep": "FIXEDASSETS-218: guarded UI-first Amount value preflight for the existing FA-CNC-01 Fixed Asset G/L Journal line; no Preview Posting and no Post."
+}
