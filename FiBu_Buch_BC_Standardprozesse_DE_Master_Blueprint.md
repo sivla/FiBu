@@ -7285,6 +7285,14 @@ Fuer eine belastbare Buchanleitung gehoeren deshalb drei Bilder zusammen: die Re
 | Abgang | Verkauf/Verschrottung |
 | Nachweis | Anlagenposten und Sachposten |
 
+Laborstand Anlagenzugang aus `FIXEDASSETS-226` und `FIXEDASSETS-227`:
+
+In `RM-DEMO` wurde der Zugang der Anlage `FA-CNC-01` im CRONUS-USA-Labor ueber das `Fixed Asset G/L Journal` genau einmal gebucht. Der Beleg `G05001` nutzt `Depreciation Book Code = HGB`, `FA Posting Type = Acquisition Cost`, Betrag `120.000,00` und das Gegenkonto `82000`. Vor der Buchung zeigte `Preview Posting` sowohl Sachposten- als auch Anlagenposten-Details; danach zeigt die gebuchte Sachpostenspur die Konten `82000` und `12210` mit dem Betragssignal `120.000`.
+
+Fuer Anfaenger ist die Trennung wichtig: `Sachposten (G/L Entries)` beantworten die Frage, welche Hauptbuchkonten getroffen wurden. `Anlagenposten (FA Ledger Entries)` beantworten die Frage, welche Anlage, welches AfA-Buch und welcher Anlagenbuchungstyp betroffen sind. Fuer `FA-CNC-01` ist der gebuchte Anlagenposten read-only ueber Page `5604` nachgewiesen: sichtbar sind `FA-CNC-01`, `G05001`, `HGB`, `Acquisition Cost` und das Betragssignal. Der fruehere Pfad ueber Page `5606` oeffnete dagegen eine leere `FA Ledger Entries Preview` und ist deshalb ein verworfener Nachweispfad, nicht der Nachweis gebuchter Anlagenposten.
+
+Dieser Stand ist nur Labor-Evidence fuer eine manuelle Journalroute. Er ist kein deutscher Finalnachweis, kein deutscher Kontenplan-Endstand, kein Steuer-/Compliance-Nachweis und noch kein Abschreibungsnachweis. Fuer finale Buchbilder bleiben als eigene Pruefpunkte offen: deutscher Mandant, Zielkontenplan, USt-/Steuerkontext falls relevant, AfA-Lauf, Abgang und Abschluss-/Reportingwirkung.
+
 ### Bank, Payments und OP-Ausgleich
 
 | Funktion | Zweck |

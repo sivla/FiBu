@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-229-FA-DEPRECIATION-READINESS-GATE",
+  "status": "planned",
+  "workType": "read-only-business-central-readiness",
+  "taskClass": "judge_work",
+  "requiresStrongModel": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Prepare the next fixed asset block by checking FA-CNC-01 depreciation readiness read-only before any depreciation journal, Preview Posting or posting is considered.",
+  "unlockedBy": {
+    "caseId": "FIXEDASSETS-228-FA-ACQUISITION-BOOK-SYNC",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-228/FIXEDASSETS-228-result.json",
+    "decision": "Acquisition trace is book-synced; next useful block is depreciation readiness, not another acquisition posting."
+  },
+  "inputs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-228/FIXEDASSETS-228-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-227/FIXEDASSETS-227-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-226/FIXEDASSETS-226-result.json",
+    "FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md"
+  ],
+  "allowedActions": [
+    "open-business-central",
+    "run-playwright",
+    "verify-instance",
+    "verify-company",
+    "read-only-navigation",
+    "inspect-fa-card-readonly",
+    "inspect-fa-ledger-readonly",
+    "inspect-depreciation-book-readonly",
+    "write-compact-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "company-switch",
+    "setup-change",
+    "journal-edit",
+    "new-draft",
+    "edit-record",
+    "delete-record",
+    "preview-posting",
+    "post",
+    "post-and-print",
+    "confirm-posting-dialog",
+    "ship",
+    "invoice",
+    "payment"
+  ],
+  "safetyGates": [
+    "instance-must-be-MCP_1_20260210",
+    "company-must-be-RM-DEMO",
+    "read-only-only",
+    "no-setup-change",
+    "no-journal-line",
+    "no-preview-posting",
+    "no-posting",
+    "no-company-switch",
+    "no-api-shortcut",
+    "no-german-final-tax-or-chart-claim"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-229/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-229/FIXEDASSETS-229-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-229/FIXEDASSETS-229-DEPRECIATION-READINESS.md"
+  ],
+  "acceptanceCriteria": [
+    "The run verifies MCP_1_20260210 and RM-DEMO before reading any fixed asset page.",
+    "FA-CNC-01 depreciation setup/readiness is inspected read-only.",
+    "No depreciation journal, Preview Posting, posting, setup change or company switch is performed.",
+    "The next safe depreciation step is documented with explicit gates."
+  ],
+  "stopConditions": [
+    "Business Central shows another instance or company.",
+    "A page requires edit mode or setup change to continue.",
+    "A dialog with posting, preview, delete, edit or confirmation risk appears.",
+    "FA-CNC-01 cannot be located read-only."
+  ],
+  "nextSafeAction": "Run a read-only Playwright readiness probe for FA-CNC-01 depreciation setup; do not create or post depreciation journal lines.",
+  "createdAt": "2026-06-26T21:20:00.000Z",
+  "updatedAt": "2026-06-26T21:20:00.000Z"
+}

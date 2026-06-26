@@ -1,87 +1,64 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-227-FA-GL-JOURNAL-POSTED-TRACE-REVIEW",
-  "timestamp": "2026-06-26T20:45:00.000Z",
+  "runId": "FIXEDASSETS-228-FA-ACQUISITION-BOOK-SYNC",
+  "timestamp": "2026-06-26T21:20:00.000Z",
   "date": "2026-06-26",
-  "workType": "read-only-business-central-trace-recovery",
+  "workType": "local-book-coverage-sync",
   "taskClass": "judge_work",
   "modelClass": "gpt-5.5-low",
   "branch": "codex/token-efficient-autopilot-state",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "bcRun": true,
-  "playwrightRun": true,
+  "bcRun": false,
+  "playwrightRun": false,
   "posted": false,
   "previewPosting": false,
   "setupChanged": false,
   "companySwitched": false,
   "apiShortcut": false,
-  "bookChanged": false,
+  "bookChanged": true,
   "dataChanged": false,
   "resultStatus": "observed",
-  "summary": "FA-227 recovered posted FA Ledger Entries read-only via Page 5604. FA-CNC-01, G05001, HGB, Acquisition Cost and amount signals are visible; Page 5606 is confirmed as a rejected empty FA Ledger Entries Preview path.",
-  "sourcePosting": {
-    "caseId": "FIXEDASSETS-226-FA-GL-JOURNAL-CONTROLLED-LAB-POSTING",
-    "documentNo": "G05001",
-    "assetNo": "FA-CNC-01"
-  },
-  "postingTrace": {
-    "glEntries": "visible-labor-from-FA-226",
-    "faLedgerEntries": "visible-labor-page-5604",
-    "rejectedTracePath": "page 5606 with Document No. G05001 shows empty FA Ledger Entries Preview and is not the posted-ledger path."
-  },
+  "summary": "Chapter 21, coverage and findings were synced with the posted FA-CNC-01 acquisition trace. Page 5604 is now documented as the posted FA Ledger Entry path; Page 5606 remains rejected Preview path.",
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/fixedassets-227/README.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-227/FIXEDASSETS-227-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-227/FIXEDASSETS-227-POSTED-TRACE.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-227/010-fa-ledger-page-5604-fa-no-page-text.txt",
-    "playwright/projects/fibu-book5/evidence/fixedassets-227/020-fa-ledger-page-5604-document-no-page-text.txt",
-    "playwright/projects/fibu-book5/evidence/fixedassets-227/030-rejected-page-5606-document-no-page-text.txt"
+    "playwright/projects/fibu-book5/evidence/fixedassets-228/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-228/FIXEDASSETS-228-BOOK-SYNC.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-228/FIXEDASSETS-228-result.json"
   ],
   "changedFiles": [
-    "package.json",
-    "playwright/projects/fibu-book5/tests/fixedassets-227-fa-gl-journal-posted-trace-review.spec.ts",
-    "playwright/projects/fibu-book5/evidence/fixedassets-227/",
+    "FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md",
+    "playwright/projects/fibu-book5/BOOK-CLICK-GUIDE-COVERAGE.md",
+    "playwright/FINDINGS.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-228/",
     ".agent/state/current.json",
     ".agent/state/coverage_state.json",
     ".agent/state/last_run_summary.json",
-    ".agent/state/cases/fixedassets-227-fa-gl-journal-posted-trace-review.json",
-    ".agent/state/cases/fixedassets-228-fa-acquisition-book-sync.json"
+    ".agent/state/cases/fixedassets-228-fa-acquisition-book-sync.json",
+    ".agent/state/cases/fixedassets-229-fa-depreciation-readiness-gate.json"
   ],
   "validationCommands": [
     "npm run agent:preflight",
     "npm run agent:dry-run",
     "npm run agent:run-plan",
-    "npx playwright test playwright/projects/fibu-book5/tests/fixedassets-227-fa-gl-journal-posted-trace-review.spec.ts --list",
-    "npm run fibu:fixedassets:fa-gl-journal-posted-trace-review",
-    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-227/FIXEDASSETS-227-result.json",
-    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-227/FIXEDASSETS-227-result.json",
+    "npm run agent:subagent-plan",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-228/FIXEDASSETS-228-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-228/FIXEDASSETS-228-result.json",
     "npm run check:encoding",
     "git diff --check"
   ],
   "boundaries": [
-    "No posting in this run.",
-    "No Preview Posting in this run.",
+    "No Business Central run.",
+    "No Playwright run.",
+    "No posting.",
+    "No Preview Posting.",
     "No setup change.",
     "No company switch.",
     "No API shortcut.",
-    "No book change.",
     "No German final proof.",
     "Depreciation posting remains open."
   ],
   "activeArea": "fixedassets",
-  "activeCase": "FIXEDASSETS-227-FA-GL-JOURNAL-POSTED-TRACE-REVIEW",
-  "nextCase": "FIXEDASSETS-228-FA-ACQUISITION-BOOK-SYNC",
-  "decision": {
-    "faLedgerTraceAccepted": true,
-    "successfulPostedLedgerPath": "Page 5604, table FA Ledger Entry, filter FA No. FA-CNC-01 or Document No. G05001",
-    "rejectedPath": "Page 5606 opens empty FA Ledger Entries Preview and must not be used as posted-ledger evidence."
-  },
-  "risks": [
-    "CRONUS-USA laboratory evidence is not German final proof.",
-    "Chapter 21 still needs an evidence-backed beginner explanation.",
-    "Depreciation posting remains open."
-  ],
-  "nextStep": "FIXEDASSETS-228: sync Chapter 21, coverage and findings with the posted FA acquisition evidence; no new BC run or posting.",
-  "finishedAt": "2026-06-26T20:45:00.000Z"
+  "activeCase": "FIXEDASSETS-228-FA-ACQUISITION-BOOK-SYNC",
+  "nextCase": "FIXEDASSETS-229-FA-DEPRECIATION-READINESS-GATE",
+  "nextStep": "FIXEDASSETS-229: read-only depreciation readiness gate for FA-CNC-01; no journal line, no Preview Posting and no posting."
 }

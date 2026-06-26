@@ -1,4 +1,22 @@
 
+## FIND-BC-FA-065 Page 5604 ist der gebuchte Anlagenpostenpfad, Page 5606 war nur Preview
+
+| Feld | Wert |
+|---|---|
+| Projekt | fibu-book5 |
+| Testfall | `FIXEDASSETS-226-FA-GL-JOURNAL-CONTROLLED-LAB-POSTING` / `FIXEDASSETS-227-FA-GL-JOURNAL-POSTED-TRACE-REVIEW` |
+| Screenshot | keine neuen Screenshots in FA-228; nutzt FA-226/FA-227 Text-/JSON-Evidence |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-226/`, `playwright/projects/fibu-book5/evidence/fixedassets-227/`, `playwright/projects/fibu-book5/evidence/fixedassets-228/` |
+| BC-Seite | `Fixed Asset G/L Journals`, `G/L Entries` Page `20`, `FA Ledger Entries` Page `5604`, rejected `FA Ledger Entries Preview` Page `5606` |
+| sichtbar / belegt | Beleg `G05001`, Anlage `FA-CNC-01`, `HGB`, `Acquisition Cost`, Sachkonten `82000`/`12210`, Betragssignal `120.000` |
+| nicht sichtbar / nicht bewiesen | deutscher Finalnachweis, AfA-Buchung, Abgang, deutsche Steuer-/Kontenplanwirkung |
+| Elementtyp | Posting Trace / Anlagenposten / BC-Debugging |
+| Testergebnis | FA-226 buchte genau eine kontrollierte Laboranschaffung; FA-227 bewies danach read-only, dass die gebuchten Anlagenposten ueber Page `5604` sichtbar sind. Page `5606` zeigte leer und bleibt rejected. |
+| Entscheidung | Klickanleitungen muessen fuer gebuchte Anlagenposten Page `5604` verwenden und Page `5606` nicht als gebuchte Postenspur interpretieren. |
+| Buchstelle | Kapitel 21 Anlagen; Kapitel BC-Debugging und technische Nachweisfuehrung; Evidence Pack |
+
+Fuer Anfaenger ist der Lernwert gross: Nach einer Anlagenbuchung braucht man zwei Spuren. Sachposten zeigen die Hauptbuchkonten, Anlagenposten zeigen Anlage, AfA-Buch und Anlagenbuchungstyp. Eine leere Preview-Seite ist kein Gegenbeweis, sondern meist der falsche Nachweispfad.
+
 ## FIND-BC-FA-064 Blindes Tippen setzt den Purchase-Invoice-Zeilentyp nicht belastbar
 
 | Feld | Wert |

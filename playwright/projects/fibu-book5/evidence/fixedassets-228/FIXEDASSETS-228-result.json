@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-228-fa-acquisition-book-sync-result",
+  "caseId": "FIXEDASSETS-228-FA-ACQUISITION-BOOK-SYNC",
+  "source": "local-evidence-book-sync",
+  "resultStatus": "observed",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "dataBasis": "CRONUS USA laboratory",
+  "bcRun": false,
+  "playwrightRun": false,
+  "postedInThisRun": false,
+  "previewPostingInThisRun": false,
+  "setupChanged": false,
+  "companySwitched": false,
+  "apiShortcut": false,
+  "bookChanged": true,
+  "target": {
+    "documentNo": "G05001",
+    "assetNo": "FA-CNC-01",
+    "depreciationBookCode": "HGB",
+    "faPostingType": "Acquisition Cost",
+    "amountSignal": "120000",
+    "glAccounts": [
+      "82000",
+      "12210"
+    ],
+    "successfulPostedFaLedgerPage": 5604,
+    "rejectedPreviewPage": 5606
+  },
+  "proved": [
+    "Chapter 21 was synced with FA-226/FA-227 laboratory acquisition evidence.",
+    "The book now separates G/L Entries from FA Ledger Entries for the fixed asset acquisition.",
+    "Page 5604 is documented as the successful posted FA Ledger Entry path.",
+    "Page 5606 is documented as a rejected empty FA Ledger Entries Preview path.",
+    "Coverage and findings now include the posted acquisition trace."
+  ],
+  "notProved": [
+    "No new Business Central observation was made in this run.",
+    "No German final fixed asset proof exists.",
+    "No depreciation posting proof exists.",
+    "No disposal proof exists.",
+    "No German tax or chart-of-accounts final proof exists."
+  ],
+  "changedFiles": [
+    "FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md",
+    "playwright/projects/fibu-book5/BOOK-CLICK-GUIDE-COVERAGE.md",
+    "playwright/FINDINGS.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-228/",
+    ".agent/state/current.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/cases/fixedassets-228-fa-acquisition-book-sync.json",
+    ".agent/state/cases/fixedassets-229-fa-depreciation-readiness-gate.json"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-226/FIXEDASSETS-226-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-226/FIXEDASSETS-226-LAB-POSTING.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-227/FIXEDASSETS-227-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-227/FIXEDASSETS-227-POSTED-TRACE.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-228/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-228/FIXEDASSETS-228-BOOK-SYNC.md"
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-229-FA-DEPRECIATION-READINESS-GATE",
+      "active_case_file": ".agent/state/cases/fixedassets-229-fa-depreciation-readiness-gate.json",
+      "lastReferenceCase": "FIXEDASSETS-228-FA-ACQUISITION-BOOK-SYNC",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-228-fa-acquisition-book-sync.json",
+      "requiresStrongModel": true,
+      "nextStep": "FIXEDASSETS-229: prepare a depreciation readiness gate for FA-CNC-01; start read-only and do not post depreciation until setup and trace gates are explicit."
+    },
+    "activeCase": {
+      "status": "observed",
+      "lastResult": {
+        "status": "observed",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-228/FIXEDASSETS-228-result.json",
+        "summary": "Chapter 21, coverage and findings were synced with the posted FA acquisition trace."
+      },
+      "nextSafeAction": "Prepare depreciation readiness gate for FA-CNC-01."
+    },
+    "coverage": {
+      "currentBlock": "fa-depreciation-readiness",
+      "nextCase": "FIXEDASSETS-229-FA-DEPRECIATION-READINESS-GATE",
+      "bookScreenshots": {
+        "acquisitionPostingTrace": "book-synced-labor",
+        "depreciationPostingTrace": "open"
+      }
+    }
+  },
+  "flags": {
+    "noBusinessCentralRun": true,
+    "noPlaywrightRun": true,
+    "noPosting": true,
+    "noPreviewPosting": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noDraft": true,
+    "bookChanged": true
+  },
+  "nextStep": "FIXEDASSETS-229: prepare a depreciation readiness gate for FA-CNC-01."
+}
