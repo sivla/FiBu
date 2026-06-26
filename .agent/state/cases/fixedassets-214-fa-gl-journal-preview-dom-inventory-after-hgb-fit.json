@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-214-FA-GL-JOURNAL-PREVIEW-DOM-INVENTORY-AFTER-HGB-FIT",
+  "status": "planned",
+  "workType": "playwright-preview-posting-dom-inventory-only",
+  "taskClass": "wizard_work",
+  "requiresStrongModel": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Inventory how Business Central renders Preview Posting entry groups after HGB fit so a later case can inspect G/L Entry and FA Ledger Entry details safely.",
+  "inputs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-212/FIXEDASSETS-212-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-213/FIXEDASSETS-213-result.json"
+  ],
+  "allowedActions": [
+    "open-business-central",
+    "run-playwright",
+    "verify-instance-url",
+    "verify-company-url",
+    "open-fa-gl-journal-page",
+    "verify-existing-fa-journal-line-context",
+    "verify-fa-posting-type-acquisition-cost",
+    "open-related-actions-for-post",
+    "click-exact-preview-posting-menuitem-once",
+    "capture-preview-posting-dom-inventory",
+    "capture-accessibility-or-action-candidates-if-safe",
+    "capture-frame-and-url-context",
+    "write-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "book-edit",
+    "company-switch",
+    "create-depreciation-book",
+    "delete-depreciation-book",
+    "toggle-gl-integration-fields",
+    "create-journal-lines",
+    "edit-journal-lines",
+    "delete-journal-lines",
+    "setup-change",
+    "click-preview-entry-group",
+    "post",
+    "post-and-print",
+    "click-ok-on-posting-dialog",
+    "click-yes-on-posting-dialog",
+    "confirm-posting-dialog",
+    "delete-record"
+  ],
+  "safetyGates": [
+    "must-stay-in-MCP_1_20260210",
+    "must-stay-in-RM-DEMO",
+    "preview-posting-only",
+    "exact-preview-posting-menuitem-only",
+    "no-preview-entry-group-clicks",
+    "no-main-post-click",
+    "no-post-menuitem-click",
+    "no-post-and-print-click",
+    "no-ok-yes-confirmation",
+    "no-setup-change",
+    "no-journal-edit",
+    "no-company-switch",
+    "no-api-shortcut"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-214/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-214/010-preview-dom-inventory.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-214/020-preview-dom-inventory-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-214/FIXEDASSETS-214-result.json"
+  ],
+  "acceptanceCriteria": [
+    "Instance and company are verified before Preview Posting.",
+    "Preview Posting is opened only through the exact menuitem route.",
+    "No Preview entry group is clicked.",
+    "Evidence captures DOM, role, aria-label, title and frame context around Preview Posting entry labels.",
+    "No posting, setup change or journal edit occurs."
+  ],
+  "stopConditions": [
+    "Wrong instance or company is detected.",
+    "Normal posting dialog appears.",
+    "Only a broad Post route is available.",
+    "A destructive or editing dialog appears.",
+    "The inventory would require clicking Preview entry groups."
+  ],
+  "nextSafeAction": "Run one guarded Preview Posting DOM inventory; do not click entry groups and do not post.",
+  "createdAt": "2026-06-26T16:05:00.000Z",
+  "updatedAt": "2026-06-26T16:05:00.000Z"
+}

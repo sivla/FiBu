@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-213-preview-entry-details-review-result",
+  "caseId": "FIXEDASSETS-213-FA-GL-JOURNAL-PREVIEW-ENTRY-DETAILS-REVIEW",
+  "source": "local-evidence-review",
+  "resultStatus": "blocked-ui-detail-route-next-dom-inventory",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "reasoningEffort": "low",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "proved": [
+    "FA-212 stayed in MCP_1_20260210 and RM-DEMO.",
+    "FA-212 opened only the exact Preview Posting menuitem.",
+    "FA-212 proved Preview Posting entry context after the HGB fit.",
+    "FA-212 did not click Post, Post and Print, OK or Yes.",
+    "FA-212 did not edit journal lines or setup.",
+    "FA-212 did not use API shortcuts or change book content."
+  ],
+  "notProved": [
+    "G/L Entry accounts or amounts were not clearly proven.",
+    "FA Ledger Entry fixed asset or amount details were not clearly proven.",
+    "The preview entry labels were not found as exact clickable detail targets.",
+    "No Fixed Asset G/L Journal posting was executed.",
+    "No posted FA Ledger Entry or posted G/L Entry trace exists.",
+    "No German final proof exists."
+  ],
+  "decision": {
+    "classification": "blocked-preview-entry-detail-target-not-clickable",
+    "postingReadiness": "locked",
+    "reason": "FA-212 captured grouped Preview Posting text but not the technical DOM/accessibility target needed to inspect entry details reliably.",
+    "nextCase": "FIXEDASSETS-214-FA-GL-JOURNAL-PREVIEW-DOM-INVENTORY-AFTER-HGB-FIT",
+    "nextCaseType": "playwright-preview-posting-dom-inventory-only"
+  },
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-213/",
+    ".agent/state/current.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/cases/fixedassets-213-fa-gl-journal-preview-entry-details-review.json",
+    ".agent/state/cases/fixedassets-214-fa-gl-journal-preview-dom-inventory-after-hgb-fit.json",
+    ".agent/state/model_usage_log.jsonl"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-212/FIXEDASSETS-212-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-212/020-preview-posting-preview-entry-details-after-hgb-fit.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-212/030-preview-posting-result-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-213/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-213/FIXEDASSETS-213-decision.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-213/FIXEDASSETS-213-result.json"
+  ],
+  "warnings": [
+    "Do not treat FA-212 as posting readiness.",
+    "Do not claim G/L or FA Ledger detail lines until FA-214 or a later case proves the technical detail route.",
+    "No German final proof."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-214-FA-GL-JOURNAL-PREVIEW-DOM-INVENTORY-AFTER-HGB-FIT",
+      "active_case_file": ".agent/state/cases/fixedassets-214-fa-gl-journal-preview-dom-inventory-after-hgb-fit.json",
+      "lastReferenceCase": "FIXEDASSETS-213-FA-GL-JOURNAL-PREVIEW-ENTRY-DETAILS-REVIEW",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-213-fa-gl-journal-preview-entry-details-review.json",
+      "requiresStrongModel": false,
+      "nextStep": "FIXEDASSETS-214: run one guarded Preview Posting DOM/accessibility inventory; no entry clicks, no Post, no setup change, no journal edit."
+    },
+    "activeCase": {
+      "status": "blocked-ui-detail-route-next-dom-inventory",
+      "lastResult": {
+        "status": "blocked-ui-detail-route-next-dom-inventory",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-213/FIXEDASSETS-213-result.json",
+        "summary": "FA-212 accepted as safe Preview Posting context, but detail route is blocked because entry labels were not found as exact clickable targets."
+      },
+      "nextSafeAction": "Run FIXEDASSETS-214 Preview Posting DOM inventory only."
+    },
+    "coverage": {
+      "fixedAssets.faCnc01.previewAfterHgbFit": "blocked-ui-detail-route-next-dom-inventory",
+      "nextCase": "FIXEDASSETS-214-FA-GL-JOURNAL-PREVIEW-DOM-INVENTORY-AFTER-HGB-FIT"
+    },
+    "lastRunSummary": {
+      "runId": "FIXEDASSETS-213-FA-GL-JOURNAL-PREVIEW-ENTRY-DETAILS-REVIEW",
+      "bcRun": false,
+      "playwrightRun": false,
+      "posted": false,
+      "previewPosting": false,
+      "summary": "Local review classified FA-212 as safe Preview Posting context but blocked detail-route evidence; FA-214 DOM inventory selected."
+    }
+  },
+  "flags": {
+    "noBusinessCentralRun": true,
+    "noPlaywrightRun": true,
+    "noPost": true,
+    "noPreviewPosting": true,
+    "noSetupChange": true,
+    "noJournalEdit": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "nextStep": "FIXEDASSETS-214: guarded Preview Posting DOM/accessibility inventory only."
+}
