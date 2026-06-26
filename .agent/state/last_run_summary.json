@@ -1,38 +1,40 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-213-FA-GL-JOURNAL-PREVIEW-ENTRY-DETAILS-REVIEW",
-  "timestamp": "2026-06-26T16:05:00.000Z",
+  "runId": "FIXEDASSETS-214-FA-GL-JOURNAL-PREVIEW-DOM-INVENTORY-AFTER-HGB-FIT",
+  "timestamp": "2026-06-26T16:40:00.000Z",
   "date": "2026-06-26",
-  "workType": "local-evidence-review",
-  "taskClass": "judge_work",
-  "modelClass": "gpt-5.5-low",
+  "workType": "playwright-preview-posting-dom-inventory-only",
+  "taskClass": "wizard_work",
+  "modelClass": "gpt-4-medium",
   "branch": "codex/token-efficient-autopilot-state",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "bcRun": false,
-  "playwrightRun": false,
+  "bcRun": true,
+  "playwrightRun": true,
   "posted": false,
-  "previewPosting": false,
+  "previewPosting": true,
   "setupChanged": false,
   "companySwitched": false,
   "apiShortcut": false,
   "bookChanged": false,
   "dataChanged": false,
-  "resultStatus": "blocked-ui-detail-route-next-dom-inventory",
-  "summary": "Local review classified FA-212 as safe Preview Posting context but blocked detail-route evidence; FA-214 DOM inventory selected.",
+  "resultStatus": "observed",
+  "summary": "FA-214 opened exact Preview Posting in MCP_1_20260210/RM-DEMO and captured frame-aware DOM inventory showing Posting Preview, G/L Entry and FA Ledger Entry labels without clicking entry groups.",
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/fixedassets-213/README.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-213/FIXEDASSETS-213-decision.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-213/FIXEDASSETS-213-result.json"
+    "playwright/projects/fibu-book5/evidence/fixedassets-214/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-214/010-preview-dom-inventory.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-214/020-preview-dom-inventory-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-214/FIXEDASSETS-214-result.json"
   ],
   "changedFiles": [
-    "playwright/projects/fibu-book5/evidence/fixedassets-213/",
+    "package.json",
+    "playwright/projects/fibu-book5/tests/fixedassets-214-fa-gl-journal-preview-dom-inventory-after-hgb-fit.spec.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-214/",
     ".agent/state/current.json",
     ".agent/state/coverage_state.json",
     ".agent/state/last_run_summary.json",
-    ".agent/state/cases/fixedassets-213-fa-gl-journal-preview-entry-details-review.json",
     ".agent/state/cases/fixedassets-214-fa-gl-journal-preview-dom-inventory-after-hgb-fit.json",
-    ".agent/state/model_usage_log.jsonl"
+    ".agent/state/cases/fixedassets-215-fa-gl-journal-preview-dom-inventory-review.json"
   ],
   "validationCommands": [
     "npm run agent:preflight",
@@ -58,5 +60,42 @@
     "No book change.",
     "No German final proof."
   ],
-  "nextStep": "FIXEDASSETS-214: guarded Preview Posting DOM/accessibility inventory only; no entry clicks, no Post."
+  "nextStep": "FIXEDASSETS-215: local review of FA-214 DOM inventory; no BC/Playwright before decision.",
+  "finishedAt": "2026-06-26T16:40:00.000Z",
+  "activeArea": "fixedassets",
+  "activeCase": "FIXEDASSETS-214-FA-GL-JOURNAL-PREVIEW-DOM-INVENTORY-AFTER-HGB-FIT",
+  "previewPostingOpened": true,
+  "safety": {
+    "clickedSplitButton": true,
+    "clickedPreviewPosting": true,
+    "clickedPreviewEntryGroup": false,
+    "priorReviewAccepted": true,
+    "faPostingTypeStillAcquisitionCost": true,
+    "domSignals": {
+      "postingPreviewTitleVisible": true,
+      "glEntryLabelVisible": true,
+      "faLedgerEntryLabelVisible": true,
+      "valueEntryLabelVisible": false,
+      "candidateClickableElements": 5
+    },
+    "noMainPostClick": true,
+    "noPostMenuitemClick": true,
+    "noPostAndPrintClick": true,
+    "noInsertLine": true,
+    "noDeleteLine": true,
+    "noJournalEdit": true,
+    "noPost": true,
+    "noOkYesConfirmation": true,
+    "previewOnly": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "risks": [
+    "Preview Posting-only evidence; no posting permission.",
+    "No entry group was clicked, so account and amount details remain unproven.",
+    "No posted FA Ledger Entry or G/L Entry trace exists.",
+    "No German final proof."
+  ]
 }

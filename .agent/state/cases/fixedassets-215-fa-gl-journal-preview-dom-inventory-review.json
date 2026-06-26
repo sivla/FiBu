@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-215-FA-GL-JOURNAL-PREVIEW-DOM-INVENTORY-REVIEW",
+  "status": "planned",
+  "workType": "local-evidence-review",
+  "taskClass": "judge_work",
+  "requiresStrongModel": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Review FA-214 Preview Posting DOM inventory before deciding whether a safe detail route exists or posting readiness remains locked.",
+  "inputs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-214/FIXEDASSETS-214-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-214/010-preview-dom-inventory.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-214/020-preview-dom-inventory-text.txt"
+  ],
+  "allowedActions": [
+    "read-local-evidence",
+    "classify-preview-dom-inventory",
+    "decide-next-safe-fixedasset-step",
+    "write-local-review-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "open-business-central",
+    "run-playwright",
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "book-edit",
+    "company-switch",
+    "setup-change",
+    "journal-edit",
+    "click-preview-entry-group",
+    "post",
+    "post-and-print",
+    "click-ok-on-posting-dialog",
+    "click-yes-on-posting-dialog",
+    "confirm-posting-dialog"
+  ],
+  "safetyGates": [
+    "local-only",
+    "no-business-central",
+    "no-playwright",
+    "no-posting",
+    "no-setup-change",
+    "no-book-edit",
+    "no-fake-posting-readiness"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-215/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-215/FIXEDASSETS-215-decision.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-215/FIXEDASSETS-215-result.json"
+  ],
+  "acceptanceCriteria": [
+    "FA-214 is classified as DOM inventory evidence, not posting evidence.",
+    "The review decides whether candidate clickable Preview elements justify a new guarded detail route.",
+    "Posting remains locked unless evidence explicitly supports a separate controlled posting case.",
+    "The next case is concrete and small."
+  ],
+  "stopConditions": [
+    "FA-214 evidence is missing.",
+    "FA-214 evidence contradicts its result JSON.",
+    "A next step would require guessing UI behavior not present in evidence."
+  ],
+  "nextSafeAction": "Review FA-214 locally and choose the smallest safe next case.",
+  "createdAt": "2026-06-26T16:40:00.000Z",
+  "updatedAt": "2026-06-26T16:40:00.000Z"
+}
