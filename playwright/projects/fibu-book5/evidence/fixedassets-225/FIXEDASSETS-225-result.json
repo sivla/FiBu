@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-225-preview-detail-review-result",
+  "caseId": "FIXEDASSETS-225-FA-GL-JOURNAL-PREVIEW-DETAIL-REVIEW",
+  "source": "local-evidence-review",
+  "resultStatus": "observed",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "proved": [
+    "FA-224 is accepted as strong Preview Posting detail evidence.",
+    "G/L preview detail shows accounts 82000 and 12210 with +/-120.000,00 amount signals.",
+    "FA Ledger preview detail shows FA-CNC-01, HGB, Acquisition Cost and 120.000,00.",
+    "FA-224 remained preview-only: no Post, no OK/Yes confirmation, no setup change, no company switch, no API shortcut and no book edit.",
+    "A controlled laboratory posting case is justified as the next small gated step."
+  ],
+  "notProved": [
+    "No Fixed Asset G/L Journal posting was executed in FA-225.",
+    "No posted G/L Entry or posted FA Ledger Entry trace exists yet.",
+    "No German final fixed asset proof exists.",
+    "No depreciation posting proof exists."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-225/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-225/FIXEDASSETS-225-decision.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-225/FIXEDASSETS-225-result.json",
+    ".agent/state/current.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/cases/fixedassets-225-fa-gl-journal-preview-detail-review.json",
+    ".agent/state/cases/fixedassets-226-fa-gl-journal-controlled-lab-posting.json"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-225/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-225/FIXEDASSETS-225-decision.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-225/FIXEDASSETS-225-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-224/010-preview-entry-detail-drilldown.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-224/020-preview-entry-detail-text.txt"
+  ],
+  "warnings": [
+    "Preview Posting detail evidence is not posted-entry evidence.",
+    "The next posting case must repeat Preview Posting detail verification immediately before posting.",
+    "CRONUS-USA laboratory evidence is not German final proof."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-226-FA-GL-JOURNAL-CONTROLLED-LAB-POSTING",
+      "active_case_file": ".agent/state/cases/fixedassets-226-fa-gl-journal-controlled-lab-posting.json",
+      "lastReferenceCase": "FIXEDASSETS-225-FA-GL-JOURNAL-PREVIEW-DETAIL-REVIEW",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-225-fa-gl-journal-preview-detail-review.json",
+      "requiresStrongModel": true,
+      "nextStep": "FIXEDASSETS-226: perform one controlled FA G/L Journal laboratory posting only after repeating Preview Posting detail verification."
+    },
+    "activeCase": {
+      "status": "accepted-controlled-posting-route",
+      "lastResult": {
+        "status": "observed",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-225/FIXEDASSETS-225-result.json",
+        "summary": "FA-224 Preview Posting detail evidence accepted; controlled FA lab posting case unlocked as next gated step."
+      },
+      "nextSafeAction": "Run FIXEDASSETS-226 only with pre-post Preview Posting detail verification and posted-entry trace."
+    },
+    "coverage": {
+      "activeArea": "fixedassets",
+      "currentBlock": "fa-gl-journal-controlled-lab-posting",
+      "latestReviewCase": "FIXEDASSETS-225-FA-GL-JOURNAL-PREVIEW-DETAIL-REVIEW",
+      "latestDecisionCase": "FIXEDASSETS-225-FA-GL-JOURNAL-PREVIEW-DETAIL-REVIEW",
+      "nextCase": "FIXEDASSETS-226-FA-GL-JOURNAL-CONTROLLED-LAB-POSTING"
+    }
+  },
+  "flags": {
+    "bcRun": false,
+    "playwrightRun": false,
+    "posted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "companySwitched": false,
+    "apiShortcut": false,
+    "bookChanged": false,
+    "previewDetailAccepted": true,
+    "controlledPostingUnlocked": true
+  },
+  "nextStep": "FIXEDASSETS-226: controlled FA G/L Journal lab posting with pre-post Preview Posting detail verification and posted-entry trace."
+}
+
