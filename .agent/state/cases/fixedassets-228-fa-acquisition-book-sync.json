@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-228-FA-ACQUISITION-BOOK-SYNC",
+  "status": "planned",
+  "workType": "book-sync",
+  "taskClass": "judge_work",
+  "requiresStrongModel": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Sync Chapter 21, coverage and findings with the completed CRONUS-USA laboratory fixed asset acquisition evidence from FA-226 and FA-227 without running Business Central again.",
+  "unlockedBy": {
+    "caseId": "FIXEDASSETS-227-FA-GL-JOURNAL-POSTED-TRACE-REVIEW",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-227/FIXEDASSETS-227-result.json",
+    "decision": "Posted G/L Entries and posted FA Ledger Entries are both visible for G05001/FA-CNC-01 in read-only UI evidence."
+  },
+  "inputs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-226/FIXEDASSETS-226-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-226/FIXEDASSETS-226-LAB-POSTING.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-227/FIXEDASSETS-227-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-227/FIXEDASSETS-227-POSTED-TRACE.md",
+    "FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md"
+  ],
+  "allowedActions": [
+    "read-local-evidence",
+    "read-book-chapter",
+    "sync-book-status-box",
+    "sync-coverage",
+    "sync-findings-if-needed",
+    "write-compact-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "open-business-central",
+    "run-playwright",
+    "company-switch",
+    "setup-change",
+    "journal-edit",
+    "preview-posting",
+    "post",
+    "post-and-print",
+    "confirm-posting-dialog",
+    "ship",
+    "invoice",
+    "payment",
+    "new-draft",
+    "edit-record",
+    "delete-record"
+  ],
+  "safetyGates": [
+    "local-only",
+    "evidence-backed-book-claims-only",
+    "lab-vs-de-final-must-be-separated",
+    "no-business-central",
+    "no-playwright",
+    "no-posting",
+    "no-setup-change",
+    "no-company-switch",
+    "no-api-shortcut",
+    "no-german-final-tax-or-chart-claim"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-228/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-228/FIXEDASSETS-228-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-228/FIXEDASSETS-228-BOOK-SYNC.md"
+  ],
+  "acceptanceCriteria": [
+    "Chapter 21 states that the FA-CNC-01 acquisition is proven only as CRONUS-USA laboratory evidence.",
+    "The book explains the difference between G/L Entries and FA Ledger Entries for an acquisition.",
+    "Page 5604 is documented as the successful posted FA Ledger Entry path and Page 5606 as rejected Preview path.",
+    "No German final proof, depreciation proof or tax proof is claimed.",
+    "No Business Central or Playwright run is performed in this sync case."
+  ],
+  "stopConditions": [
+    "Required FA-226 or FA-227 evidence is missing.",
+    "The book change would require a German final claim.",
+    "A proposed action would open BC or Playwright.",
+    "The update scope grows beyond Chapter 21/coverage/finding sync."
+  ],
+  "nextSafeAction": "Read Chapter 21 and FA-226/FA-227 evidence, then make a small evidence-backed book and coverage sync.",
+  "createdAt": "2026-06-26T20:45:00.000Z",
+  "updatedAt": "2026-06-26T20:45:00.000Z"
+}
