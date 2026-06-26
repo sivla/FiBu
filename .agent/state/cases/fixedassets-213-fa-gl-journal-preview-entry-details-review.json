@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-213-FA-GL-JOURNAL-PREVIEW-ENTRY-DETAILS-REVIEW",
+  "status": "planned",
+  "workType": "local-evidence-review",
+  "taskClass": "judge_work",
+  "requiresStrongModel": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Review FA-212 blocked Preview Posting detail capture before any posting or further Preview retry decision.",
+  "inputs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-212/FIXEDASSETS-212-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-212/020-preview-posting-preview-entry-details-after-hgb-fit.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-212/030-preview-posting-result-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-211/FIXEDASSETS-211-result.json"
+  ],
+  "allowedActions": [
+    "read-fixedassets-212-evidence",
+    "classify-preview-detail-blocker",
+    "decide-next-safe-detail-route-or-posting-readiness-hold",
+    "write-review-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "open-business-central",
+    "run-playwright",
+    "book-edit",
+    "company-switch",
+    "create-depreciation-book",
+    "delete-depreciation-book",
+    "toggle-gl-integration-fields",
+    "create-journal-lines",
+    "edit-journal-lines",
+    "delete-journal-lines",
+    "setup-change",
+    "preview-posting",
+    "post",
+    "post-and-print",
+    "click-ok-on-posting-dialog",
+    "click-yes-on-posting-dialog",
+    "confirm-posting-dialog",
+    "delete-record"
+  ],
+  "safetyGates": [
+    "local-review-only",
+    "no-business-central-run",
+    "no-playwright-run",
+    "no-preview-posting",
+    "no-post",
+    "no-setup-change",
+    "no-journal-edit",
+    "no-book-edit",
+    "no-company-switch"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-213/FIXEDASSETS-213-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-213/FIXEDASSETS-213-decision.md"
+  ],
+  "acceptanceCriteria": [
+    "FA-212 result is classified without opening BC.",
+    "The blocked detail-capture result is not treated as posting readiness.",
+    "The next case is either a narrower preview-detail route or a clear hold with reason.",
+    "No German final proof is claimed."
+  ],
+  "stopConditions": [
+    "FA-212 evidence is internally contradictory.",
+    "The detail-capture blocker cannot be explained from evidence.",
+    "A next route would require posting or setup change without a separate gate."
+  ],
+  "nextSafeAction": "Review FA-212 evidence locally; do not post.",
+  "createdAt": "2026-06-26T15:45:00.000Z",
+  "updatedAt": "2026-06-26T15:45:00.000Z"
+}
