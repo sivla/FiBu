@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-217-FA-LEDGER-ENTRY-PREVIEW-DETAIL-REVIEW",
+  "status": "planned",
+  "workType": "local-evidence-review",
+  "taskClass": "judge_work",
+  "requiresStrongModel": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Review FA-216 Preview FA Ledger Entry detail evidence before deciding whether fixed asset posting readiness can be unlocked or a further read-only route is needed.",
+  "inputs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-216/FIXEDASSETS-216-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-216/010-fa-ledger-entry-detail-readonly.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-216/020-fa-ledger-entry-detail-text.txt"
+  ],
+  "allowedActions": [
+    "read-local-evidence",
+    "classify-fa-ledger-entry-detail-evidence",
+    "decide-next-safe-fixedasset-step",
+    "write-local-review-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "open-business-central",
+    "run-playwright",
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "book-edit",
+    "company-switch",
+    "setup-change",
+    "journal-edit",
+    "click-gl-entry-group",
+    "click-unproven-preview-entry-target",
+    "post",
+    "post-and-print",
+    "click-ok-on-posting-dialog",
+    "click-yes-on-posting-dialog",
+    "confirm-posting-dialog"
+  ],
+  "safetyGates": [
+    "local-only",
+    "no-business-central",
+    "no-playwright",
+    "no-posting",
+    "no-setup-change",
+    "no-book-edit",
+    "no-fake-posting-readiness"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-217/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-217/FIXEDASSETS-217-decision.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-217/FIXEDASSETS-217-result.json"
+  ],
+  "acceptanceCriteria": [
+    "FA-216 is classified as Preview detail evidence, not posting evidence.",
+    "The review decides whether FA-CNC-01, HGB, Acquisition Cost and amount signal are sufficient for posting-readiness planning.",
+    "Posting remains locked unless the review explicitly creates a separate controlled posting case with preflight gates.",
+    "The next case is concrete and small."
+  ],
+  "stopConditions": [
+    "FA-216 evidence is missing.",
+    "FA-216 result contradicts detail evidence.",
+    "A next step would require guessing UI behavior not present in evidence."
+  ],
+  "nextSafeAction": "Review FA-216 locally; do not open BC and do not post.",
+  "createdAt": "2026-06-26T17:49:00.000Z",
+  "updatedAt": "2026-06-26T17:49:00.000Z"
+}
