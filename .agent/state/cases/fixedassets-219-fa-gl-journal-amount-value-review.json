@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-219-FA-GL-JOURNAL-AMOUNT-VALUE-REVIEW",
+  "status": "planned",
+  "workType": "local-evidence-review",
+  "taskClass": "judge_work",
+  "requiresStrongModel": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Review FA-218 Amount value preflight evidence before deciding whether a Preview Posting-only retry may be unlocked. This case must not open Business Central or Playwright.",
+  "inputs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-218/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-218/010-amount-value-preflight.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-218/020-amount-value-after-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-218/FIXEDASSETS-218-result.json"
+  ],
+  "allowedActions": [
+    "read-local-evidence",
+    "classify-amount-value-preflight",
+    "decide-next-safe-fixedasset-step",
+    "write-local-review-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "open-business-central",
+    "run-playwright",
+    "book-edit",
+    "company-switch",
+    "setup-change",
+    "journal-edit",
+    "preview-posting",
+    "post",
+    "post-and-print",
+    "click-ok-on-posting-dialog",
+    "click-yes-on-posting-dialog",
+    "confirm-posting-dialog"
+  ],
+  "safetyGates": [
+    "local-only",
+    "no-business-central",
+    "no-playwright",
+    "no-preview-posting",
+    "no-posting",
+    "no-setup-change",
+    "no-journal-edit",
+    "no-company-switch",
+    "no-book-edit",
+    "no-fake-posting-readiness"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-219/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-219/FIXEDASSETS-219-decision.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-219/FIXEDASSETS-219-result.json"
+  ],
+  "acceptanceCriteria": [
+    "FA-218 is classified as guarded Amount value proof, not Preview Posting proof and not posting proof.",
+    "The review decides whether FA-CNC-01 / HGB / Acquisition Cost / Bal. Account No. 82000 / Amount 120.000,00 is sufficient to unlock a Preview Posting-only retry.",
+    "Posting remains locked unless a separate case with Preview result and posting gates is created.",
+    "The next case is concrete, small and does not require guessing."
+  ],
+  "stopConditions": [
+    "FA-218 evidence is missing.",
+    "FA-218 result contradicts its detailed evidence.",
+    "The next step would require guessing from incomplete evidence.",
+    "A proposed action would post, preview, edit or open BC inside this local review case."
+  ],
+  "nextSafeAction": "Review FA-218 locally; do not open BC and do not post.",
+  "createdAt": "2026-06-26T18:30:00.000Z",
+  "updatedAt": "2026-06-26T18:30:00.000Z"
+}
