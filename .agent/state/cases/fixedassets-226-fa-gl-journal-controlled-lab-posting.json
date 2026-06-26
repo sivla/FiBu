@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "FIXEDASSETS-226-FA-GL-JOURNAL-CONTROLLED-LAB-POSTING",
-  "status": "planned",
+  "status": "posted-partial-trace-blocked",
   "workType": "controlled-business-central-lab-posting",
   "taskClass": "judge_work",
   "requiresStrongModel": true,
@@ -113,8 +113,20 @@
     "Any setup change would be required.",
     "Any API shortcut would be needed."
   ],
-  "nextSafeAction": "Run a guarded Playwright posting test only if the pre-post Preview Posting detail matches the accepted evidence.",
+  "nextSafeAction": "Do not repeat the posting. Run FIXEDASSETS-227 as read-only trace recovery for the posted FA Ledger Entry evidence.",
   "createdAt": "2026-06-26T20:05:00.000Z",
-  "updatedAt": "2026-06-26T20:05:00.000Z"
+  "updatedAt": "2026-06-26T20:25:00.000Z",
+  "lastResult": {
+    "status": "blocked-partial-trace",
+    "posted": true,
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-226/FIXEDASSETS-226-result.json",
+    "summary": "FA-226 posted exactly one controlled FA G/L Journal laboratory acquisition for G05001. Posted G/L Entries are visible for 82000/12210; the attempted FA Ledger Entry trace landed on an empty FA Ledger Entries Preview view and must be recovered read-only."
+  },
+  "traceStatus": {
+    "postedDocumentNo": "G05001",
+    "glEntries": "visible-labor",
+    "faLedgerEntries": "blocked-rejected-preview-page-path",
+    "doNotRepeatPosting": true,
+    "nextCase": "FIXEDASSETS-227-FA-GL-JOURNAL-POSTED-TRACE-REVIEW"
+  }
 }
-

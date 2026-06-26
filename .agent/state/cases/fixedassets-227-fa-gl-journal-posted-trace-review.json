@@ -1,0 +1,120 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-227-FA-GL-JOURNAL-POSTED-TRACE-REVIEW",
+  "status": "planned",
+  "workType": "read-only-business-central-trace-recovery",
+  "taskClass": "judge_work",
+  "requiresStrongModel": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Recover the posted FA Ledger Entry trace for the controlled FA G/L Journal laboratory posting G05001 without repeating posting or editing journal/setup data.",
+  "unlockedBy": {
+    "caseId": "FIXEDASSETS-226-FA-GL-JOURNAL-CONTROLLED-LAB-POSTING",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-226/FIXEDASSETS-226-result.json",
+    "decision": "FA-226 posted once and proved posted G/L Entries; FA Ledger Entry trace remains blocked because the attempted page path showed an empty FA Ledger Entries Preview view."
+  },
+  "target": {
+    "documentNo": "G05001",
+    "accountNo": "FA-CNC-01",
+    "depreciationBookCode": "HGB",
+    "faPostingType": "Acquisition Cost",
+    "expectedSignals": [
+      "FA-CNC-01",
+      "HGB",
+      "Acquisition Cost",
+      "120.000,00",
+      "G05001"
+    ],
+    "knownGlEntries": [
+      {
+        "entryNo": "4998",
+        "accountNo": "82000",
+        "amount": "-120.000,00"
+      },
+      {
+        "entryNo": "4999",
+        "accountNo": "12210",
+        "amount": "120.000,00"
+      }
+    ]
+  },
+  "inputs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-226/FIXEDASSETS-226-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-226/030-posted-entry-trace.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-226/030-gl-entry-trace-page-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-226/040-fa-ledger-entry-trace-page-text.txt"
+  ],
+  "allowedActions": [
+    "read-local-evidence",
+    "open-business-central",
+    "run-playwright",
+    "verify-instance",
+    "verify-company",
+    "open-readonly-ledger-pages",
+    "filter-posted-gl-entries-readonly",
+    "filter-posted-fa-ledger-entries-readonly",
+    "classify-rejected-trace-paths",
+    "write-result-json",
+    "write-compact-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "book-edit",
+    "company-switch",
+    "setup-change",
+    "journal-edit",
+    "insert-journal-line",
+    "delete-journal-line",
+    "preview-posting",
+    "post",
+    "post-and-print",
+    "confirm-posting-dialog",
+    "ship",
+    "invoice",
+    "payment",
+    "new-draft",
+    "edit-record",
+    "delete-record"
+  ],
+  "safetyGates": [
+    "instance-url-must-contain-MCP_1_20260210",
+    "company-url-must-contain-RM-DEMO",
+    "no-fa-gl-journal-posting-page-actions",
+    "no-preview-posting",
+    "no-posting-repeat",
+    "no-dialog-confirmation",
+    "stop-on-confirmation-dialog",
+    "stop-on-editable-journal-context",
+    "stop-on-unexpected-company-or-instance",
+    "trace-path-must-be-readonly-ledger-or-related-entries-context"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-227/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-227/FIXEDASSETS-227-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-227/010-fa-ledger-trace-readonly.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-227/011-fa-ledger-trace-readonly-text.txt"
+  ],
+  "acceptanceCriteria": [
+    "The run stays in MCP_1_20260210 and RM-DEMO.",
+    "No posting, preview posting, setup change, draft creation or journal edit is performed.",
+    "The FA Ledger Entry trace is either proven with FA-CNC-01/HGB/Acquisition Cost/G05001/amount signals or the rejected path is documented with a concrete next read-only search route.",
+    "FA-226 is not repeated.",
+    "The result clearly states that this is CRONUS-USA laboratory evidence, not German final proof."
+  ],
+  "stopConditions": [
+    "Business Central shows another environment or company.",
+    "The route opens an editable FA G/L Journal or posting dialog.",
+    "The route would require Preview Posting or Post.",
+    "Any API shortcut would be needed.",
+    "Any setup change would be needed."
+  ],
+  "nextSafeAction": "Run a read-only Playwright trace recovery for FA Ledger Entries related to G05001/FA-CNC-01.",
+  "createdAt": "2026-06-26T20:25:00.000Z",
+  "updatedAt": "2026-06-26T20:25:00.000Z"
+}

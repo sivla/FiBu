@@ -1,44 +1,70 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-225-FA-GL-JOURNAL-PREVIEW-DETAIL-REVIEW",
-  "timestamp": "2026-06-26T20:05:00.000Z",
+  "runId": "FIXEDASSETS-226-FA-GL-JOURNAL-CONTROLLED-LAB-POSTING",
+  "timestamp": "2026-06-26T20:25:00.000Z",
   "date": "2026-06-26",
-  "workType": "local-evidence-review",
+  "workType": "controlled-business-central-lab-posting-with-partial-trace-blocker",
   "taskClass": "judge_work",
   "modelClass": "gpt-5.5-low",
   "branch": "codex/token-efficient-autopilot-state",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "bcRun": false,
-  "playwrightRun": false,
-  "posted": false,
-  "previewPosting": false,
+  "bcRun": true,
+  "playwrightRun": true,
+  "posted": true,
+  "previewPosting": true,
   "setupChanged": false,
   "companySwitched": false,
   "apiShortcut": false,
   "bookChanged": false,
-  "dataChanged": false,
-  "resultStatus": "observed",
-  "summary": "FA-225 accepted FA-224 Preview Posting detail evidence and unlocked a strictly gated controlled FA G/L Journal lab posting case as the next step.",
+  "dataChanged": true,
+  "resultStatus": "blocked-partial-trace",
+  "summary": "FA-226 posted exactly one controlled CRONUS-USA laboratory FA G/L Journal acquisition for document G05001. Posted G/L Entries are visible for 82000/12210 and +/-120.000,00; the attempted posted FA Ledger Entry trace is blocked because page 5606 opened an empty FA Ledger Entries Preview view.",
+  "postedDocuments": [
+    {
+      "documentNo": "G05001",
+      "process": "Fixed Asset Acquisition via FA G/L Journal",
+      "assetNo": "FA-CNC-01",
+      "depreciationBookCode": "HGB",
+      "faPostingType": "Acquisition Cost",
+      "amount": "120000",
+      "balAccountNo": "82000"
+    }
+  ],
+  "postingTrace": {
+    "glEntries": "visible-labor",
+    "glEntrySignals": [
+      "82000",
+      "12210",
+      "120.000,00",
+      "FA-CNC-01",
+      "G05001"
+    ],
+    "faLedgerEntries": "blocked-readonly-recovery-needed",
+    "rejectedTracePath": "page 5606 with Document No. G05001 showed FA Ledger Entries Preview and no rows; this is not proof that no posted FA Ledger Entry exists."
+  },
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/fixedassets-225/README.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-225/FIXEDASSETS-225-decision.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-225/FIXEDASSETS-225-result.json"
+    "playwright/projects/fibu-book5/evidence/fixedassets-226/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-226/FIXEDASSETS-226-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-226/FIXEDASSETS-226-LAB-POSTING.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-226/030-posted-entry-trace.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-226/030-gl-entry-trace-page-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-226/040-fa-ledger-entry-trace-page-text.txt"
   ],
   "changedFiles": [
-    "playwright/projects/fibu-book5/evidence/fixedassets-225/README.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-225/FIXEDASSETS-225-decision.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-225/FIXEDASSETS-225-result.json",
+    "package.json",
+    "playwright/projects/fibu-book5/tests/fixedassets-226-fa-gl-journal-controlled-lab-posting.spec.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-226/",
     ".agent/state/current.json",
     ".agent/state/coverage_state.json",
     ".agent/state/last_run_summary.json",
-    ".agent/state/cases/fixedassets-225-fa-gl-journal-preview-detail-review.json",
-    ".agent/state/cases/fixedassets-226-fa-gl-journal-controlled-lab-posting.json"
+    ".agent/state/cases/fixedassets-226-fa-gl-journal-controlled-lab-posting.json",
+    ".agent/state/cases/fixedassets-227-fa-gl-journal-posted-trace-review.json"
   ],
   "validationCommands": [
     "JSON parse changed files",
-    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-225/FIXEDASSETS-225-result.json",
-    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-225/FIXEDASSETS-225-result.json",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-226/FIXEDASSETS-226-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-226/FIXEDASSETS-226-result.json",
     "npm run agent:preflight",
     "npm run agent:dry-run",
     "npm run agent:run-plan",
@@ -47,29 +73,28 @@
     "git diff --check"
   ],
   "boundaries": [
-    "No Business Central run.",
-    "No Playwright run.",
-    "No posting.",
-    "No Preview Posting in this review.",
+    "No repeated posting after FA-226.",
     "No setup change.",
     "No company switch.",
     "No API shortcut.",
     "No book change.",
-    "No German final proof."
+    "No German final proof.",
+    "Depreciation posting remains open."
   ],
   "activeArea": "fixedassets",
-  "activeCase": "FIXEDASSETS-225-FA-GL-JOURNAL-PREVIEW-DETAIL-REVIEW",
-  "nextCase": "FIXEDASSETS-226-FA-GL-JOURNAL-CONTROLLED-LAB-POSTING",
+  "activeCase": "FIXEDASSETS-226-FA-GL-JOURNAL-CONTROLLED-LAB-POSTING",
+  "nextCase": "FIXEDASSETS-227-FA-GL-JOURNAL-POSTED-TRACE-REVIEW",
   "decision": {
-    "previewDetailAccepted": true,
-    "controlledPostingUnlocked": true,
-    "reason": "FA-224 Preview Posting detail shows expected G/L and FA Ledger simulated entries with account, asset and amount signals."
+    "postingPerformed": true,
+    "glTraceAccepted": true,
+    "faLedgerTraceAccepted": false,
+    "reason": "The G/L trace is visible and specific; the FA Ledger trace path opened an empty preview view and must be recovered read-only."
   },
   "risks": [
-    "No posted entries exist yet.",
-    "The next case must repeat Preview Posting detail verification immediately before posting.",
+    "Repeating FA-226 would risk duplicate acquisition posting.",
+    "FA Ledger Entry evidence is not yet book-ready.",
     "CRONUS-USA laboratory evidence is not German final proof."
   ],
-  "nextStep": "FIXEDASSETS-226: perform one controlled FA G/L Journal laboratory posting only after repeating Preview Posting detail verification.",
-  "finishedAt": "2026-06-26T20:05:00.000Z"
+  "nextStep": "FIXEDASSETS-227: recover the posted FA Ledger Entry trace for G05001/FA-CNC-01 read-only; do not repeat FA-226 posting.",
+  "finishedAt": "2026-06-26T20:25:00.000Z"
 }

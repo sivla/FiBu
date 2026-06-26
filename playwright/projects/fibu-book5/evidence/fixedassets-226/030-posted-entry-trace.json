@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-226-FA-GL-JOURNAL-CONTROLLED-LAB-POSTING",
+  "traces": [
+    {
+      "id": "gl-entry-fixedasset-acquisition",
+      "pageId": 20,
+      "tableName": "G/L Entry",
+      "filterField": "Document No.",
+      "filterValue": "G05001",
+      "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=20&filter=%27G%2FL+Entry%27.%27Document+No.%27+IS+%27G05001%27&dc=0&bookmark=C_EQAAAACHhhM",
+      "pageContextVisible": true,
+      "filterValueVisible": true,
+      "requiredSignalsVisible": [
+        {
+          "pattern": "82000",
+          "visible": true
+        },
+        {
+          "pattern": "12210",
+          "visible": true
+        },
+        {
+          "pattern": "120\\.000|120000|120,000",
+          "visible": true
+        },
+        {
+          "pattern": "FA-CNC-01|Fixed Asset|CNC Maschine",
+          "visible": true
+        }
+      ],
+      "textEvidenceFile": "030-gl-entry-trace-page-text.txt"
+    },
+    {
+      "id": "fa-ledger-entry-acquisition",
+      "pageId": 5606,
+      "tableName": "FA Ledger Entry",
+      "filterField": "Document No.",
+      "filterValue": "G05001",
+      "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5606&filter=%27FA+Ledger+Entry%27.%27Document+No.%27+IS+%27G05001%27&dc=0",
+      "pageContextVisible": true,
+      "filterValueVisible": false,
+      "requiredSignalsVisible": [
+        {
+          "pattern": "FA-CNC-01",
+          "visible": false
+        },
+        {
+          "pattern": "HGB",
+          "visible": false
+        },
+        {
+          "pattern": "Acquisition Cost",
+          "visible": false
+        },
+        {
+          "pattern": "120\\.000|120000|120,000",
+          "visible": false
+        }
+      ],
+      "textEvidenceFile": "040-fa-ledger-entry-trace-page-text.txt"
+    }
+  ],
+  "traceSummary": {
+    "glTraceVisible": true,
+    "faLedgerTraceVisible": false,
+    "status": "blocked-partial-trace",
+    "rejectedTracePaths": [
+      {
+        "id": "fa-ledger-entry-acquisition-page-5606-document-filter",
+        "reason": "Page 5606 opened an empty FA Ledger Entries Preview view for Document No. G05001; this does not prove that no posted FA Ledger Entry exists.",
+        "nextCase": "FIXEDASSETS-227-FA-GL-JOURNAL-POSTED-TRACE-REVIEW"
+      }
+    ]
+  }
+}
