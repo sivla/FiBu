@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-209-HGB-ACQ-COST-GL-INTEGRATION-SETUP-FIT-REVIEW",
+  "status": "planned",
+  "workType": "local-evidence-review",
+  "taskClass": "judge_work",
+  "requiresStrongModel": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Review FA-208 setup-fit evidence for HGB G/L Integration - Acq. Cost before any Preview Posting-only retry.",
+  "inputs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-208/FIXEDASSETS-208-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-208/010-hgb-acq-cost-gl-integration-before-after.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-208/FIXEDASSETS-208-learning.md",
+    ".agent/state/cases/fixedassets-208-hgb-acq-cost-gl-integration-setup-fit.json",
+    ".agent/state/current.json",
+    ".agent/state/coverage_state.json"
+  ],
+  "allowedActions": [
+    "read-fixedassets-208-evidence",
+    "review-setup-fit-result",
+    "compare-evidence-state-coverage",
+    "decide-next-preview-posting-only-case",
+    "write-review-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "open-business-central",
+    "run-playwright",
+    "book-edit",
+    "company-switch",
+    "create-depreciation-book",
+    "delete-depreciation-book",
+    "toggle-other-gl-integration-fields",
+    "create-journal-lines",
+    "edit-journal-lines",
+    "preview-posting",
+    "post",
+    "post-and-print",
+    "delete-record",
+    "click-ok-on-posting-dialog",
+    "click-yes-on-posting-dialog"
+  ],
+  "safetyGates": [
+    "local-review-only",
+    "no-business-central-run",
+    "no-playwright-run",
+    "no-preview-posting",
+    "no-post",
+    "no-book-edit",
+    "no-company-switch"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-209/FIXEDASSETS-209-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-209/FIXEDASSETS-209-decision.md"
+  ],
+  "acceptanceCriteria": [
+    "FA-208 result is classified as accepted, partial, or rejected without opening BC.",
+    "Coverage and state agree on whether HGB G/L Integration - Acq. Cost is fit in CRONUS-USA laboratory.",
+    "Next case is either a Preview Posting-only retry or a safer blocker follow-up.",
+    "No German final proof is claimed."
+  ],
+  "stopConditions": [
+    "FA-208 evidence is internally contradictory.",
+    "The setup-fit claim is not supported by before/after evidence.",
+    "A next Preview Posting-only step cannot be safely bounded."
+  ],
+  "nextSafeAction": "Review FA-208 evidence locally, then select the next bounded FA case.",
+  "createdAt": "2026-06-26T14:55:41.824Z",
+  "updatedAt": "2026-06-26T14:55:41.824Z"
+}
