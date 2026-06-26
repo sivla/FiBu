@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-210-FA-GL-JOURNAL-PREVIEW-POSTING-AFTER-HGB-ACQ-COST-FIT",
+  "status": "planned",
+  "workType": "playwright-preview-posting-retry",
+  "taskClass": "wizard_work",
+  "requiresStrongModel": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Run exactly one guarded Preview Posting-only retry on Fixed Asset G/L Journals after FA-208 proved HGB G/L Integration - Acq. Cost is on.",
+  "inputs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-209/FIXEDASSETS-209-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-208/FIXEDASSETS-208-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-202/FIXEDASSETS-202-result.json",
+    "playwright/projects/fibu-book5/tests/fixedassets-202-fa-gl-journal-preview-posting-after-fa-posting-type.spec.ts"
+  ],
+  "allowedActions": [
+    "open-business-central",
+    "run-playwright",
+    "confirm-instance-and-company",
+    "open-fixed-asset-gl-journals",
+    "verify-fa-posting-type-acquisition-cost",
+    "verify-hgb-acq-cost-gl-integration-fit-if-visible",
+    "open-related-actions-post-dropdown",
+    "click-exact-preview-posting-menuitem-once",
+    "capture-preview-or-error-immediately",
+    "write-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "book-edit",
+    "company-switch",
+    "create-depreciation-book",
+    "delete-depreciation-book",
+    "toggle-other-gl-integration-fields",
+    "create-journal-lines",
+    "edit-journal-lines",
+    "setup-change",
+    "post",
+    "post-and-print",
+    "delete-record",
+    "click-ok-on-posting-dialog",
+    "click-yes-on-posting-dialog"
+  ],
+  "safetyGates": [
+    "instance-url-contains-MCP_1_20260210",
+    "company-url-contains-RM-DEMO",
+    "fa-posting-type-acquisition-cost-still-selected",
+    "hgb-acq-cost-gl-integration-fit-accepted-by-FA-209",
+    "preview-posting-menuitem-exactly-one",
+    "post-and-post-and-print-not-clicked",
+    "no-ok-yes-confirmation",
+    "no-journal-line-edit",
+    "no-setup-change",
+    "immediate-preview-or-error-capture"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-210/FIXEDASSETS-210-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-210/010-preflight-after-hgb-fit.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-210/020-preview-posting-after-hgb-fit.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-210/FIXEDASSETS-210-learning.md"
+  ],
+  "acceptanceCriteria": [
+    "The run stays in MCP_1_20260210 / RM-DEMO.",
+    "Existing FA journal line still has FA Posting Type = Acquisition Cost before Preview Posting.",
+    "Only the exact Preview Posting menuitem is clicked once.",
+    "If Preview Posting opens entries, capture compact entry/type evidence.",
+    "If Error Messages opens again, capture immediate error lines and classify the new blocker.",
+    "No posting dialog is confirmed.",
+    "No setup or journal data is changed."
+  ],
+  "stopConditions": [
+    "Business Central is not in MCP_1_20260210.",
+    "Company is not RM-DEMO.",
+    "FA Posting Type = Acquisition Cost is not still selected before Preview Posting.",
+    "Preview Posting menuitem is not exactly unique.",
+    "A posting confirmation dialog appears.",
+    "Capturing details would require OK/Yes, setup change or journal edit."
+  ],
+  "nextSafeAction": "Implement and run one guarded Preview Posting-only retry; no Post.",
+  "createdAt": "2026-06-26T14:59:55.706Z",
+  "updatedAt": "2026-06-26T14:59:55.706Z"
+}

@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-209-hgb-acq-cost-gl-integration-setup-fit-review-result",
+  "caseId": "FIXEDASSETS-209-HGB-ACQ-COST-GL-INTEGRATION-SETUP-FIT-REVIEW",
+  "source": "local-evidence-review",
+  "resultStatus": "accepted-labor-setup-fit",
+  "runPlanId": "FIXEDASSETS-209-HGB-ACQ-COST-GL-INTEGRATION-SETUP-FIT-REVIEW-PLAN",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "reviewedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-208/FIXEDASSETS-208-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-208/010-hgb-acq-cost-gl-integration-before-after.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-208/FIXEDASSETS-208-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-202/FIXEDASSETS-202-result.json"
+  ],
+  "decision": {
+    "accepted": true,
+    "acceptedAs": "CRONUS-USA laboratory setup prerequisite only",
+    "reason": "FA-208 proves the exact visible HGB G/L Integration - Acq. Cost row was identified once, clicked through a Playwright locator, and changed from false to true. No Preview Posting, Post, journal edit, company switch or API shortcut occurred.",
+    "nextCase": "FIXEDASSETS-210-FA-GL-JOURNAL-PREVIEW-POSTING-AFTER-HGB-ACQ-COST-FIT"
+  },
+  "proved": [
+    "FA-208 stayed in MCP_1_20260210 / RM-DEMO.",
+    "FA-208 identified exactly one target checkbox for HGB G/L Integration - Acq. Cost.",
+    "FA-208 changed that target from false to true through a UI-first Playwright locator click.",
+    "FA-208 did not run Preview Posting, did not post, did not edit journal lines and did not switch company.",
+    "The prior FA-202 Preview blocker can now be retried once in a separate Preview Posting-only case."
+  ],
+  "notProved": [
+    "No Preview Posting entry lines are proven after the setup fit.",
+    "No FA journal posting was executed.",
+    "No FA Ledger Entry, G/L Entry or VAT/Tax trace exists.",
+    "No German HGB, tax or chart-of-accounts final proof exists.",
+    "No book text was changed in this review."
+  ],
+  "warnings": [
+    "The setup fit is CRONUS-USA laboratory evidence only.",
+    "Preview Posting remains default-locked and is only unlocked for the separate FA-210 Preview Posting-only case.",
+    "Post remains locked."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "flags": {
+    "localReviewOnly": true,
+    "bcRun": false,
+    "playwrightRun": false,
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noBookChange": true,
+    "noApiShortcut": true
+  },
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-210-FA-GL-JOURNAL-PREVIEW-POSTING-AFTER-HGB-ACQ-COST-FIT",
+      "active_case_file": ".agent/state/cases/fixedassets-210-fa-gl-journal-preview-posting-after-hgb-acq-cost-fit.json",
+      "lastReferenceCase": "FIXEDASSETS-209-HGB-ACQ-COST-GL-INTEGRATION-SETUP-FIT-REVIEW",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-209-hgb-acq-cost-gl-integration-setup-fit-review.json",
+      "requiresStrongModel": false,
+      "nextStep": "FIXEDASSETS-210: run one guarded Preview Posting-only retry after HGB Acq. Cost G/L Integration setup fit; no Post."
+    },
+    "activeCase": {
+      "status": "accepted-labor-setup-fit",
+      "lastResult": {
+        "status": "accepted-labor-setup-fit",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-209/FIXEDASSETS-209-result.json",
+        "summary": "FA-209 accepts FA-208 as CRONUS-USA laboratory setup prerequisite and selects FA-210 guarded Preview Posting-only retry."
+      },
+      "nextSafeAction": "FA-210 Preview Posting-only retry; Post remains locked."
+    }
+  },
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-209/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-209/FIXEDASSETS-209-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-209/FIXEDASSETS-209-decision.md"
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-209/",
+    ".agent/state/current.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/cases/fixedassets-209-hgb-acq-cost-gl-integration-setup-fit-review.json",
+    ".agent/state/cases/fixedassets-210-fa-gl-journal-preview-posting-after-hgb-acq-cost-fit.json",
+    ".agent/state/model_usage_log.jsonl"
+  ],
+  "nextStep": "FIXEDASSETS-210: guarded Preview Posting-only retry; no Post, no setup change, no journal edit unless the case explicitly proves the existing line preflight first.",
+  "createdAt": "2026-06-26T14:59:55.706Z"
+}
