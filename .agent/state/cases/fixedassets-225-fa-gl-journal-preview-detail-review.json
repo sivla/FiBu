@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-225-FA-GL-JOURNAL-PREVIEW-DETAIL-REVIEW",
+  "status": "planned",
+  "workType": "local-evidence-review",
+  "taskClass": "judge_work",
+  "requiresStrongModel": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Review FA-224 Preview Posting detail evidence before deciding whether a later controlled FA G/L Journal posting case may be unlocked.",
+  "inputs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-224/FIXEDASSETS-224-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-224/010-preview-entry-detail-drilldown.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-224/020-preview-entry-detail-text.txt"
+  ],
+  "allowedActions": [
+    "read-local-evidence",
+    "classify-preview-detail-evidence",
+    "decide-posting-readiness-gate",
+    "write-local-review-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "open-business-central",
+    "run-playwright",
+    "book-edit",
+    "company-switch",
+    "setup-change",
+    "journal-edit",
+    "preview-posting",
+    "post",
+    "post-and-print",
+    "click-ok-on-posting-dialog",
+    "click-yes-on-posting-dialog",
+    "confirm-posting-dialog"
+  ],
+  "safetyGates": [
+    "local-only",
+    "no-business-central",
+    "no-playwright",
+    "no-preview-posting",
+    "no-posting",
+    "no-setup-change",
+    "no-journal-edit",
+    "no-company-switch",
+    "no-book-edit",
+    "no-fake-posting-readiness"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-225/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-225/FIXEDASSETS-225-decision.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-225/FIXEDASSETS-225-result.json"
+  ],
+  "acceptanceCriteria": [
+    "FA-224 is classified as Preview Posting detail evidence, not posting evidence.",
+    "Review evaluates whether the preview detail lines are sufficient for a later controlled lab posting case.",
+    "Posting remains locked unless the next case explicitly unlocks it with a posting trace plan.",
+    "The next case is concrete and small."
+  ],
+  "stopConditions": [
+    "FA-224 evidence is missing or contradictory.",
+    "The next step would require guessing.",
+    "A proposed action would open BC or Playwright inside this local review case."
+  ],
+  "nextSafeAction": "Review FA-224 locally; do not open BC and do not post.",
+  "createdAt": "2026-06-26T19:46:13.000Z",
+  "updatedAt": "2026-06-26T19:46:13.000Z"
+}

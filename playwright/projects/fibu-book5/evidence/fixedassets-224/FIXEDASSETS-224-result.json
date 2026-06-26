@@ -1,0 +1,274 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-224-preview-entry-detail-drilldown-result",
+  "caseId": "FIXEDASSETS-224-FA-GL-JOURNAL-PREVIEW-ENTRY-DETAIL-DRILLDOWN",
+  "source": "playwright-guarded-preview-entry-detail-drilldown",
+  "resultStatus": "observed",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-medium",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "environment": {
+    "expectedInstance": "MCP_1_20260210",
+    "expectedCompany": "RM-DEMO",
+    "context": {
+      "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5628&dc=0&bookmark=30_UQAAAAJ7_0EAUwBTAEUAVABTAAAAAnv_RABFAEYAQQBVAEwAVAAAAACHECc",
+      "environmentInUrl": true,
+      "companyInUrl": true,
+      "companyInText": false,
+      "wrongEnvironmentVisible": false
+    },
+    "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5628&runinframe=1",
+    "urlAfterRun": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5606&dc=0&bookmark=C_4RUAAACHAQ"
+  },
+  "proved": [
+    "The run stayed in MCP_1_20260210.",
+    "The run stayed in RM-DEMO.",
+    "FA Posting Type = Acquisition Cost was proven before Amount and Preview.",
+    "Bal. Account No. = 82000 was proven before Amount and Preview.",
+    "Only the Amount candidate was filled.",
+    "Amount 120000/120.000 was visible/current before Preview Posting in the same session.",
+    "Only the related-actions-for-Post split/dropdown button was clicked before Preview Posting.",
+    "Exactly one exact Preview Posting menuitem candidate was found.",
+    "Only the exact Preview Posting menuitem was clicked once.",
+    "Preview Posting entry context became visible.",
+    "DOM inventory captured the Posting Preview title/context.",
+    "DOM inventory captured a G/L Entry label.",
+    "DOM inventory captured an FA Ledger Entry label.",
+    "Exactly one safe G/L Entry Preview detail candidate was identified.",
+    "Exactly one safe FA Ledger Entry Preview detail candidate was identified.",
+    "The G/L Entry Preview detail candidate was clicked.",
+    "The FA Ledger Entry Preview detail candidate was clicked.",
+    "G/L Entry detail text contains account or amount signals.",
+    "FA Ledger Entry detail text contains fixed asset or amount signals.",
+    "No main Post button was clicked.",
+    "No Post menuitem was clicked.",
+    "No Post and Print menuitem was clicked.",
+    "No OK/Yes confirmation was clicked.",
+    "No journal line was created or deleted.",
+    "No non-Amount journal field was changed.",
+    "No setup change was made.",
+    "No API shortcut was used.",
+    "No book content was changed."
+  ],
+  "notProved": [
+    "No Fixed Asset G/L Journal posting was executed.",
+    "No posted FA Ledger Entry or posted G/L Entry trace exists.",
+    "No German final proof exists."
+  ],
+  "changedFiles": [
+    "package.json",
+    "playwright/projects/fibu-book5/tests/fixedassets-224-fa-gl-journal-preview-entry-detail-drilldown.spec.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-224/"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-224/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-224/010-preview-entry-detail-drilldown.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-224/020-preview-entry-detail-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-224/FIXEDASSETS-224-result.json"
+  ],
+  "warnings": [
+    "Preview Posting-only. Do not treat as posting permission.",
+    "Posting remains locked until local review.",
+    "No German final proof."
+  ],
+  "blockedBy": [],
+  "requiresReview": true,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-225-FA-GL-JOURNAL-PREVIEW-DETAIL-REVIEW",
+      "active_case_file": ".agent/state/cases/fixedassets-225-fa-gl-journal-preview-detail-review.json",
+      "lastReferenceCase": "FIXEDASSETS-224-FA-GL-JOURNAL-PREVIEW-ENTRY-DETAIL-DRILLDOWN",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-224-fa-gl-journal-preview-entry-detail-drilldown.json",
+      "requiresStrongModel": true,
+      "nextStep": "FIXEDASSETS-225: locally review FA-224 Preview Posting detail drilldown before any posting decision."
+    },
+    "activeCase": {
+      "status": "observed-preview-entry-detail-drilldown",
+      "lastResult": {
+        "status": "observed",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-224/FIXEDASSETS-224-result.json",
+        "summary": "FA-224 opened Preview Posting detail context without posting; G/L detail=true; FA detail=true."
+      },
+      "nextSafeAction": "Run FIXEDASSETS-225 local review; do not post."
+    }
+  },
+  "flags": {
+    "amountEntered": true,
+    "amountVisibleBeforePreview": true,
+    "clickedSplitButton": true,
+    "clickedPreviewPosting": true,
+    "clickedGlEntryDetail": true,
+    "clickedFaLedgerEntryDetail": true,
+    "clickedShowRelatedEntriesForGl": true,
+    "clickedShowRelatedEntriesForFa": true,
+    "faPostingTypeStillAcquisitionCost": true,
+    "balAccountVisibleBeforePreview": true,
+    "domSignals": {
+      "postingPreviewTitleVisible": true,
+      "glEntryLabelVisible": true,
+      "faLedgerEntryLabelVisible": true,
+      "valueEntryLabelVisible": false
+    },
+    "detailSignals": {
+      "glEntryCandidateCount": 1,
+      "faLedgerEntryCandidateCount": 1,
+      "clickedGlEntryDetail": true,
+      "clickedFaLedgerEntryDetail": true,
+      "clickedShowRelatedEntriesForGl": true,
+      "clickedShowRelatedEntriesForFa": true,
+      "glHasAccountOrAmountSignal": true,
+      "faHasFixedAssetOrAmountSignal": true,
+      "glDangerSignal": false,
+      "faDangerSignal": false
+    },
+    "noMainPostClick": true,
+    "noPostMenuitemClick": true,
+    "noPostAndPrintClick": true,
+    "noInsertLine": true,
+    "noDeleteLine": true,
+    "noNonAmountJournalEdit": true,
+    "amountOnlyJournalEdit": true,
+    "noPost": true,
+    "noOkYesConfirmation": true,
+    "previewOnly": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "observed": {
+    "startedAt": "2026-06-26T16:45:51.212Z",
+    "finishedAt": "2026-06-26T16:46:13.222Z",
+    "candidateIndex": 12,
+    "dialogAfterAmount": {
+      "dialogCount": 0,
+      "textSample": "",
+      "postingDialog": false,
+      "okYesVisible": false,
+      "previewOrErrorDialog": false
+    },
+    "dialogAfterPreview": {
+      "dialogCount": 0,
+      "textSample": "",
+      "postingDialog": false,
+      "okYesVisible": false,
+      "previewOrErrorDialog": false
+    },
+    "previewContextSummary": {
+      "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=115&dc=0&bookmark=C_CQEAAACH4RU",
+      "previewEntriesVisible": true,
+      "errorMessagesVisible": false
+    },
+    "domSignals": {
+      "postingPreviewTitleVisible": true,
+      "glEntryLabelVisible": true,
+      "faLedgerEntryLabelVisible": true,
+      "valueEntryLabelVisible": false
+    },
+    "detailDrilldown": {
+      "glEntryDiscovery": {
+        "matches": [
+          {
+            "index": 762,
+            "tagName": "a",
+            "role": "button",
+            "text": "G/L Entry",
+            "ariaLabel": "",
+            "title": "Datensatz G/L Entry o ffnen",
+            "rect": {
+              "x": 1008,
+              "y": 162,
+              "width": 62,
+              "height": 25
+            },
+            "frameIndex": 1,
+            "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5628&runinframe=1"
+          }
+        ],
+        "selected": {
+          "index": 762,
+          "tagName": "a",
+          "role": "button",
+          "text": "G/L Entry",
+          "ariaLabel": "",
+          "title": "Datensatz G/L Entry o ffnen",
+          "rect": {
+            "x": 1008,
+            "y": 162,
+            "width": 62,
+            "height": 25
+          },
+          "frameIndex": 1,
+          "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5628&runinframe=1"
+        }
+      },
+      "faLedgerEntryDiscovery": {
+        "matches": [
+          {
+            "index": 770,
+            "tagName": "a",
+            "role": "button",
+            "text": "FA Ledger Entry",
+            "ariaLabel": "",
+            "title": "Datensatz FA Ledger Entry o ffnen",
+            "rect": {
+              "x": 1008,
+              "y": 196,
+              "width": 102,
+              "height": 25
+            },
+            "frameIndex": 1,
+            "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5628&runinframe=1"
+          }
+        ],
+        "selected": {
+          "index": 770,
+          "tagName": "a",
+          "role": "button",
+          "text": "FA Ledger Entry",
+          "ariaLabel": "",
+          "title": "Datensatz FA Ledger Entry o ffnen",
+          "rect": {
+            "x": 1008,
+            "y": 196,
+            "width": 102,
+            "height": 25
+          },
+          "frameIndex": 1,
+          "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5628&runinframe=1"
+        }
+      },
+      "glEntrySignals": {
+        "hasPostingPreview": true,
+        "hasEntryContext": true,
+        "hasAccountSignal": true,
+        "hasAmountSignal": true,
+        "hasFixedAssetSignal": true,
+        "hasDangerSignal": false
+      },
+      "faLedgerEntrySignals": {
+        "hasPostingPreview": true,
+        "hasEntryContext": true,
+        "hasAccountSignal": true,
+        "hasAmountSignal": true,
+        "hasFixedAssetSignal": true,
+        "hasDangerSignal": false
+      },
+      "detailSignals": {
+        "glEntryCandidateCount": 1,
+        "faLedgerEntryCandidateCount": 1,
+        "clickedGlEntryDetail": true,
+        "clickedFaLedgerEntryDetail": true,
+        "clickedShowRelatedEntriesForGl": true,
+        "clickedShowRelatedEntriesForFa": true,
+        "glHasAccountOrAmountSignal": true,
+        "faHasFixedAssetOrAmountSignal": true,
+        "glDangerSignal": false,
+        "faDangerSignal": false
+      }
+    }
+  },
+  "nextStep": "FIXEDASSETS-225: locally review FA-224 Preview Posting detail drilldown before any posting decision."
+}
