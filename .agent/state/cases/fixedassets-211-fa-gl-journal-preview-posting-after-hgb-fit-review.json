@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-211-FA-GL-JOURNAL-PREVIEW-POSTING-AFTER-HGB-FIT-REVIEW",
+  "status": "planned",
+  "workType": "local-evidence-review",
+  "taskClass": "judge_work",
+  "requiresStrongModel": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Review FA-210 Preview Posting result after HGB Acq. Cost G/L Integration setup fit before any posting decision.",
+  "inputs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-210/FIXEDASSETS-210-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-210/020-preview-posting-after-hgb-fit.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-210/030-preview-posting-result-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-209/FIXEDASSETS-209-result.json",
+    ".agent/state/coverage_state.json"
+  ],
+  "allowedActions": [
+    "read-fixedassets-210-evidence",
+    "review-preview-posting-result",
+    "compare-preview-lines-to-expected-entry-types",
+    "decide-next-posting-readiness-or-blocker-case",
+    "write-review-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "open-business-central",
+    "run-playwright",
+    "book-edit",
+    "company-switch",
+    "create-depreciation-book",
+    "delete-depreciation-book",
+    "toggle-other-gl-integration-fields",
+    "create-journal-lines",
+    "edit-journal-lines",
+    "setup-change",
+    "preview-posting",
+    "post",
+    "post-and-print",
+    "delete-record",
+    "click-ok-on-posting-dialog",
+    "click-yes-on-posting-dialog"
+  ],
+  "safetyGates": [
+    "local-review-only",
+    "no-business-central-run",
+    "no-playwright-run",
+    "no-preview-posting",
+    "no-post",
+    "no-setup-change",
+    "no-journal-edit",
+    "no-book-edit",
+    "no-company-switch"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-211/FIXEDASSETS-211-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-211/FIXEDASSETS-211-decision.md"
+  ],
+  "acceptanceCriteria": [
+    "FA-210 result is classified without opening BC.",
+    "Preview Posting entry context is accepted, partial, or rejected from evidence only.",
+    "Post remains locked unless a later explicit posting-readiness case is created.",
+    "No German final proof is claimed."
+  ],
+  "stopConditions": [
+    "FA-210 evidence is internally contradictory.",
+    "Preview entry evidence is too weak to classify.",
+    "A next posting-readiness case cannot be safely bounded."
+  ],
+  "nextSafeAction": "Review FA-210 evidence locally, then choose either posting-readiness or blocker documentation.",
+  "createdAt": "2026-06-26T15:07:06.607Z",
+  "updatedAt": "2026-06-26T15:07:06.607Z"
+}

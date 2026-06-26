@@ -1,0 +1,185 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-210-preview-posting-after-hgb-fit-result",
+  "caseId": "FIXEDASSETS-210-FA-GL-JOURNAL-PREVIEW-POSTING-AFTER-HGB-ACQ-COST-FIT",
+  "source": "playwright-preview-posting-only-after-hgb-acq-cost-fit",
+  "resultStatus": "observed",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-medium",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "environment": {
+    "expectedInstance": "MCP_1_20260210",
+    "expectedCompany": "RM-DEMO",
+    "context": {
+      "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5628&dc=0&bookmark=30_UQAAAAJ7_0EAUwBTAEUAVABTAAAAAnv_RABFAEYAQQBVAEwAVAAAAACHECc",
+      "environmentInUrl": true,
+      "companyInUrl": true,
+      "companyInText": false,
+      "wrongEnvironmentVisible": false
+    },
+    "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5628&runinframe=1",
+    "urlAfterRun": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=115&dc=0&bookmark=C_CQEAAACH4RU"
+  },
+  "proved": [
+    "The run stayed in MCP_1_20260210.",
+    "The run stayed in RM-DEMO.",
+    "FA-209 accepted HGB G/L Integration - Acq. Cost as fit before Preview Posting.",
+    "FA Posting Type = Acquisition Cost was still selected before Preview Posting.",
+    "Exactly one related-actions-for-Post split/dropdown button was found.",
+    "Only the related-actions-for-Post split/dropdown button was clicked before Preview Posting.",
+    "Exactly one exact Preview Posting menuitem candidate was found.",
+    "Only the exact Preview Posting menuitem was clicked once.",
+    "Preview Posting entry context became visible after correction.",
+    "The prior FA Posting Type blank error did not reappear in the captured result.",
+    "No main Post button was clicked.",
+    "No Post menuitem was clicked.",
+    "No Post and Print menuitem was clicked.",
+    "No OK/Yes confirmation was clicked.",
+    "No journal line was created, edited or deleted.",
+    "No setup change was made.",
+    "No API shortcut was used.",
+    "No book content was changed."
+  ],
+  "notProved": [
+    "No Fixed Asset G/L Journal posting was executed.",
+    "No FA Ledger Entry or posted G/L Entry trace exists.",
+    "No German final proof exists."
+  ],
+  "changedFiles": [
+    "package.json",
+    "playwright/projects/fibu-book5/tests/fixedassets-210-fa-gl-journal-preview-posting-after-hgb-acq-cost-fit.spec.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-210/"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-210/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-210/010-preflight-after-hgb-fit.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-210/020-preview-posting-after-hgb-fit.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-210/030-preview-posting-result-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-210/FIXEDASSETS-210-learning.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-210/FIXEDASSETS-210-result.json"
+  ],
+  "warnings": [
+    "Preview Posting-only. Do not treat as posting permission.",
+    "Posting remains locked until FIXEDASSETS-211 local review.",
+    "No German final proof."
+  ],
+  "blockedBy": [],
+  "requiresReview": true,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-211-FA-GL-JOURNAL-PREVIEW-POSTING-AFTER-HGB-FIT-REVIEW",
+      "active_case_file": ".agent/state/cases/fixedassets-211-fa-gl-journal-preview-posting-after-hgb-fit-review.json",
+      "lastReferenceCase": "FIXEDASSETS-210-FA-GL-JOURNAL-PREVIEW-POSTING-AFTER-HGB-ACQ-COST-FIT",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-210-fa-gl-journal-preview-posting-after-hgb-acq-cost-fit.json",
+      "requiresStrongModel": true,
+      "nextStep": "FIXEDASSETS-211: locally review FA-210 Preview Posting result before any Post, setup change or further journal edit."
+    },
+    "activeCase": {
+      "status": "observed-preview-posting-after-hgb-fit",
+      "lastResult": {
+        "status": "observed",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-210/FIXEDASSETS-210-result.json",
+        "summary": "FA-210 clicked only the exact Preview Posting menuitem after proving FA Posting Type = Acquisition Cost; outcome=preview-entry-context; prior FA Posting Type blocker gone=true."
+      },
+      "nextSafeAction": "Run FIXEDASSETS-211 local review; do not post."
+    }
+  },
+  "flags": {
+    "clickedSplitButton": true,
+    "clickedPreviewPosting": true,
+    "hgbFitAccepted": true,
+    "faPostingTypeStillAcquisitionCost": true,
+    "priorFaPostingTypeBlockerGone": true,
+    "noMainPostClick": true,
+    "noPostMenuitemClick": true,
+    "noPostAndPrintClick": true,
+    "noInsertLine": true,
+    "noDeleteLine": true,
+    "noJournalEdit": true,
+    "noPost": true,
+    "noOkYesConfirmation": true,
+    "previewOnly": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "observed": {
+    "startedAt": "2026-06-26T15:04:03.738Z",
+    "finishedAt": "2026-06-26T15:04:21.571Z",
+    "helperBefore": {
+      "success": true,
+      "status": "single-editable-candidate",
+      "blockedBy": [],
+      "visibleSignals": {
+        "rowAnchorCount": 1,
+        "columnSignalVisible": true,
+        "forbiddenSignalsVisible": [],
+        "expectedValueVisible": false,
+        "controlCandidateCount": 1,
+        "editableCandidateCount": 1
+      },
+      "candidates": [
+        {
+          "index": 7,
+          "score": 9,
+          "reason": [
+            "column-signal-by-geometry",
+            "row-required-signals-by-geometry"
+          ],
+          "labelText": "Acquisition Cost Acquisition Cost Depreciation Write-Down Appreciation Custom 1 Custom 2 Disposal Maintenance Bonus Depreciation",
+          "rowText": "Payment Invoice Credit Memo Finance Charge Memo Reminder Refund G/L Account Customer Vendor Bank Account Fixed Asset IC Partner Employee Allocation Account Acquisition Cost Depreciation Write-Down Appreciation Custom 1 Custom 2 Disposal Maintenance Bonus Depreciation Purchase Sale Settlement G/L Account Customer Vendor Bank Account Fixed Asset IC Partner Employee Allocation Account Purchase Sale Settlement",
+          "cellText": "Acquisition Cost Depreciation Write-Down Appreciation Custom 1 Custom 2 Disposal Maintenance Bonus Depreciation",
+          "valueText": "1 Acquisition Cost",
+          "readOnly": false,
+          "disabled": false
+        }
+      ],
+      "editableCandidates": [
+        {
+          "index": 7,
+          "score": 9,
+          "reason": [
+            "column-signal-by-geometry",
+            "row-required-signals-by-geometry"
+          ],
+          "labelText": "Acquisition Cost Acquisition Cost Depreciation Write-Down Appreciation Custom 1 Custom 2 Disposal Maintenance Bonus Depreciation",
+          "rowText": "Payment Invoice Credit Memo Finance Charge Memo Reminder Refund G/L Account Customer Vendor Bank Account Fixed Asset IC Partner Employee Allocation Account Acquisition Cost Depreciation Write-Down Appreciation Custom 1 Custom 2 Disposal Maintenance Bonus Depreciation Purchase Sale Settlement G/L Account Customer Vendor Bank Account Fixed Asset IC Partner Employee Allocation Account Purchase Sale Settlement",
+          "cellText": "Acquisition Cost Depreciation Write-Down Appreciation Custom 1 Custom 2 Disposal Maintenance Bonus Depreciation",
+          "valueText": "1 Acquisition Cost",
+          "readOnly": false,
+          "disabled": false
+        }
+      ]
+    },
+    "candidateIndex": 7,
+    "dialogAfterPreview": {
+      "dialogCount": 0,
+      "dialogs": [],
+      "textSample": "",
+      "postingDialog": false,
+      "okYesVisible": false,
+      "previewOrErrorDialog": false
+    },
+    "outcome": "preview-entry-context",
+    "previewOrErrorSummary": {
+      "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=115&dc=0&bookmark=C_CQEAAACH4RU",
+      "errorMessagesVisible": false,
+      "priorFaPostingTypeErrorVisible": false,
+      "acquisitionCostMustBePostedInFaJournalVisible": false,
+      "previewEntriesVisible": true,
+      "signalLines": [
+        "Batch Name",
+        "Depreciation Book Code",
+        "FA Posting Type",
+        "Posting Preview",
+        "G/L Entry 1",
+        "FA Ledger Entry",
+        "Liste mit Titel Posting Preview hat jetzt 2 Artikel"
+      ]
+    }
+  },
+  "nextStep": "FIXEDASSETS-211: locally review FA-210 Preview Posting result before any Post, setup change or further journal edit."
+}
