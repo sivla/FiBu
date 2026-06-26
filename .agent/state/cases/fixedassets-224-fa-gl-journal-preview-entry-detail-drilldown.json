@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-224-FA-GL-JOURNAL-PREVIEW-ENTRY-DETAIL-DRILLDOWN",
+  "status": "planned",
+  "workType": "playwright-guarded-preview-entry-detail-drilldown",
+  "taskClass": "wizard_work",
+  "requiresStrongModel": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Open the existing FA G/L Journal line, verify the target context, set only Amount if the target line is unique, open exact Preview Posting and drill into the visible G/L Entry and FA Ledger Entry preview groups without posting.",
+  "inputs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-222/FIXEDASSETS-222-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-223/FIXEDASSETS-223-result.json",
+    "playwright/projects/fibu-book5/tests/fixedassets-222-fa-gl-journal-amount-and-preview-single-session.spec.ts"
+  ],
+  "target": {
+    "journalPage": "Fixed Asset G/L Journals",
+    "documentNo": "G05001",
+    "accountNo": "FA-CNC-01",
+    "depreciationBookCode": "HGB",
+    "faPostingType": "Acquisition Cost",
+    "balAccountNo": "82000",
+    "amountInput": "120000",
+    "amountExpectedDisplay": "120.000,00",
+    "previewGroups": [
+      "G/L Entry",
+      "FA Ledger Entry"
+    ]
+  },
+  "allowedActions": [
+    "open-business-central",
+    "run-playwright",
+    "verify-instance",
+    "verify-company",
+    "verify-target-journal-line",
+    "set-amount-only-if-target-line-unique",
+    "open-exact-preview-posting-menuitem",
+    "open-preview-related-entry-groups",
+    "capture-compact-preview-detail-evidence",
+    "write-result-json",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "book-edit",
+    "company-switch",
+    "setup-change",
+    "insert-journal-line",
+    "delete-journal-line",
+    "change-document-no",
+    "change-account-no",
+    "change-depreciation-book-code",
+    "change-fa-posting-type",
+    "change-bal-account-no",
+    "post",
+    "post-and-print",
+    "click-ok-on-posting-dialog",
+    "click-yes-on-posting-dialog",
+    "confirm-posting-dialog"
+  ],
+  "safetyGates": [
+    "must-stay-in-instance-MCP_1_20260210",
+    "must-stay-in-company-RM-DEMO",
+    "target-line-must-be-unique",
+    "amount-must-be-visible-current-before-preview",
+    "preview-posting-menuitem-must-be-exact-single-candidate",
+    "normal-posting-dialog-must-not-open",
+    "no-ok-yes-confirmation",
+    "no-posting",
+    "no-setup-change",
+    "no-company-switch",
+    "no-api-shortcut",
+    "no-book-edit"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-224/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-224/010-preview-entry-detail-drilldown.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-224/020-preview-entry-detail-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-224/FIXEDASSETS-224-result.json"
+  ],
+  "acceptanceCriteria": [
+    "Preview Posting opens from the verified target FA G/L Journal line.",
+    "G/L Entry and FA Ledger Entry preview groups are opened or their detail surfaces are captured.",
+    "Evidence distinguishes group labels from detail values.",
+    "No posting or posting confirmation is executed.",
+    "No setup or company change is made."
+  ],
+  "stopConditions": [
+    "Wrong instance or company.",
+    "Target journal line is missing or ambiguous.",
+    "Required target context values are not visible/current before Preview Posting.",
+    "Amount cannot be verified as visible/current before Preview Posting.",
+    "Preview Posting action is not an exact single menuitem candidate.",
+    "A normal posting dialog or OK/Yes confirmation appears.",
+    "Preview related entry groups cannot be opened safely."
+  ],
+  "nextSafeAction": "Run the guarded FA-224 Playwright detail drilldown; do not post.",
+  "createdAt": "2026-06-26T19:36:12.000Z",
+  "updatedAt": "2026-06-26T19:36:12.000Z"
+}
