@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-205-HGB-GL-INTEGRATION-REVIEW",
+  "status": "planned",
+  "workType": "local-evidence-review",
+  "taskClass": "judge_work",
+  "requiresStrongModel": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Review FIXEDASSETS-204 read-only HGB G/L Integration evidence and decide whether the next safe route is an HGB setup-fit, FA Journal route, or another read-only diagnosis before any posting.",
+  "inputs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-204/FIXEDASSETS-204-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-204/010-hgb-gl-integration-readonly.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-203/FIXEDASSETS-203-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-202/FIXEDASSETS-202-result.json"
+  ],
+  "allowedActions": [
+    "read-evidence",
+    "read-state",
+    "read-microsoft-learn",
+    "write-review-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "open-business-central",
+    "run-playwright",
+    "book-edit",
+    "company-switch",
+    "create-depreciation-book",
+    "edit-depreciation-book",
+    "toggle-gl-integration",
+    "create-journal-lines",
+    "edit-journal-lines",
+    "preview-posting",
+    "post",
+    "post-and-print",
+    "setup-change",
+    "delete-record",
+    "click-ok-on-posting-dialog",
+    "click-yes-on-posting-dialog"
+  ],
+  "safetyGates": [
+    "local-review-only",
+    "source-evidence-exists",
+    "no-business-central",
+    "no-playwright",
+    "no-setup-change",
+    "no-preview-posting",
+    "no-post"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-205/FIXEDASSETS-205-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-205/FIXEDASSETS-205-decision.md"
+  ],
+  "acceptanceCriteria": [
+    "The FA-204 Acquisition Cost integration status is reviewed against FA-202/FA-203.",
+    "The next safe route is classified as setup-fit, FA Journal route, further read-only diagnosis, or blocked.",
+    "No Business Central, Playwright, setup, preview or posting run occurs."
+  ],
+  "stopConditions": [
+    "FA-204 result is missing.",
+    "FA-204 evidence is contradictory.",
+    "A route decision would require unverified setup assumptions."
+  ],
+  "nextSafeAction": "Local review only; decide the next fixed-assets case after FA-204 evidence."
+}
