@@ -1,16 +1,16 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-204-HGB-GL-INTEGRATION-READONLY",
+  "runId": "FIXEDASSETS-205-HGB-GL-INTEGRATION-REVIEW",
   "timestamp": "2026-06-26T00:00:00.000Z",
   "date": "2026-06-26",
-  "workType": "playwright-readonly-setup-diagnosis",
-  "taskClass": "wizard_work",
-  "modelClass": "gpt-4-medium",
+  "workType": "local-evidence-review",
+  "taskClass": "judge_work",
+  "modelClass": "gpt-5.5-low",
   "branch": "codex/token-efficient-autopilot-state",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "bcRun": true,
-  "playwrightRun": true,
+  "bcRun": false,
+  "playwrightRun": false,
   "posted": false,
   "previewPosting": false,
   "setupChanged": false,
@@ -19,45 +19,46 @@
   "bookChanged": false,
   "dataChanged": false,
   "resultStatus": "observed",
-  "summary": "FA-204 opened HGB Depreciation Book context read-only. HGB and G/L Integration are visible, but the exact Acquisition Cost integration value is not proven from visible UI. No setup, preview, post, journal edit, draft or book change occurred. Next is local review before deciding setup-fit versus FA Journal route.",
+  "summary": "FA-205 reviewed FA-204 against Microsoft Learn. HGB and G/L Integration are visible, but the G/L Integration - Acq. Cost value is not proven. Setup-fit, Preview retry and posting remain rejected. Next is FA-206 Page Inspection read-only proof.",
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/fixedassets-204/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-205/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-205/FIXEDASSETS-205-decision.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-205/FIXEDASSETS-205-result.json",
     "playwright/projects/fibu-book5/evidence/fixedassets-204/FIXEDASSETS-204-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-204/010-hgb-gl-integration-readonly.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-204/FIXEDASSETS-204-learning.md"
+    "playwright/projects/fibu-book5/evidence/fixedassets-204/010-hgb-gl-integration-readonly.json"
   ],
   "changedFiles": [
-    "playwright/projects/fibu-book5/tests/fixedassets-204-hgb-gl-integration-readonly.spec.ts",
-    "playwright/projects/fibu-book5/evidence/fixedassets-204/",
-    ".agent/state/cases/fixedassets-204-hgb-gl-integration-readonly.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-205/",
     ".agent/state/cases/fixedassets-205-hgb-gl-integration-review.json",
+    ".agent/state/cases/fixedassets-206-hgb-pageinspection-readonly.json",
     ".agent/state/current.json",
     ".agent/state/coverage_state.json",
     ".agent/state/last_run_summary.json",
-    "package.json"
+    ".agent/state/model_usage_log.jsonl"
   ],
   "validationCommands": [
     "npm run agent:preflight",
     "npm run agent:dry-run",
     "npm run agent:run-plan",
-    "npm run fibu:fixedassets:hgb-gl-integration-readonly",
-    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-204/FIXEDASSETS-204-result.json",
-    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-204/FIXEDASSETS-204-result.json",
+    "npm run agent:subagent-plan",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-205/FIXEDASSETS-205-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-205/FIXEDASSETS-205-result.json",
     "JSON parse changed files",
     "npm run check:encoding",
     "git diff --check"
   ],
   "boundaries": [
-    "Read-only Business Central UI run.",
+    "Local review only.",
+    "No BC run.",
+    "No Playwright run.",
     "No Preview Posting.",
     "No posting.",
     "No setup change.",
     "No journal edit.",
-    "No draft.",
     "No company switch.",
     "No API shortcut.",
     "No book change.",
     "No German final proof."
   ],
-  "nextStep": "FIXEDASSETS-205: locally review FA-204 evidence and decide whether the next safe route is setup-fit, FA Journal route or another read-only diagnosis."
+  "nextStep": "FIXEDASSETS-206: read-only Page Inspection on HGB Depreciation Book Card to prove G/L Integration - Acq. Cost field value."
 }

@@ -6,12 +6,12 @@
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "fixedassets",
-  "activeCase": "FIXEDASSETS-205-HGB-GL-INTEGRATION-REVIEW",
-  "active_case_file": ".agent/state/cases/fixedassets-205-hgb-gl-integration-review.json",
-  "lastReferenceCase": "FIXEDASSETS-204-HGB-GL-INTEGRATION-READONLY",
-  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-204-hgb-gl-integration-readonly.json",
+  "activeCase": "FIXEDASSETS-206-HGB-PAGEINSPECTION-READONLY",
+  "active_case_file": ".agent/state/cases/fixedassets-206-hgb-pageinspection-readonly.json",
+  "lastReferenceCase": "FIXEDASSETS-205-HGB-GL-INTEGRATION-REVIEW",
+  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-205-hgb-gl-integration-review.json",
   "mode": "token-efficient-autopilot-tooling-bootstrap",
-  "requiresStrongModel": true,
+  "requiresStrongModel": false,
   "requiredPreflightChecks": [
     "agent:preflight",
     "agent:state:validate",
@@ -19,10 +19,13 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "read-evidence",
-    "read-state",
-    "read-microsoft-learn",
-    "write-review-evidence",
+    "open-business-central",
+    "run-playwright",
+    "confirm-instance-and-company",
+    "open-depreciation-books",
+    "open-hgb-depreciation-book-card-readonly",
+    "open-page-inspection-readonly",
+    "capture-page-table-fields-readonly",
     "write-evidence",
     "update-state"
   ],
@@ -33,8 +36,6 @@
     "fake-evidence",
     "book-claim-without-evidence",
     "api-shortcut-without-explicit-case-permission",
-    "open-business-central",
-    "run-playwright",
     "book-edit",
     "company-switch",
     "create-depreciation-book",
@@ -50,7 +51,7 @@
     "click-ok-on-posting-dialog",
     "click-yes-on-posting-dialog"
   ],
-  "nextStep": "FIXEDASSETS-205: locally review FA-204 HGB G/L Integration evidence and decide whether setup-fit or FA Journal route is the next safe case.",
+  "nextStep": "FIXEDASSETS-206: read-only Page Inspection on HGB Depreciation Book Card to prove G/L Integration - Acq. Cost field value.",
   "subagentPlanPolicy": {
     "default": "optional",
     "execution": "plan-only-no-subagents-spawned",

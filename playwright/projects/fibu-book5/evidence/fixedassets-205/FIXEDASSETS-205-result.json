@@ -1,0 +1,120 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-205-hgb-gl-integration-review-result",
+  "caseId": "FIXEDASSETS-205-HGB-GL-INTEGRATION-REVIEW",
+  "source": "local-evidence-review-with-microsoft-learn-validation",
+  "resultStatus": "observed",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "proved": [
+    "FA-204 proved Depreciation Book HGB is visible read-only in MCP_1_20260210 / RM-DEMO.",
+    "FA-204 proved the G/L Integration section and G/L Integration - Acq. Cost caption are visible on the HGB Depreciation Book Card.",
+    "FA-204 did not prove the actual checked/unchecked value for G/L Integration - Acq. Cost.",
+    "Microsoft Learn says the Integration FastTab on a depreciation book controls which fixed asset activities use the Fixed Asset G/L Journal.",
+    "Microsoft Learn says Page Inspection can show source table, table fields and current record values for the current page.",
+    "No Business Central, Playwright, Preview Posting, Post, setup change, journal edit, company switch, API shortcut or book change occurred in FA-205."
+  ],
+  "notProved": [
+    "No value for G/L Integration - Acq. Cost is proven on or off.",
+    "No setup correction is authorized by this review.",
+    "No FA Journal route has been tested.",
+    "No Preview Posting entry lines exist.",
+    "No FA Ledger Entry, G/L Entry or German final proof exists."
+  ],
+  "decision": {
+    "classification": "further-read-only-diagnosis",
+    "nextRoute": "FIXEDASSETS-206-HGB-PAGEINSPECTION-READONLY",
+    "reason": "The visible UI proves the relevant G/L Integration area exists, but not the actual Acq. Cost value. Page Inspection is the safest next UI-first proof before any setup-fit or posting decision.",
+    "rejectedRoutes": [
+      {
+        "route": "setup-fit-toggle-acq-cost",
+        "reason": "Rejected because the current value is not proven."
+      },
+      {
+        "route": "rerun-preview-posting",
+        "reason": "Rejected because FA-204 did not resolve or prove the integration value."
+      },
+      {
+        "route": "post-fa-journal-or-fa-gl-journal",
+        "reason": "Rejected because posting route is not yet proven and no posting gate is open."
+      }
+    ]
+  },
+  "sourceRefs": [
+    {
+      "label": "Microsoft Learn - Set up fixed asset depreciation",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/business-central/fa-how-setup-depreciation",
+      "usedFor": "Integration FastTab controls fixed asset activities whose transactions use the Fixed Asset G/L Journal."
+    },
+    {
+      "label": "Microsoft Learn - Inspecting pages",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/developer/devenv-inspecting-pages",
+      "usedFor": "Page Inspection can show page, table, table fields, filters and current values."
+    },
+    {
+      "label": "Microsoft Learn - Keyboard shortcuts",
+      "url": "https://learn.microsoft.com/en-ca/dynamics365/business-central/keyboard-shortcuts",
+      "usedFor": "Ctrl+Alt+F1 opens/closes Page Inspection."
+    }
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-205/",
+    ".agent/state/cases/fixedassets-205-hgb-gl-integration-review.json",
+    ".agent/state/cases/fixedassets-206-hgb-pageinspection-readonly.json",
+    ".agent/state/current.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/model_usage_log.jsonl"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-205/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-205/FIXEDASSETS-205-decision.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-205/FIXEDASSETS-205-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-204/FIXEDASSETS-204-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-204/010-hgb-gl-integration-readonly.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-203/FIXEDASSETS-203-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-202/FIXEDASSETS-202-result.json"
+  ],
+  "warnings": [
+    "Do not set or toggle G/L Integration before Page Inspection value evidence.",
+    "Do not rerun Preview Posting before FA-206 or a later review authorizes it.",
+    "Do not infer German final fixed-assets proof from CRONUS-USA laboratory evidence."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-206-HGB-PAGEINSPECTION-READONLY",
+      "active_case_file": ".agent/state/cases/fixedassets-206-hgb-pageinspection-readonly.json",
+      "lastReferenceCase": "FIXEDASSETS-205-HGB-GL-INTEGRATION-REVIEW",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-205-hgb-gl-integration-review.json",
+      "requiresStrongModel": false,
+      "nextStep": "FIXEDASSETS-206: read-only Page Inspection on HGB Depreciation Book Card to prove G/L Integration - Acq. Cost field value."
+    },
+    "activeCase": {
+      "status": "observed-next-route-selected",
+      "lastResult": {
+        "status": "observed",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-205/FIXEDASSETS-205-result.json",
+        "summary": "FA-205 rejects setup-fit/posting and selects Page Inspection read-only proof because FA-204 saw the G/L Integration section but not the Acq. Cost value."
+      },
+      "nextSafeAction": "Run FIXEDASSETS-206 Page Inspection read-only; no setup, no preview, no post."
+    }
+  },
+  "flags": {
+    "localReviewOnly": true,
+    "noBusinessCentralRun": true,
+    "noPlaywrightRun": true,
+    "noPreview": true,
+    "noPost": true,
+    "noSetupChange": true,
+    "noJournalEdit": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "nextStep": "FIXEDASSETS-206: read-only Page Inspection on HGB Depreciation Book Card to prove G/L Integration - Acq. Cost field value."
+}

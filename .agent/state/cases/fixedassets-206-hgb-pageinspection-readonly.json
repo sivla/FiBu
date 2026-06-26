@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-206-HGB-PAGEINSPECTION-READONLY",
+  "status": "planned",
+  "workType": "playwright-readonly-technical-diagnosis",
+  "taskClass": "wizard_work",
+  "requiresStrongModel": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Open the HGB Depreciation Book Card read-only and use Page Inspection to prove the source table/field value for G/L Integration - Acq. Cost before any setup-fit, Preview Posting or posting decision.",
+  "inputs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-205/FIXEDASSETS-205-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-204/FIXEDASSETS-204-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-204/010-hgb-gl-integration-readonly.json"
+  ],
+  "allowedActions": [
+    "open-business-central",
+    "run-playwright",
+    "confirm-instance-and-company",
+    "open-depreciation-books",
+    "open-hgb-depreciation-book-card-readonly",
+    "open-page-inspection-readonly",
+    "capture-page-table-fields-readonly",
+    "write-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "book-edit",
+    "company-switch",
+    "create-depreciation-book",
+    "edit-depreciation-book",
+    "toggle-gl-integration",
+    "create-journal-lines",
+    "edit-journal-lines",
+    "preview-posting",
+    "post",
+    "post-and-print",
+    "setup-change",
+    "delete-record",
+    "click-ok-on-posting-dialog",
+    "click-yes-on-posting-dialog"
+  ],
+  "safetyGates": [
+    "instance-url-contains-MCP_1_20260210",
+    "company-url-contains-RM-DEMO",
+    "hgb-depreciation-book-card-visible",
+    "page-inspection-opens-readonly",
+    "no-field-toggle",
+    "no-setup-change",
+    "no-preview-posting",
+    "no-post"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-206/FIXEDASSETS-206-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-206/010-hgb-pageinspection-fields.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-206/FIXEDASSETS-206-learning.md"
+  ],
+  "acceptanceCriteria": [
+    "HGB depreciation book card is opened read-only.",
+    "Page Inspection opens without switching company, setup edit, Preview Posting or posting.",
+    "Source table/page context is captured.",
+    "G/L Integration - Acq. Cost field value is classified as visible-on, visible-off, not-visible or blocked.",
+    "No setup, preview, post or journal change occurs."
+  ],
+  "stopConditions": [
+    "Business Central is not in MCP_1_20260210.",
+    "Company is not RM-DEMO.",
+    "HGB context is not uniquely reachable.",
+    "Page Inspection cannot be opened without a risky dialog.",
+    "Capturing the field would require toggling/editing setup.",
+    "Any posting or confirmation dialog appears."
+  ],
+  "nextSafeAction": "Implement one read-only Page Inspection diagnosis; no setup change."
+}
