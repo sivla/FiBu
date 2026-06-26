@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-221-preview-after-amount-review-result",
+  "caseId": "FIXEDASSETS-221-FA-GL-JOURNAL-PREVIEW-AFTER-AMOUNT-REVIEW",
+  "source": "local-evidence-review",
+  "resultStatus": "accepted-single-session-route",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "proved": [
+    "FA-220 is a safe blocker, not Preview Posting evidence.",
+    "FA-220 did not open Preview Posting because Amount 120.000,00 was not visible after reopening the Fixed Asset G/L Journal line.",
+    "FA-218 proves the Amount value was visible/current immediately after guarded entry in the same session.",
+    "The next safe route should combine guarded Amount entry and Preview Posting in one browser session.",
+    "Posting remains locked."
+  ],
+  "notProved": [
+    "No Preview Posting result after Amount value 120.000,00.",
+    "No Fixed Asset G/L Journal posting result.",
+    "No FA Ledger Entry or G/L Entry trace.",
+    "No German final proof."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-221/",
+    ".agent/state/current.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/cases/fixedassets-221-fa-gl-journal-preview-after-amount-review.json",
+    ".agent/state/cases/fixedassets-222-fa-gl-journal-amount-and-preview-single-session.json"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-221/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-221/FIXEDASSETS-221-decision.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-221/FIXEDASSETS-221-result.json"
+  ],
+  "warnings": [
+    "Preview Posting remains unproven.",
+    "Next case may set only Amount again if the target journal line is unique.",
+    "Normal posting remains locked.",
+    "No German final proof."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-222-FA-GL-JOURNAL-AMOUNT-AND-PREVIEW-SINGLE-SESSION",
+      "active_case_file": ".agent/state/cases/fixedassets-222-fa-gl-journal-amount-and-preview-single-session.json",
+      "lastReferenceCase": "FIXEDASSETS-221-FA-GL-JOURNAL-PREVIEW-AFTER-AMOUNT-REVIEW",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-221-fa-gl-journal-preview-after-amount-review.json",
+      "requiresStrongModel": false,
+      "nextStep": "FIXEDASSETS-222: run guarded single-session Amount-and-Preview case; do not Post."
+    },
+    "activeCase": {
+      "status": "accepted-single-session-route",
+      "lastResult": {
+        "status": "accepted-single-session-route",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-221/FIXEDASSETS-221-result.json",
+        "summary": "FA-221 accepts FA-220 as safe blocker and unlocks a smaller single-session Amount-and-Preview case; posting remains locked."
+      },
+      "nextSafeAction": "Run FIXEDASSETS-222 guarded single-session Amount-and-Preview case; do not Post."
+    }
+  },
+  "flags": {
+    "noBcRun": true,
+    "noPlaywrightRun": true,
+    "noPreview": true,
+    "noPost": true,
+    "noSetupChange": true,
+    "noJournalEdit": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true,
+    "singleSessionPreviewRouteUnlocked": true,
+    "postingUnlocked": false
+  },
+  "nextStep": "FIXEDASSETS-222: guarded single-session Amount-and-Preview case; no Post."
+}
