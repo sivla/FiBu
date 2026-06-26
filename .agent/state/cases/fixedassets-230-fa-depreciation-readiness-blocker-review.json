@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-230-FA-DEPRECIATION-READINESS-BLOCKER-REVIEW",
+  "status": "planned",
+  "workType": "local-evidence-review",
+  "taskClass": "judge_work",
+  "requiresStrongModel": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Review the FA-229 read-only blocker against existing HGB and Page Inspection evidence to decide whether a safer read-only HGB/card proof is needed before any depreciation journal preflight.",
+  "unlockedBy": {
+    "caseId": "FIXEDASSETS-229-FA-DEPRECIATION-READINESS-GATE",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-229/FIXEDASSETS-229-result.json",
+    "decision": "Book value and acquisition ledger are visible, but depreciation readiness remains blocked because HGB/card and HGB G/L Integration signals are incomplete in the current read-only evidence."
+  },
+  "inputs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-229/FIXEDASSETS-229-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-204/FIXEDASSETS-204-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-206/FIXEDASSETS-206-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-228/FIXEDASSETS-228-result.json",
+    "FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md"
+  ],
+  "allowedActions": [
+    "read-local-evidence",
+    "read-book-chapter",
+    "compare-existing-hgb-evidence",
+    "write-compact-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "open-business-central",
+    "run-playwright",
+    "company-switch",
+    "setup-change",
+    "insert-journal-line",
+    "delete-journal-line",
+    "edit-journal-line",
+    "change-document-no",
+    "change-account-no",
+    "change-depreciation-book",
+    "change-fa-posting-type",
+    "change-bal-account-no",
+    "preview-posting",
+    "post",
+    "post-and-print",
+    "confirm-posting-dialog",
+    "ship",
+    "invoice",
+    "payment"
+  ],
+  "safetyGates": [
+    "local-only",
+    "evidence-backed-decision-only",
+    "no-business-central",
+    "no-playwright",
+    "no-journal-line",
+    "no-preview-posting",
+    "no-posting",
+    "no-setup-change",
+    "no-company-switch",
+    "no-german-final-claim"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-230/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-230/FIXEDASSETS-230-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-230/FIXEDASSETS-230-READINESS-BLOCKER-REVIEW.md"
+  ],
+  "acceptanceCriteria": [
+    "FA-229 blocker is explained in beginner terms.",
+    "Existing HGB/Page-Inspection evidence is compared without opening BC.",
+    "The next step is either a better read-only proof or a tightly scoped depreciation preflight gate, but no posting is unlocked.",
+    "No German final proof is claimed."
+  ],
+  "stopConditions": [
+    "Review would require a new BC observation.",
+    "Evidence is missing or contradictory.",
+    "A conclusion would imply German final proof or depreciation posting readiness without proof."
+  ],
+  "nextSafeAction": "Read FA-229 plus existing HGB evidence and decide the next smallest safe step; do not run BC or Playwright.",
+  "createdAt": "2026-06-26T21:55:00.000Z",
+  "updatedAt": "2026-06-26T21:55:00.000Z"
+}

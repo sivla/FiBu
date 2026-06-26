@@ -1,4 +1,22 @@
 
+## FIND-BC-FA-066 Book Value beweist Zugang, aber noch keine AfA-Readiness
+
+| Feld | Wert |
+|---|---|
+| Projekt | fibu-book5 |
+| Testfall | `FIXEDASSETS-229-FA-DEPRECIATION-READINESS-GATE` |
+| Screenshot | keine Screenshots; kompakte Text-/JSON-Evidence |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-229/` |
+| BC-Seite | `Fixed Asset Card` Page `5600`, `Depreciation Books` Page `5611`, `FA Ledger Entries` Page `5604` |
+| sichtbar / belegt | `FA-CNC-01`, `Book Value = 120.000,00`, AfA-Feldcaptions, `Straight-Line`, 8-Jahre-Signal, Anlagenposten `G05001 FA-CNC-01 HGB Acquisition Cost ... 120.000,00` |
+| nicht sichtbar / nicht bewiesen | `HGB` im kompakten Kartenkontext, G/L-Integration im HGB-AfA-Buch-Kontext, AfA-Journal, AfA-Berechnung, AfA-Buchung, deutscher Finalnachweis |
+| Elementtyp | AfA-Readiness / Read-only Gate / Anfaenger-Lernfall |
+| Testergebnis | Technisch erfolgreich, fachlich blockiert: Zugang und Buchwert sind sichtbar, aber die AfA-Buchungsreife wird noch nicht freigegeben. |
+| Entscheidung | Naechster Schritt ist lokaler Review mit vorhandener HGB-/Page-Inspection-Evidence, nicht sofort eine AfA-Journalzeile. |
+| Buchstelle | Kapitel 21 Anlagen; Evidence Pack; BC-Debugging und technische Nachweisfuehrung |
+
+Fuer Anfaenger ist das wichtig: `Book Value` zeigt, dass ein Wert auf der Anlage steht. Es beweist aber noch nicht, dass die Abschreibung jetzt gebucht werden darf. Vor einer AfA braucht man den Zusammenhang aus Anlagenkarte, AfA-Buch, Anlagenposten und Buchungs-/Integrationslogik.
+
 ## FIND-BC-FA-065 Page 5604 ist der gebuchte Anlagenpostenpfad, Page 5606 war nur Preview
 
 | Feld | Wert |

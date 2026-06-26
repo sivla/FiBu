@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "FIXEDASSETS-229-FA-DEPRECIATION-READINESS-GATE",
-  "status": "planned",
+  "status": "blocked-readonly-readiness",
   "workType": "read-only-business-central-readiness",
   "taskClass": "judge_work",
   "requiresStrongModel": true,
@@ -81,7 +81,12 @@
     "A dialog with posting, preview, delete, edit or confirmation risk appears.",
     "FA-CNC-01 cannot be located read-only."
   ],
-  "nextSafeAction": "Run a read-only Playwright readiness probe for FA-CNC-01 depreciation setup; do not create or post depreciation journal lines.",
+  "nextSafeAction": "Start FIXEDASSETS-230 as local blocker review before any depreciation preflight.",
   "createdAt": "2026-06-26T21:20:00.000Z",
-  "updatedAt": "2026-06-26T21:20:00.000Z"
+  "updatedAt": "2026-06-26T21:55:00.000Z",
+  "lastResult": {
+    "status": "blocked",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-229/FIXEDASSETS-229-result.json",
+    "summary": "FA-229 read-only probe found FA-CNC-01 Book Value and acquisition ledger signals, but did not prove HGB on the card or HGB G/L Integration in the current compact context."
+  }
 }
