@@ -1,0 +1,169 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-220-preview-after-amount-result",
+  "caseId": "FIXEDASSETS-220-FA-GL-JOURNAL-PREVIEW-AFTER-AMOUNT-VALUE",
+  "source": "playwright-preview-posting-after-amount-only",
+  "resultStatus": "blocked",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-medium",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "environment": {
+    "expectedInstance": "MCP_1_20260210",
+    "expectedCompany": "RM-DEMO",
+    "context": {
+      "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5628&dc=0&bookmark=30_UQAAAAJ7_0EAUwBTAEUAVABTAAAAAnv_RABFAEYAQQBVAEwAVAAAAACHECc",
+      "environmentInUrl": true,
+      "companyInUrl": true,
+      "companyInText": false,
+      "wrongEnvironmentVisible": false
+    },
+    "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5628&runinframe=1",
+    "urlAfterRun": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5628&dc=0&bookmark=30_UQAAAAJ7_0EAUwBTAEUAVABTAAAAAnv_RABFAEYAQQBVAEwAVAAAAACHECc"
+  },
+  "proved": [
+    "The run stayed in MCP_1_20260210.",
+    "The run stayed in RM-DEMO.",
+    "FA-219 unlocked this Preview Posting-only retry after Amount value proof.",
+    "FA Posting Type = Acquisition Cost was still selected before Preview Posting.",
+    "Bal. Account No. 82000 was visible before Preview Posting.",
+    "No Preview entry group was clicked.",
+    "No main Post button was clicked.",
+    "No Post menuitem was clicked.",
+    "No Post and Print menuitem was clicked.",
+    "No OK/Yes confirmation was clicked.",
+    "No journal line was created, edited or deleted.",
+    "No setup change was made.",
+    "No API shortcut was used.",
+    "No book content was changed."
+  ],
+  "notProved": [
+    "Amount 120.000,00 did not persist visibly across the new page load.",
+    "No Preview Posting result after Amount value 120.000,00.",
+    "No G/L Entry account or amount details were proven.",
+    "No FA Ledger Entry fixed asset or amount details were proven.",
+    "No Fixed Asset G/L Journal posting was executed.",
+    "No posted FA Ledger Entry or posted G/L Entry trace exists.",
+    "No German final proof exists."
+  ],
+  "changedFiles": [
+    "package.json",
+    "playwright/projects/fibu-book5/tests/fixedassets-220-fa-gl-journal-preview-after-amount-value.spec.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-220/",
+    ".agent/state/current.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/cases/fixedassets-220-fa-gl-journal-preview-after-amount-value.json",
+    ".agent/state/cases/fixedassets-221-fa-gl-journal-preview-after-amount-review.json"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-220/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-220/010-preview-after-amount.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-220/020-preview-after-amount-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-220/FIXEDASSETS-220-result.json"
+  ],
+  "warnings": [
+    "Preview Posting was intentionally not opened because the Amount target was not visible after reload.",
+    "Posting remains locked.",
+    "Likely next route is a single-session guarded Amount-and-Preview case, but FA-221 must decide locally first.",
+    "No German final proof."
+  ],
+  "blockedBy": [
+    "Amount 120.000,00 was not visible before Preview Posting."
+  ],
+  "requiresReview": true,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-221-FA-GL-JOURNAL-PREVIEW-AFTER-AMOUNT-REVIEW",
+      "active_case_file": ".agent/state/cases/fixedassets-221-fa-gl-journal-preview-after-amount-review.json",
+      "lastReferenceCase": "FIXEDASSETS-220-FA-GL-JOURNAL-PREVIEW-AFTER-AMOUNT-VALUE",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-220-fa-gl-journal-preview-after-amount-value.json",
+      "requiresStrongModel": true,
+      "nextStep": "FIXEDASSETS-221: locally review FA-220 blocker and decide whether to create a single-session guarded Amount-and-Preview case; do not post."
+    },
+    "activeCase": {
+      "status": "blocked-preview-after-amount-value",
+      "lastResult": {
+        "status": "blocked",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-220/FIXEDASSETS-220-result.json",
+        "summary": "FA-220 stayed safe and did not open Preview Posting because Amount 120.000,00 was not visible after reopening the Fixed Asset G/L Journal line."
+      },
+      "nextSafeAction": "Run FIXEDASSETS-221 local review; do not post."
+    }
+  },
+  "flags": {
+    "clickedSplitButton": false,
+    "clickedPreviewPosting": false,
+    "clickedPreviewEntryGroup": false,
+    "priorReviewAccepted": true,
+    "faPostingTypeStillAcquisitionCost": true,
+    "amountVisibleBeforePreview": false,
+    "balAccountVisibleBeforePreview": true,
+    "noMainPostClick": true,
+    "noPostMenuitemClick": true,
+    "noPostAndPrintClick": true,
+    "noInsertLine": true,
+    "noDeleteLine": true,
+    "noJournalEdit": true,
+    "noPost": true,
+    "noOkYesConfirmation": true,
+    "previewOnly": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "observed": {
+    "startedAt": "2026-06-26T16:14:27.301Z",
+    "finishedAt": "2026-06-26T16:14:39.758Z",
+    "helperBefore": {
+      "success": true,
+      "status": "single-editable-candidate",
+      "blockedBy": [],
+      "visibleSignals": {
+        "rowAnchorCount": 1,
+        "columnSignalVisible": true,
+        "forbiddenSignalsVisible": [],
+        "expectedValueVisible": false,
+        "controlCandidateCount": 1,
+        "editableCandidateCount": 1
+      },
+      "candidates": [
+        {
+          "index": 7,
+          "score": 9,
+          "reason": [
+            "column-signal-by-geometry",
+            "row-required-signals-by-geometry"
+          ],
+          "labelText": "Acquisition Cost Acquisition Cost Depreciation Write-Down Appreciation Custom 1 Custom 2 Disposal Maintenance Bonus Depreciation",
+          "rowText": "Payment Invoice Credit Memo Finance Charge Memo Reminder Refund G/L Account Customer Vendor Bank Account Fixed Asset IC Partner Employee Allocation Account Acquisition Cost Depreciation Write-Down Appreciation Custom 1 Custom 2 Disposal Maintenance Bonus Depreciation Purchase Sale Settlement G/L Account Customer Vendor Bank Account Fixed Asset IC Partner Employee Allocation Account Purchase Sale Settlement",
+          "cellText": "Acquisition Cost Depreciation Write-Down Appreciation Custom 1 Custom 2 Disposal Maintenance Bonus Depreciation",
+          "valueText": "1 Acquisition Cost",
+          "readOnly": false,
+          "disabled": false
+        }
+      ],
+      "editableCandidates": [
+        {
+          "index": 7,
+          "score": 9,
+          "reason": [
+            "column-signal-by-geometry",
+            "row-required-signals-by-geometry"
+          ],
+          "labelText": "Acquisition Cost Acquisition Cost Depreciation Write-Down Appreciation Custom 1 Custom 2 Disposal Maintenance Bonus Depreciation",
+          "rowText": "Payment Invoice Credit Memo Finance Charge Memo Reminder Refund G/L Account Customer Vendor Bank Account Fixed Asset IC Partner Employee Allocation Account Acquisition Cost Depreciation Write-Down Appreciation Custom 1 Custom 2 Disposal Maintenance Bonus Depreciation Purchase Sale Settlement G/L Account Customer Vendor Bank Account Fixed Asset IC Partner Employee Allocation Account Purchase Sale Settlement",
+          "cellText": "Acquisition Cost Depreciation Write-Down Appreciation Custom 1 Custom 2 Disposal Maintenance Bonus Depreciation",
+          "valueText": "1 Acquisition Cost",
+          "readOnly": false,
+          "disabled": false
+        }
+      ]
+    },
+    "candidateIndex": 7,
+    "previewContextSummary": {}
+  },
+  "nextStep": "FIXEDASSETS-221: locally review FA-220 blocker and decide whether to create a single-session guarded Amount-and-Preview case; do not post."
+}
