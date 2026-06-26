@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-211-preview-posting-after-hgb-fit-review-result",
+  "caseId": "FIXEDASSETS-211-FA-GL-JOURNAL-PREVIEW-POSTING-AFTER-HGB-FIT-REVIEW",
+  "source": "local-evidence-review",
+  "resultStatus": "accepted-preview-entry-context-detail-needed",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "reasoningEffort": "low",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "proved": [
+    "FA-210 stayed in MCP_1_20260210 and RM-DEMO.",
+    "FA-210 proved FA Posting Type = Acquisition Cost before Preview Posting.",
+    "FA-210 clicked only the exact Preview Posting menuitem and did not click normal Post.",
+    "FA-210 reached Preview Posting entry context with Posting Preview, G/L Entry 1 and FA Ledger Entry visible.",
+    "The previous FA Posting Type Acquisition Cost journal blocker did not reappear.",
+    "No posting, OK/Yes confirmation, setup change, journal edit, company switch, API shortcut or book change occurred in FA-210."
+  ],
+  "notProved": [
+    "Expanded Preview Posting entry details with accounts, amounts and entry line structure are not proved.",
+    "No Fixed Asset G/L Journal posting was executed.",
+    "No posted FA Ledger Entry or posted G/L Entry trace exists.",
+    "No German final proof exists."
+  ],
+  "decision": {
+    "classification": "accepted-labor-preview-entry-context",
+    "postingReadiness": "not-yet-approved",
+    "reason": "Preview Posting reached entry context, but the evidence only shows entry groups, not expanded details with accounts and amounts.",
+    "nextCase": "FIXEDASSETS-212-FA-GL-JOURNAL-PREVIEW-ENTRY-DETAILS-AFTER-HGB-FIT",
+    "nextCaseType": "playwright-preview-posting-detail-capture-only"
+  },
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-211/",
+    ".agent/state/current.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/cases/fixedassets-211-fa-gl-journal-preview-posting-after-hgb-fit-review.json",
+    ".agent/state/cases/fixedassets-212-fa-gl-journal-preview-entry-details-after-hgb-fit.json",
+    ".agent/state/model_usage_log.jsonl"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-210/FIXEDASSETS-210-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-210/030-preview-posting-result-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-211/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-211/FIXEDASSETS-211-decision.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-211/FIXEDASSETS-211-result.json"
+  ],
+  "warnings": [
+    "Do not treat Preview Posting entry context as posting approval.",
+    "Do not claim accounts, amounts or posted entries until expanded preview details or posted trace are captured.",
+    "No German final proof."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-212-FA-GL-JOURNAL-PREVIEW-ENTRY-DETAILS-AFTER-HGB-FIT",
+      "active_case_file": ".agent/state/cases/fixedassets-212-fa-gl-journal-preview-entry-details-after-hgb-fit.json",
+      "lastReferenceCase": "FIXEDASSETS-211-FA-GL-JOURNAL-PREVIEW-POSTING-AFTER-HGB-FIT-REVIEW",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-211-fa-gl-journal-preview-posting-after-hgb-fit-review.json",
+      "requiresStrongModel": false,
+      "nextStep": "FIXEDASSETS-212: run one guarded Preview Posting-only detail capture for G/L Entry and FA Ledger Entry; no Post, no setup change, no journal edit."
+    },
+    "activeCase": {
+      "status": "accepted-preview-entry-context-detail-needed",
+      "lastResult": {
+        "status": "accepted-preview-entry-context-detail-needed",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-211/FIXEDASSETS-211-result.json",
+        "summary": "FA-210 Preview Posting context accepted; detail lines still needed before any posting readiness decision."
+      },
+      "nextSafeAction": "Run FIXEDASSETS-212 Preview Posting-only detail capture."
+    },
+    "coverage": {
+      "fixedAssets.faCnc01.previewAfterHgbFit": "accepted-preview-entry-context-detail-needed",
+      "nextCase": "FIXEDASSETS-212-FA-GL-JOURNAL-PREVIEW-ENTRY-DETAILS-AFTER-HGB-FIT"
+    },
+    "lastRunSummary": {
+      "runId": "FIXEDASSETS-211-FA-GL-JOURNAL-PREVIEW-POSTING-AFTER-HGB-FIT-REVIEW",
+      "bcRun": false,
+      "playwrightRun": false,
+      "posted": false,
+      "previewPosting": false,
+      "summary": "Local review accepted FA-210 Preview Posting entry context but requires FA-212 expanded preview detail capture before posting readiness."
+    }
+  },
+  "flags": {
+    "noBusinessCentralRun": true,
+    "noPlaywrightRun": true,
+    "noPost": true,
+    "noPreviewPosting": true,
+    "noSetupChange": true,
+    "noJournalEdit": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "nextStep": "FIXEDASSETS-212: guarded Preview Posting-only detail capture for G/L Entry and FA Ledger Entry."
+}
