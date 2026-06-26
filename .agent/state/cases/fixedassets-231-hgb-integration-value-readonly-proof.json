@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-231-HGB-INTEGRATION-VALUE-READONLY-PROOF",
+  "status": "planned",
+  "workType": "read-only-business-central-proof",
+  "taskClass": "wizard_work",
+  "requiresStrongModel": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Prove read-only whether the HGB Depreciation Book Card exposes concrete values for G/L Integration - Acq. Cost and, if possible, G/L Integration - Depreciation before any depreciation journal preflight.",
+  "unlockedBy": {
+    "caseId": "FIXEDASSETS-230-FA-DEPRECIATION-READINESS-BLOCKER-REVIEW",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-230/FIXEDASSETS-230-result.json",
+    "decision": "Do not unlock depreciation preflight until HGB G/L Integration values are proven, not just captions/context."
+  },
+  "inputs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-230/FIXEDASSETS-230-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-204/FIXEDASSETS-204-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-206/FIXEDASSETS-206-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-229/FIXEDASSETS-229-result.json"
+  ],
+  "allowedActions": [
+    "open-business-central-readonly",
+    "run-playwright-readonly",
+    "open-hgb-depreciation-book-card-readonly",
+    "open-page-inspection-readonly",
+    "extract-focused-page-text",
+    "write-compact-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "company-switch",
+    "setup-change",
+    "insert-journal-line",
+    "delete-journal-line",
+    "edit-journal-line",
+    "change-depreciation-book",
+    "toggle-gl-integration",
+    "preview-posting",
+    "post",
+    "post-and-print",
+    "confirm-posting-dialog",
+    "ship",
+    "invoice",
+    "payment"
+  ],
+  "safetyGates": [
+    "instance-url-must-contain-MCP_1_20260210",
+    "company-url-or-ui-must-confirm-RM-DEMO",
+    "read-only-only",
+    "no-field-toggle",
+    "no-setup-change",
+    "no-journal-line",
+    "no-preview-posting",
+    "no-posting",
+    "no-company-switch",
+    "no-german-final-claim"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-231/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-231/FIXEDASSETS-231-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-231/FIXEDASSETS-231-HGB-INTEGRATION-VALUE-PROOF.md"
+  ],
+  "acceptanceCriteria": [
+    "The run stays in MCP_1_20260210 / RM-DEMO.",
+    "The HGB Depreciation Book Card or Page Inspection context is opened read-only.",
+    "The result clearly classifies whether G/L Integration - Acq. Cost value is proven, not just caption-visible.",
+    "No journal line, Preview Posting, posting, setup change or company switch occurs.",
+    "If value is still not readable, the blocker is documented without unlocking depreciation preflight."
+  ],
+  "stopConditions": [
+    "Business Central shows a different instance or company.",
+    "The path would require editing/toggling setup values.",
+    "A dialog asks to confirm a write, setup, preview or posting action.",
+    "The test cannot distinguish caption visibility from value proof."
+  ],
+  "nextSafeAction": "Run the read-only HGB integration value proof; do not create a depreciation journal yet.",
+  "createdAt": "2026-06-26T22:20:00.000Z",
+  "updatedAt": "2026-06-26T22:20:00.000Z"
+}

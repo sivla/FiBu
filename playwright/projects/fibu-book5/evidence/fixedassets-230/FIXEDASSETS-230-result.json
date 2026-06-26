@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-230-depreciation-readiness-blocker-review-result",
+  "caseId": "FIXEDASSETS-230-FA-DEPRECIATION-READINESS-BLOCKER-REVIEW",
+  "source": "local-evidence-review",
+  "resultStatus": "observed",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "dataBasis": "CRONUS USA laboratory",
+  "bcRun": false,
+  "playwrightRun": false,
+  "postedInThisRun": false,
+  "previewPostingInThisRun": false,
+  "setupChanged": false,
+  "companySwitched": false,
+  "apiShortcut": false,
+  "bookChanged": false,
+  "decision": {
+    "depreciationPreflightUnlocked": false,
+    "postingUnlocked": false,
+    "nextCase": "FIXEDASSETS-231-HGB-INTEGRATION-VALUE-READONLY-PROOF",
+    "reason": "FA-229 proves acquisition/book value and FA ledger trace, but existing HGB/Page Inspection evidence proves captions/context only, not the concrete G/L Integration - Acq. Cost value."
+  },
+  "proved": [
+    "FA-229 proves FA-CNC-01 Book Value 120.000,00 in read-only Fixed Asset Card context.",
+    "FA-229 proves posted FA Ledger Entries for G05001 / FA-CNC-01 / HGB / Acquisition Cost / amount signal.",
+    "FA-204 proves HGB Depreciation Book and G/L Integration wording in read-only context.",
+    "FA-206 proves Page Inspection can expose technical field captions including G/L Integration - Acq. Cost.",
+    "Existing evidence does not justify depreciation preflight or posting unlock."
+  ],
+  "notProved": [
+    "The exact value of G/L Integration - Acq. Cost is not proven.",
+    "The exact value of G/L Integration - Depreciation is not proven by this review.",
+    "No depreciation journal line was created.",
+    "No Preview Posting was executed.",
+    "No depreciation posting was executed.",
+    "No German final fixed asset proof exists."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-230/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-230/FIXEDASSETS-230-READINESS-BLOCKER-REVIEW.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-230/FIXEDASSETS-230-result.json",
+    ".agent/state/current.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/cases/fixedassets-230-fa-depreciation-readiness-blocker-review.json",
+    ".agent/state/cases/fixedassets-231-hgb-integration-value-readonly-proof.json",
+    "playwright/projects/fibu-book5/BOOK-CLICK-GUIDE-COVERAGE.md",
+    "playwright/FINDINGS.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-230/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-230/FIXEDASSETS-230-READINESS-BLOCKER-REVIEW.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-230/FIXEDASSETS-230-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-229/FIXEDASSETS-229-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-204/FIXEDASSETS-204-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-206/FIXEDASSETS-206-result.json"
+  ],
+  "warnings": [
+    "Page Inspection field captions are not the same as field value proof.",
+    "Book Value proves acquisition effect, not depreciation posting readiness.",
+    "CRONUS-USA laboratory evidence is not German final proof."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "updatedAt": "2026-06-26T22:20:00.000Z",
+      "activeCase": "FIXEDASSETS-231-HGB-INTEGRATION-VALUE-READONLY-PROOF",
+      "active_case_file": ".agent/state/cases/fixedassets-231-hgb-integration-value-readonly-proof.json",
+      "lastReferenceCase": "FIXEDASSETS-230-FA-DEPRECIATION-READINESS-BLOCKER-REVIEW",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-230-fa-depreciation-readiness-blocker-review.json",
+      "mode": "token-efficient-autopilot-fixedassets-hgb-integration-value-proof",
+      "requiresStrongModel": false,
+      "nextStep": "FIXEDASSETS-231: run a read-only HGB Depreciation Book value proof for G/L Integration fields before any depreciation journal preflight."
+    },
+    "coverage": {
+      "activeArea": "fixedassets",
+      "currentBlock": "fa-hgb-integration-value-proof",
+      "latestReviewCase": "FIXEDASSETS-230-FA-DEPRECIATION-READINESS-BLOCKER-REVIEW",
+      "nextCase": "FIXEDASSETS-231-HGB-INTEGRATION-VALUE-READONLY-PROOF",
+      "nextDepreciationRoute": "read-only-hgb-integration-value-proof-no-journal-yet",
+      "depreciationReadiness": "FA-230 review confirms: acquisition/book value is proven, HGB field captions/context are proven, exact HGB G/L Integration values are not proven; run FA-231 read-only value proof before depreciation preflight."
+    },
+    "activeCase": {
+      "status": "observed-local-review",
+      "lastResult": {
+        "status": "observed",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-230/FIXEDASSETS-230-result.json",
+        "summary": "FA-230 confirmed the FA-229 blocker. Do not unlock depreciation preflight until HGB G/L Integration values are proven read-only."
+      },
+      "nextSafeAction": "FIXEDASSETS-231: read-only HGB G/L Integration value proof."
+    }
+  },
+  "flags": {
+    "noBusinessCentral": true,
+    "noPlaywright": true,
+    "noPosting": true,
+    "noPreviewPosting": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true,
+    "noDraft": true,
+    "noEdit": true,
+    "noDelete": true,
+    "noDepreciationJournalLine": true
+  },
+  "observed": {
+    "reviewedAt": "2026-06-26T22:20:00.000Z"
+  },
+  "nextStep": "FIXEDASSETS-231: read-only HGB Depreciation Book value proof before depreciation preflight."
+}

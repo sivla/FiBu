@@ -1,4 +1,22 @@
 
+## FIND-BC-FA-067 Page-Inspection-Feldnamen sind kein Checkbox-Wert
+
+| Feld | Wert |
+|---|---|
+| Projekt | fibu-book5 |
+| Testfall | `FIXEDASSETS-230-FA-DEPRECIATION-READINESS-BLOCKER-REVIEW` |
+| Screenshot | keine neuen Screenshots; lokaler Review vorhandener Evidence |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-230/` |
+| BC-Seite | HGB `Depreciation Book Card` Page `5610`, Page Inspection, `Fixed Asset Card` Page `5600`, `FA Ledger Entries` Page `5604` |
+| sichtbar / belegt | `FA-CNC-01`, `Book Value = 120.000,00`, Anlagenposten `G05001 / FA-CNC-01 / HGB / Acquisition Cost`, HGB-Kontext, Page-Inspection-Captions wie `G/L Integration - Acq. Cost` |
+| nicht sichtbar / nicht bewiesen | konkreter Boolean-/Checkbox-Wert fuer `G/L Integration - Acq. Cost`, konkrete AfA-Buchungsreife, AfA-Journal, Preview Posting, AfA-Buchung, deutscher Finalnachweis |
+| Elementtyp | BC-Debugging / technische Nachweisfuehrung / AfA-Readiness |
+| Testergebnis | Lokaler Review ohne BC/Playwright: Die vorhandene Evidence bestaetigt den Blocker. Feldcaptions beweisen Feldexistenz, aber nicht den aktuellen Feldwert. |
+| Entscheidung | Kein AfA-Preflight und keine AfA-Journalzeile, bevor `FIXEDASSETS-231` read-only den konkreten HGB-Integrationswert beweist oder den Wert weiterhin als nicht lesbar blockiert. |
+| Buchstelle | Kapitel 21 Anlagen; Kapitel BC-Debugging und technische Nachweisfuehrung |
+
+Fuer Anfaenger ist das eine wichtige Grenze: Page Inspection hilft zu verstehen, auf welcher Page und Tabelle man ist und welche Felder existieren. Fuer eine Posting-Entscheidung zaehlt aber der konkrete Wert. Ein Feldname wie `G/L Integration - Acq. Cost` ist noch kein Beweis, dass die Integration aktiviert ist.
+
 ## FIND-BC-FA-066 Book Value beweist Zugang, aber noch keine AfA-Readiness
 
 | Feld | Wert |
