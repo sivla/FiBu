@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-223-FA-GL-JOURNAL-AMOUNT-AND-PREVIEW-REVIEW",
+  "status": "planned",
+  "workType": "local-evidence-review",
+  "taskClass": "judge_work",
+  "requiresStrongModel": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Review FA-222: Amount 120000/120.000 was set and Preview Posting opened in the same guarded session; Posting Preview, G/L Entry and FA Ledger Entry labels became visible. Decide the next safe route before any posting decision.",
+  "inputs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-222/FIXEDASSETS-222-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-222/010-amount-and-preview-single-session.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-222/020-amount-and-preview-single-session-text.txt"
+  ],
+  "allowedActions": [
+    "read-local-evidence",
+    "classify-preview-posting-evidence",
+    "decide-next-safe-fixedasset-step",
+    "write-local-review-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "open-business-central",
+    "run-playwright",
+    "book-edit",
+    "company-switch",
+    "setup-change",
+    "journal-edit",
+    "preview-posting",
+    "post",
+    "post-and-print",
+    "click-ok-on-posting-dialog",
+    "click-yes-on-posting-dialog",
+    "confirm-posting-dialog"
+  ],
+  "safetyGates": [
+    "local-only",
+    "no-business-central",
+    "no-playwright",
+    "no-preview-posting",
+    "no-posting",
+    "no-setup-change",
+    "no-journal-edit",
+    "no-company-switch",
+    "no-book-edit",
+    "no-fake-posting-readiness"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-223/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-223/FIXEDASSETS-223-decision.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-223/FIXEDASSETS-223-result.json"
+  ],
+  "acceptanceCriteria": [
+    "FA-222 is classified as Preview Posting evidence, not posting evidence.",
+    "Review distinguishes visible entry groups from detailed account/amount proof.",
+    "Posting remains locked unless a later case explicitly unlocks it after review.",
+    "The next case is concrete and small."
+  ],
+  "stopConditions": [
+    "FA-222 evidence is missing or contradictory.",
+    "The next step would require guessing.",
+    "A proposed action would open BC or Playwright inside this local review case."
+  ],
+  "nextSafeAction": "Review FA-222 locally; do not open BC and do not post.",
+  "createdAt": "2026-06-26T19:29:00.000Z",
+  "updatedAt": "2026-06-26T19:29:00.000Z"
+}

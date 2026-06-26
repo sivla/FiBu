@@ -1,0 +1,156 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-222-amount-and-preview-single-session-result",
+  "caseId": "FIXEDASSETS-222-FA-GL-JOURNAL-AMOUNT-AND-PREVIEW-SINGLE-SESSION",
+  "source": "playwright-guarded-amount-and-preview-single-session",
+  "resultStatus": "observed",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-medium",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "environment": {
+    "expectedInstance": "MCP_1_20260210",
+    "expectedCompany": "RM-DEMO",
+    "context": {
+      "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5628&dc=0&bookmark=30_UQAAAAJ7_0EAUwBTAEUAVABTAAAAAnv_RABFAEYAQQBVAEwAVAAAAACHECc",
+      "environmentInUrl": true,
+      "companyInUrl": true,
+      "companyInText": false,
+      "wrongEnvironmentVisible": false
+    },
+    "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5628&runinframe=1",
+    "urlAfterRun": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=115&dc=0&bookmark=C_CQEAAACH4RU"
+  },
+  "proved": [
+    "The run stayed in MCP_1_20260210.",
+    "The run stayed in RM-DEMO.",
+    "FA Posting Type = Acquisition Cost was proven before Amount and Preview.",
+    "Bal. Account No. = 82000 was proven before Amount and Preview.",
+    "Only the Amount candidate was filled.",
+    "Amount 120000/120.000 was visible/current before Preview Posting in the same session.",
+    "Only the related-actions-for-Post split/dropdown button was clicked before Preview Posting.",
+    "Exactly one exact Preview Posting menuitem candidate was found.",
+    "Only the exact Preview Posting menuitem was clicked once.",
+    "Preview Posting entry context became visible.",
+    "DOM inventory captured the Posting Preview title/context.",
+    "DOM inventory captured a G/L Entry label.",
+    "DOM inventory captured an FA Ledger Entry label.",
+    "No Preview entry group was clicked.",
+    "No main Post button was clicked.",
+    "No Post menuitem was clicked.",
+    "No Post and Print menuitem was clicked.",
+    "No OK/Yes confirmation was clicked.",
+    "No journal line was created or deleted.",
+    "No non-Amount journal field was changed.",
+    "No setup change was made.",
+    "No API shortcut was used.",
+    "No book content was changed."
+  ],
+  "notProved": [
+    "No Preview entry group detail page was opened.",
+    "No G/L Entry account or amount details were proven.",
+    "No FA Ledger Entry fixed asset or amount details were proven.",
+    "No Fixed Asset G/L Journal posting was executed.",
+    "No posted FA Ledger Entry or posted G/L Entry trace exists.",
+    "No German final proof exists."
+  ],
+  "changedFiles": [
+    "package.json",
+    "playwright/projects/fibu-book5/tests/fixedassets-222-fa-gl-journal-amount-and-preview-single-session.spec.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-222/"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-222/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-222/010-amount-and-preview-single-session.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-222/020-amount-and-preview-single-session-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-222/FIXEDASSETS-222-result.json"
+  ],
+  "warnings": [
+    "Preview Posting-only. Do not treat as posting permission.",
+    "No Preview entry group was clicked in this case.",
+    "Posting remains locked until local review.",
+    "No German final proof."
+  ],
+  "blockedBy": [],
+  "requiresReview": true,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-223-FA-GL-JOURNAL-AMOUNT-AND-PREVIEW-REVIEW",
+      "active_case_file": ".agent/state/cases/fixedassets-223-fa-gl-journal-amount-and-preview-review.json",
+      "lastReferenceCase": "FIXEDASSETS-222-FA-GL-JOURNAL-AMOUNT-AND-PREVIEW-SINGLE-SESSION",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-222-fa-gl-journal-amount-and-preview-single-session.json",
+      "requiresStrongModel": true,
+      "nextStep": "FIXEDASSETS-223: locally review FA-222 single-session Amount-and-Preview result before any posting decision."
+    },
+    "activeCase": {
+      "status": "observed-amount-and-preview-single-session",
+      "lastResult": {
+        "status": "observed",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-222/FIXEDASSETS-222-result.json",
+        "summary": "FA-222 set Amount and captured Preview Posting in one guarded session; G/L Entry visible=true; FA Ledger Entry visible=true."
+      },
+      "nextSafeAction": "Run FIXEDASSETS-223 local review; do not post."
+    }
+  },
+  "flags": {
+    "amountEntered": true,
+    "amountVisibleBeforePreview": true,
+    "clickedSplitButton": true,
+    "clickedPreviewPosting": true,
+    "clickedPreviewEntryGroup": false,
+    "faPostingTypeStillAcquisitionCost": true,
+    "balAccountVisibleBeforePreview": true,
+    "domSignals": {
+      "postingPreviewTitleVisible": true,
+      "glEntryLabelVisible": true,
+      "faLedgerEntryLabelVisible": true,
+      "valueEntryLabelVisible": false
+    },
+    "noMainPostClick": true,
+    "noPostMenuitemClick": true,
+    "noPostAndPrintClick": true,
+    "noInsertLine": true,
+    "noDeleteLine": true,
+    "noNonAmountJournalEdit": true,
+    "amountOnlyJournalEdit": true,
+    "noPost": true,
+    "noOkYesConfirmation": true,
+    "previewOnly": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "observed": {
+    "startedAt": "2026-06-26T16:33:08.417Z",
+    "finishedAt": "2026-06-26T16:33:24.230Z",
+    "candidateIndex": 12,
+    "dialogAfterAmount": {
+      "dialogCount": 0,
+      "textSample": "",
+      "postingDialog": false,
+      "okYesVisible": false,
+      "previewOrErrorDialog": false
+    },
+    "dialogAfterPreview": {
+      "dialogCount": 0,
+      "textSample": "",
+      "postingDialog": false,
+      "okYesVisible": false,
+      "previewOrErrorDialog": false
+    },
+    "previewContextSummary": {
+      "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=115&dc=0&bookmark=C_CQEAAACH4RU",
+      "previewEntriesVisible": true,
+      "errorMessagesVisible": false
+    },
+    "domSignals": {
+      "postingPreviewTitleVisible": true,
+      "glEntryLabelVisible": true,
+      "faLedgerEntryLabelVisible": true,
+      "valueEntryLabelVisible": false
+    }
+  },
+  "nextStep": "FIXEDASSETS-223: locally review FA-222 single-session Amount-and-Preview result before any posting decision."
+}
