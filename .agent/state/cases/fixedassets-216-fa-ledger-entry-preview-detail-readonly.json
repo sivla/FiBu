@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-216-FA-LEDGER-ENTRY-PREVIEW-DETAIL-READONLY",
+  "status": "planned",
+  "workType": "playwright-preview-detail-readonly",
+  "taskClass": "wizard_work",
+  "requiresStrongModel": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Open Preview Posting and click only the proven FA Ledger Entry link read-only to inspect whether fixed asset and amount details become visible without posting.",
+  "inputs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-214/010-preview-dom-inventory.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-215/FIXEDASSETS-215-result.json"
+  ],
+  "allowedActions": [
+    "open-business-central",
+    "run-playwright",
+    "verify-instance-url",
+    "verify-company-url",
+    "open-fa-gl-journal-page",
+    "verify-existing-fa-journal-line-context",
+    "verify-fa-posting-type-acquisition-cost",
+    "open-related-actions-for-post",
+    "click-exact-preview-posting-menuitem-once",
+    "click-proven-fa-ledger-entry-link-once",
+    "capture-readonly-detail-context",
+    "write-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "book-edit",
+    "company-switch",
+    "setup-change",
+    "journal-edit",
+    "click-gl-entry-group",
+    "click-unproven-preview-entry-target",
+    "post",
+    "post-and-print",
+    "click-ok-on-posting-dialog",
+    "click-yes-on-posting-dialog",
+    "confirm-posting-dialog"
+  ],
+  "safetyGates": [
+    "must-stay-in-MCP_1_20260210",
+    "must-stay-in-RM-DEMO",
+    "preview-posting-only",
+    "exact-preview-posting-menuitem-only",
+    "fa-ledger-link-must-match-FA-214-title-and-text",
+    "no-gl-entry-click",
+    "no-main-post-click",
+    "no-post-menuitem-click",
+    "no-ok-yes-confirmation",
+    "no-setup-change",
+    "no-journal-edit",
+    "no-company-switch",
+    "no-api-shortcut"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-216/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-216/010-fa-ledger-entry-detail-readonly.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-216/020-fa-ledger-entry-detail-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-216/FIXEDASSETS-216-result.json"
+  ],
+  "acceptanceCriteria": [
+    "Instance and company are verified before Preview Posting.",
+    "Only the exact Preview Posting menuitem is clicked.",
+    "Only the proven FA Ledger Entry link is clicked once.",
+    "No G/L Entry row or unproven target is clicked.",
+    "No posting, setup change or journal edit occurs.",
+    "Evidence clearly says whether fixed asset and amount details are visible."
+  ],
+  "stopConditions": [
+    "Wrong instance or company is detected.",
+    "The FA Ledger Entry link does not match FA-214 evidence.",
+    "A normal posting dialog appears.",
+    "An OK/Yes confirmation appears outside harmless read-only navigation.",
+    "The detail route would require clicking G/L Entry or an unproven target."
+  ],
+  "nextSafeAction": "Run one guarded read-only FA Ledger Entry detail probe; do not click G/L Entry and do not post.",
+  "createdAt": "2026-06-26T16:55:00.000Z",
+  "updatedAt": "2026-06-26T16:55:00.000Z"
+}
