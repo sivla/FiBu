@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-232-FA-DEPRECIATION-PREFLIGHT-DECISION",
+  "status": "planned",
+  "workType": "local-evidence-review",
+  "taskClass": "judge_work",
+  "requiresStrongModel": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Decide locally whether the FA-CNC-01 depreciation preflight can be unlocked after FA-231 proved HGB G/L Integration - Acq. Cost visible-on and G/L Integration - Depreciation visible-off read-only.",
+  "unlockedBy": {
+    "caseId": "FIXEDASSETS-231-HGB-INTEGRATION-VALUE-READONLY-PROOF",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-231/FIXEDASSETS-231-result.json",
+    "decision": "Acq. Cost integration is visible-on, but Depreciation integration is visible-off; judge whether this blocks depreciation preflight or requires setup/value explanation before any journal action."
+  },
+  "inputs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-231/FIXEDASSETS-231-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-231/020-hgb-integration-control-diagnostics.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-229/FIXEDASSETS-229-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-230/FIXEDASSETS-230-result.json"
+  ],
+  "allowedActions": [
+    "read-local-evidence",
+    "compare-fixed-asset-readiness-evidence",
+    "write-compact-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "open-business-central",
+    "run-playwright",
+    "company-switch",
+    "setup-change",
+    "insert-journal-line",
+    "delete-journal-line",
+    "edit-journal-line",
+    "change-depreciation-book",
+    "toggle-gl-integration",
+    "preview-posting",
+    "post",
+    "post-and-print",
+    "confirm-posting-dialog",
+    "ship",
+    "invoice",
+    "payment"
+  ],
+  "safetyGates": [
+    "local-only",
+    "no-business-central",
+    "no-playwright",
+    "no-journal-line",
+    "no-preview-posting",
+    "no-posting",
+    "no-setup-change",
+    "no-company-switch",
+    "no-german-final-claim"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-232/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-232/FIXEDASSETS-232-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-232/FIXEDASSETS-232-DEPRECIATION-PREFLIGHT-DECISION.md"
+  ],
+  "acceptanceCriteria": [
+    "Explain why Acq. Cost integration visible-on is relevant for the already posted acquisition trace.",
+    "Explain whether Depreciation integration visible-off blocks depreciation preflight or requires a setup-fit before journal work.",
+    "Do not unlock depreciation posting.",
+    "If any later BC run is proposed, it must be the smallest safe read-only or preflight-only case with explicit gates."
+  ],
+  "stopConditions": [
+    "Decision would require a new BC observation.",
+    "Decision would require toggling setup values.",
+    "Decision would imply German final proof or depreciation posting readiness without proof."
+  ],
+  "nextSafeAction": "Review FA-231 locally and decide whether depreciation integration visible-off blocks the next preflight.",
+  "createdAt": "2026-06-26T22:45:00.000Z",
+  "updatedAt": "2026-06-26T22:45:00.000Z"
+}

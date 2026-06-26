@@ -1,4 +1,22 @@
 
+## FIND-BC-FA-068 HGB Acq. Cost Integration ist an, Depreciation Integration ist aus
+
+| Feld | Wert |
+|---|---|
+| Projekt | fibu-book5 |
+| Testfall | `FIXEDASSETS-231-HGB-INTEGRATION-VALUE-READONLY-PROOF` |
+| Screenshot | keine Screenshots; kompakte Control-/Page-Inspection-Evidence |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-231/` |
+| BC-Seite | HGB `Depreciation Book Card` Page `5610`, Page Inspection |
+| sichtbar / belegt | `G/L Integration - Acq. Cost` als Checkbox-Control mit `ariaChecked=true`; `G/L Integration - Depreciation` als Checkbox-Control mit `ariaChecked=false`; HGB-Kartenkontext |
+| nicht sichtbar / nicht bewiesen | AfA-Journal, AfA-Berechnung, Preview Posting, AfA-Buchung, deutscher Finalnachweis |
+| Elementtyp | AfA-Buch-Setup / Wertnachweis / Preflight-Gate |
+| Testergebnis | Read-only BC-Lauf erfolgreich. Keine Einrichtung, kein Journal, kein Preview und keine Buchung. Der alte Feldcaption-Blocker ist fuer Acq. Cost geloest, aber die eigentliche AfA-Integration ist aus. |
+| Entscheidung | Naechster Schritt ist `FIXEDASSETS-232`: lokal entscheiden, ob `G/L Integration - Depreciation=false` den AfA-Preflight blockiert oder ob zuerst ein Setup-/Erklaerungsgate noetig ist. |
+| Buchstelle | Kapitel 21 Anlagen; Kapitel BC-Debugging und technische Nachweisfuehrung |
+
+Fuer Anfaenger ist das der saubere Unterschied zwischen Anschaffung und Abschreibung: `G/L Integration - Acq. Cost=true` passt zur bereits gebuchten Anschaffungsspur. Fuer eine Abschreibung ist aber `G/L Integration - Depreciation=false` ein Warnsignal, das vor jedem AfA-Journal fachlich bewertet werden muss.
+
 ## FIND-BC-FA-067 Page-Inspection-Feldnamen sind kein Checkbox-Wert
 
 | Feld | Wert |

@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-26T22:20:00.000Z",
+  "updatedAt": "2026-06-26T22:45:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "fixedassets",
-  "activeCase": "FIXEDASSETS-231-HGB-INTEGRATION-VALUE-READONLY-PROOF",
-  "active_case_file": ".agent/state/cases/fixedassets-231-hgb-integration-value-readonly-proof.json",
-  "lastReferenceCase": "FIXEDASSETS-230-FA-DEPRECIATION-READINESS-BLOCKER-REVIEW",
-  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-230-fa-depreciation-readiness-blocker-review.json",
-  "mode": "token-efficient-autopilot-fixedassets-hgb-integration-value-proof",
-  "requiresStrongModel": false,
+  "activeCase": "FIXEDASSETS-232-FA-DEPRECIATION-PREFLIGHT-DECISION",
+  "active_case_file": ".agent/state/cases/fixedassets-232-fa-depreciation-preflight-decision.json",
+  "lastReferenceCase": "FIXEDASSETS-231-HGB-INTEGRATION-VALUE-READONLY-PROOF",
+  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-231-hgb-integration-value-readonly-proof.json",
+  "mode": "token-efficient-autopilot-fixedassets-depreciation-preflight-decision",
+  "requiresStrongModel": true,
   "requiredPreflightChecks": [
     "agent:preflight",
     "agent:state:validate",
@@ -19,11 +19,8 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "open-business-central-readonly",
-    "run-playwright-readonly",
-    "open-hgb-depreciation-book-card-readonly",
-    "open-page-inspection-readonly",
-    "extract-focused-page-text",
+    "read-local-evidence",
+    "compare-fixed-asset-readiness-evidence",
     "write-compact-evidence",
     "update-state"
   ],
@@ -34,6 +31,8 @@
     "fake-evidence",
     "book-claim-without-evidence",
     "api-shortcut-without-explicit-case-permission",
+    "open-business-central",
+    "run-playwright",
     "company-switch",
     "setup-change",
     "insert-journal-line",
@@ -49,7 +48,7 @@
     "invoice",
     "payment"
   ],
-  "nextStep": "FIXEDASSETS-231: run a read-only HGB Depreciation Book value proof for G/L Integration fields before any depreciation journal preflight.",
+  "nextStep": "FIXEDASSETS-232: locally review FA-231 value proof and decide whether Depreciation integration visible-off blocks depreciation preflight.",
   "subagentPlanPolicy": {
     "default": "optional",
     "execution": "plan-only-no-subagents-spawned",
