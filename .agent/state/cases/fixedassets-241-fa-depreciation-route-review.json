@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-241-FA-DEPRECIATION-ROUTE-REVIEW",
+  "status": "planned",
+  "workType": "local-evidence-review",
+  "taskClass": "judge_work",
+  "requiresStrongModel": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Review FA-240 and prior depreciation route evidence to decide the next safe path for Calculate Depreciation without inventing an execution route.",
+  "unlockedBy": {
+    "caseId": "FIXEDASSETS-240-FA-DEPRECIATION-ACTION-INVENTORY-READONLY",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-240/FIXEDASSETS-240-result.json",
+    "decision": "Fixed Asset G/L Journals and More Options were inventoried read-only, but Calculate Depreciation was not found."
+  },
+  "inputs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-236/FIXEDASSETS-236-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-238/FIXEDASSETS-238-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-239/FIXEDASSETS-239-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-240/FIXEDASSETS-240-result.json"
+  ],
+  "allowedActions": [
+    "read-local-evidence",
+    "compare-local-evidence",
+    "review-playwright-route",
+    "write-compact-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "run-playwright",
+    "open-business-central",
+    "company-switch",
+    "setup-change",
+    "insert-journal-line",
+    "delete-journal-line",
+    "edit-journal-line",
+    "calculate-depreciation",
+    "preview-posting",
+    "post",
+    "post-and-print",
+    "confirm-posting-dialog",
+    "ship",
+    "invoice",
+    "payment"
+  ],
+  "safetyGates": [
+    "local-only",
+    "no-bc-run",
+    "no-playwright-run",
+    "no-execution-route-invention",
+    "no-preview-posting-click",
+    "no-calculate-depreciation-click",
+    "no-posting",
+    "no-setup-change",
+    "no-company-switch",
+    "no-german-final-claim"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-241/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-241/FIXEDASSETS-241-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-241/FIXEDASSETS-241-FA-DEPRECIATION-ROUTE-REVIEW.md"
+  ],
+  "acceptanceCriteria": [
+    "FA-236, FA-238, FA-239 and FA-240 are compared without new BC execution.",
+    "The route gap is stated precisely: Fixed Asset G/L Journals is visible, Preview Posting is visible only in Post dropdown, Calculate Depreciation is not found through safe non-executing inventory.",
+    "The next case is selected as a small, safe route-discovery or documentation step.",
+    "No execution or posting is unlocked without a proven Calculate Depreciation route and separate gate."
+  ],
+  "stopConditions": [
+    "Evidence contradicts current state.",
+    "Next step would require clicking an executing action without a new gate.",
+    "A new BC run would be needed before local review can complete."
+  ],
+  "nextSafeAction": "Perform local route review and choose the next smallest route-discovery step; do not run BC or Playwright in this case.",
+  "createdAt": "2026-06-27T20:52:15.396+02:00",
+  "updatedAt": "2026-06-27T20:52:15.396+02:00"
+}

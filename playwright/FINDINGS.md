@@ -1,4 +1,19 @@
 
+## FIND-BC-FA-077 More Options zeigt keinen AfA-Berechnen-Pfad
+
+| Feld | Wert |
+|---|---|
+| Bereich | Fixed Assets / AfA-Journal / Action-Discovery |
+| Testfall | `FIXEDASSETS-240-FA-DEPRECIATION-ACTION-INVENTORY-READONLY` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-240/FIXEDASSETS-240-result.json`, `playwright/projects/fibu-book5/evidence/fixedassets-240/010-action-inventory.json` |
+| Beobachtung | `Fixed Asset G/L Journals` ist sichtbar; `More Options` wurde read-only geoeffnet. |
+| gefunden | `Post`, `Insert FA Bal. Account`, `Apply Entries...`, Journalfelder inkl. `FA Posting Type` und `Depreciation Book Code` |
+| nicht gefunden | `Calculate Depreciation` / `AfA berechnen` |
+| Entscheidung | Keine AfA-Ausfuehrung freigeben. Naechster Schritt ist `FIXEDASSETS-241` als lokaler Routenreview. |
+| nicht passiert | kein Menueeintrag geklickt, kein `Calculate Depreciation`, kein Preview Posting, kein Post, keine Journalzeile, kein Setup |
+
+Fuer die Klickanleitung ist das ein guter Debugging-Punkt: Ein Journal mit AfA-Feldern ist noch kein Beweis fuer den AfA-Berechnen-Klickpfad. Das Buch muss den Unterschied zwischen Journalspalte (`FA Posting Type = Depreciation`) und eigentlicher Berechnungsaktion sauber erklaeren.
+
 ## FIND-BC-FA-076 Preview-Menue ist kein AfA-Nachweis
 
 | Feld | Wert |
