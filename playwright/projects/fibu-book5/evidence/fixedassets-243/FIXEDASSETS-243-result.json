@@ -1,0 +1,109 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-243-fa-depreciation-route-decision-result",
+  "caseId": "FIXEDASSETS-243-FA-DEPRECIATION-ROUTE-DECISION",
+  "source": "local-evidence-review-with-microsoft-learn",
+  "resultStatus": "observed-local-decision",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "bcRun": false,
+  "playwrightRun": false,
+  "postedInThisRun": false,
+  "previewPostingInThisRun": false,
+  "setupChanged": false,
+  "companySwitched": false,
+  "apiShortcut": false,
+  "bookChanged": false,
+  "dataChanged": false,
+  "decision": {
+    "journalDropdownRoute": "exhausted-for-calculate-depreciation",
+    "faCnc01CardDropdownRoute": "exhausted-for-calculate-depreciation",
+    "nextRoute": "tell-me-search-result-inventory",
+    "nextCaseId": "FIXEDASSETS-244-FA-CALCULATE-DEPRECIATION-TELLME-READONLY",
+    "nextCaseFile": ".agent/state/cases/fixedassets-244-fa-calculate-depreciation-tellme-readonly.json",
+    "executionUnlocked": false
+  },
+  "microsoftLearnBasis": [
+    {
+      "title": "Depreciate or amortize fixed assets",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/business-central/fa-how-depreciate-amortize",
+      "finding": "Automatic depreciation is started by Search/Alt+Q, entering Calculate Depreciation, and choosing the related link. The batch job creates lines in the fixed asset G/L journal."
+    },
+    {
+      "title": "Report Calculate Depreciation",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/business-central/application/base-application/report/microsoft.fixedassets.depreciation.calculate-depreciation",
+      "finding": "The base application object is report ID 5692, caption Calculate Depreciation, ProcessingOnly = True, UsageCategory = Tasks."
+    }
+  ],
+  "proved": [
+    "FA-236/238/240 prove Fixed Asset G/L Journals and related Post/More Options context, but not Calculate Depreciation.",
+    "FA-242 proves FA-CNC-01 Fixed Asset Card context and a disabled Acquire action, but not Calculate Depreciation.",
+    "Microsoft Learn identifies Search/Alt+Q for Calculate Depreciation as the documented automatic route.",
+    "No BC, Playwright, setup, journal line, Calculate Depreciation, Preview Posting, Post or book change occurred in FA-243."
+  ],
+  "notProved": [
+    "No Tell-Me search result for Calculate Depreciation was captured in the RM-DEMO UI yet.",
+    "No Calculate Depreciation request page was opened.",
+    "No depreciation journal line was created.",
+    "No Preview Posting or depreciation posting was executed.",
+    "No German final fixed asset proof exists."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-243/",
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-243-fa-depreciation-route-decision.json",
+    ".agent/state/cases/fixedassets-244-fa-calculate-depreciation-tellme-readonly.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/model_usage_log.jsonl",
+    "playwright/FINDINGS.md",
+    "playwright/projects/fibu-book5/BOOK-CLICK-GUIDE-COVERAGE.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-243/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-243/FIXEDASSETS-243-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-243/FIXEDASSETS-243-FA-DEPRECIATION-ROUTE-DECISION.md"
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-244-FA-CALCULATE-DEPRECIATION-TELLME-READONLY",
+      "active_case_file": ".agent/state/cases/fixedassets-244-fa-calculate-depreciation-tellme-readonly.json",
+      "lastReferenceCase": "FIXEDASSETS-243-FA-DEPRECIATION-ROUTE-DECISION",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-243-fa-depreciation-route-decision.json",
+      "requiresStrongModel": false,
+      "nextStep": "FIXEDASSETS-244: use Tell-Me search read-only to inventory the Calculate Depreciation related link/request-page entry point; do not choose or execute the report."
+    },
+    "activeCase": {
+      "status": "observed-local-decision",
+      "lastResult": {
+        "status": "observed-local-decision",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-243/FIXEDASSETS-243-result.json",
+        "summary": "FA-243 selected the documented Tell-Me / Search route as the next distinct AfA path after journal and FA-CNC-01 card inventories did not expose Calculate Depreciation."
+      },
+      "nextSafeAction": "FIXEDASSETS-244: read-only Tell-Me search inventory for Calculate Depreciation; no related-link click and no report execution."
+    }
+  },
+  "flags": {
+    "noPosting": true,
+    "noPreviewPosting": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true,
+    "noDraft": true,
+    "noEdit": true,
+    "noDelete": true,
+    "noCalculateDepreciation": true,
+    "noBusinessCentralRun": true,
+    "noPlaywrightRun": true
+  },
+  "observed": {
+    "timestamp": "2026-06-27T21:16:37.258+02:00"
+  },
+  "nextStep": "FIXEDASSETS-244: use Tell-Me search read-only to inventory the Calculate Depreciation related link/request-page entry point; do not choose or execute the report."
+}

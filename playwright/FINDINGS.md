@@ -1,4 +1,19 @@
 
+## FIND-BC-FA-080 AfA berechnen ist laut Microsoft Learn ein Tell-Me/Search-Einstieg
+
+| Feld | Wert |
+|---|---|
+| Bereich | Fixed Assets / AfA-Route / Microsoft-Learn-Abgleich |
+| Testfall | `FIXEDASSETS-243-FA-DEPRECIATION-ROUTE-DECISION` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-243/FIXEDASSETS-243-result.json` |
+| Quellen | Microsoft Learn `Depreciate or amortize fixed assets`, Microsoft Learn `Report "Calculate Depreciation"` |
+| Entscheidung | Der naechste praktische Pfad ist kein weiterer Journal-/Karten-Dropdown-Lauf, sondern `Alt+Q` / Search nach `Calculate Depreciation` als read-only Suchergebnis-Inventar. |
+| Grund | Microsoft Learn beschreibt den automatischen AfA-Weg ueber Search/Alt+Q und `Calculate Depreciation`; der Batch Job erzeugt danach Zeilen im Fixed Asset G/L Journal. Die Base App fuehrt Report ID `5692` mit Caption `Calculate Depreciation`, `ProcessingOnly = True`. |
+| weiterhin gesperrt | related link auswaehlen, Request Page ausfuehren, OK bestaetigen, AfA-Zeile erzeugen, Preview Posting, Post |
+| nicht passiert | kein BC-Lauf, kein Playwright-Lauf, kein `Calculate Depreciation`, kein Preview Posting, kein Post, keine Buchaenderung |
+
+Fuer die Klickanleitung bedeutet das: Der Einstieg in die automatische AfA ist zuerst ein Such-/Batchjob-Thema. Die Journal-Seite ist der Ort, an dem Ergebniszeilen landen; sie ist nicht automatisch der Ort, an dem der Batch gestartet wird.
+
 ## FIND-BC-FA-079 FA-CNC-01-Karte zeigt keinen AfA-Berechnen-Pfad
 
 | Feld | Wert |
