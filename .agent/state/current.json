@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-27T08:15:00.000Z",
+  "updatedAt": "2026-06-27T18:05:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "fixedassets",
-  "activeCase": "FIXEDASSETS-233-HGB-DEPRECIATION-INTEGRATION-SETUP-FIT",
-  "active_case_file": ".agent/state/cases/fixedassets-233-hgb-depreciation-integration-setup-fit.json",
-  "lastReferenceCase": "FIXEDASSETS-232-FA-DEPRECIATION-PREFLIGHT-DECISION",
-  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-232-fa-depreciation-preflight-decision.json",
-  "mode": "token-efficient-autopilot-fixedassets-hgb-depreciation-integration-setup-fit",
-  "requiresStrongModel": false,
+  "activeCase": "FIXEDASSETS-234-HGB-DEPRECIATION-INTEGRATION-SETUP-FIT-REVIEW",
+  "active_case_file": ".agent/state/cases/fixedassets-234-hgb-depreciation-integration-setup-fit-review.json",
+  "lastReferenceCase": "FIXEDASSETS-233-HGB-DEPRECIATION-INTEGRATION-SETUP-FIT",
+  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-233-hgb-depreciation-integration-setup-fit.json",
+  "mode": "token-efficient-autopilot-fixedassets-hgb-depreciation-integration-review",
+  "requiresStrongModel": true,
   "requiredPreflightChecks": [
     "agent:preflight",
     "agent:state:validate",
@@ -19,10 +19,8 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "open-business-central",
-    "run-playwright",
-    "read-hgb-depreciation-book",
-    "setup-change-if-current-value-off",
+    "read-local-evidence",
+    "compare-fixed-asset-readiness-evidence",
     "write-compact-evidence",
     "update-state"
   ],
@@ -33,7 +31,10 @@
     "fake-evidence",
     "book-claim-without-evidence",
     "api-shortcut-without-explicit-case-permission",
+    "open-business-central",
+    "run-playwright",
     "company-switch",
+    "setup-change",
     "insert-journal-line",
     "delete-journal-line",
     "edit-journal-line",
@@ -45,7 +46,7 @@
     "invoice",
     "payment"
   ],
-  "nextStep": "FIXEDASSETS-233: controlled UI-first HGB G/L Integration - Depreciation setup-fit before any depreciation journal, preview or posting.",
+  "nextStep": "FIXEDASSETS-234: locally review FA-233 setup-fit evidence before any depreciation Preview Posting-only retry.",
   "subagentPlanPolicy": {
     "default": "optional",
     "execution": "plan-only-no-subagents-spawned",

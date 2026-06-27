@@ -1,4 +1,18 @@
 
+## FIND-BC-FA-070 HGB Depreciation Integration wurde UI-first gefittet
+
+| Feld | Wert |
+|---|---|
+| Status | Labor-Setup-Fit, Review offen |
+| Testfall | `FIXEDASSETS-233-HGB-DEPRECIATION-INTEGRATION-SETUP-FIT` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-233/FIXEDASSETS-233-result.json`, `playwright/projects/fibu-book5/evidence/fixedassets-233/FIXEDASSETS-233-HGB-DEPRECIATION-INTEGRATION-SETUP-FIT.md` |
+| Zielwert | `HGB / G/L Integration - Depreciation = true` |
+| Ergebnis | Vorher `false`, nachher `true`, ein UI-first Checkbox-Klick |
+| nicht passiert | kein AfA-Journal, kein Preview Posting, keine Buchung, kein Company Switch, keine API-Abkuerzung |
+| naechster Schritt | `FIXEDASSETS-234`: lokaler Review vor jedem Preview-Posting-only AfA-Fall |
+
+Fuer Anfaenger ist wichtig: Ein Setup-Schalter ist noch keine Buchung. Er schafft nur die Voraussetzung, dass ein spaeterer AfA-Preflight fachlich sinnvoll geprueft werden kann.
+
 ## FIND-BC-FA-069 AfA-Preflight bleibt blockiert, solange HGB Depreciation Integration aus ist
 
 | Feld | Wert |
