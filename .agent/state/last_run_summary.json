@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-256-FA-DEPRECIATION-GEOMETRY-MAP-REVIEW",
-  "timestamp": "2026-06-27T22:54:31.970+02:00",
+  "runId": "FIXEDASSETS-257-FA-DEPRECIATION-TARGET-PARAMETER-DECISION",
+  "timestamp": "2026-06-27T22:59:38.379+02:00",
   "date": "2026-06-27",
-  "workType": "local-geometry-map-review",
+  "workType": "local-target-parameter-decision",
   "taskClass": "judge_work",
   "modelClass": "gpt-5.5-low",
   "branch": "codex/token-efficient-autopilot-state",
@@ -28,24 +28,26 @@
   "depreciationCalculated": false,
   "executingActionClicked": false,
   "resultStatus": "observed",
-  "summary": "FA-256 locally reviewed the FA-255 Calculate Depreciation geometry map. Strong same-row candidates exist for Depreciation Book, Posting Date and Document No., but the visible values conflict with the intended target context: COMPANY vs HGB and 01.01.2027 vs the previous 06/27/2026 notation. No value preflight or OK is approved.",
-  "observedValues": {
-    "depreciationBookNearestValue": "COMPANY",
-    "postingDateNearestValue": "01.01.2027",
-    "documentNoNearestValue": "FADEP-20260627-2158"
+  "summary": "FA-257 selected target values for the next guarded no-OK Calculate Depreciation value preflight: HGB, 30.06.2026, FADEP-258-NO-OK and FA-CNC-01. COMPANY and 06/27/2026 are rejected for this HGB-targeted path.",
+  "targetValues": {
+    "depreciationBook": "HGB",
+    "postingDateUi": "30.06.2026",
+    "postingDateIso": "2026-06-30",
+    "documentNo": "FADEP-258-NO-OK",
+    "fixedAssetNoFilter": "FA-CNC-01"
   },
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/fixedassets-256/FIXEDASSETS-256-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-256/FIXEDASSETS-256-GEOMETRY-MAP-REVIEW.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-256/README.md"
+    "playwright/projects/fibu-book5/evidence/fixedassets-257/FIXEDASSETS-257-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-257/FIXEDASSETS-257-TARGET-PARAMETER-DECISION.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-257/README.md"
   ],
   "changedFiles": [
-    "playwright/projects/fibu-book5/evidence/fixedassets-256/FIXEDASSETS-256-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-256/FIXEDASSETS-256-GEOMETRY-MAP-REVIEW.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-256/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-257/FIXEDASSETS-257-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-257/FIXEDASSETS-257-TARGET-PARAMETER-DECISION.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-257/README.md",
     ".agent/state/current.json",
-    ".agent/state/cases/fixedassets-256-fa-depreciation-geometry-map-review.json",
     ".agent/state/cases/fixedassets-257-fa-depreciation-target-parameter-decision.json",
+    ".agent/state/cases/fixedassets-258-fa-depreciation-target-value-preflight-no-ok.json",
     ".agent/state/coverage_state.json",
     ".agent/state/last_run_summary.json",
     "playwright/FINDINGS.md",
@@ -55,8 +57,8 @@
     "npm run agent:preflight",
     "npm run agent:dry-run",
     "npm run agent:run-plan",
-    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-256/FIXEDASSETS-256-result.json",
-    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-256/FIXEDASSETS-256-result.json",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-257/FIXEDASSETS-257-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-257/FIXEDASSETS-257-result.json",
     "npm run check:encoding",
     "git diff --check"
   ],
@@ -72,7 +74,7 @@
     "No German final proof exists."
   ],
   "activeArea": "fixedassets",
-  "activeCase": "FIXEDASSETS-256-FA-DEPRECIATION-GEOMETRY-MAP-REVIEW",
-  "nextCase": "FIXEDASSETS-257-FA-DEPRECIATION-TARGET-PARAMETER-DECISION",
-  "nextStep": "FIXEDASSETS-257: locally decide the target depreciation-book, posting-date format and fixed-asset filter before any no-OK value preflight."
+  "activeCase": "FIXEDASSETS-257-FA-DEPRECIATION-TARGET-PARAMETER-DECISION",
+  "nextCase": "FIXEDASSETS-258-FA-DEPRECIATION-TARGET-VALUE-PREFLIGHT-NO-OK",
+  "nextStep": "FIXEDASSETS-258: run a guarded Playwright no-OK value preflight for HGB, 30.06.2026, FADEP-258-NO-OK and FA-CNC-01; do not confirm OK."
 }

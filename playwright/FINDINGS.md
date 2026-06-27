@@ -1,4 +1,18 @@
 
+## FIND-BC-FA-094 AfA-Zielparameter fuer no-OK Preflight entschieden
+
+| Feld | Wert |
+|---|---|
+| Bereich | Fixed Assets / AfA-Route / Zielparameter |
+| Testfall | `FIXEDASSETS-257-FA-DEPRECIATION-TARGET-PARAMETER-DECISION` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-257/FIXEDASSETS-257-result.json`, `playwright/projects/fibu-book5/evidence/fixedassets-257/FIXEDASSETS-257-TARGET-PARAMETER-DECISION.md` |
+| Entscheidung | Der naechste no-OK Preflight soll `HGB`, `30.06.2026`, `FADEP-258-NO-OK` und `FA-CNC-01` pruefen. |
+| abgelehnt | `COMPANY` als stillschweigendes AfA-Buch und `06/27/2026` als UI-Datum |
+| weiterhin gesperrt | `OK`, Preview Posting, Post, Setup Change, Company Switch, API-Abkuerzung |
+| naechster Schritt | `FIXEDASSETS-258`: Zielwerte ohne `OK` setzen, sichtbaren Wertnachweis sichern und abbrechen, falls ein Wert nicht sichtbar bestehen bleibt. |
+
+Fuer die Klickanleitung ist das der Punkt, an dem aus einem sichtbaren Request-Page-Bild ein pruefbarer Kontrollschritt wird: Der Anwender sieht nicht nur Felder, sondern weiss, welche Werte fachlich erwartet werden und welche Defaults falsch waeren.
+
 ## FIND-BC-FA-093 AfA-Request-Page-Kandidaten sind stark, aber Zielparameter widersprechen sich
 
 | Feld | Wert |

@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixed-assets-depreciation-target-parameter-decision",
+  "caseId": "FIXEDASSETS-257-FA-DEPRECIATION-TARGET-PARAMETER-DECISION",
+  "source": "local-evidence-review",
+  "resultStatus": "observed",
+  "branch": "codex/token-efficient-autopilot-state",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "bcRun": false,
+  "playwrightRun": false,
+  "reviewedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-002/FIXEDASSETS-002-TARGET-PATHS.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-253/FIXEDASSETS-253-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-255/010-request-page-control-map.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-256/FIXEDASSETS-256-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-233/FIXEDASSETS-233-result.json",
+    ".agent/state/coverage_state.json"
+  ],
+  "targetDecision": {
+    "depreciationBook": {
+      "target": "HGB",
+      "status": "approved-as-next-preflight-target",
+      "reason": "Existing laboratory evidence uses HGB for FA-CNC-01: HGB integration was fitted and the acquisition trace references FA-CNC-01/G05001/HGB. COMPANY is visible as a request-page default but is not accepted as the target for this case."
+    },
+    "postingDate": {
+      "targetSemanticDate": "2026-06-30",
+      "targetUiValue": "30.06.2026",
+      "status": "approved-as-next-preflight-target",
+      "reason": "The earliest fixed-asset target note says depreciation until 30.06.2026, and the request page gives a dd.MM.yyyy date-format hint. The previous 06/27/2026 notation is rejected for this UI."
+    },
+    "documentNo": {
+      "targetPattern": "FADEP-258-NO-OK",
+      "status": "approved-as-next-preflight-target",
+      "reason": "Document No. has the strongest field-safe history and may be changed in a no-OK preflight to identify the attempt."
+    },
+    "fixedAssetNoFilter": {
+      "target": "FA-CNC-01",
+      "status": "approved-as-next-preflight-target-with-stop-condition",
+      "reason": "FA-CNC-01 is the semantic target asset. The map shows a probable No. filter control, but the next preflight must stop if the control cannot be proven or the value does not visibly persist."
+    }
+  },
+  "nextCaseDecision": {
+    "caseId": "FIXEDASSETS-258-FA-DEPRECIATION-TARGET-VALUE-PREFLIGHT-NO-OK",
+    "allowed": true,
+    "allowedActions": [
+      "open-business-central",
+      "run-playwright",
+      "open-calculate-depreciation-request-page",
+      "write-target-request-page-values-without-ok",
+      "capture-value-proof",
+      "close-request-page-without-ok"
+    ],
+    "stillForbidden": [
+      "confirm-ok-on-calculate-depreciation",
+      "preview-posting",
+      "post",
+      "post-and-print",
+      "confirm-posting-dialog",
+      "setup-change",
+      "company-switch",
+      "api-shortcut"
+    ],
+    "stopConditions": [
+      "Business Central is not in MCP_1_20260210.",
+      "Company is not RM-DEMO.",
+      "Depreciation Book cannot be proven as HGB after value entry.",
+      "Posting Date cannot be proven as 30.06.2026 after value entry.",
+      "Fixed Asset No. filter cannot be proven as FA-CNC-01 after value entry.",
+      "OK, Preview Posting, Post or a dangerous confirmation dialog appears as the next required action."
+    ]
+  },
+  "proved": [
+    "HGB remains the correct target depreciation book for the current FA-CNC-01 laboratory path.",
+    "COMPANY is only a visible request-page default and must not be silently accepted for this HGB-targeted case.",
+    "The next posting-date UI value should use dd.MM.yyyy notation.",
+    "The next no-OK value preflight may target HGB, 30.06.2026, FADEP-258-NO-OK and FA-CNC-01, but only without OK.",
+    "OK, Preview Posting and Post remain locked."
+  ],
+  "notProved": [
+    "No target value has been written on the request page in this case.",
+    "No value persistence for HGB, 30.06.2026 or FA-CNC-01 is proven yet.",
+    "No depreciation journal line exists.",
+    "No Preview Posting, posting trace or German final proof exists."
+  ],
+  "safety": {
+    "noBusinessCentralOpened": true,
+    "noPlaywrightRun": true,
+    "noTargetValuesWritten": true,
+    "noOkConfirmed": true,
+    "noDepreciationCalculated": true,
+    "noJournalLineCreated": true,
+    "noPreviewPosting": true,
+    "noPost": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-257/",
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-257-fa-depreciation-target-parameter-decision.json",
+    ".agent/state/cases/fixedassets-258-fa-depreciation-target-value-preflight-no-ok.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    "playwright/FINDINGS.md",
+    "playwright/projects/fibu-book5/BOOK-CLICK-GUIDE-COVERAGE.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-257/FIXEDASSETS-257-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-257/FIXEDASSETS-257-TARGET-PARAMETER-DECISION.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-257/README.md"
+  ],
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-258-FA-DEPRECIATION-TARGET-VALUE-PREFLIGHT-NO-OK",
+      "active_case_file": ".agent/state/cases/fixedassets-258-fa-depreciation-target-value-preflight-no-ok.json",
+      "lastReferenceCase": "FIXEDASSETS-257-FA-DEPRECIATION-TARGET-PARAMETER-DECISION",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-257-fa-depreciation-target-parameter-decision.json",
+      "nextStep": "FIXEDASSETS-258: run a guarded Playwright no-OK value preflight for HGB, 30.06.2026, FADEP-258-NO-OK and FA-CNC-01; do not confirm OK."
+    },
+    "coverage": {
+      "activeArea": "fixedassets",
+      "latestReviewCase": "FIXEDASSETS-257-FA-DEPRECIATION-TARGET-PARAMETER-DECISION",
+      "nextCase": "FIXEDASSETS-258-FA-DEPRECIATION-TARGET-VALUE-PREFLIGHT-NO-OK",
+      "depreciationReadiness": "FA-257 selected HGB, 30.06.2026, FADEP-258-NO-OK and FA-CNC-01 as the next no-OK value-preflight targets. COMPANY and 06/27/2026 are rejected for this path."
+    }
+  },
+  "blockedBy": [],
+  "requiresReview": true,
+  "safeToFinalizeState": true,
+  "reason": "Local target-parameter decision completed; next case may run a guarded no-OK value preflight, but not OK/Preview/Post.",
+  "observed": {
+    "startedAt": "2026-06-27T22:59:38.379+02:00",
+    "finishedAt": "2026-06-27T22:59:38.379+02:00"
+  }
+}
