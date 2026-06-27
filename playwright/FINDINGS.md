@@ -1,4 +1,17 @@
 
+## FIND-BC-FA-074 Post-Dropdown darf nur read-only inventarisiert werden
+
+| Feld | Wert |
+|---|---|
+| Bereich | Fixed Assets / AfA-Journal / Menue-Governance |
+| Testfall | `FIXEDASSETS-237-FA-DEPRECIATION-ACTION-MENU-PLAN` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-237/FIXEDASSETS-237-result.json`, `playwright/projects/fibu-book5/evidence/fixedassets-237/FIXEDASSETS-237-FA-DEPRECIATION-ACTION-MENU-PLAN.md` |
+| Entscheidung | `FIXEDASSETS-238` darf nur den nicht-ausfuehrenden Related-Actions-/Dropdown-Button bei `Post` oeffnen und Menueeintraege lesen. |
+| weiterhin gesperrt | `Calculate Depreciation`, `Preview Posting`, `Post`, `Post and Print`, Journalzeile, Setup, Company Switch, API-Abkuerzung |
+| nicht passiert | kein BC-Lauf, kein Playwright-Lauf, keine Buchung, keine Buchaenderung |
+
+Fuer Anfaenger ist das wichtig: In Business Central kann ein Split-Button gefaehrlich sein. Der Hauptbutton `Post` fuehrt aus, der kleine Dropdown-/Related-Actions-Teil zeigt nur weitere Optionen. Die Klickanleitung muss diesen Unterschied sichtbar und vorsichtig erklaeren.
+
 ## FIND-BC-FA-073 AfA-Journalroute sichtbar, aber AfA-/Preview-Aktion noch nicht
 
 | Feld | Wert |

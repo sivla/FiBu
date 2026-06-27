@@ -1,0 +1,115 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-237-fa-depreciation-action-menu-plan-result",
+  "caseId": "FIXEDASSETS-237-FA-DEPRECIATION-ACTION-MENU-PLAN",
+  "source": "local-preflight-plan",
+  "resultStatus": "observed-local-plan",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "bcRun": false,
+  "playwrightRun": false,
+  "postedInThisRun": false,
+  "previewPostingInThisRun": false,
+  "setupChanged": false,
+  "companySwitched": false,
+  "apiShortcut": false,
+  "bookChanged": false,
+  "journalLineInserted": false,
+  "journalLineEdited": false,
+  "journalLineDeleted": false,
+  "calculateDepreciationClicked": false,
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-236/FIXEDASSETS-236-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-236/010-fa-gl-journal-route-readonly.json"
+  ],
+  "decision": {
+    "fa236RouteAccepted": true,
+    "calculateDepreciationVisibleInFa236": false,
+    "previewPostingVisibleInFa236": false,
+    "postVisibleInFa236": true,
+    "postDropdownVisibleInFa236": true,
+    "directPreviewOnlyExecutionUnlocked": false,
+    "readOnlyDropdownDiscoveryUnlocked": true,
+    "allowedNextLiveAction": "open Fixed Asset G/L Journals read-only and click only the non-executing Post related-actions/dropdown button to inventory menu items",
+    "stillForbidden": [
+      "click main Post",
+      "click Preview Posting",
+      "click Calculate Depreciation",
+      "click Post and Print",
+      "create or edit journal line",
+      "confirm any dialog",
+      "setup change",
+      "company switch",
+      "API shortcut",
+      "book change"
+    ]
+  },
+  "proved": [
+    "FA-236 proves Page 5628 / Fixed Asset G/L Journals is reachable read-only in MCP_1_20260210 / RM-DEMO.",
+    "FA-236 proves Post/New are visible, but Calculate Depreciation and Preview Posting are not visible on the first route view.",
+    "The next live case must therefore be read-only action-menu discovery, not Preview Posting execution."
+  ],
+  "notProved": [
+    "No depreciation journal line exists.",
+    "No Calculate Depreciation action route is proven.",
+    "No Preview Posting route is proven.",
+    "No depreciation calculation, Preview Posting or posting has occurred.",
+    "No German final fixed asset proof exists."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-237/",
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-237-fa-depreciation-action-menu-plan.json",
+    ".agent/state/cases/fixedassets-238-fa-depreciation-post-dropdown-readonly.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    "playwright/projects/fibu-book5/BOOK-CLICK-GUIDE-COVERAGE.md",
+    "playwright/FINDINGS.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-237/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-237/FIXEDASSETS-237-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-237/FIXEDASSETS-237-FA-DEPRECIATION-ACTION-MENU-PLAN.md"
+  ],
+  "blockedBy": [],
+  "requiresReview": true,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-238-FA-DEPRECIATION-POST-DROPDOWN-READONLY",
+      "active_case_file": ".agent/state/cases/fixedassets-238-fa-depreciation-post-dropdown-readonly.json",
+      "lastReferenceCase": "FIXEDASSETS-237-FA-DEPRECIATION-ACTION-MENU-PLAN",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-237-fa-depreciation-action-menu-plan.json",
+      "requiresStrongModel": false,
+      "nextStep": "FIXEDASSETS-238: run read-only Post-dropdown menu discovery on Fixed Asset G/L Journals; click no executing menu item."
+    },
+    "activeCase": {
+      "status": "observed-local-plan",
+      "lastResult": {
+        "status": "observed-local-plan",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-237/FIXEDASSETS-237-result.json",
+        "summary": "FA-237 unlocks only read-only Post-dropdown menu discovery; depreciation Preview Posting remains locked."
+      },
+      "nextSafeAction": "FIXEDASSETS-238: read-only Post-dropdown menu discovery only."
+    }
+  },
+  "flags": {
+    "noPosting": true,
+    "noPreviewPosting": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true,
+    "noDraft": true,
+    "noEdit": true,
+    "noDelete": true,
+    "noJournalLine": true,
+    "noCalculateDepreciation": true
+  },
+  "observed": {
+    "timestamp": "2026-06-27T20:28:48.000+02:00"
+  },
+  "nextStep": "FIXEDASSETS-238: run read-only Post-dropdown menu discovery on Fixed Asset G/L Journals; click no executing menu item."
+}

@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-238-FA-DEPRECIATION-POST-DROPDOWN-READONLY",
+  "status": "planned",
+  "workType": "read-only-evidence-run",
+  "taskClass": "wizard_work",
+  "requiresStrongModel": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Open Fixed Asset G/L Journals read-only and inventory only the non-executing Post related-actions/dropdown menu to find whether Preview Posting or depreciation-specific menu entries are present.",
+  "unlockedBy": {
+    "caseId": "FIXEDASSETS-237-FA-DEPRECIATION-ACTION-MENU-PLAN",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-237/FIXEDASSETS-237-result.json",
+    "decision": "Only read-only dropdown/menu inventory is unlocked. No executing menu item may be clicked."
+  },
+  "inputs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-237/FIXEDASSETS-237-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-236/FIXEDASSETS-236-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-236/010-fa-gl-journal-route-readonly.json"
+  ],
+  "allowedActions": [
+    "open-business-central-readonly",
+    "run-playwright-readonly",
+    "click-nonexecuting-action-dropdown",
+    "read-local-evidence",
+    "write-compact-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "company-switch",
+    "setup-change",
+    "insert-journal-line",
+    "delete-journal-line",
+    "edit-journal-line",
+    "calculate-depreciation",
+    "preview-posting",
+    "post",
+    "post-and-print",
+    "confirm-posting-dialog",
+    "ship",
+    "invoice",
+    "payment"
+  ],
+  "safetyGates": [
+    "instance-must-be-MCP_1_20260210",
+    "company-must-be-RM-DEMO",
+    "read-only-navigation-only",
+    "click-only-post-related-actions-dropdown",
+    "do-not-click-menuitems",
+    "no-journal-line-create-or-edit",
+    "no-calculate-depreciation-click",
+    "no-preview-posting-click",
+    "no-posting",
+    "no-setup-change",
+    "no-company-switch",
+    "no-api-shortcut",
+    "no-german-final-claim"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-238/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-238/FIXEDASSETS-238-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-238/FIXEDASSETS-238-FA-DEPRECIATION-POST-DROPDOWN-READONLY.md"
+  ],
+  "acceptanceCriteria": [
+    "Business Central stays in MCP_1_20260210 / RM-DEMO.",
+    "Fixed Asset G/L Journals route is visible read-only.",
+    "Only the non-executing related-actions/dropdown button for Post is clicked.",
+    "Visible menu items are inventoried and classified.",
+    "No menu item is clicked.",
+    "If Preview Posting or Calculate Depreciation is found, only a later plan may decide the next action."
+  ],
+  "stopConditions": [
+    "Business Central shows a different instance or company.",
+    "The locator points to the main Post button instead of the dropdown/related-actions button.",
+    "Any confirmation or modal dialog appears.",
+    "A menu item would need to be clicked to reveal the next level.",
+    "A journal line would need to be created or edited."
+  ],
+  "nextSafeAction": "Run one read-only Post-dropdown menu inventory; do not click Calculate Depreciation, Preview Posting, Post or any menu item.",
+  "createdAt": "2026-06-27T20:28:48.000+02:00",
+  "updatedAt": "2026-06-27T20:28:48.000+02:00"
+}
