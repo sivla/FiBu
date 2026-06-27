@@ -1,4 +1,18 @@
 
+## FIND-BC-FA-088 Request Page zeigt zuletzt verwendete Optionen und unbeschriftetes FADEP-Wertsignal
+
+| Feld | Wert |
+|---|---|
+| Bereich | Fixed Assets / AfA-Route / Request-Page-Parameter |
+| Testfall | `FIXEDASSETS-251-FA-DEPRECIATION-REQUEST-PARAMETER-DIAGNOSIS` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-251/FIXEDASSETS-251-result.json`, `playwright/projects/fibu-book5/evidence/fixedassets-251/010-request-parameter-diagnosis.json` |
+| Beobachtung | `Calculate Depreciation` wurde in `MCP_1_20260210` / `RM-DEMO` read-only bis zur Request Page geoeffnet. `OK` war sichtbar, wurde aber nicht bestaetigt. Sichtbar waren zuletzt verwendete Optionen/Filter und `FADEP-20260627-2158` als unbeschriftetes Request-Page-Eingabefeld. |
+| bewiesen | Request Page sichtbar, letzte Optionen/Filter sichtbar, FADEP-Wertsignal sichtbar, kein OK, kein Preview Posting, kein Post, keine Journalzeilen-Aenderung |
+| nicht bewiesen | keine feldsichere Zuordnung von `FADEP-20260627-2158` zu `Document No.`, keine feldsicheren Werte fuer `Depreciation Book`, `Posting Date` oder Anlagenfilter, keine AfA-Zeile, keine Buchung, kein deutscher Finalnachweis |
+| naechster Schritt | `FIXEDASSETS-252`: lokal entscheiden, ob eine Wiederholung gerechtfertigt ist und welche Parameter vorher feldsicher geklaert werden muessen. |
+
+Fuer die Klickanleitung bedeutet das: Business Central kann Request-Pages mit zuletzt verwendeten Optionen vorbelegen. Ein sichtbarer Wert reicht fuer Buch- und Evidence-Zwecke nicht, wenn Playwright ihn nicht eindeutig einem Feld zuordnet. Vor einem erneuten `OK` braucht die Anleitung einen klaren Kontrollpunkt fuer AfA-Buch, Datum, Dokumentnummer und Anlagenfilter.
+
 ## FIND-BC-FA-087 FADEP-Dokumentnummer ist im Anlagen-Fibu-Journal nicht sichtbar
 
 | Feld | Wert |

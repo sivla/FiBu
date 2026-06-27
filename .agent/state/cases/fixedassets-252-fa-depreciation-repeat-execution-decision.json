@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-252-FA-DEPRECIATION-REPEAT-EXECUTION-DECISION",
+  "status": "planned",
+  "workType": "local-decision",
+  "taskClass": "judge_work",
+  "requiresStrongModel": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Decide locally whether a repeat Calculate Depreciation execution is justified after FA-251 showed last-used request-page state and an unlabelled FADEP value but no field-safe depreciation book, posting date or fixed asset filter values.",
+  "unlockedBy": {
+    "caseId": "FIXEDASSETS-251-FA-DEPRECIATION-REQUEST-PARAMETER-DIAGNOSIS",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-251/FIXEDASSETS-251-result.json",
+    "decision": "FA-251 was read-only and did not confirm OK. A repeat execution remains locked until corrected request parameters and evidence gates are explicitly defined."
+  },
+  "inputs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-248/FIXEDASSETS-248-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-250/FIXEDASSETS-250-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-251/FIXEDASSETS-251-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-251/FIXEDASSETS-251-REQUEST-PARAMETER-DIAGNOSIS.md"
+  ],
+  "allowedActions": [
+    "read-local-evidence",
+    "review-fixedassets-248-250-251",
+    "decide-repeat-execution-gates",
+    "write-compact-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "open-business-central",
+    "run-playwright",
+    "company-switch",
+    "setup-change",
+    "confirm-ok-on-calculate-depreciation",
+    "repeat-calculate-depreciation-without-review",
+    "new-journal-line",
+    "edit-journal-line",
+    "delete-journal-line",
+    "manual-insert-journal-line",
+    "manual-delete-journal-line",
+    "manual-edit-journal-line-after-batch",
+    "preview-posting",
+    "post",
+    "post-and-print",
+    "confirm-posting-dialog",
+    "ship",
+    "invoice",
+    "payment"
+  ],
+  "safetyGates": [
+    "local-evidence-only",
+    "no-business-central",
+    "no-playwright",
+    "no-ok",
+    "no-preview-posting",
+    "no-posting",
+    "no-setup-change",
+    "no-company-switch",
+    "no-api-shortcut",
+    "no-book-claim-without-evidence"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-252/FIXEDASSETS-252-REPEAT-EXECUTION-DECISION.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-252/FIXEDASSETS-252-result.json"
+  ],
+  "acceptanceCriteria": [
+    "FA-248/250/251 evidence is compared compactly.",
+    "Decision states whether a repeat Calculate Depreciation execution is justified, not merely convenient.",
+    "If repeat execution is allowed later, corrected request parameters and stop conditions are explicit.",
+    "If repeat execution is not justified, the next safer read-only or setup step is named.",
+    "No Business Central or Playwright run occurs in this decision case."
+  ],
+  "stopConditions": [
+    "Evidence does not support a repeat execution decision.",
+    "Depreciation Book, Posting Date or Fixed Asset filter remains ambiguous.",
+    "The decision would rely on unlabelled request-page values as if they were field-safe.",
+    "A live execution would be needed before a local decision can be justified."
+  ],
+  "nextSafeAction": "Create a local repeat-execution decision from FA-248, FA-250 and FA-251 evidence; do not open BC.",
+  "createdAt": "2026-06-27T22:20:22.750+02:00",
+  "updatedAt": "2026-06-27T22:20:22.750+02:00"
+}

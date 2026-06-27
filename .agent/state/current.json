@@ -1,16 +1,16 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-27T22:11:55.325+02:00",
+  "updatedAt": "2026-06-27T22:20:22.750+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "fixedassets",
-  "activeCase": "FIXEDASSETS-251-FA-DEPRECIATION-REQUEST-PARAMETER-DIAGNOSIS",
-  "active_case_file": ".agent/state/cases/fixedassets-251-fa-depreciation-request-parameter-diagnosis.json",
-  "lastReferenceCase": "FIXEDASSETS-250-FA-DEPRECIATION-JOURNAL-SEARCH-READONLY",
-  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-250-fa-depreciation-journal-search-readonly.json",
-  "mode": "token-efficient-autopilot-fixedassets-depreciation-request-parameter-diagnosis",
+  "activeCase": "FIXEDASSETS-252-FA-DEPRECIATION-REPEAT-EXECUTION-DECISION",
+  "active_case_file": ".agent/state/cases/fixedassets-252-fa-depreciation-repeat-execution-decision.json",
+  "lastReferenceCase": "FIXEDASSETS-251-FA-DEPRECIATION-REQUEST-PARAMETER-DIAGNOSIS",
+  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-251-fa-depreciation-request-parameter-diagnosis.json",
+  "mode": "token-efficient-autopilot-fixedassets-depreciation-repeat-execution-decision",
   "requiresStrongModel": false,
   "requiredPreflightChecks": [
     "agent:preflight",
@@ -19,14 +19,9 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "open-business-central",
-    "run-playwright-readonly",
-    "open-business-central",
-    "run-playwright-readonly",
-    "open-tell-me-search",
-    "choose-calculate-depreciation-related-link",
-    "inspect-calculate-depreciation-request-page",
-    "read-request-page-parameters",
+    "read-local-evidence",
+    "review-fixedassets-248-250-251",
+    "decide-repeat-execution-gates",
     "write-compact-evidence",
     "update-state"
   ],
@@ -38,6 +33,8 @@
     "book-claim-without-evidence",
     "api-shortcut-without-explicit-case-permission",
     "company-switch",
+    "open-business-central",
+    "run-playwright",
     "setup-change",
     "new-fixed-asset",
     "edit-fixed-asset",
@@ -55,7 +52,7 @@
     "invoice",
     "payment"
   ],
-  "nextStep": "FIXEDASSETS-251: diagnose Calculate Depreciation request parameters read-only before any repeat OK; focus on depreciation book, posting date, filters and eligible period.",
+  "nextStep": "FIXEDASSETS-252: decide locally whether repeating Calculate Depreciation is justified. Use FA-251 request-page evidence: last-used options were visible and FADEP-20260627-2158 appeared as an unlabelled value, but Depreciation Book, Posting Date and Fixed Asset filter were not field-safe.",
   "subagentPlanPolicy": {
     "default": "optional",
     "execution": "plan-only-no-subagents-spawned",
