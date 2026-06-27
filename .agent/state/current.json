@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-27T19:10:00.000Z",
+  "updatedAt": "2026-06-27T19:35:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "fixedassets",
-  "activeCase": "FIXEDASSETS-235-FA-DEPRECIATION-PREVIEW-ONLY-PLAN",
-  "active_case_file": ".agent/state/cases/fixedassets-235-fa-depreciation-preview-only-plan.json",
-  "lastReferenceCase": "FIXEDASSETS-234-HGB-DEPRECIATION-INTEGRATION-SETUP-FIT-REVIEW",
-  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-234-hgb-depreciation-integration-setup-fit-review.json",
-  "mode": "token-efficient-autopilot-fixedassets-depreciation-preview-only-plan",
-  "requiresStrongModel": true,
+  "activeCase": "FIXEDASSETS-236-FA-DEPRECIATION-JOURNAL-ROUTE-READONLY",
+  "active_case_file": ".agent/state/cases/fixedassets-236-fa-depreciation-journal-route-readonly.json",
+  "lastReferenceCase": "FIXEDASSETS-235-FA-DEPRECIATION-PREVIEW-ONLY-PLAN",
+  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-235-fa-depreciation-preview-only-plan.json",
+  "mode": "token-efficient-autopilot-fixedassets-depreciation-route-readonly",
+  "requiresStrongModel": false,
   "requiredPreflightChecks": [
     "agent:preflight",
     "agent:state:validate",
@@ -20,7 +20,8 @@
   ],
   "allowedActions": [
     "read-local-evidence",
-    "compare-fixed-asset-readiness-evidence",
+    "run-playwright-readonly",
+    "open-business-central-readonly",
     "write-compact-evidence",
     "update-state"
   ],
@@ -31,8 +32,6 @@
     "fake-evidence",
     "book-claim-without-evidence",
     "api-shortcut-without-explicit-case-permission",
-    "open-business-central",
-    "run-playwright",
     "company-switch",
     "setup-change",
     "insert-journal-line",
@@ -46,7 +45,7 @@
     "invoice",
     "payment"
   ],
-  "nextStep": "FIXEDASSETS-235: plan a gated depreciation Preview Posting-only case; no BC or Playwright execution yet.",
+  "nextStep": "FIXEDASSETS-236: run a read-only UI route discovery for depreciation journal / Calculate Depreciation; no journal line, no preview, no posting.",
   "subagentPlanPolicy": {
     "default": "optional",
     "execution": "plan-only-no-subagents-spawned",

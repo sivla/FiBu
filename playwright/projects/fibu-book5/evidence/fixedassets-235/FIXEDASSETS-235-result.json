@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-235-fa-depreciation-preview-only-plan-result",
+  "caseId": "FIXEDASSETS-235-FA-DEPRECIATION-PREVIEW-ONLY-PLAN",
+  "source": "local-preflight-plan",
+  "resultStatus": "observed-local-plan",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "bcRun": false,
+  "playwrightRun": false,
+  "postedInThisRun": false,
+  "previewPostingInThisRun": false,
+  "setupChanged": false,
+  "companySwitched": false,
+  "apiShortcut": false,
+  "bookChanged": false,
+  "decision": {
+    "directDepreciationPreviewExecutionUnlocked": false,
+    "readOnlyRouteDiscoveryUnlocked": true,
+    "depreciationJournalLineUnlocked": false,
+    "depreciationPostingUnlocked": false,
+    "nextCase": "FIXEDASSETS-236-FA-DEPRECIATION-JOURNAL-ROUTE-READONLY",
+    "reason": "The acquisition trace and HGB depreciation integration setup-fit are accepted, but the exact UI route for depreciation journal or Calculate Depreciation is not yet proven. A read-only route discovery is needed before any journal line or Preview Posting-only execution."
+  },
+  "proved": [
+    "FA-234 accepted HGB G/L Integration - Depreciation=true as a CRONUS-USA laboratory prerequisite.",
+    "FA-227 proves the posted acquisition trace for FA-CNC-01/G05001/HGB/Acquisition Cost via posted FA Ledger Entries.",
+    "A later depreciation Preview Posting-only run needs an explicit UI route and cleanup/keep plan.",
+    "Posting remains locked."
+  ],
+  "notProved": [
+    "No depreciation journal route was opened in this run.",
+    "No Calculate Depreciation or depreciation journal action was executed.",
+    "No depreciation journal line exists from this run.",
+    "No Preview Posting was executed.",
+    "No depreciation posting trace exists.",
+    "No German final fixed asset proof exists."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-235/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-235/FIXEDASSETS-235-FA-DEPRECIATION-PREVIEW-ONLY-PLAN.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-235/FIXEDASSETS-235-result.json",
+    ".agent/state/current.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/cases/fixedassets-235-fa-depreciation-preview-only-plan.json",
+    ".agent/state/cases/fixedassets-236-fa-depreciation-journal-route-readonly.json",
+    "playwright/projects/fibu-book5/BOOK-CLICK-GUIDE-COVERAGE.md",
+    "playwright/FINDINGS.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-235/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-235/FIXEDASSETS-235-FA-DEPRECIATION-PREVIEW-ONLY-PLAN.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-235/FIXEDASSETS-235-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-234/FIXEDASSETS-234-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-227/FIXEDASSETS-227-result.json"
+  ],
+  "warnings": [
+    "This is a local plan only.",
+    "Do not create a depreciation journal line until a read-only route discovery has proven the page and action context.",
+    "Do not click Preview Posting or Post in FIXEDASSETS-236.",
+    "CRONUS-USA laboratory evidence is not German final proof."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-236-FA-DEPRECIATION-JOURNAL-ROUTE-READONLY",
+      "active_case_file": ".agent/state/cases/fixedassets-236-fa-depreciation-journal-route-readonly.json",
+      "lastReferenceCase": "FIXEDASSETS-235-FA-DEPRECIATION-PREVIEW-ONLY-PLAN",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-235-fa-depreciation-preview-only-plan.json",
+      "requiresStrongModel": false,
+      "nextStep": "FIXEDASSETS-236: run a read-only UI route discovery for depreciation journal / Calculate Depreciation; no journal line, no preview, no posting."
+    },
+    "activeCase": {
+      "status": "observed-local-plan",
+      "lastResult": {
+        "status": "observed-local-plan",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-235/FIXEDASSETS-235-result.json",
+        "summary": "FA-235 keeps direct depreciation Preview Posting execution locked and unlocks only read-only route discovery."
+      },
+      "nextSafeAction": "FIXEDASSETS-236: read-only route discovery; no journal line, Preview Posting or posting."
+    }
+  },
+  "flags": {
+    "noBusinessCentral": true,
+    "noPlaywright": true,
+    "noPosting": true,
+    "noPreviewPosting": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true,
+    "noDraft": true,
+    "noEdit": true,
+    "noDelete": true,
+    "noDepreciationJournalLine": true
+  },
+  "observed": {
+    "reviewedAt": "2026-06-27T19:35:00.000Z",
+    "inputCases": [
+      "FIXEDASSETS-227-FA-GL-JOURNAL-POSTED-TRACE-REVIEW",
+      "FIXEDASSETS-233-HGB-DEPRECIATION-INTEGRATION-SETUP-FIT",
+      "FIXEDASSETS-234-HGB-DEPRECIATION-INTEGRATION-SETUP-FIT-REVIEW"
+    ]
+  },
+  "summary": "FA-235 plans the depreciation path conservatively: direct Preview Posting execution remains locked; the next case is read-only route discovery for the depreciation journal or Calculate Depreciation UI.",
+  "nextStep": "FIXEDASSETS-236: read-only route discovery for depreciation journal / Calculate Depreciation."
+}

@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-236-FA-DEPRECIATION-JOURNAL-ROUTE-READONLY",
+  "status": "planned",
+  "workType": "read-only-evidence-run",
+  "taskClass": "wizard_work",
+  "requiresStrongModel": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Open the fixed asset depreciation journal route read-only and document whether Calculate Depreciation / Preview Posting / Post actions are visible without changing data.",
+  "unlockedBy": {
+    "caseId": "FIXEDASSETS-235-FA-DEPRECIATION-PREVIEW-ONLY-PLAN",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-235/FIXEDASSETS-235-result.json",
+    "decision": "Only read-only route discovery is unlocked; no journal line or preview execution."
+  },
+  "inputs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-235/FIXEDASSETS-235-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-234/FIXEDASSETS-234-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-227/FIXEDASSETS-227-result.json"
+  ],
+  "allowedActions": [
+    "open-business-central-readonly",
+    "run-playwright-readonly",
+    "read-local-evidence",
+    "write-compact-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "company-switch",
+    "setup-change",
+    "insert-journal-line",
+    "delete-journal-line",
+    "edit-journal-line",
+    "calculate-depreciation",
+    "preview-posting",
+    "post",
+    "post-and-print",
+    "confirm-posting-dialog",
+    "ship",
+    "invoice",
+    "payment"
+  ],
+  "safetyGates": [
+    "instance-must-be-MCP_1_20260210",
+    "company-must-be-RM-DEMO",
+    "read-only-navigation-only",
+    "no-journal-line-create-or-edit",
+    "no-calculate-depreciation-click",
+    "no-preview-posting-click",
+    "no-posting",
+    "no-setup-change",
+    "no-company-switch",
+    "no-api-shortcut",
+    "no-german-final-claim"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-236/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-236/FIXEDASSETS-236-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-236/FIXEDASSETS-236-FA-DEPRECIATION-JOURNAL-ROUTE-READONLY.md"
+  ],
+  "acceptanceCriteria": [
+    "Business Central stays in MCP_1_20260210 / RM-DEMO.",
+    "The fixed asset journal or depreciation route context is opened read-only.",
+    "Visible action candidates are classified: Calculate Depreciation, Preview Posting, Post/Post and Print.",
+    "No journal line is inserted or edited.",
+    "No Calculate Depreciation, Preview Posting or Post action is clicked.",
+    "Result decides whether a later Preview Posting-only execution case can be planned."
+  ],
+  "stopConditions": [
+    "Business Central shows a different instance or company.",
+    "The target page requires New/Edit before any route context is visible.",
+    "A dialog requiring OK/Yes/Confirm appears.",
+    "Only a posting-capable route is visible and cannot be classified read-only."
+  ],
+  "nextSafeAction": "Run exactly one read-only route-discovery test; do not create/edit journal lines, calculate depreciation, preview or post.",
+  "createdAt": "2026-06-27T19:35:00.000Z",
+  "updatedAt": "2026-06-27T19:35:00.000Z"
+}

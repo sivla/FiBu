@@ -1,4 +1,17 @@
 
+## FIND-BC-FA-072 AfA-Preview braucht zuerst Routenbild, nicht sofort Journal/Preview
+
+| Feld | Wert |
+|---|---|
+| Bereich | Fixed Assets / AfA-Preview-Planung / Screenshot-QA |
+| Testfall | `FIXEDASSETS-235-FA-DEPRECIATION-PREVIEW-ONLY-PLAN` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-235/FIXEDASSETS-235-result.json`, `playwright/projects/fibu-book5/evidence/fixedassets-235/FIXEDASSETS-235-FA-DEPRECIATION-PREVIEW-ONLY-PLAN.md` |
+| Entscheidung | Direkte AfA-Preview-Ausfuehrung bleibt gesperrt; freigegeben ist nur `FIXEDASSETS-236` als read-only Routenfindung. |
+| nicht passiert | kein BC-Lauf, kein Playwright-Lauf, kein AfA-Journal, kein `Calculate Depreciation`, kein Preview Posting, keine Buchung |
+| naechster Schritt | `FIXEDASSETS-236-FA-DEPRECIATION-JOURNAL-ROUTE-READONLY` |
+
+Fuer Anfaenger ist das wichtig: Selbst wenn Setup und Anschaffung stimmen, muss das Buch zuerst zeigen, wo Business Central die Abschreibungszeile erzeugt oder erwartet. Ein Routenbild verhindert, dass aus einem Setup-Erfolg zu schnell eine Buchungsaktion wird.
+
 ## FIND-BC-FA-071 FA-233 Setup-Fit akzeptiert, aber nur Preview-only-Planung freigegeben
 
 | Feld | Wert |
