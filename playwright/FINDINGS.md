@@ -1,4 +1,19 @@
 
+## FIND-BC-FA-095 AfA-Zielwert-Preflight blockiert durch zu breiten OK-Sichtbarkeitsguard
+
+| Feld | Wert |
+|---|---|
+| Bereich | Fixed Assets / AfA-Route / Request-Page-Sicherheitsguard |
+| Testfall | `FIXEDASSETS-258-FA-DEPRECIATION-TARGET-VALUE-PREFLIGHT-NO-OK` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-258/FIXEDASSETS-258-result.json`, `playwright/projects/fibu-book5/evidence/fixedassets-258/FIXEDASSETS-258-TARGET-VALUE-PREFLIGHT-NO-OK.md` |
+| Ergebnis | `Calculate Depreciation` wurde in `MCP_1_20260210` / `RM-DEMO` geoeffnet, Zielwerte wurden aber nicht geschrieben. |
+| Blocker | `dangerous-confirm-visible-before-depreciationBook` |
+| Einordnung | Vermutlich Playwright-Guard-Blocker: Auf einer BC-Request-Page ist `OK` normal sichtbar. Gefaehrlich ist das Bestaetigen von `OK`, nicht seine reine Sichtbarkeit. |
+| weiterhin gesperrt | Zielwerte schreiben bis Review, `OK`, Preview Posting, Post, Setup Change, Company Switch, API-Abkuerzung |
+| naechster Schritt | `FIXEDASSETS-259`: Lokaler Review, ob der Guard so verfeinert werden darf, dass sichtbares Request-Page-`OK` nicht blockiert, aber Klick/Confirm auf `OK` weiter hart gesperrt bleibt. |
+
+Fuer die Klickanleitung ist das ein wichtiger Automatisierungs-Lernpunkt: Sicherheitsregeln muessen zwischen sichtbaren Schaltflaechen und ausgefuehrten Aktionen unterscheiden. Eine Request Page darf `OK` zeigen; der no-OK-Preflight muss nur garantieren, dass `OK` nicht bestaetigt wird.
+
 ## FIND-BC-FA-094 AfA-Zielparameter fuer no-OK Preflight entschieden
 
 | Feld | Wert |

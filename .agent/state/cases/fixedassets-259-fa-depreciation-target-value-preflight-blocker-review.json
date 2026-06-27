@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-259-FA-DEPRECIATION-TARGET-VALUE-PREFLIGHT-BLOCKER-REVIEW",
+  "status": "planned",
+  "workType": "local-blocker-review",
+  "taskClass": "wizard_work",
+  "requiresStrongModel": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Review the FIXEDASSETS-258 no-OK preflight blocker before another value-write attempt on Calculate Depreciation.",
+  "triggeredBy": {
+    "caseId": "FIXEDASSETS-258-FA-DEPRECIATION-TARGET-VALUE-PREFLIGHT-NO-OK",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-258/FIXEDASSETS-258-result.json",
+    "blocker": "dangerous-confirm-visible-before-depreciationBook"
+  },
+  "hypothesis": "The visible OK button on the request page is a normal page element. The guard is too broad if it blocks merely because OK is visible; it should block only if a dialog or flow requires confirmation, or if Playwright is about to click OK/Yes/Post/Preview.",
+  "allowedActions": [
+    "read-local-evidence",
+    "review-playwright-guard",
+    "classify-blocker",
+    "plan-safe-guard-refinement",
+    "write-compact-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright",
+    "write-request-page-values",
+    "confirm-ok-on-calculate-depreciation",
+    "preview-posting",
+    "post",
+    "setup-change",
+    "company-switch",
+    "api-shortcut-without-explicit-case-permission"
+  ],
+  "safetyGates": [
+    "local-only",
+    "no-business-central",
+    "no-playwright",
+    "no-ok",
+    "no-preview-posting",
+    "no-posting",
+    "no-setup-change",
+    "no-company-switch",
+    "no-api-shortcut"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-259/FIXEDASSETS-259-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-259/FIXEDASSETS-259-TARGET-VALUE-PREFLIGHT-BLOCKER-REVIEW.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-259/README.md"
+  ],
+  "acceptanceCriteria": [
+    "FIXEDASSETS-258 blocker is classified as BC blocker, UI blocker, Playwright guard blocker or evidence blocker.",
+    "The review decides whether the guard may be refined for one more no-OK value preflight.",
+    "The review does not unlock OK, Preview Posting or Post.",
+    "The next case is explicit and case-gated."
+  ],
+  "stopConditions": [
+    "Evidence does not support the blocker classification.",
+    "The next action would require OK, Preview Posting, Post, setup change or company switch.",
+    "The proposed guard refinement could accidentally confirm a dialog."
+  ],
+  "nextSafeAction": "Review FA-258 locally and decide whether to refine the request-page safety guard for a second no-OK preflight.",
+  "createdAt": "2026-06-27T23:12:00.000+02:00",
+  "updatedAt": "2026-06-27T23:12:00.000+02:00"
+}
