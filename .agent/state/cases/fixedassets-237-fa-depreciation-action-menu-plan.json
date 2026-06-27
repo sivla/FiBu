@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-237-FA-DEPRECIATION-ACTION-MENU-PLAN",
+  "status": "planned",
+  "workType": "local-preflight-plan",
+  "taskClass": "judge_work",
+  "requiresStrongModel": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Plan the smallest safe read-only action-menu discovery for Fixed Asset G/L Journals after FA-236 showed Post/New but not Calculate Depreciation or Preview Posting on the first route view.",
+  "unlockedBy": {
+    "caseId": "FIXEDASSETS-236-FA-DEPRECIATION-JOURNAL-ROUTE-READONLY",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-236/FIXEDASSETS-236-result.json",
+    "decision": "Route is visible, but depreciation-specific actions are not visible. Only local planning is unlocked."
+  },
+  "inputs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-236/FIXEDASSETS-236-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-236/010-fa-gl-journal-route-readonly.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-235/FIXEDASSETS-235-result.json"
+  ],
+  "allowedActions": [
+    "read-local-evidence",
+    "plan-readonly-action-menu-discovery",
+    "write-compact-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "open-business-central",
+    "run-playwright",
+    "company-switch",
+    "setup-change",
+    "insert-journal-line",
+    "delete-journal-line",
+    "edit-journal-line",
+    "calculate-depreciation",
+    "preview-posting",
+    "post",
+    "post-and-print",
+    "confirm-posting-dialog",
+    "ship",
+    "invoice",
+    "payment"
+  ],
+  "safetyGates": [
+    "local-only",
+    "no-business-central",
+    "no-playwright",
+    "no-journal-line",
+    "no-calculate-depreciation",
+    "no-preview-posting",
+    "no-posting",
+    "no-setup-change",
+    "no-company-switch",
+    "no-german-final-claim"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-237/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-237/FIXEDASSETS-237-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-237/FIXEDASSETS-237-FA-DEPRECIATION-ACTION-MENU-PLAN.md"
+  ],
+  "acceptanceCriteria": [
+    "Explain why FA-236 does not unlock depreciation Preview Posting execution.",
+    "Define whether the next live read-only case may open only non-executing action dropdowns or menus.",
+    "Define exact stop conditions for Post, Calculate Depreciation, Preview Posting and confirmation dialogs.",
+    "Keep posting and Preview Posting locked.",
+    "Name the next live case only if a safe read-only menu-discovery route is justified."
+  ],
+  "stopConditions": [
+    "Decision would require opening Business Central.",
+    "Decision would click Calculate Depreciation, Preview Posting or Post.",
+    "Decision would create or edit a journal line.",
+    "Evidence is insufficient to distinguish a harmless menu expansion from an executing action."
+  ],
+  "nextSafeAction": "Review FA-236 locally and produce a guarded read-only action-menu discovery plan; no BC or Playwright execution in this case.",
+  "createdAt": "2026-06-27T20:24:19.000+02:00",
+  "updatedAt": "2026-06-27T20:24:19.000+02:00"
+}

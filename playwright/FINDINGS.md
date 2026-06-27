@@ -1,4 +1,19 @@
 
+## FIND-BC-FA-073 AfA-Journalroute sichtbar, aber AfA-/Preview-Aktion noch nicht
+
+| Feld | Wert |
+|---|---|
+| Bereich | Fixed Assets / AfA-Journal / Action-Discovery |
+| Testfall | `FIXEDASSETS-236-FA-DEPRECIATION-JOURNAL-ROUTE-READONLY` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-236/FIXEDASSETS-236-result.json`, `playwright/projects/fibu-book5/evidence/fixedassets-236/010-fa-gl-journal-route-readonly.json` |
+| Beobachtung | Page `5628` / `Fixed Asset G/L Journals` ist read-only erreichbar; Journalspalten und vorhandene Erwerbsspur sind sichtbar. |
+| sichtbar | `Post`, `New`, vorhandene `G05001`/`FA-CNC-01`/`Acquisition Cost`-Signale |
+| nicht sichtbar | `Calculate Depreciation`, `Preview Posting`, `Post and Print` |
+| Entscheidung | Keine Preview-only-Ausfuehrung freigeben; zuerst `FIXEDASSETS-237` als lokaler Plan fuer sichere read-only Action-Menue-Aufklaerung. |
+| nicht passiert | keine Journalzeile, kein `Calculate Depreciation`, kein Preview Posting, kein `Post`, kein Setup, kein Company Switch, keine API-Abkuerzung, keine Buchaenderung |
+
+Fuer Anfaenger ist das ein guter Sicherheitsbefund: Eine Journalroute mit sichtbarem `Post` ist noch keine Abschreibungsroute. Die Anleitung muss erst zeigen, wo Business Central die Abschreibung erzeugt oder die Buchungsvorschau anbietet, ohne aus Versehen eine Buchungsaktion auszufuehren.
+
 ## FIND-BC-FA-072 AfA-Preview braucht zuerst Routenbild, nicht sofort Journal/Preview
 
 | Feld | Wert |

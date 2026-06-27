@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "FIXEDASSETS-236-FA-DEPRECIATION-JOURNAL-ROUTE-READONLY",
-  "status": "planned",
+  "status": "observed-readonly-route",
   "workType": "read-only-evidence-run",
   "taskClass": "wizard_work",
   "requiresStrongModel": false,
@@ -78,7 +78,20 @@
     "A dialog requiring OK/Yes/Confirm appears.",
     "Only a posting-capable route is visible and cannot be classified read-only."
   ],
-  "nextSafeAction": "Run exactly one read-only route-discovery test; do not create/edit journal lines, calculate depreciation, preview or post.",
+  "lastResult": {
+    "status": "observed",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-236/FIXEDASSETS-236-result.json",
+    "summary": "Fixed Asset G/L Journals Page 5628 was visible in MCP_1_20260210/RM-DEMO. Post/New were visible; Calculate Depreciation and Preview Posting were not visible on the first route view. No journal line, Calculate Depreciation, Preview Posting or posting was executed."
+  },
+  "routeDecision": {
+    "fixedAssetGlJournalVisible": true,
+    "calculateDepreciationVisible": false,
+    "previewPostingVisible": false,
+    "postVisible": true,
+    "previewOnlyExecutionPlanningUnlocked": false,
+    "nextCase": "FIXEDASSETS-237-FA-DEPRECIATION-ACTION-MENU-PLAN"
+  },
+  "nextSafeAction": "FIXEDASSETS-237: plan a safe read-only action-menu discovery path before any Calculate Depreciation or Preview Posting click.",
   "createdAt": "2026-06-27T19:35:00.000Z",
-  "updatedAt": "2026-06-27T19:35:00.000Z"
+  "updatedAt": "2026-06-27T20:24:19.000+02:00"
 }
