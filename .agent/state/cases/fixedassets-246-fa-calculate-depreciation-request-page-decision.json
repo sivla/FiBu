@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-246-FA-CALCULATE-DEPRECIATION-REQUEST-PAGE-DECISION",
+  "status": "planned",
+  "workType": "local-route-decision",
+  "taskClass": "wizard_work",
+  "requiresStrongModel": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Decide locally whether the FA-245 no-OK request-page field proof is sufficient for the book control-point explanation or whether a separate gated Calculate Depreciation execution case may be planned.",
+  "unlockedBy": {
+    "caseId": "FIXEDASSETS-245-FA-CALCULATE-DEPRECIATION-REQUEST-PAGE-PREFLIGHT",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-245/FIXEDASSETS-245-result.json",
+    "decision": "FA-245 safely opened the Calculate Depreciation request page, proved visible labels and closed by Escape without OK, journal line, Preview Posting or posting."
+  },
+  "inputs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-245/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-245/FIXEDASSETS-245-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-245/FIXEDASSETS-245-FA-CALCULATE-DEPRECIATION-REQUEST-PAGE-PREFLIGHT.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-245/010-request-page-preflight.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-245/010-request-page-preflight-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-245/010-request-page-preflight.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-245/010-request-page-preflight-text.txt"
+  ],
+  "allowedActions": [
+    "read-local-evidence",
+    "local-route-decision",
+    "write-compact-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "business-central-execution",
+    "playwright-execution",
+    "company-switch",
+    "setup-change",
+    "new-fixed-asset",
+    "edit-fixed-asset",
+    "delete-fixed-asset",
+    "insert-journal-line",
+    "delete-journal-line",
+    "edit-journal-line",
+    "confirm-ok",
+    "calculate-depreciation",
+    "create-depreciation-journal-lines",
+    "preview-posting",
+    "post",
+    "post-and-print",
+    "confirm-posting-dialog",
+    "ship",
+    "invoice",
+    "payment"
+  ],
+  "safetyGates": [
+    "local-only-review",
+    "no-business-central-execution",
+    "no-playwright-execution",
+    "no-ok",
+    "no-calculate-depreciation",
+    "no-journal-line-created",
+    "no-preview-posting",
+    "no-posting",
+    "no-setup-change",
+    "no-company-switch",
+    "no-api-shortcut",
+    "no-book-claim-without-evidence"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-246/FIXEDASSETS-246-DECISION.md"
+  ],
+  "acceptanceCriteria": [
+    "FA-245 evidence is classified as a request-page control-point proof, not as depreciation execution proof.",
+    "Decision states whether the book can explain the request page now.",
+    "Decision states whether a later execution case is needed and which gates must unlock it.",
+    "No BC/Playwright run occurs in FA-246."
+  ],
+  "stopConditions": [
+    "Any live Business Central or Playwright action would be required.",
+    "Evidence is insufficient to distinguish request-page proof from execution proof.",
+    "A book claim would imply depreciation was calculated."
+  ],
+  "nextSafeAction": "Read FA-245 evidence and write a compact local decision before planning any Calculate Depreciation execution gate.",
+  "createdAt": "2026-06-27T21:40:38.071+02:00",
+  "updatedAt": "2026-06-27T21:40:38.071+02:00"
+}

@@ -1,4 +1,18 @@
 
+## FIND-BC-FA-082 Calculate Depreciation Request Page sichtbar, OK bleibt Gate
+
+| Feld | Wert |
+|---|---|
+| Bereich | Fixed Assets / AfA-Route / Request-Page-Preflight |
+| Testfall | `FIXEDASSETS-245-FA-CALCULATE-DEPRECIATION-REQUEST-PAGE-PREFLIGHT` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-245/FIXEDASSETS-245-result.json`, `playwright/projects/fibu-book5/evidence/fixedassets-245/010-request-page-preflight.json` |
+| Beobachtung | In `MCP_1_20260210` / `RM-DEMO` oeffnet der gezielte Tell-Me-Treffer `Calculate Depreciation` eine Request Page mit sichtbaren Signalen `Depreciation Book`, `Posting Date`, `Document No.`, `Posting Description`, `OK` und `Abbrechen`. |
+| bewiesen | Request Page sichtbar, Pflichtfeld-/Parameterkontext als Labor-Kontrollpunkt belegbar, `OK` sichtbar aber nicht bestaetigt, Seite per `Escape` geschlossen |
+| nicht bewiesen | keine AfA berechnet, keine FA-G/L-Journalzeile erzeugt, kein Preview Posting, keine Buchung, keine Postenspur, kein deutscher Finalnachweis |
+| naechster Schritt | `FIXEDASSETS-246`: lokal entscheiden, ob dieser No-OK-Kontrollpunkt fuer die Bucherklaerung reicht oder ob ein spaeterer gegateter Ausfuehrungslauf geplant werden darf. |
+
+Fuer die Klickanleitung bedeutet das: Vor jeder AfA-Ausfuehrung muss die Request Page als eigener Kontrollpunkt erklaert werden. `OK` ist die fachliche Grenze zwischen Lesen/Pruefen und Batch-Ausfuehrung.
+
 ## FIND-BC-FA-081 Tell-Me zeigt Calculate Depreciation als Seiten-und-Aufgaben-Kandidat
 
 | Feld | Wert |
