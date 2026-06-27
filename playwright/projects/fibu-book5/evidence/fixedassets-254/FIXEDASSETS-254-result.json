@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixed-assets-depreciation-parameter-preflight-blocker-review",
+  "caseId": "FIXEDASSETS-254-FA-DEPRECIATION-PARAMETER-PREFLIGHT-BLOCKER-REVIEW",
+  "source": "local-evidence-review",
+  "resultStatus": "observed",
+  "branch": "codex/token-efficient-autopilot-state",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "bcRun": false,
+  "playwrightRun": false,
+  "reviewedEvidence": [
+    {
+      "caseId": "FIXEDASSETS-251-FA-DEPRECIATION-REQUEST-PARAMETER-DIAGNOSIS",
+      "finding": "The Calculate Depreciation request page showed labels and last-used option signals, but the FADEP value was not safely associated with Document No. yet."
+    },
+    {
+      "caseId": "FIXEDASSETS-252-FA-DEPRECIATION-REPEAT-EXECUTION-DECISION",
+      "finding": "Repeat OK remained locked until a no-OK request-page parameter preflight proved all target parameters field-safely."
+    },
+    {
+      "caseId": "FIXEDASSETS-253-FA-DEPRECIATION-PARAMETER-PREFLIGHT-NO-OK",
+      "finding": "Document No. was field-safe and changed without OK, but Depreciation Book, Posting Date and Fixed Asset filter were not field-safe."
+    }
+  ],
+  "decision": {
+    "repeatCalculateDepreciationOkAllowedNow": false,
+    "reason": "A safe repeat execution requires all target request-page parameters. FA-253 proved only Document No.; the other parameters were visible as labels but not field-safe controls.",
+    "wrongAssumptionToAvoid": "Do not assume that visible request-page labels imply accessible textbox names or filled target values.",
+    "nextRequiredGate": "no-OK request-page geometry and label-proximity control map"
+  },
+  "rootCause": {
+    "category": "playwright-request-page-field-mapping",
+    "summary": "Business Central request pages can render labels, filters and inputs as separate DOM/control objects. The accessible name based textbox probe is too narrow for this request page.",
+    "evidenceSignals": [
+      "FA-253 controlsAfterProbe contained only a last-used-options input and the Document No. input.",
+      "Rows/text contained Depreciation Book, Posting Date and Filter: Fixed Asset labels.",
+      "The target fields were not located through getByRole('textbox', { name: ... })."
+    ]
+  },
+  "nextCase": {
+    "caseId": "FIXEDASSETS-255-FA-DEPRECIATION-REQUEST-PAGE-GEOMETRY-MAP-NO-OK",
+    "workType": "guarded-readonly-control-map",
+    "goal": "Open Calculate Depreciation without OK and capture a full request-page control geometry/label-proximity map, including all visible inputs, labels, buttons, filter controls and a short tab/focus sequence.",
+    "mustNotDo": [
+      "confirm OK",
+      "preview posting",
+      "post",
+      "setup change",
+      "company switch",
+      "write target parameter values unless a later case explicitly unlocks that"
+    ],
+    "successCriteria": [
+      "Depreciation Book control candidate has coordinates or focus association next to its label.",
+      "Posting Date control candidate has coordinates or focus association next to its label.",
+      "Fixed Asset No. filter control candidate has coordinates or focus association in the Fixed Asset filter section.",
+      "Document No. remains mapped as a control but is not treated as sufficient alone."
+    ]
+  },
+  "proved": [
+    "FA-253 does not unlock repeat OK.",
+    "Visible request-page labels are not enough for field-safe parameter proof.",
+    "The next useful improvement is a no-OK geometry/label-proximity control map, not another Calculate Depreciation execution.",
+    "No Business Central or Playwright action occurred in FA-254."
+  ],
+  "notProved": [
+    "No Depreciation Book field-safe control mapping.",
+    "No Posting Date field-safe control mapping.",
+    "No Fixed Asset filter field-safe control mapping.",
+    "No depreciation journal line.",
+    "No Preview Posting.",
+    "No depreciation posting.",
+    "No German final proof."
+  ],
+  "safety": {
+    "noBusinessCentralOpened": true,
+    "noPlaywrightRun": true,
+    "noOkConfirmed": true,
+    "noDepreciationCalculated": true,
+    "noJournalLineCreated": true,
+    "noPreviewPosting": true,
+    "noPost": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-254/",
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-254-fa-depreciation-parameter-preflight-blocker-review.json",
+    ".agent/state/cases/fixedassets-255-fa-depreciation-request-page-geometry-map-no-ok.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    "playwright/FINDINGS.md",
+    "playwright/projects/fibu-book5/BOOK-CLICK-GUIDE-COVERAGE.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-254/FIXEDASSETS-254-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-254/FIXEDASSETS-254-PARAMETER-BLOCKER-REVIEW.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-254/README.md"
+  ],
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-255-FA-DEPRECIATION-REQUEST-PAGE-GEOMETRY-MAP-NO-OK",
+      "active_case_file": ".agent/state/cases/fixedassets-255-fa-depreciation-request-page-geometry-map-no-ok.json",
+      "lastReferenceCase": "FIXEDASSETS-254-FA-DEPRECIATION-PARAMETER-PREFLIGHT-BLOCKER-REVIEW",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-254-fa-depreciation-parameter-preflight-blocker-review.json",
+      "nextStep": "FIXEDASSETS-255: run a guarded no-OK request-page geometry/label-proximity control map for Calculate Depreciation. Do not confirm OK and do not write target values."
+    },
+    "coverage": {
+      "activeArea": "fixedassets",
+      "latestReviewCase": "FIXEDASSETS-254-FA-DEPRECIATION-PARAMETER-PREFLIGHT-BLOCKER-REVIEW",
+      "nextCase": "FIXEDASSETS-255-FA-DEPRECIATION-REQUEST-PAGE-GEOMETRY-MAP-NO-OK",
+      "depreciationReadiness": "FA-254 keeps repeat OK locked and chooses a no-OK geometry/label-proximity control map as the next smallest field-safe discovery strategy."
+    }
+  },
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "reason": "Local blocker review only: execution stays locked and the next case is a safer field-mapping probe.",
+  "observed": {
+    "timestamp": "2026-06-27T22:43:12.000+02:00"
+  }
+}

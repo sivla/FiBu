@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "FIXEDASSETS-254-FA-DEPRECIATION-PARAMETER-PREFLIGHT-BLOCKER-REVIEW",
-  "status": "planned",
+  "status": "observed",
   "workType": "local-blocker-review",
   "taskClass": "judge_work",
   "requiresStrongModel": true,
@@ -74,7 +74,32 @@
     "The review would rely on visible text without field ownership.",
     "The review would require setup change, posting or company switch."
   ],
-  "nextSafeAction": "Create a local blocker review and plan the next no-OK field-safe parameter discovery strategy.",
+  "result": {
+    "resultStatus": "observed",
+    "summary": "FA-254 reviewed FA-251/252/253 locally. Repeat OK remains locked. The next smallest safe strategy is a no-OK request-page geometry and label-proximity control map because visible labels were not enough for field-safe parameter ownership.",
+    "decision": {
+      "repeatCalculateDepreciationOkAllowedNow": false,
+      "nextCase": "FIXEDASSETS-255-FA-DEPRECIATION-REQUEST-PAGE-GEOMETRY-MAP-NO-OK",
+      "nextStrategy": "no-OK geometry/label-proximity control map"
+    },
+    "evidenceRefs": [
+      "playwright/projects/fibu-book5/evidence/fixedassets-254/FIXEDASSETS-254-result.json",
+      "playwright/projects/fibu-book5/evidence/fixedassets-254/FIXEDASSETS-254-PARAMETER-BLOCKER-REVIEW.md",
+      "playwright/projects/fibu-book5/evidence/fixedassets-254/README.md"
+    ],
+    "safety": {
+      "businessCentralOpened": false,
+      "playwrightRun": false,
+      "okConfirmed": false,
+      "previewPosting": false,
+      "posted": false,
+      "setupChanged": false,
+      "companySwitched": false,
+      "apiShortcut": false,
+      "bookChanged": false
+    }
+  },
+  "nextSafeAction": "FIXEDASSETS-255: run a guarded no-OK request-page geometry/label-proximity control map; do not confirm OK and do not write target values.",
   "createdAt": "2026-06-27T22:33:30.302+02:00",
-  "updatedAt": "2026-06-27T22:33:30.302+02:00"
+  "updatedAt": "2026-06-27T22:43:12.000+02:00"
 }

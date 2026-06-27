@@ -1,4 +1,18 @@
 
+## FIND-BC-FA-091 AfA-Request-Page braucht Geometrie-/Label-Map statt OK-Wiederholung
+
+| Feld | Wert |
+|---|---|
+| Bereich | Fixed Assets / AfA-Route / Request-Page-Feldmapping |
+| Testfall | `FIXEDASSETS-254-FA-DEPRECIATION-PARAMETER-PREFLIGHT-BLOCKER-REVIEW` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-254/FIXEDASSETS-254-result.json`, `playwright/projects/fibu-book5/evidence/fixedassets-254/FIXEDASSETS-254-PARAMETER-BLOCKER-REVIEW.md` |
+| Entscheidung | Kein erneuter `OK`-Klick. Der naechste Schritt ist eine no-OK Geometrie-/Label-Naehrenkarte der Request Page. |
+| Grund | FA-253 hat nur `Document No.` feldsicher bewiesen. `Depreciation Book`, `Posting Date` und Anlagenfilter waren sichtbar beschriftet, aber nicht als Controls feldsicher zugeordnet. |
+| weiterhin gesperrt | `OK`, Zielwerte schreiben, Preview Posting, Post, Setup Change, Company Switch, API-Abkuerzung |
+| naechster Schritt | `FIXEDASSETS-255`: Request Page ohne `OK` oeffnen und Inputs/Labels/Buttons/Filter mit Koordinaten und kurzer Tab-/Focus-Sequenz kartieren. |
+
+Fuer Playwright ist das ein wiederverwendbarer BC-Lernpunkt: Request-Pages koennen sichtbare Labels getrennt von den eigentlichen Eingaben rendern. Wenn `getByRole(..., { name })` nicht reicht, braucht der naechste sichere Schritt eine strukturierte Control-Map, nicht einen geratenen Klick.
+
 ## FIND-BC-FA-090 AfA-Parameter-Preflight beweist nur Document No. feldsicher
 
 | Feld | Wert |

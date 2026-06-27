@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-255-FA-DEPRECIATION-REQUEST-PAGE-GEOMETRY-MAP-NO-OK",
+  "status": "planned",
+  "workType": "guarded-readonly-control-map",
+  "taskClass": "wizard_work",
+  "requiresStrongModel": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Open Calculate Depreciation without OK and capture a full request-page control geometry/label-proximity map for Depreciation Book, Posting Date, Document No. and Fixed Asset filter.",
+  "unlockedBy": {
+    "caseId": "FIXEDASSETS-254-FA-DEPRECIATION-PARAMETER-PREFLIGHT-BLOCKER-REVIEW",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-254/FIXEDASSETS-254-result.json",
+    "decision": "Repeat OK remains locked; field-safe parameter discovery needs a geometry/label-proximity map before any later value-setting or execution."
+  },
+  "allowedActions": [
+    "open-business-central",
+    "run-playwright-readonly",
+    "open-tell-me-search",
+    "choose-calculate-depreciation-related-link",
+    "inspect-calculate-depreciation-request-page",
+    "capture-visible-control-geometry",
+    "capture-label-control-proximity",
+    "capture-short-tab-focus-sequence",
+    "write-compact-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "company-switch",
+    "setup-change",
+    "new-fixed-asset",
+    "edit-fixed-asset",
+    "delete-fixed-asset",
+    "write-target-request-page-values",
+    "confirm-ok-on-calculate-depreciation",
+    "repeat-calculate-depreciation-without-review",
+    "preview-posting",
+    "post",
+    "post-and-print",
+    "confirm-posting-dialog",
+    "ship",
+    "invoice",
+    "payment"
+  ],
+  "safetyGates": [
+    "instance-must-be-MCP_1_20260210",
+    "company-must-be-RM-DEMO",
+    "request-page-must-be-Calculate-Depreciation",
+    "no-value-write",
+    "no-ok",
+    "no-preview-posting",
+    "no-posting",
+    "no-setup-change",
+    "no-company-switch",
+    "no-api-shortcut",
+    "no-book-claim-without-evidence"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-255/FIXEDASSETS-255-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-255/010-request-page-control-map.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-255/FIXEDASSETS-255-GEOMETRY-MAP-NO-OK.md"
+  ],
+  "acceptanceCriteria": [
+    "Business Central remains in MCP_1_20260210 / RM-DEMO.",
+    "Calculate Depreciation request page is visible.",
+    "Control map contains all visible inputs/buttons/labels in the request page area with coordinates.",
+    "At least one candidate is proposed or explicitly rejected for Depreciation Book, Posting Date, Document No. and Fixed Asset No. filter.",
+    "No target values are written.",
+    "OK is visible but not confirmed.",
+    "No Preview Posting or Post occurs."
+  ],
+  "stopConditions": [
+    "Instance or company does not match.",
+    "Tell-Me result is ambiguous.",
+    "Request page cannot be identified.",
+    "Any dialog asks for OK, Preview Posting, Post, setup change or company switch.",
+    "The test would need to write a target value to continue."
+  ],
+  "nextSafeAction": "Implement and run a no-OK request-page geometry/label-proximity control map; do not write values and do not confirm OK.",
+  "createdAt": "2026-06-27T22:43:12.000+02:00",
+  "updatedAt": "2026-06-27T22:43:12.000+02:00"
+}
