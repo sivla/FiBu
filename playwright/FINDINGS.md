@@ -1,4 +1,19 @@
 
+## FIND-BC-FA-079 FA-CNC-01-Karte zeigt keinen AfA-Berechnen-Pfad
+
+| Feld | Wert |
+|---|---|
+| Bereich | Fixed Assets / AfA-Route / Anlagenkarte |
+| Testfall | `FIXEDASSETS-242-FA-LIST-DEPRECIATION-ACTION-INVENTORY-READONLY` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-242/FIXEDASSETS-242-result.json`, `playwright/projects/fibu-book5/evidence/fixedassets-242/010-action-inventory.json` |
+| Beobachtung | Page `5600` / `Fixed Asset Card` fuer `FA-CNC-01` ist read-only sichtbar; ein nicht-ausfuehrender `More Options`-Bereich wurde geoeffnet. |
+| sichtbar | `FA-CNC-01`, `Acquire` als deaktivierte Aktion, `Acquisition Cost = 120.000,00` |
+| nicht sichtbar | `Calculate Depreciation` / `AfA berechnen`, `Preview Posting`, `Post Acquisition Cost` |
+| Entscheidung | Journal- und Karten-Dropdown-Probing nicht wiederholen. Naechster Schritt ist `FIXEDASSETS-243` als lokaler Routenentscheid fuer eine wirklich andere AfA-Route. |
+| nicht passiert | kein Menueeintrag geklickt, kein `Calculate Depreciation`, kein Preview Posting, kein Post, kein Setup, kein Draft, kein Edit, keine Buchaenderung |
+
+Fuer die Klickanleitung ist das ein wichtiger Debugging-Befund: Die Anlagenkarte erklaert Bestand und Anschaffungswert, aber nicht automatisch den Stapellauf oder die Aktion zur AfA-Berechnung. Die naechste Anleitung muss daher erst den richtigen Einstieg fuer `AfA berechnen` finden, bevor Preview oder Buchung sinnvoll sind.
+
 ## FIND-BC-FA-078 AfA berechnen gehoert wahrscheinlich in den Anlagen-Kontext
 
 | Feld | Wert |

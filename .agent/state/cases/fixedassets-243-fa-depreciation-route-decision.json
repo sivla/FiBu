@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-243-FA-DEPRECIATION-ROUTE-DECISION",
+  "status": "planned",
+  "workType": "local-evidence-review",
+  "taskClass": "judge_work",
+  "requiresStrongModel": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Review the FA-236/238/240/241/242 depreciation-route evidence and choose a distinct next AfA route without repeating journal/card dropdown probing.",
+  "unlockedBy": {
+    "caseId": "FIXEDASSETS-242-FA-LIST-DEPRECIATION-ACTION-INVENTORY-READONLY",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-242/FIXEDASSETS-242-result.json",
+    "decision": "Fixed Assets / FA-CNC-01 card inventory did not expose Calculate Depreciation; it only confirmed card context and disabled Acquire."
+  },
+  "inputs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-236/FIXEDASSETS-236-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-238/FIXEDASSETS-238-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-240/FIXEDASSETS-240-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-241/FIXEDASSETS-241-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-242/FIXEDASSETS-242-result.json",
+    "playwright/projects/fibu-book5/BC-PAGE-ACTION-MAP.json"
+  ],
+  "allowedActions": [
+    "read-local-evidence",
+    "read-bc-page-action-map",
+    "local-route-decision",
+    "write-compact-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "business-central-execution",
+    "playwright-execution",
+    "api-shortcut-without-explicit-case-permission",
+    "company-switch",
+    "setup-change",
+    "new-fixed-asset",
+    "edit-fixed-asset",
+    "delete-fixed-asset",
+    "insert-journal-line",
+    "delete-journal-line",
+    "edit-journal-line",
+    "calculate-depreciation",
+    "post-acquisition-cost",
+    "preview-posting",
+    "post",
+    "post-and-print",
+    "confirm-posting-dialog",
+    "ship",
+    "invoice",
+    "payment"
+  ],
+  "safetyGates": [
+    "local-review-only",
+    "no-business-central-execution",
+    "no-playwright-execution",
+    "do-not-repeat-journal-dropdown-probing",
+    "do-not-repeat-fa-cnc-01-card-more-options-probing",
+    "choose-distinct-next-route",
+    "no-german-final-claim"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-243/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-243/FIXEDASSETS-243-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-243/FIXEDASSETS-243-FA-DEPRECIATION-ROUTE-DECISION.md"
+  ],
+  "acceptanceCriteria": [
+    "The review states that FA-242 proved FA-CNC-01 card context but not Calculate Depreciation.",
+    "The next route is distinct from Fixed Asset G/L Journals More Options and FA-CNC-01 card More Options.",
+    "No BC, Playwright, setup, draft, Preview Posting or posting is run in this case.",
+    "The next case is concrete enough for a later bounded run."
+  ],
+  "stopConditions": [
+    "A new UI run would be needed to decide.",
+    "The decision would require clicking Calculate Depreciation, Preview Posting or Post.",
+    "The evidence does not support a distinct next route."
+  ],
+  "nextSafeAction": "Review local evidence and decide whether the next distinct route should inspect a report/request page, Tell-Me search result metadata, or Microsoft-documented Calculate Depreciation entry point before any execution.",
+  "createdAt": "2026-06-27T21:09:45.528+02:00",
+  "updatedAt": "2026-06-27T21:09:45.528+02:00"
+}
