@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixed-assets-calculate-depreciation-request-page-decision",
+  "caseId": "FIXEDASSETS-246-FA-CALCULATE-DEPRECIATION-REQUEST-PAGE-DECISION",
+  "source": "local-route-decision",
+  "resultStatus": "observed",
+  "branch": "codex/token-efficient-autopilot-state",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "basedOn": {
+    "caseId": "FIXEDASSETS-245-FA-CALCULATE-DEPRECIATION-REQUEST-PAGE-PREFLIGHT",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-245/FIXEDASSETS-245-result.json",
+    "requestPageLikelyOpen": true,
+    "visibleButtons": [
+      "Depreciation Book",
+      "Posting Date",
+      "Document No.",
+      "Posting Description",
+      "OK",
+      "Abbrechen"
+    ],
+    "closedByEscape": true,
+    "safety": {
+      "noOkConfirmed": true,
+      "noDepreciationCalculated": true,
+      "noJournalLineCreated": true,
+      "noWrite": true,
+      "noPost": true,
+      "noPreview": true,
+      "noDraft": true,
+      "noSetupChange": true,
+      "noCompanySwitch": true,
+      "noApiShortcut": true,
+      "noBookChange": true
+    }
+  },
+  "decision": {
+    "requestPageProofAcceptedForBookControlPoint": true,
+    "depreciationExecutionProved": false,
+    "journalLineCreationProved": false,
+    "executionCaseMayBePlanned": true,
+    "executionCaseMustNotBeRunWithoutSeparateGate": true,
+    "nextCase": "FIXEDASSETS-247-FA-CALCULATE-DEPRECIATION-EXECUTION-GATE-PLAN"
+  },
+  "proved": [
+    "FA-245 is sufficient to explain the Calculate Depreciation request page as a no-OK pre-execution control point.",
+    "The book may explain that Depreciation Book, Posting Date, Document No. and Posting Description must be checked before OK.",
+    "OK remains the boundary between read-only verification and batch execution.",
+    "A separate gated case is required before Calculate Depreciation may be executed."
+  ],
+  "notProved": [
+    "No depreciation was calculated.",
+    "No Fixed Asset G/L Journal line was created.",
+    "No Preview Posting was opened.",
+    "No posting or ledger trace exists for depreciation.",
+    "No German final proof exists."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-246/FIXEDASSETS-246-DECISION.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-246/FIXEDASSETS-246-result.json",
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-246-fa-calculate-depreciation-request-page-decision.json",
+    ".agent/state/cases/fixedassets-247-fa-calculate-depreciation-execution-gate-plan.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    "playwright/FINDINGS.md",
+    "playwright/projects/fibu-book5/BOOK-CLICK-GUIDE-COVERAGE.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-246/FIXEDASSETS-246-DECISION.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-246/FIXEDASSETS-246-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-245/FIXEDASSETS-245-result.json"
+  ],
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-247-FA-CALCULATE-DEPRECIATION-EXECUTION-GATE-PLAN",
+      "active_case_file": ".agent/state/cases/fixedassets-247-fa-calculate-depreciation-execution-gate-plan.json",
+      "lastReferenceCase": "FIXEDASSETS-246-FA-CALCULATE-DEPRECIATION-REQUEST-PAGE-DECISION",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-246-fa-calculate-depreciation-request-page-decision.json",
+      "nextStep": "FIXEDASSETS-247: plan the gated Calculate Depreciation execution case with explicit OK/journal-line trace, cleanup/keep decision and stop conditions before any BC execution."
+    },
+    "coverage": {
+      "activeArea": "fixedassets",
+      "latestDecisionCase": "FIXEDASSETS-246-FA-CALCULATE-DEPRECIATION-REQUEST-PAGE-DECISION",
+      "nextCase": "FIXEDASSETS-247-FA-CALCULATE-DEPRECIATION-EXECUTION-GATE-PLAN",
+      "depreciationReadiness": "FA-246 accepts FA-245 as a book-ready request-page control point. Execution is not proven; next is a gated execution plan before any OK click."
+    }
+  },
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "reason": "Local decision only. It accepts the no-OK request-page proof for book explanation and requires a separate execution gate before any Calculate Depreciation run."
+}

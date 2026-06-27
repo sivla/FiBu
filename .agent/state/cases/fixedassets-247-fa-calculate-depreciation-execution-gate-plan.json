@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-247-FA-CALCULATE-DEPRECIATION-EXECUTION-GATE-PLAN",
+  "status": "planned",
+  "workType": "local-execution-gate-plan",
+  "taskClass": "wizard_work",
+  "requiresStrongModel": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Plan a safe gated Calculate Depreciation execution case before any OK click or journal-line creation is attempted.",
+  "unlockedBy": {
+    "caseId": "FIXEDASSETS-246-FA-CALCULATE-DEPRECIATION-REQUEST-PAGE-DECISION",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-246/FIXEDASSETS-246-result.json",
+    "decision": "FA-246 accepts the request page as a book control point but requires a separate execution gate before OK."
+  },
+  "inputs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-246/FIXEDASSETS-246-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-246/FIXEDASSETS-246-DECISION.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-245/FIXEDASSETS-245-result.json"
+  ],
+  "allowedActions": [
+    "read-local-evidence",
+    "local-execution-gate-plan",
+    "write-compact-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "business-central-execution",
+    "playwright-execution",
+    "company-switch",
+    "setup-change",
+    "new-fixed-asset",
+    "edit-fixed-asset",
+    "delete-fixed-asset",
+    "insert-journal-line-without-gate",
+    "delete-journal-line-without-gate",
+    "edit-journal-line-without-gate",
+    "confirm-ok-without-gate",
+    "calculate-depreciation-without-gate",
+    "create-depreciation-journal-lines-without-trace-plan",
+    "preview-posting",
+    "post",
+    "post-and-print",
+    "confirm-posting-dialog",
+    "ship",
+    "invoice",
+    "payment"
+  ],
+  "safetyGates": [
+    "local-only-plan",
+    "no-business-central-execution",
+    "no-playwright-execution",
+    "no-ok",
+    "no-calculate-depreciation",
+    "no-journal-line-created",
+    "no-preview-posting",
+    "no-posting",
+    "no-setup-change",
+    "no-company-switch",
+    "no-api-shortcut",
+    "no-book-claim-without-evidence"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-247/FIXEDASSETS-247-EXECUTION-GATE-PLAN.md"
+  ],
+  "acceptanceCriteria": [
+    "Plan states exactly what a later OK-click execution case may do.",
+    "Plan states expected journal-line evidence and cleanup/keep decision.",
+    "Plan states stop conditions for unexpected dialogs or missing fields.",
+    "No BC/Playwright run occurs in FA-247."
+  ],
+  "stopConditions": [
+    "Any live Business Central or Playwright action would be required.",
+    "The execution plan would allow OK without journal-line trace plan.",
+    "The execution plan would imply posting or Preview Posting without a later separate case."
+  ],
+  "nextSafeAction": "Write a compact execution gate plan for a future Calculate Depreciation run; do not execute it yet.",
+  "createdAt": "2026-06-27T21:45:38.122+02:00",
+  "updatedAt": "2026-06-27T21:45:38.122+02:00"
+}

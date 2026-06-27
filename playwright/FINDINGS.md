@@ -1,4 +1,18 @@
 
+## FIND-BC-FA-083 Request Page ist Buch-Kontrollpunkt, nicht AfA-Ausfuehrung
+
+| Feld | Wert |
+|---|---|
+| Bereich | Fixed Assets / AfA-Route / lokaler Gate-Entscheid |
+| Testfall | `FIXEDASSETS-246-FA-CALCULATE-DEPRECIATION-REQUEST-PAGE-DECISION` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-246/FIXEDASSETS-246-result.json`, `playwright/projects/fibu-book5/evidence/fixedassets-246/FIXEDASSETS-246-DECISION.md` |
+| Entscheidung | FA-245 reicht als Buch-Kontrollpunkt fuer die Request Page `Calculate Depreciation`; es reicht nicht als Nachweis fuer AfA-Ausfuehrung, Journalzeile, Preview Posting oder Buchung. |
+| Buchwirkung | Kapitel 21 darf erklaeren: Vor `OK` prueft man AfA-Buch, Buchungsdatum, Belegnummer und Parameter. `OK` bleibt die Grenze zur Batch-Ausfuehrung. |
+| weiterhin gesperrt | `OK`, AfA-Berechnung, Journalzeile, Preview Posting, Post, deutscher Finalnachweis |
+| naechster Schritt | `FIXEDASSETS-247`: erst lokaler Ausfuehrungsgate-Plan mit Journalzeilen-Trace und Cleanup-/Keep-Entscheid; noch keine Ausfuehrung. |
+
+Fuer die Klickanleitung trennt das sauber Bildwert und Prozesswirkung: Ein Request-Page-Screenshot zeigt, was vor der Ausfuehrung zu pruefen ist, aber er beweist keine Abschreibung.
+
 ## FIND-BC-FA-082 Calculate Depreciation Request Page sichtbar, OK bleibt Gate
 
 | Feld | Wert |
