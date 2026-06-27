@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixed-assets-calculate-depreciation-execution-gate-plan",
+  "caseId": "FIXEDASSETS-247-FA-CALCULATE-DEPRECIATION-EXECUTION-GATE-PLAN",
+  "source": "local-execution-gate-plan",
+  "resultStatus": "observed",
+  "branch": "codex/token-efficient-autopilot-state",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "basedOn": {
+    "decisionCase": "FIXEDASSETS-246-FA-CALCULATE-DEPRECIATION-REQUEST-PAGE-DECISION",
+    "decisionFile": "playwright/projects/fibu-book5/evidence/fixedassets-246/FIXEDASSETS-246-result.json",
+    "requestPageCase": "FIXEDASSETS-245-FA-CALCULATE-DEPRECIATION-REQUEST-PAGE-PREFLIGHT",
+    "requestPageFile": "playwright/projects/fibu-book5/evidence/fixedassets-245/FIXEDASSETS-245-result.json"
+  },
+  "decision": {
+    "nextCase": "FIXEDASSETS-248-FA-CALCULATE-DEPRECIATION-GUARDED-EXECUTION",
+    "mayOpenBusinessCentral": true,
+    "mayRunPlaywright": true,
+    "mayConfirmOkOnCalculateDepreciation": true,
+    "mayCreateDepreciationJournalLines": true,
+    "mayPreviewPosting": false,
+    "mayPost": false,
+    "mayDeleteGeneratedLines": false,
+    "mustUseDocumentNoPrefix": "FADEP-",
+    "mustDocumentKeepOrCleanupStatus": true
+  },
+  "proved": [
+    "A separate guarded execution case is justified after the request-page proof.",
+    "The next case may confirm OK only to generate or attempt to generate depreciation journal lines.",
+    "The next case must not Preview Posting or Post.",
+    "The next case must document document number, journal-line trace, stop conditions and keep/cleanup status."
+  ],
+  "notProved": [
+    "No depreciation was calculated in FA-247.",
+    "No Fixed Asset G/L Journal line was created in FA-247.",
+    "No Preview Posting was opened.",
+    "No posting or ledger trace exists for depreciation.",
+    "No German final proof exists."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-247/FIXEDASSETS-247-EXECUTION-GATE-PLAN.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-247/FIXEDASSETS-247-result.json",
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-247-fa-calculate-depreciation-execution-gate-plan.json",
+    ".agent/state/cases/fixedassets-248-fa-calculate-depreciation-guarded-execution.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    "playwright/FINDINGS.md",
+    "playwright/projects/fibu-book5/BOOK-CLICK-GUIDE-COVERAGE.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-247/FIXEDASSETS-247-EXECUTION-GATE-PLAN.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-247/FIXEDASSETS-247-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-246/FIXEDASSETS-246-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-245/FIXEDASSETS-245-result.json"
+  ],
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-248-FA-CALCULATE-DEPRECIATION-GUARDED-EXECUTION",
+      "active_case_file": ".agent/state/cases/fixedassets-248-fa-calculate-depreciation-guarded-execution.json",
+      "lastReferenceCase": "FIXEDASSETS-247-FA-CALCULATE-DEPRECIATION-EXECUTION-GATE-PLAN",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-247-fa-calculate-depreciation-execution-gate-plan.json",
+      "nextStep": "FIXEDASSETS-248: implement and run a guarded Calculate Depreciation execution that may confirm OK only to create depreciation journal lines, then trace and document those lines; no Preview Posting and no Post."
+    },
+    "coverage": {
+      "activeArea": "fixedassets",
+      "latestDecisionCase": "FIXEDASSETS-247-FA-CALCULATE-DEPRECIATION-EXECUTION-GATE-PLAN",
+      "nextCase": "FIXEDASSETS-248-FA-CALCULATE-DEPRECIATION-GUARDED-EXECUTION",
+      "depreciationReadiness": "FA-247 plans a gated Calculate Depreciation execution case. FA-248 may confirm OK only to create or attempt to create depreciation journal lines, with document-number trace and no Preview Posting/Post."
+    }
+  },
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "reason": "Local plan only. It unlocks a future guarded OK execution for journal-line creation, while keeping Preview Posting and Post locked."
+}
+

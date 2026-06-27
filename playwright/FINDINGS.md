@@ -1,4 +1,18 @@
 
+## FIND-BC-FA-084 AfA-Ausfuehrung braucht eigenes OK-/Journalzeilen-Gate
+
+| Feld | Wert |
+|---|---|
+| Bereich | Fixed Assets / AfA-Route / Ausfuehrungsgate |
+| Testfall | `FIXEDASSETS-247-FA-CALCULATE-DEPRECIATION-EXECUTION-GATE-PLAN` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-247/FIXEDASSETS-247-result.json`, `playwright/projects/fibu-book5/evidence/fixedassets-247/FIXEDASSETS-247-EXECUTION-GATE-PLAN.md` |
+| Entscheidung | Ein spaeterer `OK`-Lauf ist nur als eigener Fall erlaubt: Dokumentnummer mit `FADEP-`-Praefix, Journalzeilen-Trace, Keep/Cleanup-Status und harte Stop-Bedingungen. |
+| erlaubt im Folgefall | `OK` auf der `Calculate Depreciation` Request Page, nur um Journalzeilen zu erzeugen oder deren Erzeugung zu testen |
+| weiterhin gesperrt | Preview Posting, Post, manuelles Journalzeilen-Editieren/Loeschen ohne Gate, Setup Change, Company Switch, deutscher Finalnachweis |
+| naechster Schritt | `FIXEDASSETS-248`: gegatete Ausfuehrung mit Journalzeilen-Nachweis, kein Preview und kein Post. |
+
+Fuer die Klickanleitung bedeutet das: Der Klick auf `OK` ist nicht mehr nur Navigation, sondern eine bewusst dokumentierte Batch-Ausfuehrung. Ab diesem Punkt muss jede erzeugte Journalzeile nachvollziehbar bleiben.
+
 ## FIND-BC-FA-083 Request Page ist Buch-Kontrollpunkt, nicht AfA-Ausfuehrung
 
 | Feld | Wert |

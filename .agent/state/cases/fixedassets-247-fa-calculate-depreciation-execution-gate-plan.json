@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "FIXEDASSETS-247-FA-CALCULATE-DEPRECIATION-EXECUTION-GATE-PLAN",
-  "status": "planned",
+  "status": "observed",
   "workType": "local-execution-gate-plan",
   "taskClass": "wizard_work",
   "requiresStrongModel": false,
@@ -80,7 +80,22 @@
     "The execution plan would allow OK without journal-line trace plan.",
     "The execution plan would imply posting or Preview Posting without a later separate case."
   ],
-  "nextSafeAction": "Write a compact execution gate plan for a future Calculate Depreciation run; do not execute it yet.",
+  "nextSafeAction": "FIXEDASSETS-248: implement and run a guarded Calculate Depreciation execution that may confirm OK only to create depreciation journal lines, then trace and document those lines; no Preview Posting and no Post.",
   "createdAt": "2026-06-27T21:45:38.122+02:00",
-  "updatedAt": "2026-06-27T21:45:38.122+02:00"
+  "updatedAt": "2026-06-27T21:51:26.496+02:00",
+  "lastResult": {
+    "resultStatus": "observed",
+    "nextCase": "FIXEDASSETS-248-FA-CALCULATE-DEPRECIATION-GUARDED-EXECUTION",
+    "mayConfirmOkOnCalculateDepreciation": true,
+    "mayCreateDepreciationJournalLines": true,
+    "mayPreviewPosting": false,
+    "mayPost": false,
+    "documentNoPrefix": "FADEP-",
+    "evidenceRefs": [
+      "playwright/projects/fibu-book5/evidence/fixedassets-247/FIXEDASSETS-247-EXECUTION-GATE-PLAN.md",
+      "playwright/projects/fibu-book5/evidence/fixedassets-247/FIXEDASSETS-247-result.json",
+      "playwright/projects/fibu-book5/evidence/fixedassets-246/FIXEDASSETS-246-result.json",
+      "playwright/projects/fibu-book5/evidence/fixedassets-245/FIXEDASSETS-245-result.json"
+    ]
+  }
 }

@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-246-FA-CALCULATE-DEPRECIATION-REQUEST-PAGE-DECISION",
-  "timestamp": "2026-06-27T21:45:38.122+02:00",
+  "runId": "FIXEDASSETS-247-FA-CALCULATE-DEPRECIATION-EXECUTION-GATE-PLAN",
+  "timestamp": "2026-06-27T21:51:26.496+02:00",
   "date": "2026-06-27",
-  "workType": "local-route-decision",
+  "workType": "local-execution-gate-plan",
   "taskClass": "wizard_work",
   "modelClass": "gpt-4-medium",
   "branch": "codex/token-efficient-autopilot-state",
@@ -28,18 +28,19 @@
   "depreciationCalculated": false,
   "executingActionClicked": false,
   "resultStatus": "observed",
-  "summary": "FA-246 accepted FA-245 as a book-ready no-OK Calculate Depreciation request-page control point and required a separate execution gate before any OK click or journal-line creation.",
+  "summary": "FA-247 planned the next guarded Calculate Depreciation execution. FA-248 may confirm OK only to create or attempt to create depreciation journal lines with FADEP document-number trace; Preview Posting and Post remain locked.",
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/fixedassets-246/FIXEDASSETS-246-DECISION.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-247/FIXEDASSETS-247-EXECUTION-GATE-PLAN.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-247/FIXEDASSETS-247-result.json",
     "playwright/projects/fibu-book5/evidence/fixedassets-246/FIXEDASSETS-246-result.json",
     "playwright/projects/fibu-book5/evidence/fixedassets-245/FIXEDASSETS-245-result.json"
   ],
   "changedFiles": [
-    "playwright/projects/fibu-book5/evidence/fixedassets-246/FIXEDASSETS-246-DECISION.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-246/FIXEDASSETS-246-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-247/FIXEDASSETS-247-EXECUTION-GATE-PLAN.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-247/FIXEDASSETS-247-result.json",
     ".agent/state/current.json",
-    ".agent/state/cases/fixedassets-246-fa-calculate-depreciation-request-page-decision.json",
     ".agent/state/cases/fixedassets-247-fa-calculate-depreciation-execution-gate-plan.json",
+    ".agent/state/cases/fixedassets-248-fa-calculate-depreciation-guarded-execution.json",
     ".agent/state/coverage_state.json",
     ".agent/state/last_run_summary.json",
     "playwright/FINDINGS.md",
@@ -49,23 +50,23 @@
     "npm run agent:preflight",
     "npm run agent:dry-run",
     "npm run agent:run-plan",
-    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-246/FIXEDASSETS-246-result.json",
-    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-246/FIXEDASSETS-246-result.json",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-247/FIXEDASSETS-247-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-247/FIXEDASSETS-247-result.json",
     "npm run check:encoding",
     "git diff --check"
   ],
   "boundaries": [
-    "No depreciation was calculated.",
-    "No Fixed Asset G/L Journal line was created.",
+    "No depreciation was calculated in FA-247.",
+    "No Fixed Asset G/L Journal line was created in FA-247.",
     "No Preview Posting was opened.",
     "No posting or ledger trace exists for depreciation.",
     "No German final proof exists.",
-    "No BC execution in FA-246.",
-    "No Playwright execution in FA-246.",
-    "No book change."
+    "No BC execution in FA-247.",
+    "No Playwright execution in FA-247.",
+    "FA-248 still forbids Preview Posting and Post."
   ],
   "activeArea": "fixedassets",
-  "activeCase": "FIXEDASSETS-246-FA-CALCULATE-DEPRECIATION-REQUEST-PAGE-DECISION",
-  "nextCase": "FIXEDASSETS-247-FA-CALCULATE-DEPRECIATION-EXECUTION-GATE-PLAN",
-  "nextStep": "FIXEDASSETS-247: plan the gated Calculate Depreciation execution case with explicit OK/journal-line trace, cleanup/keep decision and stop conditions before any BC execution."
+  "activeCase": "FIXEDASSETS-247-FA-CALCULATE-DEPRECIATION-EXECUTION-GATE-PLAN",
+  "nextCase": "FIXEDASSETS-248-FA-CALCULATE-DEPRECIATION-GUARDED-EXECUTION",
+  "nextStep": "FIXEDASSETS-248: implement and run a guarded Calculate Depreciation execution that may confirm OK only to create depreciation journal lines, then trace and document those lines; no Preview Posting and no Post."
 }
