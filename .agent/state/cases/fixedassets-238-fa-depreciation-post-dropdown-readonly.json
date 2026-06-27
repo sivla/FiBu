@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "FIXEDASSETS-238-FA-DEPRECIATION-POST-DROPDOWN-READONLY",
-  "status": "planned",
+  "status": "observed-readonly-dropdown",
   "workType": "read-only-evidence-run",
   "taskClass": "wizard_work",
   "requiresStrongModel": false,
@@ -82,7 +82,21 @@
     "A menu item would need to be clicked to reveal the next level.",
     "A journal line would need to be created or edited."
   ],
-  "nextSafeAction": "Run one read-only Post-dropdown menu inventory; do not click Calculate Depreciation, Preview Posting, Post or any menu item.",
+  "lastResult": {
+    "status": "observed",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-238/FIXEDASSETS-238-result.json",
+    "summary": "FA-238 opened the non-executing Post related-actions/dropdown read-only. Preview Posting, Post, Post and Print and Test Report were visible as menu items; no menu item was clicked."
+  },
+  "routeDecision": {
+    "postDropdownOpened": true,
+    "previewPostingMenuVisible": true,
+    "calculateDepreciationMenuVisible": false,
+    "postMenuVisible": true,
+    "postAndPrintMenuVisible": true,
+    "previewExecutionUnlocked": false,
+    "nextCase": "FIXEDASSETS-239-FA-DEPRECIATION-PREVIEW-MENU-DECISION"
+  },
+  "nextSafeAction": "FIXEDASSETS-239: locally decide whether a later guarded Preview Posting-only click is safe; no BC execution in the decision case.",
   "createdAt": "2026-06-27T20:28:48.000+02:00",
-  "updatedAt": "2026-06-27T20:28:48.000+02:00"
+  "updatedAt": "2026-06-27T20:36:23.000+02:00"
 }

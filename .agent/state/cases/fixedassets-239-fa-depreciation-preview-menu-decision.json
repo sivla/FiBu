@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-239-FA-DEPRECIATION-PREVIEW-MENU-DECISION",
+  "status": "planned",
+  "workType": "local-preflight-plan",
+  "taskClass": "judge_work",
+  "requiresStrongModel": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Decide locally whether the Preview Posting menu item found in FA-238 can be clicked in a later guarded Preview-only run without creating/editing journal lines or posting.",
+  "unlockedBy": {
+    "caseId": "FIXEDASSETS-238-FA-DEPRECIATION-POST-DROPDOWN-READONLY",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-238/FIXEDASSETS-238-result.json",
+    "decision": "Preview Posting is visible as a menu item, but no menu item was clicked. Only local decision is unlocked."
+  },
+  "inputs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-238/FIXEDASSETS-238-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-238/010-post-dropdown-menu-inventory.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-237/FIXEDASSETS-237-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-236/FIXEDASSETS-236-result.json"
+  ],
+  "allowedActions": [
+    "read-local-evidence",
+    "plan-preview-menu-decision",
+    "write-compact-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "open-business-central",
+    "run-playwright",
+    "company-switch",
+    "setup-change",
+    "insert-journal-line",
+    "delete-journal-line",
+    "edit-journal-line",
+    "calculate-depreciation",
+    "preview-posting",
+    "post",
+    "post-and-print",
+    "confirm-posting-dialog",
+    "ship",
+    "invoice",
+    "payment"
+  ],
+  "safetyGates": [
+    "local-only",
+    "no-business-central",
+    "no-playwright",
+    "no-journal-line",
+    "no-calculate-depreciation",
+    "no-preview-posting",
+    "no-posting",
+    "no-setup-change",
+    "no-company-switch",
+    "no-german-final-claim"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-239/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-239/FIXEDASSETS-239-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-239/FIXEDASSETS-239-FA-DEPRECIATION-PREVIEW-MENU-DECISION.md"
+  ],
+  "acceptanceCriteria": [
+    "Explain what FA-238 proved and what it did not prove.",
+    "Decide whether a later Preview Posting-only live case may click the Preview Posting menu item.",
+    "Define exact stop conditions for the later live case.",
+    "Keep posting, Post and Print, Calculate Depreciation and journal-line editing locked.",
+    "If Preview Posting-only is unlocked, create only a later guarded case; do not execute it in FA-239."
+  ],
+  "stopConditions": [
+    "Decision would require opening Business Central.",
+    "Decision would execute Preview Posting in this local case.",
+    "Decision would imply posting readiness.",
+    "Evidence is insufficient to distinguish Preview Posting from Post/Post and Print."
+  ],
+  "nextSafeAction": "Review FA-238 locally and decide if a later guarded Preview Posting-only live run is safe.",
+  "createdAt": "2026-06-27T20:36:23.000+02:00",
+  "updatedAt": "2026-06-27T20:36:23.000+02:00"
+}

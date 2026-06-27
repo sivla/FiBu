@@ -1,4 +1,17 @@
 
+## FIND-BC-FA-075 Preview Posting liegt im Post-Dropdown
+
+| Feld | Wert |
+|---|---|
+| Bereich | Fixed Assets / AfA-Journal / Preview Posting Route |
+| Testfall | `FIXEDASSETS-238-FA-DEPRECIATION-POST-DROPDOWN-READONLY` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-238/FIXEDASSETS-238-result.json`, `playwright/projects/fibu-book5/evidence/fixedassets-238/010-post-dropdown-menu-inventory.json` |
+| Beobachtung | Nach Oeffnen des kleinen Related-Actions-/Dropdown-Buttons bei `Post` sind `Preview Posting`, `Post`, `Post and Print` und `Test Report...` sichtbar. |
+| Entscheidung | Kein direkter Preview-Klick im selben Lauf. Naechster Schritt ist `FIXEDASSETS-239` als lokaler Entscheidungsfall. |
+| nicht passiert | kein Menueeintrag geklickt, kein Preview Posting, kein `Post`, kein `Post and Print`, kein `Calculate Depreciation`, keine Journalzeile |
+
+Fuer das Buch ist das ein guter Screenshot-/Klickpfad-Lernpunkt: `Preview Posting` kann im selben Split-Button-Menue wie echte Buchungsaktionen liegen. Eine Anleitung muss deshalb den Dropdown-Teil und den Hauptbutton sauber unterscheiden.
+
 ## FIND-BC-FA-074 Post-Dropdown darf nur read-only inventarisiert werden
 
 | Feld | Wert |
