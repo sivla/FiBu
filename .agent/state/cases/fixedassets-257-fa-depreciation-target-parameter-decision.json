@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-257-FA-DEPRECIATION-TARGET-PARAMETER-DECISION",
+  "status": "planned",
+  "workType": "local-target-parameter-decision",
+  "taskClass": "judge_work",
+  "requiresStrongModel": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Decide the safe target parameters for the next Calculate Depreciation no-OK value preflight: Depreciation Book, Posting Date format and Fixed Asset No. filter.",
+  "unlockedBy": {
+    "caseId": "FIXEDASSETS-256-FA-DEPRECIATION-GEOMETRY-MAP-REVIEW",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-256/FIXEDASSETS-256-result.json",
+    "decision": "FA-255 has useful field candidates, but target conflicts must be resolved before any value-writing or OK."
+  },
+  "inputs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-255/FIXEDASSETS-255-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-255/010-request-page-control-map.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-256/FIXEDASSETS-256-result.json",
+    ".agent/state/coverage_state.json"
+  ],
+  "allowedActions": [
+    "read-local-evidence",
+    "compare-target-parameters",
+    "decide-next-no-ok-value-preflight-strategy",
+    "write-compact-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright",
+    "api-shortcut-without-explicit-case-permission",
+    "company-switch",
+    "setup-change",
+    "write-target-request-page-values",
+    "confirm-ok-on-calculate-depreciation",
+    "repeat-calculate-depreciation-without-review",
+    "preview-posting",
+    "post",
+    "post-and-print",
+    "confirm-posting-dialog",
+    "ship",
+    "invoice",
+    "payment"
+  ],
+  "safetyGates": [
+    "local-only",
+    "no-business-central",
+    "no-playwright",
+    "no-value-write",
+    "no-ok",
+    "no-preview-posting",
+    "no-posting",
+    "no-setup-change",
+    "no-company-switch",
+    "no-api-shortcut",
+    "no-book-claim-without-evidence"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-257/FIXEDASSETS-257-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-257/FIXEDASSETS-257-TARGET-PARAMETER-DECISION.md"
+  ],
+  "acceptanceCriteria": [
+    "Decide whether the next no-OK value preflight may target HGB, COMPANY, or must first prove available Depreciation Book choices.",
+    "Decide the safe Posting Date notation for the current UI before any value writing.",
+    "Decide whether the Fixed Asset No. filter can target FA-CNC-01 or needs another read-only proof.",
+    "Keep OK locked unless a later case explicitly proves and reviews field-safe target values."
+  ],
+  "stopConditions": [
+    "The review would unlock OK directly.",
+    "The review would approve value-setting while Depreciation Book or Posting Date target remains ambiguous.",
+    "The review would require Business Central, Playwright, setup change or company switch."
+  ],
+  "nextSafeAction": "Create a local target-parameter decision; do not open Business Central.",
+  "createdAt": "2026-06-27T22:54:31.970+02:00",
+  "updatedAt": "2026-06-27T22:54:31.970+02:00"
+}

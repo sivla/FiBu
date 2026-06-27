@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "FIXEDASSETS-256-FA-DEPRECIATION-GEOMETRY-MAP-REVIEW",
-  "status": "planned",
+  "status": "observed",
   "workType": "local-geometry-map-review",
   "taskClass": "judge_work",
   "requiresStrongModel": true,
@@ -75,7 +75,17 @@
     "The review would approve value-setting without field ownership.",
     "The review would require Business Central, Playwright, setup change or company switch."
   ],
-  "nextSafeAction": "Create a local review of the geometry map; do not open Business Central.",
+  "result": {
+    "resultStatus": "observed",
+    "evidence": [
+      "playwright/projects/fibu-book5/evidence/fixedassets-256/FIXEDASSETS-256-result.json",
+      "playwright/projects/fibu-book5/evidence/fixedassets-256/FIXEDASSETS-256-GEOMETRY-MAP-REVIEW.md",
+      "playwright/projects/fibu-book5/evidence/fixedassets-256/README.md"
+    ],
+    "decision": "Useful field candidates exist, but value-setting remains locked because Depreciation Book COMPANY conflicts with the HGB-oriented trace and Posting Date 01.01.2027 conflicts with the previous 06/27/2026 target notation.",
+    "nextCase": "FIXEDASSETS-257-FA-DEPRECIATION-TARGET-PARAMETER-DECISION"
+  },
+  "nextSafeAction": "Use FA-257 to decide target parameters locally before opening Business Central again.",
   "createdAt": "2026-06-27T22:48:58.101+02:00",
-  "updatedAt": "2026-06-27T22:48:58.101+02:00"
+  "updatedAt": "2026-06-27T22:54:31.970+02:00"
 }

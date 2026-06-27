@@ -1,0 +1,130 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixed-assets-depreciation-geometry-map-review",
+  "caseId": "FIXEDASSETS-256-FA-DEPRECIATION-GEOMETRY-MAP-REVIEW",
+  "source": "local-evidence-review",
+  "resultStatus": "observed",
+  "branch": "codex/token-efficient-autopilot-state",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "bcRun": false,
+  "playwrightRun": false,
+  "reviewedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-255/FIXEDASSETS-255-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-255/010-request-page-control-map.json",
+    "playwright/projects/fibu-book5/tests/fixedassets-255-fa-depreciation-request-page-geometry-map-no-ok.spec.ts"
+  ],
+  "candidateAssessment": [
+    {
+      "field": "Depreciation Book",
+      "fieldOwnership": "strong-same-row-candidate",
+      "observedValue": "COMPANY",
+      "previousTargetValue": "HGB",
+      "decision": "target-conflict-review-required",
+      "reason": "The nearest same-row control is strong, but the value conflicts with the existing FA-CNC-01 acquisition trace that uses HGB."
+    },
+    {
+      "field": "Posting Date",
+      "fieldOwnership": "strong-same-row-candidate",
+      "observedValue": "01.01.2027",
+      "previousTargetValue": "06/27/2026",
+      "decision": "target-conflict-review-required",
+      "reason": "The request page explicitly hints the date format dd.MM.yyyy. The previous target date format is not safe for the current UI."
+    },
+    {
+      "field": "Document No.",
+      "fieldOwnership": "strong-same-row-candidate",
+      "observedValue": "FADEP-20260627-2158",
+      "previousTargetValue": "new FADEP-* document number",
+      "decision": "usable-later-only-after-parameter-review",
+      "reason": "Document No. is the strongest mapping, but it alone cannot make the batch safe."
+    },
+    {
+      "field": "Fixed Asset No. filter",
+      "fieldOwnership": "probable-filter-section-candidate",
+      "observedValue": "",
+      "previousTargetValue": "FA-CNC-01",
+      "decision": "needs-target-parameter-review",
+      "reason": "The likely No. filter control is visible below Filter: Fixed Asset, but several nearby filter controls exist; value writing is not yet approved."
+    }
+  ],
+  "decision": {
+    "valuePreflightAllowedNow": false,
+    "repeatOkAllowedNow": false,
+    "previewPostingAllowedNow": false,
+    "postingAllowedNow": false,
+    "nextRequiredGate": "FIXEDASSETS-257-FA-DEPRECIATION-TARGET-PARAMETER-DECISION",
+    "reason": "FA-255 produced useful geometry, but current values conflict with the intended depreciation-book and posting-date targets. A local target-parameter decision is required before any value-writing or OK."
+  },
+  "proved": [
+    "FA-255 control mapping is usable as diagnostic evidence.",
+    "Depreciation Book, Posting Date and Document No. have strong same-row candidate controls.",
+    "Depreciation Book currently shows COMPANY, which conflicts with the current HGB-oriented acquisition trace.",
+    "Posting Date currently shows 01.01.2027 and the UI expects dd.MM.yyyy, which conflicts with the previous 06/27/2026 target notation.",
+    "OK, Preview Posting and Post remain locked."
+  ],
+  "notProved": [
+    "No safe target Depreciation Book value has been approved.",
+    "No safe target Posting Date value has been approved.",
+    "No safe target Fixed Asset filter value has been approved.",
+    "No request-page value was written.",
+    "No depreciation journal line exists from this review.",
+    "No Preview Posting, posting trace or German final proof exists."
+  ],
+  "safety": {
+    "noBusinessCentralOpened": true,
+    "noPlaywrightRun": true,
+    "noTargetValuesWritten": true,
+    "noOkConfirmed": true,
+    "noDepreciationCalculated": true,
+    "noJournalLineCreated": true,
+    "noPreviewPosting": true,
+    "noPost": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-256/",
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-256-fa-depreciation-geometry-map-review.json",
+    ".agent/state/cases/fixedassets-257-fa-depreciation-target-parameter-decision.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    "playwright/FINDINGS.md",
+    "playwright/projects/fibu-book5/BOOK-CLICK-GUIDE-COVERAGE.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-256/FIXEDASSETS-256-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-256/FIXEDASSETS-256-GEOMETRY-MAP-REVIEW.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-256/README.md"
+  ],
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-257-FA-DEPRECIATION-TARGET-PARAMETER-DECISION",
+      "active_case_file": ".agent/state/cases/fixedassets-257-fa-depreciation-target-parameter-decision.json",
+      "lastReferenceCase": "FIXEDASSETS-256-FA-DEPRECIATION-GEOMETRY-MAP-REVIEW",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-256-fa-depreciation-geometry-map-review.json",
+      "nextStep": "FIXEDASSETS-257: locally decide the target depreciation-book, posting-date format and fixed-asset filter before any no-OK value preflight."
+    },
+    "coverage": {
+      "activeArea": "fixedassets",
+      "latestReviewCase": "FIXEDASSETS-256-FA-DEPRECIATION-GEOMETRY-MAP-REVIEW",
+      "nextCase": "FIXEDASSETS-257-FA-DEPRECIATION-TARGET-PARAMETER-DECISION",
+      "depreciationReadiness": "FA-256 reviewed the FA-255 geometry map. Candidate controls are useful, but target values conflict: COMPANY vs HGB and 01.01.2027 vs the previous 06/27/2026 notation. Value-setting and OK remain locked."
+    }
+  },
+  "blockedBy": [
+    "target-depreciation-book-conflict",
+    "target-posting-date-format-conflict",
+    "fixed-asset-filter-needs-parameter-review"
+  ],
+  "requiresReview": true,
+  "safeToFinalizeState": true,
+  "reason": "Local review found useful field candidates but blocked value-setting because the target parameters are not yet coherent.",
+  "observed": {
+    "startedAt": "2026-06-27T22:54:31.970+02:00",
+    "finishedAt": "2026-06-27T22:54:31.970+02:00"
+  }
+}

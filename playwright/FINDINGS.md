@@ -1,4 +1,18 @@
 
+## FIND-BC-FA-093 AfA-Request-Page-Kandidaten sind stark, aber Zielparameter widersprechen sich
+
+| Feld | Wert |
+|---|---|
+| Bereich | Fixed Assets / AfA-Route / Zielparameter-Gate |
+| Testfall | `FIXEDASSETS-256-FA-DEPRECIATION-GEOMETRY-MAP-REVIEW` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-256/FIXEDASSETS-256-result.json`, `playwright/projects/fibu-book5/evidence/fixedassets-256/FIXEDASSETS-256-GEOMETRY-MAP-REVIEW.md` |
+| Beobachtung | Die FA-255-Map hat starke gleiche-Zeile-Kandidaten fuer `Depreciation Book`, `Posting Date` und `Document No.`. Sichtbar sind aber `COMPANY`, `01.01.2027` und `FADEP-20260627-2158`. |
+| Konflikt | Der bisherige Labor-Trace fuer `FA-CNC-01` fuehrt `HGB`; die Request Page zeigt `COMPANY`. Die UI erwartet fuer das Datum `dd.MM.yyyy`, waehrend der alte Zielwert als `06/27/2026` notiert war. |
+| Entscheidung | Kein Zielwert-Preflight, kein `OK`, kein Preview Posting und kein Post, bevor `FIXEDASSETS-257` die Zielparameter lokal klaert. |
+| Lernwert | Ein technisch gutes Feldmapping reicht nicht, wenn die fachlichen Zielwerte nicht konsistent sind. Vor einem Batchlauf muessen Anwender sichtbare Defaults gegen den konkreten Buchfall pruefen. |
+
+Fuer die Klickanleitung bedeutet das: Das Request-Page-Bild ist ein starker Kontrollpunkt, aber erst mit erklaertem AfA-Buch, richtigem Datumsformat und eindeutigem Anlagenfilter wird daraus ein sicherer Ausfuehrungsschritt.
+
 ## FIND-BC-FA-092 AfA-Request-Page-Map zeigt alte Werte COMPANY und 01.01.2027
 
 | Feld | Wert |
