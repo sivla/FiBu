@@ -1,4 +1,18 @@
 
+## FIND-BC-FA-090 AfA-Parameter-Preflight beweist nur Document No. feldsicher
+
+| Feld | Wert |
+|---|---|
+| Bereich | Fixed Assets / AfA-Route / Request-Page-Parameter |
+| Testfall | `FIXEDASSETS-253-FA-DEPRECIATION-PARAMETER-PREFLIGHT-NO-OK` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-253/FIXEDASSETS-253-result.json`, `playwright/projects/fibu-book5/evidence/fixedassets-253/FIXEDASSETS-253-PARAMETER-PREFLIGHT-NO-OK.md` |
+| Beobachtung | `Calculate Depreciation` wurde in `MCP_1_20260210` / `RM-DEMO` bis zur Request Page geoeffnet. `Document No.` konnte ohne `OK` feldsicher von `FADEP-20260627-2158` auf `FADEP-253-NO-OK` gesetzt werden. |
+| nicht feldsicher | `Depreciation Book = HGB`, `Posting Date = 06/27/2026`, Anlagenfilter `FA-CNC-01` |
+| weiterhin gesperrt | erneuter `OK`-Klick, Preview Posting, Post, Setup Change, Company Switch, API-Abkuerzung |
+| naechster Schritt | `FIXEDASSETS-254`: lokaler Blocker-Review und eine neue no-OK Strategie fuer feldsichere Parameterfindung. |
+
+Fuer die Klickanleitung ist der Lernwert: Auf einer Business-Central-Request-Page reicht sichtbarer Text nicht. Vor einem Batchlauf muss klar sein, welches Eingabefeld welchen Parameter traegt. Ein einzelnes feldsicheres Feld schaltet den Batch noch nicht frei.
+
 ## FIND-BC-FA-089 AfA-Wiederholung bleibt bis feldsicherem Parameter-Preflight gesperrt
 
 | Feld | Wert |

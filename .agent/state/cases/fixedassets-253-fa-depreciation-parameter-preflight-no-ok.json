@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "FIXEDASSETS-253-FA-DEPRECIATION-PARAMETER-PREFLIGHT-NO-OK",
-  "status": "planned",
+  "status": "blocked",
   "workType": "guarded-readonly-parameter-preflight",
   "taskClass": "wizard_work",
   "requiresStrongModel": false,
@@ -89,5 +89,36 @@
   ],
   "nextSafeAction": "Implement and run no-OK Calculate Depreciation parameter preflight; do not confirm OK.",
   "createdAt": "2026-06-27T22:24:48.600+02:00",
-  "updatedAt": "2026-06-27T22:24:48.600+02:00"
+  "result": {
+    "resultStatus": "blocked",
+    "summary": "Calculate Depreciation request page opened without confirming OK. Document No. was field-safe and changed to FADEP-253-NO-OK without execution. Depreciation Book, Posting Date and Fixed Asset filter FA-CNC-01 were not field-safe, so repeat OK remains locked.",
+    "fieldSafe": {
+      "depreciationBook": false,
+      "postingDate": false,
+      "documentNo": true,
+      "fixedAssetFilter": false
+    },
+    "blockedBy": [
+      "depreciation-book-not-field-safe-or-not-set",
+      "posting-date-not-field-safe-or-not-set",
+      "fixed-asset-filter-not-field-safe-or-not-set"
+    ],
+    "evidenceRefs": [
+      "playwright/projects/fibu-book5/evidence/fixedassets-253/FIXEDASSETS-253-result.json",
+      "playwright/projects/fibu-book5/evidence/fixedassets-253/FIXEDASSETS-253-PARAMETER-PREFLIGHT-NO-OK.md",
+      "playwright/projects/fibu-book5/evidence/fixedassets-253/010-parameter-preflight.json",
+      "playwright/projects/fibu-book5/evidence/fixedassets-253/010-parameter-preflight-text.txt"
+    ],
+    "safety": {
+      "okConfirmed": false,
+      "previewPosting": false,
+      "posted": false,
+      "setupChanged": false,
+      "companySwitched": false,
+      "apiShortcut": false,
+      "bookChanged": false
+    }
+  },
+  "nextSafeAction": "FIXEDASSETS-254: local blocker review before any repeat OK; do not execute Calculate Depreciation.",
+  "updatedAt": "2026-06-27T22:33:30.302+02:00"
 }
