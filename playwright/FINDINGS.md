@@ -1,4 +1,18 @@
 
+## FIND-BC-FA-092 AfA-Request-Page-Map zeigt alte Werte COMPANY und 01.01.2027
+
+| Feld | Wert |
+|---|---|
+| Bereich | Fixed Assets / AfA-Route / Request-Page-Feldmapping |
+| Testfall | `FIXEDASSETS-255-FA-DEPRECIATION-REQUEST-PAGE-GEOMETRY-MAP-NO-OK` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-255/FIXEDASSETS-255-result.json`, `playwright/projects/fibu-book5/evidence/fixedassets-255/010-request-page-control-map.json` |
+| Beobachtung | Die no-OK Geometry Map fand Kandidaten fuer `Depreciation Book`, `Posting Date`, `Document No.` und Anlagenfilter. Naechste sichtbare Werte: `COMPANY`, `01.01.2027`, `FADEP-20260627-2158`. |
+| Lernwert | Die Request Page ist vermutlich mit alten oder Standardwerten vorbelegt. Diese Werte duerfen nicht als Zielparameter fuer den Buchfall behandelt werden. |
+| weiterhin gesperrt | Zielwerte schreiben, `OK`, Preview Posting, Post, Setup Change, Company Switch, API-Abkuerzung |
+| naechster Schritt | `FIXEDASSETS-256`: lokaler Review, ob die Kandidaten robust genug fuer einen spaeteren no-OK Value-Preflight sind. |
+
+Fuer die Klickanleitung bedeutet das: Vor einem Batchlauf muessen Anwender aktiv pruefen, ob die sichtbaren Parameter zum fachlichen Fall passen. Vorbelegte Werte koennen aus vorherigen Laeufen stammen und sind gerade fuer Anfaenger gefaehrlich.
+
 ## FIND-BC-FA-091 AfA-Request-Page braucht Geometrie-/Label-Map statt OK-Wiederholung
 
 | Feld | Wert |

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "FIXEDASSETS-255-FA-DEPRECIATION-REQUEST-PAGE-GEOMETRY-MAP-NO-OK",
-  "status": "planned",
+  "status": "observed",
   "workType": "guarded-readonly-control-map",
   "taskClass": "wizard_work",
   "requiresStrongModel": false,
@@ -82,7 +82,38 @@
     "Any dialog asks for OK, Preview Posting, Post, setup change or company switch.",
     "The test would need to write a target value to continue."
   ],
-  "nextSafeAction": "Implement and run a no-OK request-page geometry/label-proximity control map; do not write values and do not confirm OK.",
+  "result": {
+    "resultStatus": "observed",
+    "summary": "FA-255 opened Calculate Depreciation in MCP_1_20260210 / RM-DEMO and captured a compact request-page geometry/label-proximity map without writing target values and without confirming OK. Candidates were found for Depreciation Book, Posting Date, Document No. and Fixed Asset filter.",
+    "candidateSummary": {
+      "depreciationBookCandidates": 3,
+      "postingDateCandidates": 3,
+      "documentNoCandidates": 3,
+      "fixedAssetNoFilterCandidates": 12
+    },
+    "importantObservedValues": {
+      "depreciationBookNearestValue": "COMPANY",
+      "postingDateNearestValue": "01.01.2027",
+      "documentNoNearestValue": "FADEP-20260627-2158"
+    },
+    "evidenceRefs": [
+      "playwright/projects/fibu-book5/evidence/fixedassets-255/FIXEDASSETS-255-result.json",
+      "playwright/projects/fibu-book5/evidence/fixedassets-255/FIXEDASSETS-255-GEOMETRY-MAP-NO-OK.md",
+      "playwright/projects/fibu-book5/evidence/fixedassets-255/010-request-page-control-map.json",
+      "playwright/projects/fibu-book5/evidence/fixedassets-255/010-request-page-text.txt"
+    ],
+    "safety": {
+      "targetValuesWritten": false,
+      "okConfirmed": false,
+      "previewPosting": false,
+      "posted": false,
+      "setupChanged": false,
+      "companySwitched": false,
+      "apiShortcut": false,
+      "bookChanged": false
+    }
+  },
+  "nextSafeAction": "FIXEDASSETS-256: locally review the geometry/label-proximity map and decide whether a later no-OK value preflight can use these candidates.",
   "createdAt": "2026-06-27T22:43:12.000+02:00",
-  "updatedAt": "2026-06-27T22:43:12.000+02:00"
+  "updatedAt": "2026-06-27T22:48:58.101+02:00"
 }
