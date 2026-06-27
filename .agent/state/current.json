@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-27T20:36:23.000+02:00",
+  "updatedAt": "2026-06-27T20:43:22.000+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "fixedassets",
-  "activeCase": "FIXEDASSETS-239-FA-DEPRECIATION-PREVIEW-MENU-DECISION",
-  "active_case_file": ".agent/state/cases/fixedassets-239-fa-depreciation-preview-menu-decision.json",
-  "lastReferenceCase": "FIXEDASSETS-238-FA-DEPRECIATION-POST-DROPDOWN-READONLY",
-  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-238-fa-depreciation-post-dropdown-readonly.json",
-  "mode": "token-efficient-autopilot-fixedassets-depreciation-preview-menu-decision",
-  "requiresStrongModel": true,
+  "activeCase": "FIXEDASSETS-240-FA-DEPRECIATION-ACTION-INVENTORY-READONLY",
+  "active_case_file": ".agent/state/cases/fixedassets-240-fa-depreciation-action-inventory-readonly.json",
+  "lastReferenceCase": "FIXEDASSETS-239-FA-DEPRECIATION-PREVIEW-MENU-DECISION",
+  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-239-fa-depreciation-preview-menu-decision.json",
+  "mode": "token-efficient-autopilot-fixedassets-depreciation-action-inventory-readonly",
+  "requiresStrongModel": false,
   "requiredPreflightChecks": [
     "agent:preflight",
     "agent:state:validate",
@@ -20,7 +20,10 @@
   ],
   "allowedActions": [
     "read-local-evidence",
-    "plan-preview-menu-decision",
+    "run-playwright-readonly",
+    "open-business-central-readonly",
+    "click-nonexecuting-action-dropdown",
+    "open-more-options-readonly",
     "write-compact-evidence",
     "update-state"
   ],
@@ -45,7 +48,7 @@
     "invoice",
     "payment"
   ],
-  "nextStep": "FIXEDASSETS-239: locally decide if the discovered Preview Posting menu item can be clicked in a later guarded Preview-only run.",
+  "nextStep": "FIXEDASSETS-240: run read-only full action inventory on Fixed Asset G/L Journals to find Calculate Depreciation without clicking executing actions.",
   "subagentPlanPolicy": {
     "default": "optional",
     "execution": "plan-only-no-subagents-spawned",

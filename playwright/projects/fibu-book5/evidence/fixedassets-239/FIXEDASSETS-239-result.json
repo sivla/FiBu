@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-239-fa-depreciation-preview-menu-decision-result",
+  "caseId": "FIXEDASSETS-239-FA-DEPRECIATION-PREVIEW-MENU-DECISION",
+  "source": "local-preflight-plan",
+  "resultStatus": "observed-local-decision",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "bcRun": false,
+  "playwrightRun": false,
+  "postedInThisRun": false,
+  "previewPostingInThisRun": false,
+  "setupChanged": false,
+  "companySwitched": false,
+  "apiShortcut": false,
+  "bookChanged": false,
+  "journalLineInserted": false,
+  "journalLineEdited": false,
+  "journalLineDeleted": false,
+  "calculateDepreciationClicked": false,
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-238/FIXEDASSETS-238-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-238/010-post-dropdown-menu-inventory.json"
+  ],
+  "decision": {
+    "previewPostingMenuVisible": true,
+    "calculateDepreciationMenuVisible": false,
+    "depreciationJournalLineVisibleOrCreated": false,
+    "directDepreciationPreviewExecutionUnlocked": false,
+    "reasonPreviewRemainsLocked": "Preview Posting is visible in the Post menu, but FA-238 did not prove a depreciation journal line or a Calculate Depreciation route. Clicking Preview Posting now would likely preview the current journal context, not a controlled depreciation case.",
+    "nextReadOnlyRouteUnlocked": true,
+    "nextCase": "FIXEDASSETS-240-FA-DEPRECIATION-ACTION-INVENTORY-READONLY"
+  },
+  "proved": [
+    "FA-238 proves Preview Posting is visible as a menu item under the Post dropdown.",
+    "FA-238 proves no menu item was clicked.",
+    "FA-238 does not prove Calculate Depreciation or a depreciation journal line.",
+    "A later depreciation Preview Posting-only run is not safe yet."
+  ],
+  "notProved": [
+    "No Calculate Depreciation action route is proven.",
+    "No depreciation journal line exists.",
+    "No Preview Posting for depreciation was executed.",
+    "No depreciation posting has occurred.",
+    "No German final fixed asset proof exists."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-239/",
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-239-fa-depreciation-preview-menu-decision.json",
+    ".agent/state/cases/fixedassets-240-fa-depreciation-action-inventory-readonly.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    "playwright/projects/fibu-book5/BOOK-CLICK-GUIDE-COVERAGE.md",
+    "playwright/FINDINGS.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-239/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-239/FIXEDASSETS-239-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-239/FIXEDASSETS-239-FA-DEPRECIATION-PREVIEW-MENU-DECISION.md"
+  ],
+  "blockedBy": [],
+  "requiresReview": true,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-240-FA-DEPRECIATION-ACTION-INVENTORY-READONLY",
+      "active_case_file": ".agent/state/cases/fixedassets-240-fa-depreciation-action-inventory-readonly.json",
+      "lastReferenceCase": "FIXEDASSETS-239-FA-DEPRECIATION-PREVIEW-MENU-DECISION",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-239-fa-depreciation-preview-menu-decision.json",
+      "requiresStrongModel": false,
+      "nextStep": "FIXEDASSETS-240: run read-only full action inventory on Fixed Asset G/L Journals to find Calculate Depreciation without clicking executing actions."
+    },
+    "activeCase": {
+      "status": "observed-local-decision",
+      "lastResult": {
+        "status": "observed-local-decision",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-239/FIXEDASSETS-239-result.json",
+        "summary": "FA-239 keeps depreciation Preview Posting locked and unlocks only read-only full action inventory for Calculate Depreciation."
+      },
+      "nextSafeAction": "FIXEDASSETS-240: read-only full action inventory only."
+    }
+  },
+  "flags": {
+    "noPosting": true,
+    "noPreviewPosting": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true,
+    "noDraft": true,
+    "noEdit": true,
+    "noDelete": true,
+    "noJournalLine": true,
+    "noCalculateDepreciation": true
+  },
+  "observed": {
+    "timestamp": "2026-06-27T20:43:22.000+02:00"
+  },
+  "nextStep": "FIXEDASSETS-240: run read-only full action inventory on Fixed Asset G/L Journals to find Calculate Depreciation without clicking executing actions."
+}

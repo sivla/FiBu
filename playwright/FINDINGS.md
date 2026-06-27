@@ -1,4 +1,18 @@
 
+## FIND-BC-FA-076 Preview-Menue ist kein AfA-Nachweis
+
+| Feld | Wert |
+|---|---|
+| Bereich | Fixed Assets / AfA-Journal / Preview-Governance |
+| Testfall | `FIXEDASSETS-239-FA-DEPRECIATION-PREVIEW-MENU-DECISION` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-239/FIXEDASSETS-239-result.json`, `playwright/projects/fibu-book5/evidence/fixedassets-239/FIXEDASSETS-239-FA-DEPRECIATION-PREVIEW-MENU-DECISION.md` |
+| Entscheidung | `Preview Posting` bleibt fuer AfA gesperrt, obwohl der Menuepunkt sichtbar ist. |
+| Grund | Es gibt noch keine Abschreibungszeile und keinen sichtbaren `Calculate Depreciation`-Pfad. |
+| naechster Schritt | `FIXEDASSETS-240`: erweitertes read-only Action-Inventar fuer `Calculate Depreciation` |
+| nicht passiert | kein BC-Lauf, kein Playwright-Lauf, kein Preview Posting, keine Buchung, keine Journalzeile |
+
+Fuer Anfaenger ist das ein sauberer Denkfehler-Schutz: Eine Buchungsvorschau ist nur dann ein sinnvoller Kontrollpunkt, wenn klar ist, was genau vorgeschaut wird. Das Buch darf daher den Menuepunkt zeigen, aber noch nicht als AfA-Vorschau verkaufen.
+
 ## FIND-BC-FA-075 Preview Posting liegt im Post-Dropdown
 
 | Feld | Wert |
