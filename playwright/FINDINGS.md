@@ -1,4 +1,18 @@
 
+## FIND-BC-FA-078 AfA berechnen gehoert wahrscheinlich in den Anlagen-Kontext
+
+| Feld | Wert |
+|---|---|
+| Bereich | Fixed Assets / AfA-Route / Page-Kontext |
+| Testfall | `FIXEDASSETS-241-FA-DEPRECIATION-ROUTE-REVIEW` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-241/FIXEDASSETS-241-result.json`, `playwright/projects/fibu-book5/BC-PAGE-ACTION-MAP.json` |
+| Entscheidung | Die naechste Route ist nicht weiter `Fixed Asset G/L Journals`, sondern `Fixed Assets` / `FA-CNC-01` read-only Action-Inventar. |
+| Grund | Journal-Evidence zeigt Felder und Post-Menue, aber keinen `Calculate Depreciation`-Pfad. Die lokale Action Map fuehrt `Calculate Depreciation` unter `Fixed Assets` als gefaehrliche Aktion. |
+| naechster Schritt | `FIXEDASSETS-242`: Anlagenliste/-karte read-only oeffnen und nur nicht-ausfuehrende Aktionsbereiche inventarisieren. |
+| nicht passiert | kein BC-Lauf, kein Playwright-Lauf, kein `Calculate Depreciation`, kein Preview Posting, kein Post, keine Journalzeile |
+
+Fuer Anfaenger ist das ein wichtiger Navigationsbefund: Der Begriff AfA kann im Journal als Buchungsart sichtbar sein, aber die Aktion zum Berechnen kann in einem anderen Seitenkontext liegen. Klickanleitungen muessen daher Page-Kontext und Aktion trennen.
+
 ## FIND-BC-FA-077 More Options zeigt keinen AfA-Berechnen-Pfad
 
 | Feld | Wert |

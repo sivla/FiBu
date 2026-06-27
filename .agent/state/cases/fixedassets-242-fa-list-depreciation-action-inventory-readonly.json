@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-242-FA-LIST-DEPRECIATION-ACTION-INVENTORY-READONLY",
+  "status": "planned",
+  "workType": "read-only-evidence-run",
+  "taskClass": "wizard_work",
+  "requiresStrongModel": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Open Fixed Assets / FA-CNC-01 context read-only and inventory non-executing action areas to find Calculate Depreciation without clicking it.",
+  "unlockedBy": {
+    "caseId": "FIXEDASSETS-241-FA-DEPRECIATION-ROUTE-REVIEW",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-241/FIXEDASSETS-241-result.json",
+    "decision": "Journal route did not expose Calculate Depreciation; local action map points to Fixed Assets context."
+  },
+  "inputs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-241/FIXEDASSETS-241-result.json",
+    "playwright/projects/fibu-book5/BC-PAGE-ACTION-MAP.json"
+  ],
+  "allowedActions": [
+    "open-business-central-readonly",
+    "run-playwright-readonly",
+    "open-fixed-assets-readonly",
+    "open-existing-fa-cnc-01-readonly",
+    "click-nonexecuting-action-dropdown",
+    "open-more-options-readonly",
+    "write-compact-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "company-switch",
+    "setup-change",
+    "new-fixed-asset",
+    "edit-fixed-asset",
+    "delete-fixed-asset",
+    "insert-journal-line",
+    "delete-journal-line",
+    "edit-journal-line",
+    "calculate-depreciation",
+    "post-acquisition-cost",
+    "preview-posting",
+    "post",
+    "post-and-print",
+    "confirm-posting-dialog",
+    "ship",
+    "invoice",
+    "payment"
+  ],
+  "safetyGates": [
+    "instance-must-be-MCP_1_20260210",
+    "company-must-be-RM-DEMO",
+    "read-only-navigation-only",
+    "exact-existing-fa-cnc-01-context",
+    "click-only-nonexecuting-dropdowns-or-tabs",
+    "do-not-click-calculate-depreciation",
+    "do-not-click-post-acquisition-cost",
+    "do-not-click-new-edit-delete",
+    "no-preview-posting",
+    "no-posting",
+    "no-setup-change",
+    "no-company-switch",
+    "no-api-shortcut",
+    "no-german-final-claim"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-242/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-242/FIXEDASSETS-242-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-242/FIXEDASSETS-242-FA-LIST-DEPRECIATION-ACTION-INVENTORY-READONLY.md"
+  ],
+  "acceptanceCriteria": [
+    "Business Central stays in MCP_1_20260210 / RM-DEMO.",
+    "Fixed Assets or existing FA-CNC-01 context is visible read-only.",
+    "Only non-executing dropdowns/tabs such as More Options, Process/Actions, Related or Page are opened if safe.",
+    "Visible action candidates are inventoried and classified.",
+    "No executing action or menu item is clicked.",
+    "If Calculate Depreciation is found, only a later local decision case may unlock any execution."
+  ],
+  "stopConditions": [
+    "Business Central shows a different instance or company.",
+    "FA-CNC-01 context is not visible when required.",
+    "A locator points to an executing action instead of a dropdown/tab.",
+    "Any confirmation or modal dialog appears.",
+    "An action must be clicked to reveal the next level."
+  ],
+  "nextSafeAction": "Run one read-only Fixed Assets action inventory; do not click Calculate Depreciation, Post Acquisition Cost, Preview Posting, Post, New, Edit or Delete.",
+  "createdAt": "2026-06-27T21:00:02.698+02:00",
+  "updatedAt": "2026-06-27T21:00:02.698+02:00"
+}
