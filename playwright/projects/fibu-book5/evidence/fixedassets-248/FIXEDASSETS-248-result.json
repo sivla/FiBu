@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixed-assets-calculate-depreciation-guarded-execution",
+  "caseId": "FIXEDASSETS-248-FA-CALCULATE-DEPRECIATION-GUARDED-EXECUTION",
+  "source": "playwright-guarded-calculate-depreciation-execution",
+  "resultStatus": "observed",
+  "branch": "codex/token-efficient-autopilot-state",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "documentNo": "FADEP-20260627-2158",
+  "url": {
+    "initialUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO",
+    "finalUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5628&dc=0",
+    "instanceMatches": true,
+    "companyFromUrl": "RM-DEMO"
+  },
+  "requestPage": {
+    "hasCalculateDepreciationTitle": true,
+    "hasDepreciationBook": true,
+    "hasPostingDate": true,
+    "hasDocumentNo": true,
+    "hasPostingDescription": true,
+    "signalCount": 5,
+    "requestPageLikelyOpen": true,
+    "okVisible": true,
+    "visibleButtons": [
+      "Depreciation Book",
+      "Posting Date",
+      "Document No.",
+      "Posting Description",
+      "OK",
+      "Abbrechen"
+    ],
+    "documentNoControl": {
+      "success": true,
+      "method": "role:textbox:Document No.",
+      "attempts": [
+        {
+          "method": "role:textbox:Document No.",
+          "success": true
+        }
+      ]
+    },
+    "okClick": {
+      "clicked": true,
+      "method": "role:button:OK"
+    }
+  },
+  "journalTrace": {
+    "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5628&dc=0",
+    "documentNoVisible": false,
+    "faDepPrefixVisible": false,
+    "fixedAssetGlJournalVisible": true,
+    "depreciationSignalVisible": true,
+    "previewPostingTextVisible": false,
+    "postTextVisible": true,
+    "compactText": "Fixed Asset G/L Journals\nBatch Name\nPost\nPosting Date\nDocument No.\nDepreciation Book Code\nFA Posting Type\nGen. Posting Type\nGen. Bus. Posting Group\nGen. Prod. Posting Group\nAmount\nBal. Gen. Posting Type\nBal. Gen. Prod. Posting Group\nBal. Gen. Bus. Posting Group\nNo. of Depreciation Days\nDepr. until FA Posting Date\nDepreciation\nBonus Depreciation\nListe mit Titel Fixed Asset G/L Journals hat jetzt 2 Artikel"
+  },
+  "safety": {
+    "okConfirmedAtMostOnce": true,
+    "depreciationCalculatedAttempted": true,
+    "journalLineCreatedOrDetected": false,
+    "noPreviewPosting": true,
+    "noPost": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true,
+    "noManualJournalEdit": true,
+    "keepOrCleanupStatusDocumented": true,
+    "keepGeneratedLines": false,
+    "cleanupPerformed": false
+  },
+  "proved": [
+    "Business Central stayed in MCP_1_20260210 / RM-DEMO.",
+    "The Calculate Depreciation request page was opened from the scoped Tell-Me result.",
+    "Document No. was controlled with FADEP-20260627-2158.",
+    "OK was confirmed at most once on the Calculate Depreciation request page.",
+    "No generated journal-line signal was visible after OK.",
+    "No Preview Posting or Post was executed."
+  ],
+  "notProved": [
+    "No depreciation journal line was detected.",
+    "No Preview Posting result.",
+    "No depreciation posting.",
+    "No FA Ledger Entry or G/L Entry trace for depreciation.",
+    "No German final proof."
+  ],
+  "changedFiles": [
+    "package.json",
+    "playwright/projects/fibu-book5/tests/fixedassets-248-fa-calculate-depreciation-guarded-execution.spec.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-248/"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-248/FIXEDASSETS-248-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-248/FIXEDASSETS-248-GUARDED-EXECUTION.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-248/010-request-page-before-ok.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-248/010-request-page-before-ok-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-248/020-journal-line-trace.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-248/020-journal-line-trace-text.txt"
+  ],
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-249-FA-DEPRECIATION-EXECUTION-BLOCKER-REVIEW",
+      "active_case_file": ".agent/state/cases/fixedassets-249-fa-depreciation-execution-blocker-review.json",
+      "lastReferenceCase": "FIXEDASSETS-248-FA-CALCULATE-DEPRECIATION-GUARDED-EXECUTION",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-248-fa-calculate-depreciation-guarded-execution.json",
+      "nextStep": "FIXEDASSETS-249: review the Calculate Depreciation blocker before any repeat execution."
+    },
+    "coverage": {
+      "activeArea": "fixedassets",
+      "latestPracticalCase": "FIXEDASSETS-248-FA-CALCULATE-DEPRECIATION-GUARDED-EXECUTION",
+      "nextCase": "FIXEDASSETS-249-FA-DEPRECIATION-EXECUTION-BLOCKER-REVIEW",
+      "depreciationReadiness": "FA-248 did not detect generated depreciation journal lines; execution blocker review is required."
+    }
+  },
+  "blockedBy": [
+    "no-journal-line-detected-after-ok"
+  ],
+  "requiresReview": true,
+  "safeToFinalizeState": true,
+  "reason": "Guarded Calculate Depreciation execution completed within journal-line-only boundary; no FADEP journal-line signal was visible afterward, so a blocker review is required before any repeat execution."
+}

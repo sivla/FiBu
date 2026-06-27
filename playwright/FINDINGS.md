@@ -1,4 +1,19 @@
 
+## FIND-BC-FA-085 AfA-OK erzeugte kein sichtbares FADEP-Journalzeilensignal
+
+| Feld | Wert |
+|---|---|
+| Bereich | Fixed Assets / AfA-Route / gegatete Ausfuehrung |
+| Testfall | `FIXEDASSETS-248-FA-CALCULATE-DEPRECIATION-GUARDED-EXECUTION` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-248/FIXEDASSETS-248-result.json`, `playwright/projects/fibu-book5/evidence/fixedassets-248/020-journal-line-trace.json` |
+| Beobachtung | In `MCP_1_20260210` / `RM-DEMO` wurde `Calculate Depreciation` aus Tell-Me gezielt geoeffnet, `Document No. = FADEP-20260627-2158` gesetzt und `OK` genau einmal bestaetigt. |
+| bewiesen | Request Page erkannt, Dokumentnummer kontrolliert, OK einmal bestaetigt, danach `Fixed Asset G/L Journals` sichtbar, kein Preview Posting und kein Post |
+| nicht bewiesen | keine sichtbare `FADEP-`-Journalzeile, keine AfA-Vorschau, keine AfA-Buchung, keine FA-/G/L-Postenspur, kein deutscher Finalnachweis |
+| Blocker | Nach OK war kein `FADEP-`-Journalzeilensignal sichtbar. Vor jeder Wiederholung braucht es Review: Parameter, Journal Batch/Filter, Zeitraum oder Trace-Route koennen die Ursache sein. |
+| naechster Schritt | `FIXEDASSETS-249`: lokaler Blocker-Review; kein erneuter OK-Klick, kein Preview und kein Post vor Entscheidung. |
+
+Fuer die Klickanleitung bedeutet das: `OK` ist wirklich ein Ausfuehrungsschritt, aber die Anleitung darf noch nicht behaupten, dass dadurch Journalzeilen entstehen. Der naechste Lernpunkt ist, warum BC trotz gueltiger Request Page keine sichtbare AfA-Zeile zeigt.
+
 ## FIND-BC-FA-084 AfA-Ausfuehrung braucht eigenes OK-/Journalzeilen-Gate
 
 | Feld | Wert |

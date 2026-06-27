@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-249-FA-DEPRECIATION-EXECUTION-BLOCKER-REVIEW",
+  "status": "planned",
+  "workType": "local-blocker-review",
+  "taskClass": "wizard_work",
+  "requiresStrongModel": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Review why FIXEDASSETS-248 confirmed OK once on Calculate Depreciation but did not show a FADEP journal-line signal on Fixed Asset G/L Journals.",
+  "unlockedBy": {
+    "caseId": "FIXEDASSETS-248-FA-CALCULATE-DEPRECIATION-GUARDED-EXECUTION",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-248/FIXEDASSETS-248-result.json",
+    "decision": "OK was confirmed once with FADEP-20260627-2158, but no generated depreciation journal line was detected. A review is required before any repeat execution."
+  },
+  "inputs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-248/FIXEDASSETS-248-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-248/FIXEDASSETS-248-GUARDED-EXECUTION.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-248/020-journal-line-trace.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-247/FIXEDASSETS-247-result.json"
+  ],
+  "allowedActions": [
+    "read-local-evidence",
+    "local-blocker-review",
+    "classify-no-journal-line-after-ok",
+    "write-compact-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "business-central-execution",
+    "playwright-execution",
+    "company-switch",
+    "setup-change",
+    "confirm-ok-on-calculate-depreciation",
+    "repeat-calculate-depreciation-without-review",
+    "manual-insert-journal-line",
+    "manual-delete-journal-line",
+    "manual-edit-journal-line-after-batch",
+    "preview-posting",
+    "post",
+    "post-and-print",
+    "confirm-posting-dialog",
+    "ship",
+    "invoice",
+    "payment"
+  ],
+  "safetyGates": [
+    "local-only-review",
+    "no-business-central-execution",
+    "no-playwright-execution",
+    "no-repeat-ok",
+    "no-preview-posting",
+    "no-posting",
+    "no-setup-change",
+    "no-company-switch",
+    "no-api-shortcut",
+    "no-book-claim-without-evidence"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-249/FIXEDASSETS-249-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-249/FIXEDASSETS-249-BLOCKER-REVIEW.md"
+  ],
+  "acceptanceCriteria": [
+    "Review states what FA-248 proved: request page, document number, one OK confirmation, no Preview Posting, no Post.",
+    "Review states what FA-248 did not prove: created depreciation journal line, Preview Posting, depreciation posting or ledger trace.",
+    "Review identifies the next safe hypothesis: missing request parameters, journal batch/filtering, no eligible depreciation period, or trace/search weakness.",
+    "Review decides the next case without repeating OK."
+  ],
+  "stopConditions": [
+    "Any live Business Central or Playwright action would be required.",
+    "The review would allow repeat OK without explaining the missing journal-line signal.",
+    "The review would imply Preview Posting or Post without a later separate gate."
+  ],
+  "nextSafeAction": "Review FA-248 locally, then decide whether the next live step should be a read-only journal search/filter proof or a corrected Calculate Depreciation parameter preflight.",
+  "createdAt": "2026-06-27T21:59:53.448+02:00",
+  "updatedAt": "2026-06-27T21:59:53.448+02:00"
+}
