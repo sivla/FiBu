@@ -1,4 +1,17 @@
 
+## FIND-BC-FA-069 AfA-Preflight bleibt blockiert, solange HGB Depreciation Integration aus ist
+
+| Feld | Wert |
+|---|---|
+| Status | Labor-Entscheidung, praktisch relevant |
+| Testfall | `FIXEDASSETS-232-FA-DEPRECIATION-PREFLIGHT-DECISION` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-232/FIXEDASSETS-232-result.json`, `playwright/projects/fibu-book5/evidence/fixedassets-232/FIXEDASSETS-232-DEPRECIATION-PREFLIGHT-DECISION.md` |
+| beobachtete Basis | `FIXEDASSETS-231`: `G/L Integration - Acq. Cost=true`, `G/L Integration - Depreciation=false` |
+| Entscheidung | Kein AfA-Journal, kein Preview Posting und keine AfA-Buchung, bevor `G/L Integration - Depreciation` kontrolliert gefittet oder bewusst als Laborgrenze verworfen wurde. |
+| naechster Schritt | `FIXEDASSETS-233-HGB-DEPRECIATION-INTEGRATION-SETUP-FIT` |
+
+Fuer das Buch ist das ein guter Anfaenger-Lernfall: Anschaffung und Abschreibung haben getrennte Integrationsschalter. Eine sichtbare und gebuchte Anschaffung beweist nicht automatisch, dass Abschreibungen FiBu-wirksam vorbereitet sind.
+
 ## FIND-BC-FA-068 HGB Acq. Cost Integration ist an, Depreciation Integration ist aus
 
 | Feld | Wert |

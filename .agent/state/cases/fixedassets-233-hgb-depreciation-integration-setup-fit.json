@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-233-HGB-DEPRECIATION-INTEGRATION-SETUP-FIT",
+  "status": "planned",
+  "workType": "idempotent-setup-fit",
+  "taskClass": "wizard_work",
+  "requiresStrongModel": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Fit HGB G/L Integration - Depreciation in RM-DEMO only if it is still off, then document before/after evidence. This unlocks later depreciation preflight planning but not posting.",
+  "unlockedBy": {
+    "caseId": "FIXEDASSETS-232-FA-DEPRECIATION-PREFLIGHT-DECISION",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-232/FIXEDASSETS-232-result.json",
+    "decision": "Depreciation preflight remains blocked until HGB G/L Integration - Depreciation is fitted or explicitly rejected."
+  },
+  "allowedActions": [
+    "open-business-central",
+    "run-playwright",
+    "read-hgb-depreciation-book",
+    "setup-change-if-current-value-off",
+    "write-compact-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "company-switch",
+    "insert-journal-line",
+    "delete-journal-line",
+    "edit-journal-line",
+    "preview-posting",
+    "post",
+    "post-and-print",
+    "confirm-posting-dialog",
+    "ship",
+    "invoice",
+    "payment"
+  ],
+  "safetyGates": [
+    "instance-is-MCP_1_20260210",
+    "company-is-RM-DEMO",
+    "hgb-depreciation-book-card-only",
+    "before-value-captured",
+    "only-toggle-G/L-Integration-Depreciation-if-off",
+    "after-value-captured",
+    "no-journal-line",
+    "no-preview-posting",
+    "no-posting",
+    "no-company-switch",
+    "no-german-final-claim"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-233/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-233/FIXEDASSETS-233-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-233/FIXEDASSETS-233-HGB-DEPRECIATION-INTEGRATION-SETUP-FIT.md"
+  ],
+  "acceptanceCriteria": [
+    "The run proves the starting value of HGB G/L Integration - Depreciation.",
+    "If the value is off, the run changes only that setup value and proves the after value.",
+    "If the value is already on, the run is idempotent and records already-fit.",
+    "No depreciation journal line, Preview Posting or posting is created."
+  ],
+  "stopConditions": [
+    "Business Central opens outside MCP_1_20260210.",
+    "Company is not RM-DEMO.",
+    "HGB Depreciation Book Card cannot be identified.",
+    "The UI requires a broad or ambiguous setup edit.",
+    "Any posting, preview, journal or company-switch dialog appears."
+  ],
+  "nextSafeAction": "Run a controlled UI-first setup-fit for HGB G/L Integration - Depreciation, then stop before depreciation journal work.",
+  "createdAt": "2026-06-27T08:15:00.000Z",
+  "updatedAt": "2026-06-27T08:15:00.000Z"
+}

@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-232-depreciation-preflight-decision-result",
+  "caseId": "FIXEDASSETS-232-FA-DEPRECIATION-PREFLIGHT-DECISION",
+  "source": "local-evidence-review",
+  "resultStatus": "observed",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "dataBasis": "CRONUS USA laboratory",
+  "bcRun": false,
+  "playwrightRun": false,
+  "postedInThisRun": false,
+  "previewPostingInThisRun": false,
+  "setupChanged": false,
+  "companySwitched": false,
+  "apiShortcut": false,
+  "bookChanged": false,
+  "decision": {
+    "depreciationPreflightUnlocked": false,
+    "depreciationPostingUnlocked": false,
+    "setupFitRequiredBeforePreflight": true,
+    "nextCase": "FIXEDASSETS-233-HGB-DEPRECIATION-INTEGRATION-SETUP-FIT",
+    "reason": "FA-231 proves HGB G/L Integration - Acq. Cost visible-on but G/L Integration - Depreciation visible-off. A FiBu-relevant depreciation path must not proceed to journal or preview while depreciation integration is visibly off."
+  },
+  "proved": [
+    "FA-229 proves FA-CNC-01 acquisition/book-value context and posted acquisition ledger trace.",
+    "FA-230 confirms that caption evidence alone is not enough for HGB G/L Integration value proof.",
+    "FA-231 proves HGB G/L Integration - Acq. Cost as visible-on by checkbox ariaChecked=true.",
+    "FA-231 proves HGB G/L Integration - Depreciation as visible-off by checkbox ariaChecked=false.",
+    "No depreciation preflight, journal line, Preview Posting or posting is unlocked by the current evidence."
+  ],
+  "notProved": [
+    "No HGB depreciation integration setup-fit has been performed.",
+    "No depreciation journal line exists from this run.",
+    "No depreciation calculation, Preview Posting or depreciation posting was performed.",
+    "No German final fixed asset proof exists."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-232/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-232/FIXEDASSETS-232-DEPRECIATION-PREFLIGHT-DECISION.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-232/FIXEDASSETS-232-result.json",
+    ".agent/state/current.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/cases/fixedassets-232-fa-depreciation-preflight-decision.json",
+    ".agent/state/cases/fixedassets-233-hgb-depreciation-integration-setup-fit.json",
+    "playwright/projects/fibu-book5/BOOK-CLICK-GUIDE-COVERAGE.md",
+    "playwright/FINDINGS.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-232/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-232/FIXEDASSETS-232-DEPRECIATION-PREFLIGHT-DECISION.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-232/FIXEDASSETS-232-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-231/FIXEDASSETS-231-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-230/FIXEDASSETS-230-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-229/FIXEDASSETS-229-result.json"
+  ],
+  "warnings": [
+    "Depreciation integration off is a setup gate for this FiBu learning path.",
+    "Do not create a depreciation journal line before the HGB depreciation integration setup-fit is explicitly proven or rejected.",
+    "CRONUS-USA laboratory evidence is not German final proof."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-233-HGB-DEPRECIATION-INTEGRATION-SETUP-FIT",
+      "active_case_file": ".agent/state/cases/fixedassets-233-hgb-depreciation-integration-setup-fit.json",
+      "lastReferenceCase": "FIXEDASSETS-232-FA-DEPRECIATION-PREFLIGHT-DECISION",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-232-fa-depreciation-preflight-decision.json",
+      "requiresStrongModel": false,
+      "nextStep": "FIXEDASSETS-233: controlled HGB Depreciation G/L Integration setup-fit before any depreciation journal, preview or posting."
+    },
+    "activeCase": {
+      "status": "observed-local-decision",
+      "lastResult": {
+        "status": "observed",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-232/FIXEDASSETS-232-result.json",
+        "summary": "FA-232 blocks depreciation preflight until HGB G/L Integration - Depreciation is fitted or explicitly rejected."
+      },
+      "nextSafeAction": "FIXEDASSETS-233: controlled setup-fit for HGB G/L Integration - Depreciation; no journal, no preview, no posting."
+    }
+  },
+  "flags": {
+    "noBusinessCentral": true,
+    "noPlaywright": true,
+    "noPosting": true,
+    "noPreviewPosting": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true,
+    "noDraft": true,
+    "noEdit": true,
+    "noDelete": true,
+    "noDepreciationJournalLine": true
+  },
+  "observed": {
+    "reviewedAt": "2026-06-27T08:15:00.000Z"
+  },
+  "summary": "FA-232 blocks AfA preflight because HGB G/L Integration - Depreciation is visibly off; setup-fit is required before journal/preflight/posting work.",
+  "nextStep": "FIXEDASSETS-233: controlled HGB Depreciation G/L Integration setup-fit before any depreciation journal, preview or posting."
+}
