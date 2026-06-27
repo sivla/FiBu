@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "FIXEDASSETS-252-FA-DEPRECIATION-REPEAT-EXECUTION-DECISION",
-  "status": "planned",
+  "status": "observed",
   "workType": "local-decision",
   "taskClass": "judge_work",
   "requiresStrongModel": true,
@@ -82,7 +82,14 @@
     "The decision would rely on unlabelled request-page values as if they were field-safe.",
     "A live execution would be needed before a local decision can be justified."
   ],
-  "nextSafeAction": "Create a local repeat-execution decision from FA-248, FA-250 and FA-251 evidence; do not open BC.",
+  "nextSafeAction": "Create a no-OK request-page parameter preflight for Calculate Depreciation; do not confirm OK.",
+  "result": {
+    "resultStatus": "observed",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-252/FIXEDASSETS-252-result.json",
+    "summary": "Repeat Calculate Depreciation OK is not justified yet. FA-252 requires a field-safe request-page parameter preflight first: Depreciation Book, Posting Date, Document No. and Fixed Asset filter FA-CNC-01 must be proven before any later OK.",
+    "decision": "repeat-ok-locked-pending-parameter-preflight",
+    "nextCase": "FIXEDASSETS-253-FA-DEPRECIATION-PARAMETER-PREFLIGHT-NO-OK"
+  },
   "createdAt": "2026-06-27T22:20:22.750+02:00",
-  "updatedAt": "2026-06-27T22:20:22.750+02:00"
+  "updatedAt": "2026-06-27T22:24:48.600+02:00"
 }

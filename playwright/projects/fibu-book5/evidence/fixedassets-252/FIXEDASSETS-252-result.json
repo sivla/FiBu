@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixed-assets-depreciation-repeat-execution-decision",
+  "caseId": "FIXEDASSETS-252-FA-DEPRECIATION-REPEAT-EXECUTION-DECISION",
+  "source": "local-evidence-review",
+  "resultStatus": "observed",
+  "branch": "codex/token-efficient-autopilot-state",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "bcRun": false,
+  "playwrightRun": false,
+  "decision": {
+    "repeatCalculateDepreciationOkAllowedNow": false,
+    "reason": "The previous OK attempt produced no visible FADEP journal-line signal, and the later request-page diagnosis showed last-used values without field-safe target parameter mapping.",
+    "nextRequiredGate": "field-safe request-page parameter preflight without OK"
+  },
+  "reviewedEvidence": [
+    {
+      "caseId": "FIXEDASSETS-248-FA-CALCULATE-DEPRECIATION-GUARDED-EXECUTION",
+      "finding": "OK was confirmed once with FADEP-20260627-2158, but no generated depreciation journal-line signal was visible afterward."
+    },
+    {
+      "caseId": "FIXEDASSETS-250-FA-DEPRECIATION-JOURNAL-SEARCH-READONLY",
+      "finding": "Fixed Asset G/L Journals were searched read-only; no FADEP-20260627-2158 or FADEP- signal was visible."
+    },
+    {
+      "caseId": "FIXEDASSETS-251-FA-DEPRECIATION-REQUEST-PARAMETER-DIAGNOSIS",
+      "finding": "Calculate Depreciation request page was visible read-only; last-used options/filter state and an unlabelled FADEP value were visible, but Depreciation Book, Posting Date and Fixed Asset filter were not field-safe."
+    }
+  ],
+  "requiredBeforeRepeatOk": [
+    "field-safe Depreciation Book value",
+    "field-safe Posting Date value",
+    "field-safe Document No. value with a new FADEP prefix",
+    "field-safe Fixed Asset filter value FA-CNC-01",
+    "explicit stop before OK",
+    "journal-line trace plan after a later OK case",
+    "cleanup-or-keep decision for any generated journal lines"
+  ],
+  "safety": {
+    "noBusinessCentralOpened": true,
+    "noPlaywrightRun": true,
+    "noOkConfirmed": true,
+    "noDepreciationCalculated": true,
+    "noJournalLineCreated": true,
+    "noPreviewPosting": true,
+    "noPost": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "proved": [
+    "Repeat Calculate Depreciation OK is not currently justified.",
+    "A field-safe request-page parameter preflight is required before any later repeat OK.",
+    "No Business Central or Playwright action occurred in this decision case."
+  ],
+  "notProved": [
+    "No depreciation journal line exists.",
+    "No corrected request-page parameter mapping has been proven.",
+    "No Preview Posting result.",
+    "No depreciation posting.",
+    "No German final proof."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-252/",
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-252-fa-depreciation-repeat-execution-decision.json",
+    ".agent/state/cases/fixedassets-253-fa-depreciation-parameter-preflight-no-ok.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    "playwright/FINDINGS.md",
+    "playwright/projects/fibu-book5/BOOK-CLICK-GUIDE-COVERAGE.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-252/FIXEDASSETS-252-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-252/FIXEDASSETS-252-REPEAT-EXECUTION-DECISION.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-252/README.md"
+  ],
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-253-FA-DEPRECIATION-PARAMETER-PREFLIGHT-NO-OK",
+      "active_case_file": ".agent/state/cases/fixedassets-253-fa-depreciation-parameter-preflight-no-ok.json",
+      "lastReferenceCase": "FIXEDASSETS-252-FA-DEPRECIATION-REPEAT-EXECUTION-DECISION",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-252-fa-depreciation-repeat-execution-decision.json",
+      "nextStep": "FIXEDASSETS-253: run a no-OK request-page parameter preflight for Calculate Depreciation and prove field-safe values for depreciation book, posting date, document no and FA-CNC-01 filter before any repeat OK."
+    },
+    "coverage": {
+      "activeArea": "fixedassets",
+      "latestDecisionCase": "FIXEDASSETS-252-FA-DEPRECIATION-REPEAT-EXECUTION-DECISION",
+      "nextCase": "FIXEDASSETS-253-FA-DEPRECIATION-PARAMETER-PREFLIGHT-NO-OK",
+      "depreciationReadiness": "FA-252 keeps repeat OK locked. A field-safe Calculate Depreciation parameter preflight without OK is required first."
+    }
+  },
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "reason": "Local decision only: the evidence supports a safer parameter-preflight case, not another execution.",
+  "observed": {
+    "timestamp": "2026-06-27T22:24:48.600+02:00"
+  }
+}

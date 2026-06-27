@@ -1,4 +1,18 @@
 
+## FIND-BC-FA-089 AfA-Wiederholung bleibt bis feldsicherem Parameter-Preflight gesperrt
+
+| Feld | Wert |
+|---|---|
+| Bereich | Fixed Assets / AfA-Route / Wiederholungsentscheidung |
+| Testfall | `FIXEDASSETS-252-FA-DEPRECIATION-REPEAT-EXECUTION-DECISION` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-252/FIXEDASSETS-252-result.json`, `playwright/projects/fibu-book5/evidence/fixedassets-252/FIXEDASSETS-252-REPEAT-EXECUTION-DECISION.md` |
+| Entscheidung | Kein erneuter `OK`-Klick auf `Calculate Depreciation`, bevor die Request-Page-Parameter feldsicher belegt sind. |
+| Grund | `FIXEDASSETS-248` hat `OK` schon einmal bestaetigt, `FIXEDASSETS-250` fand keine `FADEP`-Journalzeile, und `FIXEDASSETS-251` zeigte gespeicherte/unklare Request-Page-Werte ohne feldsichere Zielparameter. |
+| weiterhin gesperrt | `OK`, Preview Posting, Post, manuelle Journalzeilen, Setup Change, Company Switch, API-Abkuerzung |
+| naechster Schritt | `FIXEDASSETS-253`: no-OK Parameter-Preflight fuer AfA-Buch, Buchungsdatum, Dokumentnummer und Anlagenfilter `FA-CNC-01`. |
+
+Fuer die Klickanleitung ist das ein Schutz gegen den klassischen Anfaengerfehler: Wenn ein Batchlauf kein sichtbares Ergebnis liefert, wiederholt man ihn nicht blind. Man klaert zuerst, welche Parameter Business Central wirklich fuer den Lauf verwenden wuerde.
+
 ## FIND-BC-FA-088 Request Page zeigt zuletzt verwendete Optionen und unbeschriftetes FADEP-Wertsignal
 
 | Feld | Wert |
