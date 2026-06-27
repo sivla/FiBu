@@ -1,4 +1,18 @@
 
+## FIND-BC-FA-081 Tell-Me zeigt Calculate Depreciation als Seiten-und-Aufgaben-Kandidat
+
+| Feld | Wert |
+|---|---|
+| Bereich | Fixed Assets / AfA-Route / Tell-Me-Suche |
+| Testfall | `FIXEDASSETS-244-FA-CALCULATE-DEPRECIATION-TELLME-READONLY` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-244/FIXEDASSETS-244-result.json`, `playwright/projects/fibu-book5/evidence/fixedassets-244/010-tellme-search-results.json` |
+| Beobachtung | In `MCP_1_20260210` / `RM-DEMO` akzeptiert Tell-Me/Search den Suchbegriff `Calculate Depreciation` und zeigt einen sichtbaren Kandidaten unter `Seiten und Aufgaben`. |
+| bewiesen | Suchbegriff angenommen, Kandidat sichtbar, kein Treffer geklickt, keine Request Page geoeffnet, kein `OK`, kein Preview, kein Post |
+| nicht bewiesen | Request-Page-Felder, AfA-Berechnung, erzeugte FA-G/L-Journal-Zeilen, Preview Posting, AfA-Postenspur |
+| naechster Schritt | `FIXEDASSETS-245`: Treffer kontrolliert nur zur Request-Page-Inspektion oeffnen und vor `OK` stoppen. |
+
+Fuer die Klickanleitung bedeutet das: Der Einstieg `Suche/Alt+Q -> Calculate Depreciation` ist jetzt als Labor-Navigationskandidat belegt. Er ist noch kein Ausfuehrungs- oder Buchungsnachweis.
+
 ## FIND-BC-FA-080 AfA berechnen ist laut Microsoft Learn ein Tell-Me/Search-Einstieg
 
 | Feld | Wert |

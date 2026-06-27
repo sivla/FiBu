@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-245-FA-CALCULATE-DEPRECIATION-REQUEST-PAGE-PREFLIGHT",
+  "status": "planned",
+  "workType": "guarded-request-page-preflight",
+  "taskClass": "wizard_work",
+  "requiresStrongModel": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Open the Calculate Depreciation request page from the already-proven Tell-Me result only far enough to inspect required fields and stop before OK or journal-line creation.",
+  "unlockedBy": {
+    "caseId": "FIXEDASSETS-244-FA-CALCULATE-DEPRECIATION-TELLME-READONLY",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-244/FIXEDASSETS-244-result.json",
+    "decision": "Tell-Me/Search showed a visible Calculate Depreciation candidate under Seiten und Aufgaben without choosing the result or opening the request page."
+  },
+  "inputs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-244/FIXEDASSETS-244-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-244/010-tellme-search-results.json",
+    "https://learn.microsoft.com/en-us/dynamics365/business-central/fa-how-depreciate-amortize",
+    "https://learn.microsoft.com/en-us/dynamics365/business-central/application/base-application/report/microsoft.fixedassets.depreciation.calculate-depreciation"
+  ],
+  "allowedActions": [
+    "open-business-central-readonly",
+    "run-playwright-guarded-preflight",
+    "open-tell-me-search-readonly",
+    "type-search-term-calculate-depreciation",
+    "choose-calculate-depreciation-related-link-for-request-page-preflight",
+    "inspect-calculate-depreciation-request-page-readonly",
+    "capture-required-field-labels-and-visible-defaults",
+    "close-request-page-without-ok",
+    "write-compact-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "company-switch",
+    "setup-change",
+    "new-fixed-asset",
+    "edit-fixed-asset",
+    "delete-fixed-asset",
+    "insert-journal-line",
+    "delete-journal-line",
+    "edit-journal-line",
+    "confirm-ok",
+    "calculate-depreciation",
+    "create-depreciation-journal-lines",
+    "post-acquisition-cost",
+    "preview-posting",
+    "post",
+    "post-and-print",
+    "confirm-posting-dialog",
+    "ship",
+    "invoice",
+    "payment"
+  ],
+  "safetyGates": [
+    "instance-must-be-MCP_1_20260210",
+    "company-must-be-RM-DEMO",
+    "tell-me-result-must-be-Calculate-Depreciation",
+    "request-page-only",
+    "do-not-confirm-ok",
+    "close-or-cancel-only",
+    "no-journal-line-created",
+    "no-preview-posting",
+    "no-posting",
+    "no-setup-change",
+    "no-company-switch",
+    "no-api-shortcut",
+    "no-german-final-claim"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-245/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-245/FIXEDASSETS-245-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-245/FIXEDASSETS-245-FA-CALCULATE-DEPRECIATION-REQUEST-PAGE-PREFLIGHT.md"
+  ],
+  "acceptanceCriteria": [
+    "Business Central stays in MCP_1_20260210 / RM-DEMO.",
+    "The Calculate Depreciation result is opened only to inspect the request page.",
+    "Request-page labels such as Depreciation Book, Posting Date or Document No. are captured if visible.",
+    "OK is not confirmed.",
+    "No depreciation journal line, Preview Posting or posting occurs."
+  ],
+  "stopConditions": [
+    "Business Central shows a different instance or company.",
+    "Tell-Me result is ambiguous or not the Calculate Depreciation related link.",
+    "The request page cannot be distinguished from a posting or confirmation dialog.",
+    "Any OK/Yes/Post/Preview action would be required to continue.",
+    "Any journal line is created unexpectedly."
+  ],
+  "nextSafeAction": "Implement a guarded request-page preflight that opens Calculate Depreciation and immediately captures field labels/defaults, then closes without OK.",
+  "createdAt": "2026-06-27T21:29:42.196+02:00",
+  "updatedAt": "2026-06-27T21:29:42.196+02:00"
+}
