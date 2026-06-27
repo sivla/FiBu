@@ -1,16 +1,16 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-27T21:59:53.448+02:00",
+  "updatedAt": "2026-06-27T22:05:03.347+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "fixedassets",
-  "activeCase": "FIXEDASSETS-249-FA-DEPRECIATION-EXECUTION-BLOCKER-REVIEW",
-  "active_case_file": ".agent/state/cases/fixedassets-249-fa-depreciation-execution-blocker-review.json",
-  "lastReferenceCase": "FIXEDASSETS-248-FA-CALCULATE-DEPRECIATION-GUARDED-EXECUTION",
-  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-248-fa-calculate-depreciation-guarded-execution.json",
-  "mode": "token-efficient-autopilot-fixedassets-depreciation-execution-blocker-review",
+  "activeCase": "FIXEDASSETS-250-FA-DEPRECIATION-JOURNAL-SEARCH-READONLY",
+  "active_case_file": ".agent/state/cases/fixedassets-250-fa-depreciation-journal-search-readonly.json",
+  "lastReferenceCase": "FIXEDASSETS-249-FA-DEPRECIATION-EXECUTION-BLOCKER-REVIEW",
+  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-249-fa-depreciation-execution-blocker-review.json",
+  "mode": "token-efficient-autopilot-fixedassets-depreciation-journal-search-readonly",
   "requiresStrongModel": false,
   "requiredPreflightChecks": [
     "agent:preflight",
@@ -19,10 +19,11 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "read-local-evidence",
-    "review-fixedassets-248-result",
-    "classify-no-journal-line-after-ok-blocker",
-    "decide-next-safe-depreciation-route",
+    "open-business-central",
+    "run-playwright-readonly",
+    "open-fixed-asset-gl-journals",
+    "search-or-filter-document-no-readonly",
+    "inspect-existing-journal-lines-readonly",
     "write-compact-evidence",
     "update-state"
   ],
@@ -51,7 +52,7 @@
     "invoice",
     "payment"
   ],
-  "nextStep": "FIXEDASSETS-249: review FA-248 locally before any repeat execution; OK was confirmed once with FADEP-20260627-2158, but no FADEP journal-line signal was visible on Fixed Asset G/L Journals. Decide whether parameters, journal batch, date/filtering or a safer read-only journal search is needed.",
+  "nextStep": "FIXEDASSETS-250: read-only search/filter Fixed Asset G/L Journals for FADEP-20260627-2158 before any repeat OK, Preview Posting or Post.",
   "subagentPlanPolicy": {
     "default": "optional",
     "execution": "plan-only-no-subagents-spawned",

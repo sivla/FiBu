@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixed-assets-depreciation-execution-blocker-review",
+  "caseId": "FIXEDASSETS-249-FA-DEPRECIATION-EXECUTION-BLOCKER-REVIEW",
+  "source": "local-blocker-review",
+  "resultStatus": "observed",
+  "branch": "codex/token-efficient-autopilot-state",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "basedOn": {
+    "executionCase": "FIXEDASSETS-248-FA-CALCULATE-DEPRECIATION-GUARDED-EXECUTION",
+    "executionResult": "playwright/projects/fibu-book5/evidence/fixedassets-248/FIXEDASSETS-248-result.json",
+    "documentNo": "FADEP-20260627-2158"
+  },
+  "review": {
+    "okConfirmedOnce": true,
+    "documentNo": "FADEP-20260627-2158",
+    "journalLineVisibleInFa248": false,
+    "noPreviewPosting": true,
+    "noPost": true,
+    "nextHypothesis": "The journal line may be hidden by grid, batch or filter context; verify read-only before any repeat OK.",
+    "nextCase": "FIXEDASSETS-250-FA-DEPRECIATION-JOURNAL-SEARCH-READONLY"
+  },
+  "proved": [
+    "FA-248 is not safe to repeat blindly because OK was already confirmed once.",
+    "The missing FADEP journal-line signal is the current blocker.",
+    "The next safe step is a read-only journal search/filter proof, not another Calculate Depreciation execution."
+  ],
+  "notProved": [
+    "No FADEP journal line was found in FA-249 because no BC run occurred.",
+    "No Preview Posting result.",
+    "No depreciation posting.",
+    "No FA Ledger Entry or G/L Entry trace for depreciation.",
+    "No German final proof."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-249/FIXEDASSETS-249-BLOCKER-REVIEW.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-249/FIXEDASSETS-249-result.json",
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-249-fa-depreciation-execution-blocker-review.json",
+    ".agent/state/cases/fixedassets-250-fa-depreciation-journal-search-readonly.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    "playwright/FINDINGS.md",
+    "playwright/projects/fibu-book5/BOOK-CLICK-GUIDE-COVERAGE.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-249/FIXEDASSETS-249-BLOCKER-REVIEW.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-249/FIXEDASSETS-249-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-248/FIXEDASSETS-248-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-248/020-journal-line-trace.json"
+  ],
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-250-FA-DEPRECIATION-JOURNAL-SEARCH-READONLY",
+      "active_case_file": ".agent/state/cases/fixedassets-250-fa-depreciation-journal-search-readonly.json",
+      "lastReferenceCase": "FIXEDASSETS-249-FA-DEPRECIATION-EXECUTION-BLOCKER-REVIEW",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-249-fa-depreciation-execution-blocker-review.json",
+      "nextStep": "FIXEDASSETS-250: read-only search/filter Fixed Asset G/L Journals for FADEP-20260627-2158 before any repeat OK, Preview Posting or Post."
+    },
+    "coverage": {
+      "activeArea": "fixedassets",
+      "latestReviewCase": "FIXEDASSETS-249-FA-DEPRECIATION-EXECUTION-BLOCKER-REVIEW",
+      "nextCase": "FIXEDASSETS-250-FA-DEPRECIATION-JOURNAL-SEARCH-READONLY",
+      "depreciationReadiness": "FA-249 reviewed the FA-248 blocker. Next safe step is read-only FA G/L Journal search for FADEP-20260627-2158; no repeat OK, Preview Posting or Post."
+    }
+  },
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "reason": "Local blocker review completed. It selects a read-only journal search before any repeat Calculate Depreciation execution."
+}

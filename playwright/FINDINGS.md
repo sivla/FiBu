@@ -1,4 +1,18 @@
 
+## FIND-BC-FA-086 Nach AfA-OK zuerst Journal read-only suchen, nicht OK wiederholen
+
+| Feld | Wert |
+|---|---|
+| Bereich | Fixed Assets / AfA-Route / Blocker-Review |
+| Testfall | `FIXEDASSETS-249-FA-DEPRECIATION-EXECUTION-BLOCKER-REVIEW` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-249/FIXEDASSETS-249-result.json`, `playwright/projects/fibu-book5/evidence/fixedassets-249/FIXEDASSETS-249-BLOCKER-REVIEW.md` |
+| Entscheidung | `FIXEDASSETS-248` darf nicht blind wiederholt werden, weil `OK` bereits einmal mit `FADEP-20260627-2158` bestaetigt wurde. |
+| naechster sicherer Schritt | `FIXEDASSETS-250`: `Fixed Asset G/L Journals` read-only nach `FADEP-20260627-2158` bzw. `FADEP-` durchsuchen/filtern |
+| weiterhin gesperrt | erneuter `OK`-Klick, Preview Posting, Post, manuelles Journalzeilen-Editieren/Loeschen, Setup Change, Company Switch |
+| Buchwirkung | Nach einem Batchjob muss die Anleitung zuerst die Ergebniszeile suchen und erklaeren; fehlende Sichtbarkeit ist ein eigener Lern-/Fehlerfall. |
+
+Fuer die Klickanleitung ist das ein wichtiger Anfaengerpunkt: Nicht jede ausgefuehrte Stapelverarbeitung liefert sofort sichtbar Zeilen im aktuellen Grid. Vor Wiederholung oder Buchung prueft man den erzeugten Beleg-/Dokumentnummernkontext.
+
 ## FIND-BC-FA-085 AfA-OK erzeugte kein sichtbares FADEP-Journalzeilensignal
 
 | Feld | Wert |

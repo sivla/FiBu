@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-250-FA-DEPRECIATION-JOURNAL-SEARCH-READONLY",
+  "status": "planned",
+  "workType": "read-only-evidence-run",
+  "taskClass": "wizard_work",
+  "requiresStrongModel": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Open Fixed Asset G/L Journals read-only and search or filter for FADEP-20260627-2158 to decide whether FA-248 created a hidden depreciation journal line.",
+  "unlockedBy": {
+    "caseId": "FIXEDASSETS-249-FA-DEPRECIATION-EXECUTION-BLOCKER-REVIEW",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-249/FIXEDASSETS-249-result.json",
+    "decision": "A read-only journal search is safer than repeating OK on Calculate Depreciation."
+  },
+  "inputs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-249/FIXEDASSETS-249-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-248/FIXEDASSETS-248-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-248/020-journal-line-trace.json"
+  ],
+  "allowedActions": [
+    "open-business-central",
+    "run-playwright-readonly",
+    "open-fixed-asset-gl-journals",
+    "search-or-filter-document-no-readonly",
+    "inspect-existing-journal-lines-readonly",
+    "write-compact-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "company-switch",
+    "setup-change",
+    "confirm-ok-on-calculate-depreciation",
+    "repeat-calculate-depreciation-without-review",
+    "new-journal-line",
+    "edit-journal-line",
+    "delete-journal-line",
+    "manual-insert-journal-line",
+    "manual-delete-journal-line",
+    "manual-edit-journal-line-after-batch",
+    "preview-posting",
+    "post",
+    "post-and-print",
+    "confirm-posting-dialog",
+    "ship",
+    "invoice",
+    "payment"
+  ],
+  "safetyGates": [
+    "instance-must-be-MCP_1_20260210",
+    "company-must-be-RM-DEMO",
+    "fixed-asset-gl-journals-page-required",
+    "read-only-search-or-filter-only",
+    "no-ok",
+    "no-preview-posting",
+    "no-posting",
+    "no-setup-change",
+    "no-company-switch",
+    "no-api-shortcut",
+    "no-book-claim-without-evidence"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-250/FIXEDASSETS-250-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-250/FIXEDASSETS-250-JOURNAL-SEARCH-READONLY.md"
+  ],
+  "acceptanceCriteria": [
+    "Business Central remains in MCP_1_20260210 / RM-DEMO.",
+    "Fixed Asset G/L Journals is visible.",
+    "The result states whether FADEP-20260627-2158 or FADEP- is visible after read-only search/filter.",
+    "No Calculate Depreciation OK, Preview Posting or Post occurs.",
+    "If no line is found, the next case is a request-page parameter diagnosis before any repeat execution."
+  ],
+  "stopConditions": [
+    "Instance or company does not match.",
+    "The page is not Fixed Asset G/L Journals.",
+    "BC requests Edit, New, Delete, OK on Calculate Depreciation, Preview Posting or Post.",
+    "Search/filter would require a data-changing confirmation."
+  ],
+  "nextSafeAction": "Implement and run a read-only journal search/filter proof for FADEP-20260627-2158.",
+  "createdAt": "2026-06-27T22:05:03.347+02:00",
+  "updatedAt": "2026-06-27T22:05:03.347+02:00"
+}
