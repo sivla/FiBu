@@ -55,6 +55,7 @@ Diese Datei sammelt wiederverwendbare Muster aus belegten Laeufen. Sie ist keine
 
 ## Kartencontrol-Diagnose
 
+- Nach `FIXEDASSETS-234` gilt fuer Setup-Fit-Reviews: Ein breiter Edit-/Top-Action-Kandidat entwertet einen Feldfit nicht automatisch, wenn das Ziel-Control selbst eindeutig per Vorher/Nachher-Wert belegt ist. Fuer kuenftige Setup-Fits zuerst pruefen, ob das Ziel-Control bereits editierbar ist; wenn ja, keinen zusaetzlichen breiten Edit-Action-Klick ausfuehren. Der belastbare Nachweis ist der feldlokale Zielwert, nicht ein allgemeiner Action-Bar-Kandidat.
 - Neuer Helper-Baustein: `playwright/core/bc/cards.ts` mit `collectActiveCardControlDiagnostics()`. Er bewertet sichtbare Feldcaptions, verwirft Grid-/Columnheader-Kandidaten und sucht editierbare Controls in derselben sichtbaren Kartenzeile.
 - Der Helper ist Diagnose, keine Speicherfreigabe. Er beantwortet: "Treffe ich die Vordergrundkarte?" Nicht: "Ist der fachliche Zielwert bereits gesetzt?"
 - Nach `FIXEDASSETS-026` ist das Muster fuer leere Karten: zuerst Kartenkontext beweisen, dann aktive Controls vollstaendig mappen, danach separat Werte/Lookups pruefen. Eine erfolgreiche Control-Recovery ist keine Speicherfreigabe und kein Nachweis fuer `HGB`, `MACHINES` oder `FA-CNC-01`.

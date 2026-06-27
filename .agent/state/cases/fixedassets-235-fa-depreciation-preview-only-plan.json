@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-235-FA-DEPRECIATION-PREVIEW-ONLY-PLAN",
+  "status": "planned",
+  "workType": "local-preflight-plan",
+  "taskClass": "judge_work",
+  "requiresStrongModel": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Plan a tightly gated depreciation Preview Posting-only case after the HGB depreciation integration setup-fit was accepted.",
+  "unlockedBy": {
+    "caseId": "FIXEDASSETS-234-HGB-DEPRECIATION-INTEGRATION-SETUP-FIT-REVIEW",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-234/FIXEDASSETS-234-result.json",
+    "decision": "FA-233 setup-fit accepted only as prerequisite; execution still requires its own gate."
+  },
+  "inputs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-234/FIXEDASSETS-234-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-233/FIXEDASSETS-233-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-227/FIXEDASSETS-227-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-226/FIXEDASSETS-226-result.json"
+  ],
+  "allowedActions": [
+    "read-local-evidence",
+    "plan-preview-only-case",
+    "write-compact-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "open-business-central",
+    "run-playwright",
+    "company-switch",
+    "setup-change",
+    "insert-journal-line",
+    "delete-journal-line",
+    "edit-journal-line",
+    "preview-posting",
+    "post",
+    "post-and-print",
+    "confirm-posting-dialog",
+    "ship",
+    "invoice",
+    "payment"
+  ],
+  "safetyGates": [
+    "local-only",
+    "no-business-central",
+    "no-playwright",
+    "no-journal-line",
+    "no-preview-posting",
+    "no-posting",
+    "no-setup-change",
+    "no-company-switch",
+    "no-german-final-claim"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-235/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-235/FIXEDASSETS-235-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-235/FIXEDASSETS-235-FA-DEPRECIATION-PREVIEW-ONLY-PLAN.md"
+  ],
+  "acceptanceCriteria": [
+    "Define the minimum UI-first prerequisites for a later depreciation Preview Posting-only run.",
+    "Keep posting locked.",
+    "Define whether a journal line may be created or whether another setup/read-only check is needed first.",
+    "Define cleanup or keep strategy before any live execution.",
+    "State clearly that FA-234 unlocked planning only, not Preview Posting execution."
+  ],
+  "stopConditions": [
+    "Decision would require opening Business Central.",
+    "Decision would create or edit a journal line.",
+    "Decision would imply posting readiness.",
+    "Evidence is insufficient to define a safe Preview Posting-only route."
+  ],
+  "nextSafeAction": "Plan the Preview Posting-only depreciation route locally; do not execute BC or Playwright in this case.",
+  "createdAt": "2026-06-27T19:10:00.000Z",
+  "updatedAt": "2026-06-27T19:10:00.000Z"
+}

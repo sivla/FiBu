@@ -1,4 +1,17 @@
 
+## FIND-BC-FA-071 FA-233 Setup-Fit akzeptiert, aber nur Preview-only-Planung freigegeben
+
+| Feld | Wert |
+|---|---|
+| Bereich | Fixed Assets / AfA-Readiness / HGB Depreciation Integration |
+| Testfall | `FIXEDASSETS-234-HGB-DEPRECIATION-INTEGRATION-SETUP-FIT-REVIEW` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-234/FIXEDASSETS-234-result.json`, `playwright/projects/fibu-book5/evidence/fixedassets-234/FIXEDASSETS-234-SETUP-FIT-REVIEW.md` |
+| Entscheidung | FA-233 wird als CRONUS-USA-Labor-Setup-Fit akzeptiert: `HGB / G/L Integration - Depreciation` wurde von `false` auf `true` gesetzt. |
+| nicht passiert | kein AfA-Journal, kein Preview Posting, keine AfA-Buchung, keine Postenspur, kein deutscher Finalnachweis |
+| naechster Schritt | `FIXEDASSETS-235-FA-DEPRECIATION-PREVIEW-ONLY-PLAN` |
+
+Fuer Anfaenger ist wichtig: Ein aktivierter Setup-Schalter ist ein Startsignal fuer die naechste Pruefung, aber noch kein Ergebnis. Erst ein eigener Preview-only-Lauf kann zeigen, welche Posten Business Central fuer eine AfA erzeugen wuerde; eine Buchung bleibt danach weiterhin ein separates Gate.
+
 ## FIND-BC-FA-070 HGB Depreciation Integration wurde UI-first gefittet
 
 | Feld | Wert |

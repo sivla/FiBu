@@ -1,0 +1,115 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-234-hgb-depreciation-integration-setup-fit-review-result",
+  "caseId": "FIXEDASSETS-234-HGB-DEPRECIATION-INTEGRATION-SETUP-FIT-REVIEW",
+  "source": "local-evidence-review",
+  "resultStatus": "observed-local-review",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "bcRun": false,
+  "playwrightRun": false,
+  "postedInThisRun": false,
+  "previewPostingInThisRun": false,
+  "setupChanged": false,
+  "companySwitched": false,
+  "apiShortcut": false,
+  "bookChanged": false,
+  "decision": {
+    "setupFitAccepted": true,
+    "depreciationPreviewOnlyPlanningUnlocked": true,
+    "depreciationPreviewExecutionUnlocked": false,
+    "depreciationPostingUnlocked": false,
+    "nextCase": "FIXEDASSETS-235-FA-DEPRECIATION-PREVIEW-ONLY-PLAN",
+    "reason": "FA-233 proves one UI-first checkbox setup fit for HGB G/L Integration - Depreciation false -> true. It removes the previous setup blocker but does not prove journal, Preview Posting or posting readiness."
+  },
+  "proved": [
+    "FA-233 stayed in MCP_1_20260210 / RM-DEMO.",
+    "FA-233 targeted the HGB Depreciation Book Card.",
+    "FA-233 changed HGB G/L Integration - Depreciation from checked=false to checked=true.",
+    "FA-233 did not create or edit a depreciation journal line.",
+    "FA-233 did not run Preview Posting.",
+    "FA-233 did not post.",
+    "The previous FA-232 setup blocker is resolved as a CRONUS-USA laboratory setup prerequisite."
+  ],
+  "notProved": [
+    "No depreciation journal line exists from this review.",
+    "No depreciation calculation or Preview Posting result exists.",
+    "No FA Ledger Entry, G/L Entry or depreciation posting trace exists.",
+    "No German final fixed asset proof exists.",
+    "No posting readiness is unlocked."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-234/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-234/FIXEDASSETS-234-SETUP-FIT-REVIEW.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-234/FIXEDASSETS-234-result.json",
+    ".agent/state/current.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/cases/fixedassets-234-hgb-depreciation-integration-setup-fit-review.json",
+    ".agent/state/cases/fixedassets-235-fa-depreciation-preview-only-plan.json",
+    "playwright/projects/fibu-book5/BOOK-CLICK-GUIDE-COVERAGE.md",
+    "playwright/projects/fibu-book5/BC-PLAYWRIGHT-PATTERNS.md",
+    "playwright/FINDINGS.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-234/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-234/FIXEDASSETS-234-SETUP-FIT-REVIEW.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-234/FIXEDASSETS-234-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-233/FIXEDASSETS-233-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-233/010-hgb-depreciation-integration-before-after.json"
+  ],
+  "warnings": [
+    "CRONUS-USA laboratory review only; not German final proof.",
+    "Setup-fit acceptance does not unlock posting.",
+    "The next case may only plan a Preview Posting-only route; execution needs its own gate.",
+    "Playwright helper concern remains: avoid broad edit-mode top-action clicks when the target checkbox is already editable."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-235-FA-DEPRECIATION-PREVIEW-ONLY-PLAN",
+      "active_case_file": ".agent/state/cases/fixedassets-235-fa-depreciation-preview-only-plan.json",
+      "lastReferenceCase": "FIXEDASSETS-234-HGB-DEPRECIATION-INTEGRATION-SETUP-FIT-REVIEW",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-234-hgb-depreciation-integration-setup-fit-review.json",
+      "requiresStrongModel": true,
+      "nextStep": "FIXEDASSETS-235: plan a gated depreciation Preview Posting-only case; no BC or Playwright execution yet."
+    },
+    "activeCase": {
+      "status": "observed-local-review",
+      "lastResult": {
+        "status": "observed-local-review",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-234/FIXEDASSETS-234-result.json",
+        "summary": "FA-234 accepts the FA-233 HGB Depreciation G/L Integration setup-fit as a lab prerequisite and unlocks only local Preview Posting-only planning."
+      },
+      "nextSafeAction": "FIXEDASSETS-235: local plan for depreciation Preview Posting-only; no journal, preview or posting execution in FA-234."
+    }
+  },
+  "flags": {
+    "noBusinessCentral": true,
+    "noPlaywright": true,
+    "noPosting": true,
+    "noPreviewPosting": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true,
+    "noDraft": true,
+    "noEdit": true,
+    "noDelete": true,
+    "noDepreciationJournalLine": true
+  },
+  "observed": {
+    "reviewedAt": "2026-06-27T19:10:00.000Z",
+    "inputCases": [
+      "FIXEDASSETS-231-HGB-INTEGRATION-VALUE-READONLY-PROOF",
+      "FIXEDASSETS-232-FA-DEPRECIATION-PREFLIGHT-DECISION",
+      "FIXEDASSETS-233-HGB-DEPRECIATION-INTEGRATION-SETUP-FIT"
+    ]
+  },
+  "summary": "FA-234 accepts the FA-233 HGB depreciation integration setup-fit as CRONUS-USA laboratory prerequisite. Only a local Preview Posting-only plan is unlocked; no execution or posting is unlocked.",
+  "nextStep": "FIXEDASSETS-235: plan a gated depreciation Preview Posting-only case without BC execution."
+}
