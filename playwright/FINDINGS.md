@@ -1,4 +1,18 @@
 
+## FIND-BC-FA-087 FADEP-Dokumentnummer ist im Anlagen-Fibu-Journal nicht sichtbar
+
+| Feld | Wert |
+|---|---|
+| Bereich | Fixed Assets / AfA-Route / Journal-Suche |
+| Testfall | `FIXEDASSETS-250-FA-DEPRECIATION-JOURNAL-SEARCH-READONLY` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-250/FIXEDASSETS-250-result.json`, `playwright/projects/fibu-book5/evidence/fixedassets-250/010-fa-gl-journal-fadep-search.json` |
+| Beobachtung | `Fixed Asset G/L Journals` wurde in `MCP_1_20260210` / `RM-DEMO` read-only geoeffnet. Weder `FADEP-20260627-2158` noch `FADEP-` waren im sichtbaren/Page-/Frame-Kontext auffindbar. |
+| bewiesen | Journalroute sichtbar, kein FADEP-Signal, kein OK, kein Preview Posting, kein Post, keine Journalzeilen-Aenderung |
+| nicht bewiesen | keine Aussage ueber unsichtbare/andere Batches ausserhalb des gelesenen UI-Kontexts, keine AfA-Postenspur, kein deutscher Finalnachweis |
+| naechster Schritt | `FIXEDASSETS-251`: `Calculate Depreciation` Request Page read-only auf Parameter diagnostizieren, bevor ein erneuter OK-Lauf erlaubt wird. |
+
+Fuer die Klickanleitung bedeutet das: Nach einem AfA-Batch darf man nicht einfach behaupten, dass eine Zeile entstanden ist. Wenn die Dokumentnummer nicht auffindbar ist, muss die Anleitung den Parameter-/Zeitraum-/Filter-Kontext der Request Page erklaeren.
+
 ## FIND-BC-FA-086 Nach AfA-OK zuerst Journal read-only suchen, nicht OK wiederholen
 
 | Feld | Wert |
