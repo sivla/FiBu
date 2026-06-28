@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixed-assets-depreciation-post-acquisition-ok-result-blocker-review",
+  "caseId": "FIXEDASSETS-274-FA-DEPRECIATION-POST-ACQUISITION-OK-RESULT-BLOCKER-REVIEW",
+  "source": "local-evidence-review",
+  "resultStatus": "observed",
+  "branch": "codex/token-efficient-autopilot-state",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "reviewedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-273/FIXEDASSETS-273-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-273/010-ok-execution-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-273/020-journal-line-search.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-269/FIXEDASSETS-269-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-269/010-fa-cnc-01-card-readonly-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-269/040-fa-gl-journal-context-readonly-text.txt"
+  ],
+  "diagnosis": {
+    "classification": "post-acquisition-ok-executed-no-visible-journal-output",
+    "facts": {
+      "requestPageValuesProved": true,
+      "depreciationBook": "HGB",
+      "postingDate": "31.01.2027",
+      "documentNo": "FADEP-273-OK",
+      "fixedAssetNo": "FA-CNC-01",
+      "okConfirmedExactlyOnce": true,
+      "fixedAssetGlJournalsOpenedAfterOk": true,
+      "targetDocumentNoVisibleInJournal": false,
+      "faDepPrefixVisibleInJournal": false,
+      "previousPreAcquisitionDateBlockerResolved": true,
+      "previewPostingExecuted": false,
+      "postingExecuted": false
+    },
+    "likelyCausesNotYetProved": [
+      "The Calculate Depreciation batch may have produced no line because remaining depreciable amount, depreciation start/end date or period calculation did not yield an eligible depreciation amount for 31.01.2027.",
+      "The generated line may be written to a journal template or batch not covered by the current Fixed Asset G/L Journals page/filter context.",
+      "The visible page may show a header/value-list context without loaded journal rows; a narrower batch/template inventory is needed before any repeat."
+    ],
+    "rejectedNextSteps": [
+      "Do not repeat Calculate Depreciation OK immediately; one controlled post-acquisition OK has already run.",
+      "Do not open Preview Posting; no depreciation journal line is visible yet.",
+      "Do not Post; there is no proven journal line or Preview Posting evidence."
+    ],
+    "selectedNextCase": "FIXEDASSETS-275-FA-DEPRECIATION-ELIGIBILITY-AND-BATCH-TARGET-READONLY-DIAGNOSIS",
+    "selectedNextCaseFile": ".agent/state/cases/fixedassets-275-fa-depreciation-eligibility-and-batch-target-readonly-diagnosis.json",
+    "selectedNextStep": "Read-only inspect FA-CNC-01/HGB depreciation start/end/year/value fields and Fixed Asset G/L Journal template/batch/output context; no OK, Preview Posting or Post."
+  },
+  "proved": [
+    "FA-273 proved the post-acquisition request-page values and confirmed OK exactly once.",
+    "FADEP-273-OK was not visible in the searched Fixed Asset G/L Journals context.",
+    "The old pre-acquisition date explanation is no longer sufficient for the new post-acquisition run.",
+    "Repeat OK, Preview Posting and Post remain unjustified until depreciation eligibility and output target are inspected read-only."
+  ],
+  "notProved": [
+    "No exact root cause for missing FADEP-273-OK journal output is proven yet.",
+    "No depreciation journal line is proven.",
+    "No Preview Posting result exists.",
+    "No depreciation posting exists.",
+    "No German final proof exists."
+  ],
+  "safety": {
+    "bcRun": false,
+    "playwrightRun": false,
+    "okConfirmed": false,
+    "noRepeatOk": true,
+    "noPreviewPosting": true,
+    "noPost": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-274/",
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-274-fa-depreciation-post-acquisition-ok-result-blocker-review.json",
+    ".agent/state/cases/fixedassets-275-fa-depreciation-eligibility-and-batch-target-readonly-diagnosis.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/model_usage_log.jsonl",
+    "playwright/FINDINGS.md",
+    "playwright/projects/fibu-book5/BOOK-CLICK-GUIDE-COVERAGE.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-274/FIXEDASSETS-274-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-274/FIXEDASSETS-274-POST-ACQUISITION-OK-RESULT-BLOCKER-REVIEW.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-274/README.md"
+  ],
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-275-FA-DEPRECIATION-ELIGIBILITY-AND-BATCH-TARGET-READONLY-DIAGNOSIS",
+      "active_case_file": ".agent/state/cases/fixedassets-275-fa-depreciation-eligibility-and-batch-target-readonly-diagnosis.json",
+      "lastReferenceCase": "FIXEDASSETS-274-FA-DEPRECIATION-POST-ACQUISITION-OK-RESULT-BLOCKER-REVIEW",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-274-fa-depreciation-post-acquisition-ok-result-blocker-review.json",
+      "requiresStrongModel": false,
+      "nextStep": "FIXEDASSETS-275: read-only inspect FA-CNC-01/HGB depreciation eligibility fields and Fixed Asset G/L Journal template/batch/output target; no OK, Preview Posting or Post."
+    },
+    "coverage": {
+      "activeArea": "fixedassets",
+      "latestReviewCase": "FIXEDASSETS-274-FA-DEPRECIATION-POST-ACQUISITION-OK-RESULT-BLOCKER-REVIEW",
+      "nextCase": "FIXEDASSETS-275-FA-DEPRECIATION-ELIGIBILITY-AND-BATCH-TARGET-READONLY-DIAGNOSIS",
+      "depreciationReadiness": "FA-274 classifies FA-273 as post-acquisition OK executed but no visible journal output. Next is read-only eligibility and journal output-target diagnosis; repeat OK, Preview Posting and Post remain locked."
+    }
+  },
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "reason": "Local blocker review completed; the next smallest safe step is read-only eligibility and output-target diagnosis before any repeat execution.",
+  "observedAt": "2026-06-28T09:45:00.000+02:00"
+}

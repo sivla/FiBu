@@ -1,4 +1,16 @@
 
+## FIND-BC-FA-111 Nach post-acquisition OK braucht es Eligibility-/Batchdiagnose
+
+| Feld | Wert |
+|---|---|
+| Bereich | Fixed Assets / AfA-Route / Ergebnisdiagnose |
+| Testfall | `FIXEDASSETS-274-FA-DEPRECIATION-POST-ACQUISITION-OK-RESULT-BLOCKER-REVIEW` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-274/FIXEDASSETS-274-result.json`, `playwright/projects/fibu-book5/evidence/fixedassets-274/FIXEDASSETS-274-POST-ACQUISITION-OK-RESULT-BLOCKER-REVIEW.md` |
+| Entscheidung | `FADEP-273-OK` bleibt als fehlende sichtbare Ausgabe eingeordnet; kein Repeat-OK, kein Preview Posting, kein Post. |
+| Warum | Das alte Datum-vor-Zugang-Problem ist fuer `31.01.2027` nicht mehr ausreichend. Jetzt muessen AfA-Faelligkeit, Restwert/Zeitraum und Journal-Template-/Batch-Ziel read-only geprueft werden. |
+| naechster Schritt | `FIXEDASSETS-275`: read-only Eligibility- und Batch-/Output-Target-Diagnose fuer `FA-CNC-01/HGB`. |
+| Buchwirkung | Die Anleitung muss zeigen: Nach Batch-OK prueft man erst, ob und wo BC Journalzeilen erzeugt hat. Ohne Zeile keine Vorschau und keine Buchung. |
+
 ## FIND-BC-FA-110 Post-acquisition OK erzeugte keine sichtbare FADEP-Zeile
 
 | Feld | Wert |

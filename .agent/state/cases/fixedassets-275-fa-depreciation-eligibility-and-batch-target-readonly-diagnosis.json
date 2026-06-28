@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-275-FA-DEPRECIATION-ELIGIBILITY-AND-BATCH-TARGET-READONLY-DIAGNOSIS",
+  "status": "planned",
+  "workType": "playwright-readonly-fixedasset-depreciation-eligibility-and-batch-target-diagnosis",
+  "taskClass": "wizard_work",
+  "requiresStrongModel": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Read-only inspect FA-CNC-01/HGB depreciation eligibility fields and Fixed Asset G/L Journal template/batch/output context after FA-273 OK produced no visible FADEP-273-OK line.",
+  "triggeredBy": {
+    "caseId": "FIXEDASSETS-274-FA-DEPRECIATION-POST-ACQUISITION-OK-RESULT-BLOCKER-REVIEW",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-274/FIXEDASSETS-274-result.json",
+    "decision": "Do not repeat OK or open Preview/Post. First inspect eligibility and output target read-only."
+  },
+  "targetObjects": {
+    "fixedAssetNo": "FA-CNC-01",
+    "depreciationBook": "HGB",
+    "missingDocumentNo": "FADEP-273-OK",
+    "acquisitionDocumentNo": "G05001",
+    "acquisitionDate": "01.01.2027",
+    "lastAttemptedDepreciationDate": "31.01.2027"
+  },
+  "allowedActions": [
+    "open-business-central",
+    "run-playwright",
+    "read-only-fixedasset-card-or-depreciation-book-fields",
+    "read-only-fa-ledger-entries",
+    "read-only-fa-journal-template-batch-context",
+    "write-compact-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "confirm-ok-on-calculate-depreciation",
+    "preview-posting",
+    "post",
+    "setup-change",
+    "company-switch",
+    "api-shortcut-without-explicit-case-permission",
+    "edit-record",
+    "new-draft",
+    "delete-record"
+  ],
+  "diagnosisQuestions": [
+    "Which FA-CNC-01/HGB depreciation start date, ending date, number of years, book value and last depreciation date are visible or inspectable?",
+    "Does Business Central show a period or amount reason why 31.01.2027 would produce zero depreciation?",
+    "Which journal template/batch is visible for Fixed Asset G/L Journals and could Calculate Depreciation write elsewhere?",
+    "Is FADEP-273-OK absent from FA Ledger Entries as well as Fixed Asset G/L Journals?",
+    "Can the next case safely unlock Preview Posting only if a real journal line is found?"
+  ],
+  "safetyGates": [
+    "instance-boundary-gate",
+    "company-context-gate",
+    "read-only-only",
+    "no-repeat-ok",
+    "no-preview-posting",
+    "no-posting",
+    "no-setup-change",
+    "no-company-switch",
+    "no-api-shortcut",
+    "no-draft-or-edit"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-275/FIXEDASSETS-275-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-275/FIXEDASSETS-275-ELIGIBILITY-AND-BATCH-TARGET-READONLY-DIAGNOSIS.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-275/README.md"
+  ],
+  "acceptanceCriteria": [
+    "Business Central remains in MCP_1_20260210 / RM-DEMO.",
+    "No Calculate Depreciation OK is confirmed.",
+    "No Preview Posting, Post, setup change, company switch, API shortcut, draft or edit occurs.",
+    "The run captures compact read-only evidence about depreciation eligibility and output target/batch context.",
+    "The result chooses one next safe step: field diagnosis, output target fix plan, Preview-only gate if a line is found, or stop."
+  ],
+  "stopConditions": [
+    "Instance or company is not explicit.",
+    "A page requires edit mode to answer the question.",
+    "A dialog appears that could confirm, post, preview, delete or change setup.",
+    "The diagnosis would require repeating Calculate Depreciation OK."
+  ],
+  "nextSafeAction": "Run a read-only Playwright diagnosis for depreciation eligibility and journal output target; do not click OK, Preview Posting or Post.",
+  "createdAt": "2026-06-28T09:45:00.000+02:00",
+  "updatedAt": "2026-06-28T09:45:00.000+02:00"
+}
