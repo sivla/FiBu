@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-28T22:05:00.000Z",
+  "updatedAt": "2026-06-28T22:32:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "bank",
-  "activeCase": "BANK-008-SINGLE-LINE-VENDOR-PAYMENT-PREFLIGHT",
-  "active_case_file": ".agent/state/cases/bank-008-single-line-vendor-payment-preflight.json",
-  "lastReferenceCase": "BANK-008-SINGLE-LINE-VENDOR-PAYMENT-PREFLIGHT",
-  "lastReferenceCaseFile": ".agent/state/cases/bank-008-single-line-vendor-payment-preflight.json",
+  "activeCase": "BANK-009-SINGLE-LINE-VENDOR-PAYMENT-POSTING",
+  "active_case_file": ".agent/state/cases/bank-009-single-line-vendor-payment-posting.json",
+  "lastReferenceCase": "BANK-009-SINGLE-LINE-VENDOR-PAYMENT-POSTING",
+  "lastReferenceCaseFile": ".agent/state/cases/bank-009-single-line-vendor-payment-posting.json",
   "mode": "bc-specialist-labor-book-production",
   "requiresStrongModel": false,
   "requiredPreflightChecks": [
@@ -40,7 +40,7 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "BANK-009: kontrollierte Single-Line Vendor Payment Posting fuer Document 108204 / First Up Consultants mit Post-Dialog-Screenshot und Vendor/Bank/G-L Ledger Trace.",
+  "nextStep": "BANK-010: BANK-009 Laborzahlung in Kapitel 19/20 und Bank-/Payments-Draft synchronisieren; danach kontrollierte Bankabstimmung oder deutscher Rebuild vorbereiten.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/fixedassets-labor-draft.md",
     "area": "fixedassets",
@@ -493,13 +493,12 @@
       "FIXEDASSETS-248",
       "FIXEDASSETS-247"
     ],
-    "postedInThisDeepRun": false,
+    "postedInThisDeepRun": true,
     "previewPostingInThisDeepRun": false,
     "setupChangedInThisDeepRun": false,
     "companySwitchedInThisDeepRun": false,
     "nextBestLevers": [
-      "BANK-005-TARGET-LINE-OPEN-ENTRY-DRILLDOWN",
-      "PAYMENTS-SINGLE-LINE-POSTING-CASE",
+      "BANK-010-BANK-RECONCILIATION-OR-BOOK-SYNC",
       "RM-DE-LAB-CREATE-001-UI-FIRST-COMPANY-CREATION"
     ],
     "executePackages": [
@@ -511,7 +510,8 @@
       "PAYMENTS-006",
       "PAYMENTS-009",
       "FIXEDASSETS-248",
-      "BANK-002"
+      "BANK-002",
+      "BANK-009"
     ],
     "progressPackages": [
       "PAYMENTS-006",
@@ -525,13 +525,15 @@
       "RM-DE-LAB-002",
       "BANK-002",
       "BANK-003",
-      "BANK-004"
+      "BANK-004",
+      "BANK-009"
     ],
     "highImpactExecutePackages": [
       "P2P-015",
       "PAYMENTS-006",
       "PAYMENTS-009",
-      "BANK-002"
+      "BANK-002",
+      "BANK-009"
     ],
     "marathonV2FinalReportAllowed": true
   },
@@ -540,7 +542,7 @@
     "file": ".agent/state/marathon.json",
     "rule": "Final report requires agent:marathon:check pass or documented hard stop.",
     "readOnlyDoesNotCountAsExecute": true,
-    "nextExecuteLever": "BANK-005-TARGET-LINE-OPEN-ENTRY-DRILLDOWN"
+    "nextExecuteLever": "BANK-010-BANK-RECONCILIATION-OR-BOOK-SYNC"
   },
   "latestP2P014": {
     "caseId": "P2P-014-PURCHASE-JOURNAL-VALUE-ENTRY-GATE",
@@ -919,5 +921,66 @@
     "mustRecreateInFinalSandbox": true,
     "finalScreenshotNeeded": true,
     "nextStep": "BANK-009: controlled single-line vendor payment posting for 108204 with post-dialog screenshot and Vendor/Bank/G-L ledger trace."
+  },
+  "latestBank009": {
+    "caseId": "BANK-009-SINGLE-LINE-VENDOR-PAYMENT-POSTING",
+    "status": [
+      "labor-proven",
+      "controlled-posting-with-trace",
+      "vendor-payment-posted",
+      "posting-trace",
+      "needs-german-final-rebuild"
+    ],
+    "sourceInstance": "MCP_1_20260210",
+    "sourceCompany": "RM-DEMO",
+    "targetDocumentNo": "108204",
+    "relatedInvoiceNo": "107196",
+    "vendorNo": "20000",
+    "targetParty": "First Up Consultants",
+    "paymentDocumentNo": "BANK009-108204",
+    "targetAmount": "2.151,46",
+    "bankAccountNo": "BANK-RM-01",
+    "posted": true,
+    "paymentPosted": true,
+    "bankReconciliationPosted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "apiShortcut": false,
+    "bcRun": true,
+    "playwrightRun": true,
+    "journalCheckZeroIssues": true,
+    "applyEntriesOpened": true,
+    "traceSummary": {
+      "invoiceVendorLedgerVisible": true,
+      "paymentVendorLedgerVisible": true,
+      "detailedVendorLedgerVisible": true,
+      "bankLedgerVisible": true,
+      "glEntriesVisible": true
+    },
+    "postTraceInterpretation": {
+      "invoiceRemainingAmountZeroVisible": true,
+      "invoiceAppliedEntriesVisible": false,
+      "detailedVendorLedgerApplicationVisible": true,
+      "bankAccountLedgerPageVisible": true,
+      "glBankAccountEffectVisible": true,
+      "noBankReconciliation": true,
+      "notGermanFinalProof": true
+    },
+    "resultPath": "playwright/projects/fibu-book5/evidence/bank-009/BANK-009-result.json",
+    "evidencePath": "playwright/projects/fibu-book5/evidence/bank-009/",
+    "screenshots": [
+      "playwright/projects/fibu-book5/img/bank-009-060-vendor-ledger-invoice-after-payment.png",
+      "playwright/projects/fibu-book5/img/bank-009-061-vendor-ledger-payment.png",
+      "playwright/projects/fibu-book5/img/bank-009-062-detailed-vendor-ledger-payment.png",
+      "playwright/projects/fibu-book5/img/bank-009-063-bank-account-ledger-payment.png",
+      "playwright/projects/fibu-book5/img/bank-009-064-gl-entries-payment.png",
+      "playwright/projects/fibu-book5/img/bank-009-040-post-confirm-dialog.png",
+      "playwright/projects/fibu-book5/img/bank-009-050-post-result.png"
+    ],
+    "decision": "Diese Buchung ist als autonome RM-DEMO-Laborbuchung vertretbar, weil der offene Kreditorenposten 108204 fuer 20000 im UI sichtbar ist, die Payment-Journal-Zeile mit BANK-RM-01 und 2.151,46 auf genau diese Rechnung verweist, Journal Check 0 Issues zeigt, Apply Entries read-only geprueft wurde und die erwartete Postenspur Kreditorenposten, detaillierte Kreditorenposten, Bankposten und Sachposten umfasst; Risiko und Grenze bleiben CRONUS-USA-Labor ohne Bankabstimmung und ohne deutschen Finalnachweis.",
+    "migrationRelevance": "needed-for-german-final",
+    "mustRecreateInFinalSandbox": true,
+    "finalScreenshotNeeded": true,
+    "nextStep": "BANK-010: Kapitel 19/20 und Bank-/Payments-Draft mit BANK-009 synchronisieren; danach optional Bankabstimmung oder P2P-Abweichungsfall planen."
   }
 }

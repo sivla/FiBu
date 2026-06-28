@@ -269,7 +269,26 @@
         "summary": "Vendor Ledger Entry 108204 and single-line Payment Journal preflight were clean: Journal Check 0 Issues, Apply Entries opened read-only, draft cleaned, no posting.",
         "nextStep": "BANK-009-SINGLE-LINE-VENDOR-PAYMENT-POSTING"
       }
+    },
+    {
+      "id": "BANK-009-SINGLE-LINE-VENDOR-PAYMENT-POSTING",
+      "order": 15,
+      "status": "done",
+      "category": "bank",
+      "expectedImpact": "high-impact",
+      "fallbackRoute": "If posting had blocked, return to BANK-008 preflight correction or use a new scoped payment document.",
+      "evidenceTarget": "playwright/projects/fibu-book5/evidence/bank-009/",
+      "mayWorkEffectively": true,
+      "goal": "Post the scoped one-line vendor payment for document 108204 and trace Vendor/Bank/G-L entries.",
+      "completedAt": "2026-06-28T22:32:00.000Z",
+      "result": {
+        "status": "posted",
+        "resultFile": "playwright/projects/fibu-book5/evidence/bank-009/BANK-009-result.json",
+        "paymentDocumentNo": "BANK009-108204",
+        "summary": "Single-line Payment Journal vendor payment posted once and traced through Vendor Ledger, Detailed Vendor Ledger, Bank Account Ledger and G/L Entries.",
+        "nextStep": "BANK-010: Kapitel 19/20 und Bank-/Payments-Draft mit BANK-009 synchronisieren; danach optional Bankabstimmung oder P2P-Abweichungsfall planen."
+      }
     }
   ],
-  "lastUpdated": "2026-06-28T22:05:00.000Z"
+  "lastUpdated": "2026-06-28T22:32:00.000Z"
 }

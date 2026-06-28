@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "caseId": "BANK-009-SINGLE-LINE-VENDOR-PAYMENT-POSTING",
+  "title": "Controlled single-line vendor payment posting for document 108204",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "sourceCompany": "RM-DEMO",
+  "workType": "playwright-ui-controlled-vendor-payment-posting",
+  "status": "planned",
+  "classification": [
+    "controlled-posting-with-trace",
+    "vendor-payment",
+    "posting-trace",
+    "needs-german-final-rebuild"
+  ],
+  "allowedActions": [
+    "open-business-central-if-instance-and-company-match",
+    "run-playwright-if-case-preflight-passes",
+    "read-vendor-ledger-entry",
+    "create-controlled-payment-journal-line",
+    "run-journal-check",
+    "open-apply-entries-readonly",
+    "open-post-dialog",
+    "confirm-post-dialog-exactly-once-if-gates-pass",
+    "trace-vendor-ledger-entry",
+    "trace-detailed-vendor-ledger-entry",
+    "trace-bank-account-ledger-entry",
+    "trace-gl-entry",
+    "write-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "preview-posting",
+    "ship",
+    "invoice",
+    "ship-and-invoice",
+    "setup-change",
+    "api-shortcut",
+    "book-final-claim",
+    "repeat-posting-if-payment-document-exists"
+  ],
+  "target": {
+    "documentNo": "108204",
+    "relatedInvoiceNo": "107196",
+    "vendorNo": "20000",
+    "vendorName": "First Up Consultants",
+    "amount": "2.151,46",
+    "bankAccountNo": "BANK-RM-01",
+    "paymentDocumentNo": "BANK009-108204"
+  },
+  "gates": [
+    "Vendor Ledger Entry 108204 visible for vendor 20000 / First Up Consultants before posting",
+    "payment document BANK009-108204 is not already posted before the run",
+    "one Payment Journal line visible with BANK009-108204",
+    "Journal Check shows 0 Issues before posting",
+    "Apply Entries is read-only checked before posting",
+    "Post confirmation dialog is captured before confirmation",
+    "confirmation is clicked at most once",
+    "Vendor Ledger, Detailed Vendor Ledger, Bank Account Ledger and G/L Entries are traced after posting"
+  ],
+  "resultPath": "playwright/projects/fibu-book5/evidence/bank-009/BANK-009-result.json",
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": true,
+  "rebuildInstruction": "In the German final sandbox, recreate a single-line vendor payment with German vendor, bank account, posting groups and open-item context. Capture post-dialog and ledger traces again; do not reuse RM-DEMO as final proof.",
+  "targetGermanCompanyImpact": "German final company needs bank setup, open vendor item, payment journal posting, bank/vendor/G-L trace and bank reconciliation follow-up rebuilt.",
+  "finalScreenshotNeeded": true,
+  "nextStep": "After BANK-009, synchronize the bank/payment book draft and decide whether BANK-010 should be bank reconciliation follow-up or German rebuild preparation."
+}
