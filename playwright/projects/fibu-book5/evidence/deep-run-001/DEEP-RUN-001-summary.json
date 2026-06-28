@@ -286,6 +286,26 @@
       "resultFile": "playwright/projects/fibu-book5/evidence/rm-de-lab-001/RM-DE-LAB-001-result.json",
       "summary": "Blocked because RM-DE-LAB does not exist yet.",
       "nextStep": "RM-DE-LAB-CREATE-001: dedicated UI-first Companies/New-or-Copy route with registry guard; only then run RM-DE-LAB-002 foundation setup."
+    },
+    {
+      "id": "BANK-002",
+      "queueId": "BANK-002-CONTROLLED-RECONCILIATION-DRAFT-PREFLIGHT",
+      "type": "bank-reconciliation-apply-attempt payment-apply-attempted controlled-ui-action",
+      "status": "labor-proven",
+      "bcRun": true,
+      "posted": false,
+      "previewPosting": false,
+      "setupChanged": false,
+      "execute": true,
+      "highImpactExecute": true,
+      "signals": [
+        "bank-reconciliation-apply-attempt",
+        "payment-apply-attempted",
+        "controlled-ui-action"
+      ],
+      "resultFile": "playwright/projects/fibu-book5/evidence/bank-002/BANK-002-result.json",
+      "summary": "Payment Reconciliation Journal action Accept Applications was clicked once through the UI; Lines For Review changed from 6 to 5; Post Payments Only was not clicked.",
+      "nextStep": "BANK-003: Post Payments Only only with explicit posting and ledger trace gate, or inspect Bank Account Reconciliation match/apply flow before posting."
     }
   ],
   "postingSummary": {
@@ -305,15 +325,15 @@
     }
   },
   "nextBestLevers": [
+    "BANK-003-POST-PAYMENTS-ONLY-TRACE-GATE",
     "RM-DE-LAB-CREATE-001-UI-FIRST-COMPANY-CREATION",
-    "BANK-002-CONTROLLED-RECONCILIATION-DRAFT-PREFLIGHT",
     "FIXEDASSETS-DEPRECIATION-PARAMETER-FIX"
   ],
   "migrationRelevance": "needed-for-german-final",
   "mustRecreateInFinalSandbox": true,
   "finalScreenshotNeeded": true,
   "executeSummary": {
-    "executePackages": 8,
+    "executePackages": 9,
     "executePackageIds": [
       "P2P-014",
       "PAYMENTS-005",
@@ -322,15 +342,19 @@
       "P2P-019",
       "PAYMENTS-006",
       "PAYMENTS-009",
-      "FIXEDASSETS-248"
+      "FIXEDASSETS-248",
+      "BANK-002"
     ],
-    "highImpactExecutePackages": 3,
+    "highImpactExecutePackages": 4,
     "highImpactPackageIds": [
-      "BANK-001"
+      "P2P-015",
+      "PAYMENTS-006",
+      "PAYMENTS-009",
+      "BANK-002"
     ],
-    "lightExecutePackages": 4,
+    "lightExecutePackages": 2,
     "readOnlyPackagesDoNotCountAsExecute": true,
-    "progressPackagesTotal": 24
+    "progressPackagesTotal": 25
   },
-  "updatedAt": "2026-06-28T19:45:52.122Z"
+  "updatedAt": "2026-06-28T19:55:12.935Z"
 }

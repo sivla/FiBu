@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 1,
+  "purpose": "payment-reconciliation-accept-applications-result",
+  "caseId": "BANK-002-CONTROLLED-RECONCILIATION-DRAFT-PREFLIGHT",
+  "testId": "BANK-002",
+  "source": "playwright-controlled-ui-action",
+  "resultStatus": "observed",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "sourceCompany": "RM-DEMO",
+  "page": {
+    "pageId": 1290,
+    "title": "Payment Reconciliation Journal",
+    "initialUrl": "https://businesscentral.dynamics.com/<tenant>/MCP_1_20260210?company=RM-DEMO&page=1290&dc=0&bookmark=3A_EgEAAACLAQAAAAJ7_0MASABFAEMASwBJAE4ARwAAAAJ7_1AAUgBFAEMAMAAwADAAAAAAhxAn",
+    "finalUrl": "https://businesscentral.dynamics.com/<tenant>/MCP_1_20260210?company=RM-DEMO&page=1290&dc=0&bookmark=3A_EgEAAACLAQAAAAJ7_0MASABFAEMASwBJAE4ARwAAAAJ7_1AAUgBFAEMAMAAwADAAAAAAhxAn"
+  },
+  "before": {
+    "metrics": {
+      "linesForReview": "6",
+      "linesWithDifferences": "0",
+      "totalTransactionAmount": "10.040,93",
+      "balanceAfterPosting": "21.614,11",
+      "hasAcceptApplications": true,
+      "hasPostPaymentsOnly": true,
+      "hasReviewApplications": true,
+      "hasMatchConfidence": true
+    },
+    "relevantButtons": [
+      "Accept Applications",
+      "Amount Incl. Tolerance Matched:",
+      "Balance After Posting",
+      "Document No./Ext. Document No. Matched",
+      "Lines For Review",
+      "Match Confidence",
+      "Match Details",
+      "Post Payments Only...",
+      "Related Party Matched",
+      "Review applications",
+      "Wide World Importers"
+    ],
+    "evidenceFile": "010-before-accept-applications-page-text.txt"
+  },
+  "action": {
+    "revealMethod": "already-visible",
+    "acceptApplicationsClicked": true,
+    "acceptApplicationsClickMethod": "role:button",
+    "dialogsAfterClick": [],
+    "postPaymentsOnlyClicked": false
+  },
+  "after": {
+    "metrics": {
+      "linesForReview": "5",
+      "linesWithDifferences": "0",
+      "totalTransactionAmount": "10.040,93",
+      "balanceAfterPosting": "21.614,11",
+      "hasAcceptApplications": true,
+      "hasPostPaymentsOnly": true,
+      "hasReviewApplications": false,
+      "hasMatchConfidence": true
+    },
+    "relevantButtons": [
+      "Accept Applications",
+      "Accepted",
+      "Amount Incl. Tolerance Matched:",
+      "Balance After Posting",
+      "Document No./Ext. Document No. Matched",
+      "Lines For Review",
+      "Match Confidence",
+      "Match Details",
+      "Post Payments Only...",
+      "Related Party Matched",
+      "Wide World Importers"
+    ],
+    "evidenceFile": "020-after-accept-applications-page-text.txt"
+  },
+  "proved": [
+    "Payment Reconciliation Journal action Accept Applications was attempted through the UI without clicking Post Payments Only."
+  ],
+  "notProved": [
+    "No payment was posted.",
+    "No bank reconciliation was posted.",
+    "No Preview Posting was run.",
+    "No German bank/compliance final proof."
+  ],
+  "safety": {
+    "noPostPaymentsOnly": true,
+    "noPost": true,
+    "noPreviewPosting": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true,
+    "noSetupChange": true
+  },
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "rebuildInstruction": "In der deutschen Zielcompany Payment Reconciliation Journal mit deutschem Bankkonto und echten Zielbelegen neu aufbauen. Erst Anwendungen akzeptieren/matchen, dann vor jedem Post/Payment-Post die Ledger- und Bankwirkung planen und fotografisch belegen.",
+  "targetGermanCompanyImpact": "Deutsche Zielcompany braucht Bankkonto, Bank Account Posting Group, offene Posten, Payment Reconciliation Journal und Bank-/G/L-/Detailed Ledger Trace neu.",
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/bank-002/BANK-002-result.json",
+    "playwright/projects/fibu-book5/evidence/bank-002/BANK-002-PAYMENT-RECONCILIATION-ACCEPT-APPLICATIONS.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/bank-002/"
+  ],
+  "blockedBy": [],
+  "safeToFinalizeState": false,
+  "requiresReview": false,
+  "nextStep": "BANK-003: Post Payments Only nur mit expliziter Posting-/Ledger-Trace-Fachpruefung versuchen; alternativ Bank Account Reconciliation Page 379 Match/Apply tiefer pruefen."
+}

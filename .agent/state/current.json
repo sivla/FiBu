@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-28T21:42:00.000+02:00",
+  "updatedAt": "2026-06-28T19:55:12.935Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
@@ -40,7 +40,7 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "RM-DE-LAB-CREATE-001 UI-first company creation case, or continue RM-DEMO process work if company creation is deferred.",
+  "nextStep": "BANK-003: controlled Post Payments Only trace gate, or defer posting and create RM-DE-LAB UI-first company case if bank posting risk is too high.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/fixedassets-labor-draft.md",
     "area": "fixedassets",
@@ -498,8 +498,8 @@
     "setupChangedInThisDeepRun": false,
     "companySwitchedInThisDeepRun": false,
     "nextBestLevers": [
+      "BANK-003-POST-PAYMENTS-ONLY-TRACE-GATE",
       "RM-DE-LAB-CREATE-001-UI-FIRST-COMPANY-CREATION",
-      "BANK-002-CONTROLLED-RECONCILIATION-DRAFT-PREFLIGHT",
       "FIXEDASSETS-DEPRECIATION-PARAMETER-FIX"
     ],
     "executePackages": [
@@ -510,26 +510,28 @@
       "P2P-019",
       "PAYMENTS-006",
       "PAYMENTS-009",
-      "FIXEDASSETS-248"
+      "FIXEDASSETS-248",
+      "BANK-002"
     ],
     "progressPackages": [
-      "P2P-012",
-      "FIXEDASSETS-240",
-      "PAYMENTS-002",
-      "P2P-013",
-      "DEEP-RUN-001-SYNC",
-      "MARATHON-GATE-001",
-      "P2P-014",
-      "PAYMENTS-005",
-      "MARATHON-V2-GATE-001",
-      "P2P-015",
-      "P2P-016",
-      "P2P-017"
+      "P2P-019",
+      "P2P-020",
+      "PAYMENTS-006",
+      "PAYMENTS-009",
+      "FIXEDASSETS-248",
+      "FIXEDASSETS-247",
+      "BANK-001",
+      "DIMENSIONS-001",
+      "INVENTORY-009",
+      "RM-DE-LAB-001",
+      "RM-DE-LAB-002",
+      "BANK-002"
     ],
     "highImpactExecutePackages": [
       "P2P-015",
       "PAYMENTS-006",
-      "PAYMENTS-009"
+      "PAYMENTS-009",
+      "BANK-002"
     ],
     "marathonV2FinalReportAllowed": true
   },
@@ -538,7 +540,7 @@
     "file": ".agent/state/marathon.json",
     "rule": "Final report requires agent:marathon:check pass or documented hard stop.",
     "readOnlyDoesNotCountAsExecute": true,
-    "nextExecuteLever": "P2P-014-PURCHASE-JOURNAL-VALUE-ENTRY-GATE"
+    "nextExecuteLever": "BANK-003-POST-PAYMENTS-ONLY-TRACE-GATE"
   },
   "latestP2P014": {
     "caseId": "P2P-014-PURCHASE-JOURNAL-VALUE-ENTRY-GATE",
@@ -701,5 +703,31 @@
     "resultFile": "playwright/projects/fibu-book5/evidence/rm-de-lab-001/RM-DE-LAB-001-result.json",
     "proposedCompany": "RM-DE-LAB",
     "nextStep": "RM-DE-LAB-CREATE-001: dedicated UI-first Companies/New-or-Copy route with registry guard; only then run RM-DE-LAB-002 foundation setup."
+  },
+  "latestBank002": {
+    "caseId": "BANK-002-CONTROLLED-RECONCILIATION-DRAFT-PREFLIGHT",
+    "status": [
+      "high-impact-execute",
+      "controlled-apply-attempt",
+      "labor-proven",
+      "needs-german-final-rebuild"
+    ],
+    "sourceInstance": "MCP_1_20260210",
+    "sourceCompany": "RM-DEMO",
+    "pageId": 1290,
+    "action": "Accept Applications",
+    "linesForReviewBefore": 6,
+    "linesForReviewAfter": 5,
+    "posted": false,
+    "previewPosting": false,
+    "postPaymentsOnlyClicked": false,
+    "setupChanged": false,
+    "apiShortcut": false,
+    "resultPath": "playwright/projects/fibu-book5/evidence/bank-002/BANK-002-result.json",
+    "evidencePath": "playwright/projects/fibu-book5/evidence/bank-002/",
+    "migrationRelevance": "needed-for-german-final",
+    "mustRecreateInFinalSandbox": true,
+    "finalScreenshotNeeded": true,
+    "nextStep": "BANK-003: only attempt Post Payments Only with explicit post-dialog and ledger-trace gate; otherwise inspect Bank Account Reconciliation Page 379 match/apply flow."
   }
 }
