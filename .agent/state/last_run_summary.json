@@ -1,16 +1,16 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-258-FA-DEPRECIATION-TARGET-VALUE-PREFLIGHT-NO-OK",
-  "timestamp": "2026-06-27T23:12:00.000+02:00",
-  "date": "2026-06-27",
-  "workType": "guarded-request-page-value-preflight-no-ok",
+  "runId": "FIXEDASSETS-259-FA-DEPRECIATION-TARGET-VALUE-PREFLIGHT-BLOCKER-REVIEW",
+  "timestamp": "2026-06-28T00:10:00.000+02:00",
+  "date": "2026-06-28",
+  "workType": "local-blocker-review",
   "taskClass": "wizard_work",
-  "modelClass": "gpt-4-high",
+  "modelClass": "gpt-4-medium",
   "branch": "codex/token-efficient-autopilot-state",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "bcRun": true,
-  "playwrightRun": true,
+  "bcRun": false,
+  "playwrightRun": false,
   "posted": false,
   "previewPosting": false,
   "setupChanged": false,
@@ -23,54 +23,40 @@
   "recordDeleted": false,
   "journalLineChanged": false,
   "requestPageParameterEditedWithoutOk": false,
-  "calculateDepreciationClicked": true,
+  "calculateDepreciationClicked": false,
   "okConfirmed": false,
   "depreciationCalculated": false,
   "executingActionClicked": false,
-  "resultStatus": "blocked",
-  "blockedBy": [
-    "dangerous-confirm-visible-before-depreciationBook"
-  ],
-  "summary": "FA-258 opened Calculate Depreciation in MCP_1_20260210 / RM-DEMO, but did not write target values because the no-OK guard blocked on a visible OK button before the Depreciation Book field. This is likely an overbroad Playwright guard, not proof of a BC setup blocker. OK, Preview Posting and Post remain locked.",
-  "targetValues": {
-    "depreciationBook": "HGB",
-    "postingDateUi": "30.06.2026",
-    "documentNo": "FADEP-258-NO-OK",
-    "fixedAssetNoFilter": "FA-CNC-01"
-  },
+  "resultStatus": "observed",
+  "summary": "FA-259 classified the FA-258 blocker as an overbroad Playwright guard: visible OK on a request page is normal and should not block by itself. OK clicks, Preview Posting and Post remain locked. FA-260 is planned for guard refinement plus one no-OK retry.",
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/fixedassets-258/FIXEDASSETS-258-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-258/FIXEDASSETS-258-TARGET-VALUE-PREFLIGHT-NO-OK.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-258/010-target-value-preflight.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-258/010-target-value-preflight-text.txt"
+    "playwright/projects/fibu-book5/evidence/fixedassets-259/FIXEDASSETS-259-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-259/FIXEDASSETS-259-TARGET-VALUE-PREFLIGHT-BLOCKER-REVIEW.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-259/README.md"
   ],
   "changedFiles": [
-    "package.json",
-    "playwright/projects/fibu-book5/tests/fixedassets-258-fa-depreciation-target-value-preflight-no-ok.spec.ts",
-    "playwright/projects/fibu-book5/evidence/fixedassets-258/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-259/",
     ".agent/state/current.json",
-    ".agent/state/cases/fixedassets-258-fa-depreciation-target-value-preflight-no-ok.json",
     ".agent/state/cases/fixedassets-259-fa-depreciation-target-value-preflight-blocker-review.json",
+    ".agent/state/cases/fixedassets-260-fa-depreciation-guard-refinement-and-value-preflight-retry.json",
     ".agent/state/coverage_state.json",
     ".agent/state/last_run_summary.json",
     "playwright/FINDINGS.md",
     "playwright/projects/fibu-book5/BOOK-CLICK-GUIDE-COVERAGE.md"
   ],
   "validationCommands": [
-    "npm run fibu:fixedassets:fa-depreciation-target-value-preflight-no-ok",
     "npm run agent:preflight",
     "npm run agent:dry-run",
     "npm run agent:run-plan",
-    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-258/FIXEDASSETS-258-result.json",
-    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-258/FIXEDASSETS-258-result.json",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-259/FIXEDASSETS-259-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-259/FIXEDASSETS-259-result.json",
     "npm run check:encoding",
     "git diff --check"
   ],
   "boundaries": [
-    "Business Central was opened only inside MCP_1_20260210.",
-    "Company stayed RM-DEMO.",
-    "Calculate Depreciation request page was opened.",
-    "Target request-page values were not written because the guard blocked first.",
+    "No Business Central session was opened.",
+    "No Playwright test was run.",
+    "No request-page values were written.",
     "OK was not confirmed.",
     "No depreciation journal line was created.",
     "No Preview Posting was opened.",
@@ -79,7 +65,7 @@
     "No German final proof exists."
   ],
   "activeArea": "fixedassets",
-  "activeCase": "FIXEDASSETS-258-FA-DEPRECIATION-TARGET-VALUE-PREFLIGHT-NO-OK",
-  "nextCase": "FIXEDASSETS-259-FA-DEPRECIATION-TARGET-VALUE-PREFLIGHT-BLOCKER-REVIEW",
-  "nextStep": "FIXEDASSETS-259: locally review the no-OK target-value preflight blocker before any further value write."
+  "activeCase": "FIXEDASSETS-259-FA-DEPRECIATION-TARGET-VALUE-PREFLIGHT-BLOCKER-REVIEW",
+  "nextCase": "FIXEDASSETS-260-FA-DEPRECIATION-GUARD-REFINEMENT-AND-VALUE-PREFLIGHT-RETRY",
+  "nextStep": "FIXEDASSETS-260: refine the no-OK guard so visible request-page OK does not block, then rerun the value preflight without confirming OK."
 }

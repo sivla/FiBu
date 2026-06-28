@@ -1,4 +1,17 @@
 
+## FIND-BC-FA-096 Request-Page-OK ist sichtbar erlaubt, OK-Klick bleibt gesperrt
+
+| Feld | Wert |
+|---|---|
+| Bereich | Fixed Assets / AfA-Route / Playwright-Sicherheitsguard |
+| Testfall | `FIXEDASSETS-259-FA-DEPRECIATION-TARGET-VALUE-PREFLIGHT-BLOCKER-REVIEW` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-259/FIXEDASSETS-259-result.json`, `playwright/projects/fibu-book5/evidence/fixedassets-259/FIXEDASSETS-259-TARGET-VALUE-PREFLIGHT-BLOCKER-REVIEW.md` |
+| Entscheidung | Der FA-258-Blocker ist als Playwright-Guard-Blocker klassifiziert. Sichtbares `OK` auf einer BC-Request-Page darf den no-OK Preflight nicht allein blockieren. |
+| weiterhin verboten | `OK` klicken/bestaetigen, Preview Posting, Post, Setup Change, Company Switch, API-Abkuerzung |
+| naechster Schritt | `FIXEDASSETS-260`: Guard verfeinern und genau einen no-OK Zielwert-Preflight mit `FADEP-260-NO-OK` wiederholen. |
+
+Fuer Business-Central-Automatisierung ist das ein wiederverwendbares Muster: Ein Sicherheitsguard muss Aktion und Sichtbarkeit trennen. Sonst verhindert er gerade die lehrreichen Request-Page-Kontrollen, die das Buch braucht.
+
 ## FIND-BC-FA-095 AfA-Zielwert-Preflight blockiert durch zu breiten OK-Sichtbarkeitsguard
 
 | Feld | Wert |

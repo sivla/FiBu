@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-260-FA-DEPRECIATION-GUARD-REFINEMENT-AND-VALUE-PREFLIGHT-RETRY",
+  "status": "planned",
+  "workType": "playwright-guard-refinement-and-guarded-request-page-value-preflight-no-ok",
+  "taskClass": "wizard_work",
+  "requiresStrongModel": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Refine the FA-258 no-OK guard so visible request-page OK does not block, then run exactly one no-OK Calculate Depreciation target-value preflight retry.",
+  "unlockedBy": {
+    "caseId": "FIXEDASSETS-259-FA-DEPRECIATION-TARGET-VALUE-PREFLIGHT-BLOCKER-REVIEW",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-259/FIXEDASSETS-259-result.json",
+    "decision": "Visible request-page OK is normal. Guard may be refined, but OK, Preview Posting and Post remain locked."
+  },
+  "targets": {
+    "depreciationBook": "HGB",
+    "postingDateUi": "30.06.2026",
+    "postingDateIso": "2026-06-30",
+    "documentNo": "FADEP-260-NO-OK",
+    "fixedAssetNoFilter": "FA-CNC-01"
+  },
+  "allowedActions": [
+    "edit-playwright-test-guard-only",
+    "open-business-central",
+    "run-playwright",
+    "open-calculate-depreciation-request-page",
+    "write-target-request-page-values-without-ok",
+    "capture-value-proof",
+    "close-request-page-without-ok",
+    "write-compact-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "company-switch",
+    "setup-change",
+    "confirm-ok-on-calculate-depreciation",
+    "preview-posting",
+    "post",
+    "post-and-print",
+    "confirm-posting-dialog",
+    "ship",
+    "invoice",
+    "payment"
+  ],
+  "safetyGates": [
+    "instance-boundary-gate",
+    "company-context-gate",
+    "no-ok-click-or-confirm",
+    "visible-request-page-ok-is-not-a-blocker",
+    "no-preview-posting",
+    "no-posting",
+    "no-setup-change",
+    "no-company-switch",
+    "no-api-shortcut",
+    "value-proof-before-close"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-260/FIXEDASSETS-260-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-260/FIXEDASSETS-260-TARGET-VALUE-PREFLIGHT-NO-OK.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-260/010-target-value-preflight.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-260/010-target-value-preflight-text.txt"
+  ],
+  "acceptanceCriteria": [
+    "Business Central stays in MCP_1_20260210.",
+    "Company stays RM-DEMO.",
+    "Calculate Depreciation request page opens.",
+    "Visible OK on the request page does not block by itself.",
+    "No OK click or confirmation occurs.",
+    "Depreciation Book visibly proves HGB after value entry, or the exact field-level blocker is documented.",
+    "Posting Date visibly proves 30.06.2026 after value entry, or the exact field-level blocker is documented.",
+    "Document No. visibly proves FADEP-260-NO-OK after value entry, or the exact field-level blocker is documented.",
+    "Fixed Asset No. filter visibly proves FA-CNC-01 after value entry, or the exact field-level blocker is documented.",
+    "No depreciation journal line is created intentionally.",
+    "No Preview Posting or Post occurs."
+  ],
+  "stopConditions": [
+    "BC URL does not contain MCP_1_20260210.",
+    "Company is not RM-DEMO.",
+    "The test would click OK, Yes, Ja, Post, Preview Posting, Ship, Invoice or Delete.",
+    "A modal dialog requires confirmation to proceed.",
+    "The target request-page field cannot be mapped to a visible editable control.",
+    "The page navigates away unexpectedly after value entry."
+  ],
+  "nextSafeAction": "Refine only the FA-258 guard logic, then run one no-OK target-value preflight retry with FADEP-260-NO-OK.",
+  "createdAt": "2026-06-28T00:10:00.000+02:00",
+  "updatedAt": "2026-06-28T00:10:00.000+02:00"
+}

@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixed-assets-depreciation-target-value-preflight-blocker-review",
+  "caseId": "FIXEDASSETS-259-FA-DEPRECIATION-TARGET-VALUE-PREFLIGHT-BLOCKER-REVIEW",
+  "source": "local-evidence-review",
+  "resultStatus": "observed",
+  "branch": "codex/token-efficient-autopilot-state",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "reviewedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-258/FIXEDASSETS-258-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-258/010-target-value-preflight.json",
+    "playwright/projects/fibu-book5/tests/fixedassets-258-fa-depreciation-target-value-preflight-no-ok.spec.ts"
+  ],
+  "blocker": {
+    "id": "dangerous-confirm-visible-before-depreciationBook",
+    "classification": "playwright-guard-blocker",
+    "isBusinessCentralSetupBlocker": false,
+    "isDataBlocker": false,
+    "isEvidenceBlocker": true,
+    "explanation": "The request page was open and showed normal OK/Cancel controls. The test stopped because visibleDanger checks broad page text for dangerous words before value entry. On a BC request page, OK being visible is expected; the no-OK safety requirement is that Playwright must not click or confirm OK."
+  },
+  "decision": {
+    "guardRefinementAllowed": true,
+    "okExecutionUnlocked": false,
+    "previewPostingUnlocked": false,
+    "postingUnlocked": false,
+    "nextCase": "FIXEDASSETS-260-FA-DEPRECIATION-GUARD-REFINEMENT-AND-VALUE-PREFLIGHT-RETRY",
+    "nextCaseFile": ".agent/state/cases/fixedassets-260-fa-depreciation-guard-refinement-and-value-preflight-retry.json"
+  },
+  "guardRulesForNextCase": [
+    "Do not block on a normal visible OK button inside the Calculate Depreciation request page.",
+    "Block if Playwright is about to click OK, Yes, Ja, Post, Preview Posting, Ship, Invoice or Delete.",
+    "Block if a modal dialog requires confirmation to proceed.",
+    "After value entry, close/cancel the request page without OK.",
+    "Continue to assert no journal line, no Preview Posting and no Post."
+  ],
+  "proved": [
+    "FA-258 reached the Calculate Depreciation request page in MCP_1_20260210 / RM-DEMO.",
+    "FA-258 did not confirm OK, did not preview and did not post.",
+    "The FA-258 blocker is best classified as an overbroad Playwright guard, not as BC setup or data evidence."
+  ],
+  "notProved": [
+    "Target values HGB, 30.06.2026, FADEP-258-NO-OK and FA-CNC-01 were not written or proven in FA-258.",
+    "No depreciation journal line exists from FA-258.",
+    "No Preview Posting or depreciation posting evidence exists.",
+    "No German final proof exists."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-259/",
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-259-fa-depreciation-target-value-preflight-blocker-review.json",
+    ".agent/state/cases/fixedassets-260-fa-depreciation-guard-refinement-and-value-preflight-retry.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    "playwright/FINDINGS.md",
+    "playwright/projects/fibu-book5/BOOK-CLICK-GUIDE-COVERAGE.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-259/FIXEDASSETS-259-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-259/FIXEDASSETS-259-TARGET-VALUE-PREFLIGHT-BLOCKER-REVIEW.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-259/README.md"
+  ],
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-260-FA-DEPRECIATION-GUARD-REFINEMENT-AND-VALUE-PREFLIGHT-RETRY",
+      "active_case_file": ".agent/state/cases/fixedassets-260-fa-depreciation-guard-refinement-and-value-preflight-retry.json",
+      "lastReferenceCase": "FIXEDASSETS-259-FA-DEPRECIATION-TARGET-VALUE-PREFLIGHT-BLOCKER-REVIEW",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-259-fa-depreciation-target-value-preflight-blocker-review.json",
+      "nextStep": "FIXEDASSETS-260: refine the no-OK guard so visible request-page OK does not block, then rerun the value preflight without confirming OK."
+    },
+    "coverage": {
+      "activeArea": "fixedassets",
+      "latestReviewCase": "FIXEDASSETS-259-FA-DEPRECIATION-TARGET-VALUE-PREFLIGHT-BLOCKER-REVIEW",
+      "nextCase": "FIXEDASSETS-260-FA-DEPRECIATION-GUARD-REFINEMENT-AND-VALUE-PREFLIGHT-RETRY",
+      "depreciationReadiness": "FA-259 classifies the FA-258 blocker as an overbroad Playwright guard. One guarded no-OK retry is allowed after code-level guard refinement; OK, Preview Posting and Post remain locked."
+    }
+  },
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "reason": "Local review completed. The next safe action is a code-level guard refinement plus one no-OK value-preflight retry.",
+  "observed": {
+    "reviewedAt": "2026-06-28T00:10:00.000+02:00"
+  }
+}
