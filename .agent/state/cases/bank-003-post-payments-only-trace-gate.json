@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "caseId": "BANK-003-POST-PAYMENTS-ONLY-TRACE-GATE",
+  "status": "done-labor-proven",
+  "workType": "bank-posting-dialog-gate",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "purpose": "Payment Reconciliation Journal Post Payments Only dialog/request page kontrolliert oeffnen und dokumentieren, ohne Posting zu bestaetigen.",
+  "allowedWithinInstance": [
+    "open-payment-reconciliation-journal",
+    "click-post-payments-only-to-open-dialog-only",
+    "capture-dialog-text-and-buttons",
+    "close-dialog-without-confirmation",
+    "write-evidence",
+    "update-state"
+  ],
+  "defaultLockedActionsUnlocked": [
+    "payment",
+    "post"
+  ],
+  "unlockLimit": "Nur Dialog-/Request-Page-Preflight. Kein OK, kein Yes/Ja, kein Post/Posting bestaetigen.",
+  "hardForbidden": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "final-german-claim-from-rm-demo",
+    "confirm-post-payments-only",
+    "post-bank-reconciliation",
+    "post-payment"
+  ],
+  "expectedEvidence": [
+    "dialog or request-page text",
+    "visible confirmation buttons",
+    "before/after review line metrics",
+    "no-post/no-preview/no-company-switch safety flags"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "rebuildInstruction": "In der deutschen Zielcompany muss der Post-Payments-Only-Dialog erneut mit deutschem Bankkonto, deutschen offenen Posten und geplantem Ledger-Trace fotografisch belegt werden, bevor dort eine Zahlung gebucht wird.",
+  "createdAt": "2026-06-28T20:08:00.000Z",
+  "updatedAt": "2026-06-28T20:01:42.516Z",
+  "resultPath": "playwright/projects/fibu-book5/evidence/bank-003/BANK-003-result.json",
+  "result": "Post Payments Only dialog gate opened and closed without confirmation; no payment, no preview, no setup, no company switch.",
+  "nextStep": "BANK-004: define target line/open-entry/ledger-trace Fachpruefung before confirming any payment post."
+}

@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-28T19:55:12.935Z",
+  "updatedAt": "2026-06-28T20:01:42.516Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "activeArea": "deep-run",
-  "activeCase": "BC-DEEP-RUN-001-MULTI-ROUTE-SANDBOX-PROGRESS",
-  "active_case_file": ".agent/state/cases/bc-deep-run-001-multi-route-sandbox-progress.json",
-  "lastReferenceCase": "BC-DEEP-RUN-001-MULTI-ROUTE-SANDBOX-PROGRESS",
-  "lastReferenceCaseFile": ".agent/state/cases/bc-deep-run-001-multi-route-sandbox-progress.json",
+  "activeArea": "bank",
+  "activeCase": "BANK-003-POST-PAYMENTS-ONLY-TRACE-GATE",
+  "active_case_file": ".agent/state/cases/bank-003-post-payments-only-trace-gate.json",
+  "lastReferenceCase": "BANK-003-POST-PAYMENTS-ONLY-TRACE-GATE",
+  "lastReferenceCaseFile": ".agent/state/cases/bank-003-post-payments-only-trace-gate.json",
   "mode": "bc-specialist-labor-book-production",
   "requiresStrongModel": false,
   "requiredPreflightChecks": [
@@ -40,7 +40,7 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "BANK-003: controlled Post Payments Only trace gate, or defer posting and create RM-DE-LAB UI-first company case if bank posting risk is too high.",
+  "nextStep": "BANK-004: Vor echter Zahlung Zielzeile/offene Posten und erwartete Bank-/Sach-/Detailed-Ledger-Entries definieren; erst danach Payment Posting in RM-DEMO erwaegen.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/fixedassets-labor-draft.md",
     "area": "fixedassets",
@@ -498,7 +498,7 @@
     "setupChangedInThisDeepRun": false,
     "companySwitchedInThisDeepRun": false,
     "nextBestLevers": [
-      "BANK-003-POST-PAYMENTS-ONLY-TRACE-GATE",
+      "BANK-004-PAYMENT-POSTING-FACHPRUEFUNG-TRACE-PLAN",
       "RM-DE-LAB-CREATE-001-UI-FIRST-COMPANY-CREATION",
       "FIXEDASSETS-DEPRECIATION-PARAMETER-FIX"
     ],
@@ -514,7 +514,6 @@
       "BANK-002"
     ],
     "progressPackages": [
-      "P2P-019",
       "P2P-020",
       "PAYMENTS-006",
       "PAYMENTS-009",
@@ -525,7 +524,8 @@
       "INVENTORY-009",
       "RM-DE-LAB-001",
       "RM-DE-LAB-002",
-      "BANK-002"
+      "BANK-002",
+      "BANK-003"
     ],
     "highImpactExecutePackages": [
       "P2P-015",
@@ -540,7 +540,7 @@
     "file": ".agent/state/marathon.json",
     "rule": "Final report requires agent:marathon:check pass or documented hard stop.",
     "readOnlyDoesNotCountAsExecute": true,
-    "nextExecuteLever": "BANK-003-POST-PAYMENTS-ONLY-TRACE-GATE"
+    "nextExecuteLever": "BANK-004-PAYMENT-POSTING-FACHPRUEFUNG-TRACE-PLAN"
   },
   "latestP2P014": {
     "caseId": "P2P-014-PURCHASE-JOURNAL-VALUE-ENTRY-GATE",
@@ -729,5 +729,35 @@
     "mustRecreateInFinalSandbox": true,
     "finalScreenshotNeeded": true,
     "nextStep": "BANK-003: only attempt Post Payments Only with explicit post-dialog and ledger-trace gate; otherwise inspect Bank Account Reconciliation Page 379 match/apply flow."
+  },
+  "latestBank003": {
+    "caseId": "BANK-003-POST-PAYMENTS-ONLY-TRACE-GATE",
+    "status": [
+      "post-dialog-gate",
+      "labor-proven",
+      "no-confirm",
+      "no-post",
+      "needs-german-final-rebuild"
+    ],
+    "sourceInstance": "MCP_1_20260210",
+    "sourceCompany": "RM-DEMO",
+    "pageId": 1290,
+    "action": "Post Payments Only dialog opened only",
+    "dialogText": "Do you want to post the payments? Ja Nein",
+    "closeMethod": "escape",
+    "linesForReviewBefore": 5,
+    "linesForReviewAfter": 5,
+    "posted": false,
+    "paymentPosted": false,
+    "bankReconciliationPosted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "apiShortcut": false,
+    "resultPath": "playwright/projects/fibu-book5/evidence/bank-003/BANK-003-result.json",
+    "evidencePath": "playwright/projects/fibu-book5/evidence/bank-003/",
+    "migrationRelevance": "needed-for-german-final",
+    "mustRecreateInFinalSandbox": true,
+    "finalScreenshotNeeded": true,
+    "nextStep": "BANK-004: target line/open entry/ledger trace plan before confirming any payment post."
   }
 }

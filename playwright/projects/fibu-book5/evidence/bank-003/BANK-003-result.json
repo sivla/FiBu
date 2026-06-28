@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "purpose": "post-payments-only-trace-gate-result",
+  "caseId": "BANK-003-POST-PAYMENTS-ONLY-TRACE-GATE",
+  "testId": "BANK-003",
+  "source": "playwright-post-dialog-gate",
+  "resultStatus": "observed",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "sourceCompany": "RM-DEMO",
+  "page": {
+    "pageId": 1290,
+    "title": "Payment Reconciliation Journal",
+    "initialUrl": "https://businesscentral.dynamics.com/<tenant>/MCP_1_20260210?company=RM-DEMO&page=1290&dc=0&bookmark=3A_EgEAAACLAQAAAAJ7_0MASABFAEMASwBJAE4ARwAAAAJ7_1AAUgBFAEMAMAAwADAAAAAAhxAn",
+    "finalUrl": "https://businesscentral.dynamics.com/<tenant>/MCP_1_20260210?company=RM-DEMO&page=1290&dc=0&bookmark=3A_EgEAAACLAQAAAAJ7_0MASABFAEMASwBJAE4ARwAAAAJ7_1AAUgBFAEMAMAAwADAAAAAAhxAn"
+  },
+  "before": {
+    "metrics": {
+      "linesForReview": "5",
+      "linesWithDifferences": "0",
+      "totalTransactionAmount": "10.040,93",
+      "balanceAfterPosting": "21.614,11",
+      "hasPostPaymentsOnly": true,
+      "hasAccepted": true
+    },
+    "relevantButtons": [
+      "Accept Applications",
+      "Accepted",
+      "Amount Incl. Tolerance Matched:",
+      "Balance After Posting",
+      "Document No./Ext. Document No. Matched",
+      "Lines For Review",
+      "Match Confidence",
+      "Match Details",
+      "Post Payments Only...",
+      "Related Party Matched",
+      "Wide World Importers"
+    ],
+    "evidenceFile": "010-before-post-payments-only-page-text.txt"
+  },
+  "action": {
+    "postPaymentsOnlyClicked": true,
+    "clickMethod": "role:button",
+    "confirmedPosting": false,
+    "okClicked": false,
+    "yesClicked": false
+  },
+  "dialog": {
+    "dialogOpened": true,
+    "dialogCount": 1,
+    "dialogTextPreview": [
+      "Do you want to post the payments? Ja Nein"
+    ],
+    "relevantButtons": [
+      "Balance After Posting",
+      "Ja",
+      "Post Payments Only...",
+      "Yes"
+    ],
+    "evidenceFile": "020-post-payments-only-dialog-text.txt",
+    "closeMethod": "escape",
+    "safeClosed": true
+  },
+  "after": {
+    "metrics": {
+      "linesForReview": "5",
+      "linesWithDifferences": "0",
+      "totalTransactionAmount": "10.040,93",
+      "balanceAfterPosting": "21.614,11",
+      "hasPostPaymentsOnly": true,
+      "hasAccepted": true
+    },
+    "remainingDialogs": [],
+    "evidenceFile": "030-after-close-page-text.txt"
+  },
+  "proved": [
+    "Post Payments Only was opened only as a dialog/request-page gate and not confirmed."
+  ],
+  "notProved": [
+    "No payment was posted.",
+    "No bank reconciliation was posted.",
+    "No ledger trace from a posting exists.",
+    "No German bank/compliance final proof."
+  ],
+  "safety": {
+    "noOkOrYesConfirmed": true,
+    "noPostConfirmed": true,
+    "noPaymentPosted": true,
+    "noBankReconciliationPosted": true,
+    "noPreviewPosting": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true,
+    "noSetupChange": true
+  },
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "rebuildInstruction": "In der deutschen Zielcompany den Post-Payments-Only-Dialog erneut mit deutschem Bankkonto, offenen Zielposten und geplantem Bank-/Debitor-/Kreditor-/Sachposten-Trace oeffnen. Erst danach darf eine echte Zahlung gebucht werden.",
+  "targetGermanCompanyImpact": "Deutsche Zielcompany braucht vor Payment Posting eindeutige Zeilenwahl, offene Posten, Bankkonto, Bank Account Posting Group, Posting-Gate und anschliessenden Ledger Trace.",
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/bank-003/BANK-003-result.json",
+    "playwright/projects/fibu-book5/evidence/bank-003/BANK-003-POST-PAYMENTS-ONLY-TRACE-GATE.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/bank-003/"
+  ],
+  "blockedBy": [],
+  "safeToFinalizeState": false,
+  "requiresReview": false,
+  "nextStep": "BANK-004: Vor echter Zahlung zuerst Zielzeile/offene Posten und erwartete Bank-/Sach-/Detailed-Ledger-Entries als Posting-Fachpruefung definieren."
+}

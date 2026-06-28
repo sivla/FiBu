@@ -306,6 +306,26 @@
       "resultFile": "playwright/projects/fibu-book5/evidence/bank-002/BANK-002-result.json",
       "summary": "Payment Reconciliation Journal action Accept Applications was clicked once through the UI; Lines For Review changed from 6 to 5; Post Payments Only was not clicked.",
       "nextStep": "BANK-003: Post Payments Only only with explicit posting and ledger trace gate, or inspect Bank Account Reconciliation match/apply flow before posting."
+    },
+    {
+      "id": "BANK-003",
+      "queueId": "BANK-003-POST-PAYMENTS-ONLY-TRACE-GATE",
+      "type": "post-dialog-gate controlled-ui-action payment-posting-preflight",
+      "status": "labor-proven",
+      "bcRun": true,
+      "posted": false,
+      "previewPosting": false,
+      "setupChanged": false,
+      "execute": false,
+      "highImpactExecute": false,
+      "signals": [
+        "post-dialog-gate",
+        "payment-posting-preflight",
+        "controlled-ui-action"
+      ],
+      "resultFile": "playwright/projects/fibu-book5/evidence/bank-003/BANK-003-result.json",
+      "summary": "Post Payments Only dialog gate was opened and closed without confirmation; BC asks Do you want to post the payments? Ja/Nein; no payment was posted.",
+      "nextStep": "BANK-004: define target line/open-entry/ledger trace plan before any payment posting."
     }
   ],
   "postingSummary": {
@@ -325,7 +345,7 @@
     }
   },
   "nextBestLevers": [
-    "BANK-003-POST-PAYMENTS-ONLY-TRACE-GATE",
+    "BANK-004-PAYMENT-POSTING-FACHPRUEFUNG-TRACE-PLAN",
     "RM-DE-LAB-CREATE-001-UI-FIRST-COMPANY-CREATION",
     "FIXEDASSETS-DEPRECIATION-PARAMETER-FIX"
   ],
@@ -354,7 +374,7 @@
     ],
     "lightExecutePackages": 2,
     "readOnlyPackagesDoNotCountAsExecute": true,
-    "progressPackagesTotal": 25
+    "progressPackagesTotal": 26
   },
-  "updatedAt": "2026-06-28T19:55:12.935Z"
+  "updatedAt": "2026-06-28T20:01:42.516Z"
 }
