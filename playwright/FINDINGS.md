@@ -1,4 +1,18 @@
 
+## FIND-BC-FA-124 General Journal Batches belegt DEFAULT/FA-JNL als Listen-Kontext
+
+| Feld | Wert |
+|---|---|
+| Bereich | Fixed Assets / AfA-Route / General Journal Batches |
+| Testfall | `FIXEDASSETS-287-FA-DEPRECIATION-GENERAL-JOURNAL-BATCHES-READONLY` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-287/FIXEDASSETS-287-result.json`, `playwright/projects/fibu-book5/evidence/fixedassets-287/010-general-journal-batches-context.json`, `playwright/projects/fibu-book5/evidence/fixedassets-287/FIXEDASSETS-287-GENERAL-JOURNAL-BATCHES-READONLY.md` |
+| Ergebnis | Page `251` / `General Journal Batches` zeigt `DEFAULT`, `Default Journal Batch`, `Bal. Account Type = G/L Account` und `No. Series = FA-JNL` in `MCP_1_20260210` / `RM-DEMO`. |
+| Playwright-Lernpunkt | Der erste Versuch las nur Shell-Text. Der erfolgreiche Retry scannt alle Frames und findet den fachlichen Inhalt im `runinframe`-Frame. |
+| weiterhin offen | Kein ausgewaehlter `Batch Name` im `Fixed Asset G/L Journals`, keine `FADEP`-Journalzeile, kein Preview Posting, keine AfA-Buchung, kein deutscher Finalnachweis. |
+| weiterhin gesperrt | Batch auswaehlen, Lookup-`OK`, `Calculate Depreciation -> OK`, Preview Posting, Post, Setup Change, Company Switch, API-Abkuerzung |
+| naechster Schritt | `FIXEDASSETS-288`: lokaler Review, ob dieser Batchlisten-Kontext fuer die Klickanleitung reicht und welcher no-select Nachweis als Naechstes sinnvoll ist. |
+| Buchwirkung | Das Buch kann erklaeren, dass Nummernserie und Gegenkontoart eines Journal-Batches sichtbar geprueft werden koennen. Das ist Setup-Kontext, aber kein Beleg fuer erzeugte AfA-Zeilen. |
+
 ## FIND-BC-FA-123 DEFAULT/FA-JNL ist Kandidaten-Evidence, kein Feldwert
 
 | Feld | Wert |

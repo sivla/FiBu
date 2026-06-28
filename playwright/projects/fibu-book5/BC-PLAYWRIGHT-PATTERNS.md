@@ -31,6 +31,7 @@ Diese Datei sammelt wiederverwendbare Muster aus belegten Laeufen. Sie ist keine
 - Page-ID beweist den geoeffneten Kontext, nicht die fachliche Vollstaendigkeit.
 - Neue Helper sollen `openBcPageById()` nutzen und danach erwarteten Seitentext pruefen.
 - Fuer Buchbilder nach Moeglichkeit Tell-Me- oder Menuepfad separat nachziehen.
+- Nach `FIXEDASSETS-287` gilt: Bei direkten Page-ID-Aufrufen kann das Hauptdokument nur Shell-Text wie `Dynamics 365 Business Central`, Umgebung und Benutzer enthalten, waehrend der fachliche Seiteninhalt im `runinframe`-Frame liegt. Evidence-Scanner muessen deshalb alle Frames durchsuchen und den fachlich relevanten Frame protokollieren. Ein Shell-only-Scan ist ein technischer Blocker, kein negativer BC-Fachbefund.
 
 ## Listen vs. Karten
 
