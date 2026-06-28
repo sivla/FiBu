@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-28T23:17:11.469Z",
+  "updatedAt": "2026-06-28T23:21:23.977Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "bank",
-  "activeCase": "BANK-023-BANK-RECONCILIATION-ROUTE-DECISION",
-  "active_case_file": ".agent/state/cases/bank-023-bank-reconciliation-route-decision.json",
-  "lastReferenceCase": "BANK-022-BANK020-BOOK-SYNC",
-  "lastReferenceCaseFile": ".agent/state/cases/bank-022-bank020-book-sync.json",
+  "activeCase": "BANK-024-BANK-ACCOUNT-RECONCILIATION-READONLY-SCOUT",
+  "active_case_file": ".agent/state/cases/bank-024-bank-account-reconciliation-readonly-scout.json",
+  "lastReferenceCase": "BANK-023-BANK-RECONCILIATION-ROUTE-DECISION",
+  "lastReferenceCaseFile": ".agent/state/cases/bank-023-bank-reconciliation-route-decision.json",
   "mode": "bc-specialist-labor-book-production",
   "requiresStrongModel": false,
   "requiredPreflightChecks": [
@@ -40,7 +40,7 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "BANK-023: decide whether a controlled RM-DEMO Bank Account Reconciliation route is useful, or park reconciliation for German final rebuild.",
+  "nextStep": "BANK-024: run a read-only Bank Account Reconciliation scout only if it can avoid New/Edit/Match/Apply/Post actions.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/bank-payments-labor-draft.md",
     "area": "bankPayments",
@@ -54,13 +54,14 @@
     "evidenceBasis": [
       "BANK-020",
       "BANK-021",
-      "BANK-022"
+      "BANK-022",
+      "BANK-023"
     ],
-    "bookEffect": "Controlled vendor payment through Payment Journal is now available as beginner-friendly labor draft material with ledger trace anchors.",
+    "bookEffect": "Controlled vendor payment is explained as lab-proven, while bank reconciliation is clearly separated as a future process block with its own gates.",
     "integratedIntoBookMaster": false,
     "bookMasterSection": "future Kapitel 20 Bank und Zahlungen integration",
     "labVsTargetPathSeparated": true,
-    "nextStep": "Use BANK-023 to decide Bank Account Reconciliation route before further bank execution."
+    "nextStep": "BANK-024 read-only Bank Account Reconciliation scout, no statement line and no posting."
   },
   "bookProductionGoal": {
     "goalFile": ".agent/state/book-production-goal.json",
@@ -1382,8 +1383,8 @@
     "decision": "Approve a separate no-post Payment Journal preflight for Vendor Ledger document 108205. Do not use Payment Reconciliation Apply/Post for this target. BANK-018 may create exactly one scoped draft line, run Journal Check/open Apply Entries if reachable, and must cleanup or explicitly document keep status. Posting remains locked.",
     "nextStep": "BANK-018: controlled no-post Payment Journal preflight for 108205; do not post."
   },
-  "workType": "book-sync-labor-only-bank-payment",
-  "lastCompletedCase": "BANK-022-BANK020-BOOK-SYNC",
+  "workType": "bank-account-reconciliation-readonly-scout",
+  "lastCompletedCase": "BANK-023-BANK-RECONCILIATION-ROUTE-DECISION",
   "latestBank018": {
     "caseId": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
     "status": [
@@ -1503,5 +1504,18 @@
     "mustRecreateInFinalSandbox": true,
     "summary": "BANK-022 synced BANK-020/BANK-021 into a labor-only bank/payments draft explaining Payment Journal preflight, Apply Entries, post dialog and Vendor/Bank/G-L trace for BANK018-108205.",
     "nextCase": "BANK-023-BANK-RECONCILIATION-ROUTE-DECISION"
+  },
+  "latestBank023": {
+    "caseId": "BANK-023-BANK-RECONCILIATION-ROUTE-DECISION",
+    "status": "done",
+    "workType": "bank-reconciliation-route-decision",
+    "sourceCompany": "RM-DEMO",
+    "resultPath": "playwright/projects/fibu-book5/evidence/bank-023/BANK-023-result.json",
+    "decision": "Do not continue Payment Reconciliation posting from stale or broad RM-DEMO contexts; use a separate read-only Bank Account Reconciliation scout if more lab knowledge is needed.",
+    "selectedNextCase": "BANK-024-BANK-ACCOUNT-RECONCILIATION-READONLY-SCOUT",
+    "classification": "labor-sufficient-for-book-draft",
+    "mustRecreateInFinalSandbox": true,
+    "summary": "BANK-023 separated Payment Journal vendor payment proof from bank reconciliation and selected a read-only Bank Account Reconciliation scout as the only safe next lab route.",
+    "nextCase": "BANK-024-BANK-ACCOUNT-RECONCILIATION-READONLY-SCOUT"
   }
 }

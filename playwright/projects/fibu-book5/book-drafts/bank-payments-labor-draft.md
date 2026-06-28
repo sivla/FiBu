@@ -90,3 +90,18 @@ German-Final-Rebuild:
 - Post-Dialog und Ledger-Spur neu fotografieren,
 - Restbetrag, Application, Bankposten und Sachposten erneut nachweisen,
 - erst danach deutsche Buchclaims formulieren.
+
+## BANK-023: Grenze zur Bankabstimmung
+
+Status:
+- Laborstand: Route-Entscheidung, keine neue BC-Ausfuehrung.
+- Bewiesen: Payment-Journal-Zahlung und Postenspur sind als Laborprozess belegt.
+- Nicht bewiesen: Bankkontoabstimmung, Kontoauszugszeile, Match/Apply in der Bankabstimmung, Posten nach Bankabstimmung.
+
+Anfaengerfalle: Nach einer gebuchten Zahlung klingt `Payment Reconciliation` oder `Post Payments Only` wie ein naheliegender naechster Klick. Im Labor war diese Route aber zu breit: alte und neue Treffer konnten sichtbar sein, ohne dass eine einzelne Zielzeile sicher isoliert war. Deshalb ist die fachlich sichere Regel:
+
+1. Payment Journal beweist Zahlung und OP-Ausgleich.
+2. Bank Account Reconciliation ist ein eigener Prozessblock.
+3. Erst wenn Bankkonto, Kontoauszugszeile, Zielposten und erwartete Postenspur eindeutig sind, darf eine Bankabstimmung als eigener Case weitergefuehrt werden.
+
+Fuer das Buch bedeutet das: Die Laborzahlung darf erklaert werden. Die Bankabstimmung bleibt offen und braucht spaeter eigene Screenshots und eigene Evidence, besonders in der deutschen Zielcompany.

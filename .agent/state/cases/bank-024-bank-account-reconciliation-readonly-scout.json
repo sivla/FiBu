@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "caseId": "BANK-024-BANK-ACCOUNT-RECONCILIATION-READONLY-SCOUT",
+  "title": "Read-only scout for Bank Account Reconciliation route after Payment Journal vendor payment evidence",
+  "status": "planned",
+  "taskClass": "wizard_work",
+  "modelClass": "gpt-5.4-high",
+  "usageLogRequired": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "bank-account-reconciliation-readonly-scout",
+  "sourceCase": "BANK-023-BANK-RECONCILIATION-ROUTE-DECISION",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/bank-023/BANK-023-result.json"
+  ],
+  "purpose": "Open only a safe read-only Bank Account Reconciliation context and document page, bank-account and action readiness without creating statement lines, matching or posting.",
+  "allowedActions": [
+    "open-business-central-if-instance-and-company-match",
+    "run-readonly-playwright-scout",
+    "read-bank-account-reconciliation-page-context",
+    "capture-compact-evidence",
+    "update-state"
+  ],
+  "defaultLockedActions": [
+    "posting",
+    "preview-posting",
+    "setup-change",
+    "statement-line-creation",
+    "match",
+    "apply",
+    "accept-applications"
+  ],
+  "forbiddenActions": [
+    "claim-german-final-proof",
+    "book-claim-without-evidence",
+    "post-bank-reconciliation",
+    "create-bank-statement-line",
+    "match-bank-statement-line",
+    "apply-bank-reconciliation",
+    "accept-applications",
+    "post-payments-only"
+  ],
+  "safetyGates": [
+    "instance-must-be-MCP_1_20260210",
+    "company-must-be-RM-DEMO",
+    "read-only-page-context-only",
+    "no-new-no-edit-no-delete-no-post",
+    "abort-on-ambiguous-dialog"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "targetGermanCompanyImpact": "German target company needs a full bank reconciliation process with German bank account, statement line and ledger trace.",
+  "finalScreenshotNeeded": true,
+  "nextStep": "Run a read-only scout only if the Playwright route can avoid New/Edit/Match/Apply/Post actions."
+}

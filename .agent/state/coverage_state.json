@@ -60,7 +60,9 @@
         "Vendor/Bank/G-L trace for BANK018-108205",
         "BANK-020 trace review and invoice remaining amount classification",
         "BANK-020/BANK-021 labor bookdraft sync",
-        "Beginner-friendly Payment Journal vendor payment explanation"
+        "Beginner-friendly Payment Journal vendor payment explanation",
+        "Payment Reconciliation broad/stale posting route rejected",
+        "Bank Account Reconciliation separated as own process block"
       ],
       "openLimits": [
         "No bank reconciliation",
@@ -73,15 +75,18 @@
         "BANK-019 approved a separate posting case but did not post 108205.",
         "BANK-020 remains CRONUS-USA laboratory evidence and must be rebuilt in a German final company.",
         "BANK-020/BANK-021 are only labor-reference for bookdraft; German final evidence must recreate payment and ledger trace.",
-        "Bank Account Reconciliation remains open after Payment Journal vendor payment."
+        "Bank Account Reconciliation remains open after Payment Journal vendor payment.",
+        "Bank Account Reconciliation still needs its own read-only route scout and later German final rebuild.",
+        "Do not use Payment Reconciliation Post Payments Only from stale or broad contexts without explicit line-scope proof."
       ],
-      "nextStep": "BANK-023: decide whether a controlled Bank Account Reconciliation route is useful in RM-DEMO or should be parked for German final rebuild.",
+      "nextStep": "BANK-024: read-only Bank Account Reconciliation scout; no statement line, no match, no apply, no posting.",
       "postPaymentReconciliationState": "old invoice 108204 still visible in Payment Reconciliation after BANK009-108204; do not post old reconciliation context blindly",
       "staleReconciliationDecision": "BANK-012 parks stale 108204 Payment Reconciliation signal after BANK009-108204; do not post it blindly.",
       "latestBlockedCase": "BANK-014-FRESH-RECONCILIATION-CANDIDATE-GATE",
       "latestBookSyncCase": "BANK-022-BANK020-BOOK-SYNC",
       "latestBookDraft": "playwright/projects/fibu-book5/book-drafts/bank-payments-labor-draft.md",
-      "nextCase": "BANK-023-BANK-RECONCILIATION-ROUTE-DECISION"
+      "nextCase": "BANK-024-BANK-ACCOUNT-RECONCILIATION-READONLY-SCOUT",
+      "latestRouteDecisionCase": "BANK-023-BANK-RECONCILIATION-ROUTE-DECISION"
     },
     "companyLab": {
       "chapter": "Kapitel 6/7/25",
@@ -108,7 +113,7 @@
   "hardExclusions": {
     "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
   },
-  "updatedAt": "2026-06-28T23:17:11.469Z",
+  "updatedAt": "2026-06-28T23:21:23.977Z",
   "activeArea": "bank",
   "currentBlock": "bank-payment-journal-108205-book-sync",
   "latestPracticalCase": "FIXEDASSETS-295-FA-DEPRECIATION-GUARDED-OK-FRESH-DOC-NO-POST",
@@ -701,5 +706,18 @@
     "mustRecreateInFinalSandbox": true,
     "summary": "BANK-022 synced BANK-020/BANK-021 into a labor-only bank/payments draft explaining Payment Journal preflight, Apply Entries, post dialog and Vendor/Bank/G-L trace for BANK018-108205.",
     "nextCase": "BANK-023-BANK-RECONCILIATION-ROUTE-DECISION"
+  },
+  "latestBank023": {
+    "caseId": "BANK-023-BANK-RECONCILIATION-ROUTE-DECISION",
+    "status": "done",
+    "workType": "bank-reconciliation-route-decision",
+    "sourceCompany": "RM-DEMO",
+    "resultPath": "playwright/projects/fibu-book5/evidence/bank-023/BANK-023-result.json",
+    "decision": "Do not continue Payment Reconciliation posting from stale or broad RM-DEMO contexts; use a separate read-only Bank Account Reconciliation scout if more lab knowledge is needed.",
+    "selectedNextCase": "BANK-024-BANK-ACCOUNT-RECONCILIATION-READONLY-SCOUT",
+    "classification": "labor-sufficient-for-book-draft",
+    "mustRecreateInFinalSandbox": true,
+    "summary": "BANK-023 separated Payment Journal vendor payment proof from bank reconciliation and selected a read-only Bank Account Reconciliation scout as the only safe next lab route.",
+    "nextCase": "BANK-024-BANK-ACCOUNT-RECONCILIATION-READONLY-SCOUT"
   }
 }
