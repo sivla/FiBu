@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-289-FA-DEPRECIATION-JOURNAL-ASSETS-DEFAULT-READONLY",
+  "status": "planned",
+  "workType": "playwright-readonly-fixedasset-depreciation-journal-assets-default-context",
+  "taskClass": "wizard_work",
+  "requiresStrongModel": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Read Fixed Asset G/L Journals context for ASSETS / DEFAULT after the batch-list proof, without selecting, editing, calculating depreciation, previewing or posting.",
+  "triggeredBy": {
+    "caseId": "FIXEDASSETS-288-FA-DEPRECIATION-BATCH-CONTEXT-RESULT-REVIEW",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-288/FIXEDASSETS-288-result.json",
+    "decision": "DEFAULT / FA-JNL is accepted as batch-list context only; next proof should read the Fixed Asset G/L Journal context for ASSETS / DEFAULT."
+  },
+  "targetObjects": {
+    "journalPageId": 5628,
+    "journalPageName": "Fixed Asset G/L Journals",
+    "journalTemplateName": "ASSETS",
+    "journalBatchName": "DEFAULT",
+    "batchNoSeries": "FA-JNL",
+    "fixedAssetNo": "FA-CNC-01",
+    "depreciationBook": "HGB",
+    "documentPrefix": "FADEP-"
+  },
+  "allowedActions": [
+    "open-business-central",
+    "run-playwright",
+    "read-only-fa-gl-journal-context",
+    "read-only-filter-and-visible-line-context",
+    "write-compact-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "select-batch-value",
+    "confirm-ok-on-batch-lookup",
+    "click-new",
+    "click-edit-list",
+    "setup-change",
+    "company-switch",
+    "api-shortcut-without-explicit-case-permission",
+    "edit-record",
+    "new-draft",
+    "delete-record",
+    "confirm-ok-on-calculate-depreciation",
+    "preview-posting",
+    "post",
+    "book-edit"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-289/FIXEDASSETS-289-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-289/FIXEDASSETS-289-JOURNAL-ASSETS-DEFAULT-READONLY.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-289/010-fa-gl-journal-assets-default-context.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-289/010-fa-gl-journal-assets-default-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-289/README.md"
+  ],
+  "acceptanceCriteria": [
+    "Business Central remains in MCP_1_20260210 / RM-DEMO.",
+    "Fixed Asset G/L Journals context is captured read-only.",
+    "Evidence distinguishes ASSETS / DEFAULT context from selected Batch Name and from generated depreciation lines.",
+    "No New, Edit List, OK, Calculate Depreciation, Preview Posting, Post, setup change, company switch or API shortcut occurs."
+  ],
+  "stopConditions": [
+    "Instance or company is unclear or wrong.",
+    "The page requires selection, OK, New/Edit, Calculate Depreciation, Preview Posting or Post to continue.",
+    "Only shell text is visible and no runinframe content can be read."
+  ],
+  "nextSafeAction": "Open/read Fixed Asset G/L Journals context for ASSETS / DEFAULT without selecting or editing; if unsafe, stop and document the blocker.",
+  "createdAt": "2026-06-28T11:28:00.000+02:00",
+  "updatedAt": "2026-06-28T11:28:00.000+02:00"
+}

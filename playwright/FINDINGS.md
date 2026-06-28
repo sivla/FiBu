@@ -1,4 +1,17 @@
 
+## FIND-BC-FA-125 Batch-Kontext ist akzeptiert, aber kein AfA-Gate
+
+| Feld | Wert |
+|---|---|
+| Bereich | Fixed Assets / AfA-Route / Batch-Kontext-Review |
+| Testfall | `FIXEDASSETS-288-FA-DEPRECIATION-BATCH-CONTEXT-RESULT-REVIEW` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-288/FIXEDASSETS-288-result.json`, `playwright/projects/fibu-book5/evidence/fixedassets-288/FIXEDASSETS-288-BATCH-CONTEXT-RESULT-REVIEW.md`, `playwright/projects/fibu-book5/evidence/fixedassets-287/010-general-journal-batches-context.json` |
+| Entscheidung | `DEFAULT / Default Journal Batch / G/L Account / FA-JNL` wird als Batchlisten-Kontext fuer die Klickanleitung akzeptiert. |
+| Grenze | Das ist kein Nachweis fuer einen ausgewaehlten `Batch Name` im `Fixed Asset G/L Journals`, keine `FADEP`-Journalzeile und keine Preview-/Posting-Readiness. |
+| weiterhin gesperrt | Batch auswaehlen, Lookup-`OK`, `Calculate Depreciation -> OK`, Preview Posting, Post, Setup Change, Company Switch, API-Abkuerzung |
+| naechster Schritt | `FIXEDASSETS-289`: `Fixed Asset G/L Journals` read-only im Kontext `ASSETS / DEFAULT` pruefen, ohne Auswahl, `OK`, `Neu`, Edit, Preview oder Post. |
+| Buchwirkung | Das Buch darf Batch und Nummernserie als Setup-Kontext erklaeren. Fuer AfA-Ergebnisbilder braucht es danach weiterhin eine konkrete Journalzeile bzw. Preview/Postenspur. |
+
 ## FIND-BC-FA-124 General Journal Batches belegt DEFAULT/FA-JNL als Listen-Kontext
 
 | Feld | Wert |
