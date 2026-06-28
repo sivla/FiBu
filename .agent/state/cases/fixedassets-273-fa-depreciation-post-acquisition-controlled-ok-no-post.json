@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "FIXEDASSETS-273-FA-DEPRECIATION-POST-ACQUISITION-CONTROLLED-OK-NO-POST",
-  "status": "planned",
+  "status": "observed",
   "workType": "controlled-calculate-depreciation-ok-execution-no-post",
   "taskClass": "wizard_work",
   "requiresStrongModel": false,
@@ -88,7 +88,19 @@
     "A second OK click would be required.",
     "The page navigates to an unexpected company or instance."
   ],
-  "nextSafeAction": "Run one controlled OK-only Playwright case, then search journal lines; do not Preview Posting or Post.",
+  "nextSafeAction": "Run FIXEDASSETS-274 as a local blocker review before any repeat OK, Preview Posting or Post.",
   "createdAt": "2026-06-28T09:20:00.000+02:00",
-  "updatedAt": "2026-06-28T09:20:00.000+02:00"
+  "updatedAt": "2026-06-28T09:28:00.000+02:00",
+  "result": {
+    "resultStatus": "observed",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-273/FIXEDASSETS-273-result.json",
+    "allValuesProved": true,
+    "okConfirmedExactlyOnce": true,
+    "journalLineFound": false,
+    "blockedBy": [],
+    "previewPosting": false,
+    "posted": false,
+    "nextCase": "FIXEDASSETS-274-FA-DEPRECIATION-POST-ACQUISITION-OK-RESULT-BLOCKER-REVIEW",
+    "summary": "FA-273 proved HGB, 31.01.2027, FADEP-273-OK and FA-CNC-01, confirmed OK exactly once, then searched Fixed Asset G/L Journals. FADEP-273-OK was not visible. Preview Posting and Post were not executed."
+  }
 }

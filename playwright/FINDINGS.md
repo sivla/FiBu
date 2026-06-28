@@ -1,4 +1,17 @@
 
+## FIND-BC-FA-110 Post-acquisition OK erzeugte keine sichtbare FADEP-Zeile
+
+| Feld | Wert |
+|---|---|
+| Bereich | Fixed Assets / AfA-Route / OK-Ergebnisdiagnose |
+| Testfall | `FIXEDASSETS-273-FA-DEPRECIATION-POST-ACQUISITION-CONTROLLED-OK-NO-POST` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-273/FIXEDASSETS-273-result.json`, `playwright/projects/fibu-book5/evidence/fixedassets-273/020-journal-line-search.json` |
+| Ergebnis | `HGB`, `31.01.2027`, `FADEP-273-OK` und `FA-CNC-01` wurden vor `OK` sichtbar bewiesen; `OK` wurde genau einmal bestaetigt. |
+| Journalbefund | `Fixed Asset G/L Journals` war sichtbar, aber `FADEP-273-OK` und `FADEP-` wurden danach nicht gefunden. |
+| Sicherheitsgrenze | Kein Preview Posting, kein Post, kein Setup Change, kein Company Switch, keine API-Abkuerzung. |
+| Buchwirkung | Auch ein korrigiertes post-acquisition Datum beweist noch keine AfA-Journalzeile. Nach Batch-OK muss man Ausgabeziel, Batch/Filter und AfA-Faelligkeit pruefen, bevor man wiederholt. |
+| naechster Schritt | `FIXEDASSETS-274`: lokaler Blocker-Review; kein Repeat-OK, kein Preview Posting, kein Post. |
+
 ## FIND-BC-FA-109 Genau ein post-acquisition AfA-OK-Lauf ist freigegeben
 
 | Feld | Wert |
