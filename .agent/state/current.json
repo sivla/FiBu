@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-28T23:27:46.609Z",
+  "updatedAt": "2026-06-28T23:31:50.768Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "bank",
-  "activeCase": "BANK-025-CHECKING-24-RECONCILIATION-GATE-DECISION",
-  "active_case_file": ".agent/state/cases/bank-025-checking-24-reconciliation-gate-decision.json",
-  "lastReferenceCase": "BANK-024-BANK-ACCOUNT-RECONCILIATION-READONLY-SCOUT",
-  "lastReferenceCaseFile": ".agent/state/cases/bank-024-bank-account-reconciliation-readonly-scout.json",
+  "activeCase": "BANK-026-BANK-RECONCILIATION-BOOK-SYNC",
+  "active_case_file": ".agent/state/cases/bank-026-bank-reconciliation-book-sync.json",
+  "lastReferenceCase": "BANK-025-CHECKING-24-RECONCILIATION-GATE-DECISION",
+  "lastReferenceCaseFile": ".agent/state/cases/bank-025-checking-24-reconciliation-gate-decision.json",
   "mode": "bc-specialist-labor-book-production",
   "requiresStrongModel": false,
   "requiredPreflightChecks": [
@@ -40,7 +40,7 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "BANK-025: classify CHECKING Statement 24 readiness and decide whether a no-post controlled preflight is safe or bank reconciliation should stay parked.",
+  "nextStep": "BANK-026: sync BANK-024/BANK-025 into the bank/payments draft and park reconciliation until a concrete statement/match plan exists.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/bank-payments-labor-draft.md",
     "area": "bankPayments",
@@ -56,13 +56,14 @@
       "BANK-021",
       "BANK-022",
       "BANK-023",
-      "BANK-024"
+      "BANK-024",
+      "BANK-025"
     ],
-    "bookEffect": "Bank Account Reconciliation route is now visible as a read-only lab scout and separated from Payment Journal payment proof.",
+    "bookEffect": "Bank reconciliation CHECKING 24 is documented as visible read-only context but blocked for posting because Difference and match/apply state are not classified.",
     "integratedIntoBookMaster": false,
     "bookMasterSection": "future Kapitel 20 Bank und Zahlungen integration",
     "labVsTargetPathSeparated": true,
-    "nextStep": "BANK-025: classify CHECKING Statement 24 readiness and decide whether a no-post controlled preflight is safe or bank reconciliation should stay parked."
+    "nextStep": "BANK-026 book-sync the reconciliation gate and park further bank reconciliation execution."
   },
   "bookProductionGoal": {
     "goalFile": ".agent/state/book-production-goal.json",
@@ -1384,8 +1385,8 @@
     "decision": "Approve a separate no-post Payment Journal preflight for Vendor Ledger document 108205. Do not use Payment Reconciliation Apply/Post for this target. BANK-018 may create exactly one scoped draft line, run Journal Check/open Apply Entries if reachable, and must cleanup or explicitly document keep status. Posting remains locked.",
     "nextStep": "BANK-018: controlled no-post Payment Journal preflight for 108205; do not post."
   },
-  "workType": "bank-reconciliation-gate-decision",
-  "lastCompletedCase": "BANK-024-BANK-ACCOUNT-RECONCILIATION-READONLY-SCOUT",
+  "workType": "book-sync-labor-only-bank-reconciliation",
+  "lastCompletedCase": "BANK-025-CHECKING-24-RECONCILIATION-GATE-DECISION",
   "latestBank018": {
     "caseId": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
     "status": [
@@ -1537,5 +1538,23 @@
     "mustRecreateInFinalSandbox": true,
     "summary": "BANK-024 read-only scout opened Bank Account Reconciliations Page 388 and Bank Acc. Reconciliation CHECKING 24 Page 379. Statement lines and bank ledger entries are visible; no New/Edit/Match/Apply/Post action was clicked.",
     "nextCase": "BANK-025-CHECKING-24-RECONCILIATION-GATE-DECISION"
+  },
+  "latestBank025": {
+    "caseId": "BANK-025-CHECKING-24-RECONCILIATION-GATE-DECISION",
+    "status": "done",
+    "workType": "bank-reconciliation-gate-decision",
+    "sourceCompany": "RM-DEMO",
+    "resultPath": "playwright/projects/fibu-book5/evidence/bank-025/BANK-025-result.json",
+    "decisionStatus": "reconciliation-posting-not-approved",
+    "decision": "Do not move CHECKING Statement 24 into no-post preflight or posting until line status, difference handling, expected ledger trace and post-dialog gates are defined.",
+    "blockedBy": [
+      "total-difference-visible-11573-18",
+      "match-apply-state-not-classified",
+      "post-button-visible-is-not-posting-readiness"
+    ],
+    "classification": "labor-blocked-for-posting",
+    "mustRecreateInFinalSandbox": true,
+    "summary": "BANK-025 classified CHECKING 24 as visible read-only bank reconciliation context but not posting-ready because Total Difference 11.573,18 and match/apply state are not classified.",
+    "nextCase": "BANK-026-BANK-RECONCILIATION-BOOK-SYNC"
   }
 }

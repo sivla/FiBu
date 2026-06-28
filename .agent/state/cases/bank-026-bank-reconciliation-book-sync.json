@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "caseId": "BANK-026-BANK-RECONCILIATION-BOOK-SYNC",
+  "title": "Sync BANK-024/BANK-025 bank reconciliation scout and gate into bank payments draft",
+  "status": "planned",
+  "taskClass": "judge_work",
+  "modelClass": "gpt-5.5-low",
+  "usageLogRequired": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "book-sync-labor-only-bank-reconciliation",
+  "sourceCase": "BANK-025-CHECKING-24-RECONCILIATION-GATE-DECISION",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/bank-024/BANK-024-result.json",
+    "playwright/projects/fibu-book5/evidence/bank-025/BANK-025-result.json"
+  ],
+  "purpose": "Update bank/payments draft so CHECKING 24 is documented as read-only bank reconciliation context, not as posting-ready evidence.",
+  "allowedActions": [
+    "read-bank-024-evidence",
+    "read-bank-025-decision",
+    "patch-bank-payment-book-draft-or-coverage",
+    "update-state"
+  ],
+  "defaultLockedActions": [
+    "business-central-execution",
+    "playwright-execution",
+    "posting",
+    "preview-posting",
+    "setup-change"
+  ],
+  "forbiddenActions": [
+    "claim-german-final-proof",
+    "book-claim-without-evidence",
+    "rewrite-large-book-section",
+    "post-bank-reconciliation-in-bank-026"
+  ],
+  "safetyGates": [
+    "labor-only-label-visible",
+    "german-final-rebuild-note-visible",
+    "no-bc-run-in-bank-026",
+    "small-book-patch-only"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "targetGermanCompanyImpact": "German target company must later replace this lab route note with German bank reconciliation screenshots and ledger evidence.",
+  "finalScreenshotNeeded": true,
+  "nextStep": "Patch the bank/payments draft with BANK-024/BANK-025 as lab-only bank reconciliation route and gate evidence."
+}

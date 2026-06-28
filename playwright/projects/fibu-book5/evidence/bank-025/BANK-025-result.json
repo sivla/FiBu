@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "BANK-025-CHECKING-24-RECONCILIATION-GATE-DECISION",
+  "source": "local-gate-decision",
+  "resultStatus": "observed",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "sourceCompany": "RM-DEMO",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "usageLogRequired": true,
+  "bcRun": false,
+  "playwrightRun": false,
+  "posted": false,
+  "previewPosting": false,
+  "setupChanged": false,
+  "bookChanged": true,
+  "decisionStatus": "reconciliation-posting-not-approved",
+  "decision": "Do not move CHECKING Statement 24 into a no-post preflight or posting attempt until a separate case defines line status, difference handling, expected ledger trace and post-dialog gates.",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/bank-024/BANK-024-result.json",
+    "playwright/projects/fibu-book5/evidence/bank-024/020-page-379-bank-account-reconciliation-card-page-text.txt"
+  ],
+  "proved": [
+    "CHECKING Statement 24 Bank Account Reconciliation context is visible read-only in RM-DEMO.",
+    "Statement lines and Bank Account Ledger Entries are visible in compact page text.",
+    "The Post action is visible but was not clicked.",
+    "Total Difference 11.573,18 is visible and must be classified before any posting route."
+  ],
+  "notProved": [
+    "No bank account reconciliation posting readiness.",
+    "No match/apply correctness.",
+    "No Preview Posting.",
+    "No Post dialog.",
+    "No German final bank reconciliation proof."
+  ],
+  "blockedBy": [
+    "total-difference-visible-11573-18",
+    "match-apply-state-not-classified",
+    "post-button-visible-is-not-posting-readiness"
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/bank-025/BANK-025-CHECKING-24-GATE-DECISION.md",
+    "playwright/projects/fibu-book5/evidence/bank-025/BANK-025-result.json",
+    "playwright/projects/fibu-book5/evidence/bank-025/README.md",
+    "playwright/projects/fibu-book5/book-drafts/bank-payments-labor-draft.md",
+    ".agent/state/cases/bank-025-checking-24-reconciliation-gate-decision.json",
+    ".agent/state/cases/bank-026-bank-reconciliation-book-sync.json",
+    ".agent/state/current.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/model_usage_log.jsonl"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/bank-024/",
+    "playwright/projects/fibu-book5/evidence/bank-025/"
+  ],
+  "requiresReview": false,
+  "safeToFinalizeState": false,
+  "statePatch": {},
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": true,
+  "rebuildInstruction": "In the German target company rebuild bank reconciliation with German bank account, statement line, target ledger item, match/apply context, post dialog and ledger trace.",
+  "targetGermanCompanyImpact": "German final proof must not reuse RM-DEMO CHECKING 24; it needs fresh German reconciliation evidence.",
+  "finalScreenshotNeeded": true,
+  "nextStep": "BANK-026: sync BANK-024/BANK-025 into the bank/payments draft and park reconciliation until a concrete statement/match plan exists."
+}

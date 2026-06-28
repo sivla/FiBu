@@ -128,3 +128,23 @@ Im Labor wurde die Bankkontoabstimmungsroute lesend sichtbar:
 | Riskante Aktion | `Post` sichtbar, nicht geklickt |
 
 Anfaengerregel: Ein sichtbarer Abstimmungsbeleg ist noch keine abgeschlossene Bankabstimmung. Vor einer echten Abstimmungsbuchung muss separat klar sein, ob die Zeilen passen, welche Bankposten angewendet sind, ob eine Differenz bleibt, welcher Post-Dialog erscheint und welche Bank-/Sachposten danach entstehen.
+
+## BANK-025: Warum `CHECKING 24` nicht gebucht wird
+
+Status:
+- Laborstand: Gate-Entscheidung, keine BC-Ausfuehrung.
+- Entscheidung: kein no-post Preflight und keine Buchung fuer `CHECKING 24`, solange Differenz und Match-/Apply-Zustand nicht fachlich geklaert sind.
+
+Der read-only Page-Text aus BANK-024 zeigt zwar Statement Lines und Bank Account Ledger Entries, aber auch `Total Difference 11.573,18`. Das ist die entscheidende Warnung: Ein sichtbarer `Post`-Button ist kein Nachweis, dass die Bankkontoabstimmung korrekt oder buchungsreif ist.
+
+Fuer Anfaenger ist die Trennung wichtig:
+
+| Sichtbar | Bedeutung |
+|---|---|
+| `CHECKING 24` | Es gibt einen vorhandenen Labor-Abstimmungskontext |
+| Statement Lines | Es gibt Kontoauszugszeilen oder Vergleichszeilen |
+| Bank Account Ledger Entries | Interne Bankposten sind sichtbar |
+| `Post` | Aktion ist vorhanden, aber nicht automatisch sicher |
+| `Total Difference 11.573,18` | Vor einer Buchung muss die Differenz fachlich geklaert werden |
+
+Buchregel: Dieser Laborblock darf im Buch als Navigations- und Fehlervermeidungsbeispiel verwendet werden. Er darf nicht als Bankabstimmungsbuchung, nicht als korrekter Ausgleich und nicht als deutscher Finalnachweis formuliert werden.
