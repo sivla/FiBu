@@ -18,6 +18,7 @@ Dieser Draft verdichtet die vorhandene Evidence aus `UAT-P2P-001` fuer das Buch.
 | Gebuchte Rechnung | Gebuchte Einkaufsrechnung `108219` ist sichtbar | `110-posted-purchase-invoice-page-text.txt` |
 | Postenspur | Kreditorenposten, Sachposten, Wertposten und Artikelposten `793` sind nachvollziehbar | `120-*`, `130-*`, `150-*`, `155-*`, `160-posting-trace-summary.json` |
 | Folgezahlung | Kreditorenzahlung `PAYP2P-108219` wurde im Payment Journal UI-first gebucht; Preflight, Apply-Entries-Ansicht, Post-Dialog, Kreditorenposten, detaillierte Kreditorenposten, Bankposten und Sachposten sind belegt | `evidence/p2p-002/P2P-002-result.json`, `P2P-002-VENDOR-PAYMENT.md` |
+| OP-/Application-Klaerung | Read-only Nachweis: Rechnung `108219` zeigt Restbetrag `0,00`; Detailed Vendor Ledger zeigt `Initial Entry`, `Payment Discount` und `Application` zur Zahlung `PAYP2P-108219` | `evidence/p2p-003/P2P-003-result.json`, `P2P-003-OP-APPLICATION-READONLY.md` |
 
 ## Anfaenger-Erklaerung
 
@@ -25,14 +26,14 @@ Eine Einkaufsbestellung ist nicht nur ein Einkaufsformular. Sie verbindet Liefer
 
 Die gebuchte Einkaufsrechnung ist danach nur ein Teil der Wahrheit. Fuer Finance sind `Kreditorenposten` wichtig, weil sie zeigen, ob noch gezahlt werden muss. Fuer das Hauptbuch sind `Sachposten` wichtig, weil sie Konten wie Verbindlichkeiten und Lager treffen. Fuer Lager und Bewertung sind `Artikelposten` und `Wertposten` wichtig, weil sie Menge und Wert der Materialbewegung erklaeren.
 
-Die Labor-Kreditorenzahlung `PAYP2P-108219` zeigt den naechsten Finance-Schritt: Eine Zahlung entsteht nicht aus der Einkaufsrechnung selbst, sondern aus einem Zahlungsjournal. Entscheidend sind Kreditor, Betrag, Bankgegenkonto und der Bezug auf die Ausgangsrechnung. Der Lauf beweist die gebuchte Zahlung und die Postenspur. Er beweist noch nicht eindeutig, dass die Ausgangsrechnung `108219` vollstaendig geschlossen ist, weil `Remaining Amount = 0,00` oder `Applied Entries = 1` an der Rechnungszeile nicht sichtbar nachgewiesen wurden.
+Die Labor-Kreditorenzahlung `PAYP2P-108219` zeigt den naechsten Finance-Schritt: Eine Zahlung entsteht nicht aus der Einkaufsrechnung selbst, sondern aus einem Zahlungsjournal. Entscheidend sind Kreditor, Betrag, Bankgegenkonto und der Bezug auf die Ausgangsrechnung. Der Folgecheck `P2P-003` zeigt danach read-only: Die Ausgangsrechnung `108219` hat Restbetrag `0,00`, und die detaillierten Kreditorenposten zeigen Application-Zeilen zur Zahlung. Der sichtbare `Payment Discount` ist ein eigener CRONUS-USA-Laborbefund und muss im Buch erklaert werden, weil Zahlung und Rechnung dadurch nicht nur als einfache 1:1-Zeile erscheinen.
 
 ## Was nicht bewiesen wurde
 
 - Kein deutscher `19 %`-Vorsteuer-Endstand.
 - Kein deutscher Kontenplan-Endstand.
 - Keine E-Rechnung.
-- Kein eindeutig nachgewiesener vollstaendiger OP-Ausgleich der P2P-Rechnung `108219`; belegt ist die Zahlung `PAYP2P-108219` mit Postenspur.
+- Keine Bankabstimmung und kein Kontoauszugsimport; der OP-Ausgleich der P2P-Rechnung `108219` ist im Labor read-only belegt, aber nicht deutsch/final.
 - Keine P2P-Dimensionen in den Posten.
 - Keine deutsche Finaloberflaeche und keine deutschen Final-Screenshots.
 
@@ -46,7 +47,8 @@ Kapitel 12 darf den P2P-Laborfall als Lernstrecke nutzen:
 4. Bewusste Buchungsoption `Receive and Invoice`.
 5. Postenspur nach der Buchung.
 6. Payment-Journal-Folgefall mit Kreditorenzahlung und Bank-/G/L-/Vendor-Trace.
-7. Laborgrenzen klar sichtbar.
+7. OP-/Application-Kontrolle mit Restbetrag `0,00`, detaillierten Kreditorenposten und Payment Discount.
+8. Laborgrenzen klar sichtbar.
 
 Kapitel 12 darf daraus nicht ableiten, dass deutsche Vorsteuer, deutsche Konten, deutsche E-Rechnung oder deutsche Final-Screenshots erledigt sind.
 
@@ -62,6 +64,7 @@ In einer deutschen Zielinstanz muss dieser Fall neu aufgebaut werden:
 - Kreditorenposten, Sachposten, USt-Posten, Artikelposten, Wertposten.
 - Kreditorenzahlung im Zahlungsjournal, Bankposten, Sachposten und detaillierte Kreditorenposten.
 - OP-Ausgleich sichtbar mit Restbetrag/Applied Entries an der Ausgangsrechnung.
+- Payment Discount / Skonto- oder Rabattwirkung fachlich klaeren.
 
 ## Naechster sinnvoller Laborblock
 
@@ -69,5 +72,6 @@ Nicht `UAT-P2P-001` wiederholen. Der naechste praktische P2P-Nutzen ist ein Abwe
 
 - Teil-Wareneingang vs. Rechnung.
 - Preisabweichung.
-- OP-Ausgleich/Restbetrag der Rechnung `108219` nach Zahlung gezielt klaeren.
+- Teil-Wareneingang vs. Rechnung.
+- Preisabweichung.
 - P2P-Dimensionen in gebuchten Posten.

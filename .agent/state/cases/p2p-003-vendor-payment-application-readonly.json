@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "caseId": "P2P-003-VENDOR-PAYMENT-APPLICATION-READONLY",
+  "area": "p2p",
+  "status": "labor-proven",
+  "taskClass": "wizard_work",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "sourceCompany": "RM-DEMO",
+  "mode": "readonly-labor-evidence",
+  "purpose": "Clarify whether the posted vendor payment PAYP2P-108219 fully applied purchase invoice 108219.",
+  "allowedActions": [
+    "open-business-central-if-instance-and-company-match",
+    "read-vendor-ledger-entries",
+    "read-detailed-vendor-ledger-entries",
+    "write-compact-evidence",
+    "update-labor-bookdraft-and-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "final-german-claim-from-rm-demo"
+  ],
+  "defaultLockedActionsRemainLocked": [
+    "preview-posting",
+    "post",
+    "payment",
+    "setup-change",
+    "company-switch",
+    "keep-draft",
+    "api-shortcut"
+  ],
+  "proved": [
+    "Vendor Ledger Entries show invoice 108219 with Remaining Amount 0,00.",
+    "Vendor Ledger Entries show payment PAYP2P-108219.",
+    "Detailed Vendor Ledger Entries show Initial Entry, Payment Discount and Application lines for PAYP2P-108219."
+  ],
+  "notProved": [
+    "Bank reconciliation",
+    "Bank statement import",
+    "German final tax, bank, compliance or chart-of-accounts proof"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/p2p-003/P2P-003-result.json",
+    "playwright/projects/fibu-book5/evidence/p2p-003/P2P-003-OP-APPLICATION-READONLY.md",
+    "playwright/projects/fibu-book5/evidence/p2p-003/README.md"
+  ],
+  "resultPath": "playwright/projects/fibu-book5/evidence/p2p-003/P2P-003-result.json",
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "rebuildInstruction": "In the German target company, recreate the vendor-payment application check after a German vendor payment: invoice vendor ledger entry, payment vendor ledger entry, detailed application lines, Remaining Amount 0,00 and bank/G/L trace.",
+  "nextCase": "P2P-004-PARTIAL-RECEIPT-VARIANCE-GATE"
+}

@@ -2240,7 +2240,7 @@ Die Einkaufsbestellung `106049` wurde mit `K10000`, `RAW-STEEL`, Menge `10`, Lag
 
 Nach der Korrektur zeigte `Preview Posting` echte Vorschauarten: `G/L Entry`, `Vendor Ledger Entry`, `Detailed Vendor Ledg. Entry`, `Item Ledger Entry` und `Value Entry`. Danach wurde genau einmal `Receive and Invoice` gebucht. Die gebuchte Einkaufsrechnung lautet `108219`. Die Postenspur zeigt Kreditorenposten, Sachposten mit `22100 Accounts Payable, Domestic` und `14140 Resale Items`, Wertposten mit `RAW-STEEL` und Artikelposten `793`. Dieser Stand beweist Bedienpfad, Laborbuchung und Postenspur. Er beweist nicht `EUR`, `19 %` deutsche Vorsteuer oder einen deutschen Kontenplan-Endstand: Im Labor bleibt `Currency Code = USD` und `Tax Percent = 0`.
 
-Der Folgefall `P2P-002` hat die Kreditorenzahlung als kontrollierte Laborbuchung ergaenzt. Im Payment Journal wurde `PAYP2P-108219` fuer `K10000`, Ausgangsrechnung `108219`, Betrag `25.000,00` und Gegenkonto `BANK-RM-01` UI-first vorbereitet. Vor der Buchung waren Journal Check `0 Issues`, die Apply-Entries-Ansicht, der Post-Dialog und die Umgebung `MCP_1_20260210` sichtbar. Nach der Buchung wurden Kreditorenposten, detaillierte Kreditorenposten, Bankposten und Sachposten zum Zahlungsbeleg gefiltert geprueft. Wichtig: Dieser Laborlauf beweist die gebuchte Kreditorenzahlung und ihre Postenspur, aber noch nicht eindeutig den vollstaendigen OP-Ausgleich der Ausgangsrechnung `108219`, weil `Remaining Amount = 0,00` oder `Applied Entries = 1` an der Rechnungszeile nicht sichtbar nachgewiesen wurden.
+Der Folgefall `P2P-002` hat die Kreditorenzahlung als kontrollierte Laborbuchung ergaenzt. Im Payment Journal wurde `PAYP2P-108219` fuer `K10000`, Ausgangsrechnung `108219`, Betrag `25.000,00` und Gegenkonto `BANK-RM-01` UI-first vorbereitet. Vor der Buchung waren Journal Check `0 Issues`, die Apply-Entries-Ansicht, der Post-Dialog und die Umgebung `MCP_1_20260210` sichtbar. Nach der Buchung wurden Kreditorenposten, detaillierte Kreditorenposten, Bankposten und Sachposten zum Zahlungsbeleg gefiltert geprueft. Der Folgecheck `P2P-003` klaert den OP-Ausgleich read-only: Die Einkaufsrechnung `108219` zeigt im Kreditorenposten Restbetrag `0,00`, und die detaillierten Kreditorenposten zeigen `Initial Entry`, `Payment Discount` und `Application` zur Zahlung `PAYP2P-108219`.
 
 Status dieses Laborblocks: `labor-proven`, `labor-sufficient-for-book-draft`, `needs-german-final-rebuild`.
 
@@ -2252,11 +2252,11 @@ Status dieses Laborblocks: `labor-proven`, `labor-sufficient-for-book-draft`, `n
 | Buchungsoption `Receive and Invoice` genau einmal | Wareneingang und Rechnung koennen in einem Laborfall gemeinsam gebucht werden | deutscher Zielprozess entscheidet bewusst zwischen Teil-WE, separater Rechnung oder Receive and Invoice |
 | Gebuchte Einkaufsrechnung `108219` | Nach der Buchung ist der offene Kreditorenposten der Finance-Nachweis | deutsche gebuchte Einkaufsrechnung mit deutschem Belegbild und USt-Posten |
 | Kreditorenposten, Sachposten, Wertposten und Artikelposten `793` | Jede Postenart beantwortet eine andere Kontrollfrage | deutsche Postenspur inklusive Vorsteuer, Kontenplan, Dimensionen und ggf. Zahlungs-/OP-Ausgleich |
-| Kreditorenzahlung `PAYP2P-108219` | Zahlung wird im Zahlungsjournal gebucht und ueber Kreditorenposten, detaillierte Kreditorenposten, Bankposten und Sachposten nachvollzogen | deutsche Kreditorenzahlung mit Bank-/OP-Ausgleich, eindeutigem Restbetrag `0,00`, Bankabstimmung und deutschem Zahlungs-/Compliance-Kontext |
+| Kreditorenzahlung `PAYP2P-108219` und OP-Klaerung `P2P-003` | Zahlung wird im Zahlungsjournal gebucht und ueber Kreditorenposten, detaillierte Kreditorenposten, Bankposten und Sachposten nachvollzogen; Rechnung `108219` zeigt Restbetrag `0,00` | deutsche Kreditorenzahlung mit Bankabstimmung, deutschem Zahlungs-/Compliance-Kontext und finalem Screenshot-Ersatz |
 
 Fuer Einsteiger ist der wichtigste P2P-Lernpunkt: Eine Einkaufsrechnung ist nicht nur ein PDF oder ein Belegkopf. Business Central erzeugt eine Kette aus Lieferantenbeleg, Lagerbewegung, Wertbewegung, Hauptbuchwirkung und offenem Kreditorenposten. Wenn nur die gebuchte Rechnung sichtbar ist, fehlt noch die Kontrolle, ob Lager, Wert, Konten und OP zusammenpassen.
 
-Der zweite Lernpunkt ist die Zahlung: Eine Kreditorenzahlung ist ein eigener Buchungsvorgang im Zahlungsjournal. Sie braucht nicht nur den Betrag, sondern auch das Bankgegenkonto und den Bezug auf die Rechnung. Erst die Postenspur nach der Zahlung zeigt, ob Business Central die Zahlung, Bankbewegung, detaillierten Kreditorenposten und Sachposten passend erzeugt hat. Der aktuelle Laborstand zeigt diesen Zahlungsbeleg, laesst aber den finalen OP-Schluss der Ausgangsrechnung noch als separaten Kontrollpunkt offen.
+Der zweite Lernpunkt ist die Zahlung: Eine Kreditorenzahlung ist ein eigener Buchungsvorgang im Zahlungsjournal. Sie braucht nicht nur den Betrag, sondern auch das Bankgegenkonto und den Bezug auf die Rechnung. Erst die Postenspur nach der Zahlung zeigt, ob Business Central die Zahlung, Bankbewegung, detaillierten Kreditorenposten und Sachposten passend erzeugt hat. Der OP-Schluss wird nicht am Zahlungsdialog bewiesen, sondern am Kreditorenposten der Rechnung und an den detaillierten Application-Zeilen. Im Labor zeigt `P2P-003` genau diesen Punkt fuer `108219` / `PAYP2P-108219`; Bankabstimmung und deutsche Finalbilder bleiben offen.
 
 Screenshot-/Evidence-ToDos fuer die spaetere deutsche Zielinstanz:
 
@@ -2265,7 +2265,7 @@ Screenshot-/Evidence-ToDos fuer die spaetere deutsche Zielinstanz:
 - `[DE-FINAL-SCREENSHOT: gebuchte Einkaufsrechnung mit deutscher Belegnummer und EUR]`
 - `[DE-FINAL-SCREENSHOT: Kreditorenposten zur gebuchten Rechnung]`
 - `[DE-FINAL-SCREENSHOT: Kreditorenzahlung im Zahlungsjournal mit Rechnungsausgleich und Bankgegenkonto]`
-- `[DE-FINAL-SCREENSHOT: Kreditorenposten nach Zahlung mit Restbetrag 0,00 und Applied Entries]`
+- `[DE-FINAL-SCREENSHOT: Kreditorenposten nach Zahlung mit Restbetrag 0,00 und detaillierten Application-Zeilen]`
 - `[DE-FINAL-SCREENSHOT: Sachposten mit deutschen Verbindlichkeits-, Lager- und Vorsteuerkonten]`
 - `[DE-FINAL-SCREENSHOT: Artikelposten und Wertposten zu RAW-STEEL]`
 - `[DE-FINAL-SCREENSHOT: Zahlung/OP-Ausgleich oder bewusst offener Posten]`
@@ -3660,11 +3660,11 @@ Dieses Kapitel zeigt, wie Rhein-Main Bankumsätze importiert, zuordnet und absti
 
 Status:
 - Buchziel: Bankumsatz importieren oder erfassen, Zahlung dem richtigen offenen Debitorenposten zuordnen, Bankposten erzeugen und Bankkonto abstimmen.
-- RM-DEMO-Labor: `PAYMENTS-011` bucht die Debitorenzahlung `PAY011-PS103297` zu `PS-INV103297`; `PAYMENTS-013` belegt den Bankposten ueber `Bank Account Ledger Entries` / Page `372` mit `BANK-RM-01`, Betrag `67.673,60` und Entry No. `4995`. `P2P-002` bucht die Kreditorenzahlung `PAYP2P-108219` zu `108219`; Bankposten, Sachposten und detaillierte Kreditorenposten sind sichtbar, aber der vollstaendige OP-Schluss der Ausgangsrechnung bleibt als separater Kontrollpunkt offen.
+- RM-DEMO-Labor: `PAYMENTS-011` bucht die Debitorenzahlung `PAY011-PS103297` zu `PS-INV103297`; `PAYMENTS-013` belegt den Bankposten ueber `Bank Account Ledger Entries` / Page `372` mit `BANK-RM-01`, Betrag `67.673,60` und Entry No. `4995`. `P2P-002` bucht die Kreditorenzahlung `PAYP2P-108219` zu `108219`; `P2P-003` klaert read-only den OP-Schluss: Rechnung `108219` zeigt Restbetrag `0,00`, und detaillierte Kreditorenposten zeigen `Initial Entry`, `Payment Discount` und `Application`.
 - DE-Finalnachweis: offen; deutsche Bank-/Compliance-/Kontoauszugslogik wurde nicht final nachgewiesen.
 - Buchung erfolgt: ja, eine CRONUS-USA-Debitoren-Laborzahlung in `PAYMENTS-011` und eine CRONUS-USA-Kreditoren-Laborzahlung in `P2P-002`; keine weitere Zahlung in `PAYMENTS-013` oder `PAYMENTS-014`.
-- Evidence Pack: `evidence/payments-011/`, `evidence/payments-012/`, `evidence/payments-013/`, `evidence/payments-014/`, `evidence/p2p-002/`.
-- Offene Grenzen: keine Bankabstimmung, kein Kontoauszugsimport, Kreditoren-OP-Ausgleich der Rechnung `108219` noch nicht eindeutig als Restbetrag `0,00` belegt, kein deutscher Finalnachweis.
+- Evidence Pack: `evidence/payments-011/`, `evidence/payments-012/`, `evidence/payments-013/`, `evidence/payments-014/`, `evidence/p2p-002/`, `evidence/p2p-003/`.
+- Offene Grenzen: keine Bankabstimmung, kein Kontoauszugsimport, kein deutscher Zahlungs-/Bank-/Compliance-Finalnachweis.
 - Nicht behaupten: Der sichtbare Bankposten ist keine gebuchte Bankabstimmung. Page `371` ist fuer diesen Nachweis verworfen; der belastbare Laborpfad ist Page `372`.
 
 ### Kapitelbox

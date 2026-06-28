@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-28T14:30:00.000+02:00",
+  "updatedAt": "2026-06-28T15:20:00.000+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "p2p",
-  "activeCase": "P2P-002-PURCHASE-VARIANCE-GATE",
-  "active_case_file": ".agent/state/cases/p2p-002-purchase-variance-gate.json",
+  "activeCase": "P2P-004-PARTIAL-RECEIPT-VARIANCE-GATE",
+  "active_case_file": ".agent/state/cases/p2p-004-partial-receipt-variance-gate.json",
   "lastReferenceCase": "UAT-P2P-001",
   "lastReferenceCaseFile": "",
   "mode": "labor-book-production",
@@ -40,7 +40,7 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "Do not repeat P2P-002 payment. Next bounded P2P step: read-only clarify invoice 108219 remaining amount/application after PAYP2P-108219, or choose one variance case (partial receipt or purchase price variance).",
+  "nextStep": "Do not repeat UAT-P2P-001, P2P-002 payment or P2P-003 read-only application check. Next bounded P2P step: plan and run one controlled partial-receipt-versus-invoice variance case in RM-DEMO, with preview/trace only when the case gate unlocks it.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/fixedassets-labor-draft.md",
     "area": "fixedassets",
@@ -113,13 +113,14 @@
     "summaryFile": ".agent/state/lab_to_german_sandbox_migration_plan.json",
     "noActiveLiveRunInOldSandbox": false,
     "germanTargetUnavailable": true,
-    "nextStep": "Continue controlled laboratory evidence, Playwright capability and labor bookdraft substance in MCP_1_20260210 until a German target sandbox exists; P2P-002 now adds a vendor payment trace but must be rebuilt in German final evidence."
+      "nextStep": "Continue controlled laboratory evidence, Playwright capability and labor bookdraft substance in MCP_1_20260210 until a German target sandbox exists; P2P-003 now proves the RM-DEMO vendor payment application read-only, but the whole route must be rebuilt in German final evidence."
   },
   "latestP2PLabFollowup": {
-    "caseId": "P2P-002-PURCHASE-VARIANCE-GATE",
-    "selectedScenario": "vendor-payment-open-item",
+    "caseId": "P2P-003-VENDOR-PAYMENT-APPLICATION-READONLY",
+    "selectedScenario": "vendor-payment-application-readonly",
     "paymentDocumentNo": "PAYP2P-108219",
-    "posted": true,
+    "posted": false,
+    "readOnly": true,
     "status": [
       "labor-proven",
       "labor-sufficient-for-book-draft",
@@ -127,10 +128,10 @@
     ],
     "sourceCompany": "RM-DEMO",
     "sourceInstance": "MCP_1_20260210",
-    "evidencePath": "playwright/projects/fibu-book5/evidence/p2p-002/",
-    "bookEffect": "Chapter 12 and the P2P laboratory draft now include a controlled vendor payment trace after purchase invoice 108219.",
-    "openLimit": "The source invoice 108219 was not visibly proven as fully closed with Remaining Amount 0,00 or Applied Entries 1.",
-    "nextStep": "Read-only verify application/remaining amount for invoice 108219, or move to a distinct P2P variance case."
+    "evidencePath": "playwright/projects/fibu-book5/evidence/p2p-003/",
+    "bookEffect": "Chapter 12, Chapter 20, coverage and the P2P laboratory draft now explain that invoice 108219 shows Remaining Amount 0,00 and Detailed Vendor Ledger application lines after PAYP2P-108219.",
+    "openLimit": "Bank reconciliation, bank statement import, German final screenshots, German tax/compliance and German chart-of-accounts proof remain open.",
+    "nextStep": "Move to a distinct P2P variance case, preferably partial receipt versus invoice, without repeating UAT-P2P-001/P2P-002/P2P-003."
   },
   "subagentPlanPolicy": {
     "default": "optional",

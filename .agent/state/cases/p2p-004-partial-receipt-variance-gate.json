@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "caseId": "P2P-004-PARTIAL-RECEIPT-VARIANCE-GATE",
+  "area": "p2p",
+  "status": "planned",
+  "taskClass": "wizard_work",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "sourceCompany": "RM-DEMO",
+  "mode": "controlled-labor-process-gate",
+  "purpose": "Create one bounded P2P variance learning case for partial receipt versus invoice in RM-DEMO without repeating UAT-P2P-001 or the vendor payment cases.",
+  "preferredScenario": "partial-receipt-versus-invoice",
+  "fallbackScenarios": [
+    "purchase-price-variance",
+    "p2p-dimension-trace"
+  ],
+  "preflightRequired": [
+    "prove instance MCP_1_20260210",
+    "prove company RM-DEMO",
+    "choose unique test document numbers",
+    "prove vendor and item context",
+    "define expected receipt, invoice and ledger evidence",
+    "document cleanup-or-keep strategy before any posting"
+  ],
+  "allowedWhenGateUnlocks": [
+    "create-controlled-purchase-draft",
+    "preview-posting",
+    "receive",
+    "invoice",
+    "receive-and-invoice",
+    "trace-posted-document",
+    "write-evidence",
+    "update-labor-bookdraft-or-clickguide"
+  ],
+  "defaultLockedActions": [
+    "preview-posting",
+    "post",
+    "setup-change",
+    "keep-draft",
+    "company-switch",
+    "api-shortcut"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "final-german-claim-from-rm-demo",
+    "repeat-uat-p2p-001-without-new-purpose",
+    "repeat-p2p-002-payment",
+    "repeat-p2p-003-readonly-application-check"
+  ],
+  "minimumEvidence": [
+    "preflight",
+    "purchase document or blocker",
+    "preview or explicit reason preview is unavailable",
+    "posting dialog if posting is unlocked",
+    "posted receipt/invoice or cleanup proof",
+    "vendor ledger, G/L entries, item ledger and value entries if posting occurs",
+    "beginner learning note"
+  ],
+  "bookImpactTarget": "Chapter 12 P2P variance explanation and German-final rebuild map.",
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "nextSafeAction": "Plan the P2P-004 data and posting gate; do not execute until the preflight and evidence plan are written."
+}

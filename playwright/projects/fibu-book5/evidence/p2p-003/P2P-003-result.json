@@ -1,0 +1,137 @@
+{
+  "testId": "P2P-003",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "mode": "readonly-vendor-payment-application-check",
+  "sourceContext": {
+    "vendorNo": "K10000",
+    "invoiceNo": "108219",
+    "paymentNo": "PAYP2P-108219"
+  },
+  "flags": {
+    "readOnly": true,
+    "noPayment": true,
+    "noPost": true,
+    "noPreviewPosting": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChangeInsideTest": true
+  },
+  "traces": [
+    {
+      "id": "vendor-ledger-invoice",
+      "pageId": 29,
+      "tableName": "Vendor Ledger Entry",
+      "filterField": "Document No.",
+      "filterValue": "108219",
+      "pageContextVisible": true,
+      "filterValueVisible": true,
+      "vendorVisible": true,
+      "paymentVisible": false,
+      "invoiceVisible": true,
+      "relevantButtons": [
+        "Entry No.",
+        "Open"
+      ],
+      "textEvidenceFile": "010-vendor-ledger-invoice-after-payment-readonly-page-text.txt",
+      "screenshot": "p2p-003-010-vendor-ledger-invoice-after-payment.png",
+      "analysis": {
+        "invoiceVisible": true,
+        "vendorVisible": true,
+        "remainingAmountZeroVisible": true,
+        "originalAmountVisible": true,
+        "relatedGlEntriesVisible": true,
+        "openColumnVisible": true,
+        "entryNo4992Visible": true
+      }
+    },
+    {
+      "id": "vendor-ledger-payment",
+      "pageId": 29,
+      "tableName": "Vendor Ledger Entry",
+      "filterField": "Document No.",
+      "filterValue": "PAYP2P-108219",
+      "pageContextVisible": true,
+      "filterValueVisible": true,
+      "vendorVisible": true,
+      "paymentVisible": true,
+      "invoiceVisible": true,
+      "relevantButtons": [
+        "Entry No.",
+        "Open"
+      ],
+      "textEvidenceFile": "020-vendor-ledger-payment-readonly-page-text.txt",
+      "screenshot": "p2p-003-020-vendor-ledger-payment.png",
+      "analysis": {
+        "paymentVisible": true,
+        "vendorVisible": true,
+        "paymentDiscountVisible": true,
+        "remainingAmount500Visible": true,
+        "bankOrGlVisible": true,
+        "entryNo5001Visible": true
+      }
+    },
+    {
+      "id": "detailed-vendor-ledger-payment",
+      "pageId": 574,
+      "tableName": "Detailed Vendor Ledg. Entry",
+      "filterField": "Document No.",
+      "filterValue": "PAYP2P-108219",
+      "pageContextVisible": true,
+      "filterValueVisible": true,
+      "vendorVisible": true,
+      "paymentVisible": true,
+      "invoiceVisible": true,
+      "relevantButtons": [
+        "Entry No.",
+        "Entry Type",
+        "Initial Entry Due Date"
+      ],
+      "textEvidenceFile": "030-detailed-vendor-ledger-payment-application-readonly-page-text.txt",
+      "screenshot": "p2p-003-030-detailed-vendor-ledger-payment-application.png",
+      "analysis": {
+        "paymentVisible": true,
+        "initialEntryVisible": true,
+        "paymentDiscountVisible": true,
+        "positiveApplicationVisible": true,
+        "negativeApplicationVisible": true,
+        "entryNosVisible": true
+      }
+    }
+  ],
+  "conclusion": {
+    "invoiceClosedByRemainingAmount": true,
+    "invoiceRemainingAmountZeroVisible": true,
+    "detailedApplicationEntriesVisible": true,
+    "paymentDiscountVisible": true,
+    "paymentEntryRemaining500Visible": true,
+    "ledgerEntryNos": {
+      "invoiceEntryNo": "4992",
+      "paymentEntryNo": "5001",
+      "detailedPaymentEntries": [
+        "811",
+        "812",
+        "813",
+        "814"
+      ]
+    }
+  },
+  "proves": [
+    "P2P-003 ist ein read-only Nachweis; es wurde keine weitere Zahlung und keine Buchung erzeugt.",
+    "Die Ausgangsrechnung 108219 zeigt im Vendor Ledger Remaining Amount = 0,00 und Detailed Vendor Ledger zeigt Application-Zeilen zur Zahlung PAYP2P-108219.",
+    "Detailed Vendor Ledger Entries zeigen Initial Entry, Payment Discount und Application zur Zahlung PAYP2P-108219."
+  ],
+  "doesNotProve": [
+    "Keine Bankabstimmung.",
+    "Kein Kontoauszugsimport.",
+    "Kein deutscher Bank-, Steuer-, Compliance- oder Kontenplan-Finalnachweis.",
+    "Keine deutsche 19-Prozent-Vorsteuer."
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "rebuildInstruction": "In der deutschen Zielcompany dieselbe read-only OP-Kontrolle nach Kreditorenzahlung neu erzeugen: Vendor Ledger Invoice, Vendor Ledger Payment, Detailed Vendor Ledger Application, Restbetrag 0,00 und Bank-/G/L-/Bankabstimmungsbezug sichtbar nachweisen.",
+  "nextStep": "P2P-Payment als labor-proven klassifizieren; danach einen neuen P2P-Abweichungsfall waehlen."
+}
