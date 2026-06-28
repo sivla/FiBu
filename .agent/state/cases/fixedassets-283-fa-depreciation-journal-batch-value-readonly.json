@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-283-FA-DEPRECIATION-JOURNAL-BATCH-VALUE-READONLY",
+  "status": "planned",
+  "workType": "playwright-readonly-fixedasset-depreciation-journal-batch-value",
+  "taskClass": "wizard_work",
+  "requiresStrongModel": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Read the concrete Fixed Asset G/L Journal Batch Name value or prove that it is not exposed, without selecting a value or changing journal data.",
+  "triggeredBy": {
+    "caseId": "FIXEDASSETS-282-FA-DEPRECIATION-JOURNAL-BATCH-TARGET-REVIEW",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-282/FIXEDASSETS-282-result.json",
+    "decision": "FA-281 proved only the Batch Name label, not an actual batch value or FADEP target."
+  },
+  "targetObjects": {
+    "journalPageId": 5628,
+    "journalPageName": "Fixed Asset G/L Journals",
+    "fixedAssetNo": "FA-CNC-01",
+    "depreciationBook": "HGB"
+  },
+  "allowedActions": [
+    "open-business-central",
+    "run-playwright",
+    "read-only-fixedasset-gl-journal",
+    "read-only-batch-name-value-probe",
+    "read-only-batch-dropdown-open-no-select-if-safe",
+    "write-compact-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "confirm-ok-on-calculate-depreciation",
+    "preview-posting",
+    "post",
+    "setup-change",
+    "company-switch",
+    "api-shortcut-without-explicit-case-permission",
+    "edit-record",
+    "new-draft",
+    "delete-record",
+    "select-batch-value",
+    "book-edit"
+  ],
+  "safetyGates": [
+    "instance-boundary-gate",
+    "company-context-gate",
+    "read-only-only",
+    "no-ok",
+    "no-preview-posting",
+    "no-posting",
+    "no-setup-change",
+    "no-company-switch",
+    "no-api-shortcut",
+    "no-draft-or-edit",
+    "dropdown-open-no-select"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-283/FIXEDASSETS-283-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-283/FIXEDASSETS-283-BATCH-VALUE-READONLY.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-283/README.md"
+  ],
+  "acceptanceCriteria": [
+    "Business Central remains in MCP_1_20260210 / RM-DEMO.",
+    "No Batch Name value is selected or changed.",
+    "No journal line is created, edited or deleted.",
+    "No Calculate Depreciation OK, Preview Posting, Post, setup change, company switch or API shortcut occurs.",
+    "The run captures a concrete Batch Name value or documents why the value is not exposed."
+  ],
+  "stopConditions": [
+    "Instance or company is not explicit.",
+    "Reading the batch value requires edit mode.",
+    "Opening the dropdown would select or change a value.",
+    "A dangerous dialog appears.",
+    "The diagnosis would require writing field values."
+  ],
+  "nextSafeAction": "Run a focused read-only batch-value probe on Fixed Asset G/L Journals; do not select, edit, OK, Preview Posting or Post.",
+  "createdAt": "2026-06-28T10:36:08.095+02:00",
+  "updatedAt": "2026-06-28T10:36:08.095+02:00"
+}

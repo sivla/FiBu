@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "FIXEDASSETS-282-FA-DEPRECIATION-JOURNAL-BATCH-TARGET-REVIEW",
-  "status": "planned",
+  "status": "observed",
   "workType": "local-fixedasset-depreciation-journal-batch-target-review",
   "taskClass": "judge_work",
   "requiresStrongModel": true,
@@ -72,7 +72,19 @@
     "The evidence is contradictory or insufficient for a gate decision.",
     "A proposed next action would post, preview or confirm OK without a separate gate."
   ],
-  "nextSafeAction": "Review FA-281 locally and choose the next smallest evidence step; do not run BC, Playwright, OK, Preview Posting or Post in FA-282.",
+  "result": {
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-282/FIXEDASSETS-282-result.json",
+    "resultStatus": "observed",
+    "classification": "page-visible-but-output-target-not-proven",
+    "summary": "FA-281 proves the Fixed Asset G/L Journals page and Batch Name label, but not a concrete Batch Name value, template signal, FADEP line, FA-CNC-01 or HGB target. Repeat OK, Preview Posting and Post remain blocked.",
+    "nextCase": "FIXEDASSETS-283-FA-DEPRECIATION-JOURNAL-BATCH-VALUE-READONLY",
+    "evidenceRefs": [
+      "playwright/projects/fibu-book5/evidence/fixedassets-282/FIXEDASSETS-282-result.json",
+      "playwright/projects/fibu-book5/evidence/fixedassets-282/FIXEDASSETS-282-JOURNAL-BATCH-TARGET-REVIEW.md",
+      "playwright/projects/fibu-book5/evidence/fixedassets-282/README.md"
+    ]
+  },
+  "nextSafeAction": "Run FIXEDASSETS-283 as a focused read-only batch-value probe on Fixed Asset G/L Journals; do not select a batch value, create/edit/delete lines, click OK, Preview Posting or Post.",
   "createdAt": "2026-06-28T10:31:00.000+02:00",
-  "updatedAt": "2026-06-28T10:31:00.000+02:00"
+  "updatedAt": "2026-06-28T10:36:08.095+02:00"
 }

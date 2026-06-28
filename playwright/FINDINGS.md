@@ -1,4 +1,17 @@
 
+## FIND-BC-FA-119 Batch-Label ist kein Batchwert
+
+| Feld | Wert |
+|---|---|
+| Bereich | Fixed Assets / AfA-Route / Review |
+| Testfall | `FIXEDASSETS-282-FA-DEPRECIATION-JOURNAL-BATCH-TARGET-REVIEW` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-282/FIXEDASSETS-282-result.json`, `playwright/projects/fibu-book5/evidence/fixedassets-282/FIXEDASSETS-282-JOURNAL-BATCH-TARGET-REVIEW.md` |
+| Entscheidung | `FIXEDASSETS-281` beweist die Page `Fixed Asset G/L Journals` und das Label `Batch Name`, aber nicht den konkreten Batchwert oder ein AfA-Ausgabeziel. |
+| Warum | Ohne konkreten Batchwert, Template-Signal, `FADEP-`-Zeile, `FA-CNC-01` oder `HGB` im Journal ist ein weiterer `Calculate Depreciation -> OK` nur Wiederholung ohne Zielnachweis. |
+| weiterhin gesperrt | Repeat `OK`, Preview Posting, Post, Setup Change, Company Switch, API-Abkuerzung |
+| naechster Schritt | `FIXEDASSETS-283`: read-only Batchwert-/Batch-Selector-Probe auf Page `5628`, ohne Auswahl, ohne Edit, ohne Journalzeile. |
+| Buchwirkung | Die Klickanleitung muss deutlich unterscheiden: Page sichtbar, Label sichtbar und konkreter Wert sichtbar sind drei verschiedene Nachweisstufen. |
+
 ## FIND-BC-FA-118 Journalseite sichtbar, aber kein konkretes AfA-Ausgabeziel
 
 | Feld | Wert |
