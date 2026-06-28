@@ -1,18 +1,20 @@
 {
   "schemaVersion": 1,
-  "runId": "GERMAN-SANDBOX-MIGRATION-PREP-001",
-  "timestamp": "2026-06-28T12:05:00.000+02:00",
+  "runId": "FIXEDASSETS-289-FA-DEPRECIATION-JOURNAL-ASSETS-DEFAULT-READONLY",
+  "timestamp": "2026-06-28T12:48:00.000+02:00",
   "date": "2026-06-28",
-  "workType": "local-lab-sandbox-summary-before-german-migration",
-  "taskClass": "judge_work",
-  "modelClass": "gpt-5.5-low",
+  "workType": "playwright-readonly-fixedasset-depreciation-journal-assets-default-context",
+  "taskClass": "wizard_work",
+  "modelClass": "gpt-4-medium",
   "branch": "codex/token-efficient-autopilot-state",
-  "sourceInstance": "MCP_1_20260210",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
   "sourceCompany": "RM-DEMO",
-  "sourceEvidenceStatus": "labor-reference",
-  "targetEvidenceStatus": "german-final-candidate",
-  "bcRun": false,
-  "playwrightRun": false,
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "bcRun": true,
+  "playwrightRun": true,
   "posted": false,
   "previewPosting": false,
   "setupChanged": false,
@@ -26,58 +28,64 @@
   "journalLineChanged": false,
   "resultStatus": "observed",
   "blockedBy": [],
-  "summary": "MCP_1_20260210 / RM-DEMO was summarized as the old CRONUS-USA laboratory reference before moving to a future German sandbox. O2C, P2P and Fixed Assets evidence remains useful as labor-reference, but no German final VAT, chart-of-accounts, tax, compliance, reporting or posting claims may be made from it. The previous FA-289 live step is paused; the next active case is German sandbox instance registration.",
+  "summary": "FA-289 opened Fixed Asset G/L Journals read-only in MCP_1_20260210 / RM-DEMO. DEFAULT batch context and Batch Name context are visible. ASSETS, FADEP, FA-CNC-01, HGB and Preview Posting were not proven visible in this context. No batch selection, OK, New/Edit, Calculate Depreciation OK, Preview Posting, Post, setup change, company switch, API shortcut or book change occurred.",
   "proved": [
-    "The current run did not open Business Central or Playwright.",
-    "The old sandbox MCP_1_20260210 is now explicitly marked as labor-reference.",
-    "Future German sandbox evidence is marked as german-final-candidate.",
-    "The project state now points to GERMAN-SANDBOX-001-REGISTER-INSTANCE instead of the paused FA-289 live probe."
+    "Fixed Asset G/L Journals was opened read-only in MCP_1_20260210 / RM-DEMO.",
+    "DEFAULT batch context is visible.",
+    "Batch Name label/context is visible.",
+    "No batch selection, OK, New, Edit List, Calculate Depreciation OK, Preview Posting, Post, setup change, company switch, API shortcut or book change was executed."
   ],
   "notProved": [
-    "No new German sandbox instance is registered yet.",
-    "No German read-only context smoke exists yet.",
-    "No German 19 percent VAT proof exists.",
-    "No German final fixed asset, O2C, P2P, inventory, payment or reporting proof exists."
+    "No selected Batch Name value was changed or confirmed.",
+    "No new FADEP depreciation journal line is proven from this run.",
+    "No Preview Posting result is proven.",
+    "No depreciation posting is proven.",
+    "No German final proof exists."
   ],
   "evidenceRefs": [
-    ".agent/state/lab_to_german_sandbox_migration_plan.json",
-    ".agent/state/cases/german-sandbox-001-register-instance.json",
-    "playwright/projects/fibu-book5/evidence/uat-o2c-001/O2C-LAB-FINAL-SYNC.md",
-    "playwright/projects/fibu-book5/evidence/p2p-001/100-purchase-posting-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-208/FIXEDASSETS-208-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-209/FIXEDASSETS-209-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-226/FIXEDASSETS-226-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-227/FIXEDASSETS-227-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-233/FIXEDASSETS-233-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-287/FIXEDASSETS-287-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-288/FIXEDASSETS-288-result.json"
+    "playwright/projects/fibu-book5/evidence/fixedassets-289/FIXEDASSETS-289-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-289/FIXEDASSETS-289-JOURNAL-ASSETS-DEFAULT-READONLY.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-289/010-fa-gl-journal-assets-default-context.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-289/010-fa-gl-journal-assets-default-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-289/README.md"
   ],
   "changedFiles": [
+    "package.json",
+    "playwright/projects/fibu-book5/tests/fixedassets-289-fa-depreciation-journal-assets-default-readonly.spec.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-289/",
     ".agent/state/current.json",
     ".agent/state/coverage_state.json",
     ".agent/state/last_run_summary.json",
-    ".agent/state/lab_to_german_sandbox_migration_plan.json",
-    ".agent/state/cases/german-sandbox-001-register-instance.json"
+    ".agent/state/cases/fixedassets-290-fa-depreciation-journal-assets-default-review.json",
+    ".agent/state/german-final-rebuild-map.json"
   ],
   "validationCommands": [
     "npm run agent:preflight",
+    "npm run agent:context",
+    "npm run agent:dry-run",
+    "npm run agent:run-plan",
+    "npm run fibu:fixedassets:fa-depreciation-journal-assets-default-readonly",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-289/FIXEDASSETS-289-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-289/FIXEDASSETS-289-result.json",
     "npm run check:encoding",
     "git diff --check",
-    "node -e \"for (const f of ['.agent/state/current.json','.agent/state/coverage_state.json','.agent/state/last_run_summary.json','.agent/state/lab_to_german_sandbox_migration_plan.json','.agent/state/cases/german-sandbox-001-register-instance.json']) JSON.parse(require('fs').readFileSync(f,'utf8'))\""
+    "npx tsc --noEmit"
+  ],
+  "validationNotes": [
+    "`npx tsc --noEmit` was attempted because a TypeScript Playwright test changed, but the repository has no local `typescript` dependency installed. No dependency was added."
   ],
   "boundaries": [
-    "No Business Central run.",
-    "No Playwright run.",
-    "No book content changed.",
-    "No setup changed.",
-    "No posting or Preview Posting.",
+    "Labor-reference only.",
+    "No Preview Posting.",
+    "No posting.",
+    "No setup change.",
     "No company switch.",
     "No API shortcut.",
-    "Old evidence is labor-reference only.",
+    "No book content changed.",
     "German final proof remains open."
   ],
-  "activeArea": "migration",
-  "activeCase": "GERMAN-SANDBOX-001-REGISTER-INSTANCE",
-  "nextCase": "GERMAN-SANDBOX-001-REGISTER-INSTANCE",
-  "nextStep": "Register the new German sandbox instance metadata and create the first read-only German context smoke case; no live run in MCP_1_20260210."
+  "activeArea": "fixedassets",
+  "activeCase": "FIXEDASSETS-290-FA-DEPRECIATION-JOURNAL-ASSETS-DEFAULT-REVIEW",
+  "nextCase": "FIXEDASSETS-290-FA-DEPRECIATION-JOURNAL-ASSETS-DEFAULT-REVIEW",
+  "nextStep": "Locally review FA-289 journal context before any Calculate Depreciation OK, Preview Posting or Post."
 }

@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixed-assets-depreciation-journal-assets-default-readonly",
+  "caseId": "FIXEDASSETS-289-FA-DEPRECIATION-JOURNAL-ASSETS-DEFAULT-READONLY",
+  "source": "playwright-readonly-fa-gl-journal-assets-default-context",
+  "resultStatus": "observed",
+  "branch": "codex/token-efficient-autopilot-state",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "sourceCompany": "RM-DEMO",
+  "dataBasis": "CRONUS USA laboratory",
+  "migrationRelevance": "needed-for-german-final",
+  "rebuildInstruction": "In the future German target company, open Fixed Asset G/L Journals read-only first, prove the journal template/batch context, then create or calculate a depreciation line only after setup, VAT/accounting and posting gates are proven.",
+  "mustRecreateInFinalSandbox": true,
+  "targetGermanCompanyImpact": "German final evidence must recreate the page context, batch, depreciation line, Preview Posting and posted depreciation entries with German UI labels and German accounting setup.",
+  "finalScreenshotNeeded": true,
+  "target": {
+    "pageId": 5628,
+    "pageName": "Fixed Asset G/L Journals",
+    "journalTemplateName": "ASSETS",
+    "journalBatchName": "DEFAULT",
+    "batchNoSeries": "FA-JNL",
+    "fixedAssetNo": "FA-CNC-01",
+    "depreciationBook": "HGB"
+  },
+  "context": {
+    "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5628&dc=0",
+    "environmentInUrl": true,
+    "companyInUrl": true,
+    "companyInText": false,
+    "wrongEnvironmentVisible": false
+  },
+  "dialogState": {
+    "phase": "after-open-fa-gl-journals",
+    "dialogs": [],
+    "dangerous": [],
+    "ok": true
+  },
+  "journal": {
+    "pageVisible": true,
+    "templateVisible": false,
+    "batchVisible": true,
+    "noSeriesVisible": false,
+    "batchNameLabelVisible": true,
+    "assetVisible": false,
+    "depreciationBookVisible": false,
+    "faDepVisible": false,
+    "previewPostingVisible": false,
+    "postVisible": true,
+    "newOrEditVisible": true,
+    "frameCount": 5,
+    "relevantFrameCount": 1
+  },
+  "safety": {
+    "noBatchSelected": true,
+    "noLookupOk": true,
+    "noNew": true,
+    "noEditList": true,
+    "noCalculateDepreciationOk": true,
+    "noPreviewPosting": true,
+    "noPost": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true,
+    "noDraft": true,
+    "noRecordEdit": true,
+    "noRecordDelete": true,
+    "noJournalLineInsertEditDelete": true
+  },
+  "proved": [
+    "Fixed Asset G/L Journals was opened read-only in MCP_1_20260210 / RM-DEMO.",
+    "DEFAULT batch context is visible.",
+    "Batch Name label/context is visible.",
+    "No batch selection, OK, New, Edit List, Calculate Depreciation OK, Preview Posting, Post, setup change, company switch, API shortcut or book change was executed."
+  ],
+  "notProved": [
+    "No selected Batch Name value was changed or confirmed.",
+    "No new FADEP depreciation journal line is proven from this run.",
+    "No Preview Posting result is proven.",
+    "No depreciation posting is proven.",
+    "No German final proof exists."
+  ],
+  "changedFiles": [
+    "package.json",
+    "playwright/projects/fibu-book5/tests/fixedassets-289-fa-depreciation-journal-assets-default-readonly.spec.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-289/"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-289/FIXEDASSETS-289-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-289/FIXEDASSETS-289-JOURNAL-ASSETS-DEFAULT-READONLY.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-289/010-fa-gl-journal-assets-default-context.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-289/010-fa-gl-journal-assets-default-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-289/README.md"
+  ],
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-290-FA-DEPRECIATION-JOURNAL-ASSETS-DEFAULT-REVIEW",
+      "active_case_file": ".agent/state/cases/fixedassets-290-fa-depreciation-journal-assets-default-review.json",
+      "lastReferenceCase": "FIXEDASSETS-289-FA-DEPRECIATION-JOURNAL-ASSETS-DEFAULT-READONLY",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-289-fa-depreciation-journal-assets-default-readonly.json",
+      "requiresStrongModel": true,
+      "nextStep": "FIXEDASSETS-290: locally review FA-289 journal context before any Calculate Depreciation OK, Preview Posting or Post."
+    },
+    "coverage": {
+      "activeArea": "fixedassets",
+      "latestPracticalCase": "FIXEDASSETS-289-FA-DEPRECIATION-JOURNAL-ASSETS-DEFAULT-READONLY",
+      "nextCase": "FIXEDASSETS-290-FA-DEPRECIATION-JOURNAL-ASSETS-DEFAULT-REVIEW",
+      "depreciationReadiness": "FA-289 captured Fixed Asset G/L Journals ASSETS / DEFAULT context read-only. Local review required before Calculate Depreciation OK, Preview Posting or Post."
+    }
+  },
+  "blockedBy": [],
+  "requiresReview": true,
+  "safeToFinalizeState": true,
+  "reason": "Read-only Fixed Asset G/L Journals ASSETS / DEFAULT context probe completed or blocked without editing, previewing or posting.",
+  "nextCase": "FIXEDASSETS-290-FA-DEPRECIATION-JOURNAL-ASSETS-DEFAULT-REVIEW",
+  "nextCaseFile": ".agent/state/cases/fixedassets-290-fa-depreciation-journal-assets-default-review.json",
+  "nextStep": "FIXEDASSETS-290: locally review FA-289 journal context before any Calculate Depreciation OK, Preview Posting or Post.",
+  "observed": {
+    "startedAt": "2026-06-28T10:40:53.424Z",
+    "finishedAt": "2026-06-28T10:41:02.853Z"
+  }
+}

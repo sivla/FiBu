@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-290-FA-DEPRECIATION-JOURNAL-ASSETS-DEFAULT-REVIEW",
+  "status": "planned",
+  "workType": "local-fixedasset-depreciation-journal-assets-default-review",
+  "taskClass": "judge_work",
+  "requiresStrongModel": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "sourceCompany": "RM-DEMO",
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "goal": "Review FA-289 read-only Fixed Asset G/L Journals ASSETS / DEFAULT evidence before allowing Calculate Depreciation OK, Preview Posting or Post.",
+  "triggeredBy": {
+    "caseId": "FIXEDASSETS-289-FA-DEPRECIATION-JOURNAL-ASSETS-DEFAULT-READONLY",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-289/FIXEDASSETS-289-result.json",
+    "decision": "FA-289 observed Fixed Asset G/L Journals and DEFAULT/Batch Name context read-only. ASSETS, FADEP, FA-CNC-01, HGB and Preview Posting were not proven visible in that context."
+  },
+  "allowedActions": [
+    "read-state",
+    "read-evidence",
+    "local-analysis",
+    "classify-labor-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "open-business-central",
+    "run-playwright",
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "select-batch-value",
+    "confirm-ok-on-batch-lookup",
+    "click-new",
+    "click-edit-list",
+    "confirm-ok-on-calculate-depreciation",
+    "preview-posting",
+    "post",
+    "setup-change",
+    "company-switch",
+    "api-shortcut-without-explicit-case-permission",
+    "edit-record",
+    "new-draft",
+    "delete-record",
+    "book-edit"
+  ],
+  "reviewQuestions": [
+    "Is DEFAULT / Batch Name context sufficient to explain the journal landing page?",
+    "Does missing ASSETS visibility matter if page URL and prior Page 251 evidence prove ASSETS context?",
+    "Which next probe can prove FADEP journal-line visibility without OK/Preview/Post?",
+    "What must be recreated later in the German final sandbox?"
+  ],
+  "migrationRebuild": {
+    "rebuildInstruction": "In the German target company, recreate the Fixed Asset G/L Journals context with German UI labels and prove template, batch, depreciation line, Preview Posting and posted FA/G/L entries separately.",
+    "targetGermanCompanyImpact": "German final evidence must not reuse RM-DEMO lab screenshots as final book evidence."
+  },
+  "expectedOutputs": [
+    "Local review result JSON/Markdown",
+    "State decision for the next smallest fixed-assets depreciation probe",
+    "Updated rebuild map if the German final sequence changes"
+  ],
+  "acceptanceCriteria": [
+    "No Business Central or Playwright run in the review case.",
+    "No Preview Posting or posting unlocked without explicit next case.",
+    "FA-289 remains labor-reference only.",
+    "German final proof remains open."
+  ],
+  "nextSafeAction": "Review FA-289 locally and choose a no-write probe or guarded execution case.",
+  "createdAt": "2026-06-28T12:48:00.000+02:00",
+  "updatedAt": "2026-06-28T12:48:00.000+02:00"
+}
