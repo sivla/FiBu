@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-282-FA-DEPRECIATION-JOURNAL-BATCH-TARGET-REVIEW",
+  "status": "planned",
+  "workType": "local-fixedasset-depreciation-journal-batch-target-review",
+  "taskClass": "judge_work",
+  "requiresStrongModel": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Review FA-281 read-only journal target evidence before any further Calculate Depreciation OK, Preview Posting or Post.",
+  "triggeredBy": {
+    "caseId": "FIXEDASSETS-281-FA-DEPRECIATION-JOURNAL-BATCH-TARGET-READONLY",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-281/FIXEDASSETS-281-result.json",
+    "decision": "Fixed Asset G/L Journals is visible, but no concrete Batch Name value, no template signal and no FADEP target were captured."
+  },
+  "targetObjects": {
+    "fixedAssetNo": "FA-CNC-01",
+    "depreciationBook": "HGB",
+    "journalPageId": 5628,
+    "journalPageName": "Fixed Asset G/L Journals",
+    "knownMissingDepreciationDocuments": [
+      "FADEP-20260627-2158",
+      "FADEP-267-OK",
+      "FADEP-273-OK"
+    ]
+  },
+  "allowedActions": [
+    "read-evidence",
+    "local-analysis",
+    "decide-next-fixedasset-depreciation-gate",
+    "write-compact-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright",
+    "confirm-ok-on-calculate-depreciation",
+    "preview-posting",
+    "post",
+    "setup-change",
+    "company-switch",
+    "api-shortcut-without-explicit-case-permission",
+    "edit-record",
+    "new-draft",
+    "delete-record",
+    "book-edit"
+  ],
+  "reviewQuestions": [
+    "Does FA-281 prove only the Batch Name label or an actual batch value?",
+    "Does the absence of FADEP/FA-CNC-01/HGB in the journal context make another OK run unjustified?",
+    "Is the next practical step a safer request-page read-only value probe, a journal filter/batch selector diagnosis, or a setup/eligibility review?",
+    "Which statement should the beginner-facing click guide make about empty Fixed Asset G/L Journals?"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-282/FIXEDASSETS-282-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-282/FIXEDASSETS-282-JOURNAL-BATCH-TARGET-REVIEW.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-282/README.md"
+  ],
+  "acceptanceCriteria": [
+    "No Business Central or Playwright execution occurs.",
+    "FA-281 is classified without overstating Batch Name, Template, FADEP, FA-CNC-01 or HGB evidence.",
+    "Repeat OK, Preview Posting and Post remain blocked unless a new gated case explicitly justifies otherwise.",
+    "The next case is concrete and smaller than a broad rerun."
+  ],
+  "stopConditions": [
+    "A decision would require new BC evidence.",
+    "The evidence is contradictory or insufficient for a gate decision.",
+    "A proposed next action would post, preview or confirm OK without a separate gate."
+  ],
+  "nextSafeAction": "Review FA-281 locally and choose the next smallest evidence step; do not run BC, Playwright, OK, Preview Posting or Post in FA-282.",
+  "createdAt": "2026-06-28T10:31:00.000+02:00",
+  "updatedAt": "2026-06-28T10:31:00.000+02:00"
+}

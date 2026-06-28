@@ -1,4 +1,17 @@
 
+## FIND-BC-FA-118 Journalseite sichtbar, aber kein konkretes AfA-Ausgabeziel
+
+| Feld | Wert |
+|---|---|
+| Bereich | Fixed Assets / AfA-Route / Journal-/Batch-Ziel |
+| Testfall | `FIXEDASSETS-281-FA-DEPRECIATION-JOURNAL-BATCH-TARGET-READONLY` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-281/FIXEDASSETS-281-result.json`, `playwright/projects/fibu-book5/evidence/fixedassets-281/020-fa-gl-journal-batch-target-signals.json`, `playwright/projects/fibu-book5/evidence/fixedassets-281/FIXEDASSETS-281-DEPRECIATION-JOURNAL-BATCH-TARGET-READONLY.md` |
+| Ergebnis | `Fixed Asset G/L Journals` / Page `5628` wurde read-only in `MCP_1_20260210` / `RM-DEMO` geoeffnet. Das `Batch Name`-Label ist sichtbar, aber kein konkreter Batch-Name-Wert. |
+| Kernbefund | Kein Template-/Journal-Template-Signal, kein `FADEP-`, kein `FA-CNC-01`, kein `HGB` und keine bekannte AfA-Dokumentnummer wurden im Journalkontext erfasst. |
+| weiterhin gesperrt | Repeat `OK`, Preview Posting, Post, Setup Change, Company Switch, API-Abkuerzung |
+| naechster Schritt | `FIXEDASSETS-282`: lokaler Review, ob zuerst ein Request-Page-/Batch-Wertread, ein Filter-/Batch-Selector-Nachweis oder eine andere Output-Target-Diagnose noetig ist. |
+| Buchwirkung | Die Anleitung darf nicht behaupten, dass ein sichtbares `Batch Name`-Label schon das Ausgabeziel beweist. Einsteiger muessen lernen: Nach `Calculate Depreciation` sucht man nach einer konkreten Journalzeile oder einem konkreten Batchwert, nicht nur nach der passenden Page. |
+
 ## FIND-BC-FA-117 Kartenwerte freigegeben, AfA-Ausgabeziel bleibt offen
 
 | Feld | Wert |

@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-28T11:42:00.000+02:00",
+  "updatedAt": "2026-06-28T10:31:00.000+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "fixedassets",
-  "activeCase": "FIXEDASSETS-281-FA-DEPRECIATION-JOURNAL-BATCH-TARGET-READONLY",
-  "active_case_file": ".agent/state/cases/fixedassets-281-fa-depreciation-journal-batch-target-readonly.json",
-  "lastReferenceCase": "FIXEDASSETS-280-FA-DEPRECIATION-FIELDVALUE-RESULT-REVIEW",
-  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-280-fa-depreciation-fieldvalue-result-review.json",
-  "mode": "token-efficient-autopilot-fixedassets-depreciation-journal-batch-target-readonly",
-  "requiresStrongModel": false,
+  "activeCase": "FIXEDASSETS-282-FA-DEPRECIATION-JOURNAL-BATCH-TARGET-REVIEW",
+  "active_case_file": ".agent/state/cases/fixedassets-282-fa-depreciation-journal-batch-target-review.json",
+  "lastReferenceCase": "FIXEDASSETS-281-FA-DEPRECIATION-JOURNAL-BATCH-TARGET-READONLY",
+  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-281-fa-depreciation-journal-batch-target-readonly.json",
+  "mode": "token-efficient-autopilot-fixedassets-depreciation-journal-batch-target-review",
+  "requiresStrongModel": true,
   "requiredPreflightChecks": [
     "agent:preflight",
     "agent:state:validate",
@@ -19,12 +19,9 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "open-business-central",
-    "run-playwright",
-    "read-only-fixedasset-gl-journal",
-    "read-only-journal-template-batch-filter-diagnosis",
-    "read-only-calculate-depreciation-request-page-no-ok-if-safe",
-    "write-compact-evidence",
+    "read-evidence",
+    "local-analysis",
+    "decide-next-fixedasset-depreciation-gate",
     "update-state"
   ],
   "forbiddenActions": [
@@ -33,6 +30,8 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright",
     "confirm-ok-on-calculate-depreciation",
     "preview-posting",
     "post",
@@ -41,9 +40,10 @@
     "api-shortcut-without-explicit-case-permission",
     "edit-record",
     "new-draft",
-    "delete-record"
+    "delete-record",
+    "book-edit"
   ],
-  "nextStep": "FIXEDASSETS-281: run a read-only/no-OK depreciation journal and batch target diagnosis. Inspect Fixed Asset G/L Journals, visible template/batch/filter context and, only if safe, Calculate Depreciation request page values without confirming OK.",
+  "nextStep": "FIXEDASSETS-282: locally review why the Fixed Asset G/L Journal shows only the Batch Name label, no concrete Batch Name value, no template signal and no FADEP target before any further Calculate Depreciation OK, Preview Posting or Post.",
   "subagentPlanPolicy": {
     "default": "optional",
     "execution": "plan-only-no-subagents-spawned",

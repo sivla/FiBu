@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "FIXEDASSETS-281-FA-DEPRECIATION-JOURNAL-BATCH-TARGET-READONLY",
-  "status": "planned",
+  "status": "observed",
   "workType": "playwright-readonly-fixedasset-depreciation-journal-batch-target",
   "taskClass": "wizard_work",
   "requiresStrongModel": false,
@@ -79,7 +79,32 @@
     "A dialog appears that could confirm, post, preview, delete or change setup.",
     "The diagnosis would require writing field values."
   ],
-  "nextSafeAction": "Run a read-only/no-OK journal and batch target diagnosis for depreciation output; do not click OK, Preview Posting or Post.",
+  "result": {
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-281/FIXEDASSETS-281-result.json",
+    "resultStatus": "observed",
+    "blockedBy": [],
+    "summary": "Fixed Asset G/L Journals was opened read-only. The page and Batch Name label are visible, but no concrete Batch Name value, no template signal, no FADEP prefix, no FA-CNC-01 and no HGB target were captured.",
+    "safety": {
+      "calculateDepreciationRequestPageOpened": false,
+      "noCalculateDepreciationOk": true,
+      "noPreviewPosting": true,
+      "noPost": true,
+      "noSetupChange": true,
+      "noCompanySwitch": true,
+      "noApiShortcut": true,
+      "noBookChange": true,
+      "noJournalLineInsertEditDelete": true,
+      "noDraft": true
+    },
+    "evidenceRefs": [
+      "playwright/projects/fibu-book5/evidence/fixedassets-281/FIXEDASSETS-281-result.json",
+      "playwright/projects/fibu-book5/evidence/fixedassets-281/FIXEDASSETS-281-DEPRECIATION-JOURNAL-BATCH-TARGET-READONLY.md",
+      "playwright/projects/fibu-book5/evidence/fixedassets-281/010-fa-gl-journal-batch-target-text.txt",
+      "playwright/projects/fibu-book5/evidence/fixedassets-281/020-fa-gl-journal-batch-target-signals.json",
+      "playwright/projects/fibu-book5/evidence/fixedassets-281/README.md"
+    ]
+  },
+  "nextSafeAction": "Run FIXEDASSETS-282 as local review. Do not click Calculate Depreciation OK, Preview Posting or Post before the journal output-target gap is decided.",
   "createdAt": "2026-06-28T11:42:00.000+02:00",
-  "updatedAt": "2026-06-28T11:42:00.000+02:00"
+  "updatedAt": "2026-06-28T10:31:00.000+02:00"
 }
