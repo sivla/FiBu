@@ -1,4 +1,17 @@
 
+## FIND-BC-FA-116 AfA-Basiswerte sind auf der Anlagenkarte sichtbar lesbar
+
+| Feld | Wert |
+|---|---|
+| Bereich | Fixed Assets / AfA-Route / Anlagenkarten-Wertprobe |
+| Testfall | `FIXEDASSETS-279-FA-DEPRECIATION-CARD-FIELDVALUE-READONLY-PROBE` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-279/FIXEDASSETS-279-result.json`, `playwright/projects/fibu-book5/evidence/fixedassets-279/020-card-field-values.json`, `playwright/projects/fibu-book5/evidence/fixedassets-279/FIXEDASSETS-279-FA-DEPRECIATION-CARD-FIELDVALUE-READONLY-PROBE.md` |
+| Ergebnis | `FA-CNC-01` zeigt auf der `Fixed Asset Card` read-only `Depreciation Book Code = HGB`, `Posting Group = MACHINES`, `Depreciation Method = Straight-Line`, `Depreciation Starting Date = 01.01.2026`, `No. of Depreciation Years = 8,00`, `Depreciation Ending Date = 31.12.2033`, `Book Value = 120.000,00` und `Acquisition Cost = 120.000,00`. |
+| Korrektur gegen Vorbefund | Die in `FIXEDASSETS-277/278` noch offene Frage nach feldsicheren AfA-Basiswerten ist fuer die Karte geloest. |
+| weiterhin offen | Die Kartenwerte beweisen noch keine AfA-Journalzeile, kein Preview Posting, keinen Post und keinen deutschen Finalnachweis. Company ist in diesem Lauf nur ueber URL-Kontext, nicht als sichtbarer Seitentext belegt. |
+| naechster Schritt | `FIXEDASSETS-280`: lokaler Review, ob die sichtbaren Kartenwerte ein neues AfA-Gate erlauben oder ob zuerst Journal-/Batch-Ziel bzw. AfA-Faelligkeit read-only geprueft werden muss. |
+| Buchwirkung | Die Klickanleitung kann erklaeren: AfA-Basis kommt aus dem AfA-Buch auf der Anlagenkarte; diese Werte sind ein Vorpruefpunkt vor Batch, Preview und Buchung, ersetzen aber nicht die Postenspur. |
+
 ## FIND-BC-FA-115 AfA-Review sperrt Wiederholung und verlangt Caption-Control-Wertprobe
 
 | Feld | Wert |

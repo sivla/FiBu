@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-280-FA-DEPRECIATION-FIELDVALUE-RESULT-REVIEW",
+  "status": "planned",
+  "workType": "local-fixedasset-depreciation-fieldvalue-result-review",
+  "taskClass": "judge_work",
+  "requiresStrongModel": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Review FA-279 field-value evidence locally and decide the next depreciation gate without opening Business Central.",
+  "triggeredBy": {
+    "caseId": "FIXEDASSETS-279-FA-DEPRECIATION-CARD-FIELDVALUE-READONLY-PROBE",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-279/FIXEDASSETS-279-result.json",
+    "decisionNeed": "FA-279 proves visible card values for depreciation basis, but not depreciation posting readiness or journal output."
+  },
+  "inputEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-279/FIXEDASSETS-279-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-279/020-card-field-values.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-279/FIXEDASSETS-279-FA-DEPRECIATION-CARD-FIELDVALUE-READONLY-PROBE.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-277/FIXEDASSETS-277-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-278/FIXEDASSETS-278-result.json"
+  ],
+  "decisionQuestions": [
+    "Are Depreciation Starting Date 01.01.2026, No. of Depreciation Years 8,00 and Depreciation Ending Date 31.12.2033 sufficient to reopen a guarded depreciation execution gate?",
+    "Does the previous failed FADEP output still point to journal/batch target or depreciation-period logic rather than missing card setup?",
+    "Should the next live case be a read-only journal/batch output-target check, a no-OK request-page value preflight, or a controlled OK-only retry with new target parameters?"
+  ],
+  "allowedActions": [
+    "local-analysis",
+    "review-fixedasset-depreciation-fieldvalue-evidence",
+    "write-compact-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "open-business-central",
+    "run-playwright",
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "confirm-ok-on-calculate-depreciation",
+    "preview-posting",
+    "post",
+    "setup-change",
+    "company-switch",
+    "api-shortcut-without-explicit-case-permission",
+    "edit-record",
+    "new-draft",
+    "delete-record"
+  ],
+  "safetyGates": [
+    "no-bc-execution",
+    "no-playwright-execution",
+    "no-repeat-ok",
+    "no-preview-posting",
+    "no-posting",
+    "no-setup-change",
+    "evidence-before-gate-decision"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-280/FIXEDASSETS-280-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-280/FIXEDASSETS-280-DEPRECIATION-FIELDVALUE-RESULT-REVIEW.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-280/README.md"
+  ],
+  "acceptanceCriteria": [
+    "No Business Central or Playwright execution.",
+    "FA-279 field values are interpreted correctly.",
+    "The next live gate is selected or explicitly blocked.",
+    "Book/Coverage state separates visible card setup from posting readiness.",
+    "No German final proof is claimed."
+  ],
+  "stopConditions": [
+    "FA-279 evidence is inconsistent or unreadable.",
+    "The decision would require a new live UI check before conclusion.",
+    "The decision would require a posting or setup change without a separate gated case."
+  ],
+  "nextSafeAction": "Review FA-279 evidence locally and choose the next depreciation route; do not open BC in FA-280.",
+  "createdAt": "2026-06-28T11:28:00.000+02:00",
+  "updatedAt": "2026-06-28T11:28:00.000+02:00"
+}

@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-28T11:12:00.000+02:00",
+  "updatedAt": "2026-06-28T11:28:00.000+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "fixedassets",
-  "activeCase": "FIXEDASSETS-279-FA-DEPRECIATION-CARD-FIELDVALUE-READONLY-PROBE",
-  "active_case_file": ".agent/state/cases/fixedassets-279-fa-depreciation-card-fieldvalue-readonly-probe.json",
-  "lastReferenceCase": "FIXEDASSETS-278-FA-DEPRECIATION-BOOK-VALUE-DIAGNOSIS-REVIEW",
-  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-278-fa-depreciation-book-value-diagnosis-review.json",
-  "mode": "token-efficient-autopilot-fixedassets-depreciation-card-fieldvalue-readonly-probe",
-  "requiresStrongModel": false,
+  "activeCase": "FIXEDASSETS-280-FA-DEPRECIATION-FIELDVALUE-RESULT-REVIEW",
+  "active_case_file": ".agent/state/cases/fixedassets-280-fa-depreciation-fieldvalue-result-review.json",
+  "lastReferenceCase": "FIXEDASSETS-279-FA-DEPRECIATION-CARD-FIELDVALUE-READONLY-PROBE",
+  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-279-fa-depreciation-card-fieldvalue-readonly-probe.json",
+  "mode": "token-efficient-autopilot-fixedassets-depreciation-fieldvalue-result-review",
+  "requiresStrongModel": true,
   "requiredPreflightChecks": [
     "agent:preflight",
     "agent:state:validate",
@@ -19,10 +19,9 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "open-business-central",
-    "run-playwright",
-    "read-only-fixedasset-card",
-    "read-only-visible-field-value-diagnosis",
+    "local-analysis",
+    "review-fixedasset-depreciation-fieldvalue-evidence",
+    "decide-next-depreciation-gate",
     "write-compact-evidence",
     "update-state"
   ],
@@ -42,7 +41,7 @@
     "new-draft",
     "delete-record"
   ],
-  "nextStep": "FIXEDASSETS-279: run read-only FA-CNC-01 card field-value probe using the older caption-control mapper from FA-029/031; no OK, Preview Posting, Post or setup change.",
+  "nextStep": "FIXEDASSETS-280: locally review FA-279 field-value evidence. Decide whether visible values 01.01.2026 / 8,00 / 31.12.2033 plus Book Value 120.000,00 are sufficient for a new guarded depreciation gate, or whether a further read-only journal/batch target check is needed. No BC run in the review.",
   "subagentPlanPolicy": {
     "default": "optional",
     "execution": "plan-only-no-subagents-spawned",
