@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixed-assets-depreciation-ok-execution-gate-review",
+  "caseId": "FIXEDASSETS-266-FA-DEPRECIATION-OK-EXECUTION-GATE-REVIEW",
+  "source": "local-gate-review",
+  "resultStatus": "observed",
+  "branch": "codex/token-efficient-autopilot-state",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "reviewedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-265/FIXEDASSETS-265-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-265/010-target-value-preflight.json"
+  ],
+  "decision": {
+    "controlledOkExecutionUnlocked": true,
+    "unlockedCase": "FIXEDASSETS-267-FA-DEPRECIATION-CONTROLLED-OK-EXECUTION-NO-POST",
+    "okAllowedExactlyOnce": true,
+    "previewPostingUnlocked": false,
+    "postingUnlocked": false,
+    "setupChangeUnlocked": false,
+    "companySwitchUnlocked": false,
+    "apiShortcutUnlocked": false
+  },
+  "requiredNextRunControls": {
+    "documentNo": "FADEP-267-OK",
+    "depreciationBook": "HGB",
+    "postingDate": "30.06.2026",
+    "fixedAssetNo": "FA-CNC-01",
+    "journalLineSearchRequired": true,
+    "keepOrCleanupStatusRequired": true,
+    "previewPostingForbidden": true,
+    "postingForbidden": true
+  },
+  "proved": [
+    "FA-265 proved all request-page target values without OK.",
+    "A controlled OK execution is the next meaningful learning step to test whether Business Central creates depreciation journal lines.",
+    "Preview Posting and Post remain locked."
+  ],
+  "notProved": [
+    "No depreciation journal line exists yet from FA-266.",
+    "No OK execution occurred in this review.",
+    "No Preview Posting or posting evidence exists.",
+    "No German final proof exists."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-266/",
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-266-fa-depreciation-ok-execution-gate-review.json",
+    ".agent/state/cases/fixedassets-267-fa-depreciation-controlled-ok-execution-no-post.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/model_usage_log.jsonl",
+    "playwright/FINDINGS.md",
+    "playwright/projects/fibu-book5/BOOK-CLICK-GUIDE-COVERAGE.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-266/FIXEDASSETS-266-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-266/FIXEDASSETS-266-OK-EXECUTION-GATE-REVIEW.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-266/README.md"
+  ],
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-267-FA-DEPRECIATION-CONTROLLED-OK-EXECUTION-NO-POST",
+      "active_case_file": ".agent/state/cases/fixedassets-267-fa-depreciation-controlled-ok-execution-no-post.json",
+      "lastReferenceCase": "FIXEDASSETS-266-FA-DEPRECIATION-OK-EXECUTION-GATE-REVIEW",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-266-fa-depreciation-ok-execution-gate-review.json",
+      "nextStep": "FIXEDASSETS-267: execute Calculate Depreciation OK exactly once with controlled parameters, then search for FADEP-267-OK journal evidence; no Preview Posting and no Post."
+    },
+    "coverage": {
+      "activeArea": "fixedassets",
+      "latestReviewCase": "FIXEDASSETS-266-FA-DEPRECIATION-OK-EXECUTION-GATE-REVIEW",
+      "nextCase": "FIXEDASSETS-267-FA-DEPRECIATION-CONTROLLED-OK-EXECUTION-NO-POST",
+      "depreciationReadiness": "FA-266 unlocks exactly one controlled OK execution case for Calculate Depreciation with HGB, 30.06.2026, FADEP-267-OK and FA-CNC-01. Preview Posting and Post remain locked."
+    }
+  },
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "reason": "The request-page values are proven and no execution evidence exists yet. A single OK-only execution case is now justified to learn whether BC creates a depreciation journal line.",
+  "observed": {
+    "reviewedAt": "2026-06-28T10:28:00.000+02:00"
+  }
+}

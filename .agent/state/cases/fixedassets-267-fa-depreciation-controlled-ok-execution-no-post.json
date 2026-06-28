@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-267-FA-DEPRECIATION-CONTROLLED-OK-EXECUTION-NO-POST",
+  "status": "planned",
+  "workType": "playwright-controlled-calculate-depreciation-ok-execution-no-post",
+  "taskClass": "wizard_work",
+  "requiresStrongModel": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Execute Calculate Depreciation OK exactly once with controlled parameters, then search for the resulting depreciation journal line without Preview Posting or Post.",
+  "triggeredBy": {
+    "caseId": "FIXEDASSETS-266-FA-DEPRECIATION-OK-EXECUTION-GATE-REVIEW",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-266/FIXEDASSETS-266-result.json",
+    "unlocked": [
+      "open-business-central",
+      "run-playwright",
+      "write-request-page-values",
+      "confirm-ok-on-calculate-depreciation",
+      "search-depreciation-journal-line"
+    ]
+  },
+  "targetValues": {
+    "depreciationBook": "HGB",
+    "postingDate": "30.06.2026",
+    "documentNo": "FADEP-267-OK",
+    "fixedAssetNo": "FA-CNC-01"
+  },
+  "allowedActions": [
+    "open-business-central",
+    "run-playwright",
+    "guarded-calculate-depreciation-ok-execution",
+    "write-request-page-values",
+    "confirm-ok-on-calculate-depreciation",
+    "search-depreciation-journal-line",
+    "write-compact-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "preview-posting",
+    "post",
+    "setup-change",
+    "company-switch",
+    "api-shortcut-without-explicit-case-permission"
+  ],
+  "safetyGates": [
+    "instance-boundary-gate",
+    "company-context-gate",
+    "ok-exactly-once",
+    "document-no-FADEP-267-OK",
+    "journal-line-search-required",
+    "no-preview-posting",
+    "no-posting",
+    "no-setup-change",
+    "no-company-switch",
+    "no-api-shortcut"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-267/FIXEDASSETS-267-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-267/FIXEDASSETS-267-CONTROLLED-OK-EXECUTION-NO-POST.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-267/010-ok-execution-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-267/020-journal-line-search.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-267/README.md"
+  ],
+  "acceptanceCriteria": [
+    "Business Central URL contains MCP_1_20260210 and company remains RM-DEMO.",
+    "Calculate Depreciation request page values are set to HGB, 30.06.2026, FADEP-267-OK and FA-CNC-01.",
+    "OK is confirmed exactly once.",
+    "The run searches Fixed Asset G/L Journals for FADEP-267-OK.",
+    "Any created draft journal line is documented with keep/cleanup status.",
+    "No Preview Posting or Post occurs."
+  ],
+  "stopConditions": [
+    "Instance or company is not explicit.",
+    "Request page target values cannot be re-proved before OK.",
+    "A posting, preview or setup dialog appears.",
+    "The run would need more than one OK confirmation."
+  ],
+  "nextSafeAction": "Run one controlled OK execution and document whether a FADEP-267-OK depreciation journal line exists; do not preview or post.",
+  "createdAt": "2026-06-28T10:28:00.000+02:00",
+  "updatedAt": "2026-06-28T10:28:00.000+02:00"
+}

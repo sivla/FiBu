@@ -1,4 +1,19 @@
 
+## FIND-BC-FA-103 AfA-OK-Ausfuehrung ist genau einmal freigegeben, Preview/Post bleiben gesperrt
+
+| Feld | Wert |
+|---|---|
+| Bereich | Fixed Assets / AfA-Route / Calculate Depreciation Execution Gate |
+| Testfall | `FIXEDASSETS-266-FA-DEPRECIATION-OK-EXECUTION-GATE-REVIEW` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-266/FIXEDASSETS-266-result.json`, `playwright/projects/fibu-book5/evidence/fixedassets-266/FIXEDASSETS-266-OK-EXECUTION-GATE-REVIEW.md` |
+| Entscheidung | Genau ein kontrollierter OK-Lauf ist freigegeben, um zu pruefen, ob BC AfA-Journalzeilen erzeugt. |
+| Zielwerte naechster Lauf | `HGB`, `30.06.2026`, `FADEP-267-OK`, `FA-CNC-01` |
+| weiterhin gesperrt | Preview Posting, Post, Setup Change, Company Switch, API-Abkuerzung |
+| Buchwirkung | Der naechste Screenshot-/Evidence-Punkt ist nicht Buchung, sondern Ergebnis des Batchjobs im FA G/L Journal. |
+| naechster Schritt | `FIXEDASSETS-267`: OK genau einmal bestaetigen und danach Journalzeilen suchen/dokumentieren. |
+
+Fuer Anfaenger ist das die Ausfuehrungsgrenze: `OK` auf einer Batch-Request-Page ist nicht nur ein Navigationsklick, sondern startet die Verarbeitung. Deshalb braucht der Klickpfad danach sofort einen Ergebnisnachweis im Journal.
+
 ## FIND-BC-FA-102 AfA-Request-Page-Zielwerte sind nach Mapping-Fix ohne OK bewiesen
 
 | Feld | Wert |
