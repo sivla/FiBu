@@ -105,3 +105,26 @@ Anfaengerfalle: Nach einer gebuchten Zahlung klingt `Payment Reconciliation` ode
 3. Erst wenn Bankkonto, Kontoauszugszeile, Zielposten und erwartete Postenspur eindeutig sind, darf eine Bankabstimmung als eigener Case weitergefuehrt werden.
 
 Fuer das Buch bedeutet das: Die Laborzahlung darf erklaert werden. Die Bankabstimmung bleibt offen und braucht spaeter eigene Screenshots und eigene Evidence, besonders in der deutschen Zielcompany.
+
+## BANK-024: Bankkontoabstimmung read-only sichtbar
+
+Status:
+- Laborstand: read-only Scout, keine neue Statement-Zeile, kein Match/Apply, kein Post.
+- Sichtbar: `Bank Account Reconciliations` Liste und `Bank Acc. Reconciliation - CHECKING 24`.
+- Grenze: Post-Button ist sichtbar, wurde aber nicht geklickt; daraus folgt keine Buchungsreife.
+
+Im Labor wurde die Bankkontoabstimmungsroute lesend sichtbar:
+
+| Kontrollpunkt | Laborbefund |
+|---|---|
+| Seite Liste | `Bank Account Reconciliations`, Page `388` |
+| Seite Karte | `Bank Acc. Reconciliation - CHECKING 24`, Page `379` |
+| Bankkonto | `CHECKING` / World Wide Bank |
+| Statement No. | `24` |
+| Statement Date | `31.01.2026` |
+| Statement Ending Balance | `11.573,18` |
+| Statement Lines | sichtbar, 3 Zeilen im kompakten Page-Text |
+| Bank Account Ledger Entries | sichtbar, 4 Zeilen im kompakten Page-Text |
+| Riskante Aktion | `Post` sichtbar, nicht geklickt |
+
+Anfaengerregel: Ein sichtbarer Abstimmungsbeleg ist noch keine abgeschlossene Bankabstimmung. Vor einer echten Abstimmungsbuchung muss separat klar sein, ob die Zeilen passen, welche Bankposten angewendet sind, ob eine Differenz bleibt, welcher Post-Dialog erscheint und welche Bank-/Sachposten danach entstehen.

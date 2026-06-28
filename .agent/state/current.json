@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-28T23:21:23.977Z",
+  "updatedAt": "2026-06-28T23:27:46.609Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "bank",
-  "activeCase": "BANK-024-BANK-ACCOUNT-RECONCILIATION-READONLY-SCOUT",
-  "active_case_file": ".agent/state/cases/bank-024-bank-account-reconciliation-readonly-scout.json",
-  "lastReferenceCase": "BANK-023-BANK-RECONCILIATION-ROUTE-DECISION",
-  "lastReferenceCaseFile": ".agent/state/cases/bank-023-bank-reconciliation-route-decision.json",
+  "activeCase": "BANK-025-CHECKING-24-RECONCILIATION-GATE-DECISION",
+  "active_case_file": ".agent/state/cases/bank-025-checking-24-reconciliation-gate-decision.json",
+  "lastReferenceCase": "BANK-024-BANK-ACCOUNT-RECONCILIATION-READONLY-SCOUT",
+  "lastReferenceCaseFile": ".agent/state/cases/bank-024-bank-account-reconciliation-readonly-scout.json",
   "mode": "bc-specialist-labor-book-production",
   "requiresStrongModel": false,
   "requiredPreflightChecks": [
@@ -40,7 +40,7 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "BANK-024: run a read-only Bank Account Reconciliation scout only if it can avoid New/Edit/Match/Apply/Post actions.",
+  "nextStep": "BANK-025: classify CHECKING Statement 24 readiness and decide whether a no-post controlled preflight is safe or bank reconciliation should stay parked.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/bank-payments-labor-draft.md",
     "area": "bankPayments",
@@ -55,13 +55,14 @@
       "BANK-020",
       "BANK-021",
       "BANK-022",
-      "BANK-023"
+      "BANK-023",
+      "BANK-024"
     ],
-    "bookEffect": "Controlled vendor payment is explained as lab-proven, while bank reconciliation is clearly separated as a future process block with its own gates.",
+    "bookEffect": "Bank Account Reconciliation route is now visible as a read-only lab scout and separated from Payment Journal payment proof.",
     "integratedIntoBookMaster": false,
     "bookMasterSection": "future Kapitel 20 Bank und Zahlungen integration",
     "labVsTargetPathSeparated": true,
-    "nextStep": "BANK-024 read-only Bank Account Reconciliation scout, no statement line and no posting."
+    "nextStep": "BANK-025: classify CHECKING Statement 24 readiness and decide whether a no-post controlled preflight is safe or bank reconciliation should stay parked."
   },
   "bookProductionGoal": {
     "goalFile": ".agent/state/book-production-goal.json",
@@ -1383,8 +1384,8 @@
     "decision": "Approve a separate no-post Payment Journal preflight for Vendor Ledger document 108205. Do not use Payment Reconciliation Apply/Post for this target. BANK-018 may create exactly one scoped draft line, run Journal Check/open Apply Entries if reachable, and must cleanup or explicitly document keep status. Posting remains locked.",
     "nextStep": "BANK-018: controlled no-post Payment Journal preflight for 108205; do not post."
   },
-  "workType": "bank-account-reconciliation-readonly-scout",
-  "lastCompletedCase": "BANK-023-BANK-RECONCILIATION-ROUTE-DECISION",
+  "workType": "bank-reconciliation-gate-decision",
+  "lastCompletedCase": "BANK-024-BANK-ACCOUNT-RECONCILIATION-READONLY-SCOUT",
   "latestBank018": {
     "caseId": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
     "status": [
@@ -1517,5 +1518,24 @@
     "mustRecreateInFinalSandbox": true,
     "summary": "BANK-023 separated Payment Journal vendor payment proof from bank reconciliation and selected a read-only Bank Account Reconciliation scout as the only safe next lab route.",
     "nextCase": "BANK-024-BANK-ACCOUNT-RECONCILIATION-READONLY-SCOUT"
+  },
+  "latestBank024": {
+    "caseId": "BANK-024-BANK-ACCOUNT-RECONCILIATION-READONLY-SCOUT",
+    "status": "done",
+    "workType": "bank-account-reconciliation-readonly-scout",
+    "sourceCompany": "RM-DEMO",
+    "resultPath": "playwright/projects/fibu-book5/evidence/bank-024/BANK-024-result.json",
+    "bankAccount": "CHECKING",
+    "statementNo": "24",
+    "statementDate": "31.01.2026",
+    "statementEndingBalance": "11.573,18",
+    "statementLinesVisible": true,
+    "bankLedgerEntriesVisible": true,
+    "postButtonVisibleNotClicked": true,
+    "posted": false,
+    "classification": "labor-readonly-route-scout",
+    "mustRecreateInFinalSandbox": true,
+    "summary": "BANK-024 read-only scout opened Bank Account Reconciliations Page 388 and Bank Acc. Reconciliation CHECKING 24 Page 379. Statement lines and bank ledger entries are visible; no New/Edit/Match/Apply/Post action was clicked.",
+    "nextCase": "BANK-025-CHECKING-24-RECONCILIATION-GATE-DECISION"
   }
 }
