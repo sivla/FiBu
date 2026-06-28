@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-29T00:35:56.1107369+02:00",
+  "updatedAt": "2026-06-29T00:43:42.4300663+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "bank",
-  "activeCase": "BANK-016-FRESH-VENDOR-LEDGER-CANDIDATE-SCOUT",
-  "active_case_file": ".agent/state/cases/bank-016-fresh-vendor-ledger-candidate-scout.json",
-  "lastReferenceCase": "BANK-015-RECONCILIATION-ALTERNATIVE-ROUTE-DECISION",
-  "lastReferenceCaseFile": ".agent/state/cases/bank-015-reconciliation-alternative-route-decision.json",
+  "activeCase": "BANK-017-VENDOR-PAYMENT-PREFLIGHT-GATE-DECISION",
+  "active_case_file": ".agent/state/cases/bank-017-vendor-payment-preflight-gate-decision.json",
+  "lastReferenceCase": "BANK-016-FRESH-VENDOR-LEDGER-CANDIDATE-SCOUT",
+  "lastReferenceCaseFile": ".agent/state/cases/bank-016-fresh-vendor-ledger-candidate-scout.json",
   "mode": "bc-specialist-labor-book-production",
-  "requiresStrongModel": false,
+  "requiresStrongModel": true,
   "requiredPreflightChecks": [
     "agent:preflight",
     "agent:state:validate",
@@ -40,7 +40,7 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "BANK-016: run read-only Vendor Ledger candidate scout; do not create a Payment Journal draft until one open ledger target is visible.",
+  "nextStep": "BANK-017: judge-only decision whether 108205 is safe for a single-line Payment Journal preflight; do not create the draft in BANK-016.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/fixedassets-labor-draft.md",
     "area": "fixedassets",
@@ -1297,5 +1297,57 @@
     "mustRecreateInFinalSandbox": true,
     "finalScreenshotNeeded": true,
     "nextStep": "BANK-016: run read-only Vendor Ledger candidate scout; do not create a Payment Journal draft until one open ledger target is visible."
+  },
+  "latestBank016": {
+    "caseId": "BANK-016-FRESH-VENDOR-LEDGER-CANDIDATE-SCOUT",
+    "status": [
+      "labor-proven",
+      "read-only",
+      "vendor-ledger-candidate-found",
+      "needs-german-final-rebuild"
+    ],
+    "sourceInstance": "MCP_1_20260210",
+    "sourceCompany": "RM-DEMO",
+    "bcRun": true,
+    "playwrightRun": true,
+    "posted": false,
+    "paymentPosted": false,
+    "bankReconciliationPosted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "apiShortcut": false,
+    "selectedCandidate": {
+      "documentNo": "108205",
+      "vendorName": "Wide World Importers",
+      "vendorNoCandidates": [
+        "40000",
+        "14140",
+        "22100",
+        "23200"
+      ],
+      "amountCandidates": [
+        "-3.123,37",
+        "0,00",
+        "-1,00",
+        "3.032,40",
+        "-3.032,40",
+        "90,97"
+      ],
+      "textEvidenceFile": "vendor-ledger-108205-page-text.txt"
+    },
+    "candidatesChecked": [
+      "108205",
+      "108206",
+      "107196",
+      "107197",
+      "107198"
+    ],
+    "resultPath": "playwright/projects/fibu-book5/evidence/bank-016/BANK-016-result.json",
+    "evidencePath": "playwright/projects/fibu-book5/evidence/bank-016/",
+    "migrationRelevance": "needed-for-german-final",
+    "mustRecreateInFinalSandbox": true,
+    "finalScreenshotNeeded": true,
+    "decision": "BANK-016 bleibt read-only, findet aber 108205 als sichtbaren Vendor-Ledger-Kandidaten. Ein spaeterer Payment-Journal-Preflight darf nur separat und weiterhin ohne globales Payment-Reconciliation-Posting geplant werden.",
+    "nextStep": "BANK-017: judge-only decision whether 108205 is safe for a single-line Payment Journal preflight; do not create the draft in BANK-016."
   }
 }

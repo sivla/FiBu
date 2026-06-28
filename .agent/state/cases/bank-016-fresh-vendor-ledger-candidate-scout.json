@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "caseId": "BANK-016-FRESH-VENDOR-LEDGER-CANDIDATE-SCOUT",
   "title": "Find a fresh open vendor ledger candidate before any new payment or reconciliation posting",
-  "status": "planned",
+  "status": "done",
   "taskClass": "wizard_work",
   "modelClass": "gpt-5.4-medium",
   "instance": "MCP_1_20260210",
@@ -61,5 +61,48 @@
   "mustRecreateInFinalSandbox": true,
   "targetGermanCompanyImpact": "German final payment and bank reconciliation need their own open vendor/customer ledger candidate and posting trace.",
   "finalScreenshotNeeded": true,
-  "nextStep": "Run a read-only Vendor Ledger candidate scout; do not create a Payment Journal line until a target entry is visible."
+  "nextStep": "BANK-017: judge-only decision whether 108205 is safe for a single-line Payment Journal preflight; do not create the draft in BANK-016.",
+  "completedAt": "2026-06-29T00:43:42.4300663+02:00",
+  "resultPath": "playwright/projects/fibu-book5/evidence/bank-016/BANK-016-result.json",
+  "resultStatus": "observed",
+  "decisionStatus": "vendor-ledger-candidate-found",
+  "selectedCandidate": {
+    "documentNo": "108205",
+    "vendorName": "Wide World Importers",
+    "vendorNoCandidates": [
+      "40000",
+      "14140",
+      "22100",
+      "23200"
+    ],
+    "amountCandidates": [
+      "-3.123,37",
+      "0,00",
+      "-1,00",
+      "3.032,40",
+      "-3.032,40",
+      "90,97"
+    ],
+    "textEvidenceFile": "vendor-ledger-108205-page-text.txt"
+  },
+  "blockedBy": [],
+  "flags": {
+    "readOnly": true,
+    "noPost": true,
+    "noPreviewPosting": true,
+    "noPaymentPosting": true,
+    "noBankReconciliationPosting": true,
+    "noAcceptApplications": true,
+    "noApply": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noNew": true,
+    "noEdit": true,
+    "noDelete": true,
+    "noDraftCreated": true,
+    "noApiShortcut": true,
+    "noBookChangeInsideTest": true
+  },
+  "nextCase": "BANK-017-VENDOR-PAYMENT-PREFLIGHT-GATE-DECISION",
+  "nextCaseFile": ".agent/state/cases/bank-017-vendor-payment-preflight-gate-decision.json"
 }

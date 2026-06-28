@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "caseId": "BANK-017-VENDOR-PAYMENT-PREFLIGHT-GATE-DECISION",
+  "title": "Decide whether Vendor Ledger candidate 108205 can move to a single-line Payment Journal preflight",
+  "status": "planned",
+  "taskClass": "judge_work",
+  "modelClass": "gpt-5.5-low",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "posting-gate-decision",
+  "sourceCase": "BANK-016-FRESH-VENDOR-LEDGER-CANDIDATE-SCOUT",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/bank-016/BANK-016-result.json",
+    "playwright/projects/fibu-book5/evidence/bank-016/BANK-016-VENDOR-LEDGER-SCOUT.md",
+    "playwright/projects/fibu-book5/evidence/bank-009/BANK-009-result.json"
+  ],
+  "purpose": "Review whether visible Vendor Ledger candidate 108205 / Wide World Importers is safe enough for a separate single-line Payment Journal preflight case; do not create or post a journal line in this decision case.",
+  "allowedActions": [
+    "read-bank-016-evidence",
+    "read-bank-009-evidence",
+    "write-posting-gate-decision",
+    "update-state"
+  ],
+  "defaultLockedActions": [
+    "payment-journal-draft",
+    "apply-entries",
+    "post",
+    "payment",
+    "setup-change",
+    "keep-draft"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "claim-german-final-proof",
+    "api-shortcut-without-explicit-case-permission",
+    "click-accept-applications",
+    "click-post-payments-only",
+    "post-without-journal-check-and-apply-proof"
+  ],
+  "safetyGates": [
+    "instance-and-company-confirmed",
+    "source-evidence-read",
+    "candidate-document-and-vendor-visible",
+    "payment-journal-preflight-case-written-before-any-draft",
+    "expected-ledger-trace-written-if-preflight-is-approved"
+  ],
+  "expectedOutputs": [
+    "A compact decision whether BANK-018 may create a single-line Payment Journal preflight for 108205.",
+    "If approved, an explicit no-post preflight case with expected fields and cleanup/trace rules."
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "targetGermanCompanyImpact": "German final payment needs its own open vendor ledger entry, bank account, payment journal preflight, journal check, apply proof and posting trace.",
+  "finalScreenshotNeeded": true,
+  "nextStep": "Review BANK-016 and decide whether a no-post Payment Journal preflight for 108205 is safe."
+}
