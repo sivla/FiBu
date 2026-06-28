@@ -251,7 +251,25 @@
         "summary": "Single-line Payment Journal/Cash Receipt Journal route selected; blind Payment Reconciliation Post Payments Only remains rejected.",
         "nextStep": "BANK-008-SINGLE-LINE-VENDOR-PAYMENT-PREFLIGHT"
       }
+    },
+    {
+      "id": "BANK-008-SINGLE-LINE-VENDOR-PAYMENT-PREFLIGHT",
+      "order": 14,
+      "status": "done",
+      "category": "bank",
+      "expectedImpact": "high-impact-candidate",
+      "fallbackRoute": "Fix specific Payment Journal preflight blocker before any posting.",
+      "evidenceTarget": "playwright/projects/fibu-book5/evidence/bank-008/",
+      "mayWorkEffectively": true,
+      "goal": "Prove a scoped one-line vendor Payment Journal preflight for document 108204 before posting.",
+      "completedAt": "2026-06-28T22:05:00.000Z",
+      "result": {
+        "status": "observed",
+        "resultFile": "playwright/projects/fibu-book5/evidence/bank-008/BANK-008-result.json",
+        "summary": "Vendor Ledger Entry 108204 and single-line Payment Journal preflight were clean: Journal Check 0 Issues, Apply Entries opened read-only, draft cleaned, no posting.",
+        "nextStep": "BANK-009-SINGLE-LINE-VENDOR-PAYMENT-POSTING"
+      }
     }
   ],
-  "lastUpdated": "2026-06-28T21:45:00.000Z"
+  "lastUpdated": "2026-06-28T22:05:00.000Z"
 }

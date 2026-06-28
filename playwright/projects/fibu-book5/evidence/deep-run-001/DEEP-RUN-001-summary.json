@@ -405,6 +405,29 @@
       "resultFile": "playwright/projects/fibu-book5/evidence/bank-007/BANK-007-result.json",
       "summary": "Single-line Payment Journal/Cash Receipt Journal route selected as safer payment path; blind Payment Reconciliation Post Payments Only remains rejected after BANK-006 global dialog risk.",
       "nextStep": "BANK-008: controlled single-line vendor payment journal preflight for document 108204 / First Up Consultants; no posting until Journal Check, Apply and ledger-trace gates are explicit."
+    },
+    {
+      "id": "BANK-008",
+      "queueId": "BANK-008-SINGLE-LINE-VENDOR-PAYMENT-PREFLIGHT",
+      "type": "field-value-entry journal-line-created payment-apply-attempt cleanup-or-correction",
+      "status": "labor-proven-preflight-clean",
+      "bcRun": true,
+      "posted": false,
+      "previewPosting": false,
+      "setupChanged": false,
+      "execute": true,
+      "lightExecute": false,
+      "highImpactExecute": true,
+      "signals": [
+        "field-value-entry",
+        "journal-line-created",
+        "payment-apply-attempt",
+        "journal-check-error-fixed",
+        "cleanup-or-correction"
+      ],
+      "resultFile": "playwright/projects/fibu-book5/evidence/bank-008/BANK-008-result.json",
+      "summary": "Single-line Payment Journal preflight for Vendor 20000 / First Up Consultants / document 108204: Journal Check 0 Issues, Apply Entries opened read-only, draft cleaned, no posting.",
+      "nextStep": "BANK-009: controlled single-line vendor payment posting for 108204 with post-dialog screenshot and Vendor/Bank/G-L ledger trace."
     }
   ],
   "postingSummary": {
@@ -424,14 +447,14 @@
     }
   },
   "nextBestLevers": [
-    "BANK-008-SINGLE-LINE-VENDOR-PAYMENT-PREFLIGHT",
+    "BANK-009-SINGLE-LINE-VENDOR-PAYMENT-POSTING",
     "RM-DE-LAB-CREATE-001-UI-FIRST-COMPANY-CREATION"
   ],
   "migrationRelevance": "needed-for-german-final",
   "mustRecreateInFinalSandbox": true,
   "finalScreenshotNeeded": true,
   "executeSummary": {
-    "executePackages": 9,
+    "executePackages": 10,
     "executePackageIds": [
       "P2P-014",
       "PAYMENTS-005",
@@ -441,18 +464,20 @@
       "PAYMENTS-006",
       "PAYMENTS-009",
       "FIXEDASSETS-248",
-      "BANK-002"
+      "BANK-002",
+      "BANK-008"
     ],
-    "highImpactExecutePackages": 4,
+    "highImpactExecutePackages": 5,
     "highImpactPackageIds": [
       "P2P-015",
       "PAYMENTS-006",
       "PAYMENTS-009",
-      "BANK-002"
+      "BANK-002",
+      "BANK-008"
     ],
     "lightExecutePackages": 2,
     "readOnlyPackagesDoNotCountAsExecute": true,
-    "progressPackagesTotal": 30
+    "progressPackagesTotal": 31
   },
-  "updatedAt": "2026-06-28T21:45:00.000Z"
+  "updatedAt": "2026-06-28T22:05:00.000Z"
 }

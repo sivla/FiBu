@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-28T21:45:00.000Z",
+  "updatedAt": "2026-06-28T22:05:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "bank",
-  "activeCase": "BANK-007-SINGLE-LINE-PAYMENT-JOURNAL-ROUTE-DECISION",
-  "active_case_file": ".agent/state/cases/bank-007-single-line-payment-journal-route-decision.json",
-  "lastReferenceCase": "BANK-007-SINGLE-LINE-PAYMENT-JOURNAL-ROUTE-DECISION",
-  "lastReferenceCaseFile": ".agent/state/cases/bank-007-single-line-payment-journal-route-decision.json",
+  "activeCase": "BANK-008-SINGLE-LINE-VENDOR-PAYMENT-PREFLIGHT",
+  "active_case_file": ".agent/state/cases/bank-008-single-line-vendor-payment-preflight.json",
+  "lastReferenceCase": "BANK-008-SINGLE-LINE-VENDOR-PAYMENT-PREFLIGHT",
+  "lastReferenceCaseFile": ".agent/state/cases/bank-008-single-line-vendor-payment-preflight.json",
   "mode": "bc-specialist-labor-book-production",
   "requiresStrongModel": false,
   "requiredPreflightChecks": [
@@ -40,7 +40,7 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "BANK-008: kontrollierte Single-Line Vendor Payment Journal Preflight fuer Document 108204 / First Up Consultants; kein Posting ohne Journal Check, Apply und Trace-Gate.",
+  "nextStep": "BANK-009: kontrollierte Single-Line Vendor Payment Posting fuer Document 108204 / First Up Consultants mit Post-Dialog-Screenshot und Vendor/Bank/G-L Ledger Trace.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/fixedassets-labor-draft.md",
     "area": "fixedassets",
@@ -876,5 +876,48 @@
     "mustRecreateInFinalSandbox": true,
     "finalScreenshotNeeded": true,
     "nextStep": "BANK-008: controlled single-line vendor payment journal preflight for document 108204 / First Up Consultants; no posting until Journal Check, Apply and ledger-trace gates are explicit."
+  },
+  "latestBank008": {
+    "caseId": "BANK-008-SINGLE-LINE-VENDOR-PAYMENT-PREFLIGHT",
+    "status": [
+      "labor-proven",
+      "payment-journal-preflight-clean",
+      "journal-check-zero-issues",
+      "apply-entries-readonly-opened",
+      "cleanup-proven",
+      "needs-german-final-rebuild"
+    ],
+    "sourceInstance": "MCP_1_20260210",
+    "sourceCompany": "RM-DEMO",
+    "targetDocumentNo": "108204",
+    "relatedInvoiceNo": "107196",
+    "vendorNo": "20000",
+    "targetParty": "First Up Consultants",
+    "paymentDocumentNo": "BANK008-108204",
+    "targetAmount": "2.151,46",
+    "bankAccountNo": "BANK-RM-01",
+    "posted": false,
+    "paymentPosted": false,
+    "bankReconciliationPosted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "apiShortcut": false,
+    "bcRun": true,
+    "playwrightRun": true,
+    "cleanupProven": true,
+    "journalCheckZeroIssues": true,
+    "applyEntriesOpened": true,
+    "resultPath": "playwright/projects/fibu-book5/evidence/bank-008/BANK-008-result.json",
+    "evidencePath": "playwright/projects/fibu-book5/evidence/bank-008/",
+    "screenshots": [
+      "playwright/projects/fibu-book5/img/bank-008-010-vendor-ledger-document-108204.png",
+      "playwright/projects/fibu-book5/img/bank-008-020-payment-journal-preflight.png",
+      "playwright/projects/fibu-book5/img/bank-008-030-apply-entries-preflight.png"
+    ],
+    "decision": "Single-line vendor payment for 108204 is ready for a controlled posting case, because target Vendor Ledger Entry, Payment Journal line, Journal Check 0 Issues, Apply Entries read-only and cleanup were proven.",
+    "migrationRelevance": "needed-for-german-final",
+    "mustRecreateInFinalSandbox": true,
+    "finalScreenshotNeeded": true,
+    "nextStep": "BANK-009: controlled single-line vendor payment posting for 108204 with post-dialog screenshot and Vendor/Bank/G-L ledger trace."
   }
 }

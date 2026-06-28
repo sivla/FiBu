@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "caseId": "BANK-008-SINGLE-LINE-VENDOR-PAYMENT-PREFLIGHT",
+  "title": "Controlled single-line vendor payment journal preflight for document 108204",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "sourceCompany": "RM-DEMO",
+  "workType": "playwright-ui-payment-journal-preflight",
+  "status": "planned",
+  "classification": [
+    "controlled-preflight",
+    "payment-journal-line-created-and-cleaned",
+    "no-post",
+    "needs-german-final-rebuild"
+  ],
+  "allowedActions": [
+    "open-business-central-if-instance-and-company-match",
+    "run-playwright-if-case-preflight-passes",
+    "read-vendor-ledger-entry",
+    "create-controlled-payment-journal-line",
+    "run-journal-check",
+    "open-apply-entries-readonly",
+    "cleanup-draft-line",
+    "write-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "preview-posting",
+    "post",
+    "confirm-post-dialog",
+    "payment-posting",
+    "setup-change",
+    "api-shortcut",
+    "book-final-claim"
+  ],
+  "target": {
+    "documentNo": "108204",
+    "relatedInvoiceNo": "107196",
+    "vendorNo": "20000",
+    "vendorName": "First Up Consultants",
+    "amount": "2.151,46",
+    "bankAccountNo": "BANK-RM-01",
+    "paymentDocumentNo": "BANK008-108204"
+  },
+  "gates": [
+    "Vendor Ledger Entry 108204 visible for vendor 20000 / First Up Consultants",
+    "one Payment Journal line visible with BANK008-108204",
+    "Journal Check captured before any posting",
+    "Apply Entries is read-only checked",
+    "Post action is not clicked",
+    "draft line is cleaned up before the run ends"
+  ],
+  "resultPath": "playwright/projects/fibu-book5/evidence/bank-008/BANK-008-result.json",
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": true,
+  "rebuildInstruction": "In the German final sandbox, recreate the vendor payment preflight with German bank/vendor/open-item context, then only post after Journal Check, Apply and trace gates are explicit.",
+  "targetGermanCompanyImpact": "German final company needs bank account, payment journal, vendor open item and ledger trace screenshots rebuilt.",
+  "finalScreenshotNeeded": true,
+  "nextStep": "If BANK-008 Journal Check and Apply Entries are clean, create BANK-009 controlled posting with post-dialog screenshot and Vendor/Bank/G-L ledger trace."
+}
