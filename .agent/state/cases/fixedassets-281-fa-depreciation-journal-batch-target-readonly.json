@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-281-FA-DEPRECIATION-JOURNAL-BATCH-TARGET-READONLY",
+  "status": "planned",
+  "workType": "playwright-readonly-fixedasset-depreciation-journal-batch-target",
+  "taskClass": "wizard_work",
+  "requiresStrongModel": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Diagnose the Calculate Depreciation journal/batch output target read-only before any further OK, Preview Posting or Post attempt.",
+  "triggeredBy": {
+    "caseId": "FIXEDASSETS-280-FA-DEPRECIATION-FIELDVALUE-RESULT-REVIEW",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-280/FIXEDASSETS-280-result.json",
+    "decision": "Card values are visible, but missing FADEP journal output remains unexplained."
+  },
+  "targetObjects": {
+    "fixedAssetNo": "FA-CNC-01",
+    "depreciationBook": "HGB",
+    "knownAcquisitionDocumentNo": "G05001",
+    "knownMissingDepreciationDocuments": [
+      "FADEP-20260627-2158",
+      "FADEP-267-OK",
+      "FADEP-273-OK"
+    ]
+  },
+  "allowedActions": [
+    "open-business-central",
+    "run-playwright",
+    "read-only-fixedasset-gl-journal",
+    "read-only-journal-template-batch-filter-diagnosis",
+    "read-only-calculate-depreciation-request-page-no-ok-if-safe",
+    "write-compact-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "confirm-ok-on-calculate-depreciation",
+    "preview-posting",
+    "post",
+    "setup-change",
+    "company-switch",
+    "api-shortcut-without-explicit-case-permission",
+    "edit-record",
+    "new-draft",
+    "delete-record"
+  ],
+  "safetyGates": [
+    "instance-boundary-gate",
+    "company-context-gate",
+    "read-only-only",
+    "no-ok",
+    "no-preview-posting",
+    "no-posting",
+    "no-setup-change",
+    "no-company-switch",
+    "no-api-shortcut",
+    "no-draft-or-edit"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-281/FIXEDASSETS-281-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-281/FIXEDASSETS-281-DEPRECIATION-JOURNAL-BATCH-TARGET-READONLY.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-281/README.md"
+  ],
+  "acceptanceCriteria": [
+    "Business Central remains in MCP_1_20260210 / RM-DEMO.",
+    "No Calculate Depreciation OK is confirmed.",
+    "No Preview Posting, Post, setup change, company switch, API shortcut, draft or edit occurs.",
+    "The run captures visible Fixed Asset G/L Journal template/batch/filter context.",
+    "The run searches or reads visible FADEP signals read-only.",
+    "If Calculate Depreciation request page is opened, it is closed without OK and only visible values are captured."
+  ],
+  "stopConditions": [
+    "Instance or company is not explicit.",
+    "A page requires edit mode to answer the question.",
+    "A dialog appears that could confirm, post, preview, delete or change setup.",
+    "The diagnosis would require writing field values."
+  ],
+  "nextSafeAction": "Run a read-only/no-OK journal and batch target diagnosis for depreciation output; do not click OK, Preview Posting or Post.",
+  "createdAt": "2026-06-28T11:42:00.000+02:00",
+  "updatedAt": "2026-06-28T11:42:00.000+02:00"
+}

@@ -1,4 +1,16 @@
 
+## FIND-BC-FA-117 Kartenwerte freigegeben, AfA-Ausgabeziel bleibt offen
+
+| Feld | Wert |
+|---|---|
+| Bereich | Fixed Assets / AfA-Route / Review |
+| Testfall | `FIXEDASSETS-280-FA-DEPRECIATION-FIELDVALUE-RESULT-REVIEW` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-280/FIXEDASSETS-280-result.json`, `playwright/projects/fibu-book5/evidence/fixedassets-280/FIXEDASSETS-280-DEPRECIATION-FIELDVALUE-RESULT-REVIEW.md` |
+| Entscheidung | `FA-CNC-01/HGB`-Kartenwerte aus `FIXEDASSETS-279` werden akzeptiert; Repeat-`OK`, Preview Posting und Post bleiben gesperrt. |
+| Warum | Fruehere kontrollierte `OK`-Laeufe erzeugten keine sichtbare `FADEP`-Journalzeile. Der naechste Nutzen liegt nicht in einem weiteren `OK`, sondern im read-only Nachweis von `Fixed Asset G/L Journal`-Template, Batch, Filtern und Ausgabeziel. |
+| naechster Schritt | `FIXEDASSETS-281`: read-only/no-OK Journal-/Batch-Zielklaerung. |
+| Buchwirkung | Die Anleitung muss den Lernpfad trennen: Kartenwerte pruefen, dann Batch-/Journal-Ausgabeziel pruefen, danach erst Preview/Post-Gates. |
+
 ## FIND-BC-FA-116 AfA-Basiswerte sind auf der Anlagenkarte sichtbar lesbar
 
 | Feld | Wert |

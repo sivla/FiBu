@@ -1,0 +1,117 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-280-depreciation-fieldvalue-result-review",
+  "caseId": "FIXEDASSETS-280-FA-DEPRECIATION-FIELDVALUE-RESULT-REVIEW",
+  "source": "local-evidence-review",
+  "resultStatus": "observed",
+  "branch": "codex/token-efficient-autopilot-state",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "reviewedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-279/FIXEDASSETS-279-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-279/020-card-field-values.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-279/FIXEDASSETS-279-FA-DEPRECIATION-CARD-FIELDVALUE-READONLY-PROBE.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-278/FIXEDASSETS-278-result.json"
+  ],
+  "decision": {
+    "visibleCardValuesAccepted": true,
+    "repeatCalculateDepreciationOkAllowed": false,
+    "previewPostingAllowed": false,
+    "postingAllowed": false,
+    "setupChangeAllowed": false,
+    "nextCase": "FIXEDASSETS-281-FA-DEPRECIATION-JOURNAL-BATCH-TARGET-READONLY",
+    "nextCaseFile": ".agent/state/cases/fixedassets-281-fa-depreciation-journal-batch-target-readonly.json",
+    "nextStep": "Open only read-only/no-OK contexts needed to understand the Calculate Depreciation output target: Fixed Asset G/L Journals, current template/batch/filter context and, if safe, Calculate Depreciation request page values without confirming OK."
+  },
+  "acceptedFacts": {
+    "assetNo": "FA-CNC-01",
+    "depreciationBook": "HGB",
+    "postingGroup": "MACHINES",
+    "depreciationMethod": "Straight-Line",
+    "depreciationStartingDate": "01.01.2026",
+    "depreciationYears": "8,00",
+    "depreciationEndingDate": "31.12.2033",
+    "bookValue": "120.000,00",
+    "acquisitionCost": "120.000,00"
+  },
+  "proved": [
+    "FA-279 proves the fixed asset card contains readable depreciation-basis values for FA-CNC-01/HGB.",
+    "The earlier FA-277/278 blocker 'labels but no field-secure values' is resolved for the card.",
+    "The remaining blocker is not missing card values, but missing visible depreciation journal output after previous controlled OK attempts."
+  ],
+  "notProved": [
+    "FA-279 does not prove that Calculate Depreciation would create a journal line.",
+    "FA-279 does not prove the current Fixed Asset G/L Journal template/batch/output target.",
+    "FA-279 does not prove Preview Posting, Post, depreciation ledger entries or German final fixed-assets proof.",
+    "Company RM-DEMO was proven by URL context in FA-279, not independently by visible page body text."
+  ],
+  "reviewFindings": [
+    {
+      "id": "card-values-accepted",
+      "status": "accepted",
+      "summary": "Depreciation start, years, ending date, method, posting group and book/acquisition values are readable on the card and can be used as beginner-facing setup explanation."
+    },
+    {
+      "id": "ok-retry-still-not-justified",
+      "status": "accepted",
+      "summary": "Because FA-248/267/273 already performed controlled OK attempts without a visible FADEP journal line, another OK run would not add understanding before the output target is inspected."
+    },
+    {
+      "id": "next-best-live-step",
+      "status": "selected",
+      "summary": "The next useful live case is a read-only/no-OK journal and request-page target diagnosis, not Preview Posting or Post."
+    }
+  ],
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-281-FA-DEPRECIATION-JOURNAL-BATCH-TARGET-READONLY",
+      "active_case_file": ".agent/state/cases/fixedassets-281-fa-depreciation-journal-batch-target-readonly.json",
+      "lastReferenceCase": "FIXEDASSETS-280-FA-DEPRECIATION-FIELDVALUE-RESULT-REVIEW",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-280-fa-depreciation-fieldvalue-result-review.json",
+      "requiresStrongModel": false,
+      "nextStep": "FIXEDASSETS-281: run a read-only/no-OK depreciation journal and batch target diagnosis; do not confirm Calculate Depreciation OK, Preview Posting or Post."
+    },
+    "coverage": {
+      "activeArea": "fixedassets",
+      "latestReviewCase": "FIXEDASSETS-280-FA-DEPRECIATION-FIELDVALUE-RESULT-REVIEW",
+      "nextCase": "FIXEDASSETS-281-FA-DEPRECIATION-JOURNAL-BATCH-TARGET-READONLY",
+      "depreciationReadiness": "FA-280 accepts FA-279 card values, but keeps OK/Preview/Post blocked until the Fixed Asset G/L Journal output target and request-page context are diagnosed read-only."
+    }
+  },
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "safety": {
+    "bcRun": false,
+    "playwrightRun": false,
+    "noCalculateDepreciationOk": true,
+    "noPreviewPosting": true,
+    "noPost": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true,
+    "noDataChange": true
+  },
+  "reason": "Local review accepts the card setup proof but prevents another blind depreciation OK attempt before journal/batch output target evidence exists.",
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-280/FIXEDASSETS-280-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-280/FIXEDASSETS-280-DEPRECIATION-FIELDVALUE-RESULT-REVIEW.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-280/README.md"
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-280/",
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-280-fa-depreciation-fieldvalue-result-review.json",
+    ".agent/state/cases/fixedassets-281-fa-depreciation-journal-batch-target-readonly.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/model_usage_log.jsonl",
+    "playwright/FINDINGS.md",
+    "playwright/projects/fibu-book5/BOOK-CLICK-GUIDE-COVERAGE.md"
+  ],
+  "observed": {
+    "startedAt": "2026-06-28T11:42:00.000+02:00",
+    "finishedAt": "2026-06-28T11:42:00.000+02:00"
+  }
+}
