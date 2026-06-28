@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "caseId": "P2P-010-PURCHASE-LINE-VALUE-ROUTE-DECISION",
+  "source": "playwright-ui-labor-value-route-decision",
+  "resultStatus": "blocked",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "sourceCompany": "RM-DEMO",
+  "selectedRoute": "Route B - fresh controlled Purchase Order draft",
+  "targetValues": {
+    "vendorNo": "K10000",
+    "itemNo": "RAW-STEEL",
+    "locationCode": "FRA-ZL",
+    "quantity": 4,
+    "qtyToReceive": 2,
+    "directUnitCostExclTax": 2500
+  },
+  "fachlichePruefung": {
+    "businessCase": "P2P partial receipt needs a purchase order line with target quantity and Qty. to Receive before Preview Posting.",
+    "targetState": "Fresh PO draft, vendor K10000, RAW-STEEL line, Location FRA-ZL, Quantity 4, Qty. to Receive 2, Direct Unit Cost 2500.",
+    "modules": [
+      "Purchasing",
+      "Inventory"
+    ],
+    "masterDataAndSetup": [
+      "Vendor K10000",
+      "Item RAW-STEEL",
+      "Location FRA-ZL"
+    ],
+    "expectedDocumentsAndEntries": [
+      "No posted documents in P2P-010 unless all target values become visible and a later gate unlocks Preview/Receive."
+    ],
+    "risk": "Creating a fresh draft may leave a laboratory purchase order if target values still cannot be set.",
+    "correctionPath": "Keep draft as laboratory trace and use it only as blocker evidence; do not Preview/Post without target values.",
+    "evidencePlan": [
+      "fresh draft screenshot",
+      "Select-items creation-phase controls",
+      "final line/value screenshot",
+      "result JSON"
+    ]
+  },
+  "previewPosting": false,
+  "posted": false,
+  "setupChanges": [],
+  "createdRecords": [
+    {
+      "type": "Purchase Order draft",
+      "no": "106054",
+      "keepStatus": "kept-as-p2p-010-labor-trace"
+    }
+  ],
+  "changedRecords": [
+    {
+      "type": "Purchase Order header",
+      "no": "106054",
+      "field": "Buy-from Vendor No.",
+      "value": "K10000"
+    }
+  ],
+  "postedRecords": [],
+  "cleanup": {
+    "attempted": false,
+    "result": "kept-labor-draft-trace-if-created"
+  },
+  "flags": {
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "rebuildInstruction": "Recreate the P2P partial receipt value route in the future German target company before final book screenshots.",
+  "requiresReview": true,
+  "safeToFinalizeState": false,
+  "statePatch": {},
+  "details": {
+    "url": "https://businesscentral.dynamics.com/[tenant-id]/MCP_1_20260210?company=RM-DEMO&page=50",
+    "newClick": {
+      "clicked": true,
+      "label": "^Neu$",
+      "role": "menuitem"
+    },
+    "vendorFill": {
+      "filled": true,
+      "method": "fallback-x793-y316"
+    },
+    "draftNo": "106054",
+    "routeStep": {
+      "route": "fresh-draft-select-items-creation-phase",
+      "status": "observed",
+      "details": [
+        "selectItems={\"clicked\":true,\"label\":\"^Select items\\\\.\\\\.\\\\.$\",\"role\":\"menuitem\"}",
+        "search={\"skipped\":true,\"reason\":\"RAW-STEEL already visible in Select items dialog; search not opened.\"}",
+        "rawClick={\"clicked\":true,\"method\":\"frame-getByText-fast\"}",
+        "okOrAddClick={\"clicked\":false}"
+      ]
+    },
+    "checks": {
+      "rawLine": "RAW-STEEL",
+      "rawSteelVisible": true,
+      "locationOk": false,
+      "quantityOk": false,
+      "unitCostOk": false,
+      "qtyToReceiveOk": false
+    }
+  },
+  "screenshots": [
+    "playwright/projects/fibu-book5/img/p2p-010-010-fresh-draft-after-vendor.png",
+    "playwright/projects/fibu-book5/img/p2p-010-020-after-select-items-route.png"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/p2p-010/010-after-vendor-text.txt",
+    "playwright/projects/fibu-book5/evidence/p2p-010/011-after-vendor-controls.json",
+    "playwright/projects/fibu-book5/evidence/p2p-010/030-select-items-text.txt",
+    "playwright/projects/fibu-book5/evidence/p2p-010/031-select-items-controls.json",
+    "playwright/projects/fibu-book5/evidence/p2p-010/040-after-raw-steel-availability-text.txt",
+    "playwright/projects/fibu-book5/evidence/p2p-010/041-after-raw-steel-availability-controls.json",
+    "playwright/projects/fibu-book5/evidence/p2p-010/050-final-text.txt",
+    "playwright/projects/fibu-book5/evidence/p2p-010/051-final-controls.json"
+  ],
+  "proved": [
+    "Fresh Purchase Order draft 106054 route was attempted in MCP_1_20260210/RM-DEMO.",
+    "Vendor K10000 was entered on the fresh draft.",
+    "Select items creation-phase route was tested instead of repeating P2P-009 fixed-line cell edits.",
+    "No Preview Posting, posting, setup change, company switch or API shortcut was executed."
+  ],
+  "notProved": [
+    "Location FRA-ZL, Quantity 4 and Qty. to Receive 2 are not all visible on the RAW-STEEL line.",
+    "Preview Posting and Receive are not proven by P2P-010.",
+    "German final P2P proof remains open."
+  ],
+  "blockedBy": [
+    "fresh-draft-select-items-route-did-not-produce-all-target-values",
+    "select-items-dialog-exposes-item-selection-but-not-confirmed-order-quantity-location-qty-to-receive-entry"
+  ],
+  "nextStep": "Choose the next non-repeated route: true line-edit action discovery, Purchase Journal alternative, or a clean lab company/setup route."
+}

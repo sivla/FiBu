@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "runId": "P2P-009-PURCHASE-LINE-CELL-EDIT-HELPER",
-  "timestamp": "2026-06-28T17:39:58.192+02:00",
+  "runId": "P2P-010-PURCHASE-LINE-VALUE-ROUTE-DECISION",
+  "timestamp": "2026-06-28T18:36:00.000+02:00",
   "date": "2026-06-28",
-  "workType": "controlled-p2p-ui-cell-edit-helper",
+  "workType": "controlled-p2p-ui-value-route-decision",
   "taskClass": "wizard_work",
   "modelClass": "gpt-4-medium",
   "branch": "codex/token-efficient-autopilot-state",
@@ -17,61 +17,57 @@
   "companySwitched": false,
   "apiShortcut": false,
   "bookChanged": false,
-  "dataChanged": false,
+  "dataChanged": true,
   "resultStatus": "blocked",
-  "summary": "P2P-009 ran a bounded Purchase Order Lines cell-edit helper probe on PO 106051. It captured frame-aware headers/cells and action candidates and confirmed RAW-STEEL plus Direct Unit Cost 2.500,00 remain visible. Location FRA-ZL, Quantity 4 and Qty. to Receive 2 were not visibly persisted by single-click/Enter, double-click or F2 routes. No Preview Posting, posting, setup change, company switch or API shortcut occurred.",
+  "summary": "P2P-010 ran a fresh controlled Purchase Order draft route and used Select items without opening unnecessary search because RAW-STEEL was already visible. It created draft 106054, entered vendor K10000, selected RAW-STEEL, and proved the route still does not visibly set Location FRA-ZL, Quantity 4, Qty. to Receive 2 or Unit Cost 2500. No Preview Posting, posting, setup change, company switch or API shortcut occurred.",
   "proved": [
-    "Purchase Order 106051 remained in MCP_1_20260210/RM-DEMO.",
-    "RAW-STEEL purchase line was visible.",
-    "Frame-aware grid geometry captured headers and mapped row cells.",
-    "Direct Unit Cost 2.500,00 is visible in the mapped cell.",
-    "No Preview Posting or posting was executed."
+    "Fresh Purchase Order draft 106054 route was attempted in MCP_1_20260210/RM-DEMO.",
+    "Vendor K10000 was entered on the fresh draft.",
+    "Select items creation-phase route was tested instead of repeating P2P-009 fixed-line cell edits.",
+    "No Preview Posting, posting, setup change, company switch or API shortcut was executed."
   ],
   "notProved": [
-    "Location Code FRA-ZL is not visibly saved on the line.",
-    "Quantity 4 is not visibly saved on the line.",
-    "Qty. to Receive 2 is not visibly saved on the line.",
-    "Preview Posting and Receive/Invoice/Post were not executed.",
-    "German final proof remains open."
+    "Location FRA-ZL, Quantity 4 and Qty. to Receive 2 are not all visible on the RAW-STEEL line.",
+    "Preview Posting and Receive are not proven by P2P-010.",
+    "German final P2P proof remains open."
   ],
   "blockedBy": [
-    "target-values-not-all-visible-after-cell-edit-helper-routes",
-    "purchase-order-header-edit-pencil-not-exposed-as-stable-action-label",
-    "display-textbox-focus-does-not-persist-target-values"
+    "fresh-draft-select-items-route-did-not-produce-all-target-values",
+    "select-items-dialog-exposes-item-selection-but-not-confirmed-order-quantity-location-qty-to-receive-entry"
   ],
   "changedFiles": [
-    ".agent/autopilot.md",
-    ".agent/BC-OPERATING-MODEL.md",
-    ".agent/modes/sandbox-instance-autopilot.md",
-    ".agent/state/book-production-goal.json",
     ".agent/state/current.json",
     ".agent/state/coverage_state.json",
     ".agent/state/last_run_summary.json",
-    ".agent/state/cases/p2p-009-purchase-line-cell-edit-helper.json",
+    ".agent/state/cases/p2p-010-purchase-line-value-route-decision.json",
     "package.json",
-    "playwright/projects/fibu-book5/tests/p2p-009-purchase-line-cell-edit-helper.spec.ts",
-    "playwright/projects/fibu-book5/evidence/p2p-009/",
-    "playwright/projects/fibu-book5/img/p2p-009-*",
-    "playwright/core/bc-skills/grids.md",
-    "playwright/projects/fibu-book5/BC-*.md"
+    "playwright/projects/fibu-book5/tests/p2p-010-purchase-line-value-route-decision.spec.ts",
+    "playwright/projects/fibu-book5/evidence/p2p-010/",
+    "playwright/projects/fibu-book5/img/p2p-010-*",
+    "playwright/projects/fibu-book5/evidence/p2p-010/README.md"
   ],
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/p2p-009/P2P-009-result.json",
-    "playwright/projects/fibu-book5/evidence/p2p-009/010-before-grid-geometry.json",
-    "playwright/projects/fibu-book5/evidence/p2p-009/020-after-grid-geometry.json"
+    "playwright/projects/fibu-book5/evidence/p2p-010/010-after-vendor-text.txt",
+    "playwright/projects/fibu-book5/evidence/p2p-010/011-after-vendor-controls.json",
+    "playwright/projects/fibu-book5/evidence/p2p-010/030-select-items-text.txt",
+    "playwright/projects/fibu-book5/evidence/p2p-010/031-select-items-controls.json",
+    "playwright/projects/fibu-book5/evidence/p2p-010/040-after-raw-steel-availability-text.txt",
+    "playwright/projects/fibu-book5/evidence/p2p-010/041-after-raw-steel-availability-controls.json",
+    "playwright/projects/fibu-book5/evidence/p2p-010/050-final-text.txt",
+    "playwright/projects/fibu-book5/evidence/p2p-010/051-final-controls.json"
   ],
   "screenshots": [
-    "playwright/projects/fibu-book5/img/p2p-009-010-before-cell-edit.png",
-    "playwright/projects/fibu-book5/img/p2p-009-020-after-cell-edit.png"
+    "playwright/projects/fibu-book5/img/p2p-010-010-fresh-draft-after-vendor.png",
+    "playwright/projects/fibu-book5/img/p2p-010-020-after-select-items-route.png"
   ],
   "validationCommands": [
     "npm run agent:preflight",
     "npm run agent:context",
     "npm run agent:dry-run",
     "npm run agent:run-plan",
-    "npm run fibu:p2p:purchase-line-cell-edit-helper",
-    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/p2p-009/P2P-009-result.json",
-    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/p2p-009/P2P-009-result.json",
+    "npm run fibu:p2p:purchase-line-value-route-decision",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/p2p-010/P2P-010-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/p2p-010/P2P-010-result.json",
     "npm run check:encoding",
     "git diff --check"
   ],
@@ -85,7 +81,7 @@
     "No final German claim."
   ],
   "activeArea": "p2p",
-  "activeCase": "P2P-009-PURCHASE-LINE-CELL-EDIT-HELPER",
-  "nextCase": "P2P-010-PURCHASE-LINE-VALUE-ROUTE-DECISION",
-  "nextStep": "Choose the next bounded UI route for line values before Preview Posting: true Purchase Lines edit-mode action discovery or a fresh controlled draft/Select-items quantity route."
+  "activeCase": "P2P-010-PURCHASE-LINE-VALUE-ROUTE-DECISION",
+  "nextCase": "P2P-011-PURCHASE-LINES-EDIT-ACTION-OR-ALTERNATIVE-UI-ROUTE",
+  "nextStep": "Use true Purchase Lines edit-mode/action discovery or alternative standard UI; do not repeat unnecessary Select-items search or display-cell edit routes."
 }

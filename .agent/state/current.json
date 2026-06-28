@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-28T17:39:58.192+02:00",
+  "updatedAt": "2026-06-28T18:36:00.000+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "p2p",
-  "activeCase": "P2P-009-PURCHASE-LINE-CELL-EDIT-HELPER",
-  "active_case_file": ".agent/state/cases/p2p-009-purchase-line-cell-edit-helper.json",
+  "activeCase": "P2P-010-PURCHASE-LINE-VALUE-ROUTE-DECISION",
+  "active_case_file": ".agent/state/cases/p2p-010-purchase-line-value-route-decision.json",
   "lastReferenceCase": "UAT-P2P-001",
   "lastReferenceCaseFile": "",
   "mode": "bc-specialist-labor-book-production",
@@ -40,7 +40,7 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "P2P-010: continue P2P partial receipt only after a new route solves Purchase Lines target values; do not Preview Posting while FRA-ZL, Quantity 4 and Qty. to Receive 2 remain unproved.",
+  "nextStep": "P2P-011: do not repeat Select-items or display-cell edits; run true Purchase Lines edit-mode/action discovery or choose an alternative standard UI route before Preview Posting.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/fixedassets-labor-draft.md",
     "area": "fixedassets",
@@ -221,11 +221,11 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "p2p-partial-receipt-cell-edit-helper",
+  "currentCoverageFocus": "p2p-partial-receipt-value-route-decision",
   "nextProcessRoute": [
-    "P2P-009 stabilize Purchase Order Lines edit mode/cell editor for RAW-STEEL target values",
-    "P2P Preview Posting only after Location/Quantity/Qty. to Receive are visible and unambiguous",
-    "P2P Preview Posting and controlled partial Receive only after line gate is proven"
+    "P2P-010 confirmed fresh Select-items route selects RAW-STEEL but does not set Location/Quantity/Qty. to Receive.",
+    "P2P-011 should discover a true Purchase Lines edit/action route or switch to an alternative standard UI route such as Purchase Journal if fachlich suitable.",
+    "P2P Preview Posting remains locked until target values are visible and unambiguous."
   ],
   "activeAtlasFiles": [
     "playwright/projects/fibu-book5/BC-COVERAGE-MATRIX.md",
@@ -395,5 +395,29 @@
     "proved": "RAW-STEEL line, frame-aware headers/cells, action candidates and Direct Unit Cost 2.500,00 were captured without Preview/Post.",
     "blocker": "Location FRA-ZL, Quantity 4 and Qty. to Receive 2 are still not visible after single-click/Enter, double-click and F2 cell-edit routes.",
     "nextStep": "Either find a true Purchase Lines edit-mode action or create a fresh controlled draft/Select-items route that sets quantity before insertion; Preview Posting remains locked."
+  },
+  "latestP2PValueRouteDecision": {
+    "caseId": "P2P-010-PURCHASE-LINE-VALUE-ROUTE-DECISION",
+    "status": [
+      "labor-blocked",
+      "needs-german-final-rebuild"
+    ],
+    "sourceInstance": "MCP_1_20260210",
+    "sourceCompany": "RM-DEMO",
+    "route": "Route B - fresh controlled Purchase Order draft",
+    "draft": "106054",
+    "posted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "apiShortcut": false,
+    "resultPath": "playwright/projects/fibu-book5/evidence/p2p-010/P2P-010-result.json",
+    "evidencePath": "playwright/projects/fibu-book5/evidence/p2p-010/",
+    "screenshots": [
+      "playwright/projects/fibu-book5/img/p2p-010-010-fresh-draft-after-vendor.png",
+      "playwright/projects/fibu-book5/img/p2p-010-020-after-select-items-route.png"
+    ],
+    "proved": "Fresh controlled Purchase Order draft route selected visible RAW-STEEL from Select items without opening unnecessary search.",
+    "blocker": "Select items route exposes and selects RAW-STEEL but does not visibly set Location FRA-ZL, Quantity 4, Qty. to Receive 2 or Unit Cost 2500 on the resulting order line.",
+    "nextStep": "P2P-011: do not repeat Select-items or display-cell edits; run true Purchase Lines edit-mode/action discovery or choose an alternative standard UI route before Preview Posting."
   }
 }

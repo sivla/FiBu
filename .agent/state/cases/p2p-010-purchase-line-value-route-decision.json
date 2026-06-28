@@ -1,0 +1,118 @@
+{
+  "schemaVersion": 1,
+  "caseId": "P2P-010-PURCHASE-LINE-VALUE-ROUTE-DECISION",
+  "area": "p2p",
+  "status": "labor-blocked",
+  "taskClass": "wizard_work",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "sourceCompany": "RM-DEMO",
+  "mode": "controlled-labor-ui-value-route-decision",
+  "purpose": "Choose and test a non-repeated route for P2P partial receipt target values after P2P-009 rejected display-cell edit routes.",
+  "predecessorCases": [
+    "P2P-007-PURCHASE-LINES-DATA-ROW-ROUTE",
+    "P2P-008-PURCHASE-LINE-TARGET-VALUES",
+    "P2P-009-PURCHASE-LINE-CELL-EDIT-HELPER"
+  ],
+  "selectedRoute": "Route B - fresh controlled Purchase Order draft with Select items creation-phase value evidence",
+  "targetValues": {
+    "vendorNo": "K10000",
+    "itemNo": "RAW-STEEL",
+    "locationCode": "FRA-ZL",
+    "quantity": 4,
+    "qtyToReceive": 2,
+    "directUnitCostExclTax": 2500
+  },
+  "allowedWhenGateUnlocks": [
+    "create-controlled-purchase-draft",
+    "set-vendor",
+    "open-select-items",
+    "search-raw-steel",
+    "inspect-creation-phase-value-controls",
+    "select-raw-steel",
+    "capture-target-value-evidence",
+    "preview-posting-if-target-values-visible"
+  ],
+  "defaultLockedActions": [
+    "preview-posting",
+    "post",
+    "receive",
+    "invoice",
+    "receive-and-invoice",
+    "setup-change",
+    "company-switch",
+    "api-shortcut"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "final-german-claim-from-rm-demo"
+  ],
+  "minimumEvidence": [
+    "direct MCP_1_20260210/RM-DEMO context",
+    "fresh Purchase Order draft number",
+    "vendor K10000 visible",
+    "Select items dialog/page context",
+    "RAW-STEEL selection context",
+    "target value visibility or concrete blocker",
+    "explicit Preview/Post/Receive flags"
+  ],
+  "stopConditions": [
+    "wrong instance or company",
+    "unexpected dangerous dialog",
+    "fresh draft number not visible",
+    "vendor K10000 not visible",
+    "Preview Posting without visible target values",
+    "Receive/Post without explicit follow-up gate"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "bookImpactTarget": "Chapter 12 partial receipt clickguide: decide whether fresh draft/Select-items route can produce target values before Preview Posting.",
+  "nextSafeAction": "P2P-011 true edit/action discovery or alternative standard UI route; Preview Posting remains locked.",
+  "updatedAt": "2026-06-28T18:36:00.000+02:00",
+  "resultPath": "playwright/projects/fibu-book5/evidence/p2p-010/P2P-010-result.json",
+  "evidencePath": "playwright/projects/fibu-book5/evidence/p2p-010/",
+  "screenshots": [
+    "playwright/projects/fibu-book5/img/p2p-010-010-fresh-draft-after-vendor.png",
+    "playwright/projects/fibu-book5/img/p2p-010-020-after-select-items-route.png"
+  ],
+  "proved": [
+    "Fresh Purchase Order draft 106054 route was attempted in MCP_1_20260210/RM-DEMO.",
+    "Vendor K10000 was entered on the fresh draft.",
+    "Select items creation-phase route was tested instead of repeating P2P-009 fixed-line cell edits.",
+    "No Preview Posting, posting, setup change, company switch or API shortcut was executed."
+  ],
+  "notProved": [
+    "Location FRA-ZL, Quantity 4 and Qty. to Receive 2 are not all visible on the RAW-STEEL line.",
+    "Preview Posting and Receive are not proven by P2P-010.",
+    "German final P2P proof remains open."
+  ],
+  "blockedBy": [
+    "fresh-draft-select-items-route-did-not-produce-all-target-values",
+    "select-items-dialog-exposes-item-selection-but-not-confirmed-order-quantity-location-qty-to-receive-entry"
+  ],
+  "createdRecords": [
+    {
+      "type": "Purchase Order draft",
+      "no": "106054",
+      "keepStatus": "kept-as-p2p-010-labor-trace"
+    }
+  ],
+  "changedRecords": [
+    {
+      "type": "Purchase Order header",
+      "no": "106054",
+      "field": "Buy-from Vendor No.",
+      "value": "K10000"
+    }
+  ],
+  "previewPosting": false,
+  "posted": false,
+  "setupChanged": false,
+  "apiShortcut": false
+}

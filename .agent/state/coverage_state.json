@@ -39,12 +39,12 @@
   "hardExclusions": {
     "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
   },
-  "updatedAt": "2026-06-28T17:39:58.192+02:00",
+  "updatedAt": "2026-06-28T18:36:00.000+02:00",
   "activeArea": "p2p",
-  "currentBlock": "p2p-partial-receipt-cell-edit-helper",
-  "latestPracticalCase": "P2P-009-PURCHASE-LINE-CELL-EDIT-HELPER",
+  "currentBlock": "p2p-partial-receipt-value-route-decision",
+  "latestPracticalCase": "P2P-010-PURCHASE-LINE-VALUE-ROUTE-DECISION",
   "latestReviewCase": "BOOK-P2P-CH12-PARTIAL-RECEIPT-GATE-SYNC",
-  "nextCase": "P2P-010-PURCHASE-LINE-VALUE-ROUTE-DECISION",
+  "nextCase": "P2P-011-PURCHASE-LINES-EDIT-ACTION-OR-ALTERNATIVE-UI-ROUTE",
   "fixedAssets": {
     "faCnc01": {
       "postingGroupAssignment": "fieldlocal-fit-proven-machines-labor",
@@ -127,7 +127,7 @@
         "Vendor invoice 108219 Remaining Amount 0,00",
         "Vendor payment application lines",
         "Payment Discount laboratory effect",
-        "Purchase Order UI-first draft 106002",
+        "Purchase Order UI-first draft 106054",
         "Purchase Order header K10000",
         "Purchase Order line context for partial receipt"
       ],
@@ -141,9 +141,10 @@
         "No P2P-004 posting or ledger trace",
         "P2P-007: Select items creates/reveals a visible RAW-STEEL line.",
         "P2P-008: target values FRA-ZL, Quantity 4 and Qty. to Receive 2 are still blocked by missing stable cell edit route.",
-        "P2P-009: frame-aware cell geometry and action candidates captured; Direct Unit Cost 2.500,00 visible, but Location/Quantity/Qty. to Receive remain unproved."
+        "P2P-009: frame-aware cell geometry and action candidates captured; Direct Unit Cost 2.500,00 visible, but Location/Quantity/Qty. to Receive remain unproved.",
+        "P2P-010: fresh Select-items route selects RAW-STEEL directly, search skipped, but Location/Quantity/Qty. to Receive/Unit Cost target state remains unproved."
       ],
-      "nextStep": "P2P-010: choose next value route before Preview Posting: true edit-mode action discovery or fresh controlled draft/Select-items quantity route."
+      "nextStep": "P2P-011: true edit/action route or alternative standard UI before Preview Posting."
     }
   },
   "migrationStatus": {
@@ -169,18 +170,13 @@
     "playwright/projects/fibu-book5/BC-ERROR-BLOCKER-ATLAS.md",
     "playwright/projects/fibu-book5/BC-PROCESS-COVERAGE-ROADMAP.md"
   ],
-  "currentCoverageFocus": "p2p-partial-receipt-cell-edit-helper",
+  "currentCoverageFocus": "p2p-partial-receipt-value-route-decision",
   "latestCoverageUpdate": {
-    "at": "2026-06-28T17:05:00.000+02:00",
-    "type": "initial-bc-specialist-atlas-migration",
-    "matrix": "playwright/projects/fibu-book5/BC-COVERAGE-MATRIX.md",
-    "migratedEvidence": [
-      "Fixed Assets G05001/HGB/MACHINES/AfA blocker",
-      "P2P 106049/108219",
-      "P2P Payment PAYP2P-108219",
-      "P2P-004 draft 106002"
-    ],
-    "nextCoverageStep": "P2P-009 rejected the current cell-edit routes with helper evidence; next coverage step must solve line target values before Preview Posting."
+    "at": "2026-06-28T18:36:00.000+02:00",
+    "type": "p2p-010-fresh-draft-select-items-route-tested",
+    "result": "labor-blocked",
+    "evidencePath": "playwright/projects/fibu-book5/evidence/p2p-010/",
+    "nextCoverageStep": "Do not repeat search/cell-edit routes; use true edit/action discovery or an alternative standard UI route before Preview Posting."
   },
   "companyUsecase": {
     "path": "playwright/projects/fibu-book5/BC-COMPANY-USECASE.md",
@@ -307,5 +303,26 @@
     ],
     "evidencePath": "playwright/projects/fibu-book5/evidence/p2p-009/",
     "nextStep": "Find a true Purchase Lines edit mode/action route or use a fresh controlled draft/Select-items route that sets quantity before line insertion."
+  },
+  "p2pPartialReceiptValueRouteDecision": {
+    "status": "labor-blocked",
+    "draft": "106054",
+    "proved": [
+      "Fresh Purchase Order draft 106054 route was attempted in MCP_1_20260210/RM-DEMO.",
+      "Vendor K10000 was entered on the fresh draft.",
+      "Select items creation-phase route was tested instead of repeating P2P-009 fixed-line cell edits.",
+      "No Preview Posting, posting, setup change, company switch or API shortcut was executed."
+    ],
+    "notProved": [
+      "Location FRA-ZL, Quantity 4 and Qty. to Receive 2 are not all visible on the RAW-STEEL line.",
+      "Preview Posting and Receive are not proven by P2P-010.",
+      "German final P2P proof remains open."
+    ],
+    "blockedBy": [
+      "fresh-draft-select-items-route-did-not-produce-all-target-values",
+      "select-items-dialog-exposes-item-selection-but-not-confirmed-order-quantity-location-qty-to-receive-entry"
+    ],
+    "evidencePath": "playwright/projects/fibu-book5/evidence/p2p-010/",
+    "nextStep": "Choose the next non-repeated route: true line-edit action discovery, Purchase Journal alternative, or a clean lab company/setup route."
   }
 }
