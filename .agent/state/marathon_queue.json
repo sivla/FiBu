@@ -68,79 +68,172 @@
     {
       "id": "FIXEDASSETS-246-DEPRECIATION-EXECUTE-ROUTE",
       "order": 6,
-      "status": "running",
+      "status": "blocked",
       "category": "fixedassets",
       "expectedImpact": "high-impact",
       "fallbackRoute": "FA journal output-target diagnosis if Calculate Depreciation cannot generate lines.",
       "evidenceTarget": "playwright/projects/fibu-book5/evidence/fixedassets-246/",
       "mayWorkEffectively": true,
-      "goal": "Execute Calculate Depreciation / request page route and prove generated journal line if possible."
+      "goal": "Execute Calculate Depreciation / request page route and prove generated journal line if possible.",
+      "result": "Guarded Calculate Depreciation opened request page, controlled Document No. FADEP-20260628-2133 and clicked OK once, but no generated depreciation journal line was detected; no Preview/Post/Setup/Company change.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/fixedassets-248/FIXEDASSETS-248-result.json"
     },
     {
       "id": "FIXEDASSETS-247-DEPRECIATION-LEDGER-TRACE",
       "order": 7,
-      "status": "pending",
+      "status": "blocked",
       "category": "fixedassets",
       "expectedImpact": "high-impact",
       "fallbackRoute": "Blocker plus correction route if depreciation cannot post.",
       "evidenceTarget": "playwright/projects/fibu-book5/evidence/fixedassets-247/",
       "mayWorkEffectively": true,
-      "goal": "Trace FA Ledger and G/L effects or document blocker."
+      "goal": "Trace FA Ledger and G/L effects or document blocker.",
+      "result": "Blocked before ledger trace because FIXEDASSETS-246/248 did not create or detect a depreciation journal line and no depreciation posting exists to trace.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/fixedassets-248/FIXEDASSETS-248-result.json"
     },
     {
       "id": "BANK-001-RECONCILIATION-CONTROLLED-LAB",
       "order": 8,
-      "status": "pending",
+      "status": "done",
       "category": "bank",
       "expectedImpact": "high-impact",
       "fallbackRoute": "Payment reconciliation journal route.",
       "evidenceTarget": "playwright/projects/fibu-book5/evidence/bank-001/",
       "mayWorkEffectively": true,
-      "goal": "Start controlled bank reconciliation or payment reconciliation lab route."
+      "goal": "Start controlled bank reconciliation or payment reconciliation lab route.",
+      "completedAt": "2026-06-28T19:40:16.754Z",
+      "result": {
+        "status": "observed",
+        "resultFile": "playwright/projects/fibu-book5/evidence/bank-001/BANK-001-result.json",
+        "bestCandidate": "010-page-388-bank-account-reconciliation-candidate",
+        "summary": "Bank-/Payment-Reconciliation direct page route observed read-only; no draft, no preview, no post.",
+        "safety": {
+          "noActionClicked": true,
+          "noNew": true,
+          "noEdit": true,
+          "noDelete": true,
+          "noDraftCreated": true,
+          "noPreviewPosting": true,
+          "noPost": true,
+          "noSetupChange": true,
+          "noCompanySwitch": true,
+          "noApiShortcut": true,
+          "noBookChange": true
+        },
+        "migrationRelevance": "needed-for-german-final",
+        "nextStep": "BANK-002: den besten Kandidaten mit einem kontrollierten Draft-/Import-/Match-Preflight pruefen; erst dann Bankabstimmung buchen."
+      }
     },
     {
       "id": "DIMENSIONS-001-DEFAULT-DIMENSION-PRACTICAL-TRACE",
       "order": 9,
-      "status": "pending",
+      "status": "done",
       "category": "dimensions",
       "expectedImpact": "high-impact-candidate",
       "fallbackRoute": "Read-only dimension propagation trace if setup write is not safe.",
       "evidenceTarget": "playwright/projects/fibu-book5/evidence/dimensions-001/",
       "mayWorkEffectively": true,
-      "goal": "Set/check default dimension and trace effect to document or entry."
+      "goal": "Set/check default dimension and trace effect to document or entry.",
+      "completedAt": "2026-06-28T19:44:07.868Z",
+      "result": {
+        "status": "observed",
+        "resultFile": "playwright/projects/fibu-book5/evidence/dimensions-001/DIMENSIONS-001-result.json",
+        "summary": "Default Dimensions page 540 reverified UI-only; no API shortcut, no setup change.",
+        "targets": [
+          {
+            "id": "010-item-rm-m100-productline-machine",
+            "expectedDimension": "PRODUCTLINE=MACHINE",
+            "targetSatisfied": true
+          },
+          {
+            "id": "020-customer-d10000-channel-b2b",
+            "expectedDimension": "CHANNEL=B2B",
+            "targetSatisfied": true
+          }
+        ],
+        "safety": {
+          "noApiShortcut": true,
+          "noSetupChange": true,
+          "noNew": true,
+          "noEdit": true,
+          "noDelete": true,
+          "noPreviewPosting": true,
+          "noPost": true,
+          "noBookChange": true
+        },
+        "nextStep": "INVENTORY-009: target stock posting trace pruefen oder buchen, weil Dimensionen UI-seitig weiter tragen."
+      }
     },
     {
       "id": "INVENTORY-009-COSTING-TRACE-REVIEW",
       "order": 10,
-      "status": "pending",
+      "status": "done",
       "category": "inventory",
       "expectedImpact": "high-impact-candidate",
       "fallbackRoute": "Inventory valuation read-only trace if adjustment cannot run.",
       "evidenceTarget": "playwright/projects/fibu-book5/evidence/inventory-009/",
       "mayWorkEffectively": true,
-      "goal": "Deepen Item Ledger / Value Entries / Inventory Valuation / Cost Adjustment proof."
+      "goal": "Deepen Item Ledger / Value Entries / Inventory Valuation / Cost Adjustment proof.",
+      "startedAt": "2026-06-28T19:44:07.868Z",
+      "completedAt": "2026-06-28T19:44:07.868Z",
+      "result": {
+        "status": "observed",
+        "resultFile": "playwright/projects/fibu-book5/evidence/inventory-009/INVENTORY-009-result.json",
+        "summary": "Inventory-008 costing and ledger trace consolidated; no repeat posting.",
+        "reviewedDocumentNo": "INV008-899959",
+        "safety": {
+          "bcRun": false,
+          "noPost": true,
+          "noPreviewPosting": true,
+          "noSetupChange": true,
+          "noCompanySwitch": true,
+          "noApiShortcut": true,
+          "noBookChange": true,
+          "noNewDraft": true
+        },
+        "nextStep": "RM-DE-LAB-001: entscheiden, ob innerhalb MCP_1_20260210 eine saubere deutsche Laborcompany fuer Rebuild-Vorbereitung angelegt wird, statt RM-DEMO weiter mit CRONUS-USA-Laborbildern zu ueberdehnen."
+      }
     },
     {
       "id": "RM-DE-LAB-001-CLEAN-LAB-COMPANY-DECISION",
       "order": 11,
-      "status": "pending",
+      "status": "done",
       "category": "company",
       "expectedImpact": "high-impact-candidate",
       "fallbackRoute": "Stay in RM-DEMO with documented reason.",
       "evidenceTarget": "playwright/projects/fibu-book5/evidence/rm-de-lab-001/",
       "mayWorkEffectively": true,
-      "goal": "Decide whether RM-DEMO blocks too much; optionally plan/create RM-DE-LAB or RM-SKR04-LAB."
+      "goal": "Decide whether RM-DEMO blocks too much; optionally plan/create RM-DE-LAB or RM-SKR04-LAB.",
+      "startedAt": "2026-06-28T19:44:07.868Z",
+      "completedAt": "2026-06-28T19:45:52.122Z",
+      "result": {
+        "status": "observed",
+        "resultFile": "playwright/projects/fibu-book5/evidence/rm-de-lab-001/RM-DE-LAB-001-result.json",
+        "summary": "RM-DE-LAB planned but not created; dedicated UI-first company creation case required.",
+        "nextStep": "RM-DE-LAB-CREATE-001: dedicated UI-first Companies/New-or-Copy route with registry guard; only then run RM-DE-LAB-002 foundation setup."
+      }
     },
     {
       "id": "RM-DE-LAB-002-FOUNDATION-SETUP",
       "order": 12,
-      "status": "pending",
+      "status": "blocked",
       "category": "company",
       "expectedImpact": "high-impact",
       "fallbackRoute": "Return to RM-DEMO if no new company exists.",
       "evidenceTarget": "playwright/projects/fibu-book5/evidence/rm-de-lab-002/",
       "mayWorkEffectively": true,
-      "goal": "If company exists, start vendor/customer/item/location/bank/posting groups/number series setup."
+      "goal": "If company exists, start vendor/customer/item/location/bank/posting groups/number series setup.",
+      "startedAt": "2026-06-28T19:45:52.122Z",
+      "completedAt": "2026-06-28T19:45:52.122Z",
+      "result": {
+        "status": "blocked",
+        "blockedBy": [
+          "rm-de-lab-not-created"
+        ],
+        "summary": "Foundation setup cannot start because RM-DE-LAB is planned-only and not actual-visible.",
+        "nextStep": "RM-DE-LAB-CREATE-001: dedicated UI-first Companies/New-or-Copy route with registry guard; only then run RM-DE-LAB-002 foundation setup."
+      }
     }
-  ]
+  ],
+  "lastUpdated": "2026-06-28T19:45:52.122Z"
 }

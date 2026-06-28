@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "purpose": "clean-lab-company-decision",
+  "caseId": "RM-DE-LAB-001-CLEAN-LAB-COMPANY-DECISION",
+  "testId": "RM-DE-LAB-001",
+  "source": "local-governance-decision-from-marathon-queue",
+  "resultStatus": "observed",
+  "environment": "MCP_1_20260210",
+  "currentPrimaryCompany": "RM-DEMO",
+  "proposedCompany": "RM-DE-LAB",
+  "proposedCompanyStatus": "planned-only-not-created",
+  "decision": "create-new-clean-lab-company-later-via-dedicated-ui-case",
+  "rationale": [
+    "RM-DEMO remains valuable as CRONUS-USA laboratory reference and must not be overwritten or treated as German final proof.",
+    "Several process blocks now need German-final rebuild instructions; a clean lab company inside the same instance is useful before a future real German target instance exists.",
+    "Company creation should not happen as a side effect of this local decision package; it needs a dedicated UI-first case with evidence."
+  ],
+  "prerequisitesForCreation": [
+    "Company action statement before opening Companies/New or copy wizard.",
+    "Source template decision: CRONUS USA copy versus blank/new evaluation.",
+    "No external productive data or secrets.",
+    "Registry update before or in same run as creation.",
+    "Company list proof after creation.",
+    "Foundation setup plan: company information, dimensions, posting groups, VAT/tax, bank, number series, customers, vendors, items, locations."
+  ],
+  "notExecuted": [
+    "No BC run in RM-DE-LAB-001.",
+    "No company switch.",
+    "No company creation.",
+    "No setup change.",
+    "No posting."
+  ],
+  "queueImpact": {
+    "rmDeLab001": "done-as-decision",
+    "rmDeLab002": "blocked-until-company-created"
+  },
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": false,
+  "finalScreenshotNeeded": false,
+  "rebuildInstruction": "When ready, run a dedicated UI-first company-creation case inside MCP_1_20260210 for RM-DE-LAB, then start foundation setup. Later real German final evidence still needs the future German target instance.",
+  "targetGermanCompanyImpact": "RM-DE-LAB can reduce RM-DEMO/CRONUS noise for bookdrafts, but it is still not the future German final instance unless later explicitly designated and proven.",
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/rm-de-lab-001/RM-DE-LAB-001-result.json",
+    "playwright/projects/fibu-book5/evidence/rm-de-lab-001/RM-DE-LAB-001-COMPANY-DECISION.md",
+    "playwright/projects/fibu-book5/evidence/rm-de-lab-001/README.md",
+    "playwright/projects/fibu-book5/COMPANY-REGISTRY.json",
+    "playwright/projects/fibu-book5/COMPANY-REGISTRY.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/rm-de-lab-001/"
+  ],
+  "blockedBy": [],
+  "safeToFinalizeState": false,
+  "requiresReview": false,
+  "nextStep": "RM-DE-LAB-CREATE-001: dedicated UI-first Companies/New-or-Copy route with registry guard; only then run RM-DE-LAB-002 foundation setup."
+}

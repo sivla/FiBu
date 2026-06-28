@@ -30,6 +30,7 @@ Pflichtfelder: Zielcompany, Zweck, Buchkapitel, Datenbasis, erwartete Nutzung, R
 | `RM-SERVICE` | spaetere Service-/Wartungs-/Miet-Zielcompany | geplant, Vorlage noch offen | Ziel: deutsch, DE-Final offen | planned-only / not-created | 15, 18, 25 | erst nach Registry-gestuetztem Company-Setup; keine Nutzung ohne Company-Aktionsplan | bisher kein BC-Nachweis |
 | `RM-SHARED` | spaetere Einkauf-/Finance-/Shared-Services-Zielcompany | geplant, Vorlage noch offen | Ziel: deutsch, DE-Final offen | planned-only / not-created | 12, 18, 19, 20, 25 | erst nach Registry-gestuetztem Company-Setup; keine Nutzung ohne Company-Aktionsplan | bisher kein BC-Nachweis |
 | `RM-AT` | spaetere EU-Auslandsgesellschaft fuer USt-/Intercompany-Lernfaelle | geplant, Vorlage noch offen | Ziel: AT/EU-Kontext, DE/AT-Final offen | planned-only / not-created | 18, 22, 25 | erst nach Registry-gestuetztem Company-Setup; keine Nutzung ohne Company-Aktionsplan | Buchentscheidung `FIND-BC-COMPANY-AT`, kein BC-Nachweis |
+| `RM-DE-LAB` | geplante saubere deutsch orientierte Labor-/Rebuild-Company innerhalb `MCP_1_20260210` | Vorlage offen: CRONUS-Kopie oder Neucompany noch zu entscheiden | Ziel: deutsch orientiertes Labor, DE-Final weiter offen | planned-only / not-created | 6, 7, 10-13, 19-21, 23, 25 | erst nach eigenem UI-first Company-Creation-Case; Foundation-Setup erst nach actual-visible Proof | `RM-DE-LAB-001` Governance-Entscheidung, kein BC-Nachweis |
 
 ## Aktuelle Grenze
 
@@ -37,7 +38,7 @@ Pflichtfelder: Zielcompany, Zweck, Buchkapitel, Datenbasis, erwartete Nutzung, R
 
 Der naechste Company-spezifische technische Schritt ist nur dann eine Company-Aktion, wenn vorher ein konkreter Company-Aktionsplan geschrieben wird. Ohne neuen Company-Zweck ist der naechste fachliche Lauf wieder der hoechstwertige Prozess-/Setup-Block.
 
-Naheliegender fachlicher Folgeschritt: `FIXEDASSETS-015-MACHINES-ACCOUNT-MAPPING-DECISION` oder ein besser bewerteter Setup-/Buchblock aus `AUTOPILOT-STATE.json`.
+Naheliegender fachlicher Folgeschritt: `RM-DE-LAB-CREATE-001` als eigener UI-first Company-Creation-Case, wenn eine saubere deutsch orientierte Laborcompany wirklich gestartet werden soll; sonst weiter mit dem hoechstwertigen Prozess-/Setup-Block in `RM-DEMO`.
 
 ## Rueckfalllogik
 

@@ -6,7 +6,7 @@ Status: `labor`, `guarded-execution`, `journal-line-trace`, `no-preview`, `no-po
 
 - Umgebung: `MCP_1_20260210`
 - Company: `RM-DEMO`
-- Document No.: `FADEP-20260627-2158`
+- Document No.: `FADEP-20260628-2133`
 - Request Page erkannt: ja
 - Document No. kontrolliert: ja (role:textbox:Document No.)
 - OK bestaetigt: ja (role:button:OK)
@@ -20,7 +20,6 @@ Status: `labor`, `guarded-execution`, `journal-line-trace`, `no-preview`, `no-po
 - Kein Setup Change.
 - Kein Company Switch.
 - Kein deutscher Finalnachweis.
-- Nach `OK` war auf `Fixed Asset G/L Journals` kein `FADEP-`-Journalzeilensignal sichtbar; deshalb ist der naechste Schritt ein Review vor jeder Wiederholung.
 
 ## Naechster Schritt
 

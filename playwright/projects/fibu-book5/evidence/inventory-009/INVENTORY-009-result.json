@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "purpose": "inventory-costing-trace-review",
+  "caseId": "INVENTORY-009-COSTING-TRACE-REVIEW",
+  "testId": "INVENTORY-009",
+  "source": "local-evidence-review",
+  "resultStatus": "observed",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "sourceCompany": "RM-DEMO",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/inventory-008/INVENTORY-008-POSTING-result.json",
+    "playwright/projects/fibu-book5/evidence/dimensions-001/DIMENSIONS-001-result.json"
+  ],
+  "reviewedDocumentNo": "INV008-899959",
+  "noNewBcRun": true,
+  "noAdditionalPosting": true,
+  "traceSummary": {
+    "itemLedgerEntryVisible": true,
+    "valueEntryVisible": true,
+    "glEntryVisible": true,
+    "itemLedgerQuantity2Visible": true,
+    "valueEntryAmount84000Visible": true,
+    "glEntryInventoryAccount14140Visible": true,
+    "inventoryValuationPreviewVisible": true,
+    "inventoryValuationRmM100Positive42000Visible": true,
+    "inventoryValuationTotal67000Visible": true,
+    "productlineMachineUiDefaultDimensionReverified": true
+  },
+  "accountingMeaning": {
+    "inventoryAccount": "14140",
+    "item": "RM-M100",
+    "location": "FRA-ZL",
+    "quantityPosted": 2,
+    "unitCost": 42000,
+    "postedValue": 84000,
+    "remainingRmM100ValueAfterKnownOutflow": 42000,
+    "rawSteelValueInValuation": 25000,
+    "totalInventoryValue": 67000
+  },
+  "proved": [
+    "INVENTORY-008 already proves a controlled Positive Adjmt. posting for RM-M100 +2 in FRA-ZL.",
+    "Item Ledger Entry, Value Entry and G/L Entry evidence exist for document INV008-899959.",
+    "Inventory Valuation evidence shows RM-M100 positive 42,000 and total inventory value 67,000.",
+    "DIMENSIONS-001 reverified PRODUCTLINE=MACHINE as UI-visible default dimension for RM-M100."
+  ],
+  "notProved": [
+    "No new inventory posting was executed in INVENTORY-009.",
+    "No cost adjustment or monthly closing process was executed.",
+    "No German chart-of-accounts final proof.",
+    "No Warehouse or Manufacturing process proof.",
+    "No final German inventory valuation screenshot."
+  ],
+  "safety": {
+    "bcRun": false,
+    "noPost": true,
+    "noPreviewPosting": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true,
+    "noNewDraft": true
+  },
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "rebuildInstruction": "In der deutschen Zielcompany den Lager-/Artikeljournal-Zugang oder fachlich passenden Einkaufs-/Fertigungszugang neu ausfuehren, danach Artikelposten, Wertposten, Sachposten, Dimensionen und Inventory Valuation mit deutschen Screenshots neu belegen.",
+  "targetGermanCompanyImpact": "Deutscher Artikel, Lagerort, Inventory Posting Setup, Sachkonten, Dimensionen und Bewertungsbericht muessen final neu aufgebaut und nachgewiesen werden.",
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/inventory-009/INVENTORY-009-result.json",
+    "playwright/projects/fibu-book5/evidence/inventory-009/INVENTORY-009-COSTING-TRACE-REVIEW.md",
+    "playwright/projects/fibu-book5/evidence/inventory-009/README.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/inventory-009/"
+  ],
+  "blockedBy": [],
+  "safeToFinalizeState": false,
+  "requiresReview": false,
+  "nextStep": "RM-DE-LAB-001: entscheiden, ob innerhalb MCP_1_20260210 eine saubere deutsche Laborcompany fuer Rebuild-Vorbereitung angelegt wird, statt RM-DEMO weiter mit CRONUS-USA-Laborbildern zu ueberdehnen."
+}

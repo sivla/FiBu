@@ -40,7 +40,7 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "FIXEDASSETS-246 depreciation execute route; PAYMENTS-009 completed the Apply/Preview queue gate without payment.",
+  "nextStep": "RM-DE-LAB-CREATE-001 UI-first company creation case, or continue RM-DEMO process work if company creation is deferred.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/fixedassets-labor-draft.md",
     "area": "fixedassets",
@@ -489,16 +489,18 @@
       "P2P-014",
       "PAYMENTS-005",
       "PAYMENTS-006",
-      "PAYMENTS-009"
+      "PAYMENTS-009",
+      "FIXEDASSETS-248",
+      "FIXEDASSETS-247"
     ],
     "postedInThisDeepRun": false,
     "previewPostingInThisDeepRun": false,
     "setupChangedInThisDeepRun": false,
     "companySwitchedInThisDeepRun": false,
     "nextBestLevers": [
-      "FIXEDASSETS-246 depreciation execute route",
-      "FIXEDASSETS-247 depreciation ledger trace if journal line/posting succeeds",
-      "BANK-001 controlled bank reconciliation lab route"
+      "RM-DE-LAB-CREATE-001-UI-FIRST-COMPANY-CREATION",
+      "BANK-002-CONTROLLED-RECONCILIATION-DRAFT-PREFLIGHT",
+      "FIXEDASSETS-DEPRECIATION-PARAMETER-FIX"
     ],
     "executePackages": [
       "P2P-014",
@@ -507,7 +509,8 @@
       "P2P-016",
       "P2P-019",
       "PAYMENTS-006",
-      "PAYMENTS-009"
+      "PAYMENTS-009",
+      "FIXEDASSETS-248"
     ],
     "progressPackages": [
       "P2P-012",
@@ -644,5 +647,59 @@
     "resultPath": "playwright/projects/fibu-book5/evidence/payments-009/PAYMENTS-009-result.json",
     "evidencePath": "playwright/projects/fibu-book5/evidence/payments-009/",
     "nextStep": "A controlled payment posting would need an explicit post-dialog/trace gate; marathon queue moves to Fixed Assets depreciation execute route."
+  },
+  "latestFixedassets248": {
+    "caseId": "FIXEDASSETS-248-FA-CALCULATE-DEPRECIATION-GUARDED-EXECUTION",
+    "queueAlias": "FIXEDASSETS-246-DEPRECIATION-EXECUTE-ROUTE",
+    "status": [
+      "execute-attempt",
+      "labor-blocked",
+      "no-journal-line-detected",
+      "needs-german-final-rebuild"
+    ],
+    "sourceInstance": "MCP_1_20260210",
+    "sourceCompany": "RM-DEMO",
+    "documentNo": "FADEP-20260628-2133",
+    "okConfirmedAtMostOnce": true,
+    "journalLineCreatedOrDetected": false,
+    "posted": false,
+    "previewPosting": false,
+    "resultPath": "playwright/projects/fibu-book5/evidence/fixedassets-248/FIXEDASSETS-248-result.json",
+    "nextStep": "Do not repeat Calculate Depreciation blindly; BANK-001 is next open queue item."
+  },
+  "latestBank001": {
+    "status": "labor-route-observed",
+    "resultFile": "playwright/projects/fibu-book5/evidence/bank-001/BANK-001-result.json",
+    "bestCandidate": "010-page-388-bank-account-reconciliation-candidate",
+    "noDraftCreated": true,
+    "noPreviewPosting": true,
+    "noPost": true,
+    "sourceCompany": "RM-DEMO",
+    "migrationRelevance": "needed-for-german-final",
+    "mustRecreateInFinalSandbox": true,
+    "nextStep": "BANK-002: den besten Kandidaten mit einem kontrollierten Draft-/Import-/Match-Preflight pruefen; erst dann Bankabstimmung buchen."
+  },
+  "latestDimensions001": {
+    "status": "labor-proven",
+    "resultFile": "playwright/projects/fibu-book5/evidence/dimensions-001/DIMENSIONS-001-result.json",
+    "sourceCompany": "RM-DEMO",
+    "migrationRelevance": "needed-for-german-final",
+    "mustRecreateInFinalSandbox": true,
+    "finalScreenshotNeeded": true
+  },
+  "latestInventory009": {
+    "status": "labor-sufficient-for-book-draft",
+    "resultFile": "playwright/projects/fibu-book5/evidence/inventory-009/INVENTORY-009-result.json",
+    "sourceCompany": "RM-DEMO",
+    "reviewedDocumentNo": "INV008-899959",
+    "migrationRelevance": "needed-for-german-final",
+    "mustRecreateInFinalSandbox": true,
+    "finalScreenshotNeeded": true
+  },
+  "latestRmDeLab001": {
+    "status": "planned-only-not-created",
+    "resultFile": "playwright/projects/fibu-book5/evidence/rm-de-lab-001/RM-DE-LAB-001-result.json",
+    "proposedCompany": "RM-DE-LAB",
+    "nextStep": "RM-DE-LAB-CREATE-001: dedicated UI-first Companies/New-or-Copy route with registry guard; only then run RM-DE-LAB-002 foundation setup."
   }
 }

@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "purpose": "dimension-default-ui-reverify-result",
+  "caseId": "DIMENSIONS-001-DEFAULT-DIMENSION-REVERIFY",
+  "testId": "DIMENSIONS-001",
+  "source": "playwright-ui-readonly",
+  "resultStatus": "observed",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "sourceCompany": "RM-DEMO",
+  "dataBasis": "CRONUS USA / RM-DEMO labor",
+  "targets": [
+    {
+      "id": "010-item-rm-m100-productline-machine",
+      "tableId": 27,
+      "tableName": "Item",
+      "no": "RM-M100",
+      "expectedDimension": "PRODUCTLINE=MACHINE",
+      "expectedUse": "O2C/P2P/Inventory item dimension",
+      "pageVisible": true,
+      "noVisible": false,
+      "dimensionCodeVisible": true,
+      "dimensionValueVisible": true,
+      "valuePostingVisible": true,
+      "targetSatisfied": true,
+      "riskyActionsVisibleNotClicked": [],
+      "textEvidenceFile": "010-item-rm-m100-productline-machine-page-540-text.txt"
+    },
+    {
+      "id": "020-customer-d10000-channel-b2b",
+      "tableId": 18,
+      "tableName": "Customer",
+      "no": "D10000",
+      "expectedDimension": "CHANNEL=B2B",
+      "expectedUse": "O2C customer dimension",
+      "pageVisible": true,
+      "noVisible": false,
+      "dimensionCodeVisible": true,
+      "dimensionValueVisible": true,
+      "valuePostingVisible": true,
+      "targetSatisfied": true,
+      "riskyActionsVisibleNotClicked": [],
+      "textEvidenceFile": "020-customer-d10000-channel-b2b-page-540-text.txt"
+    }
+  ],
+  "proved": [
+    "Default Dimensions page 540 shows PRODUCTLINE=MACHINE for RM-M100 and CHANNEL=B2B for D10000."
+  ],
+  "notProved": [
+    "No new dimension setup was created in this run.",
+    "No German final dimension setup was proved.",
+    "No posting or ledger dimension effect was newly proved."
+  ],
+  "safety": {
+    "noApiShortcut": true,
+    "noSetupChange": true,
+    "noNew": true,
+    "noEdit": true,
+    "noDelete": true,
+    "noPreviewPosting": true,
+    "noPost": true,
+    "noBookChange": true
+  },
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "rebuildInstruction": "In der deutschen Zielcompany Dimensionen PRODUCTLINE/CHANNEL, Werte MACHINE/B2B und Standarddimensionen fuer Zielartikel/Zieldebitor per UI einrichten und als deutsche Evidence neu fotografieren.",
+  "targetGermanCompanyImpact": "Standarddimensionen muessen in deutscher Zielcompany neu nachgewiesen werden, bevor O2C/P2P/Reporting als deutscher Finalpfad gelten.",
+  "blockedBy": [],
+  "safeToFinalizeState": false,
+  "requiresReview": false,
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/dimensions-001/DIMENSIONS-001-result.json",
+    "playwright/projects/fibu-book5/evidence/dimensions-001/DIMENSIONS-001-DEFAULT-DIMENSIONS-UI-REVERIFY.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/dimensions-001/"
+  ],
+  "nextStep": "INVENTORY-009: target stock posting trace pruefen oder buchen, weil Dimensionen UI-seitig weiter tragen."
+}

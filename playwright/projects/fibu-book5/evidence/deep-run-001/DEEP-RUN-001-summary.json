@@ -196,6 +196,96 @@
         "cleanup-or-correction"
       ],
       "result": "Cash Receipt Journal clean draft was prepared; Apply Entries opened read-only and showed D10000/PS-INV103297 context plus apply-related actions; Preview Posting was not directly visible; cleanup proven; no payment/application posted."
+    },
+    {
+      "id": "FIXEDASSETS-248",
+      "queueAlias": "FIXEDASSETS-246-DEPRECIATION-EXECUTE-ROUTE",
+      "type": "calculate-depreciation-execution-attempt blocked-before-journal-line",
+      "bcRun": true,
+      "posted": false,
+      "execute": true,
+      "highImpactExecute": false,
+      "signals": [
+        "calculate-depreciation-execution-attempt"
+      ],
+      "result": "Calculate Depreciation request page opened, Document No. controlled, OK clicked once; no depreciation journal-line signal detected; no Preview/Post."
+    },
+    {
+      "id": "FIXEDASSETS-247",
+      "type": "blocked-before-ledger-trace",
+      "bcRun": false,
+      "posted": false,
+      "execute": false,
+      "highImpactExecute": false,
+      "signals": [
+        "blocked-before-execution"
+      ],
+      "result": "Depreciation ledger trace blocked because no generated journal line or depreciation posting was detected after FIXEDASSETS-248."
+    },
+    {
+      "id": "BANK-001",
+      "queueId": "BANK-001-RECONCILIATION-CONTROLLED-LAB",
+      "type": "bank-reconciliation-route-readonly",
+      "status": "labor-route-observed",
+      "bcRun": true,
+      "posted": false,
+      "execute": false,
+      "highImpact": true,
+      "resultFile": "playwright/projects/fibu-book5/evidence/bank-001/BANK-001-result.json",
+      "summary": "Direct BC page route found for 010-page-388-bank-account-reconciliation-candidate; no action clicked.",
+      "nextStep": "BANK-002: den besten Kandidaten mit einem kontrollierten Draft-/Import-/Match-Preflight pruefen; erst dann Bankabstimmung buchen."
+    },
+    {
+      "id": "DIMENSIONS-001",
+      "queueId": "DIMENSIONS-001-DEFAULT-DIMENSION-PRACTICAL-TRACE",
+      "type": "default-dimensions-ui-reverify",
+      "status": "labor-proven",
+      "bcRun": true,
+      "posted": false,
+      "execute": false,
+      "highImpact": false,
+      "resultFile": "playwright/projects/fibu-book5/evidence/dimensions-001/DIMENSIONS-001-result.json",
+      "summary": "PRODUCTLINE=MACHINE and CHANNEL=B2B reverified on Default Dimensions page 540 without API shortcut.",
+      "nextStep": "INVENTORY-009: target stock posting trace pruefen oder buchen, weil Dimensionen UI-seitig weiter tragen."
+    },
+    {
+      "id": "INVENTORY-009",
+      "queueId": "INVENTORY-009-COSTING-TRACE-REVIEW",
+      "type": "inventory-costing-trace-review",
+      "status": "labor-sufficient-for-book-draft",
+      "bcRun": false,
+      "posted": false,
+      "execute": false,
+      "highImpact": false,
+      "resultFile": "playwright/projects/fibu-book5/evidence/inventory-009/INVENTORY-009-result.json",
+      "summary": "Inventory-008 ledger/value/G-L/valuation chain consolidated for book draft; no repeat posting.",
+      "nextStep": "RM-DE-LAB-001: entscheiden, ob innerhalb MCP_1_20260210 eine saubere deutsche Laborcompany fuer Rebuild-Vorbereitung angelegt wird, statt RM-DEMO weiter mit CRONUS-USA-Laborbildern zu ueberdehnen."
+    },
+    {
+      "id": "RM-DE-LAB-001",
+      "queueId": "RM-DE-LAB-001-CLEAN-LAB-COMPANY-DECISION",
+      "type": "clean-lab-company-decision",
+      "status": "observed",
+      "bcRun": false,
+      "posted": false,
+      "execute": false,
+      "highImpact": false,
+      "resultFile": "playwright/projects/fibu-book5/evidence/rm-de-lab-001/RM-DE-LAB-001-result.json",
+      "summary": "RM-DE-LAB planned-only; no company created; dedicated UI-first creation case required.",
+      "nextStep": "RM-DE-LAB-CREATE-001: dedicated UI-first Companies/New-or-Copy route with registry guard; only then run RM-DE-LAB-002 foundation setup."
+    },
+    {
+      "id": "RM-DE-LAB-002",
+      "queueId": "RM-DE-LAB-002-FOUNDATION-SETUP",
+      "type": "foundation-setup-gate",
+      "status": "blocked",
+      "bcRun": false,
+      "posted": false,
+      "execute": false,
+      "highImpact": false,
+      "resultFile": "playwright/projects/fibu-book5/evidence/rm-de-lab-001/RM-DE-LAB-001-result.json",
+      "summary": "Blocked because RM-DE-LAB does not exist yet.",
+      "nextStep": "RM-DE-LAB-CREATE-001: dedicated UI-first Companies/New-or-Copy route with registry guard; only then run RM-DE-LAB-002 foundation setup."
     }
   ],
   "postingSummary": {
@@ -215,15 +305,15 @@
     }
   },
   "nextBestLevers": [
-    "FIXEDASSETS-246 depreciation execute route",
-    "FIXEDASSETS-247 depreciation ledger trace if journal line/posting succeeds",
-    "BANK-001 controlled bank reconciliation lab route"
+    "RM-DE-LAB-CREATE-001-UI-FIRST-COMPANY-CREATION",
+    "BANK-002-CONTROLLED-RECONCILIATION-DRAFT-PREFLIGHT",
+    "FIXEDASSETS-DEPRECIATION-PARAMETER-FIX"
   ],
   "migrationRelevance": "needed-for-german-final",
   "mustRecreateInFinalSandbox": true,
   "finalScreenshotNeeded": true,
   "executeSummary": {
-    "executePackages": 7,
+    "executePackages": 8,
     "executePackageIds": [
       "P2P-014",
       "PAYMENTS-005",
@@ -231,15 +321,16 @@
       "P2P-016",
       "P2P-019",
       "PAYMENTS-006",
-      "PAYMENTS-009"
+      "PAYMENTS-009",
+      "FIXEDASSETS-248"
     ],
     "highImpactExecutePackages": 3,
     "highImpactPackageIds": [
-      "P2P-015",
-      "PAYMENTS-006",
-      "PAYMENTS-009"
+      "BANK-001"
     ],
     "lightExecutePackages": 4,
-    "readOnlyPackagesDoNotCountAsExecute": true
-  }
+    "readOnlyPackagesDoNotCountAsExecute": true,
+    "progressPackagesTotal": 24
+  },
+  "updatedAt": "2026-06-28T19:45:52.122Z"
 }
