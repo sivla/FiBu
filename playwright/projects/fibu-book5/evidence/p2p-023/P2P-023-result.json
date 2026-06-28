@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "purpose": "p2p-purchase-invoice-draft-keep-decision-result",
+  "caseId": "P2P-023-PURCHASE-INVOICE-DRAFT-CARD-DELETE-OR-KEEP-DECISION",
+  "source": "local-judge-review-of-p2p-021-022-evidence",
+  "resultStatus": "observed",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "sourceCompany": "RM-DEMO",
+  "targetDraftNo": "107229",
+  "decisionStatus": "keep-draft-as-labor-trace",
+  "decision": "Purchase Invoice draft 107229 is intentionally kept as RM-DEMO laboratory trace and must not be reused as the next P2P working document.",
+  "reason": "P2P-021 created a visible Purchase Invoice draft but did not prove cleanup. P2P-022 repeated the cleanup diagnosis in a filtered list and still showed 107229 visible after the guarded delete attempt. A further list-delete repeat would not add useful knowledge; only a genuinely new target-card delete route should revisit cleanup.",
+  "previewPosting": false,
+  "posted": false,
+  "setupChanges": [],
+  "changedRecords": [
+    {
+      "type": "Purchase Invoice",
+      "documentNo": "107229",
+      "status": "kept-labor-trace",
+      "reuseAllowed": false,
+      "cleanupStatus": "not-proven",
+      "reason": "Targeted cleanup diagnosis did not reach an unambiguous target-document delete confirmation."
+    }
+  ],
+  "postedRecords": [],
+  "flags": {
+    "noBcRun": true,
+    "noPlaywrightRun": true,
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true,
+    "keepDraftDocumented": true
+  },
+  "proved": [
+    "P2P-021 proved the Purchase Invoices direct-page route, scoped New action and visible K10000 vendor context for draft 107229.",
+    "P2P-022 proved draft 107229 remained visible before and after the guarded cleanup diagnosis.",
+    "Draft 107229 is now classified as kept RM-DEMO laboratory trace, not as an active P2P process base.",
+    "Further P2P work must use a fresh controlled document or a genuinely new target-card delete route."
+  ],
+  "notProved": [
+    "Purchase Invoice draft 107229 was not deleted.",
+    "RAW-STEEL was not entered on Purchase Invoice 107229.",
+    "No Preview Posting, posting, posted purchase invoice, vendor ledger trace, item ledger trace or G/L trace was produced.",
+    "No German final proof."
+  ],
+  "blockedBy": [],
+  "migrationRelevance": "helper-only",
+  "mustRecreateInFinalSandbox": false,
+  "finalScreenshotNeeded": false,
+  "targetGermanCompanyImpact": "Use this as cleanup governance only: German final P2P should predeclare cleanup or keep status for drafts and never silently reuse a failed-cleanup lab document.",
+  "safeToFinalizeState": false,
+  "requiresReview": false,
+  "statePatch": {},
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/p2p-021/P2P-021-result.json",
+    "playwright/projects/fibu-book5/evidence/p2p-022/P2P-022-result.json",
+    "playwright/projects/fibu-book5/evidence/p2p-023/P2P-023-KEEP-DECISION.md"
+  ],
+  "screenshots": [
+    "playwright/projects/fibu-book5/img/p2p-021-020-after-new.png",
+    "playwright/projects/fibu-book5/img/p2p-022-010-filtered-target-draft-before.png",
+    "playwright/projects/fibu-book5/img/p2p-022-030-filtered-target-draft-after.png"
+  ],
+  "summary": "P2P-023 classifies Purchase Invoice draft 107229 as kept laboratory trace. It must not be reused for item-line, Preview Posting or posting work; the next P2P step should use a fresh controlled draft or a new card-specific cleanup route.",
+  "nextCase": "P2P-024-PURCHASE-INVOICE-FRESH-DRAFT-LINE-ENTRY-GATE",
+  "nextStep": "Use a fresh controlled Purchase Invoice draft with explicit cleanup/keep plan and line-entry gate; do not reuse 107229."
+}

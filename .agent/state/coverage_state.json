@@ -129,12 +129,12 @@
   "hardExclusions": {
     "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
   },
-  "updatedAt": "2026-06-28T23:48:13.533Z",
+  "updatedAt": "2026-06-29T00:00:00.000Z",
   "activeArea": "p2p",
-  "currentBlock": "p2p-purchase-invoice-cleanup-or-keep-decision",
+  "currentBlock": "p2p-purchase-invoice-fresh-draft-line-entry-gate",
   "latestPracticalCase": "FIXEDASSETS-295-FA-DEPRECIATION-GUARDED-OK-FRESH-DOC-NO-POST",
   "latestReviewCase": "FIXEDASSETS-296-FA-DEPRECIATION-FRESH-OK-RESULT-BLOCKER-REVIEW",
-  "nextCase": "BANK-022-BANK020-BOOK-SYNC",
+  "nextCase": "P2P-024-PURCHASE-INVOICE-FRESH-DRAFT-LINE-ENTRY-GATE",
   "latestBank013": {
     "caseId": "BANK-013-CONTROLLED-NEXT-EVIDENCE-STEP",
     "status": [
@@ -786,8 +786,8 @@
     "nextCase": "P2P-021-PURCHASE-INVOICE-ALTERNATIVE-ROUTE-PREFLIGHT"
   },
   "p2p": {
-    "latestCase": "P2P-022-PURCHASE-INVOICE-DRAFT-CLEANUP-DIAGNOSIS",
-    "latestStatus": "labor-blocked-target-draft-still-visible",
+    "latestCase": "P2P-023-PURCHASE-INVOICE-DRAFT-CARD-DELETE-OR-KEEP-DECISION",
+    "latestStatus": "labor-sufficient-for-book-draft-keep-draft-as-labor-trace",
     "purchaseInvoiceAlternative": {
       "status": "partial-route-proven-cleanup-blocked",
       "sourceCompany": "RM-DEMO",
@@ -798,8 +798,8 @@
       "resultPath": "playwright/projects/fibu-book5/evidence/p2p-021/P2P-021-result.json",
       "nextCase": "P2P-022-PURCHASE-INVOICE-DRAFT-CLEANUP-DIAGNOSIS"
     },
-    "nextCase": "P2P-023-PURCHASE-INVOICE-DRAFT-CARD-DELETE-OR-KEEP-DECISION",
-    "nextStep": "Judge P2P-021/P2P-022 evidence and either run a target-card cleanup route or explicitly mark draft 107229 as kept laboratory trace before unlocking P2P item-line work.",
+    "nextCase": "P2P-024-PURCHASE-INVOICE-FRESH-DRAFT-LINE-ENTRY-GATE",
+    "nextStep": "Use a fresh controlled Purchase Invoice draft with explicit cleanup/keep plan; do not reuse 107229.",
     "purchaseInvoiceCleanup": {
       "status": "blocked-target-draft-still-visible",
       "sourceCompany": "RM-DEMO",
@@ -809,6 +809,16 @@
       "blocker": "target-draft-still-visible-after-guarded-delete-diagnosis",
       "resultPath": "playwright/projects/fibu-book5/evidence/p2p-022/P2P-022-result.json",
       "nextCase": "P2P-023-PURCHASE-INVOICE-DRAFT-CARD-DELETE-OR-KEEP-DECISION"
+    },
+    "purchaseInvoiceKeepDecision": {
+      "status": "keep-draft-as-labor-trace",
+      "sourceCompany": "RM-DEMO",
+      "targetDraft": "107229",
+      "reuseAllowed": false,
+      "noPost": true,
+      "noPreview": true,
+      "resultPath": "playwright/projects/fibu-book5/evidence/p2p-023/P2P-023-result.json",
+      "nextCase": "P2P-024-PURCHASE-INVOICE-FRESH-DRAFT-LINE-ENTRY-GATE"
     }
   }
 }

@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "caseId": "P2P-024-PURCHASE-INVOICE-FRESH-DRAFT-LINE-ENTRY-GATE",
+  "title": "Fresh Purchase Invoice draft line-entry gate",
+  "status": "planned",
+  "taskClass": "wizard_work",
+  "modelClass": "gpt-5.4-medium",
+  "usageLogRequired": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "p2p-purchase-invoice-fresh-draft-line-entry-gate",
+  "sourceCase": "P2P-023-PURCHASE-INVOICE-DRAFT-CARD-DELETE-OR-KEEP-DECISION",
+  "purpose": "Use a fresh controlled Purchase Invoice draft to test whether K10000 and RAW-STEEL can be entered visibly through the standard UI without reusing draft 107229.",
+  "allowedActions": [
+    "open-business-central-if-instance-and-company-match",
+    "run-playwright-if-case-preflight-passes",
+    "open-purchase-invoices-page-directly",
+    "create-one-fresh-controlled-draft",
+    "enter-vendor-k10000",
+    "attempt-raw-steel-line-entry-through-visible-standard-ui-only",
+    "capture-evidence",
+    "cleanup-or-explicitly-classify-keep-status",
+    "update-state"
+  ],
+  "defaultLockedActions": [
+    "preview-posting",
+    "posting",
+    "setup-change",
+    "company-switch",
+    "api-shortcut"
+  ],
+  "forbiddenActions": [
+    "reuse-draft-107229",
+    "claim-german-final-proof",
+    "book-claim-without-evidence",
+    "post-in-p2p-024",
+    "preview-posting-in-p2p-024",
+    "delete-any-document-without-unambiguous-target-context"
+  ],
+  "safetyGates": [
+    "instance-must-be-MCP_1_20260210",
+    "company-must-be-RM-DEMO",
+    "draft-107229-must-not-be-used-as-working-document",
+    "new-draft-number-must-be-captured-before-line-entry",
+    "vendor-k10000-must-be-visible-before-line-entry",
+    "raw-steel-line-must-be-visible-before-any-preview-or-posting-case-can-be-planned",
+    "cleanup-or-keep-status-must-be-documented"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "targetGermanCompanyImpact": "German final P2P can reuse the governance pattern: fresh document, visible vendor and line proof, then separate Preview/Posting gate.",
+  "finalScreenshotNeeded": true,
+  "nextStep": "Run a fresh Purchase Invoice draft line-entry gate without reusing 107229 and without Preview Posting or posting."
+}
