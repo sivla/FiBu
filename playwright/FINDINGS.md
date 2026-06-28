@@ -1,4 +1,19 @@
 
+## FIND-BC-FA-102 AfA-Request-Page-Zielwerte sind nach Mapping-Fix ohne OK bewiesen
+
+| Feld | Wert |
+|---|---|
+| Bereich | Fixed Assets / AfA-Route / Calculate Depreciation Request Page |
+| Testfall | `FIXEDASSETS-265-FA-DEPRECIATION-VALUE-PREFLIGHT-RETRY-AFTER-MAPPING-FIX` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-265/FIXEDASSETS-265-result.json`, `playwright/projects/fibu-book5/evidence/fixedassets-265/010-target-value-preflight.json` |
+| Ergebnis | `HGB`, `30.06.2026`, `FADEP-265-NO-OK` und `FA-CNC-01` wurden auf der Request Page geschrieben und wieder ausgelesen. |
+| Sicherheitsgrenze | `OK` wurde nicht bestaetigt; kein Preview Posting, kein Post, kein Setup Change, kein Company Switch, keine API-Abkuerzung. |
+| Buchwirkung | Die Klickanleitung darf jetzt die Parameterkontrolle vor `OK` als Labor-Evidence erklaeren. |
+| weiterhin offen | Ob `OK` Journalzeilen erzeugt; Preview Posting; Postenspur; deutscher Finalnachweis. |
+| naechster Schritt | `FIXEDASSETS-266`: Lokaler Gate-Review, ob genau ein kontrollierter OK-Ausfuehrungslauf sinnvoll ist. |
+
+Fuer Anfaenger ist das der zentrale Vor-Ausfuehrungspunkt: Vor `OK` muessen AfA-Buch, Buchungsdatum, Belegnummer und Anlagenfilter stimmen. FA-265 beweist diese Kontrolle, aber noch nicht die eigentliche AfA-Berechnung.
+
 ## FIND-BC-FA-101 AfA-Field-Mapping nutzt jetzt same-query `queryIndex`
 
 | Feld | Wert |

@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-266-FA-DEPRECIATION-OK-EXECUTION-GATE-REVIEW",
+  "status": "planned",
+  "workType": "local-ok-execution-gate-review",
+  "taskClass": "judge_work",
+  "requiresStrongModel": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Review whether the proven Calculate Depreciation request-page values justify one controlled OK execution case, without executing OK in this review.",
+  "triggeredBy": {
+    "caseId": "FIXEDASSETS-265-FA-DEPRECIATION-VALUE-PREFLIGHT-RETRY-AFTER-MAPPING-FIX",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-265/FIXEDASSETS-265-result.json",
+    "proved": [
+      "Depreciation Book = HGB",
+      "Posting Date = 30.06.2026",
+      "Document No. = FADEP-265-NO-OK",
+      "Fixed Asset No. = FA-CNC-01"
+    ]
+  },
+  "allowedActions": [
+    "read-local-evidence",
+    "review-ok-execution-gate",
+    "plan-controlled-execution-or-blocker",
+    "write-compact-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright",
+    "write-request-page-values",
+    "confirm-ok-on-calculate-depreciation",
+    "preview-posting",
+    "post",
+    "setup-change",
+    "company-switch",
+    "api-shortcut-without-explicit-case-permission"
+  ],
+  "safetyGates": [
+    "local-only",
+    "no-business-central",
+    "no-playwright",
+    "no-ok-in-review",
+    "no-preview-posting",
+    "no-posting",
+    "no-setup-change",
+    "no-company-switch",
+    "no-api-shortcut",
+    "judge-work-review-required"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-266/FIXEDASSETS-266-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-266/FIXEDASSETS-266-OK-EXECUTION-GATE-REVIEW.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-266/README.md"
+  ],
+  "acceptanceCriteria": [
+    "FA-265 value proof is reviewed against safety boundaries.",
+    "The review decides whether exactly one controlled OK execution may be planned.",
+    "If execution is unlocked, the next case must require document number, journal-line search, keep/cleanup status and no posting.",
+    "The review itself does not open BC or run Playwright."
+  ],
+  "stopConditions": [
+    "FA-265 evidence does not support all target values.",
+    "The next action would include Preview Posting or Post without journal-line evidence.",
+    "The next action would repeat value writing without a new purpose."
+  ],
+  "nextSafeAction": "Review FA-265 locally and decide whether to create a controlled OK-execution-only case.",
+  "createdAt": "2026-06-28T10:13:30.000+02:00",
+  "updatedAt": "2026-06-28T10:13:30.000+02:00"
+}
