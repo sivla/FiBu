@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-291-FA-DEPRECIATION-CONTROLLED-OK-AFTER-FA289-NO-POST",
-  "timestamp": "2026-06-28T13:56:00.000+02:00",
+  "runId": "BOOK-FIXEDASSETS-LABOR-DRAFT-001",
+  "timestamp": "2026-06-28T14:46:00.000+02:00",
   "date": "2026-06-28",
-  "workType": "playwright-controlled-fixedasset-calculate-depreciation-ok-no-post",
+  "workType": "bookdraft-fixedassets-labor-clickguide-substance",
   "taskClass": "wizard_work",
   "modelClass": "gpt-4-medium",
   "branch": "codex/token-efficient-autopilot-state",
@@ -13,36 +13,36 @@
   "migrationRelevance": "needed-for-german-final",
   "mustRecreateInFinalSandbox": true,
   "finalScreenshotNeeded": true,
-  "bcRun": true,
-  "playwrightRun": true,
+  "bcRun": false,
+  "playwrightRun": false,
   "posted": false,
   "previewPosting": false,
   "setupChanged": false,
   "companySwitched": false,
   "apiShortcut": false,
-  "bookChanged": false,
-  "dataChanged": true,
+  "bookChanged": true,
+  "dataChanged": false,
   "draftCreated": false,
   "recordEdited": false,
   "recordDeleted": false,
   "journalLineChanged": false,
-  "resultStatus": "observed",
+  "resultStatus": "labor-sufficient-for-book-draft",
   "blockedBy": [],
-  "summary": "FA-291 opened Calculate Depreciation in MCP_1_20260210 / RM-DEMO, proved HGB, 31.01.2027, FADEP-291-OK and FA-CNC-01 on the request page, confirmed OK exactly once, and then searched Fixed Asset G/L Journals. FADEP-291-OK was not found afterward. No Preview Posting, Post, setup change, company switch, API shortcut or book change occurred.",
+  "summary": "Created a beginner-friendly Fixed Assets labor draft from existing RM-DEMO evidence. The draft explains FA-CNC-01, HGB, MACHINES, FA G/L Journal, G/L Entries, FA Ledger Entries, the proven acquisition trace and the Calculate Depreciation OK blocker. No BC or Playwright execution occurred.",
   "proved": [
-    "Calculate Depreciation request page was opened in MCP_1_20260210 / RM-DEMO.",
-    "HGB, 31.01.2027, FADEP-291-OK and FA-CNC-01 were visibly proven before OK.",
-    "OK was confirmed exactly once.",
-    "FADEP-291-OK was not found in Fixed Asset G/L Journals after OK.",
-    "No Preview Posting or Post was executed."
+    "Fixed Assets acquisition evidence is now translated into beginner-friendly bookdraft substance.",
+    "The draft clearly marks RM-DEMO as laboratory/preproduction, not German final proof.",
+    "FA-292 is classified as labor-blocked and labor-sufficient-for-book-draft.",
+    "The Calculate Depreciation lesson is documented: OK does not automatically mean a visible journal line exists."
   ],
   "notProved": [
-    "No depreciation journal line was found.",
-    "No Preview Posting result is proven.",
-    "No depreciation posting is proven.",
-    "No German final proof exists."
+    "No new BC evidence was generated in this run.",
+    "No German final screenshots exist.",
+    "The draft is not yet integrated into the main book chapter.",
+    "AfA journal line, Preview Posting and depreciation posting remain open."
   ],
   "evidenceRefs": [
+    "playwright/projects/fibu-book5/book-drafts/fixedassets-labor-draft.md",
     "playwright/projects/fibu-book5/evidence/fixedassets-291/FIXEDASSETS-291-result.json",
     "playwright/projects/fibu-book5/evidence/fixedassets-291/FIXEDASSETS-291-CONTROLLED-OK-NO-POST.md",
     "playwright/projects/fibu-book5/evidence/fixedassets-291/010-ok-execution-result.json",
@@ -50,45 +50,39 @@
     "playwright/projects/fibu-book5/evidence/fixedassets-291/README.md"
   ],
   "changedFiles": [
-    "package.json",
-    "playwright/projects/fibu-book5/tests/fixedassets-291-fa-depreciation-controlled-ok-after-fa289-no-post.spec.ts",
-    "playwright/projects/fibu-book5/evidence/fixedassets-291/",
+    "playwright/projects/fibu-book5/book-drafts/fixedassets-labor-draft.md",
+    "playwright/projects/fibu-book5/BOOK-CLICK-GUIDE-COVERAGE.md",
     ".agent/state/current.json",
     ".agent/state/coverage_state.json",
     ".agent/state/last_run_summary.json",
-    ".agent/state/cases/fixedassets-291-fa-depreciation-controlled-ok-after-fa289-no-post.json",
-    ".agent/state/cases/fixedassets-292-fa-depreciation-ok-result-blocker-review.json",
-    ".agent/state/german-final-rebuild-map.json"
+    ".agent/state/cases/fixedassets-292-fa-depreciation-ok-result-blocker-review.json"
   ],
   "validationCommands": [
     "npm run agent:preflight",
     "npm run agent:context",
     "npm run agent:dry-run",
     "npm run agent:run-plan",
-    "npm run fibu:fixedassets:fa-depreciation-controlled-ok-after-fa289-no-post",
-    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-291/FIXEDASSETS-291-result.json",
-    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-291/FIXEDASSETS-291-result.json",
+    "npm run agent:dry-run",
+    "npm run agent:run-plan",
     "npm run check:encoding",
-    "git diff --check",
-    "npx tsc --noEmit"
+    "git diff --check"
   ],
-  "validationNotes": [
-    "`npx tsc --noEmit` was attempted because a TypeScript Playwright test changed, but the repository has no local `typescript` dependency installed. No dependency was added."
-  ],
+  "validationNotes": [],
   "boundaries": [
     "Labor-reference only.",
-    "Calculate Depreciation OK was confirmed exactly once.",
-    "No depreciation journal line was found.",
+    "Labor-draft only.",
+    "No BC execution.",
+    "No Playwright execution.",
     "No Preview Posting.",
     "No posting.",
     "No setup change.",
     "No company switch.",
     "No API shortcut.",
-    "No book content changed.",
+    "Bookdraft content changed.",
     "German final proof remains open."
   ],
   "activeArea": "fixedassets",
-  "activeCase": "FIXEDASSETS-292-FA-DEPRECIATION-OK-RESULT-BLOCKER-REVIEW",
-  "nextCase": "FIXEDASSETS-292-FA-DEPRECIATION-OK-RESULT-BLOCKER-REVIEW",
-  "nextStep": "Locally review why FA-291 OK did not produce visible FADEP-291-OK journal evidence before any repeat, Preview Posting or Post."
+  "activeCase": "BOOK-FIXEDASSETS-CH21-LAB-DRAFT-INTEGRATION",
+  "nextCase": "BOOK-FIXEDASSETS-CH21-LAB-DRAFT-INTEGRATION",
+  "nextStep": "Integrate the Fixed Assets labor draft into Chapter 21 as explicitly marked labor/preproduction material, or add screenshot placeholders and German final rebuild instructions before the next execute/probe."
 }
