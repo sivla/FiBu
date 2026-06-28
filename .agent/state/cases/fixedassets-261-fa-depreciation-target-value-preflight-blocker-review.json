@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-261-FA-DEPRECIATION-TARGET-VALUE-PREFLIGHT-BLOCKER-REVIEW",
+  "status": "planned",
+  "workType": "local-navigation-blocker-review",
+  "taskClass": "wizard_work",
+  "requiresStrongModel": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Review the FIXEDASSETS-260 navigation blocker before any further Calculate Depreciation target-value retry.",
+  "triggeredBy": {
+    "caseId": "FIXEDASSETS-260-FA-DEPRECIATION-GUARD-REFINEMENT-AND-VALUE-PREFLIGHT-RETRY",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-260/FIXEDASSETS-260-result.json",
+    "blockers": [
+      "calculate-depreciation-result-not-clicked",
+      "request-page-not-recognized",
+      "request-page-frame-not-found"
+    ]
+  },
+  "hypothesis": "The no-OK guard refinement worked in principle, but the retry did not reach the Calculate Depreciation request page because Tell-Me/search did not expose the expected action candidate in this session/context. This is a navigation/search-state blocker, not evidence of a Business Central setup blocker.",
+  "allowedActions": [
+    "read-local-evidence",
+    "review-navigation-blocker",
+    "classify-blocker",
+    "plan-safe-navigation-refinement",
+    "write-compact-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright",
+    "write-request-page-values",
+    "confirm-ok-on-calculate-depreciation",
+    "preview-posting",
+    "post",
+    "setup-change",
+    "company-switch",
+    "api-shortcut-without-explicit-case-permission"
+  ],
+  "safetyGates": [
+    "local-only",
+    "no-business-central",
+    "no-playwright",
+    "no-ok",
+    "no-preview-posting",
+    "no-posting",
+    "no-setup-change",
+    "no-company-switch",
+    "no-api-shortcut"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-261/FIXEDASSETS-261-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-261/FIXEDASSETS-261-NAVIGATION-BLOCKER-REVIEW.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-261/README.md"
+  ],
+  "acceptanceCriteria": [
+    "FIXEDASSETS-260 blocker is classified as navigation, UI, Playwright helper, BC setup or evidence blocker.",
+    "The review decides whether a scoped navigation refinement is justified.",
+    "The review does not unlock OK, Preview Posting or Post.",
+    "The next case is explicit and case-gated."
+  ],
+  "stopConditions": [
+    "Evidence does not support the blocker classification.",
+    "The next action would require OK, Preview Posting, Post, setup change or company switch.",
+    "The proposed navigation refinement would click an ambiguous Tell-Me result."
+  ],
+  "nextSafeAction": "Review FA-260 locally and decide whether a scoped Tell-Me/request-page navigation refinement is justified before any further value preflight retry.",
+  "createdAt": "2026-06-28T07:35:00.000+02:00",
+  "updatedAt": "2026-06-28T07:35:00.000+02:00"
+}

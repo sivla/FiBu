@@ -1,4 +1,19 @@
 
+## FIND-BC-FA-097 AfA-Guard-Retry blockiert vor Request Page durch Such-/Navigationszustand
+
+| Feld | Wert |
+|---|---|
+| Bereich | Fixed Assets / AfA-Route / Tell-Me-Navigation |
+| Testfall | `FIXEDASSETS-260-FA-DEPRECIATION-GUARD-REFINEMENT-AND-VALUE-PREFLIGHT-RETRY` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-260/FIXEDASSETS-260-result.json`, `playwright/projects/fibu-book5/evidence/fixedassets-260/010-target-value-preflight.json` |
+| Ergebnis | Der guard-verfeinerte Retry blieb sicher, erreichte aber die `Calculate Depreciation` Request Page nicht. |
+| Blocker | `calculate-depreciation-result-not-clicked`, `request-page-not-recognized`, `request-page-frame-not-found` |
+| Einordnung | Navigations-/Suchzustandsblocker: Der Tell-Me-Kandidat war diesmal nicht sichtbar/anklickbar; die kompakte Seitenevidence zeigte nur `Account No.`. |
+| weiterhin gesperrt | Zielwerte schreiben, `OK`, Preview Posting, Post, Setup Change, Company Switch, API-Abkuerzung |
+| naechster Schritt | `FIXEDASSETS-261`: Lokaler Review, ob der Einstieg in `Calculate Depreciation` stabiler gescoped werden muss, bevor ein weiterer no-OK Wertpreflight sinnvoll ist. |
+
+Fuer Playwright ist das ein guter Anti-Pattern-Hinweis: Ein zuvor funktionierender Tell-Me-Pfad ist nicht automatisch stabil, wenn die Shell oder der Fokus in einem anderen Kontext steht. Vor einem weiteren Retry muss die Navigation selbst wieder feld-/kontextfest werden.
+
 ## FIND-BC-FA-096 Request-Page-OK ist sichtbar erlaubt, OK-Klick bleibt gesperrt
 
 | Feld | Wert |
