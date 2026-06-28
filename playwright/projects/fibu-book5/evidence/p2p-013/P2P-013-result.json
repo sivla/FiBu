@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "caseId": "P2P-013-ITEM-JOURNAL-EXISTING-TRACE-SYNC",
+  "parentCaseId": "BC-DEEP-RUN-001-MULTI-ROUTE-SANDBOX-PROGRESS",
+  "source": "existing-evidence-sync",
+  "resultStatus": "observed",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "sourceCompany": "RM-DEMO",
+  "bcRun": false,
+  "playwrightRun": false,
+  "previewPosting": false,
+  "posted": false,
+  "setupChanges": [],
+  "createdRecords": [],
+  "changedRecords": [],
+  "postedRecords": [],
+  "flags": {
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true,
+    "reusedExistingEvidence": true
+  },
+  "sourceEvidence": [
+    {
+      "caseId": "P2P-012-ALTERNATIVE-STANDARD-UI-ROUTE",
+      "path": "playwright/projects/fibu-book5/evidence/p2p-012/P2P-012-result.json",
+      "meaning": "Item Journal ist als stabilster direkt erreichbarer Mengen-/Lager-/Wertpfad beobachtet."
+    },
+    {
+      "caseId": "INVENTORY-008",
+      "path": "playwright/projects/fibu-book5/evidence/inventory-008/INVENTORY-008-POSTING-result.json",
+      "meaning": "Item Journal kann in RM-DEMO Materialzugang, Artikelposten, Wertposten, Sachposten und Inventory Valuation als Labortrace liefern."
+    }
+  ],
+  "proved": [
+    "Item Journal is a reusable material/quantity/location/value route in RM-DEMO based on existing Inventory evidence.",
+    "The route is useful for Inventory and for explaining the boundary between P2P document flow and inventory journal material effect.",
+    "No repeated posting was needed for this decision."
+  ],
+  "notProved": [
+    "No creditor-side P2P receipt was created by P2P-013.",
+    "No Purchase Order partial receipt was fixed.",
+    "No German final proof exists."
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "safeToFinalizeState": false,
+  "requiresReview": true,
+  "statePatch": {},
+  "blockedBy": [],
+  "nextStep": "For creditor P2P continue with Purchase Journal/Purchase Invoice value-entry gate; for Inventory continue with existing Item Journal trace as bookdraft material."
+}

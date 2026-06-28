@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "caseId": "BC-DEEP-RUN-001-MULTI-ROUTE-SANDBOX-PROGRESS",
+  "source": "autopilot-deep-run-summary",
+  "resultStatus": "observed",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "sourceCompany": "RM-DEMO",
+  "progressPackages": [
+    {
+      "id": "P2P-012",
+      "type": "playwright-readonly-route-comparison",
+      "bcRun": true,
+      "posted": false,
+      "result": "Purchase Journal, Item Journal, Purchase Invoices and Requisition Worksheet were compared by direct URL; Item Journal is strongest for material/value effect."
+    },
+    {
+      "id": "FIXEDASSETS-240",
+      "type": "playwright-readonly-action-inventory",
+      "bcRun": true,
+      "posted": false,
+      "result": "Fixed Asset G/L Journal actions were inventoried read-only; Calculate Depreciation route was not found through safe non-executing dropdowns."
+    },
+    {
+      "id": "PAYMENTS-002",
+      "type": "playwright-readonly-payment-readiness",
+      "bcRun": true,
+      "posted": false,
+      "result": "Bank accounts, Cash Receipt Journal, Payment Journal and Apply Entries paths remain reachable without posting or application."
+    },
+    {
+      "id": "P2P-013",
+      "type": "existing-evidence-boundary-sync",
+      "bcRun": false,
+      "posted": false,
+      "result": "Existing INVENTORY-008 trace is linked as Item Journal material/value proof, but explicitly not as creditor P2P proof."
+    },
+    {
+      "id": "DEEP-RUN-001-SYNC",
+      "type": "coverage-and-next-route-sync",
+      "bcRun": false,
+      "posted": false,
+      "result": "Deep-run state, coverage and route priorities were consolidated for the next execute case."
+    }
+  ],
+  "postingSummary": {
+    "postedInThisDeepRun": false,
+    "previewPostingInThisDeepRun": false,
+    "setupChangedInThisDeepRun": false,
+    "companySwitchedInThisDeepRun": false,
+    "apiShortcutUsed": false
+  },
+  "p2pStatus": {
+    "purchaseOrderLines": "blocked-do-not-repeat-cell-edit-select-items-or-generic-action-discovery",
+    "alternativeRoutes": {
+      "itemJournal": "best-material-value-effect-route-but-inventory-not-creditor-p2p",
+      "purchaseJournal": "p2p-candidate-needs-value-entry-gate",
+      "purchaseInvoices": "p2p-candidate-needs-document-line-gate",
+      "requisitionWorksheet": "planning-readiness-only"
+    }
+  },
+  "nextBestLevers": [
+    "Purchase Journal value-entry gate for creditor-side P2P",
+    "Fixed Assets depreciation route review after FA-240",
+    "Payment posting/apply controlled lab case from PAYMENTS-002 readiness",
+    "Bookdraft sync for P2P/Inventory boundary"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true
+}

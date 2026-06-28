@@ -14,7 +14,7 @@
 | Frage | Befund |
 |---|---|
 | Bank Accounts erreichbar | ja |
-| Zielbankkonto BANK-RM-01 sichtbar | nein |
+| Zielbankkonto BANK-RM-01 sichtbar | ja |
 | Cash Receipt Journal erreichbar | ja |
 | Payment Journal erreichbar | ja |
 | Apply Entries Debitor erreichbar | ja |
@@ -33,10 +33,10 @@ Kapitel 19/20 kann den Payments-Pfad jetzt als Readiness-Kette darstellen: zuers
 
 ## Blocker / Grenze
 
-- Zielbankkonto BANK-RM-01 ist im Bank-Accounts-Bild/Seitentext nicht sichtbar; vor einer Laborzahlung muss Bankkonto-Setup oder bewusstes CRONUS-Ersatzbankkonto entschieden werden.
+- Kein neuer fachlicher Blocker im Readiness-Pfad; Buchung bleibt trotzdem gesperrt bis zur expliziten Freigabe.
 - CRONUS-USA-Labor, kein deutscher Finalnachweis.
 - Deutsche USt/Vorsteuer bleibt offen.
 
 ## Naechster Schritt
 
-PAYMENTS-003 darf noch nicht buchen. Naechster Schritt ist ein idempotenter Bankkonto-Setup-/Fit-Lauf oder eine dokumentierte Entscheidung fuer ein vorhandenes CRONUS-Bankkonto als Laborersatz.
+PAYMENTS-003 kann eine einzelne Laborzahlung vorbereiten, aber erst nach expliziter Buchungsfreigabe und mit Preview/Journal-Check soweit verfuegbar.

@@ -11,7 +11,6 @@ Status: CRONUS-USA-Labor, controlled-readiness, keine Zahlung, kein Ausgleich, k
 | `070-vendor-apply-entries-page-text.txt` | kompakter Seitentext | Apply-Entries-Pfad aus Kreditorenposten | kein Set Applies-to ID, kein Ausgleich | labor |
 | `PAYMENTS-002-result.json` | JSON-Ergebnis | strukturierter Readiness-Befund und Blocker | kein Zahlungs-Finalnachweis | labor |
 | `PAYMENTS-002-READINESS.md` | Lernzusammenfassung | Buchwirkung, Grenzen und naechster Schritt | keine Buchung | labor |
-| `PAYMENTS-READINESS.md` | Governance-Entscheid | Payment-/OP-Freigabe ist wegen fehlendem `BANK-RM-01` gesperrt; naechster Schritt ist Bankkonto-Fit/Entscheid | keine Zahlung, kein Ausgleich, keine Bankabstimmung | labor |
 | `*.screenshot.json` | Screenshot-Metadaten | Zweck und Limitationen der PNGs | keine eigenstaendige fachliche Wahrheit ohne Text/JSON | labor |
 
 ## Kernergebnis
