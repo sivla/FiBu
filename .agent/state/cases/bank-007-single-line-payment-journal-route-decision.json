@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "caseId": "BANK-007-SINGLE-LINE-PAYMENT-JOURNAL-ROUTE-DECISION",
+  "title": "Select single-line payment journal route after global reconciliation posting gate",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "sourceCompany": "RM-DEMO",
+  "workType": "local-evidence-route-decision",
+  "status": "done",
+  "classification": [
+    "labor-sufficient-for-book-draft",
+    "route-decision",
+    "no-bc-run",
+    "needs-german-final-rebuild"
+  ],
+  "allowedActions": [
+    "read-existing-evidence",
+    "compare-payment-routes",
+    "write-compact-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "business-central-execution",
+    "playwright-execution",
+    "preview-posting",
+    "post",
+    "payment",
+    "setup-change",
+    "company-switch",
+    "api-shortcut",
+    "book-final-claim"
+  ],
+  "evidenceInputs": [
+    "playwright/projects/fibu-book5/evidence/bank-006/BANK-006-result.json",
+    "playwright/projects/fibu-book5/evidence/payments-011/PAYMENTS-011-result.json",
+    "playwright/projects/fibu-book5/evidence/p2p-002/P2P-002-result.json"
+  ],
+  "decision": {
+    "rejectedRoute": "Confirming Payment Reconciliation Journal / Post Payments Only after only selecting document 108204",
+    "reasonRejected": "The visible confirmation remains global: Do you want to post the payments? It does not prove that only document 108204 would be posted.",
+    "selectedRoute": "Single-line payment journal route with one target ledger entry, Journal Check, Apply Entries preflight, post dialog screenshot and ledger trace",
+    "whySelected": "PAYMENTS-011 and P2P-002 prove that RM-DEMO can post customer and vendor payments from scoped journal lines with preflight and trace evidence."
+  },
+  "resultPath": "playwright/projects/fibu-book5/evidence/bank-007/BANK-007-result.json",
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": true,
+  "rebuildInstruction": "In the German final sandbox, recreate the selected payment as a single journal line, capture Journal Check/Apply/Posting-dialog evidence, then trace vendor/customer, detailed ledger, bank account ledger and G/L entries.",
+  "targetGermanCompanyImpact": "German bank, payment journal, posting groups, open item and ledger trace must be rebuilt with German accounts and screenshots.",
+  "finalScreenshotNeeded": true,
+  "nextStep": "BANK-008-SINGLE-LINE-VENDOR-PAYMENT-PREFLIGHT: prepare a controlled single-line vendor payment journal preflight for document 108204 / First Up Consultants; no posting until Journal Check, Apply and trace gates are explicit."
+}

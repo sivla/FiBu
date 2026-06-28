@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "BANK-007-SINGLE-LINE-PAYMENT-JOURNAL-ROUTE-DECISION",
+  "source": "local-evidence-analysis",
+  "resultStatus": "observed",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "sourceCompany": "RM-DEMO",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-medium",
+  "bcRun": false,
+  "playwrightRun": false,
+  "posted": false,
+  "previewPosting": false,
+  "paymentPosted": false,
+  "setupChanged": false,
+  "companySwitch": false,
+  "apiShortcut": false,
+  "bookChanged": false,
+  "routeDecision": {
+    "rejectedRoute": "Payment Reconciliation Journal / Post Payments Only with only selected row 108204",
+    "selectedRoute": "Single-line Payment Journal or Cash Receipt Journal route",
+    "postingAllowedNow": false,
+    "reason": "BANK-006 proves selected-row context, but the confirmation dialog remains global and does not explicitly scope the posting to document 108204. Existing PAYMENTS-011 and P2P-002 prove safer one-line journal posting patterns with Journal Check, Apply preflight and ledger trace."
+  },
+  "proved": [
+    "BANK-006 selected the target row 108204 / First Up Consultants / -2.151,46 before opening the posting gate.",
+    "BANK-006 did not approve confirming Post Payments Only because the dialog text stayed global.",
+    "PAYMENTS-011 proves a single-line customer payment route through Cash Receipt Journal with Journal Check 0 Issues, Apply Entries preflight, posting dialog and Customer/G/L trace.",
+    "P2P-002 proves a single-line vendor payment route through Payment Journal with Journal Check 0 Issues, Apply Entries preflight, posting dialog and Vendor/Bank/G/L trace.",
+    "The next payment posting attempt should use a scoped one-line journal route or an explicitly approved all-accepted-lines reconciliation case, not a blind global reconciliation posting."
+  ],
+  "notProved": [
+    "No new payment was posted in BANK-007.",
+    "No new Preview Posting was opened in BANK-007.",
+    "No Payment Reconciliation Journal posting was confirmed.",
+    "No single-line payment journal was created for document 108204 in BANK-007.",
+    "No German final bank, payment or compliance proof."
+  ],
+  "inputsReviewed": [
+    "playwright/projects/fibu-book5/evidence/bank-006/BANK-006-result.json",
+    "playwright/projects/fibu-book5/evidence/payments-011/PAYMENTS-011-result.json",
+    "playwright/projects/fibu-book5/evidence/p2p-002/P2P-002-result.json"
+  ],
+  "nextExecutableCase": {
+    "caseId": "BANK-008-SINGLE-LINE-VENDOR-PAYMENT-PREFLIGHT",
+    "goal": "Create or prepare a controlled single-line vendor payment journal preflight for document 108204 / First Up Consultants, then only proceed to posting if Journal Check, Apply Entries and trace plan prove the scope.",
+    "minimumGateBeforePosting": [
+      "target open vendor or customer ledger entry visible",
+      "one journal line visible with document number, account type, account number, amount, balancing bank account and applies-to document",
+      "Journal Check shows 0 Issues and 0 Lines with issues",
+      "Apply Entries is read-only checked without Set Applies-to ID or Post Application side effects",
+      "post dialog screenshot names the journal context",
+      "ledger trace targets are defined before confirmation"
+    ]
+  },
+  "changedFiles": [
+    ".agent/state/cases/bank-007-single-line-payment-journal-route-decision.json",
+    "playwright/projects/fibu-book5/evidence/bank-007/BANK-007-result.json",
+    "playwright/projects/fibu-book5/evidence/bank-007/BANK-007-SINGLE-LINE-PAYMENT-ROUTE-DECISION.md",
+    "playwright/projects/fibu-book5/evidence/bank-007/README.md",
+    ".agent/state/current.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/marathon.json",
+    ".agent/state/marathon_queue.json"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/bank-007/BANK-007-SINGLE-LINE-PAYMENT-ROUTE-DECISION.md",
+    "playwright/projects/fibu-book5/evidence/bank-007/README.md"
+  ],
+  "warnings": [
+    "This is a route decision, not a new BC execution.",
+    "The German final sandbox must rebuild the payment evidence with German account, bank and screenshot context."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": false,
+  "statePatch": {},
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": true,
+  "rebuildInstruction": "Recreate this route in the German target sandbox with one payment journal line, explicit Journal Check, Apply Entries preflight, posting dialog and full ledger trace. Replace RM-DEMO screenshots with German final screenshots.",
+  "targetGermanCompanyImpact": "German bank account, payment journal, posting groups, open item and ledger trace must be rebuilt.",
+  "finalScreenshotNeeded": true,
+  "reason": "BANK-007 closes the decision gap left by BANK-006 and selects the safer scoped one-line journal route for the next executable payment case."
+}

@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-28T21:20:00.000Z",
+  "updatedAt": "2026-06-28T21:45:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "bank",
-  "activeCase": "BANK-006-SELECTED-ROW-POSTING-GATE",
-  "active_case_file": ".agent/state/cases/bank-006-selected-row-posting-gate.json",
-  "lastReferenceCase": "BANK-006-SELECTED-ROW-POSTING-GATE",
-  "lastReferenceCaseFile": ".agent/state/cases/bank-006-selected-row-posting-gate.json",
+  "activeCase": "BANK-007-SINGLE-LINE-PAYMENT-JOURNAL-ROUTE-DECISION",
+  "active_case_file": ".agent/state/cases/bank-007-single-line-payment-journal-route-decision.json",
+  "lastReferenceCase": "BANK-007-SINGLE-LINE-PAYMENT-JOURNAL-ROUTE-DECISION",
+  "lastReferenceCaseFile": ".agent/state/cases/bank-007-single-line-payment-journal-route-decision.json",
   "mode": "bc-specialist-labor-book-production",
   "requiresStrongModel": false,
   "requiredPreflightChecks": [
@@ -40,7 +40,7 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "BANK-007: Single-Line Payment Journal posting route vorbereiten oder ausdruecklichen All-Accepted-Lines Payment-Reconciliation-Postingfall mit Ledger Trace freigeben.",
+  "nextStep": "BANK-008: kontrollierte Single-Line Vendor Payment Journal Preflight fuer Document 108204 / First Up Consultants; kein Posting ohne Journal Check, Apply und Trace-Gate.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/fixedassets-labor-draft.md",
     "area": "fixedassets",
@@ -844,5 +844,37 @@
     "mustRecreateInFinalSandbox": true,
     "finalScreenshotNeeded": true,
     "nextStep": "BANK-007: prefer a Single-Line Payment Journal posting route, or create an explicit all-accepted-lines Payment Reconciliation posting case with ledger trace approval."
+  },
+  "latestBank007": {
+    "caseId": "BANK-007-SINGLE-LINE-PAYMENT-JOURNAL-ROUTE-DECISION",
+    "status": [
+      "labor-sufficient-for-book-draft",
+      "route-decision",
+      "single-line-journal-route-selected",
+      "payment-reconciliation-global-posting-rejected",
+      "needs-german-final-rebuild"
+    ],
+    "sourceInstance": "MCP_1_20260210",
+    "sourceCompany": "RM-DEMO",
+    "posted": false,
+    "paymentPosted": false,
+    "bankReconciliationPosted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "apiShortcut": false,
+    "bcRun": false,
+    "playwrightRun": false,
+    "resultPath": "playwright/projects/fibu-book5/evidence/bank-007/BANK-007-result.json",
+    "evidencePath": "playwright/projects/fibu-book5/evidence/bank-007/",
+    "decision": "Use a scoped single-line Payment Journal or Cash Receipt Journal route before any further payment posting; do not confirm the global Payment Reconciliation Post Payments Only dialog for 108204 without explicit all-lines approval.",
+    "basis": [
+      "BANK-006 selected target row but left global post dialog unconfirmed.",
+      "PAYMENTS-011 proves single-line customer payment posting through Cash Receipt Journal.",
+      "P2P-002 proves single-line vendor payment posting through Payment Journal."
+    ],
+    "migrationRelevance": "needed-for-german-final",
+    "mustRecreateInFinalSandbox": true,
+    "finalScreenshotNeeded": true,
+    "nextStep": "BANK-008: controlled single-line vendor payment journal preflight for document 108204 / First Up Consultants; no posting until Journal Check, Apply and ledger-trace gates are explicit."
   }
 }

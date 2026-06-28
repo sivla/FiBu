@@ -385,6 +385,26 @@
       "resultFile": "playwright/projects/fibu-book5/evidence/bank-006/BANK-006-result.json",
       "summary": "Target row 108204 was selected before opening Post Payments Only, but the confirmation remains global ('Do you want to post the payments?'); no payment was posted.",
       "nextStep": "BANK-007: prefer a Single-Line Payment Journal posting route, or create an explicit all-accepted-lines Payment Reconciliation posting case with ledger trace approval."
+    },
+    {
+      "id": "BANK-007",
+      "queueId": "BANK-007-SINGLE-LINE-PAYMENT-JOURNAL-ROUTE-DECISION",
+      "type": "payment-route-decision local-gate no-post",
+      "status": "labor-sufficient-for-book-draft",
+      "bcRun": false,
+      "posted": false,
+      "previewPosting": false,
+      "setupChanged": false,
+      "execute": false,
+      "highImpactExecute": false,
+      "signals": [
+        "payment-route-decision",
+        "single-line-journal-route-selected",
+        "no-post-gate"
+      ],
+      "resultFile": "playwright/projects/fibu-book5/evidence/bank-007/BANK-007-result.json",
+      "summary": "Single-line Payment Journal/Cash Receipt Journal route selected as safer payment path; blind Payment Reconciliation Post Payments Only remains rejected after BANK-006 global dialog risk.",
+      "nextStep": "BANK-008: controlled single-line vendor payment journal preflight for document 108204 / First Up Consultants; no posting until Journal Check, Apply and ledger-trace gates are explicit."
     }
   ],
   "postingSummary": {
@@ -404,8 +424,7 @@
     }
   },
   "nextBestLevers": [
-    "BANK-007-SINGLE-LINE-PAYMENT-JOURNAL-POSTING-ROUTE",
-    "PAYMENTS-SINGLE-LINE-POSTING-CASE",
+    "BANK-008-SINGLE-LINE-VENDOR-PAYMENT-PREFLIGHT",
     "RM-DE-LAB-CREATE-001-UI-FIRST-COMPANY-CREATION"
   ],
   "migrationRelevance": "needed-for-german-final",
@@ -433,7 +452,7 @@
     ],
     "lightExecutePackages": 2,
     "readOnlyPackagesDoNotCountAsExecute": true,
-    "progressPackagesTotal": 29
+    "progressPackagesTotal": 30
   },
-  "updatedAt": "2026-06-28T21:20:00.000Z"
+  "updatedAt": "2026-06-28T21:45:00.000Z"
 }
