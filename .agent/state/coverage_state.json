@@ -39,7 +39,7 @@
       "chapter": "Kapitel 20",
       "status": "labor-sufficient-for-book-draft",
       "latestPracticalCase": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
-      "latestReviewCase": "BANK-017-VENDOR-PAYMENT-PREFLIGHT-GATE-DECISION",
+      "latestReviewCase": "BANK-019-VENDOR-PAYMENT-108205-POSTING-DECISION",
       "customerPaymentAnchor": "PAY011-PS103297",
       "vendorPaymentAnchor": "BANK009-108204",
       "covered": [
@@ -54,7 +54,8 @@
         "G/L Entries",
         "Vendor Ledger candidate scout before Payment Journal preflight",
         "Payment Journal 108205 preflight",
-        "Payment Journal cleanup after no-post preflight"
+        "Payment Journal cleanup after no-post preflight",
+        "Payment Journal 108205 posting decision gate"
       ],
       "openLimits": [
         "No bank reconciliation",
@@ -63,9 +64,10 @@
         "No German bank/compliance final screenshots",
         "BANK-014: candidate 108205 / invoice 107197 not sufficiently proven against Vendor Ledger Entries for Apply/Post",
         "BANK-015: Payment Reconciliation candidate 108205/107197 rejected for posting; next proof must start from Vendor Ledger Entries",
-        "BANK-018 did not post payment 108205; BANK-019 must decide before any controlled posting case."
+        "BANK-018 did not post payment 108205; BANK-019 must decide before any controlled posting case.",
+        "BANK-019 approved a separate posting case but did not post 108205."
       ],
-      "nextStep": "BANK-019: controlled posting decision from BANK-018 evidence; do not post in decision case.",
+      "nextStep": "BANK-020: run the separate controlled posting case for BANK018-108205 with post-dialog screenshot and Vendor/Bank/G-L ledger trace.",
       "postPaymentReconciliationState": "old invoice 108204 still visible in Payment Reconciliation after BANK009-108204; do not post old reconciliation context blindly",
       "staleReconciliationDecision": "BANK-012 parks stale 108204 Payment Reconciliation signal after BANK009-108204; do not post it blindly.",
       "latestBlockedCase": "BANK-014-FRESH-RECONCILIATION-CANDIDATE-GATE"
@@ -95,12 +97,12 @@
   "hardExclusions": {
     "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
   },
-  "updatedAt": "2026-06-28T22:55:45.907Z",
+  "updatedAt": "2026-06-28T22:59:57.201Z",
   "activeArea": "bank",
-  "currentBlock": "bank-payment-journal-108205-posting-decision",
+  "currentBlock": "bank-payment-journal-108205-controlled-posting",
   "latestPracticalCase": "FIXEDASSETS-295-FA-DEPRECIATION-GUARDED-OK-FRESH-DOC-NO-POST",
   "latestReviewCase": "FIXEDASSETS-296-FA-DEPRECIATION-FRESH-OK-RESULT-BLOCKER-REVIEW",
-  "nextCase": "BANK-019-VENDOR-PAYMENT-108205-POSTING-DECISION",
+  "nextCase": "BANK-020-VENDOR-PAYMENT-108205-CONTROLLED-POSTING",
   "latestBank013": {
     "caseId": "BANK-013-CONTROLLED-NEXT-EVIDENCE-STEP",
     "status": [
@@ -593,5 +595,29 @@
     "noSetupChange": true,
     "noCompanySwitch": true,
     "nextCase": "BANK-019-VENDOR-PAYMENT-108205-POSTING-DECISION"
+  },
+  "latestBank019": {
+    "caseId": "BANK-019-VENDOR-PAYMENT-108205-POSTING-DECISION",
+    "status": [
+      "labor-sufficient-for-book-draft",
+      "posting-gate-approved",
+      "needs-german-final-rebuild"
+    ],
+    "resultPath": "playwright/projects/fibu-book5/evidence/bank-019/BANK-019-result.json",
+    "decision": "approve-separate-controlled-posting-case",
+    "target": {
+      "documentNo": "108205",
+      "relatedInvoiceNo": "107197",
+      "vendorNo": "40000",
+      "vendorName": "Wide World Importers",
+      "amount": "3.123,37",
+      "bankAccountNo": "BANK-RM-01",
+      "paymentDocumentNo": "BANK018-108205"
+    },
+    "summary": "BANK-019 approved a separate BANK-020 controlled posting case based on BANK-018 clean preflight and BANK-009 trace pattern. No BC run and no posting occurred in BANK-019.",
+    "noPost": true,
+    "noPreview": true,
+    "noBcRun": true,
+    "nextCase": "BANK-020-VENDOR-PAYMENT-108205-CONTROLLED-POSTING"
   }
 }

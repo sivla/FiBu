@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "caseId": "BANK-020-VENDOR-PAYMENT-108205-CONTROLLED-POSTING",
+  "title": "Post exactly one controlled vendor payment for 108205 from Payment Journal and trace ledger impact",
+  "status": "planned",
+  "taskClass": "wizard_work",
+  "modelClass": "gpt-5.4-high",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "controlled-payment-posting-with-ledger-trace",
+  "sourceCase": "BANK-019-VENDOR-PAYMENT-108205-POSTING-DECISION",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/bank-019/BANK-019-result.json",
+    "playwright/projects/fibu-book5/evidence/bank-018/BANK-018-result.json",
+    "playwright/projects/fibu-book5/evidence/bank-009/BANK-009-result.json"
+  ],
+  "target": {
+    "documentNo": "108205",
+    "relatedInvoiceNo": "107197",
+    "vendorNo": "40000",
+    "vendorName": "Wide World Importers",
+    "amount": "3.123,37",
+    "bankAccountNo": "BANK-RM-01",
+    "paymentDocumentNo": "BANK018-108205"
+  },
+  "purpose": "Create a fresh single Payment Journal line for BANK018-108205, recheck the target entry, Journal Check and Apply Entries, capture the post confirmation dialog, post exactly once if all gates are met, then trace Vendor Ledger, Detailed Vendor Ledger, Bank Account Ledger and G/L Entries.",
+  "allowedActions": [
+    "open-business-central-if-instance-and-company-match",
+    "run-playwright-if-case-preflight-passes",
+    "create-payment-journal-draft-line",
+    "run-journal-check",
+    "open-apply-entries-readonly",
+    "capture-post-dialog-before-confirm",
+    "post-exactly-once-if-dialog-and-gates-match",
+    "trace-vendor-ledger-entries",
+    "trace-detailed-vendor-ledger-entries",
+    "trace-bank-account-ledger-entries",
+    "trace-gl-entries",
+    "write-evidence",
+    "update-state"
+  ],
+  "defaultLockedActions": [
+    "payment-posting-until-bank020-gates-pass",
+    "bank-reconciliation-posting",
+    "setup-change",
+    "keep-draft-after-failed-gate"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "claim-german-final-proof",
+    "api-shortcut-without-explicit-case-permission",
+    "post-more-than-once",
+    "post-if-target-entry-or-journal-check-mismatch",
+    "post-payment-reconciliation-journal"
+  ],
+  "safetyGates": [
+    "instance-and-company-confirmed",
+    "bank-019-approved",
+    "target-vendor-ledger-entry-visible-before-draft",
+    "single-line-scope-only",
+    "journal-check-zero-issues",
+    "apply-entries-context-visible-readonly",
+    "post-dialog-screenshot-before-confirmation",
+    "expected-ledger-trace-plan-defined",
+    "no-second-posting"
+  ],
+  "expectedLedgerTrace": [
+    "Vendor Ledger Entry for invoice 108205 after payment",
+    "Vendor Ledger Entry for payment BANK018-108205",
+    "Detailed Vendor Ledger Entry for BANK018-108205",
+    "Bank Account Ledger Entry for BANK018-108205",
+    "G/L Entries for BANK018-108205"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "targetGermanCompanyImpact": "German final company needs its own controlled payment posting and ledger trace; this RM-DEMO posting remains lab reference only.",
+  "finalScreenshotNeeded": true,
+  "nextStep": "Execute BANK-020 only if all gates match; post exactly once and trace Vendor/Bank/G-L entries."
+}

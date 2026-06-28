@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-28T22:55:45.907Z",
+  "updatedAt": "2026-06-28T22:59:57.201Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "bank",
-  "activeCase": "BANK-019-VENDOR-PAYMENT-108205-POSTING-DECISION",
-  "active_case_file": ".agent/state/cases/bank-019-vendor-payment-108205-posting-decision.json",
-  "lastReferenceCase": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
+  "activeCase": "BANK-020-VENDOR-PAYMENT-108205-CONTROLLED-POSTING",
+  "active_case_file": ".agent/state/cases/bank-020-vendor-payment-108205-controlled-posting.json",
+  "lastReferenceCase": "BANK-019-VENDOR-PAYMENT-108205-POSTING-DECISION",
   "lastReferenceCaseFile": ".agent/state/cases/bank-017-vendor-payment-preflight-gate-decision.json",
   "mode": "bc-specialist-labor-book-production",
   "requiresStrongModel": false,
@@ -40,7 +40,7 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "BANK-019: review BANK-018 preflight and either approve BANK-020 controlled posting or document remaining blocker; no posting in BANK-019.",
+  "nextStep": "BANK-020: run the separate controlled posting case for BANK018-108205 with post-dialog screenshot and Vendor/Bank/G-L ledger trace.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/fixedassets-labor-draft.md",
     "area": "fixedassets",
@@ -1385,8 +1385,8 @@
     "decision": "Approve a separate no-post Payment Journal preflight for Vendor Ledger document 108205. Do not use Payment Reconciliation Apply/Post for this target. BANK-018 may create exactly one scoped draft line, run Journal Check/open Apply Entries if reachable, and must cleanup or explicitly document keep status. Posting remains locked.",
     "nextStep": "BANK-018: controlled no-post Payment Journal preflight for 108205; do not post."
   },
-  "workType": "controlled-payment-posting-gate-decision",
-  "lastCompletedCase": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
+  "workType": "controlled-payment-posting-with-ledger-trace",
+  "lastCompletedCase": "BANK-019-VENDOR-PAYMENT-108205-POSTING-DECISION",
   "latestBank018": {
     "caseId": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
     "status": [
@@ -1411,5 +1411,29 @@
     "noSetupChange": true,
     "noCompanySwitch": true,
     "nextCase": "BANK-019-VENDOR-PAYMENT-108205-POSTING-DECISION"
+  },
+  "latestBank019": {
+    "caseId": "BANK-019-VENDOR-PAYMENT-108205-POSTING-DECISION",
+    "status": [
+      "labor-sufficient-for-book-draft",
+      "posting-gate-approved",
+      "needs-german-final-rebuild"
+    ],
+    "resultPath": "playwright/projects/fibu-book5/evidence/bank-019/BANK-019-result.json",
+    "decision": "approve-separate-controlled-posting-case",
+    "target": {
+      "documentNo": "108205",
+      "relatedInvoiceNo": "107197",
+      "vendorNo": "40000",
+      "vendorName": "Wide World Importers",
+      "amount": "3.123,37",
+      "bankAccountNo": "BANK-RM-01",
+      "paymentDocumentNo": "BANK018-108205"
+    },
+    "summary": "BANK-019 approved a separate BANK-020 controlled posting case based on BANK-018 clean preflight and BANK-009 trace pattern. No BC run and no posting occurred in BANK-019.",
+    "noPost": true,
+    "noPreview": true,
+    "noBcRun": true,
+    "nextCase": "BANK-020-VENDOR-PAYMENT-108205-CONTROLLED-POSTING"
   }
 }

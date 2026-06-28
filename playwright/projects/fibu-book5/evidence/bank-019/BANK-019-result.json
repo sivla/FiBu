@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "BANK-019-VENDOR-PAYMENT-108205-POSTING-DECISION",
+  "source": "local-evidence-review",
+  "resultStatus": "observed",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "sourceCompany": "RM-DEMO",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "usageLogRequired": true,
+  "bcRun": false,
+  "playwrightRun": false,
+  "posted": false,
+  "previewPosting": false,
+  "paymentPosted": false,
+  "setupChanged": false,
+  "companySwitch": false,
+  "apiShortcut": false,
+  "bookChanged": false,
+  "decision": "approve-separate-controlled-posting-case",
+  "target": {
+    "documentNo": "108205",
+    "relatedInvoiceNo": "107197",
+    "vendorNo": "40000",
+    "vendorName": "Wide World Importers",
+    "amount": "3.123,37",
+    "bankAccountNo": "BANK-RM-01",
+    "paymentDocumentNo": "BANK018-108205"
+  },
+  "evidenceReviewed": [
+    "playwright/projects/fibu-book5/evidence/bank-018/BANK-018-result.json",
+    "playwright/projects/fibu-book5/evidence/bank-009/BANK-009-result.json"
+  ],
+  "gateEvaluation": {
+    "bank018Observed": true,
+    "targetVendorLedgerVisible": true,
+    "journalCheckZeroIssues": true,
+    "journalCheckZeroLinesWithIssues": true,
+    "applyEntriesReadonlyVisible": true,
+    "dangerousApplyActionNotClicked": true,
+    "draftCleanupProven": true,
+    "bank009ReferencePostingTraceAvailable": false,
+    "postingSeparatedFromDecisionCase": true
+  },
+  "approvedNextCase": "BANK-020-VENDOR-PAYMENT-108205-CONTROLLED-POSTING",
+  "proved": [
+    "BANK-018 preflight is clean enough to open a separate controlled posting case for vendor payment 108205.",
+    "The target Vendor Ledger Entry 108205 / Wide World Importers / Vendor 40000 was visible before the draft line.",
+    "The Payment Journal draft BANK018-108205 showed vendor, bank, amount and Applies-to Doc. No. 108205 with Journal Check zero issues.",
+    "Apply Entries was opened read-only and no Set/Post Application action was clicked.",
+    "The BANK-018 draft line was cleaned up before the run ended.",
+    "BANK-009 provides the reference trace pattern for post-dialog screenshot plus Vendor/Bank/G/L ledger follow-up."
+  ],
+  "notProved": [
+    "BANK-019 did not post payment 108205.",
+    "BANK-019 did not open Business Central or run Playwright.",
+    "No Vendor/Bank/G-L ledger trace exists yet for payment document BANK018-108205.",
+    "No bank reconciliation was posted.",
+    "No German final bank/payment proof."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/bank-019/BANK-019-result.json",
+    "playwright/projects/fibu-book5/evidence/bank-019/BANK-019-POSTING-DECISION.md",
+    "playwright/projects/fibu-book5/evidence/bank-019/README.md",
+    ".agent/state/cases/bank-020-vendor-payment-108205-controlled-posting.json"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/bank-019/"
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": false,
+  "statePatch": {},
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": true,
+  "rebuildInstruction": "In the German target company, rebuild this gate from a German open vendor entry, German bank account, Payment Journal preflight and German posting trace.",
+  "targetGermanCompanyImpact": "German final company needs its own open vendor item, apply proof, controlled posting and ledger trace. RM-DEMO remains laboratory reference only.",
+  "finalScreenshotNeeded": true,
+  "nextStep": "BANK-020: run the separate controlled posting case for BANK018-108205 with post-dialog screenshot and Vendor/Bank/G-L ledger trace."
+}
