@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-286-FA-DEPRECIATION-BATCH-LOOKUP-BLOCKER-REVIEW",
+  "status": "planned",
+  "workType": "local-fixedasset-depreciation-batch-lookup-blocker-review",
+  "taskClass": "judge_work",
+  "requiresStrongModel": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Review FA-285 blocked lookup evidence and decide whether DEFAULT / FA-JNL can be accepted as read-only batch-list evidence or whether another safer proof route is required.",
+  "triggeredBy": {
+    "caseId": "FIXEDASSETS-285-FA-DEPRECIATION-BATCH-LOOKUP-LIST-NO-SELECT",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-285/FIXEDASSETS-285-result.json",
+    "decision": "Batch lookup opened General Journal Batches and showed DEFAULT / FA-JNL, but OK/Cancel and aria-selected rows make automatic value acceptance unsafe."
+  },
+  "targetObjects": {
+    "journalPageId": 5628,
+    "journalPageName": "Fixed Asset G/L Journals",
+    "lookupPage": "General Journal Batches",
+    "visibleBatchCandidate": "DEFAULT",
+    "visibleNoSeries": "FA-JNL",
+    "fixedAssetNo": "FA-CNC-01",
+    "depreciationBook": "HGB"
+  },
+  "allowedActions": [
+    "read-evidence",
+    "local-analysis",
+    "decide-next-fixedasset-depreciation-gate",
+    "write-compact-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright",
+    "select-batch-value",
+    "confirm-ok-on-batch-lookup",
+    "confirm-ok-on-calculate-depreciation",
+    "preview-posting",
+    "post",
+    "setup-change",
+    "company-switch",
+    "api-shortcut-without-explicit-case-permission",
+    "edit-record",
+    "new-draft",
+    "delete-record",
+    "book-edit"
+  ],
+  "reviewQuestions": [
+    "Does visible DEFAULT / Default Journal Batch / FA-JNL count as available batch-list evidence, even though no value was selected?",
+    "Is aria-selected=true only focus/highlight in the lookup dialog or a real selection/change risk?",
+    "Should the next live step read the journal after safe Escape, use a page URL/read-only batch list, or stop the depreciation route as output-target blocker?",
+    "What should the click guide teach about lookup dialogs with OK/Cancel and pre-highlighted rows?"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-286/FIXEDASSETS-286-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-286/FIXEDASSETS-286-BATCH-LOOKUP-BLOCKER-REVIEW.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-286/README.md"
+  ],
+  "acceptanceCriteria": [
+    "No Business Central or Playwright execution occurs.",
+    "FA-285 is classified without treating OK-dialog selection as a committed value.",
+    "Repeat OK, Preview Posting and Post remain blocked unless a new gated case explicitly justifies otherwise.",
+    "The next case is concrete and smaller than a broad rerun."
+  ],
+  "stopConditions": [
+    "A decision would require new BC evidence.",
+    "A proposed next action would select DEFAULT, confirm OK, edit journal lines, Preview Posting or Post without a separate gate."
+  ],
+  "nextSafeAction": "Review FA-285 locally and decide whether DEFAULT/FA-JNL is read-only candidate evidence or whether another no-select route is required.",
+  "createdAt": "2026-06-28T11:02:29.100+02:00",
+  "updatedAt": "2026-06-28T11:02:29.100+02:00"
+}

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "FIXEDASSETS-285-FA-DEPRECIATION-BATCH-LOOKUP-LIST-NO-SELECT",
-  "status": "planned",
+  "status": "blocked",
   "workType": "playwright-readonly-fixedasset-depreciation-batch-lookup-list-no-select",
   "taskClass": "wizard_work",
   "requiresStrongModel": false,
@@ -85,7 +85,37 @@
     "A list item becomes selected or a field value changes.",
     "The diagnosis would require typing into Batch Name or pressing Enter."
   ],
-  "nextSafeAction": "Implement and run FA-285 as a no-select lookup-list probe; do not select a batch, confirm OK, Preview Posting or Post.",
+  "result": {
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-285/FIXEDASSETS-285-result.json",
+    "resultStatus": "blocked",
+    "summary": "FA-285 opened the Batch Name lookup. The General Journal Batches dialog showed DEFAULT / Default Journal Batch / FA-JNL, but the dialog also contained OK/Cancel and aria-selected rows. No value was intentionally selected or changed; Escape closed the dialog. Local blocker review is required before any retry or acceptance.",
+    "evidenceRefs": [
+      "playwright/projects/fibu-book5/evidence/fixedassets-285/FIXEDASSETS-285-result.json",
+      "playwright/projects/fibu-book5/evidence/fixedassets-285/FIXEDASSETS-285-BATCH-LOOKUP-LIST-NO-SELECT.md",
+      "playwright/projects/fibu-book5/evidence/fixedassets-285/010-batch-lookup-focused-text.txt",
+      "playwright/projects/fibu-book5/evidence/fixedassets-285/020-batch-lookup-list.json",
+      "playwright/projects/fibu-book5/evidence/fixedassets-285/README.md"
+    ],
+    "safety": {
+      "noBatchValueChanged": true,
+      "noBatchNameTyped": true,
+      "noEnterPressed": true,
+      "lookupDialogClosedWithEscape": true,
+      "noJournalLineInsertEditDelete": true,
+      "noCalculateDepreciationOk": true,
+      "noPreviewPosting": true,
+      "noPost": true,
+      "noSetupChange": true,
+      "noCompanySwitch": true,
+      "noApiShortcut": true,
+      "noBookChange": true
+    },
+    "blockedBy": [
+      "General Journal Batches dialog contains OK/Cancel.",
+      "Lookup rows include aria-selected=true, including DEFAULT / Default Journal Batch / FA-JNL."
+    ]
+  },
+  "nextSafeAction": "Run FIXEDASSETS-286 local blocker review; do not retry the lookup, select DEFAULT, confirm OK, Preview Posting or Post before classification.",
   "createdAt": "2026-06-28T10:52:25.501+02:00",
-  "updatedAt": "2026-06-28T10:52:25.501+02:00"
+  "updatedAt": "2026-06-28T11:02:29.100+02:00"
 }
