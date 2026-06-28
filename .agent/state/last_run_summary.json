@@ -1,16 +1,16 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-260-FA-DEPRECIATION-GUARD-REFINEMENT-AND-VALUE-PREFLIGHT-RETRY",
-  "timestamp": "2026-06-28T07:35:00.000+02:00",
+  "runId": "FIXEDASSETS-261-FA-DEPRECIATION-TARGET-VALUE-PREFLIGHT-BLOCKER-REVIEW",
+  "timestamp": "2026-06-28T08:05:00.000+02:00",
   "date": "2026-06-28",
-  "workType": "playwright-guard-refinement-and-guarded-request-page-value-preflight-no-ok",
+  "workType": "local-navigation-blocker-review",
   "taskClass": "wizard_work",
   "modelClass": "gpt-4-medium",
   "branch": "codex/token-efficient-autopilot-state",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "bcRun": true,
-  "playwrightRun": true,
+  "bcRun": false,
+  "playwrightRun": false,
   "posted": false,
   "previewPosting": false,
   "setupChanged": false,
@@ -27,46 +27,36 @@
   "okConfirmed": false,
   "depreciationCalculated": false,
   "executingActionClicked": false,
-  "resultStatus": "blocked",
-  "blockedBy": [
-    "calculate-depreciation-result-not-clicked",
-    "request-page-not-recognized",
-    "request-page-frame-not-found"
-  ],
-  "summary": "FA-260 implemented the guard-refined retry but did not reach Calculate Depreciation. Tell-Me/search exposed no usable candidate, the request page was not recognized and compact text only contained Account No. No values were written; OK, Preview Posting and Post remain locked.",
+  "resultStatus": "observed",
+  "summary": "FA-261 classified FA-260 as a Playwright navigation/search-state blocker. FA-245 had an exact text fallback and FA-258 clicked the scoped Aufgaben row; FA-260 used only the row path and found no candidate. FA-262 is planned for scoped navigation refinement plus one no-OK retry.",
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/fixedassets-260/FIXEDASSETS-260-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-260/FIXEDASSETS-260-TARGET-VALUE-PREFLIGHT-NO-OK.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-260/010-target-value-preflight.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-260/010-target-value-preflight-text.txt"
+    "playwright/projects/fibu-book5/evidence/fixedassets-261/FIXEDASSETS-261-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-261/FIXEDASSETS-261-NAVIGATION-BLOCKER-REVIEW.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-261/README.md"
   ],
   "changedFiles": [
-    "package.json",
-    "playwright/projects/fibu-book5/tests/fixedassets-260-fa-depreciation-guard-refinement-and-value-preflight-retry.spec.ts",
-    "playwright/projects/fibu-book5/evidence/fixedassets-260/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-261/",
     ".agent/state/current.json",
-    ".agent/state/cases/fixedassets-260-fa-depreciation-guard-refinement-and-value-preflight-retry.json",
     ".agent/state/cases/fixedassets-261-fa-depreciation-target-value-preflight-blocker-review.json",
+    ".agent/state/cases/fixedassets-262-fa-depreciation-navigation-refinement-and-value-preflight-retry.json",
     ".agent/state/coverage_state.json",
     ".agent/state/last_run_summary.json",
     "playwright/FINDINGS.md",
     "playwright/projects/fibu-book5/BOOK-CLICK-GUIDE-COVERAGE.md"
   ],
   "validationCommands": [
-    "npm run fibu:fixedassets:fa-depreciation-guard-refinement-value-preflight-retry",
     "npm run agent:preflight",
     "npm run agent:dry-run",
     "npm run agent:run-plan",
-    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-260/FIXEDASSETS-260-result.json",
-    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-260/FIXEDASSETS-260-result.json",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-261/FIXEDASSETS-261-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-261/FIXEDASSETS-261-result.json",
     "npm run check:encoding",
     "git diff --check"
   ],
   "boundaries": [
-    "Business Central was opened only inside MCP_1_20260210.",
-    "Company stayed RM-DEMO.",
-    "Calculate Depreciation was not clicked in this run.",
-    "Target request-page values were not written.",
+    "No Business Central session was opened.",
+    "No Playwright test was run.",
+    "No request-page values were written.",
     "OK was not confirmed.",
     "No depreciation journal line was created.",
     "No Preview Posting was opened.",
@@ -75,7 +65,7 @@
     "No German final proof exists."
   ],
   "activeArea": "fixedassets",
-  "activeCase": "FIXEDASSETS-260-FA-DEPRECIATION-GUARD-REFINEMENT-AND-VALUE-PREFLIGHT-RETRY",
-  "nextCase": "FIXEDASSETS-261-FA-DEPRECIATION-TARGET-VALUE-PREFLIGHT-BLOCKER-REVIEW",
-  "nextStep": "FIXEDASSETS-261: locally review the no-OK target-value preflight blocker before any further value write."
+  "activeCase": "FIXEDASSETS-261-FA-DEPRECIATION-TARGET-VALUE-PREFLIGHT-BLOCKER-REVIEW",
+  "nextCase": "FIXEDASSETS-262-FA-DEPRECIATION-NAVIGATION-REFINEMENT-AND-VALUE-PREFLIGHT-RETRY",
+  "nextStep": "FIXEDASSETS-262: add the scoped exact-text fallback from FA-245 to the guard-refined FA-260 path, then run exactly one no-OK value preflight retry."
 }

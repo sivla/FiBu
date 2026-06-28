@@ -1,4 +1,18 @@
 
+## FIND-BC-FA-098 AfA-Navigation braucht exakten Text-Fallback aus FA-245
+
+| Feld | Wert |
+|---|---|
+| Bereich | Fixed Assets / AfA-Route / Tell-Me-Navigation |
+| Testfall | `FIXEDASSETS-261-FA-DEPRECIATION-TARGET-VALUE-PREFLIGHT-BLOCKER-REVIEW` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-261/FIXEDASSETS-261-result.json`, `playwright/projects/fibu-book5/evidence/fixedassets-261/FIXEDASSETS-261-NAVIGATION-BLOCKER-REVIEW.md` |
+| Entscheidung | Der FA-260-Blocker ist als Playwright-Navigations-/Suchzustandsblocker klassifiziert. |
+| Ursache | FA-260 nutzte nur die `Aufgaben`-Zeile; FA-245 hatte zusätzlich einen Fallback auf genau einen sichtbaren exakten Texttreffer `Calculate Depreciation`. |
+| weiterhin gesperrt | `OK`, Preview Posting, Post, Setup Change, Company Switch, API-Abkuerzung |
+| naechster Schritt | `FIXEDASSETS-262`: Navigation verfeinern: erst scoped Aufgaben-Zeile, danach genau ein sichtbarer exakter Texttreffer; kein blindes Enter. |
+
+Fuer Playwright-Lernen ist das ein wiederverwendbarer BC-Punkt: Tell-Me-Ergebnisse sind kontextabhaengig. Ein robuster Klickpfad braucht Kandidateninventar und einen streng begrenzten Fallback, nicht einfach einen weiteren Suchlauf.
+
 ## FIND-BC-FA-097 AfA-Guard-Retry blockiert vor Request Page durch Such-/Navigationszustand
 
 | Feld | Wert |
