@@ -1,4 +1,18 @@
 
+## FIND-BC-FA-112 Post-acquisition Diagnose findet weiterhin keine AfA-Journalzeile
+
+| Feld | Wert |
+|---|---|
+| Bereich | Fixed Assets / AfA-Route / Eligibility und Batch-Ziel |
+| Testfall | `FIXEDASSETS-275-FA-DEPRECIATION-ELIGIBILITY-AND-BATCH-TARGET-READONLY-DIAGNOSIS` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-275/FIXEDASSETS-275-result.json`, `playwright/projects/fibu-book5/evidence/fixedassets-275/FIXEDASSETS-275-ELIGIBILITY-AND-BATCH-TARGET-READONLY-DIAGNOSIS.md` |
+| Ergebnis | `FA-CNC-01`, Erwerb `G05001`, `HGB`, Buchwert-/Anschaffungssignale und Journal-Kontext sind read-only sichtbar. |
+| Kernbefund | `31.01.2027` liegt nach Zugang `01.01.2027`, aber `FADEP-273-OK` ist weiterhin nicht im sichtbaren `Fixed Asset G/L Journals`-Kontext auffindbar. |
+| Einordnung | Der alte Datum-vor-Zugang-Fehler ist geloest, aber die AfA-Ausgabe bleibt unbewiesen. Plausibel sind Restwert-/Periodenlogik oder ein anderes Journal-Template-/Batch-Ziel. |
+| weiterhin gesperrt | Repeat `OK`, Preview Posting, Post, Setup Change, Company Switch, API-Abkuerzung |
+| naechster Schritt | `FIXEDASSETS-276`: lokaler Review der FA-275-Evidence vor jeder weiteren Ausfuehrung. |
+| Buchwirkung | Fuer Anfaenger ist wichtig: ein Datum nach Zugang ist nur eine Voraussetzung. Danach muss Business Central auch tatsaechlich eine Zeile erzeugen und sichtbar machen. |
+
 ## FIND-BC-FA-111 Nach post-acquisition OK braucht es Eligibility-/Batchdiagnose
 
 | Feld | Wert |

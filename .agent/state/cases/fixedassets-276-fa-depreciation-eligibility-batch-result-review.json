@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-276-FA-DEPRECIATION-ELIGIBILITY-BATCH-RESULT-REVIEW",
+  "status": "planned",
+  "workType": "local-fixedasset-depreciation-eligibility-batch-result-review",
+  "taskClass": "judge_work",
+  "requiresStrongModel": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Review FA-275 read-only evidence and decide the next safe depreciation route after post-acquisition OK still produced no visible FADEP-273-OK journal line.",
+  "inputEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-275/FIXEDASSETS-275-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-275/FIXEDASSETS-275-ELIGIBILITY-AND-BATCH-TARGET-READONLY-DIAGNOSIS.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-275/010-fa-cnc-01-card-readonly.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-275/020-fa-ledger-entries-readonly.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-275/040-fa-gl-journal-context-readonly.json"
+  ],
+  "decisionQuestions": [
+    "Does FA-275 justify any repeat Calculate Depreciation OK? If yes, why is repeating safe despite no visible output? If no, document the stop.",
+    "Is the most likely next step a deeper read-only output-target/batch diagnosis, a setup-fit plan, or a narrower Page Inspection/personalization diagnosis?",
+    "Can Preview Posting be unlocked only if a real depreciation journal line exists? If no line exists, keep Preview and Post locked.",
+    "What exact beginner-facing explanation belongs in the book for OK-without-visible-output?"
+  ],
+  "allowedActions": [
+    "local-evidence-review",
+    "review-fa275-eligibility-batch-result",
+    "plan-next-safe-fixedasset-step",
+    "write-compact-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright",
+    "confirm-ok-on-calculate-depreciation",
+    "preview-posting",
+    "post",
+    "setup-change",
+    "company-switch",
+    "api-shortcut-without-explicit-case-permission"
+  ],
+  "safetyGates": [
+    "local-only-review",
+    "no-repeat-ok-without-new-root-cause",
+    "no-preview-without-visible-journal-line",
+    "no-posting",
+    "no-setup-change",
+    "no-company-switch",
+    "no-api-shortcut",
+    "evidence-before-decision"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-276/FIXEDASSETS-276-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-276/FIXEDASSETS-276-ELIGIBILITY-BATCH-RESULT-REVIEW.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-276/README.md"
+  ],
+  "acceptanceCriteria": [
+    "FA-275 evidence is reviewed without opening Business Central.",
+    "The missing FADEP-273-OK journal output is classified against eligibility, output-target and UI visibility hypotheses.",
+    "Repeat OK, Preview Posting and Post remain locked unless the decision explicitly proves why a narrower next live step is safe.",
+    "The next case is specific and smaller than another uncontrolled depreciation run."
+  ],
+  "stopConditions": [
+    "Any proposal opens Preview Posting without a visible depreciation journal line.",
+    "Any proposal repeats OK without new evidence explaining why FA-273/FA-275 showed no output.",
+    "Any proposal treats post-acquisition date alone as a successful depreciation proof."
+  ],
+  "nextSafeAction": "Local FA-276 review only; choose the next read-only or gated diagnostic route before any repeat OK, Preview Posting or Post.",
+  "createdAt": "2026-06-28T09:58:00.000+02:00",
+  "updatedAt": "2026-06-28T09:58:00.000+02:00"
+}

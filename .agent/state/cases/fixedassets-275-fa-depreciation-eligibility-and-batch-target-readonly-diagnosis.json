@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "FIXEDASSETS-275-FA-DEPRECIATION-ELIGIBILITY-AND-BATCH-TARGET-READONLY-DIAGNOSIS",
-  "status": "planned",
+  "status": "observed",
   "workType": "playwright-readonly-fixedasset-depreciation-eligibility-and-batch-target-diagnosis",
   "taskClass": "wizard_work",
   "requiresStrongModel": false,
@@ -83,7 +83,16 @@
     "A dialog appears that could confirm, post, preview, delete or change setup.",
     "The diagnosis would require repeating Calculate Depreciation OK."
   ],
-  "nextSafeAction": "Run a read-only Playwright diagnosis for depreciation eligibility and journal output target; do not click OK, Preview Posting or Post.",
+  "nextSafeAction": "FIXEDASSETS-276: locally review FA-275 read-only evidence and decide whether the next step is output-target diagnosis, a setup-fit plan, or a guarded Preview-only gate if a real journal line is found.",
   "createdAt": "2026-06-28T09:45:00.000+02:00",
-  "updatedAt": "2026-06-28T09:45:00.000+02:00"
+  "updatedAt": "2026-06-28T09:58:00.000+02:00",
+  "result": {
+    "resultStatus": "observed",
+    "classification": "post-acquisition-journal-line-still-not-visible-after-readonly-diagnosis",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-275/FIXEDASSETS-275-result.json",
+    "targetDateBeforeAcquisition": false,
+    "journalHasMissingDoc": false,
+    "selectedNextCase": "FIXEDASSETS-276-FA-DEPRECIATION-ELIGIBILITY-BATCH-RESULT-REVIEW",
+    "summary": "FA-275 read-only diagnosis found acquisition/HGB context and target date 31.01.2027 after acquisition, but FADEP-273-OK was still not visible in Fixed Asset G/L Journals. Local review required before repeat OK, Preview Posting or Post."
+  }
 }
