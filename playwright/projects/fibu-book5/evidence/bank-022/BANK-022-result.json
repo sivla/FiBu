@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "BANK-022-BANK020-BOOK-SYNC",
+  "source": "local-book-draft-sync",
+  "resultStatus": "observed",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "sourceCompany": "RM-DEMO",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "usageLogRequired": true,
+  "bcRun": false,
+  "playwrightRun": false,
+  "posted": false,
+  "previewPosting": false,
+  "setupChanged": false,
+  "bookChanged": true,
+  "bookDraftChanged": true,
+  "syncedCases": [
+    "BANK-020-VENDOR-PAYMENT-108205-CONTROLLED-POSTING",
+    "BANK-021-VENDOR-PAYMENT-108205-TRACE-REVIEW"
+  ],
+  "paymentDocumentNo": "BANK018-108205",
+  "invoiceDocumentNo": "108205",
+  "proved": [
+    "BANK-020/BANK-021 are now represented as labor-only bank/payment bookdraft substance.",
+    "The draft explains Payment Journal preflight, Apply Entries context, post dialog, Vendor Ledger, Detailed Vendor Ledger, Bank Ledger and G/L trace for BANK018-108205.",
+    "The draft explicitly marks RM-DEMO evidence as laboratory reference and requires German final rebuild."
+  ],
+  "notProved": [
+    "No new Business Central execution.",
+    "No new Playwright execution.",
+    "No bank reconciliation.",
+    "No German final bank/payment proof."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/book-drafts/bank-payments-labor-draft.md",
+    "playwright/projects/fibu-book5/evidence/bank-022/BANK-022-BOOK-SYNC.md",
+    "playwright/projects/fibu-book5/evidence/bank-022/README.md",
+    "playwright/projects/fibu-book5/evidence/bank-022/BANK-022-result.json",
+    ".agent/state/cases/bank-022-bank020-book-sync.json",
+    ".agent/state/cases/bank-023-bank-reconciliation-route-decision.json",
+    ".agent/state/current.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/bank-020/",
+    "playwright/projects/fibu-book5/evidence/bank-021/",
+    "playwright/projects/fibu-book5/evidence/bank-022/"
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": false,
+  "statePatch": {},
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": true,
+  "rebuildInstruction": "Recreate the vendor payment in the German target company with German vendor, bank account, document numbers, post-dialog screenshot, remaining amount/application proof, bank ledger and G/L entries.",
+  "targetGermanCompanyImpact": "German final book needs fresh German screenshots and German posting trace; BANK-020/BANK-021 are only lab-reference and draft-learning anchors.",
+  "finalScreenshotNeeded": true,
+  "nextStep": "BANK-023: decide whether a controlled Bank Account Reconciliation route is useful in RM-DEMO or should be parked for German final rebuild."
+}

@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "caseId": "BANK-023-BANK-RECONCILIATION-ROUTE-DECISION",
+  "title": "Decide next safe route for bank reconciliation after BANK-020 vendor payment trace",
+  "status": "planned",
+  "taskClass": "judge_work",
+  "modelClass": "gpt-5.5-low",
+  "usageLogRequired": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "bank-reconciliation-route-decision",
+  "sourceCase": "BANK-022-BANK020-BOOK-SYNC",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/bank-020/BANK-020-result.json",
+    "playwright/projects/fibu-book5/evidence/bank-021/BANK-021-result.json",
+    "playwright/projects/fibu-book5/evidence/bank-022/BANK-022-result.json"
+  ],
+  "purpose": "Decide whether the next bank block should attempt a controlled RM-DEMO Bank Account Reconciliation route, a read-only statement/readiness scout, or park reconciliation until German final rebuild.",
+  "allowedActions": [
+    "read-bank-payment-evidence",
+    "read-current-bank-coverage",
+    "write-route-decision-evidence",
+    "update-state"
+  ],
+  "defaultLockedActions": [
+    "business-central-execution",
+    "playwright-execution",
+    "posting",
+    "setup-change",
+    "bank-reconciliation-posting"
+  ],
+  "forbiddenActions": [
+    "claim-german-final-proof",
+    "book-claim-without-evidence",
+    "post-bank-reconciliation-in-decision-case",
+    "create-bank-statement-line-in-decision-case"
+  ],
+  "safetyGates": [
+    "no-bc-run-unless-followup-case-unlocks-it",
+    "no-bank-reconciliation-posting-in-bank-023",
+    "labor-only-label-visible",
+    "route-must-name-evidence-plan"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "targetGermanCompanyImpact": "German target company will need a fresh bank reconciliation process with German bank account, statement data and ledger trace.",
+  "finalScreenshotNeeded": true,
+  "nextStep": "Choose the safest next bank reconciliation route based on existing BANK-020/021 payment trace and RM-DEMO lab limits."
+}

@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-28T23:11:51.488Z",
+  "updatedAt": "2026-06-28T23:17:11.469Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "bank",
-  "activeCase": "BANK-022-BANK020-BOOK-SYNC",
-  "active_case_file": ".agent/state/cases/bank-022-bank020-book-sync.json",
-  "lastReferenceCase": "BANK-021-VENDOR-PAYMENT-108205-TRACE-REVIEW",
-  "lastReferenceCaseFile": ".agent/state/cases/bank-017-vendor-payment-preflight-gate-decision.json",
+  "activeCase": "BANK-023-BANK-RECONCILIATION-ROUTE-DECISION",
+  "active_case_file": ".agent/state/cases/bank-023-bank-reconciliation-route-decision.json",
+  "lastReferenceCase": "BANK-022-BANK020-BOOK-SYNC",
+  "lastReferenceCaseFile": ".agent/state/cases/bank-022-bank020-book-sync.json",
   "mode": "bc-specialist-labor-book-production",
   "requiresStrongModel": false,
   "requiredPreflightChecks": [
@@ -40,10 +40,10 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "BANK-022: sync BANK-020/BANK-021 into the bank/payments book draft as labor-only clickguide substance.",
+  "nextStep": "BANK-023: decide whether a controlled RM-DEMO Bank Account Reconciliation route is useful, or park reconciliation for German final rebuild.",
   "latestBookDraft": {
-    "path": "playwright/projects/fibu-book5/book-drafts/fixedassets-labor-draft.md",
-    "area": "fixedassets",
+    "path": "playwright/projects/fibu-book5/book-drafts/bank-payments-labor-draft.md",
+    "area": "bankPayments",
     "status": [
       "labor-draft",
       "labor-sufficient-for-book-draft",
@@ -52,18 +52,15 @@
     "sourceCompany": "RM-DEMO",
     "sourceInstance": "MCP_1_20260210",
     "evidenceBasis": [
-      "FIXEDASSETS-225",
-      "FIXEDASSETS-227",
-      "FIXEDASSETS-229",
-      "FIXEDASSETS-231",
-      "FIXEDASSETS-291",
-      "FIXEDASSETS-292"
+      "BANK-020",
+      "BANK-021",
+      "BANK-022"
     ],
-    "bookEffect": "Fixed Assets laboratory acquisition trace and depreciation blocker are now available as beginner-friendly draft material.",
-    "integratedIntoBookMaster": true,
-    "bookMasterSection": "FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md#21-anlagen-fixed-assets",
+    "bookEffect": "Controlled vendor payment through Payment Journal is now available as beginner-friendly labor draft material with ledger trace anchors.",
+    "integratedIntoBookMaster": false,
+    "bookMasterSection": "future Kapitel 20 Bank und Zahlungen integration",
     "labVsTargetPathSeparated": true,
-    "nextStep": "Fixed Assets depreciation blocker has been book-synced. Do not run another OK repeat in RM-DEMO without a new cause hypothesis."
+    "nextStep": "Use BANK-023 to decide Bank Account Reconciliation route before further bank execution."
   },
   "bookProductionGoal": {
     "goalFile": ".agent/state/book-production-goal.json",
@@ -1386,7 +1383,7 @@
     "nextStep": "BANK-018: controlled no-post Payment Journal preflight for 108205; do not post."
   },
   "workType": "book-sync-labor-only-bank-payment",
-  "lastCompletedCase": "BANK-021-VENDOR-PAYMENT-108205-TRACE-REVIEW",
+  "lastCompletedCase": "BANK-022-BANK020-BOOK-SYNC",
   "latestBank018": {
     "caseId": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
     "status": [
@@ -1490,5 +1487,21 @@
     "noBcRun": true,
     "noPlaywrightRun": true,
     "nextCase": "BANK-022-BANK020-BOOK-SYNC"
+  },
+  "latestBank022": {
+    "caseId": "BANK-022-BANK020-BOOK-SYNC",
+    "status": "done",
+    "workType": "book-sync-labor-only-bank-payment",
+    "sourceCompany": "RM-DEMO",
+    "sourceCases": [
+      "BANK-020-VENDOR-PAYMENT-108205-CONTROLLED-POSTING",
+      "BANK-021-VENDOR-PAYMENT-108205-TRACE-REVIEW"
+    ],
+    "resultPath": "playwright/projects/fibu-book5/evidence/bank-022/BANK-022-result.json",
+    "bookDraftPath": "playwright/projects/fibu-book5/book-drafts/bank-payments-labor-draft.md",
+    "classification": "labor-sufficient-for-book-draft",
+    "mustRecreateInFinalSandbox": true,
+    "summary": "BANK-022 synced BANK-020/BANK-021 into a labor-only bank/payments draft explaining Payment Journal preflight, Apply Entries, post dialog and Vendor/Bank/G-L trace for BANK018-108205.",
+    "nextCase": "BANK-023-BANK-RECONCILIATION-ROUTE-DECISION"
   }
 }

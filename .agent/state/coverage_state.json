@@ -41,7 +41,7 @@
       "latestPracticalCase": "BANK-020-VENDOR-PAYMENT-108205-CONTROLLED-POSTING",
       "latestReviewCase": "BANK-021-VENDOR-PAYMENT-108205-TRACE-REVIEW",
       "customerPaymentAnchor": "PAY011-PS103297",
-      "vendorPaymentAnchor": "BANK009-108204",
+      "vendorPaymentAnchor": "BANK018-108205",
       "covered": [
         "Payment Journal vendor payment",
         "Cash Receipt Journal customer payment",
@@ -58,7 +58,9 @@
         "Payment Journal 108205 posting decision gate",
         "Payment Journal 108205 controlled posting",
         "Vendor/Bank/G-L trace for BANK018-108205",
-        "BANK-020 trace review and invoice remaining amount classification"
+        "BANK-020 trace review and invoice remaining amount classification",
+        "BANK-020/BANK-021 labor bookdraft sync",
+        "Beginner-friendly Payment Journal vendor payment explanation"
       ],
       "openLimits": [
         "No bank reconciliation",
@@ -69,12 +71,17 @@
         "BANK-015: Payment Reconciliation candidate 108205/107197 rejected for posting; next proof must start from Vendor Ledger Entries",
         "BANK-018 did not post payment 108205; BANK-019 must decide before any controlled posting case.",
         "BANK-019 approved a separate posting case but did not post 108205.",
-        "BANK-020 remains CRONUS-USA laboratory evidence and must be rebuilt in a German final company."
+        "BANK-020 remains CRONUS-USA laboratory evidence and must be rebuilt in a German final company.",
+        "BANK-020/BANK-021 are only labor-reference for bookdraft; German final evidence must recreate payment and ledger trace.",
+        "Bank Account Reconciliation remains open after Payment Journal vendor payment."
       ],
-      "nextStep": "BANK-022: sync BANK-020/BANK-021 into the bank/payments book draft as labor-only clickguide substance.",
+      "nextStep": "BANK-023: decide whether a controlled Bank Account Reconciliation route is useful in RM-DEMO or should be parked for German final rebuild.",
       "postPaymentReconciliationState": "old invoice 108204 still visible in Payment Reconciliation after BANK009-108204; do not post old reconciliation context blindly",
       "staleReconciliationDecision": "BANK-012 parks stale 108204 Payment Reconciliation signal after BANK009-108204; do not post it blindly.",
-      "latestBlockedCase": "BANK-014-FRESH-RECONCILIATION-CANDIDATE-GATE"
+      "latestBlockedCase": "BANK-014-FRESH-RECONCILIATION-CANDIDATE-GATE",
+      "latestBookSyncCase": "BANK-022-BANK020-BOOK-SYNC",
+      "latestBookDraft": "playwright/projects/fibu-book5/book-drafts/bank-payments-labor-draft.md",
+      "nextCase": "BANK-023-BANK-RECONCILIATION-ROUTE-DECISION"
     },
     "companyLab": {
       "chapter": "Kapitel 6/7/25",
@@ -101,7 +108,7 @@
   "hardExclusions": {
     "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
   },
-  "updatedAt": "2026-06-28T23:11:51.488Z",
+  "updatedAt": "2026-06-28T23:17:11.469Z",
   "activeArea": "bank",
   "currentBlock": "bank-payment-journal-108205-book-sync",
   "latestPracticalCase": "FIXEDASSETS-295-FA-DEPRECIATION-GUARDED-OK-FRESH-DOC-NO-POST",
@@ -678,5 +685,21 @@
     "noBcRun": true,
     "noPlaywrightRun": true,
     "nextCase": "BANK-022-BANK020-BOOK-SYNC"
+  },
+  "latestBank022": {
+    "caseId": "BANK-022-BANK020-BOOK-SYNC",
+    "status": "done",
+    "workType": "book-sync-labor-only-bank-payment",
+    "sourceCompany": "RM-DEMO",
+    "sourceCases": [
+      "BANK-020-VENDOR-PAYMENT-108205-CONTROLLED-POSTING",
+      "BANK-021-VENDOR-PAYMENT-108205-TRACE-REVIEW"
+    ],
+    "resultPath": "playwright/projects/fibu-book5/evidence/bank-022/BANK-022-result.json",
+    "bookDraftPath": "playwright/projects/fibu-book5/book-drafts/bank-payments-labor-draft.md",
+    "classification": "labor-sufficient-for-book-draft",
+    "mustRecreateInFinalSandbox": true,
+    "summary": "BANK-022 synced BANK-020/BANK-021 into a labor-only bank/payments draft explaining Payment Journal preflight, Apply Entries, post dialog and Vendor/Bank/G-L trace for BANK018-108205.",
+    "nextCase": "BANK-023-BANK-RECONCILIATION-ROUTE-DECISION"
   }
 }
