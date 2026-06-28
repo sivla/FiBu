@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "caseId": "BANK-010-BANK009-BOOK-SYNC",
+  "title": "Synchronize BANK-009 vendor payment lab evidence into book chapter 20",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "sourceCompany": "RM-DEMO",
+  "workType": "book-sync-no-bc",
+  "status": "done",
+  "classification": [
+    "labor-sufficient-for-book-draft",
+    "bank-payments-book-sync",
+    "needs-german-final-rebuild"
+  ],
+  "allowedActions": [
+    "read-evidence",
+    "write-bookdraft-or-clickguide",
+    "write-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "business-central-execution",
+    "playwright-execution",
+    "posting",
+    "setup-change",
+    "api-shortcut",
+    "book-final-claim"
+  ],
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/bank-009/BANK-009-result.json",
+    "playwright/projects/fibu-book5/evidence/bank-009/BANK-009-VENDOR-PAYMENT.md"
+  ],
+  "changedBookSections": [
+    "FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md#Bank-Payments-und-OP-Ausgleich"
+  ],
+  "resultPath": "playwright/projects/fibu-book5/evidence/bank-010/BANK-010-result.json",
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": true,
+  "rebuildInstruction": "Recreate both customer and vendor payment examples in the German final sandbox with German bank, posting groups, tax context and final screenshots. Do not reuse RM-DEMO screenshots as final proof.",
+  "nextStep": "BANK-011: decide whether to run a controlled bank reconciliation follow-up or prepare German final rebuild prerequisites."
+}

@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-28T22:32:00.000Z",
+  "updatedAt": "2026-06-28T22:52:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "bank",
-  "activeCase": "BANK-009-SINGLE-LINE-VENDOR-PAYMENT-POSTING",
-  "active_case_file": ".agent/state/cases/bank-009-single-line-vendor-payment-posting.json",
-  "lastReferenceCase": "BANK-009-SINGLE-LINE-VENDOR-PAYMENT-POSTING",
-  "lastReferenceCaseFile": ".agent/state/cases/bank-009-single-line-vendor-payment-posting.json",
+  "activeCase": "BANK-010-BANK009-BOOK-SYNC",
+  "active_case_file": ".agent/state/cases/bank-010-bank009-book-sync.json",
+  "lastReferenceCase": "BANK-010-BANK009-BOOK-SYNC",
+  "lastReferenceCaseFile": ".agent/state/cases/bank-010-bank009-book-sync.json",
   "mode": "bc-specialist-labor-book-production",
   "requiresStrongModel": false,
   "requiredPreflightChecks": [
@@ -40,7 +40,7 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "BANK-010: BANK-009 Laborzahlung in Kapitel 19/20 und Bank-/Payments-Draft synchronisieren; danach kontrollierte Bankabstimmung oder deutscher Rebuild vorbereiten.",
+  "nextStep": "BANK-011: entscheiden, ob kontrollierte Bankabstimmung oder German-Final-Rebuild-Vorbereitung nach BANK-009 den groessten Buchnutzen bringt.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/fixedassets-labor-draft.md",
     "area": "fixedassets",
@@ -498,7 +498,7 @@
     "setupChangedInThisDeepRun": false,
     "companySwitchedInThisDeepRun": false,
     "nextBestLevers": [
-      "BANK-010-BANK-RECONCILIATION-OR-BOOK-SYNC",
+      "BANK-011-BANK-RECONCILIATION-OR-GERMAN-REBUILD-DECISION",
       "RM-DE-LAB-CREATE-001-UI-FIRST-COMPANY-CREATION"
     ],
     "executePackages": [
@@ -526,7 +526,8 @@
       "BANK-002",
       "BANK-003",
       "BANK-004",
-      "BANK-009"
+      "BANK-009",
+      "BANK-010"
     ],
     "highImpactExecutePackages": [
       "P2P-015",
@@ -542,7 +543,7 @@
     "file": ".agent/state/marathon.json",
     "rule": "Final report requires agent:marathon:check pass or documented hard stop.",
     "readOnlyDoesNotCountAsExecute": true,
-    "nextExecuteLever": "BANK-010-BANK-RECONCILIATION-OR-BOOK-SYNC"
+    "nextExecuteLever": "BANK-011-BANK-RECONCILIATION-OR-GERMAN-REBUILD-DECISION"
   },
   "latestP2P014": {
     "caseId": "P2P-014-PURCHASE-JOURNAL-VALUE-ENTRY-GATE",
@@ -982,5 +983,32 @@
     "mustRecreateInFinalSandbox": true,
     "finalScreenshotNeeded": true,
     "nextStep": "BANK-010: Kapitel 19/20 und Bank-/Payments-Draft mit BANK-009 synchronisieren; danach optional Bankabstimmung oder P2P-Abweichungsfall planen."
+  },
+  "latestBank010": {
+    "caseId": "BANK-010-BANK009-BOOK-SYNC",
+    "status": [
+      "labor-sufficient-for-book-draft",
+      "book-sync",
+      "needs-german-final-rebuild"
+    ],
+    "sourceInstance": "MCP_1_20260210",
+    "sourceCompany": "RM-DEMO",
+    "bcRun": false,
+    "playwrightRun": false,
+    "posted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "bookChanged": true,
+    "sourceEvidence": [
+      "playwright/projects/fibu-book5/evidence/bank-009/BANK-009-result.json",
+      "playwright/projects/fibu-book5/evidence/bank-009/BANK-009-VENDOR-PAYMENT.md"
+    ],
+    "bookMasterSection": "FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md#Bank-Payments-und-OP-Ausgleich",
+    "resultPath": "playwright/projects/fibu-book5/evidence/bank-010/BANK-010-result.json",
+    "evidencePath": "playwright/projects/fibu-book5/evidence/bank-010/",
+    "migrationRelevance": "needed-for-german-final",
+    "mustRecreateInFinalSandbox": true,
+    "finalScreenshotNeeded": true,
+    "nextStep": "BANK-011: controlled bank reconciliation follow-up or German final rebuild prerequisite decision."
   }
 }

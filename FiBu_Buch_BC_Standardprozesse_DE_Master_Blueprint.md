@@ -7418,16 +7418,20 @@ Aktueller Laborstand aus `PAYMENTS-001` bis `PAYMENTS-013`:
 
 Der Zahlungsfall zur gebuchten Verkaufsrechnung `PS-INV103297` ist als CRONUS-USA-Laborzahlung gebucht. Business Central zeigt den frueher offenen Debitorenposten, das Zahlungseingangsjournal, das Laborbankkonto `BANK-RM-01`, den Betrag `-68.000,00`, den Rechnungsbezug ueber `Applies-to Doc. No. = PS-INV103297`, `Apply Entries`, `Journal Check = 0 Issues` und den Post-Dialog. In `PAYMENTS-011` wurde `Ja` genau einmal bestaetigt. Danach zeigt die Rechnung `PS-INV103297` `Remaining Amount = 0,00` und `Applied Entries = 1`. Detaillierte Debitorenposten zeigen `Initial Entry`, `Payment Discount` und `Application`; Sachposten zeigen `15110`, `18200` und `40910`. `PAYMENTS-013` belegt danach Bank Account Ledger Entries ueber Page `372`: sichtbar sind `PAY011-PS103297`, `BANK-RM-01`, Betrag `67.673,60`, Entry No. `4995` und Related G/L Entries. Deshalb ist dieser Stand ein starker Nachweis fuer Zahlung, Ausgleich, Skonto-/Payment-Discount-Wirkung, Hauptbuchspur und Bankposten im Labor. Er ist kein deutscher Finalnachweis und kein Bankabstimmungsnachweis.
 
+Ergaenzender Laborstand aus `BANK-008` und `BANK-009`:
+
+Der Kreditorenzahlungsfall zur offenen Einkaufsrechnung `108204` / `First Up Consultants` ist als kontrollierte RM-DEMO-Laborbuchung belegt. `BANK-008` zeigte zunaechst den offenen Kreditorenposten, eine einzelne Zahlungsjournalzeile mit `Vendor 20000`, `BANK-RM-01`, Betrag `2.151,46`, `Applies-to Doc. No. = 108204`, `Apply Entries` read-only und `Journal Check = 0 Issues`; der Draft wurde danach wieder bereinigt. In `BANK-009` wurde derselbe fachliche Einzeiler mit Beleg `BANK009-108204` neu vorbereitet, der Post-Dialog fotografiert und `Ja` genau einmal bestaetigt. Danach zeigen Kreditorenposten zur Rechnung `108204` und zur Zahlung `BANK009-108204` jeweils `Remaining Amount = 0,00`; die detaillierten Kreditorenposten zeigen `Initial Entry` und `Application`; Bankposten und Sachposten zeigen die Zahlungswirkung ueber `BANK-RM-01`, Konto `18200` und Kreditorenkonto `22100`. Damit ist im Labor jetzt nicht nur Zahlungseingang, sondern auch Kreditorenzahlung mit OP-Ausgleich und Hauptbuch-/Bankspur belegt. Offen bleiben Bankabstimmung, Kontoauszugsimport, deutscher Bank-/Steuer-/Compliance-Finalnachweis und deutsche Ziel-Screenshots.
+
 Pruefregel fuer Anfaenger:
 
 | Schwelle | Bedeutung | Aktueller Laborstatus |
 |---|---|---|
-| Offener Posten | Welche Rechnung soll bezahlt oder ausgeglichen werden? | `PS-INV103297` war vor Zahlung sichtbar; nach `PAYMENTS-011` `Remaining Amount = 0,00` |
-| Journal-Draft | Welche Zahlung wird vorbereitet? | `D10000`, `BANK-RM-01`, `-68.000,00` sichtbar |
-| Journal Check | Ist die Journalzeile fachlich buchungsreif? | `0 Issues` sichtbar |
-| Apply Entries | Welche Rechnung wird zugeordnet? | read-only geprueft; Zielbeleg `PS-INV103297` |
-| Post-Dialog | Wird wirklich gebucht? | `PAYMENTS-010` Dialog sichtbar mit Abbruch; `PAYMENTS-011` genau einmal mit `Ja` bestaetigt |
-| Postenspur nach Zahlung | Wurden Zahlung und Ausgleich erzeugt? | Zahlung `PAY011-PS103297`, Rechnung `Remaining Amount = 0,00`, Detailed Entries mit `Payment Discount`/`Application`, G/L Entries sichtbar; Bank Account Ledger Entries ueber Page `372` sichtbar; Bankabstimmung offen |
+| Offener Posten | Welche Rechnung soll bezahlt oder ausgeglichen werden? | Debitor: `PS-INV103297`; Kreditor: `108204` |
+| Journal-Draft | Welche Zahlung wird vorbereitet? | Debitor: `D10000`, `BANK-RM-01`, `-68.000,00`; Kreditor: `Vendor 20000`, `BANK-RM-01`, `2.151,46` |
+| Journal Check | Ist die Journalzeile fachlich buchungsreif? | `0 Issues` sichtbar fuer `PAYMENTS-011` und `BANK-009` |
+| Apply Entries | Welche Rechnung wird zugeordnet? | read-only geprueft; Zielbelege `PS-INV103297` und `108204` |
+| Post-Dialog | Wird wirklich gebucht? | Debitor: `PAYMENTS-011` genau einmal mit `Ja`; Kreditor: `BANK-009` genau einmal mit `Ja` |
+| Postenspur nach Zahlung | Wurden Zahlung und Ausgleich erzeugt? | Debitor: `PAY011-PS103297`; Kreditor: `BANK009-108204`; jeweils `Remaining Amount = 0,00`, detaillierte Posten/Application, Bank- und Sachposten sichtbar; Bankabstimmung offen |
 
 ### Fehlerdiagnose nach Symptom
 
