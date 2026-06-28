@@ -47,6 +47,9 @@ New companies must also document source/template, setup status, future use and w
 ## Default working model
 
 - Standard runs are single-agent with phases: `preflight -> context -> dry-run -> run-plan -> execute one bounded step -> result -> state`.
+- Gate-is-not-stop: A successful gate must either continue into the next safe Business Central process step or update the active case so the next run continues the process route. Do not treat a header, line, screenshot or result JSON as the whole process when Preview, Posting, Ledger Trace or Book Sync are the real route.
+- Specialist coverage: each run should improve at least one row or fact in `BC-COVERAGE-MATRIX.md`, the BC atlases, screenshot inventory, blocker atlas, bookdraft/clickguide, or Playwright capability notes.
+- Process over fragment: prefer complete routes such as document -> values -> Preview -> Posting -> Ledger Trace -> Book Sync. Use micro-gates only to isolate risk, map missing UI mechanics or prove a blocker.
 - Every run must produce at least one finished unit: laboratory evidence, Playwright capability improvement, concrete bookdraft/clickguide substance, controlled setup/posting/execute trace or a clear labor/final classification.
 - Pure review loops, state-only movement, micro-cases without book/evidence/Playwright value and framework work without a current blocker are not sufficient.
 - `agent:subagent-plan` is optional. Use it for strong-model review, book changes, posting/setup judgement, conflicting evidence/state, large diffs, blocked/failed live runs or unclear next-case selection.

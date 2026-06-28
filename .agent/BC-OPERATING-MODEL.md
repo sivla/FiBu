@@ -15,6 +15,14 @@ Every Business Central step must have:
 
 If one of these is missing, the agent must stop or downgrade the action to read-only diagnosis.
 
+## Gate is not stop
+
+A gate is a checkpoint, not the final product. If the checkpoint is green and the next Business Central step is clear, allowed by the active case and evidence-ready, continue toward the process route: document setup/context, enter values, capture Preview Posting when unlocked, execute/post when unlocked, trace ledgers, then sync book and coverage.
+
+Do not end a run only because one header field, one line field, one screenshot or one result JSON exists. End only when the next step would be unsafe, unscoped, blocked, outside the active case, or missing a cleanup/trace plan.
+
+Repeated blockers must become at least one of: Playwright pattern, BC atlas entry, book learning point, helper/capability improvement or explicit rejected path.
+
 ## Sandbox instance boundary
 
 The hard Business Central boundary is the sandbox instance `MCP_1_20260210`.

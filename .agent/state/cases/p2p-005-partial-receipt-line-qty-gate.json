@@ -74,5 +74,24 @@
   "migrationRelevance": "needed-for-german-final",
   "mustRecreateInFinalSandbox": true,
   "finalScreenshotNeeded": true,
-  "nextSafeAction": "Enter line and Qty. to Receive values in UI and stop before Preview Posting or posting."
+  "nextSafeAction": "Enter line and Qty. to Receive values in UI and stop before Preview Posting or posting.",
+  "updatedAt": "2026-06-28T17:05:00.000+02:00",
+  "bcSpecialistMode": true,
+  "gateIsNotStop": true,
+  "coverageFocus": "p2p-partial-receipt-route",
+  "processRouteAfterGreenGate": [
+    "prepare Preview Posting for the partial receipt route",
+    "if preview is clean and case gate unlocks it, post Receive only for partial quantity",
+    "trace Posted Purchase Receipt, Item Ledger Entries and Value Entries",
+    "then decide invoice/remaining quantity follow-up"
+  ],
+  "noMicroStopRule": "Do not stop after merely seeing one line or one screenshot if RAW-STEEL, quantity, location, unit cost and Qty. to Receive are safely entered and the next preview/receipt route can be prepared.",
+  "atlasUpdatesRequired": [
+    "BC-COVERAGE-MATRIX.md",
+    "BC-FIELD-ATLAS.md",
+    "BC-ACTION-ATLAS.md",
+    "BC-POSTING-IMPACT-ATLAS.md if preview/posting happens",
+    "BC-SCREENSHOT-INVENTORY.md",
+    "BC-ERROR-BLOCKER-ATLAS.md if blocked"
+  ]
 }

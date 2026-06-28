@@ -1,5 +1,25 @@
 # FiBu Buch 5 Playwright-Projekt
 
+## Business-Central-Specialist-OS
+
+Dieses Projekt wird als Business-Central-Durchspiel- und Buchproduktionssystem gefuehrt. Neue Laeufe sollen nicht nur einzelne Screenshots erzeugen, sondern Coverage, Atlas-Wissen, Evidence, Buchdrafts und Playwright-Faehigkeiten verbessern.
+
+Zentrale Dateien:
+
+| Datei | Zweck |
+|---|---|
+| `BC-REPO-INVENTORY.md` | Orientierung ueber State, Tests, Evidence, Screenshots, Drafts und Legacy-Risiken |
+| `BC-COVERAGE-MATRIX.md` | Coverage-Level L0-L10 je Prozessbereich |
+| `BC-PAGE-ATLAS.md` | belegte BC-Seiten und Page-Kontexte |
+| `BC-FIELD-ATLAS.md` | belegte Felder, Spalten, Werte und Grenzen |
+| `BC-ACTION-ATLAS.md` | Aktionen, Buttons, Menues und Guards |
+| `BC-POSTING-IMPACT-ATLAS.md` | Preview-/Posting-/Ledger-Wirkung |
+| `BC-SCREENSHOT-INVENTORY.md` | Screenshot-Gruppen, Buchnutzen und Grenzen |
+| `BC-ERROR-BLOCKER-ATLAS.md` | wiederverwendbare Fehler-/Blockerlogik |
+| `BC-PROCESS-COVERAGE-ROADMAP.md` | naechste Prozessstrecken statt Mikro-Gates |
+
+Ein Gate ist kein Stoppsignal. Wenn ein Gate gruen ist, wird der naechste sichere Prozessschritt bestimmt und entweder ausgefuehrt oder als naechster Case vorbereitet. Mini-Cases sind nur dann sinnvoll, wenn sie Risiko isolieren, eine BC-/Playwright-Faehigkeit verbessern oder eine Buch-/Evidence-Luecke schliessen.
+
 ## Aktueller Einstieg
 
 Neue Agents lesen zuerst:

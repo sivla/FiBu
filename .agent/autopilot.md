@@ -44,6 +44,10 @@ Zweck: kleiner Einstiegspunkt fuer Codex-Laeufe, die nicht den gesamten Projektv
 
 - Repo-State ist die Wahrheit, nicht alte Chat-Historie.
 - Ziel ist ein vollstaendiges, anfaengerfreundliches, evidence-basiertes Business-Central-FiBu-Buch.
+- Business-Central-Specialist-Modus: Jeder Lauf soll mindestens eine Coverage-Zeile, einen Atlas-Eintrag, eine Evidence-Strecke, ein Buchdraft-Stueck oder eine wiederverwendbare Playwright-Faehigkeit verbessern. Die zentralen Projektdateien dafuer liegen unter `playwright/projects/fibu-book5/BC-*.md`.
+- Gate-is-not-stop: Ein Gate ist ein Kontrollpunkt, kein Endziel. Wenn ein Gate gruen ist und der naechste Schritt innerhalb `MCP_1_20260210` klar, erlaubt und evidence-faehig ist, wird der naechste Prozessschritt geplant oder ausgefuehrt statt nach Header/Zeile/Screenshot zu stoppen.
+- Process over fragment: Bevorzugt werden Prozessstrecken von Beleganlage ueber Werte, Preview, Posting, Ledger Trace und Buchsync. Mini-Gates sind nur sinnvoll, wenn sie ein Risiko isolieren oder eine konkrete Playwright-/BC-Faehigkeit verbessern.
+- Blocker-to-skill: Wiederholbare Blocker werden in Playwright-Patterns, BC-Atlas, Buch-Lernpunkt oder Helper-/Capability-Verbesserung ueberfuehrt. Ein Blocker ohne Lern- oder Strukturwirkung ist unvollstaendig dokumentiert.
 - Business Central bleibt in `MCP_1_20260210`; das ist die harte Instanzgrenze.
 - `MCP_1_20260210` mit `RM-DEMO` ist Labor- und Vorproduktionsumgebung. Innerhalb dieser Instanz darf der Autopilot breit experimentieren, wenn der aktive Case es erlaubt und Evidence entsteht: Company wechseln, Test-Company anlegen, Drafts erzeugen, editieren, loeschen, Dialoge bestaetigen, Fehler provozieren, Setup, Preview Posting, Posting, Cleanup/Trace und Buchdraft-Aktualisierung ausfuehren.
 - Ergebnisse aus `RM-DEMO` sind Labor-Evidence. Sie duerfen Laborfassung, Clickguide, Lernnotiz und Prozessentwurf im Buch verbessern, aber nie als finaler deutscher Nachweis gelten.
@@ -53,7 +57,8 @@ Zweck: kleiner Einstiegspunkt fuer Codex-Laeufe, die nicht den gesamten Projektv
 - Auth, `.env`, Reports, Traces, Videos und Rohsnapshots bleiben lokal.
 - Screenshots und Evidence werden projekt-relativ referenziert.
 - Jeder Lauf muss mindestens eines erzeugen: neue Labor-Evidence, bessere Playwright-Faehigkeit, konkrete Buchdraft-/Clickguide-Substanz, kontrollierten Execute-/Posting-/Setup-Trace oder eine klare Klassifikation als `labor-proven`, `labor-blocked`, `labor-sufficient-for-book-draft` oder `needs-german-final-rebuild`.
-- Nicht ausreichend sind reine Review-Schleifen ohne Abschluss, State-Bewegung ohne Projektfortschritt, Mikro-Cases ohne Buch-/Evidence-/Playwright-Nutzen oder Framework-Ausbau ohne aktuellen Blocker.
+- Nicht ausreichend sind reine Review-Schleifen ohne Abschluss, State-Bewegung ohne Projektfortschritt, Mikro-Cases ohne Buch-/Evidence-/Playwright-Nutzen, ein einzelner Header/Screenshot ohne Folgeentscheidung oder Framework-Ausbau ohne aktuellen Blocker.
+- Jeder fachliche Lauf muss pruefen, ob `BC-COVERAGE-MATRIX.md`, Page-/Field-/Action-/Posting-Atlas, Screenshot-Inventar oder Error-Atlas aktualisiert werden muss. Atlas-Pflege ersetzt keine Evidence, verdichtet sie aber fuer den naechsten Lauf.
 - Jeder Lauf muss `last_run_summary.json` und den betroffenen Case-State aktualisieren.
 - Bei `judge_work` oder `big_brain_review` muss ein Eintrag in `.agent/state/model_usage_log.jsonl` entstehen.
 - `agent:subagent-plan` erzeugt nur einen budgetierten Review-/Delegationsplan. Er fuehrt keine KI-Subagents aus und sein Output wird im Standardlauf nicht automatisch konsumiert.
