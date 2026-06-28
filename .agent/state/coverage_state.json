@@ -41,10 +41,10 @@
   },
   "updatedAt": "2026-06-28T20:05:00.000+02:00",
   "activeArea": "p2p",
-  "currentBlock": "p2p-partial-receipt-data-row-route",
-  "latestPracticalCase": "P2P-006-PURCHASE-LINES-GRID-CONTROL-DIAGNOSIS",
+  "currentBlock": "p2p-partial-receipt-cell-edit-helper",
+  "latestPracticalCase": "P2P-008-PURCHASE-LINE-TARGET-VALUES",
   "latestReviewCase": "BOOK-P2P-CH12-PARTIAL-RECEIPT-GATE-SYNC",
-  "nextCase": "P2P-007-PURCHASE-LINES-DATA-ROW-ROUTE",
+  "nextCase": "P2P-009-PURCHASE-LINE-CELL-EDIT-HELPER",
   "fixedAssets": {
     "faCnc01": {
       "postingGroupAssignment": "fieldlocal-fit-proven-machines-labor",
@@ -139,9 +139,10 @@
         "No P2P-004 partial receipt quantity",
         "No P2P-004 Preview Posting",
         "No P2P-004 posting or ledger trace",
-        "P2P-006: wide layout and Lines focus mode show headers, but no data row for RAW-STEEL/FRA-ZL/Qty values."
+        "P2P-007: Select items creates/reveals a visible RAW-STEEL line.",
+        "P2P-008: target values FRA-ZL, Quantity 4 and Qty. to Receive 2 are still blocked by missing stable cell edit route."
       ],
-      "nextStep": "P2P-007: create or reveal a real Purchase Order Lines data row by UI-first path before value entry."
+      "nextStep": "P2P-009: stabilize Purchase Order Lines edit mode/cell editor before Preview Posting."
     }
   },
   "migrationStatus": {
@@ -167,7 +168,7 @@
     "playwright/projects/fibu-book5/BC-ERROR-BLOCKER-ATLAS.md",
     "playwright/projects/fibu-book5/BC-PROCESS-COVERAGE-ROADMAP.md"
   ],
-  "currentCoverageFocus": "p2p-partial-receipt-route",
+  "currentCoverageFocus": "p2p-partial-receipt-cell-edit-helper",
   "latestCoverageUpdate": {
     "at": "2026-06-28T17:05:00.000+02:00",
     "type": "initial-bc-specialist-atlas-migration",
@@ -178,7 +179,7 @@
       "P2P Payment PAYP2P-108219",
       "P2P-004 draft 106002"
     ],
-    "nextCoverageStep": "P2P-005 should update field/action/posting atlases instead of ending at one line screenshot."
+    "nextCoverageStep": "P2P-009 should improve/reject the BC cell edit helper instead of starting Preview Posting too early."
   },
   "companyUsecase": {
     "path": "playwright/projects/fibu-book5/BC-COMPANY-USECASE.md",
@@ -200,14 +201,14 @@
       "106051 created and vendor K10000 visible"
     ],
     "notProved": [
-      "RAW-STEEL line",
+      "RAW-STEEL line is visible via Select items in P2P-007",
       "quantity 4",
       "direct unit cost 2500",
       "Qty. to Receive 2",
       "Preview Posting",
       "posting trace"
     ],
-    "nextStep": "Diagnose visible Purchase Order Lines grid controls before value entry."
+    "nextStep": "Use P2P-009 to find a stable edit-mode/cell-editor route before Preview Posting."
   },
   "p2pPartialReceiptGridDiagnosis": {
     "status": "labor-blocked",
@@ -243,6 +244,43 @@
       "method": "role-menuitemcheckbox-focus-mode"
     },
     "evidencePath": "playwright/projects/fibu-book5/evidence/p2p-006/",
-    "nextStep": "Create/reveal a real data row before target value entry or Preview Posting."
+    "nextStep": "P2P-007 resolved data-row visibility; P2P-008 proved target value entry remains blocked. Next: P2P-009 cell edit helper."
+  },
+  "p2pPartialReceiptDataRowRoute": {
+    "status": "labor-proven",
+    "draft": "106051",
+    "proved": [
+      "Select items route opened from Purchase Order Lines.",
+      "RAW-STEEL was searched/selected and a visible purchase line is present.",
+      "No Preview Posting or posting was executed."
+    ],
+    "notProved": [
+      "Location Code FRA-ZL",
+      "Quantity 4",
+      "Qty. to Receive 2",
+      "Preview Posting",
+      "posting trace"
+    ],
+    "evidencePath": "playwright/projects/fibu-book5/evidence/p2p-007/",
+    "nextStep": "P2P-008/P2P-009 target-value edit route."
+  },
+  "p2pPartialReceiptLineValueEntry": {
+    "status": "labor-blocked",
+    "draft": "106051",
+    "proved": [
+      "RAW-STEEL line remains visible.",
+      "Frame-aware grid geometry finds the row and target headers."
+    ],
+    "notProved": [
+      "Location Code FRA-ZL visible on the line",
+      "Quantity 4 visible on the line",
+      "Qty. to Receive 2 visible on the line"
+    ],
+    "blockedBy": [
+      "target-values-not-visibly-confirmed-after-ui-entry",
+      "bc-cell-edit-mode-helper-missing"
+    ],
+    "evidencePath": "playwright/projects/fibu-book5/evidence/p2p-008/",
+    "nextStep": "P2P-009 stabilize edit mode/cell editor helper before Preview Posting."
   }
 }

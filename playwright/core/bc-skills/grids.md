@@ -17,3 +17,5 @@ BC-Layout-Regel: Wenn Spalten, Codes oder Werte nicht eindeutig sichtbar sind, z
 - FactBox ausblenden, wenn sie die Tabelle unnötig verengt.
 
 Ein Screenshot ist erst Buch-/Feldbeweis, wenn die Zielcodes oder Zielwerte im Bild lesbar sind. Wenn nach breiter Layoutansicht und Fokusmodus nur Header oder die Meldung `In dieser Ansicht kann nichts angezeigt werden` sichtbar sind, ist das ein Blocker-/Debugging-Screenshot, kein Prozessbeweis.
+
+P2P-007/P2P-008-Regel: Bei BC-Subforms kann die sichtbare Grid-Zeile in einem iframe liegen. Grid-Geometrie muss deshalb frameuebergreifend gesucht und mit Frame-Offset dokumentiert werden. Fuer einfache Zahlenwerte reicht ein Treffer in der gesamten Zeilenzeichenkette nicht aus, weil Datums-/Betragswerte falsch-positive Treffer erzeugen koennen. Werte wie `Quantity = 4` oder `Qty. to Receive = 2` gelten erst als belegt, wenn der Wert sichtbar in der richtigen Spalte oder in einem spaltengenauen Nachher-Snapshot erscheint.

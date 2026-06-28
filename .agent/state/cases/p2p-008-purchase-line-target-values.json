@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "caseId": "P2P-008-PURCHASE-LINE-TARGET-VALUES",
+  "area": "p2p",
+  "status": "labor-blocked",
+  "taskClass": "wizard_work",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "sourceCompany": "RM-DEMO",
+  "mode": "controlled-labor-ui-line-value-entry",
+  "purpose": "Set or verify target values on the RAW-STEEL Purchase Order Line created by P2P-007 before any Preview Posting or posting.",
+  "predecessorCase": "P2P-007-PURCHASE-LINES-DATA-ROW-ROUTE",
+  "purchaseOrderNo": "106051",
+  "targetLine": {
+    "itemNo": "RAW-STEEL",
+    "locationCode": "FRA-ZL",
+    "quantity": 4,
+    "directUnitCostExclTax": 2500,
+    "qtyToReceive": 2
+  },
+  "allowedWhenGateUnlocks": [
+    "open-existing-purchase-draft-read-write",
+    "enable-wide-layout",
+    "enable-lines-focus-mode",
+    "edit-visible-purchase-line-cells",
+    "capture-grid-geometry",
+    "capture-screenshot",
+    "write-evidence",
+    "update-playwright-helper-or-pattern-if-needed"
+  ],
+  "defaultLockedActions": [
+    "preview-posting",
+    "post",
+    "receive",
+    "invoice",
+    "receive-and-invoice",
+    "setup-change",
+    "company-switch",
+    "api-shortcut",
+    "new-draft"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "final-german-claim-from-rm-demo"
+  ],
+  "minimumEvidence": [
+    "direct MCP_1_20260210/RM-DEMO URL",
+    "visible Purchase Order 106051",
+    "visible RAW-STEEL line",
+    "target value attempt result for Location Code, Quantity, Direct Unit Cost and Qty. to Receive",
+    "explicit no-preview and no-post flags"
+  ],
+  "stopConditions": [
+    "wrong instance or company",
+    "draft 106051 not visible",
+    "RAW-STEEL line not visible",
+    "unexpected dangerous dialog",
+    "Preview Posting or Post dialog appears",
+    "value entry requires unclear confirmation"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "bookImpactTarget": "Chapter 12 partial receipt clickguide: prove visible purchase line target values before Preview Posting.",
+  "result": {
+    "resultPath": "playwright/projects/fibu-book5/evidence/p2p-008/P2P-008-result.json",
+    "proved": "RAW-STEEL line and frame-aware grid geometry are visible.",
+    "blockedBy": "Location Code FRA-ZL, Quantity 4 and Qty. to Receive 2 were not visibly confirmed by the current coordinate/F2/Tab route."
+  },
+  "nextSafeAction": "Use P2P-009 to stabilize the BC edit-mode/cell-editor helper before Preview Posting.",
+  "updatedAt": "2026-06-28T21:45:00.000+02:00"
+}

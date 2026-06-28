@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "runId": "P2P-006-PURCHASE-LINES-GRID-CONTROL-DIAGNOSIS",
-  "timestamp": "2026-06-28T20:05:00.000+02:00",
+  "runId": "P2P-008-PURCHASE-LINE-TARGET-VALUES",
+  "timestamp": "2026-06-28T21:45:00.000+02:00",
   "date": "2026-06-28",
-  "workType": "controlled-p2p-grid-diagnosis",
+  "workType": "controlled-p2p-ui-line-value-entry",
   "taskClass": "wizard_work",
   "modelClass": "gpt-4-medium",
   "branch": "codex/token-efficient-autopilot-state",
@@ -19,52 +19,59 @@
   "bookChanged": false,
   "dataChanged": false,
   "resultStatus": "blocked",
-  "summary": "P2P-006 opened Purchase Order 106051 directly in MCP_1_20260210/RM-DEMO, enabled wide layout and Lines focus mode, captured screenshots and a compact DOM/control snapshot. The run proved header/column visibility but blocked value entry because no Purchase Order Lines data row was visible.",
+  "summary": "P2P-007 proved that Select items can create/reveal a visible RAW-STEEL purchase line on Purchase Order 106051. P2P-008 then used frame-aware grid geometry on that line, but the current coordinate/F2/Tab route did not visibly save Location Code FRA-ZL, Quantity 4 or Qty. to Receive 2. No Preview Posting, posting, setup change or company switch occurred.",
   "proved": [
     "Direct Business Central URL opened within MCP_1_20260210/RM-DEMO for Purchase Order 106051.",
-    "Purchase Order 106051 and vendor context K10000/Stahlwerk Ruhr GmbH were visible in the UI text.",
-    "BC wide layout was attempted before screenshot and grid evaluation.",
-    "BC focus mode for the Lines area was attempted before grid evaluation.",
-    "The Purchase Order Lines subform headers were visible and captured with controlName Purchase Order Subform.",
-    "Wide-layout and focus-mode screenshots, compact page text and DOM snapshot were saved."
+    "P2P-007: Select items route produced/revealed a visible RAW-STEEL purchase line.",
+    "P2P-008: frame-aware grid geometry finds the RAW-STEEL row and target headers.",
+    "Direct Unit Cost 2.500,00 is visible on the line.",
+    "No Preview Posting or posting was executed."
   ],
   "notProved": [
-    "No safe editable Purchase Order Lines data-cell route for Item/Location/Quantity/Direct Unit Cost/Qty. to Receive was proven.",
-    "The screenshot shows no target item/location/quantity row; it is a blocker/context screenshot, not a book-proof screenshot for partial receipt.",
-    "No values were entered.",
-    "Preview Posting and Receive/Invoice/Post were not executed."
+    "Location Code FRA-ZL is not visibly saved on the line.",
+    "Quantity 4 is not visibly saved on the line.",
+    "Qty. to Receive 2 is not visibly saved on the line.",
+    "Preview Posting and Receive/Invoice/Post were not executed.",
+    "German final proof remains open."
   ],
   "blockedBy": [
-    "purchase-order-lines-grid-shows-no-visible-data-rows",
-    "purchase-order-lines-data-cell-route-not-proven",
-    "purchase-order-lines-editable-cell-route-not-proven"
+    "target-values-not-visibly-confirmed-after-ui-entry",
+    "bc-cell-edit-mode-helper-missing"
   ],
   "changedFiles": [
     "package.json",
-    "playwright/projects/fibu-book5/tests/p2p-006-purchase-lines-grid-control-diagnosis.spec.ts",
-    "playwright/projects/fibu-book5/evidence/p2p-006/",
-    "playwright/projects/fibu-book5/img/p2p-006-*",
+    "playwright/projects/fibu-book5/tests/p2p-007-purchase-lines-data-row-route.spec.ts",
+    "playwright/projects/fibu-book5/tests/p2p-008-purchase-line-target-values.spec.ts",
+    "playwright/projects/fibu-book5/evidence/p2p-007/",
+    "playwright/projects/fibu-book5/evidence/p2p-008/",
+    "playwright/projects/fibu-book5/img/p2p-007-*",
+    "playwright/projects/fibu-book5/img/p2p-008-*",
     "playwright/core/bc-skills/grids.md",
     "playwright/projects/fibu-book5/BC-*.md",
     ".agent/state/current.json",
     ".agent/state/coverage_state.json",
-    ".agent/state/cases/p2p-006-purchase-lines-grid-control-diagnosis.json"
+    ".agent/state/cases/p2p-007-purchase-lines-data-row-route.json",
+    ".agent/state/cases/p2p-008-purchase-line-target-values.json",
+    ".agent/state/cases/p2p-009-purchase-line-cell-edit-helper.json"
   ],
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/p2p-006/010-page-text-compact.txt",
-    "playwright/projects/fibu-book5/evidence/p2p-006/020-grid-control-snapshot.json"
+    "playwright/projects/fibu-book5/evidence/p2p-007/P2P-007-result.json",
+    "playwright/projects/fibu-book5/evidence/p2p-008/P2P-008-result.json"
   ],
   "screenshots": [
-    "playwright/projects/fibu-book5/img/p2p-006-010-draft-open-wide.png",
-    "playwright/projects/fibu-book5/img/p2p-006-020-lines-focus-mode.png",
-    "playwright/projects/fibu-book5/img/p2p-006-030-lines-grid-control-map.png"
+    "playwright/projects/fibu-book5/img/p2p-007-010-start-wide-lines-focus.png",
+    "playwright/projects/fibu-book5/img/p2p-007-020-after-select-items-route.png",
+    "playwright/projects/fibu-book5/img/p2p-007-090-final-route-state.png",
+    "playwright/projects/fibu-book5/img/p2p-008-010-before-value-entry.png",
+    "playwright/projects/fibu-book5/img/p2p-008-020-after-value-entry.png"
   ],
   "validationCommands": [
     "npm run agent:preflight",
     "npm run agent:context",
-    "npm run fibu:p2p:purchase-lines-grid-diagnosis",
-    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/p2p-006/P2P-006-result.json",
-    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/p2p-006/P2P-006-result.json",
+    "npm run fibu:p2p:purchase-lines-data-row-route",
+    "npm run fibu:p2p:purchase-line-target-values",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/p2p-008/P2P-008-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/p2p-008/P2P-008-result.json",
     "npm run check:encoding",
     "git diff --check"
   ],
@@ -75,10 +82,10 @@
     "No company switch.",
     "No API shortcut.",
     "No book change.",
-    "No data values entered."
+    "No final German claim."
   ],
   "activeArea": "p2p",
-  "activeCase": "P2P-006-PURCHASE-LINES-GRID-CONTROL-DIAGNOSIS",
-  "nextCase": "P2P-007-PURCHASE-LINES-DATA-ROW-ROUTE",
-  "nextStep": "Create or reveal one real Purchase Order Lines data row by UI-first path, then stop before Preview Posting until target values are visible."
+  "activeCase": "P2P-009-PURCHASE-LINE-CELL-EDIT-HELPER",
+  "nextCase": "P2P-009-PURCHASE-LINE-CELL-EDIT-HELPER",
+  "nextStep": "Build or reject a stable BC Purchase Order Lines edit-mode/cell-editor helper before any Preview Posting."
 }

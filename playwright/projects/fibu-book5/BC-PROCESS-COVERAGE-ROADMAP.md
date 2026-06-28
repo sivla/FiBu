@@ -10,8 +10,8 @@ Usecase-Basis: `BC-COMPANY-USECASE.md` beschreibt die Laborcompany `RM-DEMO` und
 
 | Prioritaet | Prozess | Zielstrecke | Warum | Naechster Case |
 |---:|---|---|---|---|
-| 1 | P2P Teil-WE | PO Draft/Line -> Qty. to Receive -> Preview -> Receive -> Receipt/Item/Value Trace | baut auf P2P-004 auf und lehrt 3-Way-Match | `P2P-005`, danach Preview/Post-Case |
-| 1a | P2P Teil-WE Grid-Control | Draft `106051` -> Lines/Grid-Controlroute -> erst dann Zielwerte | blockiert aktuell den Teil-WE; verhindert blindes falsches Befuellen | `P2P-006` Lines/Grid-Control-Diagnose |
+| 1 | P2P Teil-WE | PO Draft/Line -> Qty. to Receive -> Preview -> Receive -> Receipt/Item/Value Trace | baut auf P2P-004 bis P2P-008 auf und lehrt 3-Way-Match | erst `P2P-009` Grid-Edit-Helper, danach Preview/Post-Case |
+| 1a | P2P Teil-WE Grid-Control | Draft `106051` -> `Select items...` -> `RAW-STEEL`-Zeile -> Zielwerte | Datenzeile ist geloest, Zellbearbeitung blockiert aktuell den Teil-WE | `P2P-009` Edit-Mode/Cell-Editor-Helper |
 | 2 | Bankabstimmung | Zahlung -> Bank Ledger -> Reconciliation | schliesst Payment-Lernstrecke | neuer Bank-Reconciliation-Case |
 | 3 | Fixed Assets AfA | Calculate Depreciation -> Journal Line -> Preview -> Post -> FA/G/L Trace | Kapitel 21 bleibt blockiert | bounded AfA-Follow-up |
 | 4 | Reporting/Dimensions | Dimensionen in Analysis/Financial Reports nutzbar machen | Buch Kapitel 25 braucht Auswertung | Analysis View/Report Fit |

@@ -6,8 +6,8 @@
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "p2p",
-  "activeCase": "P2P-007-PURCHASE-LINES-DATA-ROW-ROUTE",
-  "active_case_file": ".agent/state/cases/p2p-007-purchase-lines-data-row-route.json",
+  "activeCase": "P2P-009-PURCHASE-LINE-CELL-EDIT-HELPER",
+  "active_case_file": ".agent/state/cases/p2p-009-purchase-line-cell-edit-helper.json",
   "lastReferenceCase": "UAT-P2P-001",
   "lastReferenceCaseFile": "",
   "mode": "bc-specialist-labor-book-production",
@@ -40,7 +40,7 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "P2P-007: build a bounded UI-first route to create/reveal one real Purchase Order Lines data row before any Preview Posting or posting.",
+  "nextStep": "P2P-009: build a stable BC Purchase Order Lines cell-edit helper before any Preview Posting or posting.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/fixedassets-labor-draft.md",
     "area": "fixedassets",
@@ -214,10 +214,10 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "p2p-partial-receipt-data-row-route",
+  "currentCoverageFocus": "p2p-partial-receipt-cell-edit-helper",
   "nextProcessRoute": [
-    "P2P-007 create/reveal a real Purchase Order Lines data row on a safe draft using UI-first path",
-    "P2P-005 retry target line values only after data row controls are visible and unambiguous",
+    "P2P-009 stabilize Purchase Order Lines edit mode/cell editor for RAW-STEEL target values",
+    "P2P Preview Posting only after Location/Quantity/Qty. to Receive are visible and unambiguous",
     "P2P Preview Posting and controlled partial Receive only after line gate is proven"
   ],
   "activeAtlasFiles": [
@@ -315,6 +315,54 @@
     ],
     "blocker": "Breite Layoutansicht und Lines-Fokusmodus zeigen Spalten, aber keine Datenzeile; keine sichere Item/Menge/Preis/Qty.-to-Receive-Route.",
     "bookEffect": "Kapitel 12 darf P2P-006 als Debugging-/Lernfall verwenden: erst breit/fokussiert sichtbar machen, dann nur bei sichtbarer Datenzeile Werte eingeben.",
-    "nextStep": "P2P-007: build a bounded UI-first route to create/reveal one real Purchase Order Lines data row before any Preview Posting or posting."
+    "nextStep": "P2P-007 resolved data-row creation; P2P-008 proved target value entry is still blocked."
+  },
+  "latestP2PDataRowRoute": {
+    "caseId": "P2P-007-PURCHASE-LINES-DATA-ROW-ROUTE",
+    "status": [
+      "labor-proven",
+      "needs-german-final-rebuild"
+    ],
+    "sourceInstance": "MCP_1_20260210",
+    "sourceCompany": "RM-DEMO",
+    "draft": "106051",
+    "route": "Select items...",
+    "posted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "apiShortcut": false,
+    "resultPath": "playwright/projects/fibu-book5/evidence/p2p-007/P2P-007-result.json",
+    "evidencePath": "playwright/projects/fibu-book5/evidence/p2p-007/",
+    "screenshots": [
+      "playwright/projects/fibu-book5/img/p2p-007-010-start-wide-lines-focus.png",
+      "playwright/projects/fibu-book5/img/p2p-007-020-after-select-items-route.png",
+      "playwright/projects/fibu-book5/img/p2p-007-090-final-route-state.png"
+    ],
+    "proved": "Select items route produced/revealed a visible RAW-STEEL purchase line on Purchase Order 106051.",
+    "openLimit": "Location FRA-ZL, Quantity 4 and Qty. to Receive 2 were not yet visibly confirmed.",
+    "nextStep": "P2P-008/P2P-009 target-value edit route before Preview Posting."
+  },
+  "latestP2PLineValueEntry": {
+    "caseId": "P2P-008-PURCHASE-LINE-TARGET-VALUES",
+    "status": [
+      "labor-blocked",
+      "needs-german-final-rebuild"
+    ],
+    "sourceInstance": "MCP_1_20260210",
+    "sourceCompany": "RM-DEMO",
+    "draft": "106051",
+    "posted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "apiShortcut": false,
+    "resultPath": "playwright/projects/fibu-book5/evidence/p2p-008/P2P-008-result.json",
+    "evidencePath": "playwright/projects/fibu-book5/evidence/p2p-008/",
+    "screenshots": [
+      "playwright/projects/fibu-book5/img/p2p-008-010-before-value-entry.png",
+      "playwright/projects/fibu-book5/img/p2p-008-020-after-value-entry.png"
+    ],
+    "proved": "RAW-STEEL line and grid geometry are visible frame-aware.",
+    "blocker": "Location FRA-ZL, Quantity 4 and Qty. to Receive 2 were not visibly saved by the current coordinate/F2/Tab route; Standardwerte include ATLANTA, GA and 0,00 values.",
+    "nextStep": "P2P-009: stabilize BC cell edit mode/helper or another UI path before Preview Posting."
   }
 }

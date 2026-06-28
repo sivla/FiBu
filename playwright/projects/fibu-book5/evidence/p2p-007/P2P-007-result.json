@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "caseId": "P2P-007-PURCHASE-LINES-DATA-ROW-ROUTE",
+  "source": "playwright-ui-labor-data-row-route",
+  "resultStatus": "observed",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "sourceCompany": "RM-DEMO",
+  "mode": "controlled-labor-ui-data-row-route",
+  "targetDraft": {
+    "purchaseOrderNo": "106051",
+    "vendorNo": "K10000",
+    "vendorName": "Stahlwerk Ruhr GmbH"
+  },
+  "targetValues": {
+    "itemNo": "RAW-STEEL",
+    "locationCode": "FRA-ZL",
+    "plannedQuantity": 4,
+    "plannedPartialReceiptQuantity": 2,
+    "plannedUnitCost": 2500
+  },
+  "previewPosting": false,
+  "posted": false,
+  "setupChanges": [],
+  "createdRecords": [],
+  "changedRecords": [],
+  "postedRecords": [],
+  "cleanup": {
+    "required": false,
+    "reason": "No posting or setup change. Draft line may be kept if UI route creates a line."
+  },
+  "flags": {
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "proved": [
+    "Select/items or fallback UI route produced a visible purchase line signal.",
+    "Purchase Order 106051 remained in MCP_1_20260210/RM-DEMO.",
+    "No Preview Posting or posting was executed."
+  ],
+  "notProved": [
+    "Target values are not yet fully verified as saved: Location FRA-ZL, quantity 4, Direct Unit Cost 2500, Qty. to Receive 2.",
+    "German final proof remains open."
+  ],
+  "blockedBy": [],
+  "warnings": [],
+  "screenshots": [
+    "playwright/projects/fibu-book5/img/p2p-007-010-start-wide-lines-focus.png",
+    "playwright/projects/fibu-book5/img/p2p-007-020-after-select-items-route.png",
+    "playwright/projects/fibu-book5/img/p2p-007-090-final-route-state.png"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/p2p-007/020-after-select-items-page-text.txt",
+    "playwright/projects/fibu-book5/evidence/p2p-007/021-after-select-items-controls.json",
+    "playwright/projects/fibu-book5/evidence/p2p-007/030-after-raw-steel-search-page-text.txt",
+    "playwright/projects/fibu-book5/evidence/p2p-007/031-after-raw-steel-search-controls.json",
+    "playwright/projects/fibu-book5/evidence/p2p-007/040-line-action-controls-before.json",
+    "playwright/projects/fibu-book5/evidence/p2p-007/041-line-action-controls-after.json",
+    "playwright/projects/fibu-book5/evidence/p2p-007/050-keyboard-route-controls.json",
+    "playwright/projects/fibu-book5/evidence/p2p-007/060-lookup-type-route-controls.json",
+    "playwright/projects/fibu-book5/evidence/p2p-007/090-final-page-text-compact.txt",
+    "playwright/projects/fibu-book5/evidence/p2p-007/091-final-control-map.json"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "rebuildInstruction": "Recreate the partial purchase receipt line route in a later German target company with German UI and final setup.",
+  "requiresReview": true,
+  "safeToFinalizeState": false,
+  "statePatch": {},
+  "details": {
+    "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=50&filter=%27Purchase%20Header%27.%27No.%27%20IS%20%27106051%27&dc=0&bookmark=1D_JgAAAACLAQAAAAJ7BjEAMAA2ADAANQAx",
+    "wideLayout": {
+      "attempted": true,
+      "clicked": true
+    },
+    "focusMode": {
+      "attempted": true,
+      "clicked": true,
+      "alreadyFocused": false
+    },
+    "attempts": [
+      {
+        "route": "A Select items",
+        "status": "observed",
+        "details": [
+          "Select items click: {\"clicked\":true,\"label\":\"^Select items\\\\.\\\\.\\\\.$\",\"role\":\"menuitem\"}",
+          "Search/filter fill: {\"filled\":true,\"method\":\"textbox:Search|Suchen|Filter|Find|Suche\"}",
+          "RAW-STEEL visible after search: true",
+          "RAW-STEEL row/cell click: {\"clicked\":true,\"label\":\"RAW-STEEL\",\"role\":\"button\"}",
+          "Add/select confirmation click: {\"clicked\":false}"
+        ]
+      }
+    ],
+    "lineCreated": true
+  },
+  "nextStep": "Verify and set remaining partial receipt target values, then decide Preview Posting."
+}

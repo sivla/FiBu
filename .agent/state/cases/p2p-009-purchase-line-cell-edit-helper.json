@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "caseId": "P2P-009-PURCHASE-LINE-CELL-EDIT-HELPER",
+  "area": "p2p",
+  "status": "planned",
+  "taskClass": "wizard_work",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "sourceCompany": "RM-DEMO",
+  "mode": "controlled-labor-ui-helper-improvement",
+  "purpose": "Stabilize a Business Central Purchase Order Lines cell-edit route for the visible RAW-STEEL line before any Preview Posting or posting.",
+  "predecessorCases": [
+    "P2P-007-PURCHASE-LINES-DATA-ROW-ROUTE",
+    "P2P-008-PURCHASE-LINE-TARGET-VALUES"
+  ],
+  "purchaseOrderNo": "106051",
+  "knownState": {
+    "lineVisible": true,
+    "itemNo": "RAW-STEEL",
+    "visibleDefaultLocation": "ATLANTA, GA",
+    "visibleUnitCost": "2.500,00",
+    "targetLocationCode": "FRA-ZL",
+    "targetQuantity": 4,
+    "targetQtyToReceive": 2
+  },
+  "allowedWhenGateUnlocks": [
+    "open-existing-purchase-draft-read-write",
+    "enable-wide-layout",
+    "enable-lines-focus-mode",
+    "discover-edit-mode-action",
+    "discover-cell-editor-controls",
+    "edit-visible-purchase-line-cells",
+    "capture-grid-geometry",
+    "capture-screenshot",
+    "write-evidence",
+    "update-playwright-helper-or-pattern"
+  ],
+  "defaultLockedActions": [
+    "preview-posting",
+    "post",
+    "receive",
+    "invoice",
+    "receive-and-invoice",
+    "setup-change",
+    "company-switch",
+    "api-shortcut",
+    "new-draft"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "final-german-claim-from-rm-demo"
+  ],
+  "minimumEvidence": [
+    "direct MCP_1_20260210/RM-DEMO URL",
+    "visible Purchase Order 106051",
+    "visible RAW-STEEL line",
+    "frame-aware grid geometry",
+    "accepted or rejected edit-mode/cell-editor route",
+    "explicit no-preview and no-post flags"
+  ],
+  "stopConditions": [
+    "wrong instance or company",
+    "draft 106051 not visible",
+    "RAW-STEEL line not visible",
+    "unexpected dangerous dialog",
+    "Preview Posting or Post dialog appears",
+    "value entry requires unclear confirmation"
+  ],
+  "migrationRelevance": "helper-only",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "bookImpactTarget": "Chapter 12 partial receipt clickguide: prove or reject stable target-value entry before Preview Posting.",
+  "nextSafeAction": "Run a bounded helper probe to discover the safe Edit/Cell Editor route on Purchase Order 106051.",
+  "updatedAt": "2026-06-28T21:40:00.000+02:00"
+}
