@@ -345,6 +345,26 @@
       "resultFile": "playwright/projects/fibu-book5/evidence/bank-004/BANK-004-result.json",
       "summary": "BANK-004 defines why Payment Reconciliation posting is not yet approved: target line and exact ledger trace are not isolated before the Ja/Nein dialog.",
       "nextStep": "BANK-005: read-only target-line/open-entry drilldown, or switch to controlled single-line Payment Journal posting case."
+    },
+    {
+      "id": "BANK-005",
+      "queueId": "BANK-005-TARGET-LINE-OPEN-ENTRY-DRILLDOWN",
+      "type": "payment-reconciliation-target-line-open-entry-drilldown read-only no-post",
+      "status": "labor-proven",
+      "bcRun": true,
+      "posted": false,
+      "previewPosting": false,
+      "setupChanged": false,
+      "execute": false,
+      "highImpactExecute": false,
+      "signals": [
+        "target-line-visible",
+        "open-entry-relation-visible",
+        "no-post-gate"
+      ],
+      "resultFile": "playwright/projects/fibu-book5/evidence/bank-005/BANK-005-result.json",
+      "summary": "Payment Reconciliation target candidate 108204 / First Up Consultants / -2.151,46 is visible and Vendor Ledger document 108204 is a read-only relation candidate; no payment was posted.",
+      "nextStep": "BANK-006: controlled Payment Posting decision with explicit expected Bank/Vendor/G/L/Detailed Ledger trace, or choose a single-line Payment Journal route if Payment Reconciliation remains too broad."
     }
   ],
   "postingSummary": {
@@ -364,7 +384,7 @@
     }
   },
   "nextBestLevers": [
-    "BANK-005-TARGET-LINE-OPEN-ENTRY-DRILLDOWN",
+    "BANK-006-CONTROLLED-PAYMENT-POSTING-DECISION",
     "PAYMENTS-SINGLE-LINE-POSTING-CASE",
     "RM-DE-LAB-CREATE-001-UI-FIRST-COMPANY-CREATION"
   ],
@@ -393,7 +413,7 @@
     ],
     "lightExecutePackages": 2,
     "readOnlyPackagesDoNotCountAsExecute": true,
-    "progressPackagesTotal": 27
+    "progressPackagesTotal": 28
   },
-  "updatedAt": "2026-06-28T20:05:38.653Z"
+  "updatedAt": "2026-06-28T20:50:00.000Z"
 }

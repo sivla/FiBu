@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-28T20:05:38.653Z",
+  "updatedAt": "2026-06-28T20:50:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "bank",
-  "activeCase": "BANK-004-PAYMENT-POSTING-FACHPRUEFUNG-TRACE-PLAN",
-  "active_case_file": ".agent/state/cases/bank-004-payment-posting-trace-plan.json",
-  "lastReferenceCase": "BANK-004-PAYMENT-POSTING-FACHPRUEFUNG-TRACE-PLAN",
-  "lastReferenceCaseFile": ".agent/state/cases/bank-004-payment-posting-trace-plan.json",
+  "activeCase": "BANK-005-TARGET-LINE-OPEN-ENTRY-DRILLDOWN",
+  "active_case_file": ".agent/state/cases/bank-005-target-line-open-entry-drilldown.json",
+  "lastReferenceCase": "BANK-005-TARGET-LINE-OPEN-ENTRY-DRILLDOWN",
+  "lastReferenceCaseFile": ".agent/state/cases/bank-005-target-line-open-entry-drilldown.json",
   "mode": "bc-specialist-labor-book-production",
   "requiresStrongModel": false,
   "requiredPreflightChecks": [
@@ -40,7 +40,7 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "BANK-005: read-only Zielzeilen-/Open-Entry-Drilldown im Payment Reconciliation Journal, oder kontrollierten Single-Line Payment Journal Posting Case vorbereiten.",
+  "nextStep": "BANK-006: kontrollierte Payment-Posting-Entscheidung mit explizitem Traceplan; nicht automatisch buchen.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/fixedassets-labor-draft.md",
     "area": "fixedassets",
@@ -784,5 +784,35 @@
     "mustRecreateInFinalSandbox": true,
     "finalScreenshotNeeded": true,
     "nextStep": "BANK-005: read-only target-line/open-entry drilldown, or controlled single-line Payment Journal posting case."
+  },
+  "latestBank005": {
+    "caseId": "BANK-005-TARGET-LINE-OPEN-ENTRY-DRILLDOWN",
+    "status": [
+      "labor-proven",
+      "read-only",
+      "target-line-visible",
+      "open-entry-relation-visible",
+      "posting-still-locked",
+      "needs-german-final-rebuild"
+    ],
+    "sourceInstance": "MCP_1_20260210",
+    "sourceCompany": "RM-DEMO",
+    "posted": false,
+    "paymentPosted": false,
+    "bankReconciliationPosted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "apiShortcut": false,
+    "resultPath": "playwright/projects/fibu-book5/evidence/bank-005/BANK-005-result.json",
+    "evidencePath": "playwright/projects/fibu-book5/evidence/bank-005/",
+    "targetDocumentNo": "108204",
+    "targetParty": "First Up Consultants",
+    "targetAmount": "-2.151,46",
+    "openEntryRelationCandidate": "vendor-ledger-document-108204",
+    "decision": "Do not confirm Post Payments Only in BANK-005; this run only proves target line and read-only ledger relation.",
+    "migrationRelevance": "needed-for-german-final",
+    "mustRecreateInFinalSandbox": true,
+    "finalScreenshotNeeded": true,
+    "nextStep": "BANK-006: prepare a controlled Payment Posting decision with explicit expected Bank/Vendor/G/L/Detailed Ledger trace, or choose a single-line Payment Journal route if Payment Reconciliation remains too broad."
   }
 }

@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "caseId": "BANK-005-TARGET-LINE-OPEN-ENTRY-DRILLDOWN",
+  "status": "done-labor-readonly",
+  "workType": "bank-payment-reconciliation-readonly-drilldown",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "purpose": "Payment-Reconciliation-Zielzeile und moegliche offene Ledger-Entry-Bezuege read-only isolieren, bevor ein Post-Payments-Only-Gate fachlich freigegeben wird.",
+  "resultPath": "playwright/projects/fibu-book5/evidence/bank-005/BANK-005-result.json",
+  "resultSummary": "Payment Reconciliation target line 108204 / First Up Consultants / -2.151,46 is visible. Vendor Ledger Entry filter on 108204 is a safe relation candidate. No posting, preview, setup, draft or company switch.",
+  "allowedWithinInstance": [
+    "open-payment-reconciliation-journal-readonly",
+    "open-filtered-customer-ledger-entries-readonly",
+    "open-filtered-vendor-ledger-entries-readonly",
+    "open-filtered-bank-account-ledger-entries-readonly",
+    "write-compact-evidence",
+    "update-state"
+  ],
+  "defaultLockedActionsStayLocked": [
+    "preview-posting",
+    "post",
+    "payment",
+    "setup-change",
+    "company-switch",
+    "new",
+    "edit",
+    "delete",
+    "keep-draft"
+  ],
+  "hardForbidden": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "final-german-claim-from-rm-demo",
+    "confirm-post-payments-only",
+    "post-payment"
+  ],
+  "referenceEvidence": [
+    "playwright/projects/fibu-book5/evidence/bank-003/010-before-post-payments-only-page-text.txt",
+    "playwright/projects/fibu-book5/evidence/bank-004/BANK-004-result.json"
+  ],
+  "successCriteria": [
+    "BC URL bleibt in MCP_1_20260210.",
+    "Company bleibt RM-DEMO.",
+    "Payment Reconciliation Journal zeigt die Zielkandidatenzeile mit Document No. 108204 / First Up Consultants / Transaction Amount -2.151,46 oder dokumentiert deren Fehlen.",
+    "Customer/Vendor/Bank Ledger Entries werden read-only nach Document No. 108204 gefiltert.",
+    "Posting-Freigabe bleibt false, wenn offene Postenrelation nicht eindeutig bewiesen ist."
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "rebuildInstruction": "In der deutschen Zielcompany dieselbe Payment-Reconciliation-Zielzeile vor einer Zahlungsbuchung read-only isolieren: Zielzeile, offene Debitor-/Kreditorposten, Bankposten-Erwartung und Stopbedingungen dokumentieren.",
+  "nextStepIfObserved": "BANK-006: kontrollierte Payment-Posting-Entscheidung nur, wenn Zielzeile und offene Postenrelation eindeutig sind.",
+  "nextStepIfBlocked": "Alternative Standardroute waehlen: Manual-Application-read-only ohne Bestätigung oder kontrollierten Single-Line Payment Journal Posting Case vorbereiten.",
+  "updatedAt": "2026-06-28T20:40:00.000Z"
+}

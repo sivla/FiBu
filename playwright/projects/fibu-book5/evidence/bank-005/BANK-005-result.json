@@ -1,0 +1,177 @@
+{
+  "schemaVersion": 1,
+  "purpose": "payment-reconciliation-target-line-open-entry-drilldown",
+  "caseId": "BANK-005-TARGET-LINE-OPEN-ENTRY-DRILLDOWN",
+  "testId": "BANK-005",
+  "source": "playwright-ui-readonly",
+  "resultStatus": "observed",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-medium",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "sourceCompany": "RM-DEMO",
+  "page": {
+    "paymentReconciliationJournalPageId": 1290,
+    "journalUrl": "https://businesscentral.dynamics.com/<tenant>/MCP_1_20260210?company=RM-DEMO&page=1290&dc=0&bookmark=3A_EgEAAACLAQAAAAJ7_0MASABFAEMASwBJAE4ARwAAAAJ7_1AAUgBFAEMAMAAwADAAAAAAhxAn",
+    "title": "Bankposten"
+  },
+  "targetCandidate": {
+    "documentNo": "108204",
+    "relatedInvoiceNo": "107196",
+    "party": "First Up Consultants",
+    "amount": "-2.151,46",
+    "journalAnalysis": {
+      "pageVisible": true,
+      "targetDocumentVisible": true,
+      "targetRelatedInvoiceVisible": true,
+      "targetPartyVisible": true,
+      "targetAmountVisible": true,
+      "acceptedVisible": true,
+      "applicationReviewedVisible": true,
+      "matchConfidenceMediumVisible": false,
+      "openLedgerEntrySignalVisible": true,
+      "withinToleranceOneVisible": true,
+      "outsideToleranceTwentyVisible": true,
+      "postPaymentsOnlyVisible": true
+    },
+    "evidenceFile": "010-payment-reconciliation-target-line-page-text.txt"
+  },
+  "ledgerTraces": [
+    {
+      "id": "customer-ledger-document-108204",
+      "pageId": 25,
+      "tableName": "Cust. Ledger Entry",
+      "filterField": "Document No.",
+      "filterValue": "108204",
+      "url": "https://businesscentral.dynamics.com/<tenant>/MCP_1_20260210?company=RM-DEMO&page=25&filter=%27Cust.%20Ledger%20Entry%27.%27Document%20No.%27%20IS%20%27108204%27&dc=0",
+      "title": "Customer Ledger Entries",
+      "evidenceFile": "020-customer-ledger-document-108204-page-text.txt",
+      "relevantButtons": [
+        "Available Credit ($)",
+        "Credit Limit ($)",
+        "Entry No.",
+        "Open",
+        "Posting Date"
+      ],
+      "analysis": {
+        "pageContextVisible": true,
+        "filterValueVisible": false,
+        "targetPartyVisible": false,
+        "relatedInvoiceVisible": false,
+        "amountVisible": false,
+        "remainingAmountVisible": true,
+        "openSignalVisible": true,
+        "entryNoVisible": true,
+        "noRecordsSignalVisible": false,
+        "safeRelationCandidate": false
+      }
+    },
+    {
+      "id": "vendor-ledger-document-108204",
+      "pageId": 29,
+      "tableName": "Vendor Ledger Entry",
+      "filterField": "Document No.",
+      "filterValue": "108204",
+      "url": "https://businesscentral.dynamics.com/<tenant>/MCP_1_20260210?company=RM-DEMO&page=29&filter=%27Vendor%20Ledger%20Entry%27.%27Document%20No.%27%20IS%20%27108204%27&dc=0&bookmark=C_GQAAAACHewc",
+      "title": "Vendor Ledger Entries",
+      "evidenceFile": "030-vendor-ledger-document-108204-page-text.txt",
+      "relevantButtons": [
+        "Creditor No.",
+        "Entry No.",
+        "Open",
+        "Posting Date"
+      ],
+      "analysis": {
+        "pageContextVisible": true,
+        "filterValueVisible": true,
+        "targetPartyVisible": true,
+        "relatedInvoiceVisible": true,
+        "amountVisible": true,
+        "remainingAmountVisible": true,
+        "openSignalVisible": true,
+        "entryNoVisible": true,
+        "noRecordsSignalVisible": false,
+        "safeRelationCandidate": true
+      }
+    },
+    {
+      "id": "bank-account-ledger-document-108204",
+      "pageId": 372,
+      "tableName": "Bank Account Ledger Entry",
+      "filterField": "Document No.",
+      "filterValue": "108204",
+      "url": "https://businesscentral.dynamics.com/<tenant>/MCP_1_20260210?company=RM-DEMO&page=372&filter=%27Bank%20Account%20Ledger%20Entry%27.%27Document%20No.%27%20IS%20%27108204%27&dc=0",
+      "title": "Bankposten",
+      "evidenceFile": "040-bank-account-ledger-document-108204-page-text.txt",
+      "relevantButtons": [
+        "Bankposten:",
+        "Entry No.",
+        "Open",
+        "Posting Date"
+      ],
+      "analysis": {
+        "pageContextVisible": true,
+        "filterValueVisible": false,
+        "targetPartyVisible": false,
+        "relatedInvoiceVisible": false,
+        "amountVisible": false,
+        "remainingAmountVisible": false,
+        "openSignalVisible": true,
+        "entryNoVisible": true,
+        "noRecordsSignalVisible": false,
+        "safeRelationCandidate": false
+      }
+    }
+  ],
+  "postingReadiness": {
+    "targetLineVisible": true,
+    "openEntryRelationProven": true,
+    "ledgerRelationCandidateIds": [
+      "vendor-ledger-document-108204"
+    ],
+    "paymentPostingAllowedNow": false,
+    "reason": "Posting remains locked because BANK-005 is read-only and direct ledger relation is not sufficient for one-click payment posting approval."
+  },
+  "proved": [
+    "Payment Reconciliation Journal shows the target candidate with document 108204, First Up Consultants and amount -2.151,46.",
+    "Customer, Vendor and Bank Account Ledger Entries were opened read-only with Document No. 108204 filters.",
+    "No posting, preview, setup change, draft or company switch was performed."
+  ],
+  "notProved": [
+    "No payment was posted.",
+    "No bank reconciliation was posted.",
+    "No Preview Posting was opened.",
+    "No final relation to a single open ledger entry is claimed unless ledgerRelationCandidateIds contains a customer/vendor trace.",
+    "No German bank/compliance final proof."
+  ],
+  "flags": {
+    "readOnly": true,
+    "noPost": true,
+    "noPreviewPosting": true,
+    "noPaymentPosting": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noNew": true,
+    "noEdit": true,
+    "noDelete": true,
+    "noDraftCreated": true,
+    "noApiShortcut": true,
+    "noBookChangeInsideTest": true
+  },
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "rebuildInstruction": "In der deutschen Zielcompany vor einer Zahlungsbuchung dieselbe Zielzeile und den offenen Postenbezug read-only nachweisen: Payment Reconciliation Journal, Debitor-/Kreditorposten, Bankposten-Erwartung, danach separater Posting-Trace.",
+  "targetGermanCompanyImpact": "Deutsche Zielcompany braucht eine eindeutige Payment-Reconciliation-Zeile mit offenem Postenbezug, bevor Payment Posting oder Bankabstimmung als finaler Prozess gezeigt werden.",
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/bank-005/BANK-005-result.json",
+    "playwright/projects/fibu-book5/evidence/bank-005/BANK-005-TARGET-LINE-OPEN-ENTRY-DRILLDOWN.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/bank-005/"
+  ],
+  "blockedBy": [],
+  "safeToFinalizeState": false,
+  "requiresReview": false,
+  "nextStep": "BANK-006: kontrollierte Payment-Posting-Entscheidung mit explizitem Traceplan; nicht automatisch buchen."
+}
