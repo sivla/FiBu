@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-29T00:16:13.3419693+02:00",
+  "updatedAt": "2026-06-29T00:23:13.8770634+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "bank",
-  "activeCase": "BANK-013-CONTROLLED-NEXT-EVIDENCE-STEP",
-  "active_case_file": ".agent/state/cases/bank-013-controlled-next-evidence-step.json",
-  "lastReferenceCase": "BOOK-FIXEDASSETS-CH21-DEPRECIATION-BLOCKER-SYNC",
-  "lastReferenceCaseFile": ".agent/state/cases/book-fixedassets-ch21-depreciation-blocker-sync.json",
+  "activeCase": "BANK-014-FRESH-RECONCILIATION-CANDIDATE-GATE",
+  "active_case_file": ".agent/state/cases/bank-014-fresh-reconciliation-candidate-gate.json",
+  "lastReferenceCase": "BANK-013-CONTROLLED-NEXT-EVIDENCE-STEP",
+  "lastReferenceCaseFile": ".agent/state/cases/bank-013-controlled-next-evidence-step.json",
   "mode": "bc-specialist-labor-book-production",
   "requiresStrongModel": false,
   "requiredPreflightChecks": [
@@ -40,7 +40,7 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "Choose one bounded high-impact execute/evidence step outside the parked FA depreciation loop. Suggested: BANK-013 only with fresh statement/target line, or another clearly gated P2P/Inventory route.",
+  "nextStep": "BANK-014: read candidate 108205 / invoice 107197 against Vendor Ledger Entries and decide whether a controlled Payment Reconciliation apply/post follow-up is safe. Do not click Accept Applications or Post Payments Only before the gate is written.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/fixedassets-labor-draft.md",
     "area": "fixedassets",
@@ -1108,6 +1108,53 @@
     "mustRecreateInFinalSandbox": true,
     "finalScreenshotNeeded": true,
     "nextStep": "BANK-013 only with fresh statement/target line, otherwise switch process."
+  },
+  "latestBank013": {
+    "caseId": "BANK-013-CONTROLLED-NEXT-EVIDENCE-STEP",
+    "status": [
+      "labor-proven",
+      "read-only",
+      "fresh-candidate-discovery",
+      "needs-german-final-rebuild"
+    ],
+    "sourceInstance": "MCP_1_20260210",
+    "sourceCompany": "RM-DEMO",
+    "bcRun": true,
+    "playwrightRun": true,
+    "posted": false,
+    "paymentPosted": false,
+    "bankReconciliationPosted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "apiShortcut": false,
+    "staleInvoiceNo": "108204",
+    "staleInvoiceStillVisible": true,
+    "freshCandidateDocuments": [
+      "107196",
+      "108205",
+      "107197",
+      "107198",
+      "108206",
+      "INV102169",
+      "INV103169",
+      "INV103170",
+      "INV102170",
+      "INV102171",
+      "INV103171"
+    ],
+    "preferredNextCandidate": {
+      "transactionDocumentNo": "108205",
+      "invoiceNo": "107197",
+      "party": "Wide World Importers",
+      "vendorNo": "40000",
+      "amount": "-1.561,00"
+    },
+    "resultPath": "playwright/projects/fibu-book5/evidence/bank-013/BANK-013-result.json",
+    "evidencePath": "playwright/projects/fibu-book5/evidence/bank-013/",
+    "migrationRelevance": "needed-for-german-final",
+    "mustRecreateInFinalSandbox": true,
+    "finalScreenshotNeeded": true,
+    "nextStep": "BANK-014: choose exactly one fresh candidate and define expected Vendor/Bank/G-L trace before any Accept Applications or Post Payments Only."
   },
   "latestRmDeLabCreate002": {
     "caseId": "RM-DE-LAB-CREATE-002-SAVE-ERROR-DIAGNOSIS",

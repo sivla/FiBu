@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "purpose": "bank-fresh-reconciliation-target-readonly",
+  "caseId": "BANK-013-CONTROLLED-NEXT-EVIDENCE-STEP",
+  "testId": "BANK-013",
+  "source": "playwright-ui-readonly",
+  "resultStatus": "observed",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "sourceCompany": "RM-DEMO",
+  "mode": "labor-readonly-no-post-no-apply-no-edit",
+  "page": {
+    "pageId": 1290,
+    "title": "Payment Reconciliation Journal",
+    "url": "https://businesscentral.dynamics.com/<tenant>/MCP_1_20260210?company=RM-DEMO&page=1290&dc=0&bookmark=3A_EgEAAACLAQAAAAJ7_0MASABFAEMASwBJAE4ARwAAAAJ7_1AAUgBFAEMAMAAwADAAAAAAhxAn",
+    "textEvidenceFile": "010-payment-reconciliation-fresh-target-readonly-page-text.txt",
+    "relevantButtonsVisibleNotClicked": [
+      "Accept Applications",
+      "Accepted",
+      "Amount Incl. Tolerance Matched:",
+      "Balance After Posting",
+      "Document No./Ext. Document No. Matched",
+      "Lines For Review",
+      "Lines With differences",
+      "Match Confidence",
+      "Match Details",
+      "No. of Open Ledger Entries for",
+      "Number of Lines",
+      "Post Payments Only...",
+      "Related Party Matched",
+      "Total Credit Amount"
+    ]
+  },
+  "staleContext": {
+    "staleInvoiceNo": "108204",
+    "stalePaymentNo": "BANK009-108204",
+    "staleInvoiceStillVisible": true,
+    "postPaymentsOnlyVisible": true
+  },
+  "freshCandidateDocuments": [
+    "107196",
+    "108205",
+    "107197",
+    "107198",
+    "108206",
+    "INV102169",
+    "INV103169",
+    "INV103170",
+    "INV102170",
+    "INV102171",
+    "INV103171"
+  ],
+  "decision": "BANK-013 bleibt read-only: Es gibt moegliche frische Dokumentkandidaten im Payment-Reconciliation-Kontext, aber keine Zeile wurde markiert, angewendet oder gebucht. Der naechste Lauf braucht eine fachliche Einzelauswahl mit erwarteter Postenspur.",
+  "proved": [
+    "Payment Reconciliation Journal wurde in MCP_1_20260210 / RM-DEMO read-only geoeffnet.",
+    "Der alte Kontext 108204 wurde nicht als Posting-Ziel weiterverwendet.",
+    "Post Payments Only, Accept Applications, Apply, New, Edit und Delete wurden nicht geklickt.",
+    "Moegliche frische Dokumentkandidaten wurden nur gelesen: 107196, 108205, 107197, 107198, 108206, INV102169, INV103169, INV103170, INV102170, INV102171, INV103171."
+  ],
+  "notProved": [
+    "Keine Bankabstimmung wurde gebucht.",
+    "Keine Zahlung wurde gebucht.",
+    "Keine Anwendung/Accept Applications wurde ausgefuehrt.",
+    "Keine Zielzeile wurde fachlich ausgewaehlt.",
+    "Kein deutscher Bank-/Compliance-Finalnachweis."
+  ],
+  "flags": {
+    "readOnly": true,
+    "noPost": true,
+    "noPreviewPosting": true,
+    "noPaymentPosting": true,
+    "noBankReconciliationPosting": true,
+    "noAcceptApplications": true,
+    "noApply": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noNew": true,
+    "noEdit": true,
+    "noDelete": true,
+    "noDraftCreated": true,
+    "noApiShortcut": true,
+    "noBookChangeInsideTest": true
+  },
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "rebuildInstruction": "In der deutschen Zielcompany Payment Reconciliation nur mit frischer Statement-Zielzeile und expliziter erwarteter Bank-/Ledger-/Sachpostenspur weiterfuehren.",
+  "targetGermanCompanyImpact": "Deutsche Bankabstimmung braucht eigene Zielzeile, deutsches Bankkonto, Zielposten und separate Posting-/Reconciliation-Evidence.",
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/bank-013/BANK-013-result.json",
+    "playwright/projects/fibu-book5/evidence/bank-013/BANK-013-FRESH-RECONCILIATION-TARGET.md",
+    "playwright/projects/fibu-book5/evidence/bank-013/010-payment-reconciliation-fresh-target-readonly-page-text.txt",
+    "playwright/projects/fibu-book5/evidence/bank-013/README.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/bank-013/"
+  ],
+  "blockedBy": [],
+  "safeToFinalizeState": true,
+  "requiresReview": true,
+  "nextStep": "BANK-014: choose exactly one fresh candidate and write a posting/trace gate before any Accept Applications or Post Payments Only."
+}

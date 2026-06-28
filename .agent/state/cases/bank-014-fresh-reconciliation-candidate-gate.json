@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "caseId": "BANK-014-FRESH-RECONCILIATION-CANDIDATE-GATE",
+  "title": "Choose one fresh Payment Reconciliation candidate before any apply or post",
+  "status": "planned",
+  "taskClass": "judge_work",
+  "modelClass": "gpt-5.5-low",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "posting-gate-decision",
+  "sourceCase": "BANK-013-CONTROLLED-NEXT-EVIDENCE-STEP",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/bank-013/BANK-013-result.json",
+    "playwright/projects/fibu-book5/evidence/bank-013/010-payment-reconciliation-fresh-target-readonly-page-text.txt"
+  ],
+  "candidateSignals": [
+    {
+      "transactionDocumentNo": "108205",
+      "invoiceNo": "107197",
+      "party": "Wide World Importers",
+      "vendorNo": "40000",
+      "amount": "-1.561,00",
+      "matchConfidence": "Medium"
+    },
+    {
+      "transactionDocumentNo": "108206",
+      "invoiceNo": "107198",
+      "party": "Graphic Design Institute",
+      "vendorNo": "30000",
+      "amount": "-1.372,89",
+      "matchConfidence": "Low"
+    }
+  ],
+  "purpose": "Select exactly one fresh candidate and define the expected Vendor/Bank/G-L trace before any Accept Applications or Post Payments Only.",
+  "allowedActions": [
+    "read-bank-013-evidence",
+    "read-vendor-ledger-for-candidate",
+    "read-payment-reconciliation-context",
+    "write-posting-gate-decision",
+    "update-state"
+  ],
+  "defaultLockedActions": [
+    "accept-applications",
+    "post-payments-only",
+    "posting",
+    "payment",
+    "setup-change",
+    "keep-draft"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "claim-german-final-proof",
+    "api-shortcut-without-explicit-case-permission",
+    "global-posting-without-all-lines-approval"
+  ],
+  "safetyGates": [
+    "instance-and-company-confirmed",
+    "exactly-one-candidate-selected",
+    "open-ledger-entry-visible",
+    "expected-ledger-trace-written",
+    "global-post-risk-reviewed",
+    "no-post-before-dialog-evidence"
+  ],
+  "expectedOutputs": [
+    "Decision whether candidate 108205 / invoice 107197 is safe enough for a controlled apply/posting follow-up.",
+    "If not safe, a clear no-post decision and next practical process route."
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "targetGermanCompanyImpact": "German final bank reconciliation must be rebuilt with a fresh bank statement line and target open ledger entry.",
+  "finalScreenshotNeeded": true,
+  "nextStep": "Read candidate 108205 / invoice 107197 against Vendor Ledger Entries and decide whether a controlled apply/post follow-up is safe."
+}
