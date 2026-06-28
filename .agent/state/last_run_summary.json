@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-289-FA-DEPRECIATION-JOURNAL-ASSETS-DEFAULT-READONLY",
-  "timestamp": "2026-06-28T12:48:00.000+02:00",
+  "runId": "FIXEDASSETS-291-FA-DEPRECIATION-CONTROLLED-OK-AFTER-FA289-NO-POST",
+  "timestamp": "2026-06-28T13:56:00.000+02:00",
   "date": "2026-06-28",
-  "workType": "playwright-readonly-fixedasset-depreciation-journal-assets-default-context",
+  "workType": "playwright-controlled-fixedasset-calculate-depreciation-ok-no-post",
   "taskClass": "wizard_work",
   "modelClass": "gpt-4-medium",
   "branch": "codex/token-efficient-autopilot-state",
@@ -21,42 +21,43 @@
   "companySwitched": false,
   "apiShortcut": false,
   "bookChanged": false,
-  "dataChanged": false,
+  "dataChanged": true,
   "draftCreated": false,
   "recordEdited": false,
   "recordDeleted": false,
   "journalLineChanged": false,
   "resultStatus": "observed",
   "blockedBy": [],
-  "summary": "FA-289 opened Fixed Asset G/L Journals read-only in MCP_1_20260210 / RM-DEMO. DEFAULT batch context and Batch Name context are visible. ASSETS, FADEP, FA-CNC-01, HGB and Preview Posting were not proven visible in this context. No batch selection, OK, New/Edit, Calculate Depreciation OK, Preview Posting, Post, setup change, company switch, API shortcut or book change occurred.",
+  "summary": "FA-291 opened Calculate Depreciation in MCP_1_20260210 / RM-DEMO, proved HGB, 31.01.2027, FADEP-291-OK and FA-CNC-01 on the request page, confirmed OK exactly once, and then searched Fixed Asset G/L Journals. FADEP-291-OK was not found afterward. No Preview Posting, Post, setup change, company switch, API shortcut or book change occurred.",
   "proved": [
-    "Fixed Asset G/L Journals was opened read-only in MCP_1_20260210 / RM-DEMO.",
-    "DEFAULT batch context is visible.",
-    "Batch Name label/context is visible.",
-    "No batch selection, OK, New, Edit List, Calculate Depreciation OK, Preview Posting, Post, setup change, company switch, API shortcut or book change was executed."
+    "Calculate Depreciation request page was opened in MCP_1_20260210 / RM-DEMO.",
+    "HGB, 31.01.2027, FADEP-291-OK and FA-CNC-01 were visibly proven before OK.",
+    "OK was confirmed exactly once.",
+    "FADEP-291-OK was not found in Fixed Asset G/L Journals after OK.",
+    "No Preview Posting or Post was executed."
   ],
   "notProved": [
-    "No selected Batch Name value was changed or confirmed.",
-    "No new FADEP depreciation journal line is proven from this run.",
+    "No depreciation journal line was found.",
     "No Preview Posting result is proven.",
     "No depreciation posting is proven.",
     "No German final proof exists."
   ],
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/fixedassets-289/FIXEDASSETS-289-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-289/FIXEDASSETS-289-JOURNAL-ASSETS-DEFAULT-READONLY.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-289/010-fa-gl-journal-assets-default-context.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-289/010-fa-gl-journal-assets-default-text.txt",
-    "playwright/projects/fibu-book5/evidence/fixedassets-289/README.md"
+    "playwright/projects/fibu-book5/evidence/fixedassets-291/FIXEDASSETS-291-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-291/FIXEDASSETS-291-CONTROLLED-OK-NO-POST.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-291/010-ok-execution-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-291/020-journal-line-search.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-291/README.md"
   ],
   "changedFiles": [
     "package.json",
-    "playwright/projects/fibu-book5/tests/fixedassets-289-fa-depreciation-journal-assets-default-readonly.spec.ts",
-    "playwright/projects/fibu-book5/evidence/fixedassets-289/",
+    "playwright/projects/fibu-book5/tests/fixedassets-291-fa-depreciation-controlled-ok-after-fa289-no-post.spec.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-291/",
     ".agent/state/current.json",
     ".agent/state/coverage_state.json",
     ".agent/state/last_run_summary.json",
-    ".agent/state/cases/fixedassets-290-fa-depreciation-journal-assets-default-review.json",
+    ".agent/state/cases/fixedassets-291-fa-depreciation-controlled-ok-after-fa289-no-post.json",
+    ".agent/state/cases/fixedassets-292-fa-depreciation-ok-result-blocker-review.json",
     ".agent/state/german-final-rebuild-map.json"
   ],
   "validationCommands": [
@@ -64,9 +65,9 @@
     "npm run agent:context",
     "npm run agent:dry-run",
     "npm run agent:run-plan",
-    "npm run fibu:fixedassets:fa-depreciation-journal-assets-default-readonly",
-    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-289/FIXEDASSETS-289-result.json",
-    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-289/FIXEDASSETS-289-result.json",
+    "npm run fibu:fixedassets:fa-depreciation-controlled-ok-after-fa289-no-post",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-291/FIXEDASSETS-291-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-291/FIXEDASSETS-291-result.json",
     "npm run check:encoding",
     "git diff --check",
     "npx tsc --noEmit"
@@ -76,6 +77,8 @@
   ],
   "boundaries": [
     "Labor-reference only.",
+    "Calculate Depreciation OK was confirmed exactly once.",
+    "No depreciation journal line was found.",
     "No Preview Posting.",
     "No posting.",
     "No setup change.",
@@ -85,7 +88,7 @@
     "German final proof remains open."
   ],
   "activeArea": "fixedassets",
-  "activeCase": "FIXEDASSETS-290-FA-DEPRECIATION-JOURNAL-ASSETS-DEFAULT-REVIEW",
-  "nextCase": "FIXEDASSETS-290-FA-DEPRECIATION-JOURNAL-ASSETS-DEFAULT-REVIEW",
-  "nextStep": "Locally review FA-289 journal context before any Calculate Depreciation OK, Preview Posting or Post."
+  "activeCase": "FIXEDASSETS-292-FA-DEPRECIATION-OK-RESULT-BLOCKER-REVIEW",
+  "nextCase": "FIXEDASSETS-292-FA-DEPRECIATION-OK-RESULT-BLOCKER-REVIEW",
+  "nextStep": "Locally review why FA-291 OK did not produce visible FADEP-291-OK journal evidence before any repeat, Preview Posting or Post."
 }

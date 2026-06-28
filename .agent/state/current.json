@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-28T12:48:00.000+02:00",
+  "updatedAt": "2026-06-28T13:56:00.000+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "fixedassets",
-  "activeCase": "FIXEDASSETS-290-FA-DEPRECIATION-JOURNAL-ASSETS-DEFAULT-REVIEW",
-  "active_case_file": ".agent/state/cases/fixedassets-290-fa-depreciation-journal-assets-default-review.json",
-  "lastReferenceCase": "FIXEDASSETS-289-FA-DEPRECIATION-JOURNAL-ASSETS-DEFAULT-READONLY",
-  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-289-fa-depreciation-journal-assets-default-readonly.json",
-  "mode": "token-efficient-autopilot-fixedassets-journal-assets-default-review",
-  "requiresStrongModel": true,
+  "activeCase": "FIXEDASSETS-292-FA-DEPRECIATION-OK-RESULT-BLOCKER-REVIEW",
+  "active_case_file": ".agent/state/cases/fixedassets-292-fa-depreciation-ok-result-blocker-review.json",
+  "lastReferenceCase": "FIXEDASSETS-291-FA-DEPRECIATION-CONTROLLED-OK-AFTER-FA289-NO-POST",
+  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-291-fa-depreciation-controlled-ok-after-fa289-no-post.json",
+  "mode": "token-efficient-autopilot-fixedassets-depreciation-ok-result-review",
+  "requiresStrongModel": false,
   "requiredPreflightChecks": [
     "agent:preflight",
     "agent:state:validate",
@@ -19,10 +19,10 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "read-state",
-    "read-evidence",
-    "local-analysis",
-    "classify-labor-evidence",
+    "read-local-evidence",
+    "review-fa291-ok-result",
+    "compare-request-page-and-journal-search",
+    "write-compact-review",
     "update-state"
   ],
   "forbiddenActions": [
@@ -31,10 +31,8 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
-    "select-batch-value",
-    "confirm-ok-on-batch-lookup",
-    "click-new",
-    "click-edit-list",
+    "open-business-central",
+    "run-playwright",
     "confirm-ok-on-calculate-depreciation",
     "preview-posting",
     "post",
@@ -46,7 +44,7 @@
     "delete-record",
     "book-edit"
   ],
-  "nextStep": "FIXEDASSETS-290: locally review FA-289 journal context before any Calculate Depreciation OK, Preview Posting or Post.",
+  "nextStep": "FIXEDASSETS-292: locally review why FA-291 confirmed Calculate Depreciation OK once but did not produce visible FADEP-291-OK Fixed Asset G/L Journal evidence before any repeat, Preview Posting or Post.",
   "migrationStatus": {
     "sourceSandbox": "MCP_1_20260210",
     "sourceCompany": "RM-DEMO",

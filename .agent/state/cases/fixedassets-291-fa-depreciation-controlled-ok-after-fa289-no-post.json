@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-291-FA-DEPRECIATION-CONTROLLED-OK-AFTER-FA289-NO-POST",
+  "status": "planned",
+  "workType": "playwright-controlled-fixedasset-depreciation-ok-no-post",
+  "taskClass": "wizard_work",
+  "requiresStrongModel": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "sourceCompany": "RM-DEMO",
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "goal": "Run Calculate Depreciation once with controlled values after FA-289, then search the Fixed Asset G/L Journal for the generated document without Preview Posting or posting.",
+  "triggeredBy": {
+    "caseId": "FIXEDASSETS-290-FA-DEPRECIATION-JOURNAL-ASSETS-DEFAULT-REVIEW",
+    "decision": "FA-289 proves enough journal landing context to attempt one controlled Calculate Depreciation OK probe; Preview Posting and posting remain locked."
+  },
+  "targetValues": {
+    "depreciationBook": "HGB",
+    "postingDate": "31.01.2027",
+    "documentNo": "FADEP-291-OK",
+    "fixedAssetNo": "FA-CNC-01"
+  },
+  "allowedActions": [
+    "open-business-central",
+    "run-playwright",
+    "open-calculate-depreciation",
+    "fill-request-page-values",
+    "confirm-ok-on-calculate-depreciation-once",
+    "read-only-fa-gl-journal-search",
+    "write-compact-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "preview-posting",
+    "post",
+    "setup-change",
+    "company-switch",
+    "api-shortcut-without-explicit-case-permission",
+    "edit-existing-record-outside-request-page",
+    "delete-record",
+    "book-edit"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-291/FIXEDASSETS-291-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-291/FIXEDASSETS-291-CONTROLLED-OK-NO-POST.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-291/010-target-value-preflight.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-291/010-ok-execution-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-291/020-journal-line-search.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-291/README.md"
+  ],
+  "rebuildInstruction": "In the future German target company, recreate the Calculate Depreciation request page and OK execution only after German fixed asset setup and posting gates are proven. Then trace the generated depreciation journal line, Preview Posting and posted entries separately.",
+  "targetGermanCompanyImpact": "German final evidence must not reuse RM-DEMO FADEP-291-OK as final proof; it must recreate the process with German UI labels and German accounting setup.",
+  "acceptanceCriteria": [
+    "Business Central remains in MCP_1_20260210 / RM-DEMO.",
+    "Request page target values are visible before OK.",
+    "OK is confirmed at most once.",
+    "No Preview Posting or Post is executed.",
+    "Journal search result is documented whether the FADEP-291-OK line is found or not."
+  ],
+  "stopConditions": [
+    "Instance or company is wrong.",
+    "Request page is not recognized.",
+    "Target values cannot be visibly proven before OK.",
+    "Any posting, preview, setup-change or delete confirmation appears."
+  ],
+  "nextSafeAction": "Run exactly one controlled Calculate Depreciation OK probe and document the journal-search result.",
+  "createdAt": "2026-06-28T13:20:00.000+02:00",
+  "updatedAt": "2026-06-28T13:20:00.000+02:00"
+}

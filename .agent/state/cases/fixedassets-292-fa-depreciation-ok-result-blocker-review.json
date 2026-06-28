@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-292-FA-DEPRECIATION-OK-RESULT-BLOCKER-REVIEW",
+  "title": "Review FA-291 Calculate Depreciation OK result before repeat",
+  "status": "planned",
+  "taskClass": "wizard_work",
+  "modelClass": "gpt-4-medium",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "local-evidence-review",
+  "sourceCase": "FIXEDASSETS-291-FA-DEPRECIATION-CONTROLLED-OK-AFTER-FA289-NO-POST",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-291/FIXEDASSETS-291-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-291/010-ok-execution-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-291/020-journal-line-search.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-291/FIXEDASSETS-291-CONTROLLED-OK-NO-POST.md"
+  ],
+  "purpose": "Understand why Calculate Depreciation OK was confirmed once but no FADEP-291-OK Fixed Asset G/L Journal line was visible, before any repeat or posting action.",
+  "allowedActions": [
+    "read-local-evidence",
+    "compare-request-page-and-journal-search",
+    "review-batch-or-filter-hypotheses",
+    "write-compact-review",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright",
+    "confirm-ok-on-calculate-depreciation",
+    "preview-posting",
+    "post",
+    "setup-change",
+    "company-switch",
+    "api-shortcut-without-explicit-case-permission",
+    "book-edit"
+  ],
+  "safetyGates": [
+    "no-bc-execution",
+    "no-playwright-execution",
+    "no-repeat-ok-before-cause-review",
+    "no-preview-posting",
+    "no-posting",
+    "no-book-claim-without-evidence"
+  ],
+  "expectedOutputs": [
+    "A compact review of whether FA-291 likely created no line, created a line outside the searched view/filter, or needs a different batch/template/context.",
+    "A next safe case decision: read-only journal search refinement, request-page option review, or controlled repeat only if justified."
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "targetGermanCompanyImpact": "The German target company must prove the depreciation calculation path and resulting journal line behavior separately; FA-291 is only laboratory route and blocker learning.",
+  "finalScreenshotNeeded": true,
+  "nextStep": "Review FA-291 evidence locally and decide the next single safe step without repeating OK blindly."
+}

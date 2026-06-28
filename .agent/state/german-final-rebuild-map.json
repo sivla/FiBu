@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "purpose": "german-final-rebuild-map",
-  "updatedAt": "2026-06-28T12:40:00.000+02:00",
+  "updatedAt": "2026-06-28T13:56:00.000+02:00",
   "sourceInstance": "MCP_1_20260210",
   "sourceCompany": "RM-DEMO",
   "sourceEvidenceStatus": "labor-reference",
@@ -19,6 +19,20 @@
       "laborEvidenceRefs": [
         "playwright/projects/fibu-book5/evidence/fixedassets-289/FIXEDASSETS-289-result.json"
       ]
+    },
+    {
+      "caseId": "FIXEDASSETS-291-FA-DEPRECIATION-CONTROLLED-OK-AFTER-FA289-NO-POST",
+      "area": "fixedassets",
+      "migrationRelevance": "needed-for-german-final",
+      "sourceCompany": "RM-DEMO",
+      "mustRecreateInFinalSandbox": true,
+      "finalScreenshotNeeded": true,
+      "rebuildInstruction": "In the German target company, run Calculate Depreciation only after the fixed asset, depreciation book, journal template/batch and posting setup are proven. First prove the request page values, then confirm OK once, then verify whether a depreciation journal line is created before any Preview Posting or Post.",
+      "targetGermanCompanyImpact": "German final evidence must not rely on FA-291 as final proof. It must recreate the depreciation calculation with German UI labels and explain what should happen when OK creates or does not create a journal line.",
+      "laborEvidenceRefs": [
+        "playwright/projects/fibu-book5/evidence/fixedassets-291/FIXEDASSETS-291-result.json"
+      ],
+      "laborBoundary": "FA-291 proved OK execution and a missing visible journal line in RM-DEMO only; no Preview Posting, no Post and no German final proof."
     }
   ],
   "rules": [
