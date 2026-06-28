@@ -2242,6 +2242,8 @@ Nach der Korrektur zeigte `Preview Posting` echte Vorschauarten: `G/L Entry`, `V
 
 Der Folgefall `P2P-002` hat die Kreditorenzahlung als kontrollierte Laborbuchung ergaenzt. Im Payment Journal wurde `PAYP2P-108219` fuer `K10000`, Ausgangsrechnung `108219`, Betrag `25.000,00` und Gegenkonto `BANK-RM-01` UI-first vorbereitet. Vor der Buchung waren Journal Check `0 Issues`, die Apply-Entries-Ansicht, der Post-Dialog und die Umgebung `MCP_1_20260210` sichtbar. Nach der Buchung wurden Kreditorenposten, detaillierte Kreditorenposten, Bankposten und Sachposten zum Zahlungsbeleg gefiltert geprueft. Der Folgecheck `P2P-003` klaert den OP-Ausgleich read-only: Die Einkaufsrechnung `108219` zeigt im Kreditorenposten Restbetrag `0,00`, und die detaillierten Kreditorenposten zeigen `Initial Entry`, `Payment Discount` und `Application` zur Zahlung `PAYP2P-108219`.
 
+Der neue Folgefall `P2P-004` ist bewusst kleiner: Er beweist noch keinen Teil-Wareneingang, sondern nur das UI-first Startgate dafuer. In `RM-DEMO` wurde `Purchase Orders` geoeffnet, `New` erzeugte den Einkaufsbestellungskontext, der Draft `106002` wurde mit `K10000` im Kopf angelegt, und die Zeilensteuerung fuer `Item No.`, `Qty. to Receive` und `Qty. to Invoice` ist als naechster Bedienkontext sichtbar. Es gab keine Artikelzeile, keine Menge, keine Preview, keine Buchung und keinen deutschen Finalnachweis.
+
 Status dieses Laborblocks: `labor-proven`, `labor-sufficient-for-book-draft`, `needs-german-final-rebuild`.
 
 | Laboranker aus `UAT-P2P-001` | Was im Buch damit erklaert wird | Was spaeter deutsch neu bewiesen werden muss |
@@ -2253,6 +2255,7 @@ Status dieses Laborblocks: `labor-proven`, `labor-sufficient-for-book-draft`, `n
 | Gebuchte Einkaufsrechnung `108219` | Nach der Buchung ist der offene Kreditorenposten der Finance-Nachweis | deutsche gebuchte Einkaufsrechnung mit deutschem Belegbild und USt-Posten |
 | Kreditorenposten, Sachposten, Wertposten und Artikelposten `793` | Jede Postenart beantwortet eine andere Kontrollfrage | deutsche Postenspur inklusive Vorsteuer, Kontenplan, Dimensionen und ggf. Zahlungs-/OP-Ausgleich |
 | Kreditorenzahlung `PAYP2P-108219` und OP-Klaerung `P2P-003` | Zahlung wird im Zahlungsjournal gebucht und ueber Kreditorenposten, detaillierte Kreditorenposten, Bankposten und Sachposten nachvollzogen; Rechnung `108219` zeigt Restbetrag `0,00` | deutsche Kreditorenzahlung mit Bankabstimmung, deutschem Zahlungs-/Compliance-Kontext und finalem Screenshot-Ersatz |
+| P2P-004 Teil-WE-Startgate mit Draft `106002` | Teil-WE braucht zuerst stabilen Belegkopf und Zeilenkontext; Bestellung, Lieferung und Rechnung sind getrennte Stufen | deutscher Teil-WE-Fall mit Artikelzeile, `Qty. to Receive`, Preview, Wareneingang, Rechnung und Postenspur |
 
 Fuer Einsteiger ist der wichtigste P2P-Lernpunkt: Eine Einkaufsrechnung ist nicht nur ein PDF oder ein Belegkopf. Business Central erzeugt eine Kette aus Lieferantenbeleg, Lagerbewegung, Wertbewegung, Hauptbuchwirkung und offenem Kreditorenposten. Wenn nur die gebuchte Rechnung sichtbar ist, fehlt noch die Kontrolle, ob Lager, Wert, Konten und OP zusammenpassen.
 
@@ -2260,6 +2263,7 @@ Der zweite Lernpunkt ist die Zahlung: Eine Kreditorenzahlung ist ein eigener Buc
 
 Screenshot-/Evidence-ToDos fuer die spaetere deutsche Zielinstanz:
 
+- `[DE-FINAL-SCREENSHOT: Teil-WE-Einkaufsbestellung mit sichtbarer Zeile, bestellter Menge, Zu empfangen / Qty. to Receive und Zu fakturieren / Qty. to Invoice]`
 - `[DE-FINAL-SCREENSHOT: Einkaufsbestellung mit K10000, RAW-STEEL, Menge, Lagerort, Preis und Lieferantenrechnungsnummer]`
 - `[DE-FINAL-SCREENSHOT: Preview Posting mit Sachposten, Kreditorenposten, Artikelposten, Wertposten und USt-Posten]`
 - `[DE-FINAL-SCREENSHOT: gebuchte Einkaufsrechnung mit deutscher Belegnummer und EUR]`
@@ -2298,6 +2302,8 @@ BC-Best-Practice:
 - Externe Belegnummer ist Pflicht.
 - Bankdatenänderungen werden nicht im Zahlungslauf geändert, sondern vorher freigegeben.
 - Mengen- und Preisabweichungen erhalten eigene Freigaberegeln.
+
+Laborstatus zu dieser Uebung: `P2P-004` beweist in `RM-DEMO` bisher nur den Einstieg in den Teil-WE-Pfad. Sichtbar belegt sind `Purchase Orders`, `New`, Draft `106002`, Kreditor `K10000` und der Zeilenkontext. Noch nicht belegt sind `RAW-STEEL`, Menge `10` oder `4`, `Zu empfangen`, Preview Posting, Wareneingang, Eingangsrechnung und Postenspur. Die folgende Uebung ist deshalb Zielpfad fuer die spaetere deutsche Finalumgebung und fuer die naechsten Labor-Gates, nicht bereits abgeschlossene Evidence.
 
 Schulungsübung:
 

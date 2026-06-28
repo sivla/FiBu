@@ -19,6 +19,7 @@ Dieser Draft verdichtet die vorhandene Evidence aus `UAT-P2P-001` fuer das Buch.
 | Postenspur | Kreditorenposten, Sachposten, Wertposten und Artikelposten `793` sind nachvollziehbar | `120-*`, `130-*`, `150-*`, `155-*`, `160-posting-trace-summary.json` |
 | Folgezahlung | Kreditorenzahlung `PAYP2P-108219` wurde im Payment Journal UI-first gebucht; Preflight, Apply-Entries-Ansicht, Post-Dialog, Kreditorenposten, detaillierte Kreditorenposten, Bankposten und Sachposten sind belegt | `evidence/p2p-002/P2P-002-result.json`, `P2P-002-VENDOR-PAYMENT.md` |
 | OP-/Application-Klaerung | Read-only Nachweis: Rechnung `108219` zeigt Restbetrag `0,00`; Detailed Vendor Ledger zeigt `Initial Entry`, `Payment Discount` und `Application` zur Zahlung `PAYP2P-108219` | `evidence/p2p-003/P2P-003-result.json`, `P2P-003-OP-APPLICATION-READONLY.md` |
+| Teil-WE-Startgate | UI-first Nachweis: `Purchase Orders` ist erreichbar, `New` oeffnet einen Einkaufsbestellungskontext, Draft `106002` wurde mit `K10000` im Kopf angelegt und die Zeilensteuerung fuer den naechsten Teil-WE-Schritt ist sichtbar | `evidence/p2p-004/P2P-004-result.json`, `P2P-004-PARTIAL-RECEIPT-GATE.md` |
 
 ## Anfaenger-Erklaerung
 
@@ -28,6 +29,8 @@ Die gebuchte Einkaufsrechnung ist danach nur ein Teil der Wahrheit. Fuer Finance
 
 Die Labor-Kreditorenzahlung `PAYP2P-108219` zeigt den naechsten Finance-Schritt: Eine Zahlung entsteht nicht aus der Einkaufsrechnung selbst, sondern aus einem Zahlungsjournal. Entscheidend sind Kreditor, Betrag, Bankgegenkonto und der Bezug auf die Ausgangsrechnung. Der Folgecheck `P2P-003` zeigt danach read-only: Die Ausgangsrechnung `108219` hat Restbetrag `0,00`, und die detaillierten Kreditorenposten zeigen Application-Zeilen zur Zahlung. Der sichtbare `Payment Discount` ist ein eigener CRONUS-USA-Laborbefund und muss im Buch erklaert werden, weil Zahlung und Rechnung dadurch nicht nur als einfache 1:1-Zeile erscheinen.
 
+`P2P-004` ergaenzt keinen neuen gebuchten P2P-Prozess, sondern ein bewusst kleines UI-first Startgate fuer den spaeteren Teil-Wareneingang. Der Lauf zeigt, dass eine Einkaufsbestellung per UI neu geoeffnet werden kann, dass `K10000` im Kopf gesetzt werden kann und dass die Zeilenoberflaeche danach vorhanden ist. Das ist fuer Anfaenger wichtig, weil Teil-WE nicht beim Buchen beginnt: Zuerst muss der Belegkopf stimmen, dann die Zeile, dann die Menge, dann erst Preview oder Buchung. Der Draft `106002` bleibt als Labor-Trace erhalten; er beweist noch keine Artikelzeile und keine Teilmenge.
+
 ## Was nicht bewiesen wurde
 
 - Kein deutscher `19 %`-Vorsteuer-Endstand.
@@ -35,6 +38,7 @@ Die Labor-Kreditorenzahlung `PAYP2P-108219` zeigt den naechsten Finance-Schritt:
 - Keine E-Rechnung.
 - Keine Bankabstimmung und kein Kontoauszugsimport; der OP-Ausgleich der P2P-Rechnung `108219` ist im Labor read-only belegt, aber nicht deutsch/final.
 - Keine P2P-Dimensionen in den Posten.
+- Keine Teil-WE-Buchung: `P2P-004` beweist nur Draft/Kopf/Zeilenkontext, nicht `RAW-STEEL`, Menge `4`, `Qty. to Receive = 2`, Preview Posting oder Wareneingang.
 - Keine deutsche Finaloberflaeche und keine deutschen Final-Screenshots.
 
 ## Buchwirkung
@@ -48,7 +52,8 @@ Kapitel 12 darf den P2P-Laborfall als Lernstrecke nutzen:
 5. Postenspur nach der Buchung.
 6. Payment-Journal-Folgefall mit Kreditorenzahlung und Bank-/G/L-/Vendor-Trace.
 7. OP-/Application-Kontrolle mit Restbetrag `0,00`, detaillierten Kreditorenposten und Payment Discount.
-8. Laborgrenzen klar sichtbar.
+8. Teil-WE als separaten Stufenfall erklaeren: Draft/Kopf/Zeile zuerst, danach Menge, Preview, Wareneingang, Rechnung und Postenspur.
+9. Laborgrenzen klar sichtbar.
 
 Kapitel 12 darf daraus nicht ableiten, dass deutsche Vorsteuer, deutsche Konten, deutsche E-Rechnung oder deutsche Final-Screenshots erledigt sind.
 
@@ -71,7 +76,6 @@ In einer deutschen Zielinstanz muss dieser Fall neu aufgebaut werden:
 Nicht `UAT-P2P-001` wiederholen. Der naechste praktische P2P-Nutzen ist ein Abweichungsfall, zum Beispiel:
 
 - Teil-Wareneingang vs. Rechnung.
-- Preisabweichung.
-- Teil-Wareneingang vs. Rechnung.
-- Preisabweichung.
+- P2P-005: Auf Draft `106002` oder einem frischen UI-Draft `RAW-STEEL`, Menge `4` und `Qty. to Receive = 2` feldsicher setzen; noch kein Preview/Post, bis dieses Gate belegt ist.
+- Preisabweichung als eigener spaeterer Fall.
 - P2P-Dimensionen in gebuchten Posten.

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "purpose": "german-final-rebuild-map",
-  "updatedAt": "2026-06-28T15:20:00.000+02:00",
+  "updatedAt": "2026-06-28T16:10:00.000+02:00",
   "sourceInstance": "MCP_1_20260210",
   "sourceCompany": "RM-DEMO",
   "sourceEvidenceStatus": "labor-reference",
@@ -83,6 +83,21 @@
         "playwright/projects/fibu-book5/evidence/p2p-003/README.md"
       ],
       "laborBoundary": "P2P-003 is a read-only RM-DEMO laboratory proof. It performed no new payment, no posting, no Preview Posting, no setup change and no bank reconciliation."
+    },
+    {
+      "caseId": "P2P-004-PARTIAL-RECEIPT-VARIANCE-GATE",
+      "area": "p2p",
+      "migrationRelevance": "needed-for-german-final",
+      "sourceCompany": "RM-DEMO",
+      "mustRecreateInFinalSandbox": true,
+      "finalScreenshotNeeded": true,
+      "rebuildInstruction": "In the German target company, recreate the partial receipt route UI-first: open Purchase Orders, create the purchase order, set vendor, item, ordered quantity and Qty. to Receive, then only after that prove Preview Posting, receipt/invoice choice and ledger trace.",
+      "targetGermanCompanyImpact": "German final P2P partial receipt evidence must show German UI labels, EUR, German VAT/pre-tax handling, German posting accounts, posted receipt/invoice and ledger entries. RM-DEMO draft 106002 is only a laboratory gate.",
+      "laborEvidenceRefs": [
+        "playwright/projects/fibu-book5/evidence/p2p-004/P2P-004-result.json",
+        "playwright/projects/fibu-book5/evidence/p2p-004/P2P-004-PARTIAL-RECEIPT-GATE.md"
+      ],
+      "laborBoundary": "P2P-004 proves Purchase Order UI start, draft 106002, vendor K10000 and line context only. No item line, no partial quantity, no Preview Posting, no posting and no German final proof."
     }
   ],
   "rules": [

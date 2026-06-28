@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "runId": "P2P-003-VENDOR-PAYMENT-APPLICATION-READONLY",
-  "timestamp": "2026-06-28T15:20:00.000+02:00",
+  "runId": "P2P-004-PARTIAL-RECEIPT-UI-GATE",
+  "timestamp": "2026-06-28T16:10:00.000+02:00",
   "date": "2026-06-28",
-  "workType": "readonly-labor-evidence-run",
+  "workType": "controlled-labor-ui-gate",
   "taskClass": "wizard_work",
   "modelClass": "gpt-4-medium",
   "branch": "codex/token-efficient-autopilot-state",
@@ -22,51 +22,73 @@
   "companySwitched": false,
   "apiShortcut": false,
   "bookChanged": true,
-  "dataChanged": false,
-  "draftCreated": false,
-  "recordEdited": false,
+  "dataChanged": true,
+  "draftCreated": true,
+  "recordEdited": true,
   "recordDeleted": false,
   "journalLineChanged": false,
-  "resultStatus": "labor-proven",
+  "resultStatus": "labor-gate-proven",
   "blockedBy": [],
-  "summary": "Ran P2P-003 as a read-only follow-up after the posted vendor payment PAYP2P-108219. Vendor Ledger Entries show invoice 108219 with Remaining Amount 0,00, and Detailed Vendor Ledger Entries show Initial Entry, Payment Discount and Application lines for PAYP2P-108219. No new payment, posting, preview, setup change, draft or company switch occurred.",
+  "summary": "P2P-004 ran as a controlled UI-first Purchase Order gate in RM-DEMO. Purchase Orders opened, New created draft 106002, vendor K10000 was entered in the header, and the line context for a later partial receipt step is visible. No item line, no partial quantity, no Preview Posting, no posting, no setup change and no API shortcut occurred.",
   "proved": [
-    "Invoice 108219 is visible in Vendor Ledger Entries after payment.",
-    "Invoice 108219 shows Remaining Amount 0,00 in the read-only Vendor Ledger context.",
-    "Payment PAYP2P-108219 is visible in Vendor Ledger Entries.",
-    "Detailed Vendor Ledger Entries for PAYP2P-108219 show Initial Entry, Payment Discount and Application lines.",
-    "The previous P2P-002 open OP-control limit is resolved as CRONUS-USA laboratory evidence.",
-    "Chapter 12, Chapter 20, coverage and the P2P laboratory draft now reflect the read-only application result."
+    "Purchase Orders page is reachable in RM-DEMO.",
+    "New opens a Purchase Order card context through the UI.",
+    "Purchase Order draft 106002 was created and kept as labor trace.",
+    "Vendor K10000 can be entered on the Purchase Order header through the UI.",
+    "The Purchase Order page exposes a line context for the next item/quantity/partial-receipt step.",
+    "Chapter 12, coverage, patterns and the P2P laboratory draft now classify P2P-004 as a gate, not as completed partial receipt."
   ],
   "notProved": [
-    "No new vendor payment was posted.",
+    "No item line RAW-STEEL was created.",
+    "No quantity 4 or Qty. to Receive 2 was entered.",
     "No Preview Posting was opened.",
-    "No bank reconciliation or bank statement import was performed.",
-    "No German bank, tax, compliance or chart-of-accounts final proof exists.",
-    "No API shortcut was used."
+    "No Receive, Invoice, Receive and Invoice or Post action was executed.",
+    "No posted purchase receipt, purchase invoice, vendor ledger, G/L entry, item ledger or value entry was created.",
+    "No German final proof exists."
   ],
+  "changedRecords": [
+    {
+      "type": "Purchase Order header",
+      "no": "106002",
+      "field": "Buy-from Vendor No.",
+      "value": "K10000"
+    }
+  ],
+  "createdRecords": [
+    {
+      "type": "Purchase Order draft",
+      "no": "106002",
+      "keepStatus": "kept-as-labor-draft-trace"
+    }
+  ],
+  "cleanup": {
+    "attempted": false,
+    "result": "kept-draft-for-next-gate",
+    "reason": "Draft 106002 is intentionally kept as laboratory trace and possible P2P-005 continuation; no line, preview or posting was executed."
+  },
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/p2p-003/P2P-003-result.json",
-    "playwright/projects/fibu-book5/evidence/p2p-003/P2P-003-OP-APPLICATION-READONLY.md",
-    "playwright/projects/fibu-book5/evidence/p2p-003/README.md",
-    "playwright/projects/fibu-book5/img/p2p-003-010-vendor-ledger-invoice-after-payment.png",
-    "playwright/projects/fibu-book5/img/p2p-003-020-vendor-ledger-payment.png",
-    "playwright/projects/fibu-book5/img/p2p-003-030-detailed-vendor-ledger-payment-application.png"
+    "playwright/projects/fibu-book5/evidence/p2p-004/P2P-004-result.json",
+    "playwright/projects/fibu-book5/evidence/p2p-004/P2P-004-PARTIAL-RECEIPT-GATE.md",
+    "playwright/projects/fibu-book5/evidence/p2p-004/README.md",
+    "playwright/projects/fibu-book5/img/p2p-004-010-purchase-orders-list.png",
+    "playwright/projects/fibu-book5/img/p2p-004-020-purchase-order-after-new.png",
+    "playwright/projects/fibu-book5/img/p2p-004-030-purchase-order-after-vendor.png"
   ],
   "changedFiles": [
     "package.json",
-    "playwright/projects/fibu-book5/tests/p2p-003-vendor-payment-application-readonly.spec.ts",
-    "playwright/projects/fibu-book5/evidence/p2p-003/",
-    "playwright/projects/fibu-book5/img/p2p-003-*",
+    "playwright/projects/fibu-book5/tests/p2p-004-partial-receipt-ui-gate.spec.ts",
+    "playwright/projects/fibu-book5/evidence/p2p-004/",
+    "playwright/projects/fibu-book5/img/p2p-004-*",
     "playwright/projects/fibu-book5/book-drafts/p2p-labor-draft.md",
     "playwright/projects/fibu-book5/BOOK-CLICK-GUIDE-COVERAGE.md",
+    "playwright/projects/fibu-book5/BC-PLAYWRIGHT-PATTERNS.md",
     "FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md",
     ".agent/state/current.json",
     ".agent/state/coverage_state.json",
     ".agent/state/german-final-rebuild-map.json",
     ".agent/state/last_run_summary.json",
-    ".agent/state/cases/p2p-003-vendor-payment-application-readonly.json",
-    ".agent/state/cases/p2p-004-partial-receipt-variance-gate.json"
+    ".agent/state/cases/p2p-004-partial-receipt-variance-gate.json",
+    ".agent/state/cases/p2p-005-partial-receipt-line-qty-gate.json"
   ],
   "validationCommands": [
     "git branch --show-current",
@@ -76,30 +98,29 @@
     "npm run agent:context",
     "npm run agent:dry-run",
     "npm run agent:run-plan",
-    "npm run fibu:p2p:vendor-payment-application",
-    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/p2p-003/P2P-003-result.json",
-    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/p2p-003/P2P-003-result.json",
+    "npm run fibu:p2p:partial-receipt-gate",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/p2p-004/P2P-004-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/p2p-004/P2P-004-result.json",
     "npm run check:encoding",
     "git diff --check"
   ],
   "validationNotes": [
-    "P2P-003 executed as read-only Playwright run and passed.",
-    "state-finalize was run without --write only."
+    "P2P-004 Playwright run passed after a narrow header-input fallback was added.",
+    "state-finalize was run without --write only.",
+    "No additional rerun was performed after cleanup metadata correction to avoid creating another draft."
   ],
   "boundaries": [
     "Labor-reference only.",
     "BC and Playwright executed inside MCP_1_20260210 / RM-DEMO.",
-    "No new payment.",
     "No Preview Posting.",
     "No posting.",
     "No setup change.",
     "No company switch.",
     "No API shortcut.",
-    "No bank reconciliation.",
     "German final proof remains open."
   ],
   "activeArea": "p2p",
-  "activeCase": "P2P-004-PARTIAL-RECEIPT-VARIANCE-GATE",
-  "nextCase": "P2P-004-PARTIAL-RECEIPT-VARIANCE-GATE",
-  "nextStep": "Plan and run one controlled partial-receipt-versus-invoice P2P variance case in RM-DEMO, with preview/posting only if the case gate explicitly unlocks it."
+  "activeCase": "P2P-005-PARTIAL-RECEIPT-LINE-QTY-GATE",
+  "nextCase": "P2P-005-PARTIAL-RECEIPT-LINE-QTY-GATE",
+  "nextStep": "Use draft 106002 or create a fresh UI draft to enter RAW-STEEL quantity 4 and Qty. to Receive 2; stop before Preview Posting or posting."
 }

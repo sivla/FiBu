@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-28T15:20:00.000+02:00",
+  "updatedAt": "2026-06-28T16:10:00.000+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "p2p",
-  "activeCase": "P2P-004-PARTIAL-RECEIPT-VARIANCE-GATE",
-  "active_case_file": ".agent/state/cases/p2p-004-partial-receipt-variance-gate.json",
+  "activeCase": "P2P-005-PARTIAL-RECEIPT-LINE-QTY-GATE",
+  "active_case_file": ".agent/state/cases/p2p-005-partial-receipt-line-qty-gate.json",
   "lastReferenceCase": "UAT-P2P-001",
   "lastReferenceCaseFile": "",
   "mode": "labor-book-production",
@@ -40,7 +40,7 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "Do not repeat UAT-P2P-001, P2P-002 payment or P2P-003 read-only application check. Next bounded P2P step: plan and run one controlled partial-receipt-versus-invoice variance case in RM-DEMO, with preview/trace only when the case gate unlocks it.",
+  "nextStep": "P2P-005: continue from Purchase Order draft 106002 or create a fresh UI draft, enter RAW-STEEL with quantity 4, prove Qty. to Receive = 2, and stop before Preview Posting or Post until the line/quantity gate is visible.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/fixedassets-labor-draft.md",
     "area": "fixedassets",
@@ -113,25 +113,32 @@
     "summaryFile": ".agent/state/lab_to_german_sandbox_migration_plan.json",
     "noActiveLiveRunInOldSandbox": false,
     "germanTargetUnavailable": true,
-      "nextStep": "Continue controlled laboratory evidence, Playwright capability and labor bookdraft substance in MCP_1_20260210 until a German target sandbox exists; P2P-003 now proves the RM-DEMO vendor payment application read-only, but the whole route must be rebuilt in German final evidence."
+    "nextStep": "Continue RM-DEMO laboratory production with P2P-005 line/quantity gate; German target sandbox is still unavailable and all RM-DEMO evidence remains labor-reference only."
   },
   "latestP2PLabFollowup": {
-    "caseId": "P2P-003-VENDOR-PAYMENT-APPLICATION-READONLY",
-    "selectedScenario": "vendor-payment-application-readonly",
-    "paymentDocumentNo": "PAYP2P-108219",
+    "caseId": "P2P-004-PARTIAL-RECEIPT-VARIANCE-GATE",
+    "selectedScenario": "partial-receipt-ui-start-gate",
+    "purchaseOrderDraftNo": "106002",
     "posted": false,
-    "readOnly": true,
+    "previewPosting": false,
+    "setupChanged": false,
+    "apiShortcut": false,
     "status": [
-      "labor-proven",
+      "labor-gate-proven",
       "labor-sufficient-for-book-draft",
       "needs-german-final-rebuild"
     ],
     "sourceCompany": "RM-DEMO",
     "sourceInstance": "MCP_1_20260210",
-    "evidencePath": "playwright/projects/fibu-book5/evidence/p2p-003/",
-    "bookEffect": "Chapter 12, Chapter 20, coverage and the P2P laboratory draft now explain that invoice 108219 shows Remaining Amount 0,00 and Detailed Vendor Ledger application lines after PAYP2P-108219.",
-    "openLimit": "Bank reconciliation, bank statement import, German final screenshots, German tax/compliance and German chart-of-accounts proof remain open.",
-    "nextStep": "Move to a distinct P2P variance case, preferably partial receipt versus invoice, without repeating UAT-P2P-001/P2P-002/P2P-003."
+    "evidencePath": "playwright/projects/fibu-book5/evidence/p2p-004/",
+    "screenshots": [
+      "playwright/projects/fibu-book5/img/p2p-004-010-purchase-orders-list.png",
+      "playwright/projects/fibu-book5/img/p2p-004-020-purchase-order-after-new.png",
+      "playwright/projects/fibu-book5/img/p2p-004-030-purchase-order-after-vendor.png"
+    ],
+    "bookEffect": "Chapter 12 and the P2P labor draft now explain that partial receipt needs a stable purchase order header and line context before quantity, Preview Posting or posting.",
+    "openLimit": "No item line RAW-STEEL, no quantity 4, no Qty. to Receive = 2, no Preview Posting, no Receive/Invoice/Post and no ledger trace yet.",
+    "nextStep": "P2P-005 line and quantity gate without Preview Posting or posting."
   },
   "subagentPlanPolicy": {
     "default": "optional",

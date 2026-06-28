@@ -1,0 +1,87 @@
+{
+  "caseId": "P2P-004-PARTIAL-RECEIPT-VARIANCE-GATE",
+  "source": "playwright-ui-gate",
+  "resultStatus": "labor-gate-proven",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "sourceCompany": "RM-DEMO",
+  "dataBasis": "RM-DEMO CRONUS-USA labor",
+  "plannedScenario": {
+    "vendorNo": "K10000",
+    "itemNo": "RAW-STEEL",
+    "locationCode": "FRA-ZL",
+    "plannedQuantity": 4,
+    "plannedPartialReceiptQuantity": 2,
+    "plannedUnitCost": 2500
+  },
+  "flags": {
+    "noPost": true,
+    "noPreviewPosting": true,
+    "noPayment": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChangeInsideTest": true
+  },
+  "createdRecords": [
+    {
+      "type": "Purchase Order draft",
+      "no": "106002",
+      "keepStatus": "kept-as-labor-draft-trace",
+      "reason": "UI-first draft was created as P2P-004 gate evidence; no posting/preview/line execution occurred."
+    }
+  ],
+  "changedRecords": [
+    {
+      "type": "Purchase Order header",
+      "no": "106002",
+      "field": "Buy-from Vendor No.",
+      "value": "K10000"
+    }
+  ],
+  "postedRecords": [],
+  "setupChanges": [],
+  "cleanup": {
+    "attempted": false,
+    "result": "kept-draft-for-next-gate",
+    "reason": "Purchase Order draft was kept intentionally as laboratory trace and possible P2P-005 continuation; no line, preview or posting was executed."
+  },
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/p2p-004/010-purchase-orders-list-page-text.txt",
+    "playwright/projects/fibu-book5/evidence/p2p-004/010-purchase-orders-list-actions.json",
+    "playwright/projects/fibu-book5/evidence/p2p-004/020-after-new-purchase-order-page-text.txt",
+    "playwright/projects/fibu-book5/evidence/p2p-004/020-after-new-purchase-order-controls.json",
+    "playwright/projects/fibu-book5/evidence/p2p-004/030-after-vendor-page-text.txt",
+    "playwright/projects/fibu-book5/evidence/p2p-004/030-after-vendor-controls.json"
+  ],
+  "screenshots": [
+    "playwright/projects/fibu-book5/img/p2p-004-010-purchase-orders-list.png",
+    "playwright/projects/fibu-book5/img/p2p-004-020-purchase-order-after-new.png",
+    "playwright/projects/fibu-book5/img/p2p-004-030-purchase-order-after-vendor.png"
+  ],
+  "warnings": [],
+  "blockedBy": [],
+  "requiresReview": true,
+  "safeToFinalizeState": false,
+  "statePatch": {},
+  "migrationRelevance": "needed-for-german-final",
+  "rebuildInstruction": "In der deutschen Zielcompany denselben UI-first Teil-WE-Pfad reproduzieren: Purchase Order anlegen, Menge/Qty. to Receive/Qty. to Invoice pruefen, Teilmenge empfangen, Rechnung/Restmenge und Postenspur mit deutschen Screenshots belegen.",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "targetGermanCompanyImpact": "Deutscher Finalfall braucht deutsche UI, EUR, deutsche Steuer-/Kontenlogik und finalen Teil-WE-/Teilrechnungsnachweis.",
+  "proved": [
+    "Purchase Orders page is reachable in RM-DEMO.",
+    "New opens a Purchase Order card context through the UI.",
+    "Vendor K10000 can be entered on the Purchase Order header through the UI.",
+    "The Purchase Order page exposes a line context for the next item/quantity/partial-receipt step."
+  ],
+  "notProved": [
+    "No item line RAW-STEEL was created.",
+    "No quantity 4 or partial receipt quantity 2 was entered.",
+    "No Preview Posting was opened.",
+    "No Receive, Invoice, Receive and Invoice or Post action was executed.",
+    "No posted purchase receipt, purchase invoice, vendor ledger, G/L entry, item ledger or value entry was created in this run.",
+    "No German final proof."
+  ],
+  "nextStep": "P2P-005: continue from the kept UI draft or create a fresh UI draft and enter one item line with quantity 4, then set Qty. to Receive = 2 before any Preview/Post gate."
+}

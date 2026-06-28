@@ -56,6 +56,7 @@ Diese Datei sammelt wiederverwendbare Muster aus belegten Laeufen. Sie ist keine
 
 ## Kartencontrol-Diagnose
 
+- `P2P-004` ergaenzt fuer Einkaufsbestellungen: Kopf-Felder koennen sichtbar und fachlich richtig sein, ohne hilfreiche `aria-label`-/`title`-Signale zu liefern. Ein geometrischer Fallback auf ein Top-Header-Input ist nur als enger Labor-Hebel erlaubt, wenn vorher der Listenkontext und die geoeffnete Karte bewiesen wurden und danach der Zielwert im Seitentext/Screenshot sichtbar ist. Die Evidence muss x/y-Kandidaten und den sichtbaren Nachherwert dokumentieren; Geometrie allein ist kein allgemeiner Feldbeweis.
 - Nach `FIXEDASSETS-234` gilt fuer Setup-Fit-Reviews: Ein breiter Edit-/Top-Action-Kandidat entwertet einen Feldfit nicht automatisch, wenn das Ziel-Control selbst eindeutig per Vorher/Nachher-Wert belegt ist. Fuer kuenftige Setup-Fits zuerst pruefen, ob das Ziel-Control bereits editierbar ist; wenn ja, keinen zusaetzlichen breiten Edit-Action-Klick ausfuehren. Der belastbare Nachweis ist der feldlokale Zielwert, nicht ein allgemeiner Action-Bar-Kandidat.
 - Neuer Helper-Baustein: `playwright/core/bc/cards.ts` mit `collectActiveCardControlDiagnostics()`. Er bewertet sichtbare Feldcaptions, verwirft Grid-/Columnheader-Kandidaten und sucht editierbare Controls in derselben sichtbaren Kartenzeile.
 - Der Helper ist Diagnose, keine Speicherfreigabe. Er beantwortet: "Treffe ich die Vordergrundkarte?" Nicht: "Ist der fachliche Zielwert bereits gesetzt?"

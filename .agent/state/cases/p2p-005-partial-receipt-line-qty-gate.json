@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "caseId": "P2P-005-PARTIAL-RECEIPT-LINE-QTY-GATE",
+  "area": "p2p",
+  "status": "planned",
+  "taskClass": "wizard_work",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "sourceCompany": "RM-DEMO",
+  "mode": "controlled-labor-ui-line-gate",
+  "purpose": "Continue the P2P partial receipt path by proving a purchase order line and partial receipt quantity in the UI before any Preview Posting or posting.",
+  "predecessorCase": "P2P-004-PARTIAL-RECEIPT-VARIANCE-GATE",
+  "preferredStartingPoint": {
+    "purchaseOrderDraftNo": "106002",
+    "fallback": "create a fresh UI draft only if 106002 is not safely reusable"
+  },
+  "plannedScenario": {
+    "vendorNo": "K10000",
+    "itemNo": "RAW-STEEL",
+    "locationCode": "FRA-ZL",
+    "plannedQuantity": 4,
+    "plannedPartialReceiptQuantity": 2,
+    "plannedUnitCost": 2500
+  },
+  "allowedWhenGateUnlocks": [
+    "open-existing-purchase-draft-read-write",
+    "create-controlled-purchase-draft-if-needed",
+    "enter-purchase-line-item",
+    "enter-purchase-line-quantity",
+    "enter-qty-to-receive",
+    "write-evidence",
+    "update-labor-bookdraft-or-clickguide"
+  ],
+  "defaultLockedActions": [
+    "preview-posting",
+    "post",
+    "receive",
+    "invoice",
+    "receive-and-invoice",
+    "setup-change",
+    "company-switch",
+    "api-shortcut"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "final-german-claim-from-rm-demo",
+    "repeat-uat-p2p-001-without-new-purpose",
+    "repeat-p2p-002-payment",
+    "repeat-p2p-003-readonly-application-check"
+  ],
+  "minimumEvidence": [
+    "instance and company proof",
+    "purchase order draft number or fresh draft reason",
+    "visible vendor K10000",
+    "visible line item RAW-STEEL",
+    "visible quantity 4",
+    "visible Qty. to Receive 2",
+    "explicit no-preview and no-post flags",
+    "cleanup-or-keep strategy for draft"
+  ],
+  "stopConditions": [
+    "wrong instance or company",
+    "draft not safely reusable and fresh draft cannot be controlled",
+    "line field mapping not visible enough",
+    "any Preview Posting or Post dialog appears unexpectedly",
+    "BC opens a dangerous confirmation dialog not planned by the case"
+  ],
+  "bookImpactTarget": "Chapter 12 partial receipt step-by-step gate and German-final rebuild map.",
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "nextSafeAction": "Enter line and Qty. to Receive values in UI and stop before Preview Posting or posting."
+}
