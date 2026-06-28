@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "caseId": "BOOK-FIXEDASSETS-CH21-DEPRECIATION-BLOCKER-SYNC",
+  "title": "Sync fixed assets depreciation blocker lesson into Chapter 21 and clickguide",
+  "status": "planned",
+  "taskClass": "judge_work",
+  "modelClass": "gpt-5.5-low",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "book-sync",
+  "sourceCase": "FIXEDASSETS-296-FA-DEPRECIATION-FRESH-OK-RESULT-BLOCKER-REVIEW",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-291/FIXEDASSETS-291-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-295/FIXEDASSETS-295-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-296/FIXEDASSETS-296-result.json"
+  ],
+  "purpose": "Update Chapter 21 or the Fixed Assets labor clickguide so beginners understand the depreciation blocker without overclaiming German final proof.",
+  "allowedActions": [
+    "read-book-chapter-21",
+    "read-fixedassets-labor-draft",
+    "write-small-book-or-clickguide-patch",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "claim-german-final-proof",
+    "run-business-central",
+    "run-playwright",
+    "preview-posting",
+    "post"
+  ],
+  "safetyGates": [
+    "labor-label-required",
+    "german-final-rebuild-note-required",
+    "no-final-claim-from-rm-demo",
+    "small-patch-only"
+  ],
+  "expectedOutputs": [
+    "A small beginner-friendly book or clickguide patch explaining OK vs journal-line proof.",
+    "State/coverage sync marking depreciation as labor-blocked but sufficient for book draft."
+  ],
+  "classification": [
+    "labor-sufficient-for-book-draft",
+    "needs-german-final-rebuild"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "targetGermanCompanyImpact": "German final book proof must replace RM-DEMO screenshots and evidence with German target evidence.",
+  "finalScreenshotNeeded": true,
+  "nextStep": "Patch Chapter 21 or the Fixed Assets labor clickguide with the FA-291/295/296 depreciation blocker lesson."
+}

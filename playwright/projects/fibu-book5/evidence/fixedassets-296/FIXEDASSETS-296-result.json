@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "FIXEDASSETS-296-FA-DEPRECIATION-FRESH-OK-RESULT-BLOCKER-REVIEW",
+  "source": "local-evidence-review",
+  "resultStatus": "observed",
+  "runPlanId": "FIXEDASSETS-296-local-review",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "bcRun": false,
+  "playwrightRun": false,
+  "posted": false,
+  "previewPosting": false,
+  "dataChanged": false,
+  "setupChanged": false,
+  "bookChanged": false,
+  "decision": "park-rm-demo-depreciation-posting-and-sync-bookdraft",
+  "proved": [
+    "FA-291 proved Calculate Depreciation request values HGB, 31.01.2027, FADEP-291-OK and FA-CNC-01 before OK.",
+    "FA-291 confirmed OK exactly once and did not find FADEP-291-OK in Fixed Asset G/L Journals.",
+    "FA-295 proved Calculate Depreciation request values HGB, 31.01.2027, FADEP-295-OK and FA-CNC-01 before OK.",
+    "FA-295 confirmed OK exactly once and did not find FADEP-295-OK in Fixed Asset G/L Journals.",
+    "No Preview Posting or Post was executed in FA-291 or FA-295."
+  ],
+  "notProved": [
+    "No depreciation journal line is visible.",
+    "No Preview Posting result exists.",
+    "No depreciation posting exists.",
+    "No German final proof exists.",
+    "It is not proven whether a hidden template, batch or filter contains an unobserved line."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-296/FIXEDASSETS-296-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-296/FIXEDASSETS-296-FRESH-OK-BLOCKER-REVIEW.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-296/README.md",
+    ".agent/state/cases/book-fixedassets-ch21-depreciation-blocker-sync.json",
+    ".agent/state/current.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/model_usage_log.jsonl"
+  ],
+  "statePatch": {
+    "current": {
+      "activeArea": "fixedassets",
+      "activeCase": "BOOK-FIXEDASSETS-CH21-DEPRECIATION-BLOCKER-SYNC",
+      "active_case_file": ".agent/state/cases/book-fixedassets-ch21-depreciation-blocker-sync.json",
+      "lastReferenceCase": "FIXEDASSETS-296-FA-DEPRECIATION-FRESH-OK-RESULT-BLOCKER-REVIEW",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-296-fa-depreciation-fresh-ok-result-blocker-review.json",
+      "nextStep": "Sync the FA depreciation blocker lesson from FA-291/295/296 into Chapter 21 or the Fixed Assets labor clickguide. Do not run another Calculate Depreciation OK, Preview Posting or Post in RM-DEMO before a new cause hypothesis exists."
+    },
+    "coverage": {
+      "activeArea": "fixedassets",
+      "currentBlock": "fa-depreciation-rm-demo-parked-book-sync-next",
+      "latestReviewCase": "FIXEDASSETS-296-FA-DEPRECIATION-FRESH-OK-RESULT-BLOCKER-REVIEW",
+      "nextCase": "BOOK-FIXEDASSETS-CH21-DEPRECIATION-BLOCKER-SYNC",
+      "depreciationReadiness": "labor-blocked and labor-sufficient-for-book-draft: FA-291 and FA-295 both proved request values and one OK execution, but neither FADEP-291-OK nor FADEP-295-OK became visible in Fixed Asset G/L Journals. RM-DEMO depreciation posting is parked; next step is book/clickguide sync of the blocker lesson."
+    },
+    "lastRunSummary": {
+      "runId": "FIXEDASSETS-296-FA-DEPRECIATION-FRESH-OK-RESULT-BLOCKER-REVIEW",
+      "workType": "local-evidence-review",
+      "instance": "MCP_1_20260210",
+      "company": "RM-DEMO",
+      "bcRun": false,
+      "playwrightRun": false,
+      "posted": false,
+      "previewPosting": false,
+      "dataChanged": false,
+      "setupChanged": false,
+      "bookChanged": false,
+      "summary": "FA-296 reviewed FA-291 and FA-295. Two controlled OK-only Calculate Depreciation runs with different document numbers produced no visible Fixed Asset G/L Journal line. RM-DEMO depreciation posting is parked pending a new cause hypothesis.",
+      "nextStep": "Book/clickguide sync for the depreciation blocker; no further OK repeat, Preview Posting or Post before a new cause hypothesis."
+    }
+  },
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-291/FIXEDASSETS-291-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-295/FIXEDASSETS-295-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-296/FIXEDASSETS-296-FRESH-OK-BLOCKER-REVIEW.md"
+  ],
+  "warnings": [
+    "Do not run Calculate Depreciation OK again in RM-DEMO without a new cause hypothesis.",
+    "Do not run Preview Posting or Post until a journal line is visible.",
+    "RM-DEMO evidence remains labor-reference and must be rebuilt in a German final sandbox."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "reason": "FA-296 closes the repeated no-visible-journal-line loop and redirects to book/clickguide sync instead of another execution repeat.",
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "targetGermanCompanyImpact": "German final sandbox must prove depreciation calculation, visible journal line, Preview Posting and posted FA/G/L entries separately.",
+  "finalScreenshotNeeded": true,
+  "validationCommands": [
+    "npm run agent:preflight",
+    "npm run agent:context",
+    "npm run agent:dry-run",
+    "npm run agent:run-plan",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-296/FIXEDASSETS-296-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-296/FIXEDASSETS-296-result.json",
+    "npm run check:encoding",
+    "git diff --check"
+  ]
+}
