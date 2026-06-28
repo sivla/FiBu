@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-296-FA-DEPRECIATION-FRESH-OK-RESULT-BLOCKER-REVIEW",
+  "title": "Review fresh Calculate Depreciation OK result with no visible journal line",
+  "status": "planned",
+  "taskClass": "judge_work",
+  "modelClass": "gpt-5.5-low",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "local-evidence-review",
+  "sourceCase": "FIXEDASSETS-295-FA-DEPRECIATION-GUARDED-OK-FRESH-DOC-NO-POST",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-295/FIXEDASSETS-295-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-295/010-target-value-preflight.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-295/010-ok-execution-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-295/020-journal-line-search.json"
+  ],
+  "purpose": "Decide why a fresh guarded Calculate Depreciation OK run with FADEP-295-OK still produced no visible Fixed Asset G/L Journal line.",
+  "allowedActions": [
+    "read-local-evidence",
+    "compare-fa-291-and-fa-295-results",
+    "review-depreciation-eligibility-and-output-target-hypotheses",
+    "write-compact-review",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "repeat-calculate-depreciation-ok",
+    "preview-posting",
+    "post",
+    "setup-change-without-evidence-gate",
+    "company-switch",
+    "api-shortcut-without-explicit-case-permission"
+  ],
+  "safetyGates": [
+    "no-repeat-ok-before-cause-review",
+    "no-preview-posting",
+    "no-posting",
+    "no-setup-change-before-cause-review",
+    "journal-line-must-be-visible-before-preview"
+  ],
+  "expectedOutputs": [
+    "A compact review deciding whether depreciation should be parked, setup/date/book options need diagnosis, or another non-repeating route exists.",
+    "A next safe case that does not repeat Calculate Depreciation OK blindly."
+  ],
+  "classification": [
+    "labor-blocked",
+    "controlled-execute-trace",
+    "needs-german-final-rebuild"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "targetGermanCompanyImpact": "German target company must reproduce depreciation calculation with visible journal line, Preview Posting and posted entries before final proof.",
+  "finalScreenshotNeeded": true,
+  "nextStep": "Review FA-295 locally and choose a non-repeating cause diagnosis or park depreciation posting; do not run Calculate Depreciation OK again blindly."
+}
