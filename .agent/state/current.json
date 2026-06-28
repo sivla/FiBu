@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-28T19:28:00.000+02:00",
+  "updatedAt": "2026-06-28T20:18:00.000+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "p2p",
-  "activeCase": "P2P-011-PURCHASE-LINES-EDIT-ACTION-DISCOVERY",
-  "active_case_file": ".agent/state/cases/p2p-011-purchase-lines-edit-action-discovery.json",
+  "activeCase": "BC-DEEP-RUN-001-MULTI-ROUTE-SANDBOX-PROGRESS",
+  "active_case_file": ".agent/state/cases/bc-deep-run-001-multi-route-sandbox-progress.json",
   "lastReferenceCase": "UAT-P2P-001",
   "lastReferenceCaseFile": "",
   "mode": "bc-specialist-labor-book-production",
@@ -40,7 +40,7 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "P2P-012: switch to alternative standard UI route such as Purchase Journal or Item Journal; do not repeat Purchase Lines display-cell edits, Select-items search or generic action discovery.",
+  "nextStep": "P2P-013: controlled Item Journal follow-up for material/quantity/location/value effect; define journal check/preview gate and ledger trace before posting.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/fixedassets-labor-draft.md",
     "area": "fixedassets",
@@ -221,11 +221,12 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "p2p-partial-receipt-edit-action-discovery",
+  "currentCoverageFocus": "p2p-alternative-standard-ui-route",
   "nextProcessRoute": [
-    "P2P-011 confirmed More options/Line action discovery but found no direct safe Edit/List Edit route for Purchase Lines target values.",
-    "P2P-012 should evaluate an alternative standard UI route such as Purchase Journal or Item Journal for material/value effect.",
-    "P2P Preview Posting/Receive for Purchase Order lines remains locked until target values are visible and unambiguous."
+    "P2P-012 compared Purchase Journal, Item Journal, Purchase Invoices and Requisition Worksheet by direct page URL without search or field entry.",
+    "Item Journal is the most stable observed route for material quantity/location/value effect, but it is Inventory evidence rather than full creditor P2P.",
+    "Purchase Journal and Purchase Invoices remain P2P candidate routes, but need their own controlled value-entry gate before posting.",
+    "P2P-013 should use Item Journal as controlled Inventory/P2P-abgrenzung follow-up or switch to Purchase Journal if creditor flow is prioritized."
   ],
   "activeAtlasFiles": [
     "playwright/projects/fibu-book5/BC-COVERAGE-MATRIX.md",
@@ -443,5 +444,29 @@
     "proved": "Purchase Order action/menu inventory was captured in PO 106054 context without repeating Select-items search or display-cell edits.",
     "blocker": "No direct safe Edit/List Edit route for Purchase Lines value entry was found; item tracking/context actions are not proof for Location/Quantity/Qty. to Receive.",
     "nextStep": "P2P-012: switch to alternative standard UI route such as Purchase Journal or Item Journal; do not repeat Purchase Lines display-cell edits, Select-items search or generic action discovery."
+  },
+  "latestP2PAlternativeRoute": {
+    "caseId": "P2P-012-ALTERNATIVE-STANDARD-UI-ROUTE",
+    "status": [
+      "labor-route-comparison",
+      "read-only",
+      "needs-german-final-rebuild"
+    ],
+    "sourceInstance": "MCP_1_20260210",
+    "sourceCompany": "RM-DEMO",
+    "posted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "apiShortcut": false,
+    "resultPath": "playwright/projects/fibu-book5/evidence/p2p-012/P2P-012-result.json",
+    "evidencePath": "playwright/projects/fibu-book5/evidence/p2p-012/",
+    "preferredRoute": "Item Journal",
+    "p2pCandidateRoutes": [
+      "Purchase Journal",
+      "Purchase Invoices"
+    ],
+    "proved": "Alternative standard UI candidates can be opened directly without Tell-Me/search and show route-level signals for quantity/location/value/posting contexts.",
+    "limitation": "No value entry, Preview Posting, posting, receipt or ledger trace was performed; Item Journal is inventory/material-effect evidence, not a full creditor P2P proof.",
+    "nextStep": "P2P-013: controlled Item Journal follow-up with journal check/preview gate and ledger trace, or a separate Purchase Journal value-entry gate for creditor P2P."
   }
 }

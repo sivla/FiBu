@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "caseId": "BC-DEEP-RUN-001-MULTI-ROUTE-SANDBOX-PROGRESS",
+  "status": "active",
+  "workType": "multi-route-sandbox-progress",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "purpose": "Mehrere kontrollierte Sandbox-Fortschrittspakete nacheinander bearbeiten, ohne nach einem einzelnen Blocker zu stoppen.",
+  "allowedWithinInstance": [
+    "alternative-ui-route-discovery",
+    "company-switch-with-documentation",
+    "new-lab-company-with-registry",
+    "setup-change-with-evidence-plan",
+    "draft-create-with-cleanup-or-trace",
+    "preview-posting-with-gate",
+    "posting-with-gate-and-ledger-trace",
+    "journal-route-test",
+    "ledger-trace",
+    "coverage-and-atlas-update",
+    "bookdraft-update-from-labor-evidence"
+  ],
+  "hardForbidden": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "final-german-claim-from-rm-demo",
+    "shopify-or-online-store"
+  ],
+  "subCases": [
+    {
+      "caseId": "P2P-012-ALTERNATIVE-STANDARD-UI-ROUTE",
+      "status": "labor-route-comparison",
+      "purpose": "Alternative Standard-UI fuer P2P/Inventory-Wirkung vergleichen, ohne Purchase-Order-Zell-Edit erneut zu versuchen."
+    },
+    {
+      "caseId": "P2P-013-ITEM-JOURNAL-CONTROLLED-FOLLOWUP",
+      "status": "planned",
+      "purpose": "Controlled Item Journal material/quantity/location/value follow-up with check/preview/posting gate."
+    }
+  ],
+  "minimumProgressPackagesTarget": 5,
+  "currentProgressPackage": "P2P-013-ITEM-JOURNAL-CONTROLLED-FOLLOWUP",
+  "nextIfBlocked": [
+    "Item Journal controlled lab route",
+    "Inventory costing trace",
+    "Fixed Assets depreciation follow-up",
+    "Bank reconciliation readiness",
+    "clean lab company plan"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "rebuildInstruction": "Spaetere deutsche Zielinstanz muss die erfolgreichen Laborrouten mit deutschem Konten-, Steuer- und Screenshotkontext neu erzeugen.",
+  "createdAt": "2026-06-28T20:05:00.000+02:00",
+  "updatedAt": "2026-06-28T20:18:00.000+02:00"
+}

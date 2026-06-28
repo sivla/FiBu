@@ -39,12 +39,12 @@
   "hardExclusions": {
     "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
   },
-  "updatedAt": "2026-06-28T19:28:00.000+02:00",
+  "updatedAt": "2026-06-28T20:18:00.000+02:00",
   "activeArea": "p2p",
-  "currentBlock": "p2p-partial-receipt-edit-action-discovery",
-  "latestPracticalCase": "P2P-011-PURCHASE-LINES-EDIT-ACTION-DISCOVERY",
+  "currentBlock": "p2p-alternative-standard-ui-route",
+  "latestPracticalCase": "P2P-012-ALTERNATIVE-STANDARD-UI-ROUTE",
   "latestReviewCase": "BOOK-P2P-CH12-PARTIAL-RECEIPT-GATE-SYNC",
-  "nextCase": "P2P-012-ALTERNATIVE-STANDARD-UI-ROUTE",
+  "nextCase": "P2P-013-ITEM-JOURNAL-CONTROLLED-FOLLOWUP",
   "fixedAssets": {
     "faCnc01": {
       "postingGroupAssignment": "fieldlocal-fit-proven-machines-labor",
@@ -143,7 +143,8 @@
         "P2P-008: target values FRA-ZL, Quantity 4 and Qty. to Receive 2 are still blocked by missing stable cell edit route.",
         "P2P-009: frame-aware cell geometry and action candidates captured; Direct Unit Cost 2.500,00 visible, but Location/Quantity/Qty. to Receive remain unproved.",
         "P2P-010: fresh Select-items route selects RAW-STEEL directly, search skipped, but Location/Quantity/Qty. to Receive/Unit Cost target state remains unproved.",
-        "P2P-011: More options/Line action discovery found line context actions but no direct safe Edit/List Edit route for Purchase Lines target values."
+        "P2P-011: More options/Line action discovery found line context actions but no direct safe Edit/List Edit route for Purchase Lines target values.",
+        "P2P-012 found Item Journal as stable material/value route but not full creditor P2P proof; German final rebuild remains required."
       ],
       "nextStep": "P2P-012: alternative standard UI route such as Purchase Journal or Item Journal."
     }
@@ -346,5 +347,25 @@
     ],
     "evidencePath": "playwright/projects/fibu-book5/evidence/p2p-011/",
     "nextStep": "Switch to alternative standard UI route such as Purchase Journal/Item Journal or plan a cleaner lab company route; do not repeat P2P-009/P2P-010."
+  },
+  "p2pAlternativeStandardUiRoute": {
+    "status": "labor-route-comparison",
+    "sourceCompany": "RM-DEMO",
+    "resultPath": "playwright/projects/fibu-book5/evidence/p2p-012/P2P-012-result.json",
+    "observedRoutes": [
+      "Purchase Journal",
+      "Item Journal",
+      "Purchase Invoices",
+      "Requisition Worksheet"
+    ],
+    "preferredNextRoute": "Item Journal",
+    "p2pRoutesStillOpen": [
+      "Purchase Journal",
+      "Purchase Invoices"
+    ],
+    "noPosting": true,
+    "noPreview": true,
+    "noFieldValueEntry": true,
+    "bookImpact": "Stop repeating Purchase Order line edit attempts; route next controlled lab action through a more stable standard UI."
   }
 }

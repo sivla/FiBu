@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "caseId": "P2P-012-ALTERNATIVE-STANDARD-UI-ROUTE",
+  "parentCaseId": "BC-DEEP-RUN-001-MULTI-ROUTE-SANDBOX-PROGRESS",
+  "status": "labor-route-comparison",
+  "workType": "readonly-route-comparison",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "purpose": "Purchase Journal, Item Journal, Purchase Invoices und Requisition Worksheet als alternative Standard-UI-Routen fuer P2P/Inventory-Wirkung read-only bewerten.",
+  "doNotRepeat": [
+    "P2P-009 display-cell edit route",
+    "P2P-010 Select-items fresh draft route",
+    "P2P-011 generic action discovery"
+  ],
+  "routeCandidates": [
+    "Purchase Journal",
+    "Item Journal",
+    "Purchase Invoices",
+    "Requisition Worksheet"
+  ],
+  "defaultLockedActions": [
+    "field-value-entry",
+    "preview-posting",
+    "post",
+    "receive",
+    "invoice",
+    "setup-change",
+    "company-switch",
+    "api-shortcut"
+  ],
+  "hardForbidden": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "final-german-claim-from-rm-demo",
+    "shopify-or-online-store"
+  ],
+  "acceptanceCriteria": [
+    "direct page navigation only, no Tell-Me/search",
+    "each candidate gets a compact fachliche Bewertung",
+    "no value entry and no posting",
+    "next route is selected from observed UI signals"
+  ],
+  "evidencePath": "playwright/projects/fibu-book5/evidence/p2p-012/",
+  "resultPath": "playwright/projects/fibu-book5/evidence/p2p-012/P2P-012-result.json",
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "createdAt": "2026-06-28T20:05:00.000+02:00",
+  "updatedAt": "2026-06-28T20:18:00.000+02:00",
+  "preferredRoute": "Item Journal",
+  "p2pCandidateRoutes": [
+    "Purchase Journal",
+    "Purchase Invoices"
+  ],
+  "proved": [
+    "Direct page route comparison succeeded without search, field entry, preview or posting."
+  ],
+  "notProved": [
+    "No material receipt, creditor invoice, posting or ledger trace."
+  ],
+  "nextSafeAction": "P2P-013 controlled Item Journal follow-up with journal check/preview gate and ledger trace."
+}
