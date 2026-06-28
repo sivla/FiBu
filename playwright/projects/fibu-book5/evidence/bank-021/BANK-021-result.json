@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "BANK-021-VENDOR-PAYMENT-108205-TRACE-REVIEW",
+  "source": "local-evidence-review",
+  "resultStatus": "observed",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "sourceCompany": "RM-DEMO",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "usageLogRequired": true,
+  "bcRun": false,
+  "playwrightRun": false,
+  "posted": false,
+  "reviewedPostedCase": "BANK-020-VENDOR-PAYMENT-108205-CONTROLLED-POSTING",
+  "paymentDocumentNo": "BANK018-108205",
+  "invoiceDocumentNo": "108205",
+  "traceClassification": {
+    "automatedDetectorInvoiceRemainingZeroVisible": false,
+    "reviewedInvoiceRemainingZeroVisible": true,
+    "reviewedPaymentLedgerVisible": true,
+    "reviewedDetailedApplicationVisible": true,
+    "reviewedBankLedgerVisible": true,
+    "reviewedGlEntriesVisible": true,
+    "classification": "labor-sufficient-for-book-draft"
+  },
+  "proved": [
+    "BANK-020 posted vendor payment BANK018-108205 exactly once in RM-DEMO laboratory.",
+    "Invoice Vendor Ledger Entry 108205 shows Remaining Amount 0,00 in the compact text evidence, despite the automated detector flag being false.",
+    "Vendor Ledger payment BANK018-108205 is visible.",
+    "Detailed Vendor Ledger Entries show Initial Entry and Application lines for BANK018-108205.",
+    "Bank Account Ledger Entry BANK018-108205 / BANK-RM-01 is visible.",
+    "G/L Entries for 22100 and 18200 are visible for BANK018-108205."
+  ],
+  "notProved": [
+    "No bank reconciliation was posted.",
+    "No German final bank/payment proof.",
+    "No German bank, tax or compliance final screenshot.",
+    "BANK-021 did not run BC or Playwright."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/bank-021/BANK-021-result.json",
+    "playwright/projects/fibu-book5/evidence/bank-021/BANK-021-TRACE-REVIEW.md",
+    "playwright/projects/fibu-book5/evidence/bank-021/README.md",
+    ".agent/state/cases/bank-022-bank020-book-sync.json"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/bank-021/"
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": false,
+  "statePatch": {},
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": true,
+  "rebuildInstruction": "Recreate the payment trace in the German target company with German vendor, bank account, document numbers, post-dialog screenshot, remaining amount/application proof, bank ledger and G/L entries.",
+  "targetGermanCompanyImpact": "German final book needs fresh German screenshots and German posting trace; BANK-020 is only lab-reference for the clickguide and learning text.",
+  "finalScreenshotNeeded": true,
+  "nextStep": "BANK-022: sync BANK-020/BANK-021 into the bank/payments book draft as labor-only clickguide substance."
+}

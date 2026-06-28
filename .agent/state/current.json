@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-28T23:07:01.664Z",
+  "updatedAt": "2026-06-28T23:11:51.488Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "bank",
-  "activeCase": "BANK-021-VENDOR-PAYMENT-108205-TRACE-REVIEW",
-  "active_case_file": ".agent/state/cases/bank-021-vendor-payment-108205-trace-review.json",
-  "lastReferenceCase": "BANK-020-VENDOR-PAYMENT-108205-CONTROLLED-POSTING",
+  "activeCase": "BANK-022-BANK020-BOOK-SYNC",
+  "active_case_file": ".agent/state/cases/bank-022-bank020-book-sync.json",
+  "lastReferenceCase": "BANK-021-VENDOR-PAYMENT-108205-TRACE-REVIEW",
   "lastReferenceCaseFile": ".agent/state/cases/bank-017-vendor-payment-preflight-gate-decision.json",
   "mode": "bc-specialist-labor-book-production",
   "requiresStrongModel": false,
@@ -40,7 +40,7 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "BANK-021: local trace review for BANK-020 before book sync; classify invoice Remaining Amount signal.",
+  "nextStep": "BANK-022: sync BANK-020/BANK-021 into the bank/payments book draft as labor-only clickguide substance.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/fixedassets-labor-draft.md",
     "area": "fixedassets",
@@ -1385,8 +1385,8 @@
     "decision": "Approve a separate no-post Payment Journal preflight for Vendor Ledger document 108205. Do not use Payment Reconciliation Apply/Post for this target. BANK-018 may create exactly one scoped draft line, run Journal Check/open Apply Entries if reachable, and must cleanup or explicitly document keep status. Posting remains locked.",
     "nextStep": "BANK-018: controlled no-post Payment Journal preflight for 108205; do not post."
   },
-  "workType": "local-payment-ledger-trace-review",
-  "lastCompletedCase": "BANK-020-VENDOR-PAYMENT-108205-CONTROLLED-POSTING",
+  "workType": "book-sync-labor-only-bank-payment",
+  "lastCompletedCase": "BANK-021-VENDOR-PAYMENT-108205-TRACE-REVIEW",
   "latestBank018": {
     "caseId": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
     "status": [
@@ -1468,5 +1468,27 @@
     "noSetupChange": true,
     "noCompanySwitch": true,
     "nextCase": "BANK-021-VENDOR-PAYMENT-108205-TRACE-REVIEW"
+  },
+  "latestBank021": {
+    "caseId": "BANK-021-VENDOR-PAYMENT-108205-TRACE-REVIEW",
+    "status": [
+      "labor-sufficient-for-book-draft",
+      "trace-review-done",
+      "needs-german-final-rebuild"
+    ],
+    "resultPath": "playwright/projects/fibu-book5/evidence/bank-021/BANK-021-result.json",
+    "traceClassification": {
+      "automatedDetectorInvoiceRemainingZeroVisible": false,
+      "reviewedInvoiceRemainingZeroVisible": true,
+      "reviewedPaymentLedgerVisible": true,
+      "reviewedDetailedApplicationVisible": true,
+      "reviewedBankLedgerVisible": true,
+      "reviewedGlEntriesVisible": true,
+      "classification": "labor-sufficient-for-book-draft"
+    },
+    "summary": "BANK-021 reviewed BANK-020 trace and classified the payment as labor-sufficient for book draft. The original detector missed Remaining Amount 0,00, but the compact invoice ledger text contains 0,00 signals.",
+    "noBcRun": true,
+    "noPlaywrightRun": true,
+    "nextCase": "BANK-022-BANK020-BOOK-SYNC"
   }
 }

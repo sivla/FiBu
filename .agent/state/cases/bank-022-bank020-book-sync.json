@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "caseId": "BANK-022-BANK020-BOOK-SYNC",
+  "title": "Sync BANK-020/BANK-021 vendor payment trace into bank/payments book draft as laboratory-only substance",
+  "status": "planned",
+  "taskClass": "judge_work",
+  "modelClass": "gpt-5.5-low",
+  "usageLogRequired": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "book-sync-labor-only-bank-payment",
+  "sourceCase": "BANK-021-VENDOR-PAYMENT-108205-TRACE-REVIEW",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/bank-020/BANK-020-result.json",
+    "playwright/projects/fibu-book5/evidence/bank-021/BANK-021-result.json"
+  ],
+  "purpose": "Add concise labor-only bookdraft/clickguide substance for the controlled Payment Journal vendor payment, with explicit German-final rebuild notes.",
+  "allowedActions": [
+    "read-bank-020-evidence",
+    "read-bank-021-review",
+    "patch-bank-payment-book-draft-or-coverage",
+    "update-state"
+  ],
+  "defaultLockedActions": [
+    "business-central-execution",
+    "playwright-execution",
+    "posting",
+    "setup-change"
+  ],
+  "forbiddenActions": [
+    "claim-german-final-proof",
+    "book-claim-without-evidence",
+    "rewrite-large-book-section",
+    "post-payment-in-bank-022"
+  ],
+  "safetyGates": [
+    "labor-only-label-visible",
+    "german-final-rebuild-note-visible",
+    "no-bc-run-in-bank-022",
+    "small-book-patch-only"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "targetGermanCompanyImpact": "German target company must later replace this lab clickguide with German screenshots and German ledger evidence.",
+  "finalScreenshotNeeded": true,
+  "nextStep": "Patch bank/payments book draft or coverage with BANK-020/BANK-021 as labor-only vendor payment trace."
+}

@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "caseId": "BANK-021-VENDOR-PAYMENT-108205-TRACE-REVIEW",
   "title": "Review BANK-020 ledger trace before book sync",
-  "status": "planned",
+  "status": "done",
   "taskClass": "judge_work",
   "modelClass": "gpt-5.5-low",
   "usageLogRequired": true,
@@ -66,5 +66,33 @@
   "mustRecreateInFinalSandbox": true,
   "targetGermanCompanyImpact": "German final payment trace must be recreated from German vendor/bank setup and should explicitly show invoice settlement/remaining amount or detailed application lines.",
   "finalScreenshotNeeded": true,
-  "nextStep": "Review BANK-020 trace locally; do not run BC in BANK-021 unless the review creates a separate read-only follow-up."
+  "nextStep": "BANK-022: sync BANK-020/BANK-021 into the bank/payments book draft as labor-only clickguide substance.",
+  "completedAt": "2026-06-28T23:11:51.488Z",
+  "resultPath": "playwright/projects/fibu-book5/evidence/bank-021/BANK-021-result.json",
+  "resultStatus": "observed",
+  "traceClassification": {
+    "automatedDetectorInvoiceRemainingZeroVisible": false,
+    "reviewedInvoiceRemainingZeroVisible": true,
+    "reviewedPaymentLedgerVisible": true,
+    "reviewedDetailedApplicationVisible": true,
+    "reviewedBankLedgerVisible": true,
+    "reviewedGlEntriesVisible": true,
+    "classification": "labor-sufficient-for-book-draft"
+  },
+  "proved": [
+    "BANK-020 posted vendor payment BANK018-108205 exactly once in RM-DEMO laboratory.",
+    "Invoice Vendor Ledger Entry 108205 shows Remaining Amount 0,00 in the compact text evidence, despite the automated detector flag being false.",
+    "Vendor Ledger payment BANK018-108205 is visible.",
+    "Detailed Vendor Ledger Entries show Initial Entry and Application lines for BANK018-108205.",
+    "Bank Account Ledger Entry BANK018-108205 / BANK-RM-01 is visible.",
+    "G/L Entries for 22100 and 18200 are visible for BANK018-108205."
+  ],
+  "notProved": [
+    "No bank reconciliation was posted.",
+    "No German final bank/payment proof.",
+    "No German bank, tax or compliance final screenshot.",
+    "BANK-021 did not run BC or Playwright."
+  ],
+  "blockedBy": [],
+  "nextCase": "BANK-022-BANK020-BOOK-SYNC"
 }
