@@ -1,4 +1,16 @@
 
+## FIND-BC-FA-113 AfA braucht feldsichere AfA-Buchwerte vor weiterer Ausfuehrung
+
+| Feld | Wert |
+|---|---|
+| Bereich | Fixed Assets / AfA-Route / Review |
+| Testfall | `FIXEDASSETS-276-FA-DEPRECIATION-ELIGIBILITY-BATCH-RESULT-REVIEW` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-276/FIXEDASSETS-276-result.json`, `playwright/projects/fibu-book5/evidence/fixedassets-276/FIXEDASSETS-276-ELIGIBILITY-BATCH-RESULT-REVIEW.md` |
+| Entscheidung | Kein Repeat-OK, kein Preview Posting, kein Post, kein Setup-Fit. |
+| Warum | `FADEP-273-OK` ist weiterhin nicht sichtbar. `FA-CNC-01` zeigt wichtige AfA-Feldlabels, aber Werte fuer Startdatum, Jahre, Enddatum und ggf. letztes AfA-Datum sind noch nicht feldsicher genug belegt. |
+| naechster Schritt | `FIXEDASSETS-277`: read-only Page-Inspection-/Wertdiagnose fuer `FA-CNC-01/HGB` AfA-Buchwerte. |
+| Buchwirkung | Die Anleitung muss vor erneuter Ausfuehrung erklaeren, welche AfA-Buchwerte die Berechnung steuern. Ohne diese Werte ist ein weiterer Batchlauf nur Wiederholung. |
+
 ## FIND-BC-FA-112 Post-acquisition Diagnose findet weiterhin keine AfA-Journalzeile
 
 | Feld | Wert |

@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixed-assets-depreciation-eligibility-batch-result-review",
+  "caseId": "FIXEDASSETS-276-FA-DEPRECIATION-ELIGIBILITY-BATCH-RESULT-REVIEW",
+  "source": "local-evidence-review",
+  "resultStatus": "observed",
+  "branch": "codex/token-efficient-autopilot-state",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "reviewedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-275/FIXEDASSETS-275-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-275/FIXEDASSETS-275-ELIGIBILITY-AND-BATCH-TARGET-READONLY-DIAGNOSIS.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-275/010-fa-cnc-01-card-readonly-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-275/020-fa-ledger-entries-readonly-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-275/040-fa-gl-journal-context-readonly-text.txt"
+  ],
+  "decision": {
+    "repeatOkUnlocked": false,
+    "previewPostingUnlocked": false,
+    "postingUnlocked": false,
+    "setupFitUnlocked": false,
+    "nextCase": "FIXEDASSETS-277-FA-DEPRECIATION-BOOK-VALUE-PAGEINSPECTION-READONLY",
+    "nextCaseFile": ".agent/state/cases/fixedassets-277-fa-depreciation-book-value-pageinspection-readonly.json",
+    "nextAction": "Run a read-only Page Inspection / value diagnosis for FA-CNC-01/HGB depreciation-book fields: Depreciation Starting Date, No. of Depreciation Years, Depreciation Ending Date, Book Value, Last Depreciation Date if available, and journal batch/output target signals."
+  },
+  "classification": "need-field-value-proof-before-any-repeat-ok",
+  "rationale": [
+    "FA-275 proves the acquisition and HGB context, and proves that 31.01.2027 is not before the acquisition date.",
+    "FA-275 still does not show FADEP-273-OK in Fixed Asset G/L Journals.",
+    "The card text exposes important depreciation labels but not enough values for Starting Date, No. of Depreciation Years, Ending Date or Last Depreciation Date.",
+    "Without those values, a repeat Calculate Depreciation OK would be guesswork and could create duplicate/noisy attempts.",
+    "Preview Posting requires a visible journal line; no line is visible."
+  ],
+  "proved": [
+    "FA-275 was read-only and kept BC in MCP_1_20260210 / RM-DEMO.",
+    "FA-275 found acquisition/HGB context and no visible FADEP-273-OK journal line.",
+    "The next step is narrower read-only value inspection, not repeat OK, Preview Posting or Post."
+  ],
+  "notProved": [
+    "No exact root cause for the missing depreciation journal output is proven yet.",
+    "No depreciation journal line is proven.",
+    "No Preview Posting result exists.",
+    "No posting exists.",
+    "No German final proof exists."
+  ],
+  "safety": {
+    "bcRun": false,
+    "playwrightRun": false,
+    "okConfirmed": false,
+    "noRepeatOk": true,
+    "noPreviewPosting": true,
+    "noPost": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "inputFacts": {
+    "targetDateBeforeAcquisition": false,
+    "journalHasMissingDoc": false,
+    "journalBatchContextVisible": true,
+    "assetCardHasBookValueSignals": true,
+    "hgbBookContextVisible": true
+  },
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-276/",
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-276-fa-depreciation-eligibility-batch-result-review.json",
+    ".agent/state/cases/fixedassets-277-fa-depreciation-book-value-pageinspection-readonly.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/model_usage_log.jsonl",
+    "playwright/FINDINGS.md",
+    "playwright/projects/fibu-book5/BOOK-CLICK-GUIDE-COVERAGE.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-276/FIXEDASSETS-276-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-276/FIXEDASSETS-276-ELIGIBILITY-BATCH-RESULT-REVIEW.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-276/README.md"
+  ],
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-277-FA-DEPRECIATION-BOOK-VALUE-PAGEINSPECTION-READONLY",
+      "active_case_file": ".agent/state/cases/fixedassets-277-fa-depreciation-book-value-pageinspection-readonly.json",
+      "lastReferenceCase": "FIXEDASSETS-276-FA-DEPRECIATION-ELIGIBILITY-BATCH-RESULT-REVIEW",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-276-fa-depreciation-eligibility-batch-result-review.json",
+      "requiresStrongModel": false,
+      "nextStep": "FIXEDASSETS-277: read-only inspect FA-CNC-01/HGB depreciation-book values via Page Inspection/value diagnostics; no OK, Preview Posting or Post."
+    },
+    "coverage": {
+      "activeArea": "fixedassets",
+      "latestReviewCase": "FIXEDASSETS-276-FA-DEPRECIATION-ELIGIBILITY-BATCH-RESULT-REVIEW",
+      "nextCase": "FIXEDASSETS-277-FA-DEPRECIATION-BOOK-VALUE-PAGEINSPECTION-READONLY",
+      "depreciationReadiness": "FA-276 rejects repeat OK, Preview Posting and Post. Next is read-only Page Inspection/value diagnosis for FA-CNC-01/HGB depreciation-book values before any further execution."
+    }
+  },
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "reason": "Local review completed; next step is narrower read-only field-value proof before any execution route.",
+  "observedAt": "2026-06-28T10:08:00.000+02:00"
+}

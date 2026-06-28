@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "FIXEDASSETS-276-FA-DEPRECIATION-ELIGIBILITY-BATCH-RESULT-REVIEW",
-  "status": "planned",
+  "status": "observed",
   "workType": "local-fixedasset-depreciation-eligibility-batch-result-review",
   "taskClass": "judge_work",
   "requiresStrongModel": true,
@@ -69,7 +69,14 @@
     "Any proposal repeats OK without new evidence explaining why FA-273/FA-275 showed no output.",
     "Any proposal treats post-acquisition date alone as a successful depreciation proof."
   ],
-  "nextSafeAction": "Local FA-276 review only; choose the next read-only or gated diagnostic route before any repeat OK, Preview Posting or Post.",
+  "nextSafeAction": "Run a read-only Page Inspection / value diagnosis for FA-CNC-01/HGB depreciation-book fields: Depreciation Starting Date, No. of Depreciation Years, Depreciation Ending Date, Book Value, Last Depreciation Date if available, and journal batch/output target signals.",
   "createdAt": "2026-06-28T09:58:00.000+02:00",
-  "updatedAt": "2026-06-28T09:58:00.000+02:00"
+  "updatedAt": "2026-06-28T10:08:00.000+02:00",
+  "result": {
+    "resultStatus": "observed",
+    "classification": "need-field-value-proof-before-any-repeat-ok",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-276/FIXEDASSETS-276-result.json",
+    "nextCase": "FIXEDASSETS-277-FA-DEPRECIATION-BOOK-VALUE-PAGEINSPECTION-READONLY",
+    "summary": "FA-276 rejects repeat OK, Preview Posting and Post. FA-275 needs narrower read-only value proof for FA-CNC-01/HGB depreciation-book fields before any further execution route."
+  }
 }
