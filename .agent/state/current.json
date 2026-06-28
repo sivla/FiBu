@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-28T20:50:00.000Z",
+  "updatedAt": "2026-06-28T21:20:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "bank",
-  "activeCase": "BANK-005-TARGET-LINE-OPEN-ENTRY-DRILLDOWN",
-  "active_case_file": ".agent/state/cases/bank-005-target-line-open-entry-drilldown.json",
-  "lastReferenceCase": "BANK-005-TARGET-LINE-OPEN-ENTRY-DRILLDOWN",
-  "lastReferenceCaseFile": ".agent/state/cases/bank-005-target-line-open-entry-drilldown.json",
+  "activeCase": "BANK-006-SELECTED-ROW-POSTING-GATE",
+  "active_case_file": ".agent/state/cases/bank-006-selected-row-posting-gate.json",
+  "lastReferenceCase": "BANK-006-SELECTED-ROW-POSTING-GATE",
+  "lastReferenceCaseFile": ".agent/state/cases/bank-006-selected-row-posting-gate.json",
   "mode": "bc-specialist-labor-book-production",
   "requiresStrongModel": false,
   "requiredPreflightChecks": [
@@ -40,7 +40,7 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "BANK-006: kontrollierte Payment-Posting-Entscheidung mit explizitem Traceplan; nicht automatisch buchen.",
+  "nextStep": "BANK-007: Single-Line Payment Journal posting route vorbereiten oder ausdruecklichen All-Accepted-Lines Payment-Reconciliation-Postingfall mit Ledger Trace freigeben.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/fixedassets-labor-draft.md",
     "area": "fixedassets",
@@ -814,5 +814,35 @@
     "mustRecreateInFinalSandbox": true,
     "finalScreenshotNeeded": true,
     "nextStep": "BANK-006: prepare a controlled Payment Posting decision with explicit expected Bank/Vendor/G/L/Detailed Ledger trace, or choose a single-line Payment Journal route if Payment Reconciliation remains too broad."
+  },
+  "latestBank006": {
+    "caseId": "BANK-006-SELECTED-ROW-POSTING-GATE",
+    "status": [
+      "labor-proven",
+      "selected-row-dialog-gate",
+      "posting-not-approved",
+      "global-dialog-risk",
+      "needs-german-final-rebuild"
+    ],
+    "sourceInstance": "MCP_1_20260210",
+    "sourceCompany": "RM-DEMO",
+    "targetDocumentNo": "108204",
+    "targetParty": "First Up Consultants",
+    "targetAmount": "-2.151,46",
+    "targetSelected": true,
+    "dialogText": "Do you want to post the payments? Ja Nein",
+    "posted": false,
+    "paymentPosted": false,
+    "bankReconciliationPosted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "apiShortcut": false,
+    "resultPath": "playwright/projects/fibu-book5/evidence/bank-006/BANK-006-result.json",
+    "evidencePath": "playwright/projects/fibu-book5/evidence/bank-006/",
+    "decision": "Do not confirm Post Payments Only as a blind global action. The dialog does not prove that only document 108204 would be posted.",
+    "migrationRelevance": "needed-for-german-final",
+    "mustRecreateInFinalSandbox": true,
+    "finalScreenshotNeeded": true,
+    "nextStep": "BANK-007: prefer a Single-Line Payment Journal posting route, or create an explicit all-accepted-lines Payment Reconciliation posting case with ledger trace approval."
   }
 }

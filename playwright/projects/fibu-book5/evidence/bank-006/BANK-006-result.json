@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "purpose": "selected-row-post-payments-only-gate-result",
+  "caseId": "BANK-006-SELECTED-ROW-POSTING-GATE",
+  "testId": "BANK-006",
+  "source": "playwright-selected-row-post-dialog-gate",
+  "resultStatus": "observed",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "sourceCompany": "RM-DEMO",
+  "page": {
+    "pageId": 1290,
+    "initialUrl": "https://businesscentral.dynamics.com/<tenant>/MCP_1_20260210?company=RM-DEMO&page=1290&dc=0&bookmark=3A_EgEAAACLAQAAAAJ7_0MASABFAEMASwBJAE4ARwAAAAJ7_1AAUgBFAEMAMAAwADAAAAAAhxAn",
+    "finalUrl": "https://businesscentral.dynamics.com/<tenant>/MCP_1_20260210?company=RM-DEMO&page=1290&dc=0&bookmark=3A_EgEAAACLAQAAAAJ7_0MASABFAEMASwBJAE4ARwAAAAJ7_1AAUgBFAEMAMAAwADAAAAAAhxAn",
+    "title": "Payment Reconciliation Journal"
+  },
+  "target": {
+    "documentNo": "108204",
+    "party": "First Up Consultants",
+    "amount": "-2.151,46",
+    "beforeMetrics": {
+      "linesForReview": "5",
+      "linesWithDifferences": "0",
+      "balanceAfterPosting": "21.614,11",
+      "targetDocumentVisible": true,
+      "targetPartyVisible": true,
+      "targetAmountVisible": true,
+      "acceptedVisible": true,
+      "applicationReviewedVisible": true,
+      "postPaymentsOnlyVisible": true
+    },
+    "afterCloseMetrics": {
+      "linesForReview": "5",
+      "linesWithDifferences": "0",
+      "balanceAfterPosting": "21.614,11",
+      "targetDocumentVisible": true,
+      "targetPartyVisible": true,
+      "targetAmountVisible": true,
+      "acceptedVisible": true,
+      "applicationReviewedVisible": true,
+      "postPaymentsOnlyVisible": true
+    },
+    "evidenceBefore": "010-before-selected-row-posting-gate-page-text.txt",
+    "evidenceAfterSelection": "020-after-target-row-selection-page-text.txt"
+  },
+  "targetSelection": {
+    "selected": true,
+    "method": "exact-text"
+  },
+  "action": {
+    "postPaymentsOnlyClicked": true,
+    "clickMethod": "role:button",
+    "confirmedPosting": false,
+    "okClicked": false,
+    "yesClicked": false,
+    "noOrCancelOnly": true
+  },
+  "dialog": {
+    "dialogOpened": true,
+    "dialogCount": 1,
+    "dialogTextPreview": [
+      "Do you want to post the payments? Ja Nein"
+    ],
+    "globalDialogSignal": true,
+    "relevantButtons": [
+      "Account No.",
+      "Balance After Posting",
+      "Document No./Ext. Document No. Matched",
+      "Ja",
+      "Nein",
+      "No",
+      "No. of Open Ledger Entries for",
+      "Post Payments Only...",
+      "Yes"
+    ],
+    "closeMethod": "escape",
+    "safeClosed": true,
+    "evidenceDialog": "030-post-payments-only-selected-row-dialog-text.txt",
+    "evidenceAfterClose": "040-after-dialog-close-page-text.txt"
+  },
+  "decision": {
+    "paymentPostingAllowedNow": false,
+    "reason": "BANK-006 proves selected-row context plus dialog gate, but the visible confirmation remains global and does not explicitly limit posting to document 108204. A separate posting run needs either a stronger single-line isolation or conscious approval of all accepted payment lines."
+  },
+  "proved": [
+    "Target candidate 108204 / First Up Consultants / -2.151,46 was visible before opening the posting gate.",
+    "The target document was selected/focused before opening Post Payments Only.",
+    "Post Payments Only dialog gate was opened and closed without confirmation.",
+    "No posting, preview, setup change, draft creation or company switch was performed."
+  ],
+  "notProved": [
+    "No payment was posted.",
+    "No bank reconciliation was posted.",
+    "No ledger trace from a posting exists.",
+    "The dialog does not prove that only document 108204 would be posted.",
+    "No German bank/compliance final proof."
+  ],
+  "flags": {
+    "noPost": true,
+    "noPreviewPosting": true,
+    "noPaymentPosting": true,
+    "noBankReconciliationPosting": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noNew": true,
+    "noEdit": true,
+    "noDelete": true,
+    "noDraftCreated": true,
+    "noApiShortcut": true,
+    "noBookChangeInsideTest": true
+  },
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "rebuildInstruction": "In der deutschen Zielcompany vor echter Zahlung Zielzeile, offenen Postenbezug und Dialogtext erneut dokumentieren. Nur buchen, wenn der Zielumfang klar ist oder ein bewusst freigegebener Sammelzahlungslauf vorliegt.",
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/bank-006/BANK-006-result.json",
+    "playwright/projects/fibu-book5/evidence/bank-006/BANK-006-SELECTED-ROW-POSTING-GATE.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/bank-006/"
+  ],
+  "blockedBy": [
+    "post-payments-only-dialog-is-global-not-single-line-proof"
+  ],
+  "safeToFinalizeState": false,
+  "requiresReview": true,
+  "nextStep": "Do not confirm Post Payments Only as a blind global action. Prefer BANK-007 Single-Line Payment Journal posting route or an explicit all-accepted-lines Payment Reconciliation posting case with ledger trace approval."
+}

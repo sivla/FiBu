@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "caseId": "BANK-006-SELECTED-ROW-POSTING-GATE",
+  "status": "done-labor-gate",
+  "workType": "bank-payment-reconciliation-selected-row-posting-gate",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "purpose": "Vor einer echten Payment-Reconciliation-Buchung pruefen, ob `Post Payments Only` nach Auswahl der Zielzeile 108204 fachlich eindeutig genug fuer eine kontrollierte Buchung ist.",
+  "resultPath": "playwright/projects/fibu-book5/evidence/bank-006/BANK-006-result.json",
+  "resultSummary": "Target row 108204 was selected and Post Payments Only dialog opened, but the dialog remains global ('Do you want to post the payments?') and does not prove single-line posting scope. No posting occurred.",
+  "allowedWithinInstance": [
+    "open-payment-reconciliation-journal",
+    "select-target-row-readonly",
+    "open-post-payments-only-dialog-gate",
+    "close-dialog-without-confirming",
+    "write-compact-evidence",
+    "update-state"
+  ],
+  "defaultLockedActionsUnlockedForThisCase": [
+    "dialog-confirmation-open-only"
+  ],
+  "defaultLockedActionsStayLocked": [
+    "post",
+    "payment",
+    "preview-posting",
+    "setup-change",
+    "company-switch",
+    "new",
+    "edit",
+    "delete",
+    "keep-draft"
+  ],
+  "hardForbidden": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "final-german-claim-from-rm-demo",
+    "confirm-post-payments-only",
+    "post-payment"
+  ],
+  "referenceEvidence": [
+    "playwright/projects/fibu-book5/evidence/bank-005/BANK-005-result.json",
+    "playwright/projects/fibu-book5/evidence/bank-003/BANK-003-result.json"
+  ],
+  "successCriteria": [
+    "BC URL bleibt in MCP_1_20260210.",
+    "Company bleibt RM-DEMO.",
+    "Zielzeile 108204 / First Up Consultants / -2.151,46 ist vor dem Dialog sichtbar.",
+    "`Post Payments Only` wird hoechstens bis zum Dialog geoeffnet.",
+    "Kein Ja/Yes/OK/Post wird bestaetigt.",
+    "BANK-006 entscheidet, ob eine echte Buchung fachlich freigegeben oder auf eine Single-Line-Route verschoben wird."
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "rebuildInstruction": "In der deutschen Zielcompany denselben ausgewählten Zahlungszeilen-Gate-Nachweis erzeugen: Zielzeile, offener Posten, Dialogtext und erwartete Ledger-Spur vor einer echten Zahlung dokumentieren.",
+  "updatedAt": "2026-06-28T21:20:00.000Z"
+}

@@ -365,6 +365,26 @@
       "resultFile": "playwright/projects/fibu-book5/evidence/bank-005/BANK-005-result.json",
       "summary": "Payment Reconciliation target candidate 108204 / First Up Consultants / -2.151,46 is visible and Vendor Ledger document 108204 is a read-only relation candidate; no payment was posted.",
       "nextStep": "BANK-006: controlled Payment Posting decision with explicit expected Bank/Vendor/G/L/Detailed Ledger trace, or choose a single-line Payment Journal route if Payment Reconciliation remains too broad."
+    },
+    {
+      "id": "BANK-006",
+      "queueId": "BANK-006-SELECTED-ROW-POSTING-GATE",
+      "type": "selected-row-post-dialog-gate controlled-ui-action no-post",
+      "status": "labor-proven-posting-not-approved",
+      "bcRun": true,
+      "posted": false,
+      "previewPosting": false,
+      "setupChanged": false,
+      "execute": false,
+      "highImpactExecute": false,
+      "signals": [
+        "selected-row-post-dialog-gate",
+        "global-dialog-risk",
+        "no-post-gate"
+      ],
+      "resultFile": "playwright/projects/fibu-book5/evidence/bank-006/BANK-006-result.json",
+      "summary": "Target row 108204 was selected before opening Post Payments Only, but the confirmation remains global ('Do you want to post the payments?'); no payment was posted.",
+      "nextStep": "BANK-007: prefer a Single-Line Payment Journal posting route, or create an explicit all-accepted-lines Payment Reconciliation posting case with ledger trace approval."
     }
   ],
   "postingSummary": {
@@ -384,7 +404,7 @@
     }
   },
   "nextBestLevers": [
-    "BANK-006-CONTROLLED-PAYMENT-POSTING-DECISION",
+    "BANK-007-SINGLE-LINE-PAYMENT-JOURNAL-POSTING-ROUTE",
     "PAYMENTS-SINGLE-LINE-POSTING-CASE",
     "RM-DE-LAB-CREATE-001-UI-FIRST-COMPANY-CREATION"
   ],
@@ -413,7 +433,7 @@
     ],
     "lightExecutePackages": 2,
     "readOnlyPackagesDoNotCountAsExecute": true,
-    "progressPackagesTotal": 28
+    "progressPackagesTotal": 29
   },
-  "updatedAt": "2026-06-28T20:50:00.000Z"
+  "updatedAt": "2026-06-28T21:20:00.000Z"
 }
