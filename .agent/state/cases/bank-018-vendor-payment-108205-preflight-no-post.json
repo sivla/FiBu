@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "caseId": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
+  "title": "Prepare a single-line Payment Journal preflight for Vendor Ledger candidate 108205 without posting",
+  "status": "planned",
+  "taskClass": "wizard_work",
+  "modelClass": "gpt-5.4-medium",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "controlled-payment-journal-preflight-no-post",
+  "sourceCase": "BANK-017-VENDOR-PAYMENT-PREFLIGHT-GATE-DECISION",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/bank-017/BANK-017-result.json",
+    "playwright/projects/fibu-book5/evidence/bank-016/BANK-016-result.json",
+    "playwright/projects/fibu-book5/evidence/bank-009/BANK-009-result.json"
+  ],
+  "target": {
+    "vendorLedgerDocumentNo": "108205",
+    "vendorName": "Wide World Importers",
+    "candidateVendorNo": "40000",
+    "amountFromVendorLedger": "-3.123,37",
+    "suggestedPaymentDocumentNo": "BANK018-108205",
+    "bankAccountNo": "BANK-RM-01"
+  },
+  "purpose": "Create or inspect exactly one Payment Journal preflight line for vendor ledger document 108205, prove Journal Check and Apply Entries context if possible, then cleanup or keep with explicit status. Do not post.",
+  "allowedActions": [
+    "open-business-central-if-instance-and-company-match",
+    "run-playwright-if-case-preflight-passes",
+    "create-payment-journal-draft-line",
+    "run-journal-check",
+    "open-apply-entries-readonly",
+    "cleanup-or-trace-draft",
+    "write-evidence",
+    "update-state"
+  ],
+  "defaultLockedActions": [
+    "post",
+    "payment",
+    "payment-posting",
+    "bank-reconciliation-posting",
+    "setup-change",
+    "keep-draft"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "claim-german-final-proof",
+    "api-shortcut-without-explicit-case-permission",
+    "click-accept-applications",
+    "click-post-payments-only",
+    "post-payment"
+  ],
+  "safetyGates": [
+    "instance-and-company-confirmed",
+    "target-vendor-ledger-entry-visible-before-draft",
+    "single-line-scope-only",
+    "journal-check-before-any-posting-decision",
+    "apply-entries-context-before-any-posting-decision",
+    "cleanup-or-explicit-keep-status",
+    "post-remains-locked"
+  ],
+  "expectedOutputs": [
+    "Payment Journal preflight evidence for BANK018-108205 or a documented blocker.",
+    "Journal Check result if reachable.",
+    "Apply Entries read-only context if reachable.",
+    "Cleanup/keep status of any draft line."
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "targetGermanCompanyImpact": "German final payment needs its own open vendor ledger entry, bank account, Payment Journal preflight, apply proof and posting trace.",
+  "finalScreenshotNeeded": true,
+  "nextStep": "Run BANK-018 as controlled no-post Payment Journal preflight for 108205; do not post."
+}

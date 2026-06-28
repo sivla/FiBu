@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-29T00:43:42.4300663+02:00",
+  "updatedAt": "2026-06-29T00:46:55.7670178+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "bank",
-  "activeCase": "BANK-017-VENDOR-PAYMENT-PREFLIGHT-GATE-DECISION",
-  "active_case_file": ".agent/state/cases/bank-017-vendor-payment-preflight-gate-decision.json",
-  "lastReferenceCase": "BANK-016-FRESH-VENDOR-LEDGER-CANDIDATE-SCOUT",
-  "lastReferenceCaseFile": ".agent/state/cases/bank-016-fresh-vendor-ledger-candidate-scout.json",
+  "activeCase": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
+  "active_case_file": ".agent/state/cases/bank-018-vendor-payment-108205-preflight-no-post.json",
+  "lastReferenceCase": "BANK-017-VENDOR-PAYMENT-PREFLIGHT-GATE-DECISION",
+  "lastReferenceCaseFile": ".agent/state/cases/bank-017-vendor-payment-preflight-gate-decision.json",
   "mode": "bc-specialist-labor-book-production",
-  "requiresStrongModel": true,
+  "requiresStrongModel": false,
   "requiredPreflightChecks": [
     "agent:preflight",
     "agent:state:validate",
@@ -40,7 +40,7 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "BANK-017: judge-only decision whether 108205 is safe for a single-line Payment Journal preflight; do not create the draft in BANK-016.",
+  "nextStep": "BANK-018: controlled no-post Payment Journal preflight for 108205; do not post.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/fixedassets-labor-draft.md",
     "area": "fixedassets",
@@ -1349,5 +1349,40 @@
     "finalScreenshotNeeded": true,
     "decision": "BANK-016 bleibt read-only, findet aber 108205 als sichtbaren Vendor-Ledger-Kandidaten. Ein spaeterer Payment-Journal-Preflight darf nur separat und weiterhin ohne globales Payment-Reconciliation-Posting geplant werden.",
     "nextStep": "BANK-017: judge-only decision whether 108205 is safe for a single-line Payment Journal preflight; do not create the draft in BANK-016."
+  },
+  "latestBank017": {
+    "caseId": "BANK-017-VENDOR-PAYMENT-PREFLIGHT-GATE-DECISION",
+    "status": [
+      "labor-sufficient-for-book-draft",
+      "preflight-gate-approved",
+      "no-post",
+      "needs-german-final-rebuild"
+    ],
+    "sourceInstance": "MCP_1_20260210",
+    "sourceCompany": "RM-DEMO",
+    "bcRun": false,
+    "playwrightRun": false,
+    "posted": false,
+    "paymentPosted": false,
+    "bankReconciliationPosted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "apiShortcut": false,
+    "target": {
+      "vendorLedgerDocumentNo": "108205",
+      "vendorName": "Wide World Importers",
+      "candidateVendorNo": "40000",
+      "amountFromVendorLedger": "-3.123,37",
+      "suggestedPaymentDocumentNo": "BANK018-108205",
+      "bankAccountNo": "BANK-RM-01"
+    },
+    "selectedRoute": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
+    "resultPath": "playwright/projects/fibu-book5/evidence/bank-017/BANK-017-result.json",
+    "evidencePath": "playwright/projects/fibu-book5/evidence/bank-017/",
+    "migrationRelevance": "needed-for-german-final",
+    "mustRecreateInFinalSandbox": true,
+    "finalScreenshotNeeded": true,
+    "decision": "Approve a separate no-post Payment Journal preflight for Vendor Ledger document 108205. Do not use Payment Reconciliation Apply/Post for this target. BANK-018 may create exactly one scoped draft line, run Journal Check/open Apply Entries if reachable, and must cleanup or explicitly document keep status. Posting remains locked.",
+    "nextStep": "BANK-018: controlled no-post Payment Journal preflight for 108205; do not post."
   }
 }

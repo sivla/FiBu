@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "purpose": "bank-vendor-payment-preflight-gate-decision",
+  "caseId": "BANK-017-VENDOR-PAYMENT-PREFLIGHT-GATE-DECISION",
+  "source": "local-analysis",
+  "resultStatus": "observed",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "sourceCompany": "RM-DEMO",
+  "mode": "labor-local-gate-decision-no-bc-no-playwright-no-post",
+  "decisionStatus": "payment-journal-preflight-approved-no-post",
+  "selectedRoute": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
+  "target": {
+    "vendorLedgerDocumentNo": "108205",
+    "vendorName": "Wide World Importers",
+    "candidateVendorNo": "40000",
+    "amountFromVendorLedger": "-3.123,37",
+    "suggestedPaymentDocumentNo": "BANK018-108205",
+    "bankAccountNo": "BANK-RM-01"
+  },
+  "decision": "Approve a separate no-post Payment Journal preflight for Vendor Ledger document 108205. Do not use Payment Reconciliation Apply/Post for this target. BANK-018 may create exactly one scoped draft line, run Journal Check/open Apply Entries if reachable, and must cleanup or explicitly document keep status. Posting remains locked.",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/bank-016/BANK-016-result.json",
+    "playwright/projects/fibu-book5/evidence/bank-009/BANK-009-result.json"
+  ],
+  "proved": [
+    "BANK-016 found 108205 / Wide World Importers as a visible Vendor Ledger candidate.",
+    "BANK-009 proves the safer pattern: single-line Payment Journal with Journal Check, Apply Entries and ledger trace.",
+    "BANK-017 does not authorize posting; it only authorizes a no-post preflight case."
+  ],
+  "notProved": [
+    "No Business Central page was opened in BANK-017.",
+    "No Payment Journal line was created in BANK-017.",
+    "No payment was posted.",
+    "No bank reconciliation was posted.",
+    "No German bank/compliance final proof exists."
+  ],
+  "expectedPreflightFields": {
+    "documentNo": "BANK018-108205",
+    "accountType": "Vendor",
+    "accountNoCandidate": "40000",
+    "appliesToDocNo": "108205",
+    "balancingAccountType": "Bank Account",
+    "balancingAccountNo": "BANK-RM-01",
+    "amountDirection": "payment amount must be derived from UI preflight and not assumed beyond the visible Vendor Ledger amount"
+  },
+  "flags": {
+    "bcRun": false,
+    "playwrightRun": false,
+    "noPost": true,
+    "noPreviewPosting": true,
+    "noPaymentPosting": true,
+    "noBankReconciliationPosting": true,
+    "noAcceptApplications": true,
+    "noApply": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noNew": true,
+    "noEdit": true,
+    "noDelete": true,
+    "noDraftCreated": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "rebuildInstruction": "In der deutschen Zielcompany denselben Gate-Aufbau reproduzieren: Vendor Ledger Entry sichtbar, dann Payment Journal Preflight, dann Journal Check/Apply, erst spaeter Posting-Trace.",
+  "targetGermanCompanyImpact": "Deutsche finale Payment-Evidence braucht eigenen offenen Kreditorenposten, deutsches Bankkonto, Zahlungsbeleg, Journal Check, Anwendung und Postenspur.",
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/bank-017/BANK-017-result.json",
+    "playwright/projects/fibu-book5/evidence/bank-017/BANK-017-PREFLIGHT-GATE.md",
+    "playwright/projects/fibu-book5/evidence/bank-017/README.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/bank-017/"
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {},
+  "nextStep": "BANK-018: controlled no-post Payment Journal preflight for 108205; do not post."
+}

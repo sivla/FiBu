@@ -39,7 +39,7 @@
       "chapter": "Kapitel 20",
       "status": "labor-sufficient-for-book-draft",
       "latestPracticalCase": "BANK-016-FRESH-VENDOR-LEDGER-CANDIDATE-SCOUT",
-      "latestReviewCase": "BANK-015-RECONCILIATION-ALTERNATIVE-ROUTE-DECISION",
+      "latestReviewCase": "BANK-017-VENDOR-PAYMENT-PREFLIGHT-GATE-DECISION",
       "customerPaymentAnchor": "PAY011-PS103297",
       "vendorPaymentAnchor": "BANK009-108204",
       "covered": [
@@ -62,7 +62,7 @@
         "BANK-014: candidate 108205 / invoice 107197 not sufficiently proven against Vendor Ledger Entries for Apply/Post",
         "BANK-015: Payment Reconciliation candidate 108205/107197 rejected for posting; next proof must start from Vendor Ledger Entries"
       ],
-      "nextStep": "BANK-017: judge-only decision whether 108205 is safe for a single-line Payment Journal preflight; do not create the draft in BANK-016.",
+      "nextStep": "BANK-018: controlled no-post Payment Journal preflight for 108205; do not post.",
       "postPaymentReconciliationState": "old invoice 108204 still visible in Payment Reconciliation after BANK009-108204; do not post old reconciliation context blindly",
       "staleReconciliationDecision": "BANK-012 parks stale 108204 Payment Reconciliation signal after BANK009-108204; do not post it blindly.",
       "latestBlockedCase": "BANK-014-FRESH-RECONCILIATION-CANDIDATE-GATE"
@@ -92,12 +92,12 @@
   "hardExclusions": {
     "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
   },
-  "updatedAt": "2026-06-29T00:43:42.4300663+02:00",
+  "updatedAt": "2026-06-29T00:46:55.7670178+02:00",
   "activeArea": "bank",
-  "currentBlock": "bank-vendor-payment-preflight-gate",
+  "currentBlock": "bank-payment-journal-108205-preflight",
   "latestPracticalCase": "FIXEDASSETS-295-FA-DEPRECIATION-GUARDED-OK-FRESH-DOC-NO-POST",
   "latestReviewCase": "FIXEDASSETS-296-FA-DEPRECIATION-FRESH-OK-RESULT-BLOCKER-REVIEW",
-  "nextCase": "BANK-017-VENDOR-PAYMENT-PREFLIGHT-GATE-DECISION",
+  "nextCase": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
   "latestBank013": {
     "caseId": "BANK-013-CONTROLLED-NEXT-EVIDENCE-STEP",
     "status": [
@@ -545,5 +545,24 @@
     },
     "summary": "BANK-016 read Vendor Ledger Entries for fresh candidates and found 108205 / Wide World Importers as visible enough for a separate no-post Payment Journal preflight decision. No draft, apply or posting occurred.",
     "nextCase": "BANK-017-VENDOR-PAYMENT-PREFLIGHT-GATE-DECISION"
+  },
+  "latestBank017": {
+    "caseId": "BANK-017-VENDOR-PAYMENT-PREFLIGHT-GATE-DECISION",
+    "status": [
+      "labor-sufficient-for-book-draft",
+      "preflight-gate-approved",
+      "needs-german-final-rebuild"
+    ],
+    "resultPath": "playwright/projects/fibu-book5/evidence/bank-017/BANK-017-result.json",
+    "target": {
+      "vendorLedgerDocumentNo": "108205",
+      "vendorName": "Wide World Importers",
+      "candidateVendorNo": "40000",
+      "amountFromVendorLedger": "-3.123,37",
+      "suggestedPaymentDocumentNo": "BANK018-108205",
+      "bankAccountNo": "BANK-RM-01"
+    },
+    "summary": "BANK-017 approves BANK-018 as a no-post Payment Journal preflight for Vendor Ledger candidate 108205 / Wide World Importers. Posting remains locked.",
+    "nextCase": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST"
   }
 }
