@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "caseId": "GERMAN-SANDBOX-001-REGISTER-INSTANCE",
+  "status": "planned",
+  "workType": "local-german-sandbox-registration-prep",
+  "taskClass": "judge_work",
+  "requiresStrongModel": false,
+  "sourceInstance": "MCP_1_20260210",
+  "sourceEvidenceStatus": "labor-reference",
+  "targetEvidenceStatus": "german-final-candidate",
+  "goal": "Register the next German Business Central sandbox instance before any live run, setup change or posting.",
+  "triggeredBy": {
+    "reason": "MCP_1_20260210 laboratory basis is summarized; future German final-candidate evidence must be generated in a new German sandbox.",
+    "summaryFile": ".agent/state/lab_to_german_sandbox_migration_plan.json"
+  },
+  "allowedActions": [
+    "read-state",
+    "local-analysis",
+    "update-agent-state",
+    "register-sandbox-metadata-when-known",
+    "plan-readonly-context-smoke"
+  ],
+  "forbiddenActions": [
+    "open-business-central",
+    "run-playwright",
+    "leave-instance-without-registration",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "book-edit",
+    "preview-posting",
+    "post",
+    "setup-change",
+    "company-switch",
+    "api-shortcut"
+  ],
+  "expectedInputs": [
+    "German sandbox instance name or URL",
+    "Target company name if known",
+    "Language/localization expectation",
+    "Allowed initial auth/storage-state procedure"
+  ],
+  "expectedOutputs": [
+    "Updated sandbox/company registry or agent state with the new German sandbox context",
+    "First read-only context smoke case for the German sandbox",
+    "Clear distinction between labor-reference and german-final-candidate evidence"
+  ],
+  "acceptanceCriteria": [
+    "No Business Central or Playwright run happens in this local prep case.",
+    "No book content is changed.",
+    "MCP_1_20260210 remains preserved as labor-reference only.",
+    "The next live action is a read-only context smoke in the registered German sandbox."
+  ],
+  "stopConditions": [
+    "German sandbox instance or company is unknown.",
+    "Any action would require opening Business Central before registration.",
+    "Any action would mix MCP_1_20260210 laboratory evidence with German final claims."
+  ],
+  "nextSafeAction": "Ask for or register the new German sandbox instance metadata, then create the first read-only German context smoke case.",
+  "createdAt": "2026-06-28T12:05:00.000+02:00",
+  "updatedAt": "2026-06-28T12:05:00.000+02:00"
+}

@@ -1,0 +1,207 @@
+{
+  "schemaVersion": 1,
+  "purpose": "lab-to-german-sandbox-migration-plan",
+  "updatedAt": "2026-06-28T12:05:00.000+02:00",
+  "sourceSandbox": {
+    "instance": "MCP_1_20260210",
+    "company": "RM-DEMO",
+    "dataBasis": "CRONUS-USA laboratory / mixed language sandbox",
+    "evidenceStatus": "labor-reference",
+    "finalGermanClaimsAllowed": false
+  },
+  "targetSandbox": {
+    "status": "not-registered-yet",
+    "expectedEvidenceStatus": "german-final-candidate",
+    "nextCase": "GERMAN-SANDBOX-001-REGISTER-INSTANCE",
+    "firstRequiredAction": "Register the new German sandbox instance and create a read-only context smoke case before any setup or posting."
+  },
+  "globalBoundaries": [
+    "Old MCP_1_20260210 evidence is labor-reference only.",
+    "Future German sandbox evidence must be regenerated as german-final-candidate.",
+    "No final German VAT, chart-of-accounts, tax, compliance or posting claims may be made from MCP_1_20260210 evidence.",
+    "Shopify remains excluded from FiBu Buch 5 scope."
+  ],
+  "provenLaborReference": [
+    {
+      "area": "o2c",
+      "status": "process-proof-labor",
+      "proved": [
+        "UAT-O2C-001 was executed as a controlled CRONUS-USA laboratory process in MCP_1_20260210 / RM-DEMO.",
+        "Sales order S-ORD101068 was posted once as posted sales invoice PS-INV103297 using Ship and Invoice.",
+        "Customer D10000, item RM-M100, quantity 1, location FRA-ZL, price 68000 EUR and Item Ledger Entry 792 are documented.",
+        "PRODUCTLINE=MACHINE and CHANNEL=B2B are proven on Item Ledger Entry 792."
+      ],
+      "notFinal": [
+        "German 19 percent VAT is not proven.",
+        "German gross amount 80920 EUR is not proven.",
+        "CRONUS account 14140 is not a German chart-of-accounts final proof."
+      ],
+      "keyEvidence": [
+        "playwright/projects/fibu-book5/evidence/uat-o2c-001/O2C-LAB-FINAL-SYNC.md"
+      ]
+    },
+    {
+      "area": "p2p",
+      "status": "process-proof-labor",
+      "proved": [
+        "P2P laboratory posting result exists for purchase invoice context.",
+        "The result is marked posted-labor."
+      ],
+      "notFinal": [
+        "German tax, German vendor defaults and German compliance proof must be regenerated."
+      ],
+      "keyEvidence": [
+        "playwright/projects/fibu-book5/evidence/p2p-001/100-purchase-posting-result.json"
+      ]
+    },
+    {
+      "area": "fixedassets",
+      "status": "setup-and-posting-proof-labor",
+      "proved": [
+        "HGB Depreciation Book Card context was opened in MCP_1_20260210 / RM-DEMO.",
+        "G/L Integration - Acq. Cost was UI-first fitted and locally reviewed as accepted laboratory setup fit.",
+        "G/L Integration - Depreciation was UI-first fitted for the HGB depreciation book.",
+        "One controlled FA G/L Journal laboratory acquisition posting was confirmed.",
+        "Posted document G05001 created G/L Entry trace for accounts 82000 and 12210 with amount signals around 120000.",
+        "Posted FA Ledger Entries are visible through Page 5604 for FA-CNC-01 / G05001 / HGB / Acquisition Cost / 120000.",
+        "Page 5606 was classified as rejected empty preview path, not as posted FA Ledger proof.",
+        "General Journal Batches Page 251 shows ASSETS / DEFAULT context with Default Journal Batch, G/L Account and FA-JNL."
+      ],
+      "notFinal": [
+        "No selected Batch Name value is proven in Fixed Asset G/L Journals.",
+        "No FADEP depreciation journal line is proven.",
+        "No depreciation Preview Posting is proven.",
+        "No depreciation posting is proven.",
+        "No German fixed-asset final proof exists."
+      ],
+      "keyEvidence": [
+        "playwright/projects/fibu-book5/evidence/fixedassets-208/FIXEDASSETS-208-result.json",
+        "playwright/projects/fibu-book5/evidence/fixedassets-209/FIXEDASSETS-209-result.json",
+        "playwright/projects/fibu-book5/evidence/fixedassets-226/FIXEDASSETS-226-result.json",
+        "playwright/projects/fibu-book5/evidence/fixedassets-227/FIXEDASSETS-227-result.json",
+        "playwright/projects/fibu-book5/evidence/fixedassets-233/FIXEDASSETS-233-result.json",
+        "playwright/projects/fibu-book5/evidence/fixedassets-287/FIXEDASSETS-287-result.json",
+        "playwright/projects/fibu-book5/evidence/fixedassets-288/FIXEDASSETS-288-result.json"
+      ]
+    }
+  ],
+  "understoodProcessRoutes": [
+    {
+      "area": "foundation",
+      "learning": "Company, instance, role center and page context must be proven before every practical run."
+    },
+    {
+      "area": "o2c",
+      "learning": "Order, Preview Posting, controlled posting and post-entry trace form one evidence chain; dimensions may be visible on ledger entries even when reporting aggregation is still open."
+    },
+    {
+      "area": "p2p",
+      "learning": "Vendor defaults, payment terms, posting groups and tax visibility need preflight gates before purchase documents are safe."
+    },
+    {
+      "area": "fixedassets",
+      "learning": "Fixed Asset posting requires separate proof for master data, depreciation book, posting group, G/L integration, journal line, preview and posted FA/G/L entries."
+    },
+    {
+      "area": "debugging-and-technical-proof",
+      "learning": "Page Inspection and Personalize are diagnostic tools. They explain page/table/field availability, but screenshots count only when the target codes or values are visible."
+    }
+  ],
+  "germanSandboxMustRegenerate": [
+    "German sandbox registration and read-only context proof.",
+    "Company Information, language, role center, wide layout and teaching-tip handling screenshots.",
+    "Dimension setup and standard-dimension proof for PRODUCTLINE and CHANNEL.",
+    "German chart-of-accounts and posting-group mapping.",
+    "VAT Business Posting Group, VAT Product Posting Group, VAT Posting Setup and VAT Entries for 19 percent German VAT.",
+    "O2C order, Preview Posting, posting dialog, posted sales invoice and post-entry trace in German UI.",
+    "P2P purchase document, Preview Posting, posted invoice and vendor/G/L/VAT traces in German UI.",
+    "Inventory, item ledger and value-entry traces in German UI.",
+    "Payment and open-item settlement flows including bank/payment journal evidence.",
+    "Fixed Asset master data, HGB/depreciation setup, acquisition posting trace, depreciation journal line, Preview Posting and depreciation posting trace in German UI.",
+    "Financial Reports and dimension reporting with German labels and explainable screenshots."
+  ],
+  "reusableAutomationAssets": [
+    {
+      "asset": "frame-aware Business Central content scanning",
+      "sourceLearning": "FIXEDASSETS-287 showed that direct Page-ID URLs may render shell text in the main document while business content lives in a runinframe frame.",
+      "reuseInGermanSandbox": true
+    },
+    {
+      "asset": "scoped BC action helpers",
+      "sourceLearning": "Ungescoped New/Neu and menu actions are risky; click helpers need page/context anchors and post-click assertions.",
+      "reuseInGermanSandbox": true
+    },
+    {
+      "asset": "Page Inspection and Personalize diagnostics",
+      "sourceLearning": "Useful for page/table/field debugging, but not enough for final book screenshots unless target values are visible.",
+      "reuseInGermanSandbox": true
+    },
+    {
+      "asset": "result-normalize and state-finalize gates",
+      "sourceLearning": "State truth should be updated from compact normalized results instead of raw logs or invented conclusions.",
+      "reuseInGermanSandbox": true
+    },
+    {
+      "asset": "screenshot QA rule",
+      "sourceLearning": "A screenshot is only useful when it shows the target code, value, blocker or intended control point.",
+      "reuseInGermanSandbox": true
+    },
+    {
+      "asset": "defaultLockedActions policy",
+      "sourceLearning": "Posting, Preview, setup changes and keeping drafts are allowed only when a case unlocks them with evidence and trace requirements.",
+      "reuseInGermanSandbox": true
+    }
+  ],
+  "supersededOrHistoryCases": [
+    {
+      "casePattern": "older fixed asset depreciation OK / batch lookup attempts before FA-287",
+      "status": "history",
+      "reason": "They remain useful as rejected-path learning, but FA-287/FA-288 is the current accepted batch-list context truth."
+    },
+    {
+      "casePattern": "Page 5606 FA Ledger Entries Preview trace",
+      "status": "rejected-path",
+      "reason": "The empty preview path must not be used as posted FA Ledger Entry proof; Page 5604 is the accepted posted ledger route."
+    },
+    {
+      "casePattern": "Shopify / online store scope",
+      "status": "excluded",
+      "reason": "User explicitly removed Shopify from FiBu Buch 5 scope."
+    }
+  ],
+  "openBlockers": [
+    "New German sandbox instance is not registered in this branch yet.",
+    "German auth/storage-state/context smoke is not proven yet.",
+    "German 19 percent VAT setup, preview and VAT entries are open.",
+    "German chart-of-accounts and posting matrix final proof is open.",
+    "Fixed Asset depreciation journal selected Batch Name, FADEP line, Preview Posting and posting remain open.",
+    "German UI screenshots for all final book click guides must be regenerated.",
+    "Reporting aggregation by PRODUCTLINE/CHANNEL remains open for final German proof."
+  ],
+  "recommendedGermanSandboxSequence": [
+    "GERMAN-SANDBOX-001: register the new German sandbox instance and company policy in agent state/registry.",
+    "GERMAN-SANDBOX-002: run a read-only live smoke for instance, company, role center and language context.",
+    "FOUNDATION-DE-001: document company information, role center, wide layout, teaching-tip handling, Page Inspection and Personalize handling.",
+    "MASTERDATA-DE-001: create or verify dimensions, posting groups, number series, customers, vendors, items, locations and payment terms.",
+    "VAT-DE-001: build and prove German 19 percent VAT setup before any German final posting claim.",
+    "O2C-DE-001: execute O2C with Preview Posting, one controlled posting and full post-entry trace.",
+    "P2P-DE-001: execute P2P with setup preflight, Preview Posting, one controlled posting and full post-entry trace.",
+    "INVENTORY-DE-001: prove item ledger/value-entry and inventory valuation paths.",
+    "PAYMENTS-DE-001: prove open-item settlement/payment journal and bank evidence only after OP readiness.",
+    "FIXEDASSETS-DE-001: rebuild FA-CNC-01 style fixed asset route in German UI from setup through acquisition and depreciation.",
+    "REPORTING-DE-001: prove financial reports and dimension analysis with German labels.",
+    "BOOK-SYNC-DE-001: update click guides only from german-final-candidate evidence."
+  ],
+  "stateTransition": {
+    "nextMode": "token-efficient-autopilot-german-sandbox-migration-prep",
+    "noActiveLiveRunInOldSandbox": true,
+    "nextActiveCase": "GERMAN-SANDBOX-001-REGISTER-INSTANCE",
+    "nextActiveCaseFile": ".agent/state/cases/german-sandbox-001-register-instance.json"
+  },
+  "validationCommands": [
+    "npm run agent:preflight",
+    "npm run check:encoding",
+    "git diff --check",
+    "node -e \"JSON.parse(require('fs').readFileSync('.agent/state/lab_to_german_sandbox_migration_plan.json','utf8'))\""
+  ]
+}
