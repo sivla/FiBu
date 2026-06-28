@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "caseId": "BANK-012-BANK-RECONCILIATION-CLEAR-TARGET-OR-PARK",
+  "title": "Decide bank reconciliation route after stale Payment Reconciliation signal",
+  "area": "bank",
+  "workType": "local-evidence-decision-no-bc",
+  "status": "done",
+  "sourceInstance": "MCP_1_20260210",
+  "sourceCompany": "RM-DEMO",
+  "purpose": "BANK-011 hat gezeigt, dass die alte Rechnung 108204 im Payment Reconciliation Journal weiter sichtbar ist, obwohl die Einzelzahlung BANK009-108204 bereits per Ledger belegt ist. BANK-012 entscheidet, dass diese alte Sicht kein sicherer Posting- oder Bankabstimmungshebel ist.",
+  "allowedActions": [
+    "read-evidence",
+    "write-evidence",
+    "update-bookdraft-or-clickguide",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "business-central-execution",
+    "playwright-execution",
+    "post-payments-only",
+    "accept-applications",
+    "preview-posting",
+    "post",
+    "payment",
+    "setup-change",
+    "api-shortcut",
+    "book-final-claim"
+  ],
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/bank-009/BANK-009-result.json",
+    "playwright/projects/fibu-book5/evidence/bank-011/BANK-011-result.json"
+  ],
+  "resultPath": "playwright/projects/fibu-book5/evidence/bank-012/BANK-012-result.json",
+  "evidencePath": "playwright/projects/fibu-book5/evidence/bank-012/",
+  "decision": "Do not continue Payment Reconciliation posting from the stale 108204 signal. Next bank reconciliation evidence needs either a new clear target line or a German final rebuild.",
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "completedAt": "2026-06-28T23:42:00.000Z",
+  "nextStep": "BANK-013 or RM-DE-LAB: create a fresh, explicit bank reconciliation target only if the next case defines statement line, expected bank entry, ledger trace and stop gates; otherwise move to another high-value process."
+}

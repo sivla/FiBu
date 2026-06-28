@@ -3666,7 +3666,7 @@ Dieses Kapitel zeigt, wie Rhein-Main Bankumsätze importiert, zuordnet und absti
 
 Status:
 - Buchziel: Bankumsatz importieren oder erfassen, Zahlung dem richtigen offenen Debitorenposten zuordnen, Bankposten erzeugen und Bankkonto abstimmen.
-- RM-DEMO-Labor: `PAYMENTS-011` bucht die Debitorenzahlung `PAY011-PS103297` zu `PS-INV103297`; `PAYMENTS-013` belegt den Bankposten ueber `Bank Account Ledger Entries` / Page `372` mit `BANK-RM-01`, Betrag `67.673,60` und Entry No. `4995`. `P2P-002` bucht die Kreditorenzahlung `PAYP2P-108219` zu `108219`; `P2P-003` klaert read-only den OP-Schluss: Rechnung `108219` zeigt Restbetrag `0,00`, und detaillierte Kreditorenposten zeigen `Initial Entry`, `Payment Discount` und `Application`.
+- RM-DEMO-Labor: `PAYMENTS-011` bucht die Debitorenzahlung `PAY011-PS103297` zu `PS-INV103297`; `PAYMENTS-013` belegt den Bankposten ueber `Bank Account Ledger Entries` / Page `372` mit `BANK-RM-01`, Betrag `67.673,60` und Entry No. `4995`. `P2P-002` bucht die Kreditorenzahlung `PAYP2P-108219` zu `108219`; `P2P-003` klaert read-only den OP-Schluss: Rechnung `108219` zeigt Restbetrag `0,00`, und detaillierte Kreditorenposten zeigen `Initial Entry`, `Payment Discount` und `Application`. `BANK-009`/`BANK-011` belegen zusaetzlich die Kreditorenzahlung `BANK009-108204` und zeigen danach, dass eine alte Payment-Reconciliation-Sicht zu `108204` nicht blind weitergebucht werden darf.
 - DE-Finalnachweis: offen; deutsche Bank-/Compliance-/Kontoauszugslogik wurde nicht final nachgewiesen.
 - Buchung erfolgt: ja, eine CRONUS-USA-Debitoren-Laborzahlung in `PAYMENTS-011` und eine CRONUS-USA-Kreditoren-Laborzahlung in `P2P-002`; keine weitere Zahlung in `PAYMENTS-013` oder `PAYMENTS-014`.
 - Evidence Pack: `evidence/payments-011/`, `evidence/payments-012/`, `evidence/payments-013/`, `evidence/payments-014/`, `evidence/p2p-002/`, `evidence/p2p-003/`.
@@ -3695,6 +3695,9 @@ Bankabstimmung bedeutet: Der Bankauszug und Business Central müssen denselben K
 
 Laborbefund `PAYMENTS-013`/`PAYMENTS-014`:
 Die Zahlung `PAY011-PS103297` ist nicht nur im Debitorenposten und in den Sachposten sichtbar. Business Central zeigt dazu auch einen Bankposten. Der belastbare UI-Pfad im Labor ist `Bank Account Ledger Entries` / Page `372`. Dort sind `PAY011-PS103297`, `BANK-RM-01`, Betrag `67.673,60`, Entry No. `4995` und `Related G/L Entries` sichtbar. Das beweist die Bankposten-Schicht, aber noch nicht die Bankabstimmung. Fuer Anfaenger ist das eine wichtige Grenze: Bankposten erklaeren, dass BC eine Bankbewegung gebucht hat; Bankabstimmung erklaert erst, ob diese Bewegung mit einem Kontoauszug abgestimmt wurde.
+
+Laborwarnung aus `BANK-011`/`BANK-012`:
+Nach der Kreditorenzahlung `BANK009-108204` ist die alte Rechnung `108204` im `Payment Reconciliation Journal` weiterhin sichtbar. Gleichzeitig zeigen Kreditorenposten, Bankposten und Sachposten die gebuchte Zahlung. Daraus folgt: Eine sichtbare alte Reconciliation-Zeile ist kein Freifahrtschein fuer `Post Payments Only`. Vor jedem weiteren Zahlungs- oder Bankabstimmungs-Posting muss der aktuelle Ledger-Zustand neu gelesen werden.
 
 ### Deutsche BC-Seiten
 
@@ -7422,6 +7425,10 @@ Ergaenzender Laborstand aus `BANK-008` und `BANK-009`:
 
 Der Kreditorenzahlungsfall zur offenen Einkaufsrechnung `108204` / `First Up Consultants` ist als kontrollierte RM-DEMO-Laborbuchung belegt. `BANK-008` zeigte zunaechst den offenen Kreditorenposten, eine einzelne Zahlungsjournalzeile mit `Vendor 20000`, `BANK-RM-01`, Betrag `2.151,46`, `Applies-to Doc. No. = 108204`, `Apply Entries` read-only und `Journal Check = 0 Issues`; der Draft wurde danach wieder bereinigt. In `BANK-009` wurde derselbe fachliche Einzeiler mit Beleg `BANK009-108204` neu vorbereitet, der Post-Dialog fotografiert und `Ja` genau einmal bestaetigt. Danach zeigen Kreditorenposten zur Rechnung `108204` und zur Zahlung `BANK009-108204` jeweils `Remaining Amount = 0,00`; die detaillierten Kreditorenposten zeigen `Initial Entry` und `Application`; Bankposten und Sachposten zeigen die Zahlungswirkung ueber `BANK-RM-01`, Konto `18200` und Kreditorenkonto `22100`. Damit ist im Labor jetzt nicht nur Zahlungseingang, sondern auch Kreditorenzahlung mit OP-Ausgleich und Hauptbuch-/Bankspur belegt. Offen bleiben Bankabstimmung, Kontoauszugsimport, deutscher Bank-/Steuer-/Compliance-Finalnachweis und deutsche Ziel-Screenshots.
 
+Nachlauf aus `BANK-011`/`BANK-012`:
+
+Nach dieser Kreditorenzahlung wurde das `Payment Reconciliation Journal` nur lesend erneut geoeffnet. Die alte Rechnung `108204` ist dort weiterhin sichtbar, obwohl `BANK009-108204` ueber Kreditorenposten, Bankposten und Sachposten belegt ist. Deshalb wird dieser alte Reconciliation-Kontext in RM-DEMO nicht weiter als Posting-Hebel genutzt. Fuer das Buch ist das ein wichtiger Fehlervermeidungsfall: Nach einer Einzelzahlung erst Ledger neu pruefen, dann entscheiden; nicht aus einer alten Abstimmungszeile heraus blind `Post Payments Only` klicken.
+
 Pruefregel fuer Anfaenger:
 
 | Schwelle | Bedeutung | Aktueller Laborstatus |
@@ -7432,6 +7439,7 @@ Pruefregel fuer Anfaenger:
 | Apply Entries | Welche Rechnung wird zugeordnet? | read-only geprueft; Zielbelege `PS-INV103297` und `108204` |
 | Post-Dialog | Wird wirklich gebucht? | Debitor: `PAYMENTS-011` genau einmal mit `Ja`; Kreditor: `BANK-009` genau einmal mit `Ja` |
 | Postenspur nach Zahlung | Wurden Zahlung und Ausgleich erzeugt? | Debitor: `PAY011-PS103297`; Kreditor: `BANK009-108204`; jeweils `Remaining Amount = 0,00`, detaillierte Posten/Application, Bank- und Sachposten sichtbar; Bankabstimmung offen |
+| Reconciliation-Nachlauf | Ist die alte Abstimmungszeile nach Zahlung noch sicher? | `BANK-011` zeigt: `108204` bleibt im Payment Reconciliation Journal sichtbar; `BANK-012` parkt diesen Pfad, bis eine neue klare Zielzeile oder deutsche Finalumgebung existiert |
 
 ### Fehlerdiagnose nach Symptom
 

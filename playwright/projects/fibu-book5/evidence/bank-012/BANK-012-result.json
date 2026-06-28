@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "purpose": "bank-reconciliation-route-decision",
+  "caseId": "BANK-012-BANK-RECONCILIATION-CLEAR-TARGET-OR-PARK",
+  "source": "local-evidence-decision-no-bc",
+  "resultStatus": "observed",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "sourceCompany": "RM-DEMO",
+  "bcRun": false,
+  "playwrightRun": false,
+  "posted": false,
+  "previewPosting": false,
+  "setupChanged": false,
+  "bookChanged": true,
+  "basis": [
+    "BANK-009 posted BANK009-108204 once through Payment Journal and traced Vendor Ledger, Detailed Vendor Ledger, Bank Account Ledger and G/L Entries.",
+    "BANK-011 read Payment Reconciliation after BANK-009 and found old invoice 108204 still visible there.",
+    "BANK-011 also proved Vendor Ledger, Bank Account Ledger and G/L Entries for BANK009-108204 read-only."
+  ],
+  "decision": "Do not continue Payment Reconciliation posting from the stale 108204 signal. Next bank reconciliation evidence needs either a new clear target line or a German final rebuild.",
+  "proved": [
+    "BANK009-108204 is sufficient as RM-DEMO lab evidence for vendor payment, OP application, bank ledger and G/L trace.",
+    "The old Payment Reconciliation context for 108204 is not a safe follow-up posting target after BANK-009.",
+    "Chapter 20 can use BANK-012 as a beginner warning about stale reconciliation context."
+  ],
+  "notProved": [
+    "No bank reconciliation was posted.",
+    "No Post Payments Only was confirmed.",
+    "No Accept Applications was clicked.",
+    "No Preview Posting was opened.",
+    "No German bank/compliance final proof."
+  ],
+  "flags": {
+    "readOnlyLocalDecision": true,
+    "noBcRun": true,
+    "noPlaywrightRun": true,
+    "noPost": true,
+    "noPreviewPosting": true,
+    "noPaymentPosting": true,
+    "noBankReconciliationPosting": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true
+  },
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "rebuildInstruction": "In the German target company, rebuild bank reconciliation with a fresh statement line, explicit bank account, target open item or bank entry, and expected Vendor/Customer/Bank/G-L trace before posting.",
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/bank-012/BANK-012-result.json",
+    "playwright/projects/fibu-book5/evidence/bank-012/BANK-012-reconciliation-route-decision.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/bank-009/",
+    "playwright/projects/fibu-book5/evidence/bank-011/",
+    "playwright/projects/fibu-book5/evidence/bank-012/"
+  ],
+  "blockedBy": [],
+  "safeToFinalizeState": false,
+  "requiresReview": false,
+  "nextStep": "BANK-013 only if a new clear statement line and target ledger trace are defined; otherwise move to another high-value process such as RM-DE-LAB foundation or fixed assets depreciation blocker."
+}
