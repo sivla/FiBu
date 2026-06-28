@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "caseId": "RM-DE-LAB-CREATE-003-CREATE-NEW-COMPANY-ACTION-ROUTE",
+  "title": "Create New Company / assisted setup route gate",
+  "area": "company",
+  "instance": "MCP_1_20260210",
+  "startCompany": "RM-DEMO",
+  "targetCompany": "RM-DE-LAB",
+  "workType": "controlled-company-create-route-gate",
+  "status": "blocked",
+  "resultStatus": "labor-blocked",
+  "resultPath": "playwright/projects/fibu-book5/evidence/rm-de-lab-create-003/RM-DE-LAB-CREATE-003-result.json",
+  "sourceCase": "RM-DE-LAB-CREATE-002-SAVE-ERROR-DIAGNOSIS",
+  "sourceFinding": "Companies row validation says to choose Create New Company / assisted setup instead of direct list-row entry.",
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "targetGermanCompanyImpact": "If this route creates a safe lab shell company, later German final sandbox must recreate the company via a German final UI route with its own screenshots and setup.",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "businessJustification": "Diese Route ist als MCP_1_20260210-Sandbox-Aktion vertretbar, weil Business Central selbst den direkten Listenzeilen-Pfad abgelehnt und den Create-New-Company-/Assisted-Setup-Pfad als richtigen Anlageweg genannt hat.",
+  "allowedActions": [
+    "open-business-central-if-instance-and-start-company-match",
+    "open-companies-page-357-direct-url",
+    "collect-scoped-companies-action-candidates",
+    "click-create-new-company-only-if-exact-scoped-action-is-visible",
+    "read-assisted-setup-wizard-context",
+    "write-evidence",
+    "update-state"
+  ],
+  "defaultLockedActionsUnlocked": [
+    "keep-draft",
+    "new-company"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "switch-company",
+    "create-any-company-other-than-RM-DE-LAB",
+    "copy-company-from-real-data",
+    "delete-company",
+    "setup-change-after-company-create",
+    "posting",
+    "preview-posting",
+    "api-shortcut",
+    "finish-unknown-wizard"
+  ],
+  "stopIf": [
+    "url-does-not-contain-MCP_1_20260210",
+    "start-url-does-not-contain-company=RM-DEMO",
+    "companies-page-not-visible",
+    "create-new-company-action-not-visible",
+    "wizard-would-require-template-or-copy-choice-without-safe-default",
+    "dangerous-dialog-appears",
+    "any-route-would-require-api-shortcut"
+  ],
+  "expectedEvidence": [
+    "result-json",
+    "scoped-action-inventory-json",
+    "companies-page-text-before-after",
+    "screenshot-showing-create-new-company-route-or-blocker",
+    "clear-next-route-decision"
+  ],
+  "nextStepIfSuccess": "If Create New Company wizard is safely open and scoped, create RM-DE-LAB only in a follow-up case with explicit wizard field map and final confirmation gate.",
+  "nextStepIfBlocked": "Park RM-DE-LAB and continue RM-DEMO process evidence, unless a later scoped Companies menu/action discovery is explicitly chosen.",
+  "completedAt": "2026-06-28T21:44:27.186Z",
+  "blockedBy": [
+    "create-new-company-action-not-visible-or-wizard-not-proven"
+  ],
+  "observedResult": {
+    "createActionClicked": false,
+    "wizardVisible": false,
+    "companyCreated": false,
+    "companySwitched": false,
+    "setupChanged": false,
+    "posted": false,
+    "previewPosting": false,
+    "routeDecision": "Create New Company action was not visible/clickable from Page 357 start context. Do not edit list row again; use scoped action/menu discovery or park RM-DE-LAB."
+  }
+}

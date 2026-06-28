@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "caseId": "RM-DE-LAB-CREATE-002-SAVE-ERROR-DIAGNOSIS",
+  "title": "Diagnose Companies row save error for RM-DE-LAB",
+  "area": "company",
+  "instance": "MCP_1_20260210",
+  "startCompany": "RM-DEMO",
+  "targetCompany": "RM-DE-LAB",
+  "workType": "controlled-ui-error-diagnosis",
+  "status": "done",
+  "resultStatus": "labor-proven-error-diagnosis",
+  "resultPath": "playwright/projects/fibu-book5/evidence/rm-de-lab-create-002/RM-DE-LAB-CREATE-002-result.json",
+  "sourceCase": "RM-DE-LAB-CREATE-001-UI-FIRST-COMPANY-CREATION",
+  "sourceBlocker": "target-company-value-visible-but-not-saved",
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "targetGermanCompanyImpact": "The German target company path must later prove saved company creation in a German final sandbox; visible unsaved row values are only debugging evidence.",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "businessJustification": "Diese Diagnose ist als MCP_1_20260210-Sandbox-Aktion vertretbar, weil RM-DE-LAB-CREATE-001 einen sichtbaren, aber ungespeicherten Companies-Zielwert erzeugt hat. Vor Foundation-Setup oder Company-Wechsel muss klar sein, ob ein fehlender UI-Wert, eine Setup-Assist-Option, ein Statusfeld oder ein anderer Companies-Klickpfad den Save blockiert.",
+  "allowedActions": [
+    "open-business-central-if-instance-and-start-company-match",
+    "open-companies-page-357-direct-url",
+    "reproduce-rm-de-lab-unsaved-row-only-if-target-not-already-visible",
+    "hover-or-read-error-indicators",
+    "collect-dom-error-diagnostics",
+    "write-evidence",
+    "update-state"
+  ],
+  "defaultLockedActionsUnlocked": [
+    "keep-draft"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "switch-company",
+    "create-any-company-other-than-RM-DE-LAB",
+    "copy-company-from-real-data",
+    "delete-company",
+    "setup-change-after-company-create",
+    "posting",
+    "preview-posting",
+    "api-shortcut"
+  ],
+  "stopIf": [
+    "url-does-not-contain-MCP_1_20260210",
+    "start-url-does-not-contain-company=RM-DEMO",
+    "companies-page-not-visible",
+    "unknown-create-wizard-or-dangerous-dialog-appears",
+    "delete-or-company-switch-dialog-appears",
+    "any-route-would-require-api-shortcut"
+  ],
+  "expectedEvidence": [
+    "result-json",
+    "diagnostics-json",
+    "companies-page-text-before-after",
+    "screenshot-showing-target-row-or-error-state",
+    "clear-next-route-decision"
+  ],
+  "nextStepIfSuccess": "RM-DE-LAB-CREATE-003: test the explicit Create New Company / assisted setup UI route named by the row validation message.",
+  "nextStepIfBlocked": "If no exact row error can be recovered, either use an assisted company setup/copy-company route as a new UI-first case or park RM-DE-LAB and continue RM-DEMO process evidence.",
+  "completedAt": "2026-06-28T21:38:13.914Z",
+  "blockedBy": [
+    "company-row-target-value-visible-but-not-persisted"
+  ],
+  "observedResult": {
+    "targetCompanyValueVisibleAfter": true,
+    "saveErrorAfter": true,
+    "diagnosedErrorCore": "To create a new company, choose the Create New Company button. An assisted setup guide will make sure you get everything you need to get started.",
+    "companyCreated": false,
+    "companySwitched": false,
+    "setupChanged": false,
+    "posted": false,
+    "previewPosting": false
+  }
+}
