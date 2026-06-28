@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-293-FA-DEPRECIATION-JOURNAL-BATCH-FILTER-TRACE-READONLY",
+  "title": "Read-only trace for FADEP-291-OK across Fixed Asset G/L Journal context",
+  "status": "planned",
+  "taskClass": "wizard_work",
+  "modelClass": "gpt-4-medium",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "read-only-evidence-run",
+  "sourceCase": "FIXEDASSETS-292-FA-DEPRECIATION-OK-RESULT-BLOCKER-REVIEW",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-291/FIXEDASSETS-291-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-292/FIXEDASSETS-292-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-292/FIXEDASSETS-292-OK-RESULT-BLOCKER-REVIEW.md"
+  ],
+  "purpose": "Prove read-only whether FADEP-291-OK is visible in Fixed Asset G/L Journals or likely hidden by journal template, batch, filter or view context before any repeat Calculate Depreciation OK.",
+  "allowedActions": [
+    "open-business-central-if-instance-and-company-match",
+    "run-playwright-if-case-preflight-passes",
+    "direct-page-url-only",
+    "read-fixed-asset-gl-journals",
+    "maximize-card-or-page-if-needed",
+    "expand-visible-sections-if-needed",
+    "use-read-only-filter-or-find-if-safe",
+    "write-evidence",
+    "update-state"
+  ],
+  "defaultLockedActionsUnlocked": [],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "confirm-ok-on-calculate-depreciation",
+    "preview-posting",
+    "post",
+    "setup-change",
+    "company-switch",
+    "new-draft",
+    "edit-record",
+    "delete-record",
+    "api-shortcut-without-explicit-case-permission",
+    "book-edit"
+  ],
+  "safetyGates": [
+    "instance-must-be-MCP_1_20260210",
+    "company-must-be-RM-DEMO",
+    "direct-page-url-before-any-navigation",
+    "no-tell-me-search-unless-direct-page-route-fails-and-result-is-read-only",
+    "no-calculate-depreciation-ok",
+    "no-preview-posting",
+    "no-posting",
+    "no-setup-change",
+    "no-company-switch"
+  ],
+  "targetSignals": [
+    "Fixed Asset G/L Journals page context",
+    "ASSETS journal template if visible",
+    "DEFAULT batch if visible",
+    "FADEP-291-OK",
+    "FA-CNC-01",
+    "HGB",
+    "31.01.2027",
+    "any visible filter, batch or view context explaining why FADEP-291-OK is absent"
+  ],
+  "expectedOutputs": [
+    "Compact result JSON under playwright/projects/fibu-book5/evidence/fixedassets-293/",
+    "Read-only learning summary explaining whether FADEP-291-OK was visible or still unproved.",
+    "If visible, next case may evaluate Preview Posting gate. If absent, next case must choose request-page option review or controlled repeat with duplicate-line safeguards."
+  ],
+  "classification": [
+    "labor-blocked",
+    "labor-sufficient-for-book-draft",
+    "needs-german-final-rebuild"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "targetGermanCompanyImpact": "German target company must reproduce the depreciation journal trace with German accounts, depreciation setup and final screenshots.",
+  "finalScreenshotNeeded": true,
+  "nextStep": "Implement or run a bounded read-only Fixed Asset G/L Journals trace for FADEP-291-OK without Calculate Depreciation OK, Preview Posting or Post."
+}

@@ -1,0 +1,109 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "FIXEDASSETS-292-FA-DEPRECIATION-OK-RESULT-BLOCKER-REVIEW",
+  "source": "local-evidence-review",
+  "resultStatus": "observed",
+  "runPlanId": "FIXEDASSETS-292-local-review",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-medium",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "bcRun": false,
+  "playwrightRun": false,
+  "posted": false,
+  "previewPosting": false,
+  "dataChanged": false,
+  "setupChanged": false,
+  "bookChanged": false,
+  "proved": [
+    "FA-291 proved the Calculate Depreciation request page values HGB, 31.01.2027, FADEP-291-OK and FA-CNC-01 before OK.",
+    "FA-291 proved OK was confirmed exactly once.",
+    "FA-291 did not find FADEP-291-OK in the checked Fixed Asset G/L Journals context after OK.",
+    "A blind repeat of OK is not a safe next action because it could create duplicate depreciation journal lines if a line exists outside the searched view."
+  ],
+  "notProved": [
+    "It is not proven that no depreciation journal line exists anywhere.",
+    "It is not proven whether another journal template, batch, filter or hidden view contains FADEP-291-OK.",
+    "No Preview Posting result exists.",
+    "No depreciation posting exists.",
+    "No German final proof exists."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-292/FIXEDASSETS-292-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-292/FIXEDASSETS-292-OK-RESULT-BLOCKER-REVIEW.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-292/README.md",
+    ".agent/state/current.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json"
+  ],
+  "statePatch": {
+    "current": {
+      "activeArea": "fixedassets",
+      "activeCase": "FIXEDASSETS-293-FA-DEPRECIATION-JOURNAL-BATCH-FILTER-TRACE-READONLY",
+      "active_case_file": ".agent/state/cases/fixedassets-293-fa-depreciation-journal-batch-filter-trace-readonly.json",
+      "lastReferenceCase": "FIXEDASSETS-292-FA-DEPRECIATION-OK-RESULT-BLOCKER-REVIEW",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-292-fa-depreciation-ok-result-blocker-review.json",
+      "nextStep": "Run FIXEDASSETS-293: bounded read-only Fixed Asset G/L Journal / batch / filter trace for FADEP-291-OK before any repeat OK, Preview Posting or depreciation posting."
+    },
+    "coverage": {
+      "activeArea": "fixedassets",
+      "currentBlock": "fa-depreciation-ok-result-blocker-reviewed",
+      "latestReviewCase": "FIXEDASSETS-292-FA-DEPRECIATION-OK-RESULT-BLOCKER-REVIEW",
+      "nextCase": "FIXEDASSETS-293-FA-DEPRECIATION-JOURNAL-BATCH-FILTER-TRACE-READONLY"
+    },
+    "lastRunSummary": {
+      "runId": "FIXEDASSETS-292-FA-DEPRECIATION-OK-RESULT-BLOCKER-REVIEW",
+      "workType": "local-evidence-review",
+      "instance": "MCP_1_20260210",
+      "company": "RM-DEMO",
+      "bcRun": false,
+      "playwrightRun": false,
+      "posted": false,
+      "previewPosting": false,
+      "dataChanged": false,
+      "setupChanged": false,
+      "bookChanged": false,
+      "summary": "FA-292 reviewed FA-291 locally: OK was executed once but FADEP-291-OK was not found in the checked journal context. Blind repeat OK remains locked; next step is a bounded read-only journal/batch/filter trace.",
+      "nextStep": "FIXEDASSETS-293 read-only trace for FADEP-291-OK across Fixed Asset G/L Journal context before any repeat OK, Preview Posting or Post."
+    }
+  },
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-291/FIXEDASSETS-291-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-291/020-journal-line-search.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-292/FIXEDASSETS-292-OK-RESULT-BLOCKER-REVIEW.md"
+  ],
+  "warnings": [
+    "Do not repeat Calculate Depreciation OK until FADEP-291-OK has been searched in the relevant journal/batch/filter contexts.",
+    "RM-DEMO evidence remains labor-reference and must be rebuilt in a German final sandbox."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "reason": "Local evidence review closes the missing FA-292 evidence gap and defines the next bounded read-only trace without BC execution.",
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "targetGermanCompanyImpact": "German final sandbox must reproduce Calculate Depreciation and prove the resulting journal line, Preview Posting and posted depreciation entries separately.",
+  "finalScreenshotNeeded": true,
+  "flags": {
+    "noWrite": true,
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "validationCommands": [
+    "npm run agent:preflight",
+    "npm run agent:context",
+    "npm run agent:dry-run",
+    "npm run agent:run-plan",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-292/FIXEDASSETS-292-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-292/FIXEDASSETS-292-result.json",
+    "npm run check:encoding",
+    "git diff --check"
+  ]
+}
