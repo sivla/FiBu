@@ -1,4 +1,16 @@
 
+## FIND-BC-FA-108 Post-acquisition AfA-Werte sind ohne OK bewiesen
+
+| Feld | Wert |
+|---|---|
+| Bereich | Fixed Assets / AfA-Route / Request-Page-Werte |
+| Testfall | `FIXEDASSETS-271-FA-DEPRECIATION-POST-ACQUISITION-VALUE-PREFLIGHT-NO-OK` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-271/FIXEDASSETS-271-result.json`, `playwright/projects/fibu-book5/evidence/fixedassets-271/010-target-value-preflight.json` |
+| Ergebnis | `HGB`, `31.01.2027`, `FADEP-271-NO-OK` und `FA-CNC-01` wurden auf der Request Page `Calculate Depreciation` sichtbar bewiesen. |
+| Sicherheitsgrenze | `OK` wurde nicht bestaetigt; keine AfA berechnet, keine Journalzeile erzeugt, kein Preview Posting, kein Post. |
+| Buchwirkung | Die Anleitung kann jetzt den korrigierten Datumscheck zeigen: nach Zugang `01.01.2027` wird ein AfA-Stichtag `31.01.2027` verwendet und vor Ausfuehrung kontrolliert. |
+| naechster Schritt | `FIXEDASSETS-272`: lokaler Gate-Review, ob genau ein kontrollierter `OK`-Lauf mit frischer Belegnr. `FADEP-272-OK` vertretbar ist. |
+
 ## FIND-BC-FA-107 Naechster AfA-Test braucht post-acquisition Datum ohne OK
 
 | Feld | Wert |

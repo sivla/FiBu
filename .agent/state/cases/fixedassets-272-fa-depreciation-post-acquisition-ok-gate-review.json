@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-272-FA-DEPRECIATION-POST-ACQUISITION-OK-GATE-REVIEW",
+  "status": "planned",
+  "workType": "local-fixedasset-depreciation-post-acquisition-ok-gate-review",
+  "taskClass": "judge_work",
+  "requiresStrongModel": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Review FA-271 no-OK value proof and decide whether exactly one controlled Calculate Depreciation OK execution is justified for the post-acquisition target values.",
+  "triggeredBy": {
+    "caseId": "FIXEDASSETS-271-FA-DEPRECIATION-POST-ACQUISITION-VALUE-PREFLIGHT-NO-OK",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-271/FIXEDASSETS-271-result.json",
+    "decision": "All post-acquisition target values were visibly proven without OK."
+  },
+  "targetValues": {
+    "depreciationBook": "HGB",
+    "postingDateUi": "31.01.2027",
+    "postingDateIso": "2027-01-31",
+    "documentNo": "FADEP-272-OK",
+    "fixedAssetNoFilter": "FA-CNC-01"
+  },
+  "allowedActions": [
+    "local-evidence-review",
+    "review-fa271-value-proof",
+    "decide-controlled-ok-gate",
+    "write-compact-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright",
+    "confirm-ok-on-calculate-depreciation",
+    "preview-posting",
+    "post",
+    "setup-change",
+    "company-switch",
+    "api-shortcut-without-explicit-case-permission"
+  ],
+  "safetyGates": [
+    "local-only",
+    "no-ok-in-review",
+    "no-preview-posting",
+    "no-posting",
+    "no-setup-change",
+    "no-company-switch",
+    "no-api-shortcut",
+    "controlled-ok-requires-next-case"
+  ],
+  "reviewQuestions": [
+    "Does FA-271 prove all target values with a post-acquisition date?",
+    "Is one controlled OK run justified as the next evidence step?",
+    "Should the controlled OK use a fresh document number FADEP-272-OK?",
+    "What must the next case inspect after OK before Preview Posting or Post stays locked?"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-272/FIXEDASSETS-272-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-272/FIXEDASSETS-272-POST-ACQUISITION-OK-GATE-REVIEW.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-272/README.md"
+  ],
+  "acceptanceCriteria": [
+    "FA-271 value proof is reviewed locally.",
+    "The review either unlocks exactly one OK-only execution case or documents why OK remains locked.",
+    "Preview Posting and Post remain locked.",
+    "A fresh document number is selected if OK is unlocked."
+  ],
+  "stopConditions": [
+    "The review would require opening Business Central.",
+    "The review would require confirming OK.",
+    "The review would infer a journal line without evidence."
+  ],
+  "nextSafeAction": "Review FA-271 locally; do not execute OK in this case.",
+  "createdAt": "2026-06-28T09:12:00.000+02:00",
+  "updatedAt": "2026-06-28T09:12:00.000+02:00"
+}
