@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-295-FA-DEPRECIATION-GUARDED-OK-FRESH-DOC-NO-POST",
+  "title": "Guarded Calculate Depreciation OK with fresh document number and no post",
+  "status": "planned",
+  "taskClass": "wizard_work",
+  "modelClass": "gpt-4-medium",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "controlled-execute-no-post",
+  "sourceCase": "FIXEDASSETS-294-FA-DEPRECIATION-REQUEST-PAGE-OPTIONS-OR-CONTROLLED-REPEAT-GATE",
+  "targetValues": {
+    "depreciationBook": "HGB",
+    "postingDate": "31.01.2027",
+    "documentNo": "FADEP-295-OK",
+    "fixedAssetNoFilter": "FA-CNC-01"
+  },
+  "allowedActions": [
+    "open-business-central-if-instance-and-company-match",
+    "run-playwright-if-case-preflight-passes",
+    "open-calculate-depreciation-request-page",
+    "set-target-values",
+    "confirm-ok-exactly-once",
+    "read-fixed-asset-gl-journals",
+    "write-evidence",
+    "update-state"
+  ],
+  "defaultLockedActionsUnlocked": [
+    "dialog-confirmation:calculate-depreciation-ok-only",
+    "keep-draft-if-journal-line-created"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "repeat-FADEP-291-OK",
+    "preview-posting",
+    "post",
+    "setup-change",
+    "company-switch",
+    "new-draft-outside-calculate-depreciation",
+    "api-shortcut-without-explicit-case-permission",
+    "book-edit"
+  ],
+  "safetyGates": [
+    "instance-must-be-MCP_1_20260210",
+    "company-must-be-RM-DEMO",
+    "document-no-must-be-FADEP-295-OK",
+    "target-values-visible-before-ok",
+    "ok-click-count-must-be-one",
+    "journal-search-mandatory-after-ok",
+    "preview-posting-forbidden",
+    "post-forbidden"
+  ],
+  "expectedOutputs": [
+    "Result JSON showing whether FADEP-295-OK was found in Fixed Asset G/L Journals after OK.",
+    "Compact pre-OK target value evidence.",
+    "Compact post-OK journal search evidence.",
+    "If line is visible, next case is Preview Posting gate review; if not, depreciation route remains labor-blocked."
+  ],
+  "classification": [
+    "controlled-execute-trace",
+    "labor-blocked",
+    "needs-german-final-rebuild"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "targetGermanCompanyImpact": "German target company must reproduce this with German accounts, German UI labels and final screenshots before any final book claim.",
+  "finalScreenshotNeeded": true,
+  "nextStep": "Implement or run the guarded OK-only test with FADEP-295-OK; no Preview Posting or Post."
+}
