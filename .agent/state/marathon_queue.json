@@ -288,7 +288,40 @@
         "summary": "Single-line Payment Journal vendor payment posted once and traced through Vendor Ledger, Detailed Vendor Ledger, Bank Account Ledger and G/L Entries.",
         "nextStep": "BANK-010: Kapitel 19/20 und Bank-/Payments-Draft mit BANK-009 synchronisieren; danach optional Bankabstimmung oder P2P-Abweichungsfall planen."
       }
+    },
+    {
+      "id": "RM-DE-LAB-CREATE-001-UI-FIRST-COMPANY-CREATION",
+      "order": 16,
+      "status": "blocked",
+      "category": "company",
+      "expectedImpact": "high-impact",
+      "fallbackRoute": "RM-DEMO remains the active lab company until the save error is diagnosed or another UI-first company-create route is proven.",
+      "evidenceTarget": "playwright/projects/fibu-book5/evidence/rm-de-lab-create-001/",
+      "mayWorkEffectively": true,
+      "goal": "Create or prove the planned RM-DE-LAB shell company via Companies Page 357 without API shortcut or company switch.",
+      "startedAt": "2026-06-28T21:19:27.246Z",
+      "completedAt": "2026-06-28T21:24:37.669Z",
+      "result": {
+        "status": "blocked",
+        "resultFile": "playwright/projects/fibu-book5/evidence/rm-de-lab-create-001/RM-DE-LAB-CREATE-001-result.json",
+        "summary": "Companies Page 357 and scoped New were reached; RM-DE-LAB and display name were visible as target values, but BC kept the row unsaved with a page error. No saved company, no switch, no setup.",
+        "blockedBy": [
+          "target-company-value-visible-but-not-saved"
+        ],
+        "nextStep": "RM-DE-LAB-CREATE-002: diagnose exact save error or use another documented UI create route; do not repeat blind New."
+      }
+    },
+    {
+      "id": "RM-DE-LAB-CREATE-002-SAVE-ERROR-DIAGNOSIS",
+      "order": 17,
+      "status": "pending",
+      "category": "company",
+      "expectedImpact": "high-impact-candidate",
+      "fallbackRoute": "Use RM-DEMO for next process if the company-create row error cannot be safely diagnosed.",
+      "evidenceTarget": "playwright/projects/fibu-book5/evidence/rm-de-lab-create-002/",
+      "mayWorkEffectively": true,
+      "goal": "Capture the exact Companies row save error and decide whether Enable Assisted Company Setup, Setup Status, a different UI route, or staying in RM-DEMO is the safe next path."
     }
   ],
-  "lastUpdated": "2026-06-28T22:52:00.000Z"
+  "lastUpdated": "2026-06-28T21:24:37.669Z"
 }

@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "caseId": "RM-DE-LAB-CREATE-001-UI-FIRST-COMPANY-CREATION",
+  "title": "UI-first RM-DE-LAB company creation gate",
+  "area": "company",
+  "instance": "MCP_1_20260210",
+  "startCompany": "RM-DEMO",
+  "targetCompany": "RM-DE-LAB",
+  "workType": "controlled-company-create-or-visible-proof",
+  "status": "blocked",
+  "resultStatus": "labor-blocked",
+  "resultPath": "playwright/projects/fibu-book5/evidence/rm-de-lab-create-001/RM-DE-LAB-CREATE-001-result.json",
+  "blockedBy": [
+    "target-company-value-visible-but-not-saved"
+  ],
+  "observedResult": {
+    "targetCompanyValueVisibleAfter": true,
+    "saveErrorAfter": true,
+    "companyCreated": false,
+    "companySwitched": false,
+    "setupChanged": false,
+    "posted": false,
+    "previewPosting": false
+  },
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "targetGermanCompanyImpact": "RM-DE-LAB is a clean German-oriented laboratory/rebuild company inside the existing sandbox; it is not a German final instance.",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "businessJustification": "Diese Company-Aktion ist als MCP_1_20260210-Sandbox-Aktion vertretbar, weil RM-DEMO inzwischen viele CRONUS-USA-Laborbelege und offene Draft-/Setup-Kontexte enthaelt. Eine eigene RM-DE-LAB-Company trennt kuenftige Rebuild- und Foundation-Setup-Proben sauber von RM-DEMO, ohne eine neue externe Instanz anzunehmen.",
+  "dataBasis": "UI-first Companies page. Create only the shell company RM-DE-LAB if it does not already exist; no template/setup/import in this case.",
+  "allowedActions": [
+    "open-business-central-if-instance-and-start-company-match",
+    "open-companies-page-357-direct-url",
+    "click-new-only-in-companies-context",
+    "enter-target-company-name-rm-de-lab-only-if-name-field-is-unambiguous",
+    "save-or-leave-company-row-only-if-rm-de-lab-visible",
+    "write-evidence",
+    "update-registry-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "switch-company",
+    "create-any-company-other-than-RM-DE-LAB",
+    "copy-company-from-real-data",
+    "delete-company",
+    "setup-change-after-company-create",
+    "posting",
+    "preview-posting",
+    "api-shortcut"
+  ],
+  "stopIf": [
+    "url-does-not-contain-MCP_1_20260210",
+    "start-url-does-not-contain-company=RM-DEMO",
+    "companies-page-not-visible",
+    "new-action-not-scoped-to-companies-page",
+    "unknown-create-wizard-or-dangerous-dialog-appears",
+    "company-name-field-is-ambiguous",
+    "target-company-not-visible-after-create-attempt"
+  ],
+  "expectedEvidence": [
+    "result-json",
+    "companies-page-text-before-after",
+    "screenshot-before-or-after-showing-RM-DE-LAB-if-visible",
+    "registry-update-only-after-visible-proof"
+  ],
+  "nextStepIfSuccess": "RM-DE-LAB-002 foundation setup can start only after actual-visible proof and registry/state sync.",
+  "nextStepIfBlocked": "RM-DE-LAB-CREATE-002: diagnose the Companies row save error without repeating blind New. Capture exact error details from the row/error banner, then decide whether Enable Assisted Company Setup, Setup Status, a different UI create route, or staying in RM-DEMO is the next safe path."
+}

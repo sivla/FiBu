@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-28T23:42:00.000Z",
+  "updatedAt": "2026-06-28T21:24:37.669Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "activeArea": "bank",
-  "activeCase": "BANK-012-BANK-RECONCILIATION-CLEAR-TARGET-OR-PARK",
-  "active_case_file": ".agent/state/cases/bank-012-reconciliation-route-decision.json",
-  "lastReferenceCase": "BANK-012-BANK-RECONCILIATION-CLEAR-TARGET-OR-PARK",
-  "lastReferenceCaseFile": ".agent/state/cases/bank-012-reconciliation-route-decision.json",
+  "activeArea": "company",
+  "activeCase": "RM-DE-LAB-CREATE-001-UI-FIRST-COMPANY-CREATION",
+  "active_case_file": ".agent/state/cases/rm-de-lab-create-001-ui-first-company-creation.json",
+  "lastReferenceCase": "RM-DE-LAB-CREATE-001-UI-FIRST-COMPANY-CREATION",
+  "lastReferenceCaseFile": ".agent/state/cases/rm-de-lab-create-001-ui-first-company-creation.json",
   "mode": "bc-specialist-labor-book-production",
   "requiresStrongModel": false,
   "requiredPreflightChecks": [
@@ -40,7 +40,7 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "Naechster praktischer Hebel: nur neuen BANK-013-Zielbeleg mit eigener Statement Line planen oder zu RM-DE-LAB/Foundation bzw. Fixed Assets Depreciation wechseln; alten 108204-Reconciliation-Pfad nicht weiter posten.",
+  "nextStep": "RM-DE-LAB-CREATE-002: diagnose the Companies row save error or choose another documented company-create route; do not repeat blind New.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/fixedassets-labor-draft.md",
     "area": "fixedassets",
@@ -709,6 +709,42 @@
     "resultFile": "playwright/projects/fibu-book5/evidence/rm-de-lab-001/RM-DE-LAB-001-result.json",
     "proposedCompany": "RM-DE-LAB",
     "nextStep": "RM-DE-LAB-CREATE-001: dedicated UI-first Companies/New-or-Copy route with registry guard; only then run RM-DE-LAB-002 foundation setup."
+  },
+  "latestRmDeLabCreate001": {
+    "caseId": "RM-DE-LAB-CREATE-001-UI-FIRST-COMPANY-CREATION",
+    "status": [
+      "labor-blocked",
+      "ui-first-company-create-attempt",
+      "target-value-visible-unsaved",
+      "needs-german-final-rebuild"
+    ],
+    "sourceInstance": "MCP_1_20260210",
+    "sourceCompany": "RM-DEMO",
+    "targetCompany": "RM-DE-LAB",
+    "pageId": 357,
+    "bcRun": true,
+    "playwrightRun": true,
+    "companyCreated": false,
+    "companySwitched": false,
+    "setupChanged": false,
+    "posted": false,
+    "previewPosting": false,
+    "apiShortcut": false,
+    "targetCompanyValueVisibleAfter": true,
+    "saveErrorAfter": true,
+    "blockedBy": [
+      "target-company-value-visible-but-not-saved"
+    ],
+    "resultPath": "playwright/projects/fibu-book5/evidence/rm-de-lab-create-001/RM-DE-LAB-CREATE-001-result.json",
+    "evidencePath": "playwright/projects/fibu-book5/evidence/rm-de-lab-create-001/",
+    "screenshots": [
+      "playwright/projects/fibu-book5/img/rm-de-lab-create-001-010-before-new.png",
+      "playwright/projects/fibu-book5/img/rm-de-lab-create-001-030-blocked-unsaved-row.png"
+    ],
+    "migrationRelevance": "needed-for-german-final",
+    "mustRecreateInFinalSandbox": true,
+    "finalScreenshotNeeded": true,
+    "nextStep": "RM-DE-LAB-CREATE-002: diagnose the Companies row save error without repeating blind New; capture exact error details or use a different documented UI create route."
   },
   "latestBank002": {
     "caseId": "BANK-002-CONTROLLED-RECONCILIATION-DRAFT-PREFLIGHT",
