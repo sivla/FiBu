@@ -51,6 +51,8 @@ if (!marathon?.active) {
 const { summaryPath, summary, packages } = collectPackages(current, lastRun);
 const executeSignals = marathon.executePackageSignals ?? [];
 const readOnlySignals = marathon.readOnlyPackageSignals ?? [];
+const lightExecuteSignals = marathon.lightExecuteSignals ?? [];
+const highImpactExecuteSignals = marathon.highImpactExecuteSignals ?? [];
 const hardStopConditions = marathon.hardStopConditions ?? [];
 const documentedHardStops = [
   ...(summary?.hardStopConditions ?? []),
@@ -61,7 +63,8 @@ const documentedHardStops = [
 
 const packageClassifications = packages.map((entry) => {
   const text = normalize([entry.id, entry.type, entry.result, entry.signal, ...(entry.signals ?? [])].join(' '));
-  const execute =
+  const structuredSignalText = normalize([entry.id, entry.type, entry.signal, ...(entry.signals ?? [])].join(' '));
+  const rawExecute =
     entry.execute === true ||
     entry.posted === true ||
     entry.previewPosting === true ||
@@ -71,24 +74,53 @@ const packageClassifications = packages.map((entry) => {
     entry.execute === false ||
     hasAnySignal(text, readOnlySignals) ||
     /read.?only|route-comparison|readiness|sync|summary/.test(text);
+  const execute = rawExecute && !(marathon.readOnlyDoesNotCountAsExecute && readOnly);
+  const highImpact =
+    execute &&
+    (entry.highImpactExecute === true ||
+      entry.posted === true ||
+      entry.previewPosting === true ||
+      entry.setupChanged === true ||
+      hasAnySignal(structuredSignalText, highImpactExecuteSignals));
+  const lightExecute =
+    execute &&
+    !highImpact &&
+    (entry.lightExecute === true || hasAnySignal(text, lightExecuteSignals));
   return {
     id: entry.id ?? 'unknown',
     type: entry.type ?? '',
     execute,
-    readOnly
+    readOnly,
+    lightExecute,
+    highImpact
   };
 });
 
 const progressPackages = packageClassifications.length;
-const executePackages = packageClassifications.filter((entry) => entry.execute && !(marathon.readOnlyDoesNotCountAsExecute && entry.readOnly)).length;
+const executePackageEntries = packageClassifications.filter((entry) => entry.execute);
+const executePackages = executePackageEntries.length;
 const readOnlyPackages = packageClassifications.filter((entry) => entry.readOnly).length;
+const lightExecutePackageEntries = executePackageEntries.filter((entry) => entry.lightExecute);
+const highImpactPackageEntries = executePackageEntries.filter((entry) => entry.highImpact);
+const lightExecutePackages = lightExecutePackageEntries.length;
+const highImpactExecutePackages = highImpactPackageEntries.length;
 const onlyReadOnlyOrSync = progressPackages > 0 && executePackages === 0;
 const minProgressPackagesReached = progressPackages >= marathon.minProgressPackages;
 const minExecutePackagesReached = executePackages >= marathon.minExecutePackages;
+const minHighImpactExecutePackagesReached = highImpactExecutePackages >= (marathon.minHighImpactExecutePackages ?? 0);
+const onlyLightExecute = executePackages > 0 && highImpactExecutePackages === 0 && lightExecutePackages === executePackages;
+const nextBestLevers = Array.isArray(summary?.nextBestLevers) ? summary.nextBestLevers : [];
+const nextExecuteLevers = nextBestLevers.length > 0 ? nextBestLevers : marathon.nextExecuteLevers ?? [];
+const nextExecuteLeversExist = nextExecuteLevers.length > 0;
 const hardStopDocumented = documentedHardStops.some((stop) => hardStopConditions.map(normalize).includes(stop));
 const finalReportAllowed =
   hardStopDocumented ||
-  (minProgressPackagesReached && minExecutePackagesReached && !onlyReadOnlyOrSync);
+  (minProgressPackagesReached &&
+    minExecutePackagesReached &&
+    minHighImpactExecutePackagesReached &&
+    !onlyReadOnlyOrSync &&
+    !(marathon.lightExecuteDoesNotCountAsHighImpact && onlyLightExecute) &&
+    !(marathon.continueWhenNextExecuteLeversExist && nextExecuteLeversExist && highImpactExecutePackages === 0));
 
 const output = {
   schemaVersion: 1,
@@ -100,18 +132,30 @@ const output = {
   progressPackages,
   executePackages,
   readOnlyPackages,
+  lightExecutePackages,
+  highImpactExecutePackages,
+  highImpactPackageIds: highImpactPackageEntries.map((entry) => entry.id),
   minProgressPackages: marathon.minProgressPackages,
   minExecutePackages: marathon.minExecutePackages,
+  minHighImpactExecutePackages: marathon.minHighImpactExecutePackages ?? 0,
   minProgressPackagesReached,
   minExecutePackagesReached,
+  minHighImpactExecutePackagesReached,
   onlyReadOnlyOrSync,
+  onlyLightExecute,
+  nextBestLevers,
+  nextExecuteLeversExist,
   hardStopDocumented,
   finalReportAllowed,
-  nextExecuteLever: marathon.nextExecuteLevers?.[0] ?? '',
+  nextExecuteLever: nextExecuteLevers?.[0] ?? '',
   packageClassifications,
   reason: finalReportAllowed
     ? 'Marathon final report is allowed.'
-    : 'Marathon final report is not allowed yet; continue with the next execute lever.'
+    : hardStopDocumented
+      ? 'Marathon final report is allowed because a hard stop was documented.'
+      : highImpactExecutePackages === 0
+        ? 'Marathon final report is not allowed yet; only light execute/read-only progress exists and a high-impact execute lever remains.'
+        : 'Marathon final report is not allowed yet; continue until the v2 progress, execute and high-impact thresholds are met.'
 };
 
 console.log(JSON.stringify(output, null, 2));

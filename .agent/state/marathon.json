@@ -3,12 +3,18 @@
   "active": true,
   "mode": "execute-marathon",
   "instance": "MCP_1_20260210",
-  "minProgressPackages": 8,
-  "minExecutePackages": 2,
+  "minProgressPackages": 12,
+  "minExecutePackages": 4,
+  "minHighImpactExecutePackages": 1,
   "readOnlyDoesNotCountAsExecute": true,
+  "lightExecuteDoesNotCountAsHighImpact": true,
+  "continueWhenNextExecuteLeversExist": true,
+  "targetRuntimeMinutes": 180,
   "allowFinalReportOnlyWhen": {
     "minProgressPackagesReached": true,
-    "minExecutePackagesReached": true
+    "minExecutePackagesReached": true,
+    "minHighImpactExecutePackagesReached": true,
+    "notOnlyLightExecute": true
   },
   "hardStopConditions": [
     "wrong-instance",
@@ -30,6 +36,26 @@
     "ledger-trace-from-new-action",
     "journal-line-created",
     "payment-apply-attempted"
+  ],
+  "highImpactExecuteSignals": [
+    "preview-posting",
+    "posting",
+    "ledger-trace-from-new-action",
+    "setup-change",
+    "company-create",
+    "company-switch-with-documentation",
+    "payment-apply-attempted",
+    "journal-check-error-fixed",
+    "correction-posting",
+    "reversal-or-credit-memo",
+    "controlled-posting-with-trace"
+  ],
+  "lightExecuteSignals": [
+    "field-value-entry",
+    "journal-line-created",
+    "cleanup-or-correction",
+    "draft-created",
+    "value-preflight"
   ],
   "readOnlyPackageSignals": [
     "page-open-only",
