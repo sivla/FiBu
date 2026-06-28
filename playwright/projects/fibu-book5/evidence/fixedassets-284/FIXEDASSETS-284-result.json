@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixed-assets-depreciation-batch-value-result-review",
+  "caseId": "FIXEDASSETS-284-FA-DEPRECIATION-BATCH-VALUE-RESULT-REVIEW",
+  "source": "local-review",
+  "resultStatus": "observed",
+  "branch": "codex/token-efficient-autopilot-state",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "reviewedCase": {
+    "caseId": "FIXEDASSETS-283-FA-DEPRECIATION-JOURNAL-BATCH-VALUE-READONLY",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-283/FIXEDASSETS-283-result.json",
+    "probeFile": "playwright/projects/fibu-book5/evidence/fixedassets-283/020-batch-value-probe.json"
+  },
+  "decision": {
+    "lookupButtonsAreValues": false,
+    "batchValueStillUnknown": true,
+    "repeatCalculateDepreciationOkAllowed": false,
+    "previewPostingAllowed": false,
+    "postingAllowed": false,
+    "nextCase": "FIXEDASSETS-285-FA-DEPRECIATION-BATCH-LOOKUP-LIST-NO-SELECT",
+    "nextCaseFile": ".agent/state/cases/fixedassets-285-fa-depreciation-batch-lookup-list-no-select.json",
+    "nextStep": "Run a tightly scoped no-select Batch Name lookup-list probe on Fixed Asset G/L Journals; do not select a batch, confirm OK, edit journal lines, Preview Posting or Post."
+  },
+  "proved": [
+    "FA-283 must not be treated as concrete Batch Name value evidence.",
+    "A visible Batch Name lookup/button candidate is only an affordance, not an active value.",
+    "The next useful proof is a no-select lookup-list probe rather than repeating Calculate Depreciation OK.",
+    "OK, Preview Posting and Post remain blocked until a concrete journal/batch/output target is proven."
+  ],
+  "notProved": [
+    "The actual selected Batch Name value is still unknown.",
+    "The available Batch Name lookup list has not yet been read.",
+    "No FADEP depreciation journal line is proven.",
+    "No Preview Posting result is proven.",
+    "No depreciation posting is proven.",
+    "No German final proof exists."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-284/",
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-284-fa-depreciation-batch-value-result-review.json",
+    ".agent/state/cases/fixedassets-285-fa-depreciation-batch-lookup-list-no-select.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/model_usage_log.jsonl",
+    "playwright/FINDINGS.md",
+    "playwright/projects/fibu-book5/BOOK-CLICK-GUIDE-COVERAGE.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-284/FIXEDASSETS-284-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-284/FIXEDASSETS-284-BATCH-VALUE-RESULT-REVIEW.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-284/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-283/FIXEDASSETS-283-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-283/020-batch-value-probe.json"
+  ],
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-285-FA-DEPRECIATION-BATCH-LOOKUP-LIST-NO-SELECT",
+      "active_case_file": ".agent/state/cases/fixedassets-285-fa-depreciation-batch-lookup-list-no-select.json",
+      "lastReferenceCase": "FIXEDASSETS-284-FA-DEPRECIATION-BATCH-VALUE-RESULT-REVIEW",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-284-fa-depreciation-batch-value-result-review.json",
+      "requiresStrongModel": false,
+      "nextStep": "FIXEDASSETS-285: run a no-select Batch Name lookup-list probe; do not select a batch value, edit journal lines, confirm OK, Preview Posting or Post."
+    },
+    "coverage": {
+      "activeArea": "fixedassets",
+      "latestReviewCase": "FIXEDASSETS-284-FA-DEPRECIATION-BATCH-VALUE-RESULT-REVIEW",
+      "nextCase": "FIXEDASSETS-285-FA-DEPRECIATION-BATCH-LOOKUP-LIST-NO-SELECT",
+      "depreciationReadiness": "FA-284 reviewed FA-283 and decided that lookup buttons are not value proof. Next safe proof is a no-select Batch Name lookup-list probe; OK/Preview/Post remain blocked."
+    }
+  },
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "reason": "Local review only. It narrows the next proof to a no-select lookup-list probe and keeps OK, Preview Posting and Post blocked.",
+  "observed": {
+    "finishedAt": "2026-06-28T10:52:25.501+02:00"
+  }
+}
+

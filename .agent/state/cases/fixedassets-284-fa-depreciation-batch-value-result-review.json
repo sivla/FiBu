@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "FIXEDASSETS-284-FA-DEPRECIATION-BATCH-VALUE-RESULT-REVIEW",
-  "status": "planned",
+  "status": "observed",
   "workType": "local-fixedasset-depreciation-batch-value-result-review",
   "taskClass": "judge_work",
   "requiresStrongModel": true,
@@ -67,7 +67,30 @@
     "A decision would require new BC evidence.",
     "A proposed next action would select a batch value, edit a journal line, confirm OK, Preview Posting or Post without a separate gate."
   ],
-  "nextSafeAction": "Review FA-283 locally and choose the next smallest evidence step; do not run BC, Playwright, OK, Preview Posting or Post in FA-284.",
+  "result": {
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-284/FIXEDASSETS-284-result.json",
+    "resultStatus": "observed",
+    "summary": "FA-284 reviewed FA-283 locally. Lookup buttons are not accepted as Batch Name value proof. The next smallest safe evidence step is a no-select Batch Name lookup-list probe.",
+    "evidenceRefs": [
+      "playwright/projects/fibu-book5/evidence/fixedassets-284/FIXEDASSETS-284-result.json",
+      "playwright/projects/fibu-book5/evidence/fixedassets-284/FIXEDASSETS-284-BATCH-VALUE-RESULT-REVIEW.md",
+      "playwright/projects/fibu-book5/evidence/fixedassets-284/README.md"
+    ],
+    "safety": {
+      "noBusinessCentralRun": true,
+      "noPlaywrightRun": true,
+      "noBatchValueSelected": true,
+      "noBatchValueChanged": true,
+      "noCalculateDepreciationOk": true,
+      "noPreviewPosting": true,
+      "noPost": true,
+      "noSetupChange": true,
+      "noCompanySwitch": true,
+      "noApiShortcut": true,
+      "noBookChange": true
+    }
+  },
+  "nextSafeAction": "Run FIXEDASSETS-285 as a no-select Batch Name lookup-list probe; do not select a batch, edit journal lines, confirm OK, Preview Posting or Post.",
   "createdAt": "2026-06-28T10:45:33.909+02:00",
-  "updatedAt": "2026-06-28T10:45:33.909+02:00"
+  "updatedAt": "2026-06-28T10:52:25.501+02:00"
 }

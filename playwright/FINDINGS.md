@@ -1,4 +1,17 @@
 
+## FIND-BC-FA-121 Naechster Batch-Nachweis ist Lookup-Liste ohne Auswahl
+
+| Feld | Wert |
+|---|---|
+| Bereich | Fixed Assets / AfA-Route / Batchwert-Review |
+| Testfall | `FIXEDASSETS-284-FA-DEPRECIATION-BATCH-VALUE-RESULT-REVIEW` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-284/FIXEDASSETS-284-result.json`, `playwright/projects/fibu-book5/evidence/fixedassets-284/FIXEDASSETS-284-BATCH-VALUE-RESULT-REVIEW.md`, `playwright/projects/fibu-book5/evidence/fixedassets-283/020-batch-value-probe.json` |
+| Entscheidung | Ein sichtbarer `Batch Name`-Lookup-Button ist kein Wertnachweis. Der naechste kleinste Live-Schritt ist ein no-select Lookup-Listen-Probe. |
+| Warum | Die Liste kann verfuegbare Batchoptionen zeigen, ohne dass ein Batch ausgewaehlt werden muss. Damit bleibt der Schritt naeher am Ziel als ein erneutes `Calculate Depreciation -> OK`, Preview Posting oder Post. |
+| weiterhin gesperrt | Batch auswaehlen/aendern, in Batch Name tippen, Enter auf Lookup, Repeat `OK`, Preview Posting, Post, Setup Change, Company Switch, API-Abkuerzung |
+| naechster Schritt | `FIXEDASSETS-285`: Batch-Name-Lookup-Liste oeffnen, sichtbare Optionen sichern, ohne Auswahl mit Escape schliessen. |
+| Buchwirkung | Die Klickanleitung soll zeigen, dass man Lookup-Listen zur Diagnose nutzen kann, aber erst ein sichtbarer Wert oder eine erzeugte Journalzeile fachlich zaehlt. |
+
 ## FIND-BC-FA-120 Batch-Lookup-Buttons sind noch kein Batchwert
 
 | Feld | Wert |

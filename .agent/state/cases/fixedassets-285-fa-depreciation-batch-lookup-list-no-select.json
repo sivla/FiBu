@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-285-FA-DEPRECIATION-BATCH-LOOKUP-LIST-NO-SELECT",
+  "status": "planned",
+  "workType": "playwright-readonly-fixedasset-depreciation-batch-lookup-list-no-select",
+  "taskClass": "wizard_work",
+  "requiresStrongModel": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Open the Batch Name lookup/list on Fixed Asset G/L Journals without selecting or changing a value, then capture visible list/options as evidence.",
+  "triggeredBy": {
+    "caseId": "FIXEDASSETS-284-FA-DEPRECIATION-BATCH-VALUE-RESULT-REVIEW",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-284/FIXEDASSETS-284-result.json",
+    "decision": "Lookup buttons are not value proof; next smallest useful evidence is a no-select lookup-list probe."
+  },
+  "targetObjects": {
+    "journalPageId": 5628,
+    "journalPageName": "Fixed Asset G/L Journals",
+    "field": "Batch Name",
+    "fixedAssetNo": "FA-CNC-01",
+    "depreciationBook": "HGB"
+  },
+  "allowedActions": [
+    "open-business-central",
+    "run-playwright",
+    "read-only-fixedasset-gl-journal",
+    "open-batch-name-lookup-list-no-select",
+    "read-only-list-text-capture",
+    "close-lookup-with-escape-if-open",
+    "write-compact-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "confirm-ok-on-calculate-depreciation",
+    "preview-posting",
+    "post",
+    "setup-change",
+    "company-switch",
+    "api-shortcut-without-explicit-case-permission",
+    "edit-record",
+    "new-draft",
+    "delete-record",
+    "select-batch-value",
+    "type-into-batch-name",
+    "press-enter-on-lookup",
+    "book-edit"
+  ],
+  "safetyGates": [
+    "instance-boundary-gate",
+    "company-context-gate",
+    "read-only-only",
+    "lookup-open-no-select",
+    "no-enter",
+    "no-ok",
+    "no-preview-posting",
+    "no-posting",
+    "no-setup-change",
+    "no-company-switch",
+    "no-api-shortcut",
+    "no-draft-or-edit"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-285/FIXEDASSETS-285-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-285/FIXEDASSETS-285-BATCH-LOOKUP-LIST-NO-SELECT.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-285/020-batch-lookup-list.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-285/README.md"
+  ],
+  "acceptanceCriteria": [
+    "Business Central remains in MCP_1_20260210 / RM-DEMO.",
+    "Batch Name lookup/list is opened only if it can be done without selecting a value.",
+    "Visible lookup/list options or blocked reason are captured.",
+    "No Batch Name value is selected or changed.",
+    "No journal line is created, edited or deleted.",
+    "No Calculate Depreciation OK, Preview Posting, Post, setup change, company switch or API shortcut occurs."
+  ],
+  "stopConditions": [
+    "Instance or company is not explicit.",
+    "A lookup click would select a value immediately.",
+    "A dialog with OK/Yes/Post/Preview/Delete/New/Edit appears.",
+    "A list item becomes selected or a field value changes.",
+    "The diagnosis would require typing into Batch Name or pressing Enter."
+  ],
+  "nextSafeAction": "Implement and run FA-285 as a no-select lookup-list probe; do not select a batch, confirm OK, Preview Posting or Post.",
+  "createdAt": "2026-06-28T10:52:25.501+02:00",
+  "updatedAt": "2026-06-28T10:52:25.501+02:00"
+}
