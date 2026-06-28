@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-28T22:52:00.000Z",
+  "updatedAt": "2026-06-28T23:24:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "bank",
-  "activeCase": "BANK-010-BANK009-BOOK-SYNC",
-  "active_case_file": ".agent/state/cases/bank-010-bank009-book-sync.json",
-  "lastReferenceCase": "BANK-010-BANK009-BOOK-SYNC",
-  "lastReferenceCaseFile": ".agent/state/cases/bank-010-bank009-book-sync.json",
+  "activeCase": "BANK-011-POST-PAYMENT-RECONCILIATION-STATE",
+  "active_case_file": ".agent/state/cases/bank-011-post-payment-reconciliation-state.json",
+  "lastReferenceCase": "BANK-011-POST-PAYMENT-RECONCILIATION-STATE",
+  "lastReferenceCaseFile": ".agent/state/cases/bank-011-post-payment-reconciliation-state.json",
   "mode": "bc-specialist-labor-book-production",
   "requiresStrongModel": false,
   "requiredPreflightChecks": [
@@ -40,7 +40,7 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "BANK-011: entscheiden, ob kontrollierte Bankabstimmung oder German-Final-Rebuild-Vorbereitung nach BANK-009 den groessten Buchnutzen bringt.",
+  "nextStep": "BANK-012: Entweder Bank Account Reconciliation mit neuem klaren Zielbeleg kontrolliert vorbereiten oder Bankabstimmung als German-Final-Rebuild-Aufgabe parken.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/fixedassets-labor-draft.md",
     "area": "fixedassets",
@@ -498,7 +498,7 @@
     "setupChangedInThisDeepRun": false,
     "companySwitchedInThisDeepRun": false,
     "nextBestLevers": [
-      "BANK-011-BANK-RECONCILIATION-OR-GERMAN-REBUILD-DECISION",
+      "BANK-012-BANK-RECONCILIATION-CLEAR-TARGET-OR-PARK",
       "RM-DE-LAB-CREATE-001-UI-FIRST-COMPANY-CREATION"
     ],
     "executePackages": [
@@ -527,7 +527,8 @@
       "BANK-003",
       "BANK-004",
       "BANK-009",
-      "BANK-010"
+      "BANK-010",
+      "BANK-011"
     ],
     "highImpactExecutePackages": [
       "P2P-015",
@@ -543,7 +544,7 @@
     "file": ".agent/state/marathon.json",
     "rule": "Final report requires agent:marathon:check pass or documented hard stop.",
     "readOnlyDoesNotCountAsExecute": true,
-    "nextExecuteLever": "BANK-011-BANK-RECONCILIATION-OR-GERMAN-REBUILD-DECISION"
+    "nextExecuteLever": "BANK-012-BANK-RECONCILIATION-CLEAR-TARGET-OR-PARK"
   },
   "latestP2P014": {
     "caseId": "P2P-014-PURCHASE-JOURNAL-VALUE-ENTRY-GATE",
@@ -1010,5 +1011,37 @@
     "mustRecreateInFinalSandbox": true,
     "finalScreenshotNeeded": true,
     "nextStep": "BANK-011: controlled bank reconciliation follow-up or German final rebuild prerequisite decision."
+  },
+  "latestBank011": {
+    "caseId": "BANK-011-POST-PAYMENT-RECONCILIATION-STATE",
+    "status": [
+      "labor-proven",
+      "read-only",
+      "post-payment-reconciliation-state",
+      "needs-german-final-rebuild"
+    ],
+    "sourceInstance": "MCP_1_20260210",
+    "sourceCompany": "RM-DEMO",
+    "priorPaymentDocumentNo": "BANK009-108204",
+    "paidInvoiceNo": "108204",
+    "bcRun": true,
+    "playwrightRun": true,
+    "posted": false,
+    "paymentPosted": false,
+    "bankReconciliationPosted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "apiShortcut": false,
+    "oldInvoiceStillVisibleInPaymentReconciliation": true,
+    "postPaymentsOnlyVisibleButNotClicked": true,
+    "invoiceRemainingZeroSignalVisible": true,
+    "bankLedgerPaymentVisible": true,
+    "glPaymentVisible": true,
+    "resultPath": "playwright/projects/fibu-book5/evidence/bank-011/BANK-011-result.json",
+    "evidencePath": "playwright/projects/fibu-book5/evidence/bank-011/",
+    "migrationRelevance": "needed-for-german-final",
+    "mustRecreateInFinalSandbox": true,
+    "finalScreenshotNeeded": true,
+    "nextStep": "BANK-012: Entweder Bank Account Reconciliation mit neuem klaren Zielbeleg kontrolliert vorbereiten oder Bankabstimmung als German-Final-Rebuild-Aufgabe parken."
   }
 }

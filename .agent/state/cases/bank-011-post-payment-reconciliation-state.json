@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "caseId": "BANK-011-POST-PAYMENT-RECONCILIATION-STATE",
+  "title": "Read Payment Reconciliation state after BANK-009 vendor payment",
+  "area": "bank",
+  "workType": "playwright-readonly-post-payment-reconciliation-check",
+  "status": "done",
+  "sourceInstance": "MCP_1_20260210",
+  "sourceCompany": "RM-DEMO",
+  "purpose": "Nach der gebuchten Einzelzahlung BANK009-108204 den Payment-Reconciliation-Kontext nur lesend gegen Vendor Ledger, Bank Ledger und G/L Entries pruefen, damit keine alte Reconciliation-Zeile blind gebucht wird.",
+  "allowedActions": [
+    "open-business-central-if-instance-and-company-match",
+    "run-playwright-readonly",
+    "read-payment-reconciliation-context",
+    "read-ledger-pages",
+    "write-evidence",
+    "update-state"
+  ],
+  "defaultLockedActionsStillLocked": [
+    "preview-posting",
+    "post",
+    "payment",
+    "setup-change",
+    "company-switch",
+    "keep-draft",
+    "api-shortcut"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "post-payments-only",
+    "accept-applications",
+    "new-draft",
+    "edit-record",
+    "delete-record"
+  ],
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/bank-009/BANK-009-result.json",
+    "playwright/projects/fibu-book5/evidence/bank-010/BANK-010-result.json"
+  ],
+  "resultPath": "playwright/projects/fibu-book5/evidence/bank-011/BANK-011-result.json",
+  "evidencePath": "playwright/projects/fibu-book5/evidence/bank-011/",
+  "expectedOutcome": "Read-only Befund, ob Payment Reconciliation nach BANK-009 noch alte 108204-Signale zeigt und warum daraus keine weitere Buchung folgen darf.",
+  "acceptanceCriteria": [
+    "MCP_1_20260210 und RM-DEMO sind bestaetigt.",
+    "Payment Reconciliation Journal wird nur gelesen.",
+    "Vendor Ledger, Bank Account Ledger und G/L Entries zur Zahlung BANK009-108204 werden nur gelesen.",
+    "Keine Apply-, Accept-, Post-, Preview-, Setup- oder Draft-Aktion wird ausgefuehrt.",
+    "Result JSON und kompakte Text-Evidence entstehen."
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "nextStep": "BANK-012: Entweder Bank Account Reconciliation mit neuem klaren Zielbeleg kontrolliert vorbereiten oder Bankabstimmung als German-Final-Rebuild-Aufgabe parken.",
+  "completedAt": "2026-06-28T23:24:00.000Z",
+  "resultSummary": "Payment Reconciliation Journal still shows old invoice 108204 after BANK009-108204, but Vendor Ledger invoice/payment, Bank Ledger and G/L traces were read-only checked; no Apply/Post/Preview action was clicked."
+}

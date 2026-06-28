@@ -1,0 +1,215 @@
+{
+  "schemaVersion": 1,
+  "purpose": "bank-post-payment-reconciliation-state",
+  "caseId": "BANK-011-POST-PAYMENT-RECONCILIATION-STATE",
+  "testId": "BANK-011",
+  "source": "playwright-ui-readonly",
+  "resultStatus": "observed",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "sourceCompany": "RM-DEMO",
+  "dataBasis": "CRONUS USA / RM-DEMO labor",
+  "priorPayment": {
+    "paymentDocumentNo": "BANK009-108204",
+    "paidInvoiceNo": "108204",
+    "vendorName": "First Up Consultants"
+  },
+  "observations": [
+    {
+      "id": "payment-reconciliation-after-bank009",
+      "pageId": 1290,
+      "tableName": null,
+      "filterField": null,
+      "filterValue": null,
+      "url": "https://businesscentral.dynamics.com/<tenant>/MCP_1_20260210?company=RM-DEMO&page=1290&dc=0&bookmark=3A_EgEAAACLAQAAAAJ7_0MASABFAEMASwBJAE4ARwAAAAJ7_1AAUgBFAEMAMAAwADAAAAAAhxAn",
+      "title": "Payment Reconciliation Journal",
+      "textEvidenceFile": "010-payment-reconciliation-after-bank009-page-text.txt",
+      "relevantButtonsVisibleNotClicked": [
+        "Accept Applications",
+        "Accepted",
+        "Amount Incl. Tolerance Matched:",
+        "Balance After Posting",
+        "Document No./Ext. Document No. Matched",
+        "Lines For Review",
+        "Match Confidence",
+        "Match Details",
+        "No. of Open Ledger Entries for",
+        "Post Payments Only...",
+        "Related Party Matched",
+        "Total Credit Amount"
+      ],
+      "analysis": {
+        "paymentReconciliationVisible": true,
+        "paidInvoiceVisible": true,
+        "paymentDocumentVisible": false,
+        "vendorVisible": true,
+        "remainingAmountZeroVisible": false,
+        "applicationVisible": true,
+        "bankLedgerVisible": false,
+        "glEntriesVisible": false,
+        "postPaymentsOnlyVisible": true
+      }
+    },
+    {
+      "id": "vendor-ledger-invoice-108204-after-bank009",
+      "pageId": 29,
+      "tableName": "Vendor Ledger Entry",
+      "filterField": "Document No.",
+      "filterValue": "108204",
+      "url": "https://businesscentral.dynamics.com/<tenant>/MCP_1_20260210?company=RM-DEMO&page=29&filter=%27Vendor%20Ledger%20Entry%27.%27Document%20No.%27%20IS%20%27108204%27&dc=0&bookmark=C_GQAAAACHewc",
+      "title": "Vendor Ledger Entries",
+      "textEvidenceFile": "020-vendor-ledger-invoice-108204-after-bank009-page-text.txt",
+      "relevantButtonsVisibleNotClicked": [
+        "Creditor No.",
+        "Entry No.",
+        "Open",
+        "Posting Date"
+      ],
+      "analysis": {
+        "paymentReconciliationVisible": false,
+        "paidInvoiceVisible": true,
+        "paymentDocumentVisible": false,
+        "vendorVisible": true,
+        "remainingAmountZeroVisible": true,
+        "applicationVisible": false,
+        "bankLedgerVisible": false,
+        "glEntriesVisible": true,
+        "postPaymentsOnlyVisible": false
+      }
+    },
+    {
+      "id": "vendor-ledger-payment-bank009",
+      "pageId": 29,
+      "tableName": "Vendor Ledger Entry",
+      "filterField": "Document No.",
+      "filterValue": "BANK009-108204",
+      "url": "https://businesscentral.dynamics.com/<tenant>/MCP_1_20260210?company=RM-DEMO&page=29&filter=%27Vendor%20Ledger%20Entry%27.%27Document%20No.%27%20IS%20%27BANK009-108204%27&dc=0&bookmark=C_GQAAAACHjBM",
+      "title": "Vendor Ledger Entries",
+      "textEvidenceFile": "030-vendor-ledger-payment-bank009-page-text.txt",
+      "relevantButtonsVisibleNotClicked": [
+        "Creditor No.",
+        "Entry No.",
+        "Open",
+        "Posting Date"
+      ],
+      "analysis": {
+        "paymentReconciliationVisible": false,
+        "paidInvoiceVisible": true,
+        "paymentDocumentVisible": true,
+        "vendorVisible": true,
+        "remainingAmountZeroVisible": true,
+        "applicationVisible": false,
+        "bankLedgerVisible": false,
+        "glEntriesVisible": true,
+        "postPaymentsOnlyVisible": false
+      }
+    },
+    {
+      "id": "bank-ledger-payment-bank009",
+      "pageId": 372,
+      "tableName": "Bank Account Ledger Entry",
+      "filterField": "Document No.",
+      "filterValue": "BANK009-108204",
+      "url": "https://businesscentral.dynamics.com/<tenant>/MCP_1_20260210?company=RM-DEMO&page=372&filter=%27Bank%20Account%20Ledger%20Entry%27.%27Document%20No.%27%20IS%20%27BANK009-108204%27&dc=0&bookmark=C_DwEAAACHixM",
+      "title": "Bankposten",
+      "textEvidenceFile": "040-bank-ledger-payment-bank009-page-text.txt",
+      "relevantButtonsVisibleNotClicked": [
+        "Bankposten:",
+        "Entry No.",
+        "Open",
+        "Posting Date"
+      ],
+      "analysis": {
+        "paymentReconciliationVisible": false,
+        "paidInvoiceVisible": true,
+        "paymentDocumentVisible": true,
+        "vendorVisible": false,
+        "remainingAmountZeroVisible": false,
+        "applicationVisible": false,
+        "bankLedgerVisible": true,
+        "glEntriesVisible": true,
+        "postPaymentsOnlyVisible": false
+      }
+    },
+    {
+      "id": "gl-entries-payment-bank009",
+      "pageId": 20,
+      "tableName": "G/L Entry",
+      "filterField": "Document No.",
+      "filterValue": "BANK009-108204",
+      "url": "https://businesscentral.dynamics.com/<tenant>/MCP_1_20260210?company=RM-DEMO&page=20&filter=%27G%2fL%20Entry%27.%27Document%20No.%27%20IS%20%27BANK009-108204%27&dc=0&bookmark=C_EQAAAACHjBM",
+      "title": "General Ledger Entries",
+      "textEvidenceFile": "050-gl-entries-payment-bank009-page-text.txt",
+      "relevantButtonsVisibleNotClicked": [
+        "Entry No.",
+        "Gen. Bus. Posting Group",
+        "Gen. Posting Type",
+        "Gen. Prod. Posting Group",
+        "Posting Date"
+      ],
+      "analysis": {
+        "paymentReconciliationVisible": false,
+        "paidInvoiceVisible": true,
+        "paymentDocumentVisible": true,
+        "vendorVisible": false,
+        "remainingAmountZeroVisible": false,
+        "applicationVisible": false,
+        "bankLedgerVisible": false,
+        "glEntriesVisible": true,
+        "postPaymentsOnlyVisible": false
+      }
+    }
+  ],
+  "reconciliationState": {
+    "oldInvoiceStillVisibleInPaymentReconciliation": true,
+    "postPaymentsOnlyVisibleButNotClicked": true,
+    "invoiceRemainingZeroSignalVisible": true,
+    "paymentRemainingZeroSignalVisible": true,
+    "bankLedgerPaymentVisible": true,
+    "glPaymentVisible": true
+  },
+  "decision": "BANK-011 bleibt read-only: Nach BANK-009 wird keine Payment-Reconciliation-Buchung aus der alten Reconciliation-Sicht angestossen. Der aktuelle Zustand wird nur gegen Vendor Ledger, Bank Ledger und G/L Entries gegengeprueft.",
+  "proved": [
+    "Payment Reconciliation Journal wurde nach BANK-009 read-only geoeffnet.",
+    "Vendor Ledger Entry zur Rechnung 108204 wurde read-only geprueft.",
+    "Vendor Ledger, Bank Account Ledger und G/L Entries zur Zahlung BANK009-108204 wurden read-only geprueft.",
+    "Keine Reconciliation-, Apply- oder Post-Aktion wurde geklickt."
+  ],
+  "notProved": [
+    "Keine Bankabstimmung wurde gebucht.",
+    "Kein Post Payments Only wurde bestaetigt.",
+    "Kein Preview Posting wurde geoeffnet.",
+    "Kein deutscher Bank-/Compliance-Finalnachweis."
+  ],
+  "flags": {
+    "readOnly": true,
+    "noPost": true,
+    "noPreviewPosting": true,
+    "noPaymentPosting": true,
+    "noBankReconciliationPosting": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noNew": true,
+    "noEdit": true,
+    "noDelete": true,
+    "noDraftCreated": true,
+    "noApiShortcut": true,
+    "noBookChangeInsideTest": true
+  },
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "rebuildInstruction": "In der deutschen Zielcompany nach jeder Zahlungsbuchung Payment Reconciliation erneut lesen und gegen geschlossene offene Posten, Bankposten und Sachposten pruefen, bevor Bankabstimmung oder Post Payments Only gezeigt wird.",
+  "targetGermanCompanyImpact": "Deutsche Bankabstimmung braucht eigene Zielzeile, deutsches Bankkonto, deutsche Posten und separate Posting-/Reconciliation-Evidence.",
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/bank-011/BANK-011-result.json",
+    "playwright/projects/fibu-book5/evidence/bank-011/BANK-011-POST-PAYMENT-RECONCILIATION-STATE.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/bank-011/"
+  ],
+  "blockedBy": [],
+  "safeToFinalizeState": false,
+  "requiresReview": false,
+  "nextStep": "BANK-012: Entweder Bank Account Reconciliation mit neuem klaren Zielbeleg kontrolliert vorbereiten oder Bankabstimmung als German-Final-Rebuild-Aufgabe parken."
+}
