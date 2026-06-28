@@ -4,11 +4,14 @@ Status: `labor-reference`.
 
 Ziel: Business Central nicht in Mikro-Gates verlieren, sondern Prozessstrecken bis Posting, Postenspur, Buchdraft und German-Final-Rebuild planen.
 
+Usecase-Basis: `BC-COMPANY-USECASE.md` beschreibt die Laborcompany `RM-DEMO` und die spaetere Rhein-Main-Unternehmensgruppe. Bis eine deutsche Zielinstanz existiert, bleiben alle praktischen Nachweise aus `RM-DEMO` Laborreferenz.
+
 ## Naechste groesste Hebel
 
 | Prioritaet | Prozess | Zielstrecke | Warum | Naechster Case |
 |---:|---|---|---|---|
 | 1 | P2P Teil-WE | PO Draft/Line -> Qty. to Receive -> Preview -> Receive -> Receipt/Item/Value Trace | baut auf P2P-004 auf und lehrt 3-Way-Match | `P2P-005`, danach Preview/Post-Case |
+| 1a | P2P Teil-WE Grid-Control | Draft `106051` -> Lines/Grid-Controlroute -> erst dann Zielwerte | blockiert aktuell den Teil-WE; verhindert blindes falsches Befuellen | `P2P-006` Lines/Grid-Control-Diagnose |
 | 2 | Bankabstimmung | Zahlung -> Bank Ledger -> Reconciliation | schliesst Payment-Lernstrecke | neuer Bank-Reconciliation-Case |
 | 3 | Fixed Assets AfA | Calculate Depreciation -> Journal Line -> Preview -> Post -> FA/G/L Trace | Kapitel 21 bleibt blockiert | bounded AfA-Follow-up |
 | 4 | Reporting/Dimensions | Dimensionen in Analysis/Financial Reports nutzbar machen | Buch Kapitel 25 braucht Auswertung | Analysis View/Report Fit |

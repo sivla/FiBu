@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "caseId": "P2P-005-PARTIAL-RECEIPT-LINE-QTY-GATE",
+  "source": "playwright-ui-labor",
+  "resultStatus": "blocked",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "sourceCompany": "RM-DEMO",
+  "preferredStartingPoint": "106002",
+  "actualPurchaseOrderNo": "106051",
+  "targetValues": {
+    "vendor": "K10000",
+    "item": "RAW-STEEL",
+    "location": "FRA-ZL",
+    "quantity": "4",
+    "directUnitCost": "2500",
+    "qtyToReceive": "2"
+  },
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "flags": {
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true,
+    "draftCreatedAndKeptForTrace": true
+  },
+  "proved": [
+    "Direct Business Central instance navigation uses the configured MCP_1_20260210 URL instead of the generic host.",
+    "Purchase Order 106002 opened in MCP_1_20260210/RM-DEMO but was rejected as a P2P-005 base because it already contains a non-target line 1964-S.",
+    "Fallback draft 106051 was created in MCP_1_20260210/RM-DEMO and shows Vendor No. K10000 / Stahlwerk Ruhr GmbH.",
+    "The run stopped before Preview Posting or posting."
+  ],
+  "notProved": [
+    "RAW-STEEL line entry was not safely completed.",
+    "Quantity 4 was not safely completed.",
+    "Direct Unit Cost 2500 was not safely completed.",
+    "Qty. to Receive 2 was not safely completed.",
+    "No Preview Posting evidence exists for P2P-005.",
+    "No posting or ledger trace exists for P2P-005."
+  ],
+  "blockedBy": [
+    "bc-line-grid-controls-not-visible-to-current-control-snapshot",
+    "line-field-controls-not-confident:itemNo,location,quantity,directUnitCost,qtyToReceive"
+  ],
+  "changedRecords": [
+    {
+      "type": "Purchase Order draft",
+      "documentNo": "106051",
+      "company": "RM-DEMO",
+      "status": "kept-as-labor-blocker-draft",
+      "reason": "Needed to preserve the exact P2P-005 UI/grid control blocker for the next controlled diagnosis."
+    }
+  ],
+  "evidenceRefs": [
+    "010-draft-open-page-text.txt",
+    "010-draft-open-controls.json",
+    "011-draft-open-headers.json",
+    "015-fresh-draft-after-vendor-page-text.txt",
+    "015-fresh-draft-after-vendor-controls.json",
+    "020-line-field-plan.json",
+    "P2P-005-PARTIAL-RECEIPT-LINE-QTY-GATE.md",
+    "playwright/projects/fibu-book5/img/p2p-005-010-draft-open.png",
+    "playwright/projects/fibu-book5/img/p2p-005-015-fresh-draft-after-vendor.png"
+  ],
+  "requiresReview": true,
+  "safeToFinalizeState": false,
+  "reuseDecision": {
+    "reused": false,
+    "preferredDraft": "106002",
+    "actualDraft": "106051",
+    "reason": "106002 was a real Purchase Order but not a safe blank P2P-005 line-entry base; fallback draft 106051 became the controlled blocker draft."
+  },
+  "nextSafeAction": "Run P2P-006 as a focused purchase-order-lines/grid-control diagnosis on draft 106051 before any Preview Posting or posting.",
+  "statePatch": {}
+}

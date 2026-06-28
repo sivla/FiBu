@@ -6,6 +6,7 @@ Status: `labor-reference`.
 |---|---|---|---|---|---|
 | `New` auf Purchase Orders | P2P | `labor-proven` | oeffnet Draft `106002` | `evidence/p2p-004/` | nur nach Listen-/Page-Kontext, nicht ungescoped global |
 | `Preview Posting` | P2P | `labor-proven` fuer UAT-P2P-001 | Vorschauarten vor Rechnung `108219` | `evidence/p2p-001/095-preview-posting-result.json` | default-locked, P2P-005 noch ohne Preview |
+| `New` auf Purchase Orders | P2P | `labor-proven` fuer P2P-005 Fallback | erzeugt kontrollierten Draft, wenn vorhandener Draft nicht als Basis taugt | `evidence/p2p-005/P2P-005-result.json` | nur case-gesteuert; Draft `106051` bleibt Labor-Blocker-Draft |
 | `Receive and Invoice` | P2P | `labor-proven` | genau eine Laborbuchung `108219` | `evidence/p2p-001/100-purchase-posting-result.json` | nicht wiederholen ohne neuen Case |
 | `Post` im Payment Journal | P2P Payment | `labor-proven` | Zahlung `PAYP2P-108219` | `evidence/p2p-002/` | default-locked |
 | `Apply Entries` | P2P Payment | `labor-proven` | Bezug Zahlung/Rechnung | `evidence/p2p-002/`, `p2p-003/` | read-only pruefen vor Post |

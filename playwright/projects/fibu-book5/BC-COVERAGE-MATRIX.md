@@ -2,6 +2,8 @@
 
 Status: `labor-reference`, Stand: 2026-06-28.
 
+Company-Usecase: `BC-COMPANY-USECASE.md` definiert `RM-DEMO` als Labor-/Vorproduktionscompany in `MCP_1_20260210` und beschreibt die spaetere Rhein-Main-Zielgruppe fuer German-Final-Rebuilds.
+
 Coverage-Level:
 
 | Level | Bedeutung |
@@ -25,6 +27,7 @@ Coverage-Level:
 | P2P | Purchase Order -> Posted Purchase Invoice | `labor-proven` | `L8`, `L9` | Purchase Orders, Preview Posting, Posted Purchase Invoice, Vendor Ledger Entries, G/L Entries, Item Ledger Entries, Value Entries | `evidence/p2p-001/` | P2P-001 Bilder | Kapitel 12 | USD/0% Tax, kein deutscher Kontenplan | ja | deutsche Finalstrecke spaeter neu erzeugen |
 | P2P | Vendor Payment / OP-Ausgleich | `labor-proven` | `L8`, `L9` | Payment Journal, Apply Entries, Vendor Ledger Entries, Detailed Vendor Ledger Entries, Bank Account Ledger Entries, G/L Entries | `evidence/p2p-002/`, `evidence/p2p-003/` | P2P-002/P2P-003 Bilder | Kapitel 12, 19, 20 | keine Bankabstimmung, Payment Discount nur CRONUS-Labor | ja | Bankabstimmung separat |
 | P2P | Teil-Wareneingang | `labor-gate-proven` | `L3`, `L8`, `L9` | Purchase Orders | `evidence/p2p-004/` | `img/p2p-004-*` | Kapitel 12 | noch keine Zeile, keine Teilmenge, kein Preview/Post | ja | `P2P-005` Line/Qty-Gate, danach Preview/Teil-WE |
+| P2P | Teil-Wareneingang Zeilen-Gate | `labor-blocked` | `L3`, `L8`, `L9` | Purchase Order `106051` | `evidence/p2p-005/` | `img/p2p-005-*` | Kapitel 12 | Lines-Grid-Controlroute nicht sicher; `RAW-STEEL`, Menge `4`, Preis `2500`, `Qty. to Receive 2` nicht nachgewiesen | ja | `P2P-006` Lines/Grid-Control-Diagnose auf Draft `106051` |
 | O2C | Sales Order -> Posted Sales Invoice | `labor-proven` | `L6`, `L8`, `L9` | Sales Orders, Preview Posting, Posted Sales Invoice, Customer Ledger Entries, G/L Entries, Item Ledger Entries, Value Entries | `evidence/uat-o2c-001/` | O2C Bilder | Kapitel 11 | deutsche 19% USt offen | ja | deutsche Finalstrecke spaeter |
 | Payments/Bank | Customer Payment / Bank trace | `labor-proven` | `L6`, `L8`, `L9` | Cash Receipt Journal, Apply Entries, Bank Account Ledger Entries | `evidence/payments-011/`, `payments-013/` | Payments Bilder | Kapitel 19, 20 | keine Kontoauszugs-/Bankabstimmung | ja | Bank Reconciliation Case |
 | Fixed Assets | FA acquisition via FA G/L Journal | `labor-proven` | `L6`, `L8`, `L9` | Fixed Asset Card, FA G/L Journal, G/L Entries, FA Ledger Entries Page 5604 | `evidence/fixedassets-225/`, `227`, `229`, `231` | Fixed Assets Bilder | Kapitel 21 | Einkaufsrechnung Art=Anlage offen, Page 5606 rejected | ja | AfA/Journallinie oder deutscher Rebuild |

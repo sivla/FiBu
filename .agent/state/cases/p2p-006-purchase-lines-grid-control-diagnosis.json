@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "caseId": "P2P-006-PURCHASE-LINES-GRID-CONTROL-DIAGNOSIS",
+  "area": "p2p",
+  "status": "planned",
+  "taskClass": "wizard_work",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "sourceCompany": "RM-DEMO",
+  "mode": "controlled-labor-ui-grid-diagnosis",
+  "purpose": "Diagnose the Purchase Order Lines grid/control route on P2P-005 blocker draft 106051 before any further line value entry, Preview Posting or posting.",
+  "predecessorCase": "P2P-005-PARTIAL-RECEIPT-LINE-QTY-GATE",
+  "targetDraft": {
+    "purchaseOrderNo": "106051",
+    "vendorNo": "K10000",
+    "vendorName": "Stahlwerk Ruhr GmbH",
+    "status": "kept-as-labor-blocker-draft"
+  },
+  "targetValues": {
+    "itemNo": "RAW-STEEL",
+    "locationCode": "FRA-ZL",
+    "plannedQuantity": 4,
+    "plannedPartialReceiptQuantity": 2,
+    "plannedUnitCost": 2500
+  },
+  "allowedWhenGateUnlocks": [
+    "open-existing-purchase-draft-read-write",
+    "read-visible-lines-grid",
+    "capture-grid-control-map",
+    "capture-page-text",
+    "capture-screenshot",
+    "write-evidence",
+    "update-playwright-helper-or-pattern-if-needed"
+  ],
+  "defaultLockedActions": [
+    "preview-posting",
+    "post",
+    "receive",
+    "invoice",
+    "receive-and-invoice",
+    "setup-change",
+    "company-switch",
+    "api-shortcut",
+    "new-draft"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "final-german-claim-from-rm-demo"
+  ],
+  "minimumEvidence": [
+    "direct MCP_1_20260210/RM-DEMO URL",
+    "visible Purchase Order 106051",
+    "visible Vendor No. K10000",
+    "visible Lines grid state",
+    "control snapshot with BC controlname or equivalent field identity",
+    "explicit no-preview and no-post flags"
+  ],
+  "stopConditions": [
+    "wrong instance or company",
+    "draft 106051 not visible",
+    "unexpected dangerous dialog",
+    "Preview Posting or Post dialog appears",
+    "control route remains ambiguous after one focused diagnosis"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "bookImpactTarget": "Chapter 12 partial receipt clickguide: line grid/control prerequisite before Preview Posting.",
+  "nextSafeAction": "Open draft 106051 and produce a focused Purchase Order Lines grid/control map. Do not enter values until controls are identified.",
+  "updatedAt": "2026-06-28T18:25:00.000+02:00"
+}
