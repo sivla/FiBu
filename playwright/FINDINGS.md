@@ -1,4 +1,16 @@
 
+## FIND-BC-FA-115 AfA-Review sperrt Wiederholung und verlangt Caption-Control-Wertprobe
+
+| Feld | Wert |
+|---|---|
+| Bereich | Fixed Assets / AfA-Route / Review |
+| Testfall | `FIXEDASSETS-278-FA-DEPRECIATION-BOOK-VALUE-DIAGNOSIS-REVIEW` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-278/FIXEDASSETS-278-result.json`, `playwright/projects/fibu-book5/evidence/fixedassets-278/FIXEDASSETS-278-DEPRECIATION-BOOK-VALUE-DIAGNOSIS-REVIEW.md` |
+| Entscheidung | Kein Repeat-OK, kein Preview Posting, kein Post, kein Setup Change. |
+| Warum | `FIXEDASSETS-277` beweist Page-/Tabellenkontext, `Book Value = 120.000,00` und Zugang `G05001`, aber nicht die konkreten AfA-Werte fuer Startdatum, Jahre, Enddatum oder letztes AfA-Datum. |
+| naechster Schritt | `FIXEDASSETS-279`: read-only Anlagenkarten-Wertprobe mit dem vorhandenen Caption-Control-Muster aus `FIXEDASSETS-029/031`. |
+| Buchwirkung | Die Anleitung muss zwischen Feldbeschriftung, sichtbarem Wert und technisch verwendbarem Wert unterscheiden. Vor AfA-Ausfuehrung braucht es einen Wertnachweis oder eine bewusst dokumentierte Laborgrenze. |
+
 ## FIND-BC-FA-114 Page Inspection zeigt Labels, aber keine feldsicheren AfA-Werte
 
 | Feld | Wert |

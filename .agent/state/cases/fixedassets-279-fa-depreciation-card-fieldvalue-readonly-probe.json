@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-279-FA-DEPRECIATION-CARD-FIELDVALUE-READONLY-PROBE",
+  "status": "planned",
+  "workType": "playwright-readonly-fixedasset-card-fieldvalue-probe",
+  "taskClass": "wizard_work",
+  "requiresStrongModel": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Use the established FA-029/031 caption-control mapper read-only on FA-CNC-01 to distinguish empty depreciation values from hidden/unread values before any repeat Calculate Depreciation OK, Preview Posting or Post.",
+  "triggeredBy": {
+    "caseId": "FIXEDASSETS-278-FA-DEPRECIATION-BOOK-VALUE-DIAGNOSIS-REVIEW",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-278/FIXEDASSETS-278-result.json",
+    "decision": "Need a stronger read-only card field-value probe before any execution or setup decision."
+  },
+  "targetObjects": {
+    "fixedAssetNo": "FA-CNC-01",
+    "depreciationBook": "HGB",
+    "targetCaptions": [
+      "Depreciation Starting Date",
+      "No. of Depreciation Years",
+      "Depreciation Ending Date",
+      "Book Value",
+      "Acquisition Cost"
+    ]
+  },
+  "allowedActions": [
+    "open-business-central",
+    "run-playwright",
+    "read-only-fixedasset-card",
+    "read-only-visible-field-value-diagnosis",
+    "write-compact-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "confirm-ok-on-calculate-depreciation",
+    "preview-posting",
+    "post",
+    "setup-change",
+    "company-switch",
+    "api-shortcut-without-explicit-case-permission",
+    "edit-record",
+    "new-draft",
+    "delete-record"
+  ],
+  "safetyGates": [
+    "instance-boundary-gate",
+    "company-context-gate",
+    "read-only-only",
+    "no-repeat-ok",
+    "no-preview-posting",
+    "no-posting",
+    "no-setup-change",
+    "no-company-switch",
+    "no-api-shortcut",
+    "no-draft-or-edit"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-279/FIXEDASSETS-279-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-279/FIXEDASSETS-279-FA-DEPRECIATION-CARD-FIELDVALUE-READONLY-PROBE.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-279/README.md"
+  ],
+  "acceptanceCriteria": [
+    "Business Central remains in MCP_1_20260210 / RM-DEMO.",
+    "No Calculate Depreciation OK is confirmed.",
+    "No Preview Posting, Post, setup change, company switch, API shortcut, draft or edit occurs.",
+    "The run captures caption-control selectedValue and diagnosis for the depreciation fields.",
+    "The result distinguishes empty values from unread/hidden values where possible."
+  ],
+  "stopConditions": [
+    "Instance or company is not explicit.",
+    "A page requires edit mode to answer the question.",
+    "A dialog appears that could confirm, post, preview, delete or change setup.",
+    "The diagnosis would require writing field values."
+  ],
+  "nextSafeAction": "Run read-only FA-CNC-01 card field-value probe; do not click OK, Preview Posting, Post, Edit or setup actions.",
+  "createdAt": "2026-06-28T11:12:00.000+02:00",
+  "updatedAt": "2026-06-28T11:12:00.000+02:00"
+}

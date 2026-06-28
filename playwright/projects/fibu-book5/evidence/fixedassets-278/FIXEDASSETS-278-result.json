@@ -1,0 +1,107 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixedassets-278-depreciation-book-value-diagnosis-review-result",
+  "caseId": "FIXEDASSETS-278-FA-DEPRECIATION-BOOK-VALUE-DIAGNOSIS-REVIEW",
+  "source": "local-evidence-review",
+  "resultStatus": "observed",
+  "branch": "codex/token-efficient-autopilot-state",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "reviewedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-277/FIXEDASSETS-277-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-277/010-fa-cnc-01-card-value-readonly.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-277/020-pageinspection-signals.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-277/030-fa-ledger-recheck-readonly.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-277/040-fa-gl-journal-recheck-readonly.json"
+  ],
+  "decision": {
+    "repeatCalculateDepreciationOkAllowed": false,
+    "previewPostingAllowed": false,
+    "postingAllowed": false,
+    "setupChangeAllowed": false,
+    "nextCase": "FIXEDASSETS-279-FA-DEPRECIATION-CARD-FIELDVALUE-READONLY-PROBE",
+    "nextCaseFile": ".agent/state/cases/fixedassets-279-fa-depreciation-card-fieldvalue-readonly-probe.json",
+    "nextStep": "FIXEDASSETS-279: run a read-only FA-CNC-01 card field-value probe using the older caption-control mapper from FA-029/031 to distinguish empty values from merely hidden values."
+  },
+  "proved": [
+    "FA-277 stayed in MCP_1_20260210 / RM-DEMO.",
+    "FA-277 opened FA-CNC-01 read-only and Page Inspection from the Fixed Asset Card context.",
+    "FA-277 proves Fixed Asset Card / Fixed Asset table context and visible labels for Depreciation Starting Date, No. of Depreciation Years, Depreciation Ending Date and Book Value.",
+    "FA-277 proves Book Value / Acquisition Cost 120.000,00 on the card and acquisition document G05001 in FA Ledger Entries.",
+    "FA-277 proves FADEP-273-OK is still not visible in the Fixed Asset G/L Journal context."
+  ],
+  "notProved": [
+    "FA-277 does not field-securely prove the concrete values for Depreciation Starting Date, No. of Depreciation Years, Depreciation Ending Date or Last Depreciation Date.",
+    "FA-277 does not prove that the missing FADEP-273-OK journal output is caused by empty depreciation-book values.",
+    "FA-277 does not prove a Calculate Depreciation result, Preview Posting result, depreciation posting or German final fixed-assets proof."
+  ],
+  "reviewFindings": [
+    {
+      "id": "labels-are-not-values",
+      "status": "accepted",
+      "summary": "Page Inspection and card text show field labels, but the exact field values remain unproven. The book must not treat visible labels as values."
+    },
+    {
+      "id": "repeat-ok-still-blocked",
+      "status": "accepted",
+      "summary": "Repeating Calculate Depreciation OK would be a blind rerun because no depreciation journal line is visible and key due-depreciation values are unresolved."
+    },
+    {
+      "id": "better-field-value-path-available",
+      "status": "accepted",
+      "summary": "Existing tests FA-029/031 contain a caption-control field-value mapper. Reusing that pattern read-only is a smaller and safer next step than setup or posting."
+    }
+  ],
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-279-FA-DEPRECIATION-CARD-FIELDVALUE-READONLY-PROBE",
+      "active_case_file": ".agent/state/cases/fixedassets-279-fa-depreciation-card-fieldvalue-readonly-probe.json",
+      "lastReferenceCase": "FIXEDASSETS-278-FA-DEPRECIATION-BOOK-VALUE-DIAGNOSIS-REVIEW",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-278-fa-depreciation-book-value-diagnosis-review.json",
+      "requiresStrongModel": false,
+      "nextStep": "FIXEDASSETS-279: run a read-only FA-CNC-01 card field-value probe using the older caption-control mapper from FA-029/031; no OK, Preview Posting, Post or setup change."
+    },
+    "coverage": {
+      "activeArea": "fixedassets",
+      "latestReviewCase": "FIXEDASSETS-278-FA-DEPRECIATION-BOOK-VALUE-DIAGNOSIS-REVIEW",
+      "nextCase": "FIXEDASSETS-279-FA-DEPRECIATION-CARD-FIELDVALUE-READONLY-PROBE",
+      "depreciationReadiness": "FA-278 rejects repeat OK, Preview Posting and Post. Next is a read-only field-value probe using the established FA-029/031 caption-control mapper to determine whether depreciation-book values are empty or only hidden."
+    }
+  },
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "safety": {
+    "bcRun": false,
+    "playwrightRun": false,
+    "noCalculateDepreciationOk": true,
+    "noPreviewPosting": true,
+    "noPost": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true,
+    "noDataChange": true
+  },
+  "reason": "Local review prevents a blind repeat of Calculate Depreciation and chooses the smallest reusable read-only field-value probe.",
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-278/FIXEDASSETS-278-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-278/FIXEDASSETS-278-DEPRECIATION-BOOK-VALUE-DIAGNOSIS-REVIEW.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-278/README.md"
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-278/",
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-278-fa-depreciation-book-value-diagnosis-review.json",
+    ".agent/state/cases/fixedassets-279-fa-depreciation-card-fieldvalue-readonly-probe.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/model_usage_log.jsonl",
+    "playwright/FINDINGS.md",
+    "playwright/projects/fibu-book5/BOOK-CLICK-GUIDE-COVERAGE.md"
+  ],
+  "observed": {
+    "startedAt": "2026-06-28T11:12:00.000+02:00",
+    "finishedAt": "2026-06-28T11:12:00.000+02:00"
+  }
+}
