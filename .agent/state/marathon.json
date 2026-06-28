@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "active": true,
+  "mode": "execute-marathon",
+  "instance": "MCP_1_20260210",
+  "minProgressPackages": 8,
+  "minExecutePackages": 2,
+  "readOnlyDoesNotCountAsExecute": true,
+  "allowFinalReportOnlyWhen": {
+    "minProgressPackagesReached": true,
+    "minExecutePackagesReached": true
+  },
+  "hardStopConditions": [
+    "wrong-instance",
+    "secret-risk",
+    "auth-risk",
+    "dangerous-unknown-dialog",
+    "broken-worktree",
+    "no-trace-or-correction-path-for-effective-action",
+    "tool-runtime-limit"
+  ],
+  "executePackageSignals": [
+    "field-value-entry",
+    "preview-posting",
+    "posting",
+    "setup-change",
+    "company-create",
+    "company-switch-with-documentation",
+    "cleanup-or-correction",
+    "ledger-trace-from-new-action",
+    "journal-line-created",
+    "payment-apply-attempted"
+  ],
+  "readOnlyPackageSignals": [
+    "page-open-only",
+    "action-inventory-only",
+    "route-comparison-only",
+    "readiness-only",
+    "state-sync-only",
+    "coverage-sync-only"
+  ],
+  "nextExecuteLevers": [
+    "P2P-014-PURCHASE-JOURNAL-VALUE-ENTRY-GATE",
+    "PAYMENTS-CONTROLLED-APPLY-LAB",
+    "FIXEDASSETS-DEPRECIATION-EXECUTE-ROUTE",
+    "RM-DE-LAB-COMPANY-SETUP",
+    "BANK-RECONCILIATION-CONTROLLED-LAB"
+  ]
+}

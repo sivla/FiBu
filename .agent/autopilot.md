@@ -46,6 +46,8 @@ Zweck: kleiner Einstiegspunkt fuer Codex-Laeufe, die nicht den gesamten Projektv
 - Ziel ist ein vollstaendiges, anfaengerfreundliches, evidence-basiertes Business-Central-FiBu-Buch.
 - Business-Central-Specialist-Modus: Jeder Lauf soll mindestens eine Coverage-Zeile, einen Atlas-Eintrag, eine Evidence-Strecke, ein Buchdraft-Stueck oder eine wiederverwendbare Playwright-Faehigkeit verbessern. Die zentralen Projektdateien dafuer liegen unter `playwright/projects/fibu-book5/BC-*.md`.
 - Gate-is-not-stop: Ein Gate ist ein Kontrollpunkt, kein Endziel. Wenn ein Gate gruen ist und der naechste Schritt innerhalb `MCP_1_20260210` klar, erlaubt und evidence-faehig ist, wird der naechste Prozessschritt geplant oder ausgefuehrt statt nach Header/Zeile/Screenshot zu stoppen.
+- Marathon mode overrides single-case completion. Vor einem Abschlussbericht in Deep-/Execute-Laeufen muss `npm run agent:marathon:check` bestehen oder ein harter Stop dokumentiert sein.
+- Read-only route comparisons, readiness checks und Coverage-/State-Sync zaehlen nicht als Execute-Fortschritt. Wenn der Marathon-Check fehlschlaegt und der Arbeitsbaum sauber ist, nach dem ersten Commit mit dem naechsten Execute-Hebel weiterarbeiten.
 - Process over fragment: Bevorzugt werden Prozessstrecken von Beleganlage ueber Werte, Preview, Posting, Ledger Trace und Buchsync. Mini-Gates sind nur sinnvoll, wenn sie ein Risiko isolieren oder eine konkrete Playwright-/BC-Faehigkeit verbessern.
 - Blocker-to-skill: Wiederholbare Blocker werden in Playwright-Patterns, BC-Atlas, Buch-Lernpunkt oder Helper-/Capability-Verbesserung ueberfuehrt. Ein Blocker ohne Lern- oder Strukturwirkung ist unvollstaendig dokumentiert.
 - Business Central bleibt in `MCP_1_20260210`; das ist die harte Instanzgrenze.

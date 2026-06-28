@@ -23,6 +23,8 @@ Do not end a run only because one header field, one line field, one screenshot o
 
 Repeated blockers must become at least one of: Playwright pattern, BC atlas entry, book learning point, helper/capability improvement or explicit rejected path.
 
+For Deep-/Execute-Laeufe gilt zusaetzlich Marathon mode: single-case completion is not enough. A final report is allowed only when `npm run agent:marathon:check` passes or a hard stop is documented. Read-only route comparisons do not count as execute progress.
+
 ## Sandbox instance boundary
 
 The hard Business Central boundary is the sandbox instance `MCP_1_20260210`.

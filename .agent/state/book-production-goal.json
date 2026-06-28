@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-28T17:39:58.192+02:00",
+  "updatedAt": "2026-06-28T21:12:00.000+02:00",
   "goal": "complete-beginner-friendly-evidence-based-business-central-fibu-book",
   "description": "Build a complete beginner-friendly Business Central FiBu book from practical evidence, Playwright traces, screenshots, clickguides and learning notes.",
   "labEnvironment": {
@@ -135,5 +135,22 @@
       "needs-german-final-rebuild"
     ],
     "rule": "RM-DEMO may feed labor drafts and playthrough evidence, but German final claims require later German target evidence."
+  },
+  "marathonMode": {
+    "active": true,
+    "purpose": "Prevent Deep-/Execute-runs from ending after only read-only or sync packages.",
+    "finalReportGate": "npm run agent:marathon:check",
+    "executeProgressRequires": [
+      "field-value-entry",
+      "preview-posting",
+      "posting",
+      "setup-change",
+      "company-create",
+      "cleanup-or-correction",
+      "ledger-trace-from-new-action",
+      "journal-line-created",
+      "payment-apply-attempted"
+    ],
+    "readOnlyDoesNotCountAsExecute": true
   }
 }
