@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixed-assets-depreciation-journal-batch-value-readonly",
+  "caseId": "FIXEDASSETS-283-FA-DEPRECIATION-JOURNAL-BATCH-VALUE-READONLY",
+  "source": "playwright-readonly-fa-journal-batch-value-probe",
+  "resultStatus": "observed",
+  "branch": "codex/token-efficient-autopilot-state",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "target": {
+    "pageId": 5628,
+    "pageName": "Fixed Asset G/L Journals",
+    "fixedAssetNo": "FA-CNC-01",
+    "depreciationBook": "HGB"
+  },
+  "context": {
+    "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5628&dc=0",
+    "environmentInUrl": true,
+    "companyInUrl": true,
+    "companyInText": false,
+    "wrongEnvironmentVisible": false
+  },
+  "dialogState": {
+    "phase": "after-open-fa-gl-journal",
+    "dialogs": [],
+    "dangerous": [],
+    "ok": true
+  },
+  "batchProbe": {
+    "pageTitleVisible": true,
+    "batchNameLabelVisible": true,
+    "concreteBatchValueCaptured": false,
+    "possibleConcreteValues": [],
+    "dropdownCandidateCount": 2,
+    "dropdownOpened": false,
+    "dropdownOpenReason": "Dropdown candidates were identified but not opened because this case forbids selecting or changing Batch Name.",
+    "targetSignals": {
+      "assetVisible": false,
+      "depreciationBookVisible": false,
+      "faDepVisible": false,
+      "pageHasTwoItemsSignal": true
+    }
+  },
+  "decisionSummary": "FA-283 still did not expose a concrete Batch Name value. The next review must decide whether to inspect the Calculate Depreciation request page again, use a safe journal batch list path, or treat the output-target gap as a blocker.",
+  "safety": {
+    "noBatchValueSelected": true,
+    "noBatchValueChanged": true,
+    "noJournalLineInsertEditDelete": true,
+    "noCalculateDepreciationOk": true,
+    "noPreviewPosting": true,
+    "noPost": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true,
+    "noDraft": true
+  },
+  "proved": [
+    "Fixed Asset G/L Journals was opened read-only in MCP_1_20260210 / RM-DEMO.",
+    "`Batch Name` label is visible.",
+    "No concrete Batch Name value was exposed by the read-only DOM/control probe.",
+    "No Batch Name value was selected or changed.",
+    "No journal line was inserted, edited or deleted.",
+    "No Calculate Depreciation OK, Preview Posting, Post, setup change, company switch, API shortcut or book change was executed."
+  ],
+  "notProved": [
+    "The actual output batch for Calculate Depreciation is still not known.",
+    "No FADEP depreciation journal line is proven.",
+    "No Calculate Depreciation request page result.",
+    "No Preview Posting result.",
+    "No depreciation posting.",
+    "No German final proof."
+  ],
+  "changedFiles": [
+    "package.json",
+    "playwright/projects/fibu-book5/tests/fixedassets-283-fa-depreciation-journal-batch-value-readonly.spec.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-283/"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-283/FIXEDASSETS-283-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-283/FIXEDASSETS-283-BATCH-VALUE-READONLY.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-283/010-batch-value-focused-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-283/020-batch-value-probe.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-283/README.md"
+  ],
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-284-FA-DEPRECIATION-BATCH-VALUE-RESULT-REVIEW",
+      "active_case_file": ".agent/state/cases/fixedassets-284-fa-depreciation-batch-value-result-review.json",
+      "lastReferenceCase": "FIXEDASSETS-283-FA-DEPRECIATION-JOURNAL-BATCH-VALUE-READONLY",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-283-fa-depreciation-journal-batch-value-readonly.json",
+      "requiresStrongModel": true,
+      "nextStep": "FIXEDASSETS-284: locally review the missing Batch Name value and choose the next smallest proof path; no OK, Preview Posting or Post yet."
+    },
+    "coverage": {
+      "activeArea": "fixedassets",
+      "latestPracticalCase": "FIXEDASSETS-283-FA-DEPRECIATION-JOURNAL-BATCH-VALUE-READONLY",
+      "nextCase": "FIXEDASSETS-284-FA-DEPRECIATION-BATCH-VALUE-RESULT-REVIEW",
+      "depreciationReadiness": "FA-283 did not expose a concrete Batch Name value; output-target gap remains and local review is required before OK/Preview/Post."
+    }
+  },
+  "blockedBy": [],
+  "requiresReview": true,
+  "safeToFinalizeState": true,
+  "reason": "Read-only batch-value probe completed without selecting or changing Batch Name; local review required before further action.",
+  "nextCase": "FIXEDASSETS-284-FA-DEPRECIATION-BATCH-VALUE-RESULT-REVIEW",
+  "nextCaseFile": ".agent/state/cases/fixedassets-284-fa-depreciation-batch-value-result-review.json",
+  "nextStep": "FIXEDASSETS-284: locally review the missing Batch Name value and choose the next smallest proof path; no OK, Preview Posting or Post yet.",
+  "observed": {
+    "startedAt": "2026-06-28T08:50:08.815Z",
+    "finishedAt": "2026-06-28T08:50:18.618Z"
+  }
+}

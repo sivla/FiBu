@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-28T10:36:08.095+02:00",
+  "updatedAt": "2026-06-28T10:45:33.909+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "fixedassets",
-  "activeCase": "FIXEDASSETS-283-FA-DEPRECIATION-JOURNAL-BATCH-VALUE-READONLY",
-  "active_case_file": ".agent/state/cases/fixedassets-283-fa-depreciation-journal-batch-value-readonly.json",
-  "lastReferenceCase": "FIXEDASSETS-282-FA-DEPRECIATION-JOURNAL-BATCH-TARGET-REVIEW",
-  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-282-fa-depreciation-journal-batch-target-review.json",
-  "mode": "token-efficient-autopilot-fixedassets-depreciation-journal-batch-value-readonly",
-  "requiresStrongModel": false,
+  "activeCase": "FIXEDASSETS-284-FA-DEPRECIATION-BATCH-VALUE-RESULT-REVIEW",
+  "active_case_file": ".agent/state/cases/fixedassets-284-fa-depreciation-batch-value-result-review.json",
+  "lastReferenceCase": "FIXEDASSETS-283-FA-DEPRECIATION-JOURNAL-BATCH-VALUE-READONLY",
+  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-283-fa-depreciation-journal-batch-value-readonly.json",
+  "mode": "token-efficient-autopilot-fixedassets-depreciation-batch-value-result-review",
+  "requiresStrongModel": true,
   "requiredPreflightChecks": [
     "agent:preflight",
     "agent:state:validate",
@@ -19,12 +19,9 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "open-business-central",
-    "run-playwright",
-    "read-only-fixedasset-gl-journal",
-    "read-only-batch-name-value-probe",
-    "read-only-batch-dropdown-open-no-select-if-safe",
-    "write-compact-evidence",
+    "read-evidence",
+    "local-analysis",
+    "decide-next-fixedasset-depreciation-gate",
     "update-state"
   ],
   "forbiddenActions": [
@@ -33,6 +30,8 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright",
     "confirm-ok-on-calculate-depreciation",
     "preview-posting",
     "post",
@@ -42,9 +41,10 @@
     "edit-record",
     "new-draft",
     "delete-record",
+    "select-batch-value",
     "book-edit"
   ],
-  "nextStep": "FIXEDASSETS-283: run a focused read-only Fixed Asset G/L Journal batch-value probe. Open page 5628, capture the concrete Batch Name value or prove it is not exposed, optionally open the Batch Name dropdown/list without selecting a value, and do not create/edit/delete lines, click OK, Preview Posting or Post.",
+  "nextStep": "FIXEDASSETS-284: locally review FA-283. Batch lookup buttons are visible, but no concrete Batch Name value is exposed; decide whether a safe no-select lookup-list probe, a request-page read-only probe, or a hard output-target blocker is next.",
   "subagentPlanPolicy": {
     "default": "optional",
     "execution": "plan-only-no-subagents-spawned",

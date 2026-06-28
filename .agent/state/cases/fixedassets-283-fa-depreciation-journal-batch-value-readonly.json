@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "FIXEDASSETS-283-FA-DEPRECIATION-JOURNAL-BATCH-VALUE-READONLY",
-  "status": "planned",
+  "status": "observed",
   "workType": "playwright-readonly-fixedasset-depreciation-journal-batch-value",
   "taskClass": "wizard_work",
   "requiresStrongModel": false,
@@ -78,7 +78,32 @@
     "A dangerous dialog appears.",
     "The diagnosis would require writing field values."
   ],
-  "nextSafeAction": "Run a focused read-only batch-value probe on Fixed Asset G/L Journals; do not select, edit, OK, Preview Posting or Post.",
+  "result": {
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-283/FIXEDASSETS-283-result.json",
+    "resultStatus": "observed",
+    "summary": "Fixed Asset G/L Journals was opened read-only. Batch Name label and two lookup/button candidates are visible, but no concrete Batch Name value was exposed. No batch value was selected or changed.",
+    "evidenceRefs": [
+      "playwright/projects/fibu-book5/evidence/fixedassets-283/FIXEDASSETS-283-result.json",
+      "playwright/projects/fibu-book5/evidence/fixedassets-283/FIXEDASSETS-283-BATCH-VALUE-READONLY.md",
+      "playwright/projects/fibu-book5/evidence/fixedassets-283/010-batch-value-focused-text.txt",
+      "playwright/projects/fibu-book5/evidence/fixedassets-283/020-batch-value-probe.json",
+      "playwright/projects/fibu-book5/evidence/fixedassets-283/README.md"
+    ],
+    "safety": {
+      "noBatchValueSelected": true,
+      "noBatchValueChanged": true,
+      "noJournalLineInsertEditDelete": true,
+      "noCalculateDepreciationOk": true,
+      "noPreviewPosting": true,
+      "noPost": true,
+      "noSetupChange": true,
+      "noCompanySwitch": true,
+      "noApiShortcut": true,
+      "noBookChange": true,
+      "noDraft": true
+    }
+  },
+  "nextSafeAction": "Run FIXEDASSETS-284 local review. Do not open BC, Playwright, Batch lookup, OK, Preview Posting or Post in the review.",
   "createdAt": "2026-06-28T10:36:08.095+02:00",
-  "updatedAt": "2026-06-28T10:36:08.095+02:00"
+  "updatedAt": "2026-06-28T10:45:33.909+02:00"
 }

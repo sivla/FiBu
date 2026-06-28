@@ -1,4 +1,17 @@
 
+## FIND-BC-FA-120 Batch-Lookup-Buttons sind noch kein Batchwert
+
+| Feld | Wert |
+|---|---|
+| Bereich | Fixed Assets / AfA-Route / Journal-Batch-Wertprobe |
+| Testfall | `FIXEDASSETS-283-FA-DEPRECIATION-JOURNAL-BATCH-VALUE-READONLY` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-283/FIXEDASSETS-283-result.json`, `playwright/projects/fibu-book5/evidence/fixedassets-283/020-batch-value-probe.json`, `playwright/projects/fibu-book5/evidence/fixedassets-283/FIXEDASSETS-283-BATCH-VALUE-READONLY.md` |
+| Ergebnis | `Fixed Asset G/L Journals` ist read-only sichtbar. `Batch Name`-Label und zwei Lookup-/Button-Kandidaten sind sichtbar; ein konkreter ausgewaehlter Batchwert wurde nicht bewiesen. |
+| Warum | Ein sichtbarer Lookup-Button beweist nur, dass eine Auswahl moeglich ist. Er beweist nicht, welcher Batch aktiv ist oder ob `FADEP`, `FA-CNC-01` oder `HGB` im Journal-Zielkontext liegen. |
+| weiterhin gesperrt | Batch auswaehlen/aendern, Repeat `OK`, Preview Posting, Post, Setup Change, Company Switch, API-Abkuerzung |
+| naechster Schritt | `FIXEDASSETS-284`: lokaler Review, ob ein no-select Lookup-Listen-Probe sicher genug ist oder ob die Route als Ausgabeziel-Blocker markiert werden muss. |
+| Buchwirkung | Die Klickanleitung muss fuer Anfaenger zwischen Label, Auswahlknopf und tatsaechlichem Wert unterscheiden. Nur der sichtbare Wert oder eine sichere Postenspur darf als Nachweis gelten. |
+
 ## FIND-BC-FA-119 Batch-Label ist kein Batchwert
 
 | Feld | Wert |
