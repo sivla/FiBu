@@ -9,7 +9,7 @@
     {
       "id": "P2P-018-PURCHASE-JOURNAL-ACCOUNT-NO-FIELDMAPPING",
       "order": 1,
-      "status": "pending",
+      "status": "done",
       "category": "p2p",
       "expectedImpact": "high-impact-candidate",
       "fallbackRoute": "P2P-019 or Purchase Invoice route if field mapping proves journal route unsuitable.",
@@ -20,7 +20,7 @@
     {
       "id": "P2P-019-PURCHASE-JOURNAL-POSTING-GROUP-PREVIEW-GATE",
       "order": 2,
-      "status": "pending",
+      "status": "blocked",
       "category": "p2p",
       "expectedImpact": "high-impact",
       "fallbackRoute": "Purchase Invoice route or P2P field mapping repair.",
@@ -31,7 +31,7 @@
     {
       "id": "P2P-020-PURCHASE-JOURNAL-LEDGER-TRACE-OR-CORRECTION",
       "order": 3,
-      "status": "pending",
+      "status": "blocked",
       "category": "p2p",
       "expectedImpact": "high-impact",
       "fallbackRoute": "Correction route if posting is wrong; otherwise ledger trace only.",
@@ -42,29 +42,33 @@
     {
       "id": "PAYMENTS-006-CASH-RECEIPT-AMOUNT-VALIDATION",
       "order": 4,
-      "status": "pending",
+      "status": "done",
       "category": "payments",
       "expectedImpact": "high-impact-candidate",
       "fallbackRoute": "Different amount field or payment journal route.",
       "evidenceTarget": "playwright/projects/fibu-book5/evidence/payments-006/",
       "mayWorkEffectively": true,
-      "goal": "Resolve Amount field issue from PAYMENTS-005 and rerun Journal Check."
+      "goal": "Resolve Amount field issue from PAYMENTS-005 and rerun Journal Check.",
+      "result": "Amount issue resolved with localized amount format -68.000,00; Journal Check shows 0 Issues Total and Current line: No issues found; draft cleaned; no payment posted.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/payments-006/PAYMENTS-006-result.json"
     },
     {
       "id": "PAYMENTS-007-APPLY-OR-PREVIEW-GATE",
       "order": 5,
-      "status": "pending",
+      "status": "done",
       "category": "payments",
       "expectedImpact": "high-impact",
       "fallbackRoute": "Read-only Apply Entries field map before payment posting.",
       "evidenceTarget": "playwright/projects/fibu-book5/evidence/payments-007/",
       "mayWorkEffectively": true,
-      "goal": "Test Apply Entries / payment / settlement gate; Preview/Post only with trace plan."
+      "goal": "Test Apply Entries / payment / settlement gate; Preview/Post only with trace plan.",
+      "result": "Implemented by existing PAYMENTS-009 Apply/Preview readiness route: clean Cash Receipt draft, Apply Entries opened read-only with invoice/customer context visible, Preview Posting not directly visible, cleanup proven, no payment/application posted.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/payments-009/PAYMENTS-009-result.json"
     },
     {
       "id": "FIXEDASSETS-246-DEPRECIATION-EXECUTE-ROUTE",
       "order": 6,
-      "status": "pending",
+      "status": "running",
       "category": "fixedassets",
       "expectedImpact": "high-impact",
       "fallbackRoute": "FA journal output-target diagnosis if Calculate Depreciation cannot generate lines.",

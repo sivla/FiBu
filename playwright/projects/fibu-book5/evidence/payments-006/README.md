@@ -1,6 +1,6 @@
 # PAYMENTS-006 Evidence Index
 
-Status: CRONUS-USA-Labor, UI-Amount-Validierung, keine Zahlung, kein Ausgleich, Cleanup. Journal Check 0 Issues: nein.
+Status: CRONUS-USA-Labor, UI-Amount-Validierung, keine Zahlung, kein Ausgleich, Cleanup. Journal Check 0 Issues: ja.
 
 | Datei | Typ | Beweist | Beweist nicht | Status |
 |---|---|---|---|---|

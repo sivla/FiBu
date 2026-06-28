@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "caseId": "PAYMENTS-006-CASH-RECEIPT-AMOUNT-VALIDATION",
+  "area": "payments",
+  "status": "done",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "purpose": "Resolve the PAYMENTS-005 Cash Receipt Journal Amount validation blocker through UI-only amount-format and Journal Check evidence.",
+  "taskClass": "wizard_work",
+  "allowedActions": [
+    "open-business-central-if-instance-and-company-match",
+    "run-playwright-if-case-preflight-passes",
+    "create-controlled-cash-receipt-journal-draft",
+    "enter-field-values",
+    "refresh-journal-check",
+    "cleanup-draft-line",
+    "write-evidence",
+    "update-state"
+  ],
+  "defaultLockedActionsUnlocked": [
+    "keep-draft"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "post",
+    "payment",
+    "preview-posting",
+    "setup-change",
+    "company-switch",
+    "api-shortcut",
+    "book-claim-without-evidence"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/payments-006/PAYMENTS-006-result.json",
+    "playwright/projects/fibu-book5/evidence/payments-006/PAYMENTS-006-AMOUNT-VALIDATION.md",
+    "playwright/projects/fibu-book5/evidence/payments-006/010-amount-validation-controls.json"
+  ],
+  "successCriteria": [
+    "Cash Receipt Journal draft line is visible before cleanup.",
+    "Amount validation is tested with at least one UI amount format.",
+    "Journal Check result after refresh is captured.",
+    "Draft line is cleaned up.",
+    "No payment, application, Preview Posting or posting is performed."
+  ],
+  "stopIf": [
+    "instance-or-company-mismatch",
+    "unexpected-posting-dialog",
+    "payment-post-action-would-be-required",
+    "draft-cleanup-fails"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "rebuildInstruction": "In the German final sandbox, recreate the Cash Receipt Journal amount validation with the German bank account, payment method and open customer invoice before any payment posting.",
+  "resultPath": "playwright/projects/fibu-book5/evidence/payments-006/PAYMENTS-006-result.json",
+  "result": "Amount validation blocker resolved; Journal Check clean after localized amount input and refresh; cleanup proven; no payment or application posted."
+}

@@ -40,7 +40,7 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "P2P-018 Purchase Journal Account No./Bal. Account No. field mapping diagnosis; marathon v2 threshold is met after P2P-015 high-impact Journal Check fix and P2P-016/P2P-017 follow-up.",
+  "nextStep": "FIXEDASSETS-246 depreciation execute route; PAYMENTS-009 completed the Apply/Preview queue gate without payment.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/fixedassets-labor-draft.md",
     "area": "fixedassets",
@@ -487,22 +487,27 @@
       "DEEP-RUN-001-SYNC",
       "MARATHON-GATE-001",
       "P2P-014",
-      "PAYMENTS-005"
+      "PAYMENTS-005",
+      "PAYMENTS-006",
+      "PAYMENTS-009"
     ],
     "postedInThisDeepRun": false,
     "previewPostingInThisDeepRun": false,
     "setupChangedInThisDeepRun": false,
     "companySwitchedInThisDeepRun": false,
     "nextBestLevers": [
-      "Purchase Journal value-entry gate",
-      "Fixed Assets depreciation route review",
-      "Payment/Apply controlled lab case"
+      "FIXEDASSETS-246 depreciation execute route",
+      "FIXEDASSETS-247 depreciation ledger trace if journal line/posting succeeds",
+      "BANK-001 controlled bank reconciliation lab route"
     ],
     "executePackages": [
       "P2P-014",
       "PAYMENTS-005",
       "P2P-015",
-      "P2P-016"
+      "P2P-016",
+      "P2P-019",
+      "PAYMENTS-006",
+      "PAYMENTS-009"
     ],
     "progressPackages": [
       "P2P-012",
@@ -519,7 +524,9 @@
       "P2P-017"
     ],
     "highImpactExecutePackages": [
-      "P2P-015"
+      "P2P-015",
+      "PAYMENTS-006",
+      "PAYMENTS-009"
     ],
     "marathonV2FinalReportAllowed": true
   },
@@ -581,5 +588,61 @@
     "blocker": "Account No.",
     "nextStep": "P2P-018 field mapping diagnosis before another value route",
     "evidencePath": "playwright/projects/fibu-book5/evidence/p2p-017/P2P-017-result.json"
+  },
+  "latestP2P018": {
+    "status": "field-mapping-diagnosis-done",
+    "evidencePath": "playwright/projects/fibu-book5/evidence/p2p-018/P2P-018-result.json",
+    "nextStep": "P2P-019 clean Journal Check / Preview gate"
+  },
+  "latestP2P019": {
+    "status": "blocked-preview-locked",
+    "blocker": "Amount negative/out of balance/vendor posting groups must be blank",
+    "evidencePath": "playwright/projects/fibu-book5/evidence/p2p-019/P2P-019-result.json"
+  },
+  "latestPayments006": {
+    "caseId": "PAYMENTS-006-CASH-RECEIPT-AMOUNT-VALIDATION",
+    "status": [
+      "high-impact-execute",
+      "journal-check-clean",
+      "cleanup-proven",
+      "needs-german-final-rebuild"
+    ],
+    "sourceInstance": "MCP_1_20260210",
+    "sourceCompany": "RM-DEMO",
+    "documentNo": "PAY006-584114",
+    "amountInputFinal": "-68.000,00",
+    "journalCheckZeroIssues": true,
+    "posted": false,
+    "paymentPosted": false,
+    "applicationPosted": false,
+    "cleanupProven": true,
+    "resultPath": "playwright/projects/fibu-book5/evidence/payments-006/PAYMENTS-006-result.json",
+    "evidencePath": "playwright/projects/fibu-book5/evidence/payments-006/",
+    "nextStep": "PAYMENTS-007: apply/preview readiness on the clean journal route; no payment posting without explicit trace gate."
+  },
+  "latestPayments009": {
+    "caseId": "PAYMENTS-009-APPLY-PREVIEW-READINESS",
+    "queueAlias": "PAYMENTS-007-APPLY-OR-PREVIEW-GATE",
+    "status": [
+      "high-impact-execute",
+      "apply-entries-readonly-opened",
+      "preview-not-directly-visible",
+      "cleanup-proven",
+      "needs-german-final-rebuild"
+    ],
+    "sourceInstance": "MCP_1_20260210",
+    "sourceCompany": "RM-DEMO",
+    "documentNo": "PAY009-735928",
+    "journalCheckZeroIssues": true,
+    "applyEntriesOpened": true,
+    "applyDocumentVisible": true,
+    "previewDirectlyVisible": false,
+    "posted": false,
+    "paymentPosted": false,
+    "applicationPosted": false,
+    "cleanupProven": true,
+    "resultPath": "playwright/projects/fibu-book5/evidence/payments-009/PAYMENTS-009-result.json",
+    "evidencePath": "playwright/projects/fibu-book5/evidence/payments-009/",
+    "nextStep": "A controlled payment posting would need an explicit post-dialog/trace gate; marathon queue moves to Fixed Assets depreciation execute route."
   }
 }

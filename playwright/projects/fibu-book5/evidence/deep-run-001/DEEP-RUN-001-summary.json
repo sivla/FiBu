@@ -126,6 +126,76 @@
         "blocker-review"
       ],
       "result": "Local review classifies P2P-016 Account No. blocker and forbids repeating the same 82000 route blindly; next is field mapping diagnosis."
+    },
+    {
+      "id": "P2P-018",
+      "type": "field-mapping-diagnosis",
+      "bcRun": true,
+      "posted": false,
+      "execute": false,
+      "highImpactExecute": false,
+      "signals": [
+        "field-mapping-diagnosis"
+      ],
+      "result": "Purchase Journal Account No./Bal. Account No. column and control mapping captured read-only; no draft, Preview or Post."
+    },
+    {
+      "id": "P2P-019",
+      "type": "field-value-entry journal-line-created cleanup-or-correction",
+      "bcRun": true,
+      "posted": false,
+      "execute": true,
+      "lightExecute": true,
+      "highImpactExecute": false,
+      "signals": [
+        "field-value-entry",
+        "journal-line-created",
+        "cleanup-or-correction"
+      ],
+      "result": "Purchase Journal strict Journal Check exposed real errors: Amount must be negative, document out of balance, and posting groups must be blank on Vendor line; Preview stayed locked; cleanup proven."
+    },
+    {
+      "id": "P2P-020",
+      "type": "blocked-before-execution",
+      "bcRun": false,
+      "posted": false,
+      "execute": false,
+      "highImpactExecute": false,
+      "signals": [
+        "blocked-before-execution"
+      ],
+      "result": "Ledger trace/correction route blocked because P2P-019 did not reach clean Preview Posting."
+    },
+    {
+      "id": "PAYMENTS-006",
+      "type": "journal-check-error-fixed field-value-entry journal-line-created cleanup-or-correction",
+      "bcRun": true,
+      "posted": false,
+      "execute": true,
+      "highImpactExecute": true,
+      "signals": [
+        "field-value-entry",
+        "journal-line-created",
+        "journal-check-error-fixed",
+        "cleanup-or-correction"
+      ],
+      "result": "Cash Receipt Journal Amount blocker from PAYMENTS-005 was resolved by localized amount input -68.000,00; Journal Check shows 0 Issues Total and Current line: No issues found; cleanup proven; no payment/application posted."
+    },
+    {
+      "id": "PAYMENTS-009",
+      "queueAlias": "PAYMENTS-007-APPLY-OR-PREVIEW-GATE",
+      "type": "field-value-entry journal-line-created payment-apply-attempt cleanup-or-correction",
+      "bcRun": true,
+      "posted": false,
+      "execute": true,
+      "highImpactExecute": true,
+      "signals": [
+        "field-value-entry",
+        "journal-line-created",
+        "payment-apply-attempt",
+        "cleanup-or-correction"
+      ],
+      "result": "Cash Receipt Journal clean draft was prepared; Apply Entries opened read-only and showed D10000/PS-INV103297 context plus apply-related actions; Preview Posting was not directly visible; cleanup proven; no payment/application posted."
     }
   ],
   "postingSummary": {
@@ -145,26 +215,31 @@
     }
   },
   "nextBestLevers": [
-    "P2P-018 Purchase Journal Account No./Bal. Account No. field mapping diagnosis",
-    "PAYMENTS-006 amount validation for Cash Receipt Journal",
-    "Fixed Assets depreciation route review"
+    "FIXEDASSETS-246 depreciation execute route",
+    "FIXEDASSETS-247 depreciation ledger trace if journal line/posting succeeds",
+    "BANK-001 controlled bank reconciliation lab route"
   ],
   "migrationRelevance": "needed-for-german-final",
   "mustRecreateInFinalSandbox": true,
   "finalScreenshotNeeded": true,
   "executeSummary": {
-    "executePackages": 4,
+    "executePackages": 7,
     "executePackageIds": [
       "P2P-014",
       "PAYMENTS-005",
       "P2P-015",
-      "P2P-016"
+      "P2P-016",
+      "P2P-019",
+      "PAYMENTS-006",
+      "PAYMENTS-009"
     ],
-    "highImpactExecutePackages": 1,
+    "highImpactExecutePackages": 3,
     "highImpactPackageIds": [
-      "P2P-015"
+      "P2P-015",
+      "PAYMENTS-006",
+      "PAYMENTS-009"
     ],
-    "lightExecutePackages": 3,
+    "lightExecutePackages": 4,
     "readOnlyPackagesDoNotCountAsExecute": true
   }
 }

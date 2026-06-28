@@ -5,7 +5,7 @@
 | Umgebung | MCP_1_20260210 |
 | Company | RM-DEMO |
 | Status | labor, ui-validation, no-payment, no-application, cleanup |
-| Document No. | `PAY006-767166` |
+| Document No. | `PAY006-584114` |
 | Ausgangsposten | `PS-INV103297` / `D10000` |
 | Gegenkonto | `BANK-RM-01` |
 | Betrag im Entwurf | `-68.000,00` als Cash-Receipt-Customer-Zeile |
@@ -20,13 +20,13 @@
 | Rechnungsbezug sichtbar | ja |
 | Betrag sichtbar | ja |
 | Journal Check sichtbar | ja |
-| Journal Check 0 Issues Total | nein |
-| Journal Check 0 Lines with issues | nein |
-| Current line: No issues found | nein |
-| Journal Check Issues | 1 |
-| Aktueller Issue | `'Bank Account Posting Group' ist nicht vorhanden. Identifizierende Felder und Werte: Code=''` |
+| Journal Check 0 Issues Total | ja |
+| Journal Check 0 Lines with issues | ja |
+| Current line: No issues found | ja |
+| Journal Check Issues | 0 |
+| Aktueller Issue | kein Text nachgewiesen |
 | Amount-Issue geloest | ja |
-| Bank Account Posting Group Issue | ja |
+| Bank Account Posting Group Issue | nein |
 | Cleanup geloescht | ja |
 | Zahlung gebucht | nein |
 | OP ausgeglichen | nein |
@@ -39,13 +39,13 @@
 | raw-negative-number | `-68000` | nein | nein | nein | ja |
 | localized-negative-amount | `-68.000,00` | ja | nein | nein | nein |
 | full-draft-before-refresh | `full line` | ja | ja | ja | nein |
-| full-draft-after-refresh | `full line plus Refresh` | nein | nein | nein | ja |
+| full-draft-after-refresh | `full line plus Refresh` | ja | ja | ja | nein |
 
 ## Anfaenger-Lernwert
 
 Eine Zahlungsjournalzeile ist ein Entwurf, keine Zahlung. In diesem Lauf wurde die in `PAYMENTS-005` offene Amount-Validierung gezielt ueber die UI nachgeprueft: zuerst mit Rohzahl, dann mit lokalem Betragsformat und abschliessendem Refresh der Journal-Check-FactBox.
 
-Der Lernpunkt ist nicht der Post-Button, sondern die Vorabkontrolle. Das lokale Betragsformat loest den urspruenglichen Amount-Fehler zwischenzeitlich. Nach `Refresh` meldet BC aber den naechsten Setup-Blocker: `Bank Account Posting Group` fehlt am Balance Account. Deshalb darf weiterhin nicht gebucht werden.
+Der Lernpunkt ist nicht der Post-Button, sondern die Vorabkontrolle. Das lokale Betragsformat loest den urspruenglichen Amount-Fehler. Nach `Refresh` zeigt BC `0 Issues Total`, `0 Lines with issues` und `Current line: No issues found`. Trotzdem wurde bewusst nicht gebucht, weil dieser Lauf nur die Amount-/Journal-Check-Readiness prueft und keine Zahlungsfreigabe ist.
 
 ## Buchwirkung
 
@@ -57,8 +57,8 @@ Kapitel 19/20 kann jetzt den Unterschied zwischen sichtbar gefuellter Zeile, int
 - Keine Zahlung, kein OP-Ausgleich, keine Bankposten und keine Bankabstimmung.
 - Keine deutsche Bank-/Compliance- oder Steuerlogik.
 - `Preview Posting` war in `PAYMENTS-004` nicht sichtbar; dieser UI-Draft nutzt Journal Check als sichtbaren Preflight-Hinweis.
-- Journal Check meldet weiter ein Issue; keine Zahlungsfreigabe. In diesem Lauf ist der Restblocker die fehlende Bank Account Posting Group.
+- Journal Check zeigt im Labor nach UI-Korrektur keine Issues; trotzdem keine Zahlungsbuchung.
 
 ## Naechster Schritt
 
-PAYMENTS-007: Bankkonto BANK-RM-01 per UI auf Bank Account Posting Group/Sachkonto-Fit pruefen und erst danach denselben Cash-Receipt-Draft erneut ohne Buchung testen.
+PAYMENTS-007: Vor einer ausdruecklich freigegebenen Laborzahlung zuerst Bank Account Posting Group/Sachkonto-Fit und Ausgleichsbezug read-only dokumentieren; weiterhin keine automatische Zahlung.

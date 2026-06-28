@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "caseId": "P2P-018-PURCHASE-JOURNAL-ACCOUNT-NO-FIELDMAPPING",
+  "parentCaseId": "BC-DEEP-RUN-001-MULTI-ROUTE-SANDBOX-PROGRESS",
+  "source": "playwright-ui-readonly-fieldmapping",
+  "resultStatus": "observed",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "sourceCompany": "RM-DEMO",
+  "bcRun": true,
+  "posted": false,
+  "previewPosting": false,
+  "setupChanges": [],
+  "signals": [
+    "field-mapping-diagnosis"
+  ],
+  "execute": false,
+  "highImpactExecute": false,
+  "lightExecute": false,
+  "flags": {
+    "noFieldValueEntry": true,
+    "noDraft": true,
+    "noPreview": true,
+    "noPost": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/p2p-018/010-visible-grid-signals.json",
+    "playwright/projects/fibu-book5/evidence/p2p-018/020-compact-page-text.txt"
+  ],
+  "screenshots": [
+    "playwright/projects/fibu-book5/img/p2p-018-010-purchase-journal-fieldmapping.png"
+  ],
+  "findings": [
+    "Purchase Journal exposes both Account No. and Bal. Account No. captions in the grid context.",
+    "P2P-016 should be treated as unresolved because Account No. remained the Journal Check issue after the 82000 balancing-account attempt.",
+    "The next value route needs field-specific ownership: primary Account No. versus Bal. Account No., plus account type pairing."
+  ],
+  "blockedBy": [],
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "safeToFinalizeState": false,
+  "requiresReview": true,
+  "statePatch": {},
+  "nextStep": "P2P-019: use the fieldmapping evidence to set the correct Account No./Bal. Account pairing, then Journal Check and Preview only if clean."
+}

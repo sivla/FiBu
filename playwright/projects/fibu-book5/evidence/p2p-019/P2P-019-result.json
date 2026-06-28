@@ -1,0 +1,107 @@
+{
+  "schemaVersion": 1,
+  "caseId": "P2P-019-PURCHASE-JOURNAL-CLEAN-PREVIEW-GATE",
+  "parentCaseId": "BC-DEEP-RUN-001-MULTI-ROUTE-SANDBOX-PROGRESS",
+  "source": "playwright-ui-labor-journal-check-fix-attempt",
+  "resultStatus": "observed",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "sourceCompany": "RM-DEMO",
+  "documentNo": "P2P019-328516",
+  "previewPosting": false,
+  "posted": false,
+  "setupChanges": [],
+  "changedRecords": [
+    {
+      "type": "Purchase Journal Line",
+      "documentNo": "P2P019-328516",
+      "cleanup": {
+        "attempted": true,
+        "cleaned": true,
+        "documentNoStillVisible": false
+      }
+    }
+  ],
+  "postedRecords": [],
+  "signals": [
+    "field-value-entry",
+    "journal-line-created",
+    "cleanup-or-correction",
+    "journal-check-real-error-discovered"
+  ],
+  "execute": true,
+  "highImpactExecute": false,
+  "lightExecute": true,
+  "flags": {
+    "fieldValueEntryAttempted": true,
+    "journalLineCreated": true,
+    "journalCheckErrorFixed": false,
+    "cleanJournalCheck": false,
+    "accountNoHeaderMisreadAvoided": true,
+    "previewAttempted": false,
+    "previewOpened": false,
+    "cleanupAttempted": true,
+    "cleanupProven": true,
+    "noPost": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "targetValues": {
+    "postingDate": "08.06.2026",
+    "documentType": "Invoice",
+    "accountType": "Vendor",
+    "vendorNo": "K10000",
+    "genPostingType": "Purchase",
+    "genBusPostingGroup": "DOMESTIC",
+    "genProdPostingGroup": "RETAIL",
+    "amount": "2.500,00"
+  },
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/p2p-019/010-initial-controls.json",
+    "playwright/projects/fibu-book5/evidence/p2p-019/020-after-posting-group-gate-page-text.txt",
+    "playwright/projects/fibu-book5/evidence/p2p-019/020-after-posting-group-gate-controls.json",
+    "playwright/projects/fibu-book5/evidence/p2p-019/030-cleanup-page-text.txt"
+  ],
+  "screenshots": [
+    "playwright/projects/fibu-book5/img/p2p-019-020-posting-group-gate.png"
+  ],
+  "journalCheck": {
+    "journalCheckVisible": true,
+    "zeroIssuesTotalVisible": false,
+    "zeroLinesWithIssuesVisible": false,
+    "currentLineNoIssuesVisible": false,
+    "issueText": "Die Seite enthält 3 Fehler. Aktualisieren Sie (F5), um die Änderungen rückgängig zu machen oder die Fehler zu korrigieren."
+  },
+  "preview": {
+    "attempted": false,
+    "opened": false,
+    "reason": "journal-check-not-clean"
+  },
+  "proves": [
+    "Purchase Journal values were entered with stricter Journal Check parsing that ignores column-header Account No. text.",
+    "Journal Check exposes concrete line errors: Amount must be negative, document is out of balance, and Gen. Posting Type / Gen. Bus. Posting Group / Gen. Prod. Posting Group must be blank on this Vendor journal line.",
+    "Preview Posting stayed locked because Journal Check was not clean.",
+    "Cleanup removed the target draft line.",
+    "No posting was executed."
+  ],
+  "doesNotProve": [
+    "No posted purchase invoice or ledger trace.",
+    "No Purchase Order partial receipt.",
+    "No German final proof."
+  ],
+  "blockedBy": [
+    "amount-must-be-negative",
+    "document-out-of-balance",
+    "vendor-line-posting-groups-must-be-blank",
+    "journal-check-not-clean-under-strict-parsing"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "safeToFinalizeState": false,
+  "requiresReview": true,
+  "statePatch": {},
+  "nextStep": "P2P-020 should not post; either create balancing line correctly or use Purchase Invoice/Payment route. Current Purchase Journal vendor line requires negative amount and blank posting groups."
+}
