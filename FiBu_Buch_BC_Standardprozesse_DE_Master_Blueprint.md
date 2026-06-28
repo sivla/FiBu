@@ -3762,7 +3762,7 @@ Vor Buchung wird die Abstimmungszeile korrigiert. Nach Buchung wird ein falscher
 
 
 ## 21. Anlagen (Fixed Assets)
-Dieses Kapitel zeigt, wie Rhein-Main eine Anlage kauft, aktiviert und abschreibt. Nach dem Kapitel kannst du `FA-CNC-01` anlegen, den Zugang ueber Einkaufsrechnung buchen, AfA berechnen und Anlagenposten mit Sachposten abstimmen.
+Dieses Kapitel zeigt das Zielbild, wie Rhein-Main eine Anlage kauft, aktiviert und abschreibt. Der aktuelle RM-DEMO-Laborstand beweist Teile dieses Weges; die vollstaendige deutsche Zielstrecke muss spaeter in einer deutschen Zielinstanz neu reproduziert werden.
 
 ### Kapitelbox
 
@@ -3891,13 +3891,32 @@ Nach `Purchase Invoices` -> `Neu` ist eine leere `Purchase Invoice` sichtbar, mi
 
 Das Bild zeigt weiter `Type = Item` und einen Vendor-Registrierungsdialog fuer `Fixed Asset`. Ein Dialogtext oder Lookup-Kontext ersetzt nicht den sichtbaren Zeilentyp `Fixed Asset`.
 
-### Schritt-fuer-Schritt
+### Warnbox: Laborstand vs. Zielpfad
 
-1. Oeffne `Anlagen (Fixed Assets)` und pruefe zuerst, ob `FA-CNC-01` bereits existiert.
+Status: `labor-sufficient-for-book-draft`, `labor-blocked`, `needs-german-final-rebuild`.
+
+Was im Labor belegt ist:
+
+- Anlagenkarte, AfA-Buch `HGB` und Anlagenbuchungsgruppe `MACHINES` sind als Labor-/Readiness-Basis sichtbar.
+- Der Anlagenzugang `G05001` wurde im RM-DEMO-Labor ueber das `Fixed Asset G/L Journal` nachvollzogen.
+- Sachposten- und Anlagenposten-Laborspur sind fuer den Zugang lesbar.
+
+Was im Labor noch nicht als fertige Zielstrecke belegt ist:
+
+- Einkaufsrechnung mit Zeile `Art = Anlage` fuer `FA-CNC-01`.
+- Erfolgreiche AfA-Journalzeile aus `AfA berechnen (Calculate Depreciation)`.
+- AfA-Preview-Posting.
+- Gebuchte AfA-Posten.
+
+Die folgende Schrittfolge ist deshalb ein Zielpfad fuer die spaetere deutsche Finalumgebung. Sie ist keine Behauptung, dass alle Schritte bereits in `RM-DEMO` vollstaendig bewiesen sind. Fuer finale Buchbilder muessen deutsche Instanz, deutsche Screenshots, deutsche Konten, deutsche Belege und deutsche Postenspur neu aufgebaut werden.
+
+### Schritt-fuer-Schritt als Zielpfad fuer German-Final-Rebuild
+
+1. Oeffne in der deutschen Zielinstanz `Anlagen (Fixed Assets)` und pruefe zuerst, ob die Zielanlage bereits existiert.
 2. Wenn `FA-CNC-01` existiert, oeffne die Karte und pruefe, ob Beschreibung, Anlagenklasse, Anlagenunterklasse, AfA-Buch, Anlagenbuchungsgruppe und Nutzungsdauer fachlich tragen.
-3. Korrigiere oder ergaenze `FA-CNC-01` auf `Beschreibung = CNC Maschine FRA`, im aktuellen RM-DEMO-Labor `Anlagenklasse = TANGIBLE`, `Anlagenunterklasse = EQUIPMENT`.
-4. Oeffne das AfA-Buch und setze `AfA-Buchcode = HGB`, `AfA-Methode = Linear`, `Nutzungsdauer = 8 Jahre`, `Anlagenbuchungsgruppe = MACHINES`.
-5. Pruefe zuerst in `Kreditoren (Vendors)`, ob `K30000` sichtbar und fachlich passend ist; wenn nicht, zuerst den separaten Kreditoren-Setup-Klickpfad ausfuehren.
+3. Korrigiere oder ergaenze die Zielanlage auf die spaeter final festgelegten deutschen Stammdaten; `FA-CNC-01`, `HGB` und `MACHINES` sind aktuell Laboranker, keine deutschen Finalwerte.
+4. Oeffne das AfA-Buch und setze oder pruefe AfA-Buchcode, AfA-Methode, Nutzungsdauer und Anlagenbuchungsgruppe nach deutschem Zielsetup.
+5. Pruefe zuerst in `Kreditoren (Vendors)`, ob der Zielkreditor sichtbar und fachlich passend ist; wenn nicht, zuerst den separaten Kreditoren-Setup-Klickpfad ausfuehren.
 6. Wenn `K30000` sichtbar ist, aber Buchungsgruppen, Waehrung oder Tax/VAT nicht sichtbar sind, nicht zur Einkaufsrechnung springen und keine Werte raten. Zuerst Sichtbarkeit und moegliche Werte per FastTab, Personalisieren oder Seitenpruefung read-only klaeren.
 7. Oeffne erst danach `Einkaufsrechnungen (Purchase Invoices)` und erfasse die Zeile `Art = Anlage`, `Nr. = FA-CNC-01`, `Menge = 1`, `Direkte Einstandskosten = 120.000`.
 8. Pruefe `Buchungsvorschau (Preview Posting)`.
@@ -3930,21 +3949,23 @@ Das Bild zeigt weiter `Type = Item` und einen Vendor-Registrierungsdialog fuer `
 
 Gebuchte Anlagenzugange werden nicht durch Direktaenderung der Anlagenposten korrigiert. Rhein-Main nutzt Gutschrift, Neubuchung oder Anlagenjournal mit dokumentiertem Freigabeweg.
 
-### UAT-Fall
+### Ziel-UAT fuer deutsche Finalumgebung
 
 | Feld | Inhalt |
 |---|---|
 | ID | `UAT-K21-001` |
-| Ziel | Zugang und AfA fuer Anlage `FA-CNC-01` abnehmen |
+| Status | Ziel-UAT fuer spaetere deutsche Finalumgebung; aktueller RM-DEMO-Stand ist nur Labor-/Vorproduktionsbeleg |
+| Ziel | Zugang und AfA fuer die Zielanlage abnehmen |
 | Rolle | Anlagenbuchhaltung, Kreditorenbuchhaltung |
-| Voraussetzung | AfA-Buch `HGB`, Anlagenbuchungsgruppe `MACHINES` und Kreditor `K30000` sind sichtbar eingerichtet; im aktuellen RM-DEMO-Labor ist `K30000` sichtbar, aber Buchungsgruppen, Waehrung und Tax/VAT sind noch kein sichtbarer Field-Proof |
+| Voraussetzung | Deutsche Zielanlage, deutsches AfA-/Posting-Setup und Zielkreditor sind sichtbar eingerichtet; RM-DEMO-Laborwerte wie `HGB`, `MACHINES` und `K30000` sind nur Lernanker |
 | Testdaten | `FA-CNC-01`, `120.000 EUR`, Nutzungsdauer `8 Jahre`, `K30000` |
-| Exakte Schrittfolge | 1. Oeffne `Anlagen (Fixed Assets)` und lege oder korrigiere `FA-CNC-01`.<br>2. Setze AfA-Buch `HGB`, Methode `Linear`, Nutzungsdauer `8 Jahre`.<br>3. Pruefe `Kreditoren (Vendors)` und belege `K30000` sichtbar.<br>4. Oeffne danach `Einkaufsrechnungen (Purchase Invoices)` und erfasse Kreditor `K30000`, Zeile `Art = Anlage`, `Nr. = FA-CNC-01`, Betrag `120.000 EUR`.<br>5. Pruefe `Buchungsvorschau (Preview Posting)` und buche.<br>6. Oeffne `Anlagenposten (FA Ledger Entries)` und pruefe Zugang.<br>7. Starte `AfA berechnen (Calculate Depreciation)` fuer `30.06.2026`.<br>8. Buche AfA und pruefe Sachposten sowie Anlagenspiegel. |
+| Exakte Schrittfolge | Zielpfad, nicht aktueller Laborbeweis: 1. Oeffne `Anlagen (Fixed Assets)` und lege oder korrigiere die Zielanlage.<br>2. Setze oder pruefe AfA-Buch, Methode und Nutzungsdauer im deutschen Zielsetup.<br>3. Pruefe `Kreditoren (Vendors)` und belege den Zielkreditor sichtbar.<br>4. Oeffne danach `Einkaufsrechnungen (Purchase Invoices)` und erfasse Kreditor, Zeile `Art = Anlage`, Zielanlage und Betrag.<br>5. Pruefe `Buchungsvorschau (Preview Posting)` und buche erst nach sauberer Vorschau.<br>6. Oeffne `Anlagenposten (FA Ledger Entries)` und pruefe Zugang.<br>7. Starte `AfA berechnen (Calculate Depreciation)` fuer den deutschen Zielstichtag.<br>8. Pruefe, ob eine AfA-Journalzeile entsteht; erst danach Preview Posting und AfA-Buchung.<br>9. Pruefe Sachposten, Anlagenposten und Anlagenspiegel. |
 | Erwartete Belege | Anlagenkarte, gebuchte Einkaufsrechnung, gebuchtes AfA-Journal |
 | Erwartete Posten | `Anlagenposten`, `Kreditorenposten`, `Sachposten` |
 | Kontrollbericht | Anlagenspiegel und `Anlagenstatistik` |
-| Akzeptanzkriterium | Anschaffung, AfA und Buchwerte stimmen in Anlagenposten, Sachposten und Anlagenspiegel ueberein. |
-| Evidence Pack | Anlagenkarte, gebuchte Einkaufsrechnung, Anlagenposten, AfA-Journal, Sachposten, Anlagenspiegel, Negativtest |
+| Akzeptanzkriterium | Deutscher Final-UAT ist erst bestanden, wenn Anschaffung, AfA und Buchwerte in Anlagenposten, Sachposten und Anlagenspiegel uebereinstimmen und deutsche Screenshots/Evidence vorliegen. |
+| Labor-Akzeptanz bisher | Anlagenkarte/Setup-Basis und Zugang `G05001` sind als Labortrace verwertbar; Einkaufsrechnung mit `Art = Anlage`, AfA-Journalzeile, AfA-Preview und AfA-Buchung sind noch offen/blockiert. |
+| Evidence Pack | Ziel: Anlagenkarte, gebuchte Einkaufsrechnung, Anlagenposten, AfA-Journal, Sachposten, Anlagenspiegel, Negativtest. Labor bisher: `fixedassets-225`, `fixedassets-227`, `fixedassets-229`, `fixedassets-231`, `fixedassets-291`. |
 | Absichtlich falsche Eingabe | Einkaufsrechnung mit `Art = Sachkonto` statt `Art = Anlage` buchen |
 | Erwartetes Fehlverhalten | Kein Anlagenposten entsteht; AfA kann fuer `FA-CNC-01` nicht korrekt berechnet werden. |
 | Diagnosepfad | `Anlagenposten (FA Ledger Entries)` auf `FA-CNC-01` filtern und gebuchte Einkaufsrechnung pruefen. |
