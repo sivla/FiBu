@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-28T08:34:00.000+02:00",
+  "updatedAt": "2026-06-28T08:38:00.000+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "fixedassets",
-  "activeCase": "FIXEDASSETS-268-FA-DEPRECIATION-OK-RESULT-BLOCKER-REVIEW",
-  "active_case_file": ".agent/state/cases/fixedassets-268-fa-depreciation-ok-result-blocker-review.json",
-  "lastReferenceCase": "FIXEDASSETS-267-FA-DEPRECIATION-CONTROLLED-OK-EXECUTION-NO-POST",
-  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-267-fa-depreciation-controlled-ok-execution-no-post.json",
-  "mode": "token-efficient-autopilot-fixedassets-depreciation-ok-result-blocker-review",
-  "requiresStrongModel": true,
+  "activeCase": "FIXEDASSETS-269-FA-DEPRECIATION-ELIGIBILITY-AND-JOURNAL-SETUP-READONLY-DIAGNOSIS",
+  "active_case_file": ".agent/state/cases/fixedassets-269-fa-depreciation-eligibility-and-journal-setup-readonly-diagnosis.json",
+  "lastReferenceCase": "FIXEDASSETS-268-FA-DEPRECIATION-OK-RESULT-BLOCKER-REVIEW",
+  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-268-fa-depreciation-ok-result-blocker-review.json",
+  "mode": "token-efficient-autopilot-fixedassets-depreciation-eligibility-readonly-diagnosis",
+  "requiresStrongModel": false,
   "requiredPreflightChecks": [
     "agent:preflight",
     "agent:state:validate",
@@ -19,9 +19,10 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "local-evidence-review",
-    "review-fa267-ok-result",
-    "plan-next-safe-fixedasset-step",
+    "open-business-central",
+    "run-playwright",
+    "read-only-fixedasset-depreciation-eligibility-diagnosis",
+    "read-only-fa-journal-setup-diagnosis",
     "write-compact-evidence",
     "update-state"
   ],
@@ -37,7 +38,7 @@
     "company-switch",
     "api-shortcut-without-explicit-case-permission"
   ],
-  "nextStep": "FIXEDASSETS-268: locally review why controlled OK with HGB, 30.06.2026, FADEP-267-OK and FA-CNC-01 did not produce visible FADEP-267-OK journal evidence before any repeat, Preview Posting or Post.",
+  "nextStep": "FIXEDASSETS-269: run a read-only diagnosis for FA-CNC-01/HGB depreciation eligibility and FA journal setup/batch context; do not repeat OK, Preview Posting or Post.",
   "subagentPlanPolicy": {
     "default": "optional",
     "execution": "plan-only-no-subagents-spawned",

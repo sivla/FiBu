@@ -1,4 +1,17 @@
 
+## FIND-BC-FA-105 Nach zwei AfA-OK-Laeufen ist erst Datums-/Eligibility-/Batchdiagnose sinnvoll
+
+| Feld | Wert |
+|---|---|
+| Bereich | Fixed Assets / AfA-Route / Ergebnisdiagnose |
+| Testfall | `FIXEDASSETS-268-FA-DEPRECIATION-OK-RESULT-BLOCKER-REVIEW` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-268/FIXEDASSETS-268-result.json`, `playwright/projects/fibu-book5/evidence/fixedassets-268/FIXEDASSETS-268-OK-RESULT-BLOCKER-REVIEW.md` |
+| Ergebnis | `FIXEDASSETS-248` und `FIXEDASSETS-267` bestaetigten jeweils `OK`, aber fanden danach keine sichtbare `FADEP`-Journalzeile. |
+| Einordnung | Der naechste Nutzen liegt nicht in Wiederholung, sondern in read-only Diagnose von AfA-Faelligkeit, Datumslogik, Journalbatch und Setup-Kontext. |
+| weiterhin gesperrt | Repeat `OK`, Preview Posting, Post, Setup Change, Company Switch, API-Abkuerzung |
+| Buchwirkung | Die Anleitung muss den Fehlerfall erklaeren: Wenn nach Batch-OK keine Zeile sichtbar ist, prueft man zuerst Parameter und Zieljournal statt blind erneut zu starten. |
+| naechster Schritt | `FIXEDASSETS-269`: read-only Diagnose fuer `FA-CNC-01/HGB` und FA-Journal-Setup-/Batch-Kontext. |
+
 ## FIND-BC-FA-104 AfA-OK wurde genau einmal bestaetigt, aber FADEP-267-OK ist im Journal nicht sichtbar
 
 | Feld | Wert |

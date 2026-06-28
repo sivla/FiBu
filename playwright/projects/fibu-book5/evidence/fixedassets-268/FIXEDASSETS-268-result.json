@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixed-assets-depreciation-ok-result-blocker-review",
+  "caseId": "FIXEDASSETS-268-FA-DEPRECIATION-OK-RESULT-BLOCKER-REVIEW",
+  "source": "local-evidence-review",
+  "resultStatus": "observed",
+  "taskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "bcRun": false,
+  "playwrightRun": false,
+  "posted": false,
+  "previewPosting": false,
+  "setupChanged": false,
+  "companySwitched": false,
+  "apiShortcut": false,
+  "bookChanged": false,
+  "reviewedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-267/FIXEDASSETS-267-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-248/FIXEDASSETS-248-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-250/FIXEDASSETS-250-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-251/FIXEDASSETS-251-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-265/FIXEDASSETS-265-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-229/FIXEDASSETS-229-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-231/FIXEDASSETS-231-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-233/FIXEDASSETS-233-result.json"
+  ],
+  "facts": {
+    "fa267ValuesProved": true,
+    "fa267OkConfirmedExactlyOnce": true,
+    "fa267TargetDocumentNo": "FADEP-267-OK",
+    "fa267JournalLineVisible": false,
+    "fa248AlsoNoFaDepLineVisible": true,
+    "hgbDepreciationIntegrationSetOnByFa233": true,
+    "faCnc01AcquisitionAndBookValueSignalsExist": true
+  },
+  "classification": {
+    "status": "missing-journal-line-after-controlled-ok",
+    "ruledOutByEvidence": [
+      "wrong instance or company",
+      "missing controlled request values before OK",
+      "missing OK click",
+      "HGB G/L Integration - Depreciation still off"
+    ],
+    "stillPlausible": [
+      "30.06.2026 may not be a due depreciation date/range for FA-CNC-01/HGB",
+      "required request-page options may be hidden or inherited from last-used options",
+      "Calculate Depreciation may write to a journal template/batch not visible in the current page context",
+      "journal page filtering/virtualization may hide generated lines",
+      "additional fixed-asset setup beyond HGB G/L integration may still be incomplete"
+    ],
+    "notAllowedNext": [
+      "repeat OK blindly",
+      "Preview Posting",
+      "Post",
+      "setup change without a new explicit setup-fit case"
+    ]
+  },
+  "microsoftLearnAlignment": [
+    {
+      "url": "https://learn.microsoft.com/en-us/dynamics365/business-central/fa-how-depreciate-amortize",
+      "point": "Microsoft Learn describes Calculate Depreciation as the standard route for preparing depreciation lines in Fixed Asset G/L Journals."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/dynamics365/business-central/application/base-application/report/microsoft.fixedassets.depreciation.calculate-depreciation",
+      "point": "The report object is the BC batch/report behind Calculate Depreciation; FA-267 proves execution attempt, not line output."
+    }
+  ],
+  "decision": {
+    "nextCase": "FIXEDASSETS-269-FA-DEPRECIATION-ELIGIBILITY-AND-JOURNAL-SETUP-READONLY-DIAGNOSIS",
+    "nextAction": "Read-only inspect FA-CNC-01/HGB depreciation eligibility fields and FA journal setup/batch context before any repeat OK.",
+    "reason": "Two controlled/guarded OK paths did not show FADEP journal lines. A third OK would add risk without explaining whether depreciation is due, where lines should be written, or whether the journal view is filtered."
+  },
+  "proved": [
+    "FA-267 is a valid controlled OK execution attempt and not a posting.",
+    "The missing FADEP-267-OK line is a real unresolved evidence gap.",
+    "Repeat OK, Preview Posting and Post remain locked.",
+    "The next useful live step is read-only diagnosis, not another execution."
+  ],
+  "notProved": [
+    "No depreciation journal line exists anywhere in BC.",
+    "No exact root cause is proven yet.",
+    "No Preview Posting result exists.",
+    "No depreciation posting exists.",
+    "No German final proof exists."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-268/",
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-268-fa-depreciation-ok-result-blocker-review.json",
+    ".agent/state/cases/fixedassets-269-fa-depreciation-eligibility-and-journal-setup-readonly-diagnosis.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/model_usage_log.jsonl",
+    "playwright/FINDINGS.md",
+    "playwright/projects/fibu-book5/BOOK-CLICK-GUIDE-COVERAGE.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-268/FIXEDASSETS-268-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-268/FIXEDASSETS-268-OK-RESULT-BLOCKER-REVIEW.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-268/README.md"
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-269-FA-DEPRECIATION-ELIGIBILITY-AND-JOURNAL-SETUP-READONLY-DIAGNOSIS",
+      "active_case_file": ".agent/state/cases/fixedassets-269-fa-depreciation-eligibility-and-journal-setup-readonly-diagnosis.json",
+      "lastReferenceCase": "FIXEDASSETS-268-FA-DEPRECIATION-OK-RESULT-BLOCKER-REVIEW",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-268-fa-depreciation-ok-result-blocker-review.json",
+      "nextStep": "FIXEDASSETS-269: run read-only diagnosis for FA-CNC-01/HGB depreciation eligibility and FA journal setup/batch context; no repeat OK, Preview Posting or Post."
+    },
+    "coverage": {
+      "activeArea": "fixedassets",
+      "latestReviewCase": "FIXEDASSETS-268-FA-DEPRECIATION-OK-RESULT-BLOCKER-REVIEW",
+      "nextCase": "FIXEDASSETS-269-FA-DEPRECIATION-ELIGIBILITY-AND-JOURNAL-SETUP-READONLY-DIAGNOSIS",
+      "depreciationReadiness": "FA-268 classifies FA-267 as missing-journal-line-after-controlled-OK and selects read-only depreciation eligibility/journal setup diagnosis before any repeat OK."
+    }
+  },
+  "reason": "Local blocker review selected a read-only diagnosis path because FA-267 and FA-248 both showed no visible FADEP journal line after OK."
+}
