@@ -1,0 +1,173 @@
+{
+  "schemaVersion": 1,
+  "purpose": "bank-fresh-reconciliation-candidate-gate",
+  "caseId": "BANK-014-FRESH-RECONCILIATION-CANDIDATE-GATE",
+  "testId": "BANK-014",
+  "source": "playwright-ui-readonly",
+  "resultStatus": "observed",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "sourceCompany": "RM-DEMO",
+  "mode": "labor-readonly-no-post-no-apply-no-edit",
+  "candidate": {
+    "transactionDocumentNo": "108205",
+    "invoiceNo": "107197",
+    "vendorNo": "40000",
+    "vendorName": "Wide World Importers",
+    "amount": "1.561,00"
+  },
+  "observations": [
+    {
+      "id": "payment-reconciliation-candidate-context",
+      "pageId": 1290,
+      "tableName": null,
+      "filterField": null,
+      "filterValue": null,
+      "url": "https://businesscentral.dynamics.com/<tenant>/MCP_1_20260210?company=RM-DEMO&page=1290&dc=0&bookmark=3A_EgEAAACLAQAAAAJ7_0MASABFAEMASwBJAE4ARwAAAAJ7_1AAUgBFAEMAMAAwADAAAAAAhxAn",
+      "title": "Payment Reconciliation Journal",
+      "textEvidenceFile": "010-payment-reconciliation-candidate-context-page-text.txt",
+      "relevantButtonsVisibleNotClicked": [
+        "Accept Applications",
+        "Accepted",
+        "Amount Incl. Tolerance Matched:",
+        "Balance After Posting",
+        "Document No./Ext. Document No. Matched",
+        "Lines For Review",
+        "Lines With differences",
+        "Match Confidence",
+        "Match Details",
+        "No. of Open Ledger Entries for",
+        "Number of Lines",
+        "Post Payments Only...",
+        "Related Party Matched",
+        "Total Credit Amount"
+      ],
+      "analysis": {
+        "candidateTransactionVisible": true,
+        "candidateInvoiceVisible": true,
+        "vendorNoVisible": true,
+        "vendorNameVisible": true,
+        "candidateAmountVisible": true,
+        "paymentReconciliationVisible": true,
+        "vendorLedgerVisible": false,
+        "openSignalVisible": true,
+        "remainingAmountSignalVisible": false
+      }
+    },
+    {
+      "id": "vendor-ledger-invoice-107197",
+      "pageId": 29,
+      "tableName": "Vendor Ledger Entry",
+      "filterField": "Document No.",
+      "filterValue": "107197",
+      "url": "https://businesscentral.dynamics.com/<tenant>/MCP_1_20260210?company=RM-DEMO&page=29&filter=%27Vendor%20Ledger%20Entry%27.%27Document%20No.%27%20IS%20%27107197%27&dc=0",
+      "title": "Vendor Ledger Entries",
+      "textEvidenceFile": "020-vendor-ledger-invoice-107197-page-text.txt",
+      "relevantButtonsVisibleNotClicked": [
+        "Creditor No.",
+        "Entry No.",
+        "Open",
+        "Posting Date"
+      ],
+      "analysis": {
+        "candidateTransactionVisible": false,
+        "candidateInvoiceVisible": false,
+        "vendorNoVisible": false,
+        "vendorNameVisible": false,
+        "candidateAmountVisible": false,
+        "paymentReconciliationVisible": false,
+        "vendorLedgerVisible": true,
+        "openSignalVisible": true,
+        "remainingAmountSignalVisible": true
+      }
+    },
+    {
+      "id": "vendor-ledger-transaction-108205",
+      "pageId": 29,
+      "tableName": "Vendor Ledger Entry",
+      "filterField": "Document No.",
+      "filterValue": "108205",
+      "url": "https://businesscentral.dynamics.com/<tenant>/MCP_1_20260210?company=RM-DEMO&page=29&filter=%27Vendor%20Ledger%20Entry%27.%27Document%20No.%27%20IS%20%27108205%27&dc=0&bookmark=C_GQAAAACHgAc",
+      "title": "Vendor Ledger Entries",
+      "textEvidenceFile": "030-vendor-ledger-transaction-108205-page-text.txt",
+      "relevantButtonsVisibleNotClicked": [
+        "Creditor No.",
+        "Entry No.",
+        "Open",
+        "Posting Date"
+      ],
+      "analysis": {
+        "candidateTransactionVisible": true,
+        "candidateInvoiceVisible": true,
+        "vendorNoVisible": true,
+        "vendorNameVisible": true,
+        "candidateAmountVisible": false,
+        "paymentReconciliationVisible": false,
+        "vendorLedgerVisible": true,
+        "openSignalVisible": true,
+        "remainingAmountSignalVisible": true
+      }
+    }
+  ],
+  "targetLedgerReady": false,
+  "decisionStatus": "candidate-gate-blocked",
+  "decision": "BANK-014 bleibt read-only und blockiert Apply/Post: Der Kandidat 108205 / Invoice 107197 ist noch nicht ausreichend gegen Vendor Ledger Entries belegt.",
+  "expectedTraceIfLaterApproved": [
+    "Payment Reconciliation line 108205 / Invoice 107197 / Wide World Importers selected explicitly.",
+    "Accept Applications only after target line and open Vendor Ledger Entry are visible.",
+    "Post Payments Only only after dialog proves scope or an all-lines decision exists.",
+    "After posting: Vendor Ledger Entry for 107197, payment entry, Detailed Vendor Ledger Entry, Bank Account Ledger Entry and G/L Entries filtered by new payment document."
+  ],
+  "proved": [
+    "Payment Reconciliation Journal wurde read-only fuer Kandidat 108205 / Invoice 107197 gelesen.",
+    "Vendor Ledger Entries wurden read-only fuer Invoice 107197 geoeffnet.",
+    "Vendor Ledger Entries wurden read-only fuer Document No. 108205 geoeffnet.",
+    "Keine Apply-, Accept Applications-, Post Payments Only-, New-, Edit- oder Delete-Aktion wurde geklickt."
+  ],
+  "notProved": [
+    "Keine Bankabstimmung wurde gebucht.",
+    "Keine Zahlung wurde gebucht.",
+    "Keine Anwendung/Accept Applications wurde ausgefuehrt.",
+    "Keine Postenspur einer neuen Zahlung existiert.",
+    "Kein deutscher Bank-/Compliance-Finalnachweis."
+  ],
+  "flags": {
+    "readOnly": true,
+    "noPost": true,
+    "noPreviewPosting": true,
+    "noPaymentPosting": true,
+    "noBankReconciliationPosting": true,
+    "noAcceptApplications": true,
+    "noApply": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noNew": true,
+    "noEdit": true,
+    "noDelete": true,
+    "noDraftCreated": true,
+    "noApiShortcut": true,
+    "noBookChangeInsideTest": true
+  },
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "rebuildInstruction": "In der deutschen Zielcompany Kandidat und offenen Kreditorenposten sichtbar abgleichen, bevor Apply oder Post Payments Only genutzt werden.",
+  "targetGermanCompanyImpact": "Deutsche Bankabstimmung braucht eigene Zielzeile, deutsches Bankkonto, Zielposten und separate Posting-/Reconciliation-Evidence.",
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/bank-014/BANK-014-result.json",
+    "playwright/projects/fibu-book5/evidence/bank-014/BANK-014-CANDIDATE-GATE.md",
+    "playwright/projects/fibu-book5/evidence/bank-014/010-payment-reconciliation-candidate-context-page-text.txt",
+    "playwright/projects/fibu-book5/evidence/bank-014/020-vendor-ledger-invoice-107197-page-text.txt",
+    "playwright/projects/fibu-book5/evidence/bank-014/030-vendor-ledger-transaction-108205-page-text.txt",
+    "playwright/projects/fibu-book5/evidence/bank-014/README.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/bank-014/"
+  ],
+  "blockedBy": [
+    "candidate-ledger-proof-incomplete"
+  ],
+  "requiresReview": true,
+  "safeToFinalizeState": true,
+  "nextStep": "Switch to another bounded execute/evidence route; do not post candidate 108205 / 107197."
+}

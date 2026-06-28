@@ -38,7 +38,7 @@
     "bankPayments": {
       "chapter": "Kapitel 20",
       "status": "labor-sufficient-for-book-draft",
-      "latestPracticalCase": "BANK-011-POST-PAYMENT-RECONCILIATION-STATE",
+      "latestPracticalCase": "BANK-014-FRESH-RECONCILIATION-CANDIDATE-GATE",
       "latestReviewCase": "BANK-012-BANK-RECONCILIATION-CLEAR-TARGET-OR-PARK",
       "customerPaymentAnchor": "PAY011-PS103297",
       "vendorPaymentAnchor": "BANK009-108204",
@@ -57,11 +57,13 @@
         "No bank reconciliation",
         "No bank statement import",
         "No German final proof",
-        "No German bank/compliance final screenshots"
+        "No German bank/compliance final screenshots",
+        "BANK-014: candidate 108205 / invoice 107197 not sufficiently proven against Vendor Ledger Entries for Apply/Post"
       ],
-      "nextStep": "Fresh statement line/target only, otherwise German final rebuild or switch process.",
+      "nextStep": "BANK-015 route decision: do not post candidate 108205 / 107197; choose safer bank follow-up or park reconciliation for German final rebuild.",
       "postPaymentReconciliationState": "old invoice 108204 still visible in Payment Reconciliation after BANK009-108204; do not post old reconciliation context blindly",
-      "staleReconciliationDecision": "BANK-012 parks stale 108204 Payment Reconciliation signal after BANK009-108204; do not post it blindly."
+      "staleReconciliationDecision": "BANK-012 parks stale 108204 Payment Reconciliation signal after BANK009-108204; do not post it blindly.",
+      "latestBlockedCase": "BANK-014-FRESH-RECONCILIATION-CANDIDATE-GATE"
     },
     "companyLab": {
       "chapter": "Kapitel 6/7/25",
@@ -88,12 +90,12 @@
   "hardExclusions": {
     "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
   },
-  "updatedAt": "2026-06-29T00:23:13.8770634+02:00",
+  "updatedAt": "2026-06-29T00:31:39.0797675+02:00",
   "activeArea": "bank",
-  "currentBlock": "bank-reconciliation-fresh-candidate-gate",
+  "currentBlock": "bank-reconciliation-candidate-gate-blocked",
   "latestPracticalCase": "FIXEDASSETS-295-FA-DEPRECIATION-GUARDED-OK-FRESH-DOC-NO-POST",
   "latestReviewCase": "FIXEDASSETS-296-FA-DEPRECIATION-FRESH-OK-RESULT-BLOCKER-REVIEW",
-  "nextCase": "BANK-014-FRESH-RECONCILIATION-CANDIDATE-GATE",
+  "nextCase": "BANK-015-RECONCILIATION-ALTERNATIVE-ROUTE-DECISION",
   "latestBank013": {
     "caseId": "BANK-013-CONTROLLED-NEXT-EVIDENCE-STEP",
     "status": [
@@ -487,5 +489,17 @@
     "status": "light-execute-blocked-cleanup-proven",
     "blocker": "Account No.",
     "evidencePath": "playwright/projects/fibu-book5/evidence/p2p-016/P2P-016-result.json"
+  },
+  "latestBank014": {
+    "caseId": "BANK-014-FRESH-RECONCILIATION-CANDIDATE-GATE",
+    "status": [
+      "labor-blocked",
+      "read-only",
+      "candidate-gate-blocked",
+      "needs-german-final-rebuild"
+    ],
+    "resultPath": "playwright/projects/fibu-book5/evidence/bank-014/BANK-014-result.json",
+    "summary": "BANK-014 read Payment Reconciliation candidate 108205 / invoice 107197 and related Vendor Ledger views read-only. The reconciliation line was visible, but the invoice ledger proof was incomplete, so Apply/Accept/Post remain blocked.",
+    "nextCase": "BANK-015-RECONCILIATION-ALTERNATIVE-ROUTE-DECISION"
   }
 }

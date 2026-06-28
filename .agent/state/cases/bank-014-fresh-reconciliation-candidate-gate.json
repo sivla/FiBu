@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "caseId": "BANK-014-FRESH-RECONCILIATION-CANDIDATE-GATE",
   "title": "Choose one fresh Payment Reconciliation candidate before any apply or post",
-  "status": "planned",
+  "status": "blocked",
   "taskClass": "judge_work",
   "modelClass": "gpt-5.5-low",
   "instance": "MCP_1_20260210",
@@ -74,5 +74,32 @@
   "mustRecreateInFinalSandbox": true,
   "targetGermanCompanyImpact": "German final bank reconciliation must be rebuilt with a fresh bank statement line and target open ledger entry.",
   "finalScreenshotNeeded": true,
-  "nextStep": "Read candidate 108205 / invoice 107197 against Vendor Ledger Entries and decide whether a controlled apply/post follow-up is safe."
+  "nextStep": "Switch to another bounded execute/evidence route; do not post candidate 108205 / 107197.",
+  "completedAt": "2026-06-29T00:31:39.0797675+02:00",
+  "resultPath": "playwright/projects/fibu-book5/evidence/bank-014/BANK-014-result.json",
+  "resultStatus": "observed",
+  "decisionStatus": "candidate-gate-blocked",
+  "targetLedgerReady": false,
+  "blockedBy": [
+    "candidate-ledger-proof-incomplete"
+  ],
+  "flags": {
+    "readOnly": true,
+    "noPost": true,
+    "noPreviewPosting": true,
+    "noPaymentPosting": true,
+    "noBankReconciliationPosting": true,
+    "noAcceptApplications": true,
+    "noApply": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noNew": true,
+    "noEdit": true,
+    "noDelete": true,
+    "noDraftCreated": true,
+    "noApiShortcut": true,
+    "noBookChangeInsideTest": true
+  },
+  "nextCase": "BANK-015-RECONCILIATION-ALTERNATIVE-ROUTE-DECISION",
+  "nextCaseFile": ".agent/state/cases/bank-015-reconciliation-alternative-route-decision.json"
 }

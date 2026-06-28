@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "caseId": "BANK-015-RECONCILIATION-ALTERNATIVE-ROUTE-DECISION",
+  "title": "Choose a safer bank follow-up after candidate 108205 / 107197 gate blocked",
+  "status": "planned",
+  "taskClass": "judge_work",
+  "modelClass": "gpt-5.5-low",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "route-decision",
+  "sourceCase": "BANK-014-FRESH-RECONCILIATION-CANDIDATE-GATE",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/bank-014/BANK-014-result.json",
+    "playwright/projects/fibu-book5/evidence/bank-014/BANK-014-CANDIDATE-GATE.md"
+  ],
+  "purpose": "Do not continue with candidate 108205 / 107197 until ledger proof is stronger; choose a bounded alternative such as another visible fresh candidate, single-line Payment Journal route, or parking bank reconciliation for German final rebuild.",
+  "allowedActions": [
+    "read-bank-014-evidence",
+    "read-bank-009-evidence",
+    "read-bank-013-evidence",
+    "write-route-decision",
+    "update-state"
+  ],
+  "defaultLockedActions": [
+    "accept-applications",
+    "post-payments-only",
+    "posting",
+    "payment",
+    "setup-change",
+    "keep-draft"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "claim-german-final-proof",
+    "api-shortcut-without-explicit-case-permission",
+    "global-posting-without-all-lines-approval",
+    "post-candidate-108205-without-ledger-proof"
+  ],
+  "safetyGates": [
+    "instance-and-company-confirmed",
+    "source-evidence-read",
+    "blocked-candidate-not-reused-for-posting",
+    "alternative-route-selected-before-live-action",
+    "expected-ledger-trace-written-if-any-posting-follow-up-is-proposed"
+  ],
+  "expectedOutputs": [
+    "A compact route decision after BANK-014 blocked candidate 108205 / 107197.",
+    "A next practical case that does not repeat the blocked candidate without a new proof route."
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "targetGermanCompanyImpact": "German final bank reconciliation needs its own statement line, open ledger entry proof and posting trace.",
+  "finalScreenshotNeeded": true,
+  "nextStep": "Review BANK-014 and choose the safest next bank route; do not click Accept Applications or Post Payments Only for 108205 / 107197."
+}
