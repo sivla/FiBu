@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-28T23:31:50.768Z",
+  "updatedAt": "2026-06-28T23:35:23.208Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "activeArea": "bank",
-  "activeCase": "BANK-026-BANK-RECONCILIATION-BOOK-SYNC",
-  "active_case_file": ".agent/state/cases/bank-026-bank-reconciliation-book-sync.json",
-  "lastReferenceCase": "BANK-025-CHECKING-24-RECONCILIATION-GATE-DECISION",
-  "lastReferenceCaseFile": ".agent/state/cases/bank-025-checking-24-reconciliation-gate-decision.json",
+  "activeArea": "p2p",
+  "activeCase": "P2P-021-PURCHASE-INVOICE-ALTERNATIVE-ROUTE-PREFLIGHT",
+  "active_case_file": ".agent/state/cases/p2p-021-purchase-invoice-alternative-route-preflight.json",
+  "lastReferenceCase": "BANK-026-BANK-RECONCILIATION-BOOK-SYNC",
+  "lastReferenceCaseFile": ".agent/state/cases/bank-026-bank-reconciliation-book-sync.json",
   "mode": "bc-specialist-labor-book-production",
   "requiresStrongModel": false,
   "requiredPreflightChecks": [
@@ -40,7 +40,7 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "BANK-026: sync BANK-024/BANK-025 into the bank/payments draft and park reconciliation until a concrete statement/match plan exists.",
+  "nextStep": "P2P-021: use a Purchase Invoice alternative-route preflight instead of repeating blocked Purchase Order line cell edits or Purchase Journal preview blockers.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/bank-payments-labor-draft.md",
     "area": "bankPayments",
@@ -57,13 +57,14 @@
       "BANK-022",
       "BANK-023",
       "BANK-024",
-      "BANK-025"
+      "BANK-025",
+      "BANK-026"
     ],
-    "bookEffect": "Bank reconciliation CHECKING 24 is documented as visible read-only context but blocked for posting because Difference and match/apply state are not classified.",
+    "bookEffect": "Bank payments and bank reconciliation boundaries are now draft-ready: payment is lab-proven, bank reconciliation is visible but parked for posting until a concrete statement/match plan exists.",
     "integratedIntoBookMaster": false,
     "bookMasterSection": "future Kapitel 20 Bank und Zahlungen integration",
     "labVsTargetPathSeparated": true,
-    "nextStep": "BANK-026 book-sync the reconciliation gate and park further bank reconciliation execution."
+    "nextStep": "Move back to P2P with a Purchase Invoice alternative-route preflight."
   },
   "bookProductionGoal": {
     "goalFile": ".agent/state/book-production-goal.json",
@@ -1385,8 +1386,8 @@
     "decision": "Approve a separate no-post Payment Journal preflight for Vendor Ledger document 108205. Do not use Payment Reconciliation Apply/Post for this target. BANK-018 may create exactly one scoped draft line, run Journal Check/open Apply Entries if reachable, and must cleanup or explicitly document keep status. Posting remains locked.",
     "nextStep": "BANK-018: controlled no-post Payment Journal preflight for 108205; do not post."
   },
-  "workType": "book-sync-labor-only-bank-reconciliation",
-  "lastCompletedCase": "BANK-025-CHECKING-24-RECONCILIATION-GATE-DECISION",
+  "workType": "p2p-purchase-invoice-alternative-route-preflight",
+  "lastCompletedCase": "BANK-026-BANK-RECONCILIATION-BOOK-SYNC",
   "latestBank018": {
     "caseId": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
     "status": [
@@ -1556,5 +1557,17 @@
     "mustRecreateInFinalSandbox": true,
     "summary": "BANK-025 classified CHECKING 24 as visible read-only bank reconciliation context but not posting-ready because Total Difference 11.573,18 and match/apply state are not classified.",
     "nextCase": "BANK-026-BANK-RECONCILIATION-BOOK-SYNC"
+  },
+  "latestBank026": {
+    "caseId": "BANK-026-BANK-RECONCILIATION-BOOK-SYNC",
+    "status": "done",
+    "workType": "book-sync-labor-only-bank-reconciliation",
+    "sourceCompany": "RM-DEMO",
+    "resultPath": "playwright/projects/fibu-book5/evidence/bank-026/BANK-026-result.json",
+    "decisionStatus": "bank-reconciliation-parked",
+    "classification": "labor-sufficient-for-book-draft-and-blocked-for-posting",
+    "summary": "BANK-026 synced BANK-024/BANK-025 into the bank/payments draft and parks bank reconciliation until a concrete statement/match plan or German final rebuild exists.",
+    "mustRecreateInFinalSandbox": true,
+    "nextCase": "P2P-021-PURCHASE-INVOICE-ALTERNATIVE-ROUTE-PREFLIGHT"
   }
 }

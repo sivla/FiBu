@@ -67,7 +67,9 @@
         "Bank Acc. Reconciliation CHECKING 24 Page 379 read-only visible",
         "Statement lines and Bank Account Ledger Entries visible read-only",
         "CHECKING Statement 24 gate decision",
-        "Total Difference 11.573,18 blocks posting readiness"
+        "Total Difference 11.573,18 blocks posting readiness",
+        "Bank reconciliation parked after CHECKING 24 gate",
+        "Bank/payments draft includes reconciliation boundary and German final rebuild notes"
       ],
       "openLimits": [
         "No bank reconciliation",
@@ -86,18 +88,21 @@
         "BANK-024 does not prove bank reconciliation posting readiness.",
         "CHECKING Statement 24 needs a separate no-post readiness decision before any controlled preflight or posting.",
         "CHECKING 24 is not approved for no-post preflight or posting until Difference and match/apply state are classified.",
-        "Post button visibility is not bank reconciliation posting readiness."
+        "Post button visibility is not bank reconciliation posting readiness.",
+        "Further bank reconciliation execution requires a new concrete statement/match plan.",
+        "German final bank reconciliation must be rebuilt in a German target company."
       ],
-      "nextStep": "BANK-026: sync BANK-024/BANK-025 into the bank/payments draft and park reconciliation until a concrete statement/match plan exists.",
+      "nextStep": "Bank reconciliation parked. Continue P2P with Purchase Invoice alternative-route preflight.",
       "postPaymentReconciliationState": "old invoice 108204 still visible in Payment Reconciliation after BANK009-108204; do not post old reconciliation context blindly",
       "staleReconciliationDecision": "BANK-012 parks stale 108204 Payment Reconciliation signal after BANK009-108204; do not post it blindly.",
       "latestBlockedCase": "BANK-014-FRESH-RECONCILIATION-CANDIDATE-GATE",
-      "latestBookSyncCase": "BANK-022-BANK020-BOOK-SYNC",
+      "latestBookSyncCase": "BANK-026-BANK-RECONCILIATION-BOOK-SYNC",
       "latestBookDraft": "playwright/projects/fibu-book5/book-drafts/bank-payments-labor-draft.md",
-      "nextCase": "BANK-026-BANK-RECONCILIATION-BOOK-SYNC",
+      "nextCase": "P2P-021-PURCHASE-INVOICE-ALTERNATIVE-ROUTE-PREFLIGHT",
       "latestRouteDecisionCase": "BANK-023-BANK-RECONCILIATION-ROUTE-DECISION",
       "latestRouteScoutCase": "BANK-024-BANK-ACCOUNT-RECONCILIATION-READONLY-SCOUT",
-      "latestGateDecisionCase": "BANK-025-CHECKING-24-RECONCILIATION-GATE-DECISION"
+      "latestGateDecisionCase": "BANK-025-CHECKING-24-RECONCILIATION-GATE-DECISION",
+      "reconciliationStatus": "parked-after-readonly-scout-and-gate"
     },
     "companyLab": {
       "chapter": "Kapitel 6/7/25",
@@ -124,7 +129,7 @@
   "hardExclusions": {
     "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
   },
-  "updatedAt": "2026-06-28T23:31:50.768Z",
+  "updatedAt": "2026-06-28T23:35:23.208Z",
   "activeArea": "bank",
   "currentBlock": "bank-payment-journal-108205-book-sync",
   "latestPracticalCase": "FIXEDASSETS-295-FA-DEPRECIATION-GUARDED-OK-FRESH-DOC-NO-POST",
@@ -767,5 +772,17 @@
     "mustRecreateInFinalSandbox": true,
     "summary": "BANK-025 classified CHECKING 24 as visible read-only bank reconciliation context but not posting-ready because Total Difference 11.573,18 and match/apply state are not classified.",
     "nextCase": "BANK-026-BANK-RECONCILIATION-BOOK-SYNC"
+  },
+  "latestBank026": {
+    "caseId": "BANK-026-BANK-RECONCILIATION-BOOK-SYNC",
+    "status": "done",
+    "workType": "book-sync-labor-only-bank-reconciliation",
+    "sourceCompany": "RM-DEMO",
+    "resultPath": "playwright/projects/fibu-book5/evidence/bank-026/BANK-026-result.json",
+    "decisionStatus": "bank-reconciliation-parked",
+    "classification": "labor-sufficient-for-book-draft-and-blocked-for-posting",
+    "summary": "BANK-026 synced BANK-024/BANK-025 into the bank/payments draft and parks bank reconciliation until a concrete statement/match plan or German final rebuild exists.",
+    "mustRecreateInFinalSandbox": true,
+    "nextCase": "P2P-021-PURCHASE-INVOICE-ALTERNATIVE-ROUTE-PREFLIGHT"
   }
 }

@@ -148,3 +148,20 @@ Fuer Anfaenger ist die Trennung wichtig:
 | `Total Difference 11.573,18` | Vor einer Buchung muss die Differenz fachlich geklaert werden |
 
 Buchregel: Dieser Laborblock darf im Buch als Navigations- und Fehlervermeidungsbeispiel verwendet werden. Er darf nicht als Bankabstimmungsbuchung, nicht als korrekter Ausgleich und nicht als deutscher Finalnachweis formuliert werden.
+
+## BANK-026: Parkstatus fuer Bankabstimmung
+
+Status:
+- Laborblock: `labor-sufficient-for-book-draft`.
+- Bankabstimmungsbuchung: `labor-blocked-for-posting`.
+- Naechster Bank-Schritt: erst mit neuem konkretem Statement-/Match-Plan.
+
+Damit ist der Bank-/Payments-Laborblock fuer den Buchdraft ausreichend: Das Buch kann Zahlung, OP-Ausgleich, Bankposten, Sachposten und die Grenze zur Bankabstimmung erklaeren. Die eigentliche Bankkontoabstimmung wird nicht weiter blind im Labor geklickt. Sie wird spaeter entweder mit einem eigenen neuen RM-DEMO-Case vorbereitet oder in der deutschen Zielcompany final neu aufgebaut.
+
+German-Final-Rebuild fuer Bankabstimmung:
+- deutsches Bankkonto,
+- echte oder kontrollierte deutsche Kontoauszugszeile,
+- eindeutige Zielposten,
+- klares Match-/Apply-Ergebnis,
+- Post-Dialog,
+- Bankposten-/Sachposten-Trace nach der Abstimmung.

@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "caseId": "P2P-021-PURCHASE-INVOICE-ALTERNATIVE-ROUTE-PREFLIGHT",
+  "title": "Purchase Invoice alternative-route preflight after blocked Purchase Order line and Purchase Journal routes",
+  "status": "planned",
+  "taskClass": "wizard_work",
+  "modelClass": "gpt-5.4-high",
+  "usageLogRequired": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "p2p-purchase-invoice-alternative-route-preflight",
+  "sourceCase": "BANK-026-BANK-RECONCILIATION-BOOK-SYNC",
+  "purpose": "Return to P2P with a safer alternative route instead of repeating blocked Purchase Order line cell edits or Purchase Journal preview blockers.",
+  "allowedActions": [
+    "open-business-central-if-instance-and-company-match",
+    "run-playwright-if-case-preflight-passes",
+    "read-p2p-prior-evidence",
+    "create-controlled-purchase-invoice-draft-if-gates-pass",
+    "capture-compact-evidence",
+    "cleanup-or-trace-draft",
+    "update-state"
+  ],
+  "defaultLockedActions": [
+    "posting",
+    "preview-posting",
+    "setup-change",
+    "keep-draft"
+  ],
+  "forbiddenActions": [
+    "claim-german-final-proof",
+    "book-claim-without-evidence",
+    "repeat-purchase-order-cell-edit-route",
+    "repeat-purchase-journal-preview-blocker-without-new-fix",
+    "post-in-p2p-021"
+  ],
+  "safetyGates": [
+    "instance-must-be-MCP_1_20260210",
+    "company-must-be-RM-DEMO",
+    "purchase-invoice-context-before-line-entry",
+    "no-posting-in-p2p-021",
+    "cleanup-or-explicit-keep-evidence"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "targetGermanCompanyImpact": "German final P2P needs its own vendor, item/FA/service line, VAT and posting trace.",
+  "finalScreenshotNeeded": true,
+  "nextStep": "Run a controlled Purchase Invoice alternative-route preflight only if it avoids the already blocked Purchase Order line cell-edit path."
+}
