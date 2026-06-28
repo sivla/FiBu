@@ -28,6 +28,7 @@ function collectPackages(current, lastRun) {
 }
 
 const marathon = readJson('.agent/state/marathon.json');
+const marathonQueue = readJson('.agent/state/marathon_queue.json', {});
 const current = readJson('.agent/state/current.json', {});
 const lastRun = readJson('.agent/state/last_run_summary.json', {});
 
@@ -112,6 +113,14 @@ const onlyLightExecute = executePackages > 0 && highImpactExecutePackages === 0 
 const nextBestLevers = Array.isArray(summary?.nextBestLevers) ? summary.nextBestLevers : [];
 const nextExecuteLevers = nextBestLevers.length > 0 ? nextBestLevers : marathon.nextExecuteLevers ?? [];
 const nextExecuteLeversExist = nextExecuteLevers.length > 0;
+const queueItems = Array.isArray(marathonQueue?.items) ? marathonQueue.items : [];
+const openQueueItems = queueItems
+  .filter((entry) => ['pending', 'running'].includes(normalize(entry.status)))
+  .sort((left, right) => (left.order ?? 9999) - (right.order ?? 9999));
+const blockedQueueItems = queueItems.filter((entry) => normalize(entry.status) === 'blocked');
+const doneQueueItems = queueItems.filter((entry) => normalize(entry.status) === 'done');
+const nextQueueItem = openQueueItems[0] ?? null;
+const queueNotEmpty = openQueueItems.length > 0;
 const hardStopDocumented = documentedHardStops.some((stop) => hardStopConditions.map(normalize).includes(stop));
 const finalReportAllowed =
   hardStopDocumented ||
@@ -120,7 +129,9 @@ const finalReportAllowed =
     minHighImpactExecutePackagesReached &&
     !onlyReadOnlyOrSync &&
     !(marathon.lightExecuteDoesNotCountAsHighImpact && onlyLightExecute) &&
-    !(marathon.continueWhenNextExecuteLeversExist && nextExecuteLeversExist && highImpactExecutePackages === 0));
+    !(marathon.continueWhenNextExecuteLeversExist && nextExecuteLeversExist && highImpactExecutePackages === 0) &&
+    !(marathon.queueMustBeEmptyOrHardStop && queueNotEmpty) &&
+    !(marathon.finalReportAllowedOnlyWhenQueueEmpty && queueNotEmpty));
 
 const output = {
   schemaVersion: 1,
@@ -145,6 +156,24 @@ const output = {
   onlyLightExecute,
   nextBestLevers,
   nextExecuteLeversExist,
+  queue: {
+    active: marathonQueue?.active === true,
+    total: queueItems.length,
+    done: doneQueueItems.length,
+    blocked: blockedQueueItems.length,
+    open: openQueueItems.length,
+    queueNotEmpty,
+    nextQueueItem: nextQueueItem
+      ? {
+          id: nextQueueItem.id,
+          order: nextQueueItem.order,
+          status: nextQueueItem.status,
+          category: nextQueueItem.category,
+          expectedImpact: nextQueueItem.expectedImpact,
+          evidenceTarget: nextQueueItem.evidenceTarget
+        }
+      : null
+  },
   hardStopDocumented,
   finalReportAllowed,
   nextExecuteLever: nextExecuteLevers?.[0] ?? '',
@@ -153,6 +182,8 @@ const output = {
     ? 'Marathon final report is allowed.'
     : hardStopDocumented
       ? 'Marathon final report is allowed because a hard stop was documented.'
+      : queueNotEmpty
+        ? 'queue-not-empty'
       : highImpactExecutePackages === 0
         ? 'Marathon final report is not allowed yet; only light execute/read-only progress exists and a high-impact execute lever remains.'
         : 'Marathon final report is not allowed yet; continue until the v2 progress, execute and high-impact thresholds are met.'

@@ -1,0 +1,142 @@
+{
+  "schemaVersion": 1,
+  "active": true,
+  "mode": "execute-marathon-v3",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "queueMustBeEmptyOrHardStop": true,
+  "items": [
+    {
+      "id": "P2P-018-PURCHASE-JOURNAL-ACCOUNT-NO-FIELDMAPPING",
+      "order": 1,
+      "status": "pending",
+      "category": "p2p",
+      "expectedImpact": "high-impact-candidate",
+      "fallbackRoute": "P2P-019 or Purchase Invoice route if field mapping proves journal route unsuitable.",
+      "evidenceTarget": "playwright/projects/fibu-book5/evidence/p2p-018/",
+      "mayWorkEffectively": true,
+      "goal": "Map Account No. / Bal. Account No. without repeating the blind 82000 route."
+    },
+    {
+      "id": "P2P-019-PURCHASE-JOURNAL-POSTING-GROUP-PREVIEW-GATE",
+      "order": 2,
+      "status": "pending",
+      "category": "p2p",
+      "expectedImpact": "high-impact",
+      "fallbackRoute": "Purchase Invoice route or P2P field mapping repair.",
+      "evidenceTarget": "playwright/projects/fibu-book5/evidence/p2p-019/",
+      "mayWorkEffectively": true,
+      "goal": "Resolve posting groups plus Account No. blocker; run Journal Check and Preview if clean."
+    },
+    {
+      "id": "P2P-020-PURCHASE-JOURNAL-LEDGER-TRACE-OR-CORRECTION",
+      "order": 3,
+      "status": "pending",
+      "category": "p2p",
+      "expectedImpact": "high-impact",
+      "fallbackRoute": "Correction route if posting is wrong; otherwise ledger trace only.",
+      "evidenceTarget": "playwright/projects/fibu-book5/evidence/p2p-020/",
+      "mayWorkEffectively": true,
+      "goal": "If Preview is clean, post only with trace plan and then trace Vendor/G/L entries."
+    },
+    {
+      "id": "PAYMENTS-006-CASH-RECEIPT-AMOUNT-VALIDATION",
+      "order": 4,
+      "status": "pending",
+      "category": "payments",
+      "expectedImpact": "high-impact-candidate",
+      "fallbackRoute": "Different amount field or payment journal route.",
+      "evidenceTarget": "playwright/projects/fibu-book5/evidence/payments-006/",
+      "mayWorkEffectively": true,
+      "goal": "Resolve Amount field issue from PAYMENTS-005 and rerun Journal Check."
+    },
+    {
+      "id": "PAYMENTS-007-APPLY-OR-PREVIEW-GATE",
+      "order": 5,
+      "status": "pending",
+      "category": "payments",
+      "expectedImpact": "high-impact",
+      "fallbackRoute": "Read-only Apply Entries field map before payment posting.",
+      "evidenceTarget": "playwright/projects/fibu-book5/evidence/payments-007/",
+      "mayWorkEffectively": true,
+      "goal": "Test Apply Entries / payment / settlement gate; Preview/Post only with trace plan."
+    },
+    {
+      "id": "FIXEDASSETS-246-DEPRECIATION-EXECUTE-ROUTE",
+      "order": 6,
+      "status": "pending",
+      "category": "fixedassets",
+      "expectedImpact": "high-impact",
+      "fallbackRoute": "FA journal output-target diagnosis if Calculate Depreciation cannot generate lines.",
+      "evidenceTarget": "playwright/projects/fibu-book5/evidence/fixedassets-246/",
+      "mayWorkEffectively": true,
+      "goal": "Execute Calculate Depreciation / request page route and prove generated journal line if possible."
+    },
+    {
+      "id": "FIXEDASSETS-247-DEPRECIATION-LEDGER-TRACE",
+      "order": 7,
+      "status": "pending",
+      "category": "fixedassets",
+      "expectedImpact": "high-impact",
+      "fallbackRoute": "Blocker plus correction route if depreciation cannot post.",
+      "evidenceTarget": "playwright/projects/fibu-book5/evidence/fixedassets-247/",
+      "mayWorkEffectively": true,
+      "goal": "Trace FA Ledger and G/L effects or document blocker."
+    },
+    {
+      "id": "BANK-001-RECONCILIATION-CONTROLLED-LAB",
+      "order": 8,
+      "status": "pending",
+      "category": "bank",
+      "expectedImpact": "high-impact",
+      "fallbackRoute": "Payment reconciliation journal route.",
+      "evidenceTarget": "playwright/projects/fibu-book5/evidence/bank-001/",
+      "mayWorkEffectively": true,
+      "goal": "Start controlled bank reconciliation or payment reconciliation lab route."
+    },
+    {
+      "id": "DIMENSIONS-001-DEFAULT-DIMENSION-PRACTICAL-TRACE",
+      "order": 9,
+      "status": "pending",
+      "category": "dimensions",
+      "expectedImpact": "high-impact-candidate",
+      "fallbackRoute": "Read-only dimension propagation trace if setup write is not safe.",
+      "evidenceTarget": "playwright/projects/fibu-book5/evidence/dimensions-001/",
+      "mayWorkEffectively": true,
+      "goal": "Set/check default dimension and trace effect to document or entry."
+    },
+    {
+      "id": "INVENTORY-009-COSTING-TRACE-REVIEW",
+      "order": 10,
+      "status": "pending",
+      "category": "inventory",
+      "expectedImpact": "high-impact-candidate",
+      "fallbackRoute": "Inventory valuation read-only trace if adjustment cannot run.",
+      "evidenceTarget": "playwright/projects/fibu-book5/evidence/inventory-009/",
+      "mayWorkEffectively": true,
+      "goal": "Deepen Item Ledger / Value Entries / Inventory Valuation / Cost Adjustment proof."
+    },
+    {
+      "id": "RM-DE-LAB-001-CLEAN-LAB-COMPANY-DECISION",
+      "order": 11,
+      "status": "pending",
+      "category": "company",
+      "expectedImpact": "high-impact-candidate",
+      "fallbackRoute": "Stay in RM-DEMO with documented reason.",
+      "evidenceTarget": "playwright/projects/fibu-book5/evidence/rm-de-lab-001/",
+      "mayWorkEffectively": true,
+      "goal": "Decide whether RM-DEMO blocks too much; optionally plan/create RM-DE-LAB or RM-SKR04-LAB."
+    },
+    {
+      "id": "RM-DE-LAB-002-FOUNDATION-SETUP",
+      "order": 12,
+      "status": "pending",
+      "category": "company",
+      "expectedImpact": "high-impact",
+      "fallbackRoute": "Return to RM-DEMO if no new company exists.",
+      "evidenceTarget": "playwright/projects/fibu-book5/evidence/rm-de-lab-002/",
+      "mayWorkEffectively": true,
+      "goal": "If company exists, start vendor/customer/item/location/bank/posting groups/number series setup."
+    }
+  ]
+}
