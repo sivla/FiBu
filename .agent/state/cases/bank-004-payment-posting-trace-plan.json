@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "caseId": "BANK-004-PAYMENT-POSTING-FACHPRUEFUNG-TRACE-PLAN",
+  "status": "done-labor-gate",
+  "workType": "payment-posting-trace-plan",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "purpose": "Vor einer echten Payment-Reconciliation-Buchung die Zielzeile, offenen Posten, erwarteten Postenarten und Stopbedingungen aus vorhandener BANK-001 bis BANK-003 Evidence definieren.",
+  "resultPath": "playwright/projects/fibu-book5/evidence/bank-004/BANK-004-result.json",
+  "allowedWithinInstance": [
+    "local-evidence-analysis",
+    "write-gate-evidence",
+    "update-state"
+  ],
+  "hardForbidden": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "final-german-claim-from-rm-demo",
+    "confirm-post-payments-only",
+    "post-payment"
+  ],
+  "decision": "payment-posting-not-yet-approved",
+  "reason": "BANK-003 proves the posting dialog exists, but BANK-002/BANK-003 do not yet isolate one target line and one exact open ledger entry set for a safe payment posting trace.",
+  "nextStep": "BANK-005: read-only target-line and open-entry drilldown on Payment Reconciliation Journal, or create a controlled single-line payment journal case instead.",
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "updatedAt": "2026-06-28T20:18:00.000Z"
+}

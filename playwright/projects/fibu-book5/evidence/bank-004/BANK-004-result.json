@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "purpose": "payment-posting-trace-plan",
+  "caseId": "BANK-004-PAYMENT-POSTING-FACHPRUEFUNG-TRACE-PLAN",
+  "source": "local-evidence-analysis",
+  "resultStatus": "observed",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "sourceCompany": "RM-DEMO",
+  "inputEvidence": [
+    "playwright/projects/fibu-book5/evidence/bank-001/BANK-001-result.json",
+    "playwright/projects/fibu-book5/evidence/bank-002/BANK-002-result.json",
+    "playwright/projects/fibu-book5/evidence/bank-003/BANK-003-result.json"
+  ],
+  "decision": "do-not-post-yet",
+  "reason": "BANK-003 proves the Post Payments Only confirmation dialog, but the current evidence does not isolate one target line and exact expected ledger effect. The journal still contains multiple review/payment lines.",
+  "proved": [
+    "Payment Reconciliation Journal can reach the Post Payments Only confirmation gate.",
+    "Accept Applications reduced Lines For Review from 6 to 5 in the laboratory journal.",
+    "The confirmation dialog can be closed safely without posting."
+  ],
+  "notProved": [
+    "No payment was posted.",
+    "No bank reconciliation was posted.",
+    "No single target line/open-entry set is proven ready for posting.",
+    "No ledger trace from a new payment exists.",
+    "No German bank/compliance final proof."
+  ],
+  "postingGate": {
+    "allowedNow": false,
+    "requiredBeforePosting": [
+      "target payment reconciliation line with amount, party, document number and account type",
+      "linked open Customer/Vendor Ledger Entry or explicit G/L target",
+      "expected Bank Account Ledger Entry, G/L Entry and Detailed Ledger Entry effects",
+      "pre-post evidence and posting dialog evidence",
+      "post-ledger trace plan",
+      "correction path"
+    ],
+    "stopConditions": [
+      "multiple target lines remain ambiguous",
+      "open-entry relation is not visible",
+      "dialog asks for broad payment posting without target trace",
+      "unexpected warning or confirmation appears",
+      "instance or company mismatch"
+    ]
+  },
+  "safety": {
+    "bcRun": false,
+    "noPost": true,
+    "noPaymentPosted": true,
+    "noBankReconciliationPosted": true,
+    "noPreviewPosting": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true,
+    "noSetupChange": true
+  },
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "rebuildInstruction": "In der deutschen Zielcompany den Payment-Reconciliation-Posting-Gate neu mit deutschem Bankkonto, eindeutiger Zielzeile, offenen Posten, Dialog-Screenshot und nachfolgendem Ledger Trace reproduzieren.",
+  "targetGermanCompanyImpact": "Deutsche Zielcompany braucht eindeutigen Bank-/OP-Ausgleichsfall und deutschen Bank-/Sachposten-/Detailed-Ledger-Trace.",
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/bank-004/BANK-004-result.json",
+    "playwright/projects/fibu-book5/evidence/bank-004/BANK-004-PAYMENT-POSTING-FACHPRUEFUNG.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/bank-004/"
+  ],
+  "blockedBy": [
+    "target-line-not-isolated",
+    "ledger-trace-not-defined-before-posting"
+  ],
+  "safeToFinalizeState": false,
+  "requiresReview": false,
+  "nextStep": "BANK-005: read-only target-line and open-entry drilldown on Payment Reconciliation Journal, or create a controlled single-line Payment Journal posting case instead."
+}

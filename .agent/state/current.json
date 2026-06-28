@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-28T20:01:42.516Z",
+  "updatedAt": "2026-06-28T20:05:38.653Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "bank",
-  "activeCase": "BANK-003-POST-PAYMENTS-ONLY-TRACE-GATE",
-  "active_case_file": ".agent/state/cases/bank-003-post-payments-only-trace-gate.json",
-  "lastReferenceCase": "BANK-003-POST-PAYMENTS-ONLY-TRACE-GATE",
-  "lastReferenceCaseFile": ".agent/state/cases/bank-003-post-payments-only-trace-gate.json",
+  "activeCase": "BANK-004-PAYMENT-POSTING-FACHPRUEFUNG-TRACE-PLAN",
+  "active_case_file": ".agent/state/cases/bank-004-payment-posting-trace-plan.json",
+  "lastReferenceCase": "BANK-004-PAYMENT-POSTING-FACHPRUEFUNG-TRACE-PLAN",
+  "lastReferenceCaseFile": ".agent/state/cases/bank-004-payment-posting-trace-plan.json",
   "mode": "bc-specialist-labor-book-production",
   "requiresStrongModel": false,
   "requiredPreflightChecks": [
@@ -40,7 +40,7 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "BANK-004: Vor echter Zahlung Zielzeile/offene Posten und erwartete Bank-/Sach-/Detailed-Ledger-Entries definieren; erst danach Payment Posting in RM-DEMO erwaegen.",
+  "nextStep": "BANK-005: read-only Zielzeilen-/Open-Entry-Drilldown im Payment Reconciliation Journal, oder kontrollierten Single-Line Payment Journal Posting Case vorbereiten.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/fixedassets-labor-draft.md",
     "area": "fixedassets",
@@ -498,9 +498,9 @@
     "setupChangedInThisDeepRun": false,
     "companySwitchedInThisDeepRun": false,
     "nextBestLevers": [
-      "BANK-004-PAYMENT-POSTING-FACHPRUEFUNG-TRACE-PLAN",
-      "RM-DE-LAB-CREATE-001-UI-FIRST-COMPANY-CREATION",
-      "FIXEDASSETS-DEPRECIATION-PARAMETER-FIX"
+      "BANK-005-TARGET-LINE-OPEN-ENTRY-DRILLDOWN",
+      "PAYMENTS-SINGLE-LINE-POSTING-CASE",
+      "RM-DE-LAB-CREATE-001-UI-FIRST-COMPANY-CREATION"
     ],
     "executePackages": [
       "P2P-014",
@@ -514,7 +514,6 @@
       "BANK-002"
     ],
     "progressPackages": [
-      "P2P-020",
       "PAYMENTS-006",
       "PAYMENTS-009",
       "FIXEDASSETS-248",
@@ -525,7 +524,8 @@
       "RM-DE-LAB-001",
       "RM-DE-LAB-002",
       "BANK-002",
-      "BANK-003"
+      "BANK-003",
+      "BANK-004"
     ],
     "highImpactExecutePackages": [
       "P2P-015",
@@ -540,7 +540,7 @@
     "file": ".agent/state/marathon.json",
     "rule": "Final report requires agent:marathon:check pass or documented hard stop.",
     "readOnlyDoesNotCountAsExecute": true,
-    "nextExecuteLever": "BANK-004-PAYMENT-POSTING-FACHPRUEFUNG-TRACE-PLAN"
+    "nextExecuteLever": "BANK-005-TARGET-LINE-OPEN-ENTRY-DRILLDOWN"
   },
   "latestP2P014": {
     "caseId": "P2P-014-PURCHASE-JOURNAL-VALUE-ENTRY-GATE",
@@ -759,5 +759,30 @@
     "mustRecreateInFinalSandbox": true,
     "finalScreenshotNeeded": true,
     "nextStep": "BANK-004: target line/open entry/ledger trace plan before confirming any payment post."
+  },
+  "latestBank004": {
+    "caseId": "BANK-004-PAYMENT-POSTING-FACHPRUEFUNG-TRACE-PLAN",
+    "status": [
+      "labor-gate",
+      "posting-not-approved",
+      "target-line-not-isolated",
+      "needs-german-final-rebuild"
+    ],
+    "sourceInstance": "MCP_1_20260210",
+    "sourceCompany": "RM-DEMO",
+    "posted": false,
+    "paymentPosted": false,
+    "bankReconciliationPosted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "apiShortcut": false,
+    "resultPath": "playwright/projects/fibu-book5/evidence/bank-004/BANK-004-result.json",
+    "evidencePath": "playwright/projects/fibu-book5/evidence/bank-004/",
+    "decision": "Do not confirm Post Payments Only yet.",
+    "blocker": "Payment Reconciliation target line and exact open-entry/ledger trace are not isolated before posting.",
+    "migrationRelevance": "needed-for-german-final",
+    "mustRecreateInFinalSandbox": true,
+    "finalScreenshotNeeded": true,
+    "nextStep": "BANK-005: read-only target-line/open-entry drilldown, or controlled single-line Payment Journal posting case."
   }
 }

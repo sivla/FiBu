@@ -326,6 +326,25 @@
       "resultFile": "playwright/projects/fibu-book5/evidence/bank-003/BANK-003-result.json",
       "summary": "Post Payments Only dialog gate was opened and closed without confirmation; BC asks Do you want to post the payments? Ja/Nein; no payment was posted.",
       "nextStep": "BANK-004: define target line/open-entry/ledger trace plan before any payment posting."
+    },
+    {
+      "id": "BANK-004",
+      "queueId": "BANK-004-PAYMENT-POSTING-FACHPRUEFUNG-TRACE-PLAN",
+      "type": "payment-posting-trace-plan local-gate no-post",
+      "status": "labor-gate",
+      "bcRun": false,
+      "posted": false,
+      "previewPosting": false,
+      "setupChanged": false,
+      "execute": false,
+      "highImpactExecute": false,
+      "signals": [
+        "payment-posting-trace-plan",
+        "no-post-gate"
+      ],
+      "resultFile": "playwright/projects/fibu-book5/evidence/bank-004/BANK-004-result.json",
+      "summary": "BANK-004 defines why Payment Reconciliation posting is not yet approved: target line and exact ledger trace are not isolated before the Ja/Nein dialog.",
+      "nextStep": "BANK-005: read-only target-line/open-entry drilldown, or switch to controlled single-line Payment Journal posting case."
     }
   ],
   "postingSummary": {
@@ -345,9 +364,9 @@
     }
   },
   "nextBestLevers": [
-    "BANK-004-PAYMENT-POSTING-FACHPRUEFUNG-TRACE-PLAN",
-    "RM-DE-LAB-CREATE-001-UI-FIRST-COMPANY-CREATION",
-    "FIXEDASSETS-DEPRECIATION-PARAMETER-FIX"
+    "BANK-005-TARGET-LINE-OPEN-ENTRY-DRILLDOWN",
+    "PAYMENTS-SINGLE-LINE-POSTING-CASE",
+    "RM-DE-LAB-CREATE-001-UI-FIRST-COMPANY-CREATION"
   ],
   "migrationRelevance": "needed-for-german-final",
   "mustRecreateInFinalSandbox": true,
@@ -374,7 +393,7 @@
     ],
     "lightExecutePackages": 2,
     "readOnlyPackagesDoNotCountAsExecute": true,
-    "progressPackagesTotal": 26
+    "progressPackagesTotal": 27
   },
-  "updatedAt": "2026-06-28T20:01:42.516Z"
+  "updatedAt": "2026-06-28T20:05:38.653Z"
 }
