@@ -39,12 +39,12 @@
   "hardExclusions": {
     "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
   },
-  "updatedAt": "2026-06-28T18:25:00.000+02:00",
+  "updatedAt": "2026-06-28T20:05:00.000+02:00",
   "activeArea": "p2p",
-  "currentBlock": "p2p-partial-receipt-line-grid-blocker",
-  "latestPracticalCase": "P2P-005-PARTIAL-RECEIPT-LINE-QTY-GATE",
+  "currentBlock": "p2p-partial-receipt-data-row-route",
+  "latestPracticalCase": "P2P-006-PURCHASE-LINES-GRID-CONTROL-DIAGNOSIS",
   "latestReviewCase": "BOOK-P2P-CH12-PARTIAL-RECEIPT-GATE-SYNC",
-  "nextCase": "P2P-006-PURCHASE-LINES-GRID-CONTROL-DIAGNOSIS",
+  "nextCase": "P2P-007-PURCHASE-LINES-DATA-ROW-ROUTE",
   "fixedAssets": {
     "faCnc01": {
       "postingGroupAssignment": "fieldlocal-fit-proven-machines-labor",
@@ -138,9 +138,10 @@
         "No P2P-004 item line RAW-STEEL",
         "No P2P-004 partial receipt quantity",
         "No P2P-004 Preview Posting",
-        "No P2P-004 posting or ledger trace"
+        "No P2P-004 posting or ledger trace",
+        "P2P-006: wide layout and Lines focus mode show headers, but no data row for RAW-STEEL/FRA-ZL/Qty values."
       ],
-      "nextStep": "P2P-005: enter and prove RAW-STEEL line quantity 4 and Qty. to Receive 2 in the purchase order UI, then stop before Preview/Post."
+      "nextStep": "P2P-007: create or reveal a real Purchase Order Lines data row by UI-first path before value entry."
     }
   },
   "migrationStatus": {
@@ -207,5 +208,41 @@
       "posting trace"
     ],
     "nextStep": "Diagnose visible Purchase Order Lines grid controls before value entry."
+  },
+  "p2pPartialReceiptGridDiagnosis": {
+    "status": "labor-blocked",
+    "draft": "106051",
+    "proved": [
+      "Direct Business Central URL opened within MCP_1_20260210/RM-DEMO for Purchase Order 106051.",
+      "Purchase Order 106051 and vendor context K10000/Stahlwerk Ruhr GmbH were visible in the UI text.",
+      "BC wide layout was attempted before screenshot and grid evaluation.",
+      "BC focus mode for the Lines area was attempted before grid evaluation.",
+      "The Purchase Order Lines subform headers were visible and captured with controlName Purchase Order Subform.",
+      "Wide-layout and focus-mode screenshots, compact page text and DOM snapshot were saved."
+    ],
+    "notProved": [
+      "No safe editable Purchase Order Lines data-cell route for Item/Location/Quantity/Direct Unit Cost/Qty. to Receive was proven.",
+      "The screenshot shows no target item/location/quantity row; it is a blocker/context screenshot, not a book-proof screenshot for partial receipt.",
+      "No values were entered.",
+      "Preview Posting and Receive/Invoice/Post were not executed."
+    ],
+    "blockedBy": [
+      "purchase-order-lines-grid-shows-no-visible-data-rows",
+      "purchase-order-lines-data-cell-route-not-proven",
+      "purchase-order-lines-editable-cell-route-not-proven"
+    ],
+    "wideLayout": {
+      "attempted": true,
+      "clicked": true,
+      "method": "title-or-aria-wide-layout-toggle"
+    },
+    "focusMode": {
+      "attempted": true,
+      "clicked": true,
+      "alreadyFocused": false,
+      "method": "role-menuitemcheckbox-focus-mode"
+    },
+    "evidencePath": "playwright/projects/fibu-book5/evidence/p2p-006/",
+    "nextStep": "Create/reveal a real data row before target value entry or Preview Posting."
   }
 }

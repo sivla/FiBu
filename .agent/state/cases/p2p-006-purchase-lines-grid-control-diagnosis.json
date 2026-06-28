@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "caseId": "P2P-006-PURCHASE-LINES-GRID-CONTROL-DIAGNOSIS",
   "area": "p2p",
-  "status": "planned",
+  "status": "completed-labor-blocked",
   "taskClass": "wizard_work",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
@@ -71,6 +71,52 @@
   "mustRecreateInFinalSandbox": true,
   "finalScreenshotNeeded": true,
   "bookImpactTarget": "Chapter 12 partial receipt clickguide: line grid/control prerequisite before Preview Posting.",
-  "nextSafeAction": "Open draft 106051 and produce a focused Purchase Order Lines grid/control map. Do not enter values until controls are identified.",
-  "updatedAt": "2026-06-28T18:25:00.000+02:00"
+  "nextSafeAction": "P2P-007: create or reveal a real Purchase Order Lines data row via a bounded UI-first path such as Select items/New Line, then stop before Preview Posting until target values are visible.",
+  "updatedAt": "2026-06-28T20:05:00.000+02:00",
+  "resultStatus": "blocked",
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/p2p-006/010-page-text-compact.txt",
+    "playwright/projects/fibu-book5/evidence/p2p-006/020-grid-control-snapshot.json"
+  ],
+  "screenshots": [
+    "playwright/projects/fibu-book5/img/p2p-006-010-draft-open-wide.png",
+    "playwright/projects/fibu-book5/img/p2p-006-020-lines-focus-mode.png",
+    "playwright/projects/fibu-book5/img/p2p-006-030-lines-grid-control-map.png"
+  ],
+  "proved": [
+    "Direct Business Central URL opened within MCP_1_20260210/RM-DEMO for Purchase Order 106051.",
+    "Purchase Order 106051 and vendor context K10000/Stahlwerk Ruhr GmbH were visible in the UI text.",
+    "BC wide layout was attempted before screenshot and grid evaluation.",
+    "BC focus mode for the Lines area was attempted before grid evaluation.",
+    "The Purchase Order Lines subform headers were visible and captured with controlName Purchase Order Subform.",
+    "Wide-layout and focus-mode screenshots, compact page text and DOM snapshot were saved."
+  ],
+  "notProved": [
+    "No safe editable Purchase Order Lines data-cell route for Item/Location/Quantity/Direct Unit Cost/Qty. to Receive was proven.",
+    "The screenshot shows no target item/location/quantity row; it is a blocker/context screenshot, not a book-proof screenshot for partial receipt.",
+    "No values were entered.",
+    "Preview Posting and Receive/Invoice/Post were not executed."
+  ],
+  "blockedBy": [
+    "purchase-order-lines-grid-shows-no-visible-data-rows",
+    "purchase-order-lines-data-cell-route-not-proven",
+    "purchase-order-lines-editable-cell-route-not-proven"
+  ],
+  "previewPosting": false,
+  "posted": false,
+  "setupChanged": false,
+  "dataChanged": false,
+  "wideLayout": {
+    "attempted": true,
+    "clicked": true,
+    "method": "title-or-aria-wide-layout-toggle"
+  },
+  "focusMode": {
+    "attempted": true,
+    "clicked": true,
+    "alreadyFocused": false,
+    "method": "role-menuitemcheckbox-focus-mode"
+  },
+  "resultPath": "playwright/projects/fibu-book5/evidence/p2p-006/P2P-006-result.json",
+  "bookImpact": "Chapter 12 partial receipt clickguide must require wide layout/focus-mode visibility and a real data row before value entry or Preview Posting."
 }

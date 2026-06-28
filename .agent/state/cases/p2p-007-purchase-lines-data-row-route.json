@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "caseId": "P2P-007-PURCHASE-LINES-DATA-ROW-ROUTE",
+  "area": "p2p",
+  "status": "planned",
+  "taskClass": "wizard_work",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "sourceCompany": "RM-DEMO",
+  "mode": "controlled-labor-ui-data-row-route",
+  "purpose": "Create or reveal one real Purchase Order Lines data row by UI-first path before target value entry, Preview Posting or posting.",
+  "predecessorCase": "P2P-006-PURCHASE-LINES-GRID-CONTROL-DIAGNOSIS",
+  "knownGoodContext": {
+    "purchaseOrderNo": "106051",
+    "vendorNo": "K10000",
+    "vendorName": "Stahlwerk Ruhr GmbH",
+    "wideLayout": "title-or-aria-wide-layout-toggle",
+    "linesFocusMode": "role-menuitemcheckbox-focus-mode",
+    "lineHeadersVisible": [
+      "Type",
+      "No.",
+      "Location Code",
+      "Quantity",
+      "Direct Unit Cost Excl. Tax",
+      "Qty. to Receive"
+    ]
+  },
+  "targetValues": {
+    "itemNo": "RAW-STEEL",
+    "locationCode": "FRA-ZL",
+    "plannedQuantity": 4,
+    "plannedPartialReceiptQuantity": 2,
+    "plannedUnitCost": 2500
+  },
+  "allowedWhenGateUnlocks": [
+    "open-existing-purchase-draft-read-write",
+    "enable-wide-layout",
+    "enable-lines-focus-mode",
+    "create-or-reveal-one-lines-data-row-by-ui-first-path",
+    "capture-grid-control-map",
+    "capture-screenshot",
+    "write-evidence",
+    "update-playwright-helper-or-pattern-if-needed"
+  ],
+  "defaultLockedActions": [
+    "preview-posting",
+    "post",
+    "receive",
+    "invoice",
+    "receive-and-invoice",
+    "setup-change",
+    "company-switch",
+    "api-shortcut",
+    "new-draft"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "final-german-claim-from-rm-demo"
+  ],
+  "minimumEvidence": [
+    "direct MCP_1_20260210/RM-DEMO URL",
+    "visible Purchase Order 106051",
+    "wide layout enabled",
+    "Lines focus mode enabled",
+    "one real data row visible or a documented reason why no row can be created/revealed",
+    "explicit no-preview and no-post flags"
+  ],
+  "stopConditions": [
+    "wrong instance or company",
+    "draft 106051 not visible",
+    "unexpected dangerous dialog",
+    "Preview Posting or Post dialog appears",
+    "row route requires unclear confirmation",
+    "row route would create duplicate or unsafe purchase data"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "bookImpactTarget": "Chapter 12 partial receipt clickguide: prove how to obtain a real editable purchase line before item/quantity entry.",
+  "nextSafeAction": "Open draft 106051, enable wide layout and Lines focus mode, then test a bounded UI-first data-row route such as scoped New Line or Select items without Preview Posting or posting.",
+  "updatedAt": "2026-06-28T20:05:00.000+02:00"
+}

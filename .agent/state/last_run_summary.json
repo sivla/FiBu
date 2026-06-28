@@ -1,16 +1,16 @@
 {
   "schemaVersion": 1,
-  "runId": "BC-SPECIALIST-OS-001",
-  "timestamp": "2026-06-28T17:05:00.000+02:00",
+  "runId": "P2P-006-PURCHASE-LINES-GRID-CONTROL-DIAGNOSIS",
+  "timestamp": "2026-06-28T20:05:00.000+02:00",
   "date": "2026-06-28",
-  "workType": "architecture-and-coverage-system",
+  "workType": "controlled-p2p-grid-diagnosis",
   "taskClass": "wizard_work",
   "modelClass": "gpt-4-medium",
   "branch": "codex/token-efficient-autopilot-state",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "bcRun": false,
-  "playwrightRun": false,
+  "bcRun": true,
+  "playwrightRun": true,
   "posted": false,
   "previewPosting": false,
   "setupChanged": false,
@@ -18,68 +18,67 @@
   "apiShortcut": false,
   "bookChanged": false,
   "dataChanged": false,
-  "resultStatus": "labor-structure-created",
-  "summary": "Created the Business Central Specialist OS for FiBu Buch 5: repo inventory, coverage matrix, page/field/action/posting/screenshot/error atlases, process roadmap, fibu-book5 README update, Playwright BC skill roadmap and anti-micro-stop rules. Migrated existing Fixed Assets, P2P, P2P Payment and P2P-004 knowledge into the new structure. No BC or Playwright execution occurred.",
+  "resultStatus": "blocked",
+  "summary": "P2P-006 opened Purchase Order 106051 directly in MCP_1_20260210/RM-DEMO, enabled wide layout and Lines focus mode, captured screenshots and a compact DOM/control snapshot. The run proved header/column visibility but blocked value entry because no Purchase Order Lines data row was visible.",
   "proved": [
-    "Repo structure and active evidence areas are inventoried.",
-    "BC coverage levels L0-L10 are defined.",
-    "Existing Fixed Assets, P2P, P2P Payment and P2P-004 laboratory evidence are represented in coverage/atlas files.",
-    "Autopilot rules now state gate-is-not-stop, process-over-fragment and blocker-to-skill.",
-    "P2P-005 remains the next practical route but should advance the whole partial receipt process, not stop at one micro-gate."
+    "Direct Business Central URL opened within MCP_1_20260210/RM-DEMO for Purchase Order 106051.",
+    "Purchase Order 106051 and vendor context K10000/Stahlwerk Ruhr GmbH were visible in the UI text.",
+    "BC wide layout was attempted before screenshot and grid evaluation.",
+    "BC focus mode for the Lines area was attempted before grid evaluation.",
+    "The Purchase Order Lines subform headers were visible and captured with controlName Purchase Order Subform.",
+    "Wide-layout and focus-mode screenshots, compact page text and DOM snapshot were saved."
   ],
   "notProved": [
-    "No new Business Central page was opened in this run.",
-    "No Playwright test was executed in this run.",
-    "No new posting, preview, setup change, draft or ledger trace was created.",
-    "No German final proof exists."
+    "No safe editable Purchase Order Lines data-cell route for Item/Location/Quantity/Direct Unit Cost/Qty. to Receive was proven.",
+    "The screenshot shows no target item/location/quantity row; it is a blocker/context screenshot, not a book-proof screenshot for partial receipt.",
+    "No values were entered.",
+    "Preview Posting and Receive/Invoice/Post were not executed."
+  ],
+  "blockedBy": [
+    "purchase-order-lines-grid-shows-no-visible-data-rows",
+    "purchase-order-lines-data-cell-route-not-proven",
+    "purchase-order-lines-editable-cell-route-not-proven"
   ],
   "changedFiles": [
-    ".agent/autopilot.md",
-    ".agent/BC-OPERATING-MODEL.md",
-    ".agent/modes/sandbox-instance-autopilot.md",
-    ".agent/state/current.json",
-    ".agent/state/project_state.json",
-    ".agent/state/coverage_state.json",
-    ".agent/state/book-production-goal.json",
-    ".agent/state/last_run_summary.json",
-    "playwright/projects/fibu-book5/README.md",
+    "package.json",
+    "playwright/projects/fibu-book5/tests/p2p-006-purchase-lines-grid-control-diagnosis.spec.ts",
+    "playwright/projects/fibu-book5/evidence/p2p-006/",
+    "playwright/projects/fibu-book5/img/p2p-006-*",
+    "playwright/core/bc-skills/grids.md",
     "playwright/projects/fibu-book5/BC-*.md",
-    "playwright/core/bc-skills/*.md"
+    ".agent/state/current.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/cases/p2p-006-purchase-lines-grid-control-diagnosis.json"
   ],
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/BC-REPO-INVENTORY.md",
-    "playwright/projects/fibu-book5/BC-COVERAGE-MATRIX.md",
-    "playwright/projects/fibu-book5/BC-PAGE-ATLAS.md",
-    "playwright/projects/fibu-book5/BC-FIELD-ATLAS.md",
-    "playwright/projects/fibu-book5/BC-ACTION-ATLAS.md",
-    "playwright/projects/fibu-book5/BC-POSTING-IMPACT-ATLAS.md",
-    "playwright/projects/fibu-book5/BC-SCREENSHOT-INVENTORY.md",
-    "playwright/projects/fibu-book5/BC-ERROR-BLOCKER-ATLAS.md",
-    "playwright/projects/fibu-book5/BC-PROCESS-COVERAGE-ROADMAP.md"
+    "playwright/projects/fibu-book5/evidence/p2p-006/010-page-text-compact.txt",
+    "playwright/projects/fibu-book5/evidence/p2p-006/020-grid-control-snapshot.json"
+  ],
+  "screenshots": [
+    "playwright/projects/fibu-book5/img/p2p-006-010-draft-open-wide.png",
+    "playwright/projects/fibu-book5/img/p2p-006-020-lines-focus-mode.png",
+    "playwright/projects/fibu-book5/img/p2p-006-030-lines-grid-control-map.png"
   ],
   "validationCommands": [
-    "git branch --show-current",
-    "git status --short",
-    "git pull --ff-only",
     "npm run agent:preflight",
     "npm run agent:context",
-    "npm run agent:dry-run",
-    "npm run agent:run-plan",
+    "npm run fibu:p2p:purchase-lines-grid-diagnosis",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/p2p-006/P2P-006-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/p2p-006/P2P-006-result.json",
     "npm run check:encoding",
     "git diff --check"
   ],
   "boundaries": [
-    "No BC execution.",
-    "No Playwright execution.",
     "No posting.",
     "No Preview Posting.",
     "No setup change.",
     "No company switch.",
-    "No secrets/auth/reports/traces committed.",
-    "RM-DEMO evidence remains laboratory reference only."
+    "No API shortcut.",
+    "No book change.",
+    "No data values entered."
   ],
   "activeArea": "p2p",
-  "activeCase": "P2P-005-PARTIAL-RECEIPT-LINE-QTY-GATE",
-  "nextCase": "P2P-005-PARTIAL-RECEIPT-LINE-QTY-GATE",
-  "nextStep": "Run P2P-005 as a process-route step: prove line values and prepare the next Preview/partial-receipt route instead of stopping at a single field."
+  "activeCase": "P2P-006-PURCHASE-LINES-GRID-CONTROL-DIAGNOSIS",
+  "nextCase": "P2P-007-PURCHASE-LINES-DATA-ROW-ROUTE",
+  "nextStep": "Create or reveal one real Purchase Order Lines data row by UI-first path, then stop before Preview Posting until target values are visible."
 }

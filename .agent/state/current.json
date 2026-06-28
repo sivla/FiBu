@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-28T18:25:00.000+02:00",
+  "updatedAt": "2026-06-28T20:05:00.000+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "p2p",
-  "activeCase": "P2P-006-PURCHASE-LINES-GRID-CONTROL-DIAGNOSIS",
-  "active_case_file": ".agent/state/cases/p2p-006-purchase-lines-grid-control-diagnosis.json",
+  "activeCase": "P2P-007-PURCHASE-LINES-DATA-ROW-ROUTE",
+  "active_case_file": ".agent/state/cases/p2p-007-purchase-lines-data-row-route.json",
   "lastReferenceCase": "UAT-P2P-001",
   "lastReferenceCaseFile": "",
   "mode": "bc-specialist-labor-book-production",
@@ -40,7 +40,7 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "P2P-006: diagnose Purchase Order Lines grid/control access on blocker draft 106051 before any Preview Posting or posting.",
+  "nextStep": "P2P-007: build a bounded UI-first route to create/reveal one real Purchase Order Lines data row before any Preview Posting or posting.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/fixedassets-labor-draft.md",
     "area": "fixedassets",
@@ -214,11 +214,11 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "p2p-partial-receipt-route",
+  "currentCoverageFocus": "p2p-partial-receipt-data-row-route",
   "nextProcessRoute": [
-    "P2P-006 diagnose Purchase Order Lines grid/control access on draft 106051",
-    "P2P-005 retry target line values only after grid controls are safe",
-    "P2P-006/007 Preview Posting and controlled Receive only after line gate is proven"
+    "P2P-007 create/reveal a real Purchase Order Lines data row on a safe draft using UI-first path",
+    "P2P-005 retry target line values only after data row controls are visible and unambiguous",
+    "P2P Preview Posting and controlled partial Receive only after line gate is proven"
   ],
   "activeAtlasFiles": [
     "playwright/projects/fibu-book5/BC-COVERAGE-MATRIX.md",
@@ -281,5 +281,40 @@
     "blocker": "Purchase Order Lines grid controls were not safely visible to the current control snapshot; target line values were not proved.",
     "bookEffect": "Chapter 12 partial receipt path must include a line-grid control diagnosis before Preview Posting.",
     "nextStep": "P2P-006 purchase-order-lines/grid-control diagnosis on draft 106051."
+  },
+  "latestP2PGridDiagnosis": {
+    "caseId": "P2P-006-PURCHASE-LINES-GRID-CONTROL-DIAGNOSIS",
+    "status": [
+      "labor-blocked",
+      "needs-german-final-rebuild"
+    ],
+    "sourceInstance": "MCP_1_20260210",
+    "sourceCompany": "RM-DEMO",
+    "draft": "106051",
+    "wideLayout": {
+      "attempted": true,
+      "clicked": true,
+      "method": "title-or-aria-wide-layout-toggle"
+    },
+    "focusMode": {
+      "attempted": true,
+      "clicked": true,
+      "alreadyFocused": false,
+      "method": "role-menuitemcheckbox-focus-mode"
+    },
+    "posted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "dataChanged": false,
+    "resultPath": "playwright/projects/fibu-book5/evidence/p2p-006/P2P-006-result.json",
+    "evidencePath": "playwright/projects/fibu-book5/evidence/p2p-006/",
+    "screenshots": [
+      "playwright/projects/fibu-book5/img/p2p-006-010-draft-open-wide.png",
+      "playwright/projects/fibu-book5/img/p2p-006-020-lines-focus-mode.png",
+      "playwright/projects/fibu-book5/img/p2p-006-030-lines-grid-control-map.png"
+    ],
+    "blocker": "Breite Layoutansicht und Lines-Fokusmodus zeigen Spalten, aber keine Datenzeile; keine sichere Item/Menge/Preis/Qty.-to-Receive-Route.",
+    "bookEffect": "Kapitel 12 darf P2P-006 als Debugging-/Lernfall verwenden: erst breit/fokussiert sichtbar machen, dann nur bei sichtbarer Datenzeile Werte eingeben.",
+    "nextStep": "P2P-007: build a bounded UI-first route to create/reveal one real Purchase Order Lines data row before any Preview Posting or posting."
   }
 }
