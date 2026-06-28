@@ -1,4 +1,17 @@
 
+## FIND-BC-FA-114 Page Inspection zeigt Labels, aber keine feldsicheren AfA-Werte
+
+| Feld | Wert |
+|---|---|
+| Bereich | Fixed Assets / AfA-Route / Page Inspection und Wertdiagnose |
+| Testfall | `FIXEDASSETS-277-FA-DEPRECIATION-BOOK-VALUE-PAGEINSPECTION-READONLY` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-277/FIXEDASSETS-277-result.json`, `playwright/projects/fibu-book5/evidence/fixedassets-277/FIXEDASSETS-277-DEPRECIATION-BOOK-VALUE-PAGEINSPECTION-READONLY.md` |
+| Ergebnis | `FA-CNC-01`, Page `Fixed Asset Card (5600)`, Page Inspection, Book Value/Acquisition Cost `120.000,00` und Anlagenposten `G05001` sind read-only sichtbar. |
+| Kernbefund | `Depreciation Starting Date`, `No. of Depreciation Years` und `Depreciation Ending Date` sind als Labels sichtbar, aber konkrete Werte sind nicht feldsicher bewiesen; `Last Depreciation Date` ist nicht sichtbar. |
+| weiterhin gesperrt | Repeat `OK`, Preview Posting, Post, Setup Change, Company Switch, API-Abkuerzung |
+| naechster Schritt | `FIXEDASSETS-278`: lokaler Review der FA-277-Evidence; entscheiden, ob ein besserer Feldwertpfad oder Batch-/Output-Ziel-Diagnose noetig ist. |
+| Buchwirkung | Die Anleitung muss erklaeren: sichtbare Labels und Page Inspection beweisen Page-/Tabellenkontext, aber noch nicht zwingend konkrete Werte. Vor einer AfA-Ausfuehrung muessen Werte oder ein bewusst akzeptierter Laborgrenzfall dokumentiert sein. |
+
 ## FIND-BC-FA-113 AfA braucht feldsichere AfA-Buchwerte vor weiterer Ausfuehrung
 
 | Feld | Wert |

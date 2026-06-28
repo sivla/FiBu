@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-278-FA-DEPRECIATION-BOOK-VALUE-DIAGNOSIS-REVIEW",
+  "status": "planned",
+  "workType": "local-fixedasset-depreciation-book-value-diagnosis-review",
+  "taskClass": "judge_work",
+  "requiresStrongModel": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Review FA-277 evidence and decide the next safe diagnosis path before any repeat Calculate Depreciation OK, Preview Posting or Post.",
+  "triggeredBy": {
+    "caseId": "FIXEDASSETS-277-FA-DEPRECIATION-BOOK-VALUE-PAGEINSPECTION-READONLY",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-277/FIXEDASSETS-277-result.json",
+    "classification": "field-values-still-not-fieldsecure-and-journal-line-missing"
+  },
+  "reviewQuestions": [
+    "Does FA-277 prove enough depreciation-book values to justify another Calculate Depreciation OK?",
+    "Is the missing FADEP-273-OK better explained by hidden/empty depreciation values, batch/filter target, or another setup gap?",
+    "Should the next practical step be Personalize/Page Inspection field-value work, a specific depreciation-book-card route, or journal batch/output-target diagnosis?",
+    "What must the book tell beginners about visible labels versus field-secure values?"
+  ],
+  "allowedActions": [
+    "read-local-evidence",
+    "review-fixedasset-depreciation-book-values",
+    "review-page-inspection-result",
+    "review-playwright-extraction-quality",
+    "write-compact-review-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright",
+    "confirm-ok-on-calculate-depreciation",
+    "preview-posting",
+    "post",
+    "setup-change",
+    "company-switch",
+    "api-shortcut-without-explicit-case-permission",
+    "edit-record",
+    "new-draft",
+    "delete-record"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-278/FIXEDASSETS-278-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-278/FIXEDASSETS-278-DEPRECIATION-BOOK-VALUE-DIAGNOSIS-REVIEW.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-278/README.md"
+  ],
+  "acceptanceCriteria": [
+    "No Business Central or Playwright execution occurs.",
+    "The review explicitly accepts or rejects another Calculate Depreciation OK.",
+    "The review marks which FA-277 facts are proven and which are not proven.",
+    "The review chooses exactly one next safe practical or local step."
+  ],
+  "nextSafeAction": "Review FA-277 locally and select the next smallest safe step; do not run BC, Playwright, OK, Preview Posting or Post.",
+  "createdAt": "2026-06-28T10:52:00.000+02:00",
+  "updatedAt": "2026-06-28T10:52:00.000+02:00"
+}

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "FIXEDASSETS-277-FA-DEPRECIATION-BOOK-VALUE-PAGEINSPECTION-READONLY",
-  "status": "planned",
+  "status": "observed-readonly-value-pageinspection",
   "workType": "playwright-readonly-fixedasset-depreciation-book-value-pageinspection",
   "taskClass": "wizard_work",
   "requiresStrongModel": false,
@@ -80,7 +80,23 @@
     "A dialog appears that could confirm, post, preview, delete or change setup.",
     "The diagnosis would require repeating Calculate Depreciation OK."
   ],
-  "nextSafeAction": "Run read-only Page Inspection/value diagnosis for FA-CNC-01/HGB depreciation-book fields; do not click OK, Preview Posting or Post.",
+  "result": {
+    "status": "observed",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-277/FIXEDASSETS-277-result.json",
+    "classification": "field-values-still-not-fieldsecure-and-journal-line-missing",
+    "summary": "FA-277 opened FA-CNC-01 read-only, opened Page Inspection, rechecked FA Ledger Entries and Fixed Asset G/L Journals. Book Value / Acquisition Cost 120.000,00 and G05001 acquisition context are visible. The exact depreciation-book field values for start date, years, ending date and last depreciation date are not field-securely proven. FADEP-273-OK is still not visible in the journal context.",
+    "safety": {
+      "noCalculateDepreciationOk": true,
+      "noPreviewPosting": true,
+      "noPost": true,
+      "noSetupChange": true,
+      "noCompanySwitch": true,
+      "noApiShortcut": true,
+      "noDraft": true,
+      "noEdit": true
+    }
+  },
+  "nextSafeAction": "FIXEDASSETS-278: local review of FA-277 value/Page-Inspection evidence before any repeat Calculate Depreciation OK, Preview Posting or Post.",
   "createdAt": "2026-06-28T10:08:00.000+02:00",
-  "updatedAt": "2026-06-28T10:08:00.000+02:00"
+  "updatedAt": "2026-06-28T10:52:00.000+02:00"
 }
