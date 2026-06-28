@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "caseId": "P2P-011-PURCHASE-LINES-EDIT-ACTION-DISCOVERY",
+  "source": "playwright-ui-labor-action-discovery",
+  "resultStatus": "observed",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "sourceCompany": "RM-DEMO",
+  "purchaseOrderNo": "106054",
+  "selectedRoute": "Route A - true Purchase Lines edit/action discovery",
+  "targetItem": "RAW-STEEL",
+  "previewPosting": false,
+  "posted": false,
+  "setupChanges": [],
+  "createdRecords": [],
+  "changedRecords": [],
+  "postedRecords": [],
+  "flags": {
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true,
+    "noFieldValueEntry": true
+  },
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "requiresReview": true,
+  "safeToFinalizeState": false,
+  "statePatch": {},
+  "details": {
+    "url": "https://businesscentral.dynamics.com/[tenant-id]/MCP_1_20260210?company=RM-DEMO&page=50&filter=%27Purchase%20Header%27.%27No.%27%20IS%20%27106054%27",
+    "contextOk": true,
+    "rawSteelVisible": true,
+    "wideLayout": {
+      "clicked": true,
+      "label": "Breite Layoutansicht anzeigen|Breites Layout|Wide layout",
+      "role": "button"
+    },
+    "focusMode": {
+      "clicked": true,
+      "alreadyFocused": false
+    },
+    "menuAttempts": [
+      {
+        "label": "more-options",
+        "click": {
+          "clicked": true,
+          "label": "Weitere Optionen|More options",
+          "role": "button"
+        },
+        "afterCandidateCount": 54
+      },
+      {
+        "label": "line",
+        "click": {
+          "clicked": true,
+          "label": "^Line$|^Zeile$",
+          "role": "menuitem"
+        },
+        "afterCandidateCount": 59
+      },
+      {
+        "label": "manage",
+        "click": {
+          "clicked": false
+        },
+        "afterCandidateCount": 31
+      },
+      {
+        "label": "actions",
+        "click": {
+          "clicked": false
+        },
+        "afterCandidateCount": 31
+      },
+      {
+        "label": "personalize",
+        "click": {
+          "clicked": false
+        },
+        "afterCandidateCount": 31
+      }
+    ],
+    "candidateSummary": {
+      "total": 107,
+      "editCandidateCount": 24,
+      "riskyCandidateCount": 68,
+      "usefulEditCandidate": null
+    }
+  },
+  "screenshots": [
+    "playwright/projects/fibu-book5/img/p2p-011-010-action-discovery-start.png",
+    "playwright/projects/fibu-book5/img/p2p-011-020-after-action-menus.png"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/p2p-011/010-start-text.txt",
+    "playwright/projects/fibu-book5/evidence/p2p-011/011-start-action-inventory.json",
+    "playwright/projects/fibu-book5/evidence/p2p-011/020-after-action-discovery-text.txt",
+    "playwright/projects/fibu-book5/evidence/p2p-011/021-menu-attempts.json",
+    "playwright/projects/fibu-book5/evidence/p2p-011/022-final-action-inventory.json"
+  ],
+  "proved": [
+    "Purchase Order 106054 was opened in MCP_1_20260210/RM-DEMO.",
+    "RAW-STEEL remained visible during action discovery.",
+    "Safe action/menu discovery was attempted without repeating Select-items search or display-cell edit routes.",
+    "No field value entry, Preview Posting, posting, setup change, company switch or API shortcut was executed."
+  ],
+  "notProved": [
+    "Location FRA-ZL, Quantity 4 and Qty. to Receive 2 are not proven by P2P-011.",
+    "Preview Posting and Receive remain locked.",
+    "German final P2P proof remains open."
+  ],
+  "blockedBy": [
+    "no-clear-safe-purchase-lines-edit-action-found-in-visible-action-inventory",
+    "action-discovery-found-menu-context-but-not-a-proven-line-value-entry-route"
+  ],
+  "nextStep": "Switch to alternative standard UI route such as Purchase Journal/Item Journal or plan a cleaner lab company route; do not repeat P2P-009/P2P-010."
+}

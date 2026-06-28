@@ -14,6 +14,7 @@ Diese Map beschreibt wiederverwendbare Playwright-Faehigkeiten, die aus echter E
 | Grid Column Discovery | sichtbare Spalten und x/y-Kandidaten mappen | Qty/No/Type-Felder fragil | Spaltenatlas |
 | Lookup Reader/Selector | Lookup-Kandidaten lesen/waehlen | Dropdown/Lookup blockiert | no-select oder select Evidence |
 | Action/Button Discovery | Actions fokussiert erfassen | Button-/Menuepfad unklar | Action-Liste mit Kontext |
+| [BC Action Discovery](action-discovery.md) | Actions nur im fachlichen Page-/Subform-Kontext erfassen | Shell-/Role-Center-/Account-Aktionen verfaelschen Prozessroute | gescoptes Action-Inventar + Blocker/Route |
 | Dialog Reader/Confirm Guard | Dialogtext vor OK/Yes/Post sichern | riskante Bestätigung | Dialog-Evidence |
 | Preview Posting Capture | Preview-Arten/Posten vor Buchung sichern | Buchungsgate | Preview JSON + Screenshot |
 | Post and Trace | Posting + Folgeposten suchen | aktiver Case unlockt Posting | Belegnummern + Ledger Trace |

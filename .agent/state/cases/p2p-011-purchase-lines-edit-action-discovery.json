@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "caseId": "P2P-011-PURCHASE-LINES-EDIT-ACTION-DISCOVERY",
+  "area": "p2p",
+  "status": "labor-blocked",
+  "taskClass": "wizard_work",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "sourceCompany": "RM-DEMO",
+  "mode": "controlled-labor-ui-action-discovery",
+  "purpose": "Find a non-repeated Purchase Lines edit/action route after P2P-010 proved Select-items selection alone does not set target values.",
+  "predecessorCases": [
+    "P2P-009-PURCHASE-LINE-CELL-EDIT-HELPER",
+    "P2P-010-PURCHASE-LINE-VALUE-ROUTE-DECISION"
+  ],
+  "targetDraft": "106054",
+  "selectedRoute": "Route A - true Purchase Lines edit/action discovery",
+  "targetValues": {
+    "vendorNo": "K10000",
+    "itemNo": "RAW-STEEL",
+    "locationCode": "FRA-ZL",
+    "quantity": 4,
+    "qtyToReceive": 2,
+    "directUnitCostExclTax": 2500
+  },
+  "allowedWhenGateUnlocks": [
+    "open-purchase-order-draft",
+    "enable-wide-layout",
+    "enable-lines-focus-mode",
+    "open-safe-action-menus",
+    "capture-action-candidates",
+    "capture-grid-context",
+    "write-evidence",
+    "update-state"
+  ],
+  "defaultLockedActions": [
+    "preview-posting",
+    "post",
+    "receive",
+    "invoice",
+    "receive-and-invoice",
+    "setup-change",
+    "company-switch",
+    "api-shortcut",
+    "field-value-entry"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "final-german-claim-from-rm-demo",
+    "repeat-p2p-010-select-items-search-route",
+    "repeat-p2p-009-display-cell-edit-route"
+  ],
+  "minimumEvidence": [
+    "direct MCP_1_20260210/RM-DEMO context",
+    "Purchase Order 106054 visible",
+    "safe action/menu inventory",
+    "evidence whether Edit/List/Edit Line action exists",
+    "explicit no Preview/Post/Receive flags"
+  ],
+  "stopConditions": [
+    "wrong instance or company",
+    "draft 106054 not visible",
+    "unexpected dangerous dialog",
+    "action click would execute Post/Preview/Receive/Delete/New/Edit-in-Excel",
+    "any value-entry attempt without a later gated case"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "bookImpactTarget": "Chapter 12 partial receipt clickguide: distinguish visible menu/action discovery from real line-value proof.",
+  "nextSafeAction": "Switch to alternative standard UI route such as Purchase Journal/Item Journal or plan a cleaner lab company route; do not repeat P2P-009/P2P-010.",
+  "updatedAt": "2026-06-28T19:28:00.000+02:00",
+  "resultPath": "playwright/projects/fibu-book5/evidence/p2p-011/P2P-011-result.json",
+  "evidencePath": "playwright/projects/fibu-book5/evidence/p2p-011/",
+  "screenshots": [
+    "playwright/projects/fibu-book5/img/p2p-011-010-action-discovery-start.png",
+    "playwright/projects/fibu-book5/img/p2p-011-020-after-action-menus.png"
+  ],
+  "proved": [
+    "Purchase Order 106054 was opened in MCP_1_20260210/RM-DEMO.",
+    "RAW-STEEL remained visible during action discovery.",
+    "Safe action/menu discovery was attempted without repeating Select-items search or display-cell edit routes.",
+    "No field value entry, Preview Posting, posting, setup change, company switch or API shortcut was executed."
+  ],
+  "notProved": [
+    "Location FRA-ZL, Quantity 4 and Qty. to Receive 2 are not proven by P2P-011.",
+    "Preview Posting and Receive remain locked.",
+    "German final P2P proof remains open."
+  ],
+  "blockedBy": [
+    "no-clear-safe-purchase-lines-edit-action-found-in-visible-action-inventory",
+    "action-discovery-found-menu-context-but-not-a-proven-line-value-entry-route"
+  ],
+  "previewPosting": false,
+  "posted": false,
+  "setupChanged": false,
+  "apiShortcut": false
+}

@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-28T18:36:00.000+02:00",
+  "updatedAt": "2026-06-28T19:28:00.000+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "p2p",
-  "activeCase": "P2P-010-PURCHASE-LINE-VALUE-ROUTE-DECISION",
-  "active_case_file": ".agent/state/cases/p2p-010-purchase-line-value-route-decision.json",
+  "activeCase": "P2P-011-PURCHASE-LINES-EDIT-ACTION-DISCOVERY",
+  "active_case_file": ".agent/state/cases/p2p-011-purchase-lines-edit-action-discovery.json",
   "lastReferenceCase": "UAT-P2P-001",
   "lastReferenceCaseFile": "",
   "mode": "bc-specialist-labor-book-production",
@@ -40,7 +40,7 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "P2P-011: do not repeat Select-items or display-cell edits; run true Purchase Lines edit-mode/action discovery or choose an alternative standard UI route before Preview Posting.",
+  "nextStep": "P2P-012: switch to alternative standard UI route such as Purchase Journal or Item Journal; do not repeat Purchase Lines display-cell edits, Select-items search or generic action discovery.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/fixedassets-labor-draft.md",
     "area": "fixedassets",
@@ -221,11 +221,11 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "p2p-partial-receipt-value-route-decision",
+  "currentCoverageFocus": "p2p-partial-receipt-edit-action-discovery",
   "nextProcessRoute": [
-    "P2P-010 confirmed fresh Select-items route selects RAW-STEEL but does not set Location/Quantity/Qty. to Receive.",
-    "P2P-011 should discover a true Purchase Lines edit/action route or switch to an alternative standard UI route such as Purchase Journal if fachlich suitable.",
-    "P2P Preview Posting remains locked until target values are visible and unambiguous."
+    "P2P-011 confirmed More options/Line action discovery but found no direct safe Edit/List Edit route for Purchase Lines target values.",
+    "P2P-012 should evaluate an alternative standard UI route such as Purchase Journal or Item Journal for material/value effect.",
+    "P2P Preview Posting/Receive for Purchase Order lines remains locked until target values are visible and unambiguous."
   ],
   "activeAtlasFiles": [
     "playwright/projects/fibu-book5/BC-COVERAGE-MATRIX.md",
@@ -419,5 +419,29 @@
     "proved": "Fresh controlled Purchase Order draft route selected visible RAW-STEEL from Select items without opening unnecessary search.",
     "blocker": "Select items route exposes and selects RAW-STEEL but does not visibly set Location FRA-ZL, Quantity 4, Qty. to Receive 2 or Unit Cost 2500 on the resulting order line.",
     "nextStep": "P2P-011: do not repeat Select-items or display-cell edits; run true Purchase Lines edit-mode/action discovery or choose an alternative standard UI route before Preview Posting."
+  },
+  "latestP2PEditActionDiscovery": {
+    "caseId": "P2P-011-PURCHASE-LINES-EDIT-ACTION-DISCOVERY",
+    "status": [
+      "labor-blocked",
+      "helper-evidence-captured",
+      "needs-german-final-rebuild"
+    ],
+    "sourceInstance": "MCP_1_20260210",
+    "sourceCompany": "RM-DEMO",
+    "draft": "106054",
+    "posted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "apiShortcut": false,
+    "resultPath": "playwright/projects/fibu-book5/evidence/p2p-011/P2P-011-result.json",
+    "evidencePath": "playwright/projects/fibu-book5/evidence/p2p-011/",
+    "screenshots": [
+      "playwright/projects/fibu-book5/img/p2p-011-010-action-discovery-start.png",
+      "playwright/projects/fibu-book5/img/p2p-011-020-after-action-menus.png"
+    ],
+    "proved": "Purchase Order action/menu inventory was captured in PO 106054 context without repeating Select-items search or display-cell edits.",
+    "blocker": "No direct safe Edit/List Edit route for Purchase Lines value entry was found; item tracking/context actions are not proof for Location/Quantity/Qty. to Receive.",
+    "nextStep": "P2P-012: switch to alternative standard UI route such as Purchase Journal or Item Journal; do not repeat Purchase Lines display-cell edits, Select-items search or generic action discovery."
   }
 }

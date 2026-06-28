@@ -13,6 +13,8 @@ Status: `labor-reference`.
 | `Quantity` | P2P | Purchase Order `106051`, RAW-STEEL-Zeile | Bestellmenge fuer Teil-WE | `evidence/p2p-009/P2P-009-result.json` | Menge `4` nicht sichtbar bestaetigt; mapped cell bleibt leer |
 | `Direct Unit Cost Excl. Tax` | P2P | Purchase Order `106051`, RAW-STEEL-Zeile | Preis-/Wertbasis fuer Lager-/Sachposten | `evidence/p2p-009/P2P-009-result.json` | `2.500,00` in mapped cell sichtbar, aber nicht als neu gesetzter Wert bewiesen |
 | `Qty. to Receive` | P2P | Purchase Order `106051`, RAW-STEEL-Zeile | Teil-WE-Menge fuer Receive-only/Partial Receipt | `evidence/p2p-009/P2P-009-result.json` | Wert `2` nicht sichtbar bestaetigt; mapped cell bleibt leer |
+| `RAW-STEEL` per Select-items auf frischem Draft | P2P | Purchase Order `106054` | Artikelkontext fuer Teil-WE-Wertepfad | `evidence/p2p-010/P2P-010-result.json` | Artikel sichtbar, aber Location/Menge/Qty. to Receive/Unit Cost-Zielwerte nicht gesetzt |
+| Purchase Lines Action-Kontext | P2P | Purchase Order `106054`, More options / Line | kann Menues und Kontextaktionen sichtbar machen | `evidence/p2p-011/P2P-011-result.json` | kein Feldwert-Beweis; keine direkte Edit/List-Edit-Route fuer Zielwerte gefunden |
 | `Qty. to Receive` | P2P | Purchase Order Lines Kontext | Teil-WE-Menge steuert Wareneingang | `evidence/p2p-004/030-after-vendor-controls.json` | noch nicht gesetzt |
 | `Qty. to Invoice` | P2P | Purchase Order Lines Kontext | Rechnungsmengenabgleich | `evidence/p2p-004/030-after-vendor-controls.json` | noch nicht gesetzt |
 | `Vendor Invoice No.` | P2P | UAT-P2P-001 | Pflicht vor Preview/Buchung | `evidence/p2p-001/` | deutscher Klickpfad spaeter neu |
