@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "FIXEDASSETS-267-FA-DEPRECIATION-CONTROLLED-OK-EXECUTION-NO-POST",
-  "status": "planned",
+  "status": "observed",
   "workType": "playwright-controlled-calculate-depreciation-ok-execution-no-post",
   "taskClass": "wizard_work",
   "requiresStrongModel": false,
@@ -80,7 +80,15 @@
     "A posting, preview or setup dialog appears.",
     "The run would need more than one OK confirmation."
   ],
-  "nextSafeAction": "Run one controlled OK execution and document whether a FADEP-267-OK depreciation journal line exists; do not preview or post.",
+  "result": {
+    "resultStatus": "observed",
+    "okConfirmedExactlyOnce": true,
+    "journalLineFound": false,
+    "blockedBy": [],
+    "evidence": "playwright/projects/fibu-book5/evidence/fixedassets-267/FIXEDASSETS-267-result.json",
+    "summary": "Calculate Depreciation target values were visibly proven and OK was confirmed exactly once. The follow-up read of Fixed Asset G/L Journals did not show FADEP-267-OK, so repeat OK, Preview Posting and Post remain locked pending local review."
+  },
+  "nextSafeAction": "Do not repeat OK. Run FIXEDASSETS-268 as a local review of why FADEP-267-OK is not visible in Fixed Asset G/L Journals after controlled OK.",
   "createdAt": "2026-06-28T10:28:00.000+02:00",
-  "updatedAt": "2026-06-28T10:28:00.000+02:00"
+  "updatedAt": "2026-06-28T08:34:00.000+02:00"
 }

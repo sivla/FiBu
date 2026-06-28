@@ -1,4 +1,19 @@
 
+## FIND-BC-FA-104 AfA-OK wurde genau einmal bestaetigt, aber FADEP-267-OK ist im Journal nicht sichtbar
+
+| Feld | Wert |
+|---|---|
+| Bereich | Fixed Assets / AfA-Route / Calculate Depreciation Ergebnis |
+| Testfall | `FIXEDASSETS-267-FA-DEPRECIATION-CONTROLLED-OK-EXECUTION-NO-POST` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-267/FIXEDASSETS-267-result.json`, `playwright/projects/fibu-book5/evidence/fixedassets-267/020-journal-line-search.json` |
+| Ergebnis | `HGB`, `30.06.2026`, `FADEP-267-OK` und `FA-CNC-01` wurden vor `OK` sichtbar bewiesen; `OK` wurde genau einmal bestaetigt. |
+| Journalbefund | `Fixed Asset G/L Journals` war sichtbar, aber `FADEP-267-OK` und `FADEP-` wurden danach nicht gefunden. |
+| Sicherheitsgrenze | Kein Preview Posting, kein Post, kein Setup Change, kein Company Switch, keine API-Abkuerzung. |
+| Buchwirkung | Die Anleitung darf `OK` als Batchjob-Ausfuehrungsgrenze erklaeren, aber noch keinen erfolgreichen AfA-Journalzeilen-Nachweis behaupten. |
+| naechster Schritt | `FIXEDASSETS-268`: lokal klaeren, ob Datums-/AfA-Range, Journalbatch, Filter/Sichtbarkeit, Setup oder Playwright-Suche die fehlende Zeile erklaert. |
+
+Fuer Anfaenger ist das ein wichtiger Fehlerfall: Ein Batchjob kann formal bestaetigt werden, ohne dass der erwartete Beleg-/Journalnachweis sofort sichtbar ist. Danach wird nicht blind erneut auf `OK` geklickt; zuerst wird geklaert, wo Business Central das Ergebnis schreibt oder warum keine Zeile erzeugt wurde.
+
 ## FIND-BC-FA-103 AfA-OK-Ausfuehrung ist genau einmal freigegeben, Preview/Post bleiben gesperrt
 
 | Feld | Wert |

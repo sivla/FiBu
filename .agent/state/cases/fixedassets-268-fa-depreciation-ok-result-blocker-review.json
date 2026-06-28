@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-268-FA-DEPRECIATION-OK-RESULT-BLOCKER-REVIEW",
+  "status": "planned",
+  "workType": "local-fixedasset-depreciation-ok-result-review",
+  "taskClass": "judge_work",
+  "requiresStrongModel": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Review why the controlled Calculate Depreciation OK execution did not produce visible FADEP-267-OK journal evidence, without repeating OK, Preview Posting or Post.",
+  "triggeredBy": {
+    "caseId": "FIXEDASSETS-267-FA-DEPRECIATION-CONTROLLED-OK-EXECUTION-NO-POST",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-267/FIXEDASSETS-267-result.json",
+    "observed": [
+      "request page values proved",
+      "OK confirmed exactly once",
+      "FADEP-267-OK not visible in Fixed Asset G/L Journals",
+      "no Preview Posting",
+      "no Post"
+    ]
+  },
+  "allowedActions": [
+    "local-evidence-review",
+    "review-fa267-ok-result",
+    "plan-next-safe-fixedasset-step",
+    "write-compact-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright",
+    "confirm-ok-on-calculate-depreciation",
+    "preview-posting",
+    "post",
+    "setup-change",
+    "company-switch",
+    "api-shortcut-without-explicit-case-permission"
+  ],
+  "safetyGates": [
+    "local-only",
+    "no-repeat-ok",
+    "no-preview-posting",
+    "no-posting",
+    "no-setup-change",
+    "no-company-switch",
+    "no-api-shortcut"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-268/FIXEDASSETS-268-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-268/FIXEDASSETS-268-OK-RESULT-BLOCKER-REVIEW.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-268/README.md"
+  ],
+  "acceptanceCriteria": [
+    "FA-267 Evidence is reviewed locally.",
+    "The missing FADEP-267-OK journal line is classified as parameter, date/range, journal batch, filter/visibility, setup, or Playwright search limitation where possible.",
+    "The next action is a single safe step and does not repeat OK blindly.",
+    "Preview Posting and Post remain locked unless a later explicit gate unlocks them."
+  ],
+  "stopConditions": [
+    "The review would require opening Business Central.",
+    "The review would require repeating Calculate Depreciation OK.",
+    "The review would infer a journal line without evidence."
+  ],
+  "nextSafeAction": "Review FA-267 Evidence locally and decide whether the next live step should be a stronger read-only journal search, a parameter/range diagnosis, or a documented blocker.",
+  "createdAt": "2026-06-28T08:34:00.000+02:00",
+  "updatedAt": "2026-06-28T08:34:00.000+02:00"
+}
