@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-264-FA-DEPRECIATION-FIELD-MAPPING-REFINEMENT-NO-BC",
+  "status": "planned",
+  "workType": "local-playwright-field-mapping-refinement",
+  "taskClass": "wizard_work",
+  "requiresStrongModel": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Refine the Calculate Depreciation request-page field mapping locally so a selected visible control cannot resolve to a hidden control.",
+  "triggeredBy": {
+    "caseId": "FIXEDASSETS-263-FA-DEPRECIATION-FIELD-MAPPING-BLOCKER-REVIEW",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-263/FIXEDASSETS-263-result.json",
+    "blockers": [
+      "playwright-field-mapping-control-index-hidden-checkbox"
+    ]
+  },
+  "hypothesis": "The test can be made safer by carrying a stable same-query ordinal, selector identity, or coordinate target from the visible-control map into the fill routine instead of reusing an index against a different unfiltered locator list.",
+  "allowedActions": [
+    "read-local-evidence",
+    "edit-playwright-field-mapping-code",
+    "run-local-static-checks",
+    "write-compact-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright",
+    "write-request-page-values",
+    "confirm-ok-on-calculate-depreciation",
+    "preview-posting",
+    "post",
+    "setup-change",
+    "company-switch",
+    "api-shortcut-without-explicit-case-permission"
+  ],
+  "safetyGates": [
+    "local-only",
+    "no-business-central",
+    "no-playwright",
+    "no-ok",
+    "no-preview-posting",
+    "no-posting",
+    "no-setup-change",
+    "no-company-switch",
+    "no-api-shortcut"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-264/FIXEDASSETS-264-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-264/FIXEDASSETS-264-FIELD-MAPPING-REFINEMENT-NO-BC.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-264/README.md"
+  ],
+  "acceptanceCriteria": [
+    "The field mapper no longer uses a filtered DOM-list index against an unfiltered Playwright locator list.",
+    "The refinement remains scoped to the FA-262 request-page mapping code path.",
+    "No BC or Playwright run is performed in this case.",
+    "OK, Preview Posting and Post remain locked.",
+    "The next retry case is explicit and separately gated."
+  ],
+  "stopConditions": [
+    "The code change would broaden selectors beyond the request-page field-mapping scope.",
+    "The change would click OK, Preview Posting, Post or any live BC action.",
+    "The change would require a BC run to be considered complete."
+  ],
+  "nextSafeAction": "Patch the request-page field-mapping routine locally, validate syntax/static checks, and produce compact evidence before any further BC retry.",
+  "createdAt": "2026-06-28T09:05:00.000+02:00",
+  "updatedAt": "2026-06-28T09:05:00.000+02:00"
+}

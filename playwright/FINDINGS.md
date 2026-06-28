@@ -1,4 +1,19 @@
 
+## FIND-BC-FA-100 AfA-Field-Mapping darf sichtbare Control-Indizes nicht gegen ungefilterte Locator-Listen verwenden
+
+| Feld | Wert |
+|---|---|
+| Bereich | Fixed Assets / AfA-Route / Request-Page-Feldmapping |
+| Testfall | `FIXEDASSETS-263-FA-DEPRECIATION-FIELD-MAPPING-BLOCKER-REVIEW` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-263/FIXEDASSETS-263-result.json`, `playwright/projects/fibu-book5/evidence/fixedassets-263/FIXEDASSETS-263-FIELD-MAPPING-BLOCKER-REVIEW.md` |
+| Ergebnis | Der FA-262-Fehler ist lokal als Playwright-Field-Mapping-/Control-Index-Blocker eingeordnet. |
+| Ursache | Die sichtbare Control-Liste wurde nach DOM-Sichtbarkeit gefiltert; der spaetere Playwright-Locator nutzte aber eine ungefilterte `input,select,textarea,...`-Liste. Dadurch kann derselbe Index auf ein unsichtbares Kontrollfeld zeigen. |
+| Entscheidung | Erst lokaler Field-Mapping-Fix, dann separater BC-Retry. |
+| weiterhin gesperrt | Zielwerte als bewiesen, `OK`, Preview Posting, Post, Setup Change, Company Switch, API-Abkuerzung |
+| naechster Schritt | `FIXEDASSETS-264`: Lokale Field-Mapping-Verfeinerung ohne BC- oder Playwright-Ausfuehrung. |
+
+Fuer Playwright-Lernen ist das ein wiederverwendbarer Business-Central-Punkt: Ein sichtbares Feldinventar muss seine technische Zielidentitaet bis zum Klick/Fill stabil behalten. Sonst ist die Evidence nicht nur unvollstaendig, sondern potenziell auf das falsche Control gerichtet.
+
 ## FIND-BC-FA-099 AfA-Wertpreflight trifft hidden-checkbox Locator-Index-Blocker
 
 | Feld | Wert |
