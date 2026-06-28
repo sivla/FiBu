@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "FIXEDASSETS-269-FA-DEPRECIATION-ELIGIBILITY-AND-JOURNAL-SETUP-READONLY-DIAGNOSIS",
-  "status": "planned",
+  "status": "observed",
   "workType": "playwright-readonly-fixedasset-depreciation-eligibility-diagnosis",
   "taskClass": "wizard_work",
   "requiresStrongModel": false,
@@ -76,7 +76,13 @@
     "A dialog appears that could confirm, post, preview, delete or change setup.",
     "The diagnosis would require repeating Calculate Depreciation OK."
   ],
-  "nextSafeAction": "Run one read-only Playwright diagnosis; do not repeat OK, Preview Posting or Post.",
+  "result": {
+    "resultStatus": "observed",
+    "classification": "probable-target-date-before-acquisition",
+    "evidence": "playwright/projects/fibu-book5/evidence/fixedassets-269/FIXEDASSETS-269-result.json",
+    "summary": "Read-only diagnosis found FA-CNC-01 acquisition posting date 01.01.2027 (G05001), while the controlled depreciation target date was 30.06.2026. This plausibly explains why Calculate Depreciation generated no visible FADEP journal line."
+  },
+  "nextSafeAction": "Run FIXEDASSETS-270 as local review; decide a new post-acquisition target date or another read-only field proof before any repeat OK.",
   "createdAt": "2026-06-28T08:38:00.000+02:00",
-  "updatedAt": "2026-06-28T08:38:00.000+02:00"
+  "updatedAt": "2026-06-28T08:50:00.000+02:00"
 }

@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-270-FA-DEPRECIATION-ELIGIBILITY-DIAGNOSIS-REVIEW",
+  "status": "planned",
+  "workType": "local-fixedasset-depreciation-date-eligibility-review",
+  "taskClass": "judge_work",
+  "requiresStrongModel": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Review FA-269 evidence and decide the next smallest safe depreciation step after discovering that the previous target date 30.06.2026 is before the acquisition posting date 01.01.2027.",
+  "triggeredBy": {
+    "caseId": "FIXEDASSETS-269-FA-DEPRECIATION-ELIGIBILITY-AND-JOURNAL-SETUP-READONLY-DIAGNOSIS",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-269/FIXEDASSETS-269-result.json",
+    "classification": "probable-target-date-before-acquisition"
+  },
+  "allowedActions": [
+    "local-evidence-review",
+    "review-fa269-date-eligibility-finding",
+    "plan-next-safe-fixedasset-step",
+    "write-compact-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright",
+    "confirm-ok-on-calculate-depreciation",
+    "preview-posting",
+    "post",
+    "setup-change",
+    "company-switch",
+    "api-shortcut-without-explicit-case-permission"
+  ],
+  "safetyGates": [
+    "local-only",
+    "no-repeat-ok",
+    "no-preview-posting",
+    "no-posting",
+    "no-setup-change",
+    "no-company-switch",
+    "no-api-shortcut"
+  ],
+  "reviewQuestions": [
+    "Is the pre-acquisition target date enough to explain the missing FADEP journal lines?",
+    "Which new target date after 01.01.2027 is safest for a future no-OK value preflight or controlled OK case?",
+    "Should the next live case first prove request-page values for the new date without OK?",
+    "Which beginner-facing book warning should be added before any repeat execution?"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-270/FIXEDASSETS-270-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-270/FIXEDASSETS-270-DATE-ELIGIBILITY-REVIEW.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-270/README.md"
+  ],
+  "acceptanceCriteria": [
+    "FA-269 Evidence is reviewed locally.",
+    "The target-date-before-acquisition finding is either accepted or bounded.",
+    "The next live step is exactly one safe case and does not jump directly to Preview Posting or Post.",
+    "A beginner-facing warning is documented."
+  ],
+  "stopConditions": [
+    "The review would require opening Business Central.",
+    "The review would require repeating Calculate Depreciation OK.",
+    "The review would infer a journal line without evidence."
+  ],
+  "nextSafeAction": "Review FA-269 locally and select a post-acquisition date strategy before any repeat OK.",
+  "createdAt": "2026-06-28T08:50:00.000+02:00",
+  "updatedAt": "2026-06-28T08:50:00.000+02:00"
+}

@@ -1,4 +1,19 @@
 
+## FIND-BC-FA-106 AfA-Zieldatum lag vor dem Anlagenzugang
+
+| Feld | Wert |
+|---|---|
+| Bereich | Fixed Assets / AfA-Route / Datumslogik |
+| Testfall | `FIXEDASSETS-269-FA-DEPRECIATION-ELIGIBILITY-AND-JOURNAL-SETUP-READONLY-DIAGNOSIS` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-269/FIXEDASSETS-269-result.json`, `playwright/projects/fibu-book5/evidence/fixedassets-269/020-fa-ledger-entries-readonly.json` |
+| Befund | Der Anlagenposten zeigt `G05001`, `FA-CNC-01`, `HGB`, `Acquisition Cost`, Betrag `120.000,00` und Datum `01.01.2027`. |
+| Fehlerhypothese | Der vorige AfA-Lauf nutzte `30.06.2026`; dieses Datum liegt vor dem Zugang am `01.01.2027`. |
+| Wirkung | Business Central erzeugt plausibel keine AfA-Journalzeile, weil die Anlage zum Zielstichtag noch nicht angeschafft war. |
+| weiterhin gesperrt | Repeat `OK`, Preview Posting, Post, Setup Change, Company Switch, API-Abkuerzung |
+| naechster Schritt | `FIXEDASSETS-270`: lokal entscheiden, welches Datum nach dem Zugang als naechster no-OK/OK-Gate-Fall sinnvoll ist. |
+
+Fuer Anfaenger ist das einer der wichtigsten AfA-Lernpunkte: Das Buchungs-/AfA-Datum muss zur Anlagenhistorie passen. Ein formal korrekt ausgefuellter Batchjob kann leer bleiben, wenn der Stichtag vor dem Zugang liegt.
+
 ## FIND-BC-FA-105 Nach zwei AfA-OK-Laeufen ist erst Datums-/Eligibility-/Batchdiagnose sinnvoll
 
 | Feld | Wert |
