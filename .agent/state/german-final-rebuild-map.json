@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "purpose": "german-final-rebuild-map",
-  "updatedAt": "2026-06-28T13:56:00.000+02:00",
+  "updatedAt": "2026-06-28T16:20:00.000+02:00",
   "sourceInstance": "MCP_1_20260210",
   "sourceCompany": "RM-DEMO",
   "sourceEvidenceStatus": "labor-reference",
@@ -33,6 +33,23 @@
         "playwright/projects/fibu-book5/evidence/fixedassets-291/FIXEDASSETS-291-result.json"
       ],
       "laborBoundary": "FA-291 proved OK execution and a missing visible journal line in RM-DEMO only; no Preview Posting, no Post and no German final proof."
+    },
+    {
+      "caseId": "UAT-P2P-001",
+      "area": "p2p",
+      "migrationRelevance": "needed-for-german-final",
+      "sourceCompany": "RM-DEMO",
+      "mustRecreateInFinalSandbox": true,
+      "finalScreenshotNeeded": true,
+      "rebuildInstruction": "In the German target company, recreate the purchase order for the target vendor and item through the UI, prove Vendor Invoice No., Preview Posting, Receive/Invoice decision, posted purchase invoice, vendor ledger entries, G/L entries, VAT entries, item ledger entries and value entries with German UI screenshots.",
+      "targetGermanCompanyImpact": "German final P2P evidence must prove EUR, German VAT/pre-tax handling, German posting accounts, final screenshots and optionally payment/open-item settlement. RM-DEMO invoice 108219 remains a laboratory learning anchor only.",
+      "laborEvidenceRefs": [
+        "playwright/projects/fibu-book5/evidence/p2p-001/P2P-LAB-POSTING.md",
+        "playwright/projects/fibu-book5/evidence/p2p-001/095-preview-posting-result.json",
+        "playwright/projects/fibu-book5/evidence/p2p-001/100-purchase-posting-result.json",
+        "playwright/projects/fibu-book5/evidence/p2p-001/160-posting-trace-summary.json"
+      ],
+      "laborBoundary": "UAT-P2P-001 proved purchase order 106049 -> posted purchase invoice 108219 in RM-DEMO with USD and 0 percent tax; it does not prove German 19 percent VAT, German chart of accounts, German screenshots or P2P dimensions."
     }
   ],
   "rules": [

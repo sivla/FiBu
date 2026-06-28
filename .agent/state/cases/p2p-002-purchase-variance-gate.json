@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "caseId": "P2P-002-PURCHASE-VARIANCE-GATE",
+  "title": "Plan next P2P laboratory variance case after UAT-P2P-001",
+  "status": "planned",
+  "taskClass": "wizard_work",
+  "modelClass": "gpt-4-medium",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "controlled-labor-process-gate",
+  "sourceCase": "UAT-P2P-001",
+  "sourceBookSection": "FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md#12-procure-to-pay-rohmaterial-einkaufen",
+  "purpose": "Choose and prepare exactly one P2P follow-up case that adds practical book value beyond the already posted purchase invoice 108219.",
+  "allowedActions": [
+    "read-p2p-evidence",
+    "open-business-central-if-instance-and-company-match",
+    "run-playwright-if-case-preflight-passes",
+    "create-controlled-purchase-draft",
+    "preview-posting-if-case-unlocks-it",
+    "post-only-if-explicit-case-plan-and-evidence-gate-pass",
+    "cleanup-or-trace-draft",
+    "write-evidence",
+    "update-bookdraft-or-clickguide",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "final-german-claim-from-rm-demo",
+    "repeat-uat-p2p-001-without-new-purpose"
+  ],
+  "defaultLockedActions": [
+    "preview-posting",
+    "post",
+    "payment",
+    "setup-change",
+    "keep-draft"
+  ],
+  "safetyGates": [
+    "instance-boundary-gate",
+    "company-context-gate",
+    "p2p-source-evidence-read",
+    "posting-safety-gate-if-posting",
+    "cleanup-or-keep-trace-required",
+    "german-final-rebuild-note-required"
+  ],
+  "candidateScenarios": [
+    {
+      "id": "partial-receipt-vs-invoice",
+      "bookValue": "Explains receive quantity, invoice quantity and why partial delivery matters.",
+      "risk": "medium"
+    },
+    {
+      "id": "purchase-price-variance",
+      "bookValue": "Explains price difference, value entries and G/L impact.",
+      "risk": "medium"
+    },
+    {
+      "id": "vendor-payment-open-item",
+      "bookValue": "Connects posted purchase invoice 108219 to payments and OP settlement.",
+      "risk": "medium"
+    }
+  ],
+  "classification": [
+    "labor-draft",
+    "needs-german-final-rebuild"
+  ],
+  "nextStep": "Select one candidate scenario, write a narrow evidence plan, then run only that controlled P2P lab case in RM-DEMO."
+}

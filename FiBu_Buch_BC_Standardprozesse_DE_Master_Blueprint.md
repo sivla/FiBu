@@ -2240,6 +2240,29 @@ Die Einkaufsbestellung `106049` wurde mit `K10000`, `RAW-STEEL`, Menge `10`, Lag
 
 Nach der Korrektur zeigte `Preview Posting` echte Vorschauarten: `G/L Entry`, `Vendor Ledger Entry`, `Detailed Vendor Ledg. Entry`, `Item Ledger Entry` und `Value Entry`. Danach wurde genau einmal `Receive and Invoice` gebucht. Die gebuchte Einkaufsrechnung lautet `108219`. Die Postenspur zeigt Kreditorenposten, Sachposten mit `22100 Accounts Payable, Domestic` und `14140 Resale Items`, Wertposten mit `RAW-STEEL` und Artikelposten `793`. Dieser Stand beweist Bedienpfad, Laborbuchung und Postenspur. Er beweist nicht `EUR`, `19 %` deutsche Vorsteuer oder einen deutschen Kontenplan-Endstand: Im Labor bleibt `Currency Code = USD` und `Tax Percent = 0`.
 
+Status dieses Laborblocks: `labor-proven`, `labor-sufficient-for-book-draft`, `needs-german-final-rebuild`.
+
+| Laboranker aus `UAT-P2P-001` | Was im Buch damit erklaert wird | Was spaeter deutsch neu bewiesen werden muss |
+|---|---|---|
+| Einkaufsbestellung `106049` mit `K10000`, `RAW-STEEL`, Menge `10`, Lagerort `FRA-ZL` | Einkaufsbestellung verbindet Kreditor, Artikel, Menge, Lagerort und Preis | deutsche Bestellung mit Zielwaehrung `EUR`, deutschem Kreditor-/Artikelsetup und deutschem Screenshot |
+| `Vendor Invoice No.` als Pflicht vor Preview/Buchung | Die externe Lieferantenrechnungsnummer ist kein optionaler Kommentar, sondern ein Kontrollfeld | deutscher Klickpfad ohne API-Shortcut, mit sichtbarer Lieferantenrechnungsnummer |
+| `Preview Posting` mit G/L, Vendor Ledger, Detailed Vendor Ledger, Item Ledger und Value Entry | Preview zeigt vor der Buchung, welche Postenarten entstehen wuerden | deutsche Vorschau mit deutscher Vorsteuer-/VAT-Wirkung und Zielkonten |
+| Buchungsoption `Receive and Invoice` genau einmal | Wareneingang und Rechnung koennen in einem Laborfall gemeinsam gebucht werden | deutscher Zielprozess entscheidet bewusst zwischen Teil-WE, separater Rechnung oder Receive and Invoice |
+| Gebuchte Einkaufsrechnung `108219` | Nach der Buchung ist der offene Kreditorenposten der Finance-Nachweis | deutsche gebuchte Einkaufsrechnung mit deutschem Belegbild und USt-Posten |
+| Kreditorenposten, Sachposten, Wertposten und Artikelposten `793` | Jede Postenart beantwortet eine andere Kontrollfrage | deutsche Postenspur inklusive Vorsteuer, Kontenplan, Dimensionen und ggf. Zahlungs-/OP-Ausgleich |
+
+Fuer Einsteiger ist der wichtigste P2P-Lernpunkt: Eine Einkaufsrechnung ist nicht nur ein PDF oder ein Belegkopf. Business Central erzeugt eine Kette aus Lieferantenbeleg, Lagerbewegung, Wertbewegung, Hauptbuchwirkung und offenem Kreditorenposten. Wenn nur die gebuchte Rechnung sichtbar ist, fehlt noch die Kontrolle, ob Lager, Wert, Konten und OP zusammenpassen.
+
+Screenshot-/Evidence-ToDos fuer die spaetere deutsche Zielinstanz:
+
+- `[DE-FINAL-SCREENSHOT: Einkaufsbestellung mit K10000, RAW-STEEL, Menge, Lagerort, Preis und Lieferantenrechnungsnummer]`
+- `[DE-FINAL-SCREENSHOT: Preview Posting mit Sachposten, Kreditorenposten, Artikelposten, Wertposten und USt-Posten]`
+- `[DE-FINAL-SCREENSHOT: gebuchte Einkaufsrechnung mit deutscher Belegnummer und EUR]`
+- `[DE-FINAL-SCREENSHOT: Kreditorenposten zur gebuchten Rechnung]`
+- `[DE-FINAL-SCREENSHOT: Sachposten mit deutschen Verbindlichkeits-, Lager- und Vorsteuerkonten]`
+- `[DE-FINAL-SCREENSHOT: Artikelposten und Wertposten zu RAW-STEEL]`
+- `[DE-FINAL-SCREENSHOT: Zahlung/OP-Ausgleich oder bewusst offener Posten]`
+
 | Buchung | Soll | Haben |
 |---|---:|---:|
 | Vorräte Rohmaterial | 25.000 | |
@@ -3848,6 +3871,16 @@ Screenshot-Platzhalter fuer die spaetere deutsche Zielinstanz:
 - `[DE-FINAL-SCREENSHOT: Preview Posting Anlagenzugang mit Sachposten und Anlagenposten]`
 - `[DE-FINAL-SCREENSHOT: Gebuchte Sachposten zum deutschen Anlagenzugang]`
 - `[DE-FINAL-SCREENSHOT: Gebuchte Anlagenposten zum deutschen Anlagenzugang]`
+- `[DE-FINAL-SCREENSHOT: AfA berechnen mit deutschem AfA-Buch, Zielstichtag und Anlagenfilter]`
+- `[DE-FINAL-SCREENSHOT: erzeugte AfA-Journalzeile vor Preview Posting]`
+- `[DE-FINAL-SCREENSHOT: Preview Posting und gebuchte AfA-Sach-/Anlagenposten]`
+
+| Laboranker aus `RM-DEMO` | Was Einsteiger daran lernen | Zielwert im deutschen Final-Rebuild |
+|---|---|---|
+| Anlagenkarte `FA-CNC-01` mit `HGB` und `MACHINES` | Stammdaten, AfA-Buch und Anlagenbuchungsgruppe sind Voraussetzung, nicht die Buchung selbst | deutsche Anlagenkarte mit deutschem AfA-Buch, deutscher Kontenfindung und finalem Stammdatenscreenshot |
+| Preview Posting zum Zugang `G05001` | Vor der Buchung muessen Sachposten- und Anlagenpostenwirkung sichtbar werden | deutsche Vorschau mit Zielkonten, deutscher Belegnummer und finaler Freigabegrenze |
+| Gebuchte Sachposten und Anlagenposten zu `G05001` | Hauptbuch und Anlagen-Nebenbuch beantworten unterschiedliche Fragen | deutsche Postenspur fuer Zugang, AfA und spaeteren Anlagenspiegel |
+| `FADEP-291-OK` ohne sichtbare Journalzeile | Ein Batch-OK ist kein Ergebnisnachweis; danach muss die Journalzeile gesucht werden | deutsche AfA-Berechnung mit sichtbarer Journalzeile, Preview Posting und gebuchter AfA-Spur |
 
 Die AfA-Strecke ist dagegen noch `labor-blocked`. In `FIXEDASSETS-291` wurde `AfA berechnen (Calculate Depreciation)` geoeffnet und mit `HGB`, Buchungsdatum `31.01.2027`, Belegnummer `FADEP-291-OK` und Anlagenfilter `FA-CNC-01` sichtbar belegt. `OK` wurde genau einmal bestaetigt. Danach wurde im `Fixed Asset G/L Journal` gesucht, aber `FADEP-291-OK` wurde nicht sichtbar gefunden. Es wurde keine AfA-Journalzeile, kein AfA-Preview und keine AfA-Buchung bewiesen.
 
