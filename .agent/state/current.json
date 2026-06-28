@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-29T00:31:39.0797675+02:00",
+  "updatedAt": "2026-06-29T00:35:56.1107369+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "bank",
-  "activeCase": "BANK-015-RECONCILIATION-ALTERNATIVE-ROUTE-DECISION",
-  "active_case_file": ".agent/state/cases/bank-015-reconciliation-alternative-route-decision.json",
-  "lastReferenceCase": "BANK-014-FRESH-RECONCILIATION-CANDIDATE-GATE",
-  "lastReferenceCaseFile": ".agent/state/cases/bank-014-fresh-reconciliation-candidate-gate.json",
+  "activeCase": "BANK-016-FRESH-VENDOR-LEDGER-CANDIDATE-SCOUT",
+  "active_case_file": ".agent/state/cases/bank-016-fresh-vendor-ledger-candidate-scout.json",
+  "lastReferenceCase": "BANK-015-RECONCILIATION-ALTERNATIVE-ROUTE-DECISION",
+  "lastReferenceCaseFile": ".agent/state/cases/bank-015-reconciliation-alternative-route-decision.json",
   "mode": "bc-specialist-labor-book-production",
-  "requiresStrongModel": true,
+  "requiresStrongModel": false,
   "requiredPreflightChecks": [
     "agent:preflight",
     "agent:state:validate",
@@ -40,7 +40,7 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "BANK-015: review BANK-014 blocked candidate evidence and choose a safer bounded bank route; do not click Accept Applications or Post Payments Only for 108205 / 107197.",
+  "nextStep": "BANK-016: run read-only Vendor Ledger candidate scout; do not create a Payment Journal draft until one open ledger target is visible.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/fixedassets-labor-draft.md",
     "area": "fixedassets",
@@ -1266,5 +1266,36 @@
     "finalScreenshotNeeded": true,
     "decision": "BANK-014 bleibt read-only und blockiert Apply/Post: Der Kandidat 108205 / Invoice 107197 ist noch nicht ausreichend gegen Vendor Ledger Entries belegt.",
     "nextStep": "Switch to another bounded execute/evidence route; do not post candidate 108205 / 107197."
+  },
+  "latestBank015": {
+    "caseId": "BANK-015-RECONCILIATION-ALTERNATIVE-ROUTE-DECISION",
+    "status": [
+      "labor-sufficient-for-book-draft",
+      "route-decision",
+      "no-post",
+      "needs-german-final-rebuild"
+    ],
+    "sourceInstance": "MCP_1_20260210",
+    "sourceCompany": "RM-DEMO",
+    "bcRun": false,
+    "playwrightRun": false,
+    "posted": false,
+    "paymentPosted": false,
+    "bankReconciliationPosted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "apiShortcut": false,
+    "resultPath": "playwright/projects/fibu-book5/evidence/bank-015/BANK-015-result.json",
+    "evidencePath": "playwright/projects/fibu-book5/evidence/bank-015/",
+    "decision": "Do not continue candidate 108205 / 107197 through Payment Reconciliation. BANK-014 did not prove the invoice ledger entry strongly enough for Apply, Accept Applications or Post Payments Only. Use Vendor Ledger Entries as the leading proof source before any new Payment Journal preflight.",
+    "selectedRoute": "BANK-016-FRESH-VENDOR-LEDGER-CANDIDATE-SCOUT",
+    "rejectedRoutes": [
+      "Continue Payment Reconciliation candidate 108205 / 107197",
+      "Global Post Payments Only from Payment Reconciliation"
+    ],
+    "migrationRelevance": "needed-for-german-final",
+    "mustRecreateInFinalSandbox": true,
+    "finalScreenshotNeeded": true,
+    "nextStep": "BANK-016: run read-only Vendor Ledger candidate scout; do not create a Payment Journal draft until one open ledger target is visible."
   }
 }

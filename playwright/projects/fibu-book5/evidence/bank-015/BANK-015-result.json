@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "purpose": "bank-reconciliation-alternative-route-decision",
+  "caseId": "BANK-015-RECONCILIATION-ALTERNATIVE-ROUTE-DECISION",
+  "source": "local-analysis",
+  "resultStatus": "observed",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "sourceCompany": "RM-DEMO",
+  "mode": "labor-local-route-decision-no-bc-no-playwright-no-post",
+  "decisionStatus": "payment-reconciliation-candidate-rejected-for-posting",
+  "selectedRoute": "BANK-016-FRESH-VENDOR-LEDGER-CANDIDATE-SCOUT",
+  "decision": "Do not continue candidate 108205 / 107197 through Payment Reconciliation. BANK-014 did not prove the invoice ledger entry strongly enough for Apply, Accept Applications or Post Payments Only. Use Vendor Ledger Entries as the leading proof source before any new Payment Journal preflight.",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/bank-009/BANK-009-result.json",
+    "playwright/projects/fibu-book5/evidence/bank-013/BANK-013-result.json",
+    "playwright/projects/fibu-book5/evidence/bank-014/BANK-014-result.json"
+  ],
+  "proved": [
+    "BANK-009 is the safer proven pattern for a scoped single-line vendor payment with Journal Check, Apply Entries and ledger trace.",
+    "BANK-013 found fresh Payment Reconciliation candidates but did not select or apply any line.",
+    "BANK-014 blocked candidate 108205 / 107197 because invoice-ledger proof was incomplete.",
+    "The next bank step must start from visible Vendor Ledger Entries rather than broad Payment Reconciliation posting."
+  ],
+  "notProved": [
+    "No new Business Central page was opened in BANK-015.",
+    "No payment was posted.",
+    "No bank reconciliation was posted.",
+    "No Apply or Accept Applications was executed.",
+    "No German bank/compliance final proof exists."
+  ],
+  "rejectedRoutes": [
+    {
+      "route": "Continue Payment Reconciliation candidate 108205 / 107197",
+      "reason": "Rejected because BANK-014 did not prove the invoice ledger entry directly enough for Apply/Post."
+    },
+    {
+      "route": "Global Post Payments Only from Payment Reconciliation",
+      "reason": "Rejected because prior BANK-006/BANK-014 evidence does not prove single-line scope in the global dialog."
+    }
+  ],
+  "nextCase": "BANK-016-FRESH-VENDOR-LEDGER-CANDIDATE-SCOUT",
+  "nextCaseFile": ".agent/state/cases/bank-016-fresh-vendor-ledger-candidate-scout.json",
+  "flags": {
+    "bcRun": false,
+    "playwrightRun": false,
+    "readOnly": true,
+    "noPost": true,
+    "noPreviewPosting": true,
+    "noPaymentPosting": true,
+    "noBankReconciliationPosting": true,
+    "noAcceptApplications": true,
+    "noApply": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noNew": true,
+    "noEdit": true,
+    "noDelete": true,
+    "noDraftCreated": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "rebuildInstruction": "In der deutschen Zielcompany erst offene Kreditorenposten sichtbar aus Vendor Ledger Entries ableiten, danach einen eng gefuehrten Payment-Journal- oder Bank-Reconciliation-Preflight planen.",
+  "targetGermanCompanyImpact": "Deutsche finale Evidence braucht eigene offene Posten, deutsches Bankkonto, Zahlungs-/Ausgleichsbeleg und Bank-/Sachpostenspur.",
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/bank-015/BANK-015-result.json",
+    "playwright/projects/fibu-book5/evidence/bank-015/BANK-015-ROUTE-DECISION.md",
+    "playwright/projects/fibu-book5/evidence/bank-015/README.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/bank-015/"
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {},
+  "nextStep": "BANK-016: run read-only Vendor Ledger candidate scout; do not create a Payment Journal draft until one open ledger target is visible."
+}

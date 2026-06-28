@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "caseId": "BANK-016-FRESH-VENDOR-LEDGER-CANDIDATE-SCOUT",
+  "title": "Find a fresh open vendor ledger candidate before any new payment or reconciliation posting",
+  "status": "planned",
+  "taskClass": "wizard_work",
+  "modelClass": "gpt-5.4-medium",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "playwright-ui-readonly-candidate-scout",
+  "sourceCase": "BANK-015-RECONCILIATION-ALTERNATIVE-ROUTE-DECISION",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/bank-015/BANK-015-result.json",
+    "playwright/projects/fibu-book5/evidence/bank-014/BANK-014-result.json",
+    "playwright/projects/fibu-book5/evidence/bank-009/BANK-009-result.json"
+  ],
+  "purpose": "Use Vendor Ledger Entries as the first-class proof source, not the broad Payment Reconciliation journal, to find a fresh open payable candidate for a later single-line Payment Journal preflight.",
+  "allowedActions": [
+    "open-business-central-if-instance-and-company-match",
+    "run-playwright-if-case-preflight-passes",
+    "read-vendor-ledger-entries",
+    "write-evidence",
+    "update-state"
+  ],
+  "defaultLockedActions": [
+    "accept-applications",
+    "post-payments-only",
+    "posting",
+    "payment",
+    "setup-change",
+    "keep-draft",
+    "new-draft",
+    "edit-record"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "claim-german-final-proof",
+    "api-shortcut-without-explicit-case-permission",
+    "post-candidate-108205-without-ledger-proof",
+    "click-accept-applications",
+    "click-post-payments-only"
+  ],
+  "safetyGates": [
+    "instance-and-company-confirmed",
+    "read-only-navigation-only",
+    "candidate-must-be-visible-in-vendor-ledger",
+    "candidate-must-have-open-or-remaining-amount-signal",
+    "no-payment-journal-draft",
+    "no-reconciliation-apply-or-post"
+  ],
+  "expectedOutputs": [
+    "A compact read-only evidence pack listing one or more open Vendor Ledger Entry candidates.",
+    "A clear next decision whether a single-line Payment Journal preflight is safe."
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "targetGermanCompanyImpact": "German final payment and bank reconciliation need their own open vendor/customer ledger candidate and posting trace.",
+  "finalScreenshotNeeded": true,
+  "nextStep": "Run a read-only Vendor Ledger candidate scout; do not create a Payment Journal line until a target entry is visible."
+}
