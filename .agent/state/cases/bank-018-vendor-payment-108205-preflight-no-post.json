@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "caseId": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
   "title": "Prepare a single-line Payment Journal preflight for Vendor Ledger candidate 108205 without posting",
-  "status": "planned",
+  "status": "done",
   "taskClass": "wizard_work",
   "modelClass": "gpt-5.4-medium",
   "instance": "MCP_1_20260210",
@@ -73,5 +73,29 @@
   "mustRecreateInFinalSandbox": true,
   "targetGermanCompanyImpact": "German final payment needs its own open vendor ledger entry, bank account, Payment Journal preflight, apply proof and posting trace.",
   "finalScreenshotNeeded": true,
-  "nextStep": "Run BANK-018 as controlled no-post Payment Journal preflight for 108205; do not post."
+  "nextStep": "BANK-019: decide from BANK-018 evidence whether a separate controlled posting case may be opened. Do not post in BANK-019.",
+  "completedAt": "2026-06-28T22:55:45.907Z",
+  "resultPath": "playwright/projects/fibu-book5/evidence/bank-018/BANK-018-result.json",
+  "resultStatus": "observed",
+  "cleanup": {
+    "attempted": true,
+    "cleaned": true,
+    "documentNoStillVisible": false
+  },
+  "proved": [
+    "Vendor Ledger Entry 108205 / Wide World Importers / Vendor 40000 was visible before Payment Journal preflight.",
+    "A controlled Payment Journal line BANK018-108205 was attempted for Vendor 40000, BANK-RM-01 and Applies-to Doc. No. 108205.",
+    "Journal Check and Apply Entries were captured before any posting action.",
+    "No Post, Preview Posting, setup change, company switch or API shortcut was performed.",
+    "The draft line was cleaned up before the run ended."
+  ],
+  "notProved": [
+    "No payment was posted.",
+    "No Preview Posting was opened.",
+    "No bank reconciliation was posted.",
+    "No Vendor/Bank/G-L ledger trace from a new payment exists.",
+    "No German final bank/payment proof."
+  ],
+  "blockedBy": [],
+  "nextCase": "BANK-019-VENDOR-PAYMENT-108205-POSTING-DECISION"
 }

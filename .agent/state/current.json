@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-29T00:46:55.7670178+02:00",
+  "updatedAt": "2026-06-28T22:55:45.907Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "bank",
-  "activeCase": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
-  "active_case_file": ".agent/state/cases/bank-018-vendor-payment-108205-preflight-no-post.json",
-  "lastReferenceCase": "BANK-017-VENDOR-PAYMENT-PREFLIGHT-GATE-DECISION",
+  "activeCase": "BANK-019-VENDOR-PAYMENT-108205-POSTING-DECISION",
+  "active_case_file": ".agent/state/cases/bank-019-vendor-payment-108205-posting-decision.json",
+  "lastReferenceCase": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
   "lastReferenceCaseFile": ".agent/state/cases/bank-017-vendor-payment-preflight-gate-decision.json",
   "mode": "bc-specialist-labor-book-production",
   "requiresStrongModel": false,
@@ -40,7 +40,7 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "BANK-018: controlled no-post Payment Journal preflight for 108205; do not post.",
+  "nextStep": "BANK-019: review BANK-018 preflight and either approve BANK-020 controlled posting or document remaining blocker; no posting in BANK-019.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/fixedassets-labor-draft.md",
     "area": "fixedassets",
@@ -1384,5 +1384,32 @@
     "finalScreenshotNeeded": true,
     "decision": "Approve a separate no-post Payment Journal preflight for Vendor Ledger document 108205. Do not use Payment Reconciliation Apply/Post for this target. BANK-018 may create exactly one scoped draft line, run Journal Check/open Apply Entries if reachable, and must cleanup or explicitly document keep status. Posting remains locked.",
     "nextStep": "BANK-018: controlled no-post Payment Journal preflight for 108205; do not post."
+  },
+  "workType": "controlled-payment-posting-gate-decision",
+  "lastCompletedCase": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
+  "latestBank018": {
+    "caseId": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
+    "status": [
+      "labor-proven",
+      "payment-journal-preflight",
+      "cleanup-proven",
+      "needs-german-final-rebuild"
+    ],
+    "resultPath": "playwright/projects/fibu-book5/evidence/bank-018/BANK-018-result.json",
+    "target": {
+      "documentNo": "108205",
+      "relatedInvoiceNo": "107197",
+      "vendorNo": "40000",
+      "vendorName": "Wide World Importers",
+      "amount": "3.123,37",
+      "bankAccountNo": "BANK-RM-01",
+      "paymentDocumentNo": "BANK018-108205"
+    },
+    "summary": "BANK-018 proved a no-post Payment Journal preflight for Vendor Ledger Entry 108205 / Wide World Importers: target entry visible, BANK018-108205 draft line visible, Journal Check zero issues, Apply Entries read-only context visible, draft cleaned up.",
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "nextCase": "BANK-019-VENDOR-PAYMENT-108205-POSTING-DECISION"
   }
 }

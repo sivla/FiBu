@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "caseId": "BANK-019-VENDOR-PAYMENT-108205-POSTING-DECISION",
+  "title": "Decide whether BANK-018 preflight is sufficient for one controlled vendor payment posting",
+  "status": "planned",
+  "taskClass": "judge_work",
+  "modelClass": "gpt-5.5-low",
+  "usageLogRequired": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "controlled-payment-posting-gate-decision",
+  "sourceCase": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/bank-018/BANK-018-result.json",
+    "playwright/projects/fibu-book5/evidence/bank-018/BANK-018-SINGLE-LINE-VENDOR-PAYMENT-PREFLIGHT.md",
+    "playwright/projects/fibu-book5/evidence/bank-009/BANK-009-result.json"
+  ],
+  "target": {
+    "vendorLedgerDocumentNo": "108205",
+    "relatedInvoiceNo": "107197",
+    "vendorNo": "40000",
+    "vendorName": "Wide World Importers",
+    "paymentDocumentNo": "BANK018-108205",
+    "amount": "3.123,37",
+    "bankAccountNo": "BANK-RM-01"
+  },
+  "purpose": "Review BANK-018 and decide whether a future single-line vendor payment posting is sufficiently gated. This case itself does not post.",
+  "allowedActions": [
+    "read-bank-018-evidence",
+    "read-bank-009-reference-posting-trace",
+    "write-posting-decision-evidence",
+    "create-next-controlled-posting-case-if-approved",
+    "update-state"
+  ],
+  "defaultLockedActions": [
+    "post",
+    "payment",
+    "payment-posting",
+    "bank-reconciliation-posting",
+    "setup-change",
+    "keep-draft"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "claim-german-final-proof",
+    "api-shortcut-without-explicit-case-permission",
+    "post-payment-in-bank-019"
+  ],
+  "safetyGates": [
+    "bank-018-result-observed",
+    "bank-018-cleanup-proven",
+    "bank-018-journal-check-zero-issues",
+    "bank-018-apply-entries-readonly-context-visible",
+    "posting-case-must-be-separate",
+    "post-remains-locked-in-bank-019"
+  ],
+  "expectedOutputs": [
+    "A compact decision JSON/Markdown that either approves or rejects a later BANK-020 controlled posting case.",
+    "If approved, next case must define exact posting action, post-dialog screenshot, ledger trace and cleanup/keep rules."
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "targetGermanCompanyImpact": "German final payment needs its own open vendor ledger entry, bank account, apply proof, controlled posting and ledger trace.",
+  "finalScreenshotNeeded": true,
+  "nextStep": "Review BANK-018 and either approve BANK-020 controlled posting or document the remaining blocker. Do not post in BANK-019."
+}

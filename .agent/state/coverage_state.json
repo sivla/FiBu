@@ -38,7 +38,7 @@
     "bankPayments": {
       "chapter": "Kapitel 20",
       "status": "labor-sufficient-for-book-draft",
-      "latestPracticalCase": "BANK-016-FRESH-VENDOR-LEDGER-CANDIDATE-SCOUT",
+      "latestPracticalCase": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
       "latestReviewCase": "BANK-017-VENDOR-PAYMENT-PREFLIGHT-GATE-DECISION",
       "customerPaymentAnchor": "PAY011-PS103297",
       "vendorPaymentAnchor": "BANK009-108204",
@@ -52,7 +52,9 @@
         "Detailed Customer/Vendor Ledger Entries",
         "Bank Account Ledger Entries",
         "G/L Entries",
-        "Vendor Ledger candidate scout before Payment Journal preflight"
+        "Vendor Ledger candidate scout before Payment Journal preflight",
+        "Payment Journal 108205 preflight",
+        "Payment Journal cleanup after no-post preflight"
       ],
       "openLimits": [
         "No bank reconciliation",
@@ -60,9 +62,10 @@
         "No German final proof",
         "No German bank/compliance final screenshots",
         "BANK-014: candidate 108205 / invoice 107197 not sufficiently proven against Vendor Ledger Entries for Apply/Post",
-        "BANK-015: Payment Reconciliation candidate 108205/107197 rejected for posting; next proof must start from Vendor Ledger Entries"
+        "BANK-015: Payment Reconciliation candidate 108205/107197 rejected for posting; next proof must start from Vendor Ledger Entries",
+        "BANK-018 did not post payment 108205; BANK-019 must decide before any controlled posting case."
       ],
-      "nextStep": "BANK-018: controlled no-post Payment Journal preflight for 108205; do not post.",
+      "nextStep": "BANK-019: controlled posting decision from BANK-018 evidence; do not post in decision case.",
       "postPaymentReconciliationState": "old invoice 108204 still visible in Payment Reconciliation after BANK009-108204; do not post old reconciliation context blindly",
       "staleReconciliationDecision": "BANK-012 parks stale 108204 Payment Reconciliation signal after BANK009-108204; do not post it blindly.",
       "latestBlockedCase": "BANK-014-FRESH-RECONCILIATION-CANDIDATE-GATE"
@@ -92,12 +95,12 @@
   "hardExclusions": {
     "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
   },
-  "updatedAt": "2026-06-29T00:46:55.7670178+02:00",
+  "updatedAt": "2026-06-28T22:55:45.907Z",
   "activeArea": "bank",
-  "currentBlock": "bank-payment-journal-108205-preflight",
+  "currentBlock": "bank-payment-journal-108205-posting-decision",
   "latestPracticalCase": "FIXEDASSETS-295-FA-DEPRECIATION-GUARDED-OK-FRESH-DOC-NO-POST",
   "latestReviewCase": "FIXEDASSETS-296-FA-DEPRECIATION-FRESH-OK-RESULT-BLOCKER-REVIEW",
-  "nextCase": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
+  "nextCase": "BANK-019-VENDOR-PAYMENT-108205-POSTING-DECISION",
   "latestBank013": {
     "caseId": "BANK-013-CONTROLLED-NEXT-EVIDENCE-STEP",
     "status": [
@@ -564,5 +567,31 @@
     },
     "summary": "BANK-017 approves BANK-018 as a no-post Payment Journal preflight for Vendor Ledger candidate 108205 / Wide World Importers. Posting remains locked.",
     "nextCase": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST"
+  },
+  "bankPayments": {},
+  "latestBank018": {
+    "caseId": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
+    "status": [
+      "labor-proven",
+      "payment-journal-preflight",
+      "cleanup-proven",
+      "needs-german-final-rebuild"
+    ],
+    "resultPath": "playwright/projects/fibu-book5/evidence/bank-018/BANK-018-result.json",
+    "target": {
+      "documentNo": "108205",
+      "relatedInvoiceNo": "107197",
+      "vendorNo": "40000",
+      "vendorName": "Wide World Importers",
+      "amount": "3.123,37",
+      "bankAccountNo": "BANK-RM-01",
+      "paymentDocumentNo": "BANK018-108205"
+    },
+    "summary": "BANK-018 proved a no-post Payment Journal preflight for Vendor Ledger Entry 108205 / Wide World Importers: target entry visible, BANK018-108205 draft line visible, Journal Check zero issues, Apply Entries read-only context visible, draft cleaned up.",
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "nextCase": "BANK-019-VENDOR-PAYMENT-108205-POSTING-DECISION"
   }
 }
