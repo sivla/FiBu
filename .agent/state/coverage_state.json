@@ -39,12 +39,12 @@
   "hardExclusions": {
     "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
   },
-  "updatedAt": "2026-06-28T20:48:00.000+02:00",
+  "updatedAt": "2026-06-28T21:42:00.000+02:00",
   "activeArea": "deep-run",
   "currentBlock": "multi-route-sandbox-progress",
   "latestPracticalCase": "BC-DEEP-RUN-001-MULTI-ROUTE-SANDBOX-PROGRESS",
   "latestReviewCase": "BOOK-P2P-CH12-PARTIAL-RECEIPT-GATE-SYNC",
-  "nextCase": "P2P-014-PURCHASE-JOURNAL-VALUE-ENTRY-GATE",
+  "nextCase": "PAYMENTS-006-CASH-RECEIPT-AMOUNT-VALIDATION",
   "fixedAssets": {
     "faCnc01": {
       "postingGroupAssignment": "fieldlocal-fit-proven-machines-labor",
@@ -376,11 +376,34 @@
       "FIXEDASSETS-240",
       "PAYMENTS-002",
       "P2P-013",
-      "DEEP-RUN-001-SYNC"
+      "DEEP-RUN-001-SYNC",
+      "MARATHON-GATE-001",
+      "P2P-014",
+      "PAYMENTS-005"
     ],
-    "nextBestLever": "Purchase Journal value-entry gate for creditor-side P2P",
+    "nextBestLever": "PAYMENTS-006 amount validation or P2P-015 Purchase Journal posting-group/preview gate",
     "noPostingInDeepRun": true,
     "noPreviewInDeepRun": true,
-    "noSetupChangeInDeepRun": true
+    "noSetupChangeInDeepRun": true,
+    "executePackages": [
+      "P2P-014",
+      "PAYMENTS-005"
+    ]
+  },
+  "p2pPurchaseJournalValueEntryGate": {
+    "status": "execute-attempt-cleanup-proven",
+    "resultPath": "playwright/projects/fibu-book5/evidence/p2p-014/P2P-014-result.json",
+    "posted": false,
+    "preview": false,
+    "cleanupProven": true,
+    "blocker": "Gen. Bus. Posting Group issue before any posting gate."
+  },
+  "paymentsCashReceiptDraft": {
+    "status": "execute-attempt-cleanup-proven",
+    "resultPath": "playwright/projects/fibu-book5/evidence/payments-005/PAYMENTS-005-result.json",
+    "posted": false,
+    "applied": false,
+    "cleanupProven": true,
+    "blocker": "Amount validation still open."
   }
 }

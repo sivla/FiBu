@@ -69,7 +69,6 @@ const packageClassifications = packages.map((entry) => {
     hasAnySignal(text, executeSignals);
   const readOnly =
     entry.execute === false ||
-    entry.posted === false ||
     hasAnySignal(text, readOnlySignals) ||
     /read.?only|route-comparison|readiness|sync|summary/.test(text);
   return {

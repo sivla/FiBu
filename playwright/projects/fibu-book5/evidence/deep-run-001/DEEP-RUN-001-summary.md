@@ -23,3 +23,12 @@ Alles bleibt `RM-DEMO` / CRONUS-USA-Labor. Keine deutsche 19-%-USt, kein deutsch
 Fuer P2P: Purchase Journal oder Purchase Invoice als kontrollierter Kreditoren-Wertpfad mit klarer Feld-/Check-/Preview-/Trace-Grenze.
 
 Fuer anderen Fortschritt: Fixed Assets AfA-Route nach FA-240 oder kontrollierter Payment-/Apply-Fall nach PAYMENTS-002.
+
+## Marathon-Update
+
+Der Marathon-Gate wurde eingebaut und danach wurden zwei Execute-Pakete ergaenzt:
+
+- `P2P-014`: Purchase Journal Feldwerte/Journalzeile versucht, Cleanup bewiesen, kein Posting. Journal Check meldet `Gen. Bus. Posting Group`.
+- `PAYMENTS-005`: Cash Receipt Journal Feldwerte/Journalzeile versucht, Cleanup bewiesen, kein Posting/Apply. Journal Check meldet weiterhin Amount-Validierung.
+
+Damit ist dieser Deep-Run nicht mehr nur read-only; die naechsten Hebel sind Payment Amount Validation oder Purchase Journal Posting-Group/Preview-Gate.

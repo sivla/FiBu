@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "caseId": "P2P-014-PURCHASE-JOURNAL-VALUE-ENTRY-GATE",
+  "parentCaseId": "BC-DEEP-RUN-001-MULTI-ROUTE-SANDBOX-PROGRESS",
+  "status": "execute-attempt-cleanup-proven",
+  "workType": "controlled-journal-value-entry-gate",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "purpose": "Kontrolliert pruefen, ob Purchase Journal in RM-DEMO Vendor/Invoice/Amount-Werte als P2P-Wertpfad sichtbar annimmt. Kein Posting.",
+  "defaultLockedActions": [
+    "preview-posting",
+    "post",
+    "payment",
+    "setup-change",
+    "company-switch",
+    "api-shortcut"
+  ],
+  "unlockedActions": [
+    "field-value-entry",
+    "journal-line-created",
+    "cleanup-or-correction"
+  ],
+  "hardForbidden": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "final-german-claim-from-rm-demo",
+    "shopify-or-online-store"
+  ],
+  "targetValues": {
+    "postingDate": "08.06.2026",
+    "documentType": "Invoice",
+    "documentNoPrefix": "P2P014-",
+    "accountType": "Vendor",
+    "accountNo": "K10000",
+    "amount": "2.500,00"
+  },
+  "evidencePath": "playwright/projects/fibu-book5/evidence/p2p-014/",
+  "resultPath": "playwright/projects/fibu-book5/evidence/p2p-014/P2P-014-result.json",
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "createdAt": "2026-06-28T21:24:00.000+02:00",
+  "updatedAt": "2026-06-28T21:42:00.000+02:00",
+  "blocker": "Journal Check issueText: Gen. Bus. Posting Group",
+  "nextSafeAction": "P2P-015: Purchase Journal posting group/preview gate decision, or switch to PAYMENTS-006 amount validation."
+}

@@ -5,7 +5,7 @@
 | Umgebung | MCP_1_20260210 |
 | Company | RM-DEMO |
 | Status | labor, ui-draft, no-payment, no-application, cleanup |
-| Document No. | `PAY005-477634` |
+| Document No. | `PAY005-131722` |
 | Ausgangsposten | `PS-INV103297` / `D10000` |
 | Gegenkonto | `BANK-RM-01` |
 | Betrag im Entwurf | `-68.000` als Cash-Receipt-Customer-Zeile |

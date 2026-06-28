@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-28T21:12:00.000+02:00",
+  "updatedAt": "2026-06-28T21:42:00.000+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
@@ -40,7 +40,7 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "P2P-014-PURCHASE-JOURNAL-VALUE-ENTRY-GATE: attempt controlled Purchase Journal value entry; read-only route checks are no longer enough for marathon completion.",
+  "nextStep": "PAYMENTS-006 amount validation or P2P-015 Purchase Journal posting-group/preview gate; marathon gate now requires execute packages before final report.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/fixedassets-labor-draft.md",
     "area": "fixedassets",
@@ -484,7 +484,10 @@
       "FIXEDASSETS-240",
       "PAYMENTS-002",
       "P2P-013",
-      "DEEP-RUN-001-SYNC"
+      "DEEP-RUN-001-SYNC",
+      "MARATHON-GATE-001",
+      "P2P-014",
+      "PAYMENTS-005"
     ],
     "postedInThisDeepRun": false,
     "previewPostingInThisDeepRun": false,
@@ -494,6 +497,10 @@
       "Purchase Journal value-entry gate",
       "Fixed Assets depreciation route review",
       "Payment/Apply controlled lab case"
+    ],
+    "executePackages": [
+      "P2P-014",
+      "PAYMENTS-005"
     ]
   },
   "marathonMode": {
@@ -502,5 +509,31 @@
     "rule": "Final report requires agent:marathon:check pass or documented hard stop.",
     "readOnlyDoesNotCountAsExecute": true,
     "nextExecuteLever": "P2P-014-PURCHASE-JOURNAL-VALUE-ENTRY-GATE"
+  },
+  "latestP2P014": {
+    "caseId": "P2P-014-PURCHASE-JOURNAL-VALUE-ENTRY-GATE",
+    "status": [
+      "execute-attempt",
+      "cleanup-proven",
+      "labor-blocked"
+    ],
+    "resultPath": "playwright/projects/fibu-book5/evidence/p2p-014/P2P-014-result.json",
+    "blocker": "Journal Check issueText: Gen. Bus. Posting Group",
+    "posted": false,
+    "previewPosting": false,
+    "cleanupProven": true
+  },
+  "latestPayments005": {
+    "caseId": "PAYMENTS-005",
+    "status": [
+      "execute-attempt",
+      "cleanup-proven",
+      "labor-blocked"
+    ],
+    "resultPath": "playwright/projects/fibu-book5/evidence/payments-005/PAYMENTS-005-result.json",
+    "blocker": "Journal Check says Amount must have a value despite visible draft amount; amount validation remains next.",
+    "posted": false,
+    "applied": false,
+    "cleanupProven": true
   }
 }

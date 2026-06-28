@@ -41,6 +41,39 @@
       "bcRun": false,
       "posted": false,
       "result": "Deep-run state, coverage and route priorities were consolidated for the next execute case."
+    },
+    {
+      "id": "MARATHON-GATE-001",
+      "type": "execution-gate-controller",
+      "bcRun": false,
+      "posted": false,
+      "result": "Marathon gate installed; final report is blocked until min progress and execute package counts are met."
+    },
+    {
+      "id": "P2P-014",
+      "type": "field-value-entry journal-line-created cleanup-or-correction",
+      "bcRun": true,
+      "posted": false,
+      "execute": true,
+      "signals": [
+        "field-value-entry",
+        "journal-line-created",
+        "cleanup-or-correction"
+      ],
+      "result": "Purchase Journal vendor invoice value entry was attempted; draft line was cleaned up; Journal Check surfaced Gen. Bus. Posting Group issue."
+    },
+    {
+      "id": "PAYMENTS-005",
+      "type": "field-value-entry journal-line-created cleanup-or-correction",
+      "bcRun": true,
+      "posted": false,
+      "execute": true,
+      "signals": [
+        "field-value-entry",
+        "journal-line-created",
+        "cleanup-or-correction"
+      ],
+      "result": "Cash Receipt Journal draft values were entered and cleaned up; Journal Check still reports Amount issue; no payment or application posted."
     }
   ],
   "postingSummary": {
@@ -60,12 +93,19 @@
     }
   },
   "nextBestLevers": [
-    "Purchase Journal value-entry gate for creditor-side P2P",
-    "Fixed Assets depreciation route review after FA-240",
-    "Payment posting/apply controlled lab case from PAYMENTS-002 readiness",
-    "Bookdraft sync for P2P/Inventory boundary"
+    "PAYMENTS-006 amount validation for Cash Receipt Journal",
+    "P2P-015 Purchase Journal posting group/preview gate decision",
+    "Fixed Assets depreciation route review"
   ],
   "migrationRelevance": "needed-for-german-final",
   "mustRecreateInFinalSandbox": true,
-  "finalScreenshotNeeded": true
+  "finalScreenshotNeeded": true,
+  "executeSummary": {
+    "executePackages": 2,
+    "executePackageIds": [
+      "P2P-014",
+      "PAYMENTS-005"
+    ],
+    "readOnlyPackagesDoNotCountAsExecute": true
+  }
 }
