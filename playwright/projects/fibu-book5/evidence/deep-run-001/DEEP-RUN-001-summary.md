@@ -32,3 +32,12 @@ Der Marathon-Gate wurde eingebaut und danach wurden zwei Execute-Pakete ergaenzt
 - `PAYMENTS-005`: Cash Receipt Journal Feldwerte/Journalzeile versucht, Cleanup bewiesen, kein Posting/Apply. Journal Check meldet weiterhin Amount-Validierung.
 
 Damit ist dieser Deep-Run nicht mehr nur read-only; die naechsten Hebel sind Payment Amount Validation oder Purchase Journal Posting-Group/Preview-Gate.
+
+## Marathon-v2-Update
+
+Das Marathon-Gate wurde verschaerft: finaler Bericht ist erst mit 12 Fortschrittspaketen, 4 Execute-Paketen und mindestens einem High-Impact-Execute erlaubt.
+
+- `MARATHON-V2-GATE-001`: Gate gehaertet; Light Execute allein reicht nicht mehr.
+- `P2P-015`: High-Impact-Execute. `DOMESTIC` und `RETAIL` wurden in der Purchase-Journal-Zeile sichtbar gesetzt; der alte Journal-Check-Blocker `Gen. Bus. Posting Group` wurde durch `Account No.` abgeloest. Keine Preview, kein Post, Cleanup bewiesen.
+- `P2P-016`: Light Execute. `Bal. Account No. = 82000` wurde versucht; `Account No.` bleibt als Journal-Check-Blocker offen. Keine Preview, kein Post, Cleanup bewiesen.
+- `P2P-017`: Lokaler Blocker-Review. Die naechste Route ist Feldmapping-Diagnose fuer `Account No.` / `Bal. Account No.`, nicht ein weiterer blinder 82000-Versuch.

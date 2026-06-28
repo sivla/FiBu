@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "caseId": "P2P-015-PURCHASE-JOURNAL-POSTING-GROUP-PREVIEW-GATE",
+  "parentCaseId": "BC-DEEP-RUN-001-MULTI-ROUTE-SANDBOX-PROGRESS",
+  "source": "playwright-ui-labor-journal-check-fix-attempt",
+  "resultStatus": "observed",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "sourceCompany": "RM-DEMO",
+  "documentNo": "P2P015-074902",
+  "previewPosting": false,
+  "posted": false,
+  "setupChanges": [],
+  "changedRecords": [
+    {
+      "type": "Purchase Journal Line",
+      "documentNo": "P2P015-074902",
+      "cleanup": {
+        "attempted": true,
+        "cleaned": true,
+        "documentNoStillVisible": false
+      }
+    }
+  ],
+  "postedRecords": [],
+  "signals": [
+    "field-value-entry",
+    "journal-line-created",
+    "journal-check-error-fixed",
+    "cleanup-or-correction"
+  ],
+  "execute": true,
+  "highImpactExecute": true,
+  "lightExecute": false,
+  "flags": {
+    "fieldValueEntryAttempted": true,
+    "journalLineCreated": true,
+    "journalCheckErrorFixed": true,
+    "previewAttempted": false,
+    "previewOpened": false,
+    "cleanupAttempted": true,
+    "cleanupProven": true,
+    "noPost": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "targetValues": {
+    "postingDate": "08.06.2026",
+    "documentType": "Invoice",
+    "accountType": "Vendor",
+    "vendorNo": "K10000",
+    "genPostingType": "Purchase",
+    "genBusPostingGroup": "DOMESTIC",
+    "genProdPostingGroup": "RETAIL",
+    "amount": "2.500,00"
+  },
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/p2p-015/010-initial-controls.json",
+    "playwright/projects/fibu-book5/evidence/p2p-015/020-after-posting-group-gate-page-text.txt",
+    "playwright/projects/fibu-book5/evidence/p2p-015/020-after-posting-group-gate-controls.json",
+    "playwright/projects/fibu-book5/evidence/p2p-015/030-cleanup-page-text.txt"
+  ],
+  "screenshots": [
+    "playwright/projects/fibu-book5/img/p2p-015-020-posting-group-gate.png"
+  ],
+  "journalCheck": {
+    "journalCheckVisible": true,
+    "zeroIssuesTotalVisible": false,
+    "zeroLinesWithIssuesVisible": false,
+    "currentLineNoIssuesVisible": false,
+    "issueText": "Account No."
+  },
+  "preview": {
+    "attempted": false,
+    "opened": false,
+    "reason": "journal-check-not-clean"
+  },
+  "proves": [
+    "Purchase Journal posting group values DOMESTIC/RETAIL were attempted through UI controls.",
+    "The previous Gen. Bus. Posting Group Journal Check blocker is no longer the first visible issue.",
+    "Preview Posting stayed locked because Journal Check was not clean.",
+    "Cleanup removed the target draft line.",
+    "No posting was executed."
+  ],
+  "doesNotProve": [
+    "No posted purchase invoice or ledger trace.",
+    "No Purchase Order partial receipt.",
+    "No German final proof."
+  ],
+  "blockedBy": [],
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "safeToFinalizeState": false,
+  "requiresReview": true,
+  "statePatch": {},
+  "nextStep": "P2P-016: resolve the next Journal Check blocker or run a guarded Preview/Posting route if Journal Check is clean."
+}

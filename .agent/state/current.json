@@ -40,7 +40,7 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "PAYMENTS-006 amount validation or P2P-015 Purchase Journal posting-group/preview gate; marathon gate now requires execute packages before final report.",
+  "nextStep": "P2P-018 Purchase Journal Account No./Bal. Account No. field mapping diagnosis; marathon v2 threshold is met after P2P-015 high-impact Journal Check fix and P2P-016/P2P-017 follow-up.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/fixedassets-labor-draft.md",
     "area": "fixedassets",
@@ -500,8 +500,28 @@
     ],
     "executePackages": [
       "P2P-014",
-      "PAYMENTS-005"
-    ]
+      "PAYMENTS-005",
+      "P2P-015",
+      "P2P-016"
+    ],
+    "progressPackages": [
+      "P2P-012",
+      "FIXEDASSETS-240",
+      "PAYMENTS-002",
+      "P2P-013",
+      "DEEP-RUN-001-SYNC",
+      "MARATHON-GATE-001",
+      "P2P-014",
+      "PAYMENTS-005",
+      "MARATHON-V2-GATE-001",
+      "P2P-015",
+      "P2P-016",
+      "P2P-017"
+    ],
+    "highImpactExecutePackages": [
+      "P2P-015"
+    ],
+    "marathonV2FinalReportAllowed": true
   },
   "marathonMode": {
     "active": true,
@@ -535,5 +555,31 @@
     "posted": false,
     "applied": false,
     "cleanupProven": true
+  },
+  "latestP2P015": {
+    "status": "high-impact-execute",
+    "documentNo": "P2P015-074902",
+    "fixedBlocker": "Gen. Bus. Posting Group",
+    "nextBlocker": "Account No.",
+    "previewPosting": false,
+    "posted": false,
+    "cleanupProven": true,
+    "evidencePath": "playwright/projects/fibu-book5/evidence/p2p-015/P2P-015-result.json"
+  },
+  "latestP2P016": {
+    "status": "light-execute-blocked",
+    "documentNo": "P2P016-201452",
+    "attempted": "Bal. Account No. 82000",
+    "blocker": "Account No.",
+    "previewPosting": false,
+    "posted": false,
+    "cleanupProven": true,
+    "evidencePath": "playwright/projects/fibu-book5/evidence/p2p-016/P2P-016-result.json"
+  },
+  "latestP2P017": {
+    "status": "local-blocker-review",
+    "blocker": "Account No.",
+    "nextStep": "P2P-018 field mapping diagnosis before another value route",
+    "evidencePath": "playwright/projects/fibu-book5/evidence/p2p-017/P2P-017-result.json"
   }
 }

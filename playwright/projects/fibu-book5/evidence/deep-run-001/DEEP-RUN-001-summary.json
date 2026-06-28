@@ -74,6 +74,58 @@
         "cleanup-or-correction"
       ],
       "result": "Cash Receipt Journal draft values were entered and cleaned up; Journal Check still reports Amount issue; no payment or application posted."
+    },
+    {
+      "id": "MARATHON-V2-GATE-001",
+      "type": "execution-gate-controller",
+      "bcRun": false,
+      "posted": false,
+      "execute": false,
+      "signals": [
+        "marathon-v2-high-impact-gate"
+      ],
+      "result": "Marathon v2 now requires 12 progress packages, 4 execute packages and at least 1 high-impact execute package; previous light-execute-only state is no longer final enough."
+    },
+    {
+      "id": "P2P-015",
+      "type": "journal-check-error-fixed field-value-entry journal-line-created cleanup-or-correction",
+      "bcRun": true,
+      "posted": false,
+      "execute": true,
+      "highImpactExecute": true,
+      "signals": [
+        "field-value-entry",
+        "journal-line-created",
+        "journal-check-error-fixed",
+        "cleanup-or-correction"
+      ],
+      "result": "Purchase Journal DOMESTIC/RETAIL posting groups fixed the previous Gen. Bus. Posting Group Journal Check blocker; next visible issue became Account No.; no Preview or Post; cleanup proven."
+    },
+    {
+      "id": "P2P-016",
+      "type": "field-value-entry journal-line-created cleanup-or-correction",
+      "bcRun": true,
+      "posted": false,
+      "execute": true,
+      "highImpactExecute": false,
+      "lightExecute": true,
+      "signals": [
+        "field-value-entry",
+        "journal-line-created",
+        "cleanup-or-correction"
+      ],
+      "result": "Purchase Journal Bal. Account No. 82000 was attempted; Account No. Journal Check blocker remained; no Preview or Post; cleanup proven."
+    },
+    {
+      "id": "P2P-017",
+      "type": "local-blocker-review",
+      "bcRun": false,
+      "posted": false,
+      "execute": false,
+      "signals": [
+        "blocker-review"
+      ],
+      "result": "Local review classifies P2P-016 Account No. blocker and forbids repeating the same 82000 route blindly; next is field mapping diagnosis."
     }
   ],
   "postingSummary": {
@@ -93,19 +145,26 @@
     }
   },
   "nextBestLevers": [
+    "P2P-018 Purchase Journal Account No./Bal. Account No. field mapping diagnosis",
     "PAYMENTS-006 amount validation for Cash Receipt Journal",
-    "P2P-015 Purchase Journal posting group/preview gate decision",
     "Fixed Assets depreciation route review"
   ],
   "migrationRelevance": "needed-for-german-final",
   "mustRecreateInFinalSandbox": true,
   "finalScreenshotNeeded": true,
   "executeSummary": {
-    "executePackages": 2,
+    "executePackages": 4,
     "executePackageIds": [
       "P2P-014",
-      "PAYMENTS-005"
+      "PAYMENTS-005",
+      "P2P-015",
+      "P2P-016"
     ],
+    "highImpactExecutePackages": 1,
+    "highImpactPackageIds": [
+      "P2P-015"
+    ],
+    "lightExecutePackages": 3,
     "readOnlyPackagesDoNotCountAsExecute": true
   }
 }

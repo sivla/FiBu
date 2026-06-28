@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "caseId": "P2P-015-PURCHASE-JOURNAL-POSTING-GROUP-PREVIEW-GATE",
+  "parentCaseId": "BC-DEEP-RUN-001-MULTI-ROUTE-SANDBOX-PROGRESS",
+  "area": "p2p",
+  "workType": "controlled-sandbox-execute",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "sourceCompany": "RM-DEMO",
+  "status": "planned",
+  "goal": "Continue from P2P-014 by setting explicit Gen. Bus. Posting Group and Gen. Prod. Posting Group values in Purchase Journal, then rerun Journal Check. Preview Posting is only unlocked if Journal Check is clean.",
+  "route": "Route A - Purchase Journal Posting Group / Preview Gate",
+  "targetValues": {
+    "postingDate": "08.06.2026",
+    "documentType": "Invoice",
+    "accountType": "Vendor",
+    "vendorNo": "K10000",
+    "genPostingType": "Purchase",
+    "genBusPostingGroup": "DOMESTIC",
+    "genProdPostingGroup": "RETAIL",
+    "amount": "2.500,00"
+  },
+  "unlockedActions": [
+    "field-value-entry",
+    "journal-line-created",
+    "journal-check-error-fix-attempt",
+    "preview-posting-if-journal-check-clean",
+    "cleanup-or-correction"
+  ],
+  "lockedActions": [
+    "post",
+    "ship",
+    "invoice",
+    "ship-and-invoice",
+    "payment",
+    "setup-change",
+    "company-switch",
+    "api-shortcut",
+    "book-final-claim"
+  ],
+  "stopIf": [
+    "Business Central instance is not MCP_1_20260210.",
+    "Company is not RM-DEMO.",
+    "Journal Check is not clean and Preview Posting would be clicked.",
+    "A Post, Ship, Invoice, Payment, Delete-all or unknown confirmation dialog appears.",
+    "Cleanup cannot be proven for the target document number."
+  ],
+  "acceptanceCriteria": [
+    "P2P-014 Gen. Bus. Posting Group blocker is explicitly tested with DOMESTIC/RETAIL.",
+    "Result states whether the blocker was fixed, replaced by a new blocker or still present.",
+    "No posting occurs.",
+    "Draft cleanup is attempted and documented."
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "nextSafeAction": "Run fibu:p2p:purchase-journal-posting-group-preview-gate."
+}

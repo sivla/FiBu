@@ -44,7 +44,7 @@
   "currentBlock": "multi-route-sandbox-progress",
   "latestPracticalCase": "BC-DEEP-RUN-001-MULTI-ROUTE-SANDBOX-PROGRESS",
   "latestReviewCase": "BOOK-P2P-CH12-PARTIAL-RECEIPT-GATE-SYNC",
-  "nextCase": "PAYMENTS-006-CASH-RECEIPT-AMOUNT-VALIDATION",
+  "nextCase": "P2P-018-PURCHASE-JOURNAL-ACCOUNT-NO-FIELD-MAPPING-DIAGNOSIS",
   "fixedAssets": {
     "faCnc01": {
       "postingGroupAssignment": "fieldlocal-fit-proven-machines-labor",
@@ -379,7 +379,11 @@
       "DEEP-RUN-001-SYNC",
       "MARATHON-GATE-001",
       "P2P-014",
-      "PAYMENTS-005"
+      "PAYMENTS-005",
+      "MARATHON-V2-GATE-001",
+      "P2P-015",
+      "P2P-016",
+      "P2P-017"
     ],
     "nextBestLever": "PAYMENTS-006 amount validation or P2P-015 Purchase Journal posting-group/preview gate",
     "noPostingInDeepRun": true,
@@ -387,8 +391,14 @@
     "noSetupChangeInDeepRun": true,
     "executePackages": [
       "P2P-014",
-      "PAYMENTS-005"
-    ]
+      "PAYMENTS-005",
+      "P2P-015",
+      "P2P-016"
+    ],
+    "highImpactExecutePackages": [
+      "P2P-015"
+    ],
+    "marathonV2FinalReportAllowed": true
   },
   "p2pPurchaseJournalValueEntryGate": {
     "status": "execute-attempt-cleanup-proven",
@@ -405,5 +415,16 @@
     "applied": false,
     "cleanupProven": true,
     "blocker": "Amount validation still open."
+  },
+  "p2pPurchaseJournalPostingGroupGate": {
+    "status": "high-impact-execute-cleanup-proven",
+    "blockerFixed": "Gen. Bus. Posting Group",
+    "nextBlocker": "Account No.",
+    "evidencePath": "playwright/projects/fibu-book5/evidence/p2p-015/P2P-015-result.json"
+  },
+  "p2pPurchaseJournalBalAccountGate": {
+    "status": "light-execute-blocked-cleanup-proven",
+    "blocker": "Account No.",
+    "evidencePath": "playwright/projects/fibu-book5/evidence/p2p-016/P2P-016-result.json"
   }
 }

@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "caseId": "P2P-017-PURCHASE-JOURNAL-ACCOUNT-NO-BLOCKER-REVIEW",
+  "parentCaseId": "BC-DEEP-RUN-001-MULTI-ROUTE-SANDBOX-PROGRESS",
+  "area": "p2p",
+  "workType": "local-result-review",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "sourceCompany": "RM-DEMO",
+  "status": "observed",
+  "inputEvidence": [
+    "playwright/projects/fibu-book5/evidence/p2p-015/P2P-015-result.json",
+    "playwright/projects/fibu-book5/evidence/p2p-016/P2P-016-result.json"
+  ],
+  "decision": "P2P-015 fixed the previous Gen. Bus. Posting Group Journal Check blocker with DOMESTIC/RETAIL. P2P-016 tried Bal. Account No. 82000, but Journal Check still reports Account No. The next live route must inspect whether the Account No. issue belongs to the vendor account field, balancing account field, account type, or field index mapping before another value attempt.",
+  "classification": "labor-proven-partial",
+  "signals": [
+    "journal-check-error-fixed",
+    "blocker-review"
+  ],
+  "lockedActions": [
+    "post",
+    "preview-posting-unless-journal-check-clean",
+    "repeat-same-bal-account-value-route",
+    "book-final-claim"
+  ],
+  "nextSafeAction": "P2P-018: inspect Purchase Journal field mapping around Account No. and Bal. Account No.; do not repeat 82000 blindly."
+}

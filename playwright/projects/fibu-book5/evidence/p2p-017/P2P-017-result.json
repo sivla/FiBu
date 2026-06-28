@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "caseId": "P2P-017-PURCHASE-JOURNAL-ACCOUNT-NO-BLOCKER-REVIEW",
+  "parentCaseId": "BC-DEEP-RUN-001-MULTI-ROUTE-SANDBOX-PROGRESS",
+  "source": "local-evidence-review",
+  "resultStatus": "observed",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "sourceCompany": "RM-DEMO",
+  "bcRun": false,
+  "posted": false,
+  "previewPosting": false,
+  "setupChanges": [],
+  "signals": [
+    "journal-check-error-fixed",
+    "blocker-review"
+  ],
+  "execute": false,
+  "highImpactExecute": false,
+  "lightExecute": false,
+  "inputEvidence": [
+    "playwright/projects/fibu-book5/evidence/p2p-015/P2P-015-result.json",
+    "playwright/projects/fibu-book5/evidence/p2p-016/P2P-016-result.json"
+  ],
+  "findings": [
+    "P2P-015 proves DOMESTIC and RETAIL were visible in the Purchase Journal line and the previous Gen. Bus. Posting Group issue was no longer the first visible Journal Check issue.",
+    "P2P-016 proves Bal. Account No. 82000 was attempted, but Journal Check still reports Account No.",
+    "The next live step must not repeat the same Bal. Account No. value route blindly."
+  ],
+  "doesNotProve": [
+    "No clean Journal Check.",
+    "No Preview Posting.",
+    "No posting or ledger trace.",
+    "No German final proof."
+  ],
+  "blockedBy": [
+    "account-no-blocker-still-open"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": false,
+  "safeToFinalizeState": false,
+  "requiresReview": true,
+  "statePatch": {},
+  "nextStep": "P2P-018: inspect Purchase Journal field mapping around Account No. and Bal. Account No.; do not repeat 82000 blindly."
+}
