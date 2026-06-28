@@ -17,6 +17,7 @@ Dieser Draft verdichtet die vorhandene Evidence aus `UAT-P2P-001` fuer das Buch.
 | Buchung | Genau eine Laborbuchung mit `Receive and Invoice` | `100-purchase-posting-result.json` |
 | Gebuchte Rechnung | Gebuchte Einkaufsrechnung `108219` ist sichtbar | `110-posted-purchase-invoice-page-text.txt` |
 | Postenspur | Kreditorenposten, Sachposten, Wertposten und Artikelposten `793` sind nachvollziehbar | `120-*`, `130-*`, `150-*`, `155-*`, `160-posting-trace-summary.json` |
+| Folgezahlung | Kreditorenzahlung `PAYP2P-108219` wurde im Payment Journal UI-first gebucht; Preflight, Apply-Entries-Ansicht, Post-Dialog, Kreditorenposten, detaillierte Kreditorenposten, Bankposten und Sachposten sind belegt | `evidence/p2p-002/P2P-002-result.json`, `P2P-002-VENDOR-PAYMENT.md` |
 
 ## Anfaenger-Erklaerung
 
@@ -24,12 +25,14 @@ Eine Einkaufsbestellung ist nicht nur ein Einkaufsformular. Sie verbindet Liefer
 
 Die gebuchte Einkaufsrechnung ist danach nur ein Teil der Wahrheit. Fuer Finance sind `Kreditorenposten` wichtig, weil sie zeigen, ob noch gezahlt werden muss. Fuer das Hauptbuch sind `Sachposten` wichtig, weil sie Konten wie Verbindlichkeiten und Lager treffen. Fuer Lager und Bewertung sind `Artikelposten` und `Wertposten` wichtig, weil sie Menge und Wert der Materialbewegung erklaeren.
 
+Die Labor-Kreditorenzahlung `PAYP2P-108219` zeigt den naechsten Finance-Schritt: Eine Zahlung entsteht nicht aus der Einkaufsrechnung selbst, sondern aus einem Zahlungsjournal. Entscheidend sind Kreditor, Betrag, Bankgegenkonto und der Bezug auf die Ausgangsrechnung. Der Lauf beweist die gebuchte Zahlung und die Postenspur. Er beweist noch nicht eindeutig, dass die Ausgangsrechnung `108219` vollstaendig geschlossen ist, weil `Remaining Amount = 0,00` oder `Applied Entries = 1` an der Rechnungszeile nicht sichtbar nachgewiesen wurden.
+
 ## Was nicht bewiesen wurde
 
 - Kein deutscher `19 %`-Vorsteuer-Endstand.
 - Kein deutscher Kontenplan-Endstand.
 - Keine E-Rechnung.
-- Kein Zahlungs-/OP-Ausgleich fuer die P2P-Rechnung.
+- Kein eindeutig nachgewiesener vollstaendiger OP-Ausgleich der P2P-Rechnung `108219`; belegt ist die Zahlung `PAYP2P-108219` mit Postenspur.
 - Keine P2P-Dimensionen in den Posten.
 - Keine deutsche Finaloberflaeche und keine deutschen Final-Screenshots.
 
@@ -42,7 +45,8 @@ Kapitel 12 darf den P2P-Laborfall als Lernstrecke nutzen:
 3. Preview Posting als Sicherheitsgate.
 4. Bewusste Buchungsoption `Receive and Invoice`.
 5. Postenspur nach der Buchung.
-6. Laborgrenzen klar sichtbar.
+6. Payment-Journal-Folgefall mit Kreditorenzahlung und Bank-/G/L-/Vendor-Trace.
+7. Laborgrenzen klar sichtbar.
 
 Kapitel 12 darf daraus nicht ableiten, dass deutsche Vorsteuer, deutsche Konten, deutsche E-Rechnung oder deutsche Final-Screenshots erledigt sind.
 
@@ -56,7 +60,8 @@ In einer deutschen Zielinstanz muss dieser Fall neu aufgebaut werden:
 - deutsche VAT Posting Setup / Vorsteuerlogik mit `19 %`, falls fachlich passend.
 - Einkaufsbestellung, Preview Posting, Buchung, gebuchte Einkaufsrechnung.
 - Kreditorenposten, Sachposten, USt-Posten, Artikelposten, Wertposten.
-- optional Payment/OP-Ausgleich als Folgefall.
+- Kreditorenzahlung im Zahlungsjournal, Bankposten, Sachposten und detaillierte Kreditorenposten.
+- OP-Ausgleich sichtbar mit Restbetrag/Applied Entries an der Ausgangsrechnung.
 
 ## Naechster sinnvoller Laborblock
 
@@ -64,5 +69,5 @@ Nicht `UAT-P2P-001` wiederholen. Der naechste praktische P2P-Nutzen ist ein Abwe
 
 - Teil-Wareneingang vs. Rechnung.
 - Preisabweichung.
-- Kreditorenzahlung/OP-Ausgleich zur Rechnung `108219`.
+- OP-Ausgleich/Restbetrag der Rechnung `108219` nach Zahlung gezielt klaeren.
 - P2P-Dimensionen in gebuchten Posten.
