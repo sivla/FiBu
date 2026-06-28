@@ -212,13 +212,16 @@ async function fieldMap(frame: Frame) {
       const style = window.getComputedStyle(element);
       return rect.width > 0 && rect.height > 0 && style.visibility !== 'hidden' && style.display !== 'none';
     };
-    const controls = [...document.querySelectorAll<HTMLElement>('input,select,textarea,[contenteditable="true"],[role="textbox"],[role="combobox"],[role="spinbutton"]')]
-      .filter(visible)
-      .map((element, index) => {
+    const controlSelector = 'input,select,textarea,[contenteditable="true"],[role="textbox"],[role="combobox"],[role="spinbutton"]';
+    const controls = [...document.querySelectorAll<HTMLElement>(controlSelector)]
+      .map((element, queryIndex) => ({ element, queryIndex }))
+      .filter(({ element }) => visible(element))
+      .map(({ element, queryIndex }, visibleIndex) => {
         const rect = element.getBoundingClientRect();
         const input = element as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
         return {
-          index,
+          index: visibleIndex,
+          queryIndex,
           tag: element.tagName.toLowerCase(),
           role: element.getAttribute('role') || '',
           type: element.getAttribute('type') || '',
@@ -286,7 +289,8 @@ async function fillMappedField(page: Page, frame: Frame, key: FieldKey) {
     };
   }
 
-  const locator = frame.locator('input,select,textarea,[contenteditable="true"],[role="textbox"],[role="combobox"],[role="spinbutton"]').nth(selection.selected.control.index);
+  const controlSelector = 'input,select,textarea,[contenteditable="true"],[role="textbox"],[role="combobox"],[role="spinbutton"]';
+  const locator = frame.locator(controlSelector).nth(selection.selected.control.queryIndex);
   await locator.click({ timeout: 3000 });
   await pageKeyboardSelectAll(page);
   await locator.fill(fieldSpecs[key].target, { timeout: 3000 });
@@ -303,6 +307,7 @@ async function fillMappedField(page: Page, frame: Frame, key: FieldKey) {
     beforeValue: selection.selected.control.value,
     afterValue,
     controlIndex: selection.selected.control.index,
+    controlQueryIndex: selection.selected.control.queryIndex,
     label: selection.selected.label,
     controlBefore: selection.selected.control,
     controlAfter: afterSelection.selected?.control ?? null,

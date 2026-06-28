@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-265-FA-DEPRECIATION-VALUE-PREFLIGHT-RETRY-AFTER-MAPPING-FIX",
+  "status": "planned",
+  "workType": "playwright-guarded-request-page-value-preflight-no-ok",
+  "taskClass": "wizard_work",
+  "requiresStrongModel": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Rerun the guarded Calculate Depreciation value preflight after the local field-mapping fix and prove whether target values can be set without confirming OK.",
+  "triggeredBy": {
+    "caseId": "FIXEDASSETS-264-FA-DEPRECIATION-FIELD-MAPPING-REFINEMENT-NO-BC",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-264/FIXEDASSETS-264-result.json",
+    "unlocked": [
+      "open-business-central",
+      "run-playwright",
+      "write-request-page-values"
+    ]
+  },
+  "targetValues": {
+    "depreciationBook": "HGB",
+    "postingDate": "30.06.2026",
+    "documentNo": "FADEP-265-NO-OK",
+    "fixedAssetNo": "FA-CNC-01"
+  },
+  "allowedActions": [
+    "open-business-central",
+    "run-playwright",
+    "guarded-no-ok-value-preflight",
+    "write-request-page-values",
+    "write-compact-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "confirm-ok-on-calculate-depreciation",
+    "preview-posting",
+    "post",
+    "setup-change",
+    "company-switch",
+    "api-shortcut-without-explicit-case-permission"
+  ],
+  "safetyGates": [
+    "instance-boundary-gate",
+    "company-context-gate",
+    "no-ok",
+    "no-preview-posting",
+    "no-posting",
+    "no-setup-change",
+    "no-company-switch",
+    "no-api-shortcut",
+    "write-values-only"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-265/FIXEDASSETS-265-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-265/FIXEDASSETS-265-VALUE-PREFLIGHT-RETRY-AFTER-MAPPING-FIX.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-265/README.md"
+  ],
+  "acceptanceCriteria": [
+    "Business Central URL contains MCP_1_20260210.",
+    "Company remains RM-DEMO.",
+    "Calculate Depreciation request page is opened.",
+    "Target values are written and re-read or a precise blocker is documented.",
+    "OK is not confirmed.",
+    "No depreciation journal line, Preview Posting, Post or setup change occurs."
+  ],
+  "stopConditions": [
+    "Instance or company is not explicit.",
+    "Request page is not recognized.",
+    "A dangerous confirmation or posting dialog appears.",
+    "Any step would require OK, Preview Posting, Post, setup change, company switch or API shortcut."
+  ],
+  "nextSafeAction": "Run the guarded FA-262 Playwright script once as FA-265 target-value preflight; stop before OK.",
+  "createdAt": "2026-06-28T09:20:00.000+02:00",
+  "updatedAt": "2026-06-28T09:20:00.000+02:00"
+}

@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "runId": "FIXEDASSETS-263-FA-DEPRECIATION-FIELD-MAPPING-BLOCKER-REVIEW",
-  "timestamp": "2026-06-28T09:05:00.000+02:00",
+  "runId": "FIXEDASSETS-264-FA-DEPRECIATION-FIELD-MAPPING-REFINEMENT-NO-BC",
+  "timestamp": "2026-06-28T09:20:00.000+02:00",
   "date": "2026-06-28",
-  "workType": "local-field-mapping-blocker-review",
+  "workType": "local-playwright-field-mapping-refinement",
   "taskClass": "wizard_work",
   "modelClass": "gpt-4-medium",
   "branch": "codex/token-efficient-autopilot-state",
@@ -29,17 +29,18 @@
   "executingActionClicked": false,
   "resultStatus": "observed",
   "blockedBy": [],
-  "summary": "FA-263 reviewed the FA-262 blocker locally and classified it as a Playwright field-mapping/control-index issue: the selected visible-control index was later applied to a different unfiltered locator list. The next safe step is a local field-mapping refinement; no BC or Playwright run was performed.",
+  "summary": "FA-264 refined the Calculate Depreciation request-page field mapper locally. The selected visible control now keeps queryIndex from the same selector used by fillMappedField, so nth(queryIndex) no longer reuses a filtered-list index against an unfiltered locator list. No BC or Playwright run was performed.",
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/fixedassets-263/FIXEDASSETS-263-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-263/FIXEDASSETS-263-FIELD-MAPPING-BLOCKER-REVIEW.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-263/README.md"
+    "playwright/projects/fibu-book5/evidence/fixedassets-264/FIXEDASSETS-264-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-264/FIXEDASSETS-264-FIELD-MAPPING-REFINEMENT-NO-BC.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-264/README.md"
   ],
   "changedFiles": [
-    "playwright/projects/fibu-book5/evidence/fixedassets-263/",
+    "playwright/projects/fibu-book5/tests/fixedassets-262-fa-depreciation-navigation-refinement-and-value-preflight-retry.spec.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-264/",
     ".agent/state/current.json",
-    ".agent/state/cases/fixedassets-263-fa-depreciation-field-mapping-blocker-review.json",
     ".agent/state/cases/fixedassets-264-fa-depreciation-field-mapping-refinement-no-bc.json",
+    ".agent/state/cases/fixedassets-265-fa-depreciation-value-preflight-retry-after-mapping-fix.json",
     ".agent/state/coverage_state.json",
     ".agent/state/last_run_summary.json",
     "playwright/FINDINGS.md",
@@ -49,8 +50,10 @@
     "npm run agent:preflight",
     "npm run agent:dry-run",
     "npm run agent:run-plan",
-    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-263/FIXEDASSETS-263-result.json",
-    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-263/FIXEDASSETS-263-result.json",
+    "Select-String static check for queryIndex and removed nth(control.index)",
+    "npx tsc --noEmit (blocked: TypeScript is not installed in this project)",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-264/FIXEDASSETS-264-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-264/FIXEDASSETS-264-result.json",
     "npm run check:encoding",
     "git diff --check"
   ],
@@ -67,7 +70,7 @@
     "No German final proof exists."
   ],
   "activeArea": "fixedassets",
-  "activeCase": "FIXEDASSETS-263-FA-DEPRECIATION-FIELD-MAPPING-BLOCKER-REVIEW",
-  "nextCase": "FIXEDASSETS-264-FA-DEPRECIATION-FIELD-MAPPING-REFINEMENT-NO-BC",
-  "nextStep": "FIXEDASSETS-264: refine request-page field mapping locally so visible-control selection cannot resolve to hidden controls; do not run BC yet."
+  "activeCase": "FIXEDASSETS-264-FA-DEPRECIATION-FIELD-MAPPING-REFINEMENT-NO-BC",
+  "nextCase": "FIXEDASSETS-265-FA-DEPRECIATION-VALUE-PREFLIGHT-RETRY-AFTER-MAPPING-FIX",
+  "nextStep": "FIXEDASSETS-265: rerun the guarded Calculate Depreciation value preflight after the local field-mapping fix; write target values only, do not confirm OK."
 }

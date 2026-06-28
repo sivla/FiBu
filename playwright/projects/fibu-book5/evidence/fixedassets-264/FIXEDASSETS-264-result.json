@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixed-assets-depreciation-field-mapping-refinement-no-bc",
+  "caseId": "FIXEDASSETS-264-FA-DEPRECIATION-FIELD-MAPPING-REFINEMENT-NO-BC",
+  "source": "local-code-refinement",
+  "resultStatus": "observed",
+  "branch": "codex/token-efficient-autopilot-state",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "changedCode": [
+    {
+      "file": "playwright/projects/fibu-book5/tests/fixedassets-262-fa-depreciation-navigation-refinement-and-value-preflight-retry.spec.ts",
+      "change": "fieldMap stores queryIndex from the full control selector before visible filtering; fillMappedField uses control.queryIndex for frame.locator(controlSelector).nth(...)."
+    }
+  ],
+  "proved": [
+    "The local code no longer uses the filtered visible-control index for the Playwright nth locator.",
+    "The selected control now records both visible index and queryIndex.",
+    "No Business Central or Playwright execution occurred in FA-264.",
+    "OK, Preview Posting and Post remain locked."
+  ],
+  "notProved": [
+    "The Calculate Depreciation request-page values have not yet been proved after the fix.",
+    "No depreciation journal line exists from this case.",
+    "No Preview Posting or posting evidence exists.",
+    "No German final proof exists."
+  ],
+  "checks": [
+    {
+      "command": "Select-String queryIndex/static pattern check",
+      "status": "passed",
+      "note": "queryIndex is present in fieldMap and fillMappedField; nth(selection.selected.control.index) is absent."
+    },
+    {
+      "command": "npx tsc --noEmit",
+      "status": "blocked",
+      "note": "TypeScript compiler is not installed in this project; no dependency was added."
+    }
+  ],
+  "decision": {
+    "nextCase": "FIXEDASSETS-265-FA-DEPRECIATION-VALUE-PREFLIGHT-RETRY-AFTER-MAPPING-FIX",
+    "nextCaseFile": ".agent/state/cases/fixedassets-265-fa-depreciation-value-preflight-retry-after-mapping-fix.json",
+    "valuePreflightRetryAllowed": true,
+    "okExecutionUnlocked": false,
+    "previewPostingUnlocked": false,
+    "postingUnlocked": false
+  },
+  "changedFiles": [
+    "playwright/projects/fibu-book5/tests/fixedassets-262-fa-depreciation-navigation-refinement-and-value-preflight-retry.spec.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-264/",
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-264-fa-depreciation-field-mapping-refinement-no-bc.json",
+    ".agent/state/cases/fixedassets-265-fa-depreciation-value-preflight-retry-after-mapping-fix.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    "playwright/FINDINGS.md",
+    "playwright/projects/fibu-book5/BOOK-CLICK-GUIDE-COVERAGE.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-264/FIXEDASSETS-264-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-264/FIXEDASSETS-264-FIELD-MAPPING-REFINEMENT-NO-BC.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-264/README.md"
+  ],
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-265-FA-DEPRECIATION-VALUE-PREFLIGHT-RETRY-AFTER-MAPPING-FIX",
+      "active_case_file": ".agent/state/cases/fixedassets-265-fa-depreciation-value-preflight-retry-after-mapping-fix.json",
+      "lastReferenceCase": "FIXEDASSETS-264-FA-DEPRECIATION-FIELD-MAPPING-REFINEMENT-NO-BC",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-264-fa-depreciation-field-mapping-refinement-no-bc.json",
+      "nextStep": "FIXEDASSETS-265: rerun the guarded Calculate Depreciation value preflight after the local field-mapping fix; write target values only, do not confirm OK."
+    },
+    "coverage": {
+      "activeArea": "fixedassets",
+      "latestPracticalCase": "FIXEDASSETS-264-FA-DEPRECIATION-FIELD-MAPPING-REFINEMENT-NO-BC",
+      "nextCase": "FIXEDASSETS-265-FA-DEPRECIATION-VALUE-PREFLIGHT-RETRY-AFTER-MAPPING-FIX",
+      "depreciationReadiness": "FA-264 applies a local Playwright field-mapping fix. Next case FA-265 may run one guarded no-OK value preflight. OK, Preview Posting and Post remain locked."
+    }
+  },
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "reason": "Local mapping refinement completed. The next safe action is one guarded no-OK value preflight retry.",
+  "observed": {
+    "reviewedAt": "2026-06-28T09:20:00.000+02:00"
+  }
+}

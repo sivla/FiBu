@@ -1,4 +1,19 @@
 
+## FIND-BC-FA-101 AfA-Field-Mapping nutzt jetzt same-query `queryIndex`
+
+| Feld | Wert |
+|---|---|
+| Bereich | Fixed Assets / AfA-Route / Request-Page-Feldmapping |
+| Testfall | `FIXEDASSETS-264-FA-DEPRECIATION-FIELD-MAPPING-REFINEMENT-NO-BC` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-264/FIXEDASSETS-264-result.json`, `playwright/projects/fibu-book5/evidence/fixedassets-264/FIXEDASSETS-264-FIELD-MAPPING-REFINEMENT-NO-BC.md` |
+| Ergebnis | Der lokale Mapper speichert jetzt `queryIndex` aus derselben Selector-Liste, die spaeter zum Fill-Locator verwendet wird. |
+| Nutzen | Ein sichtbares Control kann nicht mehr allein durch gefilterten Listenindex auf eine andere, unsichtbare Locator-Position zeigen. |
+| Grenze | Kein BC-Retry in diesem Lauf; Zielwerte sind noch nicht fachlich bewiesen. |
+| weiterhin gesperrt | `OK`, Preview Posting, Post, Setup Change, Company Switch, API-Abkuerzung |
+| naechster Schritt | `FIXEDASSETS-265`: Ein guarded no-OK Value-Preflight-Retry nach Mapping-Fix. |
+
+Fuer Business-Central-Playwright ist das ein wiederverwendbares Pattern: Wenn ein DOM-Inventar gefiltert wird, muss die spaetere Aktion entweder dieselbe Query-Ordinalposition, einen stabilen Selektor oder eine echte Zielidentitaet verwenden. Gefilterte Listenindizes sind nur Diagnose, kein sicherer Klickanker.
+
 ## FIND-BC-FA-100 AfA-Field-Mapping darf sichtbare Control-Indizes nicht gegen ungefilterte Locator-Listen verwenden
 
 | Feld | Wert |
