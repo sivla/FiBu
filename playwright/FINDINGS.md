@@ -1,4 +1,17 @@
 
+## FIND-BC-FA-109 Genau ein post-acquisition AfA-OK-Lauf ist freigegeben
+
+| Feld | Wert |
+|---|---|
+| Bereich | Fixed Assets / AfA-Route / OK-Gate |
+| Testfall | `FIXEDASSETS-272-FA-DEPRECIATION-POST-ACQUISITION-OK-GATE-REVIEW` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-272/FIXEDASSETS-272-result.json`, `playwright/projects/fibu-book5/evidence/fixedassets-272/FIXEDASSETS-272-POST-ACQUISITION-OK-GATE-REVIEW.md` |
+| Entscheidung | Genau ein kontrollierter `OK`-only Lauf wird freigegeben. |
+| Zielwerte naechster Lauf | `HGB`, `31.01.2027`, `FADEP-273-OK`, `FA-CNC-01` |
+| Pflichtpruefung nach OK | `Fixed Asset G/L Journals` nach `FADEP-273-OK` durchsuchen. |
+| weiterhin gesperrt | Preview Posting, Post, Setup Change, Company Switch, API-Abkuerzung |
+| Buchwirkung | `OK` ist eine bewusste Batch-Ausfuehrungsgrenze; danach kommt zuerst Journal-Evidence, nicht Buchung. |
+
 ## FIND-BC-FA-108 Post-acquisition AfA-Werte sind ohne OK bewiesen
 
 | Feld | Wert |

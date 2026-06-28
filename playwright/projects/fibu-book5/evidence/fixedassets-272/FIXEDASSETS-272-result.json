@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixed-assets-depreciation-post-acquisition-ok-gate-review",
+  "caseId": "FIXEDASSETS-272-FA-DEPRECIATION-POST-ACQUISITION-OK-GATE-REVIEW",
+  "source": "local-evidence-review",
+  "resultStatus": "observed",
+  "branch": "codex/token-efficient-autopilot-state",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "reviewedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-271/FIXEDASSETS-271-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-271/010-target-value-preflight.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-271/FIXEDASSETS-271-POST-ACQUISITION-VALUE-PREFLIGHT-NO-OK.md"
+  ],
+  "decision": {
+    "okExecutionUnlocked": true,
+    "scope": "exactly-one-controlled-ok-only-run",
+    "nextLiveCase": "FIXEDASSETS-273-FA-DEPRECIATION-POST-ACQUISITION-CONTROLLED-OK-NO-POST",
+    "nextLiveCaseFile": ".agent/state/cases/fixedassets-273-fa-depreciation-post-acquisition-controlled-ok-no-post.json",
+    "targetValues": {
+      "depreciationBook": "HGB",
+      "postingDateUi": "31.01.2027",
+      "postingDateIso": "2027-01-31",
+      "documentNo": "FADEP-273-OK",
+      "fixedAssetNoFilter": "FA-CNC-01"
+    },
+    "requiredAfterOkCheck": "Open Fixed Asset G/L Journals and search for FADEP-273-OK; do not open Preview Posting or Post.",
+    "whyUnlocked": "FA-271 proved all corrected post-acquisition request-page values without OK. The next evidence gap is whether Calculate Depreciation creates a journal line when the target date is after the acquisition date."
+  },
+  "proved": [
+    "FA-271 proved HGB, 31.01.2027, FADEP-271-NO-OK and FA-CNC-01 without OK.",
+    "The post-acquisition date 31.01.2027 is after acquisition date 01.01.2027.",
+    "Exactly one controlled OK-only run is justified as the next evidence step.",
+    "Preview Posting and Post remain locked."
+  ],
+  "notProved": [
+    "No depreciation journal line has been generated yet for 31.01.2027.",
+    "No Preview Posting result exists.",
+    "No depreciation posting exists.",
+    "No German final proof exists."
+  ],
+  "safety": {
+    "bcRun": false,
+    "playwrightRun": false,
+    "okConfirmed": false,
+    "noPreviewPosting": true,
+    "noPost": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-272/",
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-272-fa-depreciation-post-acquisition-ok-gate-review.json",
+    ".agent/state/cases/fixedassets-273-fa-depreciation-post-acquisition-controlled-ok-no-post.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/model_usage_log.jsonl",
+    "playwright/FINDINGS.md",
+    "playwright/projects/fibu-book5/BOOK-CLICK-GUIDE-COVERAGE.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-272/FIXEDASSETS-272-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-272/FIXEDASSETS-272-POST-ACQUISITION-OK-GATE-REVIEW.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-272/README.md"
+  ],
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-273-FA-DEPRECIATION-POST-ACQUISITION-CONTROLLED-OK-NO-POST",
+      "active_case_file": ".agent/state/cases/fixedassets-273-fa-depreciation-post-acquisition-controlled-ok-no-post.json",
+      "lastReferenceCase": "FIXEDASSETS-272-FA-DEPRECIATION-POST-ACQUISITION-OK-GATE-REVIEW",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-272-fa-depreciation-post-acquisition-ok-gate-review.json",
+      "requiresStrongModel": false,
+      "nextStep": "FIXEDASSETS-273: run exactly one controlled OK-only Calculate Depreciation execution with HGB, 31.01.2027, FADEP-273-OK and FA-CNC-01; then search Fixed Asset G/L Journals; no Preview Posting or Post."
+    },
+    "coverage": {
+      "activeArea": "fixedassets",
+      "latestReviewCase": "FIXEDASSETS-272-FA-DEPRECIATION-POST-ACQUISITION-OK-GATE-REVIEW",
+      "nextCase": "FIXEDASSETS-273-FA-DEPRECIATION-POST-ACQUISITION-CONTROLLED-OK-NO-POST",
+      "depreciationReadiness": "FA-272 unlocks exactly one controlled post-acquisition OK-only run with HGB, 31.01.2027, FADEP-273-OK and FA-CNC-01. Preview Posting and Post remain locked."
+    }
+  },
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "reason": "Local gate review completed; exactly one OK-only run is the next smallest evidence step.",
+  "observedAt": "2026-06-28T09:20:00.000+02:00"
+}
