@@ -70,6 +70,22 @@ Unlock risky actions only when the active case allows them, the company and inst
 
 Posting-like actions are not never-actions inside `MCP_1_20260210`; they are default-locked actions that become allowed only when the active case explicitly unlocks them. The evidence plan must name the source document, expected posted document or register if visible, expected ledger/entry trace and whether the result is intentionally kept or cleaned up.
 
+`forbiddenActions` are hard stops. `defaultLockedActions` are gates: within `MCP_1_20260210` they may be unlocked by the active case when the fachliche Pruefung, evidence plan, trace/cleanup path and correction path are documented.
+
+## Fachliche Pruefung before effective actions
+
+Before setup changes, master-data changes, Preview Posting, posting, receive/invoice/payment, company changes or keep-draft decisions, document compactly:
+
+- business case and target state
+- affected modules, master data and setup
+- expected source document, posted document/register and ledger/subledger/inventory/bank/tax effects
+- risk, correction path and duplicate/cleanup or keep strategy
+- screenshots/evidence to capture before and after
+
+After the action, document actual effect, document/entry numbers if visible, expected-vs-actual delta, error/correction if any, and cleanup/trace status. A blocker is not an end state while safe UI routes or existing atlas/evidence knowledge remain untried.
+
+Sandbox companies and drafts are replaceable learning objects; evidence, posted traces and documented findings are not.
+
 ## Screenshot truth
 
 A screenshot is evidence only if the visible image shows the claimed business proof.

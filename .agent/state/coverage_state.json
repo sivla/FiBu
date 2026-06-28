@@ -39,12 +39,12 @@
   "hardExclusions": {
     "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
   },
-  "updatedAt": "2026-06-28T20:05:00.000+02:00",
+  "updatedAt": "2026-06-28T17:39:58.192+02:00",
   "activeArea": "p2p",
   "currentBlock": "p2p-partial-receipt-cell-edit-helper",
-  "latestPracticalCase": "P2P-008-PURCHASE-LINE-TARGET-VALUES",
+  "latestPracticalCase": "P2P-009-PURCHASE-LINE-CELL-EDIT-HELPER",
   "latestReviewCase": "BOOK-P2P-CH12-PARTIAL-RECEIPT-GATE-SYNC",
-  "nextCase": "P2P-009-PURCHASE-LINE-CELL-EDIT-HELPER",
+  "nextCase": "P2P-010-PURCHASE-LINE-VALUE-ROUTE-DECISION",
   "fixedAssets": {
     "faCnc01": {
       "postingGroupAssignment": "fieldlocal-fit-proven-machines-labor",
@@ -140,9 +140,10 @@
         "No P2P-004 Preview Posting",
         "No P2P-004 posting or ledger trace",
         "P2P-007: Select items creates/reveals a visible RAW-STEEL line.",
-        "P2P-008: target values FRA-ZL, Quantity 4 and Qty. to Receive 2 are still blocked by missing stable cell edit route."
+        "P2P-008: target values FRA-ZL, Quantity 4 and Qty. to Receive 2 are still blocked by missing stable cell edit route.",
+        "P2P-009: frame-aware cell geometry and action candidates captured; Direct Unit Cost 2.500,00 visible, but Location/Quantity/Qty. to Receive remain unproved."
       ],
-      "nextStep": "P2P-009: stabilize Purchase Order Lines edit mode/cell editor before Preview Posting."
+      "nextStep": "P2P-010: choose next value route before Preview Posting: true edit-mode action discovery or fresh controlled draft/Select-items quantity route."
     }
   },
   "migrationStatus": {
@@ -179,7 +180,7 @@
       "P2P Payment PAYP2P-108219",
       "P2P-004 draft 106002"
     ],
-    "nextCoverageStep": "P2P-009 should improve/reject the BC cell edit helper instead of starting Preview Posting too early."
+    "nextCoverageStep": "P2P-009 rejected the current cell-edit routes with helper evidence; next coverage step must solve line target values before Preview Posting."
   },
   "companyUsecase": {
     "path": "playwright/projects/fibu-book5/BC-COMPANY-USECASE.md",
@@ -281,6 +282,30 @@
       "bc-cell-edit-mode-helper-missing"
     ],
     "evidencePath": "playwright/projects/fibu-book5/evidence/p2p-008/",
-    "nextStep": "P2P-009 stabilize edit mode/cell editor helper before Preview Posting."
+    "nextStep": "P2P-009 captured helper evidence and remains blocked; next route must solve line values before Preview Posting."
+  },
+  "p2pPartialReceiptCellEditHelper": {
+    "status": "labor-blocked",
+    "draft": "106051",
+    "proved": [
+      "Purchase Order 106051 and RAW-STEEL line remain visible.",
+      "Frame-aware grid geometry captures headers and mapped cells.",
+      "Direct Unit Cost 2.500,00 is visible in the mapped cell.",
+      "No Preview Posting, posting, setup change, company switch or API shortcut was executed."
+    ],
+    "notProved": [
+      "Location Code FRA-ZL visible on the line",
+      "Quantity 4 visible on the line",
+      "Qty. to Receive 2 visible on the line",
+      "Preview Posting",
+      "Receive or posting trace"
+    ],
+    "blockedBy": [
+      "target-values-not-all-visible-after-cell-edit-helper-routes",
+      "purchase-order-header-edit-pencil-not-exposed-as-stable-action-label",
+      "display-textbox-focus-does-not-persist-target-values"
+    ],
+    "evidencePath": "playwright/projects/fibu-book5/evidence/p2p-009/",
+    "nextStep": "Find a true Purchase Lines edit mode/action route or use a fresh controlled draft/Select-items route that sets quantity before line insertion."
   }
 }

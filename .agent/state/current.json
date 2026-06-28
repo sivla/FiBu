@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-28T20:05:00.000+02:00",
+  "updatedAt": "2026-06-28T17:39:58.192+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
@@ -40,7 +40,7 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "P2P-009: build a stable BC Purchase Order Lines cell-edit helper before any Preview Posting or posting.",
+  "nextStep": "P2P-010: continue P2P partial receipt only after a new route solves Purchase Lines target values; do not Preview Posting while FRA-ZL, Quantity 4 and Qty. to Receive 2 remain unproved.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/fixedassets-labor-draft.md",
     "area": "fixedassets",
@@ -195,7 +195,14 @@
     "actionSemantics": {
       "forbiddenActions": "Never allowed. These are hard stops even inside MCP_1_20260210.",
       "defaultLockedActions": "Allowed only when the active case or gate explicitly unlocks the action and evidence, trace and cleanup/keep status are documented."
-    }
+    },
+    "fachlicheExecutionGate": {
+      "rule": "Before setup, master data, Preview Posting, posting, receive/invoice/payment, company change or keep-draft actions, document business case, target state, affected modules, master data/setup, expected documents/entries, risk, correction path and evidence plan.",
+      "afterAction": "Document actual effect, expected-vs-actual delta, visible document/entry numbers, screenshots/result JSON and cleanup/trace or keep status.",
+      "blockerRule": "Do not mark a blocker as final while safe UI routes, existing coverage/atlas/evidence or a concrete helper improvement remain available."
+    },
+    "knowledgeFirstRule": "Before new discovery, check active case notes, latest evidence, coverage matrix and BC page/field/action/posting/error/screenshot atlases.",
+    "companyEvidenceRule": "Sandbox companies and drafts are replaceable; evidence, posted traces and documented findings are not."
   },
   "defaultLockedActions": [
     "company-switch-without-documentation",
@@ -364,5 +371,29 @@
     "proved": "RAW-STEEL line and grid geometry are visible frame-aware.",
     "blocker": "Location FRA-ZL, Quantity 4 and Qty. to Receive 2 were not visibly saved by the current coordinate/F2/Tab route; Standardwerte include ATLANTA, GA and 0,00 values.",
     "nextStep": "P2P-009: stabilize BC cell edit mode/helper or another UI path before Preview Posting."
+  },
+  "latestP2PCellEditHelper": {
+    "caseId": "P2P-009-PURCHASE-LINE-CELL-EDIT-HELPER",
+    "status": [
+      "labor-blocked",
+      "helper-evidence-captured",
+      "needs-german-final-rebuild"
+    ],
+    "sourceInstance": "MCP_1_20260210",
+    "sourceCompany": "RM-DEMO",
+    "draft": "106051",
+    "posted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "apiShortcut": false,
+    "resultPath": "playwright/projects/fibu-book5/evidence/p2p-009/P2P-009-result.json",
+    "evidencePath": "playwright/projects/fibu-book5/evidence/p2p-009/",
+    "screenshots": [
+      "playwright/projects/fibu-book5/img/p2p-009-010-before-cell-edit.png",
+      "playwright/projects/fibu-book5/img/p2p-009-020-after-cell-edit.png"
+    ],
+    "proved": "RAW-STEEL line, frame-aware headers/cells, action candidates and Direct Unit Cost 2.500,00 were captured without Preview/Post.",
+    "blocker": "Location FRA-ZL, Quantity 4 and Qty. to Receive 2 are still not visible after single-click/Enter, double-click and F2 cell-edit routes.",
+    "nextStep": "Either find a true Purchase Lines edit-mode action or create a fresh controlled draft/Select-items route that sets quantity before insertion; Preview Posting remains locked."
   }
 }

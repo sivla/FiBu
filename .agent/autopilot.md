@@ -54,6 +54,11 @@ Zweck: kleiner Einstiegspunkt fuer Codex-Laeufe, die nicht den gesamten Projektv
 - Spaeter muss jeder relevante Prozess in einer deutschen Zielinstanz reproduziert werden; Labor-Screenshots und Laborhinweise werden dann durch deutsche finale Evidence ersetzt oder klar als Laborhinweis behalten.
 - Diese Sandbox-Freiheit ist immer case-/gate-gesteuert: jede Daten-, Setup-, Posting- oder Company-Aktion braucht dokumentierte Instanz, Company, Zweck, Ergebnis und Cleanup-/Trace-Status.
 - In `.agent/state/current.json` sind `forbiddenActions` harte Stopps. `defaultLockedActions` sind innerhalb der Sandbox nur gesperrt, bis ein aktiver Case oder Gate sie mit Evidence-Plan freigibt.
+- `defaultLockedActions` sind Gates, keine Verbote. Wenn Fachpruefung, Case-Freigabe, Evidence-Plan und Trace-/Cleanup-Pfad klar sind, darf derselbe Lauf in `MCP_1_20260210` vom Gate in Preview, Posting, Receive, Setup oder Cleanup weitergehen.
+- Vor fachlich wirksamen Sandbox-Schritten muss kompakt dokumentiert werden: Business Case, Zielwert, betroffene Module, Stammdaten/Setup, erwartete Belege/Posten, Risiko, Korrekturpfad und Evidence-Plan. Nachher werden Ist-Wirkung, Abweichung, Belege/Posten, Screenshot/Evidence und Cleanup-/Keep-Status festgehalten.
+- Ein Blocker ist kein Endstatus, solange noch sichere UI-Routen, vorhandenes Projektwissen, Atlas/Coverage oder Evidence genutzt werden koennen. Endstatus ist nur eine harte Grenze, ein belegter UI-/Setup-Blocker oder ein sauber dokumentierter naechster Fix-Hebel.
+- Companies sind in der Sandbox ersetzbar, Evidence nicht: Testcompanies, Drafts und Setup duerfen kontrolliert neu aufgebaut werden, aber Belege, Screenshots, Results und Lernpunkte bleiben nachvollziehbar referenziert.
+- Vor neuer Discovery erst vorhandenes Wissen pruefen: Coverage, Page-/Field-/Action-/Posting-Atlas, Screenshot-Inventar, Error-Atlas, letzte Evidence und aktive Case-Datei.
 - Auth, `.env`, Reports, Traces, Videos und Rohsnapshots bleiben lokal.
 - Screenshots und Evidence werden projekt-relativ referenziert.
 - Jeder Lauf muss mindestens eines erzeugen: neue Labor-Evidence, bessere Playwright-Faehigkeit, konkrete Buchdraft-/Clickguide-Substanz, kontrollierten Execute-/Posting-/Setup-Trace oder eine klare Klassifikation als `labor-proven`, `labor-blocked`, `labor-sufficient-for-book-draft` oder `needs-german-final-rebuild`.

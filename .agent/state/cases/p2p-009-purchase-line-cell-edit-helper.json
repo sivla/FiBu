@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "caseId": "P2P-009-PURCHASE-LINE-CELL-EDIT-HELPER",
   "area": "p2p",
-  "status": "planned",
+  "status": "labor-blocked",
   "taskClass": "wizard_work",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
@@ -75,6 +75,33 @@
   "mustRecreateInFinalSandbox": true,
   "finalScreenshotNeeded": true,
   "bookImpactTarget": "Chapter 12 partial receipt clickguide: prove or reject stable target-value entry before Preview Posting.",
-  "nextSafeAction": "Run a bounded helper probe to discover the safe Edit/Cell Editor route on Purchase Order 106051.",
-  "updatedAt": "2026-06-28T21:40:00.000+02:00"
+  "result": {
+    "resultPath": "playwright/projects/fibu-book5/evidence/p2p-009/P2P-009-result.json",
+    "evidencePath": "playwright/projects/fibu-book5/evidence/p2p-009/",
+    "screenshots": [
+      "playwright/projects/fibu-book5/img/p2p-009-010-before-cell-edit.png",
+      "playwright/projects/fibu-book5/img/p2p-009-020-after-cell-edit.png"
+    ],
+    "proved": [
+      "Purchase Order 106051 remained in MCP_1_20260210/RM-DEMO.",
+      "RAW-STEEL purchase line was visible.",
+      "Frame-aware headers, row cells and edit-action candidates were captured.",
+      "Direct Unit Cost 2.500,00 is visible in the mapped cell.",
+      "No Preview Posting, posting, setup change, company switch or API shortcut was executed."
+    ],
+    "notProved": [
+      "Location Code FRA-ZL visible on the line",
+      "Quantity 4 visible on the line",
+      "Qty. to Receive 2 visible on the line",
+      "Preview Posting",
+      "Receive or posting trace"
+    ],
+    "blockedBy": [
+      "target-values-not-all-visible-after-cell-edit-helper-routes",
+      "purchase-order-header-edit-pencil-not-exposed-as-stable-action-label",
+      "active-cell-route-focuses-display-textboxes-but-does-not-persist-target-values"
+    ]
+  },
+  "nextSafeAction": "Use P2P-009 geometry/action evidence to build the next route: either a true Purchase Lines edit-mode action discovery or a fresh controlled draft/Select-items route that sets quantity before line insertion.",
+  "updatedAt": "2026-06-28T17:39:58.192+02:00"
 }
