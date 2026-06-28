@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "caseId": "P2P-021-PURCHASE-INVOICE-ALTERNATIVE-ROUTE-PREFLIGHT",
   "title": "Purchase Invoice alternative-route preflight after blocked Purchase Order line and Purchase Journal routes",
-  "status": "planned",
+  "status": "blocked",
   "taskClass": "wizard_work",
   "modelClass": "gpt-5.4-high",
   "usageLogRequired": false,
@@ -45,5 +45,20 @@
   "mustRecreateInFinalSandbox": true,
   "targetGermanCompanyImpact": "German final P2P needs its own vendor, item/FA/service line, VAT and posting trace.",
   "finalScreenshotNeeded": true,
-  "nextStep": "Run a controlled Purchase Invoice alternative-route preflight only if it avoids the already blocked Purchase Order line cell-edit path."
+  "nextStep": "Run a controlled Purchase Invoice alternative-route preflight only if it avoids the already blocked Purchase Order line cell-edit path.",
+  "completedAt": "2026-06-28T23:43:02.587Z",
+  "resultPath": "playwright/projects/fibu-book5/evidence/p2p-021/P2P-021-result.json",
+  "outcome": {
+    "resultStatus": "blocked",
+    "purchaseInvoiceDraftNo": "107229",
+    "summary": "P2P-021 did not fully prove the Purchase Invoice alternative route. new=true, vendorFilled=true, vendorVisible=true, cleanup=cleanup-clicked-but-still-visible.",
+    "blockedBy": [
+      "cleanup-not-proven"
+    ],
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "cleanupOk": false
+  },
+  "nextCase": "P2P-022-PURCHASE-INVOICE-DRAFT-CLEANUP-DIAGNOSIS"
 }

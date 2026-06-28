@@ -129,9 +129,9 @@
   "hardExclusions": {
     "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
   },
-  "updatedAt": "2026-06-28T23:35:23.208Z",
-  "activeArea": "bank",
-  "currentBlock": "bank-payment-journal-108205-book-sync",
+  "updatedAt": "2026-06-28T23:48:13.533Z",
+  "activeArea": "p2p",
+  "currentBlock": "p2p-purchase-invoice-cleanup-or-keep-decision",
   "latestPracticalCase": "FIXEDASSETS-295-FA-DEPRECIATION-GUARDED-OK-FRESH-DOC-NO-POST",
   "latestReviewCase": "FIXEDASSETS-296-FA-DEPRECIATION-FRESH-OK-RESULT-BLOCKER-REVIEW",
   "nextCase": "BANK-022-BANK020-BOOK-SYNC",
@@ -784,5 +784,31 @@
     "summary": "BANK-026 synced BANK-024/BANK-025 into the bank/payments draft and parks bank reconciliation until a concrete statement/match plan or German final rebuild exists.",
     "mustRecreateInFinalSandbox": true,
     "nextCase": "P2P-021-PURCHASE-INVOICE-ALTERNATIVE-ROUTE-PREFLIGHT"
+  },
+  "p2p": {
+    "latestCase": "P2P-022-PURCHASE-INVOICE-DRAFT-CLEANUP-DIAGNOSIS",
+    "latestStatus": "labor-blocked-target-draft-still-visible",
+    "purchaseInvoiceAlternative": {
+      "status": "partial-route-proven-cleanup-blocked",
+      "sourceCompany": "RM-DEMO",
+      "draft": "107229",
+      "noPost": true,
+      "noPreview": true,
+      "blocker": "cleanup-not-proven",
+      "resultPath": "playwright/projects/fibu-book5/evidence/p2p-021/P2P-021-result.json",
+      "nextCase": "P2P-022-PURCHASE-INVOICE-DRAFT-CLEANUP-DIAGNOSIS"
+    },
+    "nextCase": "P2P-023-PURCHASE-INVOICE-DRAFT-CARD-DELETE-OR-KEEP-DECISION",
+    "nextStep": "Judge P2P-021/P2P-022 evidence and either run a target-card cleanup route or explicitly mark draft 107229 as kept laboratory trace before unlocking P2P item-line work.",
+    "purchaseInvoiceCleanup": {
+      "status": "blocked-target-draft-still-visible",
+      "sourceCompany": "RM-DEMO",
+      "targetDraft": "107229",
+      "noPost": true,
+      "noPreview": true,
+      "blocker": "target-draft-still-visible-after-guarded-delete-diagnosis",
+      "resultPath": "playwright/projects/fibu-book5/evidence/p2p-022/P2P-022-result.json",
+      "nextCase": "P2P-023-PURCHASE-INVOICE-DRAFT-CARD-DELETE-OR-KEEP-DECISION"
+    }
   }
 }

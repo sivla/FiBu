@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "caseId": "P2P-023-PURCHASE-INVOICE-DRAFT-CARD-DELETE-OR-KEEP-DECISION",
+  "title": "Purchase Invoice draft card delete route or explicit keep decision",
+  "status": "planned",
+  "taskClass": "judge_work",
+  "modelClass": "gpt-5.5-low",
+  "usageLogRequired": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "p2p-purchase-invoice-cleanup-or-keep-decision",
+  "sourceCase": "P2P-022-PURCHASE-INVOICE-DRAFT-CLEANUP-DIAGNOSIS",
+  "targetDraft": "107229",
+  "purpose": "Decide whether Purchase Invoice draft 107229 should be cleaned through a stronger document-card delete route or intentionally kept as laboratory trace before further P2P work.",
+  "allowedActions": [
+    "read-p2p-021-022-evidence",
+    "open-business-central-if-instance-and-company-match-if-executing-cleanup",
+    "run-playwright-if-case-preflight-passes",
+    "open-target-draft-card-readonly-first",
+    "delete-only-target-draft-if-card-context-and-delete-dialog-are-unambiguous",
+    "or-document-explicit-keep-as-lab-trace",
+    "write-evidence",
+    "update-state"
+  ],
+  "defaultLockedActions": [
+    "posting",
+    "preview-posting",
+    "setup-change",
+    "keep-draft"
+  ],
+  "forbiddenActions": [
+    "claim-german-final-proof",
+    "book-claim-without-evidence",
+    "post-in-p2p-023",
+    "preview-posting-in-p2p-023",
+    "delete-any-document-other-than-target-draft"
+  ],
+  "safetyGates": [
+    "instance-must-be-MCP_1_20260210",
+    "company-must-be-RM-DEMO",
+    "target-draft-107229-must-be-visible-before-delete-or-keep",
+    "document-card-context-must-show-target-draft-before-delete",
+    "delete-dialog-must-be-unambiguous-for-target-draft",
+    "if-keep-draft-then-document-purpose-and-next-route-risk"
+  ],
+  "migrationRelevance": "helper-only",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": false,
+  "targetGermanCompanyImpact": "German final P2P should use this as cleanup governance pattern only; draft 107229 is RM-DEMO lab residue.",
+  "finalScreenshotNeeded": false,
+  "nextStep": "Judge P2P-021/P2P-022 evidence and either run a target-card cleanup route or explicitly mark draft 107229 as kept laboratory trace before unlocking P2P item-line work."
+}

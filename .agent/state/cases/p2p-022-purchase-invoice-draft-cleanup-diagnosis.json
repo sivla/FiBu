@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "caseId": "P2P-022-PURCHASE-INVOICE-DRAFT-CLEANUP-DIAGNOSIS",
+  "title": "Purchase Invoice draft cleanup diagnosis after P2P-021",
+  "status": "blocked",
+  "taskClass": "wizard_work",
+  "modelClass": "gpt-5.4-high",
+  "usageLogRequired": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "p2p-purchase-invoice-draft-cleanup-diagnosis",
+  "sourceCase": "P2P-021-PURCHASE-INVOICE-ALTERNATIVE-ROUTE-PREFLIGHT",
+  "targetDraft": "107229",
+  "purpose": "Resolve or classify the remaining Purchase Invoice draft from P2P-021 before any item-line, Preview Posting or posting route is unlocked.",
+  "allowedActions": [
+    "open-business-central-if-instance-and-company-match",
+    "run-playwright-if-case-preflight-passes",
+    "open-filtered-purchase-invoice-list-for-target-draft",
+    "diagnose-delete-action-scope",
+    "delete-only-target-draft-if-dialog-text-matches-target-document",
+    "capture-compact-evidence",
+    "update-state"
+  ],
+  "defaultLockedActions": [
+    "posting",
+    "preview-posting",
+    "setup-change",
+    "keep-draft"
+  ],
+  "forbiddenActions": [
+    "claim-german-final-proof",
+    "book-claim-without-evidence",
+    "post-in-p2p-022",
+    "preview-posting-in-p2p-022",
+    "delete-any-document-other-than-target-draft"
+  ],
+  "safetyGates": [
+    "instance-must-be-MCP_1_20260210",
+    "company-must-be-RM-DEMO",
+    "target-draft-107229-must-be-visible-before-delete",
+    "delete-dialog-must-be-document-delete-not-line-delete",
+    "no-posting-or-preview-in-p2p-022"
+  ],
+  "migrationRelevance": "helper-only",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": false,
+  "targetGermanCompanyImpact": "German final P2P should reuse the cleanup guard pattern, not this RM-DEMO draft number.",
+  "finalScreenshotNeeded": false,
+  "nextStep": "Run a targeted cleanup diagnosis for Purchase Invoice draft 107229; do not continue item line or Preview Posting until cleanup/keep status is resolved.",
+  "completedAt": "2026-06-28T23:46:58.197Z",
+  "resultPath": "playwright/projects/fibu-book5/evidence/p2p-022/P2P-022-result.json",
+  "outcome": {
+    "resultStatus": "blocked",
+    "targetDraftNo": "107229",
+    "summary": "P2P-022 did not clean Purchase Invoice draft 107229; beforeVisible=true, deleteTriggered=true, confirmed=false, afterVisible=true.",
+    "blockedBy": [
+      "target-draft-still-visible-after-cleanup-diagnosis"
+    ],
+    "deleteTriggered": true,
+    "deleteConfirmed": false,
+    "noPost": true,
+    "noPreview": true,
+    "cleanupProven": false
+  },
+  "nextCase": "P2P-023-PURCHASE-INVOICE-DRAFT-CARD-DELETE-OR-KEEP-DECISION"
+}

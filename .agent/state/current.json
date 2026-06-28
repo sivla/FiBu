@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-28T23:35:23.208Z",
+  "updatedAt": "2026-06-28T23:46:58.197Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "p2p",
-  "activeCase": "P2P-021-PURCHASE-INVOICE-ALTERNATIVE-ROUTE-PREFLIGHT",
-  "active_case_file": ".agent/state/cases/p2p-021-purchase-invoice-alternative-route-preflight.json",
-  "lastReferenceCase": "BANK-026-BANK-RECONCILIATION-BOOK-SYNC",
-  "lastReferenceCaseFile": ".agent/state/cases/bank-026-bank-reconciliation-book-sync.json",
+  "activeCase": "P2P-023-PURCHASE-INVOICE-DRAFT-CARD-DELETE-OR-KEEP-DECISION",
+  "active_case_file": ".agent/state/cases/p2p-023-purchase-invoice-draft-card-delete-or-keep-decision.json",
+  "lastReferenceCase": "P2P-022-PURCHASE-INVOICE-DRAFT-CLEANUP-DIAGNOSIS",
+  "lastReferenceCaseFile": ".agent/state/cases/p2p-022-purchase-invoice-draft-cleanup-diagnosis.json",
   "mode": "bc-specialist-labor-book-production",
-  "requiresStrongModel": false,
+  "requiresStrongModel": true,
   "requiredPreflightChecks": [
     "agent:preflight",
     "agent:state:validate",
@@ -40,7 +40,7 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "P2P-021: use a Purchase Invoice alternative-route preflight instead of repeating blocked Purchase Order line cell edits or Purchase Journal preview blockers.",
+  "nextStep": "Judge P2P-021/P2P-022 evidence and either run a target-card cleanup route or explicitly mark draft 107229 as kept laboratory trace before unlocking P2P item-line work.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/bank-payments-labor-draft.md",
     "area": "bankPayments",
@@ -1386,7 +1386,7 @@
     "decision": "Approve a separate no-post Payment Journal preflight for Vendor Ledger document 108205. Do not use Payment Reconciliation Apply/Post for this target. BANK-018 may create exactly one scoped draft line, run Journal Check/open Apply Entries if reachable, and must cleanup or explicitly document keep status. Posting remains locked.",
     "nextStep": "BANK-018: controlled no-post Payment Journal preflight for 108205; do not post."
   },
-  "workType": "p2p-purchase-invoice-alternative-route-preflight",
+  "workType": "p2p-purchase-invoice-cleanup-or-keep-decision",
   "lastCompletedCase": "BANK-026-BANK-RECONCILIATION-BOOK-SYNC",
   "latestBank018": {
     "caseId": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
@@ -1569,5 +1569,62 @@
     "summary": "BANK-026 synced BANK-024/BANK-025 into the bank/payments draft and parks bank reconciliation until a concrete statement/match plan or German final rebuild exists.",
     "mustRecreateInFinalSandbox": true,
     "nextCase": "P2P-021-PURCHASE-INVOICE-ALTERNATIVE-ROUTE-PREFLIGHT"
+  },
+  "latestP2P021PurchaseInvoiceAlternative": {
+    "caseId": "P2P-021-PURCHASE-INVOICE-ALTERNATIVE-ROUTE-PREFLIGHT",
+    "status": [
+      "labor-blocked",
+      "purchase-invoice-route-partial",
+      "cleanup-not-proven",
+      "needs-german-final-rebuild"
+    ],
+    "sourceInstance": "MCP_1_20260210",
+    "sourceCompany": "RM-DEMO",
+    "draft": "107229",
+    "posted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "apiShortcut": false,
+    "resultPath": "playwright/projects/fibu-book5/evidence/p2p-021/P2P-021-result.json",
+    "evidencePath": "playwright/projects/fibu-book5/evidence/p2p-021/",
+    "screenshots": [
+      "playwright/projects/fibu-book5/img/p2p-021-010-purchase-invoices-start.png",
+      "playwright/projects/fibu-book5/img/p2p-021-020-after-new.png",
+      "playwright/projects/fibu-book5/img/p2p-021-030-after-vendor-attempt.png"
+    ],
+    "proved": "Purchase Invoices direct page route, scoped New, Purchase Invoice context and visible K10000 vendor attempt.",
+    "blocker": "Cleanup was attempted but target draft 107229 stayed visible; RAW-STEEL line and Preview Posting remain locked.",
+    "nextStep": "Run a targeted cleanup diagnosis for Purchase Invoice draft 107229; do not continue item line or Preview Posting until cleanup/keep status is resolved.",
+    "migrationRelevance": "needed-for-german-final",
+    "mustRecreateInFinalSandbox": true,
+    "finalScreenshotNeeded": true
+  },
+  "latestP2P022PurchaseInvoiceCleanup": {
+    "caseId": "P2P-022-PURCHASE-INVOICE-DRAFT-CLEANUP-DIAGNOSIS",
+    "status": [
+      "labor-blocked",
+      "cleanup-diagnosis",
+      "target-draft-still-visible",
+      "helper-only"
+    ],
+    "sourceInstance": "MCP_1_20260210",
+    "sourceCompany": "RM-DEMO",
+    "targetDraft": "107229",
+    "posted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "apiShortcut": false,
+    "resultPath": "playwright/projects/fibu-book5/evidence/p2p-022/P2P-022-result.json",
+    "evidencePath": "playwright/projects/fibu-book5/evidence/p2p-022/",
+    "screenshots": [
+      "playwright/projects/fibu-book5/img/p2p-022-010-filtered-target-draft-before.png",
+      "playwright/projects/fibu-book5/img/p2p-022-030-filtered-target-draft-after.png"
+    ],
+    "proved": "Filtered Purchase Invoices showed target draft 107229 before and after a guarded delete attempt; no Preview/Post/Setup occurred.",
+    "blocker": "Delete trigger did not reach an unambiguous safe target document delete confirmation; draft 107229 remains visible.",
+    "nextStep": "Judge P2P-021/P2P-022 evidence and either run a target-card cleanup route or explicitly mark draft 107229 as kept laboratory trace before unlocking P2P item-line work.",
+    "migrationRelevance": "helper-only",
+    "mustRecreateInFinalSandbox": false,
+    "finalScreenshotNeeded": false
   }
 }
