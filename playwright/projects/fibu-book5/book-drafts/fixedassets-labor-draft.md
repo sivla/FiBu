@@ -86,13 +86,15 @@ Danach wurde im Fixed Asset G/L Journal gesucht. Ergebnis:
 - Es wurde kein Preview Posting ausgefuehrt.
 - Es wurde keine AfA gebucht.
 
-Anfaenger-Lernpunkt: `OK` auf der `Calculate Depreciation` Request Page bedeutet nicht automatisch, dass eine sichtbare Journalzeile erzeugt wurde. `OK` startet nur den Batch-/Berechnungslauf. Danach muss man pruefen, ob und wo Business Central eine Journalzeile erzeugt hat. Wenn keine Zeile sichtbar ist, darf man nicht blind erneut `OK` klicken. Man prueft erst Datum, AfA-Faelligkeit, Restbuchwert, AfA-Buch, Journal Template, Batch, Filter und Ausgabeziel.
+In `FIXEDASSETS-295` wurde der gleiche OK-only-Pfad mit frischer Belegnummer `FADEP-295-OK` wiederholt. Auch diese Belegnummer war danach im geprueften Fixed Asset G/L Journal nicht sichtbar. `FIXEDASSETS-296` bewertet das als Stoppsignal: Der Prozess wird in `RM-DEMO` geparkt, bis eine neue Ursache oder ein neuer UI-/Setup-Pfad belegt ist.
+
+Anfaenger-Lernpunkt: `OK` auf der `Calculate Depreciation` Request Page bedeutet nicht automatisch, dass eine sichtbare Journalzeile erzeugt wurde. `OK` startet nur den Batch-/Berechnungslauf. Danach muss man pruefen, ob und wo Business Central eine Journalzeile erzeugt hat. Wenn keine Zeile sichtbar ist, darf man nicht blind erneut `OK` klicken. Nach zwei kontrollierten OK-Laeufen ohne sichtbare Zeile gilt erst recht: kein Preview Posting, keine Buchung, erst Ursache klaeren. Man prueft Datum, AfA-Faelligkeit, Restbuchwert, AfA-Buch, Journal Template, Batch, Filter und Ausgabeziel.
 
 Klassifikation fuer das Buch:
 
 - Anlagenzugang: `labor-proven`, `labor-sufficient-for-book-draft`, `needs-german-final-rebuild`.
-- AfA/Calculate Depreciation: `labor-blocked`, `needs-german-final-rebuild`.
-- FA-292: `labor-blocked` und `labor-sufficient-for-book-draft`, weil der Blocker als Anfaenger-Lernpunkt ins Buch gehoert.
+- AfA/Calculate Depreciation: `labor-blocked`, `labor-sufficient-for-book-draft`, `needs-german-final-rebuild`.
+- FA-292/296: `labor-blocked` und `labor-sufficient-for-book-draft`, weil der Blocker als Anfaenger-Lernpunkt ins Buch gehoert.
 
 ## Was muss spaeter deutsch/final neu gemacht werden?
 

@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "caseId": "BANK-013-CONTROLLED-NEXT-EVIDENCE-STEP",
+  "title": "Controlled next bank evidence step after fixed assets depreciation sync",
+  "status": "planned",
+  "taskClass": "wizard_work",
+  "modelClass": "gpt-4-medium",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "execute-or-readiness-decision",
+  "purpose": "Continue practical laboratory progress outside the parked fixed-assets depreciation loop.",
+  "sourceCase": "BOOK-FIXEDASSETS-CH21-DEPRECIATION-BLOCKER-SYNC",
+  "allowedActions": [
+    "read-bank-evidence",
+    "read-current-state",
+    "open-business-central-if-instance-and-company-match",
+    "run-playwright-if-case-preflight-passes",
+    "write-evidence",
+    "update-state"
+  ],
+  "defaultLockedActions": [
+    "posting",
+    "payment",
+    "setup-change",
+    "keep-draft"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "claim-german-final-proof",
+    "api-shortcut-without-explicit-case-permission"
+  ],
+  "safetyGates": [
+    "instance-and-company-confirmed",
+    "fresh-target-line-required",
+    "no-global-posting-without-all-lines-approval",
+    "evidence-before-state"
+  ],
+  "expectedOutputs": [
+    "A bounded decision or execute evidence step, preferably BANK-013 only if a fresh target line exists.",
+    "No return to FA depreciation OK repeat unless a new cause hypothesis is documented."
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "targetGermanCompanyImpact": "German final bank/payment evidence must be recreated in the target company.",
+  "finalScreenshotNeeded": true,
+  "nextStep": "Read BANK-009 to BANK-012 evidence and choose a safe BANK-013 route only if it has a fresh target line or clear no-post readiness goal."
+}
