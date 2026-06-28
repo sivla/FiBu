@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "FIXEDASSETS-270-FA-DEPRECIATION-ELIGIBILITY-DIAGNOSIS-REVIEW",
-  "status": "planned",
+  "status": "observed",
   "workType": "local-fixedasset-depreciation-date-eligibility-review",
   "taskClass": "judge_work",
   "requiresStrongModel": true,
@@ -66,7 +66,14 @@
     "The review would require repeating Calculate Depreciation OK.",
     "The review would infer a journal line without evidence."
   ],
-  "nextSafeAction": "Review FA-269 locally and select a post-acquisition date strategy before any repeat OK.",
+  "result": {
+    "resultStatus": "observed",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-270/FIXEDASSETS-270-result.json",
+    "acceptedFinding": "target-date-before-acquisition",
+    "nextCase": "FIXEDASSETS-271-FA-DEPRECIATION-POST-ACQUISITION-VALUE-PREFLIGHT-NO-OK",
+    "summary": "FA-270 accepts FA-269's date finding and selects 31.01.2027 as the next post-acquisition target for a no-OK Calculate Depreciation value preflight."
+  },
+  "nextSafeAction": "Run FIXEDASSETS-271 as a guarded no-OK value preflight with HGB, 31.01.2027, FADEP-271-NO-OK and FA-CNC-01.",
   "createdAt": "2026-06-28T08:50:00.000+02:00",
-  "updatedAt": "2026-06-28T08:50:00.000+02:00"
+  "updatedAt": "2026-06-28T09:05:00.000+02:00"
 }

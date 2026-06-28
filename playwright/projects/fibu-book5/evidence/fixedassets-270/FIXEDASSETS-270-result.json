@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixed-assets-depreciation-date-eligibility-review",
+  "caseId": "FIXEDASSETS-270-FA-DEPRECIATION-ELIGIBILITY-DIAGNOSIS-REVIEW",
+  "source": "local-evidence-review",
+  "resultStatus": "observed",
+  "branch": "codex/token-efficient-autopilot-state",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "reviewedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-269/FIXEDASSETS-269-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-269/FIXEDASSETS-269-DEPRECIATION-ELIGIBILITY-READONLY-DIAGNOSIS.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-269/020-fa-ledger-entries-readonly.json"
+  ],
+  "decision": {
+    "acceptedFinding": "target-date-before-acquisition",
+    "reason": "FA-269 shows acquisition posting date 01.01.2027 for G05001/FA-CNC-01/HGB, while the previous depreciation target date was 30.06.2026. A depreciation run before acquisition is not a useful eligibility test.",
+    "nextLiveCase": "FIXEDASSETS-271-FA-DEPRECIATION-POST-ACQUISITION-VALUE-PREFLIGHT-NO-OK",
+    "nextLiveCaseFile": ".agent/state/cases/fixedassets-271-fa-depreciation-post-acquisition-value-preflight-no-ok.json",
+    "nextTargetValues": {
+      "depreciationBook": "HGB",
+      "postingDateUi": "31.01.2027",
+      "postingDateIso": "2027-01-31",
+      "documentNo": "FADEP-271-NO-OK",
+      "fixedAssetNoFilter": "FA-CNC-01"
+    },
+    "whyNoDirectOk": "The old OK path failed because the date was before acquisition. The next smallest safe step is to prove the corrected post-acquisition request-page values without confirming OK."
+  },
+  "proved": [
+    "FA-269 evidence is sufficient to reject another 30.06.2026 depreciation execution attempt.",
+    "The next useful target date must be after the acquisition posting date 01.01.2027.",
+    "A no-OK value preflight is safer than directly repeating Calculate Depreciation OK.",
+    "No Business Central or Playwright execution occurred in FA-270."
+  ],
+  "notProved": [
+    "No depreciation journal line has been generated with the corrected post-acquisition date.",
+    "No Preview Posting result exists.",
+    "No depreciation posting exists.",
+    "No German final proof exists."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-270/",
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-270-fa-depreciation-eligibility-diagnosis-review.json",
+    ".agent/state/cases/fixedassets-271-fa-depreciation-post-acquisition-value-preflight-no-ok.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/model_usage_log.jsonl",
+    "playwright/FINDINGS.md",
+    "playwright/projects/fibu-book5/BOOK-CLICK-GUIDE-COVERAGE.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-270/FIXEDASSETS-270-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-270/FIXEDASSETS-270-DATE-ELIGIBILITY-REVIEW.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-270/README.md"
+  ],
+  "safety": {
+    "bcRun": false,
+    "playwrightRun": false,
+    "noCalculateDepreciationOk": true,
+    "noPreviewPosting": true,
+    "noPost": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-271-FA-DEPRECIATION-POST-ACQUISITION-VALUE-PREFLIGHT-NO-OK",
+      "active_case_file": ".agent/state/cases/fixedassets-271-fa-depreciation-post-acquisition-value-preflight-no-ok.json",
+      "lastReferenceCase": "FIXEDASSETS-270-FA-DEPRECIATION-ELIGIBILITY-DIAGNOSIS-REVIEW",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-270-fa-depreciation-eligibility-diagnosis-review.json",
+      "requiresStrongModel": false,
+      "nextStep": "FIXEDASSETS-271: run a guarded no-OK Calculate Depreciation value preflight with HGB, 31.01.2027, FADEP-271-NO-OK and FA-CNC-01; do not confirm OK, Preview Posting or Post."
+    },
+    "coverage": {
+      "activeArea": "fixedassets",
+      "latestReviewCase": "FIXEDASSETS-270-FA-DEPRECIATION-ELIGIBILITY-DIAGNOSIS-REVIEW",
+      "nextCase": "FIXEDASSETS-271-FA-DEPRECIATION-POST-ACQUISITION-VALUE-PREFLIGHT-NO-OK",
+      "depreciationReadiness": "FA-270 accepted FA-269's date finding and selects a post-acquisition no-OK preflight with 31.01.2027 before any repeat OK, Preview Posting or Post."
+    }
+  },
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "reason": "Local review completed; the next step is a safer post-acquisition value proof without OK.",
+  "observedAt": "2026-06-28T09:05:00.000+02:00"
+}

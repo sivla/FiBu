@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-28T08:50:00.000+02:00",
+  "updatedAt": "2026-06-28T09:05:00.000+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "fixedassets",
-  "activeCase": "FIXEDASSETS-270-FA-DEPRECIATION-ELIGIBILITY-DIAGNOSIS-REVIEW",
-  "active_case_file": ".agent/state/cases/fixedassets-270-fa-depreciation-eligibility-diagnosis-review.json",
-  "lastReferenceCase": "FIXEDASSETS-269-FA-DEPRECIATION-ELIGIBILITY-AND-JOURNAL-SETUP-READONLY-DIAGNOSIS",
-  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-269-fa-depreciation-eligibility-and-journal-setup-readonly-diagnosis.json",
-  "mode": "token-efficient-autopilot-fixedassets-depreciation-eligibility-diagnosis-review",
-  "requiresStrongModel": true,
+  "activeCase": "FIXEDASSETS-271-FA-DEPRECIATION-POST-ACQUISITION-VALUE-PREFLIGHT-NO-OK",
+  "active_case_file": ".agent/state/cases/fixedassets-271-fa-depreciation-post-acquisition-value-preflight-no-ok.json",
+  "lastReferenceCase": "FIXEDASSETS-270-FA-DEPRECIATION-ELIGIBILITY-DIAGNOSIS-REVIEW",
+  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-270-fa-depreciation-eligibility-diagnosis-review.json",
+  "mode": "token-efficient-autopilot-fixedassets-depreciation-post-acquisition-value-preflight-no-ok",
+  "requiresStrongModel": false,
   "requiredPreflightChecks": [
     "agent:preflight",
     "agent:state:validate",
@@ -19,9 +19,12 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "local-evidence-review",
-    "review-fa269-date-eligibility-finding",
-    "plan-next-safe-fixedasset-step",
+    "open-business-central",
+    "run-playwright",
+    "open-calculate-depreciation-request-page",
+    "write-target-request-page-values-without-ok",
+    "capture-value-proof",
+    "close-request-page-without-ok",
     "write-compact-evidence",
     "update-state"
   ],
@@ -31,8 +34,6 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
-    "open-business-central",
-    "run-playwright",
     "confirm-ok-on-calculate-depreciation",
     "preview-posting",
     "post",
@@ -40,7 +41,7 @@
     "company-switch",
     "api-shortcut-without-explicit-case-permission"
   ],
-  "nextStep": "FIXEDASSETS-270: locally review FA-269 evidence that target date 30.06.2026 is before acquisition date 01.01.2027 and decide the next smallest safe AfA step; no repeat OK, Preview Posting or Post yet.",
+  "nextStep": "FIXEDASSETS-271: run a guarded no-OK Calculate Depreciation value preflight with HGB, 31.01.2027, FADEP-271-NO-OK and FA-CNC-01; do not confirm OK, Preview Posting or Post.",
   "subagentPlanPolicy": {
     "default": "optional",
     "execution": "plan-only-no-subagents-spawned",

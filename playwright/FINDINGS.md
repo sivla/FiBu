@@ -1,4 +1,19 @@
 
+## FIND-BC-FA-107 Naechster AfA-Test braucht post-acquisition Datum ohne OK
+
+| Feld | Wert |
+|---|---|
+| Bereich | Fixed Assets / AfA-Route / Ausfuehrungsreihenfolge |
+| Testfall | `FIXEDASSETS-270-FA-DEPRECIATION-ELIGIBILITY-DIAGNOSIS-REVIEW` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-270/FIXEDASSETS-270-result.json`, `playwright/projects/fibu-book5/evidence/fixedassets-270/FIXEDASSETS-270-DATE-ELIGIBILITY-REVIEW.md` |
+| Entscheidung | Der alte AfA-Stichtag `30.06.2026` wird verworfen, weil der Zugang `G05001` erst am `01.01.2027` gebucht ist. |
+| naechster Zielwert | `HGB`, `31.01.2027`, `FADEP-271-NO-OK`, `FA-CNC-01` |
+| Wirkung | Der naechste Live-Lauf darf nur die korrigierten Request-Page-Werte beweisen; `OK` bleibt gesperrt. |
+| weiterhin gesperrt | `OK`, Preview Posting, Post, Setup Change, Company Switch, API-Abkuerzung |
+| naechster Schritt | `FIXEDASSETS-271`: post-acquisition Value-Preflight ohne `OK`. |
+
+Fuer Anfaenger ist das die saubere Reihenfolge: erst Zugangsposten lesen, dann ein AfA-Datum nach dem Zugang waehlen, dann Werte auf der Batch-Request-Page pruefen, und erst danach ueber Ausfuehrung entscheiden.
+
 ## FIND-BC-FA-106 AfA-Zieldatum lag vor dem Anlagenzugang
 
 | Feld | Wert |
