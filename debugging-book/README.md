@@ -55,6 +55,8 @@ npm run check:api
 npm run check:scaffold
 npm run check:mcp
 npm run check:telemetry
+npm run check:customer-context
+npm run check:triage
 npm run new:evidence -- SAMPLE-002 "Permission error on posting preview"
 ```
 
@@ -82,6 +84,8 @@ Der Branch hat lokale Governance-Checks, die ohne BC-Zugang laufen:
 | `npm run check:scaffold` | Evidence-Pack-Generator in Temp-Verzeichnissen |
 | `npm run check:mcp` | read-only BC-MCP-Tool-Registry und Sicherheitsklassifizierung |
 | `npm run check:telemetry` | lokale KQL-Templates fuer Permission, Performance, API, Job Queue, Extension und Session |
+| `npm run check:customer-context` | Kundenkontext-Typen und sensible Rohwerte |
+| `npm run check:triage` | Ticketklassifikation, Evidence-Kanaele und sichere naechste Schritte |
 
 Ein neuer Evidence-Fall wird als Ordner unter `evidence/` angelegt. Die Dateien `00-ticket-summary.md` bis `11-book-chapter-draft.md` sind Pflicht und muessen Inhalt haben. `12-lessons-learned.md`, `13-follow-up-questions.md` und `14-risk-notes.md` sind empfohlen; fehlende Dateien sind Warnungen, keine harten Fehler.
 
@@ -102,5 +106,7 @@ Grenzen: Die Validatoren pruefen Textstruktur und typische Leak-Muster in Markdo
 | UI Evidence | Playwright und Playwright MCP zeigen, was der User sieht |
 | Data Evidence | BC MCP/API/OData strukturieren gespeicherte Werte read-only |
 | Telemetry Evidence | KQL-Templates helfen bei technischen Fehlern und Timing |
+| Customer Context | Kundenprozesse, Extensions, Integrationen, Berechtigungen und Known Issues |
+| Ticket Triage | entscheidet, welcher Evidence-Kanal als naechstes Sinn macht |
 
 Alle drei Kanaele muessen in einem Evidence Pack zusammengefuehrt werden, bevor daraus Root Cause oder Buchwissen entsteht.

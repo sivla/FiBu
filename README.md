@@ -29,6 +29,8 @@ npm run check:api
 npm run check:scaffold
 npm run check:mcp
 npm run check:telemetry
+npm run check:customer-context
+npm run check:triage
 npm run new:evidence -- SAMPLE-002 "Permission error on posting preview"
 ```
 
@@ -46,6 +48,8 @@ Lokale Checks ohne Business-Central-Zugriff:
 - `npm run check:scaffold` prueft das Evidence-Pack-Scaffold.
 - `npm run check:mcp` prueft die read-only BC-MCP-Tool-Registry.
 - `npm run check:telemetry` prueft lokale KQL-Query-Templates ohne Live-Ausfuehrung.
+- `npm run check:customer-context` prueft lokale Kundenkontext-Strukturen ohne echte Kundendaten.
+- `npm run check:triage` prueft die Ticket-Triage-Heuristik.
 
 BC-Zugriff bleibt getrennt:
 
@@ -72,3 +76,8 @@ Die Evidence-Kanaele sind getrennt:
 - BC MCP = read-only Daten/Evidence strukturieren.
 - Telemetry = technische Fehler, Performance, Permission, API und Extension analysieren.
 - Evidence Pack = alles zusammenfuehren.
+
+Perspektivisch kommt dazu:
+
+- Customer Context = Kundensystemwissen strukturiert laden.
+- Ticket Triage = Problemklasse und sinnvollsten Diagnoseweg waehlen.

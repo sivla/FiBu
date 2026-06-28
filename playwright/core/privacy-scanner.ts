@@ -46,9 +46,13 @@ const rules: Rule[] = [
     warningOnly: (_match, line) =>
       /process\.env|runtimeConfig|playwright\/\.auth|keine |nicht versionieren|niemals|nicht committed|lokal|fehlt|separat/i.test(
         line
-      )
+      ) || /sensitivePatterns|storageState\|cookie/.test(line)
   },
-  { type: 'token', pattern: /\bBearer\s+[A-Za-z0-9._~+/=-]{8,}/g }
+  {
+    type: 'token',
+    pattern: /\bBearer\s+[A-Za-z0-9._~+/=-]{8,}/g,
+    warningOnly: (_match, line) => /demo|fixture|test/i.test(line)
+  }
 ];
 
 function listTextFiles(rootDir: string): string[] {

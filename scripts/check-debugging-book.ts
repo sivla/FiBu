@@ -21,6 +21,8 @@ const expectedScripts = [
   'check:scaffold',
   'check:mcp',
   'check:telemetry',
+  'check:customer-context',
+  'check:triage',
   'new:evidence',
   'bc:sample'
 ];
@@ -30,6 +32,8 @@ const expectedFiles = [
   path.join(root, 'playwright', 'core', 'bc-readonly-api.ts'),
   path.join(root, 'playwright', 'core', 'bc-mcp-tools.ts'),
   path.join(root, 'playwright', 'core', 'telemetry-query-builder.ts'),
+  path.join(root, 'playwright', 'core', 'customer-context.ts'),
+  path.join(root, 'playwright', 'core', 'ticket-triage.ts'),
   path.join(root, 'scripts', 'new-evidence-pack.ts')
 ];
 

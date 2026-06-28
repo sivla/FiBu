@@ -34,6 +34,8 @@ Diese Datei bewertet ehrlich, wie weit das Business Central Debugging Book und d
 | BC MCP Tool Spec | dokumentiert + Registry getestet | 3 | kein echter MCP-Server | read-only Server-Adapter spaeter |
 | Playwright MCP Strategy | dokumentiert | 2 | nicht angebunden | Explorationsablauf mit Safe Checks testen |
 | Telemetry Query Builder | lokal getestet | 3 | keine Live Application Insights | read-only AI-Verbindung spaeter |
+| Customer Context | Templates + Typen getestet | 3 | keine echten Kundendaten | lokalen Kundenkontext auf Mac pflegen |
+| Ticket Triage Engine | lokal heuristisch getestet | 3 | keine LLM-/Live-Ausfuehrung | mit echten Ticketbeispielen kalibrieren |
 
 ## Template-Coverage
 
@@ -69,6 +71,8 @@ Diese Datei bewertet ehrlich, wie weit das Business Central Debugging Book und d
 | BC MCP Runtime | Mock/Registry vorhanden | 3 | kein echter MCP-Server, kein Tenant-Zugriff | Tool-Adapter fuer read-only Daten bauen |
 | Telemetry Query Builder | lokal getestet | 3 | keine Live-Ausfuehrung | Application-Insights-Zugriff separat klaeren |
 | Live App Insights | Strategie vorhanden | 1 | keine Verbindung, keine Freigabe | read-only Zugriffskonzept erstellen |
+| Customer Context Checks | lokal getestet | 3 | keine echten Kundenkontexte | sichere lokale Context-Dateien spaeter |
+| Ticket Triage | lokal getestet | 3 | heuristisch, nicht final | mit gelosten Tickets trainieren/schaerfen |
 
 ## Risiken
 
@@ -81,6 +85,8 @@ Diese Datei bewertet ehrlich, wie weit das Business Central Debugging Book und d
 - BC MCP ist Tool-Spec und Registry, aber noch kein Live-MCP-Server.
 - Playwright MCP ist Strategie, aber noch nicht angebunden.
 - Telemetry Query Builder erzeugt Templates, fuehrt aber keine Application-Insights-Queries aus.
+- Customer Context ist nur Template/Typmodell, noch kein echtes Kundenwissen.
+- Ticket Triage ist heuristisch und ersetzt keine Consultant-Pruefung.
 - Runtime Config prueft Sicherheitsflags, stellt aber keine Secrets bereit.
 - Telemetry bleibt Strategie, solange keine Application-Insights-Anbindung existiert.
 - Privacy-Scanner findet typische Text-Leaks, ist aber kein vollstaendiges DLP und prueft keine Bilder.
@@ -92,4 +98,4 @@ Diese Datei bewertet ehrlich, wie weit das Business Central Debugging Book und d
 2. Erste lokale Sandbox-Konfiguration mit `BC_URL` und Auth-State dokumentiert testen.
 3. API/OData/MCP-Read-only-Datencheck als kleines GET-Beispiel ergaenzen.
 4. Telemetry-Query gegen anonymisierte Demo-Daten validieren.
-5. Anonymisierungs- und Screenshot-Governance weiter schaerfen.
+5. Erste anonymisierte echte Tickets gegen Ticket Triage kalibrieren.
