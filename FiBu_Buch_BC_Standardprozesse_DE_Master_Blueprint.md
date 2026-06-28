@@ -3787,11 +3787,11 @@ Eine Anlage ist ein langfristig genutztes Wirtschaftsgut. In Business Central re
 Status:
 - Buchziel: `FA-CNC-01` als CNC-Maschine anlegen, Zugang ueber Einkaufsrechnung buchen, AfA berechnen und Anlagenposten/Sachposten abstimmen.
 - Mandant: Aktuelle Bilder stammen aus `RM-DEMO` in `MCP_1_20260210` auf CRONUS-USA-Datenbasis.
-- Laborstand: `HGB`, `MACHINES`, `FA-CNC-01` und `K30000` sind als Labor-/Readiness-Schichten belegt; ein Anlagenzugang ist nicht gebucht.
+- Laborstand: `HGB`, `MACHINES`, `FA-CNC-01` und `K30000` sind als Labor-/Readiness-Schichten belegt. Ein Anlagenzugang wurde im RM-DEMO-Labor ueber das Fixed Asset G/L Journal mit Beleg `G05001` nachvollzogen; das ist Labor-Evidence, kein deutscher Finalnachweis.
 - Screenshots: Die folgenden Bilder sind Labor- oder Diagnose-Screenshots. Sie erklaeren Klickpfad, Feldlogik, Debugging und Grenzen, sind aber keine deutschen Finalbilder.
-- Evidence Pack: `playwright/projects/fibu-book5/evidence/fixedassets-014/`, `fixedassets-016/`, `fixedassets-033/`, `fixedassets-034/`, `fixedassets-043/`, `fixedassets-053/`, `fixedassets-064/`.
-- Praktisch belegt: AfA-Buch `HGB`, Anlagenbuchungsgruppe `MACHINES`, Anlagenkarte `FA-CNC-01` mit Stammdatenfit und `Book Value = 0,00`, Teilbefunde zu `K30000`, leere Einkaufsrechnung als Preflight und ein abgelehnter Zeilentyp-Pfad.
-- Offen: Einkaufsrechnung fuer `K30000`, Zeile `Art/Type = Fixed Asset` mit `FA-CNC-01`, Buchungsvorschau, Anlagenzugang, AfA, Anlagenposten, deutscher Kontenplan und deutsche USt.
+- Evidence Pack: `playwright/projects/fibu-book5/evidence/fixedassets-014/`, `fixedassets-016/`, `fixedassets-033/`, `fixedassets-034/`, `fixedassets-043/`, `fixedassets-053/`, `fixedassets-064/`, `fixedassets-225/`, `fixedassets-227/`, `fixedassets-229/`, `fixedassets-231/`, `fixedassets-291/`.
+- Praktisch belegt: AfA-Buch `HGB`, Anlagenbuchungsgruppe `MACHINES`, Anlagenkarte `FA-CNC-01`, Teilbefunde zu `K30000`, leere Einkaufsrechnung als Preflight, ein abgelehnter Zeilentyp-Pfad, Preview-Posting-Details fuer den Anlagenzugang, gebuchte Sachposten- und Anlagenposten-Laborspur zu `G05001`.
+- Offen: deutsche Einkaufsrechnung fuer `K30000`, finaler deutscher Zeilentyp `Art/Type = Fixed Asset` mit `FA-CNC-01`, deutsche Buchungsvorschau, deutscher Anlagenzugang, erfolgreiche AfA-Journalzeile, AfA-Preview/Posten, deutscher Kontenplan und deutsche USt.
 - DE-Finalnachweis: offen.
 - Nicht behaupten: `HGB` im Labor ist kein deutscher HGB-Endstand, `MACHINES` ist kein deutscher Kontenplan, `Book Value = 0,00` ist kein Anlagenzugang, ein Dialogtext `Fixed Asset` ist kein sichtbarer Zeilentyp.
 
@@ -3825,6 +3825,43 @@ Fuer Einsteiger ist die Regel wichtig: Eine Anlagenbuchungsgruppe ist keine Besc
 | `fixedassets-043` | `K30000` zeigt Invoicing-/Tax-Teilsicht | Teilfelder reichen noch nicht fuer Kaufbeleg-Readiness |
 | `fixedassets-053` | Leere Purchase Invoice mit Pflichtfeldern und `Post`-Gefahrengrenze | richtiger Belegraum, aber noch kein Zielbeleg |
 | `fixedassets-064` | Rejected Path: `Type = Item` blieb bestehen, Vendor-Dialog statt Anlagenzeile | Dialogtext ist kein Zeilentyp-Nachweis |
+| `fixedassets-225` | Preview Posting fuer `G05001` zeigte Detailsignale zu Sachposten und Anlagenposten | Preview ist Vorabkontrolle, noch keine Buchung |
+| `fixedassets-227` | Gebuchte Anlagenposten zu `FA-CNC-01` / `G05001` / `HGB` / `Acquisition Cost` sind read-only sichtbar | Nach der Buchung muss man Nebenbuch und Hauptbuch getrennt pruefen |
+| `fixedassets-291` | `Calculate Depreciation` wurde mit `HGB`, `31.01.2027`, `FADEP-291-OK`, `FA-CNC-01` ausgefuehrt; danach war keine `FADEP-291-OK`-Journalzeile sichtbar | `OK` auf einer Batch-Request-Page ist kein Ergebnisnachweis |
+
+### Labor-/Vorproduktionsstand: Zugang bewiesen, AfA blockiert
+
+Status: `labor-draft`, `labor-sufficient-for-book-draft`, `needs-german-final-rebuild`.
+
+Umgebung: `MCP_1_20260210 / RM-DEMO`. Dieser Abschnitt ist eine Laborfassung fuer das Buch. Er ist kein finaler deutscher Nachweis. Alle finalen Screenshots, deutschen Konten, deutschen Steuer-/USt-Aussagen und finalen Buchclaims muessen spaeter in einer deutschen Zielinstanz neu erzeugt werden.
+
+Im Labor wurde der Zugang der Anlage `FA-CNC-01` ueber das `Fixed Asset G/L Journal` mit Beleg `G05001` nachvollzogen. Vor der Buchung zeigte `Preview Posting` sowohl Sachposten- als auch Anlagenposten-Details. Nach der kontrollierten Laborbuchung wurden gebuchte Sachposten und Anlagenposten gelesen. Fuer Einsteiger ist diese Trennung der Kern:
+
+- `Sachposten (G/L Entries)` zeigen, welche Hauptbuchkonten getroffen wurden. Im Labor waren Kontensignale wie `82000` und `12210` mit Betragssignal `120.000,00` sichtbar.
+- `Anlagenposten (FA Ledger Entries)` zeigen, welche Anlage, welches AfA-Buch und welcher Anlagenbuchungstyp betroffen sind. Im Labor waren `FA-CNC-01`, `G05001`, `HGB`, `Acquisition Cost` und Betragssignale sichtbar.
+- `Preview Posting` ist eine Vorabkontrolle. Erst die gebuchten Posten beweisen, was wirklich gebucht wurde.
+- Der fruehere Pfad ueber Page `5606` war ein leerer Preview-/Nachweispfad. Fuer gebuchte Anlagenposten war Page `5604` der brauchbare Laborpfad.
+
+Screenshot-Platzhalter fuer die spaetere deutsche Zielinstanz:
+
+- `[DE-FINAL-SCREENSHOT: Anlagenkarte FA-CNC-01 mit deutschem AfA-/Posting-Setup]`
+- `[DE-FINAL-SCREENSHOT: Preview Posting Anlagenzugang mit Sachposten und Anlagenposten]`
+- `[DE-FINAL-SCREENSHOT: Gebuchte Sachposten zum deutschen Anlagenzugang]`
+- `[DE-FINAL-SCREENSHOT: Gebuchte Anlagenposten zum deutschen Anlagenzugang]`
+
+Die AfA-Strecke ist dagegen noch `labor-blocked`. In `FIXEDASSETS-291` wurde `AfA berechnen (Calculate Depreciation)` geoeffnet und mit `HGB`, Buchungsdatum `31.01.2027`, Belegnummer `FADEP-291-OK` und Anlagenfilter `FA-CNC-01` sichtbar belegt. `OK` wurde genau einmal bestaetigt. Danach wurde im `Fixed Asset G/L Journal` gesucht, aber `FADEP-291-OK` wurde nicht sichtbar gefunden. Es wurde keine AfA-Journalzeile, kein AfA-Preview und keine AfA-Buchung bewiesen.
+
+Anfaenger-Lernpunkt: `OK` auf einer Request Page bedeutet nicht automatisch, dass eine sichtbare Journalzeile entstanden ist. `OK` startet den Batch-/Berechnungslauf. Danach muss man Ergebnis, Datum, Restbuchwert, AfA-Faelligkeit, AfA-Buch, Journal Template, Batch, Filter und Ausgabeziel pruefen. Wenn keine Zeile sichtbar ist, nicht blind erneut `OK` klicken.
+
+Evidence-Anker fuer diesen Laborblock:
+
+- `playwright/projects/fibu-book5/evidence/fixedassets-225/FIXEDASSETS-225-decision.md`
+- `playwright/projects/fibu-book5/evidence/fixedassets-227/FIXEDASSETS-227-POSTED-TRACE.md`
+- `playwright/projects/fibu-book5/evidence/fixedassets-229/FIXEDASSETS-229-DEPRECIATION-READINESS.md`
+- `playwright/projects/fibu-book5/evidence/fixedassets-231/FIXEDASSETS-231-HGB-INTEGRATION-VALUE-PROOF.md`
+- `playwright/projects/fibu-book5/evidence/fixedassets-291/FIXEDASSETS-291-result.json`
+
+German-Final-Rebuild: In der deutschen Zielinstanz muessen Anlagenkarte, AfA-Buch, Anlagenbuchungsgruppe, deutsche Sachkontenfindung, Zugang, Preview Posting, gebuchte Sachposten, gebuchte Anlagenposten, AfA-Journalzeile, AfA-Preview, gebuchte AfA-Posten und Anlagenspiegel neu erzeugt und neu bebildert werden. Laborwerte wie `HGB`, `MACHINES`, `82000`, `12210`, `G05001` und `FADEP-291-OK` duerfen nur als Lernanker dienen.
 
 ### Bilder richtig lesen
 
