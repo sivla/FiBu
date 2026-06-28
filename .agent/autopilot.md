@@ -43,12 +43,17 @@ Zweck: kleiner Einstiegspunkt fuer Codex-Laeufe, die nicht den gesamten Projektv
 ## Arbeitsprinzip
 
 - Repo-State ist die Wahrheit, nicht alte Chat-Historie.
+- Ziel ist ein vollstaendiges, anfaengerfreundliches, evidence-basiertes Business-Central-FiBu-Buch.
 - Business Central bleibt in `MCP_1_20260210`; das ist die harte Instanzgrenze.
-- Innerhalb `MCP_1_20260210` darf der Autopilot breit experimentieren, wenn der aktive Case es erlaubt und Evidence entsteht: Company wechseln, Test-Company anlegen, Drafts erzeugen, editieren, loeschen, Dialoge bestaetigen, Fehler provozieren, Preview/Post/Setup ausfuehren.
+- `MCP_1_20260210` mit `RM-DEMO` ist Labor- und Vorproduktionsumgebung. Innerhalb dieser Instanz darf der Autopilot breit experimentieren, wenn der aktive Case es erlaubt und Evidence entsteht: Company wechseln, Test-Company anlegen, Drafts erzeugen, editieren, loeschen, Dialoge bestaetigen, Fehler provozieren, Setup, Preview Posting, Posting, Cleanup/Trace und Buchdraft-Aktualisierung ausfuehren.
+- Ergebnisse aus `RM-DEMO` sind Labor-Evidence. Sie duerfen Laborfassung, Clickguide, Lernnotiz und Prozessentwurf im Buch verbessern, aber nie als finaler deutscher Nachweis gelten.
+- Spaeter muss jeder relevante Prozess in einer deutschen Zielinstanz reproduziert werden; Labor-Screenshots und Laborhinweise werden dann durch deutsche finale Evidence ersetzt oder klar als Laborhinweis behalten.
 - Diese Sandbox-Freiheit ist immer case-/gate-gesteuert: jede Daten-, Setup-, Posting- oder Company-Aktion braucht dokumentierte Instanz, Company, Zweck, Ergebnis und Cleanup-/Trace-Status.
 - In `.agent/state/current.json` sind `forbiddenActions` harte Stopps. `defaultLockedActions` sind innerhalb der Sandbox nur gesperrt, bis ein aktiver Case oder Gate sie mit Evidence-Plan freigibt.
 - Auth, `.env`, Reports, Traces, Videos und Rohsnapshots bleiben lokal.
 - Screenshots und Evidence werden projekt-relativ referenziert.
+- Jeder Lauf muss mindestens eines erzeugen: neue Labor-Evidence, bessere Playwright-Faehigkeit, konkrete Buchdraft-/Clickguide-Substanz, kontrollierten Execute-/Posting-/Setup-Trace oder eine klare Klassifikation als `labor-proven`, `labor-blocked`, `labor-sufficient-for-book-draft` oder `needs-german-final-rebuild`.
+- Nicht ausreichend sind reine Review-Schleifen ohne Abschluss, State-Bewegung ohne Projektfortschritt, Mikro-Cases ohne Buch-/Evidence-/Playwright-Nutzen oder Framework-Ausbau ohne aktuellen Blocker.
 - Jeder Lauf muss `last_run_summary.json` und den betroffenen Case-State aktualisieren.
 - Bei `judge_work` oder `big_brain_review` muss ein Eintrag in `.agent/state/model_usage_log.jsonl` entstehen.
 - `agent:subagent-plan` erzeugt nur einen budgetierten Review-/Delegationsplan. Er fuehrt keine KI-Subagents aus und sein Output wird im Standardlauf nicht automatisch konsumiert.
@@ -58,6 +63,18 @@ Zweck: kleiner Einstiegspunkt fuer Codex-Laeufe, die nicht den gesamten Projektv
 - Datei-/Skill-Limits sind adaptive Budget-Profile aus `.agent/budgets.json`; fuer grosse Laeufe bewusst `expanded` oder `deep` im Case setzen statt heimlich mehr Kontext zu laden.
 - Keine neue npm-Abhaengigkeit ohne ausdrueckliche Freigabe. Agent-Tools nutzen Node-Standardbibliothek.
 - `monkey_work` darf nur Routing, Extraktion, Formatierung und Validierung ausfuehren; BC-/FiBu-Urteil, Posting-/Setup-Gates und Buchtext-Freigabe muessen zu `judge_work` oder `big_brain_review` eskalieren.
+
+## Buchproduktionsstatus
+
+- `labor-draft`: Laborbasierter Buchentwurf, noch nicht durchgaengig bewiesen.
+- `labor-proven`: In `MCP_1_20260210` praktisch belegt, aber nicht deutsch final.
+- `labor-blocked`: Laborlauf zeigt einen reproduzierbaren Blocker oder eine offene Ursache.
+- `labor-sufficient-for-book-draft`: Gut genug fuer eine klar markierte Labor-/Vorproduktions-Buchstelle.
+- `needs-german-final-rebuild`: Muss in deutscher Zielinstanz neu aufgebaut und bebildert werden.
+- `german-final-candidate`: Kandidat fuer deutsche finale Evidence, sobald Zielinstanz existiert.
+- `german-final-proof`: In deutscher Zielinstanz final belegt.
+
+Fuer Buchaenderungen gilt: Labor-Buchdrafts aus Evidence sind erlaubt, muessen aber Labor/Vorproduktion markieren, keine finalen deutschen Claims aus `RM-DEMO` machen und notieren, was in der deutschen Zielinstanz neu ersetzt werden muss.
 
 ## Skill-/Capability-Lernen
 

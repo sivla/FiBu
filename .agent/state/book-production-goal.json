@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-06-28T14:18:00.000+02:00",
+  "goal": "complete-beginner-friendly-evidence-based-business-central-fibu-book",
+  "description": "Build a complete beginner-friendly Business Central FiBu book from practical evidence, Playwright traces, screenshots, clickguides and learning notes.",
+  "labEnvironment": {
+    "instance": "MCP_1_20260210",
+    "primaryCompany": "RM-DEMO",
+    "role": "labor-and-preproduction",
+    "allowedWhenCaseAllows": [
+      "setup",
+      "master-data-creation",
+      "preview-posting",
+      "posting",
+      "payment",
+      "error-diagnosis",
+      "cleanup-or-trace",
+      "bookdraft-update"
+    ],
+    "evidenceStatus": "labor-reference"
+  },
+  "bookDraftPolicy": {
+    "laborDraftsAllowed": true,
+    "allowedOutputsFromLab": [
+      "labor-book-draft",
+      "clickguide",
+      "learning-note",
+      "process-draft",
+      "playwright-pattern",
+      "setup-or-posting-trace"
+    ],
+    "mustMarkAs": [
+      "labor",
+      "preproduction",
+      "not-german-final"
+    ],
+    "mustRecord": [
+      "what-was-proven-in-rm-demo",
+      "what-remains-open",
+      "what-must-be-rebuilt-in-german-target-instance",
+      "which-screenshots-need-final-replacement"
+    ],
+    "forbiddenClaimsFromLab": [
+      "german-final-proof",
+      "final-german-tax-proof",
+      "final-german-accounting-proof",
+      "final-compliance-proof"
+    ]
+  },
+  "finalEnvironmentPolicy": {
+    "germanTargetInstanceAvailable": false,
+    "targetStatusBeforeProof": "german-final-candidate",
+    "finalStatusAfterProof": "german-final-proof",
+    "rule": "Every relevant process must be reproduced in the future German target instance before final German book claims or final screenshots are accepted."
+  },
+  "statusTerms": {
+    "labor-draft": "Labor-based draft content or clickguide, useful but not fully proven.",
+    "labor-proven": "Practically proven in MCP_1_20260210 / RM-DEMO, not German final.",
+    "labor-blocked": "Labor evidence shows a blocker or unresolved cause.",
+    "labor-sufficient-for-book-draft": "Good enough for a clearly marked labor/preproduction book section.",
+    "needs-german-final-rebuild": "Must be rebuilt and re-screenshotted in the future German target instance.",
+    "german-final-candidate": "Prepared for German final reproduction, pending target evidence.",
+    "german-final-proof": "Proven in the German target instance with final evidence."
+  },
+  "minimumRunOutput": [
+    "new-labor-evidence",
+    "better-playwright-capability",
+    "bookdraft-or-clickguide-substance",
+    "controlled-execute-posting-setup-trace",
+    "clear-classification"
+  ],
+  "notEnough": [
+    "review-loop-without-conclusion",
+    "state-only-movement",
+    "micro-case-without-book-evidence-or-playwright-value",
+    "framework-work-without-current-blocker"
+  ],
+  "loopPrevention": {
+    "rule": "A review case must end in a classification or a next bounded execute/probe/bookdraft action.",
+    "requiredClassification": [
+      "labor-proven",
+      "labor-blocked",
+      "labor-sufficient-for-book-draft",
+      "needs-german-final-rebuild"
+    ]
+  }
+}

@@ -11,7 +11,7 @@ Purpose: keep Business Central autonomy consistent for FiBu Buch 5 without weake
 
 ## Instance-scoped autonomy
 
-Inside `MCP_1_20260210`, the autopilot may use sandbox freedom when the active case allows it and evidence is written:
+Inside `MCP_1_20260210`, `RM-DEMO` is the laboratory and pre-production company for the book. The autopilot may use sandbox freedom when the active case allows it and evidence is written:
 
 - switch company
 - create a clearly named test company
@@ -26,6 +26,8 @@ Inside `MCP_1_20260210`, the autopilot may use sandbox freedom when the active c
 `Post`, `Preview Posting`, `Ship`, `Invoice`, `Payment`, acquisition and depreciation are not never-actions inside the sandbox instance. They are default-locked actions that become allowed when the active case explicitly unlocks them and defines the expected evidence trace.
 
 In state files, `forbiddenActions` means hard stop / never allowed. `defaultLockedActions` means locked by default, but unlockable by an explicit active case or gate with evidence, trace and cleanup/keep documentation.
+
+All `RM-DEMO` results are laboratory evidence. They may improve book drafts, clickguides, learning notes and process designs as `labor-draft`, `labor-proven`, `labor-blocked` or `labor-sufficient-for-book-draft`, but they must not become `german-final-proof`. Relevant process screenshots and entries must later be rebuilt in a German target instance as `german-final-candidate` or `german-final-proof`.
 
 ## Documentation required
 
@@ -45,6 +47,8 @@ New companies must also document source/template, setup status, future use and w
 ## Default working model
 
 - Standard runs are single-agent with phases: `preflight -> context -> dry-run -> run-plan -> execute one bounded step -> result -> state`.
+- Every run must produce at least one finished unit: laboratory evidence, Playwright capability improvement, concrete bookdraft/clickguide substance, controlled setup/posting/execute trace or a clear labor/final classification.
+- Pure review loops, state-only movement, micro-cases without book/evidence/Playwright value and framework work without a current blocker are not sufficient.
 - `agent:subagent-plan` is optional. Use it for strong-model review, book changes, posting/setup judgement, conflicting evidence/state, large diffs, blocked/failed live runs or unclear next-case selection.
 - UI-first remains the default. API shortcuts need explicit case permission.
 
