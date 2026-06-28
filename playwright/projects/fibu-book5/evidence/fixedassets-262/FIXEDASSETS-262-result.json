@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixed-assets-depreciation-navigation-refinement-and-target-value-preflight-no-ok",
+  "caseId": "FIXEDASSETS-262-FA-DEPRECIATION-NAVIGATION-REFINEMENT-AND-VALUE-PREFLIGHT-RETRY",
+  "source": "playwright-command-failure-summary",
+  "resultStatus": "blocked",
+  "branch": "codex/token-efficient-autopilot-state",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "targets": {
+    "depreciationBook": "HGB",
+    "postingDate": "30.06.2026",
+    "documentNo": "FADEP-262-NO-OK",
+    "fixedAssetNo": "FA-CNC-01"
+  },
+  "navigationRefinement": {
+    "scopedRowCandidateAllowed": true,
+    "exactTextFallbackAllowed": true,
+    "blindEnterUsed": false
+  },
+  "failure": {
+    "type": "playwright-field-mapping-error",
+    "errorCore": "locator.click timeout on hidden input checkbox gridSelectAllCheckBox-b3o while filling first mapped field",
+    "failedStep": "fillMappedField before target-value evidence could be written",
+    "likelyCause": "Field mapping used the control index from a filtered visible-control list against an unfiltered locator list, so locator.nth(index) resolved to a hidden checkbox instead of the intended request-page field."
+  },
+  "safety": {
+    "noOkConfirmed": true,
+    "noDepreciationCalculated": true,
+    "noJournalLineCreated": true,
+    "noPreviewPosting": true,
+    "noPost": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "proved": [
+    "The FA-262 Playwright retry started inside the expected sandbox/company context before failing.",
+    "No OK, Preview Posting or Post was confirmed by the test path before the technical failure.",
+    "The blocker is a Playwright field-mapping/control-index blocker, not a Business Central depreciation setup proof."
+  ],
+  "notProved": [
+    "Calculate Depreciation target values were not proven.",
+    "No depreciation journal line was created intentionally or evidenced.",
+    "No Preview Posting result exists.",
+    "No depreciation posting evidence exists.",
+    "No German final proof exists."
+  ],
+  "changedFiles": [
+    "package.json",
+    "playwright/projects/fibu-book5/tests/fixedassets-262-fa-depreciation-navigation-refinement-and-value-preflight-retry.spec.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-262/"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-262/FIXEDASSETS-262-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-262/FIXEDASSETS-262-TECHNICAL-FIELD-MAPPING-BLOCKER.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-262/README.md"
+  ],
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-263-FA-DEPRECIATION-FIELD-MAPPING-BLOCKER-REVIEW",
+      "active_case_file": ".agent/state/cases/fixedassets-263-fa-depreciation-field-mapping-blocker-review.json",
+      "lastReferenceCase": "FIXEDASSETS-262-FA-DEPRECIATION-NAVIGATION-REFINEMENT-AND-VALUE-PREFLIGHT-RETRY",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-262-fa-depreciation-navigation-refinement-and-value-preflight-retry.json",
+      "nextStep": "FIXEDASSETS-263: locally review the request-page field-mapping/control-index blocker before any further BC retry."
+    },
+    "coverage": {
+      "activeArea": "fixedassets",
+      "latestPracticalCase": "FIXEDASSETS-262-FA-DEPRECIATION-NAVIGATION-REFINEMENT-AND-VALUE-PREFLIGHT-RETRY",
+      "nextCase": "FIXEDASSETS-263-FA-DEPRECIATION-FIELD-MAPPING-BLOCKER-REVIEW",
+      "depreciationReadiness": "FA-262 reached a technical Playwright field-mapping blocker: a hidden checkbox was selected by locator index before target values could be written. OK, Preview Posting and Post remain locked."
+    }
+  },
+  "blockedBy": [
+    "playwright-field-mapping-control-index-hidden-checkbox"
+  ],
+  "requiresReview": true,
+  "safeToFinalizeState": true,
+  "reason": "Technical blocker must be reviewed locally before any further BC retry.",
+  "observed": {
+    "failedAt": "2026-06-28T08:35:00.000+02:00"
+  }
+}

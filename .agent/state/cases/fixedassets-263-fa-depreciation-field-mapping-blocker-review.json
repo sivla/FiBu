@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-263-FA-DEPRECIATION-FIELD-MAPPING-BLOCKER-REVIEW",
+  "status": "planned",
+  "workType": "local-field-mapping-blocker-review",
+  "taskClass": "wizard_work",
+  "requiresStrongModel": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Review the FA-262 request-page field-mapping/control-index blocker before another Calculate Depreciation value preflight retry.",
+  "triggeredBy": {
+    "caseId": "FIXEDASSETS-262-FA-DEPRECIATION-NAVIGATION-REFINEMENT-AND-VALUE-PREFLIGHT-RETRY",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-262/FIXEDASSETS-262-result.json",
+    "blockers": [
+      "playwright-field-mapping-control-index-hidden-checkbox"
+    ]
+  },
+  "hypothesis": "The request-page field mapper builds visible controls in page.evaluate but later uses the selected visible-control index against an unfiltered locator list. This can resolve to hidden checkboxes. A future fix should keep a stable selector/ordinal within the same filtered control set or interact via coordinates from the selected visible control, without clicking OK.",
+  "allowedActions": [
+    "read-local-evidence",
+    "review-field-mapping-blocker",
+    "classify-blocker",
+    "plan-safe-field-mapping-refinement",
+    "write-compact-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright",
+    "write-request-page-values",
+    "confirm-ok-on-calculate-depreciation",
+    "preview-posting",
+    "post",
+    "setup-change",
+    "company-switch",
+    "api-shortcut-without-explicit-case-permission"
+  ],
+  "safetyGates": [
+    "local-only",
+    "no-business-central",
+    "no-playwright",
+    "no-ok",
+    "no-preview-posting",
+    "no-posting",
+    "no-setup-change",
+    "no-company-switch",
+    "no-api-shortcut"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-263/FIXEDASSETS-263-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-263/FIXEDASSETS-263-FIELD-MAPPING-BLOCKER-REVIEW.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-263/README.md"
+  ],
+  "acceptanceCriteria": [
+    "FA-262 blocker is classified as field mapping, navigation, BC setup or data blocker.",
+    "The review decides whether a safe field-mapping refinement is justified.",
+    "The review does not run BC or Playwright.",
+    "The review does not unlock OK, Preview Posting or Post.",
+    "The next case is explicit and case-gated."
+  ],
+  "stopConditions": [
+    "Evidence does not support the blocker classification.",
+    "The next action would require OK, Preview Posting, Post, setup change or company switch.",
+    "The proposed field-mapping refinement could click hidden controls or ambiguous fields."
+  ],
+  "nextSafeAction": "Review FA-262 locally and decide on a safe field-mapping refinement before another BC retry.",
+  "createdAt": "2026-06-28T08:35:00.000+02:00",
+  "updatedAt": "2026-06-28T08:35:00.000+02:00"
+}

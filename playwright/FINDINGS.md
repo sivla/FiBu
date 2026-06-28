@@ -1,4 +1,19 @@
 
+## FIND-BC-FA-099 AfA-Wertpreflight trifft hidden-checkbox Locator-Index-Blocker
+
+| Feld | Wert |
+|---|---|
+| Bereich | Fixed Assets / AfA-Route / Request-Page-Feldmapping |
+| Testfall | `FIXEDASSETS-262-FA-DEPRECIATION-NAVIGATION-REFINEMENT-AND-VALUE-PREFLIGHT-RETRY` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-262/FIXEDASSETS-262-result.json`, `playwright/projects/fibu-book5/evidence/fixedassets-262/FIXEDASSETS-262-TECHNICAL-FIELD-MAPPING-BLOCKER.md` |
+| Ergebnis | Der navigationsverfeinerte Retry brach technisch vor Zielwert-Evidence ab. |
+| Blocker | `playwright-field-mapping-control-index-hidden-checkbox` |
+| Ursache | Der Index aus einer gefilterten sichtbaren Control-Liste wurde gegen einen ungefilterten Locator verwendet; `locator.nth(index)` zeigte auf eine unsichtbare Grid-Checkbox. |
+| weiterhin gesperrt | Zielwerte als bewiesen, `OK`, Preview Posting, Post, Setup Change, Company Switch, API-Abkuerzung |
+| naechster Schritt | `FIXEDASSETS-263`: Lokaler Field-Mapping-Review, bevor ein weiterer BC-Retry geplant wird. |
+
+Fuer Playwright-Lernen ist das ein harter BC-UI-Punkt: Sichtbare Control-Maps duerfen ihre Indizes nicht gegen andere DOM-Queries wiederverwenden. Sonst klickt der Test technisch korrekt einen Index, aber fachlich das falsche oder unsichtbare Element.
+
 ## FIND-BC-FA-098 AfA-Navigation braucht exakten Text-Fallback aus FA-245
 
 | Feld | Wert |
