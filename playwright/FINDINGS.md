@@ -1,4 +1,17 @@
 
+## FIND-BC-FA-123 DEFAULT/FA-JNL ist Kandidaten-Evidence, kein Feldwert
+
+| Feld | Wert |
+|---|---|
+| Bereich | Fixed Assets / AfA-Route / Batch-Lookup-Review |
+| Testfall | `FIXEDASSETS-286-FA-DEPRECIATION-BATCH-LOOKUP-BLOCKER-REVIEW` |
+| Evidence | `playwright/projects/fibu-book5/evidence/fixedassets-286/FIXEDASSETS-286-result.json`, `playwright/projects/fibu-book5/evidence/fixedassets-286/FIXEDASSETS-286-BATCH-LOOKUP-BLOCKER-REVIEW.md`, `playwright/projects/fibu-book5/evidence/fixedassets-285/020-batch-lookup-list.json` |
+| Entscheidung | `DEFAULT`, `Default Journal Batch` und `FA-JNL` werden als sichtbare Batch-Kandidaten akzeptiert, aber nicht als gesetzter `Batch Name`-Feldwert. |
+| Warum | Der Lookup ist ein Dialog mit `OK`/`Abbrechen`. `aria-selected=true` kann Fokus oder Vorselektion bedeuten und darf ohne `OK` nicht als Datenzustand behauptet werden. |
+| weiterhin gesperrt | Batch auswaehlen, Lookup-`OK`, `Calculate Depreciation -> OK`, Preview Posting, Post, Setup Change, Company Switch, API-Abkuerzung |
+| naechster Schritt | `FIXEDASSETS-287`: `General Journal Batches` direkt read-only lesen und `DEFAULT / FA-JNL` im Listenkontext pruefen, ohne `New`, `Edit List`, Auswahl oder `OK`. |
+| Buchwirkung | Die Klickanleitung muss unterscheiden: sichtbarer Lookup-Kandidat, bestaetigte Auswahl und tatsaechlicher Feldwert sind drei verschiedene Nachweisstufen. |
+
 ## FIND-BC-FA-122 Batch-Lookup zeigt DEFAULT/FA-JNL, bleibt aber Blocker wegen OK-Dialog
 
 | Feld | Wert |

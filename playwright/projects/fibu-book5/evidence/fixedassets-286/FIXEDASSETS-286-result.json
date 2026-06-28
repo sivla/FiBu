@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "purpose": "fixed-assets-depreciation-batch-lookup-blocker-review",
+  "caseId": "FIXEDASSETS-286-FA-DEPRECIATION-BATCH-LOOKUP-BLOCKER-REVIEW",
+  "source": "local-review",
+  "resultStatus": "observed",
+  "branch": "codex/token-efficient-autopilot-state",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "reviewedCase": {
+    "caseId": "FIXEDASSETS-285-FA-DEPRECIATION-BATCH-LOOKUP-LIST-NO-SELECT",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-285/FIXEDASSETS-285-result.json",
+    "probeFile": "playwright/projects/fibu-book5/evidence/fixedassets-285/020-batch-lookup-list.json"
+  },
+  "decision": {
+    "defaultFaJnlAcceptedAsCandidateEvidence": true,
+    "defaultFaJnlAcceptedAsSelectedFieldValue": false,
+    "ariaSelectedTreatedAsFocusOrPreselectionRisk": true,
+    "lookupOkAllowed": false,
+    "repeatCalculateDepreciationOkAllowed": false,
+    "previewPostingAllowed": false,
+    "postingAllowed": false,
+    "nextCase": "FIXEDASSETS-287-FA-DEPRECIATION-GENERAL-JOURNAL-BATCHES-READONLY",
+    "nextCaseFile": ".agent/state/cases/fixedassets-287-fa-depreciation-general-journal-batches-readonly.json",
+    "nextStep": "Run a direct read-only General Journal Batches context probe for DEFAULT / FA-JNL; do not click New, Edit List, OK, select a batch, Preview Posting or Post."
+  },
+  "proved": [
+    "FA-285 shows DEFAULT / Default Journal Batch / FA-JNL as visible General Journal Batches candidate evidence.",
+    "FA-285 does not prove DEFAULT as a committed Batch Name field value.",
+    "No lookup OK, Enter, Calculate Depreciation OK, Preview Posting or Post was executed.",
+    "The next safer proof is a read-only batch-list/context probe, not selecting DEFAULT."
+  ],
+  "notProved": [
+    "No selected Batch Name field value is proven.",
+    "No FADEP depreciation journal line is proven.",
+    "No Preview Posting result is proven.",
+    "No depreciation posting is proven.",
+    "No German final proof exists."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-286/",
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-286-fa-depreciation-batch-lookup-blocker-review.json",
+    ".agent/state/cases/fixedassets-287-fa-depreciation-general-journal-batches-readonly.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/model_usage_log.jsonl",
+    "playwright/FINDINGS.md",
+    "playwright/projects/fibu-book5/BOOK-CLICK-GUIDE-COVERAGE.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-286/FIXEDASSETS-286-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-286/FIXEDASSETS-286-BATCH-LOOKUP-BLOCKER-REVIEW.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-286/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-285/FIXEDASSETS-285-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-285/020-batch-lookup-list.json"
+  ],
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-287-FA-DEPRECIATION-GENERAL-JOURNAL-BATCHES-READONLY",
+      "active_case_file": ".agent/state/cases/fixedassets-287-fa-depreciation-general-journal-batches-readonly.json",
+      "lastReferenceCase": "FIXEDASSETS-286-FA-DEPRECIATION-BATCH-LOOKUP-BLOCKER-REVIEW",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-286-fa-depreciation-batch-lookup-blocker-review.json",
+      "requiresStrongModel": false,
+      "nextStep": "FIXEDASSETS-287: read General Journal Batches / DEFAULT / FA-JNL context directly; no New, Edit List, OK, selection, Preview Posting or Post."
+    },
+    "coverage": {
+      "activeArea": "fixedassets",
+      "latestReviewCase": "FIXEDASSETS-286-FA-DEPRECIATION-BATCH-LOOKUP-BLOCKER-REVIEW",
+      "nextCase": "FIXEDASSETS-287-FA-DEPRECIATION-GENERAL-JOURNAL-BATCHES-READONLY",
+      "depreciationReadiness": "FA-286 accepts DEFAULT / FA-JNL as visible batch candidate evidence, not as committed Batch Name value. Next proof is a direct read-only General Journal Batches context probe."
+    }
+  },
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "reason": "Local review accepted candidate evidence but kept all selection, OK, Preview and Post gates locked.",
+  "observed": {
+    "finishedAt": "2026-06-28T11:09:00.000+02:00"
+  }
+}

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "FIXEDASSETS-286-FA-DEPRECIATION-BATCH-LOOKUP-BLOCKER-REVIEW",
-  "status": "planned",
+  "status": "observed",
   "workType": "local-fixedasset-depreciation-batch-lookup-blocker-review",
   "taskClass": "judge_work",
   "requiresStrongModel": true,
@@ -71,7 +71,29 @@
     "A decision would require new BC evidence.",
     "A proposed next action would select DEFAULT, confirm OK, edit journal lines, Preview Posting or Post without a separate gate."
   ],
-  "nextSafeAction": "Review FA-285 locally and decide whether DEFAULT/FA-JNL is read-only candidate evidence or whether another no-select route is required.",
+  "result": {
+    "status": "observed",
+    "summary": "FA-286 reviewed FA-285 locally. DEFAULT / Default Journal Batch / FA-JNL is accepted as visible lookup candidate evidence, but not as a committed Batch Name field value. aria-selected=true is treated as focus/preselection risk in an OK/Cancel lookup dialog.",
+    "decision": "Do not select DEFAULT and do not confirm OK. The next safe route is a direct read-only General Journal Batches context probe.",
+    "evidenceRefs": [
+      "playwright/projects/fibu-book5/evidence/fixedassets-286/FIXEDASSETS-286-result.json",
+      "playwright/projects/fibu-book5/evidence/fixedassets-286/FIXEDASSETS-286-BATCH-LOOKUP-BLOCKER-REVIEW.md",
+      "playwright/projects/fibu-book5/evidence/fixedassets-286/README.md"
+    ],
+    "safety": {
+      "bcRun": false,
+      "playwrightRun": false,
+      "lookupOk": false,
+      "previewPosting": false,
+      "post": false,
+      "setupChange": false,
+      "companySwitch": false,
+      "bookChange": false
+    }
+  },
+  "nextCase": "FIXEDASSETS-287-FA-DEPRECIATION-GENERAL-JOURNAL-BATCHES-READONLY",
+  "nextCaseFile": ".agent/state/cases/fixedassets-287-fa-depreciation-general-journal-batches-readonly.json",
+  "nextSafeAction": "Run FA-287 as a direct read-only General Journal Batches context probe for DEFAULT / FA-JNL; no New, Edit List, selection, OK, Preview Posting or Post.",
   "createdAt": "2026-06-28T11:02:29.100+02:00",
-  "updatedAt": "2026-06-28T11:02:29.100+02:00"
+  "updatedAt": "2026-06-28T11:09:00.000+02:00"
 }

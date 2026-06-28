@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-287-FA-DEPRECIATION-GENERAL-JOURNAL-BATCHES-READONLY",
+  "status": "planned",
+  "workType": "playwright-readonly-fixedasset-depreciation-general-journal-batches-context",
+  "taskClass": "wizard_work",
+  "requiresStrongModel": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "goal": "Read the General Journal Batches context for DEFAULT / FA-JNL directly, without selecting a batch or changing journal state.",
+  "triggeredBy": {
+    "caseId": "FIXEDASSETS-286-FA-DEPRECIATION-BATCH-LOOKUP-BLOCKER-REVIEW",
+    "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-286/FIXEDASSETS-286-result.json",
+    "decision": "DEFAULT / FA-JNL is visible candidate evidence in the Batch Name lookup, but not a committed Batch Name field value."
+  },
+  "targetObjects": {
+    "journalPageId": 5628,
+    "journalPageName": "Fixed Asset G/L Journals",
+    "lookupPage": "General Journal Batches",
+    "visibleBatchCandidate": "DEFAULT",
+    "visibleBatchDescription": "Default Journal Batch",
+    "visibleNoSeries": "FA-JNL",
+    "fixedAssetNo": "FA-CNC-01",
+    "depreciationBook": "HGB"
+  },
+  "allowedActions": [
+    "open-business-central",
+    "run-playwright",
+    "read-only-general-journal-batches",
+    "read-only-batch-context-capture",
+    "close-page-or-return-without-save",
+    "write-compact-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "select-batch-value",
+    "confirm-ok-on-batch-lookup",
+    "click-new",
+    "click-edit-list",
+    "setup-change",
+    "company-switch",
+    "api-shortcut-without-explicit-case-permission",
+    "edit-record",
+    "new-draft",
+    "delete-record",
+    "confirm-ok-on-calculate-depreciation",
+    "preview-posting",
+    "post",
+    "book-edit"
+  ],
+  "expectedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-287/FIXEDASSETS-287-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-287/FIXEDASSETS-287-GENERAL-JOURNAL-BATCHES-READONLY.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-287/010-general-journal-batches-context.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-287/README.md"
+  ],
+  "acceptanceCriteria": [
+    "Business Central remains in MCP_1_20260210 / RM-DEMO.",
+    "General Journal Batches context for DEFAULT / FA-JNL is captured read-only, or a blocker is documented.",
+    "No batch value is selected or confirmed.",
+    "No New, Edit List, OK, Preview Posting, Post, setup change, company switch or API shortcut occurs.",
+    "The result explains whether DEFAULT / FA-JNL is usable as batch-list context for the depreciation click guide."
+  ],
+  "stopConditions": [
+    "Instance or company is unclear or wrong.",
+    "Only a selection dialog with OK/Cancel is reachable and no safe read-only page/list context can be captured.",
+    "A page would require New, Edit List, OK, selection, Preview Posting or Post to continue."
+  ],
+  "nextSafeAction": "Open/read General Journal Batches context for DEFAULT / FA-JNL without selecting or editing; if unsafe, stop and document the blocker.",
+  "createdAt": "2026-06-28T11:09:00.000+02:00",
+  "updatedAt": "2026-06-28T11:09:00.000+02:00"
+}
