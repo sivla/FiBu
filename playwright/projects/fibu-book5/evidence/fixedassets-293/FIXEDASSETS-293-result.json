@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "FIXEDASSETS-293-FA-DEPRECIATION-JOURNAL-BATCH-FILTER-TRACE-READONLY",
+  "source": "playwright-readonly-fa-gl-journal-trace",
+  "resultStatus": "observed",
+  "runPlanId": "FIXEDASSETS-293-FA-DEPRECIATION-JOURNAL-BATCH-FILTER-TRACE-READONLY-PLAN",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-medium",
+  "branch": "codex/token-efficient-autopilot-state",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "sourceCompany": "RM-DEMO",
+  "migrationRelevance": "needed-for-german-final",
+  "rebuildInstruction": "In the German target company, repeat the depreciation journal trace after Calculate Depreciation and prove the journal line, Preview Posting and posted FA/G/L entries with German setup.",
+  "mustRecreateInFinalSandbox": true,
+  "targetGermanCompanyImpact": "German final evidence must recreate this trace with German UI labels, German accounts and final screenshots.",
+  "finalScreenshotNeeded": true,
+  "target": {
+    "pageId": 5628,
+    "pageName": "Fixed Asset G/L Journals",
+    "documentNo": "FADEP-291-OK",
+    "fixedAssetNo": "FA-CNC-01",
+    "depreciationBook": "HGB",
+    "postingDate": "31.01.2027"
+  },
+  "context": {
+    "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5628&dc=0",
+    "environmentInUrl": true,
+    "companyInUrl": true,
+    "companyInText": false,
+    "wrongEnvironmentVisible": false
+  },
+  "dialogState": {
+    "phase": "after-open-fa-gl-journals",
+    "dialogs": [],
+    "dangerous": [],
+    "ok": true
+  },
+  "journal": {
+    "pageVisible": true,
+    "targetDocumentVisible": false,
+    "targetAssetVisible": false,
+    "targetBookVisible": false,
+    "targetDateVisible": false,
+    "faDepPrefixVisible": false,
+    "assetsTemplateVisible": false,
+    "defaultBatchVisible": true,
+    "visibleFilterHints": true,
+    "previewPostingVisible": false,
+    "postVisible": true,
+    "newOrEditVisible": true,
+    "frameCount": 5,
+    "relevantFrameCount": 2
+  },
+  "safety": {
+    "noWrite": true,
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true,
+    "noCalculateDepreciationOk": true,
+    "noRecordEdit": true,
+    "noRecordDelete": true,
+    "noJournalLineInsertEditDelete": true
+  },
+  "proved": [
+    "Fixed Asset G/L Journals was opened read-only in MCP_1_20260210 / RM-DEMO.",
+    "DEFAULT batch signal is visible.",
+    "FADEP-291-OK is not visible in the read-only journal context.",
+    "No Calculate Depreciation OK, Preview Posting, Post, setup change, company switch, API shortcut, draft creation or book change was executed."
+  ],
+  "notProved": [
+    "It is still not proven whether FADEP-291-OK exists in another hidden filter, batch or view context.",
+    "No Preview Posting result.",
+    "No depreciation posting.",
+    "No German final proof."
+  ],
+  "changedFiles": [
+    "package.json",
+    "playwright/projects/fibu-book5/tests/fixedassets-293-fa-depreciation-journal-batch-filter-trace-readonly.spec.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-293/",
+    ".agent/state/current.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-293/FIXEDASSETS-293-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-293/FIXEDASSETS-293-JOURNAL-BATCH-FILTER-TRACE-READONLY.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-293/010-fa-gl-journal-trace.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-293/010-fa-gl-journal-trace-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-293/README.md"
+  ],
+  "statePatch": {
+    "current": {
+      "activeArea": "fixedassets",
+      "activeCase": "FIXEDASSETS-294-FA-DEPRECIATION-REQUEST-PAGE-OPTIONS-OR-CONTROLLED-REPEAT-GATE",
+      "lastReferenceCase": "FIXEDASSETS-293-FA-DEPRECIATION-JOURNAL-BATCH-FILTER-TRACE-READONLY",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-293-fa-depreciation-journal-batch-filter-trace-readonly.json",
+      "nextStep": "FIXEDASSETS-294: decide between request-page option review and guarded controlled repeat; do not repeat Calculate Depreciation OK blindly."
+    },
+    "coverage": {
+      "activeArea": "fixedassets",
+      "currentBlock": "fa-depreciation-journal-batch-filter-trace-readonly",
+      "latestPracticalCase": "FIXEDASSETS-293-FA-DEPRECIATION-JOURNAL-BATCH-FILTER-TRACE-READONLY",
+      "nextCase": "FIXEDASSETS-294-FA-DEPRECIATION-REQUEST-PAGE-OPTIONS-OR-CONTROLLED-REPEAT-GATE",
+      "depreciationReadiness": "FA-293 did not find FADEP-291-OK in the read-only Fixed Asset G/L Journals context. Request-page option review or guarded controlled repeat must be decided before any Preview/Post."
+    },
+    "lastRunSummary": {
+      "runId": "FIXEDASSETS-293-FA-DEPRECIATION-JOURNAL-BATCH-FILTER-TRACE-READONLY",
+      "workType": "playwright-readonly-fa-gl-journal-trace",
+      "instance": "MCP_1_20260210",
+      "company": "RM-DEMO",
+      "bcRun": true,
+      "playwrightRun": true,
+      "posted": false,
+      "previewPosting": false,
+      "dataChanged": false,
+      "setupChanged": false,
+      "bookChanged": false,
+      "summary": "FA-293 opened Fixed Asset G/L Journals read-only but did not find FADEP-291-OK in the visible journal context.",
+      "nextStep": "Review request-page options or guarded controlled repeat; no blind OK repeat."
+    }
+  },
+  "blockedBy": [],
+  "requiresReview": true,
+  "safeToFinalizeState": true,
+  "reason": "Read-only Fixed Asset G/L Journals trace completed without Calculate Depreciation OK, Preview Posting, Post or setup changes.",
+  "nextCase": "FIXEDASSETS-294-FA-DEPRECIATION-REQUEST-PAGE-OPTIONS-OR-CONTROLLED-REPEAT-GATE",
+  "observed": {
+    "startedAt": "2026-06-28T21:56:38.877Z",
+    "finishedAt": "2026-06-28T21:56:48.301Z"
+  }
+}

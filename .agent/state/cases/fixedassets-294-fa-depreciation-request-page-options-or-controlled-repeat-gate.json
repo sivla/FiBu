@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-294-FA-DEPRECIATION-REQUEST-PAGE-OPTIONS-OR-CONTROLLED-REPEAT-GATE",
+  "title": "Decide FA depreciation request-page options or guarded controlled repeat",
+  "status": "planned",
+  "taskClass": "judge_work",
+  "modelClass": "gpt-5.5-low",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "execution-gate-decision",
+  "sourceCase": "FIXEDASSETS-293-FA-DEPRECIATION-JOURNAL-BATCH-FILTER-TRACE-READONLY",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-291/FIXEDASSETS-291-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-292/FIXEDASSETS-292-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-293/FIXEDASSETS-293-result.json"
+  ],
+  "purpose": "Choose the next safe route after Calculate Depreciation OK was executed once but FADEP-291-OK remains invisible in the read-only Fixed Asset G/L Journals trace.",
+  "allowedActions": [
+    "read-local-evidence",
+    "review-request-page-options",
+    "review-journal-template-batch-context",
+    "plan-guarded-controlled-repeat-only-if-duplicate-risk-is-addressed",
+    "write-decision-evidence",
+    "update-state"
+  ],
+  "defaultLockedActionsUnlocked": [],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "blind-repeat-calculate-depreciation-ok",
+    "preview-posting",
+    "post",
+    "setup-change-without-evidence-gate",
+    "company-switch",
+    "api-shortcut-without-explicit-case-permission"
+  ],
+  "safetyGates": [
+    "summarize-fa-291-ok-proof",
+    "summarize-fa-293-journal-absence-proof",
+    "duplicate-line-risk-must-be-addressed-before-repeat-ok",
+    "preview-posting-remains-locked-until-journal-line-visible",
+    "posting-remains-locked"
+  ],
+  "decisionOptions": [
+    {
+      "id": "request-page-option-review",
+      "description": "Inspect existing Calculate Depreciation request-page evidence and decide whether a missing option, filter or target batch explains the absent journal line.",
+      "risk": "low",
+      "bcExecution": false
+    },
+    {
+      "id": "guarded-controlled-repeat",
+      "description": "Run Calculate Depreciation again only with a new unique document number and explicit duplicate-line safeguards, then search the journal immediately.",
+      "risk": "medium",
+      "bcExecution": true
+    },
+    {
+      "id": "park-depreciation-posting",
+      "description": "Treat depreciation posting as labor-blocked and shift to another high-value process until German final rebuild or better BC route exists.",
+      "risk": "low",
+      "bcExecution": false
+    }
+  ],
+  "expectedOutputs": [
+    "A compact decision JSON/Markdown explaining whether the next step is request-page review, guarded controlled repeat, or parking.",
+    "If controlled repeat is selected, it must use a fresh document number and no Preview/Post until the resulting journal line is visible."
+  ],
+  "classification": [
+    "labor-blocked",
+    "labor-sufficient-for-book-draft",
+    "needs-german-final-rebuild"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "targetGermanCompanyImpact": "The German target company must reproduce the depreciation route from request page through journal line, Preview Posting and posted FA/G/L entries.",
+  "finalScreenshotNeeded": true,
+  "nextStep": "Decide whether to review request-page options locally or run a guarded controlled repeat with a fresh document number; do not repeat FADEP-291-OK."
+}
