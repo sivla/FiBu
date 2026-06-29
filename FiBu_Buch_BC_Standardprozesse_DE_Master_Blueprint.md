@@ -2244,6 +2244,21 @@ Der Folgefall `P2P-002` hat die Kreditorenzahlung als kontrollierte Laborbuchung
 
 Der neue Folgefall `P2P-004` ist bewusst kleiner: Er beweist noch keinen Teil-Wareneingang, sondern nur das UI-first Startgate dafuer. In `RM-DEMO` wurde `Purchase Orders` geoeffnet, `New` erzeugte den Einkaufsbestellungskontext, der Draft `106002` wurde mit `K10000` im Kopf angelegt, und die Zeilensteuerung fuer `Item No.`, `Qty. to Receive` und `Qty. to Invoice` ist als naechster Bedienkontext sichtbar. Es gab keine Artikelzeile, keine Menge, keine Preview, keine Buchung und keinen deutschen Finalnachweis.
 
+Ergaenzender Laborpfad `P2P-032`: Direkte Einkaufsbuchung ueber `Purchase Journal`.
+
+Status:
+- Buchziel: Einsteiger sollen unterscheiden, wann eine Einkaufsbestellung mit Wareneingang gebraucht wird und wann ein Purchase Journal nur eine direkte Finance-Buchung abbildet.
+- Mandant: `RM-DEMO` in `MCP_1_20260210`.
+- Laborstand: Beleg `P2P032-682298` wurde mit Journal Check `0 Issues`, Preview Posting, sichtbarem Post-Dialog und genau einer Buchung belegt.
+- Postenspur: Kreditorenposten `P2P032-682298` fuer `K10000` mit Betrag `-2.500,00`, detaillierter Kreditorenposten `Initial Entry` und Sachposten auf `22100 Accounts Payable, Domestic` sowie `82000 Depreciation, Fixed Assets`.
+- Laborgrenze: Kein Artikelposten, kein Wertposten und kein Wareneingang, weil diese Journalroute keine Einkaufsbestellzeile mit Artikelbewegung bucht.
+- DE-Finalnachweis: offen; deutsche Zielcompany muss Konten, Steuerlogik, Buchungsgruppen, Belegnummern, Screenshots und Postenspur neu erzeugen.
+- Nicht behaupten: `82000` ist hier kein deutsches Einkaufskonto, sondern nur das im Labor verwendete Gegenkonto der getesteten Journalroute.
+
+Fuer Anfaenger ist diese Trennung wichtig: Die Einkaufsbestellung verbindet Kreditor, Artikel, Menge, Lagerort, Wareneingang, Rechnung und Lagerwert. Das Purchase Journal bucht dagegen eine direkte Kreditor-/Sachkonto-Wirkung. Es ist deshalb gut fuer einfache Finance-Laborfaelle und Konten-/OP-Verstaendnis, ersetzt aber keinen Warenannahmeprozess. Wenn spaeter im deutschen Zielsystem Rohmaterial wirklich eingekauft wird, muss der Warenpfad wieder ueber Bestellung, Lieferung, Rechnung, Artikelposten und Wertposten belegt werden.
+
+Evidence-Anker: `playwright/projects/fibu-book5/evidence/p2p-032/P2P-032-result.json`, `playwright/projects/fibu-book5/evidence/p2p-033/P2P-033-result.json` und `playwright/projects/fibu-book5/book-drafts/p2p-labor-draft.md`.
+
 Status dieses Laborblocks: `labor-proven`, `labor-sufficient-for-book-draft`, `needs-german-final-rebuild`.
 
 | Laboranker aus `UAT-P2P-001` | Was im Buch damit erklaert wird | Was spaeter deutsch neu bewiesen werden muss |
@@ -2256,6 +2271,7 @@ Status dieses Laborblocks: `labor-proven`, `labor-sufficient-for-book-draft`, `n
 | Kreditorenposten, Sachposten, Wertposten und Artikelposten `793` | Jede Postenart beantwortet eine andere Kontrollfrage | deutsche Postenspur inklusive Vorsteuer, Kontenplan, Dimensionen und ggf. Zahlungs-/OP-Ausgleich |
 | Kreditorenzahlung `PAYP2P-108219` und OP-Klaerung `P2P-003` | Zahlung wird im Zahlungsjournal gebucht und ueber Kreditorenposten, detaillierte Kreditorenposten, Bankposten und Sachposten nachvollzogen; Rechnung `108219` zeigt Restbetrag `0,00` | deutsche Kreditorenzahlung mit Bankabstimmung, deutschem Zahlungs-/Compliance-Kontext und finalem Screenshot-Ersatz |
 | P2P-004 Teil-WE-Startgate mit Draft `106002` | Teil-WE braucht zuerst stabilen Belegkopf und Zeilenkontext; Bestellung, Lieferung und Rechnung sind getrennte Stufen | deutscher Teil-WE-Fall mit Artikelzeile, `Qty. to Receive`, Preview, Wareneingang, Rechnung und Postenspur |
+| Purchase-Journal-Beleg `P2P032-682298` | Direkte Kreditor-/Sachkonto-Buchung kann ohne Artikel- und Wareneingangsspur entstehen | deutsche Journalroute nur mit passenden deutschen Konten, Steuerlogik, Belegnummern und Postenspur uebernehmen |
 
 Fuer Einsteiger ist der wichtigste P2P-Lernpunkt: Eine Einkaufsrechnung ist nicht nur ein PDF oder ein Belegkopf. Business Central erzeugt eine Kette aus Lieferantenbeleg, Lagerbewegung, Wertbewegung, Hauptbuchwirkung und offenem Kreditorenposten. Wenn nur die gebuchte Rechnung sichtbar ist, fehlt noch die Kontrolle, ob Lager, Wert, Konten und OP zusammenpassen.
 

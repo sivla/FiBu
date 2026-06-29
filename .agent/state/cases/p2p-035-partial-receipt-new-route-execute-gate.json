@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "caseId": "P2P-035-PARTIAL-RECEIPT-NEW-ROUTE-EXECUTE-GATE",
+  "title": "Resume P2P partial receipt with a new route, not repeated cell editing",
+  "status": "planned",
+  "taskClass": "wizard_work",
+  "modelClass": "gpt-4-high",
+  "usageLogRequired": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "p2p-partial-receipt-execute-gate",
+  "sourceCase": "P2P-034-PURCHASE-JOURNAL-BOOKMASTER-INTEGRATION",
+  "purpose": "Continue practical P2P partial receipt work after the Purchase Journal route was integrated into the book. The next run must choose a genuinely new UI route and must not repeat the failed cell-edit attempts from P2P-008/P2P-009.",
+  "allowedActions": [
+    "read-p2p-007-008-009-evidence",
+    "open-business-central-if-instance-and-company-match",
+    "run-playwright-if-case-preflight-passes",
+    "test-new-edit-mode-route",
+    "test-fresh-controlled-draft-route",
+    "test-standard-ui-alternative-route",
+    "write-evidence",
+    "update-state"
+  ],
+  "defaultLockedActions": [
+    "preview-posting",
+    "post",
+    "ship",
+    "invoice",
+    "setup-change",
+    "company-switch",
+    "keep-draft"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "repeat-p2p-008-009-cell-edit-route",
+    "final-german-claim-from-rm-demo"
+  ],
+  "safetyGates": [
+    "instance-and-company-context-visible",
+    "new-route-hypothesis-required",
+    "no-posting-without-preview-and-case-unlock",
+    "cleanup-or-trace-draft"
+  ],
+  "expectedEvidence": [
+    "route decision with reason",
+    "new UI route attempt evidence",
+    "visible target values or documented blocker",
+    "next concrete fix if blocked"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "targetGermanCompanyImpact": "German final P2P partial receipt must be rebuilt with German item/vendor/setup, screenshots, preview and ledger trace.",
+  "finalScreenshotNeeded": true,
+  "nextStep": "Choose and execute a genuinely new route for P2P partial receipt readiness; do not repeat the failed cell-edit paths."
+}

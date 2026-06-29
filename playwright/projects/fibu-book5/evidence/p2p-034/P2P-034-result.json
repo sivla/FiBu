@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "P2P-034-PURCHASE-JOURNAL-BOOKMASTER-INTEGRATION",
+  "source": "bookmaster-labor-integration",
+  "resultStatus": "observed",
+  "runPlanId": "P2P-034-BOOKMASTER-INTEGRATION",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "proved": [
+    "Chapter 12 now contains a clearly marked RM-DEMO laboratory subsection for the direct Purchase Journal route.",
+    "The book master references Purchase Journal document P2P032-682298 as a laboratory/preproduction example.",
+    "The chapter separates Purchase Order receipt/invoice flow from direct Purchase Journal finance posting.",
+    "The chapter documents that P2P032-682298 produced Vendor Ledger, Detailed Vendor Ledger and G/L Entries but no Item Ledger or Value Entries.",
+    "German final rebuild notes were added for accounts, tax logic, posting groups, document numbers, screenshots and ledger trace."
+  ],
+  "notProved": [
+    "No new Business Central execution was performed.",
+    "No new Playwright execution was performed.",
+    "No German final evidence was created.",
+    "No German 19 percent VAT claim was created.",
+    "No German chart of accounts final claim was created.",
+    "No Purchase Order partial receipt blocker was solved in this case."
+  ],
+  "changedFiles": [
+    "FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md",
+    "playwright/projects/fibu-book5/evidence/p2p-034/P2P-034-result.json",
+    "playwright/projects/fibu-book5/evidence/p2p-034/README.md",
+    ".agent/state/cases/p2p-034-purchase-journal-bookmaster-integration.json",
+    ".agent/state/cases/p2p-035-partial-receipt-new-route-execute-gate.json",
+    ".agent/state/current.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json"
+  ],
+  "statePatch": {
+    "current": {
+      "activeArea": "p2p",
+      "activeCase": "P2P-035-PARTIAL-RECEIPT-NEW-ROUTE-EXECUTE-GATE",
+      "active_case_file": ".agent/state/cases/p2p-035-partial-receipt-new-route-execute-gate.json",
+      "lastReferenceCase": "P2P-034-PURCHASE-JOURNAL-BOOKMASTER-INTEGRATION",
+      "lastReferenceCaseFile": ".agent/state/cases/p2p-034-purchase-journal-bookmaster-integration.json",
+      "nextStep": "Resume practical P2P partial receipt work with a new route, not the repeated cell-edit routes that already failed."
+    },
+    "lastRunSummary": {
+      "runId": "P2P-034-PURCHASE-JOURNAL-BOOKMASTER-INTEGRATION",
+      "date": "2026-06-29",
+      "workType": "p2p-bookmaster-labor-integration",
+      "branch": "codex/token-efficient-autopilot-state",
+      "bcRun": false,
+      "playwrightRun": false,
+      "posted": false,
+      "previewPosting": false,
+      "setupChanged": false,
+      "companySwitched": false,
+      "summary": "Integrated the direct Purchase Journal laboratory route P2P032-682298 into chapter 12 with explicit labor/final separation and German final rebuild notes.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/p2p-034/P2P-034-result.json",
+      "nextCase": "P2P-035-PARTIAL-RECEIPT-NEW-ROUTE-EXECUTE-GATE",
+      "nextStep": "Resume practical P2P partial receipt work with a new route, not the repeated cell-edit routes that already failed."
+    }
+  },
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/p2p-032/P2P-032-result.json",
+    "playwright/projects/fibu-book5/evidence/p2p-033/P2P-033-result.json",
+    "playwright/projects/fibu-book5/book-drafts/p2p-labor-draft.md",
+    "FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md"
+  ],
+  "warnings": [
+    "RM-DEMO evidence remains laboratory/preproduction evidence only.",
+    "The direct Purchase Journal route is not a replacement for Purchase Order, receipt, Item Ledger and Value Entry evidence.",
+    "Any German final book claim must be rebuilt in a German target company."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "reason": "This case only integrates already reviewed P2P-032/P2P-033 laboratory evidence into the book master and proposes a conservative state transition to the next practical P2P partial receipt route.",
+  "validationCommands": [
+    "npm run agent:preflight",
+    "npm run agent:context",
+    "npm run agent:dry-run",
+    "npm run agent:run-plan",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/p2p-034/P2P-034-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/p2p-034/P2P-034-result.json",
+    "npm run check:encoding",
+    "git diff --check",
+    "npx tsc --noEmit"
+  ]
+}
