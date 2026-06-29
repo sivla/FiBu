@@ -158,25 +158,46 @@
     },
     "inventory": {
       "chapter": "Kapitel 13",
-      "status": "labor-proven-needs-followup",
+      "status": "labor-sufficient-for-book-draft",
       "latestDecisionCase": "P2P-035-PARTIAL-RECEIPT-NEW-ROUTE-EXECUTE-GATE",
-      "nextCase": "INVENTORY-009-ITEM-JOURNAL-MATERIAL-EFFECT-FOLLOWUP",
+      "nextCase": "REPORTING-014-INVENTORY-DIMENSION-VALUE-TRACE",
       "openLimits": [
-        "Item Journal material-effect route must remain separated from creditor P2P proof",
-        "German final inventory proof remains open"
+        "No German final inventory proof from RM-DEMO",
+        "No German chart of accounts final proof",
+        "No Warehouse or Manufacturing process proof",
+        "No cost adjustment proof",
+        "Item Journal is material-effect evidence, not creditor-side P2P receipt proof",
+        "PRODUCTLINE=MACHINE is proven before posting but not yet as posted/reporting dimension effect"
       ],
-      "nextStep": "Use Item Journal/Inventory route as next practical material-effect follow-up with clear P2P boundary."
+      "nextStep": "Run read-only Reporting/Dimension trace for PRODUCTLINE=MACHINE visibility/usability after INV008-899959.",
+      "latestPracticalCase": "INVENTORY-008-POSITIVE-RM-M100-ITEM-JOURNAL-POSTING",
+      "latestReviewCase": "INVENTORY-009-ITEM-JOURNAL-MATERIAL-EFFECT-FOLLOWUP",
+      "latestBookDraft": "playwright/projects/fibu-book5/book-drafts/inventory-labor-draft.md",
+      "covered": [
+        "Item Journal readiness and Journal Check for RM-M100 +2 in FRA-ZL",
+        "Controlled RM-DEMO laboratory posting INV008-899959",
+        "Item Ledger, Value Entry and G/L Entry trace for INV008-899959",
+        "Inventory Valuation after positive RM-M100 training access: RM-M100 42.000,00, RAW-STEEL 25.000,00, Total 67.000,00",
+        "Inventory labor draft explains material-effect route and P2P boundary"
+      ],
+      "bookMasterStatus": "chapter-13-labor-block-already-integrated-and-draft-synced",
+      "germanFinalProof": "open"
+    },
+    "reporting": {
+      "status": "in-progress",
+      "nextCase": "REPORTING-014-INVENTORY-DIMENSION-VALUE-TRACE",
+      "nextStep": "Check whether Inventory Item Journal dimensions are visible or usable in posted trace, analysis views or reporting."
     }
   },
   "hardExclusions": {
     "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
   },
-  "updatedAt": "2026-06-29T06:05:00.000Z",
-  "activeArea": "inventory",
+  "updatedAt": "2026-06-29T06:35:00.000Z",
+  "activeArea": "reporting",
   "currentBlock": "p2p-purchase-invoice-bookmark-context-blocker-review",
   "latestPracticalCase": "FIXEDASSETS-295-FA-DEPRECIATION-GUARDED-OK-FRESH-DOC-NO-POST",
   "latestReviewCase": "FIXEDASSETS-296-FA-DEPRECIATION-FRESH-OK-RESULT-BLOCKER-REVIEW",
-  "nextCase": "INVENTORY-009-ITEM-JOURNAL-MATERIAL-EFFECT-FOLLOWUP",
+  "nextCase": "REPORTING-014-INVENTORY-DIMENSION-VALUE-TRACE",
   "latestBank013": {
     "caseId": "BANK-013-CONTROLLED-NEXT-EVIDENCE-STEP",
     "status": [
@@ -1019,5 +1040,12 @@
       "resultPath": "playwright/projects/fibu-book5/evidence/p2p-033/P2P-033-result.json",
       "nextCase": "P2P-034-PURCHASE-JOURNAL-BOOKMASTER-INTEGRATION"
     }
+  },
+  "latestInventory009": {
+    "caseId": "INVENTORY-009-ITEM-JOURNAL-MATERIAL-EFFECT-FOLLOWUP",
+    "status": "done-labor-draft-sync",
+    "resultPath": "playwright/projects/fibu-book5/evidence/inventory-009/INVENTORY-009-result.json",
+    "bookDraftPath": "playwright/projects/fibu-book5/book-drafts/inventory-labor-draft.md",
+    "nextCase": "REPORTING-014-INVENTORY-DIMENSION-VALUE-TRACE"
   }
 }

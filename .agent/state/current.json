@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-29T06:05:00.000Z",
+  "updatedAt": "2026-06-29T06:35:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "activeArea": "inventory",
-  "activeCase": "INVENTORY-009-ITEM-JOURNAL-MATERIAL-EFFECT-FOLLOWUP",
-  "active_case_file": ".agent/state/cases/inventory-009-item-journal-material-effect-followup.json",
-  "lastReferenceCase": "P2P-035-PARTIAL-RECEIPT-NEW-ROUTE-EXECUTE-GATE",
-  "lastReferenceCaseFile": ".agent/state/cases/p2p-035-partial-receipt-new-route-execute-gate.json",
+  "activeArea": "reporting",
+  "activeCase": "REPORTING-014-INVENTORY-DIMENSION-VALUE-TRACE",
+  "active_case_file": ".agent/state/cases/reporting-014-inventory-dimension-value-trace.json",
+  "lastReferenceCase": "INVENTORY-009-ITEM-JOURNAL-MATERIAL-EFFECT-FOLLOWUP",
+  "lastReferenceCaseFile": ".agent/state/cases/inventory-009-item-journal-material-effect-followup.json",
   "mode": "bc-specialist-labor-book-production",
   "requiresStrongModel": true,
   "requiredPreflightChecks": [
@@ -40,31 +40,27 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "Use the Item Journal/Inventory route as the next practical material-effect follow-up; do not repeat old Purchase Order cell edit routes.",
+  "nextStep": "Run a read-only Reporting/Dimension trace to check whether PRODUCTLINE=MACHINE from the Item Journal laboratory route is visible or usable beyond the pre-posting journal dialog.",
   "latestBookDraft": {
-    "path": "playwright/projects/fibu-book5/book-drafts/bank-payments-labor-draft.md",
-    "area": "bankPayments",
+    "path": "playwright/projects/fibu-book5/book-drafts/inventory-labor-draft.md",
+    "area": "inventory",
     "status": [
       "labor-draft",
+      "labor-proven",
       "labor-sufficient-for-book-draft",
       "needs-german-final-rebuild"
     ],
     "sourceCompany": "RM-DEMO",
     "sourceInstance": "MCP_1_20260210",
     "evidenceBasis": [
-      "BANK-020",
-      "BANK-021",
-      "BANK-022",
-      "BANK-023",
-      "BANK-024",
-      "BANK-025",
-      "BANK-026"
+      "INVENTORY-008",
+      "INVENTORY-009"
     ],
-    "bookEffect": "Bank payments and bank reconciliation boundaries are now draft-ready: payment is lab-proven, bank reconciliation is visible but parked for posting until a concrete statement/match plan exists.",
-    "integratedIntoBookMaster": false,
-    "bookMasterSection": "future Kapitel 20 Bank und Zahlungen integration",
+    "bookEffect": "Inventory Item Journal material-effect route is now available as a compact lab draft for Chapter 13: target values, Journal Check, controlled posting INV008-899959, Item/Value/G-L trace and Inventory Valuation are explained with P2P boundary.",
+    "integratedIntoBookMaster": true,
+    "bookMasterSection": "Kapitel 13 Inventory und Warehouse / Inventory Costing und Lagerbewertung",
     "labVsTargetPathSeparated": true,
-    "nextStep": "Move back to P2P with a Purchase Invoice alternative-route preflight."
+    "nextStep": "Read-only trace whether PRODUCTLINE=MACHINE is visible or usable in posted Inventory traces, analysis views or reporting."
   },
   "bookProductionGoal": {
     "goalFile": ".agent/state/book-production-goal.json",
@@ -114,7 +110,8 @@
     "summaryFile": ".agent/state/lab_to_german_sandbox_migration_plan.json",
     "noActiveLiveRunInOldSandbox": false,
     "germanTargetUnavailable": true,
-    "nextStep": "Continue RM-DEMO laboratory production via Item Journal/Inventory material-effect follow-up; German target sandbox is still unavailable and all RM-DEMO evidence remains labor-reference only."
+    "nextStep": "Continue RM-DEMO laboratory production with read-only Inventory dimension/reporting trace; German target sandbox remains unavailable.",
+    "nextCase": "REPORTING-014-INVENTORY-DIMENSION-VALUE-TRACE"
   },
   "latestP2PLabFollowup": {
     "caseId": "P2P-004-PARTIAL-RECEIPT-VARIANCE-GATE",
@@ -697,10 +694,26 @@
     "finalScreenshotNeeded": true
   },
   "latestInventory009": {
-    "status": "labor-sufficient-for-book-draft",
-    "resultFile": "playwright/projects/fibu-book5/evidence/inventory-009/INVENTORY-009-result.json",
+    "caseId": "INVENTORY-009-ITEM-JOURNAL-MATERIAL-EFFECT-FOLLOWUP",
+    "status": [
+      "labor-sufficient-for-book-draft",
+      "needs-german-final-rebuild"
+    ],
+    "sourceInstance": "MCP_1_20260210",
     "sourceCompany": "RM-DEMO",
+    "bcRun": false,
+    "playwrightRun": false,
+    "posted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "apiShortcut": false,
+    "reviewedSourceCase": "INVENTORY-008",
     "reviewedDocumentNo": "INV008-899959",
+    "resultPath": "playwright/projects/fibu-book5/evidence/inventory-009/INVENTORY-009-result.json",
+    "evidencePath": "playwright/projects/fibu-book5/evidence/inventory-009/",
+    "bookDraftPath": "playwright/projects/fibu-book5/book-drafts/inventory-labor-draft.md",
+    "decision": "Use INVENTORY-008 as laboratory material-effect proof and keep it separate from creditor-side P2P receipt proof.",
+    "selectedNextCase": "REPORTING-014-INVENTORY-DIMENSION-VALUE-TRACE",
     "migrationRelevance": "needed-for-german-final",
     "mustRecreateInFinalSandbox": true,
     "finalScreenshotNeeded": true

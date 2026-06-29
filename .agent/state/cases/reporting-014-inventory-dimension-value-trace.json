@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "caseId": "REPORTING-014-INVENTORY-DIMENSION-VALUE-TRACE",
+  "title": "Read-only trace PRODUCTLINE visibility for Inventory Item Journal laboratory posting",
+  "status": "planned",
+  "taskClass": "wizard_work",
+  "modelClass": "gpt-4-high",
+  "usageLogRequired": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "reporting-inventory-dimension-readonly-trace",
+  "sourceCase": "INVENTORY-009-ITEM-JOURNAL-MATERIAL-EFFECT-FOLLOWUP",
+  "purpose": "Check read-only whether PRODUCTLINE=MACHINE from the Item Journal laboratory route is visible or usable in posted Inventory traces, analysis views or reporting after INV008-899959.",
+  "allowedActions": [
+    "read-inventory-008-evidence",
+    "open-business-central-if-instance-and-company-match",
+    "run-playwright-if-case-preflight-passes",
+    "read-only-navigation",
+    "inspect-item-ledger-entry",
+    "inspect-value-entry",
+    "inspect-gl-entry",
+    "inspect-analysis-or-reporting-options",
+    "write-evidence",
+    "update-state-or-bookdraft"
+  ],
+  "defaultLockedActions": [
+    "preview-posting",
+    "post",
+    "setup-change",
+    "company-switch",
+    "keep-draft"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "final-german-claim-from-rm-demo",
+    "create-draft",
+    "edit-record",
+    "delete-record"
+  ],
+  "safetyGates": [
+    "instance-and-company-context-visible",
+    "read-only-only",
+    "no-preview-no-post-no-setup",
+    "dimension-visibility-must-be-marked-as-observed-or-not-observed",
+    "german-final-boundary-required"
+  ],
+  "expectedEvidence": [
+    "Read-only page/context proof for INV008-899959 trace",
+    "Clear result whether PRODUCTLINE=MACHINE is visible in Item Ledger, Value Entry, G/L Entry, analysis or reporting context",
+    "Explicit boundary between pre-posting dimension evidence and posted/reporting dimension evidence"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "targetGermanCompanyImpact": "German final reporting/dimension proof must be rebuilt with German target setup and final screenshots.",
+  "finalScreenshotNeeded": true,
+  "nextStep": "Run read-only dimension/reporting trace for INV008-899959; do not create, edit, preview or post."
+}

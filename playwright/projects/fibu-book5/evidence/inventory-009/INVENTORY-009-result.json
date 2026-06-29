@@ -1,81 +1,99 @@
 {
   "schemaVersion": 1,
-  "purpose": "inventory-costing-trace-review",
-  "caseId": "INVENTORY-009-COSTING-TRACE-REVIEW",
-  "testId": "INVENTORY-009",
-  "source": "local-evidence-review",
+  "purpose": "autopilot-result-normalized",
+  "caseId": "INVENTORY-009-ITEM-JOURNAL-MATERIAL-EFFECT-FOLLOWUP",
+  "source": "local-analysis",
   "resultStatus": "observed",
-  "environment": "MCP_1_20260210",
-  "company": "RM-DEMO",
-  "sourceCompany": "RM-DEMO",
-  "sourceEvidence": [
-    "playwright/projects/fibu-book5/evidence/inventory-008/INVENTORY-008-POSTING-result.json",
-    "playwright/projects/fibu-book5/evidence/dimensions-001/DIMENSIONS-001-result.json"
-  ],
-  "reviewedDocumentNo": "INV008-899959",
-  "noNewBcRun": true,
-  "noAdditionalPosting": true,
-  "traceSummary": {
-    "itemLedgerEntryVisible": true,
-    "valueEntryVisible": true,
-    "glEntryVisible": true,
-    "itemLedgerQuantity2Visible": true,
-    "valueEntryAmount84000Visible": true,
-    "glEntryInventoryAccount14140Visible": true,
-    "inventoryValuationPreviewVisible": true,
-    "inventoryValuationRmM100Positive42000Visible": true,
-    "inventoryValuationTotal67000Visible": true,
-    "productlineMachineUiDefaultDimensionReverified": true
-  },
-  "accountingMeaning": {
-    "inventoryAccount": "14140",
-    "item": "RM-M100",
-    "location": "FRA-ZL",
-    "quantityPosted": 2,
-    "unitCost": 42000,
-    "postedValue": 84000,
-    "remainingRmM100ValueAfterKnownOutflow": 42000,
-    "rawSteelValueInValuation": 25000,
-    "totalInventoryValue": 67000
-  },
+  "runPlanId": "inventory-009-local-sync",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-high",
   "proved": [
-    "INVENTORY-008 already proves a controlled Positive Adjmt. posting for RM-M100 +2 in FRA-ZL.",
-    "Item Ledger Entry, Value Entry and G/L Entry evidence exist for document INV008-899959.",
-    "Inventory Valuation evidence shows RM-M100 positive 42,000 and total inventory value 67,000.",
-    "DIMENSIONS-001 reverified PRODUCTLINE=MACHINE as UI-visible default dimension for RM-M100."
+    "INVENTORY-008 is usable as RM-DEMO laboratory evidence for a controlled Item Journal material-effect route.",
+    "Document INV008-899959 proves RM-M100 +2 in FRA-ZL as laboratory inventory movement with Item Ledger, Value Entry, G/L Entry and Inventory Valuation trace.",
+    "The Item Journal route is clearly separated from creditor-side P2P and Purchase Order partial receipt proof.",
+    "A compact inventory labor draft now exists for Chapter 13 bookdraft/clickguide use."
   ],
   "notProved": [
-    "No new inventory posting was executed in INVENTORY-009.",
-    "No cost adjustment or monthly closing process was executed.",
-    "No German chart-of-accounts final proof.",
-    "No Warehouse or Manufacturing process proof.",
-    "No final German inventory valuation screenshot."
+    "No new Business Central run occurred in INVENTORY-009.",
+    "No new Playwright run occurred in INVENTORY-009.",
+    "No German final proof.",
+    "No Purchase Order partial receipt or creditor-side P2P receipt proof.",
+    "No Warehouse, Manufacturing or cost adjustment proof.",
+    "PRODUCTLINE=MACHINE is proven before the Item Journal posting, but not yet as a reporting or posted-entry dimension effect."
   ],
-  "safety": {
-    "bcRun": false,
-    "noPost": true,
-    "noPreviewPosting": true,
-    "noSetupChange": true,
-    "noCompanySwitch": true,
-    "noApiShortcut": true,
-    "noBookChange": true,
-    "noNewDraft": true
-  },
-  "migrationRelevance": "needed-for-german-final",
-  "mustRecreateInFinalSandbox": true,
-  "finalScreenshotNeeded": true,
-  "rebuildInstruction": "In der deutschen Zielcompany den Lager-/Artikeljournal-Zugang oder fachlich passenden Einkaufs-/Fertigungszugang neu ausfuehren, danach Artikelposten, Wertposten, Sachposten, Dimensionen und Inventory Valuation mit deutschen Screenshots neu belegen.",
-  "targetGermanCompanyImpact": "Deutscher Artikel, Lagerort, Inventory Posting Setup, Sachkonten, Dimensionen und Bewertungsbericht muessen final neu aufgebaut und nachgewiesen werden.",
   "changedFiles": [
+    "playwright/projects/fibu-book5/book-drafts/inventory-labor-draft.md",
+    "playwright/projects/fibu-book5/evidence/inventory-009/README.md",
     "playwright/projects/fibu-book5/evidence/inventory-009/INVENTORY-009-result.json",
-    "playwright/projects/fibu-book5/evidence/inventory-009/INVENTORY-009-COSTING-TRACE-REVIEW.md",
-    "playwright/projects/fibu-book5/evidence/inventory-009/README.md"
+    ".agent/state/cases/inventory-009-item-journal-material-effect-followup.json",
+    ".agent/state/cases/reporting-014-inventory-dimension-value-trace.json",
+    ".agent/state/current.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json"
   ],
+  "statePatch": {
+    "current": {
+      "activeArea": "reporting",
+      "activeCase": "REPORTING-014-INVENTORY-DIMENSION-VALUE-TRACE",
+      "active_case_file": ".agent/state/cases/reporting-014-inventory-dimension-value-trace.json",
+      "lastReferenceCase": "INVENTORY-009-ITEM-JOURNAL-MATERIAL-EFFECT-FOLLOWUP",
+      "lastReferenceCaseFile": ".agent/state/cases/inventory-009-item-journal-material-effect-followup.json",
+      "nextStep": "Run a read-only Reporting/Dimension trace to check whether PRODUCTLINE=MACHINE from the Item Journal laboratory route is visible or usable beyond the pre-posting journal dialog."
+    },
+    "lastRunSummary": {
+      "runId": "INVENTORY-009-ITEM-JOURNAL-MATERIAL-EFFECT-FOLLOWUP",
+      "date": "2026-06-29",
+      "workType": "inventory-labor-draft-sync",
+      "bcRun": false,
+      "playwrightRun": false,
+      "posted": false,
+      "previewPosting": false,
+      "setupChanged": false,
+      "companySwitched": false,
+      "summary": "Synced existing INVENTORY-008 Item Journal posting trace into a compact inventory labor draft and clarified the boundary to creditor-side P2P.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/inventory-009/INVENTORY-009-result.json",
+      "nextCase": "REPORTING-014-INVENTORY-DIMENSION-VALUE-TRACE",
+      "nextStep": "Read-only trace for PRODUCTLINE=MACHINE visibility/usability in Inventory posting trace, analysis or reporting."
+    }
+  },
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/inventory-009/"
+    "playwright/projects/fibu-book5/evidence/inventory-008/INVENTORY-008-POSTING-result.json",
+    "playwright/projects/fibu-book5/evidence/inventory-008/INVENTORY-008-POSTING.md",
+    "playwright/projects/fibu-book5/evidence/inventory-009/README.md",
+    "playwright/projects/fibu-book5/book-drafts/inventory-labor-draft.md"
+  ],
+  "warnings": [
+    "RM-DEMO evidence remains labor-reference only.",
+    "Do not claim German final inventory accounting from this evidence.",
+    "Do not claim Item Journal as Purchase Order partial receipt or creditor P2P proof."
   ],
   "blockedBy": [],
-  "safeToFinalizeState": false,
   "requiresReview": false,
-  "nextStep": "RM-DE-LAB-001: entscheiden, ob innerhalb MCP_1_20260210 eine saubere deutsche Laborcompany fuer Rebuild-Vorbereitung angelegt wird, statt RM-DEMO weiter mit CRONUS-USA-Laborbildern zu ueberdehnen."
+  "safeToFinalizeState": true,
+  "flags": {
+    "bcRun": false,
+    "playwrightRun": false,
+    "noPostingInThisRun": true,
+    "noPreviewInThisRun": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noBookMasterChange": true,
+    "sourceCompany": "RM-DEMO",
+    "sourceInstance": "MCP_1_20260210",
+    "migrationRelevance": "needed-for-german-final",
+    "mustRecreateInFinalSandbox": true,
+    "finalScreenshotNeeded": true
+  },
+  "reason": "Local sync run: existing INVENTORY-008 controlled posting trace is strong enough for a lab bookdraft, while the next evidence gap is reporting/dimension visibility.",
+  "validationCommands": [
+    "npm run agent:preflight",
+    "npm run agent:context",
+    "npm run agent:dry-run",
+    "npm run agent:run-plan",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/inventory-009/INVENTORY-009-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/inventory-009/INVENTORY-009-result.json",
+    "npm run check:encoding",
+    "npx tsc --noEmit",
+    "git diff --check"
+  ]
 }
