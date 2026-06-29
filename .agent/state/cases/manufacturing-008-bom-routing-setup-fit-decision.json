@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "caseId": "MANUFACTURING-008-BOM-ROUTING-SETUP-FIT-DECISION",
+  "title": "Manufacturing BOM/Routing guarded setup-fit decision",
+  "status": "planned",
+  "taskClass": "judge_work",
+  "modelClass": "gpt-5.5-low",
+  "usageLogRequired": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "setup-fit-decision",
+  "sourceCase": "MANUFACTURING-007-BOM-ROUTING-UI-FIRST-PREFLIGHT",
+  "purpose": "Review the M007 read-only evidence and decide whether a guarded UI-first setup-fit case may create or fit BOM-RM-M100 and ROUTE-M100.",
+  "allowedActions": [
+    "read-manufacturing-007-evidence",
+    "read-target-data",
+    "write-setup-fit-decision",
+    "update-state"
+  ],
+  "defaultLockedActions": [
+    "bc-execution",
+    "playwright-execution",
+    "new",
+    "edit-bc-data",
+    "setup-change",
+    "preview-posting",
+    "posting",
+    "production-order-release",
+    "consumption-posting",
+    "output-posting",
+    "company-switch",
+    "api-shortcut"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "claim-german-final-proof",
+    "manufacturing-posting-without-bom-routing-gate",
+    "setup-write-without-before-after-evidence-plan"
+  ],
+  "targetDataPath": "playwright/projects/fibu-book5/testdata/manufacturing/rm-m100-bom-routing-target.json",
+  "safetyGates": [
+    "BOM-RM-M100 was not visible in M007; decide whether create/fill is safe before any write.",
+    "ROUTE-M100 was not visible in M007; decide whether create/fill is safe before any write.",
+    "RM-M100 item card did not prove expanded BOM/Routing link fields; decide whether an expand-only preflight is needed first.",
+    "No Production Order, Preview Posting or posting until BOM/Routing setup-fit is proven."
+  ],
+  "expectedEvidence": [
+    "setup-fit decision",
+    "write/no-write route",
+    "before/after evidence plan if write is approved",
+    "German-final rebuild boundary"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "resultPath": "playwright/projects/fibu-book5/evidence/manufacturing-008/MANUFACTURING-008-result.json",
+  "nextStep": "Decide whether the next safe action is an expand-only RM-M100 item-card preflight or a guarded BOM/Routing setup-fit case with before/after evidence.",
+  "createdAt": "2026-06-30T01:20:00+02:00",
+  "updatedAt": "2026-06-30T01:20:00+02:00"
+}

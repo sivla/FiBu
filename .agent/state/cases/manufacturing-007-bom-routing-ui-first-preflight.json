@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "caseId": "MANUFACTURING-007-BOM-ROUTING-UI-FIRST-PREFLIGHT",
   "title": "Manufacturing BOM/Routing UI-first read-only preflight",
-  "status": "planned",
+  "status": "done",
   "taskClass": "wizard_work",
   "modelClass": "gpt-4-high",
   "usageLogRequired": false,
@@ -59,7 +59,25 @@
   "mustRecreateInFinalSandbox": true,
   "finalScreenshotNeeded": true,
   "resultPath": "playwright/projects/fibu-book5/evidence/manufacturing-007/MANUFACTURING-007-result.json",
-  "nextStep": "Execute read-only direct-page preflight; only after that decide whether a guarded setup-fit case is safe.",
+  "nextStep": "Review M007 read-only signals and decide whether a guarded UI-first setup-fit case may create or fit BOM-RM-M100/ROUTE-M100. Do not post or create a Production Order yet.",
   "createdAt": "2026-06-30T00:45:00+02:00",
-  "updatedAt": "2026-06-30T00:45:00+02:00"
+  "updatedAt": "2026-06-30T01:35:00+02:00",
+  "resultStatus": "observed",
+  "completedAt": "2026-06-30T01:35:00+02:00",
+  "nextCase": "MANUFACTURING-008-BOM-ROUTING-SETUP-FIT-DECISION",
+  "observedSignals": {
+    "bomExistsSignal": false,
+    "routingExistsSignal": false,
+    "workCenter100Signal": true,
+    "itemManufacturingSignal": true
+  },
+  "decision": "Work Center and RM-M100 card context are visible enough for a later guarded setup-fit decision. The item card screenshot shows Replenishment/Planning context, but not expanded BOM/Routing link fields. BOM-RM-M100 and ROUTE-M100 still require explicit existence/editability judgement before any write.",
+  "notProved": [
+    "No Production BOM was created, edited or certified.",
+    "No Routing was created, edited or certified.",
+    "No Production Order was created, released or posted.",
+    "No Consumption Journal or Output Journal was posted.",
+    "No manufacturing item/value/G/L/capacity ledger trace exists.",
+    "No German final proof exists."
+  ]
 }

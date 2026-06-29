@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-30T00:45:00+02:00",
+  "updatedAt": "2026-06-30T01:35:00+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "manufacturing",
-  "activeCase": "MANUFACTURING-007-BOM-ROUTING-UI-FIRST-PREFLIGHT",
-  "active_case_file": ".agent/state/cases/manufacturing-007-bom-routing-ui-first-preflight.json",
+  "activeCase": "MANUFACTURING-008-BOM-ROUTING-SETUP-FIT-DECISION",
+  "active_case_file": ".agent/state/cases/manufacturing-008-bom-routing-setup-fit-decision.json",
   "lastReferenceCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
   "lastReferenceCaseFile": ".agent/state/cases/warehouse-031-warehouse-source-route-park-or-setup-fit-decision.json",
   "mode": "bc-specialist-labor-book-production",
@@ -40,7 +40,7 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "Execute read-only direct-page preflight for target BOM/Routing values before any setup change.",
+  "nextStep": "Review M007 read-only signals and decide whether the next safe action is expand-only RM-M100 item-card preflight or guarded BOM/Routing setup-fit. Do not post or create a Production Order yet.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/manufacturing-labor-draft.md",
     "area": "manufacturing",
@@ -222,7 +222,7 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "process-selection-after-warehouse-source-parking",
+  "currentCoverageFocus": "manufacturing-bom-routing-setup-fit-decision",
   "nextProcessRoute": [
     "P2P-012 compared Purchase Journal, Item Journal, Purchase Invoices and Requisition Worksheet by direct page URL without search or field entry.",
     "Item Journal is the most stable observed route for material quantity/location/value effect, but it is Inventory evidence rather than full creditor P2P.",
@@ -3036,5 +3036,67 @@
     "mustRecreateInFinalSandbox": true,
     "finalScreenshotNeeded": true,
     "updatedAt": "2026-06-30T00:45:00+02:00"
+  },
+  "latestManufacturing007": {
+    "caseId": "MANUFACTURING-007-BOM-ROUTING-UI-FIRST-PREFLIGHT",
+    "status": [
+      "labor-proven",
+      "read-only-preflight",
+      "setup-fit-decision-needed",
+      "needs-german-final-rebuild"
+    ],
+    "sourceInstance": "MCP_1_20260210",
+    "sourceCompany": "RM-DEMO",
+    "bcRun": true,
+    "playwrightRun": true,
+    "posted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "draftCreated": false,
+    "companySwitched": false,
+    "apiShortcut": false,
+    "resultPath": "playwright/projects/fibu-book5/evidence/manufacturing-007/MANUFACTURING-007-result.json",
+    "evidencePath": "playwright/projects/fibu-book5/evidence/manufacturing-007/",
+    "screenshots": [
+      "playwright/projects/fibu-book5/img/manufacturing-007-010-production-bom-target.png",
+      "playwright/projects/fibu-book5/img/manufacturing-007-020-routing-target.png",
+      "playwright/projects/fibu-book5/img/manufacturing-007-030-work-center-100.png",
+      "playwright/projects/fibu-book5/img/manufacturing-007-040-item-rm-m100-manufacturing-fields.png"
+    ],
+    "observedSignals": {
+      "bomExistsSignal": false,
+      "routingExistsSignal": false,
+      "workCenter100Signal": true,
+      "itemManufacturingSignal": true
+    },
+    "decision": "Work Center and RM-M100 card context are visible enough for a later guarded setup-fit decision. The item card screenshot shows Replenishment/Planning context, but not expanded BOM/Routing link fields. BOM-RM-M100 and ROUTE-M100 still require explicit existence/editability judgement before any write.",
+    "notProved": "No Production BOM/Routing exists visibly for the target codes; no setup, Production Order, Consumption, Output, ledger trace or German final proof.",
+    "migrationRelevance": "needed-for-german-final",
+    "mustRecreateInFinalSandbox": true,
+    "finalScreenshotNeeded": true,
+    "nextCase": "MANUFACTURING-008-BOM-ROUTING-SETUP-FIT-DECISION",
+    "updatedAt": "2026-06-30T01:35:00+02:00"
+  },
+  "manufacturing": {
+    "status": "readonly-preflight-observed",
+    "latestEvidence": "playwright/projects/fibu-book5/evidence/manufacturing-007/MANUFACTURING-007-result.json",
+    "latestReadOnlyPreflight": "playwright/projects/fibu-book5/evidence/manufacturing-007/MANUFACTURING-007-result.json",
+    "nextCase": "MANUFACTURING-008-BOM-ROUTING-SETUP-FIT-DECISION",
+    "nextStep": "M008: decide expand-only preflight versus guarded setup-fit before any BOM/Routing write.",
+    "observedSignals": {
+      "bomExistsSignal": false,
+      "routingExistsSignal": false,
+      "workCenter100Signal": true,
+      "itemManufacturingSignal": true
+    },
+    "openLimits": [
+      "BOM-RM-M100 is not visibly proven in M007.",
+      "ROUTE-M100 is not visibly proven in M007.",
+      "RM-M100 item card context and Replenishment/Planning are visible, but expanded BOM/Routing link fields are not proven.",
+      "No Production Order PROD-3001 was created, released or posted.",
+      "No Consumption Journal, Output Journal, Capacity Entry, Item Ledger Entry, Value Entry or G/L Entry from manufacturing was created.",
+      "No German final proof was created."
+    ],
+    "updatedAt": "2026-06-30T01:35:00+02:00"
   }
 }
