@@ -40,11 +40,12 @@ Diese Regeln steuern, wann eine Aussage in Buch, Atlas, Evidence oder State steh
 
 Fuer `UNIVERSAARL-DE` gilt ab diesem Quellenlauf:
 
-- Die direkte Mandanten-Listenzeile ist kein bevorzugter Buchpfad.
-- Der bevorzugte Buchpfad ist die offizielle Create-New-Company-/Assisted-Setup-Route.
+- Der praktische Buchpfad beginnt auf der Seite `Mandanten` und nutzt `Neu` beziehungsweise den Dropdown-Eintrag `Neues Unternehmen erstellen`, sobald ausreichende Rechte vorhanden sind.
+- TARGET-009 ist `parked-until-super-permissions`; die fehlende Erstellung von `UNIVERSAARL-DE` ist ein Berechtigungsblocker, kein Beweis gegen den UI-Weg.
 - `Kopieren`, CRONUS und `Testunternehmen` sind keine finale Universaarl-Basis, solange Datenwirkung und Demodatenfreiheit nicht belegt sind.
 - Ein Privacy-/Personal-Data-Hinweis auf der Mandantenliste ist ein fachlicher Stop-/Erklaerpunkt, nicht nur UI-Rauschen.
-- Vor Speichern, Finish oder Wizard-Abschluss muss die Smart Decision Card `Neu`, `Kopieren`, `Testunternehmen`, Blank/No Data und Setup-Only/Production-Setup als Alternativen bewerten.
+- Vor Speichern, Finish oder Wizard-Abschluss muss die Smart Decision Card `Neu`, `Neues Unternehmen erstellen`, `Kopieren`, `Testunternehmen`, Blank/No Data und Setup-Only/Production-Setup als Alternativen bewerten.
+- Bis zur Rechtefreigabe duerfen Buchtexte nur erklaeren, wie die Anlage fachlich funktioniert und warum Berechtigungen gebraucht werden. Sie duerfen nicht behaupten, dass `UNIVERSAARL-DE` bereits existiert.
 
 ## Zero-Open-Questions-Claims
 

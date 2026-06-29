@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-29T18:05:00.000Z",
+  "updatedAt": "2026-06-29T21:30:15.312Z",
   "purpose": "source-registry-for-universaarl-playthrough",
   "activeWorld": {
     "instance": "playthru",
@@ -223,7 +223,21 @@
     "evidenceClaim": "Result JSON, screenshot and state/coverage update required."
   },
   "currentDecision": {
-    "target003": "Do not continue with direct Companies list-row save as the book path. Rework TARGET-003 toward official Create New Company / Assisted Setup route.",
-    "reason": "Microsoft Learn describes assisted setup for new companies; direct row is only a UI finding and showed warning/save ambiguity."
+    "target009": "Companies / Mandanten with Neu and Neues Unternehmen erstellen remains the practical UI-first creation route, but it is parked until sufficient permissions exist.",
+    "reason": "TARGET-009 did not prove UNIVERSAARL-DE because the user confirmed missing company-creation permissions. This is a permission blocker, not a functional rejection of the route."
+  },
+  "permissionBlockedPrep": {
+    "status": "permission-blocked",
+    "targetCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+    "prepCase": "PREP-001-PERMISSION-BLOCKER-DOCUMENTATION",
+    "primaryProductSource": "https://learn.microsoft.com/en-us/dynamics365/business-central/about-new-company",
+    "supportingSetupSource": "https://learn.microsoft.com/en-us/dynamics365/business-central/setup",
+    "permissionRule": "Do not retry live company creation until the user confirms SUPER or sufficient company-create permissions.",
+    "claimBoundary": "Microsoft Learn supports product behavior; Universaarl existence requires UI evidence after permissions are available.",
+    "nextMappingCases": [
+      "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
+      "PREP-027-IMPLEMENTATION-GUIDE-BEST-PRACTICE-MAPPING",
+      "PREP-028-TESTING-STRATEGY-AND-UAT-MATRIX"
+    ]
   }
 }

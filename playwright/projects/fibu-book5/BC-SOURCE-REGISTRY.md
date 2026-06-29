@@ -41,7 +41,11 @@ Diese Registry ordnet Quellen fuer das Universaarl-Buch und den Autopilot. Sie e
 
 ## Konkrete Entscheidung fuer Universaarl Company Creation
 
-Fuer die Anlage von `UNIVERSAARL-DE` gibt es mehrere Einstiegspunkte, die im Buch getrennt erklaert werden sollen: `Mandanten` / Companies, der Company-Field-Lookup in `My Settings` und setupnahe Assisted-Setup-Kontexte. Der praktische Anfaengerpfad ist die Seite `Mandanten` mit dem Hauptbutton `Neu`. TARGET-002 hat gezeigt, dass `Neu` eine neue, ungespeicherte Mandantenzeile oeffnet; TARGET-007 zeigt den Pfeil neben `Neu` als Dropdown fuer Alternativen. `My Settings` ist fuer Company-Kontext und Company-Wechsel interessant, aber nicht der erste Buchpfad fuer die Anlage. Die generische Zeile `Unternehmen einrichten` auf Page 1801 ist nach TARGET-006 kein sauberer Company-Creation-Pfad, weil dort kein Create-New-Company-Wizard und keine Blank-/Setup-only-Datenbasis sichtbar wurden. `Kopieren`, CRONUS-Kopie und `Testunternehmen` sind fuer die finale Universaarl-Basis nur dann zulaessig, wenn vorher Quelle, Datenwirkung und Buchfolgen verstanden und als passend bewiesen sind; der naechste Execute-Schritt nutzt deshalb den Hauptbutton `Neu` mit einem eigenen Feld-/Speicher-Gate.
+Fuer die Anlage von `UNIVERSAARL-DE` gibt es mehrere Einstiegspunkte, die im Buch getrennt erklaert werden sollen: `Mandanten` / Companies, der Company-Field-Lookup in `My Settings` und setupnahe Assisted-Setup-Kontexte. Der praktische Anfaengerpfad ist die Seite `Mandanten` mit `Neu` und dem Dropdown-Eintrag `Neues Unternehmen erstellen`. TARGET-007 zeigt den Pfeil neben `Neu` als Dropdown fuer Alternativen. TARGET-008/TARGET-009 zeigen, dass die sichtbare Route noch keinen gespeicherten Mandanten erzeugt hat, weil aktuell ausreichende Rechte fehlen. Das ist ein Berechtigungsblocker, kein fachlicher Beweis gegen diesen UI-Weg. `Kopieren`, CRONUS-Kopie und `Testunternehmen` bleiben fuer die finale Universaarl-Basis gesperrt, solange Datenwirkung und Demodatenfreiheit nicht belegt sind. Bis zur Rechtefreigabe arbeitet der Autopilot im PREP-/Read-only-Modus weiter.
+
+## Permission-Parking-Regel
+
+Company Creation ist bis zur Bestaetigung ausreichender Rechte geparkt. Produktclaims stammen aus Microsoft Learn; konkrete Universaarl-Existenz, Datenbasis und UI-Schritte brauchen nach der Rechtefreigabe eigene `playthru`-Evidence. Interne Details stehen in `PERMISSION-BLOCKERS.md`, `BC-MICROSOFT-LEARN-MAPPING.md` und `.agent/state/source_registry.json`.
 
 ## URLs
 

@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "caseId": "PREP-001-PERMISSION-BLOCKER-DOCUMENTATION",
+  "title": "Park Universaarl company creation until required permissions exist",
+  "instance": "playthru",
+  "targetCompany": "UNIVERSAARL-DE",
+  "legalName": "Universaarl GmbH",
+  "workType": "repo-readonly-prep",
+  "status": "done",
+  "completedAt": "2026-06-29T21:25:26.553Z",
+  "dependsOn": [
+    "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE"
+  ],
+  "goal": "Make the permission blocker explicit and activate a productive read-only/repo PREP queue until company creation permissions are available.",
+  "noBusinessCentralExecution": true,
+  "noPlaywrightExecution": true,
+  "noEffectiveActionTakenUntilPermission": true,
+  "permissionStatus": "missing-super-permissions",
+  "blockedTargetCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+  "blockedBy": [
+    "missing-super-or-company-create-permission"
+  ],
+  "changedFilesExpected": [
+    ".agent/state/current.json",
+    ".agent/state/marathon_queue.json",
+    ".agent/state/cases/target-009-main-neu-list-company-create-gate.json",
+    "playwright/projects/fibu-book5/PERMISSION-BLOCKERS.md"
+  ],
+  "nextWhenUnblocked": "After the user confirms SUPER or sufficient company-create permissions, reactivate TARGET-009 and rerun the UI-first Companies -> Neu / Neues Unternehmen erstellen path.",
+  "nextPrepCase": "PREP-002-COMPANY-CREATION-BEGINNER-BOOK-DRAFT"
+}

@@ -6,7 +6,7 @@
   "targetCompany": "UNIVERSAARL-DE",
   "legalName": "Universaarl GmbH",
   "workType": "controlled-company-create-save-gate",
-  "status": "blocked",
+  "status": "parked-until-super-permissions",
   "dependsOn": [
     "TARGET-008-COMPANIES-NEW-ROW-FIELD-SAVE-GATE"
   ],
@@ -18,7 +18,8 @@
     "blockedBy": [
       "target-company-not-visible-after-create-attempt",
       "company-creation-permission-not-yet-available",
-      "company-creation-permission-not-yet-available-user-confirmed"
+      "company-creation-permission-not-yet-available-user-confirmed",
+      "missing-super-or-company-create-permission"
     ],
     "screenshotQa": "UNIVERSAARL-DE is not visible in the Companies list after the attempt."
   },
@@ -51,5 +52,11 @@
   ],
   "migrationRelevance": "needed-for-german-final",
   "finalScreenshotNeeded": true,
-  "nextSafeAction": "After the user has the required permission, rerun the UI path and focus the visible Name cell inside the foreground ListPart before typing; stop on permission/save error and capture it."
+  "nextSafeAction": "Do not run live company creation again until the user confirms SUPER or sufficient company-create permissions. Then rerun TARGET-009 with visible foreground ListPart focus and exact save/error capture.",
+  "permissionStatus": "missing-super-permissions",
+  "noEffectiveActionTakenUntilPermission": true,
+  "nextWhenUnblocked": "retry TARGET-009 after user confirms required permissions",
+  "blockedBy": [
+    "missing-super-or-company-create-permission"
+  ]
 }
