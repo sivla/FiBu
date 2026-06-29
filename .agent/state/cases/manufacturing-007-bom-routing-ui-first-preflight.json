@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "caseId": "MANUFACTURING-007-BOM-ROUTING-UI-FIRST-PREFLIGHT",
+  "title": "Manufacturing BOM/Routing UI-first read-only preflight",
+  "status": "planned",
+  "taskClass": "wizard_work",
+  "modelClass": "gpt-4-high",
+  "usageLogRequired": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "read-only-ui-preflight",
+  "sourceCase": "MANUFACTURING-006-BOM-ROUTING-SETUP-READINESS-DECISION",
+  "purpose": "Open known Manufacturing pages directly and read-only to verify whether the target BOM/Routing values exist or whether a later setup-fit case is needed.",
+  "allowedActions": [
+    "run-playwright-readonly-if-instance-and-company-match",
+    "open-direct-page-url",
+    "read-production-boms",
+    "read-routings",
+    "read-work-centers",
+    "read-rm-m100-item-card",
+    "write-evidence",
+    "update-state"
+  ],
+  "defaultLockedActions": [
+    "new",
+    "edit-bc-data",
+    "setup-change",
+    "preview-posting",
+    "posting",
+    "production-order-release",
+    "consumption-posting",
+    "output-posting",
+    "company-switch",
+    "api-shortcut"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "claim-german-final-proof",
+    "repeat-search-navigation-when-direct-page-url-is-known",
+    "save-bom-or-routing-in-preflight"
+  ],
+  "targetDataPath": "playwright/projects/fibu-book5/testdata/manufacturing/rm-m100-bom-routing-target.json",
+  "safetyGates": [
+    "Abort if URL does not contain MCP_1_20260210.",
+    "Abort if company is not RM-DEMO.",
+    "Use direct page URLs for known pages; do not open Tell-Me/search unless the case is amended.",
+    "No New/Edit/Delete/Certify/Release/Post/Preview.",
+    "If a dialog asks for confirmation, abort unless it is a harmless cookie/tour dismissal handled by existing helper."
+  ],
+  "expectedEvidence": [
+    "BOM-RM-M100 exists yes/no",
+    "ROUTE-M100 exists yes/no",
+    "Work Center 100 visible details",
+    "RM-M100 item card fields for Production BOM/Routing visible/editable yes/no",
+    "no-write/no-post/no-preview flags"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "resultPath": "playwright/projects/fibu-book5/evidence/manufacturing-007/MANUFACTURING-007-result.json",
+  "nextStep": "Execute read-only direct-page preflight; only after that decide whether a guarded setup-fit case is safe.",
+  "createdAt": "2026-06-30T00:45:00+02:00",
+  "updatedAt": "2026-06-30T00:45:00+02:00"
+}

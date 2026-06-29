@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "caseId": "MANUFACTURING-006-BOM-ROUTING-SETUP-READINESS-DECISION",
+  "purpose": "Target values for a future UI-first RM-M100 Production BOM/Routing setup-readiness case.",
+  "instance": "MCP_1_20260210",
+  "sourceCompany": "RM-DEMO",
+  "status": [
+    "target-values-only",
+    "labor-sufficient-for-next-setup-readiness-case",
+    "needs-german-final-rebuild"
+  ],
+  "productionItem": {
+    "no": "RM-M100",
+    "description": "Standardmaschine M100",
+    "quantityForTargetOrder": 3,
+    "locationCode": "FRA-ZL",
+    "knownLaborStatus": "visible item; no Production BOM/Routing marker proven on item card"
+  },
+  "productionBom": {
+    "targetNo": "BOM-RM-M100",
+    "description": "Production BOM for Standardmaschine M100",
+    "statusBeforeUse": "Certified or equivalent releasable BC status must be proven before any production order.",
+    "lines": [
+      {
+        "type": "Item",
+        "no": "RAW-STEEL",
+        "description": "Stahltraeger",
+        "quantityPer": 2,
+        "unitOfMeasureCode": "PCS",
+        "reason": "Book chapter 23 already uses 6 of 10 RAW-STEEL consumed by PROD-3001; 3 RM-M100 x 2 RAW-STEEL = 6."
+      }
+    ],
+    "excludedFromFirstLabBom": [
+      {
+        "no": "COMP-CTRL",
+        "reason": "Planned full-book component, but MANUFACTURING-001 did not prove it visible in RM-DEMO."
+      }
+    ]
+  },
+  "routing": {
+    "targetNo": "ROUTE-M100",
+    "description": "Routing for Standardmaschine M100",
+    "statusBeforeUse": "Certified or equivalent releasable BC status must be proven before any production order.",
+    "lines": [
+      {
+        "operationNo": "10",
+        "type": "Work Center",
+        "no": "100",
+        "description": "Assembly department",
+        "setupTime": 0,
+        "runTime": 1,
+        "unitOfMeasureCode": "HOUR",
+        "reason": "MANUFACTURING-003 observed Work Center 100 Assembly department in RM-DEMO; exact BC fields must still be confirmed UI-first."
+      }
+    ]
+  },
+  "firstProductionOrderTarget": {
+    "targetNo": "PROD-3001",
+    "sourceItemNo": "RM-M100",
+    "quantity": 3,
+    "locationCode": "FRA-ZL",
+    "expectedConsumption": [
+      {
+        "itemNo": "RAW-STEEL",
+        "quantity": 6,
+        "unitOfMeasureCode": "PCS"
+      }
+    ]
+  },
+  "setupReadinessGatesBeforeAnyWrite": [
+    "Open Production BOMs directly by page URL; prove whether BOM-RM-M100 exists.",
+    "Open Routings directly by page URL; prove whether ROUTE-M100 exists.",
+    "Open Work Centers directly by page URL; prove Work Center 100 details are usable.",
+    "Open RM-M100 item card; prove the fields that link Production BOM and Routing are visible/editable before any save.",
+    "Document before/after evidence plan and cleanup/keep strategy before any setup change."
+  ],
+  "notAllowedInNextPreflight": [
+    "posting",
+    "preview-posting",
+    "production-order-release",
+    "consumption-posting",
+    "output-posting",
+    "search-navigation-when-direct-page-url-is-known",
+    "claim-german-final-proof"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true
+}

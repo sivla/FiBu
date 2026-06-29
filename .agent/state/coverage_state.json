@@ -296,7 +296,7 @@
   "hardExclusions": {
     "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
   },
-  "updatedAt": "2026-06-30T00:20:00+02:00",
+  "updatedAt": "2026-06-30T00:45:00+02:00",
   "activeArea": "manufacturing",
   "currentBlock": "PROCESS-SELECTION-AFTER-WAREHOUSE-SOURCE-PARKING",
   "latestPracticalCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
@@ -1402,7 +1402,7 @@
     "nextCase": "FIXEDASSETS-298-FA-DEPRECIATION-BLOCKER-BOOK-SYNC",
     "updatedAt": "2026-06-29T07:09:31.588Z"
   },
-  "nextStep": "Define exact Production BOM/Routing target values and decide whether a controlled UI-first setup case is safe in RM-DEMO.",
+  "nextStep": "Execute read-only direct-page preflight for target BOM/Routing values before any setup change.",
   "warehouse": {
     "chapter": "Kapitel 13",
     "status": "in-progress",
@@ -1785,13 +1785,13 @@
     "updatedAt": "2026-06-29T23:55:00+02:00"
   },
   "manufacturing": {
-    "status": "bookmaster-synced-labor",
+    "status": "setup-readiness-target-defined",
     "highestLevel": [
       "L1",
       "L8",
       "L9"
     ],
-    "latestEvidence": "playwright/projects/fibu-book5/evidence/manufacturing-005/MANUFACTURING-005-result.json",
+    "latestEvidence": "playwright/projects/fibu-book5/evidence/manufacturing-006/MANUFACTURING-006-result.json",
     "directPagesObserved": [
       {
         "label": "Production BOMs",
@@ -1817,12 +1817,14 @@
       "No Consumption Journal, Output Journal, Capacity Entry, Item Ledger Entry, Value Entry or G/L Entry from manufacturing was created.",
       "No German final proof was created."
     ],
-    "nextCase": "MANUFACTURING-006-BOM-ROUTING-SETUP-READINESS-DECISION",
-    "nextStep": "Define exact Production BOM/Routing target values and decide whether a controlled UI-first setup case is safe in RM-DEMO.",
-    "updatedAt": "2026-06-30T00:20:00+02:00",
+    "nextCase": "MANUFACTURING-007-BOM-ROUTING-UI-FIRST-PREFLIGHT",
+    "nextStep": "Execute read-only direct-page preflight for target BOM/Routing values before any setup change.",
+    "updatedAt": "2026-06-30T00:45:00+02:00",
     "latestDecision": "playwright/projects/fibu-book5/evidence/manufacturing-004/MANUFACTURING-004-result.json",
     "bookDraftPath": "playwright/projects/fibu-book5/book-drafts/manufacturing-labor-draft.md",
-    "latestBookMasterSync": "playwright/projects/fibu-book5/evidence/manufacturing-005/MANUFACTURING-005-result.json"
+    "latestBookMasterSync": "playwright/projects/fibu-book5/evidence/manufacturing-005/MANUFACTURING-005-result.json",
+    "latestSetupReadinessDecision": "playwright/projects/fibu-book5/evidence/manufacturing-006/MANUFACTURING-006-result.json",
+    "targetDataPath": "playwright/projects/fibu-book5/testdata/manufacturing/rm-m100-bom-routing-target.json"
   },
   "latestManufacturing004": {
     "caseId": "MANUFACTURING-004-SETUP-READINESS-OR-BOOKDRAFT-DECISION",
@@ -1850,8 +1852,8 @@
     "finalScreenshotNeeded": true,
     "updatedAt": "2026-06-29T23:59:00+02:00"
   },
-  "activeCase": "MANUFACTURING-006-BOM-ROUTING-SETUP-READINESS-DECISION",
-  "active_case_file": ".agent/state/cases/manufacturing-006-bom-routing-setup-readiness-decision.json",
+  "activeCase": "MANUFACTURING-007-BOM-ROUTING-UI-FIRST-PREFLIGHT",
+  "active_case_file": ".agent/state/cases/manufacturing-007-bom-routing-ui-first-preflight.json",
   "latestManufacturing005": {
     "caseId": "MANUFACTURING-005-CHAPTER14-LAB-VS-TARGET-CLEANUP",
     "status": [
@@ -1877,5 +1879,30 @@
     "mustRecreateInFinalSandbox": true,
     "finalScreenshotNeeded": true,
     "updatedAt": "2026-06-30T00:20:00+02:00"
+  },
+  "latestManufacturing006": {
+    "caseId": "MANUFACTURING-006-BOM-ROUTING-SETUP-READINESS-DECISION",
+    "status": [
+      "labor-sufficient-for-next-setup-readiness-case",
+      "needs-german-final-rebuild"
+    ],
+    "sourceInstance": "MCP_1_20260210",
+    "sourceCompany": "RM-DEMO",
+    "bcRun": false,
+    "playwrightRun": false,
+    "posted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "draftCreated": false,
+    "companySwitched": false,
+    "apiShortcut": false,
+    "resultPath": "playwright/projects/fibu-book5/evidence/manufacturing-006/MANUFACTURING-006-result.json",
+    "targetDataPath": "playwright/projects/fibu-book5/testdata/manufacturing/rm-m100-bom-routing-target.json",
+    "decision": "Minimal first Manufacturing target: BOM-RM-M100 with RAW-STEEL quantity per 2 PCS, ROUTE-M100 with Work Center 100, later PROD-3001 quantity 3; run read-only UI preflight before any setup write.",
+    "nextCase": "MANUFACTURING-007-BOM-ROUTING-UI-FIRST-PREFLIGHT",
+    "migrationRelevance": "needed-for-german-final",
+    "mustRecreateInFinalSandbox": true,
+    "finalScreenshotNeeded": true,
+    "updatedAt": "2026-06-30T00:45:00+02:00"
   }
 }

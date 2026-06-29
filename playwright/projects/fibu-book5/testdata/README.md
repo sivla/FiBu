@@ -20,6 +20,7 @@ Diese Testdaten beschreiben den Lern- und Laborstand fuer `RM-DEMO`. Sie sind ke
 | `sales/uat-o2c-001.json` | konkreter O2C-Testfall mit Zielwerten | Labor belegt mit Steuerabweichung |
 | `purchase/uat-p2p-001.json` | konkreter P2P-Fall mit Zielwerten | CRONUS-USA-Laborprozess gebucht: Bestellung `106049` -> gebuchte Einkaufsrechnung `108219`; keine deutsche 19-%-Vorsteuer |
 | `inventory/rm-m100-target-stock-plan.json` | positiver `RM-M100`-Zugang fuer stabile finale Buchbilder | Draft praktisch vorbereitet in `INVENTORY-006`, Journal Check/Current line ohne Issues in `INVENTORY-007`, genau eine Laborbuchung `INV008-899959` in `INVENTORY-008` mit Postenspur und korrigierter Inventory Valuation |
+| `manufacturing/rm-m100-bom-routing-target.json` | Zielwerte fuer ersten Manufacturing-Setup-Readiness-Lauf | `BOM-RM-M100` mit `RAW-STEEL` Menge je `2 PCS`, `ROUTE-M100` mit Work Center `100`, Zielauftrag `PROD-3001` Menge `3`; nur Target/Preflight, noch kein Setup, kein Fertigungsauftrag, kein Post |
 
 ## Konventionen
 

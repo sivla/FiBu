@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "caseId": "MANUFACTURING-006-BOM-ROUTING-SETUP-READINESS-DECISION",
+  "source": "local-setup-readiness-decision",
+  "resultStatus": "observed",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "sourceCompany": "RM-DEMO",
+  "workType": "setup-readiness-decision",
+  "decision": "Use a minimal first RM-M100 Manufacturing setup target: BOM-RM-M100 with RAW-STEEL quantity per 2 PCS, ROUTE-M100 with Work Center 100 Assembly department, and PROD-3001 quantity 3 as later target order. Run a read-only direct-page preflight before any setup write.",
+  "selectedNextRoute": "ui-first-readonly-preflight-before-setup-change",
+  "targetDataPath": "playwright/projects/fibu-book5/testdata/manufacturing/rm-m100-bom-routing-target.json",
+  "decisionPath": "playwright/projects/fibu-book5/evidence/manufacturing-006/MANUFACTURING-006-SETUP-READINESS-DECISION.md",
+  "classification": [
+    "labor-sufficient-for-next-setup-readiness-case",
+    "needs-german-final-rebuild"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "bcRun": false,
+  "playwrightRun": false,
+  "posted": false,
+  "previewPosting": false,
+  "setupChanged": false,
+  "draftCreated": false,
+  "companySwitched": false,
+  "apiShortcut": false,
+  "proved": [
+    "The next Manufacturing UI run now has concrete target values instead of an open-ended setup idea.",
+    "RAW-STEEL quantity per 2 PCS gives a traceable target consumption of 6 for PROD-3001 quantity 3.",
+    "COMP-CTRL is deliberately excluded from the first lab BOM because it has not been proven visible in RM-DEMO.",
+    "Work Center 100 is the first routing candidate because MANUFACTURING-003 observed it as Assembly department."
+  ],
+  "notProved": [
+    "No Production BOM was created, edited or certified.",
+    "No Routing was created, edited or certified.",
+    "No RM-M100 item setup link fields were proven editable in this run.",
+    "No Production Order, Consumption Journal, Output Journal or manufacturing ledger trace exists.",
+    "No German final proof exists."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/testdata/manufacturing/rm-m100-bom-routing-target.json",
+    "playwright/projects/fibu-book5/evidence/manufacturing-006/MANUFACTURING-006-SETUP-READINESS-DECISION.md",
+    "playwright/projects/fibu-book5/evidence/manufacturing-006/MANUFACTURING-006-result.json",
+    ".agent/state/cases/manufacturing-006-bom-routing-setup-readiness-decision.json",
+    ".agent/state/cases/manufacturing-007-bom-routing-ui-first-preflight.json",
+    ".agent/state/current.json",
+    ".agent/state/coverage_state.json",
+    "playwright/projects/fibu-book5/BOOK-CLICK-GUIDE-COVERAGE.md",
+    "playwright/projects/fibu-book5/BC-COVERAGE-MATRIX.md",
+    "playwright/projects/fibu-book5/testdata/README.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/manufacturing-001/MANUFACTURING-001-result.json",
+    "playwright/projects/fibu-book5/evidence/manufacturing-003/MANUFACTURING-003-result.json",
+    "playwright/projects/fibu-book5/evidence/manufacturing-005/MANUFACTURING-005-result.json",
+    "playwright/projects/fibu-book5/testdata/masterdata/items.json",
+    "playwright/projects/fibu-book5/testdata/masterdata/process-cases.json"
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": false,
+  "statePatch": {},
+  "nextCase": "MANUFACTURING-007-BOM-ROUTING-UI-FIRST-PREFLIGHT",
+  "nextStep": "Run a direct-page, read-only UI preflight for BOM-RM-M100, ROUTE-M100, Work Center 100 and RM-M100 item setup fields before any Manufacturing setup change."
+}
