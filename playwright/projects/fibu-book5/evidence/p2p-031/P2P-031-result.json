@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "caseId": "P2P-031-PURCHASE-JOURNAL-PREVIEW-RESULT-REVIEW",
+  "source": "local-review-of-p2p-030-preview-evidence",
+  "resultStatus": "observed",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "sourceCompany": "RM-DEMO",
+  "sourceCase": "P2P-030-PURCHASE-JOURNAL-EXTERNAL-DOCUMENT-PREVIEW-GATE",
+  "bcRun": false,
+  "playwrightRun": false,
+  "posted": false,
+  "previewPosting": false,
+  "setupChanges": [],
+  "changedRecords": [],
+  "postedRecords": [],
+  "reviewedEvidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/p2p-030/P2P-030-result.json",
+    "playwright/projects/fibu-book5/evidence/p2p-030/060-after-preview-click-page-text.txt"
+  ],
+  "previewEntryTypeClassification": {
+    "postingPreviewOpened": true,
+    "visibleEntryTypes": [
+      {
+        "entryType": "G/L Entry",
+        "count": 2,
+        "meaning": "Sachpostenwirkung ist in der Vorschau angelegt."
+      },
+      {
+        "entryType": "Vendor Ledger Entry",
+        "count": 1,
+        "meaning": "Kreditorenpostenwirkung ist in der Vorschau angelegt."
+      },
+      {
+        "entryType": "Detailed Vendor Ledg. Entry",
+        "count": 1,
+        "meaning": "Detaillierter Kreditorenposten/Ausgleichs-/Detailwirkung ist in der Vorschau angelegt."
+      }
+    ],
+    "visibleAmountsOrAccounts": false,
+    "detailRowsExpanded": false
+  },
+  "decision": {
+    "status": "approve-separate-controlled-posting-case",
+    "reason": "P2P-030 proved a clean Journal Check, required External Document No., unique Preview Posting route and expected posting preview entry types. The remaining gap is not another action-discovery loop, but a separately gated controlled lab posting with post-entry trace, because Preview detail amounts/accounts were not expanded in P2P-030.",
+    "selectedNextCase": "P2P-032-PURCHASE-JOURNAL-CONTROLLED-POSTING-TRACE",
+    "rejectedNextSteps": [
+      "repeat P2P-030 Preview route without new detail-expansion hypothesis",
+      "claim German final proof from RM-DEMO",
+      "book without post-entry trace"
+    ]
+  },
+  "proves": [
+    "P2P-030 is sufficient as a no-post Preview Posting gate for Purchase Journal in RM-DEMO.",
+    "The preview entry types are visible and relevant for P2P lab understanding.",
+    "A controlled posting case is now justified only if it includes post-dialog evidence and Vendor/G-L/Detailed Vendor Ledger trace."
+  ],
+  "notProved": [
+    "Preview detail amounts and accounts were not expanded in P2P-030.",
+    "No Purchase Journal posting happened in P2P-031.",
+    "No German final proof."
+  ],
+  "blockedBy": [],
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "safeToFinalizeState": false,
+  "requiresReview": false,
+  "statePatch": {},
+  "nextStep": "Run P2P-032 as a separate controlled RM-DEMO lab posting case only if it recreates the clean P2P-030 journal line, captures the Post dialog before confirmation and traces Vendor Ledger, Detailed Vendor Ledger and G/L Entries after posting."
+}

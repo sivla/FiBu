@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-29T03:01:00.000Z",
+  "updatedAt": "2026-06-29T03:34:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "p2p",
-  "activeCase": "P2P-031-PURCHASE-JOURNAL-PREVIEW-RESULT-REVIEW",
-  "active_case_file": ".agent/state/cases/p2p-031-purchase-journal-preview-result-review.json",
-  "lastReferenceCase": "P2P-030-PURCHASE-JOURNAL-EXTERNAL-DOCUMENT-PREVIEW-GATE",
-  "lastReferenceCaseFile": ".agent/state/cases/p2p-030-purchase-journal-external-document-preview-gate.json",
+  "activeCase": "P2P-032-PURCHASE-JOURNAL-CONTROLLED-POSTING-TRACE",
+  "active_case_file": ".agent/state/cases/p2p-032-purchase-journal-controlled-posting-trace.json",
+  "lastReferenceCase": "P2P-031-PURCHASE-JOURNAL-PREVIEW-RESULT-REVIEW",
+  "lastReferenceCaseFile": ".agent/state/cases/p2p-031-purchase-journal-preview-result-review.json",
   "mode": "bc-specialist-labor-book-production",
-  "requiresStrongModel": true,
+  "requiresStrongModel": false,
   "requiredPreflightChecks": [
     "agent:preflight",
     "agent:state:validate",
@@ -40,7 +40,7 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "Review P2P-030 Preview Posting entries and decide next gated P2P route.",
+  "nextStep": "Run P2P-032 as a separately gated controlled RM-DEMO Purchase Journal posting with post-dialog evidence and Vendor/G-L/Detailed Vendor Ledger trace.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/bank-payments-labor-draft.md",
     "area": "bankPayments",
@@ -1851,5 +1851,32 @@
     "mustRecreateInFinalSandbox": true,
     "finalScreenshotNeeded": true,
     "nextStep": "Review Preview Posting entries and decide whether separate no-post detail trace or controlled posting trace is justified."
+  },
+  "latestP2P031PurchaseJournalPreviewResultReview": {
+    "caseId": "P2P-031-PURCHASE-JOURNAL-PREVIEW-RESULT-REVIEW",
+    "status": [
+      "labor-sufficient-for-book-draft",
+      "preview-result-reviewed",
+      "controlled-posting-case-approved",
+      "needs-german-final-rebuild"
+    ],
+    "sourceInstance": "MCP_1_20260210",
+    "sourceCompany": "RM-DEMO",
+    "bcRun": false,
+    "playwrightRun": false,
+    "posted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "apiShortcut": false,
+    "resultPath": "playwright/projects/fibu-book5/evidence/p2p-031/P2P-031-result.json",
+    "evidencePath": "playwright/projects/fibu-book5/evidence/p2p-031/",
+    "reviewedSourceCase": "P2P-030-PURCHASE-JOURNAL-EXTERNAL-DOCUMENT-PREVIEW-GATE",
+    "decision": "P2P-030 is accepted as no-post Preview gate; approve separate controlled Purchase Journal posting case only with post-dialog evidence and Vendor/G-L/Detailed Vendor Ledger trace.",
+    "selectedNextCase": "P2P-032-PURCHASE-JOURNAL-CONTROLLED-POSTING-TRACE",
+    "bookEffect": "P2P lab clickguide may explain expected Preview entry types, but amounts/accounts and posted effects require the separate P2P-032 trace.",
+    "migrationRelevance": "needed-for-german-final",
+    "mustRecreateInFinalSandbox": true,
+    "finalScreenshotNeeded": true,
+    "nextStep": "Run P2P-032 controlled posting trace. Stop before posting if any preflight, Preview or Post dialog gate is not visibly satisfied."
   }
 }

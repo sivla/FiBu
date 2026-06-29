@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "caseId": "P2P-032-PURCHASE-JOURNAL-CONTROLLED-POSTING-TRACE",
+  "title": "Purchase Journal controlled posting with ledger trace",
+  "status": "planned",
+  "taskClass": "wizard_work",
+  "modelClass": "gpt-5.4-high",
+  "usageLogRequired": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "p2p-purchase-journal-controlled-posting-trace",
+  "sourceCase": "P2P-031-PURCHASE-JOURNAL-PREVIEW-RESULT-REVIEW",
+  "purpose": "Recreate the clean P2P-030 Purchase Journal line, confirm Preview Posting once, then perform exactly one controlled RM-DEMO lab posting only if the Post dialog is visible and trace Vendor Ledger, Detailed Vendor Ledger and G/L Entries.",
+  "allowedActions": [
+    "open-business-central-if-instance-and-company-match",
+    "run-playwright-if-case-preflight-passes",
+    "create-controlled-purchase-journal-line",
+    "run-journal-check",
+    "preview-posting",
+    "open-post-dialog",
+    "post-exactly-once-if-dialog-and-gates-pass",
+    "trace-vendor-ledger-entries",
+    "trace-detailed-vendor-ledger-entries",
+    "trace-gl-entries",
+    "write-evidence",
+    "update-state"
+  ],
+  "defaultLockedActionsUnlocked": [
+    "preview-posting",
+    "post"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "setup-change",
+    "api-shortcut",
+    "post-without-preview",
+    "post-without-dialog-screenshot-or-page-text",
+    "post-more-than-once",
+    "claim-german-final-proof",
+    "book-claim-without-evidence"
+  ],
+  "safetyGates": [
+    "instance-must-be-MCP_1_20260210",
+    "company-must-be-RM-DEMO",
+    "journal-line-document-no-must-be-unique",
+    "external-document-no-must-be-filled",
+    "journal-check-must-show-zero-issues",
+    "preview-posting-must-show-G-L-Entry-and-Vendor-Ledger-Entry",
+    "post-dialog-must-be-visible-before-confirmation",
+    "post-confirmation-must-be-clicked-at-most-once",
+    "post-entry-trace-required"
+  ],
+  "expectedEvidence": [
+    "pre-post journal line values",
+    "Journal Check 0 Issues",
+    "Preview Posting entry types",
+    "Post dialog before confirmation",
+    "posting result text",
+    "Vendor Ledger Entries filtered by document number",
+    "Detailed Vendor Ledger Entries filtered by document number or vendor context",
+    "G/L Entries filtered by document number"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "targetGermanCompanyImpact": "German final P2P must recreate the controlled purchase journal posting with German accounts, posting groups, tax setup and screenshots.",
+  "finalScreenshotNeeded": true,
+  "nextStep": "Implement or run the controlled P2P-032 posting trace. Stop before posting if any gate is not visibly satisfied."
+}
