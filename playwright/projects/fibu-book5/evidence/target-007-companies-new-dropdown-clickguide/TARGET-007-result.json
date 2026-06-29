@@ -1,0 +1,150 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-007-COMPANIES-NEW-DROPDOWN-CLICKGUIDE",
+  "source": "playwright-universaarl-target",
+  "resultStatus": "observed",
+  "startedAt": "2026-06-29T20:42:05.863Z",
+  "completedAt": "2026-06-29T20:42:11.487Z",
+  "instance": "playthru",
+  "primaryCompany": "UNIVERSAARL-DE",
+  "activeCompany": "CRONUS DE shell context before UNIVERSAARL-DE exists",
+  "legalName": "Universaarl GmbH",
+  "currentUrl": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=357&company=CRONUS+DE",
+  "actionsTaken": [
+    "Opened Companies / Mandanten page 357 in playthru.",
+    "Clicked the small dropdown arrow next to Neu.",
+    "Captured dropdown context for click guide."
+  ],
+  "actionsNotTaken": [
+    "Did not click main Neu in this case.",
+    "Did not select Neues Unternehmen erstellen.",
+    "Did not select Kopieren.",
+    "Did not select Testunternehmen.",
+    "Did not enter company values.",
+    "Did not save, confirm, post, preview or switch company."
+  ],
+  "flags": {
+    "noCompanyCreated": true,
+    "noCompanyValueEntered": true,
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noSearch": true,
+    "dropdownOnly": true
+  },
+  "observed": {
+    "beforeText": "CRONUS DE\nMandanten:\nNeu\nKopieren\nKeine personlichen Daten zum Unternehmensnamen hinzufugen, da dies nicht als eingeschrankte Daten behandelt wird\nName\nAnzeigename\nTestunternehmen\nMy Company\nListe mit Titel Mandanten hat jetzt 2 Artikel",
+    "afterText": "CRONUS DE\nMandanten:\nNeu\nKopieren\nKeine personlichen Daten zum Unternehmensnamen hinzufugen, da dies nicht als eingeschrankte Daten behandelt wird\nName\nAnzeigename\nTestunternehmen\nMy Company\nNeues Unternehmen erstellen\nListe mit Titel Mandanten hat jetzt 2 Artikel",
+    "dropdown": {
+      "label": "geometry-fallback-splitbutton-next-to-Neu",
+      "text": "",
+      "ariaLabel": "",
+      "title": "",
+      "role": "geometry-fallback",
+      "tag": "coordinate",
+      "x": 575,
+      "y": 103,
+      "width": 24,
+      "height": 28,
+      "clickX": 580,
+      "clickY": 111
+    },
+    "dropdownDetection": "geometry-fallback",
+    "menuLabels": [
+      "Testunternehmen | Sortieren nach 'Testunternehmen'",
+      "Menu fur Testunternehmen offnen | Menu offnen",
+      "Neu | Neu | Erstellen Sie einen neuen Eintrag.",
+      "Neues Unternehmen erstellen | Neues Unternehmen erstellen | Erhalten Sie Unterstutzung beim Erstellen eines neuen Unternehmens."
+    ],
+    "hasMainNew": true,
+    "hasCopy": false,
+    "hasTestCompany": true,
+    "hasCreateNewCompanyGuide": true,
+    "screenshot": "playwright/projects/fibu-book5/img/target-007-010-companies-new-dropdown-open.png"
+  },
+  "proved": [
+    "Companies / Mandanten page opens in playthru.",
+    "The small arrow next to Neu in the Mandanten action bar required a documented geometry fallback; screenshot QA remains mandatory.",
+    "The dropdown/related-action context is visible and recorded for the click guide.",
+    "Testunternehmen is visible in or near the Companies context.",
+    "Neues Unternehmen erstellen is visible in the Neu dropdown."
+  ],
+  "notProved": [
+    "UNIVERSAARL-DE was not created.",
+    "No direct save of the blank row was performed.",
+    "No Company Information or setup was proven."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {},
+  "bookImpact": {
+    "draftOnly": true,
+    "beginnerTextReady": true,
+    "reason": "This is a usable clickguide screenshot for explaining main Neu versus dropdown alternatives."
+  },
+  "nextStepDecision": {
+    "currentCase": "TARGET-007-COMPANIES-NEW-DROPDOWN-CLICKGUIDE",
+    "plannedNextCaseBeforeReview": "TARGET-007-MY-SETTINGS-COMPANY-LOOKUP-CREATE-NEW-COMPANY-ROUTE",
+    "lastEvidenceSummary": "TARGET-002 already showed that the main Neu action opens a blank new row. TARGET-004 mapped the arrow next to Neu in JSON but not with a useful screenshot. This case captures the visible dropdown for the click guide.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "The practical route is Mandanten -> Neu; My Settings is company context, not the best creation path. The dropdown is still useful to explain alternatives.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-008-COMPANIES-NEW-ROW-FIELD-SAVE-GATE",
+        "status": "ready-next",
+        "reason": "The next useful step is to enter UNIVERSAARL-DE into the blank row and save only if the row field/save semantics are clear."
+      },
+      {
+        "caseId": "TARGET-004-FOUNDATION-SETUP-READINESS",
+        "status": "ready-after-current",
+        "reason": "Only meaningful after UNIVERSAARL-DE exists."
+      },
+      {
+        "caseId": "TARGET-005-NUMBER-SERIES-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Needs target company context and foundation setup."
+      },
+      {
+        "caseId": "TARGET-006-POSTING-GROUPS-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Posting groups depend on created company and setup baseline."
+      },
+      {
+        "caseId": "TARGET-007-DIMENSIONS-FOUNDATION",
+        "status": "ready-after-current",
+        "reason": "Can follow foundation setup; not before company exists."
+      }
+    ],
+    "queueChangesMade": [
+      "Replace My Settings as next practical creation route with Companies -> Neu row field/save gate."
+    ],
+    "selectedNextCase": "TARGET-008-COMPANIES-NEW-ROW-FIELD-SAVE-GATE",
+    "whySelectedNextCaseIsBest": "It follows the visible Business Central UI: the main Neu action creates a blank row; the dropdown only explains alternatives.",
+    "risksBeforeNextCase": [
+      "Saving creates a company and must be intentional.",
+      "Copy/Testunternehmen must not be selected.",
+      "A blank row must be recognized before entering values."
+    ],
+    "requiredPreparation": [
+      "Open Mandanten page directly in playthru.",
+      "Click main Neu only after screenshot/decision.",
+      "Enter Name UNIVERSAARL-DE and display name only if target row is active.",
+      "Stop on any error banner and document it."
+    ]
+  },
+  "nextStep": "TARGET-008-COMPANIES-NEW-ROW-FIELD-SAVE-GATE",
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/target-007-companies-new-dropdown-clickguide/TARGET-007-result.json",
+    "playwright/projects/fibu-book5/evidence/target-007-companies-new-dropdown-clickguide/TARGET-007.md",
+    "playwright/projects/fibu-book5/evidence/target-007-companies-new-dropdown-clickguide/target-007-010-companies-new-dropdown-open.screenshot.json"
+  ],
+  "validationCommands": [
+    "npm run agent:preflight",
+    "npm run fibu:target:companies-new-dropdown-clickguide",
+    "npm run check:encoding",
+    "git diff --check"
+  ]
+}

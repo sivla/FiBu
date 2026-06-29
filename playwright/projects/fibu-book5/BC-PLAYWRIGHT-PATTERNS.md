@@ -32,6 +32,8 @@ Diese Datei sammelt wiederverwendbare Muster aus belegten Laeufen. Sie ist keine
 - `FIXEDASSETS-130` verschaerft die Tell-Me-Regel: Suchoverlay-Text wie `Nach <Begriff> suchen` oder `keine Vorschlaege verfuegbar` darf niemals als geoeffnete Page/Wizard zaehlen. Ein Treffer ist erst dann ein Seitenbeweis, wenn das Suchoverlay geschlossen ist und echte Page-Felder, Seitentitel oder fachliche Controls sichtbar sind. Screenshots mit Tell-Me-Overlay sind Navigation-/Blocker-Evidence und muessen als `rejected/do-not-use-as-page-proof` markiert werden.
 - Bei gemischter deutscher/englischer UI beide Begriffe als Suchhilfe dokumentieren, aber die Buchsprache deutsch halten.
 - Wenn Microsoft Learn oder Supportseiten im Browser aufpoppen, gilt das nicht als BC-Nachweis; Business-Central-Seiten muessen im BC-Kontext bleiben.
+- `TARGET-007` ergaenzt fuer BC-Splitbuttons: Der visuelle Pfeil neben einem Button wie `Neu` kann in der Mandanten-Aktionsleiste sichtbar sein, ohne als stabiler Button mit `aria-label`/`title` in der DOM-Kandidatenliste aufzutauchen. In diesem Fall ist ein enger Geometrie-Fallback nur erlaubt, wenn Page, Toolbar, Zielbutton und Screenshot-Nachweis zusammen dokumentiert werden. Geometrie allein ist kein Beweis; das Retake-Bild muss zeigen, dass wirklich das gewuenschte Dropdown oder der gewuenschte UI-Zustand sichtbar ist.
+- Fuer jeden Buch-/Clickguide-Screenshot gilt ab `TARGET-007`: Nach dem Test muss Screenshot-QA stattfinden. Das Bild wird visuell geprueft und die Evidence nennt, welche Page, welche Company, welche Controls, welche sichtbaren Eintraege und welche Grenzen tatsaechlich im Bild erkennbar sind. Ein gruener Playwright-Test ersetzt diese Bildpruefung nicht.
 
 ## Page-ID
 

@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-008-COMPANIES-NEW-ROW-FIELD-SAVE-GATE",
+  "title": "Companies page main Neu row field and save gate",
+  "instance": "playthru",
+  "targetCompany": "UNIVERSAARL-DE",
+  "legalName": "Universaarl GmbH",
+  "workType": "controlled-company-create-save-gate",
+  "status": "planned",
+  "dependsOn": [
+    "TARGET-007-COMPANIES-NEW-DROPDOWN-CLICKGUIDE"
+  ],
+  "goal": "Use the main Neu button on Mandanten, enter UNIVERSAARL-DE / Universaarl GmbH only into a clearly active blank row, and save only if the UI semantics are unambiguous.",
+  "allowedActionsWhenGatePasses": [
+    "open-playthru-companies-page-by-page-id",
+    "click-main-Neu-button",
+    "enter-target-company-values-in-active-new-row",
+    "save-only-if-active-row-and-fields-are-clear",
+    "stop-and-document-error-if-save-fails",
+    "verify-UNIVERSAARL-DE-visible-after-save"
+  ],
+  "defaultLockedActionsUnlockedForThisCase": [
+    "new-draft-or-record",
+    "edit-record",
+    "setup-change-only-if-required-by-company-create",
+    "dialog-confirmation-only-if-message-is-company-create-save-and-not-copy-test-demo"
+  ],
+  "forbiddenActions": [
+    "select-Kopieren",
+    "select-Testunternehmen",
+    "copy-CRONUS-or-demo-company",
+    "api-shortcut",
+    "company-switch-before-created-company-proof",
+    "wizard-finish-without-data-basis-proof",
+    "tell-me-search-fallback"
+  ],
+  "mustCheckBeforeAction": [
+    "playthru-instance-url",
+    "Companies-page-357-context",
+    "UNIVERSAARL-DE-not-already-visible",
+    "main-Neu-opens-active-blank-row",
+    "field-targets-for-name-and-display-name",
+    "save-action-or-autosave-behavior",
+    "error-banner-capture"
+  ],
+  "evidenceTarget": "playwright/projects/fibu-book5/evidence/target-008-companies-new-row-field-save-gate/",
+  "migrationRelevance": "needed-for-german-final",
+  "finalScreenshotNeeded": true,
+  "nextSafeAction": "Open Mandanten, click main Neu, enter target values only if active row is clear, then verify or block with error evidence.",
+  "preflightTruth": {
+    "target007DropdownQa": "Pfeil neben Neu shows dropdown entries Neu and Neues Unternehmen erstellen; no action selected.",
+    "target002MainNewTruth": "Main Neu opens a blank unsaved Companies row.",
+    "forbiddenRoutes": [
+      "Kopieren",
+      "Testunternehmen",
+      "CRONUS copy",
+      "API shortcut",
+      "blind Tell-Me/search fallback"
+    ]
+  }
+}

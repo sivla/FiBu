@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-007-COMPANIES-NEW-DROPDOWN-CLICKGUIDE",
+  "title": "Companies page Neu dropdown click guide",
+  "instance": "playthru",
+  "targetCompany": "UNIVERSAARL-DE",
+  "legalName": "Universaarl GmbH",
+  "workType": "readonly-clickguide-before-company-create",
+  "status": "observed",
+  "dependsOn": [
+    "TARGET-002-UNIVERSAARL-DE-COMPANY-CREATION",
+    "TARGET-006-COMPANY-CREATION-SPECIFIC-ASSISTED-SETUP-ROUTE"
+  ],
+  "correctionReason": "Use the practical beginner route Mandanten -> Neu. The arrow next to Neu is documented only to explain alternatives such as Kopieren/Testunternehmen.",
+  "goal": "Open Companies / Mandanten in playthru and capture the dropdown next to Neu without selecting an item or changing data.",
+  "allowedActionsWhenGatePasses": [
+    "open-playthru-companies-page-by-page-id",
+    "click-small-dropdown-arrow-next-to-Neu",
+    "capture-screenshot-and-result-json",
+    "update-clickguide-and-atlas"
+  ],
+  "forbiddenActions": [
+    "click-main-Neu-in-this-case",
+    "select-Kopieren",
+    "select-Testunternehmen",
+    "enter-company-values",
+    "save-company",
+    "company-switch",
+    "api-shortcut",
+    "tell-me-search-fallback"
+  ],
+  "mustCheckBeforeAction": [
+    "playthru-instance-url",
+    "Companies-page-357-context",
+    "visible-Neu-main-button",
+    "visible-related-actions-arrow-for-Neu",
+    "no-dialog-confirmation"
+  ],
+  "evidenceTarget": "playwright/projects/fibu-book5/evidence/target-007-companies-new-dropdown-clickguide/",
+  "migrationRelevance": "needed-for-german-final",
+  "finalScreenshotNeeded": true,
+  "nextSafeAction": "Run the dropdown-only Playwright clickguide and do not create a company.",
+  "nextCase": "TARGET-008-COMPANIES-NEW-ROW-FIELD-SAVE-GATE",
+  "completedAt": "2026-06-29T20:42:11.487Z",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-007-companies-new-dropdown-clickguide/TARGET-007-result.json",
+  "screenshots": [
+    "playwright/projects/fibu-book5/img/target-007-010-companies-new-dropdown-open.png"
+  ],
+  "proved": [
+    "Companies / Mandanten page opens in playthru.",
+    "The small arrow next to Neu in the Mandanten action bar required a documented geometry fallback; screenshot QA remains mandatory.",
+    "The dropdown/related-action context is visible and recorded for the click guide.",
+    "Testunternehmen is visible in or near the Companies context.",
+    "Neues Unternehmen erstellen is visible in the Neu dropdown."
+  ],
+  "notProved": [
+    "UNIVERSAARL-DE was not created.",
+    "No direct save of the blank row was performed.",
+    "No Company Information or setup was proven."
+  ],
+  "screenshotQa": {
+    "status": "passed",
+    "visiblePage": "Mandanten / Companies, Page 357",
+    "visibleControls": [
+      "Neu",
+      "Pfeil neben Neu",
+      "Dropdown entries: Neu, Neues Unternehmen erstellen"
+    ],
+    "visibleContext": "playthru environment, CRONUS DE shell context before UNIVERSAARL-DE exists",
+    "doesNotShow": [
+      "saved UNIVERSAARL-DE company",
+      "selected dropdown item",
+      "Company Information setup"
+    ]
+  }
+}

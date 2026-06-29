@@ -1,23 +1,55 @@
 {
   "schemaVersion": 1,
-  "runId": "TARGET-006-COMPANY-CREATION-SPECIFIC-ASSISTED-SETUP-ROUTE",
-  "date": "2026-06-29",
-  "workType": "playwright-route-discovery-and-source-route-decision",
-  "branch": "codex/token-efficient-autopilot-state",
+  "updatedAt": "2026-06-29T20:43:31.482Z",
+  "caseId": "TARGET-007-COMPANIES-NEW-DROPDOWN-CLICKGUIDE",
+  "status": "observed",
   "instance": "playthru",
-  "company": "UNIVERSAARL-DE",
-  "bcRun": true,
-  "playwrightRun": true,
-  "posted": false,
-  "previewPosting": false,
-  "setupChanged": false,
-  "companySwitched": false,
-  "bookDraftChanged": true,
-  "resultStatus": "blocked-route-opened-but-company-creation-data-basis-not-proven",
-  "summary": "TARGET-006 opened Assisted Setup Page 1801 in playthru and clicked the visible Unternehmen einrichten row for route discovery only. No Finish/Create/OK/Save, no setup change, no company switch and no company creation occurred. Research shows this generic row is not the best company creation path; Microsoft points to the Create New Company assisted setup guide from Companies or the Company lookup in My Settings.",
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-006-company-creation-specific-assisted-setup-route/TARGET-006-result.json",
-  "evidencePath": "playwright/projects/fibu-book5/evidence/target-006-company-creation-specific-assisted-setup-route/",
-  "nextCase": "TARGET-007-MY-SETTINGS-COMPANY-LOOKUP-CREATE-NEW-COMPANY-ROUTE",
-  "nextStep": "Map the My Settings / Company lookup Create New Company route without Finish/Create/OK/Save.",
-  "updatedAt": "2026-06-29T20:20:00.000Z"
+  "company": "UNIVERSAARL-DE target, CRONUS DE shell context before target company exists",
+  "practicalResult": "Captured Companies / Mandanten action bar with Neu dropdown open. Screenshot QA confirmed visible entries Neu and Neues Unternehmen erstellen.",
+  "bcOrPlaywrightRan": true,
+  "posting": false,
+  "preview": false,
+  "setupChange": false,
+  "companyCreated": false,
+  "companySwitch": false,
+  "draftCreated": false,
+  "apiShortcut": false,
+  "bookChange": "bookdraft/clickguide only, no final bookmaster change",
+  "evidence": [
+    "playwright/projects/fibu-book5/evidence/target-007-companies-new-dropdown-clickguide/TARGET-007-result.json",
+    "playwright/projects/fibu-book5/evidence/target-007-companies-new-dropdown-clickguide/TARGET-007.md",
+    "playwright/projects/fibu-book5/evidence/target-007-companies-new-dropdown-clickguide/target-007-010-companies-new-dropdown-open.screenshot.json",
+    "playwright/projects/fibu-book5/img/target-007-010-companies-new-dropdown-open.png"
+  ],
+  "screenshotQa": {
+    "status": "passed",
+    "visiblePage": "Mandanten / Companies, Page 357",
+    "visibleControls": [
+      "Neu",
+      "Pfeil neben Neu",
+      "Dropdown entries: Neu, Neues Unternehmen erstellen"
+    ],
+    "visibleContext": "playthru environment, CRONUS DE shell context before UNIVERSAARL-DE exists",
+    "doesNotShow": [
+      "saved UNIVERSAARL-DE company",
+      "selected dropdown item",
+      "Company Information setup"
+    ]
+  },
+  "nextCaseBeforeReview": "TARGET-007-MY-SETTINGS-COMPANY-LOOKUP-CREATE-NEW-COMPANY-ROUTE",
+  "selectedNextCase": "TARGET-008-COMPANIES-NEW-ROW-FIELD-SAVE-GATE",
+  "reasonNextCase": "Direct Mandanten -> Neu route is now the practical route; TARGET-008 must decide whether to use main Neu or the visible Neues Unternehmen erstellen route with a Smart Decision Card.",
+  "checksPlanned": [
+    "agent:preflight",
+    "agent:context",
+    "agent:dry-run",
+    "agent:run-plan",
+    "target-007 playwright test",
+    "result-normalize",
+    "state-finalize plan",
+    "check:encoding",
+    "git diff --check"
+  ],
+  "runId": "TARGET-007-COMPANIES-NEW-DROPDOWN-CLICKGUIDE",
+  "nextStep": "TARGET-008-COMPANIES-NEW-ROW-FIELD-SAVE-GATE: decide and execute the safest company creation route using the main Neu button or the visible Neues Unternehmen erstellen dropdown item only with Smart Decision Card, screenshot QA, and no copy/test/demo route."
 }

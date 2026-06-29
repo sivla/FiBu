@@ -9,7 +9,7 @@
     "path": "playwright/projects/fibu-book5/BC-FULL-PLAYTHROUGH-CATALOG.md",
     "activeTarget": "Universaarl",
     "selectionRule": "Use the catalog to pick the next Universaarl case; started or blocked foundation cases outrank later process modules.",
-    "nextCatalogCase": "TARGET-006-COMPANY-CREATION-SPECIFIC-ASSISTED-SETUP-ROUTE",
+    "nextCatalogCase": "TARGET-008-COMPANIES-NEW-ROW-FIELD-SAVE-GATE",
     "shopify": "excluded-shopify"
   },
   "legacyQueue": {
@@ -164,9 +164,31 @@
       ]
     },
     {
+      "id": "TARGET-007-COMPANIES-NEW-DROPDOWN-CLICKGUIDE",
+      "order": 3.85,
+      "status": "done",
+      "category": "target",
+      "expectedImpact": "book-clickguide-candidate",
+      "evidenceTarget": "playwright/projects/fibu-book5/evidence/target-007-companies-new-dropdown-clickguide/",
+      "mayWorkEffectively": false,
+      "goal": "Capture the dropdown arrow next to Neu on Mandanten without selecting an action or creating a company.",
+      "migrationRelevance": "needed-for-german-final",
+      "sourceCompany": "current-playthru-shell-company-before-universaarl-exists",
+      "targetCompany": "UNIVERSAARL-DE",
+      "dependsOn": [
+        "TARGET-006-COMPANY-CREATION-SPECIFIC-ASSISTED-SETUP-ROUTE"
+      ],
+      "lookaheadStatus": "ready-next",
+      "lookaheadReason": "Needed for the beginner clickguide before the effective main Neu save gate.",
+      "completedAt": "2026-06-29T20:42:11.487Z",
+      "result": "Dropdown next to Neu was captured and screenshot-QA confirmed visible entries Neu and Neues Unternehmen erstellen. No company was created.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-007-companies-new-dropdown-clickguide/TARGET-007-result.json",
+      "screenshotQa": "passed"
+    },
+    {
       "id": "TARGET-007-MY-SETTINGS-COMPANY-LOOKUP-CREATE-NEW-COMPANY-ROUTE",
       "order": 3.85,
-      "status": "pending",
+      "status": "obsolete",
       "category": "target",
       "expectedImpact": "high-impact",
       "evidenceTarget": "playwright/projects/fibu-book5/evidence/target-007-my-settings-company-lookup-create-new-company-route/",
@@ -185,8 +207,29 @@
         "mustCloseOrClassifyBeforeDone": true,
         "objectCatalogFocus": "My Settings / Company lookup / Create New Company guide"
       },
+      "lookaheadStatus": "replace-with-better-case",
+      "lookaheadReason": "Microsoft documents Create New Company through Companies or the Company field lookup in My Settings; this avoids repeating the generic Unternehmen einrichten row.",
+      "result": "Replaced by the practical Companies -> Neu dropdown clickguide and main Neu save gate. My Settings remains secondary context, not the first creation route.",
+      "replacedBy": "TARGET-007-COMPANIES-NEW-DROPDOWN-CLICKGUIDE",
+      "completedAt": "2026-06-29T20:35:28.253Z"
+    },
+    {
+      "id": "TARGET-008-COMPANIES-NEW-ROW-FIELD-SAVE-GATE",
+      "order": 3.9,
+      "status": "pending",
+      "category": "target",
+      "expectedImpact": "high-impact",
+      "evidenceTarget": "playwright/projects/fibu-book5/evidence/target-008-companies-new-row-field-save-gate/",
+      "mayWorkEffectively": true,
+      "goal": "Use the main Neu button on Mandanten with a controlled field/save gate for UNIVERSAARL-DE.",
+      "migrationRelevance": "needed-for-german-final",
+      "sourceCompany": "current-playthru-shell-company-before-universaarl-exists",
+      "targetCompany": "UNIVERSAARL-DE",
+      "dependsOn": [
+        "TARGET-007-COMPANIES-NEW-DROPDOWN-CLICKGUIDE"
+      ],
       "lookaheadStatus": "ready-next",
-      "lookaheadReason": "Microsoft documents Create New Company through Companies or the Company field lookup in My Settings; this avoids repeating the generic Unternehmen einrichten row."
+      "lookaheadReason": "TARGET-007 proved the dropdown and TARGET-002 proved main Neu opens a blank row; next practical step is controlled creation/save gate."
     },
     {
       "id": "TARGET-004-FOUNDATION-SETUP-READINESS",
@@ -739,7 +782,7 @@
       "legacyReferenceAllowedOnlyForLearning": true
     }
   ],
-  "lastUpdated": "2026-06-29T20:20:00.000Z",
+  "lastUpdated": "2026-06-29T20:43:31.482Z",
   "zeroOpenQuestionsGate": {
     "active": true,
     "policyPath": "playwright/projects/fibu-book5/BC-ZERO-OPEN-QUESTIONS-POLICY.md",
@@ -753,52 +796,54 @@
     "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",
     "lookaheadRequiredBeforeRun": true,
     "latestDecisionCard": {
-      "currentCase": "TARGET-006-COMPANY-CREATION-SPECIFIC-ASSISTED-SETUP-ROUTE",
-      "plannedNextCaseBeforeReview": "TARGET-006-COMPANY-CREATION-SPECIFIC-ASSISTED-SETUP-ROUTE",
-      "lastEvidenceSummary": "TARGET-001 proved playthru/Companies context read-only and UNIVERSAARL-DE not visible. TARGET-002 opened an unsaved blank Companies row and stopped. TARGET-003 did not find a safe exact Create New Company action. TARGET-004 scoped menu discovery did not expose a safe company creation route. TARGET-005 proved direct Assisted Setup Page 1801 opens, but no blank/setup-only company creation route was proven.",
-      "isPlannedNextCaseStillSensible": true,
-      "reason": "UNIVERSAARL-DE still does not exist, direct row save/copy/test company/CRONUS/API are rejected, and the next dependency for all foundation/setup/process cases is a source-backed safe UI route for company creation.",
+      "currentCase": "TARGET-007-COMPANIES-NEW-DROPDOWN-CLICKGUIDE",
+      "plannedNextCaseBeforeReview": "TARGET-007-MY-SETTINGS-COMPANY-LOOKUP-CREATE-NEW-COMPANY-ROUTE",
+      "lastEvidenceSummary": "TARGET-002 already showed that the main Neu action opens a blank new row. TARGET-004 mapped the arrow next to Neu in JSON but not with a useful screenshot. This case captures the visible dropdown for the click guide.",
+      "isPlannedNextCaseStillSensible": false,
+      "reason": "The practical route is Mandanten -> Neu; My Settings is company context, not the best creation path. The dropdown is still useful to explain alternatives.",
       "lookaheadReviewed": [
         {
-          "caseId": "TARGET-007-MY-SETTINGS-COMPANY-LOOKUP-CREATE-NEW-COMPANY-ROUTE",
+          "caseId": "TARGET-008-COMPANIES-NEW-ROW-FIELD-SAVE-GATE",
           "status": "ready-next",
-          "reason": "TARGET-006 blocked the generic Unternehmen einrichten row; Microsoft-source-backed next route is the Company lookup in My Settings."
+          "reason": "The next useful step is to enter UNIVERSAARL-DE into the blank row and save only if the row field/save semantics are clear."
         },
         {
           "caseId": "TARGET-004-FOUNDATION-SETUP-READINESS",
           "status": "ready-after-current",
-          "reason": "Logical immediately after UNIVERSAARL-DE exists; blocked until company creation succeeds or is replaced by a justified alternative."
+          "reason": "Only meaningful after UNIVERSAARL-DE exists."
         },
         {
           "caseId": "TARGET-005-NUMBER-SERIES-PREFLIGHT",
           "status": "needs-setup-first",
-          "reason": "Needs target company context and likely Company Information/foundation setup visibility first."
+          "reason": "Needs target company context and foundation setup."
         },
         {
           "caseId": "TARGET-006-POSTING-GROUPS-PREFLIGHT",
           "status": "needs-setup-first",
-          "reason": "Posting groups depend on created company and foundation setup baseline."
+          "reason": "Posting groups depend on created company and setup baseline."
         },
         {
           "caseId": "TARGET-007-DIMENSIONS-FOUNDATION",
           "status": "ready-after-current",
-          "reason": "Can follow foundation setup; not before the target company exists."
+          "reason": "Can follow foundation setup; not before company exists."
         }
       ],
       "queueChangesMade": [
-        "Added TARGET-DATA-001..009 and TARGET-LOOKFEEL-001..005 after foundation/process prerequisites; these cases must not overtake TARGET-006 company creation."
+        "Replace My Settings as next practical creation route with Companies -> Neu row field/save gate.",
+        "Set active case to TARGET-008 after TARGET-007 screenshot QA passed."
       ],
-      "selectedNextCase": "TARGET-007-MY-SETTINGS-COMPANY-LOOKUP-CREATE-NEW-COMPANY-ROUTE",
-      "whySelectedNextCaseIsBest": "It follows Microsoft's documented Create New Company entry point without repeating the blocked generic Unternehmen einrichten route.",
+      "selectedNextCase": "TARGET-008-COMPANIES-NEW-ROW-FIELD-SAVE-GATE",
+      "whySelectedNextCaseIsBest": "It follows the visible Business Central UI: the main Neu action creates a blank row; the dropdown only explains alternatives.",
       "risksBeforeNextCase": [
-        "Company creation UI may still only expose copy/test/demo routes.",
-        "A source-backed route may require a different safe entry point than Page 357.",
-        "Any Finish/Save/Create action requires Smart Decision Card and clear data-basis proof."
+        "Saving creates a company and must be intentional.",
+        "Copy/Testunternehmen must not be selected.",
+        "A blank row must be recognized before entering values."
       ],
       "requiredPreparation": [
-        "Review Microsoft Learn/source-backed company creation guidance before effective UI action.",
-        "Do not use direct Companies list-row save, Copy Company, Testunternehmen, CRONUS or API shortcut.",
-        "Stop before Finish/Save/Create if blank/setup-only data basis is not visible and understood."
+        "Open Mandanten page directly in playthru.",
+        "Click main Neu only after screenshot/decision.",
+        "Enter Name UNIVERSAARL-DE and display name only if target row is active.",
+        "Stop on any error banner and document it."
       ]
     }
   }

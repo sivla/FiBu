@@ -23,11 +23,12 @@ Wer in der falschen Company arbeitet, sieht andere Stammdaten und erzeugt andere
 
 Die Seite `Mandanten` zeigt alle Companies, die im Environment vorhanden sind. Sie ist der Startpunkt, wenn eine neue Company angelegt oder eine vorhandene Company geprueft wird.
 
-Auf der Seite sind vor allem drei Aktionen wichtig:
+Auf der Seite sind vor allem diese Aktionen wichtig:
 
 | Aktion | Bedeutung | Einordnung fuer Universaarl |
 | --- | --- | --- |
 | `Neu` | legt eine neue Company oder eine neue Mandantenzeile an | geeignet, wenn eine leere oder kontrollierbare Anlage entsteht |
+| `Neues Unternehmen erstellen` | startet eine gefuehrte Anlage fuer eine neue Company | fachlich interessant, aber erst nach eigenem Sicherheitscheck ausfuehren |
 | `Kopieren` | erstellt eine Company aus einer vorhandenen Company | nur geeignet, wenn die Quelle fachlich passt |
 | `Testunternehmen` | erzeugt eine Demo- oder Testcompany | nicht geeignet als finale Universaarl-Zielwelt, wenn dadurch Demodaten entstehen |
 
@@ -45,7 +46,7 @@ Fuer die Universaarl GmbH ist deshalb eine leere oder setup-nahe Anlage besser a
 
 ## Was beim Klick auf Neu passiert
 
-Auf der Seite `Mandanten` oeffnet `Neu` eine neue, noch nicht gespeicherte Mandantenzeile. Eine leere Zeile ist noch keine fertige Company. Erst wenn ein Name eingetragen und gespeichert wurde, entsteht ein wirksamer neuer Mandant.
+Auf der Seite `Mandanten` ist `Neu` der direkte Einstieg fuer eine neue Company. Der Hauptteil des Buttons beginnt die Neuanlage. Business Central zeigt dann eine neue, noch nicht gespeicherte Mandantenzeile. Eine leere Zeile ist noch keine fertige Company. Erst wenn ein Name eingetragen und gespeichert wurde, entsteht ein wirksamer neuer Mandant.
 
 Vor dem Speichern muessen diese Punkte klar sein:
 
@@ -55,27 +56,32 @@ Vor dem Speichern muessen diese Punkte klar sein:
 - Die sichtbare Aktion speichert wirklich die neue Company und wechselt nicht ungefragt in eine andere Umgebung.
 - Nach dem Speichern erscheint `UNIVERSAARL-DE` in der Mandantenliste.
 
-In der aktuellen `playthru`-Umgebung ist die direkte Listenzeile nicht der saubere Weg fuer die Universaarl-Musterfirma. Business Central zeigt auf der Mandantenliste zwar `Neu`, `Kopieren` und `Testunternehmen`. Eine ausdrueckliche Aktion `Create New Company` ist dort aber noch nicht sichtbar. Deshalb wird an dieser Stelle nicht gespeichert und kein Assistent abgeschlossen.
+Fuer die Universaarl GmbH ist der Hauptbutton `Neu` deshalb der naheliegende Weg. Er beginnt mit einer eigenen Zeile und nicht mit einer Kopie aus einer bestehenden Demofirma.
 
-Fuer die Universaarl GmbH ist das die richtige Vorsicht: Eine neue Company ist der fachliche Ausgangspunkt fuer alle spaeteren Buchungen. Wenn hier versehentlich eine Demo-, Kopier- oder Testcompany entsteht, waeren Konten, Stammdaten und spaetere Screenshots nicht mehr sauber erklaerbar. Der naechste Schritt ist deshalb, die Aktionen und Menues auf der Mandantenliste genauer zu pruefen und nur eine Route zu verwenden, die als leere oder setup-nahe Company-Anlage erkennbar ist.
+## Der Pfeil neben Neu
 
-## Wenn die Menues keine saubere Anlage zeigen
+Neben dem Hauptbutton `Neu` gibt es einen kleinen Pfeil. Dieser Pfeil ist wichtig, weil er nicht dasselbe tut wie der Hauptbutton. Der Hauptbutton startet die neue Zeile. Der Pfeil oeffnet ein Dropdown mit weiteren Aktionen.
 
-Auf der Seite `Mandanten` gibt es neben dem Hauptbutton `Neu` auch kleine Menuepfeile und `Weitere Optionen`. Diese Menues koennen weitere Aktionen sichtbar machen. Fuer die Universaarl GmbH werden sie vorsichtig geoeffnet, ohne einen Eintrag auszufuehren, der Daten speichert oder eine Company kopiert.
+Im geoeffneten Dropdown sind `Neu` und `Neues Unternehmen erstellen` sichtbar. `Neu` bleibt der direkte Einstieg in die Listenanlage. `Neues Unternehmen erstellen` klingt nach einem gefuehrten Anlageweg und ist deshalb fachlich interessant. Weil diese Aktion eine wirksame Anlage starten kann, wird sie nicht nebenbei angeklickt, sondern nur in einem eigenen Schritt mit klarer Entscheidung.
 
-In `playthru` zeigen diese Menues weiterhin keinen eindeutigen, sicheren Pfad `Create New Company`. Sichtbar bleiben vor allem die bekannten Moeglichkeiten rund um `Neu`, `Kopieren`, `Testunternehmen` und die bestehende Demofirma. Damit ist die Entscheidung klar: Wir speichern keine direkte Listenzeile und kopieren keine Demofirma.
+`Kopieren` steht in der Aktionsleiste der Mandantenliste. Es verwendet eine vorhandene Company als Vorlage. Das kann in Projekten sinnvoll sein, wenn die Quelle fachlich passt. Fuer die Universaarl GmbH ist es aber riskant, weil eine Kopie auch fremde Stammdaten, Einstellungen oder Demodaten uebernehmen kann.
 
-Der naechste sinnvolle Weg ist eine quellenbasierte alternative Route. Das kann zum Beispiel eine von Microsoft dokumentierte Einrichtungsseite oder ein klar benannter Assistent sein. Erst wenn dort sichtbar ist, ob eine leere Company, eine setup-nahe Company oder eine Demo-Company entsteht, darf der naechste Schritt vorbereitet werden.
+`Testunternehmen` erstellt eine Demo- oder Testcompany. Das ist zum Ausprobieren nuetzlich, aber nicht die saubere Grundlage fuer eine durchgehende Musterfirma, wenn die Buchungen spaeter aus der Universaarl-Welt erklaert werden sollen.
 
-Fuer den Anwender heisst das: Nicht jeder sichtbare Button ist automatisch der richtige Buchpfad. Bei der Company-Anlage zaehlt nicht nur, dass eine Company entsteht, sondern auch, welche Datenbasis sie bekommt.
+Fuer die Anlage von `UNIVERSAARL-DE` kommen damit zwei saubere Kandidaten in Frage: der Hauptbutton `Neu` und der sichtbare Dropdown-Eintrag `Neues Unternehmen erstellen`. Beide duerfen erst dann ausgefuehrt werden, wenn klar ist, welche Datenbasis entsteht und wie Business Central speichert.
 
-## Unterstuetztes Setup als naechster Einstieg
+## Warum die Alternativen trotzdem wichtig sind
 
-Business Central hat neben der Mandantenliste auch die Seite `Unterstuetztes Setup`. Dort werden Einrichtungsaufgaben gesammelt, zum Beispiel `Unternehmen einrichten` und `Unternehmensdetails eingeben`.
+Ein Anfaenger sieht auf der Seite `Mandanten` mehrere Moeglichkeiten und kann leicht den falschen Weg nehmen. Deshalb lohnt es sich, das Dropdown neben `Neu` einmal bewusst anzusehen.
 
-Diese Seite ist fuer den naechsten Schritt wichtig, weil sie naeher an der von Microsoft beschriebenen Einrichtungslogik liegt als die direkte Listenzeile auf der Mandantenseite. Sie ist aber noch nicht automatisch der fertige Company-Anlagepfad. In der sichtbaren Liste steht noch nicht, ob eine neue Company leer, mit Setupdaten oder mit Beispieldaten angelegt wird.
+Die Regel ist einfach:
 
-Deshalb wird auch hier nicht blind bestaetigt. Zuerst wird die Zeile `Unternehmen einrichten` geoeffnet und gelesen. Erst wenn der Assistent klar zeigt, welche Datenbasis entsteht, kann entschieden werden, ob die Universaarl GmbH darueber angelegt wird.
+- `Neu` beginnt die neue Company direkt in der Mandantenliste.
+- `Neues Unternehmen erstellen` startet wahrscheinlich einen gefuehrten Anlageweg.
+- `Kopieren` uebernimmt eine bestehende Company als Vorlage.
+- `Testunternehmen` kennzeichnet Demo- oder Testbasis.
+
+Fuer dieses Buch soll die Universaarl GmbH eine eigene, nachvollziehbare Company bekommen. Deshalb werden `Neu` und `Neues Unternehmen erstellen` kontrolliert geprueft; Kopier- und Demooptionen werden nur erklaert.
 
 ## Nach der Anlage
 
