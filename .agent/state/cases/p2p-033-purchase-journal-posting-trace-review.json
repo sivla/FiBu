@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "caseId": "P2P-033-PURCHASE-JOURNAL-POSTING-TRACE-REVIEW",
+  "title": "Purchase Journal posting trace review and bookdraft sync decision",
+  "status": "planned",
+  "taskClass": "judge_work",
+  "modelClass": "gpt-5.5-low",
+  "usageLogRequired": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "p2p-purchase-journal-posting-trace-review",
+  "sourceCase": "P2P-032-PURCHASE-JOURNAL-CONTROLLED-POSTING-TRACE",
+  "purpose": "Review the posted P2P-032 Purchase Journal trace and decide what should be synced into P2P lab clickguide/book draft. Do not execute BC in this review case.",
+  "allowedActions": [
+    "read-p2p-032-evidence",
+    "classify-posting-trace",
+    "decide-bookdraft-sync-scope",
+    "write-evidence",
+    "update-state"
+  ],
+  "defaultLockedActions": [
+    "business-central-execution",
+    "playwright-execution",
+    "preview-posting",
+    "posting",
+    "setup-change",
+    "company-switch",
+    "api-shortcut"
+  ],
+  "forbiddenActions": [
+    "post",
+    "ship",
+    "invoice",
+    "ship-and-invoice",
+    "claim-german-final-proof",
+    "book-claim-without-evidence"
+  ],
+  "safetyGates": [
+    "p2p-032-result-must-be-read",
+    "trace-classification-must-separate-labor-from-german-final",
+    "no-bc-execution-in-review-case"
+  ],
+  "expectedEvidence": [
+    "posting trace classification",
+    "bookdraft/clickguide sync decision",
+    "German final rebuild notes"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "targetGermanCompanyImpact": "German final P2P must recreate this Purchase Journal posting trace with German accounts, posting groups, tax setup and screenshots.",
+  "finalScreenshotNeeded": false,
+  "nextStep": "Review P2P-032 trace and sync the P2P lab clickguide/book draft without making German final claims."
+}
