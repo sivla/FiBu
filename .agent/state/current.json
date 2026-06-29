@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-29T10:36:00+02:00",
+  "updatedAt": "2026-06-29T11:08:00+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "warehouse",
-  "activeCase": "WAREHOUSE-005-FRA-ZL-GUARDED-SETUP-FIT",
-  "active_case_file": ".agent/state/cases/warehouse-005-fra-zl-guarded-setup-fit.json",
-  "lastReferenceCase": "WAREHOUSE-004-FRA-ZL-ACTIVATION-PREFLIGHT",
-  "lastReferenceCaseFile": ".agent/state/cases/warehouse-004-fra-zl-activation-preflight.json",
+  "activeCase": "WAREHOUSE-006-INBOUND-WAREHOUSE-RECEIPT-PREFLIGHT",
+  "active_case_file": ".agent/state/cases/warehouse-006-inbound-warehouse-receipt-preflight.json",
+  "lastReferenceCase": "WAREHOUSE-005-FRA-ZL-GUARDED-SETUP-FIT",
+  "lastReferenceCaseFile": ".agent/state/cases/warehouse-005-fra-zl-guarded-setup-fit.json",
   "mode": "bc-specialist-labor-book-production",
   "requiresStrongModel": false,
   "requiredPreflightChecks": [
@@ -40,7 +40,7 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "Run WAREHOUSE-005 guarded setup-fit: only visible Warehouse fields from WAREHOUSE-004, with before/after proof; no Warehouse posting.",
+  "nextStep": "Run WAREHOUSE-006 no-post inbound Warehouse Receipt/Put-away preflight; no Warehouse posting.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/inventory-labor-draft.md",
     "area": "inventory",
@@ -2330,5 +2330,26 @@
     "posted": false,
     "nextCase": "WAREHOUSE-005-FRA-ZL-GUARDED-SETUP-FIT",
     "updatedAt": "2026-06-29T10:36:00+02:00"
+  },
+  "latestWarehouse005": {
+    "caseId": "WAREHOUSE-005-FRA-ZL-GUARDED-SETUP-FIT",
+    "status": "observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-005/WAREHOUSE-005-result.json",
+    "decision": "FRA-ZL is fitted for basic Warehouse receive/shipment/put-away fields without enabling Require Pick, Bin Mandatory or Directed Put-away and Pick.",
+    "inboundSetupOk": true,
+    "protectedUnchanged": true,
+    "setupChangedInFinalVerificationRun": false,
+    "currentActiveFields": [
+      "Require Receive",
+      "Require Shipment",
+      "Require Put-away"
+    ],
+    "deferredFields": [
+      "Require Pick",
+      "Bin Mandatory",
+      "Directed Put-away and Pick"
+    ],
+    "nextCase": "WAREHOUSE-006-INBOUND-WAREHOUSE-RECEIPT-PREFLIGHT",
+    "updatedAt": "2026-06-29T11:08:00+02:00"
   }
 }

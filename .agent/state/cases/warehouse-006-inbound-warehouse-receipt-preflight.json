@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "caseId": "WAREHOUSE-006-INBOUND-WAREHOUSE-RECEIPT-PREFLIGHT",
+  "title": "Inbound Warehouse Receipt no-post preflight",
+  "status": "planned",
+  "taskClass": "wizard_work",
+  "modelClass": "gpt-4-high",
+  "usageLogRequired": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "warehouse-inbound-receipt-preflight",
+  "sourceCase": "WAREHOUSE-005-FRA-ZL-GUARDED-SETUP-FIT",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/warehouse-005/WAREHOUSE-005-result.json",
+    "playwright/projects/fibu-book5/evidence/warehouse-005/020-before-field-values.json",
+    "playwright/projects/fibu-book5/evidence/warehouse-005/050-after-field-values.json"
+  ],
+  "purpose": "Use the current FRA-ZL inbound Warehouse setup state to create or inspect exactly one no-post Warehouse Receipt/Put-away preflight route. No posting until document and trace gates are explicit.",
+  "allowedActions": [
+    "business-central-execution",
+    "playwright-execution",
+    "direct-page-navigation",
+    "read-fields",
+    "controlled-draft-only-if-needed",
+    "screenshot-and-page-text-evidence",
+    "cleanup-or-explicit-keep-documentation"
+  ],
+  "defaultLockedActions": [
+    "posting",
+    "preview-posting",
+    "warehouse-receipt-posting",
+    "warehouse-putaway-posting",
+    "warehouse-shipment-posting",
+    "delete-record",
+    "company-switch",
+    "api-shortcut"
+  ],
+  "forbiddenActions": [
+    "claim-german-final-proof",
+    "use-api-shortcut",
+    "post-warehouse-document",
+    "delete-location-or-setup-data",
+    "change-require-pick-bin-mandatory-or-directed-put-away-and-pick"
+  ],
+  "safetyGates": [
+    "instance-boundary-gate",
+    "company-context-rm-demo",
+    "ui-first-only",
+    "no-posting",
+    "document-target-clear-before-draft",
+    "cleanup-or-keep-proof-required"
+  ],
+  "preconditions": [
+    "FRA-ZL visible on Location Card page 5703",
+    "Require Receive is active",
+    "Require Shipment is active",
+    "Require Put-away is active",
+    "Bin Mandatory remains false",
+    "Directed Put-away and Pick remains false"
+  ],
+  "expectedEvidence": [
+    "Warehouse Receipt or inbound preflight route context",
+    "No-post/no-preview/no-api flags",
+    "Draft cleanup or explicit keep proof if a draft is created",
+    "Decision whether controlled Warehouse receipt posting is later safe"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-006/WAREHOUSE-006-result.json",
+  "nextStep": "Run WAREHOUSE-006 no-post inbound Warehouse Receipt/Put-away preflight; no posting.",
+  "createdAt": "2026-06-29T11:08:00+02:00",
+  "updatedAt": "2026-06-29T11:08:00+02:00"
+}
