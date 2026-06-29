@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-299-FA-DEPRECIATION-NEXT-HYPOTHESIS-DECISION",
+  "title": "Decide next Fixed Assets depreciation hypothesis",
+  "status": "planned",
+  "taskClass": "judge_work",
+  "modelClass": "gpt-5.5-low",
+  "usageLogRequired": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "fixedassets-depreciation-next-hypothesis-decision",
+  "sourceCase": "FIXEDASSETS-298-FA-DEPRECIATION-BLOCKER-BOOK-SYNC",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-298/FIXEDASSETS-298-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-297/FIXEDASSETS-297-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-297/FIXEDASSETS-297-ELIGIBILITY-CAUSE-READONLY.md"
+  ],
+  "purpose": "Choose a non-repeating next hypothesis for FA depreciation, or park RM-DEMO depreciation until German final rebuild. Do not run another Calculate Depreciation OK/Preview/Post without a new evidence-backed cause or output-target hypothesis.",
+  "allowedActions": [
+    "read-fixedassets-evidence",
+    "compare-failed-depreciation-routes",
+    "write-local-decision-evidence",
+    "update-state"
+  ],
+  "defaultLockedActions": [
+    "business-central-execution",
+    "playwright-execution",
+    "calculate-depreciation-ok",
+    "preview-posting",
+    "posting",
+    "setup-change",
+    "company-switch",
+    "api-shortcut"
+  ],
+  "forbiddenActions": [
+    "claim-german-final-proof",
+    "repeat-calculate-depreciation-ok-without-new-hypothesis",
+    "preview-or-post-without-visible-journal-line",
+    "api-shortcut-without-explicit-case-permission"
+  ],
+  "expectedEvidence": [
+    "decision whether to run one new read-only/output-target hypothesis, switch route, or park depreciation until German final rebuild"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "nextStep": "Decide the next non-repeating Fixed Assets depreciation hypothesis before any further OK, Preview Posting or Post.",
+  "createdAt": "2026-06-29T07:17:48.698Z",
+  "updatedAt": "2026-06-29T07:17:48.698Z"
+}

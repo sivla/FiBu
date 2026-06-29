@@ -3890,6 +3890,7 @@ Fuer Einsteiger ist die Regel wichtig: Eine Anlagenbuchungsgruppe ist keine Besc
 | `fixedassets-227` | Gebuchte Anlagenposten zu `FA-CNC-01` / `G05001` / `HGB` / `Acquisition Cost` sind read-only sichtbar | Nach der Buchung muss man Nebenbuch und Hauptbuch getrennt pruefen |
 | `fixedassets-291` | `Calculate Depreciation` wurde mit `HGB`, `31.01.2027`, `FADEP-291-OK`, `FA-CNC-01` ausgefuehrt; danach war keine `FADEP-291-OK`-Journalzeile sichtbar | `OK` auf einer Batch-Request-Page ist kein Ergebnisnachweis |
 | `fixedassets-295` + `296` | derselbe OK-Pfad wurde mit frischer Belegnummer `FADEP-295-OK` kontrolliert wiederholt; auch danach war keine Journalzeile sichtbar | ein zweiter sauberer OK-Lauf ohne sichtbare Zeile ist ein Stoppsignal, kein Grund fuer weitere Wiederholung |
+| `fixedassets-297` | read-only Ursachenpruefung: der alte Beleg `FADEP-267-OK` hatte ein Datumsproblem, weil `30.06.2026` vor dem Zugang `01.01.2027` lag; fuer `FADEP-295-OK` bleibt die genaue Ursache offen | der alte Datumsfehler erklaert nicht automatisch alle spaeteren OK-Laeufe; ohne neue Hypothese kein weiterer OK-, Preview- oder Post-Versuch |
 
 ### Labor-/Vorproduktionsstand: Zugang bewiesen, AfA blockiert
 
@@ -3921,7 +3922,7 @@ Screenshot-Platzhalter fuer die spaetere deutsche Zielinstanz:
 | Gebuchte Sachposten und Anlagenposten zu `G05001` | Hauptbuch und Anlagen-Nebenbuch beantworten unterschiedliche Fragen | deutsche Postenspur fuer Zugang, AfA und spaeteren Anlagenspiegel |
 | `FADEP-291-OK` und `FADEP-295-OK` ohne sichtbare Journalzeile | Ein Batch-OK ist kein Ergebnisnachweis; nach zwei kontrollierten OK-Laeufen ohne sichtbare Zeile wird nicht weiter wiederholt | deutsche AfA-Berechnung mit sichtbarer Journalzeile, Preview Posting und gebuchter AfA-Spur |
 
-Die AfA-Strecke ist dagegen noch `labor-blocked`. In `FIXEDASSETS-291` wurde `AfA berechnen (Calculate Depreciation)` geoeffnet und mit `HGB`, Buchungsdatum `31.01.2027`, Belegnummer `FADEP-291-OK` und Anlagenfilter `FA-CNC-01` sichtbar belegt. `OK` wurde genau einmal bestaetigt. Danach wurde im `Fixed Asset G/L Journal` gesucht, aber `FADEP-291-OK` wurde nicht sichtbar gefunden. In `FIXEDASSETS-295` wurde derselbe OK-only-Pfad mit frischer Belegnummer `FADEP-295-OK` wiederholt; auch diese Belegnummer wurde danach im geprueften Journal-Kontext nicht sichtbar gefunden. Es wurde keine AfA-Journalzeile, kein AfA-Preview und keine AfA-Buchung bewiesen.
+Die AfA-Strecke ist dagegen noch `labor-blocked`. In `FIXEDASSETS-291` wurde `AfA berechnen (Calculate Depreciation)` geoeffnet und mit `HGB`, Buchungsdatum `31.01.2027`, Belegnummer `FADEP-291-OK` und Anlagenfilter `FA-CNC-01` sichtbar belegt. `OK` wurde genau einmal bestaetigt. Danach wurde im `Fixed Asset G/L Journal` gesucht, aber `FADEP-291-OK` wurde nicht sichtbar gefunden. In `FIXEDASSETS-295` wurde derselbe OK-only-Pfad mit frischer Belegnummer `FADEP-295-OK` wiederholt; auch diese Belegnummer wurde danach im geprueften Journal-Kontext nicht sichtbar gefunden. `FIXEDASSETS-297` grenzt die Ursache ein: Der alte Lauf `FADEP-267-OK` hatte ein klares Datumsproblem, weil `30.06.2026` vor dem Zugang `01.01.2027` lag. Fuer den spaeteren Lauf `FADEP-295-OK` ist die genaue Ursache aber weiter nicht feldsicher bewiesen. Es wurde keine AfA-Journalzeile, kein AfA-Preview und keine AfA-Buchung bewiesen.
 
 Anfaenger-Lernpunkt: `OK` auf einer Request Page bedeutet nicht automatisch, dass eine sichtbare Journalzeile entstanden ist. `OK` startet den Batch-/Berechnungslauf. Danach muss man Ergebnis, Datum, Restbuchwert, AfA-Faelligkeit, AfA-Buch, Journal Template, Batch, Filter und Ausgabeziel pruefen. Wenn auch ein zweiter kontrollierter OK-Lauf mit frischer Belegnummer keine sichtbare Zeile erzeugt, wird der Prozess geparkt: keine weitere Wiederholung, kein Preview Posting und keine Buchung, bis eine neue Ursache oder ein neuer Zielpfad belegt ist.
 
@@ -3934,6 +3935,7 @@ Evidence-Anker fuer diesen Laborblock:
 - `playwright/projects/fibu-book5/evidence/fixedassets-291/FIXEDASSETS-291-result.json`
 - `playwright/projects/fibu-book5/evidence/fixedassets-295/FIXEDASSETS-295-result.json`
 - `playwright/projects/fibu-book5/evidence/fixedassets-296/FIXEDASSETS-296-FRESH-OK-BLOCKER-REVIEW.md`
+- `playwright/projects/fibu-book5/evidence/fixedassets-297/FIXEDASSETS-297-ELIGIBILITY-CAUSE-READONLY.md`
 
 German-Final-Rebuild: In der deutschen Zielinstanz muessen Anlagenkarte, AfA-Buch, Anlagenbuchungsgruppe, deutsche Sachkontenfindung, Zugang, Preview Posting, gebuchte Sachposten, gebuchte Anlagenposten, AfA-Journalzeile, AfA-Preview, gebuchte AfA-Posten und Anlagenspiegel neu erzeugt und neu bebildert werden. Laborwerte wie `HGB`, `MACHINES`, `82000`, `12210`, `G05001`, `FADEP-291-OK` und `FADEP-295-OK` duerfen nur als Lernanker dienen.
 
@@ -3982,7 +3984,7 @@ Was im Labor noch nicht als fertige Zielstrecke belegt ist:
 - AfA-Preview-Posting.
 - Gebuchte AfA-Posten.
 
-Wichtig aus dem Laborblocker `fixedassets-296`: Zwei OK-only-Laeufe mit unterschiedlichen Belegnummern (`FADEP-291-OK`, `FADEP-295-OK`) haben keine sichtbare AfA-Journalzeile im geprueften `Fixed Asset G/L Journal` ergeben. Der Zielpfad unten darf deshalb nicht so gelesen werden, als sei Schritt 11 oder 12 bereits im Labor erfolgreich. In der deutschen Zielinstanz muss erst die erzeugte Journalzeile sichtbar sein, bevor Preview Posting oder Buchung erlaubt sind.
+Wichtig aus den Laborblockern `fixedassets-296` und `fixedassets-297`: Zwei OK-only-Laeufe mit unterschiedlichen Belegnummern (`FADEP-291-OK`, `FADEP-295-OK`) haben keine sichtbare AfA-Journalzeile im geprueften `Fixed Asset G/L Journal` ergeben. Der alte Beleg `FADEP-267-OK` erklaert einen Datumsfehler (`30.06.2026` vor Zugang `01.01.2027`), aber nicht die spaetere fehlende `FADEP-295-OK`-Zeile. Der Zielpfad unten darf deshalb nicht so gelesen werden, als sei Schritt 11 oder 12 bereits im Labor erfolgreich. In der deutschen Zielinstanz muss erst die erzeugte Journalzeile sichtbar sein, bevor Preview Posting oder Buchung erlaubt sind.
 
 Die folgende Schrittfolge ist deshalb ein Zielpfad fuer die spaetere deutsche Finalumgebung. Sie ist keine Behauptung, dass alle Schritte bereits in `RM-DEMO` vollstaendig bewiesen sind. Fuer finale Buchbilder muessen deutsche Instanz, deutsche Screenshots, deutsche Konten, deutsche Belege und deutsche Postenspur neu aufgebaut werden.
 
@@ -3998,7 +4000,7 @@ Die folgende Schrittfolge ist deshalb ein Zielpfad fuer die spaetere deutsche Fi
 8. Pruefe `Buchungsvorschau (Preview Posting)`.
 9. Buche die Einkaufsrechnung.
 10. Oeffne `Anlagenposten (FA Ledger Entries)` und pruefe die Anschaffungskosten.
-11. Oeffne `AfA berechnen (Calculate Depreciation)` und berechne AfA bis `30.06.2026`.
+11. Oeffne `AfA berechnen (Calculate Depreciation)` und berechne AfA fuer den deutschen Zielstichtag erst, nachdem Zugang, AfA-Startdatum, Buchwert und AfA-Faelligkeit sichtbar plausibel sind.
 12. Buche das AfA-Buch.-Blatt.
 13. Pruefe Anlagenposten, Sachposten und Anlagenspiegel.
 
@@ -4040,8 +4042,8 @@ Gebuchte Anlagenzugange werden nicht durch Direktaenderung der Anlagenposten kor
 | Erwartete Posten | `Anlagenposten`, `Kreditorenposten`, `Sachposten` |
 | Kontrollbericht | Anlagenspiegel und `Anlagenstatistik` |
 | Akzeptanzkriterium | Deutscher Final-UAT ist erst bestanden, wenn Anschaffung, AfA und Buchwerte in Anlagenposten, Sachposten und Anlagenspiegel uebereinstimmen und deutsche Screenshots/Evidence vorliegen. |
-| Labor-Akzeptanz bisher | Anlagenkarte/Setup-Basis und Zugang `G05001` sind als Labortrace verwertbar; Einkaufsrechnung mit `Art = Anlage`, AfA-Journalzeile, AfA-Preview und AfA-Buchung sind noch offen/blockiert. `fixedassets-296` erklaert den Blocker: `OK` wurde zweimal kontrolliert probiert, aber keine Journalzeile sichtbar. |
-| Evidence Pack | Ziel: Anlagenkarte, gebuchte Einkaufsrechnung, Anlagenposten, AfA-Journal, Sachposten, Anlagenspiegel, Negativtest. Labor bisher: `fixedassets-225`, `fixedassets-227`, `fixedassets-229`, `fixedassets-231`, `fixedassets-291`, `fixedassets-295`, `fixedassets-296`. |
+| Labor-Akzeptanz bisher | Anlagenkarte/Setup-Basis und Zugang `G05001` sind als Labortrace verwertbar; Einkaufsrechnung mit `Art = Anlage`, AfA-Journalzeile, AfA-Preview und AfA-Buchung sind noch offen/blockiert. `fixedassets-296/297` erklaeren den Blocker: `OK` wurde zweimal kontrolliert probiert, aber keine Journalzeile sichtbar; der alte Datumsfehler ist eingegrenzt, die spaetere Ursache bleibt offen. |
+| Evidence Pack | Ziel: Anlagenkarte, gebuchte Einkaufsrechnung, Anlagenposten, AfA-Journal, Sachposten, Anlagenspiegel, Negativtest. Labor bisher: `fixedassets-225`, `fixedassets-227`, `fixedassets-229`, `fixedassets-231`, `fixedassets-291`, `fixedassets-295`, `fixedassets-296`, `fixedassets-297`. |
 | Absichtlich falsche Eingabe | Einkaufsrechnung mit `Art = Sachkonto` statt `Art = Anlage` buchen |
 | Erwartetes Fehlverhalten | Kein Anlagenposten entsteht; AfA kann fuer `FA-CNC-01` nicht korrekt berechnet werden. |
 | Diagnosepfad | `Anlagenposten (FA Ledger Entries)` auf `FA-CNC-01` filtern und gebuchte Einkaufsrechnung pruefen. |

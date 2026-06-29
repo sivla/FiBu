@@ -88,13 +88,15 @@ Danach wurde im Fixed Asset G/L Journal gesucht. Ergebnis:
 
 In `FIXEDASSETS-295` wurde der gleiche OK-only-Pfad mit frischer Belegnummer `FADEP-295-OK` wiederholt. Auch diese Belegnummer war danach im geprueften Fixed Asset G/L Journal nicht sichtbar. `FIXEDASSETS-296` bewertet das als Stoppsignal: Der Prozess wird in `RM-DEMO` geparkt, bis eine neue Ursache oder ein neuer UI-/Setup-Pfad belegt ist.
 
+`FIXEDASSETS-297` grenzt den Blocker weiter ein: Fuer den alten Beleg `FADEP-267-OK` ist ein plausibles Datumsproblem bewiesen, weil `30.06.2026` vor dem Zugang `01.01.2027` lag. Das erklaert aber nicht automatisch den spaeteren Lauf `FADEP-295-OK`; dort ist die exakte Ursache weiterhin offen. Deshalb bleibt die Regel: kein weiterer Calculate-Depreciation-OK, kein Preview Posting und keine AfA-Buchung, solange keine neue, nicht wiederholte Hypothese den Ausgabekontext oder die AfA-Berechtigung feldsicher erklaert.
+
 Anfaenger-Lernpunkt: `OK` auf der `Calculate Depreciation` Request Page bedeutet nicht automatisch, dass eine sichtbare Journalzeile erzeugt wurde. `OK` startet nur den Batch-/Berechnungslauf. Danach muss man pruefen, ob und wo Business Central eine Journalzeile erzeugt hat. Wenn keine Zeile sichtbar ist, darf man nicht blind erneut `OK` klicken. Nach zwei kontrollierten OK-Laeufen ohne sichtbare Zeile gilt erst recht: kein Preview Posting, keine Buchung, erst Ursache klaeren. Man prueft Datum, AfA-Faelligkeit, Restbuchwert, AfA-Buch, Journal Template, Batch, Filter und Ausgabeziel.
 
 Klassifikation fuer das Buch:
 
 - Anlagenzugang: `labor-proven`, `labor-sufficient-for-book-draft`, `needs-german-final-rebuild`.
 - AfA/Calculate Depreciation: `labor-blocked`, `labor-sufficient-for-book-draft`, `needs-german-final-rebuild`.
-- FA-292/296: `labor-blocked` und `labor-sufficient-for-book-draft`, weil der Blocker als Anfaenger-Lernpunkt ins Buch gehoert.
+- FA-296/297: `labor-blocked` und `labor-sufficient-for-book-draft`, weil der Blocker als Anfaenger-Lernpunkt ins Buch gehoert.
 
 ## Was muss spaeter deutsch/final neu gemacht werden?
 
