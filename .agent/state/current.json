@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-29T07:25:00.000Z",
+  "updatedAt": "2026-06-29T07:45:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "reporting",
-  "activeCase": "REPORTING-016-INVENTORY-DIMENSION-REPORTING-DECISION",
-  "active_case_file": ".agent/state/cases/reporting-016-inventory-dimension-reporting-decision.json",
-  "lastReferenceCase": "REPORTING-015-INVENTORY-DIMENSION-VALUE-TRACE",
-  "lastReferenceCaseFile": ".agent/state/cases/reporting-015-inventory-dimension-value-trace.json",
+  "activeCase": "REPORTING-017-INVENTORY-DIMENSION-BOOKMASTER-SYNC",
+  "active_case_file": ".agent/state/cases/reporting-017-inventory-dimension-bookmaster-sync.json",
+  "lastReferenceCase": "REPORTING-016-INVENTORY-DIMENSION-REPORTING-DECISION",
+  "lastReferenceCaseFile": ".agent/state/cases/reporting-016-inventory-dimension-reporting-decision.json",
   "mode": "bc-specialist-labor-book-production",
   "requiresStrongModel": true,
   "requiredPreflightChecks": [
@@ -40,7 +40,7 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "Review REPORTING-015 result and decide whether Inventory PRODUCTLINE visibility in Item/Value Entries is enough for bookdraft sync or needs a Dimensions Detail / Analysis View setup-fit route.",
+  "nextStep": "Sync the REPORTING-015/016 Inventory dimension boundary into Chapter 13 of the bookmaster without German final claims.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/inventory-labor-draft.md",
     "area": "inventory",
@@ -54,13 +54,15 @@
     "sourceInstance": "MCP_1_20260210",
     "evidenceBasis": [
       "INVENTORY-008",
-      "INVENTORY-009"
+      "INVENTORY-009",
+      "REPORTING-015",
+      "REPORTING-016"
     ],
-    "bookEffect": "Inventory Item Journal material-effect route is now available as a compact lab draft for Chapter 13: target values, Journal Check, controlled posting INV008-899959, Item/Value/G-L trace and Inventory Valuation are explained with P2P boundary.",
+    "bookEffect": "Inventory Item Journal material-effect route now includes a REPORTING-015/016 lab boundary: PRODUCTLINE=MACHINE is visible in Item Ledger and Value Entry dimension contexts, but no Analysis View/Financial Report axis is proven.",
     "integratedIntoBookMaster": true,
     "bookMasterSection": "Kapitel 13 Inventory und Warehouse / Inventory Costing und Lagerbewertung",
     "labVsTargetPathSeparated": true,
-    "nextStep": "Read-only trace whether PRODUCTLINE=MACHINE is visible or usable in posted Inventory traces, analysis views or reporting."
+    "nextStep": "Sync the Inventory dimension/reporting boundary into Chapter 13 if missing."
   },
   "bookProductionGoal": {
     "goalFile": ".agent/state/book-production-goal.json",
@@ -110,8 +112,8 @@
     "summaryFile": ".agent/state/lab_to_german_sandbox_migration_plan.json",
     "noActiveLiveRunInOldSandbox": false,
     "germanTargetUnavailable": true,
-    "nextStep": "Classify REPORTING-015 as RM-DEMO laboratory reporting reference; German target sandbox remains unavailable.",
-    "nextCase": "REPORTING-016-INVENTORY-DIMENSION-REPORTING-DECISION"
+    "nextStep": "Sync REPORTING-015/016 inventory dimension boundary into the bookmaster as lab-only text; German target sandbox remains unavailable.",
+    "nextCase": "REPORTING-017-INVENTORY-DIMENSION-BOOKMASTER-SYNC"
   },
   "latestP2PLabFollowup": {
     "caseId": "P2P-004-PARTIAL-RECEIPT-VARIANCE-GATE",
@@ -2023,6 +2025,29 @@
     "evidencePath": "playwright/projects/fibu-book5/evidence/reporting-015/",
     "proved": "PRODUCTLINE=MACHINE is visible on Item Ledger and Value Entry dimension contexts for INV008-899959; it is not proven as G/L Entry or Analysis View reporting axis.",
     "nextCase": "REPORTING-016-INVENTORY-DIMENSION-REPORTING-DECISION",
+    "migrationRelevance": "needed-for-german-final",
+    "mustRecreateInFinalSandbox": true,
+    "finalScreenshotNeeded": true
+  },
+  "latestReporting016InventoryDimensionDecision": {
+    "caseId": "REPORTING-016-INVENTORY-DIMENSION-REPORTING-DECISION",
+    "status": [
+      "labor-sufficient-for-book-draft",
+      "route-decision",
+      "needs-german-final-rebuild"
+    ],
+    "sourceInstance": "MCP_1_20260210",
+    "sourceCompany": "RM-DEMO",
+    "bcRun": false,
+    "playwrightRun": false,
+    "posted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "resultPath": "playwright/projects/fibu-book5/evidence/reporting-016/REPORTING-016-result.json",
+    "evidencePath": "playwright/projects/fibu-book5/evidence/reporting-016/",
+    "decision": "Use REPORTING-015 as labor bookdraft evidence, not as final reporting proof. Do not start a new Analysis View setup-fit route until a bookmaster sync shows a concrete gap.",
+    "bookDraftPath": "playwright/projects/fibu-book5/book-drafts/inventory-labor-draft.md",
+    "nextCase": "REPORTING-017-INVENTORY-DIMENSION-BOOKMASTER-SYNC",
     "migrationRelevance": "needed-for-german-final",
     "mustRecreateInFinalSandbox": true,
     "finalScreenshotNeeded": true

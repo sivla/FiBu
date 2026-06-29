@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "REPORTING-016-INVENTORY-DIMENSION-REPORTING-DECISION",
+  "source": "local-analysis",
+  "resultStatus": "observed",
+  "runPlanId": "REPORTING-016-INVENTORY-DIMENSION-REPORTING-DECISION-PLAN",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "environment": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "mode": "local-decision-no-bc-no-playwright",
+  "sourceResult": "playwright/projects/fibu-book5/evidence/reporting-015/REPORTING-015-result.json",
+  "decision": "Use REPORTING-015 as labor bookdraft evidence, not as final reporting proof. Do not start a new Analysis View setup-fit route until a bookmaster sync shows a concrete gap.",
+  "proved": [
+    "REPORTING-015 is sufficient to explain that PRODUCTLINE=MACHINE is visible in Item Ledger and Value Entry dimension contexts.",
+    "REPORTING-015 is not sufficient to claim PRODUCTLINE/CHANNEL reporting axis or Financial Reports effect.",
+    "Inventory labor draft was updated with the beginner-friendly distinction between visible post dimension and reporting effect."
+  ],
+  "notProved": [
+    "No Business Central execution occurred in REPORTING-016.",
+    "No Playwright execution occurred in REPORTING-016.",
+    "No new posting, preview, setup change or company switch occurred.",
+    "No German final reporting proof.",
+    "No Analysis View setup-fit proof."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/book-drafts/inventory-labor-draft.md",
+    "playwright/projects/fibu-book5/evidence/reporting-016/REPORTING-016-INVENTORY-DIMENSION-REPORTING-DECISION.md",
+    "playwright/projects/fibu-book5/evidence/reporting-016/REPORTING-016-result.json",
+    ".agent/state/cases/reporting-016-inventory-dimension-reporting-decision.json",
+    ".agent/state/cases/reporting-017-inventory-dimension-bookmaster-sync.json",
+    ".agent/state/current.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json"
+  ],
+  "statePatch": {
+    "current": {
+      "activeArea": "reporting",
+      "activeCase": "REPORTING-017-INVENTORY-DIMENSION-BOOKMASTER-SYNC",
+      "active_case_file": ".agent/state/cases/reporting-017-inventory-dimension-bookmaster-sync.json",
+      "lastReferenceCase": "REPORTING-016-INVENTORY-DIMENSION-REPORTING-DECISION",
+      "lastReferenceCaseFile": ".agent/state/cases/reporting-016-inventory-dimension-reporting-decision.json",
+      "nextStep": "Sync the REPORTING-015/016 Inventory dimension boundary into Chapter 13 of the bookmaster without German final claims."
+    },
+    "lastRunSummary": {
+      "runId": "REPORTING-016-INVENTORY-DIMENSION-REPORTING-DECISION",
+      "date": "2026-06-29",
+      "workType": "reporting-inventory-dimension-route-decision",
+      "bcRun": false,
+      "playwrightRun": false,
+      "posted": false,
+      "previewPosting": false,
+      "setupChanged": false,
+      "companySwitched": false,
+      "summary": "Classified REPORTING-015 as enough for Inventory labor bookdraft explanation, but not enough for final PRODUCTLINE/CHANNEL reporting proof.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/reporting-016/REPORTING-016-result.json",
+      "nextCase": "REPORTING-017-INVENTORY-DIMENSION-BOOKMASTER-SYNC",
+      "nextStep": "Sync the lab dimension/reporting boundary into Chapter 13."
+    }
+  },
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/reporting-015/REPORTING-015-result.json",
+    "playwright/projects/fibu-book5/evidence/reporting-016/REPORTING-016-INVENTORY-DIMENSION-REPORTING-DECISION.md",
+    "playwright/projects/fibu-book5/book-drafts/inventory-labor-draft.md"
+  ],
+  "warnings": [
+    "RM-DEMO evidence remains laboratory reference only.",
+    "Do not claim German final reporting from REPORTING-015/016.",
+    "Do not claim Analysis View or Financial Reports effect for PRODUCTLINE/CHANNEL without a separate visible proof."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "flags": {
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookMasterChange": true,
+    "bookDraftChanged": true,
+    "migrationRelevance": "needed-for-german-final",
+    "mustRecreateInFinalSandbox": true,
+    "sourceCompany": "RM-DEMO",
+    "targetGermanCompanyImpact": "German final company must recreate dimension visibility and reporting effect with German setup and screenshots.",
+    "finalScreenshotNeeded": true
+  },
+  "reason": "The visible PRODUCTLINE signal is useful for learning, but the absence of Analysis View and G/L dimension proof means no reporting effect can be claimed.",
+  "validationCommands": [
+    "npm run agent:preflight",
+    "npm run agent:context",
+    "npm run agent:dry-run",
+    "npm run agent:run-plan",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/reporting-016/REPORTING-016-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/reporting-016/REPORTING-016-result.json",
+    "npm run check:encoding",
+    "git diff --check"
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "caseId": "REPORTING-017-INVENTORY-DIMENSION-BOOKMASTER-SYNC",
+  "title": "Sync Inventory dimension reporting boundary into Chapter 13",
+  "status": "planned",
+  "taskClass": "judge_work",
+  "modelClass": "gpt-5.5-low",
+  "usageLogRequired": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "bookmaster-sync-labor-only-inventory-reporting-boundary",
+  "sourceCase": "REPORTING-016-INVENTORY-DIMENSION-REPORTING-DECISION",
+  "purpose": "Update Chapter 13 only if needed so it explains the REPORTING-015/016 labor boundary between visible dimensions and unproven reporting effect.",
+  "allowedActions": [
+    "read-reporting-015-evidence",
+    "read-reporting-016-decision",
+    "read-chapter-13-only",
+    "small-bookmaster-patch-if-needed",
+    "write-evidence",
+    "update-state"
+  ],
+  "defaultLockedActions": [
+    "open-business-central",
+    "run-playwright",
+    "preview-posting",
+    "post",
+    "setup-change",
+    "company-switch",
+    "keep-draft"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "final-german-claim-from-rm-demo",
+    "create-draft",
+    "edit-record",
+    "delete-record"
+  ],
+  "safetyGates": [
+    "chapter-13-only",
+    "labor-boundary-must-be-visible",
+    "no-german-final-claim",
+    "no-analysis-view-reporting-claim-without-proof"
+  ],
+  "expectedEvidence": [
+    "Chapter 13 either already contains or receives a compact lab-only note about PRODUCTLINE visibility and open reporting proof",
+    "German final rebuild instruction remains explicit"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "targetGermanCompanyImpact": "German final book screenshots must later replace the RM-DEMO lab references.",
+  "finalScreenshotNeeded": true,
+  "nextStep": "Read Chapter 13 and apply only a compact evidence-backed lab boundary patch if missing."
+}

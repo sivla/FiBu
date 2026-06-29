@@ -93,3 +93,27 @@ Dieser Laborblock muss spaeter in einer deutschen Zielinstanz neu aufgebaut werd
 - nicht aus `RM-DEMO` auf deutschen Finalzustand schliessen.
 
 Naechster sinnvoller Laborpunkt: pruefen, ob `PRODUCTLINE=MACHINE` aus der Item-Journal-Laborbuchung in Posting Trace, Analyseansichten oder Reporting sichtbar/nutzbar wird. Bisher ist die Dimension vor Buchung sichtbar, aber nicht als durchgaengige Reporting-Wirkung bewiesen.
+
+## REPORTING-015 Nachtrag: Dimension sichtbar, Reportingwirkung noch offen
+
+`REPORTING-015` hat `INV008-899959` read-only in Artikelposten, Wertposten, Sachposten und Analysis Views nachverfolgt. Das Ergebnis ist wichtig fuer die Bucherklaerung:
+
+| Kontext | Laborbefund |
+|---|---|
+| Artikelposten | `PRODUCTLINE=MACHINE` ist im Dimensionskontext sichtbar. |
+| Wertposten | `PRODUCTLINE=MACHINE` ist im Dimensionskontext sichtbar. |
+| Sachposten | `14140` und Betrag sind sichtbar; `PRODUCTLINE`/`CHANNEL` wurden nicht als sichtbare Dimension bewiesen. |
+| Analysis Views | Seite ist read-only erreichbar; `PRODUCTLINE`/`CHANNEL` wurden nicht als Auswertungsachse bewiesen. |
+
+Fuer Anfaenger heisst das: Eine Dimension kann am Beleg oder an einzelnen Posten sichtbar sein, ohne dass damit schon eine fertige Reporting-Auswertung bewiesen ist. Zwischen "Dimension ist am Posten sichtbar" und "Bericht wertet danach aus" liegt in Business Central noch eine eigene Reporting-/Analyse-Setup-Frage.
+
+Fuer das Buch reicht `REPORTING-015` als Laborhinweis und Clickguide-Grenze: Im RM-DEMO-Labor ist `PRODUCTLINE=MACHINE` bei Artikel-/Wertposten nachweisbar. Nicht behauptet werden darf, dass `CHANNEL=B2B`, Sachposten oder Analysis Views die Dimension bereits als Reportingachse auswerten.
+
+Evidence:
+- `playwright/projects/fibu-book5/evidence/reporting-015/REPORTING-015-result.json`
+- `playwright/projects/fibu-book5/evidence/reporting-015/REPORTING-015-INVENTORY-DIMENSION-VALUE-TRACE.md`
+
+German Final Rebuild:
+- Dimensionen in deutscher Zielcompany erneut vor und nach Buchung nachweisen.
+- Sachposten-/Dimension-Set oder Dimensionsdetails in deutscher Oberflaeche neu belegen.
+- Analysis Views oder Financial Reports nur dann als final behaupten, wenn `PRODUCTLINE`/`CHANNEL` dort sichtbar eingerichtet und ausgewertet wurden.
