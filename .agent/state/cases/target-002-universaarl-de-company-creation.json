@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-002-UNIVERSAARL-DE-COMPANY-CREATION",
+  "title": "UI-first UNIVERSAARL-DE company creation route",
+  "instance": "playthru",
+  "targetCompany": "UNIVERSAARL-DE",
+  "legalName": "Universaarl GmbH",
+  "workType": "controlled-ui-company-creation",
+  "status": "planned",
+  "dependsOn": [
+    "TARGET-001-PLAYTHRU-CONTEXT-PROOF"
+  ],
+  "preflightTruth": {
+    "target001Observed": true,
+    "universaarlDeVisibleInTarget001": false,
+    "visibleCreationActionLabels": [
+      "Neu",
+      "Kopieren",
+      "Testunternehmen"
+    ]
+  },
+  "allowedActionsWhenGatePasses": [
+    "open-playthru-companies-page-by-page-id",
+    "inventory-visible-company-creation-actions",
+    "open-scoped-new-or-create-company-route-if-action-is-unambiguous",
+    "enter-target-company-values-only-after-wizard-context-is-proven",
+    "stop-before-finish-if-template-or-impact-is-unclear",
+    "write-before-after-evidence"
+  ],
+  "defaultLockedActionsPotentiallyUnlocked": [
+    "new-company",
+    "setup-change-if-company-wizard-requires-it",
+    "keep-draft-if-BC-created-unsaved-company-row"
+  ],
+  "stillLocked": [
+    "posting",
+    "preview-posting",
+    "payment",
+    "business-process-document-posting",
+    "api-shortcut",
+    "company-switch-after-create-unless-case-extends-gate"
+  ],
+  "stopIf": [
+    "url-does-not-contain-playthru",
+    "new-action-is-global-or-ambiguous",
+    "company-create-wizard-template-choice-is-unclear",
+    "dialog-would-confirm-create-without-visible-target-values",
+    "UNIVERSAARL-DE-already-exists-and-needs-readonly-company-information-route-instead"
+  ],
+  "evidenceTarget": "playwright/projects/fibu-book5/evidence/target-002/",
+  "expectedOutput": [
+    "before screenshot proving UNIVERSAARL-DE absent or existing",
+    "creation route screenshot or blocker screenshot",
+    "result json with created/blocked/no-change flags",
+    "next route to TARGET-003 only if company exists safely"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": false,
+  "sourceCompany": "current-playthru-shell-company",
+  "targetGermanCompanyImpact": "Creates the book's primary German target company as UI-first evidence.",
+  "finalScreenshotNeeded": true
+}

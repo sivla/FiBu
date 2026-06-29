@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-001-PLAYTHRU-CONTEXT-PROOF",
+  "title": "playthru context proof and Companies read-only inventory",
+  "instance": "playthru",
+  "targetCompany": "UNIVERSAARL-DE",
+  "legalName": "Universaarl GmbH",
+  "workType": "playwright-readonly-context-proof",
+  "status": "observed",
+  "taskClass": "wizard_work",
+  "allowedActions": [
+    "open-business-central-direct-playthru-url",
+    "open-companies-page-readonly-by-page-id",
+    "capture-context-evidence",
+    "write-result-json",
+    "write-screenshot-metadata"
+  ],
+  "defaultLockedActionsNotUnlocked": [
+    "company-switch",
+    "new-company",
+    "new-draft",
+    "edit-record",
+    "delete-record",
+    "preview-posting",
+    "posting",
+    "setup-change",
+    "payment",
+    "api-shortcut"
+  ],
+  "stopIf": [
+    "url-does-not-contain-playthru",
+    "business-central-shell-not-visible",
+    "dangerous-dialog-visible",
+    "company-create-wizard-opens",
+    "new-edit-delete-post-preview-button-would-need-click"
+  ],
+  "evidenceTarget": "playwright/projects/fibu-book5/evidence/target-001/",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-001/TARGET-001-result.json",
+  "expectedOutput": [
+    "sanitized URL/page context",
+    "visible Companies page text",
+    "whether UNIVERSAARL-DE is visible",
+    "visible company creation action labels without clicking them",
+    "no-write/no-post/no-preview/no-draft flags"
+  ],
+  "nextIfObserved": "TARGET-002-UNIVERSAARL-DE-COMPANY-CREATION",
+  "nextIfBlocked": "TARGET-001-ROUTE-FIX-OR-AUTH-CONTEXT",
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": false,
+  "sourceCompany": "none-or-current-shell-company",
+  "targetGermanCompanyImpact": "First proof that the target instance can be reached before UNIVERSAARL-DE is created.",
+  "finalScreenshotNeeded": true,
+  "lastResult": {
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-001/TARGET-001-result.json",
+    "universaarlDeVisible": false,
+    "companyCreationActionLabels": [
+      "Kopieren",
+      "Neu",
+      "Neu ",
+      "Testunternehmen"
+    ],
+    "flags": {
+      "noWrite": true,
+      "noPost": true,
+      "noPreview": true,
+      "noShip": true,
+      "noInvoice": true,
+      "noPayment": true,
+      "noDraft": true,
+      "noSetupChange": true,
+      "noCompanySwitch": true,
+      "noApiShortcut": true,
+      "noBookChange": true,
+      "noSearch": true
+    },
+    "observedAt": "2026-06-29T17:03:14.858Z"
+  },
+  "nextCase": "TARGET-002-UNIVERSAARL-DE-COMPANY-CREATION"
+}

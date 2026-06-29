@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-29T18:37:19+02:00",
+  "updatedAt": "2026-06-29T17:04:56.676Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-governance",
-  "activeCase": "UNIVERSAARL-001-TARGET-TRANSITION-GOVERNANCE",
-  "active_case_file": ".agent/state/cases/universaarl-001-target-transition-governance.json",
+  "activeArea": "universaarl-target-company-creation",
+  "activeCase": "TARGET-002-UNIVERSAARL-DE-COMPANY-CREATION",
+  "active_case_file": ".agent/state/cases/target-002-universaarl-de-company-creation.json",
   "lastReferenceCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
   "lastReferenceCaseFile": ".agent/state/cases/warehouse-031-warehouse-source-route-park-or-setup-fit-decision.json",
   "mode": "universaarl-final-book-production",
-  "requiresStrongModel": true,
+  "requiresStrongModel": false,
   "requiredPreflightChecks": [
     "agent:preflight",
     "agent:state:validate",
@@ -19,16 +19,14 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "read-p2p-evidence",
-    "open-business-central-if-instance-and-company-match",
+    "open-playthru-companies-page-by-page-id",
+    "inventory-visible-company-creation-actions",
     "run-playwright-if-case-preflight-passes",
-    "create-controlled-purchase-draft",
-    "preview-posting-if-case-unlocks-it",
-    "post-only-if-explicit-case-plan-and-evidence-gate-pass",
-    "cleanup-or-trace-draft",
+    "create-universaarl-de-company-only-if-target002-gate-passes",
+    "stop-before-finish-if-wizard-or-template-is-unclear",
     "write-evidence",
-    "update-bookdraft-or-clickguide",
-    "update-state"
+    "update-target-state",
+    "update-bookdraft-or-clickguide-only-with-universaarl-evidence"
   ],
   "forbiddenActions": [
     "leave-instance",
@@ -44,7 +42,7 @@
     "delete-legacy-evidence",
     "claim-rm-demo-as-final-proof"
   ],
-  "nextStep": "Register/verify playthru context read-only, then create UNIVERSAARL-DE through the UI as the first Universaarl book process.",
+  "nextStep": "Execute TARGET-002 only after reviewing TARGET-001 evidence: use UI-first Companies page action route to create UNIVERSAARL-DE, or block safely if wizard/template route is unclear.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/manufacturing-labor-draft.md",
     "area": "manufacturing",
@@ -71,54 +69,37 @@
   },
   "bookProductionGoal": {
     "goalFile": ".agent/state/book-production-goal.json",
-    "goal": "complete-beginner-friendly-evidence-based-business-central-fibu-book",
-    "labInstance": "MCP_1_20260210",
-    "labCompany": "RM-DEMO",
-    "labRole": "labor-and-preproduction",
-    "labEvidenceMayUpdate": [
-      "labor-book-draft",
-      "clickguide",
-      "learning-note",
-      "process-draft"
-    ],
-    "labEvidenceMustNotClaim": [
-      "german-final-proof",
-      "final-german-tax-proof",
-      "final-german-accounting-proof"
-    ],
+    "activeInstance": "playthru",
+    "activeCompany": "UNIVERSAARL-DE",
+    "activeLegalName": "Universaarl GmbH",
+    "activeStatus": "german-final-candidate",
+    "legacyLabInstance": "MCP_1_20260210",
+    "legacyLabCompany": "RM-DEMO",
+    "legacyLabRole": "legacy-labor-reference",
     "minimumRunOutput": [
-      "new-labor-evidence",
+      "new-universaarl-evidence",
       "better-playwright-capability",
       "bookdraft-or-clickguide-substance",
       "controlled-execute-posting-setup-trace",
       "clear-labor-or-final-classification"
     ],
-    "insufficientRunOutputs": [
-      "review-loop-without-conclusion",
-      "state-only-movement",
-      "micro-case-without-book-evidence-or-playwright-value",
-      "framework-work-without-current-blocker"
-    ],
-    "statusTerms": [
-      "labor-draft",
-      "labor-proven",
-      "labor-blocked",
-      "labor-sufficient-for-book-draft",
-      "needs-german-final-rebuild",
-      "german-final-candidate",
-      "german-final-proof"
+    "forbiddenClaimsFromLegacyLab": [
+      "german-final-proof",
+      "final-german-tax-proof",
+      "final-german-accounting-proof",
+      "final-compliance-proof"
     ]
   },
   "migrationStatus": {
     "sourceSandbox": "MCP_1_20260210",
     "sourceCompany": "RM-DEMO",
-    "sourceEvidenceStatus": "labor-reference",
+    "sourceEvidenceStatus": "legacy-labor-reference",
+    "targetInstance": "playthru",
+    "targetCompany": "UNIVERSAARL-DE",
     "targetEvidenceStatus": "german-final-candidate",
-    "summaryFile": ".agent/state/lab_to_german_sandbox_migration_plan.json",
-    "noActiveLiveRunInOldSandbox": false,
-    "germanTargetUnavailable": true,
-    "nextStep": "Move to another high-value process block or later create a non-speculative Warehouse setup-fit case only with explicit business reason and before/after evidence plan.",
-    "nextCase": "PROCESS-SELECTION-AFTER-WAREHOUSE-SOURCE-PARKING"
+    "noActiveLiveRunInOldSandbox": true,
+    "germanTargetAvailable": true,
+    "nextStep": "TARGET-001 playthru read-only context proof."
   },
   "latestP2PLabFollowup": {
     "caseId": "P2P-004-PARTIAL-RECEIPT-VARIANCE-GATE",
@@ -167,7 +148,8 @@
     ]
   },
   "sandboxInstancePolicy": {
-    "hardBoundary": "MCP_1_20260210",
+    "hardBoundary": "playthru",
+    "legacyBoundary": "MCP_1_20260210 is archive-only and not active target truth",
     "autonomyInsideInstance": "broad-case-controlled",
     "allowedWhenCaseAllows": [
       "company-switch",
@@ -198,16 +180,10 @@
       "book-claim-without-evidence"
     ],
     "actionSemantics": {
-      "forbiddenActions": "Never allowed. These are hard stops even inside MCP_1_20260210.",
+      "forbiddenActions": "Never allowed. These are hard stops even inside the active target instance.",
       "defaultLockedActions": "Allowed only when the active case or gate explicitly unlocks the action and evidence, trace and cleanup/keep status are documented."
     },
-    "fachlicheExecutionGate": {
-      "rule": "Before setup, master data, Preview Posting, posting, receive/invoice/payment, company change or keep-draft actions, document business case, target state, affected modules, master data/setup, expected documents/entries, risk, correction path and evidence plan.",
-      "afterAction": "Document actual effect, expected-vs-actual delta, visible document/entry numbers, screenshots/result JSON and cleanup/trace or keep status.",
-      "blockerRule": "Do not mark a blocker as final while safe UI routes, existing coverage/atlas/evidence or a concrete helper improvement remain available."
-    },
-    "knowledgeFirstRule": "Before new discovery, check active case notes, latest evidence, coverage matrix and BC page/field/action/posting/error/screenshot atlases.",
-    "companyEvidenceRule": "Sandbox companies and drafts are replaceable; evidence, posted traces and documented findings are not."
+    "universaarlRule": "Universaarl processes must be proven in playthru / UNIVERSAARL-DE or marked as planned/blocked. RM-DEMO is legacy evidence only."
   },
   "defaultLockedActions": [
     "company-switch-without-documentation",
@@ -226,7 +202,7 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "universaarl-target-transition",
+  "currentCoverageFocus": "universaarl-target-context-and-company-creation",
   "nextProcessRoute": [
     "P2P-012 compared Purchase Journal, Item Journal, Purchase Invoices and Requisition Worksheet by direct page URL without search or field entry.",
     "Item Journal is the most stable observed route for material quantity/location/value effect, but it is Inventory evidence rather than full creditor P2P.",
@@ -475,76 +451,9 @@
     "nextStep": "P2P-013: controlled Item Journal follow-up with journal check/preview gate and ledger trace, or a separate Purchase Journal value-entry gate for creditor P2P."
   },
   "latestDeepRun": {
-    "caseId": "BC-DEEP-RUN-001-MULTI-ROUTE-SANDBOX-PROGRESS",
-    "status": [
-      "labor-reference",
-      "multi-package-run",
-      "needs-german-final-rebuild"
-    ],
-    "sourceInstance": "MCP_1_20260210",
-    "sourceCompany": "RM-DEMO",
-    "resultPath": "playwright/projects/fibu-book5/evidence/deep-run-001/DEEP-RUN-001-summary.json",
-    "packages": [
-      "P2P-012",
-      "FIXEDASSETS-240",
-      "PAYMENTS-002",
-      "P2P-013",
-      "DEEP-RUN-001-SYNC",
-      "MARATHON-GATE-001",
-      "P2P-014",
-      "PAYMENTS-005",
-      "PAYMENTS-006",
-      "PAYMENTS-009",
-      "FIXEDASSETS-248",
-      "FIXEDASSETS-247"
-    ],
-    "postedInThisDeepRun": true,
-    "previewPostingInThisDeepRun": false,
-    "setupChangedInThisDeepRun": false,
-    "companySwitchedInThisDeepRun": false,
-    "nextBestLevers": [
-      "RM-DE-LAB-CREATE-001-UI-FIRST-COMPANY-CREATION",
-      "FIXEDASSETS-DEPRECIATION-BLOCKER-FOLLOWUP",
-      "BANK-013-FRESH-STATEMENT-LINE-ONLY-IF-DEFINED"
-    ],
-    "executePackages": [
-      "P2P-014",
-      "PAYMENTS-005",
-      "P2P-015",
-      "P2P-016",
-      "P2P-019",
-      "PAYMENTS-006",
-      "PAYMENTS-009",
-      "FIXEDASSETS-248",
-      "BANK-002",
-      "BANK-009"
-    ],
-    "progressPackages": [
-      "PAYMENTS-006",
-      "PAYMENTS-009",
-      "FIXEDASSETS-248",
-      "FIXEDASSETS-247",
-      "BANK-001",
-      "DIMENSIONS-001",
-      "INVENTORY-009",
-      "RM-DE-LAB-001",
-      "RM-DE-LAB-002",
-      "BANK-002",
-      "BANK-003",
-      "BANK-004",
-      "BANK-009",
-      "BANK-010",
-      "BANK-011",
-      "BANK-012"
-    ],
-    "highImpactExecutePackages": [
-      "P2P-015",
-      "PAYMENTS-006",
-      "PAYMENTS-009",
-      "BANK-002",
-      "BANK-009"
-    ],
-    "marathonV2FinalReportAllowed": true
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-001/TARGET-MARATHON-001-summary.json",
+    "status": "universaarl-target-marathon-started",
+    "legacyDeepRun": "playwright/projects/fibu-book5/evidence/deep-run-001/DEEP-RUN-001-summary.json"
   },
   "marathonMode": {
     "active": true,
@@ -3237,5 +3146,47 @@
       "process-by-process replacement of old lab claims"
     ],
     "updatedAt": "2026-06-29T18:37:19+02:00"
+  },
+  "archivedRmDemoEvidence": {
+    "status": "legacy-labor-reference-not-active-target-truth",
+    "archiveRule": "Existing latest* RM-DEMO/MCP_1_20260210 blocks may remain for traceability but are not active next-step truth. New active work must use activeProjectTruth unless a case explicitly cites legacy evidence for learning.",
+    "oldMarathonStatus": "archived-rm-demo-marathon",
+    "oldEvidenceMustNotBeDeleted": true,
+    "oldEvidenceMustNotBeMassRenamed": true,
+    "supersessionRule": "Mark old process coverage as superseded-by-universaarl only after a Universaarl proof exists."
+  },
+  "latestTarget001": {
+    "caseId": "TARGET-001-PLAYTHRU-CONTEXT-PROOF",
+    "status": "observed",
+    "instance": "playthru",
+    "targetCompany": "UNIVERSAARL-DE",
+    "universaarlDeVisible": false,
+    "companyCreationActionLabels": [
+      "Kopieren",
+      "Neu",
+      "Neu ",
+      "Testunternehmen"
+    ],
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-001/TARGET-001-result.json",
+    "screenshots": [
+      "playwright/projects/fibu-book5/img/target-001-010-playthru-role-center.png",
+      "playwright/projects/fibu-book5/img/target-001-020-companies-page-readonly.png"
+    ],
+    "flags": {
+      "noWrite": true,
+      "noPost": true,
+      "noPreview": true,
+      "noShip": true,
+      "noInvoice": true,
+      "noPayment": true,
+      "noDraft": true,
+      "noSetupChange": true,
+      "noCompanySwitch": true,
+      "noApiShortcut": true,
+      "noBookChange": true,
+      "noSearch": true
+    },
+    "nextCase": "TARGET-002-UNIVERSAARL-DE-COMPANY-CREATION",
+    "updatedAt": "2026-06-29T17:03:14.858Z"
   }
 }

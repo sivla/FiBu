@@ -11,6 +11,12 @@ Hinweis: Dieses Buch ist ein quellenbasiertes Lern-, Schulungs-, Projekt- und Im
 - Bei Abweichungen zwischen diesem Buch und Normtext oder Microsoft Learn gilt immer die aktuelle Primärquelle.
 - Dieses Skript verwendet für Quellenangaben nur Primärquellen: Microsoft Learn, Gesetze im Internet, BMF, BZSt und amtliche EU-Quellen.
 
+**Universaarl-Finaltrack und alte Laborreferenzen**
+- Die aktive Buchwelt wird auf `Universaarl GmbH` in der Business-Central-Zielinstanz `playthru` ausgerichtet. Die Zielcompany `UNIVERSAARL-DE` wird nicht vorausgesetzt, sondern als eigener UI-first Buchprozess angelegt, geprueft und bebildert.
+- Fruehere Rhein-Main-/RM-DEMO-/CRONUS-Befunde bleiben als `legacy-labor-reference` erhalten. Sie duerfen Lernnotizen, Clickguide-Entwuerfe und technische Playwright-Muster stuetzen, aber keine finalen deutschen Buchclaims beweisen.
+- Kapitel werden schrittweise auf Universaarl-Evidence umgestellt. Bis zur Neubelegung gilt fuer alte Prozessbilder: `needs-universaarl-rebuild`.
+- Statusbegriffe: `universaarl-draft` bedeutet Universaarl-orientierter Buchentwurf; `universaarl-proven` bedeutet in Universaarl praktisch belegt; `german-final-candidate` bedeutet vorbereitet, aber noch nicht final; `german-final-proof` bedeutet mit deutscher Ziel-Evidence belegt.
+
 ## Inhaltsverzeichnis nach sechs Teilen
 
 **Teil A — Orientierung und Fallstudie**

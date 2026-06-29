@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-29T18:37:19+02:00",
+  "updatedAt": "2026-06-29T16:59:09.584Z",
   "goal": "complete-beginner-friendly-evidence-based-business-central-fibu-book",
   "description": "Build a complete beginner-friendly Business Central FiBu book from practical evidence, Playwright traces, screenshots, clickguides and learning notes.",
   "labEnvironment": {
@@ -101,25 +101,10 @@
     ]
   },
   "sandboxExecutionPolicy": {
+    "activeInstance": "playthru",
+    "legacyInstance": "MCP_1_20260210 archive-only",
     "defaultLockedActionsAreGates": true,
-    "rule": "Inside MCP_1_20260210, default-locked actions may be unlocked by the active case when fachliche Pruefung, evidence plan, trace/cleanup or keep status and correction path are explicit.",
-    "fachlichePruefungBeforeEffectiveAction": [
-      "business-case",
-      "target-state",
-      "affected-modules",
-      "master-data-and-setup",
-      "expected-documents-and-ledgers",
-      "risk",
-      "correction-path",
-      "evidence-plan"
-    ],
-    "afterActionDocumentation": [
-      "actual-effect",
-      "expected-vs-actual",
-      "documents-or-entries-if-visible",
-      "screenshots-or-result-json",
-      "cleanup-or-keep-status"
-    ]
+    "rule": "Inside playthru, default-locked actions may be unlocked by the active case when fachliche Pruefung, evidence plan, trace/cleanup or keep status and correction path are explicit."
   },
   "knowledgeFirstRule": {
     "rule": "Before new discovery, check existing coverage, page/field/action/posting atlases, screenshot inventory, error atlas, latest evidence and active case notes.",
@@ -153,20 +138,9 @@
   },
   "marathonMode": {
     "active": true,
-    "purpose": "Prevent Deep-/Execute-runs from ending after only read-only or sync packages.",
-    "finalReportGate": "npm run agent:marathon:check",
-    "executeProgressRequires": [
-      "field-value-entry",
-      "preview-posting",
-      "posting",
-      "setup-change",
-      "company-create",
-      "cleanup-or-correction",
-      "ledger-trace-from-new-action",
-      "journal-line-created",
-      "payment-apply-attempted"
-    ],
-    "readOnlyDoesNotCountAsExecute": true
+    "mode": "universaarl-target-marathon",
+    "purpose": "Drive Universaarl rebuild work, not old RM-DEMO marathon continuation.",
+    "finalReportGate": "npm run agent:marathon:check"
   },
   "activeProjectTruth": {
     "activeInstance": "playthru",
