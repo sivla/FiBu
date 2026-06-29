@@ -216,7 +216,7 @@
     {
       "id": "TARGET-008-COMPANIES-NEW-ROW-FIELD-SAVE-GATE",
       "order": 3.9,
-      "status": "pending",
+      "status": "blocked",
       "category": "target",
       "expectedImpact": "high-impact",
       "evidenceTarget": "playwright/projects/fibu-book5/evidence/target-008-companies-new-row-field-save-gate/",
@@ -229,7 +229,10 @@
         "TARGET-007-COMPANIES-NEW-DROPDOWN-CLICKGUIDE"
       ],
       "lookaheadStatus": "ready-next",
-      "lookaheadReason": "TARGET-007 proved the dropdown and TARGET-002 proved main Neu opens a blank row; next practical step is controlled creation/save gate."
+      "lookaheadReason": "TARGET-007 proved the dropdown and TARGET-002 proved main Neu opens a blank row; next practical step is controlled creation/save gate.",
+      "result": "UI path investigated; screenshot QA showed direct Neu list-create part, not a finished wizard. Superseded by TARGET-009 resume case.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-008-companies-new-row-field-save-gate/TARGET-008-result.json",
+      "completedAt": "2026-06-29T21:08:50.152Z"
     },
     {
       "id": "TARGET-004-FOUNDATION-SETUP-READINESS",
@@ -780,6 +783,27 @@
       "migrationRelevance": "needed-for-german-final",
       "sourceCompany": "UNIVERSAARL-DE",
       "legacyReferenceAllowedOnlyForLearning": true
+    },
+    {
+      "id": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+      "order": 3.95,
+      "status": "blocked",
+      "category": "target",
+      "expectedImpact": "high-impact",
+      "evidenceTarget": "playwright/projects/fibu-book5/evidence/target-009-main-neu-list-company-create-gate/",
+      "mayWorkEffectively": true,
+      "goal": "Create UNIVERSAARL-DE through Companies -> Neu / Neues Unternehmen erstellen after permission is available.",
+      "migrationRelevance": "needed-for-german-final",
+      "sourceCompany": "current-playthru-shell-company-before-universaarl-exists",
+      "targetCompany": "UNIVERSAARL-DE",
+      "dependsOn": [
+        "TARGET-008-COMPANIES-NEW-ROW-FIELD-SAVE-GATE"
+      ],
+      "blockedBy": [
+        "company-creation-permission-not-yet-available"
+      ],
+      "lookaheadStatus": "blocked",
+      "lookaheadReason": "User confirmed rights are not available until tomorrow evening."
     }
   ],
   "lastUpdated": "2026-06-29T20:43:31.482Z",

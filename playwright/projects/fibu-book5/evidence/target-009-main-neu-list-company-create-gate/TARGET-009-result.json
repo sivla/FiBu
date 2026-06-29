@@ -1,0 +1,168 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+  "source": "playwright-universaarl-target",
+  "resultStatus": "blocked",
+  "startedAt": "2026-06-29T21:04:13.519Z",
+  "completedAt": "2026-06-29T21:04:34.888Z",
+  "instance": "playthru",
+  "targetCompany": "UNIVERSAARL-DE",
+  "legalName": "Universaarl GmbH",
+  "currentUrl": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=357&company=CRONUS+DE",
+  "actionsTaken": [
+    "Opened Companies / Mandanten page 357 in playthru.",
+    "Hovered Neu and the dropdown arrow.",
+    "Opened the Neu dropdown.",
+    "Selected Neues Unternehmen erstellen.",
+    "Entered UNIVERSAARL-DE in the active Name field.",
+    "Entered Universaarl GmbH in the next field.",
+    "Left the row and reopened Companies page to verify persistence."
+  ],
+  "actionsNotTaken": [
+    "No Copy/Kopieren route.",
+    "No Testunternehmen/demo route.",
+    "No CRONUS copy.",
+    "No API shortcut.",
+    "No company switch.",
+    "No setup, preview posting, posting or payment."
+  ],
+  "flags": {
+    "noPost": true,
+    "noPreviewPosting": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noTemplateCopy": true,
+    "noTestCompany": true,
+    "noCronusCopy": true,
+    "companyCreatedOrAlreadyVisible": false
+  },
+  "observed": {
+    "alreadyExists": false,
+    "mainNewClicked": {
+      "route": "Neu dropdown -> Neues Unternehmen erstellen",
+      "mainNewTooltip": "Mandanten:\nNeu\nListe mit Titel Mandanten hat jetzt 2 Artikel",
+      "dropdownTooltip": "Mandanten:\nNeu\nListe mit Titel Mandanten hat jetzt 2 Artikel",
+      "createNewCompanyTooltip": "Neu\nNeues Unternehmen erstellen"
+    },
+    "mainNewTooltip": "Mandanten:\nNeu\nListe mit Titel Mandanten hat jetzt 2 Artikel",
+    "dropdownTooltip": "Mandanten:\nNeu\nListe mit Titel Mandanten hat jetzt 2 Artikel",
+    "createNewCompanyTooltip": "Neu\nNeues Unternehmen erstellen",
+    "activeBeforeTyping": {
+      "tag": "iframe",
+      "role": "",
+      "ariaLabel": "",
+      "title": "undefined",
+      "value": "",
+      "text": "",
+      "x": 0,
+      "y": 48,
+      "width": 2200,
+      "height": 1252
+    },
+    "activeAfterTyping": {
+      "tag": "iframe",
+      "role": "",
+      "ariaLabel": "",
+      "title": "undefined",
+      "value": "",
+      "text": "",
+      "x": 0,
+      "y": 48,
+      "width": 2200,
+      "height": 1252
+    },
+    "afterText": "CRONUS DE\nMandanten:\nKeine personlichen Daten zum Unternehmensnamen hinzufugen, da dies nicht als eingeschrankte Daten behandelt wird\nName\nAnzeigename\nMy Company\nListe mit Titel Mandanten hat jetzt 2 Artikel",
+    "savedVisible": false,
+    "errorVisible": false,
+    "screenshots": [
+      "playwright/projects/fibu-book5/img/target-009-010-before-main-neu-create.png",
+      "playwright/projects/fibu-book5/img/target-009-020-after-main-neu-create-attempt.png"
+    ]
+  },
+  "proved": [
+    "Companies / Mandanten page 357 opens in playthru.",
+    "The main Neu route was attempted with target values.",
+    "UNIVERSAARL-DE is not visible after the attempt."
+  ],
+  "notProved": [
+    "No Company Information was configured.",
+    "No foundation setup was configured.",
+    "No chart of accounts, VAT setup, number series or posting groups were proven.",
+    "No posting or ledger trace exists."
+  ],
+  "blockedBy": [
+    "target-company-not-visible-after-create-attempt",
+    "company-creation-permission-not-yet-available-user-confirmed"
+  ],
+  "requiresReview": true,
+  "safeToFinalizeState": true,
+  "statePatch": {},
+  "bookImpact": {
+    "draftOnly": true,
+    "beginnerTextReady": false,
+    "reason": "The book can explain the blocker, but not present the company as created."
+  },
+  "nextStepDecision": {
+    "currentCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+    "lastEvidenceSummary": "TARGET-008 screenshot QA showed that the actual opened route was the direct Neu list-create part, not a guided wizard.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The practical UI route is now the direct main Neu list row. It is the fastest path to a target company without Copy/Testunternehmen/CRONUS.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-010-UNIVERSAARL-COMPANY-CONTEXT-PROOF",
+        "status": "blocked",
+        "reason": "Company is not visible yet."
+      },
+      {
+        "caseId": "TARGET-004-FOUNDATION-SETUP-READINESS",
+        "status": "needs-setup-first",
+        "reason": "Foundation setup only makes sense after target company context is proven."
+      },
+      {
+        "caseId": "TARGET-005-NUMBER-SERIES-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Needs company context and foundation baseline."
+      },
+      {
+        "caseId": "TARGET-006-POSTING-GROUPS-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Needs company context and foundation baseline."
+      },
+      {
+        "caseId": "TARGET-007-DIMENSIONS-FOUNDATION",
+        "status": "blocked",
+        "reason": "Dimensions belong after company and setup context."
+      }
+    ],
+    "queueChangesMade": [
+      "Keep creation blocked and require error/save diagnostics."
+    ],
+    "selectedNextCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-BLOCKER-DIAGNOSIS",
+    "whySelectedNextCaseIsBest": "The value entry route did not visibly save; next step must read the exact BC validation/save condition.",
+    "risksBeforeNextCase": [
+      "Do not retry blind typing; first diagnose save/error behavior."
+    ],
+    "requiredPreparation": [
+      "Capture error details, active field info and save action behavior.",
+      "Confirm the user has company creation permission before rerunning the live create step."
+    ]
+  },
+  "nextStep": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-BLOCKER-DIAGNOSIS",
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/target-009-main-neu-list-company-create-gate/TARGET-009-result.json",
+    "playwright/projects/fibu-book5/evidence/target-009-main-neu-list-company-create-gate/TARGET-009.md",
+    "playwright/projects/fibu-book5/evidence/target-009-main-neu-list-company-create-gate/target-009-020-after-main-neu-create-attempt.screenshot.json"
+  ],
+  "validationCommands": [
+    "npm run fibu:target:main-neu-company-create-gate",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/target-009-main-neu-list-company-create-gate/TARGET-009-result.json",
+    "npm run check:encoding",
+    "git diff --check"
+  ],
+  "warnings": [
+    "User confirmed after the run that company creation permission is not yet available; do not retry live creation before permission is granted."
+  ]
+}

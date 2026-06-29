@@ -101,3 +101,16 @@ Nach der erfolgreichen Anlage ist die Company noch nicht fachlich fertig. Eine n
 Ein haeufiger Fehler ist, eine Test- oder Democompany zu verwenden, weil sie sofort viele Daten enthaelt. Das fuehlt sich am Anfang bequem an, macht spaeter aber jeden Screenshot und jede Buchung schwerer erklaerbar.
 
 Der bessere Weg ist langsamer, aber sauberer: eigene Company anlegen, Pflichtdaten bewusst setzen und jeden Prozess aus der gleichen Universaarl-Welt aufbauen.
+
+## Wenn die neue Company nicht gespeichert wird
+
+Nicht jeder Benutzer darf in Business Central neue Companies anlegen. Wenn nach `Neu` oder `Neues Unternehmen erstellen` keine neue Company in der Mandantenliste erscheint, ist das kein Grund fuer einen blinden zweiten Versuch.
+
+Zuerst wird geprueft:
+
+- Ist der Benutzer fuer die Anlage von Companies berechtigt?
+- Steht `UNIVERSAARL-DE` nach dem Speichern wirklich in der Mandantenliste?
+- Zeigt Business Central eine Meldung wie `Nicht gespeichert`, eine rote Fehlermeldung oder einen Hinweis auf fehlende Berechtigung?
+- Wurde versehentlich nur eine leere Zeile geoeffnet, aber kein Feld in dieser Zeile beschrieben?
+
+Erst wenn die Berechtigung vorhanden ist und `UNIVERSAARL-DE` sichtbar in der Mandantenliste steht, geht es weiter mit dem Wechsel in die neue Company und der Seite `Unternehmensinformationen`.

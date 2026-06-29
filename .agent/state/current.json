@@ -6,8 +6,8 @@
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "activeArea": "universaarl-target-company-creation",
-  "activeCase": "TARGET-008-COMPANIES-NEW-ROW-FIELD-SAVE-GATE",
-  "active_case_file": ".agent/state/cases/target-008-companies-new-row-field-save-gate.json",
+  "activeCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+  "active_case_file": ".agent/state/cases/target-009-main-neu-list-company-create-gate.json",
   "lastReferenceCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
   "lastReferenceCaseFile": ".agent/state/cases/warehouse-031-warehouse-source-route-park-or-setup-fit-decision.json",
   "mode": "universaarl-final-book-production",
@@ -42,7 +42,7 @@
     "delete-legacy-evidence",
     "claim-rm-demo-as-final-proof"
   ],
-  "nextStep": "TARGET-008: use the main Neu route or the now-visible Neues Unternehmen erstellen route only with a Smart Decision Card; create UNIVERSAARL-DE only if the active row/dialog, data basis, save action and rollback/error capture are clear.",
+  "nextStep": "Resume TARGET-009 after company-creation permission is available: use Companies -> Neu dropdown -> Neues Unternehmen erstellen, focus the foreground Name cell, enter UNIVERSAARL-DE / Universaarl GmbH, and capture either a visible save success or the exact permission/save error.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -3635,5 +3635,59 @@
     "noCompanySwitch": true,
     "nextCase": "TARGET-008-COMPANIES-NEW-ROW-FIELD-SAVE-GATE",
     "updatedAt": "2026-06-29T20:43:31.482Z"
+  },
+  "lastRun": {
+    "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+    "status": "blocked",
+    "updatedAt": "2026-06-29T21:08:50.152Z",
+    "reason": "Company creation permission is not yet available; UNIVERSAARL-DE is not visible after the UI attempt.",
+    "resultFile": "playwright/projects/fibu-book5/evidence/target-009-main-neu-list-company-create-gate/TARGET-009-result.json"
+  },
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+    "lastEvidenceSummary": "TARGET-008/009 proved the visible Companies -> Neu / Neues Unternehmen erstellen area and a failed creation attempt; screenshot QA shows UNIVERSAARL-DE is not visible. User confirmed company creation rights are missing until tomorrow.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "Company creation remains the required foundation step, but it is blocked by missing permission and needs no further blind UI retries today.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+        "status": "blocked",
+        "reason": "Wait for permission, then resume with foreground ListPart cell focus and visible save/error evidence."
+      },
+      {
+        "caseId": "TARGET-010-UNIVERSAARL-COMPANY-CONTEXT-PROOF",
+        "status": "ready-after-current",
+        "reason": "Only after UNIVERSAARL-DE is visible."
+      },
+      {
+        "caseId": "TARGET-004-FOUNDATION-SETUP-READINESS",
+        "status": "needs-setup-first",
+        "reason": "Requires target company context."
+      },
+      {
+        "caseId": "TARGET-005-NUMBER-SERIES-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Requires company and foundation baseline."
+      },
+      {
+        "caseId": "TARGET-006-POSTING-GROUPS-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Requires company and foundation baseline."
+      }
+    ],
+    "queueChangesMade": [
+      "Active case moved to TARGET-009 blocker/resume case; no further live BC actions until permission is available."
+    ],
+    "selectedNextCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+    "whySelectedNextCaseIsBest": "It is the prerequisite for the Universaarl final track and now has a concrete permission blocker plus a better UI-focus route.",
+    "risksBeforeNextCase": [
+      "Missing permission may block save/create.",
+      "Do not claim creation unless UNIVERSAARL-DE is visible in Companies."
+    ],
+    "requiredPreparation": [
+      "Ensure user has company creation permission.",
+      "Rerun with screenshot QA and exact error capture."
+    ]
   }
 }

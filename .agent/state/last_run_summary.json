@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-29T20:43:31.482Z",
-  "caseId": "TARGET-007-COMPANIES-NEW-DROPDOWN-CLICKGUIDE",
-  "status": "observed",
+  "updatedAt": "2026-06-29T21:08:50.152Z",
+  "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+  "status": "blocked",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE target, CRONUS DE shell context before target company exists",
-  "practicalResult": "Captured Companies / Mandanten action bar with Neu dropdown open. Screenshot QA confirmed visible entries Neu and Neues Unternehmen erstellen.",
+  "practicalResult": "Prepared and ran TARGET-008/TARGET-009 UI-first company creation gates. Screenshot QA corrected a false Create-New-Company claim: the visible result was the direct Neu list-create part. TARGET-009 attempted the requested Neu / Neues Unternehmen erstellen path but UNIVERSAARL-DE is not visible; user confirmed company creation permission is not yet available.",
   "bcOrPlaywrightRan": true,
   "posting": false,
   "preview": false,
@@ -14,42 +14,31 @@
   "companySwitch": false,
   "draftCreated": false,
   "apiShortcut": false,
-  "bookChange": "bookdraft/clickguide only, no final bookmaster change",
+  "bookChange": "bookdraft/pattern/evidence only; no final bookmaster claim that company exists",
   "evidence": [
-    "playwright/projects/fibu-book5/evidence/target-007-companies-new-dropdown-clickguide/TARGET-007-result.json",
-    "playwright/projects/fibu-book5/evidence/target-007-companies-new-dropdown-clickguide/TARGET-007.md",
-    "playwright/projects/fibu-book5/evidence/target-007-companies-new-dropdown-clickguide/target-007-010-companies-new-dropdown-open.screenshot.json",
-    "playwright/projects/fibu-book5/img/target-007-010-companies-new-dropdown-open.png"
+    "playwright/projects/fibu-book5/evidence/target-008-companies-new-row-field-save-gate/TARGET-008-result.json",
+    "playwright/projects/fibu-book5/evidence/target-009-main-neu-list-company-create-gate/TARGET-009-result.json",
+    "playwright/projects/fibu-book5/img/target-008-020-create-new-company-route-opened.png",
+    "playwright/projects/fibu-book5/img/target-009-020-after-main-neu-create-attempt.png"
   ],
   "screenshotQa": {
-    "status": "passed",
+    "status": "passed-with-blocker",
     "visiblePage": "Mandanten / Companies, Page 357",
     "visibleControls": [
       "Neu",
       "Pfeil neben Neu",
-      "Dropdown entries: Neu, Neues Unternehmen erstellen"
+      "Neues Unternehmen erstellen",
+      "Companies list rows CRONUS DE and My Company"
     ],
     "visibleContext": "playthru environment, CRONUS DE shell context before UNIVERSAARL-DE exists",
     "doesNotShow": [
       "saved UNIVERSAARL-DE company",
-      "selected dropdown item",
-      "Company Information setup"
+      "Company Information setup",
+      "foundation setup"
     ]
   },
-  "nextCaseBeforeReview": "TARGET-007-MY-SETTINGS-COMPANY-LOOKUP-CREATE-NEW-COMPANY-ROUTE",
-  "selectedNextCase": "TARGET-008-COMPANIES-NEW-ROW-FIELD-SAVE-GATE",
-  "reasonNextCase": "Direct Mandanten -> Neu route is now the practical route; TARGET-008 must decide whether to use main Neu or the visible Neues Unternehmen erstellen route with a Smart Decision Card.",
-  "checksPlanned": [
-    "agent:preflight",
-    "agent:context",
-    "agent:dry-run",
-    "agent:run-plan",
-    "target-007 playwright test",
-    "result-normalize",
-    "state-finalize plan",
-    "check:encoding",
-    "git diff --check"
-  ],
-  "runId": "TARGET-007-COMPANIES-NEW-DROPDOWN-CLICKGUIDE",
-  "nextStep": "TARGET-008-COMPANIES-NEW-ROW-FIELD-SAVE-GATE: decide and execute the safest company creation route using the main Neu button or the visible Neues Unternehmen erstellen dropdown item only with Smart Decision Card, screenshot QA, and no copy/test/demo route."
+  "selectedNextCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+  "reasonNextCase": "Resume after company creation rights are available; do not continue blind today.",
+  "nextStep": "Tomorrow/evening: after rights are available, rerun TARGET-009 with foreground ListPart cell focus and capture visible save success or exact permission error.",
+  "runId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE"
 }

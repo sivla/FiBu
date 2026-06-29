@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+  "title": "Main Neu / Neues Unternehmen erstellen company creation blocker",
+  "instance": "playthru",
+  "targetCompany": "UNIVERSAARL-DE",
+  "legalName": "Universaarl GmbH",
+  "workType": "controlled-company-create-save-gate",
+  "status": "blocked",
+  "dependsOn": [
+    "TARGET-008-COMPANIES-NEW-ROW-FIELD-SAVE-GATE"
+  ],
+  "goal": "Create UNIVERSAARL-DE from the Companies page through the visible Neu / Neues Unternehmen erstellen UI path, without Copy, Testunternehmen, CRONUS copy or API shortcut.",
+  "evidenceTarget": "playwright/projects/fibu-book5/evidence/target-009-main-neu-list-company-create-gate/",
+  "lastResult": {
+    "resultFile": "playwright/projects/fibu-book5/evidence/target-009-main-neu-list-company-create-gate/TARGET-009-result.json",
+    "resultStatus": "blocked",
+    "blockedBy": [
+      "target-company-not-visible-after-create-attempt",
+      "company-creation-permission-not-yet-available",
+      "company-creation-permission-not-yet-available-user-confirmed"
+    ],
+    "screenshotQa": "UNIVERSAARL-DE is not visible in the Companies list after the attempt."
+  },
+  "allowedActionsWhenResumed": [
+    "open-playthru-companies-page-by-page-id",
+    "hover-Neu-and-dropdown-for-tooltip-evidence",
+    "open-Neu-dropdown",
+    "select-Neues-Unternehmen-erstellen",
+    "focus-visible-name-cell-in-foreground-listpart",
+    "enter-UNIVERSAARL-DE-and-Universaarl-GmbH",
+    "capture-save-or-permission-error",
+    "verify-UNIVERSAARL-DE-visible-after-save"
+  ],
+  "forbiddenActions": [
+    "select-Kopieren",
+    "select-Testunternehmen",
+    "copy-CRONUS-or-demo-company",
+    "api-shortcut",
+    "company-switch-before-created-company-proof",
+    "blind-retry-without-cell-focus-proof"
+  ],
+  "mustCheckBeforeResume": [
+    "user-has-company-creation-permission",
+    "playthru-instance-url",
+    "Companies-page-357-context",
+    "UNIVERSAARL-DE-not-already-visible",
+    "tooltip-for-Neu-or-dropdown-if-used",
+    "foreground-listpart-cell-focus",
+    "error-banner-capture"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "finalScreenshotNeeded": true,
+  "nextSafeAction": "After the user has the required permission, rerun the UI path and focus the visible Name cell inside the foreground ListPart before typing; stop on permission/save error and capture it."
+}
