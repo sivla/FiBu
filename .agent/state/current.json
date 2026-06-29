@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-29T18:45:00.000Z",
+  "updatedAt": "2026-06-29T18:55:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "activeArea": "universaarl-target-company-creation",
-  "activeCase": "TARGET-004-COMPANY-CREATION-SCOPED-ACTION-DISCOVERY",
-  "active_case_file": ".agent/state/cases/target-004-company-creation-scoped-action-discovery.json",
+  "activeCase": "TARGET-005-COMPANY-CREATION-SOURCE-BACKED-ALTERNATIVE-ROUTE",
+  "active_case_file": ".agent/state/cases/target-005-company-creation-source-backed-alternative-route.json",
   "lastReferenceCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
   "lastReferenceCaseFile": ".agent/state/cases/warehouse-031-warehouse-source-route-park-or-setup-fit-decision.json",
   "mode": "universaarl-final-book-production",
@@ -42,7 +42,7 @@
     "delete-legacy-evidence",
     "claim-rm-demo-as-final-proof"
   ],
-  "nextStep": "TARGET-004: scoped Companies action/menu discovery for an exact Create New Company route; do not use direct Companies row save, Copy Company, Testunternehmen or CRONUS.",
+  "nextStep": "TARGET-005: source-backed alternative UI route for clean UNIVERSAARL-DE company creation; do not repeat direct Companies row save, Copy Company, Testunternehmen, CRONUS or broad menu discovery.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -229,7 +229,7 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "universaarl-full-playthrough-catalog-and-company-creation",
+  "currentCoverageFocus": "universaarl-company-creation-source-backed-route",
   "nextProcessRoute": [
     "P2P-012 compared Purchase Journal, Item Journal, Purchase Invoices and Requisition Worksheet by direct page URL without search or field entry.",
     "Item Journal is the most stable observed route for material quantity/location/value effect, but it is Inventory evidence rather than full creditor P2P.",
@@ -3324,5 +3324,37 @@
       "error-handling-diagnostics",
       "uat-exercises"
     ]
+  },
+  "latestTarget004": {
+    "caseId": "TARGET-004-COMPANY-CREATION-SCOPED-ACTION-DISCOVERY",
+    "status": "blocked",
+    "instance": "playthru",
+    "targetCompany": "UNIVERSAARL-DE",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-004-company-creation-scoped-action-discovery/TARGET-004-result.json",
+    "screenshots": [
+      "playwright/projects/fibu-book5/img/target-004-010-companies-before-scoped-action-discovery.png",
+      "playwright/projects/fibu-book5/img/target-004-020-after-scoped-action-discovery.png"
+    ],
+    "targetAlreadyVisible": false,
+    "exactCreateClicked": false,
+    "companyCreated": false,
+    "setupChanged": false,
+    "companySwitched": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "noSearch": true,
+    "effectiveActionsTaken": [
+      "opened-safe-menu:new-related-actions-dropdown: | Verwandte Aktionen für Neu | Verwandte Aktionen für Neu",
+      "opened-safe-menu:commandbar-more-options:Weitere Optionen | Sekundäre Aktionen anzeigen"
+    ],
+    "blockedBy": [
+      "safe-create-new-company-action-not-found-after-scoped-menu-discovery"
+    ],
+    "decision": "Scoped action/menu discovery did not expose a safe exact Create New Company route. Direct row save, Copy Company, Testunternehmen, Demo and CRONUS remain rejected; next step must use a source-backed alternative route or a more specific Business Central setup entry point.",
+    "nextCase": "TARGET-005-COMPANY-CREATION-SOURCE-BACKED-ALTERNATIVE-ROUTE",
+    "migrationRelevance": "needed-for-german-final",
+    "mustRecreateInFinalSandbox": true,
+    "updatedAt": "2026-06-29T18:55:00.000Z"
   }
 }

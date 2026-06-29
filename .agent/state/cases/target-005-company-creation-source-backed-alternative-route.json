@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-005-COMPANY-CREATION-SOURCE-BACKED-ALTERNATIVE-ROUTE",
+  "title": "Source-backed alternative route for Universaarl company creation",
+  "instance": "playthru",
+  "targetCompany": "UNIVERSAARL-DE",
+  "legalName": "Universaarl GmbH",
+  "workType": "source-backed-ui-route-discovery-before-company-create",
+  "status": "planned",
+  "dependsOn": [
+    "TARGET-004-COMPANY-CREATION-SCOPED-ACTION-DISCOVERY"
+  ],
+  "preflightTruth": {
+    "universaarlDeVisible": false,
+    "target004BlockedBy": [
+      "safe-create-new-company-action-not-found-after-scoped-menu-discovery"
+    ],
+    "directListRowRejected": true,
+    "copyCompanyRejected": true,
+    "testCompanyRejected": true,
+    "cronosCopyRejected": true,
+    "tellMeSearchAvoided": true
+  },
+  "goal": "Find a source-backed Business Central UI route that can create a clean blank/setup-only UNIVERSAARL-DE company without copying CRONUS or sample master data.",
+  "allowedActionsWhenGatePasses": [
+    "read-official-source-or-existing-source-registry",
+    "open-playthru-ui-by-direct-url-or-source-backed-navigation",
+    "inspect-assisted-setup-or-admin-company-route-readonly",
+    "open-wizard-only-if-route-and-data-basis-are-visible",
+    "stop-before-finish-ok-create-copy-testcompany-or-company-switch",
+    "write-evidence-and-bookdraft-update"
+  ],
+  "forbiddenActions": [
+    "direct-companies-list-row-save",
+    "copy-company",
+    "test-company",
+    "cronos-copy",
+    "wizard-finish-without-data-basis-proof",
+    "api-shortcut",
+    "company-switch-without-created-company-proof",
+    "tell-me-enter-fallback"
+  ],
+  "mustCheckBeforeAction": [
+    "official-source-or-source-registry",
+    "route-name",
+    "data-basis-options",
+    "expected-created-company-state",
+    "sample-data-risk",
+    "fallback-if-only-demo-route-visible",
+    "book-explanation"
+  ],
+  "evidenceTarget": "playwright/projects/fibu-book5/evidence/target-005-company-creation-source-backed-alternative-route/",
+  "migrationRelevance": "needed-for-german-final",
+  "finalScreenshotNeeded": true,
+  "nextSafeAction": "Use source-backed route discovery for company creation; do not repeat TARGET-002 direct row save or TARGET-004 broad menu discovery."
+}

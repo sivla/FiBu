@@ -59,6 +59,16 @@ In der aktuellen `playthru`-Umgebung ist die direkte Listenzeile nicht der saube
 
 Fuer die Universaarl GmbH ist das die richtige Vorsicht: Eine neue Company ist der fachliche Ausgangspunkt fuer alle spaeteren Buchungen. Wenn hier versehentlich eine Demo-, Kopier- oder Testcompany entsteht, waeren Konten, Stammdaten und spaetere Screenshots nicht mehr sauber erklaerbar. Der naechste Schritt ist deshalb, die Aktionen und Menues auf der Mandantenliste genauer zu pruefen und nur eine Route zu verwenden, die als leere oder setup-nahe Company-Anlage erkennbar ist.
 
+## Wenn die Menues keine saubere Anlage zeigen
+
+Auf der Seite `Mandanten` gibt es neben dem Hauptbutton `Neu` auch kleine Menuepfeile und `Weitere Optionen`. Diese Menues koennen weitere Aktionen sichtbar machen. Fuer die Universaarl GmbH werden sie vorsichtig geoeffnet, ohne einen Eintrag auszufuehren, der Daten speichert oder eine Company kopiert.
+
+In `playthru` zeigen diese Menues weiterhin keinen eindeutigen, sicheren Pfad `Create New Company`. Sichtbar bleiben vor allem die bekannten Moeglichkeiten rund um `Neu`, `Kopieren`, `Testunternehmen` und die bestehende Demofirma. Damit ist die Entscheidung klar: Wir speichern keine direkte Listenzeile und kopieren keine Demofirma.
+
+Der naechste sinnvolle Weg ist eine quellenbasierte alternative Route. Das kann zum Beispiel eine von Microsoft dokumentierte Einrichtungsseite oder ein klar benannter Assistent sein. Erst wenn dort sichtbar ist, ob eine leere Company, eine setup-nahe Company oder eine Demo-Company entsteht, darf der naechste Schritt vorbereitet werden.
+
+Fuer den Anwender heisst das: Nicht jeder sichtbare Button ist automatisch der richtige Buchpfad. Bei der Company-Anlage zaehlt nicht nur, dass eine Company entsteht, sondern auch, welche Datenbasis sie bekommt.
+
 ## Nach der Anlage
 
 Nach der erfolgreichen Anlage ist die Company noch nicht fachlich fertig. Eine neue Company ist zuerst nur der leere Buchungsraum. Danach folgen die Grundlagen:
