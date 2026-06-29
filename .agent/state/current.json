@@ -6,12 +6,12 @@
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "fixedassets",
-  "activeCase": "FIXEDASSETS-295-FA-DEPRECIATION-GUARDED-OK-FRESH-DOC-NO-POST",
-  "active_case_file": ".agent/state/cases/fixedassets-295-fa-depreciation-guarded-ok-fresh-doc-no-post.json",
-  "lastReferenceCase": "FIXEDASSETS-294-FA-DEPRECIATION-REQUEST-PAGE-OPTIONS-OR-CONTROLLED-REPEAT-GATE",
-  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-294-fa-depreciation-request-page-options-or-controlled-repeat-gate.json",
+  "activeCase": "FIXEDASSETS-296-FA-DEPRECIATION-FRESH-OK-RESULT-BLOCKER-REVIEW",
+  "active_case_file": ".agent/state/cases/fixedassets-296-fa-depreciation-fresh-ok-result-blocker-review.json",
+  "lastReferenceCase": "FIXEDASSETS-295-FA-DEPRECIATION-GUARDED-OK-FRESH-DOC-NO-POST",
+  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-295-fa-depreciation-guarded-ok-fresh-doc-no-post.json",
   "mode": "bc-specialist-labor-book-production",
-  "requiresStrongModel": false,
+  "requiresStrongModel": true,
   "requiredPreflightChecks": [
     "agent:preflight",
     "agent:state:validate",
@@ -40,7 +40,7 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "FIXEDASSETS-295: run guarded Calculate Depreciation OK with fresh document FADEP-295-OK; no Preview Posting or Post.",
+  "nextStep": "FIXEDASSETS-296: locally review why the fresh OK run did not produce visible FADEP-295-OK journal evidence before any further repeat.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/inventory-labor-draft.md",
     "area": "inventory",
@@ -2128,5 +2128,16 @@
     "resultPath": "playwright/projects/fibu-book5/evidence/fixedassets-294/FIXEDASSETS-294-result.json",
     "nextCase": "FIXEDASSETS-295-FA-DEPRECIATION-GUARDED-OK-FRESH-DOC-NO-POST",
     "updatedAt": "2026-06-29T06:21:35.946Z"
+  },
+  "latestFixedAssets295GuardedOk": {
+    "status": "observed-review-required",
+    "resultPath": "playwright/projects/fibu-book5/evidence/fixedassets-295/FIXEDASSETS-295-result.json",
+    "documentNo": "FADEP-295-OK",
+    "okConfirmedExactlyOnce": true,
+    "journalLineFound": false,
+    "noPreviewPosting": true,
+    "noPost": true,
+    "nextCase": "FIXEDASSETS-296-FA-DEPRECIATION-FRESH-OK-RESULT-BLOCKER-REVIEW",
+    "updatedAt": "2026-06-29T06:25:24.494Z"
   }
 }
