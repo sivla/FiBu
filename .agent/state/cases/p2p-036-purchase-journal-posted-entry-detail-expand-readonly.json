@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "caseId": "P2P-036-PURCHASE-JOURNAL-POSTED-ENTRY-DETAIL-EXPAND-READONLY",
+  "title": "Expand posted Purchase Journal entry details read-only",
+  "status": "planned",
+  "taskClass": "wizard_work",
+  "modelClass": "gpt-5.4-medium",
+  "usageLogRequired": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "p2p-posted-entry-detail-readonly-evidence",
+  "sourceCase": "P2P-032-PURCHASE-JOURNAL-CONTROLLED-POSTING-TRACE",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/p2p-032/P2P-032-result.json",
+    "playwright/projects/fibu-book5/evidence/p2p-033/P2P-033-result.json"
+  ],
+  "purpose": "Improve the already posted P2P032 laboratory evidence by expanding/read-only drilling into posted Vendor/G-L/Detailed Vendor Ledger contexts so the book can show amounts, accounts and entry types, not only codes.",
+  "allowedActions": [
+    "open-business-central-if-instance-and-company-match",
+    "run-playwright-if-case-preflight-passes",
+    "read-posted-p2p032-vendor-ledger-entries",
+    "read-posted-p2p032-detailed-vendor-ledger-entries",
+    "read-posted-p2p032-gl-entries",
+    "maximize-or-expand-readonly-entry-pages-if-needed",
+    "write-evidence",
+    "update-state-or-bookdraft"
+  ],
+  "defaultLockedActions": [
+    "posting",
+    "preview-posting",
+    "setup-change",
+    "company-switch",
+    "api-shortcut",
+    "new-draft",
+    "edit-record",
+    "delete-record"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "claim-german-final-proof",
+    "post",
+    "preview-posting",
+    "setup-change",
+    "api-shortcut-without-explicit-case-permission"
+  ],
+  "safetyGates": [
+    "instance-must-be-MCP_1_20260210",
+    "company-must-be-RM-DEMO",
+    "document-no-must-be-P2P032-682298",
+    "read-only-entry-pages-only",
+    "no-new-edit-delete-post-preview-or-setup",
+    "screenshots-must-show-human-visible-amounts-accounts-or-entry-types-if-created"
+  ],
+  "expectedEvidence": [
+    "compact JSON result with visible entry types, accounts and amounts",
+    "page text or screenshots only where they show the intended human-visible accounting evidence",
+    "clear statement that this is RM-DEMO lab evidence and must be rebuilt for German final proof"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "targetGermanCompanyImpact": "German final P2P must recreate posted vendor/G-L/detailed ledger screenshots with German accounts, tax and setup.",
+  "finalScreenshotNeeded": true,
+  "resultPath": "playwright/projects/fibu-book5/evidence/p2p-036/P2P-036-result.json",
+  "nextStep": "Run read-only entry detail expansion for P2P032-682298; do not post, preview, edit, delete or create drafts.",
+  "createdAt": "2026-06-29T06:41:12.603Z",
+  "updatedAt": "2026-06-29T06:41:12.603Z"
+}

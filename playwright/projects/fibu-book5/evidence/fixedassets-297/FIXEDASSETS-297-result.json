@@ -1,0 +1,107 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "FIXEDASSETS-297-FA-DEPRECIATION-ELIGIBILITY-CAUSE-READONLY",
+  "source": "playwright-readonly-diagnosis-consolidation",
+  "resultStatus": "observed",
+  "runPlanId": "FIXEDASSETS-297-FA-DEPRECIATION-ELIGIBILITY-CAUSE-READONLY-PLAN",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-medium",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "startedAt": "2026-06-29T06:41:12.603Z",
+  "finishedAt": "2026-06-29T06:41:12.603Z",
+  "proved": [
+    "Business Central stayed in MCP_1_20260210 / RM-DEMO during both read-only diagnostic probes.",
+    "FA-269 re-confirmed the earlier target-date-before-acquisition hypothesis for FADEP-267-OK.",
+    "FA-277 re-confirmed FA-CNC-01 acquisition basis, G05001 ledger context and visible 120.000 book value context without edit mode.",
+    "Neither diagnostic run found a visible generated FA depreciation journal line in the Fixed Asset G/L Journal context.",
+    "No Calculate Depreciation OK repeat, Preview Posting, Post, setup change, company switch, draft, edit/delete or API shortcut was executed."
+  ],
+  "notProved": [
+    "FA-297 does not prove an exact root cause for the later FADEP-295-OK missing journal line after 31.01.2027.",
+    "FA-297 does not prove a depreciation Preview Posting result.",
+    "FA-297 does not prove a depreciation posting or German final fixed-assets proof.",
+    "Page Inspection/Buchwert evidence remains useful but not field-secure enough to justify another blind Calculate Depreciation OK repetition."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-269/FIXEDASSETS-269-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-277/FIXEDASSETS-277-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-297/FIXEDASSETS-297-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-297/FIXEDASSETS-297-ELIGIBILITY-CAUSE-READONLY.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-297/README.md",
+    ".agent/state/current.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/cases/fixedassets-297-fa-depreciation-eligibility-cause-readonly.json",
+    ".agent/state/cases/p2p-036-purchase-journal-posted-entry-detail-expand-readonly.json"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-269/FIXEDASSETS-269-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-277/FIXEDASSETS-277-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-269/FIXEDASSETS-269-DEPRECIATION-ELIGIBILITY-READONLY-DIAGNOSIS.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-277/FIXEDASSETS-277-DEPRECIATION-BOOK-VALUE-PAGEINSPECTION-READONLY.md"
+  ],
+  "diagnosis": {
+    "classification": "labor-blocked-root-cause-not-finally-proven",
+    "decision": "Park fixed-assets depreciation OK repetition. The old pre-acquisition-date issue is proven for FADEP-267, and acquisition/book-value context exists, but the later FADEP-295 missing journal line still lacks a safe root-cause proof.",
+    "sourceClassifications": {
+      "fixedassets269": "probable-target-date-before-acquisition",
+      "fixedassets277": "field-values-still-not-fieldsecure-and-journal-line-missing"
+    },
+    "practicalConsequence": "Do not repeat Calculate Depreciation OK, Preview Posting or Post for FA-CNC-01 until a new, non-repeating hypothesis proves the exact output target or eligibility cause."
+  },
+  "flags": {
+    "bcRun": true,
+    "playwrightRun": true,
+    "readOnly": true,
+    "noCalculateDepreciationOk": true,
+    "noPreviewPosting": true,
+    "noPost": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noDraft": true,
+    "noEdit": true,
+    "noDelete": true,
+    "noApiShortcut": true,
+    "noBookChangeInsideTest": true
+  },
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "targetGermanCompanyImpact": "German final fixed-assets depreciation must be rebuilt with German setup, field-secure depreciation-book values, generated depreciation journal line, Preview Posting and posting trace.",
+  "finalScreenshotNeeded": true,
+  "blockedBy": [
+    "depreciation-journal-line-still-not-visible-after-two-controlled-ok-attempts",
+    "later-fa295-root-cause-not-field-securely-proven"
+  ],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeArea": "p2p",
+      "activeCase": "P2P-036-PURCHASE-JOURNAL-POSTED-ENTRY-DETAIL-EXPAND-READONLY",
+      "active_case_file": ".agent/state/cases/p2p-036-purchase-journal-posted-entry-detail-expand-readonly.json",
+      "lastReferenceCase": "FIXEDASSETS-297-FA-DEPRECIATION-ELIGIBILITY-CAUSE-READONLY",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-297-fa-depreciation-eligibility-cause-readonly.json",
+      "nextStep": "P2P-036: read-only expand posted P2P032 entry details; show amounts/accounts/posting entry types clearly. No posting, no setup change."
+    },
+    "activeCase": {
+      "status": "done",
+      "resultStatus": "observed",
+      "resultPath": "playwright/projects/fibu-book5/evidence/fixedassets-297/FIXEDASSETS-297-result.json",
+      "nextCase": "P2P-036-PURCHASE-JOURNAL-POSTED-ENTRY-DETAIL-EXPAND-READONLY",
+      "nextCaseFile": ".agent/state/cases/p2p-036-purchase-journal-posted-entry-detail-expand-readonly.json"
+    },
+    "coverage": {
+      "fixedassets": {
+        "currentBlock": "fa-depreciation-parked-after-readonly-cause-diagnosis",
+        "nextCase": "P2P-036-PURCHASE-JOURNAL-POSTED-ENTRY-DETAIL-EXPAND-READONLY",
+        "depreciationReadiness": "FA-297 confirms fixed-assets depreciation remains labor-blocked: old pre-acquisition-date issue proven for FADEP-267, but later FADEP-295 missing journal line still has no field-secure root cause. Do not repeat OK/Preview/Post without a new hypothesis."
+      }
+    }
+  },
+  "nextCase": "P2P-036-PURCHASE-JOURNAL-POSTED-ENTRY-DETAIL-EXPAND-READONLY",
+  "nextCaseFile": ".agent/state/cases/p2p-036-purchase-journal-posted-entry-detail-expand-readonly.json",
+  "nextStep": "Run P2P-036 read-only detail expansion for posted Purchase Journal evidence P2P032-682298; no posting or setup change."
+}
