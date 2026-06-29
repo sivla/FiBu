@@ -38,3 +38,6 @@ Sie darf nicht als Universaarl- oder German-Final-Beweis gelten.
 4. `TARGET-004`: Foundation Setup Plan und erste Setup-Gates.
 5. Danach pro Kapitel: Rebuild, Evidence, Buchpatch, Supersession.
 
+## Smart Decision Gate
+
+Vor jeder wirksamen Universaarl-Aktion wird eine Smart Decision Card geschrieben. Das gilt besonders fuer Company-Anlage, Setup, Stammdaten, Belege, Preview, Posting, Payment, Cleanup und fachliche Buchpatches. Die Card prueft Buchzweck, Quellen, vorhandene Evidence, Alternativen, erwartete Wirkung, Risiko, Fallback und anfaengerfreundliche Erklaerung. Ohne Card bleibt der Schritt read-only oder wird blockiert.

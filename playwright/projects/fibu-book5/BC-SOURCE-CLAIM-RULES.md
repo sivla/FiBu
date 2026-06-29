@@ -23,6 +23,7 @@ Diese Regeln steuern, wann eine Aussage in Buch, Atlas, Evidence oder State steh
 4. Community, Blogs und YouTube duerfen Tests inspirieren, aber keine Buchwahrheit beweisen.
 5. Wenn Quelle und UI-Evidence abweichen, gewinnt fuer die konkrete Anleitung die eigene Evidence; die Abweichung wird im Atlas oder Evidence-README erklaert.
 6. Wenn keine Quelle und keine Evidence vorhanden ist, wird kein finaler Buchsatz geschrieben. Die Aussage wandert in eine interne Pruefnotiz oder wird als naechster Proof-Case geplant.
+7. Vor jeder wirksamen BC- oder Buchaktion muss eine Smart Decision Card die Quellen-/Evidence-Basis, Alternativen, erwartete Wirkung, Risiken und Bucherklaerung festhalten.
 
 ## Buchtext oder internes Artefakt?
 
@@ -43,3 +44,4 @@ Fuer `UNIVERSAARL-DE` gilt ab diesem Quellenlauf:
 - Der bevorzugte Buchpfad ist die offizielle Create-New-Company-/Assisted-Setup-Route.
 - `Kopieren`, CRONUS und `Testunternehmen` sind keine finale Universaarl-Basis, solange Datenwirkung und Demodatenfreiheit nicht belegt sind.
 - Ein Privacy-/Personal-Data-Hinweis auf der Mandantenliste ist ein fachlicher Stop-/Erklaerpunkt, nicht nur UI-Rauschen.
+- Vor Speichern, Finish oder Wizard-Abschluss muss die Smart Decision Card `Neu`, `Kopieren`, `Testunternehmen`, Blank/No Data und Setup-Only/Production-Setup als Alternativen bewerten.

@@ -53,6 +53,12 @@ Do not:
 - confirm a dialog before visible dialog text is captured
 - claim a screenshot proves a value that is not visible
 
+## Smart Decision Gate
+
+Before any effective action, apply `.agent/SMART-DECISION-GATE.md` and write a Smart Decision Card in the case, result or evidence README. Effective actions include company creation/switching, setup or master-data changes, draft/document changes, dialog confirmation, wizard finish, Preview Posting, posting, payment, cleanup, reversal, content-changing book patches and final/proven coverage or atlas marking.
+
+The decision must compare alternatives, check book context, source/evidence basis, expected effect, risk, fallback and beginner explanation. If the decision cannot be made, keep the route read-only and document the blocker instead of acting.
+
 ## Safety gates
 
 These actions are default locked:

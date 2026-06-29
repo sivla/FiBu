@@ -46,6 +46,10 @@ Fachliche Aussagen brauchen Quelle oder eigene Universaarl-Evidence:
 
 Wenn Quelle und eigene UI-Evidence voneinander abweichen, wird im Buch vorsichtig formuliert. Die genaue Abweichung steht in Evidence oder Atlas.
 
+## Vor wirksamen Buchaenderungen
+
+Bevor der Buchmaster oder ein finaler Buchdraft fachlich umgeschrieben wird, muss intern eine Smart Decision Card existieren. Sie erklaert, welche Buchfrage geloest wird, welche Quelle oder Universaarl-Evidence den Abschnitt stuetzt, welche alte Legacy-Stelle ersetzt wird und warum der Text fuer Anfaenger jetzt hilfreicher ist. Diese Card bleibt in Case, Result, Evidence oder State; der Buchtext selbst bleibt direkter Lesertext ohne Agenten-Meta.
+
 ## Stil fuer Screenshots
 
 Nicht schreiben:

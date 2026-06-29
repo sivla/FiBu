@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-29T18:08:00.000Z",
+  "updatedAt": "2026-06-29T18:32:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
@@ -42,7 +42,34 @@
     "delete-legacy-evidence",
     "claim-rm-demo-as-final-proof"
   ],
-  "nextStep": "TARGET-003: use official Create New Company / Assisted Setup route for UNIVERSAARL-DE; do not continue direct Companies list-row save as book path.",
+  "nextStep": "TARGET-003: write/use Smart Decision Card, then inspect official Create New Company / Assisted Setup route for UNIVERSAARL-DE; do not continue direct Companies list-row save as book path.",
+  "smartDecisionGate": {
+    "path": ".agent/SMART-DECISION-GATE.md",
+    "requiredBeforeEffectiveActions": true,
+    "effectiveActionsRequireDecisionCard": true,
+    "decisionCardLocations": [
+      "case-json",
+      "result-json",
+      "evidence-readme"
+    ],
+    "effectiveActions": [
+      "company-create",
+      "company-switch",
+      "setup-change",
+      "master-data-create-or-edit",
+      "draft-or-document-create-or-edit",
+      "dialog-confirm",
+      "wizard-finish",
+      "preview-posting",
+      "posting",
+      "payment",
+      "cleanup-delete",
+      "reversal-or-correction",
+      "bookmaster-content-change",
+      "coverage-or-atlas-final-marking"
+    ],
+    "fallbackWhenNoDecision": "investigate-readonly-first"
+  },
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/manufacturing-labor-draft.md",
     "area": "manufacturing",

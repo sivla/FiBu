@@ -93,6 +93,8 @@ Labor-Buchdrafts aus Evidence sind erlaubt, aber sie werden als Schulungsbuch ge
 
 Vor jedem neuen fachlichen Buchclaim gilt die Quellenpruefung aus `playwright/projects/fibu-book5/BC-SOURCE-CLAIM-RULES.md`: eigene Universaarl-Evidence fuer UI-/Evidence-Claims, Microsoft Learn fuer Produkt-/Setupclaims, Microsoft Release Plan fuer releaseabhaengige Features, Implementation Guide/Success by Design fuer Projekt- und Best-Practice-Claims, amtliche deutsche/EU-Quellen fuer Rechts-, Steuer-, GoBD- und E-Rechnungsclaims. Ohne passende Quelle oder Evidence wird die Aussage nicht final in den Buchtext geschrieben.
 
+Vor jeder wirksamen Aktion gilt zusaetzlich `.agent/SMART-DECISION-GATE.md`. Company-Erstellung, Company-Wechsel, Setup, Stammdaten, Drafts, Dialogbestaetigung, Wizard-Finish, Preview, Posting, Payment, Cleanup, Reversal, fachliche Buchmaster-Aenderungen und finale Coverage-/Atlas-Markierungen brauchen vorher eine Smart Decision Card in Case, Result oder Evidence README. Ohne Card wird die Aktion blockiert oder auf read-only Diagnose reduziert.
+
 ## Skill-/Capability-Lernen
 
 - Skills, Capabilities und Playwright-Helper duerfen nur evidence-getrieben erweitert werden.

@@ -16,6 +16,10 @@ Alte RM-DEMO-/Rhein-Main-/CRONUS-Belege bleiben als `legacy-labor-reference` erh
 4. `TARGET-004-FOUNDATION-SETUP`: Basiseinstellungen, Sprache/Lokalisierung, Nummernserien, Buchungslogik und Sicherheitsgrenzen.
 5. Prozessweise Rebuilds: O2C, P2P, Inventory, Fixed Assets, Payments/Bank, Reporting, danach weitere Buchkapitel.
 
+## Smart Decision Gate
+
+Wirksame Schritte im Universaarl-Final-Track brauchen vor der Ausfuehrung eine Smart Decision Card. Sie verhindert, dass der Autopilot nur wegen eines sichtbaren Buttons handelt. Die Card beantwortet, warum der Schritt fuer Universaarl und das Buch sinnvoll ist, welche Quellen und Evidence geprueft wurden, welche Alternativen verworfen wurden, welche Wirkung erwartet wird und wie der Schritt spaeter anfaengerfreundlich erklaert wird.
+
 ## Reusable Skills For Universaarl Restart
 
 Diese Faehigkeiten wurden in RM-DEMO gelernt und duerfen in Universaarl wiederverwendet werden. Sie beweisen aber erst nach neuer Universaarl-Evidence einen finalen Buchstand.
@@ -36,4 +40,3 @@ Diese Faehigkeiten wurden in RM-DEMO gelernt und duerfen in Universaarl wiederve
 ## Supersession-Regel
 
 Wenn ein Universaarl-Prozess neu bewiesen ist, wird der alte RM-DEMO-Laborstand in Coverage/State/Buch als `superseded-by-universaarl` markiert. Alte Evidence wird nicht geloescht, sondern archiviert.
-
