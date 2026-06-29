@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "caseId": "PREP-017-REPO-DOCUMENTATION-CONSISTENCY-AUDIT",
+  "status": "done",
+  "instance": "playthru",
+  "targetCompany": "UNIVERSAARL-DE",
+  "targetCompanyStatus": "planned-not-yet-created",
+  "sourceCompany": "UNIVERSAARL-DE-planned-not-yet-created",
+  "targetWorld": "Universaarl",
+  "workType": "repo-documentation-consistency",
+  "effectiveBusinessCentralActionsAllowed": false,
+  "businessCentralExecuted": false,
+  "playwrightExecuted": false,
+  "bookChanged": false,
+  "setupChanged": false,
+  "posted": false,
+  "previewPosting": false,
+  "resultPath": "playwright/projects/fibu-book5/evidence/prep-017-repo-documentation-consistency-audit/PREP-017-result.json",
+  "evidencePath": "playwright/projects/fibu-book5/evidence/prep-017-repo-documentation-consistency-audit/",
+  "changedFiles": [
+    "playwright/projects/fibu-book5/DOCUMENTATION-MAP.md",
+    "playwright/projects/fibu-book5/BC-FULL-PLAYTHROUGH-CATALOG.md",
+    "playwright/projects/fibu-book5/BC-COVERAGE-MATRIX.md",
+    ".agent/state/cases/prep-017-repo-documentation-consistency-audit.json",
+    ".agent/state/current.json",
+    ".agent/state/marathon_queue.json",
+    ".agent/state/last_run_summary.json",
+    "playwright/projects/fibu-book5/evidence/prep-017-repo-documentation-consistency-audit/README.md",
+    "playwright/projects/fibu-book5/evidence/prep-017-repo-documentation-consistency-audit/PREP-017-result.json"
+  ],
+  "proved": [
+    "DOCUMENTATION-MAP.md no longer presents legacy AUTOPILOT-STATE/CURRENT-STATE files as the active steering truth.",
+    "BC-FULL-PLAYTHROUGH-CATALOG.md now points the PREP queue to PREP-017 through PREP-022 and keeps TARGET-009 parked until permissions exist.",
+    "BC-COVERAGE-MATRIX.md now states that coverage progress is currently driven by the permission-aware PREP queue."
+  ],
+  "notProved": [
+    "No Business Central UI state was revalidated in this case.",
+    "UNIVERSAARL-DE was not created.",
+    "No Universaarl process evidence or final German proof was created."
+  ],
+  "nextStepDecisionCard": {
+    "currentCase": "PREP-017-REPO-DOCUMENTATION-CONSISTENCY-AUDIT",
+    "plannedNextCaseBeforeReview": "PREP-017-REPO-DOCUMENTATION-CONSISTENCY-AUDIT",
+    "lastEvidenceSummary": "PREP-016 cleaned active Universaarl book-facing German text for umlauts and encoding.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The repo documentation map and process catalog still pointed to older state/control files and outdated PREP priorities, so consistency cleanup was the right safe step before further PREP work.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "PREP-018-PLAYWRIGHT-SCRIPT-AND-HELPER-INVENTORY",
+        "status": "ready-next",
+        "reason": "After documentation alignment, the next practical prep task is to distinguish active Universaarl Playwright assets from legacy RM helpers/tests."
+      },
+      {
+        "caseId": "PREP-019-AUTOPILOT-EFFICIENCY-IMPROVEMENT",
+        "status": "ready-after-current",
+        "reason": "Efficiency cleanup benefits from the corrected documentation map and queue baseline."
+      },
+      {
+        "caseId": "PREP-020-UNIVERSAARL-DATASET-BLUEPRINT",
+        "status": "ready-after-current",
+        "reason": "Concrete Universaarl data planning should follow after script/helper inventory and efficiency cleanup."
+      },
+      {
+        "caseId": "PREP-021-UNIVERSAARL-USECASE-BACKLOG-CURATION",
+        "status": "ready-after-current",
+        "reason": "Backlog curation is useful after data and helper dependencies are clearer."
+      },
+      {
+        "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+        "status": "blocked",
+        "reason": "Company creation remains parked until SUPER/company-create permissions are confirmed."
+      }
+    ],
+    "queueChangesMade": [
+      "Marked PREP-017 done.",
+      "Selected PREP-018 as the next safe prep case.",
+      "Kept TARGET-009 parked until SUPER/company-create permissions are confirmed."
+    ],
+    "selectedNextCase": "PREP-018-PLAYWRIGHT-SCRIPT-AND-HELPER-INVENTORY",
+    "whySelectedNextCaseIsBest": "Documentation now points to the active state and queue; the next bottleneck is knowing which Playwright scripts/helpers are active Universaarl assets and which are legacy references.",
+    "risksBeforeNextCase": [
+      "Do not run write-capable Playwright tests.",
+      "Do not port legacy RM tests as active Universaarl tests without recontextualizing instance, company and evidence status."
+    ],
+    "requiredPreparation": [
+      "Read package scripts, Playwright project tests, core helpers and Universaarl pattern files before editing."
+    ]
+  },
+  "completedAt": "2026-06-30T03:55:00.000+02:00"
+}

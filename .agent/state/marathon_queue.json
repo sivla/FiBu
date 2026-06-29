@@ -335,7 +335,7 @@
     {
       "id": "PREP-017-REPO-DOCUMENTATION-CONSISTENCY-AUDIT",
       "order": 17,
-      "status": "pending",
+      "status": "done",
       "category": "repo",
       "expectedImpact": "prep-progress",
       "mayWorkEffectively": false,
@@ -345,7 +345,11 @@
       "sourceCompany": "UNIVERSAARL-DE-planned-not-yet-created",
       "targetWorld": "Universaarl",
       "noFinalGermanClaimWithoutUniversaarlEvidence": true,
-      "lookaheadStatus": "ready-next"
+      "lookaheadStatus": "done",
+      "reason": "Next best prep task after PREP-016: align documentation map, full-playthrough catalog and coverage matrix with the active .agent state and PREP queue.",
+      "completedAt": "2026-06-30T03:55:00.000+02:00",
+      "result": "Documentation map now points to .agent state/queue, full-playthrough priorities now show PREP-017..PREP-022, and coverage states the current PREP/read-only mode.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/prep-017-repo-documentation-consistency-audit/PREP-017-result.json"
     },
     {
       "id": "PREP-018-PLAYWRIGHT-SCRIPT-AND-HELPER-INVENTORY",
@@ -360,7 +364,7 @@
       "sourceCompany": "UNIVERSAARL-DE-planned-not-yet-created",
       "targetWorld": "Universaarl",
       "noFinalGermanClaimWithoutUniversaarlEvidence": true,
-      "lookaheadStatus": "ready-after-current"
+      "lookaheadStatus": "ready-next"
     },
     {
       "id": "PREP-019-AUTOPILOT-EFFICIENCY-IMPROVEMENT",
@@ -543,7 +547,7 @@
       "lookaheadStatus": "ready-after-current"
     }
   ],
-  "lastUpdated": "2026-06-30T02:45:00.000+02:00",
+  "lastUpdated": "2026-06-30T03:55:00.000+02:00",
   "nextStepDecisionGate": {
     "active": true,
     "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",
@@ -566,31 +570,31 @@
       "replace-with-better-case"
     ],
     "latestDecisionCard": {
-      "currentCase": "PREP-002-COMPANY-CREATION-BEGINNER-BOOK-DRAFT",
-      "plannedNextCaseBeforeReview": "PREP-002-COMPANY-CREATION-BEGINNER-BOOK-DRAFT",
-      "lastEvidenceSummary": "TARGET-007/009 showed the Companies page route and that UNIVERSAARL-DE is not visible; permissions are missing.",
+      "currentCase": "PREP-017-REPO-DOCUMENTATION-CONSISTENCY-AUDIT",
+      "plannedNextCaseBeforeReview": "PREP-017-REPO-DOCUMENTATION-CONSISTENCY-AUDIT",
+      "lastEvidenceSummary": "PREP-016 cleaned active Universaarl book-facing German text for umlauts and encoding.",
       "isPlannedNextCaseStillSensible": true,
-      "reason": "Turning the blocker into beginner-facing book substance is productive while effective BC actions are locked.",
+      "reason": "The documentation map and catalog still contained stale steering references; updating them prevents the next run from following outdated RM/MCP-era files.",
       "lookaheadReviewed": [
         {
-          "caseId": "PREP-003-PLAYTHRU-READONLY-UI-LOOK-AND-FEEL-MAP",
+          "caseId": "PREP-018-PLAYWRIGHT-SCRIPT-AND-HELPER-INVENTORY",
           "status": "ready-next",
-          "reason": "Read-only UI learning is the next highest-value prep task."
+          "reason": "The next practical prep task is to classify active Universaarl Playwright scripts and helpers."
         },
         {
-          "caseId": "PREP-004-BC-FULL-PLAYTHROUGH-CATALOG-GAP-FILL",
+          "caseId": "PREP-019-AUTOPILOT-EFFICIENCY-IMPROVEMENT",
           "status": "ready-after-current",
-          "reason": "Catalog gaps can be filled after the immediate UI prep step."
+          "reason": "Efficiency work should follow after active docs and script/helper inventory are consistent."
         },
         {
-          "caseId": "PREP-005-BC-OBJECT-COVERAGE-CATALOG-GAP-FILL",
+          "caseId": "PREP-020-UNIVERSAARL-DATASET-BLUEPRINT",
           "status": "ready-after-current",
-          "reason": "Object coverage can use current target evidence and source mapping."
+          "reason": "Concrete data packages should follow script/helper inventory."
         },
         {
-          "caseId": "PREP-015-READY-FOR-SUPER-PERMISSIONS-CHECKLIST",
-          "status": "partly-completed-early",
-          "reason": "Checklist created now because it directly reduces risk when permissions arrive."
+          "caseId": "PREP-021-UNIVERSAARL-USECASE-BACKLOG-CURATION",
+          "status": "ready-after-current",
+          "reason": "Backlog curation should use the clarified data and tooling baseline."
         },
         {
           "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
@@ -599,68 +603,70 @@
         }
       ],
       "queueChangesMade": [
-        "Marked PREP-002 done and PREP-015 partly completed by creating the super-permissions checklist."
+        "Marked PREP-017 done.",
+        "Selected PREP-018 as next safe prep case.",
+        "Kept TARGET-009 parked until SUPER/company-create permissions are confirmed."
       ],
-      "selectedNextCase": "PREP-003-PLAYTHRU-READONLY-UI-LOOK-AND-FEEL-MAP",
-      "whySelectedNextCaseIsBest": "It improves Business Central UI understanding without writes and directly supports future book screenshots and Playwright helpers.",
+      "selectedNextCase": "PREP-018-PLAYWRIGHT-SCRIPT-AND-HELPER-INVENTORY",
+      "whySelectedNextCaseIsBest": "The active documentation map and queue are now aligned; the next risk is accidental use of legacy Playwright tests or helpers as active Universaarl routes.",
       "risksBeforeNextCase": [
-        "Read-only UI exploration must not execute effective actions.",
-        "Screenshots must be QA-checked before book use."
+        "Do not execute write-capable Playwright tests.",
+        "Do not treat RM/MCP helper evidence as Universaarl final proof."
       ],
       "requiredPreparation": [
-        "Use tooltip, layout, FastTab, FactBox and filter rules before claiming anything is missing."
+        "Read package scripts, active target tests, core helpers and Universaarl pattern files."
       ]
     }
   },
-  "updatedAt": "2026-06-30T03:20:00.000+02:00",
-  "lastCompletedCase": "PREP-016-BOOKMASTER-UMLAUT-AND-ENCODING-AUDIT",
-  "nextCase": "PREP-017-REPO-DOCUMENTATION-CONSISTENCY-AUDIT",
+  "updatedAt": "2026-06-30T03:55:00.000+02:00",
+  "lastCompletedCase": "PREP-017-REPO-DOCUMENTATION-CONSISTENCY-AUDIT",
+  "nextCase": "PREP-018-PLAYWRIGHT-SCRIPT-AND-HELPER-INVENTORY",
   "nextStepDecisionCard": {
-    "currentCase": "PREP-016-BOOKMASTER-UMLAUT-AND-ENCODING-AUDIT",
-    "plannedNextCaseBeforeReview": "PREP-016-BOOKMASTER-UMLAUT-AND-ENCODING-AUDIT",
-    "lastEvidenceSummary": "PREP-015 hardened the SUPER/company-create resume checklist and clarified the required splitbutton/dropdown target checks.",
+    "currentCase": "PREP-017-REPO-DOCUMENTATION-CONSISTENCY-AUDIT",
+    "plannedNextCaseBeforeReview": "PREP-017-REPO-DOCUMENTATION-CONSISTENCY-AUDIT",
+    "lastEvidenceSummary": "PREP-016 cleaned active Universaarl book-facing German text for umlauts and encoding.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "Company creation is still permission-blocked, so cleaning active Universaarl book-facing German text is the best safe prep progress.",
+    "reason": "The documentation map and catalog still contained stale steering references; updating them prevents the next run from following outdated RM/MCP-era files.",
     "lookaheadReviewed": [
       {
-        "caseId": "PREP-017-REPO-DOCUMENTATION-CONSISTENCY-AUDIT",
-        "status": "ready-next",
-        "reason": "State, coverage and planning consistency should be checked after the text cleanup."
-      },
-      {
         "caseId": "PREP-018-PLAYWRIGHT-SCRIPT-AND-HELPER-INVENTORY",
-        "status": "ready-after-current",
-        "reason": "Helper inventory remains useful before future read-only or rights-unblocked probes."
+        "status": "ready-next",
+        "reason": "The next practical prep task is to classify active Universaarl Playwright scripts and helpers."
       },
       {
         "caseId": "PREP-019-AUTOPILOT-EFFICIENCY-IMPROVEMENT",
         "status": "ready-after-current",
-        "reason": "Efficiency cleanup should follow consistency checks."
+        "reason": "Efficiency work should follow after active docs and script/helper inventory are consistent."
       },
       {
         "caseId": "PREP-020-UNIVERSAARL-DATASET-BLUEPRINT",
         "status": "ready-after-current",
-        "reason": "Dataset planning benefits from a consistent state baseline."
+        "reason": "Concrete data packages should follow script/helper inventory."
+      },
+      {
+        "caseId": "PREP-021-UNIVERSAARL-USECASE-BACKLOG-CURATION",
+        "status": "ready-after-current",
+        "reason": "Backlog curation should use the clarified data and tooling baseline."
       },
       {
         "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
         "status": "blocked",
-        "reason": "Still parked until SUPER/company-create permissions are confirmed."
+        "reason": "Still waiting for SUPER/company-create permissions."
       }
     ],
     "queueChangesMade": [
-      "Marked PREP-016 done.",
-      "Selected PREP-017 as next safe prep case.",
+      "Marked PREP-017 done.",
+      "Selected PREP-018 as next safe prep case.",
       "Kept TARGET-009 parked until SUPER/company-create permissions are confirmed."
     ],
-    "selectedNextCase": "PREP-017-REPO-DOCUMENTATION-CONSISTENCY-AUDIT",
-    "whySelectedNextCaseIsBest": "The active Universaarl book prose is cleaner; the next practical step is consistency checking across repo documentation and state before more prep or live UI work.",
+    "selectedNextCase": "PREP-018-PLAYWRIGHT-SCRIPT-AND-HELPER-INVENTORY",
+    "whySelectedNextCaseIsBest": "The active documentation map and queue are now aligned; the next risk is accidental use of legacy Playwright tests or helpers as active Universaarl routes.",
     "risksBeforeNextCase": [
-      "Do not execute Company Creation until rights are confirmed.",
-      "Do not mass-rewrite historical RM/Rhein-Main evidence as Universaarl truth."
+      "Do not execute write-capable Playwright tests.",
+      "Do not treat RM/MCP helper evidence as Universaarl final proof."
     ],
     "requiredPreparation": [
-      "Keep book-facing text reader-oriented and internal evidence language out of the book prose."
+      "Read package scripts, active target tests, core helpers and Universaarl pattern files."
     ]
   }
 }

@@ -1,8 +1,10 @@
 # BC Coverage Matrix
 
-Status: `universaarl-transition`, Stand: 2026-06-29.
+Status: `universaarl-transition`, Stand: 2026-06-30.
 
 Company-Usecase: `BC-COMPANY-USECASE.md` definiert ab jetzt Universaarl als aktive Buchwelt: `playthru`, `UNIVERSAARL-DE`, `Universaarl GmbH`. Alte `MCP_1_20260210`-/`RM-DEMO`-/Rhein-Main-Evidence bleibt `legacy-labor-reference` und wird pro Prozess durch Universaarl-Evidence ersetzt.
+
+Aktueller Arbeitsmodus: `UNIVERSAARL-DE` ist noch nicht angelegt, weil die Company-Creation-Rechte fehlen. Coverage-Fortschritt entsteht deshalb bis zur Rechtefreigabe über die PREP-/Read-only-/Repo-/Doku-Queue in `.agent/state/marathon_queue.json`; TARGET-009 bleibt geparkt und wird erst nach bestätigten SUPER-/Company-Create-Rechten fortgesetzt.
 
 Coverage-Level:
 
