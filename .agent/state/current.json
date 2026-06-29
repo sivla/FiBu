@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-29T19:10:00.000Z",
+  "updatedAt": "2026-06-29T19:25:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
@@ -3386,5 +3386,74 @@
     "listAtlasPath": "playwright/projects/fibu-book5/BC-LIST-ATLAS.md",
     "rule": "No Business Central object or behavior may remain vaguely open; use evidence, source, object analysis, subcompany usecase or final classification.",
     "nextCase": "TARGET-005-COMPANY-CREATION-SOURCE-BACKED-ALTERNATIVE-ROUTE"
+  },
+  "nextStepDecisionGate": {
+    "active": true,
+    "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",
+    "lookaheadWindow": "3-5 cases",
+    "requiredBeforePracticalStep": true,
+    "cardLocations": [
+      "result-json",
+      "run-summary",
+      "case-state"
+    ],
+    "allowedLookaheadStatuses": [
+      "ready-next",
+      "ready-after-current",
+      "needs-setup-first",
+      "needs-source-check-first",
+      "needs-ui-discovery-first",
+      "needs-book-context-first",
+      "blocked",
+      "obsolete",
+      "replace-with-better-case"
+    ]
+  },
+  "latestNextStepDecisionCard": {
+    "currentCase": "TARGET-005-COMPANY-CREATION-SOURCE-BACKED-ALTERNATIVE-ROUTE",
+    "plannedNextCaseBeforeReview": "TARGET-005-COMPANY-CREATION-SOURCE-BACKED-ALTERNATIVE-ROUTE",
+    "lastEvidenceSummary": "TARGET-001 proved playthru/Companies context read-only and UNIVERSAARL-DE not visible. TARGET-002 opened an unsaved blank Companies row and stopped. TARGET-003 did not find a safe exact Create New Company action. TARGET-004 scoped menu discovery did not expose a safe company creation route. No company was created.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "UNIVERSAARL-DE still does not exist, direct row save/copy/test company/CRONUS/API are rejected, and the next dependency for all foundation/setup/process cases is a source-backed safe UI route for company creation.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-005-COMPANY-CREATION-SOURCE-BACKED-ALTERNATIVE-ROUTE",
+        "status": "ready-next",
+        "reason": "Closes OQ-0001 and is the dependency for Universaarl foundation setup."
+      },
+      {
+        "caseId": "TARGET-004-FOUNDATION-SETUP-READINESS",
+        "status": "ready-after-current",
+        "reason": "Logical immediately after UNIVERSAARL-DE exists; blocked until company creation succeeds or is replaced by a justified alternative."
+      },
+      {
+        "caseId": "TARGET-005-NUMBER-SERIES-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Needs target company context and likely Company Information/foundation setup visibility first."
+      },
+      {
+        "caseId": "TARGET-006-POSTING-GROUPS-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Posting groups depend on created company and foundation setup baseline."
+      },
+      {
+        "caseId": "TARGET-007-DIMENSIONS-FOUNDATION",
+        "status": "ready-after-current",
+        "reason": "Can follow foundation setup; not before the target company exists."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-005-COMPANY-CREATION-SOURCE-BACKED-ALTERNATIVE-ROUTE",
+    "whySelectedNextCaseIsBest": "It resolves the active company creation blocker and prevents building setup, master data or book claims on a non-existing target company.",
+    "risksBeforeNextCase": [
+      "Company creation UI may still only expose copy/test/demo routes.",
+      "A source-backed route may require a different safe entry point than Page 357.",
+      "Any Finish/Save/Create action requires Smart Decision Card and clear data-basis proof."
+    ],
+    "requiredPreparation": [
+      "Review Microsoft Learn/source-backed company creation guidance before effective UI action.",
+      "Do not use direct Companies list-row save, Copy Company, Testunternehmen, CRONUS or API shortcut.",
+      "Stop before Finish/Save/Create if blank/setup-only data basis is not visible and understood."
+    ]
   }
 }

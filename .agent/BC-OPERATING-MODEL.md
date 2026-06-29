@@ -160,3 +160,9 @@ Do not write broad BC theory without source or evidence.
 Every unclear Business Central object or behavior must be closed by evidence, source, allowed object analysis or a final classification. Use `playwright/projects/fibu-book5/BC-ZERO-OPEN-QUESTIONS-POLICY.md` and `.agent/state/open_questions_register.json`.
 
 No final book claim, `complete` coverage mark or final atlas mark is allowed while the related register item is still unresolved. `open` is not an acceptable end-of-run status.
+
+## Next Step Decision Gate
+
+Before executing the next queue item, run the lookahead check from `.agent/NEXT-STEP-DECISION-GATE.md`. Review current state, last evidence, current company/page/setup situation, dependencies, source/evidence readiness and the next 3 to 5 planned cases.
+
+The queue is a plan, not a dogma. If a case is obsolete, blocked, missing setup, missing source basis or better replaced by UI discovery, update the queue or case-state before executing.

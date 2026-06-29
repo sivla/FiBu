@@ -95,6 +95,8 @@ Vor jedem neuen fachlichen Buchclaim gilt die Quellenpruefung aus `playwright/pr
 
 Vor jeder wirksamen Aktion gilt zusaetzlich `.agent/SMART-DECISION-GATE.md`. Company-Erstellung, Company-Wechsel, Setup, Stammdaten, Drafts, Dialogbestaetigung, Wizard-Finish, Preview, Posting, Payment, Cleanup, Reversal, fachliche Buchmaster-Aenderungen und finale Coverage-/Atlas-Markierungen brauchen vorher eine Smart Decision Card in Case, Result oder Evidence README. Ohne Card wird die Aktion blockiert oder auf read-only Diagnose reduziert.
 
+Vor jedem praktischen Schritt gilt zusaetzlich `.agent/NEXT-STEP-DECISION-GATE.md`. Der Autopilot prueft den geplanten naechsten Case, die letzte Evidence, Abhaengigkeiten und mindestens die naechsten 3 bis 5 Queue-Schritte. Die Queue darf geaendert werden, wenn neue Evidence einen besseren Schritt zeigt. Jeder Lauf endet mit einer Next-Step Decision Card in Result JSON, Run Summary oder Case-State.
+
 ## Skill-/Capability-Lernen
 
 - Skills, Capabilities und Playwright-Helper duerfen nur evidence-getrieben erweitert werden.

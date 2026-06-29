@@ -139,3 +139,7 @@ Das Gate soll nicht laehmen. Wenn der Schritt sinnvoll, belegt, erklaerbar und s
 Jede Smart Decision Card muss nennen, ob die Aktion eine offene Objekt-, Feld-, Action-, Dialog-, Tabellen- oder Buchungsfrage schliesst oder eine neue Frage erzeugt. Neue Fragen werden nicht als lose Notiz behalten, sondern in `.agent/state/open_questions_register.json` eingetragen oder direkt mit einem finalen Status aus `playwright/projects/fibu-book5/BC-ZERO-OPEN-QUESTIONS-POLICY.md` klassifiziert.
 
 Eine wirksame Aktion darf nicht als Buch- oder Coverage-Abschluss gewertet werden, wenn ihre zentralen Felder, Buttons, Dialoge oder Postenwirkungen noch unverstanden sind.
+
+## Verbindung zum Next-Step-Gate
+
+Vor einer Smart Decision Card muss der geplante naechste Case gegen `.agent/NEXT-STEP-DECISION-GATE.md` geprueft werden. Wenn der naechste Case noch nicht vorbereitet ist, wird zuerst Source Check, UI Discovery, Setup-Fit, Buchkontext oder Queue-Anpassung erledigt.
