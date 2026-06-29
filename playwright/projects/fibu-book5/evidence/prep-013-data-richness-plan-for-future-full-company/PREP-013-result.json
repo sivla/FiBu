@@ -1,10 +1,15 @@
 {
   "schemaVersion": 1,
-  "runId": "PREP-013-DATA-RICHNESS-PLAN-FOR-FUTURE-FULL-COMPANY",
+  "purpose": "autopilot-result-normalized",
   "caseId": "PREP-013-DATA-RICHNESS-PLAN-FOR-FUTURE-FULL-COMPANY",
-  "status": "done",
+  "source": "local-analysis",
+  "resultStatus": "observed",
+  "runPlanId": "PREP-013-DATA-RICHNESS-PLAN-FOR-FUTURE-FULL-COMPANY-PLAN",
+  "selectedTaskClass": "monkey_work",
+  "selectedModelClass": "gpt-4-mini-low",
   "instance": "playthru",
   "targetCompany": "UNIVERSAARL-DE",
+  "sourceCompany": "UNIVERSAARL-DE-planned-not-yet-created",
   "bcRun": false,
   "playwrightRun": false,
   "posted": false,
@@ -13,10 +18,15 @@
   "companyCreated": false,
   "bookChanged": false,
   "bookDraftChanged": false,
-  "summary": "Concretized the future Universaarl dataset: data packages, naming conventions, minimum data sizes, dimension usage, time plan and screenshot/filter purposes.",
-  "evidence": [
-    "playwright/projects/fibu-book5/evidence/prep-013-data-richness-plan-for-future-full-company/README.md",
-    "playwright/projects/fibu-book5/evidence/prep-013-data-richness-plan-for-future-full-company/PREP-013-result.json"
+  "proved": [
+    "The future Universaarl dataset now has concrete data packages, naming conventions, minimum dataset sizes and screenshot/filter purposes.",
+    "Data richness is explicitly sequenced after company creation, foundation setup, number series, posting groups, VAT and dimensions.",
+    "Open question OQ-0001 now points to the current parked TARGET-009 permission gate instead of an obsolete route."
+  ],
+  "notProved": [
+    "UNIVERSAARL-DE has not been created.",
+    "No master data, setup, documents, postings or screenshots were created.",
+    "The proposed names and codes are planning values, not current Business Central records."
   ],
   "changedFiles": [
     ".agent/state/cases/prep-013-data-richness-plan-for-future-full-company.json",
@@ -30,7 +40,21 @@
     "playwright/projects/fibu-book5/evidence/prep-013-data-richness-plan-for-future-full-company/README.md",
     "playwright/projects/fibu-book5/evidence/prep-013-data-richness-plan-for-future-full-company/PREP-013-result.json"
   ],
-  "nextStep": "Continue with PREP-014-ZERO-OPEN-QUESTIONS-REGISTER-CLEANUP. Company creation remains parked until permissions are available.",
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/prep-013-data-richness-plan-for-future-full-company/README.md",
+    "playwright/projects/fibu-book5/evidence/prep-013-data-richness-plan-for-future-full-company/PREP-013-result.json"
+  ],
+  "warnings": [
+    "Do not treat planned dataset names as existing records.",
+    "Do not create master data until UNIVERSAARL-DE exists and the relevant setup gates are passed."
+  ],
+  "blockedBy": [
+    "missing-super-or-company-create-permission"
+  ],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {},
+  "reason": "PREP-013 produced local dataset blueprint and data-richness planning while company creation remains parked.",
   "nextStepDecisionCard": {
     "currentCase": "PREP-013-DATA-RICHNESS-PLAN-FOR-FUTURE-FULL-COMPANY",
     "plannedNextCaseBeforeReview": "PREP-013-DATA-RICHNESS-PLAN-FOR-FUTURE-FULL-COMPANY",
@@ -78,6 +102,5 @@
       "Use the updated dataset blueprint when reviewing open questions.",
       "Keep Company Creation parked."
     ]
-  },
-  "updatedAt": "2026-06-30T01:55:00.000+02:00"
+  }
 }

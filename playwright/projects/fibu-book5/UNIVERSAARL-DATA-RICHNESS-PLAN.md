@@ -70,6 +70,21 @@ Das Look-and-Feel-/Filterkapitel wird erst als Universaarl-Buchkapitel finalisie
 - Dimensionen auf mindestens einem gebuchten Prozess,
 - mindestens ein Report oder eine Liste, in der `Filter list by` und `Filter totals by` sinnvoll unterscheidbar sind.
 
+## PREP-013 Mindestdaten fuer den ersten Vollaufbau
+
+| Bereich | Mindestmenge | Warum nicht weniger? | Erster Zielcase |
+| --- | ---: | --- | --- |
+| Debitoren | 5 | Sortieren, Suchen, offene/geschlossene Posten und Kundengruppen brauchen mehrere Zeilen | `TARGET-DATA-002-DEBITOR-DATASET` |
+| Kreditoren | 5 | P2P, Zahlungen und Lieferantenfilter brauchen Vergleichsdaten | `TARGET-DATA-003-KREDITOR-DATASET` |
+| Artikel | 5 | Verkauf, Einkauf, Lager, Rohmaterial und Service duerfen nicht an einem Artikel vermischt werden | `TARGET-DATA-004-ITEM-DATASET` |
+| Lagerorte | 2-3 | einfaches Lager, Qualitaetssicherung und Servicebestand muessen getrennt erklaerbar sein | `TARGET-016-INVENTORY-FOUNDATION` |
+| Dimensionen | 4 Dimensionen mit je mehreren Werten | `Filter totals by`, Financial Reports und Analysis Mode brauchen echte Auswertungsachsen | `TARGET-007-DIMENSIONS-FOUNDATION` |
+| Buchungsmonate | 3 | Datumssuche, Periodenvergleich und Reporting sind mit einem Datum nicht erklaerbar | Prozesscases O2C/P2P/Inventory/Payments |
+| Belegfamilien | mindestens O2C, P2P, Inventory, Payment | Listen und Posten brauchen zusammenhaengende Prozessketten | `TARGET-011` bis `TARGET-023` |
+| Fehler-/Korrekturfaelle | mindestens 3 kontrollierte Faelle | Anfaenger lernen mehr, wenn Fehlerbild und Korrekturweg sichtbar sind | nach erster Prozessbasis |
+
+Die konkreten Stammdatennamen stehen in `UNIVERSAARL-DATASET-BLUEPRINT.md`. Diese Werte sind Planwerte, keine bereits angelegten Datensaetze.
+
 ## Geplante Universaarl-Datenfaelle
 
 | Case | Zweck | Abhaengigkeit | Status |
@@ -97,6 +112,21 @@ Das Look-and-Feel-/Filterkapitel wird erst als Universaarl-Buchkapitel finalisie
 ## Buchwirkung
 
 Das spaetere Kapitel "Business Central bedienen: Oberflaeche, Listen, Filter, Suchen und Arbeiten mit vielen Daten" wird erst aus Universaarl-Daten final geschrieben. Bis dahin bleibt es ein Buchdraft mit Platzhaltern fuer echte Universaarl-Beispiele.
+
+## Reihenfolge nach Company Creation
+
+Nach der sichtbaren Anlage von `UNIVERSAARL-DE` entsteht Datenreichtum in dieser Reihenfolge:
+
+1. Company Information und Datenbasis pruefen.
+2. Nummernserien, Buchungsgruppen, USt und Dimensionen pruefen oder einrichten.
+3. Debitoren-, Kreditoren- und Artikeltemplates verstehen.
+4. Je ein kleiner Kernstammdatensatz pro Familie anlegen.
+5. Ersten O2C- und P2P-Prozess mit Preview und Postenspur erzeugen.
+6. Inventory- und Payment-Prozesse ergaenzen.
+7. Weitere Stammdaten und Monate hinzufuegen.
+8. Erst dann Filter-, Views-, Request-Page- und Analysis-Mode-Screenshots finalisieren.
+
+Diese Reihenfolge verhindert, dass das Buch Filter und Reports an leeren Listen oder unerklaerten Demo-Daten zeigt.
 
 ## Rebuild-Hinweis
 
