@@ -237,17 +237,18 @@
     "warehouse": {
       "chapter": "Kapitel 13",
       "status": "in-progress",
-      "currentBlock": "warehouse-inbound-receipt-preflight",
+      "currentBlock": "warehouse-source-document-filter-or-park",
       "latestEvidenceCases": [
         "WAREHOUSE-001",
-        "WAREHOUSE-002"
+        "WAREHOUSE-002",
+        "WAREHOUSE-017"
       ],
-      "nextCase": "WAREHOUSE-006-INBOUND-WAREHOUSE-RECEIPT-PREFLIGHT",
+      "nextCase": "WAREHOUSE-018-WAREHOUSE-SOURCE-DOCUMENT-FILTER-OR-PARK",
       "finalGermanProof": "open",
-      "nextStep": "WAREHOUSE-006: no-post inbound Warehouse Receipt/Put-away preflight; posting remains locked.",
+      "nextStep": "WAREHOUSE-018: try the scoped filter-source-documents route once, or park Warehouse inbound source selection if no concrete source row can be safely produced.",
       "latestDecisionCase": "WAREHOUSE-003-WAREHOUSE-READINESS-FOLLOWUP-DECISION",
-      "blockerStatus": "inbound-warehouse-field-fit-solved-pick-and-bin-wms-deferred",
-      "latestPracticalCase": "WAREHOUSE-005-FRA-ZL-GUARDED-SETUP-FIT",
+      "blockerStatus": "source-dialog-opens-but-no-clear-source-row-visible",
+      "latestPracticalCase": "WAREHOUSE-017-SOURCE-DOCUMENT-CANDIDATE-SELECT-NO-POST",
       "visibleSetupFields": [
         "Require Receive",
         "Require Shipment",
@@ -265,18 +266,22 @@
         "Require Pick",
         "Bin Mandatory",
         "Directed Put-away and Pick"
+      ],
+      "openLimits": [
+        "WAREHOUSE-017: Source Documents - Inbound opened, but no clear selectable source document row was visible; OK/Select was not clicked.",
+        "WAREHOUSE-017: No Warehouse Receipt posting, no Put-away and no ledger trace."
       ]
     }
   },
   "hardExclusions": {
     "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
   },
-  "updatedAt": "2026-06-29T15:35:00+02:00",
+  "updatedAt": "2026-06-29T16:20:00+02:00",
   "activeArea": "warehouse",
-  "currentBlock": "warehouse-source-document-selection-no-post",
-  "latestPracticalCase": "WAREHOUSE-016-FRESH-DRAFT-IMMEDIATE-GET-SOURCE-NO-CONFIRM",
+  "currentBlock": "warehouse-source-document-filter-or-park",
+  "latestPracticalCase": "WAREHOUSE-017-SOURCE-DOCUMENT-CANDIDATE-SELECT-NO-POST",
   "latestReviewCase": "FIXEDASSETS-299-FA-DEPRECIATION-NEXT-HYPOTHESIS-DECISION",
-  "nextCase": "WAREHOUSE-017-SOURCE-DOCUMENT-CANDIDATE-SELECT-NO-POST",
+  "nextCase": "WAREHOUSE-018-WAREHOUSE-SOURCE-DOCUMENT-FILTER-OR-PARK",
   "latestBank013": {
     "caseId": "BANK-013-CONTROLLED-NEXT-EVIDENCE-STEP",
     "status": [
@@ -1377,7 +1382,7 @@
     "nextCase": "FIXEDASSETS-298-FA-DEPRECIATION-BLOCKER-BOOK-SYNC",
     "updatedAt": "2026-06-29T07:09:31.588Z"
   },
-  "nextStep": "WAREHOUSE-017: inspect Source Documents - Inbound candidates and, if a clear candidate exists, select it; do not post the Warehouse Receipt.",
+  "nextStep": "WAREHOUSE-018: try the scoped filter-source-documents route once, or park Warehouse inbound source selection if no concrete source row can be safely produced.",
   "warehouse": {
     "chapter": "Kapitel 13",
     "status": "in-progress",
@@ -1424,5 +1429,25 @@
       "WAREHOUSE-016: Receipt number anchor remains ambiguous because existing and fresh receipts are visible together."
     ],
     "latestDecisionCase": "WAREHOUSE-015-WAREHOUSE-SOURCE-DOCUMENT-ROUTE-DECISION"
+  },
+  "latestWarehouse017": {
+    "caseId": "WAREHOUSE-017-SOURCE-DOCUMENT-CANDIDATE-SELECT-NO-POST",
+    "status": "observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-017/WAREHOUSE-017-result.json",
+    "decision": "Source Documents - Inbound opens from a fresh Warehouse Receipt draft, but no clear selectable source document row is visible. OK/Select is visible and intentionally not clicked.",
+    "sourceDialogVisible": true,
+    "sourceRowsBeforeSelection": 2,
+    "clearCandidateRows": 0,
+    "selectedRow": false,
+    "okVisible": true,
+    "okClicked": false,
+    "posted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "companySwitched": false,
+    "nextCase": "WAREHOUSE-018-WAREHOUSE-SOURCE-DOCUMENT-FILTER-OR-PARK",
+    "migrationRelevance": "needed-for-german-final",
+    "mustRecreateInFinalSandbox": true,
+    "updatedAt": "2026-06-29T16:20:00+02:00"
   }
 }

@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "caseId": "WAREHOUSE-017-SOURCE-DOCUMENT-CANDIDATE-SELECT-NO-POST",
   "title": "Inspect/select Warehouse source document candidate without posting",
-  "status": "planned",
+  "status": "observed",
   "taskClass": "wizard_work",
   "modelClass": "gpt-4-high",
   "usageLogRequired": false,
@@ -14,6 +14,8 @@
     "playwright/projects/fibu-book5/evidence/warehouse-016/WAREHOUSE-016-result.json"
   ],
   "purpose": "Inspect the Source Documents - Inbound dialog reached by WAREHOUSE-016, identify a concrete Purchase source document candidate and, only if a safe row is visible, select it without posting the Warehouse Receipt.",
+  "resultStatus": "observed",
+  "decision": "Source Documents - Inbound opens from a fresh Warehouse Receipt draft, but no clear selectable source document row is visible. OK/Select is visible and intentionally not clicked. Continue with a filter route or park the source-document selection until a source document can be produced.",
   "allowedActions": [
     "business-central-execution",
     "playwright-execution",
@@ -64,7 +66,27 @@
   "mustRecreateInFinalSandbox": true,
   "finalScreenshotNeeded": true,
   "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-017/WAREHOUSE-017-result.json",
-  "nextStep": "Inspect Source Documents - Inbound candidates and, if a clear candidate exists, select it; do not post the Warehouse Receipt.",
+  "observedResult": {
+    "draftCreated": true,
+    "draftKept": true,
+    "receiptAnchorStatus": "ambiguous-multiple-receipts-visible",
+    "visibleReceiptNosAfterNew": [
+      "RE000001",
+      "RE000002"
+    ],
+    "sourceDialogVisible": true,
+    "sourceRowsBeforeSelection": 2,
+    "clearCandidateRows": 0,
+    "selectedRow": false,
+    "okVisible": true,
+    "okClicked": false,
+    "posted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "companySwitched": false
+  },
+  "nextCase": "WAREHOUSE-018-WAREHOUSE-SOURCE-DOCUMENT-FILTER-OR-PARK",
+  "nextStep": "Use the Warehouse Receipt filter route or park the source selection if no concrete source document can be made visible; do not post.",
   "createdAt": "2026-06-29T15:35:00+02:00",
-  "updatedAt": "2026-06-29T15:35:00+02:00"
+  "updatedAt": "2026-06-29T16:20:00+02:00"
 }

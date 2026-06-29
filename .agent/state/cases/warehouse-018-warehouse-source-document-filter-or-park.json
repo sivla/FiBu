@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "caseId": "WAREHOUSE-018-WAREHOUSE-SOURCE-DOCUMENT-FILTER-OR-PARK",
+  "title": "Warehouse source document filter route or park decision",
+  "status": "planned",
+  "taskClass": "wizard_work",
+  "modelClass": "gpt-4-high",
+  "usageLogRequired": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "warehouse-source-document-filter-or-park",
+  "sourceCase": "WAREHOUSE-017-SOURCE-DOCUMENT-CANDIDATE-SELECT-NO-POST",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/warehouse-017/WAREHOUSE-017-result.json",
+    "playwright/projects/fibu-book5/evidence/warehouse-017/WAREHOUSE-017-SOURCE-DOCUMENT-CANDIDATE.md"
+  ],
+  "purpose": "Decide and execute the next safe Warehouse inbound route after WAREHOUSE-017 proved that Source Documents - Inbound opens but no clear selectable source document row is visible.",
+  "allowedActions": [
+    "business-central-execution",
+    "playwright-execution",
+    "direct-page-navigation",
+    "open-existing-or-controlled-warehouse-receipt-draft",
+    "use-filters-to-get-source-documents-if-visible",
+    "inspect-filter-dialog",
+    "read-fields",
+    "evidence-capture",
+    "route-decision",
+    "keep-draft-with-trace"
+  ],
+  "defaultLockedActions": [
+    "posting",
+    "preview-posting",
+    "warehouse-receipt-posting",
+    "warehouse-putaway-posting",
+    "source-document-confirmation",
+    "delete-record",
+    "company-switch",
+    "api-shortcut"
+  ],
+  "forbiddenActions": [
+    "claim-german-final-proof",
+    "use-api-shortcut",
+    "post-warehouse-document",
+    "change-require-pick-bin-mandatory-or-directed-put-away-and-pick",
+    "click-post-receipt"
+  ],
+  "safetyGates": [
+    "instance-boundary-gate",
+    "company-context-rm-demo",
+    "ui-first-only",
+    "no-posting",
+    "post-receipt-not-clicked",
+    "no-ok-select-unless-clear-source-document-row-is-visible",
+    "filter-criteria-and-result-documented",
+    "receipt-number-and-keep-status-documented"
+  ],
+  "routeOptions": [
+    {
+      "route": "filter-source-documents",
+      "description": "Use Filters to Get Src. Docs only if the action is visible in the scoped Warehouse Receipt draft context, then inspect criteria and candidate rows without posting."
+    },
+    {
+      "route": "park-warehouse-inbound-selection",
+      "description": "If no source document can be made visible without unsafe confirmation or setup churn, park Warehouse inbound receipt as labor-blocked and move to the next process block or source-document creation hypothesis."
+    }
+  ],
+  "expectedEvidence": [
+    "Filter action visibility or absence",
+    "Filter dialog/page text if opened",
+    "candidate source rows after filter route if visible",
+    "explicit no-post/no-preview/no-source-confirmation flags",
+    "route decision for Warehouse inbound"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-018/WAREHOUSE-018-result.json",
+  "nextStep": "Try the scoped filter-source-documents route once, or park Warehouse inbound source selection if no concrete source row can be safely produced.",
+  "createdAt": "2026-06-29T16:20:00+02:00",
+  "updatedAt": "2026-06-29T16:20:00+02:00"
+}
