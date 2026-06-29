@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 1,
+  "caseId": "P2P-038-PURCHASE-JOURNAL-POSTED-DETAIL-SCREENSHOT-READONLY",
+  "source": "playwright-readonly-posted-entry-screenshot-visibility",
+  "resultStatus": "observed",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "sourceCompany": "RM-DEMO",
+  "documentNo": "P2P032-682298",
+  "observations": [
+    {
+      "id": "vendor-ledger-entry",
+      "pageId": 29,
+      "url": "https://businesscentral.dynamics.com/[tenant-id]/MCP_1_20260210?company=RM-DEMO&page=29&filter=%27Vendor%20Ledger%20Entry%27.%27Document%20No.%27%20IS%20%27P2P032-682298%27&dc=0&bookmark=C_GQAAAACHkhM",
+      "textEvidenceFile": "010-vendor-ledger-entry-detail-text.txt",
+      "screenshotFile": "p2p-038-010-vendor-ledger-entry-detail.png",
+      "requiredSignals": {
+        "22100": true,
+        "82000": true,
+        "Vendor Ledger Entries|Vendor Ledger Entry": true,
+        "P2P032-682298": true,
+        "K10000": true,
+        "-2\\.500,00": true
+      },
+      "visibleEnough": true,
+      "compactTextLineCount": 20
+    },
+    {
+      "id": "detailed-vendor-ledger-entry",
+      "pageId": 574,
+      "url": "https://businesscentral.dynamics.com/[tenant-id]/MCP_1_20260210?company=RM-DEMO&page=574&filter=%27Detailed%20Vendor%20Ledg.%20Entry%27.%27Document%20No.%27%20IS%20%27P2P032-682298%27&dc=0&bookmark=C_fAEAAACHNgM",
+      "textEvidenceFile": "020-detailed-vendor-ledger-entry-text.txt",
+      "screenshotFile": "p2p-038-020-detailed-vendor-ledger-entry.png",
+      "requiredSignals": {
+        "Detailed Vendor Ledger Entries|Detailed Vendor": true,
+        "Initial Entry": true,
+        "P2P032-682298": true,
+        "K10000": true,
+        "-2\\.500,00": true
+      },
+      "visibleEnough": true,
+      "compactTextLineCount": 9
+    },
+    {
+      "id": "gl-entries",
+      "pageId": 20,
+      "url": "https://businesscentral.dynamics.com/[tenant-id]/MCP_1_20260210?company=RM-DEMO&page=20&filter=%27G%2fL%20Entry%27.%27Document%20No.%27%20IS%20%27P2P032-682298%27&dc=0&bookmark=C_EQAAAACHkRM",
+      "textEvidenceFile": "030-gl-entries-detail-text.txt",
+      "screenshotFile": "p2p-038-030-gl-entries-detail.png",
+      "requiredSignals": {
+        "22100": true,
+        "82000": true,
+        "G\\/L Entries|General Ledger Entries": true,
+        "P2P032-682298": true,
+        "-2\\.500,00": true,
+        "2\\.500,00": true
+      },
+      "visibleEnough": true,
+      "compactTextLineCount": 18
+    }
+  ],
+  "proved": [
+    "Read-only posted entry pages for P2P032-682298 were opened directly by page id and document filter.",
+    "Screenshots were only captured where the required human-visible accounting signals were present.",
+    "No Post, Preview Posting, New, Edit, Delete, setup change, company switch or API shortcut was executed."
+  ],
+  "notProved": [
+    "No German final proof.",
+    "No German VAT/tax proof.",
+    "No Purchase Order partial receipt.",
+    "No new posting."
+  ],
+  "flags": {
+    "bcRun": true,
+    "playwrightRun": true,
+    "readOnly": true,
+    "posted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "companySwitched": false,
+    "draftCreated": false,
+    "editedRecord": false,
+    "deletedRecord": false,
+    "apiShortcut": false,
+    "bookChanged": false
+  },
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": true,
+  "targetGermanCompanyImpact": "German final P2P must recreate equivalent posted entry screenshots with German accounts, tax setup and target-company context.",
+  "finalScreenshotNeeded": true,
+  "safeToFinalizeState": true,
+  "requiresReview": false,
+  "blockedBy": [],
+  "statePatch": {},
+  "nextStep": "P2P-039: review P2P-038 screenshot metadata and decide whether Chapter 12 can reference screenshots."
+}

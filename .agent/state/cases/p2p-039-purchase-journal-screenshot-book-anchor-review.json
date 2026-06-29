@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "caseId": "P2P-039-PURCHASE-JOURNAL-SCREENSHOT-BOOK-ANCHOR-REVIEW",
+  "title": "Review P2P-038 screenshots for book anchors",
+  "status": "planned",
+  "taskClass": "wizard_work",
+  "modelClass": "gpt-5.4-medium",
+  "usageLogRequired": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "p2p-screenshot-book-anchor-review",
+  "sourceCase": "P2P-038-PURCHASE-JOURNAL-POSTED-DETAIL-SCREENSHOT-READONLY",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/p2p-038/P2P-038-result.json",
+    "playwright/projects/fibu-book5/evidence/p2p-038/README.md"
+  ],
+  "purpose": "Review the P2P-038 screenshots and decide which images can be referenced in Chapter 12 as laboratory-only book anchors. Do not run BC or Playwright unless a screenshot defect is found.",
+  "allowedActions": [
+    "read-p2p-038-evidence",
+    "inspect-screenshot-metadata",
+    "update-bookdraft-or-clickguide-if-evidence-supports-it",
+    "write-evidence",
+    "update-state"
+  ],
+  "defaultLockedActions": [
+    "posting",
+    "preview-posting",
+    "setup-change",
+    "company-switch",
+    "api-shortcut",
+    "new-draft",
+    "edit-record",
+    "delete-record",
+    "playwright-execution-unless-defect-retest-needed"
+  ],
+  "forbiddenActions": [
+    "claim-german-final-proof",
+    "book-claim-without-evidence",
+    "post",
+    "preview-posting",
+    "setup-change",
+    "click-new",
+    "edit-record",
+    "delete-record",
+    "api-shortcut-without-explicit-case-permission"
+  ],
+  "safetyGates": [
+    "use-p2p-038-as-labor-reference-only",
+    "do-not-claim-german-final-proof",
+    "screenshots-must-show-human-visible-accounts-amounts-entry-types",
+    "no-bc-or-playwright-unless-screenshot-defect-needs-retest"
+  ],
+  "expectedEvidence": [
+    "screenshot QA / book-anchor decision result",
+    "clear list of accepted screenshots and rejected screenshots if any",
+    "German final rebuild note"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "targetGermanCompanyImpact": "Chapter 12 German final version needs equivalent screenshots from a German target company with German account/tax setup.",
+  "finalScreenshotNeeded": true,
+  "resultPath": "playwright/projects/fibu-book5/evidence/p2p-039/P2P-039-result.json",
+  "nextStep": "Review P2P-038 screenshots and add only evidence-backed book anchors; no new BC run unless a screenshot must be retaken.",
+  "createdAt": "2026-06-29T06:57:55.322Z",
+  "updatedAt": "2026-06-29T06:57:55.322Z"
+}
