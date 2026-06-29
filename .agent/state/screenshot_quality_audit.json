@@ -1,27 +1,28 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-29T21:35:00.000Z",
+  "updatedAt": "2026-06-30T01:05:00.000+02:00",
   "purpose": "screenshot-evidence-quality-audit",
+  "caseId": "PREP-011-SCREENSHOT-EXPLANATION-QUALITY-GATE",
   "status": [
-    "universaarl-screenshot-quality-baseline",
+    "prep-done",
+    "universaarl-screenshot-quality-gate",
     "no-bc-run",
     "no-playwright-run"
   ],
   "scope": [
     "playwright/projects/fibu-book5/BC-SCREENSHOT-INVENTORY.md",
-    "playwright/projects/fibu-book5/evidence/target-001",
-    "playwright/projects/fibu-book5/evidence/target-002",
-    "playwright/projects/fibu-book5/evidence/target-003",
-    "playwright/projects/fibu-book5/evidence/target-004-company-creation-scoped-action-discovery",
-    "playwright/projects/fibu-book5/book-drafts",
-    "playwright/projects/fibu-book5/BC-*-ATLAS.md"
+    "playwright/projects/fibu-book5/evidence/target-005-company-creation-source-backed-alternative-route",
+    "playwright/projects/fibu-book5/evidence/target-006-company-creation-specific-assisted-setup-route",
+    "playwright/projects/fibu-book5/evidence/target-007-companies-new-dropdown-clickguide",
+    "playwright/projects/fibu-book5/evidence/target-008-companies-new-row-field-save-gate",
+    "playwright/projects/fibu-book5/evidence/target-009-main-neu-list-company-create-gate"
   ],
   "auditedScreenshotGroups": [
     {
       "group": "target-001",
       "decision": "draft-context-only",
       "finalStatus": "not-final",
-      "reason": "playthru and Companies context visible, but UNIVERSAARL-DE not created and CRONUS DE may be visible."
+      "reason": "playthru and Companies context visible, but UNIVERSAARL-DE is not created and CRONUS DE may be visible."
     },
     {
       "group": "target-002",
@@ -40,6 +41,36 @@
       "decision": "scoped-action-blocker",
       "finalStatus": "not-final/rejected",
       "reason": "Scoped action discovery did not expose safe exact create route."
+    },
+    {
+      "group": "target-005",
+      "decision": "route-context-only",
+      "finalStatus": "not-final/preflight",
+      "reason": "Assisted Setup opens, but blank/setup-only company creation route is not visible or confirmed."
+    },
+    {
+      "group": "target-006",
+      "decision": "debugging-only-after-row-click",
+      "finalStatus": "not-final/blocked",
+      "reason": "Unternehmen einrichten is a navigation row; it does not prove company creation, data basis or wizard completion."
+    },
+    {
+      "group": "target-007",
+      "decision": "clickguide-candidate-only",
+      "finalStatus": "not-final/clickguide-candidate",
+      "reason": "The dropdown beside Neu is visible and useful for teaching splitbutton behavior, but no menu item was selected."
+    },
+    {
+      "group": "target-008",
+      "decision": "debugging-only-wrong-target-state",
+      "finalStatus": "not-final/blocked",
+      "reason": "After selecting the route, the expected wizard is not visibly proven; metadata was reduced from raw DOM text to a true blocker explanation."
+    },
+    {
+      "group": "target-009",
+      "decision": "permission-blocker-context",
+      "finalStatus": "not-final/blocked",
+      "reason": "UNIVERSAARL-DE is not visible after the attempt; screenshot explains missing permission/save proof, not creation success."
     }
   ],
   "metadataQualityFieldsRequired": [
@@ -55,59 +86,58 @@
     "finalScreenshotStatus"
   ],
   "changedMetadataFiles": [
-    "playwright/projects/fibu-book5/evidence/target-001/target-001-010-playthru-role-center.screenshot.json",
-    "playwright/projects/fibu-book5/evidence/target-001/target-001-020-companies-page-readonly.screenshot.json",
-    "playwright/projects/fibu-book5/evidence/target-002/target-002-010-companies-before.screenshot.json",
-    "playwright/projects/fibu-book5/evidence/target-002/target-002-020-new-options-inventory.screenshot.json",
-    "playwright/projects/fibu-book5/evidence/target-003/target-003-010-companies-before-route.screenshot.json",
-    "playwright/projects/fibu-book5/evidence/target-003/target-003-020-after-create-route-attempt.screenshot.json",
-    "playwright/projects/fibu-book5/evidence/target-004-company-creation-scoped-action-discovery/target-004-010-companies-before-scoped-action-discovery.screenshot.json",
-    "playwright/projects/fibu-book5/evidence/target-004-company-creation-scoped-action-discovery/target-004-020-after-scoped-action-discovery.screenshot.json"
+    "playwright/projects/fibu-book5/evidence/target-006-company-creation-specific-assisted-setup-route/target-006-020-after-unternehmen-einrichten-route.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/target-008-companies-new-row-field-save-gate/target-008-020-create-new-company-route-opened.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/target-009-main-neu-list-company-create-gate/target-009-010-before-main-neu-create.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/target-009-main-neu-list-company-create-gate/target-009-020-after-main-neu-create-attempt.screenshot.json"
   ],
-  "bookDraftImpact": "Universaarl company creation draft can use target screenshots only as reader-facing context/warning, not as final proof. RM-DEMO screenshots remain legacy and cannot be final German screenshots.",
+  "bookDraftImpact": "Universaarl company creation screenshots may explain page context, splitbutton behavior, route blockers and permission blockers. They must not claim UNIVERSAARL-DE exists or that a clean company creation route has succeeded.",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-005-COMPANY-CREATION-SOURCE-BACKED-ALTERNATIVE-ROUTE",
-    "plannedNextCaseBeforeReview": "TARGET-005-COMPANY-CREATION-SOURCE-BACKED-ALTERNATIVE-ROUTE",
-    "lastEvidenceSummary": "TARGET-001 to TARGET-004 screenshots now have clearer quality labels. They prove playthru/Companies context and blocked/rejected routes, but not UNIVERSAARL-DE creation.",
+    "currentCase": "PREP-011-SCREENSHOT-EXPLANATION-QUALITY-GATE",
+    "plannedNextCaseBeforeReview": "PREP-011-SCREENSHOT-EXPLANATION-QUALITY-GATE",
+    "lastEvidenceSummary": "PREP-010 introduced splitbutton, tooltip, screenshot-QA and wrong-target rejection rules.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The screenshot audit reduces false book claims and prepares TARGET-005 to produce better evidence if a source-backed route is attempted.",
+    "reason": "The newest target screenshots contained raw DOM-heavy or misleading explanations. Cleaning them prevents false book claims before SUPER permissions are available.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-005-COMPANY-CREATION-SOURCE-BACKED-ALTERNATIVE-ROUTE",
+        "caseId": "PREP-012-LOOK-AND-FEEL-FILTERING-CHAPTER-PLAN",
         "status": "ready-next",
-        "reason": "Still needed before foundation setup or process screenshots."
+        "reason": "Screenshot QA is now sharper; look-and-feel/filtering prose can build on the same rules."
       },
       {
-        "caseId": "TARGET-004-FOUNDATION-SETUP-READINESS",
+        "caseId": "PREP-013-DATA-RICHNESS-PLAN-FOR-FUTURE-FULL-COMPANY",
         "status": "ready-after-current",
-        "reason": "Needs target company to exist."
+        "reason": "Data richness planning remains useful while company creation is parked."
       },
       {
-        "caseId": "TARGET-005-NUMBER-SERIES-PREFLIGHT",
-        "status": "needs-setup-first",
-        "reason": "Needs company and foundation setup baseline."
-      },
-      {
-        "caseId": "TARGET-006-POSTING-GROUPS-PREFLIGHT",
-        "status": "needs-setup-first",
-        "reason": "Depends on created company and chart/setup route."
-      },
-      {
-        "caseId": "TARGET-007-DIMENSIONS-FOUNDATION",
+        "caseId": "PREP-014-ZERO-OPEN-QUESTIONS-REGISTER-CLEANUP",
         "status": "ready-after-current",
-        "reason": "Can follow after company creation/foundation."
+        "reason": "Open UI/source questions can be cleaned after screenshot classifications are current."
+      },
+      {
+        "caseId": "PREP-015-READY-FOR-SUPER-PERMISSIONS-CHECKLIST",
+        "status": "ready-after-current",
+        "reason": "Checklist already exists but can be revisited after screenshot and look-and-feel prep."
+      },
+      {
+        "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+        "status": "blocked",
+        "reason": "Still parked until SUPER/company-create permissions are confirmed."
       }
     ],
-    "queueChangesMade": [],
-    "selectedNextCase": "TARGET-005-COMPANY-CREATION-SOURCE-BACKED-ALTERNATIVE-ROUTE",
-    "whySelectedNextCaseIsBest": "It remains the blocker for final Universaarl screenshots and real company setup.",
+    "queueChangesMade": [
+      "Marked PREP-011 done.",
+      "Selected PREP-012 as next prep case."
+    ],
+    "selectedNextCase": "PREP-012-LOOK-AND-FEEL-FILTERING-CHAPTER-PLAN",
+    "whySelectedNextCaseIsBest": "The screenshot truth gate is now current through TARGET-009; the next useful prep step is reader-facing look-and-feel/filtering structure.",
     "risksBeforeNextCase": [
-      "Company creation route may still be unclear",
-      "Screenshots must show exact dialog/action if any route is tried"
+      "Do not make final Universaarl company claims from CRONUS shell screenshots.",
+      "Do not use blocked route screenshots as successful step images."
     ],
     "requiredPreparation": [
-      "Use screenshot quality fields for every new TARGET-005 screenshot",
-      "Do not treat CRONUS DE context as Universaarl final proof"
+      "Use the PREP-011 screenshot decisions when drafting look-and-feel text.",
+      "Keep TARGET-009 parked until permissions are available."
     ]
   }
 }

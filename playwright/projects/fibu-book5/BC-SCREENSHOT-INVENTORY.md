@@ -44,6 +44,19 @@ Diese Screenshots gehoeren zur aktiven Zielwelt `playthru`, aber noch nicht zu e
 | `target-008-020-create-new-company-route-opened.png` | Companies / Mandanten, `Neu - Mandanten` ListPart | `playthru`, Shell-Kontext vor `UNIVERSAARL-DE` | Nach Klick im `Neu`-/`Neues Unternehmen erstellen`-Kontext | Das Bild zeigt nicht den gefuehrten Wizard, sondern die direkte neue Mandantenzeile; Screenshot-QA korrigiert damit den DOM-Treffer | leere Mandantenzeile sichtbar, kein Speichern | `UNIVERSAARL-DE`, Wizard, Company-Anlage, Setup | `blocked-main-new-route`, `not-final` |
 | `target-009-020-after-main-neu-create-attempt.png` | Companies / Mandanten, Page 357 | `playthru`, Shell-Kontext vor `UNIVERSAARL-DE` | Nach kontrolliertem Anlageversuch | `UNIVERSAARL-DE` ist nicht sichtbar; die Anlage ist wegen fehlender Berechtigung/fehlendem Speichernachweis blockiert | Companies-Kontext nach Versuch, keine Zielcompany sichtbar | Company-Anlage, Company Information, Setup | `blocked-permission`, `not-final` |
 
+## PREP-011 Screenshot-Erklaerungsentscheidungen
+
+PREP-011 wendet die PREP-010-Regel auf die aktuellen Universaarl-Company-Creation-Bilder an. Ziel ist nicht, mehr Screenshots zu erzeugen, sondern falsche Bildaussagen zu verhindern.
+
+| Screenshot | PREP-011 Entscheidung | Was im Buch erlaubt ist | Was gesperrt bleibt |
+|---|---|---|---|
+| `target-006-020-after-unternehmen-einrichten-route.png` | `debugging-only` | Assisted Setup als Navigations-/Diagnosekontext erklaeren | keine Company-Anlage, keine Datenbasis, kein Wizard-Finish |
+| `target-008-020-create-new-company-route-opened.png` | `debugging-only` | zeigen, dass der erwartete Wizard nicht sauber sichtbar wurde | kein Beweis fuer `Neues Unternehmen erstellen`, keine gespeicherte Company |
+| `target-009-010-before-main-neu-create.png` | `preflight-context` | Mandantenliste vor einer Anlage erklaeren | keine Berechtigung, keine Anlage, kein Setup |
+| `target-009-020-after-main-neu-create-attempt.png` | `blocked-permission-screenshot` | Berechtigungs-/Speicherblocker sachlich erklaeren | keine sichtbare `UNIVERSAARL-DE`, keine Company Information, keine Foundation |
+
+Regel fuer das Buch: Ein Bild darf erst dann als Schritt-fuer-Schritt-Screenshot gelten, wenn der behauptete UI-Teil und der Folgezustand sichtbar sind. Die aktuellen TARGET-006/008/009-Bilder bleiben Kontext-, Debugging- oder Blockerbilder.
+
 ## Geplante Universaarl Look-and-Feel-Screenshots
 
 Diese Bilder werden erst erzeugt, wenn `UNIVERSAARL-DE` existiert und genug sinnvolle Universaarl-Daten vorhanden sind. Bis dahin sind sie keine Buchkandidaten.

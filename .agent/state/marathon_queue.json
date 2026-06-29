@@ -220,7 +220,7 @@
     {
       "id": "PREP-011-SCREENSHOT-EXPLANATION-QUALITY-GATE",
       "order": 11,
-      "status": "pending",
+      "status": "done",
       "category": "evidence",
       "expectedImpact": "prep-progress",
       "mayWorkEffectively": false,
@@ -230,8 +230,11 @@
       "sourceCompany": "UNIVERSAARL-DE-planned-not-yet-created",
       "targetWorld": "Universaarl",
       "noFinalGermanClaimWithoutUniversaarlEvidence": true,
-      "lookaheadStatus": "ready-next",
-      "reason": "Next best prep task after PREP-010: apply screenshot truth and not-proof rules to existing screenshot explanations."
+      "lookaheadStatus": "done",
+      "reason": "Next best prep task after PREP-010: apply screenshot truth and not-proof rules to existing screenshot explanations.",
+      "completedAt": "2026-06-30",
+      "result": "Screenshot metadata and inventory decisions sharpened for TARGET-006, TARGET-008 and TARGET-009.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/prep-011-screenshot-explanation-quality-gate/PREP-011-result.json"
     },
     {
       "id": "PREP-012-LOOK-AND-FEEL-FILTERING-CHAPTER-PLAN",
@@ -246,7 +249,8 @@
       "sourceCompany": "UNIVERSAARL-DE-planned-not-yet-created",
       "targetWorld": "Universaarl",
       "noFinalGermanClaimWithoutUniversaarlEvidence": true,
-      "lookaheadStatus": "ready-after-current"
+      "lookaheadStatus": "ready-next",
+      "reason": "Next best prep task after PREP-011: build reader-facing look-and-feel/filtering structure using sharpened screenshot rules."
     },
     {
       "id": "PREP-013-DATA-RICHNESS-PLAN-FOR-FUTURE-FULL-COMPANY",
@@ -522,7 +526,7 @@
       "lookaheadStatus": "ready-after-current"
     }
   ],
-  "lastUpdated": "2026-06-30T00:45:00.000+02:00",
+  "lastUpdated": "2026-06-30T01:05:00.000+02:00",
   "nextStepDecisionGate": {
     "active": true,
     "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",
@@ -591,35 +595,35 @@
       ]
     }
   },
-  "updatedAt": "2026-06-30T00:45:00.000+02:00",
-  "lastCompletedCase": "PREP-010-PLAYWRIGHT-READONLY-HELPERS-AND-UI-ERGONOMICS",
-  "nextCase": "PREP-011-SCREENSHOT-EXPLANATION-QUALITY-GATE",
+  "updatedAt": "2026-06-30T01:05:00.000+02:00",
+  "lastCompletedCase": "PREP-011-SCREENSHOT-EXPLANATION-QUALITY-GATE",
+  "nextCase": "PREP-012-LOOK-AND-FEEL-FILTERING-CHAPTER-PLAN",
   "nextStepDecisionCard": {
-    "currentCase": "PREP-010-PLAYWRIGHT-READONLY-HELPERS-AND-UI-ERGONOMICS",
-    "plannedNextCaseBeforeReview": "PREP-010-PLAYWRIGHT-READONLY-HELPERS-AND-UI-ERGONOMICS",
-    "lastEvidenceSummary": "PREP-009 refined legacy reference handling. TARGET-007/008 showed a concrete UI failure pattern: main Neu, arrow next to Neu and Neues Unternehmen erstellen must not be conflated.",
+    "currentCase": "PREP-011-SCREENSHOT-EXPLANATION-QUALITY-GATE",
+    "plannedNextCaseBeforeReview": "PREP-011-SCREENSHOT-EXPLANATION-QUALITY-GATE",
+    "lastEvidenceSummary": "PREP-010 introduced splitbutton, tooltip, screenshot-QA and wrong-target rejection rules.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The next practical risk before SUPER permissions is UI misunderstanding. PREP-010 directly hardens the reusable rules needed for the next company creation attempt.",
+    "reason": "The newest target screenshots contained raw DOM-heavy or misleading explanations. Cleaning them prevents false book claims before SUPER permissions are available.",
     "lookaheadReviewed": [
       {
-        "caseId": "PREP-011-SCREENSHOT-EXPLANATION-QUALITY-GATE",
-        "status": "ready-next",
-        "reason": "Screenshot truth now has PREP-010 rules; next step should improve screenshot explanation quality."
-      },
-      {
         "caseId": "PREP-012-LOOK-AND-FEEL-FILTERING-CHAPTER-PLAN",
-        "status": "ready-after-current",
-        "reason": "Filtering/look-and-feel text should build on screenshot and UI target clarity."
+        "status": "ready-next",
+        "reason": "Screenshot QA is now sharper; look-and-feel/filtering prose can build on the same rules."
       },
       {
         "caseId": "PREP-013-DATA-RICHNESS-PLAN-FOR-FUTURE-FULL-COMPANY",
         "status": "ready-after-current",
-        "reason": "Data-richness planning remains useful while company creation is parked."
+        "reason": "Data richness planning remains useful while company creation is parked."
       },
       {
         "caseId": "PREP-014-ZERO-OPEN-QUESTIONS-REGISTER-CLEANUP",
         "status": "ready-after-current",
-        "reason": "Open UI questions can be cleaned once screenshot and UI target rules are sharper."
+        "reason": "Open UI/source questions can be cleaned after screenshot classifications are current."
+      },
+      {
+        "caseId": "PREP-015-READY-FOR-SUPER-PERMISSIONS-CHECKLIST",
+        "status": "ready-after-current",
+        "reason": "Checklist already exists but can be revisited after screenshot and look-and-feel prep."
       },
       {
         "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
@@ -628,19 +632,18 @@
       }
     ],
     "queueChangesMade": [
-      "Marked PREP-010 done.",
-      "Selected PREP-011 as the next prep case."
+      "Marked PREP-011 done.",
+      "Selected PREP-012 as next prep case."
     ],
-    "selectedNextCase": "PREP-011-SCREENSHOT-EXPLANATION-QUALITY-GATE",
-    "whySelectedNextCaseIsBest": "The project now has UI-target rules; the next useful prep step is to apply the same discipline to existing screenshots and screenshot explanations.",
+    "selectedNextCase": "PREP-012-LOOK-AND-FEEL-FILTERING-CHAPTER-PLAN",
+    "whySelectedNextCaseIsBest": "The screenshot truth gate is now current through TARGET-009; the next useful prep step is reader-facing look-and-feel/filtering structure.",
     "risksBeforeNextCase": [
-      "Do not run effective BC actions.",
-      "Do not turn screenshot QA into empty inventory work.",
-      "Keep screenshot decisions tied to visible proof and beginner usefulness."
+      "Do not make final Universaarl company claims from CRONUS shell screenshots.",
+      "Do not use blocked route screenshots as successful step images."
     ],
     "requiredPreparation": [
-      "Use PREP-010 screenshot-QA fields.",
-      "Focus on target screenshots and current book-facing image candidates."
+      "Use the PREP-011 screenshot decisions when drafting look-and-feel text.",
+      "Keep TARGET-009 parked until permissions are available."
     ]
   }
 }
