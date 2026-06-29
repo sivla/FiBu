@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-29T00:00:00.000Z",
+  "updatedAt": "2026-06-29T00:06:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "p2p",
-  "activeCase": "P2P-024-PURCHASE-INVOICE-FRESH-DRAFT-LINE-ENTRY-GATE",
-  "active_case_file": ".agent/state/cases/p2p-024-purchase-invoice-fresh-draft-line-entry-gate.json",
-  "lastReferenceCase": "P2P-023-PURCHASE-INVOICE-DRAFT-CARD-DELETE-OR-KEEP-DECISION",
-  "lastReferenceCaseFile": ".agent/state/cases/p2p-023-purchase-invoice-draft-card-delete-or-keep-decision.json",
+  "activeCase": "P2P-025-PURCHASE-INVOICE-LINE-ENTRY-BLOCKER-REVIEW",
+  "active_case_file": ".agent/state/cases/p2p-025-purchase-invoice-line-entry-blocker-review.json",
+  "lastReferenceCase": "P2P-024-PURCHASE-INVOICE-FRESH-DRAFT-LINE-ENTRY-GATE",
+  "lastReferenceCaseFile": ".agent/state/cases/p2p-024-purchase-invoice-fresh-draft-line-entry-gate.json",
   "mode": "bc-specialist-labor-book-production",
-  "requiresStrongModel": false,
+  "requiresStrongModel": true,
   "requiredPreflightChecks": [
     "agent:preflight",
     "agent:state:validate",
@@ -40,7 +40,7 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "Run P2P-024 as a fresh Purchase Invoice draft line-entry gate; do not reuse Purchase Invoice draft 107229.",
+  "nextStep": "Run P2P-025 as local blocker review: classify the Purchase Invoices bookmark/context problem and choose a stronger fresh-document route before another line-entry attempt.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/bank-payments-labor-draft.md",
     "area": "bankPayments",
@@ -1386,7 +1386,7 @@
     "decision": "Approve a separate no-post Payment Journal preflight for Vendor Ledger document 108205. Do not use Payment Reconciliation Apply/Post for this target. BANK-018 may create exactly one scoped draft line, run Journal Check/open Apply Entries if reachable, and must cleanup or explicitly document keep status. Posting remains locked.",
     "nextStep": "BANK-018: controlled no-post Payment Journal preflight for 108205; do not post."
   },
-  "workType": "p2p-purchase-invoice-fresh-draft-line-entry-gate",
+  "workType": "p2p-purchase-invoice-bookmark-context-blocker-review",
   "lastCompletedCase": "BANK-026-BANK-RECONCILIATION-BOOK-SYNC",
   "latestBank018": {
     "caseId": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
@@ -1652,5 +1652,35 @@
     "finalScreenshotNeeded": false,
     "nextCase": "P2P-024-PURCHASE-INVOICE-FRESH-DRAFT-LINE-ENTRY-GATE",
     "nextStep": "Use a fresh controlled Purchase Invoice draft with explicit cleanup/keep plan; do not reuse 107229."
+  },
+  "latestP2P024PurchaseInvoiceFreshDraftLineEntryGate": {
+    "caseId": "P2P-024-PURCHASE-INVOICE-FRESH-DRAFT-LINE-ENTRY-GATE",
+    "status": [
+      "labor-blocked",
+      "bookmark-context-blocker",
+      "no-preview",
+      "no-post",
+      "needs-german-final-rebuild"
+    ],
+    "sourceInstance": "MCP_1_20260210",
+    "sourceCompany": "RM-DEMO",
+    "forbiddenDraft": "107229",
+    "purchaseInvoiceDraftNo": null,
+    "posted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "apiShortcut": false,
+    "bcRun": true,
+    "playwrightRun": true,
+    "resultPath": "playwright/projects/fibu-book5/evidence/p2p-024/P2P-024-result.json",
+    "evidencePath": "playwright/projects/fibu-book5/evidence/p2p-024/",
+    "proved": "The guarded P2P-024 route refused Vendor/RAW-STEEL entry when Business Central still showed the old 107229 bookmark/list context after scoped New.",
+    "blocker": "BC retained or restored a Purchase Invoices bookmark context for 107229; fresh draft number, Vendor field entry and RAW-STEEL line entry were not proven.",
+    "bookEffect": "Clickguides must not rely on page id alone for a fresh Purchase Invoice. A fresh-document route must prove the new document number and clear stale bookmark/filter context first.",
+    "migrationRelevance": "needed-for-german-final",
+    "mustRecreateInFinalSandbox": true,
+    "finalScreenshotNeeded": true,
+    "nextCase": "P2P-025-PURCHASE-INVOICE-LINE-ENTRY-BLOCKER-REVIEW",
+    "nextStep": "Review P2P-024 blocker evidence and choose either a stronger navigation reset/card route or switch away from Purchase Invoices."
   }
 }

@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "caseId": "P2P-024-PURCHASE-INVOICE-FRESH-DRAFT-LINE-ENTRY-GATE",
   "title": "Fresh Purchase Invoice draft line-entry gate",
-  "status": "planned",
+  "status": "blocked",
   "taskClass": "wizard_work",
   "modelClass": "gpt-5.4-medium",
   "usageLogRequired": false,
@@ -51,5 +51,13 @@
   "mustRecreateInFinalSandbox": true,
   "targetGermanCompanyImpact": "German final P2P can reuse the governance pattern: fresh document, visible vendor and line proof, then separate Preview/Posting gate.",
   "finalScreenshotNeeded": true,
-  "nextStep": "Run a fresh Purchase Invoice draft line-entry gate without reusing 107229 and without Preview Posting or posting."
+  "resultPath": "playwright/projects/fibu-book5/evidence/p2p-024/P2P-024-result.json",
+  "blockedBy": [
+    "fresh-draft-number-not-proven",
+    "forbidden-draft-107229-visible-in-working-context",
+    "bc-retained-list-bookmark-context"
+  ],
+  "summary": "P2P-024 opened Purchase Invoices and clicked scoped New, but BC stayed in the previous 107229 bookmark/list context. The test correctly refused Vendor/RAW-STEEL entry and produced no Preview Posting, posting or setup change.",
+  "nextCase": "P2P-025-PURCHASE-INVOICE-LINE-ENTRY-BLOCKER-REVIEW",
+  "nextStep": "Review P2P-024 bookmark/context blocker and choose a stronger fresh-document route before another Purchase Invoice line-entry attempt."
 }

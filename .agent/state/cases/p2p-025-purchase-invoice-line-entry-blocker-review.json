@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "caseId": "P2P-025-PURCHASE-INVOICE-LINE-ENTRY-BLOCKER-REVIEW",
+  "title": "Purchase Invoice line-entry blocker review",
+  "status": "planned",
+  "taskClass": "judge_work",
+  "modelClass": "gpt-5.5-low",
+  "usageLogRequired": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "p2p-purchase-invoice-bookmark-context-blocker-review",
+  "sourceCase": "P2P-024-PURCHASE-INVOICE-FRESH-DRAFT-LINE-ENTRY-GATE",
+  "purpose": "Classify the P2P-024 blocker: Business Central retained the 107229 bookmark/list context after scoped New, so a stronger fresh-document route or navigation reset is required before another line-entry attempt.",
+  "allowedActions": [
+    "read-p2p-024-evidence",
+    "review-url-and-bookmark-context",
+    "update-playwright-pattern-if-needed",
+    "write-evidence",
+    "update-state"
+  ],
+  "defaultLockedActions": [
+    "business-central-execution",
+    "playwright-execution",
+    "preview-posting",
+    "posting",
+    "setup-change",
+    "company-switch",
+    "api-shortcut"
+  ],
+  "forbiddenActions": [
+    "reuse-draft-107229",
+    "claim-german-final-proof",
+    "book-claim-without-evidence",
+    "repeat-p2p-024-new-click-without-new-navigation-reset"
+  ],
+  "safetyGates": [
+    "p2p-024-result-must-be-read",
+    "do-not-reuse-107229",
+    "new-route-must-reset-bc-bookmark-context-or-open-document-card-directly",
+    "no-preview-or-posting-in-review-case"
+  ],
+  "migrationRelevance": "helper-only",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": false,
+  "targetGermanCompanyImpact": "German final P2P should use this as navigation governance: a fresh-document action must prove the new document number and not inherit stale list bookmarks.",
+  "finalScreenshotNeeded": false,
+  "nextStep": "Write local review evidence and decide whether to fix the Purchase Invoices navigation helper or switch away from this route."
+}
