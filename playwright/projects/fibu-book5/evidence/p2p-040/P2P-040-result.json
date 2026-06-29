@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "caseId": "P2P-040-PURCHASE-JOURNAL-GERMAN-REBUILD-GAP-OR-NEXT-PROCESS-DECISION",
+  "source": "local-route-decision",
+  "resultStatus": "observed",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "sourceCompany": "RM-DEMO",
+  "decision": {
+    "selectedRoute": "close-rm-demo-p2p-labor-block-and-move-to-fixedassets",
+    "reason": "P2P has enough RM-DEMO lab evidence for book draft: Purchase Order UAT, payment/application, Purchase Journal controlled posting, readable ledger screenshots and book anchors are synced. Remaining gaps are German-final rebuild or the explicitly parked Purchase Order partial-receipt cell route.",
+    "doNotContinueNow": [
+      "do not repeat P2P-008/P2P-009/P2P-010 Purchase Order cell edits",
+      "do not create another Purchase Invoice reset probe without a new UI hypothesis",
+      "do not claim German final proof from RM-DEMO evidence"
+    ],
+    "nextHighValueProcess": "FIXEDASSETS-298-FA-DEPRECIATION-BLOCKER-BOOK-SYNC"
+  },
+  "proved": [
+    "P2P RM-DEMO lab block is sufficient for book draft after P2P-039 screenshot anchors.",
+    "Remaining P2P gaps are German-final rebuild or parked Purchase Order partial receipt, not a reason to repeat old cell-edit routes.",
+    "Next high-value lab process is Fixed Assets depreciation blocker/book sync."
+  ],
+  "notProved": [
+    "No German final P2P proof.",
+    "No German 19 percent VAT proof.",
+    "No Purchase Order partial receipt completion.",
+    "No new BC evidence in this case."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/p2p-040/P2P-040-result.json",
+    "playwright/projects/fibu-book5/evidence/p2p-040/P2P-040-GERMAN-REBUILD-GAP.md",
+    ".agent/state/current.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/p2p-039/P2P-039-result.json",
+    "playwright/projects/fibu-book5/evidence/p2p-040/P2P-040-GERMAN-REBUILD-GAP.md"
+  ],
+  "flags": {
+    "bcRun": false,
+    "playwrightRun": false,
+    "posted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "companySwitched": false,
+    "draftCreated": false,
+    "editedRecord": false,
+    "deletedRecord": false,
+    "apiShortcut": false,
+    "bookChanged": false
+  },
+  "classification": [
+    "labor-sufficient-for-book-draft",
+    "route-decision",
+    "needs-german-final-rebuild"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": true,
+  "targetGermanCompanyImpact": "P2P must be rebuilt in German final sandbox with German VAT, accounts, posting groups and screenshots.",
+  "finalScreenshotNeeded": true,
+  "safeToFinalizeState": true,
+  "requiresReview": false,
+  "blockedBy": [],
+  "statePatch": {},
+  "nextCase": "FIXEDASSETS-298-FA-DEPRECIATION-BLOCKER-BOOK-SYNC",
+  "nextStep": "Run Fixed Assets depreciation blocker book sync; do not retry Calculate Depreciation OK/Preview/Post without a new evidence-backed hypothesis."
+}
