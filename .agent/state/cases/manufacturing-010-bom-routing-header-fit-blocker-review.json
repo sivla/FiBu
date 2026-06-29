@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "caseId": "MANUFACTURING-010-BOM-ROUTING-HEADER-FIT-BLOCKER-REVIEW",
+  "title": "Manufacturing BOM/Routing header-fit blocker review",
+  "status": "planned",
+  "taskClass": "wizard_work",
+  "modelClass": "gpt-4-medium",
+  "usageLogRequired": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "blocker-review-and-route-decision",
+  "sourceCase": "MANUFACTURING-009-BOM-ROUTING-GUARDED-SETUP-FIT",
+  "purpose": "Review the M009 UI blocker and choose one genuinely new header-fit route before any BOM/Routing line, certification, item link or Production Order attempt.",
+  "allowedActions": [
+    "read-manufacturing-009-evidence",
+    "inspect-page-text-and-screenshot-metadata",
+    "review-existing-helper-patterns",
+    "decide-one-new-ui-route-or-park-manufacturing-header-fit",
+    "write-evidence",
+    "update-state"
+  ],
+  "defaultLockedActions": [
+    "production-bom-create",
+    "routing-create",
+    "bom-line-create",
+    "routing-line-create",
+    "certify-bom-or-routing",
+    "item-link-edit",
+    "production-order-create",
+    "preview-posting",
+    "posting",
+    "company-switch",
+    "api-shortcut"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "claim-german-final-proof",
+    "repeat-m009-same-scoped-new-route-without-new-evidence",
+    "unscoped-new",
+    "unscoped-edit",
+    "post-or-preview-in-blocker-review",
+    "production-order-create-in-blocker-review"
+  ],
+  "sourceResultPath": "playwright/projects/fibu-book5/evidence/manufacturing-009/MANUFACTURING-009-result.json",
+  "blockerSummary": [
+    "BOM-RM-M100:scoped-new-not-clickable",
+    "ROUTE-M100:no-field-not-fillable",
+    "ROUTE-M100:description-field-not-fillable"
+  ],
+  "requiredDecision": "Choose between a targeted helper fix, a different direct page/card route, Personalize/Page Inspection-assisted UI route, or park Manufacturing header-fit as labor-blocked/bookdraft-useful.",
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "nextStep": "Review M009 blocker and select one non-repeating route; no line-fit or production order until header route is solved or parked.",
+  "createdAt": "2026-06-29T18:18:44+02:00",
+  "updatedAt": "2026-06-29T18:18:44+02:00"
+}

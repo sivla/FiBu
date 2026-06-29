@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "caseId": "MANUFACTURING-009-BOM-ROUTING-GUARDED-SETUP-FIT",
+  "source": "playwright-ui-guarded-setup-fit",
+  "resultStatus": "blocked",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "sourceCompany": "RM-DEMO",
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "bcRun": true,
+  "playwrightRun": true,
+  "posted": false,
+  "previewPosting": false,
+  "setupChanged": false,
+  "draftCreated": false,
+  "companySwitched": false,
+  "apiShortcut": false,
+  "targetDataPath": "playwright/projects/fibu-book5/testdata/manufacturing/rm-m100-bom-routing-target.json",
+  "headerFits": [
+    {
+      "kind": "productionBom",
+      "pageId": 99000786,
+      "number": "BOM-RM-M100",
+      "beforeVisible": false,
+      "afterVisible": false,
+      "action": "blocked",
+      "clickedNew": false,
+      "filledNo": false,
+      "filledDescription": false,
+      "blockedBy": [
+        "scoped-new-not-clickable"
+      ],
+      "beforeTextEvidence": "playwright/projects/fibu-book5/evidence/manufacturing-009/productionBom-before-page-text.txt",
+      "afterTextEvidence": "playwright/projects/fibu-book5/evidence/manufacturing-009/productionBom-after-page-text.txt",
+      "beforeScreenshot": "playwright/projects/fibu-book5/img/manufacturing-009-010-production-bom-header-before.png",
+      "afterScreenshot": "playwright/projects/fibu-book5/img/manufacturing-009-010-production-bom-header-after.png"
+    },
+    {
+      "kind": "routing",
+      "pageId": 99000764,
+      "number": "ROUTE-M100",
+      "beforeVisible": false,
+      "afterVisible": false,
+      "action": "blocked",
+      "clickedNew": true,
+      "filledNo": false,
+      "filledDescription": false,
+      "blockedBy": [
+        "no-field-not-fillable",
+        "description-field-not-fillable"
+      ],
+      "beforeTextEvidence": "playwright/projects/fibu-book5/evidence/manufacturing-009/routing-before-page-text.txt",
+      "afterTextEvidence": "playwright/projects/fibu-book5/evidence/manufacturing-009/routing-after-page-text.txt",
+      "beforeScreenshot": "playwright/projects/fibu-book5/img/manufacturing-009-020-routing-header-before.png",
+      "afterScreenshot": "playwright/projects/fibu-book5/img/manufacturing-009-020-routing-header-after.png"
+    }
+  ],
+  "blockedBy": [
+    "BOM-RM-M100:scoped-new-not-clickable",
+    "ROUTE-M100:no-field-not-fillable",
+    "ROUTE-M100:description-field-not-fillable"
+  ],
+  "decision": "BOM/Routing header setup-fit is blocked; do not attempt lines, certification, item links or production order until the header route is reviewed.",
+  "proved": [
+    "The run stayed inside MCP_1_20260210 / RM-DEMO.",
+    "Known Manufacturing setup pages were opened by direct page URL without Tell-Me/search.",
+    "No setup write was needed or proved."
+  ],
+  "notProved": [
+    "No Production BOM line RAW-STEEL quantity per 2 PCS was set.",
+    "No Routing line Work Center 100 / run time 1 was set.",
+    "No BOM/Routing status certification was performed.",
+    "No RM-M100 item link fields were changed.",
+    "No Production Order was created, released or posted.",
+    "No Preview Posting, Consumption, Output, Item Ledger, Value Entry, Capacity Entry or G/L trace exists.",
+    "No German final proof exists."
+  ],
+  "flags": {
+    "noSearch": true,
+    "noProductionOrder": true,
+    "noPost": true,
+    "noPreview": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/manufacturing-009/MANUFACTURING-009-result.json",
+    "playwright/projects/fibu-book5/evidence/manufacturing-009/MANUFACTURING-009-GUARDED-SETUP-FIT.md",
+    "playwright/projects/fibu-book5/testdata/manufacturing/rm-m100-bom-routing-target.json"
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/manufacturing-009/MANUFACTURING-009-result.json",
+    "playwright/projects/fibu-book5/evidence/manufacturing-009/MANUFACTURING-009-GUARDED-SETUP-FIT.md",
+    "playwright/projects/fibu-book5/evidence/manufacturing-009/README.md"
+  ],
+  "requiresReview": true,
+  "safeToFinalizeState": false,
+  "statePatch": {},
+  "nextCase": "MANUFACTURING-010-BOM-ROUTING-HEADER-FIT-BLOCKER-REVIEW",
+  "nextStep": "Review M009 blocker and improve the scoped header creation route before any line-fit attempt."
+}

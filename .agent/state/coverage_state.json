@@ -293,30 +293,30 @@
       "latestReviewCase": "WAREHOUSE-022-SOURCE-PURCHASE-ORDER-VALUE-ENTRY-BLOCKER-REVIEW"
     },
     "manufacturing": {
-      "status": "setup-fit-decision-complete",
-      "latestPracticalCase": "MANUFACTURING-007-BOM-ROUTING-UI-FIRST-PREFLIGHT",
-      "latestEvidence": "playwright/projects/fibu-book5/evidence/manufacturing-007/MANUFACTURING-007-result.json",
+      "status": "setup-fit-blocked",
+      "latestPracticalCase": "MANUFACTURING-009-BOM-ROUTING-GUARDED-SETUP-FIT",
+      "latestEvidence": "playwright/projects/fibu-book5/evidence/manufacturing-009/MANUFACTURING-009-result.json",
       "latestReadOnlyPreflight": "playwright/projects/fibu-book5/evidence/manufacturing-007/MANUFACTURING-007-result.json",
-      "nextCase": "MANUFACTURING-009-BOM-ROUTING-GUARDED-SETUP-FIT",
-      "nextStep": "Implement and run a guarded UI-first setup-fit test for BOM-RM-M100 and ROUTE-M100 with before/after evidence and no production order or posting.",
+      "nextCase": "MANUFACTURING-010-BOM-ROUTING-HEADER-FIT-BLOCKER-REVIEW",
+      "nextStep": "Review M009 blocker and improve the scoped header creation route before any line-fit attempt.",
       "blockerStatus": "target-bom-and-routing-need-guarded-setup-fit",
       "openLimits": [
-        "BOM-RM-M100 is still not created or proven after M008 because M008 was decision-only.",
-        "ROUTE-M100 is still not created or proven after M008 because M008 was decision-only.",
-        "M009 may write setup only after before-evidence and scoped UI controls are proven.",
-        "No Production Order PROD-3001 may be created in M009.",
-        "No Preview Posting, posting, Consumption or Output may occur in M009.",
-        "No German final proof was created."
+        "M009 opened Production BOMs and Routings by direct page URL without Tell-Me/search.",
+        "BOM-RM-M100 and ROUTE-M100 remained not visibly created after guarded header-fit attempts.",
+        "No BOM/Routing lines, certification, item links, Production Order, Preview Posting, posting or manufacturing ledger trace exists.",
+        "German final rebuild remains required."
       ],
       "updatedAt": "2026-06-30T01:55:00+02:00",
       "latestDecisionCase": "MANUFACTURING-008-BOM-ROUTING-SETUP-FIT-DECISION",
-      "latestSetupFitDecision": "playwright/projects/fibu-book5/evidence/manufacturing-008/MANUFACTURING-008-result.json"
+      "latestSetupFitDecision": "playwright/projects/fibu-book5/evidence/manufacturing-008/MANUFACTURING-008-result.json",
+      "currentBlock": "bom-routing-header-fit-blocker-review",
+      "finalGermanProof": "open"
     }
   },
   "hardExclusions": {
     "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
   },
-  "updatedAt": "2026-06-30T01:55:00+02:00",
+  "updatedAt": "2026-06-29T18:18:44+02:00",
   "activeArea": "manufacturing",
   "currentBlock": "PROCESS-SELECTION-AFTER-WAREHOUSE-SOURCE-PARKING",
   "latestPracticalCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
@@ -1872,8 +1872,8 @@
     "finalScreenshotNeeded": true,
     "updatedAt": "2026-06-29T23:59:00+02:00"
   },
-  "activeCase": "MANUFACTURING-009-BOM-ROUTING-GUARDED-SETUP-FIT",
-  "active_case_file": ".agent/state/cases/manufacturing-009-bom-routing-guarded-setup-fit.json",
+  "activeCase": "MANUFACTURING-010-BOM-ROUTING-HEADER-FIT-BLOCKER-REVIEW",
+  "active_case_file": ".agent/state/cases/manufacturing-010-bom-routing-header-fit-blocker-review.json",
   "latestManufacturing005": {
     "caseId": "MANUFACTURING-005-CHAPTER14-LAB-VS-TARGET-CLEANUP",
     "status": [
@@ -2001,5 +2001,65 @@
     "finalScreenshotNeeded": true,
     "nextCase": "MANUFACTURING-009-BOM-ROUTING-GUARDED-SETUP-FIT",
     "updatedAt": "2026-06-30T01:55:00+02:00"
+  },
+  "latestManufacturing009": {
+    "caseId": "MANUFACTURING-009-BOM-ROUTING-GUARDED-SETUP-FIT",
+    "status": [
+      "labor-blocked",
+      "guarded-setup-fit-blocked",
+      "needs-german-final-rebuild"
+    ],
+    "sourceInstance": "MCP_1_20260210",
+    "sourceCompany": "RM-DEMO",
+    "bcRun": true,
+    "playwrightRun": true,
+    "posted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "draftCreated": false,
+    "companySwitched": false,
+    "apiShortcut": false,
+    "resultPath": "playwright/projects/fibu-book5/evidence/manufacturing-009/MANUFACTURING-009-result.json",
+    "evidencePath": "playwright/projects/fibu-book5/evidence/manufacturing-009/",
+    "screenshots": [
+      "playwright/projects/fibu-book5/img/manufacturing-009-010-production-bom-header-before.png",
+      "playwright/projects/fibu-book5/img/manufacturing-009-010-production-bom-header-after.png",
+      "playwright/projects/fibu-book5/img/manufacturing-009-020-routing-header-before.png",
+      "playwright/projects/fibu-book5/img/manufacturing-009-020-routing-header-after.png"
+    ],
+    "headerFits": [
+      {
+        "kind": "productionBom",
+        "number": "BOM-RM-M100",
+        "action": "blocked",
+        "beforeVisible": false,
+        "afterVisible": false,
+        "blockedBy": [
+          "scoped-new-not-clickable"
+        ]
+      },
+      {
+        "kind": "routing",
+        "number": "ROUTE-M100",
+        "action": "blocked",
+        "beforeVisible": false,
+        "afterVisible": false,
+        "blockedBy": [
+          "no-field-not-fillable",
+          "description-field-not-fillable"
+        ]
+      }
+    ],
+    "decision": "BOM/Routing header setup-fit is blocked; do not attempt lines, certification, item links or production order until the header route is reviewed.",
+    "blockedBy": [
+      "BOM-RM-M100:scoped-new-not-clickable",
+      "ROUTE-M100:no-field-not-fillable",
+      "ROUTE-M100:description-field-not-fillable"
+    ],
+    "migrationRelevance": "needed-for-german-final",
+    "mustRecreateInFinalSandbox": true,
+    "finalScreenshotNeeded": true,
+    "nextCase": "MANUFACTURING-010-BOM-ROUTING-HEADER-FIT-BLOCKER-REVIEW",
+    "updatedAt": "2026-06-29T18:18:44+02:00"
   }
 }
