@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "caseId": "MANUFACTURING-008-BOM-ROUTING-SETUP-FIT-DECISION",
+  "source": "local-setup-fit-decision",
+  "resultStatus": "observed",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "sourceCompany": "RM-DEMO",
+  "sourceCase": "MANUFACTURING-007-BOM-ROUTING-UI-FIRST-PREFLIGHT",
+  "targetDataPath": "playwright/projects/fibu-book5/testdata/manufacturing/rm-m100-bom-routing-target.json",
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "bcRun": false,
+  "playwrightRun": false,
+  "posted": false,
+  "previewPosting": false,
+  "setupChanged": false,
+  "draftCreated": false,
+  "companySwitched": false,
+  "apiShortcut": false,
+  "decision": "Proceed with a guarded UI-first setup-fit case for BOM-RM-M100 and ROUTE-M100 instead of another pure expand-only review. M009 may create or fit BOM/Routing only after before-evidence, scoped controls and stop rules are proven.",
+  "selectedNextCase": "MANUFACTURING-009-BOM-ROUTING-GUARDED-SETUP-FIT",
+  "proved": [
+    "M007 proved Work Center 100 / Assembly department and RM-M100 card context in RM-DEMO.",
+    "M007 did not visibly prove BOM-RM-M100 or ROUTE-M100.",
+    "A pure review loop would not advance the Manufacturing process; the next valuable step is a guarded setup-fit attempt with before/after evidence."
+  ],
+  "notProved": [
+    "No Production BOM was created, edited or certified.",
+    "No Routing was created, edited or certified.",
+    "No RM-M100 BOM/Routing link field was changed.",
+    "No Production Order, Preview Posting, posting, Consumption or Output occurred.",
+    "No German final proof exists."
+  ],
+  "allowedNextActions": [
+    "open-production-boms-direct-url",
+    "capture-before-evidence",
+    "create-or-fit-bom-rm-m100-if-scoped-controls-are-proven",
+    "create-or-fit-route-m100-if-scoped-controls-are-proven",
+    "link-rm-m100-only-if-fields-visible-and-editable",
+    "capture-after-evidence",
+    "write-result"
+  ],
+  "lockedInNextCase": [
+    "production-order-create",
+    "production-order-release",
+    "preview-posting",
+    "posting",
+    "consumption-posting",
+    "output-posting",
+    "company-switch",
+    "api-shortcut",
+    "german-final-claim"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/manufacturing-007/MANUFACTURING-007-result.json",
+    "playwright/projects/fibu-book5/evidence/manufacturing-008/MANUFACTURING-008-SETUP-FIT-DECISION.md",
+    "playwright/projects/fibu-book5/testdata/manufacturing/rm-m100-bom-routing-target.json"
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/manufacturing-008/MANUFACTURING-008-result.json",
+    "playwright/projects/fibu-book5/evidence/manufacturing-008/MANUFACTURING-008-SETUP-FIT-DECISION.md",
+    "playwright/projects/fibu-book5/evidence/manufacturing-008/README.md"
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": false,
+  "statePatch": {},
+  "nextCase": "MANUFACTURING-009-BOM-ROUTING-GUARDED-SETUP-FIT",
+  "nextStep": "Implement and run a guarded UI-first setup-fit test for BOM-RM-M100 and ROUTE-M100 with before/after evidence and no production order or posting."
+}

@@ -293,28 +293,30 @@
       "latestReviewCase": "WAREHOUSE-022-SOURCE-PURCHASE-ORDER-VALUE-ENTRY-BLOCKER-REVIEW"
     },
     "manufacturing": {
-      "status": "readonly-preflight-observed",
+      "status": "setup-fit-decision-complete",
       "latestPracticalCase": "MANUFACTURING-007-BOM-ROUTING-UI-FIRST-PREFLIGHT",
       "latestEvidence": "playwright/projects/fibu-book5/evidence/manufacturing-007/MANUFACTURING-007-result.json",
       "latestReadOnlyPreflight": "playwright/projects/fibu-book5/evidence/manufacturing-007/MANUFACTURING-007-result.json",
-      "nextCase": "MANUFACTURING-008-BOM-ROUTING-SETUP-FIT-DECISION",
-      "nextStep": "M008 setup-fit decision: choose expand-only RM-M100 item-card preflight or guarded BOM/Routing setup-fit with before/after evidence.",
-      "blockerStatus": "target-bom-and-routing-not-visible-in-readonly-preflight",
+      "nextCase": "MANUFACTURING-009-BOM-ROUTING-GUARDED-SETUP-FIT",
+      "nextStep": "Implement and run a guarded UI-first setup-fit test for BOM-RM-M100 and ROUTE-M100 with before/after evidence and no production order or posting.",
+      "blockerStatus": "target-bom-and-routing-need-guarded-setup-fit",
       "openLimits": [
-        "BOM-RM-M100 is not visibly proven in M007.",
-        "ROUTE-M100 is not visibly proven in M007.",
-        "RM-M100 item card context and Replenishment/Planning are visible, but expanded BOM/Routing link fields are not proven.",
-        "No Production Order PROD-3001 was created, released or posted.",
-        "No Consumption Journal, Output Journal, Capacity Entry, Item Ledger Entry, Value Entry or G/L Entry from manufacturing was created.",
+        "BOM-RM-M100 is still not created or proven after M008 because M008 was decision-only.",
+        "ROUTE-M100 is still not created or proven after M008 because M008 was decision-only.",
+        "M009 may write setup only after before-evidence and scoped UI controls are proven.",
+        "No Production Order PROD-3001 may be created in M009.",
+        "No Preview Posting, posting, Consumption or Output may occur in M009.",
         "No German final proof was created."
       ],
-      "updatedAt": "2026-06-30T01:35:00+02:00"
+      "updatedAt": "2026-06-30T01:55:00+02:00",
+      "latestDecisionCase": "MANUFACTURING-008-BOM-ROUTING-SETUP-FIT-DECISION",
+      "latestSetupFitDecision": "playwright/projects/fibu-book5/evidence/manufacturing-008/MANUFACTURING-008-result.json"
     }
   },
   "hardExclusions": {
     "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
   },
-  "updatedAt": "2026-06-30T01:35:00+02:00",
+  "updatedAt": "2026-06-30T01:55:00+02:00",
   "activeArea": "manufacturing",
   "currentBlock": "PROCESS-SELECTION-AFTER-WAREHOUSE-SOURCE-PARKING",
   "latestPracticalCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
@@ -1870,8 +1872,8 @@
     "finalScreenshotNeeded": true,
     "updatedAt": "2026-06-29T23:59:00+02:00"
   },
-  "activeCase": "MANUFACTURING-008-BOM-ROUTING-SETUP-FIT-DECISION",
-  "active_case_file": ".agent/state/cases/manufacturing-008-bom-routing-setup-fit-decision.json",
+  "activeCase": "MANUFACTURING-009-BOM-ROUTING-GUARDED-SETUP-FIT",
+  "active_case_file": ".agent/state/cases/manufacturing-009-bom-routing-guarded-setup-fit.json",
   "latestManufacturing005": {
     "caseId": "MANUFACTURING-005-CHAPTER14-LAB-VS-TARGET-CLEANUP",
     "status": [
@@ -1962,5 +1964,42 @@
     "finalScreenshotNeeded": true,
     "nextCase": "MANUFACTURING-008-BOM-ROUTING-SETUP-FIT-DECISION",
     "updatedAt": "2026-06-30T01:35:00+02:00"
+  },
+  "latestManufacturing008": {
+    "caseId": "MANUFACTURING-008-BOM-ROUTING-SETUP-FIT-DECISION",
+    "status": [
+      "setup-fit-decision",
+      "labor-sufficient-for-next-setup-fit-case",
+      "needs-german-final-rebuild"
+    ],
+    "sourceInstance": "MCP_1_20260210",
+    "sourceCompany": "RM-DEMO",
+    "bcRun": false,
+    "playwrightRun": false,
+    "posted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "draftCreated": false,
+    "companySwitched": false,
+    "apiShortcut": false,
+    "resultPath": "playwright/projects/fibu-book5/evidence/manufacturing-008/MANUFACTURING-008-result.json",
+    "decision": "Proceed with a guarded UI-first setup-fit case for BOM-RM-M100 and ROUTE-M100 instead of another pure expand-only review. M009 may create or fit BOM/Routing only after before-evidence, scoped controls and stop rules are proven.",
+    "selectedNextCase": "MANUFACTURING-009-BOM-ROUTING-GUARDED-SETUP-FIT",
+    "lockedInNextCase": [
+      "production-order-create",
+      "production-order-release",
+      "preview-posting",
+      "posting",
+      "consumption-posting",
+      "output-posting",
+      "company-switch",
+      "api-shortcut",
+      "german-final-claim"
+    ],
+    "migrationRelevance": "needed-for-german-final",
+    "mustRecreateInFinalSandbox": true,
+    "finalScreenshotNeeded": true,
+    "nextCase": "MANUFACTURING-009-BOM-ROUTING-GUARDED-SETUP-FIT",
+    "updatedAt": "2026-06-30T01:55:00+02:00"
   }
 }

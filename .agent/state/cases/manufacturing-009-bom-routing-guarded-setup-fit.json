@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "caseId": "MANUFACTURING-009-BOM-ROUTING-GUARDED-SETUP-FIT",
+  "title": "Manufacturing BOM/Routing guarded UI-first setup-fit",
+  "status": "planned",
+  "taskClass": "wizard_work",
+  "modelClass": "gpt-4-high",
+  "usageLogRequired": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "guarded-setup-fit",
+  "sourceCase": "MANUFACTURING-008-BOM-ROUTING-SETUP-FIT-DECISION",
+  "purpose": "Create or fit BOM-RM-M100 and ROUTE-M100 through Business Central UI only, with before/after evidence, if scoped controls are proven safe.",
+  "allowedActions": [
+    "run-playwright-if-instance-and-company-match",
+    "open-direct-page-url",
+    "capture-before-evidence",
+    "click-scoped-new-on-production-boms-or-routings",
+    "edit-bom-routing-fields-only-after-scoped-control-proof",
+    "capture-after-evidence",
+    "write-evidence",
+    "update-state"
+  ],
+  "defaultLockedActions": [
+    "production-order-create",
+    "production-order-release",
+    "preview-posting",
+    "posting",
+    "consumption-posting",
+    "output-posting",
+    "company-switch",
+    "api-shortcut"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "claim-german-final-proof",
+    "unscoped-new",
+    "unscoped-edit",
+    "post-or-preview-in-setup-fit",
+    "production-order-create-in-setup-fit"
+  ],
+  "targetDataPath": "playwright/projects/fibu-book5/testdata/manufacturing/rm-m100-bom-routing-target.json",
+  "safetyGates": [
+    "Abort if URL does not contain MCP_1_20260210.",
+    "Abort if company is not RM-DEMO.",
+    "Use direct page URLs; do not open Tell-Me/search.",
+    "Before any write, capture target page text and screenshot.",
+    "Only click New/Edit when the action is scoped to the intended Production BOM or Routing page.",
+    "Only type values into visible, focused fields whose labels or row context match the target object.",
+    "Stop if a generic dialog, ambiguous lookup or unrelated page appears.",
+    "No Production Order, Release, Preview Posting, Posting, Consumption or Output in this case."
+  ],
+  "expectedEvidence": [
+    "before/after Production BOM evidence or blocker",
+    "before/after Routing evidence or blocker",
+    "RM-M100 link-field evidence or blocker",
+    "no-post/no-preview/no-production-order flags",
+    "German-final rebuild boundary"
+  ],
+  "targetObjects": {
+    "productionBom": "BOM-RM-M100",
+    "routing": "ROUTE-M100",
+    "item": "RM-M100",
+    "component": "RAW-STEEL",
+    "workCenter": "100"
+  },
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "resultPath": "playwright/projects/fibu-book5/evidence/manufacturing-009/MANUFACTURING-009-result.json",
+  "nextStep": "Build and run guarded UI-first setup-fit test; stop at first unsafe or ambiguous write route.",
+  "createdAt": "2026-06-30T01:55:00+02:00",
+  "updatedAt": "2026-06-30T01:55:00+02:00"
+}
