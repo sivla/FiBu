@@ -786,8 +786,8 @@
     "nextCase": "P2P-021-PURCHASE-INVOICE-ALTERNATIVE-ROUTE-PREFLIGHT"
   },
   "p2p": {
-    "latestCase": "P2P-028-PURCHASE-JOURNAL-NEGATIVE-AMOUNT-BALANCE-GATE",
-    "latestStatus": "labor-proven-journal-check-clean-no-post",
+    "latestCase": "P2P-030-PURCHASE-JOURNAL-EXTERNAL-DOCUMENT-PREVIEW-GATE",
+    "latestStatus": "labor-proven-preview-opened-no-post",
     "purchaseInvoiceAlternative": {
       "status": "partial-route-proven-cleanup-blocked",
       "sourceCompany": "RM-DEMO",
@@ -798,8 +798,8 @@
       "resultPath": "playwright/projects/fibu-book5/evidence/p2p-021/P2P-021-result.json",
       "nextCase": "P2P-022-PURCHASE-INVOICE-DRAFT-CLEANUP-DIAGNOSIS"
     },
-    "nextCase": "P2P-029-PURCHASE-JOURNAL-PREVIEW-ACTION-ROUTE",
-    "nextStep": "Run scoped Purchase Journal Preview Posting action route after recreating the P2P-028 clean Journal Check line; no posting.",
+    "nextCase": "P2P-031-PURCHASE-JOURNAL-PREVIEW-RESULT-REVIEW",
+    "nextStep": "Review P2P-030 Preview Posting entries and decide next gated P2P route.",
     "purchaseInvoiceCleanup": {
       "status": "blocked-target-draft-still-visible",
       "sourceCompany": "RM-DEMO",
@@ -885,6 +885,41 @@
       "cleanupProven": true,
       "resultPath": "playwright/projects/fibu-book5/evidence/p2p-028/P2P-028-result.json",
       "nextCase": "P2P-029-PURCHASE-JOURNAL-PREVIEW-ACTION-ROUTE"
+    },
+    "purchaseJournalPreviewActionRoute": {
+      "status": "labor-proven-preview-action-route-blocked-by-external-document-no",
+      "sourceCompany": "RM-DEMO",
+      "bcRun": true,
+      "playwrightRun": true,
+      "documentNo": "P2P029-858745",
+      "journalCheck": "0 Issues Total / Current line No issues found",
+      "relatedPostSplitButton": "unique",
+      "previewPostingMenuitem": "unique",
+      "previewPosting": false,
+      "posted": false,
+      "cleanupProven": true,
+      "blocker": "External Document No. required before Preview Posting.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/p2p-029/P2P-029-result.json",
+      "nextCase": "P2P-030-PURCHASE-JOURNAL-EXTERNAL-DOCUMENT-PREVIEW-GATE"
+    },
+    "purchaseJournalExternalDocumentPreviewGate": {
+      "status": "labor-proven-preview-opened-no-post",
+      "sourceCompany": "RM-DEMO",
+      "bcRun": true,
+      "playwrightRun": true,
+      "documentNo": "P2P030-585178",
+      "externalDocumentNo": "EXT-P2P030-585178",
+      "journalCheck": "0 Issues Total / Current line No issues found",
+      "previewPosting": true,
+      "previewEntryTypes": [
+        "G/L Entry 2",
+        "Vendor Ledger Entry 1",
+        "Detailed Vendor Ledg. Entry 1"
+      ],
+      "posted": false,
+      "cleanupProven": true,
+      "resultPath": "playwright/projects/fibu-book5/evidence/p2p-030/P2P-030-result.json",
+      "nextCase": "P2P-031-PURCHASE-JOURNAL-PREVIEW-RESULT-REVIEW"
     }
   }
 }

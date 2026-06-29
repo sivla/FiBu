@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "caseId": "P2P-031-PURCHASE-JOURNAL-PREVIEW-RESULT-REVIEW",
+  "title": "Purchase Journal Preview result review",
+  "status": "planned",
+  "taskClass": "judge_work",
+  "modelClass": "gpt-5.5-low",
+  "usageLogRequired": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "p2p-purchase-journal-preview-result-review",
+  "sourceCase": "P2P-030-PURCHASE-JOURNAL-EXTERNAL-DOCUMENT-PREVIEW-GATE",
+  "purpose": "Review the P2P-030 Preview Posting result and decide the next safest P2P step: no-post Preview detail trace, controlled Purchase Journal posting with ledger trace, or bookdraft sync. Do not execute BC in this review case.",
+  "allowedActions": [
+    "read-p2p-030-evidence",
+    "classify-preview-entry-types",
+    "decide-next-gated-case",
+    "write-evidence",
+    "update-state"
+  ],
+  "defaultLockedActions": [
+    "business-central-execution",
+    "playwright-execution",
+    "preview-posting",
+    "posting",
+    "setup-change",
+    "company-switch",
+    "api-shortcut"
+  ],
+  "forbiddenActions": [
+    "post",
+    "ship",
+    "invoice",
+    "ship-and-invoice",
+    "claim-german-final-proof",
+    "book-claim-without-evidence"
+  ],
+  "safetyGates": [
+    "p2p-030-result-must-be-read",
+    "decision-must-name-next-gated-case",
+    "no-bc-execution-in-review-case"
+  ],
+  "expectedEvidence": [
+    "Preview entry type classification",
+    "clear no-post/posting decision",
+    "next case with gates"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "targetGermanCompanyImpact": "German final P2P must recreate Preview Posting and any later posting/ledger trace with German setup and screenshots.",
+  "finalScreenshotNeeded": false,
+  "nextStep": "Review P2P-030 Preview Posting entries and decide next gated P2P route."
+}

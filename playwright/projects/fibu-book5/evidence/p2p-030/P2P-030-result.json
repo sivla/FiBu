@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "caseId": "P2P-030-PURCHASE-JOURNAL-EXTERNAL-DOCUMENT-PREVIEW-GATE",
+  "parentCaseId": "P2P-029-PURCHASE-JOURNAL-PREVIEW-ACTION-ROUTE",
+  "source": "playwright-ui-labor-purchase-journal-external-document-preview-gate",
+  "resultStatus": "observed",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "sourceCompany": "RM-DEMO",
+  "documentNo": "P2P030-585178",
+  "previewPosting": true,
+  "posted": false,
+  "setupChanges": [],
+  "changedRecords": [
+    {
+      "type": "Purchase Journal Line",
+      "documentNo": "P2P030-585178",
+      "cleanup": {
+        "attempted": true,
+        "cleaned": true,
+        "documentNoStillVisible": false
+      }
+    }
+  ],
+  "postedRecords": [],
+  "execute": true,
+  "highImpactExecute": true,
+  "flags": {
+    "fieldValueEntryAttempted": true,
+    "journalLineCreated": true,
+    "cleanJournalCheck": true,
+    "relatedPostSplitButtonUnique": true,
+    "previewMenuitemUnique": true,
+    "previewClicked": true,
+    "previewOpened": true,
+    "externalDocumentNoRequired": false,
+    "cleanupAttempted": true,
+    "cleanupProven": true,
+    "noPost": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "targetValues": {
+    "postingDate": "08.06.2026",
+    "documentType": "Invoice",
+    "externalDocumentNo": "EXT-P2P030-585178",
+    "accountType": "Vendor",
+    "vendorNo": "K10000",
+    "amount": "-2.500,00",
+    "genPostingType": "",
+    "genBusPostingGroup": "",
+    "genProdPostingGroup": "",
+    "balAccountType": "G/L Account",
+    "balAccountNo": "82000"
+  },
+  "journalCheck": {
+    "journalCheckVisible": true,
+    "zeroIssuesTotalVisible": true,
+    "zeroLinesWithIssuesVisible": true,
+    "currentLineNoIssuesVisible": true,
+    "issueText": ""
+  },
+  "actionDiscovery": {
+    "beforeActionCount": 29,
+    "relatedPostSplitButtonCandidates": 1,
+    "previewMenuitemCandidates": 1,
+    "previewBlockedReason": ""
+  },
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/p2p-030/010-after-clean-journal-check-controls.json",
+    "playwright/projects/fibu-book5/evidence/p2p-030/020-before-post-menu-actions.json",
+    "playwright/projects/fibu-book5/evidence/p2p-030/030-related-post-split-button-candidates.json",
+    "playwright/projects/fibu-book5/evidence/p2p-030/040-after-post-menu-actions.json",
+    "playwright/projects/fibu-book5/evidence/p2p-030/050-preview-menuitem-candidates.json",
+    "playwright/projects/fibu-book5/evidence/p2p-030/060-after-preview-click-page-text.txt",
+    "playwright/projects/fibu-book5/evidence/p2p-030/070-cleanup-page-text.txt"
+  ],
+  "screenshots": [],
+  "proves": [
+    "P2P-028 values plus External Document No. produced a clean Purchase Journal Check.",
+    "A unique related Post split-button candidate was found.",
+    "A unique Preview Posting menuitem was found after opening the related Post menu.",
+    "Preview Posting opened from the scoped menuitem.",
+    "Cleanup removed the target draft line.",
+    "No posting was executed."
+  ],
+  "notProved": [
+    "No posting or ledger trace.",
+    "No Purchase Order partial receipt.",
+    "No German final proof."
+  ],
+  "blockedBy": [],
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "safeToFinalizeState": false,
+  "requiresReview": true,
+  "statePatch": {},
+  "nextStep": "P2P-031: review Preview Posting entries and decide whether a separate no-post or posting trace case is justified."
+}

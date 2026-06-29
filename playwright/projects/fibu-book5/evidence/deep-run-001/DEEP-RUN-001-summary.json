@@ -543,6 +543,40 @@
         "cleanup-or-correction"
       ],
       "result": "Purchase Journal vendor invoice line with K10000, Amount -2.500,00, blank Vendor posting groups and Bal. Account No. 82000 reached Journal Check 0 Issues; draft line was cleaned up; Preview route not yet confirmed; no posting."
+    },
+    {
+      "id": "P2P-029",
+      "type": "preview-action-route field-value-entry journal-line-created cleanup-or-correction",
+      "bcRun": true,
+      "posted": false,
+      "execute": true,
+      "highImpactExecute": true,
+      "signals": [
+        "field-value-entry",
+        "journal-line-created",
+        "journal-check-clean",
+        "preview-action-route",
+        "external-document-no-required",
+        "cleanup-or-correction"
+      ],
+      "result": "Purchase Journal clean line exposed a unique related Post split button and unique Preview Posting menuitem. Preview click reached BC validation requiring External Document No.; draft was cleaned up; no posting."
+    },
+    {
+      "id": "P2P-030",
+      "type": "preview-posting-opened field-value-entry journal-line-created cleanup-or-correction",
+      "bcRun": true,
+      "posted": false,
+      "previewPosting": true,
+      "execute": true,
+      "highImpactExecute": true,
+      "signals": [
+        "field-value-entry",
+        "journal-line-created",
+        "journal-check-clean",
+        "preview-posting-opened",
+        "cleanup-or-correction"
+      ],
+      "result": "Purchase Journal with External Document No. opened Preview Posting and showed G/L Entry 2, Vendor Ledger Entry 1 and Detailed Vendor Ledg. Entry 1; draft was cleaned up; no posting."
     }
   ],
   "postingSummary": {
@@ -560,18 +594,18 @@
       "purchaseInvoices": "p2p-candidate-needs-document-line-gate",
       "requisitionWorksheet": "planning-readiness-only"
     },
-    "purchaseJournal": "P2P-028 labor-proven clean Journal Check with negative Vendor amount, blank Vendor posting groups and Bal. Account No. 82000; next route is scoped Preview Posting action discovery, no posting yet."
+    "purchaseJournal": "P2P-030 labor-proven: External Document No. fixes Preview blocker and Purchase Journal Preview Posting opens with G/L Entry 2, Vendor Ledger Entry 1 and Detailed Vendor Ledg. Entry 1. No posting yet."
   },
   "nextBestLevers": [
-    "P2P-029-PURCHASE-JOURNAL-PREVIEW-ACTION-ROUTE",
-    "FIXEDASSETS-DEPRECIATION-BLOCKER-FOLLOWUP",
-    "BANK-RECONCILIATION-CONCRETE-STATEMENT-MATCH-PLAN"
+    "P2P-031-PURCHASE-JOURNAL-PREVIEW-RESULT-REVIEW",
+    "P2P-CONTROLLED-POSTING-TRACE-ONLY-IF-APPROVED",
+    "FIXEDASSETS-DEPRECIATION-BLOCKER-FOLLOWUP"
   ],
   "migrationRelevance": "needed-for-german-final",
   "mustRecreateInFinalSandbox": true,
   "finalScreenshotNeeded": true,
   "executeSummary": {
-    "executePackages": 13,
+    "executePackages": 15,
     "executePackageIds": [
       "P2P-014",
       "PAYMENTS-005",
@@ -585,9 +619,11 @@
       "BANK-008",
       "BANK-009",
       "RM-DE-LAB-CREATE-001",
-      "P2P-028"
+      "P2P-028",
+      "P2P-029",
+      "P2P-030"
     ],
-    "highImpactExecutePackages": 7,
+    "highImpactExecutePackages": 9,
     "highImpactPackageIds": [
       "P2P-015",
       "PAYMENTS-006",
@@ -595,11 +631,13 @@
       "BANK-002",
       "BANK-008",
       "BANK-009",
-      "P2P-028"
+      "P2P-028",
+      "P2P-029",
+      "P2P-030"
     ],
     "lightExecutePackages": 2,
     "readOnlyPackagesDoNotCountAsExecute": true,
-    "progressPackagesTotal": 39
+    "progressPackagesTotal": 41
   },
-  "updatedAt": "2026-06-29T01:22:00.000Z"
+  "updatedAt": "2026-06-29T03:05:00.000Z"
 }
