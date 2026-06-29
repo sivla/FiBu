@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-29T22:35:00+02:00",
+  "updatedAt": "2026-06-29T23:00:00+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "warehouse",
-  "activeCase": "WAREHOUSE-030-SOURCE-PO-STOCKKEEPING-OR-PURCHASE-DEFAULT-DISCOVERY",
-  "active_case_file": ".agent/state/cases/warehouse-030-source-po-stockkeeping-or-purchase-default-discovery.json",
-  "lastReferenceCase": "WAREHOUSE-029-SOURCE-PO-DEFAULT-LOCATION-PREFLIGHT",
-  "lastReferenceCaseFile": ".agent/state/cases/warehouse-029-source-po-default-location-preflight.json",
+  "activeCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
+  "active_case_file": ".agent/state/cases/warehouse-031-warehouse-source-route-park-or-setup-fit-decision.json",
+  "lastReferenceCase": "WAREHOUSE-030-SOURCE-PO-STOCKKEEPING-OR-PURCHASE-DEFAULT-DISCOVERY",
+  "lastReferenceCaseFile": ".agent/state/cases/warehouse-030-source-po-stockkeeping-or-purchase-default-discovery.json",
   "mode": "bc-specialist-labor-book-production",
   "requiresStrongModel": true,
   "requiredPreflightChecks": [
@@ -40,7 +40,7 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "WAREHOUSE-030: inspect Stockkeeping Unit or purchase/default setup route read-only before another fresh source Purchase Order.",
+  "nextStep": "WAREHOUSE-031: decide guarded Stockkeeping Unit setup-fit versus parking Warehouse source route; no more blind default discovery.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/inventory-labor-draft.md",
     "area": "inventory",
@@ -112,8 +112,8 @@
     "summaryFile": ".agent/state/lab_to_german_sandbox_migration_plan.json",
     "noActiveLiveRunInOldSandbox": false,
     "germanTargetUnavailable": true,
-    "nextStep": "WAREHOUSE-030: inspect Stockkeeping Unit or purchase/default setup route read-only before another fresh source Purchase Order.",
-    "nextCase": "WAREHOUSE-030-SOURCE-PO-STOCKKEEPING-OR-PURCHASE-DEFAULT-DISCOVERY"
+    "nextStep": "WAREHOUSE-031: decide guarded Stockkeeping Unit setup-fit versus parking Warehouse source route; no more blind default discovery.",
+    "nextCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION"
   },
   "latestP2PLabFollowup": {
     "caseId": "P2P-004-PARTIAL-RECEIPT-VARIANCE-GATE",
@@ -221,7 +221,7 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "warehouse-source-po-stockkeeping-or-purchase-default-discovery",
+  "currentCoverageFocus": "warehouse-source-route-park-or-setup-fit-decision",
   "nextProcessRoute": [
     "P2P-012 compared Purchase Journal, Item Journal, Purchase Invoices and Requisition Worksheet by direct page URL without search or field entry.",
     "Item Journal is the most stable observed route for material quantity/location/value effect, but it is Inventory evidence rather than full creditor P2P.",
@@ -2847,5 +2847,23 @@
     "migrationRelevance": "needed-for-german-final",
     "mustRecreateInFinalSandbox": true,
     "updatedAt": "2026-06-29T22:35:00+02:00"
+  },
+  "latestWarehouse030": {
+    "caseId": "WAREHOUSE-030-SOURCE-PO-STOCKKEEPING-OR-PURCHASE-DEFAULT-DISCOVERY",
+    "status": "observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-030/WAREHOUSE-030-result.json",
+    "decision": "Direct read-only page probes did not prove a Stockkeeping Unit or Item Vendor route with RAW-STEEL/FRA-ZL. Next case should decide whether to run a guarded setup-fit route with explicit evidence or park Warehouse source route as labor-blocked.",
+    "selectedNextRoute": "guarded-setup-fit-decision-or-park-warehouse-source-route",
+    "usefulRouteCount": 0,
+    "bcRun": true,
+    "playwrightRun": true,
+    "posted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "companySwitched": false,
+    "nextCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
+    "migrationRelevance": "needed-for-german-final",
+    "mustRecreateInFinalSandbox": true,
+    "updatedAt": "2026-06-29T23:00:00+02:00"
   }
 }

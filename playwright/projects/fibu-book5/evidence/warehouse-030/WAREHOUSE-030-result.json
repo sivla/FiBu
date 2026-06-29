@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "purpose": "warehouse-source-po-stockkeeping-or-purchase-default-discovery",
+  "caseId": "WAREHOUSE-030-SOURCE-PO-STOCKKEEPING-OR-PURCHASE-DEFAULT-DISCOVERY",
+  "source": "playwright-ui-readonly-direct-page-discovery",
+  "resultStatus": "observed",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "bcRun": true,
+  "playwrightRun": true,
+  "posted": false,
+  "previewPosting": false,
+  "setupChanged": false,
+  "companySwitched": false,
+  "apiShortcut": false,
+  "bookChanged": false,
+  "valueEntered": false,
+  "draftCreated": false,
+  "probes": [
+    {
+      "label": "stockkeeping-unit-list-raw-steel",
+      "pageId": 5701,
+      "table": "Stockkeeping Unit",
+      "filter": "'Stockkeeping Unit'.'Item No.' IS 'RAW-STEEL'",
+      "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5701&filter='Stockkeeping Unit'.'Item No.' IS 'RAW-STEEL'&dc=0",
+      "contextOk": true,
+      "targetSignals": {
+        "itemVisible": false,
+        "vendorVisible": false,
+        "locationVisible": false,
+        "stockkeepingSignalVisible": true,
+        "purchaseDefaultSignalVisible": true,
+        "errorVisible": false
+      },
+      "usefulForDefaultRoute": false,
+      "compactText": "Stockkeeping Units:\nItem No.\nLocation Code\nReplenishment System\nItem No., Sortierreihenfolge Aufsteigend\nLocation Code, Sortierreihenfolge Aufsteigend"
+    },
+    {
+      "label": "stockkeeping-unit-list-raw-steel-fra-zl",
+      "pageId": 5701,
+      "table": "Stockkeeping Unit",
+      "filter": "'Stockkeeping Unit'.'Item No.' IS 'RAW-STEEL'&'Stockkeeping Unit'.'Location Code' IS 'FRA-ZL'",
+      "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5701&filter='Stockkeeping+Unit'.'Item+No.'+IS+'RAW-STEEL'&'Stockkeeping+Unit'.'Location+Code'+IS+'FRA-ZL'&dc=0",
+      "contextOk": true,
+      "targetSignals": {
+        "itemVisible": false,
+        "vendorVisible": false,
+        "locationVisible": false,
+        "stockkeepingSignalVisible": true,
+        "purchaseDefaultSignalVisible": true,
+        "errorVisible": true
+      },
+      "usefulForDefaultRoute": false,
+      "compactText": "Stockkeeping Units:\nItem No.\nLocation Code\nReplenishment System"
+    },
+    {
+      "label": "item-vendor-catalog-raw-steel",
+      "pageId": 99,
+      "table": "Item Vendor",
+      "filter": "'Item Vendor'.'Item No.' IS 'RAW-STEEL'",
+      "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=99&filter='Item+Vendor'.'Item+No.'+IS+'RAW-STEEL'",
+      "contextOk": true,
+      "targetSignals": {
+        "itemVisible": false,
+        "vendorVisible": false,
+        "locationVisible": false,
+        "stockkeepingSignalVisible": false,
+        "purchaseDefaultSignalVisible": false,
+        "errorVisible": true
+      },
+      "usefulForDefaultRoute": false,
+      "compactText": ""
+    },
+    {
+      "label": "item-vendor-catalog-k10000",
+      "pageId": 99,
+      "table": "Item Vendor",
+      "filter": "'Item Vendor'.'Vendor No.' IS 'K10000'",
+      "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=99&filter='Item+Vendor'.'Vendor+No.'+IS+'K10000'",
+      "contextOk": true,
+      "targetSignals": {
+        "itemVisible": false,
+        "vendorVisible": false,
+        "locationVisible": false,
+        "stockkeepingSignalVisible": false,
+        "purchaseDefaultSignalVisible": false,
+        "errorVisible": true
+      },
+      "usefulForDefaultRoute": false,
+      "compactText": ""
+    }
+  ],
+  "usefulRoutes": [],
+  "stockkeepingRoutes": [],
+  "purchaseDefaultRoutes": [],
+  "selectedNextRoute": "guarded-setup-fit-decision-or-park-warehouse-source-route",
+  "decision": "Direct read-only page probes did not prove a Stockkeeping Unit or Item Vendor route with RAW-STEEL/FRA-ZL. Next case should decide whether to run a guarded setup-fit route with explicit evidence or park Warehouse source route as labor-blocked.",
+  "proved": [
+    "Stockkeeping Unit and Item Vendor/default page candidates were opened only by direct page URLs, without Tell-Me search.",
+    "No candidate page proved a usable RAW-STEEL/FRA-ZL default route in compact read-only evidence.",
+    "No value entry, new draft, Release, Receive, Invoice, Preview Posting, Post, Warehouse Receipt source confirmation, setup change, company switch, API shortcut or book change occurred."
+  ],
+  "notProved": [
+    "No Stockkeeping Unit was created or edited.",
+    "No purchase/default setup was changed.",
+    "No fresh Purchase Order defaulting behavior is proven.",
+    "No Warehouse Receipt source document confirmation is proven.",
+    "No receive, invoice, preview posting or posting is proven.",
+    "No German-final Warehouse proof is derived from RM-DEMO lab evidence."
+  ],
+  "blockedBy": [
+    "no-readonly-stockkeeping-or-purchase-default-route-proved"
+  ],
+  "flags": {
+    "noValueEntry": true,
+    "noDraft": true,
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true,
+    "noReceive": true,
+    "noInvoice": true,
+    "noRelease": true,
+    "noWarehouseReceiptSourceConfirmation": true
+  },
+  "migrationRelevance": "needed-for-german-final",
+  "rebuildInstruction": "In German final sandbox, repeat the default/setup discovery with German target master data and then decide whether to fit SKU/default setup or park Warehouse source route.",
+  "mustRecreateInFinalSandbox": true,
+  "sourceCompany": "RM-DEMO",
+  "targetGermanCompanyImpact": "German final Warehouse proof needs German source default/setup evidence or a different source-document strategy before Warehouse Receipt.",
+  "finalScreenshotNeeded": true,
+  "safeToFinalizeState": false,
+  "requiresReview": false,
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/warehouse-030/WAREHOUSE-030-result.json"
+  ],
+  "nextCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
+  "nextStep": "guarded-setup-fit-decision-or-park-warehouse-source-route"
+}

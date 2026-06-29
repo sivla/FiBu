@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "caseId": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
+  "title": "Warehouse source route park or setup-fit decision",
+  "status": "planned",
+  "taskClass": "judge_work",
+  "modelClass": "gpt-5.5-low",
+  "usageLogRequired": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "warehouse-source-route-park-or-setup-fit-decision",
+  "sourceCase": "WAREHOUSE-030-SOURCE-PO-STOCKKEEPING-OR-PURCHASE-DEFAULT-DISCOVERY",
+  "sourceDocumentNo": "106055",
+  "purpose": "Decide whether the RM-DEMO Warehouse source-document route should receive a guarded setup-fit attempt or be parked as labor-blocked/bookdraft-useful after no read-only default route proved RAW-STEEL/FRA-ZL.",
+  "allowedActions": [
+    "read-warehouse-020-to-030-evidence",
+    "compare-guarded-setup-fit-versus-parking",
+    "write-evidence",
+    "update-state",
+    "create-next-execute-case-if-business-case-is-clear"
+  ],
+  "defaultLockedActions": [
+    "new-stockkeeping-unit",
+    "edit-stockkeeping-unit",
+    "purchase-order-location-value-entry",
+    "new-purchase-order-draft",
+    "purchase-order-release",
+    "purchase-order-receive",
+    "purchase-order-invoice",
+    "warehouse-receipt-source-confirmation",
+    "warehouse-receipt-posting",
+    "preview-posting",
+    "posting",
+    "setup-change",
+    "company-switch",
+    "api-shortcut",
+    "delete-draft"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "claim-german-final-proof",
+    "use-api-shortcut-without-explicit-case-permission",
+    "repeat-warehouse-024-single-cell-value-route",
+    "repeat-warehouse-027-line-menu-inventory-without-new-purpose",
+    "post-warehouse-document"
+  ],
+  "decisionInputs": {
+    "readOnlyDefaultRouteProved": false,
+    "usefulRoutes": [],
+    "blockedBy": [
+      "no-readonly-stockkeeping-or-purchase-default-route-proved"
+    ],
+    "stockkeepingPageVisibleButEmptyForTargets": true,
+    "directVendorItemRouteProved": false
+  },
+  "candidateRoutes": [
+    "Guarded setup-fit: create or fit Stockkeeping Unit RAW-STEEL + FRA-ZL only if a clear UI route and business reason are documented.",
+    "Park Warehouse inbound source-document route as labor-blocked/bookdraft-useful and move to another high-value process block.",
+    "Create a new sandbox company/lab route only later if Warehouse becomes chapter-critical and RM-DEMO defaults remain too noisy."
+  ],
+  "safetyGates": [
+    "do-not-repeat-cell-edit-line-menu-or-empty-default-probes",
+    "setup-fit-requires-before-after-evidence-and-explicit-unlock",
+    "no-release-until-source-po-fra-zl-visible",
+    "no-warehouse-source-confirmation-until-eligible-source-po-visible",
+    "no-preview-posting",
+    "no-posting",
+    "document-bookdraft-boundary-if-parked"
+  ],
+  "expectedEvidence": [
+    "route decision based on Warehouse 020-030 evidence",
+    "explicit next execute case or park decision",
+    "clear labor/german-final rebuild classification"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "targetGermanCompanyImpact": "German final sandbox needs a clean Warehouse source-document strategy; RM-DEMO route may remain only labor debugging evidence.",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": false,
+  "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-031/WAREHOUSE-031-result.json",
+  "nextStep": "Decide guarded Stockkeeping Unit setup-fit versus parking Warehouse source route; do not run another read-only default probe without new hypothesis.",
+  "createdAt": "2026-06-29T23:00:00+02:00",
+  "updatedAt": "2026-06-29T23:00:00+02:00"
+}
