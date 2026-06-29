@@ -89,3 +89,9 @@ Danach:
 10. Danach Sample-Data-Check.
 11. Danach Company Information.
 12. Danach Foundation.
+
+Vor Schritt 8 muss die Checkliste `READY-FOR-SUPER-PERMISSIONS-CHECKLIST.md` erfuellt sein. Besonders wichtig sind:
+
+- OQ-0001: Hauptbutton `Neu`, Dropdown-Pfeil und `Neues Unternehmen erstellen` getrennt pruefen.
+- OQ-0005: Datenbasis nicht unklar bestaetigen; keine CRONUS-/Testunternehmen-/Sample-Data-Route als finale Universaarl-Basis verwenden.
+- OQ-0007: alte Debugging-Screenshots nicht als erfolgreiche Company-Creation-Bilder nutzen.

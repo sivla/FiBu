@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-30T02:20:00.000+02:00",
+  "updatedAt": "2026-06-30T02:45:00.000+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-open-questions-prep",
-  "activeCase": "PREP-014-ZERO-OPEN-QUESTIONS-REGISTER-CLEANUP",
-  "active_case_file": ".agent/state/cases/prep-014-zero-open-questions-register-cleanup.json",
+  "activeArea": "universaarl-permission-resume-prep",
+  "activeCase": "PREP-015-READY-FOR-SUPER-PERMISSIONS-CHECKLIST",
+  "active_case_file": ".agent/state/cases/prep-015-ready-for-super-permissions-checklist.json",
   "lastReferenceCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
   "lastReferenceCaseFile": ".agent/state/cases/warehouse-031-warehouse-source-route-park-or-setup-fit-decision.json",
   "mode": "universaarl-readonly-prep-until-super-permissions",
@@ -48,7 +48,7 @@
     "preview-posting-until-target-company-exists",
     "api-shortcut-for-company-creation"
   ],
-  "nextStep": "Continue with PREP-015-READY-FOR-SUPER-PERMISSIONS-CHECKLIST. Company creation remains parked until SUPER/company-create permissions are confirmed.",
+  "nextStep": "Continue with PREP-016-BOOKMASTER-UMLAUT-AND-ENCODING-AUDIT. Company creation remains parked until SUPER/company-create permissions are confirmed.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -3643,38 +3643,38 @@
     "updatedAt": "2026-06-29T20:43:31.482Z"
   },
   "lastRun": {
-    "caseId": "PREP-014-ZERO-OPEN-QUESTIONS-REGISTER-CLEANUP",
+    "caseId": "PREP-015-READY-FOR-SUPER-PERMISSIONS-CHECKLIST",
     "status": "done",
-    "updatedAt": "2026-06-30T02:20:00.000+02:00",
-    "reason": "PREP-014 upgraded the open question register to the current zero-open-questions status model and separated permission, data-basis, dataset and screenshot-use questions.",
-    "resultFile": "playwright/projects/fibu-book5/evidence/prep-014-zero-open-questions-register-cleanup/PREP-014-result.json"
+    "updatedAt": "2026-06-30T02:45:00.000+02:00",
+    "reason": "PREP-015 hardened the resume checklist for the first rights-unblocked Company Creation attempt.",
+    "resultFile": "playwright/projects/fibu-book5/evidence/prep-015-ready-for-super-permissions-checklist/PREP-015-result.json"
   },
   "nextStepDecisionCard": {
-    "currentCase": "PREP-014-ZERO-OPEN-QUESTIONS-REGISTER-CLEANUP",
-    "plannedNextCaseBeforeReview": "PREP-014-ZERO-OPEN-QUESTIONS-REGISTER-CLEANUP",
-    "lastEvidenceSummary": "PREP-013 created the data-richness blueprint and made company/data dependencies more concrete.",
+    "currentCase": "PREP-015-READY-FOR-SUPER-PERMISSIONS-CHECKLIST",
+    "plannedNextCaseBeforeReview": "PREP-015-READY-FOR-SUPER-PERMISSIONS-CHECKLIST",
+    "lastEvidenceSummary": "PREP-014 separated permission, data-basis, dataset and screenshot-use questions into explicit register items.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The open question register still used old coarse statuses and missed data-basis, dataset and screenshot-use questions that directly affect the next safe steps.",
+    "reason": "The first rights-unblocked Company Creation attempt needs a sharper checklist before any live UI action is allowed.",
     "lookaheadReviewed": [
       {
-        "caseId": "PREP-015-READY-FOR-SUPER-PERMISSIONS-CHECKLIST",
-        "status": "ready-next",
-        "reason": "The refined questions now identify exactly which permission, data-basis and screenshot checks must be added to the resume checklist."
-      },
-      {
         "caseId": "PREP-016-BOOKMASTER-UMLAUT-AND-ENCODING-AUDIT",
-        "status": "ready-after-current",
-        "reason": "Book-facing German text cleanup can follow after the operational permission checklist is sharpened."
+        "status": "ready-next",
+        "reason": "After the permission resume checklist, book-facing German text and encoding consistency are the next low-risk prep task."
       },
       {
         "caseId": "PREP-017-REPO-DOCUMENTATION-CONSISTENCY-AUDIT",
         "status": "ready-after-current",
-        "reason": "State, coverage and documentation consistency can be checked after the immediate resume checklist."
+        "reason": "State, coverage and documentation consistency can follow after the book text audit."
       },
       {
         "caseId": "PREP-018-PLAYWRIGHT-SCRIPT-AND-HELPER-INVENTORY",
         "status": "ready-after-current",
-        "reason": "Helper inventory remains useful, but less urgent than avoiding another wrong Company Creation click."
+        "reason": "Helper inventory remains useful for future read-only and Company Creation probes."
+      },
+      {
+        "caseId": "PREP-019-AUTOPILOT-EFFICIENCY-IMPROVEMENT",
+        "status": "ready-after-current",
+        "reason": "Efficiency cleanup should wait until the immediate permission and text risks are handled."
       },
       {
         "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
@@ -3683,17 +3683,17 @@
       }
     ],
     "queueChangesMade": [
-      "Marked PREP-014 done.",
-      "Selected PREP-015 as next prep case."
+      "Marked PREP-015 done.",
+      "Selected PREP-016 as next prep case."
     ],
-    "selectedNextCase": "PREP-015-READY-FOR-SUPER-PERMISSIONS-CHECKLIST",
-    "whySelectedNextCaseIsBest": "PREP-014 identified concrete resume-time checks; PREP-015 should turn them into the checklist used when permissions arrive.",
+    "selectedNextCase": "PREP-016-BOOKMASTER-UMLAUT-AND-ENCODING-AUDIT",
+    "whySelectedNextCaseIsBest": "The permission resume path is now guarded; the next safe improvement is book-facing German/encoding cleanup.",
     "risksBeforeNextCase": [
-      "Do not execute TARGET-009 until the user confirms permissions.",
-      "Do not treat TARGET-007/TARGET-009 screenshots as successful Company Creation images."
+      "Do not execute TARGET-009 until permissions are confirmed.",
+      "Do not confuse a direct New-row action with Neues Unternehmen erstellen."
     ],
     "requiredPreparation": [
-      "Use OQ-0001, OQ-0005 and OQ-0007 when hardening the checklist."
+      "Use the hardened checklist if the user confirms permissions before PREP-016 runs."
     ]
   },
   "permissionBlocker": {
@@ -3713,10 +3713,10 @@
     "activatedAt": "2026-06-29T21:25:26.553Z",
     "reason": "UNIVERSAARL-DE cannot be created until required permissions exist; productive work continues through repo/book/source/read-only prep cases.",
     "firstCase": "PREP-001-PERMISSION-BLOCKER-DOCUMENTATION",
-    "nextCase": "PREP-015-READY-FOR-SUPER-PERMISSIONS-CHECKLIST",
+    "nextCase": "PREP-016-BOOKMASTER-UMLAUT-AND-ENCODING-AUDIT",
     "noEffectiveBcActions": true,
-    "lastCompletedCase": "PREP-014-ZERO-OPEN-QUESTIONS-REGISTER-CLEANUP",
-    "updatedAt": "2026-06-30T02:20:00.000+02:00"
+    "lastCompletedCase": "PREP-015-READY-FOR-SUPER-PERMISSIONS-CHECKLIST",
+    "updatedAt": "2026-06-30T02:45:00.000+02:00"
   },
   "latestCompanyCreationBookDraft": {
     "updatedAt": "2026-06-29T21:34:46.267Z",
@@ -3732,8 +3732,8 @@
     "noPlaywrightExecution": true,
     "nextCase": "PREP-003-PLAYTHRU-READONLY-UI-LOOK-AND-FEEL-MAP"
   },
-  "lastCompletedCaseFile": ".agent/state/cases/prep-014-zero-open-questions-register-cleanup.json",
-  "lastResultPath": "playwright/projects/fibu-book5/evidence/prep-014-zero-open-questions-register-cleanup/PREP-014-result.json",
+  "lastCompletedCaseFile": ".agent/state/cases/prep-015-ready-for-super-permissions-checklist.json",
+  "lastResultPath": "playwright/projects/fibu-book5/evidence/prep-015-ready-for-super-permissions-checklist/PREP-015-result.json",
   "latestReadonlyUiLookAndFeelMap": {
     "caseId": "PREP-003-PLAYTHRU-READONLY-UI-LOOK-AND-FEEL-MAP",
     "status": "prep-done",
@@ -3770,10 +3770,10 @@
     "nextCase": "PREP-006-BOOKMASTER-UNIVERSAARL-FALLSTUDIE-REWRITE-PLAN",
     "updatedAt": "2026-06-29T21:54:54.534Z"
   },
-  "activeCaseFile": ".agent/state/cases/prep-014-zero-open-questions-register-cleanup.json",
-  "previousCase": "PREP-013-DATA-RICHNESS-PLAN-FOR-FUTURE-FULL-COMPANY",
-  "nextCase": "PREP-015-READY-FOR-SUPER-PERMISSIONS-CHECKLIST",
-  "latestPrepCase": "PREP-014-ZERO-OPEN-QUESTIONS-REGISTER-CLEANUP",
+  "activeCaseFile": ".agent/state/cases/prep-015-ready-for-super-permissions-checklist.json",
+  "previousCase": "PREP-014-ZERO-OPEN-QUESTIONS-REGISTER-CLEANUP",
+  "nextCase": "PREP-016-BOOKMASTER-UMLAUT-AND-ENCODING-AUDIT",
+  "latestPrepCase": "PREP-015-READY-FOR-SUPER-PERMISSIONS-CHECKLIST",
   "latestBookmasterFallstudieRewritePlan": {
     "status": "prep-progress",
     "result": "Chapter 3 opening moved to Universaarl GmbH / UNIVERSAARL-DE without claiming the company already exists.",
@@ -3902,5 +3902,19 @@
     "resultPath": "playwright/projects/fibu-book5/evidence/prep-014-zero-open-questions-register-cleanup/PREP-014-result.json",
     "keyLearning": "Company creation permission, data-basis choice, future data package and screenshot-use boundaries must be tracked as separate questions.",
     "nextCase": "PREP-015-READY-FOR-SUPER-PERMISSIONS-CHECKLIST"
+  },
+  "latestSuperPermissionsChecklist": {
+    "caseId": "PREP-015-READY-FOR-SUPER-PERMISSIONS-CHECKLIST",
+    "status": [
+      "prep-done",
+      "permission-resume-checklist-hardened",
+      "no-bc-run",
+      "no-playwright-run"
+    ],
+    "checklistPath": "playwright/projects/fibu-book5/READY-FOR-SUPER-PERMISSIONS-CHECKLIST.md",
+    "blockerPath": "playwright/projects/fibu-book5/PERMISSION-BLOCKERS.md",
+    "resultPath": "playwright/projects/fibu-book5/evidence/prep-015-ready-for-super-permissions-checklist/PREP-015-result.json",
+    "keyLearning": "The resume path must distinguish main Neu, the arrow next to Neu, Neues Unternehmen erstellen, data-basis choices and successful visible company creation.",
+    "nextCase": "PREP-016-BOOKMASTER-UMLAUT-AND-ENCODING-AUDIT"
   }
 }

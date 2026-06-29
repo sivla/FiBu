@@ -34,9 +34,10 @@ Zero-Open-Questions-Regel: Jeder Bereich in diesem Katalog muss seine offenen Ob
 | 4 | `PREP-012-LOOK-AND-FEEL-FILTERING-CHAPTER-PLAN` | Erledigt: Filter, Views, Analysis Mode und Request Pages sind als Anfaengerkapitel und Screenshot-QA-Struktur vorbereitet; final werden sie erst nach Datenreichtum. |
 | 5 | `PREP-013-DATA-RICHNESS-PLAN-FOR-FUTURE-FULL-COMPANY` | Erledigt: Datenfamilien, Mindestmengen, Namensschema, Zeitraumlogik und Screenshot-Zwecke sind im Dataset Blueprint konkretisiert. |
 | 6 | `PREP-014-ZERO-OPEN-QUESTIONS-REGISTER-CLEANUP` | Erledigt: Rechteblocker, Datenbasis, Dataset-Abhaengigkeit und Screenshot-Verwendung sind als getrennte Registerfragen klassifiziert. |
-| 7 | `PREP-015-READY-FOR-SUPER-PERMISSIONS-CHECKLIST` | Naechster sinnvoller PREP-Schritt: OQ-0001, OQ-0005 und OQ-0007 in die Checkliste fuer den ersten Rechte-freigegebenen Company-Creation-Lauf uebernehmen. |
-| 8 | `TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE` | Erst nach bestaetigten Rechten: Seite `Mandanten`, `Neu` / `Neues Unternehmen erstellen`, sichtbare Anlage oder exakter Berechtigungsfehler. |
-| 9 | `TARGET-004-FOUNDATION-SETUP-READINESS` | Erst nach erstellter Company: Company Information, Setup-Assistenten, Basis-Setup. |
+| 7 | `PREP-015-READY-FOR-SUPER-PERMISSIONS-CHECKLIST` | Erledigt: Die Checkliste verlangt Rechte-Go, trennt `Neu`/Pfeil/`Neues Unternehmen erstellen` und stoppt bei unklarer Datenbasis. |
+| 8 | `PREP-016-BOOKMASTER-UMLAUT-AND-ENCODING-AUDIT` | Naechster sinnvoller PREP-Schritt: Buchmaster und Buchdrafts auf deutsche Leserfuehrung, Umlaute, Encoding und alte Platzhalter pruefen. |
+| 9 | `TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE` | Erst nach bestaetigten Rechten: Seite `Mandanten`, `Neu` / `Neues Unternehmen erstellen`, sichtbare Anlage oder exakter Berechtigungsfehler. |
+| 10 | `TARGET-004-FOUNDATION-SETUP-READINESS` | Erst nach erstellter Company: Company Information, Setup-Assistenten, Basis-Setup. |
 
 ## Permission-aware Gate-Reihenfolge
 

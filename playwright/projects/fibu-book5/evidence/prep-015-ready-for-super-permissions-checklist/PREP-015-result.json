@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "PREP-015-READY-FOR-SUPER-PERMISSIONS-CHECKLIST",
+  "source": "local-analysis",
+  "resultStatus": "observed",
+  "runPlanId": "PREP-015-READY-FOR-SUPER-PERMISSIONS-CHECKLIST-PLAN",
+  "selectedTaskClass": "monkey_work",
+  "selectedModelClass": "gpt-4-mini-low",
+  "proved": [
+    "The super-permissions resume checklist now requires an explicit current permission confirmation for playthru.",
+    "The checklist separates main Neu, the arrow next to Neu and the Neues Unternehmen erstellen menu item.",
+    "The checklist blocks unclear data-basis choices, CRONUS copy, Testunternehmen and Sample Data as final Universaarl basis.",
+    "Permission Blockers now points to OQ-0001, OQ-0005 and OQ-0007 before the Company Creation route can resume."
+  ],
+  "notProved": [
+    "UNIVERSAARL-DE has not been created.",
+    "No Business Central UI action was performed.",
+    "No setup, master data, document, Preview Posting or posting was performed."
+  ],
+  "changedFiles": [
+    ".agent/state/cases/prep-015-ready-for-super-permissions-checklist.json",
+    ".agent/state/current.json",
+    ".agent/state/marathon_queue.json",
+    ".agent/state/last_run_summary.json",
+    "playwright/projects/fibu-book5/READY-FOR-SUPER-PERMISSIONS-CHECKLIST.md",
+    "playwright/projects/fibu-book5/PERMISSION-BLOCKERS.md",
+    "playwright/projects/fibu-book5/BC-FULL-PLAYTHROUGH-CATALOG.md",
+    "playwright/projects/fibu-book5/evidence/prep-015-ready-for-super-permissions-checklist/README.md",
+    "playwright/projects/fibu-book5/evidence/prep-015-ready-for-super-permissions-checklist/PREP-015-result.json"
+  ],
+  "statePatch": {},
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/prep-015-ready-for-super-permissions-checklist/README.md",
+    "playwright/projects/fibu-book5/evidence/prep-015-ready-for-super-permissions-checklist/PREP-015-result.json"
+  ],
+  "warnings": [
+    "Do not run TARGET-009 before permissions are confirmed.",
+    "Do not click the main Neu button when the intended route is Neues Unternehmen erstellen.",
+    "Do not confirm a company wizard while data basis is unclear."
+  ],
+  "blockedBy": [
+    "missing-super-or-company-create-permission"
+  ],
+  "requiresReview": false,
+  "safeToFinalizeState": false,
+  "reason": "PREP-015 is a local checklist hardening run. State files are updated by this committed run, not by state-finalize --write.",
+  "nextStepDecisionCard": {
+    "currentCase": "PREP-015-READY-FOR-SUPER-PERMISSIONS-CHECKLIST",
+    "plannedNextCaseBeforeReview": "PREP-015-READY-FOR-SUPER-PERMISSIONS-CHECKLIST",
+    "lastEvidenceSummary": "PREP-014 separated permission, data-basis, dataset and screenshot-use questions into explicit register items.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The checklist needed the new register questions before the next rights-unblocked live attempt.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "PREP-016-BOOKMASTER-UMLAUT-AND-ENCODING-AUDIT",
+        "status": "ready-next",
+        "reason": "German text and encoding cleanup is the next safe prep task."
+      },
+      {
+        "caseId": "PREP-017-REPO-DOCUMENTATION-CONSISTENCY-AUDIT",
+        "status": "ready-after-current",
+        "reason": "Documentation consistency can follow after book-facing text cleanup."
+      },
+      {
+        "caseId": "PREP-018-PLAYWRIGHT-SCRIPT-AND-HELPER-INVENTORY",
+        "status": "ready-after-current",
+        "reason": "Helper inventory remains useful for later UI work."
+      },
+      {
+        "caseId": "PREP-019-AUTOPILOT-EFFICIENCY-IMPROVEMENT",
+        "status": "ready-after-current",
+        "reason": "Efficiency cleanup can follow once immediate content risks are handled."
+      },
+      {
+        "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+        "status": "blocked",
+        "reason": "Still parked until SUPER/company-create permissions are confirmed."
+      }
+    ],
+    "queueChangesMade": [
+      "Marked PREP-015 done.",
+      "Selected PREP-016 as next prep case."
+    ],
+    "selectedNextCase": "PREP-016-BOOKMASTER-UMLAUT-AND-ENCODING-AUDIT",
+    "whySelectedNextCaseIsBest": "The permission resume path is guarded; the next safe improvement is book-facing German/encoding cleanup.",
+    "risksBeforeNextCase": [
+      "Do not execute TARGET-009 until permissions are confirmed."
+    ],
+    "requiredPreparation": [
+      "Use the hardened checklist if permissions arrive before PREP-016 runs."
+    ]
+  },
+  "validationCommands": [
+    "npm run agent:preflight",
+    "npm run agent:context",
+    "npm run agent:dry-run",
+    "npm run agent:run-plan",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/prep-015-ready-for-super-permissions-checklist/PREP-015-result.json",
+    "npm run check:encoding",
+    "git diff --check"
+  ]
+}

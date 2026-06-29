@@ -296,7 +296,7 @@
     {
       "id": "PREP-015-READY-FOR-SUPER-PERMISSIONS-CHECKLIST",
       "order": 15,
-      "status": "partial",
+      "status": "done",
       "category": "permission",
       "expectedImpact": "prep-progress",
       "mayWorkEffectively": false,
@@ -306,11 +306,12 @@
       "sourceCompany": "UNIVERSAARL-DE-planned-not-yet-created",
       "targetWorld": "Universaarl",
       "noFinalGermanClaimWithoutUniversaarlEvidence": true,
-      "lookaheadStatus": "ready-next",
+      "lookaheadStatus": "done",
       "completedPartialAt": "2026-06-29T21:34:46.267Z",
-      "result": "Initial ready-for-super-permissions checklist created during PREP-002 because it directly supports TARGET-009 resume safety.",
-      "resultPath": "playwright/projects/fibu-book5/READY-FOR-SUPER-PERMISSIONS-CHECKLIST.md",
-      "reason": "Next best prep task after PREP-014: transfer OQ-0001/OQ-0005/OQ-0007 into the super-permissions resume checklist."
+      "result": "Ready-for-super-permissions checklist hardened with explicit rights-go, splitbutton/dropdown target checks, data-basis stop rules and screenshot-use boundaries.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/prep-015-ready-for-super-permissions-checklist/PREP-015-result.json",
+      "reason": "Next best prep task after PREP-014: transfer OQ-0001/OQ-0005/OQ-0007 into the super-permissions resume checklist.",
+      "completedAt": "2026-06-30T02:45:00.000+02:00"
     },
     {
       "id": "PREP-016-BOOKMASTER-UMLAUT-AND-ENCODING-AUDIT",
@@ -325,7 +326,8 @@
       "sourceCompany": "UNIVERSAARL-DE-planned-not-yet-created",
       "targetWorld": "Universaarl",
       "noFinalGermanClaimWithoutUniversaarlEvidence": true,
-      "lookaheadStatus": "ready-after-current"
+      "lookaheadStatus": "ready-next",
+      "reason": "Next best prep task after PREP-015: audit book-facing German text, umlauts and encoding before more book material accumulates."
     },
     {
       "id": "PREP-017-REPO-DOCUMENTATION-CONSISTENCY-AUDIT",
@@ -538,7 +540,7 @@
       "lookaheadStatus": "ready-after-current"
     }
   ],
-  "lastUpdated": "2026-06-30T02:20:00.000+02:00",
+  "lastUpdated": "2026-06-30T02:45:00.000+02:00",
   "nextStepDecisionGate": {
     "active": true,
     "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",
@@ -607,35 +609,35 @@
       ]
     }
   },
-  "updatedAt": "2026-06-30T02:20:00.000+02:00",
-  "lastCompletedCase": "PREP-014-ZERO-OPEN-QUESTIONS-REGISTER-CLEANUP",
-  "nextCase": "PREP-015-READY-FOR-SUPER-PERMISSIONS-CHECKLIST",
+  "updatedAt": "2026-06-30T02:45:00.000+02:00",
+  "lastCompletedCase": "PREP-015-READY-FOR-SUPER-PERMISSIONS-CHECKLIST",
+  "nextCase": "PREP-016-BOOKMASTER-UMLAUT-AND-ENCODING-AUDIT",
   "nextStepDecisionCard": {
-    "currentCase": "PREP-014-ZERO-OPEN-QUESTIONS-REGISTER-CLEANUP",
-    "plannedNextCaseBeforeReview": "PREP-014-ZERO-OPEN-QUESTIONS-REGISTER-CLEANUP",
-    "lastEvidenceSummary": "PREP-013 created the data-richness blueprint and made company/data dependencies more concrete.",
+    "currentCase": "PREP-015-READY-FOR-SUPER-PERMISSIONS-CHECKLIST",
+    "plannedNextCaseBeforeReview": "PREP-015-READY-FOR-SUPER-PERMISSIONS-CHECKLIST",
+    "lastEvidenceSummary": "PREP-014 separated permission, data-basis, dataset and screenshot-use questions into explicit register items.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The open question register still used old coarse statuses and missed data-basis, dataset and screenshot-use questions that directly affect the next safe steps.",
+    "reason": "The first rights-unblocked Company Creation attempt needs a sharper checklist before any live UI action is allowed.",
     "lookaheadReviewed": [
       {
-        "caseId": "PREP-015-READY-FOR-SUPER-PERMISSIONS-CHECKLIST",
-        "status": "ready-next",
-        "reason": "The refined questions now identify exactly which permission, data-basis and screenshot checks must be added to the resume checklist."
-      },
-      {
         "caseId": "PREP-016-BOOKMASTER-UMLAUT-AND-ENCODING-AUDIT",
-        "status": "ready-after-current",
-        "reason": "Book-facing German text cleanup can follow after the operational permission checklist is sharpened."
+        "status": "ready-next",
+        "reason": "After the permission resume checklist, book-facing German text and encoding consistency are the next low-risk prep task."
       },
       {
         "caseId": "PREP-017-REPO-DOCUMENTATION-CONSISTENCY-AUDIT",
         "status": "ready-after-current",
-        "reason": "State, coverage and documentation consistency can be checked after the immediate resume checklist."
+        "reason": "State, coverage and documentation consistency can follow after the book text audit."
       },
       {
         "caseId": "PREP-018-PLAYWRIGHT-SCRIPT-AND-HELPER-INVENTORY",
         "status": "ready-after-current",
-        "reason": "Helper inventory remains useful, but less urgent than avoiding another wrong Company Creation click."
+        "reason": "Helper inventory remains useful for future read-only and Company Creation probes."
+      },
+      {
+        "caseId": "PREP-019-AUTOPILOT-EFFICIENCY-IMPROVEMENT",
+        "status": "ready-after-current",
+        "reason": "Efficiency cleanup should wait until the immediate permission and text risks are handled."
       },
       {
         "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
@@ -644,17 +646,17 @@
       }
     ],
     "queueChangesMade": [
-      "Marked PREP-014 done.",
-      "Selected PREP-015 as next prep case."
+      "Marked PREP-015 done.",
+      "Selected PREP-016 as next prep case."
     ],
-    "selectedNextCase": "PREP-015-READY-FOR-SUPER-PERMISSIONS-CHECKLIST",
-    "whySelectedNextCaseIsBest": "PREP-014 identified concrete resume-time checks; PREP-015 should turn them into the checklist used when permissions arrive.",
+    "selectedNextCase": "PREP-016-BOOKMASTER-UMLAUT-AND-ENCODING-AUDIT",
+    "whySelectedNextCaseIsBest": "The permission resume path is now guarded; the next safe improvement is book-facing German/encoding cleanup.",
     "risksBeforeNextCase": [
-      "Do not execute TARGET-009 until the user confirms permissions.",
-      "Do not treat TARGET-007/TARGET-009 screenshots as successful Company Creation images."
+      "Do not execute TARGET-009 until permissions are confirmed.",
+      "Do not confuse a direct New-row action with Neues Unternehmen erstellen."
     ],
     "requiredPreparation": [
-      "Use OQ-0001, OQ-0005 and OQ-0007 when hardening the checklist."
+      "Use the hardened checklist if the user confirms permissions before PREP-016 runs."
     ]
   }
 }
