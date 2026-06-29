@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-06-29T21:35:00.000Z",
+  "purpose": "screenshot-evidence-quality-audit",
+  "status": [
+    "universaarl-screenshot-quality-baseline",
+    "no-bc-run",
+    "no-playwright-run"
+  ],
+  "scope": [
+    "playwright/projects/fibu-book5/BC-SCREENSHOT-INVENTORY.md",
+    "playwright/projects/fibu-book5/evidence/target-001",
+    "playwright/projects/fibu-book5/evidence/target-002",
+    "playwright/projects/fibu-book5/evidence/target-003",
+    "playwright/projects/fibu-book5/evidence/target-004-company-creation-scoped-action-discovery",
+    "playwright/projects/fibu-book5/book-drafts",
+    "playwright/projects/fibu-book5/BC-*-ATLAS.md"
+  ],
+  "auditedScreenshotGroups": [
+    {
+      "group": "target-001",
+      "decision": "draft-context-only",
+      "finalStatus": "not-final",
+      "reason": "playthru and Companies context visible, but UNIVERSAARL-DE not created and CRONUS DE may be visible."
+    },
+    {
+      "group": "target-002",
+      "decision": "blocked-draft",
+      "finalStatus": "not-final",
+      "reason": "New exposes unsaved row/options; no company saved."
+    },
+    {
+      "group": "target-003",
+      "decision": "route-blocker",
+      "finalStatus": "not-final/rejected",
+      "reason": "Create-New-Company route not proven."
+    },
+    {
+      "group": "target-004",
+      "decision": "scoped-action-blocker",
+      "finalStatus": "not-final/rejected",
+      "reason": "Scoped action discovery did not expose safe exact create route."
+    }
+  ],
+  "metadataQualityFieldsRequired": [
+    "page",
+    "instance",
+    "company",
+    "step",
+    "visibleLearning",
+    "importantUi",
+    "internallyProves",
+    "doesNotProve",
+    "qualityDecision",
+    "finalScreenshotStatus"
+  ],
+  "changedMetadataFiles": [
+    "playwright/projects/fibu-book5/evidence/target-001/target-001-010-playthru-role-center.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/target-001/target-001-020-companies-page-readonly.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/target-002/target-002-010-companies-before.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/target-002/target-002-020-new-options-inventory.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/target-003/target-003-010-companies-before-route.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/target-003/target-003-020-after-create-route-attempt.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/target-004-company-creation-scoped-action-discovery/target-004-010-companies-before-scoped-action-discovery.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/target-004-company-creation-scoped-action-discovery/target-004-020-after-scoped-action-discovery.screenshot.json"
+  ],
+  "bookDraftImpact": "Universaarl company creation draft can use target screenshots only as reader-facing context/warning, not as final proof. RM-DEMO screenshots remain legacy and cannot be final German screenshots.",
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-005-COMPANY-CREATION-SOURCE-BACKED-ALTERNATIVE-ROUTE",
+    "plannedNextCaseBeforeReview": "TARGET-005-COMPANY-CREATION-SOURCE-BACKED-ALTERNATIVE-ROUTE",
+    "lastEvidenceSummary": "TARGET-001 to TARGET-004 screenshots now have clearer quality labels. They prove playthru/Companies context and blocked/rejected routes, but not UNIVERSAARL-DE creation.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The screenshot audit reduces false book claims and prepares TARGET-005 to produce better evidence if a source-backed route is attempted.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-005-COMPANY-CREATION-SOURCE-BACKED-ALTERNATIVE-ROUTE",
+        "status": "ready-next",
+        "reason": "Still needed before foundation setup or process screenshots."
+      },
+      {
+        "caseId": "TARGET-004-FOUNDATION-SETUP-READINESS",
+        "status": "ready-after-current",
+        "reason": "Needs target company to exist."
+      },
+      {
+        "caseId": "TARGET-005-NUMBER-SERIES-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Needs company and foundation setup baseline."
+      },
+      {
+        "caseId": "TARGET-006-POSTING-GROUPS-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Depends on created company and chart/setup route."
+      },
+      {
+        "caseId": "TARGET-007-DIMENSIONS-FOUNDATION",
+        "status": "ready-after-current",
+        "reason": "Can follow after company creation/foundation."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-005-COMPANY-CREATION-SOURCE-BACKED-ALTERNATIVE-ROUTE",
+    "whySelectedNextCaseIsBest": "It remains the blocker for final Universaarl screenshots and real company setup.",
+    "risksBeforeNextCase": [
+      "Company creation route may still be unclear",
+      "Screenshots must show exact dialog/action if any route is tried"
+    ],
+    "requiredPreparation": [
+      "Use screenshot quality fields for every new TARGET-005 screenshot",
+      "Do not treat CRONUS DE context as Universaarl final proof"
+    ]
+  }
+}
