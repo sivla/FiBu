@@ -28,12 +28,25 @@ Zero-Open-Questions-Regel: Jeder Bereich in diesem Katalog muss seine offenen Ob
 
 | Prioritaet | Case | Warum |
 | --- | --- | --- |
-| 1 | `TARGET-006-COMPANY-CREATION-SPECIFIC-ASSISTED-SETUP-ROUTE` | Ohne sichere Company-Anlage gibt es keine saubere Universaarl-Buchwelt. TARGET-005 hat Page 1801 `Unterstuetztes Setup` direkt erreichbar gemacht; als naechstes muss die Zeile `Unternehmen einrichten` scoped geprueft werden. |
-| 2 | `TARGET-004-FOUNDATION-SETUP-READINESS` | Erst nach erstellter Company: Company Information, Setup-Assistenten, Basis-Setup. |
-| 3 | `TARGET-005-NUMBER-SERIES-PREFLIGHT` | Nummernserien muessen vor Belegen, Journals und Buchungen verstanden werden. |
-| 4 | `TARGET-006-POSTING-GROUPS-PREFLIGHT` | Buchungsmatrix und Posting Groups sind Vorbedingung fuer O2C, P2P, Inventory, FA und VAT. |
-| 5 | `TARGET-008-VAT19-SETUP-READINESS` | Deutsche USt darf erst nach Setup, Preview und Entries behauptet werden. |
+| 1 | `PREP-005-BC-OBJECT-COVERAGE-CATALOG-GAP-FILL` | Solange Company Creation wegen Rechten geparkt ist, muss die Objektlandschaft passend zur Prozessreihenfolge geschaerft werden. |
+| 2 | `PREP-006-BOOKMASTER-UNIVERSAARL-FALLSTUDIE-REWRITE-PLAN` | Kapitel 3 und die Fallstudie sollen Universaarl vorbereiten, ohne zu behaupten, dass die Company schon existiert. |
+| 3 | `PREP-007-BOOK-WRITING-RULES-META-LANGUAGE-AUDIT` | Buchtexte muessen lesbarer werden und Agenten-/Evidence-Meta aus Buchdrafts entfernen. |
+| 4 | `TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE` | Erst nach bestaetigten Rechten: Seite `Mandanten`, `Neu` / `Neues Unternehmen erstellen`, sichtbare Anlage oder exakter Berechtigungsfehler. |
+| 5 | `TARGET-004-FOUNDATION-SETUP-READINESS` | Erst nach erstellter Company: Company Information, Setup-Assistenten, Basis-Setup. |
 | 6 | `TARGET-DATA-001-UNIVERSAARL-DATA-RICHNESS-PLAN` | Nach Company und Foundation braucht das Buch eine sinnvolle Datenstrategie, bevor Filter, Listen und Reporting an vielen Daten erklaert werden. |
+
+## Permission-aware Gate-Reihenfolge
+
+| Phase | Darf jetzt laufen? | Inhalt | Eintrittskriterium | Austrittskriterium |
+| --- | --- | --- | --- | --- |
+| PREP / Read-only | ja | Kataloge, Atlanten, Quellen, Buchdrafts, Objektabdeckung, Screenshot-QA, Datenblueprint | `playthru` bleibt Instanzgrenze; keine wirksame BC-Aktion | naechster PREP-Case abgeschlossen und Queue aktualisiert |
+| Company Creation Gate | nein, bis Rechte bestaetigt | `Mandanten` -> `Neu` / `Neues Unternehmen erstellen` | Nutzer bestaetigt ausreichende Rechte; PREP-003 UI-Regeln liegen vor | `UNIVERSAARL-DE` ist sichtbar oder exakter Fehler ist dokumentiert |
+| Foundation Setup | nein | Company Information, Setup-/Manual-Setup-Entscheidung, Grundeinstellungen | `UNIVERSAARL-DE` existiert und Kontext ist sichtbar | Vorher/Nachher-Setup-Evidence |
+| Finance Foundation | nein | Nummernserien, Buchungsgruppen, USt, Dimensionen | Foundation Setup ist ausreichend bekannt | Preview-faehige Buchungsmatrix fuer erste Belege |
+| Data Richness | nein | Kunden, Kreditoren, Artikel, Lagerorte, Dimensionen, Beispielmonate | Finance Foundation steht | genug Daten fuer Filter, Views, Reporting, UAT |
+| Prozessketten | nein | O2C, P2P, Inventory, Payments, FA, Bank, Warehouse, Manufacturing, Service, Projects | Setup, Stammdaten und Smart Decision Card stehen | Preview/Post/Entries/Screenshots je Prozess |
+
+Microsoft Learn beschreibt, welche Business-Central-Bereiche es gibt und wie Companies angelegt werden koennen. Das ersetzt nicht den Universaarl-Nachweis. Konkrete UI-, Setup-, Preview-, Posting- und Entry-Claims entstehen erst durch `playthru`-Evidence.
 
 ## Gesamtmatrix
 
@@ -79,6 +92,31 @@ Zero-Open-Questions-Regel: Jeder Bereich in diesem Katalog muss seine offenen Ob
 | UAT / Uebungen | Kap. 30 | Uebungen je Prozess mit erwarteter Postenspur und Kontrollfragen | je Prozess | je Prozess | je Prozess | Pflichtfelder, Kontrollfelder | Preview/Post/Trace je Uebung | je Prozessentries | `planned`; aus Universaarl-Evidence ableiten | nach Prozessproofs |
 | Shopify / Online Store | ausgeschlossen | Kein Online-Store-Block in diesem Buch | keines | keines | keine | keine | keine | keine | `excluded-shopify` | keiner |
 
+## Prozessabhaengigkeiten fuer Universaarl
+
+| Abhaengigkeit | Blockiert bis | Warum |
+| --- | --- | --- |
+| `UNIVERSAARL-DE` existiert | Company Creation Gate abgeschlossen | Ohne eigene Company gibt es keine aktive Zielwahrheit fuer Setup, Stammdaten oder Buchungen. |
+| Company Information | nach Company Creation | Rechtlicher Name, Adresse und Landeskontext sind Grundlage fuer Buchtexte und Screenshots. |
+| Number Series | vor ersten Belegen/Journals | Belegnummern muessen erklaerbar sein, bevor das Buch Belege erzeugt. |
+| Posting Groups / General Posting Setup | vor Preview/Post | Kontenfindung ist Voraussetzung fuer sinnvolle Preview- und Postenspur. |
+| VAT Setup | vor deutschen USt-Claims | Deutsche USt braucht Setup, Preview, VAT Entries und Sachposten. |
+| Dimensions | vor Reporting-/Filterkapiteln | Dimensionen muessen vor Auswertungen auf Belegen/Posten vorkommen. |
+| Data Richness | vor Look-and-Feel-Finalisierung | Suche, Filter, Views und Analysis Mode brauchen mehrere Zeilen, offene/geschlossene Posten und verschiedene Daten. |
+| Ledger/Entry Trace | nach jedem Posting | Ein Buchungsprozess ist erst mit Nebenbuch-/Sachposten und Folgeobjekten erklaerbar. |
+
+## Datenreichtum nach Prozessfamilie
+
+| Datenfamilie | Mindestziel fuer das Buch | Erzeugt durch | Spaeter nutzbar fuer |
+| --- | --- | --- | --- |
+| Kunden | mehrere Debitoren mit offenen und ausgeglichenen Posten | O2C und Payments | Debitorenliste, OP-Liste, Mahnung, Reporting, UAT |
+| Kreditoren | mehrere Lieferanten mit Einkaufsbelegen und Zahlungen | P2P und Payments | Kreditorenposten, Zahlungsvorschlag, Bank, UAT |
+| Artikel | Verkaufsartikel, Einkaufsartikel, Rohmaterial, Fertigprodukt | Items, O2C, P2P, Inventory, Manufacturing | Lager, Wertposten, Planung, Fertigung |
+| Lagerorte | einfaches Lager plus spaeter Warehouse-faehiger Ort | Inventory/Warehouse Foundation | Wareneingang, Versand, Umlagerung, Pick/Put-away |
+| Dimensionen | Produktlinie, Kanal, Kostenstelle | Dimensions Foundation und Belege | Finanzberichte, Analysis Views, Filterkapitel |
+| Monate | mehrere Buchungsdaten und Perioden | Prozesscases ueber geplante Perioden | Datumsfilter, Periodenabschluss, Reporting |
+| Fehlerfaelle | typische Korrekturen und blockierte Routen | kontrollierte Error-/Diagnostics-Cases | Anfaengerhilfe, Bugfixing, UAT |
+
 ## Autopilot-Regeln aus diesem Katalog
 
 1. Der Autopilot waehlt zuerst begonnene oder blockierte Universaarl-Basisfaelle, bevor er in spaetere Prozessmodule springt.
@@ -87,10 +125,12 @@ Zero-Open-Questions-Regel: Jeder Bereich in diesem Katalog muss seine offenen Ob
 4. Buchtexte duerfen aus Legacy-Evidence nur Labor-/Vergleichsnotizen ziehen. Aktive Buchwelt ist Universaarl.
 5. Jeder neue Prozessnachweis ergaenzt mindestens Page, Felder, Actions, Entries/Posten, Screenshotstatus und naechsten Case.
 6. Filter- und Look-and-Feel-Kapitel werden erst final geschrieben, wenn Universaarl genug Daten fuer echte Listen, Posten, Summen und Reports enthaelt.
+7. Solange Company Creation wegen Rechten geparkt ist, gewinnt der naechste PREP-/Read-only-Case gegen jeden Execute-Case.
+8. Ein Katalogeintrag ohne Setup, Stammdaten, wichtige Page, Entry-Wirkung, Status und naechsten Case bleibt unvollstaendig und darf nicht als erledigt gelten.
 
 ## Offene Grundannahmen
 
 - `UNIVERSAARL-DE` ist noch nicht angelegt.
-- Die sichere Company-Anlage ist aktuell der Blocker mit hoechster Prioritaet.
-- TARGET-005 muss eine quellenbasierte alternative Route finden, weil Page 357 weder direkte Listenzeile noch scoped Menues als sauberen Universaarl-Anlagepfad bestaetigt haben.
+- Die sichere Company-Anlage ist aktuell der hoechste Execute-Blocker, aber bis zur Rechtefreigabe nicht erneut auszufuehren.
+- TARGET-009 ist `parked-until-super-permissions`; nach Rechtefreigabe gilt die UI-Regel aus PREP-003: Hauptbutton, Pfeil und `Neues Unternehmen erstellen` getrennt pruefen.
 - Datenreichtum und Filterkapitel sind geplant, aber fachlich nach Company-Anlage, Foundation, Stammdaten und ersten Postings einzuordnen.

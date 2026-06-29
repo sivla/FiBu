@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "caseId": "PREP-004-BC-FULL-PLAYTHROUGH-CATALOG-GAP-FILL",
+  "title": "Fill Universaarl full-playthrough catalog gaps",
+  "instance": "playthru",
+  "targetCompany": "UNIVERSAARL-DE-planned-not-yet-created",
+  "legalName": "Universaarl GmbH",
+  "workType": "coverage-catalog-prep",
+  "status": "done",
+  "dependsOn": [
+    "PREP-003-PLAYTHRU-READONLY-UI-LOOK-AND-FEEL-MAP"
+  ],
+  "goal": "Make the full playthrough catalog more useful while company creation is parked: update next-case selection, permission gates, data-richness dependencies and source-backed coverage rules.",
+  "noBusinessCentralExecution": true,
+  "noPlaywrightExecution": true,
+  "noEffectiveActionTakenUntilPermission": true,
+  "resultPath": "playwright/projects/fibu-book5/evidence/prep-004-full-playthrough-catalog/PREP-004-result.json",
+  "changedFiles": [
+    "playwright/projects/fibu-book5/BC-FULL-PLAYTHROUGH-CATALOG.md",
+    "playwright/projects/fibu-book5/BC-MICROSOFT-LEARN-MAPPING.md",
+    "playwright/projects/fibu-book5/evidence/prep-004-full-playthrough-catalog/README.md",
+    "playwright/projects/fibu-book5/evidence/prep-004-full-playthrough-catalog/PREP-004-result.json"
+  ],
+  "proved": [
+    "The active queue must stay on PREP/read-only work while company-create permissions are missing.",
+    "The full-playthrough catalog now separates permission-blocked TARGET-009 from prep cases.",
+    "The first Universaarl execution chain is Company Creation, Company Information, Foundation Setup, Number Series, Posting Groups, VAT, Dimensions and Data Richness before O2C/P2P postings."
+  ],
+  "notProved": [
+    "UNIVERSAARL-DE exists.",
+    "Any Universaarl setup, master data, preview, posting or entries.",
+    "German final evidence."
+  ],
+  "lookaheadReviewed": [
+    {
+      "caseId": "PREP-005-BC-OBJECT-COVERAGE-CATALOG-GAP-FILL",
+      "status": "ready-next",
+      "reason": "Object coverage can now align to the updated full-playthrough sequence."
+    },
+    {
+      "caseId": "PREP-006-BOOKMASTER-UNIVERSAARL-FALLSTUDIE-REWRITE-PLAN",
+      "status": "ready-after-current",
+      "reason": "The book rewrite plan should use the updated sequence and avoid final claims."
+    },
+    {
+      "caseId": "PREP-007-BOOK-WRITING-RULES-META-LANGUAGE-AUDIT",
+      "status": "ready-after-current",
+      "reason": "Still useful after catalog/object coverage are aligned."
+    },
+    {
+      "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+      "status": "blocked",
+      "reason": "Still parked until sufficient company-create permissions are confirmed."
+    }
+  ],
+  "nextCase": "PREP-005-BC-OBJECT-COVERAGE-CATALOG-GAP-FILL"
+}
