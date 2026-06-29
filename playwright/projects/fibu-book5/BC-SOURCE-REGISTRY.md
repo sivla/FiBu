@@ -26,6 +26,8 @@ Diese Registry ordnet Quellen fuer das Universaarl-Buch und den Autopilot. Sie e
 | Microsoft Learn: What's New or Changed in Business Central | 2 | Version und Releasezyklus | Pruefung, ob ein Feature releaseabhaengig ist | Prozessnachweis | Release-Claim | geprueft 2026-06-29 |
 | Microsoft Learn: Searching, sorting, and filtering data in Business Central | 1 | Look and Feel, Listen, Filter | Such-, Sortier- und Filterprinzipien, Filterausdruecke, `Filter list by`, `Filter totals by`, Reportfilter | Beweis, dass Universaarl-Daten existieren oder ein konkreter Filter im Zielmandanten funktioniert | Produkt-/UI-Claim; Universaarl-Beispiel braucht eigene Evidence | geprueft 2026-06-29 |
 | Microsoft Learn: Analyze list page and query data using data analysis mode | 1 | Look and Feel, Analysis Mode | read-only Analysemodus, Gruppierung/Filterung/Summen auf Listen- oder Querydaten | Buchungs-, Posting- oder Reportfinalnachweis | Produkt-/UI-Claim; konkrete Universaarl-Auswertung braucht eigene Evidence | geprueft 2026-06-29 |
+| Microsoft Learn: Personalize your workspace | 1 | Look and Feel, Debugging, Personalisierung | Felder, Spalten, Aktionen und Oberflaechenbereiche fuer den Benutzer sichtbar machen | Tabellenlogik, Buchungswirkung oder allgemeingueltige Sicht fuer alle Benutzer | Produkt-/UI-Claim; konkrete Universaarl-Personalisierung braucht eigene Evidence und Gate | geprueft 2026-06-30 |
+| Microsoft Learn: Business intelligence and reporting | 1 | Reporting, Request Pages | Reporting-/BI-Bereich und Reportauswertung als Produktfunktion | konkrete Reportparameter oder Universaarl-Reportausgabe | Produktclaim; konkrete Request Page und Reportausgabe brauchen eigene Evidence | geprueft 2026-06-30 |
 | Microsoft Learn: Dynamics 365 Implementation Guide overview | 3 | Implementierungsmethodik | Strategize, Initiate, Implement, Prepare, Operate | konkrete BC-Feldlogik | Best-Practice-/Projektclaim | geprueft 2026-06-29 |
 | Microsoft Learn: Success by Design framework | 3 | Governance, Reviews, Projektrisiko | Projekt-, Test- und Architekturdenken | UI- oder Buchungsbeweis | Best-Practice-/Projektclaim | geprueft 2026-06-29 |
 | Gesetze im Internet: UStG § 14 | 4 | Rechnung | Rechnungspflichtangaben und Rechnungsbegriff | BC-UI-Bedienung | Rechts-/Steuerclaim | geprueft 2026-06-29 |
@@ -81,6 +83,8 @@ Fuer das Buch bedeutet das:
 - https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/whatsnew/overview
 - https://learn.microsoft.com/en-us/dynamics365/business-central/ui-enter-criteria-filters
 - https://learn.microsoft.com/en-us/dynamics365/business-central/analysis-mode
+- https://learn.microsoft.com/en-us/dynamics365/business-central/ui-personalization-user
+- https://learn.microsoft.com/en-us/dynamics365/business-central/reports-bi-reporting
 - https://learn.microsoft.com/en-us/dynamics365/release-plans/
 - https://learn.microsoft.com/en-us/dynamics365/guidance/implementation-guide/overview
 - https://learn.microsoft.com/en-us/dynamics365/guidance/implementation-guide/success-by-design

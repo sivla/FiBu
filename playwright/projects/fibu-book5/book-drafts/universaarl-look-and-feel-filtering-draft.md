@@ -39,9 +39,15 @@ Bei `UNIVERSAARL-DE` ist dieser Nachweis noch offen. Die Anlage wird erst fortge
 
 ## Suchen und Filtern sind verschiedene Dinge
 
-Die Suche findet Seiten, Berichte oder Funktionen. Sie hilft, von einer Stelle in Business Central zu einer anderen Stelle zu springen.
+Die Suche findet Seiten, Berichte oder Funktionen. Sie hilft, von einer Stelle in Business Central zu einer anderen Stelle zu springen. Wer `Debitoren`, `Artikel` oder `Sachposten` in die Suche eingibt, oeffnet damit eine passende Seite. Die Suche ist deshalb ein Navigationswerkzeug.
 
 Filter arbeiten innerhalb einer Liste, eines Reports oder einer Postenansicht. Sie begrenzen die angezeigten Zeilen. Ein Filter auf einen Kunden zeigt nur dessen Posten. Ein Datumsfilter zeigt nur Buchungen innerhalb eines Zeitraums. Ein Dimensionsfilter zeigt nur Werte einer bestimmten Auswertungssicht.
+
+Darum werden Suche und Filter im Buch getrennt verwendet:
+
+- Mit der Suche oeffnet man die richtige Seite.
+- Mit einem Listenfilter findet man innerhalb der geoeffneten Seite die richtigen Zeilen.
+- Mit einem Reportfilter begrenzt man die Daten, bevor ein Bericht laeuft.
 
 ## Listen verstehen
 
@@ -53,6 +59,8 @@ Eine gute Listenansicht beantwortet drei Fragen:
 
 Auf einer Debitorenliste sind zum Beispiel Nummer, Name, Saldo, Buchungsgruppe und Zahlungsbedingung wichtig. Auf Sachposten sind Buchungsdatum, Belegnummer, Sachkonto, Betrag und Dimensionen wichtig. Auf Artikelposten zaehlen Artikelnummer, Buchungsart, Menge, Lagerort und Belegnummer.
 
+Listen sind nur dann gute Lernbilder, wenn genug Daten sichtbar sind. Eine Liste mit einer einzigen Zeile zeigt kaum, wie Sortieren, Filtern oder Vergleichen funktioniert. Fuer die Universaarl GmbH brauchen die Listen deshalb mehrere Kunden, Lieferanten, Artikel, Belege, Buchungsdaten und Posten.
+
 ## Filter list by und Filter totals by
 
 In Listen gibt es einfache Zeilenfilter. Sie begrenzen die sichtbaren Datensaetze, zum Beispiel auf einen Kunden, ein Datum oder einen Status. In manchen Bereichen gibt es zusaetzlich Summenfilter. Diese beeinflussen, welche Werte in berechneten Summen oder FlowFields erscheinen.
@@ -62,7 +70,17 @@ Der Unterschied ist wichtig:
 - `Filter list by` steuert, welche Zeilen in der Liste sichtbar sind.
 - `Filter totals by` steuert, welche Werte in berechneten Summen beruecksichtigt werden.
 
-Bei der Universaarl GmbH wird dieser Unterschied spaeter an echten Kunden-, Artikel- und Sachposten gezeigt. Dafuer braucht die Company genuegend gebuchte Belege, offene Posten, geschlossene Posten, Dimensionen und mehrere Buchungsdaten.
+Ein Beispiel: Auf einer Debitorenliste kann ein Listenfilter die sichtbaren Kunden auf eine Kundengruppe begrenzen. Ein Summenfilter kann den angezeigten Saldo auf einen Zeitraum oder eine Dimension begrenzen. Der gleiche Datensatz kann dadurch sichtbar bleiben, aber mit einem anderen berechneten Betrag erscheinen.
+
+## Ansichten und gespeicherte Filter
+
+Business Central kann Listenansichten verwenden. Eine Ansicht ist eine vorbereitete Sicht auf eine Liste: bestimmte Filter, Sortierungen oder Spalten sind bereits eingestellt. Fuer einen Anfaenger ist das praktisch, weil er nicht jedes Mal von vorne filtern muss.
+
+Ansichten sind aber kein Buchungsnachweis. Sie helfen beim Arbeiten und Auswerten. Wenn eine Ansicht gespeichert oder personalisiert wird, kann das die Benutzeroberflaeche veraendern. Deshalb wird im Buch unterschieden:
+
+- Eine Ansicht oeffnen oder lesen ist eine Navigations- und Analysehandlung.
+- Eine Ansicht speichern oder die Oberflaeche personalisieren ist eine Aenderung am Benutzerkontext.
+- Eine gefilterte Liste beweist nur die sichtbaren Zeilen, nicht automatisch eine Buchungswirkung.
 
 ## Filter in Reports
 
@@ -75,15 +93,23 @@ Ein Anfaenger soll vor dem Start eines Reports immer pruefen:
 - Gibt es Dimensionsfilter?
 - Wird nur angezeigt, gedruckt, exportiert oder werden Daten veraendert?
 
+Eine Request Page ist deshalb ein eigener Kontrollpunkt. Vor dem Start sieht man, welche Daten in den Report eingehen sollen. Nach dem Start prueft man, ob der Report nur angezeigt wurde oder ob Business Central dadurch Daten erzeugt, aktualisiert oder bucht.
+
+## Analysemodus
+
+Der Analysemodus hilft, Listendaten direkt in Business Central auszuwerten. Man kann Daten gruppieren, filtern und Summen bilden, ohne sofort einen festen Bericht zu bauen. Das ist besonders hilfreich, wenn man Posten verstehen will: Welche Kunden haben offene Betraege? Welche Artikel hatten Bewegungen? Welche Dimension verursacht den groessten Betrag?
+
+Der Analysemodus ersetzt keine Postenspur. Er ist ein Lesewerkzeug. Die eigentliche Buchungswahrheit liegt weiterhin in den gebuchten Posten: Sachposten, Debitorenposten, Kreditorenposten, Artikelposten, Wertposten, Bankposten oder Anlagenposten.
+
 ## Arbeiten mit Posten
 
 Posten sind die Spur der Buchung. Nach einem Verkaufsprozess entstehen zum Beispiel Debitorenposten, Sachposten und Umsatzsteuerposten. Nach einem Lagerprozess entstehen Artikelposten und Wertposten. Nach einer Zahlung entstehen Bankposten und Ausgleichseintraege.
 
 Listenfilter helfen, diese Spur zu lesen. Man filtert nach Belegnummer, Buchungsdatum, Konto, Debitor, Kreditor, Artikel oder Dimension. Danach prueft man, ob die Zeilen zusammenpassen.
 
-## Datenbasis fuer das endgueltige Kapitel
+## Beispiele mit echten Universaarl-Daten
 
-Das endgueltige Kapitel braucht Universaarl-Daten, die mehr zeigen als eine leere Startcompany. Fuer die Buchfassung werden mindestens diese Beispiele aufgebaut:
+Die Universaarl-Beispiele brauchen Daten, die mehr zeigen als eine leere Startcompany:
 
 - mehrere Debitoren mit unterschiedlichen offenen Posten,
 - mehrere Kreditoren mit Einkaufsbelegen und Zahlungen,
@@ -92,7 +118,7 @@ Das endgueltige Kapitel braucht Universaarl-Daten, die mehr zeigen als eine leer
 - Dimensionen fuer Produktlinie, Kanal oder Kostenstelle,
 - Reports mit Datums- und Dimensionsfiltern.
 
-Erst dann werden die Screenshot-Platzhalter durch echte Universaarl-Bilder ersetzt.
+Mit dieser Datenbasis werden die Listen im Buch aussagekraeftig. Man sieht dann nicht nur, dass eine Seite existiert, sondern auch, wie man aus vielen Zeilen die richtige Information findet.
 
 ## Screenshot-Plan
 

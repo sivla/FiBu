@@ -82,6 +82,22 @@ Die Suche oeffnet Seiten, Berichte oder Aktionen. Filter begrenzen Zeilen oder S
 | Ansicht speichern | Benutzeransicht sichern | kann Personalisierung/Ansichten veraendern | eigener Gate-Fall |
 | Report Request Page | Reportfilter vor Ausfuehrung | Reportausfuehrung muss klassifiziert werden | eigener Gate-Fall |
 
+## Filter- und Ansichten-QA
+
+Ein Filter-Screenshot ist erst brauchbar, wenn die Filterwirkung sichtbar ist. Dafuer braucht das Bild mehr als nur ein geoeffnetes Filterfeld.
+
+| Screenshot-Typ | Muss sichtbar sein | Beweist | Beweist nicht |
+| --- | --- | --- | --- |
+| Suche / Tell Me | Suchbegriff, Treffer, Zielseite nach Auswahl | Navigationsweg | dass ein Datensatz existiert oder geaendert wurde |
+| Listenfilter | gefilterte Spalte oder Filterleiste, sichtbare Zeilen, Listentitel | welche Zeilen aktuell angezeigt werden | Buchungswirkung oder Summenlogik |
+| Sortierung | Spaltenkopf, Sortierrichtung, mehrere vergleichbare Zeilen | Reihenfolge der sichtbaren Liste | Vollstaendigkeit aller Daten |
+| `Filter totals by` | betroffener Summen-/FlowField-Kontext und Filterwert | Summenfilter-Kontext | die zugrunde liegenden Posten ohne Entry-Trace |
+| gespeicherte Ansicht | Ansichtname, Filter/Spaltenkontext | Benutzer- oder Rollenansicht | allgemeiner Standard fuer alle Benutzer |
+| Analysis Mode | aktive Analyseansicht, Gruppierung/Spalten/Summen | read-only Analyse von Listendaten | Report- oder Ledger-Finalnachweis |
+| Request Page | Reportname, Filter/Optionen, Start-/Abbruchaktion | Reportparameter vor Ausfuehrung | dass der Report korrekt oder vollstaendig ist |
+
+Vor einem finalen Screenshot fuer das Buch muss die Liste genug Daten enthalten. Eine einzelne Zeile ist fuer Filter- und Sortiererklaerungen nur ein Platzhalter.
+
 ## Screenshot-QA vor Buchverwendung
 
 Jeder relevante Screenshot braucht mindestens:

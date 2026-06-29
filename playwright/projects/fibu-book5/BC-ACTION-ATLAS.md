@@ -32,13 +32,13 @@ Status: `labor-reference`.
 | `Calculate Depreciation` | Fixed Assets | `labor-blocked` | OK ausgefuehrt, keine sichtbare Journalzeile im geprueften Kontext | `evidence/fixedassets-291/` | kein weiterer OK ohne neuen Gate-Plan |
 | Page Inspection `Ctrl+Alt+F1` | Debugging | `labor-reusable` | technische Page/Table-Diagnose | `fixedassets-051` und Patterns | Werte muessen separat sichtbar sein |
 | Personalize | Debugging | `labor-reusable` | Feldverfuegbarkeit diagnostizieren | `fixedassets-049` | kein stilles Buchscreen-/Setup-Ersatzbild |
-| Search / Suche | Look and Feel | `planned` | globale Navigation zu Pages, Reports und Setupseiten | Universaarl geplant | Suche oeffnet Seiten; sie ist kein Beweis fuer Datenaenderung |
-| Sortieren in Listen | Look and Feel | `planned` | Spalten nach Nummer, Name, Datum oder Betrag ordnen | Universaarl geplant | braucht mehrere Zeilen; keine Datenwirkung |
-| `Filter list by` / Filterbereich | Look and Feel | `planned` | sichtbare Zeilen in Listen einschraenken | Universaarl geplant | beweist keine Summenlogik und keine Buchung |
-| `Filter totals by` | Look and Feel/Reporting | `planned` | FlowFields/Summen nach Datum, Dimension oder anderem Kontext begrenzen | Universaarl geplant | braucht passende Summenfelder und Universaarl-Daten |
-| Views / Ansicht speichern | Look and Feel | `planned` | wiederverwendbare Listenansichten fuer Buchuebungen | Universaarl geplant | Personalisierungs-/User-Kontext beachten |
-| Analysis Mode / Analysemodus | Look and Feel/Reporting | `planned` | Daten read-only gruppieren, filtern und summieren | Universaarl geplant | kein Ersatz fuer Ledger- oder Reportbeweis |
-| Report Request Page `OK`/`Preview`/`Run` | Reporting/Look and Feel | `planned-gated` | Report mit Filter ausfuehren, wenn Reportklasse sicher ist | Universaarl geplant | vor Ausfuehrung klaeren, ob nur Anzeige oder Datenwirkung |
+| Search / Suche | Look and Feel | `prep-012-mapped` | globale Navigation zu Pages, Reports und Setupseiten | `book-drafts/universaarl-look-and-feel-filtering-draft.md` | Suche oeffnet Seiten; sie ist kein Beweis fuer Datenaenderung |
+| Sortieren in Listen | Look and Feel | `prep-012-mapped` | Spalten nach Nummer, Name, Datum oder Betrag ordnen | `book-drafts/universaarl-look-and-feel-filtering-draft.md` | braucht mehrere Zeilen; keine Datenwirkung |
+| `Filter list by` / Filterbereich | Look and Feel | `prep-012-mapped` | sichtbare Zeilen in Listen einschraenken | `UNIVERSAARL-READONLY-UI-LOOK-AND-FEEL-MAP.md` | beweist keine Summenlogik und keine Buchung |
+| `Filter totals by` | Look and Feel/Reporting | `prep-012-mapped` | FlowFields/Summen nach Datum, Dimension oder anderem Kontext begrenzen | `UNIVERSAARL-READONLY-UI-LOOK-AND-FEEL-MAP.md` | braucht passende Summenfelder und Universaarl-Daten |
+| Views / Ansicht speichern | Look and Feel | `prep-012-gated` | wiederverwendbare Listenansichten fuer Buchuebungen | PREP-012 | Personalisierungs-/User-Kontext beachten; Speichern ist keine reine Lesehandlung |
+| Analysis Mode / Analysemodus | Look and Feel/Reporting | `prep-012-mapped` | Daten read-only gruppieren, filtern und summieren | PREP-012 plus Microsoft Learn Mapping | kein Ersatz fuer Ledger- oder Reportbeweis |
+| Report Request Page `OK`/`Preview`/`Run` | Reporting/Look and Feel | `prep-012-gated` | Report mit Filter ausfuehren, wenn Reportklasse sicher ist | `BC-REQUEST-PAGE-ATLAS.md` | vor Ausfuehrung klaeren, ob nur Anzeige oder Datenwirkung |
 
 ## Universaarl Action-Regel
 
