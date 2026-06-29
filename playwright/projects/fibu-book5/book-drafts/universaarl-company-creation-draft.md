@@ -55,6 +55,10 @@ Vor dem Speichern muessen diese Punkte klar sein:
 - Die sichtbare Aktion speichert wirklich die neue Company und wechselt nicht ungefragt in eine andere Umgebung.
 - Nach dem Speichern erscheint `UNIVERSAARL-DE` in der Mandantenliste.
 
+In der aktuellen `playthru`-Umgebung ist die direkte Listenzeile nicht der saubere Weg fuer die Universaarl-Musterfirma. Business Central zeigt auf der Mandantenliste zwar `Neu`, `Kopieren` und `Testunternehmen`. Eine ausdrueckliche Aktion `Create New Company` ist dort aber noch nicht sichtbar. Deshalb wird an dieser Stelle nicht gespeichert und kein Assistent abgeschlossen.
+
+Fuer die Universaarl GmbH ist das die richtige Vorsicht: Eine neue Company ist der fachliche Ausgangspunkt fuer alle spaeteren Buchungen. Wenn hier versehentlich eine Demo-, Kopier- oder Testcompany entsteht, waeren Konten, Stammdaten und spaetere Screenshots nicht mehr sauber erklaerbar. Der naechste Schritt ist deshalb, die Aktionen und Menues auf der Mandantenliste genauer zu pruefen und nur eine Route zu verwenden, die als leere oder setup-nahe Company-Anlage erkennbar ist.
+
 ## Nach der Anlage
 
 Nach der erfolgreichen Anlage ist die Company noch nicht fachlich fertig. Eine neue Company ist zuerst nur der leere Buchungsraum. Danach folgen die Grundlagen:

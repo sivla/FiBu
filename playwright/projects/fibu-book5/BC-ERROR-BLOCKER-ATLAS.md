@@ -4,6 +4,7 @@ Status: `labor-reference`.
 
 | Blocker | Bereich | Symptom | Ursache / Interpretation | Evidence | Naechste Regel |
 |---|---|---|---|---|---|
+| TARGET-003 Create-New-Company-Aktion nicht sichtbar | Universaarl Company | Page `357` zeigt `Neu`, `Kopieren`, `Testunternehmen`, aber keine exakte sichtbare/klickbare `Create New Company`-Aktion; kein Wizard sichtbar | Direkte Mandanten-Listenzeile ist kein sauberer Buchpfad, und der offizielle Assisted-Setup-Pfad ist in diesem Startkontext noch nicht erreicht | `evidence/target-003/TARGET-003-result.json` | TARGET-004 scoped Action/Menu Discovery; kein direkter Listenzeilen-Save, kein Copy/Testunternehmen/CRONUS |
 | `Vendor Invoice No.` fehlt | P2P | Preview/Buchung stoppt | externe Lieferantenbelegnummer ist Pflichtfeld | P2P-001 | im Buch als Pflichtfeld erklaeren |
 | P2P-004 Headerfeld ohne Label | P2P/Playwright | Vendor-Feld nicht ueber Label gefunden | BC rendert Header-Control ohne hilfreiche ARIA/Title-Signale | `evidence/p2p-004/030-after-vendor-controls.json` | enger geometrischer Fallback nur mit Nachherwert |
 | P2P-005 Lines-Grid ohne sichere Controls | P2P/Playwright | Zeilenansicht ist sichtbar, aber Control-Snapshot liefert keine sicher befuellbare Route fuer Item/Menge/Preis/Qty. to Receive | BC Lines/Subform/Grid-Kontext wird in diesem Zustand nicht durch einfache `input`-Locatoren stabil erfasst | `evidence/p2p-005/P2P-005-result.json` | P2P-006: fokussierte Lines/Grid-Control-Diagnose auf Draft `106051`, keine Preview/Posting vorher |

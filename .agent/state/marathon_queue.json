@@ -54,16 +54,39 @@
     {
       "id": "TARGET-003-UNIVERSAARL-COMPANY-CREATION-EXECUTION-ROUTE",
       "order": 3,
-      "status": "pending",
+      "status": "blocked",
       "category": "target",
       "expectedImpact": "high-impact",
       "evidenceTarget": "playwright/projects/fibu-book5/evidence/target-003/",
       "mayWorkEffectively": true,
-      "goal": "Use or reject the direct unsaved Companies row as a guarded UI-first route for UNIVERSAARL-DE.",
+      "goal": "Use or reject the official Create New Company / Assisted Setup route for UNIVERSAARL-DE.",
       "migrationRelevance": "needed-for-german-final",
       "sourceCompany": "current-playthru-shell-company-before-universaarl-exists",
       "targetCompany": "UNIVERSAARL-DE",
-      "legacyReferenceAllowedOnlyForLearning": true
+      "legacyReferenceAllowedOnlyForLearning": true,
+      "completedAt": "2026-06-29T18:20:00.000Z",
+      "result": "Exact Create New Company action was not visible/clickable from Page 357; no company created, no wizard finish, no copy/test/CRONUS route.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-003/TARGET-003-result.json",
+      "blockedBy": [
+        "create-new-company-action-not-visible-or-wizard-not-proven"
+      ]
+    },
+    {
+      "id": "TARGET-004-COMPANY-CREATION-SCOPED-ACTION-DISCOVERY",
+      "order": 3.5,
+      "status": "pending",
+      "category": "target",
+      "expectedImpact": "high-impact",
+      "evidenceTarget": "playwright/projects/fibu-book5/evidence/target-004-company-creation-scoped-action-discovery/",
+      "mayWorkEffectively": true,
+      "goal": "Inspect scoped Companies action/menu surfaces for the exact Create New Company route without direct row save, copy company or test company.",
+      "migrationRelevance": "needed-for-german-final",
+      "sourceCompany": "current-playthru-shell-company-before-universaarl-exists",
+      "targetCompany": "UNIVERSAARL-DE",
+      "legacyReferenceAllowedOnlyForLearning": true,
+      "dependsOn": [
+        "TARGET-003-UNIVERSAARL-COMPANY-CREATION-EXECUTION-ROUTE"
+      ]
     },
     {
       "id": "TARGET-003-COMPANY-INFORMATION",

@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-004-COMPANY-CREATION-SCOPED-ACTION-DISCOVERY",
+  "title": "Scoped Companies action/menu discovery for Universaarl company creation",
+  "instance": "playthru",
+  "targetCompany": "UNIVERSAARL-DE",
+  "legalName": "Universaarl GmbH",
+  "workType": "readonly-or-guarded-ui-company-creation-route-discovery",
+  "status": "planned",
+  "smartDecisionRequired": true,
+  "effectiveActionsRequireDecisionCard": true,
+  "dependsOn": [
+    "TARGET-003-UNIVERSAARL-COMPANY-CREATION-EXECUTION-ROUTE"
+  ],
+  "preflightTruth": {
+    "target003BlockedBy": [
+      "create-new-company-action-not-visible-or-wizard-not-proven"
+    ],
+    "targetAlreadyVisible": false,
+    "companyCreated": false,
+    "directListRowRejected": true,
+    "copyDemoTestCompanyRejected": true,
+    "sourceDecision": "TARGET-003 did not prove an exact Create New Company action from Page 357. Next route must inspect scoped menu/action surfaces without using Tell-Me Enter, direct row save, copy company or test company."
+  },
+  "allowedActionsWhenGatePasses": [
+    "open-playthru-companies-page-by-page-id",
+    "open-scoped-action-menus-without-selecting-risky-items",
+    "capture-action-candidate-map",
+    "click-only-exact-create-new-company-if-visible-and-smart-decision-card-still-proceed",
+    "stop-before-finish-ok-create-copy-testcompany-or-company-switch",
+    "write-evidence-and-next-route-decision"
+  ],
+  "stopIf": [
+    "url-does-not-contain-playthru",
+    "route-switches-to-cronus-copy-or-demo-template",
+    "dialog-offers-only-copy-demo-testcompany",
+    "wizard-finish-or-ok-would-be-required-before-data-basis-is-understood",
+    "company-context-switch-would-happen-without-documentation",
+    "action-would-save-direct-list-row"
+  ],
+  "mustCheckBeforeAction": [
+    "book-context",
+    "source-or-evidence",
+    "alternatives",
+    "expected-effect",
+    "risk",
+    "fallback",
+    "book-explanation"
+  ],
+  "evidenceTarget": "playwright/projects/fibu-book5/evidence/target-004-company-creation-scoped-action-discovery/",
+  "migrationRelevance": "needed-for-german-final",
+  "finalScreenshotNeeded": true,
+  "nextSafeAction": "Inspect scoped Companies action/menu surfaces for an exact Create New Company route; do not use direct Companies row save."
+}

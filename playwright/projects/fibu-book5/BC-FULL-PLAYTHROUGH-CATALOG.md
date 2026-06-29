@@ -4,7 +4,7 @@ Dieser Katalog ist die grobe Landkarte fuer das Universaarl-Buch. Ein Eintrag wi
 
 | Bereich | Startquelle | Universaarl-Status | Naechster Proof |
 | --- | --- | --- | --- |
-| Environment und Companies | Microsoft Learn: Create new companies; Managing environments | TARGET-001/TARGET-002 belegt playthru und Mandantenliste; Company noch nicht erstellt | TARGET-003 auf Assisted-Setup-/Create-New-Company-Route umstellen |
+| Environment und Companies | Microsoft Learn: Create new companies; Managing environments | TARGET-001/TARGET-002 belegt playthru und Mandantenliste; TARGET-003 blockiert direkte Listenzeile und findet keine sichtbare/klickbare exakte `Create New Company`-Aktion; Company noch nicht erstellt | TARGET-004 scoped Companies Action/Menu Discovery fuer den offiziellen Anlagepfad |
 | Company Information | Microsoft Learn Setup-Uebersicht | offen | nach Company-Anlage read-only/fit gate |
 | Assisted Setup / Manual Setup | Microsoft Learn Setup-Uebersicht | offen | Foundation-Setup-Route nach Company-Anlage |
 | Chart of Accounts / Finance Setup | Microsoft Learn Setup-Uebersicht | offen | COA/Finance-Baseline in UNIVERSAARL-DE |

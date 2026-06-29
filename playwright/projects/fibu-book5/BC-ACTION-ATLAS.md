@@ -4,6 +4,8 @@ Status: `labor-reference`.
 
 | Action | Bereich | Status | Belegte Nutzung | Evidence | Guard |
 |---|---|---|---|---|---|
+| `Create New Company` / Assisted Setup | Universaarl Company | `blocked` | TARGET-003 sucht die exakte Aktion auf Page `357`, findet sie aber nicht sichtbar/klickbar; keine Company erstellt | `evidence/target-003/TARGET-003-result.json` | direkte Mandanten-Listenzeile, `Kopieren`, `Testunternehmen`, CRONUS und Wizard-Finish bleiben gesperrt; naechster Case braucht scoped Action/Menu Discovery |
+| `Neu` auf Companies / Mandanten | Universaarl Company | `rejected-as-book-path` | TARGET-002 oeffnet nur eine unsaved blank row; TARGET-003 verwirft direkte Listenzeile als Universaarl-Buchpfad | `evidence/target-002/`, `evidence/target-003/` | nicht speichern; nur UI-Befund, bis offizieller Create-New-Company-/Assisted-Setup-Pfad sichtbar ist |
 | `New` auf Purchase Orders | P2P | `labor-proven` | oeffnet Draft `106002` | `evidence/p2p-004/` | nur nach Listen-/Page-Kontext, nicht ungescoped global |
 | `Preview Posting` | P2P | `labor-proven` fuer UAT-P2P-001 | Vorschauarten vor Rechnung `108219` | `evidence/p2p-001/095-preview-posting-result.json` | default-locked, P2P-005 noch ohne Preview |
 | `New` auf Purchase Orders | P2P | `labor-proven` fuer P2P-005 Fallback | erzeugt kontrollierten Draft, wenn vorhandener Draft nicht als Basis taugt | `evidence/p2p-005/P2P-005-result.json` | nur case-gesteuert; Draft `106051` bleibt Labor-Blocker-Draft |

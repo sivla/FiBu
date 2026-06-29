@@ -6,7 +6,7 @@ Request Pages sind BC-Fenster fuer Batch-/Berichts-/Erzeugungsaktionen. Sie sind
 
 | Prozess | Request Page | Pflichtparameter | Aktion | Evidence | Grenze |
 |---|---|---|---|---|---|
-| Company Creation | TARGET-002 zeigt keine Request Page, sondern eine unsaved Companies-Listenzeile nach `Neu` | Company Name, Anzeigename, Datenbasis/Template falls spaeter Wizard sichtbar wird | TARGET-002 stoppt vor Zielwerten/Save; naechster Case muss direkte Zeile oder Assisted Setup absichern | `evidence/target-002/` | Keine Demo-/CRONUS-Kopie als Finalbasis |
+| Company Creation | TARGET-002 zeigt keine Request Page, sondern eine unsaved Companies-Listenzeile nach `Neu`; TARGET-003 findet keine sichtbare/klickbare exakte `Create New Company`-Aktion | Company Name, Anzeigename, Datenbasis/Template falls spaeter Wizard sichtbar wird | TARGET-003 stoppt vor Save/Finish; naechster Case prueft scoped Menues/Aktionen fuer den offiziellen Pfad | `evidence/target-002/`, `evidence/target-003/` | Keine Demo-/CRONUS-Kopie als Finalbasis; kein direkter Listenzeilen-Save |
 
 ## Erfassungsregel
 
