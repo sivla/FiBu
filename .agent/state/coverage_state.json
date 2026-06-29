@@ -296,12 +296,12 @@
   "hardExclusions": {
     "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
   },
-  "updatedAt": "2026-06-29T21:05:00+02:00",
+  "updatedAt": "2026-06-29T21:35:00+02:00",
   "activeArea": "warehouse",
-  "currentBlock": "warehouse-source-po-line-details-action-route",
-  "latestPracticalCase": "WAREHOUSE-026-SOURCE-PO-LINE-ACTIVE-EDITOR-PROBE",
+  "currentBlock": "warehouse-source-po-location-default-or-fresh-draft-decision",
+  "latestPracticalCase": "WAREHOUSE-027-SOURCE-PO-LINE-DETAILS-ACTION-ROUTE",
   "latestReviewCase": "WAREHOUSE-025-SOURCE-PO-LOCATION-ALTERNATIVE-OR-HELPER-DECISION",
-  "nextCase": "WAREHOUSE-027-SOURCE-PO-LINE-DETAILS-ACTION-ROUTE",
+  "nextCase": "WAREHOUSE-028-SOURCE-PO-LOCATION-DEFAULT-OR-FRESH-DRAFT-DECISION",
   "latestBank013": {
     "caseId": "BANK-013-CONTROLLED-NEXT-EVIDENCE-STEP",
     "status": [
@@ -1402,11 +1402,11 @@
     "nextCase": "FIXEDASSETS-298-FA-DEPRECIATION-BLOCKER-BOOK-SYNC",
     "updatedAt": "2026-06-29T07:09:31.588Z"
   },
-  "nextStep": "WAREHOUSE-027: use captured line action candidates to find a Line Details/action route; do not type into the display cell.",
+  "nextStep": "WAREHOUSE-028: decide between location default/setup route or fresh source document route; line menu did not expose an editable Location route.",
   "warehouse": {
     "chapter": "Kapitel 13",
     "status": "in-progress",
-    "currentBlock": "source-po-line-details-action-route",
+    "currentBlock": "source-po-location-default-or-fresh-draft-decision",
     "latestEvidenceCases": [
       "WAREHOUSE-006",
       "WAREHOUSE-007",
@@ -1420,8 +1420,8 @@
       "WAREHOUSE-015",
       "WAREHOUSE-016"
     ],
-    "latestPracticalCase": "WAREHOUSE-026-SOURCE-PO-LINE-ACTIVE-EDITOR-PROBE",
-    "nextCase": "WAREHOUSE-027-SOURCE-PO-LINE-DETAILS-ACTION-ROUTE",
+    "latestPracticalCase": "WAREHOUSE-027-SOURCE-PO-LINE-DETAILS-ACTION-ROUTE",
+    "nextCase": "WAREHOUSE-028-SOURCE-PO-LOCATION-DEFAULT-OR-FRESH-DRAFT-DECISION",
     "blockerStatus": "fresh-draft-get-source-route-opened-source-dialog-no-confirmation",
     "employeeSetup": {
       "userId": "KAJETAN.KALICKI",
@@ -1673,5 +1673,32 @@
     "migrationRelevance": "needed-for-german-final",
     "mustRecreateInFinalSandbox": true,
     "updatedAt": "2026-06-29T21:05:00+02:00"
+  },
+  "latestWarehouse027": {
+    "caseId": "WAREHOUSE-027-SOURCE-PO-LINE-DETAILS-ACTION-ROUTE",
+    "status": "observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-027/WAREHOUSE-027-result.json",
+    "sourceDocumentNo": "106055",
+    "decision": "WAREHOUSE-027 opened the Lines-area Line menu safely. It exposed safe line/detail candidates but no row-scoped editable Location control. The display cell and Line menu routes are now exhausted for value entry; next route decision must choose Location defaults/setup or a fresh source document route.",
+    "bcRun": true,
+    "playwrightRun": true,
+    "posted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "dataChanged": false,
+    "valueTyped": false,
+    "released": false,
+    "received": false,
+    "invoiced": false,
+    "lineMenuClicked": true,
+    "safeLineCandidateCount": 25,
+    "rowScopedEditableControlCount": 0,
+    "blockedBy": [
+      "no-row-scoped-editable-control-after-line-menu"
+    ],
+    "nextCase": "WAREHOUSE-028-SOURCE-PO-LOCATION-DEFAULT-OR-FRESH-DRAFT-DECISION",
+    "migrationRelevance": "needed-for-german-final",
+    "mustRecreateInFinalSandbox": true,
+    "updatedAt": "2026-06-29T21:35:00+02:00"
   }
 }

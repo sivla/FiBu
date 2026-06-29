@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "caseId": "WAREHOUSE-027-SOURCE-PO-LINE-DETAILS-ACTION-ROUTE",
   "title": "Source PO line details/action route",
-  "status": "planned",
+  "status": "observed",
   "taskClass": "wizard_work",
   "modelClass": "gpt-4-medium",
   "usageLogRequired": false,
@@ -84,7 +84,29 @@
   "mustRecreateInFinalSandbox": true,
   "finalScreenshotNeeded": false,
   "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-027/WAREHOUSE-027-result.json",
-  "nextStep": "Run WAREHOUSE-027 line details/action route without typing values or releasing the order.",
+  "nextStep": "WAREHOUSE-028: decide between location default/setup route or fresh source document route; line menu did not expose an editable Location route.",
   "createdAt": "2026-06-29T21:05:00+02:00",
-  "updatedAt": "2026-06-29T21:05:00+02:00"
+  "updatedAt": "2026-06-29T21:35:00+02:00",
+  "resultStatus": "observed",
+  "completedAt": "2026-06-29T21:35:00+02:00",
+  "decision": "WAREHOUSE-027 opened the Lines-area Line menu safely. It exposed safe line/detail candidates but no row-scoped editable Location control. The display cell and Line menu routes are now exhausted for value entry; next route decision must choose Location defaults/setup or a fresh source document route.",
+  "blockedBy": [
+    "no-row-scoped-editable-control-after-line-menu"
+  ],
+  "nextCase": "WAREHOUSE-028-SOURCE-PO-LOCATION-DEFAULT-OR-FRESH-DRAFT-DECISION",
+  "outcome": {
+    "bcRun": true,
+    "playwrightRun": true,
+    "posted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "dataChanged": false,
+    "valueTyped": false,
+    "released": false,
+    "received": false,
+    "invoiced": false,
+    "lineMenuClicked": true,
+    "safeLineCandidateCount": 25,
+    "rowScopedEditableControlCount": 0
+  }
 }

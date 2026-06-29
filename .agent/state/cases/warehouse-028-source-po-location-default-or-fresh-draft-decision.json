@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "caseId": "WAREHOUSE-028-SOURCE-PO-LOCATION-DEFAULT-OR-FRESH-DRAFT-DECISION",
+  "title": "Source PO Location default/setup or fresh draft decision",
+  "status": "planned",
+  "taskClass": "judge_work",
+  "modelClass": "gpt-5.5-low",
+  "usageLogRequired": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "warehouse-source-po-location-default-or-fresh-draft-decision",
+  "sourceCase": "WAREHOUSE-027-SOURCE-PO-LINE-DETAILS-ACTION-ROUTE",
+  "sourceDocumentType": "Purchase Order",
+  "sourceDocumentNo": "106055",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/warehouse-027/WAREHOUSE-027-result.json",
+    "playwright/projects/fibu-book5/evidence/warehouse-026/WAREHOUSE-026-result.json",
+    "playwright/projects/fibu-book5/evidence/warehouse-024/WAREHOUSE-024-result.json"
+  ],
+  "purpose": "Decide the next non-repetitive way to produce a Warehouse-eligible source Purchase Order line after display-cell, active-editor and Line-menu routes did not expose an editable Location Code control.",
+  "allowedActions": [
+    "read-warehouse-020-to-027-evidence",
+    "compare-location-default-setup-or-fresh-draft-routes",
+    "create-next-execute-case-if-route-is-clear",
+    "write-evidence",
+    "update-state"
+  ],
+  "defaultLockedActions": [
+    "purchase-order-location-value-entry",
+    "purchase-order-release",
+    "purchase-order-receive",
+    "purchase-order-invoice",
+    "warehouse-receipt-source-confirmation",
+    "warehouse-receipt-posting",
+    "warehouse-putaway-posting",
+    "preview-posting",
+    "posting",
+    "setup-change",
+    "company-switch",
+    "api-shortcut",
+    "delete-draft"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "claim-german-final-proof",
+    "use-api-shortcut-without-explicit-case-permission",
+    "repeat-warehouse-024-single-cell-value-route",
+    "repeat-warehouse-027-line-menu-inventory-without-new-purpose",
+    "post-warehouse-document"
+  ],
+  "decisionInputs": {
+    "latestObservedBlocker": [
+      "no-row-scoped-editable-control-after-line-menu"
+    ],
+    "lineMenuClicked": true,
+    "safeLineCandidateCount": 25,
+    "rowScopedEditableControlCount": 0,
+    "sourceDocumentNo": "106055"
+  },
+  "candidateRoutes": [
+    "Check whether vendor/item/location defaults or order creation sequence can create RAW-STEEL at FRA-ZL in a fresh Purchase Order without post-insertion cell editing.",
+    "Run an idempotent setup/default preflight only if evidence points to a reusable defaulting mechanism, with before/after documentation and no release/post.",
+    "Create a fresh controlled source Purchase Order route that selects or sets location before line insertion, if a UI path is clear.",
+    "Park Warehouse inbound if no UI-first route remains and move to another process block, documenting the blocker for German final rebuild."
+  ],
+  "safetyGates": [
+    "no-blind-repeat-of-display-cell-route",
+    "no-blind-repeat-of-line-menu-route",
+    "no-release-until-location-fra-zl-is-visible-on-source-line",
+    "no-warehouse-source-selection-until-source-po-is-eligible",
+    "no-preview-posting",
+    "no-posting",
+    "document-migration-relevance"
+  ],
+  "expectedEvidence": [
+    "route decision based on Warehouse 020-027 evidence",
+    "explicit next execute case or parking decision",
+    "clear no-release/no-post/no-preview flags"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": false,
+  "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-028/WAREHOUSE-028-result.json",
+  "nextStep": "WAREHOUSE-028: decide whether to pursue location default/setup, fresh source draft route, or park Warehouse inbound as labor-blocked/bookdraft-useful.",
+  "createdAt": "2026-06-29T21:35:00+02:00",
+  "updatedAt": "2026-06-29T21:35:00+02:00"
+}
