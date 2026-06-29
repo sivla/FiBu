@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "caseId": "WAREHOUSE-019-WAREHOUSE-INBOUND-SOURCE-DOCUMENT-CREATION-OR-PARK-DECISION",
+  "title": "Warehouse inbound source document creation or park decision",
+  "status": "planned",
+  "taskClass": "judge_work",
+  "modelClass": "gpt-5.5-low",
+  "usageLogRequired": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "warehouse-source-document-creation-or-park-decision",
+  "sourceCase": "WAREHOUSE-018-WAREHOUSE-SOURCE-DOCUMENT-FILTER-OR-PARK",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/warehouse-018/WAREHOUSE-018-result.json",
+    "playwright/projects/fibu-book5/evidence/warehouse-018/WAREHOUSE-018-SOURCE-DOCUMENT-FILTER-OR-PARK.md"
+  ],
+  "purpose": "Decide whether to create or reuse a concrete inbound source document for Warehouse Receipt selection, or park Warehouse inbound in RM-DEMO as labor-blocked/bookdraft-useful until a better source-document hypothesis exists.",
+  "allowedActions": [
+    "local-review",
+    "read-warehouse-evidence",
+    "route-decision",
+    "create-follow-up-case",
+    "write-evidence",
+    "update-state"
+  ],
+  "defaultLockedActions": [
+    "business-central-execution",
+    "playwright-execution",
+    "new-draft",
+    "source-document-confirmation",
+    "posting",
+    "preview-posting",
+    "warehouse-receipt-posting",
+    "warehouse-putaway-posting",
+    "setup-change",
+    "company-switch",
+    "api-shortcut"
+  ],
+  "forbiddenActions": [
+    "claim-german-final-proof",
+    "use-api-shortcut",
+    "post-warehouse-document",
+    "change-require-pick-bin-mandatory-or-directed-put-away-and-pick",
+    "click-post-receipt"
+  ],
+  "safetyGates": [
+    "review-warehouse-016-to-018-before-any-more-ui",
+    "no-repeat-source-dialog-without-source-document-hypothesis",
+    "no-posting",
+    "no-source-document-confirmation",
+    "route-decision-must-name-next-source-document-hypothesis-or-park"
+  ],
+  "decisionOptions": [
+    {
+      "route": "create-source-document-hypothesis",
+      "description": "Plan a separate controlled case that creates/reuses a released purchase/source document expected to be eligible for Warehouse Receipt selection."
+    },
+    {
+      "route": "park-rm-demo-warehouse-inbound",
+      "description": "Classify RM-DEMO Warehouse inbound as labor-blocked/bookdraft-useful after source dialog and filter route both produced no concrete source row."
+    }
+  ],
+  "expectedEvidence": [
+    "Decision summary based on WAREHOUSE-016/017/018",
+    "Rejected repeated routes",
+    "Next source-document hypothesis or park decision",
+    "German final rebuild instructions"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-019/WAREHOUSE-019-result.json",
+  "nextStep": "Review WAREHOUSE-016/017/018 and either define a concrete source-document creation route or park Warehouse inbound selection for RM-DEMO.",
+  "createdAt": "2026-06-29T16:55:00+02:00",
+  "updatedAt": "2026-06-29T16:55:00+02:00"
+}

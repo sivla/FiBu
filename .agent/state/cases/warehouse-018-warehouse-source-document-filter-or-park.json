@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "caseId": "WAREHOUSE-018-WAREHOUSE-SOURCE-DOCUMENT-FILTER-OR-PARK",
   "title": "Warehouse source document filter route or park decision",
-  "status": "planned",
+  "status": "observed",
   "taskClass": "wizard_work",
   "modelClass": "gpt-4-high",
   "usageLogRequired": false,
@@ -15,6 +15,8 @@
     "playwright/projects/fibu-book5/evidence/warehouse-017/WAREHOUSE-017-SOURCE-DOCUMENT-CANDIDATE.md"
   ],
   "purpose": "Decide and execute the next safe Warehouse inbound route after WAREHOUSE-017 proved that Source Documents - Inbound opens but no clear selectable source document row is visible.",
+  "resultStatus": "observed",
+  "decision": "The scoped Use Filters to Get Src. Docs route is visible and clickable from a fresh Warehouse Receipt draft, but it still produces no clear source document row. Warehouse inbound receipt selection should be parked until a concrete inbound source document creation/release hypothesis exists.",
   "allowedActions": [
     "business-central-execution",
     "playwright-execution",
@@ -76,7 +78,24 @@
   "mustRecreateInFinalSandbox": true,
   "finalScreenshotNeeded": true,
   "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-018/WAREHOUSE-018-result.json",
-  "nextStep": "Try the scoped filter-source-documents route once, or park Warehouse inbound source selection if no concrete source row can be safely produced.",
+  "observedResult": {
+    "draftCreated": true,
+    "draftKept": true,
+    "receiptAnchorStatus": "ambiguous-multiple-receipts-visible",
+    "filterCandidatesBeforeClick": 3,
+    "filterClicked": true,
+    "filterContextVisible": true,
+    "rowsAfterFilter": 1,
+    "clearCandidateRows": 0,
+    "okOrShowResultsVisible": false,
+    "okOrShowResultsClicked": false,
+    "posted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "companySwitched": false
+  },
+  "nextCase": "WAREHOUSE-019-WAREHOUSE-INBOUND-SOURCE-DOCUMENT-CREATION-OR-PARK-DECISION",
+  "nextStep": "Park Warehouse inbound source selection or create a concrete inbound source document hypothesis before another receipt attempt.",
   "createdAt": "2026-06-29T16:20:00+02:00",
-  "updatedAt": "2026-06-29T16:20:00+02:00"
+  "updatedAt": "2026-06-29T16:55:00+02:00"
 }

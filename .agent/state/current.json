@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-29T16:20:00+02:00",
+  "updatedAt": "2026-06-29T16:55:00+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "warehouse",
-  "activeCase": "WAREHOUSE-018-WAREHOUSE-SOURCE-DOCUMENT-FILTER-OR-PARK",
-  "active_case_file": ".agent/state/cases/warehouse-018-warehouse-source-document-filter-or-park.json",
-  "lastReferenceCase": "WAREHOUSE-017-SOURCE-DOCUMENT-CANDIDATE-SELECT-NO-POST",
-  "lastReferenceCaseFile": ".agent/state/cases/warehouse-017-source-document-candidate-select-no-post.json",
+  "activeCase": "WAREHOUSE-019-WAREHOUSE-INBOUND-SOURCE-DOCUMENT-CREATION-OR-PARK-DECISION",
+  "active_case_file": ".agent/state/cases/warehouse-019-warehouse-inbound-source-document-creation-or-park-decision.json",
+  "lastReferenceCase": "WAREHOUSE-018-WAREHOUSE-SOURCE-DOCUMENT-FILTER-OR-PARK",
+  "lastReferenceCaseFile": ".agent/state/cases/warehouse-018-warehouse-source-document-filter-or-park.json",
   "mode": "bc-specialist-labor-book-production",
-  "requiresStrongModel": false,
+  "requiresStrongModel": true,
   "requiredPreflightChecks": [
     "agent:preflight",
     "agent:state:validate",
@@ -40,7 +40,7 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "WAREHOUSE-018: try the scoped filter-source-documents route once, or park Warehouse inbound source selection if no concrete source row can be safely produced.",
+  "nextStep": "WAREHOUSE-019: review WAREHOUSE-016/017/018 and either define a concrete source-document creation route or park Warehouse inbound selection for RM-DEMO.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/inventory-labor-draft.md",
     "area": "inventory",
@@ -221,7 +221,7 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "warehouse-source-document-filter-or-park",
+  "currentCoverageFocus": "warehouse-inbound-source-document-creation-or-park-decision",
   "nextProcessRoute": [
     "P2P-012 compared Purchase Journal, Item Journal, Purchase Invoices and Requisition Worksheet by direct page URL without search or field entry.",
     "Item Journal is the most stable observed route for material quantity/location/value effect, but it is Inventory evidence rather than full creditor P2P.",
@@ -2582,5 +2582,27 @@
     "migrationRelevance": "needed-for-german-final",
     "mustRecreateInFinalSandbox": true,
     "updatedAt": "2026-06-29T16:20:00+02:00"
+  },
+  "latestWarehouse018": {
+    "caseId": "WAREHOUSE-018-WAREHOUSE-SOURCE-DOCUMENT-FILTER-OR-PARK",
+    "status": "observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-018/WAREHOUSE-018-result.json",
+    "decision": "Use Filters to Get Src. Docs is visible and clickable from a fresh Warehouse Receipt draft, but it still produces no clear source document row; park or create a concrete inbound source document hypothesis before another receipt attempt.",
+    "routeDecision": "filter-route-opened-but-no-clear-source-row-visible-park-warehouse-inbound",
+    "filterCandidatesBeforeClick": 3,
+    "filterClicked": true,
+    "filterContextVisible": true,
+    "rowsAfterFilter": 1,
+    "clearCandidateRows": 0,
+    "okOrShowResultsVisible": false,
+    "okOrShowResultsClicked": false,
+    "posted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "companySwitched": false,
+    "nextCase": "WAREHOUSE-019-WAREHOUSE-INBOUND-SOURCE-DOCUMENT-CREATION-OR-PARK-DECISION",
+    "migrationRelevance": "needed-for-german-final",
+    "mustRecreateInFinalSandbox": true,
+    "updatedAt": "2026-06-29T16:55:00+02:00"
   }
 }
