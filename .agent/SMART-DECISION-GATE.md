@@ -143,3 +143,7 @@ Eine wirksame Aktion darf nicht als Buch- oder Coverage-Abschluss gewertet werde
 ## Verbindung zum Next-Step-Gate
 
 Vor einer Smart Decision Card muss der geplante naechste Case gegen `.agent/NEXT-STEP-DECISION-GATE.md` geprueft werden. Wenn der naechste Case noch nicht vorbereitet ist, wird zuerst Source Check, UI Discovery, Setup-Fit, Buchkontext oder Queue-Anpassung erledigt.
+
+## Verbindung zum UI-Look-and-Feel-Gate
+
+Wenn eine wirksame Aktion oder ein Blocker von Sichtbarkeit, Layout, Tabellenbreite, FactBox, FastTabs, Scrollbereich oder Dialoglesbarkeit abhaengt, muss vorher `.agent/BC-UI-LOOK-AND-FEEL-GUIDE.md` angewendet werden. Ein riskanter Klick bleibt gesperrt, auch wenn ein Layoutproblem geloest wurde.

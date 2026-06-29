@@ -29,3 +29,7 @@ Status: `labor-reference`.
 ## Zero-Open-Questions-Regel
 
 Jedes nicht verstandene Feld erzeugt entweder einen Eintrag in `.agent/state/open_questions_register.json` oder bekommt einen finalen Status aus `BC-ZERO-OPEN-QUESTIONS-POLICY.md`.
+
+## UI-Look-and-Feel-Regel
+
+Ein Feld gilt nicht als fehlend, bevor relevante FastTabs, Mehr anzeigen/Show more, horizontales Scrollen, FactBox-Ausblendung, Fokusmodus, Personalisierung und Page Inspection als sichere Sichtbarkeitswege geprueft wurden.

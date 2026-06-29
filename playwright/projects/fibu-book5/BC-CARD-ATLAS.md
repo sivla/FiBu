@@ -15,3 +15,7 @@ Jeder neue Universaarl-Prozess soll Page, Typ, sichtbare FastTabs/Felder, Button
 ## Zero-Open-Questions-Regel
 
 Jede nicht verstandene Karte oder FastTab erzeugt entweder einen Eintrag in `.agent/state/open_questions_register.json` oder bekommt einen finalen Status aus `BC-ZERO-OPEN-QUESTIONS-POLICY.md`.
+
+## UI-Look-and-Feel-Regel
+
+Karten brauchen FastTab-Bewusstsein: relevante FastTabs aufklappen, stoerende FastTabs einklappen, FactBox-Zweck bewerten und erst danach Feld-/Action-Blocker schreiben.

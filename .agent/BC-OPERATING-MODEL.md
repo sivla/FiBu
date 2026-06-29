@@ -166,3 +166,9 @@ No final book claim, `complete` coverage mark or final atlas mark is allowed whi
 Before executing the next queue item, run the lookahead check from `.agent/NEXT-STEP-DECISION-GATE.md`. Review current state, last evidence, current company/page/setup situation, dependencies, source/evidence readiness and the next 3 to 5 planned cases.
 
 The queue is a plan, not a dogma. If a case is obsolete, blocked, missing setup, missing source basis or better replaced by UI discovery, update the queue or case-state before executing.
+
+## UI Look and Feel Gate
+
+Before declaring a Business Central UI blocker, apply `.agent/BC-UI-LOOK-AND-FEEL-GUIDE.md`. Check overlays, Help/Tour bubbles, FactBox purpose, FastTabs, grid size, focus/maximize controls, horizontal and vertical scroll areas, hidden columns, edit mode, Command Bar overflow and safe personalization/Page Inspection options.
+
+UI-relevant Result JSONs should include `uiErgonomics` so the next run knows which layout routes were tried.

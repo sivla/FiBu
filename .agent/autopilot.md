@@ -97,6 +97,8 @@ Vor jeder wirksamen Aktion gilt zusaetzlich `.agent/SMART-DECISION-GATE.md`. Com
 
 Vor jedem praktischen Schritt gilt zusaetzlich `.agent/NEXT-STEP-DECISION-GATE.md`. Der Autopilot prueft den geplanten naechsten Case, die letzte Evidence, Abhaengigkeiten und mindestens die naechsten 3 bis 5 Queue-Schritte. Die Queue darf geaendert werden, wenn neue Evidence einen besseren Schritt zeigt. Jeder Lauf endet mit einer Next-Step Decision Card in Result JSON, Run Summary oder Case-State.
 
+Vor jedem UI-Blocker gilt zusaetzlich `.agent/BC-UI-LOOK-AND-FEEL-GUIDE.md`. Der Autopilot darf nicht behaupten, dass Feld, Button, Tabelle, Zeile oder Action fehlen, bevor Overlay, FactBox, FastTabs, Layout, Fokusmodus, Scrollbereiche, Command-Bar-Overflow und sichere Sichtbarkeitswege geprueft und dokumentiert wurden.
+
 ## Skill-/Capability-Lernen
 
 - Skills, Capabilities und Playwright-Helper duerfen nur evidence-getrieben erweitert werden.

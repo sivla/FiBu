@@ -29,3 +29,7 @@ Status: `labor-reference`.
 ## Zero-Open-Questions-Regel
 
 Jede nicht verstandene Action erzeugt entweder einen Eintrag in `.agent/state/open_questions_register.json` oder bekommt einen finalen Status aus `BC-ZERO-OPEN-QUESTIONS-POLICY.md`.
+
+## UI-Look-and-Feel-Regel
+
+Actions werden nach Kontext erfasst: Page, Karte, Zeile, FactBox, Dropdown oder Command-Bar-Overflow. Vor riskanten Actions gilt Smart Decision Gate; ungefaehrliche Navigationsactions brauchen trotzdem sichtbaren Kontext.

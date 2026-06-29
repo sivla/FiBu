@@ -17,3 +17,7 @@ Kein `OK`, `Ja`, `Finish`, `Erstellen`, `Post`, `Preview`, `Delete` oder aehnlic
 ## Zero-Open-Questions-Regel
 
 Jeder nicht verstandene Dialog erzeugt entweder einen Eintrag in `.agent/state/open_questions_register.json` oder bekommt einen finalen Status aus `BC-ZERO-OPEN-QUESTIONS-POLICY.md`.
+
+## UI-Look-and-Feel-Regel
+
+Dialoge und Request-Pages werden nicht bestaetigt, bevor Text, Felder, Defaults, Scrollbereich, OK-/Cancel-Wirkung und Risiko sichtbar oder dokumentiert sind. Unklare Dialoge werden abgebrochen und als Diagnosepfad erfasst.

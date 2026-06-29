@@ -36,3 +36,7 @@ Der List Atlas beschreibt Business-Central-Listen, die fuer Klickpfade, Suche, F
 ## Zero-Open-Questions-Regel
 
 Jede nicht verstandene Liste erzeugt entweder einen Eintrag in `.agent/state/open_questions_register.json` oder bekommt einen finalen Status aus `BC-ZERO-OPEN-QUESTIONS-POLICY.md`.
+
+## UI-Look-and-Feel-Regel
+
+Listen, Worksheets und Journals duerfen erst als blockiert gelten, wenn Datenzeile, leere Eingabezeile, Edit-Modus, horizontale Scrollbar, Fokus-/Maximize-Button, versteckte Spalten, FactBox und Command-Bar-Overflow geprueft wurden.

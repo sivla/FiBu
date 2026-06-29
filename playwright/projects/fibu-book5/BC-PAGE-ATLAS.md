@@ -21,3 +21,7 @@ Status: `labor-reference`.
 ## Zero-Open-Questions-Regel
 
 Jede nicht verstandene Page erzeugt entweder einen Eintrag in `.agent/state/open_questions_register.json` oder bekommt einen finalen Status aus `BC-ZERO-OPEN-QUESTIONS-POLICY.md`.
+
+## UI-Look-and-Feel-Regel
+
+Page-Blocker duerfen erst geschrieben werden, wenn Overlays, FactBox, FastTabs, Layout-/Focus-Buttons, Scrollbereiche, Command-Bar-Overflow und Page Inspection als passende Sichtbarkeitswege geprueft wurden.
