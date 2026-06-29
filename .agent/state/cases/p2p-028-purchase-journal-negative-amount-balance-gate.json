@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "caseId": "P2P-028-PURCHASE-JOURNAL-NEGATIVE-AMOUNT-BALANCE-GATE",
+  "title": "Purchase Journal negative amount and balance gate",
+  "status": "planned",
+  "taskClass": "wizard_work",
+  "modelClass": "gpt-5.4-medium",
+  "usageLogRequired": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "p2p-purchase-journal-negative-amount-balance-gate",
+  "sourceCase": "P2P-027-PURCHASE-INVOICE-ROUTE-REJECTION-OR-RESET-HELPER",
+  "purpose": "Run a controlled Purchase Journal preflight based on P2P-019 Journal Check findings: Vendor line amount negative, posting groups blank on Vendor line, document balanced before Preview. No posting.",
+  "allowedActions": [
+    "open-business-central-if-instance-and-company-match",
+    "open-purchase-journal",
+    "create-scoped-purchase-journal-draft-line",
+    "enter-target-journal-values",
+    "run-journal-check",
+    "preview-posting-if-journal-check-clean-and-case-gate-passes",
+    "cleanup-or-document-keep-status",
+    "write-evidence",
+    "update-state"
+  ],
+  "defaultLockedActions": [
+    "preview-posting",
+    "posting",
+    "setup-change",
+    "company-switch",
+    "api-shortcut",
+    "keep-draft"
+  ],
+  "forbiddenActions": [
+    "reuse-purchase-invoice-draft-107229",
+    "open-purchase-invoices-for-value-entry",
+    "post",
+    "claim-german-final-proof",
+    "book-claim-without-evidence"
+  ],
+  "safetyGates": [
+    "instance-must-be-MCP_1_20260210",
+    "company-must-be-RM-DEMO",
+    "purchase-invoice-route-remains-rejected",
+    "journal-check-before-preview",
+    "preview-only-if-journal-check-clean",
+    "cleanup-or-keep-status-required",
+    "no-posting"
+  ],
+  "targetValues": {
+    "journalPage": "Purchase Journal",
+    "documentType": "Invoice",
+    "accountType": "Vendor",
+    "vendorNo": "K10000",
+    "amount": "-2.500,00",
+    "genPostingType": "",
+    "genBusPostingGroup": "",
+    "genProdPostingGroup": "",
+    "balanceRequirement": "Document must balance before Preview Posting. Use a clearly documented balancing mechanism only if the UI route and fields are visible."
+  },
+  "expectedEvidence": [
+    "result JSON with target values and Journal Check status",
+    "compact page text and/or control map after value entry",
+    "Journal Check issue text or clean status",
+    "Preview result only if clean and explicitly unlocked",
+    "cleanup or keep status"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "targetGermanCompanyImpact": "German final P2P needs a recreated Purchase Journal or better Purchase Invoice/Purchase Order proof with German setup and screenshots.",
+  "finalScreenshotNeeded": true,
+  "nextStep": "Execute P2P-028 controlled Purchase Journal negative amount / balance gate. Do not post."
+}

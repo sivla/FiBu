@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "purpose": "p2p-purchase-invoice-route-rejection-or-reset-helper-decision",
+  "caseId": "P2P-027-PURCHASE-INVOICE-ROUTE-REJECTION-OR-RESET-HELPER",
+  "source": "local-evidence-review",
+  "resultStatus": "observed",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "sourceCompany": "RM-DEMO",
+  "bcRun": false,
+  "playwrightRun": false,
+  "previewPosting": false,
+  "posted": false,
+  "setupChanges": [],
+  "changedRecords": [],
+  "postedRecords": [],
+  "reviewedEvidence": [
+    "playwright/projects/fibu-book5/evidence/p2p-021/P2P-021-result.json",
+    "playwright/projects/fibu-book5/evidence/p2p-022/P2P-022-result.json",
+    "playwright/projects/fibu-book5/evidence/p2p-023/P2P-023-result.json",
+    "playwright/projects/fibu-book5/evidence/p2p-024/P2P-024-result.json",
+    "playwright/projects/fibu-book5/evidence/p2p-025/P2P-025-result.json",
+    "playwright/projects/fibu-book5/evidence/p2p-026/P2P-026-result.json",
+    "playwright/projects/fibu-book5/evidence/p2p-012/P2P-012-result.json",
+    "playwright/projects/fibu-book5/evidence/p2p-019/P2P-019-result.json"
+  ],
+  "decisionStatus": "purchase-invoices-rejected-for-current-lab-branch",
+  "decision": "Reject Purchase Invoices as the next RM-DEMO P2P value-entry route. Do not build a bookmark/filter reset helper now; the current project value is higher on the Purchase Journal route where the blocker is fachlich concrete and cleanup is proven.",
+  "rejectedRoute": {
+    "route": "Purchase Invoices page 9308 / Purchase Invoice draft route",
+    "reason": "P2P-021 created draft 107229 without cleanup proof, P2P-022 did not delete it, P2P-023 kept it as lab trace, P2P-024 blocked value entry because 107229 was still visible after scoped New, and P2P-026 proved even read-only page 9308 reopens with dc/bookmark state and 107229 visible.",
+    "currentRisk": "Any further Purchase Invoice value-entry attempt risks acting on the kept laboratory draft or spending more runs on navigation state instead of a controllable accounting gate."
+  },
+  "selectedNextRoute": {
+    "caseId": "P2P-028-PURCHASE-JOURNAL-NEGATIVE-AMOUNT-BALANCE-GATE",
+    "route": "Purchase Journal fachlicher correction preflight",
+    "reason": "P2P-019 exposes concrete Journal Check rules: vendor invoice amount must be negative, document must balance, and Gen. Posting Type / Gen. Bus. Posting Group / Gen. Prod. Posting Group must be blank on the Vendor line.",
+    "allowedNextActions": [
+      "open Purchase Journal in MCP_1_20260210 / RM-DEMO",
+      "create exactly one scoped draft line or two-line balancing draft if the case defines it",
+      "set only the P2P-028 target fields",
+      "run Journal Check",
+      "open Preview Posting only if Journal Check is clean and the case explicitly unlocks Preview",
+      "cleanup or document keep status",
+      "do not post"
+    ]
+  },
+  "proved": [
+    "The Purchase Invoice route has a repeated stale-context blocker and is not a productive next value-entry path in RM-DEMO.",
+    "A bookmark/filter reset helper would be speculative at this point and would not produce immediate P2P accounting evidence.",
+    "Purchase Journal remains a better next laboratory route because its current blocker is a concrete Journal Check rule set rather than hidden navigation state.",
+    "No Business Central or Playwright action was executed in P2P-027."
+  ],
+  "notProved": [
+    "No clean Purchase Journal Check was produced.",
+    "No Preview Posting was opened.",
+    "No posting, posted purchase invoice, vendor ledger, item ledger, value entry or G/L trace exists.",
+    "No German final proof."
+  ],
+  "flags": {
+    "noBcRun": true,
+    "noPlaywrightRun": true,
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true,
+    "usageLogRequired": true
+  },
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": false,
+  "safeToFinalizeState": false,
+  "requiresReview": false,
+  "statePatch": {},
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/p2p-027/P2P-027-result.json",
+    "playwright/projects/fibu-book5/evidence/p2p-027/README.md"
+  ],
+  "summary": "P2P-027 rejects Purchase Invoices as current RM-DEMO value-entry route and selects P2P-028 Purchase Journal negative amount / balance gate as the next practical P2P step.",
+  "nextCase": "P2P-028-PURCHASE-JOURNAL-NEGATIVE-AMOUNT-BALANCE-GATE",
+  "nextStep": "Run P2P-028 as controlled Purchase Journal preflight: correct negative amount and blank posting groups; Journal Check first; Preview only if clean and explicitly unlocked; no posting."
+}

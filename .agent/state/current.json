@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-29T00:40:00.000Z",
+  "updatedAt": "2026-06-29T00:55:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "p2p",
-  "activeCase": "P2P-027-PURCHASE-INVOICE-ROUTE-REJECTION-OR-RESET-HELPER",
-  "active_case_file": ".agent/state/cases/p2p-027-purchase-invoice-route-rejection-or-reset-helper.json",
-  "lastReferenceCase": "P2P-026-PURCHASE-INVOICE-CONTEXT-RESET-PROBE",
-  "lastReferenceCaseFile": ".agent/state/cases/p2p-026-purchase-invoice-context-reset-probe.json",
+  "activeCase": "P2P-028-PURCHASE-JOURNAL-NEGATIVE-AMOUNT-BALANCE-GATE",
+  "active_case_file": ".agent/state/cases/p2p-028-purchase-journal-negative-amount-balance-gate.json",
+  "lastReferenceCase": "P2P-027-PURCHASE-INVOICE-ROUTE-REJECTION-OR-RESET-HELPER",
+  "lastReferenceCaseFile": ".agent/state/cases/p2p-027-purchase-invoice-route-rejection-or-reset-helper.json",
   "mode": "bc-specialist-labor-book-production",
-  "requiresStrongModel": true,
+  "requiresStrongModel": false,
   "requiredPreflightChecks": [
     "agent:preflight",
     "agent:state:validate",
@@ -40,7 +40,7 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "Run P2P-027 as local route decision: reject Purchase Invoices for this lab branch or define one concrete bookmark/filter reset-helper hypothesis before any further value entry.",
+  "nextStep": "Run P2P-028 controlled Purchase Journal negative amount / balance gate. Do not open Purchase Invoices for value entry and do not post.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/bank-payments-labor-draft.md",
     "area": "bankPayments",
@@ -1386,7 +1386,7 @@
     "decision": "Approve a separate no-post Payment Journal preflight for Vendor Ledger document 108205. Do not use Payment Reconciliation Apply/Post for this target. BANK-018 may create exactly one scoped draft line, run Journal Check/open Apply Entries if reachable, and must cleanup or explicitly document keep status. Posting remains locked.",
     "nextStep": "BANK-018: controlled no-post Payment Journal preflight for 108205; do not post."
   },
-  "workType": "p2p-purchase-invoice-route-decision-after-context-reset-blocker",
+  "workType": "p2p-purchase-journal-negative-amount-balance-gate",
   "lastCompletedCase": "BANK-026-BANK-RECONCILIATION-BOOK-SYNC",
   "latestBank018": {
     "caseId": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
@@ -1739,5 +1739,31 @@
     "finalScreenshotNeeded": false,
     "nextCase": "P2P-027-PURCHASE-INVOICE-ROUTE-REJECTION-OR-RESET-HELPER",
     "nextStep": "Run local route decision before any further Purchase Invoice value-entry attempt."
+  },
+  "latestP2P027PurchaseInvoiceRouteDecision": {
+    "caseId": "P2P-027-PURCHASE-INVOICE-ROUTE-REJECTION-OR-RESET-HELPER",
+    "status": [
+      "labor-sufficient-for-book-draft",
+      "route-decision",
+      "helper-only",
+      "needs-german-final-rebuild"
+    ],
+    "sourceInstance": "MCP_1_20260210",
+    "sourceCompany": "RM-DEMO",
+    "bcRun": false,
+    "playwrightRun": false,
+    "posted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "apiShortcut": false,
+    "resultPath": "playwright/projects/fibu-book5/evidence/p2p-027/P2P-027-result.json",
+    "evidencePath": "playwright/projects/fibu-book5/evidence/p2p-027/",
+    "decision": "Purchase Invoices is rejected as current RM-DEMO P2P value-entry route because 107229 remains bound to page 9308 bookmark/list context. A reset helper is not worth building now.",
+    "selectedNextCase": "P2P-028-PURCHASE-JOURNAL-NEGATIVE-AMOUNT-BALANCE-GATE",
+    "bookEffect": "Clickguides should explain route switching: if a UI route is dominated by stale context, continue with a route that exposes concrete accounting validation errors.",
+    "migrationRelevance": "needed-for-german-final",
+    "mustRecreateInFinalSandbox": true,
+    "finalScreenshotNeeded": false,
+    "nextStep": "Run P2P-028 controlled Purchase Journal negative amount / balance gate. Do not post."
   }
 }
