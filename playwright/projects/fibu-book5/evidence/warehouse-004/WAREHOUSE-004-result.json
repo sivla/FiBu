@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "purpose": "warehouse-fra-zl-activation-preflight",
+  "caseId": "WAREHOUSE-004-FRA-ZL-ACTIVATION-PREFLIGHT",
+  "source": "playwright-ui-readonly-preflight",
+  "resultStatus": "observed",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "directUrlUsed": true,
+  "pageUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5703&filter=Location.Code%20IS%20%27%40*FRA-ZL*%27&dc=0&bookmark=17_DgAAAAJ7_0YAUgBBAC0AWgBM",
+  "bcRun": true,
+  "playwrightRun": true,
+  "posted": false,
+  "previewPosting": false,
+  "setupChanged": false,
+  "companySwitched": false,
+  "draftCreated": false,
+  "apiShortcut": false,
+  "location": {
+    "code": "FRA-ZL",
+    "pageId": 5703,
+    "locationVisible": true,
+    "locationContextVisible": true,
+    "instanceVisible": true,
+    "companyVisible": true
+  },
+  "setupFieldSignals": {
+    "binMandatoryVisible": true,
+    "requireReceiveVisible": true,
+    "requireShipmentVisible": true,
+    "requirePutAwayVisible": true,
+    "requirePickVisible": true,
+    "directedPutAwayAndPickVisible": true
+  },
+  "visibleSetupSignalCount": 6,
+  "expandActions": {
+    "showMoreClicked": true,
+    "warehouseFastTabClicked": true,
+    "binPoliciesFastTabClicked": true
+  },
+  "editSignals": [],
+  "dangerousActionSignals": [
+    "Require Shipment"
+  ],
+  "decision": "Warehouse setup fields are visible enough for a separate guarded setup-fit attempt.",
+  "proves": [
+    "Location FRA-ZL was opened directly by page URL without Tell-Me search.",
+    "The run stayed read-only: no posting, no preview, no draft, no setup change and no API shortcut.",
+    "At least one Warehouse activation field signal is visible in the Location context."
+  ],
+  "doesNotProve": [
+    "No Warehouse setup was changed.",
+    "No Bin was created.",
+    "No Warehouse document or activity was created.",
+    "No Warehouse posting was performed.",
+    "No German final Warehouse proof."
+  ],
+  "blockedBy": [],
+  "nextStep": "WAREHOUSE-005: guarded UI-first setup-fit for explicitly visible Warehouse fields only.",
+  "migrationRelevance": "needed-for-german-final",
+  "rebuildInstruction": "In German final sandbox, repeat the Location-card field visibility proof with the final German location and German screenshots before any Warehouse setup.",
+  "mustRecreateInFinalSandbox": true,
+  "sourceCompany": "RM-DEMO",
+  "finalScreenshotNeeded": true
+}

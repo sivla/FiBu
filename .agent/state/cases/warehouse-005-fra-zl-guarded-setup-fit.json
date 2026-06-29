@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "caseId": "WAREHOUSE-005-FRA-ZL-GUARDED-SETUP-FIT",
+  "title": "FRA-ZL guarded Warehouse setup fit",
+  "status": "planned",
+  "taskClass": "wizard_work",
+  "modelClass": "gpt-4-high",
+  "usageLogRequired": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "warehouse-fra-zl-guarded-setup-fit",
+  "sourceCase": "WAREHOUSE-004-FRA-ZL-ACTIVATION-PREFLIGHT",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/warehouse-004/WAREHOUSE-004-result.json",
+    "playwright/projects/fibu-book5/evidence/warehouse-004/010-fra-zl-location-compact-page-text.txt",
+    "playwright/projects/fibu-book5/evidence/warehouse-004/020-visible-buttons.json"
+  ],
+  "purpose": "Use the now-visible Location Card fields on FRA-ZL to perform a guarded UI-first Warehouse setup-fit only if exact field targets and before/after evidence are clear.",
+  "allowedActions": [
+    "business-central-execution",
+    "playwright-execution",
+    "direct-location-card-navigation",
+    "maximize-card-if-needed",
+    "expand-fasttabs-if-needed",
+    "read-fields",
+    "setup-change-with-before-after-proof",
+    "screenshot-and-page-text-evidence",
+    "cleanup-or-explicit-keep-documentation"
+  ],
+  "defaultLockedActions": [
+    "posting",
+    "preview-posting",
+    "warehouse-receipt-posting",
+    "warehouse-shipment-posting",
+    "delete-record",
+    "company-switch",
+    "api-shortcut"
+  ],
+  "forbiddenActions": [
+    "claim-german-final-proof",
+    "use-api-shortcut",
+    "post-warehouse-document",
+    "delete-warehouse-or-location-data",
+    "change-fields-not-visible-in-warehouse-004"
+  ],
+  "safetyGates": [
+    "instance-boundary-gate",
+    "company-context-rm-demo",
+    "ui-first-only",
+    "no-posting",
+    "only-visible-fields-from-warehouse-004",
+    "before-after-proof-required",
+    "stop-if-field-target-or-current-value-unclear"
+  ],
+  "candidateFieldsFromWarehouse004": [
+    "Require Receive",
+    "Require Shipment",
+    "Require Put-away",
+    "Require Pick",
+    "Bin Mandatory",
+    "Directed Put-away and Pick"
+  ],
+  "expectedEvidence": [
+    "Before values for visible Warehouse fields",
+    "Exact field targets and rationale",
+    "After values if changed",
+    "Clear no-posting/no-document/no-api flags"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-005/WAREHOUSE-005-result.json",
+  "nextStep": "Run WAREHOUSE-005 only with exact visible field targets and before/after proof; do not post.",
+  "createdAt": "2026-06-29T10:36:00+02:00",
+  "updatedAt": "2026-06-29T10:36:00+02:00"
+}

@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-29T09:54:15+02:00",
+  "updatedAt": "2026-06-29T10:36:00+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "warehouse",
-  "activeCase": "WAREHOUSE-003-WAREHOUSE-READINESS-FOLLOWUP-DECISION",
-  "active_case_file": ".agent/state/cases/warehouse-003-warehouse-readiness-followup-decision.json",
-  "lastReferenceCase": "FIXEDASSETS-302-FA-DEPRECIATION-PARK-NEXT-PROCESS-DECISION",
-  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-302-fa-depreciation-park-next-process-decision.json",
+  "activeCase": "WAREHOUSE-005-FRA-ZL-GUARDED-SETUP-FIT",
+  "active_case_file": ".agent/state/cases/warehouse-005-fra-zl-guarded-setup-fit.json",
+  "lastReferenceCase": "WAREHOUSE-004-FRA-ZL-ACTIVATION-PREFLIGHT",
+  "lastReferenceCaseFile": ".agent/state/cases/warehouse-004-fra-zl-activation-preflight.json",
   "mode": "bc-specialist-labor-book-production",
   "requiresStrongModel": false,
   "requiredPreflightChecks": [
@@ -40,7 +40,7 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "Run WAREHOUSE-003 local follow-up decision: review WAREHOUSE-001/002 evidence and choose the next controlled Warehouse lab route; do not create drafts or post in the decision case.",
+  "nextStep": "Run WAREHOUSE-005 guarded setup-fit: only visible Warehouse fields from WAREHOUSE-004, with before/after proof; no Warehouse posting.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/inventory-labor-draft.md",
     "area": "inventory",
@@ -2311,5 +2311,24 @@
     ],
     "nextCase": "WAREHOUSE-003-WAREHOUSE-READINESS-FOLLOWUP-DECISION",
     "updatedAt": "2026-06-29T09:54:15+02:00"
+  },
+  "latestWarehouse003": {
+    "caseId": "WAREHOUSE-003-WAREHOUSE-READINESS-FOLLOWUP-DECISION",
+    "status": "observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-003/WAREHOUSE-003-result.json",
+    "decision": "WAREHOUSE-001-ACTIVATION gate is converted into WAREHOUSE-004 UI-first activation preflight instead of another read-only loop.",
+    "nextCase": "WAREHOUSE-004-FRA-ZL-ACTIVATION-PREFLIGHT",
+    "updatedAt": "2026-06-29T10:22:00+02:00"
+  },
+  "latestWarehouse004": {
+    "caseId": "WAREHOUSE-004-FRA-ZL-ACTIVATION-PREFLIGHT",
+    "status": "observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-004/WAREHOUSE-004-result.json",
+    "decision": "Location Card page 5703 opened directly; Show more/Warehouse/Bin Policies expansion made all six Warehouse setup field signals visible.",
+    "visibleSetupSignalCount": 6,
+    "setupChanged": false,
+    "posted": false,
+    "nextCase": "WAREHOUSE-005-FRA-ZL-GUARDED-SETUP-FIT",
+    "updatedAt": "2026-06-29T10:36:00+02:00"
   }
 }
