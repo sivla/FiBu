@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "FIXEDASSETS-290-FA-DEPRECIATION-JOURNAL-ASSETS-DEFAULT-REVIEW",
+  "source": "local-analysis",
+  "resultStatus": "observed",
+  "runPlanId": "FIXEDASSETS-290-FA-DEPRECIATION-JOURNAL-ASSETS-DEFAULT-REVIEW-PLAN",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "proved": [
+    "FA-289 is sufficient as read-only Fixed Asset G/L Journals landing-page/context evidence.",
+    "FA-289 proves visible DEFAULT / Batch Name context in MCP_1_20260210 / RM-DEMO.",
+    "FA-289 preserved all safety flags: no OK, no Calculate Depreciation OK, no Preview Posting, no Post, no setup change, no company switch, no draft and no record edit.",
+    "No BC or Playwright execution was performed during FIXEDASSETS-290."
+  ],
+  "notProved": [
+    "FA-289 does not prove a visible FADEP depreciation journal line.",
+    "FA-289 does not prove a visible FA-CNC-01 depreciation journal line.",
+    "FA-289 does not prove HGB depreciation-book line context on the journal page.",
+    "FA-289 does not unlock Calculate Depreciation OK, Preview Posting or Post.",
+    "No German final proof exists."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-290/FIXEDASSETS-290-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-290/FIXEDASSETS-290-FA-DEPRECIATION-JOURNAL-ASSETS-DEFAULT-REVIEW.md",
+    ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-290-fa-depreciation-journal-assets-default-review.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json"
+  ],
+  "statePatch": {
+    "current": {
+      "activeArea": "fixedassets",
+      "activeCase": "FIXEDASSETS-293-FA-DEPRECIATION-JOURNAL-BATCH-FILTER-TRACE-READONLY",
+      "active_case_file": ".agent/state/cases/fixedassets-293-fa-depreciation-journal-batch-filter-trace-readonly.json",
+      "lastReferenceCase": "FIXEDASSETS-290-FA-DEPRECIATION-JOURNAL-ASSETS-DEFAULT-REVIEW",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-290-fa-depreciation-journal-assets-default-review.json",
+      "requiresStrongModel": false,
+      "nextStep": "FIXEDASSETS-293: run the read-only FA depreciation journal batch/filter trace; do not OK, Preview Posting or Post."
+    },
+    "coverage": {
+      "activeArea": "fixedassets",
+      "latestReviewCase": "FIXEDASSETS-290-FA-DEPRECIATION-JOURNAL-ASSETS-DEFAULT-REVIEW",
+      "latestPracticalCase": "FIXEDASSETS-289-FA-DEPRECIATION-JOURNAL-ASSETS-DEFAULT-READONLY",
+      "nextCase": "FIXEDASSETS-293-FA-DEPRECIATION-JOURNAL-BATCH-FILTER-TRACE-READONLY",
+      "depreciationReadiness": "FA-289 accepted as journal landing-page/context evidence only. It does not unlock Calculate Depreciation OK, Preview Posting or Post. Next: read-only batch/filter trace."
+    }
+  },
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-290/FIXEDASSETS-290-FA-DEPRECIATION-JOURNAL-ASSETS-DEFAULT-REVIEW.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-289/FIXEDASSETS-289-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-288/FIXEDASSETS-288-result.json"
+  ],
+  "warnings": [
+    "Do not cite FA-289 as proof for a visible FADEP / FA-CNC-01 / HGB depreciation journal line.",
+    "Do not unlock OK, Preview Posting or Post from FA-289 alone.",
+    "RM-DEMO evidence remains laboratory reference, not German final proof."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "reason": "Local review classified FA-289 as context-only evidence and chose the existing read-only FA-293 follow-up before any gated execution.",
+  "migrationRelevance": "needed-for-german-final",
+  "rebuildInstruction": "Recreate the same depreciation journal context trace in the future German target sandbox with German company setup, German accounts, German fixed asset setup and German screenshots.",
+  "mustRecreateInFinalSandbox": true,
+  "sourceCompany": "RM-DEMO",
+  "targetGermanCompanyImpact": "German final sandbox must recreate journal context, depreciation line, preview and posting proof before final book claims.",
+  "finalScreenshotNeeded": true,
+  "createdAt": "2026-06-29T06:12:51.683Z"
+}
