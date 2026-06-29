@@ -296,12 +296,12 @@
   "hardExclusions": {
     "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
   },
-  "updatedAt": "2026-06-29T19:20:00+02:00",
+  "updatedAt": "2026-06-29T20:05:00+02:00",
   "activeArea": "warehouse",
-  "currentBlock": "warehouse-source-po-line-location-cell-value-gate",
-  "latestPracticalCase": "WAREHOUSE-023-SOURCE-PO-LOCATION-FIELD-VISIBILITY-ROUTE",
+  "currentBlock": "warehouse-source-po-location-alternative-or-helper-decision",
+  "latestPracticalCase": "WAREHOUSE-024-SOURCE-PO-LINE-LOCATION-CELL-VALUE-GATE",
   "latestReviewCase": "WAREHOUSE-022-SOURCE-PURCHASE-ORDER-VALUE-ENTRY-BLOCKER-REVIEW",
-  "nextCase": "WAREHOUSE-022-SOURCE-PURCHASE-ORDER-VALUE-ENTRY-BLOCKER-REVIEW",
+  "nextCase": "WAREHOUSE-025-SOURCE-PO-LOCATION-ALTERNATIVE-OR-HELPER-DECISION",
   "latestBank013": {
     "caseId": "BANK-013-CONTROLLED-NEXT-EVIDENCE-STEP",
     "status": [
@@ -1402,11 +1402,11 @@
     "nextCase": "FIXEDASSETS-298-FA-DEPRECIATION-BLOCKER-BOOK-SYNC",
     "updatedAt": "2026-06-29T07:09:31.588Z"
   },
-  "nextStep": "WAREHOUSE-024: attempt a guarded Location Code line-cell value route on the visible RAW-STEEL row; stop before release.",
+  "nextStep": "WAREHOUSE-025: decide the next non-repetitive source Purchase Order Location route; prefer a helper improvement or alternative UI route over another blind cell edit.",
   "warehouse": {
     "chapter": "Kapitel 13",
     "status": "in-progress",
-    "currentBlock": "warehouse-source-document-selection-no-post",
+    "currentBlock": "source-po-location-value-route-blocked",
     "latestEvidenceCases": [
       "WAREHOUSE-006",
       "WAREHOUSE-007",
@@ -1420,8 +1420,8 @@
       "WAREHOUSE-015",
       "WAREHOUSE-016"
     ],
-    "latestPracticalCase": "WAREHOUSE-016-FRESH-DRAFT-IMMEDIATE-GET-SOURCE-NO-CONFIRM",
-    "nextCase": "WAREHOUSE-017-SOURCE-DOCUMENT-CANDIDATE-SELECT-NO-POST",
+    "latestPracticalCase": "WAREHOUSE-024-SOURCE-PO-LINE-LOCATION-CELL-VALUE-GATE",
+    "nextCase": "WAREHOUSE-025-SOURCE-PO-LOCATION-ALTERNATIVE-OR-HELPER-DECISION",
     "blockerStatus": "fresh-draft-get-source-route-opened-source-dialog-no-confirmation",
     "employeeSetup": {
       "userId": "KAJETAN.KALICKI",
@@ -1603,5 +1603,30 @@
     "migrationRelevance": "needed-for-german-final",
     "mustRecreateInFinalSandbox": true,
     "updatedAt": "2026-06-29T19:20:00+02:00"
+  },
+  "latestWarehouse024": {
+    "caseId": "WAREHOUSE-024-SOURCE-PO-LINE-LOCATION-CELL-VALUE-GATE",
+    "status": "blocked",
+    "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-024/WAREHOUSE-024-result.json",
+    "sourceDocumentNo": "106055",
+    "decision": "WAREHOUSE-024 attempted one guarded Location Code line-cell value route on RAW-STEEL in Purchase Order 106055. FRA-ZL did not persist visibly; RAW-STEEL still shows ATLANTA, GA. Release and Warehouse Receipt remain locked.",
+    "bcRun": true,
+    "playwrightRun": true,
+    "posted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "dataChanged": false,
+    "released": false,
+    "received": false,
+    "invoiced": false,
+    "locationSet": false,
+    "locationStillAtlanta": true,
+    "blockedBy": [
+      "fra-zl-not-visible-after-single-guarded-line-cell-route"
+    ],
+    "nextCase": "WAREHOUSE-025-SOURCE-PO-LOCATION-ALTERNATIVE-OR-HELPER-DECISION",
+    "migrationRelevance": "needed-for-german-final",
+    "mustRecreateInFinalSandbox": true,
+    "updatedAt": "2026-06-29T20:05:00+02:00"
   }
 }

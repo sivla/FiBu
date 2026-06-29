@@ -1,0 +1,120 @@
+{
+  "schemaVersion": 1,
+  "purpose": "warehouse-source-po-line-location-cell-value-gate",
+  "caseId": "WAREHOUSE-024-SOURCE-PO-LINE-LOCATION-CELL-VALUE-GATE",
+  "source": "playwright-ui-line-cell-value-gate",
+  "resultStatus": "blocked",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "bcRun": true,
+  "playwrightRun": true,
+  "posted": false,
+  "previewPosting": false,
+  "setupChanged": false,
+  "dataChanged": false,
+  "companySwitched": false,
+  "apiShortcut": false,
+  "bookChanged": false,
+  "released": false,
+  "received": false,
+  "invoiced": false,
+  "warehouseSourceConfirmed": false,
+  "sourceDocumentType": "Purchase Order",
+  "sourceDocumentNo": "106055",
+  "targetItem": "RAW-STEEL",
+  "targetLocationCode": "FRA-ZL",
+  "contextOk": true,
+  "initialUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=50&filter='Purchase Header'.'No.' IS '106055'&dc=0&bookmark=1D_JgAAAACLAQAAAAJ7BjEAMAA2ADAANQA1",
+  "layoutAttempts": [
+    {
+      "clicked": true,
+      "role": "button",
+      "label": "Maximize|Maximieren|Expand|Erweitern|Open in full screen|Vollbild"
+    },
+    {
+      "clicked": true,
+      "role": "button",
+      "label": "Wide layout|Breite Layoutansicht|Layout"
+    },
+    {
+      "clicked": false,
+      "label": "Focus mode|Fokusmodus"
+    },
+    {
+      "clicked": true,
+      "role": "button",
+      "label": "Show more|Mehr anzeigen|Mehr anzeigen\\.\\.\\.|Mehr|Weitere anzeigen"
+    }
+  ],
+  "attempt": {
+    "status": "observed",
+    "route": "single-guarded-location-cell-click-type-tab",
+    "targetValue": "FRA-ZL",
+    "beforeRowText": "Item RAW-STEEL Stahltraeger PCS 2.500,00 ATLANTA, GA FURNITURE 0,00 0,00 0,00 0,00 0 0 01.01.2027 02.01.2027 0",
+    "beforeCellText": "",
+    "locationHeader": {
+      "text": "Location Code",
+      "aria": "",
+      "title": "",
+      "x": 823,
+      "y": 959,
+      "width": 102,
+      "height": 56
+    },
+    "targetCell": {
+      "text": "",
+      "aria": "",
+      "title": "",
+      "x": 823,
+      "y": 1015,
+      "width": 102,
+      "height": 29
+    },
+    "details": [
+      "target x=874 y=1029 header=Location Code before=",
+      "after-cell=",
+      "after-row=Item RAW-STEEL Stahltraeger PCS 2.500,00 ATLANTA, GA FURNITURE 0,00 0,00 0,00 0,00 0 0 01.01.2027 02.01.2027 0"
+    ],
+    "afterCellText": "",
+    "afterRowText": "Item RAW-STEEL Stahltraeger PCS 2.500,00 ATLANTA, GA FURNITURE 0,00 0,00 0,00 0,00 0 0 01.01.2027 02.01.2027 0"
+  },
+  "rawSteelLine": "RAW-STEEL Stahltraeger PCS 2.500,00 ATLANTA, GA FURNITURE",
+  "locationSet": false,
+  "locationStillAtlanta": true,
+  "blockedBy": [
+    "fra-zl-not-visible-after-single-guarded-line-cell-route"
+  ],
+  "proved": [
+    "Purchase Order 106055 opened directly by Page 50 filter URL in MCP_1_20260210 / RM-DEMO.",
+    "A single guarded Location Code line-cell value route was attempted on the visible RAW-STEEL row.",
+    "FRA-ZL is not visible on the RAW-STEEL row after the guarded value route.",
+    "No Release, Receive, Invoice, Preview Posting, Post, Warehouse Receipt source confirmation, setup change, company switch, API shortcut or book change occurred."
+  ],
+  "notProved": [
+    "Purchase Order 106055 is not released.",
+    "Warehouse Receipt source selection is not performed.",
+    "Warehouse Receipt posting and Put-away are not proven.",
+    "Warehouse/Item/Value entry traces are not proven.",
+    "No German final Warehouse proof exists."
+  ],
+  "flags": {
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true,
+    "noReceive": true,
+    "noInvoice": true,
+    "noRelease": true,
+    "noWarehouseReceiptSourceConfirmation": true
+  },
+  "migrationRelevance": "needed-for-german-final",
+  "rebuildInstruction": "In German final sandbox, recreate a source Purchase Order and prove Location Code on the item line before release and Warehouse Receipt source selection; do not reuse RM-DEMO as final proof.",
+  "mustRecreateInFinalSandbox": true,
+  "sourceCompany": "RM-DEMO",
+  "targetGermanCompanyImpact": "German final Warehouse proof still needs German source Purchase Order, release, Warehouse Receipt source selection, receipt posting and ledger trace.",
+  "finalScreenshotNeeded": true,
+  "nextCase": "WAREHOUSE-025-SOURCE-PO-LOCATION-ALTERNATIVE-OR-HELPER-DECISION",
+  "nextStep": "WAREHOUSE-025: choose an alternative UI/helper route for Purchase Order line Location Code; do not repeat this single guarded cell route blindly."
+}

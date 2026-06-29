@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "caseId": "WAREHOUSE-025-SOURCE-PO-LOCATION-ALTERNATIVE-OR-HELPER-DECISION",
+  "title": "Source Purchase Order Location alternative or helper decision",
+  "status": "planned",
+  "taskClass": "judge_work",
+  "modelClass": "gpt-5.5-low",
+  "usageLogRequired": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "warehouse-source-po-location-alternative-or-helper-decision",
+  "sourceCase": "WAREHOUSE-024-SOURCE-PO-LINE-LOCATION-CELL-VALUE-GATE",
+  "sourceDocumentType": "Purchase Order",
+  "sourceDocumentNo": "106055",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/warehouse-024/WAREHOUSE-024-result.json",
+    "playwright/projects/fibu-book5/evidence/warehouse-024/030-value-attempt.json",
+    "playwright/projects/fibu-book5/evidence/warehouse-024/060-after-geometry.json"
+  ],
+  "purpose": "Choose the next non-repetitive route for making a Warehouse-eligible source Purchase Order: helper improvement, an alternative standard UI route, or a new controlled source document route. Do not repeat the WAREHOUSE-024 single guarded Location Code cell route blindly.",
+  "allowedActions": [
+    "read-warehouse-020-to-024-evidence",
+    "compare-non-repeated-ui-routes",
+    "propose-helper-improvement-if-current-blocker-is-reusable",
+    "create-next-execute-case-if-route-is-clear",
+    "write-evidence",
+    "update-state"
+  ],
+  "defaultLockedActions": [
+    "purchase-order-release",
+    "purchase-order-receive",
+    "purchase-order-invoice",
+    "warehouse-receipt-source-confirmation",
+    "warehouse-receipt-posting",
+    "warehouse-putaway-posting",
+    "preview-posting",
+    "posting",
+    "setup-change",
+    "company-switch",
+    "api-shortcut",
+    "delete-draft"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "claim-german-final-proof",
+    "use-api-shortcut-without-explicit-case-permission",
+    "repeat-warehouse-024-single-cell-route-blindly",
+    "post-warehouse-document"
+  ],
+  "decisionInputs": {
+    "latestObservedBlocker": [
+      "fra-zl-not-visible-after-single-guarded-line-cell-route"
+    ],
+    "locationSet": false,
+    "rawSteelLine": "RAW-STEEL Stahltraeger PCS 2.500,00 ATLANTA, GA FURNITURE",
+    "attemptRoute": "single-guarded-location-cell-click-type-tab",
+    "attemptStatus": "observed"
+  },
+  "candidateRoutes": [
+    "Improve a reusable BC subform cell helper only if the WAREHOUSE-024 evidence shows a generalizable active-editor gap.",
+    "Try a different standard UI route such as line details/card drilldown or explicit line menu action if visible from the Purchase Order context.",
+    "Create a fresh source Purchase Order route that sets Location before or during line creation without using the failed post-insertion Location Code display cell.",
+    "If RM-DEMO defaults continue to force ATLANTA, GA, plan a documented lab-company or item/vendor default setup route inside MCP_1_20260210."
+  ],
+  "safetyGates": [
+    "no-blind-repeat-of-warehouse-024-route",
+    "no-release-until-location-fra-zl-is-visible-on-source-line",
+    "no-warehouse-source-selection-until-source-po-is-eligible",
+    "no-preview-posting",
+    "no-posting",
+    "document-migration-relevance"
+  ],
+  "expectedEvidence": [
+    "route decision based on WAREHOUSE-020 to WAREHOUSE-024 evidence",
+    "explicit next execute case or helper improvement gate",
+    "clear no-release/no-post/no-preview flags"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": false,
+  "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-025/WAREHOUSE-025-result.json",
+  "nextStep": "WAREHOUSE-025: decide the next non-repetitive source Purchase Order Location route; prefer a helper improvement or alternative UI route over another blind cell edit.",
+  "createdAt": "2026-06-29T20:05:00+02:00",
+  "updatedAt": "2026-06-29T20:05:00+02:00"
+}
