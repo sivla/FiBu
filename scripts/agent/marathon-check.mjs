@@ -62,7 +62,7 @@ const documentedHardStops = [
   ...(lastRun?.hardStops ?? [])
 ].map(normalize);
 
-const packageClassifications = packages.map((entry) => {
+let packageClassifications = packages.map((entry) => {
   const text = normalize([entry.id, entry.type, entry.result, entry.signal, ...(entry.signals ?? [])].join(' '));
   const structuredSignalText = normalize([entry.id, entry.type, entry.signal, ...(entry.signals ?? [])].join(' '));
   const rawExecute =
@@ -97,6 +97,28 @@ const packageClassifications = packages.map((entry) => {
   };
 });
 
+const queueItems = Array.isArray(marathonQueue?.items) ? marathonQueue.items : [];
+const openQueueItems = queueItems
+  .filter((entry) => ['pending', 'running'].includes(normalize(entry.status)))
+  .sort((left, right) => (left.order ?? 9999) - (right.order ?? 9999));
+const blockedQueueItems = queueItems.filter((entry) => normalize(entry.status) === 'blocked');
+const doneQueueItems = queueItems.filter((entry) => normalize(entry.status) === 'done');
+const nextQueueItem = openQueueItems[0] ?? null;
+const queueNotEmpty = openQueueItems.length > 0;
+const noEffectiveBusinessCentralActions = marathonQueue?.noEffectiveBusinessCentralActions === true;
+
+if (noEffectiveBusinessCentralActions) {
+  packageClassifications = doneQueueItems.map((entry) => ({
+    id: entry.id ?? 'unknown',
+    type: entry.category ?? '',
+    execute: false,
+    readOnly: entry.mayRunPlaywright === true,
+    lightExecute: false,
+    highImpact: false,
+    queueStatus: entry.status
+  }));
+}
+
 const progressPackages = packageClassifications.length;
 const executePackageEntries = packageClassifications.filter((entry) => entry.execute);
 const executePackages = executePackageEntries.length;
@@ -110,17 +132,13 @@ const minProgressPackagesReached = progressPackages >= marathon.minProgressPacka
 const minExecutePackagesReached = executePackages >= marathon.minExecutePackages;
 const minHighImpactExecutePackagesReached = highImpactExecutePackages >= (marathon.minHighImpactExecutePackages ?? 0);
 const onlyLightExecute = executePackages > 0 && highImpactExecutePackages === 0 && lightExecutePackages === executePackages;
-const nextBestLevers = Array.isArray(summary?.nextBestLevers) ? summary.nextBestLevers : [];
-const nextExecuteLevers = nextBestLevers.length > 0 ? nextBestLevers : marathon.nextExecuteLevers ?? [];
+const nextBestLevers = noEffectiveBusinessCentralActions
+  ? nextQueueItem ? [nextQueueItem.id] : []
+  : Array.isArray(summary?.nextBestLevers) ? summary.nextBestLevers : [];
+const nextExecuteLevers = noEffectiveBusinessCentralActions
+  ? []
+  : nextBestLevers.length > 0 ? nextBestLevers : marathon.nextExecuteLevers ?? [];
 const nextExecuteLeversExist = nextExecuteLevers.length > 0;
-const queueItems = Array.isArray(marathonQueue?.items) ? marathonQueue.items : [];
-const openQueueItems = queueItems
-  .filter((entry) => ['pending', 'running'].includes(normalize(entry.status)))
-  .sort((left, right) => (left.order ?? 9999) - (right.order ?? 9999));
-const blockedQueueItems = queueItems.filter((entry) => normalize(entry.status) === 'blocked');
-const doneQueueItems = queueItems.filter((entry) => normalize(entry.status) === 'done');
-const nextQueueItem = openQueueItems[0] ?? null;
-const queueNotEmpty = openQueueItems.length > 0;
 const hardStopDocumented = documentedHardStops.some((stop) => hardStopConditions.map(normalize).includes(stop));
 const finalReportAllowed =
   hardStopDocumented ||
@@ -137,9 +155,10 @@ const output = {
   schemaVersion: 1,
   purpose: 'autopilot-marathon-check',
   active: true,
-  mode: marathon.mode,
+  mode: noEffectiveBusinessCentralActions ? marathonQueue.mode : marathon.mode,
   instance: marathon.instance,
-  summaryPath,
+  summaryPath: noEffectiveBusinessCentralActions ? '.agent/state/marathon_queue.json' : summaryPath,
+  noEffectiveBusinessCentralActions,
   progressPackages,
   executePackages,
   readOnlyPackages,

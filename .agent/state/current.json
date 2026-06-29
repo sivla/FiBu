@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-30T04:25:00.000+02:00",
+  "updatedAt": "2026-06-30T04:55:00.000+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-playwright-script-helper-inventory-prep",
-  "activeCase": "PREP-018-PLAYWRIGHT-SCRIPT-AND-HELPER-INVENTORY",
-  "active_case_file": ".agent/state/cases/prep-018-playwright-script-and-helper-inventory.json",
+  "activeArea": "universaarl-autopilot-efficiency-prep",
+  "activeCase": "PREP-019-AUTOPILOT-EFFICIENCY-IMPROVEMENT",
+  "active_case_file": ".agent/state/cases/prep-019-autopilot-efficiency-improvement.json",
   "lastReferenceCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
   "lastReferenceCaseFile": ".agent/state/cases/warehouse-031-warehouse-source-route-park-or-setup-fit-decision.json",
   "mode": "universaarl-readonly-prep-until-super-permissions",
@@ -48,7 +48,7 @@
     "preview-posting-until-target-company-exists",
     "api-shortcut-for-company-creation"
   ],
-  "nextStep": "Continue with PREP-019-AUTOPILOT-EFFICIENCY-IMPROVEMENT. Company creation remains parked until SUPER/company-create permissions are confirmed.",
+  "nextStep": "Continue with PREP-020-UNIVERSAARL-DATASET-BLUEPRINT. Company creation remains parked until SUPER/company-create permissions are confirmed.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -3643,58 +3643,58 @@
     "updatedAt": "2026-06-29T20:43:31.482Z"
   },
   "lastRun": {
-    "caseId": "PREP-018-PLAYWRIGHT-SCRIPT-AND-HELPER-INVENTORY",
+    "caseId": "PREP-019-AUTOPILOT-EFFICIENCY-IMPROVEMENT",
     "status": "done",
-    "updatedAt": "2026-06-30T04:25:00.000+02:00",
-    "reason": "PREP-018 classified Playwright tests, npm scripts and reusable helpers so active Universaarl work does not accidentally run legacy RM/MCP tests.",
-    "resultFile": "playwright/projects/fibu-book5/evidence/prep-018-playwright-script-and-helper-inventory/PREP-018-result.json"
+    "updatedAt": "2026-06-30T04:55:00.000+02:00",
+    "reason": "PREP-019 fixed agent:marathon:check so the active no-effective-BC PREP queue suppresses stale Target execute levers while Company Creation is parked.",
+    "resultFile": "playwright/projects/fibu-book5/evidence/prep-019-autopilot-efficiency-improvement/PREP-019-result.json"
   },
   "nextStepDecisionCard": {
-    "currentCase": "PREP-018-PLAYWRIGHT-SCRIPT-AND-HELPER-INVENTORY",
-    "plannedNextCaseBeforeReview": "PREP-018-PLAYWRIGHT-SCRIPT-AND-HELPER-INVENTORY",
-    "lastEvidenceSummary": "PREP-017 aligned active repo documentation, coverage and catalog pointers with the Universaarl PREP queue.",
+    "currentCase": "PREP-019-AUTOPILOT-EFFICIENCY-IMPROVEMENT",
+    "plannedNextCaseBeforeReview": "PREP-019-AUTOPILOT-EFFICIENCY-IMPROVEMENT",
+    "lastEvidenceSummary": "PREP-018 classified active Universaarl Playwright assets versus legacy RM/MCP tests and exposed stale marathon execute-lever noise.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The repo contains many legacy tests and only a small active target lane. Without this classification, later runs could accidentally execute RM/MCP scripts as active Universaarl tests.",
+    "reason": "The active check was misleading before this fix and could steer the Autopilot toward parked Company Creation routes.",
     "lookaheadReviewed": [
       {
-        "caseId": "PREP-019-AUTOPILOT-EFFICIENCY-IMPROVEMENT",
-        "status": "ready-next",
-        "reason": "The inventory exposed that automation output still surfaces old execute levers while Company Creation is permission-parked."
-      },
-      {
         "caseId": "PREP-020-UNIVERSAARL-DATASET-BLUEPRINT",
-        "status": "ready-after-current",
-        "reason": "Dataset details should follow after the run-selection noise is reduced."
+        "status": "ready-next",
+        "reason": "After run-selection noise is reduced, the dataset blueprint is the best next preparation for a data-rich Universaarl company."
       },
       {
         "caseId": "PREP-021-UNIVERSAARL-USECASE-BACKLOG-CURATION",
         "status": "ready-after-current",
-        "reason": "Usecase backlog curation should use the clarified script/helper baseline."
+        "reason": "Usecase curation should use the clarified dataset assumptions."
       },
       {
         "caseId": "PREP-022-ATLAS-COVERAGE-QUALITY-AUDIT",
         "status": "ready-after-current",
-        "reason": "Atlas quality can use the helper/test classification."
+        "reason": "Atlas quality improves after data/usecase scope is sharper."
+      },
+      {
+        "caseId": "PREP-023-BOOK-CHAPTER-STIMMIGKEIT-AUDIT",
+        "status": "ready-after-current",
+        "reason": "Book flow audit benefits from a clearer dataset and usecase sequence."
       },
       {
         "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
         "status": "blocked",
-        "reason": "Still waiting for SUPER/company-create permissions."
+        "reason": "Still parked until SUPER/company-create permissions are confirmed."
       }
     ],
     "queueChangesMade": [
-      "Marked PREP-018 done.",
-      "Selected PREP-019 as next safe prep case.",
+      "Marked PREP-019 done.",
+      "Selected PREP-020 as next safe prep case.",
       "Kept TARGET-009 parked until SUPER/company-create permissions are confirmed."
     ],
-    "selectedNextCase": "PREP-019-AUTOPILOT-EFFICIENCY-IMPROVEMENT",
-    "whySelectedNextCaseIsBest": "The project now knows which Playwright assets are active or legacy; the next highest-value work is reducing agent run-selection noise while effective BC actions are locked.",
+    "selectedNextCase": "PREP-020-UNIVERSAARL-DATASET-BLUEPRINT",
+    "whySelectedNextCaseIsBest": "A data-rich company plan prevents the later Universaarl build from producing thin screenshots, weak filter examples and incomplete process evidence.",
     "risksBeforeNextCase": [
-      "Do not weaken permission blockers.",
-      "Do not remove evidence discipline in the name of efficiency."
+      "Do not create data in Business Central before UNIVERSAARL-DE exists.",
+      "Do not overfit data names to old RM-DEMO examples."
     ],
     "requiredPreparation": [
-      "Read scripts/agent/marathon-check.mjs and current queue behavior."
+      "Read UNIVERSAARL-DATASET-BLUEPRINT.md and UNIVERSAARL-DATA-RICHNESS-PLAN.md."
     ]
   },
   "permissionBlocker": {
@@ -3714,10 +3714,10 @@
     "activatedAt": "2026-06-29T21:25:26.553Z",
     "reason": "UNIVERSAARL-DE cannot be created until required permissions exist; productive work continues through repo/book/source/read-only prep cases.",
     "firstCase": "PREP-001-PERMISSION-BLOCKER-DOCUMENTATION",
-    "nextCase": "PREP-019-AUTOPILOT-EFFICIENCY-IMPROVEMENT",
+    "nextCase": "PREP-020-UNIVERSAARL-DATASET-BLUEPRINT",
     "noEffectiveBcActions": true,
-    "lastCompletedCase": "PREP-018-PLAYWRIGHT-SCRIPT-AND-HELPER-INVENTORY",
-    "updatedAt": "2026-06-30T04:25:00.000+02:00"
+    "lastCompletedCase": "PREP-019-AUTOPILOT-EFFICIENCY-IMPROVEMENT",
+    "updatedAt": "2026-06-30T04:55:00.000+02:00"
   },
   "latestCompanyCreationBookDraft": {
     "updatedAt": "2026-06-29T21:34:46.267Z",
@@ -3733,8 +3733,8 @@
     "noPlaywrightExecution": true,
     "nextCase": "PREP-003-PLAYTHRU-READONLY-UI-LOOK-AND-FEEL-MAP"
   },
-  "lastCompletedCaseFile": ".agent/state/cases/prep-018-playwright-script-and-helper-inventory.json",
-  "lastResultPath": "playwright/projects/fibu-book5/evidence/prep-018-playwright-script-and-helper-inventory/PREP-018-result.json",
+  "lastCompletedCaseFile": ".agent/state/cases/prep-019-autopilot-efficiency-improvement.json",
+  "lastResultPath": "playwright/projects/fibu-book5/evidence/prep-019-autopilot-efficiency-improvement/PREP-019-result.json",
   "latestReadonlyUiLookAndFeelMap": {
     "caseId": "PREP-003-PLAYTHRU-READONLY-UI-LOOK-AND-FEEL-MAP",
     "status": "prep-done",
@@ -3771,16 +3771,16 @@
     "nextCase": "PREP-006-BOOKMASTER-UNIVERSAARL-FALLSTUDIE-REWRITE-PLAN",
     "updatedAt": "2026-06-29T21:54:54.534Z"
   },
-  "activeCaseFile": ".agent/state/cases/prep-018-playwright-script-and-helper-inventory.json",
-  "previousCase": "PREP-017-REPO-DOCUMENTATION-CONSISTENCY-AUDIT",
-  "nextCase": "PREP-019-AUTOPILOT-EFFICIENCY-IMPROVEMENT",
+  "activeCaseFile": ".agent/state/cases/prep-019-autopilot-efficiency-improvement.json",
+  "previousCase": "PREP-018-PLAYWRIGHT-SCRIPT-AND-HELPER-INVENTORY",
+  "nextCase": "PREP-020-UNIVERSAARL-DATASET-BLUEPRINT",
   "latestPrepCase": {
-    "caseId": "PREP-018-PLAYWRIGHT-SCRIPT-AND-HELPER-INVENTORY",
+    "caseId": "PREP-019-AUTOPILOT-EFFICIENCY-IMPROVEMENT",
     "status": "done",
-    "resultPath": "playwright/projects/fibu-book5/evidence/prep-018-playwright-script-and-helper-inventory/PREP-018-result.json",
-    "completedAt": "2026-06-30T04:25:00.000+02:00",
-    "summary": "Playwright scripts and helpers classified: 306 tests, 307 fibu scripts, 9 active target tests, 4 live-smoke read-only candidates; legacy process suites remain pattern sources only.",
-    "nextCase": "PREP-019-AUTOPILOT-EFFICIENCY-IMPROVEMENT"
+    "resultPath": "playwright/projects/fibu-book5/evidence/prep-019-autopilot-efficiency-improvement/PREP-019-result.json",
+    "completedAt": "2026-06-30T04:55:00.000+02:00",
+    "summary": "agent:marathon:check now uses the active PREP queue as run truth when noEffectiveBusinessCentralActions=true and no longer surfaces stale TARGET-006 execute levers.",
+    "nextCase": "PREP-020-UNIVERSAARL-DATASET-BLUEPRINT"
   },
   "latestBookmasterFallstudieRewritePlan": {
     "status": "prep-progress",
@@ -3975,5 +3975,15 @@
     "noPlaywrightRun": true,
     "noFinalGermanClaim": true,
     "nextCase": "PREP-019-AUTOPILOT-EFFICIENCY-IMPROVEMENT"
+  },
+  "latestAutopilotEfficiencyImprovement": {
+    "caseId": "PREP-019-AUTOPILOT-EFFICIENCY-IMPROVEMENT",
+    "status": "done",
+    "changedScript": "scripts/agent/marathon-check.mjs",
+    "resultPath": "playwright/projects/fibu-book5/evidence/prep-019-autopilot-efficiency-improvement/PREP-019-result.json",
+    "noBcRun": true,
+    "noPlaywrightRun": true,
+    "keyLearning": "When the active queue forbids effective BC actions, PREP queue state must outrank stale target marathon summaries for next-lever selection.",
+    "nextCase": "PREP-020-UNIVERSAARL-DATASET-BLUEPRINT"
   }
 }

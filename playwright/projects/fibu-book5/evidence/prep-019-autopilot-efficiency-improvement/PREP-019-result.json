@@ -1,20 +1,24 @@
 {
   "schemaVersion": 1,
-  "runId": "PREP-019-AUTOPILOT-EFFICIENCY-IMPROVEMENT",
+  "purpose": "autopilot-result-normalized",
   "caseId": "PREP-019-AUTOPILOT-EFFICIENCY-IMPROVEMENT",
-  "status": "done",
-  "instance": "playthru",
-  "company": "UNIVERSAARL-DE-planned-not-yet-created",
-  "targetCompany": "UNIVERSAARL-DE-planned-not-yet-created",
-  "bcRun": false,
-  "playwrightRun": false,
-  "posted": false,
-  "previewPosting": false,
-  "setupChange": false,
-  "companyCreated": false,
-  "bookChanged": false,
-  "bookDraftChanged": false,
-  "summary": "PREP-019 improved agent:marathon:check so it follows the active PREP/read-only queue while Company Creation is parked.",
+  "source": "local-analysis",
+  "resultStatus": "observed",
+  "runPlanId": "PREP-019-AUTOPILOT-EFFICIENCY-IMPROVEMENT-PLAN",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-medium",
+  "proved": [
+    "agent:marathon:check now reports the active PREP queue mode when noEffectiveBusinessCentralActions=true.",
+    "Old Target execute levers are suppressed while Company Creation is parked.",
+    "The next useful lever is the next PREP queue item, not TARGET-006.",
+    "The check still blocks final reporting while the PREP queue has open items."
+  ],
+  "notProved": [
+    "No Business Central UI behavior was observed.",
+    "No Playwright test was executed.",
+    "UNIVERSAARL-DE was not created.",
+    "No book claim or final German proof was created."
+  ],
   "changedFiles": [
     "scripts/agent/marathon-check.mjs",
     "playwright/projects/fibu-book5/BC-REPO-INVENTORY.md",
@@ -25,16 +29,28 @@
     "playwright/projects/fibu-book5/evidence/prep-019-autopilot-efficiency-improvement/README.md",
     "playwright/projects/fibu-book5/evidence/prep-019-autopilot-efficiency-improvement/PREP-019-result.json"
   ],
-  "evidence": [
-    "playwright/projects/fibu-book5/evidence/prep-019-autopilot-efficiency-improvement/README.md",
-    "playwright/projects/fibu-book5/evidence/prep-019-autopilot-efficiency-improvement/PREP-019-result.json"
-  ],
+  "statePatch": {},
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/prep-019-autopilot-efficiency-improvement/README.md",
-    "playwright/projects/fibu-book5/evidence/prep-019-autopilot-efficiency-improvement/PREP-019-result.json"
+    "playwright/projects/fibu-book5/evidence/prep-019-autopilot-efficiency-improvement/README.md"
   ],
-  "nextStep": "Continue with PREP-020-UNIVERSAARL-DATASET-BLUEPRINT. Company creation remains parked until SUPER/company-create permissions are confirmed.",
-  "nextCase": "PREP-020-UNIVERSAARL-DATASET-BLUEPRINT",
+  "warnings": [],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": false,
+  "reason": "Local agent efficiency improvement only; state is updated directly as part of the committed PREP case, not via state-finalize --write.",
+  "flags": {
+    "noBusinessCentralExecution": true,
+    "noPlaywrightExecution": true,
+    "noWriteInBusinessCentral": true,
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noCompanyCreated": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
   "nextStepDecisionCard": {
     "currentCase": "PREP-019-AUTOPILOT-EFFICIENCY-IMPROVEMENT",
     "plannedNextCaseBeforeReview": "PREP-019-AUTOPILOT-EFFICIENCY-IMPROVEMENT",
@@ -82,12 +98,5 @@
     "requiredPreparation": [
       "Read UNIVERSAARL-DATASET-BLUEPRINT.md and UNIVERSAARL-DATA-RICHNESS-PLAN.md."
     ]
-  },
-  "updatedAt": "2026-06-30T04:55:00.000+02:00",
-  "noBusinessCentralExecution": true,
-  "noPlaywrightExecution": true,
-  "noBookChange": true,
-  "noSetupChange": true,
-  "noPreviewPosting": true,
-  "noPosting": true
+  }
 }

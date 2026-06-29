@@ -373,7 +373,7 @@
     {
       "id": "PREP-019-AUTOPILOT-EFFICIENCY-IMPROVEMENT",
       "order": 19,
-      "status": "pending",
+      "status": "done",
       "category": "agent",
       "expectedImpact": "prep-progress",
       "mayWorkEffectively": false,
@@ -383,7 +383,10 @@
       "sourceCompany": "UNIVERSAARL-DE-planned-not-yet-created",
       "targetWorld": "Universaarl",
       "noFinalGermanClaimWithoutUniversaarlEvidence": true,
-      "lookaheadStatus": "ready-next"
+      "lookaheadStatus": "done",
+      "completedAt": "2026-06-30T04:55:00.000+02:00",
+      "result": "agent:marathon:check now prioritizes the no-effective-BC PREP queue over stale target execute levers.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/prep-019-autopilot-efficiency-improvement/PREP-019-result.json"
     },
     {
       "id": "PREP-020-UNIVERSAARL-DATASET-BLUEPRINT",
@@ -398,7 +401,7 @@
       "sourceCompany": "UNIVERSAARL-DE-planned-not-yet-created",
       "targetWorld": "Universaarl",
       "noFinalGermanClaimWithoutUniversaarlEvidence": true,
-      "lookaheadStatus": "ready-after-current"
+      "lookaheadStatus": "ready-next"
     },
     {
       "id": "PREP-021-UNIVERSAARL-USECASE-BACKLOG-CURATION",
@@ -551,7 +554,7 @@
       "lookaheadStatus": "ready-after-current"
     }
   ],
-  "lastUpdated": "2026-06-30T04:25:00.000+02:00",
+  "lastUpdated": "2026-06-30T04:55:00.000+02:00",
   "nextStepDecisionGate": {
     "active": true,
     "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",
@@ -574,103 +577,103 @@
       "replace-with-better-case"
     ],
     "latestDecisionCard": {
-      "currentCase": "PREP-018-PLAYWRIGHT-SCRIPT-AND-HELPER-INVENTORY",
-      "plannedNextCaseBeforeReview": "PREP-018-PLAYWRIGHT-SCRIPT-AND-HELPER-INVENTORY",
-      "lastEvidenceSummary": "PREP-017 aligned active repo documentation, coverage and catalog pointers with the Universaarl PREP queue.",
+      "currentCase": "PREP-019-AUTOPILOT-EFFICIENCY-IMPROVEMENT",
+      "plannedNextCaseBeforeReview": "PREP-019-AUTOPILOT-EFFICIENCY-IMPROVEMENT",
+      "lastEvidenceSummary": "PREP-018 classified active Universaarl Playwright assets versus legacy RM/MCP tests and exposed stale marathon execute-lever noise.",
       "isPlannedNextCaseStillSensible": true,
-      "reason": "The repo contains many legacy tests and only a small active target lane. Without this classification, later runs could accidentally execute RM/MCP scripts as active Universaarl tests.",
+      "reason": "The active check was misleading before this fix and could steer the Autopilot toward parked Company Creation routes.",
       "lookaheadReviewed": [
         {
-          "caseId": "PREP-019-AUTOPILOT-EFFICIENCY-IMPROVEMENT",
-          "status": "ready-next",
-          "reason": "The inventory exposed that automation output still surfaces old execute levers while Company Creation is permission-parked."
-        },
-        {
           "caseId": "PREP-020-UNIVERSAARL-DATASET-BLUEPRINT",
-          "status": "ready-after-current",
-          "reason": "Dataset details should follow after the run-selection noise is reduced."
+          "status": "ready-next",
+          "reason": "After run-selection noise is reduced, the dataset blueprint is the best next preparation for a data-rich Universaarl company."
         },
         {
           "caseId": "PREP-021-UNIVERSAARL-USECASE-BACKLOG-CURATION",
           "status": "ready-after-current",
-          "reason": "Usecase backlog curation should use the clarified script/helper baseline."
+          "reason": "Usecase curation should use the clarified dataset assumptions."
         },
         {
           "caseId": "PREP-022-ATLAS-COVERAGE-QUALITY-AUDIT",
           "status": "ready-after-current",
-          "reason": "Atlas quality can use the helper/test classification."
+          "reason": "Atlas quality improves after data/usecase scope is sharper."
+        },
+        {
+          "caseId": "PREP-023-BOOK-CHAPTER-STIMMIGKEIT-AUDIT",
+          "status": "ready-after-current",
+          "reason": "Book flow audit benefits from a clearer dataset and usecase sequence."
         },
         {
           "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
           "status": "blocked",
-          "reason": "Still waiting for SUPER/company-create permissions."
+          "reason": "Still parked until SUPER/company-create permissions are confirmed."
         }
       ],
       "queueChangesMade": [
-        "Marked PREP-018 done.",
-        "Selected PREP-019 as next safe prep case.",
+        "Marked PREP-019 done.",
+        "Selected PREP-020 as next safe prep case.",
         "Kept TARGET-009 parked until SUPER/company-create permissions are confirmed."
       ],
-      "selectedNextCase": "PREP-019-AUTOPILOT-EFFICIENCY-IMPROVEMENT",
-      "whySelectedNextCaseIsBest": "The project now knows which Playwright assets are active or legacy; the next highest-value work is reducing agent run-selection noise while effective BC actions are locked.",
+      "selectedNextCase": "PREP-020-UNIVERSAARL-DATASET-BLUEPRINT",
+      "whySelectedNextCaseIsBest": "A data-rich company plan prevents the later Universaarl build from producing thin screenshots, weak filter examples and incomplete process evidence.",
       "risksBeforeNextCase": [
-        "Do not weaken permission blockers.",
-        "Do not remove evidence discipline in the name of efficiency."
+        "Do not create data in Business Central before UNIVERSAARL-DE exists.",
+        "Do not overfit data names to old RM-DEMO examples."
       ],
       "requiredPreparation": [
-        "Read scripts/agent/marathon-check.mjs and current queue behavior."
+        "Read UNIVERSAARL-DATASET-BLUEPRINT.md and UNIVERSAARL-DATA-RICHNESS-PLAN.md."
       ]
     }
   },
-  "updatedAt": "2026-06-30T04:25:00.000+02:00",
-  "lastCompletedCase": "PREP-018-PLAYWRIGHT-SCRIPT-AND-HELPER-INVENTORY",
-  "nextCase": "PREP-019-AUTOPILOT-EFFICIENCY-IMPROVEMENT",
+  "updatedAt": "2026-06-30T04:55:00.000+02:00",
+  "lastCompletedCase": "PREP-019-AUTOPILOT-EFFICIENCY-IMPROVEMENT",
+  "nextCase": "PREP-020-UNIVERSAARL-DATASET-BLUEPRINT",
   "nextStepDecisionCard": {
-    "currentCase": "PREP-018-PLAYWRIGHT-SCRIPT-AND-HELPER-INVENTORY",
-    "plannedNextCaseBeforeReview": "PREP-018-PLAYWRIGHT-SCRIPT-AND-HELPER-INVENTORY",
-    "lastEvidenceSummary": "PREP-017 aligned active repo documentation, coverage and catalog pointers with the Universaarl PREP queue.",
+    "currentCase": "PREP-019-AUTOPILOT-EFFICIENCY-IMPROVEMENT",
+    "plannedNextCaseBeforeReview": "PREP-019-AUTOPILOT-EFFICIENCY-IMPROVEMENT",
+    "lastEvidenceSummary": "PREP-018 classified active Universaarl Playwright assets versus legacy RM/MCP tests and exposed stale marathon execute-lever noise.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The repo contains many legacy tests and only a small active target lane. Without this classification, later runs could accidentally execute RM/MCP scripts as active Universaarl tests.",
+    "reason": "The active check was misleading before this fix and could steer the Autopilot toward parked Company Creation routes.",
     "lookaheadReviewed": [
       {
-        "caseId": "PREP-019-AUTOPILOT-EFFICIENCY-IMPROVEMENT",
-        "status": "ready-next",
-        "reason": "The inventory exposed that automation output still surfaces old execute levers while Company Creation is permission-parked."
-      },
-      {
         "caseId": "PREP-020-UNIVERSAARL-DATASET-BLUEPRINT",
-        "status": "ready-after-current",
-        "reason": "Dataset details should follow after the run-selection noise is reduced."
+        "status": "ready-next",
+        "reason": "After run-selection noise is reduced, the dataset blueprint is the best next preparation for a data-rich Universaarl company."
       },
       {
         "caseId": "PREP-021-UNIVERSAARL-USECASE-BACKLOG-CURATION",
         "status": "ready-after-current",
-        "reason": "Usecase backlog curation should use the clarified script/helper baseline."
+        "reason": "Usecase curation should use the clarified dataset assumptions."
       },
       {
         "caseId": "PREP-022-ATLAS-COVERAGE-QUALITY-AUDIT",
         "status": "ready-after-current",
-        "reason": "Atlas quality can use the helper/test classification."
+        "reason": "Atlas quality improves after data/usecase scope is sharper."
+      },
+      {
+        "caseId": "PREP-023-BOOK-CHAPTER-STIMMIGKEIT-AUDIT",
+        "status": "ready-after-current",
+        "reason": "Book flow audit benefits from a clearer dataset and usecase sequence."
       },
       {
         "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
         "status": "blocked",
-        "reason": "Still waiting for SUPER/company-create permissions."
+        "reason": "Still parked until SUPER/company-create permissions are confirmed."
       }
     ],
     "queueChangesMade": [
-      "Marked PREP-018 done.",
-      "Selected PREP-019 as next safe prep case.",
+      "Marked PREP-019 done.",
+      "Selected PREP-020 as next safe prep case.",
       "Kept TARGET-009 parked until SUPER/company-create permissions are confirmed."
     ],
-    "selectedNextCase": "PREP-019-AUTOPILOT-EFFICIENCY-IMPROVEMENT",
-    "whySelectedNextCaseIsBest": "The project now knows which Playwright assets are active or legacy; the next highest-value work is reducing agent run-selection noise while effective BC actions are locked.",
+    "selectedNextCase": "PREP-020-UNIVERSAARL-DATASET-BLUEPRINT",
+    "whySelectedNextCaseIsBest": "A data-rich company plan prevents the later Universaarl build from producing thin screenshots, weak filter examples and incomplete process evidence.",
     "risksBeforeNextCase": [
-      "Do not weaken permission blockers.",
-      "Do not remove evidence discipline in the name of efficiency."
+      "Do not create data in Business Central before UNIVERSAARL-DE exists.",
+      "Do not overfit data names to old RM-DEMO examples."
     ],
     "requiredPreparation": [
-      "Read scripts/agent/marathon-check.mjs and current queue behavior."
+      "Read UNIVERSAARL-DATASET-BLUEPRINT.md and UNIVERSAARL-DATA-RICHNESS-PLAN.md."
     ]
   }
 }

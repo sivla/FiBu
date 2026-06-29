@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "caseId": "PREP-019-AUTOPILOT-EFFICIENCY-IMPROVEMENT",
+  "status": "done",
+  "category": "agent",
+  "targetWorld": "Universaarl",
+  "instance": "playthru",
+  "targetCompany": "UNIVERSAARL-DE-planned-not-yet-created",
+  "workType": "autopilot-efficiency-improvement",
+  "taskClass": "wizard_work",
+  "effectiveBcActionsAllowed": false,
+  "noBusinessCentralExecution": true,
+  "noPlaywrightExecution": true,
+  "noSetupChange": true,
+  "noPreviewPosting": true,
+  "noPosting": true,
+  "noCompanyCreated": true,
+  "problem": "agent:marathon:check still surfaced old Target execution levers from TARGET-MARATHON-001 while the active queue is the no-effective-BC PREP queue.",
+  "change": "scripts/agent/marathon-check.mjs now treats .agent/state/marathon_queue.json with noEffectiveBusinessCentralActions=true as the leading run truth and suppresses stale Target execute levers.",
+  "provedBy": [
+    "npm run agent:marathon:check now reports mode universaarl-repo-readonly-prep-until-super-permissions.",
+    "nextBestLevers now contains PREP-019-AUTOPILOT-EFFICIENCY-IMPROVEMENT during this run instead of TARGET-006.",
+    "nextExecuteLever is empty while Company Creation is permission-parked.",
+    "The check still exits non-zero when the PREP queue is open, so marathon continuation pressure remains intact."
+  ],
+  "resultPath": "playwright/projects/fibu-book5/evidence/prep-019-autopilot-efficiency-improvement/PREP-019-result.json",
+  "nextCase": "PREP-020-UNIVERSAARL-DATASET-BLUEPRINT",
+  "updatedAt": "2026-06-30T04:55:00.000+02:00"
+}
