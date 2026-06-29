@@ -131,36 +131,52 @@
       "latestPracticalCase": "P2P-032-PURCHASE-JOURNAL-CONTROLLED-POSTING-TRACE",
       "latestReviewCase": "P2P-033-PURCHASE-JOURNAL-POSTING-TRACE-REVIEW",
       "latestBookMasterCase": "P2P-034-PURCHASE-JOURNAL-BOOKMASTER-INTEGRATION",
-      "nextCase": "P2P-035-PARTIAL-RECEIPT-NEW-ROUTE-EXECUTE-GATE",
+      "nextCase": "INVENTORY-009-ITEM-JOURNAL-MATERIAL-EFFECT-FOLLOWUP",
       "covered": [
         "Purchase Order laboratory receipt-and-invoice flow 108219 from earlier P2P evidence",
         "Vendor payment and open-item/application explanation from P2P-002/P2P-003",
         "Direct Purchase Journal laboratory posting route P2P032-682298",
         "Journal Check 0 Issues, Preview Posting, Post dialog and one controlled posting for P2P032-682298",
         "Vendor Ledger, Detailed Vendor Ledger and G/L Entries for P2P032-682298",
-        "Chapter 12 book master integration for the Purchase Journal lab route"
+        "Chapter 12 book master integration for the Purchase Journal lab route",
+        "P2P-035 parks repeated Purchase Order cell-edit routes and documents Item Journal boundary in the P2P lab draft"
       ],
       "openLimits": [
         "No German final evidence from RM-DEMO",
         "No German 19 percent VAT proof",
         "No German chart of accounts final proof",
         "P2P032-682298 has no Item Ledger or Value Entries because it is a direct Purchase Journal route",
-        "Partial receipt route remains open after failed repeated cell-edit attempts"
+        "Partial receipt route remains open after failed repeated cell-edit attempts",
+        "Purchase Order partial receipt remains open; do not repeat P2P-008/P2P-009/P2P-010 without a genuinely new UI hypothesis",
+        "Item Journal is material-effect/inventory evidence, not creditor-side P2P receipt proof"
       ],
       "bookMasterStatus": "chapter-12-lab-route-integrated",
       "germanFinalProof": "open",
-      "nextStep": "Resume practical P2P partial receipt work with a new route, not the repeated cell-edit routes that already failed."
+      "nextStep": "Continue with Item Journal/Inventory material-effect follow-up or a genuinely new PO UI hypothesis; no more blind PO cell-edit retries.",
+      "latestDecisionCase": "P2P-035-PARTIAL-RECEIPT-NEW-ROUTE-EXECUTE-GATE",
+      "partialReceiptStatus": "purchase-order-cell-routes-parked"
+    },
+    "inventory": {
+      "chapter": "Kapitel 13",
+      "status": "labor-proven-needs-followup",
+      "latestDecisionCase": "P2P-035-PARTIAL-RECEIPT-NEW-ROUTE-EXECUTE-GATE",
+      "nextCase": "INVENTORY-009-ITEM-JOURNAL-MATERIAL-EFFECT-FOLLOWUP",
+      "openLimits": [
+        "Item Journal material-effect route must remain separated from creditor P2P proof",
+        "German final inventory proof remains open"
+      ],
+      "nextStep": "Use Item Journal/Inventory route as next practical material-effect follow-up with clear P2P boundary."
     }
   },
   "hardExclusions": {
     "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
   },
-  "updatedAt": "2026-06-29T00:06:00.000Z",
-  "activeArea": "p2p",
+  "updatedAt": "2026-06-29T06:05:00.000Z",
+  "activeArea": "inventory",
   "currentBlock": "p2p-purchase-invoice-bookmark-context-blocker-review",
   "latestPracticalCase": "FIXEDASSETS-295-FA-DEPRECIATION-GUARDED-OK-FRESH-DOC-NO-POST",
   "latestReviewCase": "FIXEDASSETS-296-FA-DEPRECIATION-FRESH-OK-RESULT-BLOCKER-REVIEW",
-  "nextCase": "P2P-025-PURCHASE-INVOICE-LINE-ENTRY-BLOCKER-REVIEW",
+  "nextCase": "INVENTORY-009-ITEM-JOURNAL-MATERIAL-EFFECT-FOLLOWUP",
   "latestBank013": {
     "caseId": "BANK-013-CONTROLLED-NEXT-EVIDENCE-STEP",
     "status": [
@@ -284,7 +300,7 @@
     "targetEvidenceStatus": "german-final-candidate",
     "summaryFile": ".agent/state/lab_to_german_sandbox_migration_plan.json",
     "germanTargetUnavailable": true,
-    "nextCase": "P2P-005-PARTIAL-RECEIPT-LINE-QTY-GATE",
+    "nextCase": "INVENTORY-009-ITEM-JOURNAL-MATERIAL-EFFECT-FOLLOWUP",
     "rebuildMap": ".agent/state/german-final-rebuild-map.json"
   },
   "bcSpecialistMode": true,

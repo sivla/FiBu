@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-29T05:10:00.000Z",
+  "updatedAt": "2026-06-29T06:05:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "activeArea": "p2p",
-  "activeCase": "P2P-035-PARTIAL-RECEIPT-NEW-ROUTE-EXECUTE-GATE",
-  "active_case_file": ".agent/state/cases/p2p-035-partial-receipt-new-route-execute-gate.json",
-  "lastReferenceCase": "P2P-034-PURCHASE-JOURNAL-BOOKMASTER-INTEGRATION",
-  "lastReferenceCaseFile": ".agent/state/cases/p2p-034-purchase-journal-bookmaster-integration.json",
+  "activeArea": "inventory",
+  "activeCase": "INVENTORY-009-ITEM-JOURNAL-MATERIAL-EFFECT-FOLLOWUP",
+  "active_case_file": ".agent/state/cases/inventory-009-item-journal-material-effect-followup.json",
+  "lastReferenceCase": "P2P-035-PARTIAL-RECEIPT-NEW-ROUTE-EXECUTE-GATE",
+  "lastReferenceCaseFile": ".agent/state/cases/p2p-035-partial-receipt-new-route-execute-gate.json",
   "mode": "bc-specialist-labor-book-production",
   "requiresStrongModel": true,
   "requiredPreflightChecks": [
@@ -40,7 +40,7 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "Choose and execute a genuinely new route for P2P partial receipt readiness; do not repeat the failed cell-edit paths.",
+  "nextStep": "Use the Item Journal/Inventory route as the next practical material-effect follow-up; do not repeat old Purchase Order cell edit routes.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/bank-payments-labor-draft.md",
     "area": "bankPayments",
@@ -114,7 +114,7 @@
     "summaryFile": ".agent/state/lab_to_german_sandbox_migration_plan.json",
     "noActiveLiveRunInOldSandbox": false,
     "germanTargetUnavailable": true,
-    "nextStep": "Continue RM-DEMO laboratory production with P2P-005 line/quantity gate; German target sandbox is still unavailable and all RM-DEMO evidence remains labor-reference only."
+    "nextStep": "Continue RM-DEMO laboratory production via Item Journal/Inventory material-effect follow-up; German target sandbox is still unavailable and all RM-DEMO evidence remains labor-reference only."
   },
   "latestP2PLabFollowup": {
     "caseId": "P2P-004-PARTIAL-RECEIPT-VARIANCE-GATE",
@@ -1961,5 +1961,29 @@
     "bookEffect": "Chapter 12 now explains the direct Purchase Journal route separately from Purchase Order receipt/invoice flow.",
     "germanFinalRebuildRequired": true,
     "nextCase": "P2P-035-PARTIAL-RECEIPT-NEW-ROUTE-EXECUTE-GATE"
+  },
+  "latestP2P035RouteDecision": {
+    "caseId": "P2P-035-PARTIAL-RECEIPT-NEW-ROUTE-EXECUTE-GATE",
+    "status": [
+      "labor-blocked",
+      "labor-sufficient-for-book-draft",
+      "needs-german-final-rebuild"
+    ],
+    "resultPath": "playwright/projects/fibu-book5/evidence/p2p-035/P2P-035-result.json",
+    "bookDraftPath": "playwright/projects/fibu-book5/book-drafts/p2p-labor-draft.md",
+    "sourceCompany": "RM-DEMO",
+    "sourceInstance": "MCP_1_20260210",
+    "purchaseOrderCellRoutes": "parked",
+    "evidenceBasis": [
+      "P2P-007",
+      "P2P-008",
+      "P2P-009",
+      "P2P-010",
+      "P2P-011",
+      "P2P-012",
+      "P2P-013"
+    ],
+    "routeDecision": "Do not repeat old Purchase Order line-edit routes; use Item Journal/Inventory for material effect and keep creditor P2P proof separate.",
+    "nextCase": "INVENTORY-009-ITEM-JOURNAL-MATERIAL-EFFECT-FOLLOWUP"
   }
 }

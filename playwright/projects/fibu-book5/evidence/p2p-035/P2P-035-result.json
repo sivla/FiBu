@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "P2P-035-PARTIAL-RECEIPT-NEW-ROUTE-EXECUTE-GATE",
+  "source": "p2p-route-decision-and-bookdraft-sync",
+  "resultStatus": "observed",
+  "runPlanId": "P2P-035-ROUTE-DECISION",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-high",
+  "bcRun": false,
+  "playwrightRun": false,
+  "previewPosting": false,
+  "posted": false,
+  "setupChanged": false,
+  "companySwitched": false,
+  "sourceCompany": "RM-DEMO",
+  "sourceInstance": "MCP_1_20260210",
+  "routeDecision": {
+    "purchaseOrderCellRoutes": "parked",
+    "reason": "P2P-007 produced a visible RAW-STEEL line context, but P2P-008/P2P-009/P2P-010 did not visibly persist Location FRA-ZL, Quantity 4 and Qty. to Receive 2; P2P-011 found no clear safe line edit action.",
+    "alternativeRoute": "Item Journal / Inventory material-effect route",
+    "boundary": "Item Journal can prove material quantity/location/value effect, but it is not a creditor-side Purchase Order receipt process.",
+    "p2pFinanceRoute": "Purchase Journal route P2P032-682298 is already posted and bookmaster-integrated, but it has no item/value entries."
+  },
+  "proved": [
+    "Known Purchase Order line edit routes are no longer treated as the next practical route unless a genuinely new UI hypothesis appears.",
+    "P2P-012/P2P-013 support Item Journal as the stable material quantity/location/value route, with a clear P2P boundary.",
+    "The P2P labor draft now documents this route decision for beginners.",
+    "No Business Central or Playwright execution was needed for this decision because the relevant evidence already exists."
+  ],
+  "notProved": [
+    "No new partial purchase receipt was created.",
+    "No Purchase Order Preview Posting was opened.",
+    "No Purchase Order Receive or Invoice posting occurred.",
+    "No German final evidence was created."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/book-drafts/p2p-labor-draft.md",
+    "playwright/projects/fibu-book5/evidence/p2p-035/P2P-035-result.json",
+    "playwright/projects/fibu-book5/evidence/p2p-035/README.md",
+    ".agent/state/cases/p2p-035-partial-receipt-new-route-execute-gate.json",
+    ".agent/state/cases/inventory-009-item-journal-material-effect-followup.json",
+    ".agent/state/current.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json"
+  ],
+  "statePatch": {
+    "current": {
+      "activeArea": "inventory",
+      "activeCase": "INVENTORY-009-ITEM-JOURNAL-MATERIAL-EFFECT-FOLLOWUP",
+      "active_case_file": ".agent/state/cases/inventory-009-item-journal-material-effect-followup.json",
+      "lastReferenceCase": "P2P-035-PARTIAL-RECEIPT-NEW-ROUTE-EXECUTE-GATE",
+      "lastReferenceCaseFile": ".agent/state/cases/p2p-035-partial-receipt-new-route-execute-gate.json",
+      "nextStep": "Use the Item Journal/Inventory route as the next practical material-effect follow-up; do not repeat old Purchase Order cell edit routes."
+    },
+    "lastRunSummary": {
+      "runId": "P2P-035-PARTIAL-RECEIPT-NEW-ROUTE-EXECUTE-GATE",
+      "date": "2026-06-29",
+      "workType": "p2p-route-decision-and-bookdraft-sync",
+      "branch": "codex/token-efficient-autopilot-state",
+      "bcRun": false,
+      "playwrightRun": false,
+      "posted": false,
+      "previewPosting": false,
+      "setupChanged": false,
+      "companySwitched": false,
+      "summary": "Closed the repeated Purchase Order cell-edit route as parked and synced the Item Journal material-effect boundary into the P2P lab draft.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/p2p-035/P2P-035-result.json",
+      "nextCase": "INVENTORY-009-ITEM-JOURNAL-MATERIAL-EFFECT-FOLLOWUP",
+      "nextStep": "Use the Item Journal/Inventory route as the next practical material-effect follow-up; do not repeat old Purchase Order cell edit routes."
+    }
+  },
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/p2p-007/P2P-007-result.json",
+    "playwright/projects/fibu-book5/evidence/p2p-008/P2P-008-result.json",
+    "playwright/projects/fibu-book5/evidence/p2p-009/P2P-009-result.json",
+    "playwright/projects/fibu-book5/evidence/p2p-010/P2P-010-result.json",
+    "playwright/projects/fibu-book5/evidence/p2p-011/P2P-011-result.json",
+    "playwright/projects/fibu-book5/evidence/p2p-012/P2P-012-result.json",
+    "playwright/projects/fibu-book5/evidence/p2p-013/P2P-013-result.json",
+    "playwright/projects/fibu-book5/book-drafts/p2p-labor-draft.md"
+  ],
+  "warnings": [
+    "This is a route decision and bookdraft sync, not a new BC execution.",
+    "RM-DEMO evidence remains laboratory/preproduction evidence only.",
+    "German final P2P partial receipt must be rebuilt in a German target company."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "reason": "The existing evidence already proves that repeated Purchase Order line editing is not the efficient next route. The run creates a compact route decision and moves the next practical work to the Item Journal material-effect follow-up.",
+  "validationCommands": [
+    "npm run agent:preflight",
+    "npm run agent:context",
+    "npm run agent:dry-run",
+    "npm run agent:run-plan",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/p2p-035/P2P-035-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/p2p-035/P2P-035-result.json",
+    "npm run check:encoding",
+    "git diff --check",
+    "npx tsc --noEmit"
+  ]
+}

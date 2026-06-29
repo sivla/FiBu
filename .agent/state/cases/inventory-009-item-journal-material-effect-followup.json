@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "caseId": "INVENTORY-009-ITEM-JOURNAL-MATERIAL-EFFECT-FOLLOWUP",
+  "title": "Use Item Journal route as material-effect follow-up after P2P partial receipt route decision",
+  "status": "planned",
+  "taskClass": "wizard_work",
+  "modelClass": "gpt-4-high",
+  "usageLogRequired": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "inventory-item-journal-material-effect-followup",
+  "sourceCase": "P2P-035-PARTIAL-RECEIPT-NEW-ROUTE-EXECUTE-GATE",
+  "purpose": "Continue with the stable Item Journal material-effect route after the Purchase Order partial receipt line-edit routes were parked. The case must preserve the boundary: Item Journal can prove inventory/material effect, not creditor-side P2P receipt.",
+  "allowedActions": [
+    "read-inventory-008-evidence",
+    "open-business-central-if-instance-and-company-match",
+    "run-playwright-if-case-preflight-passes",
+    "prepare-or-read-item-journal-route",
+    "journal-check-if-case-unlocks-it",
+    "preview-posting-if-case-unlocks-it",
+    "post-only-if-explicit-case-plan-and-evidence-gate-pass",
+    "trace-item-value-gl-entries",
+    "write-evidence",
+    "update-state-or-bookdraft"
+  ],
+  "defaultLockedActions": [
+    "preview-posting",
+    "post",
+    "setup-change",
+    "company-switch",
+    "keep-draft"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "final-german-claim-from-rm-demo",
+    "claim-item-journal-is-creditor-p2p-receipt"
+  ],
+  "safetyGates": [
+    "instance-and-company-context-visible",
+    "item-journal-route-boundary-documented",
+    "journal-check-before-any-posting",
+    "posting-requires-explicit-case-unlock",
+    "ledger-trace-required-after-posting"
+  ],
+  "expectedEvidence": [
+    "Item Journal route context or reused INVENTORY-008 trace",
+    "clear boundary between inventory material effect and creditor P2P",
+    "if posted: item, value and G/L trace"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "targetGermanCompanyImpact": "German final inventory/material effect must be rebuilt with German target setup and screenshots; it must not replace creditor P2P final proof.",
+  "finalScreenshotNeeded": true,
+  "nextStep": "Use Item Journal/Inventory evidence as the next practical material-effect route; keep P2P creditor proof separate."
+}
