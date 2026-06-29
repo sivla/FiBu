@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-003-UNIVERSAARL-COMPANY-CREATION-EXECUTION-ROUTE",
+  "title": "Guarded UNIVERSAARL-DE company creation execution route",
+  "instance": "playthru",
+  "targetCompany": "UNIVERSAARL-DE",
+  "legalName": "Universaarl GmbH",
+  "workType": "controlled-ui-company-creation-execute-or-block",
+  "status": "planned",
+  "dependsOn": [
+    "TARGET-001-PLAYTHRU-CONTEXT-PROOF",
+    "TARGET-002-UNIVERSAARL-DE-COMPANY-CREATION"
+  ],
+  "preflightTruth": {
+    "target002BlockedBy": [
+      "direct-new-opened-unsaved-company-row-no-values-entered"
+    ],
+    "directNewOpenedUnsavedBlankRow": true,
+    "targetValuesNotEntered": true,
+    "companyNotCreated": true
+  },
+  "allowedActionsWhenGatePasses": [
+    "open-playthru-companies-page-by-page-id",
+    "prove-universaarl-de-absent-before-action",
+    "open-new-row-or-assisted-setup-route",
+    "enter UNIVERSAARL-DE and Universaarl GmbH only after save-risk plan is explicit",
+    "save-or-stop-with-error-evidence",
+    "prove-after-state-on-companies-page"
+  ],
+  "stopIf": [
+    "url-does-not-contain-playthru",
+    "route-switches-to-cronus-copy-or-demo-template",
+    "dialog-confirms-demo-copy",
+    "save-error-not-captured",
+    "company-context-switch-would-happen-without-documentation"
+  ],
+  "evidenceTarget": "playwright/projects/fibu-book5/evidence/target-003/",
+  "migrationRelevance": "needed-for-german-final",
+  "finalScreenshotNeeded": true
+}

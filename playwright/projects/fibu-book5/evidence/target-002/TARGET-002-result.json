@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 1,
+  "purpose": "universaarl-company-creation-gate",
+  "caseId": "TARGET-002-UNIVERSAARL-DE-COMPANY-CREATION",
+  "source": "playwright-ui-company-creation-gate",
+  "runPlanId": "TARGET-002-UNIVERSAARL-DE-COMPANY-CREATION-PLAN",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/target-002/TARGET-002-result.json"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-002/TARGET-002-result.json",
+    "playwright/projects/fibu-book5/evidence/target-002/010-companies-before.txt",
+    "playwright/projects/fibu-book5/evidence/target-002/020-new-options.txt"
+  ],
+  "flags": {
+    "noCompanyCreated": true,
+    "noCompanyValueEntered": true,
+    "noPost": true,
+    "noPreview": true,
+    "noShip": true,
+    "noInvoice": true,
+    "noPayment": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true,
+    "noSearch": true
+  },
+  "statePatch": {
+    "activeCase": {
+      "status": "blocked",
+      "lastResult": {
+        "resultFile": "playwright/projects/fibu-book5/evidence/target-002/TARGET-002-result.json",
+        "targetAlreadyVisible": false,
+        "hasBlankRoute": true,
+        "hasOnlyDemoRoute": false,
+        "unsavedBlankRowOpened": true
+      },
+      "nextSafeAction": "Review visible creation options and define a safe UI-first blank/setup-only creation route before confirming company creation."
+    }
+  },
+  "safeToFinalizeState": true,
+  "resultStatus": "blocked",
+  "instance": "playthru",
+  "targetCompany": "UNIVERSAARL-DE",
+  "legalName": "Universaarl GmbH",
+  "proved": [
+    "Companies page was opened in playthru by direct page id 357.",
+    "UNIVERSAARL-DE is not visible before the creation gate.",
+    "The New dropdown/action area was opened without selecting a route.",
+    "A direct New action opened an unsaved blank Companies row; no target values were entered.",
+    "No Create/Finish/OK route was confirmed.",
+    "No CRONUS copy or demo/sample route was executed."
+  ],
+  "notProved": [
+    "UNIVERSAARL-DE was not created by this run.",
+    "No Company Information, setup, posting or German final process was proven.",
+    "A possible blank/direct-row route needs a separate explicit execution case before creation because previous list-row company creation evidence showed save-risk."
+  ],
+  "warnings": [],
+  "blockedBy": [
+    "direct-new-opened-unsaved-company-row-no-values-entered"
+  ],
+  "requiresReview": true,
+  "observed": {
+    "startedAt": "2026-06-29T17:27:03.138Z",
+    "finishedAt": "2026-06-29T17:27:11.983Z",
+    "companiesUrl": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=357",
+    "finalUrl": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=357&company=CRONUS+DE",
+    "title": "Neu - Mandanten",
+    "targetAlreadyVisible": false,
+    "dropdownOpened": true,
+    "unsavedBlankRowOpened": true,
+    "actionNames": [
+      "Alle",
+      "Alle Berichte",
+      "Anzeigename",
+      "CRONUS DE",
+      "Einkauf",
+      "Finanzen",
+      "KK",
+      "Kopieren",
+      "Liste bearbeiten",
+      "Loeschen",
+      "Mandanten",
+      "Mandanten:",
+      "Neu",
+      "Shopify",
+      "Testunternehmen",
+      "Umgebung: Playthru",
+      "Verkauf",
+      "Weitere Optionen",
+      "Zahlungsmanagement",
+      "Zum Hauptinhalt wechseln"
+    ],
+    "hasBlankRoute": true,
+    "hasOnlyDemoRoute": false,
+    "screenshots": [
+      "playwright/projects/fibu-book5/img/target-002-010-companies-before.png",
+      "playwright/projects/fibu-book5/img/target-002-020-new-options-inventory.png"
+    ]
+  }
+}

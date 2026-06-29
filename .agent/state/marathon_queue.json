@@ -32,10 +32,10 @@
     {
       "id": "TARGET-002-UNIVERSAARL-DE-COMPANY-CREATION",
       "order": 2,
-      "status": "pending",
+      "status": "blocked",
       "category": "target",
       "expectedImpact": "high-impact-candidate",
-      "evidenceTarget": "playwright/projects/fibu-book5/evidence/target-002-universaarl-de-company-creation/",
+      "evidenceTarget": "playwright/projects/fibu-book5/evidence/target-002/",
       "mayWorkEffectively": true,
       "goal": "UI-first company creation route if TARGET-001 is green",
       "migrationRelevance": "needed-for-german-final",
@@ -43,12 +43,32 @@
       "legacyReferenceAllowedOnlyForLearning": true,
       "dependsOn": [
         "TARGET-001-PLAYTHRU-CONTEXT-PROOF"
+      ],
+      "completedAt": "2026-06-29T17:23:42.472Z",
+      "result": "Direct New opened an unsaved blank Companies row; no values entered, no save, no company created. Separate guarded execution route required.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-002/TARGET-002-result.json",
+      "blockedBy": [
+        "direct-new-opened-unsaved-company-row-no-values-entered"
       ]
     },
     {
-      "id": "TARGET-003-COMPANY-INFORMATION",
+      "id": "TARGET-003-UNIVERSAARL-COMPANY-CREATION-EXECUTION-ROUTE",
       "order": 3,
       "status": "pending",
+      "category": "target",
+      "expectedImpact": "high-impact",
+      "evidenceTarget": "playwright/projects/fibu-book5/evidence/target-003/",
+      "mayWorkEffectively": true,
+      "goal": "Use or reject the direct unsaved Companies row as a guarded UI-first route for UNIVERSAARL-DE.",
+      "migrationRelevance": "needed-for-german-final",
+      "sourceCompany": "current-playthru-shell-company-before-universaarl-exists",
+      "targetCompany": "UNIVERSAARL-DE",
+      "legacyReferenceAllowedOnlyForLearning": true
+    },
+    {
+      "id": "TARGET-003-COMPANY-INFORMATION",
+      "order": 999,
+      "status": "superseded-by-target-003-execution-route",
       "category": "foundation",
       "expectedImpact": "high-impact-candidate",
       "evidenceTarget": "playwright/projects/fibu-book5/evidence/target-003-company-information/",

@@ -262,6 +262,8 @@ Der 30-Tage-Plan nutzt dieselbe Reihenfolge wie der 14-Tage-Plan. Jeder Themenbl
 
 ## 3. Die Rhein-Main Industriegruppe als durchgehende Fallstudie
 
+> **Universaarl-Rebuild-Hinweis:** Dieses Kapitel wird schrittweise von der frueheren Rhein-Main-/RM-DEMO-Laborwelt auf die neue durchgehende Fallstudie `Universaarl GmbH` umgestellt. Bestehende Rhein-Main-Inhalte sind bis zur Neubelegung `legacy-labor-reference`. Die aktive Zielwelt ist `playthru` / `UNIVERSAARL-DE`; Company-Anlage, Stammdaten, Screenshots und Prozess-Evidence werden dort neu aufgebaut.
+
 Die Musterfirma ist bewusst breit konstruiert. Sie soll Business Central nicht minimal abbilden, sondern als Trainingsuniversum möglichst vollständig auslösen.
 
 ### Die Fallstudie in einfachen Worten
