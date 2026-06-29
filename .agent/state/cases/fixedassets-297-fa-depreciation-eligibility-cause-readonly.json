@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-297-FA-DEPRECIATION-ELIGIBILITY-CAUSE-READONLY",
+  "title": "Read-only depreciation eligibility and output-target cause diagnosis",
+  "status": "planned",
+  "taskClass": "wizard_work",
+  "modelClass": "gpt-4-medium",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "read-only-cause-diagnosis",
+  "sourceCase": "FIXEDASSETS-296-FA-DEPRECIATION-FRESH-OK-RESULT-BLOCKER-REVIEW",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-296/FIXEDASSETS-296-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-295/FIXEDASSETS-295-result.json"
+  ],
+  "purpose": "Diagnose why two Calculate Depreciation OK attempts produced no visible Fixed Asset G/L Journal line, without another OK, Preview Posting, Post or setup change.",
+  "suggestedScripts": [
+    "fibu:fixedassets:fa-depreciation-eligibility-readonly-diagnosis",
+    "fibu:fixedassets:fa-depreciation-book-value-pageinspection-readonly"
+  ],
+  "allowedActions": [
+    "open-business-central-if-instance-and-company-match",
+    "run-playwright-if-case-preflight-passes",
+    "read-fixed-asset-card-and-depreciation-book-context",
+    "read-eligibility-and-journal-setup-signals",
+    "write-evidence",
+    "update-state"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "repeat-calculate-depreciation-ok",
+    "preview-posting",
+    "post",
+    "setup-change",
+    "company-switch",
+    "api-shortcut-without-explicit-case-permission",
+    "book-edit"
+  ],
+  "safetyGates": [
+    "instance-must-be-MCP_1_20260210",
+    "company-must-be-RM-DEMO",
+    "no-calculate-depreciation-ok",
+    "no-preview-posting",
+    "no-posting",
+    "no-setup-change",
+    "diagnosis-must-state-whether-route-is-labor-blocked-or-next-readonly-proof"
+  ],
+  "expectedOutputs": [
+    "Compact read-only evidence for FA-CNC-01 / HGB depreciation eligibility or book-value cause signals.",
+    "A decision whether depreciation stays parked, needs setup diagnosis, or has a non-repeating next proof path."
+  ],
+  "classification": [
+    "labor-blocked",
+    "needs-german-final-rebuild"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "targetGermanCompanyImpact": "German target company must prove depreciation eligibility and output journal line with German setup before final claims.",
+  "finalScreenshotNeeded": true,
+  "nextStep": "Run a read-only eligibility/cause diagnosis; do not repeat Calculate Depreciation OK, Preview Posting or Post.",
+  "createdAt": "2026-06-29T06:28:58.231Z",
+  "updatedAt": "2026-06-29T06:28:58.231Z"
+}

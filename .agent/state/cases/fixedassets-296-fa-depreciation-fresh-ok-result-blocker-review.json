@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "caseId": "FIXEDASSETS-296-FA-DEPRECIATION-FRESH-OK-RESULT-BLOCKER-REVIEW",
   "title": "Review fresh Calculate Depreciation OK result with no visible journal line",
-  "status": "planned",
+  "status": "done",
   "taskClass": "judge_work",
   "modelClass": "gpt-5.5-low",
   "instance": "MCP_1_20260210",
@@ -57,7 +57,23 @@
   "mustRecreateInFinalSandbox": true,
   "targetGermanCompanyImpact": "German target company must reproduce depreciation calculation with visible journal line, Preview Posting and posted entries before final proof.",
   "finalScreenshotNeeded": true,
-  "nextStep": "Review FA-295 locally and choose a non-repeating cause diagnosis or park depreciation posting; do not run Calculate Depreciation OK again blindly.",
-  "updatedAt": "2026-06-29T06:25:24.494Z",
-  "sourceResult": "playwright/projects/fibu-book5/evidence/fixedassets-295/FIXEDASSETS-295-result.json"
+  "nextStep": "FIXEDASSETS-297: run read-only depreciation eligibility/cause diagnosis; do not repeat Calculate Depreciation OK, Preview Posting or Post.",
+  "updatedAt": "2026-06-29T06:28:58.231Z",
+  "sourceResult": "playwright/projects/fibu-book5/evidence/fixedassets-295/FIXEDASSETS-295-result.json",
+  "resultStatus": "observed",
+  "completedAt": "2026-06-29T06:28:58.231Z",
+  "resultPath": "playwright/projects/fibu-book5/evidence/fixedassets-296/FIXEDASSETS-296-result.json",
+  "evidencePath": "playwright/projects/fibu-book5/evidence/fixedassets-296/FIXEDASSETS-296-FRESH-OK-RESULT-BLOCKER-REVIEW.md",
+  "decision": {
+    "classification": "labor-blocked",
+    "repeatCalculateDepreciationOk": false,
+    "previewPostingUnlocked": false,
+    "postUnlocked": false,
+    "selectedNextRoute": "read-only-eligibility-cause-diagnosis",
+    "nextCase": "FIXEDASSETS-297-FA-DEPRECIATION-ELIGIBILITY-CAUSE-READONLY",
+    "nextCaseFile": ".agent/state/cases/fixedassets-297-fa-depreciation-eligibility-cause-readonly.json",
+    "reason": "Two controlled Calculate Depreciation OK attempts with distinct document numbers produced no visible Fixed Asset G/L Journal line. The next step must diagnose eligibility/output target read-only instead of repeating OK."
+  },
+  "nextCase": "FIXEDASSETS-297-FA-DEPRECIATION-ELIGIBILITY-CAUSE-READONLY",
+  "nextCaseFile": ".agent/state/cases/fixedassets-297-fa-depreciation-eligibility-cause-readonly.json"
 }
