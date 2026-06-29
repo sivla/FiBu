@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "caseId": "MANUFACTURING-004-SETUP-READINESS-OR-BOOKDRAFT-DECISION",
+  "title": "Manufacturing next step after direct page readiness",
+  "status": "planned",
+  "taskClass": "judge_work",
+  "modelClass": "gpt-5.5-low",
+  "usageLogRequired": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "route-decision-after-readonly-evidence",
+  "sourceCase": "MANUFACTURING-003-DIRECT-PAGE-READINESS",
+  "purpose": "Decide whether the direct-page Manufacturing readiness is enough for a Chapter 14 lab draft sync, or whether a UI-first setup-readiness case for Production BOM/Routing is justified before any manufacturing execution.",
+  "allowedActions": [
+    "read-manufacturing-003-result",
+    "read-chapter-14-current-text",
+    "choose-bookdraft-sync-or-setup-readiness",
+    "write-decision-evidence",
+    "update-state"
+  ],
+  "defaultLockedActions": [
+    "new",
+    "edit",
+    "delete",
+    "draft-create",
+    "setup-change",
+    "preview-posting",
+    "posting",
+    "company-switch",
+    "api-shortcut"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "claim-german-final-proof",
+    "manufacturing-posting-without-bom-routing-gate",
+    "use-api-shortcut-without-explicit-case-permission"
+  ],
+  "safetyGates": [
+    "no Manufacturing setup or posting in decision case",
+    "do not claim Production BOM/Routing fit from page-context screenshots",
+    "if setup-readiness is chosen, create a separate case with before/after evidence plan",
+    "if bookdraft-sync is chosen, mark it as RM-DEMO laboratory only"
+  ],
+  "expectedEvidence": [
+    "route decision",
+    "classification: labor-sufficient-for-book-draft or setup-readiness-needed",
+    "German-final rebuild boundary"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "resultPath": "playwright/projects/fibu-book5/evidence/manufacturing-004/MANUFACTURING-004-result.json",
+  "nextStep": "Decide Chapter 14 lab draft sync versus UI-first BOM/Routing setup-readiness; do not create Production BOM, Routing or Production Order inside this decision case.",
+  "createdAt": "2026-06-29T23:55:00+02:00",
+  "updatedAt": "2026-06-29T23:55:00+02:00"
+}

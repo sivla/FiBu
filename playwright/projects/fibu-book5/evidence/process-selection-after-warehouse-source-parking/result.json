@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "caseId": "PROCESS-SELECTION-AFTER-WAREHOUSE-SOURCE-PARKING",
+  "source": "local-route-decision-after-warehouse-source-parking",
+  "resultStatus": "observed",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "selectedNextCase": "MANUFACTURING-003-DIRECT-PAGE-READINESS",
+  "selectedProcess": "Manufacturing",
+  "reason": "After parking Warehouse source route, advance Manufacturing because it is a high-value adjacent block still only at readiness level. Use direct page URLs instead of old Tell-Me/search readiness.",
+  "proved": [
+    "Warehouse source route is parked as labor-blocked/bookdraft-useful.",
+    "Manufacturing was selected as next high-value process block.",
+    "The selected route avoids old Tell-Me/search readiness and uses direct page URL evidence."
+  ],
+  "notProved": [
+    "No BC execution occurred in the selection case.",
+    "No Manufacturing setup or posting is proven by the selection itself.",
+    "No German final proof was created."
+  ],
+  "changedFiles": [
+    ".agent/state/cases/process-selection-after-warehouse-source-parking.json",
+    ".agent/state/cases/manufacturing-003-direct-page-readiness.json",
+    ".agent/state/current.json"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/manufacturing-003/MANUFACTURING-003-result.json"
+  ],
+  "posted": false,
+  "previewPosting": false,
+  "setupChanged": false,
+  "companySwitched": false,
+  "safeToFinalizeState": false,
+  "requiresReview": false,
+  "blockedBy": [],
+  "statePatch": {},
+  "nextStep": "Run MANUFACTURING-003 direct-page readiness."
+}

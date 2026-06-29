@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 1,
+  "caseId": "MANUFACTURING-003-DIRECT-PAGE-READINESS",
+  "title": "Manufacturing direct page readiness without Tell-Me",
+  "status": "done",
+  "taskClass": "wizard_work",
+  "modelClass": "gpt-4-medium",
+  "usageLogRequired": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "readonly-direct-page-readiness",
+  "sourceCase": "PROCESS-SELECTION-AFTER-WAREHOUSE-SOURCE-PARKING",
+  "purpose": "Advance the next high-value process block after Warehouse by replacing old Manufacturing Tell-Me readiness with direct read-only page URL evidence.",
+  "allowedActions": [
+    "open-direct-bc-page-url-readonly",
+    "capture-compact-page-text",
+    "capture-purposeful-screenshot",
+    "write-evidence",
+    "update-state"
+  ],
+  "defaultLockedActions": [
+    "new",
+    "edit",
+    "delete",
+    "draft-create",
+    "setup-change",
+    "preview-posting",
+    "posting",
+    "company-switch",
+    "api-shortcut"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "claim-german-final-proof",
+    "tell-me-search-route",
+    "use-api-shortcut-without-explicit-case-permission"
+  ],
+  "safetyGates": [
+    "direct URL must stay in MCP_1_20260210",
+    "company must remain RM-DEMO",
+    "no Manufacturing setup, order, consumption, output, preview or posting",
+    "screenshots must show page context, not claim process proof"
+  ],
+  "expectedEvidence": [
+    "direct-page Manufacturing readiness result",
+    "compact page text",
+    "screenshot metadata with labor/final boundary"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "resultPath": "playwright/projects/fibu-book5/evidence/manufacturing-003/MANUFACTURING-003-result.json",
+  "nextStep": "Run the read-only direct-page Manufacturing scout and then decide whether Chapter 14 needs a lab draft sync or a UI-first Production BOM/Routing setup-readiness case.",
+  "createdAt": "2026-06-29T23:45:00+02:00",
+  "updatedAt": "2026-06-29T23:55:00+02:00",
+  "observedPages": [
+    {
+      "id": "production-boms",
+      "label": "Production BOMs",
+      "pageId": 99000786,
+      "expectedVisible": true
+    },
+    {
+      "id": "routings",
+      "label": "Routings",
+      "pageId": 99000764,
+      "expectedVisible": true
+    },
+    {
+      "id": "work-centers",
+      "label": "Work Centers",
+      "pageId": 99000754,
+      "expectedVisible": true
+    },
+    {
+      "id": "released-production-orders",
+      "label": "Released Production Orders",
+      "pageId": 99000831,
+      "expectedVisible": true
+    }
+  ],
+  "decision": "Direct Manufacturing page readiness is labor-proven as page-context evidence only. It replaces old Tell-Me/search navigation evidence but does not prove BOM/Routing/Production Order setup or posting.",
+  "nextCase": "MANUFACTURING-004-SETUP-READINESS-OR-BOOKDRAFT-DECISION"
+}

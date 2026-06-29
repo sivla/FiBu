@@ -5,9 +5,9 @@
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "activeArea": "warehouse",
-  "activeCase": "PROCESS-SELECTION-AFTER-WAREHOUSE-SOURCE-PARKING",
-  "active_case_file": ".agent/state/cases/process-selection-after-warehouse-source-parking.json",
+  "activeArea": "manufacturing",
+  "activeCase": "MANUFACTURING-004-SETUP-READINESS-OR-BOOKDRAFT-DECISION",
+  "active_case_file": ".agent/state/cases/manufacturing-004-setup-readiness-or-bookdraft-decision.json",
   "lastReferenceCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
   "lastReferenceCaseFile": ".agent/state/cases/warehouse-031-warehouse-source-route-park-or-setup-fit-decision.json",
   "mode": "bc-specialist-labor-book-production",
@@ -40,7 +40,7 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "Move to another high-value process block or later create a non-speculative Warehouse setup-fit case only with explicit business reason and before/after evidence plan.",
+  "nextStep": "MANUFACTURING-004: decide whether Manufacturing direct-page evidence should be synced into a Chapter 14 lab draft first or whether UI-first Production BOM/Routing setup-readiness is justified. No Manufacturing setup/posting inside the decision case.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/inventory-labor-draft.md",
     "area": "inventory",
@@ -2887,5 +2887,76 @@
     "migrationRelevance": "needed-for-german-final",
     "mustRecreateInFinalSandbox": true,
     "updatedAt": "2026-06-29T23:25:00+02:00"
+  },
+  "latestProcessSelectionAfterWarehouse": {
+    "caseId": "PROCESS-SELECTION-AFTER-WAREHOUSE-SOURCE-PARKING",
+    "status": [
+      "labor-sufficient-for-book-draft",
+      "route-decision"
+    ],
+    "sourceCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
+    "selectedNextCase": "MANUFACTURING-003-DIRECT-PAGE-READINESS",
+    "reason": "Warehouse source route is parked as labor-blocked/bookdraft-useful; Manufacturing is a high-value adjacent block still only at readiness level, and MANUFACTURING-003 replaces old Tell-Me/search evidence with direct read-only page URLs.",
+    "bcRun": false,
+    "playwrightRun": false,
+    "posted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "companySwitched": false,
+    "migrationRelevance": "needed-for-german-final",
+    "mustRecreateInFinalSandbox": true,
+    "updatedAt": "2026-06-29T23:45:00+02:00"
+  },
+  "latestManufacturing003": {
+    "caseId": "MANUFACTURING-003-DIRECT-PAGE-READINESS",
+    "status": [
+      "labor-proven",
+      "read-only",
+      "direct-page-readiness",
+      "needs-german-final-rebuild"
+    ],
+    "sourceInstance": "MCP_1_20260210",
+    "sourceCompany": "RM-DEMO",
+    "bcRun": true,
+    "playwrightRun": true,
+    "posted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "draftCreated": false,
+    "companySwitched": false,
+    "apiShortcut": false,
+    "resultPath": "playwright/projects/fibu-book5/evidence/manufacturing-003/MANUFACTURING-003-result.json",
+    "evidencePath": "playwright/projects/fibu-book5/evidence/manufacturing-003/",
+    "screenshots": [
+      "playwright/projects/fibu-book5/img/manufacturing-003-010-production-boms.png",
+      "playwright/projects/fibu-book5/img/manufacturing-003-020-routings.png",
+      "playwright/projects/fibu-book5/img/manufacturing-003-030-work-centers.png",
+      "playwright/projects/fibu-book5/img/manufacturing-003-040-released-production-orders.png"
+    ],
+    "observedPages": [
+      {
+        "label": "Production BOMs",
+        "pageId": 99000786
+      },
+      {
+        "label": "Routings",
+        "pageId": 99000764
+      },
+      {
+        "label": "Work Centers",
+        "pageId": 99000754
+      },
+      {
+        "label": "Released Production Orders",
+        "pageId": 99000831
+      }
+    ],
+    "proved": "Production BOMs, Routings, Work Centers and Released Production Orders page contexts open directly by URL without Tell-Me/search.",
+    "notProved": "No Production BOM/Routing for RM-M100, no Production Order, no Consumption/Output, no manufacturing ledger trace and no German final proof.",
+    "migrationRelevance": "needed-for-german-final",
+    "mustRecreateInFinalSandbox": true,
+    "finalScreenshotNeeded": true,
+    "nextCase": "MANUFACTURING-004-SETUP-READINESS-OR-BOOKDRAFT-DECISION",
+    "updatedAt": "2026-06-29T23:55:00+02:00"
   }
 }
