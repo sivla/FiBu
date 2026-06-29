@@ -15,11 +15,11 @@
     "fixedassets": {
       "chapter": "Kapitel 21",
       "status": "in-progress",
-      "currentBlock": "fa-depreciation-park-next-process-decision",
+      "currentBlock": "fa-depreciation-parked-rm-demo",
       "latestPracticalCase": "FIXEDASSETS-300-FA-JOURNAL-DEPRECIATION-OUTPUT-TARGET-READONLY",
       "latestReviewCase": "FIXEDASSETS-301-FA-DEPRECIATION-OUTPUT-TARGET-RESULT-REVIEW",
-      "latestDecisionCase": "FIXEDASSETS-299-FA-DEPRECIATION-NEXT-HYPOTHESIS-DECISION",
-      "nextCase": "FIXEDASSETS-302-FA-DEPRECIATION-PARK-NEXT-PROCESS-DECISION",
+      "latestDecisionCase": "FIXEDASSETS-302-FA-DEPRECIATION-PARK-NEXT-PROCESS-DECISION",
+      "nextCase": "WAREHOUSE-003-WAREHOUSE-READINESS-FOLLOWUP-DECISION",
       "bookScreenshots": {
         "setupProofs": "available-labor",
         "purchaseInvoicePreflight": "available-labor",
@@ -35,7 +35,7 @@
       "finalGermanProof": "open",
       "latestLocalHelperCase": "FIXEDASSETS-179-JOURNAL-GRID-GEOMETRY-CANDIDATE-HELPER",
       "latestLocalReviewCase": "FIXEDASSETS-181-JOURNAL-GRID-GEOMETRY-CANDIDATE-REVIEW",
-      "depreciationReadiness": "FA-301 accepts FA-300 as page-5629 Fixed Asset Journals route proof, but rejects it as depreciation output proof because no FADEP/FA-CNC-01/HGB line is visible. Preview/Post and repeat OK remain locked.",
+      "depreciationReadiness": "FA-302 parks RM-DEMO depreciation as labor-blocked/bookdraft-useful. Fixed Asset Journals page 5629 is visible, but no generated FADEP/FA-CNC-01/HGB line is proven; Preview/Post and repeat OK remain locked.",
       "openLimits": [
         "FA-289 did not prove a generated FADEP line, FA-CNC-01, HGB or Preview Posting in Fixed Asset G/L Journals.",
         "FA-293 did not prove FADEP-291-OK, FA-CNC-01, HGB or posting date in the visible Fixed Asset G/L Journals context.",
@@ -44,9 +44,10 @@
         "FA-297 parked depreciation after read-only cause diagnosis: no repeat OK, Preview or Post until a new non-repeating output/eligibility hypothesis is proven.",
         "FA-298: Chapter 21 is bookdraft-synced, but AfA journal line, AfA Preview Posting and AfA posting remain unproven.",
         "FA-300 proved page 5629 Fixed Asset Journals exists read-only, but did not prove any FADEP depreciation line, FA-CNC-01 or HGB there.",
-        "FA-301: Page 5629 Fixed Asset Journals route is visible, but no generated depreciation line is proven; park or choose a genuinely new route before any execution."
+        "FA-301: Page 5629 Fixed Asset Journals route is visible, but no generated depreciation line is proven; park or choose a genuinely new route before any execution.",
+        "FA-302: RM-DEMO depreciation execution is parked as labor-blocked/bookdraft-useful; no further Calculate Depreciation OK, Preview or Post until a new output/eligibility hypothesis is proven."
       ],
-      "nextStep": "FIXEDASSETS-302: local decision to park RM-DEMO depreciation or choose one genuinely new process route; no repeat OK/Preview/Post.",
+      "nextStep": "Continue with Warehouse readiness; revisit FA depreciation only with a new non-repeating output/eligibility hypothesis or in German final rebuild.",
       "latestBookSyncCase": "FIXEDASSETS-298-FA-DEPRECIATION-BLOCKER-BOOK-SYNC",
       "bookMasterStatus": "chapter-21-fa-depreciation-blocker-synced-with-fa-297"
     },
@@ -232,17 +233,29 @@
       ],
       "latestReviewCase": "REPORTING-016-INVENTORY-DIMENSION-REPORTING-DECISION",
       "latestBookMasterCase": "REPORTING-017-INVENTORY-DIMENSION-BOOKMASTER-SYNC"
+    },
+    "warehouse": {
+      "chapter": "Kapitel 13",
+      "status": "in-progress",
+      "currentBlock": "warehouse-readiness-followup-decision",
+      "latestEvidenceCases": [
+        "WAREHOUSE-001",
+        "WAREHOUSE-002"
+      ],
+      "nextCase": "WAREHOUSE-003-WAREHOUSE-READINESS-FOLLOWUP-DECISION",
+      "finalGermanProof": "open",
+      "nextStep": "Review WAREHOUSE-001/002 evidence and choose a controlled next Warehouse lab route without draft/posting in the decision case."
     }
   },
   "hardExclusions": {
     "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
   },
-  "updatedAt": "2026-06-29T07:23:12.960Z",
-  "activeArea": "fixedassets",
-  "currentBlock": "fa-depreciation-output-target-readonly",
-  "latestPracticalCase": "FIXEDASSETS-295-FA-DEPRECIATION-GUARDED-OK-FRESH-DOC-NO-POST",
+  "updatedAt": "2026-06-29T09:54:15+02:00",
+  "activeArea": "warehouse",
+  "currentBlock": "warehouse-readiness-followup-decision",
+  "latestPracticalCase": "FIXEDASSETS-300-FA-JOURNAL-DEPRECIATION-OUTPUT-TARGET-READONLY",
   "latestReviewCase": "FIXEDASSETS-299-FA-DEPRECIATION-NEXT-HYPOTHESIS-DECISION",
-  "nextCase": "FIXEDASSETS-300-FA-JOURNAL-DEPRECIATION-OUTPUT-TARGET-READONLY",
+  "nextCase": "WAREHOUSE-003-WAREHOUSE-READINESS-FOLLOWUP-DECISION",
   "latestBank013": {
     "caseId": "BANK-013-CONTROLLED-NEXT-EVIDENCE-STEP",
     "status": [
@@ -359,7 +372,7 @@
   },
   "latestLocalHelperCase": "FIXEDASSETS-179-JOURNAL-GRID-GEOMETRY-CANDIDATE-HELPER",
   "latestLocalReviewCase": "FIXEDASSETS-183-FA-GL-JOURNAL-BALACCOUNT-VALUE-REVIEW",
-  "latestDecisionCase": "FIXEDASSETS-247-FA-CALCULATE-DEPRECIATION-EXECUTION-GATE-PLAN",
+  "latestDecisionCase": "FIXEDASSETS-302-FA-DEPRECIATION-PARK-NEXT-PROCESS-DECISION",
   "latestBlockedCase": "FIXEDASSETS-202-FA-GL-JOURNAL-PREVIEW-POSTING-AFTER-FA-POSTING-TYPE",
   "acquisitionPostingTrace": "book-synced: controlled FA G/L Journal lab posting performed once for G05001; posted G/L Entries show 82000/12210 and +/-120.000,00; posted FA Ledger Entries are visible via Page 5604 for FA-CNC-01/G05001/HGB/Acquisition Cost/amount. Page 5606 remains a rejected empty Preview path.",
   "nextAcquisitionRoute": "do-not-repeat-posting",
@@ -1342,5 +1355,6 @@
     "decision": "close-rm-demo-p2p-labor-block-and-move-to-fixedassets",
     "nextCase": "FIXEDASSETS-298-FA-DEPRECIATION-BLOCKER-BOOK-SYNC",
     "updatedAt": "2026-06-29T07:09:31.588Z"
-  }
+  },
+  "nextStep": "Run WAREHOUSE-003 local follow-up decision from WAREHOUSE-001/002 evidence."
 }

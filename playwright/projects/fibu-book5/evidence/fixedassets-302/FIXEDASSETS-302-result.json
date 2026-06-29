@@ -1,0 +1,139 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "FIXEDASSETS-302-FA-DEPRECIATION-PARK-NEXT-PROCESS-DECISION",
+  "source": "local-decision",
+  "resultStatus": "observed",
+  "workType": "fixedassets-depreciation-park-next-process-decision",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "bcRun": false,
+  "playwrightRun": false,
+  "posted": false,
+  "previewPosting": false,
+  "setupChanged": false,
+  "companySwitched": false,
+  "bookChanged": false,
+  "proved": [
+    "FA-291 and FA-295 controlled Calculate Depreciation OK attempts did not produce a visible Fixed Asset G/L Journal depreciation line in RM-DEMO.",
+    "FA-300 proved page 5629 Fixed Asset Journals can be opened directly in RM-DEMO, but no FADEP, FA-CNC-01 or HGB depreciation line was visible there.",
+    "FA-301 classified page 5629 as UI/page-route proof only, not as depreciation-output proof.",
+    "FA-302 parks RM-DEMO depreciation execution: Preview Posting, Posting and another Calculate Depreciation OK remain locked until a new non-repeating output or eligibility hypothesis exists."
+  ],
+  "notProved": [
+    "No depreciation journal line for FA-CNC-01 is proven.",
+    "No depreciation Preview Posting is proven.",
+    "No depreciation posting or depreciation ledger trace is proven.",
+    "No German fixed-assets final proof is proven from RM-DEMO evidence."
+  ],
+  "decision": {
+    "classification": [
+      "labor-blocked",
+      "labor-sufficient-for-book-draft",
+      "needs-german-final-rebuild"
+    ],
+    "parkedInRmDemo": true,
+    "previewPostingUnlocked": false,
+    "postingUnlocked": false,
+    "repeatCalculateDepreciationOkUnlocked": false,
+    "selectedNextArea": "warehouse",
+    "selectedNextCase": "WAREHOUSE-003-WAREHOUSE-READINESS-FOLLOWUP-DECISION",
+    "rationale": "The fixed-assets acquisition and setup evidence is useful for the book draft, but depreciation execution in RM-DEMO is now a repeated missing-output blocker. Continuing with another OK/Preview/Post attempt would repeat the same failure pattern. The next practical value is to continue with Warehouse readiness, where prior WAREHOUSE-001/002 evidence already exists and can be converted into a clear next executable route."
+  },
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-302/FIXEDASSETS-302-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-302/FIXEDASSETS-302-FA-DEPRECIATION-PARK-NEXT-PROCESS-DECISION.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-302/README.md",
+    ".agent/state/cases/fixedassets-302-fa-depreciation-park-next-process-decision.json",
+    ".agent/state/cases/warehouse-003-warehouse-readiness-followup-decision.json",
+    ".agent/state/current.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/model_usage_log.jsonl"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-291/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-295/",
+    "playwright/projects/fibu-book5/evidence/fixedassets-300/FIXEDASSETS-300-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-301/FIXEDASSETS-301-result.json"
+  ],
+  "warnings": [
+    "RM-DEMO evidence is labor/preproduction evidence only.",
+    "Do not use this decision as German final fixed-assets proof.",
+    "Do not unlock depreciation Preview Posting or Posting without a visible depreciation journal line."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeArea": "warehouse",
+      "activeCase": "WAREHOUSE-003-WAREHOUSE-READINESS-FOLLOWUP-DECISION",
+      "active_case_file": ".agent/state/cases/warehouse-003-warehouse-readiness-followup-decision.json",
+      "lastReferenceCase": "FIXEDASSETS-302-FA-DEPRECIATION-PARK-NEXT-PROCESS-DECISION",
+      "nextStep": "Run WAREHOUSE-003 local follow-up decision: review WAREHOUSE-001/002 evidence and choose the next controlled Warehouse lab route; do not create drafts or post in the decision case."
+    },
+    "lastRunSummary": {
+      "schemaVersion": 1,
+      "runId": "FIXEDASSETS-302-FA-DEPRECIATION-PARK-NEXT-PROCESS-DECISION",
+      "date": "2026-06-29",
+      "workType": "fixedassets-depreciation-park-next-process-decision",
+      "branch": "codex/token-efficient-autopilot-state",
+      "instance": "MCP_1_20260210",
+      "company": "RM-DEMO",
+      "bcRun": false,
+      "playwrightRun": false,
+      "posted": false,
+      "previewPosting": false,
+      "setupChanged": false,
+      "companySwitched": false,
+      "bookDraftChanged": false,
+      "resultStatus": "observed",
+      "summary": "FA-302 parks RM-DEMO depreciation as labor-blocked but bookdraft-useful, keeps Preview/Post/repeat OK locked, and selects Warehouse readiness as the next practical process block.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/fixedassets-302/FIXEDASSETS-302-result.json",
+      "nextCase": "WAREHOUSE-003-WAREHOUSE-READINESS-FOLLOWUP-DECISION",
+      "nextStep": "Run WAREHOUSE-003 local follow-up decision from WAREHOUSE-001/002 evidence."
+    },
+    "activeCase": {
+      "status": "done",
+      "completedAt": "2026-06-29T09:54:15+02:00",
+      "resultStatus": "observed",
+      "resultPath": "playwright/projects/fibu-book5/evidence/fixedassets-302/FIXEDASSETS-302-result.json",
+      "decision": "Park RM-DEMO fixed-assets depreciation execution as labor-blocked/bookdraft-useful; move next practical process block to Warehouse readiness.",
+      "nextCase": "WAREHOUSE-003-WAREHOUSE-READINESS-FOLLOWUP-DECISION",
+      "updatedAt": "2026-06-29T09:54:15+02:00"
+    },
+    "coverage": {
+      "areas": {
+        "fixedassets": {
+          "currentBlock": "fa-depreciation-parked-rm-demo",
+          "latestReviewCase": "FIXEDASSETS-301-FA-DEPRECIATION-OUTPUT-TARGET-RESULT-REVIEW",
+          "latestDecisionCase": "FIXEDASSETS-302-FA-DEPRECIATION-PARK-NEXT-PROCESS-DECISION",
+          "nextCase": "WAREHOUSE-003-WAREHOUSE-READINESS-FOLLOWUP-DECISION",
+          "depreciationReadiness": "FA-302 parks RM-DEMO depreciation as labor-blocked/bookdraft-useful. Fixed Asset Journals page 5629 is visible, but no generated FADEP/FA-CNC-01/HGB line is proven; Preview/Post and repeat OK remain locked.",
+          "nextStep": "Continue with Warehouse readiness; revisit FA depreciation only with a new non-repeating output/eligibility hypothesis or in German final rebuild."
+        },
+        "warehouse": {
+          "chapter": "Kapitel 13",
+          "status": "in-progress",
+          "currentBlock": "warehouse-readiness-followup-decision",
+          "latestEvidenceCases": [
+            "WAREHOUSE-001",
+            "WAREHOUSE-002"
+          ],
+          "nextCase": "WAREHOUSE-003-WAREHOUSE-READINESS-FOLLOWUP-DECISION",
+          "finalGermanProof": "open",
+          "nextStep": "Review WAREHOUSE-001/002 evidence and choose a controlled next Warehouse lab route without draft/posting in the decision case."
+        }
+      }
+    }
+  },
+  "migrationRelevance": "needed-for-german-final",
+  "rebuildInstruction": "In the German final sandbox, rebuild fixed-assets depreciation with German asset, depreciation book, posting setup and screenshots. Only unlock Preview Posting and Posting after a generated depreciation journal line is visible.",
+  "mustRecreateInFinalSandbox": true,
+  "sourceCompany": "RM-DEMO",
+  "targetGermanCompanyImpact": "Fixed-assets acquisition evidence may inform the click guide; depreciation calculation, journal line, preview, posting and ledger trace must be recreated with German setup.",
+  "finalScreenshotNeeded": true,
+  "nextCase": "WAREHOUSE-003-WAREHOUSE-READINESS-FOLLOWUP-DECISION",
+  "nextStep": "Run WAREHOUSE-003 local follow-up decision from existing Warehouse evidence."
+}

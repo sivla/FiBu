@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "caseId": "WAREHOUSE-003-WAREHOUSE-READINESS-FOLLOWUP-DECISION",
+  "title": "Warehouse readiness follow-up decision after FA depreciation park",
+  "status": "planned",
+  "taskClass": "judge_work",
+  "modelClass": "gpt-5.5-low",
+  "usageLogRequired": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "warehouse-readiness-followup-decision",
+  "sourceCase": "FIXEDASSETS-302-FA-DEPRECIATION-PARK-NEXT-PROCESS-DECISION",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/warehouse-001/WAREHOUSE-001-result.json",
+    "playwright/projects/fibu-book5/evidence/warehouse-002/WAREHOUSE-002-result.json"
+  ],
+  "purpose": "Review WAREHOUSE-001/002 evidence and choose the next controlled Warehouse lab route. This decision case does not open BC, start Playwright, create drafts, post, or change setup.",
+  "allowedActions": [
+    "read-warehouse-evidence",
+    "write-decision-evidence",
+    "update-state",
+    "select-next-warehouse-execute-case"
+  ],
+  "defaultLockedActions": [
+    "business-central-execution",
+    "playwright-execution",
+    "new-draft",
+    "edit-record",
+    "delete-record",
+    "setup-change",
+    "preview-posting",
+    "posting",
+    "company-switch",
+    "api-shortcut"
+  ],
+  "forbiddenActions": [
+    "claim-german-final-proof",
+    "invent-warehouse-evidence",
+    "open-bc-in-decision-case"
+  ],
+  "safetyGates": [
+    "local-decision-only",
+    "no-bc-execution",
+    "no-playwright-execution",
+    "no-book-final-claim"
+  ],
+  "expectedEvidence": [
+    "Decision JSON selecting the next Warehouse route or parking Warehouse as lab-only with rationale"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-003/WAREHOUSE-003-result.json",
+  "nextStep": "Review WAREHOUSE-001/002 evidence and select one controlled next Warehouse route.",
+  "createdAt": "2026-06-29T09:54:15+02:00",
+  "updatedAt": "2026-06-29T09:54:15+02:00"
+}
