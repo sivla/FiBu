@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "caseId": "WAREHOUSE-008-INBOUND-SOURCE-DOCUMENT-SELECTION",
+  "title": "Warehouse Receipt source document selection without posting",
+  "status": "planned",
+  "taskClass": "wizard_work",
+  "modelClass": "gpt-4-high",
+  "usageLogRequired": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "warehouse-inbound-source-document-selection",
+  "sourceCase": "WAREHOUSE-007-WAREHOUSE-EMPLOYEE-SETUP-FIT",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/warehouse-007/WAREHOUSE-007-result.json"
+  ],
+  "purpose": "Use the now-unblocked Warehouse Receipt route to identify or select a safe purchase source document for FRA-ZL without posting.",
+  "allowedActions": [
+    "business-central-execution",
+    "playwright-execution",
+    "direct-page-navigation",
+    "scoped-source-document-action",
+    "controlled-draft-only-if-needed",
+    "read-fields",
+    "screenshot-and-page-text-evidence",
+    "cleanup-or-explicit-keep-documentation"
+  ],
+  "defaultLockedActions": [
+    "posting",
+    "preview-posting",
+    "warehouse-receipt-posting",
+    "warehouse-putaway-posting",
+    "warehouse-shipment-posting",
+    "delete-record",
+    "company-switch",
+    "api-shortcut"
+  ],
+  "forbiddenActions": [
+    "claim-german-final-proof",
+    "use-api-shortcut",
+    "post-warehouse-document",
+    "delete-location-or-setup-data",
+    "change-require-pick-bin-mandatory-or-directed-put-away-and-pick"
+  ],
+  "safetyGates": [
+    "instance-boundary-gate",
+    "company-context-rm-demo",
+    "ui-first-only",
+    "no-posting",
+    "source-document-target-clear-before-selection",
+    "cleanup-or-keep-proof-required"
+  ],
+  "preconditions": [
+    "FRA-ZL has Require Receive, Require Shipment and Require Put-away active",
+    "KAJETAN.KALICKI is visible as Warehouse Employee for FRA-ZL",
+    "Warehouse Receipt route no longer shows the Warehouse Employee blocker"
+  ],
+  "expectedEvidence": [
+    "Warehouse Receipt page context after employee setup",
+    "Available Source Document route/action evidence",
+    "No-post/no-preview/no-api flags",
+    "Draft cleanup or explicit keep proof if a document is created"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-008/WAREHOUSE-008-result.json",
+  "nextStep": "Run WAREHOUSE-008 controlled Source Document selection without posting.",
+  "createdAt": "2026-06-29T11:42:00+02:00",
+  "updatedAt": "2026-06-29T11:42:00+02:00"
+}
