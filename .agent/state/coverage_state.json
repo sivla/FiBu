@@ -271,12 +271,12 @@
   "hardExclusions": {
     "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
   },
-  "updatedAt": "2026-06-29T11:18:00+02:00",
+  "updatedAt": "2026-06-29T15:35:00+02:00",
   "activeArea": "warehouse",
-  "currentBlock": "warehouse-fresh-draft-source-document-route",
-  "latestPracticalCase": "WAREHOUSE-014-EXISTING-RECEIPT-SOURCE-DOCUMENT-BLOCKER",
+  "currentBlock": "warehouse-source-document-selection-no-post",
+  "latestPracticalCase": "WAREHOUSE-016-FRESH-DRAFT-IMMEDIATE-GET-SOURCE-NO-CONFIRM",
   "latestReviewCase": "FIXEDASSETS-299-FA-DEPRECIATION-NEXT-HYPOTHESIS-DECISION",
-  "nextCase": "WAREHOUSE-016-FRESH-DRAFT-IMMEDIATE-GET-SOURCE-NO-CONFIRM",
+  "nextCase": "WAREHOUSE-017-SOURCE-DOCUMENT-CANDIDATE-SELECT-NO-POST",
   "latestBank013": {
     "caseId": "BANK-013-CONTROLLED-NEXT-EVIDENCE-STEP",
     "status": [
@@ -1377,11 +1377,11 @@
     "nextCase": "FIXEDASSETS-298-FA-DEPRECIATION-BLOCKER-BOOK-SYNC",
     "updatedAt": "2026-06-29T07:09:31.588Z"
   },
-  "nextStep": "WAREHOUSE-016: create a fresh Warehouse Receipt draft and immediately run Get Source Documents before leaving card context; stop before OK/Select/Post.",
+  "nextStep": "WAREHOUSE-017: inspect Source Documents - Inbound candidates and, if a clear candidate exists, select it; do not post the Warehouse Receipt.",
   "warehouse": {
     "chapter": "Kapitel 13",
     "status": "in-progress",
-    "currentBlock": "warehouse-fresh-draft-source-document-route",
+    "currentBlock": "warehouse-source-document-selection-no-post",
     "latestEvidenceCases": [
       "WAREHOUSE-006",
       "WAREHOUSE-007",
@@ -1392,11 +1392,12 @@
       "WAREHOUSE-012",
       "WAREHOUSE-013",
       "WAREHOUSE-014",
-      "WAREHOUSE-015"
+      "WAREHOUSE-015",
+      "WAREHOUSE-016"
     ],
-    "latestPracticalCase": "WAREHOUSE-014-EXISTING-RECEIPT-SOURCE-DOCUMENT-BLOCKER",
-    "nextCase": "WAREHOUSE-016-FRESH-DRAFT-IMMEDIATE-GET-SOURCE-NO-CONFIRM",
-    "blockerStatus": "existing-receipt-route-blocked-fresh-draft-immediate-route-selected",
+    "latestPracticalCase": "WAREHOUSE-016-FRESH-DRAFT-IMMEDIATE-GET-SOURCE-NO-CONFIRM",
+    "nextCase": "WAREHOUSE-017-SOURCE-DOCUMENT-CANDIDATE-SELECT-NO-POST",
+    "blockerStatus": "fresh-draft-get-source-route-opened-source-dialog-no-confirmation",
     "employeeSetup": {
       "userId": "KAJETAN.KALICKI",
       "locationCode": "FRA-ZL",
@@ -1404,7 +1405,7 @@
       "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-007/WAREHOUSE-007-result.json",
       "mustRecreateInFinalSandbox": true
     },
-    "nextStep": "WAREHOUSE-016: create a fresh Warehouse Receipt draft and immediately run Get Source Documents before leaving card context; stop before OK/Select/Post.",
+    "nextStep": "WAREHOUSE-017: inspect Source Documents - Inbound candidates and, if a clear candidate exists, select it; do not post the Warehouse Receipt.",
     "draftRoute": {
       "status": "labor-proven",
       "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-010/WAREHOUSE-010-result.json",
@@ -1418,7 +1419,9 @@
       "WAREHOUSE-013: RE000001 is visible/reused, but no safe Get Source Documents selection context was reached.",
       "No Warehouse Receipt posting, no Put-away and no Warehouse/Item/Value entry trace yet.",
       "WAREHOUSE-014: wide/maximized existing-receipt route still does not expose Get Source Documents candidates.",
-      "WAREHOUSE-015: next route must use a fresh controlled Warehouse Receipt draft and immediate Get Source Documents action before leaving card context."
+      "WAREHOUSE-015: next route must use a fresh controlled Warehouse Receipt draft and immediate Get Source Documents action before leaving card context.",
+      "WAREHOUSE-016: Source Documents - Inbound was reached, but no source document was confirmed and no receipt was posted.",
+      "WAREHOUSE-016: Receipt number anchor remains ambiguous because existing and fresh receipts are visible together."
     ],
     "latestDecisionCase": "WAREHOUSE-015-WAREHOUSE-SOURCE-DOCUMENT-ROUTE-DECISION"
   }

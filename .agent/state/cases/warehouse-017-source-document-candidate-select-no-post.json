@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "caseId": "WAREHOUSE-017-SOURCE-DOCUMENT-CANDIDATE-SELECT-NO-POST",
+  "title": "Inspect/select Warehouse source document candidate without posting",
+  "status": "planned",
+  "taskClass": "wizard_work",
+  "modelClass": "gpt-4-high",
+  "usageLogRequired": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "warehouse-source-document-candidate-select-no-post",
+  "sourceCase": "WAREHOUSE-016-FRESH-DRAFT-IMMEDIATE-GET-SOURCE-NO-CONFIRM",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/warehouse-016/WAREHOUSE-016-result.json"
+  ],
+  "purpose": "Inspect the Source Documents - Inbound dialog reached by WAREHOUSE-016, identify a concrete Purchase source document candidate and, only if a safe row is visible, select it without posting the Warehouse Receipt.",
+  "allowedActions": [
+    "business-central-execution",
+    "playwright-execution",
+    "direct-page-navigation",
+    "create-controlled-warehouse-receipt-draft-if-needed",
+    "click-get-source-documents-before-confirmation",
+    "inspect-source-document-dialog",
+    "select-source-document-candidate-if-visible",
+    "confirm-source-selection-only-if-case-gates-pass",
+    "read-fields",
+    "evidence-capture",
+    "keep-draft-with-trace"
+  ],
+  "defaultLockedActions": [
+    "posting",
+    "preview-posting",
+    "warehouse-receipt-posting",
+    "warehouse-putaway-posting",
+    "delete-record",
+    "company-switch",
+    "api-shortcut"
+  ],
+  "forbiddenActions": [
+    "claim-german-final-proof",
+    "use-api-shortcut",
+    "post-warehouse-document",
+    "change-require-pick-bin-mandatory-or-directed-put-away-and-pick",
+    "click-post-receipt"
+  ],
+  "safetyGates": [
+    "instance-boundary-gate",
+    "company-context-rm-demo",
+    "ui-first-only",
+    "no-posting",
+    "post-receipt-not-clicked",
+    "source-document-candidate-visible-before-selection",
+    "receipt-number-and-keep-status-documented"
+  ],
+  "expectedEvidence": [
+    "Source Documents - Inbound dialog text and buttons",
+    "visible source document candidate rows",
+    "selected source document if confirmation is safe",
+    "Warehouse Receipt lines after selection if selection happens",
+    "explicit no-post/no-preview flags"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-017/WAREHOUSE-017-result.json",
+  "nextStep": "Inspect Source Documents - Inbound candidates and, if a clear candidate exists, select it; do not post the Warehouse Receipt.",
+  "createdAt": "2026-06-29T15:35:00+02:00",
+  "updatedAt": "2026-06-29T15:35:00+02:00"
+}
