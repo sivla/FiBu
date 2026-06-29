@@ -10,3 +10,7 @@ Status: `labor-reference`.
 | Fixed Asset Acquisition | FA G/L Journal Post | `G05001` | G/L Entries `82000`/`12210`, FA Ledger Entries Page `5604`, Acquisition Cost | `evidence/fixedassets-225/`, `227`, `229`, `231` | Einkaufsrechnung Art=Anlage, deutscher Finalnachweis |
 | Fixed Asset Depreciation | Calculate Depreciation OK | `FADEP-291-OK` als Parameter | keine sichtbare Journalzeile im geprueften Kontext | `evidence/fixedassets-291/` | Preview/Post/AfA-Postenspur |
 | P2P Partial Receipt | nicht gebucht | Draft `106002` | keine Posten; nur Kopf-/Zeilenkontext | `evidence/p2p-004/` | RAW-STEEL-Zeile, Teilmenge, Preview, Receipt, Invoice |
+
+## Zero-Open-Questions-Regel
+
+Jede nicht verstandene Buchungswirkung erzeugt entweder einen Eintrag in `.agent/state/open_questions_register.json` oder bekommt einen finalen Status aus `BC-ZERO-OPEN-QUESTIONS-POLICY.md`.

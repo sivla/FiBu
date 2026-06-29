@@ -11,3 +11,7 @@ Dieses Atlas-Dokument sammelt Posten-/Entry-Kontexte fuer spaetere Buchprozesse.
 ## Erfassungsregel
 
 Jeder gebuchte Universaarl-Prozess muss die passenden Entries/Posten erfassen: Page, Filter, Belegnummer, Konten, Betrage, Dimensionen, Steuer/VAT, Nebenbuchbezug, Korrekturweg und Screenshot-Beweis.
+
+## Zero-Open-Questions-Regel
+
+Jede nicht verstandene Tabelle oder Entry-Seite erzeugt entweder einen Eintrag in `.agent/state/open_questions_register.json` oder bekommt einen finalen Status aus `BC-ZERO-OPEN-QUESTIONS-POLICY.md`.

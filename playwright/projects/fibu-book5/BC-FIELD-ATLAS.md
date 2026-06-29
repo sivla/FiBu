@@ -25,3 +25,7 @@ Status: `labor-reference`.
 | `FA Posting Group = MACHINES` | Fixed Assets | Fixed Asset / Setup | Kontenfindung Anlagenzugang | Fixed-Assets Evidence | historische Blocker beachten |
 | `Acquisition Cost Bal. Acc. = 82000` | Fixed Assets | FA Posting Group Setup | Gegenkonto fuer Zugang | `fixedassets-170`, `208+` | CRONUS-Labor |
 | `PRODUCTLINE=MACHINE`, `CHANNEL=B2B` | Dimensions/Reporting | O2C/Item Ledger/Reporting Evidence | Auswertungsdimensionen | `evidence/reporting-*` | Financial Reports Nutzung nur teilweise |
+
+## Zero-Open-Questions-Regel
+
+Jedes nicht verstandene Feld erzeugt entweder einen Eintrag in `.agent/state/open_questions_register.json` oder bekommt einen finalen Status aus `BC-ZERO-OPEN-QUESTIONS-POLICY.md`.

@@ -133,3 +133,9 @@ Kuenftige Result JSONs sollen fuer wirksame Aktionen diese Felder nutzen:
 ## Leitregel
 
 Das Gate soll nicht laehmen. Wenn der Schritt sinnvoll, belegt, erklaerbar und sicher ist, wird er ausgefuehrt und sauber nachgewiesen. Wenn er unklar ist, wird zuerst read-only untersucht und die bessere Route gewaehlt.
+
+## Zero-Open-Questions-Pruefung
+
+Jede Smart Decision Card muss nennen, ob die Aktion eine offene Objekt-, Feld-, Action-, Dialog-, Tabellen- oder Buchungsfrage schliesst oder eine neue Frage erzeugt. Neue Fragen werden nicht als lose Notiz behalten, sondern in `.agent/state/open_questions_register.json` eingetragen oder direkt mit einem finalen Status aus `playwright/projects/fibu-book5/BC-ZERO-OPEN-QUESTIONS-POLICY.md` klassifiziert.
+
+Eine wirksame Aktion darf nicht als Buch- oder Coverage-Abschluss gewertet werden, wenn ihre zentralen Felder, Buttons, Dialoge oder Postenwirkungen noch unverstanden sind.

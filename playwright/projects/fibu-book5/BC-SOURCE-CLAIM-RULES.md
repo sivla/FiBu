@@ -45,3 +45,9 @@ Fuer `UNIVERSAARL-DE` gilt ab diesem Quellenlauf:
 - `Kopieren`, CRONUS und `Testunternehmen` sind keine finale Universaarl-Basis, solange Datenwirkung und Demodatenfreiheit nicht belegt sind.
 - Ein Privacy-/Personal-Data-Hinweis auf der Mandantenliste ist ein fachlicher Stop-/Erklaerpunkt, nicht nur UI-Rauschen.
 - Vor Speichern, Finish oder Wizard-Abschluss muss die Smart Decision Card `Neu`, `Kopieren`, `Testunternehmen`, Blank/No Data und Setup-Only/Production-Setup als Alternativen bewerten.
+
+## Zero-Open-Questions-Claims
+
+Ein Claim darf nicht final werden, wenn er eine offene Objektfrage verdeckt. Jede unklare Page, Karte, Liste, jedes Feld, jede Action, jeder Dialog, jede Request Page, jeder Report, jede Tabelle, jeder Entry und jede Buchungswirkung braucht eine Quelle, Universaarl-Evidence, erlaubte AL-/Objektanalyse oder einen finalen Klassifikationsstatus.
+
+Die internen Nachweise stehen in `BC-OBJECT-COVERAGE-CATALOG.md`, den Atlas-Dateien und `.agent/state/open_questions_register.json`. Das Buch schreibt daraus nur die fertige, anfaengerfreundliche Erklaerung.

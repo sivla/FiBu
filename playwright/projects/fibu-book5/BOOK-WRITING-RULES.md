@@ -63,3 +63,9 @@ Schreiben:
 ## Universaarl-Regel
 
 Neue Buchabschnitte werden auf Universaarl geschrieben. Rhein-Main, RM-DEMO und CRONUS bleiben nur dort stehen, wo ein historischer Vergleich noch nicht ersetzt wurde. Jeder neue Prozessabschnitt soll die Universaarl-Welt staerken statt die alte Laborwelt fortzuschreiben.
+
+## Zero Open Questions im Buch
+
+Das Buch enthaelt keine internen Open-Question-Listen. Wenn ein Feld, Button, Dialog, Report, Setup-Schalter oder Entry noch nicht verstanden ist, wird die Frage intern in `.agent/state/open_questions_register.json` oder im passenden Atlas gefuehrt. Im Buch steht erst die fertige Erklaerung: Was sieht der Anfaenger, warum ist es wichtig, was wird ausgefuellt, welcher Button aendert Daten und was passiert danach.
+
+Kein Buchabschnitt wird als fertig behandelt, solange seine zentralen Business-Central-Objekte nicht durch Universaarl-Evidence, Microsoft Learn, erlaubte Objektanalyse oder einen finalen Status aus `BC-ZERO-OPEN-QUESTIONS-POLICY.md` erklaert sind.

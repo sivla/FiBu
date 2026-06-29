@@ -17,3 +17,7 @@ Status: `labor-reference`.
 | FA G/L Journal | n/a | Fixed Assets | Zugang `G05001`, Preview, Posting, G/L Trace | `evidence/fixedassets-225/` | Einkaufsrechnung-Route offen |
 | General Journal Batches | `251` | Fixed Assets | `DEFAULT`, `Default Journal Batch`, `FA-JNL` sichtbar | `evidence/fixedassets-287/` | kein ausgewaehlter Batchwert |
 | Financial Reports | n/a | Reporting | O2C-/Dimension-Reporting Teil-/Negativbefunde | `evidence/reporting-*` | Dimension-Auswertung nicht final |
+
+## Zero-Open-Questions-Regel
+
+Jede nicht verstandene Page erzeugt entweder einen Eintrag in `.agent/state/open_questions_register.json` oder bekommt einen finalen Status aus `BC-ZERO-OPEN-QUESTIONS-POLICY.md`.

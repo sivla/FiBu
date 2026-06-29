@@ -21,3 +21,7 @@ Status: `labor-reference`.
 | Related Card Navigation | Fixed Assets | Feldklick oeffnet falsche Karte | BC-Wert/Lookup ist Related-Link, nicht editierbares Zielcontrol | Fixed-Assets Patterns | Vordergrundkarte vor/nach jedem Klick validieren |
 | Personalisieren zeigt Kontext, aber keine Feldwerte | Debugging | Personalisieren offen, Zielwerte nicht sichtbar | Feldverfuegbarkeit != Wertebeweis | `fixedassets-049` | Page Inspection/Field Evidence separat |
 | Payment Discount unerwartet sichtbar | Payments/P2P | Detailed Vendor Ledger zeigt Discount | CRONUS-Zahlungsbedingung/Laborwirkung | `p2p-003` | im Buch als Laborbefund markieren, deutsch neu pruefen |
+
+## Zero-Open-Questions-Regel
+
+Jeder Blocker erzeugt entweder einen konkreten Follow-up-Case, einen Eintrag in `.agent/state/open_questions_register.json` oder einen finalen Status aus `BC-ZERO-OPEN-QUESTIONS-POLICY.md`.

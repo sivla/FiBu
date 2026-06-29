@@ -109,3 +109,9 @@ Vor jeder wirksamen Aktion gilt zusaetzlich `.agent/SMART-DECISION-GATE.md`. Com
 Der aktuelle kompakte State verweist auf die in `.agent/state/current.json` genannte aktive Case-Datei.
 Die konkrete Case-ID und der naechste sichere Schritt werden nicht mehr hier dupliziert, sondern aus `current.json` gelesen.
 Fuer Fixed-Assets-Purchase-Invoice-Laeufe gilt: erst den echten Lines-/Type-Kontext beweisen, dann Zielwerte eingeben; Cleanup fuer Sandbox-Drafts bleibt Pflicht.
+
+## Zero Open Questions
+
+Der Autopilot darf eine fachliche, technische oder UI-bezogene Business-Central-Frage nicht als vage offen liegen lassen. Jede unklare Page, Card, List, Worksheet, jedes Feld, jede Action, jeder Dialog, jede Request Page, jeder Report, jede Tabelle, jeder Entry und jede Buchungswirkung bekommt entweder eine Antwort durch Universaarl-Evidence, Microsoft Learn, erlaubte AL-/Objektanalyse oder einen finalen Klassifikationsstatus aus `playwright/projects/fibu-book5/BC-ZERO-OPEN-QUESTIONS-POLICY.md`.
+
+Ungeklaerte Punkte werden in `.agent/state/open_questions_register.json` gefuehrt. Am Ende eines Laufs darf dort kein Item mit `status = "open"` stehen. Wenn etwas nicht zur Universaarl-Hauptcompany passt, entsteht ein Subcompany-/Spezialusecase oder ein finaler Status wie `requires-subcompany-usecase`, `not-applicable` oder `excluded-shopify`.

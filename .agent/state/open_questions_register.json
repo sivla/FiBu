@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-06-29T19:10:00.000Z",
+  "purpose": "zero-open-questions-register",
+  "activeInstance": "playthru",
+  "targetCompany": "UNIVERSAARL-DE",
+  "legalName": "Universaarl GmbH",
+  "rule": "No item may remain with status=open at run end. Unclear points must be in-progress, explained, excluded-shopify, not-applicable, requires-subcompany-usecase or needs-human-decision.",
+  "allowedStatuses": [
+    "in-progress",
+    "explained",
+    "excluded-shopify",
+    "not-applicable",
+    "requires-subcompany-usecase",
+    "needs-human-decision"
+  ],
+  "items": [
+    {
+      "id": "OQ-0001",
+      "area": "company",
+      "objectType": "page",
+      "objectName": "Companies / Mandanten Page 357",
+      "question": "Welche sichere UI-first Route erstellt UNIVERSAARL-DE ohne direkte Listenzeile, Copy Company, Testunternehmen, CRONUS oder API shortcut?",
+      "whyItMatters": "Die Company-Anlage ist der erste echte Buchprozess der Universaarl-Zielwelt.",
+      "sourceNeeded": "universaarl-evidence",
+      "status": "in-progress",
+      "blockingFinalBook": true,
+      "nextAction": "TARGET-005-COMPANY-CREATION-SOURCE-BACKED-ALTERNATIVE-ROUTE",
+      "evidencePath": "playwright/projects/fibu-book5/evidence/target-005-company-creation-source-backed-alternative-route/",
+      "bookChapter": "Kapitel 3"
+    },
+    {
+      "id": "OQ-0002",
+      "area": "technical",
+      "objectType": "process",
+      "objectName": "Shopify / Online Store",
+      "question": "Ist Shopify / Online Store Teil des Buchscope?",
+      "whyItMatters": "Ausgeschlossene Funktionen muessen klassifiziert werden, damit sie nicht als vergessene offene Frage wirken.",
+      "sourceNeeded": "subcompany-usecase",
+      "status": "excluded-shopify",
+      "blockingFinalBook": false,
+      "nextAction": "Keine Umsetzung; im Katalog als excluded-shopify fuehren.",
+      "evidencePath": "playwright/projects/fibu-book5/BC-FULL-PLAYTHROUGH-CATALOG.md",
+      "bookChapter": "Scope"
+    },
+    {
+      "id": "OQ-0003",
+      "area": "finance",
+      "objectType": "process",
+      "objectName": "Intercompany",
+      "question": "Wie werden Intercompany-Felder, Partner und Inbox/Outbox erklaert?",
+      "whyItMatters": "Intercompany ist in einer einzelnen Hauptcompany nicht vollstaendig sinnvoll belegbar.",
+      "sourceNeeded": "subcompany-usecase",
+      "status": "requires-subcompany-usecase",
+      "blockingFinalBook": true,
+      "nextAction": "Nach Universaarl-Basis eine Subcompany-Route planen.",
+      "evidencePath": "playwright/projects/fibu-book5/BC-FULL-PLAYTHROUGH-CATALOG.md",
+      "bookChapter": "Kapitel 27"
+    },
+    {
+      "id": "OQ-0004",
+      "area": "finance",
+      "objectType": "process",
+      "objectName": "EU / Foreign Trade VAT Usecase",
+      "question": "Welche EU-/Auslands-USt-Felder gehoeren in einen eigenen Universaarl-Usecase?",
+      "whyItMatters": "Auslands- und EU-USt duerfen nicht aus Inlandsfaellen abgeleitet werden.",
+      "sourceNeeded": "official-source",
+      "status": "requires-subcompany-usecase",
+      "blockingFinalBook": true,
+      "nextAction": "Nach Inlands-USt-Foundation einen EU/AT/LU-Usecase mit Quellen- und Evidence-Gate planen.",
+      "evidencePath": "playwright/projects/fibu-book5/BC-FULL-PLAYTHROUGH-CATALOG.md",
+      "bookChapter": "Kapitel 8"
+    }
+  ],
+  "summary": {
+    "openItems": 0,
+    "inProgressItems": 1,
+    "explainedItems": 0,
+    "classifiedItems": 3,
+    "blockingFinalBookItems": 3
+  }
+}

@@ -154,3 +154,9 @@ Book patches must be:
 - clear about lab vs final proof
 
 Do not write broad BC theory without source or evidence.
+
+## Zero Open Questions Gate
+
+Every unclear Business Central object or behavior must be closed by evidence, source, allowed object analysis or a final classification. Use `playwright/projects/fibu-book5/BC-ZERO-OPEN-QUESTIONS-POLICY.md` and `.agent/state/open_questions_register.json`.
+
+No final book claim, `complete` coverage mark or final atlas mark is allowed while the related register item is still unresolved. `open` is not an acceptable end-of-run status.

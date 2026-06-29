@@ -13,3 +13,7 @@ Dieses Atlas-Dokument sammelt Dialoge und Entscheidungsfenster, die Klickpfade s
 ## Dialogregel
 
 Kein `OK`, `Ja`, `Finish`, `Erstellen`, `Post`, `Preview`, `Delete` oder aehnlicher Bestaetigungsklick ohne sichtbaren Dialogtext, Zielwirkung, Rueckfalllogik und Evidence-Plan.
+
+## Zero-Open-Questions-Regel
+
+Jeder nicht verstandene Dialog erzeugt entweder einen Eintrag in `.agent/state/open_questions_register.json` oder bekommt einen finalen Status aus `BC-ZERO-OPEN-QUESTIONS-POLICY.md`.

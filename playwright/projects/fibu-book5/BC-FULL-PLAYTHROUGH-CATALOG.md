@@ -11,6 +11,8 @@ Dieser Katalog ist die zentrale Landkarte fuer das Business-Central-Buch. Er ste
 
 Alte RM-DEMO-, Rhein-Main- und CRONUS-Nachweise bleiben historische Laborquellen. Sie duerfen helfen, Risiken und Klickpfade zu verstehen, ersetzen aber keine Universaarl-Evidence.
 
+Zero-Open-Questions-Regel: Jeder Bereich in diesem Katalog muss seine offenen Objekt-, Feld-, Action-, Dialog-, Tabellen-, Entry- und Buchungsfragen entweder in `BC-OBJECT-COVERAGE-CATALOG.md`, einem Atlas oder `.agent/state/open_questions_register.json` fuehren. Ein Bereich wird erst `universaarl-proven` oder `complete`, wenn diese Fragen durch Universaarl-Evidence, Microsoft Learn, erlaubte AL-/Objektanalyse oder einen finalen Status aus `BC-ZERO-OPEN-QUESTIONS-POLICY.md` geschlossen sind.
+
 ## Statuswerte
 
 | Status | Bedeutung |

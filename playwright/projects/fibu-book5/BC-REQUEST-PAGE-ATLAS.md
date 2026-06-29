@@ -11,3 +11,7 @@ Request Pages sind BC-Fenster fuer Batch-/Berichts-/Erzeugungsaktionen. Sie sind
 ## Erfassungsregel
 
 Jede Request Page braucht Screenshot, Parameterliste, Standardwerte, OK-/Cancel-Wirkung, Stop-Regeln, erwartetes Ergebnis und Buchkapitelbezug.
+
+## Zero-Open-Questions-Regel
+
+Jede nicht verstandene Request Page erzeugt entweder einen Eintrag in `.agent/state/open_questions_register.json` oder bekommt einen finalen Status aus `BC-ZERO-OPEN-QUESTIONS-POLICY.md`.
