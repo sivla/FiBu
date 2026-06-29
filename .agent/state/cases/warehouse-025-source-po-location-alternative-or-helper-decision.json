@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "caseId": "WAREHOUSE-025-SOURCE-PO-LOCATION-ALTERNATIVE-OR-HELPER-DECISION",
   "title": "Source Purchase Order Location alternative or helper decision",
-  "status": "planned",
+  "status": "observed",
   "taskClass": "judge_work",
   "modelClass": "gpt-5.5-low",
   "usageLogRequired": true,
@@ -80,7 +80,31 @@
   "mustRecreateInFinalSandbox": true,
   "finalScreenshotNeeded": false,
   "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-025/WAREHOUSE-025-result.json",
-  "nextStep": "WAREHOUSE-025: decide the next non-repetitive source Purchase Order Location route; prefer a helper improvement or alternative UI route over another blind cell edit.",
+  "nextStep": "WAREHOUSE-026: run a read-only active-editor/line-details probe on Purchase Order 106055; no value entry, no release, no receipt, no preview, no posting.",
   "createdAt": "2026-06-29T20:05:00+02:00",
-  "updatedAt": "2026-06-29T20:05:00+02:00"
+  "updatedAt": "2026-06-29T20:35:00+02:00",
+  "resultStatus": "observed",
+  "completedAt": "2026-06-29T20:35:00+02:00",
+  "decision": "Do not repeat WAREHOUSE-024 single-cell typing. The next best route is a read-only Active Editor and Line Details probe on Purchase Order 106055: focus the RAW-STEEL Location Code cell, capture activeElement/real inputs/comboboxes and line action candidates, but do not type FRA-ZL yet.",
+  "selectedNextRoute": "active-editor-and-line-details-probe-no-value-entry",
+  "rejectedRoutes": [
+    {
+      "route": "repeat guarded display-cell click/type/tab",
+      "reason": "WAREHOUSE-024 already attempted it once; FRA-ZL did not persist visibly."
+    },
+    {
+      "route": "release purchase order 106055 now",
+      "reason": "Location Code FRA-ZL is not visible on RAW-STEEL; source document is not warehouse-eligible for FRA-ZL."
+    },
+    {
+      "route": "warehouse receipt source selection now",
+      "reason": "Earlier Warehouse Receipt source dialogs showed no clear candidate until an eligible source document exists."
+    },
+    {
+      "route": "setup/company change now",
+      "reason": "Current blocker is UI editability/line route, not yet proven as missing setup."
+    }
+  ],
+  "nextCase": "WAREHOUSE-026-SOURCE-PO-LINE-ACTIVE-EDITOR-PROBE",
+  "nextCaseFile": ".agent/state/cases/warehouse-026-source-po-line-active-editor-probe.json"
 }

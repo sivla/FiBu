@@ -1,0 +1,139 @@
+{
+  "schemaVersion": 1,
+  "purpose": "warehouse-source-po-location-alternative-or-helper-decision",
+  "caseId": "WAREHOUSE-025-SOURCE-PO-LOCATION-ALTERNATIVE-OR-HELPER-DECISION",
+  "source": "local-evidence-route-decision",
+  "resultStatus": "observed",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "bcRun": false,
+  "playwrightRun": false,
+  "posted": false,
+  "previewPosting": false,
+  "setupChanged": false,
+  "dataChanged": false,
+  "companySwitched": false,
+  "apiShortcut": false,
+  "bookChanged": false,
+  "sourceDocumentType": "Purchase Order",
+  "sourceDocumentNo": "106055",
+  "evidenceReviewed": [
+    {
+      "caseId": "WAREHOUSE-020-INBOUND-SOURCE-DOCUMENT-READINESS",
+      "resultStatus": "observed",
+      "decision": "Known P2P Purchase Order drafts do not prove an eligible FRA-ZL/RAW released inbound source document; create a controlled source Purchase Order for Warehouse before repeating Receipt source selection.",
+      "blockedBy": [],
+      "nextCase": "WAREHOUSE-021-CONTROLLED-SOURCE-PURCHASE-ORDER-FOR-WAREHOUSE",
+      "posted": false,
+      "previewPosting": false,
+      "setupChanged": false,
+      "dataChanged": false
+    },
+    {
+      "caseId": "WAREHOUSE-021-CONTROLLED-SOURCE-PURCHASE-ORDER-FOR-WAREHOUSE",
+      "resultStatus": "blocked",
+      "sourceDocumentNo": "106055",
+      "blockedBy": [
+        "fra-zl-not-visible-on-source-document"
+      ],
+      "nextCase": "WAREHOUSE-022-SOURCE-PURCHASE-ORDER-VALUE-ENTRY-BLOCKER-REVIEW",
+      "posted": false,
+      "previewPosting": false,
+      "setupChanged": false,
+      "dataChanged": false
+    },
+    {
+      "caseId": "WAREHOUSE-022-SOURCE-PURCHASE-ORDER-VALUE-ENTRY-BLOCKER-REVIEW",
+      "resultStatus": "observed",
+      "blockedBy": [],
+      "nextCase": "WAREHOUSE-023-SOURCE-PO-LOCATION-FIELD-VISIBILITY-ROUTE",
+      "posted": false,
+      "previewPosting": false,
+      "setupChanged": false,
+      "dataChanged": false
+    },
+    {
+      "caseId": "WAREHOUSE-023-SOURCE-PO-LOCATION-FIELD-VISIBILITY-ROUTE",
+      "resultStatus": "observed",
+      "sourceDocumentNo": "106055",
+      "blockedBy": [
+        "fra-zl-still-not-visible-on-raw-steel-line",
+        "fillable-location-code-control-not-proven"
+      ],
+      "nextCase": "WAREHOUSE-024-SOURCE-PO-LINE-LOCATION-CELL-VALUE-GATE",
+      "posted": false,
+      "previewPosting": false,
+      "setupChanged": false,
+      "dataChanged": false
+    },
+    {
+      "caseId": "WAREHOUSE-024-SOURCE-PO-LINE-LOCATION-CELL-VALUE-GATE",
+      "resultStatus": "blocked",
+      "sourceDocumentNo": "106055",
+      "rawSteelLine": "RAW-STEEL Stahltraeger PCS 2.500,00 ATLANTA, GA FURNITURE",
+      "locationSet": false,
+      "blockedBy": [
+        "fra-zl-not-visible-after-single-guarded-line-cell-route"
+      ],
+      "nextCase": "WAREHOUSE-025-SOURCE-PO-LOCATION-ALTERNATIVE-OR-HELPER-DECISION",
+      "posted": false,
+      "previewPosting": false,
+      "setupChanged": false,
+      "dataChanged": false
+    }
+  ],
+  "decision": "Do not repeat WAREHOUSE-024 single-cell typing. The next best route is a read-only Active Editor and Line Details probe on Purchase Order 106055: focus the RAW-STEEL Location Code cell, capture activeElement/real inputs/comboboxes and line action candidates, but do not type FRA-ZL yet.",
+  "selectedNextRoute": "active-editor-and-line-details-probe-no-value-entry",
+  "rejectedRoutes": [
+    {
+      "route": "repeat guarded display-cell click/type/tab",
+      "reason": "WAREHOUSE-024 already attempted it once; FRA-ZL did not persist visibly."
+    },
+    {
+      "route": "release purchase order 106055 now",
+      "reason": "Location Code FRA-ZL is not visible on RAW-STEEL; source document is not warehouse-eligible for FRA-ZL."
+    },
+    {
+      "route": "warehouse receipt source selection now",
+      "reason": "Earlier Warehouse Receipt source dialogs showed no clear candidate until an eligible source document exists."
+    },
+    {
+      "route": "setup/company change now",
+      "reason": "Current blocker is UI editability/line route, not yet proven as missing setup."
+    }
+  ],
+  "selectedNextCase": "WAREHOUSE-026-SOURCE-PO-LINE-ACTIVE-EDITOR-PROBE",
+  "selectedNextCaseFile": ".agent/state/cases/warehouse-026-source-po-line-active-editor-probe.json",
+  "proved": [
+    "WAREHOUSE-020 to WAREHOUSE-024 evidence was reviewed as a sequence.",
+    "Purchase Order 106055 and RAW-STEEL remain the current source-document route.",
+    "FRA-ZL is not visible on the RAW-STEEL line after the single guarded Location Code cell route.",
+    "The next route must diagnose active editor/line details before any further value entry, release, receipt or posting."
+  ],
+  "notProved": [
+    "No Location Code FRA-ZL value is proven on Purchase Order 106055.",
+    "No release, warehouse source selection, receipt posting or ledger trace is proven.",
+    "No German final Warehouse proof exists."
+  ],
+  "blockedBy": [],
+  "flags": {
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true,
+    "noReceive": true,
+    "noInvoice": true,
+    "noRelease": true,
+    "noWarehouseReceiptSourceConfirmation": true
+  },
+  "migrationRelevance": "needed-for-german-final",
+  "rebuildInstruction": "In German final sandbox, reproduce this decision only as route logic; all source PO, Location Code, release, Warehouse Receipt and ledger evidence must be recreated in the German company.",
+  "mustRecreateInFinalSandbox": true,
+  "sourceCompany": "RM-DEMO",
+  "targetGermanCompanyImpact": "German final Warehouse proof needs a visible editable Location route or German setup/defaults that create the source line correctly before release.",
+  "finalScreenshotNeeded": false,
+  "nextCase": "WAREHOUSE-026-SOURCE-PO-LINE-ACTIVE-EDITOR-PROBE",
+  "nextStep": "WAREHOUSE-026: run a read-only active-editor/line-details probe on Purchase Order 106055; no value entry, no release, no receipt, no preview, no posting."
+}

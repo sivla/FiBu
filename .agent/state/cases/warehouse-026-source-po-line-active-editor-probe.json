@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "caseId": "WAREHOUSE-026-SOURCE-PO-LINE-ACTIVE-EDITOR-PROBE",
+  "title": "Source PO line active editor and line details probe",
+  "status": "planned",
+  "taskClass": "wizard_work",
+  "modelClass": "gpt-4-medium",
+  "usageLogRequired": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "warehouse-source-po-line-active-editor-probe",
+  "sourceCase": "WAREHOUSE-025-SOURCE-PO-LOCATION-ALTERNATIVE-OR-HELPER-DECISION",
+  "sourceDocumentType": "Purchase Order",
+  "sourceDocumentNo": "106055",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/warehouse-025/WAREHOUSE-025-result.json",
+    "playwright/projects/fibu-book5/evidence/warehouse-024/WAREHOUSE-024-result.json",
+    "playwright/projects/fibu-book5/evidence/warehouse-024/030-value-attempt.json"
+  ],
+  "purpose": "Open Purchase Order 106055 and diagnose whether the RAW-STEEL Location Code cell can expose a true active editor, input/combobox, line details panel or scoped line action before any further value entry.",
+  "allowedActions": [
+    "open-business-central-if-instance-and-company-match",
+    "run-playwright-if-case-preflight-passes",
+    "open-purchase-order-106055-by-direct-page-url",
+    "maximize-card-or-wide-layout",
+    "focus-purchase-lines-subform",
+    "focus-raw-steel-location-cell-without-typing",
+    "capture-active-editor-and-line-action-evidence",
+    "write-evidence",
+    "update-state"
+  ],
+  "defaultLockedActions": [
+    "purchase-order-location-value-entry",
+    "purchase-order-release",
+    "purchase-order-receive",
+    "purchase-order-invoice",
+    "warehouse-receipt-source-confirmation",
+    "warehouse-receipt-posting",
+    "warehouse-putaway-posting",
+    "preview-posting",
+    "posting",
+    "setup-change",
+    "company-switch",
+    "api-shortcut",
+    "delete-draft"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "claim-german-final-proof",
+    "use-api-shortcut-without-explicit-case-permission",
+    "type-fra-zl-or-any-other-value",
+    "repeat-warehouse-024-single-cell-value-route",
+    "post-warehouse-document"
+  ],
+  "safetyGates": [
+    "confirm-url-or-shell-instance-mcp-1-20260210",
+    "confirm-company-rm-demo",
+    "confirm-document-106055",
+    "confirm-raw-steel-row-visible",
+    "confirm-location-code-column-visible",
+    "no-value-entry",
+    "no-release",
+    "no-warehouse-source-selection",
+    "no-preview-posting",
+    "no-posting",
+    "abort-on-ambiguous-dialog"
+  ],
+  "plannedRoute": [
+    "Open Purchase Order 106055 by direct Page 50 filter URL.",
+    "Maximize/wide layout and expose Lines if needed.",
+    "Anchor RAW-STEEL row and Location Code column.",
+    "Click/focus the target cell without typing any value.",
+    "Capture activeElement, visible inputs/comboboxes near the row, and line action candidates such as Line Details or row-specific actions.",
+    "Stop before value entry, release, receive, invoice, Preview Posting, posting or Warehouse Receipt source confirmation."
+  ],
+  "expectedEvidence": [
+    "active editor snapshot after focusing RAW-STEEL Location Code cell",
+    "row-scoped input/combobox evidence or absence proof",
+    "line action candidates for non-cell value route",
+    "clear no-value/no-release/no-post/no-preview flags"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": false,
+  "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-026/WAREHOUSE-026-result.json",
+  "nextStep": "Run WAREHOUSE-026 active-editor/line-details probe without typing values or releasing the order.",
+  "createdAt": "2026-06-29T20:35:00+02:00",
+  "updatedAt": "2026-06-29T20:35:00+02:00"
+}

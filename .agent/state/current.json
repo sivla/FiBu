@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-29T20:05:00+02:00",
+  "updatedAt": "2026-06-29T20:35:00+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "warehouse",
-  "activeCase": "WAREHOUSE-025-SOURCE-PO-LOCATION-ALTERNATIVE-OR-HELPER-DECISION",
-  "active_case_file": ".agent/state/cases/warehouse-025-source-po-location-alternative-or-helper-decision.json",
-  "lastReferenceCase": "WAREHOUSE-024-SOURCE-PO-LINE-LOCATION-CELL-VALUE-GATE",
-  "lastReferenceCaseFile": ".agent/state/cases/warehouse-024-source-po-line-location-cell-value-gate.json",
+  "activeCase": "WAREHOUSE-026-SOURCE-PO-LINE-ACTIVE-EDITOR-PROBE",
+  "active_case_file": ".agent/state/cases/warehouse-026-source-po-line-active-editor-probe.json",
+  "lastReferenceCase": "WAREHOUSE-025-SOURCE-PO-LOCATION-ALTERNATIVE-OR-HELPER-DECISION",
+  "lastReferenceCaseFile": ".agent/state/cases/warehouse-025-source-po-location-alternative-or-helper-decision.json",
   "mode": "bc-specialist-labor-book-production",
-  "requiresStrongModel": true,
+  "requiresStrongModel": false,
   "requiredPreflightChecks": [
     "agent:preflight",
     "agent:state:validate",
@@ -40,7 +40,7 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "WAREHOUSE-025: decide the next non-repetitive source Purchase Order Location route; prefer a helper improvement or alternative UI route over another blind cell edit.",
+  "nextStep": "WAREHOUSE-026: run a read-only active-editor/line-details probe on Purchase Order 106055; no value entry, no release, no receipt, no preview, no posting.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/inventory-labor-draft.md",
     "area": "inventory",
@@ -112,8 +112,8 @@
     "summaryFile": ".agent/state/lab_to_german_sandbox_migration_plan.json",
     "noActiveLiveRunInOldSandbox": false,
     "germanTargetUnavailable": true,
-    "nextStep": "WAREHOUSE-025: decide the next non-repetitive source Purchase Order Location route; prefer a helper improvement or alternative UI route over another blind cell edit.",
-    "nextCase": "WAREHOUSE-025-SOURCE-PO-LOCATION-ALTERNATIVE-OR-HELPER-DECISION"
+    "nextStep": "WAREHOUSE-026: run a read-only active-editor/line-details probe on Purchase Order 106055; no value entry, no release, no receipt, no preview, no posting.",
+    "nextCase": "WAREHOUSE-026-SOURCE-PO-LINE-ACTIVE-EDITOR-PROBE"
   },
   "latestP2PLabFollowup": {
     "caseId": "P2P-004-PARTIAL-RECEIPT-VARIANCE-GATE",
@@ -221,7 +221,7 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "warehouse-source-po-location-alternative-or-helper-decision",
+  "currentCoverageFocus": "warehouse-source-po-line-active-editor-probe",
   "nextProcessRoute": [
     "P2P-012 compared Purchase Journal, Item Journal, Purchase Invoices and Requisition Worksheet by direct page URL without search or field entry.",
     "Item Journal is the most stable observed route for material quantity/location/value effect, but it is Inventory evidence rather than full creditor P2P.",
@@ -2741,5 +2741,22 @@
     "migrationRelevance": "needed-for-german-final",
     "mustRecreateInFinalSandbox": true,
     "updatedAt": "2026-06-29T20:05:00+02:00"
+  },
+  "latestWarehouse025": {
+    "caseId": "WAREHOUSE-025-SOURCE-PO-LOCATION-ALTERNATIVE-OR-HELPER-DECISION",
+    "status": "observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-025/WAREHOUSE-025-result.json",
+    "decision": "Do not repeat WAREHOUSE-024 single-cell typing. The next best route is a read-only Active Editor and Line Details probe on Purchase Order 106055: focus the RAW-STEEL Location Code cell, capture activeElement/real inputs/comboboxes and line action candidates, but do not type FRA-ZL yet.",
+    "selectedNextRoute": "active-editor-and-line-details-probe-no-value-entry",
+    "bcRun": false,
+    "playwrightRun": false,
+    "posted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "dataChanged": false,
+    "nextCase": "WAREHOUSE-026-SOURCE-PO-LINE-ACTIVE-EDITOR-PROBE",
+    "migrationRelevance": "needed-for-german-final",
+    "mustRecreateInFinalSandbox": true,
+    "updatedAt": "2026-06-29T20:35:00+02:00"
   }
 }
