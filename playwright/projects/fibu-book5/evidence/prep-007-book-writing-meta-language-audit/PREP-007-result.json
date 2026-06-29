@@ -1,20 +1,21 @@
 {
   "schemaVersion": 1,
-  "runId": "PREP-007-BOOK-WRITING-RULES-META-LANGUAGE-AUDIT",
+  "purpose": "autopilot-result-normalized",
   "caseId": "PREP-007-BOOK-WRITING-RULES-META-LANGUAGE-AUDIT",
-  "status": "done",
-  "instance": "playthru",
-  "targetCompany": "UNIVERSAARL-DE",
-  "bcRun": false,
-  "playwrightRun": false,
-  "posted": false,
-  "previewPosting": false,
-  "setupChange": false,
-  "bookChanged": true,
-  "summary": "Reduced high-visibility book-facing meta-language in the bookmaster and added an internal writing-style audit.",
-  "evidence": [
-    "playwright/projects/fibu-book5/BOOK-WRITING-META-LANGUAGE-AUDIT.md",
-    "playwright/projects/fibu-book5/evidence/prep-007-book-writing-meta-language-audit/PREP-007-result.json"
+  "source": "local-book-style-audit",
+  "resultStatus": "observed",
+  "runPlanId": "PREP-007-BOOK-WRITING-RULES-META-LANGUAGE-AUDIT",
+  "selectedTaskClass": "monkey_work",
+  "selectedModelClass": "gpt-4-mini-low",
+  "proved": [
+    "Multiple bookmaster chapter openings now use direct beginner-facing prose instead of 'Dieses Kapitel zeigt...'.",
+    "An internal book writing meta-language audit now captures remaining style risks.",
+    "PREP-008 is the next sensible queue case while company creation remains permission-blocked."
+  ],
+  "notProved": [
+    "No BC UI state changed.",
+    "No Playwright run was executed.",
+    "Remaining legacy RM/Rhein-Main examples still require evidence-driven replacement."
   ],
   "changedFiles": [
     "FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md",
@@ -26,7 +27,28 @@
     ".agent/state/marathon_queue.json",
     ".agent/state/last_run_summary.json"
   ],
-  "nextStep": "Continue with PREP-008-SOURCE-REGISTRY-AND-CLAIM-RULES-GAP-AUDIT. Company creation remains parked until permissions are available.",
+  "statePatch": {},
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/BOOK-WRITING-META-LANGUAGE-AUDIT.md",
+    "playwright/projects/fibu-book5/evidence/prep-007-book-writing-meta-language-audit/README.md"
+  ],
+  "warnings": [
+    "This is a book-style cleanup run, not a Business Central proof.",
+    "Remaining legacy examples are intentionally not mass-replaced."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": false,
+  "reason": "State was updated manually in the same controlled commit; state-finalize --write is intentionally not used.",
+  "flags": {
+    "noBcExecution": true,
+    "noPlaywright": true,
+    "noCompanyCreation": true,
+    "noSetupChange": true,
+    "noPreview": true,
+    "noPost": true,
+    "bookFacingMetaLanguageReduced": true
+  },
   "nextStepDecisionCard": {
     "currentCase": "PREP-007-BOOK-WRITING-RULES-META-LANGUAGE-AUDIT",
     "plannedNextCaseBeforeReview": "PREP-007-BOOK-WRITING-RULES-META-LANGUAGE-AUDIT",

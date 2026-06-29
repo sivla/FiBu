@@ -174,7 +174,7 @@ Prüfungsfalle:
 
 ## 2. Wie man dieses Buch nutzt: Lernpfade und Reifegrad
 
-Dieses Kapitel zeigt dir, wie du das Buch je nach Rolle durcharbeitest. Die Kapitel 1 bis 40 bleiben dieselbe Landkarte; nur Reihenfolge, Tempo und Übungstiefe ändern sich.
+Du kannst dieses Buch je nach Rolle unterschiedlich durcharbeiten. Die Kapitel 1 bis 40 bleiben dieselbe Landkarte; nur Reihenfolge, Tempo und Übungstiefe ändern sich.
 
 ### Lernpfad für Einsteiger: 7 Tage
 
@@ -2391,7 +2391,7 @@ UAT-Fall:
 
 ## 13. Inventory und Warehouse: Ware bewegen und bewerten [Q14][Q15][Q65][Q66][Q67][Q68]
 
-Dieses Kapitel zeigt, wie Rhein-Main Waren im einfachen Lager und im gesteuerten Lager bewegt, einlagert, kommissioniert und bewertet. Nach dem Kapitel kannst du den Unterschied zwischen direkter Lagerbuchung und Warehouse-Steuerung erklären und die entstandenen Artikelposten, Wertposten und Lagerberichte prüfen.
+Warenbewegungen beginnen in Business Central nicht erst beim Buchen. Zuerst steht fest, ob ein einfacher Lagerort reicht oder ob Warehouse-Belege wie Wareneingang, Einlagerung, Kommissionierung und Warenausgang gebraucht werden. Danach zeigen Artikelposten, Wertposten und Lagerberichte, ob Menge und Wert zusammenpassen.
 
 ### Kapitelbox
 
@@ -2590,7 +2590,7 @@ Korrigiere Lagerfehler nicht durch manuelles Löschen von Posten. Vor der Buchun
 
 ## 14. Planning, Assembly und Manufacturing: Maschine produzieren [Q16][Q17][Q18]
 
-Dieses Kapitel zeigt, wie RM-PROD aus Bedarf einen Fertigungsauftrag für `RM-M100` erzeugt, Material verbraucht, Output meldet und Herstellkosten prüft. Nach dem Kapitel kannst du Planung, Verbrauch, Output, Artikelposten, Wertposten und Fertigungsauftragsstatistik zusammenführen.
+Fertigung verbindet Bedarf, Stueckliste, Arbeitsplan, Materialverbrauch, Output und Herstellkosten. Business Central fuehrt diese Schritte ueber Planung, Fertigungsauftrag, Verbrauch, Istmeldung, Artikelposten, Wertposten und Fertigungsauftragsstatistik zusammen.
 
 ### Kapitelbox
 
@@ -2802,7 +2802,7 @@ Nach einer falschen Fertigungsbuchung wird nicht am Posten gearbeitet. Korrigier
 
 ## 15. Service: Wartung, Garantie und Ersatzteilverbrauch [Q19][Q25][Q26]
 
-Dieses Kapitel zeigt, wie RM-SERVICE einen Kundeneinsatz mit Serviceauftrag, Ersatzteilverbrauch, Technikerzeit, Garantie- oder Kulanzentscheidung und Faktura abwickelt. Nach dem Kapitel kannst du `SERV-4001` vom Anruf bis zur Postenspur nachvollziehen.
+Ein Servicefall beginnt mit einem Kundenproblem und endet erst, wenn Ersatzteile, Technikerzeit, Garantie- oder Kulanzentscheidung, Rechnung und Postenspur zusammenpassen. Business Central fuehrt diesen Ablauf ueber Serviceauftrag, Serviceartikel, Ressourcen, Artikelverbrauch und Faktura.
 
 ### Kapitelbox
 
@@ -2988,7 +2988,7 @@ Servicekorrekturen brauchen eine fachliche Entscheidung. Nach Buchung wird über
 
 ## 16. Projects: Installation und Meilensteinrechnung [Q27]
 
-Dieses Kapitel zeigt, wie RM-SERVICE eine Projektinstallation mit Aufgaben, Ressourcen, Material, Projektposten und Meilensteinrechnung steuert. Nach dem Kapitel kannst du `PROJ-5001` fachlich ausführen, fakturieren und über Projektstatistik abnehmen.
+Ein Projekt verbindet Aufgaben, Ressourcen, Material, Kosten, Fortschritt und Abrechnung. In Business Central werden Projektaufgaben, Planzeilen, Verbrauch, Projektposten, Meilensteinrechnung und Projektstatistik zusammen gelesen.
 
 ### Kapitelbox
 
@@ -3187,7 +3187,7 @@ Projektfehler werden über Projektjournale, Gutschriften oder Korrekturrechnunge
 
 
 ## 17. Dropshipping und Sonderverkauf [Q73][Q74]
-Dieses Kapitel zeigt, wie Rhein-Main einen Dropshipping- und Sonderverkaufsfall im Business-Central-Standard abwickelt. Shopify/Online Store ist fuer dieses Buch-5-Projekt bewusst gestrichen; der Lernpfad startet deshalb mit Verkaufsauftrag, Dropshipping-Kennzeichen, verknuepfter Einkaufsbestellung, USt-/Margenpruefung und Korrekturfall. Sichtbare Shopify-Menues, Microsoft-Learn-Links oder historische Quellenhinweise reaktivieren keinen Shopify-Klickpfad: Es gibt in Buch 5 kein Shopify-Setup, keine Connector-Diagnose und keine Shopify-Screenshots.
+Dropshipping und Sonderverkauf laufen in diesem Buch ueber Business-Central-Standardprozesse: Verkaufsauftrag, Dropshipping-Kennzeichen, verknuepfte Einkaufsbestellung, USt-/Margenpruefung und Korrekturfall. Shopify und Online Store bleiben ausserhalb dieses Buches. Sichtbare Shopify-Menues, Microsoft-Learn-Links oder historische Quellenhinweise fuehren nicht zu einem Shopify-Klickpfad: Es gibt in Buch 5 kein Shopify-Setup, keine Connector-Diagnose und keine Shopify-Screenshots.
 
 ### Kapitelbox
 
@@ -3377,7 +3377,7 @@ Aktueller Laborhinweis: `DROPSHIPPING-001` hat diese Loesung noch nicht ausgefue
 
 
 ## 18. Intercompany und Ausland [Q29][Q30][Q31]
-Dieses Kapitel zeigt, wie Rhein-Main einen Intercompany-Verkauf und einen Auslandssachverhalt prüfbar abbildet. Nach dem Kapitel kannst du IC-Ausgang, IC-Eingang, USt-Logik, Partnerbeleg und Abstimmung für `IC-7001` nachvollziehen.
+Intercompany und Auslandssachverhalte brauchen klare Partner, Belege, Steuerlogik und Abstimmung. Ein sauberer Ablauf verbindet IC-Ausgang, IC-Eingang, Partnerbeleg, USt-Pruefung und Abgleich zwischen den beteiligten Companies.
 
 ### Kapitelbox
 
@@ -3544,7 +3544,7 @@ Diese Loesung beschreibt den Sollablauf. Sie ist noch kein RM-DEMO-Laborbeleg. V
 
 
 ## 19. Debitoren, Kreditoren und OP-Ausgleich [Q20][Q21][Q22][Q23][Q24][Q28]
-Dieses Kapitel zeigt, wie Rhein-Main offene Posten ausgleicht. Nach dem Kapitel kannst du eine Zahlung zu `SO-1001` erfassen, mit dem Debitorenposten verbinden, detaillierte Posten prüfen und einen falschen Ausgleich korrigieren.
+Offene Posten bleiben offen, bis eine Zahlung oder Gutschrift sauber zugeordnet ist. Business Central verbindet Zahlung, Debitoren- oder Kreditorenposten, detaillierte Posten und Sachposten. Ein falscher Ausgleich wird nicht ueberschrieben, sondern nachvollziehbar korrigiert.
 
 ### Kapitelbox
 
@@ -3700,7 +3700,7 @@ Als P2P-Folgefall wurde in `P2P-002` zusaetzlich eine Kreditoren-Laborzahlung ge
 
 
 ## 20. Bank, Payments und Bankabstimmung
-Dieses Kapitel zeigt, wie Rhein-Main Bankumsätze importiert, zuordnet und abstimmt. Nach dem Kapitel kannst du den Zahlungseingang zu `SO-1001` über das Zahlungsabstimmungs Buch.-Blatt buchen und die Bankkontenabstimmung nachweisen.
+Bankarbeit verbindet Kontoauszug, Zahlung, offenen Posten, Bankposten und Abstimmung. In Business Central werden Bankumsaetze importiert oder erfasst, passenden offenen Posten zugeordnet und anschliessend gegen das Bankkonto abgestimmt.
 
 Status:
 - Buchziel: Bankumsatz importieren oder erfassen, Zahlung dem richtigen offenen Debitorenposten zuordnen, Bankposten erzeugen und Bankkonto abstimmen.
@@ -3841,7 +3841,7 @@ Vor Buchung wird die Abstimmungszeile korrigiert. Nach Buchung wird ein falscher
 
 
 ## 21. Anlagen (Fixed Assets)
-Dieses Kapitel zeigt das Zielbild, wie Rhein-Main eine Anlage kauft, aktiviert und abschreibt. Der aktuelle RM-DEMO-Laborstand beweist Teile dieses Weges; die vollstaendige deutsche Zielstrecke muss spaeter in einer deutschen Zielinstanz neu reproduziert werden.
+Eine Anlage wird in Business Central zuerst als Stammdatum angelegt, dann mit Zugang aktiviert und danach ueber AfA-Laeufe abgeschrieben. Fuer die deutsche Universaarl-Strecke werden Anlagenkarte, Zugang, AfA-Journal, Vorschau, Buchung, Anlagenposten und Sachposten neu aufgebaut.
 
 ### Kapitelbox
 
@@ -4077,7 +4077,7 @@ Gebuchte Anlagenzugange werden nicht durch Direktaenderung der Anlagenposten kor
 - Praxisregel: Kein UAT ohne Beleg, Posten, Bericht und Korrekturtest.
 
 ## 22. USt, E-Rechnung und deutsche Nachweissicht [Q20][Q21][Q22][Q23][Q24][Q75][Q76][Q77][Q78]
-Dieses Kapitel zeigt, wie Rhein-Main Umsatzsteuer, E-Rechnungsstatus und deutsche Nachweise direkt aus Business Central prüft. Nach dem Kapitel kannst du aus einer gebuchten Verkaufsrechnung die USt-Posten, Sachposten, E-Belege und USt-Abrechnung nachvollziehen und eine falsche USt-Gruppe sauber korrigieren.
+Umsatzsteuer und E-Rechnungsstatus werden nicht nur am Beleg gelesen. Entscheidend sind USt-Buchungsmatrix, gebuchte Rechnung, USt-Posten, Sachposten, E-Belegstatus und die USt-Auswertung. Eine falsche USt-Gruppe wird ueber Setup, Belegpruefung und Korrekturweg nachvollziehbar bereinigt.
 
 ### Kapitelbox
 
@@ -4869,7 +4869,7 @@ Rhein-Main korrigiert zuerst die Nebenbücher, danach das Hauptbuch und zuletzt 
 
 ## 25. Reporting, Controlling, Finanzberichte (Financial Reports) und Power BI [Q48][Q49][Q50][Q51]
 
-Dieses Kapitel zeigt, wie Rhein-Main aus gebuchten Geschäftsvorfällen verlässliche Managementinformationen gewinnt. Nach dem Kapitel kannst du eine GuV nach Produktlinie, Vertriebskanal und Abteilung öffnen, die Zahlen bis zu den Sachposten zurückverfolgen, typische Reportingfehler erkennen und einen UAT-Fall für Controlling-Berichte abnehmen.
+Reporting beginnt mit gebuchten Geschaeftsvorfaellen. Aus Sachposten, Dimensionen, Datumsfiltern, Finanzberichten und Analyseansichten entsteht eine GuV nach Produktlinie, Vertriebskanal oder Abteilung. Jede Zahl bleibt nur verlaesslich, wenn sie bis zu den zugrunde liegenden Posten zurueckverfolgt werden kann.
 
 ### Kapitelbox
 
@@ -5526,7 +5526,7 @@ Merksatz:
 
 
 ## 29. Integrationen [Q35][Q36][Q37][Q38][Q39][Q40][Q41][Q42]
-Dieses Kapitel zeigt, wie Rhein-Main Integrationen und Extensions nicht nach Bauchgefühl auswählt, sondern als prüfbare Architekturentscheidung. Nach dem Kapitel kannst du für einen konkreten Schmerzpunkt entscheiden, ob Business-Central-Standard, AppSource-Extension, Power Platform, API-Integration oder Customizing die richtige Lösung ist.
+Integrationen und Extensions werden nicht nach Bauchgefuehl ausgewaehlt. Zuerst wird der fachliche Schmerzpunkt beschrieben, dann der Business-Central-Standard geprueft, danach AppSource, Power Platform, API-Integration oder Customizing bewertet. Die Entscheidung braucht Nutzen, Risiko, Betrieb, Datenfluss, Berechtigungen und Rueckfallweg.
 
 ### Status des Labor-Nachweises in `RM-DEMO`
 

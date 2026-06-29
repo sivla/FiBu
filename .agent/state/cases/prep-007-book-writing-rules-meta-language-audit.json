@@ -1,20 +1,24 @@
 {
   "schemaVersion": 1,
-  "runId": "PREP-007-BOOK-WRITING-RULES-META-LANGUAGE-AUDIT",
   "caseId": "PREP-007-BOOK-WRITING-RULES-META-LANGUAGE-AUDIT",
   "status": "done",
+  "taskClass": "monkey_work",
   "instance": "playthru",
   "targetCompany": "UNIVERSAARL-DE",
-  "bcRun": false,
+  "workType": "book-writing-style-audit",
+  "effectiveBcAction": false,
   "playwrightRun": false,
-  "posted": false,
-  "previewPosting": false,
-  "setupChange": false,
-  "bookChanged": true,
-  "summary": "Reduced high-visibility book-facing meta-language in the bookmaster and added an internal writing-style audit.",
-  "evidence": [
-    "playwright/projects/fibu-book5/BOOK-WRITING-META-LANGUAGE-AUDIT.md",
-    "playwright/projects/fibu-book5/evidence/prep-007-book-writing-meta-language-audit/PREP-007-result.json"
+  "bookChange": true,
+  "summary": "Replaced high-visibility bookmaster meta-language with direct beginner-facing explanations and added a style audit for remaining patterns.",
+  "proved": [
+    "The next open queue case PREP-007 was still the best step while company creation is permission-blocked.",
+    "Multiple bookmaster chapter openings no longer use the pattern 'Dieses Kapitel zeigt...'.",
+    "A dedicated audit now captures remaining style risks and the next lookahead."
+  ],
+  "notProved": [
+    "This run did not create UNIVERSAARL-DE.",
+    "This run did not execute Business Central or Playwright.",
+    "Remaining legacy RM/Rhein-Main sections still need targeted replacement in later cases."
   ],
   "changedFiles": [
     "FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md",
@@ -26,7 +30,6 @@
     ".agent/state/marathon_queue.json",
     ".agent/state/last_run_summary.json"
   ],
-  "nextStep": "Continue with PREP-008-SOURCE-REGISTRY-AND-CLAIM-RULES-GAP-AUDIT. Company creation remains parked until permissions are available.",
   "nextStepDecisionCard": {
     "currentCase": "PREP-007-BOOK-WRITING-RULES-META-LANGUAGE-AUDIT",
     "plannedNextCaseBeforeReview": "PREP-007-BOOK-WRITING-RULES-META-LANGUAGE-AUDIT",
@@ -72,5 +75,16 @@
       "Read BC-SOURCE-REGISTRY.md, BC-SOURCE-CLAIM-RULES.md and BC-MICROSOFT-LEARN-MAPPING.md.",
       "Keep source claims separate from UI evidence claims."
     ]
-  }
+  },
+  "validationCommands": [
+    "npm run agent:preflight",
+    "npm run agent:context",
+    "npm run agent:dry-run",
+    "npm run agent:run-plan",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/prep-007-book-writing-meta-language-audit/PREP-007-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/prep-007-book-writing-meta-language-audit/PREP-007-result.json",
+    "npm run check:encoding",
+    "git diff --check",
+    "npx tsc --noEmit"
+  ]
 }

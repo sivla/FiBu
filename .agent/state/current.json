@@ -6,8 +6,8 @@
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "activeArea": "universaarl-readonly-ui-prep",
-  "activeCase": "PREP-006-BOOKMASTER-UNIVERSAARL-FALLSTUDIE-REWRITE-PLAN",
-  "active_case_file": ".agent/state/cases/prep-006-bookmaster-universaarl-fallstudie-rewrite-plan.json",
+  "activeCase": "PREP-007-BOOK-WRITING-RULES-META-LANGUAGE-AUDIT",
+  "active_case_file": ".agent/state/cases/prep-007-book-writing-rules-meta-language-audit.json",
   "lastReferenceCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
   "lastReferenceCaseFile": ".agent/state/cases/warehouse-031-warehouse-source-route-park-or-setup-fit-decision.json",
   "mode": "universaarl-readonly-prep-until-super-permissions",
@@ -48,7 +48,7 @@
     "preview-posting-until-target-company-exists",
     "api-shortcut-for-company-creation"
   ],
-  "nextStep": "Continue with PREP-007-BOOK-WRITING-RULES-META-LANGUAGE-AUDIT. Audit book-facing drafts and bookmaster for agent/evidence meta-language while keeping old evidence intact. Company creation remains parked until SUPER/company-create permissions are confirmed.",
+  "nextStep": "Continue with PREP-008-SOURCE-REGISTRY-AND-CLAIM-RULES-GAP-AUDIT. Keep Company Creation parked until SUPER/company-create permissions are confirmed.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -3650,31 +3650,31 @@
     "resultFile": "playwright/projects/fibu-book5/book-drafts/universaarl-company-creation-draft.md"
   },
   "nextStepDecisionCard": {
-    "currentCase": "PREP-006-BOOKMASTER-UNIVERSAARL-FALLSTUDIE-REWRITE-PLAN",
+    "currentCase": "PREP-007-BOOK-WRITING-RULES-META-LANGUAGE-AUDIT",
     "plannedNextCaseBeforeReview": "PREP-007-BOOK-WRITING-RULES-META-LANGUAGE-AUDIT",
-    "lastEvidenceSummary": "PREP-005 completed object coverage catalog gap fill; company creation remains parked until SUPER/company-create permissions are available.",
+    "lastEvidenceSummary": "PREP-006 moved the chapter 3 opening to Universaarl and added a rewrite plan.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "Chapter 3 now has a Universaarl opening, so the next highest-value book task is to audit remaining book-facing meta-language and keep beginner prose clean.",
+    "reason": "Book-facing style needed immediate cleanup after the chapter 3 rewrite and before more Universaarl prose is added.",
     "lookaheadReviewed": [
       {
-        "caseId": "PREP-007-BOOK-WRITING-RULES-META-LANGUAGE-AUDIT",
-        "status": "ready-next",
-        "reason": "Book-facing text must stay reader prose after the chapter-3 rewrite."
-      },
-      {
         "caseId": "PREP-008-SOURCE-REGISTRY-AND-CLAIM-RULES-GAP-AUDIT",
-        "status": "ready-after-current",
-        "reason": "Source discipline is needed before more product or best-practice claims enter the book."
+        "status": "ready-next",
+        "reason": "After style cleanup, source and claim rules should be checked before adding stronger product or best-practice claims."
       },
       {
         "caseId": "PREP-009-RM-DECOMMISSION-INVENTORY-REFINEMENT",
         "status": "ready-after-current",
-        "reason": "The chapter-3 rewrite makes the next RM-decommission refinement easier and more targeted."
+        "reason": "Remaining RM/Rhein-Main references are now easier to classify after the style audit."
       },
       {
         "caseId": "PREP-010-PLAYWRIGHT-READONLY-HELPERS-AND-UI-ERGONOMICS",
         "status": "ready-after-current",
-        "reason": "Tooltip, split-button and screenshot-QA learnings should become helper rules after the book audit."
+        "reason": "Tooltip, split-button and screenshot-QA rules should become reusable helpers."
+      },
+      {
+        "caseId": "PREP-011-SCREENSHOT-EXPLANATION-QUALITY-GATE",
+        "status": "ready-after-current",
+        "reason": "Remaining screenshot prose needs page/company/step/visible-proof/not-proof clarity."
       },
       {
         "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
@@ -3683,16 +3683,16 @@
       }
     ],
     "queueChangesMade": [],
-    "selectedNextCase": "PREP-007-BOOK-WRITING-RULES-META-LANGUAGE-AUDIT",
-    "whySelectedNextCaseIsBest": "It directly improves book quality while effective BC actions are permission-blocked.",
+    "selectedNextCase": "PREP-008-SOURCE-REGISTRY-AND-CLAIM-RULES-GAP-AUDIT",
+    "whySelectedNextCaseIsBest": "Cleaner prose reduces book noise; the next risk is unsupported product or best-practice claims.",
     "risksBeforeNextCase": [
-      "Do not mass-replace legacy evidence.",
-      "Do not remove historical RM/Rhein-Main references from evidence files.",
-      "Do not write final Universaarl claims before matching evidence exists."
+      "Do not treat Microsoft Learn as proof of the current UI state.",
+      "Do not add final German claims before Universaarl evidence exists.",
+      "Do not pull community sources into final claim rules."
     ],
     "requiredPreparation": [
-      "Scan only book-facing files and drafts first.",
-      "Separate internal evidence language from reader-facing prose."
+      "Read BC-SOURCE-REGISTRY.md, BC-SOURCE-CLAIM-RULES.md and BC-MICROSOFT-LEARN-MAPPING.md.",
+      "Keep source claims separate from UI evidence claims."
     ]
   },
   "permissionBlocker": {
@@ -3769,15 +3769,22 @@
     "nextCase": "PREP-006-BOOKMASTER-UNIVERSAARL-FALLSTUDIE-REWRITE-PLAN",
     "updatedAt": "2026-06-29T21:54:54.534Z"
   },
-  "activeCaseFile": ".agent/state/cases/prep-006-bookmaster-universaarl-fallstudie-rewrite-plan.json",
-  "previousCase": "PREP-005-BC-OBJECT-COVERAGE-CATALOG-GAP-FILL",
-  "nextCase": "PREP-007-BOOK-WRITING-RULES-META-LANGUAGE-AUDIT",
-  "latestPrepCase": "PREP-006-BOOKMASTER-UNIVERSAARL-FALLSTUDIE-REWRITE-PLAN",
+  "activeCaseFile": ".agent/state/cases/prep-007-book-writing-rules-meta-language-audit.json",
+  "previousCase": "PREP-006-BOOKMASTER-UNIVERSAARL-FALLSTUDIE-REWRITE-PLAN",
+  "nextCase": "PREP-008-SOURCE-REGISTRY-AND-CLAIM-RULES-GAP-AUDIT",
+  "latestPrepCase": "PREP-007-BOOK-WRITING-RULES-META-LANGUAGE-AUDIT",
   "latestBookmasterFallstudieRewritePlan": {
     "status": "prep-progress",
     "result": "Chapter 3 opening moved to Universaarl GmbH / UNIVERSAARL-DE without claiming the company already exists.",
     "plan": "playwright/projects/fibu-book5/UNIVERSAARL-FALLSTUDIE-REWRITE-PLAN.md",
     "evidence": "playwright/projects/fibu-book5/evidence/prep-006-bookmaster-fallstudie-rewrite-plan/PREP-006-result.json",
     "nextCase": "PREP-007-BOOK-WRITING-RULES-META-LANGUAGE-AUDIT"
+  },
+  "latestBookWritingMetaLanguageAudit": {
+    "status": "prep-progress",
+    "result": "High-visibility bookmaster chapter openings were rewritten from meta-language to direct beginner-facing prose.",
+    "audit": "playwright/projects/fibu-book5/BOOK-WRITING-META-LANGUAGE-AUDIT.md",
+    "evidence": "playwright/projects/fibu-book5/evidence/prep-007-book-writing-meta-language-audit/PREP-007-result.json",
+    "nextCase": "PREP-008-SOURCE-REGISTRY-AND-CLAIM-RULES-GAP-AUDIT"
   }
 }
