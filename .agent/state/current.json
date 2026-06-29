@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-29T08:05:00.000Z",
+  "updatedAt": "2026-06-29T08:25:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "fixedassets",
-  "activeCase": "FIXEDASSETS-289-FA-DEPRECIATION-JOURNAL-ASSETS-DEFAULT-READONLY",
-  "active_case_file": ".agent/state/cases/fixedassets-289-fa-depreciation-journal-assets-default-readonly.json",
-  "lastReferenceCase": "REPORTING-017-INVENTORY-DIMENSION-BOOKMASTER-SYNC",
-  "lastReferenceCaseFile": ".agent/state/cases/reporting-017-inventory-dimension-bookmaster-sync.json",
+  "activeCase": "FIXEDASSETS-290-FA-DEPRECIATION-JOURNAL-ASSETS-DEFAULT-REVIEW",
+  "active_case_file": ".agent/state/cases/fixedassets-290-fa-depreciation-journal-assets-default-review.json",
+  "lastReferenceCase": "FIXEDASSETS-289-FA-DEPRECIATION-JOURNAL-ASSETS-DEFAULT-READONLY",
+  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-289-fa-depreciation-journal-assets-default-readonly.json",
   "mode": "bc-specialist-labor-book-production",
   "requiresStrongModel": true,
   "requiredPreflightChecks": [
@@ -40,7 +40,7 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "Continue with the existing Fixed Assets depreciation journal assets/default read-only case.",
+  "nextStep": "FIXEDASSETS-290: locally review FA-289 journal context before any Calculate Depreciation OK, Preview Posting or Post.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/inventory-labor-draft.md",
     "area": "inventory",
@@ -112,8 +112,8 @@
     "summaryFile": ".agent/state/lab_to_german_sandbox_migration_plan.json",
     "noActiveLiveRunInOldSandbox": false,
     "germanTargetUnavailable": true,
-    "nextStep": "Resume practical Fixed Assets depreciation journal assets/default read-only route in RM-DEMO lab.",
-    "nextCase": "FIXEDASSETS-289-FA-DEPRECIATION-JOURNAL-ASSETS-DEFAULT-READONLY"
+    "nextStep": "Review FA-289 journal context locally before any depreciation OK, Preview Posting or Post.",
+    "nextCase": "FIXEDASSETS-290-FA-DEPRECIATION-JOURNAL-ASSETS-DEFAULT-REVIEW"
   },
   "latestP2PLabFollowup": {
     "caseId": "P2P-004-PARTIAL-RECEIPT-VARIANCE-GATE",
@@ -2071,6 +2071,36 @@
     "bookMasterPath": "FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md",
     "bookEffect": "Chapter 13 now separates visible PRODUCTLINE dimensions in Item/Value Entries from unproven Analysis View/Financial Report effect.",
     "nextCase": "FIXEDASSETS-289-FA-DEPRECIATION-JOURNAL-ASSETS-DEFAULT-READONLY",
+    "migrationRelevance": "needed-for-german-final",
+    "mustRecreateInFinalSandbox": true,
+    "finalScreenshotNeeded": true
+  },
+  "latestFixedAssets289DepreciationJournalAssetsDefaultReadonly": {
+    "caseId": "FIXEDASSETS-289-FA-DEPRECIATION-JOURNAL-ASSETS-DEFAULT-READONLY",
+    "status": [
+      "labor-proven",
+      "read-only",
+      "needs-review-before-execute",
+      "needs-german-final-rebuild"
+    ],
+    "sourceInstance": "MCP_1_20260210",
+    "sourceCompany": "RM-DEMO",
+    "bcRun": true,
+    "playwrightRun": true,
+    "posted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "companySwitched": false,
+    "resultPath": "playwright/projects/fibu-book5/evidence/fixedassets-289/FIXEDASSETS-289-result.json",
+    "evidencePath": "playwright/projects/fibu-book5/evidence/fixedassets-289/",
+    "pageVisible": true,
+    "batchDefaultVisible": true,
+    "templateAssetsVisible": false,
+    "faDepVisible": false,
+    "fixedAssetVisible": false,
+    "depreciationBookVisible": false,
+    "decision": "DEFAULT / Batch Name context is visible read-only, but no depreciation line, FA-CNC-01 or HGB line proof exists. Local review required before any OK/Preview/Post.",
+    "nextCase": "FIXEDASSETS-290-FA-DEPRECIATION-JOURNAL-ASSETS-DEFAULT-REVIEW",
     "migrationRelevance": "needed-for-german-final",
     "mustRecreateInFinalSandbox": true,
     "finalScreenshotNeeded": true
