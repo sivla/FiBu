@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-29T07:45:00.000Z",
+  "updatedAt": "2026-06-29T08:05:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
-  "activeArea": "reporting",
-  "activeCase": "REPORTING-017-INVENTORY-DIMENSION-BOOKMASTER-SYNC",
-  "active_case_file": ".agent/state/cases/reporting-017-inventory-dimension-bookmaster-sync.json",
-  "lastReferenceCase": "REPORTING-016-INVENTORY-DIMENSION-REPORTING-DECISION",
-  "lastReferenceCaseFile": ".agent/state/cases/reporting-016-inventory-dimension-reporting-decision.json",
+  "activeArea": "fixedassets",
+  "activeCase": "FIXEDASSETS-289-FA-DEPRECIATION-JOURNAL-ASSETS-DEFAULT-READONLY",
+  "active_case_file": ".agent/state/cases/fixedassets-289-fa-depreciation-journal-assets-default-readonly.json",
+  "lastReferenceCase": "REPORTING-017-INVENTORY-DIMENSION-BOOKMASTER-SYNC",
+  "lastReferenceCaseFile": ".agent/state/cases/reporting-017-inventory-dimension-bookmaster-sync.json",
   "mode": "bc-specialist-labor-book-production",
   "requiresStrongModel": true,
   "requiredPreflightChecks": [
@@ -40,7 +40,7 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "Sync the REPORTING-015/016 Inventory dimension boundary into Chapter 13 of the bookmaster without German final claims.",
+  "nextStep": "Continue with the existing Fixed Assets depreciation journal assets/default read-only case.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/inventory-labor-draft.md",
     "area": "inventory",
@@ -62,7 +62,7 @@
     "integratedIntoBookMaster": true,
     "bookMasterSection": "Kapitel 13 Inventory und Warehouse / Inventory Costing und Lagerbewertung",
     "labVsTargetPathSeparated": true,
-    "nextStep": "Sync the Inventory dimension/reporting boundary into Chapter 13 if missing."
+    "nextStep": "Inventory/reporting boundary is synced; resume next practical process block."
   },
   "bookProductionGoal": {
     "goalFile": ".agent/state/book-production-goal.json",
@@ -112,8 +112,8 @@
     "summaryFile": ".agent/state/lab_to_german_sandbox_migration_plan.json",
     "noActiveLiveRunInOldSandbox": false,
     "germanTargetUnavailable": true,
-    "nextStep": "Sync REPORTING-015/016 inventory dimension boundary into the bookmaster as lab-only text; German target sandbox remains unavailable.",
-    "nextCase": "REPORTING-017-INVENTORY-DIMENSION-BOOKMASTER-SYNC"
+    "nextStep": "Resume practical Fixed Assets depreciation journal assets/default read-only route in RM-DEMO lab.",
+    "nextCase": "FIXEDASSETS-289-FA-DEPRECIATION-JOURNAL-ASSETS-DEFAULT-READONLY"
   },
   "latestP2PLabFollowup": {
     "caseId": "P2P-004-PARTIAL-RECEIPT-VARIANCE-GATE",
@@ -2048,6 +2048,29 @@
     "decision": "Use REPORTING-015 as labor bookdraft evidence, not as final reporting proof. Do not start a new Analysis View setup-fit route until a bookmaster sync shows a concrete gap.",
     "bookDraftPath": "playwright/projects/fibu-book5/book-drafts/inventory-labor-draft.md",
     "nextCase": "REPORTING-017-INVENTORY-DIMENSION-BOOKMASTER-SYNC",
+    "migrationRelevance": "needed-for-german-final",
+    "mustRecreateInFinalSandbox": true,
+    "finalScreenshotNeeded": true
+  },
+  "latestReporting017InventoryDimensionBookmasterSync": {
+    "caseId": "REPORTING-017-INVENTORY-DIMENSION-BOOKMASTER-SYNC",
+    "status": [
+      "labor-sufficient-for-book-draft",
+      "bookmaster-synced",
+      "needs-german-final-rebuild"
+    ],
+    "sourceInstance": "MCP_1_20260210",
+    "sourceCompany": "RM-DEMO",
+    "bcRun": false,
+    "playwrightRun": false,
+    "posted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "resultPath": "playwright/projects/fibu-book5/evidence/reporting-017/REPORTING-017-result.json",
+    "evidencePath": "playwright/projects/fibu-book5/evidence/reporting-017/",
+    "bookMasterPath": "FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md",
+    "bookEffect": "Chapter 13 now separates visible PRODUCTLINE dimensions in Item/Value Entries from unproven Analysis View/Financial Report effect.",
+    "nextCase": "FIXEDASSETS-289-FA-DEPRECIATION-JOURNAL-ASSETS-DEFAULT-READONLY",
     "migrationRelevance": "needed-for-german-final",
     "mustRecreateInFinalSandbox": true,
     "finalScreenshotNeeded": true
