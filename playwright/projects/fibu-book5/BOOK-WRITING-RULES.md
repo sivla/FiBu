@@ -75,3 +75,23 @@ Kein Buchabschnitt wird als fertig behandelt, solange seine zentralen Business-C
 Das Buch erklaert Business Central so, wie ein Anfaenger die Oberflaeche sieht: Command Bar, FastTabs, FactBoxes, Listen, Karten, Worksheets, Journals, Dialoge und Request Pages. Screenshots werden erst als Buchbilder genutzt, wenn relevante Felder, Buttons und Tabellen lesbar sind.
 
 Wenn ein Zeilenbereich zu eng ist, erklaert der Text, dass man FactBox ausblenden, FastTabs einklappen, den Tabellenbereich vergroessern, Fokusmodus nutzen oder horizontal scrollen kann. Interne UI-Diagnose bleibt in Evidence und Atlas; der Buchtext bleibt direkte Anleitung.
+
+## Keine Agenten- oder Evidence-Meta im Buch
+
+Finaler Buchtext spricht nicht ueber Cases, Agenten oder Evidence-Dateien. Er erklaert Business Central direkt fuer den Leser.
+
+Nicht in den Buchfliesstext:
+
+- "Dieses Kapitel erklaert ..."
+- "Der Leser soll verstehen ..."
+- "Evidence zeigt ..."
+- "Dieser Screenshot beweist ..."
+- "Spaeter muss ..."
+- "Der Case zeigt ..."
+- "Der Agent hat ..."
+
+Stattdessen beschreibt der Text die Seite, den Button, das Feld, die fachliche Wirkung, die entstehenden Posten, die Erfolgskontrolle und den Korrekturweg.
+
+## RM-Decommission im Buch
+
+Universaarl ist die aktive Fallstudie. Rhein-Main, `RM-DEMO`, `RM-*`, `MCP_1_20260210` und CRONUS bleiben nur historische Labor- oder Archivreferenzen. Neue Buchabschnitte werden nicht mehr auf Rhein-Main geschrieben. Alte Abschnitte werden Prozess fuer Prozess durch Universaarl-Evidence ersetzt; bis dahin duerfen sie nicht als aktive Zielwahrheit erscheinen.

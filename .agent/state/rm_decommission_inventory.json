@@ -1,0 +1,153 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-06-29T20:05:00.000Z",
+  "purpose": "rm-decommission-inventory",
+  "activeWorld": {
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "legalName": "Universaarl GmbH"
+  },
+  "legacyTerms": [
+    "RM-DEMO",
+    "Rhein-Main",
+    "Rhein Main",
+    "RheinMain",
+    "RM-",
+    "MCP_1_20260210",
+    "CRONUS"
+  ],
+  "classificationValues": [
+    "active-must-replace-now",
+    "replace-with-universaarl-evidence",
+    "convert-to-generic-helper",
+    "external-archive-later",
+    "ready-for-removal",
+    "removed-from-active-repo",
+    "false-positive"
+  ],
+  "styleAudit": {
+    "checkedPatterns": [
+      "Dieses Kapitel erklaert",
+      "Der Leser soll verstehen",
+      "Evidence zeigt",
+      "Dieser Screenshot beweist",
+      "Spaeter muss",
+      "Der Case zeigt",
+      "Der Agent hat"
+    ],
+    "bookMasterDirectFixesApplied": [
+      "Chapter 4 intro rewritten as direct Business Central reader text.",
+      "Chapter 5 intro rewritten as data-model reader text.",
+      "Kontenfindung intro rewritten as direct explanation.",
+      "Financial thinking intro rewritten as direct explanation.",
+      "Evidence heading renamed to visible Business Central result wording.",
+      "Inventory Costing intro changed from Rhein-Main active framing to Universaarl target framing with legacy boundary."
+    ],
+    "remainingMetaPatternHitsInAuditedScope": 0
+  },
+  "inventory": [
+    {
+      "scope": "FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md",
+      "observedHitsApprox": 869,
+      "classification": "replace-with-universaarl-evidence",
+      "priority": "high",
+      "action": "Replace active Rhein-Main/RM story sections process by process after Universaarl evidence exists. Do not mass-replace historical or target-data placeholders without context.",
+      "chapter3Priority": true
+    },
+    {
+      "scope": "FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md chapter 23 intro",
+      "observedHitsApprox": 1,
+      "classification": "active-must-replace-now",
+      "priority": "high",
+      "action": "Active Rhein-Main inventory-costing framing was replaced with Universaarl target-world wording and legacy boundary."
+    },
+    {
+      "scope": "playwright/projects/fibu-book5/BC-COMPANY-USECASE.md",
+      "observedHitsApprox": 4,
+      "classification": "removed-from-active-repo",
+      "priority": "medium",
+      "action": "Keep because the file explicitly marks old references as legacy-labor-reference and defines Universaarl as active target world."
+    },
+    {
+      "scope": "playwright/projects/fibu-book5/CURRENT-STATE.md",
+      "observedHitsApprox": 377,
+      "classification": "external-archive-later",
+      "priority": "medium",
+      "action": "Do not edit line-by-line now. Later compress historical RM-DEMO/MCP updates into archived state summary."
+    },
+    {
+      "scope": ".agent/state/current.json",
+      "observedHitsApprox": 293,
+      "classification": "external-archive-later",
+      "priority": "medium",
+      "action": "Active target truth is Universaarl, but historical latest* blocks remain for traceability. Later move old blocks to archive state."
+    },
+    {
+      "scope": "Coverage and Atlas files",
+      "observedHitsApprox": "many",
+      "classification": "replace-with-universaarl-evidence",
+      "priority": "high",
+      "action": "After each Universaarl process proof, mark matching RM-DEMO coverage as superseded-by-universaarl and update book-facing references."
+    },
+    {
+      "scope": "Evidence folders and Result JSON",
+      "observedHitsApprox": "many",
+      "classification": "external-archive-later",
+      "priority": "low",
+      "action": "Keep historical evidence unchanged. Do not mass-edit screenshots or result chains."
+    },
+    {
+      "scope": "rm-de-lab tests and cases",
+      "observedHitsApprox": "many",
+      "classification": "convert-to-generic-helper",
+      "priority": "medium",
+      "action": "After Universaarl company creation route is proven, either generalize useful Playwright patterns or mark old tests archive-only."
+    },
+    {
+      "scope": "CRONUS references",
+      "observedHitsApprox": "many",
+      "classification": "replace-with-universaarl-evidence",
+      "priority": "high",
+      "action": "Keep only as historical source/data-basis warning. Never use CRONUS as Universaarl book data."
+    }
+  ],
+  "nextActions": [
+    "Run TARGET-005 to close or reclassify the source-backed company creation route.",
+    "After UNIVERSAARL-DE exists or company creation is cleanly blocked, rewrite chapter 3 as direct beginner text.",
+    "Create process-by-process supersession entries when Universaarl evidence replaces RM-DEMO evidence.",
+    "Plan a later state compression pass for CURRENT-STATE.md and .agent/state/current.json."
+  ],
+  "nextStepDecision": {
+    "plannedNextCaseBeforeReview": "TARGET-005-COMPANY-CREATION-SOURCE-BACKED-ALTERNATIVE-ROUTE",
+    "isStillSensible": true,
+    "reason": "Chapter 3 and all Universaarl process rebuilds depend on a safe company creation route or a documented block.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-005-COMPANY-CREATION-SOURCE-BACKED-ALTERNATIVE-ROUTE",
+        "status": "ready-next",
+        "reason": "Needed before active Universaarl company/foundation work."
+      },
+      {
+        "caseId": "TARGET-004-FOUNDATION-SETUP-READINESS",
+        "status": "ready-after-current",
+        "reason": "Depends on target company existence or documented alternative."
+      },
+      {
+        "caseId": "TARGET-005-NUMBER-SERIES-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Needs company/foundation context."
+      },
+      {
+        "caseId": "TARGET-006-POSTING-GROUPS-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Needs company/foundation context."
+      },
+      {
+        "caseId": "TARGET-025-BOOK-SUPERSESSION-PASS",
+        "status": "ready-after-current",
+        "reason": "Useful after first Universaarl proofs exist; not before company route is settled."
+      }
+    ],
+    "queueChangesMade": []
+  }
+}

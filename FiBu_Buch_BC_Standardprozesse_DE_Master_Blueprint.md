@@ -358,7 +358,7 @@ Mehrere Companies sind deshalb kein Selbstzweck. RM-PROD zeigt Produktion und Ma
 
 ## 4. ERP und Business Central für absolute Einsteiger
 
-Dieses Kapitel erklärt Business Central ohne ERP-Vorkenntnisse. Du lernst, warum Unternehmen ein integriertes System brauchen, wie aus Stammdaten Belege entstehen und warum Posten nach dem Buchen wichtiger sind als die ursprüngliche Bildschirmmaske.
+Business Central verbindet Verkauf, Einkauf, Lager, Fertigung, Service, Projekte, Bank und Buchhaltung in einem System. Stammdaten bilden die Grundlage, Belege erfassen den Geschaeftsvorfall, und nach dem Buchen zeigen Posten die pruefbare Wirkung auf Nebenbuecher, Hauptbuch, Lager und Auswertungen.
 
 ### Das Grundprinzip in einfachen Worten
 
@@ -519,7 +519,7 @@ Praxisregel:
 
 ## 5. Wie Business Central denkt
 
-Dieses Kapitel erklärt die Denkweise hinter Business Central und liefert danach die Trainingsdaten der Fallstudie. Du lernst zuerst, welche Datenarten es gibt, und nutzt anschließend dieselben Debitoren, Kreditoren, Artikel, Ressourcen, Anlagen und Belege in allen Prozesskapiteln.
+Business Central arbeitet mit wiederkehrenden Datenarten. Stammdaten beschreiben Kunden, Lieferanten, Artikel, Ressourcen, Anlagen und Einstellungen. Belege und Journale erfassen Geschaeftsvorfaelle. Nach dem Buchen entstehen Posten. Dieselbe Fallstudie nutzt diese Datenarten in allen Prozesskapiteln, damit die Zusammenhaenge sichtbar bleiben.
 
 ### Das Datenmodell für Einsteiger
 
@@ -1302,7 +1302,7 @@ Merksatz:
 
 ## 9. Buchungslogik und Posting Groups
 
-Dieses Kapitel erklärt die Kontenfindung in Business Central so, dass auch Einsteiger verstehen, warum ein Verkaufsauftrag automatisch Forderung, Erlös, Umsatzsteuer, Lagerabgang und Wareneinsatz buchen kann. Danach kannst du eine Buchung nicht nur ausführen, sondern ihre Konten, Nebenbücher und Fehlerquellen erklären.
+Die Kontenfindung entscheidet, welche Sachkonten Business Central beim Buchen verwendet. Ein Verkaufsauftrag kann dadurch automatisch Forderung, Erloes, Umsatzsteuer, Lagerabgang und Wareneinsatz erzeugen. Wer Buchungsgruppen und Buchungsmatrix versteht, kann eine Buchung nicht nur ausfuehren, sondern auch ihre Konten, Nebenbuecher und Fehlerquellen nachvollziehen.
 
 ### Für absolute Einsteiger: Warum braucht Business Central Buchungsgruppen?
 
@@ -1466,7 +1466,7 @@ UAT-Fall:
 
 ### Bilanz, GuV, Nebenbücher und Postenlogik verstehen
 
-Dieses Kapitel erklärt, wie Business Central finanziell „denkt“. Wer BC bedienen will, muss Belege, Buchungen, Posten (Entries), Nebenbücher und Hauptbuch unterscheiden. Danach kannst du aus einer Rechnung die Wirkung auf Bilanz, GuV, offene Posten, Lagerwert und Controlling nachvollziehen.
+Business Central trennt Belege, Buchungen, Posten, Nebenbuecher und Hauptbuch. Diese Unterscheidung ist wichtig, weil eine Rechnung nach dem Buchen nicht nur als Dokument existiert, sondern Forderungen oder Verbindlichkeiten, Sachposten, Steuerposten, Lagerwerte und Auswertungen beeinflusst.
 
 ### Das Grundbild: Beleg, Buchung, Posten, Bericht
 
@@ -3893,7 +3893,7 @@ Bevor du `FA-CNC-01` anlegst oder eine Einkaufsrechnung buchst, pruefe die Einri
 
 Fuer Einsteiger ist die Regel wichtig: Eine Anlagenbuchungsgruppe ist keine Beschreibung der Maschine, sondern Kontenfindung. Sie entscheidet, welche Sachkonten Business Central beim Zugang, bei Abschreibung, Abgang und Buchwert anspricht. Fehlt `MACHINES` oder sind die Konten falsch, darf der Anlagenzugang nicht gebucht werden.
 
-### Was die Evidence zeigt
+### Was in Business Central sichtbar wird
 
 | Evidence | Beweis | Lernwert |
 |---|---|---|
@@ -4409,7 +4409,7 @@ Evidence-Pack-Hinweis fuer den aktuellen Laborstand:
 
 
 ## 23. Inventory Costing und Lagerbewertung im Abschluss
-Dieses Kapitel erklärt, wie Rhein-Main Lagerwerte und Wareneinsatz im Abschluss prüft. Nach dem Kapitel kannst du Artikelposten, Wertposten, Kostenregulierung und Sachkontenabstimmung für `RAW-STEEL` und `RM-M100` nachvollziehen.
+Lagerbewertung verbindet Mengen, Werte und Sachkonten. In der Universaarl-Zielwelt werden Artikelposten, Wertposten, Kostenregulierung und Sachkontenabstimmung Schritt fuer Schritt nachvollziehbar. Alte Rhein-Main-Beispiele bleiben nur historische Laborreferenz, bis Universaarl-Evidence sie ersetzt.
 
 ### Kapitelbox
 
