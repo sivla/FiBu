@@ -1,31 +1,44 @@
 {
-  "schemaVersion": 1,
-  "updatedAt": "2026-06-30T01:55:00.000+02:00",
+  "schemaVersion": 2,
+  "updatedAt": "2026-06-30T02:20:00.000+02:00",
   "purpose": "zero-open-questions-register",
   "activeInstance": "playthru",
   "targetCompany": "UNIVERSAARL-DE",
   "legalName": "Universaarl GmbH",
-  "rule": "No item may remain with status=open at run end. Unclear points must be in-progress, explained, excluded-shopify, not-applicable, requires-subcompany-usecase or needs-human-decision.",
+  "policyPath": "playwright/projects/fibu-book5/BC-ZERO-OPEN-QUESTIONS-POLICY.md",
+  "rule": "No item may remain with status=open at run end. Every question needs a concrete status, blocker or follow-up case.",
   "allowedStatuses": [
     "in-progress",
-    "explained",
-    "excluded-shopify",
-    "not-applicable",
+    "explained-by-universaarl-evidence",
+    "explained-by-readonly-evidence",
+    "explained-by-microsoft-learn",
+    "explained-by-official-source",
+    "explained-by-al-object-analysis",
+    "requires-super-permissions",
+    "requires-universaarl-company",
+    "requires-data-richness",
     "requires-subcompany-usecase",
+    "not-visible-due-permission-or-role",
+    "not-available-in-current-license-or-app-area",
+    "not-applicable-to-universaarl-main-company",
+    "excluded-shopify",
+    "removed-or-deprecated",
+    "external-integration-required",
     "needs-human-decision"
   ],
   "items": [
     {
       "id": "OQ-0001",
       "area": "company",
-      "objectType": "page",
+      "objectType": "page-action",
       "objectName": "Companies / Mandanten Page 357",
       "question": "Welche sichere UI-first Route erstellt UNIVERSAARL-DE ohne direkte Listenzeile, Copy Company, Testunternehmen, CRONUS oder API shortcut?",
-      "whyItMatters": "Die Company-Anlage ist der erste echte Buchprozess der Universaarl-Zielwelt.",
+      "whyItMatters": "Die Company-Anlage ist der erste wirksame Buchprozess der Universaarl-Zielwelt.",
       "sourceNeeded": "universaarl-evidence",
-      "status": "in-progress",
+      "status": "requires-super-permissions",
       "blockingFinalBook": true,
-      "nextAction": "After SUPER/company-create permissions are confirmed, resume TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE with tooltip/splitbutton/screenshot QA and stop on any permission or data-basis ambiguity.",
+      "nextAction": "After SUPER/company-create permissions are confirmed, resume TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE with tooltip, splitbutton, dropdown and screenshot QA. Use Mandanten -> arrow next to Neu -> Neues Unternehmen erstellen. Stop on permission, data-basis or wrong-target ambiguity.",
+      "nextCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
       "evidencePath": "playwright/projects/fibu-book5/evidence/target-009-main-neu-list-company-create-gate/",
       "bookChapter": "Kapitel 3",
       "blockedBy": [
@@ -34,15 +47,16 @@
     },
     {
       "id": "OQ-0002",
-      "area": "technical",
+      "area": "scope",
       "objectType": "process",
       "objectName": "Shopify / Online Store",
       "question": "Ist Shopify / Online Store Teil des Buchscope?",
       "whyItMatters": "Ausgeschlossene Funktionen muessen klassifiziert werden, damit sie nicht als vergessene offene Frage wirken.",
-      "sourceNeeded": "subcompany-usecase",
+      "sourceNeeded": "project-decision",
       "status": "excluded-shopify",
       "blockingFinalBook": false,
-      "nextAction": "Keine Umsetzung; im Katalog als excluded-shopify fuehren.",
+      "nextAction": "Keine Umsetzung; im Full-Playthrough-Katalog als excluded-shopify fuehren.",
+      "nextCase": null,
       "evidencePath": "playwright/projects/fibu-book5/BC-FULL-PLAYTHROUGH-CATALOG.md",
       "bookChapter": "Scope"
     },
@@ -56,30 +70,98 @@
       "sourceNeeded": "subcompany-usecase",
       "status": "requires-subcompany-usecase",
       "blockingFinalBook": true,
-      "nextAction": "Nach Universaarl-Basis eine Subcompany-Route planen.",
+      "nextAction": "Nach Universaarl-Basis eine Subcompany-Route planen und erst dann Partner, Inbox/Outbox und Postenwirkung erklaeren.",
+      "nextCase": "FUTURE-UNIVERSAARL-SUBCOMPANY-INTERCOMPANY-USECASE",
       "evidencePath": "playwright/projects/fibu-book5/BC-FULL-PLAYTHROUGH-CATALOG.md",
-      "bookChapter": "Kapitel 27"
+      "bookChapter": "Kapitel 27",
+      "blockedBy": [
+        "requires-universaarl-company",
+        "requires-subcompany-usecase"
+      ]
     },
     {
       "id": "OQ-0004",
-      "area": "finance",
+      "area": "tax",
       "objectType": "process",
       "objectName": "EU / Foreign Trade VAT Usecase",
       "question": "Welche EU-/Auslands-USt-Felder gehoeren in einen eigenen Universaarl-Usecase?",
       "whyItMatters": "Auslands- und EU-USt duerfen nicht aus Inlandsfaellen abgeleitet werden.",
-      "sourceNeeded": "official-source",
+      "sourceNeeded": "official-source-and-universaarl-evidence",
       "status": "requires-subcompany-usecase",
       "blockingFinalBook": true,
       "nextAction": "Nach Inlands-USt-Foundation einen EU/AT/LU-Usecase mit Quellen- und Evidence-Gate planen.",
+      "nextCase": "FUTURE-UNIVERSAARL-EU-VAT-USECASE",
       "evidencePath": "playwright/projects/fibu-book5/BC-FULL-PLAYTHROUGH-CATALOG.md",
-      "bookChapter": "Kapitel 8"
+      "bookChapter": "Kapitel 8",
+      "blockedBy": [
+        "requires-universaarl-company",
+        "requires-official-tax-source",
+        "requires-subcompany-usecase"
+      ]
+    },
+    {
+      "id": "OQ-0005",
+      "area": "company",
+      "objectType": "wizard-decision",
+      "objectName": "New Company / Neues Unternehmen erstellen",
+      "question": "Welche Datenbasis wird bei der Company-Anlage gewaehlt: keine Daten, nur Setupdaten oder Sample Data?",
+      "whyItMatters": "Das Buch braucht eine saubere Musterfirma ohne unbemerkte Demodaten.",
+      "sourceNeeded": "universaarl-evidence-and-microsoft-learn",
+      "status": "requires-super-permissions",
+      "blockingFinalBook": true,
+      "nextAction": "Im ersten erlaubten Company-Creation-Lauf die sichtbaren Optionen dokumentieren, keine unklare Option bestaetigen und keine CRONUS/Testcompany als Zielbasis verwenden.",
+      "nextCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+      "evidencePath": "playwright/projects/fibu-book5/PERMISSION-BLOCKERS.md",
+      "bookChapter": "Kapitel 3",
+      "blockedBy": [
+        "missing-super-or-company-create-permission"
+      ]
+    },
+    {
+      "id": "OQ-0006",
+      "area": "data",
+      "objectType": "dataset",
+      "objectName": "Universaarl minimum dataset",
+      "question": "Welche Stammdaten werden als erstes echtes Datenpaket angelegt?",
+      "whyItMatters": "Filter, Views, Reports und UAT brauchen mehrere sinnvolle Datensaetze statt Minimalbeispiele.",
+      "sourceNeeded": "dataset-blueprint-and-universaarl-evidence",
+      "status": "requires-universaarl-company",
+      "blockingFinalBook": false,
+      "nextAction": "Nach sichtbarer Company erst Foundation Setup pruefen; danach DATA-MASTER-CORE aus UNIVERSAARL-DATASET-BLUEPRINT.md klein starten.",
+      "nextCase": "FUTURE-DATA-MASTER-CORE-FIRST-PACK",
+      "evidencePath": "playwright/projects/fibu-book5/UNIVERSAARL-DATASET-BLUEPRINT.md",
+      "bookChapter": "Kapitel 2, 10, 11, 13, 25",
+      "blockedBy": [
+        "requires-universaarl-company",
+        "requires-foundation-setup"
+      ]
+    },
+    {
+      "id": "OQ-0007",
+      "area": "ui",
+      "objectType": "screenshot",
+      "objectName": "Companies Page splitbutton/dropdown screenshots",
+      "question": "Duerfen TARGET-007/TARGET-009-Screenshots als Buchbilder fuer erfolgreiche Company Creation genutzt werden?",
+      "whyItMatters": "Debugging-Bilder duerfen nicht wie erfolgreiche Schritt-fuer-Schritt-Belege wirken.",
+      "sourceNeeded": "readonly-evidence",
+      "status": "explained-by-readonly-evidence",
+      "blockingFinalBook": false,
+      "nextAction": "Nur als Erklaerbild fuer Mandantenliste, Neu-Hauptbutton, Pfeil, Dropdown und Fehlergrenzen nutzen; erfolgreiche Company-Anlage braucht spaeter neue Screenshots.",
+      "nextCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+      "evidencePath": "playwright/projects/fibu-book5/BC-SCREENSHOT-INVENTORY.md",
+      "bookChapter": "Kapitel 3",
+      "blockedBy": []
     }
   ],
   "summary": {
     "openItems": 0,
-    "inProgressItems": 1,
-    "explainedItems": 0,
-    "classifiedItems": 3,
-    "blockingFinalBookItems": 3
+    "inProgressItems": 0,
+    "explainedItems": 1,
+    "blockedByPermissionItems": 2,
+    "requiresCompanyItems": 1,
+    "requiresSubcompanyItems": 2,
+    "excludedItems": 1,
+    "blockingFinalBookItems": 4,
+    "nextAction": "Keep TARGET-009 parked until permissions; continue with PREP-015 checklist hardening."
   }
 }

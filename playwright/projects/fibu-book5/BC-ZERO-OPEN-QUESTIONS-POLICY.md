@@ -14,8 +14,13 @@ Diese Policy verhindert, dass Business-Central-Fragen im Buch, in Coverage oder 
 | Status | Bedeutung |
 | --- | --- |
 | `explained-by-universaarl-evidence` | In `playthru` / `UNIVERSAARL-DE` praktisch beobachtet oder ausgefuehrt und mit Evidence belegt. |
+| `explained-by-readonly-evidence` | Read-only in `playthru` beobachtet; gut fuer UI-Kontext, aber nicht fuer Setup-, Speicher- oder Postingclaims. |
 | `explained-by-microsoft-learn` | Durch offizielle Microsoft-Dokumentation ausreichend erklaert. |
+| `explained-by-official-source` | Durch amtliche oder andere offizielle Quelle ausreichend erklaert, zum Beispiel fuer Steuer, Recht oder Compliance. |
 | `explained-by-al-object-analysis` | Durch erlaubte AL-/Objektanalyse ausreichend erklaert. |
+| `requires-super-permissions` | Autonom fachlich klar, aber bis zu ausreichenden Rechten nicht pruefbar oder ausfuehrbar. |
+| `requires-universaarl-company` | Braucht die angelegte Zielcompany `UNIVERSAARL-DE`. |
+| `requires-data-richness` | Braucht mehrere Stammdaten, Belege, Posten, Monate oder Dimensionen. |
 | `not-visible-due-permission-or-role` | In aktueller Rolle nicht sichtbar; Rolle/Permission ist die erklaerte Grenze. |
 | `not-available-in-current-license-or-app-area` | In aktueller Lizenz/App Area nicht verfuegbar. |
 | `not-applicable-to-universaarl-main-company` | Fuer die Hauptcompany fachlich nicht passend. |
@@ -33,7 +38,7 @@ Maschinenlesbare Fragen stehen in:
 
 `.agent/state/open_questions_register.json`
 
-Das Register darf am Ende eines Laufs keine Items mit `status = "open"` enthalten. Neue Unklarheiten werden sofort als `in-progress`, `explained`, `excluded-shopify`, `not-applicable`, `requires-subcompany-usecase` oder `needs-human-decision` klassifiziert.
+Das Register darf am Ende eines Laufs keine Items mit `status = "open"` enthalten. Neue Unklarheiten werden sofort mit einem der oben genannten Statuswerte klassifiziert. `in-progress` ist nur fuer aktiv bearbeitete Fragen erlaubt; alles andere bekommt einen pruefbaren Erklaerungs-, Blocker- oder Scope-Status.
 
 ## Eskalationsleiter
 
