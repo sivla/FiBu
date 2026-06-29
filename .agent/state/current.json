@@ -6,8 +6,8 @@
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "activeArea": "universaarl-target-company-creation",
-  "activeCase": "TARGET-006-COMPANY-CREATION-SPECIFIC-ASSISTED-SETUP-ROUTE",
-  "active_case_file": ".agent/state/cases/target-006-company-creation-specific-assisted-setup-route.json",
+  "activeCase": "TARGET-007-MY-SETTINGS-COMPANY-LOOKUP-CREATE-NEW-COMPANY-ROUTE",
+  "active_case_file": ".agent/state/cases/target-007-my-settings-company-lookup-create-new-company-route.json",
   "lastReferenceCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
   "lastReferenceCaseFile": ".agent/state/cases/warehouse-031-warehouse-source-route-park-or-setup-fit-decision.json",
   "mode": "universaarl-final-book-production",
@@ -42,7 +42,7 @@
     "delete-legacy-evidence",
     "claim-rm-demo-as-final-proof"
   ],
-  "nextStep": "TARGET-006: use direct Assisted Setup Page 1801 and map the 'Unternehmen einrichten' route without Finish/Create/OK/Save; do not repeat Companies list-row save, Copy Company, Testunternehmen, CRONUS or blind Tell-Me Enter.",
+  "nextStep": "TARGET-007: use the Microsoft-source-backed My Settings / Company lookup route for Create New Company discovery; do not repeat Companies list-row save, Copy Company, Testunternehmen, CRONUS, generic Unternehmen einrichten row, API shortcut or blind Tell-Me Enter.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -3386,11 +3386,11 @@
     "blockedBy": [
       "source-backed-route-opened-but-blank-or-setup-only-data-basis-not-proven"
     ],
-    "decision": "Direct Assisted Setup Page 1801 opens in playthru and shows company/setup tasks, but it does not yet prove the Create New Company wizard or the Production - Setup Data Only / Create New - No Data choice. Next step must map the specific Unternehmen einrichten route without Finish/Create/OK/Save.",
-    "nextCase": "TARGET-006-COMPANY-CREATION-SPECIFIC-ASSISTED-SETUP-ROUTE",
+    "decision": "Direct Assisted Setup Page 1801 opens in playthru and shows company/setup tasks, but TARGET-006 proved the generic Unternehmen einrichten row is not a clean Create New Company path. Microsoft-source-backed next step is the Company lookup in My Settings.",
+    "nextCase": "TARGET-007-MY-SETTINGS-COMPANY-LOOKUP-CREATE-NEW-COMPANY-ROUTE",
     "migrationRelevance": "needed-for-german-final",
     "mustRecreateInFinalSandbox": true,
-    "updatedAt": "2026-06-29T21:45:00.000Z"
+    "updatedAt": "2026-06-29T20:20:00.000Z"
   },
   "zeroOpenQuestions": {
     "active": true,
@@ -3438,16 +3438,16 @@
     ]
   },
   "latestNextStepDecisionCard": {
-    "currentCase": "TARGET-006-COMPANY-CREATION-SPECIFIC-ASSISTED-SETUP-ROUTE",
+    "currentCase": "TARGET-007-MY-SETTINGS-COMPANY-LOOKUP-CREATE-NEW-COMPANY-ROUTE",
     "plannedNextCaseBeforeReview": "TARGET-006-COMPANY-CREATION-SPECIFIC-ASSISTED-SETUP-ROUTE",
-    "lastEvidenceSummary": "TARGET-001 proved playthru/Companies context read-only and UNIVERSAARL-DE not visible. TARGET-002 opened an unsaved blank Companies row and stopped. TARGET-003 did not find a safe exact Create New Company action. TARGET-004 scoped menu discovery did not expose a safe company creation route. TARGET-005 proved direct Assisted Setup Page 1801 opens, but no blank/setup-only company creation route was proven.",
+    "lastEvidenceSummary": "TARGET-001 proved playthru/Companies context read-only and UNIVERSAARL-DE not visible. TARGET-002 opened an unsaved blank Companies row and stopped. TARGET-003 did not find a safe exact Create New Company action. TARGET-004 scoped menu discovery did not expose a safe company creation route. TARGET-005 proved direct Assisted Setup Page 1801 opens. TARGET-006 opened the visible Unternehmen einrichten row, but it did not expose a clean Create New Company wizard or blank/setup-only data basis.",
     "isPlannedNextCaseStillSensible": true,
     "reason": "UNIVERSAARL-DE still does not exist, direct row save/copy/test company/CRONUS/API are rejected, and the next dependency for all foundation/setup/process cases is a source-backed safe UI route for company creation.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-006-COMPANY-CREATION-SPECIFIC-ASSISTED-SETUP-ROUTE",
+        "caseId": "TARGET-007-MY-SETTINGS-COMPANY-LOOKUP-CREATE-NEW-COMPANY-ROUTE",
         "status": "ready-next",
-        "reason": "TARGET-005 made Page 1801 reachable; the next narrow step is mapping the visible Unternehmen einrichten row without Finish/Create/OK/Save."
+        "reason": "Microsoft documents Create New Company through Companies or the Company field lookup in My Settings; this is the best non-repeating route after TARGET-006 blocked the generic row."
       },
       {
         "caseId": "TARGET-004-FOUNDATION-SETUP-READINESS",
@@ -3471,8 +3471,8 @@
       }
     ],
     "queueChangesMade": [],
-    "selectedNextCase": "TARGET-006-COMPANY-CREATION-SPECIFIC-ASSISTED-SETUP-ROUTE",
-    "whySelectedNextCaseIsBest": "It narrows the company creation blocker to the exact Assisted Setup row that TARGET-005 made reachable.",
+    "selectedNextCase": "TARGET-007-MY-SETTINGS-COMPANY-LOOKUP-CREATE-NEW-COMPANY-ROUTE",
+    "whySelectedNextCaseIsBest": "It follows the documented Create New Company entry point instead of repeating the generic Unternehmen einrichten row.",
     "risksBeforeNextCase": [
       "Company creation UI may still only expose copy/test/demo routes.",
       "A source-backed route may require a different safe entry point than Page 357.",

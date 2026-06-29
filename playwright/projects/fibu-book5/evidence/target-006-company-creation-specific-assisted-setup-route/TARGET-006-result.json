@@ -1,0 +1,1109 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-006-COMPANY-CREATION-SPECIFIC-ASSISTED-SETUP-ROUTE",
+  "source": "playwright-universaarl-target",
+  "resultStatus": "blocked",
+  "startedAt": "2026-06-29T20:17:02.667Z",
+  "completedAt": "2026-06-29T20:17:12.825Z",
+  "instance": "playthru",
+  "primaryCompany": "UNIVERSAARL-DE",
+  "activeCompany": "shell-context-before-universaarl-de-exists",
+  "targetGroup": "Universaarl",
+  "legalName": "Universaarl GmbH",
+  "currentUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?company=CRONUS+DE&page=1801",
+  "pageTitle": "Unterstutztes Setup",
+  "smartDecisionCards": [
+    {
+      "action": "open-assisted-setup-row",
+      "effectiveAction": false,
+      "reason": "TARGET-005 proved Page 1801 opens but did not map the Unternehmen einrichten row.",
+      "alternatives": [
+        "repeat Companies direct New row save - rejected",
+        "Copy Company/Testunternehmen/CRONUS - rejected",
+        "API shortcut - rejected"
+      ],
+      "risk": "The row might open a setup wizard with Finish/OK/Create buttons. The test must stop before confirming anything.",
+      "fallback": "Document row context and create a narrower follow-up route if no safe blank/setup-only data basis appears.",
+      "beginnerBookUse": "Explain that Assisted Setup is a navigation area, but a wizard is not completed until its final confirmation is intentionally selected."
+    }
+  ],
+  "actionsTaken": [
+    "Opened direct Page 1801 in playthru.",
+    "Clicked the visible Unternehmen einrichten row for route discovery only."
+  ],
+  "actionsNotTaken": [
+    "No Finish/Create/OK/Save/Weiter/Starten confirmation clicked.",
+    "No Copy Company.",
+    "No Testunternehmen.",
+    "No CRONUS copy.",
+    "No company switch.",
+    "No API shortcut.",
+    "No setup change.",
+    "No draft created.",
+    "No posting or preview posting."
+  ],
+  "flags": {
+    "noWrite": true,
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChangeFromTest": true,
+    "noFinishCreateOkSave": true,
+    "noCopyCompany": true,
+    "noTestCompany": true,
+    "noCronusCopy": true
+  },
+  "routeDiscovery": {
+    "beforeUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?page=1801",
+    "rowCandidates": [
+      {
+        "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?page=1801",
+        "tagName": "FORM",
+        "role": null,
+        "text": "Zum Hauptinhalt wechseln CRONUS DE Finanzen Zahlungsmanagement Verkauf Einkauf Shopify Alle Berichte Unterstutztes Setup: Alle Einrichtung starten Allgemeine Videos Titel Abgeschlossen Weitere Informationen Beschreibung ...",
+        "ariaLabel": "Unterstutztes Setup",
+        "title": "",
+        "visible": true,
+        "boundingBox": {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1032
+        },
+        "risk": [
+          "could-confirm-effective-action",
+          "copy-test-demo-or-cronus-route"
+        ]
+      },
+      {
+        "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?page=1801",
+        "tagName": "TR",
+        "role": "row",
+        "text": "Unternehmen einrichten",
+        "ariaLabel": "",
+        "title": "",
+        "visible": true,
+        "boundingBox": {
+          "x": 191.828125,
+          "y": 146,
+          "width": 1521.34375,
+          "height": 34
+        },
+        "risk": []
+      },
+      {
+        "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?page=1801",
+        "tagName": "A",
+        "role": "button",
+        "text": "Unternehmen einrichten",
+        "ariaLabel": "",
+        "title": "Datensatz Unternehmen einrichten offnen",
+        "visible": true,
+        "boundingBox": {
+          "x": 228.296875,
+          "y": 151,
+          "width": 165.59375,
+          "height": 25
+        },
+        "risk": []
+      }
+    ],
+    "rowClick": {
+      "clicked": true,
+      "reason": "clicked-visible-row-for-route-discovery-only",
+      "label": "Unternehmen einrichten"
+    },
+    "visibleRiskButtons": [
+      {
+        "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?company=CRONUS+DE&page=1801",
+        "tagName": "BUTTON",
+        "role": null,
+        "text": "Umgebung: Playthru",
+        "ariaLabel": "CRONUS DE, Umgebung: Playthru",
+        "title": "CRONUS DE, Umgebung: Playthru",
+        "visible": true,
+        "boundingBox": {
+          "x": 1539.140625,
+          "y": 0,
+          "width": 92.859375,
+          "height": 48
+        },
+        "risk": [
+          "copy-test-demo-or-cronus-route"
+        ]
+      },
+      {
+        "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?page=1801",
+        "tagName": "FORM",
+        "role": null,
+        "text": "Zum Hauptinhalt wechseln CRONUS DE Finanzen Zahlungsmanagement Verkauf Einkauf Shopify Alle Berichte Unterstutztes Setup: Alle Einrichtung starten Allgemeine Videos Titel Abgeschlossen Weitere Informationen Beschreibung ...",
+        "ariaLabel": "Unterstutztes Setup",
+        "title": "",
+        "visible": true,
+        "boundingBox": {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1032
+        },
+        "risk": [
+          "could-confirm-effective-action",
+          "copy-test-demo-or-cronus-route"
+        ]
+      },
+      {
+        "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?page=1801",
+        "tagName": "NAV",
+        "role": "navigation",
+        "text": "CRONUS DE Finanzen Zahlungsmanagement Verkauf Einkauf Shopify Alle Berichte",
+        "ariaLabel": "Hauptnavigation",
+        "title": "",
+        "visible": true,
+        "boundingBox": {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 51
+        },
+        "risk": [
+          "copy-test-demo-or-cronus-route"
+        ]
+      },
+      {
+        "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?page=1801",
+        "tagName": "A",
+        "role": "menuitem",
+        "text": "CRONUS DE",
+        "ariaLabel": "",
+        "title": "Zum Rollencenter gehen",
+        "visible": true,
+        "boundingBox": {
+          "x": 193.828125,
+          "y": 13,
+          "width": 110.296875,
+          "height": 29
+        },
+        "risk": [
+          "copy-test-demo-or-cronus-route"
+        ]
+      },
+      {
+        "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?page=1801",
+        "tagName": "SPAN",
+        "role": null,
+        "text": "CRONUS DE",
+        "ariaLabel": "CRONUS DE",
+        "title": "",
+        "visible": true,
+        "boundingBox": {
+          "x": 193.828125,
+          "y": 13,
+          "width": 110.296875,
+          "height": 27
+        },
+        "risk": [
+          "copy-test-demo-or-cronus-route"
+        ]
+      },
+      {
+        "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?page=1801",
+        "tagName": "SPAN",
+        "role": null,
+        "text": "CRONUS DE",
+        "ariaLabel": "CRONUS DE",
+        "title": "",
+        "visible": true,
+        "boundingBox": {
+          "x": 193.828125,
+          "y": 16,
+          "width": 110.296875,
+          "height": 27
+        },
+        "risk": [
+          "copy-test-demo-or-cronus-route"
+        ]
+      },
+      {
+        "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?page=1801",
+        "tagName": "A",
+        "role": "menuitem",
+        "text": "Verkauf",
+        "ariaLabel": "",
+        "title": "Anfragen, Auftrage und Gutschriften fur Debitoren erstellen. Debitoren verwalten und Transaktionshistorie anzeigen.",
+        "visible": true,
+        "boundingBox": {
+          "x": 658.234375,
+          "y": 18,
+          "width": 71.265625,
+          "height": 23
+        },
+        "risk": [
+          "could-confirm-effective-action"
+        ]
+      },
+      {
+        "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?page=1801",
+        "tagName": "BUTTON",
+        "role": "menuitem",
+        "text": "Einrichtung starten",
+        "ariaLabel": "Einrichtung starten",
+        "title": "Startet das unterstutzte Setup.",
+        "visible": true,
+        "boundingBox": {
+          "x": 468.90625,
+          "y": 51,
+          "width": 158.375,
+          "height": 38
+        },
+        "risk": [
+          "could-confirm-effective-action"
+        ]
+      },
+      {
+        "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?page=1801",
+        "tagName": "SPAN",
+        "role": null,
+        "text": "Einrichtung starten",
+        "ariaLabel": "Einrichtung starten",
+        "title": "",
+        "visible": true,
+        "boundingBox": {
+          "x": 499.90625,
+          "y": 60.5,
+          "width": 116.375,
+          "height": 19
+        },
+        "risk": [
+          "could-confirm-effective-action"
+        ]
+      },
+      {
+        "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?page=1801",
+        "tagName": "BUTTON",
+        "role": "menuitem",
+        "text": "Allgemeine Videos",
+        "ariaLabel": "Allgemeine Videos",
+        "title": "Sehen Sie sich weitere Videos an, mit denen Sie die App einrichten konnen.",
+        "visible": true,
+        "boundingBox": {
+          "x": 627.28125,
+          "y": 51,
+          "width": 157.03125,
+          "height": 38
+        },
+        "risk": [
+          "could-confirm-effective-action"
+        ]
+      },
+      {
+        "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?page=1801",
+        "tagName": "BUTTON",
+        "role": "menuitemcheckbox",
+        "text": "",
+        "ariaLabel": "Infobox umschalten",
+        "title": "Infobox-Bereich erweitern",
+        "visible": false,
+        "boundingBox": null,
+        "risk": [
+          "could-confirm-effective-action"
+        ]
+      },
+      {
+        "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?page=1801",
+        "tagName": "BUTTON",
+        "role": null,
+        "text": "",
+        "ariaLabel": "",
+        "title": "Weitere Optionen anzeigen",
+        "visible": false,
+        "boundingBox": null,
+        "risk": [
+          "could-confirm-effective-action"
+        ]
+      },
+      {
+        "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?page=1801",
+        "tagName": "TR",
+        "role": "row",
+        "text": "Titel Abgeschlossen Weitere Informationen Beschreibung",
+        "ariaLabel": "",
+        "title": "",
+        "visible": true,
+        "boundingBox": {
+          "x": 191.828125,
+          "y": 90,
+          "width": 1521.34375,
+          "height": 56
+        },
+        "risk": [
+          "could-confirm-effective-action"
+        ]
+      },
+      {
+        "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?page=1801",
+        "tagName": "BUTTON",
+        "role": null,
+        "text": "",
+        "ariaLabel": "Zwischen Erweitern/Reduzieren wechseln",
+        "title": "Zwischen Erweitern/Reduzieren wechseln",
+        "visible": true,
+        "boundingBox": {
+          "x": 198.296875,
+          "y": 121,
+          "width": 23,
+          "height": 17
+        },
+        "risk": [
+          "could-confirm-effective-action"
+        ]
+      },
+      {
+        "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?page=1801",
+        "tagName": "TH",
+        "role": "columnheader",
+        "text": "",
+        "ariaLabel": "Weitere Optionen",
+        "title": "",
+        "visible": true,
+        "boundingBox": {
+          "x": 804.8125,
+          "y": 90,
+          "width": 74.453125,
+          "height": 56
+        },
+        "risk": [
+          "could-confirm-effective-action"
+        ]
+      },
+      {
+        "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?page=1801",
+        "tagName": "SPAN",
+        "role": null,
+        "text": "Weitere Informationen",
+        "ariaLabel": "Weitere Informationen",
+        "title": "",
+        "visible": true,
+        "boundingBox": {
+          "x": 1048.0625,
+          "y": 122,
+          "width": 119.25,
+          "height": 16
+        },
+        "risk": [
+          "could-confirm-effective-action"
+        ]
+      },
+      {
+        "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?page=1801",
+        "tagName": "A",
+        "role": "button",
+        "text": "",
+        "ariaLabel": "Menu fur Weitere Informationen offnen",
+        "title": "Menu offnen",
+        "visible": true,
+        "boundingBox": {
+          "x": 1175.96875,
+          "y": 122,
+          "width": 12,
+          "height": 16
+        },
+        "risk": [
+          "could-confirm-effective-action"
+        ]
+      },
+      {
+        "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?page=1801",
+        "tagName": "SPAN",
+        "role": null,
+        "text": "Erweiterungsname",
+        "ariaLabel": "Erweiterungsname",
+        "title": "",
+        "visible": false,
+        "boundingBox": null,
+        "risk": [
+          "could-confirm-effective-action"
+        ]
+      },
+      {
+        "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?page=1801",
+        "tagName": "A",
+        "role": "button",
+        "text": "",
+        "ariaLabel": "Menu fur Erweiterungsname offnen",
+        "title": "Menu offnen",
+        "visible": false,
+        "boundingBox": null,
+        "risk": [
+          "could-confirm-effective-action"
+        ]
+      },
+      {
+        "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?page=1801",
+        "tagName": "TH",
+        "role": "columnheader",
+        "text": "",
+        "ariaLabel": "Weitere Optionen",
+        "title": "",
+        "visible": true,
+        "boundingBox": {
+          "x": 804.8125,
+          "y": 90,
+          "width": 74.453125,
+          "height": 56
+        },
+        "risk": [
+          "could-confirm-effective-action"
+        ]
+      },
+      {
+        "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?page=1801",
+        "tagName": "BUTTON",
+        "role": null,
+        "text": "",
+        "ariaLabel": "Zeile erweitern/reduzieren",
+        "title": "Zeile reduzieren",
+        "visible": true,
+        "boundingBox": {
+          "x": 199.296875,
+          "y": 151,
+          "width": 25,
+          "height": 25
+        },
+        "risk": [
+          "could-confirm-effective-action"
+        ]
+      },
+      {
+        "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?page=1801",
+        "tagName": "A",
+        "role": "button",
+        "text": "",
+        "ariaLabel": "",
+        "title": "Weitere Optionen anzeigen",
+        "visible": true,
+        "boundingBox": {
+          "x": 805.8125,
+          "y": 147,
+          "width": 72.453125,
+          "height": 32
+        },
+        "risk": [
+          "could-confirm-effective-action"
+        ]
+      },
+      {
+        "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?page=1801",
+        "tagName": "BUTTON",
+        "role": null,
+        "text": "",
+        "ariaLabel": "Zeile erweitern/reduzieren",
+        "title": "Zeile reduzieren",
+        "visible": true,
+        "boundingBox": {
+          "x": 208.296875,
+          "y": 185,
+          "width": 25,
+          "height": 25
+        },
+        "risk": [
+          "could-confirm-effective-action"
+        ]
+      },
+      {
+        "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?page=1801",
+        "tagName": "A",
+        "role": "button",
+        "text": "",
+        "ariaLabel": "",
+        "title": "Weitere Optionen anzeigen",
+        "visible": true,
+        "boundingBox": {
+          "x": 805.8125,
+          "y": 184.5,
+          "width": 72.453125,
+          "height": 25
+        },
+        "risk": [
+          "could-confirm-effective-action"
+        ]
+      },
+      {
+        "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?page=1801",
+        "tagName": "BUTTON",
+        "role": null,
+        "text": "",
+        "ariaLabel": "Zeile erweitern/reduzieren",
+        "title": "Zeile reduzieren",
+        "visible": true,
+        "boundingBox": {
+          "x": 208.296875,
+          "y": 219,
+          "width": 25,
+          "height": 25
+        },
+        "risk": [
+          "could-confirm-effective-action"
+        ]
+      }
+    ],
+    "hasBlankOrSetupOnlyOption": false,
+    "hasCreateCompanyWizardSignal": false,
+    "hasForbiddenDataBasisSignal": true,
+    "externalHelpOpened": false,
+    "blockedByRiskButton": true,
+    "routeUsableForCompanyCreationGate": false
+  },
+  "uiErgonomics": {
+    "overlayDismissed": true,
+    "page": "Assisted Setup Page 1801",
+    "rowClickScoped": true,
+    "noGlobalSearchUsed": true,
+    "noExternalHelpClicked": true,
+    "confirmationButtonsOnlyObserved": true
+  },
+  "visibleText": {
+    "beforeText": "Dynamics 365 Business Central\nUmgebung:\nPlaythru\nKK\nZum Hauptinhalt wechseln\nCRONUS DE\nFinanzen\nZahlungsmanagement\nVerkauf\nEinkauf\nShopify\nAlle Berichte\nUnterstutztes Setup:\nAlle\nEinrichtung starten\nAllgemeine Videos\nTitel\nAbgeschlossen\nWeitere Informationen\nBeschreibung\nUnternehmen einrichten\nWechselkursdienst einrichten\nLesen Hier konnen Sie Wahrungen und Wechselkurse anzeigen oder aktualisieren, wenn Sie in anderen Wahrungen als Ihrer Mandantenwahrung kaufen oder verkaufen oder Sachkontotransa...\nUnternehmensdetails eingeben\nLesen Geben Sie den Namen, die Adresse, das Logo und andere grundlegende Informationen Ihres Unternehmens an.\nMehrwertsteuer (MwSt.) einrichten\nLesen Richten Sie die MwSt. ein, um die Satze anzugeben, die verwendet werden sollen, um Steuerbetrage basierend darauf zu berechnen, an wen Sie verkaufen, von wem Sie kaufen, w...\nCopilot- und Agent-Funktionen einrichten\nLesen Richten Sie Copilot- und Agent-Funktionen ein, um KI-gestutzte Umgebungen freizuschalten.\nBenutzer aus Microsoft 365 abrufen\nRufen Sie aktuelle Informationen zu Benutzern und Lizenzen fur Business Central aus Microsoft 365 ab.\nBereiten Sie sich auf die erste Rechnung vor\nAusgehende E-Mail einrichten\nLesen Richten Sie die E-Mail-Konten ein, die Ihr Unternehmen zum Senden von Rechnungen und anderen Belegen verwenden wird. Sie konnen ein Microsoft 365-Konto oder einen anderen ...\nBeleglayouts anpassen\nLesen Gestalten Sie Rechnungen und andere Belege passend zu Ihrem Unternehmen.\nBericht zum Finanzstatus\nIntrastat-Berichte einrichten\nLesen Die Intrastat-Berichterstattung vereinfacht es, den Intrastat-Bericht in dem Format zu exportieren, das die Behorden in Ihrem Land verlangen.\nEine Funktion fur digitale Gutscheine einrichten\nLesen In einigen Landern verlangen die Behorden, dass jedem einzelnen Beleg ein digitaler Gutschein zugewiesen ist.\nBereiten Sie sich auf das Geschaft vor\nMit einem Zahlungsverkehr verbinden\nLesen Stellen Sie eine Verbindung zu einem Zahlungsverkehr her, damit Ihre Debitoren elektronisch bezahlen konnen.\nGeschaftsdaten migrieren\nLesen Importieren Sie vorhandene Daten von Ihrem vorherigen System in Business Central.\nAMC Banking 365 Fundamentals-Erweiterung einrichten\nLesen Stellen Sie eine Verbindung mit einem Online-Bankdienst her, der Bankdaten von Business Central in die Formate Ihrer Bank konvertieren kann, um das Senden von Daten an Ihr...\nCloud-Migration einrichten\nLesen Migrieren Sie Daten aus Ihrer lokalen Umgebung zu Business Central.\nRichten Sie ein Bankauszugs-Dateiimportformat ein.\nExternen Buchhalter zum Unternehmen einladen\nLesen Senden Sie einen Link an Ihren externen Buchhalter, damit dieser auf Ihr Business Central zugreifen und Ihre Bucher von einer dedizierten Homepage aus verwalten kann.\nMit anderen Systemen verbinden\nVerbindung zu Dynamics 365 Sales einrichten\nLesen Verbinden Sie Ihre Dynamics 365-Dienste fur bessere Erkenntnisse. Durch den Datenaustausch zwischen den Apps wird die Produktivitat gesteigert.\nMit Shopify verbinden und Daten importieren\nSehen Sie sich an, wie einfach es ist, die Verbindung zu Shopify festzulegen. Hier verbinden wir uns und importieren Ihre Shop-Daten. Ihr Live-Shop bleibt davon unberuhrt. Probi...\nMit Power BI verbinden\nLesen Verbinden Sie Ihre Daten mit Power BI, um bessere Einblicke in Ihr Unternehmen zu erhalten. Hier stellen Sie eine Verbindung her und konfigurieren, wie Ihre Daten in Power...\nVerbindung zu Dataverse einrichten\nLesen Stellen Sie eine Verbindung zu Dataverse her, um bessere Erkenntnisse aus allen Geschaftsanwendungen zu gewinnen. Durch den Datenfluss zwischen den Apps wird die Produktiv...\nMit externen Dateikonten verbinden\nKonfigurieren Sie externe Dateikonten, die in App-Szenarien fur den Export von Daten aus Business Central verwendet werden sollen.\nVerbinden Sie Ihre Dateien mit der Cloud\nLesen Konfigurieren Sie, welche Funktionen mit OneDrive for Business arbeiten konnen, um Dateien im Browser zu offnen, mit anderen zu teilen oder online gemeinsam zu erstellen.\nMehr Moglichkeiten in Business Central\nAufgabenwarteschlangennachrichten einrichten\nLesen Richten Sie Aufgabenwarteschlangenbenachrichtigungen ein, um Benachrichtigungen zu erhalten, wenn Aufgaben fehlgeschlagen sind.\nZentrale Bereitstellung fur Excel-Add-In\nLesen Stellen Sie das Excel-Add-In fur bestimmte Benutzer, Gruppen oder die gesamte Organisation bereit.\nCashflowplanungsdiagramm konfigurieren\nLesen Bestimmen Sie die Konten, die fur das Cashflowplanungsdiagramm verwendet werden sollen. Die Anleitung hilft Ihnen auch, Informationen daruber anzugeben, wann Sie Steuern z...\nZentrale Bereitstellung fur Outlook-Add-In\nLesen Stellen Sie das Outlook-Add-In fur bestimmte Benutzer, Gruppen oder die gesamte Organisation bereit.\nZentrale Bereitstellung von Teams-App\nLesen Stellen Sie die Business Central-App fur Teams fur bestimmte Benutzer, Gruppen oder die gesamte Organisation bereit.\nPower Automate-Umgebung\nLesen Uberschreiben Sie die Standardeinstellung, und wahlen Sie eine bestimmte Power Automate-Umgebung, die von Business Central verwendet werden soll.\nAuf Daten mit Microsoft 365-Lizenzen zugreifen\nLesen Daten in Ihrer Organisation entsperren, indem Sie den Zugriff auf Business Central mit Microsoft 365-Lizenzen einrichten\nQuality Management\nLesen Verwalten Sie Inspektionsprozesse, um eine gleichbleibende Produktqualitat zu gewahrleisten.\nKarteneinstellungen\nLesen Konfigurieren Sie Sicherheitseinstellungen, die bestimmen, ob der Inhalt zusammengefasst und direkt auf einer beliebigen kompakten Karte angezeigt wird.\nVerwenden Sie die NACH-LINKS- und NACH-RECHTS-TASTE, um die Groe anzupassen. Verwenden Sie die ESC-Taste, um den Vorgang ruckgangig zu machen, oder die EINGABETASTE, um zu akze...\nListe mit Titel Unterstutztes Setup hat jetzt 46 Artikel\n};",
+    "afterText": "Dynamics 365 Business Central\nUmgebung:\nPlaythru\nKK\nAlle aufklappen\nAlle zusammenklappen\nFilter...\nNach diesem Wert filtern\nFilter loschen\nDetails anzeigen\nGroe andern\nWas ist das?\nZum Hauptinhalt wechseln\nCRONUS DE\nFinanzen\nZahlungsmanagement\nVerkauf\nEinkauf\nShopify\nAlle Berichte\nUnterstutztes Setup:\nAlle\nEinrichtung starten\nAllgemeine Videos\nTitel\nAbgeschlossen\nWeitere Informationen\nBeschreibung\nUnternehmen einrichten\nWechselkursdienst einrichten\nLesen Hier konnen Sie Wahrungen und Wechselkurse anzeigen oder aktualisieren, wenn Sie in anderen Wahrungen als Ihrer Mandantenwahrung kaufen oder verkaufen oder Sachkontotransa...\nUnternehmensdetails eingeben\nLesen Geben Sie den Namen, die Adresse, das Logo und andere grundlegende Informationen Ihres Unternehmens an.\nMehrwertsteuer (MwSt.) einrichten\nLesen Richten Sie die MwSt. ein, um die Satze anzugeben, die verwendet werden sollen, um Steuerbetrage basierend darauf zu berechnen, an wen Sie verkaufen, von wem Sie kaufen, w...\nCopilot- und Agent-Funktionen einrichten\nLesen Richten Sie Copilot- und Agent-Funktionen ein, um KI-gestutzte Umgebungen freizuschalten.\nBenutzer aus Microsoft 365 abrufen\nRufen Sie aktuelle Informationen zu Benutzern und Lizenzen fur Business Central aus Microsoft 365 ab.\nBereiten Sie sich auf die erste Rechnung vor\nAusgehende E-Mail einrichten\nLesen Richten Sie die E-Mail-Konten ein, die Ihr Unternehmen zum Senden von Rechnungen und anderen Belegen verwenden wird. Sie konnen ein Microsoft 365-Konto oder einen anderen ...\nBeleglayouts anpassen\nLesen Gestalten Sie Rechnungen und andere Belege passend zu Ihrem Unternehmen.\nBericht zum Finanzstatus\nIntrastat-Berichte einrichten\nLesen Die Intrastat-Berichterstattung vereinfacht es, den Intrastat-Bericht in dem Format zu exportieren, das die Behorden in Ihrem Land verlangen.\nEine Funktion fur digitale Gutscheine einrichten\nLesen In einigen Landern verlangen die Behorden, dass jedem einzelnen Beleg ein digitaler Gutschein zugewiesen ist.\nBereiten Sie sich auf das Geschaft vor\nMit einem Zahlungsverkehr verbinden\nLesen Stellen Sie eine Verbindung zu einem Zahlungsverkehr her, damit Ihre Debitoren elektronisch bezahlen konnen.\nGeschaftsdaten migrieren\nLesen Importieren Sie vorhandene Daten von Ihrem vorherigen System in Business Central.\nAMC Banking 365 Fundamentals-Erweiterung einrichten\nLesen Stellen Sie eine Verbindung mit einem Online-Bankdienst her, der Bankdaten von Business Central in die Formate Ihrer Bank konvertieren kann, um das Senden von Daten an Ihr...\nCloud-Migration einrichten\nLesen Migrieren Sie Daten aus Ihrer lokalen Umgebung zu Business Central.\nRichten Sie ein Bankauszugs-Dateiimportformat ein.\nExternen Buchhalter zum Unternehmen einladen\nLesen Senden Sie einen Link an Ihren externen Buchhalter, damit dieser auf Ihr Business Central zugreifen und Ihre Bucher von einer dedizierten Homepage aus verwalten kann.\nMit anderen Systemen verbinden\nVerbindung zu Dynamics 365 Sales einrichten\nLesen Verbinden Sie Ihre Dynamics 365-Dienste fur bessere Erkenntnisse. Durch den Datenaustausch zwischen den Apps wird die Produktivitat gesteigert.\nMit Shopify verbinden und Daten importieren\nSehen Sie sich an, wie einfach es ist, die Verbindung zu Shopify festzulegen. Hier verbinden wir uns und importieren Ihre Shop-Daten. Ihr Live-Shop bleibt davon unberuhrt. Probi...\nMit Power BI verbinden\nLesen Verbinden Sie Ihre Daten mit Power BI, um bessere Einblicke in Ihr Unternehmen zu erhalten. Hier stellen Sie eine Verbindung her und konfigurieren, wie Ihre Daten in Power...\nVerbindung zu Dataverse einrichten\nLesen Stellen Sie eine Verbindung zu Dataverse her, um bessere Erkenntnisse aus allen Geschaftsanwendungen zu gewinnen. Durch den Datenfluss zwischen den Apps wird die Produktiv...\nMit externen Dateikonten verbinden\nKonfigurieren Sie externe Dateikonten, die in App-Szenarien fur den Export von Daten aus Business Central verwendet werden sollen.\nVerbinden Sie Ihre Dateien mit der Cloud\nLesen Konfigurieren Sie, welche Funktionen mit OneDrive for Business arbeiten konnen, um Dateien im Browser zu offnen, mit anderen zu teilen oder online gemeinsam zu erstellen.\nMehr Moglichkeiten in Business Central\nAufgabenwarteschlangennachrichten einrichten\nLesen Richten Sie Aufgabenwarteschlangenbenachrichtigungen ein, um Benachrichtigungen zu erhalten, wenn Aufgaben fehlgeschlagen sind.\nZentrale Bereitstellung fur Excel-Add-In\nLesen Stellen Sie das Excel-Add-In fur bestimmte Benutzer, Gruppen oder die gesamte Organisation bereit.\nCashflowplanungsdiagramm konfigurieren\nLesen Bestimmen Sie die Konten, die fur das Cashflowplanungsdiagramm verwendet werden sollen. Die Anleitung hilft Ihnen auch, Informationen daruber anzugeben, wann Sie Steuern z...\nZentrale Bereitstellung fur Outlook-Add-In\nLesen Stellen Sie das Outlook-Add-In fur bestimmte Benutzer, Gruppen oder die gesamte Organisation bereit.\nZentrale Bereitstellung von Teams-App\nLesen Stellen Sie die Business Central-App fur Teams fur bestimmte Benutzer, Gruppen oder die gesamte Organisation bereit.\nPower Automate-Umgebung\nLesen Uberschreiben Sie die Standardeinstellung, und wahlen Sie eine bestimmte Power Automate-Umgebung, die von Business Central verwendet werden soll.\nAuf Daten mit Microsoft 365-Lizenzen zugreifen\nLesen Daten in Ihrer Organisation entsperren, indem Sie den Zugriff auf Business Central mit Microsoft 365-Lizenzen einrichten\nQuality Management\nLesen Verwalten Sie Inspektionsprozesse, um eine gleichbleibende Produktqualitat zu gewahrleisten.\nKarteneinstellungen\nLesen Konfigurieren Sie Sicherheitseinstellungen, die bestimmen, ob der Inhalt zusammengefasst und direkt auf einer beliebigen kompakten Karte angezeigt wird.\nVerwenden Sie die NACH-LINKS- und NACH-RECHTS-TASTE, um die Groe anzupassen. Verwenden Sie die ESC-Taste, um den Vorgang ruckgangig zu machen, oder die EINGABETASTE, um zu akze...\nListe mit Titel Unterstutztes Setup hat jetzt 46 Artikel\n};"
+  },
+  "screenshots": [
+    "playwright/projects/fibu-book5/img/target-006-010-assisted-setup-before-row-click.png",
+    "playwright/projects/fibu-book5/img/target-006-020-after-unternehmen-einrichten-route.png"
+  ],
+  "fieldsObserved": [],
+  "buttonsObserved": [
+    {
+      "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?company=CRONUS+DE&page=1801",
+      "tagName": "BUTTON",
+      "role": null,
+      "text": "Umgebung: Playthru",
+      "ariaLabel": "CRONUS DE, Umgebung: Playthru",
+      "title": "CRONUS DE, Umgebung: Playthru",
+      "visible": true,
+      "boundingBox": {
+        "x": 1539.140625,
+        "y": 0,
+        "width": 92.859375,
+        "height": 48
+      },
+      "risk": [
+        "copy-test-demo-or-cronus-route"
+      ]
+    },
+    {
+      "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?page=1801",
+      "tagName": "FORM",
+      "role": null,
+      "text": "Zum Hauptinhalt wechseln CRONUS DE Finanzen Zahlungsmanagement Verkauf Einkauf Shopify Alle Berichte Unterstutztes Setup: Alle Einrichtung starten Allgemeine Videos Titel Abgeschlossen Weitere Informationen Beschreibung ...",
+      "ariaLabel": "Unterstutztes Setup",
+      "title": "",
+      "visible": true,
+      "boundingBox": {
+        "x": 0,
+        "y": 0,
+        "width": 1920,
+        "height": 1032
+      },
+      "risk": [
+        "could-confirm-effective-action",
+        "copy-test-demo-or-cronus-route"
+      ]
+    },
+    {
+      "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?page=1801",
+      "tagName": "NAV",
+      "role": "navigation",
+      "text": "CRONUS DE Finanzen Zahlungsmanagement Verkauf Einkauf Shopify Alle Berichte",
+      "ariaLabel": "Hauptnavigation",
+      "title": "",
+      "visible": true,
+      "boundingBox": {
+        "x": 0,
+        "y": 0,
+        "width": 1920,
+        "height": 51
+      },
+      "risk": [
+        "copy-test-demo-or-cronus-route"
+      ]
+    },
+    {
+      "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?page=1801",
+      "tagName": "A",
+      "role": "menuitem",
+      "text": "CRONUS DE",
+      "ariaLabel": "",
+      "title": "Zum Rollencenter gehen",
+      "visible": true,
+      "boundingBox": {
+        "x": 193.828125,
+        "y": 13,
+        "width": 110.296875,
+        "height": 29
+      },
+      "risk": [
+        "copy-test-demo-or-cronus-route"
+      ]
+    },
+    {
+      "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?page=1801",
+      "tagName": "SPAN",
+      "role": null,
+      "text": "CRONUS DE",
+      "ariaLabel": "CRONUS DE",
+      "title": "",
+      "visible": true,
+      "boundingBox": {
+        "x": 193.828125,
+        "y": 13,
+        "width": 110.296875,
+        "height": 27
+      },
+      "risk": [
+        "copy-test-demo-or-cronus-route"
+      ]
+    },
+    {
+      "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?page=1801",
+      "tagName": "SPAN",
+      "role": null,
+      "text": "CRONUS DE",
+      "ariaLabel": "CRONUS DE",
+      "title": "",
+      "visible": true,
+      "boundingBox": {
+        "x": 193.828125,
+        "y": 16,
+        "width": 110.296875,
+        "height": 27
+      },
+      "risk": [
+        "copy-test-demo-or-cronus-route"
+      ]
+    },
+    {
+      "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?page=1801",
+      "tagName": "A",
+      "role": "menuitem",
+      "text": "Verkauf",
+      "ariaLabel": "",
+      "title": "Anfragen, Auftrage und Gutschriften fur Debitoren erstellen. Debitoren verwalten und Transaktionshistorie anzeigen.",
+      "visible": true,
+      "boundingBox": {
+        "x": 658.234375,
+        "y": 18,
+        "width": 71.265625,
+        "height": 23
+      },
+      "risk": [
+        "could-confirm-effective-action"
+      ]
+    },
+    {
+      "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?page=1801",
+      "tagName": "BUTTON",
+      "role": "menuitem",
+      "text": "Einrichtung starten",
+      "ariaLabel": "Einrichtung starten",
+      "title": "Startet das unterstutzte Setup.",
+      "visible": true,
+      "boundingBox": {
+        "x": 468.90625,
+        "y": 51,
+        "width": 158.375,
+        "height": 38
+      },
+      "risk": [
+        "could-confirm-effective-action"
+      ]
+    },
+    {
+      "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?page=1801",
+      "tagName": "SPAN",
+      "role": null,
+      "text": "Einrichtung starten",
+      "ariaLabel": "Einrichtung starten",
+      "title": "",
+      "visible": true,
+      "boundingBox": {
+        "x": 499.90625,
+        "y": 60.5,
+        "width": 116.375,
+        "height": 19
+      },
+      "risk": [
+        "could-confirm-effective-action"
+      ]
+    },
+    {
+      "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?page=1801",
+      "tagName": "BUTTON",
+      "role": "menuitem",
+      "text": "Allgemeine Videos",
+      "ariaLabel": "Allgemeine Videos",
+      "title": "Sehen Sie sich weitere Videos an, mit denen Sie die App einrichten konnen.",
+      "visible": true,
+      "boundingBox": {
+        "x": 627.28125,
+        "y": 51,
+        "width": 157.03125,
+        "height": 38
+      },
+      "risk": [
+        "could-confirm-effective-action"
+      ]
+    },
+    {
+      "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?page=1801",
+      "tagName": "BUTTON",
+      "role": "menuitemcheckbox",
+      "text": "",
+      "ariaLabel": "Infobox umschalten",
+      "title": "Infobox-Bereich erweitern",
+      "visible": false,
+      "boundingBox": null,
+      "risk": [
+        "could-confirm-effective-action"
+      ]
+    },
+    {
+      "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?page=1801",
+      "tagName": "BUTTON",
+      "role": null,
+      "text": "",
+      "ariaLabel": "",
+      "title": "Weitere Optionen anzeigen",
+      "visible": false,
+      "boundingBox": null,
+      "risk": [
+        "could-confirm-effective-action"
+      ]
+    },
+    {
+      "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?page=1801",
+      "tagName": "TR",
+      "role": "row",
+      "text": "Titel Abgeschlossen Weitere Informationen Beschreibung",
+      "ariaLabel": "",
+      "title": "",
+      "visible": true,
+      "boundingBox": {
+        "x": 191.828125,
+        "y": 90,
+        "width": 1521.34375,
+        "height": 56
+      },
+      "risk": [
+        "could-confirm-effective-action"
+      ]
+    },
+    {
+      "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?page=1801",
+      "tagName": "BUTTON",
+      "role": null,
+      "text": "",
+      "ariaLabel": "Zwischen Erweitern/Reduzieren wechseln",
+      "title": "Zwischen Erweitern/Reduzieren wechseln",
+      "visible": true,
+      "boundingBox": {
+        "x": 198.296875,
+        "y": 121,
+        "width": 23,
+        "height": 17
+      },
+      "risk": [
+        "could-confirm-effective-action"
+      ]
+    },
+    {
+      "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?page=1801",
+      "tagName": "TH",
+      "role": "columnheader",
+      "text": "",
+      "ariaLabel": "Weitere Optionen",
+      "title": "",
+      "visible": true,
+      "boundingBox": {
+        "x": 804.8125,
+        "y": 90,
+        "width": 74.453125,
+        "height": 56
+      },
+      "risk": [
+        "could-confirm-effective-action"
+      ]
+    },
+    {
+      "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?page=1801",
+      "tagName": "SPAN",
+      "role": null,
+      "text": "Weitere Informationen",
+      "ariaLabel": "Weitere Informationen",
+      "title": "",
+      "visible": true,
+      "boundingBox": {
+        "x": 1048.0625,
+        "y": 122,
+        "width": 119.25,
+        "height": 16
+      },
+      "risk": [
+        "could-confirm-effective-action"
+      ]
+    },
+    {
+      "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?page=1801",
+      "tagName": "A",
+      "role": "button",
+      "text": "",
+      "ariaLabel": "Menu fur Weitere Informationen offnen",
+      "title": "Menu offnen",
+      "visible": true,
+      "boundingBox": {
+        "x": 1175.96875,
+        "y": 122,
+        "width": 12,
+        "height": 16
+      },
+      "risk": [
+        "could-confirm-effective-action"
+      ]
+    },
+    {
+      "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?page=1801",
+      "tagName": "SPAN",
+      "role": null,
+      "text": "Erweiterungsname",
+      "ariaLabel": "Erweiterungsname",
+      "title": "",
+      "visible": false,
+      "boundingBox": null,
+      "risk": [
+        "could-confirm-effective-action"
+      ]
+    },
+    {
+      "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?page=1801",
+      "tagName": "A",
+      "role": "button",
+      "text": "",
+      "ariaLabel": "Menu fur Erweiterungsname offnen",
+      "title": "Menu offnen",
+      "visible": false,
+      "boundingBox": null,
+      "risk": [
+        "could-confirm-effective-action"
+      ]
+    },
+    {
+      "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?page=1801",
+      "tagName": "TH",
+      "role": "columnheader",
+      "text": "",
+      "ariaLabel": "Weitere Optionen",
+      "title": "",
+      "visible": true,
+      "boundingBox": {
+        "x": 804.8125,
+        "y": 90,
+        "width": 74.453125,
+        "height": 56
+      },
+      "risk": [
+        "could-confirm-effective-action"
+      ]
+    },
+    {
+      "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?page=1801",
+      "tagName": "BUTTON",
+      "role": null,
+      "text": "",
+      "ariaLabel": "Zeile erweitern/reduzieren",
+      "title": "Zeile reduzieren",
+      "visible": true,
+      "boundingBox": {
+        "x": 199.296875,
+        "y": 151,
+        "width": 25,
+        "height": 25
+      },
+      "risk": [
+        "could-confirm-effective-action"
+      ]
+    },
+    {
+      "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?page=1801",
+      "tagName": "A",
+      "role": "button",
+      "text": "",
+      "ariaLabel": "",
+      "title": "Weitere Optionen anzeigen",
+      "visible": true,
+      "boundingBox": {
+        "x": 805.8125,
+        "y": 147,
+        "width": 72.453125,
+        "height": 32
+      },
+      "risk": [
+        "could-confirm-effective-action"
+      ]
+    },
+    {
+      "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?page=1801",
+      "tagName": "BUTTON",
+      "role": null,
+      "text": "",
+      "ariaLabel": "Zeile erweitern/reduzieren",
+      "title": "Zeile reduzieren",
+      "visible": true,
+      "boundingBox": {
+        "x": 208.296875,
+        "y": 185,
+        "width": 25,
+        "height": 25
+      },
+      "risk": [
+        "could-confirm-effective-action"
+      ]
+    },
+    {
+      "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?page=1801",
+      "tagName": "A",
+      "role": "button",
+      "text": "",
+      "ariaLabel": "",
+      "title": "Weitere Optionen anzeigen",
+      "visible": true,
+      "boundingBox": {
+        "x": 805.8125,
+        "y": 184.5,
+        "width": 72.453125,
+        "height": 25
+      },
+      "risk": [
+        "could-confirm-effective-action"
+      ]
+    },
+    {
+      "frameUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?page=1801",
+      "tagName": "BUTTON",
+      "role": null,
+      "text": "",
+      "ariaLabel": "Zeile erweitern/reduzieren",
+      "title": "Zeile reduzieren",
+      "visible": true,
+      "boundingBox": {
+        "x": 208.296875,
+        "y": 219,
+        "width": 25,
+        "height": 25
+      },
+      "risk": [
+        "could-confirm-effective-action"
+      ]
+    }
+  ],
+  "dialogsObserved": [],
+  "entriesExpected": [],
+  "entriesObserved": [],
+  "setupChanged": false,
+  "posted": false,
+  "previewPosting": false,
+  "createdRecords": [],
+  "proved": [
+    "Page 1801 Assisted Setup opens in playthru without company switch.",
+    "The scoped Unternehmen einrichten row can be opened without confirming Finish/Create/OK/Save."
+  ],
+  "notProved": [
+    "UNIVERSAARL-DE was not created.",
+    "No blank/setup-only company data basis is accepted unless visible in the follow-up context.",
+    "No final German company setup proof exists yet.",
+    "Visible CRONUS DE remains shell context only."
+  ],
+  "blockedBy": [
+    "unternehmen-einrichten-opened-but-clean-company-creation-data-basis-not-proven",
+    "forbidden-copy-test-demo-or-cronus-signal-visible",
+    "effective-confirmation-buttons-visible-and-not-clicked"
+  ],
+  "safeToFinalizeState": true,
+  "requiresReview": true,
+  "bookImpact": {
+    "draftOnly": true,
+    "beginnerTextReady": false,
+    "reason": "The route is still preflight evidence. Final reader text needs a clean creation path or a documented block/fallback."
+  },
+  "supersedesLegacy": [],
+  "openQuestionsCreatedOrClosed": [
+    {
+      "id": "OQ-0001",
+      "status": "still-open",
+      "question": "What is the safe UI-first route to create UNIVERSAARL-DE without CRONUS/sample data?"
+    }
+  ],
+  "nextStepDecision": {
+    "currentCase": "TARGET-006-COMPANY-CREATION-SPECIFIC-ASSISTED-SETUP-ROUTE",
+    "plannedNextCaseBeforeReview": "TARGET-006-COMPANY-CREATION-SPECIFIC-ASSISTED-SETUP-ROUTE",
+    "lastEvidenceSummary": "TARGET-005 proved direct Assisted Setup Page 1801 opens in playthru and shows Unternehmen einrichten, but no blank/setup-only company creation route was proven.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The target company still does not exist. Opening the specific assisted setup row is the narrowest non-repeating UI discovery path after rejected direct row save, Copy Company, Testunternehmen, CRONUS and API routes.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-006-COMPANY-CREATION-SPECIFIC-ASSISTED-SETUP-ROUTE",
+        "status": "needs-source-check-first",
+        "reason": "The row did not prove a clean blank/setup-only creation basis."
+      },
+      {
+        "caseId": "TARGET-004-FOUNDATION-SETUP-READINESS",
+        "status": "ready-after-current",
+        "reason": "Only meaningful after UNIVERSAARL-DE exists."
+      },
+      {
+        "caseId": "TARGET-005-NUMBER-SERIES-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Requires created company and foundation setup context."
+      },
+      {
+        "caseId": "TARGET-006-POSTING-GROUPS-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Requires created company and baseline setup."
+      },
+      {
+        "caseId": "TARGET-DATA-001-UNIVERSAARL-DATA-RICHNESS-PLAN",
+        "status": "ready-after-current",
+        "reason": "Data richness stays after company/foundation and must not overtake company creation."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-007-COMPANY-CREATION-SOURCE-ROUTE-DECISION",
+    "whySelectedNextCaseIsBest": "The current route remains blocked; the next step must decide between a source-backed alternative, admin route, or allowed in-instance company-creation method without CRONUS/Demo data.",
+    "risksBeforeNextCase": [
+      "Confirmation buttons may create or modify data.",
+      "Visible CRONUS DE is only shell context and not a Universaarl basis.",
+      "Copy/Test/Demo options must not become the target data basis."
+    ],
+    "requiredPreparation": [
+      "Use Microsoft Learn source registry for company creation route.",
+      "Map fields and data-basis options before any Finish/Create/OK/Save.",
+      "Create a new case if the route remains blocked."
+    ]
+  },
+  "nextStep": "TARGET-007-COMPANY-CREATION-SOURCE-ROUTE-DECISION",
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/target-006-company-creation-specific-assisted-setup-route/TARGET-006-result.json",
+    "playwright/projects/fibu-book5/evidence/target-006-company-creation-specific-assisted-setup-route/TARGET-006.md",
+    "playwright/projects/fibu-book5/evidence/target-006-company-creation-specific-assisted-setup-route/route-map.json"
+  ],
+  "validationCommands": [
+    "npm run agent:preflight",
+    "npm run agent:context",
+    "npm run agent:dry-run",
+    "npm run agent:run-plan",
+    "npm run fibu:target:company-creation-specific-assisted-setup-route",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/target-006-company-creation-specific-assisted-setup-route/TARGET-006-result.json",
+    "npm run check:encoding",
+    "git diff --check"
+  ]
+}

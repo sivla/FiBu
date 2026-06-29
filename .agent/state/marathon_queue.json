@@ -134,7 +134,7 @@
     {
       "id": "TARGET-006-COMPANY-CREATION-SPECIFIC-ASSISTED-SETUP-ROUTE",
       "order": 3.8,
-      "status": "pending",
+      "status": "blocked",
       "category": "target",
       "expectedImpact": "high-impact",
       "evidenceTarget": "playwright/projects/fibu-book5/evidence/target-006-company-creation-specific-assisted-setup-route/",
@@ -153,7 +153,40 @@
         "objectCatalogFocus": "Assisted Setup Page 1801 / Unternehmen einrichten"
       },
       "lookaheadStatus": "ready-next",
-      "lookaheadReason": "TARGET-005 proved the direct Assisted Setup page; the next narrow route is the visible Unternehmen einrichten row."
+      "lookaheadReason": "TARGET-006 proved the row can be opened, but it is not a clean company creation path and did not expose blank/setup-only data basis.",
+      "completedAt": "2026-06-29T20:20:00.000Z",
+      "result": "Assisted Setup Page 1801 / Unternehmen einrichten was opened for route discovery only. No Finish/Create/OK/Save, no setup change, no company switch and no company creation. Route remains blocked because it did not prove a clean Create New Company wizard or blank/setup-only basis.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-006-company-creation-specific-assisted-setup-route/TARGET-006-result.json",
+      "blockedBy": [
+        "generic-unternehmen-einrichten-row-is-not-clean-company-creation-route",
+        "blank-or-setup-only-company-data-basis-not-proven",
+        "copy-test-demo-or-cronus-signal-visible-in-context"
+      ]
+    },
+    {
+      "id": "TARGET-007-MY-SETTINGS-COMPANY-LOOKUP-CREATE-NEW-COMPANY-ROUTE",
+      "order": 3.85,
+      "status": "pending",
+      "category": "target",
+      "expectedImpact": "high-impact",
+      "evidenceTarget": "playwright/projects/fibu-book5/evidence/target-007-my-settings-company-lookup-create-new-company-route/",
+      "mayWorkEffectively": true,
+      "goal": "Map the Microsoft-source-backed My Settings / Company lookup route to Create New Company without creating a company or confirming a wizard.",
+      "migrationRelevance": "needed-for-german-final",
+      "sourceCompany": "current-playthru-shell-company-before-universaarl-exists",
+      "targetCompany": "UNIVERSAARL-DE",
+      "legacyReferenceAllowedOnlyForLearning": true,
+      "dependsOn": [
+        "TARGET-006-COMPANY-CREATION-SPECIFIC-ASSISTED-SETUP-ROUTE"
+      ],
+      "sourceBasis": "https://learn.microsoft.com/en-us/dynamics365/business-central/about-new-company",
+      "zeroOpenQuestions": {
+        "registerItem": "OQ-0001",
+        "mustCloseOrClassifyBeforeDone": true,
+        "objectCatalogFocus": "My Settings / Company lookup / Create New Company guide"
+      },
+      "lookaheadStatus": "ready-next",
+      "lookaheadReason": "Microsoft documents Create New Company through Companies or the Company field lookup in My Settings; this avoids repeating the generic Unternehmen einrichten row."
     },
     {
       "id": "TARGET-004-FOUNDATION-SETUP-READINESS",
@@ -706,7 +739,7 @@
       "legacyReferenceAllowedOnlyForLearning": true
     }
   ],
-  "lastUpdated": "2026-06-29T22:10:00.000Z",
+  "lastUpdated": "2026-06-29T20:20:00.000Z",
   "zeroOpenQuestionsGate": {
     "active": true,
     "policyPath": "playwright/projects/fibu-book5/BC-ZERO-OPEN-QUESTIONS-POLICY.md",
@@ -727,9 +760,9 @@
       "reason": "UNIVERSAARL-DE still does not exist, direct row save/copy/test company/CRONUS/API are rejected, and the next dependency for all foundation/setup/process cases is a source-backed safe UI route for company creation.",
       "lookaheadReviewed": [
         {
-          "caseId": "TARGET-006-COMPANY-CREATION-SPECIFIC-ASSISTED-SETUP-ROUTE",
+          "caseId": "TARGET-007-MY-SETTINGS-COMPANY-LOOKUP-CREATE-NEW-COMPANY-ROUTE",
           "status": "ready-next",
-          "reason": "TARGET-005 proved Page 1801; the next narrow route is the visible Unternehmen einrichten row without Finish/Create/OK/Save."
+          "reason": "TARGET-006 blocked the generic Unternehmen einrichten row; Microsoft-source-backed next route is the Company lookup in My Settings."
         },
         {
           "caseId": "TARGET-004-FOUNDATION-SETUP-READINESS",
@@ -755,8 +788,8 @@
       "queueChangesMade": [
         "Added TARGET-DATA-001..009 and TARGET-LOOKFEEL-001..005 after foundation/process prerequisites; these cases must not overtake TARGET-006 company creation."
       ],
-      "selectedNextCase": "TARGET-006-COMPANY-CREATION-SPECIFIC-ASSISTED-SETUP-ROUTE",
-      "whySelectedNextCaseIsBest": "It narrows the company creation blocker to the exact Assisted Setup row that TARGET-005 made reachable.",
+      "selectedNextCase": "TARGET-007-MY-SETTINGS-COMPANY-LOOKUP-CREATE-NEW-COMPANY-ROUTE",
+      "whySelectedNextCaseIsBest": "It follows Microsoft's documented Create New Company entry point without repeating the blocked generic Unternehmen einrichten route.",
       "risksBeforeNextCase": [
         "Company creation UI may still only expose copy/test/demo routes.",
         "A source-backed route may require a different safe entry point than Page 357.",

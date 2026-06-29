@@ -41,7 +41,7 @@ Diese Registry ordnet Quellen fuer das Universaarl-Buch und den Autopilot. Sie e
 
 ## Konkrete Entscheidung fuer Universaarl Company Creation
 
-Fuer die Anlage von `UNIVERSAARL-DE` ist die direkte Listenzeile kein bevorzugter Buchpfad. Sie ist ein UI-Befund. Der Buchpfad soll am Microsoft-Learn-Standard ausgerichtet werden: `Mandanten` / Companies, `Neu`, dann der Create-New-Company-/Assisted-Setup-Weg. Geeignete Optionen sind eine leere Company oder eine setup-nahe Production-Option ohne Sample-/Demodaten. `Kopieren`, CRONUS-Kopie und `Testunternehmen` sind fuer die finale Universaarl-Basis nur dann zulaessig, wenn vorher Quelle, Datenwirkung und Buchfolgen verstanden und als passend bewiesen sind.
+Fuer die Anlage von `UNIVERSAARL-DE` ist die direkte Listenzeile kein bevorzugter Buchpfad. Sie ist ein UI-Befund. Auch die generische Zeile `Unternehmen einrichten` auf Page 1801 ist nach TARGET-006 kein sauberer Company-Creation-Pfad, weil dort kein Create-New-Company-Wizard und keine Blank-/Setup-only-Datenbasis sichtbar wurden. Der naechste Buchpfad folgt der Microsoft-Learn-Route: Create-New-Company-/Assisted-Setup-Guide ueber `Mandanten` / Companies oder den Company-Field-Lookup in `My Settings`. Geeignete Optionen sind eine leere Company oder eine setup-nahe Production-Option ohne Sample-/Demodaten. `Kopieren`, CRONUS-Kopie und `Testunternehmen` sind fuer die finale Universaarl-Basis nur dann zulaessig, wenn vorher Quelle, Datenwirkung und Buchfolgen verstanden und als passend bewiesen sind.
 
 ## URLs
 

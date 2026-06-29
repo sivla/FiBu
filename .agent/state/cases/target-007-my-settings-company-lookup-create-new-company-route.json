@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-007-MY-SETTINGS-COMPANY-LOOKUP-CREATE-NEW-COMPANY-ROUTE",
+  "title": "My Settings company lookup route for Universaarl company creation",
+  "instance": "playthru",
+  "targetCompany": "UNIVERSAARL-DE",
+  "legalName": "Universaarl GmbH",
+  "workType": "source-backed-my-settings-company-lookup-route-discovery-before-company-create",
+  "status": "planned",
+  "dependsOn": [
+    "TARGET-006-COMPANY-CREATION-SPECIFIC-ASSISTED-SETUP-ROUTE"
+  ],
+  "sourceBasis": {
+    "source": "Microsoft Learn: Create new companies in Business Central",
+    "url": "https://learn.microsoft.com/en-us/dynamics365/business-central/about-new-company",
+    "interpretedBestRoute": "Use the Create New Company assisted setup guide from Companies or from the Company field lookup in My Settings; do not use the generic Unternehmen einrichten row as a company creation path."
+  },
+  "preflightTruth": {
+    "universaarlDeVisible": false,
+    "target006Result": "Unternehmen einrichten row can be opened, but it did not prove a clean Create New Company wizard or blank/setup-only data basis.",
+    "target006ResultPath": "playwright/projects/fibu-book5/evidence/target-006-company-creation-specific-assisted-setup-route/TARGET-006-result.json",
+    "rejectedRoutes": [
+      "direct Companies list-row save",
+      "Copy Company",
+      "Testunternehmen",
+      "CRONUS copy",
+      "generic Unternehmen einrichten row on Assisted Setup Page 1801",
+      "blind Tell-Me Enter",
+      "external Microsoft Learn/help result click",
+      "API shortcut"
+    ]
+  },
+  "goal": "Map the Microsoft-source-backed company creation entry point through My Settings / Company lookup, without creating a company or confirming any wizard.",
+  "allowedActionsWhenGatePasses": [
+    "open-playthru-role-center-or-my-settings",
+    "open-my-settings-company-field-lookup-readonly",
+    "inventory-visible-create-new-company-actions-readonly",
+    "open-create-new-company-guide-only-if-exact-and-scoped",
+    "stop-before-finish-ok-create-save-copy-testcompany-or-company-switch",
+    "write-evidence-screenshots-result-json-and-bookdraft-update"
+  ],
+  "forbiddenActions": [
+    "direct-companies-list-row-save",
+    "copy-company",
+    "test-company",
+    "cronos-copy",
+    "wizard-finish-without-data-basis-proof",
+    "api-shortcut",
+    "company-switch-without-created-company-proof",
+    "tell-me-enter-fallback",
+    "external-help-or-learn-click",
+    "generic-unternehmen-einrichten-row-repeat"
+  ],
+  "mustCheckBeforeAction": [
+    "playthru-url",
+    "current-company-shell-context",
+    "my-settings-company-field",
+    "company-lookup-actions",
+    "exact-create-new-company-action",
+    "blank-or-setup-only-data-basis-options",
+    "cancel-back-path",
+    "effective-action-buttons-present",
+    "book-explanation"
+  ],
+  "smartDecisionRequiredBeforeEffectiveAction": true,
+  "evidenceTarget": "playwright/projects/fibu-book5/evidence/target-007-my-settings-company-lookup-create-new-company-route/",
+  "migrationRelevance": "needed-for-german-final",
+  "finalScreenshotNeeded": true,
+  "nextSafeAction": "Open My Settings / Company lookup in playthru and inventory the exact Create New Company route; stop before any Finish/Create/OK/Save."
+}
