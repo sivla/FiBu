@@ -2,45 +2,59 @@
   "schemaVersion": 1,
   "purpose": "autopilot-result-normalized",
   "caseId": "FIXEDASSETS-294-FA-DEPRECIATION-REQUEST-PAGE-OPTIONS-OR-CONTROLLED-REPEAT-GATE",
-  "source": "local-gate-decision",
+  "source": "local-gate-review",
   "resultStatus": "observed",
-  "runPlanId": "FIXEDASSETS-294-decision",
+  "runPlanId": "FIXEDASSETS-294-FA-DEPRECIATION-REQUEST-PAGE-OPTIONS-OR-CONTROLLED-REPEAT-GATE-PLAN",
   "selectedTaskClass": "judge_work",
   "selectedModelClass": "gpt-5.5-low",
-  "instance": "MCP_1_20260210",
-  "company": "RM-DEMO",
-  "bcRun": false,
-  "playwrightRun": false,
-  "posted": false,
-  "previewPosting": false,
-  "dataChanged": false,
-  "setupChanged": false,
-  "bookChanged": false,
-  "decision": "guarded-controlled-repeat-with-fresh-document-no",
-  "selectedNextCase": "FIXEDASSETS-295-FA-DEPRECIATION-GUARDED-OK-FRESH-DOC-NO-POST",
-  "selectedDocumentNo": "FADEP-295-OK",
+  "reviewedEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-291/FIXEDASSETS-291-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-292/FIXEDASSETS-292-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-293/FIXEDASSETS-293-result.json"
+  ],
+  "decision": {
+    "selectedRoute": "guarded-controlled-repeat",
+    "nextCase": "FIXEDASSETS-295-FA-DEPRECIATION-GUARDED-OK-FRESH-DOC-NO-POST",
+    "nextCaseFile": ".agent/state/cases/fixedassets-295-fa-depreciation-guarded-ok-fresh-doc-no-post.json",
+    "reason": "FA-291 proved request-page values and one OK, but no journal line became visible. FA-293 also found no FADEP-291-OK line. A fresh document number with strict duplicate-risk controls is the fastest safe next lab route.",
+    "rejectedRoutes": [
+      {
+        "id": "blind-repeat-calculate-depreciation-ok",
+        "reason": "unsafe; could duplicate hidden output lines"
+      },
+      {
+        "id": "preview-posting",
+        "reason": "locked until a generated journal line is visible"
+      },
+      {
+        "id": "post",
+        "reason": "locked until preview/line evidence exists"
+      },
+      {
+        "id": "park-depreciation-posting",
+        "reason": "premature because a guarded fresh-doc execute route already exists"
+      }
+    ]
+  },
   "proved": [
-    "FA-291 proved one controlled Calculate Depreciation OK with FADEP-291-OK.",
-    "FA-293 proved FADEP-291-OK is not visible in the read-only Fixed Asset G/L Journals context.",
-    "Blind repeat with FADEP-291-OK remains unsafe.",
-    "A guarded controlled repeat must use a fresh document number and must search the journal immediately after OK."
+    "FA-291 proved Calculate Depreciation request-page values HGB, 31.01.2027, FADEP-291-OK and FA-CNC-01 before OK.",
+    "FA-291 proved OK exactly once but did not find FADEP-291-OK in the checked journal context.",
+    "FA-293 proved DEFAULT context but did not find FADEP-291-OK, FA-CNC-01, HGB or 31.01.2027 in the visible Fixed Asset G/L Journals context.",
+    "The guarded FA-295 route uses fresh document number FADEP-295-OK and keeps Preview Posting/Post locked."
   ],
   "notProved": [
-    "No FADEP-291-OK journal line is visible.",
-    "No FADEP-295-OK journal line exists yet.",
+    "No depreciation journal line is visible yet.",
     "No Preview Posting result exists.",
     "No depreciation posting exists.",
     "No German final proof exists."
   ],
   "changedFiles": [
     "playwright/projects/fibu-book5/evidence/fixedassets-294/FIXEDASSETS-294-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-294/FIXEDASSETS-294-DEPRECIATION-GATE-DECISION.md",
-    "playwright/projects/fibu-book5/evidence/fixedassets-294/README.md",
-    ".agent/state/cases/fixedassets-295-fa-depreciation-guarded-ok-fresh-doc-no-post.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-294/FIXEDASSETS-294-DEPRECIATION-REQUEST-PAGE-OPTIONS-OR-REPEAT-GATE.md",
     ".agent/state/current.json",
+    ".agent/state/cases/fixedassets-294-fa-depreciation-request-page-options-or-controlled-repeat-gate.json",
     ".agent/state/coverage_state.json",
-    ".agent/state/last_run_summary.json",
-    ".agent/state/model_usage_log.jsonl"
+    ".agent/state/last_run_summary.json"
   ],
   "statePatch": {
     "current": {
@@ -49,18 +63,19 @@
       "active_case_file": ".agent/state/cases/fixedassets-295-fa-depreciation-guarded-ok-fresh-doc-no-post.json",
       "lastReferenceCase": "FIXEDASSETS-294-FA-DEPRECIATION-REQUEST-PAGE-OPTIONS-OR-CONTROLLED-REPEAT-GATE",
       "lastReferenceCaseFile": ".agent/state/cases/fixedassets-294-fa-depreciation-request-page-options-or-controlled-repeat-gate.json",
-      "nextStep": "Run FIXEDASSETS-295: guarded Calculate Depreciation OK-only with fresh document no FADEP-295-OK, then immediately search Fixed Asset G/L Journals. No Preview/Post."
+      "requiresStrongModel": false,
+      "nextStep": "FIXEDASSETS-295: run guarded Calculate Depreciation OK with fresh document FADEP-295-OK; no Preview Posting or Post."
     },
     "coverage": {
       "activeArea": "fixedassets",
-      "currentBlock": "fa-depreciation-guarded-ok-fresh-doc-planned",
+      "currentBlock": "fa-depreciation-guarded-fresh-doc-ok-no-post",
       "latestReviewCase": "FIXEDASSETS-294-FA-DEPRECIATION-REQUEST-PAGE-OPTIONS-OR-CONTROLLED-REPEAT-GATE",
       "nextCase": "FIXEDASSETS-295-FA-DEPRECIATION-GUARDED-OK-FRESH-DOC-NO-POST",
-      "depreciationReadiness": "FA-294 selected a guarded controlled repeat with fresh document no FADEP-295-OK. Preview Posting and Post remain locked until the resulting journal line is visible."
+      "depreciationReadiness": "FA-294 selected guarded controlled repeat with fresh document FADEP-295-OK. Preview Posting and Post remain locked until the generated journal line is visible."
     },
     "lastRunSummary": {
       "runId": "FIXEDASSETS-294-FA-DEPRECIATION-REQUEST-PAGE-OPTIONS-OR-CONTROLLED-REPEAT-GATE",
-      "workType": "local-gate-decision",
+      "workType": "local-gate-review",
       "instance": "MCP_1_20260210",
       "company": "RM-DEMO",
       "bcRun": false,
@@ -70,38 +85,27 @@
       "dataChanged": false,
       "setupChanged": false,
       "bookChanged": false,
-      "summary": "FA-294 chose a guarded OK-only Calculate Depreciation retry with fresh document no FADEP-295-OK, because FADEP-291-OK remains invisible and blind repeat is unsafe.",
-      "nextStep": "Run FA-295 OK-only, then search Fixed Asset G/L Journals. No Preview/Post."
+      "summary": "FA-294 reviewed FA-291/292/293 and selected guarded fresh-doc Calculate Depreciation OK as the next lab route.",
+      "nextStep": "Run FA-295 with FADEP-295-OK; no Preview Posting or Post."
     }
   },
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/fixedassets-291/FIXEDASSETS-291-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-292/FIXEDASSETS-292-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-293/FIXEDASSETS-293-result.json",
-    "playwright/projects/fibu-book5/evidence/fixedassets-294/FIXEDASSETS-294-DEPRECIATION-GATE-DECISION.md"
+    "playwright/projects/fibu-book5/evidence/fixedassets-294/FIXEDASSETS-294-DEPRECIATION-REQUEST-PAGE-OPTIONS-OR-REPEAT-GATE.md"
   ],
   "warnings": [
     "Do not repeat FADEP-291-OK.",
-    "Do not run Preview Posting or Post until a journal line is visible.",
-    "FADEP-295-OK must be searched immediately after OK."
+    "Do not preview or post until a generated journal line is visible.",
+    "RM-DEMO evidence remains lab-reference only."
   ],
   "blockedBy": [],
   "requiresReview": false,
   "safeToFinalizeState": true,
-  "reason": "FA-294 closes the decision gap and unlocks exactly one guarded OK-only execute case with a fresh document number.",
+  "reason": "Execution gate decision completed locally; the next route is controlled and has explicit duplicate-risk safeguards.",
   "migrationRelevance": "needed-for-german-final",
-  "sourceCompany": "RM-DEMO",
+  "rebuildInstruction": "In German final sandbox, reproduce Calculate Depreciation from request page through visible journal line, Preview Posting and posted FA/G/L entries with German setup.",
   "mustRecreateInFinalSandbox": true,
-  "targetGermanCompanyImpact": "German target company must reproduce the depreciation route from request page through journal line, Preview Posting and posted FA/G/L entries.",
+  "sourceCompany": "RM-DEMO",
+  "targetGermanCompanyImpact": "German target company must recreate depreciation request page, journal line, preview and posting proof.",
   "finalScreenshotNeeded": true,
-  "validationCommands": [
-    "npm run agent:preflight",
-    "npm run agent:context",
-    "npm run agent:dry-run",
-    "npm run agent:run-plan",
-    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-294/FIXEDASSETS-294-result.json",
-    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-294/FIXEDASSETS-294-result.json",
-    "npm run check:encoding",
-    "git diff --check"
-  ]
+  "createdAt": "2026-06-29T06:21:35.946Z"
 }

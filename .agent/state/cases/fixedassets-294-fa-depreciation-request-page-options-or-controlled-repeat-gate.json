@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "caseId": "FIXEDASSETS-294-FA-DEPRECIATION-REQUEST-PAGE-OPTIONS-OR-CONTROLLED-REPEAT-GATE",
   "title": "Decide FA depreciation request-page options or guarded controlled repeat",
-  "status": "planned",
+  "status": "done",
   "taskClass": "judge_work",
   "modelClass": "gpt-5.5-low",
   "instance": "MCP_1_20260210",
@@ -78,7 +78,38 @@
   "mustRecreateInFinalSandbox": true,
   "targetGermanCompanyImpact": "The German target company must reproduce the depreciation route from request page through journal line, Preview Posting and posted FA/G/L entries.",
   "finalScreenshotNeeded": true,
-  "nextStep": "Decide whether to review request-page options locally or run a guarded controlled repeat with a fresh document number; do not repeat FADEP-291-OK.",
-  "updatedAt": "2026-06-29T06:17:12.110Z",
-  "sourceResult": "playwright/projects/fibu-book5/evidence/fixedassets-293/FIXEDASSETS-293-result.json"
+  "nextStep": "FIXEDASSETS-295: run guarded Calculate Depreciation OK with fresh document FADEP-295-OK; no Preview Posting or Post.",
+  "updatedAt": "2026-06-29T06:21:35.946Z",
+  "sourceResult": "playwright/projects/fibu-book5/evidence/fixedassets-293/FIXEDASSETS-293-result.json",
+  "resultStatus": "observed",
+  "completedAt": "2026-06-29T06:21:35.946Z",
+  "resultPath": "playwright/projects/fibu-book5/evidence/fixedassets-294/FIXEDASSETS-294-result.json",
+  "evidencePath": "playwright/projects/fibu-book5/evidence/fixedassets-294/FIXEDASSETS-294-DEPRECIATION-REQUEST-PAGE-OPTIONS-OR-REPEAT-GATE.md",
+  "selectedRoute": "guarded-controlled-repeat",
+  "decision": {
+    "selectedRoute": "guarded-controlled-repeat",
+    "nextCase": "FIXEDASSETS-295-FA-DEPRECIATION-GUARDED-OK-FRESH-DOC-NO-POST",
+    "nextCaseFile": ".agent/state/cases/fixedassets-295-fa-depreciation-guarded-ok-fresh-doc-no-post.json",
+    "reason": "FA-291 proved request-page values and one OK, but no journal line became visible. FA-293 also found no FADEP-291-OK line. A fresh document number with strict duplicate-risk controls is the fastest safe next lab route.",
+    "rejectedRoutes": [
+      {
+        "id": "blind-repeat-calculate-depreciation-ok",
+        "reason": "unsafe; could duplicate hidden output lines"
+      },
+      {
+        "id": "preview-posting",
+        "reason": "locked until a generated journal line is visible"
+      },
+      {
+        "id": "post",
+        "reason": "locked until preview/line evidence exists"
+      },
+      {
+        "id": "park-depreciation-posting",
+        "reason": "premature because a guarded fresh-doc execute route already exists"
+      }
+    ]
+  },
+  "nextCase": "FIXEDASSETS-295-FA-DEPRECIATION-GUARDED-OK-FRESH-DOC-NO-POST",
+  "nextCaseFile": ".agent/state/cases/fixedassets-295-fa-depreciation-guarded-ok-fresh-doc-no-post.json"
 }
