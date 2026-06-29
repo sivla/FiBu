@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "caseId": "WAREHOUSE-027-SOURCE-PO-LINE-DETAILS-ACTION-ROUTE",
+  "title": "Source PO line details/action route",
+  "status": "planned",
+  "taskClass": "wizard_work",
+  "modelClass": "gpt-4-medium",
+  "usageLogRequired": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "warehouse-source-po-line-details-action-route",
+  "sourceCase": "WAREHOUSE-026-SOURCE-PO-LINE-ACTIVE-EDITOR-PROBE",
+  "sourceDocumentType": "Purchase Order",
+  "sourceDocumentNo": "106055",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/warehouse-026/WAREHOUSE-026-result.json",
+    "playwright/projects/fibu-book5/evidence/warehouse-026/030-active-editor-snapshot.json",
+    "playwright/projects/fibu-book5/evidence/warehouse-026/040-line-action-candidates.json"
+  ],
+  "purpose": "Use captured line/action candidates to find a non-display-cell route for Purchase Order line details or row-scoped editing. Do not type values until a true editable line details/control context is proven.",
+  "allowedActions": [
+    "open-business-central-if-instance-and-company-match",
+    "run-playwright-if-case-preflight-passes",
+    "open-purchase-order-106055-by-direct-page-url",
+    "maximize-card-or-wide-layout",
+    "focus-purchase-lines-subform",
+    "open-safe-line-details-or-line-action-if-uniquely-scoped",
+    "capture-editor-or-detail-context-evidence",
+    "write-evidence",
+    "update-state"
+  ],
+  "defaultLockedActions": [
+    "purchase-order-location-value-entry",
+    "purchase-order-release",
+    "purchase-order-receive",
+    "purchase-order-invoice",
+    "warehouse-receipt-source-confirmation",
+    "warehouse-receipt-posting",
+    "warehouse-putaway-posting",
+    "preview-posting",
+    "posting",
+    "setup-change",
+    "company-switch",
+    "api-shortcut",
+    "delete-draft"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "claim-german-final-proof",
+    "use-api-shortcut-without-explicit-case-permission",
+    "type-fra-zl-or-any-other-value-before-editor-proof",
+    "repeat-warehouse-024-single-cell-value-route",
+    "post-warehouse-document"
+  ],
+  "safetyGates": [
+    "confirm-url-or-shell-instance-mcp-1-20260210",
+    "confirm-company-rm-demo",
+    "confirm-document-106055",
+    "confirm-raw-steel-row-visible",
+    "confirm-location-code-column-visible",
+    "line-action-must-be-uniquely-scoped",
+    "no-value-entry",
+    "no-release",
+    "no-warehouse-source-selection",
+    "no-preview-posting",
+    "no-posting",
+    "abort-on-ambiguous-dialog"
+  ],
+  "plannedRoute": [
+    "Open Purchase Order 106055 by direct Page 50 filter URL.",
+    "Maximize/wide layout and expose Lines if needed.",
+    "Anchor RAW-STEEL row and Location Code column.",
+    "Use WAREHOUSE-026 action evidence to try one uniquely scoped Line Details/action route if visible.",
+    "Capture whether a detail/editor context opens for the line.",
+    "Stop before any value entry, release, receive, invoice, Preview Posting, posting or Warehouse Receipt source confirmation."
+  ],
+  "expectedEvidence": [
+    "line/details action candidate chosen or rejected",
+    "detail/editor context evidence or absence proof",
+    "clear no-value/no-release/no-post/no-preview flags"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": false,
+  "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-027/WAREHOUSE-027-result.json",
+  "nextStep": "Run WAREHOUSE-027 line details/action route without typing values or releasing the order.",
+  "createdAt": "2026-06-29T21:05:00+02:00",
+  "updatedAt": "2026-06-29T21:05:00+02:00"
+}

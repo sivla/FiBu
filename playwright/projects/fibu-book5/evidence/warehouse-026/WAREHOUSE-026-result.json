@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "purpose": "warehouse-source-po-line-active-editor-probe",
+  "caseId": "WAREHOUSE-026-SOURCE-PO-LINE-ACTIVE-EDITOR-PROBE",
+  "source": "playwright-ui-active-editor-probe",
+  "resultStatus": "observed",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "bcRun": true,
+  "playwrightRun": true,
+  "posted": false,
+  "previewPosting": false,
+  "setupChanged": false,
+  "dataChanged": false,
+  "valueTyped": false,
+  "companySwitched": false,
+  "apiShortcut": false,
+  "bookChanged": false,
+  "released": false,
+  "received": false,
+  "invoiced": false,
+  "warehouseSourceConfirmed": false,
+  "sourceDocumentType": "Purchase Order",
+  "sourceDocumentNo": "106055",
+  "targetItem": "RAW-STEEL",
+  "contextOk": true,
+  "initialUrl": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=50&filter='Purchase Header'.'No.' IS '106055'&dc=0&bookmark=1D_JgAAAACLAQAAAAJ7BjEAMAA2ADAANQA1",
+  "layoutAttempts": [
+    {
+      "clicked": true,
+      "role": "button",
+      "label": "Maximize|Maximieren|Expand|Erweitern|Open in full screen|Vollbild"
+    },
+    {
+      "clicked": true,
+      "role": "button",
+      "label": "Wide layout|Breite Layoutansicht|Layout"
+    },
+    {
+      "clicked": false,
+      "label": "Focus mode|Fokusmodus"
+    },
+    {
+      "clicked": true,
+      "role": "button",
+      "label": "Show more|Mehr anzeigen|Mehr anzeigen\\.\\.\\.|Mehr|Weitere anzeigen"
+    }
+  ],
+  "focus": {
+    "focused": true,
+    "x": 874,
+    "y": 1029,
+    "locationHeader": {
+      "text": "Location Code",
+      "aria": "",
+      "title": "",
+      "x": 823,
+      "y": 959,
+      "width": 102,
+      "height": 56
+    },
+    "targetCell": {
+      "text": "",
+      "aria": "",
+      "title": "",
+      "x": 823,
+      "y": 1015,
+      "width": 102,
+      "height": 29
+    },
+    "beforeRowText": "Item RAW-STEEL Stahltraeger PCS 2.500,00 ATLANTA, GA FURNITURE 0,00 0,00 0,00 0,00 0 0 01.01.2027 02.01.2027 0",
+    "beforeCellText": ""
+  },
+  "rawSteelLine": "RAW-STEEL Stahltraeger PCS 2.500,00 ATLANTA, GA FURNITURE",
+  "activeLooksEditor": false,
+  "rowScopedEditableControlCount": 0,
+  "lineActionCount": 48,
+  "blockedBy": [
+    "no-active-editor-or-row-scoped-editable-control-after-focus"
+  ],
+  "proved": [
+    "Purchase Order 106055 opened directly by Page 50 filter URL in MCP_1_20260210 / RM-DEMO.",
+    "The RAW-STEEL Location Code cell was focused without typing a value.",
+    "No active editor or row-scoped editable control is visible after focus.",
+    "Line/action candidates were captured for a possible alternative route.",
+    "No value entry, Release, Receive, Invoice, Preview Posting, Post, Warehouse Receipt source confirmation, setup change, company switch, API shortcut or book change occurred."
+  ],
+  "notProved": [
+    "Location Code FRA-ZL is not entered or proven.",
+    "Purchase Order 106055 is not released.",
+    "Warehouse Receipt source selection is not performed.",
+    "Warehouse Receipt posting and Put-away are not proven.",
+    "No German final Warehouse proof exists."
+  ],
+  "flags": {
+    "noValueEntry": true,
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true,
+    "noReceive": true,
+    "noInvoice": true,
+    "noRelease": true,
+    "noWarehouseReceiptSourceConfirmation": true
+  },
+  "migrationRelevance": "needed-for-german-final",
+  "rebuildInstruction": "In German final sandbox, use this probe pattern only to validate editable line routes before setting final Location Code values.",
+  "mustRecreateInFinalSandbox": true,
+  "sourceCompany": "RM-DEMO",
+  "targetGermanCompanyImpact": "German final Warehouse proof needs an editable source-line route or setup/default path before release and receipt.",
+  "finalScreenshotNeeded": false,
+  "nextCase": "WAREHOUSE-027-SOURCE-PO-LINE-DETAILS-ACTION-ROUTE",
+  "nextStep": "WAREHOUSE-027: use captured line action candidates to find a Line Details/action route; do not type into the display cell."
+}

@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-29T20:35:00+02:00",
+  "updatedAt": "2026-06-29T21:05:00+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "warehouse",
-  "activeCase": "WAREHOUSE-026-SOURCE-PO-LINE-ACTIVE-EDITOR-PROBE",
-  "active_case_file": ".agent/state/cases/warehouse-026-source-po-line-active-editor-probe.json",
-  "lastReferenceCase": "WAREHOUSE-025-SOURCE-PO-LOCATION-ALTERNATIVE-OR-HELPER-DECISION",
-  "lastReferenceCaseFile": ".agent/state/cases/warehouse-025-source-po-location-alternative-or-helper-decision.json",
+  "activeCase": "WAREHOUSE-027-SOURCE-PO-LINE-DETAILS-ACTION-ROUTE",
+  "active_case_file": ".agent/state/cases/warehouse-027-source-po-line-details-action-route.json",
+  "lastReferenceCase": "WAREHOUSE-026-SOURCE-PO-LINE-ACTIVE-EDITOR-PROBE",
+  "lastReferenceCaseFile": ".agent/state/cases/warehouse-026-source-po-line-active-editor-probe.json",
   "mode": "bc-specialist-labor-book-production",
   "requiresStrongModel": false,
   "requiredPreflightChecks": [
@@ -40,7 +40,7 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "WAREHOUSE-026: run a read-only active-editor/line-details probe on Purchase Order 106055; no value entry, no release, no receipt, no preview, no posting.",
+  "nextStep": "WAREHOUSE-027: use captured line action candidates to find a Line Details/action route; do not type into the display cell.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/inventory-labor-draft.md",
     "area": "inventory",
@@ -112,8 +112,8 @@
     "summaryFile": ".agent/state/lab_to_german_sandbox_migration_plan.json",
     "noActiveLiveRunInOldSandbox": false,
     "germanTargetUnavailable": true,
-    "nextStep": "WAREHOUSE-026: run a read-only active-editor/line-details probe on Purchase Order 106055; no value entry, no release, no receipt, no preview, no posting.",
-    "nextCase": "WAREHOUSE-026-SOURCE-PO-LINE-ACTIVE-EDITOR-PROBE"
+    "nextStep": "WAREHOUSE-027: use captured line action candidates to find a Line Details/action route; do not type into the display cell.",
+    "nextCase": "WAREHOUSE-027-SOURCE-PO-LINE-DETAILS-ACTION-ROUTE"
   },
   "latestP2PLabFollowup": {
     "caseId": "P2P-004-PARTIAL-RECEIPT-VARIANCE-GATE",
@@ -221,7 +221,7 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "warehouse-source-po-line-active-editor-probe",
+  "currentCoverageFocus": "warehouse-source-po-line-details-action-route",
   "nextProcessRoute": [
     "P2P-012 compared Purchase Journal, Item Journal, Purchase Invoices and Requisition Worksheet by direct page URL without search or field entry.",
     "Item Journal is the most stable observed route for material quantity/location/value effect, but it is Inventory evidence rather than full creditor P2P.",
@@ -2758,5 +2758,32 @@
     "migrationRelevance": "needed-for-german-final",
     "mustRecreateInFinalSandbox": true,
     "updatedAt": "2026-06-29T20:35:00+02:00"
+  },
+  "latestWarehouse026": {
+    "caseId": "WAREHOUSE-026-SOURCE-PO-LINE-ACTIVE-EDITOR-PROBE",
+    "status": "observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-026/WAREHOUSE-026-result.json",
+    "sourceDocumentNo": "106055",
+    "decision": "WAREHOUSE-026 focused the RAW-STEEL Location Code cell without typing. No active editor or row-scoped editable control appeared; 48 line/action candidates were captured. Next route is a Line Details/action route, not display-cell typing.",
+    "bcRun": true,
+    "playwrightRun": true,
+    "posted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "dataChanged": false,
+    "valueTyped": false,
+    "released": false,
+    "received": false,
+    "invoiced": false,
+    "activeLooksEditor": false,
+    "rowScopedEditableControlCount": 0,
+    "lineActionCount": 48,
+    "blockedBy": [
+      "no-active-editor-or-row-scoped-editable-control-after-focus"
+    ],
+    "nextCase": "WAREHOUSE-027-SOURCE-PO-LINE-DETAILS-ACTION-ROUTE",
+    "migrationRelevance": "needed-for-german-final",
+    "mustRecreateInFinalSandbox": true,
+    "updatedAt": "2026-06-29T21:05:00+02:00"
   }
 }
