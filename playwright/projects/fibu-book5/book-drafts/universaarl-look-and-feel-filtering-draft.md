@@ -16,6 +16,27 @@ Eine Liste zeigt viele Datensaetze nebeneinander: Kunden, Lieferanten, Artikel, 
 
 Rechts koennen FactBoxes stehen. Sie zeigen zusaetzliche Informationen zum aktuell markierten Datensatz. Wenn eine Tabelle zu schmal wirkt, kann man FactBoxes ausblenden, FastTabs einklappen, den Fokusmodus nutzen oder horizontal scrollen.
 
+## Buttons genau lesen
+
+Viele Buttons in Business Central bestehen aus zwei Teilen. Die grosse Flaeche fuehrt die Hauptaktion aus. Der kleine Pfeil daneben oeffnet ein Menue mit weiteren Moeglichkeiten. Das ist wichtig, weil ein Klick auf die grosse Flaeche etwas anderes tun kann als ein Klick auf den Pfeil.
+
+Auf der Seite `Mandanten` sieht man das gut am Button `Neu`. Die Hauptaktion kann eine neue Eingabezeile oder einen Erstellungsbereich oeffnen. Der Pfeil neben `Neu` zeigt weitere Eintraege, zum Beispiel `Neues Unternehmen erstellen`. Fuer eine eigene Universaarl-Company muss genau dieser Unterschied verstanden werden. `Neu`, `Neues Unternehmen erstellen`, `Kopieren` und `Testunternehmen` sind nicht dasselbe.
+
+Wenn ein Button unklar ist, hilft der Tooltip. Man bewegt den Mauszeiger auf den Button und wartet kurz. Business Central zeigt dann oft, wie die Aktion heisst und was sie tut. Erst wenn der richtige Button eindeutig ist, wird geklickt.
+
+## Sichtbar ist nicht immer gespeichert
+
+Eine neue Zeile in einer Liste bedeutet nicht automatisch, dass der Datensatz schon vorhanden ist. Sie kann nur ein Eingabebereich sein. Eine Company ist erst dann vorhanden, wenn sie als gespeicherte Zeile in der Mandantenliste sichtbar ist und danach auch als Company-Kontext ausgewaehlt werden kann.
+
+Darum prueft man nach einer Anlage immer:
+
+1. Ist die neue Zeile noch ein Eingabebereich?
+2. Gibt es einen Fehler oder Hinweis?
+3. Ist der neue Datensatz nach dem Aktualisieren oder Zurueckkehren in der Liste sichtbar?
+4. Kann Business Central den Datensatz als Kontext verwenden?
+
+Bei `UNIVERSAARL-DE` ist dieser Nachweis noch offen. Die Anlage wird erst fortgesetzt, wenn die benoetigten Rechte vorhanden sind.
+
 ## Suchen und Filtern sind verschiedene Dinge
 
 Die Suche findet Seiten, Berichte oder Funktionen. Sie hilft, von einer Stelle in Business Central zu einer anderen Stelle zu springen.

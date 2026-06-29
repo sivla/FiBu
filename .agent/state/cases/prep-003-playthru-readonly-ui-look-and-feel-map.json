@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "caseId": "PREP-003-PLAYTHRU-READONLY-UI-LOOK-AND-FEEL-MAP",
+  "title": "Map read-only Business Central UI look-and-feel for Universaarl prep",
+  "instance": "playthru",
+  "targetCompany": "UNIVERSAARL-DE-planned-not-yet-created",
+  "legalName": "Universaarl GmbH",
+  "workType": "readonly-ui-map",
+  "status": "done",
+  "dependsOn": [
+    "PREP-002-COMPANY-CREATION-BEGINNER-BOOK-DRAFT",
+    "TARGET-007-COMPANIES-NEW-DROPDOWN-CLICKGUIDE",
+    "TARGET-008-COMPANIES-NEW-ROW-FIELD-SAVE-GATE",
+    "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE"
+  ],
+  "goal": "Turn the existing Companies/Mandanten evidence into reusable UI rules for split-buttons, tooltips, lists, ListParts, filters and screenshot QA.",
+  "noBusinessCentralExecution": true,
+  "noPlaywrightExecution": true,
+  "noEffectiveActionTakenUntilPermission": true,
+  "resultPath": "playwright/projects/fibu-book5/evidence/prep-003-readonly-ui-look-and-feel/PREP-003-result.json",
+  "changedFiles": [
+    "playwright/projects/fibu-book5/UNIVERSAARL-READONLY-UI-LOOK-AND-FEEL-MAP.md",
+    "playwright/projects/fibu-book5/book-drafts/universaarl-look-and-feel-filtering-draft.md",
+    "playwright/projects/fibu-book5/BC-ACTION-ATLAS.md",
+    "playwright/projects/fibu-book5/BC-LIST-ATLAS.md"
+  ],
+  "proved": [
+    "Split-button targets must be separated into main button, dropdown arrow and menu entry.",
+    "Hover/tooltip or accessible-name capture is required before using ambiguous command-bar actions.",
+    "A visible new list row is not a saved company proof.",
+    "Screenshot QA must state page, company/context, important UI area, status and limits."
+  ],
+  "notProved": [
+    "UNIVERSAARL-DE exists.",
+    "Company Creation can be completed with the current permissions.",
+    "Universaarl filter/report behavior with rich data."
+  ],
+  "lookaheadReviewed": [
+    {
+      "caseId": "PREP-004-BC-FULL-PLAYTHROUGH-CATALOG-GAP-FILL",
+      "status": "ready-next",
+      "reason": "The catalog can now use the UI map."
+    },
+    {
+      "caseId": "PREP-005-BC-OBJECT-COVERAGE-CATALOG-GAP-FILL",
+      "status": "ready-after-current",
+      "reason": "Object coverage can be sharpened with split-button and screenshot-QA rules."
+    },
+    {
+      "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+      "status": "blocked",
+      "reason": "Permissions are still missing."
+    }
+  ],
+  "nextCase": "PREP-004-BC-FULL-PLAYTHROUGH-CATALOG-GAP-FILL"
+}

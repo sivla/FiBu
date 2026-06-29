@@ -1,12 +1,14 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-29T21:34:46.267Z",
-  "caseId": "PREP-002-COMPANY-CREATION-BEGINNER-BOOK-DRAFT",
+  "updatedAt": "2026-06-29T21:41:03.190Z",
+  "caseId": "PREP-003-PLAYTHRU-READONLY-UI-LOOK-AND-FEEL-MAP",
   "status": "done",
   "instance": "playthru",
-  "company": "UNIVERSAARL-DE target, CRONUS DE shell context before target company exists",
-  "practicalResult": "Prepared and ran TARGET-008/TARGET-009 UI-first company creation gates. Screenshot QA corrected a false Create-New-Company claim: the visible result was the direct Neu list-create part. TARGET-009 attempted the requested Neu / Neues Unternehmen erstellen path but UNIVERSAARL-DE is not visible; user confirmed company creation permission is not yet available.",
-  "bcOrPlaywrightRan": true,
+  "company": "UNIVERSAARL-DE target; company not yet created",
+  "practicalResult": "Created the Universaarl read-only UI look-and-feel map and strengthened beginner-facing text plus atlas rules for split-buttons, tooltips, lists/ListParts, filters and screenshot QA.",
+  "bcOrPlaywrightRan": false,
+  "bcRun": false,
+  "playwrightRun": false,
   "posting": false,
   "preview": false,
   "setupChange": false,
@@ -14,47 +16,79 @@
   "companySwitch": false,
   "draftCreated": false,
   "apiShortcut": false,
-  "bookChange": "bookdraft/pattern/evidence only; no final bookmaster claim that company exists",
+  "bookChange": "bookdraft only; no bookmaster/final claim that UNIVERSAARL-DE exists",
   "evidence": [
-    "playwright/projects/fibu-book5/evidence/target-008-companies-new-row-field-save-gate/TARGET-008-result.json",
-    "playwright/projects/fibu-book5/evidence/target-009-main-neu-list-company-create-gate/TARGET-009-result.json",
-    "playwright/projects/fibu-book5/img/target-008-020-create-new-company-route-opened.png",
-    "playwright/projects/fibu-book5/img/target-009-020-after-main-neu-create-attempt.png"
+    "playwright/projects/fibu-book5/evidence/prep-003-readonly-ui-look-and-feel/PREP-003-result.json",
+    "playwright/projects/fibu-book5/evidence/prep-003-readonly-ui-look-and-feel/README.md"
   ],
   "screenshotQa": {
-    "status": "passed-with-blocker",
-    "visiblePage": "Mandanten / Companies, Page 357",
-    "visibleControls": [
-      "Neu",
-      "Pfeil neben Neu",
-      "Neues Unternehmen erstellen",
-      "Companies list rows CRONUS DE and My Company"
-    ],
-    "visibleContext": "playthru environment, CRONUS DE shell context before UNIVERSAARL-DE exists",
-    "doesNotShow": [
-      "saved UNIVERSAARL-DE company",
-      "Company Information setup",
-      "foundation setup"
+    "status": "rules-documented-from-existing-target-evidence",
+    "noNewScreenshot": true,
+    "requiredFutureChecks": [
+      "page title",
+      "company/context",
+      "tooltip or accessible name for ambiguous button",
+      "important field/button area visible",
+      "what the screenshot proves",
+      "what the screenshot does not prove"
     ]
   },
-  "selectedNextCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
-  "reasonNextCase": "Resume after company creation rights are available; do not continue blind today.",
-  "nextStep": "Tomorrow/evening: after rights are available, rerun TARGET-009 with foreground ListPart cell focus and capture visible save success or exact permission error.",
-  "runId": "PREP-002-COMPANY-CREATION-BEGINNER-BOOK-DRAFT",
-  "summary": "Improved the Universaarl company creation beginner draft and added a ready-for-super-permissions checklist. No BC or Playwright execution.",
-  "bcRun": false,
-  "playwrightRun": false,
-  "posted": false,
-  "previewPosting": false,
-  "setupChanged": false,
-  "nextCase": "PREP-003-PLAYTHRU-READONLY-UI-LOOK-AND-FEEL-MAP",
+  "nextStepDecisionCard": {
+    "currentCase": "PREP-003-PLAYTHRU-READONLY-UI-LOOK-AND-FEEL-MAP",
+    "plannedNextCaseBeforeReview": "PREP-003-PLAYTHRU-READONLY-UI-LOOK-AND-FEEL-MAP",
+    "lastEvidenceSummary": "PREP-002 improved the beginner company-creation draft and parked effective company creation until permissions exist.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "A read-only UI look-and-feel map reduces the risk of wrong clicks on split-buttons and improves future screenshots, book text and Playwright gates.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "PREP-004-BC-FULL-PLAYTHROUGH-CATALOG-GAP-FILL",
+        "status": "ready-next",
+        "reason": "The full playthrough catalog can now reference the UI map and classify next Universaarl areas without effective BC actions."
+      },
+      {
+        "caseId": "PREP-005-BC-OBJECT-COVERAGE-CATALOG-GAP-FILL",
+        "status": "ready-after-current",
+        "reason": "Object coverage can use the split-button, list and screenshot-QA rules from PREP-003."
+      },
+      {
+        "caseId": "PREP-015-READY-FOR-SUPER-PERMISSIONS-CHECKLIST",
+        "status": "partly-completed-early",
+        "reason": "Already useful; revisit when permissions are granted."
+      },
+      {
+        "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+        "status": "blocked",
+        "reason": "Company-create permissions are still missing; do not repeat the effective route today."
+      }
+    ],
+    "queueChangesMade": [
+      "Marked PREP-003 done.",
+      "Selected PREP-004 as next prep case while TARGET-009 remains permission-blocked."
+    ],
+    "selectedNextCase": "PREP-004-BC-FULL-PLAYTHROUGH-CATALOG-GAP-FILL",
+    "whySelectedNextCaseIsBest": "It advances the Universaarl system map without needing company creation rights and helps avoid empty catalog planning.",
+    "risksBeforeNextCase": [
+      "Do not turn legacy RM/CRONUS evidence into active Universaarl truth.",
+      "Do not add empty catalog rows without status, setup dependency and next case."
+    ],
+    "requiredPreparation": [
+      "Use UNIVERSAARL-READONLY-UI-LOOK-AND-FEEL-MAP.md for split-button/list/screenshot-QA decisions."
+    ]
+  },
+  "nextCase": "PREP-004-BC-FULL-PLAYTHROUGH-CATALOG-GAP-FILL",
   "changedFiles": [
-    "playwright/projects/fibu-book5/book-drafts/universaarl-company-creation-draft.md",
-    "playwright/projects/fibu-book5/READY-FOR-SUPER-PERMISSIONS-CHECKLIST.md",
-    ".agent/state/cases/prep-002-company-creation-beginner-book-draft.json",
+    "playwright/projects/fibu-book5/UNIVERSAARL-READONLY-UI-LOOK-AND-FEEL-MAP.md",
+    "playwright/projects/fibu-book5/book-drafts/universaarl-look-and-feel-filtering-draft.md",
+    "playwright/projects/fibu-book5/BC-ACTION-ATLAS.md",
+    "playwright/projects/fibu-book5/BC-LIST-ATLAS.md",
+    "playwright/projects/fibu-book5/evidence/prep-003-readonly-ui-look-and-feel/README.md",
+    "playwright/projects/fibu-book5/evidence/prep-003-readonly-ui-look-and-feel/PREP-003-result.json",
+    ".agent/state/cases/prep-003-playthru-readonly-ui-look-and-feel-map.json",
     ".agent/state/current.json",
     ".agent/state/marathon_queue.json",
     ".agent/state/last_run_summary.json"
   ],
-  "bookDraftUpdated": true
+  "bookDraftUpdated": true,
+  "runId": "PREP-003-PLAYTHRU-READONLY-UI-LOOK-AND-FEEL-MAP",
+  "nextStep": "Continue with PREP-004-BC-FULL-PLAYTHROUGH-CATALOG-GAP-FILL. Company creation remains parked until permissions are available."
 }

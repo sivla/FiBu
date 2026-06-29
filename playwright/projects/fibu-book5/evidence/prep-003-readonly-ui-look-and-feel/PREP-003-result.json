@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "PREP-003-PLAYTHRU-READONLY-UI-LOOK-AND-FEEL-MAP",
+  "source": "local-derived-analysis",
+  "resultStatus": "observed",
+  "runPlanId": "PREP-003-LOCAL-UI-MAP",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-medium",
+  "proved": [
+    "Existing TARGET-001/TARGET-007/TARGET-008/TARGET-009 evidence is sufficient to define a reusable read-only UI look-and-feel map for Companies/Mandanten.",
+    "The main Neu button, the dropdown arrow next to Neu and the Neues Unternehmen erstellen menu entry must be treated as separate UI targets.",
+    "Tooltip or accessible-name capture is required before choosing between a split-button main action and its dropdown arrow.",
+    "A visible new row or ListPart context is not proof that UNIVERSAARL-DE exists."
+  ],
+  "notProved": [
+    "UNIVERSAARL-DE was not created.",
+    "No live Business Central UI was re-opened in this run.",
+    "No new screenshot was captured in this run.",
+    "Filter, views and reporting behavior still need Universaarl data-rich evidence."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/UNIVERSAARL-READONLY-UI-LOOK-AND-FEEL-MAP.md",
+    "playwright/projects/fibu-book5/book-drafts/universaarl-look-and-feel-filtering-draft.md",
+    "playwright/projects/fibu-book5/BC-ACTION-ATLAS.md",
+    "playwright/projects/fibu-book5/BC-LIST-ATLAS.md",
+    "playwright/projects/fibu-book5/evidence/prep-003-readonly-ui-look-and-feel/README.md",
+    "playwright/projects/fibu-book5/evidence/prep-003-readonly-ui-look-and-feel/PREP-003-result.json",
+    ".agent/state/cases/prep-003-playthru-readonly-ui-look-and-feel-map.json",
+    ".agent/state/current.json",
+    ".agent/state/marathon_queue.json",
+    ".agent/state/last_run_summary.json"
+  ],
+  "statePatch": {},
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-001/",
+    "playwright/projects/fibu-book5/evidence/target-007-companies-new-dropdown-clickguide/TARGET-007-result.json",
+    "playwright/projects/fibu-book5/evidence/target-008-companies-new-row-field-save-gate/TARGET-008-result.json",
+    "playwright/projects/fibu-book5/evidence/target-009-main-neu-list-company-create-gate/TARGET-009-result.json"
+  ],
+  "warnings": [
+    "This result is a local synthesis from existing evidence, not a new live UI run.",
+    "Do not claim final German proof from this prep result."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": false,
+  "flags": {
+    "noBusinessCentralExecution": true,
+    "noPlaywrightExecution": true,
+    "noWrite": true,
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookMasterChange": true
+  },
+  "nextStepDecisionCard": {
+    "currentCase": "PREP-003-PLAYTHRU-READONLY-UI-LOOK-AND-FEEL-MAP",
+    "plannedNextCaseBeforeReview": "PREP-003-PLAYTHRU-READONLY-UI-LOOK-AND-FEEL-MAP",
+    "lastEvidenceSummary": "PREP-002 improved the beginner company-creation draft and parked effective creation until permissions exist.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "A UI look-and-feel map directly reduces the risk of clicking the wrong Neu target and improves future screenshots and book text.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "PREP-004-BC-FULL-PLAYTHROUGH-CATALOG-GAP-FILL",
+        "status": "ready-next",
+        "reason": "The catalog can now reference the UI map and classify areas without live BC writes."
+      },
+      {
+        "caseId": "PREP-005-BC-OBJECT-COVERAGE-CATALOG-GAP-FILL",
+        "status": "ready-after-current",
+        "reason": "Object coverage can use the new split-button/list/screenshot-QA rules."
+      },
+      {
+        "caseId": "PREP-015-READY-FOR-SUPER-PERMISSIONS-CHECKLIST",
+        "status": "partly-completed-early",
+        "reason": "Already useful; can be revisited when permissions are granted."
+      },
+      {
+        "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+        "status": "blocked",
+        "reason": "Still waiting for company-create permissions."
+      }
+    ],
+    "queueChangesMade": [
+      "Marked PREP-003 done.",
+      "Selected PREP-004 as next prep case while TARGET-009 remains parked."
+    ],
+    "selectedNextCase": "PREP-004-BC-FULL-PLAYTHROUGH-CATALOG-GAP-FILL",
+    "whySelectedNextCaseIsBest": "It extends the Universaarl full-playthrough map without requiring company creation rights.",
+    "risksBeforeNextCase": [
+      "Do not convert legacy RM/CRONUS evidence into active Universaarl truth.",
+      "Do not add empty catalog rows without clear status and next case."
+    ],
+    "requiredPreparation": [
+      "Use the PREP-003 UI map when classifying lists, cards, actions and screenshot requirements."
+    ]
+  },
+  "reason": "Prepared the read-only UI look-and-feel rules from existing target evidence while effective company creation is parked."
+}

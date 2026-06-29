@@ -21,7 +21,7 @@ Der List Atlas beschreibt Business-Central-Listen, die fuer Klickpfade, Suche, F
 
 | Liste | Page ID | Bereich | Zweck | Zentrale Spalten | Wichtige Actions | Risiko | Evidence | Status | Naechster Case |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Companies / Mandanten | 357 | Company / Environment | Vorhandene Companies sehen und sichere Anlageoption fuer `UNIVERSAARL-DE` finden | Name, Display Name, Evaluation Company, ggf. Systemfelder | Neu, Kopieren, Testunternehmen, Menueaktionen | wirksam bei Company-Erstellung; Copy/Testunternehmen nicht Universaarl-Basis | TARGET-001 bis TARGET-004 | `actions-mapped`, `blocked` | TARGET-005 |
+| Companies / Mandanten | 357 | Company / Environment | Vorhandene Companies sehen und sichere Anlageoption fuer `UNIVERSAARL-DE` finden | Name, Display Name, Evaluation Company, ggf. Systemfelder | Neu, Pfeil neben Neu, Neues Unternehmen erstellen, Kopieren, Testunternehmen, Menueaktionen | wirksam bei Company-Erstellung; Copy/Testunternehmen nicht Universaarl-Basis; neue Zeile ist kein Speicherbeweis | TARGET-001 bis TARGET-009, PREP-003 | `actions-mapped`, `screenshot-qa-mapped`, `blocked-permission` | TARGET-009 nach Rechten |
 | Chart of Accounts / Kontenplan | offen | Finance | Sachkonten und Kontenstruktur erklaeren | No., Name, Account Type, Direct Posting | New, Edit List, Indent | Setup-/Stammdatenwirkung | geplant | `planned` | TARGET-009 |
 | Customers / Debitoren | offen | O2C | Kundenliste und Kundenvorlagen erklaeren | No., Name, Posting Group, Balance | New, Edit, Dimensions | Stammdatenwirkung | geplant | `planned` | TARGET-010 |
 | Vendors / Kreditoren | offen | P2P | Lieferantenliste und Kreditorenbuchung vorbereiten | No., Name, Posting Group, Balance | New, Edit, Dimensions | Stammdatenwirkung | geplant | `planned` | TARGET-013 |
@@ -47,3 +47,5 @@ Jede nicht verstandene Liste erzeugt entweder einen Eintrag in `.agent/state/ope
 Listen, Worksheets und Journals duerfen erst als blockiert gelten, wenn Datenzeile, leere Eingabezeile, Edit-Modus, horizontale Scrollbar, Fokus-/Maximize-Button, versteckte Spalten, FactBox und Command-Bar-Overflow geprueft wurden.
 
 Filter- und Suchbeispiele brauchen genug Zeilen. Eine leere oder einzeilige Universaarl-Liste beweist Navigation, aber keine belastbare Such-, Sortier- oder Filterlogik.
+
+PREP-003 ergaenzt: Eine sichtbare Eingabezeile oder ein ListPart mit `Neu - <Liste>` beweist nur den Eingabekontext. Ein Datensatz ist erst belegt, wenn er nach dem Speichern/Zurueckkehren als normale Zeile sichtbar ist und der Folgekontext dazu passt.
