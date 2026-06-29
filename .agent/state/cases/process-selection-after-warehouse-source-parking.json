@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "caseId": "PROCESS-SELECTION-AFTER-WAREHOUSE-SOURCE-PARKING",
+  "title": "Select next high-value process after Warehouse source route parking",
+  "status": "planned",
+  "taskClass": "judge_work",
+  "modelClass": "gpt-5.5-low",
+  "usageLogRequired": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "process-selection-after-warehouse-source-parking",
+  "sourceCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
+  "purpose": "Choose the next high-value sandbox process block after parking the RM-DEMO Warehouse source-document route as labor-blocked/bookdraft-useful.",
+  "allowedActions": [
+    "read-current-state-and-coverage",
+    "choose-next-high-value-process",
+    "create-next-case",
+    "write-evidence",
+    "update-state"
+  ],
+  "defaultLockedActions": [
+    "preview-posting",
+    "posting",
+    "setup-change",
+    "company-switch",
+    "api-shortcut"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "claim-german-final-proof",
+    "use-api-shortcut-without-explicit-case-permission"
+  ],
+  "decisionInputs": {
+    "warehouseSourceRoute": "parked-labor-blocked-bookdraft-useful",
+    "latestWarehouseEvidence": "playwright/projects/fibu-book5/evidence/warehouse-031/WAREHOUSE-031-result.json"
+  },
+  "safetyGates": [
+    "do-not-reopen-warehouse-source-route-without-new-hypothesis",
+    "next-case-must-produce-evidence-bookdraft-or-playwright-value",
+    "no-german-final-claim-from-rm-demo"
+  ],
+  "expectedEvidence": [
+    "next process selection with reason",
+    "active case file for chosen process"
+  ],
+  "migrationRelevance": "helper-only",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": false,
+  "finalScreenshotNeeded": false,
+  "resultPath": "playwright/projects/fibu-book5/evidence/process-selection-after-warehouse-source-parking/result.json",
+  "nextStep": "Choose the next high-value process block; do not continue Warehouse source-route probing without a new non-repetitive hypothesis.",
+  "createdAt": "2026-06-29T23:30:00+02:00",
+  "updatedAt": "2026-06-29T23:30:00+02:00"
+}
