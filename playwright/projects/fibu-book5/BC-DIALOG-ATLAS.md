@@ -14,6 +14,8 @@ Dieses Atlas-Dokument sammelt Dialoge und Entscheidungsfenster, die Klickpfade s
 
 Kein `OK`, `Ja`, `Finish`, `Erstellen`, `Post`, `Preview`, `Delete` oder aehnlicher Bestaetigungsklick ohne sichtbaren Dialogtext, Zielwirkung, Rueckfalllogik und Evidence-Plan.
 
+Fuer Universaarl gilt zusaetzlich: Dialogfreigaben aus RM-DEMO-, MCP_1_20260210- oder CRONUS-Tests sind nur Patternquelle. Ein Universaarl-Dialog muss im `playthru`-Kontext neu gelesen werden, bevor ein Button bestaetigt wird.
+
 ## Zero-Open-Questions-Regel
 
 Jeder nicht verstandene Dialog erzeugt entweder einen Eintrag in `.agent/state/open_questions_register.json` oder bekommt einen finalen Status aus `BC-ZERO-OPEN-QUESTIONS-POLICY.md`.

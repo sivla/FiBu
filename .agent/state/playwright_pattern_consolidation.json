@@ -1,0 +1,157 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-06-29T21:15:00.000Z",
+  "purpose": "universaarl-playwright-pattern-consolidation",
+  "targetWorld": {
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "legalName": "Universaarl GmbH"
+  },
+  "status": [
+    "universaarl-pattern-baseline",
+    "helper-only",
+    "no-bc-run"
+  ],
+  "noBcRun": true,
+  "noPlaywrightRun": true,
+  "patternDocument": "playwright/projects/fibu-book5/UNIVERSAARL-PLAYWRIGHT-PATTERN-CONSOLIDATION.md",
+  "consolidatedPatterns": [
+    {
+      "id": "navigation",
+      "capability": "bc_navigation_control",
+      "maturity": "lab-reusable",
+      "universaarlRule": "No blind Tell-Me Enter; page-id allowed for safe regression with context proof."
+    },
+    {
+      "id": "page-context",
+      "capability": "bc_page_context_guard",
+      "maturity": "lab-reusable",
+      "universaarlRule": "Confirm page, frame, company/instance and visible text before effective action."
+    },
+    {
+      "id": "company-context",
+      "capability": "bc_page_context_guard",
+      "maturity": "universaarl-in-progress",
+      "universaarlRule": "playthru is proven; UNIVERSAARL-DE target company context starts only after creation."
+    },
+    {
+      "id": "scoped-action-click",
+      "capability": "bc_scoped_action_click",
+      "maturity": "lab-reusable",
+      "universaarlRule": "Click BC actions only in proven page/card/line scope with expected-after-click evidence."
+    },
+    {
+      "id": "dialog-gate",
+      "capability": "bc_dialog_gate",
+      "maturity": "lab-reusable",
+      "universaarlRule": "No OK/Yes/Finish/Create/Post/Preview/Delete without text proof and expected effect."
+    },
+    {
+      "id": "screenshot-truth-gate",
+      "capability": "screenshot_truth_gate",
+      "maturity": "book-ready",
+      "universaarlRule": "Image must visibly show the claimed proof."
+    },
+    {
+      "id": "card-field-diagnostics",
+      "capability": "bc_card_field_diagnostics",
+      "maturity": "lab-reusable",
+      "universaarlRule": "Separate caption, visible value and editable control; reject background/related-card leakage."
+    },
+    {
+      "id": "journal-grid-handling",
+      "capability": "journal_line_control_snapshot",
+      "maturity": "lab-reusable",
+      "universaarlRule": "Map row, column and editable control before values or posting gates."
+    },
+    {
+      "id": "evidence-writer",
+      "capability": "evidence_pack_writer",
+      "maturity": "lab-reusable",
+      "universaarlRule": "Write compact result with proved/notProved/boundary/nextStep and target status."
+    },
+    {
+      "id": "error-recovery",
+      "capability": "bc_error_recovery_pattern",
+      "maturity": "lab-reusable",
+      "universaarlRule": "Capture visible error before fix, classify root cause, document cleanup/fallback."
+    }
+  ],
+  "legacyTestHandling": [
+    {
+      "group": "target-*",
+      "classification": "active-universaarl",
+      "action": "Keep as active Universaarl target tests."
+    },
+    {
+      "group": "live-smoke-bc-*",
+      "classification": "convert-to-generic-or-universaarl",
+      "action": "Use only when instance/company matches playthru/Universaarl; otherwise keep as pattern source."
+    },
+    {
+      "group": "rm-de-lab-create-*",
+      "classification": "legacy-pattern-source",
+      "action": "Do not run as active target tests; reuse only action/error patterns."
+    },
+    {
+      "group": "p2p/payments/bank/warehouse/inventory/fixedassets legacy tests",
+      "classification": "legacy-labor-reference",
+      "action": "Do not treat as active Universaarl truth; rebuild cases with Universaarl evidence."
+    },
+    {
+      "group": "uat-o2c/uat-p2p/uat-start",
+      "classification": "archive-only",
+      "action": "Keep proof chain, replace in book once Universaarl process exists."
+    },
+    {
+      "group": "playwright/core/bc selftests and helpers",
+      "classification": "helper-reusable",
+      "action": "Keep and extend with Universaarl-neutral fixtures when needed."
+    }
+  ],
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-005-COMPANY-CREATION-SOURCE-BACKED-ALTERNATIVE-ROUTE",
+    "plannedNextCaseBeforeReview": "TARGET-005-COMPANY-CREATION-SOURCE-BACKED-ALTERNATIVE-ROUTE",
+    "lastEvidenceSummary": "TARGET-001 to TARGET-004 proved playthru/Companies context and rejected unsafe or unclear direct company creation routes; no UNIVERSAARL-DE company exists yet.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The Playwright consolidation supports TARGET-005 by selecting reusable patterns and preventing old RM-specific tests from being used as active target truth.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-005-COMPANY-CREATION-SOURCE-BACKED-ALTERNATIVE-ROUTE",
+        "status": "ready-next",
+        "reason": "Still the dependency for Universaarl setup and first book chapter."
+      },
+      {
+        "caseId": "TARGET-004-FOUNDATION-SETUP-READINESS",
+        "status": "ready-after-current",
+        "reason": "Requires target company to exist."
+      },
+      {
+        "caseId": "TARGET-005-NUMBER-SERIES-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Needs company creation and foundation baseline."
+      },
+      {
+        "caseId": "TARGET-006-POSTING-GROUPS-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Depends on company setup and chart/accounting baseline."
+      },
+      {
+        "caseId": "TARGET-007-DIMENSIONS-FOUNDATION",
+        "status": "ready-after-current",
+        "reason": "Can follow after company and foundation context are stable."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-005-COMPANY-CREATION-SOURCE-BACKED-ALTERNATIVE-ROUTE",
+    "whySelectedNextCaseIsBest": "It converts the current company creation blocker into a source-backed UI route and enables all later Universaarl setup and process evidence.",
+    "risksBeforeNextCase": [
+      "BC may still expose only copy/test/demo creation routes.",
+      "Company creation may show a dialog that requires explicit Smart Decision Gate before confirmation."
+    ],
+    "requiredPreparation": [
+      "Use the consolidated capabilities: navigation, page context, scoped action click, dialog gate and evidence writer.",
+      "Do not run legacy RM-DE-LAB company creation tests as active target tests."
+    ]
+  }
+}

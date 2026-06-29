@@ -1,8 +1,15 @@
 # Business-Central-Playwright-Patterns
 
-Stand: 16.06.2026
+Stand: 29.06.2026
 
-Diese Datei sammelt wiederverwendbare Muster aus belegten Laeufen. Sie ist keine allgemeine Playwright-Dokumentation, sondern Projektwissen fuer Business Central in `MCP_1_20260210` / `RM-DEMO`.
+Diese Datei sammelt wiederverwendbare Muster aus belegten Laeufen. Sie ist keine allgemeine Playwright-Dokumentation, sondern Projektwissen fuer Business Central. Alte Muster aus `MCP_1_20260210` / `RM-DEMO` bleiben historische Laborreferenz. Neue aktive Zieltests laufen fuer die Universaarl-Welt in `playthru` / `UNIVERSAARL-DE` und duerfen alte RM-/CRONUS-Evidence nur als Musterquelle verwenden.
+
+## Universaarl Pattern Baseline
+
+- Neue aktive Tests muessen ihre Zielwelt explizit setzen: `targetWorld = Universaarl`, `instance = playthru`, `company = UNIVERSAARL-DE` sobald die Company existiert.
+- Legacy-Tests mit `RM-DEMO`, `MCP_1_20260210`, `CRONUS`, `Rhein-Main`, `K30000`, `FA-CNC-01`, `BANK-RM-01` oder aehnlichen Laborcodes werden nicht als aktive Universaarl-Zieltests ausgefuehrt. Sie bleiben Archiv oder Patternquelle, bis ein Test bewusst portiert wurde.
+- Portierte Universaarl-Tests nennen die verwendeten Capabilities im Result, zum Beispiel `bc_navigation_control`, `bc_page_context_guard`, `bc_scoped_action_click`, `bc_dialog_gate`, `screenshot_truth_gate`, `bc_card_field_diagnostics`, `journal_line_control_snapshot`, `evidence_pack_writer`.
+- Der Konsolidierungsstand steht in `UNIVERSAARL-PLAYWRIGHT-PATTERN-CONSOLIDATION.md` und `.agent/state/playwright_pattern_consolidation.json`.
 
 ## Grundprinzipien
 

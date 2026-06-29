@@ -18,6 +18,10 @@ Status: `labor-reference`.
 | General Journal Batches | `251` | Fixed Assets | `DEFAULT`, `Default Journal Batch`, `FA-JNL` sichtbar | `evidence/fixedassets-287/` | kein ausgewaehlter Batchwert |
 | Financial Reports | n/a | Reporting | O2C-/Dimension-Reporting Teil-/Negativbefunde | `evidence/reporting-*` | Dimension-Auswertung nicht final |
 
+## Universaarl Page-Kontext-Regel
+
+Universaarl-Tests duerfen historische Page-IDs, Frame-Muster und Locator-Erkenntnisse wiederverwenden, aber der aktive Nachweis muss in `playthru` entstehen. Vor einer wirksamen Aktion zaehlt nur ein Kontext, der Seite, sichtbaren Zieltext, Instanz und Company beziehungsweise Companies-/Creation-Kontext neu belegt. Shell-only-Signale und alte `RM-DEMO`-URLs sind nur Legacy-Diagnose.
+
 ## Zero-Open-Questions-Regel
 
 Jede nicht verstandene Page erzeugt entweder einen Eintrag in `.agent/state/open_questions_register.json` oder bekommt einen finalen Status aus `BC-ZERO-OPEN-QUESTIONS-POLICY.md`.

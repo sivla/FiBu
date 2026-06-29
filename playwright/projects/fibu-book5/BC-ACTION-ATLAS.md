@@ -26,6 +26,10 @@ Status: `labor-reference`.
 | Page Inspection `Ctrl+Alt+F1` | Debugging | `labor-reusable` | technische Page/Table-Diagnose | `fixedassets-051` und Patterns | Werte muessen separat sichtbar sein |
 | Personalize | Debugging | `labor-reusable` | Feldverfuegbarkeit diagnostizieren | `fixedassets-049` | kein stilles Buchscreen-/Setup-Ersatzbild |
 
+## Universaarl Action-Regel
+
+Alte RM-DEMO-/CRONUS-Tests liefern weiterhin wertvolle Action-Muster, aber keine aktive Zielwahrheit. Fuer Universaarl gilt: Jede neue Action-Evidence benennt Page-/Card-/Line-Kontext, Capability-ID und Nachbedingung. `Neu`, `Kopieren`, `Testunternehmen`, `Post`, `Preview`, `Finish`, `OK`, `Delete` und aehnliche wirksame Aktionen duerfen nicht aus alten Tests uebernommen werden, sondern brauchen im `playthru`-/Universaarl-Kontext einen neuen Gate-Nachweis.
+
 ## Zero-Open-Questions-Regel
 
 Jede nicht verstandene Action erzeugt entweder einen Eintrag in `.agent/state/open_questions_register.json` oder bekommt einen finalen Status aus `BC-ZERO-OPEN-QUESTIONS-POLICY.md`.
