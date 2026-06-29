@@ -25,6 +25,12 @@ Status: `labor-reference`.
 | `FA Posting Group = MACHINES` | Fixed Assets | Fixed Asset / Setup | Kontenfindung Anlagenzugang | Fixed-Assets Evidence | historische Blocker beachten |
 | `Acquisition Cost Bal. Acc. = 82000` | Fixed Assets | FA Posting Group Setup | Gegenkonto fuer Zugang | `fixedassets-170`, `208+` | CRONUS-Labor |
 | `PRODUCTLINE=MACHINE`, `CHANNEL=B2B` | Dimensions/Reporting | O2C/Item Ledger/Reporting Evidence | Auswertungsdimensionen | `evidence/reporting-*` | Financial Reports Nutzung nur teilweise |
+| `Posting Date` | Look and Feel/Posten/Reporting | geplant fuer Customer/Vendor/G/L/Item Ledger Entries | Zeitraumfilter, Reportfilter, Periodenvergleich | Universaarl geplant | braucht mehrere Buchungsdaten |
+| `Document No.` | Look and Feel/Posten | geplant fuer alle Ledger-Entry-Listen | verbindet Belege, Posten und Nachverfolgung | Universaarl geplant | braucht gebuchte Belege |
+| `Open` / Offen | Look and Feel/OP | geplant fuer Customer/Vendor Ledger Entries | trennt offene von ausgeglichenen Posten | Universaarl geplant | braucht Zahlung/Ausgleich |
+| `Remaining Amount` / Restbetrag | Look and Feel/OP/Payments | geplant fuer Customer/Vendor Ledger Entries | zeigt offenen Betrag nach Zahlung oder Teilzahlung | Universaarl geplant | braucht OP- und Zahlungsfaelle |
+| Dimension fields / `Shortcut Dimension 1/2` | Look and Feel/Reporting | geplant fuer Ledger Entries und Belege | Grundlage fuer Dimensionsfilter und `Filter totals by` | Universaarl geplant | braucht Dimension Foundation und gebuchte Dimensionen |
+| `Status` | Look and Feel/Belege | geplant fuer Sales/Purchase Documents | trennt offene, freigegebene und gebuchte Arbeitsstaende | Universaarl geplant | Statuswirkung je Belegtyp separat belegen |
 
 ## Zero-Open-Questions-Regel
 
@@ -33,3 +39,5 @@ Jedes nicht verstandene Feld erzeugt entweder einen Eintrag in `.agent/state/ope
 ## UI-Look-and-Feel-Regel
 
 Ein Feld gilt nicht als fehlend, bevor relevante FastTabs, Mehr anzeigen/Show more, horizontales Scrollen, FactBox-Ausblendung, Fokusmodus, Personalisierung und Page Inspection als sichere Sichtbarkeitswege geprueft wurden.
+
+Filterfelder gelten erst als buchreif, wenn sie in einer Universaarl-Liste mit mehreren sinnvollen Treffern sichtbar und erklaerbar sind.

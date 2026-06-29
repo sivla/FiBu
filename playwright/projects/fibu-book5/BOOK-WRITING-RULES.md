@@ -95,3 +95,9 @@ Stattdessen beschreibt der Text die Seite, den Button, das Feld, die fachliche W
 ## RM-Decommission im Buch
 
 Universaarl ist die aktive Fallstudie. Rhein-Main, `RM-DEMO`, `RM-*`, `MCP_1_20260210` und CRONUS bleiben nur historische Labor- oder Archivreferenzen. Neue Buchabschnitte werden nicht mehr auf Rhein-Main geschrieben. Alte Abschnitte werden Prozess fuer Prozess durch Universaarl-Evidence ersetzt; bis dahin duerfen sie nicht als aktive Zielwahrheit erscheinen.
+
+## Datenreichtum vor Filterkapiteln
+
+Listen-, Filter-, Such-, Analysis-Mode- und Reportingkapitel werden erst final geschrieben, wenn Universaarl genug sinnvolle Daten enthaelt. Eine leere Liste erklaert nur die Oberflaeche. Sie erklaert noch nicht, wie ein Anfaenger mit vielen Kunden, offenen Posten, mehreren Buchungsdaten, Dimensionen und gebuchten Belegen arbeitet.
+
+Der Buchtext darf die Bedienlogik bereits einfach beschreiben, aber konkrete Beispiele, Screenshots und Erfolgskontrollen muessen aus `playthru` / `UNIVERSAARL-DE` kommen.

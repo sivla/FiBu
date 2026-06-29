@@ -17,10 +17,19 @@ Status: `labor-reference`.
 | FA G/L Journal | n/a | Fixed Assets | Zugang `G05001`, Preview, Posting, G/L Trace | `evidence/fixedassets-225/` | Einkaufsrechnung-Route offen |
 | General Journal Batches | `251` | Fixed Assets | `DEFAULT`, `Default Journal Batch`, `FA-JNL` sichtbar | `evidence/fixedassets-287/` | kein ausgewaehlter Batchwert |
 | Financial Reports | n/a | Reporting | O2C-/Dimension-Reporting Teil-/Negativbefunde | `evidence/reporting-*` | Dimension-Auswertung nicht final |
+| Role Center | offen | Look and Feel | Zielseite fuer Universaarl-Einstieg, Navigation, globale Suche und sichere Page-Kontextpruefung | geplant | erst nach `UNIVERSAARL-DE` als Zielcompany belegen |
+| Customers / Debitoren | offen | Look and Feel/O2C | Zielseite fuer Suche, Sortierung, Filterbereich und Debitorenlisten-Erklaerung | geplant | braucht Universaarl-Debitorenfamilie |
+| Vendors / Kreditoren | offen | Look and Feel/P2P | Zielseite fuer Lieferantenfilter, Salden und OP-Navigation | geplant | braucht Universaarl-Kreditorenfamilie |
+| Items / Artikel | offen | Look and Feel/Inventory | Zielseite fuer Artikeltypen, Lagerbestand und Filter | geplant | braucht Universaarl-Artikelbasis |
+| Customer/Vendor/G/L/Item Ledger Entries | offen | Look and Feel/Posten | Zielseiten fuer Postenfilter nach Datum, Beleg, Status, Betrag und Dimension | geplant | braucht gebuchte Universaarl-Prozesse |
+| Report Request Pages | offen | Reporting/Look and Feel | Zielkontext fuer Reportoptionen und Filter vor Reportlauf | geplant | braucht konkreten Reportcase und Datenbasis |
+| Analysis Mode / Analysemodus | offen | Reporting/Look and Feel | Zielkontext fuer read-only Datenanalyse, Gruppierung und Summen | geplant | braucht Datenreichtum und Quellen-/UI-Nachweis |
 
 ## Universaarl Page-Kontext-Regel
 
 Universaarl-Tests duerfen historische Page-IDs, Frame-Muster und Locator-Erkenntnisse wiederverwenden, aber der aktive Nachweis muss in `playthru` entstehen. Vor einer wirksamen Aktion zaehlt nur ein Kontext, der Seite, sichtbaren Zieltext, Instanz und Company beziehungsweise Companies-/Creation-Kontext neu belegt. Shell-only-Signale und alte `RM-DEMO`-URLs sind nur Legacy-Diagnose.
+
+Look-and-Feel-Nachweise brauchen echte Universaarl-Daten. Leere Listen duerfen Page-Kontext beweisen, aber keine Filter-, Summen- oder Reportingerklaerung tragen.
 
 ## Zero-Open-Questions-Regel
 

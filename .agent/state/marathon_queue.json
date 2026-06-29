@@ -450,6 +450,249 @@
       "legacyReferenceAllowedOnlyForLearning": true
     },
     {
+      "id": "TARGET-DATA-001-UNIVERSAARL-DATA-RICHNESS-PLAN",
+      "order": 30,
+      "status": "pending",
+      "category": "data-richness",
+      "expectedImpact": "book-and-filter-foundation",
+      "evidenceTarget": "playwright/projects/fibu-book5/evidence/target-data-001-universaarl-data-richness-plan/",
+      "mayWorkEffectively": false,
+      "goal": "Plan meaningful Universaarl data families before final look-and-feel/filtering book chapters.",
+      "migrationRelevance": "needed-for-german-final",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "dependsOn": [
+        "TARGET-004-FOUNDATION-SETUP-READINESS"
+      ],
+      "lookaheadStatus": "ready-after-current",
+      "lookaheadReason": "Useful after company and foundation are stable; this run created the first plan, but practical data cases must wait for UNIVERSAARL-DE."
+    },
+    {
+      "id": "TARGET-DATA-002-DEBITOR-DATASET",
+      "order": 31,
+      "status": "pending",
+      "category": "data-richness",
+      "expectedImpact": "book-and-filter-foundation",
+      "evidenceTarget": "playwright/projects/fibu-book5/evidence/target-data-002-debitor-dataset/",
+      "mayWorkEffectively": true,
+      "goal": "Create a meaningful Universaarl customer family for O2C, open items and filtering.",
+      "migrationRelevance": "needed-for-german-final",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "dependsOn": [
+        "TARGET-010-O2C-MASTERDATA"
+      ],
+      "lookaheadStatus": "needs-setup-first",
+      "lookaheadReason": "Needs company, customer templates/number series, posting groups and VAT setup."
+    },
+    {
+      "id": "TARGET-DATA-003-KREDITOR-DATASET",
+      "order": 32,
+      "status": "pending",
+      "category": "data-richness",
+      "expectedImpact": "book-and-filter-foundation",
+      "evidenceTarget": "playwright/projects/fibu-book5/evidence/target-data-003-kreditor-dataset/",
+      "mayWorkEffectively": true,
+      "goal": "Create a meaningful Universaarl vendor family for P2P, payments and filtering.",
+      "migrationRelevance": "needed-for-german-final",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "dependsOn": [
+        "TARGET-013-P2P-MASTERDATA"
+      ],
+      "lookaheadStatus": "needs-setup-first",
+      "lookaheadReason": "Needs company, vendor templates/number series, posting groups and VAT setup."
+    },
+    {
+      "id": "TARGET-DATA-004-ITEM-DATASET",
+      "order": 33,
+      "status": "pending",
+      "category": "data-richness",
+      "expectedImpact": "book-and-filter-foundation",
+      "evidenceTarget": "playwright/projects/fibu-book5/evidence/target-data-004-item-dataset/",
+      "mayWorkEffectively": true,
+      "goal": "Create a meaningful Universaarl item family for sales, purchase, inventory and later manufacturing examples.",
+      "migrationRelevance": "needed-for-german-final",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "dependsOn": [
+        "TARGET-016-INVENTORY-FOUNDATION"
+      ],
+      "lookaheadStatus": "needs-setup-first",
+      "lookaheadReason": "Needs inventory setup, item templates, posting groups, VAT and units of measure."
+    },
+    {
+      "id": "TARGET-DATA-005-SALES-HISTORY",
+      "order": 34,
+      "status": "pending",
+      "category": "data-richness",
+      "expectedImpact": "book-and-filter-foundation",
+      "evidenceTarget": "playwright/projects/fibu-book5/evidence/target-data-005-sales-history/",
+      "mayWorkEffectively": true,
+      "goal": "Build posted and open Universaarl sales examples over multiple dates for customer ledger filtering.",
+      "migrationRelevance": "needed-for-german-final",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "dependsOn": [
+        "TARGET-012-O2C-POSTING-TRACE"
+      ],
+      "lookaheadStatus": "needs-setup-first",
+      "lookaheadReason": "Needs O2C master data, VAT and controlled posting trace first."
+    },
+    {
+      "id": "TARGET-DATA-006-PURCHASE-HISTORY",
+      "order": 35,
+      "status": "pending",
+      "category": "data-richness",
+      "expectedImpact": "book-and-filter-foundation",
+      "evidenceTarget": "playwright/projects/fibu-book5/evidence/target-data-006-purchase-history/",
+      "mayWorkEffectively": true,
+      "goal": "Build posted and open Universaarl purchase examples for vendor ledger filtering and payment readiness.",
+      "migrationRelevance": "needed-for-german-final",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "dependsOn": [
+        "TARGET-015-P2P-POSTING-TRACE"
+      ],
+      "lookaheadStatus": "needs-setup-first",
+      "lookaheadReason": "Needs P2P master data, VAT and controlled posting trace first."
+    },
+    {
+      "id": "TARGET-DATA-007-LEDGER-RICHNESS",
+      "order": 36,
+      "status": "pending",
+      "category": "data-richness",
+      "expectedImpact": "book-and-filter-foundation",
+      "evidenceTarget": "playwright/projects/fibu-book5/evidence/target-data-007-ledger-richness/",
+      "mayWorkEffectively": true,
+      "goal": "Ensure G/L, customer, vendor, item, value, VAT and bank entries are rich enough for filtering and reporting examples.",
+      "migrationRelevance": "needed-for-german-final",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "dependsOn": [
+        "TARGET-DATA-005-SALES-HISTORY",
+        "TARGET-DATA-006-PURCHASE-HISTORY",
+        "TARGET-017-INVENTORY-POSTING-TRACE"
+      ],
+      "lookaheadStatus": "needs-setup-first",
+      "lookaheadReason": "Needs several posted process traces first."
+    },
+    {
+      "id": "TARGET-DATA-008-DIMENSION-RICHNESS",
+      "order": 37,
+      "status": "pending",
+      "category": "data-richness",
+      "expectedImpact": "book-and-filter-foundation",
+      "evidenceTarget": "playwright/projects/fibu-book5/evidence/target-data-008-dimension-richness/",
+      "mayWorkEffectively": true,
+      "goal": "Ensure Universaarl dimensions appear on enough documents and entries for totals and reporting filters.",
+      "migrationRelevance": "needed-for-german-final",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "dependsOn": [
+        "TARGET-007-DIMENSIONS-FOUNDATION",
+        "TARGET-DATA-007-LEDGER-RICHNESS"
+      ],
+      "lookaheadStatus": "needs-setup-first",
+      "lookaheadReason": "Needs dimension foundation and posted entries with dimensions."
+    },
+    {
+      "id": "TARGET-DATA-009-FILTERING-READY-CHECK",
+      "order": 38,
+      "status": "pending",
+      "category": "data-richness",
+      "expectedImpact": "book-and-filter-foundation",
+      "evidenceTarget": "playwright/projects/fibu-book5/evidence/target-data-009-filtering-ready-check/",
+      "mayWorkEffectively": false,
+      "goal": "Decide whether Universaarl data is rich enough for final look-and-feel/filtering book screenshots.",
+      "migrationRelevance": "needed-for-german-final",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "dependsOn": [
+        "TARGET-DATA-007-LEDGER-RICHNESS",
+        "TARGET-DATA-008-DIMENSION-RICHNESS"
+      ],
+      "lookaheadStatus": "needs-setup-first",
+      "lookaheadReason": "Ready only after meaningful master data and posted entries exist."
+    },
+    {
+      "id": "TARGET-LOOKFEEL-001-LIST-SEARCH-SORT-FILTER",
+      "order": 39,
+      "status": "pending",
+      "category": "look-and-feel",
+      "expectedImpact": "book-chapter-foundation",
+      "evidenceTarget": "playwright/projects/fibu-book5/evidence/target-lookfeel-001-list-search-sort-filter/",
+      "mayWorkEffectively": false,
+      "goal": "Show search, sorting and list filters on real Universaarl lists.",
+      "migrationRelevance": "needed-for-german-final",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "dependsOn": [
+        "TARGET-DATA-009-FILTERING-READY-CHECK"
+      ],
+      "lookaheadStatus": "needs-setup-first",
+      "lookaheadReason": "Filtering examples need enough Universaarl rows."
+    },
+    {
+      "id": "TARGET-LOOKFEEL-002-FILTER-PANE-VIEWS",
+      "order": 40,
+      "status": "pending",
+      "category": "look-and-feel",
+      "expectedImpact": "book-chapter-foundation",
+      "evidenceTarget": "playwright/projects/fibu-book5/evidence/target-lookfeel-002-filter-pane-views/",
+      "mayWorkEffectively": false,
+      "goal": "Explain filter pane and saved views on Universaarl lists.",
+      "migrationRelevance": "needed-for-german-final",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "dependsOn": [
+        "TARGET-LOOKFEEL-001-LIST-SEARCH-SORT-FILTER"
+      ],
+      "lookaheadStatus": "needs-setup-first",
+      "lookaheadReason": "Views should be built from meaningful, not empty, lists."
+    },
+    {
+      "id": "TARGET-LOOKFEEL-003-FILTER-TOTALS-BY-DIMENSIONS",
+      "order": 41,
+      "status": "pending",
+      "category": "look-and-feel",
+      "expectedImpact": "book-chapter-foundation",
+      "evidenceTarget": "playwright/projects/fibu-book5/evidence/target-lookfeel-003-filter-totals-by-dimensions/",
+      "mayWorkEffectively": false,
+      "goal": "Demonstrate totals filtering and dimensions on Universaarl data.",
+      "migrationRelevance": "needed-for-german-final",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "dependsOn": [
+        "TARGET-DATA-008-DIMENSION-RICHNESS"
+      ],
+      "lookaheadStatus": "needs-setup-first",
+      "lookaheadReason": "Needs dimensions on posted entries."
+    },
+    {
+      "id": "TARGET-LOOKFEEL-004-REPORT-REQUEST-PAGE-FILTERS",
+      "order": 42,
+      "status": "pending",
+      "category": "look-and-feel",
+      "expectedImpact": "book-chapter-foundation",
+      "evidenceTarget": "playwright/projects/fibu-book5/evidence/target-lookfeel-004-report-request-page-filters/",
+      "mayWorkEffectively": false,
+      "goal": "Explain report request page filters with Universaarl reporting data.",
+      "migrationRelevance": "needed-for-german-final",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "dependsOn": [
+        "TARGET-024-REPORTING-DIMENSIONS",
+        "TARGET-DATA-009-FILTERING-READY-CHECK"
+      ],
+      "lookaheadStatus": "needs-setup-first",
+      "lookaheadReason": "Needs reporting foundation and enough data."
+    },
+    {
+      "id": "TARGET-LOOKFEEL-005-LEDGER-ENTRY-FILTERING",
+      "order": 43,
+      "status": "pending",
+      "category": "look-and-feel",
+      "expectedImpact": "book-chapter-foundation",
+      "evidenceTarget": "playwright/projects/fibu-book5/evidence/target-lookfeel-005-ledger-entry-filtering/",
+      "mayWorkEffectively": false,
+      "goal": "Teach ledger entry filtering across G/L, customer, vendor, item and value entries.",
+      "migrationRelevance": "needed-for-german-final",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "dependsOn": [
+        "TARGET-DATA-007-LEDGER-RICHNESS"
+      ],
+      "lookaheadStatus": "needs-setup-first",
+      "lookaheadReason": "Needs several posted ledgers before it can become a real book chapter."
+    },
+    {
       "id": "TARGET-003-COMPANY-INFORMATION",
       "order": 999,
       "status": "superseded-by-target-003-execution-route",
@@ -463,7 +706,7 @@
       "legacyReferenceAllowedOnlyForLearning": true
     }
   ],
-  "lastUpdated": "2026-06-29T19:25:00.000Z",
+  "lastUpdated": "2026-06-29T22:10:00.000Z",
   "zeroOpenQuestionsGate": {
     "active": true,
     "policyPath": "playwright/projects/fibu-book5/BC-ZERO-OPEN-QUESTIONS-POLICY.md",
@@ -509,7 +752,9 @@
           "reason": "Can follow foundation setup; not before the target company exists."
         }
       ],
-      "queueChangesMade": [],
+      "queueChangesMade": [
+        "Added TARGET-DATA-001..009 and TARGET-LOOKFEEL-001..005 after foundation/process prerequisites; these cases must not overtake TARGET-006 company creation."
+      ],
       "selectedNextCase": "TARGET-006-COMPANY-CREATION-SPECIFIC-ASSISTED-SETUP-ROUTE",
       "whySelectedNextCaseIsBest": "It narrows the company creation blocker to the exact Assisted Setup row that TARGET-005 made reachable.",
       "risksBeforeNextCase": [
