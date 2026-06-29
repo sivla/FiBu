@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "caseId": "PREP-016-BOOKMASTER-UMLAUT-AND-ENCODING-AUDIT",
+  "title": "Bookmaster umlaut and encoding audit",
+  "status": "done",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE-planned-not-yet-created",
+  "targetWorld": "Universaarl",
+  "workType": "repo-book-prep",
+  "effectiveBusinessCentralActionsAllowed": false,
+  "playwrightAllowed": false,
+  "bookMasterAllowed": true,
+  "purpose": "Improve active Universaarl-facing book text quality by replacing ASCII umlaut spellings and mojibake in the current company-creation and UI-reader drafts plus the active chapter-3 Universaarl section.",
+  "inputs": [
+    "FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md",
+    "playwright/projects/fibu-book5/book-drafts/universaarl-company-creation-draft.md",
+    "playwright/projects/fibu-book5/book-drafts/universaarl-look-and-feel-filtering-draft.md"
+  ],
+  "outputs": [
+    "playwright/projects/fibu-book5/evidence/prep-016-bookmaster-umlaut-and-encoding-audit/README.md",
+    "playwright/projects/fibu-book5/evidence/prep-016-bookmaster-umlaut-and-encoding-audit/PREP-016-result.json"
+  ],
+  "result": "Active Universaarl-facing book prose now uses German umlauts more consistently in the company creation and UI/filtering drafts. The bookmaster was touched only for reader-facing umlaut/encoding cleanup and not for a broad legacy rewrite or content reinterpretation.",
+  "noFinalGermanClaimWithoutUniversaarlEvidence": true,
+  "blockedEffectiveActions": [
+    "company-create",
+    "company-save",
+    "wizard-finish",
+    "setup-change",
+    "master-data-create",
+    "document-create",
+    "preview-posting",
+    "posting",
+    "payment",
+    "api-shortcut"
+  ],
+  "nextStepDecisionCard": {
+    "currentCase": "PREP-016-BOOKMASTER-UMLAUT-AND-ENCODING-AUDIT",
+    "plannedNextCaseBeforeReview": "PREP-016-BOOKMASTER-UMLAUT-AND-ENCODING-AUDIT",
+    "lastEvidenceSummary": "PREP-015 hardened the resume checklist for SUPER/company-create permissions and made the splitbutton/dropdown target explicit.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "After checklist hardening, improving active Universaarl book-facing German text is a safe and useful prep step while company creation remains parked.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "PREP-017-REPO-DOCUMENTATION-CONSISTENCY-AUDIT",
+        "status": "ready-next",
+        "reason": "After text cleanup, the next safe step is checking state, coverage and planning files for consistency."
+      },
+      {
+        "caseId": "PREP-018-PLAYWRIGHT-SCRIPT-AND-HELPER-INVENTORY",
+        "status": "ready-after-current",
+        "reason": "Helper inventory remains useful before the next live read-only or rights-unblocked Company Creation probe."
+      },
+      {
+        "caseId": "PREP-019-AUTOPILOT-EFFICIENCY-IMPROVEMENT",
+        "status": "ready-after-current",
+        "reason": "Efficiency cleanup should follow after state/documentation consistency is checked."
+      },
+      {
+        "caseId": "PREP-020-UNIVERSAARL-DATASET-BLUEPRINT",
+        "status": "ready-after-current",
+        "reason": "Dataset planning is valuable once documentation consistency is confirmed."
+      },
+      {
+        "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+        "status": "blocked",
+        "reason": "Still parked until the user confirms SUPER/company-create permissions."
+      }
+    ],
+    "queueChangesMade": [
+      "Marked PREP-016 done.",
+      "Selected PREP-017 as next safe prep case.",
+      "Kept TARGET-009 parked until SUPER/company-create permissions are confirmed."
+    ],
+    "selectedNextCase": "PREP-017-REPO-DOCUMENTATION-CONSISTENCY-AUDIT",
+    "whySelectedNextCaseIsBest": "Book-facing German text is now cleaner; the next practical low-risk task is to verify repo documentation and state consistency before more prep cases or live UI work.",
+    "risksBeforeNextCase": [
+      "Do not execute Company Creation until rights are confirmed.",
+      "Do not mass-rewrite legacy RM/Rhein-Main evidence as Universaarl truth."
+    ],
+    "requiredPreparation": [
+      "Keep book text reader-facing; keep internal evidence language in evidence/state files."
+    ]
+  },
+  "completedAt": "2026-06-30T03:20:00.000+02:00"
+}

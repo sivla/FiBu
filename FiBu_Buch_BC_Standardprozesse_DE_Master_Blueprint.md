@@ -13,8 +13,8 @@ Hinweis: Dieses Buch ist ein quellenbasiertes Lern-, Schulungs-, Projekt- und Im
 
 **Durchgehende Fallstudie**
 - Die Universaarl GmbH begleitet die Beispiele in diesem Buch. In Business Central arbeitet sie in der Company `UNIVERSAARL-DE`.
-- Die Company wird bewusst angelegt, bevor Stammdaten, Belege und Buchungen entstehen. So bleiben Kunden, Lieferanten, Artikel, Konten, Steuerlogik und Auswertungen fachlich zusammenhaengend.
-- Demodaten und fruehere Uebungsfirmen eignen sich zum Lernen einzelner Funktionen, aber nicht als einheitliche Zielwelt fuer die Universaarl GmbH.
+- Die Company wird bewusst angelegt, bevor Stammdaten, Belege und Buchungen entstehen. So bleiben Kunden, Lieferanten, Artikel, Konten, Steuerlogik und Auswertungen fachlich zusammenhängend.
+- Demodaten und frühere Übungsfirmen eignen sich zum Lernen einzelner Funktionen, aber nicht als einheitliche Zielwelt für die Universaarl GmbH.
 
 ## Inhaltsverzeichnis nach sechs Teilen
 
@@ -265,17 +265,17 @@ Die Universaarl GmbH ist die durchgehende Musterfirma dieses Buches. In Business
 
 Diese Trennung ist wichtig. Wenn Verkauf, Einkauf, Lager, Fertigung, Service und Buchhaltung in derselben Company arbeiten, greifen alle auf dieselbe fachliche Welt zu: dieselben Kunden, dieselben Lieferanten, dieselben Artikel, dieselben Konten, dieselbe Steuerlogik und dieselben Buchungsregeln.
 
-Die Universaarl GmbH wird nicht aus einer fertigen CRONUS-Demofirma als Zielwelt uebernommen. Demodaten sind zum Lernen einzelner Funktionen nuetzlich, bringen aber fremde Kunden, Artikel, Konten, Buchungsgruppen und Beispielbelege mit. Fuer dieses Buch entsteht die Musterfirma deshalb kontrolliert: zuerst die Company, dann Grunddaten, dann Setup, dann Stammdaten, dann Prozesse und Posten.
+Die Universaarl GmbH wird nicht aus einer fertigen CRONUS-Demofirma als Zielwelt übernommen. Demodaten sind zum Lernen einzelner Funktionen nützlich, bringen aber fremde Kunden, Artikel, Konten, Buchungsgruppen und Beispielbelege mit. Für dieses Buch entsteht die Musterfirma deshalb kontrolliert: zuerst die Company, dann Grunddaten, dann Setup, dann Stammdaten, dann Prozesse und Posten.
 
-Solange `UNIVERSAARL-DE` noch nicht in der Mandantenliste sichtbar ist, beginnt die Arbeit auf der Seite `Mandanten`. Dort wird zuerst geprueft, welche Companies bereits vorhanden sind. Erst danach wird die neue Company angelegt.
+Solange `UNIVERSAARL-DE` noch nicht in der Mandantenliste sichtbar ist, beginnt die Arbeit auf der Seite `Mandanten`. Dort wird zuerst geprüft, welche Companies bereits vorhanden sind. Erst danach wird die neue Company angelegt.
 
 ### Die Fallstudie in einfachen Worten
 
-Die Universaarl GmbH verkauft Maschinen, handelt Ersatzteile, kauft Rohmaterial ein, fuehrt Lagerbewegungen aus, nutzt Anlagen, bezahlt Lieferanten, erhaelt Kundenzahlungen und wertet ihre Zahlen aus. Genau deshalb braucht sie ein ERP-System. Ohne ERP wuerden Vertrieb, Einkauf, Lager, Fertigung, Service und Buchhaltung mit getrennten Listen arbeiten. Dann weiss der Vertrieb nicht sicher, ob Ware verfuegbar ist. Der Einkauf sieht zu spaet, welches Material fehlt. Das Lager kennt Mengen, aber nicht immer Werte. Finance erkennt Fehler erst im Monatsabschluss.
+Die Universaarl GmbH verkauft Maschinen, handelt Ersatzteile, kauft Rohmaterial ein, führt Lagerbewegungen aus, nutzt Anlagen, bezahlt Lieferanten, erhält Kundenzahlungen und wertet ihre Zahlen aus. Genau deshalb braucht sie ein ERP-System. Ohne ERP würden Vertrieb, Einkauf, Lager, Fertigung, Service und Buchhaltung mit getrennten Listen arbeiten. Dann weiß der Vertrieb nicht sicher, ob Ware verfügbar ist. Der Einkauf sieht zu spät, welches Material fehlt. Das Lager kennt Mengen, aber nicht immer Werte. Finance erkennt Fehler erst im Monatsabschluss.
 
 Business Central verbindet diese Abteilungen. Ein Verkaufsauftrag ist nicht nur ein Formular für den Kunden. Er beeinflusst Lager, Umsatz, Umsatzsteuer, Forderungen, Wareneinsatz, Dimensionen und Reporting. Eine Einkaufsbestellung ist nicht nur eine Bestellung beim Lieferanten. Sie beeinflusst Materialverfügbarkeit, Lagerwert, Kreditorenposten, Vorsteuer und Fertigungsfähigkeit. Die Fallstudie führt diese Zusammenhänge durch das gesamte Buch.
 
-Die Universaarl GmbH verdient Geld ueber mehrere Erloesquellen:
+Die Universaarl GmbH verdient Geld über mehrere Erlösquellen:
 
 | Erlösquelle | Beispiel | Warum BC relevant ist |
 |---|---|---|
@@ -285,7 +285,7 @@ Die Universaarl GmbH verdient Geld ueber mehrere Erloesquellen:
 | Service | Wartung und Reparatur | Serviceauftrag, Ressource, Ersatzteil |
 | Projekte | Installation | Projektposten, WIP, Faktura |
 | Miete | Mietmaschine | Abgrenzung, Standardgrenze |
-| Intercompany | spaetere Universaarl-Companies | IC-Belege, Abstimmung |
+| Intercompany | spätere Universaarl-Companies | IC-Belege, Abstimmung |
 
 Vor Business Central hatte die Gruppe typische Probleme:
 - Vertrieb verkaufte Artikel ohne belastbare Verfügbarkeitsprüfung.
@@ -309,9 +309,9 @@ Im ersten Schritt arbeitet die Universaarl GmbH in einer Hauptcompany. Weitere C
 | Company in BC | Rolle | Hauptprozesse |
 |---|---|---|
 | `UNIVERSAARL-DE` | deutsche Hauptcompany | Foundation, Finance, Verkauf, Einkauf, Lager, Anlagen, Reporting |
-| spaetere Produktionscompany | optionaler Ausbau | Fertigung, Warehouse, Intercompany |
-| spaetere Servicecompany | optionaler Ausbau | Service, Ressourcen, Ersatzteile |
-| spaetere Auslandsgesellschaft | optionaler Ausbau | EU-USt, Intercompany, Reporting |
+| spätere Produktionscompany | optionaler Ausbau | Fertigung, Warehouse, Intercompany |
+| spätere Servicecompany | optionaler Ausbau | Service, Ressourcen, Ersatzteile |
+| spätere Auslandsgesellschaft | optionaler Ausbau | EU-USt, Intercompany, Reporting |
 
 ```mermaid
 flowchart LR
@@ -320,28 +320,28 @@ flowchart LR
     DE --> WHSE["Lager + Bestand"]
     DE --> FIN["Finance + Reporting"]
     DE --> FA["Anlagen"]
-    DE -. spaeter .-> IC["weitere Universaarl-Companies"]
+    DE -. später .-> IC["weitere Universaarl-Companies"]
 ```
 
 ### Standorte und Lagerlogik
 
 | Lagerort | Company | Lagerart | BC-Logik | Trainingszweck |
 |---|---|---|---|---|
-| Hauptlager | `UNIVERSAARL-DE` | einfaches Lager am Anfang | direkte Lagerbuchung ohne Warehouse-Zwang | erster Einkauf, erster Verkauf, erste Bestandspruefung |
-| Zentrallager | spaeterer Ausbau | gesteuerte Einlagerung/Kommissionierung mit Lagerplaetzen | Lagereingang, Einlagerung, Kommissionierung, Warenausgang |
-| Servicefahrzeug | spaeterer Ausbau | Lagerort fuer Techniker | Ersatzteilverbrauch im Service |
-| Projektlager | spaeterer Ausbau | projektbezogenes Lager | Projektmaterial und Baustelle |
+| Hauptlager | `UNIVERSAARL-DE` | einfaches Lager am Anfang | direkte Lagerbuchung ohne Warehouse-Zwang | erster Einkauf, erster Verkauf, erste Bestandsprüfung |
+| Zentrallager | späterer Ausbau | gesteuerte Einlagerung/Kommissionierung mit Lagerplätzen | Lagereingang, Einlagerung, Kommissionierung, Warenausgang |
+| Servicefahrzeug | späterer Ausbau | Lagerort für Techniker | Ersatzteilverbrauch im Service |
+| Projektlager | späterer Ausbau | projektbezogenes Lager | Projektmaterial und Baustelle |
 
-Der erste Lagerort bleibt bewusst einfach. Ein Verkaufs- oder Einkaufsbeleg soll am Anfang nicht sofort in vollstaendige Warehouse-Belege kippen. Die gesteuerte Lagerlogik mit Lagerplaetzen, Wareneingaengen, Einlagerungen, Kommissionierungen und Warenausgaengen folgt in einem eigenen Warehouse-Kapitel.
+Der erste Lagerort bleibt bewusst einfach. Ein Verkaufs- oder Einkaufsbeleg soll am Anfang nicht sofort in vollständige Warehouse-Belege kippen. Die gesteuerte Lagerlogik mit Lagerplätzen, Wareneingängen, Einlagerungen, Kommissionierungen und Warenausgängen folgt in einem eigenen Warehouse-Kapitel.
 
 ### Geschäftsmodelle
 
 | Modell | Use Case | BC-Schwerpunkt | Standardgrenze |
 |---|---|---|---|
-| Eigenfertigung | Standardmaschine | Manufacturing | vollstaendig im Standard demonstrierbar |
+| Eigenfertigung | Standardmaschine | Manufacturing | vollständig im Standard demonstrierbar |
 | Variantenfertigung | Sondermaschine | BOM/Routing/Projekt/Fertigung | Variantenlogik braucht klare Stammdaten |
 | Handelsware | Ersatzteil `SP-PUMP-01` | O2C/P2P/Inventory | Standard |
-| Sonderverkauf/Dropshipping | Ersatzteilverkauf mit direkter Lieferantenlieferung | Verkaufsauftraege (Sales Orders) / Einkaufsbestellungen (Purchase Orders) | abhaengig von Beleg- und Einkaufsbezug |
+| Sonderverkauf/Dropshipping | Ersatzteilverkauf mit direkter Lieferantenlieferung | Verkaufsaufträge (Sales Orders) / Einkaufsbestellungen (Purchase Orders) | abhängig von Beleg- und Einkaufsbezug |
 | Service | Wartung beim Kunden | Service Management | Standard |
 | Miete | Mietmaschine 12 Monate | Service/Projekte/Abgrenzungen/Anlagen (Service/Projects/Deferrals/Fixed Assets) | Standard nur mit Prozessdesign |
 | Finanzierung | Kunde finanziert Maschine über Bank | Sales/Receivables/Deferrals | komplexe Finanzierungslogik nicht vollständig Standard |
@@ -352,9 +352,9 @@ Der erste Lagerort bleibt bewusst einfach. Ein Verkaufs- oder Einkaufsbeleg soll
 
 ### Erzählerischer Zusammenhang der Use Cases
 
-Die Universaarl GmbH verdient ihr Geld nicht mit einem einzigen Prozess. Ein Maschinenverkauf beginnt im Vertrieb, loest Verfuegbarkeitspruefung aus, kann Fertigung anstossen, bewegt Lagerwerte und endet in Forderung, Zahlung und GuV. Ein Servicefall beginnt beim Kundenproblem, verbraucht Ersatzteile, erzeugt Technikerzeiten und entscheidet zwischen Rechnung, Garantie und Kulanz. Ein Projekt verbindet Sondermaschine, Fremdleistung, Material, Ressourcen und Meilensteinrechnung.
+Die Universaarl GmbH verdient ihr Geld nicht mit einem einzigen Prozess. Ein Maschinenverkauf beginnt im Vertrieb, löst Verfügbarkeitsprüfung aus, kann Fertigung anstoßen, bewegt Lagerwerte und endet in Forderung, Zahlung und GuV. Ein Servicefall beginnt beim Kundenproblem, verbraucht Ersatzteile, erzeugt Technikerzeiten und entscheidet zwischen Rechnung, Garantie und Kulanz. Ein Projekt verbindet Sondermaschine, Fremdleistung, Material, Ressourcen und Meilensteinrechnung.
 
-Mehrere Companies sind deshalb kein Selbstzweck. Die erste Company `UNIVERSAARL-DE` zeigt die zusammenhaengende deutsche Hauptfirma. Weitere Companies kommen erst dazu, wenn sie einen eigenen fachlichen Zweck haben. Business Central loest damit reale Probleme: weniger Dubletten, bessere Verfuegbarkeit, nachvollziehbare Steuerlogik, abgestimmte Posten, belastbare GuV nach Produktlinie und klare Verantwortlichkeiten.
+Mehrere Companies sind deshalb kein Selbstzweck. Die erste Company `UNIVERSAARL-DE` zeigt die zusammenhängende deutsche Hauptfirma. Weitere Companies kommen erst dazu, wenn sie einen eigenen fachlichen Zweck haben. Business Central löst damit reale Probleme: weniger Dubletten, bessere Verfügbarkeit, nachvollziehbare Steuerlogik, abgestimmte Posten, belastbare GuV nach Produktlinie und klare Verantwortlichkeiten.
 
 
 ## 4. ERP und Business Central für absolute Einsteiger
@@ -385,7 +385,7 @@ Ein vollständiges Schulungsbuch muss zeigen, wie Mitarbeiter arbeiten. Deshalb 
 | Rolle | Abteilung | Typische BC-Seiten | Was macht der Mitarbeiter? |
 |---|---|---|---|
 | Verkäuferin | Vertrieb | `Verkaufsangebote (Sales Quotes)`, `Verkaufsaufträge (Sales Orders)`, `Debitoren (Customers)`, `Kontakte (Contacts)` | Angebot erstellen, Auftrag erfassen, Verfügbarkeit prüfen, Rechnung auslösen |
-| Vertriebsinnendienst | Sonderverkauf/Dropshipping | `Verkaufsauftraege (Sales Orders)`, `Einkaufsbestellungen (Purchase Orders)`, `Artikel (Items)`, `Debitoren (Customers)` | Sonderauftraege erfassen, Lieferantenbezug klaeren, Versand anstossen |
+| Vertriebsinnendienst | Sonderverkauf/Dropshipping | `Verkaufsaufträge (Sales Orders)`, `Einkaufsbestellungen (Purchase Orders)`, `Artikel (Items)`, `Debitoren (Customers)` | Sonderauftraege erfassen, Lieferantenbezug klaeren, Versand anstoßen |
 | Einkäufer | Einkauf | `Kreditoren (Vendors)`, `Einkaufsbestellungen (Purchase Orders)`, `Einkaufsrechnungen (Purchase Invoices)` | Bestellung auslösen, Preise prüfen, Wareneingang/Rechnung abstimmen |
 | Lagerist einfaches Lager | Lager MZ | `Artikeljournale (Item Journals)`, `Verkaufslieferungen (Sales Shipments)`, `Einkaufslieferungen (Purchase Receipts)` | Ware annehmen, Bestand prüfen, Lieferung buchen |
 | Lagerist gesteuertes Lager | FRA-ZL | `Lagereingänge (Warehouse Receipts)`, `Lagereinlagerungen (Warehouse Put-aways)`, `Lagerkommissionierungen (Warehouse Picks)`, `Warenausgänge (Warehouse Shipments)` | Einlagern, kommissionieren, versenden |
@@ -1883,7 +1883,7 @@ RM-SALES verkauft Maschinen, Ersatzteile und Handelsware. Ohne sauberen Verkaufs
 
 ### Standard laut Quelle
 
-Business Central unterstuetzt Verkaufsangebote, Verkaufsauftraege, Lieferungen, Rechnungen, Retouren, Gutschriften und Dropshipping. Shopify/Online Store ist als Connector-Thema bewusst aus diesem Buch-5-Projekt gestrichen; Kapitel 17 behandelt Dropshipping ohne Shop-Connector. [Q7][Q8][Q9]
+Business Central unterstuetzt Verkaufsangebote, Verkaufsaufträge, Lieferungen, Rechnungen, Retouren, Gutschriften und Dropshipping. Shopify/Online Store ist als Connector-Thema bewusst aus diesem Buch-5-Projekt gestrichen; Kapitel 17 behandelt Dropshipping ohne Shop-Connector. [Q7][Q8][Q9]
 
 ### Mitarbeiterrollen
 
@@ -1893,7 +1893,7 @@ Business Central unterstuetzt Verkaufsangebote, Verkaufsauftraege, Lieferungen, 
 | Vertriebsinnendienst | Angebot in Auftrag umwandeln | `Verkaufsaufträge (Sales Orders)` | `SO-1001` |
 | Lagerist | Lieferung kommissionieren | `Lagerkommissionierungen (Warehouse Picks)` oder `Verkaufsaufträge (Sales Orders)` | gebuchte Lieferung |
 | Debitorenbuchhalterin | Rechnung und Zahlung prüfen | `Debitorenposten (Customer Ledger Entries)` | offener oder geschlossener Posten |
-| Vertriebsinnendienst | Sonderverkauf pruefen | `Verkaufsauftraege (Sales Orders)` / `Einkaufsbestellungen (Purchase Orders)` | Direktlieferungsfall in BC |
+| Vertriebsinnendienst | Sonderverkauf pruefen | `Verkaufsaufträge (Sales Orders)` / `Einkaufsbestellungen (Purchase Orders)` | Direktlieferungsfall in BC |
 
 ### Standardpfad B2B-Verkauf
 
@@ -2248,7 +2248,7 @@ Die Einkaufsbestellung `106049` wurde mit `K10000`, `RAW-STEEL`, Menge `10`, Lag
 
 Nach der Korrektur zeigte `Preview Posting` echte Vorschauarten: `G/L Entry`, `Vendor Ledger Entry`, `Detailed Vendor Ledg. Entry`, `Item Ledger Entry` und `Value Entry`. Danach wurde genau einmal `Receive and Invoice` gebucht. Die gebuchte Einkaufsrechnung lautet `108219`. Die Postenspur zeigt Kreditorenposten, Sachposten mit `22100 Accounts Payable, Domestic` und `14140 Resale Items`, Wertposten mit `RAW-STEEL` und Artikelposten `793`. Dieser Stand beweist Bedienpfad, Laborbuchung und Postenspur. Er beweist nicht `EUR`, `19 %` deutsche Vorsteuer oder einen deutschen Kontenplan-Endstand: Im Labor bleibt `Currency Code = USD` und `Tax Percent = 0`.
 
-Der Folgefall `P2P-002` hat die Kreditorenzahlung als kontrollierte Laborbuchung ergaenzt. Im Payment Journal wurde `PAYP2P-108219` fuer `K10000`, Ausgangsrechnung `108219`, Betrag `25.000,00` und Gegenkonto `BANK-RM-01` UI-first vorbereitet. Vor der Buchung waren Journal Check `0 Issues`, die Apply-Entries-Ansicht, der Post-Dialog und die Umgebung `MCP_1_20260210` sichtbar. Nach der Buchung wurden Kreditorenposten, detaillierte Kreditorenposten, Bankposten und Sachposten zum Zahlungsbeleg gefiltert geprueft. Der Folgecheck `P2P-003` klaert den OP-Ausgleich read-only: Die Einkaufsrechnung `108219` zeigt im Kreditorenposten Restbetrag `0,00`, und die detaillierten Kreditorenposten zeigen `Initial Entry`, `Payment Discount` und `Application` zur Zahlung `PAYP2P-108219`.
+Der Folgefall `P2P-002` hat die Kreditorenzahlung als kontrollierte Laborbuchung ergaenzt. Im Payment Journal wurde `PAYP2P-108219` fuer `K10000`, Ausgangsrechnung `108219`, Betrag `25.000,00` und Gegenkonto `BANK-RM-01` UI-first vorbereitet. Vor der Buchung waren Journal Check `0 Issues`, die Apply-Entries-Ansicht, der Post-Dialog und die Umgebung `MCP_1_20260210` sichtbar. Nach der Buchung wurden Kreditorenposten, detaillierte Kreditorenposten, Bankposten und Sachposten zum Zahlungsbeleg gefiltert geprüft. Der Folgecheck `P2P-003` klaert den OP-Ausgleich read-only: Die Einkaufsrechnung `108219` zeigt im Kreditorenposten Restbetrag `0,00`, und die detaillierten Kreditorenposten zeigen `Initial Entry`, `Payment Discount` und `Application` zur Zahlung `PAYP2P-108219`.
 
 Der neue Folgefall `P2P-004` ist bewusst kleiner: Er beweist noch keinen Teil-Wareneingang, sondern nur das UI-first Startgate dafuer. In `RM-DEMO` wurde `Purchase Orders` geoeffnet, `New` erzeugte den Einkaufsbestellungskontext, der Draft `106002` wurde mit `K10000` im Kopf angelegt, und die Zeilensteuerung fuer `Item No.`, `Qty. to Receive` und `Qty. to Invoice` ist als naechster Bedienkontext sichtbar. Es gab keine Artikelzeile, keine Menge, keine Preview, keine Buchung und keinen deutschen Finalnachweis.
 
@@ -2421,7 +2421,7 @@ Statusbox fuer den aktuellen Buchstand:
 
 | Pruefpunkt | Aktueller Stand |
 |---|---|
-| Buchziel | `FRA-ZL` soll spaeter als gesteuertes Lager mit Lagerplaetzen, Lagereingang, Einlagerung, Kommissionierung und Warenausgang bebildert werden. |
+| Buchziel | `FRA-ZL` soll spaeter als gesteuertes Lager mit Lagerplätzen, Lagereingang, Einlagerung, Kommissionierung und Warenausgang bebildert werden. |
 | RM-DEMO-Labor | `FRA-ZL` ist als einfacher Lagerort sichtbar; Inventory-Posten, Wertposten, Sachposten und Lagerbewertung sind belegt. |
 | Warehouse-Readiness | Einstiegspfade fuer `Warehouse Receipts`, `Warehouse Put-aways`, `Warehouse Picks` und `Bins` sind sichtbar; `Warehouse Shipments` ist in `WAREHOUSE-001` nicht belastbar sichtbar. |
 | Was nicht behauptet wird | Keine aktivierten Bins, keine gesteuerte Einlagerung/Kommissionierung, kein Warehouse Receipt, kein Put-away, kein Pick, kein Shipment und keine Warehouse-Buchung. |
@@ -3259,7 +3259,7 @@ Rhein-Main nutzt eine klare Regel: Dropshipping wird vor der Buchung entschieden
 
 ### Schritt-für-Schritt
 
-1. Oeffne `Alt+Q` und suche `Verkaufsauftraege (Sales Orders)`.
+1. Oeffne `Alt+Q` und suche `Verkaufsaufträge (Sales Orders)`.
 2. Erstelle oder oeffne den Sonderverkaufsauftrag `DS-24001`.
 3. Pruefe `Debitorennr. = D11000`, `Artikel = SP-PUMP-01`, `Menge = 2`, `VK-Preis = 850 EUR`, `CHANNEL = B2B`.
 4. Pruefe in der Verkaufszeile, ob der Lieferweg als Dropshipping/Sonderbeschaffung vorgesehen ist.
@@ -3286,7 +3286,7 @@ Retouren sind ebenfalls kein Lagertrick. Wenn `D11000` einen Sonderverkaufsartik
 
 | Ebene | Rhein-Main-Nachweis | Wo prüfen? |
 |---|---|---|
-| Verkaufsauftrag | `DS-24001` fuer `D11000` | `Verkaufsauftraege (Sales Orders)` |
+| Verkaufsauftrag | `DS-24001` fuer `D11000` | `Verkaufsaufträge (Sales Orders)` |
 | Verkaufsbeleg | Verkaufsauftrag und gebuchte Verkaufsrechnung | `Verkaufsaufträge`, `Gebuchte Verkaufsrechnungen` |
 | Einkaufsbeleg | Dropshipping-Einkaufsbestellung an `K20000` | `Einkaufsbestellungen (Purchase Orders)` |
 | Debitorenposten | Forderung gegen `D11000` | `Debitorenposten (Customer Ledger Entries)` |
@@ -3310,7 +3310,7 @@ Retouren sind ebenfalls kein Lagertrick. Wenn `D11000` einen Sonderverkaufsartik
 
 ### Korrekturweg
 
-Ungebuchte Verkaufsauftraege und Einkaufsbestellungen werden korrigiert oder neu erzeugt. Gebuchte Verkaufsrechnungen werden ueber Verkaufsgutschrift korrigiert. Gebuchte Einkaufsrechnungen werden ueber Einkaufsgutschrift korrigiert. Lager- oder USt-Posten werden nicht direkt geaendert.
+Ungebuchte Verkaufsaufträge und Einkaufsbestellungen werden korrigiert oder neu erzeugt. Gebuchte Verkaufsrechnungen werden ueber Verkaufsgutschrift korrigiert. Gebuchte Einkaufsrechnungen werden ueber Einkaufsgutschrift korrigiert. Lager- oder USt-Posten werden nicht direkt geaendert.
 
 
 ### Übung
@@ -3320,7 +3320,7 @@ Ungebuchte Verkaufsauftraege und Einkaufsbestellungen werden korrigiert oder neu
 | Rolle | Vertrieb, Einkauf, Finance |
 | Alltagssituation | Kunde `D11000` bestellt zwei Ersatzteile `SP-PUMP-01`. Der eigene Bestand reicht nicht oder soll nicht belastet werden, deshalb soll der Auftrag ueber Dropshipping mit Kreditor `K20000` abgewickelt werden. |
 | Konkrete Testdaten | Sonderverkaufsauftrag `DS-24001`, Debitor `D11000`, Artikel `SP-PUMP-01`, Menge `2`, Verkaufspreis `850 EUR` je Stueck, Dropshipping-Kreditor `K20000`, `CHANNEL = B2B`, Inland USt `19 %` als deutsches Zielbild |
-| Startseite ueber `Alt+Q` | `Verkaufsauftraege (Sales Orders)` und `Einkaufsbestellungen (Purchase Orders)` |
+| Startseite ueber `Alt+Q` | `Verkaufsaufträge (Sales Orders)` und `Einkaufsbestellungen (Purchase Orders)` |
 | Exakte Felder und Werte | `Debitorennr. = D11000`, `Art = Artikel`, `Nr. = SP-PUMP-01`, `Menge = 2`, `VK-Preis = 850`, `Dropshipping = Ja`, `Einkauf von Kreditor = K20000`, Dimension `CHANNEL = B2B` |
 | Auszufuehrende Aktion | Zielpfad nach Stammdaten-/Setup-Fit: Verkaufsauftrag pruefen, Dropshipping-Einkaufsbestellung erstellen/verknuepfen, Verkauf fakturieren und Einkaufseingangsrechnung pruefen |
 | Erwartete Belege | Verkaufsauftrag `DS-24001`, Dropshipping-Einkaufsbestellung, gebuchte Verkaufsrechnung, gebuchte Einkaufsrechnung |
@@ -3332,7 +3332,7 @@ Ungebuchte Verkaufsauftraege und Einkaufsbestellungen werden korrigiert oder neu
 
 Aktueller Laborhinweis: `DROPSHIPPING-001` hat diese Loesung noch nicht ausgefuehrt. Die Schritte sind der Zielpfad fuer einen spaeteren UI-first Lauf nach Gate-Freigabe. Vorher muessen `D11000`, `K20000`, `SP-PUMP-01` und die Drop-Shipment-/Purchasing-Code-Logik in `RM-DEMO` sichtbar belegt sein.
 
-1. Oeffne `Alt+Q`, suche `Verkaufsauftraege (Sales Orders)` und erstelle oder oeffne den Auftrag `DS-24001`.
+1. Oeffne `Alt+Q`, suche `Verkaufsaufträge (Sales Orders)` und erstelle oder oeffne den Auftrag `DS-24001`.
 2. Pruefe Debitor `D11000`, Artikel `SP-PUMP-01`, Menge `2`, Preis `850 EUR` und `CHANNEL = B2B`.
 3. Pruefe in der Verkaufszeile `Art = Artikel`, `Nr. = SP-PUMP-01`, `Menge = 2`, `Dropshipping = Ja`.
 4. Oeffne `Einkaufsbestellungen (Purchase Orders)` ueber `Alt+Q` und erstelle/verknuepfe die Dropshipping-Bestellung fuer Kreditor `K20000`.
@@ -3355,7 +3355,7 @@ Aktueller Laborhinweis: `DROPSHIPPING-001` hat diese Loesung noch nicht ausgefue
 | Rolle | Vertrieb, Einkauf, Finance |
 | Voraussetzung | `D11000`, `SP-PUMP-01`, `K20000` und Dimension `CHANNEL = B2B` sind vorhanden; deutscher USt-Finalnachweis bleibt separater Zielmandant |
 | Testdaten | `DS-24001`, `D11000`, `SP-PUMP-01`, Menge `2`, `850 EUR`, `K20000`, Inland USt `19 %` als deutsches Zielbild |
-| Exakte Schrittfolge | Zielpfad nach Gate: 1. Oeffne `Verkaufsauftraege (Sales Orders)` ueber `Alt+Q`.<br>2. Erstelle oder oeffne `DS-24001` und pruefe Debitor `D11000`.<br>3. Pruefe Artikel `SP-PUMP-01`, Menge `2`, Preis `850 EUR`.<br>4. Setze/pruefe `Dropshipping = Ja`.<br>5. Oeffne `Einkaufsbestellungen (Purchase Orders)` und verknuepfe Kreditor `K20000`.<br>6. Pruefe die Buchungsvorschau, bevor Verkauf oder Einkauf gebucht werden.<br>7. Pruefe `Debitorenposten`, `Kreditorenposten`, `Sachposten` und `USt-Posten`.<br>8. Pruefe, dass kein eigener `Artikelposten` aus `FRA-ZL` gebucht wurde.<br>9. Oeffne Margenbericht. |
+| Exakte Schrittfolge | Zielpfad nach Gate: 1. Oeffne `Verkaufsaufträge (Sales Orders)` ueber `Alt+Q`.<br>2. Erstelle oder oeffne `DS-24001` und pruefe Debitor `D11000`.<br>3. Pruefe Artikel `SP-PUMP-01`, Menge `2`, Preis `850 EUR`.<br>4. Setze/pruefe `Dropshipping = Ja`.<br>5. Oeffne `Einkaufsbestellungen (Purchase Orders)` und verknuepfe Kreditor `K20000`.<br>6. Pruefe die Buchungsvorschau, bevor Verkauf oder Einkauf gebucht werden.<br>7. Pruefe `Debitorenposten`, `Kreditorenposten`, `Sachposten` und `USt-Posten`.<br>8. Pruefe, dass kein eigener `Artikelposten` aus `FRA-ZL` gebucht wurde.<br>9. Oeffne Margenbericht. |
 | Erwartete Belege | Verkaufsauftrag, Einkaufsbestellung, gebuchte Verkaufsrechnung, gebuchte Einkaufsrechnung |
 | Erwartete Posten | `Debitorenposten (Customer Ledger Entries)`, `Kreditorenposten (Vendor Ledger Entries)`, `Sachposten (G/L Entries)`, `USt-Posten (VAT Entries)`; keine eigene Lagerbewegung bei reinem Dropshipping |
 | Kontrollbericht | Dropshipping-/Margenabstimmung, Margenbericht, `USt-Posten (VAT Entries)` |
@@ -3573,10 +3573,10 @@ Laborbefund `PAYMENTS-002`:
 Die naechste Readiness-Pruefung oeffnete `Bank Accounts`, `Cash Receipt Journals`, `Payment Journals` und `Apply Entries` aus Debitoren- und Kreditorenposten. Das Labor zeigte vorhandene CRONUS-Bankkonten `CHECKING` und `SAVINGS`, aber noch nicht das Buchziel `BANK-RM-01`. Deshalb durfte zu diesem Zeitpunkt noch keine Zahlung gebucht werden. Ein sichtbarer `Post`-Button im Journal ist keine fachliche Freigabe; zuerst muessen Bankkonto, Gegenkonto, Betrag, Ausgleichsbezug und Vorabkontrolle passen.
 
 Laborbefund `PAYMENTS-003`:
-`BANK-RM-01` wurde danach als CRONUS-USA-Laborbankkonto per Standard-API angelegt und in `Bank Accounts` sichtbar geprueft. Das loest nur den Stammdatenblocker. Fuer das Buch ist das noch keine Klickanleitung zur Bankkontoanlage; wenn die Bankkontoanlage erklaert werden soll, braucht sie einen eigenen UI-Pfad oder wird als vorbereitete Voraussetzung genannt.
+`BANK-RM-01` wurde danach als CRONUS-USA-Laborbankkonto per Standard-API angelegt und in `Bank Accounts` sichtbar geprüft. Das loest nur den Stammdatenblocker. Fuer das Buch ist das noch keine Klickanleitung zur Bankkontoanlage; wenn die Bankkontoanlage erklaert werden soll, braucht sie einen eigenen UI-Pfad oder wird als vorbereitete Voraussetzung genannt.
 
 Laborbefund `PAYMENTS-004` bis `PAYMENTS-013`:
-Das Cash Receipt Journal zeigt die noetigen Felder und Aktionen: Buchungsdatum, Belegart, Belegnr., Kontenart, Kontonr., Betrag, Gegenkonto, Ausgleichsbezug, `Apply Entries`, `Journal Check` und `Post`. In `PAYMENTS-005` wurde eine Zahlungsjournalzeile vollstaendig ueber die UI vorbereitet: `D10000`, Betrag `-68.000`, Gegenkonto `BANK-RM-01`, Ausgleichsbezug `PS-INV103297`. Der Entwurf wurde danach wieder geloescht. `PAYMENTS-006` zeigt die wichtige Detailregel: Die Rohzahl `-68000` fuehrt im Labor zur `Amount`-Validierung, das lokale Format `-68.000,00` loest den Amount-Fehler. Danach meldete `Journal Check` den naechsten Setup-Blocker: `Bank Account Posting Group` fehlte fuer das Gegenkonto `BANK-RM-01`. `PAYMENTS-007` fittet dieses Bankkonto ueber die UI auf `Bank Acc. Posting Group = CHECKING`. `PAYMENTS-008` zeigt danach in breiter Ansicht den Unterschied zwischen `Amount = -68.000,00` und `Amount ($) = -67.673,60`; nach `Refresh` meldet `Journal Check` `1 Lines checked`, `0 Lines with issues`, `0 Issues Total` und `No issues found`. `PAYMENTS-010` zeigt den Post-Dialog mit `Ja`/`Nein` und bricht noch ab. `PAYMENTS-011` bucht dann genau eine UI-first Laborzahlung `PAY011-PS103297`. Danach zeigt die Rechnung `PS-INV103297` im Debitorenposten `Remaining Amount = 0,00` und `Applied Entries = 1`; detaillierte Debitorenposten zeigen `Initial Entry`, `Payment Discount` und `Application`; Sachposten zeigen `15110`, `18200` und `40910`. `PAYMENTS-013` zeigt den passenden Bankpostenpfad: `Bank Account Ledger Entries` / Page `372` enthaelt `PAY011-PS103297`, `BANK-RM-01`, Betrag `67.673,60`, Entry No. `4995` und `Related G/L Entries`; der alte Page-371-Pfad bleibt verworfen. Damit sind Zahlung, OP-Ausgleich, Sachposten und Bankposten als CRONUS-USA-Labor nachgewiesen. Eine Bankabstimmung ist nicht nachgewiesen.
+Das Cash Receipt Journal zeigt die noetigen Felder und Aktionen: Buchungsdatum, Belegart, Belegnr., Kontenart, Kontonr., Betrag, Gegenkonto, Ausgleichsbezug, `Apply Entries`, `Journal Check` und `Post`. In `PAYMENTS-005` wurde eine Zahlungsjournalzeile vollständig ueber die UI vorbereitet: `D10000`, Betrag `-68.000`, Gegenkonto `BANK-RM-01`, Ausgleichsbezug `PS-INV103297`. Der Entwurf wurde danach wieder geloescht. `PAYMENTS-006` zeigt die wichtige Detailregel: Die Rohzahl `-68000` fuehrt im Labor zur `Amount`-Validierung, das lokale Format `-68.000,00` loest den Amount-Fehler. Danach meldete `Journal Check` den naechsten Setup-Blocker: `Bank Account Posting Group` fehlte fuer das Gegenkonto `BANK-RM-01`. `PAYMENTS-007` fittet dieses Bankkonto ueber die UI auf `Bank Acc. Posting Group = CHECKING`. `PAYMENTS-008` zeigt danach in breiter Ansicht den Unterschied zwischen `Amount = -68.000,00` und `Amount ($) = -67.673,60`; nach `Refresh` meldet `Journal Check` `1 Lines checked`, `0 Lines with issues`, `0 Issues Total` und `No issues found`. `PAYMENTS-010` zeigt den Post-Dialog mit `Ja`/`Nein` und bricht noch ab. `PAYMENTS-011` bucht dann genau eine UI-first Laborzahlung `PAY011-PS103297`. Danach zeigt die Rechnung `PS-INV103297` im Debitorenposten `Remaining Amount = 0,00` und `Applied Entries = 1`; detaillierte Debitorenposten zeigen `Initial Entry`, `Payment Discount` und `Application`; Sachposten zeigen `15110`, `18200` und `40910`. `PAYMENTS-013` zeigt den passenden Bankpostenpfad: `Bank Account Ledger Entries` / Page `372` enthaelt `PAY011-PS103297`, `BANK-RM-01`, Betrag `67.673,60`, Entry No. `4995` und `Related G/L Entries`; der alte Page-371-Pfad bleibt verworfen. Damit sind Zahlung, OP-Ausgleich, Sachposten und Bankposten als CRONUS-USA-Labor nachgewiesen. Eine Bankabstimmung ist nicht nachgewiesen.
 
 ### Warum braucht Rhein-Main diesen Prozess?
 
@@ -3604,7 +3604,7 @@ Rhein-Main braucht verlässliche offene Posten für Mahnwesen, Liquidität und M
    Laborhinweis aus `PAYMENTS-011`/`PAYMENTS-013`: Im freigegebenen Laborlauf wurde `Ja` genau einmal bestaetigt und die Zahlung `PAY011-PS103297` gebucht. Danach ist nicht nur der Zahlungsbeleg wichtig, sondern die Postenspur: Die Rechnung `PS-INV103297` zeigt `Remaining Amount = 0,00` und `Applied Entries = 1`; die detaillierten Debitorenposten zeigen ausserdem eine `Payment Discount`-Zeile. `PAYMENTS-013` zeigt zusaetzlich den Bankposten auf `Bank Account Ledger Entries` / Page `372` mit `BANK-RM-01`, Betrag `67.673,60` und Entry No. `4995`. Das ist die Stelle, an der Anfaenger verstehen, warum Zahlungsbedingungen, Skonto, Ausgleich, Sachposten und Bankposten zusammengehoeren, aber noch keine Bankabstimmung beweisen.
 7. Pruefe zuerst den rechten Bereich `Journal Check`. Solange dort Issues sichtbar sind, darf nicht gebucht werden.
 8. Wenn `Bank Account Posting Group` fehlt, ist nicht der Debitor falsch, sondern das Bankkonto/Gegenkonto noch nicht buchungsfaehig eingerichtet.
-9. Pruefe danach `Buchungsvorschau (Preview Posting)`, falls die Aktion in der Umgebung verfuegbar ist.
+9. Pruefe danach `Buchungsvorschau (Preview Posting)`, falls die Aktion in der Umgebung verfügbar ist.
 10. Buche die Zahlung erst, wenn Betrag, Gegenkonto, Ausgleichsbezug, Bankkontobuchungsgruppe und `Journal Check` stimmig sind.
 11. Öffne `Debitorenposten (Customer Ledger Entries)` und prüfe Restbetrag `0,00 EUR`.
 12. Öffne `Detaillierte Debitorenposten (Detailed Customer Ledger Entries)` und prüfe Ausgleichszeilen.
@@ -3651,7 +3651,7 @@ Falsche Ausgleiche werden über `Ausgleich aufheben (Unapply Entries)` gelöst u
 Laborstatus zu dieser Uebung:
 Die folgende Uebung beschreibt das deutsche Zielbild. Im aktuellen `RM-DEMO`-Labor wurde `PAYMENTS-011` als genau eine kontrollierte Debitoren-Laborzahlung gebucht: `PAY011-PS103297` fuer `D10000` und `PS-INV103297`, Betrag `-68.000,00`, Gegenkonto `BANK-RM-01`. Praktisch belegt sind der UI-Preflight, `Journal Check = 0 Issues`, `Apply Entries` read-only, der Post-Dialog vor Bestaetigung und danach Debitorenposten, detaillierte Debitorenposten, Sachposten und seit `PAYMENTS-013` Bankposten. Die Rechnung zeigt `Remaining Amount = 0,00` und `Applied Entries = 1`. Detaillierte Debitorenposten zeigen eine `Payment Discount`-Zeile; die Sachposten zeigen `15110`, `18200` und `40910`; Bank Account Ledger Entries / Page `372` zeigt `PAY011-PS103297`, `BANK-RM-01`, Betrag `67.673,60` und Entry No. `4995`.
 
-Als P2P-Folgefall wurde in `P2P-002` zusaetzlich eine Kreditoren-Laborzahlung gebucht: `PAYP2P-108219` fuer `K10000` und Eingangsrechnung `108219`, Betrag `25.000,00`, Gegenkonto `BANK-RM-01`. Belegt sind Payment-Journal-Preflight, `Journal Check = 0 Issues`, Apply-Entries-Ansicht, Post-Dialog, Kreditorenposten, detaillierte Kreditorenposten, Bankposten und Sachposten. Offen bleiben der eindeutig sichtbare vollstaendige OP-Ausgleich der Kreditorenrechnung, Bankabstimmung, Kontoauszugsimport und der deutsche Finalnachweis.
+Als P2P-Folgefall wurde in `P2P-002` zusaetzlich eine Kreditoren-Laborzahlung gebucht: `PAYP2P-108219` fuer `K10000` und Eingangsrechnung `108219`, Betrag `25.000,00`, Gegenkonto `BANK-RM-01`. Belegt sind Payment-Journal-Preflight, `Journal Check = 0 Issues`, Apply-Entries-Ansicht, Post-Dialog, Kreditorenposten, detaillierte Kreditorenposten, Bankposten und Sachposten. Offen bleiben der eindeutig sichtbare vollständige OP-Ausgleich der Kreditorenrechnung, Bankabstimmung, Kontoauszugsimport und der deutsche Finalnachweis.
 
 ### Lösung
 
@@ -3940,7 +3940,7 @@ Screenshot-Platzhalter fuer die spaetere deutsche Zielinstanz:
 | Gebuchte Sachposten und Anlagenposten zu `G05001` | Hauptbuch und Anlagen-Nebenbuch beantworten unterschiedliche Fragen | deutsche Postenspur fuer Zugang, AfA und spaeteren Anlagenspiegel |
 | `FADEP-291-OK` und `FADEP-295-OK` ohne sichtbare Journalzeile | Ein Batch-OK ist kein Ergebnisnachweis; nach zwei kontrollierten OK-Laeufen ohne sichtbare Zeile wird nicht weiter wiederholt | deutsche AfA-Berechnung mit sichtbarer Journalzeile, Preview Posting und gebuchter AfA-Spur |
 
-Die AfA-Strecke ist dagegen noch `labor-blocked`. In `FIXEDASSETS-291` wurde `AfA berechnen (Calculate Depreciation)` geoeffnet und mit `HGB`, Buchungsdatum `31.01.2027`, Belegnummer `FADEP-291-OK` und Anlagenfilter `FA-CNC-01` sichtbar belegt. `OK` wurde genau einmal bestaetigt. Danach wurde im `Fixed Asset G/L Journal` gesucht, aber `FADEP-291-OK` wurde nicht sichtbar gefunden. In `FIXEDASSETS-295` wurde derselbe OK-only-Pfad mit frischer Belegnummer `FADEP-295-OK` wiederholt; auch diese Belegnummer wurde danach im geprueften Journal-Kontext nicht sichtbar gefunden. `FIXEDASSETS-297` grenzt die Ursache ein: Der alte Lauf `FADEP-267-OK` hatte ein klares Datumsproblem, weil `30.06.2026` vor dem Zugang `01.01.2027` lag. Fuer den spaeteren Lauf `FADEP-295-OK` ist die genaue Ursache aber weiter nicht feldsicher bewiesen. Es wurde keine AfA-Journalzeile, kein AfA-Preview und keine AfA-Buchung bewiesen.
+Die AfA-Strecke ist dagegen noch `labor-blocked`. In `FIXEDASSETS-291` wurde `AfA berechnen (Calculate Depreciation)` geoeffnet und mit `HGB`, Buchungsdatum `31.01.2027`, Belegnummer `FADEP-291-OK` und Anlagenfilter `FA-CNC-01` sichtbar belegt. `OK` wurde genau einmal bestaetigt. Danach wurde im `Fixed Asset G/L Journal` gesucht, aber `FADEP-291-OK` wurde nicht sichtbar gefunden. In `FIXEDASSETS-295` wurde derselbe OK-only-Pfad mit frischer Belegnummer `FADEP-295-OK` wiederholt; auch diese Belegnummer wurde danach im geprüften Journal-Kontext nicht sichtbar gefunden. `FIXEDASSETS-297` grenzt die Ursache ein: Der alte Lauf `FADEP-267-OK` hatte ein klares Datumsproblem, weil `30.06.2026` vor dem Zugang `01.01.2027` lag. Fuer den spaeteren Lauf `FADEP-295-OK` ist die genaue Ursache aber weiter nicht feldsicher bewiesen. Es wurde keine AfA-Journalzeile, kein AfA-Preview und keine AfA-Buchung bewiesen.
 
 Anfaenger-Lernpunkt: `OK` auf einer Request Page bedeutet nicht automatisch, dass eine sichtbare Journalzeile entstanden ist. `OK` startet den Batch-/Berechnungslauf. Danach muss man Ergebnis, Datum, Restbuchwert, AfA-Faelligkeit, AfA-Buch, Journal Template, Batch, Filter und Ausgabeziel pruefen. Wenn auch ein zweiter kontrollierter OK-Lauf mit frischer Belegnummer keine sichtbare Zeile erzeugt, wird der Prozess geparkt: keine weitere Wiederholung, kein Preview Posting und keine Buchung, bis eine neue Ursache oder ein neuer Zielpfad belegt ist.
 
@@ -4002,9 +4002,9 @@ Was im Labor noch nicht als fertige Zielstrecke belegt ist:
 - AfA-Preview-Posting.
 - Gebuchte AfA-Posten.
 
-Wichtig aus den Laborblockern `fixedassets-296` und `fixedassets-297`: Zwei OK-only-Laeufe mit unterschiedlichen Belegnummern (`FADEP-291-OK`, `FADEP-295-OK`) haben keine sichtbare AfA-Journalzeile im geprueften `Fixed Asset G/L Journal` ergeben. Der alte Beleg `FADEP-267-OK` erklaert einen Datumsfehler (`30.06.2026` vor Zugang `01.01.2027`), aber nicht die spaetere fehlende `FADEP-295-OK`-Zeile. Der Zielpfad unten darf deshalb nicht so gelesen werden, als sei Schritt 11 oder 12 bereits im Labor erfolgreich. In der deutschen Zielinstanz muss erst die erzeugte Journalzeile sichtbar sein, bevor Preview Posting oder Buchung erlaubt sind.
+Wichtig aus den Laborblockern `fixedassets-296` und `fixedassets-297`: Zwei OK-only-Laeufe mit unterschiedlichen Belegnummern (`FADEP-291-OK`, `FADEP-295-OK`) haben keine sichtbare AfA-Journalzeile im geprüften `Fixed Asset G/L Journal` ergeben. Der alte Beleg `FADEP-267-OK` erklaert einen Datumsfehler (`30.06.2026` vor Zugang `01.01.2027`), aber nicht die spaetere fehlende `FADEP-295-OK`-Zeile. Der Zielpfad unten darf deshalb nicht so gelesen werden, als sei Schritt 11 oder 12 bereits im Labor erfolgreich. In der deutschen Zielinstanz muss erst die erzeugte Journalzeile sichtbar sein, bevor Preview Posting oder Buchung erlaubt sind.
 
-Die folgende Schrittfolge ist deshalb ein Zielpfad fuer die spaetere deutsche Finalumgebung. Sie ist keine Behauptung, dass alle Schritte bereits in `RM-DEMO` vollstaendig bewiesen sind. Fuer finale Buchbilder muessen deutsche Instanz, deutsche Screenshots, deutsche Konten, deutsche Belege und deutsche Postenspur neu aufgebaut werden.
+Die folgende Schrittfolge ist deshalb ein Zielpfad fuer die spaetere deutsche Finalumgebung. Sie ist keine Behauptung, dass alle Schritte bereits in `RM-DEMO` vollständig bewiesen sind. Fuer finale Buchbilder muessen deutsche Instanz, deutsche Screenshots, deutsche Konten, deutsche Belege und deutsche Postenspur neu aufgebaut werden.
 
 ### Schritt-fuer-Schritt als Zielpfad fuer German-Final-Rebuild
 
@@ -4093,7 +4093,7 @@ Umsatzsteuer und E-Rechnungsstatus werden nicht nur am Beleg gelesen. Entscheide
 
 ### Aktueller Evidence-Stand fuer RM-DEMO
 
-Dieses Kapitel beschreibt das deutsche Zielbild. Der aktuelle Laborstand in `RM-DEMO` ist enger: `COMPLIANCE-001` hat nur read-only geprueft, welche Einstiegspunkte in Business Central sichtbar sind. Sichtbar oder kontextuell sichtbar waren `E-Rechnungen`, `VAT Entries`, `VAT Posting Setup`, `Document Sending Profiles`, `Change Log Entries`, `Change Log Setup` und im Role Center der Hinweis `Warten auf Ka E-Rechnungen 0`.
+Dieses Kapitel beschreibt das deutsche Zielbild. Der aktuelle Laborstand in `RM-DEMO` ist enger: `COMPLIANCE-001` hat nur read-only geprüft, welche Einstiegspunkte in Business Central sichtbar sind. Sichtbar oder kontextuell sichtbar waren `E-Rechnungen`, `VAT Entries`, `VAT Posting Setup`, `Document Sending Profiles`, `Change Log Entries`, `Change Log Setup` und im Role Center der Hinweis `Warten auf Ka E-Rechnungen 0`.
 
 Das beweist fuer das Buch: Ein Anfaenger kann die relevanten Such- und Navigationspfade finden. Es beweist noch nicht, dass eine Rechnung als E-Rechnung erzeugt, validiert, versendet, archiviert oder mit deutscher USt gebucht wurde. In `RM-DEMO` wurde in diesem Compliance-Lauf nichts eingerichtet, nichts gebucht und kein Change Log aktiviert.
 
@@ -5315,7 +5315,7 @@ Microsoft Learn beschreibt Admin-Aufgaben wie Benutzer, Berechtigungen, UI-Anpas
 
 Status:
 - Buchziel: Benutzer, Rollen/Profile, Berechtigungssaetze, Security Groups, User Setup, Aufgabenwarteschlange und Change Log werden als getrennte Security- und Governance-Prueffelder verstanden.
-- RM-DEMO-Labor: `SECURITY-001` hat die Admin-/Security-Kontexte read-only geprueft. Sichtbar oder kontextuell sichtbar waren `Permission Sets`, `Profiles Roles`, `Security Groups`, `User Setup`, `Job Queue Entries` und `Change Log Entries`. `Users` war in diesem Tell-Me-Lauf nicht stabil sichtbar.
+- RM-DEMO-Labor: `SECURITY-001` hat die Admin-/Security-Kontexte read-only geprüft. Sichtbar oder kontextuell sichtbar waren `Permission Sets`, `Profiles Roles`, `Security Groups`, `User Setup`, `Job Queue Entries` und `Change Log Entries`. `Users` war in diesem Tell-Me-Lauf nicht stabil sichtbar.
 - DE-Finalnachweis: offen. Ein deutscher Finalnachweis braucht Zielrollen, Testbenutzer, Permission Sets, Security Groups, SoD-Matrix, Review-Evidence und Audit-/Betriebsnachweise.
 - Buchung erfolgt: nein.
 - Setup/Stammdaten geaendert: nein.
@@ -5526,7 +5526,7 @@ Merksatz:
 
 
 ## 29. Integrationen [Q35][Q36][Q37][Q38][Q39][Q40][Q41][Q42]
-Integrationen und Extensions werden nicht nach Bauchgefuehl ausgewaehlt. Zuerst wird der fachliche Schmerzpunkt beschrieben, dann der Business-Central-Standard geprueft, danach AppSource, Power Platform, API-Integration oder Customizing bewertet. Die Entscheidung braucht Nutzen, Risiko, Betrieb, Datenfluss, Berechtigungen und Rueckfallweg.
+Integrationen und Extensions werden nicht nach Bauchgefuehl ausgewaehlt. Zuerst wird der fachliche Schmerzpunkt beschrieben, dann der Business-Central-Standard geprüft, danach AppSource, Power Platform, API-Integration oder Customizing bewertet. Die Entscheidung braucht Nutzen, Risiko, Betrieb, Datenfluss, Berechtigungen und Rueckfallweg.
 
 ### Status des Labor-Nachweises in `RM-DEMO`
 
@@ -5615,7 +5615,7 @@ Die folgende Matrix ist das zentrale Architekturwerkzeug für Rhein-Main. Sie ve
 | E-Documents/Peppol | Deutsche und EU-Kunden verlangen strukturierte elektronische Rechnungen. RM-SALES braucht einen nachvollziehbaren Versandstatus. | Business Central unterstützt E-Belege und elektronische Dokumentenprozesse je nach Lokalisierung und eingerichteten Diensten. | Peppol-Netzwerk, Provider-Anbindung, Statusrückmeldung und länderspezifische Formate brauchen saubere Einrichtung oder Providerlösung. | E-Documents-/Peppol-Provider oder E-Rechnungs-App. | Unterstützte Formate, Peppol-ID, Statusprotokoll, Fehlerhandling, Archivintegration, Updatefähigkeit. | Rechnungsdaten sind steuer- und personenbezogen; Versand, Empfang, Protokoll und Archiv müssen GoBD-fähig sein. | In `RM-SALES-TEST` Debitor `D12000-EU` mit E-Belegprofil anlegen, Verkaufsrechnung `EINV-1001` erzeugen, E-Dokument senden, Status und Fehlerprotokoll prüfen. | `UAT-INT-EDOC-001`: E-Rechnung erstellen, validieren, versenden, Status abrufen und archivieren. | Rechnung ist fachlich gebucht, technisch validiert, Status ist nachvollziehbar, Beleg ist auffindbar. | Wenn Validierung oder Statusrückmeldung unklar ist, keine Produktivfreigabe. | Debitorenbuchhaltung + E-Invoicing-Owner. | Standard/Providerlösung nach Länderumfang einsetzen. |
 | Anzahlungen | RM-SALES nimmt `30 %` Anzahlung für Sondermaschine `RM-X500`, RM-SERVICE nutzt Projektmeilensteine. | Business Central unterstützt Verkaufs- und Einkaufsanzahlungen im Standard. | Komplexe Schlussrechnungslogik, mehrstufige Projektanzahlungen, Garantierückbehalte oder DACH-Sonderlogik können Erweiterungen verlangen. | Anzahlungs-/Projektabrechnungs-App nur bei komplexem Vertragsmodell. | Standardabdeckung, USt-Zeitpunkt, Schlussrechnung, Projektbezug, Berichtsnachweis, Stornologik. | USt entsteht bei Anzahlungen besonders sensibel; falsche USt-Periode führt zu Compliance-Risiko. | In `RM-SALES-TEST` Verkaufsauftrag `SO-RMX500-01`, Anzahlung `30 %`, USt `19 %`, Buchungsvorschau und Anzahlungsrechnung testen. | `UAT-INT-DP-001`: Anzahlung buchen, Zahlung ausgleichen, Schlussrechnung erstellen, USt-Posten prüfen. | Anzahlungsrechnung, Zahlung, Schlussrechnung und USt-Posten sind periodengerecht nachvollziehbar. | Wenn USt-Posten nicht periodengerecht entstehen oder Schlussrechnung nicht verständlich ist, Prozess nicht freigeben. | Finance Lead + Projektcontrolling. | Standard verwenden, Extension nur bei Vertragskomplexität. |
 | DATEV/Steuerberater | RM-SHARED übergibt Monatsdaten an Steuerberater und Wirtschaftsprüfer. Manuelle Exporte erzeugen Abstimmungsrisiko. | Business Central bietet Datenexporte, Finanzberichte, Sachposten und teils Standarddatenexport. | DATEV-spezifische Formate, Belegbildverknüpfung, Konten-/Steuerschlüsselmapping und Kanzleiabstimmung brauchen oft DACH-Lösung. | DATEV-Schnittstelle/App, z. B. COSMO/DATEV-nahe Lösung. | Kontenmapping, Steuerschlüssel, Beleglink, Periodensperre, Exportprotokoll, Kanzleitest. | Exportdateien enthalten Buchhaltungs- und Personendaten; Aufbewahrung, Zugriff und Übertragungsweg sind zu dokumentieren. | In `RM-SHARED-TEST` Periode `06/2026` schließen, Sachposten, Debitorenposten, Kreditorenposten und Beleglinks exportieren, Import bei Steuerberater-Test prüfen. | `UAT-INT-DATEV-001`: Export `06/2026`, Steuerberaterimport, Summenabgleich GuV/Bilanz/USt. | Summen stimmen mit Finanzbericht, USt-Abrechnung und OP-Listen überein; Exportprotokoll liegt vor. | Wenn Summen nicht abstimmen oder Beleglinks fehlen, Exportlösung nicht produktiv nutzen. | Finance Lead + Steuerberater. | Extension/Partnerlösung prüfen. |
-| Shipping/Carrier | RM-SALES versendet taeglich Ersatzteile. Versandlabels, Tracking und Frachtdienstleister werden bisher ausserhalb von BC gepflegt. | Verkaufslieferungen und Spediteurcodes sind Standard. | Labeldruck, Trackingrueckmeldung, Versandtarife, Packstuecke und Carrier-API sind nicht vollstaendig Standard. | Shipping-/Carrier-App. | Unterstuetzte Carrier, Labeldruck, Trackinglink, Packstuecklogik, Rueckmeldung an Versandprozess, Support. | Adressdaten und Sendungsdaten sind personenbezogen; Carrier-Uebermittlung und Fehlerprotokolle sind zu pruefen. | In `RM-SALES-TEST` Verkaufsauftrag `SO-SP-1001`, Artikel `SP-PUMP-01`, Spediteur `DHL`, Label erzeugen, Tracking in gebuchter Lieferung pruefen. | `UAT-INT-SHIP-001`: Lieferung buchen, Label erzeugen, Trackingnummer speichern, Versandmail pruefen. | Gebuchte Lieferung enthaelt Tracking, Label ist reproduzierbar, Kunde erhaelt korrekte Versandinformation. | Wenn falscher Carrier oder falsche Adresse uebertragen wird, Rollback auf manuellen Versand. | Logistikleitung + Vertriebsinnendienst. | Extension einfuehren, wenn Volumen und Carrier-API es rechtfertigen. |
+| Shipping/Carrier | RM-SALES versendet taeglich Ersatzteile. Versandlabels, Tracking und Frachtdienstleister werden bisher ausserhalb von BC gepflegt. | Verkaufslieferungen und Spediteurcodes sind Standard. | Labeldruck, Trackingrueckmeldung, Versandtarife, Packstuecke und Carrier-API sind nicht vollständig Standard. | Shipping-/Carrier-App. | Unterstuetzte Carrier, Labeldruck, Trackinglink, Packstuecklogik, Rueckmeldung an Versandprozess, Support. | Adressdaten und Sendungsdaten sind personenbezogen; Carrier-Uebermittlung und Fehlerprotokolle sind zu pruefen. | In `RM-SALES-TEST` Verkaufsauftrag `SO-SP-1001`, Artikel `SP-PUMP-01`, Spediteur `DHL`, Label erzeugen, Tracking in gebuchter Lieferung pruefen. | `UAT-INT-SHIP-001`: Lieferung buchen, Label erzeugen, Trackingnummer speichern, Versandmail pruefen. | Gebuchte Lieferung enthaelt Tracking, Label ist reproduzierbar, Kunde erhaelt korrekte Versandinformation. | Wenn falscher Carrier oder falsche Adresse uebertragen wird, Rollback auf manuellen Versand. | Logistikleitung + Vertriebsinnendienst. | Extension einfuehren, wenn Volumen und Carrier-API es rechtfertigen. |
 | WMS/Scanner | Lager `FRA-ZL` arbeitet mit gesteuerter Einlagerung. Papierlisten führen zu Fehlgriffen und verspäteten Buchungen. | Business Central unterstützt Lagerorte, Lagerplätze, Picks, Einlagerungen und gesteuerte Lagerprozesse. | Mobile Scannerführung, Geräteverwaltung, Barcode-Validierung und Offlinefähigkeit sind im Standard je nach Szenario begrenzt. | WMS-/Scanner-App. | Barcodefähigkeit, Lagerplatzvalidierung, Geräteverwaltung, Fehlersperren, Performance, Support. | Scanner protokollieren Mitarbeiteraktionen; Rollen, Logs und Gerätezugriff sind zu steuern. | In `RM-PROD-TEST` Lagerort `FRA-ZL`, Artikel `RAW-STEEL`, Lagerplatz `A-01-01`, Lagereingang und Pick mit Scannerrolle testen. | `UAT-INT-WMS-001`: Lagereingang scannen, Einlagerung bestätigen, Pick für `RM-M100` scannen, Fehlscan testen. | Artikelposten, Lagerplatzinhalt und Pickstatus stimmen; Fehlscan wird verhindert. | Wenn Scanner Buchungen ohne Lagerplatzprüfung zulässt, keine Freigabe. | Lagerleitung + BC-Admin. | Standard nutzen, Scanner-Extension bei gesteuertem Lager pilotieren. |
 | Rental/Subscription | RM-SERVICE vermietet Maschinen und rechnet monatliche Nutzung ab. Standardaufträge bilden Verträge nur eingeschränkt ab. | Wiederkehrende Verkaufszeilen, Abgrenzungen, Service und Projekte können Teile des Modells abbilden. | Vertragslaufzeit, Rückgabe, Verlängerung, Kündigung, nutzungsabhängige Abrechnung und Objektverfügbarkeit sind Standardgrenzen. | Rental-/Subscription-App. | Vertragsobjekte, Fakturaplan, Rückgabe, Wartung, Abgrenzung, Integration in Service und Anlagen. | Vertragsdaten, Nutzungsdaten und Abgrenzungen sind auditrelevant; falsche Periodisierung verzerrt Umsatz. | In `RM-SERVICE-TEST` Mietobjekt `RENT-RM-M100-01`, Debitor `D10000`, Laufzeit `01.07.2026-30.09.2026`, Monatsrate `2.400 EUR` testen. | `UAT-INT-RENT-001`: Vertrag anlegen, Monatsrechnung erzeugen, Abgrenzung buchen, Rückgabe dokumentieren. | Monatlicher Erlös, Abgrenzung, Vertragsstatus und Objektverfügbarkeit sind nachvollziehbar. | Wenn Vertragsbeendigung keine saubere Schlussrechnung/Rückgabe erzeugt, nicht einführen. | Serviceleitung + Finance. | Extension für produktives Mietgeschäft einsetzen. |
 | Reporting/BI | Management braucht GuV nach Produktlinie, Vertriebskanal und Standortgruppe. Excel-Exports sind zu langsam und fehleranfällig. | Finanzberichte, Analysemodus, Dimensionsauswertungen und Power-BI-Anbindung sind Standardnähe. | Konzernweite Dashboards, semantisches Modell, Datenaktualisierung, Berechtigungen und Historisierung brauchen BI-Architektur. | Power BI mit BC-Connector; Custom nur für kuratiertes Data Model. | Datenmodell, Dimensionen, Refresh, Row-Level-Security, Drilldown, Abstimmung zur GuV. | Reportingdaten können personenbezogene und vertrauliche Finanzdaten enthalten; Zugriff, Export und Freigaben sind zu regeln. | In `RM-SHARED-TEST` Finanzbericht `RM-GUV-MONAT`, Dimensionen `PRODUCTLINE`, `CHANNEL`, `DEPARTMENT` prüfen, Power-BI-Dataset aktualisieren. | `UAT-INT-BI-001`: GuV nach `MACHINE` und `B2B`, Drilldown bis Sachposten, Abgleich mit Finanzbericht. | Power-BI-Wert stimmt mit Finanzbericht und Sachpostenfilter überein; Berechtigungen verhindern falsche Einsicht. | Wenn Dashboard nicht mit Finanzbericht abstimmt, Datenmodell nicht freigeben. | Controlling + Data Owner Finance. | Standardberichte zuerst, Power BI für Management-Cockpit. |
@@ -6431,10 +6431,10 @@ Einsteiger-Best-Practice:
 
 Personalisieren als Diagnose:
 - Wenn ein erwartetes Feld, eine Spalte oder eine Aktion nicht sichtbar ist, ist das zuerst ein Sichtbarkeitsproblem und noch kein Beweis fuer falsche Buchungslogik.
-- Mit `Personalisieren` prueft man, ob ein Feld oder eine Spalte auf der Page verfuegbar, aber ausgeblendet ist. Bei Listen und Belegzeilen gilt das besonders fuer Spalten wie Lagerort, Dimension, Buchungsgruppe, Steuergruppe oder Betrag.
+- Mit `Personalisieren` prueft man, ob ein Feld oder eine Spalte auf der Page verfügbar, aber ausgeblendet ist. Bei Listen und Belegzeilen gilt das besonders fuer Spalten wie Lagerort, Dimension, Buchungsgruppe, Steuergruppe oder Betrag.
 - Manche Dinge werden nicht ueber Personalisieren, sondern ueber Ansichten, Seiteneinstellungen, Rolle/Profil, Berechtigungen oder Erweiterungen sichtbar.
-- Fuer dieses Buch gilt: Ein Screenshot muss sagen, ob er die Standardansicht, eine Nutzer-Personalisierung oder eine Profilanpassung zeigt. Der Personalisierungsmodus selbst ist ein Debug- und Lernbild, aber kein finaler Prozess-Screenshot.
-- Grenze: Personalisieren zeigt verfuegbare UI-Elemente. Es erklaert nicht die ganze Tabellen-, Posting-, Steuer- oder Berechtigungslogik.
+- Für dieses Buch gilt: Ein Screenshot muss sagen, ob er die Standardansicht, eine Nutzer-Personalisierung oder eine Profilanpassung zeigt. Der Personalisierungsmodus selbst ist ein Debug- und Lernbild, aber kein finaler Prozess-Screenshot.
+- Grenze: Personalisieren zeigt verfügbare UI-Elemente. Es erklaert nicht die ganze Tabellen-, Posting-, Steuer- oder Berechtigungslogik.
 
 Seitenpruefung / Page Inspection als technische Diagnose:
 - Mit `Strg+Alt+F1` oeffnet Business Central die Seitenpruefung. Wenn die Tastenkombination vom Browser, Remote Desktop oder Windows abgefangen wird, fuehrt der Weg meist ueber `?` -> `Help & Support` -> `Inspect pages and data`.
@@ -7136,7 +7136,7 @@ Praxisregel:
 | Bank & Zahlungen | `Zahlungsjournale (Payment Journals)`, `Zahlungsabstimmungsjournale (Payment Reconciliation Journals)` | Bankkonten, Zahlungsarten | zahlen, abstimmen | Bank-/Sachposten, Debitoren-/Kreditorenposten | Bankabstimmung |
 | Abschluss | `Buchhaltungsperioden (Accounting Periods)`, `Fibu Buch.-Blätter (General Journals)`, `Finanzberichte (Financial Reports)` | Perioden, Sperren, Abschlusskonten | abgrenzen, schließen, berichten | Sachposten | Bilanz/GuV |
 | Intercompany | `Intercompany-Einrichtung (Intercompany Setup)`, IC-Buch.-Blätter | IC Partner, IC Konten | IC-Belege senden/empfangen | IC-Posten, Sachposten | IC-Abstimmung |
-| Dropshipping/Sonderverkauf | `Verkaufsauftraege (Sales Orders)`, `Einkaufsbestellungen (Purchase Orders)` | Einkaufsbezug, Steuer, Marge | Direktlieferungsfaelle verarbeiten | Verkaufs-, Einkaufs-, Debitoren-, Kreditoren-, USt-Posten | Margen-/Postenabstimmung |
+| Dropshipping/Sonderverkauf | `Verkaufsaufträge (Sales Orders)`, `Einkaufsbestellungen (Purchase Orders)` | Einkaufsbezug, Steuer, Marge | Direktlieferungsfaelle verarbeiten | Verkaufs-, Einkaufs-, Debitoren-, Kreditoren-, USt-Posten | Margen-/Postenabstimmung |
 | Dropshipping | `Verkaufsaufträge (Sales Orders)`, `Einkaufsbestellungen (Purchase Orders)` | Einkaufscode (Purchasing Code), Lieferant | Direktlieferung steuern | verknüpfte Verkaufs-/Einkaufsposten | Marge, Steuer, Liefernachweis |
 | Reporting | `Finanzberichte (Financial Reports)`, `Analysemodus (Analysis Mode)`, `Analyseansichten (Analysis Views)` | Dimensionen, Reports | auswerten und filtern | Sachposten, Dimensionen | GuV, Bilanz, Analyse |
 | Administration | `Aufgabenwarteschlangenposten (Job Queue Entries)`, `Änderungsprotokoll (Change Log)`, `Erweiterungsverwaltung (Extension Management)` | Jobs, Protokollierung, Apps | Betrieb überwachen | Protokolle, Änderungsprotokoll | Admin-Kalender |
@@ -7407,9 +7407,9 @@ Laborbefund aus `INVENTORY-002`: In `RM-DEMO` wurde der Bericht `Inventory Valua
 
 Die vorhandene Labor-Postenspur erklaert den Wert: `RAW-STEEL` kam ueber die gebuchte Einkaufsrechnung `108219` mit Artikelposten `793`, Menge `10` und Wertbezug `25.000,00` positiv nach `FRA-ZL`. `RM-M100` ging ueber die gebuchte Verkaufsrechnung `PS-INV103297` mit Artikelposten `792`, Menge `-1` und Kostenbezug `-42.000,00` aus `FRA-ZL` ab. Vor `INVENTORY-008` war ein passender positiver Zugang oder Anfangsbestand fuer `RM-M100` in dieser Evidence-Kette noch nicht belegt. Deshalb war `-17.000,00` keine Berichtspanne, sondern ein Warnsignal fuer den Trainingsdatenstand: Vor finalen Buchbildern braucht `RM-M100` einen sauberen Zugang, zum Beispiel Anfangsbestand, Einkauf, Montage oder Fertigung.
 
-Planungs- und Umsetzungsstand aus `INVENTORY-004` bis `INVENTORY-008`: Fuer stabile O2C-, Lager- und Reporting-Laborbilder wurde als kleinster kontrollierter Schritt ein klar markierter Trainings-/Opening-Balance-Zugang `RM-M100 +2` in `FRA-ZL` gewaehlt und genau einmal gebucht. Das ist kein Fertigungsnachweis, sondern ein kontrollierter Bestandsfit, damit der bereits belegte Abgang `-1` nicht zu negativer Bewertung fuehrt. Der fachlich vollstaendige Maschinenprozess bleibt spaeter: `RAW-STEEL` beschaffen, Fertigungsauftrag fuer `RM-M100` anlegen, Verbrauch und Output buchen, danach Wertposten, Sachposten und Lagerbewertung abstimmen.
+Planungs- und Umsetzungsstand aus `INVENTORY-004` bis `INVENTORY-008`: Fuer stabile O2C-, Lager- und Reporting-Laborbilder wurde als kleinster kontrollierter Schritt ein klar markierter Trainings-/Opening-Balance-Zugang `RM-M100 +2` in `FRA-ZL` gewaehlt und genau einmal gebucht. Das ist kein Fertigungsnachweis, sondern ein kontrollierter Bestandsfit, damit der bereits belegte Abgang `-1` nicht zu negativer Bewertung fuehrt. Der fachlich vollständige Maschinenprozess bleibt spaeter: `RAW-STEEL` beschaffen, Fertigungsauftrag fuer `RM-M100` anlegen, Verbrauch und Output buchen, danach Wertposten, Sachposten und Lagerbewertung abstimmen.
 
-Laborbefund aus `INVENTORY-006` bis `INVENTORY-008`: Der Einstieg fuer diesen Trainingszugang ist `Artikeljournale (Item Journals)`. In `RM-DEMO` konnte eine Zeile `Positive Adjmt.`, `RM-M100`, Lagerort `FRA-ZL`, Menge `2` vorbereitet werden. Business Central ermittelte dabei `PCS`, Unit Amount/Amount/Unit Cost `42.000,00`/`84.000,00`; der Dimensionsdialog zeigte `PRODUCTLINE = MACHINE`. Fuer den Preflight bleibt die rechte Infobox bewusst sichtbar: `Journal Check` meldete im Preflight-Lauf `1 Lines checked`, `0 Lines with issues`, `0 Issues Total` und `No issues found`. Im spaeteren Buchungslauf wurde zusaetzlich die aktuelle Zeile mit `Current line: No issues found` und `0 Issues Total` geprueft, weil Business Central Journalzeilen und FactBox-Zaehler asynchron speichert. Dieser Check ist wichtig, weil `Post` zwar sichtbar ist, aber ein sichtbarer Button noch keine fachliche Buchungsfreigabe bedeutet.
+Laborbefund aus `INVENTORY-006` bis `INVENTORY-008`: Der Einstieg fuer diesen Trainingszugang ist `Artikeljournale (Item Journals)`. In `RM-DEMO` konnte eine Zeile `Positive Adjmt.`, `RM-M100`, Lagerort `FRA-ZL`, Menge `2` vorbereitet werden. Business Central ermittelte dabei `PCS`, Unit Amount/Amount/Unit Cost `42.000,00`/`84.000,00`; der Dimensionsdialog zeigte `PRODUCTLINE = MACHINE`. Fuer den Preflight bleibt die rechte Infobox bewusst sichtbar: `Journal Check` meldete im Preflight-Lauf `1 Lines checked`, `0 Lines with issues`, `0 Issues Total` und `No issues found`. Im spaeteren Buchungslauf wurde zusaetzlich die aktuelle Zeile mit `Current line: No issues found` und `0 Issues Total` geprüft, weil Business Central Journalzeilen und FactBox-Zaehler asynchron speichert. Dieser Check ist wichtig, weil `Post` zwar sichtbar ist, aber ein sichtbarer Button noch keine fachliche Buchungsfreigabe bedeutet.
 
 Nach dieser Pruefung wurde im CRONUS-USA-Labor genau einmal gebucht: `INV008-899959` als positiver Zugang `RM-M100 +2` in `FRA-ZL`. Danach zeigen die Posten die Wirkung: Artikelposten bestaetigen die Mengenbewegung, Wertposten bestaetigen den Kostenbetrag `84.000,00`, Sachposten zeigen die Hauptbuchwirkung auf Konto `14140`, und `Inventory Valuation` zeigt jetzt `RM-M100 = 42.000,00`, `RAW-STEEL = 25.000,00` und `Total Inventory Value = 67.000,00`. Das ist ein Labor-Lernbild fuer kontrollierten Trainingsbestand, kein deutscher Kontenplan-Endstand, kein Warehouse-Prozess, kein Manufacturing-Output und kein finaler Abschlusswert.
 
@@ -7483,7 +7483,7 @@ Pruefregel fuer Anfaenger:
 | Offener Posten | Welche Rechnung soll bezahlt oder ausgeglichen werden? | Debitor: `PS-INV103297`; Kreditor: `108204` |
 | Journal-Draft | Welche Zahlung wird vorbereitet? | Debitor: `D10000`, `BANK-RM-01`, `-68.000,00`; Kreditor: `Vendor 20000`, `BANK-RM-01`, `2.151,46` |
 | Journal Check | Ist die Journalzeile fachlich buchungsreif? | `0 Issues` sichtbar fuer `PAYMENTS-011` und `BANK-009` |
-| Apply Entries | Welche Rechnung wird zugeordnet? | read-only geprueft; Zielbelege `PS-INV103297` und `108204` |
+| Apply Entries | Welche Rechnung wird zugeordnet? | read-only geprüft; Zielbelege `PS-INV103297` und `108204` |
 | Post-Dialog | Wird wirklich gebucht? | Debitor: `PAYMENTS-011` genau einmal mit `Ja`; Kreditor: `BANK-009` genau einmal mit `Ja` |
 | Postenspur nach Zahlung | Wurden Zahlung und Ausgleich erzeugt? | Debitor: `PAY011-PS103297`; Kreditor: `BANK009-108204`; jeweils `Remaining Amount = 0,00`, detaillierte Posten/Application, Bank- und Sachposten sichtbar; Bankabstimmung offen |
 | Reconciliation-Nachlauf | Ist die alte Abstimmungszeile nach Zahlung noch sicher? | `BANK-011` zeigt: `108204` bleibt im Payment Reconciliation Journal sichtbar; `BANK-012` parkt diesen Pfad, bis eine neue klare Zielzeile oder deutsche Finalumgebung existiert |
