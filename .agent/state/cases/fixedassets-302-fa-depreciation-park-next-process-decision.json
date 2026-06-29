@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-302-FA-DEPRECIATION-PARK-NEXT-PROCESS-DECISION",
+  "title": "Park FA depreciation or choose next process route after output-target review",
+  "status": "planned",
+  "taskClass": "judge_work",
+  "modelClass": "gpt-5.5-low",
+  "usageLogRequired": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "fixedassets-depreciation-park-next-process-decision",
+  "sourceCase": "FIXEDASSETS-301-FA-DEPRECIATION-OUTPUT-TARGET-RESULT-REVIEW",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-301/FIXEDASSETS-301-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-301/FIXEDASSETS-301-OUTPUT-TARGET-RESULT-REVIEW.md"
+  ],
+  "purpose": "Decide whether RM-DEMO depreciation is now parked as labor-blocked/bookdraft-useful or whether a genuinely new non-repeating route exists. Do not run BC, Preview Posting or Post in this decision case.",
+  "allowedActions": [
+    "read-fa-301-evidence",
+    "write-decision-evidence",
+    "update-state",
+    "select-next-process-block"
+  ],
+  "defaultLockedActions": [
+    "calculate-depreciation-ok",
+    "preview-posting",
+    "posting",
+    "setup-change",
+    "company-switch",
+    "new-draft",
+    "edit-record",
+    "delete-record",
+    "api-shortcut"
+  ],
+  "forbiddenActions": [
+    "claim-german-final-proof",
+    "repeat-calculate-depreciation-ok-without-new-hypothesis",
+    "unlock-preview-or-post-without-visible-depreciation-line"
+  ],
+  "safetyGates": [
+    "local-decision-only",
+    "no-bc-execution",
+    "no-playwright-execution",
+    "no-book-final-claim"
+  ],
+  "expectedEvidence": [
+    "Decision JSON: park FA depreciation or name one genuinely new route with rationale"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": false,
+  "resultPath": "playwright/projects/fibu-book5/evidence/fixedassets-302/FIXEDASSETS-302-result.json",
+  "nextStep": "Decide whether to park FA depreciation and move to next process block, or choose one genuinely new route with evidence basis.",
+  "createdAt": "2026-06-29T07:49:06.609Z",
+  "updatedAt": "2026-06-29T07:49:06.609Z"
+}
