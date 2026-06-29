@@ -237,7 +237,7 @@
     "warehouse": {
       "chapter": "Kapitel 13",
       "status": "in-progress",
-      "currentBlock": "warehouse-source-purchase-order-value-entry-blocker-review",
+      "currentBlock": "warehouse-source-po-location-field-visibility-route",
       "latestEvidenceCases": [
         "WAREHOUSE-001",
         "WAREHOUSE-002",
@@ -245,13 +245,14 @@
         "WAREHOUSE-018",
         "WAREHOUSE-019",
         "WAREHOUSE-020",
-        "WAREHOUSE-021"
+        "WAREHOUSE-021",
+        "WAREHOUSE-022"
       ],
-      "nextCase": "WAREHOUSE-022-SOURCE-PURCHASE-ORDER-VALUE-ENTRY-BLOCKER-REVIEW",
+      "nextCase": "WAREHOUSE-023-SOURCE-PO-LOCATION-FIELD-VISIBILITY-ROUTE",
       "finalGermanProof": "open",
-      "nextStep": "WAREHOUSE-022: review WAREHOUSE-021 and select a non-repeated route for making FRA-ZL visible on a controlled Purchase Order source before release.",
+      "nextStep": "WAREHOUSE-023: inspect/expose Location Code on Purchase Order 106055 with wide/focus/Show more/action/page-context route before release.",
       "latestDecisionCase": "WAREHOUSE-019-WAREHOUSE-INBOUND-SOURCE-DOCUMENT-CREATION-OR-PARK-DECISION",
-      "blockerStatus": "controlled-source-po-created-but-fra-zl-not-visible",
+      "blockerStatus": "controlled-source-po-created-location-code-visibility-route-selected",
       "latestPracticalCase": "WAREHOUSE-021-CONTROLLED-SOURCE-PURCHASE-ORDER-FOR-WAREHOUSE",
       "visibleSetupFields": [
         "Require Receive",
@@ -281,18 +282,21 @@
         "WAREHOUSE-020: Existing P2P Purchase Orders 106051 and 106054 show RAW-STEEL but not FRA-ZL, so they are not proven eligible Warehouse Receipt source documents.",
         "WAREHOUSE-020: A controlled FRA-ZL/RAW-STEEL source Purchase Order is needed before another Warehouse Receipt source-selection attempt.",
         "WAREHOUSE-021: Controlled PO 106055 has K10000 and RAW-STEEL visible, but FRA-ZL is not visible; release and Warehouse Receipt source selection remain locked.",
-        "WAREHOUSE-021: No Receive, Invoice, Preview Posting, Post, Warehouse Receipt source confirmation or setup change occurred."
-      ]
+        "WAREHOUSE-021: No Receive, Invoice, Preview Posting, Post, Warehouse Receipt source confirmation or setup change occurred.",
+        "WAREHOUSE-022: Repeating previous Purchase Lines display-cell edits, Select-items-only route or Warehouse Receipt source-dialog/filter attempts is rejected; WAREHOUSE-023 must use a targeted Location Code visibility route on Purchase Order 106055.",
+        "WAREHOUSE-022: No BC/Playwright execution, no release, no Warehouse Receipt source confirmation, no Preview Posting and no posting occurred."
+      ],
+      "latestReviewCase": "WAREHOUSE-022-SOURCE-PURCHASE-ORDER-VALUE-ENTRY-BLOCKER-REVIEW"
     }
   },
   "hardExclusions": {
     "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
   },
-  "updatedAt": "2026-06-29T18:15:00+02:00",
+  "updatedAt": "2026-06-29T18:45:00+02:00",
   "activeArea": "warehouse",
-  "currentBlock": "warehouse-source-purchase-order-value-entry-blocker-review",
+  "currentBlock": "warehouse-source-po-location-field-visibility-route",
   "latestPracticalCase": "WAREHOUSE-021-CONTROLLED-SOURCE-PURCHASE-ORDER-FOR-WAREHOUSE",
-  "latestReviewCase": "WAREHOUSE-019-WAREHOUSE-INBOUND-SOURCE-DOCUMENT-CREATION-OR-PARK-DECISION",
+  "latestReviewCase": "WAREHOUSE-022-SOURCE-PURCHASE-ORDER-VALUE-ENTRY-BLOCKER-REVIEW",
   "nextCase": "WAREHOUSE-022-SOURCE-PURCHASE-ORDER-VALUE-ENTRY-BLOCKER-REVIEW",
   "latestBank013": {
     "caseId": "BANK-013-CONTROLLED-NEXT-EVIDENCE-STEP",
@@ -1394,7 +1398,7 @@
     "nextCase": "FIXEDASSETS-298-FA-DEPRECIATION-BLOCKER-BOOK-SYNC",
     "updatedAt": "2026-06-29T07:09:31.588Z"
   },
-  "nextStep": "WAREHOUSE-022: review WAREHOUSE-021 and select a non-repeated route for making FRA-ZL visible on a controlled Purchase Order source before release.",
+  "nextStep": "WAREHOUSE-023: inspect/expose Location Code on Purchase Order 106055 with wide/focus/Show more/action/page-context route before release.",
   "warehouse": {
     "chapter": "Kapitel 13",
     "status": "in-progress",
@@ -1554,5 +1558,23 @@
     "migrationRelevance": "needed-for-german-final",
     "mustRecreateInFinalSandbox": true,
     "updatedAt": "2026-06-29T18:15:00+02:00"
+  },
+  "latestWarehouse022": {
+    "caseId": "WAREHOUSE-022-SOURCE-PURCHASE-ORDER-VALUE-ENTRY-BLOCKER-REVIEW",
+    "status": "observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-022/WAREHOUSE-022-result.json",
+    "decision": "Do not repeat previous Purchase Lines display-cell edits, Select-items-only route or Warehouse Receipt source-dialog/filter attempts. Use a targeted field-visibility route on Purchase Order 106055 to expose or prove the absence of Location Code before release.",
+    "selectedNextRoute": "source-po-location-field-visibility-route",
+    "sourceDocumentNo": "106055",
+    "bcRun": false,
+    "playwrightRun": false,
+    "posted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "companySwitched": false,
+    "nextCase": "WAREHOUSE-023-SOURCE-PO-LOCATION-FIELD-VISIBILITY-ROUTE",
+    "migrationRelevance": "needed-for-german-final",
+    "mustRecreateInFinalSandbox": true,
+    "updatedAt": "2026-06-29T18:45:00+02:00"
   }
 }

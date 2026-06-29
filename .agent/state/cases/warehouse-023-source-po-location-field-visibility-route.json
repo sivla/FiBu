@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "caseId": "WAREHOUSE-023-SOURCE-PO-LOCATION-FIELD-VISIBILITY-ROUTE",
+  "title": "Source Purchase Order Location field visibility route",
+  "status": "planned",
+  "taskClass": "wizard_work",
+  "modelClass": "gpt-4-medium",
+  "usageLogRequired": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "warehouse-source-po-location-field-visibility-route",
+  "sourceCase": "WAREHOUSE-022-SOURCE-PURCHASE-ORDER-VALUE-ENTRY-BLOCKER-REVIEW",
+  "sourceDocumentType": "Purchase Order",
+  "sourceDocumentNo": "106055",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/warehouse-021/WAREHOUSE-021-result.json",
+    "playwright/projects/fibu-book5/evidence/warehouse-022/WAREHOUSE-022-result.json",
+    "playwright/projects/fibu-book5/evidence/warehouse-022/WAREHOUSE-022-DECISION.md"
+  ],
+  "purpose": "Open controlled Purchase Order 106055 and use safe UI visibility routes to prove whether Location Code can be made visible/fillable before release or Warehouse Receipt source selection.",
+  "allowedActions": [
+    "open-business-central-if-instance-and-company-match",
+    "run-playwright-if-case-preflight-passes",
+    "open-purchase-order-106055-by-direct-page-url",
+    "maximize-card-or-wide-layout",
+    "focus-purchase-lines-subform",
+    "expand-safe-show-more-actions",
+    "inspect-visible-controls-and-page-text",
+    "capture-compact-evidence",
+    "update-state"
+  ],
+  "defaultLockedActions": [
+    "purchase-order-release",
+    "purchase-order-receive",
+    "purchase-order-invoice",
+    "warehouse-receipt-source-confirmation",
+    "warehouse-receipt-posting",
+    "warehouse-putaway-posting",
+    "preview-posting",
+    "posting",
+    "setup-change",
+    "company-switch",
+    "api-shortcut",
+    "delete-draft"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "claim-german-final-proof",
+    "use-api-shortcut",
+    "post-warehouse-document",
+    "change-require-pick-bin-mandatory-or-directed-put-away-and-pick",
+    "click-post-receipt"
+  ],
+  "safetyGates": [
+    "confirm-url-or-shell-instance-mcp-1-20260210",
+    "confirm-company-rm-demo",
+    "confirm-document-106055",
+    "no-release-until-fra-zl-visible",
+    "no-warehouse-source-selection-until-source-ready",
+    "no-preview-posting",
+    "no-posting",
+    "abort-on-ambiguous-dialog"
+  ],
+  "plannedRoute": [
+    "Open Purchase Order 106055 by direct Page 50 filter URL.",
+    "If the card is cramped, maximize or switch to wide layout using the visible top-right card action.",
+    "Expand safe card areas or Show more sections to look for header Location Code.",
+    "Focus the Purchase Lines subform and inspect line headers/controls for Location Code without repeating old display-cell edit attempts.",
+    "Capture page text/control inventory only as compact evidence.",
+    "If Location Code is visible/fillable, capture proof and stop before release unless a later case explicitly unlocks release.",
+    "If Location Code remains unavailable, document the blocker and choose helper-fix, alternative UI route or new lab company in the follow-up."
+  ],
+  "expectedEvidence": [
+    "direct URL/context proof for Purchase Order 106055",
+    "wide/maximize/focus/show-more attempts",
+    "header and line Location Code visibility result",
+    "clear no-release/no-post/no-preview flags",
+    "German final rebuild instruction"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-023/WAREHOUSE-023-result.json",
+  "nextStep": "Run the safe field visibility route on Purchase Order 106055; do not release, receive, invoice, preview, post or confirm Warehouse Receipt source selection.",
+  "createdAt": "2026-06-29T18:45:00+02:00",
+  "updatedAt": "2026-06-29T18:45:00+02:00"
+}
