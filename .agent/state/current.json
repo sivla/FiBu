@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-29T06:35:00.000Z",
+  "updatedAt": "2026-06-29T07:25:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "reporting",
-  "activeCase": "REPORTING-014-INVENTORY-DIMENSION-VALUE-TRACE",
-  "active_case_file": ".agent/state/cases/reporting-014-inventory-dimension-value-trace.json",
-  "lastReferenceCase": "INVENTORY-009-ITEM-JOURNAL-MATERIAL-EFFECT-FOLLOWUP",
-  "lastReferenceCaseFile": ".agent/state/cases/inventory-009-item-journal-material-effect-followup.json",
+  "activeCase": "REPORTING-016-INVENTORY-DIMENSION-REPORTING-DECISION",
+  "active_case_file": ".agent/state/cases/reporting-016-inventory-dimension-reporting-decision.json",
+  "lastReferenceCase": "REPORTING-015-INVENTORY-DIMENSION-VALUE-TRACE",
+  "lastReferenceCaseFile": ".agent/state/cases/reporting-015-inventory-dimension-value-trace.json",
   "mode": "bc-specialist-labor-book-production",
   "requiresStrongModel": true,
   "requiredPreflightChecks": [
@@ -40,7 +40,7 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "Run a read-only Reporting/Dimension trace to check whether PRODUCTLINE=MACHINE from the Item Journal laboratory route is visible or usable beyond the pre-posting journal dialog.",
+  "nextStep": "Review REPORTING-015 result and decide whether Inventory PRODUCTLINE visibility in Item/Value Entries is enough for bookdraft sync or needs a Dimensions Detail / Analysis View setup-fit route.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/inventory-labor-draft.md",
     "area": "inventory",
@@ -110,8 +110,8 @@
     "summaryFile": ".agent/state/lab_to_german_sandbox_migration_plan.json",
     "noActiveLiveRunInOldSandbox": false,
     "germanTargetUnavailable": true,
-    "nextStep": "Continue RM-DEMO laboratory production with read-only Inventory dimension/reporting trace; German target sandbox remains unavailable.",
-    "nextCase": "REPORTING-014-INVENTORY-DIMENSION-VALUE-TRACE"
+    "nextStep": "Classify REPORTING-015 as RM-DEMO laboratory reporting reference; German target sandbox remains unavailable.",
+    "nextCase": "REPORTING-016-INVENTORY-DIMENSION-REPORTING-DECISION"
   },
   "latestP2PLabFollowup": {
     "caseId": "P2P-004-PARTIAL-RECEIPT-VARIANCE-GATE",
@@ -716,7 +716,8 @@
     "selectedNextCase": "REPORTING-014-INVENTORY-DIMENSION-VALUE-TRACE",
     "migrationRelevance": "needed-for-german-final",
     "mustRecreateInFinalSandbox": true,
-    "finalScreenshotNeeded": true
+    "finalScreenshotNeeded": true,
+    "nextCase": "REPORTING-015-INVENTORY-DIMENSION-VALUE-TRACE"
   },
   "latestRmDeLab001": {
     "status": "planned-only-not-created",
@@ -1998,5 +1999,32 @@
     ],
     "routeDecision": "Do not repeat old Purchase Order line-edit routes; use Item Journal/Inventory for material effect and keep creditor P2P proof separate.",
     "nextCase": "INVENTORY-009-ITEM-JOURNAL-MATERIAL-EFFECT-FOLLOWUP"
+  },
+  "latestReporting015InventoryDimensionTrace": {
+    "caseId": "REPORTING-015-INVENTORY-DIMENSION-VALUE-TRACE",
+    "status": [
+      "labor-proven",
+      "read-only",
+      "needs-german-final-rebuild"
+    ],
+    "sourceInstance": "MCP_1_20260210",
+    "sourceCompany": "RM-DEMO",
+    "documentNo": "INV008-899959",
+    "itemLedgerProductlineVisible": true,
+    "valueEntryProductlineVisible": true,
+    "glEntryProductlineVisible": false,
+    "analysisViewsProductlineOrChannelVisible": false,
+    "channelB2bVisible": false,
+    "posted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "companySwitched": false,
+    "resultPath": "playwright/projects/fibu-book5/evidence/reporting-015/REPORTING-015-result.json",
+    "evidencePath": "playwright/projects/fibu-book5/evidence/reporting-015/",
+    "proved": "PRODUCTLINE=MACHINE is visible on Item Ledger and Value Entry dimension contexts for INV008-899959; it is not proven as G/L Entry or Analysis View reporting axis.",
+    "nextCase": "REPORTING-016-INVENTORY-DIMENSION-REPORTING-DECISION",
+    "migrationRelevance": "needed-for-german-final",
+    "mustRecreateInFinalSandbox": true,
+    "finalScreenshotNeeded": true
   }
 }

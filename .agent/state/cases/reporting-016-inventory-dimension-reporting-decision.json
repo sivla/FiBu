@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "caseId": "REPORTING-016-INVENTORY-DIMENSION-REPORTING-DECISION",
+  "title": "Decide Inventory dimension reporting route after read-only posted trace",
+  "status": "planned",
+  "taskClass": "judge_work",
+  "modelClass": "gpt-5.5-low",
+  "usageLogRequired": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "reporting-inventory-dimension-route-decision",
+  "sourceCase": "REPORTING-015-INVENTORY-DIMENSION-VALUE-TRACE",
+  "purpose": "Classify the REPORTING-015 result and choose whether the next step is bookdraft sync, Dimensions Detail route, Analysis View setup-fit route or a later German-final rebuild.",
+  "allowedActions": [
+    "read-reporting-015-evidence",
+    "local-analysis",
+    "write-compact-result",
+    "update-state",
+    "update-bookdraft-if-evidence-based"
+  ],
+  "defaultLockedActions": [
+    "open-business-central",
+    "run-playwright",
+    "preview-posting",
+    "post",
+    "setup-change",
+    "company-switch",
+    "keep-draft"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "final-german-claim-from-rm-demo",
+    "create-draft",
+    "edit-record",
+    "delete-record"
+  ],
+  "safetyGates": [
+    "read-reporting-015-before-decision",
+    "do-not-claim-reporting-sum-effect-without-visible-proof",
+    "separate-labor-reference-from-german-final-proof",
+    "state-next-case-must-not-collide-with-existing-evidence-folder"
+  ],
+  "expectedEvidence": [
+    "Decision whether PRODUCTLINE=MACHINE visibility in Item/Value Entry is enough for bookdraft explanation",
+    "Clear statement that G/L Entry and Analysis Views did not prove PRODUCTLINE/CHANNEL reporting effect if not visible",
+    "Next route recommendation with German-final rebuild boundary"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "targetGermanCompanyImpact": "German final reporting proof must reproduce dimensions and reports in the later German target company.",
+  "finalScreenshotNeeded": true,
+  "nextStep": "Review REPORTING-015 evidence and choose the next reporting/bookdraft route without running BC."
+}
