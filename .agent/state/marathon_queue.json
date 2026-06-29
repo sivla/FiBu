@@ -163,7 +163,7 @@
     {
       "id": "PREP-008-SOURCE-REGISTRY-AND-CLAIM-RULES-GAP-AUDIT",
       "order": 8,
-      "status": "pending",
+      "status": "done",
       "category": "sources",
       "expectedImpact": "prep-progress",
       "mayWorkEffectively": false,
@@ -173,8 +173,11 @@
       "sourceCompany": "UNIVERSAARL-DE-planned-not-yet-created",
       "targetWorld": "Universaarl",
       "noFinalGermanClaimWithoutUniversaarlEvidence": true,
-      "lookaheadStatus": "ready-after-current",
-      "reason": "Next best prep task after style cleanup: verify source registry and claim rules before more product/best-practice claims enter the book."
+      "lookaheadStatus": "done",
+      "reason": "Next best prep task after style cleanup: verify source registry and claim rules before more product/best-practice claims enter the book.",
+      "completedAt": "2026-06-30",
+      "result": "Source registry, claim rules, Microsoft Learn mapping and Implementation Guide boundaries tightened.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/prep-008-source-registry-claim-rules/PREP-008-result.json"
     },
     {
       "id": "PREP-009-RM-DECOMMISSION-INVENTORY-REFINEMENT",
@@ -189,7 +192,8 @@
       "sourceCompany": "UNIVERSAARL-DE-planned-not-yet-created",
       "targetWorld": "Universaarl",
       "noFinalGermanClaimWithoutUniversaarlEvidence": true,
-      "lookaheadStatus": "ready-after-current"
+      "lookaheadStatus": "ready-next",
+      "reason": "Next best prep task after source/claim gates: classify legacy RM/Rhein-Main/CRONUS references without deleting historical evidence."
     },
     {
       "id": "PREP-010-PLAYWRIGHT-READONLY-HELPERS-AND-UI-ERGONOMICS",
@@ -510,7 +514,7 @@
       "lookaheadStatus": "ready-after-current"
     }
   ],
-  "lastUpdated": "2026-06-29T21:34:46.267Z",
+  "lastUpdated": "2026-06-30T00:00:00.000+02:00",
   "nextStepDecisionGate": {
     "active": true,
     "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",
@@ -579,54 +583,56 @@
       ]
     }
   },
-  "updatedAt": "2026-06-29T21:54:54.534Z",
-  "lastCompletedCase": "PREP-005-BC-OBJECT-COVERAGE-CATALOG-GAP-FILL",
-  "nextCase": "PREP-006-BOOKMASTER-UNIVERSAARL-FALLSTUDIE-REWRITE-PLAN",
+  "updatedAt": "2026-06-30T00:00:00.000+02:00",
+  "lastCompletedCase": "PREP-008-SOURCE-REGISTRY-AND-CLAIM-RULES-GAP-AUDIT",
+  "nextCase": "PREP-009-RM-DECOMMISSION-INVENTORY-REFINEMENT",
   "nextStepDecisionCard": {
-    "currentCase": "PREP-005-BC-OBJECT-COVERAGE-CATALOG-GAP-FILL",
-    "plannedNextCaseBeforeReview": "PREP-005-BC-OBJECT-COVERAGE-CATALOG-GAP-FILL",
-    "lastEvidenceSummary": "PREP-004 updated the full-playthrough catalog with permission-aware gates and data-richness dependencies.",
+    "currentCase": "PREP-008-SOURCE-REGISTRY-AND-CLAIM-RULES-GAP-AUDIT",
+    "plannedNextCaseBeforeReview": "PREP-008-SOURCE-REGISTRY-AND-CLAIM-RULES-GAP-AUDIT",
+    "lastEvidenceSummary": "PREP-007 reduced book-facing meta-language and selected PREP-008 to prevent unsupported product or best-practice claims.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "Object coverage was the natural follow-up because page/card/list/action rows needed to align with the new process order.",
+    "reason": "Source and claim rules are the right follow-up before more Universaarl book text or permission-blocked company creation work.",
     "lookaheadReviewed": [
       {
-        "caseId": "PREP-006-BOOKMASTER-UNIVERSAARL-FALLSTUDIE-REWRITE-PLAN",
-        "status": "ready-next",
-        "reason": "The process and object maps are now aligned enough to plan the beginner-facing Universaarl chapter rewrite."
-      },
-      {
-        "caseId": "PREP-007-BOOK-WRITING-RULES-META-LANGUAGE-AUDIT",
-        "status": "ready-after-current",
-        "reason": "After the rewrite plan, book-facing drafts should be checked for meta-language."
-      },
-      {
-        "caseId": "PREP-008-SOURCE-REGISTRY-AND-CLAIM-RULES-GAP-AUDIT",
-        "status": "ready-after-current",
-        "reason": "Source gaps can be audited against the updated process and object catalogs."
-      },
-      {
         "caseId": "PREP-009-RM-DECOMMISSION-INVENTORY-REFINEMENT",
+        "status": "ready-next",
+        "reason": "After claim gates, legacy references can be classified with less risk of treating RM evidence as active target truth."
+      },
+      {
+        "caseId": "PREP-010-PLAYWRIGHT-READONLY-HELPERS-AND-UI-ERGONOMICS",
         "status": "ready-after-current",
-        "reason": "RM decommission gets easier after active Universaarl object targets are clear."
+        "reason": "Tooltip, split-button and screenshot-QA helper rules should follow the source/claim cleanup."
+      },
+      {
+        "caseId": "PREP-011-SCREENSHOT-EXPLANATION-QUALITY-GATE",
+        "status": "ready-after-current",
+        "reason": "Screenshot explanation quality depends on the same proof/not-proof separation."
+      },
+      {
+        "caseId": "PREP-012-LOOK-AND-FEEL-FILTERING-CHAPTER-PLAN",
+        "status": "ready-after-current",
+        "reason": "Filtering prose should use the product/UI/evidence claim separation."
       },
       {
         "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
         "status": "blocked",
-        "reason": "Company creation remains parked until sufficient rights are confirmed."
+        "reason": "Still parked until SUPER/company-create permissions are confirmed."
       }
     ],
     "queueChangesMade": [
-      "Marked PREP-005 done.",
-      "Selected PREP-006 as next prep case while TARGET-009 remains parked."
+      "Marked PREP-008 done.",
+      "Selected PREP-009 as next prep case."
     ],
-    "selectedNextCase": "PREP-006-BOOKMASTER-UNIVERSAARL-FALLSTUDIE-REWRITE-PLAN",
-    "whySelectedNextCaseIsBest": "The book rewrite plan can now use the aligned process and object maps without inventing final proof.",
+    "selectedNextCase": "PREP-009-RM-DECOMMISSION-INVENTORY-REFINEMENT",
+    "whySelectedNextCaseIsBest": "The next cleanup risk is legacy RM/Rhein-Main/CRONUS language in active project truth; source gates now make classification safer.",
     "risksBeforeNextCase": [
-      "Do not rewrite bookmaster as if UNIVERSAARL-DE already exists.",
-      "Do not leave agent/evidence meta-language in reader-facing text."
+      "Do not delete historical evidence.",
+      "Do not mass-replace legacy evidence paths.",
+      "Only active target truth should move to Universaarl wording."
     ],
     "requiredPreparation": [
-      "Use BC-FULL-PLAYTHROUGH-CATALOG.md and BC-OBJECT-COVERAGE-CATALOG.md as source maps."
+      "Read UNIVERSAARL-RM-DECOMMISSION-PLAN.md and rm_decommission_inventory.json.",
+      "Classify active references before editing."
     ]
   }
 }

@@ -62,6 +62,17 @@ Ein Prozess gilt erst als belastbar, wenn:
 - Buchtext keine Agenten-Meta enthaelt,
 - offene Grenzen als Grenzen markiert sind.
 
+## PREP-008 Claim Boundary
+
+Implementation Guide, Success by Design, Testing Strategy und Prepare to go-live liefern die Projektlogik: warum ein Prozess Entry Criteria, Exit Criteria, Testplan, Rollen, Abnahme und Cutover braucht. Sie beweisen aber keine konkrete Business-Central-Seite, keinen Button, kein Feld und keinen Universaarl-Beleg.
+
+Fuer das Buch gilt deshalb:
+
+- Projekt- und UAT-Kapitel duerfen sich auf diese Quellen stuetzen.
+- Klickanleitungen brauchen weiterhin eigene Universaarl-Evidence.
+- Ein Go-live- oder Testplan-Hinweis darf nicht so klingen, als sei der Prozess bereits in `UNIVERSAARL-DE` gebucht.
+- Bei Company Creation bleibt der Implementation Guide nur die methodische Klammer; die Datenbasis der neuen Company muss spaeter in `playthru` sichtbar belegt werden.
+
 ## Defect Tracking
 
 Ein Blocker ist kein Scheitern, wenn er sauber eingeordnet wird:

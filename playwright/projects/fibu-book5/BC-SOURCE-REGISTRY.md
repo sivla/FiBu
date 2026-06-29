@@ -47,11 +47,36 @@ Fuer die Anlage von `UNIVERSAARL-DE` gibt es mehrere Einstiegspunkte, die im Buc
 
 Company Creation ist bis zur Bestaetigung ausreichender Rechte geparkt. Produktclaims stammen aus Microsoft Learn; konkrete Universaarl-Existenz, Datenbasis und UI-Schritte brauchen nach der Rechtefreigabe eigene `playthru`-Evidence. Interne Details stehen in `PERMISSION-BLOCKERS.md`, `BC-MICROSOFT-LEARN-MAPPING.md` und `.agent/state/source_registry.json`.
 
+## PREP-008 Claim-Gate-Matrix
+
+Vor jedem neuen Universaarl-Buchtext wird die Aussage in einen dieser Gates eingeordnet. Ein Satz darf erst in den Buchmaster, wenn sein Gate erfuellt ist.
+
+| Gate | Frage | Erlaubte Grundlage | Buchwirkung |
+| --- | --- | --- | --- |
+| Produktstandard | Beschreibt der Satz, was Business Central grundsaetzlich kann? | Microsoft Learn Business Central | als Produktbeschreibung erlaubt, aber nicht als Universaarl-Proof |
+| Sichtbare UI | Beschreibt der Satz eine konkrete Seite, Action, Spalte, Tooltip oder einen Dialog? | eigene `playthru`-Evidence oder Atlas-Eintrag | als Klickanleitung erst nach Screenshot/Result |
+| Aktueller Universaarl-Zustand | Behauptet der Satz, dass `UNIVERSAARL-DE` existiert, eingerichtet ist oder Daten enthaelt? | eigene Universaarl-Result-JSON plus Screenshot/State | vorher nicht in den Buchmaster als Fakt schreiben |
+| Setup-Wirkung | Behauptet der Satz, dass ein Setup eine Buchungs-, Pflichtfeld- oder Prozesswirkung hat? | Microsoft Learn plus eigene Preview/Posting/Entry-Evidence | bis dahin nur als Plan oder Warnhinweis |
+| Projekt-/UAT-Vorgehen | Beschreibt der Satz Testplan, Abnahme, Rollen, Cutover oder Governance? | Dynamics 365 Implementation Guide / Success by Design | als Vorgehen erlaubt, nicht als BC-Feld-/Buttonbeweis |
+| Recht/Steuer/Compliance | Beschreibt der Satz USt, Rechnungspflicht, Aufbewahrung, GoBD oder E-Rechnungspflicht? | amtliche deutsche/EU-Quelle plus ggf. BC-Evidence fuer Umsetzung | nie allein aus BC oder Microsoft Learn ableiten |
+
+## PREP-008 Quellenentscheidung fuer den geparkten Company-Creation-Pfad
+
+Microsoft Learn stuetzt die Aussage, dass neue Companies ueber Business Central angelegt werden koennen und dass dafuer ausreichende Berechtigungen wie `SUPER` noetig sein koennen. Die vorhandene Universaarl-Evidence stuetzt nur die sichtbare Mandantenliste, den `Neu`-Splitbutton, den Eintrag `Neues Unternehmen erstellen` und den Berechtigungsblocker. Sie stuetzt noch nicht, dass `UNIVERSAARL-DE` gespeichert wurde oder welche Datenbasis die spaetere Company hat.
+
+Fuer das Buch bedeutet das:
+
+- Die Seite `Mandanten` und die Alternativen `Neu`, `Neues Unternehmen erstellen`, `Kopieren` und `Testunternehmen` duerfen erklaert werden, wenn sie als UI beobachtet wurden.
+- `UNIVERSAARL-DE wurde angelegt` bleibt gesperrt, bis ein eigener `playthru`-Result mit sichtbarer Company vorliegt.
+- `Blank`, `No Data`, `Setup Data Only`, `Production Setup Data` oder Sample-/Demo-Daten duerfen nicht vermischt werden. Die gewaehlte Datenbasis muss im spaeteren TARGET-Case sichtbar belegt werden.
+- Implementation-Guide-Quellen helfen bei Testplan und UAT, ersetzen aber keine Companies-Page-Evidence.
+
 ## URLs
 
 - https://learn.microsoft.com/en-us/dynamics365/business-central/about-new-company
 - https://learn.microsoft.com/en-us/dynamics365/business-central/setup
 - https://learn.microsoft.com/en-us/dynamics365/business-central/across-business-functionality
+- https://learn.microsoft.com/en-us/dynamics365/business-central/ui-how-users-permissions
 - https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/administration/tenant-admin-center-environments
 - https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/whatsnew/overview
 - https://learn.microsoft.com/en-us/dynamics365/business-central/ui-enter-criteria-filters
@@ -59,6 +84,9 @@ Company Creation ist bis zur Bestaetigung ausreichender Rechte geparkt. Produktc
 - https://learn.microsoft.com/en-us/dynamics365/release-plans/
 - https://learn.microsoft.com/en-us/dynamics365/guidance/implementation-guide/overview
 - https://learn.microsoft.com/en-us/dynamics365/guidance/implementation-guide/success-by-design
+- https://learn.microsoft.com/en-us/dynamics365/guidance/implementation-guide/testing-strategy
+- https://learn.microsoft.com/en-us/dynamics365/guidance/implementation-guide/testing-strategy-planning
+- https://learn.microsoft.com/en-us/dynamics365/guidance/implementation-guide/prepare-to-go-live
 - https://www.gesetze-im-internet.de/ustg_1980/__14.html
 - https://www.gesetze-im-internet.de/ustg_1980/__14b.html
 - https://www.gesetze-im-internet.de/ao_1977/__146.html

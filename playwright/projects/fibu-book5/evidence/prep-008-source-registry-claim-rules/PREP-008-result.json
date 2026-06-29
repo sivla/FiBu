@@ -1,20 +1,23 @@
 {
   "schemaVersion": 1,
-  "runId": "PREP-008-SOURCE-REGISTRY-AND-CLAIM-RULES-GAP-AUDIT",
+  "purpose": "autopilot-result-normalized",
   "caseId": "PREP-008-SOURCE-REGISTRY-AND-CLAIM-RULES-GAP-AUDIT",
-  "status": "done",
-  "instance": "playthru",
-  "targetCompany": "UNIVERSAARL-DE",
-  "bcRun": false,
-  "playwrightRun": false,
-  "posted": false,
-  "previewPosting": false,
-  "setupChange": false,
-  "bookChanged": false,
-  "summary": "Tightened source registry and claim rules so product, UI, Universaarl state, setup/posting, project/UAT and legal/tax claims have separate proof gates.",
-  "evidence": [
-    "playwright/projects/fibu-book5/evidence/prep-008-source-registry-claim-rules/README.md",
-    "playwright/projects/fibu-book5/evidence/prep-008-source-registry-claim-rules/PREP-008-result.json"
+  "source": "local-analysis",
+  "resultStatus": "observed",
+  "runPlanId": "PREP-008-SOURCE-REGISTRY-AND-CLAIM-RULES-GAP-AUDIT-PLAN",
+  "selectedTaskClass": "monkey_work",
+  "selectedModelClass": "gpt-4-mini-low",
+  "proved": [
+    "Source registry now contains a claim-gate matrix for product, UI, Universaarl state, setup/posting, project/UAT and legal/tax claims.",
+    "Claim rules now require own Universaarl evidence for concrete UI, state and setup/posting effects.",
+    "Microsoft Learn mapping now separates company creation permission claims from proof that UNIVERSAARL-DE exists.",
+    "Implementation Guide usage is limited to project, testing and go-live method claims, not UI or posting proof."
+  ],
+  "notProved": [
+    "UNIVERSAARL-DE was not created.",
+    "No Business Central UI was opened in this run.",
+    "No Playwright test was executed in this run.",
+    "No final German book claim was created."
   ],
   "changedFiles": [
     "playwright/projects/fibu-book5/BC-SOURCE-REGISTRY.md",
@@ -29,7 +32,27 @@
     "playwright/projects/fibu-book5/evidence/prep-008-source-registry-claim-rules/README.md",
     "playwright/projects/fibu-book5/evidence/prep-008-source-registry-claim-rules/PREP-008-result.json"
   ],
-  "nextStep": "Continue with PREP-009-RM-DECOMMISSION-INVENTORY-REFINEMENT. Company creation remains parked until permissions are available.",
+  "statePatch": {},
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/prep-008-source-registry-claim-rules/README.md"
+  ],
+  "warnings": [
+    "Microsoft Learn source checks support product and permission claims only; concrete Universaarl UI and state claims still require own evidence.",
+    "Company Creation remains parked until SUPER/company-create permissions are confirmed."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": false,
+  "reason": "PREP-008 was a local source and claim-rule audit. State changes are committed directly with this run, but automatic state-finalize write remains disabled.",
+  "flags": {
+    "noBusinessCentralRun": true,
+    "noPlaywrightRun": true,
+    "noPosting": true,
+    "noPreviewPosting": true,
+    "noSetupChange": true,
+    "noCompanyCreation": true,
+    "noBookChange": true
+  },
   "nextStepDecisionCard": {
     "currentCase": "PREP-008-SOURCE-REGISTRY-AND-CLAIM-RULES-GAP-AUDIT",
     "plannedNextCaseBeforeReview": "PREP-008-SOURCE-REGISTRY-AND-CLAIM-RULES-GAP-AUDIT",

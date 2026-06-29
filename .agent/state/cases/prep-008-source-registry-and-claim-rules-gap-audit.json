@@ -1,35 +1,61 @@
 {
   "schemaVersion": 1,
-  "runId": "PREP-008-SOURCE-REGISTRY-AND-CLAIM-RULES-GAP-AUDIT",
   "caseId": "PREP-008-SOURCE-REGISTRY-AND-CLAIM-RULES-GAP-AUDIT",
   "status": "done",
+  "workType": "source-and-claim-rule-audit",
   "instance": "playthru",
   "targetCompany": "UNIVERSAARL-DE",
+  "targetCompanyStatus": "planned-not-yet-created",
+  "effectiveBcActionsAllowed": false,
   "bcRun": false,
   "playwrightRun": false,
+  "bookChanged": false,
   "posted": false,
   "previewPosting": false,
   "setupChange": false,
-  "bookChanged": false,
-  "summary": "Tightened source registry and claim rules so product, UI, Universaarl state, setup/posting, project/UAT and legal/tax claims have separate proof gates.",
-  "evidence": [
-    "playwright/projects/fibu-book5/evidence/prep-008-source-registry-claim-rules/README.md",
-    "playwright/projects/fibu-book5/evidence/prep-008-source-registry-claim-rules/PREP-008-result.json"
-  ],
+  "purpose": "Sharpen source and claim rules before more Universaarl book text or company-creation follow-up work.",
   "changedFiles": [
     "playwright/projects/fibu-book5/BC-SOURCE-REGISTRY.md",
     "playwright/projects/fibu-book5/BC-SOURCE-CLAIM-RULES.md",
     "playwright/projects/fibu-book5/BC-MICROSOFT-LEARN-MAPPING.md",
     "playwright/projects/fibu-book5/BC-IMPLEMENTATION-BEST-PRACTICES.md",
     ".agent/state/source_registry.json",
-    ".agent/state/cases/prep-008-source-registry-and-claim-rules-gap-audit.json",
-    ".agent/state/current.json",
-    ".agent/state/marathon_queue.json",
-    ".agent/state/last_run_summary.json",
     "playwright/projects/fibu-book5/evidence/prep-008-source-registry-claim-rules/README.md",
     "playwright/projects/fibu-book5/evidence/prep-008-source-registry-claim-rules/PREP-008-result.json"
   ],
-  "nextStep": "Continue with PREP-009-RM-DECOMMISSION-INVENTORY-REFINEMENT. Company creation remains parked until permissions are available.",
+  "evidence": {
+    "folder": "playwright/projects/fibu-book5/evidence/prep-008-source-registry-claim-rules/",
+    "resultJson": "playwright/projects/fibu-book5/evidence/prep-008-source-registry-claim-rules/PREP-008-result.json",
+    "readme": "playwright/projects/fibu-book5/evidence/prep-008-source-registry-claim-rules/README.md"
+  },
+  "sourceChecks": [
+    {
+      "id": "mslearn-bc-create-company",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/business-central/about-new-company",
+      "claimBoundary": "Product and permission source; not proof that UNIVERSAARL-DE exists."
+    },
+    {
+      "id": "mslearn-bc-users-permissions",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/business-central/ui-how-users-permissions",
+      "claimBoundary": "Permission/product source; concrete permission state still needs playthru evidence or user confirmation."
+    },
+    {
+      "id": "mslearn-implementation-testing-strategy",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/guidance/implementation-guide/testing-strategy",
+      "claimBoundary": "UAT and testing method only; not UI or posting proof."
+    },
+    {
+      "id": "mslearn-implementation-test-plan",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/guidance/implementation-guide/testing-strategy-planning",
+      "claimBoundary": "Test-plan method only; not process execution proof."
+    },
+    {
+      "id": "mslearn-implementation-prepare-go-live",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/guidance/implementation-guide/prepare-to-go-live",
+      "claimBoundary": "Go-live method only; not Universaarl setup proof."
+    }
+  ],
+  "result": "Claim gates now separate product, UI, Universaarl-state, setup/posting, project/UAT and legal/tax claims.",
   "nextStepDecisionCard": {
     "currentCase": "PREP-008-SOURCE-REGISTRY-AND-CLAIM-RULES-GAP-AUDIT",
     "plannedNextCaseBeforeReview": "PREP-008-SOURCE-REGISTRY-AND-CLAIM-RULES-GAP-AUDIT",
@@ -78,5 +104,7 @@
       "Read UNIVERSAARL-RM-DECOMMISSION-PLAN.md and rm_decommission_inventory.json.",
       "Classify active references before editing."
     ]
-  }
+  },
+  "nextCase": "PREP-009-RM-DECOMMISSION-INVENTORY-REFINEMENT",
+  "completedAt": "2026-06-30"
 }

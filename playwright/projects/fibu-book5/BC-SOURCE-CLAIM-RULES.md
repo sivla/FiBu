@@ -52,3 +52,43 @@ Fuer `UNIVERSAARL-DE` gilt ab diesem Quellenlauf:
 Ein Claim darf nicht final werden, wenn er eine offene Objektfrage verdeckt. Jede unklare Page, Karte, Liste, jedes Feld, jede Action, jeder Dialog, jede Request Page, jeder Report, jede Tabelle, jeder Entry und jede Buchungswirkung braucht eine Quelle, Universaarl-Evidence, erlaubte AL-/Objektanalyse oder einen finalen Klassifikationsstatus.
 
 Die internen Nachweise stehen in `BC-OBJECT-COVERAGE-CATALOG.md`, den Atlas-Dateien und `.agent/state/open_questions_register.json`. Das Buch schreibt daraus nur die fertige, anfaengerfreundliche Erklaerung.
+
+## PREP-008 Claim-Gate vor Buchtext
+
+Jeder neue Buchsatz bekommt vor dem Commit eine einfache Claim-Klasse. Gemischte Saetze werden geteilt.
+
+| Satztyp | Sofort erlaubt? | Was fehlt, wenn nicht? |
+| --- | --- | --- |
+| Produktstandard mit Microsoft-Learn-Quelle | ja, als allgemeiner BC-Satz | Universaarl-Beweis, falls der Satz konkret wird |
+| Konkrete Universaarl-UI | nur mit eigener Evidence | Screenshot, Result JSON, Atlas-/Coverage-Eintrag |
+| Konkreter Universaarl-Zustand | nur mit eigener Evidence | sichtbarer Datensatz, Page-Kontext, Result JSON |
+| Setup-/Posting-Wirkung | nur nach Preview/Posting/Entry-Trace | Gate, Trace, Entries und Buchwirkung |
+| Best-Practice-/Projektvorgehen | ja, wenn Implementation-Guide-Quelle passt | Trennung von Vorgehen und Produktfunktion |
+| Rechts-/Steuer-/Compliance-Aussage | nur mit amtlicher Quelle | amtliche Quelle und ggf. BC-Umsetzungsnachweis |
+
+### Satz-Entscheidung
+
+1. Nennt der Satz `UNIVERSAARL-DE`, einen Beleg, ein Feld, eine Page oder einen Button, dann ist eigene Universaarl-Evidence Pflicht.
+2. Nennt der Satz nur einen Business-Central-Standardprozess, kann Microsoft Learn reichen.
+3. Nennt der Satz USt, Rechnung, Aufbewahrung, GoBD, E-Rechnung oder Compliance, reicht Microsoft Learn nicht.
+4. Nennt der Satz UAT, Testplan, Rollen, Cutover oder Governance, ist der Implementation Guide eine passende Quelle, aber kein UI-Beweis.
+5. Nennt der Satz einen noch geparkten Pfad, muss er sachlich als Voraussetzung formuliert werden: Berechtigung, Seite, Option, naechster pruefbarer Schritt.
+
+### Company-Creation-Spezialregel
+
+Bis ausreichende Rechte vorhanden sind, darf die Buchfassung nur erklaeren:
+
+- was eine Company ist,
+- warum `UNIVERSAARL-DE` als eigene Zielcompany gebraucht wird,
+- wo die Mandantenliste liegt,
+- dass `Neu` und `Neues Unternehmen erstellen` unterschiedliche UI-Ziele sind,
+- warum `Kopieren`, CRONUS und Testunternehmen nicht blind als finale Musterfirma verwendet werden,
+- welche Berechtigung vor der Anlage vorhanden sein muss.
+
+Nicht erlaubt ist:
+
+- `UNIVERSAARL-DE ist angelegt`,
+- `die Company ist leer`,
+- `die Company enthaelt nur Setupdaten`,
+- `die Datenbasis ist deutsch final`,
+- `die spaetere Buchungsstrecke ist bereits bewiesen`.

@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-29T21:34:46.267Z",
+  "updatedAt": "2026-06-30T00:00:00.000+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "activeArea": "universaarl-readonly-ui-prep",
-  "activeCase": "PREP-007-BOOK-WRITING-RULES-META-LANGUAGE-AUDIT",
-  "active_case_file": ".agent/state/cases/prep-007-book-writing-rules-meta-language-audit.json",
+  "activeCase": "PREP-008-SOURCE-REGISTRY-AND-CLAIM-RULES-GAP-AUDIT",
+  "active_case_file": ".agent/state/cases/prep-008-source-registry-and-claim-rules-gap-audit.json",
   "lastReferenceCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
   "lastReferenceCaseFile": ".agent/state/cases/warehouse-031-warehouse-source-route-park-or-setup-fit-decision.json",
   "mode": "universaarl-readonly-prep-until-super-permissions",
@@ -48,7 +48,7 @@
     "preview-posting-until-target-company-exists",
     "api-shortcut-for-company-creation"
   ],
-  "nextStep": "Continue with PREP-008-SOURCE-REGISTRY-AND-CLAIM-RULES-GAP-AUDIT. Keep Company Creation parked until SUPER/company-create permissions are confirmed.",
+  "nextStep": "Continue with PREP-009-RM-DECOMMISSION-INVENTORY-REFINEMENT. Keep Company Creation parked until SUPER/company-create permissions are confirmed.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -3643,56 +3643,59 @@
     "updatedAt": "2026-06-29T20:43:31.482Z"
   },
   "lastRun": {
-    "caseId": "PREP-002-COMPANY-CREATION-BEGINNER-BOOK-DRAFT",
+    "caseId": "PREP-008-SOURCE-REGISTRY-AND-CLAIM-RULES-GAP-AUDIT",
     "status": "done",
-    "updatedAt": "2026-06-29T21:34:46.267Z",
-    "reason": "Company creation draft now explains UI route, focus, tooltip use, permission blocker and success criteria without claiming UNIVERSAARL-DE exists.",
-    "resultFile": "playwright/projects/fibu-book5/book-drafts/universaarl-company-creation-draft.md"
+    "updatedAt": "2026-06-30T00:00:00.000+02:00",
+    "reason": "Source and claim gates were tightened before more Universaarl book or company-creation work.",
+    "resultFile": "playwright/projects/fibu-book5/evidence/prep-008-source-registry-claim-rules/PREP-008-result.json"
   },
   "nextStepDecisionCard": {
-    "currentCase": "PREP-007-BOOK-WRITING-RULES-META-LANGUAGE-AUDIT",
-    "plannedNextCaseBeforeReview": "PREP-007-BOOK-WRITING-RULES-META-LANGUAGE-AUDIT",
-    "lastEvidenceSummary": "PREP-006 moved the chapter 3 opening to Universaarl and added a rewrite plan.",
+    "currentCase": "PREP-008-SOURCE-REGISTRY-AND-CLAIM-RULES-GAP-AUDIT",
+    "plannedNextCaseBeforeReview": "PREP-008-SOURCE-REGISTRY-AND-CLAIM-RULES-GAP-AUDIT",
+    "lastEvidenceSummary": "PREP-007 reduced book-facing meta-language and selected PREP-008 to prevent unsupported product or best-practice claims.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "Book-facing style needed immediate cleanup after the chapter 3 rewrite and before more Universaarl prose is added.",
+    "reason": "Source and claim rules are the right follow-up before more Universaarl book text or permission-blocked company creation work.",
     "lookaheadReviewed": [
       {
-        "caseId": "PREP-008-SOURCE-REGISTRY-AND-CLAIM-RULES-GAP-AUDIT",
-        "status": "ready-next",
-        "reason": "After style cleanup, source and claim rules should be checked before adding stronger product or best-practice claims."
-      },
-      {
         "caseId": "PREP-009-RM-DECOMMISSION-INVENTORY-REFINEMENT",
-        "status": "ready-after-current",
-        "reason": "Remaining RM/Rhein-Main references are now easier to classify after the style audit."
+        "status": "ready-next",
+        "reason": "After claim gates, legacy references can be classified with less risk of treating RM evidence as active target truth."
       },
       {
         "caseId": "PREP-010-PLAYWRIGHT-READONLY-HELPERS-AND-UI-ERGONOMICS",
         "status": "ready-after-current",
-        "reason": "Tooltip, split-button and screenshot-QA rules should become reusable helpers."
+        "reason": "Tooltip, split-button and screenshot-QA helper rules should follow the source/claim cleanup."
       },
       {
         "caseId": "PREP-011-SCREENSHOT-EXPLANATION-QUALITY-GATE",
         "status": "ready-after-current",
-        "reason": "Remaining screenshot prose needs page/company/step/visible-proof/not-proof clarity."
+        "reason": "Screenshot explanation quality depends on the same proof/not-proof separation."
+      },
+      {
+        "caseId": "PREP-012-LOOK-AND-FEEL-FILTERING-CHAPTER-PLAN",
+        "status": "ready-after-current",
+        "reason": "Filtering prose should use the product/UI/evidence claim separation."
       },
       {
         "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
         "status": "blocked",
-        "reason": "Company creation remains parked until SUPER/company-create permissions are confirmed."
+        "reason": "Still parked until SUPER/company-create permissions are confirmed."
       }
     ],
-    "queueChangesMade": [],
-    "selectedNextCase": "PREP-008-SOURCE-REGISTRY-AND-CLAIM-RULES-GAP-AUDIT",
-    "whySelectedNextCaseIsBest": "Cleaner prose reduces book noise; the next risk is unsupported product or best-practice claims.",
+    "queueChangesMade": [
+      "Marked PREP-008 done.",
+      "Selected PREP-009 as next prep case."
+    ],
+    "selectedNextCase": "PREP-009-RM-DECOMMISSION-INVENTORY-REFINEMENT",
+    "whySelectedNextCaseIsBest": "The next cleanup risk is legacy RM/Rhein-Main/CRONUS language in active project truth; source gates now make classification safer.",
     "risksBeforeNextCase": [
-      "Do not treat Microsoft Learn as proof of the current UI state.",
-      "Do not add final German claims before Universaarl evidence exists.",
-      "Do not pull community sources into final claim rules."
+      "Do not delete historical evidence.",
+      "Do not mass-replace legacy evidence paths.",
+      "Only active target truth should move to Universaarl wording."
     ],
     "requiredPreparation": [
-      "Read BC-SOURCE-REGISTRY.md, BC-SOURCE-CLAIM-RULES.md and BC-MICROSOFT-LEARN-MAPPING.md.",
-      "Keep source claims separate from UI evidence claims."
+      "Read UNIVERSAARL-RM-DECOMMISSION-PLAN.md and rm_decommission_inventory.json.",
+      "Classify active references before editing."
     ]
   },
   "permissionBlocker": {
@@ -3731,8 +3734,8 @@
     "noPlaywrightExecution": true,
     "nextCase": "PREP-003-PLAYTHRU-READONLY-UI-LOOK-AND-FEEL-MAP"
   },
-  "lastCompletedCaseFile": ".agent/state/cases/prep-005-bc-object-coverage-catalog-gap-fill.json",
-  "lastResultPath": "playwright/projects/fibu-book5/evidence/prep-005-object-coverage-catalog/PREP-005-result.json",
+  "lastCompletedCaseFile": ".agent/state/cases/prep-008-source-registry-and-claim-rules-gap-audit.json",
+  "lastResultPath": "playwright/projects/fibu-book5/evidence/prep-008-source-registry-claim-rules/PREP-008-result.json",
   "latestReadonlyUiLookAndFeelMap": {
     "caseId": "PREP-003-PLAYTHRU-READONLY-UI-LOOK-AND-FEEL-MAP",
     "status": "prep-done",
@@ -3769,10 +3772,10 @@
     "nextCase": "PREP-006-BOOKMASTER-UNIVERSAARL-FALLSTUDIE-REWRITE-PLAN",
     "updatedAt": "2026-06-29T21:54:54.534Z"
   },
-  "activeCaseFile": ".agent/state/cases/prep-007-book-writing-rules-meta-language-audit.json",
-  "previousCase": "PREP-006-BOOKMASTER-UNIVERSAARL-FALLSTUDIE-REWRITE-PLAN",
-  "nextCase": "PREP-008-SOURCE-REGISTRY-AND-CLAIM-RULES-GAP-AUDIT",
-  "latestPrepCase": "PREP-007-BOOK-WRITING-RULES-META-LANGUAGE-AUDIT",
+  "activeCaseFile": ".agent/state/cases/prep-008-source-registry-and-claim-rules-gap-audit.json",
+  "previousCase": "PREP-007-BOOK-WRITING-RULES-META-LANGUAGE-AUDIT",
+  "nextCase": "PREP-009-RM-DECOMMISSION-INVENTORY-REFINEMENT",
+  "latestPrepCase": "PREP-008-SOURCE-REGISTRY-AND-CLAIM-RULES-GAP-AUDIT",
   "latestBookmasterFallstudieRewritePlan": {
     "status": "prep-progress",
     "result": "Chapter 3 opening moved to Universaarl GmbH / UNIVERSAARL-DE without claiming the company already exists.",
@@ -3786,5 +3789,14 @@
     "audit": "playwright/projects/fibu-book5/BOOK-WRITING-META-LANGUAGE-AUDIT.md",
     "evidence": "playwright/projects/fibu-book5/evidence/prep-007-book-writing-meta-language-audit/PREP-007-result.json",
     "nextCase": "PREP-008-SOURCE-REGISTRY-AND-CLAIM-RULES-GAP-AUDIT"
+  },
+  "latestSourceRegistryClaimRulesAudit": {
+    "status": "prep-progress",
+    "result": "Source and claim gates now separate product, UI, Universaarl-state, setup/posting, project/UAT and legal/tax claims.",
+    "sourceRegistry": "playwright/projects/fibu-book5/BC-SOURCE-REGISTRY.md",
+    "claimRules": "playwright/projects/fibu-book5/BC-SOURCE-CLAIM-RULES.md",
+    "mapping": "playwright/projects/fibu-book5/BC-MICROSOFT-LEARN-MAPPING.md",
+    "evidence": "playwright/projects/fibu-book5/evidence/prep-008-source-registry-claim-rules/PREP-008-result.json",
+    "nextCase": "PREP-009-RM-DECOMMISSION-INVENTORY-REFINEMENT"
   }
 }
