@@ -528,6 +528,21 @@
         "blocked-before-save"
       ],
       "result": "Exact Create New Company action was not visible/clickable from Companies Page 357 start context; no wizard Finish, no company created, no switch/setup/API. RM-DE-LAB creation is parked."
+    },
+    {
+      "id": "P2P-028",
+      "type": "journal-check-clean field-value-entry journal-line-created cleanup-or-correction",
+      "bcRun": true,
+      "posted": false,
+      "execute": true,
+      "highImpactExecute": true,
+      "signals": [
+        "field-value-entry",
+        "journal-line-created",
+        "journal-check-clean",
+        "cleanup-or-correction"
+      ],
+      "result": "Purchase Journal vendor invoice line with K10000, Amount -2.500,00, blank Vendor posting groups and Bal. Account No. 82000 reached Journal Check 0 Issues; draft line was cleaned up; Preview route not yet confirmed; no posting."
     }
   ],
   "postingSummary": {
@@ -544,18 +559,19 @@
       "purchaseJournal": "p2p-candidate-needs-value-entry-gate",
       "purchaseInvoices": "p2p-candidate-needs-document-line-gate",
       "requisitionWorksheet": "planning-readiness-only"
-    }
+    },
+    "purchaseJournal": "P2P-028 labor-proven clean Journal Check with negative Vendor amount, blank Vendor posting groups and Bal. Account No. 82000; next route is scoped Preview Posting action discovery, no posting yet."
   },
   "nextBestLevers": [
-    "RETURN-TO-RM-DEMO-PROCESS-EVIDENCE",
+    "P2P-029-PURCHASE-JOURNAL-PREVIEW-ACTION-ROUTE",
     "FIXEDASSETS-DEPRECIATION-BLOCKER-FOLLOWUP",
-    "BANK-013-FRESH-STATEMENT-LINE-ONLY-IF-DEFINED"
+    "BANK-RECONCILIATION-CONCRETE-STATEMENT-MATCH-PLAN"
   ],
   "migrationRelevance": "needed-for-german-final",
   "mustRecreateInFinalSandbox": true,
   "finalScreenshotNeeded": true,
   "executeSummary": {
-    "executePackages": 12,
+    "executePackages": 13,
     "executePackageIds": [
       "P2P-014",
       "PAYMENTS-005",
@@ -568,20 +584,22 @@
       "BANK-002",
       "BANK-008",
       "BANK-009",
-      "RM-DE-LAB-CREATE-001"
+      "RM-DE-LAB-CREATE-001",
+      "P2P-028"
     ],
-    "highImpactExecutePackages": 6,
+    "highImpactExecutePackages": 7,
     "highImpactPackageIds": [
       "P2P-015",
       "PAYMENTS-006",
       "PAYMENTS-009",
       "BANK-002",
       "BANK-008",
-      "BANK-009"
+      "BANK-009",
+      "P2P-028"
     ],
     "lightExecutePackages": 2,
     "readOnlyPackagesDoNotCountAsExecute": true,
-    "progressPackagesTotal": 36
+    "progressPackagesTotal": 39
   },
-  "updatedAt": "2026-06-28T21:24:37.669Z"
+  "updatedAt": "2026-06-29T01:22:00.000Z"
 }

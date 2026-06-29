@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "caseId": "P2P-029-PURCHASE-JOURNAL-PREVIEW-ACTION-ROUTE",
+  "title": "Purchase Journal Preview Posting action route after clean Journal Check",
+  "status": "planned",
+  "taskClass": "wizard_work",
+  "modelClass": "gpt-5.4-medium",
+  "usageLogRequired": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "p2p-purchase-journal-preview-action-route",
+  "sourceCase": "P2P-028-PURCHASE-JOURNAL-NEGATIVE-AMOUNT-BALANCE-GATE",
+  "purpose": "Use the P2P-028 clean Purchase Journal Check values to find the scoped Preview Posting route without posting. Do not repeat positive amount, Vendor posting groups or Purchase Invoice value entry.",
+  "allowedActions": [
+    "open-business-central-if-instance-and-company-match",
+    "open-purchase-journal",
+    "create-scoped-purchase-journal-draft-line-with-p2p-028-values",
+    "run-journal-check",
+    "discover-scoped-preview-posting-action",
+    "open-preview-posting-only-if-journal-check-clean-and-preview-action-is-scoped",
+    "cleanup-or-document-keep-status",
+    "write-evidence",
+    "update-state"
+  ],
+  "defaultLockedActions": [
+    "preview-posting",
+    "posting",
+    "setup-change",
+    "company-switch",
+    "api-shortcut",
+    "keep-draft"
+  ],
+  "forbiddenActions": [
+    "reuse-purchase-invoice-draft-107229",
+    "open-purchase-invoices-for-value-entry",
+    "post",
+    "ship",
+    "invoice",
+    "ship-and-invoice",
+    "claim-german-final-proof",
+    "book-claim-without-evidence"
+  ],
+  "safetyGates": [
+    "instance-must-be-MCP_1_20260210",
+    "company-must-be-RM-DEMO",
+    "journal-check-must-show-zero-issues-before-preview",
+    "preview-action-must-be-scoped-to-purchase-journal-context",
+    "post-action-must-not-be-clicked",
+    "cleanup-or-keep-status-required"
+  ],
+  "targetValues": {
+    "journalPage": "Purchase Journal",
+    "documentType": "Invoice",
+    "accountType": "Vendor",
+    "vendorNo": "K10000",
+    "amount": "-2.500,00",
+    "genPostingType": "",
+    "genBusPostingGroup": "",
+    "genProdPostingGroup": "",
+    "balAccountType": "G/L Account",
+    "balAccountNo": "82000"
+  },
+  "expectedEvidence": [
+    "result JSON with Journal Check clean status",
+    "scoped action inventory around Post/Preview",
+    "Preview result only if clean and scoped",
+    "cleanup or keep status"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "targetGermanCompanyImpact": "German final P2P must recreate the Purchase Journal or preferred P2P route with German setup, screenshots and ledger trace.",
+  "finalScreenshotNeeded": true,
+  "nextStep": "Run P2P-029 scoped Purchase Journal Preview Posting action route after recreating the P2P-028 clean Journal Check line. Do not post."
+}

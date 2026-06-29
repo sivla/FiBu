@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-29T00:55:00.000Z",
+  "updatedAt": "2026-06-29T01:18:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "p2p",
-  "activeCase": "P2P-028-PURCHASE-JOURNAL-NEGATIVE-AMOUNT-BALANCE-GATE",
-  "active_case_file": ".agent/state/cases/p2p-028-purchase-journal-negative-amount-balance-gate.json",
-  "lastReferenceCase": "P2P-027-PURCHASE-INVOICE-ROUTE-REJECTION-OR-RESET-HELPER",
-  "lastReferenceCaseFile": ".agent/state/cases/p2p-027-purchase-invoice-route-rejection-or-reset-helper.json",
+  "activeCase": "P2P-029-PURCHASE-JOURNAL-PREVIEW-ACTION-ROUTE",
+  "active_case_file": ".agent/state/cases/p2p-029-purchase-journal-preview-action-route.json",
+  "lastReferenceCase": "P2P-028-PURCHASE-JOURNAL-NEGATIVE-AMOUNT-BALANCE-GATE",
+  "lastReferenceCaseFile": ".agent/state/cases/p2p-028-purchase-journal-negative-amount-balance-gate.json",
   "mode": "bc-specialist-labor-book-production",
   "requiresStrongModel": false,
   "requiredPreflightChecks": [
@@ -40,7 +40,7 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "Run P2P-028 controlled Purchase Journal negative amount / balance gate. Do not open Purchase Invoices for value entry and do not post.",
+  "nextStep": "Run P2P-029 scoped Purchase Journal Preview Posting action route after recreating the P2P-028 clean Journal Check line. Do not post.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/bank-payments-labor-draft.md",
     "area": "bankPayments",
@@ -1765,5 +1765,33 @@
     "mustRecreateInFinalSandbox": true,
     "finalScreenshotNeeded": false,
     "nextStep": "Run P2P-028 controlled Purchase Journal negative amount / balance gate. Do not post."
+  },
+  "latestP2P028PurchaseJournalNegativeAmountBalanceGate": {
+    "caseId": "P2P-028-PURCHASE-JOURNAL-NEGATIVE-AMOUNT-BALANCE-GATE",
+    "status": [
+      "labor-proven",
+      "journal-check-clean",
+      "cleanup-proven",
+      "needs-german-final-rebuild"
+    ],
+    "sourceInstance": "MCP_1_20260210",
+    "sourceCompany": "RM-DEMO",
+    "bcRun": true,
+    "playwrightRun": true,
+    "posted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "apiShortcut": false,
+    "documentNo": "P2P028-261258",
+    "resultPath": "playwright/projects/fibu-book5/evidence/p2p-028/P2P-028-result.json",
+    "evidencePath": "playwright/projects/fibu-book5/evidence/p2p-028/",
+    "proved": "Purchase Journal Vendor line can be made Journal-Check-clean with Invoice, K10000, Amount -2.500,00, blank Vendor posting groups and Bal. Account No. 82000. Cleanup removed the draft line.",
+    "notProved": "Preview Posting action route was not confirmed from this page context; no posting or ledger trace.",
+    "selectedNextCase": "P2P-029-PURCHASE-JOURNAL-PREVIEW-ACTION-ROUTE",
+    "bookEffect": "P2P lab clickguide can now explain the corrected Purchase Journal gate: negative vendor amount, blank Vendor posting groups and balancing account before Preview.",
+    "migrationRelevance": "needed-for-german-final",
+    "mustRecreateInFinalSandbox": true,
+    "finalScreenshotNeeded": true,
+    "nextStep": "Run scoped Preview Posting action discovery/route after recreating the clean P2P-028 journal line. Do not post."
   }
 }

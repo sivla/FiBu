@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "caseId": "P2P-028-PURCHASE-JOURNAL-NEGATIVE-AMOUNT-BALANCE-GATE",
+  "parentCaseId": "P2P-027-PURCHASE-INVOICE-ROUTE-REJECTION-OR-RESET-HELPER",
+  "source": "playwright-ui-labor-journal-check-negative-amount-balance-gate",
+  "resultStatus": "observed",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "sourceCompany": "RM-DEMO",
+  "documentNo": "P2P028-261258",
+  "previewPosting": false,
+  "posted": false,
+  "setupChanges": [],
+  "changedRecords": [
+    {
+      "type": "Purchase Journal Line",
+      "documentNo": "P2P028-261258",
+      "cleanup": {
+        "attempted": true,
+        "cleaned": true,
+        "documentNoStillVisible": false
+      }
+    }
+  ],
+  "postedRecords": [],
+  "execute": true,
+  "highImpactExecute": true,
+  "flags": {
+    "fieldValueEntryAttempted": true,
+    "journalLineCreated": true,
+    "negativeAmountVisible": true,
+    "balanceAccountVisible": true,
+    "vendorPostingGroupsBlank": true,
+    "cleanJournalCheck": true,
+    "oldAmountBlockerFixed": true,
+    "oldPostingGroupBlockerFixed": true,
+    "balanceStillBlocked": false,
+    "previewAttempted": false,
+    "previewOpened": false,
+    "cleanupAttempted": true,
+    "cleanupProven": true,
+    "noPost": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "targetValues": {
+    "postingDate": "08.06.2026",
+    "documentType": "Invoice",
+    "accountType": "Vendor",
+    "vendorNo": "K10000",
+    "amount": "-2.500,00",
+    "genPostingType": "",
+    "genBusPostingGroup": "",
+    "genProdPostingGroup": "",
+    "balAccountType": "G/L Account",
+    "balAccountNo": "82000"
+  },
+  "journalCheck": {
+    "journalCheckVisible": true,
+    "zeroIssuesTotalVisible": true,
+    "zeroLinesWithIssuesVisible": true,
+    "currentLineNoIssuesVisible": true,
+    "issueText": ""
+  },
+  "preview": {
+    "attempted": false,
+    "opened": false,
+    "reason": "preview-action-not-confirmed"
+  },
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/p2p-028/010-initial-controls.json",
+    "playwright/projects/fibu-book5/evidence/p2p-028/020-after-negative-amount-balance-gate-page-text.txt",
+    "playwright/projects/fibu-book5/evidence/p2p-028/020-after-negative-amount-balance-gate-controls.json",
+    "playwright/projects/fibu-book5/evidence/p2p-028/030-cleanup-page-text.txt"
+  ],
+  "screenshots": [],
+  "proves": [
+    "The Purchase Journal vendor line shows the P2P-028 negative amount attempt.",
+    "The balancing account candidate 82000 is visible on the journal line.",
+    "The old amount-must-be-negative blocker is not the first strict Journal Check issue anymore.",
+    "The old Vendor-line posting-group blocker is not the first strict Journal Check issue anymore.",
+    "Journal Check is clean, but the Preview Posting action was not confirmed from this page context.",
+    "Cleanup removed the target draft line.",
+    "No posting was executed."
+  ],
+  "notProved": [
+    "No posted purchase invoice or ledger trace.",
+    "No Purchase Order partial receipt.",
+    "No German final proof.",
+    "No Purchase Journal posting approval."
+  ],
+  "blockedBy": [],
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "safeToFinalizeState": false,
+  "requiresReview": true,
+  "statePatch": {},
+  "nextStep": "P2P-029: decide controlled Purchase Journal Preview/Post trace route; no posting without a separate gate."
+}
