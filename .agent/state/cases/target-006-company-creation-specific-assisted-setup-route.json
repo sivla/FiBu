@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-006-COMPANY-CREATION-SPECIFIC-ASSISTED-SETUP-ROUTE",
+  "title": "Specific Assisted Setup route for Universaarl company creation",
+  "instance": "playthru",
+  "targetCompany": "UNIVERSAARL-DE",
+  "legalName": "Universaarl GmbH",
+  "workType": "source-backed-assisted-setup-row-discovery-before-company-create",
+  "status": "planned",
+  "dependsOn": [
+    "TARGET-005-COMPANY-CREATION-SOURCE-BACKED-ALTERNATIVE-ROUTE"
+  ],
+  "preflightTruth": {
+    "universaarlDeVisible": false,
+    "assistedSetupPage1801Opened": true,
+    "sourceRoute": "Direct Page 1801 opens Unterstuetztes Setup in playthru.",
+    "target005BlockedBy": [
+      "source-backed-route-opened-but-blank-or-setup-only-data-basis-not-proven"
+    ],
+    "rejectedRoutes": [
+      "direct Companies list-row save",
+      "Copy Company",
+      "Testunternehmen",
+      "CRONUS copy",
+      "blind Tell-Me Enter",
+      "external Microsoft Learn/help result click"
+    ]
+  },
+  "goal": "Map the specific Unternehmen einrichten route from Assisted Setup Page 1801 and determine whether it reaches a Create New Company wizard with a blank/setup-only data basis.",
+  "allowedActionsWhenGatePasses": [
+    "open-playthru-assisted-setup-page-1801-by-direct-url",
+    "inventory-visible-rows-and-actions-readonly",
+    "open-the-Unternehmen-einrichten-row-only-if-visible-and-scoped",
+    "stop-before-finish-ok-create-save-copy-testcompany-or-company-switch",
+    "write-evidence-screenshots-result-json-and-bookdraft-update"
+  ],
+  "forbiddenActions": [
+    "direct-companies-list-row-save",
+    "copy-company",
+    "test-company",
+    "cronos-copy",
+    "wizard-finish-without-data-basis-proof",
+    "api-shortcut",
+    "company-switch-without-created-company-proof",
+    "tell-me-enter-fallback",
+    "external-help-or-learn-click"
+  ],
+  "mustCheckBeforeAction": [
+    "page-1801-context",
+    "visible-row-label-Unternehmen-einrichten",
+    "whether-click-opens-wizard-or-dialog",
+    "data-basis-options",
+    "cancel-back-path",
+    "effective-action-buttons-present",
+    "book-explanation"
+  ],
+  "evidenceTarget": "playwright/projects/fibu-book5/evidence/target-006-company-creation-specific-assisted-setup-route/",
+  "migrationRelevance": "needed-for-german-final",
+  "finalScreenshotNeeded": true,
+  "nextSafeAction": "Open Page 1801 directly, map/click Unternehmen einrichten only as a scoped route-discovery step, and stop before any Finish/Create/OK/Save."
+}

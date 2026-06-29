@@ -69,6 +69,14 @@ Der naechste sinnvolle Weg ist eine quellenbasierte alternative Route. Das kann 
 
 Fuer den Anwender heisst das: Nicht jeder sichtbare Button ist automatisch der richtige Buchpfad. Bei der Company-Anlage zaehlt nicht nur, dass eine Company entsteht, sondern auch, welche Datenbasis sie bekommt.
 
+## Unterstuetztes Setup als naechster Einstieg
+
+Business Central hat neben der Mandantenliste auch die Seite `Unterstuetztes Setup`. Dort werden Einrichtungsaufgaben gesammelt, zum Beispiel `Unternehmen einrichten` und `Unternehmensdetails eingeben`.
+
+Diese Seite ist fuer den naechsten Schritt wichtig, weil sie naeher an der von Microsoft beschriebenen Einrichtungslogik liegt als die direkte Listenzeile auf der Mandantenseite. Sie ist aber noch nicht automatisch der fertige Company-Anlagepfad. In der sichtbaren Liste steht noch nicht, ob eine neue Company leer, mit Setupdaten oder mit Beispieldaten angelegt wird.
+
+Deshalb wird auch hier nicht blind bestaetigt. Zuerst wird die Zeile `Unternehmen einrichten` geoeffnet und gelesen. Erst wenn der Assistent klar zeigt, welche Datenbasis entsteht, kann entschieden werden, ob die Universaarl GmbH darueber angelegt wird.
+
 ## Nach der Anlage
 
 Nach der erfolgreichen Anlage ist die Company noch nicht fachlich fertig. Eine neue Company ist zuerst nur der leere Buchungsraum. Danach folgen die Grundlagen:

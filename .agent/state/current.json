@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-29T21:35:00.000Z",
+  "updatedAt": "2026-06-29T21:45:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "activeArea": "universaarl-target-company-creation",
-  "activeCase": "TARGET-005-COMPANY-CREATION-SOURCE-BACKED-ALTERNATIVE-ROUTE",
-  "active_case_file": ".agent/state/cases/target-005-company-creation-source-backed-alternative-route.json",
+  "activeCase": "TARGET-006-COMPANY-CREATION-SPECIFIC-ASSISTED-SETUP-ROUTE",
+  "active_case_file": ".agent/state/cases/target-006-company-creation-specific-assisted-setup-route.json",
   "lastReferenceCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
   "lastReferenceCaseFile": ".agent/state/cases/warehouse-031-warehouse-source-route-park-or-setup-fit-decision.json",
   "mode": "universaarl-final-book-production",
@@ -42,7 +42,7 @@
     "delete-legacy-evidence",
     "claim-rm-demo-as-final-proof"
   ],
-  "nextStep": "TARGET-005: source-backed Universaarl company creation route; every new screenshot must include page/company/step/learning/proves/not-proves/final-status metadata.",
+  "nextStep": "TARGET-006: use direct Assisted Setup Page 1801 and map the 'Unternehmen einrichten' route without Finish/Create/OK/Save; do not repeat Companies list-row save, Copy Company, Testunternehmen, CRONUS or blind Tell-Me Enter.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -3364,6 +3364,34 @@
     "mustRecreateInFinalSandbox": true,
     "updatedAt": "2026-06-29T18:55:00.000Z"
   },
+  "latestTarget005": {
+    "caseId": "TARGET-005-COMPANY-CREATION-SOURCE-BACKED-ALTERNATIVE-ROUTE",
+    "status": "blocked-route-opened-but-data-basis-not-proven",
+    "instance": "playthru",
+    "targetCompany": "UNIVERSAARL-DE",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-005-company-creation-source-backed-alternative-route/TARGET-005-result.json",
+    "screenshots": [
+      "playwright/projects/fibu-book5/img/target-005-010-companies-source-route-before.png",
+      "playwright/projects/fibu-book5/img/target-005-020-after-source-backed-route-discovery.png"
+    ],
+    "routeType": "direct-assisted-setup-page-1801",
+    "directAssistedSetupPageOpened": true,
+    "blankOrSetupOnlyOptionProven": false,
+    "companyCreated": false,
+    "setupChanged": false,
+    "companySwitched": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "blockedBy": [
+      "source-backed-route-opened-but-blank-or-setup-only-data-basis-not-proven"
+    ],
+    "decision": "Direct Assisted Setup Page 1801 opens in playthru and shows company/setup tasks, but it does not yet prove the Create New Company wizard or the Production - Setup Data Only / Create New - No Data choice. Next step must map the specific Unternehmen einrichten route without Finish/Create/OK/Save.",
+    "nextCase": "TARGET-006-COMPANY-CREATION-SPECIFIC-ASSISTED-SETUP-ROUTE",
+    "migrationRelevance": "needed-for-german-final",
+    "mustRecreateInFinalSandbox": true,
+    "updatedAt": "2026-06-29T21:45:00.000Z"
+  },
   "zeroOpenQuestions": {
     "active": true,
     "policyPath": "playwright/projects/fibu-book5/BC-ZERO-OPEN-QUESTIONS-POLICY.md",
@@ -3410,16 +3438,16 @@
     ]
   },
   "latestNextStepDecisionCard": {
-    "currentCase": "TARGET-005-COMPANY-CREATION-SOURCE-BACKED-ALTERNATIVE-ROUTE",
-    "plannedNextCaseBeforeReview": "TARGET-005-COMPANY-CREATION-SOURCE-BACKED-ALTERNATIVE-ROUTE",
-    "lastEvidenceSummary": "TARGET-001 proved playthru/Companies context read-only and UNIVERSAARL-DE not visible. TARGET-002 opened an unsaved blank Companies row and stopped. TARGET-003 did not find a safe exact Create New Company action. TARGET-004 scoped menu discovery did not expose a safe company creation route. No company was created.",
+    "currentCase": "TARGET-006-COMPANY-CREATION-SPECIFIC-ASSISTED-SETUP-ROUTE",
+    "plannedNextCaseBeforeReview": "TARGET-006-COMPANY-CREATION-SPECIFIC-ASSISTED-SETUP-ROUTE",
+    "lastEvidenceSummary": "TARGET-001 proved playthru/Companies context read-only and UNIVERSAARL-DE not visible. TARGET-002 opened an unsaved blank Companies row and stopped. TARGET-003 did not find a safe exact Create New Company action. TARGET-004 scoped menu discovery did not expose a safe company creation route. TARGET-005 proved direct Assisted Setup Page 1801 opens, but no blank/setup-only company creation route was proven.",
     "isPlannedNextCaseStillSensible": true,
     "reason": "UNIVERSAARL-DE still does not exist, direct row save/copy/test company/CRONUS/API are rejected, and the next dependency for all foundation/setup/process cases is a source-backed safe UI route for company creation.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-005-COMPANY-CREATION-SOURCE-BACKED-ALTERNATIVE-ROUTE",
+        "caseId": "TARGET-006-COMPANY-CREATION-SPECIFIC-ASSISTED-SETUP-ROUTE",
         "status": "ready-next",
-        "reason": "Closes OQ-0001 and is the dependency for Universaarl foundation setup."
+        "reason": "TARGET-005 made Page 1801 reachable; the next narrow step is mapping the visible Unternehmen einrichten row without Finish/Create/OK/Save."
       },
       {
         "caseId": "TARGET-004-FOUNDATION-SETUP-READINESS",
@@ -3443,8 +3471,8 @@
       }
     ],
     "queueChangesMade": [],
-    "selectedNextCase": "TARGET-005-COMPANY-CREATION-SOURCE-BACKED-ALTERNATIVE-ROUTE",
-    "whySelectedNextCaseIsBest": "It resolves the active company creation blocker and prevents building setup, master data or book claims on a non-existing target company.",
+    "selectedNextCase": "TARGET-006-COMPANY-CREATION-SPECIFIC-ASSISTED-SETUP-ROUTE",
+    "whySelectedNextCaseIsBest": "It narrows the company creation blocker to the exact Assisted Setup row that TARGET-005 made reachable.",
     "risksBeforeNextCase": [
       "Company creation UI may still only expose copy/test/demo routes.",
       "A source-backed route may require a different safe entry point than Page 357.",
