@@ -2251,13 +2251,16 @@ Status:
 - Mandant: `RM-DEMO` in `MCP_1_20260210`.
 - Laborstand: Beleg `P2P032-682298` wurde mit Journal Check `0 Issues`, Preview Posting, sichtbarem Post-Dialog und genau einer Buchung belegt.
 - Postenspur: Kreditorenposten `P2P032-682298` fuer `K10000` mit Betrag `-2.500,00`, detaillierter Kreditorenposten `Initial Entry` und Sachposten auf `22100 Accounts Payable, Domestic` sowie `82000 Depreciation, Fixed Assets`.
+- Detailnachweis `P2P-036`: Die Postenspur ist nicht nur als Belegcode belegt. Sichtbar sind Kreditor `K10000`, `Stahlwerk Ruhr GmbH`, Vendor Ledger Entry No. `5010`, Detailed Vendor Ledger Entry No. `822`, Betrag `-2.500,00` und die Sachposten `22100` / `82000` mit gegenlaeufigen Betraegen.
 - Laborgrenze: Kein Artikelposten, kein Wertposten und kein Wareneingang, weil diese Journalroute keine Einkaufsbestellzeile mit Artikelbewegung bucht.
 - DE-Finalnachweis: offen; deutsche Zielcompany muss Konten, Steuerlogik, Buchungsgruppen, Belegnummern, Screenshots und Postenspur neu erzeugen.
 - Nicht behaupten: `82000` ist hier kein deutsches Einkaufskonto, sondern nur das im Labor verwendete Gegenkonto der getesteten Journalroute.
 
 Fuer Anfaenger ist diese Trennung wichtig: Die Einkaufsbestellung verbindet Kreditor, Artikel, Menge, Lagerort, Wareneingang, Rechnung und Lagerwert. Das Purchase Journal bucht dagegen eine direkte Kreditor-/Sachkonto-Wirkung. Es ist deshalb gut fuer einfache Finance-Laborfaelle und Konten-/OP-Verstaendnis, ersetzt aber keinen Warenannahmeprozess. Wenn spaeter im deutschen Zielsystem Rohmaterial wirklich eingekauft wird, muss der Warenpfad wieder ueber Bestellung, Lieferung, Rechnung, Artikelposten und Wertposten belegt werden.
 
-Evidence-Anker: `playwright/projects/fibu-book5/evidence/p2p-032/P2P-032-result.json`, `playwright/projects/fibu-book5/evidence/p2p-033/P2P-033-result.json` und `playwright/projects/fibu-book5/book-drafts/p2p-labor-draft.md`.
+Pruefpunkt fuer die Klickanleitung: Nach der Buchung muss man die Postenbereiche so weit oeffnen oder vergroessern, dass nicht nur `P2P032-682298`, sondern auch Betrag, Konto, Postenart und Entry No. sichtbar sind. Sonst sieht man nur einen Belegcode, aber nicht die Buchwirkung.
+
+Evidence-Anker: `playwright/projects/fibu-book5/evidence/p2p-032/P2P-032-result.json`, `playwright/projects/fibu-book5/evidence/p2p-033/P2P-033-result.json`, `playwright/projects/fibu-book5/evidence/p2p-036/P2P-036-result.json`, `playwright/projects/fibu-book5/evidence/p2p-036/P2P-036-POSTED-ENTRY-DETAILS.md` und `playwright/projects/fibu-book5/book-drafts/p2p-labor-draft.md`.
 
 Status dieses Laborblocks: `labor-proven`, `labor-sufficient-for-book-draft`, `needs-german-final-rebuild`.
 

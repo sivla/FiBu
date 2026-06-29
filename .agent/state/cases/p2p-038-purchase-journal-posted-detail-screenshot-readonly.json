@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "caseId": "P2P-038-PURCHASE-JOURNAL-POSTED-DETAIL-SCREENSHOT-READONLY",
+  "title": "Read-only screenshots for posted Purchase Journal entry details",
+  "status": "planned",
+  "taskClass": "wizard_work",
+  "modelClass": "gpt-5.4-medium",
+  "usageLogRequired": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "p2p-posted-entry-detail-screenshot-readonly",
+  "sourceCase": "P2P-037-PURCHASE-JOURNAL-DETAIL-BOOKMASTER-CHECK",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/p2p-037/P2P-037-result.json",
+    "playwright/projects/fibu-book5/evidence/p2p-036/P2P-036-result.json"
+  ],
+  "purpose": "Create or refresh read-only screenshots for P2P032 posted Vendor Ledger, Detailed Vendor Ledger and G/L Entries, but only if the screenshots clearly show accounts, amounts and entry types. Avoid screenshots that show only document codes.",
+  "allowedActions": [
+    "open-business-central-if-instance-and-company-match",
+    "run-playwright-if-case-preflight-passes",
+    "open-posted-entry-pages-for-P2P032-682298",
+    "maximize-or-expand-entry-areas-if-needed",
+    "capture-purposeful-screenshots",
+    "write-evidence",
+    "update-state"
+  ],
+  "defaultLockedActions": [
+    "posting",
+    "preview-posting",
+    "setup-change",
+    "company-switch",
+    "api-shortcut",
+    "new-draft",
+    "edit-record",
+    "delete-record"
+  ],
+  "forbiddenActions": [
+    "claim-german-final-proof",
+    "book-claim-without-evidence",
+    "post",
+    "preview-posting",
+    "setup-change",
+    "click-new",
+    "edit-record",
+    "delete-record",
+    "api-shortcut-without-explicit-case-permission"
+  ],
+  "safetyGates": [
+    "instance-must-be-MCP_1_20260210",
+    "company-must-be-RM-DEMO",
+    "document-no-must-be-P2P032-682298",
+    "read-only-entry-pages-only",
+    "screenshots-must-show-human-visible-accounts-amounts-entry-types",
+    "no-post-preview-new-edit-delete-setup"
+  ],
+  "expectedEvidence": [
+    "screenshot metadata and compact JSON result",
+    "screenshots only if they show intended accounting details",
+    "clear labor/final boundary"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "targetGermanCompanyImpact": "German final P2P needs equivalent screenshots with German accounts/tax/setup.",
+  "finalScreenshotNeeded": true,
+  "resultPath": "playwright/projects/fibu-book5/evidence/p2p-038/P2P-038-result.json",
+  "nextStep": "Run read-only screenshot visibility pass for P2P032 posted entries; no posting, preview, setup, edit, delete or draft creation.",
+  "createdAt": "2026-06-29T06:49:26.899Z",
+  "updatedAt": "2026-06-29T06:49:26.899Z"
+}
