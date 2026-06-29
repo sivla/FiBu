@@ -1,69 +1,75 @@
-# Universaarl Company Creation Draft
+# Universaarl GmbH: eigene Company in Business Central anlegen
 
-Status: `universaarl-draft`, `german-final-candidate`, `TARGET-001-proven`, `TARGET-002-gate`.
+Bevor Verkaufsauftraege, Einkaufsbelege, Lagerbewegungen oder Anlagenbuchungen entstehen, braucht die Universaarl GmbH einen eigenen Arbeitsbereich in Business Central. Dieser Arbeitsbereich heisst Company oder Mandant. Eine Company enthaelt eigene Stammdaten, eigene Einstellungen, eigene Belege und eigene Buchungen.
 
-## Was ist ein Environment?
+Fuer dieses Buch verwenden wir die Company `UNIVERSAARL-DE`. Sie gehoert zur Musterfirma Universaarl GmbH. Die Company wird nicht aus einer CRONUS-Demofirma als fertige Zielwelt uebernommen. Demodaten sind zum Lernen hilfreich, enthalten aber bereits Beispielkonten, Beispielartikel, Beispielkunden, Beispielsteuerlogik und Beispielbelege. Fuer eine durchgehende Fallstudie bauen wir die fachliche Welt kontrolliert auf.
 
-Ein Environment ist die Business-Central-Umgebung, in der Companies liegen. Fuer dieses Buch ist die aktive Zielinstanz `playthru`. Alte Umgebungen wie `MCP_1_20260210` bleiben nur historische Laborreferenz.
+## Environment und Company
 
-## Was ist eine Company?
+Ein Environment ist die Business-Central-Umgebung. In einem Environment koennen mehrere Companies liegen. Das Environment ist also die technische Umgebung; die Company ist der fachliche Buchungsraum.
 
-Eine Company ist der Mandant innerhalb einer Business-Central-Instanz. Sie enthaelt Stammdaten, Buchungslogik, Belege, Posten, Einrichtung und Auswertungen. Fuer das Buch soll `UNIVERSAARL-DE` die deutsche Zielcompany der `Universaarl GmbH` werden.
+In der Company entstehen spaeter:
 
-## Warum eine eigene Company?
+- Debitoren und Kreditoren,
+- Artikel, Anlagen und Lagerorte,
+- Kontenplan und Buchungsgruppen,
+- Umsatzsteuer- und Zahlungslogik,
+- Verkaufs- und Einkaufsbelege,
+- Sachposten, Nebenbuchposten und Auswertungen.
 
-Eine eigene Company verhindert, dass das Buch wie ein Mix aus Demo-, CRONUS-, Rhein-Main- und Universaarl-Welt wirkt. Sie macht die spaetere Beweiskette sauber:
+Wer in der falschen Company arbeitet, sieht andere Stammdaten und erzeugt andere Buchungen. Deshalb wird die aktive Company vor wichtigen Schritten immer kontrolliert.
 
-- gleiche Musterfirma,
-- gleiche Stammdatenlogik,
-- gleiche Buchkapitel,
-- deutsche Ziel-Evidence,
-- klare Trennung von Labor und Final.
+## Seite Mandanten oeffnen
 
-## Warum keine CRONUS-Stammdaten?
+Die Seite `Mandanten` zeigt alle Companies, die im Environment vorhanden sind. Sie ist der Startpunkt, wenn eine neue Company angelegt oder eine vorhandene Company geprueft wird.
 
-CRONUS/Demo-Daten sind gut zum Lernen, aber nicht die Zielwelt des Buches. Sie enthalten Beispielkonten, Beispielartikel, Beispielsteuerlogik und Beispielbelege, die nicht automatisch zur Universaarl GmbH passen. Deshalb darf eine Demo-/Kopie-/Testunternehmen-Route nicht unbesehen als finaler Buchstart bestaetigt werden.
+Auf der Seite sind vor allem drei Aktionen wichtig:
 
-## TARGET-001 Befund
+| Aktion | Bedeutung | Einordnung fuer Universaarl |
+| --- | --- | --- |
+| `Neu` | legt eine neue Company oder eine neue Mandantenzeile an | geeignet, wenn eine leere oder kontrollierbare Anlage entsteht |
+| `Kopieren` | erstellt eine Company aus einer vorhandenen Company | nur geeignet, wenn die Quelle fachlich passt |
+| `Testunternehmen` | erzeugt eine Demo- oder Testcompany | nicht geeignet als finale Universaarl-Zielwelt, wenn dadurch Demodaten entstehen |
 
-TARGET-001 hat bewiesen:
+## Vorhandene Companies pruefen
 
-- `playthru` ist per direkter URL erreichbar.
-- Companies Page `357` ist read-only erreichbar.
-- `UNIVERSAARL-DE` war in der Companies-Liste nicht sichtbar.
-- Sichtbare Aktionen wie `Neu`, `Kopieren` und `Testunternehmen` wurden nur inventarisiert.
-- Keine Suche, kein New, kein Setup, kein Company-Wechsel.
+Vor der Neuanlage wird zuerst geprueft, ob `UNIVERSAARL-DE` bereits vorhanden ist. Wenn die Company noch nicht in der Liste steht, wird sie neu angelegt. Wenn sie bereits vorhanden ist, wird nicht erneut angelegt; dann wird als naechstes die Company Information geprueft.
 
-Evidence: `playwright/projects/fibu-book5/evidence/target-001/`.
+`UNIVERSAARL-DE` steht fuer die deutsche Zielcompany der Universaarl GmbH. Der Name ist kurz, eindeutig und in allen spaeteren Schritten wiedererkennbar.
 
-## TARGET-002 Entscheidungslogik
+## Keine CRONUS-Kopie als Zielbasis
 
-TARGET-002 darf die Company nur erstellen, wenn eine sichere UI-first Route sichtbar und fachlich geeignet ist:
+Eine Kopie aus CRONUS oder einer anderen Demofirma kann schnell funktionieren, sie bringt aber fremde Stammdaten mit. Dann erscheinen Kunden, Artikel, Konten, Steuerlogik und Belege, die nicht zur Universaarl GmbH gehoeren.
 
-- bevorzugt blank/setup-only/production ohne Sample Data,
-- kein CRONUS-Kopieren,
-- keine Demo-Stammdaten als Zielbasis,
-- kein Finish/OK ohne sichtbare Zielwerte und klare Wirkung.
+Fuer die Universaarl GmbH ist deshalb eine leere oder setup-nahe Anlage besser als eine Demo-Kopie. Wenn Business Central nur eine Demo- oder Kopierroute anbietet, wird die Anlage nicht unbesehen bestaetigt. Erst muss klar sein, welche Daten in die neue Company gelangen.
 
-Wenn nur `Testunternehmen`, Demo, Copy/Kopieren oder CRONUS-nahe Optionen sichtbar sind, muss TARGET-002 stoppen und den Blocker dokumentieren.
+## Was beim Klick auf Neu passiert
 
-## TARGET-002 Befund
+Auf der Seite `Mandanten` oeffnet `Neu` eine neue, noch nicht gespeicherte Mandantenzeile. Eine leere Zeile ist noch keine fertige Company. Erst wenn ein Name eingetragen und gespeichert wurde, entsteht ein wirksamer neuer Mandant.
 
-TARGET-002 hat die Companies-Seite erneut direkt geoeffnet. `UNIVERSAARL-DE` war nicht sichtbar. Die Aktion `Neu` oeffnete eine leere, nicht gespeicherte Mandantenzeile. Es wurden keine Zielwerte eingegeben und kein Speichern, Finish oder OK bestaetigt.
+Vor dem Speichern muessen diese Punkte klar sein:
 
-Der Lauf wurde bewusst gestoppt, weil eine direkte Listenzeilen-Route zwar nach Blank Company aussieht, aber fachlich erst als separater Execute-Case abgesichert werden muss. Ein Anfaenger soll hier lernen: Eine sichtbare leere Zeile ist noch keine gespeicherte Company und kein finaler sauberer Buchstart.
+- Der Name lautet `UNIVERSAARL-DE`.
+- Die Company gehoert zur Universaarl GmbH.
+- Es wird keine Demo- oder CRONUS-Kopie bestaetigt.
+- Die sichtbare Aktion speichert wirklich die neue Company und wechselt nicht ungefragt in eine andere Umgebung.
+- Nach dem Speichern erscheint `UNIVERSAARL-DE` in der Mandantenliste.
 
-Evidence: `playwright/projects/fibu-book5/evidence/target-002/`.
+## Nach der Anlage
 
-## Was Anfaenger Lernen Sollen
+Nach der erfolgreichen Anlage ist die Company noch nicht fachlich fertig. Eine neue Company ist zuerst nur der leere Buchungsraum. Danach folgen die Grundlagen:
 
-Eine Company ist kein Ordner und kein Projektname. Sie ist der Buchungsraum. Wer die falsche Company kopiert oder mit Demo-Daten startet, zieht die falsche Welt in alle spaeteren Prozesse: Kontenplan, USt, Stammdaten, Belege, Posten und Screenshots.
+1. Company Information pflegen.
+2. Sprache, Land/Region und Grundeinstellungen pruefen.
+3. Nummernserien festlegen.
+4. Kontenplan und Buchungsgruppen pruefen.
+5. Umsatzsteuerlogik einrichten.
+6. Dimensionen anlegen.
+7. Stammdaten fuer Debitoren, Kreditoren, Artikel, Anlagen und Lagerorte aufbauen.
+8. Erst danach werden die ersten Belege gebucht.
 
-Der saubere Weg ist:
+## Typischer Fehler
 
-1. Environment pruefen.
-2. Companies-Seite oeffnen.
-3. Zielcompany suchen.
-4. Create-/New-Option verstehen.
-5. Erst dann Company anlegen.
-6. Danach Company Information, Setup und erste Belege neu beweisen.
+Ein haeufiger Fehler ist, eine Test- oder Democompany zu verwenden, weil sie sofort viele Daten enthaelt. Das fuehlt sich am Anfang bequem an, macht spaeter aber jeden Screenshot und jede Buchung schwerer erklaerbar.
+
+Der bessere Weg ist langsamer, aber sauberer: eigene Company anlegen, Pflichtdaten bewusst setzen und jeden Prozess aus der gleichen Universaarl-Welt aufbauen.

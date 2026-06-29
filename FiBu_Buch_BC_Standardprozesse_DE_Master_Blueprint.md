@@ -11,11 +11,10 @@ Hinweis: Dieses Buch ist ein quellenbasiertes Lern-, Schulungs-, Projekt- und Im
 - Bei Abweichungen zwischen diesem Buch und Normtext oder Microsoft Learn gilt immer die aktuelle Primärquelle.
 - Dieses Skript verwendet für Quellenangaben nur Primärquellen: Microsoft Learn, Gesetze im Internet, BMF, BZSt und amtliche EU-Quellen.
 
-**Universaarl-Finaltrack und alte Laborreferenzen**
-- Die aktive Buchwelt wird auf `Universaarl GmbH` in der Business-Central-Zielinstanz `playthru` ausgerichtet. Die Zielcompany `UNIVERSAARL-DE` wird nicht vorausgesetzt, sondern als eigener UI-first Buchprozess angelegt, geprueft und bebildert.
-- Fruehere Rhein-Main-/RM-DEMO-/CRONUS-Befunde bleiben als `legacy-labor-reference` erhalten. Sie duerfen Lernnotizen, Clickguide-Entwuerfe und technische Playwright-Muster stuetzen, aber keine finalen deutschen Buchclaims beweisen.
-- Kapitel werden schrittweise auf Universaarl-Evidence umgestellt. Bis zur Neubelegung gilt fuer alte Prozessbilder: `needs-universaarl-rebuild`.
-- Statusbegriffe: `universaarl-draft` bedeutet Universaarl-orientierter Buchentwurf; `universaarl-proven` bedeutet in Universaarl praktisch belegt; `german-final-candidate` bedeutet vorbereitet, aber noch nicht final; `german-final-proof` bedeutet mit deutscher Ziel-Evidence belegt.
+**Durchgehende Fallstudie**
+- Die Universaarl GmbH begleitet die Beispiele in diesem Buch. In Business Central arbeitet sie in der Company `UNIVERSAARL-DE`.
+- Die Company wird bewusst angelegt, bevor Stammdaten, Belege und Buchungen entstehen. So bleiben Kunden, Lieferanten, Artikel, Konten, Steuerlogik und Auswertungen fachlich zusammenhaengend.
+- Demodaten und fruehere Uebungsfirmen eignen sich zum Lernen einzelner Funktionen, aber nicht als einheitliche Zielwelt fuer die Universaarl GmbH.
 
 ## Inhaltsverzeichnis nach sechs Teilen
 
@@ -262,7 +261,7 @@ Der 30-Tage-Plan nutzt dieselbe Reihenfolge wie der 14-Tage-Plan. Jeder Themenbl
 
 ## 3. Die Rhein-Main Industriegruppe als durchgehende Fallstudie
 
-> **Universaarl-Rebuild-Hinweis:** Dieses Kapitel wird schrittweise von der frueheren Rhein-Main-/RM-DEMO-Laborwelt auf die neue durchgehende Fallstudie `Universaarl GmbH` umgestellt. Bestehende Rhein-Main-Inhalte sind bis zur Neubelegung `legacy-labor-reference`. Die aktive Zielwelt ist `playthru` / `UNIVERSAARL-DE`; Company-Anlage, Stammdaten, Screenshots und Prozess-Evidence werden dort neu aufgebaut.
+Die durchgehende Fallstudie wird auf die Universaarl GmbH ausgerichtet. In Business Central arbeitet die Universaarl GmbH in einer eigenen Company: `UNIVERSAARL-DE`. Eine eigene Company trennt Stammdaten, Einstellungen, Belege und Buchungen sauber von Demo- oder Altdaten. Dadurch sieht der Leser in jedem Prozess dieselbe fachliche Welt: dieselbe Firma, dieselben Stammdaten und dieselbe Buchungslogik.
 
 Die Musterfirma ist bewusst breit konstruiert. Sie soll Business Central nicht minimal abbilden, sondern als Trainingsuniversum möglichst vollständig auslösen.
 

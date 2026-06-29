@@ -87,7 +87,9 @@ Zweck: kleiner Einstiegspunkt fuer Codex-Laeufe, die nicht den gesamten Projektv
 - `german-final-candidate`: Kandidat fuer deutsche finale Evidence, sobald Zielinstanz existiert.
 - `german-final-proof`: In deutscher Zielinstanz final belegt.
 
-Fuer Buchaenderungen gilt: Labor-Buchdrafts aus Evidence sind erlaubt, muessen aber Labor/Vorproduktion markieren, keine finalen deutschen Claims aus `RM-DEMO` machen und notieren, was in der deutschen Zielinstanz neu ersetzt werden muss.
+Fuer Buchaenderungen gilt: Interne Evidence, Coverage, State und Atlas duerfen Agenten-, Proof- und Rebuild-Sprache verwenden. Der Buchmaster und finale Buchdrafts nicht. Dort steht direkter Lesertext: Was sieht der Anfaenger in Business Central, warum ist der Schritt noetig, welcher Button oder welches Feld ist relevant, was passiert nach Speichern oder Buchen, welcher Fehler ist typisch und wie wird er korrigiert. Keine Formulierungen wie "Dieses Kapitel soll", "Evidence zeigt", "Dieser Screenshot beweist" oder "Spaeter muss noch" im Buchfliesstext.
+
+Labor-Buchdrafts aus Evidence sind erlaubt, aber sie werden als Schulungsbuch geschrieben. Grenzen werden sachlich erklaert oder in interne To-do-/Evidence-Dateien ausgelagert. Keine finalen deutschen Claims aus `RM-DEMO`.
 
 ## Skill-/Capability-Lernen
 

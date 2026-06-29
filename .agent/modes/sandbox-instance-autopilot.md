@@ -59,10 +59,11 @@ New companies must also document source/template, setup status, future use and w
 - Pure review loops, state-only movement, micro-cases without book/evidence/Playwright value and framework work without a current blocker are not sufficient.
 - `agent:subagent-plan` is optional. Use it for strong-model review, book changes, posting/setup judgement, conflicting evidence/state, large diffs, blocked/failed live runs or unclear next-case selection.
 - UI-first remains the default. API shortcuts need explicit case permission.
+- Book text is not agent documentation. Evidence/result/atlas/state files may say what was proven, blocked or still pending; the bookmaster and final bookdrafts must speak directly to the learner and explain the Business Central page, fields, buttons, result, typical error and correction path without repository or proof-process language.
 
 ## Stop if
 
-- The URL or UI no longer shows `MCP_1_20260210`.
+- The URL or UI no longer shows the active target instance from `.agent/state/current.json`.
 - Company context is unclear before a data-changing action.
 - Cleanup or trace status is unknown after creating a draft or posting.
 - The active case does not allow the risky action being considered.
