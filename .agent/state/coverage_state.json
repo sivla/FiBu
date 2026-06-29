@@ -296,8 +296,8 @@
   "hardExclusions": {
     "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
   },
-  "updatedAt": "2026-06-29T23:25:00+02:00",
-  "activeArea": "warehouse",
+  "updatedAt": "2026-06-30T00:20:00+02:00",
+  "activeArea": "manufacturing",
   "currentBlock": "PROCESS-SELECTION-AFTER-WAREHOUSE-SOURCE-PARKING",
   "latestPracticalCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
   "latestReviewCase": "WAREHOUSE-025-SOURCE-PO-LOCATION-ALTERNATIVE-OR-HELPER-DECISION",
@@ -1402,7 +1402,7 @@
     "nextCase": "FIXEDASSETS-298-FA-DEPRECIATION-BLOCKER-BOOK-SYNC",
     "updatedAt": "2026-06-29T07:09:31.588Z"
   },
-  "nextStep": "Move to another high-value process block or later create a non-speculative Warehouse setup-fit case only with explicit business reason and before/after evidence plan.",
+  "nextStep": "Define exact Production BOM/Routing target values and decide whether a controlled UI-first setup case is safe in RM-DEMO.",
   "warehouse": {
     "chapter": "Kapitel 13",
     "status": "in-progress",
@@ -1785,13 +1785,13 @@
     "updatedAt": "2026-06-29T23:55:00+02:00"
   },
   "manufacturing": {
-    "status": "labor-sufficient-for-book-draft",
+    "status": "bookmaster-synced-labor",
     "highestLevel": [
       "L1",
       "L8",
       "L9"
     ],
-    "latestEvidence": "playwright/projects/fibu-book5/evidence/manufacturing-003/MANUFACTURING-003-result.json",
+    "latestEvidence": "playwright/projects/fibu-book5/evidence/manufacturing-005/MANUFACTURING-005-result.json",
     "directPagesObserved": [
       {
         "label": "Production BOMs",
@@ -1817,11 +1817,12 @@
       "No Consumption Journal, Output Journal, Capacity Entry, Item Ledger Entry, Value Entry or G/L Entry from manufacturing was created.",
       "No German final proof was created."
     ],
-    "nextCase": "MANUFACTURING-005-CHAPTER14-LAB-VS-TARGET-CLEANUP",
-    "nextStep": "Clean Chapter 14 in the book master: integrate the lab draft narrowly, remove or isolate unrelated Fixed Assets remnants in the Manufacturing section, and keep the step-by-step route as target/German-final rebuild path.",
-    "updatedAt": "2026-06-29T23:59:00+02:00",
+    "nextCase": "MANUFACTURING-006-BOM-ROUTING-SETUP-READINESS-DECISION",
+    "nextStep": "Define exact Production BOM/Routing target values and decide whether a controlled UI-first setup case is safe in RM-DEMO.",
+    "updatedAt": "2026-06-30T00:20:00+02:00",
     "latestDecision": "playwright/projects/fibu-book5/evidence/manufacturing-004/MANUFACTURING-004-result.json",
-    "bookDraftPath": "playwright/projects/fibu-book5/book-drafts/manufacturing-labor-draft.md"
+    "bookDraftPath": "playwright/projects/fibu-book5/book-drafts/manufacturing-labor-draft.md",
+    "latestBookMasterSync": "playwright/projects/fibu-book5/evidence/manufacturing-005/MANUFACTURING-005-result.json"
   },
   "latestManufacturing004": {
     "caseId": "MANUFACTURING-004-SETUP-READINESS-OR-BOOKDRAFT-DECISION",
@@ -1848,5 +1849,33 @@
     "mustRecreateInFinalSandbox": true,
     "finalScreenshotNeeded": true,
     "updatedAt": "2026-06-29T23:59:00+02:00"
+  },
+  "activeCase": "MANUFACTURING-006-BOM-ROUTING-SETUP-READINESS-DECISION",
+  "active_case_file": ".agent/state/cases/manufacturing-006-bom-routing-setup-readiness-decision.json",
+  "latestManufacturing005": {
+    "caseId": "MANUFACTURING-005-CHAPTER14-LAB-VS-TARGET-CLEANUP",
+    "status": [
+      "labor-sufficient-for-book-draft",
+      "needs-german-final-rebuild"
+    ],
+    "sourceInstance": "MCP_1_20260210",
+    "sourceCompany": "RM-DEMO",
+    "bcRun": false,
+    "playwrightRun": false,
+    "posted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "draftCreated": false,
+    "companySwitched": false,
+    "apiShortcut": false,
+    "resultPath": "playwright/projects/fibu-book5/evidence/manufacturing-005/MANUFACTURING-005-result.json",
+    "bookMasterPath": "FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md",
+    "decision": "Chapter 14 now integrates Manufacturing laboratory evidence narrowly: direct Page-ID anchors, screenshot-purpose table, target-path warning and German-final rebuild boundary.",
+    "notProved": "No Production BOM, Routing, Production Order, Consumption Journal, Output Journal, manufacturing ledger trace or German final proof.",
+    "nextCase": "MANUFACTURING-006-BOM-ROUTING-SETUP-READINESS-DECISION",
+    "migrationRelevance": "needed-for-german-final",
+    "mustRecreateInFinalSandbox": true,
+    "finalScreenshotNeeded": true,
+    "updatedAt": "2026-06-30T00:20:00+02:00"
   }
 }

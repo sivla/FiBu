@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-29T23:30:00+02:00",
+  "updatedAt": "2026-06-30T00:20:00+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "manufacturing",
-  "activeCase": "MANUFACTURING-005-CHAPTER14-LAB-VS-TARGET-CLEANUP",
-  "active_case_file": ".agent/state/cases/manufacturing-005-chapter14-lab-vs-target-cleanup.json",
+  "activeCase": "MANUFACTURING-006-BOM-ROUTING-SETUP-READINESS-DECISION",
+  "active_case_file": ".agent/state/cases/manufacturing-006-bom-routing-setup-readiness-decision.json",
   "lastReferenceCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
   "lastReferenceCaseFile": ".agent/state/cases/warehouse-031-warehouse-source-route-park-or-setup-fit-decision.json",
   "mode": "bc-specialist-labor-book-production",
@@ -40,7 +40,7 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "Clean Chapter 14 in the book master: integrate the lab draft narrowly, remove or isolate unrelated Fixed Assets remnants in the Manufacturing section, and keep the step-by-step route as target/German-final rebuild path.",
+  "nextStep": "Define exact Production BOM/Routing target values and decide whether a controlled UI-first setup case is safe in RM-DEMO.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/manufacturing-labor-draft.md",
     "area": "manufacturing",
@@ -59,8 +59,11 @@
       "MANUFACTURING-004"
     ],
     "bookEffect": "Manufacturing now has a standalone lab draft that separates direct page context from BOM/Routing/Production Order/Consumption/Output proof.",
-    "integratedIntoBookMaster": false,
-    "nextStep": "Clean Chapter 14 in the book master: integrate the lab draft narrowly, remove or isolate unrelated Fixed Assets remnants in the Manufacturing section, and keep the step-by-step route as target/German-final rebuild path."
+    "integratedIntoBookMaster": true,
+    "nextStep": "Define exact Production BOM/Routing target values and decide whether a controlled UI-first setup case is safe in RM-DEMO.",
+    "bookMasterPath": "FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md",
+    "bookMasterSection": "Chapter 14 Planning, Assembly und Manufacturing",
+    "labVsTargetPathSeparated": true
   },
   "bookProductionGoal": {
     "goalFile": ".agent/state/book-production-goal.json",
@@ -2982,5 +2985,31 @@
     "mustRecreateInFinalSandbox": true,
     "finalScreenshotNeeded": true,
     "updatedAt": "2026-06-29T23:59:00+02:00"
+  },
+  "latestManufacturing005": {
+    "caseId": "MANUFACTURING-005-CHAPTER14-LAB-VS-TARGET-CLEANUP",
+    "status": [
+      "labor-sufficient-for-book-draft",
+      "needs-german-final-rebuild"
+    ],
+    "sourceInstance": "MCP_1_20260210",
+    "sourceCompany": "RM-DEMO",
+    "bcRun": false,
+    "playwrightRun": false,
+    "posted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "draftCreated": false,
+    "companySwitched": false,
+    "apiShortcut": false,
+    "resultPath": "playwright/projects/fibu-book5/evidence/manufacturing-005/MANUFACTURING-005-result.json",
+    "bookMasterPath": "FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md",
+    "decision": "Chapter 14 now integrates Manufacturing laboratory evidence narrowly: direct Page-ID anchors, screenshot-purpose table, target-path warning and German-final rebuild boundary.",
+    "notProved": "No Production BOM, Routing, Production Order, Consumption Journal, Output Journal, manufacturing ledger trace or German final proof.",
+    "nextCase": "MANUFACTURING-006-BOM-ROUTING-SETUP-READINESS-DECISION",
+    "migrationRelevance": "needed-for-german-final",
+    "mustRecreateInFinalSandbox": true,
+    "finalScreenshotNeeded": true,
+    "updatedAt": "2026-06-30T00:20:00+02:00"
   }
 }

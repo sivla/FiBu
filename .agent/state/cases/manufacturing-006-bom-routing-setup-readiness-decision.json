@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "caseId": "MANUFACTURING-006-BOM-ROUTING-SETUP-READINESS-DECISION",
+  "title": "Manufacturing BOM/Routing setup readiness decision",
+  "status": "planned",
+  "taskClass": "judge_work",
+  "modelClass": "gpt-5.5-low",
+  "usageLogRequired": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "setup-readiness-decision",
+  "sourceCase": "MANUFACTURING-005-CHAPTER14-LAB-VS-TARGET-CLEANUP",
+  "purpose": "Decide exact UI-first target values and evidence plan for RM-M100 Production BOM and Routing setup-readiness before any Manufacturing setup, draft creation, Preview Posting or posting.",
+  "allowedActions": [
+    "read-manufacturing-evidence",
+    "read-chapter-14-current-text",
+    "read-relevant-testdata",
+    "write-setup-readiness-plan",
+    "update-state"
+  ],
+  "defaultLockedActions": [
+    "bc-execution",
+    "playwright-execution",
+    "new",
+    "edit-bc-data",
+    "setup-change",
+    "preview-posting",
+    "posting",
+    "company-switch",
+    "api-shortcut"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "claim-german-final-proof",
+    "manufacturing-posting-without-bom-routing-gate",
+    "repeat-search-navigation-when-direct-page-url-is-known"
+  ],
+  "safetyGates": [
+    "define target Production BOM, component lines and quantities before any BC edit",
+    "define target Routing and Work Center values before any BC edit",
+    "define before/after evidence and cleanup/keep strategy",
+    "keep RM-DEMO evidence laboratory-only"
+  ],
+  "expectedEvidence": [
+    "BOM/Routing setup-readiness decision",
+    "target values for a future UI-first setup case",
+    "German-final rebuild boundary"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "resultPath": "playwright/projects/fibu-book5/evidence/manufacturing-006/MANUFACTURING-006-result.json",
+  "nextStep": "Define exact Production BOM/Routing target values and decide whether a controlled UI-first setup case is safe in RM-DEMO.",
+  "createdAt": "2026-06-30T00:20:00+02:00",
+  "updatedAt": "2026-06-30T00:20:00+02:00"
+}

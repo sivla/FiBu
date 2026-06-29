@@ -2598,11 +2598,11 @@ Dieses Kapitel zeigt, wie RM-PROD aus Bedarf einen Fertigungsauftrag für `RM-M1
 
 ### Status dieses Kapitels im RM-DEMO-Labor
 
-Der aktuelle Laborstand ist `MANUFACTURING-001`/`MANUFACTURING-002`. Er beweist noch keinen ausgefuehrten Fertigungsprozess, sondern nur die Readiness davor.
+Der aktuelle Laborstand ist `MANUFACTURING-001` bis `MANUFACTURING-004`. Er beweist noch keinen ausgefuehrten Fertigungsprozess, sondern nur Readiness, direkte Seitenkontexte und einen Labor-Draft fuer dieses Kapitel. Seit `MANUFACTURING-003` sind wichtige Fertigungsseiten direkt per Page-URL nachgewiesen; das ist stabiler als eine reine Such-/Tell-Me-Anleitung, aber noch kein Prozessbeweis.
 
 | Ebene | Buchziel | RM-DEMO-Laborstand | Status |
 |---|---|---|---|
-| Navigation | `Planungsarbeitsblatt`, `Fertigungsstuecklisten`, `Arbeitsplaene`, `Freigegebene Fertigungsauftraege`, `Verbrauch Buch.-Blatt`, `Istmeldung Buch.-Blatt` | Die entsprechenden BC-/Tell-Me-Einstiege sind sichtbar; `Assembly Orders` ist nicht belastbar sichtbar. | Labor-Readiness |
+| Navigation | `Planungsarbeitsblatt`, `Fertigungsstuecklisten`, `Arbeitsplaene`, `Arbeitsplaetze`, `Freigegebene Fertigungsauftraege`, `Verbrauch Buch.-Blatt`, `Istmeldung Buch.-Blatt` | `Production BOMs`, `Routings`, `Work Centers` und `Released Production Orders` sind direkt per Page-URL sichtbar; `Assembly Orders` ist nicht belastbar sichtbar. | Labor-Readiness |
 | Artikel | `RM-M100`, `RAW-STEEL`, `COMP-CTRL`, `KIT-MAINT` | `RM-M100` und `RAW-STEEL` sind sichtbar; `COMP-CTRL` und `KIT-MAINT` sind nicht sichtbar. | teilweise |
 | Struktur | `BOM-RM-M100` und `ROUTE-M100` | Keine sichtbaren BOM-/Routing-/Manufacturing-Marker auf den Artikelkarten nachgewiesen. | offen |
 | Prozess | `PROD-3001`, Verbrauch, Output, Statistik | Kein Fertigungsauftrag, kein Verbrauch, kein Output und keine Fertigungsbuchung. | offen/gate-gesperrt |
@@ -2610,6 +2610,15 @@ Der aktuelle Laborstand ist `MANUFACTURING-001`/`MANUFACTURING-002`. Er beweist 
 | Finalbild | deutscher Mandant, deutsche Oberflaeche, deutscher Kontenplan | Noch offen. | DE-final offen |
 
 Fuer Anfaenger ist diese Trennung wichtig: Business Central kann Produktionsseiten anzeigen, ohne dass ein Produktionsfall buchbar ist. Erst wenn Artikel, Komponenten, Stueckliste oder Montage-/Fertigungsstruktur, Arbeitsplan, Lager-/Posting-Setup und Auftrag zusammenpassen, wird aus Navigation ein belastbarer Manufacturing-Prozess. Setup oder Buchung bleibt im Projekt durch Gate `MANUFACTURING-001-POSTING` gesperrt, bis ein eigener UI-first Setup- und Buchungslauf freigegeben ist.
+
+Screenshot-Anker aus dem Labor:
+
+| Screenshot | Zeigt | Beweist nicht |
+|---|---|---|
+| `manufacturing-003-010-production-boms.png` | Seite/Karte `Production BOM` ist direkt erreichbar | keine freigegebene Stueckliste fuer `RM-M100` |
+| `manufacturing-003-020-routings.png` | Seite/Karte `Routing` ist direkt erreichbar | keinen Arbeitsplan `ROUTE-M100` |
+| `manufacturing-003-030-work-centers.png` | Seite/Karte `Work Center` ist direkt erreichbar | keine Kapazitaetsbuchung |
+| `manufacturing-003-040-released-production-orders.png` | Seite `Released Production Order` ist direkt erreichbar | keinen Auftrag `PROD-3001`, keinen Verbrauch und keinen Output |
 
 ### Alltagsszene bei Rhein-Main
 
@@ -2662,10 +2671,13 @@ Rhein-Main ändert Setup nur über dokumentierte Projektentscheidungen. Ein spon
 
 ### Deutsche BC-Seiten
 
-Diese Seiten öffnest du über `Alt+Q`. Der deutsche Begriff ist führend; der englische Begriff steht als Suchhilfe in Klammern.
+Im deutschen Zielmandanten sind die deutschen Begriffe fuehrend; der englische Begriff steht als Suchhilfe in Klammern. Im RM-DEMO-Labor wurden wichtige Seiten zusaetzlich direkt per Page-URL geoeffnet, damit die Klickanleitung nicht unnoetig von der Suche abhaengt.
 
+- `Fertigungsstuecklisten (Production BOMs)` - Labor-Page-ID `99000786`
+- `Arbeitsplaene (Routings)` - Labor-Page-ID `99000764`
+- `Arbeitsplaetze (Work Centers)` - Labor-Page-ID `99000754`
+- `Freigegebene Fertigungsauftraege (Released Production Orders)` - Labor-Page-ID `99000831`
 - `Planungsarbeitsblatt (Planning Worksheet)`
-- `Freigegebene Fertigungsaufträge (Released Production Orders)`
 - `Verbrauch Buch.-Blätter (Consumption Journals)`
 - `Istmeldung Buch.-Blätter (Output Journals)`
 - `Fertigungsauftragsstatistik (Production Order Statistics)`
@@ -2676,9 +2688,7 @@ Bevor du die folgende Schrittfolge ausfuehrst, pruefst du im Labor zuerst die Vo
 
 Im aktuellen `RM-DEMO`-Stand ist diese Voraussetzung noch nicht erfuellt. Die folgende Schrittfolge ist deshalb das fachliche Zielbild fuer den naechsten freigegebenen Manufacturing-Lauf, nicht der bereits belegte Laborstand.
 
-Nachweis nach `FIXEDASSETS-020`: Der UI-first Lauf hat die Anlagenkarte ohne Speichern erneut geoeffnet und nur kartennahe `Mehr anzeigen`-Steuerelemente genutzt. Sichtbar erreichbar sind jetzt die fachlichen Eingabepfade `No.`, `Description`, `FA Class Code`, `FA Subclass Code`, `Depreciation Book Code` und `Posting Group`. Das ist ein wichtiger Zwischenbeweis fuer die Klickanleitung: Der Leser sieht, wo AfA-Buch und Anlagenbuchungsgruppe auf der Karte gepflegt werden. Es ist aber noch kein Stammdatennachweis, weil die Zielwerte `FA-CNC-01`, `CNC Maschine FRA`, `HGB` und `MACHINES` im Screenshot noch nicht gesetzt sind. Der naechste Schritt ist deshalb eine enge Setup-Fit-Entscheidung fuer die Anlagenkarte, nicht Einkaufsrechnung, Zugang oder AfA.
-
-Entscheidung nach `FIXEDASSETS-021`: Die Anlagenkarte wird noch nicht gespeichert. Sichtbare Feldpfade sind nur die halbe Wahrheit; Business Central muss auch die konkreten Werte akzeptieren. Vor dem ersten finalen Stammdatenscreenshot braucht die Klickanleitung deshalb einen no-save Lookup-/Werte-Preflight: Ist `HGB` im Feld `Depreciation Book Code` auswaehlbar? Ist `MACHINES` im Feld `Posting Group` auswaehlbar? Welche vorhandenen Werte gibt es fuer `FA Class Code` und `FA Subclass Code`? Welche AfA-Start-/Enddaten oder Nutzungsdauerwerte werden fachlich gesetzt? Erst wenn diese Fragen sichtbar beantwortet sind, darf `FA-CNC-01` als Zielanlage gespeichert werden.
+Warnung vor der Schrittfolge: Die folgenden Schritte sind ein Zielpfad fuer den spaeteren Manufacturing-Lauf. Im aktuellen Labor sind nur Seitenkontext und Readiness belegt. Ohne sichtbare Stueckliste, Arbeitsplan, freigegebenen Auftrag und klare Postenspur wird nicht behauptet, dass die Fertigung praktisch durchgespielt ist.
 
 ### Schritt-für-Schritt
 
