@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-29T12:12:00+02:00",
+  "updatedAt": "2026-06-29T11:05:00+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "warehouse",
-  "activeCase": "WAREHOUSE-011-SOURCE-DOCUMENT-ACTION-ON-DRAFT",
-  "active_case_file": ".agent/state/cases/warehouse-011-source-document-action-on-draft.json",
-  "lastReferenceCase": "WAREHOUSE-010-WAREHOUSE-RECEIPT-DRAFT-LIFECYCLE-ROUTE",
-  "lastReferenceCaseFile": ".agent/state/cases/warehouse-010-receipt-draft-lifecycle-route.json",
+  "activeCase": "WAREHOUSE-014-EXISTING-RECEIPT-SOURCE-DOCUMENT-BLOCKER",
+  "active_case_file": ".agent/state/cases/warehouse-014-existing-receipt-source-document-blocker.json",
+  "lastReferenceCase": "WAREHOUSE-013-EXISTING-RECEIPT-GET-SOURCE-DOCUMENTS",
+  "lastReferenceCaseFile": ".agent/state/cases/warehouse-013-existing-receipt-get-source-documents.json",
   "mode": "bc-specialist-labor-book-production",
   "requiresStrongModel": false,
   "requiredPreflightChecks": [
@@ -40,7 +40,7 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "WAREHOUSE-011: on the controlled Warehouse Receipt draft, find the Prepare/Get Source Documents route without posting.",
+  "nextStep": "WAREHOUSE-014: diagnose Warehouse Receipt source-document action mismatch using maximized/card action inventory; no OK/Select/Post.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/inventory-labor-draft.md",
     "area": "inventory",
@@ -221,7 +221,7 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "multi-route-sandbox-progress",
+  "currentCoverageFocus": "warehouse-source-document-action-blocker",
   "nextProcessRoute": [
     "P2P-012 compared Purchase Journal, Item Journal, Purchase Invoices and Requisition Worksheet by direct page URL without search or field entry.",
     "Item Journal is the most stable observed route for material quantity/location/value effect, but it is Inventory evidence rather than full creditor P2P.",
@@ -2421,5 +2421,80 @@
     "previewPosting": false,
     "nextCase": "WAREHOUSE-011-SOURCE-DOCUMENT-ACTION-ON-DRAFT",
     "updatedAt": "2026-06-29T12:12:00+02:00"
+  },
+  "latestWarehouse011": {
+    "caseId": "WAREHOUSE-011-SOURCE-DOCUMENT-ACTION-ON-DRAFT",
+    "status": "observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-011/WAREHOUSE-011-result.json",
+    "decision": "Warehouse Receipt draft action inventory exposed Get Source Documents candidates, but no source document was selected or confirmed.",
+    "sourceProcessCandidates": [
+      {
+        "text": "Get Source Documents...",
+        "ariaLabel": "Get Source Documents...",
+        "title": "",
+        "role": "",
+        "tagName": "SPAN",
+        "box": {
+          "x": 406,
+          "y": 171.5,
+          "width": 151.0625,
+          "height": 19
+        },
+        "score": -42
+      },
+      {
+        "text": "Use Filters to Get Src. Docs...",
+        "ariaLabel": "Use Filters to Get Src. Docs...",
+        "title": "",
+        "role": "",
+        "tagName": "SPAN",
+        "box": {
+          "x": 605.0625,
+          "y": 171.5,
+          "width": 174.515625,
+          "height": 19
+        },
+        "score": -42
+      }
+    ],
+    "getSourceVisible": true,
+    "posted": false,
+    "previewPosting": false,
+    "nextCase": "WAREHOUSE-012-GET-SOURCE-DOCUMENTS-NO-CONFIRM",
+    "updatedAt": "2026-06-29T11:05:00+02:00"
+  },
+  "latestWarehouse012": {
+    "caseId": "WAREHOUSE-012-GET-SOURCE-DOCUMENTS-NO-CONFIRM",
+    "status": "blocked",
+    "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-012/WAREHOUSE-012-result.json",
+    "decision": "Warehouse Receipts list context did not safely open the Get Source Documents dialog/selection.",
+    "blockedBy": [
+      "get-source-documents-dialog-not-visible"
+    ],
+    "getSourceClicked": false,
+    "posted": false,
+    "previewPosting": false,
+    "nextCase": "WAREHOUSE-013-EXISTING-RECEIPT-GET-SOURCE-DOCUMENTS",
+    "updatedAt": "2026-06-29T11:05:00+02:00"
+  },
+  "latestWarehouse013": {
+    "caseId": "WAREHOUSE-013-EXISTING-RECEIPT-GET-SOURCE-DOCUMENTS",
+    "status": "blocked",
+    "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-013/WAREHOUSE-013-result.json",
+    "decision": "Existing Warehouse Receipt RE000001 is visible and reusable, but no safe source-document candidate selection route was opened.",
+    "receiptNo": "RE000001",
+    "receiptVisible": true,
+    "receiptOpened": true,
+    "getSourceClicked": false,
+    "getSourceCandidates": 0,
+    "blockedBy": [
+      "get-source-documents-selection-context-not-visible"
+    ],
+    "posted": false,
+    "previewPosting": false,
+    "nextCase": "WAREHOUSE-014-EXISTING-RECEIPT-SOURCE-DOCUMENT-BLOCKER",
+    "migrationRelevance": "needed-for-german-final",
+    "mustRecreateInFinalSandbox": true,
+    "updatedAt": "2026-06-29T11:05:00+02:00"
   }
 }

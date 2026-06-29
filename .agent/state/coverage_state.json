@@ -271,12 +271,12 @@
   "hardExclusions": {
     "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
   },
-  "updatedAt": "2026-06-29T12:12:00+02:00",
+  "updatedAt": "2026-06-29T11:05:00+02:00",
   "activeArea": "warehouse",
-  "currentBlock": "warehouse-source-document-action-on-draft",
-  "latestPracticalCase": "WAREHOUSE-010-WAREHOUSE-RECEIPT-DRAFT-LIFECYCLE-ROUTE",
+  "currentBlock": "warehouse-source-document-action-blocker",
+  "latestPracticalCase": "WAREHOUSE-013-EXISTING-RECEIPT-GET-SOURCE-DOCUMENTS",
   "latestReviewCase": "FIXEDASSETS-299-FA-DEPRECIATION-NEXT-HYPOTHESIS-DECISION",
-  "nextCase": "WAREHOUSE-011-SOURCE-DOCUMENT-ACTION-ON-DRAFT",
+  "nextCase": "WAREHOUSE-014-EXISTING-RECEIPT-SOURCE-DOCUMENT-BLOCKER",
   "latestBank013": {
     "caseId": "BANK-013-CONTROLLED-NEXT-EVIDENCE-STEP",
     "status": [
@@ -1377,21 +1377,24 @@
     "nextCase": "FIXEDASSETS-298-FA-DEPRECIATION-BLOCKER-BOOK-SYNC",
     "updatedAt": "2026-06-29T07:09:31.588Z"
   },
-  "nextStep": "Run WAREHOUSE-006 no-post inbound Warehouse Receipt/Put-away preflight; no Warehouse posting.",
+  "nextStep": "WAREHOUSE-014: diagnose why Get Source Documents candidates found in WAREHOUSE-011 are not reachable from WAREHOUSE-012/013 routes; use card maximize/wide layout if needed, no OK/Select/Post.",
   "warehouse": {
     "chapter": "Kapitel 13",
     "status": "in-progress",
-    "currentBlock": "warehouse-source-document-action-on-draft",
+    "currentBlock": "warehouse-source-document-action-blocker",
     "latestEvidenceCases": [
       "WAREHOUSE-006",
       "WAREHOUSE-007",
       "WAREHOUSE-008",
       "WAREHOUSE-009",
-      "WAREHOUSE-010"
+      "WAREHOUSE-010",
+      "WAREHOUSE-011",
+      "WAREHOUSE-012",
+      "WAREHOUSE-013"
     ],
-    "latestPracticalCase": "WAREHOUSE-010-WAREHOUSE-RECEIPT-DRAFT-LIFECYCLE-ROUTE",
-    "nextCase": "WAREHOUSE-011-SOURCE-DOCUMENT-ACTION-ON-DRAFT",
-    "blockerStatus": "warehouse-receipt-draft-route-open-source-document-action-hidden-behind-prepare-or-more-options",
+    "latestPracticalCase": "WAREHOUSE-013-EXISTING-RECEIPT-GET-SOURCE-DOCUMENTS",
+    "nextCase": "WAREHOUSE-014-EXISTING-RECEIPT-SOURCE-DOCUMENT-BLOCKER",
+    "blockerStatus": "existing-receipt-visible-but-source-document-selection-route-not-reached",
     "employeeSetup": {
       "userId": "KAJETAN.KALICKI",
       "locationCode": "FRA-ZL",
@@ -1399,7 +1402,7 @@
       "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-007/WAREHOUSE-007-result.json",
       "mustRecreateInFinalSandbox": true
     },
-    "nextStep": "WAREHOUSE-011: inspect Prepare/More options on the Warehouse Receipt draft for Get Source Documents without posting.",
+    "nextStep": "WAREHOUSE-014: diagnose why Get Source Documents candidates found in WAREHOUSE-011 are not reachable from WAREHOUSE-012/013 routes; use card maximize/wide layout if needed, no OK/Select/Post.",
     "draftRoute": {
       "status": "labor-proven",
       "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-010/WAREHOUSE-010-result.json",
@@ -1407,6 +1410,28 @@
       "noPosting": true,
       "noSourceDocumentConfirmation": true,
       "mustRecreateInFinalSandbox": true
-    }
+    },
+    "finalGermanProof": "open",
+    "sourceDocumentRoute": {
+      "status": "labor-blocked",
+      "receiptNo": "RE000001",
+      "getSourceCandidatesVisibleInW11": true,
+      "sourceSelectionReached": false,
+      "noPosting": true,
+      "noPreview": true,
+      "noSourceDocumentConfirmation": true,
+      "resultPaths": [
+        "playwright/projects/fibu-book5/evidence/warehouse-011/WAREHOUSE-011-result.json",
+        "playwright/projects/fibu-book5/evidence/warehouse-012/WAREHOUSE-012-result.json",
+        "playwright/projects/fibu-book5/evidence/warehouse-013/WAREHOUSE-013-result.json"
+      ],
+      "nextCase": "WAREHOUSE-014-EXISTING-RECEIPT-SOURCE-DOCUMENT-BLOCKER",
+      "migrationRelevance": "needed-for-german-final",
+      "mustRecreateInFinalSandbox": true
+    },
+    "openLimits": [
+      "WAREHOUSE-013: RE000001 is visible/reused, but no safe Get Source Documents selection context was reached.",
+      "No Warehouse Receipt posting, no Put-away and no Warehouse/Item/Value entry trace yet."
+    ]
   }
 }

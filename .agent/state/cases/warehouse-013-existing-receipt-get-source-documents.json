@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "caseId": "WAREHOUSE-013-EXISTING-RECEIPT-GET-SOURCE-DOCUMENTS",
+  "title": "Reuse Warehouse Receipt RE000001 and inspect source-document route",
+  "status": "blocked",
+  "taskClass": "wizard_work",
+  "modelClass": "gpt-4-high",
+  "usageLogRequired": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "warehouse-existing-receipt-get-source-documents",
+  "sourceCase": "WAREHOUSE-012-GET-SOURCE-DOCUMENTS-NO-CONFIRM",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/warehouse-012/WAREHOUSE-012-result.json"
+  ],
+  "purpose": "Open/reuse Warehouse Receipt RE000001 and inspect whether Get Source Documents can be reached without source confirmation or posting.",
+  "allowedActions": [
+    "business-central-execution",
+    "playwright-execution",
+    "direct-page-navigation",
+    "open-existing-draft",
+    "scoped-action-inventory",
+    "read-fields",
+    "evidence-capture"
+  ],
+  "defaultLockedActions": [
+    "posting",
+    "preview-posting",
+    "warehouse-receipt-posting",
+    "warehouse-putaway-posting",
+    "source-document-confirmation",
+    "delete-record",
+    "company-switch",
+    "api-shortcut"
+  ],
+  "forbiddenActions": [
+    "claim-german-final-proof",
+    "use-api-shortcut",
+    "post-warehouse-document",
+    "click-ok-or-select-on-source-document-dialog",
+    "change-require-pick-bin-mandatory-or-directed-put-away-and-pick"
+  ],
+  "safetyGates": [
+    "instance-boundary-gate",
+    "company-context-rm-demo",
+    "ui-first-only",
+    "no-posting",
+    "no-source-document-confirmation",
+    "post-receipt-not-clicked"
+  ],
+  "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-013/WAREHOUSE-013-result.json",
+  "resultStatus": "blocked",
+  "blockedBy": [
+    "get-source-documents-selection-context-not-visible"
+  ],
+  "decision": "RE000001 is visible/reused, but the existing-draft route still did not expose a safe source-document candidate selection.",
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "nextCase": "WAREHOUSE-014-EXISTING-RECEIPT-SOURCE-DOCUMENT-BLOCKER",
+  "nextStep": "Diagnose why Get Source Documents is visible after WAREHOUSE-011 but not reachable from the existing receipt/list route; avoid repeating WAREHOUSE-012/013 clicks.",
+  "createdAt": "2026-06-29T11:05:00+02:00",
+  "updatedAt": "2026-06-29T11:05:00+02:00"
+}

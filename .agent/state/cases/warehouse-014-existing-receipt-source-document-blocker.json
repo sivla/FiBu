@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "caseId": "WAREHOUSE-014-EXISTING-RECEIPT-SOURCE-DOCUMENT-BLOCKER",
+  "title": "Diagnose Warehouse Receipt source-document action blocker",
+  "status": "planned",
+  "taskClass": "wizard_work",
+  "modelClass": "gpt-4-high",
+  "usageLogRequired": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "warehouse-source-document-action-blocker-diagnosis",
+  "sourceCase": "WAREHOUSE-013-EXISTING-RECEIPT-GET-SOURCE-DOCUMENTS",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/warehouse-011/WAREHOUSE-011-result.json",
+    "playwright/projects/fibu-book5/evidence/warehouse-012/WAREHOUSE-012-result.json",
+    "playwright/projects/fibu-book5/evidence/warehouse-013/WAREHOUSE-013-result.json"
+  ],
+  "purpose": "Resolve the route mismatch: WAREHOUSE-011 proved Get Source Documents action candidates after draft action inventory, while WAREHOUSE-012/013 did not safely open a source selection context from list/existing-draft routes.",
+  "allowedActions": [
+    "business-central-execution",
+    "playwright-execution",
+    "direct-page-navigation",
+    "open-existing-draft",
+    "maximize-card-or-wide-layout-if-needed",
+    "expand-visible-action-areas",
+    "scoped-action-inventory",
+    "read-fields",
+    "evidence-capture"
+  ],
+  "defaultLockedActions": [
+    "posting",
+    "preview-posting",
+    "warehouse-receipt-posting",
+    "warehouse-putaway-posting",
+    "source-document-confirmation",
+    "delete-record",
+    "company-switch",
+    "api-shortcut"
+  ],
+  "forbiddenActions": [
+    "claim-german-final-proof",
+    "use-api-shortcut",
+    "post-warehouse-document",
+    "click-ok-or-select-on-source-document-dialog",
+    "change-require-pick-bin-mandatory-or-directed-put-away-and-pick",
+    "repeat-warehouse-012-or-013-route-without-new-hypothesis"
+  ],
+  "safetyGates": [
+    "instance-boundary-gate",
+    "company-context-rm-demo",
+    "ui-first-only",
+    "no-posting",
+    "no-source-document-confirmation",
+    "post-receipt-not-clicked",
+    "stop-before-ok-or-select"
+  ],
+  "expectedEvidence": [
+    "page/list/card context after opening RE000001",
+    "whether card maximize/wide layout changes action visibility",
+    "visible Get Source Documents candidates with role/title/box",
+    "explicit no-post/no-source-confirm flags"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-014/WAREHOUSE-014-result.json",
+  "nextStep": "Use card maximize/wide layout and scoped action inventory before any source selection; stop before OK/Select/Post.",
+  "createdAt": "2026-06-29T11:05:00+02:00",
+  "updatedAt": "2026-06-29T11:05:00+02:00"
+}

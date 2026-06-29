@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "caseId": "WAREHOUSE-012-GET-SOURCE-DOCUMENTS-NO-CONFIRM",
+  "title": "Try Get Source Documents without confirming source selection",
+  "status": "blocked",
+  "taskClass": "wizard_work",
+  "modelClass": "gpt-4-high",
+  "usageLogRequired": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "warehouse-get-source-documents-no-confirm",
+  "sourceCase": "WAREHOUSE-011-SOURCE-DOCUMENT-ACTION-ON-DRAFT",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/warehouse-011/WAREHOUSE-011-result.json"
+  ],
+  "purpose": "Use the visible Get Source Documents action route and stop before OK/Select or any posting action.",
+  "allowedActions": [
+    "business-central-execution",
+    "playwright-execution",
+    "direct-page-navigation",
+    "scoped-get-source-documents-action",
+    "read-fields",
+    "evidence-capture"
+  ],
+  "defaultLockedActions": [
+    "posting",
+    "preview-posting",
+    "warehouse-receipt-posting",
+    "warehouse-putaway-posting",
+    "source-document-confirmation",
+    "delete-record",
+    "company-switch",
+    "api-shortcut"
+  ],
+  "forbiddenActions": [
+    "claim-german-final-proof",
+    "use-api-shortcut",
+    "post-warehouse-document",
+    "click-ok-or-select-on-source-document-dialog",
+    "change-require-pick-bin-mandatory-or-directed-put-away-and-pick"
+  ],
+  "safetyGates": [
+    "instance-boundary-gate",
+    "company-context-rm-demo",
+    "ui-first-only",
+    "no-posting",
+    "no-source-document-confirmation"
+  ],
+  "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-012/WAREHOUSE-012-result.json",
+  "resultStatus": "blocked",
+  "blockedBy": [
+    "get-source-documents-dialog-not-visible"
+  ],
+  "decision": "The run remained in the Warehouse Receipts list context and did not safely open a true source-document selection dialog.",
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "nextCase": "WAREHOUSE-013-EXISTING-RECEIPT-GET-SOURCE-DOCUMENTS",
+  "nextStep": "Open/reuse existing receipt RE000001 first, then inspect Get Source Documents without confirmation.",
+  "createdAt": "2026-06-29T11:02:00+02:00",
+  "updatedAt": "2026-06-29T11:02:00+02:00"
+}
