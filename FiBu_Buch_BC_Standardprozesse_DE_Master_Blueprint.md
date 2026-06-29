@@ -21,7 +21,7 @@ Hinweis: Dieses Buch ist ein quellenbasiertes Lern-, Schulungs-, Projekt- und Im
 **Teil A — Orientierung und Fallstudie**
 1. Was dieses Buch ist
 2. Wie man dieses Buch nutzt
-3. Die Rhein-Main Industriegruppe als durchgehende Fallstudie
+3. Die Universaarl GmbH als durchgehende Fallstudie
 4. ERP und Business Central für absolute Einsteiger
 5. Wie Business Central denkt
 
@@ -182,7 +182,7 @@ Der Einsteigerpfad setzt kein ERP-Wissen voraus. Er führt von der Firma über G
 
 | Tag | Kapitel | Ergebnis |
 |---|---|---|
-| 1 | 1 bis 5 | Buchziel, Rhein-Main-Fallstudie, ERP-Grundbegriffe und BC-Denkweise verstehen |
+| 1 | 1 bis 5 | Buchziel, Universaarl-Fallstudie, ERP-Grundbegriffe und BC-Denkweise verstehen |
 | 2 | 6 bis 8 | Companies, Stammdaten und Foundation Setup sicher einordnen |
 | 3 | 9 bis 10 | Buchungsgruppen, Kontenfindung, Dimensionen und Reportingachsen verstehen |
 | 4 | 11 bis 12 | Verkauf/O2C und Einkauf/P2P mit Belegen, Posten und Kontrollberichten durchführen |
@@ -191,7 +191,7 @@ Der Einsteigerpfad setzt kein ERP-Wissen voraus. Er führt von der Firma über G
 | 7 | 32, 33, 37 und 38 | UAT-Fälle ausführen, Lösungen nachvollziehen, Begriffe nachschlagen und Prozesskatalog nutzen |
 
 Praxisregel:
-- Einsteiger lesen zuerst die Geschichte der Rhein-Main Industriegruppe. Danach werden Seiten, Felder und Posten leichter verständlich, weil jeder Klick einen geschäftlichen Grund hat.
+- Einsteiger lesen zuerst die Geschichte der Universaarl GmbH. Danach werden Seiten, Felder und Posten leichter verständlich, weil jeder Klick einen geschäftlichen Grund hat.
 
 ### Lernpfad für Buchhaltung
 
@@ -208,7 +208,7 @@ Praxisregel:
 Key User verbinden Fachprozess und Systembedienung. Sie lesen Kapitel 3 bis 5 für die Fallstudie, Kapitel 7 bis 10 für Daten und Setup, danach die eigenen Prozesskapitel aus 11 bis 25. UAT, Übungen, Glossar, Seitenindex und Projektartefakte stehen in Kapitel 32, 33, 37, 38 und 39.
 
 Typische Reihenfolge:
-1. Rhein-Main-Fallstudie und BC-Denkweise: Kapitel 3 bis 5.
+1. Universaarl-Fallstudie und BC-Denkweise: Kapitel 3 bis 5.
 2. Stammdaten, Buchungsgruppen und Dimensionen: Kapitel 7 bis 10.
 3. Eigener Fachbereich: passende Prozesskapitel 11 bis 25.
 4. UAT und Schulungsfähigkeit: Kapitel 32 und 33.
@@ -259,29 +259,33 @@ Der 30-Tage-Plan nutzt dieselbe Reihenfolge wie der 14-Tage-Plan. Jeder Themenbl
 ---
 
 
-## 3. Die Rhein-Main Industriegruppe als durchgehende Fallstudie
+## 3. Die Universaarl GmbH als durchgehende Fallstudie
 
-Die durchgehende Fallstudie wird auf die Universaarl GmbH ausgerichtet. In Business Central arbeitet die Universaarl GmbH in einer eigenen Company: `UNIVERSAARL-DE`. Eine eigene Company trennt Stammdaten, Einstellungen, Belege und Buchungen sauber von Demo- oder Altdaten. Dadurch sieht der Leser in jedem Prozess dieselbe fachliche Welt: dieselbe Firma, dieselben Stammdaten und dieselbe Buchungslogik.
+Die Universaarl GmbH ist die durchgehende Musterfirma dieses Buches. In Business Central arbeitet sie in einer eigenen Company: `UNIVERSAARL-DE`. Eine Company ist ein eigener Mandant. Sie trennt Stammdaten, Einstellungen, Belege und Buchungen von anderen Companies im selben Environment.
 
-Die Musterfirma ist bewusst breit konstruiert. Sie soll Business Central nicht minimal abbilden, sondern als Trainingsuniversum möglichst vollständig auslösen.
+Diese Trennung ist wichtig. Wenn Verkauf, Einkauf, Lager, Fertigung, Service und Buchhaltung in derselben Company arbeiten, greifen alle auf dieselbe fachliche Welt zu: dieselben Kunden, dieselben Lieferanten, dieselben Artikel, dieselben Konten, dieselbe Steuerlogik und dieselben Buchungsregeln.
+
+Die Universaarl GmbH wird nicht aus einer fertigen CRONUS-Demofirma als Zielwelt uebernommen. Demodaten sind zum Lernen einzelner Funktionen nuetzlich, bringen aber fremde Kunden, Artikel, Konten, Buchungsgruppen und Beispielbelege mit. Fuer dieses Buch entsteht die Musterfirma deshalb kontrolliert: zuerst die Company, dann Grunddaten, dann Setup, dann Stammdaten, dann Prozesse und Posten.
+
+Solange `UNIVERSAARL-DE` noch nicht in der Mandantenliste sichtbar ist, beginnt die Arbeit auf der Seite `Mandanten`. Dort wird zuerst geprueft, welche Companies bereits vorhanden sind. Erst danach wird die neue Company angelegt.
 
 ### Die Fallstudie in einfachen Worten
 
-Die Rhein-Main Industriegruppe baut Maschinen, verkauft Ersatzteile, nutzt Dropshipping fuer Sonderfaelle, schickt Servicetechniker zum Kunden, wickelt Projekte ab und fuehrt mehrere Gesellschaften in einer Unternehmensgruppe. Genau deshalb braucht sie ein ERP-System. Ohne ERP wuerden Vertrieb, Einkauf, Lager, Fertigung, Service und Buchhaltung mit getrennten Listen arbeiten. Dann weiss der Vertrieb nicht sicher, ob Ware verfuegbar ist. Der Einkauf sieht zu spaet, welches Material fehlt. Das Lager kennt Mengen, aber nicht immer Werte. Finance erkennt Fehler erst im Monatsabschluss.
+Die Universaarl GmbH verkauft Maschinen, handelt Ersatzteile, kauft Rohmaterial ein, fuehrt Lagerbewegungen aus, nutzt Anlagen, bezahlt Lieferanten, erhaelt Kundenzahlungen und wertet ihre Zahlen aus. Genau deshalb braucht sie ein ERP-System. Ohne ERP wuerden Vertrieb, Einkauf, Lager, Fertigung, Service und Buchhaltung mit getrennten Listen arbeiten. Dann weiss der Vertrieb nicht sicher, ob Ware verfuegbar ist. Der Einkauf sieht zu spaet, welches Material fehlt. Das Lager kennt Mengen, aber nicht immer Werte. Finance erkennt Fehler erst im Monatsabschluss.
 
 Business Central verbindet diese Abteilungen. Ein Verkaufsauftrag ist nicht nur ein Formular für den Kunden. Er beeinflusst Lager, Umsatz, Umsatzsteuer, Forderungen, Wareneinsatz, Dimensionen und Reporting. Eine Einkaufsbestellung ist nicht nur eine Bestellung beim Lieferanten. Sie beeinflusst Materialverfügbarkeit, Lagerwert, Kreditorenposten, Vorsteuer und Fertigungsfähigkeit. Die Fallstudie führt diese Zusammenhänge durch das gesamte Buch.
 
-Die Gruppe verdient Geld über mehrere Erlösquellen:
+Die Universaarl GmbH verdient Geld ueber mehrere Erloesquellen:
 
 | Erlösquelle | Beispiel | Warum BC relevant ist |
 |---|---|---|
-| Maschinenverkauf | `RM-M100` | Verkauf, Lager, Fertigung, Finance |
-| Sondermaschinen | `RM-X500` | Projekt, Fertigung, Meilensteinrechnung |
-| Ersatzteile | `SP-PUMP-01` | Lager, Shop, Service |
+| Maschinenverkauf | Standardmaschine | Verkauf, Lager, Fertigung, Finance |
+| Sondermaschinen | Kundenprojekt | Projekt, Fertigung, Meilensteinrechnung |
+| Ersatzteile | Ersatzteilartikel | Lager, Verkauf, Service |
 | Service | Wartung und Reparatur | Serviceauftrag, Ressource, Ersatzteil |
 | Projekte | Installation | Projektposten, WIP, Faktura |
 | Miete | Mietmaschine | Abgrenzung, Standardgrenze |
-| Intercompany | RM-PROD an RM-SALES | IC-Belege, Abstimmung |
+| Intercompany | spaetere Universaarl-Companies | IC-Belege, Abstimmung |
 
 Vor Business Central hatte die Gruppe typische Probleme:
 - Vertrieb verkaufte Artikel ohne belastbare Verfügbarkeitsprüfung.
@@ -298,47 +302,44 @@ Vor Business Central hatte die Gruppe typische Probleme:
 
 Business Central wird eingeführt, damit dieselben Stammdaten und Buchungsregeln in allen Abteilungen gelten. Der Standard-first-Ansatz bedeutet: Zuerst wird geprüft, ob Business Central Standard den Prozess tragen kann. Erst danach wird über Extension, Integration oder Customizing entschieden.
 
-### Konzernstruktur
+### Company-Struktur
 
-| Company in BC | Rolle im Konzern | Hauptprozesse |
+Im ersten Schritt arbeitet die Universaarl GmbH in einer Hauptcompany. Weitere Companies werden erst angelegt, wenn ein Prozess sie wirklich braucht, zum Beispiel Intercompany, Ausland oder getrennte Service- und Produktionsprozesse.
+
+| Company in BC | Rolle | Hauptprozesse |
 |---|---|---|
-| `RM-PROD GmbH` | Produktion und Zentrallager | Fertigung, gesteuertes Lager, Einkauf, Intercompany-Verkauf |
-| `RM-SALES GmbH` | Vertrieb und Dropshipping/Sonderverkauf | B2B, Dropshipping, Debitoren |
-| `RM-SERVICE GmbH` | Wartung, Miete, Finanzierungsvorbereitung | Service, Mietfälle, Projekte, Anlagen-/Serviceartikel |
-| `RM-SHARED GmbH` | Shared Services | Einkauf, Stammdaten, Zahlungsverkehr, Reporting |
-| `RM-AT GmbH` | EU-Auslandsgesellschaft | Intercompany, EU-USt, Intrastat-nahe Fälle |
+| `UNIVERSAARL-DE` | deutsche Hauptcompany | Foundation, Finance, Verkauf, Einkauf, Lager, Anlagen, Reporting |
+| spaetere Produktionscompany | optionaler Ausbau | Fertigung, Warehouse, Intercompany |
+| spaetere Servicecompany | optionaler Ausbau | Service, Ressourcen, Ersatzteile |
+| spaetere Auslandsgesellschaft | optionaler Ausbau | EU-USt, Intercompany, Reporting |
 
 ```mermaid
 flowchart LR
-    PROD["RM-PROD GmbH\nFertigung + Zentrallager"] --> SALES["RM-SALES GmbH\nVertrieb + Dropshipping"]
-    PROD --> SERVICE["RM-SERVICE GmbH\nService + Miete"]
-    SHARED["RM-SHARED GmbH\nEinkauf + Stammdaten"] --> PROD
-    SHARED --> SALES
-    SALES --> AT["RM-AT GmbH\nEU-Vertrieb"]
-    SERVICE --> SALES
+    DE["UNIVERSAARL-DE\nHauptcompany"] --> SALES["Verkauf + Debitoren"]
+    DE --> PURCHASE["Einkauf + Kreditoren"]
+    DE --> WHSE["Lager + Bestand"]
+    DE --> FIN["Finance + Reporting"]
+    DE --> FA["Anlagen"]
+    DE -. spaeter .-> IC["weitere Universaarl-Companies"]
 ```
 
 ### Standorte und Lagerlogik
 
 | Lagerort | Company | Lagerart | BC-Logik | Trainingszweck |
 |---|---|---|---|---|
-| `FRA-ZL` | RM-PROD | Zentrallager | gesteuerte Einlagerung/Kommissionierung mit Lagerplätzen (Bins) | Lagereingang (Warehouse Receipt), Einlagerung (Put-away), Kommissionierung (Pick), Warenausgang (Shipment) |
-| `MZ-EINFACH` | RM-SALES | Außenlager | einfache Lagerbuchung ohne gesteuerte Einlagerung | einfacher Wareneingang und Verkauf |
-| `HH-FUL` | RM-SALES | Sonderverkaufs-/Versandabwicklung | Kommissionierung/Lieferung (Pick/Shipment) vereinfacht | Ersatzteilauftrag bis Versand |
-| `VAN-01` | RM-SERVICE | Servicefahrzeug | Lagerort für Techniker | Ersatzteilverbrauch im Service |
-| `PROJ-BER` | RM-SERVICE | Projektlager | Projektbezogenes Lager | Projektmaterial und Baustelle |
-| `DROP` | RM-SALES | Dropshipping | kein eigener Bestand | Direktlieferung Lieferant an Kunde |
+| Hauptlager | `UNIVERSAARL-DE` | einfaches Lager am Anfang | direkte Lagerbuchung ohne Warehouse-Zwang | erster Einkauf, erster Verkauf, erste Bestandspruefung |
+| Zentrallager | spaeterer Ausbau | gesteuerte Einlagerung/Kommissionierung mit Lagerplaetzen | Lagereingang, Einlagerung, Kommissionierung, Warenausgang |
+| Servicefahrzeug | spaeterer Ausbau | Lagerort fuer Techniker | Ersatzteilverbrauch im Service |
+| Projektlager | spaeterer Ausbau | projektbezogenes Lager | Projektmaterial und Baustelle |
 
-Projektregel für die Spielwiese:
-
-Im ersten O2C-Aufbau wird `FRA-ZL` zunächst nur als Lagerort angelegt. Die gesteuerte Lagerlogik mit Lagerplätzen, Lagereingängen, Einlagerungen, Kommissionierungen und Warenausgängen wird später im Warehouse-Kapitel aktiviert und separat getestet. Sonst würde der erste Verkaufsauftrag zu früh in einen vollständigen Warehouse-Prozess kippen.
+Der erste Lagerort bleibt bewusst einfach. Ein Verkaufs- oder Einkaufsbeleg soll am Anfang nicht sofort in vollstaendige Warehouse-Belege kippen. Die gesteuerte Lagerlogik mit Lagerplaetzen, Wareneingaengen, Einlagerungen, Kommissionierungen und Warenausgaengen folgt in einem eigenen Warehouse-Kapitel.
 
 ### Geschäftsmodelle
 
 | Modell | Use Case | BC-Schwerpunkt | Standardgrenze |
 |---|---|---|---|
-| Eigenfertigung | Standardmaschine `RM-M100` | Manufacturing | vollständig im Standard demonstrierbar |
-| Variantenfertigung | Sondermaschine `RM-X500` | BOM/Routing/Projekt/Fertigung | Variantenlogik braucht klare Stammdaten |
+| Eigenfertigung | Standardmaschine | Manufacturing | vollstaendig im Standard demonstrierbar |
+| Variantenfertigung | Sondermaschine | BOM/Routing/Projekt/Fertigung | Variantenlogik braucht klare Stammdaten |
 | Handelsware | Ersatzteil `SP-PUMP-01` | O2C/P2P/Inventory | Standard |
 | Sonderverkauf/Dropshipping | Ersatzteilverkauf mit direkter Lieferantenlieferung | Verkaufsauftraege (Sales Orders) / Einkaufsbestellungen (Purchase Orders) | abhaengig von Beleg- und Einkaufsbezug |
 | Service | Wartung beim Kunden | Service Management | Standard |
@@ -351,9 +352,9 @@ Im ersten O2C-Aufbau wird `FRA-ZL` zunächst nur als Lagerort angelegt. Die gest
 
 ### Erzählerischer Zusammenhang der Use Cases
 
-Die Rhein-Main Industriegruppe verdient ihr Geld nicht mit einem einzigen Prozess. Ein Maschinenverkauf beginnt im Vertrieb, löst Verfügbarkeitsprüfung aus, kann Fertigung anstoßen, bewegt Lagerwerte und endet in Forderung, Zahlung und GuV. Ein Servicefall beginnt beim Kundenproblem, verbraucht Ersatzteile, erzeugt Technikerzeiten und entscheidet zwischen Rechnung, Garantie und Kulanz. Ein Projekt verbindet Sondermaschine, Fremdleistung, Material, Ressourcen und Meilensteinrechnung.
+Die Universaarl GmbH verdient ihr Geld nicht mit einem einzigen Prozess. Ein Maschinenverkauf beginnt im Vertrieb, loest Verfuegbarkeitspruefung aus, kann Fertigung anstossen, bewegt Lagerwerte und endet in Forderung, Zahlung und GuV. Ein Servicefall beginnt beim Kundenproblem, verbraucht Ersatzteile, erzeugt Technikerzeiten und entscheidet zwischen Rechnung, Garantie und Kulanz. Ein Projekt verbindet Sondermaschine, Fremdleistung, Material, Ressourcen und Meilensteinrechnung.
 
-Mehrere Companies sind deshalb kein Selbstzweck. RM-PROD zeigt Produktion und Materialfluss. RM-SALES zeigt Markt, Kunden, Preise und Sonderverkauf. RM-SERVICE zeigt laufende Kundenbetreuung. RM-SHARED buendelt Finance, USt, Bank, Reporting und Administration. RM-AT macht EU- und Auslandsszenarien sichtbar. Business Central loest damit reale Probleme: weniger Dubletten, bessere Verfuegbarkeit, nachvollziehbare Steuerlogik, abgestimmte Posten, belastbare GuV nach Produktlinie und klare Verantwortlichkeiten.
+Mehrere Companies sind deshalb kein Selbstzweck. Die erste Company `UNIVERSAARL-DE` zeigt die zusammenhaengende deutsche Hauptfirma. Weitere Companies kommen erst dazu, wenn sie einen eigenen fachlichen Zweck haben. Business Central loest damit reale Probleme: weniger Dubletten, bessere Verfuegbarkeit, nachvollziehbare Steuerlogik, abgestimmte Posten, belastbare GuV nach Produktlinie und klare Verantwortlichkeiten.
 
 
 ## 4. ERP und Business Central für absolute Einsteiger

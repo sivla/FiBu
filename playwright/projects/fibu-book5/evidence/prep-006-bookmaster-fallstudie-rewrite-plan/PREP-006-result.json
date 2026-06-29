@@ -1,20 +1,21 @@
 {
   "schemaVersion": 1,
-  "runId": "PREP-006-BOOKMASTER-UNIVERSAARL-FALLSTUDIE-REWRITE-PLAN",
+  "purpose": "autopilot-result-normalized",
   "caseId": "PREP-006-BOOKMASTER-UNIVERSAARL-FALLSTUDIE-REWRITE-PLAN",
-  "status": "done",
-  "instance": "playthru",
-  "targetCompany": "UNIVERSAARL-DE",
-  "bcRun": false,
-  "playwrightRun": false,
-  "posted": false,
-  "previewPosting": false,
-  "setupChange": false,
-  "bookChanged": true,
-  "summary": "Updated chapter 3 bookmaster opening to Universaarl GmbH / UNIVERSAARL-DE and added an internal rewrite plan for remaining legacy sections.",
-  "evidence": [
-    "playwright/projects/fibu-book5/UNIVERSAARL-FALLSTUDIE-REWRITE-PLAN.md",
-    "playwright/projects/fibu-book5/evidence/prep-006-bookmaster-fallstudie-rewrite-plan/PREP-006-result.json"
+  "source": "local-book-rewrite",
+  "resultStatus": "observed",
+  "runPlanId": "PREP-006-BOOKMASTER-UNIVERSAARL-FALLSTUDIE-REWRITE-PLAN",
+  "selectedTaskClass": "monkey_work",
+  "selectedModelClass": "gpt-4-mini-low",
+  "proved": [
+    "Chapter 3 bookmaster opening now uses Universaarl GmbH instead of Rhein-Main as the active case-study heading.",
+    "The chapter text introduces UNIVERSAARL-DE as target company without claiming it already exists.",
+    "An internal rewrite plan now defines remaining legacy replacements and evidence gates."
+  ],
+  "notProved": [
+    "UNIVERSAARL-DE creation is still blocked until permissions are available.",
+    "No German final setup, posting, VAT, ledger, screenshot or company-context proof was created.",
+    "Legacy RM/Rhein-Main/RM-DEMO references remain in later book sections and evidence archives."
   ],
   "changedFiles": [
     "FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md",
@@ -26,7 +27,29 @@
     ".agent/state/marathon_queue.json",
     ".agent/state/last_run_summary.json"
   ],
-  "nextStep": "Continue with PREP-007-BOOK-WRITING-RULES-META-LANGUAGE-AUDIT. Company creation remains parked until permissions are available.",
+  "statePatch": {},
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/UNIVERSAARL-FALLSTUDIE-REWRITE-PLAN.md",
+    "playwright/projects/fibu-book5/evidence/prep-006-bookmaster-fallstudie-rewrite-plan/README.md"
+  ],
+  "warnings": [
+    "This is a book-prep run, not a BC proof.",
+    "Do not treat this run as company creation or German final evidence."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": false,
+  "reason": "State was updated manually in the same controlled commit; state-finalize --write is intentionally not used.",
+  "flags": {
+    "noBcExecution": true,
+    "noPlaywright": true,
+    "noCompanyCreation": true,
+    "noSetupChange": true,
+    "noPreview": true,
+    "noPost": true,
+    "noDraft": true,
+    "noBookMetaLanguageInAddedBookText": true
+  },
   "nextStepDecisionCard": {
     "currentCase": "PREP-006-BOOKMASTER-UNIVERSAARL-FALLSTUDIE-REWRITE-PLAN",
     "plannedNextCaseBeforeReview": "PREP-007-BOOK-WRITING-RULES-META-LANGUAGE-AUDIT",

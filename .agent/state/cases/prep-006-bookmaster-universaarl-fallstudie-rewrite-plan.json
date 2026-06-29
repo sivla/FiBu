@@ -1,20 +1,25 @@
 {
   "schemaVersion": 1,
-  "runId": "PREP-006-BOOKMASTER-UNIVERSAARL-FALLSTUDIE-REWRITE-PLAN",
   "caseId": "PREP-006-BOOKMASTER-UNIVERSAARL-FALLSTUDIE-REWRITE-PLAN",
   "status": "done",
+  "taskClass": "monkey_work",
   "instance": "playthru",
   "targetCompany": "UNIVERSAARL-DE",
-  "bcRun": false,
+  "sourceCompany": null,
+  "workType": "bookmaster-universaarl-rewrite-plan",
+  "effectiveBcAction": false,
   "playwrightRun": false,
-  "posted": false,
-  "previewPosting": false,
-  "setupChange": false,
-  "bookChanged": true,
-  "summary": "Updated chapter 3 bookmaster opening to Universaarl GmbH / UNIVERSAARL-DE and added an internal rewrite plan for remaining legacy sections.",
-  "evidence": [
-    "playwright/projects/fibu-book5/UNIVERSAARL-FALLSTUDIE-REWRITE-PLAN.md",
-    "playwright/projects/fibu-book5/evidence/prep-006-bookmaster-fallstudie-rewrite-plan/PREP-006-result.json"
+  "bookChange": true,
+  "summary": "Prepared the chapter 3 Universaarl case-study rewrite by updating the bookmaster opening and adding a controlled internal rewrite plan.",
+  "proved": [
+    "Chapter 3 no longer opens with Rhein-Main as the active case-study heading.",
+    "The bookmaster now introduces Universaarl GmbH and UNIVERSAARL-DE as the active case-study world without claiming the company already exists.",
+    "A targeted rewrite plan now lists remaining legacy areas, evidence gates and next-case lookahead."
+  ],
+  "notProved": [
+    "UNIVERSAARL-DE still has not been created.",
+    "No German final setup, posting, VAT, ledger or screenshot proof was created in this case.",
+    "Many later bookmaster chapters still contain legacy RM/Rhein-Main/RM-DEMO examples and must be replaced evidence-driven."
   ],
   "changedFiles": [
     "FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md",
@@ -26,7 +31,11 @@
     ".agent/state/marathon_queue.json",
     ".agent/state/last_run_summary.json"
   ],
-  "nextStep": "Continue with PREP-007-BOOK-WRITING-RULES-META-LANGUAGE-AUDIT. Company creation remains parked until permissions are available.",
+  "migrationRelevance": "needed-for-german-final",
+  "rebuildInstruction": "Use the chapter-3 Universaarl opening as the active case-study base. Replace remaining legacy process examples only after matching Universaarl evidence exists.",
+  "mustRecreateInFinalSandbox": false,
+  "targetGermanCompanyImpact": "UNIVERSAARL-DE remains the target company to create after permissions are available.",
+  "finalScreenshotNeeded": true,
   "nextStepDecisionCard": {
     "currentCase": "PREP-006-BOOKMASTER-UNIVERSAARL-FALLSTUDIE-REWRITE-PLAN",
     "plannedNextCaseBeforeReview": "PREP-007-BOOK-WRITING-RULES-META-LANGUAGE-AUDIT",
@@ -72,5 +81,16 @@
       "Scan only book-facing files and drafts first.",
       "Separate internal evidence language from reader-facing prose."
     ]
-  }
+  },
+  "validationCommands": [
+    "npm run agent:preflight",
+    "npm run agent:context",
+    "npm run agent:dry-run",
+    "npm run agent:run-plan",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/prep-006-bookmaster-fallstudie-rewrite-plan/PREP-006-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/prep-006-bookmaster-fallstudie-rewrite-plan/PREP-006-result.json",
+    "npm run check:encoding",
+    "git diff --check",
+    "npx tsc --noEmit"
+  ]
 }
