@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "caseId": "P2P-026-PURCHASE-INVOICE-CONTEXT-RESET-PROBE",
   "title": "Purchase Invoice context reset probe",
-  "status": "planned",
+  "status": "blocked",
   "taskClass": "wizard_work",
   "modelClass": "gpt-5.4-medium",
   "usageLogRequired": false,
@@ -53,5 +53,13 @@
   "mustRecreateInFinalSandbox": false,
   "targetGermanCompanyImpact": "German final P2P can reuse this as a navigation guard pattern, but final business evidence must be recreated in the German target company.",
   "finalScreenshotNeeded": false,
-  "nextStep": "Run a no-value-entry context-reset probe for Purchase Invoices and stop if draft 107229 is visible."
+  "resultPath": "playwright/projects/fibu-book5/evidence/p2p-026/P2P-026-result.json",
+  "blockedBy": [
+    "forbidden-draft-107229-visible",
+    "page-url-has-filter-or-bookmark",
+    "frame-url-has-filter-or-bookmark"
+  ],
+  "summary": "P2P-026 opened Purchase Invoices page 9308 read-only and proved the route still restores bookmark/list context for draft 107229. No New, value entry, Preview Posting, posting or setup change occurred.",
+  "nextCase": "P2P-027-PURCHASE-INVOICE-ROUTE-REJECTION-OR-RESET-HELPER",
+  "nextStep": "Review whether to reject Purchase Invoice route for this P2P lab branch or build a real bookmark/filter reset helper before any value entry."
 }

@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "caseId": "P2P-027-PURCHASE-INVOICE-ROUTE-REJECTION-OR-RESET-HELPER",
+  "title": "Purchase Invoice route rejection or reset helper decision",
+  "status": "planned",
+  "taskClass": "judge_work",
+  "modelClass": "gpt-5.5-low",
+  "usageLogRequired": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "p2p-purchase-invoice-route-decision-after-context-reset-blocker",
+  "sourceCase": "P2P-026-PURCHASE-INVOICE-CONTEXT-RESET-PROBE",
+  "purpose": "Decide whether to reject Purchase Invoices as the next P2P value-entry route in RM-DEMO or build a targeted bookmark/filter reset helper. Do not run Business Central in this review case.",
+  "allowedActions": [
+    "read-p2p-021-through-p2p-026-evidence",
+    "review-purchase-invoice-route-blockers",
+    "update-playwright-pattern-if-needed",
+    "write-evidence",
+    "update-state"
+  ],
+  "defaultLockedActions": [
+    "business-central-execution",
+    "playwright-execution",
+    "preview-posting",
+    "posting",
+    "setup-change",
+    "company-switch",
+    "api-shortcut"
+  ],
+  "forbiddenActions": [
+    "reuse-draft-107229",
+    "enter-vendor-or-line-values",
+    "click-new-on-purchase-invoices",
+    "click-preview-posting",
+    "click-post",
+    "claim-german-final-proof"
+  ],
+  "safetyGates": [
+    "p2p-026-result-must-be-read",
+    "do-not-repeat-page-9308-without-new-reset-hypothesis",
+    "decision-must-name-next-route"
+  ],
+  "migrationRelevance": "helper-only",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": false,
+  "targetGermanCompanyImpact": "German final P2P can reuse the route rejection/reset lesson, but final P2P evidence must be rebuilt in the German target company.",
+  "finalScreenshotNeeded": false,
+  "nextStep": "Write local decision evidence: reject Purchase Invoices for now and switch route, or define one concrete reset-helper hypothesis."
+}

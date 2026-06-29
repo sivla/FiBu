@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-29T00:25:00.000Z",
+  "updatedAt": "2026-06-29T00:40:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "p2p",
-  "activeCase": "P2P-026-PURCHASE-INVOICE-CONTEXT-RESET-PROBE",
-  "active_case_file": ".agent/state/cases/p2p-026-purchase-invoice-context-reset-probe.json",
-  "lastReferenceCase": "P2P-025-PURCHASE-INVOICE-LINE-ENTRY-BLOCKER-REVIEW",
-  "lastReferenceCaseFile": ".agent/state/cases/p2p-025-purchase-invoice-line-entry-blocker-review.json",
+  "activeCase": "P2P-027-PURCHASE-INVOICE-ROUTE-REJECTION-OR-RESET-HELPER",
+  "active_case_file": ".agent/state/cases/p2p-027-purchase-invoice-route-rejection-or-reset-helper.json",
+  "lastReferenceCase": "P2P-026-PURCHASE-INVOICE-CONTEXT-RESET-PROBE",
+  "lastReferenceCaseFile": ".agent/state/cases/p2p-026-purchase-invoice-context-reset-probe.json",
   "mode": "bc-specialist-labor-book-production",
-  "requiresStrongModel": false,
+  "requiresStrongModel": true,
   "requiredPreflightChecks": [
     "agent:preflight",
     "agent:state:validate",
@@ -40,7 +40,7 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "Run P2P-026 as a no-value-entry Purchase Invoice context-reset probe; stop if draft 107229 is visible and do not enter Vendor or line values.",
+  "nextStep": "Run P2P-027 as local route decision: reject Purchase Invoices for this lab branch or define one concrete bookmark/filter reset-helper hypothesis before any further value entry.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/bank-payments-labor-draft.md",
     "area": "bankPayments",
@@ -1386,7 +1386,7 @@
     "decision": "Approve a separate no-post Payment Journal preflight for Vendor Ledger document 108205. Do not use Payment Reconciliation Apply/Post for this target. BANK-018 may create exactly one scoped draft line, run Journal Check/open Apply Entries if reachable, and must cleanup or explicitly document keep status. Posting remains locked.",
     "nextStep": "BANK-018: controlled no-post Payment Journal preflight for 108205; do not post."
   },
-  "workType": "p2p-purchase-invoice-context-reset-probe",
+  "workType": "p2p-purchase-invoice-route-decision-after-context-reset-blocker",
   "lastCompletedCase": "BANK-026-BANK-RECONCILIATION-BOOK-SYNC",
   "latestBank018": {
     "caseId": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
@@ -1709,5 +1709,35 @@
     "mustRecreateInFinalSandbox": false,
     "finalScreenshotNeeded": false,
     "nextStep": "Run P2P-026 as no-value-entry context-reset probe; stop if 107229 is visible."
+  },
+  "latestP2P026PurchaseInvoiceContextResetProbe": {
+    "caseId": "P2P-026-PURCHASE-INVOICE-CONTEXT-RESET-PROBE",
+    "status": [
+      "labor-blocked",
+      "read-only",
+      "bookmark-context-blocker",
+      "helper-only"
+    ],
+    "sourceInstance": "MCP_1_20260210",
+    "sourceCompany": "RM-DEMO",
+    "bcRun": true,
+    "playwrightRun": true,
+    "posted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "apiShortcut": false,
+    "newClicked": false,
+    "valuesEntered": false,
+    "forbiddenDraft": "107229",
+    "resultPath": "playwright/projects/fibu-book5/evidence/p2p-026/P2P-026-result.json",
+    "evidencePath": "playwright/projects/fibu-book5/evidence/p2p-026/",
+    "proved": "Direct Purchase Invoices page 9308 opens read-only but still restores dc/bookmark context with kept draft 107229 visible. No New, Vendor, line, Preview Posting or posting occurred.",
+    "blocker": "Purchase Invoices route is not neutral in RM-DEMO; page URL and BC frame contain bookmark/filter state and 107229 remains visible.",
+    "decisionNeeded": "P2P-027 must either reject Purchase Invoices as current value-entry route or name one concrete reset-helper hypothesis.",
+    "migrationRelevance": "helper-only",
+    "mustRecreateInFinalSandbox": false,
+    "finalScreenshotNeeded": false,
+    "nextCase": "P2P-027-PURCHASE-INVOICE-ROUTE-REJECTION-OR-RESET-HELPER",
+    "nextStep": "Run local route decision before any further Purchase Invoice value-entry attempt."
   }
 }
