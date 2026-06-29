@@ -15,11 +15,11 @@
     "fixedassets": {
       "chapter": "Kapitel 21",
       "status": "in-progress",
-      "currentBlock": "fa-depreciation-journal-assets-default-review",
-      "latestPracticalCase": "FIXEDASSETS-289-FA-DEPRECIATION-JOURNAL-ASSETS-DEFAULT-READONLY",
+      "currentBlock": "fa-depreciation-journal-batch-filter-trace-readonly",
+      "latestPracticalCase": "FIXEDASSETS-293-FA-DEPRECIATION-JOURNAL-BATCH-FILTER-TRACE-READONLY",
       "latestReviewCase": "FIXEDASSETS-290-FA-DEPRECIATION-JOURNAL-ASSETS-DEFAULT-REVIEW",
       "latestDecisionCase": "FIXEDASSETS-247-FA-CALCULATE-DEPRECIATION-EXECUTION-GATE-PLAN",
-      "nextCase": "FIXEDASSETS-290-FA-DEPRECIATION-JOURNAL-ASSETS-DEFAULT-REVIEW",
+      "nextCase": "FIXEDASSETS-294-FA-DEPRECIATION-REQUEST-PAGE-OPTIONS-OR-CONTROLLED-REPEAT-GATE",
       "bookScreenshots": {
         "setupProofs": "available-labor",
         "purchaseInvoicePreflight": "available-labor",
@@ -30,14 +30,15 @@
         "depreciationBookFields": "field-values-visible-labor-fa-279",
         "fixedAssetTechnicalInspection": "accepted-labor-technical-proof",
         "postingGroupAssignment": "fieldlocal-fit-proven-machines-labor",
-        "depreciationJournalAssetsDefaultContext": "available-labor-readonly-fa-289"
+        "depreciationJournalAssetsDefaultContext": "available-labor-readonly-fa-289; fa-293 confirms default context but no FADEP-291-OK line visible"
       },
       "finalGermanProof": "open",
       "latestLocalHelperCase": "FIXEDASSETS-179-JOURNAL-GRID-GEOMETRY-CANDIDATE-HELPER",
       "latestLocalReviewCase": "FIXEDASSETS-181-JOURNAL-GRID-GEOMETRY-CANDIDATE-REVIEW",
-      "depreciationReadiness": "FA-289 captured Fixed Asset G/L Journals ASSETS / DEFAULT context read-only. Local review required before Calculate Depreciation OK, Preview Posting or Post.",
+      "depreciationReadiness": "FA-293 did not find FADEP-291-OK in the read-only Fixed Asset G/L Journals context. Request-page option review or guarded controlled repeat must be decided before any Preview/Post.",
       "openLimits": [
-        "FA-289 did not prove a generated FADEP line, FA-CNC-01, HGB or Preview Posting in Fixed Asset G/L Journals."
+        "FA-289 did not prove a generated FADEP line, FA-CNC-01, HGB or Preview Posting in Fixed Asset G/L Journals.",
+        "FA-293 did not prove FADEP-291-OK, FA-CNC-01, HGB or posting date in the visible Fixed Asset G/L Journals context."
       ]
     },
     "bankPayments": {
@@ -221,10 +222,10 @@
   },
   "updatedAt": "2026-06-29T08:25:00.000Z",
   "activeArea": "fixedassets",
-  "currentBlock": "p2p-purchase-invoice-bookmark-context-blocker-review",
-  "latestPracticalCase": "FIXEDASSETS-289-FA-DEPRECIATION-JOURNAL-ASSETS-DEFAULT-READONLY",
+  "currentBlock": "fa-depreciation-journal-batch-filter-trace-readonly",
+  "latestPracticalCase": "FIXEDASSETS-293-FA-DEPRECIATION-JOURNAL-BATCH-FILTER-TRACE-READONLY",
   "latestReviewCase": "FIXEDASSETS-290-FA-DEPRECIATION-JOURNAL-ASSETS-DEFAULT-REVIEW",
-  "nextCase": "FIXEDASSETS-293-FA-DEPRECIATION-JOURNAL-BATCH-FILTER-TRACE-READONLY",
+  "nextCase": "FIXEDASSETS-294-FA-DEPRECIATION-REQUEST-PAGE-OPTIONS-OR-CONTROLLED-REPEAT-GATE",
   "latestBank013": {
     "caseId": "BANK-013-CONTROLLED-NEXT-EVIDENCE-STEP",
     "status": [
@@ -274,6 +275,40 @@
         ],
         "nextCase": "FIXEDASSETS-293-FA-DEPRECIATION-JOURNAL-BATCH-FILTER-TRACE-READONLY",
         "updatedAt": "2026-06-29T06:12:51.683Z"
+      },
+      "latestReadOnlyTrace": {
+        "caseId": "FIXEDASSETS-293-FA-DEPRECIATION-JOURNAL-BATCH-FILTER-TRACE-READONLY",
+        "status": "observed-review-required",
+        "proves": [
+          "Fixed Asset G/L Journals was opened read-only in MCP_1_20260210 / RM-DEMO.",
+          "DEFAULT batch signal is visible.",
+          "FADEP-291-OK is not visible in the read-only journal context.",
+          "No Calculate Depreciation OK, Preview Posting, Post, setup change, company switch, API shortcut, draft creation or book change was executed."
+        ],
+        "doesNotProve": [
+          "It is still not proven whether FADEP-291-OK exists in another hidden filter, batch or view context.",
+          "No Preview Posting result.",
+          "No depreciation posting.",
+          "No German final proof."
+        ],
+        "journal": {
+          "pageVisible": true,
+          "targetDocumentVisible": false,
+          "targetAssetVisible": false,
+          "targetBookVisible": false,
+          "targetDateVisible": false,
+          "faDepPrefixVisible": false,
+          "assetsTemplateVisible": false,
+          "defaultBatchVisible": true,
+          "visibleFilterHints": true,
+          "previewPostingVisible": false,
+          "postVisible": true,
+          "newOrEditVisible": true,
+          "frameCount": 5,
+          "relevantFrameCount": 2
+        },
+        "nextCase": "FIXEDASSETS-294-FA-DEPRECIATION-REQUEST-PAGE-OPTIONS-OR-CONTROLLED-REPEAT-GATE",
+        "updatedAt": "2026-06-29T06:17:12.110Z"
       }
     }
   },
@@ -284,7 +319,7 @@
   "acquisitionPostingTrace": "book-synced: controlled FA G/L Journal lab posting performed once for G05001; posted G/L Entries show 82000/12210 and +/-120.000,00; posted FA Ledger Entries are visible via Page 5604 for FA-CNC-01/G05001/HGB/Acquisition Cost/amount. Page 5606 remains a rejected empty Preview path.",
   "nextAcquisitionRoute": "do-not-repeat-posting",
   "nextDepreciationRoute": "fa-gl-journal-assets-default-readonly",
-  "depreciationReadiness": "FA-289 accepted as journal landing-page/context evidence only. It does not unlock Calculate Depreciation OK, Preview Posting or Post. Next: read-only batch/filter trace.",
+  "depreciationReadiness": "FA-293 did not find FADEP-291-OK in the read-only Fixed Asset G/L Journals context. Request-page option review or guarded controlled repeat must be decided before any Preview/Post.",
   "bookDrafts": {
     "fixedassets": {
       "path": "playwright/projects/fibu-book5/book-drafts/fixedassets-labor-draft.md",
