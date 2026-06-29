@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "caseId": "WAREHOUSE-023-SOURCE-PO-LOCATION-FIELD-VISIBILITY-ROUTE",
   "title": "Source Purchase Order Location field visibility route",
-  "status": "planned",
+  "status": "observed",
   "taskClass": "wizard_work",
   "modelClass": "gpt-4-medium",
   "usageLogRequired": false,
@@ -82,7 +82,25 @@
   "mustRecreateInFinalSandbox": true,
   "finalScreenshotNeeded": true,
   "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-023/WAREHOUSE-023-result.json",
-  "nextStep": "Run the safe field visibility route on Purchase Order 106055; do not release, receive, invoice, preview, post or confirm Warehouse Receipt source selection.",
+  "nextStep": "WAREHOUSE-024: attempt a guarded Location Code line-cell value route on the visible RAW-STEEL row; stop before release.",
   "createdAt": "2026-06-29T18:45:00+02:00",
-  "updatedAt": "2026-06-29T18:45:00+02:00"
+  "updatedAt": "2026-06-29T19:20:00+02:00",
+  "resultStatus": "observed",
+  "bcRun": true,
+  "playwrightRun": true,
+  "posted": false,
+  "previewPosting": false,
+  "setupChanged": false,
+  "companySwitched": false,
+  "decision": "WAREHOUSE-023 proved Purchase Order 106055 opens directly and the Purchase Lines Location Code column is visible. RAW-STEEL currently shows ATLANTA, GA, not FRA-ZL; no true editable Location input/combobox is proven. Next case may attempt one guarded line-cell value route and must stop before release.",
+  "blockedBy": [
+    "fra-zl-still-not-visible-on-raw-steel-line",
+    "fillable-location-code-control-not-proven"
+  ],
+  "rawSteelLine": "RAW-STEEL Stahltraeger PCS 2.500,00 ATLANTA, GA FURNITURE",
+  "locationColumnVisible": true,
+  "rawLineAtlantaVisible": true,
+  "rawLineFraZlVisible": false,
+  "fillableLocationControlCount": 0,
+  "nextCase": "WAREHOUSE-024-SOURCE-PO-LINE-LOCATION-CELL-VALUE-GATE"
 }

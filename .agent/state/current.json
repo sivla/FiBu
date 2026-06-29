@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-29T18:45:00+02:00",
+  "updatedAt": "2026-06-29T19:20:00+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "warehouse",
-  "activeCase": "WAREHOUSE-023-SOURCE-PO-LOCATION-FIELD-VISIBILITY-ROUTE",
-  "active_case_file": ".agent/state/cases/warehouse-023-source-po-location-field-visibility-route.json",
-  "lastReferenceCase": "WAREHOUSE-022-SOURCE-PURCHASE-ORDER-VALUE-ENTRY-BLOCKER-REVIEW",
-  "lastReferenceCaseFile": ".agent/state/cases/warehouse-022-source-purchase-order-value-entry-blocker-review.json",
+  "activeCase": "WAREHOUSE-024-SOURCE-PO-LINE-LOCATION-CELL-VALUE-GATE",
+  "active_case_file": ".agent/state/cases/warehouse-024-source-po-line-location-cell-value-gate.json",
+  "lastReferenceCase": "WAREHOUSE-023-SOURCE-PO-LOCATION-FIELD-VISIBILITY-ROUTE",
+  "lastReferenceCaseFile": ".agent/state/cases/warehouse-023-source-po-location-field-visibility-route.json",
   "mode": "bc-specialist-labor-book-production",
   "requiresStrongModel": false,
   "requiredPreflightChecks": [
@@ -40,7 +40,7 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "WAREHOUSE-023: open Purchase Order 106055 directly and use wide layout, line focus, Show more/action expansion and page/control context to prove whether Location Code can be made visible/fillable before release.",
+  "nextStep": "WAREHOUSE-024: attempt a guarded Location Code line-cell value route on the visible RAW-STEEL row; stop before release.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/inventory-labor-draft.md",
     "area": "inventory",
@@ -112,8 +112,8 @@
     "summaryFile": ".agent/state/lab_to_german_sandbox_migration_plan.json",
     "noActiveLiveRunInOldSandbox": false,
     "germanTargetUnavailable": true,
-    "nextStep": "WAREHOUSE-023: open Purchase Order 106055 directly and use wide layout, line focus, Show more/action expansion and page/control context to prove whether Location Code can be made visible/fillable before release.",
-    "nextCase": "WAREHOUSE-023-SOURCE-PO-LOCATION-FIELD-VISIBILITY-ROUTE"
+    "nextStep": "WAREHOUSE-024: attempt a guarded Location Code line-cell value route on the visible RAW-STEEL row; stop before release.",
+    "nextCase": "WAREHOUSE-024-SOURCE-PO-LINE-LOCATION-CELL-VALUE-GATE"
   },
   "latestP2PLabFollowup": {
     "caseId": "P2P-004-PARTIAL-RECEIPT-VARIANCE-GATE",
@@ -221,7 +221,7 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "warehouse-source-po-location-field-visibility-route",
+  "currentCoverageFocus": "warehouse-source-po-line-location-cell-value-gate",
   "nextProcessRoute": [
     "P2P-012 compared Purchase Journal, Item Journal, Purchase Invoices and Requisition Worksheet by direct page URL without search or field entry.",
     "Item Journal is the most stable observed route for material quantity/location/value effect, but it is Inventory evidence rather than full creditor P2P.",
@@ -2693,5 +2693,28 @@
     "migrationRelevance": "needed-for-german-final",
     "mustRecreateInFinalSandbox": true,
     "updatedAt": "2026-06-29T18:45:00+02:00"
+  },
+  "latestWarehouse023": {
+    "caseId": "WAREHOUSE-023-SOURCE-PO-LOCATION-FIELD-VISIBILITY-ROUTE",
+    "status": "observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-023/WAREHOUSE-023-result.json",
+    "sourceDocumentNo": "106055",
+    "decision": "WAREHOUSE-023 proved Purchase Order 106055 opens directly and the Purchase Lines Location Code column is visible. RAW-STEEL currently shows ATLANTA, GA, not FRA-ZL; no true editable Location input/combobox is proven. Next case may attempt one guarded line-cell value route and must stop before release.",
+    "bcRun": true,
+    "playwrightRun": true,
+    "posted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "companySwitched": false,
+    "rawSteelVisible": true,
+    "rawSteelLine": "RAW-STEEL Stahltraeger PCS 2.500,00 ATLANTA, GA FURNITURE",
+    "locationColumnVisible": true,
+    "rawLineAtlantaVisible": true,
+    "rawLineFraZlVisible": false,
+    "fillableLocationControlCount": 0,
+    "nextCase": "WAREHOUSE-024-SOURCE-PO-LINE-LOCATION-CELL-VALUE-GATE",
+    "migrationRelevance": "needed-for-german-final",
+    "mustRecreateInFinalSandbox": true,
+    "updatedAt": "2026-06-29T19:20:00+02:00"
   }
 }

@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "caseId": "WAREHOUSE-024-SOURCE-PO-LINE-LOCATION-CELL-VALUE-GATE",
+  "title": "Source Purchase Order line Location Code value gate",
+  "status": "planned",
+  "taskClass": "wizard_work",
+  "modelClass": "gpt-4-medium",
+  "usageLogRequired": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "warehouse-source-po-line-location-cell-value-gate",
+  "sourceCase": "WAREHOUSE-023-SOURCE-PO-LOCATION-FIELD-VISIBILITY-ROUTE",
+  "sourceDocumentType": "Purchase Order",
+  "sourceDocumentNo": "106055",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/warehouse-023/WAREHOUSE-023-result.json",
+    "playwright/projects/fibu-book5/evidence/warehouse-023/WAREHOUSE-023-LOCATION-FIELD-VISIBILITY.md",
+    "playwright/projects/fibu-book5/evidence/warehouse-023/050-location-controls.json"
+  ],
+  "purpose": "Use the now-visible Purchase Lines Location Code column on Purchase Order 106055 to attempt a guarded line-cell Location Code value route for FRA-ZL, then stop before release or any Warehouse Receipt source selection.",
+  "allowedActions": [
+    "open-business-central-if-instance-and-company-match",
+    "run-playwright-if-case-preflight-passes",
+    "open-purchase-order-106055-by-direct-page-url",
+    "maximize-card-or-wide-layout",
+    "focus-purchase-lines-subform",
+    "attempt-guarded-location-code-line-cell-value",
+    "capture-compact-evidence",
+    "update-state"
+  ],
+  "defaultLockedActions": [
+    "purchase-order-release",
+    "purchase-order-receive",
+    "purchase-order-invoice",
+    "warehouse-receipt-source-confirmation",
+    "warehouse-receipt-posting",
+    "warehouse-putaway-posting",
+    "preview-posting",
+    "posting",
+    "setup-change",
+    "company-switch",
+    "api-shortcut",
+    "delete-draft"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "claim-german-final-proof",
+    "use-api-shortcut",
+    "post-warehouse-document",
+    "change-require-pick-bin-mandatory-or-directed-put-away-and-pick",
+    "click-post-receipt"
+  ],
+  "safetyGates": [
+    "confirm-url-or-shell-instance-mcp-1-20260210",
+    "confirm-company-rm-demo",
+    "confirm-document-106055",
+    "confirm-raw-steel-row-visible",
+    "confirm-location-code-column-visible",
+    "only-write-fra-zl-if-target-cell-is-line-location-code",
+    "no-release",
+    "no-warehouse-source-selection",
+    "no-preview-posting",
+    "no-posting",
+    "abort-on-ambiguous-dialog"
+  ],
+  "plannedRoute": [
+    "Open Purchase Order 106055 by direct Page 50 filter URL.",
+    "Maximize/wide layout and expose Lines if needed.",
+    "Anchor the RAW-STEEL row and visible Location Code column.",
+    "Attempt exactly one guarded line-cell value route for Location Code = FRA-ZL only if the target cell can be identified as the RAW-STEEL line Location Code cell.",
+    "Capture before/after compact text and controls.",
+    "Stop before release, receive, invoice, Preview Posting, posting or Warehouse Receipt source confirmation.",
+    "If value route remains ambiguous, do not retry blindly; document helper/alternative route requirement."
+  ],
+  "expectedEvidence": [
+    "direct URL/context proof for Purchase Order 106055",
+    "RAW-STEEL row before value attempt",
+    "Location Code column/cell target proof",
+    "after-attempt row value",
+    "clear no-release/no-post/no-preview flags",
+    "German final rebuild instruction"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-024/WAREHOUSE-024-result.json",
+  "nextStep": "Attempt one guarded Location Code line-cell value route on Purchase Order 106055; stop before release.",
+  "createdAt": "2026-06-29T19:20:00+02:00",
+  "updatedAt": "2026-06-29T19:20:00+02:00"
+}
