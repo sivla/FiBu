@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 1,
+  "caseId": "P2P-033-PURCHASE-JOURNAL-POSTING-TRACE-REVIEW",
+  "source": "local-review-of-p2p-032-posting-trace",
+  "resultStatus": "observed",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "sourceCompany": "RM-DEMO",
+  "sourceCase": "P2P-032-PURCHASE-JOURNAL-CONTROLLED-POSTING-TRACE",
+  "bcRun": false,
+  "playwrightRun": false,
+  "posted": false,
+  "previewPosting": false,
+  "setupChanges": [],
+  "reviewedEvidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/p2p-032/P2P-032-result.json",
+    "playwright/projects/fibu-book5/evidence/p2p-032/090-vendor-ledger-payment-page-text.txt",
+    "playwright/projects/fibu-book5/evidence/p2p-032/091-detailed-vendor-ledger-payment-page-text.txt",
+    "playwright/projects/fibu-book5/evidence/p2p-032/092-gl-entries-payment-page-text.txt"
+  ],
+  "reviewedDocument": {
+    "documentNo": "P2P032-682298",
+    "externalDocumentNo": "EXT-P2P032-682298",
+    "vendorNo": "K10000",
+    "vendorName": "Stahlwerk Ruhr GmbH",
+    "amount": "-2.500,00",
+    "postingDate": "08.06.2026"
+  },
+  "postingTraceClassification": {
+    "vendorLedgerEntryVisible": true,
+    "detailedVendorLedgerEntryVisible": true,
+    "glEntriesVisible": true,
+    "glAccountsVisible": [
+      {
+        "accountNo": "22100",
+        "accountName": "Accounts Payable, Domestic",
+        "amount": "-2.500,00"
+      },
+      {
+        "accountNo": "82000",
+        "accountName": "Depreciation, Fixed Assets",
+        "amount": "2.500,00"
+      }
+    ],
+    "detailedVendorEntryType": "Initial Entry",
+    "entryNumbersVisible": [
+      "Vendor Ledger Entry 5010",
+      "Detailed Vendor Ledger Entry 822",
+      "G/L Entry 5009",
+      "G/L Entry 5010"
+    ],
+    "classification": "labor-proven-controlled-posting-trace"
+  },
+  "bookdraftSync": {
+    "updated": true,
+    "path": "playwright/projects/fibu-book5/book-drafts/p2p-labor-draft.md",
+    "scope": "Add Purchase Journal direct invoice laboratory route with Preview, controlled posting and ledger trace.",
+    "mustMarkAsLabor": true,
+    "mustRecreateInFinalSandbox": true
+  },
+  "decision": {
+    "status": "labor-sufficient-for-book-draft",
+    "reason": "P2P-032 proves a standalone Purchase Journal invoice posting route with clean Journal Check, Preview Posting, visible Post dialog and Vendor/G-L/Detailed Vendor Ledger trace. It is useful for the book as a laboratory alternative to Purchase Order flow, but it is not a German final proof and not a partial receipt proof.",
+    "selectedNextCase": "P2P-034-PURCHASE-JOURNAL-BOOKMASTER-INTEGRATION"
+  },
+  "proves": [
+    "A Purchase Journal line can be posted as a controlled RM-DEMO laboratory P2P invoice route.",
+    "The resulting Vendor Ledger, Detailed Vendor Ledger and G/L Entries are visible by document number.",
+    "The P2P lab draft may now teach the difference between Purchase Order flow and direct Purchase Journal invoice posting."
+  ],
+  "notProved": [
+    "No German final proof.",
+    "No VAT/tax final proof.",
+    "No Purchase Order partial receipt.",
+    "No item ledger or value entry, because Purchase Journal was a G/L balancing route rather than item receipt."
+  ],
+  "blockedBy": [],
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "safeToFinalizeState": false,
+  "requiresReview": false,
+  "statePatch": {},
+  "nextStep": "P2P-034 should integrate this lab route into the book master or continue with a bounded German-final-rebuild map; do not claim this as German final proof."
+}

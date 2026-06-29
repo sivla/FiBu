@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "caseId": "P2P-034-PURCHASE-JOURNAL-BOOKMASTER-INTEGRATION",
+  "title": "Integrate Purchase Journal lab route into book master",
+  "status": "planned",
+  "taskClass": "judge_work",
+  "modelClass": "gpt-5.5-low",
+  "usageLogRequired": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "p2p-bookmaster-labor-integration",
+  "sourceCase": "P2P-033-PURCHASE-JOURNAL-POSTING-TRACE-REVIEW",
+  "purpose": "Integrate the P2P-032/P2P-033 Purchase Journal laboratory route into the book master as a clearly marked lab/preproduction section with German-final rebuild notes. No BC execution.",
+  "allowedActions": [
+    "read-p2p-labor-draft",
+    "read-p2p-032-033-evidence",
+    "edit-book-master-labor-section",
+    "write-evidence",
+    "update-state"
+  ],
+  "defaultLockedActions": [
+    "business-central-execution",
+    "playwright-execution",
+    "preview-posting",
+    "posting",
+    "setup-change",
+    "company-switch",
+    "api-shortcut"
+  ],
+  "forbiddenActions": [
+    "post",
+    "claim-german-final-proof",
+    "book-claim-without-evidence",
+    "large-book-rewrite"
+  ],
+  "safetyGates": [
+    "book-section-must-be-marked-labor",
+    "german-final-rebuild-notes-required",
+    "no-final-german-claims"
+  ],
+  "expectedEvidence": [
+    "book master section references P2P-032/P2P-033",
+    "labor/final separation",
+    "beginner explanation for Purchase Journal vs Purchase Order route"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "targetGermanCompanyImpact": "German final book chapter must replace RM-DEMO Purchase Journal evidence with German target evidence before final claims.",
+  "finalScreenshotNeeded": true,
+  "nextStep": "Integrate the lab Purchase Journal route into chapter 12 without making German final claims."
+}

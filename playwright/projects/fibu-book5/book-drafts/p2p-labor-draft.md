@@ -20,6 +20,7 @@ Dieser Draft verdichtet die vorhandene Evidence aus `UAT-P2P-001` fuer das Buch.
 | Folgezahlung | Kreditorenzahlung `PAYP2P-108219` wurde im Payment Journal UI-first gebucht; Preflight, Apply-Entries-Ansicht, Post-Dialog, Kreditorenposten, detaillierte Kreditorenposten, Bankposten und Sachposten sind belegt | `evidence/p2p-002/P2P-002-result.json`, `P2P-002-VENDOR-PAYMENT.md` |
 | OP-/Application-Klaerung | Read-only Nachweis: Rechnung `108219` zeigt Restbetrag `0,00`; Detailed Vendor Ledger zeigt `Initial Entry`, `Payment Discount` und `Application` zur Zahlung `PAYP2P-108219` | `evidence/p2p-003/P2P-003-result.json`, `P2P-003-OP-APPLICATION-READONLY.md` |
 | Teil-WE-Startgate | UI-first Nachweis: `Purchase Orders` ist erreichbar, `New` oeffnet einen Einkaufsbestellungskontext, Draft `106002` wurde mit `K10000` im Kopf angelegt und die Zeilensteuerung fuer den naechsten Teil-WE-Schritt ist sichtbar | `evidence/p2p-004/P2P-004-result.json`, `P2P-004-PARTIAL-RECEIPT-GATE.md` |
+| Direktbuchung ueber Purchase Journal | Kontrollierte RM-DEMO-Laborbuchung `P2P032-682298`: Journal Check `0 Issues`, Preview Posting, sichtbarer Post-Dialog, genau eine Buchung und Postenspur ueber Kreditorenposten, detaillierte Kreditorenposten und Sachposten | `evidence/p2p-032/P2P-032-result.json`, `evidence/p2p-033/P2P-033-result.json` |
 
 ## Anfaenger-Erklaerung
 
@@ -31,6 +32,18 @@ Die Labor-Kreditorenzahlung `PAYP2P-108219` zeigt den naechsten Finance-Schritt:
 
 `P2P-004` ergaenzt keinen neuen gebuchten P2P-Prozess, sondern ein bewusst kleines UI-first Startgate fuer den spaeteren Teil-Wareneingang. Der Lauf zeigt, dass eine Einkaufsbestellung per UI neu geoeffnet werden kann, dass `K10000` im Kopf gesetzt werden kann und dass die Zeilenoberflaeche danach vorhanden ist. Das ist fuer Anfaenger wichtig, weil Teil-WE nicht beim Buchen beginnt: Zuerst muss der Belegkopf stimmen, dann die Zeile, dann die Menge, dann erst Preview oder Buchung. Der Draft `106002` bleibt als Labor-Trace erhalten; er beweist noch keine Artikelzeile und keine Teilmenge.
 
+`P2P-032` zeigt eine andere P2P-Route als die Einkaufsbestellung: eine direkte Einkaufsrechnung ueber das Purchase Journal. Hier entsteht kein Artikel- oder Wareneingangsposten, sondern eine Finanzbuchungsroute. Der Laborbeleg `P2P032-682298` wurde erst nach sauberem Journal Check, gefuellter `External Document No.`, Preview Posting und sichtbarem Post-Dialog genau einmal gebucht. Danach sind ein Kreditorenposten, ein detaillierter Kreditorenposten und zwei Sachposten sichtbar. Fuer Anfaenger ist das wichtig: Purchase Journal ist kein Ersatz fuer Wareneingang, aber ein guter Laborfall, um zu sehen, wie Business Central aus einer Journalzeile direkt Kreditor und Sachkonten trifft.
+
+Die sichtbare Buchwirkung aus `P2P-032` ist CRONUS-USA-Labor:
+
+| Sichtbarer Nachweis | Laborbefund |
+|---|---|
+| Vendor Ledger Entry | `P2P032-682298`, `K10000`, `Stahlwerk Ruhr GmbH`, Betrag `-2.500,00`, Entry No. `5010` |
+| Detailed Vendor Ledger Entry | `Initial Entry`, `Invoice`, `P2P032-682298`, Betrag `-2.500,00`, Entry No. `822` |
+| G/L Entries | Konto `22100 Accounts Payable, Domestic` mit `-2.500,00` und Konto `82000 Depreciation, Fixed Assets` mit `2.500,00` |
+
+Diese Konten sind kein deutscher Kontenplan-Endstand. Konto `82000` ist hier nur das im Labor gewaehlte Balance Account aus der getesteten Journalroute. Fuer die deutsche Finalfassung muss die Route mit deutschen Konten, Buchungsgruppen und Steuerlogik neu aufgebaut werden.
+
 ## Was nicht bewiesen wurde
 
 - Kein deutscher `19 %`-Vorsteuer-Endstand.
@@ -39,6 +52,8 @@ Die Labor-Kreditorenzahlung `PAYP2P-108219` zeigt den naechsten Finance-Schritt:
 - Keine Bankabstimmung und kein Kontoauszugsimport; der OP-Ausgleich der P2P-Rechnung `108219` ist im Labor read-only belegt, aber nicht deutsch/final.
 - Keine P2P-Dimensionen in den Posten.
 - Keine Teil-WE-Buchung: `P2P-004` beweist nur Draft/Kopf/Zeilenkontext, nicht `RAW-STEEL`, Menge `4`, `Qty. to Receive = 2`, Preview Posting oder Wareneingang.
+- Kein Artikelposten/Wertposten aus der Purchase-Journal-Direktbuchung `P2P032-682298`, weil diese Route nicht den Wareneingang ueber Artikelzeilen abbildet.
+- Keine Aussage, dass `82000` ein fachlich passendes deutsches Einkaufskonto ist; es ist nur CRONUS/RM-DEMO-Labor-Balance-Account.
 - Keine deutsche Finaloberflaeche und keine deutschen Final-Screenshots.
 
 ## Buchwirkung
@@ -53,7 +68,8 @@ Kapitel 12 darf den P2P-Laborfall als Lernstrecke nutzen:
 6. Payment-Journal-Folgefall mit Kreditorenzahlung und Bank-/G/L-/Vendor-Trace.
 7. OP-/Application-Kontrolle mit Restbetrag `0,00`, detaillierten Kreditorenposten und Payment Discount.
 8. Teil-WE als separaten Stufenfall erklaeren: Draft/Kopf/Zeile zuerst, danach Menge, Preview, Wareneingang, Rechnung und Postenspur.
-9. Laborgrenzen klar sichtbar.
+9. Direkte Purchase-Journal-Buchung als separaten Finanzbuchungs-Laborpfad erklaeren: Journal Check, Preview, Post-Dialog, Buchung, Kreditorenposten und Sachposten.
+10. Laborgrenzen klar sichtbar.
 
 Kapitel 12 darf daraus nicht ableiten, dass deutsche Vorsteuer, deutsche Konten, deutsche E-Rechnung oder deutsche Final-Screenshots erledigt sind.
 
@@ -70,6 +86,7 @@ In einer deutschen Zielinstanz muss dieser Fall neu aufgebaut werden:
 - Kreditorenzahlung im Zahlungsjournal, Bankposten, Sachposten und detaillierte Kreditorenposten.
 - OP-Ausgleich sichtbar mit Restbetrag/Applied Entries an der Ausgangsrechnung.
 - Payment Discount / Skonto- oder Rabattwirkung fachlich klaeren.
+- Direkte Purchase-Journal-Route nur dann uebernehmen, wenn deutsche Konten, Buchungsgruppen, Belegnummern, Steuerlogik und Postenspur neu belegt sind.
 
 ## Naechster sinnvoller Laborblock
 
