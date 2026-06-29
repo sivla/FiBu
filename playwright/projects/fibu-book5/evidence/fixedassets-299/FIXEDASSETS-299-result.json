@@ -1,0 +1,159 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "FIXEDASSETS-299-FA-DEPRECIATION-NEXT-HYPOTHESIS-DECISION",
+  "source": "local-route-decision",
+  "resultStatus": "observed",
+  "workType": "fixedassets-depreciation-next-hypothesis-decision",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "sourceCompany": "RM-DEMO",
+  "sourceInstance": "MCP_1_20260210",
+  "bcRun": false,
+  "playwrightRun": false,
+  "posted": false,
+  "previewPosting": false,
+  "setupChanged": false,
+  "companySwitch": false,
+  "apiShortcut": false,
+  "bookChanged": false,
+  "coverageChanged": true,
+  "decision": "Run a read-only alternative output-target trace in Fixed Asset Journals/non-G-L FA journal before any further Calculate Depreciation OK, Preview Posting or Post.",
+  "selectedNextCase": "FIXEDASSETS-300-FA-JOURNAL-DEPRECIATION-OUTPUT-TARGET-READONLY",
+  "hypothesis": {
+    "id": "fa-depreciation-output-target-may-be-non-gl-fa-journal",
+    "basis": [
+      "FIXEDASSETS-291 and FIXEDASSETS-295 did not find FADEP lines in Fixed Asset G/L Journals after controlled OK runs.",
+      "FIXEDASSETS-231 shows HGB Depreciation Integration visible-off in RM-DEMO laboratory evidence.",
+      "Therefore Fixed Asset G/L Journals alone may be the wrong/too-narrow search context for depreciation output."
+    ],
+    "nextProbe": "Open Fixed Asset Journals read-only and search visible context for FADEP-291-OK, FADEP-295-OK, FADEP-, FA-CNC-01 and HGB."
+  },
+  "proved": [
+    "A new non-repeating depreciation hypothesis was selected.",
+    "The next step is a read-only output-target trace, not another Calculate Depreciation OK attempt.",
+    "Preview Posting and Post remain locked until a visible depreciation journal line exists."
+  ],
+  "notProved": [
+    "No Business Central execution in this case.",
+    "No Fixed Asset Journal line found yet.",
+    "No AfA Preview Posting.",
+    "No AfA posting.",
+    "No German final proof."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-299/FIXEDASSETS-299-DEPRECIATION-NEXT-HYPOTHESIS-DECISION.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-299/README.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-299/FIXEDASSETS-299-result.json",
+    ".agent/state/cases/fixedassets-300-fa-journal-depreciation-output-target-readonly.json",
+    "playwright/projects/fibu-book5/BOOK-CLICK-GUIDE-COVERAGE.md",
+    ".agent/state/current.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/cases/fixedassets-299-fa-depreciation-next-hypothesis-decision.json"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-231/FIXEDASSETS-231-HGB-INTEGRATION-VALUE-PROOF.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-291/FIXEDASSETS-291-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-295/FIXEDASSETS-295-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-297/FIXEDASSETS-297-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-299/FIXEDASSETS-299-DEPRECIATION-NEXT-HYPOTHESIS-DECISION.md"
+  ],
+  "warnings": [
+    "The Fixed Asset Journals output-target idea is a laboratory hypothesis, not a final Business Central rule.",
+    "Do not click Calculate Depreciation OK, Preview Posting or Post in FIXEDASSETS-300."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "updatedAt": "2026-06-29T07:23:12.960Z",
+      "activeArea": "fixedassets",
+      "activeCase": "FIXEDASSETS-300-FA-JOURNAL-DEPRECIATION-OUTPUT-TARGET-READONLY",
+      "active_case_file": ".agent/state/cases/fixedassets-300-fa-journal-depreciation-output-target-readonly.json",
+      "lastReferenceCase": "FIXEDASSETS-299-FA-DEPRECIATION-NEXT-HYPOTHESIS-DECISION",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-299-fa-depreciation-next-hypothesis-decision.json",
+      "nextStep": "Run FIXEDASSETS-300 read-only: inspect Fixed Asset Journals/non-G-L FA journal as possible depreciation output target. No OK, Preview Posting or Post.",
+      "latestFixedAssets299HypothesisDecision": {
+        "caseId": "FIXEDASSETS-299-FA-DEPRECIATION-NEXT-HYPOTHESIS-DECISION",
+        "status": [
+          "route-decision",
+          "labor-blocked",
+          "next-readonly-hypothesis",
+          "needs-german-final-rebuild"
+        ],
+        "resultPath": "playwright/projects/fibu-book5/evidence/fixedassets-299/FIXEDASSETS-299-result.json",
+        "bcRun": false,
+        "playwrightRun": false,
+        "decision": "Use Fixed Asset Journals/non-G-L FA journal read-only as next output-target hypothesis because HGB Depreciation Integration is visible-off and Fixed Asset G/L Journals did not show FADEP lines.",
+        "nextCase": "FIXEDASSETS-300-FA-JOURNAL-DEPRECIATION-OUTPUT-TARGET-READONLY",
+        "updatedAt": "2026-06-29T07:23:12.960Z"
+      }
+    },
+    "lastRunSummary": {
+      "schemaVersion": 1,
+      "runId": "FIXEDASSETS-299-FA-DEPRECIATION-NEXT-HYPOTHESIS-DECISION",
+      "date": "2026-06-29",
+      "workType": "fixedassets-depreciation-next-hypothesis-decision",
+      "branch": "codex/token-efficient-autopilot-state",
+      "bcRun": false,
+      "playwrightRun": false,
+      "posted": false,
+      "previewPosting": false,
+      "setupChanged": false,
+      "companySwitched": false,
+      "bookMasterChanged": false,
+      "bookDraftChanged": false,
+      "summary": "Selected a non-repeating FA depreciation output-target hypothesis: inspect Fixed Asset Journals/read-only before any further OK/Preview/Post.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/fixedassets-299/FIXEDASSETS-299-result.json",
+      "nextCase": "FIXEDASSETS-300-FA-JOURNAL-DEPRECIATION-OUTPUT-TARGET-READONLY",
+      "nextStep": "Run read-only Fixed Asset Journals output-target trace; no OK, Preview or Post.",
+      "updatedAt": "2026-06-29T07:23:12.960Z"
+    },
+    "activeCase": {
+      "status": "done",
+      "resultStatus": "observed",
+      "completedAt": "2026-06-29T07:23:12.960Z",
+      "updatedAt": "2026-06-29T07:23:12.960Z",
+      "resultPath": "playwright/projects/fibu-book5/evidence/fixedassets-299/FIXEDASSETS-299-result.json",
+      "bcRun": false,
+      "playwrightRun": false,
+      "posted": false,
+      "previewPosting": false,
+      "setupChanged": false,
+      "companySwitch": false,
+      "classification": [
+        "route-decision",
+        "labor-blocked",
+        "next-readonly-hypothesis",
+        "needs-german-final-rebuild"
+      ],
+      "nextCase": "FIXEDASSETS-300-FA-JOURNAL-DEPRECIATION-OUTPUT-TARGET-READONLY",
+      "nextStep": "Run read-only Fixed Asset Journals output-target trace; no OK, Preview or Post."
+    },
+    "coverage": {
+      "updatedAt": "2026-06-29T07:23:12.960Z",
+      "activeArea": "fixedassets",
+      "currentBlock": "fa-depreciation-output-target-readonly",
+      "latestReviewCase": "FIXEDASSETS-299-FA-DEPRECIATION-NEXT-HYPOTHESIS-DECISION",
+      "nextCase": "FIXEDASSETS-300-FA-JOURNAL-DEPRECIATION-OUTPUT-TARGET-READONLY"
+    }
+  },
+  "migrationRelevance": "needed-for-german-final",
+  "rebuildInstruction": "In the German final company, prove depreciation integration/setup and output journal target before running Calculate Depreciation, Preview Posting or Post.",
+  "mustRecreateInFinalSandbox": true,
+  "targetGermanCompanyImpact": "German final FA depreciation needs fresh setup/output-target proof plus generated journal line, Preview Posting, posting and ledger/report trace.",
+  "finalScreenshotNeeded": true,
+  "reason": "This advances the blocker by changing the search hypothesis from repeated OK execution to read-only output-target classification.",
+  "validationCommands": [
+    "npm run agent:preflight",
+    "npm run agent:context",
+    "npm run agent:dry-run",
+    "npm run agent:run-plan",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-299/FIXEDASSETS-299-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/fixedassets-299/FIXEDASSETS-299-result.json",
+    "npm run check:encoding",
+    "git diff --check"
+  ]
+}

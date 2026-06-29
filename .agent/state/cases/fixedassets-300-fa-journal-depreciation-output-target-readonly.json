@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-300-FA-JOURNAL-DEPRECIATION-OUTPUT-TARGET-READONLY",
+  "title": "Read-only trace for depreciation output in Fixed Asset Journals",
+  "status": "planned",
+  "taskClass": "wizard_work",
+  "modelClass": "gpt-5.4-medium",
+  "usageLogRequired": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "fixedassets-fa-journal-depreciation-output-target-readonly",
+  "sourceCase": "FIXEDASSETS-299-FA-DEPRECIATION-NEXT-HYPOTHESIS-DECISION",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-299/FIXEDASSETS-299-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-231/FIXEDASSETS-231-HGB-INTEGRATION-VALUE-PROOF.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-295/FIXEDASSETS-295-result.json"
+  ],
+  "purpose": "Open Fixed Asset Journals/non-G-L FA journal read-only and check whether FADEP-291-OK, FADEP-295-OK, FADEP-, FA-CNC-01 or HGB are visible there. This tests the output-target hypothesis without executing Calculate Depreciation again.",
+  "allowedActions": [
+    "open-business-central-if-instance-and-company-match",
+    "run-playwright-readonly-if-case-preflight-passes",
+    "open-fixed-asset-journals-readonly",
+    "maximize-or-expand-page-if-needed-for-readable-evidence",
+    "write-evidence",
+    "update-state"
+  ],
+  "defaultLockedActions": [
+    "calculate-depreciation-ok",
+    "preview-posting",
+    "posting",
+    "setup-change",
+    "company-switch",
+    "new-draft",
+    "edit-record",
+    "delete-record",
+    "api-shortcut"
+  ],
+  "forbiddenActions": [
+    "claim-german-final-proof",
+    "repeat-calculate-depreciation-ok-without-new-hypothesis",
+    "preview-or-post-without-visible-journal-line",
+    "api-shortcut-without-explicit-case-permission"
+  ],
+  "safetyGates": [
+    "instance-and-company-must-match",
+    "read-only-navigation-only",
+    "do-not-click-ok-preview-post-new-edit-delete",
+    "abort-on-unclear-page-or-dialog"
+  ],
+  "expectedEvidence": [
+    "result JSON with visible/non-visible signals for Fixed Asset Journals",
+    "compact text evidence, optionally screenshot only if human-readable and useful"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "resultPath": "playwright/projects/fibu-book5/evidence/fixedassets-300/FIXEDASSETS-300-result.json",
+  "nextStep": "Run read-only Fixed Asset Journals output-target trace; no OK, Preview Posting or Post.",
+  "createdAt": "2026-06-29T07:23:12.960Z",
+  "updatedAt": "2026-06-29T07:23:12.960Z"
+}
