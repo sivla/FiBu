@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "caseId": "P2P-039-PURCHASE-JOURNAL-SCREENSHOT-BOOK-ANCHOR-REVIEW",
+  "source": "local-book-anchor-review",
+  "resultStatus": "observed",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "sourceCompany": "RM-DEMO",
+  "reviewedCase": "P2P-038-PURCHASE-JOURNAL-POSTED-DETAIL-SCREENSHOT-READONLY",
+  "acceptedScreenshots": [
+    {
+      "image": "playwright/projects/fibu-book5/img/p2p-038-010-vendor-ledger-entry-detail.png",
+      "use": "Vendor Ledger Entry book anchor",
+      "shows": [
+        "P2P032-682298",
+        "K10000",
+        "-2.500,00",
+        "Related G/L Entries 22100/82000"
+      ],
+      "boundary": "RM-DEMO labor only"
+    },
+    {
+      "image": "playwright/projects/fibu-book5/img/p2p-038-020-detailed-vendor-ledger-entry.png",
+      "use": "Detailed Vendor Ledger Entry book anchor",
+      "shows": [
+        "Initial Entry",
+        "Invoice",
+        "K10000",
+        "-2.500,00",
+        "Entry No. 822"
+      ],
+      "boundary": "RM-DEMO labor only"
+    },
+    {
+      "image": "playwright/projects/fibu-book5/img/p2p-038-030-gl-entries-detail.png",
+      "use": "G/L Entries book anchor",
+      "shows": [
+        "22100",
+        "82000",
+        "-2.500,00",
+        "2.500,00",
+        "Entry Nos. 5009/5010"
+      ],
+      "boundary": "RM-DEMO labor only"
+    }
+  ],
+  "rejectedScreenshots": [],
+  "proved": [
+    "P2P-038 screenshots are suitable as labor-only Chapter 12 book anchors because they show readable accounting details, not only document codes.",
+    "Chapter 12 now references P2P-038 screenshots together with P2P-032/P2P-036 evidence anchors.",
+    "The P2P labor draft and click-guide coverage now point to the same screenshot evidence."
+  ],
+  "notProved": [
+    "No German final proof.",
+    "No German VAT/tax proof.",
+    "No new Business Central evidence.",
+    "No Purchase Order partial receipt proof."
+  ],
+  "changedFiles": [
+    "FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md",
+    "playwright/projects/fibu-book5/book-drafts/p2p-labor-draft.md",
+    "playwright/projects/fibu-book5/BOOK-CLICK-GUIDE-COVERAGE.md",
+    "playwright/projects/fibu-book5/evidence/p2p-039/P2P-039-result.json",
+    "playwright/projects/fibu-book5/evidence/p2p-039/README.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/p2p-038/P2P-038-result.json",
+    "playwright/projects/fibu-book5/evidence/p2p-038/README.md"
+  ],
+  "flags": {
+    "bcRun": false,
+    "playwrightRun": false,
+    "posted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "companySwitched": false,
+    "draftCreated": false,
+    "editedRecord": false,
+    "deletedRecord": false,
+    "apiShortcut": false,
+    "bookChanged": true
+  },
+  "classification": [
+    "labor-sufficient-for-book-draft",
+    "screenshot-anchor-reviewed",
+    "needs-german-final-rebuild"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": true,
+  "targetGermanCompanyImpact": "German final P2P must recreate equivalent screenshots with German accounts, tax setup, Belegnummern and target-company context.",
+  "finalScreenshotNeeded": true,
+  "safeToFinalizeState": true,
+  "requiresReview": false,
+  "blockedBy": [],
+  "statePatch": {},
+  "nextCase": "P2P-040-PURCHASE-JOURNAL-GERMAN-REBUILD-GAP-OR-NEXT-PROCESS-DECISION",
+  "nextStep": "Decide whether to continue P2P with a German-rebuild gap checklist or move to the next high-value lab process; do not repeat old Purchase Order cell-edit routes."
+}

@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "caseId": "P2P-040-PURCHASE-JOURNAL-GERMAN-REBUILD-GAP-OR-NEXT-PROCESS-DECISION",
+  "title": "P2P next-process decision after screenshot anchors",
+  "status": "planned",
+  "taskClass": "wizard_work",
+  "modelClass": "gpt-5.4-medium",
+  "usageLogRequired": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "p2p-next-process-decision",
+  "sourceCase": "P2P-039-PURCHASE-JOURNAL-SCREENSHOT-BOOK-ANCHOR-REVIEW",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/p2p-039/P2P-039-result.json",
+    "playwright/projects/fibu-book5/evidence/p2p-039/README.md"
+  ],
+  "purpose": "Decide the next practical lab process after P2P Purchase Journal screenshots are book-ready. Avoid repeating old Purchase Order cell-edit routes.",
+  "allowedActions": [
+    "read-current-state",
+    "read-p2p-evidence",
+    "choose-next-high-value-case",
+    "write-evidence",
+    "update-state"
+  ],
+  "defaultLockedActions": [
+    "posting",
+    "preview-posting",
+    "setup-change",
+    "company-switch",
+    "api-shortcut",
+    "new-draft",
+    "edit-record",
+    "delete-record",
+    "playwright-execution-unless-next-case-unlocks-it"
+  ],
+  "forbiddenActions": [
+    "claim-german-final-proof",
+    "book-claim-without-evidence",
+    "repeat-old-purchase-order-cell-edit-routes",
+    "api-shortcut-without-explicit-case-permission"
+  ],
+  "safetyGates": [
+    "do-not-repeat-p2p-008-to-p2p-010-cell-edit-routes",
+    "labor-evidence-must-stay-labor",
+    "next-case-must-add-book-evidence-or-playwright-value"
+  ],
+  "expectedEvidence": [
+    "route decision result",
+    "clear next case"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": false,
+  "resultPath": "playwright/projects/fibu-book5/evidence/p2p-040/P2P-040-result.json",
+  "nextStep": "Decide whether to continue P2P with a German-rebuild gap checklist or move to the next high-value lab process; do not repeat old Purchase Order cell-edit routes.",
+  "createdAt": "2026-06-29T07:05:41.590Z",
+  "updatedAt": "2026-06-29T07:05:41.590Z"
+}

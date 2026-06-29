@@ -22,6 +22,7 @@ Dieser Draft verdichtet die vorhandene Evidence aus `UAT-P2P-001` fuer das Buch.
 | Teil-WE-Startgate | UI-first Nachweis: `Purchase Orders` ist erreichbar, `New` oeffnet einen Einkaufsbestellungskontext, Draft `106002` wurde mit `K10000` im Kopf angelegt und die Zeilensteuerung fuer den naechsten Teil-WE-Schritt ist sichtbar | `evidence/p2p-004/P2P-004-result.json`, `P2P-004-PARTIAL-RECEIPT-GATE.md` |
 | Teil-WE-Folgerouten | `P2P-007` bis `P2P-012` zeigen: Select items, Cell-Edit, frischer Draft und echte Line-Action-Discovery wurden geprueft; `Location FRA-ZL`, `Quantity 4` und `Qty. to Receive 2` wurden auf Purchase-Order-Zeilen nicht stabil sichtbar/persistiert. `Item Journal` ist als stabilere Material-/Wert-Route beobachtet, aber kein Kreditor-/Bestellprozess. | `evidence/p2p-007/` bis `evidence/p2p-013/`, `evidence/p2p-035/P2P-035-result.json` |
 | Direktbuchung ueber Purchase Journal | Kontrollierte RM-DEMO-Laborbuchung `P2P032-682298`: Journal Check `0 Issues`, Preview Posting, sichtbarer Post-Dialog, genau eine Buchung und Postenspur ueber Kreditorenposten, detaillierte Kreditorenposten und Sachposten | `evidence/p2p-032/P2P-032-result.json`, `evidence/p2p-033/P2P-033-result.json` |
+| Screenshotanker zur Direktbuchung | `P2P-038` zeigt die Postenspur nicht nur als Code, sondern mit lesbaren Buchungsdetails: Kreditorenposten mit Related G/L Entries, detaillierter Kreditorenposten mit `Initial Entry` und Sachposten `22100`/`82000` mit Gegenbetraegen | `evidence/p2p-038/P2P-038-result.json`, `img/p2p-038-010-*`, `img/p2p-038-020-*`, `img/p2p-038-030-*` |
 
 ## Anfaenger-Erklaerung
 
@@ -44,6 +45,8 @@ Die sichtbare Buchwirkung aus `P2P-032` ist CRONUS-USA-Labor:
 | Vendor Ledger Entry | `P2P032-682298`, `K10000`, `Stahlwerk Ruhr GmbH`, Betrag `-2.500,00`, Entry No. `5010` |
 | Detailed Vendor Ledger Entry | `Initial Entry`, `Invoice`, `P2P032-682298`, Betrag `-2.500,00`, Entry No. `822` |
 | G/L Entries | Konto `22100 Accounts Payable, Domestic` mit `-2.500,00` und Konto `82000 Depreciation, Fixed Assets` mit `2.500,00` |
+
+Die P2P-038-Screenshots sind als Buchanker geeignet, weil sie genau diese Kontrollpunkte sichtbar machen. Fuer Anfaenger ist der Unterschied wichtig: Ein Screenshot, der nur `P2P032-682298` zeigt, beweist noch nicht die Buchwirkung. Ein brauchbarer Screenshot zeigt auch Konto, Betrag, Postenart oder Entry No.
 
 Diese Konten sind kein deutscher Kontenplan-Endstand. Konto `82000` ist hier nur das im Labor gewaehlte Balance Account aus der getesteten Journalroute. Fuer die deutsche Finalfassung muss die Route mit deutschen Konten, Buchungsgruppen und Steuerlogik neu aufgebaut werden.
 
