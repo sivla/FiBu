@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-29T22:05:00+02:00",
+  "updatedAt": "2026-06-29T22:35:00+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "warehouse",
-  "activeCase": "WAREHOUSE-029-SOURCE-PO-DEFAULT-LOCATION-PREFLIGHT",
-  "active_case_file": ".agent/state/cases/warehouse-029-source-po-default-location-preflight.json",
-  "lastReferenceCase": "WAREHOUSE-028-SOURCE-PO-LOCATION-DEFAULT-OR-FRESH-DRAFT-DECISION",
-  "lastReferenceCaseFile": ".agent/state/cases/warehouse-028-source-po-location-default-or-fresh-draft-decision.json",
+  "activeCase": "WAREHOUSE-030-SOURCE-PO-STOCKKEEPING-OR-PURCHASE-DEFAULT-DISCOVERY",
+  "active_case_file": ".agent/state/cases/warehouse-030-source-po-stockkeeping-or-purchase-default-discovery.json",
+  "lastReferenceCase": "WAREHOUSE-029-SOURCE-PO-DEFAULT-LOCATION-PREFLIGHT",
+  "lastReferenceCaseFile": ".agent/state/cases/warehouse-029-source-po-default-location-preflight.json",
   "mode": "bc-specialist-labor-book-production",
   "requiresStrongModel": true,
   "requiredPreflightChecks": [
@@ -40,7 +40,7 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "WAREHOUSE-029: run read-only UI preflight for Vendor K10000, Item RAW-STEEL and default/setup signals before any fresh source PO or setup change.",
+  "nextStep": "WAREHOUSE-030: inspect Stockkeeping Unit or purchase/default setup route read-only before another fresh source Purchase Order.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/inventory-labor-draft.md",
     "area": "inventory",
@@ -112,8 +112,8 @@
     "summaryFile": ".agent/state/lab_to_german_sandbox_migration_plan.json",
     "noActiveLiveRunInOldSandbox": false,
     "germanTargetUnavailable": true,
-    "nextStep": "WAREHOUSE-029: run read-only UI preflight for Vendor K10000, Item RAW-STEEL and default/setup signals before any fresh source PO or setup change.",
-    "nextCase": "WAREHOUSE-029-SOURCE-PO-DEFAULT-LOCATION-PREFLIGHT"
+    "nextStep": "WAREHOUSE-030: inspect Stockkeeping Unit or purchase/default setup route read-only before another fresh source Purchase Order.",
+    "nextCase": "WAREHOUSE-030-SOURCE-PO-STOCKKEEPING-OR-PURCHASE-DEFAULT-DISCOVERY"
   },
   "latestP2PLabFollowup": {
     "caseId": "P2P-004-PARTIAL-RECEIPT-VARIANCE-GATE",
@@ -221,7 +221,7 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "warehouse-source-po-default-location-preflight",
+  "currentCoverageFocus": "warehouse-source-po-stockkeeping-or-purchase-default-discovery",
   "nextProcessRoute": [
     "P2P-012 compared Purchase Journal, Item Journal, Purchase Invoices and Requisition Worksheet by direct page URL without search or field entry.",
     "Item Journal is the most stable observed route for material quantity/location/value effect, but it is Inventory evidence rather than full creditor P2P.",
@@ -2828,5 +2828,24 @@
     "migrationRelevance": "needed-for-german-final",
     "mustRecreateInFinalSandbox": true,
     "updatedAt": "2026-06-29T22:05:00+02:00"
+  },
+  "latestWarehouse029": {
+    "caseId": "WAREHOUSE-029-SOURCE-PO-DEFAULT-LOCATION-PREFLIGHT",
+    "status": "observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-029/WAREHOUSE-029-result.json",
+    "decision": "Vendor K10000 and Item RAW-STEEL do not show a direct FRA-ZL default-location signal in read-only card evidence; inspect Stockkeeping Unit or purchase/default setup route before another fresh source draft.",
+    "directDefaultSignal": false,
+    "locationReadySignal": true,
+    "selectedNextRoute": "stockkeeping-unit-or-purchase-default-setup-discovery-before-fresh-draft",
+    "bcRun": true,
+    "playwrightRun": true,
+    "posted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "companySwitched": false,
+    "nextCase": "WAREHOUSE-030-SOURCE-PO-STOCKKEEPING-OR-PURCHASE-DEFAULT-DISCOVERY",
+    "migrationRelevance": "needed-for-german-final",
+    "mustRecreateInFinalSandbox": true,
+    "updatedAt": "2026-06-29T22:35:00+02:00"
   }
 }

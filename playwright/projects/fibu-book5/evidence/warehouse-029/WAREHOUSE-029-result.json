@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 1,
+  "purpose": "warehouse-source-po-default-location-preflight",
+  "caseId": "WAREHOUSE-029-SOURCE-PO-DEFAULT-LOCATION-PREFLIGHT",
+  "source": "playwright-ui-readonly-direct-card-preflight",
+  "resultStatus": "observed",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "bcRun": true,
+  "playwrightRun": true,
+  "posted": false,
+  "previewPosting": false,
+  "setupChanged": false,
+  "companySwitched": false,
+  "apiShortcut": false,
+  "bookChanged": false,
+  "valueEntered": false,
+  "draftCreated": false,
+  "vendor": {
+    "no": "K10000",
+    "pageId": 26,
+    "contextOk": true,
+    "analysis": {
+      "targetVisible": true,
+      "locationSignalVisible": true,
+      "fraZlVisible": false,
+      "atlantaVisible": false,
+      "receivingOrShippingSignalVisible": true,
+      "postingGroupSignalsVisible": false
+    }
+  },
+  "item": {
+    "no": "RAW-STEEL",
+    "pageId": 30,
+    "contextOk": true,
+    "analysis": {
+      "targetVisible": true,
+      "locationSignalVisible": true,
+      "fraZlVisible": false,
+      "atlantaVisible": false,
+      "replenishmentSignalVisible": true,
+      "postingGroupSignalsVisible": true,
+      "warehouseSignalVisible": true
+    }
+  },
+  "location": {
+    "code": "FRA-ZL",
+    "pageId": 5703,
+    "contextOk": true,
+    "analysis": {
+      "targetVisible": true,
+      "receiveSignalVisible": true,
+      "basicWarehouseSignalsVisible": true,
+      "noWarehouseHandlingVisible": false
+    }
+  },
+  "directDefaultSignal": false,
+  "locationReadySignal": true,
+  "selectedNextRoute": "stockkeeping-unit-or-purchase-default-setup-discovery-before-fresh-draft",
+  "decision": "Vendor K10000 and Item RAW-STEEL do not show a direct FRA-ZL default-location signal in read-only card evidence; inspect Stockkeeping Unit or purchase/default setup route before another fresh source draft.",
+  "proved": [
+    "Vendor K10000 card was opened read-only by direct Page 26 filtered URL.",
+    "Item RAW-STEEL card was opened read-only by direct Page 30 filtered URL.",
+    "Location FRA-ZL card was opened read-only by direct Page 5703 filtered URL.",
+    "No direct FRA-ZL default-location signal is visible on Vendor K10000 or Item RAW-STEEL card evidence.",
+    "FRA-ZL still shows Warehouse/receipt/put-away readiness signals in Location Card evidence.",
+    "No value entry, new draft, Release, Receive, Invoice, Preview Posting, Post, Warehouse Receipt source confirmation, setup change, company switch, API shortcut or book change occurred."
+  ],
+  "notProved": [
+    "No fresh Purchase Order defaulting behavior is proven by this read-only preflight.",
+    "No FRA-ZL value is proven on Purchase Order 106055.",
+    "No Stockkeeping Unit/default setup page is proven yet.",
+    "No Warehouse Receipt source document confirmation is proven.",
+    "No receive, invoice, preview posting or posting is proven.",
+    "No German-final Warehouse proof is derived from RM-DEMO lab evidence."
+  ],
+  "blockedBy": [],
+  "flags": {
+    "noValueEntry": true,
+    "noDraft": true,
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true,
+    "noReceive": true,
+    "noInvoice": true,
+    "noRelease": true,
+    "noWarehouseReceiptSourceConfirmation": true
+  },
+  "migrationRelevance": "needed-for-german-final",
+  "rebuildInstruction": "In German final sandbox, repeat Vendor/Item/Location default preflight with German target master data before any Warehouse source document creation.",
+  "mustRecreateInFinalSandbox": true,
+  "sourceCompany": "RM-DEMO",
+  "targetGermanCompanyImpact": "German final Warehouse proof needs German Vendor/Item/Location defaulting evidence, released source Purchase Order, Warehouse Receipt source selection, receipt posting and ledger trace.",
+  "finalScreenshotNeeded": true,
+  "safeToFinalizeState": false,
+  "requiresReview": false,
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/warehouse-029/WAREHOUSE-029-result.json"
+  ],
+  "nextCase": "WAREHOUSE-030-SOURCE-PO-STOCKKEEPING-OR-PURCHASE-DEFAULT-DISCOVERY",
+  "nextStep": "WAREHOUSE-030: inspect Stockkeeping Unit or purchase/default setup route read-only before another fresh source Purchase Order."
+}
