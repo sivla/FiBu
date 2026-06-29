@@ -271,12 +271,12 @@
   "hardExclusions": {
     "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
   },
-  "updatedAt": "2026-06-29T11:05:00+02:00",
+  "updatedAt": "2026-06-29T11:18:00+02:00",
   "activeArea": "warehouse",
-  "currentBlock": "warehouse-source-document-action-blocker",
-  "latestPracticalCase": "WAREHOUSE-013-EXISTING-RECEIPT-GET-SOURCE-DOCUMENTS",
+  "currentBlock": "warehouse-fresh-draft-source-document-route",
+  "latestPracticalCase": "WAREHOUSE-014-EXISTING-RECEIPT-SOURCE-DOCUMENT-BLOCKER",
   "latestReviewCase": "FIXEDASSETS-299-FA-DEPRECIATION-NEXT-HYPOTHESIS-DECISION",
-  "nextCase": "WAREHOUSE-014-EXISTING-RECEIPT-SOURCE-DOCUMENT-BLOCKER",
+  "nextCase": "WAREHOUSE-016-FRESH-DRAFT-IMMEDIATE-GET-SOURCE-NO-CONFIRM",
   "latestBank013": {
     "caseId": "BANK-013-CONTROLLED-NEXT-EVIDENCE-STEP",
     "status": [
@@ -393,7 +393,7 @@
   },
   "latestLocalHelperCase": "FIXEDASSETS-179-JOURNAL-GRID-GEOMETRY-CANDIDATE-HELPER",
   "latestLocalReviewCase": "FIXEDASSETS-183-FA-GL-JOURNAL-BALACCOUNT-VALUE-REVIEW",
-  "latestDecisionCase": "WAREHOUSE-003-WAREHOUSE-READINESS-FOLLOWUP-DECISION",
+  "latestDecisionCase": "WAREHOUSE-015-WAREHOUSE-SOURCE-DOCUMENT-ROUTE-DECISION",
   "latestBlockedCase": "FIXEDASSETS-202-FA-GL-JOURNAL-PREVIEW-POSTING-AFTER-FA-POSTING-TYPE",
   "acquisitionPostingTrace": "book-synced: controlled FA G/L Journal lab posting performed once for G05001; posted G/L Entries show 82000/12210 and +/-120.000,00; posted FA Ledger Entries are visible via Page 5604 for FA-CNC-01/G05001/HGB/Acquisition Cost/amount. Page 5606 remains a rejected empty Preview path.",
   "nextAcquisitionRoute": "do-not-repeat-posting",
@@ -1377,11 +1377,11 @@
     "nextCase": "FIXEDASSETS-298-FA-DEPRECIATION-BLOCKER-BOOK-SYNC",
     "updatedAt": "2026-06-29T07:09:31.588Z"
   },
-  "nextStep": "WAREHOUSE-014: diagnose why Get Source Documents candidates found in WAREHOUSE-011 are not reachable from WAREHOUSE-012/013 routes; use card maximize/wide layout if needed, no OK/Select/Post.",
+  "nextStep": "WAREHOUSE-016: create a fresh Warehouse Receipt draft and immediately run Get Source Documents before leaving card context; stop before OK/Select/Post.",
   "warehouse": {
     "chapter": "Kapitel 13",
     "status": "in-progress",
-    "currentBlock": "warehouse-source-document-action-blocker",
+    "currentBlock": "warehouse-fresh-draft-source-document-route",
     "latestEvidenceCases": [
       "WAREHOUSE-006",
       "WAREHOUSE-007",
@@ -1390,11 +1390,13 @@
       "WAREHOUSE-010",
       "WAREHOUSE-011",
       "WAREHOUSE-012",
-      "WAREHOUSE-013"
+      "WAREHOUSE-013",
+      "WAREHOUSE-014",
+      "WAREHOUSE-015"
     ],
-    "latestPracticalCase": "WAREHOUSE-013-EXISTING-RECEIPT-GET-SOURCE-DOCUMENTS",
-    "nextCase": "WAREHOUSE-014-EXISTING-RECEIPT-SOURCE-DOCUMENT-BLOCKER",
-    "blockerStatus": "existing-receipt-visible-but-source-document-selection-route-not-reached",
+    "latestPracticalCase": "WAREHOUSE-014-EXISTING-RECEIPT-SOURCE-DOCUMENT-BLOCKER",
+    "nextCase": "WAREHOUSE-016-FRESH-DRAFT-IMMEDIATE-GET-SOURCE-NO-CONFIRM",
+    "blockerStatus": "existing-receipt-route-blocked-fresh-draft-immediate-route-selected",
     "employeeSetup": {
       "userId": "KAJETAN.KALICKI",
       "locationCode": "FRA-ZL",
@@ -1402,7 +1404,7 @@
       "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-007/WAREHOUSE-007-result.json",
       "mustRecreateInFinalSandbox": true
     },
-    "nextStep": "WAREHOUSE-014: diagnose why Get Source Documents candidates found in WAREHOUSE-011 are not reachable from WAREHOUSE-012/013 routes; use card maximize/wide layout if needed, no OK/Select/Post.",
+    "nextStep": "WAREHOUSE-016: create a fresh Warehouse Receipt draft and immediately run Get Source Documents before leaving card context; stop before OK/Select/Post.",
     "draftRoute": {
       "status": "labor-proven",
       "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-010/WAREHOUSE-010-result.json",
@@ -1412,26 +1414,12 @@
       "mustRecreateInFinalSandbox": true
     },
     "finalGermanProof": "open",
-    "sourceDocumentRoute": {
-      "status": "labor-blocked",
-      "receiptNo": "RE000001",
-      "getSourceCandidatesVisibleInW11": true,
-      "sourceSelectionReached": false,
-      "noPosting": true,
-      "noPreview": true,
-      "noSourceDocumentConfirmation": true,
-      "resultPaths": [
-        "playwright/projects/fibu-book5/evidence/warehouse-011/WAREHOUSE-011-result.json",
-        "playwright/projects/fibu-book5/evidence/warehouse-012/WAREHOUSE-012-result.json",
-        "playwright/projects/fibu-book5/evidence/warehouse-013/WAREHOUSE-013-result.json"
-      ],
-      "nextCase": "WAREHOUSE-014-EXISTING-RECEIPT-SOURCE-DOCUMENT-BLOCKER",
-      "migrationRelevance": "needed-for-german-final",
-      "mustRecreateInFinalSandbox": true
-    },
     "openLimits": [
       "WAREHOUSE-013: RE000001 is visible/reused, but no safe Get Source Documents selection context was reached.",
-      "No Warehouse Receipt posting, no Put-away and no Warehouse/Item/Value entry trace yet."
-    ]
+      "No Warehouse Receipt posting, no Put-away and no Warehouse/Item/Value entry trace yet.",
+      "WAREHOUSE-014: wide/maximized existing-receipt route still does not expose Get Source Documents candidates.",
+      "WAREHOUSE-015: next route must use a fresh controlled Warehouse Receipt draft and immediate Get Source Documents action before leaving card context."
+    ],
+    "latestDecisionCase": "WAREHOUSE-015-WAREHOUSE-SOURCE-DOCUMENT-ROUTE-DECISION"
   }
 }

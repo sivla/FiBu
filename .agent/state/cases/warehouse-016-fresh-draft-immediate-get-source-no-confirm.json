@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "caseId": "WAREHOUSE-016-FRESH-DRAFT-IMMEDIATE-GET-SOURCE-NO-CONFIRM",
+  "title": "Fresh Warehouse Receipt draft immediate Get Source Documents route",
+  "status": "planned",
+  "taskClass": "wizard_work",
+  "modelClass": "gpt-4-high",
+  "usageLogRequired": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "warehouse-fresh-draft-immediate-get-source-no-confirm",
+  "sourceCase": "WAREHOUSE-015-WAREHOUSE-SOURCE-DOCUMENT-ROUTE-DECISION",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/warehouse-015/WAREHOUSE-015-result.json"
+  ],
+  "purpose": "Use the WAREHOUSE-011 finding while it is still true in the fresh draft card context: create a controlled Warehouse Receipt draft, expand actions immediately, click Get Source Documents if visible, then stop before OK/Select/Post.",
+  "allowedActions": [
+    "business-central-execution",
+    "playwright-execution",
+    "direct-page-navigation",
+    "create-controlled-warehouse-receipt-draft",
+    "maximize-card-or-wide-layout-if-needed",
+    "expand-visible-action-areas",
+    "click-get-source-documents-before-confirmation",
+    "read-fields",
+    "evidence-capture",
+    "keep-draft-with-trace"
+  ],
+  "defaultLockedActions": [
+    "posting",
+    "preview-posting",
+    "warehouse-receipt-posting",
+    "warehouse-putaway-posting",
+    "source-document-confirmation",
+    "delete-record",
+    "company-switch",
+    "api-shortcut"
+  ],
+  "forbiddenActions": [
+    "claim-german-final-proof",
+    "use-api-shortcut",
+    "post-warehouse-document",
+    "click-ok-or-select-on-source-document-dialog",
+    "change-require-pick-bin-mandatory-or-directed-put-away-and-pick",
+    "reuse-warehouse-012-or-013-existing-receipt-route"
+  ],
+  "safetyGates": [
+    "instance-boundary-gate",
+    "company-context-rm-demo",
+    "ui-first-only",
+    "no-posting",
+    "no-source-document-confirmation",
+    "post-receipt-not-clicked",
+    "stop-before-ok-or-select",
+    "draft-keep-status-documented"
+  ],
+  "expectedEvidence": [
+    "fresh receipt draft number if created",
+    "Get Source Documents action candidates before click",
+    "post-click source selection context if visible",
+    "explicit no-post/no-source-confirm flags",
+    "draft keep status"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-016/WAREHOUSE-016-result.json",
+  "nextStep": "Run fresh-draft immediate Get Source Documents route; no source confirmation and no posting.",
+  "createdAt": "2026-06-29T11:18:00+02:00",
+  "updatedAt": "2026-06-29T11:18:00+02:00"
+}

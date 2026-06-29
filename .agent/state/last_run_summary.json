@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "runId": "WAREHOUSE-013-EXISTING-RECEIPT-GET-SOURCE-DOCUMENTS",
+  "runId": "WAREHOUSE-015-WAREHOUSE-SOURCE-DOCUMENT-ROUTE-DECISION",
   "date": "2026-06-29",
-  "workType": "warehouse-existing-receipt-get-source-documents",
+  "workType": "warehouse-source-document-route-decision",
   "branch": "codex/token-efficient-autopilot-state",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
@@ -13,11 +13,11 @@
   "setupChanged": false,
   "companySwitched": false,
   "bookDraftChanged": false,
-  "resultStatus": "blocked",
-  "summary": "WAREHOUSE-011 exposed Get Source Documents action candidates on the Warehouse Receipt draft. WAREHOUSE-012 and WAREHOUSE-013 proved that list/existing-receipt routes still do not safely reach a source-document selection context. RE000001 is visible/reused; no source document was confirmed, no posting and no preview occurred.",
-  "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-013/WAREHOUSE-013-result.json",
-  "evidencePath": "playwright/projects/fibu-book5/evidence/warehouse-013/",
-  "nextCase": "WAREHOUSE-014-EXISTING-RECEIPT-SOURCE-DOCUMENT-BLOCKER",
-  "nextStep": "Diagnose card/action visibility mismatch using maximize/wide-layout/action inventory; stop before OK/Select/Post.",
-  "updatedAt": "2026-06-29T11:05:00+02:00"
+  "resultStatus": "observed",
+  "summary": "WAREHOUSE-014 confirmed the existing RE000001 route remains blocked even after wide/maximized/action expansion. WAREHOUSE-015 selected a new route: create a fresh Warehouse Receipt draft and immediately run Get Source Documents in that card context. No source document confirmation, preview, posting, setup change or book change occurred.",
+  "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-015/WAREHOUSE-015-result.json",
+  "evidencePath": "playwright/projects/fibu-book5/evidence/warehouse-015/",
+  "nextCase": "WAREHOUSE-016-FRESH-DRAFT-IMMEDIATE-GET-SOURCE-NO-CONFIRM",
+  "nextStep": "WAREHOUSE-016: create a fresh Warehouse Receipt draft and immediately run Get Source Documents before leaving card context; stop before OK/Select/Post.",
+  "updatedAt": "2026-06-29T11:18:00+02:00"
 }

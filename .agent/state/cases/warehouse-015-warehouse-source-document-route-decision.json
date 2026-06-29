@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "caseId": "WAREHOUSE-015-WAREHOUSE-SOURCE-DOCUMENT-ROUTE-DECISION",
+  "title": "Decide next Warehouse source-document route after blocker diagnosis",
+  "status": "done",
+  "taskClass": "wizard_work",
+  "modelClass": "gpt-4-medium",
+  "usageLogRequired": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "warehouse-source-document-route-decision",
+  "sourceCase": "WAREHOUSE-014-EXISTING-RECEIPT-SOURCE-DOCUMENT-BLOCKER",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/warehouse-011/WAREHOUSE-011-result.json",
+    "playwright/projects/fibu-book5/evidence/warehouse-012/WAREHOUSE-012-result.json",
+    "playwright/projects/fibu-book5/evidence/warehouse-013/WAREHOUSE-013-result.json",
+    "playwright/projects/fibu-book5/evidence/warehouse-014/WAREHOUSE-014-result.json"
+  ],
+  "decision": "Do not repeat the existing-receipt/list route. WAREHOUSE-011 saw Get Source Documents candidates immediately after controlled draft creation/action expansion; WAREHOUSE-012/013/014 lost the action in list/existing-receipt routes. Next execute route should create a fresh controlled Warehouse Receipt draft and immediately click Get Source Documents in the same card context, stopping before OK/Select/Post.",
+  "rejectedRoutes": [
+    "repeat existing RE000001 list/open route",
+    "repeat action inventory after wide-layout only",
+    "click Post Receipt or any OK/Select confirmation"
+  ],
+  "selectedNextRoute": "fresh-draft-immediate-get-source-documents-no-confirm",
+  "posted": false,
+  "previewPosting": false,
+  "setupChanged": false,
+  "companySwitched": false,
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-015/WAREHOUSE-015-result.json",
+  "nextCase": "WAREHOUSE-016-FRESH-DRAFT-IMMEDIATE-GET-SOURCE-NO-CONFIRM",
+  "nextStep": "Create a fresh Warehouse Receipt draft, expand actions immediately, click Get Source Documents if visible, then stop before OK/Select/Post.",
+  "createdAt": "2026-06-29T11:18:00+02:00",
+  "updatedAt": "2026-06-29T11:18:00+02:00"
+}

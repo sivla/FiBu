@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-29T11:05:00+02:00",
+  "updatedAt": "2026-06-29T11:18:00+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "warehouse",
-  "activeCase": "WAREHOUSE-014-EXISTING-RECEIPT-SOURCE-DOCUMENT-BLOCKER",
-  "active_case_file": ".agent/state/cases/warehouse-014-existing-receipt-source-document-blocker.json",
-  "lastReferenceCase": "WAREHOUSE-013-EXISTING-RECEIPT-GET-SOURCE-DOCUMENTS",
-  "lastReferenceCaseFile": ".agent/state/cases/warehouse-013-existing-receipt-get-source-documents.json",
+  "activeCase": "WAREHOUSE-016-FRESH-DRAFT-IMMEDIATE-GET-SOURCE-NO-CONFIRM",
+  "active_case_file": ".agent/state/cases/warehouse-016-fresh-draft-immediate-get-source-no-confirm.json",
+  "lastReferenceCase": "WAREHOUSE-015-WAREHOUSE-SOURCE-DOCUMENT-ROUTE-DECISION",
+  "lastReferenceCaseFile": ".agent/state/cases/warehouse-015-warehouse-source-document-route-decision.json",
   "mode": "bc-specialist-labor-book-production",
   "requiresStrongModel": false,
   "requiredPreflightChecks": [
@@ -40,7 +40,7 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "WAREHOUSE-014: diagnose Warehouse Receipt source-document action mismatch using maximized/card action inventory; no OK/Select/Post.",
+  "nextStep": "WAREHOUSE-016: create a fresh Warehouse Receipt draft and immediately run Get Source Documents before leaving card context; stop before OK/Select/Post.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/inventory-labor-draft.md",
     "area": "inventory",
@@ -221,7 +221,7 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "warehouse-source-document-action-blocker",
+  "currentCoverageFocus": "warehouse-fresh-draft-source-document-route",
   "nextProcessRoute": [
     "P2P-012 compared Purchase Journal, Item Journal, Purchase Invoices and Requisition Worksheet by direct page URL without search or field entry.",
     "Item Journal is the most stable observed route for material quantity/location/value effect, but it is Inventory evidence rather than full creditor P2P.",
@@ -2496,5 +2496,51 @@
     "migrationRelevance": "needed-for-german-final",
     "mustRecreateInFinalSandbox": true,
     "updatedAt": "2026-06-29T11:05:00+02:00"
+  },
+  "latestWarehouse014": {
+    "caseId": "WAREHOUSE-014-EXISTING-RECEIPT-SOURCE-DOCUMENT-BLOCKER",
+    "status": "blocked",
+    "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-014/WAREHOUSE-014-result.json",
+    "decision": "RE000001 is visible and wide/maximized/action expansion was attempted, but Get Source Documents candidates are still not visible from the existing-receipt route.",
+    "receiptNo": "RE000001",
+    "receiptVisible": true,
+    "layoutAttempts": [
+      {
+        "label": "wide-layout",
+        "clicked": true
+      },
+      {
+        "label": "maximize-expand",
+        "clicked": true
+      },
+      {
+        "label": "show-more-page-actions",
+        "clicked": true
+      }
+    ],
+    "getSourceCandidatesBeforeClick": 0,
+    "getSourceClicked": false,
+    "sourceSelectionVisible": false,
+    "blockedBy": [
+      "get-source-documents-action-not-visible-after-layout-expansion"
+    ],
+    "posted": false,
+    "previewPosting": false,
+    "nextCase": "WAREHOUSE-015-WAREHOUSE-SOURCE-DOCUMENT-ROUTE-DECISION",
+    "updatedAt": "2026-06-29T11:18:00+02:00"
+  },
+  "latestWarehouse015": {
+    "caseId": "WAREHOUSE-015-WAREHOUSE-SOURCE-DOCUMENT-ROUTE-DECISION",
+    "status": "observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-015/WAREHOUSE-015-result.json",
+    "decision": "Use a fresh controlled Warehouse Receipt draft and immediately run Get Source Documents from the same card context; do not repeat existing receipt/list routes.",
+    "selectedNextRoute": "fresh-draft-immediate-get-source-documents-no-confirm",
+    "posted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "nextCase": "WAREHOUSE-016-FRESH-DRAFT-IMMEDIATE-GET-SOURCE-NO-CONFIRM",
+    "migrationRelevance": "needed-for-german-final",
+    "mustRecreateInFinalSandbox": true,
+    "updatedAt": "2026-06-29T11:18:00+02:00"
   }
 }

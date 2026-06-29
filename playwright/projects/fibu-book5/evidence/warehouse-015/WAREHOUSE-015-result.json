@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "purpose": "warehouse-source-document-route-decision",
+  "caseId": "WAREHOUSE-015-WAREHOUSE-SOURCE-DOCUMENT-ROUTE-DECISION",
+  "source": "local-route-decision-from-warehouse-011-to-014",
+  "resultStatus": "observed",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "bcRun": false,
+  "playwrightRun": false,
+  "posted": false,
+  "previewPosting": false,
+  "setupChanged": false,
+  "companySwitched": false,
+  "apiShortcut": false,
+  "decision": "Use a fresh controlled Warehouse Receipt draft and immediately run Get Source Documents from the same card context; do not repeat existing receipt/list routes.",
+  "basis": [
+    "WAREHOUSE-011 saw Get Source Documents candidates immediately after controlled draft creation/action expansion.",
+    "WAREHOUSE-012 did not reach source selection from list route.",
+    "WAREHOUSE-013 reused RE000001 but did not reach source selection.",
+    "WAREHOUSE-014 proved wide/maximized existing-receipt route still does not show Get Source Documents candidates."
+  ],
+  "rejectedRoutes": [
+    "repeat existing RE000001 list/open route",
+    "repeat action inventory after wide-layout only",
+    "click Post Receipt or any OK/Select confirmation"
+  ],
+  "selectedNextRoute": "fresh-draft-immediate-get-source-documents-no-confirm",
+  "flags": {
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true,
+    "noSourceDocumentConfirmation": true
+  },
+  "migrationRelevance": "needed-for-german-final",
+  "rebuildInstruction": "In German final sandbox, reproduce Warehouse Receipt source selection with a German final source document and trace Warehouse/Item/Value entries only after posting is explicitly approved.",
+  "mustRecreateInFinalSandbox": true,
+  "sourceCompany": "RM-DEMO",
+  "targetGermanCompanyImpact": "German final proof must rebuild source selection, Warehouse Receipt posting, Put-away and ledger trace.",
+  "finalScreenshotNeeded": true,
+  "nextCase": "WAREHOUSE-016-FRESH-DRAFT-IMMEDIATE-GET-SOURCE-NO-CONFIRM",
+  "nextStep": "Create a fresh Warehouse Receipt draft, expand actions immediately, click Get Source Documents if visible, then stop before OK/Select/Post."
+}
