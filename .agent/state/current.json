@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-29T17:20:00+02:00",
+  "updatedAt": "2026-06-29T17:45:00+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "warehouse",
-  "activeCase": "WAREHOUSE-020-INBOUND-SOURCE-DOCUMENT-READINESS",
-  "active_case_file": ".agent/state/cases/warehouse-020-inbound-source-document-readiness.json",
-  "lastReferenceCase": "WAREHOUSE-019-WAREHOUSE-INBOUND-SOURCE-DOCUMENT-CREATION-OR-PARK-DECISION",
-  "lastReferenceCaseFile": ".agent/state/cases/warehouse-019-warehouse-inbound-source-document-creation-or-park-decision.json",
+  "activeCase": "WAREHOUSE-021-CONTROLLED-SOURCE-PURCHASE-ORDER-FOR-WAREHOUSE",
+  "active_case_file": ".agent/state/cases/warehouse-021-controlled-source-purchase-order-for-warehouse.json",
+  "lastReferenceCase": "WAREHOUSE-020-INBOUND-SOURCE-DOCUMENT-READINESS",
+  "lastReferenceCaseFile": ".agent/state/cases/warehouse-020-inbound-source-document-readiness.json",
   "mode": "bc-specialist-labor-book-production",
   "requiresStrongModel": false,
   "requiredPreflightChecks": [
@@ -40,7 +40,7 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "WAREHOUSE-020: prove or create a concrete eligible inbound source document for FRA-ZL before another Warehouse Receipt source-selection attempt.",
+  "nextStep": "WAREHOUSE-021: create/finalize a controlled Purchase Order source document for FRA-ZL/RAW-STEEL without receiving, invoicing or Warehouse Receipt source confirmation.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/inventory-labor-draft.md",
     "area": "inventory",
@@ -221,7 +221,7 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "warehouse-inbound-source-document-readiness",
+  "currentCoverageFocus": "warehouse-controlled-source-purchase-order",
   "nextProcessRoute": [
     "P2P-012 compared Purchase Journal, Item Journal, Purchase Invoices and Requisition Worksheet by direct page URL without search or field entry.",
     "Item Journal is the most stable observed route for material quantity/location/value effect, but it is Inventory evidence rather than full creditor P2P.",
@@ -2626,5 +2626,32 @@
     "migrationRelevance": "needed-for-german-final",
     "mustRecreateInFinalSandbox": true,
     "updatedAt": "2026-06-29T17:20:00+02:00"
+  },
+  "latestWarehouse020": {
+    "caseId": "WAREHOUSE-020-INBOUND-SOURCE-DOCUMENT-READINESS",
+    "status": "observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-020/WAREHOUSE-020-result.json",
+    "decision": "Known P2P Purchase Order drafts 106051 and 106054 show RAW-STEEL but not FRA-ZL; no inspected existing Purchase Order proves an eligible FRA-ZL/RAW Warehouse source document.",
+    "inspectedPurchaseOrders": [
+      "106002",
+      "106051",
+      "106054"
+    ],
+    "eligibleCandidates": [],
+    "fraZlRawCandidates": [],
+    "rawWithoutFraZl": [
+      "106051",
+      "106054"
+    ],
+    "posted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "companySwitched": false,
+    "bcRun": true,
+    "playwrightRun": true,
+    "nextCase": "WAREHOUSE-021-CONTROLLED-SOURCE-PURCHASE-ORDER-FOR-WAREHOUSE",
+    "migrationRelevance": "needed-for-german-final",
+    "mustRecreateInFinalSandbox": true,
+    "updatedAt": "2026-06-29T17:45:00+02:00"
   }
 }

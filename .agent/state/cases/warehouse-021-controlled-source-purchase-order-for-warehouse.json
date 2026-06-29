@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 1,
+  "caseId": "WAREHOUSE-021-CONTROLLED-SOURCE-PURCHASE-ORDER-FOR-WAREHOUSE",
+  "title": "Controlled Purchase Order source for Warehouse Receipt",
+  "status": "planned",
+  "taskClass": "wizard_work",
+  "modelClass": "gpt-4-high",
+  "usageLogRequired": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "warehouse-controlled-source-purchase-order",
+  "sourceCase": "WAREHOUSE-020-INBOUND-SOURCE-DOCUMENT-READINESS",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/warehouse-020/WAREHOUSE-020-result.json",
+    "playwright/projects/fibu-book5/evidence/warehouse-020/WAREHOUSE-020-INBOUND-SOURCE-DOCUMENT-READINESS.md"
+  ],
+  "purpose": "Create or fit one controlled Purchase Order source document with RAW-STEEL, Location Code FRA-ZL and enough source-readiness evidence for a later Warehouse Receipt source-selection attempt.",
+  "allowedActions": [
+    "business-central-execution",
+    "playwright-execution",
+    "direct-page-navigation",
+    "create-controlled-purchase-order-draft",
+    "set-vendor-k10000",
+    "add-raw-steel-line",
+    "set-location-fra-zl-if-visible",
+    "set-quantity-if-visible",
+    "release-source-document-if-case-gates-pass",
+    "evidence-capture",
+    "keep-draft-with-trace",
+    "update-state"
+  ],
+  "defaultLockedActions": [
+    "warehouse-receipt-source-confirmation",
+    "warehouse-receipt-posting",
+    "warehouse-putaway-posting",
+    "purchase-order-receive",
+    "purchase-order-invoice",
+    "preview-posting",
+    "posting",
+    "delete-record",
+    "company-switch",
+    "api-shortcut"
+  ],
+  "forbiddenActions": [
+    "claim-german-final-proof",
+    "use-api-shortcut",
+    "post-warehouse-document",
+    "change-require-pick-bin-mandatory-or-directed-put-away-and-pick",
+    "click-post-receipt"
+  ],
+  "safetyGates": [
+    "instance-boundary-gate",
+    "company-context-rm-demo",
+    "ui-first-only",
+    "no-purchase-receive-or-invoice",
+    "no-warehouse-posting",
+    "no-warehouse-source-confirmation-in-this-case",
+    "document-number-and-keep-status-documented",
+    "only-release-if-source-document-values-are-visible"
+  ],
+  "targetValues": {
+    "vendorNo": "K10000",
+    "itemNo": "RAW-STEEL",
+    "locationCode": "FRA-ZL",
+    "quantity": "1",
+    "purpose": "Warehouse source document readiness only; not P2P final proof."
+  },
+  "expectedEvidence": [
+    "Purchase Order document number",
+    "vendor K10000 visible",
+    "RAW-STEEL line visible",
+    "FRA-ZL line location visible or explicit blocker",
+    "quantity visible or explicit blocker",
+    "release/status result or explicit blocker",
+    "explicit no-post/no-receive/no-invoice/no-warehouse-source-confirmation flags"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-021/WAREHOUSE-021-result.json",
+  "nextStep": "Create/finalize a controlled Purchase Order source document for FRA-ZL/RAW-STEEL without receiving, invoicing or Warehouse Receipt source confirmation.",
+  "createdAt": "2026-06-29T17:45:00+02:00",
+  "updatedAt": "2026-06-29T17:45:00+02:00"
+}
