@@ -182,7 +182,7 @@
     {
       "id": "PREP-009-RM-DECOMMISSION-INVENTORY-REFINEMENT",
       "order": 9,
-      "status": "pending",
+      "status": "done",
       "category": "decommission",
       "expectedImpact": "prep-progress",
       "mayWorkEffectively": false,
@@ -192,8 +192,11 @@
       "sourceCompany": "UNIVERSAARL-DE-planned-not-yet-created",
       "targetWorld": "Universaarl",
       "noFinalGermanClaimWithoutUniversaarlEvidence": true,
-      "lookaheadStatus": "ready-next",
-      "reason": "Next best prep task after source/claim gates: classify legacy RM/Rhein-Main/CRONUS references without deleting historical evidence."
+      "lookaheadStatus": "done",
+      "reason": "Next best prep task after source/claim gates: classify legacy RM/Rhein-Main/CRONUS references without deleting historical evidence.",
+      "completedAt": "2026-06-30",
+      "result": "RM decommission inventory refined; active catalog next-case sequence corrected; historical evidence protected.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/prep-009-rm-decommission-inventory-refinement/PREP-009-result.json"
     },
     {
       "id": "PREP-010-PLAYWRIGHT-READONLY-HELPERS-AND-UI-ERGONOMICS",
@@ -208,7 +211,8 @@
       "sourceCompany": "UNIVERSAARL-DE-planned-not-yet-created",
       "targetWorld": "Universaarl",
       "noFinalGermanClaimWithoutUniversaarlEvidence": true,
-      "lookaheadStatus": "ready-after-current"
+      "lookaheadStatus": "ready-next",
+      "reason": "Next best prep task after RM decommission: improve read-only UI ergonomics and Playwright helper rules for splitbuttons, tooltips, focus/layout and screenshot QA."
     },
     {
       "id": "PREP-011-SCREENSHOT-EXPLANATION-QUALITY-GATE",
@@ -514,7 +518,7 @@
       "lookaheadStatus": "ready-after-current"
     }
   ],
-  "lastUpdated": "2026-06-30T00:00:00.000+02:00",
+  "lastUpdated": "2026-06-30T00:25:00.000+02:00",
   "nextStepDecisionGate": {
     "active": true,
     "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",
@@ -583,35 +587,35 @@
       ]
     }
   },
-  "updatedAt": "2026-06-30T00:00:00.000+02:00",
-  "lastCompletedCase": "PREP-008-SOURCE-REGISTRY-AND-CLAIM-RULES-GAP-AUDIT",
-  "nextCase": "PREP-009-RM-DECOMMISSION-INVENTORY-REFINEMENT",
+  "updatedAt": "2026-06-30T00:25:00.000+02:00",
+  "lastCompletedCase": "PREP-009-RM-DECOMMISSION-INVENTORY-REFINEMENT",
+  "nextCase": "PREP-010-PLAYWRIGHT-READONLY-HELPERS-AND-UI-ERGONOMICS",
   "nextStepDecisionCard": {
-    "currentCase": "PREP-008-SOURCE-REGISTRY-AND-CLAIM-RULES-GAP-AUDIT",
-    "plannedNextCaseBeforeReview": "PREP-008-SOURCE-REGISTRY-AND-CLAIM-RULES-GAP-AUDIT",
-    "lastEvidenceSummary": "PREP-007 reduced book-facing meta-language and selected PREP-008 to prevent unsupported product or best-practice claims.",
+    "currentCase": "PREP-009-RM-DECOMMISSION-INVENTORY-REFINEMENT",
+    "plannedNextCaseBeforeReview": "PREP-009-RM-DECOMMISSION-INVENTORY-REFINEMENT",
+    "lastEvidenceSummary": "PREP-008 tightened source and claim gates, making legacy-vs-active classification safer.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "Source and claim rules are the right follow-up before more Universaarl book text or permission-blocked company creation work.",
+    "reason": "Legacy RM/Rhein-Main/CRONUS references are the next active risk after claim gates; the project needs cleaner steering before more book or UI prep.",
     "lookaheadReviewed": [
       {
-        "caseId": "PREP-009-RM-DECOMMISSION-INVENTORY-REFINEMENT",
-        "status": "ready-next",
-        "reason": "After claim gates, legacy references can be classified with less risk of treating RM evidence as active target truth."
-      },
-      {
         "caseId": "PREP-010-PLAYWRIGHT-READONLY-HELPERS-AND-UI-ERGONOMICS",
-        "status": "ready-after-current",
-        "reason": "Tooltip, split-button and screenshot-QA helper rules should follow the source/claim cleanup."
+        "status": "ready-next",
+        "reason": "Tooltip, splitbutton, focus mode and screenshot QA were recurring user-feedback points and should become reusable patterns."
       },
       {
         "caseId": "PREP-011-SCREENSHOT-EXPLANATION-QUALITY-GATE",
         "status": "ready-after-current",
-        "reason": "Screenshot explanation quality depends on the same proof/not-proof separation."
+        "reason": "Screenshot truth and not-proof labels are needed before more book-facing screenshot prose."
       },
       {
         "caseId": "PREP-012-LOOK-AND-FEEL-FILTERING-CHAPTER-PLAN",
         "status": "ready-after-current",
-        "reason": "Filtering prose should use the product/UI/evidence claim separation."
+        "reason": "Filtering/look-and-feel prose should follow the improved UI-helper rules."
+      },
+      {
+        "caseId": "PREP-013-DATA-RICHNESS-PLAN-FOR-FUTURE-FULL-COMPANY",
+        "status": "ready-after-current",
+        "reason": "Data richness is useful after UI rules and screenshot explanation are sharper."
       },
       {
         "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
@@ -620,19 +624,19 @@
       }
     ],
     "queueChangesMade": [
-      "Marked PREP-008 done.",
-      "Selected PREP-009 as next prep case."
+      "Marked PREP-009 done.",
+      "Selected PREP-010 as next prep case."
     ],
-    "selectedNextCase": "PREP-009-RM-DECOMMISSION-INVENTORY-REFINEMENT",
-    "whySelectedNextCaseIsBest": "The next cleanup risk is legacy RM/Rhein-Main/CRONUS language in active project truth; source gates now make classification safer.",
+    "selectedNextCase": "PREP-010-PLAYWRIGHT-READONLY-HELPERS-AND-UI-ERGONOMICS",
+    "whySelectedNextCaseIsBest": "The user's recent failures were UI-understanding failures: splitbutton vs menu entry, tooltip, screenshot QA and layout expansion. PREP-010 directly improves that capability.",
     "risksBeforeNextCase": [
-      "Do not delete historical evidence.",
-      "Do not mass-replace legacy evidence paths.",
-      "Only active target truth should move to Universaarl wording."
+      "Do not run Playwright write actions.",
+      "Do not turn helper work into broad architecture.",
+      "Keep helper changes tied to observed UI mistakes."
     ],
     "requiredPreparation": [
-      "Read UNIVERSAARL-RM-DECOMMISSION-PLAN.md and rm_decommission_inventory.json.",
-      "Classify active references before editing."
+      "Read existing Playwright helpers and UI look-and-feel guide.",
+      "Target only read-only ergonomics: tooltip, splitbutton, screenshot QA and focus/layout notes."
     ]
   }
 }

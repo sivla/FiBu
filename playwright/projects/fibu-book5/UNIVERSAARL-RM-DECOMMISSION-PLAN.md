@@ -39,6 +39,7 @@ Diese Dateien bleiben zunaechst Beweiskette und Lernarchiv.
 
 | Bereich | Befund | Klassifikation | Naechste Aktion |
 | --- | --- | --- | --- |
+| PREP-009 Active-Scan vom 30.06.2026 | Aktive Zielwelt ist `playthru` / `UNIVERSAARL-DE`; Company Creation bleibt wegen fehlender Rechte geparkt. Der aktive Katalog und State duerfen keine alten Execute-Ziele als naechste Wahrheit fuehren. | `active-must-replace-now` fuer veraltete Next-Step-Saetze, `replace-with-universaarl-evidence` fuer Prozessinhalte | `BC-FULL-PLAYTHROUGH-CATALOG.md` auf aktuelle PREP-009/010/011/012-Reihenfolge umgestellt; TARGET-009 bleibt bis Rechtefreigabe blockiert. |
 | Buchmaster Kapitel 4/5/7/8 | Meta-Formulierungen wie "Dieses Kapitel erklaert" wurden in direkten Lesertext umgeschrieben. | `removed-from-active-repo` fuer diese Meta-Treffer | Bei weiteren Buchpatches denselben Stil anwenden. |
 | Buchmaster Kapitel 23 Inventory Costing | Rhein-Main stand als aktive Abschlusswelt. | `active-must-replace-now` | Einstieg auf Universaarl-Zielwelt umgestellt; Detailbeispiele spaeter mit Universaarl-Evidence ersetzen. |
 | Buchmaster insgesamt | Viele RM-/Rhein-Main-/CRONUS-Bezuege bleiben in Fallstudien-, Labor- und Prozessabschnitten. | `replace-with-universaarl-evidence` | Prozess fuer Prozess ersetzen, nicht per Massensuche. |
@@ -89,13 +90,36 @@ Stattdessen:
 
 ## Decommission-Reihenfolge
 
-1. Aktive Buchmaster-Abschnitte auf Universaarl-Zielwelt umstellen.
-2. Company-/Foundation-Kapitel mit Universaarl-Evidence neu schreiben.
-3. Prozesskapitel nach Universaarl-Proof ersetzen.
-4. Coverage/Atlas auf `superseded-by-universaarl` setzen.
-5. Historische RM-DEMO-State-Bloecke in Archivstate verdichten.
-6. Alte Tests/Helper generisch machen oder als Archiv markieren.
-7. Erst danach nicht mehr benoetigte aktive RM-Dateien entfernen.
+1. Aktive Steuerdateien duerfen keine erledigten PREP- oder alten RM-Execute-Cases als naechsten Schritt fuehren.
+2. Aktive Buchmaster-Abschnitte auf Universaarl-Zielwelt umstellen, aber nur dort, wo keine falsche Finalbehauptung entsteht.
+3. Company-/Foundation-Kapitel mit Universaarl-Evidence neu schreiben, sobald `UNIVERSAARL-DE` wirklich existiert.
+4. Prozesskapitel nach Universaarl-Proof ersetzen.
+5. Coverage/Atlas auf `superseded-by-universaarl` setzen, sobald ein konkreter Universaarl-Prozess den alten Laborprozess ersetzt.
+6. Historische RM-DEMO-State-Bloecke in Archivstate verdichten.
+7. Alte Tests/Helper generisch machen oder als Archiv markieren.
+8. Erst danach nicht mehr benoetigte aktive RM-Dateien entfernen.
+
+## PREP-009 Trefferklassifikation vom 30.06.2026
+
+Die aktive Suche wurde auf Buchmaster, zentrale Kataloge/Atlanten und aktive State-Dateien begrenzt. Evidence-Ordner und Screenshots wurden nicht massenhaft bearbeitet.
+
+| Datei / Bereich | Treffer grob | Klassifikation | Entscheidung |
+| --- | ---: | --- | --- |
+| `FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md` | 564 | `replace-with-universaarl-evidence` | Nicht massenhaft ersetzen. Kapitelweise durch Universaarl-Kapitel ersetzen, sobald Evidence vorhanden ist. |
+| `.agent/state/current.json` | 209 | `external-archive-later` | Historische `latest*`-Bloecke bleiben vorerst Trace. Spaeter in Archivstate auslagern. |
+| `BC-SCREENSHOT-INVENTORY.md` | 5 | `replace-with-universaarl-evidence` / `keep-as-warning` | CRONUS-Kontext bleibt als Nicht-Final-Warnung erlaubt; keine finalen Screenshots daraus ableiten. |
+| `BC-COVERAGE-MATRIX.md` | 6 | `replace-with-universaarl-evidence` | Alte Prozesscoverage bleibt bis Universaarl-Ersatz als Laborstatus markiert. |
+| `BC-FULL-PLAYTHROUGH-CATALOG.md` | 5 | `active-must-replace-now` fuer veraltete Next-Step-Planung | Naechste Case-Auswahl wurde auf PREP-009 ff. aktualisiert. |
+| `BC-COMPANY-USECASE.md` | 5 | `removed-from-active-repo` fuer Zielwelt, `legacy-labor-reference` fuer Historie | Behalten; Datei trennt aktive Universaarl-Welt bereits sauber. |
+| `BC-PAGE-ATLAS.md`, `BC-ACTION-ATLAS.md` | 2-4 | `replace-with-universaarl-evidence` | Behalten, bis Universaarl-Page-/Action-Evidence die alten Hinweise ersetzt. |
+| `.agent/state/marathon_queue.json` | 8 | `false-positive` / aktive Queue-Namen | Behalten; PREP-009 ist der aktive Decommission-Case. |
+
+## Naechste Decommission-Arbeit
+
+1. `PREP-010` soll UI-/Tooltip-/Splitbutton-Regeln als Helper/Pattern schaerfen, damit neue Universaarl-Evidence besser wird.
+2. `PREP-011` soll Screenshot-Erklaerungen pruefen, besonders dort, wo CRONUS-Shellkontext sichtbar ist.
+3. `PREP-012` soll Look-and-Feel-/Filtertext vorbereiten, aber ohne alte RM-Daten als Zielwelt.
+4. Nach Rechtefreigabe ersetzt `TARGET-009` die geparkte Company-Creation-Strecke durch echte Universaarl-Evidence.
 
 ## Harte Grenzen
 

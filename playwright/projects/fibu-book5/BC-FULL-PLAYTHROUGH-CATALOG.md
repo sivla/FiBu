@@ -28,12 +28,12 @@ Zero-Open-Questions-Regel: Jeder Bereich in diesem Katalog muss seine offenen Ob
 
 | Prioritaet | Case | Warum |
 | --- | --- | --- |
-| 1 | `PREP-005-BC-OBJECT-COVERAGE-CATALOG-GAP-FILL` | Solange Company Creation wegen Rechten geparkt ist, muss die Objektlandschaft passend zur Prozessreihenfolge geschaerft werden. |
-| 2 | `PREP-006-BOOKMASTER-UNIVERSAARL-FALLSTUDIE-REWRITE-PLAN` | Kapitel 3 und die Fallstudie sollen Universaarl vorbereiten, ohne zu behaupten, dass die Company schon existiert. |
-| 3 | `PREP-007-BOOK-WRITING-RULES-META-LANGUAGE-AUDIT` | Buchtexte muessen lesbarer werden und Agenten-/Evidence-Meta aus Buchdrafts entfernen. |
-| 4 | `TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE` | Erst nach bestaetigten Rechten: Seite `Mandanten`, `Neu` / `Neues Unternehmen erstellen`, sichtbare Anlage oder exakter Berechtigungsfehler. |
-| 5 | `TARGET-004-FOUNDATION-SETUP-READINESS` | Erst nach erstellter Company: Company Information, Setup-Assistenten, Basis-Setup. |
-| 6 | `TARGET-DATA-001-UNIVERSAARL-DATA-RICHNESS-PLAN` | Nach Company und Foundation braucht das Buch eine sinnvolle Datenstrategie, bevor Filter, Listen und Reporting an vielen Daten erklaert werden. |
+| 1 | `PREP-009-RM-DECOMMISSION-INVENTORY-REFINEMENT` | Die aktive Zielwelt ist Universaarl; alte RM-/Rhein-Main-/CRONUS-Referenzen muessen vor weiteren Buchpatches klar als Legacy, Archiv oder spaeter zu ersetzender Prozess markiert sein. |
+| 2 | `PREP-010-PLAYWRIGHT-READONLY-HELPERS-AND-UI-ERGONOMICS` | Tooltip, Splitbutton, Fokusmodus und Screenshot-QA muessen reproduzierbar werden, damit der naechste Live-Versuch nicht wieder blind klickt. |
+| 3 | `PREP-011-SCREENSHOT-EXPLANATION-QUALITY-GATE` | Screenshots duerfen nur Buchkandidaten sein, wenn Page, Company, Schritt, sichtbarer Lernwert und Nicht-Beweis sauber notiert sind. |
+| 4 | `PREP-012-LOOK-AND-FEEL-FILTERING-CHAPTER-PLAN` | Filter, Views und Request Pages sollen als Anfaengerkapitel vorbereitet werden, aber erst nach Datenreichtum final werden. |
+| 5 | `TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE` | Erst nach bestaetigten Rechten: Seite `Mandanten`, `Neu` / `Neues Unternehmen erstellen`, sichtbare Anlage oder exakter Berechtigungsfehler. |
+| 6 | `TARGET-004-FOUNDATION-SETUP-READINESS` | Erst nach erstellter Company: Company Information, Setup-Assistenten, Basis-Setup. |
 
 ## Permission-aware Gate-Reihenfolge
 
