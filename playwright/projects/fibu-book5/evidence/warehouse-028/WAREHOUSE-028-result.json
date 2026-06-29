@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "purpose": "warehouse-source-po-location-route-decision",
+  "caseId": "WAREHOUSE-028-SOURCE-PO-LOCATION-DEFAULT-OR-FRESH-DRAFT-DECISION",
+  "source": "local-evidence-review",
+  "resultStatus": "observed",
+  "taskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "usageLogRequired": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "sourceCompany": "RM-DEMO",
+  "sourceDocumentType": "Purchase Order",
+  "sourceDocumentNo": "106055",
+  "reviewedEvidence": [
+    "playwright/projects/fibu-book5/evidence/warehouse-020/WAREHOUSE-020-result.json",
+    "playwright/projects/fibu-book5/evidence/warehouse-021/WAREHOUSE-021-result.json",
+    "playwright/projects/fibu-book5/evidence/warehouse-023/WAREHOUSE-023-result.json",
+    "playwright/projects/fibu-book5/evidence/warehouse-024/WAREHOUSE-024-result.json",
+    "playwright/projects/fibu-book5/evidence/warehouse-026/WAREHOUSE-026-result.json",
+    "playwright/projects/fibu-book5/evidence/warehouse-027/WAREHOUSE-027-result.json"
+  ],
+  "proved": [
+    "Known Warehouse Receipt source selection routes require an eligible inbound source document first.",
+    "Purchase Order 106055 is the controlled Warehouse source candidate and contains RAW-STEEL, but its visible Location context remains ATLANTA, GA instead of FRA-ZL.",
+    "The Purchase Lines display-cell route, active-editor probe and Lines-area Line menu route did not expose a safe row-scoped editable Location Code control.",
+    "Repeating the same cell edit or Line menu route would be low-value and risks token/time waste.",
+    "The next non-repetitive route should inspect UI-first defaulting/setup prerequisites before creating another source document or trying Release/Warehouse Receipt again."
+  ],
+  "notProved": [
+    "No FRA-ZL value is proven on Purchase Order 106055.",
+    "No released Warehouse-eligible Purchase Order source document is proven.",
+    "No Warehouse Receipt source document confirmation is proven.",
+    "No receive, invoice, preview posting or posting is proven.",
+    "No German-final Warehouse proof is derived from RM-DEMO lab evidence."
+  ],
+  "selectedRoute": "location-default-setup-preflight-before-fresh-draft",
+  "rejectedRoutes": [
+    {
+      "route": "repeat-display-cell-or-line-menu-edit",
+      "reason": "WAREHOUSE-024, WAREHOUSE-026 and WAREHOUSE-027 already show no visible persistence/editor route."
+    },
+    {
+      "route": "release-existing-po-106055",
+      "reason": "FRA-ZL is not visible on RAW-STEEL; source document is not eligible for the intended Warehouse route."
+    },
+    {
+      "route": "repeat-warehouse-receipt-source-selection",
+      "reason": "WAREHOUSE-016 to WAREHOUSE-018 reached selection contexts but no clear source row; WAREHOUSE-020 identified missing eligible source document as prerequisite."
+    }
+  ],
+  "nextCase": "WAREHOUSE-029-SOURCE-PO-DEFAULT-LOCATION-PREFLIGHT",
+  "nextStep": "Run a read-only UI preflight on Vendor K10000, Item RAW-STEEL and relevant location/default setup pages to identify whether a UI-first defaulting mechanism can produce FRA-ZL on a fresh source Purchase Order before line insertion.",
+  "flags": {
+    "bcRun": false,
+    "playwrightRun": false,
+    "noValueEntry": true,
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true,
+    "noReceive": true,
+    "noInvoice": true,
+    "noRelease": true,
+    "noWarehouseReceiptSourceConfirmation": true
+  },
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": false,
+  "classification": [
+    "labor-blocked",
+    "labor-sufficient-for-book-draft",
+    "needs-german-final-rebuild"
+  ],
+  "bookEffect": "Warehouse chapter/clickguide should explain that Warehouse Receipt source selection depends on an eligible released source document; RM-DEMO currently lacks a proved FRA-ZL purchase line source route.",
+  "safeToFinalizeState": false,
+  "requiresReview": false,
+  "blockedBy": [],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/warehouse-028/WAREHOUSE-028-result.json",
+    "playwright/projects/fibu-book5/evidence/warehouse-028/WAREHOUSE-028-ROUTE-DECISION.md"
+  ],
+  "updatedAt": "2026-06-29T22:05:00+02:00"
+}

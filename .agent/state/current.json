@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-29T21:35:00+02:00",
+  "updatedAt": "2026-06-29T22:05:00+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "warehouse",
-  "activeCase": "WAREHOUSE-028-SOURCE-PO-LOCATION-DEFAULT-OR-FRESH-DRAFT-DECISION",
-  "active_case_file": ".agent/state/cases/warehouse-028-source-po-location-default-or-fresh-draft-decision.json",
-  "lastReferenceCase": "WAREHOUSE-027-SOURCE-PO-LINE-DETAILS-ACTION-ROUTE",
-  "lastReferenceCaseFile": ".agent/state/cases/warehouse-027-source-po-line-details-action-route.json",
+  "activeCase": "WAREHOUSE-029-SOURCE-PO-DEFAULT-LOCATION-PREFLIGHT",
+  "active_case_file": ".agent/state/cases/warehouse-029-source-po-default-location-preflight.json",
+  "lastReferenceCase": "WAREHOUSE-028-SOURCE-PO-LOCATION-DEFAULT-OR-FRESH-DRAFT-DECISION",
+  "lastReferenceCaseFile": ".agent/state/cases/warehouse-028-source-po-location-default-or-fresh-draft-decision.json",
   "mode": "bc-specialist-labor-book-production",
   "requiresStrongModel": true,
   "requiredPreflightChecks": [
@@ -40,7 +40,7 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "WAREHOUSE-028: decide between location default/setup route or fresh source document route; line menu did not expose an editable Location route.",
+  "nextStep": "WAREHOUSE-029: run read-only UI preflight for Vendor K10000, Item RAW-STEEL and default/setup signals before any fresh source PO or setup change.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/inventory-labor-draft.md",
     "area": "inventory",
@@ -112,8 +112,8 @@
     "summaryFile": ".agent/state/lab_to_german_sandbox_migration_plan.json",
     "noActiveLiveRunInOldSandbox": false,
     "germanTargetUnavailable": true,
-    "nextStep": "WAREHOUSE-028: decide between location default/setup route or fresh source document route; line menu did not expose an editable Location route.",
-    "nextCase": "WAREHOUSE-028-SOURCE-PO-LOCATION-DEFAULT-OR-FRESH-DRAFT-DECISION"
+    "nextStep": "WAREHOUSE-029: run read-only UI preflight for Vendor K10000, Item RAW-STEEL and default/setup signals before any fresh source PO or setup change.",
+    "nextCase": "WAREHOUSE-029-SOURCE-PO-DEFAULT-LOCATION-PREFLIGHT"
   },
   "latestP2PLabFollowup": {
     "caseId": "P2P-004-PARTIAL-RECEIPT-VARIANCE-GATE",
@@ -221,7 +221,7 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "warehouse-source-po-location-default-or-fresh-draft-decision",
+  "currentCoverageFocus": "warehouse-source-po-default-location-preflight",
   "nextProcessRoute": [
     "P2P-012 compared Purchase Journal, Item Journal, Purchase Invoices and Requisition Worksheet by direct page URL without search or field entry.",
     "Item Journal is the most stable observed route for material quantity/location/value effect, but it is Inventory evidence rather than full creditor P2P.",
@@ -2812,5 +2812,21 @@
     "migrationRelevance": "needed-for-german-final",
     "mustRecreateInFinalSandbox": true,
     "updatedAt": "2026-06-29T21:35:00+02:00"
+  },
+  "latestWarehouse028": {
+    "caseId": "WAREHOUSE-028-SOURCE-PO-LOCATION-DEFAULT-OR-FRESH-DRAFT-DECISION",
+    "status": "observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-028/WAREHOUSE-028-result.json",
+    "decision": "WAREHOUSE-028 selects a read-only default/setup preflight before another source document attempt; previous Purchase Lines cell/editor/Line-menu routes are exhausted.",
+    "selectedRoute": "location-default-setup-preflight-before-fresh-draft",
+    "bcRun": false,
+    "playwrightRun": false,
+    "posted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "nextCase": "WAREHOUSE-029-SOURCE-PO-DEFAULT-LOCATION-PREFLIGHT",
+    "migrationRelevance": "needed-for-german-final",
+    "mustRecreateInFinalSandbox": true,
+    "updatedAt": "2026-06-29T22:05:00+02:00"
   }
 }
