@@ -44,16 +44,17 @@ Zweck: kleiner Einstiegspunkt fuer Codex-Laeufe, die nicht den gesamten Projektv
 
 - Repo-State ist die Wahrheit, nicht alte Chat-Historie.
 - Ziel ist ein vollstaendiges, anfaengerfreundliches, evidence-basiertes Business-Central-FiBu-Buch.
+- Aktive Buchwelt ist ab jetzt Universaarl: Zielinstanz `playthru`, Zielcompany `UNIVERSAARL-DE`, Musterfirma `Universaarl GmbH`. Die Company existiert nicht als Voraussetzung; ihre UI-first-Anlage ist Teil des Buchprozesses.
+- `MCP_1_20260210`, `RM-DEMO`, Rhein-Main-/RM-* und CRONUS-Bezuege sind nur noch `legacy-labor-reference`. Sie bleiben als historische Evidence erhalten, duerfen aber nicht mehr als aktive Zielwahrheit oder finale deutsche Buchwelt verwendet werden.
 - Business-Central-Specialist-Modus: Jeder Lauf soll mindestens eine Coverage-Zeile, einen Atlas-Eintrag, eine Evidence-Strecke, ein Buchdraft-Stueck oder eine wiederverwendbare Playwright-Faehigkeit verbessern. Die zentralen Projektdateien dafuer liegen unter `playwright/projects/fibu-book5/BC-*.md`.
-- Gate-is-not-stop: Ein Gate ist ein Kontrollpunkt, kein Endziel. Wenn ein Gate gruen ist und der naechste Schritt innerhalb `MCP_1_20260210` klar, erlaubt und evidence-faehig ist, wird der naechste Prozessschritt geplant oder ausgefuehrt statt nach Header/Zeile/Screenshot zu stoppen.
+- Gate-is-not-stop: Ein Gate ist ein Kontrollpunkt, kein Endziel. Wenn ein Gate gruen ist und der naechste Schritt innerhalb der aktiven State-Instanz klar, erlaubt und evidence-faehig ist, wird der naechste Prozessschritt geplant oder ausgefuehrt statt nach Header/Zeile/Screenshot zu stoppen.
 - Marathon mode overrides single-case completion. Vor einem Abschlussbericht in Deep-/Execute-Laeufen muss `npm run agent:marathon:check` bestehen oder ein harter Stop dokumentiert sein.
 - Read-only route comparisons, readiness checks und Coverage-/State-Sync zaehlen nicht als Execute-Fortschritt. Wenn der Marathon-Check fehlschlaegt und der Arbeitsbaum sauber ist, nach dem ersten Commit mit dem naechsten Execute-Hebel weiterarbeiten.
 - Process over fragment: Bevorzugt werden Prozessstrecken von Beleganlage ueber Werte, Preview, Posting, Ledger Trace und Buchsync. Mini-Gates sind nur sinnvoll, wenn sie ein Risiko isolieren oder eine konkrete Playwright-/BC-Faehigkeit verbessern.
 - Blocker-to-skill: Wiederholbare Blocker werden in Playwright-Patterns, BC-Atlas, Buch-Lernpunkt oder Helper-/Capability-Verbesserung ueberfuehrt. Ein Blocker ohne Lern- oder Strukturwirkung ist unvollstaendig dokumentiert.
-- Business Central bleibt in `MCP_1_20260210`; das ist die harte Instanzgrenze.
-- `MCP_1_20260210` mit `RM-DEMO` ist Labor- und Vorproduktionsumgebung. Innerhalb dieser Instanz darf der Autopilot breit experimentieren, wenn der aktive Case es erlaubt und Evidence entsteht: Company wechseln, Test-Company anlegen, Drafts erzeugen, editieren, loeschen, Dialoge bestaetigen, Fehler provozieren, Setup, Preview Posting, Posting, Cleanup/Trace und Buchdraft-Aktualisierung ausfuehren.
-- Ergebnisse aus `RM-DEMO` sind Labor-Evidence. Sie duerfen Laborfassung, Clickguide, Lernnotiz und Prozessentwurf im Buch verbessern, aber nie als finaler deutscher Nachweis gelten.
-- Spaeter muss jeder relevante Prozess in einer deutschen Zielinstanz reproduziert werden; Labor-Screenshots und Laborhinweise werden dann durch deutsche finale Evidence ersetzt oder klar als Laborhinweis behalten.
+- Business Central bleibt in der aktuell im State definierten Zielinstanz. Aktuell ist das `playthru`; nicht mehr `MCP_1_20260210`.
+- Alte `RM-DEMO`-Ergebnisse duerfen nur noch als historische Laborquelle genutzt werden. Sobald Universaarl-Evidence fuer einen Prozess existiert, wird der alte Laborstand als `superseded-by-universaarl` markiert.
+- Jeder aktive Buchclaim muss auf Universaarl umgestellt oder klar als historische Laborreferenz gekennzeichnet werden. Kein Mischbuch aus Rhein-Main, RM-DEMO, CRONUS und Universaarl.
 - Diese Sandbox-Freiheit ist immer case-/gate-gesteuert: jede Daten-, Setup-, Posting- oder Company-Aktion braucht dokumentierte Instanz, Company, Zweck, Ergebnis und Cleanup-/Trace-Status.
 - In `.agent/state/current.json` sind `forbiddenActions` harte Stopps. `defaultLockedActions` sind innerhalb der Sandbox nur gesperrt, bis ein aktiver Case oder Gate sie mit Evidence-Plan freigibt.
 - `defaultLockedActions` sind Gates, keine Verbote. Wenn Fachpruefung, Case-Freigabe, Evidence-Plan und Trace-/Cleanup-Pfad klar sind, darf derselbe Lauf in `MCP_1_20260210` vom Gate in Preview, Posting, Receive, Setup oder Cleanup weitergehen.

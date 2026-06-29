@@ -25,15 +25,17 @@ Repeated blockers must become at least one of: Playwright pattern, BC atlas entr
 
 For Deep-/Execute-Laeufe gilt zusaetzlich Marathon mode: single-case completion is not enough. A final report is allowed only when `npm run agent:marathon:check` passes or a hard stop is documented. Read-only route comparisons do not count as execute progress.
 
-## Sandbox instance boundary
+## Active instance boundary
 
-The hard Business Central boundary is the sandbox instance `MCP_1_20260210`.
+The hard Business Central boundary is the active instance in `.agent/state/current.json` and `.agent/state/project_state.json`.
 
-- Never leave `MCP_1_20260210`.
-- Company switches are allowed inside `MCP_1_20260210` when the active case allows them and the result documents previous company, target company, purpose, timestamp and reuse/cleanup status.
-- New sandbox companies are allowed inside `MCP_1_20260210` only with clear test names, source/template notes, purpose, setup status and registry/state evidence.
+- Current active target world is Universaarl: instance `playthru`, first target company `UNIVERSAARL-DE`, legal name `Universaarl GmbH`.
+- Never leave the active State instance.
+- Company switches are allowed inside the active instance when the active case allows them and the result documents previous company, target company, purpose, timestamp and reuse/cleanup status.
+- New sandbox/target companies are allowed inside the active instance only with clear names, source/template notes, purpose, setup status and registry/state evidence. Creating `UNIVERSAARL-DE` is a book process, not a prerequisite.
 - Evidence must always state the instance and company.
 - If the visible URL or shell suggests another instance, stop immediately and write a blocked result.
+- `MCP_1_20260210`, `RM-DEMO`, Rhein-Main/RM-* and CRONUS are legacy laboratory references. Keep their evidence intact, but do not use them as active target truth.
 
 ## UI-first rule
 
@@ -70,9 +72,9 @@ Company switch is not a global hard lock inside `MCP_1_20260210`; it is a case-c
 
 Unlock risky actions only when the active case allows them, the company and instance are confirmed, expected result and evidence plan are known, and cleanup/no-duplicate rules are clear.
 
-Posting-like actions are not never-actions inside `MCP_1_20260210`; they are default-locked actions that become allowed only when the active case explicitly unlocks them. The evidence plan must name the source document, expected posted document or register if visible, expected ledger/entry trace and whether the result is intentionally kept or cleaned up.
+Posting-like actions are not never-actions inside a controlled sandbox/target instance; they are default-locked actions that become allowed only when the active case explicitly unlocks them. The evidence plan must name the source document, expected posted document or register if visible, expected ledger/entry trace and whether the result is intentionally kept or cleaned up.
 
-`forbiddenActions` are hard stops. `defaultLockedActions` are gates: within `MCP_1_20260210` they may be unlocked by the active case when the fachliche Pruefung, evidence plan, trace/cleanup path and correction path are documented.
+`forbiddenActions` are hard stops. `defaultLockedActions` are gates: within the active State instance they may be unlocked by the active case when the fachliche Pruefung, evidence plan, trace/cleanup path and correction path are documented.
 
 ## Fachliche Pruefung before effective actions
 

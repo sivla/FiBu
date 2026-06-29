@@ -1,8 +1,8 @@
 # BC Coverage Matrix
 
-Status: `labor-reference`, Stand: 2026-06-29.
+Status: `universaarl-transition`, Stand: 2026-06-29.
 
-Company-Usecase: `BC-COMPANY-USECASE.md` definiert `RM-DEMO` als Labor-/Vorproduktionscompany in `MCP_1_20260210` und beschreibt die spaetere Rhein-Main-Zielgruppe fuer German-Final-Rebuilds.
+Company-Usecase: `BC-COMPANY-USECASE.md` definiert ab jetzt Universaarl als aktive Buchwelt: `playthru`, `UNIVERSAARL-DE`, `Universaarl GmbH`. Alte `MCP_1_20260210`-/`RM-DEMO`-/Rhein-Main-Evidence bleibt `legacy-labor-reference` und wird pro Prozess durch Universaarl-Evidence ersetzt.
 
 Coverage-Level:
 

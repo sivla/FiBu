@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "caseId": "UNIVERSAARL-001-TARGET-TRANSITION-GOVERNANCE",
+  "title": "Universaarl target-world transition governance",
+  "status": "planned",
+  "taskClass": "judge_work",
+  "modelClass": "gpt-5.5-low",
+  "usageLogRequired": true,
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "workType": "governance-transition-no-bc",
+  "purpose": "Switch active project truth from Rhein-Main/RM-DEMO laboratory world to Universaarl target-world without deleting historical evidence.",
+  "allowedActions": [
+    "read-active-state-and-policy-files",
+    "classify-legacy-references",
+    "update-governance-state",
+    "write-transition-inventory",
+    "update-active-documentation"
+  ],
+  "defaultLockedActions": [
+    "business-central-execution",
+    "playwright-execution",
+    "company-create",
+    "setup-change",
+    "posting",
+    "preview-posting",
+    "book-master-mass-rewrite"
+  ],
+  "forbiddenActions": [
+    "operate-in-legacy-lab-as-active-target",
+    "claim-rm-demo-as-final-proof",
+    "mass-replace-historical-evidence",
+    "delete-legacy-evidence",
+    "commit-secrets",
+    "fake-evidence"
+  ],
+  "activeProjectTruth": {
+    "activeInstance": "playthru",
+    "targetCompany": "UNIVERSAARL-DE",
+    "legalName": "Universaarl GmbH",
+    "usecase": "Universaarl-Musterfirma",
+    "evidenceStatus": "german-final-candidate",
+    "companyStatus": "to-be-created-through-book-process"
+  },
+  "legacyReferencePolicy": {
+    "instance": "MCP_1_20260210",
+    "company": "RM-DEMO",
+    "legalNames": [
+      "Rhein-Main Demo GmbH",
+      "Rhein-Main Playthrough GmbH"
+    ],
+    "dataBasis": "CRONUS/RM-DEMO historical lab evidence",
+    "status": "legacy-labor-reference",
+    "futureStatus": [
+      "archived-evidence-only",
+      "superseded-by-universaarl"
+    ],
+    "rule": "May be cited only as historical laboratory source until Universaarl evidence replaces it. It is not active target truth and never German final proof."
+  },
+  "requiredDecision": "After this governance case, run a read-only playthru context gate and then create UNIVERSAARL-DE through the UI as a book process when the target instance is reachable.",
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "resultPath": ".agent/state/universaarl-transition-inventory.json",
+  "nextStep": "Register/verify playthru context read-only, then create UNIVERSAARL-DE through the UI as the first Universaarl book process.",
+  "createdAt": "2026-06-29T18:37:19+02:00",
+  "updatedAt": "2026-06-29T18:37:19+02:00"
+}

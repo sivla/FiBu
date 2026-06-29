@@ -11,12 +11,23 @@ const project = readJson('.agent/state/project_state.json');
 const budgets = readJson('.agent/budgets.json');
 const gitignore = existsSync('.gitignore') ? readFileSync('.gitignore', 'utf8') : '';
 
-if (current.instance !== 'MCP_1_20260210') {
-  errors.push(`current.instance must stay MCP_1_20260210, got ${current.instance}`);
+const configuredInstance = project.businessCentral?.instance;
+const configuredCompany = project.businessCentral?.primaryCompany;
+
+if (typeof configuredInstance !== 'string' || configuredInstance.trim() === '') {
+  errors.push('project_state businessCentral.instance must be a non-empty string');
 }
 
-if (project.businessCentral?.instance !== 'MCP_1_20260210') {
-  errors.push(`project_state businessCentral.instance must stay MCP_1_20260210`);
+if (typeof configuredCompany !== 'string' || configuredCompany.trim() === '') {
+  errors.push('project_state businessCentral.primaryCompany must be a non-empty string');
+}
+
+if (configuredInstance !== current.instance) {
+  errors.push(`current.instance must match project_state businessCentral.instance: ${configuredInstance} vs ${current.instance}`);
+}
+
+if (configuredCompany !== current.company) {
+  errors.push(`current.company must match project_state businessCentral.primaryCompany: ${configuredCompany} vs ${current.company}`);
 }
 
 if (project.safety?.doNotLeaveInstance !== true) {

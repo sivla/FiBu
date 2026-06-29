@@ -1,17 +1,19 @@
-# Sandbox Instance Autopilot Mode
+# Sandbox / Target Instance Autopilot Mode
 
-Purpose: keep Business Central autonomy consistent for FiBu Buch 5 without weakening the hard instance boundary.
+Purpose: keep Business Central autonomy consistent for FiBu Buch 5 without weakening the active instance boundary or mixing old laboratory truth with the new Universaarl book world.
 
 ## Hard boundary
 
-- The Business Central instance must stay `MCP_1_20260210`.
+- The active Business Central target instance is read from `.agent/state/current.json` and `.agent/state/project_state.json`.
+- Current target world: `playthru`, target company to create: `UNIVERSAARL-DE`, legal name: `Universaarl GmbH`.
 - Never operate in production or another instance.
 - Never show or commit `.env`, `playwright/.auth/`, reports, traces, videos, screenshots or secrets unless explicitly requested and safe.
 - Do not invent business truth. Evidence must state what was observed and what remains unproved.
+- `MCP_1_20260210`, `RM-DEMO`, Rhein-Main/RM-* and CRONUS references are `legacy-labor-reference` only. They may remain in historical evidence but are not active target truth.
 
 ## Instance-scoped autonomy
 
-Inside `MCP_1_20260210`, `RM-DEMO` is the laboratory and pre-production company for the book. The autopilot may use sandbox freedom when the active case allows it and evidence is written:
+Inside the active target instance, the autopilot may use sandbox freedom when the active case allows it and evidence is written. For Universaarl, the first effective process is creating `UNIVERSAARL-DE` through the UI as part of the book:
 
 - switch company
 - create a clearly named test company
@@ -23,13 +25,13 @@ Inside `MCP_1_20260210`, `RM-DEMO` is the laboratory and pre-production company 
 - run Preview Posting or Posting only when the active case and posting gate allow it
 - make setup changes only when the active case and setup gate allow it
 
-`Post`, `Preview Posting`, `Ship`, `Invoice`, `Payment`, acquisition and depreciation are not never-actions inside the sandbox instance. They are default-locked actions that become allowed when the active case explicitly unlocks them and defines the expected evidence trace.
+`Post`, `Preview Posting`, `Ship`, `Invoice`, `Payment`, acquisition and depreciation are not never-actions inside a controlled sandbox/target instance. They are default-locked actions that become allowed when the active case explicitly unlocks them and defines the expected evidence trace.
 
 In state files, `forbiddenActions` means hard stop / never allowed. `defaultLockedActions` means locked by default, but unlockable by an explicit active case or gate with evidence, trace and cleanup/keep documentation.
 
 Default-locked actions are gates, not bans. A sandbox run may unlock and execute them in the same bounded case when instance/company, fachliche Pruefung, expected effect, evidence plan, trace/cleanup or keep status, and correction path are explicit.
 
-All `RM-DEMO` results are laboratory evidence. They may improve book drafts, clickguides, learning notes and process designs as `labor-draft`, `labor-proven`, `labor-blocked` or `labor-sufficient-for-book-draft`, but they must not become `german-final-proof`. Relevant process screenshots and entries must later be rebuilt in a German target instance as `german-final-candidate` or `german-final-proof`.
+All old `RM-DEMO` results are historical laboratory evidence. They may explain earlier learning and rejected paths, but active book claims move to Universaarl. Relevant process screenshots and entries must be rebuilt as Universaarl `german-final-candidate` or `german-final-proof`.
 
 ## Documentation required
 

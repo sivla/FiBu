@@ -1,16 +1,16 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-29T18:18:44+02:00",
+  "updatedAt": "2026-06-29T18:37:19+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
-  "instance": "MCP_1_20260210",
-  "company": "RM-DEMO",
-  "activeArea": "manufacturing",
-  "activeCase": "MANUFACTURING-010-BOM-ROUTING-HEADER-FIT-BLOCKER-REVIEW",
-  "active_case_file": ".agent/state/cases/manufacturing-010-bom-routing-header-fit-blocker-review.json",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "activeArea": "universaarl-governance",
+  "activeCase": "UNIVERSAARL-001-TARGET-TRANSITION-GOVERNANCE",
+  "active_case_file": ".agent/state/cases/universaarl-001-target-transition-governance.json",
   "lastReferenceCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
   "lastReferenceCaseFile": ".agent/state/cases/warehouse-031-warehouse-source-route-park-or-setup-fit-decision.json",
-  "mode": "bc-specialist-labor-book-production",
+  "mode": "universaarl-final-book-production",
   "requiresStrongModel": true,
   "requiredPreflightChecks": [
     "agent:preflight",
@@ -38,9 +38,13 @@
     "book-claim-without-evidence",
     "api-shortcut-without-explicit-case-permission",
     "final-german-claim-from-rm-demo",
-    "repeat-uat-p2p-001-without-new-purpose"
+    "repeat-uat-p2p-001-without-new-purpose",
+    "operate-in-legacy-lab-as-active-target",
+    "mass-replace-historical-evidence",
+    "delete-legacy-evidence",
+    "claim-rm-demo-as-final-proof"
   ],
-  "nextStep": "Review M009 blocker and improve the scoped header creation route before any line-fit attempt.",
+  "nextStep": "Register/verify playthru context read-only, then create UNIVERSAARL-DE through the UI as the first Universaarl book process.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/manufacturing-labor-draft.md",
     "area": "manufacturing",
@@ -222,7 +226,7 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "manufacturing-bom-routing-header-fit-blocker-review",
+  "currentCoverageFocus": "universaarl-target-transition",
   "nextProcessRoute": [
     "P2P-012 compared Purchase Journal, Item Journal, Purchase Invoices and Requisition Worksheet by direct page URL without search or field entry.",
     "Item Journal is the most stable observed route for material quantity/location/value effect, but it is Inventory evidence rather than full creditor P2P.",
@@ -3196,5 +3200,42 @@
     "finalScreenshotNeeded": true,
     "nextCase": "MANUFACTURING-010-BOM-ROUTING-HEADER-FIT-BLOCKER-REVIEW",
     "updatedAt": "2026-06-29T18:18:44+02:00"
+  },
+  "activeProjectTruth": {
+    "activeInstance": "playthru",
+    "targetCompany": "UNIVERSAARL-DE",
+    "legalName": "Universaarl GmbH",
+    "usecase": "Universaarl-Musterfirma",
+    "evidenceStatus": "german-final-candidate",
+    "companyStatus": "to-be-created-through-book-process"
+  },
+  "legacyLaborReference": {
+    "instance": "MCP_1_20260210",
+    "company": "RM-DEMO",
+    "legalNames": [
+      "Rhein-Main Demo GmbH",
+      "Rhein-Main Playthrough GmbH"
+    ],
+    "dataBasis": "CRONUS/RM-DEMO historical lab evidence",
+    "status": "legacy-labor-reference",
+    "futureStatus": [
+      "archived-evidence-only",
+      "superseded-by-universaarl"
+    ],
+    "rule": "May be cited only as historical laboratory source until Universaarl evidence replaces it. It is not active target truth and never German final proof."
+  },
+  "universaarlTransition": {
+    "status": "active-target-world-selected",
+    "oldReferencesPolicy": "legacy-labor-reference-not-active-target-truth",
+    "noBlindDelete": true,
+    "noMassReplaceHistoricalEvidence": true,
+    "firstFinalSteps": [
+      "read-only playthru context gate",
+      "UI-first UNIVERSAARL-DE company creation as book process",
+      "foundation setup and company information evidence",
+      "Universaarl master data rebuild",
+      "process-by-process replacement of old lab claims"
+    ],
+    "updatedAt": "2026-06-29T18:37:19+02:00"
   }
 }

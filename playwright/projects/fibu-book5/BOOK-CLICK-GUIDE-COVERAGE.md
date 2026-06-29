@@ -1,5 +1,7 @@
 # Klickanleitungs-Abdeckung Buch 5
 
+Aktive Buchwelt ab jetzt: Universaarl (`playthru`, `UNIVERSAARL-DE`, `Universaarl GmbH`). Alte `RM-DEMO`-/Rhein-Main-/CRONUS-Coverage bleibt historische Laborreferenz und wird pro Prozess durch Universaarl-Evidence ersetzt, nicht blind geloescht oder umbenannt.
+
 Update nach `MANUFACTURING-009-BOM-ROUTING-GUARDED-SETUP-FIT`: Der bewachte UI-first Header-Fit lief direkt per Page-URL ohne Tell-Me/Suche in `MCP_1_20260210` / `RM-DEMO`. Ergebnis: `BOM-RM-M100` und `ROUTE-M100` wurden nicht angelegt oder sichtbar bewiesen. Die Production-BOM-Seite bot keinen sicher klickbaren gescopten `New`-Pfad; bei Routing waren nach `New` weder Nummer noch Beschreibung sicher befuellbar. Kein Setup wurde gespeichert, kein Fertigungsauftrag, kein Preview, kein Post. Naechster Schritt ist `MANUFACTURING-010`: Blocker-Review und eine neue Route waehlen, nicht denselben `New`-/Feldfuellpfad wiederholen.
 
 Update nach `MANUFACTURING-008-BOM-ROUTING-SETUP-FIT-DECISION`: M008 ist bewusst ein lokaler Entscheidungsfall ohne BC-/Playwright-Ausfuehrung. Ergebnis: Nicht noch ein allgemeiner Read-only-Review, sondern `MANUFACTURING-009` als bewachter UI-first Setup-Fit fuer `BOM-RM-M100` und `ROUTE-M100`. M009 darf Setup nur nach Vorher-Evidence und eindeutig gescopten Controls schreiben; Production Order, Preview, Post, Consumption und Output bleiben gesperrt.

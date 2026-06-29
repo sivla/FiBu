@@ -1,23 +1,15 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-28T21:12:00.000+02:00",
+  "updatedAt": "2026-06-29T18:37:19+02:00",
   "goal": "complete-beginner-friendly-evidence-based-business-central-fibu-book",
   "description": "Build a complete beginner-friendly Business Central FiBu book from practical evidence, Playwright traces, screenshots, clickguides and learning notes.",
   "labEnvironment": {
     "instance": "MCP_1_20260210",
     "primaryCompany": "RM-DEMO",
-    "role": "labor-and-preproduction",
-    "allowedWhenCaseAllows": [
-      "setup",
-      "master-data-creation",
-      "preview-posting",
-      "posting",
-      "payment",
-      "error-diagnosis",
-      "cleanup-or-trace",
-      "bookdraft-update"
-    ],
-    "evidenceStatus": "labor-reference"
+    "role": "legacy-labor-reference",
+    "evidenceStatus": "legacy-labor-reference",
+    "activeTargetTruth": false,
+    "rule": "May be cited only as historical laboratory source until Universaarl evidence replaces it. It is not active target truth and never German final proof."
   },
   "bookDraftPolicy": {
     "laborDraftsAllowed": true,
@@ -48,10 +40,14 @@
     ]
   },
   "finalEnvironmentPolicy": {
-    "germanTargetInstanceAvailable": false,
+    "germanTargetInstanceAvailable": true,
+    "targetInstance": "playthru",
+    "targetCompany": "UNIVERSAARL-DE",
+    "targetCompanyStatus": "to-be-created-through-book-process",
+    "targetLegalName": "Universaarl GmbH",
     "targetStatusBeforeProof": "german-final-candidate",
     "finalStatusAfterProof": "german-final-proof",
-    "rule": "Every relevant process must be reproduced in the future German target instance before final German book claims or final screenshots are accepted."
+    "rule": "Universaarl evidence replaces RM-DEMO/Rhein-Main laboratory claims process by process. The company creation itself is part of the book and must be proven through the UI."
   },
   "statusTerms": {
     "labor-draft": "Labor-based draft content or clickguide, useful but not fully proven.",
@@ -60,7 +56,10 @@
     "labor-sufficient-for-book-draft": "Good enough for a clearly marked labor/preproduction book section.",
     "needs-german-final-rebuild": "Must be rebuilt and re-screenshotted in the future German target instance.",
     "german-final-candidate": "Prepared for German final reproduction, pending target evidence.",
-    "german-final-proof": "Proven in the German target instance with final evidence."
+    "german-final-proof": "Proven in the German target instance with final evidence.",
+    "legacy-labor-reference": "Historical RM-DEMO/Rhein-Main/CRONUS evidence kept as archive and technical learning source, not active target truth.",
+    "archived-evidence-only": "Old evidence retained for traceability but not used for active Buchwelt claims.",
+    "superseded-by-universaarl": "Old laboratory claim replaced by a Universaarl evidence chain."
   },
   "minimumRunOutput": [
     "new-labor-evidence",
@@ -128,13 +127,29 @@
   },
   "companyUsecase": {
     "path": "playwright/projects/fibu-book5/BC-COMPANY-USECASE.md",
-    "currentLabInstance": "MCP_1_20260210",
-    "currentLabCompany": "RM-DEMO",
+    "activeTargetInstance": "playthru",
+    "activeTargetCompany": "UNIVERSAARL-DE",
+    "activeLegalName": "Universaarl GmbH",
     "status": [
-      "labor-reference",
-      "needs-german-final-rebuild"
+      "german-final-candidate",
+      "company-to-be-created-through-book-process"
     ],
-    "rule": "RM-DEMO may feed labor drafts and playthrough evidence, but German final claims require later German target evidence."
+    "legacyLaborReference": {
+      "instance": "MCP_1_20260210",
+      "company": "RM-DEMO",
+      "legalNames": [
+        "Rhein-Main Demo GmbH",
+        "Rhein-Main Playthrough GmbH"
+      ],
+      "dataBasis": "CRONUS/RM-DEMO historical lab evidence",
+      "status": "legacy-labor-reference",
+      "futureStatus": [
+        "archived-evidence-only",
+        "superseded-by-universaarl"
+      ],
+      "rule": "May be cited only as historical laboratory source until Universaarl evidence replaces it. It is not active target truth and never German final proof."
+    },
+    "rule": "Active book world is Universaarl. RM-DEMO may only be cited as legacy laboratory evidence until superseded."
   },
   "marathonMode": {
     "active": true,
@@ -152,5 +167,28 @@
       "payment-apply-attempted"
     ],
     "readOnlyDoesNotCountAsExecute": true
+  },
+  "activeProjectTruth": {
+    "activeInstance": "playthru",
+    "targetCompany": "UNIVERSAARL-DE",
+    "legalName": "Universaarl GmbH",
+    "usecase": "Universaarl-Musterfirma",
+    "evidenceStatus": "german-final-candidate",
+    "companyStatus": "to-be-created-through-book-process"
+  },
+  "legacyLaborReference": {
+    "instance": "MCP_1_20260210",
+    "company": "RM-DEMO",
+    "legalNames": [
+      "Rhein-Main Demo GmbH",
+      "Rhein-Main Playthrough GmbH"
+    ],
+    "dataBasis": "CRONUS/RM-DEMO historical lab evidence",
+    "status": "legacy-labor-reference",
+    "futureStatus": [
+      "archived-evidence-only",
+      "superseded-by-universaarl"
+    ],
+    "rule": "May be cited only as historical laboratory source until Universaarl evidence replaces it. It is not active target truth and never German final proof."
   }
 }
