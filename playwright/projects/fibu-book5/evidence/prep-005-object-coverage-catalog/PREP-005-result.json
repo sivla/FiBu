@@ -1,29 +1,58 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-29T21:54:54.534Z",
-  "runId": "PREP-005-BC-OBJECT-COVERAGE-CATALOG-GAP-FILL",
+  "purpose": "autopilot-result-normalized",
   "caseId": "PREP-005-BC-OBJECT-COVERAGE-CATALOG-GAP-FILL",
-  "status": "done",
-  "instance": "playthru",
-  "company": "UNIVERSAARL-DE target; company not yet created",
-  "practicalResult": "Filled Universaarl object coverage gaps and aligned Page Atlas target groups to the refreshed full-playthrough sequence.",
-  "bcOrPlaywrightRan": false,
-  "bcRun": false,
-  "playwrightRun": false,
-  "posting": false,
-  "preview": false,
-  "setupChange": false,
-  "companyCreated": false,
-  "companySwitch": false,
-  "draftCreated": false,
-  "apiShortcut": false,
-  "bookChange": "no bookmaster change; object/page coverage only",
-  "evidence": [
-    "playwright/projects/fibu-book5/evidence/prep-005-object-coverage-catalog/PREP-005-result.json",
-    "playwright/projects/fibu-book5/evidence/prep-005-object-coverage-catalog/README.md"
+  "source": "local-object-coverage-analysis",
+  "resultStatus": "observed",
+  "runPlanId": "PREP-005-LOCAL-OBJECT-COVERAGE-GAP-FILL",
+  "selectedTaskClass": "monkey_work",
+  "selectedModelClass": "gpt-4-mini-low",
+  "proved": [
+    "Object coverage now includes missing setup, data-richness, reporting, governance, correction and intercompany objects needed by the full-playthrough catalog.",
+    "Object rows are explicitly marked as planned, requires-company, requires-data-richness, permission-blocked or excluded-shopify instead of claiming Universaarl proof.",
+    "PREP-006 is the next sensible prep case after process and object maps are aligned."
   ],
-  "objectCoverageUpdated": true,
-  "pageAtlasUpdated": true,
+  "notProved": [
+    "UNIVERSAARL-DE exists.",
+    "Any new Business Central page was opened in this run.",
+    "Any object was tested in the Universaarl target company.",
+    "Any setup, posting, preview or entry trace exists in Universaarl."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/BC-OBJECT-COVERAGE-CATALOG.md",
+    "playwright/projects/fibu-book5/BC-PAGE-ATLAS.md",
+    "playwright/projects/fibu-book5/evidence/prep-005-object-coverage-catalog/README.md",
+    "playwright/projects/fibu-book5/evidence/prep-005-object-coverage-catalog/PREP-005-result.json",
+    ".agent/state/cases/prep-005-bc-object-coverage-catalog-gap-fill.json",
+    ".agent/state/current.json",
+    ".agent/state/marathon_queue.json",
+    ".agent/state/last_run_summary.json"
+  ],
+  "statePatch": {},
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/BC-FULL-PLAYTHROUGH-CATALOG.md",
+    "playwright/projects/fibu-book5/BC-OBJECT-COVERAGE-CATALOG.md",
+    "playwright/projects/fibu-book5/BC-PAGE-ATLAS.md"
+  ],
+  "warnings": [
+    "This is a local object-coverage prep result, not live Business Central evidence.",
+    "Do not treat planned object rows as Universaarl UI observations."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": false,
+  "flags": {
+    "noBusinessCentralExecution": true,
+    "noPlaywrightExecution": true,
+    "noWrite": true,
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookMasterChange": true
+  },
   "nextStepDecisionCard": {
     "currentCase": "PREP-005-BC-OBJECT-COVERAGE-CATALOG-GAP-FILL",
     "plannedNextCaseBeforeReview": "PREP-005-BC-OBJECT-COVERAGE-CATALOG-GAP-FILL",
@@ -47,11 +76,6 @@
         "reason": "Source gaps can be audited against the updated process and object catalogs."
       },
       {
-        "caseId": "PREP-009-RM-DECOMMISSION-INVENTORY-REFINEMENT",
-        "status": "ready-after-current",
-        "reason": "RM decommission gets easier after active Universaarl object targets are clear."
-      },
-      {
         "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
         "status": "blocked",
         "reason": "Company creation remains parked until sufficient rights are confirmed."
@@ -71,16 +95,5 @@
       "Use BC-FULL-PLAYTHROUGH-CATALOG.md and BC-OBJECT-COVERAGE-CATALOG.md as source maps."
     ]
   },
-  "nextCase": "PREP-006-BOOKMASTER-UNIVERSAARL-FALLSTUDIE-REWRITE-PLAN",
-  "nextStep": "Continue with PREP-006-BOOKMASTER-UNIVERSAARL-FALLSTUDIE-REWRITE-PLAN. Company creation remains parked until permissions are available.",
-  "changedFiles": [
-    "playwright/projects/fibu-book5/BC-OBJECT-COVERAGE-CATALOG.md",
-    "playwright/projects/fibu-book5/BC-PAGE-ATLAS.md",
-    "playwright/projects/fibu-book5/evidence/prep-005-object-coverage-catalog/README.md",
-    "playwright/projects/fibu-book5/evidence/prep-005-object-coverage-catalog/PREP-005-result.json",
-    ".agent/state/cases/prep-005-bc-object-coverage-catalog-gap-fill.json",
-    ".agent/state/current.json",
-    ".agent/state/marathon_queue.json",
-    ".agent/state/last_run_summary.json"
-  ]
+  "reason": "Prepared object coverage for Universaarl while live company creation is blocked."
 }

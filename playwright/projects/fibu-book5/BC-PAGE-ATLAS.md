@@ -24,6 +24,12 @@ Status: `labor-reference`.
 | Customer/Vendor/G/L/Item Ledger Entries | offen | Look and Feel/Posten | Zielseiten fuer Postenfilter nach Datum, Beleg, Status, Betrag und Dimension | geplant | braucht gebuchte Universaarl-Prozesse |
 | Report Request Pages | offen | Reporting/Look and Feel | Zielkontext fuer Reportoptionen und Filter vor Reportlauf | geplant | braucht konkreten Reportcase und Datenbasis |
 | Analysis Mode / Analysemodus | offen | Reporting/Look and Feel | Zielkontext fuer read-only Datenanalyse, Gruppierung und Summen | geplant | braucht Datenreichtum und Quellen-/UI-Nachweis |
+| Accounting Periods / No. Series Lines / Dimension Values | offen | Foundation | PREP-005 Zielobjekte fuer Foundation-Setup nach Company Creation | geplant | erst nach `UNIVERSAARL-DE`; keine Setup-Aenderung im PREP-Modus |
+| Currencies / Payment Terms / Bank Accounts / Bank Account Posting Groups | offen | Finance/Payments | PREP-005 Zielobjekte fuer Zahlungs-, Bank- und Fremdwaehrungsfaelle | geplant | braucht Company, Quellencheck und spaetere Stammdaten |
+| Item Categories / Bins | offen | Inventory/Warehouse | PREP-005 Zielobjekte fuer Datenreichtum, Lagerstruktur und spaetere Warehouse-Faelle | geplant | braucht Artikel-/Lagerdaten; keine aktive Universaarl-Evidence |
+| Configuration Packages / Change Log / Job Queue / Workflows | offen | Governance/Operation | PREP-005 Zielobjekte fuer Migration, Audit, Hintergrundlaeufe und Genehmigungen | geplant | nicht vor Foundation; wirksame Actions brauchen eigene Gates |
+| E-Documents / Intercompany Partners / Credit Memos | offen | Compliance/Intercompany/Corrections | PREP-005 Zielobjekte fuer spaetere Spezialkapitel | geplant | E-Documents braucht Quellencheck; Intercompany braucht Subcompany-Usecase; Credit Memos brauchen gebuchte Belege |
+| Page Inspection / Personalize | offen | Diagnostics/Look and Feel | PREP-005 Zielobjekte fuer technische Nachweisfuehrung und UI-Fehlerdiagnose | geplant | read-only nutzbar, aber Buchbilder erst mit Universaarl-Kontext |
 
 ## Universaarl Page-Kontext-Regel
 

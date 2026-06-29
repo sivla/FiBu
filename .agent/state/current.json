@@ -6,8 +6,8 @@
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "activeArea": "universaarl-readonly-ui-prep",
-  "activeCase": "PREP-004-BC-FULL-PLAYTHROUGH-CATALOG-GAP-FILL",
-  "active_case_file": ".agent/state/cases/prep-004-bc-full-playthrough-catalog-gap-fill.json",
+  "activeCase": "PREP-005-BC-OBJECT-COVERAGE-CATALOG-GAP-FILL",
+  "active_case_file": ".agent/state/cases/prep-005-bc-object-coverage-catalog-gap-fill.json",
   "lastReferenceCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
   "lastReferenceCaseFile": ".agent/state/cases/warehouse-031-warehouse-source-route-park-or-setup-fit-decision.json",
   "mode": "universaarl-readonly-prep-until-super-permissions",
@@ -48,7 +48,7 @@
     "preview-posting-until-target-company-exists",
     "api-shortcut-for-company-creation"
   ],
-  "nextStep": "Continue with PREP-005-BC-OBJECT-COVERAGE-CATALOG-GAP-FILL. Company creation remains parked until SUPER/company-create permissions are confirmed.",
+  "nextStep": "Continue with PREP-006-BOOKMASTER-UNIVERSAARL-FALLSTUDIE-REWRITE-PLAN. Company creation remains parked until SUPER/company-create permissions are confirmed.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -1357,7 +1357,7 @@
     "nextStep": "BANK-018: controlled no-post Payment Journal preflight for 108205; do not post."
   },
   "workType": "warehouse-source-document-action-on-draft",
-  "lastCompletedCase": "PREP-004-BC-FULL-PLAYTHROUGH-CATALOG-GAP-FILL",
+  "lastCompletedCase": "PREP-005-BC-OBJECT-COVERAGE-CATALOG-GAP-FILL",
   "latestBank018": {
     "caseId": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
     "status": [
@@ -3650,31 +3650,31 @@
     "resultFile": "playwright/projects/fibu-book5/book-drafts/universaarl-company-creation-draft.md"
   },
   "nextStepDecisionCard": {
-    "currentCase": "PREP-004-BC-FULL-PLAYTHROUGH-CATALOG-GAP-FILL",
-    "plannedNextCaseBeforeReview": "PREP-004-BC-FULL-PLAYTHROUGH-CATALOG-GAP-FILL",
-    "lastEvidenceSummary": "PREP-003 created the read-only UI look-and-feel map for split-buttons, tooltips, lists/ListParts and screenshot QA.",
+    "currentCase": "PREP-005-BC-OBJECT-COVERAGE-CATALOG-GAP-FILL",
+    "plannedNextCaseBeforeReview": "PREP-005-BC-OBJECT-COVERAGE-CATALOG-GAP-FILL",
+    "lastEvidenceSummary": "PREP-004 updated the full-playthrough catalog with permission-aware gates and data-richness dependencies.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The full-playthrough catalog was the highest-value local prep task because the queue needed a clearer permission-aware process sequence.",
+    "reason": "Object coverage was the natural follow-up because page/card/list/action rows needed to align with the new process order.",
     "lookaheadReviewed": [
       {
-        "caseId": "PREP-005-BC-OBJECT-COVERAGE-CATALOG-GAP-FILL",
-        "status": "ready-next",
-        "reason": "The object catalog can now align to the updated full-playthrough sequence."
-      },
-      {
         "caseId": "PREP-006-BOOKMASTER-UNIVERSAARL-FALLSTUDIE-REWRITE-PLAN",
-        "status": "ready-after-current",
-        "reason": "The book rewrite plan should use the updated process sequence and avoid false final claims."
+        "status": "ready-next",
+        "reason": "The process and object maps are now aligned enough to plan the beginner-facing Universaarl chapter rewrite."
       },
       {
         "caseId": "PREP-007-BOOK-WRITING-RULES-META-LANGUAGE-AUDIT",
         "status": "ready-after-current",
-        "reason": "Still important after catalog/object coverage are aligned."
+        "reason": "After the rewrite plan, book-facing drafts should be checked for meta-language."
       },
       {
         "caseId": "PREP-008-SOURCE-REGISTRY-AND-CLAIM-RULES-GAP-AUDIT",
         "status": "ready-after-current",
-        "reason": "Useful follow-up after the catalog and object coverage point to source gaps."
+        "reason": "Source gaps can be audited against the updated process and object catalogs."
+      },
+      {
+        "caseId": "PREP-009-RM-DECOMMISSION-INVENTORY-REFINEMENT",
+        "status": "ready-after-current",
+        "reason": "RM decommission gets easier after active Universaarl object targets are clear."
       },
       {
         "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
@@ -3683,17 +3683,17 @@
       }
     ],
     "queueChangesMade": [
-      "Marked PREP-004 done.",
-      "Selected PREP-005 as next prep case while TARGET-009 remains parked."
+      "Marked PREP-005 done.",
+      "Selected PREP-006 as next prep case while TARGET-009 remains parked."
     ],
-    "selectedNextCase": "PREP-005-BC-OBJECT-COVERAGE-CATALOG-GAP-FILL",
-    "whySelectedNextCaseIsBest": "It is the natural follow-up: object/page/action coverage should now be aligned to the refreshed process catalog.",
+    "selectedNextCase": "PREP-006-BOOKMASTER-UNIVERSAARL-FALLSTUDIE-REWRITE-PLAN",
+    "whySelectedNextCaseIsBest": "The book rewrite plan can now use the aligned process and object maps without inventing final proof.",
     "risksBeforeNextCase": [
-      "Do not add object rows without status and next case.",
-      "Do not treat legacy RM evidence as active Universaarl object proof."
+      "Do not rewrite bookmaster as if UNIVERSAARL-DE already exists.",
+      "Do not leave agent/evidence meta-language in reader-facing text."
     ],
     "requiredPreparation": [
-      "Use BC-FULL-PLAYTHROUGH-CATALOG.md as the process order source."
+      "Use BC-FULL-PLAYTHROUGH-CATALOG.md and BC-OBJECT-COVERAGE-CATALOG.md as source maps."
     ]
   },
   "permissionBlocker": {
@@ -3713,10 +3713,10 @@
     "activatedAt": "2026-06-29T21:25:26.553Z",
     "reason": "UNIVERSAARL-DE cannot be created until required permissions exist; productive work continues through repo/book/source/read-only prep cases.",
     "firstCase": "PREP-001-PERMISSION-BLOCKER-DOCUMENTATION",
-    "nextCase": "PREP-005-BC-OBJECT-COVERAGE-CATALOG-GAP-FILL",
+    "nextCase": "PREP-006-BOOKMASTER-UNIVERSAARL-FALLSTUDIE-REWRITE-PLAN",
     "noEffectiveBcActions": true,
-    "lastCompletedCase": "PREP-004-BC-FULL-PLAYTHROUGH-CATALOG-GAP-FILL",
-    "updatedAt": "2026-06-29T21:48:54.048Z"
+    "lastCompletedCase": "PREP-005-BC-OBJECT-COVERAGE-CATALOG-GAP-FILL",
+    "updatedAt": "2026-06-29T21:54:54.534Z"
   },
   "latestCompanyCreationBookDraft": {
     "updatedAt": "2026-06-29T21:34:46.267Z",
@@ -3732,8 +3732,8 @@
     "noPlaywrightExecution": true,
     "nextCase": "PREP-003-PLAYTHRU-READONLY-UI-LOOK-AND-FEEL-MAP"
   },
-  "lastCompletedCaseFile": ".agent/state/cases/prep-004-bc-full-playthrough-catalog-gap-fill.json",
-  "lastResultPath": "playwright/projects/fibu-book5/evidence/prep-004-full-playthrough-catalog/PREP-004-result.json",
+  "lastCompletedCaseFile": ".agent/state/cases/prep-005-bc-object-coverage-catalog-gap-fill.json",
+  "lastResultPath": "playwright/projects/fibu-book5/evidence/prep-005-object-coverage-catalog/PREP-005-result.json",
   "latestReadonlyUiLookAndFeelMap": {
     "caseId": "PREP-003-PLAYTHRU-READONLY-UI-LOOK-AND-FEEL-MAP",
     "status": "prep-done",
@@ -3757,5 +3757,17 @@
     "keyLearning": "Full-playthrough sequence is now permission-aware: PREP work continues until company-create rights exist; TARGET-009 stays parked; process execution starts only after company, foundation, number series, posting groups, VAT, dimensions and data-richness gates.",
     "nextCase": "PREP-005-BC-OBJECT-COVERAGE-CATALOG-GAP-FILL",
     "updatedAt": "2026-06-29T21:48:54.048Z"
+  },
+  "latestObjectCoverageGapFill": {
+    "caseId": "PREP-005-BC-OBJECT-COVERAGE-CATALOG-GAP-FILL",
+    "status": "prep-done",
+    "resultPath": "playwright/projects/fibu-book5/evidence/prep-005-object-coverage-catalog/PREP-005-result.json",
+    "objectCatalogPath": "playwright/projects/fibu-book5/BC-OBJECT-COVERAGE-CATALOG.md",
+    "pageAtlasPath": "playwright/projects/fibu-book5/BC-PAGE-ATLAS.md",
+    "noLiveBcRun": true,
+    "noPlaywrightRun": true,
+    "keyLearning": "Object coverage now follows the full-playthrough sequence and distinguishes planned/requires-company/requires-data-richness/permission-blocked objects from real Universaarl evidence.",
+    "nextCase": "PREP-006-BOOKMASTER-UNIVERSAARL-FALLSTUDIE-REWRITE-PLAN",
+    "updatedAt": "2026-06-29T21:54:54.534Z"
   }
 }
