@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "purpose": "warehouse-inbound-source-document-creation-or-park-decision",
+  "caseId": "WAREHOUSE-019-WAREHOUSE-INBOUND-SOURCE-DOCUMENT-CREATION-OR-PARK-DECISION",
+  "source": "local-review-warehouse-016-017-018",
+  "resultStatus": "observed",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "bcRun": false,
+  "playwrightRun": false,
+  "posted": false,
+  "previewPosting": false,
+  "setupChanged": false,
+  "companySwitched": false,
+  "apiShortcut": false,
+  "bookChanged": false,
+  "reviewedEvidence": [
+    "playwright/projects/fibu-book5/evidence/warehouse-016/WAREHOUSE-016-result.json",
+    "playwright/projects/fibu-book5/evidence/warehouse-017/WAREHOUSE-017-result.json",
+    "playwright/projects/fibu-book5/evidence/warehouse-018/WAREHOUSE-018-result.json"
+  ],
+  "decision": "Do not repeat Warehouse Receipt source-dialog or filter-route clicks until a concrete eligible inbound source document is proven. Create a separate source-document readiness case first.",
+  "classification": [
+    "labor-blocked",
+    "labor-sufficient-for-book-draft",
+    "needs-german-final-rebuild"
+  ],
+  "proved": [
+    "WAREHOUSE-016: Fresh Warehouse Receipt draft can open Get Source Documents and reach Source Documents - Inbound.",
+    "WAREHOUSE-017: Source Documents - Inbound is visible, but no clear selectable source document row is visible.",
+    "WAREHOUSE-018: Use Filters to Get Src. Docs is visible/clickable, but still no clear selectable source document row is visible.",
+    "No source confirmation, Warehouse Receipt posting, Put-away posting, setup change or company switch occurred in WAREHOUSE-016 to WAREHOUSE-018."
+  ],
+  "notProved": [
+    "No eligible inbound source document is proven for Warehouse Receipt selection.",
+    "No Warehouse Receipt lines are proven from a source document.",
+    "No Warehouse Receipt posting is proven.",
+    "No Put-away document or posting is proven.",
+    "No Warehouse/Item/Value entry trace is proven.",
+    "No German final Warehouse proof exists."
+  ],
+  "rejectedRepeatRoutes": [
+    "Repeat Get Source Documents from fresh Warehouse Receipt without source-document hypothesis.",
+    "Repeat Source Documents - Inbound candidate selection when clear candidate rows are zero.",
+    "Repeat Use Filters to Get Src. Docs without proving an eligible inbound source document first."
+  ],
+  "selectedNextRoute": "source-document-readiness-before-receipt",
+  "nextCase": "WAREHOUSE-020-INBOUND-SOURCE-DOCUMENT-READINESS",
+  "nextStep": "WAREHOUSE-020: prove or create a concrete eligible inbound source document for FRA-ZL before another Warehouse Receipt source-selection attempt.",
+  "flags": {
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true,
+    "noSourceDocumentConfirmation": true
+  },
+  "migrationRelevance": "needed-for-german-final",
+  "rebuildInstruction": "In the German final sandbox, rebuild this route from a concrete released inbound source document with German master data, then select it into a Warehouse Receipt and trace receipt/put-away/ledger effects in separate approved cases.",
+  "mustRecreateInFinalSandbox": true,
+  "sourceCompany": "RM-DEMO",
+  "targetGermanCompanyImpact": "German final Warehouse proof must include source document readiness, Warehouse Receipt source selection, Warehouse Receipt posting, Put-away handling and Warehouse/Item/Value entry trace.",
+  "finalScreenshotNeeded": true,
+  "requiresReview": false,
+  "safeToFinalizeState": false
+}

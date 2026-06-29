@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "caseId": "WAREHOUSE-019-WAREHOUSE-INBOUND-SOURCE-DOCUMENT-CREATION-OR-PARK-DECISION",
   "title": "Warehouse inbound source document creation or park decision",
-  "status": "planned",
+  "status": "observed",
   "taskClass": "judge_work",
   "modelClass": "gpt-5.5-low",
   "usageLogRequired": true,
@@ -15,6 +15,8 @@
     "playwright/projects/fibu-book5/evidence/warehouse-018/WAREHOUSE-018-SOURCE-DOCUMENT-FILTER-OR-PARK.md"
   ],
   "purpose": "Decide whether to create or reuse a concrete inbound source document for Warehouse Receipt selection, or park Warehouse inbound in RM-DEMO as labor-blocked/bookdraft-useful until a better source-document hypothesis exists.",
+  "resultStatus": "observed",
+  "decision": "Do not repeat Warehouse Receipt source-dialog or filter-route clicks until a concrete eligible inbound source document is proven. Create WAREHOUSE-020 as source-document-readiness case first.",
   "allowedActions": [
     "local-review",
     "read-warehouse-evidence",
@@ -71,7 +73,14 @@
   "mustRecreateInFinalSandbox": true,
   "finalScreenshotNeeded": true,
   "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-019/WAREHOUSE-019-result.json",
-  "nextStep": "Review WAREHOUSE-016/017/018 and either define a concrete source-document creation route or park Warehouse inbound selection for RM-DEMO.",
+  "classification": [
+    "labor-blocked",
+    "labor-sufficient-for-book-draft",
+    "needs-german-final-rebuild"
+  ],
+  "selectedNextRoute": "source-document-readiness-before-receipt",
+  "nextCase": "WAREHOUSE-020-INBOUND-SOURCE-DOCUMENT-READINESS",
+  "nextStep": "Prove or create a concrete eligible inbound source document for FRA-ZL before another Warehouse Receipt source-selection attempt.",
   "createdAt": "2026-06-29T16:55:00+02:00",
-  "updatedAt": "2026-06-29T16:55:00+02:00"
+  "updatedAt": "2026-06-29T17:20:00+02:00"
 }

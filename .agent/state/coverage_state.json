@@ -237,18 +237,19 @@
     "warehouse": {
       "chapter": "Kapitel 13",
       "status": "in-progress",
-      "currentBlock": "warehouse-inbound-source-document-creation-or-park-decision",
+      "currentBlock": "warehouse-inbound-source-document-readiness",
       "latestEvidenceCases": [
         "WAREHOUSE-001",
         "WAREHOUSE-002",
         "WAREHOUSE-017",
-        "WAREHOUSE-018"
+        "WAREHOUSE-018",
+        "WAREHOUSE-019"
       ],
-      "nextCase": "WAREHOUSE-019-WAREHOUSE-INBOUND-SOURCE-DOCUMENT-CREATION-OR-PARK-DECISION",
+      "nextCase": "WAREHOUSE-020-INBOUND-SOURCE-DOCUMENT-READINESS",
       "finalGermanProof": "open",
-      "nextStep": "WAREHOUSE-019: review WAREHOUSE-016/017/018 and either define a concrete source-document creation route or park Warehouse inbound selection for RM-DEMO.",
-      "latestDecisionCase": "WAREHOUSE-003-WAREHOUSE-READINESS-FOLLOWUP-DECISION",
-      "blockerStatus": "source-dialog-and-filter-route-open-but-no-clear-source-row-visible",
+      "nextStep": "WAREHOUSE-020: prove or create a concrete eligible inbound source document for FRA-ZL before another Warehouse Receipt source-selection attempt.",
+      "latestDecisionCase": "WAREHOUSE-019-WAREHOUSE-INBOUND-SOURCE-DOCUMENT-CREATION-OR-PARK-DECISION",
+      "blockerStatus": "source-dialog-and-filter-route-empty-until-eligible-source-document-proven",
       "latestPracticalCase": "WAREHOUSE-018-WAREHOUSE-SOURCE-DOCUMENT-FILTER-OR-PARK",
       "visibleSetupFields": [
         "Require Receive",
@@ -272,19 +273,21 @@
         "WAREHOUSE-017: Source Documents - Inbound opened, but no clear selectable source document row was visible; OK/Select was not clicked.",
         "WAREHOUSE-017: No Warehouse Receipt posting, no Put-away and no ledger trace.",
         "WAREHOUSE-018: Use Filters to Get Src. Docs opened a filter/source context but produced no clear selectable source document row.",
-        "WAREHOUSE-018: No filter OK/Show Results/Select, no source confirmation, no Warehouse Receipt posting and no Put-away trace."
+        "WAREHOUSE-018: No filter OK/Show Results/Select, no source confirmation, no Warehouse Receipt posting and no Put-away trace.",
+        "WAREHOUSE-019: Repeating Warehouse Receipt source-dialog/filter clicks is rejected until an eligible inbound source document is proven.",
+        "WAREHOUSE-019: Warehouse inbound remains labor-blocked/bookdraft-useful and needs source-document readiness before receipt selection."
       ]
     }
   },
   "hardExclusions": {
     "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
   },
-  "updatedAt": "2026-06-29T16:55:00+02:00",
+  "updatedAt": "2026-06-29T17:20:00+02:00",
   "activeArea": "warehouse",
-  "currentBlock": "warehouse-inbound-source-document-creation-or-park-decision",
+  "currentBlock": "warehouse-inbound-source-document-readiness",
   "latestPracticalCase": "WAREHOUSE-018-WAREHOUSE-SOURCE-DOCUMENT-FILTER-OR-PARK",
-  "latestReviewCase": "FIXEDASSETS-299-FA-DEPRECIATION-NEXT-HYPOTHESIS-DECISION",
-  "nextCase": "WAREHOUSE-019-WAREHOUSE-INBOUND-SOURCE-DOCUMENT-CREATION-OR-PARK-DECISION",
+  "latestReviewCase": "WAREHOUSE-019-WAREHOUSE-INBOUND-SOURCE-DOCUMENT-CREATION-OR-PARK-DECISION",
+  "nextCase": "WAREHOUSE-020-INBOUND-SOURCE-DOCUMENT-READINESS",
   "latestBank013": {
     "caseId": "BANK-013-CONTROLLED-NEXT-EVIDENCE-STEP",
     "status": [
@@ -1385,7 +1388,7 @@
     "nextCase": "FIXEDASSETS-298-FA-DEPRECIATION-BLOCKER-BOOK-SYNC",
     "updatedAt": "2026-06-29T07:09:31.588Z"
   },
-  "nextStep": "WAREHOUSE-019: review WAREHOUSE-016/017/018 and either define a concrete source-document creation route or park Warehouse inbound selection for RM-DEMO.",
+  "nextStep": "WAREHOUSE-020: prove or create a concrete eligible inbound source document for FRA-ZL before another Warehouse Receipt source-selection attempt.",
   "warehouse": {
     "chapter": "Kapitel 13",
     "status": "in-progress",
@@ -1474,5 +1477,27 @@
     "migrationRelevance": "needed-for-german-final",
     "mustRecreateInFinalSandbox": true,
     "updatedAt": "2026-06-29T16:55:00+02:00"
+  },
+  "latestWarehouse019": {
+    "caseId": "WAREHOUSE-019-WAREHOUSE-INBOUND-SOURCE-DOCUMENT-CREATION-OR-PARK-DECISION",
+    "status": "observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-019/WAREHOUSE-019-result.json",
+    "decision": "Do not repeat Warehouse Receipt source-dialog or filter-route clicks until a concrete eligible inbound source document is proven. Create WAREHOUSE-020 as source-document-readiness case first.",
+    "classification": [
+      "labor-blocked",
+      "labor-sufficient-for-book-draft",
+      "needs-german-final-rebuild"
+    ],
+    "selectedNextRoute": "source-document-readiness-before-receipt",
+    "posted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "companySwitched": false,
+    "bcRun": false,
+    "playwrightRun": false,
+    "nextCase": "WAREHOUSE-020-INBOUND-SOURCE-DOCUMENT-READINESS",
+    "migrationRelevance": "needed-for-german-final",
+    "mustRecreateInFinalSandbox": true,
+    "updatedAt": "2026-06-29T17:20:00+02:00"
   }
 }

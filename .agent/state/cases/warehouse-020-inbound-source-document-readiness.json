@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "caseId": "WAREHOUSE-020-INBOUND-SOURCE-DOCUMENT-READINESS",
+  "title": "Warehouse inbound source document readiness before receipt",
+  "status": "planned",
+  "taskClass": "wizard_work",
+  "modelClass": "gpt-4-high",
+  "usageLogRequired": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "warehouse-inbound-source-document-readiness",
+  "sourceCase": "WAREHOUSE-019-WAREHOUSE-INBOUND-SOURCE-DOCUMENT-CREATION-OR-PARK-DECISION",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/warehouse-019/WAREHOUSE-019-result.json",
+    "playwright/projects/fibu-book5/evidence/warehouse-019/WAREHOUSE-019-DECISION.md"
+  ],
+  "purpose": "Prove or create a concrete eligible inbound source document for FRA-ZL before another Warehouse Receipt source-selection attempt.",
+  "allowedActions": [
+    "business-central-execution",
+    "playwright-execution",
+    "direct-page-navigation",
+    "read-purchase-orders",
+    "inspect-existing-purchase-order-source-readiness",
+    "create-controlled-purchase-order-draft-if-needed",
+    "release-source-document-if-case-gates-pass",
+    "evidence-capture",
+    "keep-draft-with-trace",
+    "update-state"
+  ],
+  "defaultLockedActions": [
+    "warehouse-receipt-source-confirmation",
+    "warehouse-receipt-posting",
+    "warehouse-putaway-posting",
+    "preview-posting",
+    "posting",
+    "delete-record",
+    "company-switch",
+    "api-shortcut"
+  ],
+  "forbiddenActions": [
+    "claim-german-final-proof",
+    "use-api-shortcut",
+    "post-warehouse-document",
+    "change-require-pick-bin-mandatory-or-directed-put-away-and-pick",
+    "click-post-receipt"
+  ],
+  "safetyGates": [
+    "instance-boundary-gate",
+    "company-context-rm-demo",
+    "ui-first-only",
+    "no-warehouse-posting",
+    "no-source-document-confirmation-in-this-case",
+    "source-document-readiness-before-receipt-selection",
+    "document-number-and-keep-status-documented"
+  ],
+  "targetSourceDocumentSignals": [
+    "Purchase Order or other inbound source document exists",
+    "Document is eligible for Warehouse Receipt selection",
+    "Location Code FRA-ZL is visible or explicitly not visible",
+    "Item/quantity context is visible or explicitly not visible",
+    "Release/status is visible or explicitly not visible"
+  ],
+  "expectedEvidence": [
+    "source document number",
+    "source document type/status",
+    "location/item/quantity readiness",
+    "reason why it should or should not appear in Warehouse Receipt source selection",
+    "explicit no-post/no-receipt-source-confirmation flags"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-020/WAREHOUSE-020-result.json",
+  "nextStep": "Use direct UI navigation to prove or create a concrete inbound source document before another Warehouse Receipt source-selection attempt.",
+  "createdAt": "2026-06-29T17:20:00+02:00",
+  "updatedAt": "2026-06-29T17:20:00+02:00"
+}
