@@ -1,0 +1,517 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "FIXEDASSETS-300-FA-JOURNAL-DEPRECIATION-OUTPUT-TARGET-READONLY",
+  "source": "playwright-readonly-fa-journal-output-target-trace",
+  "resultStatus": "observed",
+  "runPlanId": "FIXEDASSETS-300-FA-JOURNAL-DEPRECIATION-OUTPUT-TARGET-READONLY-PLAN",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-medium",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "proved": [
+    "The run stayed in MCP_1_20260210 / RM-DEMO.",
+    "The run used direct BC page URLs for candidate Fixed Asset Journal pages instead of Tell-Me/search.",
+    "No Calculate Depreciation OK, Preview Posting, Post, setup change, company switch, new draft, edit or delete action was executed.",
+    "A non-G/L Fixed Asset Journals page context was visible read-only."
+  ],
+  "notProved": [
+    "FADEP-291-OK, FADEP-295-OK and generic FADEP line signals are not proven in the selected candidate context.",
+    "No depreciation Preview Posting was opened.",
+    "No depreciation posting was performed.",
+    "No German final proof."
+  ],
+  "changedFiles": [
+    "package.json",
+    "playwright/projects/fibu-book5/tests/fixedassets-300-fa-journal-depreciation-output-target-readonly.spec.ts",
+    "playwright/projects/fibu-book5/evidence/fixedassets-300/FIXEDASSETS-300-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-300/FIXEDASSETS-300-FA-JOURNAL-DEPRECIATION-OUTPUT-TARGET-READONLY.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-300/010-fa-journal-output-target-context.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-300/010-fa-journal-output-target-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-300/README.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-300/FIXEDASSETS-300-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-300/FIXEDASSETS-300-FA-JOURNAL-DEPRECIATION-OUTPUT-TARGET-READONLY.md",
+    "playwright/projects/fibu-book5/evidence/fixedassets-300/010-fa-journal-output-target-context.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-300/010-fa-journal-output-target-text.txt",
+    "playwright/projects/fibu-book5/evidence/fixedassets-300/README.md"
+  ],
+  "warnings": [
+    "CRONUS/RM-DEMO labor only.",
+    "Candidate page ids are direct URL probes; page id confirmation remains BC UI evidence, not German final proof.",
+    "Visible Post/Preview/New/Edit/Delete actions, if present, were not clicked."
+  ],
+  "blockedBy": [],
+  "requiresReview": true,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "FIXEDASSETS-301-FA-DEPRECIATION-OUTPUT-TARGET-RESULT-REVIEW",
+      "active_case_file": ".agent/state/cases/fixedassets-301-fa-depreciation-output-target-result-review.json",
+      "lastReferenceCase": "FIXEDASSETS-300-FA-JOURNAL-DEPRECIATION-OUTPUT-TARGET-READONLY",
+      "lastReferenceCaseFile": ".agent/state/cases/fixedassets-300-fa-journal-depreciation-output-target-readonly.json",
+      "nextStep": "Review direct page-id route result and decide next FA depreciation output-target route without repeating Calculate Depreciation OK."
+    },
+    "lastRunSummary": {
+      "schemaVersion": 1,
+      "runId": "FIXEDASSETS-300-FA-JOURNAL-DEPRECIATION-OUTPUT-TARGET-READONLY",
+      "date": "2026-06-29",
+      "workType": "fixedassets-fa-journal-depreciation-output-target-readonly",
+      "branch": "codex/token-efficient-autopilot-state",
+      "instance": "MCP_1_20260210",
+      "company": "RM-DEMO",
+      "bcRun": true,
+      "playwrightRun": true,
+      "posted": false,
+      "preview": false,
+      "setupChanged": false,
+      "companySwitched": false,
+      "resultStatus": "observed",
+      "summary": "FA-300 direct candidate-page trace did not prove non-G/L Fixed Asset Journals as the visible depreciation output target.",
+      "nextStep": "Review page-id/route result and choose the next non-repeating depreciation output-target route."
+    },
+    "activeCase": {
+      "status": "observed-readonly-review-required",
+      "lastResult": {
+        "status": "observed",
+        "resultFile": "playwright/projects/fibu-book5/evidence/fixedassets-300/FIXEDASSETS-300-result.json",
+        "summary": "No FADEP/non-G-L Fixed Asset Journals output target proven by direct candidate page trace."
+      },
+      "nextSafeAction": "Local route review; do not repeat OK without a new hypothesis."
+    },
+    "coverage": {
+      "areas": {
+        "fixedassets": {
+          "currentBlock": "fa-depreciation-output-target-route-review",
+          "latestPracticalCase": "FIXEDASSETS-300",
+          "nextCase": "FIXEDASSETS-301-FA-DEPRECIATION-OUTPUT-TARGET-RESULT-REVIEW",
+          "depreciationReadiness": "FA-300 did not prove non-G/L Fixed Asset Journals as the depreciation output target; no Preview/Post unlocked."
+        }
+      }
+    }
+  },
+  "candidatesTried": [
+    {
+      "pageId": 5621,
+      "expectedName": "Fixed Asset Journals candidate",
+      "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5621",
+      "environmentInUrl": true,
+      "companyInUrl": true,
+      "companyInText": false,
+      "blockedBy": [],
+      "frameCount": 2,
+      "relevantFrameCount": 2,
+      "fixedAssetJournalsVisible": false,
+      "fixedAssetGlJournalsVisible": false,
+      "targetDocumentsVisible": {
+        "FADEP-291-OK": false,
+        "FADEP-295-OK": false
+      },
+      "anyTargetDocumentVisible": false,
+      "targetAssetVisible": false,
+      "targetBookVisible": false,
+      "faDepPrefixVisible": false,
+      "previewPostingVisible": false,
+      "postVisible": false,
+      "newEditDeleteVisible": false
+    },
+    {
+      "pageId": 5622,
+      "expectedName": "Fixed Asset Journals candidate",
+      "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5622&dc=0&bookmark=1B_4BUAAAJ7_0YAQQAwADAAMAAwADEAMA",
+      "environmentInUrl": true,
+      "companyInUrl": true,
+      "companyInText": false,
+      "blockedBy": [],
+      "frameCount": 2,
+      "relevantFrameCount": 2,
+      "fixedAssetJournalsVisible": false,
+      "fixedAssetGlJournalsVisible": false,
+      "targetDocumentsVisible": {
+        "FADEP-291-OK": false,
+        "FADEP-295-OK": false
+      },
+      "anyTargetDocumentVisible": false,
+      "targetAssetVisible": false,
+      "targetBookVisible": false,
+      "faDepPrefixVisible": false,
+      "previewPostingVisible": false,
+      "postVisible": false,
+      "newEditDeleteVisible": false
+    },
+    {
+      "pageId": 5623,
+      "expectedName": "Fixed Asset Journals candidate",
+      "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5623&dc=0",
+      "environmentInUrl": true,
+      "companyInUrl": true,
+      "companyInText": false,
+      "blockedBy": [],
+      "frameCount": 3,
+      "relevantFrameCount": 2,
+      "fixedAssetJournalsVisible": false,
+      "fixedAssetGlJournalsVisible": false,
+      "targetDocumentsVisible": {
+        "FADEP-291-OK": false,
+        "FADEP-295-OK": false
+      },
+      "anyTargetDocumentVisible": false,
+      "targetAssetVisible": false,
+      "targetBookVisible": false,
+      "faDepPrefixVisible": false,
+      "previewPostingVisible": false,
+      "postVisible": false,
+      "newEditDeleteVisible": true
+    },
+    {
+      "pageId": 5624,
+      "expectedName": "Fixed Asset Journals candidate",
+      "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5624",
+      "environmentInUrl": true,
+      "companyInUrl": true,
+      "companyInText": false,
+      "blockedBy": [],
+      "frameCount": 5,
+      "relevantFrameCount": 2,
+      "fixedAssetJournalsVisible": false,
+      "fixedAssetGlJournalsVisible": false,
+      "targetDocumentsVisible": {
+        "FADEP-291-OK": false,
+        "FADEP-295-OK": false
+      },
+      "anyTargetDocumentVisible": false,
+      "targetAssetVisible": false,
+      "targetBookVisible": false,
+      "faDepPrefixVisible": false,
+      "previewPostingVisible": false,
+      "postVisible": false,
+      "newEditDeleteVisible": false
+    },
+    {
+      "pageId": 5625,
+      "expectedName": "Fixed Asset Journals candidate",
+      "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5625",
+      "environmentInUrl": true,
+      "companyInUrl": true,
+      "companyInText": false,
+      "blockedBy": [],
+      "frameCount": 2,
+      "relevantFrameCount": 2,
+      "fixedAssetJournalsVisible": false,
+      "fixedAssetGlJournalsVisible": false,
+      "targetDocumentsVisible": {
+        "FADEP-291-OK": false,
+        "FADEP-295-OK": false
+      },
+      "anyTargetDocumentVisible": false,
+      "targetAssetVisible": false,
+      "targetBookVisible": false,
+      "faDepPrefixVisible": false,
+      "previewPostingVisible": false,
+      "postVisible": false,
+      "newEditDeleteVisible": false
+    },
+    {
+      "pageId": 5626,
+      "expectedName": "Fixed Asset Journals candidate",
+      "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5626",
+      "environmentInUrl": true,
+      "companyInUrl": true,
+      "companyInText": false,
+      "blockedBy": [],
+      "frameCount": 5,
+      "relevantFrameCount": 2,
+      "fixedAssetJournalsVisible": false,
+      "fixedAssetGlJournalsVisible": false,
+      "targetDocumentsVisible": {
+        "FADEP-291-OK": false,
+        "FADEP-295-OK": false
+      },
+      "anyTargetDocumentVisible": false,
+      "targetAssetVisible": false,
+      "targetBookVisible": false,
+      "faDepPrefixVisible": false,
+      "previewPostingVisible": false,
+      "postVisible": false,
+      "newEditDeleteVisible": false
+    },
+    {
+      "pageId": 5627,
+      "expectedName": "Fixed Asset Journals candidate",
+      "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5627&dc=0&bookmark=C_8RUAAACHAQ",
+      "environmentInUrl": true,
+      "companyInUrl": true,
+      "companyInText": true,
+      "blockedBy": [],
+      "frameCount": 5,
+      "relevantFrameCount": 2,
+      "fixedAssetJournalsVisible": false,
+      "fixedAssetGlJournalsVisible": false,
+      "targetDocumentsVisible": {
+        "FADEP-291-OK": false,
+        "FADEP-295-OK": false
+      },
+      "anyTargetDocumentVisible": false,
+      "targetAssetVisible": false,
+      "targetBookVisible": false,
+      "faDepPrefixVisible": false,
+      "previewPostingVisible": false,
+      "postVisible": true,
+      "newEditDeleteVisible": false
+    },
+    {
+      "pageId": 5628,
+      "expectedName": "Known Fixed Asset G/L Journals control candidate",
+      "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5628&dc=0",
+      "environmentInUrl": true,
+      "companyInUrl": true,
+      "companyInText": false,
+      "blockedBy": [],
+      "frameCount": 5,
+      "relevantFrameCount": 2,
+      "fixedAssetJournalsVisible": false,
+      "fixedAssetGlJournalsVisible": true,
+      "targetDocumentsVisible": {
+        "FADEP-291-OK": false,
+        "FADEP-295-OK": false
+      },
+      "anyTargetDocumentVisible": false,
+      "targetAssetVisible": false,
+      "targetBookVisible": false,
+      "faDepPrefixVisible": false,
+      "previewPostingVisible": false,
+      "postVisible": true,
+      "newEditDeleteVisible": true
+    },
+    {
+      "pageId": 5629,
+      "expectedName": "Fixed Asset Journals candidate",
+      "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5629&dc=0",
+      "environmentInUrl": true,
+      "companyInUrl": true,
+      "companyInText": false,
+      "blockedBy": [],
+      "frameCount": 3,
+      "relevantFrameCount": 2,
+      "fixedAssetJournalsVisible": true,
+      "fixedAssetGlJournalsVisible": false,
+      "targetDocumentsVisible": {
+        "FADEP-291-OK": false,
+        "FADEP-295-OK": false
+      },
+      "anyTargetDocumentVisible": false,
+      "targetAssetVisible": false,
+      "targetBookVisible": false,
+      "faDepPrefixVisible": false,
+      "previewPostingVisible": false,
+      "postVisible": true,
+      "newEditDeleteVisible": false
+    }
+  ],
+  "selectedPage": {
+    "pageId": 5629,
+    "expectedName": "Fixed Asset Journals candidate",
+    "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=5629&dc=0",
+    "environmentInUrl": true,
+    "companyInUrl": true,
+    "companyInText": false,
+    "blockedBy": [],
+    "frameCount": 3,
+    "relevantFrameCount": 2,
+    "fixedAssetJournalsVisible": true,
+    "fixedAssetGlJournalsVisible": false,
+    "targetDocumentsVisible": {
+      "FADEP-291-OK": false,
+      "FADEP-295-OK": false
+    },
+    "anyTargetDocumentVisible": false,
+    "targetAssetVisible": false,
+    "targetBookVisible": false,
+    "faDepPrefixVisible": false,
+    "previewPostingVisible": false,
+    "postVisible": true,
+    "newEditDeleteVisible": false,
+    "bodyTextSample": "Fixed Asset Journals\n \n \n \nBatch Name\n \nVerwalten\nStart\nLine\nWeitere Optionen\n \n \nPost\n \n \n \nFA Posting Date\n \n \nDocument Type\n \nDocument No.\n \nFA No.\n \nDepreciation Book Code\n \nFA Posting Type\n \nDescription\n \nAmount\n \nNo. of Depreciation Days\n \nDepr. until FA Posting Date\n \nDepr. Acquisition Cost\n \nBudgeted FA No.\n \nDuplicate in Depreciation Book\n \nFA Reclassification Entry\n \nFA Error Entry No.\n \nDepartment Code\n \nCustomergroup Code\n \n \n \n \n \nInvoice\nCredit Memo\n \nAcquisition Cost\nDepreciation\nWrite-Down\nAppreciation\nCustom 1\nCustom 2\nDisposal\nMaintenance\nSalvage Value\nBonus Depreciation\n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \nFA Description\n\n\nVerwenden Sie die NACH-LINKS- und NACH-RECHTS-TASTE, um die Gro e anzupassen. Verwenden Sie die ESC-Taste, um den Vorgang ruckgangig zu machen, oder die EINGABETASTE, um zu akzeptieren.\n\nListe mit Titel Fixed Asset Journals hat jetzt 2 Artikel",
+    "sampleRows": [
+      "FA Posting Date\n \n \nDocument Type\n \nDocument No.\n \nFA No.\n \nDepreciation Book Code\n \nFA Posting Type\n \nDescription\n \nAmount\n \nNo. of Depreciation Days\n \nDepr. until FA Posting Date\n \nDepr. Acquisition Cost\n \nBudgeted FA No.\n \nDuplicate in Depreciation Book\n \nFA Reclassification Entry\n \nFA Error Entry No.\n \nDepartment Code\n \nCustomergroup Code",
+      "Invoice\nCredit Memo\n \nAcquisition Cost\nDepreciation\nWrite-Down\nAppreciation\nCustom 1\nCustom 2\nDisposal\nMaintenance\nSalvage Value\nBonus Depreciation"
+    ],
+    "sampleControls": [
+      {
+        "tag": "a",
+        "role": "button",
+        "value": "",
+        "text": "Batch Name",
+        "ariaLabel": "",
+        "title": "",
+        "disabled": false
+      },
+      {
+        "tag": "a",
+        "role": "button",
+        "value": "",
+        "text": "",
+        "ariaLabel": "Wahlen Sie einen Wert fur Batch Name",
+        "title": "Wahlen Sie einen Wert fur Batch Name",
+        "disabled": false
+      },
+      {
+        "tag": "input",
+        "role": "combobox",
+        "value": "DEFAULT",
+        "text": "",
+        "ariaLabel": "",
+        "title": "",
+        "disabled": false
+      },
+      {
+        "tag": "button",
+        "role": "menuitemcheckbox",
+        "value": "",
+        "text": "",
+        "ariaLabel": "Filter umschalten",
+        "title": "Filterbereich anzeigen",
+        "disabled": false
+      },
+      {
+        "tag": "button",
+        "role": "",
+        "value": "",
+        "text": "Post",
+        "ariaLabel": "Post",
+        "title": "Finalize the document or journal by posting the amounts and quantities to the related accounts in your company books. (F9)",
+        "disabled": false
+      },
+      {
+        "tag": "button",
+        "role": "",
+        "value": "",
+        "text": "",
+        "ariaLabel": "Verwandte Aktionen fur Post",
+        "title": "Verwandte Aktionen fur Post",
+        "disabled": false
+      },
+      {
+        "tag": "a",
+        "role": "button",
+        "value": "",
+        "text": "FA Posting Date",
+        "ariaLabel": "",
+        "title": "Sortieren nach 'FA Posting Date'",
+        "disabled": false
+      },
+      {
+        "tag": "a",
+        "role": "button",
+        "value": "",
+        "text": "",
+        "ariaLabel": "Menu fur FA Posting Date offnen",
+        "title": "Menu offnen",
+        "disabled": false
+      },
+      {
+        "tag": "a",
+        "role": "button",
+        "value": "",
+        "text": "Document No.",
+        "ariaLabel": "",
+        "title": "Sortieren nach 'Document No.'",
+        "disabled": false
+      },
+      {
+        "tag": "a",
+        "role": "button",
+        "value": "",
+        "text": "",
+        "ariaLabel": "Menu fur Document No. offnen",
+        "title": "Menu offnen",
+        "disabled": false
+      },
+      {
+        "tag": "a",
+        "role": "button",
+        "value": "",
+        "text": "Depreciation Book Code",
+        "ariaLabel": "",
+        "title": "Sortieren nach 'Depreciation Book Code'",
+        "disabled": false
+      },
+      {
+        "tag": "a",
+        "role": "button",
+        "value": "",
+        "text": "",
+        "ariaLabel": "Menu fur Depreciation Book Code offnen",
+        "title": "Menu offnen",
+        "disabled": false
+      },
+      {
+        "tag": "a",
+        "role": "button",
+        "value": "",
+        "text": "FA Posting Type",
+        "ariaLabel": "",
+        "title": "Sortieren nach 'FA Posting Type'",
+        "disabled": false
+      },
+      {
+        "tag": "a",
+        "role": "button",
+        "value": "",
+        "text": "",
+        "ariaLabel": "Menu fur FA Posting Type offnen",
+        "title": "Menu offnen",
+        "disabled": false
+      },
+      {
+        "tag": "a",
+        "role": "button",
+        "value": "",
+        "text": "Amount",
+        "ariaLabel": "",
+        "title": "Sortieren nach 'Amount'",
+        "disabled": false
+      },
+      {
+        "tag": "a",
+        "role": "button",
+        "value": "",
+        "text": "",
+        "ariaLabel": "Menu fur Amount offnen",
+        "title": "Menu offnen",
+        "disabled": false
+      }
+    ]
+  },
+  "flags": {
+    "stayedInExpectedInstance": true,
+    "companyContextDocumented": true,
+    "noBookChange": true,
+    "noCalculateDepreciationOk": true,
+    "noPost": true,
+    "noPreview": true,
+    "noShip": true,
+    "noInvoice": true,
+    "noPayment": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noNewDraft": true,
+    "noEditRecord": true,
+    "noDeleteRecord": true,
+    "cleanupRequired": false,
+    "cleanupCompleted": true
+  },
+  "migrationRelevance": "needed-for-german-final",
+  "rebuildInstruction": "In the German target company, reproduce the depreciation output-target route using direct page context and visible journal evidence before any Preview Posting or posting.",
+  "mustRecreateInFinalSandbox": true,
+  "sourceCompany": "RM-DEMO",
+  "targetGermanCompanyImpact": "German final depreciation evidence must prove the correct journal/output target and then preview/posting trace with German setup.",
+  "finalScreenshotNeeded": true,
+  "observed": {
+    "startedAt": "2026-06-29T07:42:46.061Z",
+    "finishedAt": "2026-06-29T07:43:12.200Z"
+  },
+  "nextStep": "Review direct page-id route result and decide next FA depreciation output-target route without repeating Calculate Depreciation OK."
+}

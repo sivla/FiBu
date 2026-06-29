@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FIXEDASSETS-301-FA-DEPRECIATION-OUTPUT-TARGET-RESULT-REVIEW",
+  "title": "Review FA-300 Fixed Asset Journals output-target evidence",
+  "status": "planned",
+  "taskClass": "judge_work",
+  "modelClass": "gpt-5.5-low",
+  "usageLogRequired": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "fixedassets-depreciation-output-target-result-review",
+  "sourceCase": "FIXEDASSETS-300-FA-JOURNAL-DEPRECIATION-OUTPUT-TARGET-READONLY",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/fixedassets-300/FIXEDASSETS-300-result.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-300/010-fa-journal-output-target-context.json",
+    "playwright/projects/fibu-book5/evidence/fixedassets-300/FIXEDASSETS-300-FA-JOURNAL-DEPRECIATION-OUTPUT-TARGET-READONLY.md"
+  ],
+  "purpose": "Review the direct-page read-only proof that page 5629 is Fixed Asset Journals while FADEP-291-OK, FADEP-295-OK, FADEP prefix, FA-CNC-01 and HGB are not visible there. Decide the next non-repeating depreciation route without unlocking Preview Posting or Post.",
+  "allowedActions": [
+    "read-fa-300-evidence",
+    "write-review-evidence",
+    "update-state",
+    "update-bookdraft-if-evidence-backed"
+  ],
+  "defaultLockedActions": [
+    "calculate-depreciation-ok",
+    "preview-posting",
+    "posting",
+    "setup-change",
+    "company-switch",
+    "new-draft",
+    "edit-record",
+    "delete-record",
+    "api-shortcut"
+  ],
+  "forbiddenActions": [
+    "claim-german-final-proof",
+    "unlock-preview-or-post-without-visible-depreciation-line",
+    "repeat-calculate-depreciation-ok-without-new-hypothesis"
+  ],
+  "safetyGates": [
+    "local-review-only",
+    "no-bc-execution",
+    "no-playwright-execution",
+    "do-not-overclaim-page-5629-as-output-target-without-fa-line"
+  ],
+  "expectedEvidence": [
+    "Review JSON classifying page 5629 as visible non-G/L Fixed Asset Journals but no FADEP line proof",
+    "Next route decision or park decision"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "resultPath": "playwright/projects/fibu-book5/evidence/fixedassets-301/FIXEDASSETS-301-result.json",
+  "nextStep": "Review FA-300 output-target evidence and choose the next depreciation route without repeating Calculate Depreciation OK.",
+  "createdAt": "2026-06-29T07:40:00.000Z",
+  "updatedAt": "2026-06-29T07:40:00.000Z"
+}

@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-29T07:23:12.960Z",
+  "updatedAt": "2026-06-29T07:37:33.197Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "fixedassets",
-  "activeCase": "FIXEDASSETS-300-FA-JOURNAL-DEPRECIATION-OUTPUT-TARGET-READONLY",
-  "active_case_file": ".agent/state/cases/fixedassets-300-fa-journal-depreciation-output-target-readonly.json",
-  "lastReferenceCase": "FIXEDASSETS-299-FA-DEPRECIATION-NEXT-HYPOTHESIS-DECISION",
-  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-299-fa-depreciation-next-hypothesis-decision.json",
+  "activeCase": "FIXEDASSETS-301-FA-DEPRECIATION-OUTPUT-TARGET-RESULT-REVIEW",
+  "active_case_file": ".agent/state/cases/fixedassets-301-fa-depreciation-output-target-result-review.json",
+  "lastReferenceCase": "FIXEDASSETS-300-FA-JOURNAL-DEPRECIATION-OUTPUT-TARGET-READONLY",
+  "lastReferenceCaseFile": ".agent/state/cases/fixedassets-300-fa-journal-depreciation-output-target-readonly.json",
   "mode": "bc-specialist-labor-book-production",
   "requiresStrongModel": false,
   "requiredPreflightChecks": [
@@ -40,7 +40,7 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "Run FIXEDASSETS-300 read-only: inspect Fixed Asset Journals/non-G-L FA journal as possible depreciation output target. No OK, Preview Posting or Post.",
+  "nextStep": "Review FA-300: page 5629 Fixed Asset Journals is visible, but no FADEP-291-OK/FADEP-295-OK/FADEP line is visible. Do not Preview/Post before a new reviewed route.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/inventory-labor-draft.md",
     "area": "inventory",
@@ -2241,5 +2241,39 @@
     "decision": "Use Fixed Asset Journals/non-G-L FA journal read-only as next output-target hypothesis because HGB Depreciation Integration is visible-off and Fixed Asset G/L Journals did not show FADEP lines.",
     "nextCase": "FIXEDASSETS-300-FA-JOURNAL-DEPRECIATION-OUTPUT-TARGET-READONLY",
     "updatedAt": "2026-06-29T07:23:12.960Z"
+  },
+  "latestFixedAssets300FaJournalOutputTargetReadonly": {
+    "caseId": "FIXEDASSETS-300-FA-JOURNAL-DEPRECIATION-OUTPUT-TARGET-READONLY",
+    "status": [
+      "labor-proven",
+      "read-only",
+      "line-not-found",
+      "needs-review-before-execute",
+      "needs-german-final-rebuild"
+    ],
+    "sourceInstance": "MCP_1_20260210",
+    "sourceCompany": "RM-DEMO",
+    "bcRun": true,
+    "playwrightRun": true,
+    "posted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "companySwitched": false,
+    "pageId": 5629,
+    "pageVisible": true,
+    "fixedAssetGlJournalsVisible": false,
+    "faDep291Visible": false,
+    "faDep295Visible": false,
+    "faDepPrefixVisible": false,
+    "targetAssetVisible": false,
+    "targetBookVisible": false,
+    "resultPath": "playwright/projects/fibu-book5/evidence/fixedassets-300/FIXEDASSETS-300-result.json",
+    "evidencePath": "playwright/projects/fibu-book5/evidence/fixedassets-300/",
+    "decision": "Direct page URL route proved page 5629 as Fixed Asset Journals, but no FADEP depreciation line or FA-CNC-01/HGB evidence is visible there. Preview Posting and Post remain locked pending FA-301 review.",
+    "nextCase": "FIXEDASSETS-301-FA-DEPRECIATION-OUTPUT-TARGET-RESULT-REVIEW",
+    "migrationRelevance": "needed-for-german-final",
+    "mustRecreateInFinalSandbox": true,
+    "finalScreenshotNeeded": true,
+    "updatedAt": "2026-06-29T07:37:33.197Z"
   }
 }
