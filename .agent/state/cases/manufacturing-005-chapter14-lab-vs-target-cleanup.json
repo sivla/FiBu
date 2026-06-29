@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "caseId": "MANUFACTURING-005-CHAPTER14-LAB-VS-TARGET-CLEANUP",
+  "title": "Chapter 14 Manufacturing lab versus target cleanup",
+  "status": "planned",
+  "taskClass": "judge_work",
+  "modelClass": "gpt-5.5-low",
+  "usageLogRequired": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "book-sync-labor-only",
+  "sourceCase": "MANUFACTURING-004-SETUP-READINESS-OR-BOOKDRAFT-DECISION",
+  "purpose": "Integrate the Manufacturing labor draft narrowly into Chapter 14: direct-page anchors, clear lab/target separation and cleanup of unrelated remnants in the Manufacturing section.",
+  "allowedActions": [
+    "read-chapter-14-current-text",
+    "read-manufacturing-labor-draft",
+    "small-bookmaster-patch",
+    "write-evidence",
+    "update-state"
+  ],
+  "defaultLockedActions": [
+    "bc-execution",
+    "playwright-execution",
+    "new",
+    "edit-bc-data",
+    "setup-change",
+    "preview-posting",
+    "posting",
+    "company-switch",
+    "api-shortcut"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "claim-german-final-proof",
+    "manufacturing-posting-without-bom-routing-gate",
+    "large-book-rewrite"
+  ],
+  "safetyGates": [
+    "book changes must stay inside Chapter 14",
+    "mark RM-DEMO evidence as laboratory only",
+    "do not claim BOM/Routing/Production Order proof",
+    "do not touch Shopify scope"
+  ],
+  "expectedEvidence": [
+    "Chapter 14 lab/target cleanup",
+    "bookdraft to bookmaster trace",
+    "German-final rebuild boundary"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "resultPath": "playwright/projects/fibu-book5/evidence/manufacturing-005/MANUFACTURING-005-result.json",
+  "nextStep": "Patch Chapter 14 only: direct-page labor anchors, warning before target step flow, and remove/isolate unrelated Fixed Assets text inside the Manufacturing chapter.",
+  "createdAt": "2026-06-29T23:59:00+02:00",
+  "updatedAt": "2026-06-29T23:59:00+02:00"
+}

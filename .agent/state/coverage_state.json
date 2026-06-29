@@ -1785,7 +1785,7 @@
     "updatedAt": "2026-06-29T23:55:00+02:00"
   },
   "manufacturing": {
-    "status": "direct-page-readiness",
+    "status": "labor-sufficient-for-book-draft",
     "highestLevel": [
       "L1",
       "L8",
@@ -1817,8 +1817,36 @@
       "No Consumption Journal, Output Journal, Capacity Entry, Item Ledger Entry, Value Entry or G/L Entry from manufacturing was created.",
       "No German final proof was created."
     ],
-    "nextCase": "MANUFACTURING-004-SETUP-READINESS-OR-BOOKDRAFT-DECISION",
-    "nextStep": "MANUFACTURING-004: decide whether Manufacturing direct-page evidence should be synced into a Chapter 14 lab draft first or whether UI-first Production BOM/Routing setup-readiness is justified. No Manufacturing setup/posting inside the decision case.",
-    "updatedAt": "2026-06-29T23:55:00+02:00"
+    "nextCase": "MANUFACTURING-005-CHAPTER14-LAB-VS-TARGET-CLEANUP",
+    "nextStep": "Clean Chapter 14 in the book master: integrate the lab draft narrowly, remove or isolate unrelated Fixed Assets remnants in the Manufacturing section, and keep the step-by-step route as target/German-final rebuild path.",
+    "updatedAt": "2026-06-29T23:59:00+02:00",
+    "latestDecision": "playwright/projects/fibu-book5/evidence/manufacturing-004/MANUFACTURING-004-result.json",
+    "bookDraftPath": "playwright/projects/fibu-book5/book-drafts/manufacturing-labor-draft.md"
+  },
+  "latestManufacturing004": {
+    "caseId": "MANUFACTURING-004-SETUP-READINESS-OR-BOOKDRAFT-DECISION",
+    "status": [
+      "labor-sufficient-for-book-draft",
+      "needs-german-final-rebuild"
+    ],
+    "sourceInstance": "MCP_1_20260210",
+    "sourceCompany": "RM-DEMO",
+    "bcRun": false,
+    "playwrightRun": false,
+    "posted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "draftCreated": false,
+    "companySwitched": false,
+    "apiShortcut": false,
+    "resultPath": "playwright/projects/fibu-book5/evidence/manufacturing-004/MANUFACTURING-004-result.json",
+    "bookDraftPath": "playwright/projects/fibu-book5/book-drafts/manufacturing-labor-draft.md",
+    "decision": "Use MANUFACTURING-003 as direct-page laboratory evidence for a Chapter 14 labor draft before attempting any UI-first Production BOM/Routing setup-readiness. Setup, draft creation and posting remain locked until a separate case defines exact target values and before/after evidence.",
+    "selectedRoute": "bookdraft-sync-before-setup-readiness",
+    "nextCase": "MANUFACTURING-005-CHAPTER14-LAB-VS-TARGET-CLEANUP",
+    "migrationRelevance": "needed-for-german-final",
+    "mustRecreateInFinalSandbox": true,
+    "finalScreenshotNeeded": true,
+    "updatedAt": "2026-06-29T23:59:00+02:00"
   }
 }
