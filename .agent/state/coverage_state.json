@@ -271,12 +271,12 @@
   "hardExclusions": {
     "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
   },
-  "updatedAt": "2026-06-29T11:42:00+02:00",
+  "updatedAt": "2026-06-29T12:12:00+02:00",
   "activeArea": "warehouse",
-  "currentBlock": "warehouse-inbound-source-document-selection",
-  "latestPracticalCase": "WAREHOUSE-007-WAREHOUSE-EMPLOYEE-SETUP-FIT",
+  "currentBlock": "warehouse-source-document-action-on-draft",
+  "latestPracticalCase": "WAREHOUSE-010-WAREHOUSE-RECEIPT-DRAFT-LIFECYCLE-ROUTE",
   "latestReviewCase": "FIXEDASSETS-299-FA-DEPRECIATION-NEXT-HYPOTHESIS-DECISION",
-  "nextCase": "WAREHOUSE-008-INBOUND-SOURCE-DOCUMENT-SELECTION",
+  "nextCase": "WAREHOUSE-011-SOURCE-DOCUMENT-ACTION-ON-DRAFT",
   "latestBank013": {
     "caseId": "BANK-013-CONTROLLED-NEXT-EVIDENCE-STEP",
     "status": [
@@ -1381,14 +1381,17 @@
   "warehouse": {
     "chapter": "Kapitel 13",
     "status": "in-progress",
-    "currentBlock": "warehouse-inbound-source-document-selection",
+    "currentBlock": "warehouse-source-document-action-on-draft",
     "latestEvidenceCases": [
       "WAREHOUSE-006",
-      "WAREHOUSE-007"
+      "WAREHOUSE-007",
+      "WAREHOUSE-008",
+      "WAREHOUSE-009",
+      "WAREHOUSE-010"
     ],
-    "latestPracticalCase": "WAREHOUSE-007-WAREHOUSE-EMPLOYEE-SETUP-FIT",
-    "nextCase": "WAREHOUSE-008-INBOUND-SOURCE-DOCUMENT-SELECTION",
-    "blockerStatus": "warehouse-employee-blocker-solved-source-document-selection-open",
+    "latestPracticalCase": "WAREHOUSE-010-WAREHOUSE-RECEIPT-DRAFT-LIFECYCLE-ROUTE",
+    "nextCase": "WAREHOUSE-011-SOURCE-DOCUMENT-ACTION-ON-DRAFT",
+    "blockerStatus": "warehouse-receipt-draft-route-open-source-document-action-hidden-behind-prepare-or-more-options",
     "employeeSetup": {
       "userId": "KAJETAN.KALICKI",
       "locationCode": "FRA-ZL",
@@ -1396,6 +1399,14 @@
       "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-007/WAREHOUSE-007-result.json",
       "mustRecreateInFinalSandbox": true
     },
-    "nextStep": "WAREHOUSE-008: controlled Source Document selection on Warehouse Receipt, no posting."
+    "nextStep": "WAREHOUSE-011: inspect Prepare/More options on the Warehouse Receipt draft for Get Source Documents without posting.",
+    "draftRoute": {
+      "status": "labor-proven",
+      "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-010/WAREHOUSE-010-result.json",
+      "draftCreated": true,
+      "noPosting": true,
+      "noSourceDocumentConfirmation": true,
+      "mustRecreateInFinalSandbox": true
+    }
   }
 }

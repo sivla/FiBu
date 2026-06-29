@@ -1,0 +1,186 @@
+{
+  "schemaVersion": 1,
+  "purpose": "warehouse-source-document-action-route",
+  "caseId": "WAREHOUSE-009-SOURCE-DOCUMENT-ACTION-ROUTE",
+  "source": "playwright-ui-source-document-action-route",
+  "resultStatus": "blocked",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "bcRun": true,
+  "playwrightRun": true,
+  "posted": false,
+  "previewPosting": false,
+  "setupChanged": false,
+  "companySwitched": false,
+  "draftCreated": false,
+  "apiShortcut": false,
+  "page": {
+    "pageId": 7331,
+    "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/MCP_1_20260210?company=RM-DEMO&page=7331&dc=0",
+    "employeeBlockerVisible": false
+  },
+  "beforeButtons": [
+    "Description",
+    "Due Date",
+    "Item No.",
+    "KK",
+    "Quantity",
+    "Source Document",
+    "Source No.",
+    "Umgebung: MCP_1_20260210",
+    "Unit of Measure Code"
+  ],
+  "sourceDocumentCandidates": [
+    {
+      "text": "Source Document",
+      "ariaLabel": "",
+      "title": "Sortieren nach 'Source Document'",
+      "role": "button",
+      "tagName": "A",
+      "box": {
+        "x": 637.734375,
+        "y": 80,
+        "width": 55.25,
+        "height": 32
+      },
+      "score": -38
+    },
+    {
+      "text": "",
+      "ariaLabel": "Menü für Source Document öffnen",
+      "title": "Menü öffnen",
+      "role": "button",
+      "tagName": "A",
+      "box": {
+        "x": 720.21875,
+        "y": 93,
+        "width": 12,
+        "height": 16
+      },
+      "score": -22
+    },
+    {
+      "text": " Lines  Source Document Source No. Due Date Item No. Description Quantity Unit of Measure Code (In dieser Ansicht kann nichts angezeigt werden)",
+      "ariaLabel": "Lines",
+      "title": "",
+      "role": "",
+      "tagName": "FORM",
+      "box": {
+        "x": 0,
+        "y": 0,
+        "width": 2200,
+        "height": 1152
+      },
+      "score": -20
+    }
+  ],
+  "processActionCandidates": [],
+  "lineGridOnlyVisible": true,
+  "sourceDocumentClick": {
+    "clicked": false,
+    "candidates": [
+      {
+        "text": "Source Document",
+        "ariaLabel": "",
+        "title": "Sortieren nach 'Source Document'",
+        "role": "button",
+        "tagName": "A",
+        "box": {
+          "x": 637.734375,
+          "y": 80,
+          "width": 55.25,
+          "height": 32
+        },
+        "score": -38
+      },
+      {
+        "text": "",
+        "ariaLabel": "Menü für Source Document öffnen",
+        "title": "Menü öffnen",
+        "role": "button",
+        "tagName": "A",
+        "box": {
+          "x": 720.21875,
+          "y": 93,
+          "width": 12,
+          "height": 16
+        },
+        "score": -22
+      },
+      {
+        "text": " Lines  Source Document Source No. Due Date Item No. Description Quantity Unit of Measure Code (In dieser Ansicht kann nichts angezeigt werden)",
+        "ariaLabel": "Lines",
+        "title": "",
+        "role": "",
+        "tagName": "FORM",
+        "box": {
+          "x": 0,
+          "y": 0,
+          "width": 2200,
+          "height": 1152
+        },
+        "score": -20
+      }
+    ],
+    "clickedCandidate": null
+  },
+  "afterSourceMenuButtons": [
+    "Description",
+    "Due Date",
+    "Item No.",
+    "KK",
+    "Quantity",
+    "Source Document",
+    "Source No.",
+    "Umgebung: MCP_1_20260210",
+    "Unit of Measure Code"
+  ],
+  "getSourceCandidates": [],
+  "getSourceClick": {
+    "clicked": false,
+    "candidates": [],
+    "clickedCandidate": null
+  },
+  "trueProcessRouteOpened": false,
+  "selectionUiVisible": true,
+  "okOrSelectVisible": false,
+  "postCandidates": [],
+  "postActionClicked": false,
+  "proves": [
+    "Warehouse Employee blocker is not visible on page 7331.",
+    "No true Source Document process action was opened; visible Source Document candidates were column/grid controls.",
+    "A Source Document / selection / filter UI signal is visible after the route attempt.",
+    "The page shows Source Document line-grid columns, but this is not the same as selecting a source document."
+  ],
+  "doesNotProve": [
+    "No source document was selected or confirmed.",
+    "No Warehouse Receipt was posted.",
+    "No Put-away was created or posted.",
+    "No item/value/warehouse ledger trace exists yet.",
+    "No German final Warehouse proof."
+  ],
+  "blockedBy": [
+    "only-source-document-line-grid-visible-no-process-action"
+  ],
+  "warnings": [
+    "No OK/Select confirmation was used.",
+    "Post Receipt candidates were recorded as risk evidence and intentionally not clicked."
+  ],
+  "flags": {
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true,
+    "noSourceDocumentConfirmation": true
+  },
+  "migrationRelevance": "needed-for-german-final",
+  "rebuildInstruction": "In German final sandbox, repeat this page 7331 Source Document route with a final purchase source document and then continue to Warehouse Receipt posting only after a separate gate.",
+  "mustRecreateInFinalSandbox": true,
+  "sourceCompany": "RM-DEMO",
+  "targetGermanCompanyImpact": "German final proof must select a source document, post Warehouse Receipt, create/handle Put-away and trace Warehouse/Item/Value entries.",
+  "finalScreenshotNeeded": true,
+  "nextCase": "WAREHOUSE-010-WAREHOUSE-RECEIPT-DRAFT-LIFECYCLE-ROUTE",
+  "nextStep": "WAREHOUSE-010: create a controlled Warehouse Receipt draft first, then retry Get Source Documents route without posting."
+}

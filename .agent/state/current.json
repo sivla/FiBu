@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-29T11:42:00+02:00",
+  "updatedAt": "2026-06-29T12:12:00+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "warehouse",
-  "activeCase": "WAREHOUSE-008-INBOUND-SOURCE-DOCUMENT-SELECTION",
-  "active_case_file": ".agent/state/cases/warehouse-008-inbound-source-document-selection.json",
-  "lastReferenceCase": "WAREHOUSE-007-WAREHOUSE-EMPLOYEE-SETUP-FIT",
-  "lastReferenceCaseFile": ".agent/state/cases/warehouse-007-warehouse-employee-setup-fit.json",
+  "activeCase": "WAREHOUSE-011-SOURCE-DOCUMENT-ACTION-ON-DRAFT",
+  "active_case_file": ".agent/state/cases/warehouse-011-source-document-action-on-draft.json",
+  "lastReferenceCase": "WAREHOUSE-010-WAREHOUSE-RECEIPT-DRAFT-LIFECYCLE-ROUTE",
+  "lastReferenceCaseFile": ".agent/state/cases/warehouse-010-receipt-draft-lifecycle-route.json",
   "mode": "bc-specialist-labor-book-production",
   "requiresStrongModel": false,
   "requiredPreflightChecks": [
@@ -40,7 +40,7 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "WAREHOUSE-008: use the now-unblocked Warehouse Receipt route to attempt controlled source-document selection without posting.",
+  "nextStep": "WAREHOUSE-011: on the controlled Warehouse Receipt draft, find the Prepare/Get Source Documents route without posting.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/inventory-labor-draft.md",
     "area": "inventory",
@@ -1402,8 +1402,8 @@
     "decision": "Approve a separate no-post Payment Journal preflight for Vendor Ledger document 108205. Do not use Payment Reconciliation Apply/Post for this target. BANK-018 may create exactly one scoped draft line, run Journal Check/open Apply Entries if reachable, and must cleanup or explicitly document keep status. Posting remains locked.",
     "nextStep": "BANK-018: controlled no-post Payment Journal preflight for 108205; do not post."
   },
-  "workType": "warehouse-inbound-source-document-selection",
-  "lastCompletedCase": "WAREHOUSE-007-WAREHOUSE-EMPLOYEE-SETUP-FIT",
+  "workType": "warehouse-source-document-action-on-draft",
+  "lastCompletedCase": "WAREHOUSE-010-WAREHOUSE-RECEIPT-DRAFT-LIFECYCLE-ROUTE",
   "latestBank018": {
     "caseId": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
     "status": [
@@ -2379,5 +2379,47 @@
     "previewPosting": false,
     "nextCase": "WAREHOUSE-008-INBOUND-SOURCE-DOCUMENT-SELECTION",
     "updatedAt": "2026-06-29T11:42:00+02:00"
+  },
+  "latestWarehouse008": {
+    "caseId": "WAREHOUSE-008-INBOUND-SOURCE-DOCUMENT-SELECTION",
+    "status": "blocked",
+    "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-008/WAREHOUSE-008-result.json",
+    "decision": "Page 7332 showed Warehouse Receipt context but no Source Document action; no posting and no source confirmation occurred.",
+    "blockedBy": [
+      "source-document-action-not-opened"
+    ],
+    "posted": false,
+    "previewPosting": false,
+    "draftCreated": false,
+    "nextCase": "WAREHOUSE-009-SOURCE-DOCUMENT-ACTION-ROUTE",
+    "updatedAt": "2026-06-29T12:12:00+02:00"
+  },
+  "latestWarehouse009": {
+    "caseId": "WAREHOUSE-009-SOURCE-DOCUMENT-ACTION-ROUTE",
+    "status": "blocked",
+    "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-009/WAREHOUSE-009-result.json",
+    "decision": "Page 7331 proved only the Source Document line grid, not a true Source Document process action.",
+    "lineGridOnlyVisible": true,
+    "trueProcessRouteOpened": false,
+    "blockedBy": [
+      "only-source-document-line-grid-visible-no-process-action"
+    ],
+    "posted": false,
+    "previewPosting": false,
+    "nextCase": "WAREHOUSE-010-WAREHOUSE-RECEIPT-DRAFT-LIFECYCLE-ROUTE",
+    "updatedAt": "2026-06-29T12:12:00+02:00"
+  },
+  "latestWarehouse010": {
+    "caseId": "WAREHOUSE-010-WAREHOUSE-RECEIPT-DRAFT-LIFECYCLE-ROUTE",
+    "status": "observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-010/WAREHOUSE-010-result.json",
+    "decision": "A controlled Warehouse Receipt draft context can be opened via exact visible New/Neu text fallback; Get Source Documents remains hidden behind a follow-up action route.",
+    "draftCreated": true,
+    "newFallbackClicked": true,
+    "sourceProcessCandidates": 0,
+    "posted": false,
+    "previewPosting": false,
+    "nextCase": "WAREHOUSE-011-SOURCE-DOCUMENT-ACTION-ON-DRAFT",
+    "updatedAt": "2026-06-29T12:12:00+02:00"
   }
 }

@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "caseId": "WAREHOUSE-011-SOURCE-DOCUMENT-ACTION-ON-DRAFT",
+  "title": "Find Get Source Documents on Warehouse Receipt draft without posting",
+  "status": "planned",
+  "taskClass": "wizard_work",
+  "modelClass": "gpt-4-high",
+  "usageLogRequired": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "warehouse-source-document-action-on-draft",
+  "sourceCase": "WAREHOUSE-010-WAREHOUSE-RECEIPT-DRAFT-LIFECYCLE-ROUTE",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/warehouse-010/WAREHOUSE-010-result.json"
+  ],
+  "purpose": "On the controlled Warehouse Receipt draft context, inspect Prepare/More options for Get Source Documents. Do not confirm source documents and do not post.",
+  "allowedActions": [
+    "business-central-execution",
+    "playwright-execution",
+    "direct-page-navigation",
+    "scoped-action-inventory",
+    "scoped-source-document-action",
+    "read-fields",
+    "screenshot-and-page-text-evidence",
+    "cleanup-or-explicit-keep-documentation"
+  ],
+  "defaultLockedActions": [
+    "posting",
+    "preview-posting",
+    "warehouse-receipt-posting",
+    "warehouse-putaway-posting",
+    "warehouse-shipment-posting",
+    "delete-record",
+    "company-switch",
+    "api-shortcut"
+  ],
+  "forbiddenActions": [
+    "claim-german-final-proof",
+    "use-api-shortcut",
+    "post-warehouse-document",
+    "delete-location-or-setup-data",
+    "change-require-pick-bin-mandatory-or-directed-put-away-and-pick"
+  ],
+  "safetyGates": [
+    "instance-boundary-gate",
+    "company-context-rm-demo",
+    "ui-first-only",
+    "no-posting",
+    "no-source-document-confirmation",
+    "post-receipt-not-clicked"
+  ],
+  "expectedEvidence": [
+    "Prepare/More options action inventory",
+    "Get Source Documents route if visible",
+    "No-post/no-preview/no-api flags",
+    "Draft keep/cleanup decision"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-011/WAREHOUSE-011-result.json",
+  "nextStep": "Run WAREHOUSE-011 action inventory on the controlled Warehouse Receipt draft; no posting.",
+  "createdAt": "2026-06-29T12:12:00+02:00",
+  "updatedAt": "2026-06-29T12:12:00+02:00"
+}
