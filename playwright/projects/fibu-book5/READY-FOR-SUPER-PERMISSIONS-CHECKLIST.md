@@ -21,6 +21,11 @@ Diese Checkliste wird verwendet, sobald der Nutzer bestaetigt, dass ausreichende
 - `UNIVERSAARL-DE` ist noch nicht in der Liste sichtbar.
 - Der Hauptbutton `Neu`, der Dropdown-Pfeil und `Neues Unternehmen erstellen` sind durch Tooltip oder Screenshot auseinandergehalten.
 - Screenshot-QA ist vorbereitet: Das Bild muss zeigen, was fuer die Entscheidung wichtig ist.
+- Zuerst ueber dem Hauptbutton `Neu` hovern und Tooltip/Accessible Name notieren.
+- Danach ueber dem Pfeil neben `Neu` hovern und Tooltip/Accessible Name notieren.
+- Wenn `Neues Unternehmen erstellen` im Dropdown gewaehlt werden soll, muss das Dropdown sichtbar offen sein und der Menueintrag selbst im Screenshot lesbar sein.
+- Nach dem Klick muss der sichtbare Zielzustand zur gewaehlten Aktion passen. Eine leere Mandantenzeile ist nicht automatisch der gefuehrte `Neues Unternehmen erstellen`-Wizard.
+- Wenn der Zielzustand nicht passt, den Pfad als `rejected-path` dokumentieren und nicht weiter Werte eingeben.
 
 ## Beim Anlegen
 

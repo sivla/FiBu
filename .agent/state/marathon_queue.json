@@ -201,7 +201,7 @@
     {
       "id": "PREP-010-PLAYWRIGHT-READONLY-HELPERS-AND-UI-ERGONOMICS",
       "order": 10,
-      "status": "pending",
+      "status": "done",
       "category": "playwright",
       "expectedImpact": "prep-progress",
       "mayWorkEffectively": false,
@@ -211,8 +211,11 @@
       "sourceCompany": "UNIVERSAARL-DE-planned-not-yet-created",
       "targetWorld": "Universaarl",
       "noFinalGermanClaimWithoutUniversaarlEvidence": true,
-      "lookaheadStatus": "ready-next",
-      "reason": "Next best prep task after RM decommission: improve read-only UI ergonomics and Playwright helper rules for splitbuttons, tooltips, focus/layout and screenshot QA."
+      "lookaheadStatus": "done",
+      "reason": "Next best prep task after RM decommission: improve read-only UI ergonomics and Playwright helper rules for splitbuttons, tooltips, focus/layout and screenshot QA.",
+      "completedAt": "2026-06-30",
+      "result": "Read-only UI ergonomics hardened: splitbutton intent, hover/tooltip, screenshot QA, layout escalation and wrong-target rejection.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/prep-010-playwright-readonly-ui-ergonomics/PREP-010-result.json"
     },
     {
       "id": "PREP-011-SCREENSHOT-EXPLANATION-QUALITY-GATE",
@@ -227,7 +230,8 @@
       "sourceCompany": "UNIVERSAARL-DE-planned-not-yet-created",
       "targetWorld": "Universaarl",
       "noFinalGermanClaimWithoutUniversaarlEvidence": true,
-      "lookaheadStatus": "ready-after-current"
+      "lookaheadStatus": "ready-next",
+      "reason": "Next best prep task after PREP-010: apply screenshot truth and not-proof rules to existing screenshot explanations."
     },
     {
       "id": "PREP-012-LOOK-AND-FEEL-FILTERING-CHAPTER-PLAN",
@@ -518,7 +522,7 @@
       "lookaheadStatus": "ready-after-current"
     }
   ],
-  "lastUpdated": "2026-06-30T00:25:00.000+02:00",
+  "lastUpdated": "2026-06-30T00:45:00.000+02:00",
   "nextStepDecisionGate": {
     "active": true,
     "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",
@@ -587,35 +591,35 @@
       ]
     }
   },
-  "updatedAt": "2026-06-30T00:25:00.000+02:00",
-  "lastCompletedCase": "PREP-009-RM-DECOMMISSION-INVENTORY-REFINEMENT",
-  "nextCase": "PREP-010-PLAYWRIGHT-READONLY-HELPERS-AND-UI-ERGONOMICS",
+  "updatedAt": "2026-06-30T00:45:00.000+02:00",
+  "lastCompletedCase": "PREP-010-PLAYWRIGHT-READONLY-HELPERS-AND-UI-ERGONOMICS",
+  "nextCase": "PREP-011-SCREENSHOT-EXPLANATION-QUALITY-GATE",
   "nextStepDecisionCard": {
-    "currentCase": "PREP-009-RM-DECOMMISSION-INVENTORY-REFINEMENT",
-    "plannedNextCaseBeforeReview": "PREP-009-RM-DECOMMISSION-INVENTORY-REFINEMENT",
-    "lastEvidenceSummary": "PREP-008 tightened source and claim gates, making legacy-vs-active classification safer.",
+    "currentCase": "PREP-010-PLAYWRIGHT-READONLY-HELPERS-AND-UI-ERGONOMICS",
+    "plannedNextCaseBeforeReview": "PREP-010-PLAYWRIGHT-READONLY-HELPERS-AND-UI-ERGONOMICS",
+    "lastEvidenceSummary": "PREP-009 refined legacy reference handling. TARGET-007/008 showed a concrete UI failure pattern: main Neu, arrow next to Neu and Neues Unternehmen erstellen must not be conflated.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "Legacy RM/Rhein-Main/CRONUS references are the next active risk after claim gates; the project needs cleaner steering before more book or UI prep.",
+    "reason": "The next practical risk before SUPER permissions is UI misunderstanding. PREP-010 directly hardens the reusable rules needed for the next company creation attempt.",
     "lookaheadReviewed": [
       {
-        "caseId": "PREP-010-PLAYWRIGHT-READONLY-HELPERS-AND-UI-ERGONOMICS",
-        "status": "ready-next",
-        "reason": "Tooltip, splitbutton, focus mode and screenshot QA were recurring user-feedback points and should become reusable patterns."
-      },
-      {
         "caseId": "PREP-011-SCREENSHOT-EXPLANATION-QUALITY-GATE",
-        "status": "ready-after-current",
-        "reason": "Screenshot truth and not-proof labels are needed before more book-facing screenshot prose."
+        "status": "ready-next",
+        "reason": "Screenshot truth now has PREP-010 rules; next step should improve screenshot explanation quality."
       },
       {
         "caseId": "PREP-012-LOOK-AND-FEEL-FILTERING-CHAPTER-PLAN",
         "status": "ready-after-current",
-        "reason": "Filtering/look-and-feel prose should follow the improved UI-helper rules."
+        "reason": "Filtering/look-and-feel text should build on screenshot and UI target clarity."
       },
       {
         "caseId": "PREP-013-DATA-RICHNESS-PLAN-FOR-FUTURE-FULL-COMPANY",
         "status": "ready-after-current",
-        "reason": "Data richness is useful after UI rules and screenshot explanation are sharper."
+        "reason": "Data-richness planning remains useful while company creation is parked."
+      },
+      {
+        "caseId": "PREP-014-ZERO-OPEN-QUESTIONS-REGISTER-CLEANUP",
+        "status": "ready-after-current",
+        "reason": "Open UI questions can be cleaned once screenshot and UI target rules are sharper."
       },
       {
         "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
@@ -624,19 +628,19 @@
       }
     ],
     "queueChangesMade": [
-      "Marked PREP-009 done.",
-      "Selected PREP-010 as next prep case."
+      "Marked PREP-010 done.",
+      "Selected PREP-011 as the next prep case."
     ],
-    "selectedNextCase": "PREP-010-PLAYWRIGHT-READONLY-HELPERS-AND-UI-ERGONOMICS",
-    "whySelectedNextCaseIsBest": "The user's recent failures were UI-understanding failures: splitbutton vs menu entry, tooltip, screenshot QA and layout expansion. PREP-010 directly improves that capability.",
+    "selectedNextCase": "PREP-011-SCREENSHOT-EXPLANATION-QUALITY-GATE",
+    "whySelectedNextCaseIsBest": "The project now has UI-target rules; the next useful prep step is to apply the same discipline to existing screenshots and screenshot explanations.",
     "risksBeforeNextCase": [
-      "Do not run Playwright write actions.",
-      "Do not turn helper work into broad architecture.",
-      "Keep helper changes tied to observed UI mistakes."
+      "Do not run effective BC actions.",
+      "Do not turn screenshot QA into empty inventory work.",
+      "Keep screenshot decisions tied to visible proof and beginner usefulness."
     ],
     "requiredPreparation": [
-      "Read existing Playwright helpers and UI look-and-feel guide.",
-      "Target only read-only ergonomics: tooltip, splitbutton, screenshot QA and focus/layout notes."
+      "Use PREP-010 screenshot-QA fields.",
+      "Focus on target screenshots and current book-facing image candidates."
     ]
   }
 }

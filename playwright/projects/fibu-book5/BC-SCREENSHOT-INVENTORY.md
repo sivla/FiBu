@@ -95,3 +95,15 @@ Wenn eines dieser Felder nicht sinnvoll beantwortet werden kann, ist der Screens
 Ein Screenshot ist fuer Buch oder Evidence nur brauchbar, wenn der sichtbare Ausschnitt den behaupteten Zweck zeigt. Stoerende Help-/Tour-Overlays werden geschlossen, wenn sie nicht Teil des Beweises sind. FactBoxes bleiben sichtbar, wenn sie Kontext beweisen; sie werden ausgeblendet, wenn sie die Haupttabelle zu eng machen. Bei Listen, Worksheets und Journals sollen relevante Spalten durch breite Ansicht, Fokusmodus oder horizontales Scrollen sichtbar gemacht werden.
 
 UI-relevante Result JSONs sollen `uiErgonomics` enthalten: Overlays, FactBox-Zweck, FastTabs, Grid-Fokus, horizontales/vertikales Scrollen, Personalisierung und Page Inspection.
+
+## PREP-010 Screenshot-QA-Regel
+
+Vor jeder Buch- oder Clickguide-Nutzung muss der Screenshot gegen die konkrete Behauptung geprueft werden:
+
+- Zeigt das Bild den konkreten Button, Pfeil oder Menueintrag?
+- Ist der relevante Code, Wert, Dialog oder Feldbereich lesbar?
+- Ist der Zielzustand nach dem Klick sichtbar?
+- Kann ein Anfaenger erkennen, welcher UI-Teil gemeint ist?
+- Wurde ein falscher Klickpfad als `rejected-path` markiert?
+
+Ein Screenshot, der nur den allgemeinen Page-Kontext oder einen DOM-/ARIA-Treffer stuetzt, bleibt Debugging-Evidence. Er darf nicht als Buchbeweis fuer einen konkreten Code, Button, Menueintrag, Wert oder erfolgreichen Schritt verwendet werden.

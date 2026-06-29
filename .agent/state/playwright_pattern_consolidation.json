@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-29T21:15:00.000Z",
+  "updatedAt": "2026-06-30T00:45:00.000+02:00",
   "purpose": "universaarl-playwright-pattern-consolidation",
   "targetWorld": {
     "instance": "playthru",
@@ -10,7 +10,8 @@
   "status": [
     "universaarl-pattern-baseline",
     "helper-only",
-    "no-bc-run"
+    "no-bc-run",
+    "prep-010-ui-ergonomics-hardened"
   ],
   "noBcRun": true,
   "noPlaywrightRun": true,
@@ -110,48 +111,64 @@
     }
   ],
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-005-COMPANY-CREATION-SOURCE-BACKED-ALTERNATIVE-ROUTE",
-    "plannedNextCaseBeforeReview": "TARGET-005-COMPANY-CREATION-SOURCE-BACKED-ALTERNATIVE-ROUTE",
-    "lastEvidenceSummary": "TARGET-001 to TARGET-004 proved playthru/Companies context and rejected unsafe or unclear direct company creation routes; no UNIVERSAARL-DE company exists yet.",
+    "currentCase": "PREP-010-PLAYWRIGHT-READONLY-HELPERS-AND-UI-ERGONOMICS",
+    "plannedNextCaseBeforeReview": "PREP-010-PLAYWRIGHT-READONLY-HELPERS-AND-UI-ERGONOMICS",
+    "lastEvidenceSummary": "PREP-009 refined legacy reference handling. TARGET-007/008 showed a concrete UI failure pattern: main Neu, arrow next to Neu and Neues Unternehmen erstellen must not be conflated.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The Playwright consolidation supports TARGET-005 by selecting reusable patterns and preventing old RM-specific tests from being used as active target truth.",
+    "reason": "The next practical risk before SUPER permissions is UI misunderstanding. PREP-010 directly hardens the reusable rules needed for the next company creation attempt.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-005-COMPANY-CREATION-SOURCE-BACKED-ALTERNATIVE-ROUTE",
+        "caseId": "PREP-011-SCREENSHOT-EXPLANATION-QUALITY-GATE",
         "status": "ready-next",
-        "reason": "Still the dependency for Universaarl setup and first book chapter."
+        "reason": "Screenshot truth now has PREP-010 rules; next step should improve screenshot explanation quality."
       },
       {
-        "caseId": "TARGET-004-FOUNDATION-SETUP-READINESS",
+        "caseId": "PREP-012-LOOK-AND-FEEL-FILTERING-CHAPTER-PLAN",
         "status": "ready-after-current",
-        "reason": "Requires target company to exist."
+        "reason": "Filtering/look-and-feel text should build on screenshot and UI target clarity."
       },
       {
-        "caseId": "TARGET-005-NUMBER-SERIES-PREFLIGHT",
-        "status": "needs-setup-first",
-        "reason": "Needs company creation and foundation baseline."
-      },
-      {
-        "caseId": "TARGET-006-POSTING-GROUPS-PREFLIGHT",
-        "status": "needs-setup-first",
-        "reason": "Depends on company setup and chart/accounting baseline."
-      },
-      {
-        "caseId": "TARGET-007-DIMENSIONS-FOUNDATION",
+        "caseId": "PREP-013-DATA-RICHNESS-PLAN-FOR-FUTURE-FULL-COMPANY",
         "status": "ready-after-current",
-        "reason": "Can follow after company and foundation context are stable."
+        "reason": "Data-richness planning remains useful while company creation is parked."
+      },
+      {
+        "caseId": "PREP-014-ZERO-OPEN-QUESTIONS-REGISTER-CLEANUP",
+        "status": "ready-after-current",
+        "reason": "Open UI questions can be cleaned once screenshot and UI target rules are sharper."
+      },
+      {
+        "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+        "status": "blocked",
+        "reason": "Still parked until SUPER/company-create permissions are confirmed."
       }
     ],
-    "queueChangesMade": [],
-    "selectedNextCase": "TARGET-005-COMPANY-CREATION-SOURCE-BACKED-ALTERNATIVE-ROUTE",
-    "whySelectedNextCaseIsBest": "It converts the current company creation blocker into a source-backed UI route and enables all later Universaarl setup and process evidence.",
+    "queueChangesMade": [
+      "Marked PREP-010 done.",
+      "Selected PREP-011 as the next prep case."
+    ],
+    "selectedNextCase": "PREP-011-SCREENSHOT-EXPLANATION-QUALITY-GATE",
+    "whySelectedNextCaseIsBest": "The project now has UI-target rules; the next useful prep step is to apply the same discipline to existing screenshots and screenshot explanations.",
     "risksBeforeNextCase": [
-      "BC may still expose only copy/test/demo creation routes.",
-      "Company creation may show a dialog that requires explicit Smart Decision Gate before confirmation."
+      "Do not run effective BC actions.",
+      "Do not turn screenshot QA into empty inventory work.",
+      "Keep screenshot decisions tied to visible proof and beginner usefulness."
     ],
     "requiredPreparation": [
-      "Use the consolidated capabilities: navigation, page context, scoped action click, dialog gate and evidence writer.",
-      "Do not run legacy RM-DE-LAB company creation tests as active target tests."
+      "Use PREP-010 screenshot-QA fields.",
+      "Focus on target screenshots and current book-facing image candidates."
     ]
+  },
+  "latestPrep010": {
+    "caseId": "PREP-010-PLAYWRIGHT-READONLY-HELPERS-AND-UI-ERGONOMICS",
+    "resultPath": "playwright/projects/fibu-book5/evidence/prep-010-playwright-readonly-ui-ergonomics/PREP-010-result.json",
+    "improvedPatterns": [
+      "bc_splitbutton_intent_gate",
+      "bc_hover_tooltip_probe",
+      "bc_screenshot_qa_gate",
+      "bc_layout_escalation_ladder",
+      "bc_wrong_target_rejection"
+    ],
+    "keyRule": "Do not treat a splitbutton main action, arrow and dropdown entry as the same target."
   }
 }

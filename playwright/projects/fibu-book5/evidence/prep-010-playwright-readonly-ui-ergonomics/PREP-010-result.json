@@ -1,20 +1,24 @@
 {
   "schemaVersion": 1,
-  "runId": "PREP-010-PLAYWRIGHT-READONLY-HELPERS-AND-UI-ERGONOMICS",
+  "purpose": "autopilot-result-normalized",
   "caseId": "PREP-010-PLAYWRIGHT-READONLY-HELPERS-AND-UI-ERGONOMICS",
-  "status": "done",
-  "instance": "playthru",
-  "targetCompany": "UNIVERSAARL-DE",
-  "bcRun": false,
-  "playwrightRun": false,
-  "posted": false,
-  "previewPosting": false,
-  "setupChange": false,
-  "bookChanged": false,
-  "summary": "Hardened read-only UI ergonomics for Universaarl: splitbutton targets, tooltip probing, screenshot QA, layout escalation and wrong-target rejection are now reusable rules.",
-  "evidence": [
-    "playwright/projects/fibu-book5/evidence/prep-010-playwright-readonly-ui-ergonomics/README.md",
-    "playwright/projects/fibu-book5/evidence/prep-010-playwright-readonly-ui-ergonomics/PREP-010-result.json"
+  "source": "local-analysis",
+  "resultStatus": "observed",
+  "runPlanId": "PREP-010-PLAYWRIGHT-READONLY-HELPERS-AND-UI-ERGONOMICS-PLAN",
+  "selectedTaskClass": "monkey_work",
+  "selectedModelClass": "gpt-4-mini-low",
+  "proved": [
+    "The UI guide now explicitly separates splitbutton main action, dropdown arrow and menu entry.",
+    "Hover/tooltip probing is now required before ambiguous UI actions.",
+    "Screenshot QA now requires visible proof of the actual claimed target, not only DOM or ARIA evidence.",
+    "Layout escalation now requires maximize, FastTabs, FactBox, focus mode and scroll checks before declaring a UI blocker.",
+    "The Super Permissions checklist now blocks accidental confusion between Neu and Neues Unternehmen erstellen."
+  ],
+  "notProved": [
+    "No Business Central page was opened.",
+    "No Playwright test was executed.",
+    "No UNIVERSAARL-DE company was created.",
+    "No final German screenshot was created."
   ],
   "changedFiles": [
     ".agent/BC-UI-LOOK-AND-FEEL-GUIDE.md",
@@ -30,7 +34,60 @@
     "playwright/projects/fibu-book5/evidence/prep-010-playwright-readonly-ui-ergonomics/README.md",
     "playwright/projects/fibu-book5/evidence/prep-010-playwright-readonly-ui-ergonomics/PREP-010-result.json"
   ],
-  "nextStep": "Continue with PREP-011-SCREENSHOT-EXPLANATION-QUALITY-GATE. Company creation remains parked until permissions are available.",
+  "statePatch": {},
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/prep-010-playwright-readonly-ui-ergonomics/README.md"
+  ],
+  "warnings": [
+    "TARGET-009 remains parked until SUPER/company-create permissions are confirmed.",
+    "Future company creation must visibly distinguish Neu, the arrow next to Neu and Neues Unternehmen erstellen."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": false,
+  "reason": "PREP-010 is a local helper and documentation hardening run. State updates are committed directly; automatic state-finalize write remains disabled.",
+  "flags": {
+    "noBusinessCentralRun": true,
+    "noPlaywrightRun": true,
+    "noPosting": true,
+    "noPreviewPosting": true,
+    "noSetupChange": true,
+    "noCompanyCreation": true,
+    "noBookmasterChange": true
+  },
+  "uiErgonomics": {
+    "splitButtonIntent": {
+      "mainButton": "Treat the visible main button as its own target.",
+      "dropdownArrow": "Treat the small arrow next to the button as its own target.",
+      "menuItem": "Treat each dropdown item as its own target.",
+      "selectedTarget": "none-local-prep-only",
+      "tooltip": "required-before-ambiguous-click",
+      "resultingVisibleState": "must-match-selected-target-in-future-live-runs",
+      "targetMatched": false
+    },
+    "layoutEscalation": [
+      "close irrelevant overlays",
+      "maximize card or list with top-right arrows",
+      "open relevant FastTabs",
+      "hide FactBox if it blocks the main table",
+      "use focus mode for line/list areas",
+      "scroll the correct page/grid/dialog area",
+      "check command-bar overflow and dropdown arrows separately"
+    ],
+    "screenshotQa": {
+      "visiblePage": "not-applicable-local-prep-only",
+      "visibleTarget": "not-applicable-local-prep-only",
+      "internallyProves": [
+        "PREP-010 rules exist and are linked from active guide/atlas files"
+      ],
+      "doesNotProve": [
+        "Business Central UI state",
+        "UNIVERSAARL-DE existence",
+        "company creation permission"
+      ],
+      "qualityDecision": "helper-only-no-screenshot"
+    }
+  },
   "nextStepDecisionCard": {
     "currentCase": "PREP-010-PLAYWRIGHT-READONLY-HELPERS-AND-UI-ERGONOMICS",
     "plannedNextCaseBeforeReview": "PREP-010-PLAYWRIGHT-READONLY-HELPERS-AND-UI-ERGONOMICS",

@@ -17,6 +17,53 @@ Vor einem UI-Blocker pruefen:
 9. Command-Bar-Overflow und Dropdowns,
 10. Page Inspection, Personalisierung oder Quellencheck, wenn UI-Sichtbarkeit nicht reicht.
 
+## PREP-010: Splitbuttons, Tooltips und sichtbarer Zielbeweis
+
+Business Central zeigt viele Aktionen als Kombi aus Hauptbutton, kleinem Pfeil und Menueintraegen. Diese drei Ziele duerfen nie gleichgesetzt werden.
+
+Pflichtregel:
+
+- Hauptbutton, Pfeil und Menueintrag getrennt behandeln.
+- Vor mehrdeutigen Aktionen den Button hovern und Tooltip oder Accessible Name erfassen.
+- Nach dem Klick pruefen, ob wirklich der erwartete Zielzustand sichtbar ist.
+- Wenn der falsche Zielzustand erscheint, den Schritt als `rejected-path` oder `blocked` dokumentieren, nicht als Erfolg.
+
+Beispiel `Mandanten`:
+
+- `Neu` als Hauptbutton kann eine neue Listenzeile oeffnen.
+- Der Pfeil neben `Neu` kann ein Dropdown oeffnen.
+- `Neues Unternehmen erstellen` im Dropdown ist ein eigener Menueintrag.
+
+Fuer die Buchroute darf deshalb nicht nur stehen, dass `Neu` geklickt wurde. Es muss sichtbar sein, welcher konkrete UI-Teil getroffen wurde und was danach tatsaechlich auf dem Bildschirm passiert ist.
+
+## Layout-Eskalation vor Blocker
+
+Ein Feld, Code, Button oder eine Spalte gilt erst als nicht sichtbar, wenn die sinnvollen Layoutwege versucht und dokumentiert wurden:
+
+1. Stoerende Overlays schliessen, wenn sie nicht Teil des Beweises sind.
+2. Karte oder Liste ueber die Pfeile rechts oben vergroessern, wenn der relevante Bereich zu eng ist.
+3. Relevante FastTabs oeffnen.
+4. FactBox ausblenden, wenn sie die Haupttabelle verdeckt.
+5. Fokusmodus fuer Listen-/Zeilenbereiche pruefen.
+6. Horizontal und vertikal im richtigen Bereich scrollen.
+7. Command-Bar-Overflow und Dropdown-Pfeile getrennt pruefen.
+8. Erst danach Personalisierung oder Page Inspection als Diagnose verwenden.
+
+Ein DOM-Treffer, ARIA-Name oder unsichtbarer Text reicht nicht. Screenshot-QA muss bestaetigen, dass ein Anfaenger den behaupteten Button, Code, Wert oder Dialog im Bild wirklich erkennen kann.
+
+## Screenshot-QA vor Abschluss
+
+Jeder UI-Lauf braucht vor dem Abschluss eine kurze Screenshot-QA:
+
+- Welche Page ist sichtbar?
+- Welche Company oder welcher Company-Kontext ist sichtbar?
+- Welcher konkrete Button, Pfeil, Menueintrag, Feldbereich oder Dialog ist sichtbar?
+- Was beweist das Bild?
+- Was beweist das Bild ausdruecklich nicht?
+- Ist der Screenshot Buchkandidat, Debugging-Kontext, rejected path oder nur interner Nachweis?
+
+Wenn ein Screenshot nur zeigt, dass "irgendwo Text im DOM existiert", aber der relevante UI-Bereich nicht sichtbar ist, ist er kein Buchkandidat.
+
 ## Overlays und Hilfe
 
 Hilfe unten links, Tour-Hinweise, Coachmarks, Help-Bubbles oder Copilot-/Help-Overlays duerfen geschlossen werden, wenn sie den aktuellen Beweis nicht betreffen und wichtige UI verdecken.

@@ -32,6 +32,44 @@ Neue aktive Universaarl-Tests muessen mindestens diese Kontextfelder in Result/E
 | Evidence Writer | `evidence_pack_writer`, `writeJsonEvidence`, `writeTextEvidence`, Screenshot-Metadaten | `lab-reusable` | Evidence bleibt kompakt: bewiesen, nicht bewiesen, Grenze, naechster Schritt, Labor-/Universaarl-Status. Keine Rohsnapshots oder Screenshots ohne Zweck. |
 | Error Recovery | `bc_error_recovery_pattern`, Dialog-/Page-Text-Capture | `lab-reusable` | Fehler nicht wegklicken. Sichtbaren Fehler sichern, Ursache klassifizieren, Cleanup-/Fallback-Route dokumentieren und erst dann neuen UI-Schritt waehlen. |
 
+## PREP-010 UI-Ergonomie-Muster
+
+Diese Muster entstehen aus den aktuellen Universaarl-Fehlern rund um `Mandanten`, `Neu`, Dropdown-Pfeil und Screenshot-Qualitaet. Sie sind keine neuen Live-Beweise, sondern verpflichtende Bedienregeln fuer die naechsten read-only oder wirksamen Universaarl-Cases.
+
+| Muster | Zweck | Use when | Stop if | Ergebnis |
+|---|---|---|---|---|
+| `bc_splitbutton_intent_gate` | Hauptbutton, Pfeil und Menueintrag trennen | Eine Aktion wie `Neu` einen Pfeil oder mehrere Eintraege hat | Der Screenshot zeigt nicht eindeutig, welcher Teil getroffen wurde | Result nennt `mainButton`, `dropdownArrow`, `menuItem`, `selectedTarget` |
+| `bc_hover_tooltip_probe` | Tooltip/Accessible Name vor riskantem Klick sichern | sichtbarer Buttontext mehrdeutig ist oder der User eine genaue Klickanleitung braucht | Tooltip/Name widerspricht der geplanten Aktion | Result nennt Hover-Ziel, Tooltip, erwartete Wirkung |
+| `bc_screenshot_qa_gate` | Sichtbaren Beweis gegen DOM-Annahme pruefen | ein Screenshot fuer Evidence oder Buch genutzt werden soll | Code, Wert, Button, Dialog oder Menueintrag ist nicht sichtbar/lesbar | Screenshotstatus wird `book-candidate`, `debug-context`, `rejected-path` oder `not-final` |
+| `bc_layout_escalation_ladder` | Verdeckte Bereiche sichtbar machen | Feld, Zeile, Spalte oder Button angeblich fehlt | Maximize/Fokus/FastTab/Scroll/FactBox-Route nicht versucht wurde | Result beschreibt versuchte Layoutwege |
+| `bc_wrong_target_rejection` | Falsche Klickziele sofort als Fehler erkennen | nach Klick ein anderer Zielzustand erscheint als erwartet | Agent versucht trotzdem weiter, als waere die richtige Route aktiv | Evidence bekommt `rejectedPathReason` und naechsten sicheren Schritt |
+
+Minimaler Result-Ausschnitt fuer UI-Faelle:
+
+```json
+{
+  "uiErgonomics": {
+    "splitButtonIntent": {
+      "mainButton": "",
+      "dropdownArrow": "",
+      "menuItem": "",
+      "selectedTarget": "",
+      "tooltip": "",
+      "resultingVisibleState": "",
+      "targetMatched": false
+    },
+    "layoutEscalation": [],
+    "screenshotQa": {
+      "visiblePage": "",
+      "visibleTarget": "",
+      "internallyProves": [],
+      "doesNotProve": [],
+      "qualityDecision": ""
+    }
+  }
+}
+```
+
 ## Legacy-Test-Klassifikation
 
 | Testgruppe | Beispiele | Aktiver Status | Naechste Behandlung |
@@ -52,6 +90,7 @@ Neue aktive Universaarl-Tests muessen mindestens diese Kontextfelder in Result/E
 5. Vor Kartenwert-Fit: `bc_card_field_diagnostics`.
 6. Vor Journal-/Grid-Fill: `journal_line_control_snapshot`.
 7. Nach jedem Lauf: Result JSON mit `capabilitiesUsed`, `targetWorld`, `legacyPatternSource` falls relevant.
+8. Bei Splitbuttons: `bc_splitbutton_intent_gate`, inklusive Hover/Tooltip und sichtbarem Zielzustand.
 
 ## Naechster praktischer Nutzen
 
