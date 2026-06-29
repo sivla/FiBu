@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "TARGET-003-UNIVERSAARL-COMPANY-CREATION-EXECUTION-ROUTE",
-  "title": "Guarded UNIVERSAARL-DE company creation execution route",
+  "title": "Guarded UNIVERSAARL-DE official Create New Company route",
   "instance": "playthru",
   "targetCompany": "UNIVERSAARL-DE",
   "legalName": "Universaarl GmbH",
@@ -17,24 +17,32 @@
     ],
     "directNewOpenedUnsavedBlankRow": true,
     "targetValuesNotEntered": true,
-    "companyNotCreated": true
+    "companyNotCreated": true,
+    "sourceDecision": "Direct Companies list-row save is not the preferred book path. Microsoft Learn points to Create New Company / assisted setup. TARGET-003 should inspect and use that route, or block with exact missing-route evidence."
   },
   "allowedActionsWhenGatePasses": [
     "open-playthru-companies-page-by-page-id",
     "prove-universaarl-de-absent-before-action",
-    "open-new-row-or-assisted-setup-route",
-    "enter UNIVERSAARL-DE and Universaarl GmbH only after save-risk plan is explicit",
-    "save-or-stop-with-error-evidence",
+    "open-official-create-new-company-or-assisted-setup-route",
+    "choose blank/no-data or production-setup-only option only if visible and understood",
+    "stop-if-route-is-copy-cronus-demo-or-testcompany",
     "prove-after-state-on-companies-page"
   ],
   "stopIf": [
     "url-does-not-contain-playthru",
     "route-switches-to-cronus-copy-or-demo-template",
+    "only-direct-list-row-save-route-is-available",
+    "personal-data-warning-blocks-safe-name-entry",
     "dialog-confirms-demo-copy",
-    "save-error-not-captured",
     "company-context-switch-would-happen-without-documentation"
   ],
   "evidenceTarget": "playwright/projects/fibu-book5/evidence/target-003/",
   "migrationRelevance": "needed-for-german-final",
-  "finalScreenshotNeeded": true
+  "finalScreenshotNeeded": true,
+  "nextSafeAction": "Research-backed TARGET-003 follow-up: use official Create New Company / Assisted Setup route; do not continue direct Companies list-row save as book path.",
+  "sourceRefs": [
+    "playwright/projects/fibu-book5/BC-SOURCE-REGISTRY.md",
+    "playwright/projects/fibu-book5/BC-SOURCE-CLAIM-RULES.md",
+    "https://learn.microsoft.com/en-us/dynamics365/business-central/about-new-company"
+  ]
 }

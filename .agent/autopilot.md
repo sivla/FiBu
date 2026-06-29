@@ -91,6 +91,8 @@ Fuer Buchaenderungen gilt: Interne Evidence, Coverage, State und Atlas duerfen A
 
 Labor-Buchdrafts aus Evidence sind erlaubt, aber sie werden als Schulungsbuch geschrieben. Grenzen werden sachlich erklaert oder in interne To-do-/Evidence-Dateien ausgelagert. Keine finalen deutschen Claims aus `RM-DEMO`.
 
+Vor jedem neuen fachlichen Buchclaim gilt die Quellenpruefung aus `playwright/projects/fibu-book5/BC-SOURCE-CLAIM-RULES.md`: eigene Universaarl-Evidence fuer UI-/Evidence-Claims, Microsoft Learn fuer Produkt-/Setupclaims, Microsoft Release Plan fuer releaseabhaengige Features, Implementation Guide/Success by Design fuer Projekt- und Best-Practice-Claims, amtliche deutsche/EU-Quellen fuer Rechts-, Steuer-, GoBD- und E-Rechnungsclaims. Ohne passende Quelle oder Evidence wird die Aussage nicht final in den Buchtext geschrieben.
+
 ## Skill-/Capability-Lernen
 
 - Skills, Capabilities und Playwright-Helper duerfen nur evidence-getrieben erweitert werden.
