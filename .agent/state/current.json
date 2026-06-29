@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-29T21:25:26.553Z",
+  "updatedAt": "2026-06-29T21:34:46.267Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-repo-readonly-prep",
-  "activeCase": "PREP-001-PERMISSION-BLOCKER-DOCUMENTATION",
-  "active_case_file": ".agent/state/cases/prep-001-permission-blocker-documentation.json",
+  "activeArea": "universaarl-readonly-ui-prep",
+  "activeCase": "PREP-002-COMPANY-CREATION-BEGINNER-BOOK-DRAFT",
+  "active_case_file": ".agent/state/cases/prep-002-company-creation-beginner-book-draft.json",
   "lastReferenceCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
   "lastReferenceCaseFile": ".agent/state/cases/warehouse-031-warehouse-source-route-park-or-setup-fit-decision.json",
   "mode": "universaarl-readonly-prep-until-super-permissions",
@@ -48,7 +48,7 @@
     "preview-posting-until-target-company-exists",
     "api-shortcut-for-company-creation"
   ],
-  "nextStep": "Continue with PREP-002-COMPANY-CREATION-BEGINNER-BOOK-DRAFT. Do not retry live company creation until the user confirms SUPER or sufficient company-create permissions.",
+  "nextStep": "Continue with PREP-003-PLAYTHRU-READONLY-UI-LOOK-AND-FEEL-MAP. Company creation remains parked until SUPER/company-create permissions are confirmed.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -3643,56 +3643,56 @@
     "updatedAt": "2026-06-29T20:43:31.482Z"
   },
   "lastRun": {
-    "caseId": "PREP-001-PERMISSION-BLOCKER-DOCUMENTATION",
+    "caseId": "PREP-002-COMPANY-CREATION-BEGINNER-BOOK-DRAFT",
     "status": "done",
-    "updatedAt": "2026-06-29T21:25:26.553Z",
-    "reason": "TARGET-009 company creation is parked because required permissions are missing; PREP queue is activated.",
-    "resultFile": "playwright/projects/fibu-book5/PERMISSION-BLOCKERS.md"
+    "updatedAt": "2026-06-29T21:34:46.267Z",
+    "reason": "Company creation draft now explains UI route, focus, tooltip use, permission blocker and success criteria without claiming UNIVERSAARL-DE exists.",
+    "resultFile": "playwright/projects/fibu-book5/book-drafts/universaarl-company-creation-draft.md"
   },
   "nextStepDecisionCard": {
-    "currentCase": "PREP-001-PERMISSION-BLOCKER-DOCUMENTATION",
-    "plannedNextCaseBeforeReview": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
-    "lastEvidenceSummary": "TARGET-009 attempted the visible Companies -> Neu / Neues Unternehmen erstellen path, but UNIVERSAARL-DE was not visible afterwards; user confirmed missing company creation rights.",
-    "isPlannedNextCaseStillSensible": false,
-    "reason": "TARGET-009 remains necessary but cannot be retried productively until permissions are available.",
+    "currentCase": "PREP-002-COMPANY-CREATION-BEGINNER-BOOK-DRAFT",
+    "plannedNextCaseBeforeReview": "PREP-002-COMPANY-CREATION-BEGINNER-BOOK-DRAFT",
+    "lastEvidenceSummary": "TARGET-007/009 showed the Companies page route and that UNIVERSAARL-DE is not visible; permissions are missing.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "Turning the blocker into beginner-facing book substance is productive while effective BC actions are locked.",
     "lookaheadReviewed": [
       {
-        "caseId": "PREP-002-COMPANY-CREATION-BEGINNER-BOOK-DRAFT",
-        "status": "ready-next",
-        "reason": "Book can explain company creation and the permission gate without performing BC changes."
-      },
-      {
         "caseId": "PREP-003-PLAYTHRU-READONLY-UI-LOOK-AND-FEEL-MAP",
-        "status": "ready-after-current",
-        "reason": "Read-only UI discovery remains allowed and valuable."
+        "status": "ready-next",
+        "reason": "Read-only UI learning is the next highest-value prep task."
       },
       {
         "caseId": "PREP-004-BC-FULL-PLAYTHROUGH-CATALOG-GAP-FILL",
         "status": "ready-after-current",
-        "reason": "Catalog can be improved without target company creation."
+        "reason": "Catalog gaps can be filled after the immediate UI prep step."
       },
       {
-        "caseId": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
+        "caseId": "PREP-005-BC-OBJECT-COVERAGE-CATALOG-GAP-FILL",
         "status": "ready-after-current",
-        "reason": "Source mapping supports future claims while live create is blocked."
+        "reason": "Object coverage can use current target evidence and source mapping."
+      },
+      {
+        "caseId": "PREP-015-READY-FOR-SUPER-PERMISSIONS-CHECKLIST",
+        "status": "partly-completed-early",
+        "reason": "Checklist created now because it directly reduces risk when permissions arrive."
       },
       {
         "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
         "status": "blocked",
-        "reason": "Wait for user confirmation of SUPER/company-create permissions."
+        "reason": "Still waiting for SUPER/company-create permissions."
       }
     ],
     "queueChangesMade": [
-      "Activated TARGET-MARATHON-002-UNIVERSAARL-REPO-READONLY-PREP and parked TARGET-009."
+      "Marked PREP-002 done and PREP-015 partly completed by creating the super-permissions checklist."
     ],
-    "selectedNextCase": "PREP-002-COMPANY-CREATION-BEGINNER-BOOK-DRAFT",
-    "whySelectedNextCaseIsBest": "It turns the blocked creation path into useful beginner-facing book substance without any effective BC action.",
+    "selectedNextCase": "PREP-003-PLAYTHRU-READONLY-UI-LOOK-AND-FEEL-MAP",
+    "whySelectedNextCaseIsBest": "It improves Business Central UI understanding without writes and directly supports future book screenshots and Playwright helpers.",
     "risksBeforeNextCase": [
-      "Do not write that UNIVERSAARL-DE exists.",
-      "Do not present missing permission as a functional rejection of the Microsoft route."
+      "Read-only UI exploration must not execute effective actions.",
+      "Screenshots must be QA-checked before book use."
     ],
     "requiredPreparation": [
-      "Use Microsoft Learn source mapping and TARGET-007/TARGET-009 screenshots carefully."
+      "Use tooltip, layout, FastTab, FactBox and filter rules before claiming anything is missing."
     ]
   },
   "permissionBlocker": {
@@ -3712,7 +3712,23 @@
     "activatedAt": "2026-06-29T21:25:26.553Z",
     "reason": "UNIVERSAARL-DE cannot be created until required permissions exist; productive work continues through repo/book/source/read-only prep cases.",
     "firstCase": "PREP-001-PERMISSION-BLOCKER-DOCUMENTATION",
-    "nextCase": "PREP-002-COMPANY-CREATION-BEGINNER-BOOK-DRAFT",
-    "noEffectiveBcActions": true
+    "nextCase": "PREP-003-PLAYTHRU-READONLY-UI-LOOK-AND-FEEL-MAP",
+    "noEffectiveBcActions": true,
+    "lastCompletedCase": "PREP-002-COMPANY-CREATION-BEGINNER-BOOK-DRAFT",
+    "updatedAt": "2026-06-29T21:34:46.267Z"
+  },
+  "latestCompanyCreationBookDraft": {
+    "updatedAt": "2026-06-29T21:34:46.267Z",
+    "caseId": "PREP-002-COMPANY-CREATION-BEGINNER-BOOK-DRAFT",
+    "path": "playwright/projects/fibu-book5/book-drafts/universaarl-company-creation-draft.md",
+    "checklistPath": "playwright/projects/fibu-book5/READY-FOR-SUPER-PERMISSIONS-CHECKLIST.md",
+    "status": [
+      "prep-done",
+      "beginner-draft-improved",
+      "no-final-existence-claim"
+    ],
+    "noBusinessCentralExecution": true,
+    "noPlaywrightExecution": true,
+    "nextCase": "PREP-003-PLAYTHRU-READONLY-UI-LOOK-AND-FEEL-MAP"
   }
 }

@@ -54,7 +54,7 @@
     {
       "id": "PREP-002-COMPANY-CREATION-BEGINNER-BOOK-DRAFT",
       "order": 2,
-      "status": "pending",
+      "status": "done",
       "category": "book",
       "expectedImpact": "prep-progress",
       "mayWorkEffectively": false,
@@ -64,7 +64,10 @@
       "sourceCompany": "UNIVERSAARL-DE-planned-not-yet-created",
       "targetWorld": "Universaarl",
       "noFinalGermanClaimWithoutUniversaarlEvidence": true,
-      "lookaheadStatus": "ready-next"
+      "lookaheadStatus": "ready-next",
+      "completedAt": "2026-06-29T21:34:46.267Z",
+      "result": "Company creation draft improved with beginner-facing route, tooltip, focus, permission and success criteria text; no final existence claim.",
+      "resultPath": "playwright/projects/fibu-book5/book-drafts/universaarl-company-creation-draft.md"
     },
     {
       "id": "PREP-003-PLAYTHRU-READONLY-UI-LOOK-AND-FEEL-MAP",
@@ -79,7 +82,7 @@
       "sourceCompany": "UNIVERSAARL-DE-planned-not-yet-created",
       "targetWorld": "Universaarl",
       "noFinalGermanClaimWithoutUniversaarlEvidence": true,
-      "lookaheadStatus": "ready-after-current"
+      "lookaheadStatus": "ready-next"
     },
     {
       "id": "PREP-004-BC-FULL-PLAYTHROUGH-CATALOG-GAP-FILL",
@@ -249,7 +252,7 @@
     {
       "id": "PREP-015-READY-FOR-SUPER-PERMISSIONS-CHECKLIST",
       "order": 15,
-      "status": "pending",
+      "status": "partial",
       "category": "permission",
       "expectedImpact": "prep-progress",
       "mayWorkEffectively": false,
@@ -259,7 +262,10 @@
       "sourceCompany": "UNIVERSAARL-DE-planned-not-yet-created",
       "targetWorld": "Universaarl",
       "noFinalGermanClaimWithoutUniversaarlEvidence": true,
-      "lookaheadStatus": "ready-after-current"
+      "lookaheadStatus": "ready-after-current",
+      "completedPartialAt": "2026-06-29T21:34:46.267Z",
+      "result": "Initial ready-for-super-permissions checklist created during PREP-002 because it directly supports TARGET-009 resume safety.",
+      "resultPath": "playwright/projects/fibu-book5/READY-FOR-SUPER-PERMISSIONS-CHECKLIST.md"
     },
     {
       "id": "PREP-016-BOOKMASTER-UMLAUT-AND-ENCODING-AUDIT",
@@ -487,7 +493,7 @@
       "lookaheadStatus": "ready-after-current"
     }
   ],
-  "lastUpdated": "2026-06-29T21:25:26.553Z",
+  "lastUpdated": "2026-06-29T21:34:46.267Z",
   "nextStepDecisionGate": {
     "active": true,
     "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",
@@ -508,6 +514,52 @@
       "blocked",
       "obsolete",
       "replace-with-better-case"
-    ]
+    ],
+    "latestDecisionCard": {
+      "currentCase": "PREP-002-COMPANY-CREATION-BEGINNER-BOOK-DRAFT",
+      "plannedNextCaseBeforeReview": "PREP-002-COMPANY-CREATION-BEGINNER-BOOK-DRAFT",
+      "lastEvidenceSummary": "TARGET-007/009 showed the Companies page route and that UNIVERSAARL-DE is not visible; permissions are missing.",
+      "isPlannedNextCaseStillSensible": true,
+      "reason": "Turning the blocker into beginner-facing book substance is productive while effective BC actions are locked.",
+      "lookaheadReviewed": [
+        {
+          "caseId": "PREP-003-PLAYTHRU-READONLY-UI-LOOK-AND-FEEL-MAP",
+          "status": "ready-next",
+          "reason": "Read-only UI learning is the next highest-value prep task."
+        },
+        {
+          "caseId": "PREP-004-BC-FULL-PLAYTHROUGH-CATALOG-GAP-FILL",
+          "status": "ready-after-current",
+          "reason": "Catalog gaps can be filled after the immediate UI prep step."
+        },
+        {
+          "caseId": "PREP-005-BC-OBJECT-COVERAGE-CATALOG-GAP-FILL",
+          "status": "ready-after-current",
+          "reason": "Object coverage can use current target evidence and source mapping."
+        },
+        {
+          "caseId": "PREP-015-READY-FOR-SUPER-PERMISSIONS-CHECKLIST",
+          "status": "partly-completed-early",
+          "reason": "Checklist created now because it directly reduces risk when permissions arrive."
+        },
+        {
+          "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+          "status": "blocked",
+          "reason": "Still waiting for SUPER/company-create permissions."
+        }
+      ],
+      "queueChangesMade": [
+        "Marked PREP-002 done and PREP-015 partly completed by creating the super-permissions checklist."
+      ],
+      "selectedNextCase": "PREP-003-PLAYTHRU-READONLY-UI-LOOK-AND-FEEL-MAP",
+      "whySelectedNextCaseIsBest": "It improves Business Central UI understanding without writes and directly supports future book screenshots and Playwright helpers.",
+      "risksBeforeNextCase": [
+        "Read-only UI exploration must not execute effective actions.",
+        "Screenshots must be QA-checked before book use."
+      ],
+      "requiredPreparation": [
+        "Use tooltip, layout, FastTab, FactBox and filter rules before claiming anything is missing."
+      ]
+    }
   }
 }

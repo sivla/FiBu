@@ -32,6 +32,8 @@ Auf der Seite sind vor allem diese Aktionen wichtig:
 | `Kopieren` | erstellt eine Company aus einer vorhandenen Company | nur geeignet, wenn die Quelle fachlich passt |
 | `Testunternehmen` | erzeugt eine Demo- oder Testcompany | nicht geeignet als finale Universaarl-Zielwelt, wenn dadurch Demodaten entstehen |
 
+Die erste Kontrolle ist immer die Liste selbst. In ihr muss sichtbar sein, welche Companies bereits vorhanden sind. Wenn `UNIVERSAARL-DE` fehlt, ist die Anlage noch nicht abgeschlossen. Wenn `UNIVERSAARL-DE` sichtbar ist, wird nicht erneut angelegt, sondern die neue Company wird als naechster Schritt geoeffnet und ueber die Unternehmensinformationen geprueft.
+
 ## Vorhandene Companies pruefen
 
 Vor der Neuanlage wird zuerst geprueft, ob `UNIVERSAARL-DE` bereits vorhanden ist. Wenn die Company noch nicht in der Liste steht, wird sie neu angelegt. Wenn sie bereits vorhanden ist, wird nicht erneut angelegt; dann wird als naechstes die Company Information geprueft.
@@ -58,6 +60,10 @@ Vor dem Speichern muessen diese Punkte klar sein:
 
 Fuer die Universaarl GmbH ist der Hauptbutton `Neu` deshalb der naheliegende Weg. Er beginnt mit einer eigenen Zeile und nicht mit einer Kopie aus einer bestehenden Demofirma.
 
+Beim Ausfuellen ist der Fokus wichtig. Business Central arbeitet in Listen oft mit einer aktiven Zelle. Es reicht nicht, dass irgendwo eine leere Zeile sichtbar ist. Der Cursor muss in der Namenszelle der neuen Zeile stehen. Erst dann wird `UNIVERSAARL-DE` wirklich in die neue Company-Zeile geschrieben.
+
+Nach der Eingabe wird nicht geraten, ob gespeichert wurde. Die Mandantenliste wird erneut gelesen. Der erfolgreiche Zustand ist einfach: `UNIVERSAARL-DE` steht als eigene Zeile in der Liste.
+
 ## Der Pfeil neben Neu
 
 Neben dem Hauptbutton `Neu` gibt es einen kleinen Pfeil. Dieser Pfeil ist wichtig, weil er nicht dasselbe tut wie der Hauptbutton. Der Hauptbutton startet die neue Zeile. Der Pfeil oeffnet ein Dropdown mit weiteren Aktionen.
@@ -69,6 +75,8 @@ Im geoeffneten Dropdown sind `Neu` und `Neues Unternehmen erstellen` sichtbar. `
 `Testunternehmen` erstellt eine Demo- oder Testcompany. Das ist zum Ausprobieren nuetzlich, aber nicht die saubere Grundlage fuer eine durchgehende Musterfirma, wenn die Buchungen spaeter aus der Universaarl-Welt erklaert werden sollen.
 
 Fuer die Anlage von `UNIVERSAARL-DE` kommen damit zwei saubere Kandidaten in Frage: der Hauptbutton `Neu` und der sichtbare Dropdown-Eintrag `Neues Unternehmen erstellen`. Beide duerfen erst dann ausgefuehrt werden, wenn klar ist, welche Datenbasis entsteht und wie Business Central speichert.
+
+Wenn man mit der Maus ueber `Neu` oder den Pfeil neben `Neu` faehrt, zeigt Business Central einen Tooltip. Solche Tooltips sind nuetzlich, weil sie den Zweck einer Aktion direkt in der Oberflaeche bestaetigen. Fuer eine Klickanleitung ist der Tooltip ein guter Kontrollpunkt: Er hilft zu unterscheiden, ob der Hauptbutton, der kleine Dropdown-Pfeil oder ein Eintrag im geoeffneten Menue gemeint ist.
 
 ## Warum die Alternativen trotzdem wichtig sind
 
@@ -114,3 +122,19 @@ Zuerst wird geprueft:
 - Wurde versehentlich nur eine leere Zeile geoeffnet, aber kein Feld in dieser Zeile beschrieben?
 
 Erst wenn die Berechtigung vorhanden ist und `UNIVERSAARL-DE` sichtbar in der Mandantenliste steht, geht es weiter mit dem Wechsel in die neue Company und der Seite `Unternehmensinformationen`.
+
+## Berechtigungen gehoeren zum Prozess
+
+Eine neue Company ist kein normaler Stammdatensatz. Sie ist ein neuer Buchungsraum mit eigenen Einstellungen und eigenen Daten. Deshalb kann Business Central die Anlage verhindern, wenn dem Benutzer die passenden Rechte fehlen.
+
+In diesem Fall wird nicht auf `Kopieren`, `Testunternehmen` oder eine technische Abkuerzung ausgewichen. Der richtige Ablauf ist:
+
+1. Rechte klaeren.
+2. Mandantenliste erneut oeffnen.
+3. Pruefen, dass `UNIVERSAARL-DE` noch fehlt.
+4. `Neu` oder `Neues Unternehmen erstellen` bewusst verwenden.
+5. `UNIVERSAARL-DE` eintragen.
+6. Speichern oder die genaue Fehlermeldung lesen.
+7. Erst nach sichtbarem Erfolg in die neue Company wechseln.
+
+So bleibt die Fallstudie sauber. Das Buch erklaert nicht nur, wo man klickt, sondern auch, warum eine administrative Aktion erst nach Berechtigung und sichtbarer Kontrolle abgeschlossen ist.
