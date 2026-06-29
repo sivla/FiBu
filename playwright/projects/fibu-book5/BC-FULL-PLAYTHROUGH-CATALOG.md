@@ -28,12 +28,12 @@ Zero-Open-Questions-Regel: Jeder Bereich in diesem Katalog muss seine offenen Ob
 
 | Prioritaet | Case | Warum |
 | --- | --- | --- |
-| 1 | `PREP-017-REPO-DOCUMENTATION-CONSISTENCY-AUDIT` | Aktueller PREP-Schritt: Dokumentationskarte, Katalog, Coverage und State muessen dieselbe Universaarl-/Queue-Wahrheit erzaehlen. |
-| 2 | `PREP-018-PLAYWRIGHT-SCRIPT-AND-HELPER-INVENTORY` | Danach werden aktive Universaarl-Tests/Helper von Legacy-RM-Tests getrennt, damit spaetere Runs nicht die falsche Zielwelt bedienen. |
-| 3 | `PREP-019-AUTOPILOT-EFFICIENCY-IMPROVEMENT` | Die Next-Step- und Lookahead-Regeln sollen tokenaermer und praktischer werden, bevor weitere lange PREP-Laeufe entstehen. |
-| 4 | `PREP-020-UNIVERSAARL-DATASET-BLUEPRINT` | Die bereits geplanten Datenfamilien werden in konkrete Stammdaten-, Beleg- und Postingpakete fuer `UNIVERSAARL-DE` ueberfuehrt. |
-| 5 | `PREP-021-UNIVERSAARL-USECASE-BACKLOG-CURATION` | Der Usecase-Backlog wird nach Setup-Abhaengigkeiten, Buchwert und Screenshot-/Evidence-Bedarf sortiert. |
-| 6 | `PREP-022-ATLAS-COVERAGE-QUALITY-AUDIT` | Atlanten sollen nur nutzbare Page-/Feld-/Action-/Dialog-Regeln enthalten, keine dekorativen Platzhalter. |
+| 1 | `PREP-019-AUTOPILOT-EFFICIENCY-IMPROVEMENT` | Aktueller naechster PREP-Schritt: Der Autopilot soll die PREP-Queue klarer priorisieren, solange Company Creation wegen Rechten geparkt ist. |
+| 2 | `PREP-020-UNIVERSAARL-DATASET-BLUEPRINT` | Die bereits geplanten Datenfamilien werden in konkrete Stammdaten-, Beleg- und Postingpakete fuer `UNIVERSAARL-DE` ueberfuehrt. |
+| 3 | `PREP-021-UNIVERSAARL-USECASE-BACKLOG-CURATION` | Der Usecase-Backlog wird nach Setup-Abhaengigkeiten, Buchwert und Screenshot-/Evidence-Bedarf sortiert. |
+| 4 | `PREP-022-ATLAS-COVERAGE-QUALITY-AUDIT` | Atlanten sollen nur nutzbare Page-/Feld-/Action-/Dialog-Regeln enthalten, keine dekorativen Platzhalter. |
+| 5 | `PREP-023-BOOK-CHAPTER-STIMMIGKEIT-AUDIT` | Buchkapitel werden auf Leserfluss, Zielwelt und fehlende Universaarl-Abhaengigkeiten geprueft. |
+| 6 | `PREP-024-READONLY-PAGE-DISCOVERY-PACK` | Safe Read-only-Packs bereiten spaetere UI-Evidence vor, ohne wirksame BC-Aktionen auszufuehren. |
 | 7 | `TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE` | Geparkt bis zu bestaetigten SUPER-/Company-Create-Rechten: Seite `Mandanten`, `Neu`-Pfeil, `Neues Unternehmen erstellen`, sichtbare Anlage oder exakter Berechtigungsfehler. |
 | 8 | `TARGET-004-FOUNDATION-SETUP-READINESS` | Erst nach erstellter Company: Company Information, Setup-Assistenten, Basis-Setup und Vorher/Nachher-Evidence. |
 | 9 | `TARGET-005-NUMBER-SERIES-PREFLIGHT` | Erst nach Company- und Foundation-Kontext: Nummernserien sichtbar pruefen, bevor Belege entstehen. |

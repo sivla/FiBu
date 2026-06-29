@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-30T03:55:00.000+02:00",
+  "updatedAt": "2026-06-30T04:25:00.000+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-repo-documentation-consistency-prep",
-  "activeCase": "PREP-017-REPO-DOCUMENTATION-CONSISTENCY-AUDIT",
-  "active_case_file": ".agent/state/cases/prep-017-repo-documentation-consistency-audit.json",
+  "activeArea": "universaarl-playwright-script-helper-inventory-prep",
+  "activeCase": "PREP-018-PLAYWRIGHT-SCRIPT-AND-HELPER-INVENTORY",
+  "active_case_file": ".agent/state/cases/prep-018-playwright-script-and-helper-inventory.json",
   "lastReferenceCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
   "lastReferenceCaseFile": ".agent/state/cases/warehouse-031-warehouse-source-route-park-or-setup-fit-decision.json",
   "mode": "universaarl-readonly-prep-until-super-permissions",
@@ -48,7 +48,7 @@
     "preview-posting-until-target-company-exists",
     "api-shortcut-for-company-creation"
   ],
-  "nextStep": "Continue with PREP-018-PLAYWRIGHT-SCRIPT-AND-HELPER-INVENTORY. Company creation remains parked until SUPER/company-create permissions are confirmed.",
+  "nextStep": "Continue with PREP-019-AUTOPILOT-EFFICIENCY-IMPROVEMENT. Company creation remains parked until SUPER/company-create permissions are confirmed.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -3643,38 +3643,38 @@
     "updatedAt": "2026-06-29T20:43:31.482Z"
   },
   "lastRun": {
-    "caseId": "PREP-017-REPO-DOCUMENTATION-CONSISTENCY-AUDIT",
+    "caseId": "PREP-018-PLAYWRIGHT-SCRIPT-AND-HELPER-INVENTORY",
     "status": "done",
-    "updatedAt": "2026-06-30T03:55:00.000+02:00",
-    "reason": "PREP-017 aligned active repo documentation, coverage and catalog pointers with the current Universaarl PREP queue.",
-    "resultFile": "playwright/projects/fibu-book5/evidence/prep-017-repo-documentation-consistency-audit/PREP-017-result.json"
+    "updatedAt": "2026-06-30T04:25:00.000+02:00",
+    "reason": "PREP-018 classified Playwright tests, npm scripts and reusable helpers so active Universaarl work does not accidentally run legacy RM/MCP tests.",
+    "resultFile": "playwright/projects/fibu-book5/evidence/prep-018-playwright-script-and-helper-inventory/PREP-018-result.json"
   },
   "nextStepDecisionCard": {
-    "currentCase": "PREP-017-REPO-DOCUMENTATION-CONSISTENCY-AUDIT",
-    "plannedNextCaseBeforeReview": "PREP-017-REPO-DOCUMENTATION-CONSISTENCY-AUDIT",
-    "lastEvidenceSummary": "PREP-016 cleaned active Universaarl book-facing German text for umlauts and encoding.",
+    "currentCase": "PREP-018-PLAYWRIGHT-SCRIPT-AND-HELPER-INVENTORY",
+    "plannedNextCaseBeforeReview": "PREP-018-PLAYWRIGHT-SCRIPT-AND-HELPER-INVENTORY",
+    "lastEvidenceSummary": "PREP-017 aligned active repo documentation, coverage and catalog pointers with the Universaarl PREP queue.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The documentation map and catalog still contained stale steering references; updating them prevents the next run from following outdated RM/MCP-era files.",
+    "reason": "The repo contains many legacy tests and only a small active target lane. Without this classification, later runs could accidentally execute RM/MCP scripts as active Universaarl tests.",
     "lookaheadReviewed": [
       {
-        "caseId": "PREP-018-PLAYWRIGHT-SCRIPT-AND-HELPER-INVENTORY",
-        "status": "ready-next",
-        "reason": "The next practical prep task is to classify active Universaarl Playwright scripts and helpers."
-      },
-      {
         "caseId": "PREP-019-AUTOPILOT-EFFICIENCY-IMPROVEMENT",
-        "status": "ready-after-current",
-        "reason": "Efficiency work should follow after active docs and script/helper inventory are consistent."
+        "status": "ready-next",
+        "reason": "The inventory exposed that automation output still surfaces old execute levers while Company Creation is permission-parked."
       },
       {
         "caseId": "PREP-020-UNIVERSAARL-DATASET-BLUEPRINT",
         "status": "ready-after-current",
-        "reason": "Concrete data packages should follow script/helper inventory."
+        "reason": "Dataset details should follow after the run-selection noise is reduced."
       },
       {
         "caseId": "PREP-021-UNIVERSAARL-USECASE-BACKLOG-CURATION",
         "status": "ready-after-current",
-        "reason": "Backlog curation should use the clarified data and tooling baseline."
+        "reason": "Usecase backlog curation should use the clarified script/helper baseline."
+      },
+      {
+        "caseId": "PREP-022-ATLAS-COVERAGE-QUALITY-AUDIT",
+        "status": "ready-after-current",
+        "reason": "Atlas quality can use the helper/test classification."
       },
       {
         "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
@@ -3683,18 +3683,18 @@
       }
     ],
     "queueChangesMade": [
-      "Marked PREP-017 done.",
-      "Selected PREP-018 as next safe prep case.",
+      "Marked PREP-018 done.",
+      "Selected PREP-019 as next safe prep case.",
       "Kept TARGET-009 parked until SUPER/company-create permissions are confirmed."
     ],
-    "selectedNextCase": "PREP-018-PLAYWRIGHT-SCRIPT-AND-HELPER-INVENTORY",
-    "whySelectedNextCaseIsBest": "The active documentation map and queue are now aligned; the next risk is accidental use of legacy Playwright tests or helpers as active Universaarl routes.",
+    "selectedNextCase": "PREP-019-AUTOPILOT-EFFICIENCY-IMPROVEMENT",
+    "whySelectedNextCaseIsBest": "The project now knows which Playwright assets are active or legacy; the next highest-value work is reducing agent run-selection noise while effective BC actions are locked.",
     "risksBeforeNextCase": [
-      "Do not execute write-capable Playwright tests.",
-      "Do not treat RM/MCP helper evidence as Universaarl final proof."
+      "Do not weaken permission blockers.",
+      "Do not remove evidence discipline in the name of efficiency."
     ],
     "requiredPreparation": [
-      "Read package scripts, active target tests, core helpers and Universaarl pattern files."
+      "Read scripts/agent/marathon-check.mjs and current queue behavior."
     ]
   },
   "permissionBlocker": {
@@ -3714,10 +3714,10 @@
     "activatedAt": "2026-06-29T21:25:26.553Z",
     "reason": "UNIVERSAARL-DE cannot be created until required permissions exist; productive work continues through repo/book/source/read-only prep cases.",
     "firstCase": "PREP-001-PERMISSION-BLOCKER-DOCUMENTATION",
-    "nextCase": "PREP-018-PLAYWRIGHT-SCRIPT-AND-HELPER-INVENTORY",
+    "nextCase": "PREP-019-AUTOPILOT-EFFICIENCY-IMPROVEMENT",
     "noEffectiveBcActions": true,
-    "lastCompletedCase": "PREP-017-REPO-DOCUMENTATION-CONSISTENCY-AUDIT",
-    "updatedAt": "2026-06-30T03:55:00.000+02:00"
+    "lastCompletedCase": "PREP-018-PLAYWRIGHT-SCRIPT-AND-HELPER-INVENTORY",
+    "updatedAt": "2026-06-30T04:25:00.000+02:00"
   },
   "latestCompanyCreationBookDraft": {
     "updatedAt": "2026-06-29T21:34:46.267Z",
@@ -3733,8 +3733,8 @@
     "noPlaywrightExecution": true,
     "nextCase": "PREP-003-PLAYTHRU-READONLY-UI-LOOK-AND-FEEL-MAP"
   },
-  "lastCompletedCaseFile": ".agent/state/cases/prep-017-repo-documentation-consistency-audit.json",
-  "lastResultPath": "playwright/projects/fibu-book5/evidence/prep-017-repo-documentation-consistency-audit/PREP-017-result.json",
+  "lastCompletedCaseFile": ".agent/state/cases/prep-018-playwright-script-and-helper-inventory.json",
+  "lastResultPath": "playwright/projects/fibu-book5/evidence/prep-018-playwright-script-and-helper-inventory/PREP-018-result.json",
   "latestReadonlyUiLookAndFeelMap": {
     "caseId": "PREP-003-PLAYTHRU-READONLY-UI-LOOK-AND-FEEL-MAP",
     "status": "prep-done",
@@ -3771,16 +3771,16 @@
     "nextCase": "PREP-006-BOOKMASTER-UNIVERSAARL-FALLSTUDIE-REWRITE-PLAN",
     "updatedAt": "2026-06-29T21:54:54.534Z"
   },
-  "activeCaseFile": ".agent/state/cases/prep-017-repo-documentation-consistency-audit.json",
-  "previousCase": "PREP-016-BOOKMASTER-UMLAUT-AND-ENCODING-AUDIT",
-  "nextCase": "PREP-018-PLAYWRIGHT-SCRIPT-AND-HELPER-INVENTORY",
+  "activeCaseFile": ".agent/state/cases/prep-018-playwright-script-and-helper-inventory.json",
+  "previousCase": "PREP-017-REPO-DOCUMENTATION-CONSISTENCY-AUDIT",
+  "nextCase": "PREP-019-AUTOPILOT-EFFICIENCY-IMPROVEMENT",
   "latestPrepCase": {
-    "caseId": "PREP-017-REPO-DOCUMENTATION-CONSISTENCY-AUDIT",
+    "caseId": "PREP-018-PLAYWRIGHT-SCRIPT-AND-HELPER-INVENTORY",
     "status": "done",
-    "resultPath": "playwright/projects/fibu-book5/evidence/prep-017-repo-documentation-consistency-audit/PREP-017-result.json",
-    "completedAt": "2026-06-30T03:55:00.000+02:00",
-    "summary": "Active repo documentation, coverage and full-playthrough catalog now point to the .agent state/queue and current PREP sequence; no BC or Playwright run.",
-    "nextCase": "PREP-018-PLAYWRIGHT-SCRIPT-AND-HELPER-INVENTORY"
+    "resultPath": "playwright/projects/fibu-book5/evidence/prep-018-playwright-script-and-helper-inventory/PREP-018-result.json",
+    "completedAt": "2026-06-30T04:25:00.000+02:00",
+    "summary": "Playwright scripts and helpers classified: 306 tests, 307 fibu scripts, 9 active target tests, 4 live-smoke read-only candidates; legacy process suites remain pattern sources only.",
+    "nextCase": "PREP-019-AUTOPILOT-EFFICIENCY-IMPROVEMENT"
   },
   "latestBookmasterFallstudieRewritePlan": {
     "status": "prep-progress",
@@ -3952,5 +3952,28 @@
     "noPlaywrightRun": true,
     "noFinalGermanClaim": true,
     "nextCase": "PREP-018-PLAYWRIGHT-SCRIPT-AND-HELPER-INVENTORY"
+  },
+  "latestPlaywrightScriptHelperInventory": {
+    "caseId": "PREP-018-PLAYWRIGHT-SCRIPT-AND-HELPER-INVENTORY",
+    "status": "done",
+    "inventoryPath": "playwright/projects/fibu-book5/UNIVERSAARL-PLAYWRIGHT-SCRIPT-INVENTORY.md",
+    "counts": {
+      "playwrightTests": 306,
+      "fibuScripts": 307,
+      "targetTests": 9,
+      "liveSmokeTests": 4,
+      "fixedAssetsLegacyTests": 167,
+      "p2pLegacyTests": 25,
+      "warehouseLegacyTests": 23
+    },
+    "activeTargetLane": [
+      "target-001",
+      "target-007 read-only reference",
+      "target-009 parked until permissions"
+    ],
+    "noBcRun": true,
+    "noPlaywrightRun": true,
+    "noFinalGermanClaim": true,
+    "nextCase": "PREP-019-AUTOPILOT-EFFICIENCY-IMPROVEMENT"
   }
 }

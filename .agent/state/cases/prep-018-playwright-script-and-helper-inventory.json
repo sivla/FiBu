@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "caseId": "PREP-018-PLAYWRIGHT-SCRIPT-AND-HELPER-INVENTORY",
+  "status": "done",
+  "instance": "playthru",
+  "targetCompany": "UNIVERSAARL-DE",
+  "targetCompanyStatus": "planned-not-yet-created",
+  "sourceCompany": "UNIVERSAARL-DE-planned-not-yet-created",
+  "targetWorld": "Universaarl",
+  "workType": "playwright-script-helper-inventory",
+  "effectiveBusinessCentralActionsAllowed": false,
+  "businessCentralExecuted": false,
+  "playwrightExecuted": false,
+  "bookChanged": false,
+  "setupChanged": false,
+  "posted": false,
+  "previewPosting": false,
+  "resultPath": "playwright/projects/fibu-book5/evidence/prep-018-playwright-script-and-helper-inventory/PREP-018-result.json",
+  "evidencePath": "playwright/projects/fibu-book5/evidence/prep-018-playwright-script-and-helper-inventory/",
+  "inventoryPath": "playwright/projects/fibu-book5/UNIVERSAARL-PLAYWRIGHT-SCRIPT-INVENTORY.md",
+  "counts": {
+    "playwrightTests": 306,
+    "fibuScripts": 307,
+    "targetTests": 9,
+    "liveSmokeTests": 4,
+    "fixedAssetsLegacyTests": 167,
+    "p2pLegacyTests": 25,
+    "warehouseLegacyTests": 23
+  },
+  "proved": [
+    "The active Universaarl target test lane is small and explicit: target-001 through target-009.",
+    "Company-creation target tests remain parked until SUPER/company-create permissions are confirmed.",
+    "Legacy RM/MCP/CRONUS process tests are classified as pattern source or archive, not active Universaarl target tests.",
+    "Reusable helper files in playwright/core/bc and playwright/core/evidence.ts are identified for future Universaarl ports."
+  ],
+  "notProved": [
+    "No Playwright test was executed.",
+    "No Business Central UI was opened.",
+    "No helper was modified or validated by live UI evidence in this case."
+  ],
+  "nextStepDecisionCard": {
+    "currentCase": "PREP-018-PLAYWRIGHT-SCRIPT-AND-HELPER-INVENTORY",
+    "plannedNextCaseBeforeReview": "PREP-018-PLAYWRIGHT-SCRIPT-AND-HELPER-INVENTORY",
+    "lastEvidenceSummary": "PREP-017 aligned the active documentation map, full-playthrough catalog and coverage matrix with the .agent state and PREP queue.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The repo contains hundreds of legacy Playwright tests and scripts. Classifying active target tests versus legacy pattern sources prevents accidental RM/MCP execution during Universaarl prep.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "PREP-019-AUTOPILOT-EFFICIENCY-IMPROVEMENT",
+        "status": "ready-next",
+        "reason": "PREP-018 exposed that marathon checking still surfaces old execute levers while Company Creation is permission-parked."
+      },
+      {
+        "caseId": "PREP-020-UNIVERSAARL-DATASET-BLUEPRINT",
+        "status": "ready-after-current",
+        "reason": "Dataset blueprint work should follow after tool/run selection becomes less noisy."
+      },
+      {
+        "caseId": "PREP-021-UNIVERSAARL-USECASE-BACKLOG-CURATION",
+        "status": "ready-after-current",
+        "reason": "Backlog curation benefits from clearer script/helper classification."
+      },
+      {
+        "caseId": "PREP-022-ATLAS-COVERAGE-QUALITY-AUDIT",
+        "status": "ready-after-current",
+        "reason": "Atlas quality audit should use the new helper/test classification."
+      },
+      {
+        "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+        "status": "blocked",
+        "reason": "Still waiting for SUPER/company-create permissions."
+      }
+    ],
+    "queueChangesMade": [
+      "Marked PREP-018 done.",
+      "Selected PREP-019 as next safe prep case.",
+      "Kept TARGET-009 parked until SUPER/company-create permissions are confirmed."
+    ],
+    "selectedNextCase": "PREP-019-AUTOPILOT-EFFICIENCY-IMPROVEMENT",
+    "whySelectedNextCaseIsBest": "Now that active tests are classified, the next highest leverage is making the autopilot choose PREP/read-only work more cleanly while permission blockers exist.",
+    "risksBeforeNextCase": [
+      "Do not change safety gates to allow effective BC actions.",
+      "Do not optimize away evidence or Next-Step Decision Cards."
+    ],
+    "requiredPreparation": [
+      "Read scripts/agent/marathon-check.mjs, run-plan/dry-run outputs and current queue state."
+    ]
+  },
+  "completedAt": "2026-06-30T04:25:00.000+02:00"
+}

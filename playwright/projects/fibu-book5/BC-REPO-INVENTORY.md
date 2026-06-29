@@ -1,6 +1,6 @@
 # BC Repo Inventory
 
-Status: `labor-reference`, Stand: 2026-06-28.
+Status: `universaarl-transition`, Stand: 2026-06-30.
 
 Dieses Inventar beschreibt die Projektstruktur fuer `FiBu Buch 5`. Es ist kein Ersatz fuer Evidence, sondern die Orientierung fuer neue Agenten und spaetere deutsche Final-Rebuild-Laeufe.
 
@@ -20,11 +20,13 @@ Dieses Inventar beschreibt die Projektstruktur fuer `FiBu Buch 5`. Es ist kein E
 
 ## Aktiver Arbeitsstand
 
-- Instanz: `MCP_1_20260210`.
-- Company: `RM-DEMO`.
-- Aktiver Area-State: `p2p`.
-- Aktiver Case: `P2P-005-PARTIAL-RECEIPT-LINE-QTY-GATE`.
-- Aktuelle Laborbasis: O2C, P2P, Payments, Inventory, Fixed Assets und Reporting haben Teil-/Labor-Evidence; deutsche Finalbeweise bleiben offen.
+- Instanz: `playthru`.
+- Zielcompany: `UNIVERSAARL-DE`, noch nicht angelegt.
+- Musterfirma: `Universaarl GmbH`.
+- Aktiver Modus: PREP-/Read-only-/Repo-/Doku-Arbeit bis SUPER-/Company-Create-Rechte vorhanden sind.
+- Aktiver Case nach PREP-017: `PREP-018-PLAYWRIGHT-SCRIPT-AND-HELPER-INVENTORY`.
+- Aktive Steuerwahrheit liegt in `.agent/state/current.json` und `.agent/state/marathon_queue.json`.
+- Alte RM-DEMO-/MCP-/CRONUS-Evidence bleibt historische Laborquelle, nicht aktive Zielwelt.
 
 ## Legacy / unklar
 
@@ -44,6 +46,7 @@ Dieses Inventar beschreibt die Projektstruktur fuer `FiBu Buch 5`. Es ist kein E
 
 - `CURRENT-STATE.md`/Legacy-Dokumente und `.agent/state/*.json` laufen parallel. Neue Agents nutzen zuerst `.agent/state/current.json`, danach nur gezielt Legacy-State.
 - Fixed-Assets hat sehr viele Mikro-Cases. Neue Struktur soll daraus Atlas-/Coverage-Wissen ziehen, nicht noch mehr Review-Schleifen erzeugen.
+- PREP-018 zaehlt 306 Playwright-Tests und 307 `fibu:*`-Skripte. Die aktive Universaarl-Schiene ist deutlich kleiner: 9 `target-*`-Tests plus 4 `live-smoke-*`-Read-only-Kandidaten. Details stehen in `UNIVERSAARL-PLAYWRIGHT-SCRIPT-INVENTORY.md`.
 - Screenshot-Metadaten liegen teils im Evidence-Ordner, PNGs im projektweiten `img/`. Diese Struktur bleibt vorerst bestehen.
 
 ## Kuenftige Struktur

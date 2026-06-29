@@ -4,6 +4,8 @@ Status: `universaarl-pattern-baseline`, `helper-only`, `no-bc-run`.
 
 Dieser Zwischenlauf konsolidiert die vorhandenen Business-Central-Playwright-Muster fuer die aktive Zielwelt `playthru` / `UNIVERSAARL-DE`. Es wurde keine Business-Central-Seite geoeffnet und kein Playwright-Test ausgefuehrt. Historische RM-DEMO-, MCP_1_20260210-, CRONUS- und Rhein-Main-Tests bleiben als Laborarchiv erhalten, gelten aber nicht mehr als aktive Zieltests fuer Universaarl.
 
+PREP-018 ergaenzt die konkrete Skript- und Helper-Inventur in `UNIVERSAARL-PLAYWRIGHT-SCRIPT-INVENTORY.md`. Neue Laeufe sollen zuerst dort pruefen, ob ein Test aktiv Universaarl-faehig, read-only, geparkt, legacy oder archive-only ist.
+
 ## Aktive Zielregel
 
 Neue aktive Universaarl-Tests muessen mindestens diese Kontextfelder in Result/Evidence fuehren:
@@ -74,7 +76,7 @@ Minimaler Result-Ausschnitt fuer UI-Faelle:
 
 | Testgruppe | Beispiele | Aktiver Status | Naechste Behandlung |
 |---|---|---|---|
-| Universaarl Target | `target-001-*` bis `target-004-*` | `active-universaarl` | Behalten und mit TARGET-005 fortsetzen. |
+| Universaarl Target | `target-001-*` bis `target-009-*` | `active-universaarl`, teils `parked-until-super-permissions` | Nur Read-only-Referenzen laufen lassen; Company-Creation-Cases bleiben bis Rechtefreigabe geparkt. |
 | Live Smoke / Context | `live-smoke-bc-*` | `convert-to-generic-or-universaarl` | Nur aktiv verwenden, wenn Instanz/Company auf `playthru`/Universaarl passt; sonst als Patternquelle. |
 | RM-DE-LAB Company Creation | `rm-de-lab-create-*` | `legacy-pattern-source` | Nicht als aktive Zieltests ausfuehren; nur Create-Company-UI-Fehler-/Actionmuster wiederverwenden. |
 | RM-DEMO Prozessstrecken | `p2p-*`, `payments-*`, `bank-*`, `warehouse-*`, `inventory-*`, `fixedassets-*` | `legacy-labor-reference` | Keine direkte aktive Zielwahrheit. Relevante Helper-/Gate-Muster in Universaarl-Tests neu anwenden. |

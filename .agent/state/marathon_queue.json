@@ -354,7 +354,7 @@
     {
       "id": "PREP-018-PLAYWRIGHT-SCRIPT-AND-HELPER-INVENTORY",
       "order": 18,
-      "status": "pending",
+      "status": "done",
       "category": "playwright",
       "expectedImpact": "prep-progress",
       "mayWorkEffectively": false,
@@ -364,7 +364,11 @@
       "sourceCompany": "UNIVERSAARL-DE-planned-not-yet-created",
       "targetWorld": "Universaarl",
       "noFinalGermanClaimWithoutUniversaarlEvidence": true,
-      "lookaheadStatus": "ready-next"
+      "lookaheadStatus": "done",
+      "reason": "Next best prep task after PREP-017: classify active Universaarl Playwright assets versus legacy RM/MCP tests before further read-only or rights-unblocked runs.",
+      "completedAt": "2026-06-30T04:25:00.000+02:00",
+      "result": "Created Universaarl Playwright script/helper inventory and linked it from pattern and repo inventory docs.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/prep-018-playwright-script-and-helper-inventory/PREP-018-result.json"
     },
     {
       "id": "PREP-019-AUTOPILOT-EFFICIENCY-IMPROVEMENT",
@@ -379,7 +383,7 @@
       "sourceCompany": "UNIVERSAARL-DE-planned-not-yet-created",
       "targetWorld": "Universaarl",
       "noFinalGermanClaimWithoutUniversaarlEvidence": true,
-      "lookaheadStatus": "ready-after-current"
+      "lookaheadStatus": "ready-next"
     },
     {
       "id": "PREP-020-UNIVERSAARL-DATASET-BLUEPRINT",
@@ -547,7 +551,7 @@
       "lookaheadStatus": "ready-after-current"
     }
   ],
-  "lastUpdated": "2026-06-30T03:55:00.000+02:00",
+  "lastUpdated": "2026-06-30T04:25:00.000+02:00",
   "nextStepDecisionGate": {
     "active": true,
     "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",
@@ -570,31 +574,31 @@
       "replace-with-better-case"
     ],
     "latestDecisionCard": {
-      "currentCase": "PREP-017-REPO-DOCUMENTATION-CONSISTENCY-AUDIT",
-      "plannedNextCaseBeforeReview": "PREP-017-REPO-DOCUMENTATION-CONSISTENCY-AUDIT",
-      "lastEvidenceSummary": "PREP-016 cleaned active Universaarl book-facing German text for umlauts and encoding.",
+      "currentCase": "PREP-018-PLAYWRIGHT-SCRIPT-AND-HELPER-INVENTORY",
+      "plannedNextCaseBeforeReview": "PREP-018-PLAYWRIGHT-SCRIPT-AND-HELPER-INVENTORY",
+      "lastEvidenceSummary": "PREP-017 aligned active repo documentation, coverage and catalog pointers with the Universaarl PREP queue.",
       "isPlannedNextCaseStillSensible": true,
-      "reason": "The documentation map and catalog still contained stale steering references; updating them prevents the next run from following outdated RM/MCP-era files.",
+      "reason": "The repo contains many legacy tests and only a small active target lane. Without this classification, later runs could accidentally execute RM/MCP scripts as active Universaarl tests.",
       "lookaheadReviewed": [
         {
-          "caseId": "PREP-018-PLAYWRIGHT-SCRIPT-AND-HELPER-INVENTORY",
-          "status": "ready-next",
-          "reason": "The next practical prep task is to classify active Universaarl Playwright scripts and helpers."
-        },
-        {
           "caseId": "PREP-019-AUTOPILOT-EFFICIENCY-IMPROVEMENT",
-          "status": "ready-after-current",
-          "reason": "Efficiency work should follow after active docs and script/helper inventory are consistent."
+          "status": "ready-next",
+          "reason": "The inventory exposed that automation output still surfaces old execute levers while Company Creation is permission-parked."
         },
         {
           "caseId": "PREP-020-UNIVERSAARL-DATASET-BLUEPRINT",
           "status": "ready-after-current",
-          "reason": "Concrete data packages should follow script/helper inventory."
+          "reason": "Dataset details should follow after the run-selection noise is reduced."
         },
         {
           "caseId": "PREP-021-UNIVERSAARL-USECASE-BACKLOG-CURATION",
           "status": "ready-after-current",
-          "reason": "Backlog curation should use the clarified data and tooling baseline."
+          "reason": "Usecase backlog curation should use the clarified script/helper baseline."
+        },
+        {
+          "caseId": "PREP-022-ATLAS-COVERAGE-QUALITY-AUDIT",
+          "status": "ready-after-current",
+          "reason": "Atlas quality can use the helper/test classification."
         },
         {
           "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
@@ -603,50 +607,50 @@
         }
       ],
       "queueChangesMade": [
-        "Marked PREP-017 done.",
-        "Selected PREP-018 as next safe prep case.",
+        "Marked PREP-018 done.",
+        "Selected PREP-019 as next safe prep case.",
         "Kept TARGET-009 parked until SUPER/company-create permissions are confirmed."
       ],
-      "selectedNextCase": "PREP-018-PLAYWRIGHT-SCRIPT-AND-HELPER-INVENTORY",
-      "whySelectedNextCaseIsBest": "The active documentation map and queue are now aligned; the next risk is accidental use of legacy Playwright tests or helpers as active Universaarl routes.",
+      "selectedNextCase": "PREP-019-AUTOPILOT-EFFICIENCY-IMPROVEMENT",
+      "whySelectedNextCaseIsBest": "The project now knows which Playwright assets are active or legacy; the next highest-value work is reducing agent run-selection noise while effective BC actions are locked.",
       "risksBeforeNextCase": [
-        "Do not execute write-capable Playwright tests.",
-        "Do not treat RM/MCP helper evidence as Universaarl final proof."
+        "Do not weaken permission blockers.",
+        "Do not remove evidence discipline in the name of efficiency."
       ],
       "requiredPreparation": [
-        "Read package scripts, active target tests, core helpers and Universaarl pattern files."
+        "Read scripts/agent/marathon-check.mjs and current queue behavior."
       ]
     }
   },
-  "updatedAt": "2026-06-30T03:55:00.000+02:00",
-  "lastCompletedCase": "PREP-017-REPO-DOCUMENTATION-CONSISTENCY-AUDIT",
-  "nextCase": "PREP-018-PLAYWRIGHT-SCRIPT-AND-HELPER-INVENTORY",
+  "updatedAt": "2026-06-30T04:25:00.000+02:00",
+  "lastCompletedCase": "PREP-018-PLAYWRIGHT-SCRIPT-AND-HELPER-INVENTORY",
+  "nextCase": "PREP-019-AUTOPILOT-EFFICIENCY-IMPROVEMENT",
   "nextStepDecisionCard": {
-    "currentCase": "PREP-017-REPO-DOCUMENTATION-CONSISTENCY-AUDIT",
-    "plannedNextCaseBeforeReview": "PREP-017-REPO-DOCUMENTATION-CONSISTENCY-AUDIT",
-    "lastEvidenceSummary": "PREP-016 cleaned active Universaarl book-facing German text for umlauts and encoding.",
+    "currentCase": "PREP-018-PLAYWRIGHT-SCRIPT-AND-HELPER-INVENTORY",
+    "plannedNextCaseBeforeReview": "PREP-018-PLAYWRIGHT-SCRIPT-AND-HELPER-INVENTORY",
+    "lastEvidenceSummary": "PREP-017 aligned active repo documentation, coverage and catalog pointers with the Universaarl PREP queue.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The documentation map and catalog still contained stale steering references; updating them prevents the next run from following outdated RM/MCP-era files.",
+    "reason": "The repo contains many legacy tests and only a small active target lane. Without this classification, later runs could accidentally execute RM/MCP scripts as active Universaarl tests.",
     "lookaheadReviewed": [
       {
-        "caseId": "PREP-018-PLAYWRIGHT-SCRIPT-AND-HELPER-INVENTORY",
-        "status": "ready-next",
-        "reason": "The next practical prep task is to classify active Universaarl Playwright scripts and helpers."
-      },
-      {
         "caseId": "PREP-019-AUTOPILOT-EFFICIENCY-IMPROVEMENT",
-        "status": "ready-after-current",
-        "reason": "Efficiency work should follow after active docs and script/helper inventory are consistent."
+        "status": "ready-next",
+        "reason": "The inventory exposed that automation output still surfaces old execute levers while Company Creation is permission-parked."
       },
       {
         "caseId": "PREP-020-UNIVERSAARL-DATASET-BLUEPRINT",
         "status": "ready-after-current",
-        "reason": "Concrete data packages should follow script/helper inventory."
+        "reason": "Dataset details should follow after the run-selection noise is reduced."
       },
       {
         "caseId": "PREP-021-UNIVERSAARL-USECASE-BACKLOG-CURATION",
         "status": "ready-after-current",
-        "reason": "Backlog curation should use the clarified data and tooling baseline."
+        "reason": "Usecase backlog curation should use the clarified script/helper baseline."
+      },
+      {
+        "caseId": "PREP-022-ATLAS-COVERAGE-QUALITY-AUDIT",
+        "status": "ready-after-current",
+        "reason": "Atlas quality can use the helper/test classification."
       },
       {
         "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
@@ -655,18 +659,18 @@
       }
     ],
     "queueChangesMade": [
-      "Marked PREP-017 done.",
-      "Selected PREP-018 as next safe prep case.",
+      "Marked PREP-018 done.",
+      "Selected PREP-019 as next safe prep case.",
       "Kept TARGET-009 parked until SUPER/company-create permissions are confirmed."
     ],
-    "selectedNextCase": "PREP-018-PLAYWRIGHT-SCRIPT-AND-HELPER-INVENTORY",
-    "whySelectedNextCaseIsBest": "The active documentation map and queue are now aligned; the next risk is accidental use of legacy Playwright tests or helpers as active Universaarl routes.",
+    "selectedNextCase": "PREP-019-AUTOPILOT-EFFICIENCY-IMPROVEMENT",
+    "whySelectedNextCaseIsBest": "The project now knows which Playwright assets are active or legacy; the next highest-value work is reducing agent run-selection noise while effective BC actions are locked.",
     "risksBeforeNextCase": [
-      "Do not execute write-capable Playwright tests.",
-      "Do not treat RM/MCP helper evidence as Universaarl final proof."
+      "Do not weaken permission blockers.",
+      "Do not remove evidence discipline in the name of efficiency."
     ],
     "requiredPreparation": [
-      "Read package scripts, active target tests, core helpers and Universaarl pattern files."
+      "Read scripts/agent/marathon-check.mjs and current queue behavior."
     ]
   }
 }
