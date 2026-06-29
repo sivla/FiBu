@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-29T00:06:00.000Z",
+  "updatedAt": "2026-06-29T00:25:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
   "activeArea": "p2p",
-  "activeCase": "P2P-025-PURCHASE-INVOICE-LINE-ENTRY-BLOCKER-REVIEW",
-  "active_case_file": ".agent/state/cases/p2p-025-purchase-invoice-line-entry-blocker-review.json",
-  "lastReferenceCase": "P2P-024-PURCHASE-INVOICE-FRESH-DRAFT-LINE-ENTRY-GATE",
-  "lastReferenceCaseFile": ".agent/state/cases/p2p-024-purchase-invoice-fresh-draft-line-entry-gate.json",
+  "activeCase": "P2P-026-PURCHASE-INVOICE-CONTEXT-RESET-PROBE",
+  "active_case_file": ".agent/state/cases/p2p-026-purchase-invoice-context-reset-probe.json",
+  "lastReferenceCase": "P2P-025-PURCHASE-INVOICE-LINE-ENTRY-BLOCKER-REVIEW",
+  "lastReferenceCaseFile": ".agent/state/cases/p2p-025-purchase-invoice-line-entry-blocker-review.json",
   "mode": "bc-specialist-labor-book-production",
-  "requiresStrongModel": true,
+  "requiresStrongModel": false,
   "requiredPreflightChecks": [
     "agent:preflight",
     "agent:state:validate",
@@ -40,7 +40,7 @@
     "final-german-claim-from-rm-demo",
     "repeat-uat-p2p-001-without-new-purpose"
   ],
-  "nextStep": "Run P2P-025 as local blocker review: classify the Purchase Invoices bookmark/context problem and choose a stronger fresh-document route before another line-entry attempt.",
+  "nextStep": "Run P2P-026 as a no-value-entry Purchase Invoice context-reset probe; stop if draft 107229 is visible and do not enter Vendor or line values.",
   "latestBookDraft": {
     "path": "playwright/projects/fibu-book5/book-drafts/bank-payments-labor-draft.md",
     "area": "bankPayments",
@@ -1386,7 +1386,7 @@
     "decision": "Approve a separate no-post Payment Journal preflight for Vendor Ledger document 108205. Do not use Payment Reconciliation Apply/Post for this target. BANK-018 may create exactly one scoped draft line, run Journal Check/open Apply Entries if reachable, and must cleanup or explicitly document keep status. Posting remains locked.",
     "nextStep": "BANK-018: controlled no-post Payment Journal preflight for 108205; do not post."
   },
-  "workType": "p2p-purchase-invoice-bookmark-context-blocker-review",
+  "workType": "p2p-purchase-invoice-context-reset-probe",
   "lastCompletedCase": "BANK-026-BANK-RECONCILIATION-BOOK-SYNC",
   "latestBank018": {
     "caseId": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
@@ -1682,5 +1682,32 @@
     "finalScreenshotNeeded": true,
     "nextCase": "P2P-025-PURCHASE-INVOICE-LINE-ENTRY-BLOCKER-REVIEW",
     "nextStep": "Review P2P-024 blocker evidence and choose either a stronger navigation reset/card route or switch away from Purchase Invoices."
+  },
+  "latestP2P025PurchaseInvoiceBlockerReview": {
+    "caseId": "P2P-025-PURCHASE-INVOICE-LINE-ENTRY-BLOCKER-REVIEW",
+    "status": [
+      "labor-sufficient-for-book-draft",
+      "local-review",
+      "helper-only",
+      "needs-german-final-rebuild"
+    ],
+    "sourceInstance": "MCP_1_20260210",
+    "sourceCompany": "RM-DEMO",
+    "bcRun": false,
+    "playwrightRun": false,
+    "posted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "apiShortcut": false,
+    "resultPath": "playwright/projects/fibu-book5/evidence/p2p-025/P2P-025-result.json",
+    "evidencePath": "playwright/projects/fibu-book5/evidence/p2p-025/",
+    "decision": "Do not repeat direct Purchase Invoices page 9308 plus scoped New as a fresh-draft route until a context-reset probe proves stale bookmark/filter context is absent or a real new document number is visible.",
+    "rejectedRoute": "direct-page-9308-plus-scoped-new-without-postcondition",
+    "selectedNextCase": "P2P-026-PURCHASE-INVOICE-CONTEXT-RESET-PROBE",
+    "bookEffect": "Clickguides must teach that New/Neu is not a fresh-document proof when Business Central can restore an old list/bookmark context.",
+    "migrationRelevance": "helper-only",
+    "mustRecreateInFinalSandbox": false,
+    "finalScreenshotNeeded": false,
+    "nextStep": "Run P2P-026 as no-value-entry context-reset probe; stop if 107229 is visible."
   }
 }

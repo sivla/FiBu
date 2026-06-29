@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "caseId": "P2P-026-PURCHASE-INVOICE-CONTEXT-RESET-PROBE",
+  "title": "Purchase Invoice context reset probe",
+  "status": "planned",
+  "taskClass": "wizard_work",
+  "modelClass": "gpt-5.4-medium",
+  "usageLogRequired": false,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "p2p-purchase-invoice-context-reset-probe",
+  "sourceCase": "P2P-025-PURCHASE-INVOICE-LINE-ENTRY-BLOCKER-REVIEW",
+  "purpose": "Probe a safer Purchase Invoices navigation/reset route before any fresh draft value entry. The run must prove that stale document 107229 is not in the working context or explicitly classify the route as still blocked.",
+  "allowedActions": [
+    "open-business-central-if-instance-and-company-match",
+    "open-purchase-invoices-page",
+    "capture-url-and-frame-context",
+    "capture-compact-page-text",
+    "write-evidence",
+    "update-state"
+  ],
+  "defaultLockedActions": [
+    "preview-posting",
+    "posting",
+    "setup-change",
+    "company-switch",
+    "api-shortcut",
+    "keep-draft"
+  ],
+  "forbiddenActions": [
+    "reuse-draft-107229",
+    "enter-vendor-or-line-values",
+    "click-preview-posting",
+    "click-post",
+    "claim-german-final-proof",
+    "book-claim-without-evidence"
+  ],
+  "safetyGates": [
+    "instance-must-be-MCP_1_20260210",
+    "company-must-be-RM-DEMO",
+    "do-not-enter-K10000-or-RAW-STEEL",
+    "do-not-click-New-unless-context-reset-postcondition-is-defined",
+    "stop-if-107229-visible"
+  ],
+  "expectedEvidence": [
+    "result JSON with URL/frame context",
+    "compact page text before any data entry",
+    "classification whether 107229 is absent, visible or unknown",
+    "next route decision"
+  ],
+  "migrationRelevance": "helper-only",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": false,
+  "targetGermanCompanyImpact": "German final P2P can reuse this as a navigation guard pattern, but final business evidence must be recreated in the German target company.",
+  "finalScreenshotNeeded": false,
+  "nextStep": "Run a no-value-entry context-reset probe for Purchase Invoices and stop if draft 107229 is visible."
+}

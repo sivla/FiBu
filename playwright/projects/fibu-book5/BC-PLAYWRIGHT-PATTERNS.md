@@ -33,6 +33,7 @@ Diese Datei sammelt wiederverwendbare Muster aus belegten Laeufen. Sie ist keine
 - Neue Helper sollen `openBcPageById()` nutzen und danach erwarteten Seitentext pruefen.
 - Fuer Buchbilder nach Moeglichkeit Tell-Me- oder Menuepfad separat nachziehen.
 - Nach `FIXEDASSETS-287` gilt: Bei direkten Page-ID-Aufrufen kann das Hauptdokument nur Shell-Text wie `Dynamics 365 Business Central`, Umgebung und Benutzer enthalten, waehrend der fachliche Seiteninhalt im `runinframe`-Frame liegt. Evidence-Scanner muessen deshalb alle Frames durchsuchen und den fachlich relevanten Frame protokollieren. Ein Shell-only-Scan ist ein technischer Blocker, kein negativer BC-Fachbefund.
+- Nach `P2P-024` gilt fuer stateful BC-Listen: Eine direkte Page-ID-URL ohne sichtbaren `filter`/`bookmark` im angeforderten Ziel beweist noch keinen neutralen Listenstart. Business Central kann den alten Listen-/Bookmark-Kontext im Frame wiederherstellen; bei `Purchase Invoices` blieb `107229` nach scoped `Neu` sichtbar. Fresh-Draft-Routen muessen deshalb vor Zielwerteingabe beweisen, dass kein verbotener Altbeleg im Vordergrundkontext sichtbar ist und entweder eine echte neue Karten-/Belegnummer oder ein expliziter Bookmark-/Filter-Reset erreicht wurde.
 
 ## Listen vs. Karten
 

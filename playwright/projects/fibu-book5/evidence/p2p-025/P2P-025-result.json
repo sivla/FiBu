@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "purpose": "p2p-purchase-invoice-line-entry-blocker-review-result",
+  "caseId": "P2P-025-PURCHASE-INVOICE-LINE-ENTRY-BLOCKER-REVIEW",
+  "source": "local-evidence-review",
+  "resultStatus": "observed",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "sourceCompany": "RM-DEMO",
+  "bcRun": false,
+  "playwrightRun": false,
+  "previewPosting": false,
+  "posted": false,
+  "setupChanges": [],
+  "changedRecords": [],
+  "postedRecords": [],
+  "reviewedEvidence": [
+    "playwright/projects/fibu-book5/evidence/p2p-024/P2P-024-result.json",
+    "playwright/projects/fibu-book5/evidence/p2p-024/README.md",
+    "playwright/projects/fibu-book5/evidence/p2p-024/020-after-new-signals.json",
+    "playwright/projects/fibu-book5/evidence/p2p-024/030-after-vendor-signals.json",
+    "playwright/projects/fibu-book5/evidence/p2p-024/040-after-line-entry-signals.json"
+  ],
+  "decision": "Do not repeat the Purchase Invoices page 9308 plus scoped New route until a helper/probe proves that stale bookmark/filter context is cleared or a real new Purchase Invoice card/document number is visible.",
+  "rejectedRoute": {
+    "route": "direct-page-9308-plus-scoped-new-without-postcondition",
+    "reason": "P2P-024 requested page 9308 without filter/bookmark in the helper URL, but the observed BC context still contained dc/bookmark state and document 107229 stayed visible after New.",
+    "risk": "Vendor or line entry could accidentally act on the kept laboratory draft 107229 or on a stale list/inline context."
+  },
+  "selectedNextRoute": {
+    "caseId": "P2P-026-PURCHASE-INVOICE-CONTEXT-RESET-PROBE",
+    "route": "helper/probe before value entry",
+    "goal": "Open Purchase Invoices with an explicit stale-context guard and prove no forbidden document 107229 is visible before clicking New or entering target values.",
+    "allowedNextActions": [
+      "open Purchase Invoices in MCP_1_20260210 / RM-DEMO",
+      "capture URL/frame context",
+      "prove whether forbidden draft 107229 is absent or still visible",
+      "stop before Vendor, RAW-STEEL, Preview Posting or posting"
+    ]
+  },
+  "proved": [
+    "P2P-024 is a valid blocker proof, not a failed random click: the guard refused target value entry while 107229 remained visible.",
+    "The Purchase Invoices route remains a candidate only after a stronger context-reset postcondition.",
+    "A fresh document route must prove the new document number or neutral list context before any Vendor or line entry.",
+    "No Business Central action was executed in P2P-025."
+  ],
+  "notProved": [
+    "No fresh Purchase Invoice draft was created.",
+    "No K10000/RAW-STEEL line entry was retried.",
+    "No Preview Posting, posting, receipt, vendor ledger, item ledger, value entry or G/L trace exists.",
+    "No German final proof."
+  ],
+  "flags": {
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true,
+    "usageLogRequired": true,
+    "safeToFinalizeState": true
+  },
+  "migrationRelevance": "helper-only",
+  "mustRecreateInFinalSandbox": false,
+  "finalScreenshotNeeded": false,
+  "safeToFinalizeState": true,
+  "requiresReview": false,
+  "statePatch": {},
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/p2p-025/P2P-025-result.json",
+    "playwright/projects/fibu-book5/evidence/p2p-025/README.md"
+  ],
+  "summary": "P2P-025 classifies the P2P-024 blocker: direct Purchase Invoices page 9308 plus scoped New is rejected as a fresh-draft route unless a new helper first proves neutral context or a real new document number. Next is P2P-026 context-reset probe, without value entry.",
+  "nextCase": "P2P-026-PURCHASE-INVOICE-CONTEXT-RESET-PROBE",
+  "nextStep": "Build/run a narrow Purchase Invoice context-reset probe before any further Vendor or line entry."
+}
