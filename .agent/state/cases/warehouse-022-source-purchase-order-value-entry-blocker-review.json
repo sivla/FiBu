@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "caseId": "WAREHOUSE-022-SOURCE-PURCHASE-ORDER-VALUE-ENTRY-BLOCKER-REVIEW",
+  "title": "Source Purchase Order value entry blocker review",
+  "status": "planned",
+  "taskClass": "judge_work",
+  "modelClass": "gpt-5.5-low",
+  "usageLogRequired": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "warehouse-source-purchase-order-value-entry-blocker-review",
+  "sourceCase": "WAREHOUSE-021-CONTROLLED-SOURCE-PURCHASE-ORDER-FOR-WAREHOUSE",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/warehouse-021/WAREHOUSE-021-result.json",
+    "playwright/projects/fibu-book5/evidence/warehouse-021/WAREHOUSE-021-CONTROLLED-SOURCE-PO.md"
+  ],
+  "purpose": "Review the controlled source Purchase Order 106055 blocker and choose the next non-repeated UI route for making Location Code FRA-ZL visible before release or Warehouse Receipt source selection.",
+  "allowedActions": [
+    "local-review",
+    "read-warehouse-evidence",
+    "route-decision",
+    "create-follow-up-case",
+    "write-evidence",
+    "update-state"
+  ],
+  "defaultLockedActions": [
+    "business-central-execution",
+    "playwright-execution",
+    "purchase-order-release",
+    "purchase-order-receive",
+    "purchase-order-invoice",
+    "warehouse-receipt-source-confirmation",
+    "warehouse-receipt-posting",
+    "warehouse-putaway-posting",
+    "preview-posting",
+    "posting",
+    "setup-change",
+    "company-switch",
+    "api-shortcut"
+  ],
+  "forbiddenActions": [
+    "claim-german-final-proof",
+    "use-api-shortcut",
+    "post-warehouse-document",
+    "change-require-pick-bin-mandatory-or-directed-put-away-and-pick",
+    "click-post-receipt"
+  ],
+  "safetyGates": [
+    "review-warehouse-021-before-any-more-ui",
+    "no-release-until-fra-zl-visible",
+    "no-warehouse-source-selection-until-source-ready",
+    "no-posting",
+    "route-decision-must-name-new-field-entry-hypothesis-or-park"
+  ],
+  "decisionOptions": [
+    {
+      "route": "purchase-order-line-location-personalize-or-wide-layout",
+      "description": "Inspect whether Location Code can be exposed/edited in the Purchase Lines subform via wide/focus/personalization-like UI pattern without repeating old cell edit attempts."
+    },
+    {
+      "route": "purchase-order-header-location-action-or-show-more",
+      "description": "Find a header Location Code field by expanding card sections or technical page context, then set FRA-ZL before line creation in a new controlled draft."
+    },
+    {
+      "route": "park-warehouse-source-po-in-rm-demo",
+      "description": "Park RM-DEMO warehouse inbound if purchase source value entry remains unstable and move to a different process block."
+    }
+  ],
+  "expectedEvidence": [
+    "blocker summary from WAREHOUSE-021",
+    "rejected repeated routes",
+    "selected next field-entry hypothesis or park decision",
+    "German final rebuild instructions"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-022/WAREHOUSE-022-result.json",
+  "nextStep": "Review WAREHOUSE-021 and select a non-repeated route for making FRA-ZL visible on a controlled Purchase Order source before release.",
+  "createdAt": "2026-06-29T18:15:00+02:00",
+  "updatedAt": "2026-06-29T18:15:00+02:00"
+}

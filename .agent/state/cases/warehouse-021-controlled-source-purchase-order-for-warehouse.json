@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "caseId": "WAREHOUSE-021-CONTROLLED-SOURCE-PURCHASE-ORDER-FOR-WAREHOUSE",
   "title": "Controlled Purchase Order source for Warehouse Receipt",
-  "status": "planned",
+  "status": "blocked",
   "taskClass": "wizard_work",
   "modelClass": "gpt-4-high",
   "usageLogRequired": false,
@@ -15,6 +15,8 @@
     "playwright/projects/fibu-book5/evidence/warehouse-020/WAREHOUSE-020-INBOUND-SOURCE-DOCUMENT-READINESS.md"
   ],
   "purpose": "Create or fit one controlled Purchase Order source document with RAW-STEEL, Location Code FRA-ZL and enough source-readiness evidence for a later Warehouse Receipt source-selection attempt.",
+  "resultStatus": "blocked",
+  "decision": "Controlled Purchase Order draft 106055 was created and vendor K10000 plus RAW-STEEL are visible, but FRA-ZL is not visible and no fillable header Location Code was found. Release and Warehouse Receipt source selection remain locked.",
   "allowedActions": [
     "business-central-execution",
     "playwright-execution",
@@ -79,7 +81,22 @@
   "mustRecreateInFinalSandbox": true,
   "finalScreenshotNeeded": true,
   "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-021/WAREHOUSE-021-result.json",
-  "nextStep": "Create/finalize a controlled Purchase Order source document for FRA-ZL/RAW-STEEL without receiving, invoicing or Warehouse Receipt source confirmation.",
+  "observedResult": {
+    "sourceDocumentNo": "106055",
+    "draftCreated": true,
+    "draftKept": true,
+    "vendorK10000Filled": true,
+    "rawSteelVisible": true,
+    "fraZlVisible": false,
+    "headerLocationFill": "no-fillable-matching-control",
+    "releaseAttempted": false,
+    "posted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "companySwitched": false
+  },
+  "nextCase": "WAREHOUSE-022-SOURCE-PURCHASE-ORDER-VALUE-ENTRY-BLOCKER-REVIEW",
+  "nextStep": "Review why FRA-ZL is not visible on source Purchase Order 106055 and choose a non-repeated field-entry route before release or Warehouse Receipt source selection.",
   "createdAt": "2026-06-29T17:45:00+02:00",
-  "updatedAt": "2026-06-29T17:45:00+02:00"
+  "updatedAt": "2026-06-29T18:15:00+02:00"
 }

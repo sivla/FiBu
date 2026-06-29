@@ -237,21 +237,22 @@
     "warehouse": {
       "chapter": "Kapitel 13",
       "status": "in-progress",
-      "currentBlock": "warehouse-controlled-source-purchase-order",
+      "currentBlock": "warehouse-source-purchase-order-value-entry-blocker-review",
       "latestEvidenceCases": [
         "WAREHOUSE-001",
         "WAREHOUSE-002",
         "WAREHOUSE-017",
         "WAREHOUSE-018",
         "WAREHOUSE-019",
-        "WAREHOUSE-020"
+        "WAREHOUSE-020",
+        "WAREHOUSE-021"
       ],
-      "nextCase": "WAREHOUSE-021-CONTROLLED-SOURCE-PURCHASE-ORDER-FOR-WAREHOUSE",
+      "nextCase": "WAREHOUSE-022-SOURCE-PURCHASE-ORDER-VALUE-ENTRY-BLOCKER-REVIEW",
       "finalGermanProof": "open",
-      "nextStep": "WAREHOUSE-021: create/finalize a controlled Purchase Order source document for FRA-ZL/RAW-STEEL without receiving, invoicing or Warehouse Receipt source confirmation.",
+      "nextStep": "WAREHOUSE-022: review WAREHOUSE-021 and select a non-repeated route for making FRA-ZL visible on a controlled Purchase Order source before release.",
       "latestDecisionCase": "WAREHOUSE-019-WAREHOUSE-INBOUND-SOURCE-DOCUMENT-CREATION-OR-PARK-DECISION",
-      "blockerStatus": "existing-p2p-purchase-orders-not-eligible-for-fra-zl-warehouse-source",
-      "latestPracticalCase": "WAREHOUSE-020-INBOUND-SOURCE-DOCUMENT-READINESS",
+      "blockerStatus": "controlled-source-po-created-but-fra-zl-not-visible",
+      "latestPracticalCase": "WAREHOUSE-021-CONTROLLED-SOURCE-PURCHASE-ORDER-FOR-WAREHOUSE",
       "visibleSetupFields": [
         "Require Receive",
         "Require Shipment",
@@ -278,19 +279,21 @@
         "WAREHOUSE-019: Repeating Warehouse Receipt source-dialog/filter clicks is rejected until an eligible inbound source document is proven.",
         "WAREHOUSE-019: Warehouse inbound remains labor-blocked/bookdraft-useful and needs source-document readiness before receipt selection.",
         "WAREHOUSE-020: Existing P2P Purchase Orders 106051 and 106054 show RAW-STEEL but not FRA-ZL, so they are not proven eligible Warehouse Receipt source documents.",
-        "WAREHOUSE-020: A controlled FRA-ZL/RAW-STEEL source Purchase Order is needed before another Warehouse Receipt source-selection attempt."
+        "WAREHOUSE-020: A controlled FRA-ZL/RAW-STEEL source Purchase Order is needed before another Warehouse Receipt source-selection attempt.",
+        "WAREHOUSE-021: Controlled PO 106055 has K10000 and RAW-STEEL visible, but FRA-ZL is not visible; release and Warehouse Receipt source selection remain locked.",
+        "WAREHOUSE-021: No Receive, Invoice, Preview Posting, Post, Warehouse Receipt source confirmation or setup change occurred."
       ]
     }
   },
   "hardExclusions": {
     "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
   },
-  "updatedAt": "2026-06-29T17:45:00+02:00",
+  "updatedAt": "2026-06-29T18:15:00+02:00",
   "activeArea": "warehouse",
-  "currentBlock": "warehouse-controlled-source-purchase-order",
-  "latestPracticalCase": "WAREHOUSE-020-INBOUND-SOURCE-DOCUMENT-READINESS",
+  "currentBlock": "warehouse-source-purchase-order-value-entry-blocker-review",
+  "latestPracticalCase": "WAREHOUSE-021-CONTROLLED-SOURCE-PURCHASE-ORDER-FOR-WAREHOUSE",
   "latestReviewCase": "WAREHOUSE-019-WAREHOUSE-INBOUND-SOURCE-DOCUMENT-CREATION-OR-PARK-DECISION",
-  "nextCase": "WAREHOUSE-021-CONTROLLED-SOURCE-PURCHASE-ORDER-FOR-WAREHOUSE",
+  "nextCase": "WAREHOUSE-022-SOURCE-PURCHASE-ORDER-VALUE-ENTRY-BLOCKER-REVIEW",
   "latestBank013": {
     "caseId": "BANK-013-CONTROLLED-NEXT-EVIDENCE-STEP",
     "status": [
@@ -1391,7 +1394,7 @@
     "nextCase": "FIXEDASSETS-298-FA-DEPRECIATION-BLOCKER-BOOK-SYNC",
     "updatedAt": "2026-06-29T07:09:31.588Z"
   },
-  "nextStep": "WAREHOUSE-021: create/finalize a controlled Purchase Order source document for FRA-ZL/RAW-STEEL without receiving, invoicing or Warehouse Receipt source confirmation.",
+  "nextStep": "WAREHOUSE-022: review WAREHOUSE-021 and select a non-repeated route for making FRA-ZL visible on a controlled Purchase Order source before release.",
   "warehouse": {
     "chapter": "Kapitel 13",
     "status": "in-progress",
@@ -1529,5 +1532,27 @@
     "migrationRelevance": "needed-for-german-final",
     "mustRecreateInFinalSandbox": true,
     "updatedAt": "2026-06-29T17:45:00+02:00"
+  },
+  "latestWarehouse021": {
+    "caseId": "WAREHOUSE-021-CONTROLLED-SOURCE-PURCHASE-ORDER-FOR-WAREHOUSE",
+    "status": "blocked",
+    "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-021/WAREHOUSE-021-result.json",
+    "sourceDocumentNo": "106055",
+    "decision": "Controlled Purchase Order draft 106055 was created and vendor K10000 plus RAW-STEEL are visible, but FRA-ZL is not visible and no fillable header Location Code was found. Release and Warehouse Receipt source selection remain locked.",
+    "draftCreated": true,
+    "vendorK10000Filled": true,
+    "rawSteelVisible": true,
+    "fraZlVisible": false,
+    "releaseAttempted": false,
+    "posted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "companySwitched": false,
+    "bcRun": true,
+    "playwrightRun": true,
+    "nextCase": "WAREHOUSE-022-SOURCE-PURCHASE-ORDER-VALUE-ENTRY-BLOCKER-REVIEW",
+    "migrationRelevance": "needed-for-german-final",
+    "mustRecreateInFinalSandbox": true,
+    "updatedAt": "2026-06-29T18:15:00+02:00"
   }
 }

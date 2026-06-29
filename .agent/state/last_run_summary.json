@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "runId": "WAREHOUSE-020-INBOUND-SOURCE-DOCUMENT-READINESS",
+  "runId": "WAREHOUSE-021-CONTROLLED-SOURCE-PURCHASE-ORDER-FOR-WAREHOUSE",
   "date": "2026-06-29",
-  "workType": "warehouse-inbound-source-document-readiness",
+  "workType": "warehouse-controlled-source-purchase-order",
   "branch": "codex/token-efficient-autopilot-state",
   "instance": "MCP_1_20260210",
   "company": "RM-DEMO",
@@ -13,11 +13,11 @@
   "setupChanged": false,
   "companySwitched": false,
   "bookDraftChanged": false,
-  "resultStatus": "observed",
-  "summary": "WAREHOUSE-020 inspected Purchase Orders 106002, 106051 and 106054 by direct filtered UI URLs. 106051/106054 show RAW-STEEL but not FRA-ZL; no existing inspected Purchase Order proves an eligible FRA-ZL/RAW Warehouse source document. WAREHOUSE-021 must create/finalize a controlled source Purchase Order before another Warehouse Receipt source-selection attempt.",
-  "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-020/WAREHOUSE-020-result.json",
-  "evidencePath": "playwright/projects/fibu-book5/evidence/warehouse-020/",
-  "nextCase": "WAREHOUSE-021-CONTROLLED-SOURCE-PURCHASE-ORDER-FOR-WAREHOUSE",
-  "nextStep": "WAREHOUSE-021: create/finalize a controlled Purchase Order source document for FRA-ZL/RAW-STEEL without receiving, invoicing or Warehouse Receipt source confirmation.",
-  "updatedAt": "2026-06-29T17:45:00+02:00"
+  "resultStatus": "blocked",
+  "summary": "WAREHOUSE-021 created controlled Purchase Order draft 106055 with vendor K10000 and visible RAW-STEEL, but FRA-ZL is not visible and no fillable header Location Code was found. Release, Receive, Invoice, Preview/Post and Warehouse Receipt source confirmation remain locked.",
+  "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-021/WAREHOUSE-021-result.json",
+  "evidencePath": "playwright/projects/fibu-book5/evidence/warehouse-021/",
+  "nextCase": "WAREHOUSE-022-SOURCE-PURCHASE-ORDER-VALUE-ENTRY-BLOCKER-REVIEW",
+  "nextStep": "WAREHOUSE-022: review WAREHOUSE-021 and select a non-repeated route for making FRA-ZL visible on a controlled Purchase Order source before release.",
+  "updatedAt": "2026-06-29T18:15:00+02:00"
 }

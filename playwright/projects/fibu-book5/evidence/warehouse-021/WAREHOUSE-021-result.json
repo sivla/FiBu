@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "purpose": "warehouse-controlled-source-purchase-order",
+  "caseId": "WAREHOUSE-021-CONTROLLED-SOURCE-PURCHASE-ORDER-FOR-WAREHOUSE",
+  "source": "playwright-ui-controlled-source-po",
+  "resultStatus": "blocked",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "bcRun": true,
+  "playwrightRun": true,
+  "posted": false,
+  "previewPosting": false,
+  "setupChanged": false,
+  "companySwitched": false,
+  "apiShortcut": false,
+  "bookChanged": false,
+  "sourceDocumentType": "Purchase Order",
+  "sourceDocumentNo": "106055",
+  "draftCreated": true,
+  "draftKept": true,
+  "contextOk": true,
+  "newClick": {
+    "clicked": true,
+    "label": "^Neu$",
+    "role": "menuitem"
+  },
+  "vendorFill": {
+    "filled": true,
+    "method": "fallback-x793-y316"
+  },
+  "headerLocationFill": {
+    "filled": false,
+    "method": "no-fillable-matching-control",
+    "candidateCount": 0
+  },
+  "rawStep": {
+    "status": "observed",
+    "selectItems": {
+      "clicked": true,
+      "label": "^Select items\\.\\.\\.$",
+      "role": "menuitem"
+    },
+    "search": {
+      "skipped": true,
+      "reason": "RAW-STEEL already visible in Select items dialog; search not opened."
+    },
+    "rawClick": {
+      "clicked": true,
+      "method": "frame-getByText-fast"
+    },
+    "okClick": {
+      "clicked": true,
+      "label": "Ausw",
+      "role": "button"
+    }
+  },
+  "checks": {
+    "rawLine": "RAW-STEEL",
+    "rawSteelVisible": true,
+    "locationOk": false,
+    "atlantaVisible": true,
+    "quantityVisible": false,
+    "releasedVisible": true,
+    "openVisible": true
+  },
+  "sourceReady": false,
+  "releaseAttempted": false,
+  "releaseSkippedReason": "Release skipped because required source values are not all visible.",
+  "blockedBy": [
+    "fra-zl-not-visible-on-source-document"
+  ],
+  "proved": [
+    "Purchase Orders list opened by direct page URL without Tell-Me search.",
+    "Controlled Purchase Order draft number visible: 106055.",
+    "Vendor K10000 was filled on the controlled draft.",
+    "No fillable header Location Code was proven.",
+    "RAW-STEEL is visible after Select items route.",
+    "FRA-ZL is not visible in the resulting source document context.",
+    "No Receive, Invoice, Preview Posting, Post, Warehouse Receipt source confirmation, setup change, company switch or API shortcut occurred."
+  ],
+  "notProved": [
+    "Purchase Order release is not proven in WAREHOUSE-021.",
+    "Warehouse Receipt source selection is not proven in WAREHOUSE-021.",
+    "Warehouse Receipt posting is not proven.",
+    "Put-away is not proven.",
+    "Warehouse/Item/Value entry trace is not proven.",
+    "No German final Warehouse proof exists."
+  ],
+  "flags": {
+    "noPost": true,
+    "noPreview": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true,
+    "noReceive": true,
+    "noInvoice": true,
+    "noWarehouseReceiptSourceConfirmation": true
+  },
+  "migrationRelevance": "needed-for-german-final",
+  "rebuildInstruction": "In German final sandbox, build a final source Purchase Order with German data, release it, then select it into a Warehouse Receipt and trace postings in separate approved cases.",
+  "mustRecreateInFinalSandbox": true,
+  "sourceCompany": "RM-DEMO",
+  "targetGermanCompanyImpact": "German final proof needs a released inbound Purchase Order/source document, Warehouse Receipt source selection, receipt posting, Put-away handling and ledger trace.",
+  "finalScreenshotNeeded": true,
+  "nextCase": "WAREHOUSE-022-SOURCE-PURCHASE-ORDER-VALUE-ENTRY-BLOCKER-REVIEW",
+  "nextStep": "WAREHOUSE-022: review why the controlled Purchase Order source values are not visible and choose a non-repeated field-entry route."
+}
