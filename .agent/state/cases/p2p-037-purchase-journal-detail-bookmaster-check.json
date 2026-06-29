@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "caseId": "P2P-037-PURCHASE-JOURNAL-DETAIL-BOOKMASTER-CHECK",
+  "title": "Check whether P2P-036 detail evidence needs Chapter 12 sync",
+  "status": "planned",
+  "taskClass": "judge_work",
+  "modelClass": "gpt-5.5-low",
+  "usageLogRequired": true,
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "workType": "p2p-bookmaster-detail-sync-check",
+  "sourceCase": "P2P-036-PURCHASE-JOURNAL-POSTED-ENTRY-DETAIL-EXPAND-READONLY",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/p2p-036/P2P-036-result.json",
+    "playwright/projects/fibu-book5/evidence/p2p-036/P2P-036-POSTED-ENTRY-DETAILS.md",
+    "playwright/projects/fibu-book5/book-drafts/p2p-labor-draft.md"
+  ],
+  "purpose": "Check Chapter 12/bookmaster for a small labor-only sync using the clearer P2P-036 posted entry detail evidence. Do not run BC or Playwright.",
+  "allowedActions": [
+    "read-p2p-036-evidence",
+    "read-chapter-12-only",
+    "small-bookmaster-patch-if-needed",
+    "write-evidence",
+    "update-state"
+  ],
+  "defaultLockedActions": [
+    "business-central-execution",
+    "playwright-execution",
+    "posting",
+    "preview-posting",
+    "setup-change",
+    "company-switch",
+    "api-shortcut"
+  ],
+  "forbiddenActions": [
+    "claim-german-final-proof",
+    "book-claim-without-evidence",
+    "large-book-rewrite",
+    "post",
+    "preview-posting"
+  ],
+  "safetyGates": [
+    "chapter-12-only",
+    "labor-boundary-must-remain-visible",
+    "no-final-german-claims",
+    "no-bc-or-playwright"
+  ],
+  "expectedEvidence": [
+    "Decision whether chapter 12 already contains enough P2P032 detail or needs a compact patch",
+    "German final rebuild note remains explicit"
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "RM-DEMO",
+  "mustRecreateInFinalSandbox": true,
+  "targetGermanCompanyImpact": "German final book chapter must later replace RM-DEMO lab references with German final screenshots and accounts.",
+  "finalScreenshotNeeded": false,
+  "resultPath": "playwright/projects/fibu-book5/evidence/p2p-037/P2P-037-result.json",
+  "nextStep": "Review Chapter 12 only and decide if P2P-036 detail evidence needs a small labor-only sync.",
+  "createdAt": "2026-06-29T06:45:45.442Z",
+  "updatedAt": "2026-06-29T06:45:45.442Z"
+}

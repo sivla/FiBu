@@ -1,0 +1,156 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "P2P-036-PURCHASE-JOURNAL-POSTED-ENTRY-DETAIL-EXPAND-READONLY",
+  "source": "local-evidence-detail-extraction-from-posted-p2p032-trace",
+  "resultStatus": "observed",
+  "runPlanId": "P2P-036-PURCHASE-JOURNAL-POSTED-ENTRY-DETAIL-EXPAND-READONLY-PLAN",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-medium",
+  "instance": "MCP_1_20260210",
+  "company": "RM-DEMO",
+  "sourceCompany": "RM-DEMO",
+  "documentNo": "P2P032-682298",
+  "externalDocumentNo": "EXT-P2P032-682298",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/p2p-032/P2P-032-result.json",
+    "playwright/projects/fibu-book5/evidence/p2p-032/090-vendor-ledger-payment-page-text.txt",
+    "playwright/projects/fibu-book5/evidence/p2p-032/091-detailed-vendor-ledger-payment-page-text.txt",
+    "playwright/projects/fibu-book5/evidence/p2p-032/092-gl-entries-payment-page-text.txt",
+    "playwright/projects/fibu-book5/evidence/p2p-033/P2P-033-result.json"
+  ],
+  "postedDocumentDetail": {
+    "vendorLedgerEntry": {
+      "documentType": "Invoice",
+      "documentNo": "P2P032-682298",
+      "externalDocumentNo": "EXT-P2P032-682298",
+      "vendorNo": "K10000",
+      "vendorName": "Stahlwerk Ruhr GmbH",
+      "postingDate": "08.06.2026",
+      "documentDate": "08.06.2026",
+      "amount": "-2.500,00",
+      "remainingAmount": "-2.500,00",
+      "dueDate": "08.07.2026",
+      "entryNo": "5010",
+      "visible": true
+    },
+    "detailedVendorLedgerEntry": {
+      "entryType": "Initial Entry",
+      "documentType": "Invoice",
+      "documentNo": "P2P032-682298",
+      "vendorNo": "K10000",
+      "amount": "-2.500,00",
+      "dueDate": "08.07.2026",
+      "entryNo": "822",
+      "visible": true
+    },
+    "glEntries": [
+      {
+        "accountNo": "82000",
+        "accountName": "Depreciation, Fixed Assets",
+        "description": "Stahlwerk Ruhr GmbH",
+        "genPostingType": "Purchase",
+        "amount": "2.500,00",
+        "sourceType": "Vendor",
+        "sourceNo": "K10000",
+        "entryNo": "5009",
+        "externalDocumentNo": "EXT-P2P032-682298"
+      },
+      {
+        "accountNo": "22100",
+        "accountName": "Accounts Payable, Domestic",
+        "description": "Stahlwerk Ruhr GmbH",
+        "amount": "-2.500,00",
+        "balancingAccountType": "G/L Account",
+        "balancingAccountNo": "82000",
+        "entryNo": "5010",
+        "externalDocumentNo": "EXT-P2P032-682298"
+      }
+    ],
+    "relatedGlEntriesOnVendorLedger": [
+      {
+        "accountNo": "22100",
+        "accountName": "Accounts Payable, Domestic",
+        "amount": "-2.500,00"
+      },
+      {
+        "accountNo": "82000",
+        "accountName": "Depreciation, Fixed Assets",
+        "amount": "2.500,00"
+      }
+    ]
+  },
+  "proved": [
+    "P2P032-682298 has human-readable posted Vendor Ledger evidence with Vendor K10000, Stahlwerk Ruhr GmbH, amount -2.500,00 and Entry No. 5010.",
+    "Detailed Vendor Ledger evidence shows Initial Entry / Invoice P2P032-682298 with amount -2.500,00 and Entry No. 822.",
+    "G/L Entries evidence shows account 82000 with +2.500,00 and account 22100 with -2.500,00 for P2P032-682298.",
+    "Related G/L Entries are visible from the Vendor Ledger context and list 22100 Accounts Payable, Domestic and 82000 Depreciation, Fixed Assets.",
+    "The detail evidence improves book readability without any new BC execution, posting, preview, setup change, draft, edit, delete or API shortcut."
+  ],
+  "notProved": [
+    "No German final proof.",
+    "No German 19 percent VAT/tax proof.",
+    "No German chart-of-accounts proof.",
+    "No Purchase Order partial receipt, Item Ledger Entry or Value Entry for P2P032-682298 because this is a direct Purchase Journal route.",
+    "Account 82000 is only the RM-DEMO/CRONUS lab balance account used in this route, not a final German purchasing account recommendation."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/p2p-036/P2P-036-result.json",
+    "playwright/projects/fibu-book5/evidence/p2p-036/P2P-036-POSTED-ENTRY-DETAILS.md",
+    "playwright/projects/fibu-book5/evidence/p2p-036/README.md",
+    ".agent/state/cases/p2p-036-purchase-journal-posted-entry-detail-expand-readonly.json",
+    ".agent/state/cases/p2p-037-purchase-journal-detail-bookmaster-check.json",
+    ".agent/state/current.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/p2p-036/P2P-036-POSTED-ENTRY-DETAILS.md",
+    "playwright/projects/fibu-book5/evidence/p2p-032/090-vendor-ledger-payment-page-text.txt",
+    "playwright/projects/fibu-book5/evidence/p2p-032/091-detailed-vendor-ledger-payment-page-text.txt",
+    "playwright/projects/fibu-book5/evidence/p2p-032/092-gl-entries-payment-page-text.txt"
+  ],
+  "flags": {
+    "bcRun": false,
+    "playwrightRun": false,
+    "posted": false,
+    "previewPosting": false,
+    "setupChanged": false,
+    "companySwitched": false,
+    "draftCreated": false,
+    "editedRecord": false,
+    "deletedRecord": false,
+    "apiShortcut": false,
+    "bookChanged": false,
+    "localEvidenceExtractionOnly": true
+  },
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": true,
+  "targetGermanCompanyImpact": "German final P2P must recreate posted Vendor Ledger, Detailed Vendor Ledger and G/L Entry screenshots with German accounts, tax setup and final company context.",
+  "finalScreenshotNeeded": true,
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeArea": "p2p",
+      "activeCase": "P2P-037-PURCHASE-JOURNAL-DETAIL-BOOKMASTER-CHECK",
+      "active_case_file": ".agent/state/cases/p2p-037-purchase-journal-detail-bookmaster-check.json",
+      "lastReferenceCase": "P2P-036-PURCHASE-JOURNAL-POSTED-ENTRY-DETAIL-EXPAND-READONLY",
+      "lastReferenceCaseFile": ".agent/state/cases/p2p-036-purchase-journal-posted-entry-detail-expand-readonly.json",
+      "nextStep": "P2P-037: check whether chapter 12/bookmaster needs a small detail sync for P2P-036; no BC/Playwright."
+    },
+    "activeCase": {
+      "status": "done",
+      "resultStatus": "observed",
+      "resultPath": "playwright/projects/fibu-book5/evidence/p2p-036/P2P-036-result.json",
+      "nextCase": "P2P-037-PURCHASE-JOURNAL-DETAIL-BOOKMASTER-CHECK",
+      "nextCaseFile": ".agent/state/cases/p2p-037-purchase-journal-detail-bookmaster-check.json"
+    }
+  },
+  "nextCase": "P2P-037-PURCHASE-JOURNAL-DETAIL-BOOKMASTER-CHECK",
+  "nextCaseFile": ".agent/state/cases/p2p-037-purchase-journal-detail-bookmaster-check.json",
+  "nextStep": "P2P-037: check whether chapter 12/bookmaster needs a small detail sync for P2P-036; no BC/Playwright.",
+  "startedAt": "2026-06-29T06:45:45.442Z",
+  "finishedAt": "2026-06-29T06:45:45.442Z"
+}
