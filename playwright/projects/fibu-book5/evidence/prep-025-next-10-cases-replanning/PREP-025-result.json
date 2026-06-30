@@ -1,0 +1,148 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result",
+  "caseId": "PREP-025-NEXT-10-CASES-REPLANNING",
+  "source": "local-analysis",
+  "resultStatus": "observed",
+  "runPlanId": "PREP-025-NEXT-10-CASES-REPLANNING-PLAN",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-medium",
+  "proved": [
+    "The next ten cases were replanned after PREP-024 instead of blindly following the queue.",
+    "PREP-026 remains the next case because W0/W1 book and UI claims need source boundaries before more screenshots or book patches.",
+    "Concrete read-only and book follow-ups were added: PREP-031 Companies Page read-only, PREP-032 Chapter 4 rewrite, PREP-033 My Settings context, PREP-034 Role Center shell map.",
+    "TARGET-009 remains parked until SUPER/company-create permissions are confirmed."
+  ],
+  "notProved": [
+    "No Business Central page was opened.",
+    "No Playwright test was executed.",
+    "UNIVERSAARL-DE was not created and is still planned-not-yet-created.",
+    "No source page was newly verified in this run; PREP-026 will perform the focused source mapping."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/UNIVERSAARL-NEXT-10-CASE-PLAN.md",
+    ".agent/state/next_10_case_plan.json",
+    ".agent/state/cases/prep-025-next-10-cases-replanning.json",
+    ".agent/state/current.json",
+    ".agent/state/marathon_queue.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/coverage_state.json",
+    "playwright/projects/fibu-book5/evidence/prep-025-next-10-cases-replanning/README.md",
+    "playwright/projects/fibu-book5/evidence/prep-025-next-10-cases-replanning/PREP-025-result.json"
+  ],
+  "statePatch": {
+    "current": {
+      "updatedAt": "2026-06-30T08:05:00.000+02:00",
+      "activeArea": "universaarl-next-10-prep-replanning",
+      "activeCase": "PREP-025-NEXT-10-CASES-REPLANNING",
+      "active_case_file": ".agent/state/cases/prep-025-next-10-cases-replanning.json",
+      "nextStep": "Continue with PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING. Focus only W0/W1 claims: Company Creation, Company Information, Assisted Setup, Number Series, Posting Groups, VAT Setup and Dimensions."
+    },
+    "lastRunSummary": {
+      "runId": "PREP-025-NEXT-10-CASES-REPLANNING",
+      "caseId": "PREP-025-NEXT-10-CASES-REPLANNING",
+      "status": "done",
+      "bcRun": false,
+      "playwrightRun": false,
+      "posted": false,
+      "previewPosting": false,
+      "setupChange": false,
+      "companyCreated": false,
+      "bookChanged": false,
+      "bookDraftChanged": false,
+      "summary": "PREP-025 replanned the next ten Universaarl PREP/read-only/book/source cases and inserted concrete follow-ups for Companies Page, Chapter 4, My Settings and Role Center.",
+      "nextCase": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING"
+    },
+    "activeCase": {
+      "status": "done",
+      "result": "Next ten cases replanned and queue extended with concrete read-only/book follow-ups.",
+      "nextCase": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING"
+    },
+    "coverage": {
+      "latestNext10CasePlan": {
+        "caseId": "PREP-025-NEXT-10-CASES-REPLANNING",
+        "status": "prep-done",
+        "planPath": "playwright/projects/fibu-book5/UNIVERSAARL-NEXT-10-CASE-PLAN.md",
+        "statePath": ".agent/state/next_10_case_plan.json",
+        "resultPath": "playwright/projects/fibu-book5/evidence/prep-025-next-10-cases-replanning/PREP-025-result.json",
+        "selectedNextCase": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
+        "noBusinessCentralExecution": true,
+        "noPlaywrightExecution": true
+      }
+    }
+  },
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/UNIVERSAARL-NEXT-10-CASE-PLAN.md",
+    ".agent/state/next_10_case_plan.json",
+    "playwright/projects/fibu-book5/evidence/prep-025-next-10-cases-replanning/README.md"
+  ],
+  "warnings": [
+    "Do not let PREP-026 become broad research; map only W0/W1 claims first.",
+    "Do not run TARGET-009 before SUPER/company-create permissions.",
+    "Do not treat planned PREP-031 screenshots as already observed."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "reason": "Safe local queue and lookahead replanning. No effective BC action.",
+  "nextStepDecisionCard": {
+    "currentCase": "PREP-025-NEXT-10-CASES-REPLANNING",
+    "plannedNextCaseBeforeReview": "PREP-025-NEXT-10-CASES-REPLANNING",
+    "lastEvidenceSummary": "PREP-024 created a W0/W1 read-only discovery pack with page/action/field/request-page atlas targets.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The queue needed to decide between immediate read-only Playwright discovery and source-backed book preparation. Source mapping now goes first; read-only Companies Page follows directly.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
+        "status": "ready-next",
+        "reason": "Sources must define which claims need Microsoft Learn, Universaarl Evidence, both, or later German/legal proof."
+      },
+      {
+        "caseId": "PREP-031-COMPANIES-PAGE-READONLY-PLAYWRIGHT",
+        "status": "ready-after-current",
+        "reason": "PREP-024 made this executable without writes."
+      },
+      {
+        "caseId": "PREP-032-CH04-ERP-BASICS-UNIVERSAARL-REWRITE",
+        "status": "ready-after-current",
+        "reason": "Chapter 4 can safely become Universaarl reader text without claiming that the company exists."
+      },
+      {
+        "caseId": "PREP-027-IMPLEMENTATION-GUIDE-BEST-PRACTICE-MAPPING",
+        "status": "ready-after-current",
+        "reason": "Implementation guidance should follow the source map."
+      },
+      {
+        "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+        "status": "blocked",
+        "reason": "Still waiting for SUPER/company-create permissions."
+      }
+    ],
+    "queueChangesMade": [
+      "Marked PREP-025 done.",
+      "Kept PREP-026 as ready-next.",
+      "Inserted PREP-031, PREP-032, PREP-033 and PREP-034 as concrete follow-up cases.",
+      "Kept TARGET-009 parked until permission unblock."
+    ],
+    "selectedNextCase": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
+    "whySelectedNextCaseIsBest": "It prevents later book text from overclaiming what read-only screenshots or old RM evidence can prove.",
+    "risksBeforeNextCase": [
+      "Do not spend the source-mapping run as a broad web research detour.",
+      "Do not claim Universaarl setup exists.",
+      "Do not skip the Companies Page read-only test after mapping."
+    ],
+    "requiredPreparation": [
+      "Use PREP-024 discovery IDs.",
+      "Map only W0/W1 claims first.",
+      "Keep Shopify excluded."
+    ]
+  },
+  "validationCommands": [
+    "npm run agent:preflight",
+    "npm run agent:context",
+    "npm run agent:dry-run",
+    "npm run agent:run-plan",
+    "npm run check:encoding",
+    "git diff --check"
+  ]
+}

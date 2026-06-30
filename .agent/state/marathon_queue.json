@@ -485,7 +485,7 @@
     {
       "id": "PREP-025-NEXT-10-CASES-REPLANNING",
       "order": 25,
-      "status": "pending",
+      "status": "done",
       "category": "agent",
       "expectedImpact": "prep-progress",
       "mayWorkEffectively": false,
@@ -495,7 +495,11 @@
       "sourceCompany": "UNIVERSAARL-DE-planned-not-yet-created",
       "targetWorld": "Universaarl",
       "noFinalGermanClaimWithoutUniversaarlEvidence": true,
-      "lookaheadStatus": "ready-next"
+      "lookaheadStatus": "done",
+      "completedAt": "2026-06-30T08:05:00.000+02:00",
+      "result": "Replanned next ten cases and inserted concrete read-only/book follow-ups.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/prep-025-next-10-cases-replanning/PREP-025-result.json",
+      "outputPath": "playwright/projects/fibu-book5/UNIVERSAARL-NEXT-10-CASE-PLAN.md"
     },
     {
       "id": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
@@ -510,7 +514,7 @@
       "sourceCompany": "UNIVERSAARL-DE-planned-not-yet-created",
       "targetWorld": "Universaarl",
       "noFinalGermanClaimWithoutUniversaarlEvidence": true,
-      "lookaheadStatus": "ready-after-current"
+      "lookaheadStatus": "ready-next"
     },
     {
       "id": "PREP-027-IMPLEMENTATION-GUIDE-BEST-PRACTICE-MAPPING",
@@ -571,9 +575,69 @@
       "targetWorld": "Universaarl",
       "noFinalGermanClaimWithoutUniversaarlEvidence": true,
       "lookaheadStatus": "ready-after-current"
+    },
+    {
+      "id": "PREP-031-COMPANIES-PAGE-READONLY-PLAYWRIGHT",
+      "order": 31,
+      "status": "pending",
+      "category": "readonly-ui",
+      "expectedImpact": "prep-progress",
+      "mayWorkEffectively": false,
+      "mayRunPlaywright": true,
+      "effectiveBcActionsAllowed": false,
+      "goal": "Run RO-W0-COMPANIES-357 read-only discovery for Companies Page split-buttons, tooltips and dropdowns.",
+      "sourceCompany": "UNIVERSAARL-DE-planned-not-yet-created",
+      "targetWorld": "Universaarl",
+      "noFinalGermanClaimWithoutUniversaarlEvidence": true,
+      "lookaheadStatus": "ready-after-current"
+    },
+    {
+      "id": "PREP-032-CH04-ERP-BASICS-UNIVERSAARL-REWRITE",
+      "order": 32,
+      "status": "pending",
+      "category": "book",
+      "expectedImpact": "prep-progress",
+      "mayWorkEffectively": false,
+      "mayRunPlaywright": false,
+      "effectiveBcActionsAllowed": false,
+      "goal": "Rewrite chapter 4 conceptual ERP basics from active Rhein-Main examples to Universaarl reader text without existence claims.",
+      "sourceCompany": "UNIVERSAARL-DE-planned-not-yet-created",
+      "targetWorld": "Universaarl",
+      "noFinalGermanClaimWithoutUniversaarlEvidence": true,
+      "lookaheadStatus": "ready-after-current"
+    },
+    {
+      "id": "PREP-033-MY-SETTINGS-READONLY-CONTEXT",
+      "order": 33,
+      "status": "pending",
+      "category": "readonly-ui",
+      "expectedImpact": "prep-progress",
+      "mayWorkEffectively": false,
+      "mayRunPlaywright": true,
+      "effectiveBcActionsAllowed": false,
+      "goal": "Read-only My Settings context proof for company, role, language and no-save boundary.",
+      "sourceCompany": "UNIVERSAARL-DE-planned-not-yet-created",
+      "targetWorld": "Universaarl",
+      "noFinalGermanClaimWithoutUniversaarlEvidence": true,
+      "lookaheadStatus": "ready-after-current"
+    },
+    {
+      "id": "PREP-034-ROLE-CENTER-READONLY-SHELL-MAP",
+      "order": 34,
+      "status": "pending",
+      "category": "readonly-ui",
+      "expectedImpact": "prep-progress",
+      "mayWorkEffectively": false,
+      "mayRunPlaywright": true,
+      "effectiveBcActionsAllowed": false,
+      "goal": "Read-only Role Center shell map for beginner navigation, search, action bar and no-write stops.",
+      "sourceCompany": "UNIVERSAARL-DE-planned-not-yet-created",
+      "targetWorld": "Universaarl",
+      "noFinalGermanClaimWithoutUniversaarlEvidence": true,
+      "lookaheadStatus": "ready-after-current"
     }
   ],
-  "lastUpdated": "2026-06-30T07:35:00.000+02:00",
+  "lastUpdated": "2026-06-30T08:05:00.000+02:00",
   "nextStepDecisionGate": {
     "active": true,
     "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",
@@ -596,31 +660,31 @@
       "replace-with-better-case"
     ],
     "latestDecisionCard": {
-      "currentCase": "PREP-024-READONLY-PAGE-DISCOVERY-PACK",
-      "plannedNextCaseBeforeReview": "PREP-024-READONLY-PAGE-DISCOVERY-PACK",
-      "lastEvidenceSummary": "PREP-023 found chapter 6 is the P0 book-flow break and selected W0/W1 pages as discovery focus.",
+      "currentCase": "PREP-025-NEXT-10-CASES-REPLANNING",
+      "plannedNextCaseBeforeReview": "PREP-025-NEXT-10-CASES-REPLANNING",
+      "lastEvidenceSummary": "PREP-024 created a W0/W1 read-only discovery pack with page/action/field/request-page atlas targets.",
       "isPlannedNextCaseStillSensible": true,
-      "reason": "A read-only discovery pack is the best bridge between the chapter audit and future safe Playwright/UI work while company creation remains permission-blocked.",
+      "reason": "The queue needed to decide between immediate read-only Playwright discovery and source-backed book preparation. Source mapping now goes first; read-only Companies Page follows directly.",
       "lookaheadReviewed": [
         {
-          "caseId": "PREP-025-NEXT-10-CASES-REPLANNING",
+          "caseId": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
           "status": "ready-next",
-          "reason": "The queue should now choose between RO-W0-COMPANIES-357 read-only Playwright discovery and a Chapter 4 conceptual book rewrite."
+          "reason": "Sources must define which claims need Microsoft Learn, Universaarl Evidence, both, or later German/legal proof."
         },
         {
-          "caseId": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
+          "caseId": "PREP-031-COMPANIES-PAGE-READONLY-PLAYWRIGHT",
           "status": "ready-after-current",
-          "reason": "Source mapping can now target the exact W0/W1 pages and claim types from the discovery pack."
+          "reason": "PREP-024 made this executable without writes."
+        },
+        {
+          "caseId": "PREP-032-CH04-ERP-BASICS-UNIVERSAARL-REWRITE",
+          "status": "ready-after-current",
+          "reason": "Chapter 4 can safely become Universaarl reader text without claiming that the company exists."
         },
         {
           "caseId": "PREP-027-IMPLEMENTATION-GUIDE-BEST-PRACTICE-MAPPING",
           "status": "ready-after-current",
-          "reason": "Implementation guidance should connect to W0/W1 setup and UAT structure after replanning."
-        },
-        {
-          "caseId": "PREP-028-TESTING-STRATEGY-AND-UAT-MATRIX",
-          "status": "ready-after-current",
-          "reason": "UAT matrix should use the first page discovery and source mapping."
+          "reason": "Implementation guidance should follow the source map."
         },
         {
           "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
@@ -629,53 +693,54 @@
         }
       ],
       "queueChangesMade": [
-        "Marked PREP-024 done.",
-        "Selected PREP-025 as next prep case.",
-        "Kept TARGET-009 parked until SUPER/company-create permissions are confirmed."
+        "Marked PREP-025 done.",
+        "Kept PREP-026 as ready-next.",
+        "Inserted PREP-031, PREP-032, PREP-033 and PREP-034 as concrete follow-up cases.",
+        "Kept TARGET-009 parked until permission unblock."
       ],
-      "selectedNextCase": "PREP-025-NEXT-10-CASES-REPLANNING",
-      "whySelectedNextCaseIsBest": "After the discovery pack, the next useful step is to re-evaluate the queue and decide whether read-only Playwright discovery or a small book rewrite has the higher immediate value.",
+      "selectedNextCase": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
+      "whySelectedNextCaseIsBest": "It prevents later book text from overclaiming what read-only screenshots or old RM evidence can prove.",
       "risksBeforeNextCase": [
-        "Do not treat planned read-only cards as observed UI evidence.",
-        "Do not execute company creation before permissions.",
-        "Do not let replanning become a review loop without selecting an executable next case."
+        "Do not spend the source-mapping run as a broad web research detour.",
+        "Do not claim Universaarl setup exists.",
+        "Do not skip the Companies Page read-only test after mapping."
       ],
       "requiredPreparation": [
-        "Read UNIVERSAARL-READONLY-PAGE-DISCOVERY-PACK.md.",
-        "Read BOOK-CHAPTER-STIMMIGKEIT-AUDIT.md.",
-        "Review PREP-025 queue candidates against permission blocker."
+        "Use PREP-024 discovery IDs.",
+        "Map only W0/W1 claims first.",
+        "Keep Shopify excluded."
       ]
     }
   },
-  "updatedAt": "2026-06-30T07:35:00.000+02:00",
-  "lastCompletedCase": "PREP-024-READONLY-PAGE-DISCOVERY-PACK",
-  "nextCase": "PREP-025-NEXT-10-CASES-REPLANNING",
+  "updatedAt": "2026-06-30T08:05:00.000+02:00",
+  "lastCompletedCase": "PREP-025-NEXT-10-CASES-REPLANNING",
+  "nextCase": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
   "nextStepDecisionCard": {
-    "currentCase": "PREP-024-READONLY-PAGE-DISCOVERY-PACK",
-    "plannedNextCaseBeforeReview": "PREP-024-READONLY-PAGE-DISCOVERY-PACK",
-    "lastEvidenceSummary": "PREP-023 found chapter 6 is the P0 book-flow break and selected W0/W1 pages as discovery focus.",
+    "currentCase": "PREP-025-NEXT-10-CASES-REPLANNING",
+    "plannedNextCaseBeforeReview": "PREP-025-NEXT-10-CASES-REPLANNING",
+    "lastEvidenceSummary": "PREP-024 created a W0/W1 read-only discovery pack with page/action/field/request-page atlas targets.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "A read-only discovery pack is the best bridge between the chapter audit and future safe Playwright/UI work while company creation remains permission-blocked.",
+    "reason": "The queue needed to decide between immediate read-only Playwright discovery and source-backed book preparation. Source mapping now goes first; read-only Companies Page follows directly.",
     "lookaheadReviewed": [
       {
-        "caseId": "PREP-025-NEXT-10-CASES-REPLANNING",
+        "caseId": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
         "status": "ready-next",
-        "reason": "The queue should now choose between RO-W0-COMPANIES-357 read-only Playwright discovery and a Chapter 4 conceptual book rewrite."
+        "reason": "Sources must define which claims need Microsoft Learn, Universaarl Evidence, both, or later German/legal proof."
       },
       {
-        "caseId": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
+        "caseId": "PREP-031-COMPANIES-PAGE-READONLY-PLAYWRIGHT",
         "status": "ready-after-current",
-        "reason": "Source mapping can now target the exact W0/W1 pages and claim types from the discovery pack."
+        "reason": "PREP-024 made this executable without writes."
+      },
+      {
+        "caseId": "PREP-032-CH04-ERP-BASICS-UNIVERSAARL-REWRITE",
+        "status": "ready-after-current",
+        "reason": "Chapter 4 can safely become Universaarl reader text without claiming that the company exists."
       },
       {
         "caseId": "PREP-027-IMPLEMENTATION-GUIDE-BEST-PRACTICE-MAPPING",
         "status": "ready-after-current",
-        "reason": "Implementation guidance should connect to W0/W1 setup and UAT structure after replanning."
-      },
-      {
-        "caseId": "PREP-028-TESTING-STRATEGY-AND-UAT-MATRIX",
-        "status": "ready-after-current",
-        "reason": "UAT matrix should use the first page discovery and source mapping."
+        "reason": "Implementation guidance should follow the source map."
       },
       {
         "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
@@ -684,21 +749,22 @@
       }
     ],
     "queueChangesMade": [
-      "Marked PREP-024 done.",
-      "Selected PREP-025 as next prep case.",
-      "Kept TARGET-009 parked until SUPER/company-create permissions are confirmed."
+      "Marked PREP-025 done.",
+      "Kept PREP-026 as ready-next.",
+      "Inserted PREP-031, PREP-032, PREP-033 and PREP-034 as concrete follow-up cases.",
+      "Kept TARGET-009 parked until permission unblock."
     ],
-    "selectedNextCase": "PREP-025-NEXT-10-CASES-REPLANNING",
-    "whySelectedNextCaseIsBest": "After the discovery pack, the next useful step is to re-evaluate the queue and decide whether read-only Playwright discovery or a small book rewrite has the higher immediate value.",
+    "selectedNextCase": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
+    "whySelectedNextCaseIsBest": "It prevents later book text from overclaiming what read-only screenshots or old RM evidence can prove.",
     "risksBeforeNextCase": [
-      "Do not treat planned read-only cards as observed UI evidence.",
-      "Do not execute company creation before permissions.",
-      "Do not let replanning become a review loop without selecting an executable next case."
+      "Do not spend the source-mapping run as a broad web research detour.",
+      "Do not claim Universaarl setup exists.",
+      "Do not skip the Companies Page read-only test after mapping."
     ],
     "requiredPreparation": [
-      "Read UNIVERSAARL-READONLY-PAGE-DISCOVERY-PACK.md.",
-      "Read BOOK-CHAPTER-STIMMIGKEIT-AUDIT.md.",
-      "Review PREP-025 queue candidates against permission blocker."
+      "Use PREP-024 discovery IDs.",
+      "Map only W0/W1 claims first.",
+      "Keep Shopify excluded."
     ]
   }
 }
