@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-30T17:34:19.935Z",
+  "updatedAt": "2026-06-30T18:10:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-w1-foundation-global-dimension-source-or-alternative-route",
-  "activeCase": "TARGET-024E-GLOBAL-DIMENSION-ASSIGNMENT-SOURCE-OR-ALTERNATIVE-ROUTE",
-  "active_case_file": ".agent/state/cases/target-024e-global-dimension-assignment-source-or-alternative-route.json",
+  "activeArea": "universaarl-w1-foundation-global-dimension-page118-direct-field-route",
+  "activeCase": "TARGET-024F-GLOBAL-DIMENSION-PAGE118-DIRECT-FIELD-ROUTE",
+  "active_case_file": ".agent/state/cases/target-024f-global-dimension-page118-direct-field-route.json",
   "lastReferenceCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
   "lastReferenceCaseFile": ".agent/state/cases/warehouse-031-warehouse-source-route-park-or-setup-fit-decision.json",
   "mode": "universaarl-target-execution",
@@ -19,10 +19,11 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "review-target-024b-and-target-024c-results",
     "open-general-ledger-setup-page-directly",
-    "open-change-global-dimensions-action-page",
-    "enter-productline-and-costcenter-in-left-editable-comboboxes-only-if-target-controls-match-024c-map",
+    "inspect-page-118-dimensions-fasttab",
+    "page-inspection-readonly-on-page-118-if-available",
+    "tooltip-and-control-inventory-readonly",
+    "enter-productline-and-costcenter-only-in-identified-page-118-global-dimension-fields",
     "capture-before-after-reopen-proof",
     "write-result-and-next-step-card"
   ],
@@ -39,9 +40,11 @@
     "preview-posting",
     "post",
     "api-shortcut",
+    "open-change-global-dimensions-page-577-as-primary-route",
+    "repeat-target-024d-fortlaufend-starten-route",
     "claim-reporting-readiness-without-posted-dimension-entries"
   ],
-  "nextStep": "Do not repeat the same Change Global Dimensions route; run TARGET-024E source/Page-Inspection/alternative route or consciously park global dimensions before master data.",
+  "nextStep": "Run TARGET-024F: inspect and target Page 118 Global Dimension Code fields directly; do not repeat the Page 577 Change Global Dimensions route.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -224,7 +227,7 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "universaarl-w1-foundation-global-dimension-assignment-blocker",
+  "currentCoverageFocus": "universaarl-w1-foundation-global-dimension-page118-direct-field-route",
   "nextProcessRoute": [
     "P2P-012 compared Purchase Journal, Item Journal, Purchase Invoices and Requisition Worksheet by direct page URL without search or field entry.",
     "Item Journal is the most stable observed route for material quantity/location/value effect, but it is Inventory evidence rather than full creditor P2P.",
@@ -3683,51 +3686,51 @@
     "resultFile": "playwright/projects/fibu-book5/evidence/prep-020-universaarl-dataset-blueprint/PREP-020-result.json"
   },
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-024C-GLOBAL-DIMENSION-FIELD-DISCOVERY",
+    "currentCase": "TARGET-024E-GLOBAL-DIMENSION-ASSIGNMENT-SOURCE-OR-ALTERNATIVE-ROUTE",
     "plannedNextCaseBeforeReview": "TARGET-024-CORE-MASTERDATA-PLAN",
-    "lastEvidenceSummary": "TARGET-023B recovered all starter Dimension Values. TARGET-024B proved Page 118 and the action page, but left-column entry plus sequential run did not persist Global Dimension Code 1/2.",
+    "lastEvidenceSummary": "TARGET-023B proves starter dimension values; TARGET-024B and TARGET-024D do not prove persisted global dimension assignment; TARGET-024E selected a source-backed Page 118 direct-field route.",
     "isPlannedNextCaseStillSensible": false,
-    "reason": "Master data should not start while global dimension assignment is unresolved; the next step must either run a consciously selected assignment route or make a source-backed park decision.",
+    "reason": "Master data should not start while global dimensions are unresolved; Page 118 must be inspected/targeted directly or the topic consciously parked.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-024D-GLOBAL-DIMENSION-CONTROLLED-ASSIGNMENT-ROUTE",
+        "caseId": "TARGET-024F-GLOBAL-DIMENSION-PAGE118-DIRECT-FIELD-ROUTE",
         "status": "ready-next",
-        "reason": "The control map is now clear enough for a separate controlled route, if source/gate agrees."
+        "reason": "Non-repeating source-backed route after 024E."
       },
       {
         "caseId": "TARGET-024-CORE-MASTERDATA-PLAN",
         "status": "ready-after-current",
-        "reason": "Master data planning follows only after global dimensions are proven or consciously parked."
+        "reason": "Can continue after global dimensions are assigned or consciously parked."
       },
       {
         "caseId": "TARGET-025-CUSTOMER-VENDOR-ITEM-TEMPLATES-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "Templates need posting groups, VAT and dimension/default-dimension decisions."
+        "reason": "Templates depend on posting groups, VAT and dimension/default-dimension decisions."
       },
       {
         "caseId": "TARGET-026-VAT-SETUP-FIT-DECISION",
         "status": "needs-source-check-first",
-        "reason": "German VAT setup still needs source-backed setup before document preview."
+        "reason": "German VAT setup needs its own source-backed setup and later Preview/VAT Entries."
       },
       {
         "caseId": "TARGET-028-DEFAULT-DIMENSIONS-STRATEGY",
         "status": "needs-setup-first",
-        "reason": "Default Dimensions need global dimensions or a documented park decision plus concrete master data."
+        "reason": "Default Dimensions need concrete master data and the global-dimension decision."
       }
     ],
     "queueChangesMade": [
-      "Selected TARGET-024D-GLOBAL-DIMENSION-CONTROLLED-ASSIGNMENT-ROUTE after TARGET-024C discovery."
+      "Marked TARGET-024E observed.",
+      "Inserted/selected TARGET-024F-GLOBAL-DIMENSION-PAGE118-DIRECT-FIELD-ROUTE."
     ],
-    "selectedNextCase": "TARGET-024D-GLOBAL-DIMENSION-CONTROLLED-ASSIGNMENT-ROUTE",
-    "whySelectedNextCaseIsBest": "TARGET-024C replaced guessing with a control map. The next useful case is either the controlled route or a source-backed decision, not a repeat of TARGET-024B.",
+    "selectedNextCase": "TARGET-024F-GLOBAL-DIMENSION-PAGE118-DIRECT-FIELD-ROUTE",
+    "whySelectedNextCaseIsBest": "It follows the official General Ledger Setup/Page 118 context and avoids the failed Change Global Dimensions action-page repeat.",
     "risksBeforeNextCase": [
-      "Do not click Fortlaufend or Parallel unless the active case explicitly unlocks it.",
-      "Do not claim Global Dimension Code 1/2 readiness from visible action-page controls alone.",
-      "Do not start default dimensions or master data as if global dimensions are assigned."
+      "Do not claim Global Dimension Code 1/2 readiness before Page 118 reopen proof.",
+      "Do not start master data/default dimensions yet.",
+      "Do not use Page 577 as primary route."
     ],
     "requiredPreparation": [
-      "Use TARGET-024C row-column semantics and TARGET-024B blocker evidence.",
-      "If executing assignment, capture before/after/reopen proof and stop before master data."
+      "Inspect Page 118 Dimensions FastTab controls and tooltips/Page Inspection before writing."
     ]
   },
   "permissionBlocker": {
@@ -3804,9 +3807,9 @@
     "nextCase": "PREP-006-BOOKMASTER-UNIVERSAARL-FALLSTUDIE-REWRITE-PLAN",
     "updatedAt": "2026-06-29T21:54:54.534Z"
   },
-  "activeCaseFile": ".agent/state/cases/prep-034-role-center-readonly-shell-map.json",
+  "activeCaseFile": ".agent/state/cases/target-024f-global-dimension-page118-direct-field-route.json",
   "previousCase": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
-  "nextCase": "TARGET-024D-GLOBAL-DIMENSION-CONTROLLED-ASSIGNMENT-ROUTE",
+  "nextCase": "TARGET-024F-GLOBAL-DIMENSION-PAGE118-DIRECT-FIELD-ROUTE",
   "latestPrepCase": {
     "caseId": "PREP-034-ROLE-CENTER-READONLY-SHELL-MAP",
     "status": "prep-observed",
@@ -5622,7 +5625,9 @@
     "nextCase": "TARGET-023-DIMENSION-VALUE-CONTROLLED-SETUP-FIT",
     "updatedAt": "2026-06-30T15:35:15.526Z"
   },
-  "defaultLockedActionsUnlockedForThisCase": [],
+  "defaultLockedActionsUnlockedForThisCase": [
+    "setup-change"
+  ],
   "latestTarget023DimensionValueSetupFit": {
     "caseId": "TARGET-023-DIMENSION-VALUE-CONTROLLED-SETUP-FIT",
     "status": "partial-blocked",
@@ -5912,5 +5917,14 @@
     ],
     "nextCase": "TARGET-024E-GLOBAL-DIMENSION-ASSIGNMENT-SOURCE-OR-ALTERNATIVE-ROUTE",
     "updatedAt": "2026-06-30T17:34:19.935Z"
+  },
+  "latestTarget024EGlobalDimensionSourceRoute": {
+    "caseId": "TARGET-024E-GLOBAL-DIMENSION-ASSIGNMENT-SOURCE-OR-ALTERNATIVE-ROUTE",
+    "status": "observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-024e-global-dimension-assignment-source-or-alternative-route/TARGET-024E-result.json",
+    "source": "Microsoft Learn Work with dimensions plus TARGET-024B/024C/024D evidence",
+    "decision": "Use Page 118 direct Global Dimension Code field inspection/assignment as the next route; do not repeat Page 577 left-combobox plus Starten route.",
+    "nextCase": "TARGET-024F-GLOBAL-DIMENSION-PAGE118-DIRECT-FIELD-ROUTE",
+    "updatedAt": "2026-06-30T18:10:00.000Z"
   }
 }

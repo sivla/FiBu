@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized-candidate",
+  "caseId": "TARGET-024E-GLOBAL-DIMENSION-ASSIGNMENT-SOURCE-OR-ALTERNATIVE-ROUTE",
+  "source": "source-backed-local-analysis",
+  "resultStatus": "observed",
+  "runPlanId": "TARGET-024E-GLOBAL-DIMENSION-ASSIGNMENT-SOURCE-OR-ALTERNATIVE-ROUTE-PLAN",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "proved": [
+    "TARGET-024B, TARGET-024C and TARGET-024D were reviewed as failed or incomplete routes for persisted Global Dimension Code 1/2 proof.",
+    "Microsoft Learn maps the setup path for global dimensions to the Dimensions FastTab on General Ledger Setup, with Change Global Dimensions as a processing/action step.",
+    "Repeating the TARGET-024D Change Global Dimensions left-combobox plus Starten route is not justified without a new hypothesis.",
+    "The next route must inspect and target the Page 118 Global Dimension Code fields directly before another setup write attempt.",
+    "No Business Central UI, Playwright, master data, document draft, preview posting, posting, company switch or API shortcut was executed by TARGET-024E."
+  ],
+  "notProved": [
+    "PRODUCTLINE is not yet proven as persisted Global Dimension Code 1 in UNIVERSAARL-DE.",
+    "COSTCENTER is not yet proven as persisted Global Dimension Code 2 in UNIVERSAARL-DE.",
+    "Default Dimensions on customers, vendors, items or accounts are not proven.",
+    "Dimension Set Entries, posted entries and reporting filters are not proven.",
+    "The Page 118 direct-field write route is selected as the next hypothesis but not yet executed."
+  ],
+  "changedFiles": [
+    ".agent/state/cases/target-024e-global-dimension-assignment-source-or-alternative-route.json",
+    ".agent/state/cases/target-024f-global-dimension-page118-direct-field-route.json",
+    ".agent/state/current.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/marathon_queue.json",
+    "playwright/projects/fibu-book5/BC-FULL-PLAYTHROUGH-CATALOG.md",
+    "playwright/projects/fibu-book5/BC-MICROSOFT-LEARN-MAPPING.md",
+    "playwright/projects/fibu-book5/BC-PLAYWRIGHT-PATTERNS.md",
+    "playwright/projects/fibu-book5/BC-SOURCE-REGISTRY.md",
+    "playwright/projects/fibu-book5/book-drafts/universaarl-dimensions-setup-decision-draft.md",
+    "playwright/projects/fibu-book5/evidence/target-024e-global-dimension-assignment-source-or-alternative-route/README.md",
+    "playwright/projects/fibu-book5/evidence/target-024e-global-dimension-assignment-source-or-alternative-route/TARGET-024E-result.json"
+  ],
+  "statePatch": {
+    "lastRunSummary": {
+      "caseId": "TARGET-024E-GLOBAL-DIMENSION-ASSIGNMENT-SOURCE-OR-ALTERNATIVE-ROUTE",
+      "status": "observed",
+      "summary": "TARGET-024E selected a source-backed next route: inspect and target Page 118 Global Dimension Code fields directly; do not repeat the Page 577 Change Global Dimensions left-combobox plus Starten route.",
+      "nextCase": "TARGET-024F-GLOBAL-DIMENSION-PAGE118-DIRECT-FIELD-ROUTE"
+    },
+    "activeCase": {
+      "status": "observed",
+      "nextCase": "TARGET-024F-GLOBAL-DIMENSION-PAGE118-DIRECT-FIELD-ROUTE"
+    }
+  },
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-024e-global-dimension-assignment-source-or-alternative-route/TARGET-024E-result.json",
+    "playwright/projects/fibu-book5/evidence/target-024e-global-dimension-assignment-source-or-alternative-route/README.md",
+    "https://learn.microsoft.com/en-us/dynamics365/business-central/finance-dimensions",
+    "playwright/projects/fibu-book5/evidence/target-024b-global-dimension-assignment/TARGET-024B-result.json",
+    "playwright/projects/fibu-book5/evidence/target-024c-global-dimension-field-discovery/TARGET-024C-result.json",
+    "playwright/projects/fibu-book5/evidence/target-024d-global-dimension-controlled-assignment-route/TARGET-024D-result.json"
+  ],
+  "warnings": [
+    "Microsoft Learn is product guidance; concrete Universaarl field persistence still requires Page 118 UI evidence.",
+    "The Change Global Dimensions action page remains useful only with a new source-backed hypothesis or log proof, not as another blind repeat."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": false,
+  "reason": "Source-backed route decision only. State changes are committed manually with explicit evidence links; no state-finalize --write is requested.",
+  "flags": {
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noMasterDataChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noSearch": true,
+    "noBookMasterChange": true,
+    "noSetupChange": true,
+    "sourceCheckOnly": true
+  },
+  "routeDecision": {
+    "selectedRoute": "TARGET-024F Page 118 direct Global Dimension Code field inspection and assignment route",
+    "rejectedRoute": "Repeat TARGET-024D Page 577 Change Global Dimensions left-combobox plus Starten route",
+    "why": "The official product path starts from General Ledger Setup and its Dimensions FastTab. TARGET-024D already executed the action-page route and Page 118 remained blank after reopen.",
+    "nextExecutionBoundary": "TARGET-024F may use Page Inspection/tooltips/control inventory on Page 118 first. A setup write is allowed only if the exact Page 118 Global Dimension Code 1/2 controls are identified and before/after/reopen proof is planned."
+  },
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-024E-GLOBAL-DIMENSION-ASSIGNMENT-SOURCE-OR-ALTERNATIVE-ROUTE",
+    "plannedNextCaseBeforeReview": "TARGET-024-CORE-MASTERDATA-PLAN",
+    "lastEvidenceSummary": "TARGET-023B proves starter dimension values; TARGET-024B and TARGET-024D do not prove persisted global dimension assignment; TARGET-024C/024D prove the Change Global Dimensions action-page structure and Starten semantics.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "Master data should not start while the global-dimension decision is unresolved. The best next case is a different, source-backed Page 118 route, not another Page 577 repeat.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-024F-GLOBAL-DIMENSION-PAGE118-DIRECT-FIELD-ROUTE",
+        "status": "ready-next",
+        "reason": "New hypothesis: inspect and target Page 118 Dimensions FastTab fields directly with source-backed controls and reopen proof."
+      },
+      {
+        "caseId": "TARGET-024-CORE-MASTERDATA-PLAN",
+        "status": "ready-after-current",
+        "reason": "Master data planning can continue after global dimensions are assigned or consciously parked."
+      },
+      {
+        "caseId": "TARGET-025-CUSTOMER-VENDOR-ITEM-TEMPLATES-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Templates depend on posting groups, VAT setup and the dimension/default-dimension decision."
+      },
+      {
+        "caseId": "TARGET-026-VAT-SETUP-FIT-DECISION",
+        "status": "needs-source-check-first",
+        "reason": "German VAT setup still needs source-backed setup and later Preview/VAT Entries."
+      },
+      {
+        "caseId": "TARGET-028-DEFAULT-DIMENSIONS-STRATEGY",
+        "status": "needs-setup-first",
+        "reason": "Default Dimensions depend on concrete master data and either proven global dimensions or a park decision."
+      }
+    ],
+    "queueChangesMade": [
+      "Marked TARGET-024E observed.",
+      "Inserted TARGET-024F-GLOBAL-DIMENSION-PAGE118-DIRECT-FIELD-ROUTE as the next non-repeating route."
+    ],
+    "selectedNextCase": "TARGET-024F-GLOBAL-DIMENSION-PAGE118-DIRECT-FIELD-ROUTE",
+    "whySelectedNextCaseIsBest": "It uses the official Page 118 setup context and avoids repeating the failed Change Global Dimensions action-page route.",
+    "risksBeforeNextCase": [
+      "Do not claim global-dimension readiness until Page 118 shows persisted values after reopen.",
+      "Do not start master data as if default dimensions or reporting axes are ready.",
+      "Do not use Page 577 again without new log/session evidence."
+    ],
+    "requiredPreparation": [
+      "Inspect Page 118 field labels, tooltips/control names and, if available, Page Inspection before writing.",
+      "Prepare before/after/reopen screenshots and result JSON."
+    ]
+  },
+  "updatedAt": "2026-06-30T18:10:00.000Z"
+}

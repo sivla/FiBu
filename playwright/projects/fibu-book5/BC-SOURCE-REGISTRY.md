@@ -30,6 +30,7 @@ Diese Registry ordnet Quellen fuer das Universaarl-Buch und den Autopilot. Sie e
 | Microsoft Learn: Personalize your workspace | 1 | Look and Feel, Debugging, Personalisierung | Felder, Spalten, Aktionen und Oberflaechenbereiche fuer den Benutzer sichtbar machen | Tabellenlogik, Buchungswirkung oder allgemeingueltige Sicht fuer alle Benutzer | Produkt-/UI-Claim; konkrete Universaarl-Personalisierung braucht eigene Evidence und Gate | geprueft 2026-06-30 |
 | Microsoft Learn: Create number series | 1 | Number Series, No. Series Lines | Nummernseriencodes, Lines, Starting Date, Starting No., Ending No., Manual Nos., Allow Gaps, spaetere Setup-Zuweisung | konkrete Universaarl-Werte, persistierte Start-/Endnummern, deutsche Rechts-/Steuerfinalclaims | Produkt-/Setupclaim; Universaarl braucht TARGET-016I Write-Gate und spaetere Setup-/Beleg-Evidence | geprueft 2026-06-30, TARGET-016H |
 | Microsoft Learn: Set up value-added tax | 1 | VAT Setup, USt, Posting Setup | VAT Business Posting Groups, VAT Product Posting Groups, VAT Posting Setup als Produktstandard | deutsche Steuerrechtsbehauptung, konkrete Universaarl-19-Prozent-USt, Preview-/Posting-/VAT-Entry-Beweis | Produkt-/Setupclaim; Universaarl braucht TARGET-020 Kontext plus spaeter Setup-Fit, Preview und VAT Entries | geprueft 2026-06-30, TARGET-020 |
+| Microsoft Learn: Work with dimensions | 1 | Dimensions, Global Dimensions, Shortcut Dimensions | Dimensionen, Dimensionswerte, globale Dimensionen und Shortcut-Dimensionen als Produktstandard; General Ledger Setup als globaler Dimensionskontext | konkreter Universaarl-Persistenzbeweis fuer `PRODUCTLINE`/`COSTCENTER`, Default Dimensions, Dimension Set Entries oder Reportingwirkung | Produkt-/Setupclaim; Universaarl braucht TARGET-024F Page-118-Reopen-Proof und spaeter Entry-/Reporting-Evidence | geprueft 2026-06-30, TARGET-024E |
 | Microsoft Learn: Business intelligence and reporting | 1 | Reporting, Request Pages | Reporting-/BI-Bereich und Reportauswertung als Produktfunktion | konkrete Reportparameter oder Universaarl-Reportausgabe | Produktclaim; konkrete Request Page und Reportausgabe brauchen eigene Evidence | geprueft 2026-06-30 |
 | Microsoft Learn: Dynamics 365 Implementation Guide overview | 3 | Implementierungsmethodik | Strategize, Initiate, Implement, Prepare, Operate | konkrete BC-Feldlogik | Best-Practice-/Projektclaim | geprueft 2026-06-29 |
 | Microsoft Learn: Success by Design framework | 3 | Governance, Reviews, Projektrisiko | Projekt-, Test- und Architekturdenken | UI- oder Buchungsbeweis | Best-Practice-/Projektclaim | geprueft 2026-06-29 |
@@ -105,6 +106,17 @@ Fuer Universaarl folgt daraus:
 - Der naechste praktische Write-Gate darf nur den offiziellen Lines-Pfad testen: richtige `U-*` Nummernserie waehlen, `Zeilen`, `Neu`, `Startdatum`, `Startnr.`, `Endnr.`; danach Reopen-Proof.
 - `Luecken in Nummern zulassen` bleibt default-locked und darf nicht als Nebeneffekt geaendert werden.
 - Setup-Zuweisung an Sales/Purchase/Inventory bleibt bis nach sichtbarer Line-Persistenz gesperrt.
+
+## TARGET-024E Global-Dimensions-Quellenentscheidung
+
+Microsoft Learn `Work with dimensions` stuetzt fuer TARGET-024E die Produktlogik: Globale Dimensionen gehoeren in den Kontext `General Ledger Setup` und dort in den Dimensionsbereich. Die bisher getestete Seite `Globale Dimensionen aendern...` bleibt ein Verarbeitungs-/Aenderungspfad, aber TARGET-024D hat nach Eingabe und `Starten` keinen gespeicherten Wert auf Page 118 bewiesen.
+
+Fuer Universaarl folgt daraus:
+
+- Die naechste Route ist nicht noch einmal Page 577 mit linker Combobox und `Starten`.
+- Der naechste praktische Case muss Page 118 selbst behandeln: Dimensions-FastTab sichtbar machen, Feldnamen/Tooltips/Page Inspection pruefen, dann nur die exakt identifizierten Felder `Globaler Dimensionscode 1/2` setzen.
+- Nach jeder Eingabe zaehlt erst das erneute Oeffnen von Page 118 als Persistenzbeweis.
+- Masterdaten, Default Dimensions, Belege und Reporting bleiben gesperrt, bis `PRODUCTLINE` und `COSTCENTER` sichtbar gespeichert sind oder die globale Dimension bewusst geparkt wird.
 
 ## PREP-027 Implementation-Guide-Quellenentscheidung
 
