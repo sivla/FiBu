@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-016L-NUMBER-SERIES-INCOMPLETE-LINE-COMPLETE-OR-CLEANUP-RECOVERY",
+  "title": "Universaarl Number Series incomplete line complete or cleanup recovery",
+  "instance": "playthru",
+  "targetCompany": "UNIVERSAARL-DE",
+  "legalName": "Universaarl GmbH",
+  "workType": "foundation-number-series-line-recovery",
+  "status": "ready-next",
+  "dependsOn": [
+    "TARGET-016J-NUMBER-SERIES-LINES-TRUE-EDITOR-OR-ASSISTED-SETUP-FALLBACK",
+    "TARGET-016K-NUMBER-SERIES-INCOMPLETE-LINE-CLEANUP-GATE"
+  ],
+  "goal": "Resolve the current incomplete U-CUST Number Series Line before any setup assignment or master data: either complete Startnr./Endnr. with proven editors and reopen proof, or delete via row-scoped confirmation and reopen proof.",
+  "evidenceTarget": "playwright/projects/fibu-book5/evidence/target-016l-number-series-incomplete-line-complete-or-cleanup-recovery/",
+  "allowedActionsWhenRun": [
+    "open-playthru-business-central",
+    "open-UNIVERSAARL-DE-with-documentation",
+    "open-number-series-page",
+    "select-existing-U-CUST-row",
+    "open-Zeilen-from-selected-number-series",
+    "inspect-existing-incomplete-U-CUST-line",
+    "complete-existing-line-only-if-Startnr-and-Endnr-editors-are-proven",
+    "delete-existing-line-only-if-row-scoped-confirmation-is-proven",
+    "reopen-lines-for-persistence-or-cleanup-proof",
+    "capture-screenshot-qa",
+    "write-result",
+    "queue-and-state-update"
+  ],
+  "defaultLockedActions": [
+    "number-series-assignment",
+    "master-data-create",
+    "preview-posting",
+    "posting",
+    "checkbox-change",
+    "api-shortcut"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "leave-playthru",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "repeat-toolbar-delete-without-visible-confirmation",
+    "create-second-U-CUST-line-before-cleanup-or-completion",
+    "assign-number-series-before-line-persistence-proof",
+    "change-number-series-gap-checkbox-without-gate",
+    "create-master-data-before-number-series-line-is-valid",
+    "post",
+    "preview-posting",
+    "api-shortcut"
+  ],
+  "successCriteria": [
+    "Existing incomplete U-CUST line is visible before action.",
+    "Either U-CUST00001/U-CUST99999 are visible after reopen, or the incomplete line is gone after reopen.",
+    "No setup assignment, master data, preview posting or posting occurs.",
+    "No gap/open checkbox is changed."
+  ],
+  "targetValues": {
+    "code": "U-CUST",
+    "startingNo": "U-CUST00001",
+    "endingNo": "U-CUST99999"
+  },
+  "migrationRelevance": "german-final-candidate",
+  "finalScreenshotNeeded": true,
+  "nextSafeAction": "Run a scoped row recovery: prefer completing the existing line if Startnr./Endnr. editors are proven; otherwise use row context/delete confirmation. Do not start a new U-CUST line.",
+  "updatedAt": "2026-06-30T13:36:39.895Z"
+}

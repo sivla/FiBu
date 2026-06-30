@@ -174,6 +174,15 @@ Diese Bilder werden erst erzeugt, wenn `UNIVERSAARL-DE` existiert und genug sinn
 | `target-016i-030-after-official-route-write.png` | Nr.-Serienzeilen / No. Series Lines | `playthru` / `UNIVERSAARL-DE`, `U-CUST` | Nach Wert-Eingabeversuch | `U-CUST00001` und `U-CUST99999` sind nicht sichtbar; die Zeile bleibt leer | die getestete offizielle Route reicht fuer Playwright noch nicht ohne echten Editor-Nachweis | keine Start-/Endnummernreife, keine Buchungsreife | `rejected-value-proof` |
 | `target-016i-040-after-reopen-proof.png` | Nr.-Serienzeilen / No. Series Lines | `playthru` / `UNIVERSAARL-DE`, `U-CUST` | Reopen-Proof | nach erneutem Oeffnen sind die Zielwerte weiterhin nicht sichtbar | keine sichtbare Persistenz nach Reopen | keine fertige Nummernserienzeile, keine Setup-Zuweisung, keine Stammdatenreife | `blocked-reopen-proof` |
 
+## Universaarl Foundation - Nummernserien TARGET-016J/016K
+
+| Screenshot | Page | Company/Kontext | Schritt | Was man sehen soll | Interner Beweis | Beweist nicht | Status |
+|---|---|---|---|---|---|---|---|
+| `target-016j-030-after-true-editor-probes.png` | Nr.-Serienzeilen / No. Series Lines | `playthru` / `UNIVERSAARL-DE`, `U-CUST` | Nach echter Editor-Probe | Tooltip/Fokus liegt bei `Startnr.`, rote Pflichtmarkierung bleibt sichtbar; Start-/Endnummernwerte sind noch nicht eingetragen | frame-aware Header-/Editor-Diagnose erreicht den richtigen Lines-Kontext und erkennt echte Inputs fuer `Startdatum`/`Startnr.` | kein bewiesener `Endnr.`-Editor, keine vollstaendige Zeilenpersistenz, keine Setup-Zuweisung | `diagnostic-context`, `not-write-proof` |
+| `target-016j-050-after-reopen-proof.png` | Nr.-Serienzeilen / No. Series Lines | `playthru` / `UNIVERSAARL-DE`, `U-CUST` | Reopen-Proof nach Editor-Probe | eine Zeile mit `Startdatum 30.06.2026` ist sichtbar, `Startnr.` ist leer mit rotem Pflichtmarker, `Endnr.` bleibt leer | der Probe hat unbeabsichtigt eine unvollstaendige date-only Zeile gespeichert; der Zustand ist nach Reopen sichtbar | keine fertige Nummernserie, keine Start-/Endnummernreife, keine Buchungs- oder Stammdatenfreigabe | `blocked-side-effect`, `cleanup-required` |
+| `target-016k-020-after-delete-attempt.png` | Nr.-Serienzeilen / No. Series Lines | `playthru` / `UNIVERSAARL-DE`, `U-CUST` | Nach Cleanup-/Delete-Versuch | die unvollstaendige Zeile mit `30.06.2026` bleibt sichtbar; kein sicherer Bestaetigungsdialog ist belegt | der toolbar-nahe Delete-Pfad reicht nicht als Cleanup | keine Entfernung der Zeile, keine sichere Loeschroute | `rejected-cleanup-path` |
+| `target-016k-030-after-reopen-cleanup-proof.png` | Nr.-Serienzeilen / No. Series Lines | `playthru` / `UNIVERSAARL-DE`, `U-CUST` | Reopen-Proof nach Cleanup-Versuch | dieselbe unvollstaendige Zeile ist nach erneutem Oeffnen weiterhin sichtbar | Cleanup ist blockiert und muss vor Setup-Zuweisung/Stammdaten geloest werden | keine bereinigte Nummernserienbasis, keine fertige Foundation | `blocked-reopen-proof`, `next-recovery-required` |
+
 ## Qualitaetsfelder fuer neue Screenshot-Metadaten
 
 Neue oder ueberarbeitete `.screenshot.json`-Dateien sollen diese Felder tragen:

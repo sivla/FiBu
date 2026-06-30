@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-30T13:15:43.919Z",
+  "updatedAt": "2026-06-30T13:36:39.895Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "activeArea": "universaarl-w1-foundation-number-series",
-  "activeCase": "TARGET-016J-NUMBER-SERIES-LINES-TRUE-EDITOR-OR-ASSISTED-SETUP-FALLBACK",
-  "active_case_file": ".agent/state/cases/target-016j-number-series-lines-true-editor-or-assisted-setup-fallback.json",
+  "activeCase": "TARGET-016L-NUMBER-SERIES-INCOMPLETE-LINE-COMPLETE-OR-CLEANUP-RECOVERY",
+  "active_case_file": ".agent/state/cases/target-016l-number-series-incomplete-line-complete-or-cleanup-recovery.json",
   "lastReferenceCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
   "lastReferenceCaseFile": ".agent/state/cases/warehouse-031-warehouse-source-route-park-or-setup-fit-decision.json",
   "mode": "universaarl-target-execution",
-  "requiresStrongModel": false,
+  "requiresStrongModel": true,
   "requiredPreflightChecks": [
     "agent:preflight",
     "agent:state:validate",
@@ -24,10 +24,10 @@
     "open-number-series-page",
     "select-existing-U-CUST-row",
     "open-Zeilen-from-selected-number-series",
-    "diagnose-visible-star-row-editor",
-    "use-visible-editor-only-if-active-input-is-proven",
-    "use-assisted-setup-fallback-only-if-ui-route-is-source-backed",
-    "reopen-lines-for-persistence-proof",
+    "inspect-existing-incomplete-U-CUST-line",
+    "complete-existing-line-only-if-Startnr-and-Endnr-editors-are-proven",
+    "delete-existing-line-only-if-row-scoped-confirmation-is-proven",
+    "reopen-lines-for-persistence-or-cleanup-proof",
     "capture-screenshot-qa",
     "write-result",
     "queue-and-state-update"
@@ -64,9 +64,14 @@
     "change-number-series-gap-checkbox-without-gate",
     "repeat-header-coordinate-route-from-TARGET-016I",
     "repeat-under-header-cell-click-without-active-editor-proof",
-    "claim-lines-new-route-success-without-reopen-proof"
+    "claim-lines-new-route-success-without-reopen-proof",
+    "repeat-toolbar-delete-without-visible-confirmation",
+    "repeat-Endnr-header-miscoordinate-from-TARGET-016J",
+    "create-second-U-CUST-line-before-cleanup-or-completion",
+    "assign-number-series-while-incomplete-line-exists",
+    "create-master-data-before-number-series-line-is-valid"
   ],
-  "nextStep": "Run TARGET-016J: inspect the visible U-CUST Number Series Lines star row and prove a real active editor before typing; if no true editor exists, use a source-backed Assisted Setup or page action fallback. Do not repeat coordinate-under-header typing.",
+  "nextStep": "Run TARGET-016L: resolve the current incomplete U-CUST Number Series Line first. Complete it only with proven Startnr./Endnr. editors and reopen proof, or delete it only through row-scoped confirmation and reopen proof. Do not assign setup or create master data.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -3702,51 +3707,53 @@
     "resultFile": "playwright/projects/fibu-book5/evidence/prep-020-universaarl-dataset-blueprint/PREP-020-result.json"
   },
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-016F-NUMBER-SERIES-PERSONALIZE-OR-SETUP-ASSISTED-ROUTE",
-    "plannedNextCaseBeforeReview": "TARGET-016F-NUMBER-SERIES-PERSONALIZE-OR-SETUP-ASSISTED-ROUTE",
-    "lastEvidenceSummary": "TARGET-016E blocked plain field-flow and F2 for U-CUST Number Series Lines; TARGET-016D proved Page 457/Table 309.",
-    "isPlannedNextCaseStillSensible": true,
-    "reason": "Personalize/standard route discovery is the next non-repeated BC-native path after grid typing failed.",
+    "currentCase": "TARGET-016K-NUMBER-SERIES-INCOMPLETE-LINE-CLEANUP-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-016K-NUMBER-SERIES-INCOMPLETE-LINE-CLEANUP-GATE",
+    "lastEvidenceSummary": "TARGET-016J proved real editable inputs for Startdatum and Startnr., but not Endnr.; probing created an incomplete U-CUST Number Series Line with Startdatum 30.06.2026 and empty Startnr./Endnr. TARGET-016K attempted toolbar Delete, but no confirmation was visible and the incomplete line remained after reopen.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "A direct fallback route must wait until the incomplete U-CUST line is cleaned or completed; setup truth is currently polluted by a date-only line.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-016G-NUMBER-SERIES-PERSONALIZE-FIELD-ACTION-MAP",
+        "caseId": "TARGET-016L-NUMBER-SERIES-INCOMPLETE-LINE-COMPLETE-OR-CLEANUP-RECOVERY",
         "status": "ready-next",
-        "reason": "Depends on whether Personalize became usable."
+        "reason": "It targets the current concrete blocker: either complete the existing incomplete line or remove it through a better row-scoped cleanup route."
+      },
+      {
+        "caseId": "TARGET-016M-NUMBER-SERIES-ASSISTED-SETUP-OR-CONFIG-PACKAGE-FALLBACK",
+        "status": "ready-after-current",
+        "reason": "Useful only after the incomplete U-CUST line is resolved."
       },
       {
         "caseId": "TARGET-017-NUMBER-SERIES-SETUP-ASSIGNMENT",
         "status": "needs-setup-first",
-        "reason": "Assignments require valid line ranges."
+        "reason": "Assignments require valid line ranges first."
       },
       {
         "caseId": "TARGET-018-CUSTOMER-MASTERDATA-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "Customer creation depends on customer number-series assignment."
+        "reason": "Master data waits for numbering, posting groups, VAT and dimensions."
       },
       {
         "caseId": "TARGET-019-POSTING-GROUPS-PREFLIGHT",
         "status": "ready-after-current",
-        "reason": "Can proceed after numbering is unblocked or parked."
-      },
-      {
-        "caseId": "TARGET-020-VAT-SETUP-READINESS",
-        "status": "ready-after-current",
-        "reason": "Follows foundation sequencing."
+        "reason": "Posting groups can progress once numbering is resolved or explicitly parked."
       }
     ],
     "queueChangesMade": [
-      "Marked TARGET-016F observed.",
-      "Added TARGET-016G to map Personalize fields/actions without saving changes."
+      "Marked TARGET-016J blocked with true-editor diagnostics and incomplete-line side effect.",
+      "Added/marked TARGET-016K blocked because toolbar Delete did not remove the incomplete U-CUST line.",
+      "Selected TARGET-016L-NUMBER-SERIES-INCOMPLETE-LINE-COMPLETE-OR-CLEANUP-RECOVERY before any assisted/setup fallback."
     ],
-    "selectedNextCase": "TARGET-016G-NUMBER-SERIES-PERSONALIZE-FIELD-ACTION-MAP",
-    "whySelectedNextCaseIsBest": "TARGET-016F proved the correct Personalisieren mode on Nr.-Serienzeilen; TARGET-016G can now inspect available fields/actions without repeating grid typing.",
+    "selectedNextCase": "TARGET-016L-NUMBER-SERIES-INCOMPLETE-LINE-COMPLETE-OR-CLEANUP-RECOVERY",
+    "whySelectedNextCaseIsBest": "It solves the actual current Business Central state instead of jumping to a new route while a broken line remains.",
     "risksBeforeNextCase": [
-      "Do not save Personalize changes without explicit gate.",
-      "Do not change checkbox states.",
-      "Do not create master data before line ranges are ready."
+      "Do not assign number series to setup pages.",
+      "Do not create master data.",
+      "Do not repeat toolbar Delete without dialog proof.",
+      "Do not change Allow Gaps/Open checkboxes."
     ],
     "requiredPreparation": [
-      "Use screenshot QA and safe route-specific evidence."
+      "Use the existing U-CUST row, prove the target input or row action first, then either complete Startnr./Endnr. with reopen proof or delete with confirmation/reopen proof."
     ]
   },
   "permissionBlocker": {
@@ -5071,5 +5078,38 @@
     "noPreview": true,
     "noPosting": true,
     "updatedAt": "2026-06-30T13:15:43.919Z"
+  },
+  "latestTarget016J": {
+    "caseId": "TARGET-016J-NUMBER-SERIES-LINES-TRUE-EDITOR-OR-ASSISTED-SETUP-FALLBACK",
+    "status": "blocked",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-016j-number-series-lines-true-editor-or-assisted-setup-fallback/TARGET-016J-result.json",
+    "summary": "TARGET-016J did not prove a reliable persistent U-CUST Number Series Lines value route; grid typing remains blocked.",
+    "keyLearning": [
+      "Startdatum and Startnr. can expose real editable inputs when frame offsets and header bands are handled correctly.",
+      "Endnr. was still mis-targeted and no complete line persistence was proven.",
+      "Focusing Startdatum created or revealed an incomplete line with Startdatum 30.06.2026 and empty Startnr./Endnr.; this must be resolved before further setup."
+    ],
+    "noPreview": true,
+    "noPosting": true,
+    "noSetupAssignment": true,
+    "noMasterData": true,
+    "nextCase": "TARGET-016L-NUMBER-SERIES-INCOMPLETE-LINE-COMPLETE-OR-CLEANUP-RECOVERY",
+    "updatedAt": "2026-06-30T13:36:39.895Z"
+  },
+  "latestTarget016K": {
+    "caseId": "TARGET-016K-NUMBER-SERIES-INCOMPLETE-LINE-CLEANUP-GATE",
+    "status": "blocked",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-016k-number-series-incomplete-line-cleanup-gate/TARGET-016K-result.json",
+    "summary": "TARGET-016K did not prove cleanup of the incomplete U-CUST Number Series Line.",
+    "blockedBy": [
+      "Delete confirmation was not visible or was not confirmed.",
+      "Incomplete U-CUST line is still visible after cleanup reopen proof."
+    ],
+    "noPreview": true,
+    "noPosting": true,
+    "noSetupAssignment": true,
+    "noMasterData": true,
+    "nextCase": "TARGET-016L-NUMBER-SERIES-INCOMPLETE-LINE-COMPLETE-OR-CLEANUP-RECOVERY",
+    "updatedAt": "2026-06-30T13:36:39.895Z"
   }
 }

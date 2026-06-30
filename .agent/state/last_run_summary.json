@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "runId": "TARGET-016I-20260630",
-  "caseId": "TARGET-016I-NUMBER-SERIES-LINES-OFFICIAL-NEW-ROUTE-WRITE-GATE",
-  "lastCase": "TARGET-016I-NUMBER-SERIES-LINES-OFFICIAL-NEW-ROUTE-WRITE-GATE",
-  "status": "blocked",
-  "summary": "TARGET-016I did not prove U-CUST Startnr./Endnr. persistence after reopen.",
+  "runId": "TARGET-016J-016K-20260630",
+  "caseId": "TARGET-016K-NUMBER-SERIES-INCOMPLETE-LINE-CLEANUP-GATE",
+  "lastCase": "TARGET-016K-NUMBER-SERIES-INCOMPLETE-LINE-CLEANUP-GATE",
+  "status": "blocked-with-learning-and-unresolved-incomplete-line",
+  "summary": "TARGET-016J improved Number Series Lines editor diagnostics and exposed a persistent incomplete U-CUST line; TARGET-016K attempted toolbar cleanup but no confirmation appeared and the line remains.",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "posted": false,
@@ -14,69 +14,72 @@
   "masterDataChanged": false,
   "apiShortcut": false,
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/target-016i-number-series-lines-official-new-route-write-gate/TARGET-016I-result.json",
-    "playwright/projects/fibu-book5/img/target-016i-010-u-cust-lines-before.png",
-    "playwright/projects/fibu-book5/img/target-016i-020-after-lines-new.png",
-    "playwright/projects/fibu-book5/img/target-016i-030-after-official-route-write.png",
-    "playwright/projects/fibu-book5/img/target-016i-040-after-reopen-proof.png"
+    "playwright/projects/fibu-book5/evidence/target-016j-number-series-lines-true-editor-or-assisted-setup-fallback/TARGET-016J-result.json",
+    "playwright/projects/fibu-book5/evidence/target-016k-number-series-incomplete-line-cleanup-gate/TARGET-016K-result.json",
+    "playwright/projects/fibu-book5/img/target-016j-050-after-reopen-proof.png",
+    "playwright/projects/fibu-book5/img/target-016k-030-after-reopen-cleanup-proof.png"
   ],
   "resultPaths": [
-    "playwright/projects/fibu-book5/evidence/target-016i-number-series-lines-official-new-route-write-gate/TARGET-016I-result.json"
+    "playwright/projects/fibu-book5/evidence/target-016j-number-series-lines-true-editor-or-assisted-setup-fallback/TARGET-016J-result.json",
+    "playwright/projects/fibu-book5/evidence/target-016k-number-series-incomplete-line-cleanup-gate/TARGET-016K-result.json"
   ],
   "blockedBy": [
-    "Startdatum/Starting Date cell was not targetable.",
-    "Startnr./Starting No. cell was not targetable.",
-    "Endnr./Ending No. cell was not targetable.",
-    "U-CUST Startnr./Endnr. target values are not visible after reopen."
+    "Delete confirmation was not visible or was not confirmed.",
+    "Incomplete U-CUST line is still visible after cleanup reopen proof."
   ],
-  "nextCase": "TARGET-016J-NUMBER-SERIES-LINES-TRUE-EDITOR-OR-ASSISTED-SETUP-FALLBACK",
-  "nextStep": "Run TARGET-016J: inspect the visible U-CUST Number Series Lines star row and prove a real active editor before typing; if no true editor exists, use a source-backed Assisted Setup or page action fallback. Do not repeat coordinate-under-header typing.",
+  "nextCase": "TARGET-016L-NUMBER-SERIES-INCOMPLETE-LINE-COMPLETE-OR-CLEANUP-RECOVERY",
+  "nextStep": "Run TARGET-016L: resolve the current incomplete U-CUST Number Series Line first. Complete it only with proven Startnr./Endnr. editors and reopen proof, or delete it only through row-scoped confirmation and reopen proof. Do not assign setup or create master data.",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-016I-NUMBER-SERIES-LINES-OFFICIAL-NEW-ROUTE-WRITE-GATE",
-    "plannedNextCaseBeforeReview": "TARGET-016I-NUMBER-SERIES-LINES-OFFICIAL-NEW-ROUTE-WRITE-GATE",
-    "lastEvidenceSummary": "TARGET-016H selected the Microsoft Learn-backed Number Series Lines route after Personalize/F2/cell routes failed.",
-    "isPlannedNextCaseStillSensible": true,
-    "reason": "This is the first source-backed UI write gate and touches only the U-CUST line context.",
+    "currentCase": "TARGET-016K-NUMBER-SERIES-INCOMPLETE-LINE-CLEANUP-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-016K-NUMBER-SERIES-INCOMPLETE-LINE-CLEANUP-GATE",
+    "lastEvidenceSummary": "TARGET-016J proved real editable inputs for Startdatum and Startnr., but not Endnr.; probing created an incomplete U-CUST Number Series Line with Startdatum 30.06.2026 and empty Startnr./Endnr. TARGET-016K attempted toolbar Delete, but no confirmation was visible and the incomplete line remained after reopen.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "A direct fallback route must wait until the incomplete U-CUST line is cleaned or completed; setup truth is currently polluted by a date-only line.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-016J-NUMBER-SERIES-LINES-TRUE-EDITOR-OR-ASSISTED-SETUP-FALLBACK",
-        "status": "needs-ui-discovery-first",
-        "reason": "Persistence is not visible after reopen."
+        "caseId": "TARGET-016L-NUMBER-SERIES-INCOMPLETE-LINE-COMPLETE-OR-CLEANUP-RECOVERY",
+        "status": "ready-next",
+        "reason": "It targets the current concrete blocker: either complete the existing incomplete line or remove it through a better row-scoped cleanup route."
+      },
+      {
+        "caseId": "TARGET-016M-NUMBER-SERIES-ASSISTED-SETUP-OR-CONFIG-PACKAGE-FALLBACK",
+        "status": "ready-after-current",
+        "reason": "Useful only after the incomplete U-CUST line is resolved."
       },
       {
         "caseId": "TARGET-017-NUMBER-SERIES-SETUP-ASSIGNMENT",
         "status": "needs-setup-first",
-        "reason": "Assignments require line persistence first."
+        "reason": "Assignments require valid line ranges first."
       },
       {
         "caseId": "TARGET-018-CUSTOMER-MASTERDATA-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "Customer creation waits for assigned number series and posting setup."
+        "reason": "Master data waits for numbering, posting groups, VAT and dimensions."
       },
       {
         "caseId": "TARGET-019-POSTING-GROUPS-PREFLIGHT",
         "status": "ready-after-current",
-        "reason": "Posting groups follow foundation numbering."
-      },
-      {
-        "caseId": "TARGET-020-VAT-SETUP-READINESS",
-        "status": "ready-after-current",
-        "reason": "VAT setup can proceed after or alongside posting groups."
+        "reason": "Posting groups can progress once numbering is resolved or explicitly parked."
       }
     ],
-    "queueChangesMade": [],
-    "selectedNextCase": "TARGET-016J-NUMBER-SERIES-LINES-TRUE-EDITOR-OR-ASSISTED-SETUP-FALLBACK",
-    "whySelectedNextCaseIsBest": "It avoids repeating failed value entry and forces a true editor/fallback diagnosis.",
+    "queueChangesMade": [
+      "Marked TARGET-016J blocked with true-editor diagnostics and incomplete-line side effect.",
+      "Added/marked TARGET-016K blocked because toolbar Delete did not remove the incomplete U-CUST line.",
+      "Selected TARGET-016L-NUMBER-SERIES-INCOMPLETE-LINE-COMPLETE-OR-CLEANUP-RECOVERY before any assisted/setup fallback."
+    ],
+    "selectedNextCase": "TARGET-016L-NUMBER-SERIES-INCOMPLETE-LINE-COMPLETE-OR-CLEANUP-RECOVERY",
+    "whySelectedNextCaseIsBest": "It solves the actual current Business Central state instead of jumping to a new route while a broken line remains.",
     "risksBeforeNextCase": [
-      "Do not assign setup pages before all required line ranges are visible.",
-      "Do not change gap/open checkboxes without their own gate.",
-      "Do not create master data yet."
+      "Do not assign number series to setup pages.",
+      "Do not create master data.",
+      "Do not repeat toolbar Delete without dialog proof.",
+      "Do not change Allow Gaps/Open checkboxes."
     ],
     "requiredPreparation": [
-      "Review TARGET-016I screenshots and confirm whether U-CUST line persistence is visible."
+      "Use the existing U-CUST row, prove the target input or row action first, then either complete Startnr./Endnr. with reopen proof or delete with confirmation/reopen proof."
     ]
   },
-  "updatedAt": "2026-06-30T13:15:43.919Z",
+  "updatedAt": "2026-06-30T13:36:39.895Z",
   "noPreview": true,
   "noPosting": true,
   "noMasterData": true,
