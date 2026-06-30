@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-016-NUMBER-SERIES-CONTROLLED-SETUP-WRITE-GATE",
+  "title": "Universaarl Number Series controlled setup write gate",
+  "instance": "playthru",
+  "targetCompany": "UNIVERSAARL-DE",
+  "legalName": "Universaarl GmbH",
+  "workType": "foundation-number-series-controlled-setup-write-gate",
+  "status": "ready-next",
+  "dependsOn": [
+    "TARGET-015-NUMBER-SERIES-CONTROLLED-SETUP-PREFLIGHT"
+  ],
+  "goal": "Create only the missing Universaarl U-* number series after duplicate check and before/after screenshots; do not assign setup fields, create master data, preview or post.",
+  "evidenceTarget": "playwright/projects/fibu-book5/evidence/target-016-number-series-controlled-setup-write-gate/",
+  "allowedActionsWhenRun": [
+    "open-playthru-business-central",
+    "open-UNIVERSAARL-DE-with-documentation",
+    "open-number-series-page",
+    "verify-U-series-still-not-existing",
+    "click-New-or-Edit-List-only-inside-Number-Series-after-before-screenshot",
+    "create-missing-U-CUST-U-VEND-U-ITEM-U-SO-U-SINV-U-PO-U-PINV-series",
+    "capture-after-screenshots",
+    "write-setup-result"
+  ],
+  "defaultLockedActions": [
+    "assign-number-series-in-sales-setup",
+    "assign-number-series-in-purchase-setup",
+    "assign-number-series-in-inventory-setup",
+    "master-data-create",
+    "preview-posting",
+    "posting",
+    "dialog-confirmation-outside-number-series-save"
+  ],
+  "forbiddenActions": [
+    "leave-playthru",
+    "operate-in-CRONUS-as-active-target",
+    "post",
+    "preview-posting",
+    "api-shortcut",
+    "create-master-data-before-number-series-setup",
+    "claim-german-invoice-compliance-from-number-series-only"
+  ],
+  "targetSeriesDraft": [
+    {
+      "family": "customer",
+      "code": "U-CUST",
+      "startNo": "U-CUST00001"
+    },
+    {
+      "family": "vendor",
+      "code": "U-VEND",
+      "startNo": "U-VEND00001"
+    },
+    {
+      "family": "item",
+      "code": "U-ITEM",
+      "startNo": "U-ITEM00001"
+    },
+    {
+      "family": "sales-order",
+      "code": "U-SO",
+      "startNo": "U-SO00001"
+    },
+    {
+      "family": "sales-invoice",
+      "code": "U-SINV",
+      "startNo": "U-SINV00001"
+    },
+    {
+      "family": "purchase-order",
+      "code": "U-PO",
+      "startNo": "U-PO00001"
+    },
+    {
+      "family": "purchase-invoice",
+      "code": "U-PINV",
+      "startNo": "U-PINV00001"
+    }
+  ],
+  "successCriteria": [
+    "Before screenshot shows existing Number Series without U-* target duplicates.",
+    "After screenshot shows the created U-* number series rows or exact blocked error.",
+    "Result separates number-series creation from later setup-field assignments.",
+    "No master data, draft, preview posting, posting or ledger trace occurs."
+  ],
+  "migrationRelevance": "german-final-candidate",
+  "finalScreenshotNeeded": true,
+  "nextSafeAction": "Open Number Series and perform only the narrowly scoped U-* series creation gate if duplicate check still passes.",
+  "updatedAt": "2026-06-30T10:48:19.352Z"
+}

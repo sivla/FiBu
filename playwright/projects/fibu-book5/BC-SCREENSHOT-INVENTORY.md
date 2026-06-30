@@ -110,6 +110,15 @@ Diese Bilder werden erst erzeugt, wenn `UNIVERSAARL-DE` existiert und genug sinn
 | Report Request Page | Report / Request Page | `UNIVERSAARL-DE` | Report vor Ausfuehrung filtern | Optionen, Datumsfilter, Konto-/Dimensionsfilter | Reportfilter werden vor Lauf gesetzt | Reportinhalt ohne Ausfuehrung | `planned`, `needs-reporting-foundation` |
 | Analysis Mode / Analysemodus | Liste mit Analysemodus | `UNIVERSAARL-DE` | Daten ohne Buchung untersuchen | Spalten, Gruppierung, Filter, Summen | read-only Analyse an echten Daten | Buchung oder Datenkorrektur | `planned`, `needs-data-richness` |
 
+## Universaarl Foundation - Nummernserien TARGET-015
+
+| Screenshot | Page | Company/Kontext | Schritt | Was man sehen soll | Interner Beweis | Beweist nicht | Status |
+|---|---|---|---|---|---|---|---|
+| `target-015-010-number-series.png` | Nummernserie / No. Series | `playthru` / `UNIVERSAARL-DE` | Vorherzustand vor U-Serien | vorhandene Codes `BANKEINZ`, `CT-MSG`, `VATNOTIF`, keine sichtbaren `U-*` Zielcodes | Nummernserienliste ist erreichbar und Start-/Endnummern sind lesbar | keine Anlage, keine Zuweisung, keine Compliance | `accepted-readonly-before-state` |
+| `target-015-020-sales-receivables-setup.png` | Einrichtung Debitoren und Verkauf | `playthru` / `UNIVERSAARL-DE` | Verkaufssetup-Kontext | Seite, FastTabs, sichtbarer FastTab `Nummernserie` | Verkaufssetup ist erreichbar | konkrete Debitoren-/Auftrags-/Rechnungsnummernfelder sind noch nicht aufgeklappt belegt | `accepted-page-context-not-field-proof` |
+| `target-015-030-purchases-payables-setup.png` | Kreditoren & Einkauf Einr. | `playthru` / `UNIVERSAARL-DE` | Einkaufssetup-Kontext | sichtbare Felder `Kreditorennummern`, `Rechnungsnummern`, `Gebuchte Rechnungsnummern`, `Gutschriftsnummern` | Einkaufsnummernfelder sind als Vorherzustand sichtbar | keine Zuweisung, keine Einkaufsbelege, keine Buchung | `accepted-field-context` |
+| `target-015-040-inventory-setup.png` | Lager Einrichtung | `playthru` / `UNIVERSAARL-DE` | Lagersetup-Kontext | Seite, FastTabs, sichtbarer FastTab `Nummerierung` | Lagersetup ist erreichbar | konkrete Artikelnr.-Felder sind noch nicht aufgeklappt belegt | `accepted-page-context-not-field-proof` |
+
 ## Qualitaetsfelder fuer neue Screenshot-Metadaten
 
 Neue oder ueberarbeitete `.screenshot.json`-Dateien sollen diese Felder tragen:

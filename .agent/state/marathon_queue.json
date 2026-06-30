@@ -987,7 +987,7 @@
     {
       "id": "TARGET-015-NUMBER-SERIES-CONTROLLED-SETUP-PREFLIGHT",
       "order": 10015,
-      "status": "pending",
+      "status": "done",
       "category": "target-foundation-number-series",
       "expectedImpact": "number-series-controlled-setup-preflight",
       "mayWorkEffectively": false,
@@ -997,11 +997,29 @@
       "sourceCompany": "UNIVERSAARL-DE",
       "targetWorld": "Universaarl",
       "noFinalGermanClaimWithoutUniversaarlEvidence": false,
+      "lookaheadStatus": "done",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-015-number-series-controlled-setup-preflight/TARGET-015-result.json",
+      "completedAt": "2026-06-30T10:48:19.352Z",
+      "result": "Captured Number Series and related setup pages read-only; no U-* duplicate visible; no setup write occurred."
+    },
+    {
+      "id": "TARGET-016-NUMBER-SERIES-CONTROLLED-SETUP-WRITE-GATE",
+      "order": 10016,
+      "status": "pending",
+      "category": "target-foundation-number-series",
+      "expectedImpact": "number-series-controlled-setup-write",
+      "mayWorkEffectively": true,
+      "mayRunPlaywright": true,
+      "effectiveBcActionsAllowed": true,
+      "goal": "Create only the missing Universaarl U-* number series after duplicate check and before/after screenshots.",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "targetWorld": "Universaarl",
+      "noFinalGermanClaimWithoutUniversaarlEvidence": false,
       "lookaheadStatus": "ready-next",
       "resultPath": null
     }
   ],
-  "lastUpdated": "2026-06-30T12:11:31+02:00",
+  "lastUpdated": "2026-06-30T10:48:19.352Z",
   "nextStepDecisionGate": {
     "active": true,
     "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",
@@ -1075,54 +1093,54 @@
     }
   },
   "updatedAt": "2026-06-30T12:11:31+02:00",
-  "lastCompletedCase": "TARGET-014-NUMBER-SERIES-SETUP-DECISION",
-  "nextCase": "TARGET-015-NUMBER-SERIES-CONTROLLED-SETUP-PREFLIGHT",
+  "lastCompletedCase": "TARGET-015-NUMBER-SERIES-CONTROLLED-SETUP-PREFLIGHT",
+  "nextCase": "TARGET-016-NUMBER-SERIES-CONTROLLED-SETUP-WRITE-GATE",
   "nextStepDecisionCard": {
-      "currentCase": "TARGET-014-NUMBER-SERIES-SETUP-DECISION",
-      "plannedNextCaseBeforeReview": "TARGET-014-NUMBER-SERIES-SETUP-DECISION",
-      "lastEvidenceSummary": "TARGET-013 showed Number Series page 456 but only BANKEINZ, CT-MSG and VATNOTIF as visible codes.",
-      "isPlannedNextCaseStillSensible": true,
-      "reason": "Visible numbering context is not enough for master data or documents; target series families must be decided before write actions.",
-      "lookaheadReviewed": [
-        {
-          "caseId": "TARGET-015-NUMBER-SERIES-CONTROLLED-SETUP-PREFLIGHT",
-          "status": "ready-next",
-          "reason": "Exact draft families exist; the next step is before evidence and a controlled write gate."
-        },
-        {
-          "caseId": "TARGET-016-POSTING-GROUPS-PREFLIGHT",
-          "status": "ready-after-current",
-          "reason": "Posting groups should follow after number-series policy is clear."
-        },
-        {
-          "caseId": "TARGET-017-VAT-SETUP-READINESS",
-          "status": "needs-source-check-first",
-          "reason": "German VAT claims need source-backed setup and later Preview/VAT Entries."
-        },
-        {
-          "caseId": "TARGET-018-DIMENSIONS-FOUNDATION",
-          "status": "ready-after-current",
-          "reason": "Dimensions can follow once numbering and core setup order are stable."
-        },
-        {
-          "caseId": "TARGET-019-CORE-MASTERDATA-PLAN",
-          "status": "needs-setup-first",
-          "reason": "Customers, vendors and items need number series, posting groups, VAT and dimensions first."
-        }
-      ],
-      "queueChangesMade": [
-        "Marked TARGET-014 done.",
-        "Added TARGET-015 as pending."
-      ],
-      "selectedNextCase": "TARGET-015-NUMBER-SERIES-CONTROLLED-SETUP-PREFLIGHT",
-      "whySelectedNextCaseIsBest": "A preflight can capture before-state and exact fields before any Number Series write action.",
-      "risksBeforeNextCase": [
-        "Do not click New/Edit List/Lines without before screenshots and exact target values.",
-        "Do not claim German invoice-number compliance from draft numbering families."
-      ],
-      "requiredPreparation": [
-        "Open Number Series and relevant setup pages read-only first.",
-        "If a setup write is unlocked later, capture before and after screenshots and avoid duplicate series."
-      ]
-    }
+    "currentCase": "TARGET-015-NUMBER-SERIES-CONTROLLED-SETUP-PREFLIGHT",
+    "plannedNextCaseBeforeReview": "TARGET-015-NUMBER-SERIES-CONTROLLED-SETUP-PREFLIGHT",
+    "lastEvidenceSummary": "TARGET-014 defined draft Universaarl numbering families but did not prove setup-page assignment fields.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "Before-state screenshots and assignment-page context are needed before any Number Series write.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-016-NUMBER-SERIES-CONTROLLED-SETUP-WRITE-GATE",
+        "status": "ready-next",
+        "reason": "Before-state is captured and no target U-* duplicate is visible."
+      },
+      {
+        "caseId": "TARGET-017-POSTING-GROUPS-PREFLIGHT",
+        "status": "ready-after-current",
+        "reason": "Posting groups should follow after numbering setup is created or deliberately deferred."
+      },
+      {
+        "caseId": "TARGET-018-VAT-SETUP-READINESS",
+        "status": "needs-source-check-first",
+        "reason": "German VAT claims need source-backed setup and later preview/VAT Entries."
+      },
+      {
+        "caseId": "TARGET-019-DIMENSIONS-FOUNDATION",
+        "status": "ready-after-current",
+        "reason": "Dimensions can follow once core numbering and posting setup order is stable."
+      },
+      {
+        "caseId": "TARGET-020-CORE-MASTERDATA-PLAN",
+        "status": "needs-setup-first",
+        "reason": "Master data waits for number series, posting groups, VAT and dimensions."
+      }
+    ],
+    "queueChangesMade": [
+      "Selected TARGET-016-NUMBER-SERIES-CONTROLLED-SETUP-WRITE-GATE based on TARGET-015 before-state visibility."
+    ],
+    "selectedNextCase": "TARGET-016-NUMBER-SERIES-CONTROLLED-SETUP-WRITE-GATE",
+    "whySelectedNextCaseIsBest": "It is now reasonable to prepare a narrowly scoped write gate for U-* number series, still without master data or postings.",
+    "risksBeforeNextCase": [
+      "Do not create duplicate U-* series.",
+      "Do not assign series to setup fields without before/after screenshots.",
+      "Do not claim legal German invoice-number compliance from this setup alone."
+    ],
+    "requiredPreparation": [
+      "Read TARGET-015 result and screenshot metadata.",
+      "If writing later, create only the explicitly approved U-* series and document before/after."
+    ]
   }
+}

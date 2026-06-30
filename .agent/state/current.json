@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-30T12:11:31+02:00",
+  "updatedAt": "2026-06-30T10:48:19.352Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "activeArea": "universaarl-w1-foundation-number-series",
-  "activeCase": "TARGET-015-NUMBER-SERIES-CONTROLLED-SETUP-PREFLIGHT",
-  "active_case_file": ".agent/state/cases/target-015-number-series-controlled-setup-preflight.json",
+  "activeCase": "TARGET-016-NUMBER-SERIES-CONTROLLED-SETUP-WRITE-GATE",
+  "active_case_file": ".agent/state/cases/target-016-number-series-controlled-setup-write-gate.json",
   "lastReferenceCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
   "lastReferenceCaseFile": ".agent/state/cases/warehouse-031-warehouse-source-route-park-or-setup-fit-decision.json",
   "mode": "universaarl-target-execution",
@@ -19,17 +19,16 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "repo-documentation-update",
-    "bookdraft-update-without-final-claim",
-    "coverage-and-atlas-curation",
-    "read-only-playthru-page-discovery-if-case-allows",
-    "playwright-readonly-helper-improvement",
-    "queue-and-state-prep",
-    "read-target-013-result",
-    "review-number-series-screenshot-metadata",
-    "define-required-number-series-families",
-    "write-number-series-setup-decision",
-    "prepare-controlled-setup-case-if-needed"
+    "open-playthru-business-central",
+    "open-UNIVERSAARL-DE-with-documentation",
+    "open-number-series-page",
+    "read-target-015-before-state",
+    "create-missing-U-number-series-if-not-existing",
+    "capture-before-after-screenshots",
+    "write-number-series-setup-result",
+    "stop-before-setup-assignment",
+    "stop-before-master-data",
+    "queue-and-state-update"
   ],
   "forbiddenActions": [
     "leave-instance",
@@ -50,7 +49,7 @@
     "master-data-create",
     "claim-foundation-setup-ready-without-evidence"
   ],
-  "nextStep": "Run TARGET-015: capture before evidence for Number Series and related setup pages, then decide whether controlled setup writes are allowed.",
+  "nextStep": "Run TARGET-016: controlled setup-write gate for missing U-* number series only; do not assign setup fields, create master data, preview or post.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -4511,7 +4510,7 @@
   },
   "permissionStatus": "user-confirmed-super-permissions-available-target-company-created",
   "companyCreationPermissionStatus": "satisfied-live-ui-proven",
-  "lastUpdated": "2026-06-30T22:05:00.000+02:00",
+  "lastUpdated": "2026-06-30T10:48:19.352Z",
   "latestTarget009CompanyCreation": {
     "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
     "status": "universaarl-proven",
@@ -4718,5 +4717,42 @@
     ],
     "nextCase": "TARGET-015-NUMBER-SERIES-CONTROLLED-SETUP-PREFLIGHT",
     "updatedAt": "2026-06-30T12:11:31+02:00"
+  },
+  "latestTarget015NumberSeriesPreflight": {
+    "caseId": "TARGET-015-NUMBER-SERIES-CONTROLLED-SETUP-PREFLIGHT",
+    "status": "observed",
+    "instance": "playthru",
+    "targetCompany": "UNIVERSAARL-DE",
+    "setupChanged": false,
+    "noCompanyCreated": true,
+    "noMasterDataChange": true,
+    "noPreviewPosting": true,
+    "noPosting": true,
+    "noDraft": true,
+    "noApiShortcut": true,
+    "noSearch": true,
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-015-number-series-controlled-setup-preflight/TARGET-015-result.json",
+    "evidencePath": "playwright/projects/fibu-book5/evidence/target-015-number-series-controlled-setup-preflight/",
+    "screenshots": [
+      "playwright/projects/fibu-book5/img/target-015-010-number-series.png",
+      "playwright/projects/fibu-book5/img/target-015-020-sales-receivables-setup.png",
+      "playwright/projects/fibu-book5/img/target-015-030-purchases-payables-setup.png",
+      "playwright/projects/fibu-book5/img/target-015-040-inventory-setup.png"
+    ],
+    "proved": [
+      "Number Series before-state page opened read-only in playthru / UNIVERSAARL-DE.",
+      "Verkauf & Debitoren Einrichtung / Sales & Receivables Setup opened read-only as an assignment-context page.",
+      "Einkauf & Kreditoren Einrichtung / Purchases & Payables Setup opened read-only as an assignment-context page.",
+      "Lager Einrichtung / Inventory Setup opened read-only as an assignment-context page.",
+      "No target Universaarl U-* number-series code was visible in captured before-state text."
+    ],
+    "openLimits": [
+      "No number series was created, edited or assigned.",
+      "Sales and inventory numbering FastTabs were visible but not fully expanded as field-assignment proof.",
+      "No master data, draft, preview posting, posting or ledger trace exists.",
+      "No German legal invoice-number compliance claim is made."
+    ],
+    "nextCase": "TARGET-016-NUMBER-SERIES-CONTROLLED-SETUP-WRITE-GATE",
+    "updatedAt": "2026-06-30T10:48:19.352Z"
   }
 }
