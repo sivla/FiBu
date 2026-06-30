@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-30T20:05:00.000+02:00",
+  "updatedAt": "2026-06-30T20:35:00.000+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-bookmaster-foundation-uat-cleanup",
-  "activeCase": "PREP-045-BOOKMASTER-FOUNDATION-UAT-UNIVERSAARL-CLEANUP",
-  "active_case_file": ".agent/state/cases/prep-045-bookmaster-foundation-uat-universaarl-cleanup.json",
+  "activeArea": "universaarl-bookmaster-starter-data-cleanup",
+  "activeCase": "PREP-046-BOOKMASTER-STARTER-DATA-UNIVERSAARL-CLEANUP",
+  "active_case_file": ".agent/state/cases/prep-046-bookmaster-starter-data-universaarl-cleanup.json",
   "lastReferenceCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
   "lastReferenceCaseFile": ".agent/state/cases/warehouse-031-warehouse-source-route-park-or-setup-fit-decision.json",
   "mode": "universaarl-readonly-prep-until-super-permissions",
@@ -78,7 +78,7 @@
   },
   "latestBookDraft": {
     "path": "FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md",
-    "area": "foundation",
+    "area": "foundation-starter-data",
     "status": [
       "bookmaster-prep",
       "universaarl-target-path",
@@ -87,17 +87,15 @@
     "sourceCompany": "RM-DEMO",
     "sourceInstance": "MCP_1_20260210",
     "evidenceBasis": [
-      "MANUFACTURING-001",
-      "MANUFACTURING-002",
-      "MANUFACTURING-003",
-      "MANUFACTURING-004"
+      "PREP-046-BOOKMASTER-STARTER-DATA-UNIVERSAARL-CLEANUP"
     ],
-    "bookEffect": "Chapter 6 Foundation UAT and Greenfield starter company section now use Universaarl target language.",
+    "bookEffect": "Chapter 6 starter data package now uses Universaarl U-CUST/U-VEND/U-ITEM and SAAR-* target codes instead of active RM-DEMO/Rhein-Main starter codes.",
     "integratedIntoBookMaster": true,
-    "nextStep": "After permissions, run TARGET-009 and then Company Information read-only/persisted proof.",
+    "nextStep": "After explicit SUPER/company-create permission confirmation, run TARGET-009 using Mandanten -> arrow next to Neu -> Neues Unternehmen erstellen with the PREP-040 screenshot chain.",
     "bookMasterPath": "FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md",
-    "bookMasterSection": "Chapter 14 Planning, Assembly und Manufacturing",
-    "labVsTargetPathSeparated": true
+    "bookMasterSection": "Chapter 6 Foundation starter data package",
+    "labVsTargetPathSeparated": true,
+    "targetCompany": "UNIVERSAARL-DE"
   },
   "bookProductionGoal": {
     "goalFile": ".agent/state/book-production-goal.json",
@@ -3693,11 +3691,11 @@
     "resultFile": "playwright/projects/fibu-book5/evidence/prep-020-universaarl-dataset-blueprint/PREP-020-result.json"
   },
   "nextStepDecisionCard": {
-    "currentCase": "PREP-045-BOOKMASTER-FOUNDATION-UAT-UNIVERSAARL-CLEANUP",
+    "currentCase": "PREP-046-BOOKMASTER-STARTER-DATA-UNIVERSAARL-CLEANUP",
     "plannedNextCaseBeforeReview": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
-    "lastEvidenceSummary": "PREP-045 cleaned the chapter 6 Foundation UAT and Greenfield starter company section so active target language uses Universaarl instead of Rhein-Main/RM-*.",
+    "lastEvidenceSummary": "PREP-046 cleaned the active chapter 6 starter data package so Universaarl target master data uses U-CUST, U-VEND, U-ITEM and SAAR-* codes instead of active RM-DEMO/Rhein-Main starter codes.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "Company Creation remains the dependency before Company Information, Foundation setup and process evidence; it remains blocked until SUPER/company-create permissions are confirmed.",
+    "reason": "Company Creation remains the dependency before Company Information, Foundation setup, master data creation and process evidence; it remains blocked until SUPER/company-create permissions are confirmed.",
     "lookaheadReviewed": [
       {
         "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
@@ -3707,7 +3705,7 @@
       {
         "caseId": "TARGET-COMPANY-INFO-001-COMPANY-INFORMATION-READONLY",
         "status": "ready-after-current",
-        "reason": "Run only after UNIVERSAARL-DE exists and company context is visible."
+        "reason": "Run only after UNIVERSAARL-DE exists and active company context is visible."
       },
       {
         "caseId": "TARGET-005-NUMBER-SERIES-PREFLIGHT",
@@ -3720,18 +3718,18 @@
         "reason": "Requires company foundation context before setup inspection."
       },
       {
-        "caseId": "TARGET-008-VAT19-SETUP-READINESS",
-        "status": "needs-source-check-first",
-        "reason": "Needs German VAT source boundary and later Universaarl setup evidence."
+        "caseId": "TARGET-DATA-FOUNDATION-001-CORE-MASTERDATA-PLAN",
+        "status": "ready-after-current",
+        "reason": "The cleaned starter data package gives a concrete data target after company and W1 setup gates."
       }
     ],
     "queueChangesMade": [
-      "Added PREP-045 as a completed bookmaster Foundation UAT Universaarl cleanup.",
+      "Added PREP-046 as a completed bookmaster starter data Universaarl cleanup.",
       "Kept TARGET-009 parked until permissions.",
-      "Moved active chapter 6 starter company language from RM-* to Universaarl expansion naming."
+      "Moved active chapter 6 starter data language from RM/D/K/RM item codes to Universaarl U-CUST/U-VEND/U-ITEM naming."
     ],
     "selectedNextCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
-    "whySelectedNextCaseIsBest": "Company Creation remains the required dependency before any Universaarl Company Information, Foundation setup or process evidence can be final-candidate evidence.",
+    "whySelectedNextCaseIsBest": "Company Creation remains the required dependency before any Universaarl Company Information, Foundation setup, starter master data or process evidence can be final-candidate evidence.",
     "risksBeforeNextCase": [
       "Do not click the Hauptbutton Neu when the intended target is Neues Unternehmen erstellen.",
       "Screenshot must show the dropdown menu item itself before click.",
@@ -4167,7 +4165,7 @@
     "nextCase": "PREP-032-CH04-ERP-BASICS-UNIVERSAARL-REWRITE",
     "updatedAt": "2026-06-30T09:05:00.000+02:00"
   },
-  "currentFocus": "universaarl-chapter-4-beginner-book-rewrite",
+  "currentFocus": "universaarl-bookmaster-starter-data-cleanup",
   "latestChapter4UniversaarlRewrite": {
     "caseId": "PREP-032-CH04-ERP-BASICS-UNIVERSAARL-REWRITE",
     "status": "book-rewrite-done",
@@ -4494,5 +4492,24 @@
       "missing-super-or-company-create-permission"
     ],
     "updatedAt": "2026-06-30T20:05:00.000+02:00"
+  },
+  "latestPrep046BookmasterStarterDataCleanup": {
+    "caseId": "PREP-046-BOOKMASTER-STARTER-DATA-UNIVERSAARL-CLEANUP",
+    "status": "prep-done",
+    "resultPath": "playwright/projects/fibu-book5/evidence/prep-046-bookmaster-starter-data-universaarl-cleanup/PREP-046-result.json",
+    "bookMasterPath": "FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md",
+    "summary": "Chapter 6 starter data package now uses Universaarl target master-data naming and states that data creation waits for company and setup gates.",
+    "noBcRun": true,
+    "noPlaywrightRun": true,
+    "noCompanyCreated": true,
+    "noSetupChange": true,
+    "noMasterDataChange": true,
+    "noPreviewPosting": true,
+    "noPosting": true,
+    "nextCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+    "blockedBy": [
+      "missing-super-or-company-create-permission"
+    ],
+    "updatedAt": "2026-06-30T20:35:00.000+02:00"
   }
 }

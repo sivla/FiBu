@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "caseId": "PREP-046-BOOKMASTER-STARTER-DATA-UNIVERSAARL-CLEANUP",
+  "status": "prep-done",
+  "type": "book",
+  "instance": "playthru",
+  "targetCompany": "UNIVERSAARL-DE",
+  "targetCompanyStatus": "planned-not-yet-created",
+  "effectiveBusinessCentralActions": false,
+  "playwrightRun": false,
+  "bookChanged": true,
+  "goal": "Clean the active chapter 6 starter data package so it uses Universaarl target master-data codes instead of active RM-DEMO/Rhein-Main starter codes.",
+  "changedBookAreas": [
+    "Chapter 6 starter data package",
+    "Chapter 6 practical setup sequence"
+  ],
+  "proved": [
+    "The active starter data package now uses Universaarl-style customer, vendor, item, location and dimension codes.",
+    "The active setup sequence starts with UNIVERSAARL-DE and SAAR-HL/SAAR-QS/SAAR-SRV instead of RM-PROD and FRA/MZ/VAN/PROJ locations.",
+    "The starter package is explicitly described as a target blueprint that must wait for company creation and setup gates."
+  ],
+  "notProved": [
+    "UNIVERSAARL-DE was not created.",
+    "No live Business Central page was opened.",
+    "No setup, master data, preview posting or posting was performed.",
+    "The legacy RM-DEMO labor evidence below chapter 6 remains historical and is not a final Universaarl proof."
+  ],
+  "blockedBy": [
+    "missing-super-or-company-create-permission"
+  ],
+  "nextCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+  "lookaheadReviewed": [
+    {
+      "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+      "status": "blocked",
+      "reason": "Requires SUPER/company-create permissions and the PREP-040 screenshot chain."
+    },
+    {
+      "caseId": "TARGET-COMPANY-INFO-001-COMPANY-INFORMATION-READONLY",
+      "status": "ready-after-current",
+      "reason": "Run only after UNIVERSAARL-DE exists and active company context is visible."
+    },
+    {
+      "caseId": "TARGET-005-NUMBER-SERIES-PREFLIGHT",
+      "status": "ready-after-current",
+      "reason": "Requires company and Company Information context first."
+    },
+    {
+      "caseId": "TARGET-006-POSTING-GROUPS-PREFLIGHT",
+      "status": "ready-after-current",
+      "reason": "Requires company foundation context before setup inspection."
+    },
+    {
+      "caseId": "TARGET-DATA-FOUNDATION-001-CORE-MASTERDATA-PLAN",
+      "status": "ready-after-current",
+      "reason": "The cleaned starter package gives a concrete data target after company and W1 setup gates."
+    }
+  ],
+  "updatedAt": "2026-06-30T20:35:00.000+02:00"
+}

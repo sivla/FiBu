@@ -808,49 +808,53 @@ Dimensionen:
 
 | Dimension | Werte |
 |---|---|
-| `DEPARTMENT` | `SALES`, `PURCH`, `WH`, `PROD`, `SERV`, `FIN`, `ADMIN` |
-| `PRODUCTLINE` | `MACHINE`, `SPARE`, `SERVICE`, `PROJECT`, `RENTAL` |
-| `CHANNEL` | `B2B`, `IC`, `EXPORT` |
-| `LOCATION-GROUP` | `FRA`, `MZ`, `DA`, `VAN`, `PROJECT` |
+| `DEPARTMENT` | `VERTRIEB`, `EINKAUF`, `LAGER`, `PRODUKTION`, `SERVICE`, `FINANZ`, `ADMIN` |
+| `PRODUCTLINE` | `STANDARD`, `SERVICE`, `PROJEKT`, `FERTIGUNG` |
+| `CHANNEL` | `DIREKT`, `PARTNER`, `EXPORT` |
+| `REGION` | `SAAR`, `DE`, `EU`, `CH` |
 
 Artikel:
 
 | Artikel | Art | Kosten | Verkaufspreis | Prozess |
 |---|---|---:|---:|---|
-| `RM-M100` | Maschine | 18.000 | 32.000 | Fertigung/Verkauf |
-| `SP-PUMP-01` | Ersatzteil | 180 | 320 | Lager/Verkauf |
-| `SP-SENSOR-02` | Ersatzteil | 75 | 149 | Shop/Service |
-| `RAW-STEEL` | Rohmaterial | 2.500 | - | Einkauf/Fertigung |
-| `KIT-MAINT` | Wartungskit | 240 | 450 | Montage/Service |
+| `U-ITEM-HW100` | Handelsware | 180 | 320 | Einkauf/Verkauf/Lager |
+| `U-ITEM-RM100` | Rohmaterial | 2.500 | - | Einkauf/Lager/Fertigung |
+| `U-ITEM-FG100` | Fertigprodukt | 18.000 | 32.000 | Fertigung/Verkauf |
+| `U-ITEM-SRV100` | Serviceartikel | 240 | 450 | Service/Wartung |
+| `U-ITEM-ERR900` | Fehlerartikel | - | - | kontrollierter Setup-Fehlerfall |
 
 Debitoren:
 
 | Debitor | Land | Typ | Zahlungsbedingung | Steuerfall |
 |---|---|---|---|---|
-| `D10000` | DE | B2B | 14 Tage 2 %, 30 Tage netto | Inland |
-| `D20000` | FR | EU-B2B | 30 Tage netto | EU-Lieferung |
-| `D30000` | CH | Drittland | Vorkasse | Export |
-| `D40000` | DE | B2C-Ersatzteilkunde | sofort | Sonderverkauf |
+| `U-CUST-100` | DE | B2B | 14 Tage 2 %, 30 Tage netto | Inland |
+| `U-CUST-110` | DE | B2B | 30 Tage netto | Inland/Vergleichskunde |
+| `U-CUST-120` | DE | Projekt-/Servicekunde | 30 Tage netto | Projekt/Service |
+| `U-CUST-190` | DE | B2C-Schulungsfall | sofort | einfacher Rechnungsfall nach USt-Gate |
+| `U-CUST-900` | DE | Fehlerfall | gesperrt oder unvollständig | nur kontrollierte Fehlerdiagnose |
 
 Kreditoren:
 
 | Kreditor | Land | Zweck | Steuerfall |
 |---|---|---|---|
-| `K10000` | DE | Rohmaterial | Inland |
-| `K20000` | NL | Handelsware | EU-Erwerb |
-| `K30000` | CH | Spezialteile | Import/Drittland |
-| `K40000` | DE | Fremdarbeit | Inland/Fertigung |
+| `U-VEND-100` | DE | Rohmaterial | Inland |
+| `U-VEND-110` | DE | Dienstleistung | Inland/Sachkosten |
+| `U-VEND-120` | DE | Anlagenlieferant | Inland/Anlagenzugang |
+| `U-VEND-130` | DE | Verpackung/Einkaufsvergleich | Inland |
+| `U-VEND-900` | DE | kontrollierter Fehlerfall | nur Setup-Diagnose |
+
+Dieses Startpaket ist ein Zielbild für `UNIVERSAARL-DE`. Die Datensätze werden erst angelegt, wenn die Company sichtbar existiert, die Unternehmensdaten geprüft sind und die passenden Setup-Gates für Nummernserien, Buchungsgruppen, USt und Dimensionen abgeschlossen sind.
 
 ### Reihenfolge der praktischen Einrichtung im Buch
 
-1. Company `RM-PROD` anlegen.
+1. Company `UNIVERSAARL-DE` anlegen.
 2. Unternehmensdaten pflegen.
 3. Kontenplan und Sachkontokategorien prüfen.
 4. Buchungsgruppen und USt-Buchungsmatrix einrichten.
 5. Dimensionen und Pflichtdimensionen einrichten.
 6. Nummernserien einrichten.
-7. Lagerorte `FRA-ZL`, `MZ-EINFACH`, `VAN-SERV`, `PROJ-LAG` anlegen.
-8. Für den ersten O2C-Test `FRA-ZL` noch einfach halten; im Warehouse-Block Lagerplätze und gesteuerte Lagerlogik aktivieren.
+7. Lagerorte `SAAR-HL`, `SAAR-QS` und `SAAR-SRV` anlegen.
+8. Für den ersten O2C- und P2P-Test `SAAR-HL` noch einfach halten; im Warehouse-Block Lagerplätze und gesteuerte Lagerlogik aktivieren.
 9. Benutzer und Rollenprofile anlegen.
 10. Debitoren, Kreditoren, Artikel, Ressourcen, Projekte und Anlagen anlegen.
 11. Verkaufspreislisten und Einkaufspreislisten aktivieren.
