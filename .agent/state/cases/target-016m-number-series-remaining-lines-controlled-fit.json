@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-016M-NUMBER-SERIES-REMAINING-LINES-CONTROLLED-FIT",
+  "title": "Universaarl remaining Number Series Lines controlled fit",
+  "instance": "playthru",
+  "targetCompany": "UNIVERSAARL-DE",
+  "legalName": "Universaarl GmbH",
+  "workType": "foundation-number-series-lines-fit",
+  "status": "ready-next",
+  "dependsOn": [
+    "TARGET-016L-NUMBER-SERIES-INCOMPLETE-LINE-COMPLETE-OR-CLEANUP-RECOVERY"
+  ],
+  "goal": "Apply the proven TARGET-016L active-editor sequence to remaining Universaarl U-* Number Series Lines with per-code before/reopen proof, without setup assignment or master data.",
+  "evidenceTarget": "playwright/projects/fibu-book5/evidence/target-016m-number-series-remaining-lines-controlled-fit/",
+  "targetCodes": [
+    {
+      "code": "U-VEND",
+      "startingNo": "U-VEND00001",
+      "endingNo": "U-VEND99999"
+    },
+    {
+      "code": "U-ITEM",
+      "startingNo": "U-ITEM00001",
+      "endingNo": "U-ITEM99999"
+    },
+    {
+      "code": "U-SO",
+      "startingNo": "U-SO00001",
+      "endingNo": "U-SO99999"
+    },
+    {
+      "code": "U-SINV",
+      "startingNo": "U-SINV00001",
+      "endingNo": "U-SINV99999"
+    },
+    {
+      "code": "U-PO",
+      "startingNo": "U-PO00001",
+      "endingNo": "U-PO99999"
+    },
+    {
+      "code": "U-PINV",
+      "startingNo": "U-PINV00001",
+      "endingNo": "U-PINV99999"
+    }
+  ],
+  "allowedActionsWhenRun": [
+    "open-playthru-business-central",
+    "open-UNIVERSAARL-DE-with-documentation",
+    "open-number-series-page",
+    "select-existing-U-star-number-series-row",
+    "open-Zeilen-from-selected-number-series",
+    "create-or-complete-one-line-per-series-only",
+    "fill-startdatum-startnr-endnr-through-proven-active-editor-sequence",
+    "reopen-lines-for-persistence-proof-per-code",
+    "capture-screenshot-qa",
+    "write-result",
+    "queue-and-state-update"
+  ],
+  "defaultLockedActions": [
+    "number-series-assignment",
+    "master-data-create",
+    "preview-posting",
+    "posting",
+    "checkbox-change",
+    "api-shortcut"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "leave-playthru",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "create-second-line-when-target-line-already-exists",
+    "assign-number-series-before-all-required-line-persistence-proof",
+    "create-master-data-before-number-series-foundation-is-valid",
+    "change-number-series-gap-checkbox-without-gate",
+    "change-open-checkbox-without-gate",
+    "post",
+    "preview-posting",
+    "api-shortcut"
+  ],
+  "successCriteria": [
+    "Each target code is checked before write.",
+    "Each target code has exactly one visible target Startnr./Endnr. line after reopen or is explicitly blocked.",
+    "No setup assignment, master data, preview posting or posting occurs.",
+    "No gap/open checkbox is changed."
+  ],
+  "migrationRelevance": "german-final-candidate",
+  "finalScreenshotNeeded": true,
+  "nextSafeAction": "Run a per-code controlled fit using the proven TARGET-016L active-editor sequence and stop on first unsafe dialog or persistence mismatch.",
+  "updatedAt": "2026-06-30T13:54:08.384Z"
+}

@@ -1,0 +1,344 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "TARGET-016L-NUMBER-SERIES-INCOMPLETE-LINE-COMPLETE-OR-CLEANUP-RECOVERY",
+  "source": "playwright-number-series-incomplete-line-recovery",
+  "resultStatus": "observed",
+  "runPlanId": "TARGET-016L-NUMBER-SERIES-INCOMPLETE-LINE-COMPLETE-OR-CLEANUP-RECOVERY-PLAN",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=457&company=UNIVERSAARL-DE",
+  "targetValues": {
+    "code": "U-CUST",
+    "startingDate": "01.01.2026",
+    "startingNo": "U-CUST00001",
+    "endingNo": "U-CUST99999"
+  },
+  "proved": [
+    "U-CUST Number Series Lines context was opened in playthru / UNIVERSAARL-DE.",
+    "The existing U-CUST line was edited through visible active editors, not by creating a second line.",
+    "U-CUST00001 and U-CUST99999 are visible after reopening Number Series Lines.",
+    "No number-series assignment, master data, preview posting or posting was executed.",
+    "No Allow Gaps/Open checkbox was intentionally changed."
+  ],
+  "notProved": [
+    "Only U-CUST is fitted; remaining U-* lines still need controlled execution.",
+    "No customer/vendor/item/document numbering assignment is proven.",
+    "No German legal invoice-number compliance claim is made."
+  ],
+  "snapshots": {
+    "before": {
+      "step": "Before recovery of existing incomplete U-CUST line.",
+      "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=457&company=UNIVERSAARL-DE",
+      "title": "Nr.-Serienzeilen - U-CUST Universaarl Customer Nos.",
+      "compact": "Nummernserie:\nListe bearbeiten\nStartnr.\nEndnr.\nLücken in Nummern zulassen\nU-CUST\nOffene Zeilen\nU-CUST ∙ Universaarl Customer Nos.\nGespeichert\nNr.-Serienzeilen\nStartdatum\nOffen\nListe mit Titel „Nummernserie“ hat jetzt 10 Artikel\nStartnr., Sortierreihenfolge Aufsteigend\nListe mit Titel „Nr.-Serienzeilen“ hat jetzt einen Artikel\nListe mit Titel „Nr.-Serienzeilen - U-CUST ∙ Universaarl Customer Nos.“ hat jetzt 2 Artikel\nStartdatum, Sortierreihenfolge Aufsteigend\nOffen, Sortierreihenfolge Aufsteigend",
+      "visible": {
+        "incompleteDateLine": false,
+        "targetStartingDate": false,
+        "targetStartingNo": false,
+        "targetEndingNo": false,
+        "openCheckboxText": true,
+        "gapCheckboxText": false
+      }
+    },
+    "afterAttempt": {
+      "step": "After guarded completion attempt.",
+      "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=457&company=UNIVERSAARL-DE",
+      "title": "Nr.-Serienzeilen - U-CUST Universaarl Customer Nos.",
+      "compact": "Nummernserie:\nListe bearbeiten\nStartnr.\nEndnr.\nLücken in Nummern zulassen\nU-CUST\nOffene Zeilen\nU-CUST00001\nU-CUST ∙ Universaarl Customer Nos.\nGespeichert\nNr.-Serienzeilen\nStartdatum\nOffen\nListe mit Titel „Nummernserie“ hat jetzt 10 Artikel\nStartnr., Sortierreihenfolge Aufsteigend\nListe mit Titel „Nr.-Serienzeilen“ hat jetzt einen Artikel\nListe mit Titel „Nr.-Serienzeilen - U-CUST ∙ Universaarl Customer Nos.“ hat jetzt 2 Artikel\nStartdatum, Sortierreihenfolge Aufsteigend\nOffen, Sortierreihenfolge Aufsteigend",
+      "visible": {
+        "incompleteDateLine": false,
+        "targetStartingDate": false,
+        "targetStartingNo": true,
+        "targetEndingNo": false,
+        "openCheckboxText": true,
+        "gapCheckboxText": false
+      },
+      "setupWriteAttempted": true,
+      "recoveryLog": [
+        {
+          "step": "edit-list",
+          "editListClicked": true
+        },
+        {
+          "step": "date-editor",
+          "editor": {
+            "tag": "INPUT",
+            "role": "combobox",
+            "ariaLabel": "",
+            "title": "Geben Sie das Datum im Format dd.MM.yyyy ein",
+            "text": "",
+            "value": "30.06.2026",
+            "isEditable": true,
+            "rect": {
+              "x": 632,
+              "y": 235,
+              "width": 99,
+              "height": 27
+            },
+            "nearestCellText": ""
+          }
+        },
+        {
+          "step": "after-date-tab-active-editor",
+          "editor": {
+            "tag": "INPUT",
+            "role": "textbox",
+            "ariaLabel": "",
+            "title": "",
+            "text": "",
+            "value": "",
+            "isEditable": true,
+            "rect": {
+              "x": 787,
+              "y": 235,
+              "width": 90,
+              "height": 27
+            },
+            "nearestCellText": "Der Wert für dieses Feld muss angegeben werden."
+          }
+        },
+        {
+          "step": "after-startnr-tab-active-editor",
+          "editor": {
+            "tag": "INPUT",
+            "role": "textbox",
+            "ariaLabel": "",
+            "title": "",
+            "text": "",
+            "value": "",
+            "isEditable": true,
+            "rect": {
+              "x": 878,
+              "y": 235,
+              "width": 99,
+              "height": 27
+            },
+            "nearestCellText": ""
+          }
+        }
+      ]
+    },
+    "afterReopen": {
+      "step": "After reopening U-CUST Lines for recovery proof.",
+      "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=457&company=UNIVERSAARL-DE",
+      "title": "Nr.-Serienzeilen - U-CUST Universaarl Customer Nos.",
+      "compact": "Nummernserie:\nListe bearbeiten\nStartnr.\nEndnr.\nLücken in Nummern zulassen\nU-CUST\nUniversaarl Customer Nos. U-CUST00001 U-CUST99999\nOffene Zeilen\nU-CUST00001\nU-CUST99999\nU-CUST ∙ Universaarl Customer Nos.\nGespeichert\nNr.-Serienzeilen\nStartdatum\nOffen\nListe mit Titel „Nummernserie“ hat jetzt 10 Artikel\nStartnr., Sortierreihenfolge Aufsteigend\nListe mit Titel „Nr.-Serienzeilen“ hat jetzt einen Artikel\nListe mit Titel „Nr.-Serienzeilen - U-CUST ∙ Universaarl Customer Nos.“ hat jetzt 2 Artikel\nStartdatum, Sortierreihenfolge Aufsteigend\nOffen, Sortierreihenfolge Aufsteigend",
+      "visible": {
+        "incompleteDateLine": false,
+        "targetStartingDate": false,
+        "targetStartingNo": true,
+        "targetEndingNo": true,
+        "openCheckboxText": true,
+        "gapCheckboxText": false
+      },
+      "setupWriteAttempted": true,
+      "recoveryLog": [
+        {
+          "step": "edit-list",
+          "editListClicked": true
+        },
+        {
+          "step": "date-editor",
+          "editor": {
+            "tag": "INPUT",
+            "role": "combobox",
+            "ariaLabel": "",
+            "title": "Geben Sie das Datum im Format dd.MM.yyyy ein",
+            "text": "",
+            "value": "30.06.2026",
+            "isEditable": true,
+            "rect": {
+              "x": 632,
+              "y": 235,
+              "width": 99,
+              "height": 27
+            },
+            "nearestCellText": ""
+          }
+        },
+        {
+          "step": "after-date-tab-active-editor",
+          "editor": {
+            "tag": "INPUT",
+            "role": "textbox",
+            "ariaLabel": "",
+            "title": "",
+            "text": "",
+            "value": "",
+            "isEditable": true,
+            "rect": {
+              "x": 787,
+              "y": 235,
+              "width": 90,
+              "height": 27
+            },
+            "nearestCellText": "Der Wert für dieses Feld muss angegeben werden."
+          }
+        },
+        {
+          "step": "after-startnr-tab-active-editor",
+          "editor": {
+            "tag": "INPUT",
+            "role": "textbox",
+            "ariaLabel": "",
+            "title": "",
+            "text": "",
+            "value": "",
+            "isEditable": true,
+            "rect": {
+              "x": 878,
+              "y": 235,
+              "width": 99,
+              "height": 27
+            },
+            "nearestCellText": ""
+          }
+        }
+      ]
+    }
+  },
+  "recoveryLog": [
+    {
+      "step": "edit-list",
+      "editListClicked": true
+    },
+    {
+      "step": "date-editor",
+      "editor": {
+        "tag": "INPUT",
+        "role": "combobox",
+        "ariaLabel": "",
+        "title": "Geben Sie das Datum im Format dd.MM.yyyy ein",
+        "text": "",
+        "value": "30.06.2026",
+        "isEditable": true,
+        "rect": {
+          "x": 632,
+          "y": 235,
+          "width": 99,
+          "height": 27
+        },
+        "nearestCellText": ""
+      }
+    },
+    {
+      "step": "after-date-tab-active-editor",
+      "editor": {
+        "tag": "INPUT",
+        "role": "textbox",
+        "ariaLabel": "",
+        "title": "",
+        "text": "",
+        "value": "",
+        "isEditable": true,
+        "rect": {
+          "x": 787,
+          "y": 235,
+          "width": 90,
+          "height": 27
+        },
+        "nearestCellText": "Der Wert für dieses Feld muss angegeben werden."
+      }
+    },
+    {
+      "step": "after-startnr-tab-active-editor",
+      "editor": {
+        "tag": "INPUT",
+        "role": "textbox",
+        "ariaLabel": "",
+        "title": "",
+        "text": "",
+        "value": "",
+        "isEditable": true,
+        "rect": {
+          "x": 878,
+          "y": 235,
+          "width": 99,
+          "height": 27
+        },
+        "nearestCellText": ""
+      }
+    }
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/target-016l-number-series-incomplete-line-complete-or-cleanup-recovery/TARGET-016L-result.json",
+    "playwright/projects/fibu-book5/evidence/target-016l-number-series-incomplete-line-complete-or-cleanup-recovery/README.md",
+    "playwright/projects/fibu-book5/evidence/target-016l-number-series-incomplete-line-complete-or-cleanup-recovery/*.snapshot.json",
+    "playwright/projects/fibu-book5/evidence/target-016l-number-series-incomplete-line-complete-or-cleanup-recovery/*.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/target-016l-number-series-incomplete-line-complete-or-cleanup-recovery/*.txt",
+    "playwright/projects/fibu-book5/img/target-016l-*.png"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-016l-number-series-incomplete-line-complete-or-cleanup-recovery/TARGET-016L-result.json",
+    "playwright/projects/fibu-book5/img/target-016l-010-before-recovery.png",
+    "playwright/projects/fibu-book5/img/target-016l-020-after-edit-list.png",
+    "playwright/projects/fibu-book5/img/target-016l-030-after-recovery-attempt.png",
+    "playwright/projects/fibu-book5/img/target-016l-040-after-reopen-proof.png"
+  ],
+  "flags": {
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noMasterDataChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noSearch": true,
+    "noBookChange": true,
+    "noSetupAssignment": true,
+    "checkboxChanged": false,
+    "setupWriteAttempted": true,
+    "setupChanged": true
+  },
+  "smartDecisionCard": {
+    "currentCase": "TARGET-016L-NUMBER-SERIES-INCOMPLETE-LINE-COMPLETE-OR-CLEANUP-RECOVERY",
+    "plannedNextCaseBeforeReview": "TARGET-016L-NUMBER-SERIES-INCOMPLETE-LINE-COMPLETE-OR-CLEANUP-RECOVERY",
+    "lastEvidenceSummary": "TARGET-016J created a persistent incomplete U-CUST line; TARGET-016K showed toolbar Delete without visible confirmation did not clean it.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The incomplete line must be completed or cleaned before number-series assignment or master data.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-016M-NUMBER-SERIES-REMAINING-LINES-CONTROLLED-FIT",
+        "status": "ready-next",
+        "reason": "U-CUST is now fitted; remaining U-* lines can use the same guarded active-editor flow."
+      },
+      {
+        "caseId": "TARGET-017-NUMBER-SERIES-SETUP-ASSIGNMENT",
+        "status": "ready-after-current",
+        "reason": "Setup assignment requires valid line ranges."
+      },
+      {
+        "caseId": "TARGET-018-CUSTOMER-MASTERDATA-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Master data waits for numbering, posting groups, VAT and dimensions."
+      },
+      {
+        "caseId": "TARGET-019-POSTING-GROUPS-PREFLIGHT",
+        "status": "ready-after-current",
+        "reason": "Posting groups can progress after numbering is either completed or consciously parked."
+      },
+      {
+        "caseId": "TARGET-020-VAT-SETUP-READINESS",
+        "status": "ready-after-current",
+        "reason": "VAT setup remains a foundation dependency after or parallel to numbering."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-016M-NUMBER-SERIES-REMAINING-LINES-CONTROLLED-FIT",
+    "whySelectedNextCaseIsBest": "It scales a now-proven line completion route to the remaining number-series codes.",
+    "risksBeforeNextCase": [
+      "Do not assign setup pages before all required lines are valid.",
+      "Do not create master data yet.",
+      "Do not change checkbox values without a separate gate."
+    ],
+    "requiredPreparation": [
+      "Prepare target ranges for remaining U-* number-series lines."
+    ]
+  },
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "reason": "TARGET-016L completed the existing incomplete U-CUST Number Series Line with visible reopen proof."
+}

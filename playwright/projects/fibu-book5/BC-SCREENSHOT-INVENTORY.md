@@ -183,6 +183,13 @@ Diese Bilder werden erst erzeugt, wenn `UNIVERSAARL-DE` existiert und genug sinn
 | `target-016k-020-after-delete-attempt.png` | Nr.-Serienzeilen / No. Series Lines | `playthru` / `UNIVERSAARL-DE`, `U-CUST` | Nach Cleanup-/Delete-Versuch | die unvollstaendige Zeile mit `30.06.2026` bleibt sichtbar; kein sicherer Bestaetigungsdialog ist belegt | der toolbar-nahe Delete-Pfad reicht nicht als Cleanup | keine Entfernung der Zeile, keine sichere Loeschroute | `rejected-cleanup-path` |
 | `target-016k-030-after-reopen-cleanup-proof.png` | Nr.-Serienzeilen / No. Series Lines | `playthru` / `UNIVERSAARL-DE`, `U-CUST` | Reopen-Proof nach Cleanup-Versuch | dieselbe unvollstaendige Zeile ist nach erneutem Oeffnen weiterhin sichtbar | Cleanup ist blockiert und muss vor Setup-Zuweisung/Stammdaten geloest werden | keine bereinigte Nummernserienbasis, keine fertige Foundation | `blocked-reopen-proof`, `next-recovery-required` |
 
+## Universaarl Foundation - Nummernserien TARGET-016L
+
+| Screenshot | Page | Company/Kontext | Schritt | Was man sehen soll | Interner Beweis | Beweist nicht | Status |
+|---|---|---|---|---|---|---|---|
+| `target-016l-010-before-recovery.png` | Nr.-Serienzeilen / No. Series Lines | `playthru` / `UNIVERSAARL-DE`, `U-CUST` | Vor Recovery | die vorhandene `U-CUST`-Zeile steht im Lines-Kontext; der vorherige date-only Zustand ist Ausgangspunkt | richtiger Recovery-Kontext vor wirksamer Setup-Korrektur | keine fertige Nummernserie, keine Zuweisung | `setup-before`, `recovery-context` |
+| `target-016l-040-after-reopen-proof.png` | Nr.-Serienzeilen / No. Series Lines | `playthru` / `UNIVERSAARL-DE`, `U-CUST` | Nach Reopen-Proof | `U-CUST00001` und `U-CUST99999` sind in der Zeile sichtbar; `Offen` ist angehakt, `Luecken in Nummern zulassen` ist nicht angehakt | bestehende unvollstaendige Zeile wurde zur sichtbaren Start-/Endnummernzeile vervollstaendigt | keine Setup-Zuweisung, keine weiteren U-* Linien, kein Stammdatensatz, kein Posting; das Startdatum ist im Bild aktiv/abgeschnitten und braucht bei Datumsclaim eigene QA | `universaarl-proven`, `number-series-line-recovery-proof` |
+
 ## Qualitaetsfelder fuer neue Screenshot-Metadaten
 
 Neue oder ueberarbeitete `.screenshot.json`-Dateien sollen diese Felder tragen:
