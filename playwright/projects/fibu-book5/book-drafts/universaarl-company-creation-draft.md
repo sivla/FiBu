@@ -1,14 +1,14 @@
-# Universaarl GmbH: eigene Company in Business Central anlegen
+﻿# Universaarl GmbH: eigene Company in Business Central anlegen
 
-Bevor Verkaufsaufträge, Einkaufsbelege, Lagerbewegungen oder Anlagenbuchungen entstehen, braucht die Universaarl GmbH einen eigenen Arbeitsbereich in Business Central. Dieser Arbeitsbereich heisst Company oder Mandant. Eine Company enthält eigene Stammdaten, eigene Einstellungen, eigene Belege und eigene Buchungen.
+Bevor Verkaufsaufträge, Einkaufsbelege, Lagerbewegungen oder Anlagenbuchungen entstehen, braucht die Universaarl GmbH einen eigenen Arbeitsbereich in Business Central. Dieser Arbeitsbereich heißt Company oder Mandant. Eine Company enthält eigene Stammdaten, eigene Einstellungen, eigene Belege und eigene Buchungen.
 
 Für dieses Buch verwenden wir die Company `UNIVERSAARL-DE`. Sie gehört zur Musterfirma Universaarl GmbH. Die Company wird nicht aus einer CRONUS-Demofirma als fertige Zielwelt übernommen. Demodaten sind zum Lernen hilfreich, enthalten aber bereits Beispielkonten, Beispielartikel, Beispielkunden, Beispielsteuerlogik und Beispielbelege. Für eine durchgehende Fallstudie bauen wir die fachliche Welt kontrolliert auf.
 
 ## Richtiger Einstieg auf der Seite Mandanten
 
-Die Anlage erfolgt ueber die Seite `Mandanten`. Dort ist der kleine Pfeil neben `Neu` entscheidend. Er oeffnet das Dropdown, in dem `Neues Unternehmen erstellen` sichtbar ist. Dieser Menueintrag ist der bevorzugte Buchpfad fuer `UNIVERSAARL-DE`.
+Die Anlage erfolgt über die Seite `Mandanten`. Dort ist der kleine Pfeil neben `Neu` entscheidend. Er öffnet das Dropdown, in dem `Neues Unternehmen erstellen` sichtbar ist. Dieser Menüeintrag ist der bevorzugte Buchpfad für `UNIVERSAARL-DE`.
 
-Der Hauptbutton `Neu` ist ein anderes Bedienelement. Er kann eine leere Mandantenzeile oeffnen. Eine leere Zeile ist noch kein gefuehrter Anlageweg und keine fertige Company. Wenn nur diese Zeile sichtbar ist, wird zuerst geklaert, ob wirklich der gewuenschte Pfad getroffen wurde.
+Der Hauptbutton `Neu` ist ein anderes Bedienelement. Er kann eine leere Mandantenzeile öffnen. Eine leere Zeile ist noch kein geführter Anlageweg und keine fertige Company. Wenn nur diese Zeile sichtbar ist, wird zuerst geklärt, ob wirklich der gewünschte Pfad getroffen wurde.
 
 ## Environment und Company
 
@@ -33,16 +33,16 @@ Auf der Seite sind vor allem diese Aktionen wichtig:
 
 | Aktion | Bedeutung | Einordnung für Universaarl |
 | --- | --- | --- |
-| `Neu` | legt eine neue Company oder eine neue Mandantenzeile an | geeignet, wenn eine leere oder kontrollierbare Anlage entsteht |
+| `Neu` | kann eine neue Company-Zeile in der Mandantenliste öffnen | nur als Listenzeilenpfad geeignet, wenn Fokus, Datenbasis und Speichern eindeutig kontrolliert sind |
 | `Neues Unternehmen erstellen` | startet eine geführte Anlage für eine neue Company | fachlich interessant, aber erst nach eigenem Sicherheitscheck ausführen |
 | `Kopieren` | erstellt eine Company aus einer vorhandenen Company | nur geeignet, wenn die Quelle fachlich passt |
 | `Testunternehmen` | erzeugt eine Demo- oder Testcompany | nicht geeignet als finale Universaarl-Zielwelt, wenn dadurch Demodaten entstehen |
 
-Die erste Kontrolle ist immer die Liste selbst. In ihr muss sichtbar sein, welche Companies bereits vorhanden sind. Wenn `UNIVERSAARL-DE` fehlt, ist die Anlage noch nicht abgeschlossen. Wenn `UNIVERSAARL-DE` sichtbar ist, wird nicht erneut angelegt, sondern die neue Company wird als naechster Schritt geöffnet und über die Unternehmensinformationen geprüft.
+Die erste Kontrolle ist immer die Liste selbst. In ihr muss sichtbar sein, welche Companies bereits vorhanden sind. Wenn `UNIVERSAARL-DE` fehlt, ist die Anlage noch nicht abgeschlossen. Wenn `UNIVERSAARL-DE` sichtbar ist, wird nicht erneut angelegt, sondern die neue Company wird als nächster Schritt geöffnet und über die Unternehmensinformationen geprüft.
 
 ## Vorhandene Companies prüfen
 
-Vor der Neuanlage wird zuerst geprüft, ob `UNIVERSAARL-DE` bereits vorhanden ist. Wenn die Company noch nicht in der Liste steht, wird sie neu angelegt. Wenn sie bereits vorhanden ist, wird nicht erneut angelegt; dann wird als naechstes die Company Information geprüft.
+Vor der Neuanlage wird zuerst geprüft, ob `UNIVERSAARL-DE` bereits vorhanden ist. Wenn die Company noch nicht in der Liste steht, wird sie neu angelegt. Wenn sie bereits vorhanden ist, wird nicht erneut angelegt; dann wird als nächstes die Company Information geprüft.
 
 `UNIVERSAARL-DE` steht für die deutsche Zielcompany der Universaarl GmbH. Der Name ist kurz, eindeutig und in allen späteren Schritten wiedererkennbar.
 
@@ -66,7 +66,7 @@ Vor dem Speichern müssen diese Punkte klar sein:
 
 Für die Universaarl GmbH ist dieser Zustand nur ein Erklär- und Prüfpunkt. Wenn nach einem Klick auf den Hauptbutton nur eine leere Zeile sichtbar wird, wird nicht weiter geraten. Dann wird zuerst geklärt, ob wirklich der gewünschte Anlageweg getroffen wurde. Für den nächsten Rechte-Lauf ist der Zielpfad der kleine Pfeil neben `Neu` und danach der Menüeintrag `Neues Unternehmen erstellen`.
 
-Beim Ausfuellen ist der Fokus wichtig. Business Central arbeitet in Listen oft mit einer aktiven Zelle. Es reicht nicht, dass irgendwo eine leere Zeile sichtbar ist. Der Cursor muss in der Namenszelle der neuen Zeile stehen. Erst dann wird `UNIVERSAARL-DE` wirklich in die neue Company-Zeile geschrieben.
+Beim Ausfüllen ist der Fokus wichtig. Business Central arbeitet in Listen oft mit einer aktiven Zelle. Es reicht nicht, dass irgendwo eine leere Zeile sichtbar ist. Der Cursor muss in der Namenszelle der neuen Zeile stehen. Erst dann wird `UNIVERSAARL-DE` wirklich in die neue Company-Zeile geschrieben.
 
 Nach der Eingabe wird nicht geraten, ob gespeichert wurde. Die Mandantenliste wird erneut gelesen. Der erfolgreiche Zustand ist einfach: `UNIVERSAARL-DE` steht als eigene Zeile in der Liste.
 
@@ -74,7 +74,7 @@ Nach der Eingabe wird nicht geraten, ob gespeichert wurde. Die Mandantenliste wi
 
 Neben dem Hauptbutton `Neu` gibt es einen kleinen Pfeil. Dieser Pfeil ist wichtig, weil er nicht dasselbe tut wie der Hauptbutton. Der Hauptbutton startet die neue Zeile. Der Pfeil öffnet ein Dropdown mit weiteren Aktionen.
 
-Im geöffneten Dropdown sind `Neu` und `Neues Unternehmen erstellen` sichtbar. `Neu` bleibt der direkte Einstieg in die Listenanlage. `Neues Unternehmen erstellen` klingt nach einem geführten Anlageweg und ist deshalb fachlich interessant. Weil diese Aktion eine wirksame Anlage starten kann, wird sie nicht nebenbei angeklickt, sondern nur in einem eigenen Schritt mit klarer Entscheidung.
+Im geöffneten Dropdown sind `Neu` und `Neues Unternehmen erstellen` sichtbar. `Neu` gehört zum Listenzeilenpfad. `Neues Unternehmen erstellen` klingt nach einem geführten Anlageweg und ist deshalb fachlich interessant. Weil diese Aktion eine wirksame Anlage starten kann, wird sie nicht nebenbei angeklickt, sondern nur in einem eigenen Schritt mit klarer Entscheidung.
 
 `Kopieren` steht in der Aktionsleiste der Mandantenliste. Es verwendet eine vorhandene Company als Vorlage. Das kann in Projekten sinnvoll sein, wenn die Quelle fachlich passt. Für die Universaarl GmbH ist es aber riskant, weil eine Kopie auch fremde Stammdaten, Einstellungen oder Demodaten übernehmen kann.
 
@@ -82,7 +82,7 @@ Im geöffneten Dropdown sind `Neu` und `Neues Unternehmen erstellen` sichtbar. `
 
 Für den nächsten Rechte-Lauf ist damit nur ein Zielpfad aktiv: der Dropdown-Eintrag `Neues Unternehmen erstellen`. Der Hauptbutton `Neu` bleibt im Buch wichtig, weil er den Unterschied zwischen Listenanlage und geführtem Anlageweg erklärt. Er ist aber nicht der Klick, mit dem `UNIVERSAARL-DE` im nächsten Lauf angelegt werden soll.
 
-Wenn man mit der Maus über `Neu` oder den Pfeil neben `Neu` faehrt, zeigt Business Central einen Tooltip. Solche Tooltips sind nützlich, weil sie den Zweck einer Aktion direkt in der Oberfläche bestätigen. Für eine Klickanleitung ist der Tooltip ein guter Kontrollpunkt: Er hilft zu unterscheiden, ob der Hauptbutton, der kleine Dropdown-Pfeil oder ein Eintrag im geöffneten Menü gemeint ist.
+Wenn man mit der Maus über `Neu` oder den Pfeil neben `Neu` fährt, zeigt Business Central einen Tooltip. Solche Tooltips sind nützlich, weil sie den Zweck einer Aktion direkt in der Oberfläche bestätigen. Für eine Klickanleitung ist der Tooltip ein guter Kontrollpunkt: Er hilft zu unterscheiden, ob der Hauptbutton, der kleine Dropdown-Pfeil oder ein Eintrag im geöffneten Menü gemeint ist.
 
 ## Warum die Alternativen trotzdem wichtig sind
 
@@ -112,7 +112,7 @@ Nach der erfolgreichen Anlage ist die Company noch nicht fachlich fertig. Eine n
 
 ## Typischer Fehler
 
-Ein häufiger Fehler ist, eine Test- oder Democompany zu verwenden, weil sie sofort viele Daten enthält. Das fuehlt sich am Anfang bequem an, macht später aber jeden Screenshot und jede Buchung schwerer erklaerbar.
+Ein häufiger Fehler ist, eine Test- oder Democompany zu verwenden, weil sie sofort viele Daten enthält. Das fühlt sich am Anfang bequem an, macht später aber jeden Screenshot und jede Buchung schwerer erklärbar.
 
 Der bessere Weg ist langsamer, aber sauberer: eigene Company anlegen, Pflichtdaten bewusst setzen und jeden Prozess aus der gleichen Universaarl-Welt aufbauen.
 
@@ -135,7 +135,7 @@ Eine neue Company ist kein normaler Stammdatensatz. Sie ist ein neuer Buchungsra
 
 In diesem Fall wird nicht auf `Kopieren`, `Testunternehmen` oder eine technische Abkürzung ausgewichen. Der richtige Ablauf ist:
 
-1. Rechte klaeren.
+1. Rechte klären.
 2. Mandantenliste erneut öffnen.
 3. Prüfen, dass `UNIVERSAARL-DE` noch fehlt.
 4. Den Pfeil neben `Neu` öffnen und `Neues Unternehmen erstellen` bewusst verwenden.
