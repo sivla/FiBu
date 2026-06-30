@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "TARGET-026M-SKR04-GUV-ACCOUNT-PAGEINSPECTION-FOLLOWUP",
   "caseId": "TARGET-026M-SKR04-GUV-ACCOUNT-PAGEINSPECTION-FOLLOWUP",
-  "status": "pending",
+  "status": "observed",
   "priority": "high",
   "area": "universaarl-skr04-chart-of-accounts",
   "goal": "Identify the exact Business Central field/control semantics for GuV/Bilanz on the G/L Account Card before another write attempt.",
@@ -99,5 +99,20 @@
       "Keep the run read-only unless the result explicitly identifies a safer next write route."
     ]
   },
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-026m-skr04-guv-account-pageinspection-followup/TARGET-026M-PAGEINSPECTION-result.json"
+  "completedAt": "2026-06-30T22:05:00.000Z",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-026m-skr04-guv-account-pageinspection-followup/TARGET-026M-PAGEINSPECTION-result.json",
+  "proved": [
+    "Business Central stayed in playthru / UNIVERSAARL-DE.",
+    "Filtered G/L Account Card contexts for 4400 and 5400 were opened read-only.",
+    "Page Inspection / Seitenueberpruefung became visible.",
+    "Page Inspection showed Page 17 G/L Account Card, Table 15 G/L Account and Income/Balance (9, Option).",
+    "Both accounts still show Income/Balance = Bilanz."
+  ],
+  "notProved": [
+    "4400 and 5400 are not corrected to GuV.",
+    "No safe write route was executed in this read-only follow-up.",
+    "No VAT setup, posting groups, master data, document draft, Preview Posting or Posting."
+  ],
+  "nextCase": "TARGET-026M-SKR04-GUV-ACCOUNT-SAFE-WRITE-FOLLOWUP",
+  "nextStep": "Use the Page Inspection field truth for exactly one controlled GuV/Bilanz safe-write attempt, then reopen card/list for proof."
 }

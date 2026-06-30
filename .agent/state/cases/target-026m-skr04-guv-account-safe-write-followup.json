@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 1,
+  "id": "TARGET-026M-SKR04-GUV-ACCOUNT-SAFE-WRITE-FOLLOWUP",
+  "caseId": "TARGET-026M-SKR04-GUV-ACCOUNT-SAFE-WRITE-FOLLOWUP",
+  "status": "pending",
+  "priority": "high",
+  "area": "universaarl-skr04-chart-of-accounts",
+  "goal": "Use the TARGET-026M Page Inspection evidence to run exactly one controlled non-repeating GuV/Bilanz write route for 4400 and 5400, then prove the values by reopen.",
+  "sourceCase": "TARGET-026M-SKR04-GUV-ACCOUNT-PAGEINSPECTION-FOLLOWUP",
+  "sourceResultPath": "playwright/projects/fibu-book5/evidence/target-026m-skr04-guv-account-pageinspection-followup/TARGET-026M-PAGEINSPECTION-result.json",
+  "createdAt": "2026-06-30T22:05:00.000Z",
+  "lookaheadStatus": "ready-next",
+  "mayRunPlaywright": true,
+  "mayWorkEffectively": true,
+  "effectiveBcActionsAllowed": true,
+  "sourceCompany": "UNIVERSAARL-DE",
+  "sourceInstance": "playthru",
+  "targetWorld": "Universaarl",
+  "problemStatement": "Page Inspection proved Page 17 G/L Account Card, Table 15 G/L Account and field Income/Balance (9, Option), with 4400 and 5400 still showing Bilanz. VAT, posting groups and master data remain blocked until the GuV/Bilanz values are corrected or consciously parked.",
+  "allowedActions": [
+    "open-target-gl-account-card-for-4400-5400",
+    "enter-edit-mode-on-card",
+    "set-income-balance-field-to-guv-once-per-account",
+    "save-or-leave-card-only-if-standard-bc-auto-save-is-triggered",
+    "reopen-card-and-chart-for-proof",
+    "capture-before-after-reopen-screenshots",
+    "write-result-and-next-step-card"
+  ],
+  "forbiddenActions": [
+    "change-vat-setup",
+    "change-posting-groups",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "api-shortcut",
+    "repeat-list-cell-guv-typing",
+    "treat-label-guv-bilanz-as-value-guv",
+    "continue-to-vat-or-masterdata-if-reopen-proof-fails"
+  ],
+  "targetAccounts": [
+    {
+      "no": "4400",
+      "name": "Umsatzerloese Inland 19 Prozent",
+      "currentVisibleType": "Bilanz",
+      "expectedType": "GuV",
+      "pageInspectionField": "Income/Balance (9, Option)"
+    },
+    {
+      "no": "5400",
+      "name": "Wareneingang / Materialaufwand",
+      "currentVisibleType": "Bilanz",
+      "expectedType": "GuV",
+      "pageInspectionField": "Income/Balance (9, Option)"
+    }
+  ],
+  "acceptanceCriteria": [
+    "Before screenshots show both accounts in playthru / UNIVERSAARL-DE.",
+    "The run uses a new field route based on Page Inspection, not the old list-cell or old blind card-fill route.",
+    "After/reopen screenshots show each target account value as GuV and Kontoart as Buchung, or the result blocks before VAT/posting/master data.",
+    "The result clearly states that no VAT setup, posting group setup, master data, document draft, Preview Posting or Posting occurred."
+  ],
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-026M-SKR04-GUV-ACCOUNT-PAGEINSPECTION-FOLLOWUP",
+    "plannedNextCaseBeforeReview": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
+    "lastEvidenceSummary": "Page Inspection on the Sachkontokarte showed Page 17 G/L Account Card, Table 15 G/L Account and Income/Balance (9, Option), with both target accounts still set to Bilanz.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "The chart checkpoint remains premature until 4400 and 5400 are corrected to GuV or explicitly parked.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-026M-SKR04-GUV-ACCOUNT-SAFE-WRITE-FOLLOWUP",
+        "status": "ready-next",
+        "reason": "The Page Inspection result identifies the target page/table/field and supports one controlled write route."
+      },
+      {
+        "caseId": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
+        "status": "ready-after-current",
+        "reason": "Only after GuV correction or conscious park decision."
+      },
+      {
+        "caseId": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "VAT setup waits for correct G/L account foundation."
+      },
+      {
+        "caseId": "TARGET-028-CUSTOMER-VENDOR-ITEM-MASTERDATA",
+        "status": "needs-setup-first",
+        "reason": "Master data remains locked until foundation setup is ready."
+      }
+    ],
+    "queueChangesMade": [
+      "Set TARGET-026M-SKR04-GUV-ACCOUNT-SAFE-WRITE-FOLLOWUP as the next case before chart checkpoint and VAT setup."
+    ],
+    "selectedNextCase": "TARGET-026M-SKR04-GUV-ACCOUNT-SAFE-WRITE-FOLLOWUP",
+    "whySelectedNextCaseIsBest": "It is the first non-repeating, Page-Inspection-backed route that can unblock SKR04 starter account setup.",
+    "risksBeforeNextCase": [
+      "Do not count the GuV/Bilanz label as value GuV.",
+      "Stop if edit mode or the option control is not unambiguous.",
+      "Do not continue to VAT, posting groups or master data without reopen proof."
+    ],
+    "requiredPreparation": [
+      "Use screenshots from target-026m-pageinspection-4400/5400-020-page-inspection as the field truth."
+    ]
+  },
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-026m-skr04-guv-account-safe-write-followup/TARGET-026M-SAFE-WRITE-result.json"
+}

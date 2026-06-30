@@ -23,8 +23,8 @@ Dieses Mapping ist noch kein vollstaendiger Kontenplan und keine Steuerberaterfr
 | `1406` | Abziehbare Vorsteuer 19 Prozent | Vorsteuer | Bilanz | Purchase VAT Account spaeter | `universaarl-proven`; in `TARGET-026K` sichtbar nach kontrolliertem Fit und Reopen |
 | `3300` | Verbindlichkeiten aus Lieferungen und Leistungen | Kreditoren/Verbindlichkeiten | Bilanz | Vendor Posting Group spaeter | `universaarl-proven`; in `TARGET-026L` sichtbar nach kontrolliertem Fit und Reopen |
 | `3806` | Umsatzsteuer 19 Prozent | Umsatzsteuer | Bilanz | Sales VAT Account spaeter | `universaarl-proven`; in `TARGET-026L` sichtbar nach kontrolliertem Fit und Reopen; VAT Setup bleibt offen |
-| `4400` | Umsatzerloese Inland 19 Prozent | Verkaufserloese | GuV | General Posting Setup Sales Account spaeter | `blocked-visible-wrong-type-after-card-recovery`; in `TARGET-026M` und Recovery sichtbar, aber nach Reopen weiter `Bilanz/Buchung` statt `GuV/Buchung` |
-| `5400` | Wareneingang / Materialaufwand | Einkauf/Wareneinsatz | GuV | General Posting Setup Purchase/COGS-Kontext spaeter | `blocked-visible-wrong-type-after-card-recovery`; in `TARGET-026M` und Recovery sichtbar, aber nach Reopen weiter `Bilanz/Buchung` statt `GuV/Buchung` |
+| `4400` | Umsatzerloese Inland 19 Prozent | Verkaufserloese | GuV | General Posting Setup Sales Account spaeter | `pageinspection-field-truth-ready-for-safe-write`; Page Inspection zeigt Page `17`, Table `15`, Field `Income/Balance (9, Option)`, aktueller Wert `Bilanz` |
+| `5400` | Wareneingang / Materialaufwand | Einkauf/Wareneinsatz | GuV | General Posting Setup Purchase/COGS-Kontext spaeter | `pageinspection-field-truth-ready-for-safe-write`; Page Inspection zeigt Page `17`, Table `15`, Field `Income/Balance (9, Option)`, aktueller Wert `Bilanz` |
 
 ## Bewusst noch nicht freigegeben
 
@@ -61,7 +61,9 @@ Die Screenshot-QA zeigt weiterhin die offene Altlast `1200 Bank Saarland`. Diese
 
 `TARGET-026M` und `TARGET-026M-SKR04-GUV-ACCOUNT-ROUTE-RECOVERY` haben die GuV-Route noch nicht geloest: `4400` und `5400` sind sichtbar, stehen aber nach Reopen weiterhin auf `Bilanz`. Die Recovery-Screenshots zeigen zusaetzlich, dass der Kartenversuch nicht als Erfolg gewertet werden darf, wenn nur die Beschriftung `GuV/Bilanz` sichtbar ist. Entscheidend ist der Feldwert nach Reopen.
 
-Deshalb bleiben VAT Setup, Posting Groups, Stammdaten, Belege, Preview Posting und Posting gesperrt. Der naechste sinnvolle Schritt ist `TARGET-026M-SKR04-GUV-ACCOUNT-PAGEINSPECTION-FOLLOWUP` mit Page-Inspection- oder source-backed Feldsteuerungsdiagnose fuer `GuV/Bilanz`.
+`TARGET-026M-SKR04-GUV-ACCOUNT-PAGEINSPECTION-FOLLOWUP` hat die technische Feldwahrheit geliefert: Sachkontokarte Page `17`, Tabelle `G/L Account (15)`, Feld `Income/Balance (9, Option)`, aktueller Wert `Bilanz`. Deshalb ist der naechste sinnvolle Schritt ein einzelner kontrollierter Safe-Write-Follow-up auf genau dieses Feld, mit Vorher-/Nachher- und Reopen-Proof.
+
+Bis dieser Reopen-Proof vorliegt, bleiben VAT Setup, Posting Groups, Stammdaten, Belege, Preview Posting und Posting gesperrt.
 
 ## Quellenbasis
 

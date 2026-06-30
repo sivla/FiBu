@@ -432,6 +432,17 @@ Screenshot-QA zu TARGET-026M: Die Bilder sind als Blockerbilder wertvoll, aber k
 
 Screenshot-QA zu TARGET-026M Recovery: Die Bilder korrigieren einen moeglichen False Positive in der Textauswertung. `GuV/Bilanz` ist hier nur die Feldbeschriftung; der sichtbare Feldwert bleibt `Bilanz`. Der naechste Lauf braucht Page Inspection oder eine source-backed Field-Control-Diagnose, bevor ein weiterer Schreibversuch sinnvoll ist.
 
+## Universaarl Kontenplan - SKR04 GuV Page Inspection TARGET-026M
+
+| Screenshot | Page | Company | Schritt | Was sieht man? | Interner Beweis | Beweist nicht | Status |
+|---|---|---|---|---|---|---|---|
+| `target-026m-pageinspection-4400-010-card-before.png` | Sachkontokarte, Page 17 | `playthru` / `UNIVERSAARL-DE` | 4400 vor technischer Pruefung | `4400 Umsatzerloese Inland 19 Prozent`, Feld `GuV/Bilanz` mit Wert `Bilanz`, Kontoart `Buchung` | Zielkonto ist in der Zielcompany auf der Sachkontokarte sichtbar; aktueller Kontotyp ist falsch fuer Verkaufserloese | keine GuV-Korrektur, keine VAT-/Posting-Setup-Freigabe | `diagnostic-before`, `do-not-use-as-success` |
+| `target-026m-pageinspection-4400-020-page-inspection.png` | Sachkontokarte + Seitenueberpruefung | `playthru` / `UNIVERSAARL-DE` | 4400 Page Inspection | Rechts ist `Seitenueberpruefung` offen: Page `G/L Account Card (17, Card)`, Table `G/L Account (15)`, Field `Income/Balance (9, Option)` mit Wert `Bilanz` | Technische Page-/Table-/Field-Wahrheit fuer den naechsten kontrollierten Schreibversuch | kein geaenderter Wert, keine Buchung, kein finaler Buchbeweis | `field-truth`, `ready-for-safe-write-followup` |
+| `target-026m-pageinspection-5400-010-card-before.png` | Sachkontokarte, Page 17 | `playthru` / `UNIVERSAARL-DE` | 5400 vor technischer Pruefung | `5400 Wareneingang / Materialaufwand`, Feld `GuV/Bilanz` mit Wert `Bilanz`, Kontoart `Buchung` | Zielkonto ist in der Zielcompany auf der Sachkontokarte sichtbar; aktueller Kontotyp ist falsch fuer Aufwand | keine GuV-Korrektur, keine VAT-/Posting-Setup-Freigabe | `diagnostic-before`, `do-not-use-as-success` |
+| `target-026m-pageinspection-5400-020-page-inspection.png` | Sachkontokarte + Seitenueberpruefung | `playthru` / `UNIVERSAARL-DE` | 5400 Page Inspection | Rechts ist `Seitenueberpruefung` offen: Page `G/L Account Card (17, Card)`, Table `G/L Account (15)`, Field `Income/Balance (9, Option)` mit Wert `Bilanz` | Technische Page-/Table-/Field-Wahrheit fuer den naechsten kontrollierten Schreibversuch | kein geaenderter Wert, keine Buchung, kein finaler Buchbeweis | `field-truth`, `ready-for-safe-write-followup` |
+
+Screenshot-QA zu TARGET-026M Page Inspection: Die Bilder sind gute technische Diagnosebilder. Sie sind keine Erfolgsscreenshots fuer einen fertigen SKR04-Kontenplan, weil beide Zielkonten weiter `Bilanz` zeigen. Der Buch-Lernwert ist: Page Inspection erklaert, welche BC-Page, Tabelle und welches Feld hinter einem sichtbaren Kartenfeld stehen.
+
 ## PREP-010 Screenshot-QA-Regel
 
 Vor jeder Buch- oder Clickguide-Nutzung muss der Screenshot gegen die konkrete Behauptung geprueft werden:

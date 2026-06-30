@@ -1,48 +1,39 @@
 {
-  "caseId": "TARGET-026M-SKR04-GUV-ACCOUNT-ROUTE-RECOVERY",
-  "status": "blocked",
-  "completedAt": "2026-06-30T21:40:00.000Z",
+  "schemaVersion": 1,
+  "caseId": "TARGET-026M-SKR04-GUV-ACCOUNT-PAGEINSPECTION-FOLLOWUP",
+  "status": "observed",
+  "completedAt": "2026-06-30T22:05:00.000Z",
   "sourceInstance": "playthru",
   "sourceCompany": "UNIVERSAARL-DE",
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-026m-skr04-guv-account-route-recovery/TARGET-026M-RECOVERY-result.json",
-  "evidencePath": "playwright/projects/fibu-book5/evidence/target-026m-skr04-guv-account-route-recovery/",
-  "summary": "TARGET-026M recovery opened filtered G/L Account Cards for 4400 and 5400 and captured card/reopen screenshots. Screenshot-QA confirms both accounts still show Bilanz/Buchung after the attempted card field route.",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-026m-skr04-guv-account-pageinspection-followup/TARGET-026M-PAGEINSPECTION-result.json",
+  "evidencePath": "playwright/projects/fibu-book5/evidence/target-026m-skr04-guv-account-pageinspection-followup/",
+  "summary": "Read-only Page Inspection on the Sachkontokarte proved Page 17 G/L Account Card, Table 15 G/L Account and field Income/Balance (9, Option). Accounts 4400 and 5400 are still Bilanz and are not yet usable for VAT/posting setup.",
   "proved": [
-    "Instanz playthru und Company UNIVERSAARL-DE wurden kontrolliert.",
-    "Sachkontokarte Page 17 wurde fuer 4400 und 5400 im Zielkontext geoeffnet.",
-    "Kontenplan Page 16 wurde danach erneut geoeffnet und zeigt 4400 und 5400 sichtbar."
+    "Business Central stayed in playthru / UNIVERSAARL-DE.",
+    "Filtered G/L Account Card contexts for 4400 and 5400 were opened read-only.",
+    "Page Inspection / Seitenueberpruefung became visible for the target cards.",
+    "Technical context: Page 17 G/L Account Card, Table 15 G/L Account, field Income/Balance (9, Option).",
+    "Screenshot QA shows the current value is Bilanz for both 4400 and 5400."
   ],
   "notProved": [
-    "4400 ist nicht als GuV/Buchung bewiesen.",
-    "5400 ist nicht als GuV/Buchung bewiesen.",
-    "Kein vollstaendiger Kontenplan.",
-    "Keine SKR04- oder Steuerberaterfreigabe.",
-    "Keine VAT Posting Setup Zeile.",
-    "Keine Posting Groups.",
-    "Keine Stammdatenanlage.",
-    "Kein Dokument, keine Preview, keine Buchung."
+    "4400 is not corrected to GuV.",
+    "5400 is not corrected to GuV.",
+    "No safe write route was executed in this read-only follow-up.",
+    "No VAT setup, posting groups, master data, document draft, Preview Posting or Posting."
   ],
-  "blockedBy": [
-    "4400 Umsatzerloese Inland 19 Prozent ist nach Reopen nicht als GuV/Buchung sichtbar.",
-    "5400 Wareneingang / Materialaufwand ist nach Reopen nicht als GuV/Buchung sichtbar."
+  "blockedBy": [],
+  "warnings": [
+    "The label GuV/Bilanz must never be counted as the value GuV.",
+    "VAT setup, posting groups and master data remain locked until GuV/Bilanz is corrected or consciously parked."
   ],
   "screenshots": [
-    "target-026m-recovery-4400-010-card-before.png",
-    "target-026m-recovery-4400-020-card-editmode-before-field.png",
-    "target-026m-recovery-4400-030-card-after-field-attempt.png",
-    "target-026m-recovery-4400-040-chart-reopen-proof.png",
-    "target-026m-recovery-5400-010-card-before.png",
-    "target-026m-recovery-5400-020-card-editmode-before-field.png",
-    "target-026m-recovery-5400-030-card-after-field-attempt.png",
-    "target-026m-recovery-5400-040-chart-reopen-proof.png"
+    "target-026m-pageinspection-4400-010-card-before.png",
+    "target-026m-pageinspection-4400-020-page-inspection.png",
+    "target-026m-pageinspection-5400-010-card-before.png",
+    "target-026m-pageinspection-5400-020-page-inspection.png"
   ],
-  "screenshotQaCorrection": {
-    "status": "corrected-false-positive",
-    "reason": "The original nested changedVisibleOnCard detection could match the label GuV/Bilanz. Visual QA shows the field value remains Bilanz."
-  },
   "flags": {
-    "setupChangeAttempted": true,
-    "setupChanged": false,
+    "noSetupChange": true,
     "noVatSetupChange": true,
     "noPostingGroupChange": true,
     "noMasterData": true,
@@ -50,50 +41,57 @@
     "noPreview": true,
     "noPost": true,
     "noApiShortcut": true,
-    "noBookChange": true
+    "noBookChange": true,
+    "noCompanySwitch": true
   },
-  "nextCase": "TARGET-026M-SKR04-GUV-ACCOUNT-PAGEINSPECTION-FOLLOWUP",
-  "nextStep": "Use Page Inspection or source-backed field/control diagnostics for GuV/Bilanz before any further write route.",
+  "nextCase": "TARGET-026M-SKR04-GUV-ACCOUNT-SAFE-WRITE-FOLLOWUP",
+  "nextStep": "Use the Page Inspection field truth for exactly one controlled GuV/Bilanz safe-write attempt, then reopen card/list for proof.",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-026M-SKR04-GUV-ACCOUNT-ROUTE-RECOVERY",
+    "currentCase": "TARGET-026M-SKR04-GUV-ACCOUNT-PAGEINSPECTION-FOLLOWUP",
     "plannedNextCaseBeforeReview": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
-    "lastEvidenceSummary": "TARGET-026M recovery proved that the filtered card route still leaves 4400 and 5400 visible as Bilanz/Buchung after reopen.",
+    "lastEvidenceSummary": "4400 and 5400 are visible in playthru / UNIVERSAARL-DE, but Page Inspection and screenshots show Income/Balance = Bilanz.",
     "isPlannedNextCaseStillSensible": false,
-    "reason": "The chart checkpoint and later VAT/posting setup depend on correctly typed sales and expense accounts.",
+    "reason": "The chart checkpoint is premature until 4400 and 5400 are corrected to GuV or consciously parked.",
     "lookaheadReviewed": [
       {
+        "caseId": "TARGET-026M-SKR04-GUV-ACCOUNT-SAFE-WRITE-FOLLOWUP",
+        "status": "ready-next",
+        "reason": "Page 17/Table 15/Field 9 are known, so one controlled non-repeating write route is justified."
+      },
+      {
         "caseId": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
-        "status": "needs-ui-discovery-first",
-        "reason": "GuV/Bilanz field semantics remain unresolved."
+        "status": "ready-after-current",
+        "reason": "Run after GuV correction or conscious park decision."
       },
       {
         "caseId": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "VAT setup needs correct sales/purchase G/L account foundation."
+        "reason": "VAT setup waits for correct sales and expense accounts."
       },
       {
         "caseId": "TARGET-028-CUSTOMER-VENDOR-ITEM-MASTERDATA",
         "status": "needs-setup-first",
-        "reason": "Master data waits for posting groups and VAT setup."
+        "reason": "Master data remains locked until chart, dimensions, VAT and posting groups are ready."
       },
       {
         "caseId": "TARGET-029-FIRST-SALES-PURCHASE-DRAFT-GATE",
         "status": "needs-setup-first",
-        "reason": "Document drafts need number series, posting groups, VAT and master data."
+        "reason": "Document drafts require foundation setup."
       }
     ],
     "queueChangesMade": [
-      "Inserted TARGET-026M-SKR04-GUV-ACCOUNT-PAGEINSPECTION-FOLLOWUP before chart checkpoint and VAT setup."
+      "Set TARGET-026M-SKR04-GUV-ACCOUNT-SAFE-WRITE-FOLLOWUP as next active case."
     ],
-    "selectedNextCase": "TARGET-026M-SKR04-GUV-ACCOUNT-PAGEINSPECTION-FOLLOWUP",
-    "whySelectedNextCaseIsBest": "It is the smallest non-repeating step that can identify why the visible card field is not persisting as GuV.",
+    "selectedNextCase": "TARGET-026M-SKR04-GUV-ACCOUNT-SAFE-WRITE-FOLLOWUP",
+    "whySelectedNextCaseIsBest": "It is the smallest practical step that can unblock SKR04 starter account setup without jumping to VAT/posting groups.",
     "risksBeforeNextCase": [
-      "Do not count field labels as field values.",
-      "Do not repeat list-cell or card-fill routes without new field-control proof."
+      "Do not count label text as value.",
+      "Stop if edit mode or option selection is ambiguous.",
+      "Do not continue to VAT/posting groups if reopen proof fails."
     ],
     "requiredPreparation": [
-      "Keep the follow-up read-only unless it proves a safer write path."
+      "Use target-026m-pageinspection-4400/5400-020-page-inspection screenshots as field truth."
     ]
   },
-  "runId": "TARGET-026M-SKR04-GUV-ACCOUNT-ROUTE-RECOVERY-RUN-2026-06-30T21-40-00-000Z"
+  "runId": "TARGET-026M-SKR04-GUV-ACCOUNT-PAGEINSPECTION-FOLLOWUP-RUN-2026-06-30T22-05-00-000Z"
 }

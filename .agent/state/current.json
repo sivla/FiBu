@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-30T20:53:55.942Z",
+  "updatedAt": "2026-06-30T22:05:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-skr04-guv-account-pageinspection-followup",
-  "activeCase": "TARGET-026M-SKR04-GUV-ACCOUNT-PAGEINSPECTION-FOLLOWUP",
-  "active_case_file": ".agent/state/cases/target-026m-skr04-guv-account-pageinspection-followup.json",
+  "activeArea": "universaarl-skr04-guv-account-safe-write-followup",
+  "activeCase": "TARGET-026M-SKR04-GUV-ACCOUNT-SAFE-WRITE-FOLLOWUP",
+  "active_case_file": ".agent/state/cases/target-026m-skr04-guv-account-safe-write-followup.json",
   "lastReferenceCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
   "lastReferenceCaseFile": ".agent/state/cases/warehouse-031-warehouse-source-route-park-or-setup-fit-decision.json",
   "mode": "universaarl-target-execution",
@@ -19,10 +19,12 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "open-chart-of-accounts-readonly",
-    "open-target-gl-account-card-readonly-for-4400-5400",
-    "open-page-inspection-if-safe",
-    "capture-field-control-map",
+    "open-target-gl-account-card-for-4400-5400",
+    "enter-edit-mode-on-card",
+    "set-income-balance-field-to-guv-once-per-account",
+    "save-or-leave-card-only-if-standard-bc-auto-save-is-triggered",
+    "reopen-card-and-chart-for-proof",
+    "capture-before-after-reopen-screenshots",
     "capture-screenshot-qa",
     "write-result-and-next-step-card"
   ],
@@ -40,9 +42,11 @@
     "post",
     "api-shortcut",
     "repeat-list-cell-guv-typing",
-    "repeat-card-fill-without-new-field-proof"
+    "treat-label-guv-bilanz-as-value-guv",
+    "continue-to-vat-or-masterdata-if-reopen-proof-fails"
   ],
-  "nextStep": "Run Page Inspection or field-control diagnostics for GuV/Bilanz on 4400 and 5400; VAT setup, posting groups, master data, documents, Preview Posting and Posting remain locked.",
+  "nextCase": "TARGET-026M-SKR04-GUV-ACCOUNT-SAFE-WRITE-FOLLOWUP",
+  "nextStep": "Use Page Inspection field truth from TARGET-026M to run exactly one controlled GuV/Bilanz safe-write attempt for 4400 and 5400, then prove values by reopen; VAT setup, posting groups, master data, documents, Preview Posting and Posting remain locked.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,

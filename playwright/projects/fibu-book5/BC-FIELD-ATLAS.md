@@ -16,6 +16,7 @@ Die vorhandene Feldliste bewahrt wichtige RM-DEMO-/P2P-/Fixed-Assets-Learnings. 
 | 4 | `TARGET-POSTINGGROUPS-001` | Gen. Bus./Prod. Posting Group, Customer/Vendor/Inventory/Bank/FA Posting Group | steuert Kontenfindung. |
 | 5 | `TARGET-VAT-001` | VAT Bus./Prod. Posting Group, VAT %, VAT Accounts | Grundlage fuer deutsche USt-Nachweise. |
 | 6 | `TARGET-DIMENSIONS-001` | Dimension Code, Dimension Value Code, Value Posting | Grundlage fuer Reporting und Filter. |
+| 7 | `TARGET-026M` | G/L Account `Income/Balance (9, Option)` / `GuV/Bilanz` | entscheidet, ob ein Sachkonto Bilanz- oder GuV-Konto ist; muss vor VAT-/Posting-Setup fuer Umsatz-/Aufwandskonten stimmen. |
 
 ## PREP-024 Read-only Feldpaket
 
@@ -58,6 +59,7 @@ Die vorhandene Feldliste bewahrt wichtige RM-DEMO-/P2P-/Fixed-Assets-Learnings. 
 | `Remaining Amount` / Restbetrag | Look and Feel/OP/Payments | geplant fuer Customer/Vendor Ledger Entries | zeigt offenen Betrag nach Zahlung oder Teilzahlung | Universaarl geplant | braucht OP- und Zahlungsfaelle |
 | Dimension fields / `Shortcut Dimension 1/2` | Look and Feel/Reporting | geplant fuer Ledger Entries und Belege | Grundlage fuer Dimensionsfilter und `Filter totals by` | Universaarl geplant | braucht Dimension Foundation und gebuchte Dimensionen |
 | `Status` | Look and Feel/Belege | geplant fuer Sales/Purchase Documents | trennt offene, freigegebene und gebuchte Arbeitsstaende | Universaarl geplant | Statuswirkung je Belegtyp separat belegen |
+| `Income/Balance (9, Option)` / `GuV/Bilanz` | Universaarl SKR04 Sachkonto | Sachkontokarte Page `17`, Table `G/L Account (15)`, Page Inspection / Seitenueberpruefung | trennt Bilanzkonten von GuV-Konten; `4400` und `5400` muessen fuer Umsatz/Aufwand `GuV` sein | `evidence/target-026m-skr04-guv-account-pageinspection-followup/TARGET-026M-PAGEINSPECTION-result.json` | aktuell weiter `Bilanz`; Page Inspection ist Feldwahrheit, aber noch kein Schreib-/Reopen-Erfolg |
 
 ## Zero-Open-Questions-Regel
 

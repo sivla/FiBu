@@ -1,0 +1,1770 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "TARGET-026M-SKR04-GUV-ACCOUNT-PAGEINSPECTION-FOLLOWUP",
+  "source": "playwright-readonly-pageinspection",
+  "resultStatus": "observed",
+  "runPlanId": "TARGET-026M-SKR04-GUV-ACCOUNT-PAGEINSPECTION-FOLLOWUP-PLAN",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "proved": [
+    "Business Central stayed in playthru / UNIVERSAARL-DE.",
+    "Filtered G/L Account Card contexts for 4400 and 5400 were opened read-only.",
+    "GuV/Bilanz field/control surroundings were captured without changing values.",
+    "Page Inspection / technical page context became visible for at least one target account."
+  ],
+  "notProved": [
+    "4400 and 5400 are not proven corrected to GuV.",
+    "No safe GuV write route was executed in this read-only follow-up.",
+    "No VAT setup, posting groups, master data, document draft, preview or posting was executed.",
+    "No final German accounting claim."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/target-026m-skr04-guv-account-pageinspection-followup/"
+  ],
+  "screenshots": [
+    "target-026m-pageinspection-4400-010-card-before.png",
+    "target-026m-pageinspection-4400-020-page-inspection.png",
+    "target-026m-pageinspection-5400-010-card-before.png",
+    "target-026m-pageinspection-5400-020-page-inspection.png"
+  ],
+  "evidenceRefs": [
+    "TARGET-026M-PAGEINSPECTION-result.json",
+    "README.md",
+    "target-026m-pageinspection-4400-010-card-before.png",
+    "target-026m-pageinspection-4400-020-page-inspection.png",
+    "target-026m-pageinspection-5400-010-card-before.png",
+    "target-026m-pageinspection-5400-020-page-inspection.png",
+    "target-026m-pageinspection-4400-010-card-before.screenshot.json",
+    "target-026m-pageinspection-4400-020-page-inspection.screenshot.json",
+    "target-026m-pageinspection-5400-010-card-before.screenshot.json",
+    "target-026m-pageinspection-5400-020-page-inspection.screenshot.json",
+    "target-026m-pageinspection-4400-010-card-before.snapshot.json",
+    "target-026m-pageinspection-4400-020-page-inspection.snapshot.json",
+    "target-026m-pageinspection-5400-010-card-before.snapshot.json",
+    "target-026m-pageinspection-5400-020-page-inspection.snapshot.json",
+    "target-026m-pageinspection-4400-010-card-before.txt",
+    "target-026m-pageinspection-4400-020-page-inspection.txt",
+    "target-026m-pageinspection-5400-010-card-before.txt",
+    "target-026m-pageinspection-5400-020-page-inspection.txt"
+  ],
+  "warnings": [
+    "4400: GuV/Bilanz label is visible; this must not be counted as value GuV.",
+    "5400: GuV/Bilanz label is visible; this must not be counted as value GuV."
+  ],
+  "blockedBy": [],
+  "requiresReview": true,
+  "safeToFinalizeState": false,
+  "flags": {
+    "noSetupChange": true,
+    "noVatSetupChange": true,
+    "noPostingGroupChange": true,
+    "noMasterData": true,
+    "noDocumentOrDraft": true,
+    "noPreview": true,
+    "noPost": true,
+    "noApiShortcut": true,
+    "noBookChange": true,
+    "noCompanySwitch": true
+  },
+  "accountResults": [
+    {
+      "targetAccount": {
+        "no": "4400",
+        "name": "Umsatzerloese Inland 19 Prozent",
+        "expectedType": "GuV",
+        "currentProblem": "visible as Bilanz/Buchung after previous recovery attempts"
+      },
+      "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=17&company=UNIVERSAARL-DE&filter=%27G%2FL+Account%27.%27No.%27+IS+%27%40*4400*%27",
+      "beforeValue": {
+        "hasExactGuvValue": false,
+        "hasExactBalanceValue": false,
+        "labelOnlyRisk": true,
+        "safeToCountAsGuv": false
+      },
+      "pageInspection": {
+        "opened": true,
+        "closedExternalPages": [],
+        "focusedLines": [
+          "G/L Account Card (17, Card)",
+          "G/L Account (15)",
+          "4400",
+          "Income/Balance (9, Option)",
+          "Sachkontokarte",
+          "4400 Umsatzerloese Inland 19 Prozent",
+          "GuV/Bilanz",
+          "4400 Umsatzerloese Inland 19 Prozent. Sachkontokarte",
+          "G/L Account Card (17, Card)",
+          "G/L Account (15)",
+          "4400",
+          "Income/Balance (9, Option)",
+          "Sachkontokarte",
+          "4400 Umsatzerloese Inland 19 Prozent",
+          "4400",
+          "GuV/Bilanz",
+          "4400 Umsatzerloese Inland 19 Prozent. Sachkontokarte"
+        ]
+      },
+      "hasCardContext": true,
+      "fieldControlMapCaptured": true,
+      "fieldControlMap": [
+        {
+          "frameUrl": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=17&company=UNIVERSAARL-DE&filter=%27G%2FL+Account%27.%27No.%27+IS+%27%40*4400*%27",
+          "fields": [
+            {
+              "caption": "Nr.",
+              "nearbyControls": [],
+              "nearbyTexts": []
+            },
+            {
+              "caption": "No.",
+              "nearbyControls": [],
+              "nearbyTexts": []
+            },
+            {
+              "caption": "Name",
+              "nearbyControls": [],
+              "nearbyTexts": []
+            },
+            {
+              "caption": "GuV/Bilanz",
+              "nearbyControls": [],
+              "nearbyTexts": []
+            },
+            {
+              "caption": "Income/Balance",
+              "nearbyControls": [],
+              "nearbyTexts": []
+            },
+            {
+              "caption": "Kontoart",
+              "nearbyControls": [],
+              "nearbyTexts": []
+            },
+            {
+              "caption": "Account Type",
+              "nearbyControls": [],
+              "nearbyTexts": []
+            }
+          ]
+        },
+        {
+          "frameUrl": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=17&company=UNIVERSAARL-DE&filter=%27G%2FL+Account%27.%27No.%27+IS+%274400%27",
+          "fields": [
+            {
+              "caption": "Nr.",
+              "nearbyControls": [],
+              "nearbyTexts": []
+            },
+            {
+              "caption": "No.",
+              "nearbyControls": [],
+              "nearbyTexts": []
+            },
+            {
+              "caption": "Name",
+              "label": {
+                "index": 0,
+                "tag": "DIV",
+                "text": "  Sachkontokarte       4400 ∙ Umsatzerloese Inland 19 Prozent Start Konto Saldo Weitere Optionen  Gebuchte Belege ohne eingehenden Beleg Vorlage anwenden...  Allgemein Mehr anzeigen Nr. 4400 Name Umsatzerloese Inland 19 Prozent GuV/Bilanz Bilanz Kontokategorie Kontounterkategorie Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Soll/Haben Beides Kontoart Buchung Zusammenzählung Saldo 0,00 Abstimmbar Automat. Textbaustein Direktbuchung Gesperrt Geändert am 30.06.2026 Standardbeschreibung in Buch.-Blatt auslassen Überprüfungsrichtlinie Keine Buchung Buchungsart Geschäftsbuchungsgruppe Produktbuchungsgruppe MwSt.-Geschäftsbuchungsgruppe MwSt.-Produktbuchungsgruppe Vorg.-IC-Partner Sachkontonr. Withholding Tax Bus. Post. Group Withholding Tax Prod. Post. Group Standard-Abgrenzungsvorlage Neubewertung Konsolidierung Durchschnittskurs (manuell) Nein Berichtswesen Keine Regulierung Kostenrechnung Zusammenfassung Vorschauversion Details Anhänge (0) Ursprungswährungen Währungscode Saldo bis Datum Ursprungswährung Saldo bis Datum Posten vorhanden (In dieser Ansicht kann nichts angezeigt werden) ",
+                "aria": "",
+                "title": "",
+                "role": "",
+                "x": 0,
+                "y": 0,
+                "width": 2400,
+                "height": 1302
+              },
+              "nearbyControls": [
+                {
+                  "index": 0,
+                  "tag": "BUTTON",
+                  "type": "button",
+                  "value": "",
+                  "aria": "",
+                  "title": "Diese Seite für andere Benutzer oder Apps freigeben",
+                  "role": "",
+                  "disabled": false,
+                  "readOnly": false,
+                  "x": 1150,
+                  "y": 14,
+                  "width": 38,
+                  "height": 38
+                }
+              ],
+              "nearbyTexts": [
+                {
+                  "index": 0,
+                  "tag": "DIV",
+                  "text": "  Sachkontokarte       4400 ∙ Umsatzerloese Inland 19 Prozent Start Konto Saldo Weitere Optionen  Gebuchte Belege ohne eingehenden Beleg Vorlage anwenden...  Allgemein Mehr anzeigen Nr. 4400 Name Umsatzerloese Inland 19 Prozent GuV/Bilanz Bilanz Kontokategorie Kontounterkategorie Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Soll/Haben Beides Kontoart Buchung Zusammenzählung Saldo 0,00 Abstimmbar Automat. Textbaustein Direktbuchung Gesperrt Geändert am 30.06.2026 Standardbeschreibung in Buch.-Blatt auslassen Überprüfungsrichtlinie Keine Buchung Buchungsart Geschäftsbuchungsgruppe Produktbuchungsgruppe MwSt.-Geschäftsbuchungsgruppe MwSt.-Produktbuchungsgruppe Vorg.-IC-Partner Sachkontonr. Withholding Tax Bus. Post. Group Withholding Tax Prod. Post. Group Standard-Abgrenzungsvorlage Neubewertung Konsolidierung Durchschnittskurs (manuell) Nein Berichtswesen Keine Regulierung Kostenrechnung Zusammenfassung Vorschauversion Details Anhänge (0) Ursprungswährungen Währungscode Saldo bis Datum Ursprungswährung Saldo bis Datum Posten vorhanden (In dieser Ansicht kann nichts angezeigt werden) ",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 0,
+                  "y": 0,
+                  "width": 2400,
+                  "height": 1302
+                },
+                {
+                  "index": 1,
+                  "tag": "DIV",
+                  "text": "",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 0,
+                  "y": 0,
+                  "width": 2400,
+                  "height": 1302
+                },
+                {
+                  "index": 2,
+                  "tag": "DIV",
+                  "text": "  Sachkontokarte       4400 ∙ Umsatzerloese Inland 19 Prozent Start Konto Saldo Weitere Optionen  Gebuchte Belege ohne eingehenden Beleg Vorlage anwenden...  Allgemein Mehr anzeigen Nr. 4400 Name Umsatzerloese Inland 19 Prozent GuV/Bilanz Bilanz Kontokategorie Kontounterkategorie Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Soll/Haben Beides Kontoart Buchung Zusammenzählung Saldo 0,00 Abstimmbar Automat. Textbaustein Direktbuchung Gesperrt Geändert am 30.06.2026 Standardbeschreibung in Buch.-Blatt auslassen Überprüfungsrichtlinie Keine Buchung Buchungsart Geschäftsbuchungsgruppe Produktbuchungsgruppe MwSt.-Geschäftsbuchungsgruppe MwSt.-Produktbuchungsgruppe Vorg.-IC-Partner Sachkontonr. Withholding Tax Bus. Post. Group Withholding Tax Prod. Post. Group Standard-Abgrenzungsvorlage Neubewertung Konsolidierung Durchschnittskurs (manuell) Nein Berichtswesen Keine Regulierung Kostenrechnung Zusammenfassung Vorschauversion Details Anhänge (0) Ursprungswährungen Währungscode Saldo bis Datum Ursprungswährung Saldo bis Datum Posten vorhanden (In dieser Ansicht kann nichts angezeigt werden) ",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 0,
+                  "y": 0,
+                  "width": 2400,
+                  "height": 1302
+                },
+                {
+                  "index": 3,
+                  "tag": "FORM",
+                  "text": "  Sachkontokarte       4400 ∙ Umsatzerloese Inland 19 Prozent Start Konto Saldo Weitere Optionen  Gebuchte Belege ohne eingehenden Beleg Vorlage anwenden...  Allgemein Mehr anzeigen Nr. 4400 Name Umsatzerloese Inland 19 Prozent GuV/Bilanz Bilanz Kontokategorie Kontounterkategorie Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Soll/Haben Beides Kontoart Buchung Zusammenzählung Saldo 0,00 Abstimmbar Automat. Textbaustein Direktbuchung Gesperrt Geändert am 30.06.2026 Standardbeschreibung in Buch.-Blatt auslassen Überprüfungsrichtlinie Keine Buchung Buchungsart Geschäftsbuchungsgruppe Produktbuchungsgruppe MwSt.-Geschäftsbuchungsgruppe MwSt.-Produktbuchungsgruppe Vorg.-IC-Partner Sachkontonr. Withholding Tax Bus. Post. Group Withholding Tax Prod. Post. Group Standard-Abgrenzungsvorlage Neubewertung Konsolidierung Durchschnittskurs (manuell) Nein Berichtswesen Keine Regulierung Kostenrechnung Zusammenfassung Vorschauversion Details Anhänge (0) Ursprungswährungen Währungscode Saldo bis Datum Ursprungswährung Saldo bis Datum Posten vorhanden (In dieser Ansicht kann nichts angezeigt werden) ",
+                  "aria": "Sachkontokarte",
+                  "title": "",
+                  "role": "",
+                  "x": 0,
+                  "y": 0,
+                  "width": 2400,
+                  "height": 1302
+                },
+                {
+                  "index": 4,
+                  "tag": "DIV",
+                  "text": "",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 0,
+                  "y": 0,
+                  "width": 404,
+                  "height": 1302
+                },
+                {
+                  "index": 7,
+                  "tag": "DIV",
+                  "text": " Sachkontokarte       4400 ∙ Umsatzerloese Inland 19 Prozent Start Konto Saldo Weitere Optionen  Gebuchte Belege ohne eingehenden Beleg Vorlage anwenden...  Allgemein Mehr anzeigen Nr. 4400 Name Umsatzerloese Inland 19 Prozent GuV/Bilanz Bilanz Kontokategorie Kontounterkategorie Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Soll/Haben Beides Kontoart Buchung Zusammenzählung Saldo 0,00 Abstimmbar Automat. Textbaustein Direktbuchung Gesperrt Geändert am 30.06.2026 Standardbeschreibung in Buch.-Blatt auslassen Überprüfungsrichtlinie Keine Buchung Buchungsart Geschäftsbuchungsgruppe Produktbuchungsgruppe MwSt.-Geschäftsbuchungsgruppe MwSt.-Produktbuchungsgruppe Vorg.-IC-Partner Sachkontonr. Withholding Tax Bus. Post. Group Withholding Tax Prod. Post. Group Standard-Abgrenzungsvorlage Neubewertung Konsolidierung Durchschnittskurs (manuell) Nein Berichtswesen Keine Regulierung Kostenrechnung Zusammenfassung Vorschauversion Details Anhänge (0) Ursprungswährungen Währungscode Saldo bis Datum Ursprungswährung Saldo bis Datum Posten vorhanden (In dieser Ansicht kann nichts angezeigt werden)",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 404,
+                  "y": 0,
+                  "width": 1592,
+                  "height": 1302
+                },
+                {
+                  "index": 8,
+                  "tag": "DIV",
+                  "text": " Sachkontokarte       4400 ∙ Umsatzerloese Inland 19 Prozent",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 404,
+                  "y": 0,
+                  "width": 1592,
+                  "height": 120
+                },
+                {
+                  "index": 9,
+                  "tag": "DIV",
+                  "text": " Sachkontokarte       4400 ∙ Umsatzerloese Inland 19 Prozent",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 404,
+                  "y": 14,
+                  "width": 1592,
+                  "height": 106
+                },
+                {
+                  "index": 10,
+                  "tag": "DIV",
+                  "text": " Sachkontokarte       4400 ∙ Umsatzerloese Inland 19 Prozent",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 404,
+                  "y": 14,
+                  "width": 1592,
+                  "height": 106
+                },
+                {
+                  "index": 11,
+                  "tag": "DIV",
+                  "text": "",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 404,
+                  "y": 14,
+                  "width": 68,
+                  "height": 106
+                },
+                {
+                  "index": 12,
+                  "tag": "SPAN",
+                  "text": "",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 421,
+                  "y": 14,
+                  "width": 34,
+                  "height": 48
+                },
+                {
+                  "index": 13,
+                  "tag": "BUTTON",
+                  "text": "",
+                  "aria": "",
+                  "title": "Zurück",
+                  "role": "",
+                  "x": 421,
+                  "y": 14,
+                  "width": 34,
+                  "height": 34
+                },
+                {
+                  "index": 14,
+                  "tag": "SPAN",
+                  "text": "",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 421,
+                  "y": 14,
+                  "width": 34,
+                  "height": 34
+                },
+                {
+                  "index": 15,
+                  "tag": "DIV",
+                  "text": "Sachkontokarte       4400 ∙ Umsatzerloese Inland 19 Prozent",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 472,
+                  "y": 14,
+                  "width": 1456,
+                  "height": 106
+                },
+                {
+                  "index": 16,
+                  "tag": "DIV",
+                  "text": "Sachkontokarte",
+                  "aria": "",
+                  "title": "",
+                  "role": "heading",
+                  "x": 472,
+                  "y": 14,
+                  "width": 592,
+                  "height": 38
+                },
+                {
+                  "index": 17,
+                  "tag": "DIV",
+                  "text": "Sachkontokarte",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 472,
+                  "y": 14,
+                  "width": 598,
+                  "height": 38
+                }
+              ]
+            },
+            {
+              "caption": "GuV/Bilanz",
+              "label": {
+                "index": 0,
+                "tag": "DIV",
+                "text": "  Sachkontokarte       4400 ∙ Umsatzerloese Inland 19 Prozent Start Konto Saldo Weitere Optionen  Gebuchte Belege ohne eingehenden Beleg Vorlage anwenden...  Allgemein Mehr anzeigen Nr. 4400 Name Umsatzerloese Inland 19 Prozent GuV/Bilanz Bilanz Kontokategorie Kontounterkategorie Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Soll/Haben Beides Kontoart Buchung Zusammenzählung Saldo 0,00 Abstimmbar Automat. Textbaustein Direktbuchung Gesperrt Geändert am 30.06.2026 Standardbeschreibung in Buch.-Blatt auslassen Überprüfungsrichtlinie Keine Buchung Buchungsart Geschäftsbuchungsgruppe Produktbuchungsgruppe MwSt.-Geschäftsbuchungsgruppe MwSt.-Produktbuchungsgruppe Vorg.-IC-Partner Sachkontonr. Withholding Tax Bus. Post. Group Withholding Tax Prod. Post. Group Standard-Abgrenzungsvorlage Neubewertung Konsolidierung Durchschnittskurs (manuell) Nein Berichtswesen Keine Regulierung Kostenrechnung Zusammenfassung Vorschauversion Details Anhänge (0) Ursprungswährungen Währungscode Saldo bis Datum Ursprungswährung Saldo bis Datum Posten vorhanden (In dieser Ansicht kann nichts angezeigt werden) ",
+                "aria": "",
+                "title": "",
+                "role": "",
+                "x": 0,
+                "y": 0,
+                "width": 2400,
+                "height": 1302
+              },
+              "nearbyControls": [
+                {
+                  "index": 0,
+                  "tag": "BUTTON",
+                  "type": "button",
+                  "value": "",
+                  "aria": "",
+                  "title": "Diese Seite für andere Benutzer oder Apps freigeben",
+                  "role": "",
+                  "disabled": false,
+                  "readOnly": false,
+                  "x": 1150,
+                  "y": 14,
+                  "width": 38,
+                  "height": 38
+                }
+              ],
+              "nearbyTexts": [
+                {
+                  "index": 0,
+                  "tag": "DIV",
+                  "text": "  Sachkontokarte       4400 ∙ Umsatzerloese Inland 19 Prozent Start Konto Saldo Weitere Optionen  Gebuchte Belege ohne eingehenden Beleg Vorlage anwenden...  Allgemein Mehr anzeigen Nr. 4400 Name Umsatzerloese Inland 19 Prozent GuV/Bilanz Bilanz Kontokategorie Kontounterkategorie Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Soll/Haben Beides Kontoart Buchung Zusammenzählung Saldo 0,00 Abstimmbar Automat. Textbaustein Direktbuchung Gesperrt Geändert am 30.06.2026 Standardbeschreibung in Buch.-Blatt auslassen Überprüfungsrichtlinie Keine Buchung Buchungsart Geschäftsbuchungsgruppe Produktbuchungsgruppe MwSt.-Geschäftsbuchungsgruppe MwSt.-Produktbuchungsgruppe Vorg.-IC-Partner Sachkontonr. Withholding Tax Bus. Post. Group Withholding Tax Prod. Post. Group Standard-Abgrenzungsvorlage Neubewertung Konsolidierung Durchschnittskurs (manuell) Nein Berichtswesen Keine Regulierung Kostenrechnung Zusammenfassung Vorschauversion Details Anhänge (0) Ursprungswährungen Währungscode Saldo bis Datum Ursprungswährung Saldo bis Datum Posten vorhanden (In dieser Ansicht kann nichts angezeigt werden) ",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 0,
+                  "y": 0,
+                  "width": 2400,
+                  "height": 1302
+                },
+                {
+                  "index": 1,
+                  "tag": "DIV",
+                  "text": "",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 0,
+                  "y": 0,
+                  "width": 2400,
+                  "height": 1302
+                },
+                {
+                  "index": 2,
+                  "tag": "DIV",
+                  "text": "  Sachkontokarte       4400 ∙ Umsatzerloese Inland 19 Prozent Start Konto Saldo Weitere Optionen  Gebuchte Belege ohne eingehenden Beleg Vorlage anwenden...  Allgemein Mehr anzeigen Nr. 4400 Name Umsatzerloese Inland 19 Prozent GuV/Bilanz Bilanz Kontokategorie Kontounterkategorie Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Soll/Haben Beides Kontoart Buchung Zusammenzählung Saldo 0,00 Abstimmbar Automat. Textbaustein Direktbuchung Gesperrt Geändert am 30.06.2026 Standardbeschreibung in Buch.-Blatt auslassen Überprüfungsrichtlinie Keine Buchung Buchungsart Geschäftsbuchungsgruppe Produktbuchungsgruppe MwSt.-Geschäftsbuchungsgruppe MwSt.-Produktbuchungsgruppe Vorg.-IC-Partner Sachkontonr. Withholding Tax Bus. Post. Group Withholding Tax Prod. Post. Group Standard-Abgrenzungsvorlage Neubewertung Konsolidierung Durchschnittskurs (manuell) Nein Berichtswesen Keine Regulierung Kostenrechnung Zusammenfassung Vorschauversion Details Anhänge (0) Ursprungswährungen Währungscode Saldo bis Datum Ursprungswährung Saldo bis Datum Posten vorhanden (In dieser Ansicht kann nichts angezeigt werden) ",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 0,
+                  "y": 0,
+                  "width": 2400,
+                  "height": 1302
+                },
+                {
+                  "index": 3,
+                  "tag": "FORM",
+                  "text": "  Sachkontokarte       4400 ∙ Umsatzerloese Inland 19 Prozent Start Konto Saldo Weitere Optionen  Gebuchte Belege ohne eingehenden Beleg Vorlage anwenden...  Allgemein Mehr anzeigen Nr. 4400 Name Umsatzerloese Inland 19 Prozent GuV/Bilanz Bilanz Kontokategorie Kontounterkategorie Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Soll/Haben Beides Kontoart Buchung Zusammenzählung Saldo 0,00 Abstimmbar Automat. Textbaustein Direktbuchung Gesperrt Geändert am 30.06.2026 Standardbeschreibung in Buch.-Blatt auslassen Überprüfungsrichtlinie Keine Buchung Buchungsart Geschäftsbuchungsgruppe Produktbuchungsgruppe MwSt.-Geschäftsbuchungsgruppe MwSt.-Produktbuchungsgruppe Vorg.-IC-Partner Sachkontonr. Withholding Tax Bus. Post. Group Withholding Tax Prod. Post. Group Standard-Abgrenzungsvorlage Neubewertung Konsolidierung Durchschnittskurs (manuell) Nein Berichtswesen Keine Regulierung Kostenrechnung Zusammenfassung Vorschauversion Details Anhänge (0) Ursprungswährungen Währungscode Saldo bis Datum Ursprungswährung Saldo bis Datum Posten vorhanden (In dieser Ansicht kann nichts angezeigt werden) ",
+                  "aria": "Sachkontokarte",
+                  "title": "",
+                  "role": "",
+                  "x": 0,
+                  "y": 0,
+                  "width": 2400,
+                  "height": 1302
+                },
+                {
+                  "index": 4,
+                  "tag": "DIV",
+                  "text": "",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 0,
+                  "y": 0,
+                  "width": 404,
+                  "height": 1302
+                },
+                {
+                  "index": 7,
+                  "tag": "DIV",
+                  "text": " Sachkontokarte       4400 ∙ Umsatzerloese Inland 19 Prozent Start Konto Saldo Weitere Optionen  Gebuchte Belege ohne eingehenden Beleg Vorlage anwenden...  Allgemein Mehr anzeigen Nr. 4400 Name Umsatzerloese Inland 19 Prozent GuV/Bilanz Bilanz Kontokategorie Kontounterkategorie Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Soll/Haben Beides Kontoart Buchung Zusammenzählung Saldo 0,00 Abstimmbar Automat. Textbaustein Direktbuchung Gesperrt Geändert am 30.06.2026 Standardbeschreibung in Buch.-Blatt auslassen Überprüfungsrichtlinie Keine Buchung Buchungsart Geschäftsbuchungsgruppe Produktbuchungsgruppe MwSt.-Geschäftsbuchungsgruppe MwSt.-Produktbuchungsgruppe Vorg.-IC-Partner Sachkontonr. Withholding Tax Bus. Post. Group Withholding Tax Prod. Post. Group Standard-Abgrenzungsvorlage Neubewertung Konsolidierung Durchschnittskurs (manuell) Nein Berichtswesen Keine Regulierung Kostenrechnung Zusammenfassung Vorschauversion Details Anhänge (0) Ursprungswährungen Währungscode Saldo bis Datum Ursprungswährung Saldo bis Datum Posten vorhanden (In dieser Ansicht kann nichts angezeigt werden)",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 404,
+                  "y": 0,
+                  "width": 1592,
+                  "height": 1302
+                },
+                {
+                  "index": 8,
+                  "tag": "DIV",
+                  "text": " Sachkontokarte       4400 ∙ Umsatzerloese Inland 19 Prozent",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 404,
+                  "y": 0,
+                  "width": 1592,
+                  "height": 120
+                },
+                {
+                  "index": 9,
+                  "tag": "DIV",
+                  "text": " Sachkontokarte       4400 ∙ Umsatzerloese Inland 19 Prozent",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 404,
+                  "y": 14,
+                  "width": 1592,
+                  "height": 106
+                },
+                {
+                  "index": 10,
+                  "tag": "DIV",
+                  "text": " Sachkontokarte       4400 ∙ Umsatzerloese Inland 19 Prozent",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 404,
+                  "y": 14,
+                  "width": 1592,
+                  "height": 106
+                },
+                {
+                  "index": 11,
+                  "tag": "DIV",
+                  "text": "",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 404,
+                  "y": 14,
+                  "width": 68,
+                  "height": 106
+                },
+                {
+                  "index": 12,
+                  "tag": "SPAN",
+                  "text": "",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 421,
+                  "y": 14,
+                  "width": 34,
+                  "height": 48
+                },
+                {
+                  "index": 13,
+                  "tag": "BUTTON",
+                  "text": "",
+                  "aria": "",
+                  "title": "Zurück",
+                  "role": "",
+                  "x": 421,
+                  "y": 14,
+                  "width": 34,
+                  "height": 34
+                },
+                {
+                  "index": 14,
+                  "tag": "SPAN",
+                  "text": "",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 421,
+                  "y": 14,
+                  "width": 34,
+                  "height": 34
+                },
+                {
+                  "index": 15,
+                  "tag": "DIV",
+                  "text": "Sachkontokarte       4400 ∙ Umsatzerloese Inland 19 Prozent",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 472,
+                  "y": 14,
+                  "width": 1456,
+                  "height": 106
+                },
+                {
+                  "index": 16,
+                  "tag": "DIV",
+                  "text": "Sachkontokarte",
+                  "aria": "",
+                  "title": "",
+                  "role": "heading",
+                  "x": 472,
+                  "y": 14,
+                  "width": 592,
+                  "height": 38
+                },
+                {
+                  "index": 17,
+                  "tag": "DIV",
+                  "text": "Sachkontokarte",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 472,
+                  "y": 14,
+                  "width": 598,
+                  "height": 38
+                }
+              ]
+            },
+            {
+              "caption": "Income/Balance",
+              "nearbyControls": [],
+              "nearbyTexts": []
+            },
+            {
+              "caption": "Kontoart",
+              "label": {
+                "index": 0,
+                "tag": "DIV",
+                "text": "  Sachkontokarte       4400 ∙ Umsatzerloese Inland 19 Prozent Start Konto Saldo Weitere Optionen  Gebuchte Belege ohne eingehenden Beleg Vorlage anwenden...  Allgemein Mehr anzeigen Nr. 4400 Name Umsatzerloese Inland 19 Prozent GuV/Bilanz Bilanz Kontokategorie Kontounterkategorie Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Soll/Haben Beides Kontoart Buchung Zusammenzählung Saldo 0,00 Abstimmbar Automat. Textbaustein Direktbuchung Gesperrt Geändert am 30.06.2026 Standardbeschreibung in Buch.-Blatt auslassen Überprüfungsrichtlinie Keine Buchung Buchungsart Geschäftsbuchungsgruppe Produktbuchungsgruppe MwSt.-Geschäftsbuchungsgruppe MwSt.-Produktbuchungsgruppe Vorg.-IC-Partner Sachkontonr. Withholding Tax Bus. Post. Group Withholding Tax Prod. Post. Group Standard-Abgrenzungsvorlage Neubewertung Konsolidierung Durchschnittskurs (manuell) Nein Berichtswesen Keine Regulierung Kostenrechnung Zusammenfassung Vorschauversion Details Anhänge (0) Ursprungswährungen Währungscode Saldo bis Datum Ursprungswährung Saldo bis Datum Posten vorhanden (In dieser Ansicht kann nichts angezeigt werden) ",
+                "aria": "",
+                "title": "",
+                "role": "",
+                "x": 0,
+                "y": 0,
+                "width": 2400,
+                "height": 1302
+              },
+              "nearbyControls": [
+                {
+                  "index": 0,
+                  "tag": "BUTTON",
+                  "type": "button",
+                  "value": "",
+                  "aria": "",
+                  "title": "Diese Seite für andere Benutzer oder Apps freigeben",
+                  "role": "",
+                  "disabled": false,
+                  "readOnly": false,
+                  "x": 1150,
+                  "y": 14,
+                  "width": 38,
+                  "height": 38
+                }
+              ],
+              "nearbyTexts": [
+                {
+                  "index": 0,
+                  "tag": "DIV",
+                  "text": "  Sachkontokarte       4400 ∙ Umsatzerloese Inland 19 Prozent Start Konto Saldo Weitere Optionen  Gebuchte Belege ohne eingehenden Beleg Vorlage anwenden...  Allgemein Mehr anzeigen Nr. 4400 Name Umsatzerloese Inland 19 Prozent GuV/Bilanz Bilanz Kontokategorie Kontounterkategorie Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Soll/Haben Beides Kontoart Buchung Zusammenzählung Saldo 0,00 Abstimmbar Automat. Textbaustein Direktbuchung Gesperrt Geändert am 30.06.2026 Standardbeschreibung in Buch.-Blatt auslassen Überprüfungsrichtlinie Keine Buchung Buchungsart Geschäftsbuchungsgruppe Produktbuchungsgruppe MwSt.-Geschäftsbuchungsgruppe MwSt.-Produktbuchungsgruppe Vorg.-IC-Partner Sachkontonr. Withholding Tax Bus. Post. Group Withholding Tax Prod. Post. Group Standard-Abgrenzungsvorlage Neubewertung Konsolidierung Durchschnittskurs (manuell) Nein Berichtswesen Keine Regulierung Kostenrechnung Zusammenfassung Vorschauversion Details Anhänge (0) Ursprungswährungen Währungscode Saldo bis Datum Ursprungswährung Saldo bis Datum Posten vorhanden (In dieser Ansicht kann nichts angezeigt werden) ",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 0,
+                  "y": 0,
+                  "width": 2400,
+                  "height": 1302
+                },
+                {
+                  "index": 1,
+                  "tag": "DIV",
+                  "text": "",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 0,
+                  "y": 0,
+                  "width": 2400,
+                  "height": 1302
+                },
+                {
+                  "index": 2,
+                  "tag": "DIV",
+                  "text": "  Sachkontokarte       4400 ∙ Umsatzerloese Inland 19 Prozent Start Konto Saldo Weitere Optionen  Gebuchte Belege ohne eingehenden Beleg Vorlage anwenden...  Allgemein Mehr anzeigen Nr. 4400 Name Umsatzerloese Inland 19 Prozent GuV/Bilanz Bilanz Kontokategorie Kontounterkategorie Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Soll/Haben Beides Kontoart Buchung Zusammenzählung Saldo 0,00 Abstimmbar Automat. Textbaustein Direktbuchung Gesperrt Geändert am 30.06.2026 Standardbeschreibung in Buch.-Blatt auslassen Überprüfungsrichtlinie Keine Buchung Buchungsart Geschäftsbuchungsgruppe Produktbuchungsgruppe MwSt.-Geschäftsbuchungsgruppe MwSt.-Produktbuchungsgruppe Vorg.-IC-Partner Sachkontonr. Withholding Tax Bus. Post. Group Withholding Tax Prod. Post. Group Standard-Abgrenzungsvorlage Neubewertung Konsolidierung Durchschnittskurs (manuell) Nein Berichtswesen Keine Regulierung Kostenrechnung Zusammenfassung Vorschauversion Details Anhänge (0) Ursprungswährungen Währungscode Saldo bis Datum Ursprungswährung Saldo bis Datum Posten vorhanden (In dieser Ansicht kann nichts angezeigt werden) ",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 0,
+                  "y": 0,
+                  "width": 2400,
+                  "height": 1302
+                },
+                {
+                  "index": 3,
+                  "tag": "FORM",
+                  "text": "  Sachkontokarte       4400 ∙ Umsatzerloese Inland 19 Prozent Start Konto Saldo Weitere Optionen  Gebuchte Belege ohne eingehenden Beleg Vorlage anwenden...  Allgemein Mehr anzeigen Nr. 4400 Name Umsatzerloese Inland 19 Prozent GuV/Bilanz Bilanz Kontokategorie Kontounterkategorie Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Soll/Haben Beides Kontoart Buchung Zusammenzählung Saldo 0,00 Abstimmbar Automat. Textbaustein Direktbuchung Gesperrt Geändert am 30.06.2026 Standardbeschreibung in Buch.-Blatt auslassen Überprüfungsrichtlinie Keine Buchung Buchungsart Geschäftsbuchungsgruppe Produktbuchungsgruppe MwSt.-Geschäftsbuchungsgruppe MwSt.-Produktbuchungsgruppe Vorg.-IC-Partner Sachkontonr. Withholding Tax Bus. Post. Group Withholding Tax Prod. Post. Group Standard-Abgrenzungsvorlage Neubewertung Konsolidierung Durchschnittskurs (manuell) Nein Berichtswesen Keine Regulierung Kostenrechnung Zusammenfassung Vorschauversion Details Anhänge (0) Ursprungswährungen Währungscode Saldo bis Datum Ursprungswährung Saldo bis Datum Posten vorhanden (In dieser Ansicht kann nichts angezeigt werden) ",
+                  "aria": "Sachkontokarte",
+                  "title": "",
+                  "role": "",
+                  "x": 0,
+                  "y": 0,
+                  "width": 2400,
+                  "height": 1302
+                },
+                {
+                  "index": 4,
+                  "tag": "DIV",
+                  "text": "",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 0,
+                  "y": 0,
+                  "width": 404,
+                  "height": 1302
+                },
+                {
+                  "index": 7,
+                  "tag": "DIV",
+                  "text": " Sachkontokarte       4400 ∙ Umsatzerloese Inland 19 Prozent Start Konto Saldo Weitere Optionen  Gebuchte Belege ohne eingehenden Beleg Vorlage anwenden...  Allgemein Mehr anzeigen Nr. 4400 Name Umsatzerloese Inland 19 Prozent GuV/Bilanz Bilanz Kontokategorie Kontounterkategorie Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Soll/Haben Beides Kontoart Buchung Zusammenzählung Saldo 0,00 Abstimmbar Automat. Textbaustein Direktbuchung Gesperrt Geändert am 30.06.2026 Standardbeschreibung in Buch.-Blatt auslassen Überprüfungsrichtlinie Keine Buchung Buchungsart Geschäftsbuchungsgruppe Produktbuchungsgruppe MwSt.-Geschäftsbuchungsgruppe MwSt.-Produktbuchungsgruppe Vorg.-IC-Partner Sachkontonr. Withholding Tax Bus. Post. Group Withholding Tax Prod. Post. Group Standard-Abgrenzungsvorlage Neubewertung Konsolidierung Durchschnittskurs (manuell) Nein Berichtswesen Keine Regulierung Kostenrechnung Zusammenfassung Vorschauversion Details Anhänge (0) Ursprungswährungen Währungscode Saldo bis Datum Ursprungswährung Saldo bis Datum Posten vorhanden (In dieser Ansicht kann nichts angezeigt werden)",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 404,
+                  "y": 0,
+                  "width": 1592,
+                  "height": 1302
+                },
+                {
+                  "index": 8,
+                  "tag": "DIV",
+                  "text": " Sachkontokarte       4400 ∙ Umsatzerloese Inland 19 Prozent",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 404,
+                  "y": 0,
+                  "width": 1592,
+                  "height": 120
+                },
+                {
+                  "index": 9,
+                  "tag": "DIV",
+                  "text": " Sachkontokarte       4400 ∙ Umsatzerloese Inland 19 Prozent",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 404,
+                  "y": 14,
+                  "width": 1592,
+                  "height": 106
+                },
+                {
+                  "index": 10,
+                  "tag": "DIV",
+                  "text": " Sachkontokarte       4400 ∙ Umsatzerloese Inland 19 Prozent",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 404,
+                  "y": 14,
+                  "width": 1592,
+                  "height": 106
+                },
+                {
+                  "index": 11,
+                  "tag": "DIV",
+                  "text": "",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 404,
+                  "y": 14,
+                  "width": 68,
+                  "height": 106
+                },
+                {
+                  "index": 12,
+                  "tag": "SPAN",
+                  "text": "",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 421,
+                  "y": 14,
+                  "width": 34,
+                  "height": 48
+                },
+                {
+                  "index": 13,
+                  "tag": "BUTTON",
+                  "text": "",
+                  "aria": "",
+                  "title": "Zurück",
+                  "role": "",
+                  "x": 421,
+                  "y": 14,
+                  "width": 34,
+                  "height": 34
+                },
+                {
+                  "index": 14,
+                  "tag": "SPAN",
+                  "text": "",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 421,
+                  "y": 14,
+                  "width": 34,
+                  "height": 34
+                },
+                {
+                  "index": 15,
+                  "tag": "DIV",
+                  "text": "Sachkontokarte       4400 ∙ Umsatzerloese Inland 19 Prozent",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 472,
+                  "y": 14,
+                  "width": 1456,
+                  "height": 106
+                },
+                {
+                  "index": 16,
+                  "tag": "DIV",
+                  "text": "Sachkontokarte",
+                  "aria": "",
+                  "title": "",
+                  "role": "heading",
+                  "x": 472,
+                  "y": 14,
+                  "width": 592,
+                  "height": 38
+                },
+                {
+                  "index": 17,
+                  "tag": "DIV",
+                  "text": "Sachkontokarte",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 472,
+                  "y": 14,
+                  "width": 598,
+                  "height": 38
+                }
+              ]
+            },
+            {
+              "caption": "Account Type",
+              "nearbyControls": [],
+              "nearbyTexts": []
+            }
+          ]
+        },
+        {
+          "frameUrl": "https://webshell.suite.office.com/iframe/TokenFactoryIframe",
+          "fields": [
+            {
+              "caption": "Nr.",
+              "nearbyControls": [],
+              "nearbyTexts": []
+            },
+            {
+              "caption": "No.",
+              "nearbyControls": [],
+              "nearbyTexts": []
+            },
+            {
+              "caption": "Name",
+              "nearbyControls": [],
+              "nearbyTexts": []
+            },
+            {
+              "caption": "GuV/Bilanz",
+              "nearbyControls": [],
+              "nearbyTexts": []
+            },
+            {
+              "caption": "Income/Balance",
+              "nearbyControls": [],
+              "nearbyTexts": []
+            },
+            {
+              "caption": "Kontoart",
+              "nearbyControls": [],
+              "nearbyTexts": []
+            },
+            {
+              "caption": "Account Type",
+              "nearbyControls": [],
+              "nearbyTexts": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "targetAccount": {
+        "no": "5400",
+        "name": "Wareneingang / Materialaufwand",
+        "expectedType": "GuV",
+        "currentProblem": "visible as Bilanz/Buchung after previous recovery attempts"
+      },
+      "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=17&company=UNIVERSAARL-DE&filter=%27G%2FL+Account%27.%27No.%27+IS+%27%40*5400*%27",
+      "beforeValue": {
+        "hasExactGuvValue": false,
+        "hasExactBalanceValue": false,
+        "labelOnlyRisk": true,
+        "safeToCountAsGuv": false
+      },
+      "pageInspection": {
+        "opened": true,
+        "closedExternalPages": [],
+        "focusedLines": [
+          "G/L Account Card (17, Card)",
+          "G/L Account (15)",
+          "5400",
+          "Income/Balance (9, Option)",
+          "Sachkontokarte",
+          "5400 Wareneingang / Materialaufwand",
+          "GuV/Bilanz",
+          "5400 Wareneingang / Materialaufwand. Sachkontokarte",
+          "G/L Account Card (17, Card)",
+          "G/L Account (15)",
+          "5400",
+          "Income/Balance (9, Option)",
+          "Sachkontokarte",
+          "5400 Wareneingang / Materialaufwand",
+          "5400",
+          "GuV/Bilanz",
+          "5400 Wareneingang / Materialaufwand. Sachkontokarte"
+        ]
+      },
+      "hasCardContext": true,
+      "fieldControlMapCaptured": true,
+      "fieldControlMap": [
+        {
+          "frameUrl": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=17&company=UNIVERSAARL-DE&filter=%27G%2FL+Account%27.%27No.%27+IS+%27%40*5400*%27",
+          "fields": [
+            {
+              "caption": "Nr.",
+              "nearbyControls": [],
+              "nearbyTexts": []
+            },
+            {
+              "caption": "No.",
+              "nearbyControls": [],
+              "nearbyTexts": []
+            },
+            {
+              "caption": "Name",
+              "nearbyControls": [],
+              "nearbyTexts": []
+            },
+            {
+              "caption": "GuV/Bilanz",
+              "nearbyControls": [],
+              "nearbyTexts": []
+            },
+            {
+              "caption": "Income/Balance",
+              "nearbyControls": [],
+              "nearbyTexts": []
+            },
+            {
+              "caption": "Kontoart",
+              "nearbyControls": [],
+              "nearbyTexts": []
+            },
+            {
+              "caption": "Account Type",
+              "nearbyControls": [],
+              "nearbyTexts": []
+            }
+          ]
+        },
+        {
+          "frameUrl": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=17&company=UNIVERSAARL-DE&filter=%27G%2FL+Account%27.%27No.%27+IS+%275400%27",
+          "fields": [
+            {
+              "caption": "Nr.",
+              "nearbyControls": [],
+              "nearbyTexts": []
+            },
+            {
+              "caption": "No.",
+              "nearbyControls": [],
+              "nearbyTexts": []
+            },
+            {
+              "caption": "Name",
+              "label": {
+                "index": 0,
+                "tag": "DIV",
+                "text": "  Sachkontokarte       5400 ∙ Wareneingang / Materialaufwand Start Konto Saldo Weitere Optionen  Gebuchte Belege ohne eingehenden Beleg Vorlage anwenden...  Allgemein Mehr anzeigen Nr. 5400 Name Wareneingang / Materialaufwand GuV/Bilanz Bilanz Kontokategorie Kontounterkategorie Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Soll/Haben Beides Kontoart Buchung Zusammenzählung Saldo 0,00 Abstimmbar Automat. Textbaustein Direktbuchung Gesperrt Geändert am 30.06.2026 Standardbeschreibung in Buch.-Blatt auslassen Überprüfungsrichtlinie Keine Buchung Buchungsart Geschäftsbuchungsgruppe Produktbuchungsgruppe MwSt.-Geschäftsbuchungsgruppe MwSt.-Produktbuchungsgruppe Vorg.-IC-Partner Sachkontonr. Withholding Tax Bus. Post. Group Withholding Tax Prod. Post. Group Standard-Abgrenzungsvorlage Neubewertung Konsolidierung Durchschnittskurs (manuell) Nein Berichtswesen Keine Regulierung Kostenrechnung Details Anhänge (0) Ursprungswährungen Währungscode Saldo bis Datum Ursprungswährung Saldo bis Datum Posten vorhanden (In dieser Ansicht kann nichts angezeigt werden) ",
+                "aria": "",
+                "title": "",
+                "role": "",
+                "x": 0,
+                "y": 0,
+                "width": 2400,
+                "height": 1302
+              },
+              "nearbyControls": [
+                {
+                  "index": 0,
+                  "tag": "BUTTON",
+                  "type": "button",
+                  "value": "",
+                  "aria": "",
+                  "title": "Diese Seite für andere Benutzer oder Apps freigeben",
+                  "role": "",
+                  "disabled": false,
+                  "readOnly": false,
+                  "x": 1150,
+                  "y": 14,
+                  "width": 38,
+                  "height": 38
+                }
+              ],
+              "nearbyTexts": [
+                {
+                  "index": 0,
+                  "tag": "DIV",
+                  "text": "  Sachkontokarte       5400 ∙ Wareneingang / Materialaufwand Start Konto Saldo Weitere Optionen  Gebuchte Belege ohne eingehenden Beleg Vorlage anwenden...  Allgemein Mehr anzeigen Nr. 5400 Name Wareneingang / Materialaufwand GuV/Bilanz Bilanz Kontokategorie Kontounterkategorie Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Soll/Haben Beides Kontoart Buchung Zusammenzählung Saldo 0,00 Abstimmbar Automat. Textbaustein Direktbuchung Gesperrt Geändert am 30.06.2026 Standardbeschreibung in Buch.-Blatt auslassen Überprüfungsrichtlinie Keine Buchung Buchungsart Geschäftsbuchungsgruppe Produktbuchungsgruppe MwSt.-Geschäftsbuchungsgruppe MwSt.-Produktbuchungsgruppe Vorg.-IC-Partner Sachkontonr. Withholding Tax Bus. Post. Group Withholding Tax Prod. Post. Group Standard-Abgrenzungsvorlage Neubewertung Konsolidierung Durchschnittskurs (manuell) Nein Berichtswesen Keine Regulierung Kostenrechnung Details Anhänge (0) Ursprungswährungen Währungscode Saldo bis Datum Ursprungswährung Saldo bis Datum Posten vorhanden (In dieser Ansicht kann nichts angezeigt werden) ",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 0,
+                  "y": 0,
+                  "width": 2400,
+                  "height": 1302
+                },
+                {
+                  "index": 1,
+                  "tag": "DIV",
+                  "text": "",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 0,
+                  "y": 0,
+                  "width": 2400,
+                  "height": 1302
+                },
+                {
+                  "index": 2,
+                  "tag": "DIV",
+                  "text": "  Sachkontokarte       5400 ∙ Wareneingang / Materialaufwand Start Konto Saldo Weitere Optionen  Gebuchte Belege ohne eingehenden Beleg Vorlage anwenden...  Allgemein Mehr anzeigen Nr. 5400 Name Wareneingang / Materialaufwand GuV/Bilanz Bilanz Kontokategorie Kontounterkategorie Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Soll/Haben Beides Kontoart Buchung Zusammenzählung Saldo 0,00 Abstimmbar Automat. Textbaustein Direktbuchung Gesperrt Geändert am 30.06.2026 Standardbeschreibung in Buch.-Blatt auslassen Überprüfungsrichtlinie Keine Buchung Buchungsart Geschäftsbuchungsgruppe Produktbuchungsgruppe MwSt.-Geschäftsbuchungsgruppe MwSt.-Produktbuchungsgruppe Vorg.-IC-Partner Sachkontonr. Withholding Tax Bus. Post. Group Withholding Tax Prod. Post. Group Standard-Abgrenzungsvorlage Neubewertung Konsolidierung Durchschnittskurs (manuell) Nein Berichtswesen Keine Regulierung Kostenrechnung Details Anhänge (0) Ursprungswährungen Währungscode Saldo bis Datum Ursprungswährung Saldo bis Datum Posten vorhanden (In dieser Ansicht kann nichts angezeigt werden) ",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 0,
+                  "y": 0,
+                  "width": 2400,
+                  "height": 1302
+                },
+                {
+                  "index": 3,
+                  "tag": "FORM",
+                  "text": "  Sachkontokarte       5400 ∙ Wareneingang / Materialaufwand Start Konto Saldo Weitere Optionen  Gebuchte Belege ohne eingehenden Beleg Vorlage anwenden...  Allgemein Mehr anzeigen Nr. 5400 Name Wareneingang / Materialaufwand GuV/Bilanz Bilanz Kontokategorie Kontounterkategorie Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Soll/Haben Beides Kontoart Buchung Zusammenzählung Saldo 0,00 Abstimmbar Automat. Textbaustein Direktbuchung Gesperrt Geändert am 30.06.2026 Standardbeschreibung in Buch.-Blatt auslassen Überprüfungsrichtlinie Keine Buchung Buchungsart Geschäftsbuchungsgruppe Produktbuchungsgruppe MwSt.-Geschäftsbuchungsgruppe MwSt.-Produktbuchungsgruppe Vorg.-IC-Partner Sachkontonr. Withholding Tax Bus. Post. Group Withholding Tax Prod. Post. Group Standard-Abgrenzungsvorlage Neubewertung Konsolidierung Durchschnittskurs (manuell) Nein Berichtswesen Keine Regulierung Kostenrechnung Details Anhänge (0) Ursprungswährungen Währungscode Saldo bis Datum Ursprungswährung Saldo bis Datum Posten vorhanden (In dieser Ansicht kann nichts angezeigt werden) ",
+                  "aria": "Sachkontokarte",
+                  "title": "",
+                  "role": "",
+                  "x": 0,
+                  "y": 0,
+                  "width": 2400,
+                  "height": 1302
+                },
+                {
+                  "index": 4,
+                  "tag": "DIV",
+                  "text": "",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 0,
+                  "y": 0,
+                  "width": 404,
+                  "height": 1302
+                },
+                {
+                  "index": 7,
+                  "tag": "DIV",
+                  "text": " Sachkontokarte       5400 ∙ Wareneingang / Materialaufwand Start Konto Saldo Weitere Optionen  Gebuchte Belege ohne eingehenden Beleg Vorlage anwenden...  Allgemein Mehr anzeigen Nr. 5400 Name Wareneingang / Materialaufwand GuV/Bilanz Bilanz Kontokategorie Kontounterkategorie Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Soll/Haben Beides Kontoart Buchung Zusammenzählung Saldo 0,00 Abstimmbar Automat. Textbaustein Direktbuchung Gesperrt Geändert am 30.06.2026 Standardbeschreibung in Buch.-Blatt auslassen Überprüfungsrichtlinie Keine Buchung Buchungsart Geschäftsbuchungsgruppe Produktbuchungsgruppe MwSt.-Geschäftsbuchungsgruppe MwSt.-Produktbuchungsgruppe Vorg.-IC-Partner Sachkontonr. Withholding Tax Bus. Post. Group Withholding Tax Prod. Post. Group Standard-Abgrenzungsvorlage Neubewertung Konsolidierung Durchschnittskurs (manuell) Nein Berichtswesen Keine Regulierung Kostenrechnung Details Anhänge (0) Ursprungswährungen Währungscode Saldo bis Datum Ursprungswährung Saldo bis Datum Posten vorhanden (In dieser Ansicht kann nichts angezeigt werden)",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 404,
+                  "y": 0,
+                  "width": 1592,
+                  "height": 1302
+                },
+                {
+                  "index": 8,
+                  "tag": "DIV",
+                  "text": " Sachkontokarte       5400 ∙ Wareneingang / Materialaufwand",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 404,
+                  "y": 0,
+                  "width": 1592,
+                  "height": 120
+                },
+                {
+                  "index": 9,
+                  "tag": "DIV",
+                  "text": " Sachkontokarte       5400 ∙ Wareneingang / Materialaufwand",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 404,
+                  "y": 14,
+                  "width": 1592,
+                  "height": 106
+                },
+                {
+                  "index": 10,
+                  "tag": "DIV",
+                  "text": " Sachkontokarte       5400 ∙ Wareneingang / Materialaufwand",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 404,
+                  "y": 14,
+                  "width": 1592,
+                  "height": 106
+                },
+                {
+                  "index": 11,
+                  "tag": "DIV",
+                  "text": "",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 404,
+                  "y": 14,
+                  "width": 68,
+                  "height": 106
+                },
+                {
+                  "index": 12,
+                  "tag": "SPAN",
+                  "text": "",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 421,
+                  "y": 14,
+                  "width": 34,
+                  "height": 48
+                },
+                {
+                  "index": 13,
+                  "tag": "BUTTON",
+                  "text": "",
+                  "aria": "",
+                  "title": "Zurück",
+                  "role": "",
+                  "x": 421,
+                  "y": 14,
+                  "width": 34,
+                  "height": 34
+                },
+                {
+                  "index": 14,
+                  "tag": "SPAN",
+                  "text": "",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 421,
+                  "y": 14,
+                  "width": 34,
+                  "height": 34
+                },
+                {
+                  "index": 15,
+                  "tag": "DIV",
+                  "text": "Sachkontokarte       5400 ∙ Wareneingang / Materialaufwand",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 472,
+                  "y": 14,
+                  "width": 1456,
+                  "height": 106
+                },
+                {
+                  "index": 16,
+                  "tag": "DIV",
+                  "text": "Sachkontokarte",
+                  "aria": "",
+                  "title": "",
+                  "role": "heading",
+                  "x": 472,
+                  "y": 14,
+                  "width": 592,
+                  "height": 38
+                },
+                {
+                  "index": 17,
+                  "tag": "DIV",
+                  "text": "Sachkontokarte",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 472,
+                  "y": 14,
+                  "width": 598,
+                  "height": 38
+                }
+              ]
+            },
+            {
+              "caption": "GuV/Bilanz",
+              "label": {
+                "index": 0,
+                "tag": "DIV",
+                "text": "  Sachkontokarte       5400 ∙ Wareneingang / Materialaufwand Start Konto Saldo Weitere Optionen  Gebuchte Belege ohne eingehenden Beleg Vorlage anwenden...  Allgemein Mehr anzeigen Nr. 5400 Name Wareneingang / Materialaufwand GuV/Bilanz Bilanz Kontokategorie Kontounterkategorie Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Soll/Haben Beides Kontoart Buchung Zusammenzählung Saldo 0,00 Abstimmbar Automat. Textbaustein Direktbuchung Gesperrt Geändert am 30.06.2026 Standardbeschreibung in Buch.-Blatt auslassen Überprüfungsrichtlinie Keine Buchung Buchungsart Geschäftsbuchungsgruppe Produktbuchungsgruppe MwSt.-Geschäftsbuchungsgruppe MwSt.-Produktbuchungsgruppe Vorg.-IC-Partner Sachkontonr. Withholding Tax Bus. Post. Group Withholding Tax Prod. Post. Group Standard-Abgrenzungsvorlage Neubewertung Konsolidierung Durchschnittskurs (manuell) Nein Berichtswesen Keine Regulierung Kostenrechnung Details Anhänge (0) Ursprungswährungen Währungscode Saldo bis Datum Ursprungswährung Saldo bis Datum Posten vorhanden (In dieser Ansicht kann nichts angezeigt werden) ",
+                "aria": "",
+                "title": "",
+                "role": "",
+                "x": 0,
+                "y": 0,
+                "width": 2400,
+                "height": 1302
+              },
+              "nearbyControls": [
+                {
+                  "index": 0,
+                  "tag": "BUTTON",
+                  "type": "button",
+                  "value": "",
+                  "aria": "",
+                  "title": "Diese Seite für andere Benutzer oder Apps freigeben",
+                  "role": "",
+                  "disabled": false,
+                  "readOnly": false,
+                  "x": 1150,
+                  "y": 14,
+                  "width": 38,
+                  "height": 38
+                }
+              ],
+              "nearbyTexts": [
+                {
+                  "index": 0,
+                  "tag": "DIV",
+                  "text": "  Sachkontokarte       5400 ∙ Wareneingang / Materialaufwand Start Konto Saldo Weitere Optionen  Gebuchte Belege ohne eingehenden Beleg Vorlage anwenden...  Allgemein Mehr anzeigen Nr. 5400 Name Wareneingang / Materialaufwand GuV/Bilanz Bilanz Kontokategorie Kontounterkategorie Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Soll/Haben Beides Kontoart Buchung Zusammenzählung Saldo 0,00 Abstimmbar Automat. Textbaustein Direktbuchung Gesperrt Geändert am 30.06.2026 Standardbeschreibung in Buch.-Blatt auslassen Überprüfungsrichtlinie Keine Buchung Buchungsart Geschäftsbuchungsgruppe Produktbuchungsgruppe MwSt.-Geschäftsbuchungsgruppe MwSt.-Produktbuchungsgruppe Vorg.-IC-Partner Sachkontonr. Withholding Tax Bus. Post. Group Withholding Tax Prod. Post. Group Standard-Abgrenzungsvorlage Neubewertung Konsolidierung Durchschnittskurs (manuell) Nein Berichtswesen Keine Regulierung Kostenrechnung Details Anhänge (0) Ursprungswährungen Währungscode Saldo bis Datum Ursprungswährung Saldo bis Datum Posten vorhanden (In dieser Ansicht kann nichts angezeigt werden) ",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 0,
+                  "y": 0,
+                  "width": 2400,
+                  "height": 1302
+                },
+                {
+                  "index": 1,
+                  "tag": "DIV",
+                  "text": "",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 0,
+                  "y": 0,
+                  "width": 2400,
+                  "height": 1302
+                },
+                {
+                  "index": 2,
+                  "tag": "DIV",
+                  "text": "  Sachkontokarte       5400 ∙ Wareneingang / Materialaufwand Start Konto Saldo Weitere Optionen  Gebuchte Belege ohne eingehenden Beleg Vorlage anwenden...  Allgemein Mehr anzeigen Nr. 5400 Name Wareneingang / Materialaufwand GuV/Bilanz Bilanz Kontokategorie Kontounterkategorie Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Soll/Haben Beides Kontoart Buchung Zusammenzählung Saldo 0,00 Abstimmbar Automat. Textbaustein Direktbuchung Gesperrt Geändert am 30.06.2026 Standardbeschreibung in Buch.-Blatt auslassen Überprüfungsrichtlinie Keine Buchung Buchungsart Geschäftsbuchungsgruppe Produktbuchungsgruppe MwSt.-Geschäftsbuchungsgruppe MwSt.-Produktbuchungsgruppe Vorg.-IC-Partner Sachkontonr. Withholding Tax Bus. Post. Group Withholding Tax Prod. Post. Group Standard-Abgrenzungsvorlage Neubewertung Konsolidierung Durchschnittskurs (manuell) Nein Berichtswesen Keine Regulierung Kostenrechnung Details Anhänge (0) Ursprungswährungen Währungscode Saldo bis Datum Ursprungswährung Saldo bis Datum Posten vorhanden (In dieser Ansicht kann nichts angezeigt werden) ",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 0,
+                  "y": 0,
+                  "width": 2400,
+                  "height": 1302
+                },
+                {
+                  "index": 3,
+                  "tag": "FORM",
+                  "text": "  Sachkontokarte       5400 ∙ Wareneingang / Materialaufwand Start Konto Saldo Weitere Optionen  Gebuchte Belege ohne eingehenden Beleg Vorlage anwenden...  Allgemein Mehr anzeigen Nr. 5400 Name Wareneingang / Materialaufwand GuV/Bilanz Bilanz Kontokategorie Kontounterkategorie Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Soll/Haben Beides Kontoart Buchung Zusammenzählung Saldo 0,00 Abstimmbar Automat. Textbaustein Direktbuchung Gesperrt Geändert am 30.06.2026 Standardbeschreibung in Buch.-Blatt auslassen Überprüfungsrichtlinie Keine Buchung Buchungsart Geschäftsbuchungsgruppe Produktbuchungsgruppe MwSt.-Geschäftsbuchungsgruppe MwSt.-Produktbuchungsgruppe Vorg.-IC-Partner Sachkontonr. Withholding Tax Bus. Post. Group Withholding Tax Prod. Post. Group Standard-Abgrenzungsvorlage Neubewertung Konsolidierung Durchschnittskurs (manuell) Nein Berichtswesen Keine Regulierung Kostenrechnung Details Anhänge (0) Ursprungswährungen Währungscode Saldo bis Datum Ursprungswährung Saldo bis Datum Posten vorhanden (In dieser Ansicht kann nichts angezeigt werden) ",
+                  "aria": "Sachkontokarte",
+                  "title": "",
+                  "role": "",
+                  "x": 0,
+                  "y": 0,
+                  "width": 2400,
+                  "height": 1302
+                },
+                {
+                  "index": 4,
+                  "tag": "DIV",
+                  "text": "",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 0,
+                  "y": 0,
+                  "width": 404,
+                  "height": 1302
+                },
+                {
+                  "index": 7,
+                  "tag": "DIV",
+                  "text": " Sachkontokarte       5400 ∙ Wareneingang / Materialaufwand Start Konto Saldo Weitere Optionen  Gebuchte Belege ohne eingehenden Beleg Vorlage anwenden...  Allgemein Mehr anzeigen Nr. 5400 Name Wareneingang / Materialaufwand GuV/Bilanz Bilanz Kontokategorie Kontounterkategorie Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Soll/Haben Beides Kontoart Buchung Zusammenzählung Saldo 0,00 Abstimmbar Automat. Textbaustein Direktbuchung Gesperrt Geändert am 30.06.2026 Standardbeschreibung in Buch.-Blatt auslassen Überprüfungsrichtlinie Keine Buchung Buchungsart Geschäftsbuchungsgruppe Produktbuchungsgruppe MwSt.-Geschäftsbuchungsgruppe MwSt.-Produktbuchungsgruppe Vorg.-IC-Partner Sachkontonr. Withholding Tax Bus. Post. Group Withholding Tax Prod. Post. Group Standard-Abgrenzungsvorlage Neubewertung Konsolidierung Durchschnittskurs (manuell) Nein Berichtswesen Keine Regulierung Kostenrechnung Details Anhänge (0) Ursprungswährungen Währungscode Saldo bis Datum Ursprungswährung Saldo bis Datum Posten vorhanden (In dieser Ansicht kann nichts angezeigt werden)",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 404,
+                  "y": 0,
+                  "width": 1592,
+                  "height": 1302
+                },
+                {
+                  "index": 8,
+                  "tag": "DIV",
+                  "text": " Sachkontokarte       5400 ∙ Wareneingang / Materialaufwand",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 404,
+                  "y": 0,
+                  "width": 1592,
+                  "height": 120
+                },
+                {
+                  "index": 9,
+                  "tag": "DIV",
+                  "text": " Sachkontokarte       5400 ∙ Wareneingang / Materialaufwand",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 404,
+                  "y": 14,
+                  "width": 1592,
+                  "height": 106
+                },
+                {
+                  "index": 10,
+                  "tag": "DIV",
+                  "text": " Sachkontokarte       5400 ∙ Wareneingang / Materialaufwand",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 404,
+                  "y": 14,
+                  "width": 1592,
+                  "height": 106
+                },
+                {
+                  "index": 11,
+                  "tag": "DIV",
+                  "text": "",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 404,
+                  "y": 14,
+                  "width": 68,
+                  "height": 106
+                },
+                {
+                  "index": 12,
+                  "tag": "SPAN",
+                  "text": "",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 421,
+                  "y": 14,
+                  "width": 34,
+                  "height": 48
+                },
+                {
+                  "index": 13,
+                  "tag": "BUTTON",
+                  "text": "",
+                  "aria": "",
+                  "title": "Zurück",
+                  "role": "",
+                  "x": 421,
+                  "y": 14,
+                  "width": 34,
+                  "height": 34
+                },
+                {
+                  "index": 14,
+                  "tag": "SPAN",
+                  "text": "",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 421,
+                  "y": 14,
+                  "width": 34,
+                  "height": 34
+                },
+                {
+                  "index": 15,
+                  "tag": "DIV",
+                  "text": "Sachkontokarte       5400 ∙ Wareneingang / Materialaufwand",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 472,
+                  "y": 14,
+                  "width": 1456,
+                  "height": 106
+                },
+                {
+                  "index": 16,
+                  "tag": "DIV",
+                  "text": "Sachkontokarte",
+                  "aria": "",
+                  "title": "",
+                  "role": "heading",
+                  "x": 472,
+                  "y": 14,
+                  "width": 592,
+                  "height": 38
+                },
+                {
+                  "index": 17,
+                  "tag": "DIV",
+                  "text": "Sachkontokarte",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 472,
+                  "y": 14,
+                  "width": 598,
+                  "height": 38
+                }
+              ]
+            },
+            {
+              "caption": "Income/Balance",
+              "nearbyControls": [],
+              "nearbyTexts": []
+            },
+            {
+              "caption": "Kontoart",
+              "label": {
+                "index": 0,
+                "tag": "DIV",
+                "text": "  Sachkontokarte       5400 ∙ Wareneingang / Materialaufwand Start Konto Saldo Weitere Optionen  Gebuchte Belege ohne eingehenden Beleg Vorlage anwenden...  Allgemein Mehr anzeigen Nr. 5400 Name Wareneingang / Materialaufwand GuV/Bilanz Bilanz Kontokategorie Kontounterkategorie Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Soll/Haben Beides Kontoart Buchung Zusammenzählung Saldo 0,00 Abstimmbar Automat. Textbaustein Direktbuchung Gesperrt Geändert am 30.06.2026 Standardbeschreibung in Buch.-Blatt auslassen Überprüfungsrichtlinie Keine Buchung Buchungsart Geschäftsbuchungsgruppe Produktbuchungsgruppe MwSt.-Geschäftsbuchungsgruppe MwSt.-Produktbuchungsgruppe Vorg.-IC-Partner Sachkontonr. Withholding Tax Bus. Post. Group Withholding Tax Prod. Post. Group Standard-Abgrenzungsvorlage Neubewertung Konsolidierung Durchschnittskurs (manuell) Nein Berichtswesen Keine Regulierung Kostenrechnung Details Anhänge (0) Ursprungswährungen Währungscode Saldo bis Datum Ursprungswährung Saldo bis Datum Posten vorhanden (In dieser Ansicht kann nichts angezeigt werden) ",
+                "aria": "",
+                "title": "",
+                "role": "",
+                "x": 0,
+                "y": 0,
+                "width": 2400,
+                "height": 1302
+              },
+              "nearbyControls": [
+                {
+                  "index": 0,
+                  "tag": "BUTTON",
+                  "type": "button",
+                  "value": "",
+                  "aria": "",
+                  "title": "Diese Seite für andere Benutzer oder Apps freigeben",
+                  "role": "",
+                  "disabled": false,
+                  "readOnly": false,
+                  "x": 1150,
+                  "y": 14,
+                  "width": 38,
+                  "height": 38
+                }
+              ],
+              "nearbyTexts": [
+                {
+                  "index": 0,
+                  "tag": "DIV",
+                  "text": "  Sachkontokarte       5400 ∙ Wareneingang / Materialaufwand Start Konto Saldo Weitere Optionen  Gebuchte Belege ohne eingehenden Beleg Vorlage anwenden...  Allgemein Mehr anzeigen Nr. 5400 Name Wareneingang / Materialaufwand GuV/Bilanz Bilanz Kontokategorie Kontounterkategorie Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Soll/Haben Beides Kontoart Buchung Zusammenzählung Saldo 0,00 Abstimmbar Automat. Textbaustein Direktbuchung Gesperrt Geändert am 30.06.2026 Standardbeschreibung in Buch.-Blatt auslassen Überprüfungsrichtlinie Keine Buchung Buchungsart Geschäftsbuchungsgruppe Produktbuchungsgruppe MwSt.-Geschäftsbuchungsgruppe MwSt.-Produktbuchungsgruppe Vorg.-IC-Partner Sachkontonr. Withholding Tax Bus. Post. Group Withholding Tax Prod. Post. Group Standard-Abgrenzungsvorlage Neubewertung Konsolidierung Durchschnittskurs (manuell) Nein Berichtswesen Keine Regulierung Kostenrechnung Details Anhänge (0) Ursprungswährungen Währungscode Saldo bis Datum Ursprungswährung Saldo bis Datum Posten vorhanden (In dieser Ansicht kann nichts angezeigt werden) ",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 0,
+                  "y": 0,
+                  "width": 2400,
+                  "height": 1302
+                },
+                {
+                  "index": 1,
+                  "tag": "DIV",
+                  "text": "",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 0,
+                  "y": 0,
+                  "width": 2400,
+                  "height": 1302
+                },
+                {
+                  "index": 2,
+                  "tag": "DIV",
+                  "text": "  Sachkontokarte       5400 ∙ Wareneingang / Materialaufwand Start Konto Saldo Weitere Optionen  Gebuchte Belege ohne eingehenden Beleg Vorlage anwenden...  Allgemein Mehr anzeigen Nr. 5400 Name Wareneingang / Materialaufwand GuV/Bilanz Bilanz Kontokategorie Kontounterkategorie Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Soll/Haben Beides Kontoart Buchung Zusammenzählung Saldo 0,00 Abstimmbar Automat. Textbaustein Direktbuchung Gesperrt Geändert am 30.06.2026 Standardbeschreibung in Buch.-Blatt auslassen Überprüfungsrichtlinie Keine Buchung Buchungsart Geschäftsbuchungsgruppe Produktbuchungsgruppe MwSt.-Geschäftsbuchungsgruppe MwSt.-Produktbuchungsgruppe Vorg.-IC-Partner Sachkontonr. Withholding Tax Bus. Post. Group Withholding Tax Prod. Post. Group Standard-Abgrenzungsvorlage Neubewertung Konsolidierung Durchschnittskurs (manuell) Nein Berichtswesen Keine Regulierung Kostenrechnung Details Anhänge (0) Ursprungswährungen Währungscode Saldo bis Datum Ursprungswährung Saldo bis Datum Posten vorhanden (In dieser Ansicht kann nichts angezeigt werden) ",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 0,
+                  "y": 0,
+                  "width": 2400,
+                  "height": 1302
+                },
+                {
+                  "index": 3,
+                  "tag": "FORM",
+                  "text": "  Sachkontokarte       5400 ∙ Wareneingang / Materialaufwand Start Konto Saldo Weitere Optionen  Gebuchte Belege ohne eingehenden Beleg Vorlage anwenden...  Allgemein Mehr anzeigen Nr. 5400 Name Wareneingang / Materialaufwand GuV/Bilanz Bilanz Kontokategorie Kontounterkategorie Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Soll/Haben Beides Kontoart Buchung Zusammenzählung Saldo 0,00 Abstimmbar Automat. Textbaustein Direktbuchung Gesperrt Geändert am 30.06.2026 Standardbeschreibung in Buch.-Blatt auslassen Überprüfungsrichtlinie Keine Buchung Buchungsart Geschäftsbuchungsgruppe Produktbuchungsgruppe MwSt.-Geschäftsbuchungsgruppe MwSt.-Produktbuchungsgruppe Vorg.-IC-Partner Sachkontonr. Withholding Tax Bus. Post. Group Withholding Tax Prod. Post. Group Standard-Abgrenzungsvorlage Neubewertung Konsolidierung Durchschnittskurs (manuell) Nein Berichtswesen Keine Regulierung Kostenrechnung Details Anhänge (0) Ursprungswährungen Währungscode Saldo bis Datum Ursprungswährung Saldo bis Datum Posten vorhanden (In dieser Ansicht kann nichts angezeigt werden) ",
+                  "aria": "Sachkontokarte",
+                  "title": "",
+                  "role": "",
+                  "x": 0,
+                  "y": 0,
+                  "width": 2400,
+                  "height": 1302
+                },
+                {
+                  "index": 4,
+                  "tag": "DIV",
+                  "text": "",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 0,
+                  "y": 0,
+                  "width": 404,
+                  "height": 1302
+                },
+                {
+                  "index": 7,
+                  "tag": "DIV",
+                  "text": " Sachkontokarte       5400 ∙ Wareneingang / Materialaufwand Start Konto Saldo Weitere Optionen  Gebuchte Belege ohne eingehenden Beleg Vorlage anwenden...  Allgemein Mehr anzeigen Nr. 5400 Name Wareneingang / Materialaufwand GuV/Bilanz Bilanz Kontokategorie Kontounterkategorie Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Soll/Haben Beides Kontoart Buchung Zusammenzählung Saldo 0,00 Abstimmbar Automat. Textbaustein Direktbuchung Gesperrt Geändert am 30.06.2026 Standardbeschreibung in Buch.-Blatt auslassen Überprüfungsrichtlinie Keine Buchung Buchungsart Geschäftsbuchungsgruppe Produktbuchungsgruppe MwSt.-Geschäftsbuchungsgruppe MwSt.-Produktbuchungsgruppe Vorg.-IC-Partner Sachkontonr. Withholding Tax Bus. Post. Group Withholding Tax Prod. Post. Group Standard-Abgrenzungsvorlage Neubewertung Konsolidierung Durchschnittskurs (manuell) Nein Berichtswesen Keine Regulierung Kostenrechnung Details Anhänge (0) Ursprungswährungen Währungscode Saldo bis Datum Ursprungswährung Saldo bis Datum Posten vorhanden (In dieser Ansicht kann nichts angezeigt werden)",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 404,
+                  "y": 0,
+                  "width": 1592,
+                  "height": 1302
+                },
+                {
+                  "index": 8,
+                  "tag": "DIV",
+                  "text": " Sachkontokarte       5400 ∙ Wareneingang / Materialaufwand",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 404,
+                  "y": 0,
+                  "width": 1592,
+                  "height": 120
+                },
+                {
+                  "index": 9,
+                  "tag": "DIV",
+                  "text": " Sachkontokarte       5400 ∙ Wareneingang / Materialaufwand",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 404,
+                  "y": 14,
+                  "width": 1592,
+                  "height": 106
+                },
+                {
+                  "index": 10,
+                  "tag": "DIV",
+                  "text": " Sachkontokarte       5400 ∙ Wareneingang / Materialaufwand",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 404,
+                  "y": 14,
+                  "width": 1592,
+                  "height": 106
+                },
+                {
+                  "index": 11,
+                  "tag": "DIV",
+                  "text": "",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 404,
+                  "y": 14,
+                  "width": 68,
+                  "height": 106
+                },
+                {
+                  "index": 12,
+                  "tag": "SPAN",
+                  "text": "",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 421,
+                  "y": 14,
+                  "width": 34,
+                  "height": 48
+                },
+                {
+                  "index": 13,
+                  "tag": "BUTTON",
+                  "text": "",
+                  "aria": "",
+                  "title": "Zurück",
+                  "role": "",
+                  "x": 421,
+                  "y": 14,
+                  "width": 34,
+                  "height": 34
+                },
+                {
+                  "index": 14,
+                  "tag": "SPAN",
+                  "text": "",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 421,
+                  "y": 14,
+                  "width": 34,
+                  "height": 34
+                },
+                {
+                  "index": 15,
+                  "tag": "DIV",
+                  "text": "Sachkontokarte       5400 ∙ Wareneingang / Materialaufwand",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 472,
+                  "y": 14,
+                  "width": 1456,
+                  "height": 106
+                },
+                {
+                  "index": 16,
+                  "tag": "DIV",
+                  "text": "Sachkontokarte",
+                  "aria": "",
+                  "title": "",
+                  "role": "heading",
+                  "x": 472,
+                  "y": 14,
+                  "width": 592,
+                  "height": 38
+                },
+                {
+                  "index": 17,
+                  "tag": "DIV",
+                  "text": "Sachkontokarte",
+                  "aria": "",
+                  "title": "",
+                  "role": "",
+                  "x": 472,
+                  "y": 14,
+                  "width": 598,
+                  "height": 38
+                }
+              ]
+            },
+            {
+              "caption": "Account Type",
+              "nearbyControls": [],
+              "nearbyTexts": []
+            }
+          ]
+        },
+        {
+          "frameUrl": "https://webshell.suite.office.com/iframe/TokenFactoryIframe",
+          "fields": [
+            {
+              "caption": "Nr.",
+              "nearbyControls": [],
+              "nearbyTexts": []
+            },
+            {
+              "caption": "No.",
+              "nearbyControls": [],
+              "nearbyTexts": []
+            },
+            {
+              "caption": "Name",
+              "nearbyControls": [],
+              "nearbyTexts": []
+            },
+            {
+              "caption": "GuV/Bilanz",
+              "nearbyControls": [],
+              "nearbyTexts": []
+            },
+            {
+              "caption": "Income/Balance",
+              "nearbyControls": [],
+              "nearbyTexts": []
+            },
+            {
+              "caption": "Kontoart",
+              "nearbyControls": [],
+              "nearbyTexts": []
+            },
+            {
+              "caption": "Account Type",
+              "nearbyControls": [],
+              "nearbyTexts": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-026M-SKR04-GUV-ACCOUNT-PAGEINSPECTION-FOLLOWUP",
+    "plannedNextCaseBeforeReview": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
+    "lastEvidenceSummary": "4400 and 5400 are visible in the chart but still Bilanz/Buchung after list-cell and card recovery attempts.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "The chart checkpoint still depends on a conscious GuV/Bilanz resolution for starter revenue and expense accounts.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-026M-SKR04-GUV-ACCOUNT-SAFE-WRITE-FOLLOWUP",
+        "status": "ready-next",
+        "reason": "Page Inspection/control mapping is enough to attempt one safer, non-repeated write route."
+      },
+      {
+        "caseId": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
+        "status": "ready-after-current",
+        "reason": "The checkpoint follows only after 4400/5400 are corrected or consciously parked."
+      },
+      {
+        "caseId": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "VAT setup waits for correct sales/purchase G/L account foundation."
+      },
+      {
+        "caseId": "TARGET-028-CUSTOMER-VENDOR-ITEM-MASTERDATA",
+        "status": "needs-setup-first",
+        "reason": "Master data is still locked until number series, dimensions, chart and VAT/posting setup are ready."
+      },
+      {
+        "caseId": "TARGET-029-FIRST-SALES-PURCHASE-DRAFT-GATE",
+        "status": "needs-setup-first",
+        "reason": "Document drafts wait for foundation readiness."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-026M-SKR04-GUV-ACCOUNT-SAFE-WRITE-FOLLOWUP",
+    "whySelectedNextCaseIsBest": "It is the first controlled write attempt based on technical field/context proof instead of repeating list-cell typing.",
+    "risksBeforeNextCase": [
+      "Do not count GuV/Bilanz label text as value GuV.",
+      "Do not proceed to VAT/posting groups while 4400/5400 remain Bilanz."
+    ],
+    "requiredPreparation": [
+      "Use exact Page/Card/Field context from this result; one write route only, with before/after/reopen proof."
+    ]
+  },
+  "nextCase": "TARGET-026M-SKR04-GUV-ACCOUNT-SAFE-WRITE-FOLLOWUP",
+  "reason": "Read-only G/L Account Card field/page context was captured; next step is a conscious field-route decision before any write."
+}
