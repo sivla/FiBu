@@ -30,7 +30,7 @@ PREP-023 zeigt: Kapitel 3 ist der Universaarl-Anker, Kapitel 6 bleibt der groess
 
 | Reihenfolge | Discovery-ID | Seite/Kontext | Zweck fuer das Buch | Erlaubt | Stoppen bei | Atlas-Ziel |
 | ---: | --- | --- | --- | --- | --- | --- |
-| 1 | `RO-W0-COMPANIES-357` | Mandanten / Companies Page `357` | Company-Liste, `Neu`, Pfeil neben `Neu`, `Neues Unternehmen erstellen`, `Kopieren`, `Testunternehmen` sauber unterscheiden | Liste lesen, Tooltips, Dropdown oeffnen, Actions inventarisieren, `UNIVERSAARL-DE`-Nichtvorhandensein pruefen | Werteingabe, Speichern, `Fertig stellen`, `OK`, `Kopieren`, `Testunternehmen`, direkte neue Zeile speichern | Page, List, Action, Dialog |
+| 1 | `RO-W0-COMPANIES-357` | Mandanten / Companies Page `357` | Company-Liste, `Neu`, Pfeil neben `Neu`, `Neues Unternehmen erstellen`, `Kopieren`, `Testunternehmen` sauber unterscheiden | PREP-031 erledigt: Liste gelesen, Tooltips/Accessible Names erfasst, Dropdown geoeffnet, `UNIVERSAARL-DE` nicht sichtbar | Werteingabe, Speichern, `Fertig stellen`, `OK`, `Kopieren`, `Testunternehmen`, direkte neue Zeile speichern | Page, List, Action, Dialog |
 | 2 | `RO-W0-MY-SETTINGS` | Meine Einstellungen / My Settings | Company-Kontext, Rolle, Region/Sprache und sichere Company-Auswahl erklaeren | Seite oeffnen, aktiven Company-/Role-/Language-Kontext lesen | Company wechseln, Auswahl speichern, Personalisierung speichern | Page, Card, Field |
 | 3 | `RO-W0-ROLE-CENTER` | Role Center / Startseite | Shell, Suche, Navigationsleiste, Aktionsleiste und sichtbare Arbeitsbereiche erklaeren | Shell lesen, Suche nur bis Trefferliste, keine Treffer mit Datenwirkung ausfuehren | wirksame Aktionen, Setup-Assistent starten, neue Belege | Page, Action |
 | 4 | `RO-W1-COMPANY-INFORMATION` | Company Information | Firmenstammdaten erklaeren: Name, Adresse, Land/Region, USt-IdNr.; spaeter erster Universaarl-Firmennachweis | Seite nur nach vorhandener Company oeffnen; Feldnamen/FastTabs lesen | Editieren, Speichern, Bild/Logo hochladen, Felder befuellen | Card, Field |
@@ -101,6 +101,6 @@ Jeder spaetere read-only Discovery-Test schreibt ein kompaktes Result:
 
 ## Naechster sinnvoller Lauf
 
-`PREP-025-NEXT-10-CASES-REPLANNING`
+`PREP-032-CH04-ERP-BASICS-UNIVERSAARL-REWRITE`
 
-Nach diesem Pack sollte die Queue neu geprueft werden. Der naechste Plan muss entscheiden, ob zuerst ein kleiner Buchpatch zu Kapitel 4 oder ein erster read-only Playwright-Discovery-Test fuer `RO-W0-COMPANIES-357` den groesseren Nutzen bringt.
+PREP-031 hat `RO-W0-COMPANIES-357` als read-only Playwright-Lauf ausgefuehrt. Das naechste sinnvolle Paket ist ein kleiner Buch-/Clickguide-Schritt: Kapitel 4 darf den sichtbaren Unterschied zwischen Hauptbutton `Neu`, Pfeil neben `Neu` und Menueintrag `Neues Unternehmen erstellen` erklaeren, ohne eine Company-Anlage zu behaupten.

@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "caseId": "PREP-031-COMPANIES-PAGE-READONLY-PLAYWRIGHT",
+  "status": "done",
+  "type": "readonly-ui-discovery",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE-planned-not-yet-created",
+  "shellCompanyObserved": "CRONUS DE",
+  "targetWorld": "Universaarl",
+  "goal": "Observe Companies Page 357 read-only and prove the difference between the main Neu button, the dropdown arrow beside Neu, and the Neues Unternehmen erstellen menu entry.",
+  "discoveryId": "RO-W0-COMPANIES-357",
+  "allowedActions": [
+    "open-companies-page-readonly",
+    "hover-main-neu",
+    "hover-dropdown-arrow",
+    "open-dropdown-only",
+    "screenshot-qa",
+    "result-json",
+    "atlas-state-update"
+  ],
+  "forbiddenActionsObserved": [
+    "company-create",
+    "company-switch",
+    "value-entry",
+    "save",
+    "wizard-finish",
+    "copy-company",
+    "test-company-create",
+    "setup-change",
+    "preview-posting",
+    "posting",
+    "api-shortcut"
+  ],
+  "resultPath": "playwright/projects/fibu-book5/evidence/prep-031-companies-page-readonly-playwright/PREP-031-result.json",
+  "evidencePath": "playwright/projects/fibu-book5/evidence/prep-031-companies-page-readonly-playwright/",
+  "screenshots": [
+    "playwright/projects/fibu-book5/img/prep-031-010-companies-page-before-dropdown.png",
+    "playwright/projects/fibu-book5/img/prep-031-020-companies-new-dropdown-open.png"
+  ],
+  "proved": [
+    "Companies / Mandanten Page 357 opens read-only in playthru.",
+    "UNIVERSAARL-DE is not visible in the observed Companies list.",
+    "The main Neu button and the dropdown arrow beside Neu are separate UI targets.",
+    "The dropdown arrow beside Neu can be opened read-only.",
+    "The dropdown shows Neu and Neues Unternehmen erstellen without selecting either entry."
+  ],
+  "notProved": [
+    "UNIVERSAARL-DE was not created.",
+    "No Create New Company menu entry was selected.",
+    "No wizard, data-basis choice, setup, save or company switch was performed.",
+    "No German final process claim is proven."
+  ],
+  "playwrightLearning": [
+    "Business Central controls inside the run-in-frame iframe need frame-offset corrected click coordinates; frame-relative DOM coordinates can click the wrong top-shell target.",
+    "A read-only split-button proof must be visually checked: the screenshot must show the opened dropdown and the intended menu text."
+  ],
+  "bookUse": "Chapter 4 and the Company/Environment clickguide may explain the visible UI pattern, but not company creation.",
+  "nextCase": "PREP-032-CH04-ERP-BASICS-UNIVERSAARL-REWRITE",
+  "updatedAt": "2026-06-30T09:05:00.000+02:00"
+}

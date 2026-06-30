@@ -1,0 +1,194 @@
+{
+  "schemaVersion": 1,
+  "caseId": "PREP-031-COMPANIES-PAGE-READONLY-PLAYWRIGHT",
+  "source": "playwright-readonly-ui-discovery",
+  "resultStatus": "observed",
+  "startedAt": "2026-06-30T01:01:11.702Z",
+  "completedAt": "2026-06-30T01:01:19.190Z",
+  "instance": "playthru",
+  "targetCompany": "UNIVERSAARL-DE",
+  "legalName": "Universaarl GmbH",
+  "currentUrl": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=357&company=CRONUS+DE",
+  "page": {
+    "pageId": 357,
+    "name": "Companies / Mandanten",
+    "type": "list"
+  },
+  "observed": {
+    "targetCompanyVisibleBefore": false,
+    "mainNew": {
+      "label": "Neu  | Neu",
+      "text": "Neu ",
+      "ariaLabel": "Neu",
+      "title": "",
+      "role": "menuitem",
+      "tag": "div",
+      "x": 508,
+      "y": 99,
+      "width": 89,
+      "height": 38,
+      "clickX": 552,
+      "clickY": 118
+    },
+    "dropdown": {
+      "label": " | Verwandte Aktionen für Neu | Verwandte Aktionen für Neu",
+      "text": "",
+      "ariaLabel": "Verwandte Aktionen für Neu",
+      "title": "Verwandte Aktionen für Neu",
+      "role": "",
+      "tag": "button",
+      "x": 569,
+      "y": 99,
+      "width": 28,
+      "height": 38,
+      "clickX": 583,
+      "clickY": 118
+    },
+    "mainNewTooltipText": "Mandanten:\nNeu\nKeine personlichen Daten zum Unternehmensnamen hinzufugen, da dies nicht als eingeschrankte Daten behandelt wird\nTestunternehmen\nUnterstutzte Unternehmenseinrichtung aktivieren\nMy Company\nListe mit Titel Mandanten hat jetzt 2 Artikel",
+    "dropdownTooltipText": "Mandanten:\nNeu\nKeine personlichen Daten zum Unternehmensnamen hinzufugen, da dies nicht als eingeschrankte Daten behandelt wird\nTestunternehmen\nUnterstutzte Unternehmenseinrichtung aktivieren\nMy Company\nListe mit Titel Mandanten hat jetzt 2 Artikel",
+    "dropdownOpened": true,
+    "menuLabels": [
+      "Neu | Neu",
+      "Neu | Neu | Erstellen Sie einen neuen Eintrag.",
+      "| Verwandte Aktionen fur Neu | Verwandte Aktionen fur Neu",
+      "Kopieren | Kopieren | Kopieren Sie ein vorhandenes Unternehmen in ein neues Unternehmen.",
+      "Testunternehmen | Sortieren nach 'Testunternehmen'",
+      "Menu fur Testunternehmen offnen | Menu offnen",
+      "Neues Unternehmen erstellen | Neues Unternehmen erstellen | Erhalten Sie Unterstutzung beim Erstellen eines neuen Unternehmens."
+    ],
+    "hasCreateNewCompany": true,
+    "hasCopy": true,
+    "hasTestCompany": true,
+    "screenshots": [
+      "playwright/projects/fibu-book5/img/prep-031-010-companies-page-before-dropdown.png",
+      "playwright/projects/fibu-book5/img/prep-031-020-companies-new-dropdown-open.png"
+    ]
+  },
+  "proved": [
+    "Companies / Mandanten Page 357 opens in playthru.",
+    "The main Neu button and the related-action/dropdown control beside Neu are distinct UI targets.",
+    "The dropdown can be opened read-only without selecting a menu entry, saving data or creating a company.",
+    "Neues Unternehmen erstellen / Create New Company is visible in the dropdown context."
+  ],
+  "notProved": [
+    "UNIVERSAARL-DE was not created and is not proven as existing.",
+    "No Create New Company menu entry was selected.",
+    "No wizard, setup data option, Company Information, save or company switch was performed.",
+    "No German final process claim is proven."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {},
+  "flags": {
+    "noWrite": true,
+    "noCompanyCreated": true,
+    "noCompanyValueEntered": true,
+    "noDraftCreated": true,
+    "noSetupChange": true,
+    "noPreview": true,
+    "noPost": true,
+    "noPayment": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true,
+    "noSearch": true,
+    "dropdownOnly": true
+  },
+  "screenshotQa": [
+    {
+      "image": "prep-031-010-companies-page-before-dropdown.png",
+      "status": "usable-context-screenshot",
+      "importantVisibleArea": "Companies/Mandanten command bar with Neu before the dropdown is opened.",
+      "limitation": "Does not show a selected create route."
+    },
+    {
+      "image": "prep-031-020-companies-new-dropdown-open.png",
+      "status": "usable-clickguide-screenshot",
+      "importantVisibleArea": "Opened related-action dropdown beside Neu.",
+      "limitation": "Does not create or save a company."
+    }
+  ],
+  "actionsTaken": [
+    "Opened Companies / Mandanten Page 357 directly in playthru.",
+    "Hovered main Neu and the related-action dropdown control when found.",
+    "Opened only the dropdown arrow next to Neu and captured menu labels."
+  ],
+  "actionsNotTaken": [
+    "Did not click main Neu.",
+    "Did not click Neues Unternehmen erstellen.",
+    "Did not click Kopieren.",
+    "Did not click Testunternehmen.",
+    "Did not enter UNIVERSAARL-DE.",
+    "Did not save, finish, switch company, run setup, preview or post."
+  ],
+  "nextStepDecisionCard": {
+    "currentCase": "PREP-031-COMPANIES-PAGE-READONLY-PLAYWRIGHT",
+    "plannedNextCaseBeforeReview": "PREP-031-COMPANIES-PAGE-READONLY-PLAYWRIGHT",
+    "lastEvidenceSummary": "PREP-026 mapped official W0/W1 sources; TARGET-007 had historical dropdown evidence but PREP-031 needed a current read-only screenshot QA run.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The Companies Page split-button is the exact UI confusion currently blocking safe beginner instructions; read-only observation is useful while company creation permissions are missing.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "PREP-032-CH04-ERP-BASICS-UNIVERSAARL-REWRITE",
+        "status": "ready-next",
+        "reason": "Chapter text can now use the current Companies Page screenshot QA without claiming company creation."
+      },
+      {
+        "caseId": "PREP-033-MY-SETTINGS-READONLY-CONTEXT",
+        "status": "ready-after-current",
+        "reason": "My Settings is read-only context evidence and does not depend on company creation."
+      },
+      {
+        "caseId": "PREP-034-ROLE-CENTER-READONLY-SHELL-MAP",
+        "status": "ready-after-current",
+        "reason": "Role Center shell mapping remains useful for page/context language."
+      },
+      {
+        "caseId": "PREP-027-IMPLEMENTATION-GUIDE-BEST-PRACTICE-MAPPING",
+        "status": "ready-after-current",
+        "reason": "Can follow after current UI evidence or book rewrite."
+      },
+      {
+        "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+        "status": "blocked",
+        "reason": "Company creation remains parked until SUPER/company-create permissions are confirmed."
+      }
+    ],
+    "queueChangesMade": [
+      "Mark PREP-031 done and select PREP-032 as next book-facing use of the screenshot."
+    ],
+    "selectedNextCase": "PREP-032-CH04-ERP-BASICS-UNIVERSAARL-REWRITE",
+    "whySelectedNextCaseIsBest": "The screenshot now gives Chapter 4/Company basics a concrete UI anchor without creating a company.",
+    "risksBeforeNextCase": [
+      "Do not claim UNIVERSAARL-DE exists.",
+      "Do not say Neues Unternehmen erstellen was clicked.",
+      "Do not use Copy/Testunternehmen as the Universaarl target route."
+    ],
+    "requiredPreparation": [
+      "Use only visible PREP-031 screenshot facts.",
+      "Keep company creation parked until permissions are confirmed.",
+      "Explain main button versus arrow versus menu entry in beginner language."
+    ]
+  },
+  "nextCase": "PREP-032-CH04-ERP-BASICS-UNIVERSAARL-REWRITE",
+  "changedFiles": [
+    "playwright/projects/fibu-book5/tests/prep-031-companies-page-readonly-playwright.spec.ts",
+    "playwright/projects/fibu-book5/evidence/prep-031-companies-page-readonly-playwright/PREP-031-result.json",
+    "playwright/projects/fibu-book5/evidence/prep-031-companies-page-readonly-playwright/README.md",
+    "playwright/projects/fibu-book5/evidence/prep-031-companies-page-readonly-playwright/*.screenshot.json"
+  ],
+  "validationCommands": [
+    "npm run agent:preflight",
+    "npm run agent:context",
+    "npm run agent:dry-run",
+    "npm run agent:run-plan",
+    "npm run agent:marathon:check || true",
+    "npx tsc --noEmit",
+    "npm run fibu:prep:031:companies-readonly",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/prep-031-companies-page-readonly-playwright/PREP-031-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/prep-031-companies-page-readonly-playwright/PREP-031-result.json",
+    "npm run check:encoding",
+    "git diff --check"
+  ]
+}

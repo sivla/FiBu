@@ -21,7 +21,7 @@ Der List Atlas beschreibt Business-Central-Listen, die fuer Klickpfade, Suche, F
 
 | Liste | Page ID | Bereich | Zweck | Zentrale Spalten | Wichtige Actions | Risiko | Evidence | Status | Naechster Case |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Companies / Mandanten | 357 | Company / Environment | Vorhandene Companies sehen und sichere Anlageoption fuer `UNIVERSAARL-DE` finden | Name, Display Name, Evaluation Company, ggf. Systemfelder | Neu, Pfeil neben Neu, Neues Unternehmen erstellen, Kopieren, Testunternehmen, Menueaktionen | wirksam bei Company-Erstellung; Copy/Testunternehmen nicht Universaarl-Basis; neue Zeile ist kein Speicherbeweis | TARGET-001 bis TARGET-009, PREP-003 | `actions-mapped`, `screenshot-qa-mapped`, `blocked-permission` | TARGET-009 nach Rechten |
+| Companies / Mandanten | 357 | Company / Environment | Vorhandene Companies sehen und sichere Anlageoption fuer `UNIVERSAARL-DE` finden | Name, Display Name, Evaluation Company, ggf. Systemfelder | Neu, Pfeil neben Neu, Neues Unternehmen erstellen, Kopieren, Testunternehmen, Menueaktionen | wirksam bei Company-Erstellung; Copy/Testunternehmen nicht Universaarl-Basis; neue Zeile ist kein Speicherbeweis | TARGET-001 bis TARGET-009, PREP-003, PREP-031 | `actions-mapped`, `screenshot-qa-mapped`, `tested-readonly`, `blocked-permission` | PREP-032 Buchtext, TARGET-009 nach Rechten |
 | Chart of Accounts / Kontenplan | offen | Finance | Sachkonten und Kontenstruktur erklaeren | No., Name, Account Type, Direct Posting | New, Edit List, Indent | Setup-/Stammdatenwirkung | geplant | `planned` | TARGET-009 |
 | Customers / Debitoren | offen | O2C | Kundenliste und Kundenvorlagen erklaeren | No., Name, Posting Group, Balance | New, Edit, Dimensions | Stammdatenwirkung | geplant | `planned` | TARGET-010 |
 | Vendors / Kreditoren | offen | P2P | Lieferantenliste und Kreditorenbuchung vorbereiten | No., Name, Posting Group, Balance | New, Edit, Dimensions | Stammdatenwirkung | geplant | `planned` | TARGET-013 |
@@ -42,7 +42,7 @@ Der List Atlas beschreibt Business-Central-Listen, die fuer Klickpfade, Suche, F
 
 | Discovery-ID | Liste | Prioritaet | Read-only-Aufgabe | Ergebnisstatus |
 | --- | --- | ---: | --- | --- |
-| `RO-W0-COMPANIES-357` | Companies / Mandanten | 1 | Spalten, `UNIVERSAARL-DE`-Sichtbarkeit, Split-Button-/Dropdown-Kontext, riskante Actions erfassen | `ready-for-readonly-playwright` |
+| `RO-W0-COMPANIES-357` | Companies / Mandanten | 1 | Spalten, `UNIVERSAARL-DE`-Sichtbarkeit, Split-Button-/Dropdown-Kontext, riskante Actions erfassen | `observed-readonly-prep-031` |
 | `RO-W1-ASSISTED-SETUP` | Assisted Setup / Unterstuetztes Setup | 2 | Assistenten, Status und gefaehrliche Start-/Finish-Punkte sichtbar machen | `ready-for-readonly-playwright` |
 | `RO-W1-NO-SERIES` | No. Series / Nummernserien | 3 | Nummernserien als Listen-/Zeilenkonzept vorbereiten | `requires-universaarl-company` |
 | `RO-W1-POSTING-GROUPS` | Posting Groups / Posting Setup | 4 | Buchungsgruppen- und Matrixlisten fuer Kontenfindung vorbereiten | `requires-universaarl-company` |
