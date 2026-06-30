@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-30T08:05:00.000+02:00",
+  "updatedAt": "2026-06-30T08:35:00.000+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-next-10-prep-replanning",
-  "activeCase": "PREP-025-NEXT-10-CASES-REPLANNING",
-  "active_case_file": ".agent/state/cases/prep-025-next-10-cases-replanning.json",
+  "activeArea": "universaarl-w0-w1-source-mapping",
+  "activeCase": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
+  "active_case_file": ".agent/state/cases/prep-026-microsoft-learn-source-mapping.json",
   "lastReferenceCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
   "lastReferenceCaseFile": ".agent/state/cases/warehouse-031-warehouse-source-route-park-or-setup-fit-decision.json",
   "mode": "universaarl-readonly-prep-until-super-permissions",
@@ -48,7 +48,7 @@
     "preview-posting-until-target-company-exists",
     "api-shortcut-for-company-creation"
   ],
-  "nextStep": "Continue with PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING. Focus only W0/W1 claims: Company Creation, Company Information, Assisted Setup, Number Series, Posting Groups, VAT Setup and Dimensions.",
+  "nextStep": "Continue with PREP-031-COMPANIES-PAGE-READONLY-PLAYWRIGHT. Run RO-W0-COMPANIES-357 read-only: observe Companies Page split-button Neu, dropdown arrow, Neues Unternehmen erstellen, Copy/Test Company options, tooltips and screenshot QA without creating or saving a company.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -1357,7 +1357,7 @@
     "nextStep": "BANK-018: controlled no-post Payment Journal preflight for 108205; do not post."
   },
   "workType": "warehouse-source-document-action-on-draft",
-  "lastCompletedCase": "PREP-005-BC-OBJECT-COVERAGE-CATALOG-GAP-FILL",
+  "lastCompletedCase": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
   "latestBank018": {
     "caseId": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
     "status": [
@@ -3441,7 +3441,58 @@
       "blocked",
       "obsolete",
       "replace-with-better-case"
-    ]
+    ],
+    "latestDecisionCard": {
+      "currentCase": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
+      "plannedNextCaseBeforeReview": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
+      "lastEvidenceSummary": "PREP-025 replanned the next ten cases and selected W0/W1 source mapping before more read-only UI or book work.",
+      "isPlannedNextCaseStillSensible": true,
+      "reason": "W0/W1 source mapping is required before Companies Page screenshots, Chapter 4 text, My Settings context and later setup claims can be used without overclaiming.",
+      "lookaheadReviewed": [
+        {
+          "caseId": "PREP-031-COMPANIES-PAGE-READONLY-PLAYWRIGHT",
+          "status": "ready-next",
+          "reason": "Companies Page can now be observed read-only against explicit product and evidence claim gates."
+        },
+        {
+          "caseId": "PREP-032-CH04-ERP-BASICS-UNIVERSAARL-REWRITE",
+          "status": "ready-after-current",
+          "reason": "Chapter 4 can use product-level source claims without asserting that Universaarl already exists."
+        },
+        {
+          "caseId": "PREP-033-MY-SETTINGS-READONLY-CONTEXT",
+          "status": "ready-after-current",
+          "reason": "My Settings source boundary is now known; read-only context proof can follow."
+        },
+        {
+          "caseId": "PREP-027-IMPLEMENTATION-GUIDE-BEST-PRACTICE-MAPPING",
+          "status": "ready-after-current",
+          "reason": "Implementation/UAT guidance should follow the product-source claim gates."
+        },
+        {
+          "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+          "status": "blocked",
+          "reason": "Company creation remains parked until SUPER/company-create permissions are confirmed."
+        }
+      ],
+      "queueChangesMade": [
+        "Marked PREP-026 done.",
+        "Promoted PREP-031 to ready-next.",
+        "Kept TARGET-009 parked until permissions are available."
+      ],
+      "selectedNextCase": "PREP-031-COMPANIES-PAGE-READONLY-PLAYWRIGHT",
+      "whySelectedNextCaseIsBest": "It is the fastest practical next step: observe the Companies Page dropdown, tooltip and screenshot QA targets without creating a company.",
+      "risksBeforeNextCase": [
+        "Do not click the main Neu button when the dropdown arrow or Neues Unternehmen erstellen menu entry is the intended target.",
+        "Do not finish a wizard or save a company.",
+        "Do not mistake a product source for a Universaarl evidence claim."
+      ],
+      "requiredPreparation": [
+        "Use RO-W0-COMPANIES-357 from the read-only discovery pack.",
+        "Capture split-button target, dropdown state, tooltip/accessible name and screenshot QA.",
+        "Stop before any create/save/finish action."
+      ]
+    }
   },
   "latestNextStepDecisionCard": {
     "currentCase": "TARGET-007-COMPANIES-NEW-DROPDOWN-CLICKGUIDE",
@@ -3650,55 +3701,54 @@
     "resultFile": "playwright/projects/fibu-book5/evidence/prep-020-universaarl-dataset-blueprint/PREP-020-result.json"
   },
   "nextStepDecisionCard": {
-    "currentCase": "PREP-025-NEXT-10-CASES-REPLANNING",
-    "plannedNextCaseBeforeReview": "PREP-025-NEXT-10-CASES-REPLANNING",
-    "lastEvidenceSummary": "PREP-024 created a W0/W1 read-only discovery pack with page/action/field/request-page atlas targets.",
+    "currentCase": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
+    "plannedNextCaseBeforeReview": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
+    "lastEvidenceSummary": "PREP-025 replanned the next ten cases and selected W0/W1 source mapping before more read-only UI or book work.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The queue needed to decide between immediate read-only Playwright discovery and source-backed book preparation. Source mapping now goes first; read-only Companies Page follows directly.",
+    "reason": "W0/W1 source mapping is required before Companies Page screenshots, Chapter 4 text, My Settings context and later setup claims can be used without overclaiming.",
     "lookaheadReviewed": [
       {
-        "caseId": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
-        "status": "ready-next",
-        "reason": "Sources must define which claims need Microsoft Learn, Universaarl Evidence, both, or later German/legal proof."
-      },
-      {
         "caseId": "PREP-031-COMPANIES-PAGE-READONLY-PLAYWRIGHT",
-        "status": "ready-after-current",
-        "reason": "PREP-024 made this executable without writes."
+        "status": "ready-next",
+        "reason": "Companies Page can now be observed read-only against explicit product and evidence claim gates."
       },
       {
         "caseId": "PREP-032-CH04-ERP-BASICS-UNIVERSAARL-REWRITE",
         "status": "ready-after-current",
-        "reason": "Chapter 4 can safely become Universaarl reader text without claiming that the company exists."
+        "reason": "Chapter 4 can use product-level source claims without asserting that Universaarl already exists."
+      },
+      {
+        "caseId": "PREP-033-MY-SETTINGS-READONLY-CONTEXT",
+        "status": "ready-after-current",
+        "reason": "My Settings source boundary is now known; read-only context proof can follow."
       },
       {
         "caseId": "PREP-027-IMPLEMENTATION-GUIDE-BEST-PRACTICE-MAPPING",
         "status": "ready-after-current",
-        "reason": "Implementation guidance should follow the source map."
+        "reason": "Implementation/UAT guidance should follow the product-source claim gates."
       },
       {
         "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
         "status": "blocked",
-        "reason": "Still waiting for SUPER/company-create permissions."
+        "reason": "Company creation remains parked until SUPER/company-create permissions are confirmed."
       }
     ],
     "queueChangesMade": [
-      "Marked PREP-025 done.",
-      "Kept PREP-026 as ready-next.",
-      "Inserted PREP-031, PREP-032, PREP-033 and PREP-034 as concrete follow-up cases.",
-      "Kept TARGET-009 parked until permission unblock."
+      "Marked PREP-026 done.",
+      "Promoted PREP-031 to ready-next.",
+      "Kept TARGET-009 parked until permissions are available."
     ],
-    "selectedNextCase": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
-    "whySelectedNextCaseIsBest": "It prevents later book text from overclaiming what read-only screenshots or old RM evidence can prove.",
+    "selectedNextCase": "PREP-031-COMPANIES-PAGE-READONLY-PLAYWRIGHT",
+    "whySelectedNextCaseIsBest": "It is the fastest practical next step: observe the Companies Page dropdown, tooltip and screenshot QA targets without creating a company.",
     "risksBeforeNextCase": [
-      "Do not spend the source-mapping run as a broad web research detour.",
-      "Do not claim Universaarl setup exists.",
-      "Do not skip the Companies Page read-only test after mapping."
+      "Do not click the main Neu button when the dropdown arrow or Neues Unternehmen erstellen menu entry is the intended target.",
+      "Do not finish a wizard or save a company.",
+      "Do not mistake a product source for a Universaarl evidence claim."
     ],
     "requiredPreparation": [
-      "Use PREP-024 discovery IDs.",
-      "Map only W0/W1 claims first.",
-      "Keep Shopify excluded."
+      "Use RO-W0-COMPANIES-357 from the read-only discovery pack.",
+      "Capture split-button target, dropdown state, tooltip/accessible name and screenshot QA.",
+      "Stop before any create/save/finish action."
     ]
   },
   "permissionBlocker": {
@@ -3718,10 +3768,10 @@
     "activatedAt": "2026-06-29T21:25:26.553Z",
     "reason": "UNIVERSAARL-DE cannot be created until required permissions exist; productive work continues through repo/book/source/read-only prep cases.",
     "firstCase": "PREP-001-PERMISSION-BLOCKER-DOCUMENTATION",
-    "nextCase": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
+    "nextCase": "PREP-031-COMPANIES-PAGE-READONLY-PLAYWRIGHT",
     "noEffectiveBcActions": true,
-    "lastCompletedCase": "PREP-025-NEXT-10-CASES-REPLANNING",
-    "updatedAt": "2026-06-30T08:05:00.000+02:00"
+    "lastCompletedCase": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
+    "updatedAt": "2026-06-30T08:35:00.000+02:00"
   },
   "latestCompanyCreationBookDraft": {
     "updatedAt": "2026-06-29T21:34:46.267Z",
@@ -3737,8 +3787,8 @@
     "noPlaywrightExecution": true,
     "nextCase": "PREP-003-PLAYTHRU-READONLY-UI-LOOK-AND-FEEL-MAP"
   },
-  "lastCompletedCaseFile": ".agent/state/cases/prep-025-next-10-cases-replanning.json",
-  "lastResultPath": "playwright/projects/fibu-book5/evidence/prep-025-next-10-cases-replanning/PREP-025-result.json",
+  "lastCompletedCaseFile": ".agent/state/cases/prep-026-microsoft-learn-source-mapping.json",
+  "lastResultPath": "playwright/projects/fibu-book5/evidence/prep-026-microsoft-learn-source-mapping/PREP-026-result.json",
   "latestReadonlyUiLookAndFeelMap": {
     "caseId": "PREP-003-PLAYTHRU-READONLY-UI-LOOK-AND-FEEL-MAP",
     "status": "prep-done",
@@ -3775,16 +3825,16 @@
     "nextCase": "PREP-006-BOOKMASTER-UNIVERSAARL-FALLSTUDIE-REWRITE-PLAN",
     "updatedAt": "2026-06-29T21:54:54.534Z"
   },
-  "activeCaseFile": ".agent/state/cases/prep-025-next-10-cases-replanning.json",
-  "previousCase": "PREP-024-READONLY-PAGE-DISCOVERY-PACK",
-  "nextCase": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
+  "activeCaseFile": ".agent/state/cases/prep-026-microsoft-learn-source-mapping.json",
+  "previousCase": "PREP-025-NEXT-10-CASES-REPLANNING",
+  "nextCase": "PREP-031-COMPANIES-PAGE-READONLY-PLAYWRIGHT",
   "latestPrepCase": {
-    "caseId": "PREP-025-NEXT-10-CASES-REPLANNING",
+    "caseId": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
     "status": "done",
-    "resultPath": "playwright/projects/fibu-book5/evidence/prep-025-next-10-cases-replanning/PREP-025-result.json",
-    "completedAt": "2026-06-30T08:05:00.000+02:00",
-    "summary": "Replanned the next ten Universaarl PREP/read-only/book/source cases and inserted concrete follow-ups for Companies Page, Chapter 4, My Settings and Role Center.",
-    "nextCase": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING"
+    "resultPath": "playwright/projects/fibu-book5/evidence/prep-026-microsoft-learn-source-mapping/PREP-026-result.json",
+    "completedAt": "2026-06-30T08:35:00.000+02:00",
+    "summary": "Mapped W0/W1 Universaarl product and setup claim boundaries to official Microsoft Learn sources; concrete Universaarl claims remain gated by playthru evidence.",
+    "nextCase": "PREP-031-COMPANIES-PAGE-READONLY-PLAYWRIGHT"
   },
   "latestBookmasterFallstudieRewritePlan": {
     "status": "prep-progress",
@@ -4073,5 +4123,28 @@
     "noBusinessCentralExecution": true,
     "noPlaywrightExecution": true,
     "nextCase": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING"
+  },
+  "latestW0W1SourceMapping": {
+    "caseId": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
+    "status": "prep-done",
+    "mappingPath": "playwright/projects/fibu-book5/UNIVERSAARL-W0-W1-SOURCE-MAPPING.md",
+    "statePath": ".agent/state/w0_w1_source_mapping.json",
+    "resultPath": "playwright/projects/fibu-book5/evidence/prep-026-microsoft-learn-source-mapping/PREP-026-result.json",
+    "sourceScope": [
+      "Company / Environment",
+      "Company Creation",
+      "My Settings",
+      "Company Information",
+      "Assisted Setup",
+      "Number Series",
+      "Posting Groups",
+      "VAT Setup",
+      "Dimensions"
+    ],
+    "noBusinessCentralExecution": true,
+    "noPlaywrightExecution": true,
+    "noBookChange": true,
+    "nextCase": "PREP-031-COMPANIES-PAGE-READONLY-PLAYWRIGHT",
+    "updatedAt": "2026-06-30T08:35:00.000+02:00"
   }
 }

@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "caseId": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
+  "status": "prep-done",
+  "instance": "playthru",
+  "targetCompany": "UNIVERSAARL-DE",
+  "targetCompanyStatus": "planned-not-yet-created",
+  "sourceMappingPath": "playwright/projects/fibu-book5/UNIVERSAARL-W0-W1-SOURCE-MAPPING.md",
+  "claimRulesPath": "playwright/projects/fibu-book5/BC-SOURCE-CLAIM-RULES.md",
+  "registryPath": "playwright/projects/fibu-book5/BC-SOURCE-REGISTRY.md",
+  "mappingPath": "playwright/projects/fibu-book5/BC-MICROSOFT-LEARN-MAPPING.md",
+  "areas": [
+    {
+      "area": "Company / Environment",
+      "source": "https://learn.microsoft.com/en-us/dynamics365/business-central/about-new-company",
+      "allowedClaimClass": "product-and-permission-claim",
+      "requiresUniversaarlEvidenceFor": [
+        "company-exists-or-not",
+        "visible-create-options",
+        "selected-data-basis",
+        "permission-error-or-success"
+      ],
+      "nextCase": "PREP-031-COMPANIES-PAGE-READONLY-PLAYWRIGHT"
+    },
+    {
+      "area": "My Settings",
+      "source": "https://learn.microsoft.com/en-us/dynamics365/business-central/ui-change-basic-settings",
+      "allowedClaimClass": "product-ui-claim",
+      "requiresUniversaarlEvidenceFor": [
+        "visible-company-context",
+        "role",
+        "language",
+        "work-date"
+      ],
+      "nextCase": "PREP-033-MY-SETTINGS-READONLY-CONTEXT"
+    },
+    {
+      "area": "Company Information / Setup",
+      "source": "https://learn.microsoft.com/en-us/dynamics365/business-central/setup",
+      "allowedClaimClass": "product-setup-claim",
+      "requiresUniversaarlEvidenceFor": [
+        "visible-fields",
+        "setup-before-after",
+        "selected-setup-path"
+      ],
+      "nextCase": "TARGET-COMPANY-INFO-001"
+    },
+    {
+      "area": "Number Series",
+      "source": "https://learn.microsoft.com/en-us/dynamics365/business-central/ui-create-number-series",
+      "allowedClaimClass": "product-setup-claim",
+      "requiresUniversaarlEvidenceFor": [
+        "series-lines",
+        "start-end-last-numbers",
+        "document-number-effect"
+      ],
+      "nextCase": "TARGET-NOSERIES-001"
+    },
+    {
+      "area": "Posting Groups",
+      "source": "https://learn.microsoft.com/en-us/dynamics365/business-central/finance-posting-groups",
+      "allowedClaimClass": "product-setup-claim",
+      "requiresUniversaarlEvidenceFor": [
+        "posting-group-combinations",
+        "g-l-accounts",
+        "preview-posting",
+        "g-l-entries"
+      ],
+      "nextCase": "TARGET-POSTINGGROUPS-001"
+    },
+    {
+      "area": "VAT Setup",
+      "source": "https://learn.microsoft.com/en-us/dynamics365/business-central/finance-setup-vat",
+      "allowedClaimClass": "product-setup-claim",
+      "requiresUniversaarlEvidenceFor": [
+        "vat-business-product-posting-groups",
+        "vat-posting-setup",
+        "vat-entries",
+        "official-german-tax-source"
+      ],
+      "nextCase": "TARGET-VAT-001"
+    },
+    {
+      "area": "Dimensions",
+      "source": "https://learn.microsoft.com/en-us/dynamics365/business-central/finance-dimensions",
+      "allowedClaimClass": "product-setup-claim",
+      "requiresUniversaarlEvidenceFor": [
+        "dimension-values",
+        "default-dimensions",
+        "dimension-set-entries",
+        "document-or-entry-trace"
+      ],
+      "nextCase": "TARGET-DIMENSIONS-001"
+    }
+  ],
+  "nextCase": "PREP-031-COMPANIES-PAGE-READONLY-PLAYWRIGHT",
+  "updatedAt": "2026-06-30T08:35:00.000+02:00"
+}

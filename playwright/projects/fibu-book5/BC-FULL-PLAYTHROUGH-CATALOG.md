@@ -33,11 +33,11 @@ Zero-Open-Questions-Regel: Jeder Bereich in diesem Katalog muss seine offenen Ob
 | 3 | `PREP-023-BOOK-CHAPTER-STIMMIGKEIT-AUDIT` | Buchkapitel werden auf Leserfluss, Zielwelt und fehlende Universaarl-Abhaengigkeiten geprueft. |
 | 4 | `PREP-024-READONLY-PAGE-DISCOVERY-PACK` | Safe Read-only-Packs bereiten spaetere UI-Evidence vor, ohne wirksame BC-Aktionen auszufuehren. |
 | 5 | `PREP-025-NEXT-10-CASES-REPLANNING` | Nach Dataset, Backlog und Atlas-Qualitaet soll die naechste Sequenz wieder geprueft und verdichtet werden. |
-| 6 | `PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING` | Quellen werden auf Company, Setup, Posting, Entries und UAT gemappt, damit Buchclaims nicht aus Vermutung entstehen. |
-| 7 | `TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE` | Geparkt bis zu bestaetigten SUPER-/Company-Create-Rechten: Seite `Mandanten`, Pfeil neben `Neu`, `Neues Unternehmen erstellen`, sichtbare Anlage oder exakter Berechtigungsfehler. |
-| 8 | `TARGET-COMPANY-INFO-001` | Erst nach erstellter Company: Company Information, Legal Name, Adresse und Kontext fuer alle Buchscreenshots beweisen. |
-| 9 | `TARGET-FOUNDATION-001` | Erst nach Company-Kontext: Assisted/Manual Setup, Basis-Setup und Vorher/Nachher-Evidence. |
-| 10 | `TARGET-NOSERIES-001` / `TARGET-POSTINGGROUPS-001` / `TARGET-VAT-001` | Erst nach Foundation: Nummernserien, Kontenfindung, USt und Dimensionen pruefen, bevor Belege, Preview oder Posting erlaubt werden. |
+| 6 | `PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING` | Quellen werden fokussiert auf W0/W1 gemappt: Company, My Settings, Company Information, Assisted Setup, Number Series, Posting Groups, VAT und Dimensions. |
+| 7 | `PREP-031-COMPANIES-PAGE-READONLY-PLAYWRIGHT` | Read-only Companies Page: `Neu`, Pfeil neben `Neu`, `Neues Unternehmen erstellen`, `Kopieren`, `Testunternehmen`, Tooltips und Stopplisten sichtbar machen. |
+| 8 | `PREP-032-CH04-ERP-BASICS-UNIVERSAARL-REWRITE` | Kapitel 4 kann jetzt als Universaarl-Konzepttext umgestellt werden, ohne zu behaupten, dass `UNIVERSAARL-DE` schon existiert. |
+| 9 | `TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE` | Geparkt bis zu bestaetigten SUPER-/Company-Create-Rechten: Seite `Mandanten`, Pfeil neben `Neu`, `Neues Unternehmen erstellen`, sichtbare Anlage oder exakter Berechtigungsfehler. |
+| 10 | `TARGET-COMPANY-INFO-001` / `TARGET-FOUNDATION-001` | Erst nach erstellter Company: Company Information, Foundation, Nummernserien, Kontenfindung, USt und Dimensionen pruefen, bevor Belege, Preview oder Posting erlaubt werden. |
 
 ## Permission-aware Gate-Reihenfolge
 

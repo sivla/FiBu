@@ -92,3 +92,28 @@ Nicht erlaubt ist:
 - `die Company enthaelt nur Setupdaten`,
 - `die Datenbasis ist deutsch final`,
 - `die spaetere Buchungsstrecke ist bereits bewiesen`.
+
+## PREP-026 W0/W1 Claim-Regel
+
+Fuer die ersten Universaarl-Wellen werden Saetze in zwei Ebenen getrennt:
+
+1. Produkt-/Setup-Satz mit Microsoft-Learn-Quelle.
+2. Universaarl-Satz mit eigener `playthru`-Evidence.
+
+Beispiele:
+
+| Satz | Claim-Klasse | Erlaubt jetzt? | Warum |
+| --- | --- | --- | --- |
+| Eine Company enthaelt Geschaeftsdaten einer Einheit. | Produktclaim | ja | Microsoft Learn `Create new companies` |
+| Fuer neue Companies kann SUPER noetig sein. | Produkt-/Permission-Claim | ja | Microsoft Learn `Create new companies` |
+| `UNIVERSAARL-DE` steht in der Mandantenliste. | Evidence-Claim | nein | erst nach read-only oder Create-Evidence |
+| `Production - Setup Data Only` ist eine setupnahe Option ohne Sampledaten. | Produktclaim | ja | Microsoft Learn `Create new companies` |
+| Universaarl wurde mit `Production - Setup Data Only` angelegt. | Evidence-Claim | nein | erst nach sichtbarer Auswahl und Erfolg |
+| Nummernserien helfen Datensaetze, Konten, Belege und Journalzeilen eindeutig zu identifizieren. | Produkt-/Setupclaim | ja | Microsoft Learn `Create number series` |
+| Die Universaarl-Verkaufsrechnung bekommt Nummer `...`. | Evidence-Claim | nein | erst nach konkretem Beleg |
+| Posting Groups steuern Kontenfindung. | Produkt-/Setupclaim | ja | Microsoft Learn `Posting group setup` |
+| Ein Universaarl-Beleg bucht auf Konto `...`. | Setup-/Posting-Wirkung | nein | erst nach Preview/Posting/Entries |
+| VAT Setup kombiniert VAT Business und Product Posting Groups. | Produkt-/Setupclaim | ja | Microsoft Learn `Set up VAT` |
+| Deutsche 19 Prozent USt ist eingerichtet. | Rechts-/Steuer- plus Evidence-Claim | nein | amtliche Quelle plus Universaarl-Setup/Preview/VAT Entries |
+| Dimensionen kategorisieren Entries und unterstuetzen Analyse. | Produkt-/Setupclaim | ja | Microsoft Learn `Work with dimensions` |
+| Universaarl-Posten enthalten `PRODUCTLINE`. | Evidence-Claim | nein | erst nach Beleg-/Entry-Trace |

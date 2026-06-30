@@ -73,6 +73,20 @@ Fuer das Buch bedeutet das:
 - `Blank`, `No Data`, `Setup Data Only`, `Production Setup Data` oder Sample-/Demo-Daten duerfen nicht vermischt werden. Die gewaehlte Datenbasis muss im spaeteren TARGET-Case sichtbar belegt werden.
 - Implementation-Guide-Quellen helfen bei Testplan und UAT, ersetzen aber keine Companies-Page-Evidence.
 
+
+## PREP-026 W0/W1 Quellenentscheidung
+
+Die erste Universaarl-Welle wird nicht aus alten RM-/CRONUS-Laborbelegen abgeleitet. Fuer W0/W1 gilt:
+
+- Microsoft Learn `Create new companies` stuetzt Company, Environment, SUPER-Permission, Template-Optionen und Copy Company als Produktstandard. Eigene Evidence bleibt Pflicht fuer `UNIVERSAARL-DE`, die sichtbare Mandantenliste und die gewaehlte Datenbasis.
+- Microsoft Learn `Overview of tasks to set up Business Central` stuetzt Company Information, Assisted Setup, Manual Setup und die Setup-Kategorien. Eigene Evidence bleibt Pflicht fuer konkrete Universaarl-Felder und Setup-Vorher/Nachher.
+- Microsoft Learn `Create number series` stuetzt Nummernserien als Identifikations- und Audit-/Nachvollziehbarkeitsmechanismus. Eigene Evidence bleibt Pflicht fuer konkrete Universaarl-Serien und Belegnummern.
+- Microsoft Learn `Posting group setup` stuetzt Kontenfindung ueber General/Special Posting Groups und General Posting Setup. Eigene Preview-/Posting-/Entry-Evidence bleibt Pflicht fuer konkrete Kontenwirkung.
+- Microsoft Learn `Set up VAT` stuetzt VAT Business/Product Posting Groups und VAT Posting Setup. Deutsche 19-Prozent-USt bleibt zusaetzlich amtlich und durch Universaarl-VAT-Entries zu belegen.
+- Microsoft Learn `Work with dimensions` stuetzt Dimensionen, Dimension Sets, Global/Shortcut Dimensions und Default Dimensions. Eigene Evidence bleibt Pflicht fuer Universaarl-Dimensionswerte und Dimension Set Entries.
+
+Der naechste praktische Source-Nachfolger ist `PREP-031-COMPANIES-PAGE-READONLY-PLAYWRIGHT`, weil die Produktquellen nun klar trennen, was die spaetere Mandantenlisten-Evidence beweisen muss.
+
 ## URLs
 
 - https://learn.microsoft.com/en-us/dynamics365/business-central/about-new-company
