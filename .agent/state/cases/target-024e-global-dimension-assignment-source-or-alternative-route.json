@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-024E-GLOBAL-DIMENSION-ASSIGNMENT-SOURCE-OR-ALTERNATIVE-ROUTE",
+  "title": "Universaarl Global Dimension source or alternative assignment route",
+  "status": "planned",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "workType": "foundation-global-dimension-source-alternative-route",
+  "taskClass": "judge_work",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/target-024b-global-dimension-assignment/TARGET-024B-result.json",
+    "playwright/projects/fibu-book5/evidence/target-024c-global-dimension-field-discovery/TARGET-024C-result.json",
+    "playwright/projects/fibu-book5/evidence/target-024d-global-dimension-controlled-assignment-route/TARGET-024D-result.json"
+  ],
+  "purpose": "Avoid repeating failed Change Global Dimensions UI routes. Use source check, Page Inspection, tooltip/action inventory or an alternative BC route to decide whether global dimensions can be assigned now or must be parked before master data.",
+  "allowedActions": [
+    "review-target-024b-024c-024d-results",
+    "microsoft-learn-source-check-for-global-dimensions",
+    "page-inspection-readonly-on-page-118-and-page-577",
+    "tooltip-and-action-inventory-readonly",
+    "write-route-or-park-decision"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "leave-playthru",
+    "operate-in-legacy-lab-as-active-target",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "api-shortcut",
+    "repeat-target-024b-left-column-route",
+    "repeat-target-024d-fortlaufend-starten-route-without-new-hypothesis",
+    "claim-reporting-readiness-without-posted-dimension-entries"
+  ],
+  "defaultLockedActionsUnlockedForThisCase": [],
+  "entryCriteria": [
+    "TARGET-023B proves PRODUCTLINE/COSTCENTER dimension values exist.",
+    "TARGET-024C maps Page 577 row/control geometry.",
+    "TARGET-024D clicked Starten but Page 118 remains blank after reopen."
+  ],
+  "exitCriteria": [
+    "A non-repeating source-backed assignment route is identified, or global dimensions are consciously parked before master data.",
+    "No master data, document draft, preview posting, posting, company switch or API shortcut executed.",
+    "Result contains Next-Step Decision Card and screenshot/source QA if UI is opened."
+  ],
+  "lookahead": [
+    {
+      "caseId": "TARGET-024E-GLOBAL-DIMENSION-ASSIGNMENT-SOURCE-OR-ALTERNATIVE-ROUTE",
+      "status": "needs-source-check-first",
+      "reason": "The controlled route did not produce persisted Page-118 proof."
+    },
+    {
+      "caseId": "TARGET-025-CUSTOMER-VENDOR-ITEM-TEMPLATES-PREFLIGHT",
+      "status": "needs-setup-first",
+      "reason": "Templates need posting groups, VAT and dimension/default-dimension decisions."
+    },
+    {
+      "caseId": "TARGET-026-VAT-SETUP-FIT-DECISION",
+      "status": "needs-source-check-first",
+      "reason": "German VAT setup still needs source-backed setup before document preview."
+    },
+    {
+      "caseId": "TARGET-028-DEFAULT-DIMENSIONS-STRATEGY",
+      "status": "needs-setup-first",
+      "reason": "Default Dimensions depend on global dimensions and concrete master data."
+    },
+    {
+      "caseId": "TARGET-024F-GLOBAL-DIMENSION-REPORTING-BOUNDARY",
+      "status": "blocked",
+      "reason": "Reporting effect can only be checked after posted entries with dimensions exist."
+    }
+  ],
+  "nextStep": "Run source/Page-Inspection/alternative route decision before any master data or repeated setup write attempt.",
+  "createdAt": "2026-06-30T17:34:19.935Z",
+  "updatedAt": "2026-06-30T17:34:19.935Z"
+}

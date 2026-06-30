@@ -1484,22 +1484,44 @@
     },
     {
       "id": "TARGET-024D-GLOBAL-DIMENSION-CONTROLLED-ASSIGNMENT-ROUTE",
-      "status": "pending",
+      "status": "blocked",
       "priority": "high",
       "area": "universaarl-foundation-dimensions",
       "goal": "Use the TARGET-024C field/control map to attempt a controlled Global Dimension Code 1/2 assignment only through the mapped left editable combobox controls, then prove or block by reopening Page 118.",
       "sourceCase": "TARGET-024C-GLOBAL-DIMENSION-FIELD-DISCOVERY",
       "createdAt": "2026-06-30T17:15:28.840Z",
-      "lookaheadStatus": "ready-next",
+      "lookaheadStatus": "blocked",
       "mayRunPlaywright": true,
       "mayWorkEffectively": true,
       "effectiveBcActionsAllowed": true,
       "sourceCompany": "UNIVERSAARL-DE",
       "targetWorld": "Universaarl",
+      "noFinalGermanClaimWithoutUniversaarlEvidence": false,
+      "completedAt": "2026-06-30T17:34:19.935Z",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-024d-global-dimension-controlled-assignment-route/TARGET-024D-result.json",
+      "result": "TARGET-024D attempted the controlled route but did not prove persisted Global Dimension Code 1/2 assignment.",
+      "blockedBy": [
+        "Page 118 after reopen does not show PRODUCTLINE as Global Dimension Code 1 and COSTCENTER as Global Dimension Code 2."
+      ]
+    },
+    {
+      "id": "TARGET-024E-GLOBAL-DIMENSION-ASSIGNMENT-SOURCE-OR-ALTERNATIVE-ROUTE",
+      "status": "pending",
+      "priority": "high",
+      "area": "universaarl-foundation-dimensions",
+      "goal": "Avoid repeating failed Change Global Dimensions UI routes. Use source check, Page Inspection, tooltip/action inventory or an alternative BC route to decide whether global dimensions can be assigned now or must be parked before master data.",
+      "sourceCase": "TARGET-024D-GLOBAL-DIMENSION-CONTROLLED-ASSIGNMENT-ROUTE",
+      "createdAt": "2026-06-30T17:34:19.935Z",
+      "lookaheadStatus": "needs-source-check-first",
+      "mayRunPlaywright": true,
+      "mayWorkEffectively": false,
+      "effectiveBcActionsAllowed": false,
+      "sourceCompany": "UNIVERSAARL-DE",
+      "targetWorld": "Universaarl",
       "noFinalGermanClaimWithoutUniversaarlEvidence": false
     }
   ],
-  "lastUpdated": "2026-06-30T17:15:28.840Z",
+  "lastUpdated": "2026-06-30T17:34:19.935Z",
   "nextStepDecisionGate": {
     "active": true,
     "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",
@@ -1522,21 +1544,16 @@
       "replace-with-better-case"
     ],
     "latestDecisionCard": {
-      "currentCase": "TARGET-024C-GLOBAL-DIMENSION-FIELD-DISCOVERY",
+      "currentCase": "TARGET-024D-GLOBAL-DIMENSION-CONTROLLED-ASSIGNMENT-ROUTE",
       "plannedNextCaseBeforeReview": "TARGET-024-CORE-MASTERDATA-PLAN",
-      "lastEvidenceSummary": "TARGET-023B recovered all starter Dimension Values. TARGET-024B proved Page 118 and the action page, but left-column entry plus sequential run did not persist Global Dimension Code 1/2.",
+      "lastEvidenceSummary": "TARGET-023B recovered all starter Dimension Values; TARGET-024B did not prove global dimension persistence; TARGET-024C mapped the safe left-combobox route and run actions.",
       "isPlannedNextCaseStillSensible": false,
-      "reason": "Master data should not start while global dimension assignment is unresolved; the next step must either run a consciously selected assignment route or make a source-backed park decision.",
+      "reason": "Master data should still not start as if global dimensions are ready; a new source or UI route is needed.",
       "lookaheadReviewed": [
         {
-          "caseId": "TARGET-024D-GLOBAL-DIMENSION-CONTROLLED-ASSIGNMENT-ROUTE",
-          "status": "ready-next",
-          "reason": "The control map is now clear enough for a separate controlled route, if source/gate agrees."
-        },
-        {
-          "caseId": "TARGET-024-CORE-MASTERDATA-PLAN",
-          "status": "ready-after-current",
-          "reason": "Master data planning follows only after global dimensions are proven or consciously parked."
+          "caseId": "TARGET-024E-GLOBAL-DIMENSION-ASSIGNMENT-SOURCE-OR-ALTERNATIVE-ROUTE",
+          "status": "needs-source-check-first",
+          "reason": "The controlled route did not produce persisted Page-118 proof."
         },
         {
           "caseId": "TARGET-025-CUSTOMER-VENDOR-ITEM-TEMPLATES-PREFLIGHT",
@@ -1551,28 +1568,32 @@
         {
           "caseId": "TARGET-028-DEFAULT-DIMENSIONS-STRATEGY",
           "status": "needs-setup-first",
-          "reason": "Default Dimensions need global dimensions or a documented park decision plus concrete master data."
+          "reason": "Default Dimensions depend on global dimensions and concrete master data."
+        },
+        {
+          "caseId": "TARGET-024F-GLOBAL-DIMENSION-REPORTING-BOUNDARY",
+          "status": "blocked",
+          "reason": "Reporting effect can only be checked after posted entries with dimensions exist."
         }
       ],
       "queueChangesMade": [
-        "Selected TARGET-024D-GLOBAL-DIMENSION-CONTROLLED-ASSIGNMENT-ROUTE after TARGET-024C discovery."
+        "Selected TARGET-024E-GLOBAL-DIMENSION-ASSIGNMENT-SOURCE-OR-ALTERNATIVE-ROUTE after TARGET-024D."
       ],
-      "selectedNextCase": "TARGET-024D-GLOBAL-DIMENSION-CONTROLLED-ASSIGNMENT-ROUTE",
-      "whySelectedNextCaseIsBest": "TARGET-024C replaced guessing with a control map. The next useful case is either the controlled route or a source-backed decision, not a repeat of TARGET-024B.",
+      "selectedNextCase": "TARGET-024E-GLOBAL-DIMENSION-ASSIGNMENT-SOURCE-OR-ALTERNATIVE-ROUTE",
+      "whySelectedNextCaseIsBest": "Repeating the same action-page route would be waste; the next case must use a new source-backed route or park decision.",
       "risksBeforeNextCase": [
-        "Do not click Fortlaufend or Parallel unless the active case explicitly unlocks it.",
-        "Do not claim Global Dimension Code 1/2 readiness from visible action-page controls alone.",
-        "Do not start default dimensions or master data as if global dimensions are assigned."
+        "Do not claim reporting readiness before posted entries with dimensions exist.",
+        "Do not claim Default Dimensions from Global Dimension Code 1/2.",
+        "Do not create master data before posting groups, VAT and default-dimension expectations are consciously gated."
       ],
       "requiredPreparation": [
-        "Use TARGET-024C row-column semantics and TARGET-024B blocker evidence.",
-        "If executing assignment, capture before/after/reopen proof and stop before master data."
+        "Research/inspect an alternative Global Dimension route or write a conscious park decision before master data."
       ]
     }
   },
   "updatedAt": "2026-06-30T17:00:21.376Z",
-  "lastCompletedCase": "TARGET-024C-GLOBAL-DIMENSION-FIELD-DISCOVERY",
-  "nextCase": "TARGET-024D-GLOBAL-DIMENSION-CONTROLLED-ASSIGNMENT-ROUTE",
+  "lastCompletedCase": "TARGET-024D-GLOBAL-DIMENSION-CONTROLLED-ASSIGNMENT-ROUTE",
+  "nextCase": "TARGET-024E-GLOBAL-DIMENSION-ASSIGNMENT-SOURCE-OR-ALTERNATIVE-ROUTE",
   "nextStepDecisionCard": {
     "currentCase": "TARGET-024B-GLOBAL-DIMENSION-ASSIGNMENT",
     "plannedNextCaseBeforeReview": "TARGET-024-CORE-MASTERDATA-PLAN",

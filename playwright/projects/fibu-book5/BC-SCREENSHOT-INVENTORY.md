@@ -291,6 +291,18 @@ Screenshot-QA zu TARGET-024B: Der wichtigste Befund ist negativ. Die Bilder duer
 
 Screenshot-QA zu TARGET-024C: Diese Bilder sind Bedien- und Debugging-Evidence. Sie erklaeren, warum ein sichtbares Feld noch kein gespeicherter Setup-Wert ist. Fuer das Buch eignen sie sich als Erklaerbild zur Action-Page, aber nicht als Beweis, dass `PRODUCTLINE` und `COSTCENTER` globale Dimensionen sind.
 
+## Universaarl Foundation - Globale Dimensionen TARGET-024D
+
+| Screenshot | Page | Company | Schritt | Was sieht man? | Beweist intern | Beweist nicht | Status |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `target-024d-010-page118-before.png` | Finanzbuchhaltung Einrichtung, Page 118 | `playthru` / `UNIVERSAARL-DE` | Vorher-Reopen | `Globaler Dimensionscode 1/2` sind leer sichtbar | Page-118-Ausgangspunkt vor dem kontrollierten Versuch | globale Dimensionen, Standarddimensionen, Postenwirkung | `universaarl-setup-before`, `negative-baseline` |
+| `target-024d-020-action-page-before-entry.png` | Globale Dimensionen aendern, Page 577 | `playthru` / `UNIVERSAARL-DE` | Action-Page vor Eingabe | Linke Eingabespalte, rechte gesperrte Spalte, `Fortlaufend`/`Parallel` | Die 024C-Geometrie ist wieder sichtbar | Persistenz oder Ausfuehrung | `universaarl-control-map`, `before-write` |
+| `target-024d-030-action-page-after-entry-before-run.png` | Globale Dimensionen aendern, Page 577 | `playthru` / `UNIVERSAARL-DE` | Vor `Starten` | `PRODUCTLINE` und `COSTCENTER` stehen links in den Eingabefeldern | Werte wurden sichtbar in die geplanten Controls eingetragen | gespeicherte Page-118-Werte | `universaarl-controlled-setup-attempt`, `not-reopen-proof` |
+| `target-024d-040-after-run-return-or-message.png` | Finanzbuchhaltung Einrichtung, Page 118 | `playthru` / `UNIVERSAARL-DE` | Nach `Fortlaufend` -> `Starten` | BC kehrt zur Einrichtung zurueck; die globalen Dimensionsfelder bleiben leer | `Starten` wurde ausgefuehrt, aber kein positiver Persistenzbeweis ist sichtbar | Global Dimension Code 1/2 assignment | `blocked`, `negative-reopen-signal` |
+| `target-024d-090-page118-after-reopen.png` | Finanzbuchhaltung Einrichtung, Page 118 | `playthru` / `UNIVERSAARL-DE` | Reopen nach Versuch | Beide globalen Dimensionsfelder sind weiterhin leer | Der kontrollierte 024D-Pfad ist kein Erfolgsbeweis | Standarddimensionen, Posten, Reportingwirkung | `blocked`, `do-not-use-as-success` |
+
+Screenshot-QA zu TARGET-024D: Wichtig ist der Bedienfehler-Fund aus der ersten Testfassung: `Fortlaufend` oeffnet nur den Reiter, `Starten` ist der eigentliche Ausfuehrungsbutton. Der korrigierte Lauf klickt `Starten`, liefert aber weiterhin keinen positiven Reopen-Beweis auf Page 118. Diese Bilder sind deshalb gute Debugging- und Buch-Erklaerbilder fuer den Unterschied zwischen sichtbarer Eingabe, Ausfuehrungsbutton und gespeichertem Setup-Wert.
+
 ## Qualitaetsfelder fuer neue Screenshot-Metadaten
 
 Neue oder ueberarbeitete `.screenshot.json`-Dateien sollen diese Felder tragen:

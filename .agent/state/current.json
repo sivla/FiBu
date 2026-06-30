@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-30T17:15:28.840Z",
+  "updatedAt": "2026-06-30T17:34:19.935Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-w1-foundation-global-dimension-controlled-assignment-route",
-  "activeCase": "TARGET-024D-GLOBAL-DIMENSION-CONTROLLED-ASSIGNMENT-ROUTE",
-  "active_case_file": ".agent/state/cases/target-024d-global-dimension-controlled-assignment-route.json",
+  "activeArea": "universaarl-w1-foundation-global-dimension-source-or-alternative-route",
+  "activeCase": "TARGET-024E-GLOBAL-DIMENSION-ASSIGNMENT-SOURCE-OR-ALTERNATIVE-ROUTE",
+  "active_case_file": ".agent/state/cases/target-024e-global-dimension-assignment-source-or-alternative-route.json",
   "lastReferenceCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
   "lastReferenceCaseFile": ".agent/state/cases/warehouse-031-warehouse-source-route-park-or-setup-fit-decision.json",
   "mode": "universaarl-target-execution",
@@ -41,7 +41,7 @@
     "api-shortcut",
     "claim-reporting-readiness-without-posted-dimension-entries"
   ],
-  "nextStep": "Run a controlled Global Dimension assignment route only if the 024C row/column semantics and gate allow it; stop before master data.",
+  "nextStep": "Do not repeat the same Change Global Dimensions route; run TARGET-024E source/Page-Inspection/alternative route or consciously park global dimensions before master data.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -224,7 +224,7 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "universaarl-w1-foundation-global-dimension-field-discovery",
+  "currentCoverageFocus": "universaarl-w1-foundation-global-dimension-assignment-blocker",
   "nextProcessRoute": [
     "P2P-012 compared Purchase Journal, Item Journal, Purchase Invoices and Requisition Worksheet by direct page URL without search or field entry.",
     "Item Journal is the most stable observed route for material quantity/location/value effect, but it is Inventory evidence rather than full creditor P2P.",
@@ -5622,9 +5622,7 @@
     "nextCase": "TARGET-023-DIMENSION-VALUE-CONTROLLED-SETUP-FIT",
     "updatedAt": "2026-06-30T15:35:15.526Z"
   },
-  "defaultLockedActionsUnlockedForThisCase": [
-    "setup-change"
-  ],
+  "defaultLockedActionsUnlockedForThisCase": [],
   "latestTarget023DimensionValueSetupFit": {
     "caseId": "TARGET-023-DIMENSION-VALUE-CONTROLLED-SETUP-FIT",
     "status": "partial-blocked",
@@ -5859,7 +5857,60 @@
       "The right-side textbox and validation control are disabled/read-only; visible controls alone are not persistence proof.",
       "Fortlaufend and Parallel are run actions and were intentionally not clicked by TARGET-024C."
     ],
-    "nextCase": "TARGET-024D-GLOBAL-DIMENSION-CONTROLLED-ASSIGNMENT-ROUTE",
+    "nextCase": "TARGET-024E-GLOBAL-DIMENSION-ASSIGNMENT-SOURCE-OR-ALTERNATIVE-ROUTE",
     "updatedAt": "2026-06-30T17:15:28.840Z"
+  },
+  "latestTarget024DGlobalDimensionControlledAssignment": {
+    "caseId": "TARGET-024D-GLOBAL-DIMENSION-CONTROLLED-ASSIGNMENT-ROUTE",
+    "status": "blocked",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-024d-global-dimension-controlled-assignment-route/TARGET-024D-result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "setupWriteAttempted": true,
+    "setupChanged": false,
+    "runActionClicked": true,
+    "proved": [
+      "General Ledger Setup / Finanzbuchhaltung Einrichtung page 118 was opened only in playthru / UNIVERSAARL-DE.",
+      "The controlled route used the TARGET-024C left editable combobox geometry before attempting Fortlaufend.",
+      "No master data, document draft, preview posting, posting, company switch or API shortcut was executed."
+    ],
+    "notProved": [
+      "PRODUCTLINE/COSTCENTER are not proven as persisted Global Dimension Code 1/2 after reopen.",
+      "Default Dimensions on customers, vendors, items or accounts are not proven.",
+      "Dimension Set Entries, posted entries and reporting filters are not proven.",
+      "German VAT or posting-group correctness is not proven by this case."
+    ],
+    "blockedBy": [
+      "Page 118 after reopen does not show PRODUCTLINE as Global Dimension Code 1 and COSTCENTER as Global Dimension Code 2."
+    ],
+    "flags": {
+      "noPost": true,
+      "noPreview": true,
+      "noDraft": true,
+      "noMasterDataChange": true,
+      "noCompanySwitch": true,
+      "noApiShortcut": true,
+      "noSearch": true,
+      "noBookMasterChange": true,
+      "setupWriteAttempted": true,
+      "setupChanged": false,
+      "runActionClicked": true
+    },
+    "evidenceRefs": [
+      "playwright/projects/fibu-book5/evidence/target-024d-global-dimension-controlled-assignment-route/TARGET-024D-result.json",
+      "playwright/projects/fibu-book5/img/target-024d-010-page118-before.png",
+      "playwright/projects/fibu-book5/img/target-024d-020-action-page-before-entry.png",
+      "playwright/projects/fibu-book5/img/target-024d-030-action-page-after-entry-before-run.png",
+      "playwright/projects/fibu-book5/img/target-024d-040-after-run-return-or-message.png",
+      "playwright/projects/fibu-book5/img/target-024d-090-page118-after-reopen.png"
+    ],
+    "keyLearning": [
+      "Fortlaufend is a tab/processing mode; Starten is the actual execution action on the Change Global Dimensions page.",
+      "The corrected route entered PRODUCTLINE/COSTCENTER into the left editable comboboxes and clicked Starten.",
+      "Page 118 still showed empty Global Dimension Code 1/2 fields after reopen, so the assignment is not proven.",
+      "Do not repeat TARGET-024B/TARGET-024D routes blindly; next step needs source/Page Inspection/alternative route or a conscious park decision."
+    ],
+    "nextCase": "TARGET-024E-GLOBAL-DIMENSION-ASSIGNMENT-SOURCE-OR-ALTERNATIVE-ROUTE",
+    "updatedAt": "2026-06-30T17:34:19.935Z"
   }
 }

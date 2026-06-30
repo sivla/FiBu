@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "caseId": "TARGET-024D-GLOBAL-DIMENSION-CONTROLLED-ASSIGNMENT-ROUTE",
   "title": "Universaarl controlled Global Dimension assignment route",
-  "status": "planned",
+  "status": "blocked",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "workType": "foundation-global-dimension-controlled-assignment-route",
@@ -78,5 +78,91 @@
   ],
   "nextStep": "Run a controlled Global Dimension assignment route only if the 024C row/column semantics and gate allow it; stop before master data.",
   "createdAt": "2026-06-30T17:15:28.840Z",
-  "updatedAt": "2026-06-30T17:15:28.840Z"
+  "updatedAt": "2026-06-30T17:34:19.935Z",
+  "completedAt": "2026-06-30T17:34:19.935Z",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-024d-global-dimension-controlled-assignment-route/TARGET-024D-result.json",
+  "result": "TARGET-024D attempted the controlled route but did not prove persisted Global Dimension Code 1/2 assignment.",
+  "blockedBy": [
+    "Page 118 after reopen does not show PRODUCTLINE as Global Dimension Code 1 and COSTCENTER as Global Dimension Code 2."
+  ],
+  "proved": [
+    "General Ledger Setup / Finanzbuchhaltung Einrichtung page 118 was opened only in playthru / UNIVERSAARL-DE.",
+    "The controlled route used the TARGET-024C left editable combobox geometry before attempting Fortlaufend.",
+    "No master data, document draft, preview posting, posting, company switch or API shortcut was executed."
+  ],
+  "notProved": [
+    "PRODUCTLINE/COSTCENTER are not proven as persisted Global Dimension Code 1/2 after reopen.",
+    "Default Dimensions on customers, vendors, items or accounts are not proven.",
+    "Dimension Set Entries, posted entries and reporting filters are not proven.",
+    "German VAT or posting-group correctness is not proven by this case."
+  ],
+  "flags": {
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noMasterDataChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noSearch": true,
+    "noBookMasterChange": true,
+    "setupWriteAttempted": true,
+    "setupChanged": false,
+    "runActionClicked": true
+  },
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-024d-global-dimension-controlled-assignment-route/TARGET-024D-result.json",
+    "playwright/projects/fibu-book5/img/target-024d-010-page118-before.png",
+    "playwright/projects/fibu-book5/img/target-024d-020-action-page-before-entry.png",
+    "playwright/projects/fibu-book5/img/target-024d-030-action-page-after-entry-before-run.png",
+    "playwright/projects/fibu-book5/img/target-024d-040-after-run-return-or-message.png",
+    "playwright/projects/fibu-book5/img/target-024d-090-page118-after-reopen.png"
+  ],
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-024D-GLOBAL-DIMENSION-CONTROLLED-ASSIGNMENT-ROUTE",
+    "plannedNextCaseBeforeReview": "TARGET-024-CORE-MASTERDATA-PLAN",
+    "lastEvidenceSummary": "TARGET-023B recovered all starter Dimension Values; TARGET-024B did not prove global dimension persistence; TARGET-024C mapped the safe left-combobox route and run actions.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "Master data should still not start as if global dimensions are ready; a new source or UI route is needed.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-024E-GLOBAL-DIMENSION-ASSIGNMENT-SOURCE-OR-ALTERNATIVE-ROUTE",
+        "status": "needs-source-check-first",
+        "reason": "The controlled route did not produce persisted Page-118 proof."
+      },
+      {
+        "caseId": "TARGET-025-CUSTOMER-VENDOR-ITEM-TEMPLATES-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Templates need posting groups, VAT and dimension/default-dimension decisions."
+      },
+      {
+        "caseId": "TARGET-026-VAT-SETUP-FIT-DECISION",
+        "status": "needs-source-check-first",
+        "reason": "German VAT setup still needs source-backed setup before document preview."
+      },
+      {
+        "caseId": "TARGET-028-DEFAULT-DIMENSIONS-STRATEGY",
+        "status": "needs-setup-first",
+        "reason": "Default Dimensions depend on global dimensions and concrete master data."
+      },
+      {
+        "caseId": "TARGET-024F-GLOBAL-DIMENSION-REPORTING-BOUNDARY",
+        "status": "blocked",
+        "reason": "Reporting effect can only be checked after posted entries with dimensions exist."
+      }
+    ],
+    "queueChangesMade": [
+      "Selected TARGET-024E-GLOBAL-DIMENSION-ASSIGNMENT-SOURCE-OR-ALTERNATIVE-ROUTE after TARGET-024D."
+    ],
+    "selectedNextCase": "TARGET-024E-GLOBAL-DIMENSION-ASSIGNMENT-SOURCE-OR-ALTERNATIVE-ROUTE",
+    "whySelectedNextCaseIsBest": "Repeating the same action-page route would be waste; the next case must use a new source-backed route or park decision.",
+    "risksBeforeNextCase": [
+      "Do not claim reporting readiness before posted entries with dimensions exist.",
+      "Do not claim Default Dimensions from Global Dimension Code 1/2.",
+      "Do not create master data before posting groups, VAT and default-dimension expectations are consciously gated."
+    ],
+    "requiredPreparation": [
+      "Research/inspect an alternative Global Dimension route or write a conscious park decision before master data."
+    ]
+  },
+  "nextCase": "TARGET-024E-GLOBAL-DIMENSION-ASSIGNMENT-SOURCE-OR-ALTERNATIVE-ROUTE"
 }
