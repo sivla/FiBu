@@ -39,7 +39,7 @@ Interne Begriffe wie Case, Evidence, Result JSON, Repo, Agent oder Proof gehoere
 | Kapitel 3 `Die Universaarl GmbH als durchgehende Fallstudie` | Der Einstieg spricht bereits ueber Universaarl, Environment, Company und die Abgrenzung zu CRONUS. | `universaarl-draft-anchor` | Nach Rechtefreigabe mit echter Company-Creation-Evidence und sichtbarer Mandantenliste ersetzen/ergaenzen. |
 | Kapitel 4 ERP-Grundlagen | Enthalt noch Rhein-Main-Beispiele als aktive ERP-Welt. | `active-must-replace-now` | In einem kleinen Buchpatch auf Universaarl-Beispiele umstellen, ohne Prozessclaims zu erfinden. |
 | Kapitel 5 Lernpfad/Orientierung | Nutzt noch CRONUS/RM-DEMO als ersten Trainingspfad. | `replace-with-universaarl-evidence` | Nach Company Creation: Playthru/Universaarl-Orientierung als Startpfad schreiben; alte CRONUS-Strecke als Legacy-Labor entfernen oder archivieren. |
-| Kapitel 6 Greenfield/Company/Foundation | Groesster Bruch: CRONUS nach RM-DEMO kopieren, Rhein-Main-Masterplan und RM-* Companies stehen noch als aktiver Ablauf. | `p0-book-rewrite-needed` | Nach `TARGET-009`: neues Universaarl-Company-Creation-Kapitel schreiben. Bis dahin keine weiteren final klingenden Foundation-Claims. |
+| Kapitel 6 Greenfield/Company/Foundation | Groesster Bruch: CRONUS nach RM-DEMO kopieren, Rhein-Main-Masterplan und RM-* Companies stehen noch als aktiver Ablauf. PREP-035 liefert jetzt einen Universaarl-Foundation-Draft als Ersatzrichtung, aber noch keinen Live-Nachweis. | `p0-book-rewrite-prepared` | Nach `TARGET-009`: altes CRONUS/RM-DEMO-Material durch den Universaarl-Draft plus echte Company-Creation- und W1-Foundation-Evidence ersetzen. |
 | Kapitel 7/8 Setup/Posting Groups/VAT | Struktur ist wertvoll, aber Beispiele und Zielwelt sind gemischt. | `needs-universaarl-rebuild` | Erst nach W1-Foundation mit Number Series, Posting Groups, VAT und Dimensionen ersetzen. |
 | Kapitel 9/10/11/12 O2C/P2P/Dimensionen | Viele RM-DEMO-/Rhein-Main-Prozessbeispiele sind laborbelegt, aber nicht Universaarl-final. | `legacy-labor-scaffold` | Als Lernstruktur behalten, spaeter Prozess fuer Prozess durch Universaarl-O2C/P2P ersetzen. |
 | Kapitel 13 Inventory/Warehouse | Enthalt gute Laborgrenzen, aber RM-M100/RAW-STEEL/FRA-ZL sind alte Welt. | `legacy-labor-scaffold` | Erst nach Universaarl-Artikel, Lagerort und erstem Inventory-Prozess ersetzen. |
@@ -71,6 +71,11 @@ Interne Begriffe wie Case, Evidence, Result JSON, Repo, Agent oder Proof gehoere
 5. `TARGET-FOUNDATION-001` bis `TARGET-DIMENSIONS-001`
    - Ziel: Foundation, Number Series, Posting Groups, VAT und Dimensionen als echte Universaarl-Basis aufbauen.
    - Danach koennen O2C/P2P/Inventory-Kapitel ersetzt werden.
+
+6. `PREP-035-CH06-FOUNDATION-UNIVERSAARL-DRAFT`
+   - Status: erledigt als sicherer Zwischenfortschritt, solange Company Creation durch Rechte blockiert ist.
+   - Ergebnis: `playwright/projects/fibu-book5/book-drafts/universaarl-foundation-ch06-draft.md`.
+   - Grenze: kein Live-Setup, keine Company Creation, kein deutscher Finalnachweis.
 
 ## Umgang mit Bookdrafts
 

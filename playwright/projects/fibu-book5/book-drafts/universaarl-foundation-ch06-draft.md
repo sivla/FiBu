@@ -1,0 +1,214 @@
+# Universaarl Foundation - Kapitel 6 Draft
+
+Status: `bookdraft-prep`
+
+Instanz: `playthru`
+
+Zielcompany: `UNIVERSAARL-DE` (`planned-not-yet-created`)
+
+Keine Business-Central-Ausfuehrung in diesem Lauf. Keine Company wurde angelegt, kein Setup gespeichert, keine Vorschau und keine Buchung ausgefuehrt.
+
+## Foundation: die Grundlage vor dem ersten Beleg
+
+Bevor in Business Central ein Verkaufsauftrag, eine Einkaufsrechnung oder eine Zahlung gebucht wird, braucht die Company eine fachliche Grundlage. Diese Grundlage besteht nicht aus einem einzigen Schalter. Sie setzt sich aus Firmendaten, Kontenplan, Perioden, Nummernserien, Buchungsgruppen, USt-Setup, Dimensionen und wenigen Kontrollregeln zusammen.
+
+Fuer die Universaarl GmbH entsteht diese Grundlage in der Company `UNIVERSAARL-DE`. Die Company wird nicht aus einer fertigen CRONUS-Demofirma als Zielwelt uebernommen. Demodaten sind zum Lernen einzelner Funktionen hilfreich, aber sie enthalten fremde Kunden, Artikel, Konten, Buchungsgruppen und Beispielbelege. Fuer eine durchgehende Buchfallstudie ist es sauberer, die Zielcompany kontrolliert aufzubauen.
+
+Die Reihenfolge ist wichtig:
+
+1. Company anlegen.
+2. Company Information pflegen.
+3. Kontenplan und Buchungsperioden pruefen.
+4. Nummernserien einrichten.
+5. Buchungsgruppen und Buchungsmatrix pruefen.
+6. USt-Setup einrichten und abgrenzen.
+7. Dimensionen und Dimensionswerte anlegen.
+8. Erst danach Stammdaten und Belege anlegen.
+
+Diese Reihenfolge verhindert typische Anfaengerfehler. Ein Debitor ohne Debitorenbuchungsgruppe kann spaeter nicht sauber Forderungen erzeugen. Ein Artikel ohne passende Produktbuchungsgruppe kann im Verkauf oder Einkauf eine falsche Kontenfindung ausloesen. Eine Nummernserie ohne klare Logik macht Belege schwer nachvollziehbar. Eine Dimension, die erst nach der Buchung eingefuehrt wird, fehlt auf alten Posten.
+
+## Company Information
+
+Die Seite `Unternehmensdaten` enthaelt den rechtlichen und organisatorischen Kontext der Company. Hier stehen Name, Adresse, Land/Region, Kommunikationsdaten und spaeter steuerliche Angaben. Diese Felder sind keine Buchung, aber sie beeinflussen Belege, Berichte und Ausgaben.
+
+Fuer Universaarl werden diese Daten erst gepflegt, nachdem `UNIVERSAARL-DE` sichtbar existiert. Vorher wird kein Beleg erstellt und kein Setup abgeschlossen.
+
+Wichtige Felder:
+
+| Feld | Warum es wichtig ist |
+| --- | --- |
+| Name | Erscheint in Belegen, Ausgaben und Berichten. |
+| Adresse / PLZ / Ort | Bildet den Unternehmenssitz fuer Belege und Berichte ab. |
+| Land/Region Code | Beeinflusst landesspezifische Logik und Steuerkontext. |
+| VAT Registration No. / USt-IdNr. | Wird erst gesetzt, wenn die steuerliche Zielbasis klar ist. |
+| Bankdaten | Werden erst im Bank- und Zahlungsblock gepflegt. |
+
+Screenshot-Ziel:
+
+- Company Information vor der Pflege.
+- Company Information nach der Pflege mit sichtbarem Speichern-Status.
+- Keine Zwischenbilder mit `Wird gespeichert ...` als fertiger Beleg.
+
+## Kontenplan und Buchungsperioden
+
+Der Kontenplan ist die Struktur des Hauptbuchs. Er enthaelt Sachkonten fuer Forderungen, Verbindlichkeiten, Umsatz, Aufwand, Bank, Anlagen, Lager und Steuern. Ein Konto ist nicht dasselbe wie ein Debitor oder Kreditor. Debitoren und Kreditoren sind Nebenbuchstammdaten; die Buchungsgruppen verbinden sie spaeter mit Sachkonten.
+
+Buchungsperioden legen fest, welche Zeitraeume im System fachlich bebuchbar sind. Fuer die ersten Uebungen muss klar sein, welches Arbeitsdatum verwendet wird und ob dieses Datum in einer offenen Periode liegt.
+
+Vor dem ersten Posting muss mindestens klar sein:
+
+- welches Arbeitsdatum genutzt wird,
+- ob die Periode offen ist,
+- welche Sachkonten fuer die wichtigsten Prozesse bereitstehen,
+- ob direkte Buchung auf ein Konto erlaubt ist oder nur ueber Nebenbuchprozesse erfolgen soll.
+
+## Nummernserien
+
+Nummernserien erzeugen nachvollziehbare Nummern fuer Stammdaten, Belege und Journale. Eine Verkaufsrechnung, eine Einkaufsrechnung, ein Artikel oder eine Anlagenkarte sollte nicht zufaellig benannt werden. Die Nummer hilft spaeter beim Suchen, Abstimmen und Erklaeren.
+
+Typische Nummernserien fuer die Universaarl-Grundlage:
+
+| Bereich | Beispielhafte Logik | Warum |
+| --- | --- | --- |
+| Debitoren | `CUST-...` oder fachlich deutsche Codes | Kunden eindeutig wiederfinden. |
+| Kreditoren | `VEND-...` | Lieferanten und OP-Ausgleich nachvollziehen. |
+| Artikel | `ITEM-...` | Lager, Verkauf, Einkauf und Fertigung verbinden. |
+| Verkaufsbelege | eigene Serien fuer Auftrag/Rechnung/Gutschrift | Belegfamilien getrennt halten. |
+| Einkaufsbelege | eigene Serien fuer Bestellung/Rechnung/Gutschrift | P2P-Spur nachvollziehbar machen. |
+| Journale | Dokumentnummern je Buchungsfamilie | G/L Entries spaeter erklaeren. |
+
+Auf der Seite `Nummernserien` sind besonders wichtig:
+
+- Code,
+- Startnummer,
+- Endnummer,
+- letzte verwendete Nummer,
+- manuelle Nummern erlaubt ja/nein,
+- Beziehungen zwischen Nummernserien.
+
+Bevor ein Prozesskapitel Belege erzeugt, muss die passende Nummernserie sichtbar und erklaerbar sein.
+
+## Buchungsgruppen und Buchungsmatrix
+
+Buchungsgruppen beantworten die Frage: Auf welche Sachkonten bucht Business Central, wenn ein Beleg gebucht wird?
+
+Business Central verwendet dafuer mehrere Ebenen:
+
+- allgemeine Geschaeftsbuchungsgruppen fuer Debitoren und Kreditoren,
+- allgemeine Produktbuchungsgruppen fuer Artikel, Ressourcen und Sachkontozeilen,
+- Debitoren- und Kreditorenbuchungsgruppen fuer Forderungen und Verbindlichkeiten,
+- Lagerbuchungsgruppen fuer Lagerwert,
+- Bankkontobuchungsgruppen fuer Bankbuchungen,
+- Anlagenbuchungsgruppen fuer Anlagevermoegen,
+- USt-Geschaefts- und USt-Produktbuchungsgruppen fuer Umsatzsteuer/Vorsteuer.
+
+Die allgemeine Buchungsmatrix verbindet Geschaefts- und Produktseite. Erst diese Kombination bestimmt viele Ertrags-, Aufwands- und Wareneinsatzkonten.
+
+Ein typischer Fehler ist, nur den Debitor oder Artikel anzulegen und dann direkt zu buchen. Der Beleg kann dann in der Vorschau oder beim Buchen scheitern, weil eine Kombination in der Buchungsmatrix fehlt.
+
+Vor dem ersten Verkaufs- oder Einkaufsbeleg muss deshalb sichtbar sein:
+
+- welche Geschaeftsbuchungsgruppe der Kunde oder Lieferant hat,
+- welche Produktbuchungsgruppe der Artikel hat,
+- welche Matrixzeile beide Gruppen verbindet,
+- welche Sachkonten dort eingetragen sind.
+
+## USt-Setup
+
+USt wird in Business Central nicht durch einen freien Prozentwert auf der Belegzeile geloest. Die Steuerlogik entsteht aus USt-Geschaeftsbuchungsgruppe, USt-Produktbuchungsgruppe und der USt-Buchungsmatrix.
+
+Fuer deutsche 19 Prozent darf das Buch erst dann einen belastbaren Zielnachweis formulieren, wenn alle folgenden Punkte in `UNIVERSAARL-DE` sichtbar sind:
+
+- USt-Geschaeftsbuchungsgruppe,
+- USt-Produktbuchungsgruppe,
+- USt-Buchungsmatrix mit Prozent, Berechnungsart und Konten,
+- Belegvorschau,
+- USt-Posten,
+- Sachposten.
+
+Vorher bleibt die Aussage allgemein: Business Central kann USt ueber Posting Groups und VAT Posting Setup berechnen und buchen. Ob die Universaarl-Company korrekt fuer deutsche 19 Prozent eingerichtet ist, entscheidet erst der spaetere Setup- und Posting-Nachweis.
+
+## Dimensionen
+
+Dimensionen sind Auswertungsachsen. Sie ersetzen keine Sachkonten. Ein Sachkonto sagt, welche Art von Wert gebucht wurde. Eine Dimension sagt, aus welcher fachlichen Perspektive der Wert ausgewertet werden soll.
+
+Fuer Universaarl sind als erste Dimensionen sinnvoll:
+
+| Dimension | Zweck |
+| --- | --- |
+| `PRODUCTLINE` | Produktlinie oder Leistungsart auswerten. |
+| `CHANNEL` | Vertriebskanal oder Prozesskanal trennen. |
+| `COSTCENTER` | Kostenstellen und Verantwortungsbereiche abbilden. |
+
+Dimensionen koennen auf Stammdaten, Belegen, Journalzeilen und Posten wirken. Fuer das Buch ist wichtig, nicht nur die Dimension anzulegen, sondern spaeter zu zeigen, wo sie im gebuchten Posten sichtbar wird.
+
+## Journale: Check, Preview und Post
+
+Journale sind Arbeitsblaetter fuer Buchungen. Je nach Journalart entstehen andere Posten. Ein allgemeines Journal kann Sachposten erzeugen. Ein Zahlungsjournal kann Bank-, Debitoren- oder Kreditorenposten betreffen. Ein Artikeljournal beeinflusst Artikel- und Wertposten. Ein Anlagenjournal betrifft Anlagenposten und Sachposten.
+
+Drei Aktionen muessen getrennt verstanden werden:
+
+| Aktion | Wirkung |
+| --- | --- |
+| Check / Pruefen | Sucht Fehler, ohne zu buchen. |
+| Preview Posting / Buchungsvorschau | Zeigt erwartete Posten, ohne zu buchen. |
+| Post / Buchen | Erzeugt echte Posten und veraendert den Datenbestand. |
+
+Ein Anfaenger sollte nie aus Gewohnheit auf `Buchen` klicken. Der sichere Weg ist: Pflichtfelder pruefen, Fehler lesen, Vorschau ansehen, erwartete Posten verstehen, erst dann bewusst buchen.
+
+## Einstiegskontrolle vor dem ersten Prozess
+
+Vor dem ersten O2C-, P2P-, Inventory-, Payment- oder Fixed-Assets-Prozess braucht die Universaarl-Company eine klare Einstiegskontrolle:
+
+| Kontrollpunkt | Erwartung |
+| --- | --- |
+| Company | `UNIVERSAARL-DE` ist sichtbar und aktiv. |
+| Company Information | Universaarl GmbH ist gepflegt. |
+| Nummernserien | relevante Serien fuer Stammdaten und Belege sind sichtbar. |
+| Kontenplan | benoetigte Sachkonten sind vorhanden und erklaerbar. |
+| Buchungsgruppen | Debitor/Kreditor/Artikel/Bank/Anlage koennen auf Konten finden. |
+| USt-Setup | steuerliche Kombinationen sind sichtbar; 19 Prozent erst nach Nachweis. |
+| Dimensionen | erste Auswertungsachsen sind angelegt. |
+| Screenshot-QA | Bild zeigt nicht nur einen Code, sondern den fachlich wichtigen Bereich. |
+
+Erst wenn diese Kontrolle bestanden ist, erzeugt ein Prozessbeleg sinnvolle Posten. Vorher entsteht oft nur ein technischer Fehler, der fuer den Leser schwer einzuordnen ist.
+
+## Zielbilder fuer die spaeteren Screenshots
+
+Die Foundation-Screenshots sollen nicht nur zeigen, dass eine Seite offen war. Sie muessen zeigen, was der Leser erkennen soll.
+
+| Screenshot | Wichtiger sichtbarer Bereich |
+| --- | --- |
+| Mandantenliste | `UNIVERSAARL-DE`, `Neu`, Pfeil neben `Neu`, `Neues Unternehmen erstellen` im Dropdown. |
+| Company Information | Name, Adresse, Land/Region, Speicherstatus. |
+| Nummernserien | Code, Startnummer, letzte Nummer, manuelle Nummern. |
+| Buchungsmatrix | Geschaeftsgruppe, Produktgruppe, Sachkonten. |
+| USt-Buchungsmatrix | USt-Gruppen, Prozent, Berechnungsart, Konten. |
+| Dimensionen | Dimension Code und Werte. |
+| Journalvorschau | erwartete Postenarten vor dem Buchen. |
+
+Wenn ein Screenshot nur eine schmale Code-Spalte zeigt und die fachlich entscheidenden Felder fehlen, ist er fuer das Buch nicht ausreichend. Dann muss die Karte vergroessert, ein FastTab aufgeklappt, ein FactBox-Bereich geoeffnet oder ein neuer Screenshot mit besserem Ausschnitt erstellt werden.
+
+## UAT-Verknuepfung
+
+Die Foundation-Strecke bereitet diese UAT-Faelle vor:
+
+- `UAT-W1-001`: Company Information.
+- `UAT-W1-002`: Nummernserien.
+- `UAT-W1-003`: Buchungsgruppen.
+- `UAT-W1-004`: USt/VAT.
+- `UAT-W1-005`: Dimensionen.
+
+Diese UAT-Faelle werden erst ausfuehrbar, wenn `UNIVERSAARL-DE` existiert und der jeweilige Setup-Schritt in Business Central sichtbar bearbeitet werden kann.
+
+## Naechste praktische Reihenfolge
+
+1. Rechte klaeren.
+2. Mandantenliste oeffnen.
+3. Pfeil neben `Neu` oeffnen.
+4. `Neues Unternehmen erstellen` waehlen.
+5. Datenbasis bewusst auswaehlen.
+6. `UNIVERSAARL-DE` sichtbar anlegen.
+7. Company Information pflegen.
+8. Foundation-Setup mit Nummernserien, Buchungsgruppen, USt und Dimensionen beginnen.
+

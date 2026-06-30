@@ -1,0 +1,119 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "PREP-035-CH06-FOUNDATION-UNIVERSAARL-DRAFT",
+  "source": "local-analysis",
+  "resultStatus": "observed",
+  "instance": "playthru",
+  "targetCompany": "UNIVERSAARL-DE",
+  "sourceCompany": "UNIVERSAARL-DE-planned-not-yet-created",
+  "proved": [
+    "A beginner-facing Universaarl Foundation draft now exists for chapter 6 preparation.",
+    "The draft explains the dependency chain: Company Information, Chart of Accounts, Accounting Periods, Number Series, Posting Groups, VAT Setup, Dimensions and Journals before first posting.",
+    "The draft records screenshot QA expectations so future screenshots must show the field/action area a beginner needs, not only a narrow code."
+  ],
+  "notProved": [
+    "UNIVERSAARL-DE was not created.",
+    "No Company Information, setup, number series, posting group, VAT setup or dimension was saved.",
+    "No Business Central UI was opened.",
+    "No Playwright test was started.",
+    "No preview, posting, draft, master data or ledger trace was performed."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/book-drafts/universaarl-foundation-ch06-draft.md",
+    "playwright/projects/fibu-book5/BC-FULL-PLAYTHROUGH-CATALOG.md",
+    "playwright/projects/fibu-book5/BOOK-CHAPTER-STIMMIGKEIT-AUDIT.md",
+    "playwright/projects/fibu-book5/evidence/prep-035-ch06-foundation-universaarl-draft/README.md",
+    "playwright/projects/fibu-book5/evidence/prep-035-ch06-foundation-universaarl-draft/PREP-035-result.json",
+    ".agent/state/cases/prep-035-ch06-foundation-universaarl-draft.json",
+    ".agent/state/current.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/coverage_state.json"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/book-drafts/universaarl-foundation-ch06-draft.md",
+    "playwright/projects/fibu-book5/evidence/prep-035-ch06-foundation-universaarl-draft/README.md",
+    "playwright/projects/fibu-book5/evidence/prep-035-ch06-foundation-universaarl-draft/PREP-035-result.json"
+  ],
+  "warnings": [
+    "The bookdraft is not a German final proof.",
+    "TARGET-009 remains blocked until SUPER/company-create permissions are confirmed.",
+    "The old RM-DEMO/CRONUS chapter 6 material remains historical scaffolding until it is replaced by Universaarl proof."
+  ],
+  "blockedBy": [
+    "missing-super-or-company-create-permission"
+  ],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "PREP-035-CH06-FOUNDATION-UNIVERSAARL-DRAFT",
+      "active_case_file": ".agent/state/cases/prep-035-ch06-foundation-universaarl-draft.json",
+      "nextCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+      "nextStep": "After explicit SUPER/company-create permission confirmation, resume TARGET-009 using the Companies Page splitbutton route: Pfeil neben Neu -> Neues Unternehmen erstellen."
+    }
+  },
+  "flags": {
+    "noBcRun": true,
+    "noPlaywrightRun": true,
+    "noWrite": true,
+    "noCompanySwitch": true,
+    "noCompanyCreated": true,
+    "noSetupChange": true,
+    "noPreview": true,
+    "noPost": true,
+    "noDraft": true,
+    "noApiShortcut": true,
+    "noBookClaimWithoutEvidence": true
+  },
+  "nextStepDecisionCard": {
+    "currentCase": "PREP-035-CH06-FOUNDATION-UNIVERSAARL-DRAFT",
+    "plannedNextCaseBeforeReview": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+    "lastEvidenceSummary": "PREP-030 closed the PREP quality chain and parked TARGET-009 until SUPER/company-create permissions exist.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "TARGET-009 is still the right next live step, but it is blocked by permissions. A chapter-6 Foundation draft is the safest useful progress before rights are available.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+        "status": "blocked",
+        "reason": "Requires SUPER/company-create rights; use the dropdown arrow next to Neu and Neues Unternehmen erstellen, not the main Neu button."
+      },
+      {
+        "caseId": "TARGET-COMPANY-INFO-001",
+        "status": "needs-setup-first",
+        "reason": "Requires UNIVERSAARL-DE to exist before Company Information can be maintained."
+      },
+      {
+        "caseId": "TARGET-005-NUMBER-SERIES-PREFLIGHT",
+        "status": "ready-after-current",
+        "reason": "Number Series is the next Foundation control after company and company information context."
+      },
+      {
+        "caseId": "TARGET-006-POSTING-GROUPS-PREFLIGHT",
+        "status": "ready-after-current",
+        "reason": "Posting Groups are required before any Preview/Post process can be meaningful."
+      },
+      {
+        "caseId": "TARGET-008-VAT19-SETUP-READINESS",
+        "status": "needs-source-check-first",
+        "reason": "German VAT needs both Business Central setup evidence and later official/source-backed legal framing."
+      }
+    ],
+    "queueChangesMade": [
+      "No live queue entry was unblocked.",
+      "PREP-035 was added as a safe interim bookdraft progress case."
+    ],
+    "selectedNextCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+    "whySelectedNextCaseIsBest": "Company Creation is still the first effective step needed before Company Information, Foundation setup, master data and process postings.",
+    "risksBeforeNextCase": [
+      "Insufficient permissions.",
+      "Clicking main Neu instead of the dropdown arrow next to Neu.",
+      "Choosing Copy Company, CRONUS or Testunternehmen as final target basis."
+    ],
+    "requiredPreparation": [
+      "User confirms sufficient SUPER/company-create permissions.",
+      "Use READY-FOR-SUPER-PERMISSIONS-CHECKLIST.md and PREP-031 screenshot QA before selecting any menu item."
+    ]
+  }
+}
+

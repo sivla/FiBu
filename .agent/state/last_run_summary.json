@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "runId": "PREP-030-BOOK-USECASE-QUALITY-SCORECARD",
-  "caseId": "PREP-030-BOOK-USECASE-QUALITY-SCORECARD",
+  "runId": "PREP-035-CH06-FOUNDATION-UNIVERSAARL-DRAFT",
+  "caseId": "PREP-035-CH06-FOUNDATION-UNIVERSAARL-DRAFT",
   "status": "observed",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE-planned-not-yet-created",
@@ -12,50 +12,50 @@
   "setupChange": false,
   "companyCreated": false,
   "bookChanged": false,
-  "bookDraftChanged": false,
-  "summary": "PREP-030 created a beginner-book/usecase quality scorecard and closed the PREP queue until SUPER/company-create permissions are available.",
+  "bookDraftChanged": true,
+  "summary": "PREP-035 created a beginner-facing Universaarl Foundation chapter 6 draft while Company Creation remains permission-blocked.",
   "changedFiles": [
-    "playwright/projects/fibu-book5/UNIVERSAARL-BOOK-USECASE-QUALITY-SCORECARD.md",
+    "playwright/projects/fibu-book5/book-drafts/universaarl-foundation-ch06-draft.md",
     "playwright/projects/fibu-book5/BC-FULL-PLAYTHROUGH-CATALOG.md",
-    "playwright/projects/fibu-book5/evidence/prep-030-book-usecase-quality-scorecard/README.md",
-    "playwright/projects/fibu-book5/evidence/prep-030-book-usecase-quality-scorecard/PREP-030-result.json",
-    ".agent/state/cases/prep-030-book-usecase-quality-scorecard.json",
+    "playwright/projects/fibu-book5/BOOK-CHAPTER-STIMMIGKEIT-AUDIT.md",
+    "playwright/projects/fibu-book5/evidence/prep-035-ch06-foundation-universaarl-draft/README.md",
+    "playwright/projects/fibu-book5/evidence/prep-035-ch06-foundation-universaarl-draft/PREP-035-result.json",
+    ".agent/state/cases/prep-035-ch06-foundation-universaarl-draft.json",
     ".agent/state/current.json",
-    ".agent/state/marathon_queue.json",
     ".agent/state/last_run_summary.json",
     ".agent/state/coverage_state.json"
   ],
   "evidence": [
-    "playwright/projects/fibu-book5/evidence/prep-030-book-usecase-quality-scorecard/PREP-030-result.json",
-    "playwright/projects/fibu-book5/evidence/prep-030-book-usecase-quality-scorecard/README.md",
-    "playwright/projects/fibu-book5/UNIVERSAARL-BOOK-USECASE-QUALITY-SCORECARD.md"
+    "playwright/projects/fibu-book5/evidence/prep-035-ch06-foundation-universaarl-draft/PREP-035-result.json",
+    "playwright/projects/fibu-book5/evidence/prep-035-ch06-foundation-universaarl-draft/README.md",
+    "playwright/projects/fibu-book5/book-drafts/universaarl-foundation-ch06-draft.md"
   ],
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/prep-030-book-usecase-quality-scorecard/PREP-030-result.json"
+    "playwright/projects/fibu-book5/evidence/prep-035-ch06-foundation-universaarl-draft/PREP-035-result.json"
   ],
   "proved": [
-    "Book/usecase chapters now have a scorecard for beginner usefulness and evidence level.",
-    "The PREP queue is complete except for the parked company creation execution gate.",
-    "TARGET-009 remains the next practical step after SUPER/company-create permission confirmation."
+    "A beginner-facing Universaarl Foundation draft now exists for chapter 6 preparation.",
+    "The draft separates Company Information, Number Series, Posting Groups, VAT Setup, Dimensions and Journals before first posting.",
+    "The draft records screenshot QA expectations for meaningful field/action visibility."
   ],
   "notProved": [
-    "No bookmaster chapter was rewritten in this case.",
+    "UNIVERSAARL-DE was not created.",
     "No Business Central UI was opened.",
     "No setup, preview, posting or UAT execution was performed."
   ],
-  "nextStep": "Wait for explicit SUPER/company-create permission confirmation, then resume TARGET-009 using the Companies Page splitbutton route: Pfeil neben Neu -> Neues Unternehmen erstellen.",
+  "nextStep": "After explicit SUPER/company-create permission confirmation, resume TARGET-009 using the Companies Page splitbutton route: Pfeil neben Neu -> Neues Unternehmen erstellen.",
   "nextCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
   "nextStepDecisionCard": {
-    "currentCase": "PREP-030-BOOK-USECASE-QUALITY-SCORECARD",
-    "plannedNextCaseBeforeReview": "PREP-030-BOOK-USECASE-QUALITY-SCORECARD",
-    "lastEvidenceSummary": "PREP-029 created a bounded object-analysis roadmap for UAT and book gaps.",
+    "currentCase": "PREP-035-CH06-FOUNDATION-UNIVERSAARL-DRAFT",
+    "plannedNextCaseBeforeReview": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+    "lastEvidenceSummary": "PREP-030 created a quality scorecard and parked TARGET-009 until permissions are available.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The scorecard closes the PREP chain by turning UAT, object-analysis and screenshot rules into a concrete book/usecase quality gate.",
+    "reason": "TARGET-009 is still the correct live next step, but a Foundation draft is useful safe progress while it is permission-blocked.",
     "lookaheadReviewed": [
       {
         "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
         "status": "blocked",
-        "reason": "This is the next practical case, but it remains blocked until SUPER/company-create permissions are confirmed."
+        "reason": "Requires SUPER/company-create permissions; use the dropdown arrow next to Neu and Neues Unternehmen erstellen."
       },
       {
         "caseId": "TARGET-COMPANY-INFO-001",
@@ -63,25 +63,34 @@
         "reason": "Company Information requires UNIVERSAARL-DE to exist."
       },
       {
-        "caseId": "TARGET-FOUNDATION-001",
-        "status": "needs-setup-first",
-        "reason": "Foundation setup requires Company Creation and Company Information first."
+        "caseId": "TARGET-005-NUMBER-SERIES-PREFLIGHT",
+        "status": "ready-after-current",
+        "reason": "Number Series is the next Foundation control after company and company information context."
+      },
+      {
+        "caseId": "TARGET-006-POSTING-GROUPS-PREFLIGHT",
+        "status": "ready-after-current",
+        "reason": "Posting Groups are required before any Preview/Post process can be meaningful."
+      },
+      {
+        "caseId": "TARGET-008-VAT19-SETUP-READINESS",
+        "status": "needs-source-check-first",
+        "reason": "German VAT needs both BC setup evidence and later official/source-backed legal framing."
       }
     ],
     "queueChangesMade": [
-      "Mark PREP-030 done.",
-      "Set TARGET-009 as parked next practical case until rights are available."
+      "No live queue entry was unblocked.",
+      "PREP-035 was added as a safe interim bookdraft progress case."
     ],
     "selectedNextCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
-    "whySelectedNextCaseIsBest": "After PREP completion, the next real project value is creating or conclusively blocking UNIVERSAARL-DE through the correct UI route once permissions exist.",
+    "whySelectedNextCaseIsBest": "Company Creation is still required before Company Information, Foundation setup, master data and process postings.",
     "risksBeforeNextCase": [
       "Do not click main Neu when the intended target is the dropdown arrow and Neues Unternehmen erstellen.",
-      "Do not finish the wizard or save a company without explicit permission confirmation.",
       "Do not choose CRONUS copy or Testunternehmen as final target basis."
     ],
     "requiredPreparation": [
       "User confirms sufficient SUPER/company-create permissions.",
-      "Use PREP-031 splitbutton evidence and READY-FOR-SUPER-PERMISSIONS-CHECKLIST.md."
+      "Use READY-FOR-SUPER-PERMISSIONS-CHECKLIST.md and PREP-031 screenshot QA before selecting any menu item."
     ]
   },
   "noEffectiveBusinessCentralActions": true,
@@ -90,7 +99,7 @@
   "noPreviewPosting": true,
   "noPosting": true,
   "noCompanySwitch": true,
-  "updatedAt": "2026-06-30T14:25:00.000+02:00",
+  "updatedAt": "2026-06-30T15:05:00.000+02:00",
   "hardStops": [
     "missing-super-or-company-create-permission"
   ],
