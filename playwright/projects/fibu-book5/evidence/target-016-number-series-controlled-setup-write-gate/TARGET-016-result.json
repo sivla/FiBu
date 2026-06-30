@@ -1,0 +1,248 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "TARGET-016-NUMBER-SERIES-CONTROLLED-SETUP-WRITE-GATE",
+  "source": "playwright-controlled-number-series-setup-write",
+  "runPlanId": "TARGET-016-NUMBER-SERIES-CONTROLLED-SETUP-WRITE-GATE",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "resultStatus": "partial-observed",
+  "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=456&company=UNIVERSAARL-DE",
+  "proved": [
+    "Number Series before screenshot captured in playthru / UNIVERSAARL-DE immediately before the write gate.",
+    "U-* number-series header rows are visible after reload: U-CUST, U-VEND, U-ITEM, U-SO, U-SINV, U-PO, U-PINV.",
+    "Number Series Lines for U-CUST were opened through the scoped Zeilen action; the grid shows Startdatum before Startnr."
+  ],
+  "notProved": [
+    "No setup assignment was made in Sales & Receivables, Purchases & Payables or Inventory Setup.",
+    "No customer, vendor, item, document draft, preview posting, posting or ledger trace was created.",
+    "German legal invoice-number compliance is not proven by this setup alone.",
+    "Target U-* starting numbers are not visible after this run: U-CUST00001, U-VEND00001, U-ITEM00001, U-SO00001, U-SINV00001, U-PO00001, U-PINV00001.",
+    "Controlled line route blocked for U-CUST: Startnr. was not visibly persisted through the tested Lines grid routes."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/target-016-number-series-controlled-setup-write-gate/TARGET-016-result.json",
+    "playwright/projects/fibu-book5/evidence/target-016-number-series-controlled-setup-write-gate/README.md",
+    "playwright/projects/fibu-book5/evidence/target-016-number-series-controlled-setup-write-gate/*.txt",
+    "playwright/projects/fibu-book5/evidence/target-016-number-series-controlled-setup-write-gate/*.screenshot.json",
+    "playwright/projects/fibu-book5/img/target-016-*.png"
+  ],
+  "statePatch": {
+    "current": {
+      "activeCase": "TARGET-016B-NUMBER-SERIES-LINES-ROUTE-RECOVERY",
+      "activeArea": "universaarl-w1-foundation-number-series",
+      "nextStep": "Run TARGET-016B: recover a safer Number Series UI write route; do not repeat blind New+keyboard entry."
+    },
+    "lastRunSummary": {
+      "caseId": "TARGET-016-NUMBER-SERIES-CONTROLLED-SETUP-WRITE-GATE",
+      "status": "partial-observed",
+      "summary": "TARGET-016 created/verified the first Universaarl U-* number-series header rows in Number Series only, but Startnr. lines remain blocked. No setup assignment, master data, draft, preview or posting occurred.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-016-number-series-controlled-setup-write-gate/TARGET-016-result.json"
+    }
+  },
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-016-number-series-controlled-setup-write-gate/TARGET-016-result.json",
+    "playwright/projects/fibu-book5/img/target-016-010-number-series-before.png",
+    "playwright/projects/fibu-book5/img/target-016-020-edit-list-or-current-mode.png",
+    "playwright/projects/fibu-book5/img/target-016-090-number-series-after-reload.png"
+  ],
+  "targetSeries": [
+    {
+      "family": "customer",
+      "code": "U-CUST",
+      "description": "Universaarl Customer Nos.",
+      "startNo": "U-CUST00001",
+      "endNo": "U-CUST99999"
+    },
+    {
+      "family": "vendor",
+      "code": "U-VEND",
+      "description": "Universaarl Vendor Nos.",
+      "startNo": "U-VEND00001",
+      "endNo": "U-VEND99999"
+    },
+    {
+      "family": "item",
+      "code": "U-ITEM",
+      "description": "Universaarl Item Nos.",
+      "startNo": "U-ITEM00001",
+      "endNo": "U-ITEM99999"
+    },
+    {
+      "family": "sales-order",
+      "code": "U-SO",
+      "description": "Universaarl Sales Order Nos.",
+      "startNo": "U-SO00001",
+      "endNo": "U-SO99999"
+    },
+    {
+      "family": "sales-invoice",
+      "code": "U-SINV",
+      "description": "Universaarl Sales Invoice Nos.",
+      "startNo": "U-SINV00001",
+      "endNo": "U-SINV99999"
+    },
+    {
+      "family": "purchase-order",
+      "code": "U-PO",
+      "description": "Universaarl Purchase Order Nos.",
+      "startNo": "U-PO00001",
+      "endNo": "U-PO99999"
+    },
+    {
+      "family": "purchase-invoice",
+      "code": "U-PINV",
+      "description": "Universaarl Purchase Invoice Nos.",
+      "startNo": "U-PINV00001",
+      "endNo": "U-PINV99999"
+    }
+  ],
+  "attempts": [
+    {
+      "code": "U-CUST",
+      "status": "already-existing",
+      "reason": "Code was visible before the create attempt."
+    },
+    {
+      "code": "U-VEND",
+      "status": "already-existing",
+      "reason": "Code was visible before the create attempt."
+    },
+    {
+      "code": "U-ITEM",
+      "status": "already-existing",
+      "reason": "Code was visible before the create attempt."
+    },
+    {
+      "code": "U-SO",
+      "status": "already-existing",
+      "reason": "Code was visible before the create attempt."
+    },
+    {
+      "code": "U-SINV",
+      "status": "already-existing",
+      "reason": "Code was visible before the create attempt."
+    },
+    {
+      "code": "U-PO",
+      "status": "already-existing",
+      "reason": "Code was visible before the create attempt."
+    },
+    {
+      "code": "U-PINV",
+      "status": "already-existing",
+      "reason": "Code was visible before the create attempt."
+    }
+  ],
+  "lineAttempts": [
+    {
+      "code": "U-CUST",
+      "status": "blocked",
+      "reason": "Starting number was not visible after Number Series Lines entry."
+    }
+  ],
+  "visibleTargetCodes": [
+    "U-CUST",
+    "U-VEND",
+    "U-ITEM",
+    "U-SO",
+    "U-SINV",
+    "U-PO",
+    "U-PINV"
+  ],
+  "missingTargetCodes": [],
+  "visibleStartNos": [],
+  "missingStartNos": [
+    "U-CUST00001",
+    "U-VEND00001",
+    "U-ITEM00001",
+    "U-SO00001",
+    "U-SINV00001",
+    "U-PO00001",
+    "U-PINV00001"
+  ],
+  "flags": {
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noMasterDataChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noSearch": true,
+    "noBookChange": true,
+    "noSetupAssignment": true,
+    "setupChanged": true
+  },
+  "smartDecisionCard": {
+    "caseId": "TARGET-016-NUMBER-SERIES-CONTROLLED-SETUP-WRITE-GATE",
+    "effectiveActionRequested": true,
+    "decision": "Create only U-* rows on Number Series page 456, after duplicate check and before screenshot.",
+    "alternativesConsidered": [
+      "Assign number series in setup pages: rejected for TARGET-016; this needs a separate visible field discovery and assignment gate.",
+      "Create master data directly: rejected because numbering setup is not yet assigned.",
+      "Use API/config package: rejected; the case requires UI-first evidence."
+    ],
+    "risk": "Wrong number-series setup can affect later cards and documents; stop after Number Series rows and do not claim legal compliance.",
+    "fallback": "If the UI write route is blocked, use TARGET-016B route recovery instead of repeating blind cell edits."
+  },
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-016-NUMBER-SERIES-CONTROLLED-SETUP-WRITE-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-016-NUMBER-SERIES-CONTROLLED-SETUP-WRITE-GATE",
+    "lastEvidenceSummary": "TARGET-015 proved Number Series before-state with no U-* duplicates and visible related setup-page context.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "Number-series rows are a prerequisite for later setup assignment, master data and document numbering.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-017-NUMBER-SERIES-ASSIGNMENT-FIELD-DISCOVERY",
+        "status": "needs-setup-first",
+        "reason": "Do not discover assignment as complete until U-* row and start-line creation is recovered or consciously deferred."
+      },
+      {
+        "caseId": "TARGET-018-NUMBER-SERIES-ASSIGNMENT-WRITE-GATE",
+        "status": "ready-after-current",
+        "reason": "Assignment should follow only after field discovery and before/after screenshots."
+      },
+      {
+        "caseId": "TARGET-019-POSTING-GROUPS-PREFLIGHT",
+        "status": "ready-after-current",
+        "reason": "Posting group readiness follows the numbering foundation."
+      },
+      {
+        "caseId": "TARGET-020-VAT-SETUP-READINESS",
+        "status": "needs-source-check-first",
+        "reason": "German VAT claims require source-backed setup plus later Preview/VAT Entries."
+      },
+      {
+        "caseId": "TARGET-021-CORE-MASTERDATA-PLAN",
+        "status": "needs-setup-first",
+        "reason": "Master data waits for number-series assignment, posting groups, VAT and dimensions."
+      }
+    ],
+    "queueChangesMade": [
+      "Selected TARGET-016B-NUMBER-SERIES-LINES-ROUTE-RECOVERY based on TARGET-016 visible U-* verification."
+    ],
+    "selectedNextCase": "TARGET-016B-NUMBER-SERIES-LINES-ROUTE-RECOVERY",
+    "whySelectedNextCaseIsBest": "The next useful step is recovering the write route without repeating a failed New+keyboard route.",
+    "risksBeforeNextCase": [
+      "Do not assign setup fields without a separate gate.",
+      "Do not create master data until numbering assignment and posting setup are clear.",
+      "Do not claim German legal invoice numbering from this evidence alone."
+    ],
+    "requiredPreparation": [
+      "Inspect TARGET-016 blocked screenshot and action signals.",
+      "Choose a different Number Series write route before retrying."
+    ]
+  },
+  "warnings": [
+    "U-* number-series header rows are visible, but Startnr. values are still missing.",
+    "The Lines grid starts with Startdatum before Startnr.; blind Tab routes are rejected."
+  ],
+  "blockedBy": [
+    "U-CUST Startnr. line value was not visibly persisted through the tested Lines grid routes."
+  ],
+  "requiresReview": true,
+  "safeToFinalizeState": false,
+  "reason": "Controlled Number Series write gate partially succeeded: U-* header rows are visible, but start-number lines need route recovery before setup assignment or master data."
+}

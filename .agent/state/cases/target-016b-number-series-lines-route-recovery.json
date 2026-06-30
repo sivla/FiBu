@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-016B-NUMBER-SERIES-LINES-ROUTE-RECOVERY",
+  "title": "Universaarl Number Series Lines route recovery",
+  "instance": "playthru",
+  "targetCompany": "UNIVERSAARL-DE",
+  "legalName": "Universaarl GmbH",
+  "workType": "foundation-number-series-lines-route-recovery",
+  "status": "ready-next",
+  "dependsOn": [
+    "TARGET-016-NUMBER-SERIES-CONTROLLED-SETUP-WRITE-GATE"
+  ],
+  "goal": "Recover a safe UI-first route for Number Series Lines so U-* Startnr. and Endnr. values become visible without setup assignment, master data, preview or posting.",
+  "evidenceTarget": "playwright/projects/fibu-book5/evidence/target-016-number-series-controlled-setup-write-gate/",
+  "allowedActionsWhenRun": [
+    "open-playthru-business-central",
+    "open-UNIVERSAARL-DE-with-documentation",
+    "open-number-series-page",
+    "select-existing-U-number-series-row",
+    "open-Zeilen-from-selected-number-series",
+    "diagnose-grid-fields-and-focused-editor",
+    "set-start-and-end-number-only-if-visible-field-route-is-proven",
+    "capture-before-after-screenshots",
+    "write-result"
+  ],
+  "defaultLockedActions": [
+    "assign-number-series-in-sales-setup",
+    "assign-number-series-in-purchase-setup",
+    "assign-number-series-in-inventory-setup",
+    "master-data-create",
+    "preview-posting",
+    "posting",
+    "dialog-confirmation-outside-number-series-lines-save"
+  ],
+  "forbiddenActions": [
+    "leave-playthru",
+    "operate-in-CRONUS-as-active-target",
+    "post",
+    "preview-posting",
+    "api-shortcut",
+    "create-master-data-before-number-series-lines",
+    "claim-german-invoice-compliance-from-number-series-only",
+    "repeat-blind-tab-route-from-TARGET-016"
+  ],
+  "targetSeriesDraft": [
+    {
+      "family": "customer",
+      "code": "U-CUST",
+      "startNo": "U-CUST00001",
+      "endNo": "U-CUST99999"
+    },
+    {
+      "family": "vendor",
+      "code": "U-VEND",
+      "startNo": "U-VEND00001",
+      "endNo": "U-VEND99999"
+    },
+    {
+      "family": "item",
+      "code": "U-ITEM",
+      "startNo": "U-ITEM00001",
+      "endNo": "U-ITEM99999"
+    },
+    {
+      "family": "sales-order",
+      "code": "U-SO",
+      "startNo": "U-SO00001",
+      "endNo": "U-SO99999"
+    },
+    {
+      "family": "sales-invoice",
+      "code": "U-SINV",
+      "startNo": "U-SINV00001",
+      "endNo": "U-SINV99999"
+    },
+    {
+      "family": "purchase-order",
+      "code": "U-PO",
+      "startNo": "U-PO00001",
+      "endNo": "U-PO99999"
+    },
+    {
+      "family": "purchase-invoice",
+      "code": "U-PINV",
+      "startNo": "U-PINV00001",
+      "endNo": "U-PINV99999"
+    }
+  ],
+  "successCriteria": [
+    "Before screenshot shows U-* number-series header rows visible.",
+    "Line page screenshots show Startnr. and Endnr. values for each target series or exact blocked editor reason.",
+    "Result separates number-series line setup from later setup-field assignments.",
+    "No master data, draft, preview posting, posting or ledger trace occurs."
+  ],
+  "knownLearningFromTarget016": [
+    "The U-* Number Series header rows are already visible.",
+    "The Lines page first visible editable column is Startdatum; Startnr. follows after it.",
+    "The blind New + Tab and header-geometry routes did not visibly persist U-CUST00001.",
+    "Do not repeat the same blind Tab route."
+  ],
+  "migrationRelevance": "german-final-candidate",
+  "finalScreenshotNeeded": true,
+  "nextSafeAction": "Diagnose the actual focused editor/control on Number Series Lines before setting Startnr.; do not assign setup fields or create master data.",
+  "updatedAt": "2026-06-30T23:15:00.000+02:00"
+}

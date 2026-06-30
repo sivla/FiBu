@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "runId": "TARGET-015-20260630",
-  "caseId": "TARGET-015-NUMBER-SERIES-CONTROLLED-SETUP-PREFLIGHT",
-  "status": "observed",
-  "completedAt": "2026-06-30T10:48:19.352Z",
-  "summary": "TARGET-015 captured Number Series, Sales & Receivables Setup, Purchases & Payables Setup and Inventory Setup read-only before any number-series setup write. No U-* duplicate was visible; no setup, master data, draft, preview or posting occurred.",
+  "runId": "TARGET-016-20260630",
+  "caseId": "TARGET-016-NUMBER-SERIES-CONTROLLED-SETUP-WRITE-GATE",
+  "status": "partial-observed-blocked-lines",
+  "completedAt": "2026-06-30T23:15:00.000+02:00",
+  "summary": "TARGET-016 created/verified U-* number-series header rows in Number Series. Startnr./Endnr. values are still not visible; Number Series Lines route needs recovery. No setup assignment, master data, draft, preview or posting occurred.",
   "bcRun": true,
   "playwrightRun": true,
   "target014BcRun": false,
@@ -17,83 +17,78 @@
   "noApiShortcut": true,
   "noSearch": true,
   "changedFiles": [
-    "playwright/projects/fibu-book5/evidence/target-015-number-series-controlled-setup-preflight/TARGET-015-result.json",
-    "playwright/projects/fibu-book5/evidence/target-015-number-series-controlled-setup-preflight/number-series.txt",
-    "playwright/projects/fibu-book5/evidence/target-015-number-series-controlled-setup-preflight/sales-receivables-setup.txt",
-    "playwright/projects/fibu-book5/evidence/target-015-number-series-controlled-setup-preflight/purchases-payables-setup.txt",
-    "playwright/projects/fibu-book5/evidence/target-015-number-series-controlled-setup-preflight/inventory-setup.txt",
-    "playwright/projects/fibu-book5/evidence/target-015-number-series-controlled-setup-preflight/target-015-010-number-series.screenshot.json",
-    "playwright/projects/fibu-book5/evidence/target-015-number-series-controlled-setup-preflight/target-015-020-sales-receivables-setup.screenshot.json",
-    "playwright/projects/fibu-book5/evidence/target-015-number-series-controlled-setup-preflight/target-015-030-purchases-payables-setup.screenshot.json",
-    "playwright/projects/fibu-book5/evidence/target-015-number-series-controlled-setup-preflight/target-015-040-inventory-setup.screenshot.json",
-    "playwright/projects/fibu-book5/img/target-015-010-number-series.png",
-    "playwright/projects/fibu-book5/img/target-015-020-sales-receivables-setup.png",
-    "playwright/projects/fibu-book5/img/target-015-030-purchases-payables-setup.png",
-    "playwright/projects/fibu-book5/img/target-015-040-inventory-setup.png",
+    "playwright/projects/fibu-book5/evidence/target-016-number-series-controlled-setup-write-gate/TARGET-016-result.json",
+    "playwright/projects/fibu-book5/evidence/target-016-number-series-controlled-setup-write-gate/README.md",
+    "playwright/projects/fibu-book5/evidence/target-016-number-series-controlled-setup-write-gate/*.txt",
+    "playwright/projects/fibu-book5/evidence/target-016-number-series-controlled-setup-write-gate/*.screenshot.json",
+    "playwright/projects/fibu-book5/img/target-016-*.png",
     ".agent/state/current.json",
-    ".agent/state/cases/target-015-number-series-controlled-setup-preflight.json",
     ".agent/state/cases/target-016-number-series-controlled-setup-write-gate.json",
+    ".agent/state/cases/target-016b-number-series-lines-route-recovery.json",
     ".agent/state/marathon_queue.json",
-    ".agent/state/coverage_state.json"
+    ".agent/state/coverage_state.json",
+    ".agent/state/last_run_summary.json"
   ],
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/target-015-number-series-controlled-setup-preflight/TARGET-015-result.json",
-    "playwright/projects/fibu-book5/img/target-015-010-number-series.png",
-    "playwright/projects/fibu-book5/img/target-015-020-sales-receivables-setup.png",
-    "playwright/projects/fibu-book5/img/target-015-030-purchases-payables-setup.png",
-    "playwright/projects/fibu-book5/img/target-015-040-inventory-setup.png"
+    "playwright/projects/fibu-book5/evidence/target-016-number-series-controlled-setup-write-gate/TARGET-016-result.json",
+    "playwright/projects/fibu-book5/img/target-016-010-number-series-before.png",
+    "playwright/projects/fibu-book5/img/target-016-020-edit-list-or-current-mode.png",
+    "playwright/projects/fibu-book5/img/target-016-090-number-series-after-reload.png"
   ],
-  "nextStep": "Run TARGET-016 controlled setup-write gate for missing U-* number series only; no setup assignment, master data, preview or posting.",
-  "nextCase": "TARGET-016-NUMBER-SERIES-CONTROLLED-SETUP-WRITE-GATE",
-  "blockedBy": [],
+  "nextStep": "Run TARGET-016B Number Series Lines route recovery for visible Startnr./Endnr. values only.",
+  "nextCase": "TARGET-016B-NUMBER-SERIES-LINES-ROUTE-RECOVERY",
+  "blockedBy": [
+    "U-CUST Startnr. line value was not visibly persisted through the tested Lines grid routes."
+  ],
   "hardStops": [],
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-015-NUMBER-SERIES-CONTROLLED-SETUP-PREFLIGHT",
-    "plannedNextCaseBeforeReview": "TARGET-015-NUMBER-SERIES-CONTROLLED-SETUP-PREFLIGHT",
-    "lastEvidenceSummary": "TARGET-014 defined draft Universaarl numbering families but did not prove setup-page assignment fields.",
+    "currentCase": "TARGET-016-NUMBER-SERIES-CONTROLLED-SETUP-WRITE-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-016-NUMBER-SERIES-CONTROLLED-SETUP-WRITE-GATE",
+    "lastEvidenceSummary": "TARGET-015 proved Number Series before-state with no U-* duplicates and visible related setup-page context.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "Before-state screenshots and assignment-page context are needed before any Number Series write.",
+    "reason": "Number-series rows are a prerequisite for later setup assignment, master data and document numbering.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-016-NUMBER-SERIES-CONTROLLED-SETUP-WRITE-GATE",
-        "status": "ready-next",
-        "reason": "Before-state is captured and no target U-* duplicate is visible."
-      },
-      {
-        "caseId": "TARGET-017-POSTING-GROUPS-PREFLIGHT",
-        "status": "ready-after-current",
-        "reason": "Posting groups should follow after numbering setup is created or deliberately deferred."
-      },
-      {
-        "caseId": "TARGET-018-VAT-SETUP-READINESS",
-        "status": "needs-source-check-first",
-        "reason": "German VAT claims need source-backed setup and later preview/VAT Entries."
-      },
-      {
-        "caseId": "TARGET-019-DIMENSIONS-FOUNDATION",
-        "status": "ready-after-current",
-        "reason": "Dimensions can follow once core numbering and posting setup order is stable."
-      },
-      {
-        "caseId": "TARGET-020-CORE-MASTERDATA-PLAN",
+        "caseId": "TARGET-017-NUMBER-SERIES-ASSIGNMENT-FIELD-DISCOVERY",
         "status": "needs-setup-first",
-        "reason": "Master data waits for number series, posting groups, VAT and dimensions."
+        "reason": "Do not discover assignment as complete until U-* row and start-line creation is recovered or consciously deferred."
+      },
+      {
+        "caseId": "TARGET-018-NUMBER-SERIES-ASSIGNMENT-WRITE-GATE",
+        "status": "ready-after-current",
+        "reason": "Assignment should follow only after field discovery and before/after screenshots."
+      },
+      {
+        "caseId": "TARGET-019-POSTING-GROUPS-PREFLIGHT",
+        "status": "ready-after-current",
+        "reason": "Posting group readiness follows the numbering foundation."
+      },
+      {
+        "caseId": "TARGET-020-VAT-SETUP-READINESS",
+        "status": "needs-source-check-first",
+        "reason": "German VAT claims require source-backed setup plus later Preview/VAT Entries."
+      },
+      {
+        "caseId": "TARGET-021-CORE-MASTERDATA-PLAN",
+        "status": "needs-setup-first",
+        "reason": "Master data waits for number-series assignment, posting groups, VAT and dimensions."
       }
     ],
     "queueChangesMade": [
-      "Selected TARGET-016-NUMBER-SERIES-CONTROLLED-SETUP-WRITE-GATE based on TARGET-015 before-state visibility."
+      "Selected TARGET-016B-NUMBER-SERIES-LINES-ROUTE-RECOVERY based on TARGET-016 visible U-* verification."
     ],
-    "selectedNextCase": "TARGET-016-NUMBER-SERIES-CONTROLLED-SETUP-WRITE-GATE",
-    "whySelectedNextCaseIsBest": "It is now reasonable to prepare a narrowly scoped write gate for U-* number series, still without master data or postings.",
+    "selectedNextCase": "TARGET-016B-NUMBER-SERIES-LINES-ROUTE-RECOVERY",
+    "whySelectedNextCaseIsBest": "The next useful step is recovering the write route without repeating a failed New+keyboard route.",
     "risksBeforeNextCase": [
-      "Do not create duplicate U-* series.",
-      "Do not assign series to setup fields without before/after screenshots.",
-      "Do not claim legal German invoice-number compliance from this setup alone."
+      "Do not assign setup fields without a separate gate.",
+      "Do not create master data until numbering assignment and posting setup are clear.",
+      "Do not claim German legal invoice numbering from this evidence alone."
     ],
     "requiredPreparation": [
-      "Read TARGET-015 result and screenshot metadata.",
-      "If writing later, create only the explicitly approved U-* series and document before/after."
+      "Inspect TARGET-016 blocked screenshot and action signals.",
+      "Choose a different Number Series write route before retrying."
     ]
   },
-  "updatedAt": "2026-06-30T10:48:19.352Z"
+  "updatedAt": "2026-06-30T23:15:00.000+02:00",
+  "setupChanged": true
 }

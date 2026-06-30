@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-30T10:48:19.352Z",
+  "updatedAt": "2026-06-30T23:15:00.000+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "activeArea": "universaarl-w1-foundation-number-series",
-  "activeCase": "TARGET-016-NUMBER-SERIES-CONTROLLED-SETUP-WRITE-GATE",
-  "active_case_file": ".agent/state/cases/target-016-number-series-controlled-setup-write-gate.json",
+  "activeCase": "TARGET-016B-NUMBER-SERIES-LINES-ROUTE-RECOVERY",
+  "active_case_file": ".agent/state/cases/target-016b-number-series-lines-route-recovery.json",
   "lastReferenceCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
   "lastReferenceCaseFile": ".agent/state/cases/warehouse-031-warehouse-source-route-park-or-setup-fit-decision.json",
   "mode": "universaarl-target-execution",
@@ -49,7 +49,7 @@
     "master-data-create",
     "claim-foundation-setup-ready-without-evidence"
   ],
-  "nextStep": "Run TARGET-016: controlled setup-write gate for missing U-* number series only; do not assign setup fields, create master data, preview or post.",
+  "nextStep": "Run TARGET-016B: recover Number Series Lines Startnr./Endnr. route for existing U-* series; no setup assignment, master data, preview or posting.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -1353,7 +1353,7 @@
     "nextStep": "BANK-018: controlled no-post Payment Journal preflight for 108205; do not post."
   },
   "workType": "warehouse-source-document-action-on-draft",
-  "lastCompletedCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+  "lastCompletedCase": "TARGET-016-NUMBER-SERIES-CONTROLLED-SETUP-WRITE-GATE",
   "latestBank018": {
     "caseId": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
     "status": [
@@ -3690,50 +3690,51 @@
     "resultFile": "playwright/projects/fibu-book5/evidence/prep-020-universaarl-dataset-blueprint/PREP-020-result.json"
   },
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
-    "plannedNextCaseBeforeReview": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
-    "lastEvidenceSummary": "PREP-039/PREP-040 established that the intended route is the arrow next to Neu and the menu item Neues Unternehmen erstellen, not the main Neu button.",
+    "currentCase": "TARGET-016-NUMBER-SERIES-CONTROLLED-SETUP-WRITE-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-016-NUMBER-SERIES-CONTROLLED-SETUP-WRITE-GATE",
+    "lastEvidenceSummary": "TARGET-015 proved Number Series before-state with no U-* duplicates and visible related setup-page context.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "TARGET-009 is complete: UNIVERSAARL-DE is visible after the no-data wizard route. The next dependency is proving active company context before setup.",
+    "reason": "Number-series rows are a prerequisite for later setup assignment, master data and document numbering.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-010-UNIVERSAARL-COMPANY-CONTEXT-PROOF",
-        "status": "ready-next",
-        "reason": "UNIVERSAARL-DE is visible and can be opened/verified next."
-      },
-      {
-        "caseId": "TARGET-004-FOUNDATION-SETUP-READINESS",
-        "status": "ready-after-current",
-        "reason": "Foundation setup only makes sense after target company context is proven."
-      },
-      {
-        "caseId": "TARGET-005-NUMBER-SERIES-PREFLIGHT",
+        "caseId": "TARGET-017-NUMBER-SERIES-ASSIGNMENT-FIELD-DISCOVERY",
         "status": "needs-setup-first",
-        "reason": "Needs company context and foundation baseline."
+        "reason": "Do not discover assignment as complete until U-* row and start-line creation is recovered or consciously deferred."
       },
       {
-        "caseId": "TARGET-006-POSTING-GROUPS-PREFLIGHT",
-        "status": "needs-setup-first",
-        "reason": "Needs company context and foundation baseline."
-      },
-      {
-        "caseId": "TARGET-007-DIMENSIONS-FOUNDATION",
+        "caseId": "TARGET-018-NUMBER-SERIES-ASSIGNMENT-WRITE-GATE",
         "status": "ready-after-current",
-        "reason": "Dimensions belong after company and setup context."
+        "reason": "Assignment should follow only after field discovery and before/after screenshots."
+      },
+      {
+        "caseId": "TARGET-019-POSTING-GROUPS-PREFLIGHT",
+        "status": "ready-after-current",
+        "reason": "Posting group readiness follows the numbering foundation."
+      },
+      {
+        "caseId": "TARGET-020-VAT-SETUP-READINESS",
+        "status": "needs-source-check-first",
+        "reason": "German VAT claims require source-backed setup plus later Preview/VAT Entries."
+      },
+      {
+        "caseId": "TARGET-021-CORE-MASTERDATA-PLAN",
+        "status": "needs-setup-first",
+        "reason": "Master data waits for number-series assignment, posting groups, VAT and dimensions."
       }
     ],
     "queueChangesMade": [
-      "Set next case to UNIVERSAARL-DE company context proof."
+      "Selected TARGET-016B-NUMBER-SERIES-LINES-ROUTE-RECOVERY based on TARGET-016 visible U-* verification."
     ],
-    "selectedNextCase": "TARGET-010-UNIVERSAARL-COMPANY-CONTEXT-PROOF",
-    "whySelectedNextCaseIsBest": "Company Information, number series, posting groups, VAT and master data must start only after the active company context is visibly UNIVERSAARL-DE.",
+    "selectedNextCase": "TARGET-016B-NUMBER-SERIES-LINES-ROUTE-RECOVERY",
+    "whySelectedNextCaseIsBest": "The next useful step is recovering the write route without repeating a failed New+keyboard route.",
     "risksBeforeNextCase": [
-      "Company switch must be explicit and documented.",
-      "Company Information may still be empty."
+      "Do not assign setup fields without a separate gate.",
+      "Do not create master data until numbering assignment and posting setup are clear.",
+      "Do not claim German legal invoice numbering from this evidence alone."
     ],
     "requiredPreparation": [
-      "Open/switch to UNIVERSAARL-DE intentionally.",
-      "Capture shell context and Company Information."
+      "Inspect TARGET-016 blocked screenshot and action signals.",
+      "Choose a different Number Series write route before retrying."
     ]
   },
   "permissionBlocker": {
@@ -3812,7 +3813,7 @@
   },
   "activeCaseFile": ".agent/state/cases/prep-034-role-center-readonly-shell-map.json",
   "previousCase": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
-  "nextCase": "TARGET-010-UNIVERSAARL-COMPANY-CONTEXT-PROOF",
+  "nextCase": "TARGET-016B-NUMBER-SERIES-LINES-ROUTE-RECOVERY",
   "latestPrepCase": {
     "caseId": "PREP-034-ROLE-CENTER-READONLY-SHELL-MAP",
     "status": "prep-observed",
@@ -4754,5 +4755,32 @@
     ],
     "nextCase": "TARGET-016-NUMBER-SERIES-CONTROLLED-SETUP-WRITE-GATE",
     "updatedAt": "2026-06-30T10:48:19.352Z"
+  },
+  "latestTarget016": {
+    "status": "partial-observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-016-number-series-controlled-setup-write-gate/TARGET-016-result.json",
+    "summary": "U-* number-series header rows are visible in playthru/UNIVERSAARL-DE, but Startnr./Endnr. line values are not visible yet.",
+    "visibleCodes": [
+      "U-CUST",
+      "U-VEND",
+      "U-ITEM",
+      "U-SO",
+      "U-SINV",
+      "U-PO",
+      "U-PINV"
+    ],
+    "missingStartNos": [
+      "U-CUST00001",
+      "U-VEND00001",
+      "U-ITEM00001",
+      "U-SO00001",
+      "U-SINV00001",
+      "U-PO00001",
+      "U-PINV00001"
+    ],
+    "noSetupAssignment": true,
+    "noMasterDataChange": true,
+    "noPreviewPosting": true,
+    "noPosting": true
   }
 }

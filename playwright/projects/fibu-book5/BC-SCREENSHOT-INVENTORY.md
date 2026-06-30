@@ -119,6 +119,15 @@ Diese Bilder werden erst erzeugt, wenn `UNIVERSAARL-DE` existiert und genug sinn
 | `target-015-030-purchases-payables-setup.png` | Kreditoren & Einkauf Einr. | `playthru` / `UNIVERSAARL-DE` | Einkaufssetup-Kontext | sichtbare Felder `Kreditorennummern`, `Rechnungsnummern`, `Gebuchte Rechnungsnummern`, `Gutschriftsnummern` | Einkaufsnummernfelder sind als Vorherzustand sichtbar | keine Zuweisung, keine Einkaufsbelege, keine Buchung | `accepted-field-context` |
 | `target-015-040-inventory-setup.png` | Lager Einrichtung | `playthru` / `UNIVERSAARL-DE` | Lagersetup-Kontext | Seite, FastTabs, sichtbarer FastTab `Nummerierung` | Lagersetup ist erreichbar | konkrete Artikelnr.-Felder sind noch nicht aufgeklappt belegt | `accepted-page-context-not-field-proof` |
 
+## Universaarl Foundation - Nummernserien TARGET-016
+
+| Screenshot | Page | Company/Kontext | Schritt | Was man sehen soll | Interner Beweis | Beweist nicht | Status |
+|---|---|---|---|---|---|---|---|
+| `target-016-010-number-series-before.png` | Nummernserie / No. Series | `playthru` / `UNIVERSAARL-DE` | Vor dem Schreib-Gate | `U-*` Nummernserienkoepfe sind bereits sichtbar, weil ein vorheriger kontrollierter Versuch die Kopfzeilen angelegt hat | Zielcompany und Nummernserienliste sind erreichbar; U-Codes sind Kontext fuer den Lines-Follow-up | keine Startnummern, keine Setup-Zuweisung, keine Stammdaten | `accepted-partial-setup-context` |
+| `target-016-090-number-series-after-reload.png` | Nummernserie / No. Series | `playthru` / `UNIVERSAARL-DE` | Nach Reload | `U-CUST`, `U-VEND`, `U-ITEM`, `U-SO`, `U-SINV`, `U-PO`, `U-PINV` stehen in der Liste; `Startnr.` bleibt leer/Strich | Nummernserienkoepfe sind sichtbar und wieder auffindbar | vollstaendige Nummernserien-Reife, Start-/Endnummern, Setup-Zuweisung, Belegnummern- oder Compliance-Beweis | `accepted-partial-proof` |
+| `target-016-041-u-cust-lines-before.png` | Nr.-Serienzeilen / No. Series Lines | `playthru` / `UNIVERSAARL-DE` | Lines-Kontext fuer `U-CUST` | die Lines-Seite zeigt zuerst `Startdatum`, danach `Startnr.` und `Endnr.` | die Aktion `Zeilen` oeffnet den richtigen Detailkontext | kein gespeicherter Startnummernwert | `debugging-evidence` |
+| `target-016-051-u-cust-lines-after.png` | Nr.-Serienzeilen / No. Series Lines | `playthru` / `UNIVERSAARL-DE` | Blockierter Startnr.-Versuch | `Startnr.` bleibt leer; die getestete Eingaberoute persistiert `U-CUST00001` nicht sichtbar | der blockierte Grid-/Fokuspfad ist sichtbar dokumentiert | keine fertige Startnummernzeile, keine Belegnummernreife | `blocked-debugging-evidence` |
+
 ## Qualitaetsfelder fuer neue Screenshot-Metadaten
 
 Neue oder ueberarbeitete `.screenshot.json`-Dateien sollen diese Felder tragen:
