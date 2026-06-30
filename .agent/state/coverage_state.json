@@ -340,7 +340,7 @@
     "universaarlFoundation": {
       "chapter": "Kapitel 6",
       "status": "in-progress",
-      "currentBlock": "skr04-guv-account-safe-write-next",
+      "currentBlock": "chart-of-accounts-foundation-checkpoint-next",
       "latestPracticalCase": "TARGET-021-DIMENSIONS-FOUNDATION",
       "latestGovernanceCase": "UNIVERSAARL-001-TARGET-TRANSITION-GOVERNANCE",
       "targetInstance": "playthru",
@@ -363,8 +363,8 @@
         "No Default Dimensions, Dimension Set Entries, G/L Entries or reporting dimension effect are proven.",
         "TARGET-022 is decision-only; dimensions are not yet created in Business Central."
       ],
-      "nextCase": "TARGET-026M-SKR04-GUV-ACCOUNT-SAFE-WRITE-FOLLOWUP",
-      "nextStep": "Use TARGET-026M Page Inspection evidence to correct or consciously park 4400 and 5400 GuV/Bilanz before chart checkpoint, VAT setup, posting groups or master data.",
+      "nextCase": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
+      "nextStep": "Run a read-only Kontenplan foundation checkpoint after TARGET-026M proved 4400 and 5400 as GuV/Buchung; VAT setup, posting groups, master data, documents, Preview Posting and Posting remain locked.",
       "latestReadonlyContextCase": "PREP-033-MY-SETTINGS-READONLY-CONTEXT",
       "latestReadonlyContextResult": "playwright/projects/fibu-book5/evidence/prep-033-my-settings-readonly-context/PREP-033-result.json",
       "mySettingsContext": {
@@ -762,7 +762,7 @@
   "currentBlock": "vat-setup-readiness-next",
   "latestPracticalCase": "TARGET-023B-DIMENSION-VALUES-ROUTE-RECOVERY",
   "latestReviewCase": "WAREHOUSE-025-SOURCE-PO-LOCATION-ALTERNATIVE-OR-HELPER-DECISION",
-  "nextCase": "TARGET-026M-SKR04-GUV-ACCOUNT-PAGEINSPECTION-FOLLOWUP",
+  "nextCase": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
   "latestBank013": {
     "caseId": "BANK-013-CONTROLLED-NEXT-EVIDENCE-STEP",
     "status": [
@@ -983,7 +983,7 @@
     "playwright/projects/fibu-book5/BC-ERROR-BLOCKER-ATLAS.md",
     "playwright/projects/fibu-book5/BC-PROCESS-COVERAGE-ROADMAP.md"
   ],
-  "currentCoverageFocus": "TARGET-026M-SKR04-GUV-ACCOUNT-PAGEINSPECTION-FOLLOWUP",
+  "currentCoverageFocus": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
   "latestCoverageUpdate": {
     "at": "2026-06-28T19:28:00.000+02:00",
     "type": "p2p-011-purchase-lines-action-discovery-tested",
@@ -1863,7 +1863,7 @@
     "nextCase": "FIXEDASSETS-298-FA-DEPRECIATION-BLOCKER-BOOK-SYNC",
     "updatedAt": "2026-06-29T07:09:31.588Z"
   },
-  "nextStep": "Run Chart of Accounts read-only preflight for VAT account candidates.",
+  "nextStep": "Run a read-only Kontenplan foundation checkpoint before VAT setup, posting groups or master data.",
   "warehouse": {
     "chapter": "Kapitel 13",
     "status": "in-progress",
@@ -3971,5 +3971,33 @@
       "Posting"
     ],
     "nextCase": "TARGET-026M-SKR04-GUV-ACCOUNT-PAGEINSPECTION-FOLLOWUP"
+  },
+  "latestTarget026MSafeWriteFollowup": {
+    "caseId": "TARGET-026M-SKR04-GUV-ACCOUNT-SAFE-WRITE-FOLLOWUP",
+    "status": "observed",
+    "completedAt": "2026-06-30T23:05:00.000Z",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-026m-skr04-guv-account-safe-write-followup/TARGET-026M-SAFE-WRITE-result.json",
+    "evidencePath": "playwright/projects/fibu-book5/evidence/target-026m-skr04-guv-account-safe-write-followup/",
+    "coverageEffect": "4400 and 5400 are now visible as GuV/Buchung after G/L Account Card reopen and Chart of Accounts reopen in playthru / UNIVERSAARL-DE.",
+    "playwrightLearning": "BC card option fields may require real edit mode plus value-level screenshot QA and reopen proof; the label GuV/Bilanz is not enough.",
+    "proved": [
+      "4400 Umsatzerloese Inland 19 Prozent as GuV/Buchung",
+      "5400 Wareneingang / Materialaufwand as GuV/Buchung",
+      "No VAT setup, posting groups, master data, document draft, Preview Posting, Posting or API shortcut"
+    ],
+    "notProved": [
+      "complete SKR04 chart of accounts",
+      "tax advisor approval",
+      "VAT Posting Setup",
+      "Posting Groups",
+      "master data",
+      "documents, Preview Posting or Posting"
+    ],
+    "screenshots": [
+      "playwright/projects/fibu-book5/evidence/target-026m-skr04-guv-account-safe-write-followup/target-026m-safe-write-4400-030-card-reopen-proof.png",
+      "playwright/projects/fibu-book5/evidence/target-026m-skr04-guv-account-safe-write-followup/target-026m-safe-write-5400-030-card-reopen-proof.png",
+      "playwright/projects/fibu-book5/evidence/target-026m-skr04-guv-account-safe-write-followup/target-026m-safe-write-090-chart-reopen-proof.png"
+    ],
+    "nextCase": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT"
   }
 }

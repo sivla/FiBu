@@ -1,39 +1,42 @@
 {
   "schemaVersion": 1,
-  "caseId": "TARGET-026M-SKR04-GUV-ACCOUNT-PAGEINSPECTION-FOLLOWUP",
+  "caseId": "TARGET-026M-SKR04-GUV-ACCOUNT-SAFE-WRITE-FOLLOWUP",
   "status": "observed",
-  "completedAt": "2026-06-30T22:05:00.000Z",
+  "completedAt": "2026-06-30T23:05:00.000Z",
   "sourceInstance": "playthru",
   "sourceCompany": "UNIVERSAARL-DE",
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-026m-skr04-guv-account-pageinspection-followup/TARGET-026M-PAGEINSPECTION-result.json",
-  "evidencePath": "playwright/projects/fibu-book5/evidence/target-026m-skr04-guv-account-pageinspection-followup/",
-  "summary": "Read-only Page Inspection on the Sachkontokarte proved Page 17 G/L Account Card, Table 15 G/L Account and field Income/Balance (9, Option). Accounts 4400 and 5400 are still Bilanz and are not yet usable for VAT/posting setup.",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-026m-skr04-guv-account-safe-write-followup/TARGET-026M-SAFE-WRITE-result.json",
+  "evidencePath": "playwright/projects/fibu-book5/evidence/target-026m-skr04-guv-account-safe-write-followup/",
+  "summary": "TARGET-026M proves 4400 and 5400 as GuV/Buchung after card reopen plus chart reopen. The final compact rerun found both accounts already correct and did not perform another setup write.",
   "proved": [
     "Business Central stayed in playthru / UNIVERSAARL-DE.",
-    "Filtered G/L Account Card contexts for 4400 and 5400 were opened read-only.",
-    "Page Inspection / Seitenueberpruefung became visible for the target cards.",
-    "Technical context: Page 17 G/L Account Card, Table 15 G/L Account, field Income/Balance (9, Option).",
-    "Screenshot QA shows the current value is Bilanz for both 4400 and 5400."
+    "4400 Umsatzerloese Inland 19 Prozent is visible as GuV/Buchung after card reopen.",
+    "5400 Wareneingang / Materialaufwand is visible as GuV/Buchung after card reopen.",
+    "Chart of Accounts Page 16 shows 4400 and 5400 as GuV/Buchung after reopen.",
+    "No VAT setup, posting groups, master data, document draft, Preview Posting, Posting or API shortcut was executed."
   ],
   "notProved": [
-    "4400 is not corrected to GuV.",
-    "5400 is not corrected to GuV.",
-    "No safe write route was executed in this read-only follow-up.",
-    "No VAT setup, posting groups, master data, document draft, Preview Posting or Posting."
+    "No complete SKR04 chart of accounts.",
+    "No tax advisor approval.",
+    "No VAT Posting Setup row.",
+    "No posting groups.",
+    "No master data.",
+    "No document, Preview Posting or Posting.",
+    "No German compliance final claim."
   ],
   "blockedBy": [],
   "warnings": [
-    "The label GuV/Bilanz must never be counted as the value GuV.",
-    "VAT setup, posting groups and master data remain locked until GuV/Bilanz is corrected or consciously parked."
+    "The visible 1200/1800 bank naming conflict remains open for the next chart checkpoint.",
+    "VAT setup, posting groups and master data remain locked until the chart checkpoint classifies remaining blockers."
   ],
   "screenshots": [
-    "target-026m-pageinspection-4400-010-card-before.png",
-    "target-026m-pageinspection-4400-020-page-inspection.png",
-    "target-026m-pageinspection-5400-010-card-before.png",
-    "target-026m-pageinspection-5400-020-page-inspection.png"
+    "target-026m-safe-write-4400-030-card-reopen-proof.png",
+    "target-026m-safe-write-5400-030-card-reopen-proof.png",
+    "target-026m-safe-write-090-chart-reopen-proof.png"
   ],
   "flags": {
-    "noSetupChange": true,
+    "setupChangeAttempted": false,
+    "setupChanged": false,
     "noVatSetupChange": true,
     "noPostingGroupChange": true,
     "noMasterData": true,
@@ -44,54 +47,50 @@
     "noBookChange": true,
     "noCompanySwitch": true
   },
-  "nextCase": "TARGET-026M-SKR04-GUV-ACCOUNT-SAFE-WRITE-FOLLOWUP",
-  "nextStep": "Use the Page Inspection field truth for exactly one controlled GuV/Bilanz safe-write attempt, then reopen card/list for proof.",
+  "nextCase": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
+  "nextStep": "Run a read-only Kontenplan foundation checkpoint before VAT setup, posting groups or master data.",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-026M-SKR04-GUV-ACCOUNT-PAGEINSPECTION-FOLLOWUP",
+    "currentCase": "TARGET-026M-SKR04-GUV-ACCOUNT-SAFE-WRITE-FOLLOWUP",
     "plannedNextCaseBeforeReview": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
-    "lastEvidenceSummary": "4400 and 5400 are visible in playthru / UNIVERSAARL-DE, but Page Inspection and screenshots show Income/Balance = Bilanz.",
-    "isPlannedNextCaseStillSensible": false,
-    "reason": "The chart checkpoint is premature until 4400 and 5400 are corrected to GuV or consciously parked.",
+    "lastEvidenceSummary": "4400 and 5400 are visible as GuV/Buchung after card reopen and chart reopen in playthru / UNIVERSAARL-DE.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The next safest step is a read-only full starter-chart checkpoint, not VAT or master data.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-026M-SKR04-GUV-ACCOUNT-SAFE-WRITE-FOLLOWUP",
-        "status": "ready-next",
-        "reason": "Page 17/Table 15/Field 9 are known, so one controlled non-repeating write route is justified."
-      },
-      {
         "caseId": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
-        "status": "ready-after-current",
-        "reason": "Run after GuV correction or conscious park decision."
+        "status": "ready-next",
+        "reason": "It validates the starter chart as a whole without another setup write."
       },
       {
         "caseId": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
-        "status": "needs-setup-first",
-        "reason": "VAT setup waits for correct sales and expense accounts."
+        "status": "ready-after-current",
+        "reason": "VAT setup preflight can follow only after chart blockers are classified."
       },
       {
-        "caseId": "TARGET-028-CUSTOMER-VENDOR-ITEM-MASTERDATA",
+        "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "Master data remains locked until chart, dimensions, VAT and posting groups are ready."
+        "reason": "Posting groups depend on VAT and G/L foundation readiness."
       },
       {
-        "caseId": "TARGET-029-FIRST-SALES-PURCHASE-DRAFT-GATE",
+        "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
         "status": "needs-setup-first",
-        "reason": "Document drafts require foundation setup."
+        "reason": "Master data waits for chart, VAT and posting group readiness."
       }
     ],
     "queueChangesMade": [
-      "Set TARGET-026M-SKR04-GUV-ACCOUNT-SAFE-WRITE-FOLLOWUP as next active case."
+      "Marked TARGET-026M-SKR04-GUV-ACCOUNT-SAFE-WRITE-FOLLOWUP done.",
+      "Selected TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT as next active case."
     ],
-    "selectedNextCase": "TARGET-026M-SKR04-GUV-ACCOUNT-SAFE-WRITE-FOLLOWUP",
-    "whySelectedNextCaseIsBest": "It is the smallest practical step that can unblock SKR04 starter account setup without jumping to VAT/posting groups.",
+    "selectedNextCase": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
+    "whySelectedNextCaseIsBest": "It converts the account-level proof into a foundation readiness decision without prematurely changing VAT, posting groups or master data.",
     "risksBeforeNextCase": [
-      "Do not count label text as value.",
-      "Stop if edit mode or option selection is ambiguous.",
-      "Do not continue to VAT/posting groups if reopen proof fails."
+      "Do not edit accounts during the checkpoint.",
+      "Do not ignore the visible 1200/1800 bank naming conflict.",
+      "Do not unlock VAT, posting groups or master data if chart readiness is incomplete."
     ],
     "requiredPreparation": [
-      "Use target-026m-pageinspection-4400/5400-020-page-inspection screenshots as field truth."
+      "Use TARGET-026M safe-write screenshots as proof for 4400 and 5400."
     ]
   },
-  "runId": "TARGET-026M-SKR04-GUV-ACCOUNT-PAGEINSPECTION-FOLLOWUP-RUN-2026-06-30T22-05-00-000Z"
+  "runId": "TARGET-026M-SKR04-GUV-ACCOUNT-SAFE-WRITE-FOLLOWUP-RUN-2026-06-30T23-05-00-000Z"
 }

@@ -23,8 +23,8 @@ Dieses Mapping ist noch kein vollstaendiger Kontenplan und keine Steuerberaterfr
 | `1406` | Abziehbare Vorsteuer 19 Prozent | Vorsteuer | Bilanz | Purchase VAT Account spaeter | `universaarl-proven`; in `TARGET-026K` sichtbar nach kontrolliertem Fit und Reopen |
 | `3300` | Verbindlichkeiten aus Lieferungen und Leistungen | Kreditoren/Verbindlichkeiten | Bilanz | Vendor Posting Group spaeter | `universaarl-proven`; in `TARGET-026L` sichtbar nach kontrolliertem Fit und Reopen |
 | `3806` | Umsatzsteuer 19 Prozent | Umsatzsteuer | Bilanz | Sales VAT Account spaeter | `universaarl-proven`; in `TARGET-026L` sichtbar nach kontrolliertem Fit und Reopen; VAT Setup bleibt offen |
-| `4400` | Umsatzerloese Inland 19 Prozent | Verkaufserloese | GuV | General Posting Setup Sales Account spaeter | `pageinspection-field-truth-ready-for-safe-write`; Page Inspection zeigt Page `17`, Table `15`, Field `Income/Balance (9, Option)`, aktueller Wert `Bilanz` |
-| `5400` | Wareneingang / Materialaufwand | Einkauf/Wareneinsatz | GuV | General Posting Setup Purchase/COGS-Kontext spaeter | `pageinspection-field-truth-ready-for-safe-write`; Page Inspection zeigt Page `17`, Table `15`, Field `Income/Balance (9, Option)`, aktueller Wert `Bilanz` |
+| `4400` | Umsatzerloese Inland 19 Prozent | Verkaufserloese | GuV | General Posting Setup Sales Account spaeter | `universaarl-proven-guv-reopen-proof`; in `TARGET-026M-SAFE-WRITE` sichtbar als `GuV`/`Buchung` nach Karten-Reopen und Kontenplan-Reopen |
+| `5400` | Wareneingang / Materialaufwand | Einkauf/Wareneinsatz | GuV | General Posting Setup Purchase/COGS-Kontext spaeter | `universaarl-proven-guv-reopen-proof`; in `TARGET-026M-SAFE-WRITE` sichtbar als `GuV`/`Buchung` nach Karten-Reopen und Kontenplan-Reopen |
 
 ## Bewusst noch nicht freigegeben
 
@@ -46,7 +46,7 @@ Der naechste UI-Case darf nicht pauschal alle Konten erzeugen. Er muss:
 4. Fuer jedes Konto `Nr.`, `Name`, `Kontoart`, `Bilanz/GuV` und Reopen-Sichtbarkeit beweisen.
 5. Keine VAT Posting Setup, keine Posting Groups, keine Stammdaten, keine Belege, keine Preview und keine Buchung im selben Lauf ausfuehren.
 
-## Stand nach `TARGET-026M`
+## Stand nach `TARGET-026M-SAFE-WRITE`
 
 Der Kontenplan in `UNIVERSAARL-DE` enthaelt jetzt sichtbar:
 
@@ -54,20 +54,18 @@ Der Kontenplan in `UNIVERSAARL-DE` enthaelt jetzt sichtbar:
 - `1406 Abziehbare Vorsteuer 19 Prozent` als Bilanz-/Buchungskonto.
 - `3300 Verbindlichkeiten aus Lieferungen und Leistungen` als Bilanz-/Buchungskonto.
 - `3806 Umsatzsteuer 19 Prozent` als Bilanz-/Buchungskonto.
-- `4400 Umsatzerloese Inland 19 Prozent` sichtbar, aber noch falsch als Bilanz-/Buchungskonto.
-- `5400 Wareneingang / Materialaufwand` sichtbar, aber noch falsch als Bilanz-/Buchungskonto.
+- `4400 Umsatzerloese Inland 19 Prozent` sichtbar als GuV-/Buchungskonto.
+- `5400 Wareneingang / Materialaufwand` sichtbar als GuV-/Buchungskonto.
 
 Die Screenshot-QA zeigt weiterhin die offene Altlast `1200 Bank Saarland`. Dieses Konto bleibt fuer Bank, Payment, VAT und Posting Groups gesperrt, bis ein eigener sauberer Korrekturfall existiert. `1406`, `3300` und `3806` beweisen nur sichtbare Sachkonten, nicht VAT Posting Setup, Posting Groups, USt-Posten oder Kreditorenbuchungen.
 
-`TARGET-026M` und `TARGET-026M-SKR04-GUV-ACCOUNT-ROUTE-RECOVERY` haben die GuV-Route noch nicht geloest: `4400` und `5400` sind sichtbar, stehen aber nach Reopen weiterhin auf `Bilanz`. Die Recovery-Screenshots zeigen zusaetzlich, dass der Kartenversuch nicht als Erfolg gewertet werden darf, wenn nur die Beschriftung `GuV/Bilanz` sichtbar ist. Entscheidend ist der Feldwert nach Reopen.
+`TARGET-026M` und die Recovery-Laeufe bleiben als wichtige Blocker-Evidence erhalten: Sie zeigen, dass die Feldbeschriftung `GuV/Bilanz` nicht als Wert `GuV` zaehlt. `TARGET-026M-SKR04-GUV-ACCOUNT-SAFE-WRITE-FOLLOWUP` hat den Blocker geloest: Die Sachkontokarte wurde im echten Edit-Modus geoeffnet, das Feld `GuV/Bilanz` wurde auf `GuV` gesetzt, und beide Zielkonten wurden nach Karten-Reopen und Kontenplan-Reopen sichtbar geprueft.
 
-`TARGET-026M-SKR04-GUV-ACCOUNT-PAGEINSPECTION-FOLLOWUP` hat die technische Feldwahrheit geliefert: Sachkontokarte Page `17`, Tabelle `G/L Account (15)`, Feld `Income/Balance (9, Option)`, aktueller Wert `Bilanz`. Deshalb ist der naechste sinnvolle Schritt ein einzelner kontrollierter Safe-Write-Follow-up auf genau dieses Feld, mit Vorher-/Nachher- und Reopen-Proof.
-
-Bis dieser Reopen-Proof vorliegt, bleiben VAT Setup, Posting Groups, Stammdaten, Belege, Preview Posting und Posting gesperrt.
+Der naechste Schritt ist kein VAT Setup und keine Stammdatenanlage, sondern ein read-only Kontenplan-Checkpoint. Dabei muss die sichtbare Altlast `1200 Bank Saarland` gegen `1800 Bank Saarland` klassifiziert werden.
 
 ## Quellenbasis
 
 - DATEV SKR04 Produktseite: https://www.datev.de/web/de/datev-shop/rechnungswesen/skr-04/
 - SKR04-Referenz fuer Nummernpruefung: https://www.collmex.de/skr04.pdf
 
-Die GuV-Detailkonten `4400` und `5400` muessen in einem spaeteren UI-Case auf `GuV/Buchung` korrigiert und nach Reopen sichtbar bewiesen werden. Erst dann duerfen sie als `universaarl-proven` in Coverage oder Buchtext erscheinen.
+Die GuV-Detailkonten `4400` und `5400` sind als Starterkonten UI-seitig sichtbar bewiesen. Sie sind trotzdem noch keine vollstaendige SKR04-, Steuer- oder Posting-Readiness, weil VAT Posting Setup, Posting Groups, Belege, Preview Posting und Posten noch fehlen.

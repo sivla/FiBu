@@ -1,0 +1,124 @@
+{
+  "schemaVersion": 1,
+  "id": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
+  "caseId": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
+  "status": "pending",
+  "priority": "high",
+  "area": "universaarl-skr04-chart-of-accounts",
+  "goal": "Read-only checkpoint for the Universaarl SKR04 starter chart after 4400 and 5400 were corrected to GuV.",
+  "sourceCase": "TARGET-026M-SKR04-GUV-ACCOUNT-SAFE-WRITE-FOLLOWUP",
+  "sourceResultPath": "playwright/projects/fibu-book5/evidence/target-026m-skr04-guv-account-safe-write-followup/TARGET-026M-SAFE-WRITE-result.json",
+  "createdAt": "2026-06-30T23:05:00.000Z",
+  "lookaheadStatus": "ready-next",
+  "mayRunPlaywright": true,
+  "mayWorkEffectively": false,
+  "effectiveBcActionsAllowed": false,
+  "sourceCompany": "UNIVERSAARL-DE",
+  "sourceInstance": "playthru",
+  "targetWorld": "Universaarl",
+  "problemStatement": "The starter accounts exist and 4400/5400 now show GuV/Buchung after reopen proof, but the overall chart foundation has not yet been checked as a coherent read-only basis before VAT Posting Groups, Posting Groups and master data.",
+  "allowedActions": [
+    "open-chart-of-accounts-page-16",
+    "verify-starter-skr04-account-rows",
+    "verify-guv-bilanz-and-kontoart-values",
+    "capture-foundation-checkpoint-screenshots",
+    "write-result-and-next-step-card"
+  ],
+  "forbiddenActions": [
+    "change-vat-setup",
+    "change-posting-groups",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "api-shortcut",
+    "edit-gl-accounts-during-checkpoint",
+    "continue-to-vat-or-masterdata-if-foundation-checkpoint-fails"
+  ],
+  "targetAccounts": [
+    {
+      "no": "1200",
+      "name": "Bank Saarland",
+      "expectedType": "Bilanz",
+      "note": "Visible legacy starter bank row remains a blocker for bank/payment setup until consciously corrected or superseded."
+    },
+    {
+      "no": "1406",
+      "name": "Abziehbare Vorsteuer 19 Prozent",
+      "expectedType": "Bilanz"
+    },
+    {
+      "no": "1800",
+      "name": "Bank Saarland",
+      "expectedType": "Bilanz"
+    },
+    {
+      "no": "3300",
+      "name": "Verbindlichkeiten aus Lieferungen und Leistungen",
+      "expectedType": "Bilanz"
+    },
+    {
+      "no": "3806",
+      "name": "Umsatzsteuer 19 Prozent",
+      "expectedType": "Bilanz"
+    },
+    {
+      "no": "4400",
+      "name": "Umsatzerloese Inland 19 Prozent",
+      "expectedType": "GuV"
+    },
+    {
+      "no": "5400",
+      "name": "Wareneingang / Materialaufwand",
+      "expectedType": "GuV"
+    }
+  ],
+  "acceptanceCriteria": [
+    "The run stays in playthru / UNIVERSAARL-DE.",
+    "The chart screenshot visibly shows the starter account rows and the relevant GuV/Bilanz and Kontoart values.",
+    "The result separates foundation-ready rows from unresolved blockers such as the duplicate/legacy bank row.",
+    "The result does not unlock VAT setup, posting groups, master data or documents unless the checkpoint is coherent."
+  ],
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-026M-SKR04-GUV-ACCOUNT-SAFE-WRITE-FOLLOWUP",
+    "plannedNextCaseBeforeReview": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
+    "lastEvidenceSummary": "TARGET-026M corrected 4400 and 5400 to GuV/Buchung and proved both values by card reopen and chart reopen screenshots.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "Before VAT Posting Groups or master data, the full starter chart should be checked read-only as a coherent foundation.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
+        "status": "ready-next",
+        "reason": "It validates the newly corrected chart without further setup writes."
+      },
+      {
+        "caseId": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
+        "status": "ready-after-current",
+        "reason": "Only after chart values and open chart blockers are clearly classified."
+      },
+      {
+        "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Posting groups depend on VAT and G/L foundation."
+      },
+      {
+        "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
+        "status": "needs-setup-first",
+        "reason": "Master data waits for posting group and VAT readiness."
+      }
+    ],
+    "queueChangesMade": [
+      "Selected the read-only chart checkpoint as the next step after TARGET-026M safe-write proof."
+    ],
+    "selectedNextCase": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
+    "whySelectedNextCaseIsBest": "It is the smallest safe step that turns the account writes into a usable foundation decision.",
+    "risksBeforeNextCase": [
+      "Do not edit accounts during the checkpoint.",
+      "Do not ignore the visible 1200/1800 bank naming conflict.",
+      "Do not unlock VAT or posting groups if chart blockers remain."
+    ],
+    "requiredPreparation": [
+      "Use TARGET-026M safe-write screenshots as source proof for 4400 and 5400."
+    ]
+  }
+}

@@ -443,6 +443,16 @@ Screenshot-QA zu TARGET-026M Recovery: Die Bilder korrigieren einen moeglichen F
 
 Screenshot-QA zu TARGET-026M Page Inspection: Die Bilder sind gute technische Diagnosebilder. Sie sind keine Erfolgsscreenshots fuer einen fertigen SKR04-Kontenplan, weil beide Zielkonten weiter `Bilanz` zeigen. Der Buch-Lernwert ist: Page Inspection erklaert, welche BC-Page, Tabelle und welches Feld hinter einem sichtbaren Kartenfeld stehen.
 
+## Universaarl Kontenplan - SKR04 GuV Safe Write TARGET-026M
+
+| Screenshot | Page | Company | Schritt | Was sieht man? | Interner Beweis | Beweist nicht | Status |
+|---|---|---|---|---|---|---|---|
+| `target-026m-safe-write-4400-030-card-reopen-proof.png` | Sachkontokarte, Page 17 | `playthru` / `UNIVERSAARL-DE` | Karten-Reopen 4400 | `4400 Umsatzerloese Inland 19 Prozent`, Feld `GuV/Bilanz` mit Wert `GuV`, `Kontoart` = `Buchung` | 4400 wurde nach kontrolliertem Karten-Feldweg sichtbar als GuV-/Buchungskonto persistiert | kein vollstaendiger SKR04, keine VAT-/Posting-Setup-Freigabe, keine Buchung | `universaarl-reopen-proof`, `book-candidate` |
+| `target-026m-safe-write-5400-030-card-reopen-proof.png` | Sachkontokarte, Page 17 | `playthru` / `UNIVERSAARL-DE` | Karten-Reopen 5400 | `5400 Wareneingang / Materialaufwand`, Feld `GuV/Bilanz` mit Wert `GuV`, `Kontoart` = `Buchung` | 5400 wurde nach kontrolliertem Karten-Feldweg sichtbar als GuV-/Buchungskonto persistiert | kein vollstaendiger SKR04, keine VAT-/Posting-Setup-Freigabe, keine Buchung | `universaarl-reopen-proof`, `book-candidate` |
+| `target-026m-safe-write-090-chart-reopen-proof.png` | Kontenplan, Page 16 | `playthru` / `UNIVERSAARL-DE` | Kontenplan-Reopen | `4400` und `5400` stehen im Kontenplan sichtbar auf `GuV` und `Buchung`; Bilanzkonten wie `1406`, `3300`, `3806` bleiben `Bilanz` | Die GuV-Korrektur ist nicht nur auf der Karte, sondern auch in der Liste sichtbar | kein VAT Setup, keine Posting Groups, keine Stammdaten, keine Belege, keine Preview, keine Buchung | `universaarl-foundation-proof`, `book-candidate` |
+
+Screenshot-QA zu TARGET-026M Safe Write: Die Bilder sind brauchbare Buchkandidaten fuer den Abschnitt "Sachkonten anlegen und Kontotyp pruefen". Sie zeigen, warum bei Optionsfeldern der sichtbare Feldwert zaehlt und nicht die Feldbeschriftung. Der naechste Buch-/Setup-Schritt darf trotzdem nur ein Kontenplan-Checkpoint sein, weil VAT Posting Setup, Posting Groups, Stammdaten und Buchungen noch nicht bewiesen sind.
+
 ## PREP-010 Screenshot-QA-Regel
 
 Vor jeder Buch- oder Clickguide-Nutzung muss der Screenshot gegen die konkrete Behauptung geprueft werden:

@@ -1908,7 +1908,7 @@
     {
       "id": "TARGET-026M-SKR04-GUV-ACCOUNT-SAFE-WRITE-FOLLOWUP",
       "order": 10039,
-      "status": "pending",
+      "status": "done",
       "priority": "high",
       "category": "target-foundation",
       "expectedImpact": "controlled-setup-write",
@@ -1919,6 +1919,25 @@
       "sourceCompany": "UNIVERSAARL-DE",
       "targetWorld": "Universaarl",
       "resultPath": "playwright/projects/fibu-book5/evidence/target-026m-skr04-guv-account-safe-write-followup/TARGET-026M-SAFE-WRITE-result.json",
+      "lookaheadStatus": "observed",
+      "completedAt": "2026-06-30T23:05:00.000Z",
+      "result": "4400 and 5400 are visible as GuV/Buchung after card reopen and chart reopen. No VAT setup, posting group, master data, document draft, Preview Posting, Posting or API shortcut occurred.",
+      "nextCase": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT"
+    },
+    {
+      "id": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
+      "order": 10040,
+      "status": "pending",
+      "priority": "high",
+      "category": "target-foundation",
+      "expectedImpact": "foundation-readiness-checkpoint",
+      "mayWorkEffectively": false,
+      "mayRunPlaywright": true,
+      "effectiveBcActionsAllowed": false,
+      "goal": "Run a read-only chart checkpoint for the Universaarl SKR04 starter accounts before VAT setup, posting groups or master data.",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "targetWorld": "Universaarl",
+      "caseFile": ".agent/state/cases/target-026n-chart-of-accounts-foundation-checkpoint.json",
       "lookaheadStatus": "ready-next"
     }
   ],
@@ -2021,33 +2040,33 @@
       ]
     }
   },
-  "updatedAt": "2026-06-30T22:05:00.000Z",
-  "lastCompletedCase": "TARGET-026M-SKR04-GUV-ACCOUNT-PAGEINSPECTION-FOLLOWUP",
-  "nextCase": "TARGET-026M-SKR04-GUV-ACCOUNT-SAFE-WRITE-FOLLOWUP",
+  "updatedAt": "2026-06-30T23:05:00.000Z",
+  "lastCompletedCase": "TARGET-026M-SKR04-GUV-ACCOUNT-SAFE-WRITE-FOLLOWUP",
+  "nextCase": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-026M-SKR04-GUV-ACCOUNT-PAGEINSPECTION-FOLLOWUP",
+    "currentCase": "TARGET-026M-SKR04-GUV-ACCOUNT-SAFE-WRITE-FOLLOWUP",
     "plannedNextCaseBeforeReview": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
-    "lastEvidenceSummary": "Page Inspection proved Page 17 G/L Account Card, Table 15 G/L Account and Income/Balance (9, Option); screenshots still show 4400 and 5400 as Bilanz.",
-    "isPlannedNextCaseStillSensible": false,
-    "reason": "The chart checkpoint and later VAT/posting setup depend on correctly typed sales and expense accounts.",
+    "lastEvidenceSummary": "4400 and 5400 are now visible as GuV/Buchung after card reopen and chart reopen in playthru / UNIVERSAARL-DE.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The chart checkpoint is now the smallest safe next step before VAT, posting groups or master data.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-026M-SKR04-GUV-ACCOUNT-SAFE-WRITE-FOLLOWUP",
-        "status": "ready-next",
-        "reason": "Page Inspection field truth supports one controlled non-repeating write route."
-      },
-      {
         "caseId": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
-        "status": "ready-after-current",
-        "reason": "Run only after 4400/5400 are corrected to GuV or consciously parked."
+        "status": "ready-next",
+        "reason": "The GuV correction is proven; the whole starter chart needs a read-only readiness checkpoint."
       },
       {
         "caseId": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
-        "status": "needs-setup-first",
-        "reason": "VAT setup needs correct sales/purchase G/L account foundation."
+        "status": "ready-after-current",
+        "reason": "VAT setup preflight can follow only after the chart checkpoint classifies any remaining chart blockers."
       },
       {
-        "caseId": "TARGET-028-CUSTOMER-VENDOR-ITEM-MASTERDATA",
+        "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Posting groups depend on G/L and VAT readiness."
+      },
+      {
+        "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
         "status": "needs-setup-first",
         "reason": "Master data waits for posting groups and VAT setup."
       },
@@ -2058,18 +2077,18 @@
       }
     ],
     "queueChangesMade": [
-      "Marked TARGET-026M-SKR04-GUV-ACCOUNT-PAGEINSPECTION-FOLLOWUP done and inserted TARGET-026M-SKR04-GUV-ACCOUNT-SAFE-WRITE-FOLLOWUP before chart checkpoint and VAT setup."
+      "Marked TARGET-026M-SKR04-GUV-ACCOUNT-SAFE-WRITE-FOLLOWUP done and inserted TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT as the next read-only checkpoint."
     ],
-    "selectedNextCase": "TARGET-026M-SKR04-GUV-ACCOUNT-SAFE-WRITE-FOLLOWUP",
-    "whySelectedNextCaseIsBest": "It is the smallest Page-Inspection-backed execute step that can unblock SKR04 starter account setup.",
+    "selectedNextCase": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
+    "whySelectedNextCaseIsBest": "It checks the starter chart as a whole without new setup writes before VAT or master data.",
     "risksBeforeNextCase": [
-      "Do not count field labels as field values.",
-      "Stop if the option control is not unambiguous.",
-      "Do not continue to VAT, posting groups or master data if reopen proof fails."
+      "Do not edit accounts during the checkpoint.",
+      "Classify the visible 1200/1800 bank naming conflict.",
+      "Do not continue to VAT, posting groups or master data if chart readiness fails."
     ],
     "requiredPreparation": [
-      "Use the Page Inspection screenshots from TARGET-026M as the field truth."
+      "Use TARGET-026M safe-write screenshots as proof for 4400 and 5400."
     ]
   },
-  "nextStep": "Use Page Inspection field truth for exactly one controlled GuV/Bilanz safe-write attempt, then reopen card/list for proof."
+  "nextStep": "Run a read-only Kontenplan foundation checkpoint before VAT setup, posting groups or master data."
 }
