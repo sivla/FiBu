@@ -17,6 +17,8 @@ Diese Datei sammelt wiederverwendbare Muster aus belegten Laeufen. Sie ist keine
 - Tests orientieren sich am sichtbaren Anwenderverhalten: Rollen, Labels, Texte, Dialogtitel, sichtbare Codes, Betraege, Konten, Dimensionen, Filter und Status.
 - API-/Direktdatenwege sind nur Diagnose, historischer Laborfit oder technische Hilfsevidence. Sie ersetzen keinen Buch-Klickpfad.
 - Jeder Screenshot braucht ein sichtbares Lernziel. Ein Bild ist nur brauchbar, wenn der behauptete Code, Betrag, Status, Button, Dialog, Filter, Fehler, Reportwert oder Postentyp wirklich sichtbar ist.
+- Ein technisch gruener Playwright-Test ist kein fachlicher Erfolg, wenn das Result JSON `blocked` meldet oder der Screenshot den Zielwert nicht zeigt. TARGET-026M ist das Gegenbeispiel: Der Test lief durch, aber `4400` und `5400` blieben sichtbar auf `Bilanz` statt `GuV`.
+- Nach Keyboard- oder Dropdown-Versuchen in Business-Central-Listen darf ein Zeilen-Locator nicht blind weiterverwendet werden. Vor einem Karten-Fallback muss die Zielzeile erneut ueber Nummer und Name gefunden werden; sonst kann die Karte oder der aktive Editor auf eine vorherige Zeile zeigen.
 - CRONUS-USA-Labor, gemischte Sprache und deutsche Zielbilder werden immer getrennt.
 - Bei Fehlern zuerst Fehlerklasse bestimmen: Oberflaeche, Page/Tabelle, Berechtigung, Stammdaten, Prozessstatus, Posting Setup, Extension, Daten/Filter, Integration oder Performance. Details stehen in `BC-BUGFIXING-PLAYBOOK.md`.
 

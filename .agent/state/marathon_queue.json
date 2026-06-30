@@ -5,7 +5,7 @@
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "queueId": "TARGET-MARATHON-002-UNIVERSAARL-REPO-READONLY-PREP",
-  "reason": "TARGET-026J proved 1800 Bank Saarland after reopen; next is remaining mapped SKR04 starter accounts.",
+  "reason": "TARGET-026M blocked: 4400 and 5400 are visible but still Bilanz; recover GuV/Bilanz route before W1 can continue.",
   "noEffectiveBusinessCentralActions": false,
   "forbiddenUntilUnblocked": [],
   "unblockCriteria": "Satisfied: UNIVERSAARL-DE exists and active Role Center context / Firmendaten read-only proof is available.",
@@ -1846,7 +1846,7 @@
     },
     {
       "id": "TARGET-026M-SKR04-GUV-ACCOUNTS-ROUTE",
-      "status": "pending",
+      "status": "blocked",
       "priority": "high",
       "area": "universaarl-skr04-chart-of-accounts",
       "goal": "Create or confirm mapped SKR04 GuV starter accounts 4400 and 5400 with explicit GuV/Bilanz field proof.",
@@ -1858,7 +1858,26 @@
       "effectiveBcActionsAllowed": true,
       "sourceCompany": "UNIVERSAARL-DE",
       "targetWorld": "Universaarl",
-      "resultPath": "playwright/projects/fibu-book5/evidence/target-026m-skr04-guv-accounts-route/TARGET-026M-result.json"
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-026m-skr04-guv-accounts-route/TARGET-026M-result.json",
+      "completedAt": "2026-06-30T20:53:55.942Z",
+      "result": "4400 and 5400 are visible, but GuV/Bilanz remained Bilanz after list-cell and card-fallback attempts.",
+      "nextCase": "TARGET-026M-SKR04-GUV-ACCOUNT-ROUTE-RECOVERY"
+    },
+    {
+      "id": "TARGET-026M-SKR04-GUV-ACCOUNT-ROUTE-RECOVERY",
+      "order": 10037,
+      "status": "pending",
+      "priority": "high",
+      "category": "target-foundation",
+      "expectedImpact": "setup-route-recovery",
+      "mayWorkEffectively": true,
+      "mayRunPlaywright": true,
+      "effectiveBcActionsAllowed": true,
+      "goal": "Recover the G/L Account Card or field-diagnostics route for setting 4400 and 5400 to GuV.",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "targetWorld": "Universaarl",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-026m-skr04-guv-account-route-recovery/TARGET-026M-RECOVERY-result.json",
+      "lookaheadStatus": "ready-next"
     }
   ],
   "lastUpdated": "2026-06-30T20:31:28.694Z",
@@ -1960,9 +1979,9 @@
       ]
     }
   },
-  "updatedAt": "2026-06-30T18:45:00.000Z",
+  "updatedAt": "2026-06-30T20:53:55.942Z",
   "lastCompletedCase": "TARGET-024H-GLOBAL-DIMENSION-PARK-OR-PAGEINSPECTION-DECISION",
-  "nextCase": "TARGET-026M-SKR04-GUV-ACCOUNTS-ROUTE",
+  "nextCase": "TARGET-026M-SKR04-GUV-ACCOUNT-ROUTE-RECOVERY",
   "nextStepDecisionCard": {
     "currentCase": "TARGET-024B-GLOBAL-DIMENSION-ASSIGNMENT",
     "plannedNextCaseBeforeReview": "TARGET-024-CORE-MASTERDATA-PLAN",
@@ -2010,5 +2029,5 @@
       "Use Page Inspection/technical field diagnostics, tooltip/action inventory and screenshot QA on the Change Global Dimensions page."
     ]
   },
-  "nextStep": "Run TARGET-026M: create or confirm only 4400 and 5400 as mapped SKR04 GuV starter accounts; keep VAT setup, posting groups, master data, preview and posting locked."
+  "nextStep": "Recover GuV/Bilanz field route before VAT setup/posting groups."
 }

@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-30T20:26:45.419Z",
+  "updatedAt": "2026-06-30T20:53:55.942Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-skr04-guv-starter-accounts-fit",
-  "activeCase": "TARGET-026M-SKR04-GUV-ACCOUNTS-ROUTE",
-  "active_case_file": ".agent/state/cases/target-026m-skr04-guv-accounts-route.json",
+  "activeArea": "universaarl-skr04-guv-account-route-recovery",
+  "activeCase": "TARGET-026M-SKR04-GUV-ACCOUNT-ROUTE-RECOVERY",
+  "active_case_file": ".agent/state/cases/target-026m-skr04-guv-account-route-recovery.json",
   "lastReferenceCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
   "lastReferenceCaseFile": ".agent/state/cases/warehouse-031-warehouse-source-route-park-or-setup-fit-decision.json",
   "mode": "universaarl-target-execution",
@@ -20,8 +20,9 @@
   ],
   "allowedActions": [
     "open-chart-of-accounts",
-    "create-mapped-guv-starter-accounts-only",
-    "set-income-statement-account-type-for-4400-5400",
+    "open-target-gl-account-card-for-4400-5400",
+    "run-page-inspection-or-field-diagnostics-if-safe",
+    "set-income-statement-account-type-for-existing-4400-5400",
     "capture-before-after-reopen-proof",
     "write-result-and-next-step-card"
   ],
@@ -32,7 +33,6 @@
     "fake-evidence",
     "book-claim-without-evidence",
     "use-1200-as-bank-or-payment-account",
-    "create-unmapped-accounts",
     "change-vat-setup",
     "change-posting-groups",
     "create-master-data",
@@ -41,7 +41,7 @@
     "post",
     "api-shortcut"
   ],
-  "nextStep": "Run TARGET-026M: create or confirm only 4400 and 5400 as mapped SKR04 GuV starter accounts; keep VAT setup, posting groups, master data, preview and posting locked.",
+  "nextStep": "Recover GuV/Bilanz field handling for 4400 and 5400; VAT setup, posting groups, master data, documents, Preview Posting and Posting remain locked.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -3820,9 +3820,9 @@
     "nextCase": "PREP-006-BOOKMASTER-UNIVERSAARL-FALLSTUDIE-REWRITE-PLAN",
     "updatedAt": "2026-06-29T21:54:54.534Z"
   },
-  "activeCaseFile": ".agent/state/cases/target-026l-skr04-remaining-balance-sheet-accounts-fit.json",
+  "activeCaseFile": ".agent/state/cases/target-026m-skr04-guv-account-route-recovery.json",
   "previousCase": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
-  "nextCase": "TARGET-026M-SKR04-GUV-ACCOUNTS-ROUTE",
+  "nextCase": "TARGET-026M-SKR04-GUV-ACCOUNT-ROUTE-RECOVERY",
   "latestPrepCase": {
     "caseId": "PREP-034-ROLE-CENTER-READONLY-SHELL-MAP",
     "status": "prep-observed",
@@ -6311,5 +6311,25 @@
         "Separate GuV account field handling for 4400 and 5400."
       ]
     }
+  },
+  "latestTarget026MGuVAccountsRoute": {
+    "caseId": "TARGET-026M-SKR04-GUV-ACCOUNTS-ROUTE",
+    "status": "blocked",
+    "completedAt": "2026-06-30T20:53:55.942Z",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-026m-skr04-guv-accounts-route/TARGET-026M-result.json",
+    "evidencePath": "playwright/projects/fibu-book5/evidence/target-026m-skr04-guv-accounts-route/",
+    "proved": [
+      "Instanz playthru und Company UNIVERSAARL-DE wurden per URL-Kontext kontrolliert.",
+      "Kontenplan Page 16 wurde geoeffnet."
+    ],
+    "blockedBy": [
+      "Name field input was not found for keyboard tab route.. Row text: 4400 \nUmsatzerloese Inland 19 Prozent\n Bilanz Buchung",
+      "Name field input was not found for keyboard tab route.. Row text: 5400 \nWareneingang / Materialaufwand\n Bilanz Buchung"
+    ],
+    "targetAccountsVisibleButWrongType": [
+      "4400",
+      "5400"
+    ],
+    "nextCase": "TARGET-026M-SKR04-GUV-ACCOUNT-ROUTE-RECOVERY"
   }
 }

@@ -412,6 +412,15 @@ Screenshot-QA zu TARGET-026K: Das dritte Bild ist der beste Buchkandidat fuer de
 
 Screenshot-QA zu TARGET-026L: Die Reopen-Bilder sind lesbar und zeigen die entscheidenden Spalten `Nr.`, `Name`, `GuV/Bilanz` und `Kontoart`. `3300` und `3806` sind als Sachkonten sichtbar, aber die Bilder beweisen noch keine Buchungsgruppen, keine VAT Posting Setup Zeile und keine gebuchten Kreditoren- oder Umsatzsteuerposten. Die sichtbare Altlast `1200 Bank Saarland` bleibt fuer Bank, Payment, VAT und Posting Groups gesperrt.
 
+## Universaarl Kontenplan - SKR04 GuV-Route TARGET-026M
+
+| Screenshot | Page | Company | Schritt | Was sieht man? | Intern bewiesen | Nicht bewiesen | Status |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `target-026m-4400-030-after-reopen-proof.png` | Kontenplan, Page 16 | `playthru` / `UNIVERSAARL-DE` | Reopen-Proof 4400 nach Recovery-Versuchen | `4400 Umsatzerloese Inland 19 Prozent` ist sichtbar, aber `GuV/Bilanz` steht weiter auf `Bilanz` | Das Konto existiert sichtbar in der Zielcompany; Screenshot-QA erkennt den falschen Kontotyp | kein GuV-Konto, keine Sales-Posting-Freigabe, keine Buchung | `blocked-wrong-account-type`, `do-not-use-as-success` |
+| `target-026m-5400-030-after-reopen-proof.png` | Kontenplan, Page 16 | `playthru` / `UNIVERSAARL-DE` | Reopen-Proof 5400 nach Recovery-Versuchen | `5400 Wareneingang / Materialaufwand` ist sichtbar, aber `GuV/Bilanz` steht weiter auf `Bilanz` | Das Konto existiert sichtbar in der Zielcompany; Screenshot-QA erkennt den falschen Kontotyp | kein GuV-Konto, keine Purchase-/COGS-Posting-Freigabe, keine Buchung | `blocked-wrong-account-type`, `do-not-use-as-success` |
+
+Screenshot-QA zu TARGET-026M: Die Bilder sind als Blockerbilder wertvoll, aber keine Buchkandidaten fuer eine fertige GuV-Kontenplan-Strecke. Sie zeigen genau den Fehler: `4400` und `5400` duerfen fachlich nicht als Bilanzkonten in die naechsten Setup-Schritte uebernommen werden. Vor VAT Setup, Posting Groups, Stammdaten oder Belegen muss `TARGET-026M-SKR04-GUV-ACCOUNT-ROUTE-RECOVERY` die Sachkontokarten-/Feldroute fuer `GuV/Bilanz` beweisen.
+
 ## PREP-010 Screenshot-QA-Regel
 
 Vor jeder Buch- oder Clickguide-Nutzung muss der Screenshot gegen die konkrete Behauptung geprueft werden:

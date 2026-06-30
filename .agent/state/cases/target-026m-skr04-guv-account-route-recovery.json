@@ -1,23 +1,25 @@
 {
   "schemaVersion": 1,
-  "id": "TARGET-026M-SKR04-GUV-ACCOUNTS-ROUTE",
-  "status": "blocked",
+  "id": "TARGET-026M-SKR04-GUV-ACCOUNT-ROUTE-RECOVERY",
+  "status": "pending",
   "priority": "high",
   "area": "universaarl-skr04-chart-of-accounts",
-  "goal": "Create or confirm mapped SKR04 GuV starter accounts 4400 and 5400 with explicit GuV/Bilanz field proof.",
-  "sourceCase": "TARGET-026L-SKR04-REMAINING-BALANCE-SHEET-ACCOUNTS-FIT",
-  "createdAt": "2026-06-30T20:26:45.419Z",
-  "lookaheadStatus": "blocked-needs-recovery",
+  "goal": "Recover the GuV/Bilanz route for existing starter accounts 4400 and 5400 before any VAT or posting group setup.",
+  "sourceCase": "TARGET-026M-SKR04-GUV-ACCOUNTS-ROUTE",
+  "createdAt": "2026-06-30T20:53:55.942Z",
+  "lookaheadStatus": "ready-next",
   "mayRunPlaywright": true,
   "mayWorkEffectively": true,
   "effectiveBcActionsAllowed": true,
   "sourceCompany": "UNIVERSAARL-DE",
   "sourceInstance": "playthru",
   "targetWorld": "Universaarl",
+  "problemStatement": "TARGET-026M created or revealed 4400 and 5400, but both remain visible as Bilanz/Buchung instead of GuV/Buchung after reopen.",
   "allowedActions": [
     "open-chart-of-accounts",
-    "create-mapped-guv-starter-accounts-only",
-    "set-income-statement-account-type-for-4400-5400",
+    "open-target-gl-account-card-for-4400-5400",
+    "run-page-inspection-or-field-diagnostics-if-safe",
+    "set-income-statement-account-type-for-existing-4400-5400",
     "capture-before-after-reopen-proof",
     "write-result-and-next-step-card"
   ],
@@ -35,28 +37,35 @@
     {
       "no": "4400",
       "name": "Umsatzerloese Inland 19 Prozent",
-      "expectedType": "GuV",
-      "purpose": "Sales account for later General Posting Setup"
+      "currentVisibleType": "Bilanz",
+      "expectedType": "GuV"
     },
     {
       "no": "5400",
       "name": "Wareneingang / Materialaufwand",
-      "expectedType": "GuV",
-      "purpose": "Purchase/material expense account for later posting setup"
+      "currentVisibleType": "Bilanz",
+      "expectedType": "GuV"
     }
   ],
-  "prerequisites": [
-    "TARGET-026J proves 1800 as bank account candidate in UI.",
-    "TARGET-026K proves 1406 as balance-sheet VAT receivable account in UI.",
-    "TARGET-026L proves 3300 and 3806 as balance-sheet accounts in UI."
+  "evidenceBasis": [
+    "playwright/projects/fibu-book5/evidence/target-026m-skr04-guv-accounts-route/TARGET-026M-result.json"
   ],
-  "notAllowedInThisCase": [
-    "VAT Posting Setup write",
-    "Posting Groups write",
-    "Master data creation",
-    "Document or draft creation",
-    "Preview Posting",
-    "Posting"
+  "blockedRoutesFrom026M": [
+    "list-cell typing into GuV/Bilanz display cell",
+    "Enter/ArrowDown/Enter on visible cell",
+    "F2 typing and F2 dropdown attempts on visible cell",
+    "Alt+ArrowDown and Space dropdown attempts on visible cell",
+    "stale card fallback after keyboard attempts"
+  ],
+  "requiredLearning": [
+    "After keyboard attempts, re-locate the target row before opening a card or FactBox action.",
+    "The G/L Account Card route must prove that page/card context contains the target account number and name before changing GuV/Bilanz.",
+    "A successful Playwright exit code is not a business success unless resultStatus is observed and screenshots show the target values."
+  ],
+  "acceptanceCriteria": [
+    "4400 is visible after reopen as GuV/Buchung with account number and name in the same row.",
+    "5400 is visible after reopen as GuV/Buchung with account number and name in the same row.",
+    "No VAT setup, posting groups, master data, documents, Preview Posting, Posting or API shortcut are used."
   ],
   "nextStepDecisionCard": {
     "currentCase": "TARGET-026M-SKR04-GUV-ACCOUNTS-ROUTE",
@@ -96,17 +105,6 @@
       "Diagnose New/Edit List route and active editor state."
     ]
   },
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-026m-skr04-guv-accounts-route/TARGET-026M-result.json",
-  "caseId": "TARGET-026M-SKR04-GUV-ACCOUNTS-ROUTE",
-  "completedAt": "2026-06-30T20:53:55.942Z",
-  "resultStatus": "blocked",
-  "blockedBy": [
-    "Name field input was not found for keyboard tab route.. Row text: 4400 \nUmsatzerloese Inland 19 Prozent\n Bilanz Buchung",
-    "Name field input was not found for keyboard tab route.. Row text: 5400 \nWareneingang / Materialaufwand\n Bilanz Buchung"
-  ],
-  "evidencePath": "playwright/projects/fibu-book5/evidence/target-026m-skr04-guv-accounts-route/",
-  "outcome": "4400 and 5400 are visible, but both remain Bilanz/Buchung instead of GuV/Buchung after reopen.",
-  "nextCase": "TARGET-026M-SKR04-GUV-ACCOUNT-ROUTE-RECOVERY",
-  "nextStep": "Recover the G/L Account Card or field-diagnostics route for GuV/Bilanz before VAT setup or posting groups.",
-  "playwrightLearning": "Do not trust a technical green test when the Result JSON is blocked. After keyboard attempts on a BC list row, re-locate the target row before card fallback; visible display cells are not proof of an active editor."
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-026m-skr04-guv-account-route-recovery/TARGET-026M-RECOVERY-result.json",
+  "caseId": "TARGET-026M-SKR04-GUV-ACCOUNT-ROUTE-RECOVERY"
 }
