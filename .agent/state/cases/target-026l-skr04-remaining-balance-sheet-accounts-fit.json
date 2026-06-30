@@ -1,0 +1,97 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-026L-SKR04-REMAINING-BALANCE-SHEET-ACCOUNTS-FIT",
+  "title": "SKR04 remaining balance-sheet accounts fit",
+  "status": "planned",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "workType": "universaarl-skr04-balance-sheet-accounts-fit",
+  "taskClass": "wizard_work",
+  "sourceCase": "TARGET-026K-SKR04-VAT-RECEIVABLE-ACCOUNT-FIT",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/UNIVERSAARL-SKR04-MINIMAL-ACCOUNT-MAPPING.md",
+    "playwright/projects/fibu-book5/evidence/target-026k-skr04-vat-receivable-account-fit/TARGET-026K-result.json"
+  ],
+  "purpose": "Create or confirm the remaining mapped SKR04 balance-sheet starter accounts before VAT setup or posting groups.",
+  "targetAccounts": [
+    {
+      "no": "3300",
+      "name": "Verbindlichkeiten aus Lieferungen und Leistungen",
+      "family": "Kreditoren/Verbindlichkeiten",
+      "incomeBalance": "Bilanz"
+    },
+    {
+      "no": "3806",
+      "name": "Umsatzsteuer 19 Prozent",
+      "family": "Umsatzsteuer",
+      "incomeBalance": "Bilanz"
+    }
+  ],
+  "explicitlyExcludedThisCase": [
+    "1200 rename or receivables reclassification",
+    "4400 and 5400 GuV accounts",
+    "VAT Posting Setup",
+    "posting groups",
+    "master data",
+    "document draft",
+    "preview posting",
+    "posting"
+  ],
+  "allowedActions": [
+    "open-chart-of-accounts",
+    "create-mapped-balance-sheet-starter-accounts-only",
+    "capture-before-after-reopen-proof",
+    "write-result-and-next-step-card"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "use-1200-as-bank-or-payment-account",
+    "create-unmapped-accounts",
+    "create-guv-accounts-in-this-case",
+    "change-vat-setup",
+    "change-posting-groups",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "api-shortcut"
+  ],
+  "entryCriteria": [
+    "TARGET-026J proves 1800 Bank Saarland after reopen.",
+    "TARGET-026K proves 1406 Abziehbare Vorsteuer 19 Prozent after reopen.",
+    "The reset-New Chart of Accounts route is documented as the safe balance-sheet account route."
+  ],
+  "exitCriteria": [
+    "3300 and 3806 are visible after reopen with No., Name, Kontoart and Bilanz proof, or blocked with exact UI reason.",
+    "No VAT setup, posting group, master data, document, Preview Posting or posting occurs."
+  ],
+  "lookahead": [
+    {
+      "caseId": "TARGET-026L-SKR04-REMAINING-BALANCE-SHEET-ACCOUNTS-FIT",
+      "status": "ready-next",
+      "reason": "3300 and 3806 are balance-sheet accounts and can reuse the 1800/1406 route."
+    },
+    {
+      "caseId": "TARGET-026M-SKR04-GUV-ACCOUNTS-ROUTE",
+      "status": "ready-after-current",
+      "reason": "4400 and 5400 need an explicit GuV/Bilanz route before write."
+    },
+    {
+      "caseId": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
+      "status": "ready-after-current",
+      "reason": "VAT setup needs visible VAT input/output accounts first."
+    },
+    {
+      "caseId": "TARGET-028-POSTING-GROUPS-CONTROLLED-SETUP",
+      "status": "needs-setup-first",
+      "reason": "Posting groups need starter accounts and VAT preflight first."
+    }
+  ],
+  "nextStep": "Create or confirm only 3300 and 3806 with before/after/reopen screenshots; keep GuV accounts and VAT setup locked.",
+  "createdAt": "2026-06-30T20:10:00.000Z",
+  "updatedAt": "2026-06-30T20:10:00.000Z"
+}

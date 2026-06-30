@@ -1,20 +1,20 @@
 {
   "schemaVersion": 1,
-  "caseId": "TARGET-026J-SKR04-ACCOUNT-CLEANUP-AND-SETUP-GATE",
+  "caseId": "TARGET-026K-SKR04-VAT-RECEIVABLE-ACCOUNT-FIT",
   "status": "observed",
-  "summary": "1800 Bank Saarland is visible after controlled setup and reopen proof; 1200 is classified as wrong bank path and remains blocked for bank usage.",
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-026j-skr04-account-cleanup-and-setup-gate/TARGET-026J-result.json",
+  "summary": "1406 Abziehbare Vorsteuer 19 Prozent is visible as Bilanz/Buchung account in UNIVERSAARL-DE after controlled setup and reopen proof; no VAT setup, master data, preview or posting occurred.",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-026k-skr04-vat-receivable-account-fit/TARGET-026K-result.json",
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/target-026j-skr04-account-cleanup-and-setup-gate/target-026j-010-before-chart-of-accounts.png",
-    "playwright/projects/fibu-book5/evidence/target-026j-skr04-account-cleanup-and-setup-gate/target-026j-020-after-account-attempt.png",
-    "playwright/projects/fibu-book5/evidence/target-026j-skr04-account-cleanup-and-setup-gate/target-026j-030-after-reopen-proof.png",
-    "playwright/projects/fibu-book5/evidence/target-026j-skr04-account-cleanup-and-setup-gate/TARGET-026J-result.json"
+    "playwright/projects/fibu-book5/evidence/target-026k-skr04-vat-receivable-account-fit/target-026k-010-before-chart-of-accounts.png",
+    "playwright/projects/fibu-book5/evidence/target-026k-skr04-vat-receivable-account-fit/target-026k-020-after-account-attempt.png",
+    "playwright/projects/fibu-book5/evidence/target-026k-skr04-vat-receivable-account-fit/target-026k-030-after-reopen-proof.png",
+    "playwright/projects/fibu-book5/evidence/target-026k-skr04-vat-receivable-account-fit/TARGET-026K-result.json"
   ],
   "proved": [
     "Instanz playthru und Company UNIVERSAARL-DE wurden per URL-Kontext kontrolliert.",
     "Kontenplan Page 16 wurde geoeffnet.",
-    "1800 Bank Saarland ist nach dem kontrollierten Setup-Versuch und Reopen sichtbar.",
-    "1800 Bank Saarland ist als Bilanzkonto sichtbar."
+    "1406 Abziehbare Vorsteuer 19 Prozent ist nach dem kontrollierten Setup-Versuch und Reopen sichtbar.",
+    "1406 Abziehbare Vorsteuer 19 Prozent ist als Bilanzkonto sichtbar."
   ],
   "notProved": [
     "Kein vollstaendiger Kontenplan.",
@@ -24,19 +24,19 @@
     "Kein Dokument, keine Preview, keine Buchung."
   ],
   "blockedBy": [],
-  "nextCase": "TARGET-026K-SKR04-REMAINING-STARTER-ACCOUNTS-FIT",
-  "nextStep": "The fastest useful follow-up is to complete the remaining mapped SKR04 starter accounts without touching VAT or posting groups yet.",
+  "nextCase": "TARGET-026L-SKR04-REMAINING-BALANCE-SHEET-ACCOUNTS-FIT",
+  "nextStep": "Run TARGET-026L: create or confirm only 3300 and 3806 as SKR04 balance-sheet starter accounts; keep 4400/5400 GuV accounts, VAT setup, posting groups, master data, preview and posting locked.",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-026J-SKR04-ACCOUNT-CLEANUP-AND-SETUP-GATE",
-    "plannedNextCaseBeforeReview": "TARGET-026J-SKR04-ACCOUNT-CLEANUP-AND-SETUP-GATE",
+    "currentCase": "TARGET-026K-SKR04-VAT-RECEIVABLE-ACCOUNT-FIT",
+    "plannedNextCaseBeforeReview": "TARGET-026K-SKR04-VAT-RECEIVABLE-ACCOUNT-FIT",
     "lastEvidenceSummary": "TARGET-026E planned the minimal G/L account candidate structure; no account had been created yet.",
     "isPlannedNextCaseStillSensible": true,
     "reason": "VAT setup and first master data need at least a controlled account setup route before further foundation work.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-026K-SKR04-REMAINING-STARTER-ACCOUNTS-FIT",
+        "caseId": "TARGET-026L-SKR04-REMAINING-BALANCE-SHEET-ACCOUNTS-FIT",
         "status": "ready-next",
-        "reason": "The 1800 bank-account route has reopen proof and can be reused carefully for remaining mapped starter accounts."
+        "reason": "The 1406 VAT receivable route has reopen proof; the next balance-sheet starter accounts can reuse the same reset-New route."
       },
       {
         "caseId": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
@@ -55,8 +55,8 @@
       }
     ],
     "queueChangesMade": [],
-    "selectedNextCase": "TARGET-026K-SKR04-REMAINING-STARTER-ACCOUNTS-FIT",
-    "whySelectedNextCaseIsBest": "The fastest useful follow-up is to complete the remaining mapped SKR04 starter accounts without touching VAT or posting groups yet.",
+    "selectedNextCase": "TARGET-026L-SKR04-REMAINING-BALANCE-SHEET-ACCOUNTS-FIT",
+    "whySelectedNextCaseIsBest": "The fastest useful follow-up is to fit the remaining balance-sheet starter accounts, then handle GuV accounts with an explicit GuV/Bilanz route.",
     "risksBeforeNextCase": [
       "Income statement account types still need careful field handling."
     ],
@@ -76,6 +76,15 @@
     "noApiShortcut": true,
     "noBookChange": true
   },
-  "updatedAt": "2026-06-30T19:52:53.805Z",
-  "runId": "TARGET-026J-SKR04-ACCOUNT-CLEANUP-AND-SETUP-GATE-2026-06-30T21-45-00-000Z"
+  "screenshotQa": {
+    "reviewedImage": "playwright/projects/fibu-book5/evidence/target-026k-skr04-vat-receivable-account-fit/target-026k-030-after-reopen-proof.png",
+    "visibleTruth": "Kontenplan shows 1200 Bank Saarland, 1406 Abziehbare Vorsteuer 19 Prozent and 1800 Bank Saarland; 1406 is Bilanz and Kontoart Buchung.",
+    "limits": [
+      "1200 remains an unresolved wrong bank path.",
+      "1406 alone is not VAT Posting Setup.",
+      "No entries or VAT postings exist."
+    ]
+  },
+  "updatedAt": "2026-06-30T20:05:02.449Z",
+  "runId": "TARGET-026K-SKR04-VAT-RECEIVABLE-ACCOUNT-FIT-2026-06-30T20-05-02-449Z"
 }

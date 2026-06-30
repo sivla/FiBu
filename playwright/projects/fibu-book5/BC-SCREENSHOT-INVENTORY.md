@@ -391,6 +391,16 @@ Screenshot-QA zu TARGET-026B: Das zweite Bild ist der bessere Buch-/Setup-Kontex
 
 Screenshot-QA zu TARGET-026J: Das dritte Bild ist der beste Buchkandidat fuer den Bankkonto-Abschnitt im Kontenplan. Es zeigt aber auch die offene Altlast: `1200 Bank Saarland` ist sichtbar und darf nicht fuer Bank, Zahlung, VAT oder Posting Groups verwendet werden.
 
+## Universaarl Kontenplan - SKR04 Vorsteuerkonto TARGET-026K
+
+| Screenshot | Page | Company | Schritt | Was sieht man? | Intern bewiesen | Nicht bewiesen | Status |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `target-026k-010-before-chart-of-accounts.png` | Kontenplan, Page 16 | `playthru` / `UNIVERSAARL-DE` | Idempotente Startaufnahme nach Re-Run | `1200 Bank Saarland`, `1406 Abziehbare Vorsteuer 19 Prozent` und `1800 Bank Saarland` | Der Kontenplan ist erreichbar; `1406` ist bereits sichtbar | kein Anlage-Vorherbild ohne `1406`, kein VAT Setup, keine Buchungsfaehigkeit | `universaarl-idempotent-start` |
+| `target-026k-020-after-account-attempt.png` | Kontenplan, Page 16 | `playthru` / `UNIVERSAARL-DE` | Nach kontrollierter Existing-Account-Pruefung | `1406 Abziehbare Vorsteuer 19 Prozent` ist sichtbar, `Bilanz`, Kontoart `Buchung` | `1406` wurde in der Zielcompany sichtbar bestaetigt | keine VAT Posting Setup Zeile, keine Einkaufsbuchung, keine USt-Posten | `universaarl-controlled-setup`, `skr04-vat-account-proof` |
+| `target-026k-030-after-reopen-proof.png` | Kontenplan, Page 16 | `playthru` / `UNIVERSAARL-DE` | Reopen-Proof | `1406` bleibt nach erneutem Oeffnen sichtbar; `1200` und `1800` sind ebenfalls sichtbar | Persistenz-/Reopen-Proof fuer `1406` als Bilanz-/Buchungskonto | keine fachliche Bereinigung von `1200`, kein vollstaendiger SKR04, keine USt-/Posting-Freigabe | `universaarl-reopen-proof`, `book-candidate` |
+
+Screenshot-QA zu TARGET-026K: Das dritte Bild ist der beste Buchkandidat fuer den Vorsteuerkonto-Abschnitt. Es ist gross genug, zeigt die Spalten `Nr.`, `Name`, `GuV/Bilanz` und `Kontoart`, und macht zugleich die Grenze sichtbar: ein Sachkonto `1406` ist noch kein VAT Posting Setup und noch kein USt-Posten. Die aktuelle Evidence ist ein stabiler Sichtbarkeits-/Reopen-Nachweis; sie ist kein separates Vorherbild ohne `1406`.
+
 ## PREP-010 Screenshot-QA-Regel
 
 Vor jeder Buch- oder Clickguide-Nutzung muss der Screenshot gegen die konkrete Behauptung geprueft werden:
