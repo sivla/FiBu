@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-30T15:18:55.951Z",
+  "updatedAt": "2026-06-30T15:35:15.526Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-w1-foundation-dimensions",
-  "activeCase": "TARGET-021-DIMENSIONS-FOUNDATION",
-  "active_case_file": ".agent/state/cases/target-021-dimensions-foundation.json",
+  "activeArea": "universaarl-w1-foundation-dimensions-controlled-setup-fit",
+  "activeCase": "TARGET-023-DIMENSION-VALUE-CONTROLLED-SETUP-FIT",
+  "active_case_file": ".agent/state/cases/target-023-dimension-value-controlled-setup-fit.json",
   "lastReferenceCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
   "lastReferenceCaseFile": ".agent/state/cases/warehouse-031-warehouse-source-route-park-or-setup-fit-decision.json",
   "mode": "universaarl-target-execution",
@@ -19,29 +19,31 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "review-target-020-evidence",
-    "open-dimensions-pages-readonly-if-needed",
-    "capture-readonly-context-screenshots",
+    "review-target-022-decision",
+    "open-dimensions-page-before-write",
+    "create-or-verify-dimension-codes-and-values",
+    "open-general-ledger-setup-before-global-dimension-write",
+    "set-global-dimension-codes-if-safe",
+    "capture-before-after-reopen-screenshots",
     "write-result-and-next-step-card",
     "queue-and-state-update"
   ],
   "forbiddenActions": [
     "leave-instance",
-    "leave-playthru",
     "commit-secrets",
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
+    "leave-playthru",
     "operate-in-legacy-lab-as-active-target",
     "create-master-data",
     "create-document-or-draft",
     "preview-posting",
     "post",
     "api-shortcut",
-    "change-dimensions-setup",
     "claim-reporting-readiness-without-posted-dimension-entries"
   ],
-  "nextStep": "Review Dimensions and Dimension Values read-only before master data or document creation.",
+  "nextStep": "Run controlled setup-fit for PRODUCTLINE, COSTCENTER and CHANNEL, with screenshot QA and no master data or posting.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -70,21 +72,22 @@
     "fallbackWhenNoDecision": "investigate-readonly-first"
   },
   "latestBookDraft": {
-    "path": "playwright/projects/fibu-book5/book-drafts/universaarl-vat-setup-readiness-draft.md",
-    "area": "universaarl-vat-setup-readiness",
+    "path": "playwright/projects/fibu-book5/book-drafts/universaarl-dimensions-setup-decision-draft.md",
+    "area": "universaarl-dimensions-setup-decision",
     "status": [
       "bookdraft",
       "universaarl-target-path",
-      "vat-readonly-context-observed"
+      "dimension-setup-decision"
     ],
     "sourceCompany": "UNIVERSAARL-DE",
     "sourceInstance": "playthru",
     "evidenceBasis": [
-      "TARGET-020-VAT-SETUP-READINESS"
+      "TARGET-021-DIMENSIONS-FOUNDATION",
+      "TARGET-022-DIMENSION-VALUE-SETUP-FIT-DECISION"
     ],
-    "bookEffect": "Beginner-facing draft explains VAT Business Groups, VAT Product Groups and VAT Posting Setup without claiming German 19 percent VAT readiness.",
+    "bookEffect": "Beginner-facing draft explains the selected PRODUCTLINE, COSTCENTER and CHANNEL dimensions before master data.",
     "integratedIntoBookMaster": false,
-    "nextStep": "Review Dimensions and Dimension Values read-only before master data or document creation.",
+    "nextStep": "Run controlled setup-fit for PRODUCTLINE, COSTCENTER and CHANNEL, with screenshot QA and no master data or posting.",
     "targetCompany": "UNIVERSAARL-DE"
   },
   "bookProductionGoal": {
@@ -222,7 +225,7 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "universaarl-w1-foundation-dimensions",
+  "currentCoverageFocus": "universaarl-w1-foundation-dimensions-controlled-setup-fit",
   "nextProcessRoute": [
     "P2P-012 compared Purchase Journal, Item Journal, Purchase Invoices and Requisition Worksheet by direct page URL without search or field entry.",
     "Item Journal is the most stable observed route for material quantity/location/value effect, but it is Inventory evidence rather than full creditor P2P.",
@@ -3430,48 +3433,53 @@
       "replace-with-better-case"
     ],
     "latestDecisionCard": {
-      "currentCase": "TARGET-016I-NUMBER-SERIES-LINES-OFFICIAL-NEW-ROUTE-WRITE-GATE",
-      "plannedNextCaseBeforeReview": "TARGET-016I-NUMBER-SERIES-LINES-OFFICIAL-NEW-ROUTE-WRITE-GATE",
-      "lastEvidenceSummary": "TARGET-016H selected the Microsoft Learn-backed Number Series Lines route after Personalize/F2/cell routes failed.",
+      "currentCase": "TARGET-022-DIMENSION-VALUE-SETUP-FIT-DECISION",
+      "plannedNextCaseBeforeReview": "TARGET-022-DIMENSION-VALUE-SETUP-FIT-DECISION",
+      "lastEvidenceSummary": "TARGET-021 proved Dimensions page 560 is reachable but empty and General Ledger Setup page 118 shows Global Dimension Code 1/2 fields.",
       "isPlannedNextCaseStillSensible": true,
-      "reason": "This is the first source-backed UI write gate and touches only the U-CUST line context.",
+      "reason": "An empty dimensions list blocks meaningful dimension-aware master data and reporting examples; a source-backed setup decision is the best next step.",
       "lookaheadReviewed": [
         {
-          "caseId": "TARGET-016J-NUMBER-SERIES-LINES-TRUE-EDITOR-OR-ASSISTED-SETUP-FALLBACK",
-          "status": "needs-ui-discovery-first",
-          "reason": "Persistence is not visible after reopen."
+          "caseId": "TARGET-023-DIMENSION-VALUE-CONTROLLED-SETUP-FIT",
+          "status": "ready-next",
+          "reason": "Concrete values are selected and setup write can be performed with before/after/reopen evidence."
         },
         {
-          "caseId": "TARGET-017-NUMBER-SERIES-SETUP-ASSIGNMENT",
-          "status": "needs-setup-first",
-          "reason": "Assignments require line persistence first."
-        },
-        {
-          "caseId": "TARGET-018-CUSTOMER-MASTERDATA-PREFLIGHT",
-          "status": "needs-setup-first",
-          "reason": "Customer creation waits for assigned number series and posting setup."
-        },
-        {
-          "caseId": "TARGET-019-POSTING-GROUPS-PREFLIGHT",
+          "caseId": "TARGET-024-CORE-MASTERDATA-PLAN",
           "status": "ready-after-current",
-          "reason": "Posting groups follow foundation numbering."
+          "reason": "Master data planning should follow the dimension setup result or an explicit park decision."
         },
         {
-          "caseId": "TARGET-020-VAT-SETUP-READINESS",
-          "status": "ready-after-current",
-          "reason": "VAT setup can proceed after or alongside posting groups."
+          "caseId": "TARGET-025-CUSTOMER-VENDOR-ITEM-TEMPLATES-PREFLIGHT",
+          "status": "needs-setup-first",
+          "reason": "Templates depend on number series, posting groups, VAT and dimensions/default dimensions."
+        },
+        {
+          "caseId": "TARGET-026-VAT-SETUP-FIT-DECISION",
+          "status": "needs-source-check-first",
+          "reason": "German 19 percent VAT still needs its own source-backed setup and later preview/VAT Entry proof."
+        },
+        {
+          "caseId": "TARGET-027-FIRST-MASTERDATA-CANDIDATE",
+          "status": "needs-setup-first",
+          "reason": "First master data should wait until dimensions and VAT/posting defaults are either fitted or consciously parked."
         }
       ],
-      "queueChangesMade": [],
-      "selectedNextCase": "TARGET-016J-NUMBER-SERIES-LINES-TRUE-EDITOR-OR-ASSISTED-SETUP-FALLBACK",
-      "whySelectedNextCaseIsBest": "It avoids repeating failed value entry and forces a true editor/fallback diagnosis.",
+      "queueChangesMade": [
+        "Add TARGET-023-DIMENSION-VALUE-CONTROLLED-SETUP-FIT as the next controlled setup execution case."
+      ],
+      "selectedNextCase": "TARGET-023-DIMENSION-VALUE-CONTROLLED-SETUP-FIT",
+      "whySelectedNextCaseIsBest": "The dimension list is empty and the selected dimension set is now concrete enough for a controlled before/after/reopen setup-fit case.",
       "risksBeforeNextCase": [
-        "Do not assign setup pages before all required line ranges are visible.",
-        "Do not change gap/open checkboxes without their own gate.",
-        "Do not create master data yet."
+        "Global dimensions affect later entries and should be set before posting.",
+        "Do not create default dimensions until the parent master data records exist.",
+        "Do not claim reporting readiness until posted Dimension Set Entries exist."
       ],
       "requiredPreparation": [
-        "Review TARGET-016I screenshots and confirm whether U-CUST line persistence is visible."
+        "Open Dimensions page 560 before write.",
+        "Create PRODUCTLINE, COSTCENTER and CHANNEL with values.",
+        "Open General Ledger Setup page 118 before assigning Global Dimension Code 1/2, if the UI route is safe.",
+        "Capture after/reopen proof and stop before master data."
       ]
     }
   },
@@ -5484,5 +5492,133 @@
       "Compact page text evidence must strip Business Central shell/bootstrap metadata before writing files."
     ],
     "updatedAt": "2026-06-30T15:18:55.951Z"
+  },
+  "latestTarget021DimensionsFoundation": {
+    "caseId": "TARGET-021-DIMENSIONS-FOUNDATION",
+    "status": "observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-021-dimensions-foundation/TARGET-021-result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "readinessClassification": "dimensions-context-observed-empty-needs-setup-fit",
+    "proved": [
+      "2/2 dimension-related pages opened read-only in playthru/UNIVERSAARL-DE.",
+      "Dimensions page context is visible read-only.",
+      "Dimensions page is visible but currently shows no rows in the active view.",
+      "General Ledger Setup dimension fields are visible read-only as dimension-related setup context.",
+      "No Dimension, Dimension Value, Default Dimension, master data, document draft, preview posting or posting was created."
+    ],
+    "notProved": [
+      "No Universaarl reporting axis is marked final-ready.",
+      "No Dimension Value completeness is proven.",
+      "No Dimension Codes are visible in the Dimensions list screenshot.",
+      "No Default Dimension assignment is proven.",
+      "No Dimension Set Entry, G/L Entry or report filter result exists yet."
+    ],
+    "flags": {
+      "noPost": true,
+      "noPreview": true,
+      "noDraft": true,
+      "noMasterDataChange": true,
+      "noCompanySwitch": true,
+      "noApiShortcut": true,
+      "noSearch": true,
+      "noBookMasterChange": true,
+      "noSetupChange": true,
+      "readOnlyDirectPageRoutes": true
+    },
+    "evidenceRefs": [
+      "playwright/projects/fibu-book5/evidence/target-021-dimensions-foundation/TARGET-021-result.json",
+      "playwright/projects/fibu-book5/img/target-021-001-dimensions-list.png",
+      "playwright/projects/fibu-book5/img/target-021-002-general-ledger-global-dimensions.png"
+    ],
+    "nextCase": "TARGET-022-DIMENSION-VALUE-SETUP-FIT-DECISION",
+    "keyLearning": [
+      "Direct page URL 560 opens the Dimensions context in playthru / UNIVERSAARL-DE without Tell-Me search.",
+      "The Dimensions list is reachable but empty, so page visibility is not dimension setup readiness.",
+      "General Ledger Setup page 118 shows Global Dimension Code 1/2 fields as setup context.",
+      "No Dimension Values, Default Dimensions, Dimension Set Entries or reporting effect are proven."
+    ],
+    "updatedAt": "2026-06-30T15:30:02.573Z"
+  },
+  "latestTarget022DimensionSetupDecision": {
+    "caseId": "TARGET-022-DIMENSION-VALUE-SETUP-FIT-DECISION",
+    "status": "observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-022-dimension-value-setup-fit-decision/TARGET-022-result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "decision": {
+      "selectedRoute": "create-core-dimensions-before-master-data",
+      "reason": "TARGET-021 showed the Dimensions list is reachable but empty. Microsoft Learn states dimensions and dimension values support grouping posted entries and reporting; default dimensions can copy to journals/documents, and global/shortcut dimensions should be chosen carefully because changes after postings can be costly.",
+      "dimensionCodes": [
+        {
+          "code": "PRODUCTLINE",
+          "name": "Produktlinie",
+          "purpose": "Sales, purchase, inventory and reporting split by Universaarl offering",
+          "globalDimensionCandidate": 1,
+          "values": [
+            "SOFTWARE",
+            "SERVICE",
+            "TRAINING"
+          ]
+        },
+        {
+          "code": "COSTCENTER",
+          "name": "Kostenstelle",
+          "purpose": "Internal expense and responsibility filtering",
+          "globalDimensionCandidate": 2,
+          "values": [
+            "ADMIN",
+            "SALES",
+            "OPERATIONS"
+          ]
+        },
+        {
+          "code": "CHANNEL",
+          "name": "Vertriebskanal",
+          "purpose": "O2C and revenue analysis by direct or partner channel",
+          "globalDimensionCandidate": null,
+          "values": [
+            "DIRECT",
+            "PARTNER"
+          ]
+        }
+      ],
+      "defer": [
+        "Default Dimensions for customers, vendors and items until the first concrete master-data records exist.",
+        "Dimension Set Entry and reporting proof until first posted documents with dimensions exist.",
+        "Dimension combinations and priorities until more than one default source can conflict."
+      ],
+      "nextExecutionCase": "TARGET-023-DIMENSION-VALUE-CONTROLLED-SETUP-FIT"
+    },
+    "proved": [
+      "TARGET-021 evidence was reviewed: Dimensions page 560 is reachable but empty in UNIVERSAARL-DE.",
+      "TARGET-021 evidence was reviewed: General Ledger Setup page 118 shows Global Dimension Code 1/2 fields.",
+      "A source-backed target dimension set was selected before master data creation: PRODUCTLINE, COSTCENTER and CHANNEL.",
+      "No Business Central UI action, setup write, master data, draft, preview or posting was executed by TARGET-022."
+    ],
+    "notProved": [
+      "The selected dimensions are not yet created in Business Central.",
+      "Global Dimension Code 1/2 are not yet assigned.",
+      "Default Dimensions are not yet assigned to customers, vendors, items or accounts.",
+      "No Dimension Set Entry, G/L Entry, VAT Entry, Item Entry or reporting result exists yet."
+    ],
+    "flags": {
+      "noPost": true,
+      "noPreview": true,
+      "noDraft": true,
+      "noMasterDataChange": true,
+      "noCompanySwitch": true,
+      "noApiShortcut": true,
+      "noSearch": true,
+      "noBookMasterChange": true,
+      "noSetupChange": true,
+      "decisionOnly": true
+    },
+    "evidenceRefs": [
+      "playwright/projects/fibu-book5/evidence/target-022-dimension-value-setup-fit-decision/TARGET-022-result.json",
+      "playwright/projects/fibu-book5/evidence/target-021-dimensions-foundation/TARGET-021-result.json"
+    ],
+    "nextCase": "TARGET-023-DIMENSION-VALUE-CONTROLLED-SETUP-FIT",
+    "updatedAt": "2026-06-30T15:35:15.526Z"
   }
 }

@@ -326,3 +326,5 @@ Regeln:
 - If a direct setup page opens with visible `Neu`, `Bearbeiten`, `Buchen` or `Buchungsvorschau` text, record it as visible-but-not-clicked. Do not click command-bar actions during read-only preflight.
 - TARGET-020 extends the route list for USt/VAT setup: VAT Business Posting Groups (470), VAT Product Posting Groups (471) and VAT Posting Setup (472).
 - Compact page-text snapshots must filter Business Central shell/bootstrap lines such as `allowedEndpoints`, `allowedResources`, `clientId`, `authority`, `parentPageOrigin` and `upn` before writing Evidence. Screenshots and text snapshots should prove the setup context, not expose browser/session metadata.
+- TARGET-021 extends the route list for Dimensions: Dimensions context (560) and General Ledger Setup global dimension fields (118). An empty Dimensions list is a useful finding, not a setup success.
+- If compact BC text contains mojibake, normalize it before writing result/text evidence. The screenshot remains the visual source; JSON and `.txt` evidence must stay readable and token-light.

@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-023-DIMENSION-VALUE-CONTROLLED-SETUP-FIT",
+  "title": "Controlled setup fit for Universaarl dimensions and values",
+  "status": "planned",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "workType": "foundation-dimensions-controlled-setup-fit",
+  "taskClass": "judge_work",
+  "sourceEvidence": [
+    "TARGET-021-DIMENSIONS-FOUNDATION",
+    "TARGET-022-DIMENSION-VALUE-SETUP-FIT-DECISION"
+  ],
+  "purpose": "Create or verify PRODUCTLINE, COSTCENTER and CHANNEL dimensions with selected values, then set safe global dimensions only with before/after/reopen proof.",
+  "allowedActions": [
+    "review-target-022-decision",
+    "open-dimensions-page-before-write",
+    "create-or-verify-dimension-codes-and-values",
+    "open-general-ledger-setup-before-global-dimension-write",
+    "set-global-dimension-codes-if-safe",
+    "capture-before-after-reopen-screenshots",
+    "write-result-and-next-step-card",
+    "queue-and-state-update"
+  ],
+  "forbiddenActions": [
+    "leave-playthru",
+    "operate-in-legacy-lab-as-active-target",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "api-shortcut",
+    "claim-reporting-readiness-without-posted-dimension-entries"
+  ],
+  "defaultLockedActionsUnlockedForThisCase": [
+    "setup-change"
+  ],
+  "targetDimensionPlan": [
+    {
+      "code": "PRODUCTLINE",
+      "name": "Produktlinie",
+      "purpose": "Sales, purchase, inventory and reporting split by Universaarl offering",
+      "globalDimensionCandidate": 1,
+      "values": [
+        "SOFTWARE",
+        "SERVICE",
+        "TRAINING"
+      ]
+    },
+    {
+      "code": "COSTCENTER",
+      "name": "Kostenstelle",
+      "purpose": "Internal expense and responsibility filtering",
+      "globalDimensionCandidate": 2,
+      "values": [
+        "ADMIN",
+        "SALES",
+        "OPERATIONS"
+      ]
+    },
+    {
+      "code": "CHANNEL",
+      "name": "Vertriebskanal",
+      "purpose": "O2C and revenue analysis by direct or partner channel",
+      "globalDimensionCandidate": null,
+      "values": [
+        "DIRECT",
+        "PARTNER"
+      ]
+    }
+  ],
+  "entryCriteria": [
+    "TARGET-022 selected PRODUCTLINE, COSTCENTER and CHANNEL with starter values.",
+    "TARGET-021 proved the Dimensions list is currently empty/reachable.",
+    "No master data or posting exists that would be affected by changing historical dimension assignments."
+  ],
+  "exitCriteria": [
+    "Before/after/reopen proof exists for created or verified dimension codes and values.",
+    "If global dimensions are assigned, before/after/reopen proof exists on General Ledger Setup.",
+    "No master data, document, preview or posting is executed."
+  ],
+  "lookahead": [
+    {
+      "caseId": "TARGET-023-DIMENSION-VALUE-CONTROLLED-SETUP-FIT",
+      "status": "ready-next",
+      "reason": "Concrete values are selected and setup write can be performed with before/after/reopen evidence."
+    },
+    {
+      "caseId": "TARGET-024-CORE-MASTERDATA-PLAN",
+      "status": "ready-after-current",
+      "reason": "Master data planning should follow the dimension setup result or an explicit park decision."
+    },
+    {
+      "caseId": "TARGET-025-CUSTOMER-VENDOR-ITEM-TEMPLATES-PREFLIGHT",
+      "status": "needs-setup-first",
+      "reason": "Templates depend on number series, posting groups, VAT and dimensions/default dimensions."
+    },
+    {
+      "caseId": "TARGET-026-VAT-SETUP-FIT-DECISION",
+      "status": "needs-source-check-first",
+      "reason": "German 19 percent VAT still needs its own source-backed setup and later preview/VAT Entry proof."
+    },
+    {
+      "caseId": "TARGET-027-FIRST-MASTERDATA-CANDIDATE",
+      "status": "needs-setup-first",
+      "reason": "First master data should wait until dimensions and VAT/posting defaults are either fitted or consciously parked."
+    }
+  ],
+  "nextStep": "Run controlled setup-fit for PRODUCTLINE, COSTCENTER and CHANNEL, with screenshot QA and no master data or posting.",
+  "createdAt": "2026-06-30T15:35:15.526Z",
+  "updatedAt": "2026-06-30T15:35:15.526Z"
+}

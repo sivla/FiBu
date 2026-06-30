@@ -1,76 +1,18 @@
 {
   "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
   "caseId": "TARGET-021-DIMENSIONS-FOUNDATION",
-  "title": "Dimensions foundation after VAT setup context",
-  "status": "done",
+  "source": "playwright-universaarl-dimensions-readonly-foundation",
+  "resultStatus": "observed",
+  "runPlanId": "TARGET-021-DIMENSIONS-FOUNDATION-PLAN",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "workType": "foundation-dimensions-readiness",
-  "taskClass": "judge_work",
-  "sourceEvidence": [
-    "TARGET-020-VAT-SETUP-READINESS"
-  ],
-  "purpose": "Inspect and classify Dimensions and Dimension Values before master data, documents, reporting or posting.",
-  "allowedActions": [
-    "review-target-020-evidence",
-    "open-dimensions-pages-readonly-if-needed",
-    "capture-readonly-context-screenshots",
-    "write-result-and-next-step-card",
-    "queue-and-state-update"
-  ],
-  "forbiddenActions": [
-    "leave-playthru",
-    "operate-in-legacy-lab-as-active-target",
-    "create-master-data",
-    "create-document-or-draft",
-    "preview-posting",
-    "post",
-    "api-shortcut",
-    "change-dimensions-setup",
-    "claim-reporting-readiness-without-posted-dimension-entries"
-  ],
-  "entryCriteria": [
-    "TARGET-020 observed VAT setup context read-only.",
-    "No VAT setup, master data or document has been created for Universaarl process cases."
-  ],
-  "exitCriteria": [
-    "Dimensions and Dimension Values are classified as observed, blocked or requiring setup fit.",
-    "No reporting or posting claim is made without later Dimension Set Entry proof."
-  ],
-  "lookahead": [
-    {
-      "caseId": "TARGET-021-DIMENSIONS-FOUNDATION",
-      "status": "ready-next",
-      "reason": "Dimensions are the next non-posting foundation dependency after VAT context classification."
-    },
-    {
-      "caseId": "TARGET-022-CORE-MASTERDATA-PLAN",
-      "status": "needs-setup-first",
-      "reason": "Master data still waits for dimensions and template/default decisions."
-    },
-    {
-      "caseId": "TARGET-023-CUSTOMER-VENDOR-ITEM-TEMPLATES-PREFLIGHT",
-      "status": "needs-setup-first",
-      "reason": "Templates depend on posting groups, VAT and dimensions."
-    },
-    {
-      "caseId": "TARGET-024-FIRST-MASTERDATA-CANDIDATE",
-      "status": "needs-setup-first",
-      "reason": "First master data needs a clear foundation and Smart Decision."
-    },
-    {
-      "caseId": "TARGET-025-VAT-SETUP-FIT-DECISION",
-      "status": "needs-source-check-first",
-      "reason": "Only needed before a concrete 19 percent VAT document path."
-    }
-  ],
-  "nextStep": "Review Dimensions and Dimension Values read-only before master data or document creation.",
-  "createdAt": "2026-06-30T15:18:55.951Z",
-  "updatedAt": "2026-06-30T15:30:02.573Z",
-  "resultStatus": "observed",
-  "completedAt": "2026-06-30T15:30:02.573Z",
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-021-dimensions-foundation/TARGET-021-result.json",
   "readinessClassification": "dimensions-context-observed-empty-needs-setup-fit",
+  "sourceRefs": [
+    "Microsoft Learn: Work with dimensions - https://learn.microsoft.com/en-us/dynamics365/business-central/finance-dimensions"
+  ],
   "proved": [
     "2/2 dimension-related pages opened read-only in playthru/UNIVERSAARL-DE.",
     "Dimensions page context is visible read-only.",
@@ -85,10 +27,61 @@
     "No Default Dimension assignment is proven.",
     "No Dimension Set Entry, G/L Entry or report filter result exists yet."
   ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/target-021-dimensions-foundation/TARGET-021-result.json",
+    "playwright/projects/fibu-book5/evidence/target-021-dimensions-foundation/README.md",
+    "playwright/projects/fibu-book5/evidence/target-021-dimensions-foundation/*.txt",
+    "playwright/projects/fibu-book5/evidence/target-021-dimensions-foundation/*.screenshot.json",
+    "playwright/projects/fibu-book5/img/target-021-*.png"
+  ],
   "evidenceRefs": [
     "playwright/projects/fibu-book5/evidence/target-021-dimensions-foundation/TARGET-021-result.json",
     "playwright/projects/fibu-book5/img/target-021-001-dimensions-list.png",
     "playwright/projects/fibu-book5/img/target-021-002-general-ledger-global-dimensions.png"
+  ],
+  "pages": [
+    {
+      "id": "dimensions-list",
+      "pageId": 560,
+      "label": "Dimensionen / Dimensions",
+      "status": "observed",
+      "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=560&company=UNIVERSAARL-DE",
+      "screenshot": "playwright/projects/fibu-book5/img/target-021-001-dimensions-list.png",
+      "textFile": "playwright/projects/fibu-book5/evidence/target-021-dimensions-foundation/dimensions-list.txt",
+      "textSignals": [
+        "Dynamics 365 Business Central",
+        "Dimensionswerteuebersicht:",
+        "Code",
+        "Name",
+        "(In dieser Ansicht kann nichts angezeigt werden)"
+      ],
+      "visibleWarnings": [],
+      "reason": "Expected dimension setup page text is visible."
+    },
+    {
+      "id": "general-ledger-global-dimensions",
+      "pageId": 118,
+      "label": "Finanzbuchhaltung Einrichtung / General Ledger Setup",
+      "status": "observed",
+      "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=118&company=UNIVERSAARL-DE",
+      "screenshot": "playwright/projects/fibu-book5/img/target-021-002-general-ledger-global-dimensions.png",
+      "textFile": "playwright/projects/fibu-book5/evidence/target-021-dimensions-foundation/general-ledger-global-dimensions.txt",
+      "textSignals": [
+        "Finanzbuchhaltung Einrichtung",
+        "Globale Dimensionen aendern...",
+        "Dimensionen",
+        "Globaler Dimensionscode 1",
+        "Globaler Dimensionscode 2"
+      ],
+      "visibleWarnings": [
+        "Posting/preview action text may be visible but was not clicked."
+      ],
+      "reason": "Expected dimension setup page text is visible."
+    }
+  ],
+  "blockedBy": [],
+  "warnings": [
+    "Posting/preview action text may be visible but was not clicked."
   ],
   "flags": {
     "noPost": true,
@@ -148,5 +141,8 @@
       "Keep Microsoft Learn dimensions source linked for setup-fit and book text."
     ]
   },
-  "nextCase": "TARGET-022-DIMENSION-VALUE-SETUP-FIT-DECISION"
+  "requiresReview": false,
+  "safeToFinalizeState": false,
+  "statePatch": {},
+  "reason": "Dimensions foundation context observed without setup or data changes."
 }

@@ -245,6 +245,15 @@ Screenshot-QA zu TARGET-019B: Die Bilder zeigen erreichbare Setupkontexte. Sie s
 
 Screenshot-QA zu TARGET-020: Diese Bilder zeigen nur die USt-Setup-Ebenen. Sie duerfen im Buch erklaeren, welche Seiten vor einem deutschen USt-Beleg geprueft werden. Sie beweisen noch keine 19-Prozent-USt, keine Kontenrichtigkeit und keine Buchungswirkung.
 
+## Universaarl Foundation - Dimensionen TARGET-021
+
+| Screenshot | Page | Company/Kontext | Schritt | Was man sehen soll | Interner Beweis | Beweist nicht | Status |
+|---|---|---|---|---|---|---|---|
+| `target-021-001-dimensions-list.png` | Dimensionswerteuebersicht / Dimensionen, Page 560 | `playthru` / `UNIVERSAARL-DE` | Read-only Dimensionen-Kontext | Die Liste zeigt die Spalten `Code` und `Name`, aber keine Zeilen; die Meldung sagt, dass in dieser Ansicht nichts angezeigt werden kann | Die Dimensionsseite ist erreichbar und aktuell leer sichtbar | angelegte Dimensionscodes, Dimensionswerte, Standarddimensionen, Reportingwirkung | `universaarl-readonly-candidate`, `empty-setup-context` |
+| `target-021-002-general-ledger-global-dimensions.png` | Finanzbuchhaltung Einrichtung / General Ledger Setup, Page 118 | `playthru` / `UNIVERSAARL-DE` | Read-only globale Dimensionen | Im Abschnitt `Dimensionen` sind `Globaler Dimensionscode 1` und `Globaler Dimensionscode 2` sichtbar | Die Felder fuer globale Dimensionen sind als Setup-Kontext erreichbar | gespeicherte globale Dimensionen, Dimension Set Entries, Sachposten, Reportingwirkung | `universaarl-readonly-candidate`, `setup-context-not-reporting-proof` |
+
+Screenshot-QA zu TARGET-021: Das erste Bild ist gerade wegen der leeren Liste wertvoll. Es beweist nicht, dass Dimensionen eingerichtet sind, sondern dass vor Stammdaten ein Setup-Fit-Entscheid noetig ist. Das zweite Bild erklaert, wo globale Dimensionen in Business Central sitzen; es ist kein Beweis fuer gesetzte Werte oder fuer spaetere Berichte.
+
 ## Qualitaetsfelder fuer neue Screenshot-Metadaten
 
 Neue oder ueberarbeitete `.screenshot.json`-Dateien sollen diese Felder tragen:

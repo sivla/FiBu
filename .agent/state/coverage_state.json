@@ -341,7 +341,7 @@
       "chapter": "Kapitel 6",
       "status": "in-progress",
       "currentBlock": "vat-setup-readiness-next",
-      "latestPracticalCase": "TARGET-019B-POSTING-GROUPS-READONLY-PREFLIGHT",
+      "latestPracticalCase": "TARGET-021-DIMENSIONS-FOUNDATION",
       "latestGovernanceCase": "UNIVERSAARL-001-TARGET-TRANSITION-GOVERNANCE",
       "targetInstance": "playthru",
       "targetCompany": "UNIVERSAARL-DE",
@@ -358,9 +358,12 @@
         "TARGET-017B found visible Purchase Order Nos. candidates but did not assign U-PO.",
         "TARGET-017B did not find visible Customer Nos. or Item Nos. setup-card fields after controlled expansion.",
         "Master data must wait until numbering gaps are consciously parked or resolved plus posting groups, VAT and dimensions are ready.",
-        "TARGET-019B proves page context only; posting group completeness and account correctness are not proven."
+        "TARGET-019B proves page context only; posting group completeness and account correctness are not proven.",
+        "No Dimension Codes or Dimension Values are visible yet in UNIVERSAARL-DE.",
+        "No Default Dimensions, Dimension Set Entries, G/L Entries or reporting dimension effect are proven.",
+        "TARGET-022 is decision-only; dimensions are not yet created in Business Central."
       ],
-      "nextCase": "TARGET-020-VAT-SETUP-READINESS",
+      "nextCase": "TARGET-023-DIMENSION-VALUE-CONTROLLED-SETUP-FIT",
       "nextStep": "Run TARGET-020: inspect VAT setup readiness and source boundaries before any German VAT claim, setup change, document preview or posting.",
       "latestReadonlyContextCase": "PREP-033-MY-SETTINGS-READONLY-CONTEXT",
       "latestReadonlyContextResult": "playwright/projects/fibu-book5/evidence/prep-033-my-settings-readonly-context/PREP-033-result.json",
@@ -417,7 +420,10 @@
         "Firmendaten shows Universaarl GmbH as saved company name",
         "General Ledger Setup, No. Series, General Posting Setup, VAT Posting Setup and Dimensions open read-only in UNIVERSAARL-DE",
         "Number Series page 456 shows BANKEINZ, CT-MSG and VATNOTIF read-only",
-        "General Posting Setup, Customer Posting Groups, Vendor Posting Groups, Inventory Posting Setup and VAT Posting Setup opened read-only in UNIVERSAARL-DE"
+        "General Posting Setup, Customer Posting Groups, Vendor Posting Groups, Inventory Posting Setup and VAT Posting Setup opened read-only in UNIVERSAARL-DE",
+        "Dimensions page 560 reachable read-only but empty in playthru / UNIVERSAARL-DE.",
+        "General Ledger Setup page 118 shows Global Dimension Code 1/2 fields read-only.",
+        "TARGET-022 selected PRODUCTLINE, COSTCENTER and CHANNEL as starter dimensions before master data."
       ],
       "latestTarget010CompanyContext": {
         "status": "observed",
@@ -570,7 +576,7 @@
         ],
         "updatedAt": "2026-06-30T14:51:37.116Z"
       },
-      "latestDecisionCase": "TARGET-019-POSTING-GROUPS-PREFLIGHT-OR-NUMBERING-PARK-DECISION"
+      "latestDecisionCase": "TARGET-022-DIMENSION-VALUE-SETUP-FIT-DECISION"
     },
     "universaarlUsecaseBacklog": {
       "chapter": "cross-book",
@@ -3618,6 +3624,77 @@
         "No Preview Posting, VAT Entry or G/L Entry exists."
       ],
       "nextCase": "TARGET-021-DIMENSIONS-FOUNDATION"
+    },
+    "dimensionsReadiness": {
+      "status": "in-progress-readonly-context-observed-empty",
+      "caseId": "TARGET-021-DIMENSIONS-FOUNDATION",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-021-dimensions-foundation/TARGET-021-result.json",
+      "pages": [
+        {
+          "id": "dimensions-list",
+          "pageId": 560,
+          "status": "observed"
+        },
+        {
+          "id": "general-ledger-global-dimensions",
+          "pageId": 118,
+          "status": "observed"
+        }
+      ],
+      "limits": [
+        "No Universaarl reporting axis is marked final-ready.",
+        "No Dimension Value completeness is proven.",
+        "No Dimension Codes are visible in the Dimensions list screenshot.",
+        "No Default Dimension assignment is proven.",
+        "No Dimension Set Entry, G/L Entry or report filter result exists yet."
+      ],
+      "nextCase": "TARGET-022-DIMENSION-VALUE-SETUP-FIT-DECISION"
+    },
+    "dimensionSetupDecision": {
+      "status": "decision-only-ready-for-controlled-setup-fit",
+      "caseId": "TARGET-022-DIMENSION-VALUE-SETUP-FIT-DECISION",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-022-dimension-value-setup-fit-decision/TARGET-022-result.json",
+      "selectedDimensions": [
+        {
+          "code": "PRODUCTLINE",
+          "name": "Produktlinie",
+          "purpose": "Sales, purchase, inventory and reporting split by Universaarl offering",
+          "globalDimensionCandidate": 1,
+          "values": [
+            "SOFTWARE",
+            "SERVICE",
+            "TRAINING"
+          ]
+        },
+        {
+          "code": "COSTCENTER",
+          "name": "Kostenstelle",
+          "purpose": "Internal expense and responsibility filtering",
+          "globalDimensionCandidate": 2,
+          "values": [
+            "ADMIN",
+            "SALES",
+            "OPERATIONS"
+          ]
+        },
+        {
+          "code": "CHANNEL",
+          "name": "Vertriebskanal",
+          "purpose": "O2C and revenue analysis by direct or partner channel",
+          "globalDimensionCandidate": null,
+          "values": [
+            "DIRECT",
+            "PARTNER"
+          ]
+        }
+      ],
+      "limits": [
+        "The selected dimensions are not yet created in Business Central.",
+        "Global Dimension Code 1/2 are not yet assigned.",
+        "Default Dimensions are not yet assigned to customers, vendors, items or accounts.",
+        "No Dimension Set Entry, G/L Entry, VAT Entry, Item Entry or reporting result exists yet."
+      ],
+      "nextCase": "TARGET-023-DIMENSION-VALUE-CONTROLLED-SETUP-FIT"
     }
   }
 }
