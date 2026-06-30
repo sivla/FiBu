@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-30T16:04:48.556Z",
+  "updatedAt": "2026-06-30T16:26:42.623Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-w1-foundation-dimension-values-route-recovery",
-  "activeCase": "TARGET-023B-DIMENSION-VALUES-ROUTE-RECOVERY",
-  "active_case_file": ".agent/state/cases/target-023b-dimension-values-route-recovery.json",
+  "activeArea": "universaarl-w1-foundation-global-dimension-assignment",
+  "activeCase": "TARGET-024B-GLOBAL-DIMENSION-ASSIGNMENT",
+  "active_case_file": ".agent/state/cases/target-024b-global-dimension-assignment.json",
   "lastReferenceCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
   "lastReferenceCaseFile": ".agent/state/cases/warehouse-031-warehouse-source-route-park-or-setup-fit-decision.json",
   "mode": "universaarl-target-execution",
@@ -19,12 +19,13 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "review-target-023-result",
-    "open-dimension-values-page-with-direct-filter",
-    "inspect-edit-list-new-row-controls",
-    "use-page-inspection-or-personalize-if-needed",
-    "create-or-verify-missing-dimension-values-only",
-    "capture-control-map-and-after-reopen-screenshots",
+    "review-target-023b-result",
+    "open-general-ledger-setup-page-directly",
+    "prove-current-global-dimension-fields",
+    "expand-fasttabs-or-wide-layout-if-needed",
+    "set-or-verify-global-dimension-code-1-productline",
+    "set-or-verify-global-dimension-code-2-costcenter",
+    "capture-before-after-reopen-screenshots",
     "write-result-and-next-step-card",
     "queue-and-state-update"
   ],
@@ -43,7 +44,7 @@
     "api-shortcut",
     "claim-reporting-readiness-without-posted-dimension-entries"
   ],
-  "nextStep": "Recover the missing Dimension Values route for PRODUCTLINE.SERVICE/TRAINING, COSTCENTER.SALES/OPERATIONS and CHANNEL.PARTNER before master data.",
+  "nextStep": "Assign/prove PRODUCTLINE and COSTCENTER as Global Dimension Code 1/2 in General Ledger Setup before master data.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -1347,8 +1348,8 @@
     "decision": "Approve a separate no-post Payment Journal preflight for Vendor Ledger document 108205. Do not use Payment Reconciliation Apply/Post for this target. BANK-018 may create exactly one scoped draft line, run Journal Check/open Apply Entries if reachable, and must cleanup or explicitly document keep status. Posting remains locked.",
     "nextStep": "BANK-018: controlled no-post Payment Journal preflight for 108205; do not post."
   },
-  "workType": "warehouse-source-document-action-on-draft",
-  "lastCompletedCase": "TARGET-017-NUMBER-SERIES-SETUP-ASSIGNMENT",
+  "workType": "foundation-global-dimension-assignment",
+  "lastCompletedCase": "TARGET-023B-DIMENSION-VALUES-ROUTE-RECOVERY",
   "latestBank018": {
     "caseId": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
     "status": [
@@ -3806,7 +3807,7 @@
   },
   "activeCaseFile": ".agent/state/cases/prep-034-role-center-readonly-shell-map.json",
   "previousCase": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
-  "nextCase": "TARGET-017B-NUMBER-SERIES-SETUP-FIELD-DISCOVERY",
+  "nextCase": "TARGET-024B-GLOBAL-DIMENSION-ASSIGNMENT",
   "latestPrepCase": {
     "caseId": "PREP-034-ROLE-CENTER-READONLY-SHELL-MAP",
     "status": "prep-observed",
@@ -5750,5 +5751,21 @@
     ],
     "nextCase": "TARGET-023B-DIMENSION-VALUES-ROUTE-RECOVERY",
     "updatedAt": "2026-06-30T16:04:48.556Z"
+  },
+  "latestDimensionValueRouteRecovery": {
+    "caseId": "TARGET-023B-DIMENSION-VALUES-ROUTE-RECOVERY",
+    "status": "observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-023b-dimension-values-route-recovery/TARGET-023B-result.json",
+    "summary": "TARGET-023B recovered all missing Dimension Values with reopen proof.",
+    "values": [
+      "PRODUCTLINE.SERVICE:already-exists",
+      "PRODUCTLINE.TRAINING:already-exists",
+      "COSTCENTER.SALES:already-exists",
+      "COSTCENTER.OPERATIONS:already-exists",
+      "CHANNEL.PARTNER:created"
+    ],
+    "playwrightLearning": "For additional Dimension Values, direct filtered page 537 plus header typing is rejected; reliable route is Dimensions page 536 -> select dimension row -> Dimension -> Dimensionswerte -> last input row -> reopen proof.",
+    "nextCase": "TARGET-024B-GLOBAL-DIMENSION-ASSIGNMENT",
+    "updatedAt": "2026-06-30T16:26:42.623Z"
   }
 }

@@ -1,107 +1,92 @@
 {
   "schemaVersion": 1,
-  "runId": "TARGET-023-20260630",
-  "caseId": "TARGET-023-DIMENSION-VALUE-CONTROLLED-SETUP-FIT",
-  "lastCase": "TARGET-023-DIMENSION-VALUE-CONTROLLED-SETUP-FIT",
-  "status": "partial-blocked",
-  "summary": "TARGET-023 verified Universaarl dimension codes PRODUCTLINE, COSTCENTER and CHANNEL and first values SOFTWARE, ADMIN and DIRECT; additional starter values remain blocked by the Dimension Values row-entry route.",
+  "updatedAt": "2026-06-30T16:26:42.623Z",
+  "caseId": "TARGET-023B-DIMENSION-VALUES-ROUTE-RECOVERY",
+  "status": "observed",
+  "summary": "TARGET-023B recovered all missing Dimension Values with reopen proof.",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "posted": false,
-  "previewPosting": false,
-  "setupChanged": true,
-  "setupWriteAttempted": true,
-  "masterDataChanged": false,
-  "apiShortcut": false,
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-023b-dimension-values-route-recovery/TARGET-023B-result.json",
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/target-023-dimension-value-controlled-setup-fit/TARGET-023-result.json",
-    "playwright/projects/fibu-book5/img/target-023-010-dimensions-before.png",
-    "playwright/projects/fibu-book5/img/target-023-productline-values-after.png",
-    "playwright/projects/fibu-book5/img/target-023-costcenter-values-after.png",
-    "playwright/projects/fibu-book5/img/target-023-channel-values-after.png",
-    "playwright/projects/fibu-book5/img/target-023-090-dimensions-after-reopen.png",
-    "playwright/projects/fibu-book5/img/target-023-095-general-ledger-setup-dimension-context.png"
+    "playwright/projects/fibu-book5/evidence/target-023b-dimension-values-route-recovery/TARGET-023B-result.json",
+    "playwright/projects/fibu-book5/img/target-023b-productline-090-final-reopen.png",
+    "playwright/projects/fibu-book5/img/target-023b-costcenter-090-final-reopen.png",
+    "playwright/projects/fibu-book5/img/target-023b-channel-090-final-reopen.png"
   ],
-  "resultPaths": [
-    "playwright/projects/fibu-book5/evidence/target-023-dimension-value-controlled-setup-fit/TARGET-023-result.json"
-  ],
+  "flags": {
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noMasterDataChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noSearch": true,
+    "noBookMasterChange": true,
+    "setupWriteAttempted": true,
+    "setupChanged": true
+  },
   "proved": [
-    "Dimensions page 536 was opened in playthru/UNIVERSAARL-DE before and after the setup fit.",
-    "PRODUCTLINE, COSTCENTER and CHANNEL are visible after reopening the Dimensions list.",
+    "Dimension Values page 537 was operated only in playthru / UNIVERSAARL-DE.",
+    "The route used filtered Dimension Values pages and visual Code/Name column headers as anchors.",
+    "CHANNEL.PARTNER is visible after reopen.",
+    "PRODUCTLINE.SERVICE was already visible before write attempt.",
+    "PRODUCTLINE.TRAINING was already visible before write attempt.",
+    "COSTCENTER.SALES was already visible before write attempt.",
+    "COSTCENTER.OPERATIONS was already visible before write attempt.",
     "No master data, document draft, preview posting, posting, company switch or API shortcut was executed."
   ],
   "notProved": [
-    "Global Dimension Code 1/2 assignment is not proven by TARGET-023.",
-    "Default Dimensions for customers, vendors, items or accounts are not proven.",
-    "Dimension Set Entries, posted entries and reporting filters are not proven.",
-    "PRODUCTLINE.SERVICE: PRODUCTLINE.SERVICE war nach Reopen nicht sichtbar.",
-    "PRODUCTLINE.TRAINING: PRODUCTLINE.TRAINING war nach Reopen nicht sichtbar.",
-    "COSTCENTER.SALES: COSTCENTER.SALES war nach Reopen nicht sichtbar.",
-    "COSTCENTER.OPERATIONS: COSTCENTER.OPERATIONS war nach Reopen nicht sichtbar.",
-    "CHANNEL.PARTNER: CHANNEL.PARTNER war nach Reopen nicht sichtbar."
+    "No Global Dimension Code 1/2 assignment is proven.",
+    "No Default Dimensions for master data are proven.",
+    "No Dimension Set Entries, posted entries or reporting filters are proven."
   ],
-  "blockedBy": [
-    "PRODUCTLINE.SERVICE: PRODUCTLINE.SERVICE war nach Reopen nicht sichtbar.",
-    "PRODUCTLINE.TRAINING: PRODUCTLINE.TRAINING war nach Reopen nicht sichtbar.",
-    "COSTCENTER.SALES: COSTCENTER.SALES war nach Reopen nicht sichtbar.",
-    "COSTCENTER.OPERATIONS: COSTCENTER.OPERATIONS war nach Reopen nicht sichtbar.",
-    "CHANNEL.PARTNER: CHANNEL.PARTNER war nach Reopen nicht sichtbar."
-  ],
-  "nextCase": "TARGET-023B-DIMENSION-VALUES-ROUTE-RECOVERY",
-  "nextStep": "Recover the missing Dimension Values route for PRODUCTLINE.SERVICE/TRAINING, COSTCENTER.SALES/OPERATIONS and CHANNEL.PARTNER before master data.",
+  "blockedBy": [],
+  "nextCase": "TARGET-024B-GLOBAL-DIMENSION-ASSIGNMENT",
+  "nextStep": "Assign/prove PRODUCTLINE and COSTCENTER as Global Dimension Code 1/2 in General Ledger Setup before master data.",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-023-DIMENSION-VALUE-CONTROLLED-SETUP-FIT",
+    "currentCase": "TARGET-023B-DIMENSION-VALUES-ROUTE-RECOVERY",
     "plannedNextCaseBeforeReview": "TARGET-024-CORE-MASTERDATA-PLAN",
-    "lastEvidenceSummary": "TARGET-022 selected PRODUCTLINE, COSTCENTER and CHANNEL based on TARGET-021 empty dimension context and Microsoft Learn dimension guidance.",
-    "isPlannedNextCaseStillSensible": false,
-    "reason": "Dimension setup fit is blocked; master data planning should wait or explicitly park the blocked values.",
+    "lastEvidenceSummary": "TARGET-023 proved the three Dimension Codes and first Dimension Values, but five remaining values were blocked by the prior cell-edit route.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "All planned starter Dimension Values are now visible; master data can use the foundation after Global Dimension assignment is handled.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-024-CORE-MASTERDATA-PLAN",
-        "status": "needs-setup-first",
-        "reason": "Master data should use the new dimension design only after dimensions/values are visible."
+        "caseId": "TARGET-024B-GLOBAL-DIMENSION-ASSIGNMENT",
+        "status": "ready-next",
+        "reason": "PRODUCTLINE and COSTCENTER can become Global Dimension Code 1/2 only after values are complete enough."
       },
       {
-        "caseId": "TARGET-024B-GLOBAL-DIMENSION-ASSIGNMENT",
+        "caseId": "TARGET-024-CORE-MASTERDATA-PLAN",
         "status": "ready-after-current",
-        "reason": "Global Dimension Code 1/2 assignment needs its own field route and before/after/reopen proof."
+        "reason": "Customer/vendor/item planning should reference finished dimensions and values."
       },
       {
         "caseId": "TARGET-025-CUSTOMER-VENDOR-ITEM-TEMPLATES-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "Templates depend on master-data plan, VAT/defaults and dimension defaults."
+        "reason": "Template defaults need posting groups, VAT and dimension/default-dimension decisions."
       },
       {
         "caseId": "TARGET-026-VAT-SETUP-FIT-DECISION",
         "status": "needs-source-check-first",
-        "reason": "German VAT setup still needs its own source-backed setup decision before document preview."
+        "reason": "German VAT setup needs source-backed setup decision before documents."
       },
       {
         "caseId": "TARGET-027-FIRST-MASTERDATA-CANDIDATE",
         "status": "needs-setup-first",
-        "reason": "First customer/vendor/item should wait for master-data plan and default-dimension decision."
+        "reason": "First master data should wait for foundation setup and default dimensions."
       }
     ],
-    "queueChangesMade": [
-      "Mark TARGET-023 partial-blocked and insert TARGET-023B before TARGET-024 master data planning."
-    ],
-    "selectedNextCase": "TARGET-023B-DIMENSION-VALUES-ROUTE-RECOVERY",
-    "whySelectedNextCaseIsBest": "The current route did not safely finish dimension values, so another UI route or park decision is required before master data.",
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-024B-GLOBAL-DIMENSION-ASSIGNMENT",
+    "whySelectedNextCaseIsBest": "The dimension-value blocker is gone; the next dependency is Global Dimension assignment before master data.",
     "risksBeforeNextCase": [
       "Do not claim reporting readiness before posted entries with dimensions exist.",
-      "Do not silently assign default dimensions to master data without a separate case.",
-      "Do not treat Global Dimension Code 1/2 as assigned in TARGET-023."
+      "Do not create master data until default dimension strategy is clear.",
+      "Do not treat Global Dimension Code 1/2 as assigned by this case."
     ],
     "requiredPreparation": [
-      "Use TARGET-023 screenshots as setup foundation only.",
-      "Plan Global Dimension assignment separately if it is required before first documents."
+      "Open General Ledger Setup and prove/set Global Dimension Code 1/2 in a separate case."
     ]
   },
-  "noPreview": true,
-  "noPosting": true,
-  "noMasterData": true,
-  "noDraft": true,
-  "noBookChange": false,
-  "noCompanySwitch": true,
-  "updatedAt": "2026-06-30T16:04:48.556Z"
+  "runId": "TARGET-023B-DIMENSION-VALUES-ROUTE-RECOVERY-2026-06-30T16-26-42-623Z"
 }

@@ -30,16 +30,18 @@ Deshalb wird zuerst die Dimensionsbasis angelegt. Danach folgen Kunden, Lieferan
 
 Die Seite `Dimensionen` zeigt die drei Dimensionen `PRODUCTLINE`, `COSTCENTER` und `CHANNEL`. Damit sind die Auswertungsachsen fuer die Universaarl GmbH angelegt.
 
-Auf der Seite `Dimensionswerte` ist je Dimension bereits ein erster Wert sichtbar:
+Auf der Seite `Dimensionswerte` sind die Startwerte jetzt sichtbar:
 
-- `PRODUCTLINE` enthaelt `SOFTWARE`.
-- `COSTCENTER` enthaelt `ADMIN`.
-- `CHANNEL` enthaelt `DIRECT`.
+- `PRODUCTLINE` enthaelt `SOFTWARE`, `SERVICE` und `TRAINING`.
+- `COSTCENTER` enthaelt `ADMIN`, `SALES` und `OPERATIONS`.
+- `CHANNEL` enthaelt `DIRECT` und `PARTNER`.
 
-Diese Werte reichen noch nicht fuer alle spaeteren Beispiele. Fuer die ersten Belege brauchen wir auch `SERVICE`, `TRAINING`, `SALES`, `OPERATIONS` und `PARTNER`. Die Liste `Dimensionswerte` zeigt zwar `Neu` und `Liste bearbeiten`, die aktuelle Bedienroute kann weitere Zeilen aber noch nicht stabil speichern. Deshalb kommen Kunden, Lieferanten und Artikel erst danach an die Reihe.
+Damit sind die wichtigsten Auswertungswerte fuer die ersten Beispiele vorhanden. In Business Central fuehrt der stabile Weg ueber die Seite `Dimensionen`: Zuerst wird die Dimension markiert, danach oeffnet man ueber `Dimension` die zugehoerigen `Dimensionswerte`. In dieser gefilterten Werte-Liste werden neue Werte in der letzten Eingabezeile erfasst und anschliessend durch erneutes Oeffnen der Liste geprueft.
 
 Eine Dimension besteht nicht nur aus dem Dimensionscode. Die Werte sind genauso wichtig, weil sie spaeter auf Belegen, Stammdaten und Posten stehen. Erst wenn die Werte sichtbar sind, kann man sie sinnvoll als Standarddimension oder Belegdimension verwenden.
 
 ## Was noch offen bleibt
 
 Eine angelegte Dimension beweist noch keine Auswertung. Die Auswertung entsteht erst, wenn ein Beleg mit Dimensionen gebucht wurde und die Dimensionen in den Posten oder Berichten sichtbar sind.
+
+Vor den ersten Stammdaten wird noch festgelegt, welche Dimensionen als globale Dimensionen besonders sichtbar in Posten und Auswertungen erscheinen. Fuer den Start sind `PRODUCTLINE` und `COSTCENTER` die Kandidaten.

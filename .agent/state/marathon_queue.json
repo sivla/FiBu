@@ -1441,15 +1441,27 @@
     },
     {
       "id": "TARGET-023B-DIMENSION-VALUES-ROUTE-RECOVERY",
-      "status": "pending",
+      "status": "done",
       "priority": "high",
       "area": "universaarl-foundation-dimensions",
       "goal": "Recover missing Dimension Values route before master data planning.",
       "sourceCase": "TARGET-023-DIMENSION-VALUE-CONTROLLED-SETUP-FIT",
-      "createdAt": "2026-06-30T16:04:48.556Z"
+      "createdAt": "2026-06-30T16:04:48.556Z",
+      "result": "TARGET-023B recovered all missing Dimension Values with reopen proof.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-023b-dimension-values-route-recovery/TARGET-023B-result.json",
+      "completedAt": "2026-06-30T16:26:42.623Z"
+    },
+    {
+      "id": "TARGET-024B-GLOBAL-DIMENSION-ASSIGNMENT",
+      "status": "pending",
+      "priority": "high",
+      "area": "universaarl-foundation-dimensions",
+      "goal": "Assign/prove PRODUCTLINE and COSTCENTER as Global Dimension Code 1/2 before master data.",
+      "sourceCase": "TARGET-023B-DIMENSION-VALUES-ROUTE-RECOVERY",
+      "createdAt": "2026-06-30T16:26:42.623Z"
     }
   ],
-  "lastUpdated": "2026-06-30T15:35:15.526Z",
+  "lastUpdated": "2026-06-30T16:26:42.623Z",
   "nextStepDecisionGate": {
     "active": true,
     "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",
@@ -1522,57 +1534,53 @@
       ]
     }
   },
-  "updatedAt": "2026-06-30T16:04:48.556Z",
-  "lastCompletedCase": "TARGET-023-DIMENSION-VALUE-CONTROLLED-SETUP-FIT",
-  "nextCase": "TARGET-023B-DIMENSION-VALUES-ROUTE-RECOVERY",
+  "updatedAt": "2026-06-30T16:26:42.623Z",
+  "lastCompletedCase": "TARGET-023B-DIMENSION-VALUES-ROUTE-RECOVERY",
+  "nextCase": "TARGET-024B-GLOBAL-DIMENSION-ASSIGNMENT",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-016E-NUMBER-SERIES-LINES-FIELD-FLOW-CONTROLLED-FIT",
-    "plannedNextCaseBeforeReview": "TARGET-016E-NUMBER-SERIES-LINES-FIELD-FLOW-CONTROLLED-FIT",
-    "lastEvidenceSummary": "TARGET-016D proved Page Inspection for No. Series Lines 457 / No. Series Line 309. TARGET-016E attempted Startdatum field-flow and F2 fallback; after reopen U-CUST00001/U-CUST99999 were not visible, and F2 opened the Microsoft 365 app launcher.",
-    "isPlannedNextCaseStillSensible": false,
-    "reason": "The field-flow and F2 routes are now rejected with screenshot proof. The next route must use Personalize or another standard BC setup-assisted path, not more grid typing.",
+    "currentCase": "TARGET-023B-DIMENSION-VALUES-ROUTE-RECOVERY",
+    "plannedNextCaseBeforeReview": "TARGET-024-CORE-MASTERDATA-PLAN",
+    "lastEvidenceSummary": "TARGET-023 proved the three Dimension Codes and first Dimension Values, but five remaining values were blocked by the prior cell-edit route.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "All planned starter Dimension Values are now visible; master data can use the foundation after Global Dimension assignment is handled.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-016F-NUMBER-SERIES-PERSONALIZE-OR-SETUP-ASSISTED-ROUTE",
+        "caseId": "TARGET-024B-GLOBAL-DIMENSION-ASSIGNMENT",
         "status": "ready-next",
-        "reason": "It changes route and can reveal available fields/actions without repeating failed typing."
+        "reason": "PRODUCTLINE and COSTCENTER can become Global Dimension Code 1/2 only after values are complete enough."
       },
       {
-        "caseId": "TARGET-017-NUMBER-SERIES-SETUP-ASSIGNMENT",
-        "status": "needs-setup-first",
-        "reason": "Assignments still require valid line ranges."
-      },
-      {
-        "caseId": "TARGET-018-CUSTOMER-MASTERDATA-PREFLIGHT",
-        "status": "needs-setup-first",
-        "reason": "Customer creation depends on assigned customer number series."
-      },
-      {
-        "caseId": "TARGET-019-POSTING-GROUPS-PREFLIGHT",
+        "caseId": "TARGET-024-CORE-MASTERDATA-PLAN",
         "status": "ready-after-current",
-        "reason": "Can proceed after numbering is unblocked or consciously parked."
+        "reason": "Customer/vendor/item planning should reference finished dimensions and values."
       },
       {
-        "caseId": "TARGET-020-VAT-SETUP-READINESS",
-        "status": "ready-after-current",
-        "reason": "VAT setup follows foundation sequencing."
+        "caseId": "TARGET-025-CUSTOMER-VENDOR-ITEM-TEMPLATES-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Template defaults need posting groups, VAT and dimension/default-dimension decisions."
+      },
+      {
+        "caseId": "TARGET-026-VAT-SETUP-FIT-DECISION",
+        "status": "needs-source-check-first",
+        "reason": "German VAT setup needs source-backed setup decision before documents."
+      },
+      {
+        "caseId": "TARGET-027-FIRST-MASTERDATA-CANDIDATE",
+        "status": "needs-setup-first",
+        "reason": "First master data should wait for foundation setup and default dimensions."
       }
     ],
-    "queueChangesMade": [
-      "Marked TARGET-016D observed/done.",
-      "Marked TARGET-016E blocked with screenshot proof.",
-      "Added TARGET-016F as Personalize/setup-assisted route."
-    ],
-    "selectedNextCase": "TARGET-016F-NUMBER-SERIES-PERSONALIZE-OR-SETUP-ASSISTED-ROUTE",
-    "whySelectedNextCaseIsBest": "It avoids all rejected grid typing routes and investigates BC-standard field/action availability.",
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-024B-GLOBAL-DIMENSION-ASSIGNMENT",
+    "whySelectedNextCaseIsBest": "The dimension-value blocker is gone; the next dependency is Global Dimension assignment before master data.",
     "risksBeforeNextCase": [
-      "Do not save Personalize changes unless explicitly gated.",
-      "Do not change checkboxes.",
-      "Do not assign setup pages or create master data."
+      "Do not claim reporting readiness before posted entries with dimensions exist.",
+      "Do not create master data until default dimension strategy is clear.",
+      "Do not treat Global Dimension Code 1/2 as assigned by this case."
     ],
     "requiredPreparation": [
-      "Capture Personalize/available field list screenshots or a standard route screenshot."
+      "Open General Ledger Setup and prove/set Global Dimension Code 1/2 in a separate case."
     ]
   },
-  "nextStep": "Run TARGET-017B: diagnose the three blocked setup fields (Customer Nos., Purchase Order Nos., Item Nos.) with Page Inspection, Personalize, FastTab expansion and tooltip/screenshot QA before any master data or document creation."
+  "nextStep": "Assign/prove PRODUCTLINE and COSTCENTER as Global Dimension Code 1/2 in General Ledger Setup before master data."
 }

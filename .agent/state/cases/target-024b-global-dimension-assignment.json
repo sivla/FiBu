@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-024B-GLOBAL-DIMENSION-ASSIGNMENT",
+  "title": "Universaarl Global Dimension Code 1/2 assignment",
+  "status": "planned",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "workType": "foundation-global-dimension-assignment",
+  "taskClass": "judge_work",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/target-023b-dimension-values-route-recovery/TARGET-023B-result.json"
+  ],
+  "purpose": "Set or verify PRODUCTLINE and COSTCENTER as Global Dimension Code 1/2 in General Ledger Setup before master data/default dimensions.",
+  "allowedActions": [
+    "review-target-023b-result",
+    "open-general-ledger-setup-page-directly",
+    "prove-current-global-dimension-fields",
+    "expand-fasttabs-or-wide-layout-if-needed",
+    "set-or-verify-global-dimension-code-1-productline",
+    "set-or-verify-global-dimension-code-2-costcenter",
+    "capture-before-after-reopen-screenshots",
+    "write-result-and-next-step-card",
+    "queue-and-state-update"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "leave-playthru",
+    "operate-in-legacy-lab-as-active-target",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "api-shortcut",
+    "claim-reporting-readiness-without-posted-dimension-entries"
+  ],
+  "defaultLockedActionsUnlockedForThisCase": [
+    "setup-change"
+  ],
+  "entryCriteria": [
+    "TARGET-023B resultStatus is observed.",
+    "PRODUCTLINE, COSTCENTER and CHANNEL values are visible enough for foundation setup.",
+    "No master data has to be created in this case."
+  ],
+  "exitCriteria": [
+    "General Ledger Setup before/after/reopen evidence exists.",
+    "Global Dimension Code 1 is PRODUCTLINE or a documented blocker exists.",
+    "Global Dimension Code 2 is COSTCENTER or a documented blocker exists.",
+    "No preview, posting, document draft, master data or API shortcut executed."
+  ],
+  "lookahead": [
+    {
+      "caseId": "TARGET-024B-GLOBAL-DIMENSION-ASSIGNMENT",
+      "status": "ready-next",
+      "reason": "PRODUCTLINE and COSTCENTER can become Global Dimension Code 1/2 only after values are complete enough."
+    },
+    {
+      "caseId": "TARGET-024-CORE-MASTERDATA-PLAN",
+      "status": "ready-after-current",
+      "reason": "Customer/vendor/item planning should reference finished dimensions and values."
+    },
+    {
+      "caseId": "TARGET-025-CUSTOMER-VENDOR-ITEM-TEMPLATES-PREFLIGHT",
+      "status": "needs-setup-first",
+      "reason": "Template defaults need posting groups, VAT and dimension/default-dimension decisions."
+    },
+    {
+      "caseId": "TARGET-026-VAT-SETUP-FIT-DECISION",
+      "status": "needs-source-check-first",
+      "reason": "German VAT setup needs source-backed setup decision before documents."
+    },
+    {
+      "caseId": "TARGET-027-FIRST-MASTERDATA-CANDIDATE",
+      "status": "needs-setup-first",
+      "reason": "First master data should wait for foundation setup and default dimensions."
+    }
+  ],
+  "nextStep": "Assign/prove PRODUCTLINE and COSTCENTER as Global Dimension Code 1/2 in General Ledger Setup before master data.",
+  "createdAt": "2026-06-30T16:26:42.623Z",
+  "updatedAt": "2026-06-30T16:26:42.623Z"
+}
