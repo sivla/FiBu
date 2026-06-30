@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-016D-NUMBER-SERIES-PAGE-INSPECTION-OR-ALTERNATIVE-ROUTE",
+  "title": "Universaarl Number Series Lines page inspection or alternative editor route",
+  "instance": "playthru",
+  "targetCompany": "UNIVERSAARL-DE",
+  "legalName": "Universaarl GmbH",
+  "workType": "foundation-number-series-lines-route-discovery",
+  "status": "ready-next",
+  "dependsOn": [
+    "TARGET-016C-NUMBER-SERIES-ACTIVE-EDITOR-PROBE"
+  ],
+  "goal": "Find a reliable standard Business Central route for Number Series Lines Startnr./Endnr. after coordinate and selected-cell typing failed.",
+  "evidenceTarget": "playwright/projects/fibu-book5/evidence/target-016d-number-series-page-inspection-or-alternative-route/",
+  "allowedActionsWhenRun": [
+    "open-playthru-business-central",
+    "open-UNIVERSAARL-DE-with-documentation",
+    "open-number-series-page",
+    "select-existing-U-CUST-row",
+    "open-Zeilen-from-selected-number-series",
+    "use-page-inspection-or-personalize-readonly-to-identify-page-fields",
+    "use-standard-ui-action-route-if-visible",
+    "hover-relevant-buttons-and-fields-for-tooltip-evidence",
+    "capture-screenshot-qa",
+    "write-result"
+  ],
+  "defaultLockedActions": [
+    "assign-number-series-in-sales-setup",
+    "assign-number-series-in-purchase-setup",
+    "assign-number-series-in-inventory-setup",
+    "master-data-create",
+    "preview-posting",
+    "posting",
+    "checkbox-change",
+    "api-shortcut"
+  ],
+  "forbiddenActions": [
+    "leave-playthru",
+    "operate-in-CRONUS-as-active-target",
+    "post",
+    "preview-posting",
+    "api-shortcut",
+    "create-master-data-before-number-series-lines",
+    "repeat-header-coordinate-route-from-TARGET-016B",
+    "repeat-selected-cell-typing-route-from-TARGET-016C",
+    "claim-number-series-setup-ready-without-visible-start-end-values"
+  ],
+  "probeSeries": {
+    "code": "U-CUST",
+    "startNo": "U-CUST00001",
+    "endNo": "U-CUST99999"
+  },
+  "successCriteria": [
+    "The true page/table/field context for No. Series Lines is identified through UI inspection or a standard BC route.",
+    "If a write is attempted, Startnr./Endnr. values must be visible after blur/reopen before setup readiness is claimed.",
+    "Checkboxes such as Offen and Luecken in Nummern zulassen are inventoried and not changed without an explicit gate.",
+    "No setup assignment, master data, preview posting, posting or ledger trace occurs."
+  ],
+  "knownLearningFromTarget016C": [
+    "Liste bearbeiten / Edit List can put the Number Series Lines grid into editable row mode.",
+    "BC grid selected cells are not enough evidence for a writable editor.",
+    "Coordinate/header and selected-cell typing can select labels/tooltips/page text instead of writing values.",
+    "Checkbox columns such as Offen and Luecken in Nummern zulassen are visible and must be documented before changing them."
+  ],
+  "migrationRelevance": "german-final-candidate",
+  "finalScreenshotNeeded": true,
+  "nextSafeAction": "Use Page Inspection/Personalize or another standard BC UI route; do not repeat coordinate or selected-cell typing.",
+  "updatedAt": "2026-06-30T11:58:29.352Z"
+}

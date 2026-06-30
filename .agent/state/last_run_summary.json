@@ -1,103 +1,76 @@
 {
   "schemaVersion": 1,
-  "runId": "TARGET-016B-20260630",
-  "caseId": "TARGET-016B-NUMBER-SERIES-LINES-ROUTE-RECOVERY",
-  "status": "diagnostic-observed-blocked-editor",
-  "completedAt": "2026-06-30T23:55:00.000+02:00",
-  "summary": "TARGET-016B captured U-CUST Number Series Lines, checkbox controls and duplicate Startnr./Endnr. contexts. The targeted header-coordinate route did not visibly persist U-CUST00001/U-CUST99999, so the next case is an active-editor probe instead of another blind retry.",
-  "bcRun": true,
-  "playwrightRun": true,
-  "noCompanyCreated": true,
-  "noMasterDataChange": true,
-  "noSetupAssignment": true,
-  "noPreviewPosting": true,
-  "noPosting": true,
-  "noDraft": true,
-  "noApiShortcut": true,
-  "noSearch": true,
-  "checkboxChanged": false,
+  "runId": "TARGET-016C-20260630",
+  "caseId": "TARGET-016C-NUMBER-SERIES-ACTIVE-EDITOR-PROBE",
+  "status": "blocked",
+  "summary": "TARGET-016C reopened U-CUST Number Series Lines in playthru / UNIVERSAARL-DE, clicked Liste bearbeiten and tested header/cell/selected-cell routes. Screenshot QA shows text/labels selected rather than Startnr./Endnr. values written, so the route is blocked and must change to Page Inspection/Personalize or another standard UI route.",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "posted": false,
+  "previewPosting": false,
   "setupChanged": false,
-  "changedFiles": [
-    "package.json",
-    "playwright/projects/fibu-book5/tests/target-016b-number-series-lines-route-recovery.spec.ts",
-    "playwright/projects/fibu-book5/evidence/target-016b-number-series-lines-route-recovery/TARGET-016B-result.json",
-    "playwright/projects/fibu-book5/evidence/target-016b-number-series-lines-route-recovery/README.md",
-    "playwright/projects/fibu-book5/evidence/target-016b-number-series-lines-route-recovery/*.txt",
-    "playwright/projects/fibu-book5/evidence/target-016b-number-series-lines-route-recovery/*.controls.json",
-    "playwright/projects/fibu-book5/evidence/target-016b-number-series-lines-route-recovery/*.screenshot.json",
-    "playwright/projects/fibu-book5/img/target-016b-*.png",
-    ".agent/state/current.json",
-    ".agent/state/cases/target-016b-number-series-lines-route-recovery.json",
-    ".agent/state/cases/target-016c-number-series-active-editor-probe.json",
-    ".agent/state/marathon_queue.json",
-    ".agent/state/coverage_state.json",
-    ".agent/state/last_run_summary.json",
-    "playwright/projects/fibu-book5/BC-PLAYWRIGHT-PATTERNS.md",
-    "playwright/projects/fibu-book5/BC-SCREENSHOT-INVENTORY.md",
-    "playwright/projects/fibu-book5/BC-FULL-PLAYTHROUGH-CATALOG.md"
-  ],
+  "masterDataChanged": false,
+  "apiShortcut": false,
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/target-016b-number-series-lines-route-recovery/TARGET-016B-result.json",
-    "playwright/projects/fibu-book5/img/target-016b-010-number-series-list-u-cust-context.png",
-    "playwright/projects/fibu-book5/img/target-016b-020-u-cust-lines-control-inventory.png",
-    "playwright/projects/fibu-book5/img/target-016b-030-u-cust-lines-after-targeted-cell-route.png"
+    "playwright/projects/fibu-book5/evidence/target-016c-number-series-active-editor-probe/TARGET-016C-result.json",
+    "playwright/projects/fibu-book5/img/target-016c-010-lines-before-edit-mode.png",
+    "playwright/projects/fibu-book5/img/target-016c-020-lines-after-edit-list-probe.png",
+    "playwright/projects/fibu-book5/img/target-016c-030-active-editor-after-cell-clicks.png",
+    "playwright/projects/fibu-book5/img/target-016c-040-after-unique-editor-write-attempt.png"
   ],
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-016c-number-series-active-editor-probe/TARGET-016C-result.json",
   "blockedBy": [
-    "No unique visible Startnr./Endnr. editor was proven.",
-    "Header-coordinate route selected/focused header or tooltip context instead of proving editable cell persistence."
+    "Active-editor/selected-cell route did not make both target values visible after typing."
   ],
-  "hardStops": [],
-  "nextStep": "Run TARGET-016C: prove the active editable Startnr./Endnr. editor in the U-CUST Number Series Lines modal; do not repeat blind Tab or header-coordinate routes, and do not assign setup fields or create master data.",
-  "nextCase": "TARGET-016C-NUMBER-SERIES-ACTIVE-EDITOR-PROBE",
+  "nextCase": "TARGET-016D-NUMBER-SERIES-PAGE-INSPECTION-OR-ALTERNATIVE-ROUTE",
+  "nextStep": "Run TARGET-016D: use Page Inspection/Personalize or another standard UI route to identify a reliable Number Series Lines editor; do not repeat coordinate typing or selected-cell typing.",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-016B-NUMBER-SERIES-LINES-ROUTE-RECOVERY",
-    "plannedNextCaseBeforeReview": "TARGET-016B-NUMBER-SERIES-LINES-ROUTE-RECOVERY",
-    "lastEvidenceSummary": "TARGET-016B captured Number Series Lines, checkbox controls and duplicate Startnr./Endnr. contexts, but did not prove a persistent Startnr./Endnr. write route.",
+    "currentCase": "TARGET-016C-NUMBER-SERIES-ACTIVE-EDITOR-PROBE",
+    "plannedNextCaseBeforeReview": "TARGET-016C-NUMBER-SERIES-ACTIVE-EDITOR-PROBE",
+    "lastEvidenceSummary": "TARGET-016C reopened U-CUST Lines, clicked Liste bearbeiten and proved that coordinate/header plus selected-cell typing does not reliably persist Startnr./Endnr.; the final screenshot shows page text/labels selected instead of field values written.",
     "isPlannedNextCaseStillSensible": false,
-    "reason": "The diagnostic goal of TARGET-016B is now complete enough to avoid repeating the same route. The next useful step is a narrower active-editor probe.",
+    "reason": "The active-editor and selected-cell routes were exhausted with screenshot proof; repeating them would be waste. The next useful step must inspect the page/field model or use another standard UI route.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-016C-NUMBER-SERIES-ACTIVE-EDITOR-PROBE",
+        "caseId": "TARGET-016D-NUMBER-SERIES-PAGE-INSPECTION-OR-ALTERNATIVE-ROUTE",
         "status": "ready-next",
-        "reason": "Needed to identify the real editable Lines cell/editor before any further setup write."
+        "reason": "Needed to identify the real BC field/editor path before Number Series setup can continue."
       },
       {
-        "caseId": "TARGET-017-NUMBER-SERIES-ASSIGNMENT-FIELD-DISCOVERY",
-        "status": "needs-setup-first",
-        "reason": "Assignment discovery waits until Startnr./Endnr. line values are visible or consciously deferred."
+        "caseId": "TARGET-016E-NUMBER-SERIES-LINES-CONTROLLED-FIT",
+        "status": "needs-ui-discovery-first",
+        "reason": "Line values cannot be fitted until TARGET-016D finds a reliable editor route."
       },
       {
-        "caseId": "TARGET-018-NUMBER-SERIES-ASSIGNMENT-WRITE-GATE",
+        "caseId": "TARGET-017-NUMBER-SERIES-SETUP-ASSIGNMENT",
         "status": "needs-setup-first",
-        "reason": "Setup assignment must not happen before number series line readiness and checkbox semantics are understood."
+        "reason": "Assignments are premature until line ranges exist and are visible."
+      },
+      {
+        "caseId": "TARGET-018-CUSTOMER-MASTERDATA-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Customer creation depends on customer number series assignment."
       },
       {
         "caseId": "TARGET-019-POSTING-GROUPS-PREFLIGHT",
         "status": "ready-after-current",
-        "reason": "Posting groups follow the numbering foundation."
-      },
-      {
-        "caseId": "TARGET-020-VAT-SETUP-READINESS",
-        "status": "needs-source-check-first",
-        "reason": "German VAT setup requires source-backed evidence and later Preview/VAT Entries."
+        "reason": "Can proceed after Number Series path is unblocked or consciously parked."
       }
     ],
     "queueChangesMade": [
-      "Marked TARGET-016B as diagnostic-observed-blocked-editor.",
-      "Added TARGET-016C as the next active-editor probe instead of repeating blind Tab or header-coordinate typing."
+      "Marked TARGET-016C blocked with result evidence.",
+      "Added TARGET-016D-NUMBER-SERIES-PAGE-INSPECTION-OR-ALTERNATIVE-ROUTE as next route-discovery case."
     ],
-    "selectedNextCase": "TARGET-016C-NUMBER-SERIES-ACTIVE-EDITOR-PROBE",
-    "whySelectedNextCaseIsBest": "It targets the exact missing BC knowledge: which visible element is the real editable Startnr./Endnr. editor in the Lines modal.",
+    "selectedNextCase": "TARGET-016D-NUMBER-SERIES-PAGE-INSPECTION-OR-ALTERNATIVE-ROUTE",
+    "whySelectedNextCaseIsBest": "It changes route based on evidence instead of repeating failed grid typing, and it directly supports foundation setup for the book.",
     "risksBeforeNextCase": [
-      "Do not change checkboxes without explicit field meaning.",
-      "Do not type into Startdatum, a header, the FactBox or the background list.",
-      "Do not assign number series to setup pages until the Lines setup is visibly ready."
+      "Do not use API shortcuts.",
+      "Do not type into selected labels or background grids.",
+      "Do not change checkbox states without explicit meaning and before/after proof."
     ],
     "requiredPreparation": [
-      "Read TARGET-016B controls JSON and screenshot QA.",
-      "Scope locators to the foreground Lines modal and active BC frame.",
-      "Capture activeElement/focus evidence before typing target values."
+      "Use Page Inspection / Personalize / standard line route discovery and capture screenshot QA."
     ]
   },
-  "updatedAt": "2026-06-30T23:55:00.000+02:00"
+  "updatedAt": "2026-06-30T11:58:29.352Z"
 }

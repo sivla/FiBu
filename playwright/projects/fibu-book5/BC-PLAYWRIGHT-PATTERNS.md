@@ -295,3 +295,11 @@ Regeln:
 - FA-183 zieht die Gate-Grenze: Ein sichtbarer Journal-Gegenkonto-Wert darf einen Preview-only-Lauf freigeben. Eine echte Buchung bleibt gesperrt, bis Preview-Postenzeilen oder ein Preview-Fehler separat belegt und reviewed sind.
 - FA-185: Ein Journalwert direkt nach `fill()` ist nur ein UI-Control-Nachweis. Vor Preview/Post braucht der Lauf einen Persistenzbeweis nach sicherem Commit plus Refresh/Reopen; sonst kann BC beim erneuten Oeffnen wieder den leeren gespeicherten Journalwert zeigen.
 - FA-186 belegt die Persistenz fuer `Bal. Account No. = 82000` nach Reopen per Grid-Input-Helper. Screenshot-QA ueber `pageText()` ist dafuer ungeeignet, wenn der relevante Wert nur als Input-Value im virtualisierten Grid vorliegt; in diesem Fall ist JSON-/Helper-Evidence massgeblich und das Bild bleibt kein Buchkandidat.
+
+## Number Series Lines Grid Blocking
+
+- TARGET-016C korrigiert ein Locator-Problem: sichtbare Spaltenkoepfe wie `Startnr.` duerfen nicht durch zusammengesetzte Texte mit Leerzeichen aus der Trefferlogik fallen. Header-Matching muss Caption und `aria-label` getrennt normalisieren.
+- TARGET-016C zeigt ausserdem die Grenze von Zellselektion in Business-Central-Listen: `Liste bearbeiten` kann eine leere Zeile oeffnen und eine Zelle visuell markieren, ohne dass ein klassisches editierbares DOM-Element aktiv ist.
+- Ausgewaehlte Zellen sind kein ausreichender Schreibbeweis. Der Screenshot `target-016c-040-after-unique-editor-write-attempt.png` zeigt nach dem Tippversuch markierte Seitentexte/Labels statt sichtbarer `Startnr.`-/`Endnr.`-Werte.
+- Wiederholte Koordinaten-, Header- oder Selected-Cell-Typing-Routen sind fuer Nummernserienzeilen gesperrt, bis Page Inspection, Personalisieren oder eine andere Standard-BC-Route den echten Feld-/Editorpfad zeigt.
+- Checkbox-Spalten wie `Offen` und `Luecken in Nummern zulassen` gehoeren zur Nummernserien-Wahrheit. Sie duerfen nicht als Randdetail ignoriert und nicht ohne eigenes Vorher/Nachher-Gate geaendert werden.
