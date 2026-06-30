@@ -11,10 +11,10 @@ Dieses Projekt baut ein vollstaendiges Business-Central-Standard-Playthrough fue
 | Feld | Wert |
 |---|---|
 | Instanz | `playthru` |
-| Zielcompany | `UNIVERSAARL-DE` |
+| Erste Zielcompany | `UNIVERSAARL-DE` |
 | Rechtlicher Name | `Universaarl GmbH` |
 | Datenbasis | Universaarl-Musterfirma, UI-first aufzubauen |
-| Status | German-Final-Candidate, Company noch anzulegen |
+| Status | German-Final-Candidate, erste Company existiert und wird aufgebaut |
 | Harte Grenze | Keine Aktion ausserhalb der aktiven State-Instanz |
 
 Innerhalb der aktiven Zielinstanz darf der Autopilot autonom arbeiten, wenn der aktive Case es erlaubt und Evidence entsteht:
@@ -48,15 +48,17 @@ Shopify / Online Store bleibt fuer Buch 5 vorerst out of scope. Dropshipping kan
 
 ## Zielbild Universaarl
 
-Die Universaarl-Musterfirma darf wachsen, wenn ein Business-Central-Bereich neue Gesellschaften, Standorte, Rollen, Steuerfaelle, Waehrungen, Artikel, Ressourcen oder Prozesse braucht.
+Die Universaarl-Musterfirma ist als Mehr-Company-Fallstudie gedacht. `UNIVERSAARL-DE` ist der erste stabile Aufbaupunkt fuer Foundation, SKR04, USt, Stammdaten und erste Ende-zu-Ende-Prozesse. Danach folgen weitere Companies nicht als beliebige Extras, sondern als eigene Buchstrecken fuer Produktion, Vertrieb, Service, Holding/Konsolidierung und Intercompany.
 
 | Company | Zweck | BC-Bereiche |
 |---|---|---|
-| `UNIVERSAARL-DE` | erste deutsche Zielcompany und Buch-Hauptmandant | Foundation, Finance, O2C, P2P, Inventory, Fixed Assets, Reporting |
-| `UNIVERSAARL-PROD` | spaetere Produktion, Einkauf, Lager, Fertigung | P2P, Inventory, Manufacturing, Warehouse |
-| `UNIVERSAARL-SALES` | spaetere Vertriebs- und Kundenprozesse | O2C, Pricing, Versand, Retouren |
-| `UNIVERSAARL-SERVICE` | spaeter Service, Wartung, Ersatzteile | Service Orders, Service Items, Ersatzteile |
-| `UNIVERSAARL-HOLDING` | spaeter Konzern, Reporting, Intercompany, Konsolidierung | Reporting, Intercompany, Abschluss |
+| `UNIVERSAARL-DE` | erste deutsche Aufbaucompany | Foundation, Finance, SKR04, USt, Stammdaten, erste O2C/P2P/Inventory/Fixed-Assets-Prozesse |
+| `UNIVERSAARL-PROD` | Produktionscompany | P2P, Inventory, Manufacturing, Warehouse |
+| `UNIVERSAARL-SALES` | Vertriebscompany | O2C, Pricing, Versand, Retouren |
+| `UNIVERSAARL-SERVICE` | Servicecompany | Service Orders, Service Items, Ersatzteile |
+| `UNIVERSAARL-HOLDING` | Holding/Konzerncompany | Reporting, Intercompany, Abschluss, Konsolidierungsvorbereitung |
+
+Intercompany ist damit kein optionaler Randfall. Es wird erst spaeter aufgebaut, weil Intercompany ohne sauberen Kontenplan, Nummernserien, USt-Logik, Stammdaten und mindestens zwei Companies keinen belastbaren Buchprozess ergibt.
 
 ## Labor vs. Final
 
@@ -66,7 +68,7 @@ Die Universaarl-Musterfirma darf wachsen, wenn ein Business-Central-Bereich neue
 
 ## Wachstum des Usecase
 
-Neue Companies, Standorte oder Rollen werden nur angelegt, wenn ein Prozess sie wirklich braucht. Jeder neue Baustein braucht:
+Neue Companies, Standorte oder Rollen werden angelegt, sobald die jeweilige Buchstrecke sie fachlich braucht. Jeder neue Baustein braucht:
 
 - Zweck.
 - Datenbasis.

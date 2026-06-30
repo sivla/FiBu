@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-026H-SKR04-CHART-OF-ACCOUNTS-SOURCE-CORRECTION",
+  "title": "SKR04 chart of accounts source correction",
+  "status": "planned",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "workType": "universaarl-skr04-chart-of-accounts-source-correction",
+  "taskClass": "judge_work",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/target-026f-chart-of-accounts-controlled-setup-gate/TARGET-026F-result.json",
+    "playwright/projects/fibu-book5/UNIVERSAARL-CHART-OF-ACCOUNTS-MINIMAL-STRUCTURE-PLAN.md"
+  ],
+  "purpose": "Stop the mixed chart-of-accounts route, classify 1200 Bank Saarland as technical UI learning rather than SKR04 bank target, and require a source-backed SKR04 account mapping before further account setup.",
+  "allowedActions": [
+    "review-skr04-source-basis",
+    "classify-existing-1200-account",
+    "write-skr04-correction-result",
+    "prepare-next-controlled-account-setup-case"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "create-additional-gl-accounts-before-skr04-source-decision",
+    "use-1200-bank-saarland-in-setup",
+    "change-vat-setup",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "api-shortcut"
+  ],
+  "entryCriteria": [
+    "TARGET-026F proves UI creation and card correction of account 1200, but not SKR04 target correctness.",
+    "The project target is SKR04 for Universaarl.",
+    "The planned TARGET-026G account list contains mixed or insufficiently sourced account candidates."
+  ],
+  "exitCriteria": [
+    "1200 Bank Saarland is documented as not usable for Universaarl SKR04 bank/posting setup.",
+    "TARGET-026G is blocked or replaced until source-backed SKR04 mapping exists.",
+    "The next case is a source-backed SKR04 minimal account mapping or controlled cleanup/setup case.",
+    "No further account, VAT setup, posting group, master data, draft, Preview Posting or posting occurs in this correction case."
+  ],
+  "lookahead": [
+    {
+      "caseId": "TARGET-026H-SKR04-CHART-OF-ACCOUNTS-SOURCE-CORRECTION",
+      "status": "ready-next",
+      "reason": "The user confirmed SKR04 target and the prior bank account candidate is suspicious for SKR04."
+    },
+    {
+      "caseId": "TARGET-026I-SKR04-MINIMAL-ACCOUNT-MAPPING",
+      "status": "ready-after-current",
+      "reason": "A small source-backed mapping is needed before any more G/L accounts are created."
+    },
+    {
+      "caseId": "TARGET-026J-SKR04-ACCOUNT-CLEANUP-AND-SETUP-GATE",
+      "status": "needs-source-check-first",
+      "reason": "Business Central cleanup or additional setup must wait for a corrected SKR04 target list."
+    },
+    {
+      "caseId": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
+      "status": "needs-setup-first",
+      "reason": "VAT posting groups require corrected SKR04 G/L accounts first."
+    },
+    {
+      "caseId": "TARGET-028-CUSTOMER-VENDOR-ITEM-MASTERDATA",
+      "status": "needs-setup-first",
+      "reason": "Master data waits for chart of accounts, VAT and posting-group setup."
+    }
+  ],
+  "nextStep": "Create a source-backed minimal SKR04 account mapping and decide how to handle the existing 1200 Bank Saarland technical account before further setup writes.",
+  "createdAt": "2026-06-30T20:50:00.000Z",
+  "updatedAt": "2026-06-30T20:50:00.000Z"
+}

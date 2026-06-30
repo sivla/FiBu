@@ -21,47 +21,60 @@
     "Keine SKR04- oder Steuerberaterfreigabe.",
     "Keine VAT Posting Setup Zeile.",
     "Keine Stammdatenanlage.",
-    "Kein Dokument, keine Preview, keine Buchung."
+    "Kein Dokument, keine Preview, keine Buchung.",
+    "SKR04 account correctness is not proven; 1200 Bank Saarland must not be used as bank target."
   ],
   "blockedBy": [],
-  "nextCase": "TARGET-026G-CHART-OF-ACCOUNTS-REMAINING-ACCOUNTS-FIT",
-  "nextStep": "Complete remaining planned Universaarl G/L foundation accounts before VAT setup or master data.",
+  "nextCase": "TARGET-026H-SKR04-CHART-OF-ACCOUNTS-SOURCE-CORRECTION",
+  "nextStep": "Do not run TARGET-026G. First correct the chart-of-accounts target to SKR04 and decide how to handle 1200 Bank Saarland.",
   "nextStepDecisionCard": {
     "currentCase": "TARGET-026F-CHART-OF-ACCOUNTS-CONTROLLED-SETUP-GATE",
-    "plannedNextCaseBeforeReview": "TARGET-026F-CHART-OF-ACCOUNTS-CONTROLLED-SETUP-GATE",
-    "lastEvidenceSummary": "TARGET-026E planned the minimal G/L account candidate structure; no account had been created yet.",
-    "isPlannedNextCaseStillSensible": true,
-    "reason": "VAT setup and first master data need at least a controlled account setup route before further foundation work.",
+    "plannedNextCaseBeforeReview": "TARGET-026G-CHART-OF-ACCOUNTS-REMAINING-ACCOUNTS-FIT",
+    "lastEvidenceSummary": "TARGET-026F proved Business Central UI mechanics for creating and correcting a G/L account, but it created 1200 Bank Saarland. User review confirmed the target chart must be SKR04; 1200 as bank is not safe as active SKR04 target truth.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "Continuing TARGET-026G would create more accounts from a mixed or insufficiently sourced candidate list. SKR04 source correction must precede further account setup.",
     "lookaheadReviewed": [
       {
         "caseId": "TARGET-026G-CHART-OF-ACCOUNTS-REMAINING-ACCOUNTS-FIT",
+        "status": "replace-with-better-case",
+        "reason": "The remaining account list is not source-backed SKR04 and must not be executed."
+      },
+      {
+        "caseId": "TARGET-026H-SKR04-CHART-OF-ACCOUNTS-SOURCE-CORRECTION",
         "status": "ready-next",
-        "reason": "The first account route has reopen proof and can be reused for remaining planned accounts."
+        "reason": "Corrects the account-plan basis before further setup writes."
+      },
+      {
+        "caseId": "TARGET-026I-SKR04-MINIMAL-ACCOUNT-MAPPING",
+        "status": "ready-after-current",
+        "reason": "A compact SKR04 mapping must be created from a reliable source before UI setup resumes."
+      },
+      {
+        "caseId": "TARGET-026J-SKR04-ACCOUNT-CLEANUP-AND-SETUP-GATE",
+        "status": "needs-source-check-first",
+        "reason": "Cleanup and next accounts require corrected mapping and explicit gates."
       },
       {
         "caseId": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
-        "status": "ready-after-current",
-        "reason": "VAT posting groups still need G/L accounts and source-backed field mapping before setup write."
-      },
-      {
-        "caseId": "TARGET-028-CUSTOMER-VENDOR-ITEM-MASTERDATA",
         "status": "needs-setup-first",
-        "reason": "Master data should wait until posting groups and VAT setup are ready."
-      },
-      {
-        "caseId": "TARGET-029-FIRST-SALES-PURCHASE-DRAFT-GATE",
-        "status": "needs-setup-first",
-        "reason": "Documents require number series, posting groups, VAT setup and master data."
+        "reason": "VAT setup depends on corrected SKR04 accounts."
       }
     ],
-    "queueChangesMade": [],
-    "selectedNextCase": "TARGET-026G-CHART-OF-ACCOUNTS-REMAINING-ACCOUNTS-FIT",
-    "whySelectedNextCaseIsBest": "The fastest useful follow-up is to complete the remaining planned foundation accounts on the proven route.",
+    "queueChangesMade": [
+      "Replaced active TARGET-026G with TARGET-026H-SKR04-CHART-OF-ACCOUNTS-SOURCE-CORRECTION.",
+      "Marked 1200 Bank Saarland as UI setup learning only, not SKR04 bank target."
+    ],
+    "selectedNextCase": "TARGET-026H-SKR04-CHART-OF-ACCOUNTS-SOURCE-CORRECTION",
+    "whySelectedNextCaseIsBest": "It prevents additional wrong account setup and aligns the active Universaarl foundation with SKR04 before VAT, posting groups, master data or documents.",
     "risksBeforeNextCase": [
-      "Income statement account types still need careful field handling."
+      "Do not use 1200 Bank Saarland in any posting setup or payment path.",
+      "Do not continue with the old candidate list.",
+      "Do not write book claims that the SKR04 account plan exists."
     ],
     "requiredPreparation": [
-      "Separate balance-sheet and income-statement account field handling."
+      "Use DATEV/SKR04 source basis for account families.",
+      "Decide cleanup or repurpose route for existing 1200 account.",
+      "Prepare a small controlled SKR04 setup case only after mapping."
     ]
   },
   "instance": "playthru",
@@ -76,6 +89,6 @@
     "noApiShortcut": true,
     "noBookChange": true
   },
-  "updatedAt": "2026-06-30T20:25:00.000Z",
+  "updatedAt": "2026-06-30T20:50:00.000Z",
   "runId": "TARGET-026F-CHART-OF-ACCOUNTS-CONTROLLED-SETUP-GATE-2026-06-30T20-25-00-000Z"
 }

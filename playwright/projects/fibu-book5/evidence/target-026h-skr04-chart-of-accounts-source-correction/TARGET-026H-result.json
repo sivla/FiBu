@@ -1,0 +1,120 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "TARGET-026H-SKR04-CHART-OF-ACCOUNTS-SOURCE-CORRECTION",
+  "source": "local-analysis",
+  "resultStatus": "observed",
+  "runPlanId": "TARGET-026H-SKR04-CHART-OF-ACCOUNTS-SOURCE-CORRECTION-2026-06-30T20-50-00-000Z",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "proved": [
+    "The active Universaarl target uses SKR04, not a mixed SKR03/SKR04 account list.",
+    "The SKR04 reference basis shows 1200 as receivables context and 1800 as bank context; 1200 Bank Saarland is therefore wrong for the Universaarl bank target.",
+    "TARGET-026F proved UI account creation and card correction mechanics, but not SKR04 account correctness.",
+    "The existing account 1200 Bank Saarland is classified as technical UI learning evidence only and must not be used in bank, VAT, posting-group, payment or posting setup.",
+    "TARGET-026G was replaced before execution by a SKR04 source-correction gate."
+  ],
+  "notProved": [
+    "A complete SKR04 account mapping is not yet proven.",
+    "No additional G/L accounts were created in this correction step.",
+    "No VAT setup, posting groups, master data, document, Preview Posting or posting were executed.",
+    "No beginner-facing SKR04 book chapter is finished yet."
+  ],
+  "changedFiles": [
+    "FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md",
+    ".agent/state/current.json",
+    ".agent/state/marathon_queue.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/cases/target-026h-skr04-chart-of-accounts-source-correction.json",
+    "playwright/projects/fibu-book5/BC-COMPANY-USECASE.md",
+    "playwright/projects/fibu-book5/BC-FULL-PLAYTHROUGH-CATALOG.md",
+    "playwright/projects/fibu-book5/UNIVERSAARL-CHART-OF-ACCOUNTS-MINIMAL-STRUCTURE-PLAN.md",
+    "playwright/projects/fibu-book5/evidence/target-026h-skr04-chart-of-accounts-source-correction/README.md",
+    "playwright/projects/fibu-book5/evidence/target-026h-skr04-chart-of-accounts-source-correction/TARGET-026H-result.json"
+  ],
+  "statePatch": {},
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-026h-skr04-chart-of-accounts-source-correction/README.md",
+    "playwright/projects/fibu-book5/evidence/target-026h-skr04-chart-of-accounts-source-correction/TARGET-026H-result.json",
+    "playwright/projects/fibu-book5/evidence/target-026f-chart-of-accounts-controlled-setup-gate/TARGET-026F-result.json"
+  ],
+  "sourceRefs": [
+    {
+      "label": "DATEV SKR04 Kontenrahmen product page",
+      "url": "https://www.datev.de/web/de/datev-shop/rechnungswesen/skr-04/"
+    },
+    {
+      "label": "SKR04 2026 reference PDF mirror used for account-number lookup",
+      "url": "https://www.collmex.de/skr04.pdf"
+    }
+  ],
+  "warnings": [
+    "Do not run the old TARGET-026G account creation path.",
+    "Do not use 1200 Bank Saarland for SKR04 bank setup.",
+    "Do not claim the Universaarl SKR04 account plan is ready."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": false,
+  "flags": {
+    "noBcExecution": true,
+    "noPlaywrightExecution": true,
+    "noAdditionalSetupChange": true,
+    "noVatSetupChange": true,
+    "noMasterData": true,
+    "noDocumentOrDraft": true,
+    "noPreview": true,
+    "noPost": true,
+    "noApiShortcut": true,
+    "bookMasterChanged": true
+  },
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-026F-CHART-OF-ACCOUNTS-CONTROLLED-SETUP-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-026G-CHART-OF-ACCOUNTS-REMAINING-ACCOUNTS-FIT",
+    "lastEvidenceSummary": "TARGET-026F proved UI mechanics for creating and correcting account 1200, but the active target is SKR04 and 1200 must not be used as bank target.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "The remaining account setup list is not safe until SKR04 mapping is source-backed.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-026G-CHART-OF-ACCOUNTS-REMAINING-ACCOUNTS-FIT",
+        "status": "replace-with-better-case",
+        "reason": "Old mixed candidate list must not run."
+      },
+      {
+        "caseId": "TARGET-026H-SKR04-CHART-OF-ACCOUNTS-SOURCE-CORRECTION",
+        "status": "ready-next",
+        "reason": "Corrects project truth before further setup."
+      },
+      {
+        "caseId": "TARGET-026I-SKR04-MINIMAL-ACCOUNT-MAPPING",
+        "status": "ready-after-current",
+        "reason": "Needed before further account writes."
+      },
+      {
+        "caseId": "TARGET-026J-SKR04-ACCOUNT-CLEANUP-AND-SETUP-GATE",
+        "status": "needs-source-check-first",
+        "reason": "Needs corrected mapping first."
+      },
+      {
+        "caseId": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Needs corrected account plan first."
+      }
+    ],
+    "queueChangesMade": [
+      "TARGET-026G replaced by TARGET-026H.",
+      "1200 Bank Saarland classified as UI learning only."
+    ],
+    "selectedNextCase": "TARGET-026H-SKR04-CHART-OF-ACCOUNTS-SOURCE-CORRECTION",
+    "whySelectedNextCaseIsBest": "It prevents additional wrong setup and forces source-backed SKR04 mapping before VAT, posting groups and master data.",
+    "risksBeforeNextCase": [
+      "Existing 1200 account still exists in Business Central and needs cleanup/repurpose decision."
+    ],
+    "requiredPreparation": [
+      "Create source-backed SKR04 minimal account mapping.",
+      "Prepare controlled cleanup or account setup case."
+    ]
+  },
+  "reason": "User confirmed SKR04 target and identified that the prior chart-of-accounts path was not aligned tightly enough with SKR04.",
+  "updatedAt": "2026-06-30T20:50:00.000Z"
+}

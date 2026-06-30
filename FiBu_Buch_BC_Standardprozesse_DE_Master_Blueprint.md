@@ -304,18 +304,19 @@ Business Central wird eingeführt, damit dieselben Stammdaten und Buchungsregeln
 
 ### Company-Struktur
 
-Im ersten Schritt arbeitet die Universaarl GmbH in einer Hauptcompany. Weitere Companies werden erst angelegt, wenn ein Prozess sie wirklich braucht, zum Beispiel Intercompany, Ausland oder getrennte Service- und Produktionsprozesse.
+Im ersten Schritt entsteht `UNIVERSAARL-DE` als erste Aufbaucompany. Sie ist der stabile Startpunkt fuer Kontenplan, USt, Nummernserien, Stammdaten und die ersten Ende-zu-Ende-Prozesse. Die Universaarl-Fallstudie bleibt aber bewusst eine Mehr-Company-Welt: Produktion, Vertrieb, Service und Holding/Intercompany werden als eigene Companies aufgebaut, sobald die fachlichen Grundlagen dafuer stehen.
 
 | Company in BC | Rolle | Hauptprozesse |
 |---|---|---|
-| `UNIVERSAARL-DE` | deutsche Hauptcompany | Foundation, Finance, Verkauf, Einkauf, Lager, Anlagen, Reporting |
-| spätere Produktionscompany | optionaler Ausbau | Fertigung, Warehouse, Intercompany |
-| spätere Servicecompany | optionaler Ausbau | Service, Ressourcen, Ersatzteile |
-| spätere Auslandsgesellschaft | optionaler Ausbau | EU-USt, Intercompany, Reporting |
+| `UNIVERSAARL-DE` | erste deutsche Aufbaucompany | Foundation, Finance, Verkauf, Einkauf, Lager, Anlagen, Reporting |
+| `UNIVERSAARL-PROD` | Produktionscompany | Fertigung, Warehouse, Intercompany |
+| `UNIVERSAARL-SALES` | Vertriebscompany | Verkauf, Versand, Retouren, Intercompany |
+| `UNIVERSAARL-SERVICE` | Servicecompany | Service, Ressourcen, Ersatzteile |
+| `UNIVERSAARL-HOLDING` | Holding/Konzerncompany | Reporting, Intercompany, Abschluss |
 
 ```mermaid
 flowchart LR
-    DE["UNIVERSAARL-DE\nHauptcompany"] --> SALES["Verkauf + Debitoren"]
+    DE["UNIVERSAARL-DE\nerste Aufbaucompany"] --> SALES["Verkauf + Debitoren"]
     DE --> PURCHASE["Einkauf + Kreditoren"]
     DE --> WHSE["Lager + Bestand"]
     DE --> FIN["Finance + Reporting"]
@@ -354,7 +355,7 @@ Der erste Lagerort bleibt bewusst einfach. Ein Verkaufs- oder Einkaufsbeleg soll
 
 Die Universaarl GmbH verdient ihr Geld nicht mit einem einzigen Prozess. Ein Maschinenverkauf beginnt im Vertrieb, löst Verfügbarkeitsprüfung aus, kann Fertigung anstoßen, bewegt Lagerwerte und endet in Forderung, Zahlung und GuV. Ein Servicefall beginnt beim Kundenproblem, verbraucht Ersatzteile, erzeugt Technikerzeiten und entscheidet zwischen Rechnung, Garantie und Kulanz. Ein Projekt verbindet Sondermaschine, Fremdleistung, Material, Ressourcen und Meilensteinrechnung.
 
-Mehrere Companies sind deshalb kein Selbstzweck. Die erste Company `UNIVERSAARL-DE` zeigt die zusammenhängende deutsche Hauptfirma. Weitere Companies kommen erst dazu, wenn sie einen eigenen fachlichen Zweck haben. Business Central löst damit reale Probleme: weniger Dubletten, bessere Verfügbarkeit, nachvollziehbare Steuerlogik, abgestimmte Posten, belastbare GuV nach Produktlinie und klare Verantwortlichkeiten.
+Mehrere Companies sind deshalb kein Selbstzweck, aber sie gehoeren zur Fallstudie. Die erste Company `UNIVERSAARL-DE` zeigt die deutsche Aufbau- und Finanzbasis. Danach entstehen weitere Universaarl-Companies fuer Produktion, Vertrieb, Service und Holding/Intercompany. Business Central löst damit reale Probleme: weniger Dubletten, bessere Verfügbarkeit, nachvollziehbare Steuerlogik, abgestimmte Posten, belastbare GuV nach Produktlinie und klare Verantwortlichkeiten.
 
 
 ## 4. ERP und Business Central für absolute Einsteiger
