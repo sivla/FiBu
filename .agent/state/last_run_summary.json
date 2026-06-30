@@ -1,95 +1,91 @@
 {
   "schemaVersion": 1,
-  "runId": "TARGET-017-20260630",
-  "caseId": "TARGET-017-NUMBER-SERIES-SETUP-ASSIGNMENT",
-  "lastCase": "TARGET-017-NUMBER-SERIES-SETUP-ASSIGNMENT",
-  "status": "partial-observed",
-  "summary": "TARGET-017 assigned 4/7 planned setup fields; remaining fields are blocked for diagnostics.",
+  "runId": "TARGET-017B-20260630",
+  "caseId": "TARGET-017B-NUMBER-SERIES-SETUP-FIELD-DISCOVERY",
+  "lastCase": "TARGET-017B-NUMBER-SERIES-SETUP-FIELD-DISCOVERY",
+  "status": "observed",
+  "summary": "TARGET-017B discovered the remaining setup field routes: U-PO has visible candidates; U-CUST and U-ITEM remain not visible on their setup cards after controlled expansion.",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "posted": false,
   "previewPosting": false,
   "setupChanged": false,
-  "setupWriteAttempted": true,
+  "setupWriteAttempted": false,
   "masterDataChanged": false,
   "apiShortcut": false,
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/target-017-number-series-setup-assignment/TARGET-017-result.json",
-    "playwright/projects/fibu-book5/img/target-017-sales-receivables-setup-010-before.png",
-    "playwright/projects/fibu-book5/img/target-017-sales-receivables-setup-040-after-reopen.png",
-    "playwright/projects/fibu-book5/img/target-017-purchases-payables-setup-010-before.png",
-    "playwright/projects/fibu-book5/img/target-017-purchases-payables-setup-040-after-reopen.png",
-    "playwright/projects/fibu-book5/img/target-017-inventory-setup-010-before.png",
-    "playwright/projects/fibu-book5/img/target-017-inventory-setup-040-after-reopen.png"
+    "playwright/projects/fibu-book5/evidence/target-017b-number-series-setup-field-discovery/TARGET-017B-result.json",
+    "playwright/projects/fibu-book5/img/target-017b-sales-receivables-setup-field-discovery.png",
+    "playwright/projects/fibu-book5/img/target-017b-purchases-payables-setup-field-discovery.png",
+    "playwright/projects/fibu-book5/img/target-017b-inventory-setup-field-discovery.png"
   ],
   "resultPaths": [
-    "playwright/projects/fibu-book5/evidence/target-017-number-series-setup-assignment/TARGET-017-result.json"
+    "playwright/projects/fibu-book5/evidence/target-017b-number-series-setup-field-discovery/TARGET-017B-result.json"
   ],
   "proved": [
-    "Sales/Purchase/Inventory setup assignment pages were opened only in playthru / UNIVERSAARL-DE.",
-    "sales-receivables-setup: Order Nos. contains U-SO after guarded value entry/reopen.",
-    "sales-receivables-setup: Invoice Nos. contains U-SINV after guarded value entry/reopen.",
-    "purchases-payables-setup: Vendor Nos. contains U-VEND after guarded value entry/reopen.",
-    "purchases-payables-setup: Invoice Nos. contains U-PINV after guarded value entry/reopen.",
-    "No master data, document draft, preview posting or posting was executed.",
-    "No number-series line checkbox was changed."
+    "Sales/Purchase/Inventory setup pages were opened only in playthru / UNIVERSAARL-DE.",
+    "purchases-payables-setup: Purchase Order Nos. has visible field/control route candidates.",
+    "sales-receivables-setup: Customer Nos. label was not visible after layout expansion attempt.",
+    "inventory-setup: Item Nos. label was not visible after layout expansion attempt.",
+    "No values were assigned in TARGET-017B.",
+    "No master data, document draft, preview posting or posting was executed."
   ],
   "notProved": [
-    "Not every target setup field could be assigned with the current UI route.",
-    "Legal German invoice numbering compliance is not proven by this technical assignment.",
+    "TARGET-017B does not assign U-CUST, U-PO or U-ITEM.",
+    "Legal German invoice numbering compliance is not proven.",
     "Posting groups, VAT, dimensions, master data and posting readiness are still open."
   ],
   "blockedBy": [
-    "sales-receivables-setup/Customer Nos.: No target field candidate found.",
-    "purchases-payables-setup/Order Nos.: No target field candidate found.",
-    "inventory-setup/Item Nos.: No target field candidate found."
+    "sales-receivables-setup/Customer Nos.: No visible label found after editModeClicked=true, showMoreClicks=1.",
+    "inventory-setup/Item Nos.: No visible label found after editModeClicked=true, showMoreClicks=1."
   ],
-  "nextCase": "TARGET-017B-NUMBER-SERIES-SETUP-FIELD-DISCOVERY",
-  "nextStep": "Run TARGET-017B: diagnose the three blocked setup fields (Customer Nos., Purchase Order Nos., Item Nos.) with Page Inspection, Personalize, FastTab expansion and tooltip/screenshot QA before any master data or document creation.",
+  "nextCase": "TARGET-019-POSTING-GROUPS-PREFLIGHT-OR-NUMBERING-PARK-DECISION",
+  "nextStep": "Run TARGET-019: decide whether the remaining number-series setup gaps (U-CUST, U-ITEM, and optional U-PO follow-up) can be consciously parked before Posting Groups preflight, or whether one narrow non-repeating field route is still required.",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-017-NUMBER-SERIES-SETUP-ASSIGNMENT",
-    "plannedNextCaseBeforeReview": "TARGET-017-NUMBER-SERIES-SETUP-ASSIGNMENT",
-    "lastEvidenceSummary": "TARGET-016M proved all U-* Number Series Lines with Startnr./Endnr. after reopen.",
+    "currentCase": "TARGET-017B-NUMBER-SERIES-SETUP-FIELD-DISCOVERY",
+    "plannedNextCaseBeforeReview": "TARGET-017B-NUMBER-SERIES-SETUP-FIELD-DISCOVERY",
+    "lastEvidenceSummary": "TARGET-017 assigned/proved U-SO, U-SINV, U-VEND and U-PINV, but blocked U-CUST, U-PO and U-ITEM.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "Setup assignment is the direct prerequisite before master data or document setup can use Universaarl numbering.",
+    "reason": "Blocked fields need UI discovery before any master data or blind setup write.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-017B-NUMBER-SERIES-SETUP-FIELD-DISCOVERY",
-        "status": "needs-ui-discovery-first",
-        "reason": "Blocked assignment fields need UI diagnostics before setup can be considered complete."
+        "caseId": "TARGET-019-POSTING-GROUPS-PREFLIGHT-OR-NUMBERING-PARK-DECISION",
+        "status": "replace-with-better-case",
+        "reason": "Remaining numbering setup may be parked if fields are not assignable through the current card UI."
       },
       {
-        "caseId": "TARGET-018-CUSTOMER-MASTERDATA-PREFLIGHT",
-        "status": "needs-setup-first",
-        "reason": "Master data waits for posting groups, VAT and dimensions after numbering."
+        "caseId": "TARGET-019-POSTING-GROUPS-PREFLIGHT",
+        "status": "ready-after-current",
+        "reason": "Posting groups are independent enough to inspect if remaining numbering fields are parked with a documented limit."
       },
       {
         "caseId": "TARGET-020-VAT-SETUP-READINESS",
         "status": "ready-after-current",
-        "reason": "VAT setup follows posting group preflight before any document preview."
+        "reason": "VAT setup follows posting group preflight before documents."
       },
       {
         "caseId": "TARGET-021-DIMENSIONS-FOUNDATION",
         "status": "ready-after-current",
-        "reason": "Dimensions should be available before rich process evidence."
+        "reason": "Dimensions can proceed after numbering/posting setup sequencing is clear."
       },
       {
         "caseId": "TARGET-022-CORE-MASTERDATA-PLAN",
         "status": "needs-setup-first",
-        "reason": "Customers, vendors and items should use final setup mappings."
+        "reason": "Master data waits for numbering, posting groups, VAT and dimensions."
       }
     ],
     "queueChangesMade": [
-      "Selected TARGET-017B-NUMBER-SERIES-SETUP-FIELD-DISCOVERY based on TARGET-017 assignment result."
+      "Selected TARGET-019-POSTING-GROUPS-PREFLIGHT-OR-NUMBERING-PARK-DECISION based on TARGET-017B field discovery."
     ],
-    "selectedNextCase": "TARGET-017B-NUMBER-SERIES-SETUP-FIELD-DISCOVERY",
-    "whySelectedNextCaseIsBest": "The safest next step is field discovery for hidden or ambiguous setup fields, not master data.",
+    "selectedNextCase": "TARGET-019-POSTING-GROUPS-PREFLIGHT-OR-NUMBERING-PARK-DECISION",
+    "whySelectedNextCaseIsBest": "The remaining fields are not all writable through the current UI route; the project should either park them explicitly or continue with posting-group preflight.",
     "risksBeforeNextCase": [
-      "Do not create customers/vendors/items until numbering and posting setup are known.",
-      "Do not claim legal numbering compliance from this technical setup alone."
+      "Do not create customers/vendors/items until numbering gaps are consciously resolved or parked.",
+      "Do not treat visible labels as assigned values.",
+      "Do not claim legal numbering compliance."
     ],
     "requiredPreparation": [
-      "Use Page Inspection, Personalize or field diagnostics for only the blocked setup fields."
+      "Review TARGET-017B screenshots and discovery JSON before any assignment follow-up."
     ]
   },
   "noPreview": true,
@@ -98,5 +94,5 @@
   "noDraft": true,
   "noBookChange": true,
   "noCompanySwitch": true,
-  "updatedAt": "2026-06-30T14:36:10.681Z"
+  "updatedAt": "2026-06-30T14:51:37.116Z"
 }

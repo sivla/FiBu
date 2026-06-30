@@ -213,6 +213,16 @@ Screenshot-QA zu TARGET-016M: Die Nummern sind im Grid eng dargestellt. Der Bild
 
 Screenshot-QA zu TARGET-017: Setupkarten koennen zweispaltig rendern. Ein Wert im rechten Kartenbereich ist nicht automatisch derselbe Zielwert wie das linke Label. Deshalb zaehlen hier Screenshots, Text-Snapshots und Diagnostics zusammen. TARGET-017 beweist nur vier technische Setup-Zuweisungen; `U-CUST`, `U-PO` und `U-ITEM` bleiben fuer TARGET-017B offen.
 
+## Universaarl Foundation - Nummernserien TARGET-017B
+
+| Screenshot | Page | Company/Kontext | Schritt | Was man sehen soll | Interner Beweis | Beweist nicht | Status |
+|---|---|---|---|---|---|---|---|
+| `target-017b-sales-receivables-setup-field-discovery.png` | Debitoren & Verkauf Einrichtung / Sales & Receivables Setup, Page 459 | `playthru` / `UNIVERSAARL-DE` | Field Discovery fuer Debitorennummern | Die Verkaufssetupkarte ist im Edit-/Diagnosekontext sichtbar; `Customer Nos.`/Debitorennummern wird nicht als sichere sichtbare Feldroute gefunden | `U-CUST` darf nicht ueber eine geratene Setup-Card-Route zugewiesen werden | Debitorennummern-Zuweisung, Kundenanlage, Belegnummern-Compliance | `diagnostic`, `not-visible-field-route` |
+| `target-017b-purchases-payables-setup-field-discovery.png` | Kreditoren & Einkauf Einrichtung / Purchases & Payables Setup, Page 460 | `playthru` / `UNIVERSAARL-DE` | Field Discovery fuer Einkaufsbestellungsnummern | Im Einkaufssetup sind Kandidaten rund um `Bestellungsnummern` sichtbar; nahe Labels/Controls und Tooltips werden in den JSON-Snapshots mitgefuehrt | `U-PO` hat eine moegliche sichtbare Feld-/Control-Route fuer einen spaeteren engen Assignment-Case | Wertezuweisung, Reopen-Proof, Einkaufsbestellung oder Posting | `diagnostic`, `route-candidate-only` |
+| `target-017b-inventory-setup-field-discovery.png` | Lager Einrichtung / Inventory Setup, Page 461 | `playthru` / `UNIVERSAARL-DE` | Field Discovery fuer Artikelnummern | Die Lagereinrichtung ist sichtbar, aber `Item Nos.`/Artikelnummern wird in dieser Kartenansicht nicht als sichere Feldroute gefunden | `U-ITEM` braucht eine andere Route oder bewusste Park-Entscheidung | Artikelnummern-Zuweisung, Artikelanlage, Lagerbuchung | `diagnostic`, `not-visible-field-route` |
+
+Screenshot-QA zu TARGET-017B: Dieser Block ist kein Setup-Erfolg. Er beweist nur, welche Setupfelder in den getesteten Kartenansichten sichtbar oder nicht sichtbar wurden. `U-PO` ist ein Kandidat, `U-CUST` und `U-ITEM` bleiben offen. Deshalb folgt TARGET-019 als Park-/Follow-up-Entscheidung vor Stammdaten oder Posting Groups.
+
 ## Qualitaetsfelder fuer neue Screenshot-Metadaten
 
 Neue oder ueberarbeitete `.screenshot.json`-Dateien sollen diese Felder tragen:

@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-30T14:36:10.681Z",
+  "updatedAt": "2026-06-30T14:51:37.116Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-w1-foundation-number-series-assignment-diagnostics",
-  "activeCase": "TARGET-017B-NUMBER-SERIES-SETUP-FIELD-DISCOVERY",
-  "active_case_file": ".agent/state/cases/target-017b-number-series-setup-field-discovery.json",
+  "activeArea": "universaarl-w1-foundation-posting-groups-or-numbering-park-decision",
+  "activeCase": "TARGET-019-POSTING-GROUPS-PREFLIGHT-OR-NUMBERING-PARK-DECISION",
+  "active_case_file": ".agent/state/cases/target-019-posting-groups-preflight-or-numbering-park-decision.json",
   "lastReferenceCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
   "lastReferenceCaseFile": ".agent/state/cases/warehouse-031-warehouse-source-route-park-or-setup-fit-decision.json",
   "mode": "universaarl-target-execution",
@@ -19,16 +19,12 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "open-playthru-business-central",
+    "review-target-017b-evidence",
+    "decide-numbering-gaps-park-or-followup",
+    "open-playthru-business-central-readonly-if-needed",
     "open-UNIVERSAARL-DE-with-documentation",
-    "open-sales-receivables-setup",
-    "open-purchases-payables-setup",
-    "open-inventory-setup",
-    "expand-relevant-fasttabs",
-    "hover-and-tooltip-field-diagnostics",
-    "page-inspection-or-personalize-readonly-field-discovery",
-    "capture-field-discovery-screenshots",
-    "write-result",
+    "inspect-posting-groups-readonly-if-decision-allows",
+    "write-result-and-next-step-card",
     "queue-and-state-update"
   ],
   "forbiddenActions": [
@@ -53,9 +49,12 @@
     "change-number-series-line-checkboxes",
     "create-new-number-series-lines",
     "assign-unmapped-field",
-    "claim-legal-numbering-compliance"
+    "claim-legal-numbering-compliance",
+    "create-master-data-before-posting-groups-vat-dimensions",
+    "repeat-target-017-blind-assignment-route",
+    "claim-numbering-complete-without-field-proof"
   ],
-  "nextStep": "Run TARGET-017B: diagnose the three blocked setup fields (Customer Nos., Purchase Order Nos., Item Nos.) with Page Inspection, Personalize, FastTab expansion and tooltip/screenshot QA before any master data or document creation.",
+  "nextStep": "Run TARGET-019: decide whether the remaining number-series setup gaps (U-CUST, U-ITEM, and optional U-PO follow-up) can be consciously parked before Posting Groups preflight, or whether one narrow non-repeating field route is still required.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -134,7 +133,7 @@
     "targetEvidenceStatus": "german-final-candidate",
     "noActiveLiveRunInOldSandbox": true,
     "germanTargetAvailable": true,
-    "nextStep": "TARGET-013 Number Series preflight in playthru / UNIVERSAARL-DE."
+    "nextStep": "Run TARGET-019: decide whether the remaining number-series setup gaps (U-CUST, U-ITEM, and optional U-PO follow-up) can be consciously parked before Posting Groups preflight, or whether one narrow non-repeating field route is still required."
   },
   "latestP2PLabFollowup": {
     "caseId": "P2P-004-PARTIAL-RECEIPT-VARIANCE-GATE",
@@ -237,7 +236,7 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "universaarl-w1-foundation-number-series-assignment-diagnostics",
+  "currentCoverageFocus": "universaarl-w1-foundation-numbering-partial-setup-assignment-decision",
   "nextProcessRoute": [
     "P2P-012 compared Purchase Journal, Item Journal, Purchase Invoices and Requisition Worksheet by direct page URL without search or field entry.",
     "Item Journal is the most stable observed route for material quantity/location/value effect, but it is Inventory evidence rather than full creditor P2P.",
@@ -5251,5 +5250,82 @@
       "Customer Nos., Purchase Order Nos. and Item Nos. need field discovery instead of repeated blind typing."
     ],
     "updatedAt": "2026-06-30T14:36:10.681Z"
+  },
+  "latestTarget017BNumberSeriesSetupFieldDiscovery": {
+    "caseId": "TARGET-017B-NUMBER-SERIES-SETUP-FIELD-DISCOVERY",
+    "status": "observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-017b-number-series-setup-field-discovery/TARGET-017B-result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "proved": [
+      "Sales/Purchase/Inventory setup pages were opened only in playthru / UNIVERSAARL-DE.",
+      "purchases-payables-setup: Purchase Order Nos. has visible field/control route candidates.",
+      "sales-receivables-setup: Customer Nos. label was not visible after layout expansion attempt.",
+      "inventory-setup: Item Nos. label was not visible after layout expansion attempt.",
+      "No values were assigned in TARGET-017B.",
+      "No master data, document draft, preview posting or posting was executed."
+    ],
+    "notProved": [
+      "TARGET-017B does not assign U-CUST, U-PO or U-ITEM.",
+      "Legal German invoice numbering compliance is not proven.",
+      "Posting groups, VAT, dimensions, master data and posting readiness are still open."
+    ],
+    "discoveries": [
+      {
+        "setupArea": "sales-receivables-setup",
+        "fieldIntent": "Customer Nos.",
+        "numberSeries": "U-CUST",
+        "status": "field-not-visible",
+        "reason": "No visible label found after editModeClicked=true, showMoreClicks=1.",
+        "candidateCount": 0
+      },
+      {
+        "setupArea": "purchases-payables-setup",
+        "fieldIntent": "Purchase Order Nos.",
+        "numberSeries": "U-PO",
+        "status": "field-route-found",
+        "reason": "Found 4 visible label/control route(s) after editModeClicked=true, showMoreClicks=2.",
+        "candidateCount": 4
+      },
+      {
+        "setupArea": "inventory-setup",
+        "fieldIntent": "Item Nos.",
+        "numberSeries": "U-ITEM",
+        "status": "field-not-visible",
+        "reason": "No visible label found after editModeClicked=true, showMoreClicks=1.",
+        "candidateCount": 0
+      }
+    ],
+    "blockedBy": [
+      "sales-receivables-setup/Customer Nos.: No visible label found after editModeClicked=true, showMoreClicks=1.",
+      "inventory-setup/Item Nos.: No visible label found after editModeClicked=true, showMoreClicks=1."
+    ],
+    "flags": {
+      "noPost": true,
+      "noPreview": true,
+      "noDraft": true,
+      "noMasterDataChange": true,
+      "noCompanySwitch": true,
+      "noApiShortcut": true,
+      "noSearch": true,
+      "noBookMasterChange": true,
+      "noNumberSeriesLineCheckboxChange": true,
+      "setupChanged": false,
+      "fieldDiscoveryOnly": true
+    },
+    "evidenceRefs": [
+      "playwright/projects/fibu-book5/evidence/target-017b-number-series-setup-field-discovery/TARGET-017B-result.json",
+      "playwright/projects/fibu-book5/img/target-017b-sales-receivables-setup-field-discovery.png",
+      "playwright/projects/fibu-book5/img/target-017b-purchases-payables-setup-field-discovery.png",
+      "playwright/projects/fibu-book5/img/target-017b-inventory-setup-field-discovery.png"
+    ],
+    "nextCase": "TARGET-019-POSTING-GROUPS-PREFLIGHT-OR-NUMBERING-PARK-DECISION",
+    "keyLearning": [
+      "Setupkarten-Feldrouten muessen sichtbare Label/control-Zusammenhaenge beweisen; reine Labelsuche reicht nicht.",
+      "Purchase Order Nos. hat sichtbare Feld-/Control-Kandidaten im Purchases & Payables Setup.",
+      "Customer Nos. und Item Nos. waren nach Edit Mode und Mehr-anzeigen-Expansion nicht sichtbar; keine Wiederholung blinder Assignment-Routen.",
+      "Keine Werte, Checkboxen, Stammdaten, Drafts, Preview oder Posting wurden in TARGET-017B geaendert."
+    ],
+    "updatedAt": "2026-06-30T14:51:37.116Z"
   }
 }
