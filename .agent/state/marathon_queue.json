@@ -1026,7 +1026,7 @@
     {
       "id": "TARGET-016B-NUMBER-SERIES-LINES-ROUTE-RECOVERY",
       "order": 10017,
-      "status": "pending",
+      "status": "diagnostic-observed-blocked-editor",
       "category": "target-foundation-number-series",
       "expectedImpact": "number-series-lines-route-recovery",
       "mayWorkEffectively": true,
@@ -1036,11 +1036,33 @@
       "sourceCompany": "UNIVERSAARL-DE",
       "targetWorld": "Universaarl",
       "noFinalGermanClaimWithoutUniversaarlEvidence": false,
+      "lookaheadStatus": "replace-with-better-case",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-016b-number-series-lines-route-recovery/TARGET-016B-result.json",
+      "completedAt": "2026-06-30T23:55:00.000+02:00",
+      "result": "Captured Number Series Lines and checkbox diagnostics; active Startnr./Endnr. editor remains blocked, and header-coordinate route is rejected.",
+      "blockedBy": [
+        "No unique active Startnr./Endnr. editor was proven.",
+        "Header-coordinate route did not visibly persist values."
+      ]
+    },
+    {
+      "id": "TARGET-016C-NUMBER-SERIES-ACTIVE-EDITOR-PROBE",
+      "order": 10018,
+      "status": "pending",
+      "category": "target-foundation-number-series",
+      "expectedImpact": "number-series-active-editor-probe",
+      "mayWorkEffectively": true,
+      "mayRunPlaywright": true,
+      "effectiveBcActionsAllowed": true,
+      "goal": "Identify the real editable U-CUST Number Series Lines Startnr./Endnr. editor before any setup assignment or master data.",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "targetWorld": "Universaarl",
+      "noFinalGermanClaimWithoutUniversaarlEvidence": false,
       "lookaheadStatus": "ready-next",
       "resultPath": null
     }
   ],
-  "lastUpdated": "2026-06-30T23:15:00.000+02:00",
+  "lastUpdated": "2026-06-30T23:55:00.000+02:00",
   "nextStepDecisionGate": {
     "active": true,
     "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",
@@ -1113,55 +1135,57 @@
       ]
     }
   },
-  "updatedAt": "2026-06-30T23:15:00.000+02:00",
-  "lastCompletedCase": "TARGET-015-NUMBER-SERIES-CONTROLLED-SETUP-PREFLIGHT",
-  "nextCase": "TARGET-016B-NUMBER-SERIES-LINES-ROUTE-RECOVERY",
+  "updatedAt": "2026-06-30T23:55:00.000+02:00",
+  "lastCompletedCase": "TARGET-016B-NUMBER-SERIES-LINES-ROUTE-RECOVERY",
+  "nextCase": "TARGET-016C-NUMBER-SERIES-ACTIVE-EDITOR-PROBE",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-015-NUMBER-SERIES-CONTROLLED-SETUP-PREFLIGHT",
-    "plannedNextCaseBeforeReview": "TARGET-015-NUMBER-SERIES-CONTROLLED-SETUP-PREFLIGHT",
-    "lastEvidenceSummary": "TARGET-014 defined draft Universaarl numbering families but did not prove setup-page assignment fields.",
-    "isPlannedNextCaseStillSensible": true,
-    "reason": "Before-state screenshots and assignment-page context are needed before any Number Series write.",
+    "currentCase": "TARGET-016B-NUMBER-SERIES-LINES-ROUTE-RECOVERY",
+    "plannedNextCaseBeforeReview": "TARGET-016B-NUMBER-SERIES-LINES-ROUTE-RECOVERY",
+    "lastEvidenceSummary": "TARGET-016B captured Number Series Lines, checkbox controls and duplicate Startnr./Endnr. contexts, but did not prove a persistent Startnr./Endnr. write route.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "The diagnostic goal of TARGET-016B is now complete enough to avoid repeating the same route. The next useful step is a narrower active-editor probe.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-016-NUMBER-SERIES-CONTROLLED-SETUP-WRITE-GATE",
+        "caseId": "TARGET-016C-NUMBER-SERIES-ACTIVE-EDITOR-PROBE",
         "status": "ready-next",
-        "reason": "Before-state is captured and no target U-* duplicate is visible."
+        "reason": "Needed to identify the real editable Lines cell/editor before any further setup write."
       },
       {
-        "caseId": "TARGET-017-POSTING-GROUPS-PREFLIGHT",
-        "status": "ready-after-current",
-        "reason": "Posting groups should follow after numbering setup is created or deliberately deferred."
-      },
-      {
-        "caseId": "TARGET-018-VAT-SETUP-READINESS",
-        "status": "needs-source-check-first",
-        "reason": "German VAT claims need source-backed setup and later preview/VAT Entries."
-      },
-      {
-        "caseId": "TARGET-019-DIMENSIONS-FOUNDATION",
-        "status": "ready-after-current",
-        "reason": "Dimensions can follow once core numbering and posting setup order is stable."
-      },
-      {
-        "caseId": "TARGET-020-CORE-MASTERDATA-PLAN",
+        "caseId": "TARGET-017-NUMBER-SERIES-ASSIGNMENT-FIELD-DISCOVERY",
         "status": "needs-setup-first",
-        "reason": "Master data waits for number series, posting groups, VAT and dimensions."
+        "reason": "Assignment discovery waits until Startnr./Endnr. line values are visible or consciously deferred."
+      },
+      {
+        "caseId": "TARGET-018-NUMBER-SERIES-ASSIGNMENT-WRITE-GATE",
+        "status": "needs-setup-first",
+        "reason": "Setup assignment must not happen before number series line readiness and checkbox semantics are understood."
+      },
+      {
+        "caseId": "TARGET-019-POSTING-GROUPS-PREFLIGHT",
+        "status": "ready-after-current",
+        "reason": "Posting groups follow the numbering foundation."
+      },
+      {
+        "caseId": "TARGET-020-VAT-SETUP-READINESS",
+        "status": "needs-source-check-first",
+        "reason": "German VAT setup requires source-backed evidence and later Preview/VAT Entries."
       }
     ],
     "queueChangesMade": [
-      "Selected TARGET-016-NUMBER-SERIES-CONTROLLED-SETUP-WRITE-GATE based on TARGET-015 before-state visibility."
+      "Marked TARGET-016B as diagnostic-observed-blocked-editor.",
+      "Added TARGET-016C as the next active-editor probe instead of repeating blind Tab or header-coordinate typing."
     ],
-    "selectedNextCase": "TARGET-016-NUMBER-SERIES-CONTROLLED-SETUP-WRITE-GATE",
-    "whySelectedNextCaseIsBest": "It is now reasonable to prepare a narrowly scoped write gate for U-* number series, still without master data or postings.",
+    "selectedNextCase": "TARGET-016C-NUMBER-SERIES-ACTIVE-EDITOR-PROBE",
+    "whySelectedNextCaseIsBest": "It targets the exact missing BC knowledge: which visible element is the real editable Startnr./Endnr. editor in the Lines modal.",
     "risksBeforeNextCase": [
-      "Do not create duplicate U-* series.",
-      "Do not assign series to setup fields without before/after screenshots.",
-      "Do not claim legal German invoice-number compliance from this setup alone."
+      "Do not change checkboxes without explicit field meaning.",
+      "Do not type into Startdatum, a header, the FactBox or the background list.",
+      "Do not assign number series to setup pages until the Lines setup is visibly ready."
     ],
     "requiredPreparation": [
-      "Read TARGET-015 result and screenshot metadata.",
-      "If writing later, create only the explicitly approved U-* series and document before/after."
+      "Read TARGET-016B controls JSON and screenshot QA.",
+      "Scope locators to the foreground Lines modal and active BC frame.",
+      "Capture activeElement/focus evidence before typing target values."
     ]
   }
 }

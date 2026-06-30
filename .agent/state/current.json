@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-30T23:15:00.000+02:00",
+  "updatedAt": "2026-06-30T23:55:00.000+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "activeArea": "universaarl-w1-foundation-number-series",
-  "activeCase": "TARGET-016B-NUMBER-SERIES-LINES-ROUTE-RECOVERY",
-  "active_case_file": ".agent/state/cases/target-016b-number-series-lines-route-recovery.json",
+  "activeCase": "TARGET-016C-NUMBER-SERIES-ACTIVE-EDITOR-PROBE",
+  "active_case_file": ".agent/state/cases/target-016c-number-series-active-editor-probe.json",
   "lastReferenceCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
   "lastReferenceCaseFile": ".agent/state/cases/warehouse-031-warehouse-source-route-park-or-setup-fit-decision.json",
   "mode": "universaarl-target-execution",
@@ -22,12 +22,15 @@
     "open-playthru-business-central",
     "open-UNIVERSAARL-DE-with-documentation",
     "open-number-series-page",
-    "read-target-015-before-state",
-    "create-missing-U-number-series-if-not-existing",
+    "select-existing-U-CUST-row",
+    "open-Zeilen-from-selected-number-series",
+    "scope-to-foreground-lines-modal",
+    "expand-or-focus-lines-grid-if-needed",
+    "hover-field-and-checkbox-headers-for-tooltip-evidence",
+    "capture-active-element-after-cell-click",
     "capture-before-after-screenshots",
-    "write-number-series-setup-result",
-    "stop-before-setup-assignment",
-    "stop-before-master-data",
+    "type-start-end-number-only-if-active-editor-is-unique-and-visible",
+    "write-result",
     "queue-and-state-update"
   ],
   "forbiddenActions": [
@@ -46,10 +49,13 @@
     "operate-in-CRONUS-as-active-target",
     "post",
     "preview-posting",
-    "master-data-create",
-    "claim-foundation-setup-ready-without-evidence"
+    "api-shortcut",
+    "create-master-data-before-number-series-lines",
+    "claim-german-invoice-compliance-from-number-series-only",
+    "repeat-blind-tab-route-from-TARGET-016",
+    "repeat-header-coordinate-route-from-TARGET-016B"
   ],
-  "nextStep": "Run TARGET-016B: recover Number Series Lines Startnr./Endnr. route for existing U-* series; no setup assignment, master data, preview or posting.",
+  "nextStep": "Run TARGET-016C: prove the active editable Startnr./Endnr. editor in the U-CUST Number Series Lines modal; do not repeat blind Tab or header-coordinate routes, and do not assign setup fields or create master data.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -1353,7 +1359,7 @@
     "nextStep": "BANK-018: controlled no-post Payment Journal preflight for 108205; do not post."
   },
   "workType": "warehouse-source-document-action-on-draft",
-  "lastCompletedCase": "TARGET-016-NUMBER-SERIES-CONTROLLED-SETUP-WRITE-GATE",
+  "lastCompletedCase": "TARGET-016B-NUMBER-SERIES-LINES-ROUTE-RECOVERY",
   "latestBank018": {
     "caseId": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
     "status": [
@@ -3690,51 +3696,53 @@
     "resultFile": "playwright/projects/fibu-book5/evidence/prep-020-universaarl-dataset-blueprint/PREP-020-result.json"
   },
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-016-NUMBER-SERIES-CONTROLLED-SETUP-WRITE-GATE",
-    "plannedNextCaseBeforeReview": "TARGET-016-NUMBER-SERIES-CONTROLLED-SETUP-WRITE-GATE",
-    "lastEvidenceSummary": "TARGET-015 proved Number Series before-state with no U-* duplicates and visible related setup-page context.",
-    "isPlannedNextCaseStillSensible": true,
-    "reason": "Number-series rows are a prerequisite for later setup assignment, master data and document numbering.",
+    "currentCase": "TARGET-016B-NUMBER-SERIES-LINES-ROUTE-RECOVERY",
+    "plannedNextCaseBeforeReview": "TARGET-016B-NUMBER-SERIES-LINES-ROUTE-RECOVERY",
+    "lastEvidenceSummary": "TARGET-016B captured Number Series Lines, checkbox controls and duplicate Startnr./Endnr. contexts, but did not prove a persistent Startnr./Endnr. write route.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "The diagnostic goal of TARGET-016B is now complete enough to avoid repeating the same route. The next useful step is a narrower active-editor probe.",
     "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-016C-NUMBER-SERIES-ACTIVE-EDITOR-PROBE",
+        "status": "ready-next",
+        "reason": "Needed to identify the real editable Lines cell/editor before any further setup write."
+      },
       {
         "caseId": "TARGET-017-NUMBER-SERIES-ASSIGNMENT-FIELD-DISCOVERY",
         "status": "needs-setup-first",
-        "reason": "Do not discover assignment as complete until U-* row and start-line creation is recovered or consciously deferred."
+        "reason": "Assignment discovery waits until Startnr./Endnr. line values are visible or consciously deferred."
       },
       {
         "caseId": "TARGET-018-NUMBER-SERIES-ASSIGNMENT-WRITE-GATE",
-        "status": "ready-after-current",
-        "reason": "Assignment should follow only after field discovery and before/after screenshots."
+        "status": "needs-setup-first",
+        "reason": "Setup assignment must not happen before number series line readiness and checkbox semantics are understood."
       },
       {
         "caseId": "TARGET-019-POSTING-GROUPS-PREFLIGHT",
         "status": "ready-after-current",
-        "reason": "Posting group readiness follows the numbering foundation."
+        "reason": "Posting groups follow the numbering foundation."
       },
       {
         "caseId": "TARGET-020-VAT-SETUP-READINESS",
         "status": "needs-source-check-first",
-        "reason": "German VAT claims require source-backed setup plus later Preview/VAT Entries."
-      },
-      {
-        "caseId": "TARGET-021-CORE-MASTERDATA-PLAN",
-        "status": "needs-setup-first",
-        "reason": "Master data waits for number-series assignment, posting groups, VAT and dimensions."
+        "reason": "German VAT setup requires source-backed evidence and later Preview/VAT Entries."
       }
     ],
     "queueChangesMade": [
-      "Selected TARGET-016B-NUMBER-SERIES-LINES-ROUTE-RECOVERY based on TARGET-016 visible U-* verification."
+      "Marked TARGET-016B as diagnostic-observed-blocked-editor.",
+      "Added TARGET-016C as the next active-editor probe instead of repeating blind Tab or header-coordinate typing."
     ],
-    "selectedNextCase": "TARGET-016B-NUMBER-SERIES-LINES-ROUTE-RECOVERY",
-    "whySelectedNextCaseIsBest": "The next useful step is recovering the write route without repeating a failed New+keyboard route.",
+    "selectedNextCase": "TARGET-016C-NUMBER-SERIES-ACTIVE-EDITOR-PROBE",
+    "whySelectedNextCaseIsBest": "It targets the exact missing BC knowledge: which visible element is the real editable Startnr./Endnr. editor in the Lines modal.",
     "risksBeforeNextCase": [
-      "Do not assign setup fields without a separate gate.",
-      "Do not create master data until numbering assignment and posting setup are clear.",
-      "Do not claim German legal invoice numbering from this evidence alone."
+      "Do not change checkboxes without explicit field meaning.",
+      "Do not type into Startdatum, a header, the FactBox or the background list.",
+      "Do not assign number series to setup pages until the Lines setup is visibly ready."
     ],
     "requiredPreparation": [
-      "Inspect TARGET-016 blocked screenshot and action signals.",
-      "Choose a different Number Series write route before retrying."
+      "Read TARGET-016B controls JSON and screenshot QA.",
+      "Scope locators to the foreground Lines modal and active BC frame.",
+      "Capture activeElement/focus evidence before typing target values."
     ]
   },
   "permissionBlocker": {
@@ -3813,7 +3821,7 @@
   },
   "activeCaseFile": ".agent/state/cases/prep-034-role-center-readonly-shell-map.json",
   "previousCase": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
-  "nextCase": "TARGET-016B-NUMBER-SERIES-LINES-ROUTE-RECOVERY",
+  "nextCase": "TARGET-016C-NUMBER-SERIES-ACTIVE-EDITOR-PROBE",
   "latestPrepCase": {
     "caseId": "PREP-034-ROLE-CENTER-READONLY-SHELL-MAP",
     "status": "prep-observed",
@@ -4782,5 +4790,36 @@
     "noMasterDataChange": true,
     "noPreviewPosting": true,
     "noPosting": true
+  },
+  "latestTarget016B": {
+    "caseId": "TARGET-016B-NUMBER-SERIES-LINES-ROUTE-RECOVERY",
+    "status": "diagnostic-observed-blocked-editor",
+    "completedAt": "2026-06-30T23:55:00.000+02:00",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-016b-number-series-lines-route-recovery/TARGET-016B-result.json",
+    "evidenceRefs": [
+      "playwright/projects/fibu-book5/evidence/target-016b-number-series-lines-route-recovery/TARGET-016B-result.json",
+      "playwright/projects/fibu-book5/img/target-016b-010-number-series-list-u-cust-context.png",
+      "playwright/projects/fibu-book5/img/target-016b-020-u-cust-lines-control-inventory.png",
+      "playwright/projects/fibu-book5/img/target-016b-030-u-cust-lines-after-targeted-cell-route.png"
+    ],
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "proved": [
+      "Number Series list and U-CUST Lines modal were opened in playthru / UNIVERSAARL-DE.",
+      "Frame-scoped control inventory captured checkbox states that a main-document-only scan missed.",
+      "Lines modal shows Startdatum, Startnr., Endnr., Letzte Nr. verwendet, Luecken in Nummern zulassen and Offen.",
+      "Header-coordinate typing did not visibly persist U-CUST00001 or U-CUST99999."
+    ],
+    "blockedBy": [
+      "No unique visible Startnr./Endnr. editor was proven.",
+      "Duplicate Startnr./Endnr. labels exist across list, modal and FactBox.",
+      "Checkbox semantics are inventoried but not changed."
+    ],
+    "noSetupAssignment": true,
+    "noMasterDataChange": true,
+    "noPreviewPosting": true,
+    "noPosting": true,
+    "noDraft": true,
+    "nextCase": "TARGET-016C-NUMBER-SERIES-ACTIVE-EDITOR-PROBE"
   }
 }

@@ -128,6 +128,14 @@ Diese Bilder werden erst erzeugt, wenn `UNIVERSAARL-DE` existiert und genug sinn
 | `target-016-041-u-cust-lines-before.png` | Nr.-Serienzeilen / No. Series Lines | `playthru` / `UNIVERSAARL-DE` | Lines-Kontext fuer `U-CUST` | die Lines-Seite zeigt zuerst `Startdatum`, danach `Startnr.` und `Endnr.` | die Aktion `Zeilen` oeffnet den richtigen Detailkontext | kein gespeicherter Startnummernwert | `debugging-evidence` |
 | `target-016-051-u-cust-lines-after.png` | Nr.-Serienzeilen / No. Series Lines | `playthru` / `UNIVERSAARL-DE` | Blockierter Startnr.-Versuch | `Startnr.` bleibt leer; die getestete Eingaberoute persistiert `U-CUST00001` nicht sichtbar | der blockierte Grid-/Fokuspfad ist sichtbar dokumentiert | keine fertige Startnummernzeile, keine Belegnummernreife | `blocked-debugging-evidence` |
 
+## Universaarl Foundation - Nummernserien TARGET-016B
+
+| Screenshot | Page | Company/Kontext | Schritt | Was man sehen soll | Interner Beweis | Beweist nicht | Status |
+|---|---|---|---|---|---|---|---|
+| `target-016b-010-number-series-list-u-cust-context.png` | Nummernserie / No. Series | `playthru` / `UNIVERSAARL-DE` | U-CUST Listenkontext vor Lines-Diagnose | `U-CUST` ist in der Nummernserienliste sichtbar; Spalten fuer Start-/Endnummern und Checkboxen sind sichtbar | der Zielkopf existiert und die Liste zeigt fachlich relevante Checkbox-Spalten | keine Start-/Endnummernzeile, keine Setup-Zuweisung | `diagnostic-context` |
+| `target-016b-020-u-cust-lines-control-inventory.png` | Nr.-Serienzeilen / No. Series Lines | `playthru` / `UNIVERSAARL-DE` | Lines- und Checkbox-Inventar | `Startdatum`, `Startnr.`, `Endnr.`, `Luecken in Nummern zulassen` und `Offen` sind im Lines-Kontext sichtbar | Playwright hat den richtigen Detailkontext und Checkbox-Spalten erkannt | keine Persistenz von `U-CUST00001`/`U-CUST99999`, keine Belegnummernreife | `diagnostic-context` |
+| `target-016b-030-u-cust-lines-after-targeted-cell-route.png` | Nr.-Serienzeilen / No. Series Lines | `playthru` / `UNIVERSAARL-DE` | Abgelehnter Header-/Fokusversuch | Header-/Tooltip-Fokus ist sichtbar; die Zielwerte stehen nicht sichtbar in der Zeile | die getestete Header-Koordinatenroute ist nicht ausreichend | kein gespeicherter Start-/Endnummernwert; nicht als Buch- oder Setup-Erfolg verwenden | `rejected-value-proof` |
+
 ## Qualitaetsfelder fuer neue Screenshot-Metadaten
 
 Neue oder ueberarbeitete `.screenshot.json`-Dateien sollen diese Felder tragen:

@@ -6,12 +6,12 @@
   "targetCompany": "UNIVERSAARL-DE",
   "legalName": "Universaarl GmbH",
   "workType": "foundation-number-series-lines-route-recovery",
-  "status": "ready-next",
+  "status": "diagnostic-observed-blocked-editor",
   "dependsOn": [
     "TARGET-016-NUMBER-SERIES-CONTROLLED-SETUP-WRITE-GATE"
   ],
   "goal": "Recover a safe UI-first route for Number Series Lines so U-* Startnr. and Endnr. values become visible without setup assignment, master data, preview or posting.",
-  "evidenceTarget": "playwright/projects/fibu-book5/evidence/target-016-number-series-controlled-setup-write-gate/",
+  "evidenceTarget": "playwright/projects/fibu-book5/evidence/target-016b-number-series-lines-route-recovery/",
   "allowedActionsWhenRun": [
     "open-playthru-business-central",
     "open-UNIVERSAARL-DE-with-documentation",
@@ -98,8 +98,24 @@
     "The blind New + Tab and header-geometry routes did not visibly persist U-CUST00001.",
     "Do not repeat the same blind Tab route."
   ],
+  "observedLearningFromTarget016B": [
+    "Number Series list, Lines modal and right FactBox can expose duplicate captions such as Startnr. and Endnr.; locators must scope to the foreground Lines grid.",
+    "Checkbox columns are part of the Number Series setup surface and must be inventoried before any later setup assignment.",
+    "The U-CUST Lines page shows Startdatum, Startnr., Endnr., Letzte Nr. verwendet, Warnungsnr., Erhoehung um Nr., Luecken in Nummern zulassen, Implementierung and Offen.",
+    "The Offen checkbox was visible as selected in the blank U-CUST line context; Luecken in Nummern zulassen was visible as unselected.",
+    "Frame-scoped DOM inventory is required in Business Central; querying only the main document misses page-frame controls and checkbox states.",
+    "The targeted header-coordinate route selected/focused header/tooltip context and did not visibly persist U-CUST00001 or U-CUST99999."
+  ],
+  "result": "Diagnostic observed: checkbox/control inventory captured, but Startnr./Endnr. editor route is still blocked.",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-016b-number-series-lines-route-recovery/TARGET-016B-result.json",
+  "blockedBy": [
+    "No unique visible Startnr./Starting No. editor control was discovered.",
+    "No unique visible Endnr./Ending No. editor control was discovered.",
+    "The header-coordinate route did not make U-CUST Startnr./Endnr. values visible after the attempt."
+  ],
+  "nextCase": "TARGET-016C-NUMBER-SERIES-ACTIVE-EDITOR-PROBE",
   "migrationRelevance": "german-final-candidate",
   "finalScreenshotNeeded": true,
-  "nextSafeAction": "Diagnose the actual focused editor/control on Number Series Lines before setting Startnr.; do not assign setup fields or create master data.",
-  "updatedAt": "2026-06-30T23:15:00.000+02:00"
+  "nextSafeAction": "Run TARGET-016C: prove the active editable cell/editor in Number Series Lines with frame-scoped, modal-scoped evidence before another Startnr./Endnr. write attempt.",
+  "updatedAt": "2026-06-30T23:55:00.000+02:00"
 }

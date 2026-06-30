@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-016C-NUMBER-SERIES-ACTIVE-EDITOR-PROBE",
+  "title": "Universaarl Number Series active editor probe",
+  "instance": "playthru",
+  "targetCompany": "UNIVERSAARL-DE",
+  "legalName": "Universaarl GmbH",
+  "workType": "foundation-number-series-lines-active-editor-probe",
+  "status": "ready-next",
+  "dependsOn": [
+    "TARGET-016B-NUMBER-SERIES-LINES-ROUTE-RECOVERY"
+  ],
+  "goal": "Find the real editable Startnr./Endnr. cell or editor on U-CUST Number Series Lines before any broader number-series setup assignment.",
+  "evidenceTarget": "playwright/projects/fibu-book5/evidence/target-016c-number-series-active-editor-probe/",
+  "allowedActionsWhenRun": [
+    "open-playthru-business-central",
+    "open-UNIVERSAARL-DE-with-documentation",
+    "open-number-series-page",
+    "select-existing-U-CUST-row",
+    "open-Zeilen-from-selected-number-series",
+    "scope-to-foreground-lines-modal",
+    "expand-or-focus-lines-grid-if-needed",
+    "hover-field-and-checkbox-headers-for-tooltip-evidence",
+    "capture-active-element-after-cell-click",
+    "capture-before-after-screenshots",
+    "type-start-end-number-only-if-active-editor-is-unique-and-visible",
+    "write-result"
+  ],
+  "defaultLockedActions": [
+    "assign-number-series-in-sales-setup",
+    "assign-number-series-in-purchase-setup",
+    "assign-number-series-in-inventory-setup",
+    "master-data-create",
+    "preview-posting",
+    "posting",
+    "dialog-confirmation-outside-number-series-lines-save"
+  ],
+  "forbiddenActions": [
+    "leave-playthru",
+    "operate-in-CRONUS-as-active-target",
+    "post",
+    "preview-posting",
+    "api-shortcut",
+    "create-master-data-before-number-series-lines",
+    "claim-german-invoice-compliance-from-number-series-only",
+    "repeat-blind-tab-route-from-TARGET-016",
+    "repeat-header-coordinate-route-from-TARGET-016B"
+  ],
+  "probeSeries": {
+    "code": "U-CUST",
+    "startNo": "U-CUST00001",
+    "endNo": "U-CUST99999"
+  },
+  "successCriteria": [
+    "Screenshot and controls JSON identify the foreground U-CUST Number Series Lines grid, not the background list or FactBox.",
+    "Active editor evidence shows which element receives input for Startnr. and Endnr.",
+    "Checkbox semantics for Offen and Luecken in Nummern zulassen are captured without changing them, unless a later explicit gate allows it.",
+    "If values are typed, U-CUST00001 and U-CUST99999 must be visible after blur/reload before the result can be marked setup-ready.",
+    "No setup assignment, master data, draft, preview posting, posting or ledger trace occurs."
+  ],
+  "knownLearningFromTarget016B": [
+    "Duplicate Startnr./Endnr. captions exist across the main list, Lines modal and FactBox.",
+    "Frame-scoped inventory is required to see BC page controls and checkbox states.",
+    "Header-coordinate clicks can focus headers/tooltips instead of editable cells.",
+    "Checkbox columns were visible and must not be ignored in future Number Series setup evidence."
+  ],
+  "migrationRelevance": "german-final-candidate",
+  "finalScreenshotNeeded": true,
+  "nextSafeAction": "Use modal-scoped active-editor diagnostics for U-CUST Number Series Lines; do not repeat blind Tab or header-coordinate typing.",
+  "updatedAt": "2026-06-30T23:55:00.000+02:00"
+}
