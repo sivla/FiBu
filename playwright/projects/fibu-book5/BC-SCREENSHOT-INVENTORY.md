@@ -203,6 +203,16 @@ Diese Bilder werden erst erzeugt, wenn `UNIVERSAARL-DE` existiert und genug sinn
 
 Screenshot-QA zu TARGET-016M: Die Nummern sind im Grid eng dargestellt. Der Bildbeweis zaehlt deshalb zusammen mit den `.txt`-/Snapshot-Dateien, die je Code denselben Zielwert im richtigen `Nr.-Serienzeilen`-Kontext enthalten. Dieser Block ist ein Linien-Reife-Beweis, kein Setup-Zuweisungs- oder Belegnummern-Compliance-Beweis.
 
+## Universaarl Foundation - Nummernserien TARGET-017
+
+| Screenshot | Page | Company/Kontext | Schritt | Was man sehen soll | Interner Beweis | Beweist nicht | Status |
+|---|---|---|---|---|---|---|---|
+| `target-017-sales-receivables-setup-040-after-reopen.png` | Debitoren & Verkauf Einrichtung / Sales & Receivables Setup, Page 459 | `playthru` / `UNIVERSAARL-DE` | Reopen-Proof nach Setup-Zuweisung | Im Bereich Nummernserien sind `U-SO` fuer Auftragsnummern und `U-SINV` fuer Rechnungsnummern sichtbar; die Karte zeigt gleichzeitig mehrere Spalten/FastTabs | Verkaufsauftrags- und Verkaufsrechnungsnummern sind im Verkaufssetup sichtbar zugewiesen | Debitorennummern `U-CUST`, Verkaufsbeleg-Posting, Rechnungsnummern-Compliance, Stammdatenanlage | `universaarl-partial-proof`, `setup-assignment-proof` |
+| `target-017-purchases-payables-setup-040-after-reopen.png` | Kreditoren & Einkauf Einrichtung / Purchases & Payables Setup, Page 460 | `playthru` / `UNIVERSAARL-DE` | Reopen-Proof nach Setup-Zuweisung | `U-VEND` und `U-PINV` sind im Einkaufssetup als sichtbare Nummernserienwerte erfasst; genaue Feldzuordnung wird durch `.txt`-/Diagnostics-Dateien mitgetragen | Kreditoren- und Einkaufsrechnungsnummern sind im Einkaufssetup sichtbar zugewiesen | Einkaufsbestellungsnummern `U-PO`, Einkaufsposten, Eingangsrechnung, rechtliche Rechnungsnummernfolge | `universaarl-partial-proof`, `setup-assignment-proof` |
+| `target-017-inventory-setup-040-after-reopen.png` | Lager Einrichtung / Inventory Setup, Page 461 | `playthru` / `UNIVERSAARL-DE` | Reopen-Proof nach blockierter Artikelnummern-Zuweisung | die Lager-Einrichtung ist erreichbar, aber das Ziel-Feld fuer Artikelnummern wurde nicht eindeutig gefunden | `U-ITEM` darf nicht geraten werden; Field Discovery ist der naechste Schritt | Artikelnummern-Zuweisung, Artikelstamm, Lagerbuchung, Item Ledger | `blocked-field-discovery-needed` |
+
+Screenshot-QA zu TARGET-017: Setupkarten koennen zweispaltig rendern. Ein Wert im rechten Kartenbereich ist nicht automatisch derselbe Zielwert wie das linke Label. Deshalb zaehlen hier Screenshots, Text-Snapshots und Diagnostics zusammen. TARGET-017 beweist nur vier technische Setup-Zuweisungen; `U-CUST`, `U-PO` und `U-ITEM` bleiben fuer TARGET-017B offen.
+
 ## Qualitaetsfelder fuer neue Screenshot-Metadaten
 
 Neue oder ueberarbeitete `.screenshot.json`-Dateien sollen diese Felder tragen:

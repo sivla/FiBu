@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-017B-NUMBER-SERIES-SETUP-FIELD-DISCOVERY",
+  "title": "Discover blocked Universaarl setup number-series fields",
+  "status": "planned",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "workType": "foundation-number-series-setup-field-discovery",
+  "taskClass": "wizard_work",
+  "sourceEvidence": [
+    "TARGET-016M-NUMBER-SERIES-REMAINING-LINES-CONTROLLED-FIT",
+    "TARGET-017-NUMBER-SERIES-SETUP-ASSIGNMENT"
+  ],
+  "purpose": "Find the safe UI/technical field routes for the blocked setup assignments before any master data, document, preview or posting work.",
+  "targetFields": [
+    {
+      "setupPage": "Sales & Receivables Setup",
+      "pageId": 459,
+      "fieldIntent": "Customer Nos.",
+      "numberSeries": "U-CUST",
+      "currentStatus": "blocked-no-target-field-candidate"
+    },
+    {
+      "setupPage": "Purchases & Payables Setup",
+      "pageId": 460,
+      "fieldIntent": "Order Nos.",
+      "numberSeries": "U-PO",
+      "currentStatus": "blocked-no-target-field-candidate"
+    },
+    {
+      "setupPage": "Inventory Setup",
+      "pageId": 461,
+      "fieldIntent": "Item Nos.",
+      "numberSeries": "U-ITEM",
+      "currentStatus": "blocked-no-target-field-candidate"
+    }
+  ],
+  "allowedActions": [
+    "open-playthru-business-central",
+    "open-UNIVERSAARL-DE-with-documentation",
+    "open-target-setup-pages-readonly-or-editmode-for-field-discovery",
+    "expand-relevant-fasttabs",
+    "hover-field-labels-and-capture-tooltips",
+    "use-page-inspection-for-page-field-table-context",
+    "use-personalize-for-available-field-diagnostics-without-saving-changes",
+    "capture-screenshot-qa-and-text-snapshots",
+    "write-result-and-next-step-card"
+  ],
+  "forbiddenActions": [
+    "leave-playthru",
+    "operate-in-legacy-lab-as-active-target",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "api-shortcut",
+    "change-number-series-line-checkboxes",
+    "create-new-number-series-lines",
+    "assign-unmapped-field",
+    "change-unrelated-setup",
+    "claim-legal-numbering-compliance",
+    "book-claim-without-evidence"
+  ],
+  "entryCriteria": [
+    "TARGET-017 result exists and shows 4/7 setup field assignments observed or already assigned.",
+    "Blocked fields are Customer Nos., Purchase Order Nos. and Item Nos.",
+    "No master data or document creation has started."
+  ],
+  "exitCriteria": [
+    "For each blocked field, page/field diagnostics identify the field as visible, hidden, unavailable or ambiguous.",
+    "If a field can be mapped safely, the next case may assign it with before/after/reopen proof.",
+    "If a field is unavailable, document the exact FastTab/Personalize/Page Inspection evidence and choose the next foundation dependency consciously."
+  ],
+  "stopIf": [
+    "BC shows any instance other than playthru.",
+    "BC shows any active company other than UNIVERSAARL-DE.",
+    "A dialog requests creation, deletion, posting, preview or unrelated setup confirmation.",
+    "The UI route would repeat TARGET-017 blind field typing without new field diagnostics.",
+    "Personalize mode would save changes instead of only inspecting available fields."
+  ],
+  "lookahead": [
+    {
+      "caseId": "TARGET-017B-NUMBER-SERIES-SETUP-FIELD-DISCOVERY",
+      "status": "needs-ui-discovery-first",
+      "reason": "Blocked assignment fields need UI diagnostics before setup can be considered complete."
+    },
+    {
+      "caseId": "TARGET-018-CUSTOMER-MASTERDATA-PREFLIGHT",
+      "status": "needs-setup-first",
+      "reason": "Master data waits for posting groups, VAT and dimensions after numbering."
+    },
+    {
+      "caseId": "TARGET-020-VAT-SETUP-READINESS",
+      "status": "ready-after-current",
+      "reason": "VAT setup follows posting group preflight before any document preview."
+    },
+    {
+      "caseId": "TARGET-021-DIMENSIONS-FOUNDATION",
+      "status": "ready-after-current",
+      "reason": "Dimensions should be available before rich process evidence."
+    },
+    {
+      "caseId": "TARGET-022-CORE-MASTERDATA-PLAN",
+      "status": "needs-setup-first",
+      "reason": "Customers, vendors and items should use final setup mappings."
+    }
+  ],
+  "nextStep": "Diagnose Customer Nos., Purchase Order Nos. and Item Nos. with field/page/screenshot QA before continuing to master data or posting groups.",
+  "createdAt": "2026-06-30T14:36:10.681Z"
+}

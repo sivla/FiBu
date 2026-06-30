@@ -1,96 +1,102 @@
 {
   "schemaVersion": 1,
-  "runId": "TARGET-016M-20260630",
-  "caseId": "TARGET-016M-NUMBER-SERIES-REMAINING-LINES-CONTROLLED-FIT",
-  "lastCase": "TARGET-016M-NUMBER-SERIES-REMAINING-LINES-CONTROLLED-FIT",
-  "status": "observed-number-series-lines-fitted",
-  "summary": "TARGET-016M fitted all remaining Universaarl U-* Number Series Lines with reopen proof.",
+  "runId": "TARGET-017-20260630",
+  "caseId": "TARGET-017-NUMBER-SERIES-SETUP-ASSIGNMENT",
+  "lastCase": "TARGET-017-NUMBER-SERIES-SETUP-ASSIGNMENT",
+  "status": "partial-observed",
+  "summary": "TARGET-017 assigned 4/7 planned setup fields; remaining fields are blocked for diagnostics.",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "posted": false,
   "previewPosting": false,
-  "setupChanged": true,
+  "setupChanged": false,
   "setupWriteAttempted": true,
   "masterDataChanged": false,
   "apiShortcut": false,
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/target-016m-number-series-remaining-lines-controlled-fit/TARGET-016M-result.json",
-    "playwright/projects/fibu-book5/img/target-016m-u-vend-010-before.png",
-    "playwright/projects/fibu-book5/img/target-016m-u-vend-030-after-reopen.png",
-    "playwright/projects/fibu-book5/img/target-016m-u-item-010-before.png",
-    "playwright/projects/fibu-book5/img/target-016m-u-item-030-after-reopen.png",
-    "playwright/projects/fibu-book5/img/target-016m-u-so-010-before.png",
-    "playwright/projects/fibu-book5/img/target-016m-u-so-030-after-reopen.png",
-    "playwright/projects/fibu-book5/img/target-016m-u-sinv-010-before.png",
-    "playwright/projects/fibu-book5/img/target-016m-u-sinv-030-after-reopen.png",
-    "playwright/projects/fibu-book5/img/target-016m-u-po-010-before.png",
-    "playwright/projects/fibu-book5/img/target-016m-u-po-030-after-reopen.png",
-    "playwright/projects/fibu-book5/img/target-016m-u-pinv-010-before.png",
-    "playwright/projects/fibu-book5/img/target-016m-u-pinv-030-after-reopen.png"
+    "playwright/projects/fibu-book5/evidence/target-017-number-series-setup-assignment/TARGET-017-result.json",
+    "playwright/projects/fibu-book5/img/target-017-sales-receivables-setup-010-before.png",
+    "playwright/projects/fibu-book5/img/target-017-sales-receivables-setup-040-after-reopen.png",
+    "playwright/projects/fibu-book5/img/target-017-purchases-payables-setup-010-before.png",
+    "playwright/projects/fibu-book5/img/target-017-purchases-payables-setup-040-after-reopen.png",
+    "playwright/projects/fibu-book5/img/target-017-inventory-setup-010-before.png",
+    "playwright/projects/fibu-book5/img/target-017-inventory-setup-040-after-reopen.png"
   ],
   "resultPaths": [
-    "playwright/projects/fibu-book5/evidence/target-016m-number-series-remaining-lines-controlled-fit/TARGET-016M-result.json"
+    "playwright/projects/fibu-book5/evidence/target-017-number-series-setup-assignment/TARGET-017-result.json"
   ],
-  "fittedCodes": [
-    "U-VEND",
-    "U-ITEM",
-    "U-SO",
-    "U-SINV",
-    "U-PO",
-    "U-PINV"
+  "proved": [
+    "Sales/Purchase/Inventory setup assignment pages were opened only in playthru / UNIVERSAARL-DE.",
+    "sales-receivables-setup: Order Nos. contains U-SO after guarded value entry/reopen.",
+    "sales-receivables-setup: Invoice Nos. contains U-SINV after guarded value entry/reopen.",
+    "purchases-payables-setup: Vendor Nos. contains U-VEND after guarded value entry/reopen.",
+    "purchases-payables-setup: Invoice Nos. contains U-PINV after guarded value entry/reopen.",
+    "No master data, document draft, preview posting or posting was executed.",
+    "No number-series line checkbox was changed."
   ],
-  "blockedBy": [],
-  "nextCase": "TARGET-017-NUMBER-SERIES-SETUP-ASSIGNMENT",
-  "nextStep": "Run TARGET-017: assign proven U-* number series to Sales, Purchase and Inventory setup fields with before/after/reopen proof; no master data, no draft, no preview and no posting.",
+  "notProved": [
+    "Not every target setup field could be assigned with the current UI route.",
+    "Legal German invoice numbering compliance is not proven by this technical assignment.",
+    "Posting groups, VAT, dimensions, master data and posting readiness are still open."
+  ],
+  "blockedBy": [
+    "sales-receivables-setup/Customer Nos.: No target field candidate found.",
+    "purchases-payables-setup/Order Nos.: No target field candidate found.",
+    "inventory-setup/Item Nos.: No target field candidate found."
+  ],
+  "nextCase": "TARGET-017B-NUMBER-SERIES-SETUP-FIELD-DISCOVERY",
+  "nextStep": "Run TARGET-017B: diagnose the three blocked setup fields (Customer Nos., Purchase Order Nos., Item Nos.) with Page Inspection, Personalize, FastTab expansion and tooltip/screenshot QA before any master data or document creation.",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-016M-NUMBER-SERIES-REMAINING-LINES-CONTROLLED-FIT",
-    "plannedNextCaseBeforeReview": "TARGET-016M-NUMBER-SERIES-REMAINING-LINES-CONTROLLED-FIT",
-    "lastEvidenceSummary": "TARGET-016L proved the active-editor sequence for U-CUST Number Series Lines.",
+    "currentCase": "TARGET-017-NUMBER-SERIES-SETUP-ASSIGNMENT",
+    "plannedNextCaseBeforeReview": "TARGET-017-NUMBER-SERIES-SETUP-ASSIGNMENT",
+    "lastEvidenceSummary": "TARGET-016M proved all U-* Number Series Lines with Startnr./Endnr. after reopen.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "Remaining U-* lines are the direct prerequisite before setup assignment and master data.",
+    "reason": "Setup assignment is the direct prerequisite before master data or document setup can use Universaarl numbering.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-017-NUMBER-SERIES-SETUP-ASSIGNMENT",
-        "status": "ready-next",
-        "reason": "All U-* line ranges are fitted and can be assigned in setup pages next."
+        "caseId": "TARGET-017B-NUMBER-SERIES-SETUP-FIELD-DISCOVERY",
+        "status": "needs-ui-discovery-first",
+        "reason": "Blocked assignment fields need UI diagnostics before setup can be considered complete."
       },
       {
         "caseId": "TARGET-018-CUSTOMER-MASTERDATA-PREFLIGHT",
-        "status": "ready-after-current",
-        "reason": "Customer creation waits for setup assignment and posting setup."
-      },
-      {
-        "caseId": "TARGET-019-POSTING-GROUPS-PREFLIGHT",
-        "status": "ready-after-current",
-        "reason": "Posting groups are the next finance foundation dependency."
+        "status": "needs-setup-first",
+        "reason": "Master data waits for posting groups, VAT and dimensions after numbering."
       },
       {
         "caseId": "TARGET-020-VAT-SETUP-READINESS",
         "status": "ready-after-current",
-        "reason": "VAT setup is required before document preview/posting."
+        "reason": "VAT setup follows posting group preflight before any document preview."
       },
       {
         "caseId": "TARGET-021-DIMENSIONS-FOUNDATION",
         "status": "ready-after-current",
-        "reason": "Dimensions follow numbering and posting setup as foundation."
+        "reason": "Dimensions should be available before rich process evidence."
+      },
+      {
+        "caseId": "TARGET-022-CORE-MASTERDATA-PLAN",
+        "status": "needs-setup-first",
+        "reason": "Customers, vendors and items should use final setup mappings."
       }
     ],
-    "queueChangesMade": [],
-    "selectedNextCase": "TARGET-017-NUMBER-SERIES-SETUP-ASSIGNMENT",
-    "whySelectedNextCaseIsBest": "The numbering line foundation is ready for setup-page assignment.",
+    "queueChangesMade": [
+      "Selected TARGET-017B-NUMBER-SERIES-SETUP-FIELD-DISCOVERY based on TARGET-017 assignment result."
+    ],
+    "selectedNextCase": "TARGET-017B-NUMBER-SERIES-SETUP-FIELD-DISCOVERY",
+    "whySelectedNextCaseIsBest": "The safest next step is field discovery for hidden or ambiguous setup fields, not master data.",
     "risksBeforeNextCase": [
-      "Do not assign setup pages unless all required line ranges are visible.",
-      "Do not create master data before setup assignment.",
-      "Do not make German legal numbering claims from this technical setup proof alone."
+      "Do not create customers/vendors/items until numbering and posting setup are known.",
+      "Do not claim legal numbering compliance from this technical setup alone."
     ],
     "requiredPreparation": [
-      "Map Sales/Purchase/Inventory setup fields before assigning U-* number series."
+      "Use Page Inspection, Personalize or field diagnostics for only the blocked setup fields."
     ]
   },
-  "updatedAt": "2026-06-30T14:08:58.565Z",
   "noPreview": true,
   "noPosting": true,
   "noMasterData": true,
-  "noSetupAssignment": true,
-  "noBookChange": true
+  "noDraft": true,
+  "noBookChange": true,
+  "noCompanySwitch": true,
+  "updatedAt": "2026-06-30T14:36:10.681Z"
 }

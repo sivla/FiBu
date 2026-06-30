@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "caseId": "TARGET-017-NUMBER-SERIES-SETUP-ASSIGNMENT",
   "title": "Assign Universaarl number series to setup pages",
-  "status": "planned",
+  "status": "partial-observed",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "workType": "foundation-number-series-setup-assignment",
@@ -123,5 +123,91 @@
     }
   ],
   "nextStep": "Map and assign U-* number series on Sales, Purchase and Inventory setup pages with reopen proof; stop on ambiguity instead of guessing.",
-  "createdAt": "2026-06-30T14:20:00.000Z"
+  "createdAt": "2026-06-30T14:20:00.000Z",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-017-number-series-setup-assignment/TARGET-017-result.json",
+  "completedAt": "2026-06-30T14:36:10.681Z",
+  "proved": [
+    "Sales/Purchase/Inventory setup assignment pages were opened only in playthru / UNIVERSAARL-DE.",
+    "sales-receivables-setup: Order Nos. contains U-SO after guarded value entry/reopen.",
+    "sales-receivables-setup: Invoice Nos. contains U-SINV after guarded value entry/reopen.",
+    "purchases-payables-setup: Vendor Nos. contains U-VEND after guarded value entry/reopen.",
+    "purchases-payables-setup: Invoice Nos. contains U-PINV after guarded value entry/reopen.",
+    "No master data, document draft, preview posting or posting was executed.",
+    "No number-series line checkbox was changed."
+  ],
+  "notProved": [
+    "Not every target setup field could be assigned with the current UI route.",
+    "Legal German invoice numbering compliance is not proven by this technical assignment.",
+    "Posting groups, VAT, dimensions, master data and posting readiness are still open."
+  ],
+  "blockedBy": [
+    "sales-receivables-setup/Customer Nos.: No target field candidate found.",
+    "purchases-payables-setup/Order Nos.: No target field candidate found.",
+    "inventory-setup/Item Nos.: No target field candidate found."
+  ],
+  "assignedOrAlreadyAssignedFields": [
+    "Sales & Receivables Setup / Order Nos. -> U-SO",
+    "Sales & Receivables Setup / Invoice Nos. -> U-SINV",
+    "Purchases & Payables Setup / Vendor Nos. -> U-VEND",
+    "Purchases & Payables Setup / Invoice Nos. -> U-PINV"
+  ],
+  "flags": {
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noMasterDataChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noSearch": true,
+    "noBookMasterChange": true,
+    "noNumberSeriesLineCheckboxChange": true,
+    "setupChanged": false
+  },
+  "nextCase": "TARGET-017B-NUMBER-SERIES-SETUP-FIELD-DISCOVERY",
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-017-NUMBER-SERIES-SETUP-ASSIGNMENT",
+    "plannedNextCaseBeforeReview": "TARGET-017-NUMBER-SERIES-SETUP-ASSIGNMENT",
+    "lastEvidenceSummary": "TARGET-016M proved all U-* Number Series Lines with Startnr./Endnr. after reopen.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "Setup assignment is the direct prerequisite before master data or document setup can use Universaarl numbering.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-017B-NUMBER-SERIES-SETUP-FIELD-DISCOVERY",
+        "status": "needs-ui-discovery-first",
+        "reason": "Blocked assignment fields need UI diagnostics before setup can be considered complete."
+      },
+      {
+        "caseId": "TARGET-018-CUSTOMER-MASTERDATA-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Master data waits for posting groups, VAT and dimensions after numbering."
+      },
+      {
+        "caseId": "TARGET-020-VAT-SETUP-READINESS",
+        "status": "ready-after-current",
+        "reason": "VAT setup follows posting group preflight before any document preview."
+      },
+      {
+        "caseId": "TARGET-021-DIMENSIONS-FOUNDATION",
+        "status": "ready-after-current",
+        "reason": "Dimensions should be available before rich process evidence."
+      },
+      {
+        "caseId": "TARGET-022-CORE-MASTERDATA-PLAN",
+        "status": "needs-setup-first",
+        "reason": "Customers, vendors and items should use final setup mappings."
+      }
+    ],
+    "queueChangesMade": [
+      "Selected TARGET-017B-NUMBER-SERIES-SETUP-FIELD-DISCOVERY based on TARGET-017 assignment result."
+    ],
+    "selectedNextCase": "TARGET-017B-NUMBER-SERIES-SETUP-FIELD-DISCOVERY",
+    "whySelectedNextCaseIsBest": "The safest next step is field discovery for hidden or ambiguous setup fields, not master data.",
+    "risksBeforeNextCase": [
+      "Do not create customers/vendors/items until numbering and posting setup are known.",
+      "Do not claim legal numbering compliance from this technical setup alone."
+    ],
+    "requiredPreparation": [
+      "Use Page Inspection, Personalize or field diagnostics for only the blocked setup fields."
+    ]
+  }
 }

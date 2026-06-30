@@ -341,7 +341,7 @@
       "chapter": "Kapitel 6",
       "status": "in-progress",
       "currentBlock": "number-series-controlled-setup-write-gate-next",
-      "latestPracticalCase": "TARGET-015-NUMBER-SERIES-CONTROLLED-SETUP-PREFLIGHT",
+      "latestPracticalCase": "TARGET-017-NUMBER-SERIES-SETUP-ASSIGNMENT",
       "latestGovernanceCase": "UNIVERSAARL-001-TARGET-TRANSITION-GOVERNANCE",
       "targetInstance": "playthru",
       "targetCompany": "UNIVERSAARL-DE",
@@ -356,8 +356,8 @@
         "No master data, preview posting, posting or ledger trace exists.",
         "My Settings can show a personal/default Mandant such as CRONUS DE and must not be used alone as active-company proof."
       ],
-      "nextCase": "TARGET-016-NUMBER-SERIES-CONTROLLED-SETUP-WRITE-GATE",
-      "nextStep": "Create missing U-* number series only after duplicate check; assignments follow later FastTab/field proof.",
+      "nextCase": "TARGET-017B-NUMBER-SERIES-SETUP-FIELD-DISCOVERY",
+      "nextStep": "Run TARGET-017B: diagnose the three blocked setup fields (Customer Nos., Purchase Order Nos., Item Nos.) with Page Inspection, Personalize, FastTab expansion and tooltip/screenshot QA before any master data or document creation.",
       "latestReadonlyContextCase": "PREP-033-MY-SETTINGS-READONLY-CONTEXT",
       "latestReadonlyContextResult": "playwright/projects/fibu-book5/evidence/prep-033-my-settings-readonly-context/PREP-033-result.json",
       "mySettingsContext": {
@@ -612,11 +612,11 @@
     "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
   },
   "updatedAt": "2026-06-30T14:08:58.565Z",
-  "activeArea": "universaarl-w1-foundation-number-series",
-  "currentBlock": "universaarl-w1-foundation-number-series",
+  "activeArea": "universaarl-w1-foundation-number-series-assignment-diagnostics",
+  "currentBlock": "number-series-setup-assignment-partial-field-discovery-next",
   "latestPracticalCase": "TARGET-010-UNIVERSAARL-COMPANY-CONTEXT-PROOF",
   "latestReviewCase": "WAREHOUSE-025-SOURCE-PO-LOCATION-ALTERNATIVE-OR-HELPER-DECISION",
-  "nextCase": "TARGET-016I-NUMBER-SERIES-LINES-OFFICIAL-NEW-ROUTE-WRITE-GATE",
+  "nextCase": "TARGET-017B-NUMBER-SERIES-SETUP-FIELD-DISCOVERY",
   "latestBank013": {
     "caseId": "BANK-013-CONTROLLED-NEXT-EVIDENCE-STEP",
     "status": [
@@ -1717,7 +1717,7 @@
     "nextCase": "FIXEDASSETS-298-FA-DEPRECIATION-BLOCKER-BOOK-SYNC",
     "updatedAt": "2026-06-29T07:09:31.588Z"
   },
-  "nextStep": "Execute read-only direct-page preflight for target BOM/Routing values before any setup change.",
+  "nextStep": "Run TARGET-017B: diagnose the three blocked setup fields (Customer Nos., Purchase Order Nos., Item Nos.) with Page Inspection, Personalize, FastTab expansion and tooltip/screenshot QA before any master data or document creation.",
   "warehouse": {
     "chapter": "Kapitel 13",
     "status": "in-progress",
@@ -2869,47 +2869,49 @@
     "resultPath": "playwright/projects/fibu-book5/evidence/prep-046-bookmaster-starter-data-universaarl-cleanup/PREP-046-result.json"
   },
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-011-UNIVERSAARL-COMPANY-INFORMATION",
-    "plannedNextCaseBeforeReview": "TARGET-012-W1-FOUNDATION-READINESS",
-    "lastEvidenceSummary": "TARGET-010 proved UNIVERSAARL-DE context and Company Information read-only. TARGET-011 targets only the known legal name value.",
+    "currentCase": "TARGET-017-NUMBER-SERIES-SETUP-ASSIGNMENT",
+    "plannedNextCaseBeforeReview": "TARGET-017-NUMBER-SERIES-SETUP-ASSIGNMENT",
+    "lastEvidenceSummary": "TARGET-016M proved all U-* Number Series Lines with Startnr./Endnr. after reopen.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The first Company Information value is now visible; the next step is to decide the remaining W1 Foundation setup sequence.",
+    "reason": "Setup assignment is the direct prerequisite before master data or document setup can use Universaarl numbering.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-012-W1-FOUNDATION-READINESS",
-        "status": "ready-next",
-        "reason": "Name is set; remaining foundation setup can be scoped deliberately."
+        "caseId": "TARGET-017B-NUMBER-SERIES-SETUP-FIELD-DISCOVERY",
+        "status": "needs-ui-discovery-first",
+        "reason": "Blocked assignment fields need UI diagnostics before setup can be considered complete."
       },
       {
-        "caseId": "TARGET-013-NUMBER-SERIES-AND-POSTING-GROUPS",
+        "caseId": "TARGET-018-CUSTOMER-MASTERDATA-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "Number series and posting groups follow W1 readiness."
+        "reason": "Master data waits for posting groups, VAT and dimensions after numbering."
       },
       {
-        "caseId": "TARGET-007-DIMENSIONS-FOUNDATION",
+        "caseId": "TARGET-020-VAT-SETUP-READINESS",
         "status": "ready-after-current",
-        "reason": "Dimensions can be planned after W1 readiness decides setup order."
+        "reason": "VAT setup follows posting group preflight before any document preview."
       },
       {
-        "caseId": "TARGET-DATA-FOUNDATION-001-CORE-MASTERDATA-PLAN",
+        "caseId": "TARGET-021-DIMENSIONS-FOUNDATION",
         "status": "ready-after-current",
-        "reason": "Master data planning can continue, but data creation waits for setup gates."
+        "reason": "Dimensions should be available before rich process evidence."
       },
       {
-        "caseId": "TARGET-LOOKFEEL-001-LIST-SEARCH-SORT-FILTER",
+        "caseId": "TARGET-022-CORE-MASTERDATA-PLAN",
         "status": "needs-setup-first",
-        "reason": "Look-and-feel final screenshots need meaningful Universaarl data."
+        "reason": "Customers, vendors and items should use final setup mappings."
       }
     ],
-    "queueChangesMade": [],
-    "selectedNextCase": "TARGET-012-W1-FOUNDATION-READINESS",
-    "whySelectedNextCaseIsBest": "A W1 readiness gate prevents random setup changes and orders number series, posting groups, VAT and dimensions.",
+    "queueChangesMade": [
+      "Selected TARGET-017B-NUMBER-SERIES-SETUP-FIELD-DISCOVERY based on TARGET-017 assignment result."
+    ],
+    "selectedNextCase": "TARGET-017B-NUMBER-SERIES-SETUP-FIELD-DISCOVERY",
+    "whySelectedNextCaseIsBest": "The safest next step is field discovery for hidden or ambiguous setup fields, not master data.",
     "risksBeforeNextCase": [
-      "Address, country/region and VAT values are still not approved.",
-      "No later process should claim posting readiness from Company Information alone."
+      "Do not create customers/vendors/items until numbering and posting setup are known.",
+      "Do not claim legal numbering compliance from this technical setup alone."
     ],
     "requiredPreparation": [
-      "Define W1 Foundation order and decide which remaining Company Information fields can be filled safely."
+      "Use Page Inspection, Personalize or field diagnostics for only the blocked setup fields."
     ]
   },
   "latestTarget009CompanyCreation": {
@@ -3194,5 +3196,65 @@
       "playwright/projects/fibu-book5/img/target-016m-u-pinv-030-after-reopen.png"
     ],
     "updatedAt": "2026-06-30T14:08:58.565Z"
+  },
+  "latestTarget017NumberSeriesSetupAssignment": {
+    "caseId": "TARGET-017-NUMBER-SERIES-SETUP-ASSIGNMENT",
+    "status": "partial-observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-017-number-series-setup-assignment/TARGET-017-result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "assignedOrAlreadyAssignedFields": [
+      "Sales & Receivables Setup / Order Nos. -> U-SO",
+      "Sales & Receivables Setup / Invoice Nos. -> U-SINV",
+      "Purchases & Payables Setup / Vendor Nos. -> U-VEND",
+      "Purchases & Payables Setup / Invoice Nos. -> U-PINV"
+    ],
+    "blockedFields": [
+      "sales-receivables-setup/Customer Nos.: No target field candidate found.",
+      "purchases-payables-setup/Order Nos.: No target field candidate found.",
+      "inventory-setup/Item Nos.: No target field candidate found."
+    ],
+    "proved": [
+      "Sales/Purchase/Inventory setup assignment pages were opened only in playthru / UNIVERSAARL-DE.",
+      "sales-receivables-setup: Order Nos. contains U-SO after guarded value entry/reopen.",
+      "sales-receivables-setup: Invoice Nos. contains U-SINV after guarded value entry/reopen.",
+      "purchases-payables-setup: Vendor Nos. contains U-VEND after guarded value entry/reopen.",
+      "purchases-payables-setup: Invoice Nos. contains U-PINV after guarded value entry/reopen.",
+      "No master data, document draft, preview posting or posting was executed.",
+      "No number-series line checkbox was changed."
+    ],
+    "notProved": [
+      "Not every target setup field could be assigned with the current UI route.",
+      "Legal German invoice numbering compliance is not proven by this technical assignment.",
+      "Posting groups, VAT, dimensions, master data and posting readiness are still open."
+    ],
+    "flags": {
+      "noPost": true,
+      "noPreview": true,
+      "noDraft": true,
+      "noMasterDataChange": true,
+      "noCompanySwitch": true,
+      "noApiShortcut": true,
+      "noSearch": true,
+      "noBookMasterChange": true,
+      "noNumberSeriesLineCheckboxChange": true,
+      "setupChanged": false
+    },
+    "evidenceRefs": [
+      "playwright/projects/fibu-book5/evidence/target-017-number-series-setup-assignment/TARGET-017-result.json",
+      "playwright/projects/fibu-book5/img/target-017-sales-receivables-setup-010-before.png",
+      "playwright/projects/fibu-book5/img/target-017-sales-receivables-setup-040-after-reopen.png",
+      "playwright/projects/fibu-book5/img/target-017-purchases-payables-setup-010-before.png",
+      "playwright/projects/fibu-book5/img/target-017-purchases-payables-setup-040-after-reopen.png",
+      "playwright/projects/fibu-book5/img/target-017-inventory-setup-010-before.png",
+      "playwright/projects/fibu-book5/img/target-017-inventory-setup-040-after-reopen.png"
+    ],
+    "nextCase": "TARGET-017B-NUMBER-SERIES-SETUP-FIELD-DISCOVERY",
+    "keyLearning": [
+      "BC setup cards can render two editable columns; the left target column must not be confused with unrelated right-column controls on the same y-coordinate.",
+      "After reopen, setup values can render as visible text/buttons/links, not only editable inputs; screenshot/text proof must be accepted when page and field context are clear.",
+      "Customer Nos., Purchase Order Nos. and Item Nos. need field discovery instead of repeated blind typing."
+    ],
+    "updatedAt": "2026-06-30T14:36:10.681Z"
   }
 }
