@@ -1,78 +1,84 @@
 {
   "schemaVersion": 1,
-  "runId": "TARGET-010-20260630-2145",
-  "caseId": "TARGET-010-UNIVERSAARL-COMPANY-CONTEXT-PROOF",
+  "runId": "TARGET-011-20260630-2205",
+  "caseId": "TARGET-011-UNIVERSAARL-COMPANY-INFORMATION",
   "status": "observed",
-  "completedAt": "2026-06-30T21:45:00.000+02:00",
-  "summary": "UNIVERSAARL-DE was opened in playthru as visible Role Center company context; Company Information/Firmendaten opened read-only under company=UNIVERSAARL-DE. My Settings was captured as user context and explicitly not treated as sole active-company proof.",
+  "completedAt": "2026-06-30T22:05:00.000+02:00",
+  "summary": "Firmendaten / Company Information was opened in playthru under company=UNIVERSAARL-DE. Universaarl GmbH is visible as saved company name after reload. The run also learned the exact card edit action title and frame-based first-field targeting.",
   "bcRun": true,
   "playwrightRun": true,
   "noCompanyCreated": true,
-  "noSetupChange": true,
   "noMasterDataChange": true,
   "noPreviewPosting": true,
   "noPosting": true,
+  "noDraft": true,
+  "noApiShortcut": true,
+  "noSearch": true,
   "changedFiles": [
-    "playwright/projects/fibu-book5/evidence/target-010-universaarl-company-context-proof/TARGET-010-result.json",
-    "playwright/projects/fibu-book5/evidence/target-010-universaarl-company-context-proof/010-role-center-context.txt",
-    "playwright/projects/fibu-book5/evidence/target-010-universaarl-company-context-proof/020-my-settings-context.txt",
-    "playwright/projects/fibu-book5/evidence/target-010-universaarl-company-context-proof/030-company-information-context.txt",
+    "playwright/projects/fibu-book5/evidence/target-011-universaarl-company-information/TARGET-011-result.json",
+    "playwright/projects/fibu-book5/tests/target-011-universaarl-company-information.spec.ts",
     "playwright/projects/fibu-book5/book-drafts/universaarl-company-context-draft.md",
     "playwright/projects/fibu-book5/BC-SCREENSHOT-INVENTORY.md",
-    "playwright/projects/fibu-book5/BC-FULL-PLAYTHROUGH-CATALOG.md"
+    "playwright/projects/fibu-book5/BC-FULL-PLAYTHROUGH-CATALOG.md",
+    "playwright/projects/fibu-book5/evidence/target-011-universaarl-company-information/README.md"
   ],
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/target-010-universaarl-company-context-proof/TARGET-010-result.json",
-    "playwright/projects/fibu-book5/img/target-010-010-role-center-company-context.png",
-    "playwright/projects/fibu-book5/img/target-010-020-my-settings-company-context.png",
-    "playwright/projects/fibu-book5/img/target-010-030-company-information-readonly.png"
+    "playwright/projects/fibu-book5/evidence/target-011-universaarl-company-information/TARGET-011-result.json",
+    "playwright/projects/fibu-book5/img/target-011-010-company-information-before-name.png",
+    "playwright/projects/fibu-book5/img/target-011-015-company-information-edit-mode.png",
+    "playwright/projects/fibu-book5/img/target-011-016-company-information-after-name-entry-before-reopen.png",
+    "playwright/projects/fibu-book5/img/target-011-020-company-information-after-name.png",
+    "playwright/projects/fibu-book5/evidence/target-011-universaarl-company-information/README.md"
   ],
-  "nextStep": "Run TARGET-011: guarded Company Information value setup with before/after screenshots, or block before save if values/gate are not clear.",
-  "nextCase": "TARGET-011-UNIVERSAARL-COMPANY-INFORMATION",
+  "nextStep": "Run TARGET-012: W1 Foundation readiness decision before number series, posting groups, VAT setup, dimensions or master data.",
+  "nextCase": "TARGET-012-W1-FOUNDATION-READINESS",
   "blockedBy": [],
   "hardStops": [],
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-010-UNIVERSAARL-COMPANY-CONTEXT-PROOF",
-    "plannedNextCaseBeforeReview": "TARGET-011-UNIVERSAARL-COMPANY-INFORMATION",
-    "lastEvidenceSummary": "TARGET-009 created/verified UNIVERSAARL-DE using the no-data company creation wizard. TARGET-010 checks whether the active context and Company Information can be read safely.",
+    "currentCase": "TARGET-011-UNIVERSAARL-COMPANY-INFORMATION",
+    "plannedNextCaseBeforeReview": "TARGET-012-W1-FOUNDATION-READINESS",
+    "lastEvidenceSummary": "TARGET-010 proved UNIVERSAARL-DE context and Company Information read-only. TARGET-011 targets only the known legal name value.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "Company context and Company Information page are now read-only proven, so a separate setup-decision case may prepare actual values.",
+    "reason": "The first Company Information value is now visible; the next step is to decide the remaining W1 Foundation setup sequence.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-011-UNIVERSAARL-COMPANY-INFORMATION",
-        "status": "ready-after-current",
-        "reason": "The read-only page and context proof exist; next case can decide and set legal company values."
-      },
-      {
         "caseId": "TARGET-012-W1-FOUNDATION-READINESS",
-        "status": "needs-setup-first",
-        "reason": "Foundation readiness depends on Company Information and setup decisions."
+        "status": "ready-next",
+        "reason": "Name is set; remaining foundation setup can be scoped deliberately."
       },
       {
         "caseId": "TARGET-013-NUMBER-SERIES-AND-POSTING-GROUPS",
         "status": "needs-setup-first",
-        "reason": "Number series and posting groups follow after Company Information/foundation setup."
+        "reason": "Number series and posting groups follow W1 readiness."
       },
       {
         "caseId": "TARGET-007-DIMENSIONS-FOUNDATION",
-        "status": "needs-setup-first",
-        "reason": "Dimensions should be created after the base company setup scope is fixed."
+        "status": "ready-after-current",
+        "reason": "Dimensions can be planned after W1 readiness decides setup order."
       },
       {
         "caseId": "TARGET-DATA-FOUNDATION-001-CORE-MASTERDATA-PLAN",
         "status": "ready-after-current",
-        "reason": "Master data planning can proceed, but creation waits for setup gates."
+        "reason": "Master data planning can continue, but data creation waits for setup gates."
+      },
+      {
+        "caseId": "TARGET-LOOKFEEL-001-LIST-SEARCH-SORT-FILTER",
+        "status": "needs-setup-first",
+        "reason": "Look-and-feel final screenshots need meaningful Universaarl data."
       }
     ],
     "queueChangesMade": [],
-    "selectedNextCase": "TARGET-011-UNIVERSAARL-COMPANY-INFORMATION",
-    "whySelectedNextCaseIsBest": "The next valuable step is a controlled Company Information setup decision, not more company-creation probing.",
+    "selectedNextCase": "TARGET-012-W1-FOUNDATION-READINESS",
+    "whySelectedNextCaseIsBest": "A W1 readiness gate prevents random setup changes and orders number series, posting groups, VAT and dimensions.",
     "risksBeforeNextCase": [
-      "Company Information save must be an explicit setup case."
+      "Address, country/region and VAT values are still not approved.",
+      "No later process should claim posting readiness from Company Information alone."
     ],
     "requiredPreparation": [
-      "Prepare exact Universaarl GmbH Company Information values and before/after screenshots."
+      "Define W1 Foundation order and decide which remaining Company Information fields can be filled safely."
     ]
   },
-  "updatedAt": "2026-06-30T21:45:00.000+02:00"
+  "updatedAt": "2026-06-30T22:05:00.000+02:00",
+  "setupChangeOccurredDuringTarget011Attempts": true,
+  "finalRunSetupChanged": false
 }

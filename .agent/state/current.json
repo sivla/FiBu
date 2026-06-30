@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-30T21:45:00.000+02:00",
+  "updatedAt": "2026-06-30T22:05:00.000+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-company-information",
-  "activeCase": "TARGET-011-UNIVERSAARL-COMPANY-INFORMATION",
-  "active_case_file": ".agent/state/cases/target-011-universaarl-company-information.json",
+  "activeArea": "universaarl-w1-foundation-readiness",
+  "activeCase": "TARGET-012-W1-FOUNDATION-READINESS",
+  "active_case_file": ".agent/state/cases/target-012-w1-foundation-readiness.json",
   "lastReferenceCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
   "lastReferenceCaseFile": ".agent/state/cases/warehouse-031-warehouse-source-route-park-or-setup-fit-decision.json",
   "mode": "universaarl-target-execution",
@@ -52,7 +52,7 @@
     "master-data-create",
     "claim-foundation-setup-ready-without-evidence"
   ],
-  "nextStep": "Run TARGET-011: prepare exact Universaarl GmbH Company Information values, capture before screenshot, then set/save only if the setup gate is clear.",
+  "nextStep": "Run TARGET-012: decide the W1 Foundation setup order after Company Information name verification, before number series, posting groups, VAT, dimensions or master data.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -95,7 +95,7 @@
     ],
     "bookEffect": "Beginner-facing draft explains Role Center company context, My Settings nuance and Firmendaten as the first setup page.",
     "integratedIntoBookMaster": false,
-    "nextStep": "TARGET-011 can fill Company Information after before/after evidence is captured.",
+    "nextStep": "TARGET-012 should order W1 Foundation setup after TARGET-011 proved the Company Information name value.",
     "labVsTargetPathSeparated": true,
     "targetCompany": "UNIVERSAARL-DE"
   },
@@ -131,7 +131,7 @@
     "targetEvidenceStatus": "german-final-candidate",
     "noActiveLiveRunInOldSandbox": true,
     "germanTargetAvailable": true,
-    "nextStep": "TARGET-001 playthru read-only context proof."
+    "nextStep": "TARGET-012 W1 Foundation readiness in playthru / UNIVERSAARL-DE."
   },
   "latestP2PLabFollowup": {
     "caseId": "P2P-004-PARTIAL-RECEIPT-VARIANCE-GATE",
@@ -234,7 +234,7 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "universaarl-company-information",
+  "currentCoverageFocus": "universaarl-w1-foundation-readiness",
   "nextProcessRoute": [
     "P2P-012 compared Purchase Journal, Item Journal, Purchase Invoices and Requisition Worksheet by direct page URL without search or field entry.",
     "Item Journal is the most stable observed route for material quantity/location/value effect, but it is Inventory evidence rather than full creditor P2P.",
@@ -4513,7 +4513,7 @@
   },
   "permissionStatus": "user-confirmed-super-permissions-available-target-company-created",
   "companyCreationPermissionStatus": "satisfied-live-ui-proven",
-  "lastUpdated": "2026-06-30T21:45:00.000+02:00",
+  "lastUpdated": "2026-06-30T22:05:00.000+02:00",
   "latestTarget009CompanyCreation": {
     "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
     "status": "universaarl-proven",
@@ -4583,5 +4583,44 @@
     ],
     "nextCase": "TARGET-011-UNIVERSAARL-COMPANY-INFORMATION",
     "updatedAt": "2026-06-30T21:45:00.000+02:00"
+  },
+  "latestTarget011CompanyInformation": {
+    "caseId": "TARGET-011-UNIVERSAARL-COMPANY-INFORMATION",
+    "status": "observed",
+    "instance": "playthru",
+    "targetCompany": "UNIVERSAARL-DE",
+    "legalName": "Universaarl GmbH",
+    "setupChanged": true,
+    "idempotentVerification": true,
+    "noCompanyCreated": true,
+    "noMasterDataChange": true,
+    "noPreviewPosting": true,
+    "noPosting": true,
+    "noDraft": true,
+    "noApiShortcut": true,
+    "noSearch": true,
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-011-universaarl-company-information/TARGET-011-result.json",
+    "evidencePath": "playwright/projects/fibu-book5/evidence/target-011-universaarl-company-information/",
+    "screenshots": [
+      "playwright/projects/fibu-book5/img/target-011-010-company-information-before-name.png",
+      "playwright/projects/fibu-book5/img/target-011-015-company-information-edit-mode.png",
+      "playwright/projects/fibu-book5/img/target-011-016-company-information-after-name-entry-before-reopen.png",
+      "playwright/projects/fibu-book5/img/target-011-020-company-information-after-name.png"
+    ],
+    "proved": [
+      "Company Information / Firmendaten opened in playthru under company=UNIVERSAARL-DE.",
+      "Name was already visible as Universaarl GmbH; no additional value entry was needed.",
+      "After reopening the page, Universaarl GmbH was visible in Company Information.",
+      "No posting, preview, document, master data, API or search route was used."
+    ],
+    "openLimits": [
+      "Address, VAT Registration No., bank information and communication details remain open.",
+      "Number Series, Posting Groups, VAT setup, Dimensions, master data, preview and posting readiness are not proven.",
+      "This is a Foundation setup step, not a ledger or process proof."
+    ],
+    "nextCase": "TARGET-012-W1-FOUNDATION-READINESS",
+    "updatedAt": "2026-06-30T22:05:00.000+02:00",
+    "finalRunSetupChanged": false,
+    "setupChangeOccurredDuringTarget011Attempts": true
   }
 }

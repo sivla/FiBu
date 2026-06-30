@@ -6,7 +6,7 @@
   "targetCompany": "UNIVERSAARL-DE",
   "legalName": "Universaarl GmbH",
   "workType": "guarded-company-information-setup",
-  "status": "ready-next",
+  "status": "observed",
   "dependsOn": [
     "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
     "TARGET-010-UNIVERSAARL-COMPANY-CONTEXT-PROOF"
@@ -51,52 +51,84 @@
   ],
   "migrationRelevance": "german-final-candidate",
   "finalScreenshotNeeded": true,
-  "nextSafeAction": "Run a guarded Company Information setup case with explicit before/after evidence.",
+  "nextSafeAction": "Run TARGET-012 W1 Foundation readiness; do not claim posting readiness from Company Information alone.",
   "smartDecisionCard": {
-    "currentCase": "TARGET-010-UNIVERSAARL-COMPANY-CONTEXT-PROOF",
-    "plannedNextCaseBeforeReview": "TARGET-011-UNIVERSAARL-COMPANY-INFORMATION",
-    "lastEvidenceSummary": "TARGET-010 proved playthru with company=UNIVERSAARL-DE, visible Role Center company header and Company Information/Firmendaten page read-only. My Settings was captured as user context but not accepted as sole active-company proof.",
+    "currentCase": "TARGET-011-UNIVERSAARL-COMPANY-INFORMATION",
+    "plannedNextCaseBeforeReview": "TARGET-012-W1-FOUNDATION-READINESS",
+    "lastEvidenceSummary": "TARGET-010 proved UNIVERSAARL-DE context and Company Information read-only. TARGET-011 targets only the known legal name value.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "Company Information is the first setup page after a no-data company creation and must be handled before number series, posting groups, VAT, dimensions or master data.",
+    "reason": "The first Company Information value is now visible; the next step is to decide the remaining W1 Foundation setup sequence.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-011-UNIVERSAARL-COMPANY-INFORMATION",
-        "status": "ready-next",
-        "reason": "The page and company context are proven read-only."
-      },
-      {
         "caseId": "TARGET-012-W1-FOUNDATION-READINESS",
-        "status": "ready-after-current",
-        "reason": "Foundation readiness follows Company Information values."
+        "status": "ready-next",
+        "reason": "Name is set; remaining foundation setup can be scoped deliberately."
       },
       {
         "caseId": "TARGET-013-NUMBER-SERIES-AND-POSTING-GROUPS",
         "status": "needs-setup-first",
-        "reason": "Number series and posting groups require a stable Company Information baseline."
+        "reason": "Number series and posting groups follow W1 readiness."
       },
       {
         "caseId": "TARGET-007-DIMENSIONS-FOUNDATION",
-        "status": "needs-setup-first",
-        "reason": "Dimensions should follow the first foundation setup decision."
+        "status": "ready-after-current",
+        "reason": "Dimensions can be planned after W1 readiness decides setup order."
       },
       {
         "caseId": "TARGET-DATA-FOUNDATION-001-CORE-MASTERDATA-PLAN",
         "status": "ready-after-current",
         "reason": "Master data planning can continue, but data creation waits for setup gates."
+      },
+      {
+        "caseId": "TARGET-LOOKFEEL-001-LIST-SEARCH-SORT-FILTER",
+        "status": "needs-setup-first",
+        "reason": "Look-and-feel final screenshots need meaningful Universaarl data."
       }
     ],
     "queueChangesMade": [],
-    "selectedNextCase": "TARGET-011-UNIVERSAARL-COMPANY-INFORMATION",
-    "whySelectedNextCaseIsBest": "It is the smallest useful setup step after company creation and avoids entering later setup or master data into an unverified company state.",
+    "selectedNextCase": "TARGET-012-W1-FOUNDATION-READINESS",
+    "whySelectedNextCaseIsBest": "A W1 readiness gate prevents random setup changes and orders number series, posting groups, VAT and dimensions.",
     "risksBeforeNextCase": [
-      "Saving Firmendaten is a setup change and needs explicit before/after evidence.",
-      "My Settings may show a personal/default Mandant and must not be used as the only active-company proof."
+      "Address, country/region and VAT values are still not approved.",
+      "No later process should claim posting readiness from Company Information alone."
     ],
     "requiredPreparation": [
-      "Use TARGET-010 screenshots as context proof.",
-      "Prepare the exact Universaarl GmbH field values before editing.",
-      "Capture before screenshot and field values before any save."
+      "Define W1 Foundation order and decide which remaining Company Information fields can be filled safely."
     ]
   },
-  "updatedAt": "2026-06-30T21:40:00.000+02:00"
+  "updatedAt": "2026-06-30T22:05:00.000+02:00",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-011-universaarl-company-information/TARGET-011-result.json",
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-011-universaarl-company-information/TARGET-011-result.json",
+    "playwright/projects/fibu-book5/evidence/target-011-universaarl-company-information/010-before-company-information.txt",
+    "playwright/projects/fibu-book5/evidence/target-011-universaarl-company-information/020-after-company-information.txt",
+    "playwright/projects/fibu-book5/evidence/target-011-universaarl-company-information/README.md"
+  ],
+  "screenshots": [
+    "playwright/projects/fibu-book5/img/target-011-010-company-information-before-name.png",
+    "playwright/projects/fibu-book5/img/target-011-015-company-information-edit-mode.png",
+    "playwright/projects/fibu-book5/img/target-011-016-company-information-after-name-entry-before-reopen.png",
+    "playwright/projects/fibu-book5/img/target-011-020-company-information-after-name.png"
+  ],
+  "proved": [
+    "Company Information / Firmendaten opened in playthru under company=UNIVERSAARL-DE.",
+    "Name was already visible as Universaarl GmbH; no additional value entry was needed.",
+    "After reopening the page, Universaarl GmbH was visible in Company Information.",
+    "No posting, preview, document, master data, API or search route was used."
+  ],
+  "openLimits": [
+    "Address, VAT Registration No., bank information and communication details remain open.",
+    "Number Series, Posting Groups, VAT setup, Dimensions, master data, preview and posting readiness are not proven.",
+    "This is a Foundation setup step, not a ledger or process proof."
+  ],
+  "noCompanyCreated": true,
+  "noMasterDataChange": true,
+  "noPreviewPosting": true,
+  "noPosting": true,
+  "noDraft": true,
+  "noApiShortcut": true,
+  "noSearch": true,
+  "nextCase": "TARGET-012-W1-FOUNDATION-READINESS",
+  "finalRunSetupChanged": false,
+  "setupChangeOccurredDuringTarget011Attempts": true
 }

@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-012-W1-FOUNDATION-READINESS",
+  "title": "Universaarl W1 Foundation readiness decision after Company Information",
+  "instance": "playthru",
+  "targetCompany": "UNIVERSAARL-DE",
+  "legalName": "Universaarl GmbH",
+  "workType": "foundation-readiness-decision",
+  "status": "ready-next",
+  "dependsOn": [
+    "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+    "TARGET-010-UNIVERSAARL-COMPANY-CONTEXT-PROOF",
+    "TARGET-011-UNIVERSAARL-COMPANY-INFORMATION"
+  ],
+  "goal": "Review the saved Company Information baseline and decide the next W1 Foundation setup sequence before number series, posting groups, VAT setup, dimensions or master data.",
+  "evidenceTarget": "playwright/projects/fibu-book5/evidence/target-012-w1-foundation-readiness/",
+  "allowedActionsWhenRun": [
+    "open-playthru-business-central",
+    "open-UNIVERSAARL-DE-with-documentation",
+    "read-company-information",
+    "read-foundation-setup-pages-if-safe",
+    "capture-readiness-screenshots",
+    "write-foundation-readiness-decision"
+  ],
+  "defaultLockedActions": [
+    "setup-change",
+    "master-data-create",
+    "preview-posting",
+    "posting",
+    "dialog-confirmation"
+  ],
+  "forbiddenActions": [
+    "leave-playthru",
+    "operate-in-CRONUS-as-active-target",
+    "post",
+    "preview-posting",
+    "api-shortcut",
+    "claim-foundation-setup-ready-without-evidence"
+  ],
+  "successCriteria": [
+    "The next foundation setup order is documented from current Universaarl evidence.",
+    "No posting, preview posting, document creation or master data creation occurs unless a later case explicitly unlocks it.",
+    "The result states which setup areas are ready to inspect next and which need source/UI discovery first."
+  ],
+  "migrationRelevance": "german-final-candidate",
+  "finalScreenshotNeeded": true,
+  "nextSafeAction": "Run a W1 Foundation readiness decision before any broader setup or master data work.",
+  "updatedAt": "2026-06-30T22:05:00.000+02:00"
+}

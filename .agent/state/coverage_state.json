@@ -25,12 +25,11 @@
         "Atlas placeholders for search, sort, filter list by, filter totals by, report filters and ledger entry filtering"
       ],
       "openLimits": [
-        "UNIVERSAARL-DE does not yet exist as working target company.",
         "No Universaarl master data family exists yet.",
         "No Universaarl posted entries exist yet.",
         "No final look-and-feel screenshots can be used until lists contain meaningful Universaarl rows."
       ],
-      "nextCase": "TARGET-006-COMPANY-CREATION-SPECIFIC-ASSISTED-SETUP-ROUTE",
+      "nextCase": "TARGET-012-W1-FOUNDATION-READINESS",
       "plannedCases": [
         "TARGET-DATA-001-UNIVERSAARL-DATA-RICHNESS-PLAN",
         "TARGET-DATA-009-FILTERING-READY-CHECK",
@@ -503,7 +502,7 @@
   "hardExclusions": {
     "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
   },
-  "updatedAt": "2026-06-30T21:20:00.000+02:00",
+  "updatedAt": "2026-06-30T22:05:00.000+02:00",
   "activeArea": "universaarl-company-information",
   "currentBlock": "TARGET-011-COMPANY-INFORMATION-SETUP-GATE",
   "latestPracticalCase": "TARGET-010-UNIVERSAARL-COMPANY-CONTEXT-PROOF",
@@ -2761,50 +2760,47 @@
     "resultPath": "playwright/projects/fibu-book5/evidence/prep-046-bookmaster-starter-data-universaarl-cleanup/PREP-046-result.json"
   },
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
-    "plannedNextCaseBeforeReview": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
-    "lastEvidenceSummary": "PREP-039/PREP-040 established that the intended route is the arrow next to Neu and the menu item Neues Unternehmen erstellen, not the main Neu button.",
+    "currentCase": "TARGET-011-UNIVERSAARL-COMPANY-INFORMATION",
+    "plannedNextCaseBeforeReview": "TARGET-012-W1-FOUNDATION-READINESS",
+    "lastEvidenceSummary": "TARGET-010 proved UNIVERSAARL-DE context and Company Information read-only. TARGET-011 targets only the known legal name value.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "TARGET-009 is complete: UNIVERSAARL-DE is visible after the no-data wizard route. The next dependency is proving active company context before setup.",
+    "reason": "The first Company Information value is now visible; the next step is to decide the remaining W1 Foundation setup sequence.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-010-UNIVERSAARL-COMPANY-CONTEXT-PROOF",
+        "caseId": "TARGET-012-W1-FOUNDATION-READINESS",
         "status": "ready-next",
-        "reason": "UNIVERSAARL-DE is visible and can be opened/verified next."
+        "reason": "Name is set; remaining foundation setup can be scoped deliberately."
       },
       {
-        "caseId": "TARGET-004-FOUNDATION-SETUP-READINESS",
-        "status": "ready-after-current",
-        "reason": "Foundation setup only makes sense after target company context is proven."
-      },
-      {
-        "caseId": "TARGET-005-NUMBER-SERIES-PREFLIGHT",
+        "caseId": "TARGET-013-NUMBER-SERIES-AND-POSTING-GROUPS",
         "status": "needs-setup-first",
-        "reason": "Needs company context and foundation baseline."
-      },
-      {
-        "caseId": "TARGET-006-POSTING-GROUPS-PREFLIGHT",
-        "status": "needs-setup-first",
-        "reason": "Needs company context and foundation baseline."
+        "reason": "Number series and posting groups follow W1 readiness."
       },
       {
         "caseId": "TARGET-007-DIMENSIONS-FOUNDATION",
         "status": "ready-after-current",
-        "reason": "Dimensions belong after company and setup context."
+        "reason": "Dimensions can be planned after W1 readiness decides setup order."
+      },
+      {
+        "caseId": "TARGET-DATA-FOUNDATION-001-CORE-MASTERDATA-PLAN",
+        "status": "ready-after-current",
+        "reason": "Master data planning can continue, but data creation waits for setup gates."
+      },
+      {
+        "caseId": "TARGET-LOOKFEEL-001-LIST-SEARCH-SORT-FILTER",
+        "status": "needs-setup-first",
+        "reason": "Look-and-feel final screenshots need meaningful Universaarl data."
       }
     ],
-    "queueChangesMade": [
-      "Set next case to UNIVERSAARL-DE company context proof."
-    ],
-    "selectedNextCase": "TARGET-010-UNIVERSAARL-COMPANY-CONTEXT-PROOF",
-    "whySelectedNextCaseIsBest": "Company Information, number series, posting groups, VAT and master data must start only after the active company context is visibly UNIVERSAARL-DE.",
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-012-W1-FOUNDATION-READINESS",
+    "whySelectedNextCaseIsBest": "A W1 readiness gate prevents random setup changes and orders number series, posting groups, VAT and dimensions.",
     "risksBeforeNextCase": [
-      "Company switch must be explicit and documented.",
-      "Company Information may still be empty."
+      "Address, country/region and VAT values are still not approved.",
+      "No later process should claim posting readiness from Company Information alone."
     ],
     "requiredPreparation": [
-      "Open/switch to UNIVERSAARL-DE intentionally.",
-      "Capture shell context and Company Information."
+      "Define W1 Foundation order and decide which remaining Company Information fields can be filled safely."
     ]
   },
   "latestTarget009CompanyCreation": {
@@ -2844,5 +2840,44 @@
     ],
     "nextCase": "TARGET-010-UNIVERSAARL-COMPANY-CONTEXT-PROOF",
     "updatedAt": "2026-06-30T21:20:00.000+02:00"
+  },
+  "latestTarget011CompanyInformation": {
+    "caseId": "TARGET-011-UNIVERSAARL-COMPANY-INFORMATION",
+    "status": "observed",
+    "instance": "playthru",
+    "targetCompany": "UNIVERSAARL-DE",
+    "legalName": "Universaarl GmbH",
+    "setupChanged": true,
+    "idempotentVerification": true,
+    "noCompanyCreated": true,
+    "noMasterDataChange": true,
+    "noPreviewPosting": true,
+    "noPosting": true,
+    "noDraft": true,
+    "noApiShortcut": true,
+    "noSearch": true,
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-011-universaarl-company-information/TARGET-011-result.json",
+    "evidencePath": "playwright/projects/fibu-book5/evidence/target-011-universaarl-company-information/",
+    "screenshots": [
+      "playwright/projects/fibu-book5/img/target-011-010-company-information-before-name.png",
+      "playwright/projects/fibu-book5/img/target-011-015-company-information-edit-mode.png",
+      "playwright/projects/fibu-book5/img/target-011-016-company-information-after-name-entry-before-reopen.png",
+      "playwright/projects/fibu-book5/img/target-011-020-company-information-after-name.png"
+    ],
+    "proved": [
+      "Company Information / Firmendaten opened in playthru under company=UNIVERSAARL-DE.",
+      "Name was already visible as Universaarl GmbH; no additional value entry was needed.",
+      "After reopening the page, Universaarl GmbH was visible in Company Information.",
+      "No posting, preview, document, master data, API or search route was used."
+    ],
+    "openLimits": [
+      "Address, VAT Registration No., bank information and communication details remain open.",
+      "Number Series, Posting Groups, VAT setup, Dimensions, master data, preview and posting readiness are not proven.",
+      "This is a Foundation setup step, not a ledger or process proof."
+    ],
+    "nextCase": "TARGET-012-W1-FOUNDATION-READINESS",
+    "updatedAt": "2026-06-30T22:05:00.000+02:00",
+    "finalRunSetupChanged": false,
+    "setupChangeOccurredDuringTarget011Attempts": true
   }
 }
