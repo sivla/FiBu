@@ -1526,12 +1526,34 @@
     },
     {
       "id": "TARGET-024F-GLOBAL-DIMENSION-PAGE118-DIRECT-FIELD-ROUTE",
-      "status": "pending",
+      "status": "blocked",
       "priority": "high",
       "area": "universaarl-foundation-dimensions",
       "goal": "Inspect and assign/prove PRODUCTLINE and COSTCENTER through the source-backed Page 118 Global Dimension Code fields, then verify by reopening Page 118.",
       "sourceCase": "TARGET-024E-GLOBAL-DIMENSION-ASSIGNMENT-SOURCE-OR-ALTERNATIVE-ROUTE",
       "createdAt": "2026-06-30T18:10:00.000Z",
+      "lookaheadStatus": "blocked",
+      "mayRunPlaywright": true,
+      "mayWorkEffectively": true,
+      "effectiveBcActionsAllowed": true,
+      "sourceCompany": "UNIVERSAARL-DE",
+      "targetWorld": "Universaarl",
+      "noFinalGermanClaimWithoutUniversaarlEvidence": false,
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-024f-global-dimension-page118-direct-field-route/TARGET-024F-result.json",
+      "completedAt": "2026-06-30T17:57:00.000Z",
+      "result": "TARGET-024F proved Page 118 edit mode but blocked direct textbox entry: Global Dimension Code fields render as lookup/detail buttons.",
+      "blockedBy": [
+        "page118-global-dimension-direct-fields-not-unambiguously-matched"
+      ]
+    },
+    {
+      "id": "TARGET-024G-GLOBAL-DIMENSION-PAGE118-LOOKUP-ROUTE",
+      "status": "pending",
+      "priority": "high",
+      "area": "universaarl-foundation-dimensions",
+      "goal": "Use TARGET-024F button-control evidence to test Page 118 lookup/detail semantics for Global Dimension Code 1/2 without repeating Page 577 or direct textbox routes.",
+      "sourceCase": "TARGET-024F-GLOBAL-DIMENSION-PAGE118-DIRECT-FIELD-ROUTE",
+      "createdAt": "2026-06-30T17:57:00.000Z",
       "lookaheadStatus": "ready-next",
       "mayRunPlaywright": true,
       "mayWorkEffectively": true,
@@ -1539,10 +1561,10 @@
       "sourceCompany": "UNIVERSAARL-DE",
       "targetWorld": "Universaarl",
       "noFinalGermanClaimWithoutUniversaarlEvidence": false,
-      "resultPath": "playwright/projects/fibu-book5/evidence/target-024f-global-dimension-page118-direct-field-route/TARGET-024F-result.json"
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-024g-global-dimension-page118-lookup-route/TARGET-024G-result.json"
     }
   ],
-  "lastUpdated": "2026-06-30T18:10:00.000Z",
+  "lastUpdated": "2026-06-30T17:57:00.000Z",
   "nextStepDecisionGate": {
     "active": true,
     "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",
@@ -1565,57 +1587,57 @@
       "replace-with-better-case"
     ],
     "latestDecisionCard": {
-      "currentCase": "TARGET-024E-GLOBAL-DIMENSION-ASSIGNMENT-SOURCE-OR-ALTERNATIVE-ROUTE",
-      "plannedNextCaseBeforeReview": "TARGET-024-CORE-MASTERDATA-PLAN",
-      "lastEvidenceSummary": "TARGET-023B proves starter dimension values; TARGET-024B and TARGET-024D do not prove persisted global dimension assignment; TARGET-024E selected a source-backed Page 118 direct-field route.",
+      "currentCase": "TARGET-024F-GLOBAL-DIMENSION-PAGE118-DIRECT-FIELD-ROUTE",
+      "plannedNextCaseBeforeReview": "TARGET-024F-GLOBAL-DIMENSION-PAGE118-DIRECT-FIELD-ROUTE",
+      "lastEvidenceSummary": "Page 118 direct global dimension route was tested but did not reach a durable proof.",
       "isPlannedNextCaseStillSensible": false,
-      "reason": "Master data should not start while global dimensions are unresolved; Page 118 must be inspected/targeted directly or the topic consciously parked.",
+      "reason": "The active case needs a route decision instead of repeating the same direct field attempt.",
       "lookaheadReviewed": [
         {
-          "caseId": "TARGET-024F-GLOBAL-DIMENSION-PAGE118-DIRECT-FIELD-ROUTE",
+          "caseId": "TARGET-024G-GLOBAL-DIMENSION-PAGE118-LOOKUP-ROUTE",
           "status": "ready-next",
-          "reason": "Non-repeating source-backed route after 024E."
+          "reason": "Non-repeating route based on TARGET-024F control evidence."
+        },
+        {
+          "caseId": "TARGET-024H-GLOBAL-DIMENSION-PARK-OR-PAGEINSPECTION-DECISION",
+          "status": "ready-after-current",
+          "reason": "If lookup buttons only open related records or do not persist, stop setup attempts and decide Page Inspection or park."
         },
         {
           "caseId": "TARGET-024-CORE-MASTERDATA-PLAN",
           "status": "ready-after-current",
-          "reason": "Can continue after global dimensions are assigned or consciously parked."
+          "reason": "Master data can continue after assignment or explicit park decision."
         },
         {
           "caseId": "TARGET-025-CUSTOMER-VENDOR-ITEM-TEMPLATES-PREFLIGHT",
           "status": "needs-setup-first",
-          "reason": "Templates depend on posting groups, VAT and dimension/default-dimension decisions."
+          "reason": "Templates depend on dimensions/default-dimension strategy and posting/VAT setup."
         },
         {
           "caseId": "TARGET-026-VAT-SETUP-FIT-DECISION",
           "status": "needs-source-check-first",
-          "reason": "German VAT setup needs its own source-backed setup and later Preview/VAT Entries."
-        },
-        {
-          "caseId": "TARGET-028-DEFAULT-DIMENSIONS-STRATEGY",
-          "status": "needs-setup-first",
-          "reason": "Default Dimensions need concrete master data and the global-dimension decision."
+          "reason": "VAT setup needs a separate source-backed setup decision."
         }
       ],
       "queueChangesMade": [
-        "Marked TARGET-024E observed.",
-        "Inserted/selected TARGET-024F-GLOBAL-DIMENSION-PAGE118-DIRECT-FIELD-ROUTE."
+        "Marked TARGET-024F blocked after Page 118 direct textbox route did not find editable fields.",
+        "Inserted/selected TARGET-024G-GLOBAL-DIMENSION-PAGE118-LOOKUP-ROUTE for the discovered A role=button controls."
       ],
-      "selectedNextCase": "TARGET-024F-GLOBAL-DIMENSION-PAGE118-DIRECT-FIELD-ROUTE",
-      "whySelectedNextCaseIsBest": "It follows the official General Ledger Setup/Page 118 context and avoids the failed Change Global Dimensions action-page repeat.",
+      "selectedNextCase": "TARGET-024G-GLOBAL-DIMENSION-PAGE118-LOOKUP-ROUTE",
+      "whySelectedNextCaseIsBest": "TARGET-024F discovered that Page 118 global dimension fields are button-style lookup/detail controls, so the next non-repeating route is a scoped lookup/detail-button test before parking the topic.",
       "risksBeforeNextCase": [
-        "Do not claim Global Dimension Code 1/2 readiness before Page 118 reopen proof.",
-        "Do not start master data/default dimensions yet.",
-        "Do not use Page 577 as primary route."
+        "Do not click Page 577/Starten again.",
+        "Do not type into grey Page 118 fields unless a real textbox or lookup list is visible.",
+        "Do not claim global dimensions are assigned without Page 118 reopen proof."
       ],
       "requiredPreparation": [
-        "Inspect Page 118 Dimensions FastTab controls and tooltips/Page Inspection before writing."
+        "Use TARGET-024F field-match map and controls to target only the two Global Dimension Code button controls."
       ]
     }
   },
   "updatedAt": "2026-06-30T18:10:00.000Z",
-  "lastCompletedCase": "TARGET-024E-GLOBAL-DIMENSION-ASSIGNMENT-SOURCE-OR-ALTERNATIVE-ROUTE",
-  "nextCase": "TARGET-024F-GLOBAL-DIMENSION-PAGE118-DIRECT-FIELD-ROUTE",
+  "lastCompletedCase": "TARGET-024F-GLOBAL-DIMENSION-PAGE118-DIRECT-FIELD-ROUTE",
+  "nextCase": "TARGET-024G-GLOBAL-DIMENSION-PAGE118-LOOKUP-ROUTE",
   "nextStepDecisionCard": {
     "currentCase": "TARGET-024B-GLOBAL-DIMENSION-ASSIGNMENT",
     "plannedNextCaseBeforeReview": "TARGET-024-CORE-MASTERDATA-PLAN",
@@ -1663,5 +1685,5 @@
       "Use Page Inspection/technical field diagnostics, tooltip/action inventory and screenshot QA on the Change Global Dimensions page."
     ]
   },
-  "nextStep": "Run TARGET-024F Page 118 direct-field route before master data."
+  "nextStep": "Run TARGET-024G lookup/detail-button route before master data."
 }

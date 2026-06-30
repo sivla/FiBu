@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-024G-GLOBAL-DIMENSION-PAGE118-LOOKUP-ROUTE",
+  "title": "Universaarl Global Dimension Page 118 lookup route",
+  "status": "planned",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "workType": "foundation-global-dimension-page118-lookup-route",
+  "taskClass": "wizard_work",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/target-024f-global-dimension-page118-direct-field-route/TARGET-024F-result.json",
+    "playwright/projects/fibu-book5/evidence/target-024f-global-dimension-page118-direct-field-route/target-024f-field-match-map.json",
+    "playwright/projects/fibu-book5/evidence/target-024f-global-dimension-page118-direct-field-route/target-024f-020-page118-editmode-field-map.controls.json"
+  ],
+  "purpose": "Use the TARGET-024F Page 118 control evidence to test the next non-repeating route: the Global Dimension Code fields render as detail/lookup buttons, not direct textboxes.",
+  "allowedActions": [
+    "open-general-ledger-setup-page-directly",
+    "activate-page-118-edit-mode-frame-aware",
+    "inspect-global-dimension-button-controls",
+    "hover-and-tooltip-global-dimension-fields",
+    "click-only-the-global-dimension-code-1-or-2-value-button-if-context-remains-page-118",
+    "capture-resulting-dialog-or-related-page",
+    "select-productline-or-costcenter-only-if-a-real-dimension-lookup-list-is-visible",
+    "capture-before-after-reopen-proof",
+    "write-result-and-next-step-card"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "leave-playthru",
+    "operate-in-legacy-lab-as-active-target",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "api-shortcut",
+    "repeat-target-024d-page577-starten-route",
+    "type-into-global-dimension-fields-without-visible-lookup-or-textbox",
+    "claim-reporting-readiness-without-posted-dimension-entries"
+  ],
+  "defaultLockedActionsUnlockedForThisCase": [
+    "setup-change"
+  ],
+  "entryCriteria": [
+    "TARGET-024F proved Page 118 edit mode is reachable in playthru / UNIVERSAARL-DE.",
+    "TARGET-024F control map shows Global Dimension Code fields as A role=button controls with 'Details öffnen...' titles.",
+    "TARGET-023B proves PRODUCTLINE and COSTCENTER dimension values exist."
+  ],
+  "exitCriteria": [
+    "Either PRODUCTLINE/COSTCENTER are visible on Page 118 after reopen, or the lookup/button route is blocked with screenshot/control evidence.",
+    "No master data, document draft, preview posting, posting, company switch or API shortcut executed.",
+    "Result contains screenshot QA and a Next-Step Decision Card."
+  ],
+  "lookahead": [
+    {
+      "caseId": "TARGET-024G-GLOBAL-DIMENSION-PAGE118-LOOKUP-ROUTE",
+      "status": "ready-next",
+      "reason": "This is the next non-repeating route after TARGET-024F discovered button-style Page 118 fields."
+    },
+    {
+      "caseId": "TARGET-024H-GLOBAL-DIMENSION-PARK-OR-PAGEINSPECTION-DECISION",
+      "status": "ready-after-current",
+      "reason": "If the lookup route opens only related records or does not persist, park or require Page Inspection before more setup attempts."
+    },
+    {
+      "caseId": "TARGET-024-CORE-MASTERDATA-PLAN",
+      "status": "ready-after-current",
+      "reason": "Master data planning can continue only after global dimensions are assigned or consciously parked."
+    },
+    {
+      "caseId": "TARGET-025-CUSTOMER-VENDOR-ITEM-TEMPLATES-PREFLIGHT",
+      "status": "needs-setup-first",
+      "reason": "Templates depend on posting groups, VAT and dimensions/default dimensions."
+    },
+    {
+      "caseId": "TARGET-026-VAT-SETUP-FIT-DECISION",
+      "status": "needs-source-check-first",
+      "reason": "German VAT setup needs its own source-backed setup fit."
+    }
+  ],
+  "nextStep": "Test Page 118 lookup/detail-button semantics for Global Dimension Code 1/2; do not repeat direct textbox or Page 577 routes.",
+  "createdAt": "2026-06-30T17:57:00.000Z",
+  "updatedAt": "2026-06-30T17:57:00.000Z"
+}

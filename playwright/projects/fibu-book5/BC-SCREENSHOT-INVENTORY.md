@@ -303,6 +303,15 @@ Screenshot-QA zu TARGET-024C: Diese Bilder sind Bedien- und Debugging-Evidence. 
 
 Screenshot-QA zu TARGET-024D: Wichtig ist der Bedienfehler-Fund aus der ersten Testfassung: `Fortlaufend` oeffnet nur den Reiter, `Starten` ist der eigentliche Ausfuehrungsbutton. Der korrigierte Lauf klickt `Starten`, liefert aber weiterhin keinen positiven Reopen-Beweis auf Page 118. Diese Bilder sind deshalb gute Debugging- und Buch-Erklaerbilder fuer den Unterschied zwischen sichtbarer Eingabe, Ausfuehrungsbutton und gespeichertem Setup-Wert.
 
+## Universaarl Foundation - Globale Dimensionen TARGET-024F
+
+| Screenshot | Page | Company | Schritt | Was sieht man? | Beweist intern | Beweist nicht | Status |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `target-024f-010-page118-before.png` | Finanzbuchhaltung Einrichtung, Page 118 | `playthru` / `UNIVERSAARL-DE` | Vorher vor Page-118-Direktroute | Page 118 ist in der Zielcompany offen; die Felder `Globaler Dimensionscode 1/2` sind leer sichtbar | Richtiger Zielkontext und negative Baseline | gespeicherte globale Dimensionen, Default Dimensions, Postenwirkung | `universaarl-setup-before`, `negative-baseline` |
+| `target-024f-020-page118-editmode-field-map.png` | Finanzbuchhaltung Einrichtung, Page 118 | `playthru` / `UNIVERSAARL-DE` | Bearbeiten-Modus und Feld-QA | Der Stift/Bearbeiten-Modus ist aktiv; viele Felder werden editierbar, aber `Globaler Dimensionscode 1/2` bleiben graue Button-/Detailfelder | Frame-aware Editmode funktioniert; die Global-Dimension-Felder sind keine direkten Textboxen | dass `PRODUCTLINE`/`COSTCENTER` gespeichert sind | `blocked-direct-field-route`, `lookup-route-needed` |
+
+Screenshot-QA zu TARGET-024F: Das Bild ist kein Erfolgsscreenshot fuer globale Dimensionen. Es erklaert, warum die direkte Textbox-Hypothese falsch war: Die Page-118-Felder erscheinen im Bearbeiten-Modus als Lookup-/Detailbutton-Flaechen. Der naechste Screenshot muss zeigen, was beim gezielten Klick auf genau diese Feldflaechen passiert.
+
 ## Qualitaetsfelder fuer neue Screenshot-Metadaten
 
 Neue oder ueberarbeitete `.screenshot.json`-Dateien sollen diese Felder tragen:
