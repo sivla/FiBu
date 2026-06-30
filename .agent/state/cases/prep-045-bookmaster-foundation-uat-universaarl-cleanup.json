@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "caseId": "PREP-045-BOOKMASTER-FOUNDATION-UAT-UNIVERSAARL-CLEANUP",
+  "status": "prep-done",
+  "type": "book",
+  "instance": "playthru",
+  "targetCompany": "UNIVERSAARL-DE",
+  "targetCompanyStatus": "planned-not-yet-created",
+  "effectiveBusinessCentralActions": false,
+  "playwrightRun": false,
+  "bookChanged": true,
+  "goal": "Clean the active chapter 6 Foundation UAT and Greenfield sections so they use Universaarl target language instead of active Rhein-Main/RM-* target language.",
+  "changedBookAreas": [
+    "Chapter 6 Foundation UAT exercise",
+    "Chapter 6 Greenfield master plan",
+    "Chapter 6 starter company table"
+  ],
+  "proved": [
+    "The Foundation UAT exercise now uses UNIVERSAARL-DE and a future Universaarl B2B debtor instead of D10000 as active target data.",
+    "The Greenfield master plan heading now names the Universaarl GmbH.",
+    "The starter company table now starts with UNIVERSAARL-DE and marks additional Universaarl companies as later expansion paths."
+  ],
+  "notProved": [
+    "UNIVERSAARL-DE was not created.",
+    "No live Business Central page was opened.",
+    "No setup, master data, preview posting or posting was performed."
+  ],
+  "blockedBy": [
+    "missing-super-or-company-create-permission"
+  ],
+  "nextCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+  "lookaheadReviewed": [
+    {
+      "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+      "status": "blocked",
+      "reason": "Requires SUPER/company-create permissions and the PREP-040 screenshot chain."
+    },
+    {
+      "caseId": "TARGET-COMPANY-INFO-001-COMPANY-INFORMATION-READONLY",
+      "status": "ready-after-current",
+      "reason": "Run only after UNIVERSAARL-DE exists and company context is visible."
+    },
+    {
+      "caseId": "TARGET-005-NUMBER-SERIES-PREFLIGHT",
+      "status": "ready-after-current",
+      "reason": "Requires company and Company Information context first."
+    },
+    {
+      "caseId": "TARGET-006-POSTING-GROUPS-PREFLIGHT",
+      "status": "ready-after-current",
+      "reason": "Requires company foundation context before setup inspection."
+    },
+    {
+      "caseId": "TARGET-008-VAT19-SETUP-READINESS",
+      "status": "needs-source-check-first",
+      "reason": "Needs German VAT source boundary and later Universaarl setup evidence."
+    }
+  ],
+  "updatedAt": "2026-06-30T20:05:00.000+02:00"
+}

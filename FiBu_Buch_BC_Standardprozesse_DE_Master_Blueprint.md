@@ -729,15 +729,19 @@ Für die frühere Laborphase nutzte das Projekt `RM-DEMO` als konsolidierte Trai
 
 ### UAT-Schulung Foundation
 
+Die erste Foundation-Übung prüft nicht, ob möglichst schnell gebucht werden kann. Sie prüft, ob die Company eine verlässliche Kontrolllogik hat, bevor Belege entstehen.
+
 Aufgabe:
-1. Lege Dimension `CHANNEL` mit Werten `B2B`, `IC`, `SERVICE`, `PROJECT` an.
-2. Setze `CHANNEL` als Pflichtdimension für Debitor `D10000`.
-3. Buche eine Verkaufsrechnung ohne `CHANNEL`.
-4. Korrigiere den Fehler und buche erneut.
+1. Lege in `UNIVERSAARL-DE` die Dimension `CHANNEL` mit den Werten `B2B`, `SERVICE` und `PROJECT` an.
+2. Lege später einen Universaarl-Debitor für einen B2B-Kunden an.
+3. Setze `CHANNEL` als Pflichtdimension für diesen Debitor oder für die passende Debitorenbuchungslogik.
+4. Erstelle im UAT eine Verkaufsrechnung ohne `CHANNEL`.
+5. Lies die Fehlermeldung und korrigiere die Dimension.
+6. Prüfe nach der Buchung die Sachposten und die Dimension am Posten.
 
 Erwartete Lösung:
-- Die Buchung ohne Pflichtdimension wird verhindert oder als Fehler markiert.
-- Die korrigierte Buchung erzeugt `Sachposten (G/L Entries)` mit Dimension `CHANNEL = B2B`.
+- Die Rechnung ohne Pflichtdimension wird vor dem Buchen gestoppt oder klar als Fehler markiert.
+- Die korrigierte Buchung enthält die Dimension `CHANNEL = B2B` auf der Buchungsspur.
 
 Kontrollfrage:
 - Warum ist eine Pflichtdimension eher ein Prozesskontrollinstrument als eine reine Reporting-Einstellung?
@@ -766,7 +770,7 @@ Die bisherige Struktur deckt die Themen fachlich ab. Für Lernen und Einführung
 Korrektur zur bisherigen Fassung:
 - Kapitel dürfen nicht wie eine Sammlung einzelner Erweiterungen wirken. Der rote Faden ist jetzt: **Greenfield → Setup → Stammdaten → Prozess → Posten → Bericht → Betrieb → Übungslösung**.
 
-### Greenfield-Masterplan der Rhein-Main Industriegruppe
+### Greenfield-Masterplan der Universaarl GmbH
 
 | Schritt | Ergebnis | Deutsche BC-Seiten |
 |---|---|---|
@@ -789,15 +793,16 @@ Companies:
 
 | Company | Zweck | Besonderheit |
 |---|---|---|
-| `RM-PROD` | Produktion | Fertigung, gesteuertes Lager |
-| `RM-SALES` | Vertrieb/Dropshipping | Verkauf, Sonderverkauf, Dropshipping |
-| `RM-SERVICE` | Service/Miete | Serviceaufträge, Wartung, Mietlogik |
-| `RM-SHARED` | Einkauf/Shared Services | zentrale Kreditoren, Umlagen |
-| `RM-AT` | EU-Auslandsgesellschaft | EU-USt, Intrastat-nahe Fälle, Intercompany |
+| `UNIVERSAARL-DE` | Start- und Hauptcompany | Finance, Stammdaten, erste Ende-zu-Ende-Prozesse |
+| `UNIVERSAARL-PROD` | spätere Produktionscompany | Fertigung, gesteuertes Lager |
+| `UNIVERSAARL-SALES` | spätere Vertriebsgesellschaft | Verkauf und Sonderverkauf ohne Shopify |
+| `UNIVERSAARL-SERVICE` | spätere Servicegesellschaft | Serviceaufträge, Wartung, Mietlogik |
+| `UNIVERSAARL-SHARED` | spätere Shared-Services-Company | zentrale Kreditoren, Umlagen |
+| `UNIVERSAARL-AT` | spätere EU-Auslandsgesellschaft | EU-USt, Intrastat-nahe Fälle, Intercompany |
 
 Hinweis:
 
-Die Auslandsgesellschaft im Buch ist `RM-AT`. Drittland-/CH-Fälle werden nicht über eine eigene Company `RM-CH` modelliert, sondern über Debitoren, Kreditoren und Steuerfälle wie `D30000 SwissTech AG` mit Land `CH`. Damit bleiben EU-B2B, Intercompany und Drittlandexport fachlich getrennt.
+Der erste praktische Aufbau beginnt mit `UNIVERSAARL-DE`. Weitere Companies sind spätere Ausbaupfade. Drittland-/CH-Fälle werden nicht durch eine eigene CH-Company vorweggenommen, sondern zunächst über Debitoren, Kreditoren und Steuerfälle mit Land `CH` getrennt geprüft. Damit bleiben EU-B2B, Intercompany und Drittlandexport fachlich sauber getrennt.
 
 Dimensionen:
 
