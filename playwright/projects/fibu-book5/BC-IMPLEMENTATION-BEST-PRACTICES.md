@@ -101,6 +101,20 @@ Playwright soll Business Central nicht austricksen. Es soll wiederholbar zeigen,
 - Screenshots mit fachlicher Aussage
 - Posten und Folgeobjekte nach Buchung
 
+## PREP-027 Universaarl Mapping
+
+`PREP-027-IMPLEMENTATION-GUIDE-BEST-PRACTICE-MAPPING` verbindet die Implementation-Guide-Quellen mit der aktiven Universaarl-Arbeit:
+
+| Prinzip | Universaarl-Regel | Folge |
+| --- | --- | --- |
+| Process-focused solution | Buch und Testfaelle werden nach Geschaeftsprozessen geschnitten, nicht nur nach Menues. | `BC-FULL-PLAYTHROUGH-CATALOG.md` bleibt der Prozesskompass. |
+| Fit-to-standard / Fit-gap | Standardweg zuerst pruefen; Abweichung nur mit Grund, Risiko, Alternative und Test. | Jeder spaetere Custom-/Workaround-Claim braucht Decision Card und Evidence. |
+| Testing strategy | Testen wird geplant, bevor Prozessdaten erzeugt werden. | `PREP-028` baut daraus die UAT-/Testmatrix. |
+| Test plan | Testfaelle brauchen Scope, Rolle, Umgebung, Daten, erwartetes Ergebnis und Ergebnisstatus. | Ein Buchprozess ist nicht fertig, wenn nur ein Screenshot existiert. |
+| Test types | Unit-/Process-/End-to-End-/UAT-Denken wird getrennt. | Playwright-Read-only-Probes sind keine bestandenen UATs. |
+
+Die Detailzuordnung steht in `UNIVERSAARL-IMPLEMENTATION-GUIDE-MAPPING.md`.
+
 ## Buch als Schulungs- und UAT-Artefakt
 
 Das Buch ist nicht nur Dokumentation. Es fuehrt Anfaenger durch Business Central und erzeugt gleichzeitig pruefbare UAT-Faelle. Jeder gute Abschnitt beantwortet:

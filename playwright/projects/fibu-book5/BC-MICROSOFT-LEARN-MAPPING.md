@@ -41,6 +41,8 @@ Diese Datei verknuepft Buch- und Usecase-Bereiche mit offiziellen Microsoft-Quel
 | Reporting / Request Pages | Reportfilter vor Berichtsausfuehrung | [Searching, sorting, and filtering](https://learn.microsoft.com/en-us/dynamics365/business-central/ui-enter-criteria-filters) und [Business intelligence and reporting](https://learn.microsoft.com/en-us/dynamics365/business-central/reports-bi-reporting) | Produktclaim, UI-Claim | Bedienung / Reporting | ja | mapped, prep-012 | Jeder Report braucht eigene Request-Page-Evidence: Filter, Optionen und Wirkung der Startaktion. |
 | Testing / UAT | Teststrategie | [Implementation Guide](https://learn.microsoft.com/en-us/dynamics365/guidance/implementation-guide/testing-strategy) | Best Practice | UAT | ja | planned | UAT-Matrix aus Buchprozessen ableiten. |
 | Testing Plan | Testplan, Rollen, Scope, Outcome | [Create a test plan](https://learn.microsoft.com/en-us/dynamics365/guidance/implementation-guide/testing-strategy-planning) | Best Practice | UAT / Projektvorgehen | ja | planned | Welche Universaarl-UAT-Faelle brauchen Owner, erwartete Ergebnisse und Abnahmekriterien? |
+| Process-focused Solution | Prozessschnitt, Fit-to-standard, Fit-gap | [Process-focused solution](https://learn.microsoft.com/en-us/dynamics365/guidance/implementation-guide/process-focused-solution) und [Fit-to-standard and fit-gap analysis](https://learn.microsoft.com/en-us/dynamics365/guidance/implementation-guide/process-focused-solution-fit-to-standard-fit-gap-analysis) | Best Practice | Gesamtbuch / UAT / Prozesskapitel | ja | mapped-2026-06-30, prep-027 | Prozesskapitel zuerst Standardweg, dann Abweichung mit Grund/Risiko/Test; konkrete Universaarl-Prozesse brauchen eigene Evidence. |
+| Testing Types | Testarten und Testzyklen | [Types of tests](https://learn.microsoft.com/en-us/dynamics365/guidance/implementation-guide/testing-strategy-test-types) | Best Practice | UAT / Testmatrix | ja | mapped-2026-06-30, prep-027 | Read-only UI-Probes, Prozess-Tests, End-to-End-Tests und UAT duerfen nicht vermischt werden. |
 | Prepare Go-live | Cutover, Abnahme, Go-live-Vorbereitung | [Prepare for go-live](https://learn.microsoft.com/en-us/dynamics365/guidance/implementation-guide/prepare-to-go-live) | Best Practice | Migration / UAT / Betrieb | ja | mapped-2026-06-30 | Darf Go-live-Checklisten stuetzen, aber keine BC-UI- oder Buchungsaussage beweisen. |
 | Claim Rules | Trennung von Produkt-, UI-, Setup-, Rechts- und Evidence-Claims | [Business Central docs](https://learn.microsoft.com/en-us/dynamics365/business-central/) plus [Implementation Guide](https://learn.microsoft.com/en-us/dynamics365/guidance/implementation-guide/overview) | Quellen-/Governance-Claim | Gesamtbuch | ja | updated-2026-06-30 | Jede konkrete Universaarl-Aussage braucht eigene Evidence; Quellen stuetzen nur die passende Claim-Klasse. |
 
@@ -59,3 +61,18 @@ Dieses Fokus-Mapping begrenzt die ersten Universaarl-Claims. Die Quellen duerfen
 | W1 | Posting Groups | [Posting group setup](https://learn.microsoft.com/en-us/dynamics365/business-central/finance-posting-groups) | General Business/Product Posting Groups, General Posting Setup und spezifische Posting Groups steuern Kontenfindung | konkrete Universaarl-Kombinationen, G/L-Konten, Preview, G/L Entries | nach Foundation |
 | W1 | VAT Setup | [Set up VAT](https://learn.microsoft.com/en-us/dynamics365/business-central/finance-setup-vat) | VAT Business/Product Posting Groups und VAT Posting Setup kombinieren Markt, Artikel/Ressource, Prozentsatz, Berechnungsart und Konten | deutsche 19 Prozent, VAT Entries, G/L Entries, VAT Statement; Rechtsclaim braucht amtliche Quelle | nach Foundation |
 | W1 | Dimensions | [Work with dimensions](https://learn.microsoft.com/en-us/dynamics365/business-central/finance-dimensions) | Dimensionen kategorisieren Eintraege und unterstuetzen Analyse; Global/Shortcut und Default Dimensions erklaeren Setup-/Analysewirkung | Universaarl-Dimensionswerte, Default Dimensions, Dimension Set Entries, Beleg-/Postenbeweis | nach Foundation |
+
+## PREP-027 Implementation Guide Mapping
+
+PREP-027 nutzt die Dynamics-365-Implementation-Guide-Quellen nur fuer Projekt-, Test- und Vorgehensclaims. Sie ersetzen keine konkrete Universaarl-Evidence.
+
+| Quelle | Claim-Klasse | Universaarl-Nutzung | Beweisgrenze |
+| --- | --- | --- | --- |
+| Success by Design | Projektgovernance, Risiko, Reviews | Next-Step Decision Cards, Lookahead, Gate-Denken | keine UI-/Posting-/Company-Existenz |
+| Process-focused solution | Prozessschnitt | Full-Playthrough-Katalog bleibt prozessbasiert | kein Prozess gilt dadurch als getestet |
+| Fit-to-standard / Fit-gap | Standard zuerst, Abweichung begruenden | Workarounds, Customizing und alternative Routen brauchen Decision Card | keine automatische Customizing-Freigabe |
+| Testing strategy | Teststrategie, Rollen, Testumgebung | PREP-028 UAT-Matrix | kein bestandener UAT |
+| Create a test plan | Testplanstruktur | Testfallfelder: Scope, Daten, erwartetes Ergebnis, Ergebnisstatus | keine konkreten Testergebnisse |
+| Types of tests | Testarten trennen | Read-only Probe, Prozess-Test, E2E und UAT getrennt klassifizieren | keine Vermischung von Screenshot und Abnahme |
+
+Detaildatei: `UNIVERSAARL-IMPLEMENTATION-GUIDE-MAPPING.md`.

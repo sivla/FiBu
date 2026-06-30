@@ -30,6 +30,9 @@ Diese Registry ordnet Quellen fuer das Universaarl-Buch und den Autopilot. Sie e
 | Microsoft Learn: Business intelligence and reporting | 1 | Reporting, Request Pages | Reporting-/BI-Bereich und Reportauswertung als Produktfunktion | konkrete Reportparameter oder Universaarl-Reportausgabe | Produktclaim; konkrete Request Page und Reportausgabe brauchen eigene Evidence | geprueft 2026-06-30 |
 | Microsoft Learn: Dynamics 365 Implementation Guide overview | 3 | Implementierungsmethodik | Strategize, Initiate, Implement, Prepare, Operate | konkrete BC-Feldlogik | Best-Practice-/Projektclaim | geprueft 2026-06-29 |
 | Microsoft Learn: Success by Design framework | 3 | Governance, Reviews, Projektrisiko | Projekt-, Test- und Architekturdenken | UI- oder Buchungsbeweis | Best-Practice-/Projektclaim | geprueft 2026-06-29 |
+| Microsoft Learn: Process-focused solution | 3 | Prozessdesign | Business-Prozesse als Loesungsschnitt und Fit-to-standard-/Fit-gap-Denken | Beweis fuer konkrete BC-UI oder Universaarl-Prozesslauf | Best-Practice-/Projektclaim | geprueft 2026-06-30 |
+| Microsoft Learn: Fit-to-standard and fit-gap analysis | 3 | Fit-to-standard, Fit-gap | Standardweg zuerst, Abweichungen bewusst bewerten, Gaps dokumentieren | Customizing-Freigabe ohne Evidence oder Risikobewertung | Best-Practice-/Projektclaim | geprueft 2026-06-30 |
+| Microsoft Learn: Types of tests | 3 | Testarten | Unterschied zwischen Prozess-, End-to-End-, UAT- und weiteren Testtypen | bestandener Universaarl-UAT | Best-Practice-/Projektclaim | geprueft 2026-06-30 |
 | Gesetze im Internet: UStG § 14 | 4 | Rechnung | Rechnungspflichtangaben und Rechnungsbegriff | BC-UI-Bedienung | Rechts-/Steuerclaim | geprueft 2026-06-29 |
 | Gesetze im Internet: UStG § 14b | 4 | Aufbewahrung Rechnungen | Aufbewahrungspflicht fuer Rechnungen | BC-Archivierungsfeature ohne BC-Proof | Rechts-/Steuerclaim | geprueft 2026-06-29 |
 | Gesetze im Internet: AO § 146 | 4 | Ordnung von Buchungen | Grundsatz einzeln, vollstaendig, richtig, zeitgerecht, geordnet | konkrete BC-Postenanzeige | Rechts-/GoBD-Claim | geprueft 2026-06-29 |
@@ -87,6 +90,18 @@ Die erste Universaarl-Welle wird nicht aus alten RM-/CRONUS-Laborbelegen abgelei
 
 Der naechste praktische Source-Nachfolger ist `PREP-031-COMPANIES-PAGE-READONLY-PLAYWRIGHT`, weil die Produktquellen nun klar trennen, was die spaetere Mandantenlisten-Evidence beweisen muss.
 
+## PREP-027 Implementation-Guide-Quellenentscheidung
+
+Success by Design, Process-focused solution, Fit-to-standard/Fit-gap, Testing Strategy, Create a test plan und Types of tests stuetzen nur Projekt-, Prozess- und Teststruktur. Fuer Universaarl bedeutet das:
+
+- Der Full-Playthrough-Katalog bleibt prozessorientiert und wird nicht nach Menues allein sortiert.
+- Standard-BC-Pfade werden zuerst geprueft; Abweichungen brauchen Grund, Risiko, Alternative und Test.
+- Read-only UI-Probes, Prozess-Tests, End-to-End-Tests und UAT werden getrennt klassifiziert.
+- Ein UAT-Fall braucht Scope, Rolle, Daten, erwartetes Ergebnis, tatsaechliches Ergebnis und Status.
+- Keine dieser Quellen beweist, dass `UNIVERSAARL-DE` existiert, eingerichtet ist oder einen Prozess erfolgreich gebucht hat.
+
+Die operative Zuordnung steht in `UNIVERSAARL-IMPLEMENTATION-GUIDE-MAPPING.md`. Der naechste Case ist `PREP-028-TESTING-STRATEGY-AND-UAT-MATRIX`.
+
 ## URLs
 
 - https://learn.microsoft.com/en-us/dynamics365/business-central/about-new-company
@@ -102,8 +117,11 @@ Der naechste praktische Source-Nachfolger ist `PREP-031-COMPANIES-PAGE-READONLY-
 - https://learn.microsoft.com/en-us/dynamics365/release-plans/
 - https://learn.microsoft.com/en-us/dynamics365/guidance/implementation-guide/overview
 - https://learn.microsoft.com/en-us/dynamics365/guidance/implementation-guide/success-by-design
+- https://learn.microsoft.com/en-us/dynamics365/guidance/implementation-guide/process-focused-solution
+- https://learn.microsoft.com/en-us/dynamics365/guidance/implementation-guide/process-focused-solution-fit-to-standard-fit-gap-analysis
 - https://learn.microsoft.com/en-us/dynamics365/guidance/implementation-guide/testing-strategy
 - https://learn.microsoft.com/en-us/dynamics365/guidance/implementation-guide/testing-strategy-planning
+- https://learn.microsoft.com/en-us/dynamics365/guidance/implementation-guide/testing-strategy-test-types
 - https://learn.microsoft.com/en-us/dynamics365/guidance/implementation-guide/prepare-to-go-live
 - https://www.gesetze-im-internet.de/ustg_1980/__14.html
 - https://www.gesetze-im-internet.de/ustg_1980/__14b.html
