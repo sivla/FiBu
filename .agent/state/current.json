@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-30T20:50:00.000Z",
+  "updatedAt": "2026-06-30T21:05:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
@@ -39,7 +39,7 @@
     "post",
     "api-shortcut"
   ],
-  "nextStep": "Run TARGET-026H: stop mixed account setup, classify 1200 Bank Saarland as technical learning only, and build a source-backed SKR04 mapping before further G/L account writes.",
+  "nextStep": "Run TARGET-026H/TARGET-026I: source-backed SKR04 mapping for German Universaarl companies only; foreign companies later need their own localized chart-of-accounts gates.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -6149,5 +6149,18 @@
       "payments",
       "posting"
     ]
+  },
+  "chartOfAccountsPolicy": {
+    "targetForGermanCompanies": "SKR04",
+    "appliesTo": [
+      "UNIVERSAARL-DE",
+      "future German Universaarl companies"
+    ],
+    "doesNotAutomaticallyApplyTo": [
+      "foreign companies",
+      "future UNIVERSAARL-AT or other localized subsidiaries"
+    ],
+    "foreignCompanyRule": "Each non-German company needs its own localized chart of accounts, tax setup and posting gates before Intercompany or process evidence.",
+    "nextCaseImpact": "TARGET-026H/TARGET-026I must build source-backed SKR04 only for German Universaarl companies and must not generalize SKR04 to foreign companies."
   }
 }

@@ -32,6 +32,8 @@ Universaarl nutzt fuer den aktiven deutschen Zielpfad SKR04. Deshalb gilt:
 - Keine VAT- oder Posting-Group-Setup-Zeile, bevor die zugeordneten Sachkonten quellenbasiert und sichtbar vorhanden sind.
 - Quellen-/Fachpruefung kommt vor weiteren UI-Schreibschritten.
 
+SKR04 ist eine Regel fuer die deutschen Universaarl-Companies. Spaetere Auslandsgesellschaften bekommen nicht automatisch SKR04, sondern einen zur jeweiligen Lokalisierung passenden Kontenplan mit eigener Steuer- und Posting-Evidence. Intercompany wird erst belastbar, wenn jede beteiligte Company ihren eigenen Kontenplan sauber eingerichtet hat.
+
 Quelle fuer diesen Stop: DATEV beschreibt den SKR04-Kontenrahmen als Standardkontenrahmen mit Kontenklassen und Funktionen; die SKR04-2026-Referenz weist `1200` Forderungen und `1800` Bank aus. Die Detailzuordnung wird im naechsten Case in eine kleine Universaarl-Kontenliste ueberfuehrt.
 
 ## Minimal benoetigte Kontenfamilien

@@ -314,6 +314,8 @@ Im ersten Schritt entsteht `UNIVERSAARL-DE` als erste Aufbaucompany. Sie ist der
 | `UNIVERSAARL-SERVICE` | Servicecompany | Service, Ressourcen, Ersatzteile |
 | `UNIVERSAARL-HOLDING` | Holding/Konzerncompany | Reporting, Intercompany, Abschluss |
 
+Fuer die deutschen Universaarl-Companies wird im Buch SKR04 als Kontenplan verwendet. Das betrifft vor allem `UNIVERSAARL-DE` und spaeter deutsche Produktions-, Vertriebs-, Service- oder Holding-Companies. Eine auslaendische Company bekommt nicht automatisch SKR04. Sie braucht einen zur jeweiligen Lokalisierung passenden Kontenplan, eine eigene Steuerlogik und eigene Buchungsregeln. Intercompany verbindet diese Companies spaeter miteinander, ersetzt aber nicht die landesspezifische Einrichtung.
+
 ```mermaid
 flowchart LR
     DE["UNIVERSAARL-DE\nerste Aufbaucompany"] --> SALES["Verkauf + Debitoren"]

@@ -60,6 +60,12 @@ Die Universaarl-Musterfirma ist als Mehr-Company-Fallstudie gedacht. `UNIVERSAAR
 
 Intercompany ist damit kein optionaler Randfall. Es wird erst spaeter aufgebaut, weil Intercompany ohne sauberen Kontenplan, Nummernserien, USt-Logik, Stammdaten und mindestens zwei Companies keinen belastbaren Buchprozess ergibt.
 
+## Kontenplan-Regel
+
+SKR04 ist der Zielkontenplan fuer die deutschen Universaarl-Companies. `UNIVERSAARL-DE` baut SKR04 zuerst auf, damit USt, Buchungsgruppen, Bank, Debitoren, Kreditoren, Anlagen, Lager und Reporting auf einer konsistenten deutschen Basis laufen.
+
+Diese Regel gilt nicht automatisch fuer auslaendische Companies. Eine spaetere `UNIVERSAARL-AT` oder andere Auslandsgesellschaft braucht den zur jeweiligen Lokalisierung passenden Kontenplan, eigene Steuerlogik und eigene Setup-/Posting-Gates. Intercompany darf erst eingerichtet werden, wenn beide beteiligten Companies ihren jeweils passenden Kontenplan und ihre steuerlichen Grunddaten haben.
+
 ## Labor vs. Final
 
 - Universaarl liefert kuenftig aktive Buch- und Final-Candidate-Evidence.
