@@ -381,6 +381,16 @@ Screenshot-QA zu TARGET-025: Diese vier Bilder sind gute Kontext- und Buchvorber
 
 Screenshot-QA zu TARGET-026B: Das zweite Bild ist der bessere Buch-/Setup-Kontext, weil es den Hover-Tooltip entfernt. Beide Bilder beweisen keine Konten oder USt-Einrichtung. Sie begruenden aber fachlich, warum vor VAT-Gruppen und Stammdaten zuerst eine minimale Kontenplan-Struktur geplant werden muss.
 
+## Universaarl Kontenplan - SKR04 Bankkonto TARGET-026J
+
+| Screenshot | Page | Company | Schritt | Was sieht man? | Intern bewiesen | Nicht bewiesen | Status |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `target-026j-010-before-chart-of-accounts.png` | Kontenplan, Page 16 | `playthru` / `UNIVERSAARL-DE` | Vorheraufnahme | `1200 Bank Saarland` ist sichtbar, `1800` noch nicht | Die falsche Bankverwendung von `1200` ist als Ausgangslage sichtbar | kein Bankkonto `1800`, kein vollstaendiger Kontenplan, keine USt-/Posting-Gruppen | `universaarl-setup-before`, `wrong-bank-path` |
+| `target-026j-020-after-account-attempt.png` | Kontenplan, Page 16 | `playthru` / `UNIVERSAARL-DE` | Nach kontrollierter Eingabe | `1200 Bank Saarland` und `1800 Bank Saarland`, beide `Bilanz`/`Buchung` | `1800` wurde in der Zielcompany sichtbar angelegt oder bestaetigt | keine VAT Posting Setup Zeile, kein Bankkonto-Stammsatz, keine Buchung | `universaarl-controlled-setup`, `skr04-bank-account-proof` |
+| `target-026j-030-after-reopen-proof.png` | Kontenplan, Page 16 | `playthru` / `UNIVERSAARL-DE` | Reopen-Proof | `1800 Bank Saarland` bleibt nach erneutem Oeffnen sichtbar | Persistenz-/Reopen-Proof fuer `1800` als Bilanzkonto | keine fachliche Bereinigung von `1200`, kein vollstaendiger SKR04, keine USt-/Posting-Freigabe | `universaarl-reopen-proof`, `book-candidate` |
+
+Screenshot-QA zu TARGET-026J: Das dritte Bild ist der beste Buchkandidat fuer den Bankkonto-Abschnitt im Kontenplan. Es zeigt aber auch die offene Altlast: `1200 Bank Saarland` ist sichtbar und darf nicht fuer Bank, Zahlung, VAT oder Posting Groups verwendet werden.
+
 ## PREP-010 Screenshot-QA-Regel
 
 Vor jeder Buch- oder Clickguide-Nutzung muss der Screenshot gegen die konkrete Behauptung geprueft werden:

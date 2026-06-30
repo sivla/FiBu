@@ -18,8 +18,8 @@ Dieses Mapping ist noch kein vollstaendiger Kontenplan und keine Steuerberaterfr
 
 | Konto | Name fuer Universaarl | Kontenfamilie | Bilanz/GuV | Verwendung im naechsten Setup | Status |
 | --- | --- | --- | --- | --- | --- |
-| `1200` | Forderungen aus Lieferungen und Leistungen | Debitoren/Forderungen | Bilanz | Customer Posting Group spaeter | `correct-purpose-needed`; bestehendes Konto `1200 Bank Saarland` muss umbenannt oder bereinigt werden |
-| `1800` | Bank Saarland | Bank | Bilanz | Bankkonto, Zahlungsjournal, Bankabstimmung spaeter | `candidate-for-controlled-create` |
+| `1200` | Forderungen aus Lieferungen und Leistungen | Debitoren/Forderungen | Bilanz | Customer Posting Group spaeter | `wrong-bank-path-classified`; bestehendes Konto `1200 Bank Saarland` ist sichtbar, darf aber nicht als Bank-/Payment-/VAT-/Posting-Ziel genutzt werden |
+| `1800` | Bank Saarland | Bank | Bilanz | Bankkonto, Zahlungsjournal, Bankabstimmung spaeter | `universaarl-proven`; in `TARGET-026J` sichtbar nach Reopen |
 | `1406` | Abziehbare Vorsteuer 19 Prozent | Vorsteuer | Bilanz | Purchase VAT Account spaeter | `candidate-needs-vat-setup-proof` |
 | `3300` | Verbindlichkeiten aus Lieferungen und Leistungen | Kreditoren/Verbindlichkeiten | Bilanz | Vendor Posting Group spaeter | `candidate-for-controlled-create` |
 | `3806` | Umsatzsteuer 19 Prozent | Umsatzsteuer | Bilanz | Sales VAT Account spaeter | `candidate-needs-vat-setup-proof` |
@@ -40,8 +40,8 @@ Dieses Mapping ist noch kein vollstaendiger Kontenplan und keine Steuerberaterfr
 
 Der naechste UI-Case darf nicht pauschal alle Konten erzeugen. Er muss:
 
-1. `1200 Bank Saarland` oeffnen und entscheiden, ob die Bezeichnung auf Forderungen korrigiert werden kann oder ob das Konto gesperrt/umgangen werden muss.
-2. `1800 Bank Saarland` nur anlegen, wenn `1800` noch nicht existiert.
+1. `1200 Bank Saarland` nicht fuer Bank, Zahlungsjournal, USt oder Posting Groups verwenden.
+2. `1800 Bank Saarland` als sichtbares Bank-Sachkonto mit Reopen-Proof behandeln.
 3. Weitere Startkonten aus der Tabelle nur kontrolliert anlegen oder blockieren.
 4. Fuer jedes Konto `Nr.`, `Name`, `Kontoart`, `Bilanz/GuV` und Reopen-Sichtbarkeit beweisen.
 5. Keine VAT Posting Setup, keine Posting Groups, keine Stammdaten, keine Belege, keine Preview und keine Buchung im selben Lauf ausfuehren.

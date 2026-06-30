@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-026K-SKR04-REMAINING-STARTER-ACCOUNTS-FIT",
+  "title": "SKR04 remaining starter accounts fit",
+  "status": "planned",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "workType": "universaarl-skr04-remaining-starter-accounts-fit",
+  "taskClass": "wizard_work",
+  "sourceCase": "TARGET-026J-SKR04-ACCOUNT-CLEANUP-AND-SETUP-GATE",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/UNIVERSAARL-SKR04-MINIMAL-ACCOUNT-MAPPING.md",
+    "playwright/projects/fibu-book5/evidence/target-026j-skr04-account-cleanup-and-setup-gate/TARGET-026J-result.json"
+  ],
+  "purpose": "Create or confirm the remaining mapped SKR04 starter accounts after 1800 Bank Saarland has reopen proof.",
+  "targetAccounts": [
+    {
+      "no": "1406",
+      "name": "Abziehbare Vorsteuer 19 Prozent",
+      "family": "Vorsteuer",
+      "incomeBalance": "Bilanz"
+    },
+    {
+      "no": "3300",
+      "name": "Verbindlichkeiten aus Lieferungen und Leistungen",
+      "family": "Kreditoren/Verbindlichkeiten",
+      "incomeBalance": "Bilanz"
+    },
+    {
+      "no": "3806",
+      "name": "Umsatzsteuer 19 Prozent",
+      "family": "Umsatzsteuer",
+      "incomeBalance": "Bilanz"
+    },
+    {
+      "no": "4400",
+      "name": "Umsatzerloese Inland 19 Prozent",
+      "family": "Verkaufserloese",
+      "incomeBalance": "GuV"
+    },
+    {
+      "no": "5400",
+      "name": "Wareneingang / Materialaufwand",
+      "family": "Einkauf/Wareneinsatz",
+      "incomeBalance": "GuV"
+    }
+  ],
+  "explicitlyExcludedThisCase": [
+    "1200 rename or receivables reclassification",
+    "VAT Posting Setup",
+    "posting groups",
+    "master data",
+    "document draft",
+    "preview posting",
+    "posting"
+  ],
+  "allowedActions": [
+    "open-chart-of-accounts",
+    "create-mapped-starter-accounts-only",
+    "capture-before-after-reopen-proof",
+    "write-result-and-next-step-card"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "use-1200-as-bank-or-payment-account",
+    "create-unmapped-accounts",
+    "change-vat-setup",
+    "change-posting-groups",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "api-shortcut"
+  ],
+  "entryCriteria": [
+    "TARGET-026J proves 1800 Bank Saarland after reopen.",
+    "1200 Bank Saarland is classified as wrong bank path and remains blocked for bank/payment/VAT/posting usage.",
+    "Only mapped starter accounts may be created or confirmed."
+  ],
+  "exitCriteria": [
+    "Each target account is visible after reopen with No., Name, Kontoart and Bilanz/GuV proof, or blocked with exact UI reason.",
+    "No VAT setup, posting group, master data, document, Preview Posting or posting occurs."
+  ],
+  "lookahead": [
+    {
+      "caseId": "TARGET-026K-SKR04-REMAINING-STARTER-ACCOUNTS-FIT",
+      "status": "ready-next",
+      "reason": "1800 route has reopen proof; remaining accounts are source-gated."
+    },
+    {
+      "caseId": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
+      "status": "ready-after-current",
+      "reason": "Needs visible VAT accounts before VAT setup inspection/write."
+    },
+    {
+      "caseId": "TARGET-028-POSTING-GROUPS-CONTROLLED-SETUP",
+      "status": "needs-setup-first",
+      "reason": "Needs starter accounts and VAT preflight first."
+    },
+    {
+      "caseId": "TARGET-029-FIRST-MASTERDATA-CREATE-GATE",
+      "status": "needs-setup-first",
+      "reason": "Needs posting groups and VAT setup first."
+    }
+  ],
+  "nextStep": "Use the TARGET-026J reset-New route carefully for remaining mapped starter accounts; stop on first ambiguous editor or field mismatch.",
+  "createdAt": "2026-06-30T19:52:53.805Z",
+  "updatedAt": "2026-06-30T19:52:53.805Z"
+}

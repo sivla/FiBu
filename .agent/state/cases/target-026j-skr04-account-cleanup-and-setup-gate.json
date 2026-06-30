@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "caseId": "TARGET-026J-SKR04-ACCOUNT-CLEANUP-AND-SETUP-GATE",
   "title": "SKR04 account cleanup and setup gate",
-  "status": "planned",
+  "status": "observed",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "workType": "universaarl-skr04-account-cleanup-and-setup-gate",
@@ -71,5 +71,76 @@
   ],
   "nextStep": "Run the controlled Business Central UI case for SKR04 account cleanup and mapped starter account setup.",
   "createdAt": "2026-06-30T21:25:00.000Z",
-  "updatedAt": "2026-06-30T21:25:00.000Z"
+  "updatedAt": "2026-06-30T19:52:53.805Z",
+  "completedAt": "2026-06-30T19:52:53.805Z",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-026j-skr04-account-cleanup-and-setup-gate/TARGET-026J-result.json",
+  "result": "1800 Bank Saarland is visible after controlled setup and reopen proof; 1200 is classified as wrong bank path and remains blocked for bank usage.",
+  "proved": [
+    "Instanz playthru und Company UNIVERSAARL-DE wurden per URL-Kontext kontrolliert.",
+    "Kontenplan Page 16 wurde geoeffnet.",
+    "1800 Bank Saarland ist nach dem kontrollierten Setup-Versuch und Reopen sichtbar.",
+    "1800 Bank Saarland ist als Bilanzkonto sichtbar."
+  ],
+  "notProved": [
+    "Kein vollstaendiger Kontenplan.",
+    "Keine SKR04- oder Steuerberaterfreigabe.",
+    "Keine VAT Posting Setup Zeile.",
+    "Keine Stammdatenanlage.",
+    "Kein Dokument, keine Preview, keine Buchung."
+  ],
+  "flags": {
+    "setupChangeAttempted": true,
+    "noVatSetupChange": true,
+    "noMasterData": true,
+    "noDocumentOrDraft": true,
+    "noPreview": true,
+    "noPost": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "account1200Classification": {
+    "no": "1200",
+    "observedAs": "1200 Bank Saarland",
+    "status": "wrong-bank-path-classified",
+    "decision": "1200 is not used as bank in this run. It remains blocked for bank/payment/VAT/posting until a dedicated safe rename or receivables reclassification case exists."
+  },
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-026J-SKR04-ACCOUNT-CLEANUP-AND-SETUP-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-026J-SKR04-ACCOUNT-CLEANUP-AND-SETUP-GATE",
+    "lastEvidenceSummary": "TARGET-026E planned the minimal G/L account candidate structure; no account had been created yet.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "VAT setup and first master data need at least a controlled account setup route before further foundation work.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-026K-SKR04-REMAINING-STARTER-ACCOUNTS-FIT",
+        "status": "ready-next",
+        "reason": "The 1800 bank-account route has reopen proof and can be reused carefully for remaining mapped starter accounts."
+      },
+      {
+        "caseId": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
+        "status": "ready-after-current",
+        "reason": "VAT posting groups still need G/L accounts and source-backed field mapping before setup write."
+      },
+      {
+        "caseId": "TARGET-028-CUSTOMER-VENDOR-ITEM-MASTERDATA",
+        "status": "needs-setup-first",
+        "reason": "Master data should wait until posting groups and VAT setup are ready."
+      },
+      {
+        "caseId": "TARGET-029-FIRST-SALES-PURCHASE-DRAFT-GATE",
+        "status": "needs-setup-first",
+        "reason": "Documents require number series, posting groups, VAT setup and master data."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-026K-SKR04-REMAINING-STARTER-ACCOUNTS-FIT",
+    "whySelectedNextCaseIsBest": "The fastest useful follow-up is to complete the remaining mapped SKR04 starter accounts without touching VAT or posting groups yet.",
+    "risksBeforeNextCase": [
+      "Income statement account types still need careful field handling."
+    ],
+    "requiredPreparation": [
+      "Separate balance-sheet and income-statement account field handling."
+    ]
+  },
+  "nextCase": "TARGET-026K-SKR04-REMAINING-STARTER-ACCOUNTS-FIT"
 }
