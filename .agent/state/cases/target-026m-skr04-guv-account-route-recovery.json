@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "TARGET-026M-SKR04-GUV-ACCOUNT-ROUTE-RECOVERY",
-  "status": "pending",
+  "status": "blocked",
   "priority": "high",
   "area": "universaarl-skr04-chart-of-accounts",
   "goal": "Recover the GuV/Bilanz route for existing starter accounts 4400 and 5400 before any VAT or posting group setup.",
@@ -48,8 +48,25 @@
     }
   ],
   "evidenceBasis": [
-    "playwright/projects/fibu-book5/evidence/target-026m-skr04-guv-accounts-route/TARGET-026M-result.json"
+    "playwright/projects/fibu-book5/evidence/target-026m-skr04-guv-accounts-route/TARGET-026M-result.json",
+    "playwright/projects/fibu-book5/evidence/target-026m-skr04-guv-account-route-recovery/TARGET-026M-RECOVERY-result.json"
   ],
+  "completedAt": "2026-06-30T21:40:00.000Z",
+  "result": "The filtered G/L Account Card route opened 4400 and 5400 and reached an editable-looking GuV/Bilanz field, but Screenshot-QA and reopen proof still show both accounts as Bilanz/Buchung.",
+  "blockedBy": [
+    "4400 Umsatzerloese Inland 19 Prozent ist nach Reopen nicht als GuV/Buchung sichtbar.",
+    "5400 Wareneingang / Materialaufwand ist nach Reopen nicht als GuV/Buchung sichtbar."
+  ],
+  "screenshotQaCorrection": {
+    "status": "corrected-false-positive",
+    "reason": "The generated nested changedVisibleOnCard flag was too broad because it could match the label GuV/Bilanz. Visual QA of the card-after-attempt and chart-reopen screenshots shows Bilanz remains the field value.",
+    "qaScreenshots": [
+      "playwright/projects/fibu-book5/evidence/target-026m-skr04-guv-account-route-recovery/target-026m-recovery-4400-030-card-after-field-attempt.png",
+      "playwright/projects/fibu-book5/evidence/target-026m-skr04-guv-account-route-recovery/target-026m-recovery-4400-040-chart-reopen-proof.png",
+      "playwright/projects/fibu-book5/evidence/target-026m-skr04-guv-account-route-recovery/target-026m-recovery-5400-030-card-after-field-attempt.png",
+      "playwright/projects/fibu-book5/evidence/target-026m-skr04-guv-account-route-recovery/target-026m-recovery-5400-040-chart-reopen-proof.png"
+    ]
+  },
   "blockedRoutesFrom026M": [
     "list-cell typing into GuV/Bilanz display cell",
     "Enter/ArrowDown/Enter on visible cell",
@@ -77,7 +94,7 @@
       {
         "caseId": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
         "status": "needs-ui-discovery-first",
-        "reason": "The GuV account route must be repaired before chart-of-accounts checkpoint."
+        "reason": "The GuV/Bilanz field persisted as Bilanz after card route recovery; Page Inspection or source-backed field control diagnostics are needed."
       },
       {
         "caseId": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
@@ -95,16 +112,19 @@
         "reason": "Documents require number series, posting groups, VAT setup and master data."
       }
     ],
-    "queueChangesMade": [],
-    "selectedNextCase": "TARGET-026M-SKR04-GUV-ACCOUNT-ROUTE-RECOVERY",
-    "whySelectedNextCaseIsBest": "More setup would be unsafe until the GuV account creation route is repaired.",
+    "queueChangesMade": [
+      "Marked TARGET-026M-SKR04-GUV-ACCOUNT-ROUTE-RECOVERY blocked and selected a narrower Page-Inspection/field-control follow-up."
+    ],
+    "selectedNextCase": "TARGET-026M-SKR04-GUV-ACCOUNT-PAGEINSPECTION-FOLLOWUP",
+    "whySelectedNextCaseIsBest": "More setup would be unsafe until the exact GuV/Bilanz control semantics are understood.",
     "risksBeforeNextCase": [
       "GuV account route did not persist every target account."
     ],
     "requiredPreparation": [
-      "Diagnose New/Edit List route and active editor state."
+      "Use Page Inspection or a source-backed control map to identify the exact table field and allowed values for GuV/Bilanz."
     ]
   },
   "resultPath": "playwright/projects/fibu-book5/evidence/target-026m-skr04-guv-account-route-recovery/TARGET-026M-RECOVERY-result.json",
-  "caseId": "TARGET-026M-SKR04-GUV-ACCOUNT-ROUTE-RECOVERY"
+  "caseId": "TARGET-026M-SKR04-GUV-ACCOUNT-ROUTE-RECOVERY",
+  "nextCase": "TARGET-026M-SKR04-GUV-ACCOUNT-PAGEINSPECTION-FOLLOWUP"
 }

@@ -1866,7 +1866,7 @@
     {
       "id": "TARGET-026M-SKR04-GUV-ACCOUNT-ROUTE-RECOVERY",
       "order": 10037,
-      "status": "pending",
+      "status": "blocked",
       "priority": "high",
       "category": "target-foundation",
       "expectedImpact": "setup-route-recovery",
@@ -1877,10 +1877,33 @@
       "sourceCompany": "UNIVERSAARL-DE",
       "targetWorld": "Universaarl",
       "resultPath": "playwright/projects/fibu-book5/evidence/target-026m-skr04-guv-account-route-recovery/TARGET-026M-RECOVERY-result.json",
+      "lookaheadStatus": "blocked",
+      "completedAt": "2026-06-30T21:40:00.000Z",
+      "result": "Filtered G/L Account Card recovery did not persist 4400 or 5400 as GuV; both remain Bilanz/Buchung after reopen.",
+      "blockedBy": [
+        "4400 remains Bilanz/Buchung after card route recovery.",
+        "5400 remains Bilanz/Buchung after card route recovery."
+      ],
+      "nextCase": "TARGET-026M-SKR04-GUV-ACCOUNT-PAGEINSPECTION-FOLLOWUP"
+    },
+    {
+      "id": "TARGET-026M-SKR04-GUV-ACCOUNT-PAGEINSPECTION-FOLLOWUP",
+      "order": 10038,
+      "status": "pending",
+      "priority": "high",
+      "category": "target-foundation",
+      "expectedImpact": "setup-route-diagnosis",
+      "mayWorkEffectively": false,
+      "mayRunPlaywright": true,
+      "effectiveBcActionsAllowed": false,
+      "goal": "Use Page Inspection or field-control diagnostics to identify the exact GuV/Bilanz route before another write attempt.",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "targetWorld": "Universaarl",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-026m-skr04-guv-account-pageinspection-followup/TARGET-026M-PAGEINSPECTION-result.json",
       "lookaheadStatus": "ready-next"
     }
   ],
-  "lastUpdated": "2026-06-30T20:31:28.694Z",
+  "lastUpdated": "2026-06-30T21:40:00.000Z",
   "nextStepDecisionGate": {
     "active": true,
     "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",
@@ -1979,55 +2002,49 @@
       ]
     }
   },
-  "updatedAt": "2026-06-30T20:53:55.942Z",
-  "lastCompletedCase": "TARGET-024H-GLOBAL-DIMENSION-PARK-OR-PAGEINSPECTION-DECISION",
-  "nextCase": "TARGET-026M-SKR04-GUV-ACCOUNT-ROUTE-RECOVERY",
+  "updatedAt": "2026-06-30T21:40:00.000Z",
+  "lastCompletedCase": "TARGET-026M-SKR04-GUV-ACCOUNT-ROUTE-RECOVERY",
+  "nextCase": "TARGET-026M-SKR04-GUV-ACCOUNT-PAGEINSPECTION-FOLLOWUP",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-024B-GLOBAL-DIMENSION-ASSIGNMENT",
-    "plannedNextCaseBeforeReview": "TARGET-024-CORE-MASTERDATA-PLAN",
-    "lastEvidenceSummary": "TARGET-023B recovered all starter Dimension Values with reopen proof. TARGET-024B then tested Global Dimension Code assignment on General Ledger Setup and Change Global Dimensions.",
+    "currentCase": "TARGET-026M-SKR04-GUV-ACCOUNT-ROUTE-RECOVERY",
+    "plannedNextCaseBeforeReview": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
+    "lastEvidenceSummary": "TARGET-026M recovery proved that the filtered card route still leaves 4400 and 5400 visible as Bilanz/Buchung after reopen.",
     "isPlannedNextCaseStillSensible": false,
-    "reason": "Master data should not start while PRODUCTLINE/COSTCENTER are not yet proven as Global Dimension Code 1/2 and the Change Global Dimensions page field semantics are unclear.",
+    "reason": "The chart checkpoint and later VAT/posting setup depend on correctly typed sales and expense accounts.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-024C-GLOBAL-DIMENSION-FIELD-DISCOVERY",
-        "status": "ready-next",
-        "reason": "The next useful step is technical/page-field discovery of the Change Global Dimensions action page, not another blind write attempt."
+        "caseId": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
+        "status": "needs-ui-discovery-first",
+        "reason": "GuV/Bilanz field semantics remain unresolved."
       },
       {
-        "caseId": "TARGET-024-CORE-MASTERDATA-PLAN",
-        "status": "ready-after-current",
-        "reason": "Master data planning can continue after global-dimension route is proven or consciously parked."
-      },
-      {
-        "caseId": "TARGET-025-CUSTOMER-VENDOR-ITEM-TEMPLATES-PREFLIGHT",
+        "caseId": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "Templates need posting groups, VAT and dimension/default-dimension decisions."
+        "reason": "VAT setup needs correct sales/purchase G/L account foundation."
       },
       {
-        "caseId": "TARGET-026-VAT-SETUP-FIT-DECISION",
-        "status": "needs-source-check-first",
-        "reason": "German VAT setup still needs source-backed setup before any document preview."
-      },
-      {
-        "caseId": "TARGET-028-DEFAULT-DIMENSIONS-STRATEGY",
+        "caseId": "TARGET-028-CUSTOMER-VENDOR-ITEM-MASTERDATA",
         "status": "needs-setup-first",
-        "reason": "Default Dimensions need either proven global dimensions or a documented park decision plus concrete master data."
+        "reason": "Master data waits for posting groups and VAT setup."
+      },
+      {
+        "caseId": "TARGET-029-FIRST-SALES-PURCHASE-DRAFT-GATE",
+        "status": "needs-setup-first",
+        "reason": "Document drafts need number series, posting groups, VAT and master data."
       }
     ],
     "queueChangesMade": [
-      "Marked TARGET-024B blocked and inserted/selected TARGET-024C-GLOBAL-DIMENSION-FIELD-DISCOVERY."
+      "Inserted TARGET-026M-SKR04-GUV-ACCOUNT-PAGEINSPECTION-FOLLOWUP before chart checkpoint and VAT setup."
     ],
-    "selectedNextCase": "TARGET-024C-GLOBAL-DIMENSION-FIELD-DISCOVERY",
-    "whySelectedNextCaseIsBest": "TARGET-024B proved the page contexts and rejected two repeated write routes; the cheapest safe progress is to inspect fields/actions/columns before the next setup attempt.",
+    "selectedNextCase": "TARGET-026M-SKR04-GUV-ACCOUNT-PAGEINSPECTION-FOLLOWUP",
+    "whySelectedNextCaseIsBest": "It is the smallest non-repeating step that can identify why the visible card field is not persisting as GuV.",
     "risksBeforeNextCase": [
-      "Do not claim Global Dimension Code 1/2 readiness from TARGET-024B screenshots.",
-      "Do not start master data/default dimensions as if global dimensions are assigned.",
-      "Do not repeat the same left-column Change Global Dimensions route."
+      "Do not count field labels as field values.",
+      "Do not repeat list-cell or card-fill routes without new field-control proof."
     ],
     "requiredPreparation": [
-      "Use Page Inspection/technical field diagnostics, tooltip/action inventory and screenshot QA on the Change Global Dimensions page."
+      "Keep the follow-up read-only unless it proves a safer write path."
     ]
   },
-  "nextStep": "Recover GuV/Bilanz field route before VAT setup/posting groups."
+  "nextStep": "Use Page Inspection or field-control diagnostics for GuV/Bilanz before another setup write route."
 }

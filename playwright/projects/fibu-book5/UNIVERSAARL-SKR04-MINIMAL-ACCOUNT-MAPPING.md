@@ -23,8 +23,8 @@ Dieses Mapping ist noch kein vollstaendiger Kontenplan und keine Steuerberaterfr
 | `1406` | Abziehbare Vorsteuer 19 Prozent | Vorsteuer | Bilanz | Purchase VAT Account spaeter | `universaarl-proven`; in `TARGET-026K` sichtbar nach kontrolliertem Fit und Reopen |
 | `3300` | Verbindlichkeiten aus Lieferungen und Leistungen | Kreditoren/Verbindlichkeiten | Bilanz | Vendor Posting Group spaeter | `universaarl-proven`; in `TARGET-026L` sichtbar nach kontrolliertem Fit und Reopen |
 | `3806` | Umsatzsteuer 19 Prozent | Umsatzsteuer | Bilanz | Sales VAT Account spaeter | `universaarl-proven`; in `TARGET-026L` sichtbar nach kontrolliertem Fit und Reopen; VAT Setup bleibt offen |
-| `4400` | Umsatzerloese Inland 19 Prozent | Verkaufserloese | GuV | General Posting Setup Sales Account spaeter | `blocked-visible-wrong-type`; in `TARGET-026M` sichtbar, aber noch als `Bilanz/Buchung` statt `GuV/Buchung` |
-| `5400` | Wareneingang / Materialaufwand | Einkauf/Wareneinsatz | GuV | General Posting Setup Purchase/COGS-Kontext spaeter | `blocked-visible-wrong-type`; in `TARGET-026M` sichtbar, aber noch als `Bilanz/Buchung` statt `GuV/Buchung` |
+| `4400` | Umsatzerloese Inland 19 Prozent | Verkaufserloese | GuV | General Posting Setup Sales Account spaeter | `blocked-visible-wrong-type-after-card-recovery`; in `TARGET-026M` und Recovery sichtbar, aber nach Reopen weiter `Bilanz/Buchung` statt `GuV/Buchung` |
+| `5400` | Wareneingang / Materialaufwand | Einkauf/Wareneinsatz | GuV | General Posting Setup Purchase/COGS-Kontext spaeter | `blocked-visible-wrong-type-after-card-recovery`; in `TARGET-026M` und Recovery sichtbar, aber nach Reopen weiter `Bilanz/Buchung` statt `GuV/Buchung` |
 
 ## Bewusst noch nicht freigegeben
 
@@ -59,11 +59,13 @@ Der Kontenplan in `UNIVERSAARL-DE` enthaelt jetzt sichtbar:
 
 Die Screenshot-QA zeigt weiterhin die offene Altlast `1200 Bank Saarland`. Dieses Konto bleibt fuer Bank, Payment, VAT und Posting Groups gesperrt, bis ein eigener sauberer Korrekturfall existiert. `1406`, `3300` und `3806` beweisen nur sichtbare Sachkonten, nicht VAT Posting Setup, Posting Groups, USt-Posten oder Kreditorenbuchungen.
 
-`TARGET-026M` hat die GuV-Route noch nicht geloest: `4400` und `5400` sind zwar sichtbar, stehen aber nach Reopen weiterhin auf `Bilanz`. Deshalb bleiben VAT Setup, Posting Groups, Stammdaten, Belege, Preview Posting und Posting gesperrt. Der naechste sinnvolle Schritt ist `TARGET-026M-SKR04-GUV-ACCOUNT-ROUTE-RECOVERY` mit gezielter Sachkontokarten-/Feld-Diagnose fuer `GuV/Bilanz`.
+`TARGET-026M` und `TARGET-026M-SKR04-GUV-ACCOUNT-ROUTE-RECOVERY` haben die GuV-Route noch nicht geloest: `4400` und `5400` sind sichtbar, stehen aber nach Reopen weiterhin auf `Bilanz`. Die Recovery-Screenshots zeigen zusaetzlich, dass der Kartenversuch nicht als Erfolg gewertet werden darf, wenn nur die Beschriftung `GuV/Bilanz` sichtbar ist. Entscheidend ist der Feldwert nach Reopen.
+
+Deshalb bleiben VAT Setup, Posting Groups, Stammdaten, Belege, Preview Posting und Posting gesperrt. Der naechste sinnvolle Schritt ist `TARGET-026M-SKR04-GUV-ACCOUNT-PAGEINSPECTION-FOLLOWUP` mit Page-Inspection- oder source-backed Feldsteuerungsdiagnose fuer `GuV/Bilanz`.
 
 ## Quellenbasis
 
 - DATEV SKR04 Produktseite: https://www.datev.de/web/de/datev-shop/rechnungswesen/skr-04/
 - SKR04-Referenz fuer Nummernpruefung: https://www.collmex.de/skr04.pdf
 
-Die GuV-Detailkonten `4400` und `5400` muessen im naechsten UI-Case auf `GuV/Buchung` korrigiert und nach Reopen sichtbar bewiesen werden. Erst dann duerfen sie als `universaarl-proven` in Coverage oder Buchtext erscheinen.
+Die GuV-Detailkonten `4400` und `5400` muessen in einem spaeteren UI-Case auf `GuV/Buchung` korrigiert und nach Reopen sichtbar bewiesen werden. Erst dann duerfen sie als `universaarl-proven` in Coverage oder Buchtext erscheinen.

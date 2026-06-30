@@ -5,9 +5,9 @@
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-skr04-guv-account-route-recovery",
-  "activeCase": "TARGET-026M-SKR04-GUV-ACCOUNT-ROUTE-RECOVERY",
-  "active_case_file": ".agent/state/cases/target-026m-skr04-guv-account-route-recovery.json",
+  "activeArea": "universaarl-skr04-guv-account-pageinspection-followup",
+  "activeCase": "TARGET-026M-SKR04-GUV-ACCOUNT-PAGEINSPECTION-FOLLOWUP",
+  "active_case_file": ".agent/state/cases/target-026m-skr04-guv-account-pageinspection-followup.json",
   "lastReferenceCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
   "lastReferenceCaseFile": ".agent/state/cases/warehouse-031-warehouse-source-route-park-or-setup-fit-decision.json",
   "mode": "universaarl-target-execution",
@@ -19,11 +19,11 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "open-chart-of-accounts",
-    "open-target-gl-account-card-for-4400-5400",
-    "run-page-inspection-or-field-diagnostics-if-safe",
-    "set-income-statement-account-type-for-existing-4400-5400",
-    "capture-before-after-reopen-proof",
+    "open-chart-of-accounts-readonly",
+    "open-target-gl-account-card-readonly-for-4400-5400",
+    "open-page-inspection-if-safe",
+    "capture-field-control-map",
+    "capture-screenshot-qa",
     "write-result-and-next-step-card"
   ],
   "forbiddenActions": [
@@ -32,16 +32,17 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
-    "use-1200-as-bank-or-payment-account",
     "change-vat-setup",
     "change-posting-groups",
     "create-master-data",
     "create-document-or-draft",
     "preview-posting",
     "post",
-    "api-shortcut"
+    "api-shortcut",
+    "repeat-list-cell-guv-typing",
+    "repeat-card-fill-without-new-field-proof"
   ],
-  "nextStep": "Recover GuV/Bilanz field handling for 4400 and 5400; VAT setup, posting groups, master data, documents, Preview Posting and Posting remain locked.",
+  "nextStep": "Run Page Inspection or field-control diagnostics for GuV/Bilanz on 4400 and 5400; VAT setup, posting groups, master data, documents, Preview Posting and Posting remain locked.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -6331,5 +6332,23 @@
       "5400"
     ],
     "nextCase": "TARGET-026M-SKR04-GUV-ACCOUNT-ROUTE-RECOVERY"
+  },
+  "latestTarget026MGuVAccountRouteRecovery": {
+    "caseId": "TARGET-026M-SKR04-GUV-ACCOUNT-ROUTE-RECOVERY",
+    "status": "blocked",
+    "completedAt": "2026-06-30T21:40:00.000Z",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-026m-skr04-guv-account-route-recovery/TARGET-026M-RECOVERY-result.json",
+    "evidencePath": "playwright/projects/fibu-book5/evidence/target-026m-skr04-guv-account-route-recovery/",
+    "proved": [
+      "Instanz playthru und Company UNIVERSAARL-DE wurden kontrolliert.",
+      "Filtered G/L Account Card page 17 opened for 4400 and 5400.",
+      "Chart of Accounts page 16 reopen proof shows both accounts still visible."
+    ],
+    "blockedBy": [
+      "4400 remains Bilanz/Buchung after card route recovery.",
+      "5400 remains Bilanz/Buchung after card route recovery."
+    ],
+    "screenshotQaLearning": "Do not count the label GuV/Bilanz as value GuV. The screenshot and reopen proof must show the field value itself.",
+    "nextCase": "TARGET-026M-SKR04-GUV-ACCOUNT-PAGEINSPECTION-FOLLOWUP"
   }
 }

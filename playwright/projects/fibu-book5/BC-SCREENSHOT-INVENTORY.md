@@ -421,6 +421,17 @@ Screenshot-QA zu TARGET-026L: Die Reopen-Bilder sind lesbar und zeigen die entsc
 
 Screenshot-QA zu TARGET-026M: Die Bilder sind als Blockerbilder wertvoll, aber keine Buchkandidaten fuer eine fertige GuV-Kontenplan-Strecke. Sie zeigen genau den Fehler: `4400` und `5400` duerfen fachlich nicht als Bilanzkonten in die naechsten Setup-Schritte uebernommen werden. Vor VAT Setup, Posting Groups, Stammdaten oder Belegen muss `TARGET-026M-SKR04-GUV-ACCOUNT-ROUTE-RECOVERY` die Sachkontokarten-/Feldroute fuer `GuV/Bilanz` beweisen.
 
+## Universaarl Kontenplan - SKR04 GuV-Route Recovery TARGET-026M
+
+| Screenshot | Page | Company | Schritt | Was sieht man? | Intern bewiesen | Nicht bewiesen | Status |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `target-026m-recovery-4400-030-card-after-field-attempt.png` | Sachkontokarte, Page 17 | `playthru` / `UNIVERSAARL-DE` | Card-Feldversuch 4400 | `4400 Umsatzerloese Inland 19 Prozent`, Feld `GuV/Bilanz` mit Wert `Bilanz` | Die gefilterte Karte ist im Zielkontext erreichbar; die sichtbare Feldroute persistiert nicht als GuV | kein GuV-Wert, keine Posting-Setup-Freigabe | `blocked-wrong-account-type`, `do-not-use-as-success` |
+| `target-026m-recovery-4400-040-chart-reopen-proof.png` | Kontenplan, Page 16 | `playthru` / `UNIVERSAARL-DE` | Reopen-Proof 4400 | `4400` und `5400` sind sichtbar, beide weiterhin `Bilanz/Buchung` | Reopen-Wahrheit nach Card-Feldversuch | keine GuV-Korrektur, kein fertiger Kontenplan | `blocked-reopen-proof`, `do-not-use-as-success` |
+| `target-026m-recovery-5400-030-card-after-field-attempt.png` | Sachkontokarte, Page 17 | `playthru` / `UNIVERSAARL-DE` | Card-Feldversuch 5400 | `5400 Wareneingang / Materialaufwand`, Feld `GuV/Bilanz` mit Wert `Bilanz` | Die gefilterte Karte ist im Zielkontext erreichbar; die sichtbare Feldroute persistiert nicht als GuV | kein GuV-Wert, keine Posting-Setup-Freigabe | `blocked-wrong-account-type`, `do-not-use-as-success` |
+| `target-026m-recovery-5400-040-chart-reopen-proof.png` | Kontenplan, Page 16 | `playthru` / `UNIVERSAARL-DE` | Reopen-Proof 5400 | `4400` und `5400` sind sichtbar, beide weiterhin `Bilanz/Buchung` | Reopen-Wahrheit nach Card-Feldversuch | keine GuV-Korrektur, kein fertiger Kontenplan | `blocked-reopen-proof`, `do-not-use-as-success` |
+
+Screenshot-QA zu TARGET-026M Recovery: Die Bilder korrigieren einen moeglichen False Positive in der Textauswertung. `GuV/Bilanz` ist hier nur die Feldbeschriftung; der sichtbare Feldwert bleibt `Bilanz`. Der naechste Lauf braucht Page Inspection oder eine source-backed Field-Control-Diagnose, bevor ein weiterer Schreibversuch sinnvoll ist.
+
 ## PREP-010 Screenshot-QA-Regel
 
 Vor jeder Buch- oder Clickguide-Nutzung muss der Screenshot gegen die konkrete Behauptung geprueft werden:

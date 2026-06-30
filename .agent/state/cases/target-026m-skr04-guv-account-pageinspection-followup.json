@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "id": "TARGET-026M-SKR04-GUV-ACCOUNT-PAGEINSPECTION-FOLLOWUP",
+  "caseId": "TARGET-026M-SKR04-GUV-ACCOUNT-PAGEINSPECTION-FOLLOWUP",
+  "status": "pending",
+  "priority": "high",
+  "area": "universaarl-skr04-chart-of-accounts",
+  "goal": "Identify the exact Business Central field/control semantics for GuV/Bilanz on the G/L Account Card before another write attempt.",
+  "sourceCase": "TARGET-026M-SKR04-GUV-ACCOUNT-ROUTE-RECOVERY",
+  "createdAt": "2026-06-30T21:40:00.000Z",
+  "lookaheadStatus": "ready-next",
+  "mayRunPlaywright": true,
+  "mayWorkEffectively": false,
+  "effectiveBcActionsAllowed": false,
+  "sourceCompany": "UNIVERSAARL-DE",
+  "sourceInstance": "playthru",
+  "targetWorld": "Universaarl",
+  "problemStatement": "4400 and 5400 are visible in the chart of accounts, but both remain Bilanz/Buchung after list-cell and filtered G/L Account Card recovery attempts.",
+  "allowedActions": [
+    "open-chart-of-accounts-readonly",
+    "open-target-gl-account-card-readonly-for-4400-5400",
+    "open-page-inspection-if-safe",
+    "capture-field-control-map",
+    "capture-screenshot-qa",
+    "write-result-and-next-step-card"
+  ],
+  "forbiddenActions": [
+    "change-vat-setup",
+    "change-posting-groups",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "api-shortcut",
+    "repeat-list-cell-guv-typing",
+    "repeat-card-fill-without-new-field-proof"
+  ],
+  "targetAccounts": [
+    {
+      "no": "4400",
+      "name": "Umsatzerloese Inland 19 Prozent",
+      "currentVisibleType": "Bilanz",
+      "expectedType": "GuV"
+    },
+    {
+      "no": "5400",
+      "name": "Wareneingang / Materialaufwand",
+      "currentVisibleType": "Bilanz",
+      "expectedType": "GuV"
+    }
+  ],
+  "evidenceBasis": [
+    "playwright/projects/fibu-book5/evidence/target-026m-skr04-guv-accounts-route/TARGET-026M-result.json",
+    "playwright/projects/fibu-book5/evidence/target-026m-skr04-guv-account-route-recovery/TARGET-026M-RECOVERY-result.json"
+  ],
+  "acceptanceCriteria": [
+    "Page/Card/Table context for the G/L Account Card is visible or captured structurally.",
+    "The GuV/Bilanz field/control is identified without changing VAT setup, posting groups, master data or documents.",
+    "The result chooses either a safe next write route or a conscious park decision before VAT/posting setup."
+  ],
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-026M-SKR04-GUV-ACCOUNT-ROUTE-RECOVERY",
+    "plannedNextCaseBeforeReview": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
+    "lastEvidenceSummary": "TARGET-026M recovery opened filtered G/L Account Cards for 4400 and 5400, but screenshot QA and chart reopen proof still show both as Bilanz/Buchung.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "The chart checkpoint cannot proceed until 4400 and 5400 are either corrected to GuV/Buchung or consciously parked with a narrower setup boundary.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
+        "status": "needs-ui-discovery-first",
+        "reason": "GuV account field semantics remain unresolved."
+      },
+      {
+        "caseId": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "VAT setup needs correct sales/purchase G/L account foundation."
+      },
+      {
+        "caseId": "TARGET-028-CUSTOMER-VENDOR-ITEM-MASTERDATA",
+        "status": "needs-setup-first",
+        "reason": "Master data waits for posting groups and VAT setup."
+      },
+      {
+        "caseId": "TARGET-029-FIRST-SALES-PURCHASE-DRAFT-GATE",
+        "status": "needs-setup-first",
+        "reason": "Document drafts need number series, posting groups, VAT and master data."
+      }
+    ],
+    "queueChangesMade": [
+      "Inserted TARGET-026M-SKR04-GUV-ACCOUNT-PAGEINSPECTION-FOLLOWUP before chart checkpoint and VAT setup."
+    ],
+    "selectedNextCase": "TARGET-026M-SKR04-GUV-ACCOUNT-PAGEINSPECTION-FOLLOWUP",
+    "whySelectedNextCaseIsBest": "It is the smallest non-repeating step that can explain why the visible card field is not persisting as GuV.",
+    "risksBeforeNextCase": [
+      "Do not count field labels as field values.",
+      "Do not repeat list-cell or card-fill routes without new field-control proof."
+    ],
+    "requiredPreparation": [
+      "Keep the run read-only unless the result explicitly identifies a safer next write route."
+    ]
+  },
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-026m-skr04-guv-account-pageinspection-followup/TARGET-026M-PAGEINSPECTION-result.json"
+}
