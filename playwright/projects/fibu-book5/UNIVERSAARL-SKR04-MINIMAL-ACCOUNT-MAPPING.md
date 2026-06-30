@@ -67,6 +67,12 @@ Die Screenshot-QA zeigt weiterhin die offene Altlast `1200 Bank Saarland`. Diese
 
 Der naechste Schritt ist deshalb noch kein VAT Setup und keine Stammdatenanlage, sondern `TARGET-026O`: eine sichtbare Kontenplan-Screenshot-Recovery. Erst wenn das Bild selbst `Nr.`, `Name`, `GuV/Bilanz`, `Kontoart` und die relevanten Starterkonten zeigt, darf der VAT-Posting-Groups-Preflight folgen. Die Altlast `1200 Bank Saarland` bleibt gegen `1800 Bank Saarland` zu klassifizieren.
 
+## Stand nach `TARGET-026O`
+
+`TARGET-026O` hat den sichtbaren Kontenplan-Checkpoint wiederhergestellt. Die direkte Page-16-URL zeigte zunaechst nicht belastbar genug den fachlichen Inhalt. Der stabile Read-only-Pfad war deshalb: in der sichtbaren Business-Central-Oberflaeche den Link `Kontenplan` verwenden und danach das sichtbare BC-Iframe fotografieren. Das Bild `target-026o-010-visible-chart-iframe.png` zeigt die Konten `1200`, `1406`, `1800`, `3300`, `3806`, `4400` und `5400` mit `GuV/Bilanz` und `Kontoart`.
+
+Damit ist der Starter-Kontenplan als Universaarl-Foundation-Kontext sichtbar genug fuer den naechsten Read-only-Schritt `TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT`. Nicht bewiesen sind weiterhin ein vollstaendiger SKR04-Kontenplan, Steuerberaterfreigabe, VAT Posting Setup, Posting Groups, Stammdaten, Belege, Preview Posting oder Buchungen. Die Doppelung `1200 Bank Saarland` und `1800 Bank Saarland` bleibt fuer Bank- und Zahlungsprozesse gesperrt, bis sie fachlich entschieden ist.
+
 ## Quellenbasis
 
 - DATEV SKR04 Produktseite: https://www.datev.de/web/de/datev-shop/rechnungswesen/skr-04/

@@ -1,16 +1,18 @@
 {
   "schemaVersion": 1,
   "caseId": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
-  "status": "blocked",
+  "status": "observed",
   "completedAt": "2026-06-30T22:31:22.229Z",
   "sourceInstance": "playthru",
   "sourceCompany": "UNIVERSAARL-DE",
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-026n-chart-of-accounts-foundation-checkpoint/TARGET-026N-result.json",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-026o-chart-of-accounts-visible-screenshot-recovery/TARGET-026O-result.json",
   "evidencePath": "playwright/projects/fibu-book5/evidence/target-026n-chart-of-accounts-foundation-checkpoint/",
-  "summary": "TARGET-026N stayed in playthru / UNIVERSAARL-DE and proved a reusable screenshot-truth blocker: compact chart text is not enough when the visible screenshot still shows Role Center. VAT preflight remains locked.",
+  "summary": "Visible chart screenshot route recovered; VAT Posting Groups preflight can run next.",
   "proved": [
     "Business Central stayed in playthru / UNIVERSAARL-DE.",
-    "The chart checkpoint stopped before VAT/posting/master data."
+    "The iframe-scoped screenshot route shows the visible Kontenplan list instead of the Role Center.",
+    "Starter chart rows 1200, 1406, 1800, 3300, 3806, 4400 and 5400 are visible with expected GuV/Bilanz and Kontoart values in the captured chart context.",
+    "No VAT setup, posting groups, master data, document draft, Preview Posting, Posting or API shortcut was executed."
   ],
   "notProved": [
     "No complete SKR04 chart of accounts.",
@@ -22,13 +24,7 @@
     "No German compliance final claim.",
     "Bank/payment setup is not ready while the 1200/1800 Bank Saarland conflict is open."
   ],
-  "blockedBy": [
-    "Screenshot truth gate rejected this checkpoint because the visible page still looked like Role Center.",
-    "1800 Bank Saarland not visible with expected Bilanz/Buchung",
-    "3300 Verbindlichkeiten aus Lieferungen und Leistungen not visible with expected Bilanz/Buchung",
-    "3806 Umsatzsteuer 19 Prozent not visible with expected Bilanz/Buchung",
-    "5400 Wareneingang / Materialaufwand not visible with expected GuV/Buchung"
-  ],
+  "blockedBy": [],
   "warnings": [
     "1200 Bank Saarland and 1800 Bank Saarland are both visible; classify before bank/payment setup."
   ],
@@ -48,47 +44,49 @@
     "noBookChange": true,
     "noCompanySwitch": true
   },
-  "nextCase": "TARGET-026O-CHART-OF-ACCOUNTS-VISIBLE-SCREENSHOT-RECOVERY",
-  "nextStep": "Recover visible Kontenplan screenshot route before VAT setup preflight.",
+  "nextCase": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
+  "nextStep": "Run TARGET-027 VAT Posting Groups preflight read-only; no VAT write, no posting groups, no master data.",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
+    "currentCase": "TARGET-026O-CHART-OF-ACCOUNTS-VISIBLE-SCREENSHOT-RECOVERY",
     "plannedNextCaseBeforeReview": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
-    "lastEvidenceSummary": "TARGET-026N stayed in playthru / UNIVERSAARL-DE but blocked because screenshot QA still showed Role Center while compact text contained chart fragments.",
-    "isPlannedNextCaseStillSensible": false,
-    "reason": "VAT preflight depends on a trusted visible chart checkpoint. The queue must recover the screenshot route first.",
+    "lastEvidenceSummary": "TARGET-026N blocked because compact text contained chart fragments but the visible page screenshot still looked like Role Center.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The visible iframe screenshot shows the Kontenplan list with starter account values; VAT preflight can inspect setup mappings next without writing.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-026O-CHART-OF-ACCOUNTS-VISIBLE-SCREENSHOT-RECOVERY",
-        "status": "ready-next",
-        "reason": "Directly addresses the screenshot-truth blocker without setup writes."
-      },
-      {
         "caseId": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
-        "status": "ready-after-current",
-        "reason": "Only after a visible Kontenplan checkpoint."
+        "status": "ready-next",
+        "reason": "Visible chart checkpoint recovered."
       },
       {
         "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "Depends on VAT and G/L foundation."
+        "reason": "Posting groups depend on chart and VAT foundation."
       },
       {
         "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
         "status": "needs-setup-first",
-        "reason": "Master data waits for chart, VAT and posting group readiness."
+        "reason": "Master data waits for VAT and posting groups."
+      },
+      {
+        "caseId": "TARGET-030-FOUNDATION-READY-CHECKPOINT",
+        "status": "needs-setup-first",
+        "reason": "Foundation readiness waits for chart, VAT, posting groups and dimensions."
       }
     ],
     "queueChangesMade": [
-      "Inserted visible chart screenshot recovery before VAT preflight."
+      "Select TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT as next case."
     ],
-    "selectedNextCase": "TARGET-026O-CHART-OF-ACCOUNTS-VISIBLE-SCREENSHOT-RECOVERY",
-    "whySelectedNextCaseIsBest": "It prevents a false Buch-/Setup claim from hidden/stale frame text.",
+    "selectedNextCase": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
+    "whySelectedNextCaseIsBest": "VAT preflight is the next narrow read-only setup step after visible account foundation proof.",
     "risksBeforeNextCase": [
-      "Visible screenshot may still show Role Center; if so, stay blocked and improve navigation helper."
+      "Do not use 1200 Bank Saarland for bank/payment setup until the 1200/1800 conflict is resolved."
     ],
     "requiredPreparation": [
-      "Do screenshot QA before treating compact text as evidence."
+      "Keep VAT setup write locked until TARGET-027 explicitly unlocks it."
     ]
   },
-  "runId": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT-RUN-2026-06-30T22-31-22-229Z"
+  "runId": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT-RUN-2026-06-30T22-31-22-229Z",
+  "updatedAt": "2026-06-30T22:43:28.864Z",
+  "lastCompletedCase": "TARGET-026O-CHART-OF-ACCOUNTS-VISIBLE-SCREENSHOT-RECOVERY"
 }

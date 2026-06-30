@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-30T22:31:22.229Z",
+  "updatedAt": "2026-06-30T22:43:28.864Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-skr04-chart-visible-screenshot-recovery",
-  "activeCase": "TARGET-026O-CHART-OF-ACCOUNTS-VISIBLE-SCREENSHOT-RECOVERY",
-  "active_case_file": ".agent/state/cases/target-026o-chart-of-accounts-visible-screenshot-recovery.json",
+  "activeArea": "universaarl-vat-posting-groups-preflight",
+  "activeCase": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
+  "active_case_file": ".agent/state/cases/target-027-vat-posting-groups-preflight.json",
   "lastReferenceCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
   "lastReferenceCaseFile": ".agent/state/cases/warehouse-031-warehouse-source-route-park-or-setup-fit-decision.json",
   "mode": "universaarl-target-execution",
@@ -19,9 +19,10 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "open-chart-of-accounts-readonly",
-    "use-visible-ui-navigation-only",
-    "capture-visible-chart-screenshot",
+    "open-vat-posting-groups-readonly",
+    "open-vat-posting-setup-readonly",
+    "open-relevant-gl-accounts-readonly",
+    "capture-vat-preflight-screenshots",
     "capture-screenshot-qa",
     "write-result-and-next-step-card"
   ],
@@ -31,18 +32,18 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
-    "change-vat-setup",
+    "change-vat-setup-without-target-027-write-gate",
     "change-posting-groups",
     "create-master-data",
     "create-document-or-draft",
     "preview-posting",
     "post",
     "api-shortcut",
-    "edit-gl-accounts-during-screenshot-recovery",
-    "continue-to-vat-if-screenshot-does-not-show-kontenplan"
+    "use-1200-bank-saarland-for-bank-or-payment",
+    "continue-to-masterdata-before-vat-and-posting-groups"
   ],
-  "nextCase": "TARGET-026O-CHART-OF-ACCOUNTS-VISIBLE-SCREENSHOT-RECOVERY",
-  "nextStep": "Run TARGET-026O to recover a visible Kontenplan screenshot before VAT Posting Groups preflight; do not proceed from compact text alone.",
+  "nextCase": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
+  "nextStep": "Run TARGET-027 as a read-only VAT Posting Groups / VAT Posting Setup preflight after TARGET-026O recovered the visible Kontenplan screenshot.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -3710,41 +3711,43 @@
     "resultFile": "playwright/projects/fibu-book5/evidence/prep-020-universaarl-dataset-blueprint/PREP-020-result.json"
   },
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-026J-SKR04-ACCOUNT-CLEANUP-AND-SETUP-GATE",
-    "plannedNextCaseBeforeReview": "TARGET-026J-SKR04-ACCOUNT-CLEANUP-AND-SETUP-GATE",
-    "lastEvidenceSummary": "TARGET-026E planned the minimal G/L account candidate structure; no account had been created yet.",
+    "currentCase": "TARGET-026O-CHART-OF-ACCOUNTS-VISIBLE-SCREENSHOT-RECOVERY",
+    "plannedNextCaseBeforeReview": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
+    "lastEvidenceSummary": "TARGET-026N blocked because compact text contained chart fragments but the visible page screenshot still looked like Role Center.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "VAT setup and first master data need at least a controlled account setup route before further foundation work.",
+    "reason": "The visible iframe screenshot shows the Kontenplan list with starter account values; VAT preflight can inspect setup mappings next without writing.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-026K-SKR04-REMAINING-STARTER-ACCOUNTS-FIT",
-        "status": "ready-next",
-        "reason": "The 1800 bank-account route has reopen proof and can be reused carefully for remaining mapped starter accounts."
-      },
-      {
         "caseId": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
-        "status": "ready-after-current",
-        "reason": "VAT posting groups still need G/L accounts and source-backed field mapping before setup write."
+        "status": "ready-next",
+        "reason": "Visible chart checkpoint recovered."
       },
       {
-        "caseId": "TARGET-028-CUSTOMER-VENDOR-ITEM-MASTERDATA",
+        "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "Master data should wait until posting groups and VAT setup are ready."
+        "reason": "Posting groups depend on chart and VAT foundation."
       },
       {
-        "caseId": "TARGET-029-FIRST-SALES-PURCHASE-DRAFT-GATE",
+        "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
         "status": "needs-setup-first",
-        "reason": "Documents require number series, posting groups, VAT setup and master data."
+        "reason": "Master data waits for VAT and posting groups."
+      },
+      {
+        "caseId": "TARGET-030-FOUNDATION-READY-CHECKPOINT",
+        "status": "needs-setup-first",
+        "reason": "Foundation readiness waits for chart, VAT, posting groups and dimensions."
       }
     ],
-    "queueChangesMade": [],
-    "selectedNextCase": "TARGET-026K-SKR04-REMAINING-STARTER-ACCOUNTS-FIT",
-    "whySelectedNextCaseIsBest": "The fastest useful follow-up is to complete the remaining mapped SKR04 starter accounts without touching VAT or posting groups yet.",
+    "queueChangesMade": [
+      "Select TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT as next case."
+    ],
+    "selectedNextCase": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
+    "whySelectedNextCaseIsBest": "VAT preflight is the next narrow read-only setup step after visible account foundation proof.",
     "risksBeforeNextCase": [
-      "Income statement account types still need careful field handling."
+      "Do not use 1200 Bank Saarland for bank/payment setup until the 1200/1800 conflict is resolved."
     ],
     "requiredPreparation": [
-      "Separate balance-sheet and income-statement account field handling."
+      "Keep VAT setup write locked until TARGET-027 explicitly unlocks it."
     ]
   },
   "permissionBlocker": {
@@ -6368,5 +6371,31 @@
     "navigatedVia": "card-17-filtered-4400-then-page-16-reopen",
     "screenshotTruthGate": "blocked-visible-page-not-accepted-as-kontenplan",
     "nextCase": "TARGET-026O-CHART-OF-ACCOUNTS-VISIBLE-SCREENSHOT-RECOVERY"
+  },
+  "latestUniversaarlChartCheckpoint": {
+    "caseId": "TARGET-026O-CHART-OF-ACCOUNTS-VISIBLE-SCREENSHOT-RECOVERY",
+    "status": "observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-026o-chart-of-accounts-visible-screenshot-recovery/TARGET-026O-result.json",
+    "screenshot": "playwright/projects/fibu-book5/evidence/target-026o-chart-of-accounts-visible-screenshot-recovery/target-026o-010-visible-chart-iframe.png",
+    "proved": [
+      "Business Central stayed in playthru / UNIVERSAARL-DE.",
+      "The iframe-scoped screenshot route shows the visible Kontenplan list instead of the Role Center.",
+      "Starter chart rows 1200, 1406, 1800, 3300, 3806, 4400 and 5400 are visible with expected GuV/Bilanz and Kontoart values in the captured chart context.",
+      "No VAT setup, posting groups, master data, document draft, Preview Posting, Posting or API shortcut was executed."
+    ],
+    "notProved": [
+      "No complete SKR04 chart of accounts.",
+      "No tax advisor approval.",
+      "No VAT Posting Setup row.",
+      "No posting groups.",
+      "No master data.",
+      "No document, Preview Posting or Posting.",
+      "No German compliance final claim.",
+      "Bank/payment setup is not ready while the 1200/1800 Bank Saarland conflict is open."
+    ],
+    "warnings": [
+      "1200 Bank Saarland and 1800 Bank Saarland are both visible; classify before bank/payment setup."
+    ],
+    "nextCase": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT"
   }
 }

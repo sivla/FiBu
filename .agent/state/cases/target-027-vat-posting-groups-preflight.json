@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 1,
+  "id": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
+  "status": "pending",
+  "updatedAt": "2026-06-30T22:43:28.864Z",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "targetWorld": "Universaarl",
+  "area": "universaarl-vat-posting-groups-preflight",
+  "goal": "Inspect VAT Business/Product Posting Groups and VAT Posting Setup readiness read-only before any VAT setup write.",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/target-026o-chart-of-accounts-visible-screenshot-recovery/TARGET-026O-result.json"
+  ],
+  "allowedActions": [
+    "open-vat-posting-groups-readonly",
+    "open-vat-posting-setup-readonly",
+    "open-relevant-gl-accounts-readonly",
+    "capture-vat-preflight-screenshots",
+    "capture-screenshot-qa",
+    "write-result-and-next-step-card"
+  ],
+  "forbiddenActions": [
+    "change-vat-setup-without-target-027-write-gate",
+    "change-posting-groups",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "api-shortcut",
+    "use-1200-bank-saarland-for-bank-or-payment",
+    "continue-to-masterdata-before-vat-and-posting-groups"
+  ],
+  "acceptanceCriteria": [
+    "The run stays in playthru / UNIVERSAARL-DE.",
+    "VAT Posting Groups and VAT Posting Setup are inspected read-only.",
+    "No VAT setup row is created or changed unless a later explicit write gate is opened.",
+    "No posting groups, master data, document draft, Preview Posting, Posting or API shortcut is executed.",
+    "The result names the exact missing VAT setup prerequisites before Posting Groups or master data."
+  ],
+  "requiredPreparation": [
+    "Use TARGET-026O visible chart screenshot as account foundation context.",
+    "Keep 1200/1800 Bank Saarland conflict out of bank/payment setup decisions."
+  ],
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-026O-CHART-OF-ACCOUNTS-VISIBLE-SCREENSHOT-RECOVERY",
+    "plannedNextCaseBeforeReview": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
+    "lastEvidenceSummary": "TARGET-026N blocked because compact text contained chart fragments but the visible page screenshot still looked like Role Center.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The visible iframe screenshot shows the Kontenplan list with starter account values; VAT preflight can inspect setup mappings next without writing.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
+        "status": "ready-next",
+        "reason": "Visible chart checkpoint recovered."
+      },
+      {
+        "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Posting groups depend on chart and VAT foundation."
+      },
+      {
+        "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
+        "status": "needs-setup-first",
+        "reason": "Master data waits for VAT and posting groups."
+      },
+      {
+        "caseId": "TARGET-030-FOUNDATION-READY-CHECKPOINT",
+        "status": "needs-setup-first",
+        "reason": "Foundation readiness waits for chart, VAT, posting groups and dimensions."
+      }
+    ],
+    "queueChangesMade": [
+      "Select TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT as next case."
+    ],
+    "selectedNextCase": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
+    "whySelectedNextCaseIsBest": "VAT preflight is the next narrow read-only setup step after visible account foundation proof.",
+    "risksBeforeNextCase": [
+      "Do not use 1200 Bank Saarland for bank/payment setup until the 1200/1800 conflict is resolved."
+    ],
+    "requiredPreparation": [
+      "Keep VAT setup write locked until TARGET-027 explicitly unlocks it."
+    ]
+  },
+  "caseId": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT"
+}

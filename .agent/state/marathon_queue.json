@@ -5,7 +5,7 @@
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "queueId": "TARGET-MARATHON-002-UNIVERSAARL-REPO-READONLY-PREP",
-  "reason": "TARGET-026N blocked by screenshot truth gate; recover visible Kontenplan screenshot before VAT Posting Groups preflight.",
+  "reason": "TARGET-026O recovered visible Kontenplan screenshot; proceed to read-only VAT Posting Groups preflight.",
   "noEffectiveBusinessCentralActions": false,
   "forbiddenUntilUnblocked": [],
   "unblockCriteria": "Satisfied: UNIVERSAARL-DE exists and active Role Center context / Firmendaten read-only proof is available.",
@@ -1947,7 +1947,7 @@
     {
       "id": "TARGET-026O-CHART-OF-ACCOUNTS-VISIBLE-SCREENSHOT-RECOVERY",
       "order": 10041,
-      "status": "pending",
+      "status": "done",
       "category": "readonly-ui",
       "expectedImpact": "screenshot-truth-recovery",
       "mayWorkEffectively": false,
@@ -1958,7 +1958,27 @@
       "targetWorld": "Universaarl",
       "noFinalGermanClaimWithoutUniversaarlEvidence": true,
       "lookaheadStatus": "ready-next",
-      "reason": "Inserted after TARGET-026N screenshot truth gate blocked VAT preflight."
+      "reason": "Inserted after TARGET-026N screenshot truth gate blocked VAT preflight.",
+      "completedAt": "2026-06-30T22:43:28.864Z",
+      "result": "Visible chart screenshot route recovered; VAT Posting Groups preflight can run next.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-026o-chart-of-accounts-visible-screenshot-recovery/TARGET-026O-result.json",
+      "nextCase": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT"
+    },
+    {
+      "id": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
+      "order": 10042,
+      "status": "pending",
+      "category": "readonly-setup-preflight",
+      "expectedImpact": "vat-posting-groups-preflight",
+      "mayWorkEffectively": false,
+      "mayRunPlaywright": true,
+      "effectiveBcActionsAllowed": false,
+      "goal": "Inspect VAT Posting Groups and VAT Posting Setup readiness read-only before setup writes.",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "targetWorld": "Universaarl",
+      "noFinalGermanClaimWithoutUniversaarlEvidence": true,
+      "lookaheadStatus": "ready-next",
+      "reason": "TARGET-026O recovered the visible Kontenplan screenshot checkpoint."
     }
   ],
   "lastUpdated": "2026-06-30T21:40:00.000Z",
@@ -2060,48 +2080,48 @@
       ]
     }
   },
-  "updatedAt": "2026-06-30T23:05:00.000Z",
-  "lastCompletedCase": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
-  "nextCase": "TARGET-026O-CHART-OF-ACCOUNTS-VISIBLE-SCREENSHOT-RECOVERY",
+  "updatedAt": "2026-06-30T22:43:28.864Z",
+  "lastCompletedCase": "TARGET-026O-CHART-OF-ACCOUNTS-VISIBLE-SCREENSHOT-RECOVERY",
+  "nextCase": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
+    "currentCase": "TARGET-026O-CHART-OF-ACCOUNTS-VISIBLE-SCREENSHOT-RECOVERY",
     "plannedNextCaseBeforeReview": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
-    "lastEvidenceSummary": "TARGET-026N stayed in playthru / UNIVERSAARL-DE but blocked because screenshot QA still showed Role Center while compact text contained chart fragments.",
-    "isPlannedNextCaseStillSensible": false,
-    "reason": "VAT preflight depends on a trusted visible chart checkpoint. The queue must recover the screenshot route first.",
+    "lastEvidenceSummary": "TARGET-026N blocked because compact text contained chart fragments but the visible page screenshot still looked like Role Center.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The visible iframe screenshot shows the Kontenplan list with starter account values; VAT preflight can inspect setup mappings next without writing.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-026O-CHART-OF-ACCOUNTS-VISIBLE-SCREENSHOT-RECOVERY",
-        "status": "ready-next",
-        "reason": "Directly addresses the screenshot-truth blocker without setup writes."
-      },
-      {
         "caseId": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
-        "status": "ready-after-current",
-        "reason": "Only after a visible Kontenplan checkpoint."
+        "status": "ready-next",
+        "reason": "Visible chart checkpoint recovered."
       },
       {
         "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "Depends on VAT and G/L foundation."
+        "reason": "Posting groups depend on chart and VAT foundation."
       },
       {
         "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
         "status": "needs-setup-first",
-        "reason": "Master data waits for chart, VAT and posting group readiness."
+        "reason": "Master data waits for VAT and posting groups."
+      },
+      {
+        "caseId": "TARGET-030-FOUNDATION-READY-CHECKPOINT",
+        "status": "needs-setup-first",
+        "reason": "Foundation readiness waits for chart, VAT, posting groups and dimensions."
       }
     ],
     "queueChangesMade": [
-      "Inserted visible chart screenshot recovery before VAT preflight."
+      "Select TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT as next case."
     ],
-    "selectedNextCase": "TARGET-026O-CHART-OF-ACCOUNTS-VISIBLE-SCREENSHOT-RECOVERY",
-    "whySelectedNextCaseIsBest": "It prevents a false Buch-/Setup claim from hidden/stale frame text.",
+    "selectedNextCase": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
+    "whySelectedNextCaseIsBest": "VAT preflight is the next narrow read-only setup step after visible account foundation proof.",
     "risksBeforeNextCase": [
-      "Visible screenshot may still show Role Center; if so, stay blocked and improve navigation helper."
+      "Do not use 1200 Bank Saarland for bank/payment setup until the 1200/1800 conflict is resolved."
     ],
     "requiredPreparation": [
-      "Do screenshot QA before treating compact text as evidence."
+      "Keep VAT setup write locked until TARGET-027 explicitly unlocks it."
     ]
   },
-  "nextStep": "Run a read-only Kontenplan foundation checkpoint before VAT setup, posting groups or master data."
+  "nextStep": "Run TARGET-027 VAT Posting Groups preflight read-only."
 }
