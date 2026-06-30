@@ -1,0 +1,124 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "PREP-028-TESTING-STRATEGY-AND-UAT-MATRIX",
+  "source": "official-microsoft-docs-mapping",
+  "resultStatus": "observed",
+  "instance": "playthru",
+  "targetCompany": "UNIVERSAARL-DE",
+  "sourceCompany": "UNIVERSAARL-DE-planned-not-yet-created",
+  "proved": [
+    "Universaarl now has a concrete UAT/test matrix with read-only-probe, process-test, end-to-end-test and UAT levels separated.",
+    "The matrix defines entry criteria, expected results, evidence needs, status and next case for core Business Central process areas.",
+    "Company Creation remains blocked until SUPER/company-create permission is confirmed.",
+    "PREP-029 is the next sensible non-effective case because object analysis can now be scoped to UAT and book gaps."
+  ],
+  "notProved": [
+    "No UAT was executed or passed.",
+    "UNIVERSAARL-DE was not created.",
+    "No Business Central UI was opened.",
+    "No Playwright test was started.",
+    "No setup, stammdaten, document, preview, posting or ledger trace was performed."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/UNIVERSAARL-UAT-MATRIX.md",
+    "playwright/projects/fibu-book5/BC-IMPLEMENTATION-BEST-PRACTICES.md",
+    "playwright/projects/fibu-book5/BC-MICROSOFT-LEARN-MAPPING.md",
+    "playwright/projects/fibu-book5/BC-FULL-PLAYTHROUGH-CATALOG.md",
+    "playwright/projects/fibu-book5/evidence/prep-028-testing-strategy-and-uat-matrix/README.md",
+    "playwright/projects/fibu-book5/evidence/prep-028-testing-strategy-and-uat-matrix/PREP-028-result.json",
+    ".agent/state/cases/prep-028-testing-strategy-and-uat-matrix.json",
+    ".agent/state/current.json",
+    ".agent/state/marathon_queue.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/coverage_state.json"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/UNIVERSAARL-UAT-MATRIX.md",
+    "playwright/projects/fibu-book5/evidence/prep-028-testing-strategy-and-uat-matrix/README.md",
+    "playwright/projects/fibu-book5/evidence/prep-028-testing-strategy-and-uat-matrix/PREP-028-result.json"
+  ],
+  "sourceRefs": [
+    "https://learn.microsoft.com/en-us/dynamics365/guidance/implementation-guide/testing-strategy",
+    "https://learn.microsoft.com/en-us/dynamics365/guidance/implementation-guide/testing-strategy-planning",
+    "https://learn.microsoft.com/en-us/dynamics365/guidance/implementation-guide/testing-strategy-test-types",
+    "playwright/projects/fibu-book5/UNIVERSAARL-IMPLEMENTATION-GUIDE-MAPPING.md"
+  ],
+  "warnings": [
+    "The UAT matrix is a planning artifact and does not prove that any UAT has passed.",
+    "Company Creation remains parked until SUPER/company-create permissions are confirmed.",
+    "Shopify / Online Store remains excluded."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "PREP-028-TESTING-STRATEGY-AND-UAT-MATRIX",
+      "active_case_file": ".agent/state/cases/prep-028-testing-strategy-and-uat-matrix.json",
+      "nextCase": "PREP-029-AL-OBJECT-ANALYSIS-ROADMAP",
+      "nextStep": "Continue with PREP-029-AL-OBJECT-ANALYSIS-ROADMAP. Scope allowed object/page/table/report analysis to UAT and book gaps without replacing UI evidence."
+    }
+  },
+  "flags": {
+    "noBcRun": true,
+    "noPlaywrightRun": true,
+    "noWrite": true,
+    "noCompanySwitch": true,
+    "noCompanyCreated": true,
+    "noSetupChange": true,
+    "noPreview": true,
+    "noPost": true,
+    "noDraft": true,
+    "noApiShortcut": true,
+    "noBookClaimWithoutEvidence": true
+  },
+  "migrationRelevance": "needed-for-german-final",
+  "rebuildInstruction": "Use the UAT matrix as the acceptance backbone when each Universaarl process is rebuilt: entry criteria, expected result, evidence type, status and next case must be updated from real Universaarl evidence.",
+  "mustRecreateInFinalSandbox": false,
+  "finalScreenshotNeeded": false,
+  "nextStepDecisionCard": {
+    "currentCase": "PREP-028-TESTING-STRATEGY-AND-UAT-MATRIX",
+    "plannedNextCaseBeforeReview": "PREP-028-TESTING-STRATEGY-AND-UAT-MATRIX",
+    "lastEvidenceSummary": "PREP-027 mapped Implementation Guide sources to Universaarl process, testing and claim gates.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The UAT matrix is the necessary bridge between source-backed project guidance and later executable Universaarl process cases.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "PREP-029-AL-OBJECT-ANALYSIS-ROADMAP",
+        "status": "ready-next",
+        "reason": "Object/page/table/report analysis can now be scoped to concrete UAT and book gaps without replacing UI evidence."
+      },
+      {
+        "caseId": "PREP-030-BOOK-USECASE-QUALITY-SCORECARD",
+        "status": "ready-after-current",
+        "reason": "The scorecard should use UAT levels, entry/exit rules and beginner-facing book criteria from PREP-028."
+      },
+      {
+        "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+        "status": "blocked",
+        "reason": "Company Creation remains parked until SUPER/company-create permissions are confirmed."
+      },
+      {
+        "caseId": "TARGET-COMPANY-INFO-001",
+        "status": "needs-setup-first",
+        "reason": "Company Information is only meaningful after UNIVERSAARL-DE exists."
+      }
+    ],
+    "queueChangesMade": [
+      "Mark PREP-028 done.",
+      "Select PREP-029 as next prep case.",
+      "Keep TARGET-009 parked until permissions are available."
+    ],
+    "selectedNextCase": "PREP-029-AL-OBJECT-ANALYSIS-ROADMAP",
+    "whySelectedNextCaseIsBest": "PREP-029 can now focus object analysis on concrete UAT and book gaps instead of broad inventory work.",
+    "risksBeforeNextCase": [
+      "Do not use object analysis as a substitute for Universaarl UI evidence.",
+      "Do not infer setup/posting behavior from page metadata alone."
+    ],
+    "requiredPreparation": [
+      "Read UNIVERSAARL-UAT-MATRIX.md and BC-OBJECT-COVERAGE-CATALOG.md.",
+      "Keep Company Creation parked until explicit permission confirmation."
+    ]
+  }
+}

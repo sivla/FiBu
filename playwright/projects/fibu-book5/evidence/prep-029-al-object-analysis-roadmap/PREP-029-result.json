@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "PREP-029-AL-OBJECT-ANALYSIS-ROADMAP",
+  "source": "local-analysis",
+  "resultStatus": "observed",
+  "instance": "playthru",
+  "targetCompany": "UNIVERSAARL-DE",
+  "sourceCompany": "UNIVERSAARL-DE-planned-not-yet-created",
+  "proved": [
+    "Object analysis is now scoped to concrete UAT and book gaps from the Universaarl UAT matrix.",
+    "The roadmap separates object-id context, field-role mapping, action-risk mapping, entry-impact mapping and report-request mapping.",
+    "Object analysis is explicitly not a substitute for Universaarl UI/process evidence.",
+    "PREP-030 is the next sensible non-effective case."
+  ],
+  "notProved": [
+    "No AL object, page, table or report was inspected in Business Central.",
+    "No Business Central UI was opened.",
+    "No Playwright test was started.",
+    "No setup, stammdaten, document, preview, posting or ledger trace was performed."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/UNIVERSAARL-AL-OBJECT-ANALYSIS-ROADMAP.md",
+    "playwright/projects/fibu-book5/evidence/prep-029-al-object-analysis-roadmap/README.md",
+    "playwright/projects/fibu-book5/evidence/prep-029-al-object-analysis-roadmap/PREP-029-result.json",
+    ".agent/state/cases/prep-029-al-object-analysis-roadmap.json",
+    ".agent/state/current.json",
+    ".agent/state/marathon_queue.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/coverage_state.json"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/UNIVERSAARL-AL-OBJECT-ANALYSIS-ROADMAP.md",
+    "playwright/projects/fibu-book5/evidence/prep-029-al-object-analysis-roadmap/README.md",
+    "playwright/projects/fibu-book5/evidence/prep-029-al-object-analysis-roadmap/PREP-029-result.json"
+  ],
+  "warnings": [
+    "Object analysis may support a book or UAT question, but it must not be treated as proof that a process worked.",
+    "Company Creation remains parked until SUPER/company-create permissions are confirmed."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "PREP-029-AL-OBJECT-ANALYSIS-ROADMAP",
+      "active_case_file": ".agent/state/cases/prep-029-al-object-analysis-roadmap.json",
+      "nextCase": "PREP-030-BOOK-USECASE-QUALITY-SCORECARD",
+      "nextStep": "Continue with PREP-030-BOOK-USECASE-QUALITY-SCORECARD. Convert UAT and object-analysis gates into a beginner-book quality scorecard."
+    }
+  },
+  "flags": {
+    "noBcRun": true,
+    "noPlaywrightRun": true,
+    "noWrite": true,
+    "noCompanySwitch": true,
+    "noCompanyCreated": true,
+    "noSetupChange": true,
+    "noPreview": true,
+    "noPost": true,
+    "noDraft": true,
+    "noApiShortcut": true,
+    "noBookClaimWithoutEvidence": true
+  },
+  "nextStepDecisionCard": {
+    "currentCase": "PREP-029-AL-OBJECT-ANALYSIS-ROADMAP",
+    "plannedNextCaseBeforeReview": "PREP-029-AL-OBJECT-ANALYSIS-ROADMAP",
+    "lastEvidenceSummary": "PREP-028 created a concrete Universaarl UAT matrix with test levels and entry/exit expectations.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "Object analysis needs explicit boundaries before it is used in book or UAT work.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "PREP-030-BOOK-USECASE-QUALITY-SCORECARD",
+        "status": "ready-next",
+        "reason": "The scorecard can now combine beginner-book requirements, UAT levels and object-analysis boundaries."
+      },
+      {
+        "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+        "status": "blocked",
+        "reason": "Company Creation remains parked until SUPER/company-create permissions are confirmed."
+      },
+      {
+        "caseId": "TARGET-COMPANY-INFO-001",
+        "status": "needs-setup-first",
+        "reason": "Company Information requires an existing UNIVERSAARL-DE company."
+      }
+    ],
+    "queueChangesMade": [
+      "Mark PREP-029 done.",
+      "Select PREP-030 as next prep case."
+    ],
+    "selectedNextCase": "PREP-030-BOOK-USECASE-QUALITY-SCORECARD",
+    "whySelectedNextCaseIsBest": "PREP-030 turns the prep rules into a practical quality gate for future book/usecase chapters.",
+    "risksBeforeNextCase": [
+      "Do not score chapters as final when only planning evidence exists."
+    ],
+    "requiredPreparation": [
+      "Read UNIVERSAARL-UAT-MATRIX.md and UNIVERSAARL-AL-OBJECT-ANALYSIS-ROADMAP.md."
+    ]
+  }
+}

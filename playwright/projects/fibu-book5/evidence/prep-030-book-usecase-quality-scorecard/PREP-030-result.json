@@ -1,19 +1,24 @@
 {
   "schemaVersion": 1,
-  "runId": "PREP-030-BOOK-USECASE-QUALITY-SCORECARD",
+  "purpose": "autopilot-result-normalized",
   "caseId": "PREP-030-BOOK-USECASE-QUALITY-SCORECARD",
-  "status": "observed",
+  "source": "local-analysis",
+  "resultStatus": "observed",
   "instance": "playthru",
-  "company": "UNIVERSAARL-DE-planned-not-yet-created",
-  "bcRun": false,
-  "playwrightRun": false,
-  "posted": false,
-  "previewPosting": false,
-  "setupChange": false,
-  "companyCreated": false,
-  "bookChanged": false,
-  "bookDraftChanged": false,
-  "summary": "PREP-030 created a beginner-book/usecase quality scorecard and closed the PREP queue until SUPER/company-create permissions are available.",
+  "targetCompany": "UNIVERSAARL-DE",
+  "sourceCompany": "UNIVERSAARL-DE-planned-not-yet-created",
+  "proved": [
+    "Book/usecase chapters now have a scorecard for beginner usefulness and evidence level.",
+    "The scorecard links reader-facing quality to UAT levels, screenshot QA, entries and Universaarl boundaries.",
+    "The PREP queue is complete except for the parked company creation execution gate.",
+    "TARGET-009 remains the next practical step after SUPER/company-create permission confirmation."
+  ],
+  "notProved": [
+    "No bookmaster chapter was rewritten in this case.",
+    "No Business Central UI was opened.",
+    "No Playwright test was started.",
+    "No setup, stammdaten, document, preview, posting or ledger trace was performed."
+  ],
   "changedFiles": [
     "playwright/projects/fibu-book5/UNIVERSAARL-BOOK-USECASE-QUALITY-SCORECARD.md",
     "playwright/projects/fibu-book5/BC-FULL-PLAYTHROUGH-CATALOG.md",
@@ -25,26 +30,41 @@
     ".agent/state/last_run_summary.json",
     ".agent/state/coverage_state.json"
   ],
-  "evidence": [
-    "playwright/projects/fibu-book5/evidence/prep-030-book-usecase-quality-scorecard/PREP-030-result.json",
-    "playwright/projects/fibu-book5/evidence/prep-030-book-usecase-quality-scorecard/README.md",
-    "playwright/projects/fibu-book5/UNIVERSAARL-BOOK-USECASE-QUALITY-SCORECARD.md"
-  ],
   "evidenceRefs": [
+    "playwright/projects/fibu-book5/UNIVERSAARL-BOOK-USECASE-QUALITY-SCORECARD.md",
+    "playwright/projects/fibu-book5/evidence/prep-030-book-usecase-quality-scorecard/README.md",
     "playwright/projects/fibu-book5/evidence/prep-030-book-usecase-quality-scorecard/PREP-030-result.json"
   ],
-  "proved": [
-    "Book/usecase chapters now have a scorecard for beginner usefulness and evidence level.",
-    "The PREP queue is complete except for the parked company creation execution gate.",
-    "TARGET-009 remains the next practical step after SUPER/company-create permission confirmation."
+  "warnings": [
+    "The scorecard is a quality gate, not a final German proof.",
+    "Company Creation remains parked until SUPER/company-create permissions are confirmed."
   ],
-  "notProved": [
-    "No bookmaster chapter was rewritten in this case.",
-    "No Business Central UI was opened.",
-    "No setup, preview, posting or UAT execution was performed."
+  "blockedBy": [
+    "missing-super-or-company-create-permission"
   ],
-  "nextStep": "Wait for explicit SUPER/company-create permission confirmation, then resume TARGET-009 using the Companies Page splitbutton route: Pfeil neben Neu -> Neues Unternehmen erstellen.",
-  "nextCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "PREP-030-BOOK-USECASE-QUALITY-SCORECARD",
+      "active_case_file": ".agent/state/cases/prep-030-book-usecase-quality-scorecard.json",
+      "nextCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+      "nextStep": "Wait for explicit SUPER/company-create permission confirmation, then resume TARGET-009 using the Companies Page splitbutton route: Pfeil neben Neu -> Neues Unternehmen erstellen."
+    }
+  },
+  "flags": {
+    "noBcRun": true,
+    "noPlaywrightRun": true,
+    "noWrite": true,
+    "noCompanySwitch": true,
+    "noCompanyCreated": true,
+    "noSetupChange": true,
+    "noPreview": true,
+    "noPost": true,
+    "noDraft": true,
+    "noApiShortcut": true,
+    "noBookClaimWithoutEvidence": true
+  },
   "nextStepDecisionCard": {
     "currentCase": "PREP-030-BOOK-USECASE-QUALITY-SCORECARD",
     "plannedNextCaseBeforeReview": "PREP-030-BOOK-USECASE-QUALITY-SCORECARD",
@@ -83,16 +103,5 @@
       "User confirms sufficient SUPER/company-create permissions.",
       "Use PREP-031 splitbutton evidence and READY-FOR-SUPER-PERMISSIONS-CHECKLIST.md."
     ]
-  },
-  "noEffectiveBusinessCentralActions": true,
-  "noCompanyCreated": true,
-  "noSetupChange": true,
-  "noPreviewPosting": true,
-  "noPosting": true,
-  "noCompanySwitch": true,
-  "updatedAt": "2026-06-30T14:25:00.000+02:00",
-  "hardStops": [
-    "missing-super-or-company-create-permission"
-  ],
-  "hardStopReason": "Company Creation is the next high-impact lever but remains blocked until the user confirms sufficient SUPER/company-create permissions."
+  }
 }

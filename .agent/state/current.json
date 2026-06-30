@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-30T13:05:00.000+02:00",
+  "updatedAt": "2026-06-30T14:25:00.000+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "activeArea": "universaarl-companies-readonly-ui-discovery",
-  "activeCase": "PREP-027-IMPLEMENTATION-GUIDE-BEST-PRACTICE-MAPPING",
-  "active_case_file": ".agent/state/cases/prep-027-implementation-guide-best-practice-mapping.json",
+  "activeCase": "PREP-030-BOOK-USECASE-QUALITY-SCORECARD",
+  "active_case_file": ".agent/state/cases/prep-030-book-usecase-quality-scorecard.json",
   "lastReferenceCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
   "lastReferenceCaseFile": ".agent/state/cases/warehouse-031-warehouse-source-route-park-or-setup-fit-decision.json",
   "mode": "universaarl-readonly-prep-until-super-permissions",
@@ -48,7 +48,7 @@
     "preview-posting-until-target-company-exists",
     "api-shortcut-for-company-creation"
   ],
-  "nextStep": "Continue with PREP-028-TESTING-STRATEGY-AND-UAT-MATRIX. Convert the PREP-027 source-backed project rules into a concrete Universaarl UAT/test matrix while Company Creation remains parked.",
+  "nextStep": "Wait for explicit SUPER/company-create permission confirmation, then resume TARGET-009 using the Companies Page splitbutton route: Pfeil neben Neu -> Neues Unternehmen erstellen.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -1357,7 +1357,7 @@
     "nextStep": "BANK-018: controlled no-post Payment Journal preflight for 108205; do not post."
   },
   "workType": "warehouse-source-document-action-on-draft",
-  "lastCompletedCase": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
+  "lastCompletedCase": "PREP-030-BOOK-USECASE-QUALITY-SCORECARD",
   "latestBank018": {
     "caseId": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
     "status": [
@@ -3695,54 +3695,42 @@
     "resultFile": "playwright/projects/fibu-book5/evidence/prep-020-universaarl-dataset-blueprint/PREP-020-result.json"
   },
   "nextStepDecisionCard": {
-    "currentCase": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
-    "plannedNextCaseBeforeReview": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
-    "lastEvidenceSummary": "PREP-025 replanned the next ten cases and selected W0/W1 source mapping before more read-only UI or book work.",
+    "currentCase": "PREP-030-BOOK-USECASE-QUALITY-SCORECARD",
+    "plannedNextCaseBeforeReview": "PREP-030-BOOK-USECASE-QUALITY-SCORECARD",
+    "lastEvidenceSummary": "PREP-029 created a bounded object-analysis roadmap for UAT and book gaps.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "W0/W1 source mapping is required before Companies Page screenshots, Chapter 4 text, My Settings context and later setup claims can be used without overclaiming.",
+    "reason": "The scorecard closes the PREP chain by turning UAT, object-analysis and screenshot rules into a concrete book/usecase quality gate.",
     "lookaheadReviewed": [
-      {
-        "caseId": "PREP-031-COMPANIES-PAGE-READONLY-PLAYWRIGHT",
-        "status": "ready-next",
-        "reason": "Companies Page can now be observed read-only against explicit product and evidence claim gates."
-      },
-      {
-        "caseId": "PREP-032-CH04-ERP-BASICS-UNIVERSAARL-REWRITE",
-        "status": "ready-after-current",
-        "reason": "Chapter 4 can use product-level source claims without asserting that Universaarl already exists."
-      },
-      {
-        "caseId": "PREP-033-MY-SETTINGS-READONLY-CONTEXT",
-        "status": "ready-after-current",
-        "reason": "My Settings source boundary is now known; read-only context proof can follow."
-      },
-      {
-        "caseId": "PREP-027-IMPLEMENTATION-GUIDE-BEST-PRACTICE-MAPPING",
-        "status": "ready-after-current",
-        "reason": "Implementation/UAT guidance should follow the product-source claim gates."
-      },
       {
         "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
         "status": "blocked",
-        "reason": "Company creation remains parked until SUPER/company-create permissions are confirmed."
+        "reason": "This is the next practical case, but it remains blocked until SUPER/company-create permissions are confirmed."
+      },
+      {
+        "caseId": "TARGET-COMPANY-INFO-001",
+        "status": "needs-setup-first",
+        "reason": "Company Information requires UNIVERSAARL-DE to exist."
+      },
+      {
+        "caseId": "TARGET-FOUNDATION-001",
+        "status": "needs-setup-first",
+        "reason": "Foundation setup requires Company Creation and Company Information first."
       }
     ],
     "queueChangesMade": [
-      "Marked PREP-026 done.",
-      "Promoted PREP-031 to ready-next.",
-      "Kept TARGET-009 parked until permissions are available."
+      "Mark PREP-030 done.",
+      "Set TARGET-009 as parked next practical case until rights are available."
     ],
-    "selectedNextCase": "PREP-031-COMPANIES-PAGE-READONLY-PLAYWRIGHT",
-    "whySelectedNextCaseIsBest": "It is the fastest practical next step: observe the Companies Page dropdown, tooltip and screenshot QA targets without creating a company.",
+    "selectedNextCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+    "whySelectedNextCaseIsBest": "After PREP completion, the next real project value is creating or conclusively blocking UNIVERSAARL-DE through the correct UI route once permissions exist.",
     "risksBeforeNextCase": [
-      "Do not click the main Neu button when the dropdown arrow or Neues Unternehmen erstellen menu entry is the intended target.",
-      "Do not finish a wizard or save a company.",
-      "Do not mistake a product source for a Universaarl evidence claim."
+      "Do not click main Neu when the intended target is the dropdown arrow and Neues Unternehmen erstellen.",
+      "Do not finish the wizard or save a company without explicit permission confirmation.",
+      "Do not choose CRONUS copy or Testunternehmen as final target basis."
     ],
     "requiredPreparation": [
-      "Use RO-W0-COMPANIES-357 from the read-only discovery pack.",
-      "Capture split-button target, dropdown state, tooltip/accessible name and screenshot QA.",
-      "Stop before any create/save/finish action."
+      "User confirms sufficient SUPER/company-create permissions.",
+      "Use PREP-031 splitbutton evidence and READY-FOR-SUPER-PERMISSIONS-CHECKLIST.md."
     ]
   },
   "permissionBlocker": {
@@ -3821,7 +3809,7 @@
   },
   "activeCaseFile": ".agent/state/cases/prep-034-role-center-readonly-shell-map.json",
   "previousCase": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
-  "nextCase": "PREP-028-TESTING-STRATEGY-AND-UAT-MATRIX",
+  "nextCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
   "latestPrepCase": {
     "caseId": "PREP-034-ROLE-CENTER-READONLY-SHELL-MAP",
     "status": "prep-observed",
@@ -4255,5 +4243,41 @@
     "noPlaywrightRun": true,
     "nextCase": "PREP-028-TESTING-STRATEGY-AND-UAT-MATRIX",
     "updatedAt": "2026-06-30T13:05:00.000+02:00"
+  },
+  "latestPrep028TestingStrategyUatMatrix": {
+    "caseId": "PREP-028-TESTING-STRATEGY-AND-UAT-MATRIX",
+    "status": "observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/prep-028-testing-strategy-and-uat-matrix/PREP-028-result.json",
+    "outputPath": "playwright/projects/fibu-book5/UNIVERSAARL-UAT-MATRIX.md",
+    "summary": "Concrete Universaarl UAT matrix created with read-only, process, end-to-end and UAT levels for core BC areas.",
+    "noBcRun": true,
+    "noPlaywrightRun": true,
+    "nextCase": "PREP-029-AL-OBJECT-ANALYSIS-ROADMAP",
+    "updatedAt": "2026-06-30T13:45:00.000+02:00"
+  },
+  "latestPrep029AlObjectAnalysisRoadmap": {
+    "caseId": "PREP-029-AL-OBJECT-ANALYSIS-ROADMAP",
+    "status": "observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/prep-029-al-object-analysis-roadmap/PREP-029-result.json",
+    "outputPath": "playwright/projects/fibu-book5/UNIVERSAARL-AL-OBJECT-ANALYSIS-ROADMAP.md",
+    "summary": "Object analysis is scoped to concrete UAT/book gaps and explicitly cannot replace UI/process evidence.",
+    "noBcRun": true,
+    "noPlaywrightRun": true,
+    "nextCase": "PREP-030-BOOK-USECASE-QUALITY-SCORECARD",
+    "updatedAt": "2026-06-30T14:05:00.000+02:00"
+  },
+  "latestPrep030BookUsecaseQualityScorecard": {
+    "caseId": "PREP-030-BOOK-USECASE-QUALITY-SCORECARD",
+    "status": "observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/prep-030-book-usecase-quality-scorecard/PREP-030-result.json",
+    "outputPath": "playwright/projects/fibu-book5/UNIVERSAARL-BOOK-USECASE-QUALITY-SCORECARD.md",
+    "summary": "Book/usecase quality scorecard created for beginner usefulness, evidence level, UAT gates and Universaarl boundaries.",
+    "noBcRun": true,
+    "noPlaywrightRun": true,
+    "nextCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+    "blockedBy": [
+      "missing-super-or-company-create-permission"
+    ],
+    "updatedAt": "2026-06-30T14:25:00.000+02:00"
   }
 }

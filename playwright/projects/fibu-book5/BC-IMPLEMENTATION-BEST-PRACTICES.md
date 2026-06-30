@@ -126,3 +126,18 @@ Das Buch ist nicht nur Dokumentation. Es fuehrt Anfaenger durch Business Central
 - Woran erkenne ich Erfolg?
 - Welche typischen Fehler koennen auftreten?
 - Wie korrigiere ich sie?
+
+## PREP-028 Universaarl UAT-Matrix
+
+`PREP-028-TESTING-STRATEGY-AND-UAT-MATRIX` macht aus den Quellenregeln eine konkrete Testlandkarte: `UNIVERSAARL-UAT-MATRIX.md`.
+
+Die Matrix ist kein bestandener UAT. Sie ist der Arbeitsrahmen fuer spaetere Nachweise. Ein Read-only-Screenshot darf nur eine Seite, ein Feld oder eine Action erklaeren. Ein bestandener UAT braucht dagegen Rolle, Daten, erwartetes Ergebnis, Entry Criteria, Exit Criteria, Evidence und Abnahmegrenze.
+
+Fuer Universaarl gilt deshalb:
+
+- `read-only-probe` erklaert Oberflaeche und Kontext.
+- `process-test` prueft einen einzelnen Prozessschritt.
+- `end-to-end-test` verbindet Stammdaten, Beleg, Preview/Post und Postenspur.
+- `uat` ist erst dann bestanden, wenn Anwenderfall, erwartetes Ergebnis, Evidence und Grenzen vollstaendig dokumentiert sind.
+
+Solange `UNIVERSAARL-DE` noch nicht angelegt ist, bleiben alle UAT-Zeilen `blocked-until-company`, `needs-foundation`, `needs-data-richness` oder `source-backed-prep`.
