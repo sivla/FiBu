@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-30T13:02:28.387Z",
+  "updatedAt": "2026-06-30T13:15:43.919Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "activeArea": "universaarl-w1-foundation-number-series",
-  "activeCase": "TARGET-016I-NUMBER-SERIES-LINES-OFFICIAL-NEW-ROUTE-WRITE-GATE",
-  "active_case_file": ".agent/state/cases/target-016i-number-series-lines-official-new-route-write-gate.json",
+  "activeCase": "TARGET-016J-NUMBER-SERIES-LINES-TRUE-EDITOR-OR-ASSISTED-SETUP-FALLBACK",
+  "active_case_file": ".agent/state/cases/target-016j-number-series-lines-true-editor-or-assisted-setup-fallback.json",
   "lastReferenceCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
   "lastReferenceCaseFile": ".agent/state/cases/warehouse-031-warehouse-source-route-park-or-setup-fit-decision.json",
   "mode": "universaarl-target-execution",
@@ -24,8 +24,9 @@
     "open-number-series-page",
     "select-existing-U-CUST-row",
     "open-Zeilen-from-selected-number-series",
-    "use-official-lines-new-route-for-U-CUST-only",
-    "set-starting-date-starting-no-ending-no-under-gate",
+    "diagnose-visible-star-row-editor",
+    "use-visible-editor-only-if-active-input-is-proven",
+    "use-assisted-setup-fallback-only-if-ui-route-is-source-backed",
     "reopen-lines-for-persistence-proof",
     "capture-screenshot-qa",
     "write-result",
@@ -60,9 +61,12 @@
     "repeat-personalize-add-field-route-from-TARGET-016G-without-new-visible-field-button",
     "claim-personalize-as-value-write-route-without-persistence",
     "assign-number-series-before-line-persistence-proof",
-    "change-number-series-gap-checkbox-without-gate"
+    "change-number-series-gap-checkbox-without-gate",
+    "repeat-header-coordinate-route-from-TARGET-016I",
+    "repeat-under-header-cell-click-without-active-editor-proof",
+    "claim-lines-new-route-success-without-reopen-proof"
   ],
-  "nextStep": "Run TARGET-016I: controlled official Number Series Lines route for U-CUST only, using Zeilen -> Neu -> Startdatum -> Startnr. -> Endnr., then reopen proof; no setup assignment or master data.",
+  "nextStep": "Run TARGET-016J: inspect the visible U-CUST Number Series Lines star row and prove a real active editor before typing; if no true editor exists, use a source-backed Assisted Setup or page action fallback. Do not repeat coordinate-under-header typing.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -3452,53 +3456,48 @@
       "replace-with-better-case"
     ],
     "latestDecisionCard": {
-      "currentCase": "TARGET-016H-NUMBER-SERIES-SOURCE-OR-ASSISTED-SETUP-ROUTE",
-      "plannedNextCaseBeforeReview": "TARGET-016H-NUMBER-SERIES-SOURCE-OR-ASSISTED-SETUP-ROUTE",
-      "lastEvidenceSummary": "TARGET-016G proved Personalisieren on Nr.-Serienzeilen but did not expose a safe Add-field or value-entry route.",
+      "currentCase": "TARGET-016I-NUMBER-SERIES-LINES-OFFICIAL-NEW-ROUTE-WRITE-GATE",
+      "plannedNextCaseBeforeReview": "TARGET-016I-NUMBER-SERIES-LINES-OFFICIAL-NEW-ROUTE-WRITE-GATE",
+      "lastEvidenceSummary": "TARGET-016H selected the Microsoft Learn-backed Number Series Lines route after Personalize/F2/cell routes failed.",
       "isPlannedNextCaseStillSensible": true,
-      "reason": "A source-backed route decision is necessary before another setup write attempt because the previous UI probes repeatedly failed.",
+      "reason": "This is the first source-backed UI write gate and touches only the U-CUST line context.",
       "lookaheadReviewed": [
         {
-          "caseId": "TARGET-016I-NUMBER-SERIES-LINES-OFFICIAL-NEW-ROUTE-WRITE-GATE",
-          "status": "ready-next",
-          "reason": "Uses the documented Lines route and changes only the one missing line context under a controlled setup gate."
+          "caseId": "TARGET-016J-NUMBER-SERIES-LINES-TRUE-EDITOR-OR-ASSISTED-SETUP-FALLBACK",
+          "status": "needs-ui-discovery-first",
+          "reason": "Persistence is not visible after reopen."
         },
         {
           "caseId": "TARGET-017-NUMBER-SERIES-SETUP-ASSIGNMENT",
           "status": "needs-setup-first",
-          "reason": "Assignments require visible persisted number-series line values first."
+          "reason": "Assignments require line persistence first."
         },
         {
           "caseId": "TARGET-018-CUSTOMER-MASTERDATA-PREFLIGHT",
           "status": "needs-setup-first",
-          "reason": "Customer creation depends on assigned customer number series."
+          "reason": "Customer creation waits for assigned number series and posting setup."
         },
         {
           "caseId": "TARGET-019-POSTING-GROUPS-PREFLIGHT",
           "status": "ready-after-current",
-          "reason": "Can proceed after numbering is unblocked or consciously parked."
+          "reason": "Posting groups follow foundation numbering."
         },
         {
           "caseId": "TARGET-020-VAT-SETUP-READINESS",
           "status": "ready-after-current",
-          "reason": "Follows foundation sequencing after or alongside posting-group readiness."
+          "reason": "VAT setup can proceed after or alongside posting groups."
         }
       ],
-      "queueChangesMade": [
-        "Marked TARGET-016H observed as source-backed route decision.",
-        "Added TARGET-016I as the next controlled official Lines write-gate."
-      ],
-      "selectedNextCase": "TARGET-016I-NUMBER-SERIES-LINES-OFFICIAL-NEW-ROUTE-WRITE-GATE",
-      "whySelectedNextCaseIsBest": "It is the first next case aligned with Microsoft Learn and avoids all rejected UI typing routes.",
+      "queueChangesMade": [],
+      "selectedNextCase": "TARGET-016J-NUMBER-SERIES-LINES-TRUE-EDITOR-OR-ASSISTED-SETUP-FALLBACK",
+      "whySelectedNextCaseIsBest": "It avoids repeating failed value entry and forces a true editor/fallback diagnosis.",
       "risksBeforeNextCase": [
-        "Do not assign U-CUST in Sales & Receivables Setup yet.",
-        "Do not change Allow Gaps in Nos. or Open checkboxes unless explicitly gated.",
-        "Stop if Startnr./Endnr. are not visible after reopen."
+        "Do not assign setup pages before all required line ranges are visible.",
+        "Do not change gap/open checkboxes without their own gate.",
+        "Do not create master data yet."
       ],
       "requiredPreparation": [
-        "Open only playthru / UNIVERSAARL-DE.",
-        "Use screenshot QA before and after the line write.",
-        "Capture reopen proof."
+        "Review TARGET-016I screenshots and confirm whether U-CUST line persistence is visible."
       ]
     }
   },
@@ -3826,7 +3825,7 @@
   },
   "activeCaseFile": ".agent/state/cases/prep-034-role-center-readonly-shell-map.json",
   "previousCase": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
-  "nextCase": "TARGET-016I-NUMBER-SERIES-LINES-OFFICIAL-NEW-ROUTE-WRITE-GATE",
+  "nextCase": "TARGET-016J-NUMBER-SERIES-LINES-TRUE-EDITOR-OR-ASSISTED-SETUP-FALLBACK",
   "latestPrepCase": {
     "caseId": "PREP-034-ROLE-CENTER-READONLY-SHELL-MAP",
     "status": "prep-observed",
@@ -5036,5 +5035,41 @@
     "noPreview": true,
     "noPosting": true,
     "updatedAt": "2026-06-30T13:02:28.387Z"
+  },
+  "latestTarget016INumberSeriesOfficialRoute": {
+    "caseId": "TARGET-016I-NUMBER-SERIES-LINES-OFFICIAL-NEW-ROUTE-WRITE-GATE",
+    "status": "blocked",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-016i-number-series-lines-official-new-route-write-gate/TARGET-016I-result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "proved": [
+      "U-CUST Number Series Lines context was opened in playthru / UNIVERSAARL-DE.",
+      "Scoped Neu/New was clicked on the Number Series Lines page, not on the header list.",
+      "No setup assignment, master data, preview posting or posting was executed."
+    ],
+    "notProved": [
+      "The official Lines New route did not yet prove visible persistence for U-CUST.",
+      "No customer/vendor/item/document numbering assignment is proven.",
+      "No German legal invoice-number compliance claim is made.",
+      "Checkboxes such as Offen or Luecken in Nummern zulassen were observed but not changed."
+    ],
+    "blockedBy": [
+      "Startdatum/Starting Date cell was not targetable.",
+      "Startnr./Starting No. cell was not targetable.",
+      "Endnr./Ending No. cell was not targetable.",
+      "U-CUST Startnr./Endnr. target values are not visible after reopen."
+    ],
+    "keyLearning": [
+      "Nr.-Serienzeilen for U-CUST shows a visible blank star row and the Startnr. required marker.",
+      "Clicking scoped Neu/New on Number Series Lines did not by itself prove a writable active editor.",
+      "Coordinate clicks under Startdatum/Startnr./Endnr. are rejected unless active editor proof is captured first.",
+      "Checkbox columns (Offen / Luecken in Nummern zulassen) remain visible but unchanged and gated."
+    ],
+    "nextCase": "TARGET-016J-NUMBER-SERIES-LINES-TRUE-EDITOR-OR-ASSISTED-SETUP-FALLBACK",
+    "setupWriteAttempted": true,
+    "setupChanged": false,
+    "noPreview": true,
+    "noPosting": true,
+    "updatedAt": "2026-06-30T13:15:43.919Z"
   }
 }

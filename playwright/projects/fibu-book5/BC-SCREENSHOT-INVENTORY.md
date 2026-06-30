@@ -165,6 +165,15 @@ Diese Bilder werden erst erzeugt, wenn `UNIVERSAARL-DE` existiert und genug sinn
 | `target-016g-030-personalize-hover-tooltip-map.png` | Nr.-Serienzeilen / Personalisieren | `playthru` / `UNIVERSAARL-DE` | Hover-/Tooltip-Probe | sichtbare Spalten und `Fertig` bleiben im Fokus; keine gefaehrliche Aktion wird ausgeloest | Hover-Probe bleibt im richtigen UI-Kontext und veraendert nichts | kein Tooltip-/Feldlistenbeweis fuer Add-field; keine Start-/Endnummernreife | `diagnostic`, `no-change-proof` |
 | `target-016g-050-after-personalize-field-map-exit.png` | Nr.-Serienzeilen / No. Series Lines | `playthru` / `UNIVERSAARL-DE` | Nach Verlassen der Feldkarte | der Personalisierungsbalken ist weg; `U-CUST` Lines bleiben sichtbar | `Fertig` beendet 016G ohne gespeicherte Personalisierung | keine Setup-Aenderung, keine Nummernserien-Zeilenwerte | `exit-proof-no-change` |
 
+## Universaarl Foundation - Nummernserien TARGET-016I
+
+| Screenshot | Page | Company/Kontext | Schritt | Was man sehen soll | Interner Beweis | Beweist nicht | Status |
+|---|---|---|---|---|---|---|---|
+| `target-016i-010-u-cust-lines-before.png` | Nr.-Serienzeilen / No. Series Lines | `playthru` / `UNIVERSAARL-DE`, `U-CUST` | Vor offizieller Lines-Route | die `U-CUST`-Lines-Seite zeigt eine sichtbare Sternzeile, leeres `Startdatum`, roten Pflichtmarker bei `Startnr.`, `Endnr.` und Checkboxspalten wie `Luecken in Nummern zulassen` und `Offen` | richtiger Detailkontext und fachlich relevante Spalten sind sichtbar | kein aktiver Editor, keine Start-/Endnummern-Persistenz, keine Setup-Zuweisung | `diagnostic-context`, `not-write-proof` |
+| `target-016i-020-after-lines-new.png` | Nr.-Serienzeilen / No. Series Lines | `playthru` / `UNIVERSAARL-DE`, `U-CUST` | Nach `Neu` im Lines-Kontext | die sichtbare Sternzeile bleibt vorhanden, aber die Zielwerte sind nicht sichtbar | `Neu` wurde im richtigen Lines-Kontext versucht | keine erfolgreiche Werteingabe, keine Persistenz, kein Setup-Erfolg | `blocked-route-evidence` |
+| `target-016i-030-after-official-route-write.png` | Nr.-Serienzeilen / No. Series Lines | `playthru` / `UNIVERSAARL-DE`, `U-CUST` | Nach Wert-Eingabeversuch | `U-CUST00001` und `U-CUST99999` sind nicht sichtbar; die Zeile bleibt leer | die getestete offizielle Route reicht fuer Playwright noch nicht ohne echten Editor-Nachweis | keine Start-/Endnummernreife, keine Buchungsreife | `rejected-value-proof` |
+| `target-016i-040-after-reopen-proof.png` | Nr.-Serienzeilen / No. Series Lines | `playthru` / `UNIVERSAARL-DE`, `U-CUST` | Reopen-Proof | nach erneutem Oeffnen sind die Zielwerte weiterhin nicht sichtbar | keine sichtbare Persistenz nach Reopen | keine fertige Nummernserienzeile, keine Setup-Zuweisung, keine Stammdatenreife | `blocked-reopen-proof` |
+
 ## Qualitaetsfelder fuer neue Screenshot-Metadaten
 
 Neue oder ueberarbeitete `.screenshot.json`-Dateien sollen diese Felder tragen:

@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-016J-NUMBER-SERIES-LINES-TRUE-EDITOR-OR-ASSISTED-SETUP-FALLBACK",
+  "title": "Universaarl Number Series Lines true editor or Assisted Setup fallback",
+  "instance": "playthru",
+  "targetCompany": "UNIVERSAARL-DE",
+  "legalName": "Universaarl GmbH",
+  "workType": "foundation-number-series-lines-editor-recovery",
+  "status": "ready-next",
+  "dependsOn": [
+    "TARGET-016I-NUMBER-SERIES-LINES-OFFICIAL-NEW-ROUTE-WRITE-GATE"
+  ],
+  "goal": "Recover a reliable U-CUST Number Series Lines value route by first proving the true active editor on the visible star row; do not repeat coordinate-under-header typing. If no true editor is available, choose a source-backed Assisted Setup/page-action fallback.",
+  "evidenceTarget": "playwright/projects/fibu-book5/evidence/target-016j-number-series-lines-true-editor-or-assisted-setup-fallback/",
+  "sourceBackedBy": [
+    {
+      "title": "Microsoft Learn: Create number series",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/business-central/ui-create-number-series",
+      "claimSupported": "Number series lines use Starting Date, Starting No. and Ending No.; concrete UI persistence still needs Business Central evidence."
+    }
+  ],
+  "allowedActionsWhenRun": [
+    "open-playthru-business-central",
+    "open-UNIVERSAARL-DE-with-documentation",
+    "open-number-series-page",
+    "select-existing-U-CUST-row",
+    "open-Zeilen-from-selected-number-series",
+    "diagnose-visible-star-row-editor",
+    "use-visible-editor-only-if-active-input-is-proven",
+    "use-assisted-setup-fallback-only-if-ui-route-is-source-backed",
+    "reopen-lines-for-persistence-proof",
+    "capture-screenshot-qa",
+    "write-result",
+    "queue-and-state-update"
+  ],
+  "defaultLockedActions": [
+    "number-series-assignment",
+    "master-data-create",
+    "preview-posting",
+    "posting",
+    "checkbox-change",
+    "api-shortcut"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "leave-playthru",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "final-german-claim-from-rm-demo",
+    "operate-in-legacy-lab-as-active-target",
+    "mass-replace-historical-evidence",
+    "delete-legacy-evidence",
+    "claim-rm-demo-as-final-proof",
+    "operate-in-CRONUS-as-active-target",
+    "post",
+    "preview-posting",
+    "api-shortcut",
+    "create-master-data-before-number-series-lines",
+    "repeat-header-coordinate-route-from-TARGET-016B",
+    "repeat-selected-cell-typing-route-from-TARGET-016C",
+    "repeat-plain-field-flow-route-from-TARGET-016E",
+    "repeat-F2-route-from-TARGET-016E",
+    "claim-number-series-setup-ready-without-visible-start-end-values",
+    "save-personalization-with-field-changes",
+    "change-number-series-line-checkboxes",
+    "repeat-more-options-copilot-generate-misclick-from-TARGET-016F",
+    "repeat-personalize-add-field-route-from-TARGET-016G-without-new-visible-field-button",
+    "claim-personalize-as-value-write-route-without-persistence",
+    "assign-number-series-before-line-persistence-proof",
+    "change-number-series-gap-checkbox-without-gate",
+    "repeat-header-coordinate-route-from-TARGET-016I",
+    "repeat-under-header-cell-click-without-active-editor-proof",
+    "claim-lines-new-route-success-without-reopen-proof"
+  ],
+  "successCriteria": [
+    "U-CUST Lines page is opened in playthru / UNIVERSAARL-DE.",
+    "The visible star row editor is technically proven before values are typed, or the route is rejected.",
+    "If values are entered, after reopening U-CUST Lines, U-CUST00001 and U-CUST99999 are visible in the correct line.",
+    "No setup assignment, master data, preview posting or posting occurs.",
+    "No gap/open checkbox is changed without explicit gate."
+  ],
+  "targetValues": {
+    "code": "U-CUST",
+    "startingDate": "01.01.2026",
+    "startingNo": "U-CUST00001",
+    "endingNo": "U-CUST99999"
+  },
+  "migrationRelevance": "german-final-candidate",
+  "finalScreenshotNeeded": true,
+  "nextSafeAction": "Run true-editor diagnostics on the visible U-CUST star row before any further value typing.",
+  "updatedAt": "2026-06-30T13:15:43.919Z"
+}
