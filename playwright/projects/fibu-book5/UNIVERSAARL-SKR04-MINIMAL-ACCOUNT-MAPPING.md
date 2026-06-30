@@ -73,6 +73,12 @@ Der naechste Schritt ist deshalb noch kein VAT Setup und keine Stammdatenanlage,
 
 Damit ist der Starter-Kontenplan als Universaarl-Foundation-Kontext sichtbar genug fuer den naechsten Read-only-Schritt `TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT`. Nicht bewiesen sind weiterhin ein vollstaendiger SKR04-Kontenplan, Steuerberaterfreigabe, VAT Posting Setup, Posting Groups, Stammdaten, Belege, Preview Posting oder Buchungen. Die Doppelung `1200 Bank Saarland` und `1800 Bank Saarland` bleibt fuer Bank- und Zahlungsprozesse gesperrt, bis sie fachlich entschieden ist.
 
+## Stand nach `TARGET-027`
+
+`TARGET-027` hat keinen VAT-Setup-Fortschritt freigegeben. Der Lauf blieb read-only und versuchte Direct-Page-Routen fuer VAT Business Posting Groups, VAT Product Posting Groups und VAT Posting Setup sowie einen Such-Fallback. Die Screenshot-QA zeigte aber weiter Role Center bzw. keinen sichtbaren VAT-Seitenkontext. Deshalb bleibt VAT Setup gesperrt.
+
+Der naechste Schritt ist `TARGET-027R`: erst die sichtbare Route zu den VAT-Setupseiten herstellen, dann ueber konkrete Gruppen, Steuersaetze und Konten entscheiden. Aus `TARGET-027` folgt keine deutsche 19-Prozent-USt-Behauptung und keine Freigabe fuer Posting Groups, Stammdaten, Preview oder Buchung.
+
 ## Quellenbasis
 
 - DATEV SKR04 Produktseite: https://www.datev.de/web/de/datev-shop/rechnungswesen/skr-04/

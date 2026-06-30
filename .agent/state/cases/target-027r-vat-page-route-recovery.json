@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-027R-VAT-PAGE-ROUTE-RECOVERY",
+  "id": "TARGET-027R-VAT-PAGE-ROUTE-RECOVERY",
+  "status": "pending",
+  "updatedAt": "2026-06-30T22:58:09.178Z",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "targetWorld": "Universaarl",
+  "area": "universaarl-vat-page-route-recovery",
+  "goal": "Recover visible read-only navigation to VAT Business Posting Groups, VAT Product Posting Groups and VAT Posting Setup before any VAT setup write decision.",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/target-027-vat-posting-groups-preflight/TARGET-027-result.json"
+  ],
+  "allowedActions": [
+    "open-vat-pages-readonly",
+    "use-german-and-english-navigation-terms",
+    "capture-search-and-page-screenshots",
+    "capture-screenshot-qa",
+    "write-result-and-next-step-card"
+  ],
+  "forbiddenActions": [
+    "change-vat-setup",
+    "change-posting-groups",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "api-shortcut",
+    "treat-role-center-as-vat-proof",
+    "continue-to-vat-write-gate-without-visible-vat-pages"
+  ],
+  "acceptanceCriteria": [
+    "The run stays in playthru / UNIVERSAARL-DE.",
+    "At least one visible screenshot shows the actual VAT setup target page rather than Role Center or Tell-Me overlay.",
+    "No VAT setup, posting group, master data, document draft, Preview Posting, Posting or API shortcut is executed.",
+    "If navigation remains blocked, the result documents exact search terms, visible candidates and why they are rejected."
+  ],
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
+    "plannedNextCaseBeforeReview": "TARGET-027B-VAT-POSTING-SETUP-WRITE-GATE-DECISION",
+    "lastEvidenceSummary": "TARGET-027 attempted direct Page 470/471/472 and scoped search fallback, but screenshot QA still showed Role Center or no visible VAT setup iframe.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "VAT setup cannot be written or planned from hidden/failed navigation. A route recovery case must prove the visible VAT pages first.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-027R-VAT-PAGE-ROUTE-RECOVERY",
+        "status": "ready-next",
+        "reason": "Directly fixes the VAT page visibility blocker without setup writes."
+      },
+      {
+        "caseId": "TARGET-027B-VAT-POSTING-SETUP-WRITE-GATE-DECISION",
+        "status": "blocked",
+        "reason": "Requires visible VAT Business/Product Posting Groups and VAT Posting Setup pages first."
+      },
+      {
+        "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Posting groups depend on VAT route and setup decision."
+      },
+      {
+        "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
+        "status": "needs-setup-first",
+        "reason": "Master data waits for VAT and posting groups."
+      },
+      {
+        "caseId": "TARGET-030-FOUNDATION-READY-CHECKPOINT",
+        "status": "needs-setup-first",
+        "reason": "Foundation readiness waits for VAT and posting groups."
+      }
+    ],
+    "queueChangesMade": [
+      "Insert TARGET-027R VAT page route recovery before any VAT write-gate decision."
+    ],
+    "selectedNextCase": "TARGET-027R-VAT-PAGE-ROUTE-RECOVERY",
+    "whySelectedNextCaseIsBest": "It prevents a false VAT setup claim and focuses the next run on visible page navigation only.",
+    "risksBeforeNextCase": [
+      "Do not treat Tell-Me/search overlay or Role Center text as VAT setup proof."
+    ],
+    "requiredPreparation": [
+      "Use stricter screenshot QA and consider German search terms, action/menu navigation, or Page Inspection before any setup write."
+    ]
+  }
+}

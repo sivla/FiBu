@@ -1,32 +1,37 @@
 {
   "schemaVersion": 1,
-  "caseId": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
-  "status": "observed",
+  "caseId": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
+  "status": "blocked",
   "completedAt": "2026-06-30T22:31:22.229Z",
   "sourceInstance": "playthru",
   "sourceCompany": "UNIVERSAARL-DE",
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-026o-chart-of-accounts-visible-screenshot-recovery/TARGET-026O-result.json",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-027-vat-posting-groups-preflight/TARGET-027-result.json",
   "evidencePath": "playwright/projects/fibu-book5/evidence/target-026n-chart-of-accounts-foundation-checkpoint/",
-  "summary": "Visible chart screenshot route recovered; VAT Posting Groups preflight can run next.",
+  "summary": "VAT preflight blocked; do not write VAT setup.",
   "proved": [
     "Business Central stayed in playthru / UNIVERSAARL-DE.",
-    "The iframe-scoped screenshot route shows the visible Kontenplan list instead of the Role Center.",
-    "Starter chart rows 1200, 1406, 1800, 3300, 3806, 4400 and 5400 are visible with expected GuV/Bilanz and Kontoart values in the captured chart context.",
-    "No VAT setup, posting groups, master data, document draft, Preview Posting, Posting or API shortcut was executed."
+    "VAT preflight stopped without setup writes."
   ],
   "notProved": [
-    "No complete SKR04 chart of accounts.",
+    "No German VAT setup row is proven ready.",
+    "No 19 percent VAT final correctness.",
+    "No VAT Entries.",
+    "No document preview or posting.",
     "No tax advisor approval.",
-    "No VAT Posting Setup row.",
-    "No posting groups.",
-    "No master data.",
-    "No document, Preview Posting or Posting.",
-    "No German compliance final claim.",
-    "Bank/payment setup is not ready while the 1200/1800 Bank Saarland conflict is open."
+    "No German compliance final claim."
   ],
-  "blockedBy": [],
+  "blockedBy": [
+    "Expected page text not visible for VAT Business Posting Groups / MwSt.-Geschaeftsbuchungsgruppen.",
+    "No visible iframe for VAT Business Posting Groups / MwSt.-Geschaeftsbuchungsgruppen.",
+    "Expected page text not visible for VAT Product Posting Groups / MwSt.-Produktbuchungsgruppen.",
+    "No visible iframe for VAT Product Posting Groups / MwSt.-Produktbuchungsgruppen.",
+    "Expected page text not visible for VAT Posting Setup / MwSt.-Buchungsmatrix.",
+    "Screenshot/text still shows Role Center instead of VAT Posting Setup / MwSt.-Buchungsmatrix.",
+    "No visible iframe for VAT Posting Setup / MwSt.-Buchungsmatrix."
+  ],
   "warnings": [
-    "1200 Bank Saarland and 1800 Bank Saarland are both visible; classify before bank/payment setup."
+    "New/Edit actions may be visible, but were not clicked.",
+    "New/Edit actions may be visible, but were not clicked."
   ],
   "screenshots": [
     "target-026n-010-chart-foundation-checkpoint.png"
@@ -44,24 +49,29 @@
     "noBookChange": true,
     "noCompanySwitch": true
   },
-  "nextCase": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
-  "nextStep": "Run TARGET-027 VAT Posting Groups preflight read-only; no VAT write, no posting groups, no master data.",
+  "nextCase": "TARGET-027R-VAT-PAGE-ROUTE-RECOVERY",
+  "nextStep": "Recover visible VAT page routes before any VAT setup write-gate decision.",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-026O-CHART-OF-ACCOUNTS-VISIBLE-SCREENSHOT-RECOVERY",
-    "plannedNextCaseBeforeReview": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
-    "lastEvidenceSummary": "TARGET-026N blocked because compact text contained chart fragments but the visible page screenshot still looked like Role Center.",
-    "isPlannedNextCaseStillSensible": true,
-    "reason": "The visible iframe screenshot shows the Kontenplan list with starter account values; VAT preflight can inspect setup mappings next without writing.",
+    "currentCase": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
+    "plannedNextCaseBeforeReview": "TARGET-027B-VAT-POSTING-SETUP-WRITE-GATE-DECISION",
+    "lastEvidenceSummary": "TARGET-027 attempted direct Page 470/471/472 and scoped search fallback, but screenshot QA still showed Role Center or no visible VAT setup iframe.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "VAT setup cannot be written or planned from hidden/failed navigation. A route recovery case must prove the visible VAT pages first.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
+        "caseId": "TARGET-027R-VAT-PAGE-ROUTE-RECOVERY",
         "status": "ready-next",
-        "reason": "Visible chart checkpoint recovered."
+        "reason": "Directly fixes the VAT page visibility blocker without setup writes."
+      },
+      {
+        "caseId": "TARGET-027B-VAT-POSTING-SETUP-WRITE-GATE-DECISION",
+        "status": "blocked",
+        "reason": "Requires visible VAT Business/Product Posting Groups and VAT Posting Setup pages first."
       },
       {
         "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "Posting groups depend on chart and VAT foundation."
+        "reason": "Posting groups depend on VAT route and setup decision."
       },
       {
         "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
@@ -71,22 +81,22 @@
       {
         "caseId": "TARGET-030-FOUNDATION-READY-CHECKPOINT",
         "status": "needs-setup-first",
-        "reason": "Foundation readiness waits for chart, VAT, posting groups and dimensions."
+        "reason": "Foundation readiness waits for VAT and posting groups."
       }
     ],
     "queueChangesMade": [
-      "Select TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT as next case."
+      "Insert TARGET-027R VAT page route recovery before any VAT write-gate decision."
     ],
-    "selectedNextCase": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
-    "whySelectedNextCaseIsBest": "VAT preflight is the next narrow read-only setup step after visible account foundation proof.",
+    "selectedNextCase": "TARGET-027R-VAT-PAGE-ROUTE-RECOVERY",
+    "whySelectedNextCaseIsBest": "It prevents a false VAT setup claim and focuses the next run on visible page navigation only.",
     "risksBeforeNextCase": [
-      "Do not use 1200 Bank Saarland for bank/payment setup until the 1200/1800 conflict is resolved."
+      "Do not treat Tell-Me/search overlay or Role Center text as VAT setup proof."
     ],
     "requiredPreparation": [
-      "Keep VAT setup write locked until TARGET-027 explicitly unlocks it."
+      "Use stricter screenshot QA and consider German search terms, action/menu navigation, or Page Inspection before any setup write."
     ]
   },
   "runId": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT-RUN-2026-06-30T22-31-22-229Z",
-  "updatedAt": "2026-06-30T22:43:28.864Z",
+  "updatedAt": "2026-06-30T22:58:09.178Z",
   "lastCompletedCase": "TARGET-026O-CHART-OF-ACCOUNTS-VISIBLE-SCREENSHOT-RECOVERY"
 }

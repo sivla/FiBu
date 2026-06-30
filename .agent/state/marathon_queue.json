@@ -5,7 +5,7 @@
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "queueId": "TARGET-MARATHON-002-UNIVERSAARL-REPO-READONLY-PREP",
-  "reason": "TARGET-026O recovered visible Kontenplan screenshot; proceed to read-only VAT Posting Groups preflight.",
+  "reason": "TARGET-027 blocked by visible page route; recover VAT page navigation before write-gate decision.",
   "noEffectiveBusinessCentralActions": false,
   "forbiddenUntilUnblocked": [],
   "unblockCriteria": "Satisfied: UNIVERSAARL-DE exists and active Role Center context / Firmendaten read-only proof is available.",
@@ -1967,7 +1967,7 @@
     {
       "id": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
       "order": 10042,
-      "status": "pending",
+      "status": "blocked",
       "category": "readonly-setup-preflight",
       "expectedImpact": "vat-posting-groups-preflight",
       "mayWorkEffectively": false,
@@ -1978,7 +1978,27 @@
       "targetWorld": "Universaarl",
       "noFinalGermanClaimWithoutUniversaarlEvidence": true,
       "lookaheadStatus": "ready-next",
-      "reason": "TARGET-026O recovered the visible Kontenplan screenshot checkpoint."
+      "reason": "TARGET-026O recovered the visible Kontenplan screenshot checkpoint.",
+      "completedAt": "2026-06-30T22:58:09.178Z",
+      "result": "VAT preflight blocked; do not write VAT setup.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-027-vat-posting-groups-preflight/TARGET-027-result.json",
+      "nextCase": "TARGET-027R-VAT-PAGE-ROUTE-RECOVERY"
+    },
+    {
+      "id": "TARGET-027R-VAT-PAGE-ROUTE-RECOVERY",
+      "order": 10043,
+      "status": "pending",
+      "category": "readonly-ui-route-recovery",
+      "expectedImpact": "vat-page-route-recovery",
+      "mayWorkEffectively": false,
+      "mayRunPlaywright": true,
+      "effectiveBcActionsAllowed": false,
+      "goal": "Recover visible read-only navigation to VAT Business Posting Groups, VAT Product Posting Groups and VAT Posting Setup before any VAT setup write decision.",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "targetWorld": "Universaarl",
+      "noFinalGermanClaimWithoutUniversaarlEvidence": true,
+      "lookaheadStatus": "ready-next",
+      "reason": "TARGET-027 showed Role Center / no visible VAT page screenshots."
     }
   ],
   "lastUpdated": "2026-06-30T21:40:00.000Z",
@@ -2080,25 +2100,30 @@
       ]
     }
   },
-  "updatedAt": "2026-06-30T22:43:28.864Z",
-  "lastCompletedCase": "TARGET-026O-CHART-OF-ACCOUNTS-VISIBLE-SCREENSHOT-RECOVERY",
-  "nextCase": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
+  "updatedAt": "2026-06-30T22:58:09.178Z",
+  "lastCompletedCase": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
+  "nextCase": "TARGET-027R-VAT-PAGE-ROUTE-RECOVERY",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-026O-CHART-OF-ACCOUNTS-VISIBLE-SCREENSHOT-RECOVERY",
-    "plannedNextCaseBeforeReview": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
-    "lastEvidenceSummary": "TARGET-026N blocked because compact text contained chart fragments but the visible page screenshot still looked like Role Center.",
-    "isPlannedNextCaseStillSensible": true,
-    "reason": "The visible iframe screenshot shows the Kontenplan list with starter account values; VAT preflight can inspect setup mappings next without writing.",
+    "currentCase": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
+    "plannedNextCaseBeforeReview": "TARGET-027B-VAT-POSTING-SETUP-WRITE-GATE-DECISION",
+    "lastEvidenceSummary": "TARGET-027 attempted direct Page 470/471/472 and scoped search fallback, but screenshot QA still showed Role Center or no visible VAT setup iframe.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "VAT setup cannot be written or planned from hidden/failed navigation. A route recovery case must prove the visible VAT pages first.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
+        "caseId": "TARGET-027R-VAT-PAGE-ROUTE-RECOVERY",
         "status": "ready-next",
-        "reason": "Visible chart checkpoint recovered."
+        "reason": "Directly fixes the VAT page visibility blocker without setup writes."
+      },
+      {
+        "caseId": "TARGET-027B-VAT-POSTING-SETUP-WRITE-GATE-DECISION",
+        "status": "blocked",
+        "reason": "Requires visible VAT Business/Product Posting Groups and VAT Posting Setup pages first."
       },
       {
         "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "Posting groups depend on chart and VAT foundation."
+        "reason": "Posting groups depend on VAT route and setup decision."
       },
       {
         "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
@@ -2108,20 +2133,20 @@
       {
         "caseId": "TARGET-030-FOUNDATION-READY-CHECKPOINT",
         "status": "needs-setup-first",
-        "reason": "Foundation readiness waits for chart, VAT, posting groups and dimensions."
+        "reason": "Foundation readiness waits for VAT and posting groups."
       }
     ],
     "queueChangesMade": [
-      "Select TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT as next case."
+      "Insert TARGET-027R VAT page route recovery before any VAT write-gate decision."
     ],
-    "selectedNextCase": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
-    "whySelectedNextCaseIsBest": "VAT preflight is the next narrow read-only setup step after visible account foundation proof.",
+    "selectedNextCase": "TARGET-027R-VAT-PAGE-ROUTE-RECOVERY",
+    "whySelectedNextCaseIsBest": "It prevents a false VAT setup claim and focuses the next run on visible page navigation only.",
     "risksBeforeNextCase": [
-      "Do not use 1200 Bank Saarland for bank/payment setup until the 1200/1800 conflict is resolved."
+      "Do not treat Tell-Me/search overlay or Role Center text as VAT setup proof."
     ],
     "requiredPreparation": [
-      "Keep VAT setup write locked until TARGET-027 explicitly unlocks it."
+      "Use stricter screenshot QA and consider German search terms, action/menu navigation, or Page Inspection before any setup write."
     ]
   },
-  "nextStep": "Run TARGET-027 VAT Posting Groups preflight read-only."
+  "nextStep": "Run TARGET-027R VAT page route recovery read-only."
 }

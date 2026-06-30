@@ -1,0 +1,253 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
+  "source": "playwright-readonly-vat-posting-groups-preflight",
+  "resultStatus": "blocked",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?company=UNIVERSAARL-DE",
+  "page": "VAT setup preflight",
+  "actionsTaken": [
+    "Opened Business Central in playthru / UNIVERSAARL-DE.",
+    "Opened VAT Business Posting Groups read-only with direct page first, then scoped search fallback only if needed.",
+    "Opened VAT Product Posting Groups read-only with direct page first, then scoped search fallback only if needed.",
+    "Opened VAT Posting Setup read-only with direct page first, then scoped search fallback only if needed.",
+    "Captured iframe-scoped screenshots and compact page text."
+  ],
+  "actionsNotTaken": [
+    "No VAT setup write",
+    "No posting group write",
+    "No master data",
+    "No document draft",
+    "No Preview Posting",
+    "No Posting",
+    "No API shortcut"
+  ],
+  "setupChanged": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "sourceRefs": [
+    "https://learn.microsoft.com/en-us/dynamics365/business-central/finance-how-report-vat",
+    "https://learn.microsoft.com/en-us/dynamics365/business-central/application/base-application/page/microsoft.finance.vat.setup.vat-posting-setup",
+    "https://learn.microsoft.com/en-us/dynamics365/business-central/application/base-application/table/microsoft.finance.vat.setup.vat-posting-setup",
+    "https://learn.microsoft.com/en-us/dynamics365/business-central/application/base-application/table/microsoft.finance.vat.setup.vat-business-posting-group"
+  ],
+  "proved": [
+    "Business Central stayed in playthru / UNIVERSAARL-DE.",
+    "VAT preflight stopped without setup writes."
+  ],
+  "notProved": [
+    "No German VAT setup row is proven ready.",
+    "No 19 percent VAT final correctness.",
+    "No VAT Entries.",
+    "No document preview or posting.",
+    "No tax advisor approval.",
+    "No German compliance final claim."
+  ],
+  "blockedBy": [
+    "Expected page text not visible for VAT Business Posting Groups / MwSt.-Geschaeftsbuchungsgruppen.",
+    "No visible iframe for VAT Business Posting Groups / MwSt.-Geschaeftsbuchungsgruppen.",
+    "Expected page text not visible for VAT Product Posting Groups / MwSt.-Produktbuchungsgruppen.",
+    "No visible iframe for VAT Product Posting Groups / MwSt.-Produktbuchungsgruppen.",
+    "Expected page text not visible for VAT Posting Setup / MwSt.-Buchungsmatrix.",
+    "Screenshot/text still shows Role Center instead of VAT Posting Setup / MwSt.-Buchungsmatrix.",
+    "No visible iframe for VAT Posting Setup / MwSt.-Buchungsmatrix."
+  ],
+  "warnings": [
+    "New/Edit actions may be visible, but were not clicked.",
+    "New/Edit actions may be visible, but were not clicked."
+  ],
+  "screenshots": [],
+  "evidenceRefs": [
+    "TARGET-027-result.json",
+    "README.md",
+    "target-027-001-vat-business-posting-groups.txt",
+    "target-027-002-vat-product-posting-groups.txt",
+    "target-027-003-vat-posting-setup.txt"
+  ],
+  "probeResults": [
+    {
+      "id": "vat-business-posting-groups",
+      "pageId": 470,
+      "label": "VAT Business Posting Groups / MwSt.-Geschaeftsbuchungsgruppen",
+      "status": "blocked",
+      "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?company=UNIVERSAARL-DE",
+      "screenshot": null,
+      "textFile": "target-027-001-vat-business-posting-groups.txt",
+      "iframeIndex": null,
+      "iframeReason": "No visible iframe for VAT Business Posting Groups / MwSt.-Geschaeftsbuchungsgruppen.",
+      "navigationSteps": [
+        "direct-page-470",
+        "search:VAT Business Posting Groups"
+      ],
+      "textSignals": [
+        "Neu",
+        "Nicht eindeutig",
+        "Neue",
+        "Beschreibung"
+      ],
+      "blockedBy": [
+        "Expected page text not visible for VAT Business Posting Groups / MwSt.-Geschaeftsbuchungsgruppen.",
+        "No visible iframe for VAT Business Posting Groups / MwSt.-Geschaeftsbuchungsgruppen."
+      ],
+      "warnings": [
+        "New/Edit actions may be visible, but were not clicked."
+      ]
+    },
+    {
+      "id": "vat-product-posting-groups",
+      "pageId": 471,
+      "label": "VAT Product Posting Groups / MwSt.-Produktbuchungsgruppen",
+      "status": "blocked",
+      "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?company=UNIVERSAARL-DE",
+      "screenshot": null,
+      "textFile": "target-027-002-vat-product-posting-groups.txt",
+      "iframeIndex": null,
+      "iframeReason": "No visible iframe for VAT Product Posting Groups / MwSt.-Produktbuchungsgruppen.",
+      "navigationSteps": [
+        "direct-page-471",
+        "search:VAT Product Posting Groups"
+      ],
+      "textSignals": [
+        "Beschreibung"
+      ],
+      "blockedBy": [
+        "Expected page text not visible for VAT Product Posting Groups / MwSt.-Produktbuchungsgruppen.",
+        "No visible iframe for VAT Product Posting Groups / MwSt.-Produktbuchungsgruppen."
+      ],
+      "warnings": []
+    },
+    {
+      "id": "vat-posting-setup",
+      "pageId": 472,
+      "label": "VAT Posting Setup / MwSt.-Buchungsmatrix",
+      "status": "blocked",
+      "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?company=UNIVERSAARL-DE",
+      "screenshot": null,
+      "textFile": "target-027-003-vat-posting-setup.txt",
+      "iframeIndex": null,
+      "iframeReason": "No visible iframe for VAT Posting Setup / MwSt.-Buchungsmatrix.",
+      "navigationSteps": [
+        "direct-page-472",
+        "search:VAT Posting Setup"
+      ],
+      "textSignals": [
+        "Dynamics 365 Business Central",
+        "Umgebung:",
+        "Playthru",
+        "",
+        "",
+        "",
+        "KK",
+        "Zum Hauptinhalt wechseln",
+        "Universaarl GmbH",
+        "Finanzen",
+        "Zahlungsmanagement",
+        "Verkauf",
+        "Einkauf",
+        "Shopify",
+        "Alle Berichte",
+        "",
+        "Agent",
+        "A",
+        "Payables Agent",
+        "PA",
+        "Verkaufsauftragsagent",
+        "VA",
+        "Debitoren",
+        "Kreditoren",
+        "Artikel",
+        "Bankkonten",
+        "Kontenplan",
+        "",
+        "Benachrichtigungen: 2",
+        "In ihrer Dynamics 365 Business Central-Umgebung sind Apps installiert, die Daten in andere geografische Regionen ubertragen konnen als die aktuelle Region ihrer Dynamics 365 Business Central-Umgebung. Dies dient zum Gewahrleisten der ordnungsgema en Funktionsweise der Apps.",
+        "|",
+        "Dies ist eine Sandkastenumgebung, die ausschlie lich Test-, Demo- oder Entwicklungszwecken dient.",
+        "Uberschrift",
+        "Guten Morgen Kajetan Kalicki!",
+        "Uberschrift",
+        "Mochten Sie weitere Informationen zu Business Central?",
+        "Verwenden Sie die NACH-LINKS- und NACH-RECHTS-TASTE zum Navigieren zwischen Uberschriften.",
+        "Aktionen",
+        "Verkaufsangebot",
+        "Verkaufsauftrag",
+        "Verkaufsrechnung",
+        "Einkaufsanfrage",
+        "Einkaufsbestellung",
+        "Einkaufsrechnung",
+        "Posten suchen ...",
+        "Neu",
+        "",
+        "Zahlungen",
+        "",
+        "Berichte",
+        "",
+        "Excel-Berichte",
+        "",
+        "Power BI-Berichte",
+        "",
+        "Aktivitaten",
+        "Umsatz diesen Monat",
+        "0",
+        "Weitere Informationen",
+        "Betrag uberfallige"
+      ],
+      "blockedBy": [
+        "Expected page text not visible for VAT Posting Setup / MwSt.-Buchungsmatrix.",
+        "Screenshot/text still shows Role Center instead of VAT Posting Setup / MwSt.-Buchungsmatrix.",
+        "No visible iframe for VAT Posting Setup / MwSt.-Buchungsmatrix."
+      ],
+      "warnings": [
+        "New/Edit actions may be visible, but were not clicked."
+      ]
+    }
+  ],
+  "safeToFinalizeState": false,
+  "requiresReview": true,
+  "nextStepDecision": {
+    "currentCase": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
+    "plannedNextCaseBeforeReview": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
+    "lastEvidenceSummary": "TARGET-026O recovered a visible Kontenplan screenshot with Universaarl starter accounts.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "VAT must be inspected before any posting groups, master data, documents, preview or posting.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT-REVIEW",
+        "status": "blocked",
+        "reason": "VAT page visibility is not complete enough."
+      },
+      {
+        "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Posting groups need VAT setup decision first."
+      },
+      {
+        "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
+        "status": "needs-setup-first",
+        "reason": "Master data waits for VAT and posting groups."
+      },
+      {
+        "caseId": "TARGET-030-FOUNDATION-READY-CHECKPOINT",
+        "status": "needs-setup-first",
+        "reason": "Foundation readiness waits for VAT and posting groups."
+      }
+    ],
+    "queueChangesMade": [
+      "Keep TARGET-027 review before VAT setup write."
+    ],
+    "selectedNextCase": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT-REVIEW",
+    "whySelectedNextCaseIsBest": "Do not write VAT setup until the read-only preflight is reliable.",
+    "risksBeforeNextCase": [
+      "Do not claim German 19 percent VAT correctness without VAT setup, preview, posting and VAT entries."
+    ],
+    "requiredPreparation": [
+      "Repair visible VAT page route."
+    ]
+  },
+  "nextCase": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT-REVIEW",
+  "reason": "VAT preflight blocked; do not write VAT setup."
+}
