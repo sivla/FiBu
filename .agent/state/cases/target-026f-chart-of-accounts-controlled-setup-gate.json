@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "caseId": "TARGET-026F-CHART-OF-ACCOUNTS-CONTROLLED-SETUP-GATE",
   "title": "Chart of Accounts controlled setup gate",
-  "status": "planned",
+  "status": "done",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "workType": "universaarl-chart-of-accounts-controlled-setup-gate",
@@ -65,7 +65,25 @@
       "reason": "Needs vendor/item posting, VAT and inventory setup decisions."
     }
   ],
-  "nextStep": "Open Chart of Accounts and create or block planned G/L accounts with proof.",
+  "nextStep": "Run TARGET-026G for remaining planned accounts, using card fallback for GuV/Bilanz values.",
   "createdAt": "2026-06-30T19:45:00.000Z",
-  "updatedAt": "2026-06-30T19:45:00.000Z"
+  "updatedAt": "2026-06-30T20:25:00.000Z",
+  "completedAt": "2026-06-30T20:25:00.000Z",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-026f-chart-of-accounts-controlled-setup-gate/TARGET-026F-result.json",
+  "resultSummary": "First planned Universaarl foundation account is visible after controlled setup and reopen proof.",
+  "proved": [
+    "Instanz playthru und Company UNIVERSAARL-DE wurden per URL-Kontext kontrolliert.",
+    "Kontenplan Page 16 wurde geoeffnet.",
+    "1200 Bank Saarland ist nach dem kontrollierten Setup-Versuch und Reopen sichtbar.",
+    "1200 Bank Saarland ist als Bilanzkonto sichtbar."
+  ],
+  "notProved": [
+    "Kein vollstaendiger Kontenplan.",
+    "Keine SKR04- oder Steuerberaterfreigabe.",
+    "Keine VAT Posting Setup Zeile.",
+    "Keine Stammdatenanlage.",
+    "Kein Dokument, keine Preview, keine Buchung."
+  ],
+  "nextCase": "TARGET-026G-CHART-OF-ACCOUNTS-REMAINING-ACCOUNTS-FIT",
+  "playwrightLearning": "A visible list cell GuV/Bilanz may not be directly editable. For G/L Account Card, focus Name, Tab into GuV/Bilanz, choose Bilanz with keyboard, then reopen Page 16 for proof."
 }

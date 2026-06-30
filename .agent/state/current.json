@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-30T19:45:00.000Z",
+  "updatedAt": "2026-06-30T20:25:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-chart-of-accounts-controlled-setup-gate",
-  "activeCase": "TARGET-026F-CHART-OF-ACCOUNTS-CONTROLLED-SETUP-GATE",
-  "active_case_file": ".agent/state/cases/target-026f-chart-of-accounts-controlled-setup-gate.json",
+  "activeArea": "universaarl-chart-of-accounts-remaining-accounts-fit",
+  "activeCase": "TARGET-026G-CHART-OF-ACCOUNTS-REMAINING-ACCOUNTS-FIT",
+  "active_case_file": ".agent/state/cases/target-026g-chart-of-accounts-remaining-accounts-fit.json",
   "lastReferenceCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
   "lastReferenceCaseFile": ".agent/state/cases/warehouse-031-warehouse-source-route-park-or-setup-fit-decision.json",
   "mode": "universaarl-target-execution",
@@ -21,6 +21,7 @@
   "allowedActions": [
     "open-chart-of-accounts",
     "create-planned-gl-accounts-only",
+    "set-income-balance-on-gl-account-card",
     "capture-before-after-reopen-proof",
     "write-result-and-next-step-card"
   ],
@@ -37,7 +38,7 @@
     "post",
     "api-shortcut"
   ],
-  "nextStep": "Run TARGET-026F: create or block the planned minimal G/L accounts in the Chart of Accounts UI with before/after/reopen proof; do not touch VAT setup or master data.",
+  "nextStep": "Run TARGET-026G: create or confirm remaining planned G/L accounts with separate Bilanz/GuV handling; do not touch VAT setup or master data.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -3806,7 +3807,7 @@
   },
   "activeCaseFile": ".agent/state/cases/target-026b-chart-of-accounts-vat-account-preflight.json",
   "previousCase": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
-  "nextCase": "TARGET-026F-CHART-OF-ACCOUNTS-CONTROLLED-SETUP-GATE",
+  "nextCase": "TARGET-026G-CHART-OF-ACCOUNTS-REMAINING-ACCOUNTS-FIT",
   "latestPrepCase": {
     "caseId": "PREP-034-ROLE-CENTER-READONLY-SHELL-MAP",
     "status": "prep-observed",
@@ -6121,5 +6122,24 @@
     "summary": "Minimal candidate account structure defined for Universaarl; no G/L accounts created yet.",
     "nextCase": "TARGET-026F-CHART-OF-ACCOUNTS-CONTROLLED-SETUP-GATE",
     "updatedAt": "2026-06-30T19:45:00.000Z"
+  },
+  "latestChartOfAccountsSetup": {
+    "caseId": "TARGET-026F-CHART-OF-ACCOUNTS-CONTROLLED-SETUP-GATE",
+    "status": "universaarl-foundation-partial-proven",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "accountNo": "1200",
+    "accountName": "Bank Saarland",
+    "incomeBalance": "Bilanz",
+    "accountType": "Buchung",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-026f-chart-of-accounts-controlled-setup-gate/TARGET-026F-result.json",
+    "screenshots": [
+      "playwright/projects/fibu-book5/evidence/target-026f-chart-of-accounts-controlled-setup-gate/target-026f-010-before-chart-of-accounts.png",
+      "playwright/projects/fibu-book5/evidence/target-026f-chart-of-accounts-controlled-setup-gate/target-026f-020-after-account-attempt.png",
+      "playwright/projects/fibu-book5/evidence/target-026f-chart-of-accounts-controlled-setup-gate/target-026f-030-after-reopen-proof.png"
+    ],
+    "learning": "List edit created/confirmed the account, but Screenshot-QA caught wrong GuV/Bilanz. The correction required opening the G/L Account Card and keyboard-tabbing from Name into the option field before selecting Bilanz.",
+    "nextCase": "TARGET-026G-CHART-OF-ACCOUNTS-REMAINING-ACCOUNTS-FIT",
+    "updatedAt": "2026-06-30T20:25:00.000Z"
   }
 }

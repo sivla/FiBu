@@ -5,7 +5,7 @@
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "queueId": "TARGET-MARATHON-002-UNIVERSAARL-REPO-READONLY-PREP",
-  "reason": "TARGET-026E planned minimal account structure; next queue item is controlled Chart of Accounts setup gate.",
+  "reason": "TARGET-026F proved first planned G/L account 1200 Bank Saarland as Bilanz/Buchung; next is remaining account fit.",
   "noEffectiveBusinessCentralActions": false,
   "forbiddenUntilUnblocked": [],
   "unblockCriteria": "Satisfied: UNIVERSAARL-DE exists and active Role Center context / Firmendaten read-only proof is available.",
@@ -1706,7 +1706,7 @@
     },
     {
       "id": "TARGET-026F-CHART-OF-ACCOUNTS-CONTROLLED-SETUP-GATE",
-      "status": "pending",
+      "status": "done",
       "priority": "high",
       "area": "universaarl-chart-of-accounts",
       "goal": "Create or block the planned minimal G/L accounts through the Chart of Accounts UI with before/after/reopen proof.",
@@ -1718,10 +1718,29 @@
       "effectiveBcActionsAllowed": true,
       "sourceCompany": "UNIVERSAARL-DE",
       "targetWorld": "Universaarl",
-      "resultPath": "playwright/projects/fibu-book5/evidence/target-026f-chart-of-accounts-controlled-setup-gate/TARGET-026F-result.json"
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-026f-chart-of-accounts-controlled-setup-gate/TARGET-026F-result.json",
+      "completedAt": "2026-06-30T20:25:00.000Z",
+      "result": "First planned Universaarl foundation account is visible after controlled setup and reopen proof.",
+      "nextCase": "TARGET-026G-CHART-OF-ACCOUNTS-REMAINING-ACCOUNTS-FIT"
+    },
+    {
+      "id": "TARGET-026G-CHART-OF-ACCOUNTS-REMAINING-ACCOUNTS-FIT",
+      "status": "pending",
+      "priority": "high",
+      "area": "universaarl-chart-of-accounts",
+      "goal": "Create or confirm remaining planned G/L foundation accounts with Bilanz/GuV field proof.",
+      "sourceCase": "TARGET-026F-CHART-OF-ACCOUNTS-CONTROLLED-SETUP-GATE",
+      "createdAt": "2026-06-30T20:25:00.000Z",
+      "lookaheadStatus": "ready-next",
+      "mayRunPlaywright": true,
+      "mayWorkEffectively": true,
+      "effectiveBcActionsAllowed": true,
+      "sourceCompany": "UNIVERSAARL-DE",
+      "targetWorld": "Universaarl",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-026g-chart-of-accounts-remaining-accounts-fit/TARGET-026G-result.json"
     }
   ],
-  "lastUpdated": "2026-06-30T19:45:00.000Z",
+  "lastUpdated": "2026-06-30T20:25:00.000Z",
   "nextStepDecisionGate": {
     "active": true,
     "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",
@@ -1792,6 +1811,44 @@
         "Capture before screenshot.",
         "Use only Neu/Liste bearbeiten route if visible and scoped; stop on dialog uncertainty.",
         "Reopen and prove each created/visible account."
+      ]
+    },
+    "lastDecisionCard": {
+      "currentCase": "TARGET-026F-CHART-OF-ACCOUNTS-CONTROLLED-SETUP-GATE",
+      "plannedNextCaseBeforeReview": "TARGET-026F-CHART-OF-ACCOUNTS-CONTROLLED-SETUP-GATE",
+      "lastEvidenceSummary": "TARGET-026E planned the minimal G/L account candidate structure; no account had been created yet.",
+      "isPlannedNextCaseStillSensible": true,
+      "reason": "VAT setup and first master data need at least a controlled account setup route before further foundation work.",
+      "lookaheadReviewed": [
+        {
+          "caseId": "TARGET-026G-CHART-OF-ACCOUNTS-REMAINING-ACCOUNTS-FIT",
+          "status": "ready-next",
+          "reason": "The first account route has reopen proof and can be reused for remaining planned accounts."
+        },
+        {
+          "caseId": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
+          "status": "ready-after-current",
+          "reason": "VAT posting groups still need G/L accounts and source-backed field mapping before setup write."
+        },
+        {
+          "caseId": "TARGET-028-CUSTOMER-VENDOR-ITEM-MASTERDATA",
+          "status": "needs-setup-first",
+          "reason": "Master data should wait until posting groups and VAT setup are ready."
+        },
+        {
+          "caseId": "TARGET-029-FIRST-SALES-PURCHASE-DRAFT-GATE",
+          "status": "needs-setup-first",
+          "reason": "Documents require number series, posting groups, VAT setup and master data."
+        }
+      ],
+      "queueChangesMade": [],
+      "selectedNextCase": "TARGET-026G-CHART-OF-ACCOUNTS-REMAINING-ACCOUNTS-FIT",
+      "whySelectedNextCaseIsBest": "The fastest useful follow-up is to complete the remaining planned foundation accounts on the proven route.",
+      "risksBeforeNextCase": [
+        "Income statement account types still need careful field handling."
+      ],
+      "requiredPreparation": [
+        "Separate balance-sheet and income-statement account field handling."
       ]
     }
   },

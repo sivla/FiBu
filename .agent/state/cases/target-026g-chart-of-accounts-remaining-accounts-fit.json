@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-026G-CHART-OF-ACCOUNTS-REMAINING-ACCOUNTS-FIT",
+  "title": "Chart of Accounts remaining planned accounts fit",
+  "status": "planned",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "workType": "universaarl-chart-of-accounts-remaining-accounts-fit",
+  "taskClass": "judge_work",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/target-026f-chart-of-accounts-controlled-setup-gate/TARGET-026F-result.json",
+    "playwright/projects/fibu-book5/UNIVERSAARL-CHART-OF-ACCOUNTS-MINIMAL-STRUCTURE-PLAN.md"
+  ],
+  "purpose": "Create or confirm the remaining planned Universaarl G/L foundation accounts with before/after/reopen proof, using the TARGET-026F card fallback for GuV/Bilanz when needed.",
+  "allowedActions": [
+    "open-chart-of-accounts",
+    "create-planned-gl-accounts-only",
+    "set-income-balance-on-gl-account-card",
+    "capture-before-after-reopen-proof",
+    "write-result-and-next-step-card"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "change-vat-setup",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "api-shortcut"
+  ],
+  "entryCriteria": [
+    "TARGET-026F proves Page 16 in playthru / UNIVERSAARL-DE and confirms 1200 Bank Saarland as Bilanz/Buchung.",
+    "TARGET-026F proves that GuV/Bilanz can require opening the G/L Account Card and tabbing from Name into the option field."
+  ],
+  "plannedAccounts": [
+    {
+      "no": "0800",
+      "name": "Eigenkapital / Eroeffnung",
+      "incomeBalance": "Bilanz",
+      "purpose": "Equity/opening basis"
+    },
+    {
+      "no": "1400",
+      "name": "Forderungen aus Lieferungen und Leistungen",
+      "incomeBalance": "Bilanz",
+      "purpose": "Receivables foundation"
+    },
+    {
+      "no": "1576",
+      "name": "Abziehbare Vorsteuer 19 Prozent",
+      "incomeBalance": "Bilanz",
+      "purpose": "Purchase VAT account candidate; no VAT setup claim yet"
+    },
+    {
+      "no": "1600",
+      "name": "Verbindlichkeiten aus Lieferungen und Leistungen",
+      "incomeBalance": "Bilanz",
+      "purpose": "Payables foundation"
+    },
+    {
+      "no": "1776",
+      "name": "Umsatzsteuer 19 Prozent",
+      "incomeBalance": "Bilanz",
+      "purpose": "Sales VAT account candidate; no VAT setup claim yet"
+    },
+    {
+      "no": "3980",
+      "name": "Warenbestand Universaarl",
+      "incomeBalance": "Bilanz",
+      "purpose": "Inventory balance account candidate"
+    },
+    {
+      "no": "4400",
+      "name": "Umsatzerloese Inland 19 Prozent",
+      "incomeBalance": "GuV",
+      "purpose": "Sales revenue candidate"
+    },
+    {
+      "no": "5400",
+      "name": "Wareneinsatz / Materialaufwand",
+      "incomeBalance": "GuV",
+      "purpose": "COGS/material expense candidate"
+    },
+    {
+      "no": "0700",
+      "name": "Maschinen und technische Anlagen",
+      "incomeBalance": "Bilanz",
+      "purpose": "Fixed assets foundation"
+    },
+    {
+      "no": "6220",
+      "name": "Abschreibungen auf Sachanlagen",
+      "incomeBalance": "GuV",
+      "purpose": "Depreciation expense candidate"
+    },
+    {
+      "no": "6990",
+      "name": "Sonstige betriebliche Aufwendungen",
+      "incomeBalance": "GuV",
+      "purpose": "Other operating expense candidate"
+    }
+  ],
+  "exitCriteria": [
+    "Each remaining planned account is visible after reopen or individually blocked.",
+    "For each account, GuV/Bilanz matches the planned value or the account is marked blocked.",
+    "No VAT setup, posting group, master data, draft, Preview Posting or posting occurs."
+  ],
+  "lookahead": [
+    {
+      "caseId": "TARGET-026G-CHART-OF-ACCOUNTS-REMAINING-ACCOUNTS-FIT",
+      "status": "ready-next",
+      "reason": "TARGET-026F proved the first account and the required card fallback for GuV/Bilanz."
+    },
+    {
+      "caseId": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
+      "status": "ready-after-current",
+      "reason": "VAT setup can only be prepared after required candidate accounts exist."
+    },
+    {
+      "caseId": "TARGET-028-POSTING-GROUPS-CONTROLLED-SETUP",
+      "status": "needs-setup-first",
+      "reason": "Posting groups need chart-of-accounts and VAT preflight."
+    },
+    {
+      "caseId": "TARGET-029-FIRST-MASTERDATA-CREATE-GATE",
+      "status": "needs-setup-first",
+      "reason": "Customer/vendor/item creation waits for posting groups and VAT setup."
+    }
+  ],
+  "nextStep": "Use the TARGET-026F route to create or confirm remaining planned G/L accounts; split Bilanz and GuV handling deliberately.",
+  "createdAt": "2026-06-30T20:25:00.000Z",
+  "updatedAt": "2026-06-30T20:25:00.000Z"
+}
