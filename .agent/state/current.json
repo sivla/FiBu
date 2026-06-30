@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-30T12:39:22.975Z",
+  "updatedAt": "2026-06-30T12:51:51.335Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "activeArea": "universaarl-w1-foundation-number-series",
-  "activeCase": "TARGET-016G-NUMBER-SERIES-PERSONALIZE-FIELD-ACTION-MAP",
-  "active_case_file": ".agent/state/cases/target-016g-number-series-personalize-field-action-map.json",
+  "activeCase": "TARGET-016H-NUMBER-SERIES-SOURCE-OR-ASSISTED-SETUP-ROUTE",
+  "active_case_file": ".agent/state/cases/target-016h-number-series-source-or-assisted-setup-route.json",
   "lastReferenceCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
   "lastReferenceCaseFile": ".agent/state/cases/warehouse-031-warehouse-source-route-park-or-setup-fit-decision.json",
   "mode": "universaarl-target-execution",
@@ -19,14 +19,12 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "open-playthru-business-central",
+    "review-target-016g-evidence",
+    "source-check-number-series-lines-and-assisted-setup",
+    "open-playthru-business-central-if-needed",
     "open-UNIVERSAARL-DE-with-documentation",
-    "open-number-series-page",
-    "select-existing-U-CUST-row",
-    "open-Zeilen-from-selected-number-series",
-    "enter-personalize-mode-without-field-changes",
-    "inspect-personalize-field-and-action-map",
-    "exit-personalize-without-changes",
+    "open-assisted-setup-or-number-series-pages-readonly",
+    "inspect-standard-business-central-route-without-value-write",
     "capture-screenshot-qa",
     "write-result",
     "queue-and-state-update"
@@ -56,9 +54,11 @@
     "claim-number-series-setup-ready-without-visible-start-end-values",
     "save-personalization-with-field-changes",
     "change-number-series-line-checkboxes",
-    "repeat-more-options-copilot-generate-misclick-from-TARGET-016F"
+    "repeat-more-options-copilot-generate-misclick-from-TARGET-016F",
+    "repeat-personalize-add-field-route-from-TARGET-016G-without-new-visible-field-button",
+    "claim-personalize-as-value-write-route-without-persistence"
   ],
-  "nextStep": "Run TARGET-016G: use the proven Personalize mode on No. Series Lines to map available fields/actions without saving changes, then decide the next safe setup route.",
+  "nextStep": "Run TARGET-016H: because TARGET-016G did not expose a safe Add field/value route, use source-backed or Assisted Setup route discovery before another Number Series Lines write attempt.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -3448,53 +3448,48 @@
       "replace-with-better-case"
     ],
     "latestDecisionCard": {
-      "currentCase": "PREP-043-PERMISSION-DOCS-ROUTE-TEXT-CLEANUP",
-      "plannedNextCaseBeforeReview": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
-      "lastEvidenceSummary": "PREP-043 aligned permission docs with the corrected splitbutton route and removed the vague Neu / Neues Unternehmen erstellen shorthand.",
+      "currentCase": "TARGET-016G-NUMBER-SERIES-PERSONALIZE-FIELD-ACTION-MAP",
+      "plannedNextCaseBeforeReview": "TARGET-016G-NUMBER-SERIES-PERSONALIZE-FIELD-ACTION-MAP",
+      "lastEvidenceSummary": "TARGET-016F proved Settings -> Personalisieren enters Nr.-Serienzeilen personalization mode and exits via Fertig without changes.",
       "isPlannedNextCaseStillSensible": true,
-      "reason": "Company Creation remains the required dependency, but it stays blocked until SUPER/company-create permissions are confirmed.",
+      "reason": "The next non-repeated step is to map fields/actions in the now-proven Personalize mode before any write attempt.",
       "lookaheadReviewed": [
         {
-          "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
-          "status": "blocked",
-          "reason": "Requires SUPER/company-create permissions plus PREP-040 screenshot chain."
+          "caseId": "TARGET-016H-NUMBER-SERIES-SOURCE-OR-ASSISTED-SETUP-ROUTE",
+          "status": "ready-next",
+          "reason": "Depends on whether Personalize exposes useful field/action affordances."
         },
         {
-          "caseId": "TARGET-COMPANY-INFO-001-COMPANY-INFORMATION-READONLY",
+          "caseId": "TARGET-017-NUMBER-SERIES-SETUP-ASSIGNMENT",
+          "status": "needs-setup-first",
+          "reason": "Assignments require valid line ranges."
+        },
+        {
+          "caseId": "TARGET-018-CUSTOMER-MASTERDATA-PREFLIGHT",
+          "status": "needs-setup-first",
+          "reason": "Customer creation depends on customer number-series assignment."
+        },
+        {
+          "caseId": "TARGET-019-POSTING-GROUPS-PREFLIGHT",
           "status": "ready-after-current",
-          "reason": "Run only after UNIVERSAARL-DE exists and active company context is visible."
+          "reason": "Can proceed after numbering is unblocked or consciously parked."
         },
         {
-          "caseId": "TARGET-005-NUMBER-SERIES-PREFLIGHT",
+          "caseId": "TARGET-020-VAT-SETUP-READINESS",
           "status": "ready-after-current",
-          "reason": "Requires company and Company Information context first."
-        },
-        {
-          "caseId": "TARGET-006-POSTING-GROUPS-PREFLIGHT",
-          "status": "ready-after-current",
-          "reason": "Requires company foundation context first."
-        },
-        {
-          "caseId": "TARGET-008-VAT19-SETUP-READINESS",
-          "status": "needs-source-check-first",
-          "reason": "Needs German VAT source and later Universaarl setup evidence."
+          "reason": "Follows foundation sequencing."
         }
       ],
-      "queueChangesMade": [
-        "Added PREP-043 as a completed permission-doc route text cleanup.",
-        "Kept TARGET-009 parked until permissions.",
-        "Removed vague Neu / Neues Unternehmen erstellen shorthand from permission docs."
-      ],
-      "selectedNextCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
-      "whySelectedNextCaseIsBest": "Company Creation remains the required dependency before Company Information, Foundation setup and process evidence.",
+      "queueChangesMade": [],
+      "selectedNextCase": "TARGET-016H-NUMBER-SERIES-SOURCE-OR-ASSISTED-SETUP-ROUTE",
+      "whySelectedNextCaseIsBest": "TARGET-016G adds field/action UI knowledge without changing setup and avoids repeating failed grid typing.",
       "risksBeforeNextCase": [
-        "Do not click the Hauptbutton Neu when the intended target is Neues Unternehmen erstellen.",
-        "Screenshot must show the dropdown menu item itself before click.",
-        "Data basis must be visible before any finish/create confirmation."
+        "Do not save Personalize changes without explicit gate.",
+        "Do not change checkbox states.",
+        "Do not create master data before line ranges are ready."
       ],
       "requiredPreparation": [
-        "User confirms sufficient SUPER/company-create permissions.",
-        "Use UNIVERSAARL-COMPANY-CREATION-SCREENSHOT-QA-GATE.md during TARGET-009."
+        "Review TARGET-016G screenshots and decide route based on visible field/action affordances."
       ]
     }
   },
@@ -4956,5 +4951,40 @@
     "noPreview": true,
     "noPosting": true,
     "updatedAt": "2026-06-30T12:39:22.975Z"
+  },
+  "latestTarget016GNumberSeriesPersonalizeFieldActionMap": {
+    "caseId": "TARGET-016G-NUMBER-SERIES-PERSONALIZE-FIELD-ACTION-MAP",
+    "status": "observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-016g-number-series-personalize-field-action-map/TARGET-016G-result.json",
+    "evidenceRefs": [
+      "playwright/projects/fibu-book5/evidence/target-016g-number-series-personalize-field-action-map/TARGET-016G-result.json",
+      "playwright/projects/fibu-book5/img/target-016g-010-lines-context-before-personalize-map.png",
+      "playwright/projects/fibu-book5/img/target-016g-020-personalize-mode-field-action-map.png",
+      "playwright/projects/fibu-book5/img/target-016g-030-personalize-hover-tooltip-map.png",
+      "playwright/projects/fibu-book5/img/target-016g-050-after-personalize-field-map-exit.png"
+    ],
+    "observed": [
+      "U-CUST Number Series Lines context was reopened in playthru / UNIVERSAARL-DE.",
+      "Personalize mode on Nr.-Serienzeilen was visible.",
+      "Visible Number Series Lines fields/actions were screenshot-mapped without saving personalization changes."
+    ],
+    "notProved": [
+      "A reliable persistent Startnr./Endnr. write route is still not proven.",
+      "No field was added, removed or moved in Personalize mode.",
+      "No setup assignment, master data, preview posting, posting or ledger trace was created.",
+      "Checkbox behavior was observed as UI context but no checkbox value was changed."
+    ],
+    "keyLearning": [
+      "Personalize mode shows the Number Series Lines columns and a red focus/required marker at Startnr., but not a safe value-entry editor.",
+      "No Add field / Feld hinzufuegen panel was safely visible in this list context.",
+      "Fertig exits the personalization mode with no saved field/action changes.",
+      "Personalize is diagnostic evidence here; it is not a Startnr./Endnr. persistence route."
+    ],
+    "nextCase": "TARGET-016H-NUMBER-SERIES-SOURCE-OR-ASSISTED-SETUP-ROUTE",
+    "setupChanged": false,
+    "personalizationChangesMade": false,
+    "noPreview": true,
+    "noPosting": true,
+    "updatedAt": "2026-06-30T12:51:51.335Z"
   }
 }

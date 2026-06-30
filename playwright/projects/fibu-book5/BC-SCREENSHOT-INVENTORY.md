@@ -157,6 +157,14 @@ Diese Bilder werden erst erzeugt, wenn `UNIVERSAARL-DE` existiert und genug sinn
 | `target-016f-030-personalize-mode-or-menu.png` | Nr.-Serienzeilen / Personalisieren | `playthru` / `UNIVERSAARL-DE` | Personalisieren-Modus auf Lines | oben steht `Wird personalisiert: Nr.-Serienzeilen`, daneben `Fertig`; die Lines-Spalten bleiben sichtbar | Settings -> Personalisieren erreicht den page-level Personalisieren-Modus fuer Nr.-Serienzeilen | keine eingefuegten Felder, keine gespeicherte Personalisierung, keine Start-/Endnummernreife | `technical-ui-proof` |
 | `target-016f-040-after-personalize-escape.png` | Nr.-Serienzeilen / No. Series Lines | `playthru` / `UNIVERSAARL-DE` | Nach Verlassen des Personalisieren-Modus | der Personalisierungsbalken ist weg; die Lines-Seite bleibt im U-CUST-Kontext sichtbar | `Fertig` beendet die reine Inspektion ohne sichtbare Feld-/Aktionsaenderung | keine Setup-Aenderung, keine Nummernserien-Zeilenwerte | `exit-proof-no-change` |
 
+## Universaarl Foundation - Nummernserien TARGET-016G
+
+| Screenshot | Page | Company/Kontext | Schritt | Was man sehen soll | Interner Beweis | Beweist nicht | Status |
+|---|---|---|---|---|---|---|---|
+| `target-016g-020-personalize-mode-field-action-map.png` | Nr.-Serienzeilen / Personalisieren | `playthru` / `UNIVERSAARL-DE` | Feld-/Aktionskarte im Personalisieren-Modus | `Wird personalisiert: Nr.-Serienzeilen`, `Fertig`, die Spalten `Startnr.`, `Endnr.`, `Luecken in Nummern zulassen`, `Offen` und ein roter Marker bei `Startnr.` sind sichtbar | Playwright ist im richtigen Lines-Kontext und erkennt die fachlich wichtigen Spalten im Personalize-Modus | kein Add-field-Panel, keine Wertpersistenz, keine gespeicherte Personalisierung | `field-action-map`, `not-write-proof` |
+| `target-016g-030-personalize-hover-tooltip-map.png` | Nr.-Serienzeilen / Personalisieren | `playthru` / `UNIVERSAARL-DE` | Hover-/Tooltip-Probe | sichtbare Spalten und `Fertig` bleiben im Fokus; keine gefaehrliche Aktion wird ausgeloest | Hover-Probe bleibt im richtigen UI-Kontext und veraendert nichts | kein Tooltip-/Feldlistenbeweis fuer Add-field; keine Start-/Endnummernreife | `diagnostic`, `no-change-proof` |
+| `target-016g-050-after-personalize-field-map-exit.png` | Nr.-Serienzeilen / No. Series Lines | `playthru` / `UNIVERSAARL-DE` | Nach Verlassen der Feldkarte | der Personalisierungsbalken ist weg; `U-CUST` Lines bleiben sichtbar | `Fertig` beendet 016G ohne gespeicherte Personalisierung | keine Setup-Aenderung, keine Nummernserien-Zeilenwerte | `exit-proof-no-change` |
+
 ## Qualitaetsfelder fuer neue Screenshot-Metadaten
 
 Neue oder ueberarbeitete `.screenshot.json`-Dateien sollen diese Felder tragen:

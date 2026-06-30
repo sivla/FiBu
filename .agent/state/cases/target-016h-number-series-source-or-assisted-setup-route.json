@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-016H-NUMBER-SERIES-SOURCE-OR-ASSISTED-SETUP-ROUTE",
+  "title": "Universaarl Number Series source or Assisted Setup route decision",
+  "instance": "playthru",
+  "targetCompany": "UNIVERSAARL-DE",
+  "legalName": "Universaarl GmbH",
+  "workType": "foundation-number-series-source-assisted-setup-route",
+  "status": "ready-next",
+  "dependsOn": [
+    "TARGET-016G-NUMBER-SERIES-PERSONALIZE-FIELD-ACTION-MAP"
+  ],
+  "goal": "Use TARGET-016G evidence to choose a source-backed or Assisted Setup route before another Number Series Lines write attempt; do not repeat grid, F2, field-flow or Personalize Add-field probing unless new UI evidence appears.",
+  "evidenceTarget": "playwright/projects/fibu-book5/evidence/target-016h-number-series-source-or-assisted-setup-route/",
+  "allowedActionsWhenRun": [
+    "review-target-016g-evidence",
+    "source-check-number-series-lines-and-assisted-setup",
+    "open-playthru-business-central-if-needed",
+    "open-UNIVERSAARL-DE-with-documentation",
+    "inspect-assisted-setup-or-number-series-standard-route-readonly",
+    "capture-screenshot-qa",
+    "write-result",
+    "queue-and-state-update"
+  ],
+  "defaultLockedActions": [
+    "number-series-line-value-write",
+    "assign-number-series-in-sales-setup",
+    "assign-number-series-in-purchase-setup",
+    "assign-number-series-in-inventory-setup",
+    "save-personalization-with-field-changes",
+    "master-data-create",
+    "preview-posting",
+    "posting",
+    "checkbox-change",
+    "api-shortcut"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "leave-playthru",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "final-german-claim-from-rm-demo",
+    "operate-in-legacy-lab-as-active-target",
+    "post",
+    "preview-posting",
+    "api-shortcut",
+    "repeat-header-coordinate-route-from-TARGET-016B",
+    "repeat-selected-cell-typing-route-from-TARGET-016C",
+    "repeat-plain-field-flow-route-from-TARGET-016E",
+    "repeat-F2-route-from-TARGET-016E",
+    "repeat-more-options-copilot-generate-misclick-from-TARGET-016F",
+    "repeat-personalize-add-field-route-from-TARGET-016G-without-new-visible-field-button",
+    "claim-personalize-as-value-write-route-without-persistence"
+  ],
+  "knownLearningFromTarget016G": [
+    "Personalize mode is visible for Nr.-Serienzeilen and can be exited through Fertig without changes.",
+    "Startnr., Endnr., Luecken in Nummern zulassen and Offen are visible as fields/columns.",
+    "No safe Add field panel was visible; Personalize is diagnostic, not a value-entry route.",
+    "Next route needs Microsoft/source-backed understanding or Assisted Setup/read-only standard route discovery."
+  ],
+  "successCriteria": [
+    "A source-backed or BC-standard route decision is documented before another write attempt.",
+    "If BC is opened, the route remains read-only unless a later explicit write gate is created.",
+    "No setup assignment, master data, preview posting or posting occurs."
+  ],
+  "migrationRelevance": "german-final-candidate",
+  "finalScreenshotNeeded": true,
+  "nextSafeAction": "Run source-backed or Assisted Setup route discovery for Number Series instead of repeating failed UI typing paths.",
+  "updatedAt": "2026-06-30T12:51:51.335Z"
+}
