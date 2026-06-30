@@ -1,17 +1,18 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-30T17:00:21.376Z",
-  "caseId": "TARGET-024B-GLOBAL-DIMENSION-ASSIGNMENT",
-  "status": "blocked",
-  "summary": "TARGET-024B tested Global Dimension Code assignment routes and blocked them with screenshot/diagnostic proof; no assignment is proven.",
+  "updatedAt": "2026-06-30T17:15:28.840Z",
+  "caseId": "TARGET-024C-GLOBAL-DIMENSION-FIELD-DISCOVERY",
+  "status": "observed",
+  "summary": "TARGET-024C mapped the Change Global Dimensions action page and stopped before any run action.",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-024b-global-dimension-assignment/TARGET-024B-result.json",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-024c-global-dimension-field-discovery/TARGET-024C-result.json",
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/target-024b-global-dimension-assignment/TARGET-024B-result.json",
-    "playwright/projects/fibu-book5/img/target-024b-010-before.png",
-    "playwright/projects/fibu-book5/img/target-024b-020-after-attempt.png",
-    "playwright/projects/fibu-book5/img/target-024b-090-after-reopen.png"
+    "playwright/projects/fibu-book5/evidence/target-024c-global-dimension-field-discovery/TARGET-024C-result.json",
+    "playwright/projects/fibu-book5/evidence/target-024c-global-dimension-field-discovery/target-024c-row-column-semantics.json",
+    "playwright/projects/fibu-book5/img/target-024c-010-general-ledger-setup.png",
+    "playwright/projects/fibu-book5/img/target-024c-020-change-global-dimensions-action-page.png",
+    "playwright/projects/fibu-book5/img/target-024c-030-action-page-control-map.png"
   ],
   "flags": {
     "noPost": true,
@@ -22,41 +23,43 @@
     "noApiShortcut": true,
     "noSearch": true,
     "noBookMasterChange": true,
-    "setupWriteAttempted": true,
-    "setupChanged": false
+    "setupWriteAttempted": false,
+    "setupChanged": false,
+    "runActionClicked": false
   },
   "proved": [
     "General Ledger Setup / Finanzbuchhaltung Einrichtung page 118 was opened only in playthru / UNIVERSAARL-DE.",
+    "The Change Global Dimensions action page opened from Page 118.",
+    "Global Dimension Code 1/2 rows were mapped with visible control geometry.",
+    "The action page exposes run/action choices including Fortlaufend and Parallel, but no run action was clicked.",
     "No master data, document draft, preview posting, posting, company switch or API shortcut was executed."
   ],
   "notProved": [
-    "Not every Global Dimension Code field could be assigned or proven with the current UI route.",
+    "PRODUCTLINE is not proven as Global Dimension Code 1.",
+    "COSTCENTER is not proven as Global Dimension Code 2.",
+    "The correct safe write/run route is not proven by this discovery case.",
     "Default Dimensions on customers, vendors, items or accounts are not proven.",
-    "Dimension Set Entries, posted entries and reporting filters are not proven.",
-    "German VAT or posting-group correctness is not proven by this case."
+    "Dimension Set Entries, posted entries and reporting filters are not proven."
   ],
-  "blockedBy": [
-    "Global Dimension Code 1: Global Dimension Code 1 did not show PRODUCTLINE after Change Global Dimensions sequential run and reopen.",
-    "Global Dimension Code 2: Global Dimension Code 2 did not show COSTCENTER after Change Global Dimensions sequential run and reopen."
-  ],
-  "nextCase": "TARGET-024C-GLOBAL-DIMENSION-FIELD-DISCOVERY",
-  "nextStep": "Run TARGET-024C field/action discovery on Change Global Dimensions before another write attempt.",
+  "blockedBy": [],
+  "nextCase": "TARGET-024D-GLOBAL-DIMENSION-CONTROLLED-ASSIGNMENT-ROUTE",
+  "nextStep": "Run a controlled Global Dimension assignment route only if the 024C row/column semantics and gate allow it; stop before master data.",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-024B-GLOBAL-DIMENSION-ASSIGNMENT",
+    "currentCase": "TARGET-024C-GLOBAL-DIMENSION-FIELD-DISCOVERY",
     "plannedNextCaseBeforeReview": "TARGET-024-CORE-MASTERDATA-PLAN",
-    "lastEvidenceSummary": "TARGET-023B recovered all starter Dimension Values with reopen proof. TARGET-024B then tested Global Dimension Code assignment on General Ledger Setup and Change Global Dimensions.",
+    "lastEvidenceSummary": "TARGET-023B recovered all starter Dimension Values. TARGET-024B proved Page 118 and the action page, but left-column entry plus sequential run did not persist Global Dimension Code 1/2.",
     "isPlannedNextCaseStillSensible": false,
-    "reason": "Master data should not start while PRODUCTLINE/COSTCENTER are not yet proven as Global Dimension Code 1/2 and the Change Global Dimensions page field semantics are unclear.",
+    "reason": "Master data should not start while global dimension assignment is unresolved; the next step must either run a consciously selected assignment route or make a source-backed park decision.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-024C-GLOBAL-DIMENSION-FIELD-DISCOVERY",
+        "caseId": "TARGET-024D-GLOBAL-DIMENSION-CONTROLLED-ASSIGNMENT-ROUTE",
         "status": "ready-next",
-        "reason": "The next useful step is technical/page-field discovery of the Change Global Dimensions action page, not another blind write attempt."
+        "reason": "The control map is now clear enough for a separate controlled route, if source/gate agrees."
       },
       {
         "caseId": "TARGET-024-CORE-MASTERDATA-PLAN",
         "status": "ready-after-current",
-        "reason": "Master data planning can continue after global-dimension route is proven or consciously parked."
+        "reason": "Master data planning follows only after global dimensions are proven or consciously parked."
       },
       {
         "caseId": "TARGET-025-CUSTOMER-VENDOR-ITEM-TEMPLATES-PREFLIGHT",
@@ -66,27 +69,28 @@
       {
         "caseId": "TARGET-026-VAT-SETUP-FIT-DECISION",
         "status": "needs-source-check-first",
-        "reason": "German VAT setup still needs source-backed setup before any document preview."
+        "reason": "German VAT setup still needs source-backed setup before document preview."
       },
       {
         "caseId": "TARGET-028-DEFAULT-DIMENSIONS-STRATEGY",
         "status": "needs-setup-first",
-        "reason": "Default Dimensions need either proven global dimensions or a documented park decision plus concrete master data."
+        "reason": "Default Dimensions need global dimensions or a documented park decision plus concrete master data."
       }
     ],
     "queueChangesMade": [
-      "Marked TARGET-024B blocked and inserted/selected TARGET-024C-GLOBAL-DIMENSION-FIELD-DISCOVERY."
+      "Selected TARGET-024D-GLOBAL-DIMENSION-CONTROLLED-ASSIGNMENT-ROUTE after TARGET-024C discovery."
     ],
-    "selectedNextCase": "TARGET-024C-GLOBAL-DIMENSION-FIELD-DISCOVERY",
-    "whySelectedNextCaseIsBest": "TARGET-024B proved the page contexts and rejected two repeated write routes; the cheapest safe progress is to inspect fields/actions/columns before the next setup attempt.",
+    "selectedNextCase": "TARGET-024D-GLOBAL-DIMENSION-CONTROLLED-ASSIGNMENT-ROUTE",
+    "whySelectedNextCaseIsBest": "TARGET-024C replaced guessing with a control map. The next useful case is either the controlled route or a source-backed decision, not a repeat of TARGET-024B.",
     "risksBeforeNextCase": [
-      "Do not claim Global Dimension Code 1/2 readiness from TARGET-024B screenshots.",
-      "Do not start master data/default dimensions as if global dimensions are assigned.",
-      "Do not repeat the same left-column Change Global Dimensions route."
+      "Do not click Fortlaufend or Parallel unless the active case explicitly unlocks it.",
+      "Do not claim Global Dimension Code 1/2 readiness from visible action-page controls alone.",
+      "Do not start default dimensions or master data as if global dimensions are assigned."
     ],
     "requiredPreparation": [
-      "Use Page Inspection/technical field diagnostics, tooltip/action inventory and screenshot QA on the Change Global Dimensions page."
+      "Use TARGET-024C row-column semantics and TARGET-024B blocker evidence.",
+      "If executing assignment, capture before/after/reopen proof and stop before master data."
     ]
   },
-  "runId": "TARGET-024B-GLOBAL-DIMENSION-ASSIGNMENT-2026-06-30T17-00-21-376Z"
+  "runId": "TARGET-024C-GLOBAL-DIMENSION-FIELD-DISCOVERY-2026-06-30T17-15-28-840Z"
 }

@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-024D-GLOBAL-DIMENSION-CONTROLLED-ASSIGNMENT-ROUTE",
+  "title": "Universaarl controlled Global Dimension assignment route",
+  "status": "planned",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "workType": "foundation-global-dimension-controlled-assignment-route",
+  "taskClass": "judge_work",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/target-024b-global-dimension-assignment/TARGET-024B-result.json",
+    "playwright/projects/fibu-book5/evidence/target-024c-global-dimension-field-discovery/TARGET-024C-result.json",
+    "playwright/projects/fibu-book5/evidence/target-024c-global-dimension-field-discovery/target-024c-row-column-semantics.json"
+  ],
+  "purpose": "Use the TARGET-024C field/control map to attempt a controlled Global Dimension Code 1/2 assignment only through the mapped left editable combobox controls, then prove or block by reopening Page 118.",
+  "allowedActions": [
+    "review-target-024b-and-target-024c-results",
+    "open-general-ledger-setup-page-directly",
+    "open-change-global-dimensions-action-page",
+    "enter-productline-and-costcenter-in-left-editable-comboboxes-only-if-target-controls-match-024c-map",
+    "capture-before-after-reopen-proof",
+    "write-result-and-next-step-card"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "leave-playthru",
+    "operate-in-legacy-lab-as-active-target",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "api-shortcut",
+    "claim-reporting-readiness-without-posted-dimension-entries"
+  ],
+  "defaultLockedActionsUnlockedForThisCase": [
+    "setup-change"
+  ],
+  "entryCriteria": [
+    "TARGET-023B proves PRODUCTLINE/COSTCENTER dimension values exist.",
+    "TARGET-024B rejects direct card edit and blind left-column sequential route as persistence proof.",
+    "TARGET-024C maps the action page controls and shows Fortlaufend/Parallel without clicking them."
+  ],
+  "exitCriteria": [
+    "PRODUCTLINE/COSTCENTER are visible after reopen on Page 118, or the blocker is documented without repeat guessing.",
+    "No master data, document draft, preview posting, posting, company switch or API shortcut executed.",
+    "Result contains Next-Step Decision Card and screenshot QA."
+  ],
+  "lookahead": [
+    {
+      "caseId": "TARGET-024D-GLOBAL-DIMENSION-CONTROLLED-ASSIGNMENT-ROUTE",
+      "status": "ready-next",
+      "reason": "The control map is now clear enough for a separate controlled route, if source/gate agrees."
+    },
+    {
+      "caseId": "TARGET-024-CORE-MASTERDATA-PLAN",
+      "status": "ready-after-current",
+      "reason": "Master data planning follows only after global dimensions are proven or consciously parked."
+    },
+    {
+      "caseId": "TARGET-025-CUSTOMER-VENDOR-ITEM-TEMPLATES-PREFLIGHT",
+      "status": "needs-setup-first",
+      "reason": "Templates need posting groups, VAT and dimension/default-dimension decisions."
+    },
+    {
+      "caseId": "TARGET-026-VAT-SETUP-FIT-DECISION",
+      "status": "needs-source-check-first",
+      "reason": "German VAT setup still needs source-backed setup before document preview."
+    },
+    {
+      "caseId": "TARGET-028-DEFAULT-DIMENSIONS-STRATEGY",
+      "status": "needs-setup-first",
+      "reason": "Default Dimensions need global dimensions or a documented park decision plus concrete master data."
+    }
+  ],
+  "nextStep": "Run a controlled Global Dimension assignment route only if the 024C row/column semantics and gate allow it; stop before master data.",
+  "createdAt": "2026-06-30T17:15:28.840Z",
+  "updatedAt": "2026-06-30T17:15:28.840Z"
+}

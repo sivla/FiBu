@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-30T17:00:21.376Z",
+  "updatedAt": "2026-06-30T17:15:28.840Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-w1-foundation-global-dimension-field-discovery",
-  "activeCase": "TARGET-024C-GLOBAL-DIMENSION-FIELD-DISCOVERY",
-  "active_case_file": ".agent/state/cases/target-024c-global-dimension-field-discovery.json",
+  "activeArea": "universaarl-w1-foundation-global-dimension-controlled-assignment-route",
+  "activeCase": "TARGET-024D-GLOBAL-DIMENSION-CONTROLLED-ASSIGNMENT-ROUTE",
+  "active_case_file": ".agent/state/cases/target-024d-global-dimension-controlled-assignment-route.json",
   "lastReferenceCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
   "lastReferenceCaseFile": ".agent/state/cases/warehouse-031-warehouse-source-route-park-or-setup-fit-decision.json",
   "mode": "universaarl-target-execution",
@@ -19,12 +19,11 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "review-target-024b-result",
+    "review-target-024b-and-target-024c-results",
     "open-general-ledger-setup-page-directly",
     "open-change-global-dimensions-action-page",
-    "capture-page-inspection-or-field-diagnostics",
-    "capture-tooltip-action-inventory",
-    "capture-screenshot-qa-for-left-right-columns",
+    "enter-productline-and-costcenter-in-left-editable-comboboxes-only-if-target-controls-match-024c-map",
+    "capture-before-after-reopen-proof",
     "write-result-and-next-step-card"
   ],
   "forbiddenActions": [
@@ -42,7 +41,7 @@
     "api-shortcut",
     "claim-reporting-readiness-without-posted-dimension-entries"
   ],
-  "nextStep": "Inspect Change Global Dimensions field/action semantics before another write attempt or master data start.",
+  "nextStep": "Run a controlled Global Dimension assignment route only if the 024C row/column semantics and gate allow it; stop before master data.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -1347,7 +1346,7 @@
     "nextStep": "BANK-018: controlled no-post Payment Journal preflight for 108205; do not post."
   },
   "workType": "foundation-global-dimension-assignment",
-  "lastCompletedCase": "TARGET-024B-GLOBAL-DIMENSION-ASSIGNMENT",
+  "lastCompletedCase": "TARGET-024C-GLOBAL-DIMENSION-FIELD-DISCOVERY",
   "latestBank018": {
     "caseId": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
     "status": [
@@ -3684,21 +3683,21 @@
     "resultFile": "playwright/projects/fibu-book5/evidence/prep-020-universaarl-dataset-blueprint/PREP-020-result.json"
   },
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-024B-GLOBAL-DIMENSION-ASSIGNMENT",
+    "currentCase": "TARGET-024C-GLOBAL-DIMENSION-FIELD-DISCOVERY",
     "plannedNextCaseBeforeReview": "TARGET-024-CORE-MASTERDATA-PLAN",
-    "lastEvidenceSummary": "TARGET-023B recovered all starter Dimension Values with reopen proof. TARGET-024B then tested Global Dimension Code assignment on General Ledger Setup and Change Global Dimensions.",
+    "lastEvidenceSummary": "TARGET-023B recovered all starter Dimension Values. TARGET-024B proved Page 118 and the action page, but left-column entry plus sequential run did not persist Global Dimension Code 1/2.",
     "isPlannedNextCaseStillSensible": false,
-    "reason": "Master data should not start while PRODUCTLINE/COSTCENTER are not yet proven as Global Dimension Code 1/2 and the Change Global Dimensions page field semantics are unclear.",
+    "reason": "Master data should not start while global dimension assignment is unresolved; the next step must either run a consciously selected assignment route or make a source-backed park decision.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-024C-GLOBAL-DIMENSION-FIELD-DISCOVERY",
+        "caseId": "TARGET-024D-GLOBAL-DIMENSION-CONTROLLED-ASSIGNMENT-ROUTE",
         "status": "ready-next",
-        "reason": "The next useful step is technical/page-field discovery of the Change Global Dimensions action page, not another blind write attempt."
+        "reason": "The control map is now clear enough for a separate controlled route, if source/gate agrees."
       },
       {
         "caseId": "TARGET-024-CORE-MASTERDATA-PLAN",
         "status": "ready-after-current",
-        "reason": "Master data planning can continue after global-dimension route is proven or consciously parked."
+        "reason": "Master data planning follows only after global dimensions are proven or consciously parked."
       },
       {
         "caseId": "TARGET-025-CUSTOMER-VENDOR-ITEM-TEMPLATES-PREFLIGHT",
@@ -3708,26 +3707,27 @@
       {
         "caseId": "TARGET-026-VAT-SETUP-FIT-DECISION",
         "status": "needs-source-check-first",
-        "reason": "German VAT setup still needs source-backed setup before any document preview."
+        "reason": "German VAT setup still needs source-backed setup before document preview."
       },
       {
         "caseId": "TARGET-028-DEFAULT-DIMENSIONS-STRATEGY",
         "status": "needs-setup-first",
-        "reason": "Default Dimensions need either proven global dimensions or a documented park decision plus concrete master data."
+        "reason": "Default Dimensions need global dimensions or a documented park decision plus concrete master data."
       }
     ],
     "queueChangesMade": [
-      "Marked TARGET-024B blocked and inserted/selected TARGET-024C-GLOBAL-DIMENSION-FIELD-DISCOVERY."
+      "Selected TARGET-024D-GLOBAL-DIMENSION-CONTROLLED-ASSIGNMENT-ROUTE after TARGET-024C discovery."
     ],
-    "selectedNextCase": "TARGET-024C-GLOBAL-DIMENSION-FIELD-DISCOVERY",
-    "whySelectedNextCaseIsBest": "TARGET-024B proved the page contexts and rejected two repeated write routes; the cheapest safe progress is to inspect fields/actions/columns before the next setup attempt.",
+    "selectedNextCase": "TARGET-024D-GLOBAL-DIMENSION-CONTROLLED-ASSIGNMENT-ROUTE",
+    "whySelectedNextCaseIsBest": "TARGET-024C replaced guessing with a control map. The next useful case is either the controlled route or a source-backed decision, not a repeat of TARGET-024B.",
     "risksBeforeNextCase": [
-      "Do not claim Global Dimension Code 1/2 readiness from TARGET-024B screenshots.",
-      "Do not start master data/default dimensions as if global dimensions are assigned.",
-      "Do not repeat the same left-column Change Global Dimensions route."
+      "Do not click Fortlaufend or Parallel unless the active case explicitly unlocks it.",
+      "Do not claim Global Dimension Code 1/2 readiness from visible action-page controls alone.",
+      "Do not start default dimensions or master data as if global dimensions are assigned."
     ],
     "requiredPreparation": [
-      "Use Page Inspection/technical field diagnostics, tooltip/action inventory and screenshot QA on the Change Global Dimensions page."
+      "Use TARGET-024C row-column semantics and TARGET-024B blocker evidence.",
+      "If executing assignment, capture before/after/reopen proof and stop before master data."
     ]
   },
   "permissionBlocker": {
@@ -3806,7 +3806,7 @@
   },
   "activeCaseFile": ".agent/state/cases/prep-034-role-center-readonly-shell-map.json",
   "previousCase": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
-  "nextCase": "TARGET-024C-GLOBAL-DIMENSION-FIELD-DISCOVERY",
+  "nextCase": "TARGET-024D-GLOBAL-DIMENSION-CONTROLLED-ASSIGNMENT-ROUTE",
   "latestPrepCase": {
     "caseId": "PREP-034-ROLE-CENTER-READONLY-SHELL-MAP",
     "status": "prep-observed",
@@ -5812,5 +5812,54 @@
     ],
     "nextCase": "TARGET-024C-GLOBAL-DIMENSION-FIELD-DISCOVERY",
     "updatedAt": "2026-06-30T17:00:21.376Z"
+  },
+  "latestTarget024CGlobalDimensionFieldDiscovery": {
+    "caseId": "TARGET-024C-GLOBAL-DIMENSION-FIELD-DISCOVERY",
+    "status": "observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-024c-global-dimension-field-discovery/TARGET-024C-result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "proved": [
+      "General Ledger Setup / Finanzbuchhaltung Einrichtung page 118 was opened only in playthru / UNIVERSAARL-DE.",
+      "The Change Global Dimensions action page opened from Page 118.",
+      "Global Dimension Code 1/2 rows were mapped with visible control geometry.",
+      "The action page exposes run/action choices including Fortlaufend and Parallel, but no run action was clicked.",
+      "No master data, document draft, preview posting, posting, company switch or API shortcut was executed."
+    ],
+    "notProved": [
+      "PRODUCTLINE is not proven as Global Dimension Code 1.",
+      "COSTCENTER is not proven as Global Dimension Code 2.",
+      "The correct safe write/run route is not proven by this discovery case.",
+      "Default Dimensions on customers, vendors, items or accounts are not proven.",
+      "Dimension Set Entries, posted entries and reporting filters are not proven."
+    ],
+    "flags": {
+      "noPost": true,
+      "noPreview": true,
+      "noDraft": true,
+      "noMasterDataChange": true,
+      "noCompanySwitch": true,
+      "noApiShortcut": true,
+      "noSearch": true,
+      "noBookMasterChange": true,
+      "setupWriteAttempted": false,
+      "setupChanged": false,
+      "runActionClicked": false
+    },
+    "evidenceRefs": [
+      "playwright/projects/fibu-book5/evidence/target-024c-global-dimension-field-discovery/TARGET-024C-result.json",
+      "playwright/projects/fibu-book5/evidence/target-024c-global-dimension-field-discovery/target-024c-row-column-semantics.json",
+      "playwright/projects/fibu-book5/img/target-024c-010-general-ledger-setup.png",
+      "playwright/projects/fibu-book5/img/target-024c-020-change-global-dimensions-action-page.png",
+      "playwright/projects/fibu-book5/img/target-024c-030-action-page-control-map.png"
+    ],
+    "keyLearning": [
+      "The Change Global Dimensions action is visible on Page 118 and requires the real German umlaut label aendern/?ndern in locators.",
+      "On the action page, Edit mode exposes one left editable combobox per Global Dimension Code row.",
+      "The right-side textbox and validation control are disabled/read-only; visible controls alone are not persistence proof.",
+      "Fortlaufend and Parallel are run actions and were intentionally not clicked by TARGET-024C."
+    ],
+    "nextCase": "TARGET-024D-GLOBAL-DIMENSION-CONTROLLED-ASSIGNMENT-ROUTE",
+    "updatedAt": "2026-06-30T17:15:28.840Z"
   }
 }

@@ -281,6 +281,16 @@ Screenshot-QA zu TARGET-023/TARGET-023B: TARGET-023 bleibt als Lernbild fuer den
 
 Screenshot-QA zu TARGET-024B: Der wichtigste Befund ist negativ. Die Bilder duerfen nicht als Erfolgsscreenshots fuer globale Dimensionen verwendet werden. Sie zeigen, dass Page 118 und die Action-Page erreichbar sind, aber dass die aktuelle Playwright-Route die Zuweisung nicht beweist. Der naechste Screenshot-Case muss Page Inspection, Tooltip/Action-Namen und linke/rechte Feldspalte erklaeren.
 
+## Universaarl Foundation - Globale Dimensionen TARGET-024C
+
+| Screenshot | Page | Company | Schritt | Was sieht man? | Intern bewiesen | Nicht bewiesen | Status |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `target-024c-010-general-ledger-setup.png` | Finanzbuchhaltung Einrichtung, Page 118 | `playthru` / `UNIVERSAARL-DE` | Ausgangspunkt vor Action-Page | `Globaler Dimensionscode 1/2` sind leer; `Globale Dimensionen aendern...` ist sichtbar | Page 118 und der passende Aktionspfad sind erreichbar | gespeicherte Global Dimensions, Stammdaten, Posten | `universaarl-setup-discovery`, `not-final-book-proof` |
+| `target-024c-020-change-global-dimensions-action-page.png` | Globale Dimensionen aendern, Page 577 | `playthru` / `UNIVERSAARL-DE` | Action-Page nach Oeffnen und Editmode | `Fortlaufend`, `Parallel`, `Weitere Optionen` und die Zeilen fuer `Globaler Dimensionscode 1/2` sind sichtbar | Die Action-Page hat eigene Run-Aktionen und eigene Eingabezeilen | welche Aktion Werte dauerhaft speichert | `universaarl-action-page-discovery`, `no-run-clicked` |
+| `target-024c-030-action-page-control-map.png` | Globale Dimensionen aendern, Page 577 | `playthru` / `UNIVERSAARL-DE` | Control-/Tooltip-QA | Links liegt pro Zeile eine editierbare Combobox; rechts liegt ein disabled/read-only Textbox-/Pruefbereich | Die linke/rechte Feldgeometrie ist dokumentiert; `Fortlaufend`/`Parallel` wurden nicht geklickt | Global Dimension Code 1/2 assignment, Reportingwirkung | `universaarl-control-map`, `next-route-candidate` |
+
+Screenshot-QA zu TARGET-024C: Diese Bilder sind Bedien- und Debugging-Evidence. Sie erklaeren, warum ein sichtbares Feld noch kein gespeicherter Setup-Wert ist. Fuer das Buch eignen sie sich als Erklaerbild zur Action-Page, aber nicht als Beweis, dass `PRODUCTLINE` und `COSTCENTER` globale Dimensionen sind.
+
 ## Qualitaetsfelder fuer neue Screenshot-Metadaten
 
 Neue oder ueberarbeitete `.screenshot.json`-Dateien sollen diese Felder tragen:
