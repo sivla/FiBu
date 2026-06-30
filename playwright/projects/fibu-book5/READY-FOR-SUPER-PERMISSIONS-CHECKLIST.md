@@ -45,6 +45,7 @@ Kompakter Ablauf fuer diesen Moment: `UNIVERSAARL-SUPER-PERMISSION-RESUME-RUNBOO
 - Nach dem Klick muss sichtbar sein, ob ein Assistent, Dialog oder eine neue Listenzeile geoeffnet wurde.
 - Nach dem Klick muss der sichtbare Zielzustand zur gewaehlten Aktion passen. Eine leere Mandantenzeile ist nicht automatisch der gefuehrte `Neues Unternehmen erstellen`-Wizard.
 - Wenn der Zielzustand nicht passt, den Pfad als `rejected-path` dokumentieren und nicht weiter Werte eingeben.
+- Die vollstaendige Screenshot-Kette aus `UNIVERSAARL-COMPANY-CREATION-SCREENSHOT-QA-GATE.md` ist vorbereitet.
 
 ## Datenbasis-Entscheidung
 

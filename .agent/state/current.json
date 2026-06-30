@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-30T17:25:00.000+02:00",
+  "updatedAt": "2026-06-30T17:55:00.000+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-company-creation-splitbutton-route-correction",
-  "activeCase": "PREP-039-COMPANY-CREATION-SPLITBUTTON-ROUTE-CORRECTION",
-  "active_case_file": ".agent/state/cases/prep-039-company-creation-splitbutton-route-correction.json",
+  "activeArea": "universaarl-company-creation-screenshot-qa-gate",
+  "activeCase": "PREP-040-COMPANY-CREATION-SCREENSHOT-QA-GATE",
+  "active_case_file": ".agent/state/cases/prep-040-company-creation-screenshot-qa-gate.json",
   "lastReferenceCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
   "lastReferenceCaseFile": ".agent/state/cases/warehouse-031-warehouse-source-route-park-or-setup-fit-decision.json",
   "mode": "universaarl-readonly-prep-until-super-permissions",
@@ -48,7 +48,7 @@
     "preview-posting-until-target-company-exists",
     "api-shortcut-for-company-creation"
   ],
-  "nextStep": "After explicit SUPER/company-create permission confirmation, run TARGET-009 using Mandanten -> Pfeil neben Neu -> Neues Unternehmen erstellen; do not click the main Neu button as the guided route.",
+  "nextStep": "After explicit SUPER/company-create permission confirmation, run TARGET-009 with the screenshot chain from UNIVERSAARL-COMPANY-CREATION-SCREENSHOT-QA-GATE.md.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -1357,7 +1357,7 @@
     "nextStep": "BANK-018: controlled no-post Payment Journal preflight for 108205; do not post."
   },
   "workType": "warehouse-source-document-action-on-draft",
-  "lastCompletedCase": "PREP-039-COMPANY-CREATION-SPLITBUTTON-ROUTE-CORRECTION",
+  "lastCompletedCase": "PREP-040-COMPANY-CREATION-SCREENSHOT-QA-GATE",
   "latestBank018": {
     "caseId": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
     "status": [
@@ -3443,16 +3443,16 @@
       "replace-with-better-case"
     ],
     "latestDecisionCard": {
-      "currentCase": "PREP-039-COMPANY-CREATION-SPLITBUTTON-ROUTE-CORRECTION",
+      "currentCase": "PREP-040-COMPANY-CREATION-SCREENSHOT-QA-GATE",
       "plannedNextCaseBeforeReview": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
-      "lastEvidenceSummary": "PREP-031 showed the Companies splitbutton/dropdown read-only; TARGET-008/009 showed why the main Neu route must not be treated as guided wizard evidence.",
+      "lastEvidenceSummary": "PREP-039 corrected the click route to the splitbutton dropdown; PREP-040 now defines the screenshot chain required to verify it.",
       "isPlannedNextCaseStillSensible": true,
-      "reason": "TARGET-009 is still the live dependency, but the click target is narrowed to the dropdown arrow and Neues Unternehmen erstellen.",
+      "reason": "TARGET-009 is still the live dependency, but it now has explicit screenshot stop rules.",
       "lookaheadReviewed": [
         {
           "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
           "status": "blocked",
-          "reason": "Requires SUPER/company-create permissions and must use Mandanten -> Pfeil neben Neu -> Neues Unternehmen erstellen."
+          "reason": "Requires SUPER/company-create permissions and the PREP-040 screenshot chain."
         },
         {
           "caseId": "TARGET-COMPANY-INFO-001-COMPANY-INFORMATION-READONLY",
@@ -3476,20 +3476,20 @@
         }
       ],
       "queueChangesMade": [
-        "Added PREP-039 as a completed route-correction case.",
+        "Added PREP-040 as a completed screenshot-QA gate.",
         "Kept TARGET-009 parked until permissions.",
-        "Clarified that TARGET-009 must not use the main Neu button as guided route evidence."
+        "Added screenshot requirements before, during and after the splitbutton route."
       ],
       "selectedNextCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
       "whySelectedNextCaseIsBest": "Company Creation remains the required dependency before Company Information, Foundation setup and any process evidence.",
       "risksBeforeNextCase": [
-        "Main Neu can open a blank row and must not be mistaken for Neues Unternehmen erstellen.",
-        "Dropdown must be visible and menu item readable before the click.",
+        "Screenshot must show the actual menu item, not only the general Companies page.",
+        "A blank row after main Neu is rejected path, not guided creation proof.",
         "Data basis must be visible before any finish/create confirmation."
       ],
       "requiredPreparation": [
         "User confirms sufficient SUPER/company-create permissions.",
-        "Use UNIVERSAARL-SUPER-PERMISSION-RESUME-RUNBOOK.md and READY-FOR-SUPER-PERMISSIONS-CHECKLIST.md."
+        "Use UNIVERSAARL-COMPANY-CREATION-SCREENSHOT-QA-GATE.md during TARGET-009."
       ]
     }
   },
@@ -3694,16 +3694,16 @@
     "resultFile": "playwright/projects/fibu-book5/evidence/prep-020-universaarl-dataset-blueprint/PREP-020-result.json"
   },
   "nextStepDecisionCard": {
-    "currentCase": "PREP-039-COMPANY-CREATION-SPLITBUTTON-ROUTE-CORRECTION",
+    "currentCase": "PREP-040-COMPANY-CREATION-SCREENSHOT-QA-GATE",
     "plannedNextCaseBeforeReview": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
-    "lastEvidenceSummary": "PREP-031 showed the Companies splitbutton/dropdown read-only; TARGET-008/009 showed why the main Neu route must not be treated as guided wizard evidence.",
+    "lastEvidenceSummary": "PREP-039 corrected the click route to the splitbutton dropdown; PREP-040 now defines the screenshot chain required to verify it.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "TARGET-009 is still the live dependency, but the click target is narrowed to the dropdown arrow and Neues Unternehmen erstellen.",
+    "reason": "TARGET-009 is still the live dependency, but it now has explicit screenshot stop rules.",
     "lookaheadReviewed": [
       {
         "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
         "status": "blocked",
-        "reason": "Requires SUPER/company-create permissions and must use Mandanten -> Pfeil neben Neu -> Neues Unternehmen erstellen."
+        "reason": "Requires SUPER/company-create permissions and the PREP-040 screenshot chain."
       },
       {
         "caseId": "TARGET-COMPANY-INFO-001-COMPANY-INFORMATION-READONLY",
@@ -3727,20 +3727,20 @@
       }
     ],
     "queueChangesMade": [
-      "Added PREP-039 as a completed route-correction case.",
+      "Added PREP-040 as a completed screenshot-QA gate.",
       "Kept TARGET-009 parked until permissions.",
-      "Clarified that TARGET-009 must not use the main Neu button as guided route evidence."
+      "Added screenshot requirements before, during and after the splitbutton route."
     ],
     "selectedNextCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
     "whySelectedNextCaseIsBest": "Company Creation remains the required dependency before Company Information, Foundation setup and any process evidence.",
     "risksBeforeNextCase": [
-      "Main Neu can open a blank row and must not be mistaken for Neues Unternehmen erstellen.",
-      "Dropdown must be visible and menu item readable before the click.",
+      "Screenshot must show the actual menu item, not only the general Companies page.",
+      "A blank row after main Neu is rejected path, not guided creation proof.",
       "Data basis must be visible before any finish/create confirmation."
     ],
     "requiredPreparation": [
       "User confirms sufficient SUPER/company-create permissions.",
-      "Use UNIVERSAARL-SUPER-PERMISSION-RESUME-RUNBOOK.md and READY-FOR-SUPER-PERMISSIONS-CHECKLIST.md."
+      "Use UNIVERSAARL-COMPANY-CREATION-SCREENSHOT-QA-GATE.md during TARGET-009."
     ]
   },
   "permissionBlocker": {
@@ -4388,5 +4388,23 @@
       "missing-super-or-company-create-permission"
     ],
     "updatedAt": "2026-06-30T17:25:00.000+02:00"
+  },
+  "latestPrep040CompanyCreationScreenshotQaGate": {
+    "caseId": "PREP-040-COMPANY-CREATION-SCREENSHOT-QA-GATE",
+    "status": "prep-done",
+    "resultPath": "playwright/projects/fibu-book5/evidence/prep-040-company-creation-screenshot-qa-gate/PREP-040-result.json",
+    "gatePath": "playwright/projects/fibu-book5/UNIVERSAARL-COMPANY-CREATION-SCREENSHOT-QA-GATE.md",
+    "summary": "Created the required screenshot chain for the next Company Creation run: pre-click context, hover/tooltip, dropdown/menu item, post-click state, data basis, success and rejected-path images.",
+    "noBcRun": true,
+    "noPlaywrightRun": true,
+    "noCompanyCreated": true,
+    "noSetupChange": true,
+    "noPreviewPosting": true,
+    "noPosting": true,
+    "nextCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+    "blockedBy": [
+      "missing-super-or-company-create-permission"
+    ],
+    "updatedAt": "2026-06-30T17:55:00.000+02:00"
   }
 }

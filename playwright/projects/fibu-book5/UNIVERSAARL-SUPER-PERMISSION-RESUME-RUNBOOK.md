@@ -95,10 +95,15 @@ Company Creation ist erst erfolgreich, wenn `UNIVERSAARL-DE` sichtbar in der Man
 Pflicht-Evidence:
 
 - Screenshot vor der Anlage mit Mandantenliste.
+- Screenshot mit Tooltip/Accessible Name fuer den Hauptbutton `Neu`.
+- Screenshot mit Tooltip/Accessible Name fuer den Pfeil neben `Neu`.
 - Screenshot mit offenem Dropdown und lesbarem `Neues Unternehmen erstellen`.
+- Screenshot unmittelbar nach dem Klick, der zeigt, ob ein Assistent, Dialog oder eine leere Zeile geoeffnet wurde.
 - Screenshot der Datenbasisentscheidung, falls ein Wizard erscheint.
 - Screenshot nach Erfolg mit `UNIVERSAARL-DE` in der Liste.
 - Result JSON mit no-API, no-CRONUS-copy, no-Testunternehmen, selected-data-basis.
+
+Die detaillierte Bildkette steht in `playwright/projects/fibu-book5/UNIVERSAARL-COMPANY-CREATION-SCREENSHOT-QA-GATE.md`.
 
 ## Phase 5 - Nach der Anlage nicht springen
 

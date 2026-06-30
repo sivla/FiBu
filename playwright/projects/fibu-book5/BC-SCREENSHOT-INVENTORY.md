@@ -61,6 +61,22 @@ PREP-011 wendet die PREP-010-Regel auf die aktuellen Universaarl-Company-Creatio
 
 Regel fuer das Buch: Ein Bild darf erst dann als Schritt-fuer-Schritt-Screenshot gelten, wenn der behauptete UI-Teil und der Folgezustand sichtbar sind. Die aktuellen TARGET-006/008/009-Bilder bleiben Kontext-, Debugging- oder Blockerbilder.
 
+## PREP-040 Company Creation Screenshot-QA
+
+Der naechste Rechte-Lauf darf erst als Company-Creation-Beweis gelten, wenn die Bildkette den konkreten UI-Zustand zeigt. Pflicht sind: Mandantenliste vor Aktion, Hover/Tooltip fuer Hauptbutton `Neu`, Hover/Tooltip fuer den Pfeil neben `Neu`, geoeffnetes Dropdown mit lesbarem `Neues Unternehmen erstellen`, Folgezustand nach Klick, sichtbare Datenbasis, sichtbarer Abschlusszustand und danach `UNIVERSAARL-DE` in der Liste.
+
+Eine leere Mandantenzeile nach Hauptbutton `Neu` bleibt `rejected-path` oder separater ListPart-Pfad. Sie ist kein Screenshot fuer den gefuehrten Weg `Neues Unternehmen erstellen`.
+
+| Screenshot-Anforderung | Status vor Rechtefreigabe | Buchnutzung | Grenze |
+| --- | --- | --- | --- |
+| Mandantenliste vor Aktion | `planned` | Einstieg und Kontext fuer die Anlage erklaeren | keine Anlage |
+| Hauptbutton-Tooltip `Neu` | `planned` | Unterschied zwischen Hauptbutton und Pfeil erklaeren | kein Zielklick fuer TARGET-009 |
+| Pfeil-Tooltip neben `Neu` | `planned` | richtigen Splitbutton-Teil zeigen | kein Menueintrag angeklickt |
+| Dropdown mit `Neues Unternehmen erstellen` | `planned` | Klickziel fuer den gefuehrten Weg zeigen | keine Datenbasis, keine Anlage |
+| Folgezustand nach Menueintrag | `planned-after-permission` | pruefen, ob wirklich der gefuehrte Weg gestartet wurde | kein Finish/OK ohne Datenbasis |
+| Datenbasisentscheidung | `planned-after-permission` | No Data/Setup Data Only/Sample/Copy/Test unterscheiden | keine finale Entscheidung ohne sichtbare Option |
+| Ergebnisliste mit `UNIVERSAARL-DE` | `planned-after-permission` | einziger Erfolgsscreenshot fuer die Company-Anlage | keine Company Information, kein Setup |
+
 ## Geplante Universaarl Look-and-Feel-Screenshots
 
 Diese Bilder werden erst erzeugt, wenn `UNIVERSAARL-DE` existiert und genug sinnvolle Universaarl-Daten vorhanden sind. Bis dahin sind sie keine Buchkandidaten.
