@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "runId": "PREP-035-CH06-FOUNDATION-UNIVERSAARL-DRAFT",
-  "caseId": "PREP-035-CH06-FOUNDATION-UNIVERSAARL-DRAFT",
+  "runId": "PREP-036-W1-FOUNDATION-READINESS-GATE",
+  "caseId": "PREP-036-W1-FOUNDATION-READINESS-GATE",
   "status": "observed",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE-planned-not-yet-created",
@@ -10,47 +10,52 @@
   "posted": false,
   "previewPosting": false,
   "setupChange": false,
+  "masterDataChange": false,
   "companyCreated": false,
   "bookChanged": false,
-  "bookDraftChanged": true,
-  "summary": "PREP-035 created a beginner-facing Universaarl Foundation chapter 6 draft while Company Creation remains permission-blocked.",
+  "bookDraftChanged": false,
+  "summary": "PREP-036 created a concrete W1 Foundation readiness gate for the first post-permission Universaarl sequence.",
   "changedFiles": [
-    "playwright/projects/fibu-book5/book-drafts/universaarl-foundation-ch06-draft.md",
+    "playwright/projects/fibu-book5/UNIVERSAARL-W1-FOUNDATION-READINESS-GATE.md",
     "playwright/projects/fibu-book5/BC-FULL-PLAYTHROUGH-CATALOG.md",
-    "playwright/projects/fibu-book5/BOOK-CHAPTER-STIMMIGKEIT-AUDIT.md",
-    "playwright/projects/fibu-book5/evidence/prep-035-ch06-foundation-universaarl-draft/README.md",
-    "playwright/projects/fibu-book5/evidence/prep-035-ch06-foundation-universaarl-draft/PREP-035-result.json",
-    ".agent/state/cases/prep-035-ch06-foundation-universaarl-draft.json",
+    "playwright/projects/fibu-book5/BC-MICROSOFT-LEARN-MAPPING.md",
+    "playwright/projects/fibu-book5/BC-SOURCE-CLAIM-RULES.md",
+    "playwright/projects/fibu-book5/evidence/prep-036-w1-foundation-readiness-gate/README.md",
+    "playwright/projects/fibu-book5/evidence/prep-036-w1-foundation-readiness-gate/PREP-036-result.json",
+    ".agent/state/cases/prep-036-w1-foundation-readiness-gate.json",
+    ".agent/state/open_questions_register.json",
     ".agent/state/current.json",
+    ".agent/state/coverage_state.json",
     ".agent/state/last_run_summary.json",
-    ".agent/state/coverage_state.json"
+    ".agent/state/marathon_queue.json"
   ],
   "evidence": [
-    "playwright/projects/fibu-book5/evidence/prep-035-ch06-foundation-universaarl-draft/PREP-035-result.json",
-    "playwright/projects/fibu-book5/evidence/prep-035-ch06-foundation-universaarl-draft/README.md",
-    "playwright/projects/fibu-book5/book-drafts/universaarl-foundation-ch06-draft.md"
+    "playwright/projects/fibu-book5/UNIVERSAARL-W1-FOUNDATION-READINESS-GATE.md",
+    "playwright/projects/fibu-book5/evidence/prep-036-w1-foundation-readiness-gate/PREP-036-result.json",
+    "playwright/projects/fibu-book5/evidence/prep-036-w1-foundation-readiness-gate/README.md"
   ],
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/prep-035-ch06-foundation-universaarl-draft/PREP-035-result.json"
+    "playwright/projects/fibu-book5/evidence/prep-036-w1-foundation-readiness-gate/PREP-036-result.json"
   ],
   "proved": [
-    "A beginner-facing Universaarl Foundation draft now exists for chapter 6 preparation.",
-    "The draft separates Company Information, Number Series, Posting Groups, VAT Setup, Dimensions and Journals before first posting.",
-    "The draft records screenshot QA expectations for meaningful field/action visibility."
+    "The post-permission sequence is now explicitly gated: Company Creation, Company Context, Company Information, Number Series, Posting Groups, VAT, Dimensions, then first process documents.",
+    "Setup, master data, Preview Posting and Posting remain locked until the active gate has direct Universaarl evidence.",
+    "Open questions and source-claim rules now point to the W1 Foundation gate."
   ],
   "notProved": [
     "UNIVERSAARL-DE was not created.",
     "No Business Central UI was opened.",
-    "No setup, preview, posting or UAT execution was performed."
+    "No setup, master data, preview, posting or UAT execution was performed.",
+    "No final German accounting or VAT proof exists yet."
   ],
-  "nextStep": "After explicit SUPER/company-create permission confirmation, resume TARGET-009 using the Companies Page splitbutton route: Pfeil neben Neu -> Neues Unternehmen erstellen.",
+  "nextStep": "After explicit SUPER/company-create permission confirmation, resume TARGET-009; then execute TARGET-COMPANY-INFO-001 and the W1 Foundation gates before any master data, preview or posting.",
   "nextCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
   "nextStepDecisionCard": {
-    "currentCase": "PREP-035-CH06-FOUNDATION-UNIVERSAARL-DRAFT",
+    "currentCase": "PREP-036-W1-FOUNDATION-READINESS-GATE",
     "plannedNextCaseBeforeReview": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
-    "lastEvidenceSummary": "PREP-030 created a quality scorecard and parked TARGET-009 until permissions are available.",
+    "lastEvidenceSummary": "PREP-035 created a chapter 6 Foundation draft but did not define a machine-readable execution gate for the first post-permission W1 sequence.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "TARGET-009 is still the correct live next step, but a Foundation draft is useful safe progress while it is permission-blocked.",
+    "reason": "TARGET-009 is still the required live next step, because UNIVERSAARL-DE does not exist. PREP-036 adds the required follow-up sequence after creation.",
     "lookaheadReviewed": [
       {
         "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
@@ -59,49 +64,52 @@
       },
       {
         "caseId": "TARGET-COMPANY-INFO-001",
-        "status": "needs-setup-first",
-        "reason": "Company Information requires UNIVERSAARL-DE to exist."
+        "status": "ready-after-current",
+        "reason": "Company Information is the first setup page after UNIVERSAARL-DE exists and the company context is visible."
       },
       {
         "caseId": "TARGET-005-NUMBER-SERIES-PREFLIGHT",
         "status": "ready-after-current",
-        "reason": "Number Series is the next Foundation control after company and company information context."
+        "reason": "Number Series must be understood before first documents and journals."
       },
       {
         "caseId": "TARGET-006-POSTING-GROUPS-PREFLIGHT",
         "status": "ready-after-current",
-        "reason": "Posting Groups are required before any Preview/Post process can be meaningful."
+        "reason": "Posting Groups and General Posting Setup must be clear before Preview Posting or Posting."
       },
       {
         "caseId": "TARGET-008-VAT19-SETUP-READINESS",
         "status": "needs-source-check-first",
-        "reason": "German VAT needs both BC setup evidence and later official/source-backed legal framing."
+        "reason": "German VAT needs BC setup evidence plus official legal framing before final claims."
       }
     ],
     "queueChangesMade": [
-      "No live queue entry was unblocked.",
-      "PREP-035 was added as a safe interim bookdraft progress case."
+      "Added PREP-036 as a completed safe interim Foundation gate case.",
+      "Kept TARGET-009 as the next practical case after permission unblock.",
+      "Inserted TARGET-COMPANY-INFO-001 as the explicit first follow-up after Company Creation."
     ],
     "selectedNextCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
     "whySelectedNextCaseIsBest": "Company Creation is still required before Company Information, Foundation setup, master data and process postings.",
     "risksBeforeNextCase": [
       "Do not click main Neu when the intended target is the dropdown arrow and Neues Unternehmen erstellen.",
-      "Do not choose CRONUS copy or Testunternehmen as final target basis."
+      "Do not choose CRONUS copy or Testunternehmen as final target basis.",
+      "Do not skip directly from Company Creation into setup or master data without Company Context and Company Information proof."
     ],
     "requiredPreparation": [
       "User confirms sufficient SUPER/company-create permissions.",
-      "Use READY-FOR-SUPER-PERMISSIONS-CHECKLIST.md and PREP-031 screenshot QA before selecting any menu item."
+      "Use READY-FOR-SUPER-PERMISSIONS-CHECKLIST.md, PREP-031 screenshot QA and UNIVERSAARL-W1-FOUNDATION-READINESS-GATE.md."
     ]
   },
   "noEffectiveBusinessCentralActions": true,
   "noCompanyCreated": true,
   "noSetupChange": true,
+  "noMasterDataChange": true,
   "noPreviewPosting": true,
   "noPosting": true,
   "noCompanySwitch": true,
-  "updatedAt": "2026-06-30T15:05:00.000+02:00",
+  "updatedAt": "2026-06-30T15:45:00.000+02:00",
   "hardStops": [
     "missing-super-or-company-create-permission"
   ],
-  "hardStopReason": "Company Creation is the next high-impact lever but remains blocked until the user confirms sufficient SUPER/company-create permissions."
+  "hardStopReason": "Company Creation remains the next high-impact lever but is parked until the user confirms sufficient SUPER/company-create permissions."
 }

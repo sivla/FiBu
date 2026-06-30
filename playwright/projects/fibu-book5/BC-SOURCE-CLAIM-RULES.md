@@ -117,3 +117,9 @@ Beispiele:
 | Deutsche 19 Prozent USt ist eingerichtet. | Rechts-/Steuer- plus Evidence-Claim | nein | amtliche Quelle plus Universaarl-Setup/Preview/VAT Entries |
 | Dimensionen kategorisieren Entries und unterstuetzen Analyse. | Produkt-/Setupclaim | ja | Microsoft Learn `Work with dimensions` |
 | Universaarl-Posten enthalten `PRODUCTLINE`. | Evidence-Claim | nein | erst nach Beleg-/Entry-Trace |
+
+## PREP-036 W1 Foundation Gate
+
+PREP-036 ist eine Ausfuehrungsregel fuer den ersten Lauf nach der Rechtefreigabe, kein Business-Central-Nachweis. Als Planungs- und Buchstrukturclaim ist erlaubt: Company Creation kommt vor Company Information, Company Information kommt vor Foundation Setup, und Nummernserien, Buchungsgruppen, USt-Setup und Dimensionen kommen vor ersten Belegen, Preview oder Posting.
+
+Ohne spaetere Universaarl-Evidence duerfen daraus keine Live-Claims abgeleitet werden: `UNIVERSAARL-DE` ist noch nicht erstellt, Company Information ist nicht gespeichert, Nummernserien/Buchungsgruppen/USt/Dimensionen sind nicht eingerichtet, Preview/Post ist nicht freigegeben und deutsche 19-Prozent-USt ist nicht final bewiesen. Die Detailregel steht in `playwright/projects/fibu-book5/UNIVERSAARL-W1-FOUNDATION-READINESS-GATE.md`.

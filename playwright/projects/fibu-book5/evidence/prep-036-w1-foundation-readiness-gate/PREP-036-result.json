@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "PREP-036-W1-FOUNDATION-READINESS-GATE",
+  "source": "local-analysis",
+  "resultStatus": "observed",
+  "instance": "playthru",
+  "targetCompany": "UNIVERSAARL-DE",
+  "sourceCompany": "UNIVERSAARL-DE-planned-not-yet-created",
+  "proved": [
+    "A concrete W1 Foundation readiness gate now exists for the first effective Universaarl steps after permissions are available.",
+    "The gate orders Company Creation, Company Context, Company Information, Number Series, Posting Groups, VAT Setup, Dimensions and first process readiness.",
+    "The gate records screenshot QA expectations for Foundation pages and prevents code-only screenshots from becoming book evidence.",
+    "TARGET-009 remains the selected live case and is still blocked until SUPER/company-create permissions are confirmed."
+  ],
+  "notProved": [
+    "UNIVERSAARL-DE was not created.",
+    "No Company Information was saved.",
+    "No number series, posting group, VAT setup or dimension was changed.",
+    "No Business Central UI was opened.",
+    "No Playwright test was started.",
+    "No preview, posting, draft, master data or ledger trace was performed."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/UNIVERSAARL-W1-FOUNDATION-READINESS-GATE.md",
+    "playwright/projects/fibu-book5/BC-FULL-PLAYTHROUGH-CATALOG.md",
+    "playwright/projects/fibu-book5/BC-MICROSOFT-LEARN-MAPPING.md",
+    "playwright/projects/fibu-book5/BC-SOURCE-CLAIM-RULES.md",
+    ".agent/state/open_questions_register.json",
+    "playwright/projects/fibu-book5/evidence/prep-036-w1-foundation-readiness-gate/README.md",
+    "playwright/projects/fibu-book5/evidence/prep-036-w1-foundation-readiness-gate/PREP-036-result.json",
+    ".agent/state/cases/prep-036-w1-foundation-readiness-gate.json",
+    ".agent/state/current.json",
+    ".agent/state/marathon_queue.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/coverage_state.json"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/UNIVERSAARL-W1-FOUNDATION-READINESS-GATE.md",
+    "playwright/projects/fibu-book5/evidence/prep-036-w1-foundation-readiness-gate/README.md",
+    "playwright/projects/fibu-book5/evidence/prep-036-w1-foundation-readiness-gate/PREP-036-result.json"
+  ],
+  "warnings": [
+    "This is a gate plan, not live Business Central evidence.",
+    "Every concrete Universaarl setup or posting claim still requires later playthru evidence.",
+    "German VAT claims still need official/source-backed legal framing plus BC evidence."
+  ],
+  "blockedBy": [
+    "missing-super-or-company-create-permission"
+  ],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "PREP-036-W1-FOUNDATION-READINESS-GATE",
+      "active_case_file": ".agent/state/cases/prep-036-w1-foundation-readiness-gate.json",
+      "nextCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+      "nextStep": "After explicit SUPER/company-create permission confirmation, resume TARGET-009; then follow UNIVERSAARL-W1-FOUNDATION-READINESS-GATE.md before any setup, master data, preview or posting."
+    }
+  },
+  "flags": {
+    "noBcRun": true,
+    "noPlaywrightRun": true,
+    "noWrite": true,
+    "noCompanySwitch": true,
+    "noCompanyCreated": true,
+    "noSetupChange": true,
+    "noPreview": true,
+    "noPost": true,
+    "noDraft": true,
+    "noApiShortcut": true,
+    "noBookClaimWithoutEvidence": true
+  },
+  "nextStepDecisionCard": {
+    "currentCase": "PREP-036-W1-FOUNDATION-READINESS-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+    "lastEvidenceSummary": "PREP-035 prepared chapter 6 Foundation reader text but did not define an execution gate for the first post-permission W1 steps.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "TARGET-009 remains the correct live step, but W1 execution needed a gate before Company Information, setup and first process work.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+        "status": "blocked",
+        "reason": "Requires SUPER/company-create permissions and splitbutton route discipline."
+      },
+      {
+        "caseId": "TARGET-COMPANY-INFO-001",
+        "status": "ready-after-current",
+        "reason": "Company Information is the first W1 gate after UNIVERSAARL-DE exists and the company context is visible."
+      },
+      {
+        "caseId": "TARGET-005-NUMBER-SERIES-PREFLIGHT",
+        "status": "ready-after-current",
+        "reason": "Runs after Company Information and before process documents."
+      },
+      {
+        "caseId": "TARGET-006-POSTING-GROUPS-PREFLIGHT",
+        "status": "ready-after-current",
+        "reason": "Runs before Preview/Post so account finding is explainable."
+      },
+      {
+        "caseId": "TARGET-008-VAT19-SETUP-READINESS",
+        "status": "needs-source-check-first",
+        "reason": "Needs BC setup evidence plus official/source-backed legal framing."
+      }
+    ],
+    "queueChangesMade": [
+      "Added PREP-036 as completed W1 Foundation readiness gate.",
+      "Kept TARGET-009 parked until permissions are confirmed.",
+      "Inserted TARGET-COMPANY-INFO-001 as the explicit first follow-up after Company Creation."
+    ],
+    "selectedNextCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+    "whySelectedNextCaseIsBest": "Company Creation remains the first effective dependency before every W1 Foundation step.",
+    "risksBeforeNextCase": [
+      "Insufficient permissions.",
+      "Wrong UI target: main Neu instead of dropdown arrow / Neues Unternehmen erstellen.",
+      "Unclear data basis or accidental Demo/Testcompany route."
+    ],
+    "requiredPreparation": [
+      "User confirms sufficient SUPER/company-create permissions.",
+      "Use READY-FOR-SUPER-PERMISSIONS-CHECKLIST.md.",
+      "After Company Creation, follow UNIVERSAARL-W1-FOUNDATION-READINESS-GATE.md."
+    ]
+  }
+}

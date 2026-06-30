@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "updatedAt": "2026-06-30T02:20:00.000+02:00",
+  "updatedAt": "2026-06-30T15:45:00.000+02:00",
   "purpose": "zero-open-questions-register",
   "activeInstance": "playthru",
   "targetCompany": "UNIVERSAARL-DE",
@@ -127,7 +127,7 @@
       "sourceNeeded": "dataset-blueprint-and-universaarl-evidence",
       "status": "requires-universaarl-company",
       "blockingFinalBook": false,
-      "nextAction": "Nach sichtbarer Company erst Foundation Setup pruefen; danach DATA-MASTER-CORE aus UNIVERSAARL-DATASET-BLUEPRINT.md klein starten.",
+      "nextAction": "Nach sichtbarer Company erst UNIVERSAARL-W1-FOUNDATION-READINESS-GATE.md ausfuehren; danach DATA-MASTER-CORE aus UNIVERSAARL-DATASET-BLUEPRINT.md klein starten.",
       "nextCase": "FUTURE-DATA-MASTER-CORE-FIRST-PACK",
       "evidencePath": "playwright/projects/fibu-book5/UNIVERSAARL-DATASET-BLUEPRINT.md",
       "bookChapter": "Kapitel 2, 10, 11, 13, 25",
@@ -151,17 +151,36 @@
       "evidencePath": "playwright/projects/fibu-book5/BC-SCREENSHOT-INVENTORY.md",
       "bookChapter": "Kapitel 3",
       "blockedBy": []
+    },
+    {
+      "id": "OQ-0008",
+      "area": "foundation",
+      "objectType": "gate",
+      "objectName": "W1 Foundation after Company Creation",
+      "question": "Welche Reihenfolge gilt nach der Company-Anlage, bevor erste Stammdaten oder Belege erzeugt werden?",
+      "whyItMatters": "Nach der Rechtefreigabe darf der Autopilot nicht direkt in Setup, Stammdaten oder Posting springen.",
+      "sourceNeeded": "microsoft-learn-and-project-gate",
+      "status": "explained-by-microsoft-learn",
+      "blockingFinalBook": false,
+      "nextAction": "Nach TARGET-009 die Gate-Reihenfolge aus UNIVERSAARL-W1-FOUNDATION-READINESS-GATE.md verwenden: Company Context, Company Information, Number Series, Posting Groups, VAT, Dimensions, dann erste Prozessbelege.",
+      "nextCase": "TARGET-COMPANY-INFO-001",
+      "evidencePath": "playwright/projects/fibu-book5/UNIVERSAARL-W1-FOUNDATION-READINESS-GATE.md",
+      "bookChapter": "Kapitel 6",
+      "blockedBy": [
+        "missing-super-or-company-create-permission",
+        "requires-universaarl-company"
+      ]
     }
   ],
   "summary": {
     "openItems": 0,
     "inProgressItems": 0,
-    "explainedItems": 1,
-    "blockedByPermissionItems": 2,
-    "requiresCompanyItems": 1,
+    "explainedItems": 2,
+    "blockedByPermissionItems": 3,
+    "requiresCompanyItems": 2,
     "requiresSubcompanyItems": 2,
     "excludedItems": 1,
     "blockingFinalBookItems": 4,
-    "nextAction": "Keep TARGET-009 parked until permissions; continue with PREP-015 checklist hardening."
+    "nextAction": "Keep TARGET-009 parked until permissions; after company creation execute the W1 Foundation Gate before setup, master data, preview or posting."
   }
 }
