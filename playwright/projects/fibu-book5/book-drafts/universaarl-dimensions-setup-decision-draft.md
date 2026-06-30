@@ -45,3 +45,7 @@ Eine Dimension besteht nicht nur aus dem Dimensionscode. Die Werte sind genauso 
 Eine angelegte Dimension beweist noch keine Auswertung. Die Auswertung entsteht erst, wenn ein Beleg mit Dimensionen gebucht wurde und die Dimensionen in den Posten oder Berichten sichtbar sind.
 
 Vor den ersten Stammdaten wird noch festgelegt, welche Dimensionen als globale Dimensionen besonders sichtbar in Posten und Auswertungen erscheinen. Fuer den Start sind `PRODUCTLINE` und `COSTCENTER` die Kandidaten.
+
+Auf der Seite `Finanzbuchhaltung Einrichtung` stehen die Felder `Globaler Dimensionscode 1` und `Globaler Dimensionscode 2` im Abschnitt `Dimensionen`. In der aktuellen Universaarl-Company sind diese beiden Felder noch leer. Die Aktion `Globale Dimensionen aendern...` oeffnet eine eigene Seite mit den Optionen `Fortlaufend` und `Parallel`; dort nimmt die sichtbare linke Eingabespalte zwar `PRODUCTLINE` und `COSTCENTER` an, nach dem erneuten Oeffnen der Einrichtung bleiben die globalen Dimensionsfelder aber leer.
+
+Fuer die ersten Stammdaten heisst das: Die Dimensionen und ihre Werte sind vorhanden, aber `PRODUCTLINE` und `COSTCENTER` sind noch nicht als globale Dimensionen nachgewiesen. Bevor daraus Belege, Posten oder Auswertungen entstehen, muss die genaue Feld- und Aktionslogik der Seite `Globale Dimensionen aendern` sauber geklaert werden. Erst danach ist sinnvoll erkennbar, welche Dimension spaeter als globale Dimension in Posten und Berichten besonders einfach gefiltert werden kann.

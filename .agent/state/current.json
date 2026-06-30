@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-30T16:26:42.623Z",
+  "updatedAt": "2026-06-30T17:00:21.376Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-w1-foundation-global-dimension-assignment",
-  "activeCase": "TARGET-024B-GLOBAL-DIMENSION-ASSIGNMENT",
-  "active_case_file": ".agent/state/cases/target-024b-global-dimension-assignment.json",
+  "activeArea": "universaarl-w1-foundation-global-dimension-field-discovery",
+  "activeCase": "TARGET-024C-GLOBAL-DIMENSION-FIELD-DISCOVERY",
+  "active_case_file": ".agent/state/cases/target-024c-global-dimension-field-discovery.json",
   "lastReferenceCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
   "lastReferenceCaseFile": ".agent/state/cases/warehouse-031-warehouse-source-route-park-or-setup-fit-decision.json",
   "mode": "universaarl-target-execution",
@@ -19,15 +19,13 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "review-target-023b-result",
+    "review-target-024b-result",
     "open-general-ledger-setup-page-directly",
-    "prove-current-global-dimension-fields",
-    "expand-fasttabs-or-wide-layout-if-needed",
-    "set-or-verify-global-dimension-code-1-productline",
-    "set-or-verify-global-dimension-code-2-costcenter",
-    "capture-before-after-reopen-screenshots",
-    "write-result-and-next-step-card",
-    "queue-and-state-update"
+    "open-change-global-dimensions-action-page",
+    "capture-page-inspection-or-field-diagnostics",
+    "capture-tooltip-action-inventory",
+    "capture-screenshot-qa-for-left-right-columns",
+    "write-result-and-next-step-card"
   ],
   "forbiddenActions": [
     "leave-instance",
@@ -44,7 +42,7 @@
     "api-shortcut",
     "claim-reporting-readiness-without-posted-dimension-entries"
   ],
-  "nextStep": "Assign/prove PRODUCTLINE and COSTCENTER as Global Dimension Code 1/2 in General Ledger Setup before master data.",
+  "nextStep": "Inspect Change Global Dimensions field/action semantics before another write attempt or master data start.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -227,7 +225,7 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "universaarl-w1-foundation-dimension-values-route-recovery",
+  "currentCoverageFocus": "universaarl-w1-foundation-global-dimension-field-discovery",
   "nextProcessRoute": [
     "P2P-012 compared Purchase Journal, Item Journal, Purchase Invoices and Requisition Worksheet by direct page URL without search or field entry.",
     "Item Journal is the most stable observed route for material quantity/location/value effect, but it is Inventory evidence rather than full creditor P2P.",
@@ -1349,7 +1347,7 @@
     "nextStep": "BANK-018: controlled no-post Payment Journal preflight for 108205; do not post."
   },
   "workType": "foundation-global-dimension-assignment",
-  "lastCompletedCase": "TARGET-023B-DIMENSION-VALUES-ROUTE-RECOVERY",
+  "lastCompletedCase": "TARGET-024B-GLOBAL-DIMENSION-ASSIGNMENT",
   "latestBank018": {
     "caseId": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
     "status": [
@@ -3686,49 +3684,50 @@
     "resultFile": "playwright/projects/fibu-book5/evidence/prep-020-universaarl-dataset-blueprint/PREP-020-result.json"
   },
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-017-NUMBER-SERIES-SETUP-ASSIGNMENT",
-    "plannedNextCaseBeforeReview": "TARGET-017-NUMBER-SERIES-SETUP-ASSIGNMENT",
-    "lastEvidenceSummary": "TARGET-016M proved all U-* Number Series Lines with Startnr./Endnr. after reopen.",
-    "isPlannedNextCaseStillSensible": true,
-    "reason": "Setup assignment is the direct prerequisite before master data or document setup can use Universaarl numbering.",
+    "currentCase": "TARGET-024B-GLOBAL-DIMENSION-ASSIGNMENT",
+    "plannedNextCaseBeforeReview": "TARGET-024-CORE-MASTERDATA-PLAN",
+    "lastEvidenceSummary": "TARGET-023B recovered all starter Dimension Values with reopen proof. TARGET-024B then tested Global Dimension Code assignment on General Ledger Setup and Change Global Dimensions.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "Master data should not start while PRODUCTLINE/COSTCENTER are not yet proven as Global Dimension Code 1/2 and the Change Global Dimensions page field semantics are unclear.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-017B-NUMBER-SERIES-SETUP-FIELD-DISCOVERY",
-        "status": "needs-ui-discovery-first",
-        "reason": "Blocked assignment fields need UI diagnostics before setup can be considered complete."
+        "caseId": "TARGET-024C-GLOBAL-DIMENSION-FIELD-DISCOVERY",
+        "status": "ready-next",
+        "reason": "The next useful step is technical/page-field discovery of the Change Global Dimensions action page, not another blind write attempt."
       },
       {
-        "caseId": "TARGET-018-CUSTOMER-MASTERDATA-PREFLIGHT",
-        "status": "needs-setup-first",
-        "reason": "Master data waits for posting groups, VAT and dimensions after numbering."
-      },
-      {
-        "caseId": "TARGET-020-VAT-SETUP-READINESS",
+        "caseId": "TARGET-024-CORE-MASTERDATA-PLAN",
         "status": "ready-after-current",
-        "reason": "VAT setup follows posting group preflight before any document preview."
+        "reason": "Master data planning can continue after global-dimension route is proven or consciously parked."
       },
       {
-        "caseId": "TARGET-021-DIMENSIONS-FOUNDATION",
-        "status": "ready-after-current",
-        "reason": "Dimensions should be available before rich process evidence."
-      },
-      {
-        "caseId": "TARGET-022-CORE-MASTERDATA-PLAN",
+        "caseId": "TARGET-025-CUSTOMER-VENDOR-ITEM-TEMPLATES-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "Customers, vendors and items should use final setup mappings."
+        "reason": "Templates need posting groups, VAT and dimension/default-dimension decisions."
+      },
+      {
+        "caseId": "TARGET-026-VAT-SETUP-FIT-DECISION",
+        "status": "needs-source-check-first",
+        "reason": "German VAT setup still needs source-backed setup before any document preview."
+      },
+      {
+        "caseId": "TARGET-028-DEFAULT-DIMENSIONS-STRATEGY",
+        "status": "needs-setup-first",
+        "reason": "Default Dimensions need either proven global dimensions or a documented park decision plus concrete master data."
       }
     ],
     "queueChangesMade": [
-      "Selected TARGET-017B-NUMBER-SERIES-SETUP-FIELD-DISCOVERY based on TARGET-017 assignment result."
+      "Marked TARGET-024B blocked and inserted/selected TARGET-024C-GLOBAL-DIMENSION-FIELD-DISCOVERY."
     ],
-    "selectedNextCase": "TARGET-017B-NUMBER-SERIES-SETUP-FIELD-DISCOVERY",
-    "whySelectedNextCaseIsBest": "The safest next step is field discovery for hidden or ambiguous setup fields, not master data.",
+    "selectedNextCase": "TARGET-024C-GLOBAL-DIMENSION-FIELD-DISCOVERY",
+    "whySelectedNextCaseIsBest": "TARGET-024B proved the page contexts and rejected two repeated write routes; the cheapest safe progress is to inspect fields/actions/columns before the next setup attempt.",
     "risksBeforeNextCase": [
-      "Do not create customers/vendors/items until numbering and posting setup are known.",
-      "Do not claim legal numbering compliance from this technical setup alone."
+      "Do not claim Global Dimension Code 1/2 readiness from TARGET-024B screenshots.",
+      "Do not start master data/default dimensions as if global dimensions are assigned.",
+      "Do not repeat the same left-column Change Global Dimensions route."
     ],
     "requiredPreparation": [
-      "Use Page Inspection, Personalize or field diagnostics for only the blocked setup fields."
+      "Use Page Inspection/technical field diagnostics, tooltip/action inventory and screenshot QA on the Change Global Dimensions page."
     ]
   },
   "permissionBlocker": {
@@ -3807,7 +3806,7 @@
   },
   "activeCaseFile": ".agent/state/cases/prep-034-role-center-readonly-shell-map.json",
   "previousCase": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
-  "nextCase": "TARGET-024B-GLOBAL-DIMENSION-ASSIGNMENT",
+  "nextCase": "TARGET-024C-GLOBAL-DIMENSION-FIELD-DISCOVERY",
   "latestPrepCase": {
     "caseId": "PREP-034-ROLE-CENTER-READONLY-SHELL-MAP",
     "status": "prep-observed",
@@ -5767,5 +5766,51 @@
     "playwrightLearning": "For additional Dimension Values, direct filtered page 537 plus header typing is rejected; reliable route is Dimensions page 536 -> select dimension row -> Dimension -> Dimensionswerte -> last input row -> reopen proof.",
     "nextCase": "TARGET-024B-GLOBAL-DIMENSION-ASSIGNMENT",
     "updatedAt": "2026-06-30T16:26:42.623Z"
+  },
+  "latestTarget024BGlobalDimensionAssignment": {
+    "caseId": "TARGET-024B-GLOBAL-DIMENSION-ASSIGNMENT",
+    "status": "blocked",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-024b-global-dimension-assignment/TARGET-024B-result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "proved": [
+      "General Ledger Setup / Finanzbuchhaltung Einrichtung page 118 was opened only in playthru / UNIVERSAARL-DE.",
+      "No master data, document draft, preview posting, posting, company switch or API shortcut was executed."
+    ],
+    "notProved": [
+      "Not every Global Dimension Code field could be assigned or proven with the current UI route.",
+      "Default Dimensions on customers, vendors, items or accounts are not proven.",
+      "Dimension Set Entries, posted entries and reporting filters are not proven.",
+      "German VAT or posting-group correctness is not proven by this case."
+    ],
+    "blockedBy": [
+      "Global Dimension Code 1: Global Dimension Code 1 did not show PRODUCTLINE after Change Global Dimensions sequential run and reopen.",
+      "Global Dimension Code 2: Global Dimension Code 2 did not show COSTCENTER after Change Global Dimensions sequential run and reopen."
+    ],
+    "flags": {
+      "noPost": true,
+      "noPreview": true,
+      "noDraft": true,
+      "noMasterDataChange": true,
+      "noCompanySwitch": true,
+      "noApiShortcut": true,
+      "noSearch": true,
+      "noBookMasterChange": true,
+      "setupWriteAttempted": true,
+      "setupChanged": false
+    },
+    "evidenceRefs": [
+      "playwright/projects/fibu-book5/evidence/target-024b-global-dimension-assignment/TARGET-024B-result.json",
+      "playwright/projects/fibu-book5/img/target-024b-010-before.png",
+      "playwright/projects/fibu-book5/img/target-024b-020-after-attempt.png",
+      "playwright/projects/fibu-book5/img/target-024b-090-after-reopen.png"
+    ],
+    "keyLearning": [
+      "Direct General Ledger Setup card edit did not persist Global Dimension Code 1/2 values.",
+      "Change Global Dimensions accepts visible left-column values but does not prove persisted assignment.",
+      "Screenshot QA shows the action page has left/right columns; field/action semantics must be inspected before retry."
+    ],
+    "nextCase": "TARGET-024C-GLOBAL-DIMENSION-FIELD-DISCOVERY",
+    "updatedAt": "2026-06-30T17:00:21.376Z"
   }
 }

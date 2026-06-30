@@ -270,6 +270,17 @@ Screenshot-QA zu TARGET-021: Das erste Bild ist gerade wegen der leeren Liste we
 
 Screenshot-QA zu TARGET-023/TARGET-023B: TARGET-023 bleibt als Lernbild fuer den direkten Page-537-Blocker wichtig. TARGET-023B ist der bessere Foundation-Nachweis: Die finalen Reopen-Screenshots zeigen die Startwerte je Dimension. Sie sind Setup-/Foundation-Bilder, aber keine Beleg-, Posten- oder Reportingbilder.
 
+## Universaarl Foundation - Globale Dimensionen TARGET-024B
+
+| Screenshot | Page | Company | Schritt | Was sieht man? | Intern bewiesen | Nicht bewiesen | Status |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `target-024b-010-before.png` | Finanzbuchhaltung Einrichtung, Page 118 | `playthru` / `UNIVERSAARL-DE` | Vorherkontext globale Dimensionen | `Globaler Dimensionscode 1` und `Globaler Dimensionscode 2` sind im Abschnitt `Dimensionen` sichtbar und leer | Der richtige Setup-Kontext ist erreichbar | Zuweisung, Standarddimensionen, Posten, Reportingwirkung | `universaarl-setup-before`, `blocked-route-context` |
+| `target-024b-012-direct-card-after-fill.png` | Finanzbuchhaltung Einrichtung, Page 118 | `playthru` / `UNIVERSAARL-DE` | Direkte Kartenroute nach Edit-Versuch | Die Hauptkarte bleibt sichtbar; die globalen Dimensionsfelder sind weiterhin leer | Direkte Kartenbearbeitung ist mit diesem Helper keine bewiesene Persistenzroute | gespeicherte Global Dimensions | `rejected-route`, `screenshot-qa-required` |
+| `target-024b-016-change-dialog-after-fill.png` | Globale Dimensionen aendern | `playthru` / `UNIVERSAARL-DE` | Action-Page nach Eingabe | Die linke Spalte zeigt `PRODUCTLINE` und `COSTCENTER`, die rechte Spalte bleibt leer | Die Action-Page ist erreichbar und nimmt sichtbare Werte links an | welche Spalte fachlich wirksam ist, gespeicherte globale Dimensionen | `blocked-action-page`, `needs-field-inspection` |
+| `target-024b-090-after-reopen.png` | Finanzbuchhaltung Einrichtung, Page 118 | `playthru` / `UNIVERSAARL-DE` | Reopen nach Versuch | Beide globalen Dimensionsfelder sind weiter leer | TARGET-024B hat keine Persistenz bewiesen | Global Dimension Code 1/2 assignment | `blocked`, `not-book-final` |
+
+Screenshot-QA zu TARGET-024B: Der wichtigste Befund ist negativ. Die Bilder duerfen nicht als Erfolgsscreenshots fuer globale Dimensionen verwendet werden. Sie zeigen, dass Page 118 und die Action-Page erreichbar sind, aber dass die aktuelle Playwright-Route die Zuweisung nicht beweist. Der naechste Screenshot-Case muss Page Inspection, Tooltip/Action-Namen und linke/rechte Feldspalte erklaeren.
+
 ## Qualitaetsfelder fuer neue Screenshot-Metadaten
 
 Neue oder ueberarbeitete `.screenshot.json`-Dateien sollen diese Felder tragen:

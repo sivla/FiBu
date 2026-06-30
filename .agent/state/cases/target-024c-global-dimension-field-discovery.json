@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-024C-GLOBAL-DIMENSION-FIELD-DISCOVERY",
+  "title": "Universaarl Change Global Dimensions field/action discovery",
+  "status": "planned",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "workType": "foundation-global-dimension-field-discovery",
+  "taskClass": "judge_work",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/target-024b-global-dimension-assignment/TARGET-024B-result.json"
+  ],
+  "purpose": "Inspect Page 118 and the Change Global Dimensions action page to distinguish current/new columns, field names, true execution actions and safe next write route.",
+  "allowedActions": [
+    "review-target-024b-result",
+    "open-general-ledger-setup-page-directly",
+    "open-change-global-dimensions-action-page",
+    "capture-page-inspection-or-field-diagnostics",
+    "capture-tooltip-action-inventory",
+    "capture-screenshot-qa-for-left-right-columns",
+    "write-result-and-next-step-card"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "leave-playthru",
+    "operate-in-legacy-lab-as-active-target",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "api-shortcut",
+    "claim-reporting-readiness-without-posted-dimension-entries"
+  ],
+  "defaultLockedActionsUnlockedForThisCase": [
+    "setup-change-if-field-semantics-are-proven-before-click"
+  ],
+  "entryCriteria": [
+    "TARGET-024B is blocked with evidence.",
+    "PRODUCTLINE/COSTCENTER dimension values exist from TARGET-023B.",
+    "No master data case depends on unproven global dimension assignment."
+  ],
+  "exitCriteria": [
+    "Field/action inventory for Change Global Dimensions exists.",
+    "Left/right input-column semantics are classified or blocker is documented.",
+    "A safe next route is selected: execute assignment, park global dimensions, or source-check before retry.",
+    "No preview, posting, document draft, master data or API shortcut executed."
+  ],
+  "lookahead": [
+    {
+      "caseId": "TARGET-024C-GLOBAL-DIMENSION-FIELD-DISCOVERY",
+      "status": "ready-next",
+      "reason": "The next useful step is technical/page-field discovery of the Change Global Dimensions action page, not another blind write attempt."
+    },
+    {
+      "caseId": "TARGET-024-CORE-MASTERDATA-PLAN",
+      "status": "ready-after-current",
+      "reason": "Master data planning can continue after global-dimension route is proven or consciously parked."
+    },
+    {
+      "caseId": "TARGET-025-CUSTOMER-VENDOR-ITEM-TEMPLATES-PREFLIGHT",
+      "status": "needs-setup-first",
+      "reason": "Templates need posting groups, VAT and dimension/default-dimension decisions."
+    },
+    {
+      "caseId": "TARGET-026-VAT-SETUP-FIT-DECISION",
+      "status": "needs-source-check-first",
+      "reason": "German VAT setup still needs source-backed setup before any document preview."
+    },
+    {
+      "caseId": "TARGET-028-DEFAULT-DIMENSIONS-STRATEGY",
+      "status": "needs-setup-first",
+      "reason": "Default Dimensions need either proven global dimensions or a documented park decision plus concrete master data."
+    }
+  ],
+  "nextStep": "Inspect Change Global Dimensions field/action semantics before another write attempt.",
+  "createdAt": "2026-06-30T17:00:21.376Z",
+  "updatedAt": "2026-06-30T17:00:21.376Z"
+}

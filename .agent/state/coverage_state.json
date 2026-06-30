@@ -699,20 +699,25 @@
     },
     "dimensions": {
       "chapter": "Kapitel 9",
-      "status": "foundation-values-proven-needs-global-dimensions",
-      "currentBlock": "global-dimension-assignment-open",
-      "latestPracticalCase": "TARGET-023B-DIMENSION-VALUES-ROUTE-RECOVERY",
-      "nextCase": "TARGET-024B-GLOBAL-DIMENSION-ASSIGNMENT",
+      "status": "blocked-needs-ui-discovery-first",
+      "currentBlock": "global-dimension-assignment-route-not-proven",
+      "latestPracticalCase": "TARGET-024B-GLOBAL-DIMENSION-ASSIGNMENT",
+      "nextCase": "TARGET-024C-GLOBAL-DIMENSION-FIELD-DISCOVERY",
       "covered": [
         "PRODUCTLINE, COSTCENTER and CHANNEL visible in UNIVERSAARL-DE after reopen.",
         "Starter values visible: PRODUCTLINE.SOFTWARE/SERVICE/TRAINING, COSTCENTER.ADMIN/SALES/OPERATIONS, CHANNEL.DIRECT/PARTNER.",
         "Reliable Dimension Values route is Dimensions page 536 -> selected dimension row -> Dimension -> Dimensionswerte -> last grid row -> reopen proof.",
-        "No master data, draft, preview or posting was executed."
+        "No master data, draft, preview or posting was executed.",
+        "TARGET-024B opened General Ledger Setup Page 118 and Change Global Dimensions action page in playthru/UNIVERSAARL-DE.",
+        "TARGET-024B captured blocked direct-card and action-page routes for Global Dimension Code 1/2 assignment."
       ],
       "openLimits": [
         "Global Dimension Code 1/2 assignment is not proven.",
         "Default Dimensions and Dimension Set Entries are not proven.",
-        "Reporting and posted-entry dimension effects are not proven."
+        "Reporting and posted-entry dimension effects are not proven.",
+        "Global Dimension Code 1/2 assignment is not proven after TARGET-024B.",
+        "Change Global Dimensions left/right field semantics are not yet proven.",
+        "Default Dimensions, Dimension Set Entries, posted entries and reporting filters remain unproven."
       ],
       "resultPath": "playwright/projects/fibu-book5/evidence/target-023b-dimension-values-route-recovery/TARGET-023B-result.json",
       "evidenceRefs": [
@@ -721,13 +726,14 @@
         "playwright/projects/fibu-book5/img/target-023b-costcenter-090-final-reopen.png",
         "playwright/projects/fibu-book5/img/target-023b-channel-090-final-reopen.png"
       ],
-      "nextStep": "Assign/prove PRODUCTLINE and COSTCENTER as Global Dimension Code 1/2 in General Ledger Setup before master data."
+      "nextStep": "Inspect Change Global Dimensions field/action semantics before another write attempt or master data start.",
+      "latestBlockedCase": "TARGET-024B-GLOBAL-DIMENSION-ASSIGNMENT"
     }
   },
   "hardExclusions": {
     "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
   },
-  "updatedAt": "2026-06-30T16:26:42.623Z",
+  "updatedAt": "2026-06-30T17:00:21.376Z",
   "activeArea": "universaarl-w1-foundation-global-dimension-assignment",
   "currentBlock": "vat-setup-readiness-next",
   "latestPracticalCase": "TARGET-023B-DIMENSION-VALUES-ROUTE-RECOVERY",
@@ -3752,6 +3758,20 @@
         "Reporting and posted-entry dimension effects are not proven."
       ],
       "nextCase": "TARGET-023B-DIMENSION-VALUES-ROUTE-RECOVERY"
+    },
+    "globalDimensionAssignment": {
+      "status": "blocked-needs-ui-discovery-first",
+      "caseId": "TARGET-024B-GLOBAL-DIMENSION-ASSIGNMENT",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-024b-global-dimension-assignment/TARGET-024B-result.json",
+      "provedContext": [
+        "General Ledger Setup Page 118",
+        "Change Global Dimensions action page"
+      ],
+      "notProven": [
+        "Global Dimension Code 1 = PRODUCTLINE",
+        "Global Dimension Code 2 = COSTCENTER"
+      ],
+      "nextCase": "TARGET-024C-GLOBAL-DIMENSION-FIELD-DISCOVERY"
     }
   }
 }

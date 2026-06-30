@@ -1453,15 +1453,33 @@
     },
     {
       "id": "TARGET-024B-GLOBAL-DIMENSION-ASSIGNMENT",
-      "status": "pending",
+      "status": "blocked",
       "priority": "high",
       "area": "universaarl-foundation-dimensions",
       "goal": "Assign/prove PRODUCTLINE and COSTCENTER as Global Dimension Code 1/2 before master data.",
       "sourceCase": "TARGET-023B-DIMENSION-VALUES-ROUTE-RECOVERY",
-      "createdAt": "2026-06-30T16:26:42.623Z"
+      "createdAt": "2026-06-30T16:26:42.623Z",
+      "completedAt": "2026-06-30T17:00:21.376Z",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-024b-global-dimension-assignment/TARGET-024B-result.json",
+      "result": "TARGET-024B proved the page contexts but did not prove persisted Global Dimension Code 1/2 assignment.",
+      "blockedBy": [
+        "Global Dimension Code 1: Global Dimension Code 1 did not show PRODUCTLINE after Change Global Dimensions sequential run and reopen.",
+        "Global Dimension Code 2: Global Dimension Code 2 did not show COSTCENTER after Change Global Dimensions sequential run and reopen."
+      ],
+      "lookaheadStatus": "blocked"
+    },
+    {
+      "id": "TARGET-024C-GLOBAL-DIMENSION-FIELD-DISCOVERY",
+      "status": "pending",
+      "priority": "high",
+      "area": "universaarl-foundation-dimensions",
+      "goal": "Inspect Change Global Dimensions field/action semantics before another Global Dimension assignment attempt.",
+      "sourceCase": "TARGET-024B-GLOBAL-DIMENSION-ASSIGNMENT",
+      "createdAt": "2026-06-30T17:00:21.376Z",
+      "lookaheadStatus": "ready-next"
     }
   ],
-  "lastUpdated": "2026-06-30T16:26:42.623Z",
+  "lastUpdated": "2026-06-30T17:00:21.376Z",
   "nextStepDecisionGate": {
     "active": true,
     "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",
@@ -1534,52 +1552,54 @@
       ]
     }
   },
-  "updatedAt": "2026-06-30T16:26:42.623Z",
-  "lastCompletedCase": "TARGET-023B-DIMENSION-VALUES-ROUTE-RECOVERY",
-  "nextCase": "TARGET-024B-GLOBAL-DIMENSION-ASSIGNMENT",
+  "updatedAt": "2026-06-30T17:00:21.376Z",
+  "lastCompletedCase": "TARGET-024B-GLOBAL-DIMENSION-ASSIGNMENT",
+  "nextCase": "TARGET-024C-GLOBAL-DIMENSION-FIELD-DISCOVERY",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-023B-DIMENSION-VALUES-ROUTE-RECOVERY",
+    "currentCase": "TARGET-024B-GLOBAL-DIMENSION-ASSIGNMENT",
     "plannedNextCaseBeforeReview": "TARGET-024-CORE-MASTERDATA-PLAN",
-    "lastEvidenceSummary": "TARGET-023 proved the three Dimension Codes and first Dimension Values, but five remaining values were blocked by the prior cell-edit route.",
-    "isPlannedNextCaseStillSensible": true,
-    "reason": "All planned starter Dimension Values are now visible; master data can use the foundation after Global Dimension assignment is handled.",
+    "lastEvidenceSummary": "TARGET-023B recovered all starter Dimension Values with reopen proof. TARGET-024B then tested Global Dimension Code assignment on General Ledger Setup and Change Global Dimensions.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "Master data should not start while PRODUCTLINE/COSTCENTER are not yet proven as Global Dimension Code 1/2 and the Change Global Dimensions page field semantics are unclear.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-024B-GLOBAL-DIMENSION-ASSIGNMENT",
+        "caseId": "TARGET-024C-GLOBAL-DIMENSION-FIELD-DISCOVERY",
         "status": "ready-next",
-        "reason": "PRODUCTLINE and COSTCENTER can become Global Dimension Code 1/2 only after values are complete enough."
+        "reason": "The next useful step is technical/page-field discovery of the Change Global Dimensions action page, not another blind write attempt."
       },
       {
         "caseId": "TARGET-024-CORE-MASTERDATA-PLAN",
         "status": "ready-after-current",
-        "reason": "Customer/vendor/item planning should reference finished dimensions and values."
+        "reason": "Master data planning can continue after global-dimension route is proven or consciously parked."
       },
       {
         "caseId": "TARGET-025-CUSTOMER-VENDOR-ITEM-TEMPLATES-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "Template defaults need posting groups, VAT and dimension/default-dimension decisions."
+        "reason": "Templates need posting groups, VAT and dimension/default-dimension decisions."
       },
       {
         "caseId": "TARGET-026-VAT-SETUP-FIT-DECISION",
         "status": "needs-source-check-first",
-        "reason": "German VAT setup needs source-backed setup decision before documents."
+        "reason": "German VAT setup still needs source-backed setup before any document preview."
       },
       {
-        "caseId": "TARGET-027-FIRST-MASTERDATA-CANDIDATE",
+        "caseId": "TARGET-028-DEFAULT-DIMENSIONS-STRATEGY",
         "status": "needs-setup-first",
-        "reason": "First master data should wait for foundation setup and default dimensions."
+        "reason": "Default Dimensions need either proven global dimensions or a documented park decision plus concrete master data."
       }
     ],
-    "queueChangesMade": [],
-    "selectedNextCase": "TARGET-024B-GLOBAL-DIMENSION-ASSIGNMENT",
-    "whySelectedNextCaseIsBest": "The dimension-value blocker is gone; the next dependency is Global Dimension assignment before master data.",
+    "queueChangesMade": [
+      "Marked TARGET-024B blocked and inserted/selected TARGET-024C-GLOBAL-DIMENSION-FIELD-DISCOVERY."
+    ],
+    "selectedNextCase": "TARGET-024C-GLOBAL-DIMENSION-FIELD-DISCOVERY",
+    "whySelectedNextCaseIsBest": "TARGET-024B proved the page contexts and rejected two repeated write routes; the cheapest safe progress is to inspect fields/actions/columns before the next setup attempt.",
     "risksBeforeNextCase": [
-      "Do not claim reporting readiness before posted entries with dimensions exist.",
-      "Do not create master data until default dimension strategy is clear.",
-      "Do not treat Global Dimension Code 1/2 as assigned by this case."
+      "Do not claim Global Dimension Code 1/2 readiness from TARGET-024B screenshots.",
+      "Do not start master data/default dimensions as if global dimensions are assigned.",
+      "Do not repeat the same left-column Change Global Dimensions route."
     ],
     "requiredPreparation": [
-      "Open General Ledger Setup and prove/set Global Dimension Code 1/2 in a separate case."
+      "Use Page Inspection/technical field diagnostics, tooltip/action inventory and screenshot QA on the Change Global Dimensions page."
     ]
   },
   "nextStep": "Assign/prove PRODUCTLINE and COSTCENTER as Global Dimension Code 1/2 in General Ledger Setup before master data."

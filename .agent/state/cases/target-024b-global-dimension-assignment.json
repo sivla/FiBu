@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "caseId": "TARGET-024B-GLOBAL-DIMENSION-ASSIGNMENT",
   "title": "Universaarl Global Dimension Code 1/2 assignment",
-  "status": "planned",
+  "status": "blocked",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "workType": "foundation-global-dimension-assignment",
@@ -78,7 +78,95 @@
       "reason": "First master data should wait for foundation setup and default dimensions."
     }
   ],
-  "nextStep": "Assign/prove PRODUCTLINE and COSTCENTER as Global Dimension Code 1/2 in General Ledger Setup before master data.",
+  "nextStep": "Run TARGET-024C to inspect Change Global Dimensions fields/actions before another setup write attempt.",
   "createdAt": "2026-06-30T16:26:42.623Z",
-  "updatedAt": "2026-06-30T16:26:42.623Z"
+  "updatedAt": "2026-06-30T17:00:21.376Z",
+  "resultStatus": "blocked",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-024b-global-dimension-assignment/TARGET-024B-result.json",
+  "completedAt": "2026-06-30T17:00:21.376Z",
+  "proved": [
+    "General Ledger Setup / Finanzbuchhaltung Einrichtung page 118 was opened only in playthru / UNIVERSAARL-DE.",
+    "No master data, document draft, preview posting, posting, company switch or API shortcut was executed."
+  ],
+  "notProved": [
+    "Not every Global Dimension Code field could be assigned or proven with the current UI route.",
+    "Default Dimensions on customers, vendors, items or accounts are not proven.",
+    "Dimension Set Entries, posted entries and reporting filters are not proven.",
+    "German VAT or posting-group correctness is not proven by this case."
+  ],
+  "blockedBy": [
+    "Global Dimension Code 1: Global Dimension Code 1 did not show PRODUCTLINE after Change Global Dimensions sequential run and reopen.",
+    "Global Dimension Code 2: Global Dimension Code 2 did not show COSTCENTER after Change Global Dimensions sequential run and reopen."
+  ],
+  "flags": {
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noMasterDataChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noSearch": true,
+    "noBookMasterChange": true,
+    "setupWriteAttempted": true,
+    "setupChanged": false
+  },
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-024b-global-dimension-assignment/TARGET-024B-result.json",
+    "playwright/projects/fibu-book5/img/target-024b-010-before.png",
+    "playwright/projects/fibu-book5/img/target-024b-020-after-attempt.png",
+    "playwright/projects/fibu-book5/img/target-024b-090-after-reopen.png"
+  ],
+  "discoveries": [
+    "Page 118 General Ledger Setup opens in playthru/UNIVERSAARL-DE and shows empty Global Dimension Code 1/2 fields.",
+    "Direct card edit route did not persist PRODUCTLINE/COSTCENTER.",
+    "Change Global Dimensions action page opens and accepts PRODUCTLINE/COSTCENTER in the visible left input column.",
+    "After sequential route and reopen, Page 118 still shows empty Global Dimension Code 1/2 fields."
+  ],
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-024B-GLOBAL-DIMENSION-ASSIGNMENT",
+    "plannedNextCaseBeforeReview": "TARGET-024-CORE-MASTERDATA-PLAN",
+    "lastEvidenceSummary": "TARGET-023B recovered all starter Dimension Values with reopen proof. TARGET-024B then tested Global Dimension Code assignment on General Ledger Setup and Change Global Dimensions.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "Master data should not start while PRODUCTLINE/COSTCENTER are not yet proven as Global Dimension Code 1/2 and the Change Global Dimensions page field semantics are unclear.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-024C-GLOBAL-DIMENSION-FIELD-DISCOVERY",
+        "status": "ready-next",
+        "reason": "The next useful step is technical/page-field discovery of the Change Global Dimensions action page, not another blind write attempt."
+      },
+      {
+        "caseId": "TARGET-024-CORE-MASTERDATA-PLAN",
+        "status": "ready-after-current",
+        "reason": "Master data planning can continue after global-dimension route is proven or consciously parked."
+      },
+      {
+        "caseId": "TARGET-025-CUSTOMER-VENDOR-ITEM-TEMPLATES-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Templates need posting groups, VAT and dimension/default-dimension decisions."
+      },
+      {
+        "caseId": "TARGET-026-VAT-SETUP-FIT-DECISION",
+        "status": "needs-source-check-first",
+        "reason": "German VAT setup still needs source-backed setup before any document preview."
+      },
+      {
+        "caseId": "TARGET-028-DEFAULT-DIMENSIONS-STRATEGY",
+        "status": "needs-setup-first",
+        "reason": "Default Dimensions need either proven global dimensions or a documented park decision plus concrete master data."
+      }
+    ],
+    "queueChangesMade": [
+      "Marked TARGET-024B blocked and inserted/selected TARGET-024C-GLOBAL-DIMENSION-FIELD-DISCOVERY."
+    ],
+    "selectedNextCase": "TARGET-024C-GLOBAL-DIMENSION-FIELD-DISCOVERY",
+    "whySelectedNextCaseIsBest": "TARGET-024B proved the page contexts and rejected two repeated write routes; the cheapest safe progress is to inspect fields/actions/columns before the next setup attempt.",
+    "risksBeforeNextCase": [
+      "Do not claim Global Dimension Code 1/2 readiness from TARGET-024B screenshots.",
+      "Do not start master data/default dimensions as if global dimensions are assigned.",
+      "Do not repeat the same left-column Change Global Dimensions route."
+    ],
+    "requiredPreparation": [
+      "Use Page Inspection/technical field diagnostics, tooltip/action inventory and screenshot QA on the Change Global Dimensions page."
+    ]
+  }
 }
