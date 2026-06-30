@@ -600,7 +600,7 @@
     {
       "id": "PREP-032-CH04-ERP-BASICS-UNIVERSAARL-REWRITE",
       "order": 28,
-      "status": "pending",
+      "status": "done",
       "category": "book",
       "expectedImpact": "prep-progress",
       "mayWorkEffectively": false,
@@ -610,7 +610,9 @@
       "sourceCompany": "UNIVERSAARL-DE-planned-not-yet-created",
       "targetWorld": "Universaarl",
       "noFinalGermanClaimWithoutUniversaarlEvidence": true,
-      "lookaheadStatus": "ready-next"
+      "lookaheadStatus": "done",
+      "completedAt": "2026-06-30T09:30:00.000+02:00",
+      "resultPath": "playwright/projects/fibu-book5/evidence/prep-032-ch04-erp-basics-universaarl-rewrite/PREP-032-result.json"
     },
     {
       "id": "PREP-033-MY-SETTINGS-READONLY-CONTEXT",
@@ -625,7 +627,7 @@
       "sourceCompany": "UNIVERSAARL-DE-planned-not-yet-created",
       "targetWorld": "Universaarl",
       "noFinalGermanClaimWithoutUniversaarlEvidence": true,
-      "lookaheadStatus": "ready-after-current"
+      "lookaheadStatus": "ready-next"
     },
     {
       "id": "PREP-034-ROLE-CENTER-READONLY-SHELL-MAP",
@@ -719,33 +721,33 @@
   },
   "updatedAt": "2026-06-30T08:05:00.000+02:00",
   "lastCompletedCase": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
-  "nextCase": "PREP-032-CH04-ERP-BASICS-UNIVERSAARL-REWRITE",
+  "nextCase": "PREP-033-MY-SETTINGS-READONLY-CONTEXT",
   "nextStepDecisionCard": {
-    "currentCase": "PREP-031-COMPANIES-PAGE-READONLY-PLAYWRIGHT",
-    "plannedNextCaseBeforeReview": "PREP-031-COMPANIES-PAGE-READONLY-PLAYWRIGHT",
-    "lastEvidenceSummary": "PREP-026 mapped official W0/W1 sources; TARGET-007 had historical dropdown evidence but PREP-031 needed a current read-only screenshot QA run.",
+    "currentCase": "PREP-032-CH04-ERP-BASICS-UNIVERSAARL-REWRITE",
+    "plannedNextCaseBeforeReview": "PREP-032-CH04-ERP-BASICS-UNIVERSAARL-REWRITE",
+    "lastEvidenceSummary": "PREP-031 proved Companies/Mandanten Page 357 read-only in playthru and showed Neu, the arrow beside Neu, and Neues Unternehmen erstellen as distinct UI targets.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The Companies Page split-button is the exact UI confusion currently blocking safe beginner instructions; read-only observation is useful while company creation permissions are missing.",
+    "reason": "Chapter 4 had active Rhein-Main examples and needed a book-facing Universaarl rewrite using the new read-only UI evidence without claiming company creation.",
     "lookaheadReviewed": [
       {
-        "caseId": "PREP-032-CH04-ERP-BASICS-UNIVERSAARL-REWRITE",
-        "status": "ready-next",
-        "reason": "Chapter text can now use the current Companies Page screenshot QA without claiming company creation."
-      },
-      {
         "caseId": "PREP-033-MY-SETTINGS-READONLY-CONTEXT",
-        "status": "ready-after-current",
-        "reason": "My Settings is read-only context evidence and does not depend on company creation."
+        "status": "ready-next",
+        "reason": "My Settings can prove user-visible company, role and language context without creating or saving data."
       },
       {
         "caseId": "PREP-034-ROLE-CENTER-READONLY-SHELL-MAP",
         "status": "ready-after-current",
-        "reason": "Role Center shell mapping remains useful for page/context language."
+        "reason": "Role Center shell mapping remains useful for beginner navigation and page context language."
       },
       {
         "caseId": "PREP-027-IMPLEMENTATION-GUIDE-BEST-PRACTICE-MAPPING",
         "status": "ready-after-current",
-        "reason": "Can follow after current UI evidence or book rewrite."
+        "reason": "Can enrich UAT/project strategy while live Company Creation is parked."
+      },
+      {
+        "caseId": "PREP-028-TESTING-STRATEGY-AND-UAT-MATRIX",
+        "status": "ready-after-current",
+        "reason": "Can follow source mapping and does not depend on creating UNIVERSAARL-DE."
       },
       {
         "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
@@ -754,19 +756,20 @@
       }
     ],
     "queueChangesMade": [
-      "Mark PREP-031 done and select PREP-032 as next book-facing use of the screenshot."
+      "Mark PREP-032 done.",
+      "Select PREP-033 as the next read-only context proof."
     ],
-    "selectedNextCase": "PREP-032-CH04-ERP-BASICS-UNIVERSAARL-REWRITE",
-    "whySelectedNextCaseIsBest": "The screenshot now gives Chapter 4/Company basics a concrete UI anchor without creating a company.",
+    "selectedNextCase": "PREP-033-MY-SETTINGS-READONLY-CONTEXT",
+    "whySelectedNextCaseIsBest": "After the book rewrite, the next safest practical evidence is read-only context proof for company, role and language settings.",
     "risksBeforeNextCase": [
-      "Do not claim UNIVERSAARL-DE exists.",
-      "Do not say Neues Unternehmen erstellen was clicked.",
-      "Do not use Copy/Testunternehmen as the Universaarl target route."
+      "Do not save My Settings changes.",
+      "Do not switch company.",
+      "Do not claim UNIVERSAARL-DE exists."
     ],
     "requiredPreparation": [
-      "Use only visible PREP-031 screenshot facts.",
-      "Keep company creation parked until permissions are confirmed.",
-      "Explain main button versus arrow versus menu entry in beginner language."
+      "Use read-only My Settings route only.",
+      "Stop if the page requires saving, confirmation or company switch.",
+      "Capture compact screenshot QA and result JSON."
     ]
   }
 }

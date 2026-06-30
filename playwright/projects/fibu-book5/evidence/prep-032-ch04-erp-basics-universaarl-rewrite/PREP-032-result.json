@@ -1,20 +1,31 @@
 {
   "schemaVersion": 1,
-  "runId": "PREP-032-CH04-ERP-BASICS-UNIVERSAARL-REWRITE",
   "caseId": "PREP-032-CH04-ERP-BASICS-UNIVERSAARL-REWRITE",
-  "status": "observed",
+  "source": "book-rewrite-from-readonly-evidence",
+  "resultStatus": "observed",
+  "startedAt": "2026-06-30T09:20:00.000+02:00",
+  "completedAt": "2026-06-30T09:30:00.000+02:00",
   "instance": "playthru",
-  "company": "UNIVERSAARL-DE-planned-not-yet-created",
-  "shellCompanyObserved": "CRONUS DE",
-  "bcRun": false,
-  "playwrightRun": false,
-  "posted": false,
-  "previewPosting": false,
-  "setupChange": false,
-  "companyCreated": false,
-  "bookChanged": true,
-  "bookDraftChanged": false,
-  "summary": "PREP-032 rewrote Chapter 4 ERP basics into Universaarl beginner text and used PREP-031 Companies Page UI evidence to explain the Mandanten split-button pattern without claiming company creation.",
+  "targetCompany": "UNIVERSAARL-DE",
+  "legalName": "Universaarl GmbH",
+  "bookMasterPath": "FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/prep-031-companies-page-readonly-playwright/PREP-031-result.json",
+    "playwright/projects/fibu-book5/img/prep-031-020-companies-new-dropdown-open.png"
+  ],
+  "proved": [
+    "Chapter 4 beginner text now uses Universaarl instead of active Rhein-Main/RM-SHARED examples.",
+    "Chapter 4 explains Environment, Company and Mandantenliste in direct reader language.",
+    "Chapter 4 explains that the main Neu button, the arrow beside Neu and Neues Unternehmen erstellen are different UI targets.",
+    "Chapter 4 includes a readable screenshot explanation for the opened Neu dropdown without claiming company creation."
+  ],
+  "notProved": [
+    "UNIVERSAARL-DE was not created.",
+    "No Create New Company wizard was opened.",
+    "No Company Information page in UNIVERSAARL-DE was proven.",
+    "No setup, preview, posting or final German proof exists from this case.",
+    "Chapter 6 and later legacy process chapters still need separate Universaarl decommission/rewrite passes."
+  ],
   "changedFiles": [
     "FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md",
     ".agent/state/cases/prep-032-ch04-erp-basics-universaarl-rewrite.json",
@@ -26,25 +37,25 @@
     ".agent/state/coverage_state.json",
     "playwright/projects/fibu-book5/BC-FULL-PLAYTHROUGH-CATALOG.md"
   ],
-  "evidence": [
-    "playwright/projects/fibu-book5/evidence/prep-032-ch04-erp-basics-universaarl-rewrite/PREP-032-result.json",
-    "playwright/projects/fibu-book5/evidence/prep-032-ch04-erp-basics-universaarl-rewrite/README.md"
-  ],
-  "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/prep-032-ch04-erp-basics-universaarl-rewrite/PREP-032-result.json"
-  ],
-  "proved": [
-    "Chapter 4 now uses Universaarl beginner prose for ERP basics.",
-    "Chapter 4 explains Environment, Company, Mandantenliste and the Neu split-button pattern.",
-    "Chapter 4 does not claim UNIVERSAARL-DE was created."
-  ],
-  "notProved": [
-    "UNIVERSAARL-DE was not created.",
-    "No Business Central page was opened in this case.",
-    "No setup, preview, posting or final German proof was created."
-  ],
-  "nextStep": "Continue with PREP-033-MY-SETTINGS-READONLY-CONTEXT. Prove company, role and language context read-only; do not save, switch company or claim UNIVERSAARL-DE exists.",
-  "nextCase": "PREP-033-MY-SETTINGS-READONLY-CONTEXT",
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {},
+  "flags": {
+    "noBusinessCentralExecution": true,
+    "noPlaywrightExecution": true,
+    "noWriteInBC": true,
+    "noCompanyCreated": true,
+    "noCompanyValueEntered": true,
+    "noDraftCreated": true,
+    "noSetupChange": true,
+    "noPreview": true,
+    "noPost": true,
+    "noPayment": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "bookChanged": true
+  },
   "nextStepDecisionCard": {
     "currentCase": "PREP-032-CH04-ERP-BASICS-UNIVERSAARL-REWRITE",
     "plannedNextCaseBeforeReview": "PREP-032-CH04-ERP-BASICS-UNIVERSAARL-REWRITE",
@@ -95,12 +106,15 @@
       "Capture compact screenshot QA and result JSON."
     ]
   },
-  "updatedAt": "2026-06-30T09:30:00.000+02:00",
-  "noBusinessCentralExecution": true,
-  "noPlaywrightExecution": true,
-  "noEffectiveBusinessCentralActions": true,
-  "noCompanyCreated": true,
-  "noSetupChange": true,
-  "noPreviewPosting": true,
-  "noPosting": true
+  "nextCase": "PREP-033-MY-SETTINGS-READONLY-CONTEXT",
+  "validationCommands": [
+    "npm run agent:preflight",
+    "npm run agent:context",
+    "npm run agent:dry-run",
+    "npm run agent:run-plan",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/prep-032-ch04-erp-basics-universaarl-rewrite/PREP-032-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/prep-032-ch04-erp-basics-universaarl-rewrite/PREP-032-result.json",
+    "npm run check:encoding",
+    "git diff --check"
+  ]
 }

@@ -359,33 +359,28 @@ Mehrere Companies sind deshalb kein Selbstzweck. Die erste Company `UNIVERSAARL-
 
 ## 4. ERP und Business Central für absolute Einsteiger
 
-Business Central verbindet Verkauf, Einkauf, Lager, Fertigung, Service, Projekte, Bank und Buchhaltung in einem System. Stammdaten bilden die Grundlage, Belege erfassen den Geschaeftsvorfall, und nach dem Buchen zeigen Posten die pruefbare Wirkung auf Nebenbuecher, Hauptbuch, Lager und Auswertungen.
+Business Central verbindet Verkauf, Einkauf, Lager, Fertigung, Service, Projekte, Bank und Buchhaltung in einem System. Stammdaten bilden die Grundlage, Belege erfassen den Geschäftsvorfall, und nach dem Buchen zeigen Posten die Wirkung auf Nebenbücher, Hauptbuch, Lager und Auswertungen.
 
 ### Das Grundprinzip in einfachen Worten
 
-Ein ERP-System (Enterprise Resource Planning) ist das zentrale Arbeitssystem eines Unternehmens. Es verbindet Verkauf, Einkauf, Lager, Fertigung, Service, Projekte, Bank und Buchhaltung. Ohne ERP arbeiten Abteilungen oft mit Excel-Listen, E-Mails und einzelnen Programmen. Dann stimmen Kunden, Artikel, Preise, Lagerbestände und offene Posten nicht zuverlässig überein.
+Ein ERP-System (Enterprise Resource Planning) ist das zentrale Arbeitssystem eines Unternehmens. Ohne ERP arbeiten Abteilungen oft mit Excel-Listen, E-Mails und einzelnen Programmen. Dann stimmen Kunden, Artikel, Preise, Lagerbestände und offene Posten nicht zuverlässig überein.
 
-Business Central ist das ERP-System der Rhein-Main Industriegruppe. Ein Verkaufsauftrag ist dort nicht nur ein Formular. Er verbindet Debitor, Artikel, Preis, Liefertermin, Lagerort, USt und Dimensionen. Wenn der Auftrag geliefert und fakturiert wird, entstehen gebuchte Belege und Posten. Diese Posten zeigen Finance, Lager und Controlling, was wirklich passiert ist.
+Business Central speichert nicht nur Bildschirmmasken. Ein Verkaufsauftrag verbindet Debitor, Artikel, Preis, Liefertermin, Lagerort, Umsatzsteuer und Dimensionen. Wenn der Auftrag geliefert und fakturiert wird, entstehen gebuchte Belege und Posten. Diese Posten zeigen Vertrieb, Lager, Buchhaltung und Controlling, was wirklich passiert ist.
 
-Beispiel Verkauf: Kunde `D10000` bestellt eine Pumpe `SP-PUMP-01`. Business Central erzeugt daraus einen Verkaufsauftrag. Beim Buchen entstehen Forderung, Erlös, USt, Lagerabgang und Wertposten. Deshalb prüft RM-SHARED nach dem Buchen nicht nur die Rechnung, sondern auch Debitorenposten, Sachposten, Artikelposten, Wertposten und USt-Posten.
+Für die Universaarl GmbH entsteht deshalb zuerst ein eigener Arbeitsbereich. Dieser Arbeitsbereich heißt in Business Central `Company` oder `Mandant`. Die Zielcompany in diesem Buch heißt `UNIVERSAARL-DE`. In ihr sollen später Kunden, Lieferanten, Artikel, Konten, Steuerlogik, Belege und Posten zusammenpassen.
 
-Beispiel Einkauf: RM-PROD kauft Stahl `RAW-STEEL` bei `K10000`. Beim Wareneingang steigt der Bestand. Bei der Eingangsrechnung entsteht eine Verbindlichkeit und Vorsteuer. Einkauf, Lager und Buchhaltung arbeiten also am gleichen Vorgang, aber aus unterschiedlichen Perspektiven.
-
-Beispiel Zahlung: Wenn der Kunde die Rechnung bezahlt, wird die Zahlung mit dem offenen Debitorenposten ausgeglichen. Erst dann ist die Forderung erledigt. Ein Kontoauszug allein genügt nicht; Business Central muss wissen, welche Rechnung mit welcher Zahlung zusammengehört.
-
-Praxisregel:
-- In Business Central zählt nach dem Buchen die Postenspur: Beleg, gebuchter Beleg, Nebenbuchposten, Sachposten, USt-Posten, Artikelposten, Wertposten und Bericht müssen zusammenpassen.
+Eine wichtige Regel gilt von Anfang an: Nach dem Buchen zählt die Postenspur. Ein Beleg ist erst gut erklärt, wenn auch der gebuchte Beleg, die Nebenbuchposten, die Sachposten, die USt-Posten, die Artikelposten, die Wertposten und passende Berichte zusammenpassen.
 
 ### Rollen, Abteilungen und Bedienlogik in BC
 
-Ein vollständiges Schulungsbuch muss zeigen, wie Mitarbeiter arbeiten. Deshalb beschreibt jedes Prozesskapitel fachliche Aufgabe, Role Center, Tell-Me-Suche, Seiten, Felder und Folgebelege.
+Business Central sieht je nach Rolle unterschiedlich aus. Eine Verkäuferin startet anders als ein Einkäufer, eine Lagerkraft oder eine Anlagenbuchhalterin. Trotzdem folgt die Bedienung immer derselben Grundlogik: passende Seite öffnen, richtigen Datensatz wählen, Pflichtfelder prüfen, Aktion ausführen, Ergebnis kontrollieren.
 
 #### Rollenmatrix
 
 | Rolle | Abteilung | Typische BC-Seiten | Was macht der Mitarbeiter? |
 |---|---|---|---|
 | Verkäuferin | Vertrieb | `Verkaufsangebote (Sales Quotes)`, `Verkaufsaufträge (Sales Orders)`, `Debitoren (Customers)`, `Kontakte (Contacts)` | Angebot erstellen, Auftrag erfassen, Verfügbarkeit prüfen, Rechnung auslösen |
-| Vertriebsinnendienst | Sonderverkauf/Dropshipping | `Verkaufsaufträge (Sales Orders)`, `Einkaufsbestellungen (Purchase Orders)`, `Artikel (Items)`, `Debitoren (Customers)` | Sonderauftraege erfassen, Lieferantenbezug klaeren, Versand anstoßen |
+| Vertriebsinnendienst | Sonderverkauf | `Verkaufsaufträge (Sales Orders)`, `Einkaufsbestellungen (Purchase Orders)`, `Artikel (Items)`, `Debitoren (Customers)` | Sonderaufträge erfassen, Lieferantenbezug klären, Versand anstoßen |
 | Einkäufer | Einkauf | `Kreditoren (Vendors)`, `Einkaufsbestellungen (Purchase Orders)`, `Einkaufsrechnungen (Purchase Invoices)` | Bestellung auslösen, Preise prüfen, Wareneingang/Rechnung abstimmen |
 | Lagerist einfaches Lager | Lager MZ | `Artikeljournale (Item Journals)`, `Verkaufslieferungen (Sales Shipments)`, `Einkaufslieferungen (Purchase Receipts)` | Ware annehmen, Bestand prüfen, Lieferung buchen |
 | Lagerist gesteuertes Lager | FRA-ZL | `Lagereingänge (Warehouse Receipts)`, `Lagereinlagerungen (Warehouse Put-aways)`, `Lagerkommissionierungen (Warehouse Picks)`, `Warenausgänge (Warehouse Shipments)` | Einlagern, kommissionieren, versenden |
@@ -402,118 +397,67 @@ Ein vollständiges Schulungsbuch muss zeigen, wie Mitarbeiter arbeiten. Deshalb 
 #### Bedienmuster
 
 1. **Role Center prüfen:** Der Mitarbeiter startet im passenden Arbeitsbereich.
-2. **`Alt+Q`nutzen:** Er sucht stabile Seitenbegriffe, nicht lange Menüpfade.
+2. **`Alt+Q` nutzen:** Er sucht stabile Seitenbegriffe, nicht lange Menüpfade.
 3. **Belegkopf prüfen:** Kunde/Lieferant, Datum, Standort, Währung, Dimension, USt-Gruppe.
 4. **Zeilen pflegen:** Artikel, Ressource, Sachkonto, Menge, Preis, Lagerort, Projekt.
 5. **Vorschau/Prüfung:** Posting Preview, Verfügbarkeit, Freigabe, Pflichtfelder.
 6. **Buchen:** Post/Release/Register.
 7. **Nachweis prüfen:** Entries, Belegkette, Attachments, Reports.
 
-#### Bebilderte Klickanleitung: `UAT-START-001` Spielwiese öffnen und CRONUS einordnen
+#### Erste Orientierung: Environment, Company und Mandantenliste
 
-Der erste Klickfall beginnt nicht mit einer Buchung. Er beginnt mit Orientierung. In einer neuen Business-Central-Spielwiese sieht der Anwender zuerst eine Sandbox oder Testumgebung mit CRONUS-Demodaten. Diese Umgebung ist kein fertiger Rhein-Main-Mandant. Sie ist der sichere Übungsraum, in dem Oberfläche, Suche, Company, Rolle und Grundnavigation verstanden werden.
+Ein `Environment` ist die technische Business-Central-Umgebung. In einem Environment können mehrere Companies liegen. Die Company ist der fachliche Buchungsraum: Sie enthält eigene Stammdaten, eigene Einstellungen, eigene Belege und eigene Buchungen.
 
-Ziel:
-- Du öffnest Business Central im Browser und erkennst, in welcher Umgebung du arbeitest.
-- Du prüfst Company, Sprache, Rolle und Suchfunktion.
-- Du unterscheidest CRONUS-Demodaten von den späteren Rhein-Main-Trainingsdaten.
+Die Universaarl GmbH arbeitet in der Zielcompany `UNIVERSAARL-DE`. Solange diese Company noch nicht in der Mandantenliste sichtbar ist, wird sie nicht vorausgesetzt. Zuerst wird auf der Seite `Mandanten` geprüft, welche Companies im Environment vorhanden sind.
 
-Vorbedingungen:
-- Business Central ist als Trial, Sandbox oder Trainingsumgebung bereitgestellt.
-- Der Testbenutzer kann sich anmelden.
-- Die Oberfläche ist möglichst auf Deutsch/Deutschland eingestellt.
-- Es wird nicht in einer produktiven Umgebung gearbeitet.
-- Hinweis für den technischen Probelauf: Die aktuelle Spielwiese kann gemischt Deutsch/Englisch erscheinen. Die finalen Buchscreenshots werden später in einem durchgängig deutschen Lauf ersetzt.
+![Mandantenliste mit geöffnetem Neu-Menü](playwright/projects/fibu-book5/img/prep-031-020-companies-new-dropdown-open.png)
 
-| Schritt | Screenshot-Datei | Bildinhalt | Feldlogik | Prüfhinweis |
-|---:|---|---|---|---|
-| 020 | `playwright/projects/fibu-book5/img/uat-start-001-020-rollencenter-startseite.png` | Rollencenter nach Anmeldung | Das Rollencenter zeigt Rolle, Aufgaben und Startkacheln. | Rolle und sichtbare Menüs dokumentieren. |
-| 050 | `playwright/projects/fibu-book5/img/uat-start-001-050-alt-q-suche.png` | `Alt+Q` mit Suchfeld | `Alt+Q` ist der stabile Einstieg in Seiten und Berichte. | Deutsch suchen, bei Bedarf englische Suchhilfe nutzen. |
-| 060 | `playwright/projects/fibu-book5/img/uat-start-001-060-unternehmen-seite.png` | Seite `Unternehmen (Companies)` | Die Liste zeigt verfügbare Companies im Environment. | CRONUS ist Demonstrationsbestand, nicht Rhein-Main-Zielstruktur. |
-| 070 | `playwright/projects/fibu-book5/img/uat-start-001-070-unternehmensdaten.png` | `Unternehmensdaten (Company Information)` | Unternehmensdaten prägen Belege, Berichte und rechtliche Angaben. | Name, Adresse, Land/Region, USt-ID und Bankdaten später fachlich pflegen. |
+Die Seite `Mandanten` zeigt die vorhandenen Companies als Liste. In der Aktionsleiste steht `Neu`. Dieser Bereich ist ein sogenannter Split-Button: Der Hauptteil `Neu` und der kleine Pfeil daneben sind zwei verschiedene Bedienziele.
 
-Technischer Prüfstatus:
-- `npm run auth:bc` speichert den Business-Central-Login-State lokal.
-- `npm run screenshots:start` erzeugt die vier Startbilder automatisiert.
-- `npm run smoke:bc` öffnet zentrale BC-Seiten probeweise: `Customers`, `Vendors`, `Items`, `Sales Orders`, `Purchase Orders`, `Chart of Accounts`.
-- Die Smoke-Bilder dienen der Werkzeugprüfung. Sie sind noch kein finales Buchlayout, weil die Oberfläche teilweise englisch ist und Einführungs-Popups erscheinen können.
+Der Hauptteil `Neu` beginnt die direkte Neuanlage. Der Pfeil neben `Neu` öffnet ein Menü mit weiteren Möglichkeiten. Im geöffneten Menü stehen unter anderem `Neu` und `Neues Unternehmen erstellen`. `Kopieren` ist eine eigene Aktion und übernimmt eine vorhandene Company als Vorlage. `Testunternehmen` kennzeichnet eine Test- oder Demoroute.
 
-Bildauswertung:
+Für die Universaarl GmbH ist dieser Unterschied wichtig. Eine eigene Zielcompany darf nicht unbemerkt aus einer Demo-Company entstehen, wenn dadurch fremde Stammdaten, Einstellungen oder Belege übernommen werden. Darum wird vor der Anlage geprüft, ob Business Central eine leere oder kontrollierbare Anlage anbietet und ob die Aktion wirklich zur Zielcompany `UNIVERSAARL-DE` führt.
 
-![Rollencenter in der Business-Central-Spielwiese](playwright/projects/fibu-book5/img/uat-start-001-020-rollencenter-startseite.png)
+Tooltips helfen bei dieser Unterscheidung. Wenn der Mauszeiger auf `Neu`, dem Pfeil neben `Neu` oder einem Menüeintrag steht, zeigt Business Central oft einen kurzen Hinweis zur Aktion. Vor einem wirksamen Klick lohnt sich dieser Blick: Er verhindert, dass der Hauptbutton, der Pfeil und ein Menüeintrag verwechselt werden.
 
-Was du im Bild siehst:
-- Oben steht `Dynamics 365 Business Central` mit der Umgebung `MCP_1_20260210`.
-- Die Company heißt `My Company`.
-- Das Rollencenter zeigt Kacheln, Aktionen, Suche und Sandbox-Hinweis.
+Nach einer erfolgreichen Anlage muss `UNIVERSAARL-DE` als eigene Zeile in der Mandantenliste stehen. Erst dann wird in die neue Company gewechselt und die Seite `Unternehmensinformationen` geprüft.
 
-Feldlogik:
-- `My Company` ist die aktuell geöffnete Company. Sie ist nicht automatisch der Zielmandant des Buchprojekts.
-- Der Sandbox-Hinweis zeigt, dass diese Umgebung für Tests und Entwicklung gedacht ist.
+#### Was Anfänger auf jeder Business-Central-Seite prüfen
 
-Prüfhinweis:
-- Vor jedem Test wird Umgebung, Company und Rolle geprüft. Ein falscher Mandant macht jeden späteren Nachweis wertlos.
+Vor wichtigen Schritten lohnt sich immer dieselbe kurze Kontrolle:
 
-![Tell-Me-Suche mit Companies](playwright/projects/fibu-book5/img/uat-start-001-050-alt-q-suche.png)
+1. **Environment:** Arbeite ich in der richtigen Umgebung?
+2. **Company:** Bin ich in der richtigen Company?
+3. **Rolle:** Passt das Rollencenter zu meiner Aufgabe?
+4. **Seite:** Bin ich auf der richtigen Liste, Karte oder im richtigen Buch.-Blatt?
+5. **Aktion:** Ändert der Button Daten, oder ist er nur eine Anzeige?
+6. **Ergebnis:** Woran erkenne ich nach dem Klick, dass der Schritt erfolgreich war?
 
-Was du im Bild siehst:
-- Die Suche `Wie möchten Sie weiter verfahren?` ist geöffnet.
-- Der Suchbegriff `Companies` wird verwendet, weil die aktuelle Oberfläche gemischt Deutsch/Englisch ist.
+Diese Kontrolle ist wichtiger als Geschwindigkeit. Ein falsch gewählter Mandant, eine falsche Rolle oder ein falsch verstandener Button kann später falsche Stammdaten, falsche Belege oder falsche Buchungen erzeugen.
 
-Feldlogik:
-- `Alt+Q` oder der Suchbutton öffnet dieselbe Tell-Me-Suche.
-- Der Suchbegriff darf in der Technik englisch sein, auch wenn der Buchtext später deutsch formuliert wird.
+#### Warum nicht mit einer Demofirma starten
 
-Prüfhinweis:
-- Für finale deutsche Screenshots wird derselbe Schritt mit deutschem Suchbegriff erneut geprüft.
+Demodaten sind nützlich, um Business Central kennenzulernen. Sie zeigen Beispiele für Kunden, Artikel, Konten, Lagerorte und Belege. Für eine durchgehende Musterfirma sind sie aber gefährlich, wenn sie ungeprüft übernommen werden.
 
-![Companies mit CRONUS und My Company](playwright/projects/fibu-book5/img/uat-start-001-060-unternehmen-seite.png)
+Die Universaarl GmbH soll im Buch als zusammenhängende Firma entstehen. Deshalb werden Stammdaten, Setup, Belege und Posten bewusst aufgebaut. So bleibt später klar, warum ein Kunde existiert, warum ein Artikel verkauft wird, welches Konto bebucht wird und welcher Posten die Wirkung zeigt.
 
-Was du im Bild siehst:
-- Die Seite `Companies` zeigt mindestens `CRONUS USA, Inc.` und `My Company`.
-- `CRONUS USA, Inc.` ist als Evaluation Company markiert.
+#### Mini-Beispiel: vom Auftrag zur Postenspur
 
-Feldlogik:
-- Eine Company ist ein buchender Mandant innerhalb derselben Business-Central-Umgebung.
-- CRONUS enthält Demodaten. Diese Daten sind nützlich für Tests, aber nicht automatisch die Rhein-Main-Trainingsdaten.
+Ein Kunde bestellt bei der Universaarl GmbH einen Artikel. In Business Central entsteht daraus zunächst ein Verkaufsauftrag. Der Auftrag enthält den Kunden, den Artikel, die Menge, den Preis, den Liefertermin, den Lagerort, die USt-Logik und gegebenenfalls Dimensionen.
 
-Prüfhinweis:
-- Der erste Foundation-Schritt kopiert CRONUS in eine eigene Trainingscompany `RM-DEMO`.
+Beim Buchen entstehen nicht nur ein schöner Ausdruck und eine Rechnung. Business Central erzeugt Posten:
 
-![Company Information in My Company](playwright/projects/fibu-book5/img/uat-start-001-070-unternehmensdaten.png)
+- Debitorenposten zeigen die Forderung gegenüber dem Kunden.
+- Sachposten zeigen Erlös, Steuer und weitere Hauptbuchwirkungen.
+- Artikelposten zeigen die Mengenbewegung im Lager.
+- Wertposten zeigen den Lagerwert und den Wareneinsatz.
+- USt-Posten zeigen die steuerliche Wirkung.
 
-Was du im Bild siehst:
-- Die Seite `Company Information` zeigt Pflichtfelder wie `Name`, `Address`, `City`, `ZIP Code` und `Country/Region Code`.
-- Mehrere Felder sind noch leer.
+Ein Anfänger muss deshalb nicht nur lernen, welchen Button er klickt. Er muss auch lernen, welche Folgeobjekte nach dem Klick entstehen und wo man sie kontrolliert.
 
-Feldlogik:
-- Unternehmensdaten prägen Belege, Berichte und rechtliche Angaben.
-- Leere Pflichtfelder sind für eine Spielwiese akzeptabel, aber nicht für einen prüfbaren Trainingsmandanten.
+#### Der wichtigste Merksatz
 
-Prüfhinweis:
-- Für `RM-DEMO` werden Unternehmensdaten später bewusst gesetzt und als Trainingsdaten dokumentiert.
-
-Feldlogik:
-- `Environment` bezeichnet die technische Umgebung, zum Beispiel Sandbox oder Produktion.
-- `Company` bezeichnet den buchenden Mandanten innerhalb dieser Umgebung.
-- `CRONUS` ist ein Demonstrationsmandant mit Beispielstammdaten. Er eignet sich für Orientierung, aber nicht als ungeprüfter Nachweis für Rhein-Main-Prozesse.
-- `Profil/Rolle` steuert Oberfläche und Rollencenter. Es ersetzt keine Berechtigungsprüfung.
-
-Prüfhinweis:
-- Ein sauberer Screenshot-Prozess beginnt immer mit Umgebung, Company, Sprache und Rolle. Erst danach werden Stammdaten, Belege und Posten bebildert.
-
-Evidence Pack (Nachweispaket):
-- Screenshot Rollencenter mit sichtbarer Rolle.
-- Screenshot Company-Auswahl oder Seite `Unternehmen (Companies)`.
-- Screenshot deutscher Oberfläche oder Spracheinstellung.
-- Screenshot `Alt+Q`-Suche.
-- Notiz zur Umgebung: Trial, Sandbox oder Trainingsmandant.
-
-Merksatz:
-- CRONUS ist die Spielwiese für Orientierung. Der prüfbare Buchfall entsteht erst, wenn Testdaten, Company, Rolle und Nachweisziel bewusst festgelegt sind.
-
-Praxisregel:
-- Schulungen beginnen mit Rollen und Aufgaben, nicht mit Menüs. Ein Einkäufer muss wissen, warum er eine Bestellung auslöst; die Seite ist erst der zweite Schritt.
+Business Central ist kein Formularprogramm. Jede Seite gehört zu einem Geschäftsprozess. Jede wirksame Aktion kann Stammdaten, Belege, Posten oder Auswertungen verändern. Gute Bedienung beginnt deshalb mit Orientierung und endet erst mit der Kontrolle des Ergebnisses.
 
 ---
 
