@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-30T12:20:35.744Z",
+  "updatedAt": "2026-06-30T12:39:22.975Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "activeArea": "universaarl-w1-foundation-number-series",
-  "activeCase": "TARGET-016F-NUMBER-SERIES-PERSONALIZE-OR-SETUP-ASSISTED-ROUTE",
-  "active_case_file": ".agent/state/cases/target-016f-number-series-personalize-or-setup-assisted-route.json",
+  "activeCase": "TARGET-016G-NUMBER-SERIES-PERSONALIZE-FIELD-ACTION-MAP",
+  "active_case_file": ".agent/state/cases/target-016g-number-series-personalize-field-action-map.json",
   "lastReferenceCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
   "lastReferenceCaseFile": ".agent/state/cases/warehouse-031-warehouse-source-route-park-or-setup-fit-decision.json",
   "mode": "universaarl-target-execution",
@@ -24,9 +24,9 @@
     "open-number-series-page",
     "select-existing-U-CUST-row",
     "open-Zeilen-from-selected-number-series",
-    "enter-personalize-readonly-or-reversible-mode",
-    "inspect-available-fields-and-actions",
-    "use-standard-ui-action-route-if-visible",
+    "enter-personalize-mode-without-field-changes",
+    "inspect-personalize-field-and-action-map",
+    "exit-personalize-without-changes",
     "capture-screenshot-qa",
     "write-result",
     "queue-and-state-update"
@@ -53,9 +53,12 @@
     "repeat-selected-cell-typing-route-from-TARGET-016C",
     "repeat-plain-field-flow-route-from-TARGET-016E",
     "repeat-F2-route-from-TARGET-016E",
-    "claim-number-series-setup-ready-without-visible-start-end-values"
+    "claim-number-series-setup-ready-without-visible-start-end-values",
+    "save-personalization-with-field-changes",
+    "change-number-series-line-checkboxes",
+    "repeat-more-options-copilot-generate-misclick-from-TARGET-016F"
   ],
-  "nextStep": "Run TARGET-016F: use Personalize or another standard Business Central setup-assisted route for Number Series Lines; do not repeat coordinate, selected-cell, plain field-flow or F2 routes.",
+  "nextStep": "Run TARGET-016G: use the proven Personalize mode on No. Series Lines to map available fields/actions without saving changes, then decide the next safe setup route.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -1359,7 +1362,7 @@
     "nextStep": "BANK-018: controlled no-post Payment Journal preflight for 108205; do not post."
   },
   "workType": "warehouse-source-document-action-on-draft",
-  "lastCompletedCase": "TARGET-016E-NUMBER-SERIES-LINES-FIELD-FLOW-CONTROLLED-FIT",
+  "lastCompletedCase": "TARGET-016F-NUMBER-SERIES-PERSONALIZE-OR-SETUP-ASSISTED-ROUTE",
   "latestBank018": {
     "caseId": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
     "status": [
@@ -3696,52 +3699,51 @@
     "resultFile": "playwright/projects/fibu-book5/evidence/prep-020-universaarl-dataset-blueprint/PREP-020-result.json"
   },
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-016E-NUMBER-SERIES-LINES-FIELD-FLOW-CONTROLLED-FIT",
-    "plannedNextCaseBeforeReview": "TARGET-016E-NUMBER-SERIES-LINES-FIELD-FLOW-CONTROLLED-FIT",
-    "lastEvidenceSummary": "TARGET-016D proved Page Inspection for No. Series Lines 457 / No. Series Line 309. TARGET-016E attempted Startdatum field-flow and F2 fallback; after reopen U-CUST00001/U-CUST99999 were not visible, and F2 opened the Microsoft 365 app launcher.",
-    "isPlannedNextCaseStillSensible": false,
-    "reason": "The field-flow and F2 routes are now rejected with screenshot proof. The next route must use Personalize or another standard BC setup-assisted path, not more grid typing.",
+    "currentCase": "TARGET-016F-NUMBER-SERIES-PERSONALIZE-OR-SETUP-ASSISTED-ROUTE",
+    "plannedNextCaseBeforeReview": "TARGET-016F-NUMBER-SERIES-PERSONALIZE-OR-SETUP-ASSISTED-ROUTE",
+    "lastEvidenceSummary": "TARGET-016E blocked plain field-flow and F2 for U-CUST Number Series Lines; TARGET-016D proved Page 457/Table 309.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "Personalize/standard route discovery is the next non-repeated BC-native path after grid typing failed.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-016F-NUMBER-SERIES-PERSONALIZE-OR-SETUP-ASSISTED-ROUTE",
+        "caseId": "TARGET-016G-NUMBER-SERIES-PERSONALIZE-FIELD-ACTION-MAP",
         "status": "ready-next",
-        "reason": "It changes route and can reveal available fields/actions without repeating failed typing."
+        "reason": "Depends on whether Personalize became usable."
       },
       {
         "caseId": "TARGET-017-NUMBER-SERIES-SETUP-ASSIGNMENT",
         "status": "needs-setup-first",
-        "reason": "Assignments still require valid line ranges."
+        "reason": "Assignments require valid line ranges."
       },
       {
         "caseId": "TARGET-018-CUSTOMER-MASTERDATA-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "Customer creation depends on assigned customer number series."
+        "reason": "Customer creation depends on customer number-series assignment."
       },
       {
         "caseId": "TARGET-019-POSTING-GROUPS-PREFLIGHT",
         "status": "ready-after-current",
-        "reason": "Can proceed after numbering is unblocked or consciously parked."
+        "reason": "Can proceed after numbering is unblocked or parked."
       },
       {
         "caseId": "TARGET-020-VAT-SETUP-READINESS",
         "status": "ready-after-current",
-        "reason": "VAT setup follows foundation sequencing."
+        "reason": "Follows foundation sequencing."
       }
     ],
     "queueChangesMade": [
-      "Marked TARGET-016D observed/done.",
-      "Marked TARGET-016E blocked with screenshot proof.",
-      "Added TARGET-016F as Personalize/setup-assisted route."
+      "Marked TARGET-016F observed.",
+      "Added TARGET-016G to map Personalize fields/actions without saving changes."
     ],
-    "selectedNextCase": "TARGET-016F-NUMBER-SERIES-PERSONALIZE-OR-SETUP-ASSISTED-ROUTE",
-    "whySelectedNextCaseIsBest": "It avoids all rejected grid typing routes and investigates BC-standard field/action availability.",
+    "selectedNextCase": "TARGET-016G-NUMBER-SERIES-PERSONALIZE-FIELD-ACTION-MAP",
+    "whySelectedNextCaseIsBest": "TARGET-016F proved the correct Personalisieren mode on Nr.-Serienzeilen; TARGET-016G can now inspect available fields/actions without repeating grid typing.",
     "risksBeforeNextCase": [
-      "Do not save Personalize changes unless explicitly gated.",
-      "Do not change checkboxes.",
-      "Do not assign setup pages or create master data."
+      "Do not save Personalize changes without explicit gate.",
+      "Do not change checkbox states.",
+      "Do not create master data before line ranges are ready."
     ],
     "requiredPreparation": [
-      "Capture Personalize/available field list screenshots or a standard route screenshot."
+      "Use screenshot QA and safe route-specific evidence."
     ]
   },
   "permissionBlocker": {
@@ -3820,7 +3822,7 @@
   },
   "activeCaseFile": ".agent/state/cases/prep-034-role-center-readonly-shell-map.json",
   "previousCase": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
-  "nextCase": "TARGET-016F-NUMBER-SERIES-PERSONALIZE-OR-SETUP-ASSISTED-ROUTE",
+  "nextCase": "TARGET-016G-NUMBER-SERIES-PERSONALIZE-FIELD-ACTION-MAP",
   "latestPrepCase": {
     "caseId": "PREP-034-ROLE-CENTER-READONLY-SHELL-MAP",
     "status": "prep-observed",
@@ -4918,5 +4920,41 @@
     "noPreview": true,
     "noPosting": true,
     "updatedAt": "2026-06-30T12:20:35.744Z"
+  },
+  "latestTarget016FNumberSeriesPersonalizeRoute": {
+    "caseId": "TARGET-016F-NUMBER-SERIES-PERSONALIZE-OR-SETUP-ASSISTED-ROUTE",
+    "status": "observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-016f-number-series-personalize-or-setup-assisted-route/TARGET-016F-result.json",
+    "evidenceRefs": [
+      "playwright/projects/fibu-book5/evidence/target-016f-number-series-personalize-or-setup-assisted-route/TARGET-016F-result.json",
+      "playwright/projects/fibu-book5/img/target-016f-010-lines-context-before-standard-route.png",
+      "playwright/projects/fibu-book5/img/target-016f-020-lines-more-options-open.png",
+      "playwright/projects/fibu-book5/img/target-016f-025-lines-context-reset-after-more-options.png",
+      "playwright/projects/fibu-book5/img/target-016f-030-personalize-mode-or-menu.png",
+      "playwright/projects/fibu-book5/img/target-016f-040-after-personalize-escape.png"
+    ],
+    "observed": [
+      "U-CUST Number Series Lines context was reopened in playthru / UNIVERSAARL-DE.",
+      "Weitere Optionen / More options was inspected without selecting a dangerous action.",
+      "Settings -> Personalize route became visible or was entered without saving changes."
+    ],
+    "notProved": [
+      "A concrete field insertion or reliable Startnr./Endnr. write route is still not proven.",
+      "No personalization was intentionally saved.",
+      "No setup assignment, master data, preview posting, posting or ledger trace was created.",
+      "Checkbox semantics were observed but not changed."
+    ],
+    "keyLearning": [
+      "Settings/Gear opens an Einstellungen pane where Personalisieren is a visible text link, not necessarily a role=menuitem.",
+      "Clicking Personalisieren enters a page-level personalization mode for Nr.-Serienzeilen, visible as Wird personalisiert: Nr.-Serienzeilen with Fertig.",
+      "Fertig exits the personalization mode after no field/action changes were made.",
+      "The tested Weitere Optionen route did not produce a useful action menu and must not be treated as a setup route."
+    ],
+    "nextCase": "TARGET-016G-NUMBER-SERIES-PERSONALIZE-FIELD-ACTION-MAP",
+    "setupChanged": false,
+    "personalizationChangesMade": false,
+    "noPreview": true,
+    "noPosting": true,
+    "updatedAt": "2026-06-30T12:39:22.975Z"
   }
 }

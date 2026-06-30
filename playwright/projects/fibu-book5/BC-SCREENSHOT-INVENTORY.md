@@ -149,6 +149,14 @@ Diese Bilder werden erst erzeugt, wenn `UNIVERSAARL-DE` existiert und genug sinn
 | `target-016e-025-after-f2-field-flow-fallback.png` | Nr.-Serienzeilen / Microsoft-365-App-Launcher | `playthru` / `UNIVERSAARL-DE` | Abgelehnter F2-Fallback | F2 oeffnet den Microsoft-365-App-Launcher links oben statt eines BC-Zelleditors | F2 ist in diesem Browser-/BC-Kontext keine sichere Grid-Edit-Route | keine BC-Zellenbearbeitung, keine Wertpersistenz, keine Nummernserienreife | `do-not-repeat-rejected-path` |
 | `target-016e-030-after-reopen-proof.png` | Nr.-Serienzeilen / No. Series Lines | `playthru` / `UNIVERSAARL-DE` | Reopen-Proof nach Feldfluss/F2 | `U-CUST` Lines sind wieder geoeffnet; Start-/Endnummern sind weiterhin nicht als Zielwerte sichtbar | der Schreibversuch wurde nicht sichtbar persistiert | keine fertige Nummernserienzeile, keine Setup-Zuweisung, keine Stammdatenreife | `blocked-reopen-proof` |
 
+## Universaarl Foundation - Nummernserien TARGET-016F
+
+| Screenshot | Page | Company/Kontext | Schritt | Was man sehen soll | Interner Beweis | Beweist nicht | Status |
+|---|---|---|---|---|---|---|---|
+| `target-016f-020-lines-more-options-open.png` | Nummernserie / No. Series | `playthru` / `UNIVERSAARL-DE` | Abgelehnte More-Options-Route | statt eines fachlichen Menues ist ein kleines Copilot/Generieren-Flyout sichtbar | der getestete More-Options-Klick ist kein brauchbarer Standardpfad fuer Nummernserienzeilen | keine Feldliste, keine Wertpersistenz, keine Setup-Route | `do-not-repeat-rejected-path` |
+| `target-016f-030-personalize-mode-or-menu.png` | Nr.-Serienzeilen / Personalisieren | `playthru` / `UNIVERSAARL-DE` | Personalisieren-Modus auf Lines | oben steht `Wird personalisiert: Nr.-Serienzeilen`, daneben `Fertig`; die Lines-Spalten bleiben sichtbar | Settings -> Personalisieren erreicht den page-level Personalisieren-Modus fuer Nr.-Serienzeilen | keine eingefuegten Felder, keine gespeicherte Personalisierung, keine Start-/Endnummernreife | `technical-ui-proof` |
+| `target-016f-040-after-personalize-escape.png` | Nr.-Serienzeilen / No. Series Lines | `playthru` / `UNIVERSAARL-DE` | Nach Verlassen des Personalisieren-Modus | der Personalisierungsbalken ist weg; die Lines-Seite bleibt im U-CUST-Kontext sichtbar | `Fertig` beendet die reine Inspektion ohne sichtbare Feld-/Aktionsaenderung | keine Setup-Aenderung, keine Nummernserien-Zeilenwerte | `exit-proof-no-change` |
+
 ## Qualitaetsfelder fuer neue Screenshot-Metadaten
 
 Neue oder ueberarbeitete `.screenshot.json`-Dateien sollen diese Felder tragen:

@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-016G-NUMBER-SERIES-PERSONALIZE-FIELD-ACTION-MAP",
+  "title": "Universaarl Number Series Lines Personalize field/action map",
+  "instance": "playthru",
+  "targetCompany": "UNIVERSAARL-DE",
+  "legalName": "Universaarl GmbH",
+  "workType": "foundation-number-series-personalize-field-action-map",
+  "status": "ready-next",
+  "dependsOn": [
+    "TARGET-016F-NUMBER-SERIES-PERSONALIZE-OR-SETUP-ASSISTED-ROUTE"
+  ],
+  "goal": "Use the proven Personalize mode on No. Series Lines to map available fields/actions without changing or saving personalization, then decide whether Personalize can expose a safer field route.",
+  "evidenceTarget": "playwright/projects/fibu-book5/evidence/target-016g-number-series-personalize-field-action-map/",
+  "allowedActionsWhenRun": [
+    "open-playthru-business-central",
+    "open-UNIVERSAARL-DE-with-documentation",
+    "open-number-series-page",
+    "select-existing-U-CUST-row",
+    "open-Zeilen-from-selected-number-series",
+    "enter-personalize-mode-without-field-changes",
+    "inspect-personalize-field-and-action-map",
+    "exit-personalize-without-changes",
+    "capture-screenshot-qa",
+    "write-result",
+    "queue-and-state-update"
+  ],
+  "defaultLockedActions": [
+    "save-personalization-with-field-changes",
+    "assign-number-series-in-sales-setup",
+    "assign-number-series-in-purchase-setup",
+    "assign-number-series-in-inventory-setup",
+    "master-data-create",
+    "preview-posting",
+    "posting",
+    "checkbox-change",
+    "api-shortcut"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "leave-playthru",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "final-german-claim-from-rm-demo",
+    "operate-in-legacy-lab-as-active-target",
+    "mass-replace-historical-evidence",
+    "delete-legacy-evidence",
+    "claim-rm-demo-as-final-proof",
+    "operate-in-CRONUS-as-active-target",
+    "post",
+    "preview-posting",
+    "api-shortcut",
+    "create-master-data-before-number-series-lines",
+    "repeat-header-coordinate-route-from-TARGET-016B",
+    "repeat-selected-cell-typing-route-from-TARGET-016C",
+    "repeat-plain-field-flow-route-from-TARGET-016E",
+    "repeat-F2-route-from-TARGET-016E",
+    "claim-number-series-setup-ready-without-visible-start-end-values",
+    "save-personalization-with-field-changes",
+    "change-number-series-line-checkboxes",
+    "repeat-more-options-copilot-generate-misclick-from-TARGET-016F"
+  ],
+  "knownLearningFromTarget016F": [
+    "Settings/Gear opens an Einstellungen pane where Personalisieren is a visible text link, not necessarily a role=menuitem.",
+    "Clicking Personalisieren enters a page-level personalization mode for Nr.-Serienzeilen, visible as Wird personalisiert: Nr.-Serienzeilen with Fertig.",
+    "Fertig exits the personalization mode after no field/action changes were made.",
+    "The tested Weitere Optionen route did not produce a useful action menu and must not be treated as a setup route."
+  ],
+  "successCriteria": [
+    "Personalize mode is entered on Nr.-Serienzeilen and field/action affordances are screenshot-documented.",
+    "No field/action is added, removed or moved unless a later explicit gate allows it.",
+    "No setup assignment, master data, preview posting or posting occurs."
+  ],
+  "migrationRelevance": "german-final-candidate",
+  "finalScreenshotNeeded": true,
+  "nextSafeAction": "Map Personalize field/action affordances without changing personalization.",
+  "updatedAt": "2026-06-30T12:39:22.975Z"
+}

@@ -1105,7 +1105,7 @@
     {
       "id": "TARGET-016F-NUMBER-SERIES-PERSONALIZE-OR-SETUP-ASSISTED-ROUTE",
       "order": 10021,
-      "status": "pending",
+      "status": "done",
       "category": "target-foundation-number-series",
       "expectedImpact": "number-series-lines-standard-route-discovery",
       "mayWorkEffectively": true,
@@ -1115,11 +1115,29 @@
       "sourceCompany": "UNIVERSAARL-DE",
       "targetWorld": "Universaarl",
       "noFinalGermanClaimWithoutUniversaarlEvidence": false,
+      "lookaheadStatus": "done",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-016f-number-series-personalize-or-setup-assisted-route/TARGET-016F-result.json",
+      "completedAt": "2026-06-30T12:39:22.975Z",
+      "result": "Personalisieren mode for Nr.-Serienzeilen observed and exited without changes."
+    },
+    {
+      "id": "TARGET-016G-NUMBER-SERIES-PERSONALIZE-FIELD-ACTION-MAP",
+      "order": 10022,
+      "status": "pending",
+      "category": "target-foundation-number-series",
+      "expectedImpact": "number-series-personalize-field-action-map",
+      "mayWorkEffectively": true,
+      "mayRunPlaywright": true,
+      "effectiveBcActionsAllowed": true,
+      "goal": "Map Personalize field/action affordances for Number Series Lines without saving changes.",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "targetWorld": "Universaarl",
+      "noFinalGermanClaimWithoutUniversaarlEvidence": false,
       "lookaheadStatus": "ready-next",
       "resultPath": null
     }
   ],
-  "lastUpdated": "2026-06-30T12:20:35.744Z",
+  "lastUpdated": "2026-06-30T12:39:22.975Z",
   "nextStepDecisionGate": {
     "active": true,
     "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",
@@ -1142,59 +1160,57 @@
       "replace-with-better-case"
     ],
     "latestDecisionCard": {
-      "currentCase": "PREP-046-BOOKMASTER-STARTER-DATA-UNIVERSAARL-CLEANUP",
-      "plannedNextCaseBeforeReview": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
-      "lastEvidenceSummary": "PREP-046 cleaned the active chapter 6 starter data package so Universaarl target master data uses U-CUST, U-VEND, U-ITEM and SAAR-* codes instead of active RM-DEMO/Rhein-Main starter codes.",
+      "currentCase": "TARGET-016F-NUMBER-SERIES-PERSONALIZE-OR-SETUP-ASSISTED-ROUTE",
+      "plannedNextCaseBeforeReview": "TARGET-016F-NUMBER-SERIES-PERSONALIZE-OR-SETUP-ASSISTED-ROUTE",
+      "lastEvidenceSummary": "TARGET-016E blocked plain field-flow and F2 for U-CUST Number Series Lines; TARGET-016D proved Page 457/Table 309.",
       "isPlannedNextCaseStillSensible": true,
-      "reason": "Company Creation remains the dependency before Company Information, Foundation setup, master data creation and process evidence; it remains blocked until SUPER/company-create permissions are confirmed.",
+      "reason": "Personalize/standard route discovery is the next non-repeated BC-native path after grid typing failed.",
       "lookaheadReviewed": [
         {
-          "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
-          "status": "blocked",
-          "reason": "Requires SUPER/company-create permissions and the PREP-040 screenshot chain."
+          "caseId": "TARGET-016G-NUMBER-SERIES-PERSONALIZE-FIELD-ACTION-MAP",
+          "status": "ready-next",
+          "reason": "Depends on whether Personalize became usable."
         },
         {
-          "caseId": "TARGET-COMPANY-INFO-001-COMPANY-INFORMATION-READONLY",
-          "status": "ready-after-current",
-          "reason": "Run only after UNIVERSAARL-DE exists and active company context is visible."
+          "caseId": "TARGET-017-NUMBER-SERIES-SETUP-ASSIGNMENT",
+          "status": "needs-setup-first",
+          "reason": "Assignments require valid line ranges."
         },
         {
-          "caseId": "TARGET-005-NUMBER-SERIES-PREFLIGHT",
-          "status": "ready-after-current",
-          "reason": "Requires company and Company Information context first."
+          "caseId": "TARGET-018-CUSTOMER-MASTERDATA-PREFLIGHT",
+          "status": "needs-setup-first",
+          "reason": "Customer creation depends on customer number-series assignment."
         },
         {
-          "caseId": "TARGET-006-POSTING-GROUPS-PREFLIGHT",
+          "caseId": "TARGET-019-POSTING-GROUPS-PREFLIGHT",
           "status": "ready-after-current",
-          "reason": "Requires company foundation context before setup inspection."
+          "reason": "Can proceed after numbering is unblocked or parked."
         },
         {
-          "caseId": "TARGET-DATA-FOUNDATION-001-CORE-MASTERDATA-PLAN",
+          "caseId": "TARGET-020-VAT-SETUP-READINESS",
           "status": "ready-after-current",
-          "reason": "The cleaned starter data package gives a concrete data target after company and W1 setup gates."
+          "reason": "Follows foundation sequencing."
         }
       ],
       "queueChangesMade": [
-        "Added PREP-046 as a completed bookmaster starter data Universaarl cleanup.",
-        "Kept TARGET-009 parked until permissions.",
-        "Moved active chapter 6 starter data language from RM/D/K/RM item codes to Universaarl U-CUST/U-VEND/U-ITEM naming."
+        "Marked TARGET-016F observed.",
+        "Added TARGET-016G to map Personalize fields/actions without saving changes."
       ],
-      "selectedNextCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
-      "whySelectedNextCaseIsBest": "Company Creation remains the required dependency before any Universaarl Company Information, Foundation setup, starter master data or process evidence can be final-candidate evidence.",
+      "selectedNextCase": "TARGET-016G-NUMBER-SERIES-PERSONALIZE-FIELD-ACTION-MAP",
+      "whySelectedNextCaseIsBest": "TARGET-016F proved the correct Personalisieren mode on Nr.-Serienzeilen; TARGET-016G can now inspect available fields/actions without repeating grid typing.",
       "risksBeforeNextCase": [
-        "Do not click the Hauptbutton Neu when the intended target is Neues Unternehmen erstellen.",
-        "Screenshot must show the dropdown menu item itself before click.",
-        "Data basis must be visible before any finish/create confirmation."
+        "Do not save Personalize changes without explicit gate.",
+        "Do not change checkbox states.",
+        "Do not create master data before line ranges are ready."
       ],
       "requiredPreparation": [
-        "User confirms sufficient SUPER/company-create permissions.",
-        "Use UNIVERSAARL-COMPANY-CREATION-SCREENSHOT-QA-GATE.md during TARGET-009."
+        "Use screenshot QA and safe route-specific evidence."
       ]
     }
   },
   "updatedAt": "2026-06-30T12:20:35.744Z",
-  "lastCompletedCase": "TARGET-016E-NUMBER-SERIES-LINES-FIELD-FLOW-CONTROLLED-FIT",
-  "nextCase": "TARGET-016F-NUMBER-SERIES-PERSONALIZE-OR-SETUP-ASSISTED-ROUTE",
+  "lastCompletedCase": "TARGET-016F-NUMBER-SERIES-PERSONALIZE-OR-SETUP-ASSISTED-ROUTE",
+  "nextCase": "TARGET-016G-NUMBER-SERIES-PERSONALIZE-FIELD-ACTION-MAP",
   "nextStepDecisionCard": {
     "currentCase": "TARGET-016E-NUMBER-SERIES-LINES-FIELD-FLOW-CONTROLLED-FIT",
     "plannedNextCaseBeforeReview": "TARGET-016E-NUMBER-SERIES-LINES-FIELD-FLOW-CONTROLLED-FIT",
