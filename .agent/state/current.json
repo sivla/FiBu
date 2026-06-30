@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-30T06:35:00.000+02:00",
+  "updatedAt": "2026-06-30T07:05:00.000+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-atlas-quality-prep",
-  "activeCase": "PREP-022-ATLAS-COVERAGE-QUALITY-AUDIT",
-  "active_case_file": ".agent/state/cases/prep-022-atlas-coverage-quality-audit.json",
+  "activeArea": "universaarl-book-flow-prep",
+  "activeCase": "PREP-023-BOOK-CHAPTER-STIMMIGKEIT-AUDIT",
+  "active_case_file": ".agent/state/cases/prep-023-book-chapter-stimmigkeit-audit.json",
   "lastReferenceCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
   "lastReferenceCaseFile": ".agent/state/cases/warehouse-031-warehouse-source-route-park-or-setup-fit-decision.json",
   "mode": "universaarl-readonly-prep-until-super-permissions",
@@ -48,7 +48,7 @@
     "preview-posting-until-target-company-exists",
     "api-shortcut-for-company-creation"
   ],
-  "nextStep": "Continue with PREP-023-BOOK-CHAPTER-STIMMIGKEIT-AUDIT. Company creation remains parked until SUPER/company-create permissions are confirmed.",
+  "nextStep": "Continue with PREP-024-READONLY-PAGE-DISCOVERY-PACK. Use the chapter audit to focus read-only discovery on W0/W1 pages; company creation remains parked until SUPER/company-create permissions are confirmed.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -3650,31 +3650,31 @@
     "resultFile": "playwright/projects/fibu-book5/evidence/prep-020-universaarl-dataset-blueprint/PREP-020-result.json"
   },
   "nextStepDecisionCard": {
-    "currentCase": "PREP-020-UNIVERSAARL-DATASET-BLUEPRINT",
-    "plannedNextCaseBeforeReview": "PREP-020-UNIVERSAARL-DATASET-BLUEPRINT",
-    "lastEvidenceSummary": "PREP-019 corrected agent:marathon:check so PREP queue state outranks stale Target execute levers while Company Creation is parked.",
+    "currentCase": "PREP-023-BOOK-CHAPTER-STIMMIGKEIT-AUDIT",
+    "plannedNextCaseBeforeReview": "PREP-023-BOOK-CHAPTER-STIMMIGKEIT-AUDIT",
+    "lastEvidenceSummary": "PREP-022 classified atlas quality and set active Universaarl priorities for W0/W1.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "Company Creation remains permission-parked, and a concrete dataset blueprint is the strongest preparation for future Universaarl setup, screenshots, filters and process evidence.",
+    "reason": "The bookmaster has a Universaarl chapter-3 anchor, but later chapters still use Rhein-Main/RM-DEMO as active flow. A chapter-flow audit is needed before more book patches.",
     "lookaheadReviewed": [
       {
-        "caseId": "PREP-021-UNIVERSAARL-USECASE-BACKLOG-CURATION",
-        "status": "ready-next",
-        "reason": "Usecases can now be tied to W0-W5 build waves and MD/PROC packages."
-      },
-      {
-        "caseId": "PREP-022-ATLAS-COVERAGE-QUALITY-AUDIT",
-        "status": "ready-after-current",
-        "reason": "Atlas entries should be audited against the concrete dataset and process packages."
-      },
-      {
-        "caseId": "PREP-023-BOOK-CHAPTER-STIMMIGKEIT-AUDIT",
-        "status": "ready-after-current",
-        "reason": "Book chapter flow should use the clarified data and usecase sequence."
-      },
-      {
         "caseId": "PREP-024-READONLY-PAGE-DISCOVERY-PACK",
+        "status": "ready-next",
+        "reason": "Read-only page discovery can use the chapter audit to focus on pages needed for real Universaarl reader flow."
+      },
+      {
+        "caseId": "PREP-025-NEXT-10-CASES-REPLANNING",
         "status": "ready-after-current",
-        "reason": "Read-only discovery packs are more useful after usecase and atlas priorities are clearer."
+        "reason": "The next ten cases should account for the P0 chapter-6 rewrite dependency and the parked company-creation gate."
+      },
+      {
+        "caseId": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
+        "status": "ready-after-current",
+        "reason": "Source mapping should prioritize Company, Number Series, Posting Groups, VAT, Dimensions and Entries."
+      },
+      {
+        "caseId": "PREP-027-IMPLEMENTATION-GUIDE-BEST-PRACTICE-MAPPING",
+        "status": "ready-after-current",
+        "reason": "Implementation guidance is useful after book and source priorities are clearer."
       },
       {
         "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
@@ -3683,19 +3683,20 @@
       }
     ],
     "queueChangesMade": [
-      "Marked PREP-020 done.",
-      "Selected PREP-021 as next safe prep case.",
-      "Kept TARGET-009 parked until SUPER/company-create permissions are confirmed."
+      "Marked PREP-023 done.",
+      "Selected PREP-024 as next safe prep case.",
+      "Recorded BOOK-UNIVERSAARL-CH04-ERP-BASICS-REWRITE as a high-value book patch candidate, but did not insert it ahead of PREP-024 yet."
     ],
-    "selectedNextCase": "PREP-021-UNIVERSAARL-USECASE-BACKLOG-CURATION",
-    "whySelectedNextCaseIsBest": "The next improvement is to bind planned book usecases to the dataset packages and order them by dependency, evidence value and screenshot value.",
+    "selectedNextCase": "PREP-024-READONLY-PAGE-DISCOVERY-PACK",
+    "whySelectedNextCaseIsBest": "The next useful step is to prepare read-only discovery packs for the exact pages the book will need once permissions allow company creation and foundation setup.",
     "risksBeforeNextCase": [
-      "Do not treat planned dataset codes as existing BC records.",
-      "Do not add Shopify or legacy RM names to active Universaarl usecases."
+      "Do not run an effective BC action while company creation is permission-blocked.",
+      "Do not present RM-DEMO screenshots as Universaarl final screenshots.",
+      "Do not use read-only page discovery as proof that setup or records exist."
     ],
     "requiredPreparation": [
-      "Read .agent/state/universaarl_dataset_blueprint.json.",
-      "Read BC-FULL-PLAYTHROUGH-CATALOG.md and existing usecase backlog files."
+      "Use BC-ATLAS-COVERAGE-QUALITY-AUDIT.md and BOOK-CHAPTER-STIMMIGKEIT-AUDIT.md.",
+      "Focus read-only discovery on W0/W1 pages first: Companies, Company Information, Assisted Setup, Number Series, Posting Groups, VAT, Dimensions."
     ]
   },
   "permissionBlocker": {
@@ -3715,10 +3716,10 @@
     "activatedAt": "2026-06-29T21:25:26.553Z",
     "reason": "UNIVERSAARL-DE cannot be created until required permissions exist; productive work continues through repo/book/source/read-only prep cases.",
     "firstCase": "PREP-001-PERMISSION-BLOCKER-DOCUMENTATION",
-    "nextCase": "PREP-021-UNIVERSAARL-USECASE-BACKLOG-CURATION",
+    "nextCase": "PREP-024-READONLY-PAGE-DISCOVERY-PACK",
     "noEffectiveBcActions": true,
-    "lastCompletedCase": "PREP-020-UNIVERSAARL-DATASET-BLUEPRINT",
-    "updatedAt": "2026-06-30T05:25:00.000+02:00"
+    "lastCompletedCase": "PREP-023-BOOK-CHAPTER-STIMMIGKEIT-AUDIT",
+    "updatedAt": "2026-06-30T07:05:00.000+02:00"
   },
   "latestCompanyCreationBookDraft": {
     "updatedAt": "2026-06-29T21:34:46.267Z",
@@ -3734,8 +3735,8 @@
     "noPlaywrightExecution": true,
     "nextCase": "PREP-003-PLAYTHRU-READONLY-UI-LOOK-AND-FEEL-MAP"
   },
-  "lastCompletedCaseFile": ".agent/state/cases/prep-020-universaarl-dataset-blueprint.json",
-  "lastResultPath": "playwright/projects/fibu-book5/evidence/prep-020-universaarl-dataset-blueprint/PREP-020-result.json",
+  "lastCompletedCaseFile": ".agent/state/cases/prep-023-book-chapter-stimmigkeit-audit.json",
+  "lastResultPath": "playwright/projects/fibu-book5/evidence/prep-023-book-chapter-stimmigkeit-audit/PREP-023-result.json",
   "latestReadonlyUiLookAndFeelMap": {
     "caseId": "PREP-003-PLAYTHRU-READONLY-UI-LOOK-AND-FEEL-MAP",
     "status": "prep-done",
@@ -3772,16 +3773,16 @@
     "nextCase": "PREP-006-BOOKMASTER-UNIVERSAARL-FALLSTUDIE-REWRITE-PLAN",
     "updatedAt": "2026-06-29T21:54:54.534Z"
   },
-  "activeCaseFile": ".agent/state/cases/prep-020-universaarl-dataset-blueprint.json",
-  "previousCase": "PREP-019-AUTOPILOT-EFFICIENCY-IMPROVEMENT",
-  "nextCase": "PREP-021-UNIVERSAARL-USECASE-BACKLOG-CURATION",
+  "activeCaseFile": ".agent/state/cases/prep-023-book-chapter-stimmigkeit-audit.json",
+  "previousCase": "PREP-022-ATLAS-COVERAGE-QUALITY-AUDIT",
+  "nextCase": "PREP-024-READONLY-PAGE-DISCOVERY-PACK",
   "latestPrepCase": {
-    "caseId": "PREP-020-UNIVERSAARL-DATASET-BLUEPRINT",
+    "caseId": "PREP-023-BOOK-CHAPTER-STIMMIGKEIT-AUDIT",
     "status": "done",
-    "resultPath": "playwright/projects/fibu-book5/evidence/prep-020-universaarl-dataset-blueprint/PREP-020-result.json",
-    "completedAt": "2026-06-30T05:25:00.000+02:00",
-    "summary": "Dataset blueprint now defines W0-W5 build waves, MD-* masterdata packages, PROC-* process packages and a compact JSON map for future usecases.",
-    "nextCase": "PREP-021-UNIVERSAARL-USECASE-BACKLOG-CURATION"
+    "resultPath": "playwright/projects/fibu-book5/evidence/prep-023-book-chapter-stimmigkeit-audit/PREP-023-result.json",
+    "completedAt": "2026-06-30T07:05:00.000+02:00",
+    "summary": "Book chapter flow audited: chapter 3 is the Universaarl anchor, chapter 6 is P0 rewrite risk, and process chapters remain legacy-labor scaffolds until Universaarl evidence replaces them.",
+    "nextCase": "PREP-024-READONLY-PAGE-DISCOVERY-PACK"
   },
   "latestBookmasterFallstudieRewritePlan": {
     "status": "prep-progress",
@@ -4037,5 +4038,16 @@
     "nextCase": "PREP-023-BOOK-CHAPTER-STIMMIGKEIT-AUDIT",
     "noBusinessCentralExecution": true,
     "noPlaywrightExecution": true
+  },
+  "latestBookChapterStimmigkeitAudit": {
+    "caseId": "PREP-023-BOOK-CHAPTER-STIMMIGKEIT-AUDIT",
+    "status": "prep-done",
+    "auditPath": "playwright/projects/fibu-book5/BOOK-CHAPTER-STIMMIGKEIT-AUDIT.md",
+    "statePath": ".agent/state/book_chapter_stimmigkeit_audit.json",
+    "resultPath": "playwright/projects/fibu-book5/evidence/prep-023-book-chapter-stimmigkeit-audit/PREP-023-result.json",
+    "keyFinding": "Chapter 3 is the Universaarl anchor; chapter 6 is P0 rewrite risk; process chapters remain legacy-labor scaffolds until Universaarl evidence replaces them.",
+    "noBusinessCentralExecution": true,
+    "noPlaywrightExecution": true,
+    "nextCase": "PREP-024-READONLY-PAGE-DISCOVERY-PACK"
   }
 }

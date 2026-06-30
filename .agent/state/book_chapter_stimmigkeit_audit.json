@@ -1,0 +1,150 @@
+{
+  "schemaVersion": 1,
+  "caseId": "PREP-023-BOOK-CHAPTER-STIMMIGKEIT-AUDIT",
+  "status": "prep-done",
+  "instance": "playthru",
+  "targetCompany": "UNIVERSAARL-DE-planned-not-yet-created",
+  "activeBookWorld": "Universaarl GmbH",
+  "noBusinessCentralExecution": true,
+  "noPlaywrightExecution": true,
+  "noBookmasterRewrite": true,
+  "auditedInputs": [
+    "FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md",
+    "playwright/projects/fibu-book5/book-drafts",
+    "playwright/projects/fibu-book5/UNIVERSAARL-USECASE-BACKLOG.md",
+    "playwright/projects/fibu-book5/BC-ATLAS-COVERAGE-QUALITY-AUDIT.md",
+    "playwright/projects/fibu-book5/UNIVERSAARL-FALLSTUDIE-REWRITE-PLAN.md",
+    "playwright/projects/fibu-book5/BOOK-WRITING-META-LANGUAGE-AUDIT.md",
+    "playwright/projects/fibu-book5/UNIVERSAARL-RM-DECOMMISSION-PLAN.md"
+  ],
+  "headlineFindings": [
+    {
+      "id": "CH03-UNIVERSAARL-ANCHOR",
+      "area": "chapter-3",
+      "classification": "universaarl-draft-anchor",
+      "finding": "Chapter 3 already introduces Universaarl, Environment, Company and the CRONUS boundary without claiming that UNIVERSAARL-DE exists.",
+      "nextAction": "After TARGET-009, add real Companies page and company creation evidence."
+    },
+    {
+      "id": "CH06-FOUNDATION-BREAK",
+      "area": "chapter-6",
+      "classification": "p0-book-rewrite-needed",
+      "finding": "Chapter 6 still describes CRONUS-to-RM-DEMO, Rhein-Main master plan and RM-* companies as active flow.",
+      "nextAction": "Rewrite chapter 6 as Universaarl Company Creation/Foundation once company creation route is proven."
+    },
+    {
+      "id": "CH04-RM-EXAMPLES",
+      "area": "chapter-4",
+      "classification": "active-must-replace-now",
+      "finding": "ERP introductory examples still use Rhein-Main and RM-specific examples as active world.",
+      "nextAction": "Small book patch can safely convert conceptual examples to Universaarl without claiming BC records exist."
+    },
+    {
+      "id": "PROCESS-CHAPTERS-LEGACY",
+      "area": "chapters-9-through-21",
+      "classification": "legacy-labor-scaffold",
+      "finding": "O2C, P2P, Inventory, Warehouse, Bank, Fixed Assets and Manufacturing contain useful legacy laboratory learning but are not Universaarl final proof.",
+      "nextAction": "Replace process-by-process after Universaarl setup, master data and postings exist."
+    }
+  ],
+  "chapterActions": [
+    {
+      "chapter": "3",
+      "status": "universaarl-draft-anchor",
+      "action": "extend-after-target-009"
+    },
+    {
+      "chapter": "4",
+      "status": "active-must-replace-now",
+      "action": "small-conceptual-universaarl-rewrite"
+    },
+    {
+      "chapter": "5",
+      "status": "replace-with-universaarl-evidence",
+      "action": "replace-or-archive-cronus-rm-orientation-after-company-creation"
+    },
+    {
+      "chapter": "6",
+      "status": "p0-book-rewrite-needed",
+      "action": "rewrite-after-company-creation-evidence"
+    },
+    {
+      "chapter": "7-8",
+      "status": "needs-universaarl-rebuild",
+      "action": "wait-for-w1-foundation-evidence"
+    },
+    {
+      "chapter": "9-13",
+      "status": "legacy-labor-scaffold",
+      "action": "replace-after-o2c-p2p-inventory-universaarl-proof"
+    },
+    {
+      "chapter": "14-21",
+      "status": "legacy-labor-scaffold",
+      "action": "keep-as-structure-source-until-special-process-rebuild"
+    },
+    {
+      "chapter": "22",
+      "status": "source-and-target-evidence-required",
+      "action": "require-source-plus-universaarl-vat-proof"
+    },
+    {
+      "chapter": "25",
+      "status": "needs-universaarl-postings-first",
+      "action": "wait-for-real-postings-and-dimensions"
+    }
+  ],
+  "bookDraftDecisions": [
+    {
+      "file": "playwright/projects/fibu-book5/book-drafts/universaarl-company-creation-draft.md",
+      "decision": "active-draft-for-chapter-3-and-6"
+    },
+    {
+      "file": "playwright/projects/fibu-book5/book-drafts/universaarl-look-and-feel-filtering-draft.md",
+      "decision": "active-draft-for-beginner-ui-chapter"
+    },
+    {
+      "file": "playwright/projects/fibu-book5/book-drafts/p2p-labor-draft.md",
+      "decision": "legacy-labor-structure-source"
+    },
+    {
+      "file": "playwright/projects/fibu-book5/book-drafts/inventory-labor-draft.md",
+      "decision": "legacy-labor-structure-source"
+    },
+    {
+      "file": "playwright/projects/fibu-book5/book-drafts/bank-payments-labor-draft.md",
+      "decision": "legacy-labor-structure-source"
+    },
+    {
+      "file": "playwright/projects/fibu-book5/book-drafts/fixedassets-labor-draft.md",
+      "decision": "labor-sufficient-for-book-draft-not-final"
+    },
+    {
+      "file": "playwright/projects/fibu-book5/book-drafts/warehouse-labor-draft.md",
+      "decision": "legacy-boundary-source"
+    },
+    {
+      "file": "playwright/projects/fibu-book5/book-drafts/manufacturing-labor-draft.md",
+      "decision": "legacy-structure-source"
+    }
+  ],
+  "recommendedBookPatchQueue": [
+    "BOOK-UNIVERSAARL-CH04-ERP-BASICS-REWRITE",
+    "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+    "BOOK-UNIVERSAARL-CH06-COMPANY-CREATION-REWRITE",
+    "TARGET-COMPANY-INFO-001",
+    "TARGET-FOUNDATION-001",
+    "TARGET-NOSERIES-001",
+    "TARGET-POSTINGGROUPS-001",
+    "TARGET-VAT-001",
+    "TARGET-DIMENSIONS-001"
+  ],
+  "warnings": [
+    "Do not mass-replace old RM/Rhein-Main references in historical evidence.",
+    "Do not use RM-DEMO or CRONUS screenshots as Universaarl final screenshots.",
+    "Do not claim UNIVERSAARL-DE exists until company creation is proven.",
+    "Do not convert legacy laboratory postings into final German tax/accounting proof."
+  ],
+  "nextCase": "PREP-024-READONLY-PAGE-DISCOVERY-PACK",
+  "updatedAt": "2026-06-30T07:05:00.000+02:00"
+}
