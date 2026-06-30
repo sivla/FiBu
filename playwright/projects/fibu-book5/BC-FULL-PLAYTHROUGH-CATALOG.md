@@ -28,16 +28,16 @@ Zero-Open-Questions-Regel: Jeder Bereich in diesem Katalog muss seine offenen Ob
 
 | Prioritaet | Case | Warum |
 | --- | --- | --- |
-| 1 | `PREP-020-UNIVERSAARL-DATASET-BLUEPRINT` | Aktueller PREP-Schritt: Datenfamilien werden in konkrete Build-Wellen, Stammdatenpakete und Prozesspakete fuer `UNIVERSAARL-DE` ueberfuehrt. |
-| 2 | `PREP-021-UNIVERSAARL-USECASE-BACKLOG-CURATION` | Naechster Schritt: Der Usecase-Backlog wird nach Setup-Abhaengigkeiten, Buchwert und Screenshot-/Evidence-Bedarf sortiert. |
-| 3 | `PREP-022-ATLAS-COVERAGE-QUALITY-AUDIT` | Atlanten sollen nur nutzbare Page-/Feld-/Action-/Dialog-Regeln enthalten, keine dekorativen Platzhalter. |
-| 4 | `PREP-023-BOOK-CHAPTER-STIMMIGKEIT-AUDIT` | Buchkapitel werden auf Leserfluss, Zielwelt und fehlende Universaarl-Abhaengigkeiten geprueft. |
-| 5 | `PREP-024-READONLY-PAGE-DISCOVERY-PACK` | Safe Read-only-Packs bereiten spaetere UI-Evidence vor, ohne wirksame BC-Aktionen auszufuehren. |
-| 6 | `PREP-025-NEXT-10-CASES-REPLANNING` | Nach Dataset und Backlog soll die naechste Sequenz wieder geprueft und verdichtet werden. |
-| 7 | `TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE` | Geparkt bis zu bestaetigten SUPER-/Company-Create-Rechten: Seite `Mandanten`, `Neu`-Pfeil, `Neues Unternehmen erstellen`, sichtbare Anlage oder exakter Berechtigungsfehler. |
-| 8 | `TARGET-004-FOUNDATION-SETUP-READINESS` | Erst nach erstellter Company: Company Information, Setup-Assistenten, Basis-Setup und Vorher/Nachher-Evidence. |
-| 9 | `TARGET-005-NUMBER-SERIES-PREFLIGHT` | Erst nach Company- und Foundation-Kontext: Nummernserien sichtbar pruefen, bevor Belege entstehen. |
-| 10 | `TARGET-006-POSTING-GROUPS-PREFLIGHT` | Erst nach Foundation: Kontenfindung und Buchungsmatrizen pruefen, bevor Preview oder Posting erlaubt werden. |
+| 1 | `PREP-021-UNIVERSAARL-USECASE-BACKLOG-CURATION` | Aktueller PREP-Schritt: Der Usecase-Backlog wird nach Setup-Abhaengigkeiten, Buchwert, Screenshot-Bedarf und Dataset-Paketen sortiert. |
+| 2 | `PREP-022-ATLAS-COVERAGE-QUALITY-AUDIT` | Naechster Schritt: Atlanten sollen nur nutzbare Page-/Feld-/Action-/Dialog-Regeln enthalten, die einem konkreten Universaarl-Usecase helfen. |
+| 3 | `PREP-023-BOOK-CHAPTER-STIMMIGKEIT-AUDIT` | Buchkapitel werden auf Leserfluss, Zielwelt und fehlende Universaarl-Abhaengigkeiten geprueft. |
+| 4 | `PREP-024-READONLY-PAGE-DISCOVERY-PACK` | Safe Read-only-Packs bereiten spaetere UI-Evidence vor, ohne wirksame BC-Aktionen auszufuehren. |
+| 5 | `PREP-025-NEXT-10-CASES-REPLANNING` | Nach Dataset, Backlog und Atlas-Qualitaet soll die naechste Sequenz wieder geprueft und verdichtet werden. |
+| 6 | `PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING` | Quellen werden auf Company, Setup, Posting, Entries und UAT gemappt, damit Buchclaims nicht aus Vermutung entstehen. |
+| 7 | `TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE` | Geparkt bis zu bestaetigten SUPER-/Company-Create-Rechten: Seite `Mandanten`, Pfeil neben `Neu`, `Neues Unternehmen erstellen`, sichtbare Anlage oder exakter Berechtigungsfehler. |
+| 8 | `TARGET-COMPANY-INFO-001` | Erst nach erstellter Company: Company Information, Legal Name, Adresse und Kontext fuer alle Buchscreenshots beweisen. |
+| 9 | `TARGET-FOUNDATION-001` | Erst nach Company-Kontext: Assisted/Manual Setup, Basis-Setup und Vorher/Nachher-Evidence. |
+| 10 | `TARGET-NOSERIES-001` / `TARGET-POSTINGGROUPS-001` / `TARGET-VAT-001` | Erst nach Foundation: Nummernserien, Kontenfindung, USt und Dimensionen pruefen, bevor Belege, Preview oder Posting erlaubt werden. |
 
 ## Permission-aware Gate-Reihenfolge
 

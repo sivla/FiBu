@@ -1,0 +1,200 @@
+{
+  "schemaVersion": 1,
+  "status": "prep-done",
+  "caseId": "PREP-021-UNIVERSAARL-USECASE-BACKLOG-CURATION",
+  "targetWorld": "Universaarl",
+  "instance": "playthru",
+  "targetCompany": "UNIVERSAARL-DE",
+  "targetCompanyStatus": "planned-not-yet-created",
+  "legalName": "Universaarl GmbH",
+  "sourceBlueprint": ".agent/state/universaarl_dataset_blueprint.json",
+  "backlogPath": "playwright/projects/fibu-book5/UNIVERSAARL-USECASE-BACKLOG.md",
+  "noBusinessCentralExecution": true,
+  "noPlaywrightExecution": true,
+  "currentBlockingGate": {
+    "id": "missing-super-or-company-create-permission",
+    "parkedTargetCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+    "reason": "UNIVERSAARL-DE must not be created, saved or finished until sufficient company-create permissions are confirmed."
+  },
+  "nextPrepCase": "PREP-022-ATLAS-COVERAGE-QUALITY-AUDIT",
+  "usecases": [
+    {
+      "id": "PREP-022-ATLAS-COVERAGE-QUALITY-AUDIT",
+      "wave": "PREP",
+      "status": "ready-next",
+      "purpose": "Audit atlas entries for concrete Universaarl usecase value."
+    },
+    {
+      "id": "PREP-023-BOOK-CHAPTER-STIMMIGKEIT-AUDIT",
+      "wave": "PREP",
+      "status": "ready-after-current",
+      "purpose": "Audit chapter flow against Universaarl target world."
+    },
+    {
+      "id": "PREP-024-READONLY-PAGE-DISCOVERY-PACK",
+      "wave": "PREP",
+      "status": "ready-after-current",
+      "purpose": "Prepare safe read-only page discovery for later screenshots."
+    },
+    {
+      "id": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+      "wave": "W0-COMPANY-CONTEXT",
+      "status": "blocked-until-super-permissions",
+      "datasetPackage": "",
+      "requiredBefore": [
+        "SUPER or sufficient company-create permissions confirmed"
+      ],
+      "evidenceExpected": [
+        "Companies page context",
+        "New dropdown route",
+        "Neues Unternehmen erstellen action",
+        "visible UNIVERSAARL-DE or exact permission error"
+      ]
+    },
+    {
+      "id": "TARGET-COMPANY-INFO-001",
+      "wave": "W0-COMPANY-CONTEXT",
+      "status": "planned-after-company",
+      "datasetPackage": "",
+      "requiredBefore": [
+        "UNIVERSAARL-DE visible"
+      ]
+    },
+    {
+      "id": "TARGET-FOUNDATION-001",
+      "wave": "W1-FINANCE-FOUNDATION",
+      "status": "planned-after-company",
+      "datasetPackage": "",
+      "requiredBefore": [
+        "Company Information context proven"
+      ]
+    },
+    {
+      "id": "TARGET-NOSERIES-001",
+      "wave": "W1-FINANCE-FOUNDATION",
+      "status": "planned-after-foundation",
+      "datasetPackage": "",
+      "requiredBefore": [
+        "Foundation setup route known"
+      ]
+    },
+    {
+      "id": "TARGET-POSTINGGROUPS-001",
+      "wave": "W1-FINANCE-FOUNDATION",
+      "status": "planned-after-foundation",
+      "datasetPackage": "",
+      "requiredBefore": [
+        "Chart of Accounts baseline known"
+      ]
+    },
+    {
+      "id": "TARGET-VAT-001",
+      "wave": "W1-FINANCE-FOUNDATION",
+      "status": "planned-after-foundation",
+      "datasetPackage": "",
+      "requiredBefore": [
+        "Posting group route known"
+      ]
+    },
+    {
+      "id": "TARGET-DIMENSIONS-001",
+      "wave": "W1-FINANCE-FOUNDATION",
+      "status": "planned-after-foundation",
+      "datasetPackage": "MD-DIMENSIONS-01",
+      "requiredBefore": [
+        "Dimension design approved"
+      ]
+    },
+    {
+      "id": "TARGET-DATA-CUSTOMERS-001",
+      "wave": "W2-CORE-MASTERDATA",
+      "status": "planned-after-foundation",
+      "datasetPackage": "MD-CUSTOMERS-01"
+    },
+    {
+      "id": "TARGET-DATA-VENDORS-001",
+      "wave": "W2-CORE-MASTERDATA",
+      "status": "planned-after-foundation",
+      "datasetPackage": "MD-VENDORS-01"
+    },
+    {
+      "id": "TARGET-DATA-ITEMS-001",
+      "wave": "W2-CORE-MASTERDATA",
+      "status": "planned-after-foundation",
+      "datasetPackage": "MD-ITEMS-01"
+    },
+    {
+      "id": "TARGET-DATA-LOCATIONS-001",
+      "wave": "W2-CORE-MASTERDATA",
+      "status": "planned-after-foundation",
+      "datasetPackage": "MD-LOCATIONS-01"
+    },
+    {
+      "id": "TARGET-DATA-BANK-001",
+      "wave": "W2-CORE-MASTERDATA",
+      "status": "planned-after-foundation",
+      "datasetPackage": "MD-BANK-01"
+    },
+    {
+      "id": "TARGET-O2C-001",
+      "wave": "W3-FIRST-POSTINGS",
+      "status": "planned-after-masterdata",
+      "datasetPackage": "PROC-O2C-01"
+    },
+    {
+      "id": "TARGET-P2P-001",
+      "wave": "W3-FIRST-POSTINGS",
+      "status": "planned-after-masterdata",
+      "datasetPackage": "PROC-P2P-01"
+    },
+    {
+      "id": "TARGET-INVENTORY-001",
+      "wave": "W3-FIRST-POSTINGS",
+      "status": "planned-after-masterdata",
+      "datasetPackage": "PROC-INVENTORY-01"
+    },
+    {
+      "id": "TARGET-PAYMENT-001",
+      "wave": "W3-FIRST-POSTINGS",
+      "status": "planned-after-first-postings",
+      "datasetPackage": "PROC-PAYMENT-01"
+    },
+    {
+      "id": "TARGET-REPORTING-001",
+      "wave": "W4-DATA-RICHNESS-AND-REPORTING",
+      "status": "planned-after-first-postings"
+    },
+    {
+      "id": "TARGET-FA-001",
+      "wave": "W5-SPECIALS",
+      "status": "planned-after-foundation-and-masterdata"
+    },
+    {
+      "id": "TARGET-WAREHOUSE-001",
+      "wave": "W5-SPECIALS",
+      "status": "planned-after-inventory-foundation"
+    },
+    {
+      "id": "TARGET-MANUFACTURING-001",
+      "wave": "W5-SPECIALS",
+      "status": "planned-after-item-and-inventory-foundation"
+    },
+    {
+      "id": "TARGET-SERVICE-001",
+      "wave": "W5-SPECIALS",
+      "status": "planned-after-sales-and-items"
+    },
+    {
+      "id": "TARGET-PROJECTS-001",
+      "wave": "W5-SPECIALS",
+      "status": "planned-after-sales-purchase-foundation"
+    }
+  ],
+  "excluded": [
+    {
+      "id": "SHOPIFY-ONLINE-STORE",
+      "status": "excluded-shopify"
+    }
+  ],
+  "updatedAt": "2026-06-30T06:05:00.000+02:00"
+}
