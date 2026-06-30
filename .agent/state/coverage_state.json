@@ -568,7 +568,7 @@
       "nextCase": "TARGET-010-UNIVERSAARL-COMPANY-CONTEXT-PROOF"
     },
     "numberSeries": {
-      "status": "in-progress-u-cust-line-proven",
+      "status": "in-progress-lines-proven-assignment-open",
       "instance": "playthru",
       "company": "UNIVERSAARL-DE",
       "latestCase": "TARGET-016L-NUMBER-SERIES-INCOMPLETE-LINE-COMPLETE-OR-CLEANUP-RECOVERY",
@@ -590,13 +590,28 @@
         "No master data or document numbering has used these series yet.",
         "No legal/compliance numbering claim is made."
       ],
-      "nextCase": "TARGET-016M-NUMBER-SERIES-REMAINING-LINES-CONTROLLED-FIT"
+      "nextCase": "TARGET-017-NUMBER-SERIES-SETUP-ASSIGNMENT",
+      "chapter": "Kapitel 6",
+      "latestPracticalCase": "TARGET-016M-NUMBER-SERIES-REMAINING-LINES-CONTROLLED-FIT",
+      "covered": [
+        "U-CUST Number Series Line Startnr./Endnr. visible after reopen from TARGET-016L.",
+        "U-VEND, U-ITEM, U-SO, U-SINV, U-PO and U-PINV Number Series Lines Startnr./Endnr. visible after reopen from TARGET-016M.",
+        "Checkboxes were observed but not intentionally changed.",
+        "The active-editor route is proven for Number Series Lines in playthru / UNIVERSAARL-DE."
+      ],
+      "openLimits": [
+        "No setup-page assignment is proven yet.",
+        "No customer/vendor/item/document was created from the U-* number series.",
+        "No Preview Posting or posting was executed.",
+        "No legal/compliance numbering claim is made from line setup alone."
+      ],
+      "nextStep": "Run TARGET-017: assign proven U-* number series to Sales, Purchase and Inventory setup fields with before/after/reopen proof; no master data, no draft, no preview and no posting."
     }
   },
   "hardExclusions": {
     "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
   },
-  "updatedAt": "2026-06-30T13:54:08.384Z",
+  "updatedAt": "2026-06-30T14:08:58.565Z",
   "activeArea": "universaarl-w1-foundation-number-series",
   "currentBlock": "universaarl-w1-foundation-number-series",
   "latestPracticalCase": "TARGET-010-UNIVERSAARL-COMPANY-CONTEXT-PROOF",
@@ -3117,5 +3132,67 @@
     "bookStatus": "foundation-number-series-blocked-editor-recovery-needed",
     "targetWorld": "Universaarl",
     "noFinalClaim": true
+  },
+  "latestTarget016M": {
+    "caseId": "TARGET-016M-NUMBER-SERIES-REMAINING-LINES-CONTROLLED-FIT",
+    "status": "observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-016m-number-series-remaining-lines-controlled-fit/TARGET-016M-result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "fittedCodes": [
+      "U-VEND",
+      "U-ITEM",
+      "U-SO",
+      "U-SINV",
+      "U-PO",
+      "U-PINV"
+    ],
+    "summary": "TARGET-016M fitted all remaining Universaarl U-* Number Series Lines with reopen proof.",
+    "proved": [
+      "Number Series Lines were operated only in playthru / UNIVERSAARL-DE.",
+      "U-VEND Startnr./Endnr. are visible after reopen.",
+      "U-ITEM Startnr./Endnr. are visible after reopen.",
+      "U-SO Startnr./Endnr. are visible after reopen.",
+      "U-SINV Startnr./Endnr. are visible after reopen.",
+      "U-PO Startnr./Endnr. are visible after reopen.",
+      "U-PINV Startnr./Endnr. are visible after reopen.",
+      "No number-series assignment, master data, preview posting or posting was executed.",
+      "No Allow Gaps/Open checkbox was intentionally changed."
+    ],
+    "notProved": [
+      "No customer/vendor/item/document numbering assignment is proven.",
+      "No German legal invoice-number compliance claim is made."
+    ],
+    "flags": {
+      "noPost": true,
+      "noPreview": true,
+      "noDraft": true,
+      "noMasterDataChange": true,
+      "noCompanySwitch": true,
+      "noApiShortcut": true,
+      "noSearch": true,
+      "noBookChange": true,
+      "noSetupAssignment": true,
+      "checkboxChanged": false,
+      "setupWriteAttempted": true,
+      "setupChanged": true
+    },
+    "nextCase": "TARGET-017-NUMBER-SERIES-SETUP-ASSIGNMENT",
+    "evidenceRefs": [
+      "playwright/projects/fibu-book5/evidence/target-016m-number-series-remaining-lines-controlled-fit/TARGET-016M-result.json",
+      "playwright/projects/fibu-book5/img/target-016m-u-vend-010-before.png",
+      "playwright/projects/fibu-book5/img/target-016m-u-vend-030-after-reopen.png",
+      "playwright/projects/fibu-book5/img/target-016m-u-item-010-before.png",
+      "playwright/projects/fibu-book5/img/target-016m-u-item-030-after-reopen.png",
+      "playwright/projects/fibu-book5/img/target-016m-u-so-010-before.png",
+      "playwright/projects/fibu-book5/img/target-016m-u-so-030-after-reopen.png",
+      "playwright/projects/fibu-book5/img/target-016m-u-sinv-010-before.png",
+      "playwright/projects/fibu-book5/img/target-016m-u-sinv-030-after-reopen.png",
+      "playwright/projects/fibu-book5/img/target-016m-u-po-010-before.png",
+      "playwright/projects/fibu-book5/img/target-016m-u-po-030-after-reopen.png",
+      "playwright/projects/fibu-book5/img/target-016m-u-pinv-010-before.png",
+      "playwright/projects/fibu-book5/img/target-016m-u-pinv-030-after-reopen.png"
+    ],
+    "updatedAt": "2026-06-30T14:08:58.565Z"
   }
 }

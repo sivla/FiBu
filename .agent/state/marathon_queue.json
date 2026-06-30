@@ -1244,7 +1244,7 @@
     {
       "id": "TARGET-016M-NUMBER-SERIES-REMAINING-LINES-CONTROLLED-FIT",
       "order": 10028,
-      "status": "pending",
+      "status": "done",
       "category": "target-foundation-number-series-lines",
       "expectedImpact": "complete-remaining-number-series-lines",
       "mayWorkEffectively": true,
@@ -1254,11 +1254,38 @@
       "sourceCompany": "UNIVERSAARL-DE",
       "targetWorld": "Universaarl",
       "noFinalGermanClaimWithoutUniversaarlEvidence": false,
+      "lookaheadStatus": "done",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-016m-number-series-remaining-lines-controlled-fit/TARGET-016M-result.json",
+      "completedAt": "2026-06-30T14:08:58.565Z",
+      "result": "TARGET-016M fitted all remaining Universaarl U-* Number Series Lines with reopen proof.",
+      "fittedCodes": [
+        "U-VEND",
+        "U-ITEM",
+        "U-SO",
+        "U-SINV",
+        "U-PO",
+        "U-PINV"
+      ],
+      "blockedBy": []
+    },
+    {
+      "id": "TARGET-017-NUMBER-SERIES-SETUP-ASSIGNMENT",
+      "order": 10029,
+      "status": "pending",
+      "category": "target-foundation-number-series-assignment",
+      "expectedImpact": "assign-number-series-to-setup-pages",
+      "mayWorkEffectively": true,
+      "mayRunPlaywright": true,
+      "effectiveBcActionsAllowed": true,
+      "goal": "Assign proven U-* number series to Sales, Purchase and Inventory setup fields with before/after/reopen proof.",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "targetWorld": "Universaarl",
+      "noFinalGermanClaimWithoutUniversaarlEvidence": false,
       "lookaheadStatus": "ready-next",
       "resultPath": null
     }
   ],
-  "lastUpdated": "2026-06-30T13:54:08.384Z",
+  "lastUpdated": "2026-06-30T14:08:58.565Z",
   "nextStepDecisionGate": {
     "active": true,
     "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",
@@ -1281,54 +1308,54 @@
       "replace-with-better-case"
     ],
     "latestDecisionCard": {
-      "currentCase": "TARGET-016L-NUMBER-SERIES-INCOMPLETE-LINE-COMPLETE-OR-CLEANUP-RECOVERY",
-      "plannedNextCaseBeforeReview": "TARGET-016L-NUMBER-SERIES-INCOMPLETE-LINE-COMPLETE-OR-CLEANUP-RECOVERY",
-      "lastEvidenceSummary": "TARGET-016J created a persistent incomplete U-CUST line; TARGET-016K showed toolbar Delete without visible confirmation did not clean it.",
+      "currentCase": "TARGET-016M-NUMBER-SERIES-REMAINING-LINES-CONTROLLED-FIT",
+      "plannedNextCaseBeforeReview": "TARGET-016M-NUMBER-SERIES-REMAINING-LINES-CONTROLLED-FIT",
+      "lastEvidenceSummary": "TARGET-016L proved the active-editor sequence for U-CUST Number Series Lines.",
       "isPlannedNextCaseStillSensible": true,
-      "reason": "The incomplete line must be completed or cleaned before number-series assignment or master data.",
+      "reason": "Remaining U-* lines are the direct prerequisite before setup assignment and master data.",
       "lookaheadReviewed": [
         {
-          "caseId": "TARGET-016M-NUMBER-SERIES-REMAINING-LINES-CONTROLLED-FIT",
-          "status": "ready-next",
-          "reason": "U-CUST is now fitted; remaining U-* lines can use the same guarded active-editor flow."
-        },
-        {
           "caseId": "TARGET-017-NUMBER-SERIES-SETUP-ASSIGNMENT",
-          "status": "ready-after-current",
-          "reason": "Setup assignment requires valid line ranges."
+          "status": "ready-next",
+          "reason": "All U-* line ranges are fitted and can be assigned in setup pages next."
         },
         {
           "caseId": "TARGET-018-CUSTOMER-MASTERDATA-PREFLIGHT",
-          "status": "needs-setup-first",
-          "reason": "Master data waits for numbering, posting groups, VAT and dimensions."
+          "status": "ready-after-current",
+          "reason": "Customer creation waits for setup assignment and posting setup."
         },
         {
           "caseId": "TARGET-019-POSTING-GROUPS-PREFLIGHT",
           "status": "ready-after-current",
-          "reason": "Posting groups can progress after numbering is either completed or consciously parked."
+          "reason": "Posting groups are the next finance foundation dependency."
         },
         {
           "caseId": "TARGET-020-VAT-SETUP-READINESS",
           "status": "ready-after-current",
-          "reason": "VAT setup remains a foundation dependency after or parallel to numbering."
+          "reason": "VAT setup is required before document preview/posting."
+        },
+        {
+          "caseId": "TARGET-021-DIMENSIONS-FOUNDATION",
+          "status": "ready-after-current",
+          "reason": "Dimensions follow numbering and posting setup as foundation."
         }
       ],
       "queueChangesMade": [],
-      "selectedNextCase": "TARGET-016M-NUMBER-SERIES-REMAINING-LINES-CONTROLLED-FIT",
-      "whySelectedNextCaseIsBest": "It scales a now-proven line completion route to the remaining number-series codes.",
+      "selectedNextCase": "TARGET-017-NUMBER-SERIES-SETUP-ASSIGNMENT",
+      "whySelectedNextCaseIsBest": "The numbering line foundation is ready for setup-page assignment.",
       "risksBeforeNextCase": [
-        "Do not assign setup pages before all required lines are valid.",
-        "Do not create master data yet.",
-        "Do not change checkbox values without a separate gate."
+        "Do not assign setup pages unless all required line ranges are visible.",
+        "Do not create master data before setup assignment.",
+        "Do not make German legal numbering claims from this technical setup proof alone."
       ],
       "requiredPreparation": [
-        "Prepare target ranges for remaining U-* number-series lines."
+        "Map Sales/Purchase/Inventory setup fields before assigning U-* number series."
       ]
     }
   },
   "updatedAt": "2026-06-30T12:20:35.744Z",
   "lastCompletedCase": "TARGET-016F-NUMBER-SERIES-PERSONALIZE-OR-SETUP-ASSISTED-ROUTE",
-  "nextCase": "TARGET-016M-NUMBER-SERIES-REMAINING-LINES-CONTROLLED-FIT",
+  "nextCase": "TARGET-017-NUMBER-SERIES-SETUP-ASSIGNMENT",
   "nextStepDecisionCard": {
     "currentCase": "TARGET-016E-NUMBER-SERIES-LINES-FIELD-FLOW-CONTROLLED-FIT",
     "plannedNextCaseBeforeReview": "TARGET-016E-NUMBER-SERIES-LINES-FIELD-FLOW-CONTROLLED-FIT",
@@ -1377,5 +1404,6 @@
     "requiredPreparation": [
       "Capture Personalize/available field list screenshots or a standard route screenshot."
     ]
-  }
+  },
+  "nextStep": "Run TARGET-017: assign proven U-* number series to Sales, Purchase and Inventory setup fields with before/after/reopen proof; no master data, no draft, no preview and no posting."
 }

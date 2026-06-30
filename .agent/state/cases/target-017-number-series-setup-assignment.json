@@ -1,0 +1,127 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-017-NUMBER-SERIES-SETUP-ASSIGNMENT",
+  "title": "Assign Universaarl number series to setup pages",
+  "status": "planned",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "workType": "foundation-number-series-setup-assignment",
+  "taskClass": "judge_work",
+  "sourceEvidence": [
+    "TARGET-016L-NUMBER-SERIES-INCOMPLETE-LINE-COMPLETE-OR-CLEANUP-RECOVERY",
+    "TARGET-016M-NUMBER-SERIES-REMAINING-LINES-CONTROLLED-FIT"
+  ],
+  "purpose": "Assign already proven U-* Number Series Lines to the relevant Business Central setup fields before creating master data or documents.",
+  "scope": {
+    "setupPages": [
+      "Sales & Receivables Setup",
+      "Purchases & Payables Setup",
+      "Inventory Setup"
+    ],
+    "targetAssignments": [
+      {
+        "setupArea": "Sales & Receivables Setup",
+        "fieldIntent": "Customer Nos.",
+        "numberSeries": "U-CUST"
+      },
+      {
+        "setupArea": "Sales & Receivables Setup",
+        "fieldIntent": "Order Nos.",
+        "numberSeries": "U-SO"
+      },
+      {
+        "setupArea": "Sales & Receivables Setup",
+        "fieldIntent": "Invoice Nos.",
+        "numberSeries": "U-SINV"
+      },
+      {
+        "setupArea": "Purchases & Payables Setup",
+        "fieldIntent": "Vendor Nos.",
+        "numberSeries": "U-VEND"
+      },
+      {
+        "setupArea": "Purchases & Payables Setup",
+        "fieldIntent": "Order Nos.",
+        "numberSeries": "U-PO"
+      },
+      {
+        "setupArea": "Purchases & Payables Setup",
+        "fieldIntent": "Invoice Nos.",
+        "numberSeries": "U-PINV"
+      },
+      {
+        "setupArea": "Inventory Setup",
+        "fieldIntent": "Item Nos.",
+        "numberSeries": "U-ITEM"
+      }
+    ]
+  },
+  "allowedActions": [
+    "open-playthru-business-central",
+    "open-UNIVERSAARL-DE-with-documentation",
+    "open-sales-receivables-setup",
+    "open-purchases-payables-setup",
+    "open-inventory-setup",
+    "map-target-number-series-fields-before-write",
+    "assign-existing-U-star-number-series-to-explicit-setup-fields",
+    "capture-before-after-reopen-proof-per-setup-page",
+    "write-result",
+    "queue-and-state-update"
+  ],
+  "forbiddenActions": [
+    "leave-playthru",
+    "operate-in-legacy-lab-as-active-target",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "api-shortcut",
+    "change-number-series-line-checkboxes",
+    "create-new-number-series-lines",
+    "assign-unmapped-field",
+    "claim-legal-numbering-compliance",
+    "book-claim-without-evidence"
+  ],
+  "entryCriteria": [
+    "U-CUST line has visible Startnr./Endnr. after reopen.",
+    "U-VEND, U-ITEM, U-SO, U-SINV, U-PO and U-PINV lines have visible Startnr./Endnr. after reopen.",
+    "No setup-page assignment has been proven yet."
+  ],
+  "exitCriteria": [
+    "Each assigned setup field has before, after and reopen proof.",
+    "No master data, document, preview posting or posting was executed.",
+    "If a target field is hidden or ambiguous, stop and document Page/FastTab/field diagnostics instead of guessing."
+  ],
+  "stopIf": [
+    "BC shows any instance other than playthru.",
+    "BC shows any active company other than UNIVERSAARL-DE.",
+    "A setup field cannot be unambiguously mapped to the intended number-series purpose.",
+    "A confirmation dialog asks to create master data, post, preview, delete or change unrelated setup.",
+    "A lookup/search result could assign the wrong U-* code.",
+    "A page requires hidden FastTabs, personalization or Page Inspection before the target field can be safely identified."
+  ],
+  "lookahead": [
+    {
+      "caseId": "TARGET-018-CUSTOMER-MASTERDATA-PREFLIGHT",
+      "status": "needs-setup-first",
+      "reason": "Customer master data waits for number-series assignment and posting group/VAT readiness."
+    },
+    {
+      "caseId": "TARGET-019-POSTING-GROUPS-PREFLIGHT",
+      "status": "ready-after-current",
+      "reason": "Posting groups remain the next finance foundation dependency."
+    },
+    {
+      "caseId": "TARGET-020-VAT-SETUP-READINESS",
+      "status": "ready-after-current",
+      "reason": "VAT setup follows numbering and posting group mapping."
+    },
+    {
+      "caseId": "TARGET-021-DIMENSIONS-FOUNDATION",
+      "status": "ready-after-current",
+      "reason": "Dimensions are needed before data-rich process evidence."
+    }
+  ],
+  "nextStep": "Map and assign U-* number series on Sales, Purchase and Inventory setup pages with reopen proof; stop on ambiguity instead of guessing.",
+  "createdAt": "2026-06-30T14:20:00.000Z"
+}
