@@ -2,6 +2,21 @@
 
 Status: `labor-reference`.
 
+PREP-022-Qualitaet: `legacy-heavy`.
+
+Die vorhandene Feldliste bewahrt wichtige RM-DEMO-/P2P-/Fixed-Assets-Learnings. Fuer Universaarl muss die aktive Feldprioritaet aber zuerst aus Company, Foundation, Stammdaten und ersten Postings kommen. Alte Feldwerte wie `RAW-STEEL`, `K10000`, `FA-CNC-01`, `HGB` oder `MACHINES` sind Pattern-/Laborreferenz, keine Zielwerte.
+
+## Aktive Universaarl-Feldprioritaeten
+
+| Reihenfolge | Usecase | Feldgruppe | Warum |
+| ---: | --- | --- | --- |
+| 1 | `TARGET-009` | Company Name, Display Name, Datenbasis/Template | entscheidet, ob `UNIVERSAARL-DE` sauber entsteht. |
+| 2 | `TARGET-COMPANY-INFO-001` | Name, Legal Name, Address, Country/Region, VAT Registration No. | traegt Firmenkontext und spaetere Screenshots. |
+| 3 | `TARGET-NOSERIES-001` | Code, Starting No., Last No. Used, Manual Nos. | erklaert Belegnummern und Nachverfolgung. |
+| 4 | `TARGET-POSTINGGROUPS-001` | Gen. Bus./Prod. Posting Group, Customer/Vendor/Inventory/Bank/FA Posting Group | steuert Kontenfindung. |
+| 5 | `TARGET-VAT-001` | VAT Bus./Prod. Posting Group, VAT %, VAT Accounts | Grundlage fuer deutsche USt-Nachweise. |
+| 6 | `TARGET-DIMENSIONS-001` | Dimension Code, Dimension Value Code, Value Posting | Grundlage fuer Reporting und Filter. |
+
 | Feld / Spalte | Bereich | Wo sichtbar/belegt | Wirkung | Evidence | Grenze |
 |---|---|---|---|---|---|
 | `Buy-from Vendor No.` / Vendor | P2P | Purchase Order Draft `106002` | Kreditor setzt Belegkopf und Folge-Defaults | `evidence/p2p-004/P2P-004-result.json` | Header-Fallback teilweise geometrisch, Nachherwert sichtbar |

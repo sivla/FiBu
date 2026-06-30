@@ -2,6 +2,10 @@
 
 Status: `labor-reference`.
 
+PREP-022-Qualitaet: `useful-but-legacy-heavy`.
+
+Aktiv fuer Universaarl sind vor allem die Split-Button-, Tooltip-, Dialog- und Companies-Regeln. P2P-, Payment-, Fixed-Assets- und andere RM-DEMO-Actions bleiben Patternquelle, aber keine aktive Zielroute. Sie werden erst wieder aktiv, wenn ein konkreter Universaarl-Usecase sie neu braucht.
+
 | Action | Bereich | Status | Belegte Nutzung | Evidence | Guard |
 |---|---|---|---|---|---|
 | Direkte Page `1801` / `Unterstuetztes Setup` | Universaarl Company | `route-proven-blocked-before-create` | TARGET-005 oeffnet die Assisted-Setup-Seite direkt in `playthru`; sichtbar sind u. a. `Unternehmen einrichten` und `Unternehmensdetails eingeben`, aber keine bestaetigte Blank-/Setup-only-Company-Anlage | `evidence/target-005-company-creation-source-backed-alternative-route/TARGET-005-result.json` | keine Auswahl von `Finish`, `Create`, `OK`, `Save`, Copy/Test/CRONUS; naechster Case mappt die Zeile `Unternehmen einrichten` scoped |
@@ -43,6 +47,15 @@ Status: `labor-reference`.
 ## Universaarl Action-Regel
 
 Alte RM-DEMO-/CRONUS-Tests liefern weiterhin wertvolle Action-Muster, aber keine aktive Zielwahrheit. Fuer Universaarl gilt: Jede neue Action-Evidence benennt Page-/Card-/Line-Kontext, Capability-ID und Nachbedingung. `Neu`, `Kopieren`, `Testunternehmen`, `Post`, `Preview`, `Finish`, `OK`, `Delete` und aehnliche wirksame Aktionen duerfen nicht aus alten Tests uebernommen werden, sondern brauchen im `playthru`-/Universaarl-Kontext einen neuen Gate-Nachweis.
+
+## Aktive Universaarl-Prioritaeten
+
+| Prioritaet | Usecase | Action-Fokus | Status |
+| ---: | --- | --- | --- |
+| 1 | `TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE` | `Mandanten` -> Pfeil neben `Neu` -> `Neues Unternehmen erstellen`, Tooltip/Accessible Name, Zielzustand nach Klick | `blocked-until-super-permissions` |
+| 2 | `TARGET-COMPANY-INFO-001` | sichere Navigation zur Company Information, keine Setup- oder Speicheraenderung ohne Gate | `planned-after-company` |
+| 3 | `TARGET-FOUNDATION-001` | Assisted/Manual Setup Actions nur bis sichtbarer Entscheidungspunkt; kein Finish ohne Datenbasis | `planned-after-company` |
+| 4 | `TARGET-O2C-001` bis `TARGET-PAYMENT-001` | `Preview`, `Post`, `Apply Entries`, `Navigate/Find Entries` mit eigener Smart Decision Card | `planned-after-masterdata` |
 
 ## Zero-Open-Questions-Regel
 

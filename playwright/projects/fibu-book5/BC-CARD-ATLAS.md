@@ -4,9 +4,23 @@ Status: `universaarl-draft`, `not-empty`, `target-evidence-started`.
 
 Dieses Atlas-Dokument sammelt Kartenkontexte, die fuer Klickanleitungen und technische Nachweisfuehrung wichtig sind. Es ist keine vollstaendige Tabellenreferenz.
 
+PREP-022-Qualitaet: `thin-but-usable`.
+
+Der Atlas enthaelt aktuell nur einen belastbaren aktiven Companies-/Mandantenkontext. Das ist korrekt, solange `UNIVERSAARL-DE` noch nicht existiert. Nach Company Creation muessen Company Information, No. Series, Posting Groups, VAT Setup, Dimensions und Masterdata Cards priorisiert ergaenzt werden.
+
 | Card/List/Worksheet | Page ID | Bereich | FastTabs/Felder | Actions | Evidence | Grenze |
 |---|---:|---|---|---|---|---|
-| Companies List / Mandanten | `357` | Foundation/Company | `Name`, `Anzeigename`, `Testunternehmen`, `Unternehmenseinrichtung aktivieren`, `Einrichtungsstatus` | `Neu`, `Kopieren`, `Testunternehmen`, `Liste bearbeiten` sichtbar; TARGET-002 zeigt `Neu` als unsaved blank row; TARGET-003 findet keine sichtbare/klickbare exakte `Create New Company`-Aktion | `evidence/target-001/`, `evidence/target-002/`, `evidence/target-003/` | Liste, keine Company Card und keine gespeicherte Erstellung bewiesen; naechster Schritt braucht scoped Action/Menu Discovery |
+| Companies List / Mandanten | `357` | Foundation/Company | `Name`, `Anzeigename`, `Testunternehmen`, `Unternehmenseinrichtung aktivieren`, `Einrichtungsstatus` | `Neu`, Pfeil neben `Neu`, `Kopieren`, `Testunternehmen`, `Liste bearbeiten` sichtbar; TARGET-002 zeigt `Neu` als unsaved blank row; TARGET-007 zeigt Dropdown; TARGET-009 ist bis Rechtefreigabe geparkt | `evidence/target-001/` bis `evidence/target-009-main-neu-list-company-create-gate/` | Liste, keine Company Card und keine gespeicherte Erstellung bewiesen; nach Rechtefreigabe `Neues Unternehmen erstellen` neu pruefen |
+
+## Naechste Kartenprioritaeten
+
+| Reihenfolge | Karte/Liste | Usecase | Warum |
+| ---: | --- | --- | --- |
+| 1 | Company Information | `TARGET-COMPANY-INFO-001` | Rechtsname, Adresse und Firmenkontext tragen alle spaeteren Buchscreenshots. |
+| 2 | No. Series / No. Series Lines | `TARGET-NOSERIES-001` | Ohne Nummernserien sind Belegnummern und Entries spaeter schwer erklaerbar. |
+| 3 | General Posting Setup und Posting Group Cards | `TARGET-POSTINGGROUPS-001` | Kontenfindung ist Gate vor Preview und Posting. |
+| 4 | VAT Posting Setup | `TARGET-VAT-001` | Deutsche USt braucht Setup, Preview und VAT Entries. |
+| 5 | Dimensions / Dimension Values / Default Dimensions | `TARGET-DIMENSIONS-001` | Reporting und Filterlogik brauchen Dimensionen vor den ersten Buchungen. |
 
 ## Erfassungsregel
 

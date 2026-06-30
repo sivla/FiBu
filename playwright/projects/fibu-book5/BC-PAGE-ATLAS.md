@@ -2,6 +2,21 @@
 
 Status: `labor-reference`.
 
+PREP-022-Qualitaet: `useful-but-mixed`.
+
+Die Page-Atlas-Datei enthaelt gute Legacy-Muster, aber die aktive Universaarl-Reihenfolge beginnt mit Company, Foundation, Stammdaten und erst danach Prozessposten. RM-DEMO-Seiten bleiben Patternquelle, nicht Zielbeweis.
+
+## Aktive Universaarl-Page-Prioritaeten
+
+| Reihenfolge | Page/Kontext | Usecase | Status |
+| ---: | --- | --- | --- |
+| 1 | Companies / Mandanten Page `357` | `TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE` | `blocked-until-super-permissions` |
+| 2 | Company Information | `TARGET-COMPANY-INFO-001` | `planned-after-company` |
+| 3 | Assisted Setup / Manual Setup / General Ledger Setup | `TARGET-FOUNDATION-001` | `planned-after-company` |
+| 4 | No. Series, Posting Setup, VAT Posting Setup, Dimensions | `TARGET-NOSERIES-001`, `TARGET-POSTINGGROUPS-001`, `TARGET-VAT-001`, `TARGET-DIMENSIONS-001` | `planned-after-foundation` |
+| 5 | Customers, Vendors, Items, Locations, Bank Accounts | `TARGET-DATA-*` | `planned-after-foundation` |
+| 6 | Posted Documents and Ledger Entries | `TARGET-O2C-001` bis `TARGET-PAYMENT-001` | `planned-after-masterdata` |
+
 | Page / Kontext | Page ID falls bekannt | Bereich | Belegte Nutzung | Evidence | Grenze |
 |---|---:|---|---|---|---|
 | Purchase Orders | `9307` | P2P | P2P-004 oeffnet Liste, `New` oeffnet Purchase Order Card | `evidence/p2p-004/` | kein finaler Teil-WE, keine Zeile |

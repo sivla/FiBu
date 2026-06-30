@@ -1,28 +1,26 @@
 {
   "schemaVersion": 1,
-  "runId": "PREP-022-ATLAS-COVERAGE-QUALITY-AUDIT",
+  "purpose": "autopilot-result-normalized",
   "caseId": "PREP-022-ATLAS-COVERAGE-QUALITY-AUDIT",
-  "status": "done",
-  "instance": "playthru",
-  "company": "UNIVERSAARL-DE-planned-not-yet-created",
-  "targetCompany": "UNIVERSAARL-DE-planned-not-yet-created",
-  "bcRun": false,
-  "playwrightRun": false,
-  "posted": false,
-  "previewPosting": false,
-  "setupChange": false,
-  "companyCreated": false,
-  "bookChanged": false,
-  "bookDraftChanged": false,
-  "summary": "PREP-022 classified atlas quality against the Universaarl backlog and added active Universaarl priorities to the key atlas files.",
+  "source": "local-analysis",
+  "resultStatus": "observed",
+  "runPlanId": "PREP-022-ATLAS-COVERAGE-QUALITY-AUDIT-PLAN",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-medium",
+  "proved": [
+    "The atlas files now have explicit quality classifications against the Universaarl usecase backlog.",
+    "Action, Card, Dialog, Page, Field, Request Page, Table Entry and Posting Impact atlases have active Universaarl priority markers.",
+    "Legacy RM-DEMO/Rhein-Main atlas entries are explicitly pattern/reference material unless re-proven in a Universaarl target usecase."
+  ],
+  "notProved": [
+    "UNIVERSAARL-DE does not yet exist.",
+    "No Business Central page, field, dialog, request page or entry was newly observed in this run.",
+    "No Universaarl posting impact is proven."
+  ],
   "changedFiles": [
     "playwright/projects/fibu-book5/BC-ATLAS-COVERAGE-QUALITY-AUDIT.md",
     ".agent/state/atlas_coverage_quality_audit.json",
     ".agent/state/cases/prep-022-atlas-coverage-quality-audit.json",
-    ".agent/state/current.json",
-    ".agent/state/marathon_queue.json",
-    ".agent/state/last_run_summary.json",
-    ".agent/state/coverage_state.json",
     "playwright/projects/fibu-book5/BC-ACTION-ATLAS.md",
     "playwright/projects/fibu-book5/BC-CARD-ATLAS.md",
     "playwright/projects/fibu-book5/BC-DIALOG-ATLAS.md",
@@ -34,20 +32,45 @@
     "playwright/projects/fibu-book5/evidence/prep-022-atlas-coverage-quality-audit/README.md",
     "playwright/projects/fibu-book5/evidence/prep-022-atlas-coverage-quality-audit/PREP-022-result.json"
   ],
-  "evidence": [
-    "playwright/projects/fibu-book5/BC-ATLAS-COVERAGE-QUALITY-AUDIT.md",
-    ".agent/state/atlas_coverage_quality_audit.json",
-    "playwright/projects/fibu-book5/evidence/prep-022-atlas-coverage-quality-audit/README.md",
-    "playwright/projects/fibu-book5/evidence/prep-022-atlas-coverage-quality-audit/PREP-022-result.json"
-  ],
+  "statePatch": {
+    "current": {
+      "activeArea": "universaarl-atlas-quality-prep",
+      "activeCase": "PREP-022-ATLAS-COVERAGE-QUALITY-AUDIT",
+      "active_case_file": ".agent/state/cases/prep-022-atlas-coverage-quality-audit.json",
+      "nextStep": "Continue with PREP-023-BOOK-CHAPTER-STIMMIGKEIT-AUDIT. Company creation remains parked until SUPER/company-create permissions are confirmed."
+    },
+    "lastRunSummary": {
+      "runId": "PREP-022-ATLAS-COVERAGE-QUALITY-AUDIT",
+      "caseId": "PREP-022-ATLAS-COVERAGE-QUALITY-AUDIT",
+      "status": "done",
+      "bcRun": false,
+      "playwrightRun": false,
+      "posted": false,
+      "previewPosting": false,
+      "setupChange": false,
+      "companyCreated": false,
+      "bookChanged": false,
+      "summary": "PREP-022 classified atlas quality against the Universaarl backlog and added active Universaarl priorities to the key atlas files.",
+      "nextCase": "PREP-023-BOOK-CHAPTER-STIMMIGKEIT-AUDIT"
+    },
+    "activeCase": {
+      "status": "done",
+      "result": "Atlas coverage quality audited.",
+      "nextCase": "PREP-023-BOOK-CHAPTER-STIMMIGKEIT-AUDIT"
+    }
+  },
   "evidenceRefs": [
     "playwright/projects/fibu-book5/BC-ATLAS-COVERAGE-QUALITY-AUDIT.md",
     ".agent/state/atlas_coverage_quality_audit.json",
-    "playwright/projects/fibu-book5/evidence/prep-022-atlas-coverage-quality-audit/README.md",
-    "playwright/projects/fibu-book5/evidence/prep-022-atlas-coverage-quality-audit/PREP-022-result.json"
+    "playwright/projects/fibu-book5/evidence/prep-022-atlas-coverage-quality-audit/README.md"
   ],
-  "nextStep": "Continue with PREP-023-BOOK-CHAPTER-STIMMIGKEIT-AUDIT. Company creation remains parked until SUPER/company-create permissions are confirmed.",
-  "nextCase": "PREP-023-BOOK-CHAPTER-STIMMIGKEIT-AUDIT",
+  "warnings": [
+    "Do not treat legacy atlas entries as Universaarl evidence.",
+    "Do not use expected entry matrices as proof that entries exist."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
   "nextStepDecisionCard": {
     "currentCase": "PREP-022-ATLAS-COVERAGE-QUALITY-AUDIT",
     "plannedNextCaseBeforeReview": "PREP-022-ATLAS-COVERAGE-QUALITY-AUDIT",
@@ -98,11 +121,15 @@
       "Audit bookmaster/bookdrafts without making final German claims."
     ]
   },
-  "updatedAt": "2026-06-30T06:35:00.000+02:00",
-  "noBusinessCentralExecution": true,
-  "noPlaywrightExecution": true,
-  "noBookChange": true,
-  "noSetupChange": true,
-  "noPreviewPosting": true,
-  "noPosting": true
+  "reason": "Safe local atlas quality audit. No Business Central or Playwright execution.",
+  "validationCommands": [
+    "npm run agent:preflight",
+    "npm run agent:context",
+    "npm run agent:dry-run",
+    "npm run agent:run-plan",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/prep-022-atlas-coverage-quality-audit/PREP-022-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/prep-022-atlas-coverage-quality-audit/PREP-022-result.json",
+    "npm run check:encoding",
+    "git diff --check"
+  ]
 }

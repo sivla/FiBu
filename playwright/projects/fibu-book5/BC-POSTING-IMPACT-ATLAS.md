@@ -2,6 +2,10 @@
 
 Status: `labor-reference`.
 
+PREP-022-Qualitaet: `legacy-reference-only`.
+
+Dieser Atlas beschreibt bisher Laborwirkungen aus RM-DEMO/CRONUS. Er ist als Muster fuer erwartete Postenarten nuetzlich, aber kein Universaarl-Beweis. Universaarl-Postingwirkungen werden erst nach Company, Foundation, Stammdaten, Preview und kontrolliertem Posting eingetragen.
+
 | Prozess | Ausfuehrung | Beleg | Posten / Wirkung | Evidence | Nicht bewiesen |
 |---|---|---|---|---|---|
 | O2C Sales Order | Ship and Invoice | `PS-INV103297` | Customer Ledger, G/L Entries, Item Ledger, Value Entries, Dimensionen teilweise | `evidence/uat-o2c-001/` | deutsche 19% USt, deutscher Kontenplan |
