@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "TARGET-024H-GLOBAL-DIMENSION-PARK-OR-PAGEINSPECTION-DECISION",
+  "source": "local-route-decision",
+  "resultStatus": "observed",
+  "runPlanId": "TARGET-024H-GLOBAL-DIMENSION-PARK-OR-PAGEINSPECTION-DECISION-PLAN",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "proved": [
+    "TARGET-023B proves starter Dimension Values for PRODUCTLINE, COSTCENTER and CHANNEL.",
+    "TARGET-024B, TARGET-024D, TARGET-024F and TARGET-024G do not prove PRODUCTLINE/COSTCENTER as Global Dimension Code 1/2.",
+    "The next practical step is to park global-dimension assignment and plan core master data without claiming global dimension readiness."
+  ],
+  "notProved": [
+    "PRODUCTLINE is not proven as Global Dimension Code 1.",
+    "COSTCENTER is not proven as Global Dimension Code 2.",
+    "Default Dimensions, Dimension Set Entries, posted entries and reporting effects are not proven."
+  ],
+  "changedFiles": [
+    ".agent/state/cases/target-024h-global-dimension-park-or-pageinspection-decision.json",
+    ".agent/state/cases/target-024-core-masterdata-plan.json",
+    "playwright/projects/fibu-book5/evidence/target-024h-global-dimension-park-or-pageinspection-decision/TARGET-024H-result.json",
+    "playwright/projects/fibu-book5/evidence/target-024h-global-dimension-park-or-pageinspection-decision/README.md"
+  ],
+  "statePatch": {},
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-024h-global-dimension-park-or-pageinspection-decision/TARGET-024H-result.json",
+    "playwright/projects/fibu-book5/evidence/target-024g-global-dimension-page118-lookup-route/TARGET-024G-result.json"
+  ],
+  "warnings": [
+    "Do not claim global dimensions are assigned in the book or coverage.",
+    "Core master data may proceed only with this boundary clearly documented."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": false,
+  "decision": {
+    "selectedRoute": "park-global-dimension-assignment-before-core-masterdata",
+    "reason": "Further UI retries would repeat failed Page 118/Page 577 patterns. Page Inspection/source-backed setup can revisit this later."
+  },
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-024H-GLOBAL-DIMENSION-PARK-OR-PAGEINSPECTION-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-024H-GLOBAL-DIMENSION-PARK-OR-PAGEINSPECTION-DECISION",
+    "lastEvidenceSummary": "Global Dimension Code assignment is not proven after Page 577, direct Page 118 and Page 118 button probes.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "The decision is complete; the next case should plan core master data under the explicit boundary that global dimensions are not assigned.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-024-CORE-MASTERDATA-PLAN",
+        "status": "ready-next",
+        "reason": "Master data planning can proceed without creating records and without claiming global dimensions are assigned."
+      },
+      {
+        "caseId": "TARGET-025-CUSTOMER-VENDOR-ITEM-TEMPLATES-PREFLIGHT",
+        "status": "ready-after-current",
+        "reason": "Template preflight needs the core master-data plan first."
+      },
+      {
+        "caseId": "TARGET-026-VAT-SETUP-FIT-DECISION",
+        "status": "needs-source-check-first",
+        "reason": "VAT setup must be source-backed before document preview."
+      },
+      {
+        "caseId": "TARGET-027-DEFAULT-DIMENSIONS-STRATEGY",
+        "status": "ready-after-current",
+        "reason": "Default dimensions need concrete master-data records."
+      }
+    ],
+    "queueChangesMade": [
+      "Marked TARGET-024G blocked after lookup/detail button probe.",
+      "Marked TARGET-024H observed as park decision.",
+      "Inserted/selected TARGET-024-CORE-MASTERDATA-PLAN."
+    ],
+    "selectedNextCase": "TARGET-024-CORE-MASTERDATA-PLAN",
+    "whySelectedNextCaseIsBest": "It moves Universaarl foundation forward without pretending that global dimensions are assigned.",
+    "risksBeforeNextCase": [
+      "Do not use global-dimension assignment as a prerequisite or claim.",
+      "Do not create master data before required fields/templates are planned."
+    ],
+    "requiredPreparation": [
+      "Use TARGET-023B values as available dimensions, not as proven global dimensions."
+    ]
+  },
+  "validationCommands": [
+    "npm run agent:preflight",
+    "npm run agent:context",
+    "npm run agent:dry-run",
+    "npm run agent:run-plan",
+    "npm run check:encoding",
+    "git diff --check"
+  ]
+}

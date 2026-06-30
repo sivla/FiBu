@@ -312,6 +312,16 @@ Screenshot-QA zu TARGET-024D: Wichtig ist der Bedienfehler-Fund aus der ersten T
 
 Screenshot-QA zu TARGET-024F: Das Bild ist kein Erfolgsscreenshot fuer globale Dimensionen. Es erklaert, warum die direkte Textbox-Hypothese falsch war: Die Page-118-Felder erscheinen im Bearbeiten-Modus als Lookup-/Detailbutton-Flaechen. Der naechste Screenshot muss zeigen, was beim gezielten Klick auf genau diese Feldflaechen passiert.
 
+## Universaarl Foundation - Globale Dimensionen TARGET-024G
+
+| Screenshot | Page | Company | Schritt | Was sieht man? | Beweist intern | Beweist nicht | Status |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `target-024g-010-page118-editmode-before-lookup.png` | Finanzbuchhaltung Einrichtung, Page 118 | `playthru` / `UNIVERSAARL-DE` | Vor Lookup-/Detailbutton-Probe | Bearbeiten-Modus ist aktiv, `Globaler Dimensionscode 1/2` bleiben leere Button-Felder | Die Zielcontrols sind sichtbar und gezielt lokalisierbar | gespeicherte globale Dimensionen | `universaarl-setup-before`, `button-route-probe` |
+| `target-024g-020-after-global-dim-1-button-click.png` | Finanzbuchhaltung Einrichtung, Page 118 | `playthru` / `UNIVERSAARL-DE` | Nach Klick auf Globaler Dimensionscode 1 | Die Seite bleibt im Page-118-Kontext; kein sichtbarer `PRODUCTLINE`-Lookup entsteht | Der Button-Klick liefert keine sichere Auswahlroute | `PRODUCTLINE` als Global Dimension Code 1 | `blocked-lookup-route`, `do-not-use-as-success` |
+| `target-024g-090-page118-after-lookup-probe-reopen.png` | Finanzbuchhaltung Einrichtung, Page 118 | `playthru` / `UNIVERSAARL-DE` | Reopen nach Button-Probe | Die globalen Dimensionsfelder sind weiterhin leer | TARGET-024G hat keine Persistenz bewiesen | Default Dimensions, Posten, Reportingwirkung | `blocked`, `park-decision-needed` |
+
+Screenshot-QA zu TARGET-024G: Diese Bilder begruenden die Parkentscheidung. Sie sind gute Debugging-Bilder fuer das Buch/Atlas-System, aber keine Erfolgsscreenshots fuer globale Dimensionen.
+
 ## Qualitaetsfelder fuer neue Screenshot-Metadaten
 
 Neue oder ueberarbeitete `.screenshot.json`-Dateien sollen diese Felder tragen:

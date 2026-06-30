@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-024H-GLOBAL-DIMENSION-PARK-OR-PAGEINSPECTION-DECISION",
+  "title": "Universaarl global dimension park or Page Inspection decision",
+  "status": "done",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "workType": "foundation-global-dimension-route-decision",
+  "taskClass": "judge_work",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/target-024b-global-dimension-assignment/TARGET-024B-result.json",
+    "playwright/projects/fibu-book5/evidence/target-024c-global-dimension-field-discovery/TARGET-024C-result.json",
+    "playwright/projects/fibu-book5/evidence/target-024d-global-dimension-controlled-assignment-route/TARGET-024D-result.json",
+    "playwright/projects/fibu-book5/evidence/target-024f-global-dimension-page118-direct-field-route/TARGET-024F-result.json",
+    "playwright/projects/fibu-book5/evidence/target-024g-global-dimension-page118-lookup-route/TARGET-024G-result.json"
+  ],
+  "decision": "park-global-dimension-assignment-before-core-masterdata",
+  "reason": "The starter Dimensions and Dimension Values are proven, but all tested Global Dimension Code 1/2 UI routes either fail to persist or do not expose a safe selectable lookup. Repeating Page 577 or Page 118 clicks would add risk without new evidence. Core master data can proceed with dimensions/default-dimension planning while Global Dimension Code 1/2 assignment remains a later Page Inspection/source-backed setup task.",
+  "allowedNext": [
+    "TARGET-024-CORE-MASTERDATA-PLAN"
+  ],
+  "blockedUntil": [
+    "Page Inspection identifies the Page 118 Global Dimension Code 1/2 table fields and a safe editable route",
+    "or a Microsoft/source-backed alternative route is found",
+    "or a later setup review decides to use another German foundation path"
+  ],
+  "bookBoundary": "Do not write that PRODUCTLINE or COSTCENTER are global dimensions yet. The book may explain that Dimensions exist and will be used as analysis values; global dimension assignment is a setup decision still awaiting a safe route.",
+  "lookahead": [
+    {
+      "caseId": "TARGET-024-CORE-MASTERDATA-PLAN",
+      "status": "ready-next",
+      "reason": "Core master data can be planned without claiming Global Dimension Code 1/2 assignment."
+    },
+    {
+      "caseId": "TARGET-025-CUSTOMER-VENDOR-ITEM-TEMPLATES-PREFLIGHT",
+      "status": "ready-after-current",
+      "reason": "Template preflight should follow a concrete master-data plan and posting/VAT setup boundaries."
+    },
+    {
+      "caseId": "TARGET-026-VAT-SETUP-FIT-DECISION",
+      "status": "needs-source-check-first",
+      "reason": "German VAT setup must be source-backed before document preview."
+    },
+    {
+      "caseId": "TARGET-027-DEFAULT-DIMENSIONS-STRATEGY",
+      "status": "ready-after-current",
+      "reason": "Default dimensions can be planned after the first master-data records are chosen."
+    }
+  ],
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-024h-global-dimension-park-or-pageinspection-decision/TARGET-024H-result.json",
+  "createdAt": "2026-06-30T18:08:00.000Z",
+  "updatedAt": "2026-06-30T18:08:00.000Z"
+}

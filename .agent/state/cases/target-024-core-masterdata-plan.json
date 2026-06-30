@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-024-CORE-MASTERDATA-PLAN",
+  "title": "Universaarl core master data plan",
+  "status": "planned",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "workType": "universaarl-core-masterdata-plan",
+  "taskClass": "wizard_work",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/target-023b-dimension-values-route-recovery/TARGET-023B-result.json",
+    "playwright/projects/fibu-book5/evidence/target-024h-global-dimension-park-or-pageinspection-decision/TARGET-024H-result.json",
+    "playwright/projects/fibu-book5/evidence/target-019b-posting-groups-readonly-preflight/TARGET-019B-result.json",
+    "playwright/projects/fibu-book5/evidence/target-020-vat-setup-readiness/TARGET-020-result.json"
+  ],
+  "purpose": "Define the first minimal Universaarl customers, vendors, items, locations and dimension/default-dimension needs before creating master data.",
+  "allowedActions": [
+    "review-foundation-evidence",
+    "define-core-masterdata-records",
+    "define-required-fields-and-templates",
+    "write-masterdata-plan-result",
+    "update-full-playthrough-catalog"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "create-master-data-before-plan",
+    "preview-posting",
+    "post",
+    "api-shortcut",
+    "claim-global-dimensions-assigned"
+  ],
+  "entryCriteria": [
+    "UNIVERSAARL-DE exists and is active target company.",
+    "Starter Dimension Values exist.",
+    "Global Dimension Code assignment is consciously parked by TARGET-024H.",
+    "Posting Groups and VAT setup are known as preflight/readiness areas, not final proof."
+  ],
+  "exitCriteria": [
+    "First master-data records are named with purpose, required fields, dependencies and expected later entries.",
+    "No master data is created by the plan case.",
+    "Next execution case is selected."
+  ],
+  "lookahead": [
+    {
+      "caseId": "TARGET-025-CUSTOMER-VENDOR-ITEM-TEMPLATES-PREFLIGHT",
+      "status": "ready-after-current",
+      "reason": "Templates and required posting/VAT fields need inspection before actual customer/vendor/item creation."
+    },
+    {
+      "caseId": "TARGET-026-VAT-SETUP-FIT-DECISION",
+      "status": "needs-source-check-first",
+      "reason": "VAT setup needs source-backed German setup choices."
+    },
+    {
+      "caseId": "TARGET-027-DEFAULT-DIMENSIONS-STRATEGY",
+      "status": "ready-after-current",
+      "reason": "Default dimensions can be defined once concrete master-data records exist."
+    }
+  ],
+  "nextStep": "Plan first Universaarl master data without creating records yet.",
+  "createdAt": "2026-06-30T18:08:00.000Z",
+  "updatedAt": "2026-06-30T18:08:00.000Z"
+}
