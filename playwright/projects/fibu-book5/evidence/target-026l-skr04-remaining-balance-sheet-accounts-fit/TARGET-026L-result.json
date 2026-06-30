@@ -1,0 +1,533 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-026L-SKR04-REMAINING-BALANCE-SHEET-ACCOUNTS-FIT",
+  "source": "playwright-controlled-setup",
+  "resultStatus": "observed",
+  "runPlanId": "TARGET-026L-SKR04-REMAINING-BALANCE-SHEET-ACCOUNTS-FIT-PLAN",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "proved": [
+    "Instanz playthru und Company UNIVERSAARL-DE wurden per URL-Kontext kontrolliert.",
+    "Kontenplan Page 16 wurde geoeffnet.",
+    "3300 Verbindlichkeiten aus Lieferungen und Leistungen ist nach Reopen als Bilanzkonto sichtbar.",
+    "3806 Umsatzsteuer 19 Prozent ist nach Reopen als Bilanzkonto sichtbar."
+  ],
+  "notProved": [
+    "Kein vollstaendiger Kontenplan.",
+    "4400 und 5400 GuV-Konten wurden in diesem Case bewusst nicht angelegt.",
+    "Keine SKR04- oder Steuerberaterfreigabe.",
+    "Keine VAT Posting Setup Zeile.",
+    "Keine Stammdatenanlage.",
+    "Kein Dokument, keine Preview, keine Buchung."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/target-026l-skr04-remaining-balance-sheet-accounts-fit/"
+  ],
+  "evidenceRefs": [
+    "target-026l-3300-010-before-chart-of-accounts.png",
+    "target-026l-3300-010-before-chart-of-accounts.screenshot.json",
+    "target-026l-3300-010-before-chart-of-accounts.snapshot.json",
+    "target-026l-3300-010-before-chart-of-accounts.txt",
+    "target-026l-3300-020-after-account-attempt.png",
+    "target-026l-3300-020-after-account-attempt.screenshot.json",
+    "target-026l-3300-020-after-account-attempt.snapshot.json",
+    "target-026l-3300-020-after-account-attempt.txt",
+    "target-026l-3300-030-after-reopen-proof.png",
+    "target-026l-3300-030-after-reopen-proof.screenshot.json",
+    "target-026l-3300-030-after-reopen-proof.snapshot.json",
+    "target-026l-3300-030-after-reopen-proof.txt",
+    "target-026l-3806-010-before-chart-of-accounts.png",
+    "target-026l-3806-010-before-chart-of-accounts.screenshot.json",
+    "target-026l-3806-010-before-chart-of-accounts.snapshot.json",
+    "target-026l-3806-010-before-chart-of-accounts.txt",
+    "target-026l-3806-020-after-account-attempt.png",
+    "target-026l-3806-020-after-account-attempt.screenshot.json",
+    "target-026l-3806-020-after-account-attempt.snapshot.json",
+    "target-026l-3806-020-after-account-attempt.txt",
+    "target-026l-3806-030-after-reopen-proof.png",
+    "target-026l-3806-030-after-reopen-proof.screenshot.json",
+    "target-026l-3806-030-after-reopen-proof.snapshot.json",
+    "target-026l-3806-030-after-reopen-proof.txt",
+    "TARGET-026L-result.json"
+  ],
+  "warnings": [
+    "1200 Bank Saarland bleibt falscher Bankpfad und wurde nicht fuer Bank-/Payment-/VAT-/Posting-Prozesse genutzt."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "TARGET-026M-SKR04-GUV-ACCOUNTS-ROUTE",
+      "nextCase": "TARGET-026M-SKR04-GUV-ACCOUNTS-ROUTE",
+      "activeCaseFile": ".agent/state/cases/target-026m-skr04-guv-accounts-route.json",
+      "activeArea": "universaarl-skr04-guv-starter-accounts-fit"
+    },
+    "lastRunSummary": {
+      "caseId": "TARGET-026L-SKR04-REMAINING-BALANCE-SHEET-ACCOUNTS-FIT",
+      "summary": "3300 and 3806 were created or confirmed as balance sheet accounts in UNIVERSAARL-DE with reopen proof; no VAT setup, master data, preview or posting.",
+      "nextCase": "TARGET-026M-SKR04-GUV-ACCOUNTS-ROUTE"
+    }
+  },
+  "flags": {
+    "setupChangeAttempted": true,
+    "noVatSetupChange": true,
+    "noMasterData": true,
+    "noDocumentOrDraft": true,
+    "noPreview": true,
+    "noPost": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "targetAccounts": [
+    {
+      "no": "3300",
+      "name": "Verbindlichkeiten aus Lieferungen und Leistungen",
+      "incomeBalance": "Balance Sheet",
+      "purpose": "SKR04-Kreditoren-/Verbindlichkeitenkonto fuer spaetere Vendor Posting Groups"
+    },
+    {
+      "no": "3806",
+      "name": "Umsatzsteuer 19 Prozent",
+      "incomeBalance": "Balance Sheet",
+      "purpose": "SKR04-Umsatzsteuerkonto fuer spaetere VAT-/USt-Strecken"
+    }
+  ],
+  "accountResults": [
+    {
+      "targetAccount": {
+        "no": "3300",
+        "name": "Verbindlichkeiten aus Lieferungen und Leistungen",
+        "incomeBalance": "Balance Sheet",
+        "purpose": "SKR04-Kreditoren-/Verbindlichkeitenkonto fuer spaetere Vendor Posting Groups"
+      },
+      "accountResult": {
+        "status": "created",
+        "reason": "3300 Verbindlichkeiten aus Lieferungen und Leistungen wurde angelegt, auf Bilanz gesetzt und nach Reopen sichtbar.",
+        "steps": [
+          {
+            "step": "edit-list",
+            "clicked": true
+          },
+          {
+            "step": "new",
+            "clicked": true
+          },
+          {
+            "step": "fill-no-name",
+            "filled": false
+          },
+          {
+            "step": "edit-list-new-route-blocked",
+            "reason": "No editable row was visible after Edit List + New."
+          },
+          {
+            "step": "fresh-new-without-edit-list",
+            "clicked": true
+          },
+          {
+            "step": "fill-no-name-after-route-reset",
+            "filled": true
+          },
+          {
+            "step": "income-balance-correction-new-account",
+            "correction": {
+              "corrected": true,
+              "reason": "Account row already shows Bilanz/Balance Sheet.",
+              "steps": [
+                {
+                  "step": "row-before-income-balance-correction",
+                  "rowTextBefore": "3300 \nVerbindlichkeiten aus Lieferungen und Leistungen\n Bilanz Buchung"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "accountVisible": true,
+      "before": {
+        "step": "Before controlled setup attempt for 3300.",
+        "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=16&company=UNIVERSAARL-DE",
+        "title": "Kontenplan",
+        "compact": "Kontenplan:\nNeu\nListe bearbeiten\nNr.\nName\nGuV/Bilanz\nKostenartnr.\nBank Saarland Bilanz Buchung\nBilanz Buchung\nListe mit Titel Kontenplan hat jetzt 3 Artikel",
+        "visible": {
+          "accountNo": false,
+          "accountName": false,
+          "balanceSheet": false,
+          "incomeStatement": false,
+          "editList": true,
+          "newAction": true
+        },
+        "targetAccount": {
+          "no": "3300",
+          "name": "Verbindlichkeiten aus Lieferungen und Leistungen",
+          "incomeBalance": "Balance Sheet",
+          "purpose": "SKR04-Kreditoren-/Verbindlichkeitenkonto fuer spaetere Vendor Posting Groups"
+        }
+      },
+      "afterAttempt": {
+        "step": "After controlled setup attempt for 3300.",
+        "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=16&company=UNIVERSAARL-DE",
+        "title": "Kontenplan",
+        "compact": "Kontenplan:\nNeu\nListe bearbeiten\nNr.\nName\nGuV/Bilanz\nKostenartnr.\nBank Saarland Bilanz Buchung\nBilanz Buchung\n3300\nVerbindlichkeiten aus Lieferungen und Leistungen\nListe mit Titel Kontenplan hat jetzt 4 Artikel",
+        "visible": {
+          "accountNo": true,
+          "accountName": true,
+          "balanceSheet": true,
+          "incomeStatement": false,
+          "editList": true,
+          "newAction": true
+        },
+        "targetAccount": {
+          "no": "3300",
+          "name": "Verbindlichkeiten aus Lieferungen und Leistungen",
+          "incomeBalance": "Balance Sheet",
+          "purpose": "SKR04-Kreditoren-/Verbindlichkeitenkonto fuer spaetere Vendor Posting Groups"
+        },
+        "accountResult": {
+          "status": "created",
+          "reason": "3300 Verbindlichkeiten aus Lieferungen und Leistungen wurde angelegt, auf Bilanz gesetzt und nach Reopen sichtbar.",
+          "steps": [
+            {
+              "step": "edit-list",
+              "clicked": true
+            },
+            {
+              "step": "new",
+              "clicked": true
+            },
+            {
+              "step": "fill-no-name",
+              "filled": false
+            },
+            {
+              "step": "edit-list-new-route-blocked",
+              "reason": "No editable row was visible after Edit List + New."
+            },
+            {
+              "step": "fresh-new-without-edit-list",
+              "clicked": true
+            },
+            {
+              "step": "fill-no-name-after-route-reset",
+              "filled": true
+            },
+            {
+              "step": "income-balance-correction-new-account",
+              "correction": {
+                "corrected": true,
+                "reason": "Account row already shows Bilanz/Balance Sheet.",
+                "steps": [
+                  {
+                    "step": "row-before-income-balance-correction",
+                    "rowTextBefore": "3300 \nVerbindlichkeiten aus Lieferungen und Leistungen\n Bilanz Buchung"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "afterReopen": {
+        "step": "After reopening Chart of Accounts for 3300 persistence proof.",
+        "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=16&company=UNIVERSAARL-DE",
+        "title": "Kontenplan",
+        "compact": "Kontenplan:\nNeu\nListe bearbeiten\nNr.\nName\nGuV/Bilanz\nKostenartnr.\nBank Saarland Bilanz Buchung\nBilanz Buchung\n3300\nVerbindlichkeiten aus Lieferungen und Leistungen\nListe mit Titel Kontenplan hat jetzt 4 Artikel",
+        "visible": {
+          "accountNo": true,
+          "accountName": true,
+          "balanceSheet": true,
+          "incomeStatement": false,
+          "editList": true,
+          "newAction": true
+        },
+        "targetAccount": {
+          "no": "3300",
+          "name": "Verbindlichkeiten aus Lieferungen und Leistungen",
+          "incomeBalance": "Balance Sheet",
+          "purpose": "SKR04-Kreditoren-/Verbindlichkeitenkonto fuer spaetere Vendor Posting Groups"
+        },
+        "accountResult": {
+          "status": "created",
+          "reason": "3300 Verbindlichkeiten aus Lieferungen und Leistungen wurde angelegt, auf Bilanz gesetzt und nach Reopen sichtbar.",
+          "steps": [
+            {
+              "step": "edit-list",
+              "clicked": true
+            },
+            {
+              "step": "new",
+              "clicked": true
+            },
+            {
+              "step": "fill-no-name",
+              "filled": false
+            },
+            {
+              "step": "edit-list-new-route-blocked",
+              "reason": "No editable row was visible after Edit List + New."
+            },
+            {
+              "step": "fresh-new-without-edit-list",
+              "clicked": true
+            },
+            {
+              "step": "fill-no-name-after-route-reset",
+              "filled": true
+            },
+            {
+              "step": "income-balance-correction-new-account",
+              "correction": {
+                "corrected": true,
+                "reason": "Account row already shows Bilanz/Balance Sheet.",
+                "steps": [
+                  {
+                    "step": "row-before-income-balance-correction",
+                    "rowTextBefore": "3300 \nVerbindlichkeiten aus Lieferungen und Leistungen\n Bilanz Buchung"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "targetAccount": {
+        "no": "3806",
+        "name": "Umsatzsteuer 19 Prozent",
+        "incomeBalance": "Balance Sheet",
+        "purpose": "SKR04-Umsatzsteuerkonto fuer spaetere VAT-/USt-Strecken"
+      },
+      "accountResult": {
+        "status": "created",
+        "reason": "3806 Umsatzsteuer 19 Prozent wurde angelegt, auf Bilanz gesetzt und nach Reopen sichtbar.",
+        "steps": [
+          {
+            "step": "edit-list",
+            "clicked": true
+          },
+          {
+            "step": "new",
+            "clicked": true
+          },
+          {
+            "step": "fill-no-name",
+            "filled": false
+          },
+          {
+            "step": "edit-list-new-route-blocked",
+            "reason": "No editable row was visible after Edit List + New."
+          },
+          {
+            "step": "fresh-new-without-edit-list",
+            "clicked": true
+          },
+          {
+            "step": "fill-no-name-after-route-reset",
+            "filled": true
+          },
+          {
+            "step": "income-balance-correction-new-account",
+            "correction": {
+              "corrected": true,
+              "reason": "Account row already shows Bilanz/Balance Sheet.",
+              "steps": [
+                {
+                  "step": "row-before-income-balance-correction",
+                  "rowTextBefore": "3806 \nUmsatzsteuer 19 Prozent\n Bilanz Buchung"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "accountVisible": true,
+      "before": {
+        "step": "Before controlled setup attempt for 3806.",
+        "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=16&company=UNIVERSAARL-DE",
+        "title": "Kontenplan",
+        "compact": "Kontenplan:\nNeu\nListe bearbeiten\nNr.\nName\nGuV/Bilanz\nKostenartnr.\nBank Saarland Bilanz Buchung\nBilanz Buchung\n3300\nVerbindlichkeiten aus Lieferungen und Leistungen\nListe mit Titel Kontenplan hat jetzt 4 Artikel",
+        "visible": {
+          "accountNo": false,
+          "accountName": false,
+          "balanceSheet": false,
+          "incomeStatement": false,
+          "editList": true,
+          "newAction": true
+        },
+        "targetAccount": {
+          "no": "3806",
+          "name": "Umsatzsteuer 19 Prozent",
+          "incomeBalance": "Balance Sheet",
+          "purpose": "SKR04-Umsatzsteuerkonto fuer spaetere VAT-/USt-Strecken"
+        }
+      },
+      "afterAttempt": {
+        "step": "After controlled setup attempt for 3806.",
+        "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=16&company=UNIVERSAARL-DE",
+        "title": "Kontenplan",
+        "compact": "Kontenplan:\nNeu\nListe bearbeiten\nNr.\nName\nGuV/Bilanz\nKostenartnr.\nBank Saarland Bilanz Buchung\nBilanz Buchung\n3300\nVerbindlichkeiten aus Lieferungen und Leistungen\n3806\nUmsatzsteuer 19 Prozent\nListe mit Titel Kontenplan hat jetzt 5 Artikel",
+        "visible": {
+          "accountNo": true,
+          "accountName": true,
+          "balanceSheet": true,
+          "incomeStatement": false,
+          "editList": true,
+          "newAction": true
+        },
+        "targetAccount": {
+          "no": "3806",
+          "name": "Umsatzsteuer 19 Prozent",
+          "incomeBalance": "Balance Sheet",
+          "purpose": "SKR04-Umsatzsteuerkonto fuer spaetere VAT-/USt-Strecken"
+        },
+        "accountResult": {
+          "status": "created",
+          "reason": "3806 Umsatzsteuer 19 Prozent wurde angelegt, auf Bilanz gesetzt und nach Reopen sichtbar.",
+          "steps": [
+            {
+              "step": "edit-list",
+              "clicked": true
+            },
+            {
+              "step": "new",
+              "clicked": true
+            },
+            {
+              "step": "fill-no-name",
+              "filled": false
+            },
+            {
+              "step": "edit-list-new-route-blocked",
+              "reason": "No editable row was visible after Edit List + New."
+            },
+            {
+              "step": "fresh-new-without-edit-list",
+              "clicked": true
+            },
+            {
+              "step": "fill-no-name-after-route-reset",
+              "filled": true
+            },
+            {
+              "step": "income-balance-correction-new-account",
+              "correction": {
+                "corrected": true,
+                "reason": "Account row already shows Bilanz/Balance Sheet.",
+                "steps": [
+                  {
+                    "step": "row-before-income-balance-correction",
+                    "rowTextBefore": "3806 \nUmsatzsteuer 19 Prozent\n Bilanz Buchung"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "afterReopen": {
+        "step": "After reopening Chart of Accounts for 3806 persistence proof.",
+        "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=16&company=UNIVERSAARL-DE",
+        "title": "Kontenplan",
+        "compact": "Kontenplan:\nNeu\nListe bearbeiten\nNr.\nName\nGuV/Bilanz\nKostenartnr.\nBank Saarland Bilanz Buchung\nBilanz Buchung\n3300\nVerbindlichkeiten aus Lieferungen und Leistungen\n3806\nUmsatzsteuer 19 Prozent\nListe mit Titel Kontenplan hat jetzt 5 Artikel",
+        "visible": {
+          "accountNo": true,
+          "accountName": true,
+          "balanceSheet": true,
+          "incomeStatement": false,
+          "editList": true,
+          "newAction": true
+        },
+        "targetAccount": {
+          "no": "3806",
+          "name": "Umsatzsteuer 19 Prozent",
+          "incomeBalance": "Balance Sheet",
+          "purpose": "SKR04-Umsatzsteuerkonto fuer spaetere VAT-/USt-Strecken"
+        },
+        "accountResult": {
+          "status": "created",
+          "reason": "3806 Umsatzsteuer 19 Prozent wurde angelegt, auf Bilanz gesetzt und nach Reopen sichtbar.",
+          "steps": [
+            {
+              "step": "edit-list",
+              "clicked": true
+            },
+            {
+              "step": "new",
+              "clicked": true
+            },
+            {
+              "step": "fill-no-name",
+              "filled": false
+            },
+            {
+              "step": "edit-list-new-route-blocked",
+              "reason": "No editable row was visible after Edit List + New."
+            },
+            {
+              "step": "fresh-new-without-edit-list",
+              "clicked": true
+            },
+            {
+              "step": "fill-no-name-after-route-reset",
+              "filled": true
+            },
+            {
+              "step": "income-balance-correction-new-account",
+              "correction": {
+                "corrected": true,
+                "reason": "Account row already shows Bilanz/Balance Sheet.",
+                "steps": [
+                  {
+                    "step": "row-before-income-balance-correction",
+                    "rowTextBefore": "3806 \nUmsatzsteuer 19 Prozent\n Bilanz Buchung"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-026L-SKR04-REMAINING-BALANCE-SHEET-ACCOUNTS-FIT",
+    "plannedNextCaseBeforeReview": "TARGET-026L-SKR04-REMAINING-BALANCE-SHEET-ACCOUNTS-FIT",
+    "lastEvidenceSummary": "TARGET-026K proved 1406 as a visible SKR04 balance sheet VAT receivable account with reopen proof.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "3300 and 3806 are the remaining balance-sheet starter accounts required before explicit GuV route and later VAT/posting setup gates.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-026M-SKR04-GUV-ACCOUNTS-ROUTE",
+        "status": "ready-next",
+        "reason": "Balance-sheet accounts are visible; 4400 and 5400 can now be handled with an explicit GuV/Bilanz route."
+      },
+      {
+        "caseId": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
+        "status": "ready-after-current",
+        "reason": "VAT posting groups need G/L account foundation and source-backed field mapping before setup write."
+      },
+      {
+        "caseId": "TARGET-028-CUSTOMER-VENDOR-ITEM-MASTERDATA",
+        "status": "needs-setup-first",
+        "reason": "Master data should wait until posting groups and VAT setup are ready."
+      },
+      {
+        "caseId": "TARGET-029-FIRST-SALES-PURCHASE-DRAFT-GATE",
+        "status": "needs-setup-first",
+        "reason": "Documents require number series, posting groups, VAT setup and master data."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-026M-SKR04-GUV-ACCOUNTS-ROUTE",
+    "whySelectedNextCaseIsBest": "The fastest useful follow-up is to fit 4400 and 5400 with the correct GuV account type, keeping VAT setup and posting groups locked until the accounts exist.",
+    "risksBeforeNextCase": [
+      "Income statement account types require careful GuV/Bilanz field handling; 1200 remains wrong bank path."
+    ],
+    "requiredPreparation": [
+      "Separate GuV account field handling for 4400 and 5400."
+    ]
+  },
+  "reason": "3300 and 3806 are visible as SKR04 balance sheet starter accounts after controlled setup and reopen proof."
+}

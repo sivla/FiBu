@@ -1,0 +1,81 @@
+{
+  "fileName": "target-026l-3300-020-after-account-attempt.png",
+  "imagePath": "C:\\Users\\kkali\\.codex\\worktrees\\b8d6\\FiBu\\playwright\\projects\\fibu-book5\\evidence\\target-026l-skr04-remaining-balance-sheet-accounts-fit\\target-026l-3300-020-after-account-attempt.png",
+  "project": "fibu-book5",
+  "caseId": "TARGET-026L-SKR04-REMAINING-BALANCE-SHEET-ACCOUNTS-FIT",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "pageId": 16,
+  "page": "Kontenplan / Chart of Accounts",
+  "step": "After controlled setup attempt for 3300.",
+  "status": "universaarl-controlled-setup-gate",
+  "visibleLearning": [
+    "Der Kontenplan ist die Grundlage fuer spaetere USt-, Zahlungs-, Debitoren-, Kreditoren- und Artikelprozesse.",
+    "In diesem Gate wird nur ein geplantes Basiskonto angelegt oder als bereits vorhanden nachgewiesen.",
+    "USt-Setup, Stammdaten, Belege, Preview Posting und Posting bleiben ausserhalb dieses Schritts."
+  ],
+  "importantUi": [
+    "Kontenplanliste",
+    "Neu/New",
+    "Liste bearbeiten/Edit List",
+    "Nr./No.",
+    "Name"
+  ],
+  "internallyProves": "3300 Verbindlichkeiten aus Lieferungen und Leistungen ist im Kontenplan sichtbar; GuV/Bilanz sichtbar: Bilanz.",
+  "doesNotProve": [
+    "Kein vollstaendiger Kontenplan.",
+    "Keine steuerliche SKR04-Endgueltigkeit.",
+    "Keine VAT Posting Setup Zeile.",
+    "Keine Stammdaten, keine Belege, keine Preview, keine Buchung."
+  ],
+  "finalScreenshotStatus": "universaarl-foundation-evidence",
+  "targetAccount": {
+    "no": "3300",
+    "name": "Verbindlichkeiten aus Lieferungen und Leistungen",
+    "incomeBalance": "Balance Sheet",
+    "purpose": "SKR04-Kreditoren-/Verbindlichkeitenkonto fuer spaetere Vendor Posting Groups"
+  },
+  "accountResult": {
+    "status": "created",
+    "reason": "3300 Verbindlichkeiten aus Lieferungen und Leistungen wurde angelegt, auf Bilanz gesetzt und nach Reopen sichtbar.",
+    "steps": [
+      {
+        "step": "edit-list",
+        "clicked": true
+      },
+      {
+        "step": "new",
+        "clicked": true
+      },
+      {
+        "step": "fill-no-name",
+        "filled": false
+      },
+      {
+        "step": "edit-list-new-route-blocked",
+        "reason": "No editable row was visible after Edit List + New."
+      },
+      {
+        "step": "fresh-new-without-edit-list",
+        "clicked": true
+      },
+      {
+        "step": "fill-no-name-after-route-reset",
+        "filled": true
+      },
+      {
+        "step": "income-balance-correction-new-account",
+        "correction": {
+          "corrected": true,
+          "reason": "Account row already shows Bilanz/Balance Sheet.",
+          "steps": [
+            {
+              "step": "row-before-income-balance-correction",
+              "rowTextBefore": "3300 \nVerbindlichkeiten aus Lieferungen und Leistungen\n Bilanz Buchung"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

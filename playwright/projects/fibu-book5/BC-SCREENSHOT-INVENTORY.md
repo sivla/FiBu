@@ -401,6 +401,17 @@ Screenshot-QA zu TARGET-026J: Das dritte Bild ist der beste Buchkandidat fuer de
 
 Screenshot-QA zu TARGET-026K: Das dritte Bild ist der beste Buchkandidat fuer den Vorsteuerkonto-Abschnitt. Es ist gross genug, zeigt die Spalten `Nr.`, `Name`, `GuV/Bilanz` und `Kontoart`, und macht zugleich die Grenze sichtbar: ein Sachkonto `1406` ist noch kein VAT Posting Setup und noch kein USt-Posten. Die aktuelle Evidence ist ein stabiler Sichtbarkeits-/Reopen-Nachweis; sie ist kein separates Vorherbild ohne `1406`.
 
+## Universaarl Kontenplan - SKR04 Bilanzkonten TARGET-026L
+
+| Screenshot | Page | Company | Schritt | Was sieht man? | Intern bewiesen | Nicht bewiesen | Status |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `target-026l-3300-010-before-chart-of-accounts.png` | Kontenplan, Page 16 | `playthru` / `UNIVERSAARL-DE` | Vorheraufnahme 3300 | `1200`, `1406` und `1800` sind sichtbar; `3300` noch nicht | Ausgangslage fuer das Kreditoren-/Verbindlichkeitenkonto | kein Konto `3300`, keine Vendor Posting Group, keine Buchung | `universaarl-setup-before` |
+| `target-026l-3300-030-after-reopen-proof.png` | Kontenplan, Page 16 | `playthru` / `UNIVERSAARL-DE` | Reopen-Proof 3300 | `3300 Verbindlichkeiten aus Lieferungen und Leistungen` ist sichtbar, `Bilanz`, Kontoart `Buchung` | Persistenz-/Reopen-Proof fuer `3300` als Bilanzkonto | keine Kreditorenbuchungsgruppe, keine Einkaufsrechnung, keine Posten | `universaarl-reopen-proof`, `book-candidate` |
+| `target-026l-3806-010-before-chart-of-accounts.png` | Kontenplan, Page 16 | `playthru` / `UNIVERSAARL-DE` | Vorheraufnahme 3806 | `3300` ist bereits sichtbar; `3806` noch nicht | Ausgangslage fuer das Umsatzsteuerkonto | kein Konto `3806`, keine VAT Posting Setup Zeile | `universaarl-setup-before` |
+| `target-026l-3806-030-after-reopen-proof.png` | Kontenplan, Page 16 | `playthru` / `UNIVERSAARL-DE` | Reopen-Proof 3806 | `3300` und `3806 Umsatzsteuer 19 Prozent` sind sichtbar, beide `Bilanz`/`Buchung` | Persistenz-/Reopen-Proof fuer `3806` als Bilanzkonto | kein Umsatzsteuer-Setup, keine USt-Posten, keine Buchung | `universaarl-reopen-proof`, `book-candidate` |
+
+Screenshot-QA zu TARGET-026L: Die Reopen-Bilder sind lesbar und zeigen die entscheidenden Spalten `Nr.`, `Name`, `GuV/Bilanz` und `Kontoart`. `3300` und `3806` sind als Sachkonten sichtbar, aber die Bilder beweisen noch keine Buchungsgruppen, keine VAT Posting Setup Zeile und keine gebuchten Kreditoren- oder Umsatzsteuerposten. Die sichtbare Altlast `1200 Bank Saarland` bleibt fuer Bank, Payment, VAT und Posting Groups gesperrt.
+
 ## PREP-010 Screenshot-QA-Regel
 
 Vor jeder Buch- oder Clickguide-Nutzung muss der Screenshot gegen die konkrete Behauptung geprueft werden:

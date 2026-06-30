@@ -1,47 +1,62 @@
 {
-  "schemaVersion": 1,
-  "caseId": "TARGET-026K-SKR04-VAT-RECEIVABLE-ACCOUNT-FIT",
+  "caseId": "TARGET-026L-SKR04-REMAINING-BALANCE-SHEET-ACCOUNTS-FIT",
   "status": "observed",
-  "summary": "1406 Abziehbare Vorsteuer 19 Prozent is visible as Bilanz/Buchung account in UNIVERSAARL-DE after controlled setup and reopen proof; no VAT setup, master data, preview or posting occurred.",
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-026k-skr04-vat-receivable-account-fit/TARGET-026K-result.json",
-  "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/target-026k-skr04-vat-receivable-account-fit/target-026k-010-before-chart-of-accounts.png",
-    "playwright/projects/fibu-book5/evidence/target-026k-skr04-vat-receivable-account-fit/target-026k-020-after-account-attempt.png",
-    "playwright/projects/fibu-book5/evidence/target-026k-skr04-vat-receivable-account-fit/target-026k-030-after-reopen-proof.png",
-    "playwright/projects/fibu-book5/evidence/target-026k-skr04-vat-receivable-account-fit/TARGET-026K-result.json"
-  ],
+  "completedAt": "2026-06-30T20:26:45.419Z",
+  "sourceInstance": "playthru",
+  "sourceCompany": "UNIVERSAARL-DE",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-026l-skr04-remaining-balance-sheet-accounts-fit/TARGET-026L-result.json",
+  "evidencePath": "playwright/projects/fibu-book5/evidence/target-026l-skr04-remaining-balance-sheet-accounts-fit/",
+  "summary": "3300 and 3806 are visible as SKR04 balance sheet starter accounts after controlled setup and reopen proof.",
   "proved": [
     "Instanz playthru und Company UNIVERSAARL-DE wurden per URL-Kontext kontrolliert.",
     "Kontenplan Page 16 wurde geoeffnet.",
-    "1406 Abziehbare Vorsteuer 19 Prozent ist nach dem kontrollierten Setup-Versuch und Reopen sichtbar.",
-    "1406 Abziehbare Vorsteuer 19 Prozent ist als Bilanzkonto sichtbar."
+    "3300 Verbindlichkeiten aus Lieferungen und Leistungen ist nach Reopen als Bilanzkonto sichtbar.",
+    "3806 Umsatzsteuer 19 Prozent ist nach Reopen als Bilanzkonto sichtbar."
   ],
   "notProved": [
     "Kein vollstaendiger Kontenplan.",
+    "4400 und 5400 GuV-Konten wurden in diesem Case bewusst nicht angelegt.",
     "Keine SKR04- oder Steuerberaterfreigabe.",
     "Keine VAT Posting Setup Zeile.",
     "Keine Stammdatenanlage.",
     "Kein Dokument, keine Preview, keine Buchung."
   ],
-  "blockedBy": [],
-  "nextCase": "TARGET-026L-SKR04-REMAINING-BALANCE-SHEET-ACCOUNTS-FIT",
-  "nextStep": "Run TARGET-026L: create or confirm only 3300 and 3806 as SKR04 balance-sheet starter accounts; keep 4400/5400 GuV accounts, VAT setup, posting groups, master data, preview and posting locked.",
+  "screenshots": [
+    "target-026l-3300-010-before-chart-of-accounts.png",
+    "target-026l-3300-020-after-account-attempt.png",
+    "target-026l-3300-030-after-reopen-proof.png",
+    "target-026l-3806-010-before-chart-of-accounts.png",
+    "target-026l-3806-020-after-account-attempt.png",
+    "target-026l-3806-030-after-reopen-proof.png"
+  ],
+  "flags": {
+    "setupChangeAttempted": true,
+    "noVatSetupChange": true,
+    "noMasterData": true,
+    "noDocumentOrDraft": true,
+    "noPreview": true,
+    "noPost": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "nextCase": "TARGET-026M-SKR04-GUV-ACCOUNTS-ROUTE",
+  "nextStep": "Run TARGET-026M: create or confirm only 4400 and 5400 as mapped SKR04 GuV starter accounts; keep VAT setup, posting groups, master data, preview and posting locked.",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-026K-SKR04-VAT-RECEIVABLE-ACCOUNT-FIT",
-    "plannedNextCaseBeforeReview": "TARGET-026K-SKR04-VAT-RECEIVABLE-ACCOUNT-FIT",
-    "lastEvidenceSummary": "TARGET-026E planned the minimal G/L account candidate structure; no account had been created yet.",
+    "currentCase": "TARGET-026L-SKR04-REMAINING-BALANCE-SHEET-ACCOUNTS-FIT",
+    "plannedNextCaseBeforeReview": "TARGET-026L-SKR04-REMAINING-BALANCE-SHEET-ACCOUNTS-FIT",
+    "lastEvidenceSummary": "TARGET-026K proved 1406 as a visible SKR04 balance sheet VAT receivable account with reopen proof.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "VAT setup and first master data need at least a controlled account setup route before further foundation work.",
+    "reason": "3300 and 3806 are the remaining balance-sheet starter accounts required before explicit GuV route and later VAT/posting setup gates.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-026L-SKR04-REMAINING-BALANCE-SHEET-ACCOUNTS-FIT",
+        "caseId": "TARGET-026M-SKR04-GUV-ACCOUNTS-ROUTE",
         "status": "ready-next",
-        "reason": "The 1406 VAT receivable route has reopen proof; the next balance-sheet starter accounts can reuse the same reset-New route."
+        "reason": "Balance-sheet accounts are visible; 4400 and 5400 can now be handled with an explicit GuV/Bilanz route."
       },
       {
         "caseId": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
         "status": "ready-after-current",
-        "reason": "VAT posting groups still need G/L accounts and source-backed field mapping before setup write."
+        "reason": "VAT posting groups need G/L account foundation and source-backed field mapping before setup write."
       },
       {
         "caseId": "TARGET-028-CUSTOMER-VENDOR-ITEM-MASTERDATA",
@@ -55,36 +70,14 @@
       }
     ],
     "queueChangesMade": [],
-    "selectedNextCase": "TARGET-026L-SKR04-REMAINING-BALANCE-SHEET-ACCOUNTS-FIT",
-    "whySelectedNextCaseIsBest": "The fastest useful follow-up is to fit the remaining balance-sheet starter accounts, then handle GuV accounts with an explicit GuV/Bilanz route.",
+    "selectedNextCase": "TARGET-026M-SKR04-GUV-ACCOUNTS-ROUTE",
+    "whySelectedNextCaseIsBest": "The fastest useful follow-up is to fit 4400 and 5400 with the correct GuV account type, keeping VAT setup and posting groups locked until the accounts exist.",
     "risksBeforeNextCase": [
-      "Income statement account types still need careful field handling."
+      "Income statement account types require careful GuV/Bilanz field handling; 1200 remains wrong bank path."
     ],
     "requiredPreparation": [
-      "Separate balance-sheet and income-statement account field handling."
+      "Separate GuV account field handling for 4400 and 5400."
     ]
   },
-  "instance": "playthru",
-  "company": "UNIVERSAARL-DE",
-  "flags": {
-    "setupChangeAttempted": true,
-    "noVatSetupChange": true,
-    "noMasterData": true,
-    "noDocumentOrDraft": true,
-    "noPreview": true,
-    "noPost": true,
-    "noApiShortcut": true,
-    "noBookChange": true
-  },
-  "screenshotQa": {
-    "reviewedImage": "playwright/projects/fibu-book5/evidence/target-026k-skr04-vat-receivable-account-fit/target-026k-030-after-reopen-proof.png",
-    "visibleTruth": "Kontenplan shows 1200 Bank Saarland, 1406 Abziehbare Vorsteuer 19 Prozent and 1800 Bank Saarland; 1406 is Bilanz and Kontoart Buchung.",
-    "limits": [
-      "1200 remains an unresolved wrong bank path.",
-      "1406 alone is not VAT Posting Setup.",
-      "No entries or VAT postings exist."
-    ]
-  },
-  "updatedAt": "2026-06-30T20:05:02.449Z",
-  "runId": "TARGET-026K-SKR04-VAT-RECEIVABLE-ACCOUNT-FIT-2026-06-30T20-05-02-449Z"
+  "runId": "TARGET-026L-SKR04-REMAINING-BALANCE-SHEET-ACCOUNTS-FIT-2026-06-30T20-26-45-419Z"
 }

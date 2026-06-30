@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 1,
+  "id": "TARGET-026M-SKR04-GUV-ACCOUNTS-ROUTE",
+  "status": "pending",
+  "priority": "high",
+  "area": "universaarl-skr04-chart-of-accounts",
+  "goal": "Create or confirm mapped SKR04 GuV starter accounts 4400 and 5400 with explicit GuV/Bilanz field proof.",
+  "sourceCase": "TARGET-026L-SKR04-REMAINING-BALANCE-SHEET-ACCOUNTS-FIT",
+  "createdAt": "2026-06-30T20:26:45.419Z",
+  "lookaheadStatus": "ready-next",
+  "mayRunPlaywright": true,
+  "mayWorkEffectively": true,
+  "effectiveBcActionsAllowed": true,
+  "sourceCompany": "UNIVERSAARL-DE",
+  "sourceInstance": "playthru",
+  "targetWorld": "Universaarl",
+  "allowedActions": [
+    "open-chart-of-accounts",
+    "create-mapped-guv-starter-accounts-only",
+    "set-income-statement-account-type-for-4400-5400",
+    "capture-before-after-reopen-proof",
+    "write-result-and-next-step-card"
+  ],
+  "forbiddenActions": [
+    "use-1200-as-bank-or-payment-account",
+    "change-vat-setup",
+    "change-posting-groups",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "api-shortcut"
+  ],
+  "targetAccounts": [
+    {
+      "no": "4400",
+      "name": "Umsatzerloese Inland 19 Prozent",
+      "expectedType": "GuV",
+      "purpose": "Sales account for later General Posting Setup"
+    },
+    {
+      "no": "5400",
+      "name": "Wareneingang / Materialaufwand",
+      "expectedType": "GuV",
+      "purpose": "Purchase/material expense account for later posting setup"
+    }
+  ],
+  "prerequisites": [
+    "TARGET-026J proves 1800 as bank account candidate in UI.",
+    "TARGET-026K proves 1406 as balance-sheet VAT receivable account in UI.",
+    "TARGET-026L proves 3300 and 3806 as balance-sheet accounts in UI."
+  ],
+  "notAllowedInThisCase": [
+    "VAT Posting Setup write",
+    "Posting Groups write",
+    "Master data creation",
+    "Document or draft creation",
+    "Preview Posting",
+    "Posting"
+  ],
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-026L-SKR04-REMAINING-BALANCE-SHEET-ACCOUNTS-FIT",
+    "plannedNextCaseBeforeReview": "TARGET-026L-SKR04-REMAINING-BALANCE-SHEET-ACCOUNTS-FIT",
+    "lastEvidenceSummary": "TARGET-026K proved 1406 as a visible SKR04 balance sheet VAT receivable account with reopen proof.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "3300 and 3806 are the remaining balance-sheet starter accounts required before explicit GuV route and later VAT/posting setup gates.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-026M-SKR04-GUV-ACCOUNTS-ROUTE",
+        "status": "ready-next",
+        "reason": "Balance-sheet accounts are visible; 4400 and 5400 can now be handled with an explicit GuV/Bilanz route."
+      },
+      {
+        "caseId": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
+        "status": "ready-after-current",
+        "reason": "VAT posting groups need G/L account foundation and source-backed field mapping before setup write."
+      },
+      {
+        "caseId": "TARGET-028-CUSTOMER-VENDOR-ITEM-MASTERDATA",
+        "status": "needs-setup-first",
+        "reason": "Master data should wait until posting groups and VAT setup are ready."
+      },
+      {
+        "caseId": "TARGET-029-FIRST-SALES-PURCHASE-DRAFT-GATE",
+        "status": "needs-setup-first",
+        "reason": "Documents require number series, posting groups, VAT setup and master data."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-026M-SKR04-GUV-ACCOUNTS-ROUTE",
+    "whySelectedNextCaseIsBest": "The fastest useful follow-up is to fit 4400 and 5400 with the correct GuV account type, keeping VAT setup and posting groups locked until the accounts exist.",
+    "risksBeforeNextCase": [
+      "Income statement account types require careful GuV/Bilanz field handling; 1200 remains wrong bank path."
+    ],
+    "requiredPreparation": [
+      "Separate GuV account field handling for 4400 and 5400."
+    ]
+  },
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-026m-skr04-guv-accounts-route/TARGET-026M-result.json",
+  "caseId": "TARGET-026M-SKR04-GUV-ACCOUNTS-ROUTE"
+}

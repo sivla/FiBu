@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-30T20:05:02.449Z",
+  "updatedAt": "2026-06-30T20:26:45.419Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-skr04-balance-sheet-accounts-fit",
-  "activeCase": "TARGET-026L-SKR04-REMAINING-BALANCE-SHEET-ACCOUNTS-FIT",
-  "active_case_file": ".agent/state/cases/target-026l-skr04-remaining-balance-sheet-accounts-fit.json",
+  "activeArea": "universaarl-skr04-guv-starter-accounts-fit",
+  "activeCase": "TARGET-026M-SKR04-GUV-ACCOUNTS-ROUTE",
+  "active_case_file": ".agent/state/cases/target-026m-skr04-guv-accounts-route.json",
   "lastReferenceCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
   "lastReferenceCaseFile": ".agent/state/cases/warehouse-031-warehouse-source-route-park-or-setup-fit-decision.json",
   "mode": "universaarl-target-execution",
@@ -20,7 +20,8 @@
   ],
   "allowedActions": [
     "open-chart-of-accounts",
-    "create-mapped-starter-accounts-only",
+    "create-mapped-guv-starter-accounts-only",
+    "set-income-statement-account-type-for-4400-5400",
     "capture-before-after-reopen-proof",
     "write-result-and-next-step-card"
   ],
@@ -40,7 +41,7 @@
     "post",
     "api-shortcut"
   ],
-  "nextStep": "Run TARGET-026L: create or confirm only 3300 and 3806 as SKR04 balance-sheet starter accounts; keep 4400/5400 GuV accounts, VAT setup, posting groups, master data, preview and posting locked.",
+  "nextStep": "Run TARGET-026M: create or confirm only 4400 and 5400 as mapped SKR04 GuV starter accounts; keep VAT setup, posting groups, master data, preview and posting locked.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -3431,72 +3432,21 @@
       "replace-with-better-case"
     ],
     "latestDecisionCard": {
-      "currentCase": "TARGET-026E-CHART-OF-ACCOUNTS-MINIMAL-STRUCTURE-PLAN",
-      "plannedNextCaseBeforeReview": "TARGET-026E-CHART-OF-ACCOUNTS-MINIMAL-STRUCTURE-PLAN",
-      "lastEvidenceSummary": "TARGET-026B showed the Chart of Accounts is reachable but blank/insufficient. TARGET-026D selected account-structure planning before VAT setup. TARGET-026E defined a minimal account structure as candidates only.",
+      "currentCase": "TARGET-026L-SKR04-REMAINING-BALANCE-SHEET-ACCOUNTS-FIT",
+      "plannedNextCaseBeforeReview": "TARGET-026L-SKR04-REMAINING-BALANCE-SHEET-ACCOUNTS-FIT",
+      "lastEvidenceSummary": "TARGET-026K proved 1406 as a visible SKR04 balance sheet VAT receivable account with reopen proof.",
       "isPlannedNextCaseStillSensible": true,
-      "reason": "The planned accounts are now concrete enough for a controlled UI setup gate, while VAT groups and master data still need setup first.",
+      "reason": "3300 and 3806 are the remaining balance-sheet starter accounts required before explicit GuV route and later VAT/posting setup gates.",
       "lookaheadReviewed": [
         {
-          "caseId": "TARGET-026F-CHART-OF-ACCOUNTS-CONTROLLED-SETUP-GATE",
+          "caseId": "TARGET-026M-SKR04-GUV-ACCOUNTS-ROUTE",
           "status": "ready-next",
-          "reason": "Exact account candidates and stop gates are available."
-        },
-        {
-          "caseId": "TARGET-026C-VAT-GROUPS-CONTROLLED-SETUP-FIT",
-          "status": "needs-setup-first",
-          "reason": "Requires visible Sales/Purchase VAT account records after account setup."
-        },
-        {
-          "caseId": "TARGET-027-DEFAULT-DIMENSIONS-STRATEGY",
-          "status": "ready-after-current",
-          "reason": "Can continue after account/VAT path is classified."
-        },
-        {
-          "caseId": "TARGET-028-FIRST-CUSTOMER-CONTROLLED-CREATE",
-          "status": "needs-setup-first",
-          "reason": "Needs customer posting group, VAT and default-dimension decisions."
-        },
-        {
-          "caseId": "TARGET-029-FIRST-VENDOR-AND-ITEM-CONTROLLED-CREATE",
-          "status": "needs-setup-first",
-          "reason": "Needs vendor/item posting, VAT and inventory setup decisions."
-        }
-      ],
-      "queueChangesMade": [
-        "Marked TARGET-026E observed with candidate account structure.",
-        "Inserted and selected TARGET-026F-CHART-OF-ACCOUNTS-CONTROLLED-SETUP-GATE."
-      ],
-      "selectedNextCase": "TARGET-026F-CHART-OF-ACCOUNTS-CONTROLLED-SETUP-GATE",
-      "whySelectedNextCaseIsBest": "It is the first practical step that can turn the blank account basis into visible G/L account records with before/after/reopen proof.",
-      "risksBeforeNextCase": [
-        "Account creation is a setup change and must be limited to the planned list.",
-        "Do not edit VAT Posting Setup, posting groups or master data in the same run.",
-        "Do not claim final German SKR04 correctness."
-      ],
-      "requiredPreparation": [
-        "Open Chart of Accounts direct Page 16.",
-        "Capture before screenshot.",
-        "Use only Neu/Liste bearbeiten route if visible and scoped; stop on dialog uncertainty.",
-        "Reopen and prove each created/visible account."
-      ]
-    },
-    "lastDecisionCard": {
-      "currentCase": "TARGET-026J-SKR04-ACCOUNT-CLEANUP-AND-SETUP-GATE",
-      "plannedNextCaseBeforeReview": "TARGET-026J-SKR04-ACCOUNT-CLEANUP-AND-SETUP-GATE",
-      "lastEvidenceSummary": "TARGET-026E planned the minimal G/L account candidate structure; no account had been created yet.",
-      "isPlannedNextCaseStillSensible": true,
-      "reason": "VAT setup and first master data need at least a controlled account setup route before further foundation work.",
-      "lookaheadReviewed": [
-        {
-          "caseId": "TARGET-026K-SKR04-REMAINING-STARTER-ACCOUNTS-FIT",
-          "status": "ready-next",
-          "reason": "The 1800 bank-account route has reopen proof and can be reused carefully for remaining mapped starter accounts."
+          "reason": "Balance-sheet accounts are visible; 4400 and 5400 can now be handled with an explicit GuV/Bilanz route."
         },
         {
           "caseId": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
           "status": "ready-after-current",
-          "reason": "VAT posting groups still need G/L accounts and source-backed field mapping before setup write."
+          "reason": "VAT posting groups need G/L account foundation and source-backed field mapping before setup write."
         },
         {
           "caseId": "TARGET-028-CUSTOMER-VENDOR-ITEM-MASTERDATA",
@@ -3510,13 +3460,51 @@
         }
       ],
       "queueChangesMade": [],
-      "selectedNextCase": "TARGET-026K-SKR04-REMAINING-STARTER-ACCOUNTS-FIT",
-      "whySelectedNextCaseIsBest": "The fastest useful follow-up is to complete the remaining mapped SKR04 starter accounts without touching VAT or posting groups yet.",
+      "selectedNextCase": "TARGET-026M-SKR04-GUV-ACCOUNTS-ROUTE",
+      "whySelectedNextCaseIsBest": "The fastest useful follow-up is to fit 4400 and 5400 with the correct GuV account type, keeping VAT setup and posting groups locked until the accounts exist.",
       "risksBeforeNextCase": [
-        "Income statement account types still need careful field handling."
+        "Income statement account types require careful GuV/Bilanz field handling; 1200 remains wrong bank path."
       ],
       "requiredPreparation": [
-        "Separate balance-sheet and income-statement account field handling."
+        "Separate GuV account field handling for 4400 and 5400."
+      ]
+    },
+    "lastDecisionCard": {
+      "currentCase": "TARGET-026L-SKR04-REMAINING-BALANCE-SHEET-ACCOUNTS-FIT",
+      "plannedNextCaseBeforeReview": "TARGET-026L-SKR04-REMAINING-BALANCE-SHEET-ACCOUNTS-FIT",
+      "lastEvidenceSummary": "TARGET-026K proved 1406 as a visible SKR04 balance sheet VAT receivable account with reopen proof.",
+      "isPlannedNextCaseStillSensible": true,
+      "reason": "3300 and 3806 are the remaining balance-sheet starter accounts required before explicit GuV route and later VAT/posting setup gates.",
+      "lookaheadReviewed": [
+        {
+          "caseId": "TARGET-026M-SKR04-GUV-ACCOUNTS-ROUTE",
+          "status": "ready-next",
+          "reason": "Balance-sheet accounts are visible; 4400 and 5400 can now be handled with an explicit GuV/Bilanz route."
+        },
+        {
+          "caseId": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
+          "status": "ready-after-current",
+          "reason": "VAT posting groups need G/L account foundation and source-backed field mapping before setup write."
+        },
+        {
+          "caseId": "TARGET-028-CUSTOMER-VENDOR-ITEM-MASTERDATA",
+          "status": "needs-setup-first",
+          "reason": "Master data should wait until posting groups and VAT setup are ready."
+        },
+        {
+          "caseId": "TARGET-029-FIRST-SALES-PURCHASE-DRAFT-GATE",
+          "status": "needs-setup-first",
+          "reason": "Documents require number series, posting groups, VAT setup and master data."
+        }
+      ],
+      "queueChangesMade": [],
+      "selectedNextCase": "TARGET-026M-SKR04-GUV-ACCOUNTS-ROUTE",
+      "whySelectedNextCaseIsBest": "The fastest useful follow-up is to fit 4400 and 5400 with the correct GuV account type, keeping VAT setup and posting groups locked until the accounts exist.",
+      "risksBeforeNextCase": [
+        "Income statement account types require careful GuV/Bilanz field handling; 1200 remains wrong bank path."
+      ],
+      "requiredPreparation": [
+        "Separate GuV account field handling for 4400 and 5400."
       ]
     }
   },
@@ -3834,7 +3822,7 @@
   },
   "activeCaseFile": ".agent/state/cases/target-026l-skr04-remaining-balance-sheet-accounts-fit.json",
   "previousCase": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
-  "nextCase": "TARGET-026L-SKR04-REMAINING-BALANCE-SHEET-ACCOUNTS-FIT",
+  "nextCase": "TARGET-026M-SKR04-GUV-ACCOUNTS-ROUTE",
   "latestPrepCase": {
     "caseId": "PREP-034-ROLE-CENTER-READONLY-SHELL-MAP",
     "status": "prep-observed",
@@ -6261,5 +6249,67 @@
     "nextCase": "TARGET-026K-SKR04-REMAINING-STARTER-ACCOUNTS-FIT",
     "updatedAt": "2026-06-30T19:52:53.805Z"
   },
-  "lastEvidenceResult": "playwright/projects/fibu-book5/evidence/target-026k-skr04-vat-receivable-account-fit/TARGET-026K-result.json"
+  "lastEvidenceResult": "playwright/projects/fibu-book5/evidence/target-026k-skr04-vat-receivable-account-fit/TARGET-026K-result.json",
+  "latestSkr04AccountFit": {
+    "caseId": "TARGET-026L-SKR04-REMAINING-BALANCE-SHEET-ACCOUNTS-FIT",
+    "status": [
+      "universaarl-proven",
+      "controlled-setup-trace"
+    ],
+    "sourceInstance": "playthru",
+    "sourceCompany": "UNIVERSAARL-DE",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-026l-skr04-remaining-balance-sheet-accounts-fit/TARGET-026L-result.json",
+    "evidencePath": "playwright/projects/fibu-book5/evidence/target-026l-skr04-remaining-balance-sheet-accounts-fit/",
+    "accountsProved": [
+      "3300 Verbindlichkeiten aus Lieferungen und Leistungen",
+      "3806 Umsatzsteuer 19 Prozent"
+    ],
+    "notProved": [
+      "Kein vollstaendiger Kontenplan.",
+      "4400 und 5400 GuV-Konten wurden in diesem Case bewusst nicht angelegt.",
+      "Keine SKR04- oder Steuerberaterfreigabe.",
+      "Keine VAT Posting Setup Zeile.",
+      "Keine Stammdatenanlage.",
+      "Kein Dokument, keine Preview, keine Buchung."
+    ],
+    "nextCase": "TARGET-026M-SKR04-GUV-ACCOUNTS-ROUTE",
+    "nextStepDecisionCard": {
+      "currentCase": "TARGET-026L-SKR04-REMAINING-BALANCE-SHEET-ACCOUNTS-FIT",
+      "plannedNextCaseBeforeReview": "TARGET-026L-SKR04-REMAINING-BALANCE-SHEET-ACCOUNTS-FIT",
+      "lastEvidenceSummary": "TARGET-026K proved 1406 as a visible SKR04 balance sheet VAT receivable account with reopen proof.",
+      "isPlannedNextCaseStillSensible": true,
+      "reason": "3300 and 3806 are the remaining balance-sheet starter accounts required before explicit GuV route and later VAT/posting setup gates.",
+      "lookaheadReviewed": [
+        {
+          "caseId": "TARGET-026M-SKR04-GUV-ACCOUNTS-ROUTE",
+          "status": "ready-next",
+          "reason": "Balance-sheet accounts are visible; 4400 and 5400 can now be handled with an explicit GuV/Bilanz route."
+        },
+        {
+          "caseId": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
+          "status": "ready-after-current",
+          "reason": "VAT posting groups need G/L account foundation and source-backed field mapping before setup write."
+        },
+        {
+          "caseId": "TARGET-028-CUSTOMER-VENDOR-ITEM-MASTERDATA",
+          "status": "needs-setup-first",
+          "reason": "Master data should wait until posting groups and VAT setup are ready."
+        },
+        {
+          "caseId": "TARGET-029-FIRST-SALES-PURCHASE-DRAFT-GATE",
+          "status": "needs-setup-first",
+          "reason": "Documents require number series, posting groups, VAT setup and master data."
+        }
+      ],
+      "queueChangesMade": [],
+      "selectedNextCase": "TARGET-026M-SKR04-GUV-ACCOUNTS-ROUTE",
+      "whySelectedNextCaseIsBest": "The fastest useful follow-up is to fit 4400 and 5400 with the correct GuV account type, keeping VAT setup and posting groups locked until the accounts exist.",
+      "risksBeforeNextCase": [
+        "Income statement account types require careful GuV/Bilanz field handling; 1200 remains wrong bank path."
+      ],
+      "requiredPreparation": [
+        "Separate GuV account field handling for 4400 and 5400."
+      ]
+    }
+  }
 }
