@@ -1,12 +1,14 @@
 {
   "schemaVersion": 1,
-  "runId": "TARGET-011-20260630-2205",
-  "caseId": "TARGET-011-UNIVERSAARL-COMPANY-INFORMATION",
+  "runId": "TARGET-014-20260630-1211",
+  "caseId": "TARGET-014-NUMBER-SERIES-SETUP-DECISION",
   "status": "observed",
-  "completedAt": "2026-06-30T22:05:00.000+02:00",
-  "summary": "Firmendaten / Company Information was opened in playthru under company=UNIVERSAARL-DE. Universaarl GmbH is visible as saved company name after reload. The run also learned the exact card edit action title and frame-based first-field targeting.",
+  "completedAt": "2026-06-30T12:11:31+02:00",
+  "summary": "TARGET-012 proved W1 foundation page routes read-only. TARGET-013 proved Number Series page 456 read-only and found only BANKEINZ, CT-MSG and VATNOTIF visible. TARGET-014 converted that into a local setup decision: define Universaarl numbering families first, then run a controlled setup preflight before any write.",
   "bcRun": true,
   "playwrightRun": true,
+  "target014BcRun": false,
+  "target014PlaywrightRun": false,
   "noCompanyCreated": true,
   "noMasterDataChange": true,
   "noPreviewPosting": true,
@@ -15,70 +17,87 @@
   "noApiShortcut": true,
   "noSearch": true,
   "changedFiles": [
-    "playwright/projects/fibu-book5/evidence/target-011-universaarl-company-information/TARGET-011-result.json",
-    "playwright/projects/fibu-book5/tests/target-011-universaarl-company-information.spec.ts",
-    "playwright/projects/fibu-book5/book-drafts/universaarl-company-context-draft.md",
+    "playwright/projects/fibu-book5/tests/target-012-w1-foundation-readiness.spec.ts",
+    "playwright/projects/fibu-book5/tests/target-013-number-series-preflight.spec.ts",
+    "playwright/projects/fibu-book5/evidence/target-012-w1-foundation-readiness/TARGET-012-result.json",
+    "playwright/projects/fibu-book5/evidence/target-012-w1-foundation-readiness/README.md",
+    "playwright/projects/fibu-book5/evidence/target-013-number-series-preflight/TARGET-013-result.json",
+    "playwright/projects/fibu-book5/evidence/target-013-number-series-preflight/README.md",
+    "playwright/projects/fibu-book5/evidence/target-014-number-series-setup-decision/TARGET-014-result.json",
+    "playwright/projects/fibu-book5/evidence/target-014-number-series-setup-decision/README.md",
     "playwright/projects/fibu-book5/BC-SCREENSHOT-INVENTORY.md",
     "playwright/projects/fibu-book5/BC-FULL-PLAYTHROUGH-CATALOG.md",
-    "playwright/projects/fibu-book5/evidence/target-011-universaarl-company-information/README.md"
+    ".agent/state/current.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/cases/target-012-w1-foundation-readiness.json",
+    ".agent/state/cases/target-013-number-series-preflight.json",
+    ".agent/state/cases/target-014-number-series-setup-decision.json",
+    ".agent/state/cases/target-015-number-series-controlled-setup-preflight.json",
+    ".agent/state/marathon_queue.json"
   ],
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/target-011-universaarl-company-information/TARGET-011-result.json",
-    "playwright/projects/fibu-book5/img/target-011-010-company-information-before-name.png",
-    "playwright/projects/fibu-book5/img/target-011-015-company-information-edit-mode.png",
-    "playwright/projects/fibu-book5/img/target-011-016-company-information-after-name-entry-before-reopen.png",
-    "playwright/projects/fibu-book5/img/target-011-020-company-information-after-name.png",
-    "playwright/projects/fibu-book5/evidence/target-011-universaarl-company-information/README.md"
+    "playwright/projects/fibu-book5/evidence/target-012-w1-foundation-readiness/TARGET-012-result.json",
+    "playwright/projects/fibu-book5/img/target-012-010-company-information.png",
+    "playwright/projects/fibu-book5/img/target-012-020-general-ledger-setup.png",
+    "playwright/projects/fibu-book5/img/target-012-030-no-series.png",
+    "playwright/projects/fibu-book5/img/target-012-040-general-posting-setup.png",
+    "playwright/projects/fibu-book5/img/target-012-050-vat-posting-setup.png",
+    "playwright/projects/fibu-book5/img/target-012-060-dimensions.png",
+    "playwright/projects/fibu-book5/evidence/target-013-number-series-preflight/TARGET-013-result.json",
+    "playwright/projects/fibu-book5/img/target-013-010-number-series-preflight.png",
+    "playwright/projects/fibu-book5/evidence/target-014-number-series-setup-decision/TARGET-014-result.json"
   ],
-  "nextStep": "Run TARGET-012: W1 Foundation readiness decision before number series, posting groups, VAT setup, dimensions or master data.",
-  "nextCase": "TARGET-012-W1-FOUNDATION-READINESS",
+  "nextStep": "Run TARGET-015: capture before evidence for Number Series and related setup pages, then decide whether controlled setup writes are allowed.",
+  "nextCase": "TARGET-015-NUMBER-SERIES-CONTROLLED-SETUP-PREFLIGHT",
   "blockedBy": [],
   "hardStops": [],
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-011-UNIVERSAARL-COMPANY-INFORMATION",
-    "plannedNextCaseBeforeReview": "TARGET-012-W1-FOUNDATION-READINESS",
-    "lastEvidenceSummary": "TARGET-010 proved UNIVERSAARL-DE context and Company Information read-only. TARGET-011 targets only the known legal name value.",
+    "currentCase": "TARGET-014-NUMBER-SERIES-SETUP-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-014-NUMBER-SERIES-SETUP-DECISION",
+    "lastEvidenceSummary": "TARGET-013 showed Number Series page 456 but only BANKEINZ, CT-MSG and VATNOTIF as visible codes.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The first Company Information value is now visible; the next step is to decide the remaining W1 Foundation setup sequence.",
+    "reason": "Visible numbering context is not enough for master data or documents; target series families must be decided before write actions.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-012-W1-FOUNDATION-READINESS",
+        "caseId": "TARGET-015-NUMBER-SERIES-CONTROLLED-SETUP-PREFLIGHT",
         "status": "ready-next",
-        "reason": "Name is set; remaining foundation setup can be scoped deliberately."
+        "reason": "Exact draft families exist; the next step is before evidence and a controlled write gate."
       },
       {
-        "caseId": "TARGET-013-NUMBER-SERIES-AND-POSTING-GROUPS",
-        "status": "needs-setup-first",
-        "reason": "Number series and posting groups follow W1 readiness."
-      },
-      {
-        "caseId": "TARGET-007-DIMENSIONS-FOUNDATION",
+        "caseId": "TARGET-016-POSTING-GROUPS-PREFLIGHT",
         "status": "ready-after-current",
-        "reason": "Dimensions can be planned after W1 readiness decides setup order."
+        "reason": "Posting groups should follow after number-series policy is clear."
       },
       {
-        "caseId": "TARGET-DATA-FOUNDATION-001-CORE-MASTERDATA-PLAN",
+        "caseId": "TARGET-017-VAT-SETUP-READINESS",
+        "status": "needs-source-check-first",
+        "reason": "German VAT claims need source-backed setup and later Preview/VAT Entries."
+      },
+      {
+        "caseId": "TARGET-018-DIMENSIONS-FOUNDATION",
         "status": "ready-after-current",
-        "reason": "Master data planning can continue, but data creation waits for setup gates."
+        "reason": "Dimensions can follow once numbering and core setup order are stable."
       },
       {
-        "caseId": "TARGET-LOOKFEEL-001-LIST-SEARCH-SORT-FILTER",
+        "caseId": "TARGET-019-CORE-MASTERDATA-PLAN",
         "status": "needs-setup-first",
-        "reason": "Look-and-feel final screenshots need meaningful Universaarl data."
+        "reason": "Master data creation waits for number series, posting groups, VAT and dimensions."
       }
     ],
-    "queueChangesMade": [],
-    "selectedNextCase": "TARGET-012-W1-FOUNDATION-READINESS",
-    "whySelectedNextCaseIsBest": "A W1 readiness gate prevents random setup changes and orders number series, posting groups, VAT and dimensions.",
+    "queueChangesMade": [
+      "Marked TARGET-014 done.",
+      "Added TARGET-015 as pending."
+    ],
+    "selectedNextCase": "TARGET-015-NUMBER-SERIES-CONTROLLED-SETUP-PREFLIGHT",
+    "whySelectedNextCaseIsBest": "A preflight can capture before-state and exact fields before any Number Series write action.",
     "risksBeforeNextCase": [
-      "Address, country/region and VAT values are still not approved.",
-      "No later process should claim posting readiness from Company Information alone."
+      "Do not click New/Edit List/Lines without before screenshots and exact target values.",
+      "Do not claim German invoice-number compliance from draft numbering families."
     ],
     "requiredPreparation": [
-      "Define W1 Foundation order and decide which remaining Company Information fields can be filled safely."
+      "Open Number Series and relevant setup pages read-only first.",
+      "If a setup write is unlocked later, capture before and after screenshots and avoid duplicate series."
     ]
   },
-  "updatedAt": "2026-06-30T22:05:00.000+02:00",
-  "setupChangeOccurredDuringTarget011Attempts": true,
-  "finalRunSetupChanged": false
+  "updatedAt": "2026-06-30T12:11:31+02:00"
 }

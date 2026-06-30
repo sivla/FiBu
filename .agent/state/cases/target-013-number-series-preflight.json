@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-013-NUMBER-SERIES-PREFLIGHT",
+  "title": "Universaarl Number Series read-only preflight",
+  "instance": "playthru",
+  "targetCompany": "UNIVERSAARL-DE",
+  "legalName": "Universaarl GmbH",
+  "workType": "foundation-number-series-preflight",
+  "status": "observed",
+  "dependsOn": [
+    "TARGET-012-W1-FOUNDATION-READINESS"
+  ],
+  "goal": "Inspect Number Series read-only and decide whether Universaarl needs controlled number-series setup before posting groups, VAT, dimensions or master data.",
+  "evidenceTarget": "playwright/projects/fibu-book5/evidence/target-013-number-series-preflight/",
+  "allowedActionsWhenRun": [
+    "open-playthru-business-central",
+    "open-UNIVERSAARL-DE-with-documentation",
+    "open-number-series-readonly",
+    "capture-number-series-screenshot",
+    "write-number-series-preflight-decision"
+  ],
+  "defaultLockedActions": [
+    "setup-change",
+    "new-number-series",
+    "edit-number-series-line",
+    "master-data-create",
+    "preview-posting",
+    "posting",
+    "dialog-confirmation"
+  ],
+  "forbiddenActions": [
+    "leave-playthru",
+    "operate-in-CRONUS-as-active-target",
+    "post",
+    "preview-posting",
+    "api-shortcut",
+    "claim-number-series-ready-without-visible-lines"
+  ],
+  "successCriteria": [
+    "Number Series page is visible in playthru / UNIVERSAARL-DE.",
+    "Visible codes, line counts, columns and action boundaries are documented.",
+    "The result decides whether a later setup-change case is required before master data or document creation."
+  ],
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-013-number-series-preflight/TARGET-013-result.json",
+  "screenshots": [
+    "playwright/projects/fibu-book5/img/target-013-010-number-series-preflight.png"
+  ],
+  "proved": [
+    "Number Series page 456 opened read-only in playthru / UNIVERSAARL-DE.",
+    "Visible codes are BANKEINZ, CT-MSG and VATNOTIF."
+  ],
+  "openLimits": [
+    "No number series was created or edited.",
+    "No visible customer, vendor, item, sales document, purchase document or journal number-series family was proven.",
+    "No master data, document, preview posting, posting or ledger trace exists."
+  ],
+  "migrationRelevance": "german-final-candidate",
+  "finalScreenshotNeeded": true,
+  "nextSafeAction": "Run TARGET-014 Number Series setup decision before any controlled setup change.",
+  "updatedAt": "2026-06-30T12:11:31+02:00"
+}

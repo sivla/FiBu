@@ -915,7 +915,7 @@
     {
       "id": "TARGET-011-UNIVERSAARL-COMPANY-INFORMATION",
       "order": 10011,
-      "status": "pending",
+      "status": "done",
       "category": "target-foundation-setup",
       "expectedImpact": "company-information-setup",
       "mayWorkEffectively": true,
@@ -925,11 +925,83 @@
       "sourceCompany": "UNIVERSAARL-DE",
       "targetWorld": "Universaarl",
       "noFinalGermanClaimWithoutUniversaarlEvidence": false,
+      "lookaheadStatus": "done",
+      "completedAt": "2026-06-30T22:05:00.000+02:00",
+      "result": "Company Information shows Universaarl GmbH after reload; no posting, preview, draft, API or search.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-011-universaarl-company-information/TARGET-011-result.json"
+    },
+    {
+      "id": "TARGET-012-W1-FOUNDATION-READINESS",
+      "order": 10012,
+      "status": "done",
+      "category": "target-foundation-readiness",
+      "expectedImpact": "foundation-page-context-proof",
+      "mayWorkEffectively": false,
+      "mayRunPlaywright": true,
+      "effectiveBcActionsAllowed": false,
+      "goal": "Open W1 foundation setup candidates read-only and select the next narrow setup preflight.",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "targetWorld": "Universaarl",
+      "noFinalGermanClaimWithoutUniversaarlEvidence": false,
+      "lookaheadStatus": "done",
+      "completedAt": "2026-06-30T12:11:31+02:00",
+      "result": "Firmendaten, Finanzbuchhaltung Einrichtung, Nummernserie, Buchungsmatrix, MwSt.-Buchungsmatrix and Dimensionswerte opened read-only.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-012-w1-foundation-readiness/TARGET-012-result.json"
+    },
+    {
+      "id": "TARGET-013-NUMBER-SERIES-PREFLIGHT",
+      "order": 10013,
+      "status": "done",
+      "category": "target-foundation-number-series",
+      "expectedImpact": "number-series-preflight",
+      "mayWorkEffectively": false,
+      "mayRunPlaywright": true,
+      "effectiveBcActionsAllowed": false,
+      "goal": "Inspect Number Series read-only and decide whether a later controlled number-series setup case is needed.",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "targetWorld": "Universaarl",
+      "noFinalGermanClaimWithoutUniversaarlEvidence": false,
+      "lookaheadStatus": "done",
+      "completedAt": "2026-06-30T12:11:31+02:00",
+      "result": "Number Series page 456 opened read-only; visible codes are BANKEINZ, CT-MSG and VATNOTIF only.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-013-number-series-preflight/TARGET-013-result.json"
+    },
+    {
+      "id": "TARGET-014-NUMBER-SERIES-SETUP-DECISION",
+      "order": 10014,
+      "status": "done",
+      "category": "target-foundation-number-series",
+      "expectedImpact": "number-series-setup-decision",
+      "mayWorkEffectively": false,
+      "mayRunPlaywright": false,
+      "effectiveBcActionsAllowed": false,
+      "goal": "Define exact Universaarl number-series families and decide whether a later controlled setup-change case may create or update them.",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "targetWorld": "Universaarl",
+      "noFinalGermanClaimWithoutUniversaarlEvidence": false,
+      "lookaheadStatus": "done",
+      "completedAt": "2026-06-30T12:11:31+02:00",
+      "result": "Defined first Universaarl number-series draft families and selected controlled setup preflight before any write.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-014-number-series-setup-decision/TARGET-014-result.json"
+    },
+    {
+      "id": "TARGET-015-NUMBER-SERIES-CONTROLLED-SETUP-PREFLIGHT",
+      "order": 10015,
+      "status": "pending",
+      "category": "target-foundation-number-series",
+      "expectedImpact": "number-series-controlled-setup-preflight",
+      "mayWorkEffectively": false,
+      "mayRunPlaywright": true,
+      "effectiveBcActionsAllowed": false,
+      "goal": "Capture before evidence for Number Series and relevant setup pages before any controlled number-series setup write.",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "targetWorld": "Universaarl",
+      "noFinalGermanClaimWithoutUniversaarlEvidence": false,
       "lookaheadStatus": "ready-next",
       "resultPath": null
     }
   ],
-  "lastUpdated": "2026-06-30T20:35:00.000+02:00",
+  "lastUpdated": "2026-06-30T12:11:31+02:00",
   "nextStepDecisionGate": {
     "active": true,
     "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",
@@ -1002,50 +1074,55 @@
       ]
     }
   },
-  "updatedAt": "2026-06-30T21:45:00.000+02:00",
-  "lastCompletedCase": "TARGET-010-UNIVERSAARL-COMPANY-CONTEXT-PROOF",
-  "nextCase": "TARGET-011-UNIVERSAARL-COMPANY-INFORMATION",
+  "updatedAt": "2026-06-30T12:11:31+02:00",
+  "lastCompletedCase": "TARGET-014-NUMBER-SERIES-SETUP-DECISION",
+  "nextCase": "TARGET-015-NUMBER-SERIES-CONTROLLED-SETUP-PREFLIGHT",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-010-UNIVERSAARL-COMPANY-CONTEXT-PROOF",
-    "plannedNextCaseBeforeReview": "TARGET-011-UNIVERSAARL-COMPANY-INFORMATION",
-    "lastEvidenceSummary": "TARGET-009 created/verified UNIVERSAARL-DE using the no-data company creation wizard. TARGET-010 checks whether the active context and Company Information can be read safely.",
-    "isPlannedNextCaseStillSensible": true,
-    "reason": "Company context and Company Information page are now read-only proven, so a separate setup-decision case may prepare actual values.",
-    "lookaheadReviewed": [
-      {
-        "caseId": "TARGET-011-UNIVERSAARL-COMPANY-INFORMATION",
-        "status": "ready-after-current",
-        "reason": "The read-only page and context proof exist; next case can decide and set legal company values."
-      },
-      {
-        "caseId": "TARGET-012-W1-FOUNDATION-READINESS",
-        "status": "needs-setup-first",
-        "reason": "Foundation readiness depends on Company Information and setup decisions."
-      },
-      {
-        "caseId": "TARGET-013-NUMBER-SERIES-AND-POSTING-GROUPS",
-        "status": "needs-setup-first",
-        "reason": "Number series and posting groups follow after Company Information/foundation setup."
-      },
-      {
-        "caseId": "TARGET-007-DIMENSIONS-FOUNDATION",
-        "status": "needs-setup-first",
-        "reason": "Dimensions should be created after the base company setup scope is fixed."
-      },
-      {
-        "caseId": "TARGET-DATA-FOUNDATION-001-CORE-MASTERDATA-PLAN",
-        "status": "ready-after-current",
-        "reason": "Master data planning can proceed, but creation waits for setup gates."
-      }
-    ],
-    "queueChangesMade": [],
-    "selectedNextCase": "TARGET-011-UNIVERSAARL-COMPANY-INFORMATION",
-    "whySelectedNextCaseIsBest": "The next valuable step is a controlled Company Information setup decision, not more company-creation probing.",
-    "risksBeforeNextCase": [
-      "Company Information save must be an explicit setup case."
-    ],
-    "requiredPreparation": [
-      "Prepare exact Universaarl GmbH Company Information values and before/after screenshots."
-    ]
+      "currentCase": "TARGET-014-NUMBER-SERIES-SETUP-DECISION",
+      "plannedNextCaseBeforeReview": "TARGET-014-NUMBER-SERIES-SETUP-DECISION",
+      "lastEvidenceSummary": "TARGET-013 showed Number Series page 456 but only BANKEINZ, CT-MSG and VATNOTIF as visible codes.",
+      "isPlannedNextCaseStillSensible": true,
+      "reason": "Visible numbering context is not enough for master data or documents; target series families must be decided before write actions.",
+      "lookaheadReviewed": [
+        {
+          "caseId": "TARGET-015-NUMBER-SERIES-CONTROLLED-SETUP-PREFLIGHT",
+          "status": "ready-next",
+          "reason": "Exact draft families exist; the next step is before evidence and a controlled write gate."
+        },
+        {
+          "caseId": "TARGET-016-POSTING-GROUPS-PREFLIGHT",
+          "status": "ready-after-current",
+          "reason": "Posting groups should follow after number-series policy is clear."
+        },
+        {
+          "caseId": "TARGET-017-VAT-SETUP-READINESS",
+          "status": "needs-source-check-first",
+          "reason": "German VAT claims need source-backed setup and later Preview/VAT Entries."
+        },
+        {
+          "caseId": "TARGET-018-DIMENSIONS-FOUNDATION",
+          "status": "ready-after-current",
+          "reason": "Dimensions can follow once numbering and core setup order are stable."
+        },
+        {
+          "caseId": "TARGET-019-CORE-MASTERDATA-PLAN",
+          "status": "needs-setup-first",
+          "reason": "Customers, vendors and items need number series, posting groups, VAT and dimensions first."
+        }
+      ],
+      "queueChangesMade": [
+        "Marked TARGET-014 done.",
+        "Added TARGET-015 as pending."
+      ],
+      "selectedNextCase": "TARGET-015-NUMBER-SERIES-CONTROLLED-SETUP-PREFLIGHT",
+      "whySelectedNextCaseIsBest": "A preflight can capture before-state and exact fields before any Number Series write action.",
+      "risksBeforeNextCase": [
+        "Do not click New/Edit List/Lines without before screenshots and exact target values.",
+        "Do not claim German invoice-number compliance from draft numbering families."
+      ],
+      "requiredPreparation": [
+        "Open Number Series and relevant setup pages read-only first.",
+        "If a setup write is unlocked later, capture before and after screenshots and avoid duplicate series."
+      ]
+    }
   }
-}

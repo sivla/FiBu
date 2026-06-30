@@ -340,22 +340,24 @@
     "universaarlFoundation": {
       "chapter": "Foundation / Zielcompany-Aufbau",
       "status": "in-progress",
-      "currentBlock": "company-information-setup-gate-next",
-      "latestPracticalCase": "TARGET-010-UNIVERSAARL-COMPANY-CONTEXT-PROOF",
+      "currentBlock": "number-series-controlled-setup-preflight-next",
+      "latestPracticalCase": "TARGET-014-NUMBER-SERIES-SETUP-DECISION",
       "latestGovernanceCase": "UNIVERSAARL-001-TARGET-TRANSITION-GOVERNANCE",
       "targetInstance": "playthru",
       "targetCompany": "UNIVERSAARL-DE",
       "targetLegalName": "Universaarl GmbH",
       "finalGermanProof": "open",
       "openLimits": [
-        "No Company Information values were changed or saved.",
-        "No foundation setup was configured.",
-        "No chart of accounts, VAT setup, number series or posting groups were proven.",
+        "Only the Company Information name value is saved as Universaarl GmbH; address, country/region and VAT registration details remain open.",
+        "No foundation setup value was changed in TARGET-012.",
+        "General Ledger Setup, Number Series, General Posting Setup, VAT Posting Setup and Dimensions were opened read-only, but no setup readiness is claimed from visibility alone.",
+        "TARGET-013 showed only BANKEINZ, CT-MSG and VATNOTIF as visible number-series codes; customer, vendor, item, sales document, purchase document and journal families are not proven visible.",
+        "TARGET-014 decided draft target families U-CUST, U-VEND, U-ITEM, U-SO, U-SINV, U-PO and U-PINV, but no write is approved until TARGET-015 captures before evidence.",
         "No master data, preview posting, posting or ledger trace exists.",
         "My Settings can show a personal/default Mandant such as CRONUS DE and must not be used alone as active-company proof."
       ],
-      "nextCase": "TARGET-011-UNIVERSAARL-COMPANY-INFORMATION",
-      "nextStep": "Map the Unternehmen einrichten row on Assisted Setup Page 1801 without Finish/Create/OK/Save.",
+      "nextCase": "TARGET-015-NUMBER-SERIES-CONTROLLED-SETUP-PREFLIGHT",
+      "nextStep": "Capture before-state evidence for Number Series and relevant setup pages before any controlled number-series setup write.",
       "latestReadonlyContextCase": "PREP-033-MY-SETTINGS-READONLY-CONTEXT",
       "latestReadonlyContextResult": "playwright/projects/fibu-book5/evidence/prep-033-my-settings-readonly-context/PREP-033-result.json",
       "mySettingsContext": {
@@ -407,7 +409,10 @@
         "UNIVERSAARL-DE visible in Companies list after wizard route",
         "Role Center visibly shows UNIVERSAARL-DE as active shell/page context",
         "Company Information / Firmendaten Page 1 opens read-only under company=UNIVERSAARL-DE",
-        "My Settings is captured as user-context evidence and not accepted as sole active-company proof"
+        "My Settings is captured as user-context evidence and not accepted as sole active-company proof",
+        "Firmendaten shows Universaarl GmbH as saved company name",
+        "General Ledger Setup, No. Series, General Posting Setup, VAT Posting Setup and Dimensions open read-only in UNIVERSAARL-DE",
+        "Number Series page 456 shows BANKEINZ, CT-MSG and VATNOTIF read-only"
       ],
       "latestTarget010CompanyContext": {
         "status": "observed",
@@ -418,6 +423,54 @@
           "playwright/projects/fibu-book5/img/target-010-030-company-information-readonly.png"
         ],
         "nextCase": "TARGET-011-UNIVERSAARL-COMPANY-INFORMATION"
+      },
+      "latestTarget012FoundationReadiness": {
+        "status": "observed",
+        "resultPath": "playwright/projects/fibu-book5/evidence/target-012-w1-foundation-readiness/TARGET-012-result.json",
+        "screenshots": [
+          "playwright/projects/fibu-book5/img/target-012-010-company-information.png",
+          "playwright/projects/fibu-book5/img/target-012-020-general-ledger-setup.png",
+          "playwright/projects/fibu-book5/img/target-012-030-no-series.png",
+          "playwright/projects/fibu-book5/img/target-012-040-general-posting-setup.png",
+          "playwright/projects/fibu-book5/img/target-012-050-vat-posting-setup.png",
+          "playwright/projects/fibu-book5/img/target-012-060-dimensions.png"
+        ],
+        "nextCase": "TARGET-013-NUMBER-SERIES-PREFLIGHT"
+      },
+      "latestTarget013NumberSeriesPreflight": {
+        "status": "observed",
+        "resultPath": "playwright/projects/fibu-book5/evidence/target-013-number-series-preflight/TARGET-013-result.json",
+        "screenshots": [
+          "playwright/projects/fibu-book5/img/target-013-010-number-series-preflight.png"
+        ],
+        "visibleCodes": [
+          "BANKEINZ",
+          "CT-MSG",
+          "VATNOTIF"
+        ],
+        "missingFamilies": [
+          "customer",
+          "vendor",
+          "item",
+          "sales-document",
+          "purchase-document",
+          "journal"
+        ],
+        "nextCase": "TARGET-014-NUMBER-SERIES-SETUP-DECISION"
+      },
+      "latestTarget014NumberSeriesDecision": {
+        "status": "observed",
+        "resultPath": "playwright/projects/fibu-book5/evidence/target-014-number-series-setup-decision/TARGET-014-result.json",
+        "targetSeriesDraft": [
+          "U-CUST",
+          "U-VEND",
+          "U-ITEM",
+          "U-SO",
+          "U-SINV",
+          "U-PO",
+          "U-PINV"
+        ],
+        "nextCase": "TARGET-015-NUMBER-SERIES-CONTROLLED-SETUP-PREFLIGHT"
       }
     },
     "universaarlUsecaseBacklog": {

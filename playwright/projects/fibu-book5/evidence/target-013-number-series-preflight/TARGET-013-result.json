@@ -1,0 +1,152 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "TARGET-013-NUMBER-SERIES-PREFLIGHT",
+  "source": "playwright-readonly-number-series-preflight",
+  "resultStatus": "observed",
+  "runPlanId": "TARGET-013-NUMBER-SERIES-PREFLIGHT-READONLY",
+  "selectedTaskClass": "monkey_work",
+  "selectedModelClass": "gpt-4-mini-low",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "proved": [
+    "Number Series page 456 opened read-only in playthru / UNIVERSAARL-DE.",
+    "Visible number-series codes: BANKEINZ, CT-MSG, VATNOTIF."
+  ],
+  "notProved": [
+    "No number series was created, edited or deleted.",
+    "No setup change, master data, draft, preview posting, posting or ledger trace occurred.",
+    "No obvious visible number-series family was proven for: customer, vendor, item, sales-document, purchase-document, journal."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/target-013-number-series-preflight/TARGET-013-result.json",
+    "playwright/projects/fibu-book5/evidence/target-013-number-series-preflight/number-series-visible-text.txt",
+    "playwright/projects/fibu-book5/evidence/target-013-number-series-preflight/target-013-010-number-series-preflight.screenshot.json",
+    "playwright/projects/fibu-book5/img/target-013-010-number-series-preflight.png"
+  ],
+  "statePatch": {
+    "current": {
+      "activeCase": "TARGET-014-NUMBER-SERIES-SETUP-DECISION",
+      "activeArea": "universaarl-w1-foundation-number-series",
+      "nextStep": "Run TARGET-014-NUMBER-SERIES-SETUP-DECISION: decide exact Universaarl number-series setup values before any controlled setup change."
+    },
+    "lastRunSummary": {
+      "caseId": "TARGET-013-NUMBER-SERIES-PREFLIGHT",
+      "status": "observed",
+      "summary": "TARGET-013 inspected Number Series read-only and found only limited visible numbering context; setup readiness requires a separate decision before master data or documents.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-013-number-series-preflight/TARGET-013-result.json"
+    }
+  },
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-013-number-series-preflight/TARGET-013-result.json",
+    "playwright/projects/fibu-book5/img/target-013-010-number-series-preflight.png"
+  ],
+  "visibleCodes": [
+    "BANKEINZ",
+    "CT-MSG",
+    "VATNOTIF"
+  ],
+  "familySignals": [
+    {
+      "id": "customer",
+      "visible": false
+    },
+    {
+      "id": "vendor",
+      "visible": false
+    },
+    {
+      "id": "item",
+      "visible": false
+    },
+    {
+      "id": "sales-document",
+      "visible": false
+    },
+    {
+      "id": "purchase-document",
+      "visible": false
+    },
+    {
+      "id": "journal",
+      "visible": false
+    }
+  ],
+  "missingFamilies": [
+    "customer",
+    "vendor",
+    "item",
+    "sales-document",
+    "purchase-document",
+    "journal"
+  ],
+  "visibleButtonNames": [
+    "App-Startfeld",
+    "Umgebung: Playthru",
+    "Einstellungen",
+    "Hilfe",
+    "KK"
+  ],
+  "flags": {
+    "noWrite": true,
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noSetupChange": true,
+    "noMasterDataChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noSearch": true,
+    "noBookChange": true
+  },
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-013-NUMBER-SERIES-PREFLIGHT",
+    "plannedNextCaseBeforeReview": "TARGET-013-NUMBER-SERIES-PREFLIGHT",
+    "lastEvidenceSummary": "TARGET-012 proved that Number Series page 456 is reachable read-only in UNIVERSAARL-DE.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "Number Series must be understood before master data or documents are created.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-014-NUMBER-SERIES-SETUP-DECISION",
+        "status": "ready-next",
+        "reason": "Visible numbering context is limited; decide exact setup values before writing."
+      },
+      {
+        "caseId": "TARGET-015-POSTING-GROUPS-PREFLIGHT",
+        "status": "ready-after-current",
+        "reason": "Posting groups follow after numbering decision."
+      },
+      {
+        "caseId": "TARGET-016-VAT-SETUP-READINESS",
+        "status": "needs-source-check-first",
+        "reason": "German VAT needs source-backed setup and later Preview/VAT Entries."
+      },
+      {
+        "caseId": "TARGET-017-DIMENSIONS-FOUNDATION",
+        "status": "ready-after-current",
+        "reason": "Dimensions can follow once setup order is stable."
+      },
+      {
+        "caseId": "TARGET-018-CORE-MASTERDATA-PLAN",
+        "status": "needs-setup-first",
+        "reason": "Master data creation waits for number series, posting groups, VAT and dimensions."
+      }
+    ],
+    "queueChangesMade": [
+      "Select TARGET-014 number-series setup decision instead of jumping to posting groups."
+    ],
+    "selectedNextCase": "TARGET-014-NUMBER-SERIES-SETUP-DECISION",
+    "whySelectedNextCaseIsBest": "The read-only list does not yet prove usable master-data/document series; a setup decision prevents blind data creation.",
+    "risksBeforeNextCase": [
+      "Do not click New/Edit List/Lines as a setup action without exact target values and screenshots."
+    ],
+    "requiredPreparation": [
+      "Define Universaarl number-series code families and whether BC default setup should be extended manually."
+    ]
+  },
+  "warnings": [],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "reason": "Read-only Number Series preflight completed; setup decision required next."
+}

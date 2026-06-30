@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-014-NUMBER-SERIES-SETUP-DECISION",
+  "title": "Universaarl Number Series setup decision",
+  "instance": "playthru",
+  "targetCompany": "UNIVERSAARL-DE",
+  "legalName": "Universaarl GmbH",
+  "workType": "foundation-number-series-setup-decision",
+  "status": "observed",
+  "dependsOn": [
+    "TARGET-013-NUMBER-SERIES-PREFLIGHT"
+  ],
+  "goal": "Define the exact Universaarl number-series families and decide whether a controlled setup-change case may create or update them.",
+  "evidenceTarget": "playwright/projects/fibu-book5/evidence/target-014-number-series-setup-decision/",
+  "allowedActionsWhenRun": [
+    "read-target-013-result",
+    "review-number-series-screenshot",
+    "define-required-number-series-families",
+    "write-setup-decision-card",
+    "prepare-controlled-setup-case-if-needed"
+  ],
+  "defaultLockedActions": [
+    "setup-change",
+    "new-number-series",
+    "edit-number-series-line",
+    "master-data-create",
+    "preview-posting",
+    "posting",
+    "dialog-confirmation"
+  ],
+  "forbiddenActions": [
+    "leave-playthru",
+    "operate-in-CRONUS-as-active-target",
+    "post",
+    "preview-posting",
+    "api-shortcut",
+    "create-master-data-before-number-series-decision"
+  ],
+  "successCriteria": [
+    "Required Universaarl number-series families are listed.",
+    "The result separates read-only evidence from setup-change permission.",
+    "A later setup case, if needed, has exact target codes, before/after screenshots and rollback/trace expectations."
+  ],
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-014-number-series-setup-decision/TARGET-014-result.json",
+  "proved": [
+    "TARGET-013 visible codes are insufficient for master data or documents.",
+    "First draft Universaarl numbering families are U-CUST, U-VEND, U-ITEM, U-SO, U-SINV, U-PO and U-PINV.",
+    "A controlled setup preflight is required before any Number Series write."
+  ],
+  "openLimits": [
+    "No Number Series write occurred.",
+    "Assignments in setup pages and journal batches remain open.",
+    "No German invoice-number compliance claim is made."
+  ],
+  "migrationRelevance": "german-final-candidate",
+  "finalScreenshotNeeded": false,
+  "nextSafeAction": "Run TARGET-015 controlled setup preflight before any New/Edit List action in Number Series.",
+  "updatedAt": "2026-06-30T12:11:31+02:00"
+}

@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-015-NUMBER-SERIES-CONTROLLED-SETUP-PREFLIGHT",
+  "title": "Universaarl Number Series controlled setup preflight",
+  "instance": "playthru",
+  "targetCompany": "UNIVERSAARL-DE",
+  "legalName": "Universaarl GmbH",
+  "workType": "foundation-number-series-controlled-setup-preflight",
+  "status": "ready-next",
+  "dependsOn": [
+    "TARGET-014-NUMBER-SERIES-SETUP-DECISION"
+  ],
+  "goal": "Capture before-state evidence for Number Series and relevant setup pages before any controlled number-series setup write.",
+  "evidenceTarget": "playwright/projects/fibu-book5/evidence/target-015-number-series-controlled-setup-preflight/",
+  "allowedActionsWhenRun": [
+    "open-playthru-business-central",
+    "open-UNIVERSAARL-DE-with-documentation",
+    "open-number-series-readonly",
+    "open-sales-receivables-setup-readonly-if-safe",
+    "open-purchases-payables-setup-readonly-if-safe",
+    "open-inventory-or-item-setup-readonly-if-safe",
+    "capture-before-screenshots",
+    "write-controlled-setup-preflight-decision"
+  ],
+  "defaultLockedActions": [
+    "setup-change",
+    "new-number-series",
+    "edit-number-series-line",
+    "assign-number-series-in-setup",
+    "master-data-create",
+    "preview-posting",
+    "posting",
+    "dialog-confirmation"
+  ],
+  "forbiddenActions": [
+    "leave-playthru",
+    "operate-in-CRONUS-as-active-target",
+    "post",
+    "preview-posting",
+    "api-shortcut",
+    "create-master-data-before-number-series-setup"
+  ],
+  "targetSeriesDraft": [
+    "U-CUST",
+    "U-VEND",
+    "U-ITEM",
+    "U-SO",
+    "U-SINV",
+    "U-PO",
+    "U-PINV"
+  ],
+  "successCriteria": [
+    "Before-state screenshots show existing Number Series and relevant setup-page fields.",
+    "No duplicate target code exists or duplicates are clearly documented.",
+    "The result decides whether TARGET-016 may perform controlled setup writes."
+  ],
+  "migrationRelevance": "german-final-candidate",
+  "finalScreenshotNeeded": true,
+  "nextSafeAction": "Run read-only controlled preflight. Do not create or edit number series in TARGET-015.",
+  "updatedAt": "2026-06-30T12:11:31+02:00"
+}

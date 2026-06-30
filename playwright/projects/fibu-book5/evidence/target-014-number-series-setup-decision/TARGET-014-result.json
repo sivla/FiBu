@@ -1,0 +1,172 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "TARGET-014-NUMBER-SERIES-SETUP-DECISION",
+  "source": "local-decision-from-target-013-and-microsoft-learn",
+  "resultStatus": "observed",
+  "runPlanId": "TARGET-014-NUMBER-SERIES-SETUP-DECISION-LOCAL",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "proved": [
+    "TARGET-013 showed only BANKEINZ, CT-MSG and VATNOTIF as visible number-series codes.",
+    "The next practical step must decide and preflight Universaarl number-series setup before master data or documents.",
+    "No Business Central write action is justified from the read-only list alone."
+  ],
+  "notProved": [
+    "No number series was created, edited or deleted.",
+    "No customer, vendor, item, sales, purchase or journal number series is setup-ready yet.",
+    "No German statutory invoice-numbering or compliance claim is made.",
+    "No BC, Playwright, setup change, master data, draft, preview posting or posting ran in TARGET-014."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/target-014-number-series-setup-decision/README.md",
+    "playwright/projects/fibu-book5/evidence/target-014-number-series-setup-decision/TARGET-014-result.json"
+  ],
+  "statePatch": {
+    "current": {
+      "activeCase": "TARGET-015-NUMBER-SERIES-CONTROLLED-SETUP-PREFLIGHT",
+      "activeArea": "universaarl-w1-foundation-number-series",
+      "nextStep": "Run TARGET-015-NUMBER-SERIES-CONTROLLED-SETUP-PREFLIGHT: capture before evidence for Number Series and related setup pages, then decide whether controlled setup writes are allowed."
+    },
+    "lastRunSummary": {
+      "caseId": "TARGET-014-NUMBER-SERIES-SETUP-DECISION",
+      "status": "observed",
+      "summary": "TARGET-014 converted the read-only Number Series finding into a setup decision: define Universaarl numbering families first, then run a controlled preflight before any setup write.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-014-number-series-setup-decision/TARGET-014-result.json"
+    }
+  },
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-013-number-series-preflight/TARGET-013-result.json",
+    "playwright/projects/fibu-book5/img/target-013-010-number-series-preflight.png",
+    "playwright/projects/fibu-book5/evidence/target-014-number-series-setup-decision/README.md"
+  ],
+  "sourceRefs": [
+    {
+      "title": "Create number series - Business Central",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/business-central/ui-create-number-series"
+    },
+    {
+      "title": "Set up number series and trail codes in Dynamics 365 Business Central",
+      "url": "https://learn.microsoft.com/en-us/training/modules/set-up-number-series-trail-codes-dynamics-365-business-central/"
+    }
+  ],
+  "targetSeriesDraft": [
+    {
+      "family": "customer",
+      "code": "U-CUST",
+      "startNo": "U-CUST00001",
+      "purpose": "Universaarl customer cards",
+      "assignmentOpen": "Customer/Sales setup route not yet proven"
+    },
+    {
+      "family": "vendor",
+      "code": "U-VEND",
+      "startNo": "U-VEND00001",
+      "purpose": "Universaarl vendor cards",
+      "assignmentOpen": "Vendor/Purchase setup route not yet proven"
+    },
+    {
+      "family": "item",
+      "code": "U-ITEM",
+      "startNo": "U-ITEM00001",
+      "purpose": "Universaarl item cards",
+      "assignmentOpen": "Inventory/Item setup route not yet proven"
+    },
+    {
+      "family": "sales-order",
+      "code": "U-SO",
+      "startNo": "U-SO00001",
+      "purpose": "Universaarl sales orders",
+      "assignmentOpen": "Sales & Receivables Setup route not yet proven"
+    },
+    {
+      "family": "sales-invoice",
+      "code": "U-SINV",
+      "startNo": "U-SINV00001",
+      "purpose": "Universaarl sales invoices",
+      "assignmentOpen": "Sales & Receivables Setup route not yet proven"
+    },
+    {
+      "family": "purchase-order",
+      "code": "U-PO",
+      "startNo": "U-PO00001",
+      "purpose": "Universaarl purchase orders",
+      "assignmentOpen": "Purchases & Payables Setup route not yet proven"
+    },
+    {
+      "family": "purchase-invoice",
+      "code": "U-PINV",
+      "startNo": "U-PINV00001",
+      "purpose": "Universaarl purchase invoices",
+      "assignmentOpen": "Purchases & Payables Setup route not yet proven"
+    }
+  ],
+  "flags": {
+    "noWrite": true,
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noSetupChange": true,
+    "noMasterDataChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noSearch": true,
+    "noBookChange": true
+  },
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-014-NUMBER-SERIES-SETUP-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-014-NUMBER-SERIES-SETUP-DECISION",
+    "lastEvidenceSummary": "TARGET-013 showed Number Series page 456 but only BANKEINZ, CT-MSG and VATNOTIF as visible codes.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "Visible numbering context is not enough for master data or documents; target series families must be decided before write actions.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-015-NUMBER-SERIES-CONTROLLED-SETUP-PREFLIGHT",
+        "status": "ready-next",
+        "reason": "Exact draft families exist; the next step is before evidence and a controlled write gate."
+      },
+      {
+        "caseId": "TARGET-016-POSTING-GROUPS-PREFLIGHT",
+        "status": "ready-after-current",
+        "reason": "Posting groups should follow after number-series policy is clear."
+      },
+      {
+        "caseId": "TARGET-017-VAT-SETUP-READINESS",
+        "status": "needs-source-check-first",
+        "reason": "German VAT claims need source-backed setup and later Preview/VAT Entries."
+      },
+      {
+        "caseId": "TARGET-018-DIMENSIONS-FOUNDATION",
+        "status": "ready-after-current",
+        "reason": "Dimensions can follow once numbering and core setup order are stable."
+      },
+      {
+        "caseId": "TARGET-019-CORE-MASTERDATA-PLAN",
+        "status": "needs-setup-first",
+        "reason": "Master data creation waits for number series, posting groups, VAT and dimensions."
+      }
+    ],
+    "queueChangesMade": [
+      "Select TARGET-015 controlled setup preflight instead of jumping to posting groups."
+    ],
+    "selectedNextCase": "TARGET-015-NUMBER-SERIES-CONTROLLED-SETUP-PREFLIGHT",
+    "whySelectedNextCaseIsBest": "A preflight can capture before-state and exact fields before any Number Series write action.",
+    "risksBeforeNextCase": [
+      "Do not click New/Edit List/Lines without before screenshots and exact target values.",
+      "Do not claim German invoice-number compliance from draft numbering families."
+    ],
+    "requiredPreparation": [
+      "Open Number Series and relevant setup pages read-only first.",
+      "If a setup write is unlocked later, capture before and after screenshots and avoid duplicate series."
+    ]
+  },
+  "warnings": [
+    "Journal and posted document numbering may depend on setup pages and journal batches; do not solve it from No. Series visibility alone."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "reason": "Decision-only TARGET-014 completed without BC or Playwright execution."
+}
