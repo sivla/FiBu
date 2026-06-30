@@ -1,0 +1,276 @@
+{
+  "schemaVersion": 1,
+  "status": "prep-done",
+  "targetWorld": "Universaarl",
+  "instance": "playthru",
+  "targetCompany": "UNIVERSAARL-DE",
+  "targetCompanyStatus": "planned-not-yet-created",
+  "legalName": "Universaarl GmbH",
+  "caseId": "PREP-020-UNIVERSAARL-DATASET-BLUEPRINT",
+  "noBusinessCentralExecution": true,
+  "noPlaywrightExecution": true,
+  "doNotCreateBefore": [
+    "UNIVERSAARL-DE is visibly created",
+    "Company Information context is proven",
+    "Foundation setup gates are passed",
+    "Number series, posting groups, VAT and dimensions are understood or explicitly fitted"
+  ],
+  "buildWaves": [
+    {
+      "id": "W0-COMPANY-CONTEXT",
+      "goal": "Prove own company and basic context.",
+      "createsLater": [
+        "Company Information",
+        "legal name",
+        "address context",
+        "start role context"
+      ],
+      "stopIf": [
+        "UNIVERSAARL-DE is not visible",
+        "data basis is unclear",
+        "permission error appears"
+      ]
+    },
+    {
+      "id": "W1-FINANCE-FOUNDATION",
+      "goal": "Prepare posting capability.",
+      "createsLater": [
+        "accounting periods",
+        "number series",
+        "posting groups",
+        "VAT groups",
+        "dimensions"
+      ],
+      "stopIf": [
+        "setup field meaning is unclear",
+        "screenshot purpose is unclear",
+        "posting impact cannot be explained"
+      ]
+    },
+    {
+      "id": "W2-CORE-MASTERDATA",
+      "goal": "Create enough records for lists, cards and first processes.",
+      "createsLater": [
+        "5 customers",
+        "5 vendors",
+        "5 items",
+        "2-3 locations",
+        "payment terms",
+        "bank account"
+      ],
+      "stopIf": [
+        "templates are unclear",
+        "number series are unclear",
+        "required posting groups are missing"
+      ]
+    },
+    {
+      "id": "W3-FIRST-POSTINGS",
+      "goal": "Generate first traceable ledger entries.",
+      "createsLater": [
+        "O2C posting trace",
+        "P2P posting trace",
+        "Inventory posting trace",
+        "Payment application trace"
+      ],
+      "stopIf": [
+        "Preview Posting is unclear",
+        "posting trace plan is missing",
+        "entry types are not defined"
+      ]
+    },
+    {
+      "id": "W4-RICHNESS",
+      "goal": "Make filtering, reporting and exercises meaningful.",
+      "createsLater": [
+        "multiple months",
+        "open and closed entries",
+        "partial payments",
+        "corrections",
+        "dimensioned postings"
+      ],
+      "stopIf": [
+        "data has no book purpose",
+        "screenshots would only show decorative volume"
+      ]
+    },
+    {
+      "id": "W5-SPECIALS",
+      "goal": "Support advanced chapters after foundation evidence is stable.",
+      "createsLater": [
+        "fixed assets",
+        "warehouse",
+        "manufacturing",
+        "service",
+        "projects",
+        "workflows",
+        "change log"
+      ],
+      "stopIf": [
+        "basic O2C/P2P/Inventory/Payment entries are not proven"
+      ]
+    }
+  ],
+  "masterDataPackages": [
+    {
+      "id": "MD-CUSTOMERS-01",
+      "records": [
+        "U-CUST-100",
+        "U-CUST-110",
+        "U-CUST-120",
+        "U-CUST-190",
+        "U-CUST-900"
+      ],
+      "bookPurpose": [
+        "customer list",
+        "customer card",
+        "payment terms",
+        "O2C",
+        "open entries",
+        "error case"
+      ],
+      "firstTargetPage": "Customers / Customer Card"
+    },
+    {
+      "id": "MD-VENDORS-01",
+      "records": [
+        "U-VEND-100",
+        "U-VEND-110",
+        "U-VEND-120",
+        "U-VEND-130",
+        "U-VEND-900"
+      ],
+      "bookPurpose": [
+        "vendor list",
+        "P2P",
+        "payment suggestion",
+        "fixed asset vendor",
+        "error case"
+      ],
+      "firstTargetPage": "Vendors / Vendor Card"
+    },
+    {
+      "id": "MD-ITEMS-01",
+      "records": [
+        "U-ITEM-HW100",
+        "U-ITEM-RM100",
+        "U-ITEM-FG100",
+        "U-ITEM-SRV100",
+        "U-ITEM-ERR900"
+      ],
+      "bookPurpose": [
+        "item list",
+        "sales",
+        "purchase",
+        "inventory",
+        "manufacturing",
+        "service",
+        "error case"
+      ],
+      "firstTargetPage": "Items / Item Card"
+    },
+    {
+      "id": "MD-LOCATIONS-01",
+      "records": [
+        "SAAR-HL",
+        "SAAR-QS",
+        "SAAR-SRV"
+      ],
+      "bookPurpose": [
+        "main inventory",
+        "quality stock",
+        "service stock"
+      ],
+      "firstTargetPage": "Locations / Location Card"
+    },
+    {
+      "id": "MD-DIMENSIONS-01",
+      "records": [
+        "DEPARTMENT",
+        "PRODUCTLINE",
+        "CHANNEL",
+        "REGION"
+      ],
+      "bookPurpose": [
+        "filter totals by",
+        "reporting",
+        "analysis mode",
+        "dimensioned ledger entries"
+      ],
+      "firstTargetPage": "Dimensions / Dimension Values"
+    },
+    {
+      "id": "MD-BANK-01",
+      "records": [
+        "fictitious house bank"
+      ],
+      "bookPurpose": [
+        "payment journal",
+        "open entry application",
+        "bank ledger",
+        "bank reconciliation"
+      ],
+      "firstTargetPage": "Bank Accounts / Payment Journals"
+    }
+  ],
+  "processPackages": [
+    {
+      "id": "PROC-O2C-01",
+      "dependsOn": [
+        "MD-CUSTOMERS-01",
+        "MD-ITEMS-01",
+        "W1-FINANCE-FOUNDATION"
+      ],
+      "requiredEntries": [
+        "Customer Ledger Entries",
+        "G/L Entries",
+        "VAT Entries",
+        "Item Ledger Entries",
+        "Value Entries"
+      ]
+    },
+    {
+      "id": "PROC-P2P-01",
+      "dependsOn": [
+        "MD-VENDORS-01",
+        "MD-ITEMS-01",
+        "MD-LOCATIONS-01",
+        "W1-FINANCE-FOUNDATION"
+      ],
+      "requiredEntries": [
+        "Vendor Ledger Entries",
+        "G/L Entries",
+        "VAT Entries",
+        "Item Ledger Entries",
+        "Value Entries"
+      ]
+    },
+    {
+      "id": "PROC-INVENTORY-01",
+      "dependsOn": [
+        "MD-ITEMS-01",
+        "MD-LOCATIONS-01"
+      ],
+      "requiredEntries": [
+        "Item Ledger Entries",
+        "Value Entries",
+        "G/L Entries when expected"
+      ]
+    },
+    {
+      "id": "PROC-PAYMENT-01",
+      "dependsOn": [
+        "PROC-O2C-01",
+        "PROC-P2P-01",
+        "MD-BANK-01"
+      ],
+      "requiredEntries": [
+        "Detailed Customer/Vendor Ledger Entries",
+        "Bank Account Ledger Entries",
+        "G/L Entries"
+      ]
+    }
+  ],
+  "nextCase": "PREP-021-UNIVERSAARL-USECASE-BACKLOG-CURATION",
+  "updatedAt": "2026-06-30T05:25:00.000+02:00"
+}

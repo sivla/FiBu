@@ -1,20 +1,24 @@
 {
   "schemaVersion": 1,
-  "runId": "PREP-020-UNIVERSAARL-DATASET-BLUEPRINT",
+  "purpose": "autopilot-result-normalized",
   "caseId": "PREP-020-UNIVERSAARL-DATASET-BLUEPRINT",
-  "status": "done",
-  "instance": "playthru",
-  "company": "UNIVERSAARL-DE-planned-not-yet-created",
-  "targetCompany": "UNIVERSAARL-DE-planned-not-yet-created",
-  "bcRun": false,
-  "playwrightRun": false,
-  "posted": false,
-  "previewPosting": false,
-  "setupChange": false,
-  "companyCreated": false,
-  "bookChanged": false,
-  "bookDraftChanged": false,
-  "summary": "PREP-020 made the Universaarl dataset blueprint concrete with build waves, master-data packages, process packages and a machine-readable JSON map.",
+  "source": "local-analysis",
+  "resultStatus": "observed",
+  "runPlanId": "PREP-020-UNIVERSAARL-DATASET-BLUEPRINT-PLAN",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-medium",
+  "proved": [
+    "Dataset planning now has concrete build waves W0-COMPANY-CONTEXT through W5-SPECIALS.",
+    "Core master-data packages identify customers, vendors, items, locations, dimensions and bank needs before Business Central data creation.",
+    "Process packages connect O2C, P2P, Inventory and Payment data to required entry types.",
+    "A compact JSON blueprint exists for later agents so they do not need to scan the full Markdown plan."
+  ],
+  "notProved": [
+    "No data exists yet in UNIVERSAARL-DE.",
+    "UNIVERSAARL-DE was not created.",
+    "No Business Central setup, master data, document, preview, posting or screenshot was produced.",
+    "The listed names and packages are planned values, not final BC evidence."
+  ],
   "changedFiles": [
     "playwright/projects/fibu-book5/UNIVERSAARL-DATASET-BLUEPRINT.md",
     "playwright/projects/fibu-book5/UNIVERSAARL-DATA-RICHNESS-PLAN.md",
@@ -27,17 +31,29 @@
     "playwright/projects/fibu-book5/evidence/prep-020-universaarl-dataset-blueprint/README.md",
     "playwright/projects/fibu-book5/evidence/prep-020-universaarl-dataset-blueprint/PREP-020-result.json"
   ],
-  "evidence": [
-    "playwright/projects/fibu-book5/evidence/prep-020-universaarl-dataset-blueprint/README.md",
-    "playwright/projects/fibu-book5/evidence/prep-020-universaarl-dataset-blueprint/PREP-020-result.json"
-  ],
+  "statePatch": {},
   "evidenceRefs": [
     "playwright/projects/fibu-book5/evidence/prep-020-universaarl-dataset-blueprint/README.md",
-    "playwright/projects/fibu-book5/evidence/prep-020-universaarl-dataset-blueprint/PREP-020-result.json",
     ".agent/state/universaarl_dataset_blueprint.json"
   ],
-  "nextStep": "Continue with PREP-021-UNIVERSAARL-USECASE-BACKLOG-CURATION. Company creation remains parked until SUPER/company-create permissions are confirmed.",
-  "nextCase": "PREP-021-UNIVERSAARL-USECASE-BACKLOG-CURATION",
+  "warnings": [],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": false,
+  "reason": "Dataset planning only; no automatic state-finalize write is needed.",
+  "flags": {
+    "noBusinessCentralExecution": true,
+    "noPlaywrightExecution": true,
+    "noWriteInBusinessCentral": true,
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noCompanyCreated": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
   "nextStepDecisionCard": {
     "currentCase": "PREP-020-UNIVERSAARL-DATASET-BLUEPRINT",
     "plannedNextCaseBeforeReview": "PREP-020-UNIVERSAARL-DATASET-BLUEPRINT",
@@ -86,12 +102,5 @@
       "Read .agent/state/universaarl_dataset_blueprint.json.",
       "Read BC-FULL-PLAYTHROUGH-CATALOG.md and existing usecase backlog files."
     ]
-  },
-  "updatedAt": "2026-06-30T05:25:00.000+02:00",
-  "noBusinessCentralExecution": true,
-  "noPlaywrightExecution": true,
-  "noBookChange": true,
-  "noSetupChange": true,
-  "noPreviewPosting": true,
-  "noPosting": true
+  }
 }

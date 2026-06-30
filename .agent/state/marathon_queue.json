@@ -391,7 +391,7 @@
     {
       "id": "PREP-020-UNIVERSAARL-DATASET-BLUEPRINT",
       "order": 20,
-      "status": "pending",
+      "status": "done",
       "category": "data",
       "expectedImpact": "prep-progress",
       "mayWorkEffectively": false,
@@ -401,7 +401,10 @@
       "sourceCompany": "UNIVERSAARL-DE-planned-not-yet-created",
       "targetWorld": "Universaarl",
       "noFinalGermanClaimWithoutUniversaarlEvidence": true,
-      "lookaheadStatus": "ready-next"
+      "lookaheadStatus": "done",
+      "completedAt": "2026-06-30T05:25:00.000+02:00",
+      "result": "Dataset blueprint now defines build waves, masterdata packages, process packages and a machine-readable dataset map.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/prep-020-universaarl-dataset-blueprint/PREP-020-result.json"
     },
     {
       "id": "PREP-021-UNIVERSAARL-USECASE-BACKLOG-CURATION",
@@ -416,7 +419,7 @@
       "sourceCompany": "UNIVERSAARL-DE-planned-not-yet-created",
       "targetWorld": "Universaarl",
       "noFinalGermanClaimWithoutUniversaarlEvidence": true,
-      "lookaheadStatus": "ready-after-current"
+      "lookaheadStatus": "ready-next"
     },
     {
       "id": "PREP-022-ATLAS-COVERAGE-QUALITY-AUDIT",
@@ -554,7 +557,7 @@
       "lookaheadStatus": "ready-after-current"
     }
   ],
-  "lastUpdated": "2026-06-30T04:55:00.000+02:00",
+  "lastUpdated": "2026-06-30T05:25:00.000+02:00",
   "nextStepDecisionGate": {
     "active": true,
     "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",
@@ -577,103 +580,105 @@
       "replace-with-better-case"
     ],
     "latestDecisionCard": {
-      "currentCase": "PREP-019-AUTOPILOT-EFFICIENCY-IMPROVEMENT",
-      "plannedNextCaseBeforeReview": "PREP-019-AUTOPILOT-EFFICIENCY-IMPROVEMENT",
-      "lastEvidenceSummary": "PREP-018 classified active Universaarl Playwright assets versus legacy RM/MCP tests and exposed stale marathon execute-lever noise.",
+      "currentCase": "PREP-020-UNIVERSAARL-DATASET-BLUEPRINT",
+      "plannedNextCaseBeforeReview": "PREP-020-UNIVERSAARL-DATASET-BLUEPRINT",
+      "lastEvidenceSummary": "PREP-019 corrected agent:marathon:check so PREP queue state outranks stale Target execute levers while Company Creation is parked.",
       "isPlannedNextCaseStillSensible": true,
-      "reason": "The active check was misleading before this fix and could steer the Autopilot toward parked Company Creation routes.",
+      "reason": "Company Creation remains permission-parked, and a concrete dataset blueprint is the strongest preparation for future Universaarl setup, screenshots, filters and process evidence.",
       "lookaheadReviewed": [
         {
-          "caseId": "PREP-020-UNIVERSAARL-DATASET-BLUEPRINT",
-          "status": "ready-next",
-          "reason": "After run-selection noise is reduced, the dataset blueprint is the best next preparation for a data-rich Universaarl company."
-        },
-        {
           "caseId": "PREP-021-UNIVERSAARL-USECASE-BACKLOG-CURATION",
-          "status": "ready-after-current",
-          "reason": "Usecase curation should use the clarified dataset assumptions."
+          "status": "ready-next",
+          "reason": "Usecases can now be tied to W0-W5 build waves and MD/PROC packages."
         },
         {
           "caseId": "PREP-022-ATLAS-COVERAGE-QUALITY-AUDIT",
           "status": "ready-after-current",
-          "reason": "Atlas quality improves after data/usecase scope is sharper."
+          "reason": "Atlas entries should be audited against the concrete dataset and process packages."
         },
         {
           "caseId": "PREP-023-BOOK-CHAPTER-STIMMIGKEIT-AUDIT",
           "status": "ready-after-current",
-          "reason": "Book flow audit benefits from a clearer dataset and usecase sequence."
+          "reason": "Book chapter flow should use the clarified data and usecase sequence."
+        },
+        {
+          "caseId": "PREP-024-READONLY-PAGE-DISCOVERY-PACK",
+          "status": "ready-after-current",
+          "reason": "Read-only discovery packs are more useful after usecase and atlas priorities are clearer."
         },
         {
           "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
           "status": "blocked",
-          "reason": "Still parked until SUPER/company-create permissions are confirmed."
+          "reason": "Still waiting for SUPER/company-create permissions."
         }
       ],
       "queueChangesMade": [
-        "Marked PREP-019 done.",
-        "Selected PREP-020 as next safe prep case.",
+        "Marked PREP-020 done.",
+        "Selected PREP-021 as next safe prep case.",
         "Kept TARGET-009 parked until SUPER/company-create permissions are confirmed."
       ],
-      "selectedNextCase": "PREP-020-UNIVERSAARL-DATASET-BLUEPRINT",
-      "whySelectedNextCaseIsBest": "A data-rich company plan prevents the later Universaarl build from producing thin screenshots, weak filter examples and incomplete process evidence.",
+      "selectedNextCase": "PREP-021-UNIVERSAARL-USECASE-BACKLOG-CURATION",
+      "whySelectedNextCaseIsBest": "The next improvement is to bind planned book usecases to the dataset packages and order them by dependency, evidence value and screenshot value.",
       "risksBeforeNextCase": [
-        "Do not create data in Business Central before UNIVERSAARL-DE exists.",
-        "Do not overfit data names to old RM-DEMO examples."
+        "Do not treat planned dataset codes as existing BC records.",
+        "Do not add Shopify or legacy RM names to active Universaarl usecases."
       ],
       "requiredPreparation": [
-        "Read UNIVERSAARL-DATASET-BLUEPRINT.md and UNIVERSAARL-DATA-RICHNESS-PLAN.md."
+        "Read .agent/state/universaarl_dataset_blueprint.json.",
+        "Read BC-FULL-PLAYTHROUGH-CATALOG.md and existing usecase backlog files."
       ]
     }
   },
-  "updatedAt": "2026-06-30T04:55:00.000+02:00",
-  "lastCompletedCase": "PREP-019-AUTOPILOT-EFFICIENCY-IMPROVEMENT",
-  "nextCase": "PREP-020-UNIVERSAARL-DATASET-BLUEPRINT",
+  "updatedAt": "2026-06-30T05:25:00.000+02:00",
+  "lastCompletedCase": "PREP-020-UNIVERSAARL-DATASET-BLUEPRINT",
+  "nextCase": "PREP-021-UNIVERSAARL-USECASE-BACKLOG-CURATION",
   "nextStepDecisionCard": {
-    "currentCase": "PREP-019-AUTOPILOT-EFFICIENCY-IMPROVEMENT",
-    "plannedNextCaseBeforeReview": "PREP-019-AUTOPILOT-EFFICIENCY-IMPROVEMENT",
-    "lastEvidenceSummary": "PREP-018 classified active Universaarl Playwright assets versus legacy RM/MCP tests and exposed stale marathon execute-lever noise.",
+    "currentCase": "PREP-020-UNIVERSAARL-DATASET-BLUEPRINT",
+    "plannedNextCaseBeforeReview": "PREP-020-UNIVERSAARL-DATASET-BLUEPRINT",
+    "lastEvidenceSummary": "PREP-019 corrected agent:marathon:check so PREP queue state outranks stale Target execute levers while Company Creation is parked.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The active check was misleading before this fix and could steer the Autopilot toward parked Company Creation routes.",
+    "reason": "Company Creation remains permission-parked, and a concrete dataset blueprint is the strongest preparation for future Universaarl setup, screenshots, filters and process evidence.",
     "lookaheadReviewed": [
       {
-        "caseId": "PREP-020-UNIVERSAARL-DATASET-BLUEPRINT",
-        "status": "ready-next",
-        "reason": "After run-selection noise is reduced, the dataset blueprint is the best next preparation for a data-rich Universaarl company."
-      },
-      {
         "caseId": "PREP-021-UNIVERSAARL-USECASE-BACKLOG-CURATION",
-        "status": "ready-after-current",
-        "reason": "Usecase curation should use the clarified dataset assumptions."
+        "status": "ready-next",
+        "reason": "Usecases can now be tied to W0-W5 build waves and MD/PROC packages."
       },
       {
         "caseId": "PREP-022-ATLAS-COVERAGE-QUALITY-AUDIT",
         "status": "ready-after-current",
-        "reason": "Atlas quality improves after data/usecase scope is sharper."
+        "reason": "Atlas entries should be audited against the concrete dataset and process packages."
       },
       {
         "caseId": "PREP-023-BOOK-CHAPTER-STIMMIGKEIT-AUDIT",
         "status": "ready-after-current",
-        "reason": "Book flow audit benefits from a clearer dataset and usecase sequence."
+        "reason": "Book chapter flow should use the clarified data and usecase sequence."
+      },
+      {
+        "caseId": "PREP-024-READONLY-PAGE-DISCOVERY-PACK",
+        "status": "ready-after-current",
+        "reason": "Read-only discovery packs are more useful after usecase and atlas priorities are clearer."
       },
       {
         "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
         "status": "blocked",
-        "reason": "Still parked until SUPER/company-create permissions are confirmed."
+        "reason": "Still waiting for SUPER/company-create permissions."
       }
     ],
     "queueChangesMade": [
-      "Marked PREP-019 done.",
-      "Selected PREP-020 as next safe prep case.",
+      "Marked PREP-020 done.",
+      "Selected PREP-021 as next safe prep case.",
       "Kept TARGET-009 parked until SUPER/company-create permissions are confirmed."
     ],
-    "selectedNextCase": "PREP-020-UNIVERSAARL-DATASET-BLUEPRINT",
-    "whySelectedNextCaseIsBest": "A data-rich company plan prevents the later Universaarl build from producing thin screenshots, weak filter examples and incomplete process evidence.",
+    "selectedNextCase": "PREP-021-UNIVERSAARL-USECASE-BACKLOG-CURATION",
+    "whySelectedNextCaseIsBest": "The next improvement is to bind planned book usecases to the dataset packages and order them by dependency, evidence value and screenshot value.",
     "risksBeforeNextCase": [
-      "Do not create data in Business Central before UNIVERSAARL-DE exists.",
-      "Do not overfit data names to old RM-DEMO examples."
+      "Do not treat planned dataset codes as existing BC records.",
+      "Do not add Shopify or legacy RM names to active Universaarl usecases."
     ],
     "requiredPreparation": [
-      "Read UNIVERSAARL-DATASET-BLUEPRINT.md and UNIVERSAARL-DATA-RICHNESS-PLAN.md."
+      "Read .agent/state/universaarl_dataset_blueprint.json.",
+      "Read BC-FULL-PLAYTHROUGH-CATALOG.md and existing usecase backlog files."
     ]
   }
 }

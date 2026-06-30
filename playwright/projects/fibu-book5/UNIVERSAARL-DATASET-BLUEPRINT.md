@@ -23,6 +23,56 @@ Die Datenwelt wird nicht in einem grossen Schritt aufgebaut. Sie entsteht in Pak
 | `DATA-RICHNESS` | mehrere Monate, offene/geschlossene Posten, Korrekturen, Dimensionen | macht Filter, Views, Reports und UAT sinnvoll | erste Prozessposten |
 | `DATA-SPECIALS` | Anlagen, Warehouse, Manufacturing, Service, Projects, Workflows, Change Log | erweitert das Buch auf Spezialbereiche | passende Prozessbasis und eigene Gates |
 
+## Build-Wellen fuer die spaetere Anlage
+
+Diese Wellen legen fest, in welcher Reihenfolge Universaarl-Daten spaeter entstehen. Keine dieser Wellen wird ausgefuehrt, bevor `UNIVERSAARL-DE` sichtbar existiert und die passenden Gates erfuellt sind.
+
+| Welle | Ziel | Erzeugt spaeter | Stoppt, wenn |
+| --- | --- | --- | --- |
+| `W0-COMPANY-CONTEXT` | eigene Company und Grunddaten sichtbar machen | Company Information, Laender-/Adresskontext, Startrolle | `UNIVERSAARL-DE` nicht eindeutig sichtbar ist oder die Datenbasis unklar bleibt |
+| `W1-FINANCE-FOUNDATION` | Buchungsfaehigkeit vorbereiten | Geschaeftsjahr, Nummernserien, Buchungsgruppen, USt-Gruppen, Dimensionen | ein Setupfeld nicht verstanden oder nicht screenshotfaehig erklaert ist |
+| `W2-CORE-MASTERDATA` | Listen, Karten und Pflichtfelder fuellen | 5 Kunden, 5 Lieferanten, 5 Artikel, 2-3 Lagerorte, Zahlungsbedingungen, Bankkonto | Templates, Pflichtfelder oder Nummernserien nicht nachvollziehbar sind |
+| `W3-FIRST-POSTINGS` | erste Posten fuer Buchwahrheit erzeugen | erster O2C-, P2P-, Inventory- und Payment-Fall mit Preview/Trace | Preview Posting oder Postenspur nicht eindeutig ist |
+| `W4-RICHNESS` | Filter, Views, Reports und UAT tragfaehig machen | mehrere Monate, offene/geschlossene Posten, Teilzahlungen, Korrekturen, Dimensionen | Daten nur Menge erzeugen, aber keinen Buch-/Screenshotzweck haben |
+| `W5-SPECIALS` | Spezialkapitel belastbar machen | Anlagen, Warehouse, Manufacturing, Service, Projects, Workflows, Change Log | Grundprozesse noch keine stabilen Entries liefern |
+
+## Masterdata-Startpaket
+
+Das Startpaket ist absichtlich klein, aber nicht leer. Es erzeugt spaeter genug Vergleichsdaten fuer Listen, Sortierung und einfache Filter, ohne sofort Massendaten in die Company zu kippen.
+
+| Paket | Datensaetze | Buchzweck | Erste Zielseite | Screenshotziel |
+| --- | --- | --- | --- | --- |
+| `MD-CUSTOMERS-01` | `U-CUST-100`, `U-CUST-110`, `U-CUST-120`, `U-CUST-190`, `U-CUST-900` | Kundenliste, Debitorenkarte, Zahlungsbedingungen, O2C, OP-Liste, Fehlerfall | Customers / Customer Card | Liste mit mehreren Kunden, Karte mit Buchungsgruppen und Zahlungsbedingung |
+| `MD-VENDORS-01` | `U-VEND-100`, `U-VEND-110`, `U-VEND-120`, `U-VEND-130`, `U-VEND-900` | Einkaufsprozesse, Kreditorenkarte, Zahlungsvorschlag, Anlagenlieferant, Fehlerfall | Vendors / Vendor Card | Lieferantenliste und Karte mit Kreditorenbuchungsgruppe |
+| `MD-ITEMS-01` | `U-ITEM-HW100`, `U-ITEM-RM100`, `U-ITEM-FG100`, `U-ITEM-SRV100`, `U-ITEM-ERR900` | Artikelkarte, Lager, Einkauf, Verkauf, Fertigung/Assembly, Fehlerdiagnose | Items / Item Card | Artikelliste mit Typen und Posting Groups |
+| `MD-LOCATIONS-01` | `SAAR-HL`, `SAAR-QS`, `SAAR-SRV` | Lagerabgrenzung, QS-Bestand, Servicebestand | Locations / Location Card | Lagerortkarte mit einfachen Warehouse-Feldern |
+| `MD-DIMENSIONS-01` | `DEPARTMENT`, `PRODUCTLINE`, `CHANNEL`, `REGION` | Dimensionsfilter, Reporting, Analysis Mode | Dimensions / Dimension Values | Dimensionen und Werte als spaetere Filterachsen |
+| `MD-BANK-01` | fiktive Hausbank | Zahlung, OP-Ausgleich, Bankposten, Bankabstimmung | Bank Accounts / Payment Journals | Bankkonto ohne echte Bankdaten |
+
+## Prozessdaten-Startpaket
+
+Diese Prozessdaten entstehen erst nach Foundation, Stammdaten, USt- und Posting-Gates. Jeder Prozess muss Preview, Postingentscheidung, Postenspur und Screenshotzweck vorab definieren.
+
+| Paket | Prozess | Entsteht durch | Benoetigte Posten | Buch- und Screenshotzweck |
+| --- | --- | --- | --- | --- |
+| `PROC-O2C-01` | Verkauf Steuerbox an `U-CUST-100` | Sales Order oder Sales Invoice mit Artikel `U-ITEM-HW100` | Customer Ledger, G/L, VAT, Item Ledger, Value Entries | vom Kundenauftrag bis Debitorenposten lesen |
+| `PROC-P2P-01` | Einkauf Stahlblech von `U-VEND-100` | Purchase Order mit `U-ITEM-RM100` und Lagerort `SAAR-HL` | Vendor Ledger, G/L, VAT, Item Ledger, Value Entries | Einkauf, Wareneingang und Kreditorenposten verstehen |
+| `PROC-INVENTORY-01` | Lagerbewegung Hauptlager/QS | Item Journal oder Transferroute nach Gate | Item Ledger, Value Entries, ggf. G/L | Menge, Wert und Lagerort trennen |
+| `PROC-PAYMENT-01` | Zahlungsausgleich Debitor/Kreditor | Payment Journal oder Apply Entries nach Gate | Detailed Ledger Entries, Bank Ledger, G/L | offene und ausgeglichene Posten vergleichen |
+| `PROC-CORRECTION-01` | Preis-/Mengenfehler korrigieren | Credit Memo, Reverse oder Korrekturbeleg nach Prozess | Storno-/Korrekturposten je Bereich | Fehler nicht verstecken, sondern fachlich korrigieren |
+
+## Daten-zu-Buch-Mapping
+
+| Buchkapitel | Braucht mindestens | Warum |
+| --- | --- | --- |
+| Oberflaeche, Suche, Filter, Views | `MD-CUSTOMERS-01`, `MD-VENDORS-01`, `MD-ITEMS-01` | Listen mit nur einer Zeile erklaeren Suche und Filter schlecht |
+| O2C | `MD-CUSTOMERS-01`, `MD-ITEMS-01`, `PROC-O2C-01` | Kundenkarte, Verkaufsbeleg, Postenspur und Zahlung gehoeren zusammen |
+| P2P | `MD-VENDORS-01`, `MD-ITEMS-01`, `PROC-P2P-01` | Lieferant, Einkaufsbeleg, Lagerzugang und Kreditorenposten muessen zusammenpassen |
+| Inventory/Warehouse | `MD-ITEMS-01`, `MD-LOCATIONS-01`, `PROC-INVENTORY-01` | Lagerorte und Artikelposten werden erst mit Bewegungen verstaendlich |
+| Payments/Bank | `MD-BANK-01`, `PROC-O2C-01`, `PROC-P2P-01`, `PROC-PAYMENT-01` | Zahlung braucht offene Posten und Bank-/Ausgleichsposten |
+| Reporting/Analysis | `MD-DIMENSIONS-01`, mehrere Prozessposten ueber 3 Monate | Reports und Dimensionen brauchen Vergleichsdaten |
+| Fehlerdiagnose | `U-CUST-900`, `U-VEND-900`, `U-ITEM-ERR900`, `PROC-CORRECTION-01` | Anfaenger brauchen sichtbare Fehlerbilder und sichere Korrekturwege |
+
 ## Namens- und Nummernkonzept
 
 Die Namen sollen im Buch lesbar sein und in Business Central sofort zeigen, wofuer ein Datensatz gedacht ist.

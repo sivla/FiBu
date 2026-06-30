@@ -85,6 +85,8 @@ Das Look-and-Feel-/Filterkapitel wird erst als Universaarl-Buchkapitel finalisie
 
 Die konkreten Stammdatennamen stehen in `UNIVERSAARL-DATASET-BLUEPRINT.md`. Diese Werte sind Planwerte, keine bereits angelegten Datensaetze.
 
+PREP-020 ergaenzt dazu eine maschinenlesbare Landkarte in `.agent/state/universaarl_dataset_blueprint.json`. Spaetere Target-Cases sollen daraus ablesen, welche Datenpakete, Build-Wellen, Abhaengigkeiten und Stop-Regeln gelten. Dadurch muss ein Agent nicht jedes Mal den ganzen Buch-/Markdown-Kontext scannen, bevor er den naechsten Stammdaten- oder Prozesscase waehlt.
+
 ## Geplante Universaarl-Datenfaelle
 
 | Case | Zweck | Abhaengigkeit | Status |
@@ -117,14 +119,13 @@ Das spaetere Kapitel "Business Central bedienen: Oberflaeche, Listen, Filter, Su
 
 Nach der sichtbaren Anlage von `UNIVERSAARL-DE` entsteht Datenreichtum in dieser Reihenfolge:
 
-1. Company Information und Datenbasis pruefen.
-2. Nummernserien, Buchungsgruppen, USt und Dimensionen pruefen oder einrichten.
-3. Debitoren-, Kreditoren- und Artikeltemplates verstehen.
-4. Je ein kleiner Kernstammdatensatz pro Familie anlegen.
-5. Ersten O2C- und P2P-Prozess mit Preview und Postenspur erzeugen.
-6. Inventory- und Payment-Prozesse ergaenzen.
-7. Weitere Stammdaten und Monate hinzufuegen.
-8. Erst dann Filter-, Views-, Request-Page- und Analysis-Mode-Screenshots finalisieren.
+1. `W0-COMPANY-CONTEXT`: Company Information und Datenbasis pruefen.
+2. `W1-FINANCE-FOUNDATION`: Nummernserien, Buchungsgruppen, USt und Dimensionen pruefen oder einrichten.
+3. `W2-CORE-MASTERDATA`: Debitoren-, Kreditoren-, Artikel-, Lagerort-, Dimensions- und Bankpakete anlegen.
+4. `W3-FIRST-POSTINGS`: erste O2C-, P2P-, Inventory- und Payment-Prozesse mit Preview und Postenspur erzeugen.
+5. `W4-RICHNESS`: weitere Stammdaten, Monate, offene/geschlossene Posten, Teilzahlungen und Korrekturen hinzufuegen.
+6. `W5-SPECIALS`: Anlagen, Warehouse, Manufacturing, Service, Projects, Workflows und Change Log erst nach stabilen Grundprozessen.
+7. Erst danach Filter-, Views-, Request-Page- und Analysis-Mode-Screenshots finalisieren.
 
 Diese Reihenfolge verhindert, dass das Buch Filter und Reports an leeren Listen oder unerklaerten Demo-Daten zeigt.
 
