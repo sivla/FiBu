@@ -26,6 +26,20 @@ Kunden, Lieferanten und Artikel koennen Standarddimensionen bekommen. Wenn Dimen
 
 Deshalb wird zuerst die Dimensionsbasis angelegt. Danach folgen Kunden, Lieferanten, Artikel und Belege.
 
+## Was in Business Central schon sichtbar ist
+
+Die Seite `Dimensionen` zeigt die drei Dimensionen `PRODUCTLINE`, `COSTCENTER` und `CHANNEL`. Damit sind die Auswertungsachsen fuer die Universaarl GmbH angelegt.
+
+Auf der Seite `Dimensionswerte` ist je Dimension bereits ein erster Wert sichtbar:
+
+- `PRODUCTLINE` enthaelt `SOFTWARE`.
+- `COSTCENTER` enthaelt `ADMIN`.
+- `CHANNEL` enthaelt `DIRECT`.
+
+Diese Werte reichen noch nicht fuer alle spaeteren Beispiele. Fuer die ersten Belege brauchen wir auch `SERVICE`, `TRAINING`, `SALES`, `OPERATIONS` und `PARTNER`. Die Liste `Dimensionswerte` zeigt zwar `Neu` und `Liste bearbeiten`, die aktuelle Bedienroute kann weitere Zeilen aber noch nicht stabil speichern. Deshalb kommen Kunden, Lieferanten und Artikel erst danach an die Reihe.
+
+Eine Dimension besteht nicht nur aus dem Dimensionscode. Die Werte sind genauso wichtig, weil sie spaeter auf Belegen, Stammdaten und Posten stehen. Erst wenn die Werte sichtbar sind, kann man sie sinnvoll als Standarddimension oder Belegdimension verwenden.
+
 ## Was noch offen bleibt
 
 Eine angelegte Dimension beweist noch keine Auswertung. Die Auswertung entsteht erst, wenn ein Beleg mit Dimensionen gebucht wurde und die Dimensionen in den Posten oder Berichten sichtbar sind.

@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-30T15:35:15.526Z",
+  "updatedAt": "2026-06-30T16:04:48.556Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-w1-foundation-dimensions-controlled-setup-fit",
-  "activeCase": "TARGET-023-DIMENSION-VALUE-CONTROLLED-SETUP-FIT",
-  "active_case_file": ".agent/state/cases/target-023-dimension-value-controlled-setup-fit.json",
+  "activeArea": "universaarl-w1-foundation-dimension-values-route-recovery",
+  "activeCase": "TARGET-023B-DIMENSION-VALUES-ROUTE-RECOVERY",
+  "active_case_file": ".agent/state/cases/target-023b-dimension-values-route-recovery.json",
   "lastReferenceCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
   "lastReferenceCaseFile": ".agent/state/cases/warehouse-031-warehouse-source-route-park-or-setup-fit-decision.json",
   "mode": "universaarl-target-execution",
@@ -19,12 +19,12 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "review-target-022-decision",
-    "open-dimensions-page-before-write",
-    "create-or-verify-dimension-codes-and-values",
-    "open-general-ledger-setup-before-global-dimension-write",
-    "set-global-dimension-codes-if-safe",
-    "capture-before-after-reopen-screenshots",
+    "review-target-023-result",
+    "open-dimension-values-page-with-direct-filter",
+    "inspect-edit-list-new-row-controls",
+    "use-page-inspection-or-personalize-if-needed",
+    "create-or-verify-missing-dimension-values-only",
+    "capture-control-map-and-after-reopen-screenshots",
     "write-result-and-next-step-card",
     "queue-and-state-update"
   ],
@@ -43,7 +43,7 @@
     "api-shortcut",
     "claim-reporting-readiness-without-posted-dimension-entries"
   ],
-  "nextStep": "Run controlled setup-fit for PRODUCTLINE, COSTCENTER and CHANNEL, with screenshot QA and no master data or posting.",
+  "nextStep": "Recover the missing Dimension Values route for PRODUCTLINE.SERVICE/TRAINING, COSTCENTER.SALES/OPERATIONS and CHANNEL.PARTNER before master data.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -77,17 +77,18 @@
     "status": [
       "bookdraft",
       "universaarl-target-path",
-      "dimension-setup-decision"
+      "dimension-setup-partial-blocked"
     ],
     "sourceCompany": "UNIVERSAARL-DE",
     "sourceInstance": "playthru",
     "evidenceBasis": [
       "TARGET-021-DIMENSIONS-FOUNDATION",
-      "TARGET-022-DIMENSION-VALUE-SETUP-FIT-DECISION"
+      "TARGET-022-DIMENSION-VALUE-SETUP-FIT-DECISION",
+      "TARGET-023-DIMENSION-VALUE-CONTROLLED-SETUP-FIT"
     ],
     "bookEffect": "Beginner-facing draft explains the selected PRODUCTLINE, COSTCENTER and CHANNEL dimensions before master data.",
     "integratedIntoBookMaster": false,
-    "nextStep": "Run controlled setup-fit for PRODUCTLINE, COSTCENTER and CHANNEL, with screenshot QA and no master data or posting.",
+    "nextStep": "Recover the missing Dimension Values route for PRODUCTLINE.SERVICE/TRAINING, COSTCENTER.SALES/OPERATIONS and CHANNEL.PARTNER before master data.",
     "targetCompany": "UNIVERSAARL-DE"
   },
   "bookProductionGoal": {
@@ -225,7 +226,7 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "universaarl-w1-foundation-dimensions-controlled-setup-fit",
+  "currentCoverageFocus": "universaarl-w1-foundation-dimension-values-route-recovery",
   "nextProcessRoute": [
     "P2P-012 compared Purchase Journal, Item Journal, Purchase Invoices and Requisition Worksheet by direct page URL without search or field entry.",
     "Item Journal is the most stable observed route for material quantity/location/value effect, but it is Inventory evidence rather than full creditor P2P.",
@@ -5620,5 +5621,134 @@
     ],
     "nextCase": "TARGET-023-DIMENSION-VALUE-CONTROLLED-SETUP-FIT",
     "updatedAt": "2026-06-30T15:35:15.526Z"
+  },
+  "defaultLockedActionsUnlockedForThisCase": [
+    "setup-change"
+  ],
+  "latestTarget023DimensionValueSetupFit": {
+    "caseId": "TARGET-023-DIMENSION-VALUE-CONTROLLED-SETUP-FIT",
+    "status": "partial-blocked",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-023-dimension-value-controlled-setup-fit/TARGET-023-result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "proved": [
+      "Dimensions page 536 was opened in playthru/UNIVERSAARL-DE before and after the setup fit.",
+      "PRODUCTLINE, COSTCENTER and CHANNEL are visible after reopening the Dimensions list.",
+      "No master data, document draft, preview posting, posting, company switch or API shortcut was executed."
+    ],
+    "notProved": [
+      "Global Dimension Code 1/2 assignment is not proven by TARGET-023.",
+      "Default Dimensions for customers, vendors, items or accounts are not proven.",
+      "Dimension Set Entries, posted entries and reporting filters are not proven.",
+      "PRODUCTLINE.SERVICE: PRODUCTLINE.SERVICE war nach Reopen nicht sichtbar.",
+      "PRODUCTLINE.TRAINING: PRODUCTLINE.TRAINING war nach Reopen nicht sichtbar.",
+      "COSTCENTER.SALES: COSTCENTER.SALES war nach Reopen nicht sichtbar.",
+      "COSTCENTER.OPERATIONS: COSTCENTER.OPERATIONS war nach Reopen nicht sichtbar.",
+      "CHANNEL.PARTNER: CHANNEL.PARTNER war nach Reopen nicht sichtbar."
+    ],
+    "dimensionResults": [
+      {
+        "code": "PRODUCTLINE",
+        "status": "already-exists",
+        "reason": "PRODUCTLINE ist bereits sichtbar."
+      },
+      {
+        "code": "COSTCENTER",
+        "status": "already-exists",
+        "reason": "COSTCENTER ist bereits sichtbar."
+      },
+      {
+        "code": "CHANNEL",
+        "status": "already-exists",
+        "reason": "CHANNEL ist bereits sichtbar."
+      }
+    ],
+    "valueResults": [
+      {
+        "dimensionCode": "PRODUCTLINE",
+        "valueCode": "SOFTWARE",
+        "status": "already-exists",
+        "reason": "PRODUCTLINE.SOFTWARE ist bereits sichtbar."
+      },
+      {
+        "dimensionCode": "PRODUCTLINE",
+        "valueCode": "SERVICE",
+        "status": "blocked",
+        "reason": "PRODUCTLINE.SERVICE war nach Reopen nicht sichtbar."
+      },
+      {
+        "dimensionCode": "PRODUCTLINE",
+        "valueCode": "TRAINING",
+        "status": "blocked",
+        "reason": "PRODUCTLINE.TRAINING war nach Reopen nicht sichtbar."
+      },
+      {
+        "dimensionCode": "COSTCENTER",
+        "valueCode": "ADMIN",
+        "status": "already-exists",
+        "reason": "COSTCENTER.ADMIN ist bereits sichtbar."
+      },
+      {
+        "dimensionCode": "COSTCENTER",
+        "valueCode": "SALES",
+        "status": "blocked",
+        "reason": "COSTCENTER.SALES war nach Reopen nicht sichtbar."
+      },
+      {
+        "dimensionCode": "COSTCENTER",
+        "valueCode": "OPERATIONS",
+        "status": "blocked",
+        "reason": "COSTCENTER.OPERATIONS war nach Reopen nicht sichtbar."
+      },
+      {
+        "dimensionCode": "CHANNEL",
+        "valueCode": "DIRECT",
+        "status": "already-exists",
+        "reason": "CHANNEL.DIRECT ist bereits sichtbar."
+      },
+      {
+        "dimensionCode": "CHANNEL",
+        "valueCode": "PARTNER",
+        "status": "blocked",
+        "reason": "CHANNEL.PARTNER war nach Reopen nicht sichtbar."
+      }
+    ],
+    "blockedBy": [
+      "PRODUCTLINE.SERVICE: PRODUCTLINE.SERVICE war nach Reopen nicht sichtbar.",
+      "PRODUCTLINE.TRAINING: PRODUCTLINE.TRAINING war nach Reopen nicht sichtbar.",
+      "COSTCENTER.SALES: COSTCENTER.SALES war nach Reopen nicht sichtbar.",
+      "COSTCENTER.OPERATIONS: COSTCENTER.OPERATIONS war nach Reopen nicht sichtbar.",
+      "CHANNEL.PARTNER: CHANNEL.PARTNER war nach Reopen nicht sichtbar."
+    ],
+    "evidenceRefs": [
+      "playwright/projects/fibu-book5/evidence/target-023-dimension-value-controlled-setup-fit/TARGET-023-result.json",
+      "playwright/projects/fibu-book5/img/target-023-010-dimensions-before.png",
+      "playwright/projects/fibu-book5/img/target-023-productline-values-after.png",
+      "playwright/projects/fibu-book5/img/target-023-costcenter-values-after.png",
+      "playwright/projects/fibu-book5/img/target-023-channel-values-after.png",
+      "playwright/projects/fibu-book5/img/target-023-090-dimensions-after-reopen.png",
+      "playwright/projects/fibu-book5/img/target-023-095-general-ledger-setup-dimension-context.png"
+    ],
+    "flags": {
+      "noPost": true,
+      "noPreview": true,
+      "noDraft": true,
+      "noMasterDataChange": true,
+      "noCompanySwitch": true,
+      "noApiShortcut": true,
+      "noSearch": true,
+      "noBookMasterChange": true,
+      "setupChanged": false,
+      "setupChangeAllowedByCase": true
+    },
+    "keyLearning": [
+      "Direct page 536 is the writable Dimensions list context for dimension codes; page 560 was read-only/empty context evidence only.",
+      "PRODUCTLINE, COSTCENTER and CHANNEL are visible after reopen in UNIVERSAARL-DE.",
+      "The first value for each dimension is visible: SOFTWARE, ADMIN and DIRECT.",
+      "The Dimension Values page 537 direct filter is useful for visibility but the current Playwright helper does not yet create additional rows after the first value.",
+      "Master data should not start until missing starter values are recovered or consciously parked."
+    ],
+    "nextCase": "TARGET-023B-DIMENSION-VALUES-ROUTE-RECOVERY",
+    "updatedAt": "2026-06-30T16:04:48.556Z"
   }
 }

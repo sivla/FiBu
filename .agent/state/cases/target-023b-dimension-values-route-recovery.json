@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-023B-DIMENSION-VALUES-ROUTE-RECOVERY",
+  "title": "Recover missing Universaarl Dimension Values route",
+  "status": "planned",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "workType": "foundation-dimension-values-route-recovery",
+  "taskClass": "judge_work",
+  "sourceEvidence": [
+    "TARGET-023-DIMENSION-VALUE-CONTROLLED-SETUP-FIT"
+  ],
+  "purpose": "Find a reproducible UI route for the missing starter Dimension Values without creating master data, drafts, preview or posting.",
+  "allowedActions": [
+    "review-target-023-result",
+    "open-dimension-values-page-with-direct-filter",
+    "inspect-edit-list-new-row-controls",
+    "use-page-inspection-or-personalize-if-needed",
+    "create-or-verify-missing-dimension-values-only",
+    "capture-control-map-and-after-reopen-screenshots",
+    "write-result-and-next-step-card",
+    "queue-and-state-update"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "leave-playthru",
+    "operate-in-legacy-lab-as-active-target",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "api-shortcut",
+    "claim-reporting-readiness-without-posted-dimension-entries"
+  ],
+  "defaultLockedActionsUnlockedForThisCase": [
+    "setup-change"
+  ],
+  "targetMissingValues": [
+    {
+      "dimensionCode": "PRODUCTLINE",
+      "missingValues": [
+        "SERVICE",
+        "TRAINING"
+      ]
+    },
+    {
+      "dimensionCode": "COSTCENTER",
+      "missingValues": [
+        "SALES",
+        "OPERATIONS"
+      ]
+    },
+    {
+      "dimensionCode": "CHANNEL",
+      "missingValues": [
+        "PARTNER"
+      ]
+    }
+  ],
+  "entryCriteria": [
+    "TARGET-023 proves PRODUCTLINE, COSTCENTER and CHANNEL are visible after reopen.",
+    "TARGET-023 proves SOFTWARE, ADMIN and DIRECT are visible as first Dimension Values.",
+    "TARGET-023 blocks additional values because current Page-537/List-Edit/New/Grid route does not persist them."
+  ],
+  "exitCriteria": [
+    "Missing values are visible after reopen, or a control-level blocker explains why not.",
+    "No master data, document, preview or posting is executed.",
+    "Screenshot QA explains Page 537 controls, Edit List/New behavior and what remains unproven."
+  ],
+  "lookahead": [
+    {
+      "caseId": "TARGET-024-CORE-MASTERDATA-PLAN",
+      "status": "needs-setup-first",
+      "reason": "Master data should use the new dimension design only after dimensions/values are visible."
+    },
+    {
+      "caseId": "TARGET-024B-GLOBAL-DIMENSION-ASSIGNMENT",
+      "status": "ready-after-current",
+      "reason": "Global Dimension Code 1/2 assignment needs its own field route and before/after/reopen proof."
+    },
+    {
+      "caseId": "TARGET-025-CUSTOMER-VENDOR-ITEM-TEMPLATES-PREFLIGHT",
+      "status": "needs-setup-first",
+      "reason": "Templates depend on master-data plan, VAT/defaults and dimension defaults."
+    },
+    {
+      "caseId": "TARGET-026-VAT-SETUP-FIT-DECISION",
+      "status": "needs-source-check-first",
+      "reason": "German VAT setup still needs its own source-backed setup decision before document preview."
+    },
+    {
+      "caseId": "TARGET-027-FIRST-MASTERDATA-CANDIDATE",
+      "status": "needs-setup-first",
+      "reason": "First customer/vendor/item should wait for master-data plan and default-dimension decision."
+    }
+  ],
+  "nextStep": "Recover the missing Dimension Values route for PRODUCTLINE.SERVICE/TRAINING, COSTCENTER.SALES/OPERATIONS and CHANNEL.PARTNER before master data.",
+  "createdAt": "2026-06-30T16:04:48.556Z",
+  "updatedAt": "2026-06-30T16:04:48.556Z"
+}

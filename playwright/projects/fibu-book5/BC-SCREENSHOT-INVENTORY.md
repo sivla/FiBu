@@ -254,6 +254,19 @@ Screenshot-QA zu TARGET-020: Diese Bilder zeigen nur die USt-Setup-Ebenen. Sie d
 
 Screenshot-QA zu TARGET-021: Das erste Bild ist gerade wegen der leeren Liste wertvoll. Es beweist nicht, dass Dimensionen eingerichtet sind, sondern dass vor Stammdaten ein Setup-Fit-Entscheid noetig ist. Das zweite Bild erklaert, wo globale Dimensionen in Business Central sitzen; es ist kein Beweis fuer gesetzte Werte oder fuer spaetere Berichte.
 
+## Universaarl Foundation - Dimensionen TARGET-023
+
+| Screenshot | Page | Company | Schritt | Was sieht man? | Beweist intern | Beweist nicht | Status |
+|---|---|---|---|---|---|---|---|
+| `target-023-010-dimensions-before.png` | Dimensionen, Page 536 | `playthru` / `UNIVERSAARL-DE` | Vorher-/Startkontext des Setup-Fit | Die Dimensionsliste als anlegbare Liste mit `Code`, `Name`, `Neu` und Listenaktionen | Der Schreibkontext fuer Dimension-Codes ist Page 536, nicht die leere Page-560-Kontextansicht | vollstaendige Werte, globale Dimensionen, Stammdaten, Posten | `universaarl-setup-before`, `partial-proof` |
+| `target-023-productline-values-after.png` | Dimensionswerte, Page 537 | `playthru` / `UNIVERSAARL-DE` | PRODUCTLINE-Werte | `SOFTWARE` ist als Wert sichtbar; `Neu` und `Liste bearbeiten` sind sichtbar | `PRODUCTLINE.SOFTWARE` ist sichtbar | `SERVICE`, `TRAINING`, Default Dimensions, Reportingwirkung | `universaarl-setup-partial`, `blocked-multirow-entry` |
+| `target-023-costcenter-values-after.png` | Dimensionswerte, Page 537 | `playthru` / `UNIVERSAARL-DE` | COSTCENTER-Werte | `ADMIN` ist als Wert sichtbar | `COSTCENTER.ADMIN` ist sichtbar | `SALES`, `OPERATIONS`, Default Dimensions, Reportingwirkung | `universaarl-setup-partial`, `blocked-multirow-entry` |
+| `target-023-channel-values-after.png` | Dimensionswerte, Page 537 | `playthru` / `UNIVERSAARL-DE` | CHANNEL-Werte | `DIRECT` ist als Wert sichtbar | `CHANNEL.DIRECT` ist sichtbar | `PARTNER`, Default Dimensions, Reportingwirkung | `universaarl-setup-partial`, `blocked-multirow-entry` |
+| `target-023-090-dimensions-after-reopen.png` | Dimensionen, Page 536 | `playthru` / `UNIVERSAARL-DE` | Nachher-Reopen | `PRODUCTLINE`, `COSTCENTER` und `CHANNEL` sind in der Dimensionsliste sichtbar | Die drei Dimension-Codes sind nach Reopen sichtbar | globale Dimensionen, vollstaendige Werte, Postenwirkung | `universaarl-setup-after-reopen`, `partial-proof` |
+| `target-023-095-general-ledger-setup-dimension-context.png` | Finanzbuchhaltung Einrichtung, Page 118 | `playthru` / `UNIVERSAARL-DE` | Kontext globale Dimensionen | `Globaler Dimensionscode 1` und `Globaler Dimensionscode 2` sind weiterhin leer sichtbar | Der spaetere Assignment-Ort ist sichtbar | Zuweisung von `PRODUCTLINE`/`COSTCENTER`, Posten- oder Reportingwirkung | `universaarl-global-dimension-context`, `not-assigned` |
+
+Screenshot-QA zu TARGET-023: Der Lauf ist kein Vollerfolg, aber kein Wegwerfbild. Er zeigt den echten Fortschritt und den echten Blocker: Dimension-Codes sind angelegt/sichtbar, je ein erster Wert ist sichtbar, weitere Werte werden mit der aktuellen Page-537-Route nicht stabil gespeichert. Fuer das Buch duerfen diese Bilder nur als Foundation-/Blocker-Erklaerung verwendet werden, nicht als Reporting- oder Belegbeweis.
+
 ## Qualitaetsfelder fuer neue Screenshot-Metadaten
 
 Neue oder ueberarbeitete `.screenshot.json`-Dateien sollen diese Felder tragen:

@@ -696,12 +696,44 @@
       ],
       "nextStep": "Numbering gaps are parked for now; revisit before creating customers/items or purchase orders that require those series.",
       "latestDecisionCase": "TARGET-019-POSTING-GROUPS-PREFLIGHT-OR-NUMBERING-PARK-DECISION"
+    },
+    "dimensions": {
+      "chapter": "Kapitel 9",
+      "status": "in-progress-partial-setup-fit",
+      "currentBlock": "dimension-values-multirow-route-blocked",
+      "latestPracticalCase": "TARGET-023-DIMENSION-VALUE-CONTROLLED-SETUP-FIT",
+      "nextCase": "TARGET-023B-DIMENSION-VALUES-ROUTE-RECOVERY",
+      "covered": [
+        "PRODUCTLINE, COSTCENTER and CHANNEL visible in UNIVERSAARL-DE after reopen.",
+        "First starter values visible: PRODUCTLINE.SOFTWARE, COSTCENTER.ADMIN, CHANNEL.DIRECT.",
+        "Dimensions list page 536 and Dimension Values page 537 direct routes are documented.",
+        "No master data, draft, preview or posting was executed."
+      ],
+      "openLimits": [
+        "PRODUCTLINE.SERVICE and PRODUCTLINE.TRAINING are not visible after reopen.",
+        "COSTCENTER.SALES and COSTCENTER.OPERATIONS are not visible after reopen.",
+        "CHANNEL.PARTNER is not visible after reopen.",
+        "Global Dimension Code 1/2 assignment is not proven.",
+        "Default Dimensions and Dimension Set Entries are not proven.",
+        "Reporting and posted-entry dimension effects are not proven."
+      ],
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-023-dimension-value-controlled-setup-fit/TARGET-023-result.json",
+      "evidenceRefs": [
+        "playwright/projects/fibu-book5/evidence/target-023-dimension-value-controlled-setup-fit/TARGET-023-result.json",
+        "playwright/projects/fibu-book5/img/target-023-010-dimensions-before.png",
+        "playwright/projects/fibu-book5/img/target-023-productline-values-after.png",
+        "playwright/projects/fibu-book5/img/target-023-costcenter-values-after.png",
+        "playwright/projects/fibu-book5/img/target-023-channel-values-after.png",
+        "playwright/projects/fibu-book5/img/target-023-090-dimensions-after-reopen.png",
+        "playwright/projects/fibu-book5/img/target-023-095-general-ledger-setup-dimension-context.png"
+      ],
+      "nextStep": "Recover the missing Dimension Values route for PRODUCTLINE.SERVICE/TRAINING, COSTCENTER.SALES/OPERATIONS and CHANNEL.PARTNER before master data."
     }
   },
   "hardExclusions": {
     "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
   },
-  "updatedAt": "2026-06-30T15:18:55.951Z",
+  "updatedAt": "2026-06-30T16:04:48.556Z",
   "activeArea": "universaarl-w1-foundation-vat-setup-readiness",
   "currentBlock": "vat-setup-readiness-next",
   "latestPracticalCase": "TARGET-010-UNIVERSAARL-COMPANY-CONTEXT-PROOF",
@@ -3695,6 +3727,37 @@
         "No Dimension Set Entry, G/L Entry, VAT Entry, Item Entry or reporting result exists yet."
       ],
       "nextCase": "TARGET-023-DIMENSION-VALUE-CONTROLLED-SETUP-FIT"
+    },
+    "dimensionSetupFit": {
+      "status": "partial-blocked",
+      "caseId": "TARGET-023-DIMENSION-VALUE-CONTROLLED-SETUP-FIT",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-023-dimension-value-controlled-setup-fit/TARGET-023-result.json",
+      "visibleDimensions": [
+        "PRODUCTLINE",
+        "COSTCENTER",
+        "CHANNEL"
+      ],
+      "visibleValues": [
+        "PRODUCTLINE.SOFTWARE",
+        "COSTCENTER.ADMIN",
+        "CHANNEL.DIRECT"
+      ],
+      "blockedValues": [
+        "PRODUCTLINE.SERVICE",
+        "PRODUCTLINE.TRAINING",
+        "COSTCENTER.SALES",
+        "COSTCENTER.OPERATIONS",
+        "CHANNEL.PARTNER"
+      ],
+      "limits": [
+        "PRODUCTLINE.SERVICE and PRODUCTLINE.TRAINING are not visible after reopen.",
+        "COSTCENTER.SALES and COSTCENTER.OPERATIONS are not visible after reopen.",
+        "CHANNEL.PARTNER is not visible after reopen.",
+        "Global Dimension Code 1/2 assignment is not proven.",
+        "Default Dimensions and Dimension Set Entries are not proven.",
+        "Reporting and posted-entry dimension effects are not proven."
+      ],
+      "nextCase": "TARGET-023B-DIMENSION-VALUES-ROUTE-RECOVERY"
     }
   }
 }

@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "caseId": "TARGET-023-DIMENSION-VALUE-CONTROLLED-SETUP-FIT",
   "title": "Controlled setup fit for Universaarl dimensions and values",
-  "status": "planned",
+  "status": "partial-blocked",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "workType": "foundation-dimensions-controlled-setup-fit",
@@ -106,7 +106,47 @@
       "reason": "First master data should wait until dimensions and VAT/posting defaults are either fitted or consciously parked."
     }
   ],
-  "nextStep": "Run controlled setup-fit for PRODUCTLINE, COSTCENTER and CHANNEL, with screenshot QA and no master data or posting.",
+  "nextStep": "Recover the missing Dimension Values route for PRODUCTLINE.SERVICE/TRAINING, COSTCENTER.SALES/OPERATIONS and CHANNEL.PARTNER before master data.",
   "createdAt": "2026-06-30T15:35:15.526Z",
-  "updatedAt": "2026-06-30T15:35:15.526Z"
+  "updatedAt": "2026-06-30T16:04:48.556Z",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-023-dimension-value-controlled-setup-fit/TARGET-023-result.json",
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-023-dimension-value-controlled-setup-fit/TARGET-023-result.json",
+    "playwright/projects/fibu-book5/img/target-023-010-dimensions-before.png",
+    "playwright/projects/fibu-book5/img/target-023-productline-values-after.png",
+    "playwright/projects/fibu-book5/img/target-023-costcenter-values-after.png",
+    "playwright/projects/fibu-book5/img/target-023-channel-values-after.png",
+    "playwright/projects/fibu-book5/img/target-023-090-dimensions-after-reopen.png",
+    "playwright/projects/fibu-book5/img/target-023-095-general-ledger-setup-dimension-context.png"
+  ],
+  "proved": [
+    "Dimensions page 536 was opened in playthru/UNIVERSAARL-DE before and after the setup fit.",
+    "PRODUCTLINE, COSTCENTER and CHANNEL are visible after reopening the Dimensions list.",
+    "No master data, document draft, preview posting, posting, company switch or API shortcut was executed."
+  ],
+  "notProved": [
+    "Global Dimension Code 1/2 assignment is not proven by TARGET-023.",
+    "Default Dimensions for customers, vendors, items or accounts are not proven.",
+    "Dimension Set Entries, posted entries and reporting filters are not proven.",
+    "PRODUCTLINE.SERVICE: PRODUCTLINE.SERVICE war nach Reopen nicht sichtbar.",
+    "PRODUCTLINE.TRAINING: PRODUCTLINE.TRAINING war nach Reopen nicht sichtbar.",
+    "COSTCENTER.SALES: COSTCENTER.SALES war nach Reopen nicht sichtbar.",
+    "COSTCENTER.OPERATIONS: COSTCENTER.OPERATIONS war nach Reopen nicht sichtbar.",
+    "CHANNEL.PARTNER: CHANNEL.PARTNER war nach Reopen nicht sichtbar."
+  ],
+  "blockedBy": [
+    "PRODUCTLINE.SERVICE: PRODUCTLINE.SERVICE war nach Reopen nicht sichtbar.",
+    "PRODUCTLINE.TRAINING: PRODUCTLINE.TRAINING war nach Reopen nicht sichtbar.",
+    "COSTCENTER.SALES: COSTCENTER.SALES war nach Reopen nicht sichtbar.",
+    "COSTCENTER.OPERATIONS: COSTCENTER.OPERATIONS war nach Reopen nicht sichtbar.",
+    "CHANNEL.PARTNER: CHANNEL.PARTNER war nach Reopen nicht sichtbar."
+  ],
+  "nextCase": "TARGET-023B-DIMENSION-VALUES-ROUTE-RECOVERY",
+  "keyLearning": [
+    "Direct page 536 is the writable Dimensions list context for dimension codes; page 560 was read-only/empty context evidence only.",
+    "PRODUCTLINE, COSTCENTER and CHANNEL are visible after reopen in UNIVERSAARL-DE.",
+    "The first value for each dimension is visible: SOFTWARE, ADMIN and DIRECT.",
+    "The Dimension Values page 537 direct filter is useful for visibility but the current Playwright helper does not yet create additional rows after the first value.",
+    "Master data should not start until missing starter values are recovered or consciously parked."
+  ]
 }

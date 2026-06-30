@@ -1,0 +1,184 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "TARGET-023-DIMENSION-VALUE-CONTROLLED-SETUP-FIT",
+  "source": "playwright-universaarl-dimensions-controlled-setup-fit",
+  "resultStatus": "blocked",
+  "runPlanId": "TARGET-023-DIMENSION-VALUE-CONTROLLED-SETUP-FIT-PLAN",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "setupChanged": false,
+  "dimensionResults": [
+    {
+      "code": "PRODUCTLINE",
+      "status": "already-exists",
+      "reason": "PRODUCTLINE ist bereits sichtbar."
+    },
+    {
+      "code": "COSTCENTER",
+      "status": "already-exists",
+      "reason": "COSTCENTER ist bereits sichtbar."
+    },
+    {
+      "code": "CHANNEL",
+      "status": "already-exists",
+      "reason": "CHANNEL ist bereits sichtbar."
+    }
+  ],
+  "valueResults": [
+    {
+      "dimensionCode": "PRODUCTLINE",
+      "valueCode": "SOFTWARE",
+      "status": "already-exists",
+      "reason": "PRODUCTLINE.SOFTWARE ist bereits sichtbar."
+    },
+    {
+      "dimensionCode": "PRODUCTLINE",
+      "valueCode": "SERVICE",
+      "status": "blocked",
+      "reason": "PRODUCTLINE.SERVICE war nach Reopen nicht sichtbar."
+    },
+    {
+      "dimensionCode": "PRODUCTLINE",
+      "valueCode": "TRAINING",
+      "status": "blocked",
+      "reason": "PRODUCTLINE.TRAINING war nach Reopen nicht sichtbar."
+    },
+    {
+      "dimensionCode": "COSTCENTER",
+      "valueCode": "ADMIN",
+      "status": "already-exists",
+      "reason": "COSTCENTER.ADMIN ist bereits sichtbar."
+    },
+    {
+      "dimensionCode": "COSTCENTER",
+      "valueCode": "SALES",
+      "status": "blocked",
+      "reason": "COSTCENTER.SALES war nach Reopen nicht sichtbar."
+    },
+    {
+      "dimensionCode": "COSTCENTER",
+      "valueCode": "OPERATIONS",
+      "status": "blocked",
+      "reason": "COSTCENTER.OPERATIONS war nach Reopen nicht sichtbar."
+    },
+    {
+      "dimensionCode": "CHANNEL",
+      "valueCode": "DIRECT",
+      "status": "already-exists",
+      "reason": "CHANNEL.DIRECT ist bereits sichtbar."
+    },
+    {
+      "dimensionCode": "CHANNEL",
+      "valueCode": "PARTNER",
+      "status": "blocked",
+      "reason": "CHANNEL.PARTNER war nach Reopen nicht sichtbar."
+    }
+  ],
+  "proved": [
+    "Dimensions page 536 was opened in playthru/UNIVERSAARL-DE before and after the setup fit.",
+    "PRODUCTLINE, COSTCENTER and CHANNEL are visible after reopening the Dimensions list.",
+    "No master data, document draft, preview posting, posting, company switch or API shortcut was executed."
+  ],
+  "notProved": [
+    "Global Dimension Code 1/2 assignment is not proven by TARGET-023.",
+    "Default Dimensions for customers, vendors, items or accounts are not proven.",
+    "Dimension Set Entries, posted entries and reporting filters are not proven.",
+    "PRODUCTLINE.SERVICE: PRODUCTLINE.SERVICE war nach Reopen nicht sichtbar.",
+    "PRODUCTLINE.TRAINING: PRODUCTLINE.TRAINING war nach Reopen nicht sichtbar.",
+    "COSTCENTER.SALES: COSTCENTER.SALES war nach Reopen nicht sichtbar.",
+    "COSTCENTER.OPERATIONS: COSTCENTER.OPERATIONS war nach Reopen nicht sichtbar.",
+    "CHANNEL.PARTNER: CHANNEL.PARTNER war nach Reopen nicht sichtbar."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/target-023-dimension-value-controlled-setup-fit/TARGET-023-result.json",
+    "playwright/projects/fibu-book5/evidence/target-023-dimension-value-controlled-setup-fit/README.md",
+    "playwright/projects/fibu-book5/evidence/target-023-dimension-value-controlled-setup-fit/*.txt",
+    "playwright/projects/fibu-book5/evidence/target-023-dimension-value-controlled-setup-fit/*.screenshot.json",
+    "playwright/projects/fibu-book5/img/target-023-*.png"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-023-dimension-value-controlled-setup-fit/TARGET-023-result.json",
+    "playwright/projects/fibu-book5/img/target-023-010-dimensions-before.png",
+    "playwright/projects/fibu-book5/img/target-023-productline-values-after.png",
+    "playwright/projects/fibu-book5/img/target-023-costcenter-values-after.png",
+    "playwright/projects/fibu-book5/img/target-023-channel-values-after.png",
+    "playwright/projects/fibu-book5/img/target-023-090-dimensions-after-reopen.png",
+    "playwright/projects/fibu-book5/img/target-023-095-general-ledger-setup-dimension-context.png"
+  ],
+  "blockedBy": [
+    "PRODUCTLINE.SERVICE: PRODUCTLINE.SERVICE war nach Reopen nicht sichtbar.",
+    "PRODUCTLINE.TRAINING: PRODUCTLINE.TRAINING war nach Reopen nicht sichtbar.",
+    "COSTCENTER.SALES: COSTCENTER.SALES war nach Reopen nicht sichtbar.",
+    "COSTCENTER.OPERATIONS: COSTCENTER.OPERATIONS war nach Reopen nicht sichtbar.",
+    "CHANNEL.PARTNER: CHANNEL.PARTNER war nach Reopen nicht sichtbar."
+  ],
+  "warnings": [
+    "TARGET-023 intentionally does not set Global Dimension Code 1/2 because that needs a separate field-assignment proof.",
+    "No final reporting claim is allowed until posted entries with dimensions exist."
+  ],
+  "flags": {
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noMasterDataChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noSearch": true,
+    "noBookMasterChange": true,
+    "setupChanged": false,
+    "setupChangeAllowedByCase": true
+  },
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-023-DIMENSION-VALUE-CONTROLLED-SETUP-FIT",
+    "plannedNextCaseBeforeReview": "TARGET-024-CORE-MASTERDATA-PLAN",
+    "lastEvidenceSummary": "TARGET-022 selected PRODUCTLINE, COSTCENTER and CHANNEL based on TARGET-021 empty dimension context and Microsoft Learn dimension guidance.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "Dimension setup fit is blocked; master data planning should wait or explicitly park the blocked values.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-024-CORE-MASTERDATA-PLAN",
+        "status": "needs-setup-first",
+        "reason": "Master data should use the new dimension design only after dimensions/values are visible."
+      },
+      {
+        "caseId": "TARGET-024B-GLOBAL-DIMENSION-ASSIGNMENT",
+        "status": "ready-after-current",
+        "reason": "Global Dimension Code 1/2 assignment needs its own field route and before/after/reopen proof."
+      },
+      {
+        "caseId": "TARGET-025-CUSTOMER-VENDOR-ITEM-TEMPLATES-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Templates depend on master-data plan, VAT/defaults and dimension defaults."
+      },
+      {
+        "caseId": "TARGET-026-VAT-SETUP-FIT-DECISION",
+        "status": "needs-source-check-first",
+        "reason": "German VAT setup still needs its own source-backed setup decision before document preview."
+      },
+      {
+        "caseId": "TARGET-027-FIRST-MASTERDATA-CANDIDATE",
+        "status": "needs-setup-first",
+        "reason": "First customer/vendor/item should wait for master-data plan and default-dimension decision."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-023B-DIMENSION-VALUES-ROUTE-RECOVERY",
+    "whySelectedNextCaseIsBest": "The current route did not safely finish dimension values, so another UI route or park decision is required before master data.",
+    "risksBeforeNextCase": [
+      "Do not claim reporting readiness before posted entries with dimensions exist.",
+      "Do not silently assign default dimensions to master data without a separate case.",
+      "Do not treat Global Dimension Code 1/2 as assigned in TARGET-023."
+    ],
+    "requiredPreparation": [
+      "Use TARGET-023 screenshots as setup foundation only.",
+      "Plan Global Dimension assignment separately if it is required before first documents."
+    ]
+  },
+  "requiresReview": true,
+  "safeToFinalizeState": false,
+  "statePatch": {},
+  "reason": "Dimension setup route produced blockers; no master data or posting was executed."
+}
