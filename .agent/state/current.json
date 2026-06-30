@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-30T19:20:00.000+02:00",
+  "updatedAt": "2026-06-30T19:45:00.000+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-permission-docs-route-text-cleanup",
-  "activeCase": "PREP-043-PERMISSION-DOCS-ROUTE-TEXT-CLEANUP",
-  "active_case_file": ".agent/state/cases/prep-043-permission-docs-route-text-cleanup.json",
+  "activeArea": "universaarl-bookmaster-foundation-target-path",
+  "activeCase": "PREP-044-BOOKMASTER-FOUNDATION-UNIVERSAARL-TARGET-PATH",
+  "active_case_file": ".agent/state/cases/prep-044-bookmaster-foundation-universaarl-target-path.json",
   "lastReferenceCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
   "lastReferenceCaseFile": ".agent/state/cases/warehouse-031-warehouse-source-route-park-or-setup-fit-decision.json",
   "mode": "universaarl-readonly-prep-until-super-permissions",
@@ -77,13 +77,12 @@
     "fallbackWhenNoDecision": "investigate-readonly-first"
   },
   "latestBookDraft": {
-    "path": "playwright/projects/fibu-book5/book-drafts/manufacturing-labor-draft.md",
-    "area": "manufacturing",
+    "path": "FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md",
+    "area": "foundation",
     "status": [
-      "labor-draft",
-      "direct-page-readiness",
-      "labor-sufficient-for-book-draft",
-      "needs-german-final-rebuild"
+      "bookmaster-prep",
+      "universaarl-target-path",
+      "needs-live-company-creation"
     ],
     "sourceCompany": "RM-DEMO",
     "sourceInstance": "MCP_1_20260210",
@@ -93,9 +92,9 @@
       "MANUFACTURING-003",
       "MANUFACTURING-004"
     ],
-    "bookEffect": "Manufacturing now has a standalone lab draft that separates direct page context from BOM/Routing/Production Order/Consumption/Output proof.",
+    "bookEffect": "Chapter 6 now starts with a Universaarl Foundation target path and marks RM-DEMO Foundation as historical lab context.",
     "integratedIntoBookMaster": true,
-    "nextStep": "Define exact Production BOM/Routing target values and decide whether a controlled UI-first setup case is safe in RM-DEMO.",
+    "nextStep": "After permissions, run TARGET-009 and then Company Information read-only/persisted proof.",
     "bookMasterPath": "FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md",
     "bookMasterSection": "Chapter 14 Planning, Assembly und Manufacturing",
     "labVsTargetPathSeparated": true
@@ -1357,7 +1356,7 @@
     "nextStep": "BANK-018: controlled no-post Payment Journal preflight for 108205; do not post."
   },
   "workType": "warehouse-source-document-action-on-draft",
-  "lastCompletedCase": "PREP-043-PERMISSION-DOCS-ROUTE-TEXT-CLEANUP",
+  "lastCompletedCase": "PREP-044-BOOKMASTER-FOUNDATION-UNIVERSAARL-TARGET-PATH",
   "latestBank018": {
     "caseId": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
     "status": [
@@ -3694,21 +3693,21 @@
     "resultFile": "playwright/projects/fibu-book5/evidence/prep-020-universaarl-dataset-blueprint/PREP-020-result.json"
   },
   "nextStepDecisionCard": {
-    "currentCase": "PREP-043-PERMISSION-DOCS-ROUTE-TEXT-CLEANUP",
+    "currentCase": "PREP-044-BOOKMASTER-FOUNDATION-UNIVERSAARL-TARGET-PATH",
     "plannedNextCaseBeforeReview": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
-    "lastEvidenceSummary": "PREP-043 aligned permission docs with the corrected splitbutton route and removed the vague Neu / Neues Unternehmen erstellen shorthand.",
+    "lastEvidenceSummary": "PREP-044 moved active chapter 6 Foundation wording toward the Universaarl target path and made the old RM-DEMO/CRONUS copy path historical.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "Company Creation remains the required dependency, but it stays blocked until SUPER/company-create permissions are confirmed.",
+    "reason": "Company Creation remains the dependency before Company Information, Foundation setup and process evidence; it remains blocked until SUPER/company-create permissions are confirmed.",
     "lookaheadReviewed": [
       {
         "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
         "status": "blocked",
-        "reason": "Requires SUPER/company-create permissions plus PREP-040 screenshot chain."
+        "reason": "Requires SUPER/company-create permissions and the PREP-040 screenshot chain."
       },
       {
         "caseId": "TARGET-COMPANY-INFO-001-COMPANY-INFORMATION-READONLY",
         "status": "ready-after-current",
-        "reason": "Run only after UNIVERSAARL-DE exists and active company context is visible."
+        "reason": "Run only after UNIVERSAARL-DE exists and company context is visible."
       },
       {
         "caseId": "TARGET-005-NUMBER-SERIES-PREFLIGHT",
@@ -3718,21 +3717,21 @@
       {
         "caseId": "TARGET-006-POSTING-GROUPS-PREFLIGHT",
         "status": "ready-after-current",
-        "reason": "Requires company foundation context first."
+        "reason": "Requires company foundation context before setup inspection."
       },
       {
         "caseId": "TARGET-008-VAT19-SETUP-READINESS",
         "status": "needs-source-check-first",
-        "reason": "Needs German VAT source and later Universaarl setup evidence."
+        "reason": "Needs German VAT source boundary and later Universaarl setup evidence."
       }
     ],
     "queueChangesMade": [
-      "Added PREP-043 as a completed permission-doc route text cleanup.",
+      "Added PREP-044 as a completed bookmaster Foundation Universaarl target-path cleanup.",
       "Kept TARGET-009 parked until permissions.",
-      "Removed vague Neu / Neues Unternehmen erstellen shorthand from permission docs."
+      "Classified the old RM-DEMO/CRONUS Foundation route as historical lab context in chapter 6."
     ],
     "selectedNextCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
-    "whySelectedNextCaseIsBest": "Company Creation remains the required dependency before Company Information, Foundation setup and process evidence.",
+    "whySelectedNextCaseIsBest": "Company Creation remains the required dependency before any Universaarl Company Information, Foundation setup or process evidence can be final-candidate evidence.",
     "risksBeforeNextCase": [
       "Do not click the Hauptbutton Neu when the intended target is Neues Unternehmen erstellen.",
       "Screenshot must show the dropdown menu item itself before click.",
@@ -4457,5 +4456,24 @@
       "missing-super-or-company-create-permission"
     ],
     "updatedAt": "2026-06-30T19:20:00.000+02:00"
+  },
+  "latestPrep044BookmasterFoundationTargetPath": {
+    "caseId": "PREP-044-BOOKMASTER-FOUNDATION-UNIVERSAARL-TARGET-PATH",
+    "status": "prep-done",
+    "resultPath": "playwright/projects/fibu-book5/evidence/prep-044-bookmaster-foundation-universaarl-target-path/PREP-044-result.json",
+    "bookMasterPath": "FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md",
+    "summary": "Chapter 6 now starts with a Universaarl Foundation target path and classifies the old CRONUS-to-RM-DEMO Foundation path as historical lab context.",
+    "noBcRun": true,
+    "noPlaywrightRun": true,
+    "noCompanyCreated": true,
+    "noSetupChange": true,
+    "noMasterDataChange": true,
+    "noPreviewPosting": true,
+    "noPosting": true,
+    "nextCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+    "blockedBy": [
+      "missing-super-or-company-create-permission"
+    ],
+    "updatedAt": "2026-06-30T19:45:00.000+02:00"
   }
 }

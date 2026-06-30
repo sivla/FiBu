@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result",
+  "caseId": "PREP-044-BOOKMASTER-FOUNDATION-UNIVERSAARL-TARGET-PATH",
+  "source": "bookmaster-local-edit",
+  "resultStatus": "observed",
+  "runPlanId": "PREP-044-BOOKMASTER-FOUNDATION-UNIVERSAARL-TARGET-PATH-PLAN",
+  "selectedTaskClass": "monkey_work",
+  "selectedModelClass": "gpt-4-mini-low",
+  "proved": [
+    "The MB-800 30-day plan now names the Universaarl overall case instead of the Rhein-Main overall case.",
+    "Chapter 6 now gives a reader-facing Universaarl Foundation target path before the old RM-DEMO lab block.",
+    "The old CRONUS-to-RM-DEMO foundation path is explicitly historical and not the active Universaarl path."
+  ],
+  "notProved": [
+    "UNIVERSAARL-DE was not created.",
+    "No Business Central UI was opened.",
+    "No Playwright test was executed.",
+    "No setup, master data, preview posting or posting was performed."
+  ],
+  "changedFiles": [
+    "FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md",
+    ".agent/state/cases/prep-044-bookmaster-foundation-universaarl-target-path.json",
+    "playwright/projects/fibu-book5/evidence/prep-044-bookmaster-foundation-universaarl-target-path/README.md",
+    "playwright/projects/fibu-book5/evidence/prep-044-bookmaster-foundation-universaarl-target-path/PREP-044-result.json"
+  ],
+  "statePatch": {
+    "current": {
+      "activeArea": "universaarl-bookmaster-foundation-target-path",
+      "activeCase": "PREP-044-BOOKMASTER-FOUNDATION-UNIVERSAARL-TARGET-PATH",
+      "active_case_file": ".agent/state/cases/prep-044-bookmaster-foundation-universaarl-target-path.json",
+      "nextCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+      "nextStep": "After explicit SUPER/company-create permission confirmation, run TARGET-009 using Mandanten -> arrow next to Neu -> Neues Unternehmen erstellen with the PREP-040 screenshot chain."
+    }
+  },
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/prep-044-bookmaster-foundation-universaarl-target-path/README.md",
+    "FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md"
+  ],
+  "warnings": [
+    "This is a bookmaster cleanup, not live Business Central evidence.",
+    "TARGET-009 remains blocked until permissions are confirmed."
+  ],
+  "blockedBy": [
+    "missing-super-or-company-create-permission"
+  ],
+  "requiresReview": false,
+  "safeToFinalizeState": false,
+  "reason": "Bookmaster active target wording improved while preserving old RM-DEMO foundation history.",
+  "flags": {
+    "noBcRun": true,
+    "noPlaywrightRun": true,
+    "noCompanyCreated": true,
+    "noSetupChange": true,
+    "noMasterDataChange": true,
+    "noPreviewPosting": true,
+    "noPosting": true,
+    "noApiShortcut": true
+  }
+}

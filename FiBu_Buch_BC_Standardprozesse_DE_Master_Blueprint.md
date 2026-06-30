@@ -246,7 +246,7 @@ Solution Architects arbeiten stärker entscheidungsorientiert. Sie starten mit K
 
 ### MB-800-Lernplan 30 Tage
 
-Der 30-Tage-Plan nutzt dieselbe Reihenfolge wie der 14-Tage-Plan. Jeder Themenblock bekommt zusätzlich einen Übungstag aus Kapitel 33, einen UAT-Tag aus Kapitel 32 und einen Prüfungstag aus Kapitel 36. Die letzten vier Tage bestehen aus Rhein-Main-Gesamtfall, Kompetenzmatrix in Kapitel 34, Microsoft-Learn-Mapping in Kapitel 35 und Wiederholung der Prüfungsfallen.
+Der 30-Tage-Plan nutzt dieselbe Reihenfolge wie der 14-Tage-Plan. Jeder Themenblock bekommt zusätzlich einen Übungstag aus Kapitel 33, einen UAT-Tag aus Kapitel 32 und einen Prüfungstag aus Kapitel 36. Die letzten vier Tage bestehen aus dem Universaarl-Gesamtfall, der Kompetenzmatrix in Kapitel 34, dem Microsoft-Learn-Mapping in Kapitel 35 und der Wiederholung der Prüfungsfallen.
 
 ### In 5 Minuten merken
 
@@ -545,9 +545,32 @@ flowchart LR
     G --> H["Test Posting"]
 ```
 
-### Bebilderte Klickanleitung: `FOUNDATION-001` und `FOUNDATION-002` Trainingscompany aufbauen
+### Universaarl-Foundation: Zielpfad nach der Company-Anlage
+
+Die Universaarl GmbH bekommt ihre eigene Company `UNIVERSAARL-DE`. Diese Company wird nicht als fertige CRONUS-Kopie übernommen. Sie entsteht kontrolliert: zuerst die Company, dann die Unternehmensdaten, dann Nummernserien, Buchungsgruppen, USt-Setup, Dimensionen und erst danach Stammdaten und Belege.
+
+Der erste Foundation-Schritt nach der Rechtefreigabe ist deshalb kein Beleg und keine Buchung. Er prüft, ob die richtige Company sichtbar ist und ob die Grundlage für spätere Prozesse sauber aufgebaut werden kann.
+
+Der sichere Zielpfad ist:
+
+1. Seite `Mandanten` öffnen.
+2. Prüfen, dass `UNIVERSAARL-DE` noch nicht vorhanden ist.
+3. Den Pfeil neben `Neu` öffnen.
+4. `Neues Unternehmen erstellen` wählen.
+5. Die Datenbasis bewusst prüfen.
+6. Keine CRONUS-, Testunternehmen- oder Sample-Data-Route bestätigen, wenn dadurch fremde Demodaten zur Zielbasis würden.
+7. `UNIVERSAARL-DE` nur dann anlegen, wenn Name, Datenbasis und Wirkung sichtbar klar sind.
+8. Nach der Anlage erneut die Mandantenliste prüfen.
+9. Danach die Company öffnen und die `Unternehmensdaten` pflegen.
+10. Erst nach sichtbarem Company-Kontext mit Foundation-Setup beginnen.
+
+Die ersten Screenshots müssen den fachlichen Bereich zeigen: Mandantenliste, Pfeil neben `Neu`, den Menüeintrag `Neues Unternehmen erstellen`, die gewählte Datenbasis, die sichtbare Company nach der Anlage und später die gepflegten Unternehmensdaten. Ein Bild mit nur einer Code-Spalte reicht nicht aus.
+
+### Historischer Laborblock: `FOUNDATION-001` und `FOUNDATION-002` Trainingscompany aufbauen
 
 Der erste echte Foundation-Prozess legt keine Buchung an. Er schafft den wiederholbaren Trainingsraum. Dafür wird die CRONUS-Company in eine eigene Company `RM-DEMO` kopiert und anschließend mit fachlichen Unternehmensdaten versehen.
+
+Dieser Block bleibt als historischer Laborpfad erhalten. Er erklärt, wie die frühere RM-DEMO-Spielwiese entstanden ist. Für die aktive Universaarl-Buchwelt ist er kein Zielpfad mehr. Die Universaarl GmbH wird nicht als CRONUS-Kopie aufgebaut.
 
 Ziel:
 - Du erzeugst eine eigene Trainingscompany aus `CRONUS USA, Inc.`.
@@ -702,7 +725,7 @@ Deshalb gilt für alle bebilderten Klickanleitungen:
 3. Erst danach wird der fachliche Prozess gebucht.
 4. Jeder angelegte Stammdatensatz bekommt Testdaten-Datei, Screenshot und Bucherklärung.
 
-Für den ersten belastbaren Lauf nutzt das Projekt `RM-DEMO` als konsolidierte Trainingscompany. Die im Buch beschriebenen Ziel-Companies `RM-PROD`, `RM-SALES`, `RM-SERVICE`, `RM-SHARED` und Auslandsgesellschaften werden später als eigener Mehr-Company-Block aufgebaut. Das verhindert, dass der erste Lernlauf durch Intercompany-, Berechtigungs- und Konsolidierungsthemen blockiert wird.
+Für die frühere Laborphase nutzte das Projekt `RM-DEMO` als konsolidierte Trainingscompany. Diese Belege bleiben als historische Lern- und Fehlerdiagnose erhalten. Die aktive Buchwelt ist jetzt Universaarl: Neue Zielnachweise entstehen in `playthru` und später in `UNIVERSAARL-DE`.
 
 ### UAT-Schulung Foundation
 
