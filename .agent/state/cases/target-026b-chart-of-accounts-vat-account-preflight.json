@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-026B-CHART-OF-ACCOUNTS-VAT-ACCOUNT-PREFLIGHT",
+  "title": "Chart of Accounts VAT account preflight",
+  "status": "planned",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "workType": "universaarl-chart-of-accounts-vat-account-preflight",
+  "taskClass": "wizard_work",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/target-026-vat-setup-fit-decision/TARGET-026-result.json"
+  ],
+  "purpose": "Open Chart of Accounts read-only and identify whether Sales VAT Account and Purchase VAT Account candidates exist before VAT setup write.",
+  "allowedActions": [
+    "open-chart-of-accounts-readonly",
+    "search-or-filter-within-chart-of-accounts-readonly",
+    "capture-screenshot-qa",
+    "write-result-and-next-step-card"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "create-or-edit-gl-account",
+    "change-vat-setup",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "api-shortcut"
+  ],
+  "entryCriteria": [
+    "TARGET-026 decided that VAT setup needs account preflight first.",
+    "UNIVERSAARL-DE is active target company."
+  ],
+  "exitCriteria": [
+    "Chart of Accounts context is observed or blocked.",
+    "VAT account candidates are listed or missing.",
+    "Next VAT setup or account-setup case is selected."
+  ],
+  "lookahead": [
+    {
+      "caseId": "TARGET-026C-VAT-GROUPS-CONTROLLED-SETUP-FIT",
+      "status": "ready-after-current",
+      "reason": "Only if VAT account candidates exist."
+    },
+    {
+      "caseId": "TARGET-026D-CHART-OF-ACCOUNTS-SETUP-FIT-DECISION",
+      "status": "needs-ui-discovery-first",
+      "reason": "Needed if account candidates are missing."
+    },
+    {
+      "caseId": "TARGET-027-DEFAULT-DIMENSIONS-STRATEGY",
+      "status": "ready-after-current",
+      "reason": "Dimensions strategy can continue after VAT/account dependency is classified."
+    }
+  ],
+  "nextStep": "Run Chart of Accounts read-only preflight for VAT account candidates.",
+  "createdAt": "2026-06-30T18:45:00.000Z",
+  "updatedAt": "2026-06-30T18:45:00.000Z"
+}

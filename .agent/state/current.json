@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-30T18:08:00.000Z",
+  "updatedAt": "2026-06-30T18:45:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-core-masterdata-plan",
-  "activeCase": "TARGET-024-CORE-MASTERDATA-PLAN",
-  "active_case_file": ".agent/state/cases/target-024-core-masterdata-plan.json",
+  "activeArea": "universaarl-chart-of-accounts-vat-account-preflight",
+  "activeCase": "TARGET-026B-CHART-OF-ACCOUNTS-VAT-ACCOUNT-PREFLIGHT",
+  "active_case_file": ".agent/state/cases/target-026b-chart-of-accounts-vat-account-preflight.json",
   "lastReferenceCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
   "lastReferenceCaseFile": ".agent/state/cases/warehouse-031-warehouse-source-route-park-or-setup-fit-decision.json",
   "mode": "universaarl-target-execution",
@@ -19,12 +19,9 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "open-general-ledger-setup-page-directly",
-    "inspect-page-118-dimensions-fasttab",
-    "page-inspection-readonly-on-page-118-if-available",
-    "tooltip-and-control-inventory-readonly",
-    "enter-productline-and-costcenter-only-in-identified-page-118-global-dimension-fields",
-    "capture-before-after-reopen-proof",
+    "open-chart-of-accounts-readonly",
+    "search-or-filter-within-chart-of-accounts-readonly",
+    "capture-screenshot-qa",
     "write-result-and-next-step-card"
   ],
   "forbiddenActions": [
@@ -33,18 +30,15 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
-    "leave-playthru",
-    "operate-in-legacy-lab-as-active-target",
+    "create-or-edit-gl-account",
+    "change-vat-setup",
     "create-master-data",
     "create-document-or-draft",
     "preview-posting",
     "post",
-    "api-shortcut",
-    "open-change-global-dimensions-page-577-as-primary-route",
-    "repeat-target-024d-fortlaufend-starten-route",
-    "claim-reporting-readiness-without-posted-dimension-entries"
+    "api-shortcut"
   ],
-  "nextStep": "Run TARGET-024 Core Master Data Plan: define first Universaarl customers, vendors, items, locations and required fields without creating records yet.",
+  "nextStep": "Run TARGET-026B: inspect Chart of Accounts read-only for Sales/Purchase VAT Account candidates before VAT setup write.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -227,7 +221,7 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "universaarl-core-masterdata-plan",
+  "currentCoverageFocus": "universaarl-chart-of-accounts-vat-account-preflight",
   "nextProcessRoute": [
     "P2P-012 compared Purchase Journal, Item Journal, Purchase Invoices and Requisition Worksheet by direct page URL without search or field entry.",
     "Item Journal is the most stable observed route for material quantity/location/value effect, but it is Inventory evidence rather than full creditor P2P.",
@@ -1349,7 +1343,7 @@
     "nextStep": "BANK-018: controlled no-post Payment Journal preflight for 108205; do not post."
   },
   "workType": "foundation-global-dimension-assignment",
-  "lastCompletedCase": "TARGET-024H-GLOBAL-DIMENSION-PARK-OR-PAGEINSPECTION-DECISION",
+  "lastCompletedCase": "TARGET-026-VAT-SETUP-FIT-DECISION",
   "latestBank018": {
     "caseId": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
     "status": [
@@ -3435,53 +3429,54 @@
       "replace-with-better-case"
     ],
     "latestDecisionCard": {
-      "currentCase": "TARGET-022-DIMENSION-VALUE-SETUP-FIT-DECISION",
-      "plannedNextCaseBeforeReview": "TARGET-022-DIMENSION-VALUE-SETUP-FIT-DECISION",
-      "lastEvidenceSummary": "TARGET-021 proved Dimensions page 560 is reachable but empty and General Ledger Setup page 118 shows Global Dimension Code 1/2 fields.",
+      "currentCase": "TARGET-026-VAT-SETUP-FIT-DECISION",
+      "plannedNextCaseBeforeReview": "TARGET-026-VAT-SETUP-FIT-DECISION",
+      "lastEvidenceSummary": "TARGET-025 opened Debitoren, Kreditoren, Artikel and Lagerorte read-only. TARGET-026 source check shows VAT Posting Setup needs G/L account candidates before a setup write.",
       "isPlannedNextCaseStillSensible": true,
-      "reason": "An empty dimensions list blocks meaningful dimension-aware master data and reporting examples; a source-backed setup decision is the best next step.",
+      "reason": "VAT setup affects customer/vendor/item fields, but cannot be fitted responsibly until Sales/Purchase VAT Account candidates are visible.",
       "lookaheadReviewed": [
         {
-          "caseId": "TARGET-023-DIMENSION-VALUE-CONTROLLED-SETUP-FIT",
+          "caseId": "TARGET-026B-CHART-OF-ACCOUNTS-VAT-ACCOUNT-PREFLIGHT",
           "status": "ready-next",
-          "reason": "Concrete values are selected and setup write can be performed with before/after/reopen evidence."
+          "reason": "Chart of Accounts read-only preflight is the missing account dependency for VAT setup."
         },
         {
-          "caseId": "TARGET-024-CORE-MASTERDATA-PLAN",
+          "caseId": "TARGET-026C-VAT-GROUPS-CONTROLLED-SETUP-FIT",
+          "status": "needs-setup-first",
+          "reason": "Requires account candidates and explicit VAT setup gate."
+        },
+        {
+          "caseId": "TARGET-027-DEFAULT-DIMENSIONS-STRATEGY",
           "status": "ready-after-current",
-          "reason": "Master data planning should follow the dimension setup result or an explicit park decision."
+          "reason": "Can proceed after VAT/account dependency is classified; global dimensions remain parked."
         },
         {
-          "caseId": "TARGET-025-CUSTOMER-VENDOR-ITEM-TEMPLATES-PREFLIGHT",
+          "caseId": "TARGET-028-FIRST-CUSTOMER-CONTROLLED-CREATE",
           "status": "needs-setup-first",
-          "reason": "Templates depend on number series, posting groups, VAT and dimensions/default dimensions."
+          "reason": "Requires card/template evidence plus posting/VAT setup decisions."
         },
         {
-          "caseId": "TARGET-026-VAT-SETUP-FIT-DECISION",
-          "status": "needs-source-check-first",
-          "reason": "German 19 percent VAT still needs its own source-backed setup and later preview/VAT Entry proof."
-        },
-        {
-          "caseId": "TARGET-027-FIRST-MASTERDATA-CANDIDATE",
+          "caseId": "TARGET-029-FIRST-VENDOR-AND-ITEM-CONTROLLED-CREATE",
           "status": "needs-setup-first",
-          "reason": "First master data should wait until dimensions and VAT/posting defaults are either fitted or consciously parked."
+          "reason": "Requires vendor/item template evidence plus posting/VAT setup decisions."
         }
       ],
       "queueChangesMade": [
-        "Add TARGET-023-DIMENSION-VALUE-CONTROLLED-SETUP-FIT as the next controlled setup execution case."
+        "Marked TARGET-025 observed after read-only master-data page preflight.",
+        "Marked TARGET-026 observed as VAT setup source decision.",
+        "Inserted and selected TARGET-026B-CHART-OF-ACCOUNTS-VAT-ACCOUNT-PREFLIGHT."
       ],
-      "selectedNextCase": "TARGET-023-DIMENSION-VALUE-CONTROLLED-SETUP-FIT",
-      "whySelectedNextCaseIsBest": "The dimension list is empty and the selected dimension set is now concrete enough for a controlled before/after/reopen setup-fit case.",
+      "selectedNextCase": "TARGET-026B-CHART-OF-ACCOUNTS-VAT-ACCOUNT-PREFLIGHT",
+      "whySelectedNextCaseIsBest": "It proves or blocks the account basis that VAT setup needs before any write or first master-data create.",
       "risksBeforeNextCase": [
-        "Global dimensions affect later entries and should be set before posting.",
-        "Do not create default dimensions until the parent master data records exist.",
-        "Do not claim reporting readiness until posted Dimension Set Entries exist."
+        "Do not create or edit G/L accounts during preflight.",
+        "Do not change VAT setup without account candidates and a separate setup-fit gate.",
+        "Do not claim German 19 percent VAT without official source plus posting evidence."
       ],
       "requiredPreparation": [
-        "Open Dimensions page 560 before write.",
-        "Create PRODUCTLINE, COSTCENTER and CHANNEL with values.",
-        "Open General Ledger Setup page 118 before assigning Global Dimension Code 1/2, if the UI route is safe.",
-        "Capture after/reopen proof and stop before master data."
+        "Open Chart of Accounts read-only in playthru / UNIVERSAARL-DE.",
+        "Capture VAT account candidate signals and screenshot QA.",
+        "Stop before New/Edit/Delete/Post/Preview."
       ]
     }
   },
@@ -3686,46 +3681,54 @@
     "resultFile": "playwright/projects/fibu-book5/evidence/prep-020-universaarl-dataset-blueprint/PREP-020-result.json"
   },
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-024H-GLOBAL-DIMENSION-PARK-OR-PAGEINSPECTION-DECISION",
-    "plannedNextCaseBeforeReview": "TARGET-024H-GLOBAL-DIMENSION-PARK-OR-PAGEINSPECTION-DECISION",
-    "lastEvidenceSummary": "Global Dimension Code assignment is not proven after Page 577, direct Page 118 and Page 118 button probes.",
-    "isPlannedNextCaseStillSensible": false,
-    "reason": "The decision is complete; the next case should plan core master data under the explicit boundary that global dimensions are not assigned.",
+    "currentCase": "TARGET-026-VAT-SETUP-FIT-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-026-VAT-SETUP-FIT-DECISION",
+    "lastEvidenceSummary": "TARGET-025 opened Debitoren, Kreditoren, Artikel and Lagerorte read-only. TARGET-026 source check shows VAT Posting Setup needs G/L account candidates before a setup write.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "VAT setup affects customer/vendor/item fields, but cannot be fitted responsibly until Sales/Purchase VAT Account candidates are visible.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-024-CORE-MASTERDATA-PLAN",
+        "caseId": "TARGET-026B-CHART-OF-ACCOUNTS-VAT-ACCOUNT-PREFLIGHT",
         "status": "ready-next",
-        "reason": "Master data planning can proceed without creating records and without claiming global dimensions are assigned."
+        "reason": "Chart of Accounts read-only preflight is the missing account dependency for VAT setup."
       },
       {
-        "caseId": "TARGET-025-CUSTOMER-VENDOR-ITEM-TEMPLATES-PREFLIGHT",
-        "status": "ready-after-current",
-        "reason": "Template preflight needs the core master-data plan first."
-      },
-      {
-        "caseId": "TARGET-026-VAT-SETUP-FIT-DECISION",
-        "status": "needs-source-check-first",
-        "reason": "VAT setup must be source-backed before document preview."
+        "caseId": "TARGET-026C-VAT-GROUPS-CONTROLLED-SETUP-FIT",
+        "status": "needs-setup-first",
+        "reason": "Requires account candidates and explicit VAT setup gate."
       },
       {
         "caseId": "TARGET-027-DEFAULT-DIMENSIONS-STRATEGY",
         "status": "ready-after-current",
-        "reason": "Default dimensions need concrete master-data records."
+        "reason": "Can proceed after VAT/account dependency is classified; global dimensions remain parked."
+      },
+      {
+        "caseId": "TARGET-028-FIRST-CUSTOMER-CONTROLLED-CREATE",
+        "status": "needs-setup-first",
+        "reason": "Requires card/template evidence plus posting/VAT setup decisions."
+      },
+      {
+        "caseId": "TARGET-029-FIRST-VENDOR-AND-ITEM-CONTROLLED-CREATE",
+        "status": "needs-setup-first",
+        "reason": "Requires vendor/item template evidence plus posting/VAT setup decisions."
       }
     ],
     "queueChangesMade": [
-      "Marked TARGET-024G blocked after lookup/detail button probe.",
-      "Marked TARGET-024H observed as park decision.",
-      "Inserted/selected TARGET-024-CORE-MASTERDATA-PLAN."
+      "Marked TARGET-025 observed after read-only master-data page preflight.",
+      "Marked TARGET-026 observed as VAT setup source decision.",
+      "Inserted and selected TARGET-026B-CHART-OF-ACCOUNTS-VAT-ACCOUNT-PREFLIGHT."
     ],
-    "selectedNextCase": "TARGET-024-CORE-MASTERDATA-PLAN",
-    "whySelectedNextCaseIsBest": "It moves Universaarl foundation forward without pretending that global dimensions are assigned.",
+    "selectedNextCase": "TARGET-026B-CHART-OF-ACCOUNTS-VAT-ACCOUNT-PREFLIGHT",
+    "whySelectedNextCaseIsBest": "It proves or blocks the account basis that VAT setup needs before any write or first master-data create.",
     "risksBeforeNextCase": [
-      "Do not use global-dimension assignment as a prerequisite or claim.",
-      "Do not create master data before required fields/templates are planned."
+      "Do not create or edit G/L accounts during preflight.",
+      "Do not change VAT setup without account candidates and a separate setup-fit gate.",
+      "Do not claim German 19 percent VAT without official source plus posting evidence."
     ],
     "requiredPreparation": [
-      "Use TARGET-023B values as available dimensions, not as proven global dimensions."
+      "Open Chart of Accounts read-only in playthru / UNIVERSAARL-DE.",
+      "Capture VAT account candidate signals and screenshot QA.",
+      "Stop before New/Edit/Delete/Post/Preview."
     ]
   },
   "permissionBlocker": {
@@ -3802,9 +3805,9 @@
     "nextCase": "PREP-006-BOOKMASTER-UNIVERSAARL-FALLSTUDIE-REWRITE-PLAN",
     "updatedAt": "2026-06-29T21:54:54.534Z"
   },
-  "activeCaseFile": ".agent/state/cases/target-024-core-masterdata-plan.json",
+  "activeCaseFile": ".agent/state/cases/target-026b-chart-of-accounts-vat-account-preflight.json",
   "previousCase": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
-  "nextCase": "TARGET-024-CORE-MASTERDATA-PLAN",
+  "nextCase": "TARGET-026B-CHART-OF-ACCOUNTS-VAT-ACCOUNT-PREFLIGHT",
   "latestPrepCase": {
     "caseId": "PREP-034-ROLE-CENTER-READONLY-SHELL-MAP",
     "status": "prep-observed",
@@ -6022,5 +6025,68 @@
     ],
     "nextCase": "TARGET-024-CORE-MASTERDATA-PLAN",
     "updatedAt": "2026-06-30T18:08:00.000Z"
+  },
+  "latestTarget024CoreMasterdataPlan": {
+    "caseId": "TARGET-024-CORE-MASTERDATA-PLAN",
+    "status": "observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-024-core-masterdata-plan/TARGET-024-result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "summary": "First Universaarl customers, vendors, items and locations are defined as a plan; no records were created.",
+    "plannedRecords": {
+      "customers": [
+        "U-CUST-100",
+        "U-CUST-110",
+        "U-CUST-120",
+        "U-CUST-190",
+        "U-CUST-900"
+      ],
+      "vendors": [
+        "U-VEND-100",
+        "U-VEND-110",
+        "U-VEND-120",
+        "U-VEND-130",
+        "U-VEND-900"
+      ],
+      "items": [
+        "U-ITEM-HW100",
+        "U-ITEM-RM100",
+        "U-ITEM-FG100",
+        "U-ITEM-SRV100",
+        "U-ITEM-ERR900"
+      ],
+      "locations": [
+        "SAAR-HL",
+        "SAAR-QS",
+        "SAAR-SRV"
+      ]
+    },
+    "notProved": [
+      "No master data was created.",
+      "No card/template/mandatory-field UI proof exists yet.",
+      "No posting/VAT/ledger effect exists."
+    ],
+    "nextCase": "TARGET-025-CUSTOMER-VENDOR-ITEM-TEMPLATES-PREFLIGHT",
+    "updatedAt": "2026-06-30T18:30:00.000Z"
+  },
+  "latestTarget025MasterdataTemplatePreflight": {
+    "caseId": "TARGET-025-CUSTOMER-VENDOR-ITEM-TEMPLATES-PREFLIGHT",
+    "status": "observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-025-customer-vendor-item-templates-preflight/TARGET-025-result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "summary": "Customers, Vendors, Items and Locations lists opened read-only; New/template signals visible but not clicked; no records created.",
+    "nextCase": "TARGET-026-VAT-SETUP-FIT-DECISION",
+    "updatedAt": "2026-06-30T18:45:00.000Z"
+  },
+  "latestTarget026VatSetupFitDecision": {
+    "caseId": "TARGET-026-VAT-SETUP-FIT-DECISION",
+    "status": "observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-026-vat-setup-fit-decision/TARGET-026-result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "decision": "Park VAT setup write until Chart of Accounts/VAT account candidates are visible.",
+    "nextCase": "TARGET-026B-CHART-OF-ACCOUNTS-VAT-ACCOUNT-PREFLIGHT",
+    "updatedAt": "2026-06-30T18:45:00.000Z"
   }
 }

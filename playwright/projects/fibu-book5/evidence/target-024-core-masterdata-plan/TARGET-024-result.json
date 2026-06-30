@@ -1,0 +1,126 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "TARGET-024-CORE-MASTERDATA-PLAN",
+  "source": "local-analysis",
+  "resultStatus": "observed",
+  "runPlanId": "TARGET-024-CORE-MASTERDATA-PLAN-PLAN",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-medium",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "proved": [
+    "The first Universaarl core master-data records are defined as plan objects, not created records.",
+    "Customers, vendors, items and locations now have codes, names, process purpose and preflight fields.",
+    "TARGET-024H boundary is carried forward: PRODUCTLINE/COSTCENTER are not claimed as Global Dimension Code 1/2.",
+    "The next sensible case is TARGET-025-CUSTOMER-VENDOR-ITEM-TEMPLATES-PREFLIGHT before any master-data creation."
+  ],
+  "notProved": [
+    "No customer, vendor, item or location was created in Business Central by this case.",
+    "No template, posting group, VAT group, number-series assignment or mandatory field was proven on a master-data card by this case.",
+    "No preview posting, posting, ledger entry, VAT entry, item entry or value entry was created.",
+    "No German final tax or posting-readiness claim is made."
+  ],
+  "changedFiles": [
+    ".agent/state/cases/target-024-core-masterdata-plan.json",
+    ".agent/state/cases/target-025-customer-vendor-item-templates-preflight.json",
+    ".agent/state/current.json",
+    ".agent/state/marathon_queue.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/coverage_state.json",
+    "playwright/projects/fibu-book5/UNIVERSAARL-CORE-MASTERDATA-PLAN.md",
+    "playwright/projects/fibu-book5/UNIVERSAARL-DATASET-BLUEPRINT.md",
+    "playwright/projects/fibu-book5/BC-FULL-PLAYTHROUGH-CATALOG.md",
+    "playwright/projects/fibu-book5/evidence/target-024-core-masterdata-plan/README.md",
+    "playwright/projects/fibu-book5/evidence/target-024-core-masterdata-plan/TARGET-024-result.json"
+  ],
+  "statePatch": {},
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-024-core-masterdata-plan/TARGET-024-result.json",
+    "playwright/projects/fibu-book5/evidence/target-024-core-masterdata-plan/README.md",
+    "playwright/projects/fibu-book5/UNIVERSAARL-CORE-MASTERDATA-PLAN.md",
+    "playwright/projects/fibu-book5/evidence/target-024h-global-dimension-park-or-pageinspection-decision/TARGET-024H-result.json"
+  ],
+  "warnings": [
+    "Do not create master data before TARGET-025 proves templates and mandatory card fields.",
+    "Do not claim global dimensions are assigned.",
+    "Do not use RM-DEMO, Rhein-Main or CRONUS data as active Universaarl truth."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": false,
+  "flags": {
+    "noBusinessCentralExecution": true,
+    "noPlaywrightExecution": true,
+    "noMasterDataCreated": true,
+    "noSetupChange": true,
+    "noPreview": true,
+    "noPost": true,
+    "noDraft": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookMasterChange": true,
+    "shopifyExcluded": true
+  },
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-024-CORE-MASTERDATA-PLAN",
+    "plannedNextCaseBeforeReview": "TARGET-024-CORE-MASTERDATA-PLAN",
+    "lastEvidenceSummary": "TARGET-024H parked global dimension assignment after repeated Page 118/Page 577 routes failed; starter Dimension Values exist from TARGET-023B.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "Planning concrete master data is the cheapest safe step before touching Business Central cards.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-025-CUSTOMER-VENDOR-ITEM-TEMPLATES-PREFLIGHT",
+        "status": "ready-next",
+        "reason": "The master-data plan now exists; card/template/mandatory-field preflight is the required next UI step."
+      },
+      {
+        "caseId": "TARGET-026-VAT-SETUP-FIT-DECISION",
+        "status": "needs-source-check-first",
+        "reason": "VAT groups on master data need a source-backed setup decision before German VAT claims."
+      },
+      {
+        "caseId": "TARGET-027-DEFAULT-DIMENSIONS-STRATEGY",
+        "status": "ready-after-current",
+        "reason": "Default dimensions need actual target records and must not rely on unproven global dimensions."
+      },
+      {
+        "caseId": "TARGET-028-FIRST-CUSTOMER-CONTROLLED-CREATE",
+        "status": "needs-setup-first",
+        "reason": "Creating the first customer requires TARGET-025 card/template proof and number-series/posting-group readiness."
+      },
+      {
+        "caseId": "TARGET-029-FIRST-VENDOR-AND-ITEM-CONTROLLED-CREATE",
+        "status": "needs-setup-first",
+        "reason": "Vendor and item creation should follow the template preflight and not start from assumptions."
+      }
+    ],
+    "queueChangesMade": [
+      "Marked TARGET-024-CORE-MASTERDATA-PLAN observed.",
+      "Added TARGET-025-CUSTOMER-VENDOR-ITEM-TEMPLATES-PREFLIGHT as the next pending case."
+    ],
+    "selectedNextCase": "TARGET-025-CUSTOMER-VENDOR-ITEM-TEMPLATES-PREFLIGHT",
+    "whySelectedNextCaseIsBest": "It turns the plan into UI evidence by checking the relevant cards, templates and mandatory fields before any record is created.",
+    "risksBeforeNextCase": [
+      "Template dialogs may create records if confirmed blindly.",
+      "Posting groups and VAT groups may still be incomplete.",
+      "Global dimensions are still parked and must not be treated as active setup."
+    ],
+    "requiredPreparation": [
+      "Open Customers, Vendors, Items and Locations with read-only or cancel-safe dialog gates.",
+      "Capture screenshot QA for page title, company context, FastTabs and important fields.",
+      "Stop before saving any new record."
+    ]
+  },
+  "validationCommands": [
+    "npm run agent:preflight",
+    "npm run agent:context",
+    "npm run agent:dry-run",
+    "npm run agent:run-plan",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/target-024-core-masterdata-plan/TARGET-024-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/target-024-core-masterdata-plan/TARGET-024-result.json",
+    "npm run check:encoding",
+    "git diff --check",
+    "npx tsc --noEmit"
+  ]
+}

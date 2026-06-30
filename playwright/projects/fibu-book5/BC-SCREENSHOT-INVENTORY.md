@@ -361,6 +361,17 @@ Ein Screenshot ist fuer Buch oder Evidence nur brauchbar, wenn der sichtbare Aus
 
 UI-relevante Result JSONs sollen `uiErgonomics` enthalten: Overlays, FactBox-Zweck, FastTabs, Grid-Fokus, horizontales/vertikales Scrollen, Personalisierung und Page Inspection.
 
+## Universaarl Master Data - Listen-Preflight TARGET-025
+
+| Screenshot | Page | Company | Schritt | Was sieht man? | Intern bewiesen | Nicht bewiesen | Status |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `target-025-010-customers-list.png` | Debitoren, Page 22 | `playthru` / `UNIVERSAARL-DE` | Read-only Debitorenliste | Leere Debitorenliste, `Neu`, Filter-/Listenaktionen, FactBox und Teaching Tip unten links | Die Debitorenliste ist in der Zielcompany erreichbar und aktuell leer | Debitorenvorlagen, Pflichtfelder, Nummernserien, Posting Groups, Anlage eines Debitors | `universaarl-readonly-preflight`, `not-a-create-proof` |
+| `target-025-020-vendors-list.png` | Kreditoren, Page 27 | `playthru` / `UNIVERSAARL-DE` | Read-only Kreditorenliste | Leere Kreditorenliste, `Neu`, Listenaktionen, FactBox und Teaching Tip unten links | Die Kreditorenliste ist in der Zielcompany erreichbar und aktuell leer | Kreditorenvorlagen, Pflichtfelder, Posting Groups, Zahlungskontext | `universaarl-readonly-preflight`, `not-a-create-proof` |
+| `target-025-030-items-list.png` | Artikel, Page 31 | `playthru` / `UNIVERSAARL-DE` | Read-only Artikelliste | Leere Artikelliste, `Neu`, FactBox mit Artikeldetails/Fakturierung/Planung und Teaching Tip | Die Artikelliste und der FactBox-Kontext sind erreichbar; es gibt noch keine Artikel | Artikelvorlagen, Lager-/Fakturierungspflichtfelder, Posting Groups, Artikelanlage | `universaarl-readonly-preflight`, `not-a-create-proof` |
+| `target-025-040-locations-list.png` | Lagerorte, Page 15 | `playthru` / `UNIVERSAARL-DE` | Read-only Lagerortliste | Leere Lagerortliste, `Neu`, Listenaktionen und Teaching Tip | Die Lagerortliste ist erreichbar und aktuell leer | Lagerortanlage, Lagerbuchungsgruppen, Lagerplatz-/Warehouse-Setup | `universaarl-readonly-preflight`, `not-a-create-proof` |
+
+Screenshot-QA zu TARGET-025: Diese vier Bilder sind gute Kontext- und Buchvorbereitungsbilder fuer leere Stammdatenlisten. Sie sind keine Beweise fuer Vorlagen, Pflichtfelder oder erfolgreich angelegte Stammdaten. Teaching Tips werden nur dann im Buchbild gelassen, wenn sie den Lernpunkt erklaeren; fuer Feld- oder Tabellenbeweise muessen sie geschlossen werden. Die FactBox ist nur dann Teil des Beweises, wenn ihr Inhalt erklaert wird und keine relevanten Spalten verdeckt.
+
 ## PREP-010 Screenshot-QA-Regel
 
 Vor jeder Buch- oder Clickguide-Nutzung muss der Screenshot gegen die konkrete Behauptung geprueft werden:

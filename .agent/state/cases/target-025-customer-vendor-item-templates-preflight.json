@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-025-CUSTOMER-VENDOR-ITEM-TEMPLATES-PREFLIGHT",
+  "title": "Universaarl customer, vendor, item and location template preflight",
+  "status": "done",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "workType": "universaarl-masterdata-template-preflight",
+  "taskClass": "wizard_work",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/target-024-core-masterdata-plan/TARGET-024-result.json",
+    "playwright/projects/fibu-book5/UNIVERSAARL-CORE-MASTERDATA-PLAN.md"
+  ],
+  "purpose": "Open the relevant master-data pages and capture template, mandatory-field and setup-dependency evidence before creating any customer, vendor, item or location.",
+  "allowedActions": [
+    "open-customers-list-readonly",
+    "open-vendors-list-readonly",
+    "open-items-list-readonly",
+    "open-locations-list-readonly",
+    "inspect-new-action-and-template-dialogs-with-cancel-gate",
+    "capture-screenshot-qa",
+    "write-result-and-next-step-card"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "save-new-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "api-shortcut",
+    "claim-global-dimensions-assigned"
+  ],
+  "entryCriteria": [
+    "TARGET-024 core master-data plan exists.",
+    "UNIVERSAARL-DE is the active target company.",
+    "No master data is created before template and mandatory-field evidence."
+  ],
+  "exitCriteria": [
+    "Customers, Vendors, Items and Locations pages are classified for safe create routes.",
+    "Template dialogs and mandatory fields are documented or blocked.",
+    "Next controlled create case is selected."
+  ],
+  "lookahead": [
+    {
+      "caseId": "TARGET-026-VAT-SETUP-FIT-DECISION",
+      "status": "needs-source-check-first",
+      "reason": "VAT setup choices affect customer, vendor and item fields."
+    },
+    {
+      "caseId": "TARGET-027-DEFAULT-DIMENSIONS-STRATEGY",
+      "status": "ready-after-current",
+      "reason": "Default Dimensions can be planned once master-data page routes are known."
+    },
+    {
+      "caseId": "TARGET-028-FIRST-CUSTOMER-CONTROLLED-CREATE",
+      "status": "needs-setup-first",
+      "reason": "Creation needs template, number-series and posting-group proof."
+    }
+  ],
+  "nextStep": "Run read-only/cancel-safe UI preflight for customer, vendor, item and location pages.",
+  "createdAt": "2026-06-30T18:30:00.000Z",
+  "updatedAt": "2026-06-30T18:40:00.000Z",
+  "resultStatus": "observed",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-025-customer-vendor-item-templates-preflight/TARGET-025-result.json",
+  "completedAt": "2026-06-30T18:40:00.000Z",
+  "nextCase": "TARGET-026-VAT-SETUP-FIT-DECISION",
+  "output": {
+    "pages": [
+      "Customers / Debitoren",
+      "Vendors / Kreditoren",
+      "Items / Artikel",
+      "Locations / Lagerorte"
+    ],
+    "noMasterDataCreated": true,
+    "noTemplateApplied": true,
+    "nextCase": "TARGET-026-VAT-SETUP-FIT-DECISION"
+  }
+}

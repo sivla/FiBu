@@ -40,6 +40,8 @@ Diese Wellen legen fest, in welcher Reihenfolge Universaarl-Daten spaeter entste
 
 Das Startpaket ist absichtlich klein, aber nicht leer. Es erzeugt spaeter genug Vergleichsdaten fuer Listen, Sortierung und einfache Filter, ohne sofort Massendaten in die Company zu kippen.
 
+TARGET-024 hat dieses Startpaket konkretisiert. Die Planung ist abgeschlossen, aber in Business Central wurde dadurch noch kein Debitor, Kreditor, Artikel oder Lagerort angelegt. Der naechste Schritt ist ein UI-Preflight der Karten, Templates, Pflichtfelder, Buchungsgruppen, USt-Gruppen und Nummernserien.
+
 | Paket | Datensaetze | Buchzweck | Erste Zielseite | Screenshotziel |
 | --- | --- | --- | --- | --- |
 | `MD-CUSTOMERS-01` | `U-CUST-100`, `U-CUST-110`, `U-CUST-120`, `U-CUST-190`, `U-CUST-900` | Kundenliste, Debitorenkarte, Zahlungsbedingungen, O2C, OP-Liste, Fehlerfall | Customers / Customer Card | Liste mit mehreren Kunden, Karte mit Buchungsgruppen und Zahlungsbedingung |
@@ -244,14 +246,18 @@ Spaeter muessen sichtbar sein:
 
 ## Naechste Umsetzung nach Rechtefreigabe
 
-1. `UNIVERSAARL-DE` erstellen.
-2. Datenbasis pruefen: keine unerwuenschten Sample Data.
-3. Company Information pflegen.
-4. Foundation Setup und Nummernserien pruefen.
-5. Dimensionen und Buchungsgruppen vorbereiten.
-6. Erste Debitoren-, Kreditoren- und Artikeltemplates pruefen.
+1. `UNIVERSAARL-DE` erstellen. Erledigt.
+2. Datenbasis pruefen: keine unerwuenschten Sample Data. Erledigt/weiterhin zu beobachten.
+3. Company Information pflegen. Name erledigt; Adresse, Land/Region und USt-ID bleiben offen.
+4. Foundation Setup und Nummernserien pruefen. Teilweise erledigt; offene Nummernserien-Zuweisungen sind geparkt.
+5. Dimensionen und Buchungsgruppen vorbereiten. Dimension Values erledigt; globale Dimensionen geparkt; Buchungsgruppen/USt sind read-only klassifiziert.
+6. Erste Debitoren-, Kreditoren-, Artikel- und Lagerort-Templates pruefen. Naechster Schritt: `TARGET-025-CUSTOMER-VENDOR-ITEM-TEMPLATES-PREFLIGHT`.
 7. Datenfamilien klein starten und dann pro Prozess erweitern.
 
 ## PREP-013 Entscheidung
 
 Dieser Blueprint ist eine Vorbereitungsdatei. Er ist keine Business-Central-Evidence und erzeugt keine Stammdaten. Nach der Rechtefreigabe wird zuerst die Company angelegt und dann pro Datenpaket entschieden, ob vorhandene Templates, manuelle UI-Anlage oder ein kontrollierter Import sinnvoll sind. API- oder Massenanlage bleibt gesperrt, solange kein eigener Case sie erlaubt.
+
+## TARGET-024 Entscheidung
+
+`playwright/projects/fibu-book5/UNIVERSAARL-CORE-MASTERDATA-PLAN.md` ist ab TARGET-024 die fuehrende Planung fuer das erste Core-Masterdata-Paket. Es definiert konkrete Debitoren, Kreditoren, Artikel und Lagerorte, aber laesst alle wirksamen Anlagen bis zum UI-Preflight gesperrt.

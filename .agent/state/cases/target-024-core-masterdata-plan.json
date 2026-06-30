@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "caseId": "TARGET-024-CORE-MASTERDATA-PLAN",
   "title": "Universaarl core master data plan",
-  "status": "planned",
+  "status": "done",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "workType": "universaarl-core-masterdata-plan",
@@ -63,5 +63,64 @@
   ],
   "nextStep": "Plan first Universaarl master data without creating records yet.",
   "createdAt": "2026-06-30T18:08:00.000Z",
-  "updatedAt": "2026-06-30T18:08:00.000Z"
+  "updatedAt": "2026-06-30T18:30:00.000Z",
+  "resultStatus": "observed",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-024-core-masterdata-plan/TARGET-024-result.json",
+  "completedAt": "2026-06-30T18:30:00.000Z",
+  "output": {
+    "planPath": "playwright/projects/fibu-book5/UNIVERSAARL-CORE-MASTERDATA-PLAN.md",
+    "evidenceReadme": "playwright/projects/fibu-book5/evidence/target-024-core-masterdata-plan/README.md",
+    "noMasterDataCreated": true,
+    "nextCase": "TARGET-025-CUSTOMER-VENDOR-ITEM-TEMPLATES-PREFLIGHT"
+  },
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-024-CORE-MASTERDATA-PLAN",
+    "plannedNextCaseBeforeReview": "TARGET-024-CORE-MASTERDATA-PLAN",
+    "lastEvidenceSummary": "TARGET-024H parked Global Dimension Code assignment. TARGET-024 converted the dataset blueprint into concrete first Universaarl customers, vendors, items and locations without creating records.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The plan closes the dependency before master-data UI work: records now have purpose, codes and required preflight fields.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-025-CUSTOMER-VENDOR-ITEM-TEMPLATES-PREFLIGHT",
+        "status": "ready-next",
+        "reason": "Card/template/mandatory-field evidence is required before any master-data record is created."
+      },
+      {
+        "caseId": "TARGET-026-VAT-SETUP-FIT-DECISION",
+        "status": "needs-source-check-first",
+        "reason": "VAT fields on customers/vendors/items need source-backed German setup choices before final claims."
+      },
+      {
+        "caseId": "TARGET-027-DEFAULT-DIMENSIONS-STRATEGY",
+        "status": "ready-after-current",
+        "reason": "Default Dimensions can be planned after the relevant cards/templates are known, without claiming global dimensions."
+      },
+      {
+        "caseId": "TARGET-028-FIRST-CUSTOMER-CONTROLLED-CREATE",
+        "status": "needs-setup-first",
+        "reason": "First customer creation needs TARGET-025 proof plus number-series/posting-group readiness."
+      },
+      {
+        "caseId": "TARGET-029-FIRST-VENDOR-AND-ITEM-CONTROLLED-CREATE",
+        "status": "needs-setup-first",
+        "reason": "Vendor/item creation should not start before card/template and setup dependencies are visible."
+      }
+    ],
+    "queueChangesMade": [
+      "Marked TARGET-024-CORE-MASTERDATA-PLAN observed/done.",
+      "Added and selected TARGET-025-CUSTOMER-VENDOR-ITEM-TEMPLATES-PREFLIGHT."
+    ],
+    "selectedNextCase": "TARGET-025-CUSTOMER-VENDOR-ITEM-TEMPLATES-PREFLIGHT",
+    "whySelectedNextCaseIsBest": "It turns the local master-data plan into UI evidence while still preventing accidental record creation.",
+    "risksBeforeNextCase": [
+      "Template dialogs may create records if confirmed blindly.",
+      "Posting groups, VAT groups and number-series setup are still not fully proven for all master-data cards.",
+      "Global Dimension Code 1/2 assignment remains parked and must not be used as a claim."
+    ],
+    "requiredPreparation": [
+      "Use cancel-safe dialog handling and screenshot QA.",
+      "Capture card/list page context before any New/template route.",
+      "Stop before Save/Create if a new record would be generated."
+    ]
+  }
 }

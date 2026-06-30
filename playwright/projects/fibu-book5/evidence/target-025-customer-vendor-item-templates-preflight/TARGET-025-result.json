@@ -1,0 +1,254 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "TARGET-025-CUSTOMER-VENDOR-ITEM-TEMPLATES-PREFLIGHT",
+  "source": "playwright-readonly-masterdata-template-preflight",
+  "resultStatus": "observed",
+  "runPlanId": "TARGET-025-CUSTOMER-VENDOR-ITEM-TEMPLATES-PREFLIGHT-PLAN",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-medium",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "proved": [
+    "4/4 master-data pages opened read-only in playthru/UNIVERSAARL-DE.",
+    "No customer, vendor, item or location was created.",
+    "No template was applied, no save/create was confirmed, no preview/posting occurred.",
+    "Customers / Debitoren visible read-only.",
+    "Vendors / Kreditoren visible read-only.",
+    "Items / Artikel visible read-only.",
+    "Locations / Lagerorte visible read-only."
+  ],
+  "notProved": [
+    "Templates and mandatory fields are not fully proven because New/Create was intentionally not confirmed.",
+    "Posting groups, VAT groups and number-series readiness for actual new cards are not proven.",
+    "No Default Dimensions, ledger entries, VAT entries, item entries or value entries exist from this case."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/target-025-customer-vendor-item-templates-preflight/TARGET-025-result.json",
+    "playwright/projects/fibu-book5/evidence/target-025-customer-vendor-item-templates-preflight/README.md",
+    "playwright/projects/fibu-book5/evidence/target-025-customer-vendor-item-templates-preflight/*.txt",
+    "playwright/projects/fibu-book5/evidence/target-025-customer-vendor-item-templates-preflight/*.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/target-025-customer-vendor-item-templates-preflight/target-025-*.png"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-025-customer-vendor-item-templates-preflight/TARGET-025-result.json",
+    "playwright/projects/fibu-book5/evidence/target-025-customer-vendor-item-templates-preflight/target-025-010-customers-list.png",
+    "playwright/projects/fibu-book5/evidence/target-025-customer-vendor-item-templates-preflight/target-025-020-vendors-list.png",
+    "playwright/projects/fibu-book5/evidence/target-025-customer-vendor-item-templates-preflight/target-025-030-items-list.png",
+    "playwright/projects/fibu-book5/evidence/target-025-customer-vendor-item-templates-preflight/target-025-040-locations-list.png"
+  ],
+  "pages": [
+    {
+      "id": "customers-list",
+      "pageId": 22,
+      "label": "Customers / Debitoren",
+      "status": "observed",
+      "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=22&company=UNIVERSAARL-DE",
+      "screenshot": "playwright/projects/fibu-book5/evidence/target-025-customer-vendor-item-templates-preflight/target-025-010-customers-list.png",
+      "textFile": "playwright/projects/fibu-book5/evidence/target-025-customer-vendor-item-templates-preflight/customers-list.txt",
+      "textSignals": [
+        "Debitoren:",
+        "Neu",
+        "Neuer Beleg",
+        "Debitor",
+        "Es sind noch keine Daten vorhanden. Möchten Sie Debitoren importieren?",
+        "Nr.",
+        "Name",
+        "Telefonnr.",
+        "Debitorennr.",
+        "Debitoren-Abonnementverträge",
+        "Informationen zu Debitoren",
+        "Hier sehen Sie alle registrierten Debitoren, deren Salden und Verkaufsstatistiken. Mit Debitorenvorlagen können Sie schnell neue Debitoren mit gemeinsamen Details erstellen, die...",
+        "Nr., Sortierreihenfolge Aufsteigend"
+      ],
+      "visibleActions": [
+        "New/Neu visible but not clicked.",
+        "Edit/Bearbeiten visible but not clicked.",
+        "Template/Vorlage text visible; no template applied."
+      ],
+      "plannedRecords": [
+        "U-CUST-100",
+        "U-CUST-110",
+        "U-CUST-120",
+        "U-CUST-190",
+        "U-CUST-900"
+      ],
+      "reason": "Expected master-data page text is visible."
+    },
+    {
+      "id": "vendors-list",
+      "pageId": 27,
+      "label": "Vendors / Kreditoren",
+      "status": "observed",
+      "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=27&company=UNIVERSAARL-DE",
+      "screenshot": "playwright/projects/fibu-book5/evidence/target-025-customer-vendor-item-templates-preflight/target-025-020-vendors-list.png",
+      "textFile": "playwright/projects/fibu-book5/evidence/target-025-customer-vendor-item-templates-preflight/vendors-list.txt",
+      "textSignals": [
+        "Kreditoren:",
+        "Neu",
+        "Neuer Beleg",
+        "Kreditor",
+        "Es sind noch keine Daten vorhanden. Möchten Sie Kreditoren importieren?",
+        "Nr.",
+        "Name",
+        "Telefonnr.",
+        "Kreditorenstatistik",
+        "Kreditorennr.",
+        "Historie für Einkauf von Kreditor",
+        "Kreditoren-Abonnementverträge",
+        "Informationen zu Kreditoren",
+        "Hier erhalten Sie eine Übersicht aller registrierten Kreditoren, von denen Sie Waren und Dienstleistungen kaufen. Mit Kreditorenvorlagen können Sie schnell neue Kreditoren mit g...",
+        "Nr., Sortierreihenfolge Aufsteigend"
+      ],
+      "visibleActions": [
+        "New/Neu visible but not clicked.",
+        "Edit/Bearbeiten visible but not clicked.",
+        "Template/Vorlage text visible; no template applied."
+      ],
+      "plannedRecords": [
+        "U-VEND-100",
+        "U-VEND-110",
+        "U-VEND-120",
+        "U-VEND-130",
+        "U-VEND-900"
+      ],
+      "reason": "Expected master-data page text is visible."
+    },
+    {
+      "id": "items-list",
+      "pageId": 31,
+      "label": "Items / Artikel",
+      "status": "observed",
+      "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=31&company=UNIVERSAARL-DE",
+      "screenshot": "playwright/projects/fibu-book5/evidence/target-025-customer-vendor-item-templates-preflight/target-025-030-items-list.png",
+      "textFile": "playwright/projects/fibu-book5/evidence/target-025-customer-vendor-item-templates-preflight/items-list.txt",
+      "textSignals": [
+        "Artikel:",
+        "Neu",
+        "Artikel",
+        "Es sind noch keine Daten vorhanden. Möchten Sie Artikel importieren?",
+        "Nr.",
+        "Beschreibung",
+        "Lagerbestand",
+        "Ersatzartikel vorhanden",
+        "Kreditorennr.",
+        "Artikeldetails - Fakturierung",
+        "Artikelnr.",
+        "Lagerabgangsmethode",
+        "Direkte Kosten (neueste)",
+        "Artikeldetails - Planung",
+        "Neuplanungsperiode",
+        "Artikelattribute",
+        "Informationen zu Artikeln",
+        "Artikel stellen die Produkte und Dienstleistungen dar, die Sie kaufen und verkaufen. Sie können für jeden Artikel die üblichen Verkaufs- und Einkaufspreise verwalten, die beim E...",
+        "Nr., Sortierreihenfolge Aufsteigend"
+      ],
+      "visibleActions": [
+        "New/Neu visible but not clicked.",
+        "Edit/Bearbeiten visible but not clicked.",
+        "Template/Vorlage text visible; no template applied."
+      ],
+      "plannedRecords": [
+        "U-ITEM-HW100",
+        "U-ITEM-RM100",
+        "U-ITEM-FG100",
+        "U-ITEM-SRV100",
+        "U-ITEM-ERR900"
+      ],
+      "reason": "Expected master-data page text is visible."
+    },
+    {
+      "id": "locations-list",
+      "pageId": 15,
+      "label": "Locations / Lagerorte",
+      "status": "observed",
+      "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=15&company=UNIVERSAARL-DE",
+      "screenshot": "playwright/projects/fibu-book5/evidence/target-025-customer-vendor-item-templates-preflight/target-025-040-locations-list.png",
+      "textFile": "playwright/projects/fibu-book5/evidence/target-025-customer-vendor-item-templates-preflight/locations-list.txt",
+      "textSignals": [
+        "Lagerorte:",
+        "Neu",
+        "Lagerort",
+        "Code",
+        "Name",
+        "Info über Lagerorte",
+        "Richten Sie Lager und andere Lagerorte ein, und verwalten Sie sie, konfigurieren Sie Lagerrichtlinien und Lagerplatzeinstellungen, und verfolgen Sie Artikelverfügbarkeit sowie U...",
+        "Code, Sortierreihenfolge Aufsteigend",
+        "cacheLocation: \"sessionStorage\","
+      ],
+      "visibleActions": [
+        "New/Neu visible but not clicked."
+      ],
+      "plannedRecords": [
+        "SAAR-HL",
+        "SAAR-QS",
+        "SAAR-SRV"
+      ],
+      "reason": "Expected master-data page text is visible."
+    }
+  ],
+  "blockedBy": [],
+  "warnings": [
+    "New/Neu visible but not clicked.",
+    "Edit/Bearbeiten visible but not clicked.",
+    "Template/Vorlage text visible; no template applied."
+  ],
+  "flags": {
+    "noWrite": true,
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noSetupChange": true,
+    "noMasterDataChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noSearch": true,
+    "noBookMasterChange": true,
+    "noTemplateApplied": true,
+    "readOnlyDirectPageRoutes": true
+  },
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-025-CUSTOMER-VENDOR-ITEM-TEMPLATES-PREFLIGHT",
+    "plannedNextCaseBeforeReview": "TARGET-025-CUSTOMER-VENDOR-ITEM-TEMPLATES-PREFLIGHT",
+    "lastEvidenceSummary": "TARGET-024 defined first Universaarl master-data families without creating records.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "Master-data cards and lists must be visible before a controlled New/template/create case can be attempted.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-026-VAT-SETUP-FIT-DECISION",
+        "status": "needs-source-check-first",
+        "reason": "Customer/vendor/item VAT fields require source-backed setup before first create."
+      },
+      {
+        "caseId": "TARGET-027-DEFAULT-DIMENSIONS-STRATEGY",
+        "status": "ready-after-current",
+        "reason": "Default dimensions can be designed after card contexts are known, but global dimensions remain parked."
+      },
+      {
+        "caseId": "TARGET-028-FIRST-CUSTOMER-CONTROLLED-CREATE",
+        "status": "ready-after-current",
+        "reason": "Customer create can follow after explicit create gate and setup-field decision."
+      },
+      {
+        "caseId": "TARGET-029-FIRST-VENDOR-AND-ITEM-CONTROLLED-CREATE",
+        "status": "needs-setup-first",
+        "reason": "Vendor/item creation needs posting/VAT setup and template/default decisions."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-026-VAT-SETUP-FIT-DECISION",
+    "whySelectedNextCaseIsBest": "VAT setup decisions affect the fields that will be used on customer, vendor and item cards.",
+    "risksBeforeNextCase": [
+      "New/template actions can create records if confirmed blindly.",
+      "No master-data creation should occur before setup-field decisions are explicit."
+    ],
+    "requiredPreparation": [
+      "Keep New/Create/Save dialogs cancel-safe.",
+      "Do not treat list visibility as proof of mandatory field completeness."
+    ]
+  },
+  "requiresReview": false,
+  "safeToFinalizeState": false,
+  "statePatch": {},
+  "reason": "Master-data list/card contexts were observed read-only; no records were created."
+}

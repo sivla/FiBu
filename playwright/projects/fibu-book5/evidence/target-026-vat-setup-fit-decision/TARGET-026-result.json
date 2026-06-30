@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "TARGET-026-VAT-SETUP-FIT-DECISION",
+  "source": "local-source-decision",
+  "resultStatus": "observed",
+  "runPlanId": "TARGET-026-VAT-SETUP-FIT-DECISION-PLAN",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "proved": [
+    "Microsoft Learn supports VAT setup through VAT Business Posting Groups, VAT Product Posting Groups and VAT Posting Setup combinations.",
+    "VAT Posting Setup needs VAT %, VAT Calculation Type and G/L accounts such as Sales VAT Account and Purchase VAT Account.",
+    "Universaarl should not write VAT setup before Chart of Accounts and VAT account candidates are known.",
+    "The next best case is TARGET-026B-CHART-OF-ACCOUNTS-VAT-ACCOUNT-PREFLIGHT."
+  ],
+  "notProved": [
+    "German 19 percent VAT is not proven in Business Central.",
+    "No VAT group or VAT posting setup was created or changed.",
+    "No Sales VAT Account or Purchase VAT Account candidate was proven in UNIVERSAARL-DE.",
+    "No Preview Posting, VAT Entry or G/L Entry exists."
+  ],
+  "changedFiles": [
+    ".agent/state/cases/target-026-vat-setup-fit-decision.json",
+    ".agent/state/cases/target-026b-chart-of-accounts-vat-account-preflight.json",
+    ".agent/state/current.json",
+    ".agent/state/marathon_queue.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/coverage_state.json",
+    "playwright/projects/fibu-book5/UNIVERSAARL-VAT-SETUP-FIT-DECISION.md",
+    "playwright/projects/fibu-book5/BC-SOURCE-REGISTRY.md",
+    "playwright/projects/fibu-book5/BC-MICROSOFT-LEARN-MAPPING.md",
+    "playwright/projects/fibu-book5/BC-FULL-PLAYTHROUGH-CATALOG.md",
+    "playwright/projects/fibu-book5/evidence/target-026-vat-setup-fit-decision/README.md",
+    "playwright/projects/fibu-book5/evidence/target-026-vat-setup-fit-decision/TARGET-026-result.json"
+  ],
+  "statePatch": {},
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-026-vat-setup-fit-decision/TARGET-026-result.json",
+    "playwright/projects/fibu-book5/evidence/target-026-vat-setup-fit-decision/README.md",
+    "playwright/projects/fibu-book5/UNIVERSAARL-VAT-SETUP-FIT-DECISION.md",
+    "https://learn.microsoft.com/en-us/dynamics365/business-central/finance-setup-vat"
+  ],
+  "warnings": [
+    "Do not set INLAND/VAT19 before G/L account candidates are proven.",
+    "Do not claim German 19 percent VAT without an official German source plus Universaarl Preview/VAT Entries/G/L Entries.",
+    "Do not create master data that depends on VAT groups before VAT setup is resolved or explicitly parked."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": false,
+  "flags": {
+    "noBusinessCentralExecution": true,
+    "noPlaywrightExecution": true,
+    "noSetupChange": true,
+    "noMasterDataCreated": true,
+    "noPreview": true,
+    "noPost": true,
+    "noDraft": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookMasterChange": true
+  },
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-026-VAT-SETUP-FIT-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-026-VAT-SETUP-FIT-DECISION",
+    "lastEvidenceSummary": "TARGET-025 proved customer, vendor, item and location lists read-only, but no template, mandatory field or VAT group assignment is proven.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "VAT setup affects customer/vendor/item fields, but Microsoft Learn shows VAT Posting Setup also needs G/L accounts; therefore Chart of Accounts/VAT account preflight must come first.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-026B-CHART-OF-ACCOUNTS-VAT-ACCOUNT-PREFLIGHT",
+        "status": "ready-next",
+        "reason": "VAT Posting Setup cannot be written safely before Sales/Purchase VAT Account candidates are visible."
+      },
+      {
+        "caseId": "TARGET-026C-VAT-GROUPS-CONTROLLED-SETUP-FIT",
+        "status": "needs-setup-first",
+        "reason": "Requires account candidates and a VAT setup Smart Decision."
+      },
+      {
+        "caseId": "TARGET-027-DEFAULT-DIMENSIONS-STRATEGY",
+        "status": "ready-after-current",
+        "reason": "Can proceed after setup dependencies are separated; global dimensions remain parked."
+      },
+      {
+        "caseId": "TARGET-028-FIRST-CUSTOMER-CONTROLLED-CREATE",
+        "status": "needs-setup-first",
+        "reason": "Requires customer template/mandatory field and VAT/posting group setup."
+      },
+      {
+        "caseId": "TARGET-029-FIRST-VENDOR-AND-ITEM-CONTROLLED-CREATE",
+        "status": "needs-setup-first",
+        "reason": "Requires vendor/item template and VAT/posting group setup."
+      }
+    ],
+    "queueChangesMade": [
+      "Marked TARGET-026-VAT-SETUP-FIT-DECISION observed.",
+      "Inserted TARGET-026B-CHART-OF-ACCOUNTS-VAT-ACCOUNT-PREFLIGHT before any VAT setup write."
+    ],
+    "selectedNextCase": "TARGET-026B-CHART-OF-ACCOUNTS-VAT-ACCOUNT-PREFLIGHT",
+    "whySelectedNextCaseIsBest": "It resolves the account dependency that controls whether VAT setup can be explained and fitted safely.",
+    "risksBeforeNextCase": [
+      "No VAT setup write without G/L account candidates.",
+      "No German 19 percent claim without official tax source and posting evidence."
+    ],
+    "requiredPreparation": [
+      "Open Chart of Accounts read-only in UNIVERSAARL-DE.",
+      "Look for VAT/Sales VAT/Purchase VAT account candidates.",
+      "Do not create or edit accounts in the preflight."
+    ]
+  },
+  "validationCommands": [
+    "npm run agent:preflight",
+    "npm run agent:context",
+    "npm run agent:dry-run",
+    "npm run agent:run-plan",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/target-026-vat-setup-fit-decision/TARGET-026-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/target-026-vat-setup-fit-decision/TARGET-026-result.json",
+    "npm run check:encoding",
+    "git diff --check",
+    "npx tsc --noEmit"
+  ]
+}

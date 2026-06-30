@@ -1,70 +1,78 @@
 {
   "schemaVersion": 1,
-  "caseId": "TARGET-024H-GLOBAL-DIMENSION-PARK-OR-PAGEINSPECTION-DECISION",
+  "caseId": "TARGET-026-VAT-SETUP-FIT-DECISION",
   "status": "observed",
-  "summary": "TARGET-024G blocked the Page 118 lookup/detail route; TARGET-024H parked Global Dimension Code assignment and selected Core Master Data Plan next.",
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-024h-global-dimension-park-or-pageinspection-decision/TARGET-024H-result.json",
+  "summary": "TARGET-025 opened master-data pages read-only; TARGET-026 source check parked VAT setup write until Chart of Accounts/VAT account candidates are visible.",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-026-vat-setup-fit-decision/TARGET-026-result.json",
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/target-024e-global-dimension-assignment-source-or-alternative-route/TARGET-024E-result.json",
-    "playwright/projects/fibu-book5/evidence/target-024e-global-dimension-assignment-source-or-alternative-route/README.md",
-    "https://learn.microsoft.com/en-us/dynamics365/business-central/finance-dimensions"
+    "playwright/projects/fibu-book5/evidence/target-025-customer-vendor-item-templates-preflight/TARGET-025-result.json",
+    "playwright/projects/fibu-book5/evidence/target-026-vat-setup-fit-decision/TARGET-026-result.json",
+    "playwright/projects/fibu-book5/UNIVERSAARL-VAT-SETUP-FIT-DECISION.md"
   ],
   "proved": [
-    "TARGET-024B/024D routes are not persistence proof.",
-    "Microsoft Learn supports using General Ledger Setup / Dimensions FastTab as the global-dimension setup context.",
-    "TARGET-024F is the selected non-repeating route."
+    "Customers/Vendors/Items/Locations list contexts are visible read-only.",
+    "VAT setup source decision requires Chart of Accounts/VAT account preflight first."
   ],
   "notProved": [
-    "PRODUCTLINE/COSTCENTER are not persisted as Global Dimension Code 1/2 yet.",
-    "No default dimensions, entries or reporting effect are proven."
+    "No master data was created.",
+    "No VAT setup was changed.",
+    "No German 19 percent VAT, preview, VAT Entries or G/L Entries are proven."
   ],
-  "nextCase": "TARGET-024-CORE-MASTERDATA-PLAN",
+  "nextCase": "TARGET-026B-CHART-OF-ACCOUNTS-VAT-ACCOUNT-PREFLIGHT",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-024H-GLOBAL-DIMENSION-PARK-OR-PAGEINSPECTION-DECISION",
-    "plannedNextCaseBeforeReview": "TARGET-024H-GLOBAL-DIMENSION-PARK-OR-PAGEINSPECTION-DECISION",
-    "lastEvidenceSummary": "Global Dimension Code assignment is not proven after Page 577, direct Page 118 and Page 118 button probes.",
-    "isPlannedNextCaseStillSensible": false,
-    "reason": "The decision is complete; the next case should plan core master data under the explicit boundary that global dimensions are not assigned.",
+    "currentCase": "TARGET-026-VAT-SETUP-FIT-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-026-VAT-SETUP-FIT-DECISION",
+    "lastEvidenceSummary": "TARGET-025 opened Debitoren, Kreditoren, Artikel and Lagerorte read-only. TARGET-026 source check shows VAT Posting Setup needs G/L account candidates before a setup write.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "VAT setup affects customer/vendor/item fields, but cannot be fitted responsibly until Sales/Purchase VAT Account candidates are visible.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-024-CORE-MASTERDATA-PLAN",
+        "caseId": "TARGET-026B-CHART-OF-ACCOUNTS-VAT-ACCOUNT-PREFLIGHT",
         "status": "ready-next",
-        "reason": "Master data planning can proceed without creating records and without claiming global dimensions are assigned."
+        "reason": "Chart of Accounts read-only preflight is the missing account dependency for VAT setup."
       },
       {
-        "caseId": "TARGET-025-CUSTOMER-VENDOR-ITEM-TEMPLATES-PREFLIGHT",
-        "status": "ready-after-current",
-        "reason": "Template preflight needs the core master-data plan first."
-      },
-      {
-        "caseId": "TARGET-026-VAT-SETUP-FIT-DECISION",
-        "status": "needs-source-check-first",
-        "reason": "VAT setup must be source-backed before document preview."
+        "caseId": "TARGET-026C-VAT-GROUPS-CONTROLLED-SETUP-FIT",
+        "status": "needs-setup-first",
+        "reason": "Requires account candidates and explicit VAT setup gate."
       },
       {
         "caseId": "TARGET-027-DEFAULT-DIMENSIONS-STRATEGY",
         "status": "ready-after-current",
-        "reason": "Default dimensions need concrete master-data records."
+        "reason": "Can proceed after VAT/account dependency is classified; global dimensions remain parked."
+      },
+      {
+        "caseId": "TARGET-028-FIRST-CUSTOMER-CONTROLLED-CREATE",
+        "status": "needs-setup-first",
+        "reason": "Requires card/template evidence plus posting/VAT setup decisions."
+      },
+      {
+        "caseId": "TARGET-029-FIRST-VENDOR-AND-ITEM-CONTROLLED-CREATE",
+        "status": "needs-setup-first",
+        "reason": "Requires vendor/item template evidence plus posting/VAT setup decisions."
       }
     ],
     "queueChangesMade": [
-      "Marked TARGET-024G blocked after lookup/detail button probe.",
-      "Marked TARGET-024H observed as park decision.",
-      "Inserted/selected TARGET-024-CORE-MASTERDATA-PLAN."
+      "Marked TARGET-025 observed after read-only master-data page preflight.",
+      "Marked TARGET-026 observed as VAT setup source decision.",
+      "Inserted and selected TARGET-026B-CHART-OF-ACCOUNTS-VAT-ACCOUNT-PREFLIGHT."
     ],
-    "selectedNextCase": "TARGET-024-CORE-MASTERDATA-PLAN",
-    "whySelectedNextCaseIsBest": "It moves Universaarl foundation forward without pretending that global dimensions are assigned.",
+    "selectedNextCase": "TARGET-026B-CHART-OF-ACCOUNTS-VAT-ACCOUNT-PREFLIGHT",
+    "whySelectedNextCaseIsBest": "It proves or blocks the account basis that VAT setup needs before any write or first master-data create.",
     "risksBeforeNextCase": [
-      "Do not use global-dimension assignment as a prerequisite or claim.",
-      "Do not create master data before required fields/templates are planned."
+      "Do not create or edit G/L accounts during preflight.",
+      "Do not change VAT setup without account candidates and a separate setup-fit gate.",
+      "Do not claim German 19 percent VAT without official source plus posting evidence."
     ],
     "requiredPreparation": [
-      "Use TARGET-023B values as available dimensions, not as proven global dimensions."
+      "Open Chart of Accounts read-only in playthru / UNIVERSAARL-DE.",
+      "Capture VAT account candidate signals and screenshot QA.",
+      "Stop before New/Edit/Delete/Post/Preview."
     ]
   },
   "runId": "TARGET-024E-GLOBAL-DIMENSION-ASSIGNMENT-SOURCE-OR-ALTERNATIVE-ROUTE-2026-06-30T18-10-00-000Z",
-  "updatedAt": "2026-06-30T18:08:00.000Z",
-  "nextStep": "Run TARGET-024F: inspect and target Page 118 Global Dimension Code fields directly; do not repeat the Page 577 Change Global Dimensions route.",
+  "updatedAt": "2026-06-30T18:45:00.000Z",
+  "nextStep": "Run TARGET-026B Chart of Accounts VAT Account Preflight.",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE"
 }

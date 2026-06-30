@@ -118,6 +118,18 @@ Fuer Universaarl folgt daraus:
 - Nach jeder Eingabe zaehlt erst das erneute Oeffnen von Page 118 als Persistenzbeweis.
 - Masterdaten, Default Dimensions, Belege und Reporting bleiben gesperrt, bis `PRODUCTLINE` und `COSTCENTER` sichtbar gespeichert sind oder die globale Dimension bewusst geparkt wird.
 
+## TARGET-026 VAT-Setup-Quellenentscheidung
+
+Microsoft Learn `Set up VAT` stuetzt fuer TARGET-026 die Produktlogik: VAT Business Posting Groups beschreiben, mit wem gehandelt wird; VAT Product Posting Groups beschreiben, was gehandelt wird; VAT Posting Setup kombiniert beide Gruppen und enthaelt VAT %, VAT Calculation Type sowie G/L-Konten wie Sales VAT Account und Purchase VAT Account.
+
+Fuer Universaarl folgt daraus:
+
+- VAT Setup wird nicht sofort geschrieben.
+- Geplante Zielcodes wie `INLAND` und `VAT19` bleiben Zielwerte, keine BC-Evidence.
+- Vor einem VAT Posting Setup Write muessen Kontenplan und USt-Konto-Kandidaten sichtbar geprueft werden.
+- Deutsche 19-Prozent-USt braucht zusaetzlich amtliche Quelle und spaeter Universaarl-Preview, VAT Entries und Sachposten.
+- Naechster Case ist `TARGET-026B-CHART-OF-ACCOUNTS-VAT-ACCOUNT-PREFLIGHT`.
+
 ## PREP-027 Implementation-Guide-Quellenentscheidung
 
 Success by Design, Process-focused solution, Fit-to-standard/Fit-gap, Testing Strategy, Create a test plan und Types of tests stuetzen nur Projekt-, Prozess- und Teststruktur. Fuer Universaarl bedeutet das:
