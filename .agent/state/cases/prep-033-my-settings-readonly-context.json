@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "caseId": "PREP-033-MY-SETTINGS-READONLY-CONTEXT",
+  "status": "done",
+  "type": "readonly-ui-discovery",
+  "instance": "playthru",
+  "targetCompany": "UNIVERSAARL-DE",
+  "shellCompanyObserved": "CRONUS DE",
+  "goal": "Prove the My Settings user-context surface read-only for company, role, language and work-date explanation while company creation is parked.",
+  "routeUsed": "Role Center -> Einstellungen -> Meine Einstellungen",
+  "routeRejected": [
+    "Direct Page 9176 was rejected because this playthru instance returned 'Page 9176 not found'.",
+    "Tell-Me/search was not used because it is unnecessary for this route and can open the wrong context."
+  ],
+  "allowedActions": [
+    "open-playthru-role-center",
+    "open-settings-menu",
+    "open-my-settings-readonly",
+    "capture-screenshot",
+    "write-result-json",
+    "update-atlas-and-state"
+  ],
+  "forbiddenActionsObserved": [
+    "save-settings",
+    "company-switch",
+    "company-create",
+    "setup-change",
+    "preview-posting",
+    "posting",
+    "api-shortcut"
+  ],
+  "resultPath": "playwright/projects/fibu-book5/evidence/prep-033-my-settings-readonly-context/PREP-033-result.json",
+  "evidencePath": "playwright/projects/fibu-book5/evidence/prep-033-my-settings-readonly-context/",
+  "screenshots": [
+    {
+      "path": "playwright/projects/fibu-book5/img/prep-033-010-my-settings-readonly-context.png",
+      "status": "usable-context-screenshot",
+      "qa": "Shows Meine Einstellungen with Rolle, Mandant, Arbeitsdatum, Region, Sprache and OK/Abbrechen boundary. User name, OneDrive owner text and last-login text are masked."
+    }
+  ],
+  "proved": [
+    "My Settings / Meine Einstellungen opens read-only in playthru through the Settings menu.",
+    "The page visibly explains user context fields: Rolle, Mandant, Arbeitsdatum, Region and Sprache.",
+    "The route does not require Tell-Me/search, direct Page ID navigation or any data-changing action.",
+    "No settings were saved and no company switch was performed."
+  ],
+  "notProved": [
+    "UNIVERSAARL-DE was not created and is not the current company.",
+    "No setup, posting, preview, API shortcut or document action was performed.",
+    "The screenshot is a pre-company context screenshot and must be recreated after UNIVERSAARL-DE exists."
+  ],
+  "bookLearning": [
+    "My Settings belongs in the beginner book as a context check: role, company, work date, region and language shape what a user sees.",
+    "OK can save settings and must be treated as a data-changing boundary; Abbrechen is the safe exit in read-only explanation.",
+    "Page IDs are not enough for navigation in every BC version; the visible UI route is the reliable beginner path."
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": true,
+  "nextCase": "PREP-034-ROLE-CENTER-READONLY-SHELL-MAP",
+  "updatedAt": "2026-06-30T12:00:00.000+02:00"
+}

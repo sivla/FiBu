@@ -1,25 +1,33 @@
 {
   "schemaVersion": 1,
-  "runId": "PREP-032-CH04-ERP-BASICS-UNIVERSAARL-REWRITE",
-  "caseId": "PREP-032-CH04-ERP-BASICS-UNIVERSAARL-REWRITE",
+  "runId": "PREP-033-MY-SETTINGS-READONLY-CONTEXT",
+  "caseId": "PREP-033-MY-SETTINGS-READONLY-CONTEXT",
   "status": "observed",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE-planned-not-yet-created",
   "shellCompanyObserved": "CRONUS DE",
-  "bcRun": false,
-  "playwrightRun": false,
+  "bcRun": true,
+  "playwrightRun": true,
   "posted": false,
   "previewPosting": false,
   "setupChange": false,
   "companyCreated": false,
   "bookChanged": true,
   "bookDraftChanged": false,
-  "summary": "PREP-032 rewrote Chapter 4 ERP basics into Universaarl beginner text and used PREP-031 Companies Page UI evidence to explain the Mandanten split-button pattern without claiming company creation.",
+  "summary": "PREP-033 opened My Settings read-only through Einstellungen -> Meine Einstellungen in playthru, captured screenshot QA for role/company/language context, rejected the invalid Page-9176 direct route, and added beginner-facing Chapter 4 text.",
   "changedFiles": [
+    "playwright/projects/fibu-book5/tests/prep-033-my-settings-readonly-context.spec.ts",
+    "package.json",
+    ".agent/state/cases/prep-033-my-settings-readonly-context.json",
+    "playwright/projects/fibu-book5/evidence/prep-033-my-settings-readonly-context/PREP-033-result.json",
+    "playwright/projects/fibu-book5/evidence/prep-033-my-settings-readonly-context/README.md",
+    "playwright/projects/fibu-book5/evidence/prep-033-my-settings-readonly-context/prep-033-010-my-settings-readonly-context.screenshot.json",
+    "playwright/projects/fibu-book5/img/prep-033-010-my-settings-readonly-context.png",
     "FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md",
-    ".agent/state/cases/prep-032-ch04-erp-basics-universaarl-rewrite.json",
-    "playwright/projects/fibu-book5/evidence/prep-032-ch04-erp-basics-universaarl-rewrite/README.md",
-    "playwright/projects/fibu-book5/evidence/prep-032-ch04-erp-basics-universaarl-rewrite/PREP-032-result.json",
+    "playwright/projects/fibu-book5/BC-PAGE-ATLAS.md",
+    "playwright/projects/fibu-book5/BC-CARD-ATLAS.md",
+    "playwright/projects/fibu-book5/BC-FIELD-ATLAS.md",
+    "playwright/projects/fibu-book5/BC-SCREENSHOT-INVENTORY.md",
     ".agent/state/current.json",
     ".agent/state/marathon_queue.json",
     ".agent/state/last_run_summary.json",
@@ -27,80 +35,80 @@
     "playwright/projects/fibu-book5/BC-FULL-PLAYTHROUGH-CATALOG.md"
   ],
   "evidence": [
-    "playwright/projects/fibu-book5/evidence/prep-032-ch04-erp-basics-universaarl-rewrite/PREP-032-result.json",
-    "playwright/projects/fibu-book5/evidence/prep-032-ch04-erp-basics-universaarl-rewrite/README.md"
+    "playwright/projects/fibu-book5/evidence/prep-033-my-settings-readonly-context/PREP-033-result.json",
+    "playwright/projects/fibu-book5/evidence/prep-033-my-settings-readonly-context/README.md",
+    "playwright/projects/fibu-book5/img/prep-033-010-my-settings-readonly-context.png"
   ],
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/prep-032-ch04-erp-basics-universaarl-rewrite/PREP-032-result.json"
+    "playwright/projects/fibu-book5/evidence/prep-033-my-settings-readonly-context/PREP-033-result.json",
+    "playwright/projects/fibu-book5/img/prep-033-010-my-settings-readonly-context.png"
   ],
   "proved": [
-    "Chapter 4 now uses Universaarl beginner prose for ERP basics.",
-    "Chapter 4 explains Environment, Company, Mandantenliste and the Neu split-button pattern.",
-    "Chapter 4 does not claim UNIVERSAARL-DE was created."
+    "My Settings opens read-only from the Settings menu in playthru.",
+    "The screenshot visibly shows Rolle, Mandant, Arbeitsdatum, Region, Sprache, Zeitzone and OK/Abbrechen boundary.",
+    "No save, company switch, company creation, setup, preview or posting was performed.",
+    "Chapter 4 now explains My Settings as a beginner context check."
   ],
   "notProved": [
-    "UNIVERSAARL-DE was not created.",
-    "No Business Central page was opened in this case.",
-    "No setup, preview, posting or final German proof was created."
+    "UNIVERSAARL-DE was not created and is not the current company.",
+    "This is not final Universaarl company evidence; the screenshot must be recreated after UNIVERSAARL-DE exists.",
+    "No setup, stammdaten, document, posting or final German proof was created."
   ],
-  "nextStep": "Continue with PREP-033-MY-SETTINGS-READONLY-CONTEXT. Prove company, role and language context read-only; do not save, switch company or claim UNIVERSAARL-DE exists.",
-  "nextCase": "PREP-033-MY-SETTINGS-READONLY-CONTEXT",
+  "nextStep": "Continue with PREP-034-ROLE-CENTER-READONLY-SHELL-MAP. Map Role Center shell, navigation, search/icon context and safe/no-write boundaries read-only.",
+  "nextCase": "PREP-034-ROLE-CENTER-READONLY-SHELL-MAP",
   "nextStepDecisionCard": {
-    "currentCase": "PREP-032-CH04-ERP-BASICS-UNIVERSAARL-REWRITE",
-    "plannedNextCaseBeforeReview": "PREP-032-CH04-ERP-BASICS-UNIVERSAARL-REWRITE",
-    "lastEvidenceSummary": "PREP-031 proved Companies/Mandanten Page 357 read-only in playthru and showed Neu, the arrow beside Neu, and Neues Unternehmen erstellen as distinct UI targets.",
+    "currentCase": "PREP-033-MY-SETTINGS-READONLY-CONTEXT",
+    "plannedNextCaseBeforeReview": "PREP-033-MY-SETTINGS-READONLY-CONTEXT",
+    "lastEvidenceSummary": "PREP-032 rewrote Chapter 4 as beginner-facing Universaarl ERP, Environment and Company text.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "Chapter 4 had active Rhein-Main examples and needed a book-facing Universaarl rewrite using the new read-only UI evidence without claiming company creation.",
+    "reason": "My Settings is a safe read-only context proof for role, company, work date, region and language while company creation remains parked.",
     "lookaheadReviewed": [
       {
-        "caseId": "PREP-033-MY-SETTINGS-READONLY-CONTEXT",
-        "status": "ready-next",
-        "reason": "My Settings can prove user-visible company, role and language context without creating or saving data."
-      },
-      {
         "caseId": "PREP-034-ROLE-CENTER-READONLY-SHELL-MAP",
-        "status": "ready-after-current",
-        "reason": "Role Center shell mapping remains useful for beginner navigation and page context language."
+        "status": "ready-next",
+        "reason": "Role Center shell context is the next safe beginner-facing UI surface."
       },
       {
         "caseId": "PREP-027-IMPLEMENTATION-GUIDE-BEST-PRACTICE-MAPPING",
         "status": "ready-after-current",
-        "reason": "Can enrich UAT/project strategy while live Company Creation is parked."
+        "reason": "Implementation planning remains useful while company creation rights are parked."
       },
       {
         "caseId": "PREP-028-TESTING-STRATEGY-AND-UAT-MATRIX",
         "status": "ready-after-current",
-        "reason": "Can follow source mapping and does not depend on creating UNIVERSAARL-DE."
+        "reason": "Can improve book/UAT structure without effective BC changes."
+      },
+      {
+        "caseId": "PREP-029-AL-OBJECT-ANALYSIS-ROADMAP",
+        "status": "ready-after-current",
+        "reason": "Useful later for technical explanation, but less immediate than Role Center context."
       },
       {
         "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
         "status": "blocked",
-        "reason": "Company creation remains parked until SUPER/company-create permissions are confirmed."
+        "reason": "Company creation remains parked until SUPER/company-create permissions are available."
       }
     ],
     "queueChangesMade": [
-      "Mark PREP-032 done.",
-      "Select PREP-033 as the next read-only context proof."
+      "Mark PREP-033 done.",
+      "Select PREP-034 as next read-only Role Center shell map."
     ],
-    "selectedNextCase": "PREP-033-MY-SETTINGS-READONLY-CONTEXT",
-    "whySelectedNextCaseIsBest": "After the book rewrite, the next safest practical evidence is read-only context proof for company, role and language settings.",
+    "selectedNextCase": "PREP-034-ROLE-CENTER-READONLY-SHELL-MAP",
+    "whySelectedNextCaseIsBest": "After My Settings context, Role Center is the next visible UI surface beginners need before setup or company creation can continue.",
     "risksBeforeNextCase": [
-      "Do not save My Settings changes.",
-      "Do not switch company.",
-      "Do not claim UNIVERSAARL-DE exists."
+      "Do not trigger search results, setup wizards, New, Edit, Save or company switch."
     ],
     "requiredPreparation": [
-      "Use read-only My Settings route only.",
-      "Stop if the page requires saving, confirmation or company switch.",
-      "Capture compact screenshot QA and result JSON."
+      "Use read-only Role Center route only.",
+      "Capture screenshot QA and UI text inventory without opening data-changing actions."
     ]
   },
-  "updatedAt": "2026-06-30T09:30:00.000+02:00",
-  "noBusinessCentralExecution": true,
-  "noPlaywrightExecution": true,
   "noEffectiveBusinessCentralActions": true,
   "noCompanyCreated": true,
   "noSetupChange": true,
   "noPreviewPosting": true,
-  "noPosting": true
+  "noPosting": true,
+  "noSave": true,
+  "noCompanySwitch": true,
+  "updatedAt": "2026-06-30T12:00:00.000+02:00"
 }

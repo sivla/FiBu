@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-30T09:05:00.000+02:00",
+  "updatedAt": "2026-06-30T12:12:00.000+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "activeArea": "universaarl-companies-readonly-ui-discovery",
-  "activeCase": "PREP-032-CH04-ERP-BASICS-UNIVERSAARL-REWRITE",
-  "active_case_file": ".agent/state/cases/prep-032-ch04-erp-basics-universaarl-rewrite.json",
+  "activeCase": "PREP-033-MY-SETTINGS-READONLY-CONTEXT",
+  "active_case_file": ".agent/state/cases/prep-033-my-settings-readonly-context.json",
   "lastReferenceCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
   "lastReferenceCaseFile": ".agent/state/cases/warehouse-031-warehouse-source-route-park-or-setup-fit-decision.json",
   "mode": "universaarl-readonly-prep-until-super-permissions",
@@ -48,7 +48,7 @@
     "preview-posting-until-target-company-exists",
     "api-shortcut-for-company-creation"
   ],
-  "nextStep": "Continue with PREP-033-MY-SETTINGS-READONLY-CONTEXT. Prove company, role and language context read-only; do not save, switch company or claim UNIVERSAARL-DE exists.",
+  "nextStep": "Continue with PREP-034-ROLE-CENTER-READONLY-SHELL-MAP. Map Role Center shell, navigation, search/icon context and safe/no-write boundaries read-only.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -3495,54 +3495,50 @@
     }
   },
   "latestNextStepDecisionCard": {
-    "currentCase": "TARGET-007-COMPANIES-NEW-DROPDOWN-CLICKGUIDE",
-    "plannedNextCaseBeforeReview": "TARGET-007-MY-SETTINGS-COMPANY-LOOKUP-CREATE-NEW-COMPANY-ROUTE",
-    "lastEvidenceSummary": "TARGET-002 already showed that the main Neu action opens a blank new row. TARGET-004 mapped the arrow next to Neu in JSON but not with a useful screenshot. This case captures the visible dropdown for the click guide.",
-    "isPlannedNextCaseStillSensible": false,
-    "reason": "The practical route is Mandanten -> Neu; My Settings is company context, not the best creation path. The dropdown is still useful to explain alternatives.",
+    "currentCase": "PREP-033-MY-SETTINGS-READONLY-CONTEXT",
+    "plannedNextCaseBeforeReview": "PREP-033-MY-SETTINGS-READONLY-CONTEXT",
+    "lastEvidenceSummary": "PREP-032 rewrote Chapter 4 as beginner-facing Universaarl ERP, Environment and Company text.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "My Settings is a safe read-only context proof for role, company, work date, region and language while company creation remains parked.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-008-COMPANIES-NEW-ROW-FIELD-SAVE-GATE",
+        "caseId": "PREP-034-ROLE-CENTER-READONLY-SHELL-MAP",
         "status": "ready-next",
-        "reason": "The next useful step is to enter UNIVERSAARL-DE into the blank row and save only if the row field/save semantics are clear."
+        "reason": "Role Center shell context is the next safe beginner-facing UI surface."
       },
       {
-        "caseId": "TARGET-004-FOUNDATION-SETUP-READINESS",
+        "caseId": "PREP-027-IMPLEMENTATION-GUIDE-BEST-PRACTICE-MAPPING",
         "status": "ready-after-current",
-        "reason": "Only meaningful after UNIVERSAARL-DE exists."
+        "reason": "Implementation planning remains useful while company creation rights are parked."
       },
       {
-        "caseId": "TARGET-005-NUMBER-SERIES-PREFLIGHT",
-        "status": "needs-setup-first",
-        "reason": "Needs target company context and foundation setup."
-      },
-      {
-        "caseId": "TARGET-006-POSTING-GROUPS-PREFLIGHT",
-        "status": "needs-setup-first",
-        "reason": "Posting groups depend on created company and setup baseline."
-      },
-      {
-        "caseId": "TARGET-007-DIMENSIONS-FOUNDATION",
+        "caseId": "PREP-028-TESTING-STRATEGY-AND-UAT-MATRIX",
         "status": "ready-after-current",
-        "reason": "Can follow foundation setup; not before company exists."
+        "reason": "Can improve book/UAT structure without effective BC changes."
+      },
+      {
+        "caseId": "PREP-029-AL-OBJECT-ANALYSIS-ROADMAP",
+        "status": "ready-after-current",
+        "reason": "Useful later for technical explanation, but less immediate than Role Center context."
+      },
+      {
+        "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+        "status": "blocked",
+        "reason": "Company creation remains parked until SUPER/company-create permissions are available."
       }
     ],
     "queueChangesMade": [
-      "Replace My Settings as next practical creation route with Companies -> Neu row field/save gate.",
-      "Set active case to TARGET-008 after TARGET-007 screenshot QA passed."
+      "Mark PREP-033 done.",
+      "Select PREP-034 as next read-only Role Center shell map."
     ],
-    "selectedNextCase": "TARGET-008-COMPANIES-NEW-ROW-FIELD-SAVE-GATE",
-    "whySelectedNextCaseIsBest": "It follows the visible Business Central UI: the main Neu action creates a blank row; the dropdown only explains alternatives.",
+    "selectedNextCase": "PREP-034-ROLE-CENTER-READONLY-SHELL-MAP",
+    "whySelectedNextCaseIsBest": "After My Settings context, Role Center is the next visible UI surface beginners need before setup or company creation can continue.",
     "risksBeforeNextCase": [
-      "Saving creates a company and must be intentional.",
-      "Copy/Testunternehmen must not be selected.",
-      "A blank row must be recognized before entering values."
+      "Do not trigger search results, setup wizards, New, Edit, Save or company switch."
     ],
     "requiredPreparation": [
-      "Open Mandanten page directly in playthru.",
-      "Click main Neu only after screenshot/decision.",
-      "Enter Name UNIVERSAARL-DE and display name only if target row is active.",
-      "Stop on any error banner and document it."
+      "Use read-only Role Center route only.",
+      "Capture screenshot QA and UI text inventory without opening data-changing actions."
     ]
   },
   "uiLookAndFeelGate": {
@@ -3825,16 +3821,18 @@
     "nextCase": "PREP-006-BOOKMASTER-UNIVERSAARL-FALLSTUDIE-REWRITE-PLAN",
     "updatedAt": "2026-06-29T21:54:54.534Z"
   },
-  "activeCaseFile": ".agent/state/cases/prep-032-ch04-erp-basics-universaarl-rewrite.json",
+  "activeCaseFile": ".agent/state/cases/prep-033-my-settings-readonly-context.json",
   "previousCase": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
-  "nextCase": "PREP-033-MY-SETTINGS-READONLY-CONTEXT",
+  "nextCase": "PREP-034-ROLE-CENTER-READONLY-SHELL-MAP",
   "latestPrepCase": {
-    "caseId": "PREP-032-CH04-ERP-BASICS-UNIVERSAARL-REWRITE",
-    "status": "prep-done",
-    "resultPath": "playwright/projects/fibu-book5/evidence/prep-032-ch04-erp-basics-universaarl-rewrite/PREP-032-result.json",
-    "completedAt": "2026-06-30T09:30:00.000+02:00",
-    "summary": "Chapter 4 now explains ERP basics, Environment, Company, Mandantenliste, Neu split-button and Neues Unternehmen erstellen in Universaarl beginner prose without claiming company creation.",
-    "nextCase": "PREP-033-MY-SETTINGS-READONLY-CONTEXT"
+    "caseId": "PREP-033-MY-SETTINGS-READONLY-CONTEXT",
+    "status": "prep-observed",
+    "type": "readonly-ui-discovery",
+    "resultPath": "playwright/projects/fibu-book5/evidence/prep-033-my-settings-readonly-context/PREP-033-result.json",
+    "screenshot": "playwright/projects/fibu-book5/img/prep-033-010-my-settings-readonly-context.png",
+    "summary": "My Settings opened read-only through Einstellungen -> Meine Einstellungen; Rolle, Mandant, Arbeitsdatum, Region, Sprache and OK/Abbrechen boundary are visible; no save or company switch.",
+    "nextCase": "PREP-034-ROLE-CENTER-READONLY-SHELL-MAP",
+    "updatedAt": "2026-06-30T12:12:00.000+02:00"
   },
   "latestBookmasterFallstudieRewritePlan": {
     "status": "prep-progress",
@@ -4191,5 +4189,34 @@
     "noPosting": true,
     "nextCase": "PREP-033-MY-SETTINGS-READONLY-CONTEXT",
     "updatedAt": "2026-06-30T09:30:00.000+02:00"
+  },
+  "latestPrep033MySettingsReadonlyContext": {
+    "caseId": "PREP-033-MY-SETTINGS-READONLY-CONTEXT",
+    "status": "observed",
+    "instance": "playthru",
+    "shellCompanyObserved": "CRONUS DE",
+    "targetCompany": "UNIVERSAARL-DE-planned-not-yet-created",
+    "routeUsed": "Role Center -> Einstellungen -> Meine Einstellungen",
+    "directPageRouteRejected": "Page 9176 returned page-not-found in playthru; use visible Settings menu route instead.",
+    "screenshot": "playwright/projects/fibu-book5/img/prep-033-010-my-settings-readonly-context.png",
+    "resultPath": "playwright/projects/fibu-book5/evidence/prep-033-my-settings-readonly-context/PREP-033-result.json",
+    "fieldsVisible": [
+      "Rolle",
+      "Mandant",
+      "Arbeitsdatum",
+      "Region",
+      "Sprache",
+      "Zeitzone"
+    ],
+    "noSave": true,
+    "noCompanySwitch": true,
+    "noCompanyCreated": true,
+    "noSetupChange": true,
+    "noPreviewPosting": true,
+    "noPosting": true,
+    "bookChanged": true,
+    "nextCase": "PREP-034-ROLE-CENTER-READONLY-SHELL-MAP",
+    "updatedAt": "2026-06-30T12:00:00.000+02:00",
+    "catalogUpdated": "playwright/projects/fibu-book5/BC-FULL-PLAYTHROUGH-CATALOG.md"
   }
 }

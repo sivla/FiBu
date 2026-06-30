@@ -22,7 +22,7 @@ Die Page-Atlas-Datei enthaelt gute Legacy-Muster, aber die aktive Universaarl-Re
 | Discovery-ID | Page/Kontext | Status | Read-only-Zweck | Stopps |
 | --- | --- | --- | --- | --- |
 | `RO-W0-COMPANIES-357` | Companies / Mandanten Page `357` | `ready-for-readonly-playwright` | Mandantenliste, Hauptbutton `Neu`, Pfeil neben `Neu`, Dropdown und sichtbare Company-Kontexte ohne Speicheraktion erfassen | kein Save, kein Copy/Testunternehmen, kein Wizard-Finish, keine API |
-| `RO-W0-MY-SETTINGS` | My Settings / Meine Einstellungen | `ready-for-readonly-playwright` | Company-/Rollen-/Sprachkontext lesen, ohne Werte zu speichern | kein Company Switch, kein Speichern |
+| `RO-W0-MY-SETTINGS` | My Settings / Meine Einstellungen | `universaarl-prep-observed` | Company-/Rollen-/Sprachkontext lesen, ohne Werte zu speichern; PREP-033 nutzt `Einstellungen -> Meine Einstellungen`, nicht die in `playthru` ungueltige Page-9176-Direktroute | kein Company Switch, kein Speichern |
 | `RO-W0-ROLE-CENTER` | Role Center / Startseite | `ready-for-readonly-playwright` | Shell, Suche, Navigationsleiste und sichere Page-Kontextsignale erfassen | keine wirksamen Treffer, keine neuen Belege, kein Setup-Assistent |
 | `RO-W1-COMPANY-INFORMATION` | Company Information | `requires-universaarl-company` | Firmenstammdatenkarte spaeter als erster Universaarl-Firmennachweis | kein Edit, kein Speichern, kein Logo-Upload |
 | `RO-W1-ASSISTED-SETUP` | Assisted Setup / Unterstuetztes Setup | `ready-for-readonly-playwright` | Assistentenliste und Status lesen, ohne Setup zu starten | kein `Weiter`, `OK`, `Finish`, keine Setup-Aenderung |
@@ -47,6 +47,7 @@ Die Page-Atlas-Datei enthaelt gute Legacy-Muster, aber die aktive Universaarl-Re
 | General Journal Batches | `251` | Fixed Assets | `DEFAULT`, `Default Journal Batch`, `FA-JNL` sichtbar | `evidence/fixedassets-287/` | kein ausgewaehlter Batchwert |
 | Financial Reports | n/a | Reporting | O2C-/Dimension-Reporting Teil-/Negativbefunde | `evidence/reporting-*` | Dimension-Auswertung nicht final |
 | Role Center | offen | Look and Feel | Zielseite fuer Universaarl-Einstieg, Navigation, globale Suche und sichere Page-Kontextpruefung | geplant | erst nach `UNIVERSAARL-DE` als Zielcompany belegen |
+| My Settings / Meine Einstellungen | Settings-Menue-Route | Foundation/Context | PREP-033 zeigt Rolle, Mandant, Arbeitsdatum, Region, Sprache und OK/Abbrechen-Grenze read-only | `evidence/prep-033-my-settings-readonly-context/` | `CRONUS DE` bleibt Shell-Kontext; keine Universaarl-Company, kein Save, keine Direktroute ueber Page 9176 |
 | Customers / Debitoren | offen | Look and Feel/O2C | Zielseite fuer Suche, Sortierung, Filterbereich und Debitorenlisten-Erklaerung | geplant | braucht Universaarl-Debitorenfamilie |
 | Vendors / Kreditoren | offen | Look and Feel/P2P | Zielseite fuer Lieferantenfilter, Salden und OP-Navigation | geplant | braucht Universaarl-Kreditorenfamilie |
 | Items / Artikel | offen | Look and Feel/Inventory | Zielseite fuer Artikeltypen, Lagerbestand und Filter | geplant | braucht Universaarl-Artikelbasis |

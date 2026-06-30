@@ -422,6 +422,16 @@ Tooltips helfen bei dieser Unterscheidung. Wenn der Mauszeiger auf `Neu`, dem Pf
 
 Nach einer erfolgreichen Anlage muss `UNIVERSAARL-DE` als eigene Zeile in der Mandantenliste stehen. Erst dann wird in die neue Company gewechselt und die Seite `Unternehmensinformationen` geprüft.
 
+#### Eigene Einstellungen prüfen
+
+Über das Zahnrad oben rechts öffnet man `Meine Einstellungen`. Diese Seite zeigt, mit welchem Kontext Business Central gerade arbeitet. Wichtige Felder sind `Rolle`, `Mandant`, `Arbeitsdatum`, `Region`, `Sprache` und `Zeitzone`.
+
+![Meine Einstellungen mit Mandant, Rolle und Sprache](playwright/projects/fibu-book5/img/prep-033-010-my-settings-readonly-context.png)
+
+Der Mandant ist besonders wichtig. Er zeigt, in welcher Company Eingaben, Belege und Buchungen landen würden. Solange `UNIVERSAARL-DE` noch nicht angelegt und ausgewählt ist, darf man aus dieser Ansicht keine Universaarl-Buchung ableiten.
+
+`OK` übernimmt Änderungen auf dieser Seite. `Abbrechen` verlässt die Seite ohne Speichern. Für eine reine Kontrolle reicht `Abbrechen`, weil Rolle, Mandant, Sprache und Arbeitsdatum nur gelesen werden.
+
 #### Was Anfänger auf jeder Business-Central-Seite prüfen
 
 Vor wichtigen Schritten lohnt sich immer dieselbe kurze Kontrolle:

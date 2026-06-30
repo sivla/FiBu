@@ -22,7 +22,7 @@ Die vorhandene Feldliste bewahrt wichtige RM-DEMO-/P2P-/Fixed-Assets-Learnings. 
 | Discovery-ID | Feldgruppe | Read-only-Frage | Grenze |
 | --- | --- | --- | --- |
 | `RO-W0-COMPANIES-357` | Name, Display Name, Evaluation/Testunternehmen, Einrichtungsstatus | Ist `UNIVERSAARL-DE` sichtbar? Welche Spalten tragen Company-Kontext und Datenbasisrisiko? | sichtbare Spalten beweisen keine neue Company |
-| `RO-W0-MY-SETTINGS` | Company, Role, Language/Region | Welcher Kontext steuert das, was Business Central dem Nutzer zeigt? | nicht speichern, nicht wechseln |
+| `RO-W0-MY-SETTINGS` | Mandant/Company, Rolle/Role, Arbeitsdatum/Work Date, Region, Sprache/Language, Zeitzone | Welcher Kontext steuert das, was Business Central dem Nutzer zeigt? | PREP-033: nicht speichern, nicht wechseln; `OK` ist Speichern-Grenze, `Abbrechen` ist sichere read-only-Ausgangsroute |
 | `RO-W1-COMPANY-INFORMATION` | Name, Adresse, Country/Region, VAT Registration No. | Welche Firmenfelder erscheinen spaeter in Belegen, Reports und Buchscreenshots? | erst nach existierender Universaarl-Company pruefen |
 | `RO-W1-NO-SERIES` | Code, Starting No., Last No. Used, Manual Nos. | Wie entstehen spaeter Belegnummern und Nachverfolgung? | keine Nummernserie aendern |
 | `RO-W1-POSTING-GROUPS` | Business/Product/Customer/Vendor/Inventory/Bank/FA Posting Groups | Welche Felder steuern spaeter Kontenfindung und Posten? | keine Matrix-/Kontenwerte als final behaupten |

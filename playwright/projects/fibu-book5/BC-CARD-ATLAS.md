@@ -27,7 +27,7 @@ Der Atlas enthaelt aktuell nur einen belastbaren aktiven Companies-/Mandantenkon
 | Discovery-ID | Karte/Liste | Status | Pflichtbeobachtung | Nicht behaupten |
 | --- | --- | --- | --- | --- |
 | `RO-W0-COMPANIES-357` | Companies List / Mandanten | `ready-for-readonly-playwright` | sichtbare Spalten, sichtbarer `Neu`-Kontext, sichtbarer Dropdown-Kontext, ob `UNIVERSAARL-DE` sichtbar ist | keine Company-Anlage, kein Speichererfolg |
-| `RO-W0-MY-SETTINGS` | My Settings / Meine Einstellungen | `ready-for-readonly-playwright` | aktive Company-/Rollen-/Sprachfelder | keine erfolgte Company-Auswahl |
+| `RO-W0-MY-SETTINGS` | My Settings / Meine Einstellungen | `universaarl-prep-observed` | aktive Company-/Rollen-/Sprachfelder; PREP-033 beweist Settings-Menue-Route und OK/Abbrechen-Grenze | keine erfolgte Company-Auswahl, keine gespeicherte Aenderung |
 | `RO-W1-COMPANY-INFORMATION` | Company Information | `requires-universaarl-company` | Name, Adresse, Land/Region, USt-IdNr., FastTabs | keine rechtlich/final korrekten Firmendaten ohne spaeteres Setup |
 | `RO-W1-NO-SERIES` | No. Series / Nummernserien | `requires-universaarl-company` | Seriencode, Beschreibung, Start-/Letztnummern, Manual-Nos.-Signal | keine aktive Nummernserienkonfiguration ohne Setup-Case |
 
