@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-027B-VAT-POSTING-SETUP-WRITE-GATE-DECISION",
+  "id": "TARGET-027B-VAT-POSTING-SETUP-WRITE-GATE-DECISION",
+  "status": "pending",
+  "area": "universaarl-vat-setup",
+  "goal": "Decide exact VAT Business/Product Posting Group and VAT Posting Setup target values before any setup write.",
+  "sourceCompany": "UNIVERSAARL-DE",
+  "targetWorld": "Universaarl",
+  "sourceCases": [
+    "TARGET-020-VAT-SETUP-READINESS",
+    "TARGET-027R-VAT-PAGE-ROUTE-RECOVERY",
+    "TARGET-027S-VAT-PAGE-ROUTE-SOURCE-AND-UI-FOLLOWUP"
+  ],
+  "routeBoundary": {
+    "page470": "Use TARGET-020 direct Page 470 route as the valid read-only reference.",
+    "pages471And472": "Use TARGET-027R visible read-only screenshots.",
+    "doNotUse": "Do not use TARGET-027S Tell-Me/search overlay or Role Center screenshots as page proof."
+  },
+  "allowedActions": [
+    "inspect-vat-page-context-readonly",
+    "source-backed-vat-value-decision",
+    "write-result-and-next-step-card"
+  ],
+  "forbiddenActions": [
+    "write-vat-setup-without-source-backed-target-values",
+    "change-posting-groups",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "api-shortcut",
+    "claim-german-19-percent-vat-final-proof"
+  ],
+  "acceptanceCriteria": [
+    "The run stays in playthru / UNIVERSAARL-DE.",
+    "VAT Business/Product Posting Group target codes are source-backed before any write.",
+    "VAT Posting Setup target fields are source-backed before any write.",
+    "No Preview Posting, Posting, master data or document draft is executed.",
+    "If writing is not safe, the result produces a narrow setup-write follow-up instead of editing values."
+  ],
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-027S-VAT-PAGE-ROUTE-SOURCE-AND-UI-FOLLOWUP",
+    "plannedNextCaseBeforeReview": "TARGET-027B-VAT-POSTING-SETUP-WRITE-GATE-DECISION",
+    "lastEvidenceSummary": "TARGET-020 has visible Page 470 context; TARGET-027R has visible Pages 471 and 472; TARGET-027S rejected the search overlay and documented a helper route parity gap.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The next useful step is a source-backed VAT setup value decision, not another Tell-Me fallback.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-027B-VAT-POSTING-SETUP-WRITE-GATE-DECISION",
+        "status": "ready-next",
+        "reason": "VAT page context exists, but setup writes remain locked until values are source-backed."
+      },
+      {
+        "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Posting groups depend on VAT setup decision."
+      },
+      {
+        "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
+        "status": "needs-setup-first",
+        "reason": "Master data waits for VAT and posting groups."
+      },
+      {
+        "caseId": "TARGET-030-FOUNDATION-READY-CHECKPOINT",
+        "status": "needs-setup-first",
+        "reason": "Foundation readiness waits for VAT and posting groups."
+      }
+    ],
+    "queueChangesMade": [
+      "Promote TARGET-027B and keep TARGET-027S as route-parity warning evidence."
+    ],
+    "selectedNextCase": "TARGET-027B-VAT-POSTING-SETUP-WRITE-GATE-DECISION",
+    "whySelectedNextCaseIsBest": "It moves W1 Foundation toward VAT setup without pretending the rejected search overlay is proof.",
+    "risksBeforeNextCase": [
+      "Do not claim German 19 percent VAT correctness before VAT setup, Preview Posting, VAT Entries and G/L Entries.",
+      "Do not write VAT setup until target values and accounts are source-backed."
+    ],
+    "requiredPreparation": [
+      "Use TARGET-020 direct Page 470 route pattern.",
+      "Use TARGET-027R Pages 471 and 472 screenshots as read-only context.",
+      "Check Microsoft Learn and project source rules before any write decision."
+    ]
+  },
+  "createdAt": "2026-07-01T00:00:00.000Z"
+}

@@ -466,6 +466,16 @@ Screenshot-QA zu TARGET-026M Safe Write: Die Bilder sind brauchbare Buchkandidat
 
 Screenshot-QA zu TARGET-027R: Zwei von drei VAT-Zielseiten sind sichtbar genug fuer Buchkontext und Setup-Vorbereitung. Das Bild der Geschaeftsbuchungsgruppen ist absichtlich abgelehnt, weil es nur den Suchdialog zeigt. Aus TARGET-027R folgt deshalb kein VAT-Write-Gate und keine deutsche USt-Behauptung; der naechste Lauf muss Page 470 gezielt recovern.
 
+## Universaarl VAT Page Route Follow-up TARGET-027S
+
+| Screenshot | Page / Kontext | Company | Zweck | Sichtbar | Interner Beweis | Nicht bewiesen | Status |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `target-027s-000-direct-page-470-before-fallback.png` | Role Center vor Page-470-Fallback | `playthru` / `UNIVERSAARL-DE` | Direct-Page-470-Zwischencheck im neuen Helper | Role Center, nicht die MwSt.-Geschaeftsbuchungsgruppen-Liste | Der neue TARGET-027S-Helper reproduziert den Page-470-Beweis nicht stabil | keine Page-470-Sichtbarkeit, keine VAT-Setup-Freigabe | `rejected-role-center`, `helper-parity-warning` |
+| `target-027s-001-vat-business-posting-groups.png` | Tell-Me/Search-Fallback fuer VAT Business Posting Groups | `playthru` / `UNIVERSAARL-DE` | Suchfallback nach Page 470 | Such-/Role-Center-Kontext, keine sichtbare Zielseite | Der Suchfallback ist kein brauchbarer Seitennachweis | keine sichtbare MwSt.-Geschaeftsbuchungsgruppen-Liste, keine VAT-Setup-Freigabe | `rejected-search-overlay`, `helper-parity-warning` |
+| `target-020-001-vat-business-posting-groups.png` | MwSt.-Geschaeftsbuchungsgruppen, Page 470 | `playthru` / `UNIVERSAARL-DE` | Referenzroute fuer Page 470 | Titel, Code-/Beschreibungs-Spalten und leere Liste sind sichtbar | Page 470 ist als read-only USt-Geschaeftsgruppen-Kontext erreichbar | keine Gruppe, keine 19-Prozent-USt, keine VAT Entries, keine Preview/Buchung | `universaarl-readonly-page-proof`, `route-reference-for-027b` |
+
+TARGET-027S ist kein Setup-Fortschritt, sondern ein wichtiges Playwright-Learning: Die fachliche Page-470-Referenz bleibt TARGET-020, waehrend die neue Such-/Fallbackroute abgelehnt bleibt. Der naechste VAT-Write-Gate-Lauf muss deshalb den direkten TARGET-020-Page-470-Stil verwenden und darf das TARGET-027S-Suchoverlay nicht als Proof verwerten.
+
 ## PREP-010 Screenshot-QA-Regel
 
 Vor jeder Buch- oder Clickguide-Nutzung muss der Screenshot gegen die konkrete Behauptung geprueft werden:

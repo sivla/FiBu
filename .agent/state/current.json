@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-30T23:11:52.386Z",
+  "updatedAt": "2026-06-30T23:30:25.041Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-vat-business-posting-groups-route-followup",
-  "activeCase": "TARGET-027S-VAT-PAGE-ROUTE-SOURCE-AND-UI-FOLLOWUP",
-  "active_case_file": ".agent/state/cases/target-027s-vat-page-route-source-and-ui-followup.json",
+  "activeArea": "universaarl-vat-posting-setup-write-gate-decision",
+  "activeCase": "TARGET-027B-VAT-POSTING-SETUP-WRITE-GATE-DECISION",
+  "active_case_file": ".agent/state/cases/target-027b-vat-posting-setup-write-gate-decision.json",
   "lastReferenceCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
   "lastReferenceCaseFile": ".agent/state/cases/warehouse-031-warehouse-source-route-park-or-setup-fit-decision.json",
   "mode": "universaarl-target-execution",
@@ -19,10 +19,8 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "open-vat-business-posting-groups-readonly",
-    "use-direct-page-and-ui-navigation-only-readonly",
-    "capture-search-candidates-if-fallback-is-needed",
-    "capture-screenshot-qa",
+    "source-backed-vat-write-gate-decision",
+    "inspect-vat-page-context-readonly",
     "write-result-and-next-step-card"
   ],
   "forbiddenActions": [
@@ -31,18 +29,16 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
-    "change-vat-setup",
-    "change-posting-groups",
     "create-master-data",
     "create-document-or-draft",
     "preview-posting",
     "post",
     "api-shortcut",
-    "treat-search-overlay-as-vat-proof",
-    "continue-to-vat-write-gate-without-vat-business-posting-groups-proof"
+    "write-vat-setup-without-source-backed-target-values",
+    "use-target-027s-search-overlay-as-page-proof"
   ],
-  "nextCase": "TARGET-027S-VAT-PAGE-ROUTE-SOURCE-AND-UI-FOLLOWUP",
-  "nextStep": "Run TARGET-027S to recover the visible VAT Business Posting Groups page route before any VAT setup write-gate decision.",
+  "nextCase": "TARGET-027B-VAT-POSTING-SETUP-WRITE-GATE-DECISION",
+  "nextStep": "Run TARGET-027B as a source-backed VAT setup write-gate decision; use TARGET-020 Page 470 and TARGET-027R Pages 471/472 as read-only page context only.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -1347,7 +1343,7 @@
     "nextStep": "BANK-018: controlled no-post Payment Journal preflight for 108205; do not post."
   },
   "workType": "universaarl-skr04-balance-sheet-accounts-fit",
-  "lastCompletedCase": "TARGET-027R-VAT-PAGE-ROUTE-RECOVERY",
+  "lastCompletedCase": "TARGET-027S-VAT-PAGE-ROUTE-SOURCE-AND-UI-FOLLOWUP",
   "latestBank018": {
     "caseId": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
     "status": [
@@ -3710,21 +3706,21 @@
     "resultFile": "playwright/projects/fibu-book5/evidence/prep-020-universaarl-dataset-blueprint/PREP-020-result.json"
   },
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-027R-VAT-PAGE-ROUTE-RECOVERY",
+    "currentCase": "TARGET-027S-VAT-PAGE-ROUTE-SOURCE-AND-UI-FOLLOWUP",
     "plannedNextCaseBeforeReview": "TARGET-027B-VAT-POSTING-SETUP-WRITE-GATE-DECISION",
-    "lastEvidenceSummary": "TARGET-027 blocked because Role Center/search overlay screenshots were not acceptable VAT page proof, although older TARGET-020 evidence suggested direct VAT pages can be visible.",
-    "isPlannedNextCaseStillSensible": false,
-    "reason": "Do not move to VAT setup write gate until every required VAT page route is visibly reliable.",
+    "lastEvidenceSummary": "TARGET-027R recovered VAT Product Posting Groups and VAT Posting Setup, but VAT Business Posting Groups was still only a Tell-Me/search overlay.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The missing Page 470 business page has a valid TARGET-020 direct-route reference, while TARGET-027S documents a helper route parity warning.",
     "lookaheadReviewed": [
       {
         "caseId": "TARGET-027B-VAT-POSTING-SETUP-WRITE-GATE-DECISION",
-        "status": "blocked",
-        "reason": "Needs full visible VAT page proof first."
+        "status": "ready-next",
+        "reason": "All three VAT page contexts have visible evidence when TARGET-020 Page 470 and TARGET-027R Pages 471/472 are combined; writes still need a separate source-backed decision."
       },
       {
         "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "Posting groups depend on VAT route and setup decision."
+        "reason": "Posting groups depend on VAT setup decision."
       },
       {
         "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
@@ -3738,16 +3734,17 @@
       }
     ],
     "queueChangesMade": [
-      "Insert TARGET-027S for source/UI follow-up before any VAT write-gate decision."
+      "Mark TARGET-027S source-reviewed and promote TARGET-027B, with route parity warning for the helper."
     ],
-    "selectedNextCase": "TARGET-027S-VAT-PAGE-ROUTE-SOURCE-AND-UI-FOLLOWUP",
-    "whySelectedNextCaseIsBest": "It keeps setup writes locked and narrows the remaining blocker to page route/source/UI diagnosis.",
+    "selectedNextCase": "TARGET-027B-VAT-POSTING-SETUP-WRITE-GATE-DECISION",
+    "whySelectedNextCaseIsBest": "The next useful progress is not another search fallback, but a source-backed VAT setup write-gate decision that uses the known direct Page 470 route pattern and keeps all writes gated.",
     "risksBeforeNextCase": [
       "Do not claim German 19 percent VAT correctness before VAT setup, Preview Posting, VAT Entries and G/L Entries.",
       "Do not treat Role Center, Tell-Me overlay or hidden text as page proof."
     ],
     "requiredPreparation": [
-      "Use TARGET-027R screenshots and search-candidate JSONs to choose a better route."
+      "Use TARGET-020 direct Page 470 route pattern, not the TARGET-027S search fallback.",
+      "Define VAT Business/Product Posting Group codes and VAT Posting Setup fields from sources before writing."
     ]
   },
   "permissionBlocker": {
@@ -3787,7 +3784,7 @@
     "nextCase": "PREP-003-PLAYTHRU-READONLY-UI-LOOK-AND-FEEL-MAP"
   },
   "lastCompletedCaseFile": ".agent/state/cases/prep-031-companies-page-readonly-playwright.json",
-  "lastResultPath": "playwright/projects/fibu-book5/evidence/target-027r-vat-page-route-recovery/TARGET-027R-result.json",
+  "lastResultPath": "playwright/projects/fibu-book5/evidence/target-027s-vat-business-posting-groups-route-followup/TARGET-027S-result.json",
   "latestReadonlyUiLookAndFeelMap": {
     "caseId": "PREP-003-PLAYTHRU-READONLY-UI-LOOK-AND-FEEL-MAP",
     "status": "prep-done",
@@ -6413,5 +6410,16 @@
     ],
     "screenshots": [],
     "nextCase": "TARGET-027R-VAT-PAGE-ROUTE-RECOVERY"
+  },
+  "latestVatBusinessPostingGroupsRouteFollowup": {
+    "caseId": "TARGET-027S-VAT-PAGE-ROUTE-SOURCE-AND-UI-FOLLOWUP",
+    "status": "source-reviewed-observed-with-route-parity-warning",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-027s-vat-business-posting-groups-route-followup/TARGET-027S-result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "sourceReviewProof": "playwright/projects/fibu-book5/img/target-020-001-vat-business-posting-groups.png",
+    "rejectedNewRouteProof": "playwright/projects/fibu-book5/evidence/target-027s-vat-business-posting-groups-route-followup/target-027s-001-vat-business-posting-groups.png",
+    "conclusion": "Page 470 is valid as context via TARGET-020 direct route; TARGET-027S custom fallback remains rejected and must not be reused as proof.",
+    "nextCase": "TARGET-027B-VAT-POSTING-SETUP-WRITE-GATE-DECISION"
   }
 }

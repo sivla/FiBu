@@ -1,0 +1,168 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "TARGET-027S-VAT-PAGE-ROUTE-SOURCE-AND-UI-FOLLOWUP",
+  "source": "playwright-universaarl-vat-business-posting-groups-route-readonly",
+  "resultStatus": "source-reviewed-observed-with-route-parity-warning",
+  "runPlanId": "TARGET-027S-VAT-PAGE-ROUTE-SOURCE-AND-UI-FOLLOWUP-PLAN",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?company=UNIVERSAARL-DE",
+  "actionsTaken": [
+    "Opened Business Central in playthru / UNIVERSAARL-DE.",
+    "Tried direct Page 470 route for VAT Business Posting Groups.",
+    "Used German and English Tell-Me search only as read-only fallback.",
+    "Clicked only candidate page/search-result entries; no New/Edit/Delete/Setup write action was clicked.",
+    "Captured screenshot QA metadata for VAT Business Posting Groups."
+  ],
+  "actionsNotTaken": [
+    "No VAT setup write",
+    "No posting group write",
+    "No master data",
+    "No document draft",
+    "No Preview Posting",
+    "No Posting",
+    "No API shortcut",
+    "No Company switch"
+  ],
+  "setupChanged": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "sourceRefs": [
+    "https://learn.microsoft.com/en-us/dynamics365/business-central/finance-setup-vat",
+    "https://learn.microsoft.com/en-us/dynamics365/business-central/application/base-application/table/microsoft.finance.vat.setup.vat-business-posting-group"
+  ],
+  "proved": [
+    "Business Central stayed in playthru / UNIVERSAARL-DE.",
+    "No VAT setup, posting groups, master data, document draft, Preview Posting, Posting or API shortcut was executed.",
+    "TARGET-020 direct Page 470 route was rerun in this run and its screenshot shows MwSt.-Geschaeftsbuchungsgruppen visibly read-only.",
+    "TARGET-027S captured a rejected direct/search fallback screenshot and proved this newer route must not be used as Page 470 proof."
+  ],
+  "notProved": [
+    "No German VAT setup row is proven ready.",
+    "No 19 percent VAT final correctness.",
+    "No VAT Entries.",
+    "No document preview or posting.",
+    "No tax advisor approval.",
+    "TARGET-027S custom helper route does not yet reproduce the TARGET-020 Page 470 direct-route proof."
+  ],
+  "blockedBy": [
+    "TARGET-027S custom route still ends on Role Center / Tell-Me search fallback for Page 470.",
+    "Use TARGET-020 direct-route pattern for the next VAT write-gate; do not reuse the TARGET-027S search fallback as proof."
+  ],
+  "warnings": [
+    "Write-capable actions may be visible, but were not clicked.",
+    "Route parity warning: TARGET-020 direct Page 470 proof is valid, but TARGET-027S helper logic still needs consolidation."
+  ],
+  "screenshots": [
+    "target-027s-000-direct-page-470-before-fallback.png",
+    "target-027s-001-vat-business-posting-groups.png",
+    "playwright/projects/fibu-book5/img/target-020-001-vat-business-posting-groups.png"
+  ],
+  "evidenceRefs": [
+    "TARGET-027S-result.json",
+    "README.md",
+    "target-027s-001-vat-business-posting-groups.txt",
+    "target-027s-001-vat-business-posting-groups.png",
+    "target-027s-001-vat-business-posting-groups.screenshot.json",
+    "target-027s-000-direct-page-470-before-fallback.txt",
+    "target-027s-000-direct-page-470-before-fallback.png",
+    "target-027s-000-direct-page-470-before-fallback.screenshot.json",
+    "playwright/projects/fibu-book5/img/target-020-001-vat-business-posting-groups.png",
+    "playwright/projects/fibu-book5/evidence/target-020-vat-setup-readiness/TARGET-020-result.json"
+  ],
+  "pageResult": {
+    "id": "vat-business-posting-groups",
+    "pageId": 470,
+    "label": "MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups",
+    "status": "source-reviewed-observed-with-route-parity-warning",
+    "routeUsed": [
+      "direct-page-470",
+      "search:MwSt.-Geschäftsbuchungsgruppen",
+      "search:MwSt.-Geschaeftsbuchungsgruppen",
+      "search:VAT Business Posting Groups"
+    ],
+    "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?company=UNIVERSAARL-DE",
+    "screenshot": "target-027s-001-vat-business-posting-groups.png",
+    "screenshotMetadata": "target-027s-001-vat-business-posting-groups.screenshot.json",
+    "textFile": "target-027s-001-vat-business-posting-groups.txt",
+    "textSignals": [
+      "Neu",
+      "Neue",
+      "Beschreibung",
+      "Liste mit Titel \"Nach VAT Business Posting Groups suchen\" weist jetzt 2 Artikel fur VAT Business Posting Groups auf",
+      "Nach VAT Business Posting Groups suchen",
+      "Fur VAT Business Posting Groups sind keine Vorschlage verfugbar."
+    ],
+    "blockedBy": [
+      "TARGET-027S custom route still ends on Role Center / Tell-Me search fallback for Page 470.",
+      "Use TARGET-020 direct-route pattern for the next VAT write-gate; do not reuse the TARGET-027S search fallback as proof."
+    ],
+    "warnings": [
+      "Write-capable actions may be visible, but were not clicked."
+    ]
+  },
+  "flags": {
+    "noWrite": true,
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noSetupChange": true,
+    "noMasterDataChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "safeToFinalizeState": false,
+  "requiresReview": false,
+  "statePatch": {},
+  "nextStepDecision": {
+    "currentCase": "TARGET-027S-VAT-PAGE-ROUTE-SOURCE-AND-UI-FOLLOWUP",
+    "plannedNextCaseBeforeReview": "TARGET-027B-VAT-POSTING-SETUP-WRITE-GATE-DECISION",
+    "lastEvidenceSummary": "TARGET-027R recovered VAT Product Posting Groups and VAT Posting Setup, but VAT Business Posting Groups was still only a Tell-Me/search overlay.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The missing Page 470 business page has a valid TARGET-020 direct-route reference, while TARGET-027S documents a helper route parity warning.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-027B-VAT-POSTING-SETUP-WRITE-GATE-DECISION",
+        "status": "ready-next",
+        "reason": "All three VAT page contexts have visible evidence when TARGET-020 Page 470 and TARGET-027R Pages 471/472 are combined; writes still need a separate source-backed decision."
+      },
+      {
+        "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Posting groups depend on VAT setup decision."
+      },
+      {
+        "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
+        "status": "needs-setup-first",
+        "reason": "Master data waits for VAT and posting groups."
+      },
+      {
+        "caseId": "TARGET-030-FOUNDATION-READY-CHECKPOINT",
+        "status": "needs-setup-first",
+        "reason": "Foundation readiness waits for VAT and posting groups."
+      }
+    ],
+    "queueChangesMade": [
+      "Mark TARGET-027S source-reviewed and promote TARGET-027B, with route parity warning for the helper."
+    ],
+    "selectedNextCase": "TARGET-027B-VAT-POSTING-SETUP-WRITE-GATE-DECISION",
+    "whySelectedNextCaseIsBest": "The next useful progress is not another search fallback, but a source-backed VAT setup write-gate decision that uses the known direct Page 470 route pattern and keeps all writes gated.",
+    "risksBeforeNextCase": [
+      "Do not claim German 19 percent VAT correctness before VAT setup, Preview Posting, VAT Entries and G/L Entries.",
+      "Do not treat Role Center, Tell-Me overlay or hidden text as page proof."
+    ],
+    "requiredPreparation": [
+      "Use TARGET-020 direct Page 470 route pattern, not the TARGET-027S search fallback.",
+      "Define VAT Business/Product Posting Group codes and VAT Posting Setup fields from sources before writing."
+    ]
+  },
+  "nextCase": "TARGET-027B-VAT-POSTING-SETUP-WRITE-GATE-DECISION",
+  "reason": "VAT Business Posting Groups has current visible source-review proof via TARGET-020; TARGET-027S adds a route parity warning and keeps setup writes locked until TARGET-027B."
+}

@@ -85,6 +85,12 @@ Der naechste Schritt ist `TARGET-027R`: erst die sichtbare Route zu den VAT-Setu
 
 `MwSt.-Geschaeftsbuchungsgruppen` (Page 470) bleibt gesperrt: Der aktuelle Fallback landet im Suchdialog `VAT Business Posting Groups` und zeigt keine Zielseite. Deshalb bleibt das VAT-Write-Gate weiter gesperrt. `1406` und `3806` sind nur vorbereitende Sachkonten; sie beweisen keine VAT Posting Setup Zeile, keinen Steuersatz, keine Preview, keine VAT Entries und keine Buchung.
 
+## Stand nach `TARGET-027S`
+
+`TARGET-027S` hat den Page-470-Blocker differenziert: Die alte TARGET-020-Direct-Route zeigt `MwSt.-Geschaeftsbuchungsgruppen` sichtbar read-only. Der neue TARGET-027S-Helper landet dagegen weiter im Role Center beziehungsweise Suchkontext und darf nicht als Page-Proof genutzt werden. Damit ist Page 470 als fachlicher Kontext vorhanden, aber der neue Helper braucht spaeter eine Paritaetskorrektur.
+
+Fuer `TARGET-027B` gilt deshalb: Werte fuer VAT Business Posting Groups, VAT Product Posting Groups und VAT Posting Setup duerfen nur source-backed entschieden werden. Ein Setup-Write ist noch nicht freigegeben; Preview Posting, Posting, Stammdaten und Belege bleiben gesperrt.
+
 ## Quellenbasis
 
 - DATEV SKR04 Produktseite: https://www.datev.de/web/de/datev-shop/rechnungswesen/skr-04/
