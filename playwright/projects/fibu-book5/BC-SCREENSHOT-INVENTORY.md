@@ -24,7 +24,7 @@ Grundregel: Ein Screenshot beweist nur, was im Bild sichtbar ist. Wenn Codes, We
 
 ## Universaarl Target-Screenshots
 
-Diese Screenshots gehoeren zur aktiven Zielwelt `playthru`, aber noch nicht zu einer final eingerichteten Zielcompany. `UNIVERSAARL-DE` existiert in diesen Evidence-Staenden noch nicht als nutzbarer Mandant. Sichtbarer `CRONUS DE`-Kontext ist deshalb Ausgangs-/Shell-Kontext, kein Universaarl-Finalbeweis.
+Diese Screenshots gehoeren zur aktiven Zielwelt `playthru`. Seit TARGET-009 ist `UNIVERSAARL-DE` als Company sichtbar. Alle aelteren Bilder vor TARGET-009 bleiben Vorbereitungs-, Kontext- oder Blockerbilder. Der naechste Buchbeweis muss den aktiven Company-Kontext `UNIVERSAARL-DE` zeigen, nicht nur die Existenz in der Mandantenliste.
 
 | Screenshot | Page | Company/Kontext | Schritt | Was sieht man / Lernwert | Interner Beweis | Beweist nicht | Status |
 |---|---|---|---|---|---|---|---|
@@ -47,6 +47,12 @@ Diese Screenshots gehoeren zur aktiven Zielwelt `playthru`, aber noch nicht zu e
 | `prep-034-010-role-center-shell-readonly.png` | Role Center / Startseite | `playthru`, Shell-Kontext `CRONUS DE` vor `UNIVERSAARL-DE` | Startseite read-only geoeffnet | Umgebung, Shell-Company, Topbar, Navigation, Aktivitaetskacheln und sichtbarer Shopify-Ausschluss sind erkennbar; Kontoindikator ist maskiert | Role Center ist als Einstieg und Navigationskontext nutzbar | keine Universaarl-Company, keine Suche ausgefuehrt, keine Liste geoeffnet, kein Setup | `usable-context-screenshot`, `not-final` |
 | `target-008-020-create-new-company-route-opened.png` | Companies / Mandanten, `Neu - Mandanten` ListPart | `playthru`, Shell-Kontext vor `UNIVERSAARL-DE` | Nach Klick im `Neu`-/`Neues Unternehmen erstellen`-Kontext | Das Bild zeigt nicht den gefuehrten Wizard, sondern die direkte neue Mandantenzeile; Screenshot-QA korrigiert damit den DOM-Treffer | leere Mandantenzeile sichtbar, kein Speichern | `UNIVERSAARL-DE`, Wizard, Company-Anlage, Setup | `blocked-main-new-route`, `not-final` |
 | `target-009-020-after-main-neu-create-attempt.png` | Companies / Mandanten, Page 357 | `playthru`, Shell-Kontext vor `UNIVERSAARL-DE` | Nach kontrolliertem Anlageversuch | `UNIVERSAARL-DE` ist nicht sichtbar; die Anlage ist wegen fehlender Berechtigung/fehlendem Speichernachweis blockiert | Companies-Kontext nach Versuch, keine Zielcompany sichtbar | Company-Anlage, Company Information, Setup | `blocked-permission`, `not-final` |
+| `target-009-010-before-neu-dropdown-create.png` | Companies / Mandanten, Page 357 | `playthru`, Companies-Liste | Vor Aktion und spaeterer Abschlusscheck | Die Mandantenliste zeigt den Kontext; im Abschlusslauf ist `UNIVERSAARL-DE` sichtbar | Zielcompany ist in der Mandantenliste vorhanden | aktiver Company-Kontext, Company Information, Setup | `universaarl-proven`, `company-existence-only` |
+| `target-009-015-neu-dropdown-open-create-new-company-visible.png` | Companies / Mandanten, Page 357 | `playthru`, Companies-Liste | Pfeil neben `Neu` geoeffnet | Das Dropdown zeigt `Neues Unternehmen erstellen`; der Hauptbutton `Neu` ist nicht der Zielklick | richtiger Splitbutton-/Menuepfad ist sichtbar | keine Datenbasis, keine Anlage allein durch dieses Bild | `universaarl-proof-chain` |
+| `target-009-019-wizard-expanded-welcome.png` | Neues Unternehmen erstellen / Assistent | `playthru` | Wizard geoeffnet und vergroessert | Der gefuehrte Anlageassistent ist offen; vergroesserte Karte macht Text und Buttons lesbarer | Menueintrag startet den Wizard | keine Zielcompany gespeichert, keine Datenbasis entschieden | `universaarl-proof-chain` |
+| `target-009-021-wizard-after-weiter.png` | Neues Unternehmen erstellen / Assistent | `playthru` | Wizard nach `Weiter` | Eingabe-/Datenbasis-Seite ist sichtbar | Wizard ist auf der Erstellungsseite angekommen | kein Finish, kein Setup | `universaarl-proof-chain` |
+| `target-009-022-wizard-name-entered-no-data-selected.png` | Neues Unternehmen erstellen / Assistent | `playthru`, Ziel `UNIVERSAARL-DE` | Name und Datenbasis | `UNIVERSAARL-DE` ist eingetragen; `Neu erstellen - Keine Daten` ist sichtbar | No-Data-Route ohne CRONUS-/Test-/Copy-Basis | noch keine Company Information, noch kein Setup | `universaarl-proven`, `book-candidate` |
+| `target-009-024-wizard-after-third-weiter.png` | Neues Unternehmen erstellen / Assistent | `playthru`, Ziel `UNIVERSAARL-DE` | Wizard-Abschlussphase | Abschlussphase vor/um `Fertig stellen` | Wizard wurde weitergefuehrt und nicht beim ersten Screen verlassen | keine Posten, kein Setup, keine Company Information | `universaarl-proof-chain` |
 
 ## PREP-011 Screenshot-Erklaerungsentscheidungen
 
@@ -67,15 +73,15 @@ Der naechste Rechte-Lauf darf erst als Company-Creation-Beweis gelten, wenn die 
 
 Eine leere Mandantenzeile nach Hauptbutton `Neu` bleibt `rejected-path` oder separater ListPart-Pfad. Sie ist kein Screenshot fuer den gefuehrten Weg `Neues Unternehmen erstellen`.
 
-| Screenshot-Anforderung | Status vor Rechtefreigabe | Buchnutzung | Grenze |
+| Screenshot-Anforderung | TARGET-009 Status | Buchnutzung | Grenze |
 | --- | --- | --- | --- |
-| Mandantenliste vor Aktion | `planned` | Einstieg und Kontext fuer die Anlage erklaeren | keine Anlage |
+| Mandantenliste vor Aktion | `observed-target-009` | Einstieg und Kontext fuer die Anlage erklaeren | keine Company Information |
 | Hauptbutton-Tooltip `Neu` | `planned` | Unterschied zwischen Hauptbutton und Pfeil erklaeren | kein Zielklick fuer TARGET-009 |
 | Pfeil-Tooltip neben `Neu` | `planned` | richtigen Splitbutton-Teil zeigen | kein Menueintrag angeklickt |
-| Dropdown mit `Neues Unternehmen erstellen` | `planned` | Klickziel fuer den gefuehrten Weg zeigen | keine Datenbasis, keine Anlage |
-| Folgezustand nach Menueintrag | `planned-after-permission` | pruefen, ob wirklich der gefuehrte Weg gestartet wurde | kein Finish/OK ohne Datenbasis |
-| Datenbasisentscheidung | `planned-after-permission` | No Data/Setup Data Only/Sample/Copy/Test unterscheiden | keine finale Entscheidung ohne sichtbare Option |
-| Ergebnisliste mit `UNIVERSAARL-DE` | `planned-after-permission` | einziger Erfolgsscreenshot fuer die Company-Anlage | keine Company Information, kein Setup |
+| Dropdown mit `Neues Unternehmen erstellen` | `observed-target-009` | Klickziel fuer den gefuehrten Weg zeigen | keine Datenbasis allein durch Dropdown |
+| Folgezustand nach Menueintrag | `observed-target-009` | pruefen, ob wirklich der gefuehrte Weg gestartet wurde | kein Setup |
+| Datenbasisentscheidung | `observed-target-009-no-data` | No Data/Setup Data Only/Sample/Copy/Test unterscheiden | keine Company Information |
+| Ergebnisliste mit `UNIVERSAARL-DE` | `observed-target-009` | Erfolgsscreenshot fuer die Company-Anlage | keine Company Information, kein Setup |
 
 ## Geplante Universaarl Look-and-Feel-Screenshots
 

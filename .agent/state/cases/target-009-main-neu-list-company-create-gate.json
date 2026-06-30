@@ -1,27 +1,22 @@
 {
   "schemaVersion": 1,
   "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
-  "title": "Main Neu / Neues Unternehmen erstellen company creation blocker",
+  "title": "Neu dropdown -> Neues Unternehmen erstellen company creation gate",
   "instance": "playthru",
   "targetCompany": "UNIVERSAARL-DE",
   "legalName": "Universaarl GmbH",
   "workType": "controlled-company-create-save-gate",
-  "status": "parked-until-super-permissions",
+  "status": "done",
   "dependsOn": [
     "TARGET-008-COMPANIES-NEW-ROW-FIELD-SAVE-GATE"
   ],
-  "goal": "Create UNIVERSAARL-DE from the Companies page through the visible Neu / Neues Unternehmen erstellen UI path, without Copy, Testunternehmen, CRONUS copy or API shortcut.",
+  "goal": "Create UNIVERSAARL-DE from the Companies page through the visible arrow next to Neu -> Neues Unternehmen erstellen UI path, without Copy, Testunternehmen, CRONUS copy or API shortcut.",
   "evidenceTarget": "playwright/projects/fibu-book5/evidence/target-009-main-neu-list-company-create-gate/",
   "lastResult": {
     "resultFile": "playwright/projects/fibu-book5/evidence/target-009-main-neu-list-company-create-gate/TARGET-009-result.json",
-    "resultStatus": "blocked",
-    "blockedBy": [
-      "target-company-not-visible-after-create-attempt",
-      "company-creation-permission-not-yet-available",
-      "company-creation-permission-not-yet-available-user-confirmed",
-      "missing-super-or-company-create-permission"
-    ],
-    "screenshotQa": "UNIVERSAARL-DE is not visible in the Companies list after the attempt."
+    "resultStatus": "observed",
+    "blockedBy": [],
+    "screenshotQa": "Wizard route and final Companies-list visibility captured; Company Information and setup remain unproved."
   },
   "allowedActionsWhenResumed": [
     "open-playthru-companies-page-by-page-id",
@@ -42,21 +37,70 @@
     "blind-retry-without-cell-focus-proof"
   ],
   "mustCheckBeforeResume": [
-    "user-has-company-creation-permission",
+    "user-confirmed-super-permissions-available",
     "playthru-instance-url",
     "Companies-page-357-context",
     "UNIVERSAARL-DE-not-already-visible",
     "tooltip-for-Neu-or-dropdown-if-used",
     "foreground-listpart-cell-focus",
-    "error-banner-capture"
+    "error-banner-capture",
+    "user-confirmed-super-permissions-available",
+    "Neues-Unternehmen-erstellen-dropdown-entry-visible-before-click"
   ],
   "migrationRelevance": "needed-for-german-final",
-  "finalScreenshotNeeded": true,
-  "nextSafeAction": "Do not run live company creation again until the user confirms SUPER or sufficient company-create permissions. Then rerun TARGET-009 with visible foreground ListPart focus and exact save/error capture.",
-  "permissionStatus": "missing-super-permissions",
-  "noEffectiveActionTakenUntilPermission": true,
+  "finalScreenshotNeeded": false,
+  "nextSafeAction": "Run TARGET-010: switch/open UNIVERSAARL-DE deliberately and prove the active company context before any setup change.",
+  "permissionStatus": "satisfied-user-confirmed-and-live-ui-proven",
+  "noEffectiveActionTakenUntilPermission": false,
   "nextWhenUnblocked": "retry TARGET-009 after user confirms required permissions",
-  "blockedBy": [
-    "missing-super-or-company-create-permission"
-  ]
+  "blockedBy": [],
+  "smartDecisionCard": {
+    "currentCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+    "lastEvidenceSummary": "PREP-039/PREP-040 established that the intended route is the arrow next to Neu and the menu item Neues Unternehmen erstellen, not the main Neu button.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "Company Creation remains the required dependency, and the route now explicitly uses the Neu dropdown menu item Neues Unternehmen erstellen without Copy/Testunternehmen/CRONUS.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-010-UNIVERSAARL-COMPANY-CONTEXT-PROOF",
+        "status": "ready-next",
+        "reason": "UNIVERSAARL-DE is visible and can be opened/verified next."
+      },
+      {
+        "caseId": "TARGET-004-FOUNDATION-SETUP-READINESS",
+        "status": "ready-after-current",
+        "reason": "Foundation setup only makes sense after target company context is proven."
+      },
+      {
+        "caseId": "TARGET-005-NUMBER-SERIES-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Needs company context and foundation baseline."
+      },
+      {
+        "caseId": "TARGET-006-POSTING-GROUPS-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Needs company context and foundation baseline."
+      },
+      {
+        "caseId": "TARGET-007-DIMENSIONS-FOUNDATION",
+        "status": "ready-after-current",
+        "reason": "Dimensions belong after company and setup context."
+      }
+    ],
+    "queueChangesMade": [
+      "Set next case to UNIVERSAARL-DE company context proof."
+    ],
+    "selectedNextCase": "TARGET-010-UNIVERSAARL-COMPANY-CONTEXT-PROOF",
+    "whySelectedNextCaseIsBest": "After the company is visible, the next value is proving the active company context and Company Information before setup.",
+    "risksBeforeNextCase": [
+      "Company switch must be explicit and documented.",
+      "Company Information may still be empty."
+    ],
+    "requiredPreparation": [
+      "Open/switch to UNIVERSAARL-DE intentionally.",
+      "Capture shell context and Company Information."
+    ]
+  },
+  "updatedAt": "2026-06-30T21:20:00.000+02:00",
+  "completedAt": "2026-06-30T21:20:00.000+02:00"
 }

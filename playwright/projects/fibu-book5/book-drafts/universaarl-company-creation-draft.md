@@ -80,9 +80,29 @@ Im geöffneten Dropdown sind `Neu` und `Neues Unternehmen erstellen` sichtbar. `
 
 `Testunternehmen` erstellt eine Demo- oder Testcompany. Das ist zum Ausprobieren nützlich, aber nicht die saubere Grundlage für eine durchgehende Musterfirma, wenn die Buchungen später aus der Universaarl-Welt erklärt werden sollen.
 
-Für den nächsten Rechte-Lauf ist damit nur ein Zielpfad aktiv: der Dropdown-Eintrag `Neues Unternehmen erstellen`. Der Hauptbutton `Neu` bleibt im Buch wichtig, weil er den Unterschied zwischen Listenanlage und geführtem Anlageweg erklärt. Er ist aber nicht der Klick, mit dem `UNIVERSAARL-DE` im nächsten Lauf angelegt werden soll.
+Für die Anlage von `UNIVERSAARL-DE` ist damit nur ein Zielpfad aktiv: der Dropdown-Eintrag `Neues Unternehmen erstellen`. Der Hauptbutton `Neu` bleibt im Buch wichtig, weil er den Unterschied zwischen Listenanlage und geführtem Anlageweg erklärt. Er ist aber nicht der Klick, mit dem `UNIVERSAARL-DE` angelegt wird.
 
 Wenn man mit der Maus über `Neu` oder den Pfeil neben `Neu` fährt, zeigt Business Central einen Tooltip. Solche Tooltips sind nützlich, weil sie den Zweck einer Aktion direkt in der Oberfläche bestätigen. Für eine Klickanleitung ist der Tooltip ein guter Kontrollpunkt: Er hilft zu unterscheiden, ob der Hauptbutton, der kleine Dropdown-Pfeil oder ein Eintrag im geöffneten Menü gemeint ist.
+
+## Der Anlageassistent
+
+Nach dem Klick auf `Neues Unternehmen erstellen` öffnet Business Central einen Assistenten. Der Assistent führt durch die Anlage der neuen Company. Wenn der Assistent rechts als schmale Karte erscheint, kann er über das Symbol mit den Pfeilen vergrößert werden. Das ist für Anfänger hilfreich, weil die Auswahlfelder und Hinweise besser lesbar sind.
+
+Der erste Schritt ist eine Willkommensseite. Danach führt `Weiter` zur eigentlichen Auswahl für die neue Company. Dort ist der Name `UNIVERSAARL-DE` wichtig. Business Central verwendet diesen Namen später in der Mandantenliste und im Company-Kontext.
+
+Für die Universaarl GmbH wird die Datenbasis `Neu erstellen - Keine Daten` verwendet. Diese Auswahl ist der saubere Startpunkt für dieses Buch:
+
+- keine Beispieldaten,
+- keine Einrichtungsdaten,
+- keine CRONUS-Kopie,
+- keine Testcompany,
+- keine fremden Kunden, Artikel, Konten oder Belege.
+
+Damit beginnt die Universaarl GmbH wirklich leer. Das ist langsamer als eine Demofirma, aber fachlich sauberer: Jeder Debitor, jeder Kreditor, jeder Artikel, jede Buchungsgruppe und jede Buchung entsteht später bewusst im Buch.
+
+Nach der Eingabe von `UNIVERSAARL-DE` führt der Assistent über weitere `Weiter`-Schritte bis zu `Fertig stellen`. Erst nach `Fertig stellen` wird die Mandantenliste erneut geprüft. Der erfolgreiche Zustand ist sichtbar: In der Liste steht `UNIVERSAARL-DE`, und der Einrichtungsstatus ist `Completed`.
+
+`Completed` bedeutet an dieser Stelle nur, dass die technische Company-Anlage abgeschlossen ist. Es bedeutet noch nicht, dass Finanzbuchhaltung, Umsatzsteuer, Nummernserien, Buchungsgruppen oder Stammdaten eingerichtet sind. Diese Arbeit beginnt erst im nächsten Schritt.
 
 ## Warum die Alternativen trotzdem wichtig sind
 

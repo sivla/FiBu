@@ -1,6 +1,23 @@
 # Permission Blockers
 
-## Aktueller Blocker
+## Aktueller Status
+
+Der fruehere Rechteblocker ist fuer TARGET-009 nicht mehr aktiv. `UNIVERSAARL-DE` ist in `playthru` ueber den gefuehrten Assistenten sichtbar geworden.
+
+Status:
+
+- Instanz: `playthru`
+- Zielcompany: `UNIVERSAARL-DE`
+- Musterfirma: Universaarl GmbH
+- Case: `TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE`
+- Status: `done`
+- Verwendeter Pfad: `Mandanten` -> Pfeil neben `Neu` -> `Neues Unternehmen erstellen` -> `Neu erstellen - Keine Daten`
+- Weiterhin verboten: `Kopieren`, `Testunternehmen`, CRONUS-/Demo-Kopie, API-Abkuerzung
+- Naechster Case: `TARGET-010-UNIVERSAARL-COMPANY-CONTEXT-PROOF`
+
+Der naechste Schritt ist kein weiterer Company-Creation-Versuch. Zuerst wird `UNIVERSAARL-DE` bewusst geoeffnet oder als aktiver Company-Kontext sichtbar gemacht. Danach wird die Seite `Unternehmensinformationen` read-only geprueft.
+
+## Historischer Blocker
 
 `UNIVERSAARL-DE` kann noch nicht erstellt werden, weil aktuell keine ausreichenden Business-Central-Rechte für Company Creation vorhanden sind.
 

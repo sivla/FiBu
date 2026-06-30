@@ -6,13 +6,13 @@ PREP-022-Qualitaet: `useful-but-legacy-heavy`.
 
 Aktiv fuer Universaarl sind vor allem die Split-Button-, Tooltip-, Dialog- und Companies-Regeln. P2P-, Payment-, Fixed-Assets- und andere RM-DEMO-Actions bleiben Patternquelle, aber keine aktive Zielroute. Sie werden erst wieder aktiv, wenn ein konkreter Universaarl-Usecase sie neu braucht.
 
-## PREP-039 Korrektur fuer Company Creation
+## TARGET-009 Company Creation
 
-Aktuelle Zielregel fuer `TARGET-009`: Die bevorzugte Buch- und Live-Route ist `Mandanten` -> Pfeil neben `Neu` -> `Neues Unternehmen erstellen`.
+TARGET-009 hat die bevorzugte Buch- und Live-Route bestaetigt: `Mandanten` -> Pfeil neben `Neu` -> `Neues Unternehmen erstellen`.
 
 Der Hauptbutton `Neu` ist nicht dasselbe Ziel. Er kann eine direkte, leere Mandantenzeile oeffnen und darf nicht als Nachweis fuer den gefuehrten Weg `Neues Unternehmen erstellen` verwendet werden. Wenn nach einem Klick nur eine leere Mandantenzeile sichtbar ist, gilt dieser Zustand als eigener ListPart-/Zeilenpfad oder als `rejected-path`, nicht als erfolgreicher Wizard-Start.
 
-Vor dem naechsten wirksamen Lauf muessen Tooltip/Accessible Name, geoeffnetes Dropdown und der sichtbare Menueintrag `Neues Unternehmen erstellen` zusammen im Screenshot oder Result dokumentiert sein. Erst danach darf der Menueintrag selbst angeklickt werden; `Kopieren`, `Testunternehmen` und CRONUS-/Demo-Routen bleiben fuer die Universaarl-Zielbasis gesperrt.
+Die Datenbasis fuer `UNIVERSAARL-DE` ist `Neu erstellen - Keine Daten`. `Kopieren`, `Testunternehmen`, CRONUS-/Demo-Routen und API-Abkuerzungen wurden nicht verwendet. Der naechste sinnvolle Schritt ist nicht noch ein Creation-Versuch, sondern der bewusste Wechsel in `UNIVERSAARL-DE` und der read-only Nachweis des aktiven Company-Kontexts.
 
 | Action | Bereich | Status | Belegte Nutzung | Evidence | Guard |
 |---|---|---|---|---|---|
@@ -22,7 +22,7 @@ Vor dem naechsten wirksamen Lauf muessen Tooltip/Accessible Name, geoeffnetes Dr
 | Mehrere Company-Creation-Einstiege | Universaarl Company | `taxonomy-for-book` | `Mandanten`, `My Settings` und Assisted-Setup-Kontexte sind unterschiedliche Einstiege; fuer die Universaarl-Anlage ist `Mandanten` -> Pfeil neben `Neu` -> `Neues Unternehmen erstellen` der aktive Zielpfad; der Hauptbutton `Neu` erklaert nur den alternativen Listenzeilenpfad | TARGET-002..007, PREP-039, PREP-040 | Einstiegspunkt nicht mit Datenbasis verwechseln; Universaarl braucht eigene Basis ohne Demo-/CRONUS-Kopie |
 | `Verwandte Aktionen fuer Neu` / Pfeil neben `Neu` auf Companies | Universaarl Company | `clickguide-proven-dropdown-only` | TARGET-007 oeffnet den Pfeil neben `Neu` und zeigt das Dropdown fuer die Klickanleitung; keine Auswahl, keine Company-Anlage | `evidence/target-007-companies-new-dropdown-clickguide/TARGET-007-result.json` | Dropdown erklaeren, aber nicht `Kopieren` oder `Testunternehmen` fuer Universaarl waehlen |
 | `Verwandte Aktionen fuer Neu` / Pfeil neben `Neu` auf Companies | Universaarl Company | `universaarl-readonly-observed` | PREP-031 oeffnet Page 357 in `playthru`, rechnet Frame-Offsets fuer den echten Pfeiltreffer ein und zeigt im Dropdown `Neu` sowie `Neues Unternehmen erstellen`; `Kopieren` ist als eigene Command-Bar-Action sichtbar, `Testunternehmen` als Spalte | `evidence/prep-031-companies-page-readonly-playwright/PREP-031-result.json`, `img/prep-031-020-companies-new-dropdown-open.png` | nur Dropdown/Tooltip/Screenshot-QA; kein Klick auf `Neues Unternehmen erstellen`, keine Werteingabe, keine Company-Anlage |
-| `Neu` / `Neues Unternehmen erstellen` auf Companies | Universaarl Company | `blocked-permission-and-focus-gate` | TARGET-008/TARGET-009 zeigen die sichtbare Route und den direkten `Neu - Mandanten`-ListPart; `UNIVERSAARL-DE` ist nach dem Versuch nicht sichtbar, Benutzerrechte fehlen aktuell | `evidence/target-008-companies-new-row-field-save-gate/TARGET-008-result.json`, `evidence/target-009-main-neu-list-company-create-gate/TARGET-009-result.json` | nicht als Company-Anlage behaupten; erst nach Berechtigung und sichtbarem `UNIVERSAARL-DE`-Nachweis fortsetzen |
+| `Neues Unternehmen erstellen` auf Companies | Universaarl Company | `universaarl-proven-no-data-company-creation` | TARGET-009 oeffnet den Pfeil neben `Neu`, waehlt `Neues Unternehmen erstellen`, zeigt den Wizard, nutzt `Neu erstellen - Keine Daten` und verifiziert `UNIVERSAARL-DE` in der Mandantenliste | `evidence/target-009-main-neu-list-company-create-gate/TARGET-009-result.json`, `img/target-009-022-wizard-name-entered-no-data-selected.png` | beweist keine Company Information, keine Nummernserien, keine Buchungsgruppen, kein VAT Setup und keine Buchung |
 | Split-Button-Hover/Tooltip vor wirksamer Aktion | Universaarl UI | `prep-reusable` | PREP-003 trennt Hauptbutton, Dropdown-Pfeil und Menueintrag; Tooltip/Accessible Name ist Pflicht, wenn der sichtbare Button mehrdeutig ist | `evidence/prep-003-readonly-ui-look-and-feel/PREP-003-result.json`, `UNIVERSAARL-READONLY-UI-LOOK-AND-FEEL-MAP.md` | Hover/Tooltip ist read-only; danach keine Auswahl von `Neu`, `OK`, `Fertig stellen`, `Post`, `Preview` ohne Case-Gate |
 | Splitbutton-Zielpruefung `Neu` vs Pfeil vs Menueintrag | Universaarl UI | `prep-reusable` | PREP-010 macht aus dem TARGET-007/008-Learning eine harte Regel: Hauptbutton, Pfeil und Menueintrag sind unterschiedliche Action-Ziele; ein Treffer auf `Neu` ist kein Beweis fuer `Neues Unternehmen erstellen` | `evidence/prep-010-playwright-readonly-ui-ergonomics/PREP-010-result.json`, `.agent/BC-UI-LOOK-AND-FEEL-GUIDE.md` | vor wirksamer Aktion Hover/Tooltip, sichtbaren Zielzustand und Screenshot-QA erfassen; falscher Zielzustand wird `rejected-path`, nicht Erfolg |
 | `Create New Company` / Assisted Setup | Universaarl Company | `blocked` | TARGET-003 sucht die exakte Aktion auf Page `357`, findet sie aber nicht sichtbar/klickbar; keine Company erstellt | `evidence/target-003/TARGET-003-result.json` | direkte Mandanten-Listenzeile, `Kopieren`, `Testunternehmen`, CRONUS und Wizard-Finish bleiben gesperrt; naechster Case braucht scoped Action/Menu Discovery |
@@ -61,10 +61,11 @@ Alte RM-DEMO-/CRONUS-Tests liefern weiterhin wertvolle Action-Muster, aber keine
 
 | Prioritaet | Usecase | Action-Fokus | Status |
 | ---: | --- | --- | --- |
-| 1 | `TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE` | `Mandanten` -> Pfeil neben `Neu` -> `Neues Unternehmen erstellen`, Tooltip/Accessible Name, Zielzustand nach Klick | `blocked-until-super-permissions` |
-| 2 | `TARGET-COMPANY-INFO-001` | sichere Navigation zur Company Information, keine Setup- oder Speicheraenderung ohne Gate | `planned-after-company` |
-| 3 | `TARGET-FOUNDATION-001` | Assisted/Manual Setup Actions nur bis sichtbarer Entscheidungspunkt; kein Finish ohne Datenbasis | `planned-after-company` |
-| 4 | `TARGET-O2C-001` bis `TARGET-PAYMENT-001` | `Preview`, `Post`, `Apply Entries`, `Navigate/Find Entries` mit eigener Smart Decision Card | `planned-after-masterdata` |
+| 1 | `TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE` | `Mandanten` -> Pfeil neben `Neu` -> `Neues Unternehmen erstellen` -> `Neu erstellen - Keine Daten` -> Ergebnisliste | `universaarl-proven` |
+| 2 | `TARGET-010-UNIVERSAARL-COMPANY-CONTEXT-PROOF` | bewusster Wechsel/Oeffnen von `UNIVERSAARL-DE`, Shell-/Company-Kontext und Company Information read-only | `ready-next` |
+| 3 | `TARGET-COMPANY-INFO-001` | sichere Navigation zur Company Information, keine Setup- oder Speicheraenderung ohne Gate | `planned-after-context-proof` |
+| 4 | `TARGET-FOUNDATION-001` | Assisted/Manual Setup Actions nur bis sichtbarer Entscheidungspunkt; kein Finish ohne Datenbasis | `planned-after-company-information` |
+| 5 | `TARGET-O2C-001` bis `TARGET-PAYMENT-001` | `Preview`, `Post`, `Apply Entries`, `Navigate/Find Entries` mit eigener Smart Decision Card | `planned-after-masterdata` |
 
 ## PREP-024 Read-only Action-Karte
 

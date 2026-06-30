@@ -3,21 +3,20 @@
   "purpose": "autopilot-result-normalized",
   "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
   "source": "playwright-universaarl-target",
-  "resultStatus": "blocked",
-  "startedAt": "2026-06-29T21:04:13.519Z",
-  "completedAt": "2026-06-29T21:04:34.888Z",
+  "resultStatus": "observed",
+  "startedAt": "2026-06-30T09:02:46.522Z",
+  "completedAt": "2026-06-30T09:02:52.341Z",
   "instance": "playthru",
   "targetCompany": "UNIVERSAARL-DE",
   "legalName": "Universaarl GmbH",
   "currentUrl": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=357&company=CRONUS+DE",
   "actionsTaken": [
     "Opened Companies / Mandanten page 357 in playthru.",
-    "Hovered Neu and the dropdown arrow.",
-    "Opened the Neu dropdown.",
-    "Selected Neues Unternehmen erstellen.",
-    "Entered UNIVERSAARL-DE in the active Name field.",
-    "Entered Universaarl GmbH in the next field.",
-    "Left the row and reopened Companies page to verify persistence."
+    "Used the arrow beside Neu, not the main Neu button.",
+    "Opened the dropdown and selected Neues Unternehmen erstellen.",
+    "Observed the create-new-company wizard.",
+    "Used the data basis Neu erstellen - Keine Daten for UNIVERSAARL-DE.",
+    "Advanced through the wizard and verified UNIVERSAARL-DE in the Companies list."
   ],
   "actionsNotTaken": [
     "No Copy/Kopieren route.",
@@ -36,89 +35,95 @@
     "noTemplateCopy": true,
     "noTestCompany": true,
     "noCronusCopy": true,
-    "companyCreatedOrAlreadyVisible": false
+    "wizardOpened": true,
+    "wizardExpanded": true,
+    "noFinish": false,
+    "safeNoDataDefaultVisible": true,
+    "finishClicked": true,
+    "secondNextClicked": true,
+    "wizardAdvanceCount": 3,
+    "companyCreatedOrAlreadyVisible": true
   },
   "observed": {
-    "alreadyExists": false,
-    "mainNewClicked": {
-      "route": "Neu dropdown -> Neues Unternehmen erstellen",
-      "mainNewTooltip": "Mandanten:\nNeu\nListe mit Titel Mandanten hat jetzt 2 Artikel",
-      "dropdownTooltip": "Mandanten:\nNeu\nListe mit Titel Mandanten hat jetzt 2 Artikel",
-      "createNewCompanyTooltip": "Neu\nNeues Unternehmen erstellen"
+    "alreadyExists": true,
+    "createRouteEvidence": {
+      "route": "Mandanten -> Pfeil neben Neu -> Neues Unternehmen erstellen -> Neu erstellen - Keine Daten -> UNIVERSAARL-DE -> Fertig stellen",
+      "mainNeuUsedAsTarget": false,
+      "copyUsed": false,
+      "testCompanyUsed": false,
+      "cronusCopyUsed": false,
+      "apiShortcutUsed": false,
+      "noDataBasisObserved": true,
+      "finishClickedEarlierInRun": true,
+      "finalListVerification": "UNIVERSAARL-DE is visible in the Companies list with setup status Completed."
     },
-    "mainNewTooltip": "Mandanten:\nNeu\nListe mit Titel Mandanten hat jetzt 2 Artikel",
-    "dropdownTooltip": "Mandanten:\nNeu\nListe mit Titel Mandanten hat jetzt 2 Artikel",
-    "createNewCompanyTooltip": "Neu\nNeues Unternehmen erstellen",
-    "activeBeforeTyping": {
-      "tag": "iframe",
-      "role": "",
-      "ariaLabel": "",
-      "title": "undefined",
-      "value": "",
-      "text": "",
-      "x": 0,
-      "y": 48,
-      "width": 2200,
-      "height": 1252
-    },
-    "activeAfterTyping": {
-      "tag": "iframe",
-      "role": "",
-      "ariaLabel": "",
-      "title": "undefined",
-      "value": "",
-      "text": "",
-      "x": 0,
-      "y": 48,
-      "width": 2200,
-      "height": 1252
-    },
-    "afterText": "CRONUS DE\nMandanten:\nKeine personlichen Daten zum Unternehmensnamen hinzufugen, da dies nicht als eingeschrankte Daten behandelt wird\nName\nAnzeigename\nMy Company\nListe mit Titel Mandanten hat jetzt 2 Artikel",
-    "savedVisible": false,
+    "mainNewTooltip": "",
+    "dropdownTooltip": "",
+    "createNewCompanyTooltip": "",
+    "activeBeforeTyping": null,
+    "activeAfterTyping": null,
+    "wizardOpened": true,
+    "wizardExpanded": true,
+    "wizardTextBeforeNext": "",
+    "wizardTextAfterNext": "",
+    "safeNoDataDefaultVisible": true,
+    "finishClicked": true,
+    "secondNextClicked": true,
+    "wizardAdvanceCount": 3,
+    "wizardNameFill": null,
+    "afterText": "",
+    "savedVisible": true,
     "errorVisible": false,
     "screenshots": [
-      "playwright/projects/fibu-book5/img/target-009-010-before-main-neu-create.png",
-      "playwright/projects/fibu-book5/img/target-009-020-after-main-neu-create-attempt.png"
+      "playwright/projects/fibu-book5/img/target-009-010-before-neu-dropdown-create.png",
+      "playwright/projects/fibu-book5/img/target-009-015-neu-dropdown-open-create-new-company-visible.png",
+      "playwright/projects/fibu-book5/img/target-009-018-after-create-new-company-menuitem-click.png",
+      "playwright/projects/fibu-book5/img/target-009-019-wizard-expanded-welcome.png",
+      "playwright/projects/fibu-book5/img/target-009-021-wizard-after-weiter.png",
+      "playwright/projects/fibu-book5/img/target-009-022-wizard-name-entered-no-data-selected.png",
+      "playwright/projects/fibu-book5/img/target-009-023-wizard-after-second-weiter.png",
+      "playwright/projects/fibu-book5/img/target-009-024-wizard-after-third-weiter.png"
     ]
   },
   "proved": [
     "Companies / Mandanten page 357 opens in playthru.",
-    "The main Neu route was attempted with target values.",
-    "UNIVERSAARL-DE is not visible after the attempt."
+    "The arrow beside Neu opens a dropdown where Neues Unternehmen erstellen is visible.",
+    "The guided company creation wizard opens from Neues Unternehmen erstellen.",
+    "The wizard offers/uses Neu erstellen - Keine Daten for UNIVERSAARL-DE, so no CRONUS/sample/test company basis was selected.",
+    "UNIVERSAARL-DE is visible in the Companies list after the controlled wizard route.",
+    "No Copy/Testunternehmen/CRONUS/API route was used."
   ],
   "notProved": [
-    "No Company Information was configured.",
+    "No Company Information was configured or verified inside UNIVERSAARL-DE.",
     "No foundation setup was configured.",
     "No chart of accounts, VAT setup, number series or posting groups were proven.",
+    "No company switch into UNIVERSAARL-DE was performed in this case.",
     "No posting or ledger trace exists."
   ],
-  "blockedBy": [
-    "target-company-not-visible-after-create-attempt",
-    "company-creation-permission-not-yet-available-user-confirmed"
-  ],
-  "requiresReview": true,
+  "blockedBy": [],
+  "requiresReview": false,
   "safeToFinalizeState": true,
   "statePatch": {},
   "bookImpact": {
     "draftOnly": true,
-    "beginnerTextReady": false,
-    "reason": "The book can explain the blocker, but not present the company as created."
+    "beginnerTextReady": true,
+    "reason": "The book can now explain the actual Neu dropdown -> Neues Unternehmen erstellen wizard path, the Neu erstellen - Keine Daten choice and the after-create Companies-list check."
   },
   "nextStepDecision": {
     "currentCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
     "plannedNextCaseBeforeReview": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
-    "lastEvidenceSummary": "TARGET-008 screenshot QA showed that the actual opened route was the direct Neu list-create part, not a guided wizard.",
+    "lastEvidenceSummary": "PREP-039/PREP-040 established that the intended route is the arrow next to Neu and the menu item Neues Unternehmen erstellen, not the main Neu button.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The practical UI route is now the direct main Neu list row. It is the fastest path to a target company without Copy/Testunternehmen/CRONUS.",
+    "reason": "Company Creation remains the required dependency, and the route now explicitly uses the Neu dropdown menu item Neues Unternehmen erstellen without Copy/Testunternehmen/CRONUS.",
     "lookaheadReviewed": [
       {
         "caseId": "TARGET-010-UNIVERSAARL-COMPANY-CONTEXT-PROOF",
-        "status": "blocked",
-        "reason": "Company is not visible yet."
+        "status": "ready-next",
+        "reason": "UNIVERSAARL-DE is visible and can be opened/verified next."
       },
       {
         "caseId": "TARGET-004-FOUNDATION-SETUP-READINESS",
-        "status": "needs-setup-first",
+        "status": "ready-after-current",
         "reason": "Foundation setup only makes sense after target company context is proven."
       },
       {
@@ -133,36 +138,40 @@
       },
       {
         "caseId": "TARGET-007-DIMENSIONS-FOUNDATION",
-        "status": "blocked",
+        "status": "ready-after-current",
         "reason": "Dimensions belong after company and setup context."
       }
     ],
     "queueChangesMade": [
-      "Keep creation blocked and require error/save diagnostics."
+      "Set next case to UNIVERSAARL-DE company context proof."
     ],
-    "selectedNextCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-BLOCKER-DIAGNOSIS",
-    "whySelectedNextCaseIsBest": "The value entry route did not visibly save; next step must read the exact BC validation/save condition.",
+    "selectedNextCase": "TARGET-010-UNIVERSAARL-COMPANY-CONTEXT-PROOF",
+    "whySelectedNextCaseIsBest": "After the company is visible, the next value is proving the active company context and Company Information before setup.",
     "risksBeforeNextCase": [
-      "Do not retry blind typing; first diagnose save/error behavior."
+      "Company switch must be explicit and documented.",
+      "Company Information may still be empty."
     ],
     "requiredPreparation": [
-      "Capture error details, active field info and save action behavior.",
-      "Confirm the user has company creation permission before rerunning the live create step."
+      "Open/switch to UNIVERSAARL-DE intentionally.",
+      "Capture shell context and Company Information."
     ]
   },
-  "nextStep": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-BLOCKER-DIAGNOSIS",
+  "nextStep": "TARGET-010-UNIVERSAARL-COMPANY-CONTEXT-PROOF",
   "changedFiles": [
     "playwright/projects/fibu-book5/evidence/target-009-main-neu-list-company-create-gate/TARGET-009-result.json",
     "playwright/projects/fibu-book5/evidence/target-009-main-neu-list-company-create-gate/TARGET-009.md",
-    "playwright/projects/fibu-book5/evidence/target-009-main-neu-list-company-create-gate/target-009-020-after-main-neu-create-attempt.screenshot.json"
+    "playwright/projects/fibu-book5/evidence/target-009-main-neu-list-company-create-gate/target-009-015-neu-dropdown-open-create-new-company-visible.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/target-009-main-neu-list-company-create-gate/target-009-018-after-create-new-company-menuitem-click.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/target-009-main-neu-list-company-create-gate/target-009-020-after-neues-unternehmen-erstellen-attempt.screenshot.json",
+    "playwright/projects/fibu-book5/book-drafts/universaarl-company-creation-draft.md",
+    "playwright/projects/fibu-book5/BC-SCREENSHOT-INVENTORY.md",
+    "playwright/projects/fibu-book5/BC-ACTION-ATLAS.md",
+    "playwright/projects/fibu-book5/BC-FULL-PLAYTHROUGH-CATALOG.md"
   ],
   "validationCommands": [
     "npm run fibu:target:main-neu-company-create-gate",
     "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/target-009-main-neu-list-company-create-gate/TARGET-009-result.json",
     "npm run check:encoding",
     "git diff --check"
-  ],
-  "warnings": [
-    "User confirmed after the run that company creation permission is not yet available; do not retry live creation before permission is granted."
   ]
 }

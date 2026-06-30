@@ -1,0 +1,99 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-010-UNIVERSAARL-COMPANY-CONTEXT-PROOF",
+  "title": "Universaarl company context and Company Information read-only proof",
+  "instance": "playthru",
+  "targetCompany": "UNIVERSAARL-DE",
+  "legalName": "Universaarl GmbH",
+  "workType": "read-only-company-context-proof",
+  "status": "ready-next",
+  "dependsOn": [
+    "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE"
+  ],
+  "goal": "Open or switch to UNIVERSAARL-DE intentionally, prove the active Business Central company context, and inspect Company Information read-only before any setup change.",
+  "evidenceTarget": "playwright/projects/fibu-book5/evidence/target-010-universaarl-company-context-proof/",
+  "allowedActionsWhenRun": [
+    "open-playthru-business-central",
+    "open-or-switch-to-UNIVERSAARL-DE-with-documentation",
+    "capture-shell-company-context",
+    "open-Company-Information-readonly",
+    "capture-page-title-fasttabs-visible-fields-and-readonly-screenshot-qa"
+  ],
+  "defaultLockedActions": [
+    "setup-change",
+    "save-company-information",
+    "posting",
+    "preview-posting",
+    "master-data-create",
+    "api-shortcut"
+  ],
+  "forbiddenActions": [
+    "leave-playthru",
+    "operate-in-CRONUS-as-active-target",
+    "change-company-information-values",
+    "claim-foundation-setup-ready-without-evidence"
+  ],
+  "mustCheckBeforeRun": [
+    "UNIVERSAARL-DE visible/existing from TARGET-009",
+    "URL contains playthru",
+    "active company indicator or My Settings confirms UNIVERSAARL-DE",
+    "Company Information page opens for UNIVERSAARL-DE"
+  ],
+  "successCriteria": [
+    "UNIVERSAARL-DE is the active company context.",
+    "Company Information opens read-only.",
+    "Screenshots show the page, relevant fields/FastTabs and what is still empty or default.",
+    "No setup value is changed."
+  ],
+  "migrationRelevance": "needed-for-german-final",
+  "finalScreenshotNeeded": true,
+  "nextSafeAction": "Run a read-only Playwright proof for UNIVERSAARL-DE company context and Company Information.",
+  "smartDecisionCard": {
+    "currentCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-010-UNIVERSAARL-COMPANY-CONTEXT-PROOF",
+    "lastEvidenceSummary": "UNIVERSAARL-DE is visible in playthru after the Mandanten -> Pfeil neben Neu -> Neues Unternehmen erstellen -> Neu erstellen - Keine Daten wizard route.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "Company context must be proven before Company Information values, setup, number series, posting groups, VAT, dimensions or master data are changed.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-010-UNIVERSAARL-COMPANY-CONTEXT-PROOF",
+        "status": "ready-next",
+        "reason": "The company exists and can now be opened read-only."
+      },
+      {
+        "caseId": "TARGET-011-UNIVERSAARL-COMPANY-INFORMATION",
+        "status": "ready-after-current",
+        "reason": "Company Information can be filled only after read-only field/page context is proven."
+      },
+      {
+        "caseId": "TARGET-012-W1-FOUNDATION-READINESS",
+        "status": "needs-setup-first",
+        "reason": "Foundation setup requires Company Information context and a deliberate setup decision."
+      },
+      {
+        "caseId": "TARGET-013-NUMBER-SERIES-AND-POSTING-GROUPS",
+        "status": "needs-setup-first",
+        "reason": "Number series and posting groups follow the Foundation readiness gate."
+      },
+      {
+        "caseId": "TARGET-DATA-FOUNDATION-001-CORE-MASTERDATA-PLAN",
+        "status": "ready-after-current",
+        "reason": "Master data creation waits until company context and setup baseline are known."
+      }
+    ],
+    "queueChangesMade": [
+      "TARGET-009 completed; TARGET-010 becomes the active next case."
+    ],
+    "selectedNextCase": "TARGET-010-UNIVERSAARL-COMPANY-CONTEXT-PROOF",
+    "whySelectedNextCaseIsBest": "It prevents setup or master data from being entered in the wrong company and gives the book its first Universaarl company-context screenshot.",
+    "risksBeforeNextCase": [
+      "Company switch must be visible and documented.",
+      "Company Information must remain read-only in this case."
+    ],
+    "requiredPreparation": [
+      "Use TARGET-009 result and screenshots as prerequisite.",
+      "Capture screenshot QA that shows the actual active company, not only the URL."
+    ]
+  },
+  "updatedAt": "2026-06-30T21:20:00.000+02:00"
+}

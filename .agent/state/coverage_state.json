@@ -459,12 +459,32 @@
       ],
       "nextCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
       "nextStep": "After explicit SUPER/company-create permission confirmation, run TARGET-009 using Mandanten -> arrow next to Neu -> Neues Unternehmen erstellen with the PREP-040 screenshot chain."
+    },
+    "universaarlCompanyFoundation": {
+      "chapter": "Kapitel 3/4/6",
+      "status": "in-progress",
+      "latestPracticalCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+      "covered": [
+        "playthru Companies / Mandanten page 357",
+        "Neu splitbutton dropdown with Neues Unternehmen erstellen",
+        "Create-new-company wizard route",
+        "Neu erstellen - Keine Daten as selected/visible data basis",
+        "UNIVERSAARL-DE visible in Companies list after wizard route"
+      ],
+      "openLimits": [
+        "No Company Information was configured or verified inside UNIVERSAARL-DE.",
+        "No foundation setup was configured.",
+        "No chart of accounts, VAT setup, number series or posting groups were proven.",
+        "No company switch into UNIVERSAARL-DE was performed in this case.",
+        "No posting or ledger trace exists."
+      ],
+      "nextCase": "TARGET-010-UNIVERSAARL-COMPANY-CONTEXT-PROOF"
     }
   },
   "hardExclusions": {
     "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
   },
-  "updatedAt": "2026-06-30T20:05:00.000+02:00",
+  "updatedAt": "2026-06-30T21:20:00.000+02:00",
   "activeArea": "universaarl-target-company-creation",
   "currentBlock": "PROCESS-SELECTION-AFTER-WAREHOUSE-SOURCE-PARKING",
   "latestPracticalCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
@@ -2722,53 +2742,88 @@
     "resultPath": "playwright/projects/fibu-book5/evidence/prep-046-bookmaster-starter-data-universaarl-cleanup/PREP-046-result.json"
   },
   "nextStepDecisionCard": {
-    "currentCase": "PREP-046-BOOKMASTER-STARTER-DATA-UNIVERSAARL-CLEANUP",
+    "currentCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
     "plannedNextCaseBeforeReview": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
-    "lastEvidenceSummary": "PREP-046 cleaned the active chapter 6 starter data package so Universaarl target master data uses U-CUST, U-VEND, U-ITEM and SAAR-* codes instead of active RM-DEMO/Rhein-Main starter codes.",
+    "lastEvidenceSummary": "PREP-039/PREP-040 established that the intended route is the arrow next to Neu and the menu item Neues Unternehmen erstellen, not the main Neu button.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "Company Creation remains the dependency before Company Information, Foundation setup, master data creation and process evidence; it remains blocked until SUPER/company-create permissions are confirmed.",
+    "reason": "TARGET-009 is complete: UNIVERSAARL-DE is visible after the no-data wizard route. The next dependency is proving active company context before setup.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
-        "status": "blocked",
-        "reason": "Requires SUPER/company-create permissions and the PREP-040 screenshot chain."
+        "caseId": "TARGET-010-UNIVERSAARL-COMPANY-CONTEXT-PROOF",
+        "status": "ready-next",
+        "reason": "UNIVERSAARL-DE is visible and can be opened/verified next."
       },
       {
-        "caseId": "TARGET-COMPANY-INFO-001-COMPANY-INFORMATION-READONLY",
+        "caseId": "TARGET-004-FOUNDATION-SETUP-READINESS",
         "status": "ready-after-current",
-        "reason": "Run only after UNIVERSAARL-DE exists and active company context is visible."
+        "reason": "Foundation setup only makes sense after target company context is proven."
       },
       {
         "caseId": "TARGET-005-NUMBER-SERIES-PREFLIGHT",
-        "status": "ready-after-current",
-        "reason": "Requires company and Company Information context first."
+        "status": "needs-setup-first",
+        "reason": "Needs company context and foundation baseline."
       },
       {
         "caseId": "TARGET-006-POSTING-GROUPS-PREFLIGHT",
-        "status": "ready-after-current",
-        "reason": "Requires company foundation context before setup inspection."
+        "status": "needs-setup-first",
+        "reason": "Needs company context and foundation baseline."
       },
       {
-        "caseId": "TARGET-DATA-FOUNDATION-001-CORE-MASTERDATA-PLAN",
+        "caseId": "TARGET-007-DIMENSIONS-FOUNDATION",
         "status": "ready-after-current",
-        "reason": "The cleaned starter data package gives a concrete data target after company and W1 setup gates."
+        "reason": "Dimensions belong after company and setup context."
       }
     ],
     "queueChangesMade": [
-      "Added PREP-046 as a completed bookmaster starter data Universaarl cleanup.",
-      "Kept TARGET-009 parked until permissions.",
-      "Moved active chapter 6 starter data language from RM/D/K/RM item codes to Universaarl U-CUST/U-VEND/U-ITEM naming."
+      "Set next case to UNIVERSAARL-DE company context proof."
     ],
-    "selectedNextCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
-    "whySelectedNextCaseIsBest": "Company Creation remains the required dependency before any Universaarl Company Information, Foundation setup, starter master data or process evidence can be final-candidate evidence.",
+    "selectedNextCase": "TARGET-010-UNIVERSAARL-COMPANY-CONTEXT-PROOF",
+    "whySelectedNextCaseIsBest": "Company Information, number series, posting groups, VAT and master data must start only after the active company context is visibly UNIVERSAARL-DE.",
     "risksBeforeNextCase": [
-      "Do not click the Hauptbutton Neu when the intended target is Neues Unternehmen erstellen.",
-      "Screenshot must show the dropdown menu item itself before click.",
-      "Data basis must be visible before any finish/create confirmation."
+      "Company switch must be explicit and documented.",
+      "Company Information may still be empty."
     ],
     "requiredPreparation": [
-      "User confirms sufficient SUPER/company-create permissions.",
-      "Use UNIVERSAARL-COMPANY-CREATION-SCREENSHOT-QA-GATE.md during TARGET-009."
+      "Open/switch to UNIVERSAARL-DE intentionally.",
+      "Capture shell context and Company Information."
     ]
+  },
+  "latestTarget009CompanyCreation": {
+    "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+    "status": "universaarl-proven",
+    "instance": "playthru",
+    "targetCompany": "UNIVERSAARL-DE",
+    "legalName": "Universaarl GmbH",
+    "route": "Mandanten -> Pfeil neben Neu -> Neues Unternehmen erstellen -> Neu erstellen - Keine Daten -> Fertig stellen",
+    "noDataBasis": true,
+    "noCopy": true,
+    "noTestCompany": true,
+    "noCronusCopy": true,
+    "noApiShortcut": true,
+    "noCompanySwitch": true,
+    "noSetupChange": true,
+    "noPreviewPosting": true,
+    "noPosting": true,
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-009-main-neu-list-company-create-gate/TARGET-009-result.json",
+    "evidencePath": "playwright/projects/fibu-book5/evidence/target-009-main-neu-list-company-create-gate/",
+    "screenshots": [
+      "playwright/projects/fibu-book5/img/target-009-010-before-neu-dropdown-create.png",
+      "playwright/projects/fibu-book5/img/target-009-015-neu-dropdown-open-create-new-company-visible.png",
+      "playwright/projects/fibu-book5/img/target-009-018-after-create-new-company-menuitem-click.png",
+      "playwright/projects/fibu-book5/img/target-009-019-wizard-expanded-welcome.png",
+      "playwright/projects/fibu-book5/img/target-009-021-wizard-after-weiter.png",
+      "playwright/projects/fibu-book5/img/target-009-022-wizard-name-entered-no-data-selected.png",
+      "playwright/projects/fibu-book5/img/target-009-023-wizard-after-second-weiter.png",
+      "playwright/projects/fibu-book5/img/target-009-024-wizard-after-third-weiter.png"
+    ],
+    "openLimits": [
+      "No Company Information was configured or verified inside UNIVERSAARL-DE.",
+      "No foundation setup was configured.",
+      "No chart of accounts, VAT setup, number series or posting groups were proven.",
+      "No company switch into UNIVERSAARL-DE was performed in this case.",
+      "No posting or ledger trace exists."
+    ],
+    "nextCase": "TARGET-010-UNIVERSAARL-COMPANY-CONTEXT-PROOF",
+    "updatedAt": "2026-06-30T21:20:00.000+02:00"
   }
 }
