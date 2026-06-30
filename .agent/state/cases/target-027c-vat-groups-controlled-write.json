@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE",
+  "id": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE",
+  "status": "pending",
+  "area": "universaarl-vat-setup",
+  "goal": "Create or confirm the prerequisite VAT Business Posting Group INLAND and VAT Product Posting Group VAT19 before any VAT Posting Setup matrix row.",
+  "sourceCompany": "UNIVERSAARL-DE",
+  "targetWorld": "Universaarl",
+  "sourceCases": [
+    "TARGET-020-VAT-SETUP-READINESS",
+    "TARGET-027R-VAT-PAGE-ROUTE-RECOVERY",
+    "TARGET-027S-VAT-PAGE-ROUTE-SOURCE-AND-UI-FOLLOWUP",
+    "TARGET-027B-VAT-POSTING-SETUP-WRITE-GATE-DECISION"
+  ],
+  "allowedActions": [
+    "open-vat-business-posting-groups-direct-page-470",
+    "open-vat-product-posting-groups-direct-page-471",
+    "create-or-confirm-vat-business-posting-group-INLAND",
+    "create-or-confirm-vat-product-posting-group-VAT19",
+    "capture-before-after-reopen-proof",
+    "write-result-and-next-step-card"
+  ],
+  "forbiddenActions": [
+    "create-vat-posting-setup-matrix-row",
+    "change-general-posting-groups",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "api-shortcut",
+    "claim-german-19-percent-vat-final-proof",
+    "use-target-027s-search-overlay-as-page-proof"
+  ],
+  "targetValues": {
+    "vatBusinessPostingGroup": {
+      "code": "INLAND",
+      "description": "Inland Deutschland"
+    },
+    "vatProductPostingGroup": {
+      "code": "VAT19",
+      "description": "USt 19 Prozent"
+    }
+  },
+  "acceptanceCriteria": [
+    "The run stays in playthru / UNIVERSAARL-DE.",
+    "Page 470 and Page 471 are visibly confirmed before any write.",
+    "INLAND and VAT19 are created or confirmed with before/after and reopen proof.",
+    "No VAT Posting Setup matrix row is created.",
+    "No master data, document draft, Preview Posting, Posting or API shortcut is executed.",
+    "If route or visible page context is unclear, stop and document blocker instead of writing."
+  ],
+  "nextIfSuccessful": "TARGET-027D-VAT-POSTING-SETUP-MATRIX-WRITE",
+  "createdAt": "2026-07-01T01:40:16.068+02:00"
+}

@@ -1,0 +1,183 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "TARGET-027B-VAT-POSTING-SETUP-WRITE-GATE-DECISION",
+  "source": "source-backed-local-analysis",
+  "resultStatus": "observed-decision-no-write",
+  "runPlanId": "TARGET-027B-VAT-POSTING-SETUP-WRITE-GATE-DECISION-PLAN",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "actionsTaken": [
+    "Reviewed active state, queue and TARGET-027B case boundaries.",
+    "Reviewed TARGET-020, TARGET-027R and TARGET-027S VAT page-context evidence.",
+    "Checked Microsoft Learn VAT setup guidance and German UStG rate source.",
+    "Defined a narrow source-backed VAT target decision for the next controlled write case."
+  ],
+  "actionsNotTaken": [
+    "No Business Central execution",
+    "No Playwright execution",
+    "No VAT setup write",
+    "No posting group write",
+    "No master data",
+    "No document draft",
+    "No Preview Posting",
+    "No Posting",
+    "No API shortcut",
+    "No Company switch"
+  ],
+  "setupChanged": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "sourceRefs": [
+    "https://learn.microsoft.com/en-us/dynamics365/business-central/finance-setup-vat",
+    "https://learn.microsoft.com/en-us/dynamics365/business-central/application/base-application/table/microsoft.finance.vat.setup.vat-posting-setup",
+    "https://www.gesetze-im-internet.de/ustg_1980/UStG.pdf",
+    "https://usth.bundesfinanzministerium.de/usth/2018-2019/A-Umsatzsteuergesetz/IV-Steuer-und-Vorsteuer/Paragraf-12/inhalt.html"
+  ],
+  "sourceDecisions": [
+    {
+      "decision": "VAT Business Posting Group target code",
+      "targetValue": "INLAND",
+      "reason": "Microsoft Learn describes VAT business posting groups as market/customer/vendor context; INLAND is the narrow German domestic market group for the first Universaarl setup path.",
+      "status": "decision-ready-not-written"
+    },
+    {
+      "decision": "VAT Product Posting Group target code",
+      "targetValue": "VAT19",
+      "reason": "Microsoft Learn recommends memorable rate-describing VAT product group codes; VAT19 is the narrow standard-rate product group for the first Universaarl setup path.",
+      "status": "decision-ready-not-written"
+    },
+    {
+      "decision": "VAT Posting Setup target row",
+      "targetValue": "INLAND + VAT19",
+      "reason": "Microsoft Learn defines VAT Posting Setup as the combination of VAT business and product posting groups with VAT percent, calculation type and VAT accounts.",
+      "status": "planned-after-groups-write"
+    },
+    {
+      "decision": "VAT percent",
+      "targetValue": "19",
+      "reason": "UStG § 12 states the regular German VAT rate as 19 percent. This is a legal source for the candidate rate, not BC posting proof.",
+      "status": "source-backed-not-bc-proven"
+    },
+    {
+      "decision": "VAT calculation type",
+      "targetValue": "Normal VAT",
+      "reason": "The first Universaarl domestic standard-rate path is neither reverse charge nor import full VAT; the write case must confirm the German UI value before saving.",
+      "status": "decision-ready-not-written"
+    },
+    {
+      "decision": "Sales VAT Account",
+      "targetValue": "3806",
+      "reason": "TARGET-026L proves 3806 as visible balance-sheet posting account. It remains a candidate until the VAT Posting Setup row is written and later Preview/Entries prove effect.",
+      "status": "account-visible-not-setup-proven"
+    },
+    {
+      "decision": "Purchase VAT Account",
+      "targetValue": "1406",
+      "reason": "TARGET-026K proves 1406 as visible balance-sheet posting account. It remains a candidate until the VAT Posting Setup row is written and later Preview/Entries prove effect.",
+      "status": "account-visible-not-setup-proven"
+    }
+  ],
+  "proved": [
+    "TARGET-027B selected source-backed target values for the next VAT setup write gate.",
+    "Page context exists only as read-only context: Page 470 via TARGET-020, Pages 471 and 472 via TARGET-027R.",
+    "The next write should be split: first create/confirm VAT Business/Product Posting Groups, then create the VAT Posting Setup matrix row.",
+    "No Business Central setup, master data, document, Preview Posting, Posting or API shortcut was executed in this run."
+  ],
+  "notProved": [
+    "No VAT Business Posting Group was created or persisted.",
+    "No VAT Product Posting Group was created or persisted.",
+    "No VAT Posting Setup row exists yet.",
+    "No German 19 percent VAT correctness is proven in Business Central.",
+    "No Preview Posting, VAT Entry, G/L Entry or VAT Statement exists.",
+    "No tax advisor approval or German compliance final proof exists."
+  ],
+  "blockedBy": [],
+  "warnings": [
+    "Do not use TARGET-027S search-overlay screenshots as Page 470 proof.",
+    "Do not write the VAT Posting Setup matrix row before the required groups exist visibly.",
+    "Do not claim German VAT final correctness until setup, Preview Posting, VAT Entries and G/L Entries are proven."
+  ],
+  "screenshots": [],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-027b-vat-posting-setup-write-gate-decision/README.md",
+    "playwright/projects/fibu-book5/evidence/target-027b-vat-posting-setup-write-gate-decision/TARGET-027B-result.json",
+    "playwright/projects/fibu-book5/evidence/target-020-vat-setup-readiness/TARGET-020-result.json",
+    "playwright/projects/fibu-book5/evidence/target-027r-vat-page-route-recovery/TARGET-027R-result.json",
+    "playwright/projects/fibu-book5/evidence/target-027s-vat-business-posting-groups-route-followup/TARGET-027S-result.json"
+  ],
+  "flags": {
+    "noWrite": true,
+    "noBusinessCentralExecution": true,
+    "noPlaywrightExecution": true,
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noSetupChange": true,
+    "noMasterDataChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookMasterChange": true
+  },
+  "nextStepDecision": {
+    "currentCase": "TARGET-027B-VAT-POSTING-SETUP-WRITE-GATE-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-027B-VAT-POSTING-SETUP-WRITE-GATE-DECISION",
+    "lastEvidenceSummary": "TARGET-020 proves Page 470 read-only context; TARGET-027R proves Page 471 and 472 read-only context; TARGET-027S rejects the newer search-overlay fallback.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The setup write gate needed source-backed target values before any write. Those values are now decided narrowly, without changing Business Central.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE",
+        "status": "ready-next",
+        "reason": "The next smallest safe write is to create or confirm only INLAND and VAT19 on Pages 470 and 471."
+      },
+      {
+        "caseId": "TARGET-027D-VAT-POSTING-SETUP-MATRIX-WRITE",
+        "status": "ready-after-current",
+        "reason": "The matrix row depends on the groups existing visibly first."
+      },
+      {
+        "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Posting groups depend on VAT setup row and account mapping."
+      },
+      {
+        "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
+        "status": "needs-setup-first",
+        "reason": "Master data waits for VAT and posting group setup."
+      },
+      {
+        "caseId": "TARGET-030-FOUNDATION-READY-CHECKPOINT",
+        "status": "needs-setup-first",
+        "reason": "Foundation readiness waits for VAT, posting groups and at least read-only context checks."
+      }
+    ],
+    "queueChangesMade": [
+      "Mark TARGET-027B as observed-decision-no-write.",
+      "Insert TARGET-027C before any VAT Posting Setup matrix write."
+    ],
+    "selectedNextCase": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE",
+    "whySelectedNextCaseIsBest": "It is the smallest practical W1 Foundation write: create or confirm the two groups needed before the VAT Posting Setup matrix row.",
+    "risksBeforeNextCase": [
+      "Wrong route may again land in Tell-Me/search overlay; use TARGET-020 direct Page 470 route pattern.",
+      "The write case must not click matrix setup, Preview Posting, Post, master data or document actions.",
+      "The UI value for Normal VAT must be confirmed later on Page 472 before the matrix row is written."
+    ],
+    "requiredPreparation": [
+      "Open Page 470 and Page 471 directly in playthru / UNIVERSAARL-DE.",
+      "Before/after screenshots for INLAND and VAT19.",
+      "Reopen proof for both groups.",
+      "Stop if the visible page context is not the target page."
+    ]
+  },
+  "nextCase": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE",
+  "safeToFinalizeState": false,
+  "requiresReview": false,
+  "statePatch": {},
+  "reason": "Source-backed VAT write-gate decision completed without Business Central execution; next case should write only prerequisite VAT groups."
+}

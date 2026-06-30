@@ -91,6 +91,18 @@ Der naechste Schritt ist `TARGET-027R`: erst die sichtbare Route zu den VAT-Setu
 
 Fuer `TARGET-027B` gilt deshalb: Werte fuer VAT Business Posting Groups, VAT Product Posting Groups und VAT Posting Setup duerfen nur source-backed entschieden werden. Ein Setup-Write ist noch nicht freigegeben; Preview Posting, Posting, Stammdaten und Belege bleiben gesperrt.
 
+## Stand nach `TARGET-027B`
+
+`TARGET-027B` hat keine Business-Central-Aenderung ausgefuehrt. Der Lauf hat nur die kleinste source-backed Zielstruktur fuer den naechsten Schreibcase entschieden:
+
+- `INLAND` als MwSt.-Geschaeftsbuchungsgruppe fuer den ersten deutschen Inlandspfad.
+- `VAT19` als MwSt.-Produktbuchungsgruppe fuer normal besteuerte 19-Prozent-Umsaetze.
+- `INLAND` + `VAT19` als spaetere MwSt.-Buchungsmatrix-Kombination.
+- `3806 Umsatzsteuer 19 Prozent` als spaeteres Umsatzsteuerkonto.
+- `1406 Abziehbare Vorsteuer 19 Prozent` als spaeteres Vorsteuerkonto.
+
+Diese Werte sind noch keine Business-Central-Setup-Wahrheit. Sie sind die fachliche Zielentscheidung fuer den naechsten kleinen UI-Schreibcase `TARGET-027C`. Dort duerfen nur `INLAND` und `VAT19` auf den Gruppen-Seiten angelegt oder bestaetigt werden. Die eigentliche MwSt.-Buchungsmatrix-Zeile bleibt bis danach gesperrt.
+
 ## Quellenbasis
 
 - DATEV SKR04 Produktseite: https://www.datev.de/web/de/datev-shop/rechnungswesen/skr-04/

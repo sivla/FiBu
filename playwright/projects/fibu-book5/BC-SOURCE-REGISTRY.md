@@ -131,6 +131,19 @@ Fuer Universaarl folgt daraus:
 - Deutsche 19-Prozent-USt braucht zusaetzlich amtliche Quelle und spaeter Universaarl-Preview, VAT Entries und Sachposten.
 - Naechster Case ist `TARGET-026B-CHART-OF-ACCOUNTS-VAT-ACCOUNT-PREFLIGHT`.
 
+## TARGET-027B VAT-Write-Gate-Quellenentscheidung
+
+Microsoft Learn `Set up VAT` stuetzt die Trennung zwischen MwSt.-Geschaeftsbuchungsgruppe, MwSt.-Produktbuchungsgruppe und MwSt.-Buchungsmatrix. Die amtliche USt-Quelle stuetzt den deutschen Regelsteuersatz als Rechtsgrundlage, ersetzt aber keinen Business-Central-Buchungsnachweis.
+
+Fuer Universaarl folgt daraus:
+
+- `INLAND` ist der source-backed Zielcode fuer die erste MwSt.-Geschaeftsbuchungsgruppe.
+- `VAT19` ist der source-backed Zielcode fuer die erste MwSt.-Produktbuchungsgruppe.
+- `INLAND` + `VAT19` wird erst nach sichtbarer Gruppenanlage als Matrixzeile vorbereitet.
+- `19` Prozent ist ein Rechts-/Steuerzielwert, aber noch keine BC-VAT-Entry- oder Posting-Wahrheit.
+- `3806` und `1406` sind sichtbare SKR04-orientierte Starterkonten, aber noch nicht als MwSt.-Buchungsmatrix-Konten bewiesen.
+- Naechster Case ist `TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE`; er darf noch keine Matrixzeile, keine Stammdaten, keine Preview und keine Buchung ausfuehren.
+
 ## TARGET-026D Kontenplan-Quellenentscheidung
 
 TARGET-026B zeigt in `UNIVERSAARL-DE` einen erreichbaren, aber leeren/insufficient Kontenplan ohne sichtbare USt-Konto-Kandidaten. Microsoft Learn `View the chart of accounts` und `Set up or change the chart of accounts` stuetzen die Produktlogik: Der Kontenplan ist das Verzeichnis der Finanzkonten und kann fuer die Company eingerichtet/geaendert werden.
