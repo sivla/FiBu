@@ -95,3 +95,5 @@ Vor Schritt 8 muss die Checkliste `READY-FOR-SUPER-PERMISSIONS-CHECKLIST.md` erf
 - OQ-0001: Hauptbutton `Neu`, Dropdown-Pfeil und `Neues Unternehmen erstellen` getrennt pruefen.
 - OQ-0005: Datenbasis nicht unklar bestaetigen; keine CRONUS-/Testunternehmen-/Sample-Data-Route als finale Universaarl-Basis verwenden.
 - OQ-0007: alte Debugging-Screenshots nicht als erfolgreiche Company-Creation-Bilder nutzen.
+
+Der kompakte Startpunkt fuer den ersten Lauf nach Rechtefreigabe ist `UNIVERSAARL-SUPER-PERMISSION-RESUME-RUNBOOK.md`. Dieses Runbook verbindet Permission-Checkliste, TARGET-009 und das W1 Foundation Gate in einer Reihenfolge.

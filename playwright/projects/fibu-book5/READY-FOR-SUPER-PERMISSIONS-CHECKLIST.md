@@ -4,6 +4,8 @@ Diese Checkliste wird verwendet, sobald der Nutzer bestaetigt, dass ausreichende
 
 Sie ist kein Freifahrtschein fuer einen sofortigen Live-Klick. Sie ist die Stoppliste fuer den ersten Lauf nach der Rechtefreigabe. Wenn ein Punkt nicht eindeutig erfuellt ist, bleibt `TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE` geparkt.
 
+Kompakter Ablauf fuer diesen Moment: `UNIVERSAARL-SUPER-PERMISSION-RESUME-RUNBOOK.md`.
+
 ## Freigabe durch den Nutzer
 
 - Der Nutzer bestaetigt ausdruecklich, dass SUPER-Rechte oder ausreichende Rechte fuer Company Creation vorhanden sind.
@@ -11,6 +13,7 @@ Sie ist kein Freifahrtschein fuer einen sofortigen Live-Klick. Sie ist die Stopp
 - Es gibt keine Aufforderung, in eine andere Instanz oder Produktivumgebung zu wechseln.
 - Der Autopilot fuehrt vor dem Live-Lauf erneut `git status --short`, `git pull --ff-only`, `npm run agent:preflight`, `npm run agent:context`, `npm run agent:dry-run` und `npm run agent:run-plan` aus.
 - Die Smart Decision Card nennt `TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE` als ausgewaehlten Case.
+- Das Resume-Runbook ist gelesen und wird als primaerer Ablauf verwendet.
 
 ## Vor dem erneuten Live-Lauf
 

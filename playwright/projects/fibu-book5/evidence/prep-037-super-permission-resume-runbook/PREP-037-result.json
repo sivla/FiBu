@@ -1,56 +1,76 @@
 {
   "schemaVersion": 1,
-  "runId": "PREP-037-SUPER-PERMISSION-RESUME-RUNBOOK",
+  "purpose": "autopilot-result-normalized",
   "caseId": "PREP-037-SUPER-PERMISSION-RESUME-RUNBOOK",
-  "status": "observed",
+  "source": "local-analysis",
+  "resultStatus": "observed",
   "instance": "playthru",
-  "company": "UNIVERSAARL-DE-planned-not-yet-created",
-  "bcRun": false,
-  "playwrightRun": false,
-  "posted": false,
-  "previewPosting": false,
-  "setupChange": false,
-  "masterDataChange": false,
-  "companyCreated": false,
-  "bookChanged": false,
-  "bookDraftChanged": false,
-  "summary": "PREP-037 created a compact resume runbook for the first live Company Creation run after SUPER/company-create permissions are confirmed.",
-  "changedFiles": [
-    "playwright/projects/fibu-book5/UNIVERSAARL-SUPER-PERMISSION-RESUME-RUNBOOK.md",
-    "playwright/projects/fibu-book5/PERMISSION-BLOCKERS.md",
-    "playwright/projects/fibu-book5/READY-FOR-SUPER-PERMISSIONS-CHECKLIST.md",
-    "playwright/projects/fibu-book5/evidence/prep-037-super-permission-resume-runbook/README.md",
-    "playwright/projects/fibu-book5/evidence/prep-037-super-permission-resume-runbook/PREP-037-result.json",
-    ".agent/state/cases/prep-037-super-permission-resume-runbook.json",
-    ".agent/state/current.json",
-    ".agent/state/last_run_summary.json",
-    ".agent/state/coverage_state.json",
-    ".agent/state/marathon_queue.json"
-  ],
-  "evidence": [
-    "playwright/projects/fibu-book5/UNIVERSAARL-SUPER-PERMISSION-RESUME-RUNBOOK.md",
-    "playwright/projects/fibu-book5/evidence/prep-037-super-permission-resume-runbook/PREP-037-result.json",
-    "playwright/projects/fibu-book5/evidence/prep-037-super-permission-resume-runbook/README.md"
-  ],
-  "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/prep-037-super-permission-resume-runbook/PREP-037-result.json"
-  ],
+  "targetCompany": "UNIVERSAARL-DE",
+  "sourceCompany": "UNIVERSAARL-DE-planned-not-yet-created",
   "proved": [
-    "A compact resume runbook now links permission confirmation, TARGET-009, splitbutton/dropdown discipline, data-basis stop rules and W1 Foundation follow-up.",
-    "Company Creation remains parked until explicit SUPER/company-create permission confirmation.",
-    "The first post-creation follow-up remains Company Context and Company Information, not setup/master data/posting."
+    "A compact resume runbook now exists for the first live Company Creation run after SUPER/company-create permissions are confirmed.",
+    "The runbook separates main Neu, dropdown arrow and Neues Unternehmen erstellen as different UI targets.",
+    "The runbook blocks unclear data basis, CRONUS copy, Testunternehmen, Sample Data and API shortcuts as final Universaarl routes.",
+    "The runbook connects successful Company Creation to Company Context and W1 Foundation gates before any setup, master data, preview or posting."
   ],
   "notProved": [
     "UNIVERSAARL-DE was not created.",
     "No Business Central UI was opened.",
-    "No setup, master data, preview, posting or UAT execution was performed."
+    "No Playwright test was started.",
+    "No setup, master data, draft, preview, posting or ledger trace was performed."
   ],
-  "nextStep": "After explicit SUPER/company-create permission confirmation, use UNIVERSAARL-SUPER-PERMISSION-RESUME-RUNBOOK.md for TARGET-009 and then follow the W1 Foundation Gate.",
-  "nextCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+  "changedFiles": [
+    "playwright/projects/fibu-book5/UNIVERSAARL-SUPER-PERMISSION-RESUME-RUNBOOK.md",
+    "playwright/projects/fibu-book5/PERMISSION-BLOCKERS.md",
+    "playwright/projects/fibu-book5/READY-FOR-SUPER-PERMISSIONS-CHECKLIST.md",
+    ".agent/state/cases/prep-037-super-permission-resume-runbook.json",
+    ".agent/state/current.json",
+    ".agent/state/marathon_queue.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/coverage_state.json",
+    "playwright/projects/fibu-book5/evidence/prep-037-super-permission-resume-runbook/README.md",
+    "playwright/projects/fibu-book5/evidence/prep-037-super-permission-resume-runbook/PREP-037-result.json"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/UNIVERSAARL-SUPER-PERMISSION-RESUME-RUNBOOK.md",
+    "playwright/projects/fibu-book5/evidence/prep-037-super-permission-resume-runbook/README.md",
+    "playwright/projects/fibu-book5/evidence/prep-037-super-permission-resume-runbook/PREP-037-result.json"
+  ],
+  "warnings": [
+    "This is a runbook, not live Business Central evidence.",
+    "TARGET-009 remains blocked until the user confirms sufficient permissions.",
+    "No final German company/setup/book claim can be made from PREP-037."
+  ],
+  "blockedBy": [
+    "missing-super-or-company-create-permission"
+  ],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "PREP-037-SUPER-PERMISSION-RESUME-RUNBOOK",
+      "active_case_file": ".agent/state/cases/prep-037-super-permission-resume-runbook.json",
+      "nextCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+      "nextStep": "After explicit SUPER/company-create permission confirmation, use UNIVERSAARL-SUPER-PERMISSION-RESUME-RUNBOOK.md for TARGET-009 and then follow the W1 Foundation Gate."
+    }
+  },
+  "flags": {
+    "noBcRun": true,
+    "noPlaywrightRun": true,
+    "noWrite": true,
+    "noCompanySwitch": true,
+    "noCompanyCreated": true,
+    "noSetupChange": true,
+    "noPreview": true,
+    "noPost": true,
+    "noDraft": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
   "nextStepDecisionCard": {
     "currentCase": "PREP-037-SUPER-PERMISSION-RESUME-RUNBOOK",
     "plannedNextCaseBeforeReview": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
-    "lastEvidenceSummary": "PREP-036 created the W1 Foundation gate; PREP-037 now provides a compact resume runbook for the first rights-unblocked Company Creation run.",
+    "lastEvidenceSummary": "PREP-036 created a W1 Foundation readiness gate but the next permission-unblocked run still needed a compact single runbook.",
     "isPlannedNextCaseStillSensible": true,
     "reason": "TARGET-009 remains the correct live case because UNIVERSAARL-DE still does not exist and Company Creation is the first dependency.",
     "lookaheadReviewed": [
@@ -97,17 +117,6 @@
       "Use UNIVERSAARL-SUPER-PERMISSION-RESUME-RUNBOOK.md.",
       "Keep READY-FOR-SUPER-PERMISSIONS-CHECKLIST.md and W1 Foundation Gate open as supporting references."
     ]
-  },
-  "noEffectiveBusinessCentralActions": true,
-  "noCompanyCreated": true,
-  "noSetupChange": true,
-  "noMasterDataChange": true,
-  "noPreviewPosting": true,
-  "noPosting": true,
-  "noCompanySwitch": true,
-  "updatedAt": "2026-06-30T16:15:00.000+02:00",
-  "hardStops": [
-    "missing-super-or-company-create-permission"
-  ],
-  "hardStopReason": "Company Creation remains the next high-impact lever but is parked until the user confirms sufficient SUPER/company-create permissions."
+  }
 }
+

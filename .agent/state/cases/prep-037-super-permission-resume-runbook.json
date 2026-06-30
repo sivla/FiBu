@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "caseId": "PREP-037-SUPER-PERMISSION-RESUME-RUNBOOK",
+  "status": "done",
+  "taskClass": "monkey_work",
+  "instance": "playthru",
+  "targetCompany": "UNIVERSAARL-DE",
+  "sourceCompany": "UNIVERSAARL-DE-planned-not-yet-created",
+  "purpose": "Create one compact resume runbook for the first live Company Creation run after SUPER/company-create permissions are confirmed.",
+  "allowedActions": [
+    "repo-documentation-update",
+    "coverage-catalog-update",
+    "open-questions-update",
+    "write-result-json",
+    "update-state-and-queue"
+  ],
+  "forbiddenActions": [
+    "business-central-execution",
+    "playwright-execution",
+    "company-create",
+    "company-save",
+    "wizard-finish",
+    "setup-change",
+    "master-data-create",
+    "document-create",
+    "preview-posting",
+    "posting",
+    "api-shortcut"
+  ],
+  "inputs": [
+    "playwright/projects/fibu-book5/PERMISSION-BLOCKERS.md",
+    "playwright/projects/fibu-book5/READY-FOR-SUPER-PERMISSIONS-CHECKLIST.md",
+    "playwright/projects/fibu-book5/UNIVERSAARL-W1-FOUNDATION-READINESS-GATE.md",
+    ".agent/state/open_questions_register.json",
+    ".agent/state/marathon_queue.json"
+  ],
+  "outputs": [
+    "playwright/projects/fibu-book5/UNIVERSAARL-SUPER-PERMISSION-RESUME-RUNBOOK.md",
+    "playwright/projects/fibu-book5/evidence/prep-037-super-permission-resume-runbook/README.md",
+    "playwright/projects/fibu-book5/evidence/prep-037-super-permission-resume-runbook/PREP-037-result.json"
+  ],
+  "acceptanceCriteria": [
+    "Runbook states the exact permission confirmation required before TARGET-009.",
+    "Runbook distinguishes main Neu, dropdown arrow and Neues Unternehmen erstellen.",
+    "Runbook blocks unclear data-basis, CRONUS copy, Testunternehmen and API shortcut.",
+    "Runbook connects successful Company Creation to W1 Foundation gates without allowing direct setup/master data/posting jump."
+  ],
+  "resultPath": "playwright/projects/fibu-book5/evidence/prep-037-super-permission-resume-runbook/PREP-037-result.json",
+  "noBusinessCentralExecution": true,
+  "noPlaywrightExecution": true,
+  "nextCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+  "blockedBy": [
+    "missing-super-or-company-create-permission"
+  ],
+  "updatedAt": "2026-06-30T16:15:00.000+02:00"
+}
+
