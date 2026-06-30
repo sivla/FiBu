@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-026J-SKR04-ACCOUNT-CLEANUP-AND-SETUP-GATE",
+  "title": "SKR04 account cleanup and setup gate",
+  "status": "planned",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "workType": "universaarl-skr04-account-cleanup-and-setup-gate",
+  "taskClass": "wizard_work",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/UNIVERSAARL-SKR04-MINIMAL-ACCOUNT-MAPPING.md",
+    "playwright/projects/fibu-book5/evidence/target-026f-chart-of-accounts-controlled-setup-gate/TARGET-026F-result.json"
+  ],
+  "purpose": "Use the corrected SKR04 mapping to fix or classify existing 1200 Bank Saarland and create only the mapped starter accounts with before/after/reopen proof.",
+  "allowedActions": [
+    "open-chart-of-accounts",
+    "open-gl-account-card",
+    "correct-1200-name-or-classify-blocker",
+    "create-1800-bank-if-missing",
+    "create-mapped-starter-accounts-only",
+    "capture-before-after-reopen-proof",
+    "write-result-and-next-step-card"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "create-unmapped-accounts",
+    "change-vat-setup",
+    "change-posting-groups",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "api-shortcut"
+  ],
+  "entryCriteria": [
+    "UNIVERSAARL-DE exists and is the active target company.",
+    "TARGET-026I defines the small SKR04 starter mapping.",
+    "1200 Bank Saarland is known to exist and must not be used as bank target."
+  ],
+  "exitCriteria": [
+    "1200 is corrected to receivables purpose or safely blocked/classified.",
+    "1800 Bank Saarland is visible after reopen or blocked with exact UI reason.",
+    "Each created starter account has visible No., Name, Kontoart and Bilanz/GuV proof.",
+    "No VAT setup, posting group, master data, document, Preview Posting or posting occurs."
+  ],
+  "lookahead": [
+    {
+      "caseId": "TARGET-026J-SKR04-ACCOUNT-CLEANUP-AND-SETUP-GATE",
+      "status": "ready-next",
+      "reason": "The source-gated SKR04 mapping is available and the UI route from TARGET-026F is known."
+    },
+    {
+      "caseId": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
+      "status": "ready-after-current",
+      "reason": "Can inspect VAT posting groups after SKR04 starter accounts are visible."
+    },
+    {
+      "caseId": "TARGET-028-POSTING-GROUPS-CONTROLLED-SETUP",
+      "status": "needs-setup-first",
+      "reason": "Needs starter accounts and VAT preflight first."
+    },
+    {
+      "caseId": "TARGET-029-FIRST-MASTERDATA-CREATE-GATE",
+      "status": "needs-setup-first",
+      "reason": "Needs posting groups and VAT setup."
+    }
+  ],
+  "nextStep": "Run the controlled Business Central UI case for SKR04 account cleanup and mapped starter account setup.",
+  "createdAt": "2026-06-30T21:25:00.000Z",
+  "updatedAt": "2026-06-30T21:25:00.000Z"
+}

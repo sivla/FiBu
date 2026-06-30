@@ -34,7 +34,7 @@ Universaarl nutzt fuer den aktiven deutschen Zielpfad SKR04. Deshalb gilt:
 
 SKR04 ist eine Regel fuer die deutschen Universaarl-Companies. Spaetere Auslandsgesellschaften bekommen nicht automatisch SKR04, sondern einen zur jeweiligen Lokalisierung passenden Kontenplan mit eigener Steuer- und Posting-Evidence. Intercompany wird erst belastbar, wenn jede beteiligte Company ihren eigenen Kontenplan sauber eingerichtet hat.
 
-Quelle fuer diesen Stop: DATEV beschreibt den SKR04-Kontenrahmen als Standardkontenrahmen mit Kontenklassen und Funktionen; die SKR04-2026-Referenz weist `1200` Forderungen und `1800` Bank aus. Die Detailzuordnung wird im naechsten Case in eine kleine Universaarl-Kontenliste ueberfuehrt.
+Quelle fuer diesen Stop: DATEV beschreibt den SKR04-Kontenrahmen als Standardkontenrahmen mit Kontenklassen und Funktionen; die SKR04-2026-Referenz weist `1200` Forderungen und `1800` Bank aus. Die Detailzuordnung steht jetzt in `playwright/projects/fibu-book5/UNIVERSAARL-SKR04-MINIMAL-ACCOUNT-MAPPING.md`.
 
 ## Minimal benoetigte Kontenfamilien
 
@@ -70,6 +70,6 @@ Eine Buchung braucht immer ein Zielkonto. Wenn Business Central einen Verkaufsbe
 
 ## Naechster Case
 
-`TARGET-026H-SKR04-CHART-OF-ACCOUNTS-SOURCE-CORRECTION`
+`TARGET-026J-SKR04-ACCOUNT-CLEANUP-AND-SETUP-GATE`
 
-Dieser Case darf keine weiteren Konten blind anlegen. Er muss die SKR04-Zielnummern klaeren, `1200 Bank Saarland` als technischen Fehl-/Lernpfad behandeln und erst danach einen neuen kontrollierten Setup-Case freigeben.
+Dieser Case darf in Business Central nur die kleine SKR04-Startliste aus `UNIVERSAARL-SKR04-MINIMAL-ACCOUNT-MAPPING.md` verwenden. Er muss zuerst `1200 Bank Saarland` korrigieren oder als Blocker klassifizieren und darf keine VAT Posting Setup, Posting Groups, Stammdaten, Preview oder Buchung im selben Lauf ausfuehren.

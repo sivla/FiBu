@@ -1,0 +1,117 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "TARGET-026I-SKR04-MINIMAL-ACCOUNT-MAPPING",
+  "source": "local-analysis",
+  "resultStatus": "observed",
+  "runPlanId": "TARGET-026I-SKR04-MINIMAL-ACCOUNT-MAPPING-2026-06-30T21-25-00-000Z",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "proved": [
+    "SKR04 is the chart-of-accounts target for German Universaarl companies.",
+    "Foreign Universaarl companies need their own localized chart-of-accounts gates.",
+    "The first SKR04 starter mapping for UNIVERSAARL-DE is defined for receivables, bank, VAT, payables, revenue and purchase/material expense.",
+    "1200 Bank Saarland must not be used as bank; it needs correction or blocker classification before further posting setup."
+  ],
+  "notProved": [
+    "No Business Central account was created or corrected in this case.",
+    "No VAT setup, posting group, master data, document, Preview Posting or posting was executed.",
+    "Inventory, fixed assets, depreciation and opening balance accounts are not yet mapped."
+  ],
+  "changedFiles": [
+    "FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md",
+    ".agent/state/current.json",
+    ".agent/state/marathon_queue.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/cases/target-026h-skr04-chart-of-accounts-source-correction.json",
+    ".agent/state/cases/target-026i-skr04-minimal-account-mapping.json",
+    ".agent/state/cases/target-026j-skr04-account-cleanup-and-setup-gate.json",
+    "playwright/projects/fibu-book5/BC-FULL-PLAYTHROUGH-CATALOG.md",
+    "playwright/projects/fibu-book5/UNIVERSAARL-CHART-OF-ACCOUNTS-MINIMAL-STRUCTURE-PLAN.md",
+    "playwright/projects/fibu-book5/UNIVERSAARL-SKR04-MINIMAL-ACCOUNT-MAPPING.md",
+    "playwright/projects/fibu-book5/evidence/target-026i-skr04-minimal-account-mapping/README.md",
+    "playwright/projects/fibu-book5/evidence/target-026i-skr04-minimal-account-mapping/TARGET-026I-result.json"
+  ],
+  "statePatch": {},
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/UNIVERSAARL-SKR04-MINIMAL-ACCOUNT-MAPPING.md",
+    "playwright/projects/fibu-book5/evidence/target-026i-skr04-minimal-account-mapping/README.md",
+    "playwright/projects/fibu-book5/evidence/target-026i-skr04-minimal-account-mapping/TARGET-026I-result.json"
+  ],
+  "sourceRefs": [
+    {
+      "label": "DATEV SKR04 Kontenrahmen product page",
+      "url": "https://www.datev.de/web/de/datev-shop/rechnungswesen/skr-04/"
+    },
+    {
+      "label": "SKR04 reference PDF mirror used for starter account lookup",
+      "url": "https://www.collmex.de/skr04.pdf"
+    }
+  ],
+  "warnings": [
+    "Do not claim the full SKR04 chart of accounts is complete.",
+    "Do not use 1200 Bank Saarland in any setup or posting path.",
+    "Do not map foreign companies to SKR04 automatically."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": false,
+  "flags": {
+    "noBcExecution": true,
+    "noPlaywrightExecution": true,
+    "noSetupChange": true,
+    "noVatSetupChange": true,
+    "noMasterData": true,
+    "noDocumentOrDraft": true,
+    "noPreview": true,
+    "noPost": true,
+    "noApiShortcut": true,
+    "bookMasterChanged": true
+  },
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-026I-SKR04-MINIMAL-ACCOUNT-MAPPING",
+    "plannedNextCaseBeforeReview": "TARGET-026H-SKR04-CHART-OF-ACCOUNTS-SOURCE-CORRECTION",
+    "lastEvidenceSummary": "TARGET-026F created 1200 Bank Saarland as UI learning; TARGET-026H stopped the mixed account setup route.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "TARGET-026H is now fulfilled by the SKR04 starter mapping. The next useful step is the controlled Business Central cleanup/setup gate.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-026J-SKR04-ACCOUNT-CLEANUP-AND-SETUP-GATE",
+        "status": "ready-next",
+        "reason": "The mapping exists and the UI account route is known from TARGET-026F."
+      },
+      {
+        "caseId": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
+        "status": "ready-after-current",
+        "reason": "Can inspect VAT setup after starter accounts exist."
+      },
+      {
+        "caseId": "TARGET-028-POSTING-GROUPS-CONTROLLED-SETUP",
+        "status": "needs-setup-first",
+        "reason": "Needs chart of accounts and VAT preflight first."
+      },
+      {
+        "caseId": "TARGET-029-FIRST-MASTERDATA-CREATE-GATE",
+        "status": "needs-setup-first",
+        "reason": "Needs posting groups and VAT setup first."
+      }
+    ],
+    "queueChangesMade": [
+      "Completed TARGET-026I as local mapping.",
+      "Selected TARGET-026J as the next controlled UI case."
+    ],
+    "selectedNextCase": "TARGET-026J-SKR04-ACCOUNT-CLEANUP-AND-SETUP-GATE",
+    "whySelectedNextCaseIsBest": "It turns the corrected SKR04 mapping into visible Business Central accounts without touching VAT, posting groups, master data or postings.",
+    "risksBeforeNextCase": [
+      "Existing 1200 account must be handled carefully; do not delete without explicit evidence and cleanup decision.",
+      "Only mapped starter accounts may be created."
+    ],
+    "requiredPreparation": [
+      "Open Chart of Accounts in UNIVERSAARL-DE.",
+      "Capture before screenshot and controls.",
+      "Correct/classify 1200 first, then create or confirm 1800 and other starter accounts."
+    ]
+  },
+  "reason": "Source-gated local mapping is required before further SKR04 setup in Business Central.",
+  "updatedAt": "2026-06-30T21:25:00.000Z"
+}

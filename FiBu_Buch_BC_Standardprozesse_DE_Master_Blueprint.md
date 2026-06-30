@@ -1302,6 +1302,10 @@ Merksatz:
 
 ## 9. Buchungslogik und Posting Groups
 
+Fuer die deutsche Universaarl-Company verwenden wir SKR04. Der Kontenplan sorgt dafuer, dass Forderungen, Bank, Verbindlichkeiten, Vorsteuer, Umsatzsteuer, Erloese und Aufwendungen in einer fuer Deutschland passenden Struktur liegen. Das ist wichtig, weil Buchungsgruppen spaeter nicht auf beliebige Nummern zeigen duerfen. Ein Bankkonto gehoert auf ein Bank-Sachkonto, ein Debitorensammelkonto auf ein Forderungskonto und ein Umsatzsteuerkonto auf ein Steuerkonto.
+
+SKR04 gilt in diesem Buch fuer die deutschen Universaarl-Companies. Eine spaetere Auslandsgesellschaft bekommt nicht einfach denselben Kontenplan kopiert. Sie braucht einen zur jeweiligen Lokalisierung passenden Kontenplan, eigene Steuerkonten und eigene Buchungsregeln. Erst wenn jede Company ihre eigene Kontenlogik hat, kann Intercompany sauber eingerichtet und abgestimmt werden.
+
 Die Kontenfindung entscheidet, welche Sachkonten Business Central beim Buchen verwendet. Ein Verkaufsauftrag kann dadurch automatisch Forderung, Erloes, Umsatzsteuer, Lagerabgang und Wareneinsatz erzeugen. Wer Buchungsgruppen und Buchungsmatrix versteht, kann eine Buchung nicht nur ausfuehren, sondern auch ihre Konten, Nebenbuecher und Fehlerquellen nachvollziehen.
 
 ### Für absolute Einsteiger: Warum braucht Business Central Buchungsgruppen?

@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-026I-SKR04-MINIMAL-ACCOUNT-MAPPING",
+  "title": "SKR04 minimal account mapping",
+  "status": "observed",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "workType": "universaarl-skr04-minimal-account-mapping",
+  "taskClass": "judge_work",
+  "purpose": "Create a small source-gated SKR04 start list before any further Business Central account setup.",
+  "sourceRefs": [
+    "https://www.datev.de/web/de/datev-shop/rechnungswesen/skr-04/",
+    "https://www.collmex.de/skr04.pdf"
+  ],
+  "mappedAccounts": [
+    {
+      "no": "1200",
+      "name": "Forderungen aus Lieferungen und Leistungen",
+      "incomeBalance": "Bilanz",
+      "status": "correct-purpose-needed"
+    },
+    {
+      "no": "1800",
+      "name": "Bank Saarland",
+      "incomeBalance": "Bilanz",
+      "status": "candidate-for-controlled-create"
+    },
+    {
+      "no": "1406",
+      "name": "Abziehbare Vorsteuer 19 Prozent",
+      "incomeBalance": "Bilanz",
+      "status": "candidate-needs-vat-setup-proof"
+    },
+    {
+      "no": "3300",
+      "name": "Verbindlichkeiten aus Lieferungen und Leistungen",
+      "incomeBalance": "Bilanz",
+      "status": "candidate-for-controlled-create"
+    },
+    {
+      "no": "3806",
+      "name": "Umsatzsteuer 19 Prozent",
+      "incomeBalance": "Bilanz",
+      "status": "candidate-needs-vat-setup-proof"
+    },
+    {
+      "no": "4400",
+      "name": "Umsatzerloese Inland 19 Prozent",
+      "incomeBalance": "GuV",
+      "status": "candidate-for-controlled-create"
+    },
+    {
+      "no": "5400",
+      "name": "Wareneingang / Materialaufwand",
+      "incomeBalance": "GuV",
+      "status": "candidate-for-controlled-create"
+    }
+  ],
+  "notMappedYet": [
+    "opening-balance-equity",
+    "inventory-balance-account",
+    "fixed-assets-account",
+    "depreciation-expense-account",
+    "other-expense-account"
+  ],
+  "allowedActions": [
+    "use-mapping-for-next-controlled-ui-case",
+    "correct-or-classify-existing-1200-account",
+    "create-only-mapped-start-accounts-after-ui-gate"
+  ],
+  "forbiddenActions": [
+    "use-1200-as-bank",
+    "create-unmapped-accounts",
+    "change-vat-setup-in-same-case",
+    "change-posting-groups-in-same-case",
+    "create-master-data-in-same-case",
+    "preview-posting",
+    "post"
+  ],
+  "nextCase": "TARGET-026J-SKR04-ACCOUNT-CLEANUP-AND-SETUP-GATE",
+  "updatedAt": "2026-06-30T21:25:00.000Z"
+}
