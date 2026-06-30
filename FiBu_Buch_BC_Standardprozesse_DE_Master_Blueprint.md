@@ -432,6 +432,16 @@ Der Mandant ist besonders wichtig. Er zeigt, in welcher Company Eingaben, Belege
 
 `OK` übernimmt Änderungen auf dieser Seite. `Abbrechen` verlässt die Seite ohne Speichern. Für eine reine Kontrolle reicht `Abbrechen`, weil Rolle, Mandant, Sprache und Arbeitsdatum nur gelesen werden.
 
+#### Die Startseite lesen
+
+Nach der Anmeldung öffnet Business Central ein Rollencenter. Es ist die persönliche Startseite für die aktuelle Rolle. Oben sieht man die Umgebung, die aktuelle Company, die Suche, Einstellungen, Hilfe und Benachrichtigungen. Darunter stehen Menübereiche wie `Finanzen`, `Zahlungsmanagement`, `Verkauf`, `Einkauf` und `Alle Berichte`.
+
+![Business-Central-Startseite mit Navigation und Aktivitäten](playwright/projects/fibu-book5/img/prep-034-010-role-center-shell-readonly.png)
+
+Die Kacheln zeigen laufende Arbeit: offene Verkaufsbelege, Einkaufsbelege, Zahlungen, Aufgabenwarteschlangen oder Intercompany-Hinweise. Eine Kachel ist nicht nur Dekoration. Sie führt meistens zu einer Liste, in der der Anwender die zugrunde liegenden Belege oder Posten öffnet.
+
+Auf dieser Startseite ist `CRONUS DE` noch der sichtbare Shell-Mandant. `UNIVERSAARL-DE` ist hier noch nicht aktiv. Sichtbare Menüpunkte wie `Shopify` gehören zur Oberfläche dieser Rolle, werden in diesem Buch aber nicht verwendet.
+
 #### Was Anfänger auf jeder Business-Central-Seite prüfen
 
 Vor wichtigen Schritten lohnt sich immer dieselbe kurze Kontrolle:
