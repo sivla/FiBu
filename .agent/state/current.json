@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-30T15:03:31.331Z",
+  "updatedAt": "2026-06-30T15:18:55.951Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-w1-foundation-vat-setup-readiness",
-  "activeCase": "TARGET-020-VAT-SETUP-READINESS",
-  "active_case_file": ".agent/state/cases/target-020-vat-setup-readiness.json",
+  "activeArea": "universaarl-w1-foundation-dimensions",
+  "activeCase": "TARGET-021-DIMENSIONS-FOUNDATION",
+  "active_case_file": ".agent/state/cases/target-021-dimensions-foundation.json",
   "lastReferenceCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
   "lastReferenceCaseFile": ".agent/state/cases/warehouse-031-warehouse-source-route-park-or-setup-fit-decision.json",
   "mode": "universaarl-target-execution",
@@ -19,8 +19,8 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "review-target-019b-evidence",
-    "open-vat-setup-pages-readonly-if-needed",
+    "review-target-020-evidence",
+    "open-dimensions-pages-readonly-if-needed",
     "capture-readonly-context-screenshots",
     "write-result-and-next-step-card",
     "queue-and-state-update"
@@ -32,34 +32,16 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
-    "api-shortcut-without-explicit-case-permission",
-    "final-german-claim-from-rm-demo",
     "operate-in-legacy-lab-as-active-target",
-    "mass-replace-historical-evidence",
-    "delete-legacy-evidence",
-    "claim-rm-demo-as-final-proof",
-    "operate-in-CRONUS-as-active-target",
-    "post",
-    "preview-posting",
-    "api-shortcut",
-    "create-master-data-before-number-series-assignment",
-    "create-document-or-draft",
-    "change-number-series-line-checkboxes",
-    "create-new-number-series-lines",
-    "assign-unmapped-field",
-    "claim-legal-numbering-compliance",
-    "create-master-data-before-posting-groups-vat-dimensions",
-    "repeat-target-017-blind-assignment-route",
-    "claim-numbering-complete-without-field-proof",
     "create-master-data",
-    "change-posting-groups",
-    "change-vat-setup",
-    "click-new-edit-delete-or-post-actions",
-    "claim-posting-readiness-from-page-visibility",
-    "claim-german-vat-correctness",
-    "claim-19-percent-vat-without-preview-and-vat-entries"
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "api-shortcut",
+    "change-dimensions-setup",
+    "claim-reporting-readiness-without-posted-dimension-entries"
   ],
-  "nextStep": "Run TARGET-020: inspect VAT setup readiness and source boundaries before any German VAT claim, setup change, document preview or posting.",
+  "nextStep": "Review Dimensions and Dimension Values read-only before master data or document creation.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -88,21 +70,21 @@
     "fallbackWhenNoDecision": "investigate-readonly-first"
   },
   "latestBookDraft": {
-    "path": "playwright/projects/fibu-book5/book-drafts/universaarl-posting-groups-foundation-draft.md",
-    "area": "universaarl-posting-groups-foundation",
+    "path": "playwright/projects/fibu-book5/book-drafts/universaarl-vat-setup-readiness-draft.md",
+    "area": "universaarl-vat-setup-readiness",
     "status": [
       "bookdraft",
       "universaarl-target-path",
-      "posting-groups-readonly-context-observed"
+      "vat-readonly-context-observed"
     ],
     "sourceCompany": "UNIVERSAARL-DE",
     "sourceInstance": "playthru",
     "evidenceBasis": [
-      "TARGET-019B-POSTING-GROUPS-READONLY-PREFLIGHT"
+      "TARGET-020-VAT-SETUP-READINESS"
     ],
-    "bookEffect": "Beginner-facing draft explains what posting groups do and why visibility is not enough for posting readiness.",
+    "bookEffect": "Beginner-facing draft explains VAT Business Groups, VAT Product Groups and VAT Posting Setup without claiming German 19 percent VAT readiness.",
     "integratedIntoBookMaster": false,
-    "nextStep": "Run TARGET-020: inspect VAT setup readiness and source boundaries before any German VAT claim, setup change, document preview or posting.",
+    "nextStep": "Review Dimensions and Dimension Values read-only before master data or document creation.",
     "targetCompany": "UNIVERSAARL-DE"
   },
   "bookProductionGoal": {
@@ -240,7 +222,7 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "universaarl-w1-foundation-vat-setup-readiness",
+  "currentCoverageFocus": "universaarl-w1-foundation-dimensions",
   "nextProcessRoute": [
     "P2P-012 compared Purchase Journal, Item Journal, Purchase Invoices and Requisition Worksheet by direct page URL without search or field entry.",
     "Item Journal is the most stable observed route for material quantity/location/value effect, but it is Inventory evidence rather than full creditor P2P.",
@@ -5455,5 +5437,52 @@
       "General Posting Setup, Customer Posting Groups, Vendor Posting Groups, Inventory Posting Setup and VAT Posting Setup are separate prerequisites before master data and Preview Posting."
     ],
     "updatedAt": "2026-06-30T15:03:31.331Z"
+  },
+  "latestTarget020VatSetupReadiness": {
+    "caseId": "TARGET-020-VAT-SETUP-READINESS",
+    "status": "observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-020-vat-setup-readiness/TARGET-020-result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "readinessClassification": "vat-context-observed-needs-setup-fit-before-19-percent-claim",
+    "proved": [
+      "3/3 VAT setup pages opened read-only in playthru/UNIVERSAARL-DE.",
+      "VAT Business Posting Groups, VAT Product Posting Groups and VAT Posting Setup are separate setup contexts.",
+      "No VAT setup value, master data, document draft, preview posting or posting was executed.",
+      "MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups visible read-only.",
+      "MwSt.-Produktbuchungsgruppen / VAT Product Posting Groups visible read-only.",
+      "MwSt.-Buchungsmatrix / VAT Posting Setup visible read-only."
+    ],
+    "notProved": [
+      "German 19 percent VAT is not proven.",
+      "VAT account correctness is not proven.",
+      "VAT business/product group assignment to customers, vendors, items or G/L accounts is not proven.",
+      "No Preview Posting, VAT Entry or G/L Entry exists."
+    ],
+    "flags": {
+      "noPost": true,
+      "noPreview": true,
+      "noDraft": true,
+      "noMasterDataChange": true,
+      "noCompanySwitch": true,
+      "noApiShortcut": true,
+      "noSearch": true,
+      "noBookMasterChange": true,
+      "noSetupChange": true,
+      "readOnlyDirectPageRoutes": true
+    },
+    "evidenceRefs": [
+      "playwright/projects/fibu-book5/evidence/target-020-vat-setup-readiness/TARGET-020-result.json",
+      "playwright/projects/fibu-book5/img/target-020-001-vat-business-posting-groups.png",
+      "playwright/projects/fibu-book5/img/target-020-002-vat-product-posting-groups.png",
+      "playwright/projects/fibu-book5/img/target-020-003-vat-posting-setup.png"
+    ],
+    "nextCase": "TARGET-021-DIMENSIONS-FOUNDATION",
+    "keyLearning": [
+      "VAT setup has three separate read-only contexts: VAT Business Posting Groups, VAT Product Posting Groups and VAT Posting Setup.",
+      "Page visibility is not a German 19 percent VAT proof.",
+      "Compact page text evidence must strip Business Central shell/bootstrap metadata before writing files."
+    ],
+    "updatedAt": "2026-06-30T15:18:55.951Z"
   }
 }

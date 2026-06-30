@@ -29,6 +29,7 @@ Diese Registry ordnet Quellen fuer das Universaarl-Buch und den Autopilot. Sie e
 | Microsoft Learn: Analyze list page and query data using data analysis mode | 1 | Look and Feel, Analysis Mode | read-only Analysemodus, Gruppierung/Filterung/Summen auf Listen- oder Querydaten | Buchungs-, Posting- oder Reportfinalnachweis | Produkt-/UI-Claim; konkrete Universaarl-Auswertung braucht eigene Evidence | geprueft 2026-06-29 |
 | Microsoft Learn: Personalize your workspace | 1 | Look and Feel, Debugging, Personalisierung | Felder, Spalten, Aktionen und Oberflaechenbereiche fuer den Benutzer sichtbar machen | Tabellenlogik, Buchungswirkung oder allgemeingueltige Sicht fuer alle Benutzer | Produkt-/UI-Claim; konkrete Universaarl-Personalisierung braucht eigene Evidence und Gate | geprueft 2026-06-30 |
 | Microsoft Learn: Create number series | 1 | Number Series, No. Series Lines | Nummernseriencodes, Lines, Starting Date, Starting No., Ending No., Manual Nos., Allow Gaps, spaetere Setup-Zuweisung | konkrete Universaarl-Werte, persistierte Start-/Endnummern, deutsche Rechts-/Steuerfinalclaims | Produkt-/Setupclaim; Universaarl braucht TARGET-016I Write-Gate und spaetere Setup-/Beleg-Evidence | geprueft 2026-06-30, TARGET-016H |
+| Microsoft Learn: Set up value-added tax | 1 | VAT Setup, USt, Posting Setup | VAT Business Posting Groups, VAT Product Posting Groups, VAT Posting Setup als Produktstandard | deutsche Steuerrechtsbehauptung, konkrete Universaarl-19-Prozent-USt, Preview-/Posting-/VAT-Entry-Beweis | Produkt-/Setupclaim; Universaarl braucht TARGET-020 Kontext plus spaeter Setup-Fit, Preview und VAT Entries | geprueft 2026-06-30, TARGET-020 |
 | Microsoft Learn: Business intelligence and reporting | 1 | Reporting, Request Pages | Reporting-/BI-Bereich und Reportauswertung als Produktfunktion | konkrete Reportparameter oder Universaarl-Reportausgabe | Produktclaim; konkrete Request Page und Reportausgabe brauchen eigene Evidence | geprueft 2026-06-30 |
 | Microsoft Learn: Dynamics 365 Implementation Guide overview | 3 | Implementierungsmethodik | Strategize, Initiate, Implement, Prepare, Operate | konkrete BC-Feldlogik | Best-Practice-/Projektclaim | geprueft 2026-06-29 |
 | Microsoft Learn: Success by Design framework | 3 | Governance, Reviews, Projektrisiko | Projekt-, Test- und Architekturdenken | UI- oder Buchungsbeweis | Best-Practice-/Projektclaim | geprueft 2026-06-29 |
@@ -129,6 +130,8 @@ Die operative Zuordnung steht in `UNIVERSAARL-IMPLEMENTATION-GUIDE-MAPPING.md`. 
 - https://learn.microsoft.com/en-us/dynamics365/business-central/ui-enter-criteria-filters
 - https://learn.microsoft.com/en-us/dynamics365/business-central/analysis-mode
 - https://learn.microsoft.com/en-us/dynamics365/business-central/ui-personalization-user
+- https://learn.microsoft.com/en-us/dynamics365/business-central/finance-setup-vat
+- https://learn.microsoft.com/en-us/training/modules/set-up-vat-dynamics-365-business-central/
 - https://learn.microsoft.com/en-us/dynamics365/business-central/reports-bi-reporting
 - https://learn.microsoft.com/en-us/dynamics365/release-plans/
 - https://learn.microsoft.com/en-us/dynamics365/guidance/implementation-guide/overview

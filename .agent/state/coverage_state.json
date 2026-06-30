@@ -695,7 +695,7 @@
   "hardExclusions": {
     "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
   },
-  "updatedAt": "2026-06-30T15:03:31.331Z",
+  "updatedAt": "2026-06-30T15:18:55.951Z",
   "activeArea": "universaarl-w1-foundation-vat-setup-readiness",
   "currentBlock": "vat-setup-readiness-next",
   "latestPracticalCase": "TARGET-010-UNIVERSAARL-COMPANY-CONTEXT-PROOF",
@@ -921,7 +921,7 @@
     "playwright/projects/fibu-book5/BC-ERROR-BLOCKER-ATLAS.md",
     "playwright/projects/fibu-book5/BC-PROCESS-COVERAGE-ROADMAP.md"
   ],
-  "currentCoverageFocus": "p2p-partial-receipt-edit-action-discovery",
+  "currentCoverageFocus": "universaarl-w1-foundation-dimensions",
   "latestCoverageUpdate": {
     "at": "2026-06-28T19:28:00.000+02:00",
     "type": "p2p-011-purchase-lines-action-discovery-tested",
@@ -3541,5 +3541,83 @@
       "General Posting Setup, Customer Posting Groups, Vendor Posting Groups, Inventory Posting Setup and VAT Posting Setup are separate prerequisites before master data and Preview Posting."
     ],
     "updatedAt": "2026-06-30T15:03:31.331Z"
+  },
+  "latestTarget020VatSetupReadiness": {
+    "caseId": "TARGET-020-VAT-SETUP-READINESS",
+    "status": "observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-020-vat-setup-readiness/TARGET-020-result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "readinessClassification": "vat-context-observed-needs-setup-fit-before-19-percent-claim",
+    "proved": [
+      "3/3 VAT setup pages opened read-only in playthru/UNIVERSAARL-DE.",
+      "VAT Business Posting Groups, VAT Product Posting Groups and VAT Posting Setup are separate setup contexts.",
+      "No VAT setup value, master data, document draft, preview posting or posting was executed.",
+      "MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups visible read-only.",
+      "MwSt.-Produktbuchungsgruppen / VAT Product Posting Groups visible read-only.",
+      "MwSt.-Buchungsmatrix / VAT Posting Setup visible read-only."
+    ],
+    "notProved": [
+      "German 19 percent VAT is not proven.",
+      "VAT account correctness is not proven.",
+      "VAT business/product group assignment to customers, vendors, items or G/L accounts is not proven.",
+      "No Preview Posting, VAT Entry or G/L Entry exists."
+    ],
+    "flags": {
+      "noPost": true,
+      "noPreview": true,
+      "noDraft": true,
+      "noMasterDataChange": true,
+      "noCompanySwitch": true,
+      "noApiShortcut": true,
+      "noSearch": true,
+      "noBookMasterChange": true,
+      "noSetupChange": true,
+      "readOnlyDirectPageRoutes": true
+    },
+    "evidenceRefs": [
+      "playwright/projects/fibu-book5/evidence/target-020-vat-setup-readiness/TARGET-020-result.json",
+      "playwright/projects/fibu-book5/img/target-020-001-vat-business-posting-groups.png",
+      "playwright/projects/fibu-book5/img/target-020-002-vat-product-posting-groups.png",
+      "playwright/projects/fibu-book5/img/target-020-003-vat-posting-setup.png"
+    ],
+    "nextCase": "TARGET-021-DIMENSIONS-FOUNDATION",
+    "keyLearning": [
+      "VAT setup has three separate read-only contexts: VAT Business Posting Groups, VAT Product Posting Groups and VAT Posting Setup.",
+      "Page visibility is not a German 19 percent VAT proof.",
+      "Compact page text evidence must strip Business Central shell/bootstrap metadata before writing files."
+    ],
+    "updatedAt": "2026-06-30T15:18:55.951Z"
+  },
+  "universaarlFoundation": {
+    "vatSetupReadiness": {
+      "status": "in-progress-readonly-context-observed",
+      "caseId": "TARGET-020-VAT-SETUP-READINESS",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-020-vat-setup-readiness/TARGET-020-result.json",
+      "pages": [
+        {
+          "id": "vat-business-posting-groups",
+          "pageId": 470,
+          "status": "observed"
+        },
+        {
+          "id": "vat-product-posting-groups",
+          "pageId": 471,
+          "status": "observed"
+        },
+        {
+          "id": "vat-posting-setup",
+          "pageId": 472,
+          "status": "observed"
+        }
+      ],
+      "limits": [
+        "German 19 percent VAT is not proven.",
+        "VAT account correctness is not proven.",
+        "VAT business/product group assignment to customers, vendors, items or G/L accounts is not proven.",
+        "No Preview Posting, VAT Entry or G/L Entry exists."
+      ],
+      "nextCase": "TARGET-021-DIMENSIONS-FOUNDATION"
+    }
   }
 }

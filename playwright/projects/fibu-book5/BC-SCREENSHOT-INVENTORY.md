@@ -235,6 +235,16 @@ Screenshot-QA zu TARGET-017B: Dieser Block ist kein Setup-Erfolg. Er beweist nur
 
 Screenshot-QA zu TARGET-019B: Die Bilder zeigen erreichbare Setupkontexte. Sie sind keine fachliche Freigabe fuer Konten, USt, Stammdaten, Preview oder Posting. Fuer das Buch sind sie als Erklaerbilder fuer Kontenfindung geeignet, solange der Text klar sagt, dass Sichtbarkeit noch keine richtige Einrichtung beweist.
 
+## Universaarl Foundation - USt/VAT TARGET-020
+
+| Screenshot | Page | Company/Kontext | Schritt | Was man sehen soll | Interner Beweis | Beweist nicht | Status |
+|---|---|---|---|---|---|---|---|
+| `target-020-001-vat-business-posting-groups.png` | MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups, Page 470 | `playthru` / `UNIVERSAARL-DE` | Read-only USt-Business-Gruppen | Code-/Beschreibungs-Spalten der MwSt.-Geschaeftsbuchungsgruppen sind sichtbar | USt-Geschaeftsgruppen-Kontext ist erreichbar | inlaendische 19-Prozent-USt, Kunden-/Kreditoren-Zuweisung, Preview oder USt-Posten | `universaarl-readonly-candidate`, `vat-context` |
+| `target-020-002-vat-product-posting-groups.png` | MwSt.-Produktbuchungsgruppen / VAT Product Posting Groups, Page 471 | `playthru` / `UNIVERSAARL-DE` | Read-only USt-Produktgruppen | Code-/Beschreibungs-Spalten und Info-Kontext fuer Produktgruppen sind sichtbar | USt-Produktgruppen-Kontext ist erreichbar | 19-Prozent-Produktgruppe, Artikel-/Sachkonto-Zuweisung, Preview oder USt-Posten | `universaarl-readonly-candidate`, `vat-context` |
+| `target-020-003-vat-posting-setup.png` | MwSt.-Buchungsmatrix Einrichtung / VAT Posting Setup, Page 472 | `playthru` / `UNIVERSAARL-DE` | Read-only USt-Buchungsmatrix | Spalten fuer MwSt.-Geschaeftsgruppe, MwSt.-Produktgruppe, MwSt. %, Berechnungsart und USt-Konten sind sichtbar | USt-Buchungsmatrix-Kontext ist erreichbar und als eigener Setup-Baustein erklaerbar | richtige Steuersaetze, Kontenrichtigkeit, deutsche 19-Prozent-USt, Preview, VAT Entries oder Sachposten | `universaarl-readonly-candidate`, `setup-context-not-vat-proof` |
+
+Screenshot-QA zu TARGET-020: Diese Bilder zeigen nur die USt-Setup-Ebenen. Sie duerfen im Buch erklaeren, welche Seiten vor einem deutschen USt-Beleg geprueft werden. Sie beweisen noch keine 19-Prozent-USt, keine Kontenrichtigkeit und keine Buchungswirkung.
+
 ## Qualitaetsfelder fuer neue Screenshot-Metadaten
 
 Neue oder ueberarbeitete `.screenshot.json`-Dateien sollen diese Felder tragen:
