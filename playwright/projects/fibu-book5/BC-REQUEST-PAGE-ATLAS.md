@@ -14,6 +14,14 @@ Der Atlas ist bewusst vorsichtig: Solange `UNIVERSAARL-DE` fehlt, werden keine R
 | Look and Feel / Reporting | Report Request Page fuer Berichte mit Filter-/Optionsbereich | Reportname, Zeitraum, Konto/Kunde/Lieferant/Artikel, Dimensionsfilter, Ausgabe-/Vorschauoption | vor `OK`, `Preview`, `Run`, `Drucken` oder Export klassifizieren: nur Anzeige oder Datenwirkung? | PREP-012 geplant; spaeter Universaarl-Report-Screenshot mit Datenreichtum | Eine Request Page beweist nur Parameter vor dem Start; sie beweist keine korrekte Reportausgabe und keine Buchung |
 | Data Analysis / List Analysis | kein klassischer Reportdialog, sondern Analysemodus auf Listen-/Querydaten | aktive Liste, Filter, Gruppierung, Spalten/Summen | read-only Analyse nur nach Page-/Company-/Datenkontext; keine Ansicht speichern ohne Gate | PREP-012 geplant; spaeter Universaarl-Listen mit Posten | Analysemodus ersetzt keine Ledger-/Entry-Pruefung |
 
+## PREP-024 Request-/Wizard-Gates
+
+| Discovery-ID | Kontext | Darf read-only erfasst werden | Stopps |
+| --- | --- | --- | --- |
+| `RO-W0-COMPANIES-357` | moeglicher Company-Creation-Wizard nach Dropdown/`Neues Unternehmen erstellen` | nur Titel, Optionen, Datenbasisbegriffe und Buttons, falls der Wizard ohne Speicherwirkung sichtbar wird | kein `OK`, `Create`, `Finish`, `Weiter`, keine Datenbasis bestaetigen |
+| `RO-W1-ASSISTED-SETUP` | Setup-Assistenten und deren Startdialoge | nur Liste/Status; ein Wizard darf nicht gestartet werden, solange der Case nicht ausdruecklich dafuer gebaut ist | kein Start, kein `Weiter`, kein `Finish`, keine Setup-Aenderung |
+| `RO-W1-REPORT-REQUEST-PAGES` | spaetere Reportfilter | Request Page nur oeffnen, wenn die Startaktion vorher als read-only klassifiziert wurde | kein Reportstart ohne Reportklassifikation |
+
 ## Erfassungsregel
 
 Jede Request Page braucht Screenshot, Parameterliste, Standardwerte, OK-/Cancel-Wirkung, Stop-Regeln, erwartetes Ergebnis und Buchkapitelbezug.

@@ -38,6 +38,17 @@ Der List Atlas beschreibt Business-Central-Listen, die fuer Klickpfade, Suche, F
 | Analysis Mode / Analysemodus | offen | Reporting/Listen | Daten gruppieren, filtern und summieren, ohne zu buchen | columns depend on source list | Analyze, group, filter, pivot/summarize | read-only; keine Buchung | geplant | `planned`, `needs-data-richness` | TARGET-LOOKFEEL-001 |
 | Shopify / Online Store Listen | keine | excluded | Nicht Teil des Buchprojekts | keine | keine | ausgeschlossen | Scope-Entscheidung | `excluded-shopify` | keiner |
 
+## PREP-024 Read-only Listenpaket
+
+| Discovery-ID | Liste | Prioritaet | Read-only-Aufgabe | Ergebnisstatus |
+| --- | --- | ---: | --- | --- |
+| `RO-W0-COMPANIES-357` | Companies / Mandanten | 1 | Spalten, `UNIVERSAARL-DE`-Sichtbarkeit, Split-Button-/Dropdown-Kontext, riskante Actions erfassen | `ready-for-readonly-playwright` |
+| `RO-W1-ASSISTED-SETUP` | Assisted Setup / Unterstuetztes Setup | 2 | Assistenten, Status und gefaehrliche Start-/Finish-Punkte sichtbar machen | `ready-for-readonly-playwright` |
+| `RO-W1-NO-SERIES` | No. Series / Nummernserien | 3 | Nummernserien als Listen-/Zeilenkonzept vorbereiten | `requires-universaarl-company` |
+| `RO-W1-POSTING-GROUPS` | Posting Groups / Posting Setup | 4 | Buchungsgruppen- und Matrixlisten fuer Kontenfindung vorbereiten | `requires-universaarl-company` |
+| `RO-W1-VAT-SETUP` | VAT Posting Setup | 5 | VAT-Buchungsmatrixfelder fuer spaetere USt-Kette vorbereiten | `requires-universaarl-company` |
+| `RO-W1-DIMENSIONS` | Dimensions / Dimension Values | 6 | Dimensionen, Dimensionswerte und spaetere Default-Dimension-Kontexte vorbereiten | `requires-universaarl-company` |
+
 ## Zero-Open-Questions-Regel
 
 Jede nicht verstandene Liste erzeugt entweder einen Eintrag in `.agent/state/open_questions_register.json` oder bekommt einen finalen Status aus `BC-ZERO-OPEN-QUESTIONS-POLICY.md`.

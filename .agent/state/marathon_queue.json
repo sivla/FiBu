@@ -466,7 +466,7 @@
     {
       "id": "PREP-024-READONLY-PAGE-DISCOVERY-PACK",
       "order": 24,
-      "status": "pending",
+      "status": "done",
       "category": "readonly-ui",
       "expectedImpact": "prep-progress",
       "mayWorkEffectively": false,
@@ -476,7 +476,11 @@
       "sourceCompany": "UNIVERSAARL-DE-planned-not-yet-created",
       "targetWorld": "Universaarl",
       "noFinalGermanClaimWithoutUniversaarlEvidence": true,
-      "lookaheadStatus": "ready-next"
+      "lookaheadStatus": "done",
+      "completedAt": "2026-06-30T07:35:00.000+02:00",
+      "result": "Created a concrete W0/W1 read-only discovery pack and linked it into the main UI atlases.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/prep-024-readonly-page-discovery-pack/PREP-024-result.json",
+      "outputPath": "playwright/projects/fibu-book5/UNIVERSAARL-READONLY-PAGE-DISCOVERY-PACK.md"
     },
     {
       "id": "PREP-025-NEXT-10-CASES-REPLANNING",
@@ -491,7 +495,7 @@
       "sourceCompany": "UNIVERSAARL-DE-planned-not-yet-created",
       "targetWorld": "Universaarl",
       "noFinalGermanClaimWithoutUniversaarlEvidence": true,
-      "lookaheadStatus": "ready-after-current"
+      "lookaheadStatus": "ready-next"
     },
     {
       "id": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
@@ -569,7 +573,7 @@
       "lookaheadStatus": "ready-after-current"
     }
   ],
-  "lastUpdated": "2026-06-30T07:05:00.000+02:00",
+  "lastUpdated": "2026-06-30T07:35:00.000+02:00",
   "nextStepDecisionGate": {
     "active": true,
     "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",
@@ -592,31 +596,31 @@
       "replace-with-better-case"
     ],
     "latestDecisionCard": {
-      "currentCase": "PREP-023-BOOK-CHAPTER-STIMMIGKEIT-AUDIT",
-      "plannedNextCaseBeforeReview": "PREP-023-BOOK-CHAPTER-STIMMIGKEIT-AUDIT",
-      "lastEvidenceSummary": "PREP-022 classified atlas quality and set active Universaarl priorities for W0/W1.",
+      "currentCase": "PREP-024-READONLY-PAGE-DISCOVERY-PACK",
+      "plannedNextCaseBeforeReview": "PREP-024-READONLY-PAGE-DISCOVERY-PACK",
+      "lastEvidenceSummary": "PREP-023 found chapter 6 is the P0 book-flow break and selected W0/W1 pages as discovery focus.",
       "isPlannedNextCaseStillSensible": true,
-      "reason": "The bookmaster has a Universaarl chapter-3 anchor, but later chapters still use Rhein-Main/RM-DEMO as active flow. A chapter-flow audit is needed before more book patches.",
+      "reason": "A read-only discovery pack is the best bridge between the chapter audit and future safe Playwright/UI work while company creation remains permission-blocked.",
       "lookaheadReviewed": [
         {
-          "caseId": "PREP-024-READONLY-PAGE-DISCOVERY-PACK",
-          "status": "ready-next",
-          "reason": "Read-only page discovery can use the chapter audit to focus on pages needed for real Universaarl reader flow."
-        },
-        {
           "caseId": "PREP-025-NEXT-10-CASES-REPLANNING",
-          "status": "ready-after-current",
-          "reason": "The next ten cases should account for the P0 chapter-6 rewrite dependency and the parked company-creation gate."
+          "status": "ready-next",
+          "reason": "The queue should now choose between RO-W0-COMPANIES-357 read-only Playwright discovery and a Chapter 4 conceptual book rewrite."
         },
         {
           "caseId": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
           "status": "ready-after-current",
-          "reason": "Source mapping should prioritize Company, Number Series, Posting Groups, VAT, Dimensions and Entries."
+          "reason": "Source mapping can now target the exact W0/W1 pages and claim types from the discovery pack."
         },
         {
           "caseId": "PREP-027-IMPLEMENTATION-GUIDE-BEST-PRACTICE-MAPPING",
           "status": "ready-after-current",
-          "reason": "Implementation guidance is useful after book and source priorities are clearer."
+          "reason": "Implementation guidance should connect to W0/W1 setup and UAT structure after replanning."
+        },
+        {
+          "caseId": "PREP-028-TESTING-STRATEGY-AND-UAT-MATRIX",
+          "status": "ready-after-current",
+          "reason": "UAT matrix should use the first page discovery and source mapping."
         },
         {
           "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
@@ -625,52 +629,53 @@
         }
       ],
       "queueChangesMade": [
-        "Marked PREP-023 done.",
-        "Selected PREP-024 as next safe prep case.",
-        "Recorded BOOK-UNIVERSAARL-CH04-ERP-BASICS-REWRITE as a high-value book patch candidate, but did not insert it ahead of PREP-024 yet."
+        "Marked PREP-024 done.",
+        "Selected PREP-025 as next prep case.",
+        "Kept TARGET-009 parked until SUPER/company-create permissions are confirmed."
       ],
-      "selectedNextCase": "PREP-024-READONLY-PAGE-DISCOVERY-PACK",
-      "whySelectedNextCaseIsBest": "The next useful step is to prepare read-only discovery packs for the exact pages the book will need once permissions allow company creation and foundation setup.",
+      "selectedNextCase": "PREP-025-NEXT-10-CASES-REPLANNING",
+      "whySelectedNextCaseIsBest": "After the discovery pack, the next useful step is to re-evaluate the queue and decide whether read-only Playwright discovery or a small book rewrite has the higher immediate value.",
       "risksBeforeNextCase": [
-        "Do not run an effective BC action while company creation is permission-blocked.",
-        "Do not present RM-DEMO screenshots as Universaarl final screenshots.",
-        "Do not use read-only page discovery as proof that setup or records exist."
+        "Do not treat planned read-only cards as observed UI evidence.",
+        "Do not execute company creation before permissions.",
+        "Do not let replanning become a review loop without selecting an executable next case."
       ],
       "requiredPreparation": [
-        "Use BC-ATLAS-COVERAGE-QUALITY-AUDIT.md and BOOK-CHAPTER-STIMMIGKEIT-AUDIT.md.",
-        "Focus read-only discovery on W0/W1 pages first: Companies, Company Information, Assisted Setup, Number Series, Posting Groups, VAT, Dimensions."
+        "Read UNIVERSAARL-READONLY-PAGE-DISCOVERY-PACK.md.",
+        "Read BOOK-CHAPTER-STIMMIGKEIT-AUDIT.md.",
+        "Review PREP-025 queue candidates against permission blocker."
       ]
     }
   },
-  "updatedAt": "2026-06-30T07:05:00.000+02:00",
-  "lastCompletedCase": "PREP-023-BOOK-CHAPTER-STIMMIGKEIT-AUDIT",
-  "nextCase": "PREP-024-READONLY-PAGE-DISCOVERY-PACK",
+  "updatedAt": "2026-06-30T07:35:00.000+02:00",
+  "lastCompletedCase": "PREP-024-READONLY-PAGE-DISCOVERY-PACK",
+  "nextCase": "PREP-025-NEXT-10-CASES-REPLANNING",
   "nextStepDecisionCard": {
-    "currentCase": "PREP-023-BOOK-CHAPTER-STIMMIGKEIT-AUDIT",
-    "plannedNextCaseBeforeReview": "PREP-023-BOOK-CHAPTER-STIMMIGKEIT-AUDIT",
-    "lastEvidenceSummary": "PREP-022 classified atlas quality and set active Universaarl priorities for W0/W1.",
+    "currentCase": "PREP-024-READONLY-PAGE-DISCOVERY-PACK",
+    "plannedNextCaseBeforeReview": "PREP-024-READONLY-PAGE-DISCOVERY-PACK",
+    "lastEvidenceSummary": "PREP-023 found chapter 6 is the P0 book-flow break and selected W0/W1 pages as discovery focus.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The bookmaster has a Universaarl chapter-3 anchor, but later chapters still use Rhein-Main/RM-DEMO as active flow. A chapter-flow audit is needed before more book patches.",
+    "reason": "A read-only discovery pack is the best bridge between the chapter audit and future safe Playwright/UI work while company creation remains permission-blocked.",
     "lookaheadReviewed": [
       {
-        "caseId": "PREP-024-READONLY-PAGE-DISCOVERY-PACK",
-        "status": "ready-next",
-        "reason": "Read-only page discovery can use the chapter audit to focus on pages needed for real Universaarl reader flow."
-      },
-      {
         "caseId": "PREP-025-NEXT-10-CASES-REPLANNING",
-        "status": "ready-after-current",
-        "reason": "The next ten cases should account for the P0 chapter-6 rewrite dependency and the parked company-creation gate."
+        "status": "ready-next",
+        "reason": "The queue should now choose between RO-W0-COMPANIES-357 read-only Playwright discovery and a Chapter 4 conceptual book rewrite."
       },
       {
         "caseId": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
         "status": "ready-after-current",
-        "reason": "Source mapping should prioritize Company, Number Series, Posting Groups, VAT, Dimensions and Entries."
+        "reason": "Source mapping can now target the exact W0/W1 pages and claim types from the discovery pack."
       },
       {
         "caseId": "PREP-027-IMPLEMENTATION-GUIDE-BEST-PRACTICE-MAPPING",
         "status": "ready-after-current",
-        "reason": "Implementation guidance is useful after book and source priorities are clearer."
+        "reason": "Implementation guidance should connect to W0/W1 setup and UAT structure after replanning."
+      },
+      {
+        "caseId": "PREP-028-TESTING-STRATEGY-AND-UAT-MATRIX",
+        "status": "ready-after-current",
+        "reason": "UAT matrix should use the first page discovery and source mapping."
       },
       {
         "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
@@ -679,20 +684,21 @@
       }
     ],
     "queueChangesMade": [
-      "Marked PREP-023 done.",
-      "Selected PREP-024 as next safe prep case.",
-      "Recorded BOOK-UNIVERSAARL-CH04-ERP-BASICS-REWRITE as a high-value book patch candidate, but did not insert it ahead of PREP-024 yet."
+      "Marked PREP-024 done.",
+      "Selected PREP-025 as next prep case.",
+      "Kept TARGET-009 parked until SUPER/company-create permissions are confirmed."
     ],
-    "selectedNextCase": "PREP-024-READONLY-PAGE-DISCOVERY-PACK",
-    "whySelectedNextCaseIsBest": "The next useful step is to prepare read-only discovery packs for the exact pages the book will need once permissions allow company creation and foundation setup.",
+    "selectedNextCase": "PREP-025-NEXT-10-CASES-REPLANNING",
+    "whySelectedNextCaseIsBest": "After the discovery pack, the next useful step is to re-evaluate the queue and decide whether read-only Playwright discovery or a small book rewrite has the higher immediate value.",
     "risksBeforeNextCase": [
-      "Do not run an effective BC action while company creation is permission-blocked.",
-      "Do not present RM-DEMO screenshots as Universaarl final screenshots.",
-      "Do not use read-only page discovery as proof that setup or records exist."
+      "Do not treat planned read-only cards as observed UI evidence.",
+      "Do not execute company creation before permissions.",
+      "Do not let replanning become a review loop without selecting an executable next case."
     ],
     "requiredPreparation": [
-      "Use BC-ATLAS-COVERAGE-QUALITY-AUDIT.md and BOOK-CHAPTER-STIMMIGKEIT-AUDIT.md.",
-      "Focus read-only discovery on W0/W1 pages first: Companies, Company Information, Assisted Setup, Number Series, Posting Groups, VAT, Dimensions."
+      "Read UNIVERSAARL-READONLY-PAGE-DISCOVERY-PACK.md.",
+      "Read BOOK-CHAPTER-STIMMIGKEIT-AUDIT.md.",
+      "Review PREP-025 queue candidates against permission blocker."
     ]
   }
 }

@@ -57,6 +57,15 @@ Alte RM-DEMO-/CRONUS-Tests liefern weiterhin wertvolle Action-Muster, aber keine
 | 3 | `TARGET-FOUNDATION-001` | Assisted/Manual Setup Actions nur bis sichtbarer Entscheidungspunkt; kein Finish ohne Datenbasis | `planned-after-company` |
 | 4 | `TARGET-O2C-001` bis `TARGET-PAYMENT-001` | `Preview`, `Post`, `Apply Entries`, `Navigate/Find Entries` mit eigener Smart Decision Card | `planned-after-masterdata` |
 
+## PREP-024 Read-only Action-Karte
+
+| Discovery-ID | Action-Typ | Read-only erlaubt | Riskant/gesperrt | Buchnutzen |
+| --- | --- | --- | --- | --- |
+| `RO-W0-COMPANIES-357` | Split-Button `Neu`, Dropdown-Pfeil, Menueintrag | Hover/Tooltip, Dropdown oeffnen und Menueintraege fotografieren | Hauptbutton `Neu` als Create-Wizard verwechseln, `Kopieren`, `Testunternehmen`, Speichern | Anfaenger sehen, dass Button, Pfeil und Menueintrag verschiedene Ziele sind. |
+| `RO-W0-MY-SETTINGS` | Company-/Rollen-Auswahl | aktuelle Werte lesen und erklaeren | Company wechseln oder Einstellungen speichern | Der Leser versteht, warum Kontext vor jedem Screenshot geprueft wird. |
+| `RO-W1-ASSISTED-SETUP` | Setup-Assistentenliste | Status/Zeilen/Actions lesen | Assistent starten, `Weiter`, `OK`, `Finish` | Assistenten sind hilfreich, aber wirksam; sie brauchen eigene Gate-Entscheidung. |
+| `RO-W1-NO-SERIES` | Listen-/Zeilenactions | Spalten und Actions inventarisieren | `Neu`, `Edit List`, Zeilen bearbeiten | Nummernserien werden spaeter erklaert, ohne vorher etwas zu erzeugen. |
+
 ## Zero-Open-Questions-Regel
 
 Jede nicht verstandene Action erzeugt entweder einen Eintrag in `.agent/state/open_questions_register.json` oder bekommt einen finalen Status aus `BC-ZERO-OPEN-QUESTIONS-POLICY.md`.

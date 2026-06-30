@@ -22,6 +22,15 @@ Der Atlas enthaelt aktuell nur einen belastbaren aktiven Companies-/Mandantenkon
 | 4 | VAT Posting Setup | `TARGET-VAT-001` | Deutsche USt braucht Setup, Preview und VAT Entries. |
 | 5 | Dimensions / Dimension Values / Default Dimensions | `TARGET-DIMENSIONS-001` | Reporting und Filterlogik brauchen Dimensionen vor den ersten Buchungen. |
 
+## PREP-024 Read-only Kartenpaket
+
+| Discovery-ID | Karte/Liste | Status | Pflichtbeobachtung | Nicht behaupten |
+| --- | --- | --- | --- | --- |
+| `RO-W0-COMPANIES-357` | Companies List / Mandanten | `ready-for-readonly-playwright` | sichtbare Spalten, sichtbarer `Neu`-Kontext, sichtbarer Dropdown-Kontext, ob `UNIVERSAARL-DE` sichtbar ist | keine Company-Anlage, kein Speichererfolg |
+| `RO-W0-MY-SETTINGS` | My Settings / Meine Einstellungen | `ready-for-readonly-playwright` | aktive Company-/Rollen-/Sprachfelder | keine erfolgte Company-Auswahl |
+| `RO-W1-COMPANY-INFORMATION` | Company Information | `requires-universaarl-company` | Name, Adresse, Land/Region, USt-IdNr., FastTabs | keine rechtlich/final korrekten Firmendaten ohne spaeteres Setup |
+| `RO-W1-NO-SERIES` | No. Series / Nummernserien | `requires-universaarl-company` | Seriencode, Beschreibung, Start-/Letztnummern, Manual-Nos.-Signal | keine aktive Nummernserienkonfiguration ohne Setup-Case |
+
 ## Erfassungsregel
 
 Jeder neue Universaarl-Prozess soll Page, Typ, sichtbare FastTabs/Felder, Buttons/Actions, Pflichtfelder, Defaults, Screenshot-Beweis und Buchkapitelbezug erfassen.

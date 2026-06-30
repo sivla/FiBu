@@ -17,6 +17,18 @@ Die vorhandene Feldliste bewahrt wichtige RM-DEMO-/P2P-/Fixed-Assets-Learnings. 
 | 5 | `TARGET-VAT-001` | VAT Bus./Prod. Posting Group, VAT %, VAT Accounts | Grundlage fuer deutsche USt-Nachweise. |
 | 6 | `TARGET-DIMENSIONS-001` | Dimension Code, Dimension Value Code, Value Posting | Grundlage fuer Reporting und Filter. |
 
+## PREP-024 Read-only Feldpaket
+
+| Discovery-ID | Feldgruppe | Read-only-Frage | Grenze |
+| --- | --- | --- | --- |
+| `RO-W0-COMPANIES-357` | Name, Display Name, Evaluation/Testunternehmen, Einrichtungsstatus | Ist `UNIVERSAARL-DE` sichtbar? Welche Spalten tragen Company-Kontext und Datenbasisrisiko? | sichtbare Spalten beweisen keine neue Company |
+| `RO-W0-MY-SETTINGS` | Company, Role, Language/Region | Welcher Kontext steuert das, was Business Central dem Nutzer zeigt? | nicht speichern, nicht wechseln |
+| `RO-W1-COMPANY-INFORMATION` | Name, Adresse, Country/Region, VAT Registration No. | Welche Firmenfelder erscheinen spaeter in Belegen, Reports und Buchscreenshots? | erst nach existierender Universaarl-Company pruefen |
+| `RO-W1-NO-SERIES` | Code, Starting No., Last No. Used, Manual Nos. | Wie entstehen spaeter Belegnummern und Nachverfolgung? | keine Nummernserie aendern |
+| `RO-W1-POSTING-GROUPS` | Business/Product/Customer/Vendor/Inventory/Bank/FA Posting Groups | Welche Felder steuern spaeter Kontenfindung und Posten? | keine Matrix-/Kontenwerte als final behaupten |
+| `RO-W1-VAT-SETUP` | VAT Bus./Prod. Posting Group, VAT %, VAT Accounts | Welche Felder braucht die deutsche USt-Kette? | keine deutsche USt ohne Universaarl VAT Entries behaupten |
+| `RO-W1-DIMENSIONS` | Dimension Code, Dimension Value Code, Value Posting | Welche Felder muessen vor Buchung fuer Reporting stehen? | keine Reportingwirkung ohne gebuchte Universaarl-Posten |
+
 | Feld / Spalte | Bereich | Wo sichtbar/belegt | Wirkung | Evidence | Grenze |
 |---|---|---|---|---|---|
 | `Buy-from Vendor No.` / Vendor | P2P | Purchase Order Draft `106002` | Kreditor setzt Belegkopf und Folge-Defaults | `evidence/p2p-004/P2P-004-result.json` | Header-Fallback teilweise geometrisch, Nachherwert sichtbar |

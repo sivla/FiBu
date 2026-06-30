@@ -1,0 +1,139 @@
+{
+  "schemaVersion": 1,
+  "caseId": "PREP-024-READONLY-PAGE-DISCOVERY-PACK",
+  "status": "prep-done",
+  "instance": "playthru",
+  "targetCompany": "UNIVERSAARL-DE-planned-not-yet-created",
+  "noBusinessCentralExecution": true,
+  "noPlaywrightExecution": true,
+  "noEffectiveBusinessCentralActions": true,
+  "packPath": "playwright/projects/fibu-book5/UNIVERSAARL-READONLY-PAGE-DISCOVERY-PACK.md",
+  "discoveryCards": [
+    {
+      "id": "RO-W0-COMPANIES-357",
+      "page": "Companies / Mandanten",
+      "pageId": 357,
+      "priority": 1,
+      "status": "ready-for-readonly-playwright",
+      "allowed": [
+        "read-list",
+        "hover-tooltip",
+        "open-dropdown-readonly",
+        "inventory-actions",
+        "screenshot-qa",
+        "page-inspection-if-available"
+      ],
+      "forbidden": [
+        "save",
+        "create-company",
+        "copy-company",
+        "test-company",
+        "wizard-finish",
+        "api-shortcut"
+      ],
+      "atlasTargets": [
+        "BC-PAGE-ATLAS.md",
+        "BC-LIST-ATLAS.md",
+        "BC-ACTION-ATLAS.md",
+        "BC-DIALOG-ATLAS.md"
+      ]
+    },
+    {
+      "id": "RO-W0-MY-SETTINGS",
+      "page": "My Settings / Meine Einstellungen",
+      "priority": 2,
+      "status": "ready-for-readonly-playwright",
+      "allowed": [
+        "read-current-company-role-language",
+        "screenshot-qa"
+      ],
+      "forbidden": [
+        "change-company",
+        "save-settings"
+      ],
+      "atlasTargets": [
+        "BC-PAGE-ATLAS.md",
+        "BC-CARD-ATLAS.md",
+        "BC-FIELD-ATLAS.md"
+      ]
+    },
+    {
+      "id": "RO-W1-COMPANY-INFORMATION",
+      "page": "Company Information",
+      "priority": 4,
+      "status": "requires-universaarl-company",
+      "allowed": [
+        "read-fields",
+        "read-fasttabs",
+        "screenshot-qa"
+      ],
+      "forbidden": [
+        "edit",
+        "save",
+        "upload-logo"
+      ],
+      "atlasTargets": [
+        "BC-CARD-ATLAS.md",
+        "BC-FIELD-ATLAS.md"
+      ]
+    },
+    {
+      "id": "RO-W1-ASSISTED-SETUP",
+      "page": "Assisted Setup / Unterstuetztes Setup",
+      "priority": 5,
+      "status": "ready-for-readonly-playwright",
+      "allowed": [
+        "read-list",
+        "read-status",
+        "inventory-safe-actions"
+      ],
+      "forbidden": [
+        "start-wizard",
+        "next",
+        "finish",
+        "setup-change"
+      ],
+      "atlasTargets": [
+        "BC-PAGE-ATLAS.md",
+        "BC-LIST-ATLAS.md",
+        "BC-DIALOG-ATLAS.md",
+        "BC-REQUEST-PAGE-ATLAS.md"
+      ]
+    },
+    {
+      "id": "RO-W1-NO-SERIES",
+      "page": "No. Series / Nummernserien",
+      "priority": 6,
+      "status": "requires-universaarl-company",
+      "allowed": [
+        "read-list",
+        "read-columns",
+        "inventory-actions"
+      ],
+      "forbidden": [
+        "new",
+        "edit-list",
+        "edit-lines"
+      ],
+      "atlasTargets": [
+        "BC-LIST-ATLAS.md",
+        "BC-FIELD-ATLAS.md"
+      ]
+    }
+  ],
+  "resultTemplate": {
+    "source": "playwright-readonly-discovery",
+    "resultStatus": "observed|blocked",
+    "requiredFlags": [
+      "noWrite",
+      "noPost",
+      "noPreview",
+      "noSetupChange",
+      "noCompanyCreated",
+      "noCompanySwitch",
+      "noApiShortcut"
+    ]
+  },
+  "nextCase": "PREP-025-NEXT-10-CASES-REPLANNING",
+  "updatedAt": "2026-06-30T07:35:00.000+02:00"
+}
