@@ -5,7 +5,7 @@
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "queueId": "TARGET-MARATHON-002-UNIVERSAARL-REPO-READONLY-PREP",
-  "reason": "TARGET-027 blocked by visible page route; recover VAT page navigation before write-gate decision.",
+  "reason": "TARGET-027R recovered 2/3 VAT pages; Page 470 still needs visible route follow-up before VAT write gate.",
   "noEffectiveBusinessCentralActions": false,
   "forbiddenUntilUnblocked": [],
   "unblockCriteria": "Satisfied: UNIVERSAARL-DE exists and active Role Center context / Firmendaten read-only proof is available.",
@@ -1987,7 +1987,7 @@
     {
       "id": "TARGET-027R-VAT-PAGE-ROUTE-RECOVERY",
       "order": 10043,
-      "status": "pending",
+      "status": "blocked",
       "category": "readonly-ui-route-recovery",
       "expectedImpact": "vat-page-route-recovery",
       "mayWorkEffectively": false,
@@ -1998,10 +1998,34 @@
       "targetWorld": "Universaarl",
       "noFinalGermanClaimWithoutUniversaarlEvidence": true,
       "lookaheadStatus": "ready-next",
-      "reason": "TARGET-027 showed Role Center / no visible VAT page screenshots."
+      "reason": "TARGET-027 showed Role Center / no visible VAT page screenshots.",
+      "completedAt": "2026-06-30T23:11:52.386Z",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-027r-vat-page-route-recovery/TARGET-027R-result.json",
+      "result": "Partially observed: VAT Product Posting Groups and VAT Posting Setup visible; VAT Business Posting Groups remains search-overlay blocked.",
+      "blockedBy": [
+        "Required page signals not visible for MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups.",
+        "Visible screenshot text still looks like search overlay for MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups."
+      ],
+      "nextCase": "TARGET-027S-VAT-PAGE-ROUTE-SOURCE-AND-UI-FOLLOWUP"
+    },
+    {
+      "id": "TARGET-027S-VAT-PAGE-ROUTE-SOURCE-AND-UI-FOLLOWUP",
+      "order": 10044,
+      "status": "pending",
+      "category": "readonly-ui-route-recovery",
+      "expectedImpact": "vat-business-posting-groups-route-recovery",
+      "mayWorkEffectively": false,
+      "mayRunPlaywright": true,
+      "effectiveBcActionsAllowed": false,
+      "goal": "Recover or source-review the visible read-only route for VAT Business Posting Groups Page 470 without setup writes before any VAT write-gate decision.",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "targetWorld": "Universaarl",
+      "noFinalGermanClaimWithoutUniversaarlEvidence": true,
+      "lookaheadStatus": "ready-next",
+      "reason": "TARGET-027R recovered 2/3 VAT pages but Page 470 remains blocked by search overlay."
     }
   ],
-  "lastUpdated": "2026-06-30T21:40:00.000Z",
+  "lastUpdated": "2026-06-30T23:11:52.386Z",
   "nextStepDecisionGate": {
     "active": true,
     "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",
@@ -2100,25 +2124,20 @@
       ]
     }
   },
-  "updatedAt": "2026-06-30T22:58:09.178Z",
-  "lastCompletedCase": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
-  "nextCase": "TARGET-027R-VAT-PAGE-ROUTE-RECOVERY",
+  "updatedAt": "2026-06-30T23:11:52.386Z",
+  "lastCompletedCase": "TARGET-027R-VAT-PAGE-ROUTE-RECOVERY",
+  "nextCase": "TARGET-027S-VAT-PAGE-ROUTE-SOURCE-AND-UI-FOLLOWUP",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
+    "currentCase": "TARGET-027R-VAT-PAGE-ROUTE-RECOVERY",
     "plannedNextCaseBeforeReview": "TARGET-027B-VAT-POSTING-SETUP-WRITE-GATE-DECISION",
-    "lastEvidenceSummary": "TARGET-027 attempted direct Page 470/471/472 and scoped search fallback, but screenshot QA still showed Role Center or no visible VAT setup iframe.",
+    "lastEvidenceSummary": "TARGET-027 blocked because Role Center/search overlay screenshots were not acceptable VAT page proof, although older TARGET-020 evidence suggested direct VAT pages can be visible.",
     "isPlannedNextCaseStillSensible": false,
-    "reason": "VAT setup cannot be written or planned from hidden/failed navigation. A route recovery case must prove the visible VAT pages first.",
+    "reason": "Do not move to VAT setup write gate until every required VAT page route is visibly reliable.",
     "lookaheadReviewed": [
-      {
-        "caseId": "TARGET-027R-VAT-PAGE-ROUTE-RECOVERY",
-        "status": "ready-next",
-        "reason": "Directly fixes the VAT page visibility blocker without setup writes."
-      },
       {
         "caseId": "TARGET-027B-VAT-POSTING-SETUP-WRITE-GATE-DECISION",
         "status": "blocked",
-        "reason": "Requires visible VAT Business/Product Posting Groups and VAT Posting Setup pages first."
+        "reason": "Needs full visible VAT page proof first."
       },
       {
         "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
@@ -2137,16 +2156,17 @@
       }
     ],
     "queueChangesMade": [
-      "Insert TARGET-027R VAT page route recovery before any VAT write-gate decision."
+      "Insert TARGET-027S for source/UI follow-up before any VAT write-gate decision."
     ],
-    "selectedNextCase": "TARGET-027R-VAT-PAGE-ROUTE-RECOVERY",
-    "whySelectedNextCaseIsBest": "It prevents a false VAT setup claim and focuses the next run on visible page navigation only.",
+    "selectedNextCase": "TARGET-027S-VAT-PAGE-ROUTE-SOURCE-AND-UI-FOLLOWUP",
+    "whySelectedNextCaseIsBest": "It keeps setup writes locked and narrows the remaining blocker to page route/source/UI diagnosis.",
     "risksBeforeNextCase": [
-      "Do not treat Tell-Me/search overlay or Role Center text as VAT setup proof."
+      "Do not claim German 19 percent VAT correctness before VAT setup, Preview Posting, VAT Entries and G/L Entries.",
+      "Do not treat Role Center, Tell-Me overlay or hidden text as page proof."
     ],
     "requiredPreparation": [
-      "Use stricter screenshot QA and consider German search terms, action/menu navigation, or Page Inspection before any setup write."
+      "Use TARGET-027R screenshots and search-candidate JSONs to choose a better route."
     ]
   },
-  "nextStep": "Run TARGET-027R VAT page route recovery read-only."
+  "nextStep": "Run TARGET-027S VAT Business Posting Groups route follow-up read-only."
 }

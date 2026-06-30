@@ -1,0 +1,328 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "TARGET-027R-VAT-PAGE-ROUTE-RECOVERY",
+  "source": "playwright-universaarl-vat-page-route-recovery-readonly",
+  "resultStatus": "partially-observed",
+  "runPlanId": "TARGET-027R-VAT-PAGE-ROUTE-RECOVERY-PLAN",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=472&company=UNIVERSAARL-DE",
+  "actionsTaken": [
+    "Opened Business Central in playthru / UNIVERSAARL-DE.",
+    "Tried direct page routes for VAT Business Posting Groups, VAT Product Posting Groups and VAT Posting Setup.",
+    "Used German/English Tell-Me search only as fallback where direct page recognition was insufficient.",
+    "Captured screenshot QA metadata for each target page."
+  ],
+  "actionsNotTaken": [
+    "No VAT setup write",
+    "No posting group write",
+    "No master data",
+    "No document draft",
+    "No Preview Posting",
+    "No Posting",
+    "No API shortcut"
+  ],
+  "setupChanged": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "sourceRefs": [
+    "https://learn.microsoft.com/en-us/dynamics365/business-central/finance-setup-vat",
+    "https://learn.microsoft.com/en-us/dynamics365/business-central/application/base-application/page/microsoft.finance.vat.setup.vat-posting-setup",
+    "https://learn.microsoft.com/en-us/dynamics365/business-central/application/base-application/table/microsoft.finance.vat.setup.vat-posting-setup",
+    "https://learn.microsoft.com/en-us/dynamics365/business-central/application/base-application/table/microsoft.finance.vat.setup.vat-business-posting-group"
+  ],
+  "proved": [
+    "Business Central stayed in playthru / UNIVERSAARL-DE.",
+    "2/3 VAT target pages passed visible screenshot QA.",
+    "No VAT setup, posting groups, master data, document draft, Preview Posting, Posting or API shortcut was executed.",
+    "MwSt.-Produktbuchungsgruppen / VAT Product Posting Groups visible read-only.",
+    "MwSt.-Buchungsmatrix / VAT Posting Setup visible read-only."
+  ],
+  "notProved": [
+    "No German VAT setup row is proven ready.",
+    "No 19 percent VAT final correctness.",
+    "No VAT Entries.",
+    "No document preview or posting.",
+    "No tax advisor approval.",
+    "MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups: visible route still blocked."
+  ],
+  "blockedBy": [
+    "Required page signals not visible for MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups.",
+    "Visible screenshot text still looks like search overlay for MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups."
+  ],
+  "warnings": [
+    "Write-capable actions may be visible, but were not clicked."
+  ],
+  "screenshots": [
+    "target-027r-001-vat-business-posting-groups.png",
+    "target-027r-002-vat-product-posting-groups.png",
+    "target-027r-003-vat-posting-setup.png"
+  ],
+  "evidenceRefs": [
+    "TARGET-027R-result.json",
+    "README.md",
+    "target-027r-001-vat-business-posting-groups.txt",
+    "target-027r-001-vat-business-posting-groups.png",
+    "target-027r-001-vat-business-posting-groups.screenshot.json",
+    "target-027r-002-vat-product-posting-groups.txt",
+    "target-027r-002-vat-product-posting-groups.png",
+    "target-027r-002-vat-product-posting-groups.screenshot.json",
+    "target-027r-003-vat-posting-setup.txt",
+    "target-027r-003-vat-posting-setup.png",
+    "target-027r-003-vat-posting-setup.screenshot.json"
+  ],
+  "pageResults": [
+    {
+      "id": "vat-business-posting-groups",
+      "pageId": 470,
+      "label": "MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups",
+      "status": "blocked",
+      "routeUsed": [
+        "direct-page-470",
+        "search:MwSt.-Geschaeftsbuchungsgruppen",
+        "search:VAT Business Posting Groups"
+      ],
+      "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?company=UNIVERSAARL-DE",
+      "screenshot": "target-027r-001-vat-business-posting-groups.png",
+      "screenshotMetadata": "target-027r-001-vat-business-posting-groups.screenshot.json",
+      "textFile": "target-027r-001-vat-business-posting-groups.txt",
+      "textSignals": [
+        "Neu",
+        "Neue",
+        "Beschreibung",
+        "Liste mit Titel \"Nach VAT Business Posting Groups suchen\" weist jetzt 2 Artikel fur VAT Business Posting Groups auf",
+        "Nach VAT Business Posting Groups suchen",
+        "Fur VAT Business Posting Groups sind keine Vorschlage verfugbar."
+      ],
+      "blockedBy": [
+        "Required page signals not visible for MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups.",
+        "Visible screenshot text still looks like search overlay for MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups."
+      ],
+      "warnings": [
+        "Write-capable actions may be visible, but were not clicked."
+      ]
+    },
+    {
+      "id": "vat-product-posting-groups",
+      "pageId": 471,
+      "label": "MwSt.-Produktbuchungsgruppen / VAT Product Posting Groups",
+      "status": "observed",
+      "routeUsed": [
+        "direct-page-471"
+      ],
+      "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=471&company=UNIVERSAARL-DE",
+      "screenshot": "target-027r-002-vat-product-posting-groups.png",
+      "screenshotMetadata": "target-027r-002-vat-product-posting-groups.screenshot.json",
+      "textFile": "target-027r-002-vat-product-posting-groups.txt",
+      "textSignals": [
+        "Dynamics 365 Business Central Umgebung: Playthru KK",
+        "App-Startfeld",
+        "Dynamics 365 Business Central Umgebung: Playthru",
+        "Dynamics 365 Business Central",
+        "Umgebung: Playthru",
+        "Umgebung: Playthru",
+        "Umgebung:",
+        "Playthru",
+        "Einstellungen",
+        "Hilfe",
+        "KK",
+        "undefined",
+        "Zum Hauptinhalt wechseln Universaarl GmbH Finanzen Zahlungsmanagement Verkauf Einkauf Shopify Alle Berichte Agent A Payables Agent PA Verkaufsauftragsagent VA MwSt.-Produktbuchungsgruppen: Alle Neu Loschen Liste bearbeiten Einrichtung Weitere Optionen Code Beschreibung (In dieser Ansicht kann nichts angezeigt werden)",
+        "Zum Hauptinhalt wechseln Universaarl GmbH Finanzen Zahlungsmanagement Verkauf Einkauf Shopify Alle Berichte Agent A Payables Agent PA Verkaufsauftragsagent VA",
+        "Universaarl GmbH Finanzen Zahlungsmanagement Verkauf Einkauf Shopify Alle Berichte Agent A Payables Agent PA Verkaufsauftragsagent VA",
+        "Universaarl GmbH",
+        "Finanzen",
+        "Zahlungsmanagement",
+        "Verkauf",
+        "Einkauf",
+        "Shopify",
+        "Alle Berichte",
+        "Agent A Payables Agent PA Verkaufsauftragsagent VA",
+        "Agent A",
+        "A",
+        "Nicht konfiguriert",
+        "Payables Agent PA",
+        "PA",
+        "Verkaufsauftragsagent VA",
+        "VA",
+        "MwSt.-Produktbuchungsgruppen: Alle Neu Loschen Liste bearbeiten Einrichtung Weitere Optionen",
+        "MwSt.-Produktbuchungsgruppen: Alle",
+        "MwSt.-Produktbuchungsgruppen:",
+        "Alle",
+        "Alle",
+        "Neu Loschen Liste bearbeiten Einrichtung Weitere Optionen",
+        "In den Analysemodus wechseln",
+        "Neu Loschen Liste bearbeiten Einrichtung Weitere Optionen",
+        "Neu",
+        "Loschen",
+        "Liste bearbeiten",
+        "Einrichtung",
+        "Weitere Optionen",
+        "Liste Layout ausgewahlt",
+        "Code Beschreibung (In dieser Ansicht kann nichts angezeigt werden)",
+        "Code Beschreibung",
+        "Ausgewahlt",
+        "Code",
+        "Menu fur Code offnen",
+        "Beschreibung",
+        "Menu fur Beschreibung offnen",
+        "(In dieser Ansicht kann nichts angezeigt werden)"
+      ],
+      "blockedBy": [],
+      "warnings": [
+        "Write-capable actions may be visible, but were not clicked."
+      ]
+    },
+    {
+      "id": "vat-posting-setup",
+      "pageId": 472,
+      "label": "MwSt.-Buchungsmatrix / VAT Posting Setup",
+      "status": "observed",
+      "routeUsed": [
+        "direct-page-472"
+      ],
+      "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=472&company=UNIVERSAARL-DE",
+      "screenshot": "target-027r-003-vat-posting-setup.png",
+      "screenshotMetadata": "target-027r-003-vat-posting-setup.screenshot.json",
+      "textFile": "target-027r-003-vat-posting-setup.txt",
+      "textSignals": [
+        "Dynamics 365 Business Central Umgebung: Playthru KK",
+        "App-Startfeld",
+        "Dynamics 365 Business Central Umgebung: Playthru",
+        "Dynamics 365 Business Central",
+        "Umgebung: Playthru",
+        "Umgebung: Playthru",
+        "Umgebung:",
+        "Playthru",
+        "Einstellungen",
+        "Hilfe",
+        "KK",
+        "undefined",
+        "Zum Hauptinhalt wechseln Universaarl GmbH Finanzen Zahlungsmanagement Verkauf Einkauf Shopify Alle Berichte Agent A Payables Agent PA Verkaufsauftragsagent VA MwSt.-Buchungsmatrix Einr.: Alle Neu Loschen Liste bearbeiten Konten vorschlagen Kopieren... Weitere Optionen MwSt.-Geschaftsbuchungsgruppe MwSt.-Produktbuchungsgruppe Beschreibung Gesperrt MwSt.-Kennzeichen MwSt. % MwSt.-Berechnungsart Unreal. MwSt.-Art Skonto berichtigen Umsatzsteuerkonto Unreal. Umsatzsteuerkonto Vorsteuerkonto Unreal. Vorsteuerkonto Erwerbssteuerkonto Unreal. Erwerbssteuerkonto MwSt.-Klauselcode EU-Service Steuerkategorie (In dieser Ansicht kann nichts angezeigt werden)",
+        "Zum Hauptinhalt wechseln Universaarl GmbH Finanzen Zahlungsmanagement Verkauf Einkauf Shopify Alle Berichte Agent A Payables Agent PA Verkaufsauftragsagent VA",
+        "Universaarl GmbH Finanzen Zahlungsmanagement Verkauf Einkauf Shopify Alle Berichte Agent A Payables Agent PA Verkaufsauftragsagent VA",
+        "Universaarl GmbH",
+        "Finanzen",
+        "Zahlungsmanagement",
+        "Verkauf",
+        "Einkauf",
+        "Shopify",
+        "Alle Berichte",
+        "Agent A Payables Agent PA Verkaufsauftragsagent VA",
+        "Agent A",
+        "A",
+        "Nicht konfiguriert",
+        "Payables Agent PA",
+        "PA",
+        "Verkaufsauftragsagent VA",
+        "VA",
+        "MwSt.-Buchungsmatrix Einr.: Alle Neu Loschen Liste bearbeiten Konten vorschlagen Kopieren... Weitere Optionen",
+        "MwSt.-Buchungsmatrix Einr.: Alle",
+        "MwSt.-Buchungsmatrix Einr.:",
+        "Alle",
+        "Alle",
+        "Neu Loschen Liste bearbeiten Konten vorschlagen Kopieren... Weitere Optionen",
+        "In den Analysemodus wechseln",
+        "Neu Loschen Liste bearbeiten Konten vorschlagen Kopieren... Weitere Optionen",
+        "Neu",
+        "Loschen",
+        "Liste bearbeiten",
+        "Konten vorschlagen",
+        "Kopieren...",
+        "Weitere Optionen",
+        "Liste Layout ausgewahlt",
+        "MwSt.-Geschaftsbuchungsgruppe MwSt.-Produktbuchungsgruppe Beschreibung Gesperrt MwSt.-Kennzeichen MwSt. % MwSt.-Berechnungsart Unreal. MwSt.-Art Skonto berichtigen Umsatzsteuerkonto Unreal. Umsatzsteuerkonto Vorsteuerkonto Unreal. Vorsteuerkonto Erwerbssteuerkonto Unreal. Erwerbssteuerkonto MwSt.-Klauselcode EU-Service Steuerkategorie (In dieser Ansicht kann nichts angezeigt werden)",
+        "MwSt.-Geschaftsbuchungsgruppe MwSt.-Produktbuchungsgruppe Beschreibung Gesperrt MwSt.-Kennzeichen MwSt. % MwSt.-Berechnungsart Unreal. MwSt.-Art Skonto berichtigen Umsatzsteuerkonto Unreal. Umsatzsteuerkonto Vorsteuerkonto Unreal. Vorsteuerkonto Erwerbssteuerkonto Unreal. Erwerbssteuerkonto MwSt.-Klauselcode EU-Service Steuerkategorie",
+        "Ausgewahlt",
+        "MwSt.-Geschaftsbuchungsgruppe",
+        "Menu fur MwSt.-Geschaftsbuchungsgruppe offnen",
+        "MwSt.-Produktbuchungsgruppe",
+        "Beschreibung",
+        "Gesperrt",
+        "MwSt.-Kennzeichen",
+        "MwSt. %",
+        "MwSt.-Berechnungsart",
+        "Menu fur MwSt.-Berechnungsart offnen",
+        "Unreal. MwSt.-Art",
+        "Skonto berichtigen",
+        "Umsatzsteuerkonto",
+        "Unreal. Umsatzsteuerkonto",
+        "Vorsteuerkonto",
+        "Unreal. Vorsteuerkonto",
+        "Erwerbssteuerkonto",
+        "Unreal. Erwerbssteuerkonto",
+        "MwSt.-Klauselcode",
+        "EU-Service",
+        "Steuerkategorie",
+        "(In dieser Ansicht kann nichts angezeigt werden)"
+      ],
+      "blockedBy": [],
+      "warnings": [
+        "Write-capable actions may be visible, but were not clicked."
+      ]
+    }
+  ],
+  "flags": {
+    "noWrite": true,
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noSetupChange": true,
+    "noMasterDataChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "safeToFinalizeState": false,
+  "requiresReview": true,
+  "statePatch": {},
+  "nextStepDecision": {
+    "currentCase": "TARGET-027R-VAT-PAGE-ROUTE-RECOVERY",
+    "plannedNextCaseBeforeReview": "TARGET-027B-VAT-POSTING-SETUP-WRITE-GATE-DECISION",
+    "lastEvidenceSummary": "TARGET-027 blocked because Role Center/search overlay screenshots were not acceptable VAT page proof, although older TARGET-020 evidence suggested direct VAT pages can be visible.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "Do not move to VAT setup write gate until every required VAT page route is visibly reliable.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-027B-VAT-POSTING-SETUP-WRITE-GATE-DECISION",
+        "status": "blocked",
+        "reason": "Needs full visible VAT page proof first."
+      },
+      {
+        "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Posting groups depend on VAT route and setup decision."
+      },
+      {
+        "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
+        "status": "needs-setup-first",
+        "reason": "Master data waits for VAT and posting groups."
+      },
+      {
+        "caseId": "TARGET-030-FOUNDATION-READY-CHECKPOINT",
+        "status": "needs-setup-first",
+        "reason": "Foundation readiness waits for VAT and posting groups."
+      }
+    ],
+    "queueChangesMade": [
+      "Insert TARGET-027S for source/UI follow-up before any VAT write-gate decision."
+    ],
+    "selectedNextCase": "TARGET-027S-VAT-PAGE-ROUTE-SOURCE-AND-UI-FOLLOWUP",
+    "whySelectedNextCaseIsBest": "It keeps setup writes locked and narrows the remaining blocker to page route/source/UI diagnosis.",
+    "risksBeforeNextCase": [
+      "Do not claim German 19 percent VAT correctness before VAT setup, Preview Posting, VAT Entries and G/L Entries.",
+      "Do not treat Role Center, Tell-Me overlay or hidden text as page proof."
+    ],
+    "requiredPreparation": [
+      "Use TARGET-027R screenshots and search-candidate JSONs to choose a better route."
+    ]
+  },
+  "nextCase": "TARGET-027S-VAT-PAGE-ROUTE-SOURCE-AND-UI-FOLLOWUP",
+  "reason": "VAT route recovery remains incomplete; setup writes stay locked."
+}

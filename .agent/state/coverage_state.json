@@ -4017,9 +4017,45 @@
     "conclusion": "Visible Kontenplan screenshot route recovered; VAT preflight may run read-only next, but VAT setup writes remain locked."
   },
   "latestVatPreflight": {
-    "caseId": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
-    "status": "blocked",
-    "resultPath": "playwright/projects/fibu-book5/evidence/target-027-vat-posting-groups-preflight/TARGET-027-result.json",
-    "conclusion": "VAT setup pages were not visibly reached; no VAT write gate unlocked."
+    "caseId": "TARGET-027R-VAT-PAGE-ROUTE-RECOVERY",
+    "status": "partially-observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-027r-vat-page-route-recovery/TARGET-027R-result.json",
+    "conclusion": "VAT setup writes remain locked: 2/3 VAT pages are visible read-only, but VAT Business Posting Groups Page 470 still needs route recovery."
+  },
+  "latestVatPageRouteRecovery": {
+    "caseId": "TARGET-027R-VAT-PAGE-ROUTE-RECOVERY",
+    "status": "partially-observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-027r-vat-page-route-recovery/TARGET-027R-result.json",
+    "coverageEffect": "Visible screenshot QA recovered VAT Product Posting Groups and VAT Posting Setup; VAT Business Posting Groups remains blocked by search overlay and requires TARGET-027S before any write-gate.",
+    "pages": [
+      {
+        "id": "vat-business-posting-groups",
+        "pageId": 470,
+        "status": "blocked",
+        "routeUsed": [
+          "direct-page-470",
+          "search:MwSt.-Geschaeftsbuchungsgruppen",
+          "search:VAT Business Posting Groups"
+        ]
+      },
+      {
+        "id": "vat-product-posting-groups",
+        "pageId": 471,
+        "status": "observed",
+        "routeUsed": [
+          "direct-page-471"
+        ]
+      },
+      {
+        "id": "vat-posting-setup",
+        "pageId": 472,
+        "status": "observed",
+        "routeUsed": [
+          "direct-page-472"
+        ]
+      }
+    ],
+    "nextCase": "TARGET-027S-VAT-PAGE-ROUTE-SOURCE-AND-UI-FOLLOWUP",
+    "updatedAt": "2026-06-30T23:11:52.386Z"
   }
 }

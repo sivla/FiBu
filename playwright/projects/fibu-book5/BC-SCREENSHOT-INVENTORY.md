@@ -456,6 +456,16 @@ Screenshot-QA zu TARGET-026M Page Inspection: Die Bilder sind gute technische Di
 
 Screenshot-QA zu TARGET-026M Safe Write: Die Bilder sind brauchbare Buchkandidaten fuer den Abschnitt "Sachkonten anlegen und Kontotyp pruefen". Sie zeigen, warum bei Optionsfeldern der sichtbare Feldwert zaehlt und nicht die Feldbeschriftung. Der naechste Buch-/Setup-Schritt darf trotzdem nur ein Kontenplan-Checkpoint sein, weil VAT Posting Setup, Posting Groups, Stammdaten und Buchungen noch nicht bewiesen sind.
 
+## Universaarl VAT Page Route Recovery TARGET-027R
+
+| Screenshot | Page | Company | Schritt | Was sieht man? | Intern bewiesen | Nicht bewiesen | Status |
+|---|---|---|---|---|---|---|---|
+| `target-027r-001-vat-business-posting-groups.png` | Tell-Me/Search Overlay fuer VAT Business Posting Groups | `playthru` / `UNIVERSAARL-DE` | Fallback-Suche nach Page 470 | Suchdialog `VAT Business Posting Groups`, Role Center im Hintergrund, keine sichtbare Zielseite | Page-470-Route ist mit diesem Suchpfad nicht als Screenshot-Proof brauchbar | keine sichtbare MwSt.-Geschaeftsbuchungsgruppen-Liste, keine VAT-Setup-Freigabe | `rejected-search-overlay`, `follow-up-needed` |
+| `target-027r-002-vat-product-posting-groups.png` | MwSt.-Produktbuchungsgruppen, Page 471 | `playthru` / `UNIVERSAARL-DE` | Read-only Direktseitenroute | Liste `MwSt.-Produktbuchungsgruppen`, Spalten `Code` und `Beschreibung`, keine sichtbaren Werte | Page 471 ist in der Zielcompany sichtbar erreichbar | keine Produktgruppenwerte, keine Steuerlogik, keine Buchung | `universaarl-readonly-page-proof`, `book-context-candidate` |
+| `target-027r-003-vat-posting-setup.png` | MwSt.-Buchungsmatrix Einr., Page 472 | `playthru` / `UNIVERSAARL-DE` | Read-only Direktseitenroute | Matrixspalten fuer MwSt.-Geschaeftsbuchungsgruppe, MwSt.-Produktbuchungsgruppe, MwSt. %, Berechnungsart und Steuerkonten; keine Zeilen | Page 472 ist in der Zielcompany sichtbar erreichbar und leer | keine VAT Posting Setup Zeile, keine 19-Prozent-USt, keine VAT Entries | `universaarl-readonly-page-proof`, `book-context-candidate` |
+
+Screenshot-QA zu TARGET-027R: Zwei von drei VAT-Zielseiten sind sichtbar genug fuer Buchkontext und Setup-Vorbereitung. Das Bild der Geschaeftsbuchungsgruppen ist absichtlich abgelehnt, weil es nur den Suchdialog zeigt. Aus TARGET-027R folgt deshalb kein VAT-Write-Gate und keine deutsche USt-Behauptung; der naechste Lauf muss Page 470 gezielt recovern.
+
 ## PREP-010 Screenshot-QA-Regel
 
 Vor jeder Buch- oder Clickguide-Nutzung muss der Screenshot gegen die konkrete Behauptung geprueft werden:

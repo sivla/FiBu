@@ -79,6 +79,12 @@ Damit ist der Starter-Kontenplan als Universaarl-Foundation-Kontext sichtbar gen
 
 Der naechste Schritt ist `TARGET-027R`: erst die sichtbare Route zu den VAT-Setupseiten herstellen, dann ueber konkrete Gruppen, Steuersaetze und Konten entscheiden. Aus `TARGET-027` folgt keine deutsche 19-Prozent-USt-Behauptung und keine Freigabe fuer Posting Groups, Stammdaten, Preview oder Buchung.
 
+## Stand nach `TARGET-027R`
+
+`TARGET-027R` hat die Screenshot-Wahrheit teilweise repariert. `MwSt.-Produktbuchungsgruppen` (Page 471) und `MwSt.-Buchungsmatrix Einr.` (Page 472) sind in `playthru / UNIVERSAARL-DE` sichtbar read-only belegt. Die Bilder zeigen leere Listen/Matrixspalten und sichtbare Schreibaktionen wie `Neu` bzw. `Liste bearbeiten`, diese Aktionen wurden aber nicht geklickt.
+
+`MwSt.-Geschaeftsbuchungsgruppen` (Page 470) bleibt gesperrt: Der aktuelle Fallback landet im Suchdialog `VAT Business Posting Groups` und zeigt keine Zielseite. Deshalb bleibt das VAT-Write-Gate weiter gesperrt. `1406` und `3806` sind nur vorbereitende Sachkonten; sie beweisen keine VAT Posting Setup Zeile, keinen Steuersatz, keine Preview, keine VAT Entries und keine Buchung.
+
 ## Quellenbasis
 
 - DATEV SKR04 Produktseite: https://www.datev.de/web/de/datev-shop/rechnungswesen/skr-04/
