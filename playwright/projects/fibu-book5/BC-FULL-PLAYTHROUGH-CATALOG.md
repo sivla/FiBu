@@ -42,8 +42,8 @@ Zero-Open-Questions-Regel: Jeder Bereich in diesem Katalog muss seine offenen Ob
 | 12 | `PREP-029-AL-OBJECT-ANALYSIS-ROADMAP` | Erledigt: Objekt-/Page-/Table-/Report-Analyse ist gezielt auf UAT- und Buchluecken begrenzt und ersetzt keine UI-Evidence. |
 | 13 | `PREP-030-BOOK-USECASE-QUALITY-SCORECARD` | Erledigt: `UNIVERSAARL-BOOK-USECASE-QUALITY-SCORECARD.md` prueft Anfaenger-Nutzen, Evidence-Level, Screenshot-Wahrheit und Universaarl-Grenzen. |
 | 14 | `TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE` | Erledigt: `UNIVERSAARL-DE` wurde ueber `Mandanten` -> Pfeil neben `Neu` -> `Neues Unternehmen erstellen` mit `Neu erstellen - Keine Daten` angelegt/als sichtbar verifiziert. |
-| 15 | `TARGET-010-UNIVERSAARL-COMPANY-CONTEXT-PROOF` | Naechster Schritt: `UNIVERSAARL-DE` bewusst oeffnen/wechseln, aktiven Company-Kontext und Company Information read-only beweisen. |
-| 16 | `TARGET-COMPANY-INFO-001` / `TARGET-FOUNDATION-001` | Erst nach Company-Kontext: Company Information, Foundation, Nummernserien, Kontenfindung, USt und Dimensionen pruefen, bevor Belege, Preview oder Posting erlaubt werden. |
+| 15 | `TARGET-010-UNIVERSAARL-COMPANY-CONTEXT-PROOF` | Erledigt: `UNIVERSAARL-DE` wurde bewusst als Company-Kontext geoeffnet; Role Center, Meine Einstellungen und Firmendaten wurden read-only erfasst. |
+| 16 | `TARGET-011-UNIVERSAARL-COMPANY-INFORMATION` | Naechster Schritt: Firmendaten mit Vorher/Nachher-Screenshots bewusst fuellen oder sauber blockieren, bevor Foundation, Nummernserien, Kontenfindung, USt und Dimensionen beginnen. |
 
 ## Permission-aware Gate-Reihenfolge
 
@@ -51,8 +51,9 @@ Zero-Open-Questions-Regel: Jeder Bereich in diesem Katalog muss seine offenen Ob
 | --- | --- | --- | --- | --- |
 | PREP / Read-only | ja | Kataloge, Atlanten, Quellen, Buchdrafts, Objektabdeckung, Screenshot-QA, Datenblueprint | `playthru` bleibt Instanzgrenze; keine wirksame BC-Aktion | naechster PREP-Case abgeschlossen und Queue aktualisiert |
 | Company Creation Gate | erledigt | `Mandanten` -> Pfeil neben `Neu` -> `Neues Unternehmen erstellen` -> `Neu erstellen - Keine Daten` | Nutzer bestaetigt ausreichende Rechte; PREP-003/PREP-040 UI-Regeln liegen vor | `UNIVERSAARL-DE` ist sichtbar |
-| Company Context Gate | ja, read-only | `UNIVERSAARL-DE` oeffnen/wechseln, Shell-Kontext und Company Information lesen | Company Creation Gate abgeschlossen | aktiver Company-Kontext ist sichtbar; keine Setup-Aenderung |
-| Foundation Setup | nein | Company Information, Setup-/Manual-Setup-Entscheidung, Grundeinstellungen | `UNIVERSAARL-DE` existiert und Kontext ist sichtbar | Vorher/Nachher-Setup-Evidence |
+| Company Context Gate | erledigt | `UNIVERSAARL-DE` oeffnen/wechseln, Shell-Kontext und Company Information lesen | Company Creation Gate abgeschlossen | aktiver Company-Kontext ist sichtbar; keine Setup-Aenderung |
+| Company Information Gate | ja, setup-gesteuert | Firmendaten als erste Company-Grunddaten bewusst setzen oder blockieren | `UNIVERSAARL-DE` existiert, Role Center zeigt Zielcompany, Firmendaten sind read-only erreichbar | Vorher/Nachher-Firmendaten-Evidence oder klarer Blocker |
+| Foundation Setup | nein | Setup-/Manual-Setup-Entscheidung, Grundeinstellungen | Company Information Gate abgeschlossen | Vorher/Nachher-Setup-Evidence |
 | Finance Foundation | nein | Nummernserien, Buchungsgruppen, USt, Dimensionen | Foundation Setup ist ausreichend bekannt | Preview-faehige Buchungsmatrix fuer erste Belege |
 | Data Richness | nein | Kunden, Kreditoren, Artikel, Lagerorte, Dimensionen, Beispielmonate | Finance Foundation steht | genug Daten fuer Filter, Views, Reporting, UAT |
 | Prozessketten | nein | O2C, P2P, Inventory, Payments, FA, Bank, Warehouse, Manufacturing, Service, Projects | Setup, Stammdaten und Smart Decision Card stehen | Preview/Post/Entries/Screenshots je Prozess |
@@ -63,7 +64,7 @@ Microsoft Learn beschreibt, welche Business-Central-Bereiche es gibt und wie Com
 
 | Bereich | Zielkapitel | Ziel-Usecase | Benoetigtes Setup | Benoetigte Stammdaten | Wichtige Pages / Cards / Worksheets | Wichtige Felder | Wichtige Actions / Dialoge | Relevante Entries / Posten | Playwright / Screenshot / Buchstatus | Naechster Case |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Company / Environment / Company Information | Kap. 3/4/6 | Eigene Universaarl-Company anlegen und Grunddaten pflegen | Environment `playthru`, sichere Company-Anlageroute, Company Information Readiness | `UNIVERSAARL-DE`, Universaarl GmbH, Adresse, Land/Region, USt-ID spaeter | Companies Page 357, Assisted Setup Page 1801, My Settings, Company Information, Role Center | Company Name, Display Name, Legal Name, Address, Country/Region Code, VAT Registration No., Profile/Role, Language | Pfeil neben `Neu`, `Neues Unternehmen erstellen`, Wizard `Neu erstellen - Keine Daten`; nicht: Copy Company, Testunternehmen, direkte Listenzeile speichern | keine Posten; Kontextnachweis | `in-progress`; TARGET-009 beweist Company Creation mit No-Data-Basis und sichtbarer `UNIVERSAARL-DE`; Company Information und aktiver Company-Kontext sind noch offen | `TARGET-010-UNIVERSAARL-COMPANY-CONTEXT-PROOF`, danach `TARGET-COMPANY-INFO-001-COMPANY-INFORMATION-READONLY` |
+| Company / Environment / Company Information | Kap. 3/4/6 | Eigene Universaarl-Company anlegen und Grunddaten pflegen | Environment `playthru`, sichere Company-Anlageroute, Company Information Readiness | `UNIVERSAARL-DE`, Universaarl GmbH, Adresse, Land/Region, USt-ID spaeter | Companies Page 357, Assisted Setup Page 1801, My Settings, Company Information/Firmendaten Page 1, Role Center | Company Name, Display Name, Legal Name, Address, Country/Region Code, VAT Registration No., Profile/Role, Language | Pfeil neben `Neu`, `Neues Unternehmen erstellen`, Wizard `Neu erstellen - Keine Daten`; nicht: Copy Company, Testunternehmen, direkte Listenzeile speichern | keine Posten; Kontextnachweis | `in-progress`; TARGET-009 beweist Company Creation mit No-Data-Basis; TARGET-010 beweist Role-Center-Kontext `UNIVERSAARL-DE` und Firmendaten read-only. My Settings ist Benutzerkontext und kein alleiniger Aktiv-Company-Beweis. | `TARGET-011-UNIVERSAARL-COMPANY-INFORMATION` |
 | Assisted Setup / Manual Setup | Kap. 4/6 | Basis-Setup nach Company-Anlage kontrolliert ausfuehren oder bewusst manuell ersetzen | Assisted Setup Sichtung, Manual Setup Route, Setup Decision Card | Company Information, Basisbuchungsgruppen, Nummernserien | Assisted Setup, Manual Setup, General Ledger Setup, Sales & Receivables Setup, Purchases & Payables Setup | Setup Status, Posting Date Ranges, Default Dimensions, No. Series | Setup starten, abbrechen, abschliessen nur nach Gate; Dialoge zu Vorlagen/Defaults | keine Posten; Setup Before/After | `planned`; Universaarl Company existiert, aber Company-Kontext und Company Information muessen zuerst read-only bewiesen werden | `TARGET-010-UNIVERSAARL-COMPANY-CONTEXT-PROOF`, danach `TARGET-004-FOUNDATION-SETUP-READINESS` |
 | Chart of Accounts | Kap. 5 | Kontenplan-Baseline fuer Universaarl verstehen und ggf. auf deutsche Zielstruktur bringen | General Ledger Setup, Account Categories, Posting Setup | Sachkonten, Kontenkategorien | Chart of Accounts, G/L Account Card, Account Categories | No., Name, Income/Balance, Account Type, Direct Posting, Gen. Posting Type, VAT Posting Groups | New, Edit List, Indent Chart of Accounts, Account Schedule/Financial Reports | G/L Entries nach Buchungen | `planned`; Legacy nicht als Finalbasis | `TARGET-009-CHART-OF-ACCOUNTS-BASELINE` |
 | Accounting Periods | Kap. 5 | Geschaeftsjahr/Perioden fuer Buchungsfaehigkeit pruefen | Accounting Periods | Geschaeftsjahr 2026, Periodenstruktur | Accounting Periods | Starting Date, Name, New Fiscal Year, Closed | Create Year, Close Year spaeter | G/L Entries mit Posting Date | `planned` | `TARGET-004-FOUNDATION-SETUP-READINESS` |
@@ -108,8 +109,8 @@ Microsoft Learn beschreibt, welche Business-Central-Bereiche es gibt und wie Com
 | Abhaengigkeit | Blockiert bis | Warum |
 | --- | --- | --- |
 | `UNIVERSAARL-DE` existiert | erledigt durch TARGET-009 | Ohne eigene Company gibt es keine aktive Zielwahrheit fuer Setup, Stammdaten oder Buchungen. |
-| Aktiver Company-Kontext `UNIVERSAARL-DE` | TARGET-010 | Vor Setup oder Stammdaten muss sichtbar sein, dass Business Central in der richtigen Company arbeitet. |
-| Company Information | nach Company-Kontext | Rechtlicher Name, Adresse und Landeskontext sind Grundlage fuer Buchtexte und Screenshots. |
+| Aktiver Company-Kontext `UNIVERSAARL-DE` | erledigt durch TARGET-010 | Role Center zeigt `UNIVERSAARL-DE`; Firmendaten Page 1 ist unter `company=UNIVERSAARL-DE` erreichbar. |
+| Company Information | TARGET-011 | Rechtlicher Name, Adresse und Landeskontext sind Grundlage fuer Buchtexte und Screenshots. |
 | Number Series | vor ersten Belegen/Journals | Belegnummern muessen erklaerbar sein, bevor das Buch Belege erzeugt. |
 | Posting Groups / General Posting Setup | vor Preview/Post | Kontenfindung ist Voraussetzung fuer sinnvolle Preview- und Postenspur. |
 | VAT Setup | vor deutschen USt-Claims | Deutsche USt braucht Setup, Preview, VAT Entries und Sachposten. |
@@ -145,6 +146,7 @@ PREP-013 ergaenzt die Mindestmenge: 5 Debitoren, 5 Kreditoren, 5 Artikel, 2-3 La
 ## Offene Grundannahmen
 
 - `UNIVERSAARL-DE` ist in der Mandantenliste sichtbar.
-- Die sichere Company-Anlage ist nicht mehr der hoechste Execute-Blocker; der naechste Block ist der aktive Company-Kontext.
-- TARGET-009 ist erledigt; fuer TARGET-010 gilt: Company bewusst oeffnen/wechseln, Shell-Kontext und Company Information read-only beweisen.
+- TARGET-010 hat den aktiven Role-Center-Kontext `UNIVERSAARL-DE` und die Firmendaten-Seite read-only erfasst.
+- `Meine Einstellungen` ist fuer Rolle, Sprache, Arbeitsdatum und Benutzerkontext nuetzlich, aber kein alleiniger Beweis fuer den aktiven Company-Kontext.
+- TARGET-011 soll Firmendaten bewusst setzen oder sauber blockieren; erst danach folgen Foundation-Setup, Nummernserien, Buchungsgruppen, USt und Dimensionen.
 - Datenreichtum und Filterkapitel sind geplant, aber fachlich nach Company-Anlage, Foundation, Stammdaten und ersten Postings einzuordnen.

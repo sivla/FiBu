@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-011-UNIVERSAARL-COMPANY-INFORMATION",
+  "title": "Universaarl Company Information setup decision and guarded value fit",
+  "instance": "playthru",
+  "targetCompany": "UNIVERSAARL-DE",
+  "legalName": "Universaarl GmbH",
+  "workType": "guarded-company-information-setup",
+  "status": "ready-next",
+  "dependsOn": [
+    "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+    "TARGET-010-UNIVERSAARL-COMPANY-CONTEXT-PROOF"
+  ],
+  "goal": "Prepare and, if the gate is clear, set the first Company Information values for Universaarl GmbH in UNIVERSAARL-DE with before/after screenshots.",
+  "evidenceTarget": "playwright/projects/fibu-book5/evidence/target-011-universaarl-company-information/",
+  "allowedActionsWhenRun": [
+    "open-playthru-business-central",
+    "open-UNIVERSAARL-DE-with-documentation",
+    "open-Company-Information",
+    "capture-before-screenshot-and-field-values",
+    "enter-approved-company-information-values",
+    "capture-after-screenshot-and-field-values",
+    "document-save-or-no-save-result"
+  ],
+  "defaultLockedActions": [
+    "setup-change",
+    "save-company-information",
+    "dialog-confirmation"
+  ],
+  "forbiddenActions": [
+    "leave-playthru",
+    "operate-in-CRONUS-as-active-target",
+    "post",
+    "preview-posting",
+    "master-data-create",
+    "api-shortcut",
+    "claim-foundation-setup-ready-without-evidence"
+  ],
+  "mustCheckBeforeRun": [
+    "Role Center header or equivalent shell context shows UNIVERSAARL-DE",
+    "Company Information / Firmendaten opens under company=UNIVERSAARL-DE",
+    "TARGET-010 result is observed",
+    "Exact value set for Universaarl GmbH is documented before entry",
+    "Before screenshot exists before any setup value is changed"
+  ],
+  "successCriteria": [
+    "Company Information values are either saved with before/after proof or the run stops before changing values.",
+    "No posting, preview posting, document creation or master data creation occurs.",
+    "The result clearly states which fields were set and which remain open.",
+    "The next Foundation setup step is derived from the observed state, not guessed."
+  ],
+  "migrationRelevance": "german-final-candidate",
+  "finalScreenshotNeeded": true,
+  "nextSafeAction": "Run a guarded Company Information setup case with explicit before/after evidence.",
+  "smartDecisionCard": {
+    "currentCase": "TARGET-010-UNIVERSAARL-COMPANY-CONTEXT-PROOF",
+    "plannedNextCaseBeforeReview": "TARGET-011-UNIVERSAARL-COMPANY-INFORMATION",
+    "lastEvidenceSummary": "TARGET-010 proved playthru with company=UNIVERSAARL-DE, visible Role Center company header and Company Information/Firmendaten page read-only. My Settings was captured as user context but not accepted as sole active-company proof.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "Company Information is the first setup page after a no-data company creation and must be handled before number series, posting groups, VAT, dimensions or master data.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-011-UNIVERSAARL-COMPANY-INFORMATION",
+        "status": "ready-next",
+        "reason": "The page and company context are proven read-only."
+      },
+      {
+        "caseId": "TARGET-012-W1-FOUNDATION-READINESS",
+        "status": "ready-after-current",
+        "reason": "Foundation readiness follows Company Information values."
+      },
+      {
+        "caseId": "TARGET-013-NUMBER-SERIES-AND-POSTING-GROUPS",
+        "status": "needs-setup-first",
+        "reason": "Number series and posting groups require a stable Company Information baseline."
+      },
+      {
+        "caseId": "TARGET-007-DIMENSIONS-FOUNDATION",
+        "status": "needs-setup-first",
+        "reason": "Dimensions should follow the first foundation setup decision."
+      },
+      {
+        "caseId": "TARGET-DATA-FOUNDATION-001-CORE-MASTERDATA-PLAN",
+        "status": "ready-after-current",
+        "reason": "Master data planning can continue, but data creation waits for setup gates."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-011-UNIVERSAARL-COMPANY-INFORMATION",
+    "whySelectedNextCaseIsBest": "It is the smallest useful setup step after company creation and avoids entering later setup or master data into an unverified company state.",
+    "risksBeforeNextCase": [
+      "Saving Firmendaten is a setup change and needs explicit before/after evidence.",
+      "My Settings may show a personal/default Mandant and must not be used as the only active-company proof."
+    ],
+    "requiredPreparation": [
+      "Use TARGET-010 screenshots as context proof.",
+      "Prepare the exact Universaarl GmbH field values before editing.",
+      "Capture before screenshot and field values before any save."
+    ]
+  },
+  "updatedAt": "2026-06-30T21:40:00.000+02:00"
+}

@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-30T21:20:00.000+02:00",
+  "updatedAt": "2026-06-30T21:45:00.000+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-company-context",
-  "activeCase": "TARGET-010-UNIVERSAARL-COMPANY-CONTEXT-PROOF",
-  "active_case_file": ".agent/state/cases/target-010-universaarl-company-context-proof.json",
+  "activeArea": "universaarl-company-information",
+  "activeCase": "TARGET-011-UNIVERSAARL-COMPANY-INFORMATION",
+  "active_case_file": ".agent/state/cases/target-011-universaarl-company-information.json",
   "lastReferenceCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
   "lastReferenceCaseFile": ".agent/state/cases/warehouse-031-warehouse-source-route-park-or-setup-fit-decision.json",
   "mode": "universaarl-target-execution",
@@ -26,10 +26,12 @@
     "playwright-readonly-helper-improvement",
     "queue-and-state-prep",
     "open-playthru-business-central",
-    "open-or-switch-to-UNIVERSAARL-DE-with-documentation",
-    "capture-shell-company-context",
-    "open-Company-Information-readonly",
-    "capture-page-title-fasttabs-visible-fields-and-readonly-screenshot-qa"
+    "open-UNIVERSAARL-DE-with-documentation",
+    "open-Company-Information",
+    "capture-before-screenshot-and-field-values",
+    "enter-approved-company-information-values-if-gate-clear",
+    "capture-after-screenshot-and-field-values",
+    "document-save-or-no-save-result"
   ],
   "forbiddenActions": [
     "leave-instance",
@@ -45,10 +47,12 @@
     "delete-legacy-evidence",
     "claim-rm-demo-as-final-proof",
     "operate-in-CRONUS-as-active-target",
-    "change-company-information-values",
+    "post",
+    "preview-posting",
+    "master-data-create",
     "claim-foundation-setup-ready-without-evidence"
   ],
-  "nextStep": "Run TARGET-010: intentionally open/switch to UNIVERSAARL-DE and prove shell/company context and Company Information read-only before setup.",
+  "nextStep": "Run TARGET-011: prepare exact Universaarl GmbH Company Information values, capture before screenshot, then set/save only if the setup gate is clear.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -77,23 +81,21 @@
     "fallbackWhenNoDecision": "investigate-readonly-first"
   },
   "latestBookDraft": {
-    "path": "FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md",
-    "area": "foundation-starter-data",
+    "path": "playwright/projects/fibu-book5/book-drafts/universaarl-company-context-draft.md",
+    "area": "universaarl-company-context",
     "status": [
-      "bookmaster-prep",
+      "bookdraft",
       "universaarl-target-path",
-      "needs-live-company-creation"
+      "company-context-observed"
     ],
-    "sourceCompany": "RM-DEMO",
-    "sourceInstance": "MCP_1_20260210",
+    "sourceCompany": "UNIVERSAARL-DE",
+    "sourceInstance": "playthru",
     "evidenceBasis": [
-      "PREP-046-BOOKMASTER-STARTER-DATA-UNIVERSAARL-CLEANUP"
+      "TARGET-010-UNIVERSAARL-COMPANY-CONTEXT-PROOF"
     ],
-    "bookEffect": "Chapter 6 starter data package now uses Universaarl U-CUST/U-VEND/U-ITEM and SAAR-* target codes instead of active RM-DEMO/Rhein-Main starter codes.",
-    "integratedIntoBookMaster": true,
-    "nextStep": "After explicit SUPER/company-create permission confirmation, run TARGET-009 using Mandanten -> arrow next to Neu -> Neues Unternehmen erstellen with the PREP-040 screenshot chain.",
-    "bookMasterPath": "FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md",
-    "bookMasterSection": "Chapter 6 Foundation starter data package",
+    "bookEffect": "Beginner-facing draft explains Role Center company context, My Settings nuance and Firmendaten as the first setup page.",
+    "integratedIntoBookMaster": false,
+    "nextStep": "TARGET-011 can fill Company Information after before/after evidence is captured.",
     "labVsTargetPathSeparated": true,
     "targetCompany": "UNIVERSAARL-DE"
   },
@@ -232,7 +234,7 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "universaarl-company-context-proof",
+  "currentCoverageFocus": "universaarl-company-information",
   "nextProcessRoute": [
     "P2P-012 compared Purchase Journal, Item Journal, Purchase Invoices and Requisition Worksheet by direct page URL without search or field entry.",
     "Item Journal is the most stable observed route for material quantity/location/value effect, but it is Inventory evidence rather than full creditor P2P.",
@@ -4511,7 +4513,7 @@
   },
   "permissionStatus": "user-confirmed-super-permissions-available-target-company-created",
   "companyCreationPermissionStatus": "satisfied-live-ui-proven",
-  "lastUpdated": "2026-06-30T21:20:00.000+02:00",
+  "lastUpdated": "2026-06-30T21:45:00.000+02:00",
   "latestTarget009CompanyCreation": {
     "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
     "status": "universaarl-proven",
@@ -4549,5 +4551,37 @@
     ],
     "nextCase": "TARGET-010-UNIVERSAARL-COMPANY-CONTEXT-PROOF",
     "updatedAt": "2026-06-30T21:20:00.000+02:00"
+  },
+  "latestTarget010CompanyContext": {
+    "caseId": "TARGET-010-UNIVERSAARL-COMPANY-CONTEXT-PROOF",
+    "status": "observed",
+    "instance": "playthru",
+    "targetCompany": "UNIVERSAARL-DE",
+    "noSetupChange": true,
+    "noPreviewPosting": true,
+    "noPosting": true,
+    "noDraft": true,
+    "noApiShortcut": true,
+    "noSearch": true,
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-010-universaarl-company-context-proof/TARGET-010-result.json",
+    "evidencePath": "playwright/projects/fibu-book5/evidence/target-010-universaarl-company-context-proof/",
+    "screenshots": [
+      "playwright/projects/fibu-book5/img/target-010-010-role-center-company-context.png",
+      "playwright/projects/fibu-book5/img/target-010-020-my-settings-company-context.png",
+      "playwright/projects/fibu-book5/img/target-010-030-company-information-readonly.png"
+    ],
+    "proved": [
+      "Role Center visibly showed UNIVERSAARL-DE as shell company context.",
+      "Company Information / Firmendaten Page 1 opened read-only under company=UNIVERSAARL-DE.",
+      "My Settings opened read-only as user-context evidence but is not sole active-company proof."
+    ],
+    "warning": "My Settings may show a personal/default Mandant value such as CRONUS DE even while the Role Center shell context is UNIVERSAARL-DE.",
+    "openLimits": [
+      "No Company Information value was changed or saved.",
+      "No Number Series, Posting Groups, VAT setup, Dimensions or master data are proven.",
+      "No posting, preview or ledger trace exists."
+    ],
+    "nextCase": "TARGET-011-UNIVERSAARL-COMPANY-INFORMATION",
+    "updatedAt": "2026-06-30T21:45:00.000+02:00"
   }
 }

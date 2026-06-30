@@ -1,0 +1,230 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "TARGET-010-UNIVERSAARL-COMPANY-CONTEXT-PROOF",
+  "source": "playwright-universaarl-target-readonly",
+  "runPlanId": "TARGET-010-UNIVERSAARL-COMPANY-CONTEXT-PROOF-PLAN",
+  "selectedTaskClass": "monkey_work",
+  "selectedModelClass": "gpt-4-mini-low",
+  "instance": "playthru",
+  "targetCompany": "UNIVERSAARL-DE",
+  "legalName": "Universaarl GmbH",
+  "flags": {
+    "noWrite": true,
+    "noSave": true,
+    "noPost": true,
+    "noPreview": true,
+    "noShip": true,
+    "noInvoice": true,
+    "noPayment": true,
+    "noDraft": true,
+    "noSetupChange": true,
+    "noCompanyCreate": true,
+    "noApiShortcut": true,
+    "noBookChange": true,
+    "noSearch": true
+  },
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/target-010-universaarl-company-context-proof/TARGET-010-result.json",
+    "playwright/projects/fibu-book5/img/target-010-010-role-center-company-context.png",
+    "playwright/projects/fibu-book5/img/target-010-020-my-settings-company-context.png",
+    "playwright/projects/fibu-book5/img/target-010-030-company-information-readonly.png"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-010-universaarl-company-context-proof/TARGET-010-result.json",
+    "playwright/projects/fibu-book5/evidence/target-010-universaarl-company-context-proof/010-role-center-context.txt",
+    "playwright/projects/fibu-book5/evidence/target-010-universaarl-company-context-proof/020-my-settings-context.txt",
+    "playwright/projects/fibu-book5/evidence/target-010-universaarl-company-context-proof/030-company-information-context.txt"
+  ],
+  "resultStatus": "observed",
+  "proved": [
+    "Business Central opened in playthru with company=UNIVERSAARL-DE.",
+    "Role Center visibly showed UNIVERSAARL-DE as shell company context.",
+    "My Settings / Meine Einstellungen was opened read-only and captured as user-context evidence, but not used alone as active-company proof.",
+    "Company Information / Firmendaten was opened read-only by Page 1 under company=UNIVERSAARL-DE.",
+    "No Search/Tell-Me route, no setup save and no posting/preview/document action was used."
+  ],
+  "notProved": [
+    "No Company Information value was changed or saved.",
+    "My Settings is not accepted as the sole active-company proof because it may show a personal/default company value.",
+    "No Number Series, Posting Groups, VAT setup, Dimensions, master data, preview or posting readiness is proven.",
+    "The URL/context proof is not a business-process or ledger proof."
+  ],
+  "warnings": [
+    "My Settings did not show UNIVERSAARL-DE as Mandant; it appears to expose a personal/default company value. Active company proof uses the Role Center header plus company-scoped URL instead."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {},
+  "observed": {
+    "startedAt": "2026-06-30T09:30:53.973Z",
+    "finishedAt": "2026-06-30T09:31:04.564Z",
+    "roleCenterUrl": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?company=UNIVERSAARL-DE",
+    "finalRoleCenterUrl": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?company=UNIVERSAARL-DE",
+    "roleCenterCompanyHeaderVisible": true,
+    "mySettingsOpened": true,
+    "mySettingsTargetCompanyVisible": false,
+    "mySettingsFieldCompanyValues": [
+      {
+        "label": "CRONUS DE",
+        "value": "CRONUS DE",
+        "ariaLabel": "",
+        "title": "CRONUS DE",
+        "role": "textbox",
+        "tag": "span"
+      }
+    ],
+    "settingsClick": {
+      "clicked": true,
+      "chosen": {
+        "label": "Einstellungen Einstellungen",
+        "x": 2056,
+        "y": 0,
+        "width": 48,
+        "height": 48
+      }
+    },
+    "mySettingsClick": {
+      "clicked": true,
+      "chosen": {
+        "label": "Meine Einstellungen Meine Einstellungen",
+        "x": 1896,
+        "y": 210
+      }
+    },
+    "mySettingsTextSignals": [
+      "UNIVERSAARL-DE",
+      "Intercompany",
+      "Meine Einstellungen - Benutzer",
+      "Rolle",
+      "Mandant",
+      "Arbeitsdatum",
+      "Sprache"
+    ],
+    "mySettingsFields": [
+      {
+        "label": "Beurteilung durch Geschaftsfuhrer",
+        "value": "Beurteilung durch Geschaftsfuhrer",
+        "ariaLabel": "",
+        "title": "Beurteilung durch Geschaftsfuhrer",
+        "role": "textbox",
+        "tag": "span"
+      },
+      {
+        "label": "CRONUS DE",
+        "value": "CRONUS DE",
+        "ariaLabel": "",
+        "title": "CRONUS DE",
+        "role": "textbox",
+        "tag": "span"
+      },
+      {
+        "label": "Geben Sie das Datum im Format dd.MM.yyyy ein",
+        "value": "30.06.2026",
+        "ariaLabel": "",
+        "title": "Geben Sie das Datum im Format dd.MM.yyyy ein",
+        "role": "combobox",
+        "tag": "input"
+      },
+      {
+        "label": "German (Germany)",
+        "value": "German (Germany)",
+        "ariaLabel": "",
+        "title": "German (Germany)",
+        "role": "textbox",
+        "tag": "span"
+      },
+      {
+        "label": "(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna",
+        "value": "(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna",
+        "ariaLabel": "",
+        "title": "(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna",
+        "role": "textbox",
+        "tag": "span"
+      },
+      {
+        "label": "Ihre letzte Anmeldung erfolgte am 30.06.26 11:29.",
+        "value": "Ihre letzte Anmeldung wurde fuer den Screenshot maskiert.",
+        "ariaLabel": "",
+        "title": "Ihre letzte Anmeldung erfolgte am 30.06.26 11:29.",
+        "role": "textbox",
+        "tag": "span"
+      }
+    ],
+    "companyInformationUrl": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=1&company=UNIVERSAARL-DE",
+    "finalCompanyInformationUrl": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=1&company=UNIVERSAARL-DE",
+    "companyInformationObserved": true,
+    "companyInformationTextSignals": [
+      "Firmendaten",
+      "Name",
+      "Adresse",
+      "Adresse 2",
+      "Kontaktname",
+      "Telefonnr.",
+      "USt-IdNr.",
+      "Bild",
+      "E-Mail",
+      "trustedOriginAuthorities: [\"\\u005Ebusinesscentral\\\\.dynamics\\\\.com\\u0024\"],",
+      "trustedOriginAuthoritiesSetFromServer: true"
+    ],
+    "companyInformationFields": [
+      {
+        "label": "(Leer)",
+        "value": "",
+        "ariaLabel": "(Leer)",
+        "title": "",
+        "role": "textbox",
+        "tag": "span"
+      }
+    ],
+    "screenshots": [
+      "playwright/projects/fibu-book5/img/target-010-010-role-center-company-context.png",
+      "playwright/projects/fibu-book5/img/target-010-020-my-settings-company-context.png",
+      "playwright/projects/fibu-book5/img/target-010-030-company-information-readonly.png"
+    ]
+  },
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-010-UNIVERSAARL-COMPANY-CONTEXT-PROOF",
+    "plannedNextCaseBeforeReview": "TARGET-011-UNIVERSAARL-COMPANY-INFORMATION",
+    "lastEvidenceSummary": "TARGET-009 created/verified UNIVERSAARL-DE using the no-data company creation wizard. TARGET-010 checks whether the active context and Company Information can be read safely.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "Company context and Company Information page are now read-only proven, so a separate setup-decision case may prepare actual values.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-011-UNIVERSAARL-COMPANY-INFORMATION",
+        "status": "ready-after-current",
+        "reason": "The read-only page and context proof exist; next case can decide and set legal company values."
+      },
+      {
+        "caseId": "TARGET-012-W1-FOUNDATION-READINESS",
+        "status": "needs-setup-first",
+        "reason": "Foundation readiness depends on Company Information and setup decisions."
+      },
+      {
+        "caseId": "TARGET-013-NUMBER-SERIES-AND-POSTING-GROUPS",
+        "status": "needs-setup-first",
+        "reason": "Number series and posting groups follow after Company Information/foundation setup."
+      },
+      {
+        "caseId": "TARGET-007-DIMENSIONS-FOUNDATION",
+        "status": "needs-setup-first",
+        "reason": "Dimensions should be created after the base company setup scope is fixed."
+      },
+      {
+        "caseId": "TARGET-DATA-FOUNDATION-001-CORE-MASTERDATA-PLAN",
+        "status": "ready-after-current",
+        "reason": "Master data planning can proceed, but creation waits for setup gates."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-011-UNIVERSAARL-COMPANY-INFORMATION",
+    "whySelectedNextCaseIsBest": "The next valuable step is a controlled Company Information setup decision, not more company-creation probing.",
+    "risksBeforeNextCase": [
+      "Company Information save must be an explicit setup case."
+    ],
+    "requiredPreparation": [
+      "Prepare exact Universaarl GmbH Company Information values and before/after screenshots."
+    ]
+  }
+}

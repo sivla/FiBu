@@ -5,10 +5,10 @@
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "queueId": "TARGET-MARATHON-002-UNIVERSAARL-REPO-READONLY-PREP",
-  "reason": "TARGET-009 created/verified UNIVERSAARL-DE through the no-data wizard route; next queue step is company context proof.",
+  "reason": "TARGET-010 proved UNIVERSAARL-DE role-center context and Company Information read-only; next queue step is guarded Company Information setup.",
   "noEffectiveBusinessCentralActions": false,
   "forbiddenUntilUnblocked": [],
-  "unblockCriteria": "Satisfied: UNIVERSAARL-DE visible in Companies list.",
+  "unblockCriteria": "Satisfied: UNIVERSAARL-DE exists and active Role Center context / Firmendaten read-only proof is available.",
   "parkedTargetCase": {
     "id": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
     "status": "done",
@@ -894,6 +894,39 @@
       "completedAt": "2026-06-30T20:35:00.000+02:00",
       "result": "Chapter 6 starter data package now uses U-CUST, U-VEND, U-ITEM and SAAR-* target naming and states that data creation waits for company and setup gates.",
       "resultPath": "playwright/projects/fibu-book5/evidence/prep-046-bookmaster-starter-data-universaarl-cleanup/PREP-046-result.json"
+    },
+    {
+      "id": "TARGET-010-UNIVERSAARL-COMPANY-CONTEXT-PROOF",
+      "order": 10010,
+      "status": "done",
+      "category": "target-company-context",
+      "expectedImpact": "universaarl-context-proof",
+      "mayWorkEffectively": false,
+      "mayRunPlaywright": true,
+      "effectiveBcActionsAllowed": false,
+      "goal": "Prove UNIVERSAARL-DE active company context and Company Information read-only.",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "targetWorld": "Universaarl",
+      "noFinalGermanClaimWithoutUniversaarlEvidence": false,
+      "completedAt": "2026-06-30T21:45:00.000+02:00",
+      "result": "Role Center company context and Company Information read-only proof observed for UNIVERSAARL-DE.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-010-universaarl-company-context-proof/TARGET-010-result.json"
+    },
+    {
+      "id": "TARGET-011-UNIVERSAARL-COMPANY-INFORMATION",
+      "order": 10011,
+      "status": "pending",
+      "category": "target-foundation-setup",
+      "expectedImpact": "company-information-setup",
+      "mayWorkEffectively": true,
+      "mayRunPlaywright": true,
+      "effectiveBcActionsAllowed": true,
+      "goal": "Set or block Universaarl Company Information values with before/after evidence.",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "targetWorld": "Universaarl",
+      "noFinalGermanClaimWithoutUniversaarlEvidence": false,
+      "lookaheadStatus": "ready-next",
+      "resultPath": null
     }
   ],
   "lastUpdated": "2026-06-30T20:35:00.000+02:00",
@@ -969,54 +1002,50 @@
       ]
     }
   },
-  "updatedAt": "2026-06-30T21:20:00.000+02:00",
-  "lastCompletedCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
-  "nextCase": "TARGET-010-UNIVERSAARL-COMPANY-CONTEXT-PROOF",
+  "updatedAt": "2026-06-30T21:45:00.000+02:00",
+  "lastCompletedCase": "TARGET-010-UNIVERSAARL-COMPANY-CONTEXT-PROOF",
+  "nextCase": "TARGET-011-UNIVERSAARL-COMPANY-INFORMATION",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
-    "plannedNextCaseBeforeReview": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
-    "lastEvidenceSummary": "PREP-039/PREP-040 established that the intended route is the arrow next to Neu and the menu item Neues Unternehmen erstellen, not the main Neu button.",
+    "currentCase": "TARGET-010-UNIVERSAARL-COMPANY-CONTEXT-PROOF",
+    "plannedNextCaseBeforeReview": "TARGET-011-UNIVERSAARL-COMPANY-INFORMATION",
+    "lastEvidenceSummary": "TARGET-009 created/verified UNIVERSAARL-DE using the no-data company creation wizard. TARGET-010 checks whether the active context and Company Information can be read safely.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "TARGET-009 is complete: UNIVERSAARL-DE is visible after the no-data wizard route. The next dependency is proving active company context before setup.",
+    "reason": "Company context and Company Information page are now read-only proven, so a separate setup-decision case may prepare actual values.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-010-UNIVERSAARL-COMPANY-CONTEXT-PROOF",
-        "status": "ready-next",
-        "reason": "UNIVERSAARL-DE is visible and can be opened/verified next."
-      },
-      {
-        "caseId": "TARGET-004-FOUNDATION-SETUP-READINESS",
+        "caseId": "TARGET-011-UNIVERSAARL-COMPANY-INFORMATION",
         "status": "ready-after-current",
-        "reason": "Foundation setup only makes sense after target company context is proven."
+        "reason": "The read-only page and context proof exist; next case can decide and set legal company values."
       },
       {
-        "caseId": "TARGET-005-NUMBER-SERIES-PREFLIGHT",
+        "caseId": "TARGET-012-W1-FOUNDATION-READINESS",
         "status": "needs-setup-first",
-        "reason": "Needs company context and foundation baseline."
+        "reason": "Foundation readiness depends on Company Information and setup decisions."
       },
       {
-        "caseId": "TARGET-006-POSTING-GROUPS-PREFLIGHT",
+        "caseId": "TARGET-013-NUMBER-SERIES-AND-POSTING-GROUPS",
         "status": "needs-setup-first",
-        "reason": "Needs company context and foundation baseline."
+        "reason": "Number series and posting groups follow after Company Information/foundation setup."
       },
       {
         "caseId": "TARGET-007-DIMENSIONS-FOUNDATION",
+        "status": "needs-setup-first",
+        "reason": "Dimensions should be created after the base company setup scope is fixed."
+      },
+      {
+        "caseId": "TARGET-DATA-FOUNDATION-001-CORE-MASTERDATA-PLAN",
         "status": "ready-after-current",
-        "reason": "Dimensions belong after company and setup context."
+        "reason": "Master data planning can proceed, but creation waits for setup gates."
       }
     ],
-    "queueChangesMade": [
-      "Set next case to UNIVERSAARL-DE company context proof."
-    ],
-    "selectedNextCase": "TARGET-010-UNIVERSAARL-COMPANY-CONTEXT-PROOF",
-    "whySelectedNextCaseIsBest": "Company Information, number series, posting groups, VAT and master data must start only after the active company context is visibly UNIVERSAARL-DE.",
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-011-UNIVERSAARL-COMPANY-INFORMATION",
+    "whySelectedNextCaseIsBest": "The next valuable step is a controlled Company Information setup decision, not more company-creation probing.",
     "risksBeforeNextCase": [
-      "Company switch must be explicit and documented.",
-      "Company Information may still be empty."
+      "Company Information save must be an explicit setup case."
     ],
     "requiredPreparation": [
-      "Open/switch to UNIVERSAARL-DE intentionally.",
-      "Capture shell context and Company Information."
+      "Prepare exact Universaarl GmbH Company Information values and before/after screenshots."
     ]
   }
 }
