@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-30T16:15:00.000+02:00",
+  "updatedAt": "2026-06-30T16:45:00.000+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-super-permission-resume-runbook",
-  "activeCase": "PREP-037-SUPER-PERMISSION-RESUME-RUNBOOK",
-  "active_case_file": ".agent/state/cases/prep-037-super-permission-resume-runbook.json",
+  "activeArea": "universaarl-company-information-readiness-gate",
+  "activeCase": "PREP-038-COMPANY-INFORMATION-READINESS-GATE",
+  "active_case_file": ".agent/state/cases/prep-038-company-information-readiness-gate.json",
   "lastReferenceCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
   "lastReferenceCaseFile": ".agent/state/cases/warehouse-031-warehouse-source-route-park-or-setup-fit-decision.json",
   "mode": "universaarl-readonly-prep-until-super-permissions",
@@ -48,7 +48,7 @@
     "preview-posting-until-target-company-exists",
     "api-shortcut-for-company-creation"
   ],
-  "nextStep": "After explicit SUPER/company-create permission confirmation, use UNIVERSAARL-SUPER-PERMISSION-RESUME-RUNBOOK.md for TARGET-009 and then follow the W1 Foundation Gate.",
+  "nextStep": "After explicit SUPER/company-create permission confirmation, use the resume runbook for TARGET-009; after successful Company Creation run TARGET-COMPANY-INFO-001-COMPANY-INFORMATION-READONLY.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -4336,5 +4336,30 @@
       "missing-super-or-company-create-permission"
     ],
     "updatedAt": "2026-06-30T16:15:00.000+02:00"
+  },
+  "latestPrep038CompanyInformationReadinessGate": {
+    "caseId": "PREP-038-COMPANY-INFORMATION-READINESS-GATE",
+    "status": "prep-done",
+    "resultPath": "playwright/projects/fibu-book5/evidence/prep-038-company-information-readiness-gate/PREP-038-result.json",
+    "gatePath": "playwright/projects/fibu-book5/UNIVERSAARL-COMPANY-INFORMATION-READINESS-GATE.md",
+    "sourceRefs": [
+      "https://learn.microsoft.com/en-us/dynamics365/business-central/admin-company-information",
+      "https://learn.microsoft.com/en-us/dynamics365/business-central/setup"
+    ],
+    "summary": "Prepared the first Company Information readiness gate after successful Universaarl Company Creation.",
+    "noBcRun": true,
+    "noPlaywrightRun": true,
+    "noCompanyCreated": true,
+    "noSetupChange": true,
+    "noMasterDataChange": true,
+    "noPreviewPosting": true,
+    "noPosting": true,
+    "nextCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+    "followAfterTarget009": "TARGET-COMPANY-INFO-001-COMPANY-INFORMATION-READONLY",
+    "blockedBy": [
+      "missing-super-or-company-create-permission",
+      "requires-universaarl-company"
+    ],
+    "updatedAt": "2026-06-30T16:45:00.000+02:00"
   }
 }

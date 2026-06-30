@@ -1,0 +1,129 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "PREP-038-COMPANY-INFORMATION-READINESS-GATE",
+  "source": "local-analysis-and-microsoft-learn",
+  "resultStatus": "observed",
+  "instance": "playthru",
+  "targetCompany": "UNIVERSAARL-DE",
+  "sourceCompany": "UNIVERSAARL-DE-planned-not-yet-created",
+  "sourceRefs": [
+    "https://learn.microsoft.com/en-us/dynamics365/business-central/admin-company-information",
+    "https://learn.microsoft.com/en-us/dynamics365/business-central/setup"
+  ],
+  "proved": [
+    "A Company Information readiness gate now exists for the first post-creation W1 step.",
+    "Microsoft Learn source mapping now separates product claims about Company Information from future Universaarl evidence claims.",
+    "The next post-creation live follow-up is TARGET-COMPANY-INFO-001-COMPANY-INFORMATION-READONLY before any save or setup change."
+  ],
+  "notProved": [
+    "UNIVERSAARL-DE was not created.",
+    "Company Information was not opened in Business Central.",
+    "No visible Universaarl Company Information fields, FastTabs or required fields were proven.",
+    "No Company Information values were saved."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/UNIVERSAARL-COMPANY-INFORMATION-READINESS-GATE.md",
+    "playwright/projects/fibu-book5/BC-SOURCE-REGISTRY.md",
+    "playwright/projects/fibu-book5/BC-MICROSOFT-LEARN-MAPPING.md",
+    "playwright/projects/fibu-book5/BC-SOURCE-CLAIM-RULES.md",
+    "playwright/projects/fibu-book5/BC-FULL-PLAYTHROUGH-CATALOG.md",
+    ".agent/state/cases/prep-038-company-information-readiness-gate.json",
+    ".agent/state/current.json",
+    ".agent/state/marathon_queue.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/open_questions_register.json",
+    "playwright/projects/fibu-book5/evidence/prep-038-company-information-readiness-gate/README.md",
+    "playwright/projects/fibu-book5/evidence/prep-038-company-information-readiness-gate/PREP-038-result.json"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/UNIVERSAARL-COMPANY-INFORMATION-READINESS-GATE.md",
+    "playwright/projects/fibu-book5/evidence/prep-038-company-information-readiness-gate/README.md",
+    "playwright/projects/fibu-book5/evidence/prep-038-company-information-readiness-gate/PREP-038-result.json"
+  ],
+  "warnings": [
+    "This is a readiness gate, not live Business Central evidence.",
+    "Company Information fields vary by country/region and must be observed in playthru.",
+    "TARGET-009 remains blocked until permissions are confirmed."
+  ],
+  "blockedBy": [
+    "missing-super-or-company-create-permission",
+    "requires-universaarl-company"
+  ],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "PREP-038-COMPANY-INFORMATION-READINESS-GATE",
+      "active_case_file": ".agent/state/cases/prep-038-company-information-readiness-gate.json",
+      "nextCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+      "nextStep": "After explicit SUPER/company-create permission confirmation, use the resume runbook for TARGET-009; after successful Company Creation run TARGET-COMPANY-INFO-001-COMPANY-INFORMATION-READONLY."
+    }
+  },
+  "flags": {
+    "noBcRun": true,
+    "noPlaywrightRun": true,
+    "noWrite": true,
+    "noCompanySwitch": true,
+    "noCompanyCreated": true,
+    "noSetupChange": true,
+    "noPreview": true,
+    "noPost": true,
+    "noDraft": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "nextStepDecisionCard": {
+    "currentCase": "PREP-038-COMPANY-INFORMATION-READINESS-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+    "lastEvidenceSummary": "PREP-037 created the permission resume runbook; the first post-creation W1 page still needed a concrete readiness gate.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "TARGET-009 remains the live dependency. PREP-038 improves the immediate follow-up so the next run does not skip from Company Creation into setup or master data.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+        "status": "blocked",
+        "reason": "Requires explicit SUPER/company-create permission confirmation."
+      },
+      {
+        "caseId": "TARGET-COMPANY-INFO-001-COMPANY-INFORMATION-READONLY",
+        "status": "ready-after-current",
+        "reason": "Runs after the Company is created and active; first read-only Company Information page proof."
+      },
+      {
+        "caseId": "TARGET-COMPANY-INFO-002-COMPANY-INFORMATION-CONTROLLED-FIT",
+        "status": "ready-after-current",
+        "reason": "Runs only after the read-only page/field proof and with concrete target values."
+      },
+      {
+        "caseId": "TARGET-005-NUMBER-SERIES-PREFLIGHT",
+        "status": "ready-after-current",
+        "reason": "Runs after Company Information."
+      },
+      {
+        "caseId": "TARGET-006-POSTING-GROUPS-PREFLIGHT",
+        "status": "ready-after-current",
+        "reason": "Runs before Preview/Post so account finding is explainable."
+      }
+    ],
+    "queueChangesMade": [
+      "Added PREP-038 as completed Company Information readiness gate.",
+      "Kept TARGET-009 as next practical case after permission unblock.",
+      "Inserted TARGET-COMPANY-INFO-001 as first explicit post-creation page proof."
+    ],
+    "selectedNextCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+    "whySelectedNextCaseIsBest": "No Company Information, Foundation setup, master data, preview or posting can be meaningful until UNIVERSAARL-DE exists.",
+    "risksBeforeNextCase": [
+      "Insufficient permission.",
+      "Wrong UI target on Companies page.",
+      "Unclear data basis.",
+      "Skipping Company Information read-only proof."
+    ],
+    "requiredPreparation": [
+      "User confirms sufficient SUPER/company-create permissions.",
+      "Use UNIVERSAARL-SUPER-PERMISSION-RESUME-RUNBOOK.md.",
+      "After successful Company Creation, use UNIVERSAARL-COMPANY-INFORMATION-READINESS-GATE.md."
+    ]
+  }
+}

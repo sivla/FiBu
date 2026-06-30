@@ -20,6 +20,7 @@ Diese Registry ordnet Quellen fuer das Universaarl-Buch und den Autopilot. Sie e
 | --- | ---: | --- | --- | --- | --- | --- |
 | Microsoft Learn: Create new companies in Business Central | 1 | Companies, Company Creation | Assisted-Setup-Route, Super-Berechtigung, neue Company als Prozess | Beweis, dass `UNIVERSAARL-DE` in `playthru` existiert | Produkt-/Setupclaim; UI-Claim braucht eigene Evidence | geprueft 2026-06-29 |
 | Microsoft Learn: Overview of tasks to set up Business Central | 1 | Setup, Assisted Setup, Manual Setup | Reihenfolge und Kategorien fuer Grundsetup | konkreter Universaarl-Setupstand | Produkt-/Best-Practice-Claim plus Universaarl-Proof fuer Buchprozess | geprueft 2026-06-29 |
+| Microsoft Learn: Company information overview | 1 | Company Information, Unternehmensdaten | Zweck und Einordnung der Company Information; Feld-/FastTab-Abhaengigkeit je Land/Region | konkrete sichtbare Universaarl-Felder, Pflichtfelder oder gespeicherte Werte | Produkt-/Setupclaim; konkrete Universaarl-Werte brauchen TARGET-COMPANY-INFO Evidence | geprueft 2026-06-30 |
 | Microsoft Learn: Business functionality supported by Business Central | 1 | Modulabdeckung | Scope fuer Finance, Sales, Purchasing, Inventory, Warehouse, Service, Projects, Reporting | Nachweis, dass ein Universaarl-Prozess gelaufen ist | Produktclaim | geprueft 2026-06-29 |
 | Microsoft Learn: Managing production and sandbox environments | 1 | Environments | Environment-Begriff, Admin-/Sandbox-Kontext | Company-spezifische Buchungsaussage | Produkt-/Adminclaim | geprueft 2026-06-29 |
 | Microsoft Learn: Release plans for Dynamics 365 / Business Central | 2 | Release Wave | neue oder geaenderte Funktionen, releaseabhaengige UI | stabile Altbehauptung ohne BC-Doku | Release-Claim | geprueft 2026-06-29 |
@@ -83,6 +84,7 @@ Die erste Universaarl-Welle wird nicht aus alten RM-/CRONUS-Laborbelegen abgelei
 
 - Microsoft Learn `Create new companies` stuetzt Company, Environment, SUPER-Permission, Template-Optionen und Copy Company als Produktstandard. Eigene Evidence bleibt Pflicht fuer `UNIVERSAARL-DE`, die sichtbare Mandantenliste und die gewaehlte Datenbasis.
 - Microsoft Learn `Overview of tasks to set up Business Central` stuetzt Company Information, Assisted Setup, Manual Setup und die Setup-Kategorien. Eigene Evidence bleibt Pflicht fuer konkrete Universaarl-Felder und Setup-Vorher/Nachher.
+- Microsoft Learn `Company information overview` stuetzt, dass Company Information pro Company gepflegt wird und dass sichtbare Felder/FastTabs je Land/Region variieren koennen. Eigene Evidence bleibt Pflicht fuer konkrete `UNIVERSAARL-DE`-Felder und gespeicherte Werte.
 - Microsoft Learn `Create number series` stuetzt Nummernserien als Identifikations- und Audit-/Nachvollziehbarkeitsmechanismus. Eigene Evidence bleibt Pflicht fuer konkrete Universaarl-Serien und Belegnummern.
 - Microsoft Learn `Posting group setup` stuetzt Kontenfindung ueber General/Special Posting Groups und General Posting Setup. Eigene Preview-/Posting-/Entry-Evidence bleibt Pflicht fuer konkrete Kontenwirkung.
 - Microsoft Learn `Set up VAT` stuetzt VAT Business/Product Posting Groups und VAT Posting Setup. Deutsche 19-Prozent-USt bleibt zusaetzlich amtlich und durch Universaarl-VAT-Entries zu belegen.
@@ -106,6 +108,7 @@ Die operative Zuordnung steht in `UNIVERSAARL-IMPLEMENTATION-GUIDE-MAPPING.md`. 
 
 - https://learn.microsoft.com/en-us/dynamics365/business-central/about-new-company
 - https://learn.microsoft.com/en-us/dynamics365/business-central/setup
+- https://learn.microsoft.com/en-us/dynamics365/business-central/admin-company-information
 - https://learn.microsoft.com/en-us/dynamics365/business-central/across-business-functionality
 - https://learn.microsoft.com/en-us/dynamics365/business-central/ui-how-users-permissions
 - https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/administration/tenant-admin-center-environments

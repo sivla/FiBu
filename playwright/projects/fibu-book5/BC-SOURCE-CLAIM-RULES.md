@@ -123,3 +123,9 @@ Beispiele:
 PREP-036 ist eine Ausfuehrungsregel fuer den ersten Lauf nach der Rechtefreigabe, kein Business-Central-Nachweis. Als Planungs- und Buchstrukturclaim ist erlaubt: Company Creation kommt vor Company Information, Company Information kommt vor Foundation Setup, und Nummernserien, Buchungsgruppen, USt-Setup und Dimensionen kommen vor ersten Belegen, Preview oder Posting.
 
 Ohne spaetere Universaarl-Evidence duerfen daraus keine Live-Claims abgeleitet werden: `UNIVERSAARL-DE` ist noch nicht erstellt, Company Information ist nicht gespeichert, Nummernserien/Buchungsgruppen/USt/Dimensionen sind nicht eingerichtet, Preview/Post ist nicht freigegeben und deutsche 19-Prozent-USt ist nicht final bewiesen. Die Detailregel steht in `playwright/projects/fibu-book5/UNIVERSAARL-W1-FOUNDATION-READINESS-GATE.md`.
+
+## PREP-038 Company Information Gate
+
+Microsoft Learn stuetzt die allgemeine Aussage, dass Company Information zum Grundsetup gehoert und dass die angezeigten Felder/FastTabs je Land/Region variieren koennen. Daraus darf das Buch allgemein erklaeren, warum Unternehmensdaten direkt nach der Company-Anlage geprueft werden.
+
+Nicht erlaubt ohne spaetere Universaarl-Evidence sind konkrete Aussagen wie: `UNIVERSAARL-DE` ist aktiv, `Universaarl GmbH` ist gespeichert, ein bestimmtes Feld ist sichtbar/pflichtig, eine Adresse oder USt-ID ist gepflegt oder ein Screenshot zeigt den finalen Zielzustand. TARGET-COMPANY-INFO-001 muss zuerst read-only Page/Feld/FastTab-Kontext liefern; TARGET-COMPANY-INFO-002 darf erst danach kontrolliert speichern.
