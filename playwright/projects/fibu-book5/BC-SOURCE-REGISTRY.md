@@ -29,6 +29,7 @@ Diese Registry ordnet Quellen fuer das Universaarl-Buch und den Autopilot. Sie e
 | Microsoft Learn: Analyze list page and query data using data analysis mode | 1 | Look and Feel, Analysis Mode | read-only Analysemodus, Gruppierung/Filterung/Summen auf Listen- oder Querydaten | Buchungs-, Posting- oder Reportfinalnachweis | Produkt-/UI-Claim; konkrete Universaarl-Auswertung braucht eigene Evidence | geprueft 2026-06-29 |
 | Microsoft Learn: Personalize your workspace | 1 | Look and Feel, Debugging, Personalisierung | Felder, Spalten, Aktionen und Oberflaechenbereiche fuer den Benutzer sichtbar machen | Tabellenlogik, Buchungswirkung oder allgemeingueltige Sicht fuer alle Benutzer | Produkt-/UI-Claim; konkrete Universaarl-Personalisierung braucht eigene Evidence und Gate | geprueft 2026-06-30 |
 | Microsoft Learn: Create number series | 1 | Number Series, No. Series Lines | Nummernseriencodes, Lines, Starting Date, Starting No., Ending No., Manual Nos., Allow Gaps, spaetere Setup-Zuweisung | konkrete Universaarl-Werte, persistierte Start-/Endnummern, deutsche Rechts-/Steuerfinalclaims | Produkt-/Setupclaim; Universaarl braucht TARGET-016I Write-Gate und spaetere Setup-/Beleg-Evidence | geprueft 2026-06-30, TARGET-016H |
+| Microsoft Learn: View / set up chart of accounts | 1 | Chart of Accounts, G/L Accounts, Kontenplan | Kontenplan als Finanzkontenverzeichnis; Konten koennen in Business Central eingerichtet/geaendert werden | konkreter Universaarl-Kontenplan, SKR04-/Steuerberater-Finalitaet, USt-Kontenwirkung | Produkt-/Setupclaim; Universaarl braucht TARGET-026E Plan und spaeter UI-Reopen-/Posting-Evidence | geprueft 2026-06-30, TARGET-026D |
 | Microsoft Learn: Set up value-added tax | 1 | VAT Setup, USt, Posting Setup | VAT Business Posting Groups, VAT Product Posting Groups, VAT Posting Setup als Produktstandard | deutsche Steuerrechtsbehauptung, konkrete Universaarl-19-Prozent-USt, Preview-/Posting-/VAT-Entry-Beweis | Produkt-/Setupclaim; Universaarl braucht TARGET-020 Kontext plus spaeter Setup-Fit, Preview und VAT Entries | geprueft 2026-06-30, TARGET-020 |
 | Microsoft Learn: Work with dimensions | 1 | Dimensions, Global Dimensions, Shortcut Dimensions | Dimensionen, Dimensionswerte, globale Dimensionen und Shortcut-Dimensionen als Produktstandard; General Ledger Setup als globaler Dimensionskontext | konkreter Universaarl-Persistenzbeweis fuer `PRODUCTLINE`/`COSTCENTER`, Default Dimensions, Dimension Set Entries oder Reportingwirkung | Produkt-/Setupclaim; Universaarl braucht TARGET-024F Page-118-Reopen-Proof und spaeter Entry-/Reporting-Evidence | geprueft 2026-06-30, TARGET-024E |
 | Microsoft Learn: Business intelligence and reporting | 1 | Reporting, Request Pages | Reporting-/BI-Bereich und Reportauswertung als Produktfunktion | konkrete Reportparameter oder Universaarl-Reportausgabe | Produktclaim; konkrete Request Page und Reportausgabe brauchen eigene Evidence | geprueft 2026-06-30 |
@@ -129,6 +130,16 @@ Fuer Universaarl folgt daraus:
 - Vor einem VAT Posting Setup Write muessen Kontenplan und USt-Konto-Kandidaten sichtbar geprueft werden.
 - Deutsche 19-Prozent-USt braucht zusaetzlich amtliche Quelle und spaeter Universaarl-Preview, VAT Entries und Sachposten.
 - Naechster Case ist `TARGET-026B-CHART-OF-ACCOUNTS-VAT-ACCOUNT-PREFLIGHT`.
+
+## TARGET-026D Kontenplan-Quellenentscheidung
+
+TARGET-026B zeigt in `UNIVERSAARL-DE` einen erreichbaren, aber leeren/insufficient Kontenplan ohne sichtbare USt-Konto-Kandidaten. Microsoft Learn `View the chart of accounts` und `Set up or change the chart of accounts` stuetzen die Produktlogik: Der Kontenplan ist das Verzeichnis der Finanzkonten und kann fuer die Company eingerichtet/geaendert werden.
+
+Fuer Universaarl folgt daraus:
+
+- VAT Setup und erste Stammdatenanlage bleiben gesperrt, bis eine minimale Kontenstruktur geplant und danach kontrolliert eingerichtet oder sichtbar bestaetigt ist.
+- Der leere Kontenplan ist kein deutscher Finalnachweis, sondern Foundation-Evidence.
+- Naechster Case ist `TARGET-026E-CHART-OF-ACCOUNTS-MINIMAL-STRUCTURE-PLAN`.
 
 ## PREP-027 Implementation-Guide-Quellenentscheidung
 

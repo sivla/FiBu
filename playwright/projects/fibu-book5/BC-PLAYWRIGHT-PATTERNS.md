@@ -346,3 +346,10 @@ Regeln:
 - Teaching tips at the lower left are a double-edged BC pattern. They can explain import/template affordances for beginner screenshots, but they also obscure page content. Each screenshot must decide whether the tip is part of the learning target or should be closed before field-level evidence.
 - FactBoxes on the right are useful when they explain list context, statistics or card-side details. They must not be allowed to hide grid columns needed for the claim; for list/grid proof, prefer a wider viewport, focus mode or a collapsed FactBox when the table itself is the target.
 - A visible `Neu` action on a master-data list is not a creation proof and not a permission proof. It must be recorded as visible-but-not-clicked unless the active case explicitly unlocks card creation and the result contains a cleanup/trace plan.
+
+## Chart of Accounts Preflight
+
+- TARGET-026B proves the preferred read-only route for the Universaarl Kontenplan: open direct Page `16` in `playthru` / `UNIVERSAARL-DE`, capture page text, candidate-signal JSON and at least one screenshot after moving mouse focus away from hover tooltips.
+- A blank Chart of Accounts grid is strong foundation evidence. It proves page reachability and missing visible account rows, but it does not prove account correctness, VAT account mappings, posting readiness or a final German account plan.
+- Hover tooltips on column headers can be useful beginner explanations, but they are hover-state truth. For book or setup-gate screenshots, capture a second image after `Escape`/mouse-move so the claim is about the page, not the hover.
+- Visible actions such as `Neu`, `Liste bearbeiten`, `Buchen` or `Bericht` must be recorded as visible-but-not-clicked during read-only preflight. They do not unlock account creation, VAT setup or posting.

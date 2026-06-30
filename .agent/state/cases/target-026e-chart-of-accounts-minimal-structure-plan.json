@@ -1,20 +1,20 @@
 {
   "schemaVersion": 1,
-  "caseId": "TARGET-026B-CHART-OF-ACCOUNTS-VAT-ACCOUNT-PREFLIGHT",
-  "title": "Chart of Accounts VAT account preflight",
+  "caseId": "TARGET-026E-CHART-OF-ACCOUNTS-MINIMAL-STRUCTURE-PLAN",
+  "title": "Minimal Universaarl Chart of Accounts structure plan",
   "status": "done",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "workType": "universaarl-chart-of-accounts-vat-account-preflight",
-  "taskClass": "wizard_work",
+  "workType": "universaarl-chart-of-accounts-minimal-structure-plan",
+  "taskClass": "judge_work",
   "sourceEvidence": [
-    "playwright/projects/fibu-book5/evidence/target-026-vat-setup-fit-decision/TARGET-026-result.json"
+    "playwright/projects/fibu-book5/evidence/target-026b-chart-of-accounts-vat-account-preflight/TARGET-026B-result.json",
+    "playwright/projects/fibu-book5/evidence/target-026d-chart-of-accounts-setup-fit-decision/TARGET-026D-result.json"
   ],
-  "purpose": "Open Chart of Accounts read-only and identify whether Sales VAT Account and Purchase VAT Account candidates exist before VAT setup write.",
+  "purpose": "Define minimal G/L account families and candidate account numbers before any Chart of Accounts setup write.",
   "allowedActions": [
-    "open-chart-of-accounts-readonly",
-    "search-or-filter-within-chart-of-accounts-readonly",
-    "capture-screenshot-qa",
+    "plan-minimal-chart-of-accounts-structure",
+    "source-and-evidence-review",
     "write-result-and-next-step-card"
   ],
   "forbiddenActions": [
@@ -32,13 +32,13 @@
     "api-shortcut"
   ],
   "entryCriteria": [
-    "TARGET-026 decided that VAT setup needs account preflight first.",
-    "UNIVERSAARL-DE is active target company."
+    "TARGET-026B observed blank/insufficient Chart of Accounts.",
+    "TARGET-026D selected account-structure planning before VAT setup."
   ],
   "exitCriteria": [
-    "Chart of Accounts context is observed or blocked.",
-    "VAT account candidates are listed or missing.",
-    "Next VAT setup or account-setup case is selected."
+    "Minimal account families and candidate numbers are defined.",
+    "No final German SKR04 claim is made.",
+    "A later controlled UI setup gate is selected or blocked."
   ],
   "lookahead": [
     {
@@ -67,10 +67,10 @@
       "reason": "First customer depends on posting group, VAT and account decisions."
     }
   ],
-  "nextStep": "Run TARGET-026D source-backed setup-fit decision.",
-  "createdAt": "2026-06-30T18:45:00.000Z",
-  "updatedAt": "2026-06-30T19:25:00.000Z",
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-026b-chart-of-accounts-vat-account-preflight/TARGET-026B-result.json",
-  "result": "Chart of Accounts opened read-only; no visible account rows or VAT account candidates captured.",
-  "completedAt": "2026-06-30T19:25:00.000Z"
+  "nextStep": "Run TARGET-026F controlled Chart of Accounts setup gate.",
+  "createdAt": "2026-06-30T19:25:00.000Z",
+  "updatedAt": "2026-06-30T19:45:00.000Z",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-026e-chart-of-accounts-minimal-structure-plan/TARGET-026E-result.json",
+  "result": "Minimal Universaarl G/L account candidate structure was defined; no accounts were created.",
+  "completedAt": "2026-06-30T19:45:00.000Z"
 }

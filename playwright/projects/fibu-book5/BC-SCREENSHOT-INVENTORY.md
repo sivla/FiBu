@@ -372,6 +372,15 @@ UI-relevante Result JSONs sollen `uiErgonomics` enthalten: Overlays, FactBox-Zwe
 
 Screenshot-QA zu TARGET-025: Diese vier Bilder sind gute Kontext- und Buchvorbereitungsbilder fuer leere Stammdatenlisten. Sie sind keine Beweise fuer Vorlagen, Pflichtfelder oder erfolgreich angelegte Stammdaten. Teaching Tips werden nur dann im Buchbild gelassen, wenn sie den Lernpunkt erklaeren; fuer Feld- oder Tabellenbeweise muessen sie geschlossen werden. Die FactBox ist nur dann Teil des Beweises, wenn ihr Inhalt erklaert wird und keine relevanten Spalten verdeckt.
 
+## Universaarl Kontenplan - Read-only Preflight TARGET-026B
+
+| Screenshot | Page | Company | Schritt | Was sieht man? | Intern bewiesen | Nicht bewiesen | Status |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `target-026b-010-chart-of-accounts-readonly.png` | Kontenplan, Page 16 | `playthru` / `UNIVERSAARL-DE` | Erste Read-only-Aufnahme | Leerer Kontenplan, `Neu`, `Liste bearbeiten`, FactBox und ein eingeblendeter Spalten-Tooltip zu `Nr.` | Kontenplan ist erreichbar; Tooltip erklaert die Nummernspalte | Sachkonten, USt-Konten, Kontenplan-Finalitaet, VAT-Setup | `universaarl-readonly-preflight`, `hover-learning` |
+| `target-026b-020-chart-of-accounts-context-after-hover-clear.png` | Kontenplan, Page 16 | `playthru` / `UNIVERSAARL-DE` | Kontext nach Hover-Clear | Leerer Kontenplan ohne Spalten-Tooltip, FactBox rechts, keine sichtbaren Sachkontenzeilen | Die leere/insufficient Kontenplanansicht ist in der Zielcompany sichtbar | keine Kontenrichtigkeit, kein Sales-/Purchase-VAT-Konto, keine Buchungsfaehigkeit | `universaarl-readonly-preflight`, `foundation-blocker` |
+
+Screenshot-QA zu TARGET-026B: Das zweite Bild ist der bessere Buch-/Setup-Kontext, weil es den Hover-Tooltip entfernt. Beide Bilder beweisen keine Konten oder USt-Einrichtung. Sie begruenden aber fachlich, warum vor VAT-Gruppen und Stammdaten zuerst eine minimale Kontenplan-Struktur geplant werden muss.
+
 ## PREP-010 Screenshot-QA-Regel
 
 Vor jeder Buch- oder Clickguide-Nutzung muss der Screenshot gegen die konkrete Behauptung geprueft werden:

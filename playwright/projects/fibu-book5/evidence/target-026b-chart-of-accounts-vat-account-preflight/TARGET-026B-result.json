@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "TARGET-026B-CHART-OF-ACCOUNTS-VAT-ACCOUNT-PREFLIGHT",
+  "source": "playwright-readonly-smoke",
+  "resultStatus": "observed",
+  "runPlanId": "TARGET-026B-CHART-OF-ACCOUNTS-VAT-ACCOUNT-PREFLIGHT-PLAN",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-medium",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "pageId": 16,
+  "page": "Chart of Accounts / Kontenplan",
+  "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=16&company=UNIVERSAARL-DE",
+  "proved": [
+    "Chart of Accounts opened read-only in playthru/UNIVERSAARL-DE.",
+    "0 VAT/tax/account-like candidate text signals captured for review.",
+    "No G/L account, VAT setup, master data, draft, Preview Posting or posting was changed."
+  ],
+  "notProved": [
+    "No G/L account was created or edited.",
+    "No VAT Business Posting Group, VAT Product Posting Group or VAT Posting Setup was changed.",
+    "No Sales VAT Account or Purchase VAT Account assignment is proven.",
+    "No German 19 percent VAT claim is proven.",
+    "No Preview Posting, VAT Entry, G/L Entry or posting exists."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/target-026b-chart-of-accounts-vat-account-preflight/README.md",
+    "playwright/projects/fibu-book5/evidence/target-026b-chart-of-accounts-vat-account-preflight/TARGET-026B-result.json",
+    "playwright/projects/fibu-book5/evidence/target-026b-chart-of-accounts-vat-account-preflight/chart-of-accounts-page-text.txt",
+    "playwright/projects/fibu-book5/evidence/target-026b-chart-of-accounts-vat-account-preflight/vat-account-candidate-signals.json",
+    "playwright/projects/fibu-book5/evidence/target-026b-chart-of-accounts-vat-account-preflight/target-026b-010-chart-of-accounts-readonly.png",
+    "playwright/projects/fibu-book5/evidence/target-026b-chart-of-accounts-vat-account-preflight/target-026b-010-chart-of-accounts-readonly.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/target-026b-chart-of-accounts-vat-account-preflight/target-026b-020-chart-of-accounts-context-after-hover-clear.png",
+    "playwright/projects/fibu-book5/evidence/target-026b-chart-of-accounts-vat-account-preflight/target-026b-020-chart-of-accounts-context-after-hover-clear.screenshot.json"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-026b-chart-of-accounts-vat-account-preflight/TARGET-026B-result.json",
+    "playwright/projects/fibu-book5/evidence/target-026b-chart-of-accounts-vat-account-preflight/chart-of-accounts-page-text.txt",
+    "playwright/projects/fibu-book5/evidence/target-026b-chart-of-accounts-vat-account-preflight/vat-account-candidate-signals.json",
+    "playwright/projects/fibu-book5/evidence/target-026b-chart-of-accounts-vat-account-preflight/target-026b-010-chart-of-accounts-readonly.png",
+    "playwright/projects/fibu-book5/evidence/target-026b-chart-of-accounts-vat-account-preflight/target-026b-020-chart-of-accounts-context-after-hover-clear.png"
+  ],
+  "warnings": [
+    "no-visible-vat-account-candidates-in-captured-text",
+    "First screenshot may include BC hover/tour overlays; second screenshot clears hover focus where possible.",
+    "New/Neu visible but not clicked.",
+    "Edit/Bearbeiten visible but not clicked.",
+    "Posting/Preview text visible but not clicked."
+  ],
+  "blockedBy": [],
+  "flags": {
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noMasterDataChange": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noSearch": true,
+    "noBookMasterChange": true
+  },
+  "candidateSignals": [],
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-026B-CHART-OF-ACCOUNTS-VAT-ACCOUNT-PREFLIGHT",
+    "plannedNextCaseBeforeReview": "TARGET-026B-CHART-OF-ACCOUNTS-VAT-ACCOUNT-PREFLIGHT",
+    "lastEvidenceSummary": "TARGET-026 source-backed VAT setup decision said VAT Posting Setup needs account candidates before any setup write.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "Chart of Accounts read-only preflight is the smallest safe dependency check before VAT setup or first master data creation.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-026C-VAT-GROUPS-CONTROLLED-SETUP-FIT",
+        "status": "needs-setup-first",
+        "reason": "No visible VAT account candidates are proven; account setup/route decision must come first."
+      },
+      {
+        "caseId": "TARGET-026D-CHART-OF-ACCOUNTS-SETUP-FIT-DECISION",
+        "status": "ready-next",
+        "reason": "Needed to decide whether Universaarl should create German VAT/control accounts from scratch."
+      },
+      {
+        "caseId": "TARGET-027-DEFAULT-DIMENSIONS-STRATEGY",
+        "status": "ready-after-current",
+        "reason": "Can proceed after VAT/account dependency is classified; global dimensions remain parked."
+      },
+      {
+        "caseId": "TARGET-028-FIRST-CUSTOMER-CONTROLLED-CREATE",
+        "status": "needs-setup-first",
+        "reason": "First customer needs number series, posting group and VAT/default-dimension decisions."
+      },
+      {
+        "caseId": "TARGET-029-FIRST-VENDOR-AND-ITEM-CONTROLLED-CREATE",
+        "status": "needs-setup-first",
+        "reason": "Vendor/item creation needs posting/VAT setup and card/template gates."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-026D-CHART-OF-ACCOUNTS-SETUP-FIT-DECISION",
+    "whySelectedNextCaseIsBest": "A blank/insufficient Chart of Accounts means account setup route must be decided before VAT groups or master data.",
+    "risksBeforeNextCase": [
+      "Do not edit Chart of Accounts from read-only candidate screenshots.",
+      "Do not claim German 19 percent VAT until VAT setup, Preview Posting, VAT Entries and G/L Entries are proven.",
+      "Do not create customers/vendors/items until posting/VAT decisions are clear."
+    ],
+    "requiredPreparation": [
+      "Review VAT account candidate signals.",
+      "If candidates are insufficient, create a source-backed Chart of Accounts setup-fit decision case."
+    ]
+  },
+  "requiresReview": false,
+  "safeToFinalizeState": false,
+  "statePatch": {},
+  "reason": "Read-only Chart of Accounts preflight completed; candidate signals need review before setup write.",
+  "validationCommands": [
+    "npm run agent:preflight",
+    "npm run fibu:target:chart-of-accounts-vat-account-preflight",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/target-026b-chart-of-accounts-vat-account-preflight/TARGET-026B-result.json",
+    "npm run check:encoding",
+    "git diff --check"
+  ]
+}

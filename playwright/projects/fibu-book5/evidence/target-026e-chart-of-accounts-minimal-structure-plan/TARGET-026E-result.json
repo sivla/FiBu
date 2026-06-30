@@ -1,0 +1,187 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "TARGET-026E-CHART-OF-ACCOUNTS-MINIMAL-STRUCTURE-PLAN",
+  "source": "local-analysis",
+  "resultStatus": "observed",
+  "runPlanId": "TARGET-026E-CHART-OF-ACCOUNTS-MINIMAL-STRUCTURE-PLAN-PLAN",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/target-026b-chart-of-accounts-vat-account-preflight/TARGET-026B-result.json",
+    "playwright/projects/fibu-book5/evidence/target-026d-chart-of-accounts-setup-fit-decision/TARGET-026D-result.json",
+    "playwright/projects/fibu-book5/UNIVERSAARL-CHART-OF-ACCOUNTS-MINIMAL-STRUCTURE-PLAN.md"
+  ],
+  "proved": [
+    "A minimal Universaarl chart-of-accounts structure is defined as a plan.",
+    "The plan covers bank, receivables, payables, VAT receivable/payable candidates, sales revenue, purchasing/material expense, inventory, fixed assets and depreciation.",
+    "The plan explicitly blocks VAT setup, posting groups, master data and posting until a controlled UI setup gate proves accounts."
+  ],
+  "notProved": [
+    "No G/L account was created or edited.",
+    "No final German SKR04 or tax-advisor account plan is proven.",
+    "No VAT Business Posting Group, VAT Product Posting Group or VAT Posting Setup was changed.",
+    "No Sales VAT Account or Purchase VAT Account assignment is proven.",
+    "No Preview Posting, VAT Entry, G/L Entry or posting exists."
+  ],
+  "plannedAccounts": [
+    {
+      "no": "0800",
+      "name": "Eigenkapital / Eroeffnung",
+      "family": "opening-equity",
+      "accountType": "Balance Sheet"
+    },
+    {
+      "no": "1200",
+      "name": "Bank Saarland",
+      "family": "bank",
+      "accountType": "Balance Sheet"
+    },
+    {
+      "no": "1400",
+      "name": "Forderungen aus Lieferungen und Leistungen",
+      "family": "receivables",
+      "accountType": "Balance Sheet"
+    },
+    {
+      "no": "1576",
+      "name": "Abziehbare Vorsteuer 19 Prozent",
+      "family": "purchase-vat-candidate",
+      "accountType": "Balance Sheet"
+    },
+    {
+      "no": "1600",
+      "name": "Verbindlichkeiten aus Lieferungen und Leistungen",
+      "family": "payables",
+      "accountType": "Balance Sheet"
+    },
+    {
+      "no": "1776",
+      "name": "Umsatzsteuer 19 Prozent",
+      "family": "sales-vat-candidate",
+      "accountType": "Balance Sheet"
+    },
+    {
+      "no": "3980",
+      "name": "Warenbestand Universaarl",
+      "family": "inventory",
+      "accountType": "Balance Sheet"
+    },
+    {
+      "no": "4400",
+      "name": "Umsatzerloese Inland 19 Prozent",
+      "family": "sales",
+      "accountType": "Income Statement"
+    },
+    {
+      "no": "5400",
+      "name": "Wareneinsatz / Materialaufwand",
+      "family": "purchase-expense",
+      "accountType": "Income Statement"
+    },
+    {
+      "no": "0700",
+      "name": "Maschinen und technische Anlagen",
+      "family": "fixed-assets",
+      "accountType": "Balance Sheet"
+    },
+    {
+      "no": "6220",
+      "name": "Abschreibungen auf Sachanlagen",
+      "family": "fixed-asset-depreciation",
+      "accountType": "Income Statement"
+    },
+    {
+      "no": "6990",
+      "name": "Sonstige betriebliche Aufwendungen",
+      "family": "rounding-or-difference",
+      "accountType": "Income Statement"
+    }
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/UNIVERSAARL-CHART-OF-ACCOUNTS-MINIMAL-STRUCTURE-PLAN.md",
+    "playwright/projects/fibu-book5/evidence/target-026e-chart-of-accounts-minimal-structure-plan/README.md",
+    "playwright/projects/fibu-book5/evidence/target-026e-chart-of-accounts-minimal-structure-plan/TARGET-026E-result.json"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/UNIVERSAARL-CHART-OF-ACCOUNTS-MINIMAL-STRUCTURE-PLAN.md",
+    "playwright/projects/fibu-book5/evidence/target-026e-chart-of-accounts-minimal-structure-plan/TARGET-026E-result.json"
+  ],
+  "warnings": [
+    "planned-accounts-are-candidates-not-bc-records",
+    "not-final-skr04-or-tax-advisor-plan",
+    "vat-percent-account-names-do-not-prove-vat-setup-or-vat-entries"
+  ],
+  "blockedBy": [],
+  "flags": {
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noMasterDataChange": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookMasterChange": true
+  },
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-026E-CHART-OF-ACCOUNTS-MINIMAL-STRUCTURE-PLAN",
+    "plannedNextCaseBeforeReview": "TARGET-026E-CHART-OF-ACCOUNTS-MINIMAL-STRUCTURE-PLAN",
+    "lastEvidenceSummary": "TARGET-026B showed the Chart of Accounts is reachable but blank/insufficient. TARGET-026D selected account-structure planning before VAT setup.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The account structure plan is now complete enough to prepare a controlled UI setup gate.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-026F-CHART-OF-ACCOUNTS-CONTROLLED-SETUP-GATE",
+        "status": "ready-next",
+        "reason": "Exact planned accounts and stop gates are available for controlled UI setup."
+      },
+      {
+        "caseId": "TARGET-026C-VAT-GROUPS-CONTROLLED-SETUP-FIT",
+        "status": "needs-setup-first",
+        "reason": "Needs visible Sales/Purchase VAT account records after the account setup gate."
+      },
+      {
+        "caseId": "TARGET-027-DEFAULT-DIMENSIONS-STRATEGY",
+        "status": "ready-after-current",
+        "reason": "Can continue after account/VAT path is classified."
+      },
+      {
+        "caseId": "TARGET-028-FIRST-CUSTOMER-CONTROLLED-CREATE",
+        "status": "needs-setup-first",
+        "reason": "Customer creation needs posting group and VAT setup decisions."
+      },
+      {
+        "caseId": "TARGET-029-FIRST-VENDOR-AND-ITEM-CONTROLLED-CREATE",
+        "status": "needs-setup-first",
+        "reason": "Vendor/item creation needs posting/VAT setup and item posting setup decisions."
+      }
+    ],
+    "queueChangesMade": [
+      "Marked TARGET-026E observed and selected TARGET-026F as the next controlled UI setup gate."
+    ],
+    "selectedNextCase": "TARGET-026F-CHART-OF-ACCOUNTS-CONTROLLED-SETUP-GATE",
+    "whySelectedNextCaseIsBest": "It is the first practical step that can turn the blank chart-of-accounts foundation into visible G/L account records, with before/after/reopen proof.",
+    "risksBeforeNextCase": [
+      "Account creation is a setup change and must use the planned list only.",
+      "Do not touch VAT Posting Setup in the account setup gate.",
+      "Do not create master data or posting groups in the same step."
+    ],
+    "requiredPreparation": [
+      "Open Chart of Accounts direct Page 16.",
+      "Capture before screenshot showing current account list state.",
+      "Create or block accounts one by one with visible after/reopen proof."
+    ]
+  },
+  "requiresReview": false,
+  "safeToFinalizeState": false,
+  "statePatch": {},
+  "reason": "Minimal Chart of Accounts structure plan is ready for a controlled UI setup gate.",
+  "validationCommands": [
+    "npm run agent:preflight",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/target-026e-chart-of-accounts-minimal-structure-plan/TARGET-026E-result.json",
+    "npm run check:encoding",
+    "git diff --check"
+  ]
+}

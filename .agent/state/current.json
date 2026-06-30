@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-30T18:45:00.000Z",
+  "updatedAt": "2026-06-30T19:45:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-chart-of-accounts-vat-account-preflight",
-  "activeCase": "TARGET-026B-CHART-OF-ACCOUNTS-VAT-ACCOUNT-PREFLIGHT",
-  "active_case_file": ".agent/state/cases/target-026b-chart-of-accounts-vat-account-preflight.json",
+  "activeArea": "universaarl-chart-of-accounts-controlled-setup-gate",
+  "activeCase": "TARGET-026F-CHART-OF-ACCOUNTS-CONTROLLED-SETUP-GATE",
+  "active_case_file": ".agent/state/cases/target-026f-chart-of-accounts-controlled-setup-gate.json",
   "lastReferenceCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
   "lastReferenceCaseFile": ".agent/state/cases/warehouse-031-warehouse-source-route-park-or-setup-fit-decision.json",
   "mode": "universaarl-target-execution",
@@ -19,9 +19,9 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "open-chart-of-accounts-readonly",
-    "search-or-filter-within-chart-of-accounts-readonly",
-    "capture-screenshot-qa",
+    "open-chart-of-accounts",
+    "create-planned-gl-accounts-only",
+    "capture-before-after-reopen-proof",
     "write-result-and-next-step-card"
   ],
   "forbiddenActions": [
@@ -30,7 +30,6 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
-    "create-or-edit-gl-account",
     "change-vat-setup",
     "create-master-data",
     "create-document-or-draft",
@@ -38,7 +37,7 @@
     "post",
     "api-shortcut"
   ],
-  "nextStep": "Run TARGET-026B: inspect Chart of Accounts read-only for Sales/Purchase VAT Account candidates before VAT setup write.",
+  "nextStep": "Run TARGET-026F: create or block the planned minimal G/L accounts in the Chart of Accounts UI with before/after/reopen proof; do not touch VAT setup or master data.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -221,7 +220,7 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "universaarl-chart-of-accounts-vat-account-preflight",
+  "currentCoverageFocus": "universaarl-chart-of-accounts-controlled-setup-gate",
   "nextProcessRoute": [
     "P2P-012 compared Purchase Journal, Item Journal, Purchase Invoices and Requisition Worksheet by direct page URL without search or field entry.",
     "Item Journal is the most stable observed route for material quantity/location/value effect, but it is Inventory evidence rather than full creditor P2P.",
@@ -1342,8 +1341,8 @@
     "decision": "Approve a separate no-post Payment Journal preflight for Vendor Ledger document 108205. Do not use Payment Reconciliation Apply/Post for this target. BANK-018 may create exactly one scoped draft line, run Journal Check/open Apply Entries if reachable, and must cleanup or explicitly document keep status. Posting remains locked.",
     "nextStep": "BANK-018: controlled no-post Payment Journal preflight for 108205; do not post."
   },
-  "workType": "foundation-global-dimension-assignment",
-  "lastCompletedCase": "TARGET-026-VAT-SETUP-FIT-DECISION",
+  "workType": "universaarl-chart-of-accounts-controlled-setup-gate",
+  "lastCompletedCase": "TARGET-026E-CHART-OF-ACCOUNTS-MINIMAL-STRUCTURE-PLAN",
   "latestBank018": {
     "caseId": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
     "status": [
@@ -3429,54 +3428,54 @@
       "replace-with-better-case"
     ],
     "latestDecisionCard": {
-      "currentCase": "TARGET-026-VAT-SETUP-FIT-DECISION",
-      "plannedNextCaseBeforeReview": "TARGET-026-VAT-SETUP-FIT-DECISION",
-      "lastEvidenceSummary": "TARGET-025 opened Debitoren, Kreditoren, Artikel and Lagerorte read-only. TARGET-026 source check shows VAT Posting Setup needs G/L account candidates before a setup write.",
+      "currentCase": "TARGET-026E-CHART-OF-ACCOUNTS-MINIMAL-STRUCTURE-PLAN",
+      "plannedNextCaseBeforeReview": "TARGET-026E-CHART-OF-ACCOUNTS-MINIMAL-STRUCTURE-PLAN",
+      "lastEvidenceSummary": "TARGET-026B showed the Chart of Accounts is reachable but blank/insufficient. TARGET-026D selected account-structure planning before VAT setup. TARGET-026E defined a minimal account structure as candidates only.",
       "isPlannedNextCaseStillSensible": true,
-      "reason": "VAT setup affects customer/vendor/item fields, but cannot be fitted responsibly until Sales/Purchase VAT Account candidates are visible.",
+      "reason": "The planned accounts are now concrete enough for a controlled UI setup gate, while VAT groups and master data still need setup first.",
       "lookaheadReviewed": [
         {
-          "caseId": "TARGET-026B-CHART-OF-ACCOUNTS-VAT-ACCOUNT-PREFLIGHT",
+          "caseId": "TARGET-026F-CHART-OF-ACCOUNTS-CONTROLLED-SETUP-GATE",
           "status": "ready-next",
-          "reason": "Chart of Accounts read-only preflight is the missing account dependency for VAT setup."
+          "reason": "Exact account candidates and stop gates are available."
         },
         {
           "caseId": "TARGET-026C-VAT-GROUPS-CONTROLLED-SETUP-FIT",
           "status": "needs-setup-first",
-          "reason": "Requires account candidates and explicit VAT setup gate."
+          "reason": "Requires visible Sales/Purchase VAT account records after account setup."
         },
         {
           "caseId": "TARGET-027-DEFAULT-DIMENSIONS-STRATEGY",
           "status": "ready-after-current",
-          "reason": "Can proceed after VAT/account dependency is classified; global dimensions remain parked."
+          "reason": "Can continue after account/VAT path is classified."
         },
         {
           "caseId": "TARGET-028-FIRST-CUSTOMER-CONTROLLED-CREATE",
           "status": "needs-setup-first",
-          "reason": "Requires card/template evidence plus posting/VAT setup decisions."
+          "reason": "Needs customer posting group, VAT and default-dimension decisions."
         },
         {
           "caseId": "TARGET-029-FIRST-VENDOR-AND-ITEM-CONTROLLED-CREATE",
           "status": "needs-setup-first",
-          "reason": "Requires vendor/item template evidence plus posting/VAT setup decisions."
+          "reason": "Needs vendor/item posting, VAT and inventory setup decisions."
         }
       ],
       "queueChangesMade": [
-        "Marked TARGET-025 observed after read-only master-data page preflight.",
-        "Marked TARGET-026 observed as VAT setup source decision.",
-        "Inserted and selected TARGET-026B-CHART-OF-ACCOUNTS-VAT-ACCOUNT-PREFLIGHT."
+        "Marked TARGET-026E observed with candidate account structure.",
+        "Inserted and selected TARGET-026F-CHART-OF-ACCOUNTS-CONTROLLED-SETUP-GATE."
       ],
-      "selectedNextCase": "TARGET-026B-CHART-OF-ACCOUNTS-VAT-ACCOUNT-PREFLIGHT",
-      "whySelectedNextCaseIsBest": "It proves or blocks the account basis that VAT setup needs before any write or first master-data create.",
+      "selectedNextCase": "TARGET-026F-CHART-OF-ACCOUNTS-CONTROLLED-SETUP-GATE",
+      "whySelectedNextCaseIsBest": "It is the first practical step that can turn the blank account basis into visible G/L account records with before/after/reopen proof.",
       "risksBeforeNextCase": [
-        "Do not create or edit G/L accounts during preflight.",
-        "Do not change VAT setup without account candidates and a separate setup-fit gate.",
-        "Do not claim German 19 percent VAT without official source plus posting evidence."
+        "Account creation is a setup change and must be limited to the planned list.",
+        "Do not edit VAT Posting Setup, posting groups or master data in the same run.",
+        "Do not claim final German SKR04 correctness."
       ],
       "requiredPreparation": [
-        "Open Chart of Accounts read-only in playthru / UNIVERSAARL-DE.",
-        "Capture VAT account candidate signals and screenshot QA.",
-        "Stop before New/Edit/Delete/Post/Preview."
+        "Open Chart of Accounts direct Page 16.",
+        "Capture before screenshot.",
+        "Use only Neu/Liste bearbeiten route if visible and scoped; stop on dialog uncertainty.",
+        "Reopen and prove each created/visible account."
       ]
     }
   },
@@ -3681,54 +3680,54 @@
     "resultFile": "playwright/projects/fibu-book5/evidence/prep-020-universaarl-dataset-blueprint/PREP-020-result.json"
   },
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-026-VAT-SETUP-FIT-DECISION",
-    "plannedNextCaseBeforeReview": "TARGET-026-VAT-SETUP-FIT-DECISION",
-    "lastEvidenceSummary": "TARGET-025 opened Debitoren, Kreditoren, Artikel and Lagerorte read-only. TARGET-026 source check shows VAT Posting Setup needs G/L account candidates before a setup write.",
+    "currentCase": "TARGET-026E-CHART-OF-ACCOUNTS-MINIMAL-STRUCTURE-PLAN",
+    "plannedNextCaseBeforeReview": "TARGET-026E-CHART-OF-ACCOUNTS-MINIMAL-STRUCTURE-PLAN",
+    "lastEvidenceSummary": "TARGET-026B showed the Chart of Accounts is reachable but blank/insufficient. TARGET-026D selected account-structure planning before VAT setup. TARGET-026E defined a minimal account structure as candidates only.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "VAT setup affects customer/vendor/item fields, but cannot be fitted responsibly until Sales/Purchase VAT Account candidates are visible.",
+    "reason": "The planned accounts are now concrete enough for a controlled UI setup gate, while VAT groups and master data still need setup first.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-026B-CHART-OF-ACCOUNTS-VAT-ACCOUNT-PREFLIGHT",
+        "caseId": "TARGET-026F-CHART-OF-ACCOUNTS-CONTROLLED-SETUP-GATE",
         "status": "ready-next",
-        "reason": "Chart of Accounts read-only preflight is the missing account dependency for VAT setup."
+        "reason": "Exact account candidates and stop gates are available."
       },
       {
         "caseId": "TARGET-026C-VAT-GROUPS-CONTROLLED-SETUP-FIT",
         "status": "needs-setup-first",
-        "reason": "Requires account candidates and explicit VAT setup gate."
+        "reason": "Requires visible Sales/Purchase VAT account records after account setup."
       },
       {
         "caseId": "TARGET-027-DEFAULT-DIMENSIONS-STRATEGY",
         "status": "ready-after-current",
-        "reason": "Can proceed after VAT/account dependency is classified; global dimensions remain parked."
+        "reason": "Can continue after account/VAT path is classified."
       },
       {
         "caseId": "TARGET-028-FIRST-CUSTOMER-CONTROLLED-CREATE",
         "status": "needs-setup-first",
-        "reason": "Requires card/template evidence plus posting/VAT setup decisions."
+        "reason": "Needs customer posting group, VAT and default-dimension decisions."
       },
       {
         "caseId": "TARGET-029-FIRST-VENDOR-AND-ITEM-CONTROLLED-CREATE",
         "status": "needs-setup-first",
-        "reason": "Requires vendor/item template evidence plus posting/VAT setup decisions."
+        "reason": "Needs vendor/item posting, VAT and inventory setup decisions."
       }
     ],
     "queueChangesMade": [
-      "Marked TARGET-025 observed after read-only master-data page preflight.",
-      "Marked TARGET-026 observed as VAT setup source decision.",
-      "Inserted and selected TARGET-026B-CHART-OF-ACCOUNTS-VAT-ACCOUNT-PREFLIGHT."
+      "Marked TARGET-026E observed with candidate account structure.",
+      "Inserted and selected TARGET-026F-CHART-OF-ACCOUNTS-CONTROLLED-SETUP-GATE."
     ],
-    "selectedNextCase": "TARGET-026B-CHART-OF-ACCOUNTS-VAT-ACCOUNT-PREFLIGHT",
-    "whySelectedNextCaseIsBest": "It proves or blocks the account basis that VAT setup needs before any write or first master-data create.",
+    "selectedNextCase": "TARGET-026F-CHART-OF-ACCOUNTS-CONTROLLED-SETUP-GATE",
+    "whySelectedNextCaseIsBest": "It is the first practical step that can turn the blank account basis into visible G/L account records with before/after/reopen proof.",
     "risksBeforeNextCase": [
-      "Do not create or edit G/L accounts during preflight.",
-      "Do not change VAT setup without account candidates and a separate setup-fit gate.",
-      "Do not claim German 19 percent VAT without official source plus posting evidence."
+      "Account creation is a setup change and must be limited to the planned list.",
+      "Do not edit VAT Posting Setup, posting groups or master data in the same run.",
+      "Do not claim final German SKR04 correctness."
     ],
     "requiredPreparation": [
-      "Open Chart of Accounts read-only in playthru / UNIVERSAARL-DE.",
-      "Capture VAT account candidate signals and screenshot QA.",
-      "Stop before New/Edit/Delete/Post/Preview."
+      "Open Chart of Accounts direct Page 16.",
+      "Capture before screenshot.",
+      "Use only Neu/Liste bearbeiten route if visible and scoped; stop on dialog uncertainty.",
+      "Reopen and prove each created/visible account."
     ]
   },
   "permissionBlocker": {
@@ -3807,7 +3806,7 @@
   },
   "activeCaseFile": ".agent/state/cases/target-026b-chart-of-accounts-vat-account-preflight.json",
   "previousCase": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
-  "nextCase": "TARGET-026B-CHART-OF-ACCOUNTS-VAT-ACCOUNT-PREFLIGHT",
+  "nextCase": "TARGET-026F-CHART-OF-ACCOUNTS-CONTROLLED-SETUP-GATE",
   "latestPrepCase": {
     "caseId": "PREP-034-ROLE-CENTER-READONLY-SHELL-MAP",
     "status": "prep-observed",
@@ -6088,5 +6087,39 @@
     "decision": "Park VAT setup write until Chart of Accounts/VAT account candidates are visible.",
     "nextCase": "TARGET-026B-CHART-OF-ACCOUNTS-VAT-ACCOUNT-PREFLIGHT",
     "updatedAt": "2026-06-30T18:45:00.000Z"
+  },
+  "latestTarget026BChartOfAccountsPreflight": {
+    "caseId": "TARGET-026B-CHART-OF-ACCOUNTS-VAT-ACCOUNT-PREFLIGHT",
+    "status": "observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-026b-chart-of-accounts-vat-account-preflight/TARGET-026B-result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "summary": "Chart of Accounts opened read-only; visible grid is empty/insufficient and no VAT account candidates were captured.",
+    "screenshots": [
+      "playwright/projects/fibu-book5/evidence/target-026b-chart-of-accounts-vat-account-preflight/target-026b-010-chart-of-accounts-readonly.png",
+      "playwright/projects/fibu-book5/evidence/target-026b-chart-of-accounts-vat-account-preflight/target-026b-020-chart-of-accounts-context-after-hover-clear.png"
+    ],
+    "nextCase": "TARGET-026D-CHART-OF-ACCOUNTS-SETUP-FIT-DECISION",
+    "updatedAt": "2026-06-30T19:25:00.000Z"
+  },
+  "latestTarget026DChartOfAccountsDecision": {
+    "caseId": "TARGET-026D-CHART-OF-ACCOUNTS-SETUP-FIT-DECISION",
+    "status": "observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-026d-chart-of-accounts-setup-fit-decision/TARGET-026D-result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "decision": "Plan minimal Universaarl chart-of-accounts structure before VAT setup or first master data creation.",
+    "nextCase": "TARGET-026E-CHART-OF-ACCOUNTS-MINIMAL-STRUCTURE-PLAN",
+    "updatedAt": "2026-06-30T19:25:00.000Z"
+  },
+  "latestTarget026EChartOfAccountsPlan": {
+    "caseId": "TARGET-026E-CHART-OF-ACCOUNTS-MINIMAL-STRUCTURE-PLAN",
+    "status": "observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-026e-chart-of-accounts-minimal-structure-plan/TARGET-026E-result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "summary": "Minimal candidate account structure defined for Universaarl; no G/L accounts created yet.",
+    "nextCase": "TARGET-026F-CHART-OF-ACCOUNTS-CONTROLLED-SETUP-GATE",
+    "updatedAt": "2026-06-30T19:45:00.000Z"
   }
 }

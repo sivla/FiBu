@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-026F-CHART-OF-ACCOUNTS-CONTROLLED-SETUP-GATE",
+  "title": "Chart of Accounts controlled setup gate",
+  "status": "planned",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "workType": "universaarl-chart-of-accounts-controlled-setup-gate",
+  "taskClass": "judge_work",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/target-026e-chart-of-accounts-minimal-structure-plan/TARGET-026E-result.json"
+  ],
+  "purpose": "Create or block the planned minimal G/L accounts in the UI with before/after/reopen proof.",
+  "allowedActions": [
+    "open-chart-of-accounts",
+    "create-planned-gl-accounts-only",
+    "capture-before-after-reopen-proof",
+    "write-result-and-next-step-card"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "change-vat-setup",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "api-shortcut"
+  ],
+  "entryCriteria": [
+    "TARGET-026E defines exact account candidates.",
+    "Chart of Accounts Page 16 is reachable in UNIVERSAARL-DE."
+  ],
+  "exitCriteria": [
+    "Each planned account is visible after reopen or individually blocked.",
+    "No VAT setup, posting group, master data, draft, Preview Posting or posting occurs."
+  ],
+  "lookahead": [
+    {
+      "caseId": "TARGET-026F-CHART-OF-ACCOUNTS-CONTROLLED-SETUP-GATE",
+      "status": "ready-next",
+      "reason": "Exact account candidates and stop gates are available."
+    },
+    {
+      "caseId": "TARGET-026C-VAT-GROUPS-CONTROLLED-SETUP-FIT",
+      "status": "needs-setup-first",
+      "reason": "Requires visible Sales/Purchase VAT account records after account setup."
+    },
+    {
+      "caseId": "TARGET-027-DEFAULT-DIMENSIONS-STRATEGY",
+      "status": "ready-after-current",
+      "reason": "Can continue after account/VAT path is classified."
+    },
+    {
+      "caseId": "TARGET-028-FIRST-CUSTOMER-CONTROLLED-CREATE",
+      "status": "needs-setup-first",
+      "reason": "Needs customer posting group, VAT and default-dimension decisions."
+    },
+    {
+      "caseId": "TARGET-029-FIRST-VENDOR-AND-ITEM-CONTROLLED-CREATE",
+      "status": "needs-setup-first",
+      "reason": "Needs vendor/item posting, VAT and inventory setup decisions."
+    }
+  ],
+  "nextStep": "Open Chart of Accounts and create or block planned G/L accounts with proof.",
+  "createdAt": "2026-06-30T19:45:00.000Z",
+  "updatedAt": "2026-06-30T19:45:00.000Z"
+}

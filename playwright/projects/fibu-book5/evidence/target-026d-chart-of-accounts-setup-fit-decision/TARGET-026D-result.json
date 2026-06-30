@@ -1,0 +1,133 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "TARGET-026D-CHART-OF-ACCOUNTS-SETUP-FIT-DECISION",
+  "source": "local-source-backed-decision",
+  "resultStatus": "observed",
+  "runPlanId": "TARGET-026D-CHART-OF-ACCOUNTS-SETUP-FIT-DECISION-PLAN",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/target-026b-chart-of-accounts-vat-account-preflight/TARGET-026B-result.json",
+    "playwright/projects/fibu-book5/UNIVERSAARL-CHART-OF-ACCOUNTS-SETUP-FIT-DECISION.md"
+  ],
+  "sources": [
+    {
+      "title": "Microsoft Learn: View the chart of accounts",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/business-central/finance-chart-of-accounts"
+    },
+    {
+      "title": "Microsoft Learn: Set up or change the chart of accounts",
+      "url": "https://learn.microsoft.com/en-au/dynamics365/business-central/finance-setup-chart-accounts"
+    }
+  ],
+  "proved": [
+    "TARGET-026B opened Chart of Accounts read-only in playthru/UNIVERSAARL-DE.",
+    "TARGET-026B captured no visible VAT/tax/account-like candidate text signals.",
+    "The next safe step is a minimal Chart of Accounts structure plan before VAT setup or master data creation."
+  ],
+  "notProved": [
+    "No G/L account was created or edited.",
+    "No VAT Business Posting Group, VAT Product Posting Group or VAT Posting Setup was changed.",
+    "No Sales VAT Account or Purchase VAT Account assignment is proven.",
+    "No German 19 percent VAT claim is proven.",
+    "No Preview Posting, VAT Entry, G/L Entry or posting exists.",
+    "No final German SKR04 or tax-advisor account plan is proven."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/UNIVERSAARL-CHART-OF-ACCOUNTS-SETUP-FIT-DECISION.md",
+    "playwright/projects/fibu-book5/evidence/target-026d-chart-of-accounts-setup-fit-decision/README.md",
+    "playwright/projects/fibu-book5/evidence/target-026d-chart-of-accounts-setup-fit-decision/TARGET-026D-result.json"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-026b-chart-of-accounts-vat-account-preflight/TARGET-026B-result.json",
+    "playwright/projects/fibu-book5/UNIVERSAARL-CHART-OF-ACCOUNTS-SETUP-FIT-DECISION.md",
+    "playwright/projects/fibu-book5/evidence/target-026d-chart-of-accounts-setup-fit-decision/TARGET-026D-result.json"
+  ],
+  "warnings": [
+    "blank-chart-of-accounts-means-vat-setup-write-is-not-ready",
+    "do-not-create-master-data-before-posting-and-vat-account-dependencies-are-clear",
+    "do-not-claim-final-german-chart-of-accounts"
+  ],
+  "blockedBy": [],
+  "flags": {
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noMasterDataChange": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookMasterChange": true
+  },
+  "decision": {
+    "selectedRoute": "plan-minimal-universaarl-chart-of-accounts-before-vat-setup",
+    "rejectedRoutes": [
+      "write-vat-setup-before-accounts",
+      "create-first-customer-before-posting-vat-account-basis",
+      "claim-german-final-chart-of-accounts-from-empty-list"
+    ],
+    "nextCase": "TARGET-026E-CHART-OF-ACCOUNTS-MINIMAL-STRUCTURE-PLAN"
+  },
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-026D-CHART-OF-ACCOUNTS-SETUP-FIT-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-026C-VAT-GROUPS-CONTROLLED-SETUP-FIT",
+    "lastEvidenceSummary": "TARGET-026B opened Chart of Accounts read-only; the list is reachable but no G/L account rows or VAT account candidates are visible.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "VAT setup groups need account candidates. The current account basis is blank or insufficient, so VAT setup must wait.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-026E-CHART-OF-ACCOUNTS-MINIMAL-STRUCTURE-PLAN",
+        "status": "ready-next",
+        "reason": "A minimal account structure must be planned before any account setup write."
+      },
+      {
+        "caseId": "TARGET-026F-CHART-OF-ACCOUNTS-CONTROLLED-SETUP-GATE",
+        "status": "ready-after-current",
+        "reason": "Only after TARGET-026E defines the exact accounts and stop gates."
+      },
+      {
+        "caseId": "TARGET-026C-VAT-GROUPS-CONTROLLED-SETUP-FIT",
+        "status": "needs-setup-first",
+        "reason": "Requires Sales/Purchase VAT account candidates or newly created accounts."
+      },
+      {
+        "caseId": "TARGET-027-DEFAULT-DIMENSIONS-STRATEGY",
+        "status": "ready-after-current",
+        "reason": "Can continue after account/VAT dependency path is classified."
+      },
+      {
+        "caseId": "TARGET-028-FIRST-CUSTOMER-CONTROLLED-CREATE",
+        "status": "needs-setup-first",
+        "reason": "Customer creation depends on posting group and VAT decisions."
+      }
+    ],
+    "queueChangesMade": [
+      "Select TARGET-026E before TARGET-026C because no VAT account candidates are visible."
+    ],
+    "selectedNextCase": "TARGET-026E-CHART-OF-ACCOUNTS-MINIMAL-STRUCTURE-PLAN",
+    "whySelectedNextCaseIsBest": "It turns the blank chart-of-accounts finding into a concrete, reviewable account setup plan before any write.",
+    "risksBeforeNextCase": [
+      "Do not create accounts without a specific account list and beginner-facing explanation.",
+      "Do not claim SKR04 or tax-advisor final correctness.",
+      "Do not unlock VAT setup or first master data until account dependencies are resolved."
+    ],
+    "requiredPreparation": [
+      "Define account families and exact candidate account numbers/names.",
+      "Mark which accounts are foundation-only, VAT-relevant, posting-group-relevant, bank, inventory or fixed-asset relevant.",
+      "Prepare screenshot and reopen-proof requirements for a later controlled setup gate."
+    ]
+  },
+  "requiresReview": false,
+  "safeToFinalizeState": false,
+  "statePatch": {},
+  "reason": "A blank/insufficient Chart of Accounts requires a minimal account-structure plan before VAT setup or first master data creation.",
+  "validationCommands": [
+    "npm run agent:preflight",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/target-026d-chart-of-accounts-setup-fit-decision/TARGET-026D-result.json",
+    "npm run check:encoding",
+    "git diff --check"
+  ]
+}
