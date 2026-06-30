@@ -1,0 +1,107 @@
+{
+  "fileName": "target-026n-010-chart-foundation-checkpoint.png",
+  "imagePath": "C:\\Users\\kkali\\.codex\\worktrees\\b8d6\\FiBu\\playwright\\projects\\fibu-book5\\evidence\\target-026n-chart-of-accounts-foundation-checkpoint\\target-026n-010-chart-foundation-checkpoint.png",
+  "caseId": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "page": "Kontenplan / Chart of Accounts",
+  "pageId": 16,
+  "step": "Read-only starter chart checkpoint",
+  "status": "blocked",
+  "navigatedVia": "card-17-filtered-4400-then-page-16-reopen",
+  "importantUi": [
+    "Nr.",
+    "Name",
+    "GuV/Bilanz",
+    "Kontoart",
+    "Buchung"
+  ],
+  "visibleLearning": [
+    "The chart foundation is checked before VAT Posting Groups, posting groups and master data.",
+    "GuV/Bilanz and Kontoart must be visible for each starter account.",
+    "Visible 1200/1800 Bank Saarland conflict is a bank/payment blocker, not VAT setup proof."
+  ],
+  "internallyProves": "Visible starter chart state in playthru / UNIVERSAARL-DE.",
+  "doesNotProve": [
+    "No VAT Posting Setup",
+    "No posting groups",
+    "No master data",
+    "No document draft",
+    "No Preview Posting",
+    "No Posting"
+  ],
+  "accountFindings": [
+    {
+      "no": "1200",
+      "name": "Bank Saarland",
+      "expectedType": "Bilanz",
+      "expectedAccountType": "Buchung",
+      "classification": "blocked-bank-conflict",
+      "visible": true,
+      "expectedStateVisible": true,
+      "status": "observed"
+    },
+    {
+      "no": "1406",
+      "name": "Abziehbare Vorsteuer 19 Prozent",
+      "expectedType": "Bilanz",
+      "expectedAccountType": "Buchung",
+      "classification": "foundation-candidate",
+      "visible": true,
+      "expectedStateVisible": true,
+      "status": "observed"
+    },
+    {
+      "no": "1800",
+      "name": "Bank Saarland",
+      "expectedType": "Bilanz",
+      "expectedAccountType": "Buchung",
+      "classification": "foundation-candidate",
+      "visible": true,
+      "expectedStateVisible": false,
+      "status": "blocked"
+    },
+    {
+      "no": "3300",
+      "name": "Verbindlichkeiten aus Lieferungen und Leistungen",
+      "expectedType": "Bilanz",
+      "expectedAccountType": "Buchung",
+      "classification": "foundation-candidate",
+      "visible": true,
+      "expectedStateVisible": false,
+      "status": "blocked"
+    },
+    {
+      "no": "3806",
+      "name": "Umsatzsteuer 19 Prozent",
+      "expectedType": "Bilanz",
+      "expectedAccountType": "Buchung",
+      "classification": "foundation-candidate",
+      "visible": true,
+      "expectedStateVisible": false,
+      "status": "blocked"
+    },
+    {
+      "no": "4400",
+      "name": "Umsatzerloese Inland 19 Prozent",
+      "expectedType": "GuV",
+      "expectedAccountType": "Buchung",
+      "classification": "foundation-candidate",
+      "visible": true,
+      "expectedStateVisible": true,
+      "status": "observed"
+    },
+    {
+      "no": "5400",
+      "name": "Wareneingang / Materialaufwand",
+      "expectedType": "GuV",
+      "expectedAccountType": "Buchung",
+      "classification": "foundation-candidate",
+      "visible": true,
+      "expectedStateVisible": false,
+      "status": "blocked"
+    }
+  ],
+  "bankConflict": true,
+  "screenshotQaRule": "The screenshot must show account number, name, GuV/Bilanz and Kontoart; a hidden row is not proof."
+}

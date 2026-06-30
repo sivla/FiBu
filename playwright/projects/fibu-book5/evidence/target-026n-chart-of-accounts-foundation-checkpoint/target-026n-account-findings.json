@@ -1,0 +1,77 @@
+{
+  "caseId": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
+  "accountFindings": [
+    {
+      "no": "1200",
+      "name": "Bank Saarland",
+      "expectedType": "Bilanz",
+      "expectedAccountType": "Buchung",
+      "classification": "blocked-bank-conflict",
+      "visible": true,
+      "expectedStateVisible": true,
+      "status": "observed"
+    },
+    {
+      "no": "1406",
+      "name": "Abziehbare Vorsteuer 19 Prozent",
+      "expectedType": "Bilanz",
+      "expectedAccountType": "Buchung",
+      "classification": "foundation-candidate",
+      "visible": true,
+      "expectedStateVisible": true,
+      "status": "observed"
+    },
+    {
+      "no": "1800",
+      "name": "Bank Saarland",
+      "expectedType": "Bilanz",
+      "expectedAccountType": "Buchung",
+      "classification": "foundation-candidate",
+      "visible": true,
+      "expectedStateVisible": false,
+      "status": "blocked"
+    },
+    {
+      "no": "3300",
+      "name": "Verbindlichkeiten aus Lieferungen und Leistungen",
+      "expectedType": "Bilanz",
+      "expectedAccountType": "Buchung",
+      "classification": "foundation-candidate",
+      "visible": true,
+      "expectedStateVisible": false,
+      "status": "blocked"
+    },
+    {
+      "no": "3806",
+      "name": "Umsatzsteuer 19 Prozent",
+      "expectedType": "Bilanz",
+      "expectedAccountType": "Buchung",
+      "classification": "foundation-candidate",
+      "visible": true,
+      "expectedStateVisible": false,
+      "status": "blocked"
+    },
+    {
+      "no": "4400",
+      "name": "Umsatzerloese Inland 19 Prozent",
+      "expectedType": "GuV",
+      "expectedAccountType": "Buchung",
+      "classification": "foundation-candidate",
+      "visible": true,
+      "expectedStateVisible": true,
+      "status": "observed"
+    },
+    {
+      "no": "5400",
+      "name": "Wareneingang / Materialaufwand",
+      "expectedType": "GuV",
+      "expectedAccountType": "Buchung",
+      "classification": "foundation-candidate",
+      "visible": true,
+      "expectedStateVisible": false,
+      "status": "blocked"
+    }
+  ],
+  "bankConflict": true,
+  "interpretation": "1200 and 1800 are both visible with Bank Saarland naming. This is classified as a blocker for bank/payment setup, but it does not block VAT Posting Groups preflight."
+}

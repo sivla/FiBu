@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "id": "TARGET-026O-CHART-OF-ACCOUNTS-VISIBLE-SCREENSHOT-RECOVERY",
+  "caseId": "TARGET-026O-CHART-OF-ACCOUNTS-VISIBLE-SCREENSHOT-RECOVERY",
+  "status": "pending",
+  "priority": "high",
+  "area": "universaarl-skr04-chart-of-accounts",
+  "goal": "Recover a visible read-only Chart of Accounts screenshot route for the Universaarl SKR04 starter accounts before VAT Posting Groups preflight.",
+  "sourceCase": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
+  "sourceResultPath": "playwright/projects/fibu-book5/evidence/target-026n-chart-of-accounts-foundation-checkpoint/TARGET-026N-result.json",
+  "createdAt": "2026-06-30T22:31:22.229Z",
+  "lookaheadStatus": "ready-next",
+  "mayRunPlaywright": true,
+  "mayWorkEffectively": false,
+  "effectiveBcActionsAllowed": false,
+  "sourceCompany": "UNIVERSAARL-DE",
+  "sourceInstance": "playthru",
+  "targetWorld": "Universaarl",
+  "problemStatement": "TARGET-026N reached compact Kontenplan text fragments via card-17/page-16 reopen, but screenshot QA still showed Role Center. The next case must produce a visible Kontenplan screenshot before VAT preflight can start.",
+  "allowedActions": [
+    "open-chart-of-accounts-readonly",
+    "use-visible-ui-navigation-only",
+    "capture-visible-chart-screenshot",
+    "capture-screenshot-qa",
+    "write-result-and-next-step-card"
+  ],
+  "forbiddenActions": [
+    "change-vat-setup",
+    "change-posting-groups",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "api-shortcut",
+    "edit-gl-accounts-during-screenshot-recovery",
+    "continue-to-vat-if-screenshot-does-not-show-kontenplan"
+  ],
+  "acceptanceCriteria": [
+    "The run stays in playthru / UNIVERSAARL-DE.",
+    "The screenshot visibly shows the Kontenplan list, not the Role Center.",
+    "The screenshot visibly shows account number/name and the GuV/Bilanz/Kontoart columns or explicitly documents why the columns are not visible.",
+    "No VAT setup, posting groups, master data, document draft, Preview Posting, Posting or API shortcut is executed."
+  ],
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
+    "plannedNextCaseBeforeReview": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
+    "lastEvidenceSummary": "TARGET-026N stayed in playthru / UNIVERSAARL-DE but blocked because screenshot QA still showed Role Center while compact text contained chart fragments.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "VAT preflight depends on a trusted visible chart checkpoint. The queue must recover the screenshot route first.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-026O-CHART-OF-ACCOUNTS-VISIBLE-SCREENSHOT-RECOVERY",
+        "status": "ready-next",
+        "reason": "Directly addresses the screenshot-truth blocker without setup writes."
+      },
+      {
+        "caseId": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
+        "status": "ready-after-current",
+        "reason": "Only after a visible Kontenplan checkpoint."
+      },
+      {
+        "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Depends on VAT and G/L foundation."
+      },
+      {
+        "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
+        "status": "needs-setup-first",
+        "reason": "Master data waits for chart, VAT and posting group readiness."
+      }
+    ],
+    "queueChangesMade": [
+      "Inserted visible chart screenshot recovery before VAT preflight."
+    ],
+    "selectedNextCase": "TARGET-026O-CHART-OF-ACCOUNTS-VISIBLE-SCREENSHOT-RECOVERY",
+    "whySelectedNextCaseIsBest": "It prevents a false Buch-/Setup claim from hidden/stale frame text.",
+    "risksBeforeNextCase": [
+      "Visible screenshot may still show Role Center; if so, stay blocked and improve navigation helper."
+    ],
+    "requiredPreparation": [
+      "Do screenshot QA before treating compact text as evidence."
+    ]
+  }
+}

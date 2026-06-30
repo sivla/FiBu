@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
   "caseId": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
-  "status": "pending",
+  "status": "blocked",
   "priority": "high",
   "area": "universaarl-skr04-chart-of-accounts",
   "goal": "Read-only checkpoint for the Universaarl SKR04 starter chart after 4400 and 5400 were corrected to GuV.",
@@ -80,45 +80,66 @@
     "The result does not unlock VAT setup, posting groups, master data or documents unless the checkpoint is coherent."
   ],
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-026M-SKR04-GUV-ACCOUNT-SAFE-WRITE-FOLLOWUP",
-    "plannedNextCaseBeforeReview": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
-    "lastEvidenceSummary": "TARGET-026M corrected 4400 and 5400 to GuV/Buchung and proved both values by card reopen and chart reopen screenshots.",
-    "isPlannedNextCaseStillSensible": true,
-    "reason": "Before VAT Posting Groups or master data, the full starter chart should be checked read-only as a coherent foundation.",
+    "currentCase": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
+    "plannedNextCaseBeforeReview": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
+    "lastEvidenceSummary": "TARGET-026M proved 4400 and 5400 as GuV/Buchung; TARGET-026N checks the whole starter chart read-only.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "Chart checkpoint blocked: Role Center still visible; screenshot truth gate rejected hidden/stale chart fragments..",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
-        "status": "ready-next",
-        "reason": "It validates the newly corrected chart without further setup writes."
-      },
-      {
         "caseId": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
-        "status": "ready-after-current",
-        "reason": "Only after chart values and open chart blockers are clearly classified."
+        "status": "blocked",
+        "reason": "Chart foundation is not coherent yet."
       },
       {
         "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "Posting groups depend on VAT and G/L foundation."
+        "reason": "Posting groups depend on VAT and account foundation."
       },
       {
         "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
         "status": "needs-setup-first",
-        "reason": "Master data waits for posting group and VAT readiness."
+        "reason": "Master data waits for VAT/posting groups."
+      },
+      {
+        "caseId": "TARGET-030-FIRST-DOCUMENT-DRAFT-GATE",
+        "status": "needs-setup-first",
+        "reason": "Documents require master data, number series, VAT and posting groups."
       }
     ],
     "queueChangesMade": [
-      "Selected the read-only chart checkpoint as the next step after TARGET-026M safe-write proof."
+      "Marked TARGET-026N blocked because screenshot truth gate did not accept the visible page as a chart checkpoint.",
+      "Inserted TARGET-026O visible screenshot recovery before VAT Posting Groups preflight."
     ],
-    "selectedNextCase": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
-    "whySelectedNextCaseIsBest": "It is the smallest safe step that turns the account writes into a usable foundation decision.",
+    "selectedNextCase": "TARGET-026O-CHART-OF-ACCOUNTS-VISIBLE-SCREENSHOT-RECOVERY",
+    "whySelectedNextCaseIsBest": "A visible Kontenplan screenshot is required before VAT setup preflight; compact text fragments are not enough.",
     "risksBeforeNextCase": [
-      "Do not edit accounts during the checkpoint.",
-      "Do not ignore the visible 1200/1800 bank naming conflict.",
-      "Do not unlock VAT or posting groups if chart blockers remain."
+      "Do not proceed to VAT setup preflight while the screenshot still shows Role Center.",
+      "Do not rely on compact text from hidden or stale frames.",
+      "Do not edit accounts during screenshot recovery."
     ],
     "requiredPreparation": [
-      "Use TARGET-026M safe-write screenshots as source proof for 4400 and 5400."
+      "Use screenshot QA first: the image must visibly show Kontenplan rows, not just text evidence.",
+      "Keep VAT setup, posting groups, master data and document creation locked."
     ]
-  }
+  },
+  "completedAt": "2026-06-30T22:31:22.229Z",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-026n-chart-of-accounts-foundation-checkpoint/TARGET-026N-result.json",
+  "evidencePath": "playwright/projects/fibu-book5/evidence/target-026n-chart-of-accounts-foundation-checkpoint/",
+  "resultStatus": "blocked",
+  "blockedBy": [
+    "Screenshot truth gate rejected this checkpoint because the visible page still looked like Role Center.",
+    "1800 Bank Saarland not visible with expected Bilanz/Buchung",
+    "3300 Verbindlichkeiten aus Lieferungen und Leistungen not visible with expected Bilanz/Buchung",
+    "3806 Umsatzsteuer 19 Prozent not visible with expected Bilanz/Buchung",
+    "5400 Wareneingang / Materialaufwand not visible with expected GuV/Buchung"
+  ],
+  "warnings": [
+    "1200 Bank Saarland and 1800 Bank Saarland are both visible; classify before bank/payment setup."
+  ],
+  "screenshots": [
+    "target-026n-010-chart-foundation-checkpoint.png"
+  ],
+  "nextCase": "TARGET-026O-CHART-OF-ACCOUNTS-VISIBLE-SCREENSHOT-RECOVERY",
+  "nextStep": "Recover a visible Chart of Accounts screenshot route before VAT Posting Groups preflight."
 }

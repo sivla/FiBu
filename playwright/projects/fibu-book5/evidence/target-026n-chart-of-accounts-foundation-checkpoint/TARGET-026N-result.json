@@ -1,0 +1,187 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
+  "source": "playwright-readonly-chart-checkpoint",
+  "resultStatus": "blocked",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=16&company=UNIVERSAARL-DE",
+  "page": "Kontenplan / Chart of Accounts",
+  "pageId": 16,
+  "navigatedVia": "card-17-filtered-4400-then-page-16-reopen",
+  "actionsTaken": [
+    "Opened Business Central in playthru / UNIVERSAARL-DE.",
+    "Opened Chart of Accounts Page 16 directly.",
+    "Captured compact account text and screenshot.",
+    "Classified starter account rows and the 1200/1800 bank conflict."
+  ],
+  "actionsNotTaken": [
+    "No account edit",
+    "No VAT setup",
+    "No posting groups",
+    "No master data",
+    "No document draft",
+    "No Preview Posting",
+    "No Posting",
+    "No API shortcut"
+  ],
+  "setupChanged": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "proved": [
+    "Business Central stayed in playthru / UNIVERSAARL-DE.",
+    "The chart checkpoint stopped before VAT/posting/master data."
+  ],
+  "notProved": [
+    "No complete SKR04 chart of accounts.",
+    "No tax advisor approval.",
+    "No VAT Posting Setup row.",
+    "No posting groups.",
+    "No master data.",
+    "No document, Preview Posting or Posting.",
+    "No German compliance final claim.",
+    "Bank/payment setup is not ready while the 1200/1800 Bank Saarland conflict is open."
+  ],
+  "blockedBy": [
+    "Screenshot truth gate rejected this checkpoint because the visible page still looked like Role Center.",
+    "1800 Bank Saarland not visible with expected Bilanz/Buchung",
+    "3300 Verbindlichkeiten aus Lieferungen und Leistungen not visible with expected Bilanz/Buchung",
+    "3806 Umsatzsteuer 19 Prozent not visible with expected Bilanz/Buchung",
+    "5400 Wareneingang / Materialaufwand not visible with expected GuV/Buchung"
+  ],
+  "warnings": [
+    "1200 Bank Saarland and 1800 Bank Saarland are both visible; classify before bank/payment setup."
+  ],
+  "screenshots": [
+    "target-026n-010-chart-foundation-checkpoint.png"
+  ],
+  "evidenceRefs": [
+    "TARGET-026N-result.json",
+    "README.md",
+    "target-026n-chart-context.txt",
+    "target-026n-account-findings.json",
+    "target-026n-010-chart-foundation-checkpoint.png",
+    "target-026n-010-chart-foundation-checkpoint.screenshot.json"
+  ],
+  "accountFindings": [
+    {
+      "no": "1200",
+      "name": "Bank Saarland",
+      "expectedType": "Bilanz",
+      "expectedAccountType": "Buchung",
+      "classification": "blocked-bank-conflict",
+      "visible": true,
+      "expectedStateVisible": true,
+      "status": "observed"
+    },
+    {
+      "no": "1406",
+      "name": "Abziehbare Vorsteuer 19 Prozent",
+      "expectedType": "Bilanz",
+      "expectedAccountType": "Buchung",
+      "classification": "foundation-candidate",
+      "visible": true,
+      "expectedStateVisible": true,
+      "status": "observed"
+    },
+    {
+      "no": "1800",
+      "name": "Bank Saarland",
+      "expectedType": "Bilanz",
+      "expectedAccountType": "Buchung",
+      "classification": "foundation-candidate",
+      "visible": true,
+      "expectedStateVisible": false,
+      "status": "blocked"
+    },
+    {
+      "no": "3300",
+      "name": "Verbindlichkeiten aus Lieferungen und Leistungen",
+      "expectedType": "Bilanz",
+      "expectedAccountType": "Buchung",
+      "classification": "foundation-candidate",
+      "visible": true,
+      "expectedStateVisible": false,
+      "status": "blocked"
+    },
+    {
+      "no": "3806",
+      "name": "Umsatzsteuer 19 Prozent",
+      "expectedType": "Bilanz",
+      "expectedAccountType": "Buchung",
+      "classification": "foundation-candidate",
+      "visible": true,
+      "expectedStateVisible": false,
+      "status": "blocked"
+    },
+    {
+      "no": "4400",
+      "name": "Umsatzerloese Inland 19 Prozent",
+      "expectedType": "GuV",
+      "expectedAccountType": "Buchung",
+      "classification": "foundation-candidate",
+      "visible": true,
+      "expectedStateVisible": true,
+      "status": "observed"
+    },
+    {
+      "no": "5400",
+      "name": "Wareneingang / Materialaufwand",
+      "expectedType": "GuV",
+      "expectedAccountType": "Buchung",
+      "classification": "foundation-candidate",
+      "visible": true,
+      "expectedStateVisible": false,
+      "status": "blocked"
+    }
+  ],
+  "bankConflict": true,
+  "roleCenterStillVisible": true,
+  "safeToFinalizeState": false,
+  "requiresReview": true,
+  "nextStepDecision": {
+    "currentCase": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
+    "plannedNextCaseBeforeReview": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
+    "lastEvidenceSummary": "TARGET-026M proved 4400 and 5400 as GuV/Buchung; TARGET-026N checks the whole starter chart read-only.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "Chart checkpoint blocked: Role Center still visible; screenshot truth gate rejected hidden/stale chart fragments..",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
+        "status": "blocked",
+        "reason": "Chart foundation is not coherent yet."
+      },
+      {
+        "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Posting groups depend on VAT and account foundation."
+      },
+      {
+        "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
+        "status": "needs-setup-first",
+        "reason": "Master data waits for VAT/posting groups."
+      },
+      {
+        "caseId": "TARGET-030-FIRST-DOCUMENT-DRAFT-GATE",
+        "status": "needs-setup-first",
+        "reason": "Documents require master data, number series, VAT and posting groups."
+      }
+    ],
+    "queueChangesMade": [
+      "Keep chart foundation review before VAT."
+    ],
+    "selectedNextCase": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-REVIEW",
+    "whySelectedNextCaseIsBest": "The chart must be reviewed before any VAT or posting group path.",
+    "risksBeforeNextCase": [
+      "Do not use 1200 Bank Saarland for bank/payment setup until a separate cleanup decision exists."
+    ],
+    "requiredPreparation": [
+      "Review missing/wrong chart rows."
+    ]
+  },
+  "nextCase": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-REVIEW",
+  "reason": "Starter chart checkpoint blocked because the visible screenshot/page still showed Role Center; compact text fragments alone are not sufficient evidence."
+}

@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-30T23:05:00.000Z",
+  "updatedAt": "2026-06-30T22:31:22.229Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-skr04-chart-foundation-checkpoint",
-  "activeCase": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
-  "active_case_file": ".agent/state/cases/target-026n-chart-of-accounts-foundation-checkpoint.json",
+  "activeArea": "universaarl-skr04-chart-visible-screenshot-recovery",
+  "activeCase": "TARGET-026O-CHART-OF-ACCOUNTS-VISIBLE-SCREENSHOT-RECOVERY",
+  "active_case_file": ".agent/state/cases/target-026o-chart-of-accounts-visible-screenshot-recovery.json",
   "lastReferenceCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
   "lastReferenceCaseFile": ".agent/state/cases/warehouse-031-warehouse-source-route-park-or-setup-fit-decision.json",
   "mode": "universaarl-target-execution",
@@ -19,10 +19,9 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "open-chart-of-accounts-page-16",
-    "verify-starter-skr04-account-rows",
-    "verify-guv-bilanz-and-kontoart-values",
-    "capture-foundation-checkpoint-screenshots",
+    "open-chart-of-accounts-readonly",
+    "use-visible-ui-navigation-only",
+    "capture-visible-chart-screenshot",
     "capture-screenshot-qa",
     "write-result-and-next-step-card"
   ],
@@ -39,11 +38,11 @@
     "preview-posting",
     "post",
     "api-shortcut",
-    "edit-gl-accounts-during-checkpoint",
-    "continue-to-vat-or-masterdata-if-foundation-checkpoint-fails"
+    "edit-gl-accounts-during-screenshot-recovery",
+    "continue-to-vat-if-screenshot-does-not-show-kontenplan"
   ],
-  "nextCase": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
-  "nextStep": "Run a read-only Kontenplan foundation checkpoint for the Universaarl SKR04 starter accounts after TARGET-026M proved 4400 and 5400 as GuV/Buchung; VAT setup, posting groups, master data, documents, Preview Posting and Posting remain locked.",
+  "nextCase": "TARGET-026O-CHART-OF-ACCOUNTS-VISIBLE-SCREENSHOT-RECOVERY",
+  "nextStep": "Run TARGET-026O to recover a visible Kontenplan screenshot before VAT Posting Groups preflight; do not proceed from compact text alone.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -3824,7 +3823,6 @@
   },
   "activeCaseFile": ".agent/state/cases/target-026m-skr04-guv-account-route-recovery.json",
   "previousCase": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
-  "nextCase": "TARGET-026M-SKR04-GUV-ACCOUNT-ROUTE-RECOVERY",
   "latestPrepCase": {
     "caseId": "PREP-034-ROLE-CENTER-READONLY-SHELL-MAP",
     "status": "prep-observed",
@@ -6351,5 +6349,24 @@
     ],
     "screenshotQaLearning": "Do not count the label GuV/Bilanz as value GuV. The screenshot and reopen proof must show the field value itself.",
     "nextCase": "TARGET-026M-SKR04-GUV-ACCOUNT-PAGEINSPECTION-FOLLOWUP"
+  },
+  "latestTarget026NChartCheckpoint": {
+    "caseId": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
+    "status": "blocked",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-026n-chart-of-accounts-foundation-checkpoint/TARGET-026N-result.json",
+    "evidencePath": "playwright/projects/fibu-book5/evidence/target-026n-chart-of-accounts-foundation-checkpoint/",
+    "blockedBy": [
+      "Screenshot truth gate rejected this checkpoint because the visible page still looked like Role Center.",
+      "1800 Bank Saarland not visible with expected Bilanz/Buchung",
+      "3300 Verbindlichkeiten aus Lieferungen und Leistungen not visible with expected Bilanz/Buchung",
+      "3806 Umsatzsteuer 19 Prozent not visible with expected Bilanz/Buchung",
+      "5400 Wareneingang / Materialaufwand not visible with expected GuV/Buchung"
+    ],
+    "warnings": [
+      "1200 Bank Saarland and 1800 Bank Saarland are both visible; classify before bank/payment setup."
+    ],
+    "navigatedVia": "card-17-filtered-4400-then-page-16-reopen",
+    "screenshotTruthGate": "blocked-visible-page-not-accepted-as-kontenplan",
+    "nextCase": "TARGET-026O-CHART-OF-ACCOUNTS-VISIBLE-SCREENSHOT-RECOVERY"
   }
 }

@@ -61,7 +61,11 @@ Die Screenshot-QA zeigt weiterhin die offene Altlast `1200 Bank Saarland`. Diese
 
 `TARGET-026M` und die Recovery-Laeufe bleiben als wichtige Blocker-Evidence erhalten: Sie zeigen, dass die Feldbeschriftung `GuV/Bilanz` nicht als Wert `GuV` zaehlt. `TARGET-026M-SKR04-GUV-ACCOUNT-SAFE-WRITE-FOLLOWUP` hat den Blocker geloest: Die Sachkontokarte wurde im echten Edit-Modus geoeffnet, das Feld `GuV/Bilanz` wurde auf `GuV` gesetzt, und beide Zielkonten wurden nach Karten-Reopen und Kontenplan-Reopen sichtbar geprueft.
 
-Der naechste Schritt ist kein VAT Setup und keine Stammdatenanlage, sondern ein read-only Kontenplan-Checkpoint. Dabei muss die sichtbare Altlast `1200 Bank Saarland` gegen `1800 Bank Saarland` klassifiziert werden.
+## Stand nach `TARGET-026N`
+
+`TARGET-026N` hat den Kontenplan-Checkpoint nicht freigegeben. Der Lauf blieb zwar in `playthru / UNIVERSAARL-DE` und lieferte kompakte Kontenplan-Textfragmente, aber die Screenshot-QA zeigte weiterhin den Role Center statt der sichtbaren Kontenplanliste. Damit ist der Lauf absichtlich `blocked`: Ein unsichtbarer oder veralteter Frame-Text reicht nicht als Buch- oder Setup-Beweis.
+
+Der naechste Schritt ist deshalb noch kein VAT Setup und keine Stammdatenanlage, sondern `TARGET-026O`: eine sichtbare Kontenplan-Screenshot-Recovery. Erst wenn das Bild selbst `Nr.`, `Name`, `GuV/Bilanz`, `Kontoart` und die relevanten Starterkonten zeigt, darf der VAT-Posting-Groups-Preflight folgen. Die Altlast `1200 Bank Saarland` bleibt gegen `1800 Bank Saarland` zu klassifizieren.
 
 ## Quellenbasis
 
