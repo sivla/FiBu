@@ -1322,7 +1322,7 @@
     {
       "id": "TARGET-019-POSTING-GROUPS-PREFLIGHT-OR-NUMBERING-PARK-DECISION",
       "order": 10031,
-      "status": "pending",
+      "status": "done",
       "category": "target-foundation-posting-groups-numbering-decision",
       "expectedImpact": "decide-numbering-gaps-before-posting-groups-preflight",
       "mayWorkEffectively": true,
@@ -1332,11 +1332,49 @@
       "sourceCompany": "UNIVERSAARL-DE",
       "targetWorld": "Universaarl",
       "noFinalGermanClaimWithoutUniversaarlEvidence": false,
+      "lookaheadStatus": "done",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-019-posting-groups-preflight-or-numbering-park-decision/TARGET-019-result.json",
+      "completedAt": "2026-06-30T15:01:22.818Z",
+      "result": "Numbering gaps parked; Posting Groups read-only preflight selected.",
+      "blockedBy": []
+    },
+    {
+      "id": "TARGET-019B-POSTING-GROUPS-READONLY-PREFLIGHT",
+      "order": 10032,
+      "status": "done",
+      "category": "target-foundation-posting-groups-readonly",
+      "expectedImpact": "posting-groups-page-context-proof",
+      "mayWorkEffectively": false,
+      "mayRunPlaywright": true,
+      "effectiveBcActionsAllowed": false,
+      "goal": "Open the key posting-group and VAT setup pages read-only so the book and next setup cases know which Business Central pages control account determination before master data or document preview.",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "targetWorld": "Universaarl",
+      "noFinalGermanClaimWithoutUniversaarlEvidence": false,
+      "lookaheadStatus": "done",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-019b-posting-groups-readonly-preflight/TARGET-019B-result.json",
+      "completedAt": "2026-06-30T15:03:31.331Z",
+      "result": "Posting Groups and VAT setup page contexts opened read-only in playthru / UNIVERSAARL-DE.",
+      "blockedBy": []
+    },
+    {
+      "id": "TARGET-020-VAT-SETUP-READINESS",
+      "order": 10033,
+      "status": "pending",
+      "category": "target-foundation-vat-readiness",
+      "expectedImpact": "vat-setup-readiness-classification",
+      "mayWorkEffectively": false,
+      "mayRunPlaywright": true,
+      "effectiveBcActionsAllowed": false,
+      "goal": "Inspect and classify VAT setup readiness before German VAT claims or document preview.",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "targetWorld": "Universaarl",
+      "noFinalGermanClaimWithoutUniversaarlEvidence": false,
       "lookaheadStatus": "ready-next",
       "resultPath": null
     }
   ],
-  "lastUpdated": "2026-06-30T14:51:37.116Z",
+  "lastUpdated": "2026-06-30T15:03:31.331Z",
   "nextStepDecisionGate": {
     "active": true,
     "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",
@@ -1359,56 +1397,49 @@
       "replace-with-better-case"
     ],
     "latestDecisionCard": {
-      "currentCase": "TARGET-017B-NUMBER-SERIES-SETUP-FIELD-DISCOVERY",
-      "plannedNextCaseBeforeReview": "TARGET-017B-NUMBER-SERIES-SETUP-FIELD-DISCOVERY",
-      "lastEvidenceSummary": "TARGET-017 assigned/proved U-SO, U-SINV, U-VEND and U-PINV, but blocked U-CUST, U-PO and U-ITEM.",
+      "currentCase": "TARGET-019B-POSTING-GROUPS-READONLY-PREFLIGHT",
+      "plannedNextCaseBeforeReview": "TARGET-019B-POSTING-GROUPS-READONLY-PREFLIGHT",
+      "lastEvidenceSummary": "TARGET-019 parked unresolved numbering setup gaps for now and unlocked read-only Posting Groups preflight.",
       "isPlannedNextCaseStillSensible": true,
-      "reason": "Blocked fields need UI discovery before any master data or blind setup write.",
+      "reason": "Posting groups are the next foundation dependency before master data and any Preview Posting.",
       "lookaheadReviewed": [
         {
-          "caseId": "TARGET-019-POSTING-GROUPS-PREFLIGHT-OR-NUMBERING-PARK-DECISION",
-          "status": "replace-with-better-case",
-          "reason": "Remaining numbering setup may be parked if fields are not assignable through the current card UI."
-        },
-        {
-          "caseId": "TARGET-019-POSTING-GROUPS-PREFLIGHT",
-          "status": "ready-after-current",
-          "reason": "Posting groups are independent enough to inspect if remaining numbering fields are parked with a documented limit."
-        },
-        {
           "caseId": "TARGET-020-VAT-SETUP-READINESS",
-          "status": "ready-after-current",
-          "reason": "VAT setup follows posting group preflight before documents."
+          "status": "ready-next",
+          "reason": "VAT setup follows posting group page preflight before document preview."
         },
         {
           "caseId": "TARGET-021-DIMENSIONS-FOUNDATION",
           "status": "ready-after-current",
-          "reason": "Dimensions can proceed after numbering/posting setup sequencing is clear."
+          "reason": "Dimensions can be prepared after posting/VAT setup sequencing."
         },
         {
           "caseId": "TARGET-022-CORE-MASTERDATA-PLAN",
           "status": "needs-setup-first",
-          "reason": "Master data waits for numbering, posting groups, VAT and dimensions."
+          "reason": "Customers, vendors and items need posting groups, VAT and dimensions."
+        },
+        {
+          "caseId": "TARGET-023-CUSTOMER-VENDOR-ITEM-TEMPLATES-PREFLIGHT",
+          "status": "needs-setup-first",
+          "reason": "Templates depend on the setup defaults observed in foundation cases."
         }
       ],
-      "queueChangesMade": [
-        "Selected TARGET-019-POSTING-GROUPS-PREFLIGHT-OR-NUMBERING-PARK-DECISION based on TARGET-017B field discovery."
-      ],
-      "selectedNextCase": "TARGET-019-POSTING-GROUPS-PREFLIGHT-OR-NUMBERING-PARK-DECISION",
-      "whySelectedNextCaseIsBest": "The remaining fields are not all writable through the current UI route; the project should either park them explicitly or continue with posting-group preflight.",
+      "queueChangesMade": [],
+      "selectedNextCase": "TARGET-020-VAT-SETUP-READINESS",
+      "whySelectedNextCaseIsBest": "Posting group page contexts are visible enough for the VAT readiness case.",
       "risksBeforeNextCase": [
-        "Do not create customers/vendors/items until numbering gaps are consciously resolved or parked.",
-        "Do not treat visible labels as assigned values.",
-        "Do not claim legal numbering compliance."
+        "Do not edit posting groups until a separate setup-change case defines values and accounts.",
+        "Do not create master data yet.",
+        "Do not claim posting readiness from visibility alone."
       ],
       "requiredPreparation": [
-        "Review TARGET-017B screenshots and discovery JSON before any assignment follow-up."
+        "Use TARGET-019B screenshots as read-only context, not setup correctness proof."
       ]
     }
   },
   "updatedAt": "2026-06-30T12:20:35.744Z",
-  "lastCompletedCase": "TARGET-017B-NUMBER-SERIES-SETUP-FIELD-DISCOVERY",
-  "nextCase": "TARGET-019-POSTING-GROUPS-PREFLIGHT-OR-NUMBERING-PARK-DECISION",
+  "lastCompletedCase": "TARGET-019B-POSTING-GROUPS-READONLY-PREFLIGHT",
+  "nextCase": "TARGET-020-VAT-SETUP-READINESS",
   "nextStepDecisionCard": {
     "currentCase": "TARGET-016E-NUMBER-SERIES-LINES-FIELD-FLOW-CONTROLLED-FIT",
     "plannedNextCaseBeforeReview": "TARGET-016E-NUMBER-SERIES-LINES-FIELD-FLOW-CONTROLLED-FIT",

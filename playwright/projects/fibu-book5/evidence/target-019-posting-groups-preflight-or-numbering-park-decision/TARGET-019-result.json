@@ -1,107 +1,14 @@
 {
   "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
   "caseId": "TARGET-019-POSTING-GROUPS-PREFLIGHT-OR-NUMBERING-PARK-DECISION",
-  "title": "Decide numbering gaps before Posting Groups preflight",
-  "status": "done",
+  "source": "local-decision-gate",
+  "resultStatus": "observed",
+  "runPlanId": "TARGET-019-POSTING-GROUPS-PREFLIGHT-OR-NUMBERING-PARK-DECISION-PLAN",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "workType": "foundation-decision-gate",
-  "taskClass": "judge_work",
-  "sourceEvidence": [
-    "TARGET-016M-NUMBER-SERIES-REMAINING-LINES-CONTROLLED-FIT",
-    "TARGET-017-NUMBER-SERIES-SETUP-ASSIGNMENT",
-    "TARGET-017B-NUMBER-SERIES-SETUP-FIELD-DISCOVERY"
-  ],
-  "purpose": "Avoid another blind setup-field loop. Decide whether the remaining number-series setup gaps can be parked before Posting Groups preflight or whether a single non-repeating field route is still required.",
-  "knownNumberingState": {
-    "linesProven": [
-      "U-CUST",
-      "U-VEND",
-      "U-ITEM",
-      "U-SO",
-      "U-SINV",
-      "U-PO",
-      "U-PINV"
-    ],
-    "setupAssignmentsProven": [
-      "Sales & Receivables Setup / Order Nos. -> U-SO",
-      "Sales & Receivables Setup / Invoice Nos. -> U-SINV",
-      "Purchases & Payables Setup / Vendor Nos. -> U-VEND",
-      "Purchases & Payables Setup / Invoice Nos. -> U-PINV"
-    ],
-    "routeCandidateOnly": [
-      "Purchases & Payables Setup / Purchase Order Nos. -> U-PO"
-    ],
-    "notVisibleInSetupCards": [
-      "Sales & Receivables Setup / Customer Nos. -> U-CUST",
-      "Inventory Setup / Item Nos. -> U-ITEM"
-    ]
-  },
-  "allowedActions": [
-    "review-target-017b-evidence",
-    "write-numbering-park-or-followup-decision",
-    "open-posting-group-pages-readonly-if-needed",
-    "capture-readonly-context-screenshot-if-needed",
-    "write-result-and-next-step-card",
-    "queue-and-state-update"
-  ],
-  "forbiddenActions": [
-    "leave-playthru",
-    "operate-in-legacy-lab-as-active-target",
-    "create-master-data",
-    "create-document-or-draft",
-    "preview-posting",
-    "post",
-    "api-shortcut",
-    "change-number-series-line-checkboxes",
-    "repeat-target-017-blind-assignment-route",
-    "change-posting-groups",
-    "claim-legal-numbering-compliance",
-    "book-claim-without-evidence"
-  ],
-  "entryCriteria": [
-    "TARGET-017B result exists.",
-    "Number Series Lines for U-* are proven with reopen proof.",
-    "Only four setup-page assignments are proven.",
-    "Customer Nos. and Item Nos. remain not visible in setup-card field discovery."
-  ],
-  "exitCriteria": [
-    "The run records whether remaining numbering gaps are parked, assigned through a new route, or blocking.",
-    "If parked, the reason explains which future action must revisit Customer Nos., Item Nos. and optional Purchase Order Nos.",
-    "If Posting Groups preflight becomes next, it is explicitly read-only unless a later case unlocks setup changes."
-  ],
-  "lookahead": [
-    {
-      "caseId": "TARGET-019-POSTING-GROUPS-PREFLIGHT-OR-NUMBERING-PARK-DECISION",
-      "status": "ready-next",
-      "reason": "TARGET-017B completed the diagnostics and exposed a decision point."
-    },
-    {
-      "caseId": "TARGET-019B-POSTING-GROUPS-READONLY-PREFLIGHT",
-      "status": "ready-after-current",
-      "reason": "Posting Groups can be inspected read-only if numbering gaps are consciously parked."
-    },
-    {
-      "caseId": "TARGET-020-VAT-SETUP-READINESS",
-      "status": "ready-after-current",
-      "reason": "VAT setup follows posting group preflight before any document preview."
-    },
-    {
-      "caseId": "TARGET-021-DIMENSIONS-FOUNDATION",
-      "status": "ready-after-current",
-      "reason": "Dimensions should be available before rich process evidence."
-    },
-    {
-      "caseId": "TARGET-022-CORE-MASTERDATA-PLAN",
-      "status": "needs-setup-first",
-      "reason": "Master data waits for numbering, posting groups, VAT and dimensions."
-    }
-  ],
-  "nextStep": "Run TARGET-019B: inspect Posting Groups and VAT setup pages read-only with direct page routes before any setup value, master data, preview or posting.",
-  "createdAt": "2026-06-30T00:00:00.000Z",
-  "completedAt": "2026-06-30T15:01:22.818Z",
-  "resultStatus": "observed",
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-019-posting-groups-preflight-or-numbering-park-decision/TARGET-019-result.json",
   "decision": {
     "selectedRoute": "park-numbering-gaps-and-run-posting-groups-readonly-preflight",
     "parkedGaps": [
@@ -123,12 +30,37 @@
     "Posting Group completeness and account correctness are not yet proven.",
     "No master data, document, Preview Posting, posting or ledger trace exists."
   ],
-  "blockedBy": [],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/target-019-posting-groups-preflight-or-numbering-park-decision/TARGET-019-result.json",
+    "playwright/projects/fibu-book5/evidence/target-019-posting-groups-preflight-or-numbering-park-decision/README.md",
+    ".agent/state/current.json",
+    ".agent/state/marathon_queue.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/cases/target-019-posting-groups-preflight-or-numbering-park-decision.json"
+  ],
   "evidenceRefs": [
     "playwright/projects/fibu-book5/evidence/target-019-posting-groups-preflight-or-numbering-park-decision/TARGET-019-result.json",
     "playwright/projects/fibu-book5/evidence/target-017b-number-series-setup-field-discovery/TARGET-017B-result.json"
   ],
-  "nextCase": "TARGET-019B-POSTING-GROUPS-READONLY-PREFLIGHT",
+  "blockedBy": [],
+  "warnings": [
+    "Do not create customers or items until the numbering gaps are resolved or the manual-number/template path is explicitly accepted.",
+    "Do not claim legal numbering compliance.",
+    "Posting Group page visibility will not prove posting readiness by itself."
+  ],
+  "flags": {
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noMasterDataChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noSearch": true,
+    "noBookMasterChange": true,
+    "noSetupChange": true,
+    "localDecisionOnly": true
+  },
   "nextStepDecisionCard": {
     "currentCase": "TARGET-019-POSTING-GROUPS-PREFLIGHT-OR-NUMBERING-PARK-DECISION",
     "plannedNextCaseBeforeReview": "TARGET-019-POSTING-GROUPS-PREFLIGHT-OR-NUMBERING-PARK-DECISION",
@@ -177,5 +109,10 @@
       "Use direct page URLs where known; avoid Tell-Me search unless a page route is unknown.",
       "Capture screenshot QA and text snapshots for each page."
     ]
-  }
+  },
+  "requiresReview": false,
+  "safeToFinalizeState": false,
+  "statePatch": {},
+  "reason": "Numbering gaps consciously parked; Posting Groups read-only preflight selected as next foundation step.",
+  "updatedAt": "2026-06-30T15:00:26.832Z"
 }

@@ -340,8 +340,8 @@
     "universaarlFoundation": {
       "chapter": "Kapitel 6",
       "status": "in-progress",
-      "currentBlock": "number-series-partial-setup-assignment-needs-park-or-followup-decision",
-      "latestPracticalCase": "TARGET-017B-NUMBER-SERIES-SETUP-FIELD-DISCOVERY",
+      "currentBlock": "vat-setup-readiness-next",
+      "latestPracticalCase": "TARGET-019B-POSTING-GROUPS-READONLY-PREFLIGHT",
       "latestGovernanceCase": "UNIVERSAARL-001-TARGET-TRANSITION-GOVERNANCE",
       "targetInstance": "playthru",
       "targetCompany": "UNIVERSAARL-DE",
@@ -357,10 +357,11 @@
         "My Settings can show a personal/default Mandant such as CRONUS DE and must not be used alone as active-company proof.",
         "TARGET-017B found visible Purchase Order Nos. candidates but did not assign U-PO.",
         "TARGET-017B did not find visible Customer Nos. or Item Nos. setup-card fields after controlled expansion.",
-        "Master data must wait until numbering gaps are consciously parked or resolved plus posting groups, VAT and dimensions are ready."
+        "Master data must wait until numbering gaps are consciously parked or resolved plus posting groups, VAT and dimensions are ready.",
+        "TARGET-019B proves page context only; posting group completeness and account correctness are not proven."
       ],
-      "nextCase": "TARGET-019-POSTING-GROUPS-PREFLIGHT-OR-NUMBERING-PARK-DECISION",
-      "nextStep": "Run TARGET-019: decide whether the remaining number-series setup gaps (U-CUST, U-ITEM, and optional U-PO follow-up) can be consciously parked before Posting Groups preflight, or whether one narrow non-repeating field route is still required.",
+      "nextCase": "TARGET-020-VAT-SETUP-READINESS",
+      "nextStep": "Run TARGET-020: inspect VAT setup readiness and source boundaries before any German VAT claim, setup change, document preview or posting.",
       "latestReadonlyContextCase": "PREP-033-MY-SETTINGS-READONLY-CONTEXT",
       "latestReadonlyContextResult": "playwright/projects/fibu-book5/evidence/prep-033-my-settings-readonly-context/PREP-033-result.json",
       "mySettingsContext": {
@@ -415,7 +416,8 @@
         "My Settings is captured as user-context evidence and not accepted as sole active-company proof",
         "Firmendaten shows Universaarl GmbH as saved company name",
         "General Ledger Setup, No. Series, General Posting Setup, VAT Posting Setup and Dimensions open read-only in UNIVERSAARL-DE",
-        "Number Series page 456 shows BANKEINZ, CT-MSG and VATNOTIF read-only"
+        "Number Series page 456 shows BANKEINZ, CT-MSG and VATNOTIF read-only",
+        "General Posting Setup, Customer Posting Groups, Vendor Posting Groups, Inventory Posting Setup and VAT Posting Setup opened read-only in UNIVERSAARL-DE"
       ],
       "latestTarget010CompanyContext": {
         "status": "observed",
@@ -567,7 +569,8 @@
           "Keine Werte, Checkboxen, Stammdaten, Drafts, Preview oder Posting wurden in TARGET-017B geaendert."
         ],
         "updatedAt": "2026-06-30T14:51:37.116Z"
-      }
+      },
+      "latestDecisionCase": "TARGET-019-POSTING-GROUPS-PREFLIGHT-OR-NUMBERING-PARK-DECISION"
     },
     "universaarlUsecaseBacklog": {
       "chapter": "cross-book",
@@ -616,7 +619,7 @@
     "foundation": {
       "chapter": "Kapitel 6",
       "status": "in-progress",
-      "currentBlock": "universaarl-company-creation-blocked-until-permissions",
+      "currentBlock": "vat-setup-readiness-next",
       "latestBookCleanupCase": "PREP-046-BOOKMASTER-STARTER-DATA-UNIVERSAARL-CLEANUP",
       "covered": [
         "Chapter 6 starter data package uses Universaarl target master-data codes."
@@ -624,8 +627,8 @@
       "openLimits": [
         "UNIVERSAARL-DE still does not exist; starter data is a target blueprint, not live evidence."
       ],
-      "nextCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
-      "nextStep": "After explicit SUPER/company-create permission confirmation, run TARGET-009 using Mandanten -> arrow next to Neu -> Neues Unternehmen erstellen with the PREP-040 screenshot chain."
+      "nextCase": "TARGET-020-VAT-SETUP-READINESS",
+      "nextStep": "Run TARGET-020: inspect VAT setup readiness and source boundaries before any German VAT claim, setup change, document preview or posting."
     },
     "universaarlCompanyFoundation": {
       "chapter": "Kapitel 3/4/6",
@@ -648,7 +651,7 @@
       "nextCase": "TARGET-010-UNIVERSAARL-COMPANY-CONTEXT-PROOF"
     },
     "numberSeries": {
-      "status": "in-progress-partial-setup-assignment-decision-needed",
+      "status": "partial-setup-assignment-gaps-parked",
       "instance": "playthru",
       "company": "UNIVERSAARL-DE",
       "latestCase": "TARGET-017B-NUMBER-SERIES-SETUP-FIELD-DISCOVERY",
@@ -669,7 +672,7 @@
         "No master data or document numbering has used these series yet.",
         "No legal/compliance numbering claim is made."
       ],
-      "nextCase": "TARGET-019-POSTING-GROUPS-PREFLIGHT-OR-NUMBERING-PARK-DECISION",
+      "nextCase": "TARGET-019B-POSTING-GROUPS-READONLY-PREFLIGHT",
       "chapter": "Kapitel 6",
       "latestPracticalCase": "TARGET-017B-NUMBER-SERIES-SETUP-FIELD-DISCOVERY",
       "covered": [
@@ -685,18 +688,19 @@
         "No Preview Posting or posting was executed.",
         "No legal/compliance numbering claim is made from line or setup assignment alone."
       ],
-      "nextStep": "Run TARGET-019: decide whether the remaining number-series setup gaps (U-CUST, U-ITEM, and optional U-PO follow-up) can be consciously parked before Posting Groups preflight, or whether one narrow non-repeating field route is still required."
+      "nextStep": "Numbering gaps are parked for now; revisit before creating customers/items or purchase orders that require those series.",
+      "latestDecisionCase": "TARGET-019-POSTING-GROUPS-PREFLIGHT-OR-NUMBERING-PARK-DECISION"
     }
   },
   "hardExclusions": {
     "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
   },
-  "updatedAt": "2026-06-30T14:51:37.116Z",
-  "activeArea": "universaarl-w1-foundation-posting-groups-or-numbering-park-decision",
-  "currentBlock": "number-series-partial-setup-assignment-needs-park-or-followup-decision",
+  "updatedAt": "2026-06-30T15:03:31.331Z",
+  "activeArea": "universaarl-w1-foundation-vat-setup-readiness",
+  "currentBlock": "vat-setup-readiness-next",
   "latestPracticalCase": "TARGET-010-UNIVERSAARL-COMPANY-CONTEXT-PROOF",
   "latestReviewCase": "WAREHOUSE-025-SOURCE-PO-LOCATION-ALTERNATIVE-OR-HELPER-DECISION",
-  "nextCase": "TARGET-019-POSTING-GROUPS-PREFLIGHT-OR-NUMBERING-PARK-DECISION",
+  "nextCase": "TARGET-020-VAT-SETUP-READINESS",
   "latestBank013": {
     "caseId": "BANK-013-CONTROLLED-NEXT-EVIDENCE-STEP",
     "status": [
@@ -1797,7 +1801,7 @@
     "nextCase": "FIXEDASSETS-298-FA-DEPRECIATION-BLOCKER-BOOK-SYNC",
     "updatedAt": "2026-06-29T07:09:31.588Z"
   },
-  "nextStep": "Run TARGET-019: decide whether the remaining number-series setup gaps (U-CUST, U-ITEM, and optional U-PO follow-up) can be consciously parked before Posting Groups preflight, or whether one narrow non-repeating field route is still required.",
+  "nextStep": "Run TARGET-020: inspect VAT setup readiness and source boundaries before any German VAT claim, setup change, document preview or posting.",
   "warehouse": {
     "chapter": "Kapitel 13",
     "status": "in-progress",
@@ -3413,5 +3417,129 @@
       "Keine Werte, Checkboxen, Stammdaten, Drafts, Preview oder Posting wurden in TARGET-017B geaendert."
     ],
     "updatedAt": "2026-06-30T14:51:37.116Z"
+  },
+  "latestTarget019NumberingParkDecision": {
+    "caseId": "TARGET-019-POSTING-GROUPS-PREFLIGHT-OR-NUMBERING-PARK-DECISION",
+    "status": "observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-019-posting-groups-preflight-or-numbering-park-decision/TARGET-019-result.json",
+    "decision": {
+      "selectedRoute": "park-numbering-gaps-and-run-posting-groups-readonly-preflight",
+      "parkedGaps": [
+        "Sales & Receivables Setup / Customer Nos. -> U-CUST not visible in TARGET-017B setup-card discovery",
+        "Inventory Setup / Item Nos. -> U-ITEM not visible in TARGET-017B setup-card discovery"
+      ],
+      "followupCandidate": "Purchases & Payables Setup / Purchase Order Nos. -> U-PO has visible candidates, but value assignment needs separate narrow case if required before purchase order creation",
+      "reason": "Posting Groups, VAT and Dimensions are independent foundation dependencies. Repeating blind setup-card assignment routes would not improve book or BC understanding; the gaps must be stated and revisited only when a concrete master-data or document case requires them."
+    },
+    "proved": [
+      "TARGET-017B evidence was reviewed as the current numbering setup-field diagnostic basis.",
+      "Remaining Customer Nos. and Item Nos. setup-field gaps are consciously parked, not treated as solved.",
+      "Posting Groups read-only preflight is the next useful foundation step before VAT, Dimensions and master data.",
+      "No Business Central UI action was executed by TARGET-019."
+    ],
+    "notProved": [
+      "U-CUST and U-ITEM setup assignment remain unproven.",
+      "U-PO setup assignment remains unproven despite visible route candidates.",
+      "Posting Group completeness and account correctness are not yet proven.",
+      "No master data, document, Preview Posting, posting or ledger trace exists."
+    ],
+    "evidenceRefs": [
+      "playwright/projects/fibu-book5/evidence/target-019-posting-groups-preflight-or-numbering-park-decision/TARGET-019-result.json",
+      "playwright/projects/fibu-book5/evidence/target-017b-number-series-setup-field-discovery/TARGET-017B-result.json"
+    ],
+    "nextCase": "TARGET-019B-POSTING-GROUPS-READONLY-PREFLIGHT",
+    "updatedAt": "2026-06-30T15:01:22.818Z"
+  },
+  "latestTarget019BPostingGroupsReadonlyPreflight": {
+    "caseId": "TARGET-019B-POSTING-GROUPS-READONLY-PREFLIGHT",
+    "status": "observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-019b-posting-groups-readonly-preflight/TARGET-019B-result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "proved": [
+      "5/5 posting-group or VAT setup pages opened read-only in playthru/UNIVERSAARL-DE.",
+      "No setup value, master data, document draft, preview posting or posting was executed.",
+      "Buchungsmatrix / General Posting Setup visible read-only.",
+      "Debitorenbuchungsgruppen / Customer Posting Groups visible read-only.",
+      "Kreditorenbuchungsgruppen / Vendor Posting Groups visible read-only.",
+      "Lagerbuchung Einrichtung / Inventory Posting Setup visible read-only.",
+      "USt-Buchungsmatrix / VAT Posting Setup visible read-only."
+    ],
+    "notProved": [
+      "Posting group completeness is not proven.",
+      "Account correctness is not proven.",
+      "German VAT correctness is not proven.",
+      "No Preview Posting or ledger trace exists."
+    ],
+    "pages": [
+      {
+        "id": "general-posting-setup",
+        "pageId": 314,
+        "label": "Buchungsmatrix / General Posting Setup",
+        "status": "observed",
+        "reason": "Expected posting-group page text is visible."
+      },
+      {
+        "id": "customer-posting-groups",
+        "pageId": 110,
+        "label": "Debitorenbuchungsgruppen / Customer Posting Groups",
+        "status": "observed",
+        "reason": "Expected posting-group page text is visible."
+      },
+      {
+        "id": "vendor-posting-groups",
+        "pageId": 93,
+        "label": "Kreditorenbuchungsgruppen / Vendor Posting Groups",
+        "status": "observed",
+        "reason": "Expected posting-group page text is visible."
+      },
+      {
+        "id": "inventory-posting-setup",
+        "pageId": 5826,
+        "label": "Lagerbuchung Einrichtung / Inventory Posting Setup",
+        "status": "observed",
+        "reason": "Expected posting-group page text is visible."
+      },
+      {
+        "id": "vat-posting-setup",
+        "pageId": 472,
+        "label": "USt-Buchungsmatrix / VAT Posting Setup",
+        "status": "observed",
+        "reason": "Expected posting-group page text is visible."
+      }
+    ],
+    "warnings": [
+      "New/Neu action may be visible but was not clicked.",
+      "Edit/Bearbeiten action may be visible but was not clicked.",
+      "Posting/preview action text may be visible but was not clicked."
+    ],
+    "blockedBy": [],
+    "flags": {
+      "noPost": true,
+      "noPreview": true,
+      "noDraft": true,
+      "noMasterDataChange": true,
+      "noCompanySwitch": true,
+      "noApiShortcut": true,
+      "noSearch": true,
+      "noBookMasterChange": true,
+      "noSetupChange": true,
+      "readOnlyDirectPageRoutes": true
+    },
+    "evidenceRefs": [
+      "playwright/projects/fibu-book5/evidence/target-019b-posting-groups-readonly-preflight/TARGET-019B-result.json",
+      "playwright/projects/fibu-book5/img/target-019b-001-general-posting-setup.png",
+      "playwright/projects/fibu-book5/img/target-019b-002-customer-posting-groups.png",
+      "playwright/projects/fibu-book5/img/target-019b-003-vendor-posting-groups.png",
+      "playwright/projects/fibu-book5/img/target-019b-004-inventory-posting-setup.png",
+      "playwright/projects/fibu-book5/img/target-019b-005-vat-posting-setup.png"
+    ],
+    "nextCase": "TARGET-020-VAT-SETUP-READINESS",
+    "keyLearning": [
+      "Direct page URLs avoid unnecessary Tell-Me search for known setup pages.",
+      "Posting Group page visibility is a context proof, not setup completeness or account correctness.",
+      "General Posting Setup, Customer Posting Groups, Vendor Posting Groups, Inventory Posting Setup and VAT Posting Setup are separate prerequisites before master data and Preview Posting."
+    ],
+    "updatedAt": "2026-06-30T15:03:31.331Z"
   }
 }

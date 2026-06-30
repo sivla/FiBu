@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-020-VAT-SETUP-READINESS",
+  "title": "VAT setup readiness after Posting Groups preflight",
+  "status": "planned",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "workType": "foundation-vat-readiness",
+  "taskClass": "judge_work",
+  "sourceEvidence": [
+    "TARGET-019B-POSTING-GROUPS-READONLY-PREFLIGHT"
+  ],
+  "purpose": "Inspect and classify VAT setup readiness before any German VAT claim, master data, document preview or posting.",
+  "allowedActions": [
+    "review-target-019b-evidence",
+    "open-vat-setup-pages-readonly-if-needed",
+    "capture-readonly-context-screenshots",
+    "write-result-and-next-step-card",
+    "queue-and-state-update"
+  ],
+  "forbiddenActions": [
+    "leave-playthru",
+    "operate-in-legacy-lab-as-active-target",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "api-shortcut",
+    "change-vat-setup",
+    "claim-german-vat-correctness",
+    "claim-19-percent-vat-without-preview-and-vat-entries"
+  ],
+  "entryCriteria": [
+    "TARGET-019B observed posting group and VAT setup page contexts read-only.",
+    "No setup value, master data or document has been created for Universaarl process cases."
+  ],
+  "exitCriteria": [
+    "VAT setup is classified as observed, blocked or requiring setup fit.",
+    "German VAT claims remain locked unless VAT groups, VAT Posting Setup, preview and VAT Entries are proven later."
+  ],
+  "lookahead": [
+    {
+      "caseId": "TARGET-020-VAT-SETUP-READINESS",
+      "status": "ready-next",
+      "reason": "VAT setup follows Posting Groups preflight."
+    },
+    {
+      "caseId": "TARGET-021-DIMENSIONS-FOUNDATION",
+      "status": "ready-after-current",
+      "reason": "Dimensions should be available before process evidence."
+    },
+    {
+      "caseId": "TARGET-022-CORE-MASTERDATA-PLAN",
+      "status": "needs-setup-first",
+      "reason": "Master data waits for VAT and Dimensions."
+    },
+    {
+      "caseId": "TARGET-023-CUSTOMER-VENDOR-ITEM-TEMPLATES-PREFLIGHT",
+      "status": "needs-setup-first",
+      "reason": "Templates depend on setup defaults."
+    },
+    {
+      "caseId": "TARGET-024-FIRST-MASTERDATA-CANDIDATE",
+      "status": "needs-setup-first",
+      "reason": "First master data needs numbering/posting/VAT/dimensions gates."
+    }
+  ],
+  "nextStep": "Review VAT setup readiness without changing setup or creating documents.",
+  "createdAt": "2026-06-30T15:03:31.331Z"
+}

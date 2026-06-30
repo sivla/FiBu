@@ -223,6 +223,18 @@ Screenshot-QA zu TARGET-017: Setupkarten koennen zweispaltig rendern. Ein Wert i
 
 Screenshot-QA zu TARGET-017B: Dieser Block ist kein Setup-Erfolg. Er beweist nur, welche Setupfelder in den getesteten Kartenansichten sichtbar oder nicht sichtbar wurden. `U-PO` ist ein Kandidat, `U-CUST` und `U-ITEM` bleiben offen. Deshalb folgt TARGET-019 als Park-/Follow-up-Entscheidung vor Stammdaten oder Posting Groups.
 
+## Universaarl Foundation - Posting Groups TARGET-019B
+
+| Screenshot | Page | Company/Kontext | Schritt | Was man sehen soll | Interner Beweis | Beweist nicht | Status |
+|---|---|---|---|---|---|---|---|
+| `target-019b-001-general-posting-setup.png` | Buchungsmatrix Einrichtung / General Posting Setup, Page 314 | `playthru` / `UNIVERSAARL-DE` | Read-only Posting-Groups-Preflight | Kombinationen aus Geschaeftsbuchungsgruppe, Produktbuchungsgruppe und Kontenspalten sind sichtbar | Die zentrale Buchungsmatrix ist in der Zielcompany erreichbar | fachliche Vollstaendigkeit, korrekte Konten, Preview oder Posting | `universaarl-readonly-candidate`, `setup-context` |
+| `target-019b-002-customer-posting-groups.png` | Debitorenbuchungsgruppen / Customer Posting Groups, Page 110 | `playthru` / `UNIVERSAARL-DE` | Read-only Debitorenbuchungsgruppen | Code, Beschreibung und Debitorensammelkonto-Spalten sind sichtbar | Debitorenbuchungsgruppen sind als Forderungs-Kontenfindungskontext erreichbar | Debitorenstamm, gebuchte Forderung, Kontenrichtigkeit | `universaarl-readonly-candidate`, `setup-context` |
+| `target-019b-003-vendor-posting-groups.png` | Kreditorenbuchungsgruppen / Vendor Posting Groups, Page 93 | `playthru` / `UNIVERSAARL-DE` | Read-only Kreditorenbuchungsgruppen | Kreditorenbuchungsgruppen-Seite ist sichtbar; genaue Textsignale liegen in der Evidence | Kreditorenbuchungsgruppen-Kontext ist erreichbar | Kreditorenstamm, gebuchte Verbindlichkeit, Kontenrichtigkeit | `universaarl-readonly-candidate`, `setup-context` |
+| `target-019b-004-inventory-posting-setup.png` | Lagerbuchung Einrichtung / Inventory Posting Setup, Page 5826 | `playthru` / `UNIVERSAARL-DE` | Read-only Lagerbuchung Einrichtung | Lagerortcode, Lagerbuchungsgruppencode und Lagerkontenspalten sind sichtbar | Bestandskontenfindung hat eine eigene Setupmatrix | Artikelstamm, Lagerbuchung, Bestandskonto-Richtigkeit | `universaarl-readonly-candidate`, `setup-context` |
+| `target-019b-005-vat-posting-setup.png` | USt-Buchungsmatrix / VAT Posting Setup, Page 472 | `playthru` / `UNIVERSAARL-DE` | Read-only USt-Buchungsmatrix | MwSt.-Geschaeftsbuchungsgruppe, MwSt.-Produktbuchungsgruppe und MwSt.-%-Spalten sind sichtbar | USt-Setup-Kontext ist erreichbar | deutsche 19-Prozent-USt, Steuerposten, Preview oder Posting | `universaarl-readonly-candidate`, `setup-context-not-vat-proof` |
+
+Screenshot-QA zu TARGET-019B: Die Bilder zeigen erreichbare Setupkontexte. Sie sind keine fachliche Freigabe fuer Konten, USt, Stammdaten, Preview oder Posting. Fuer das Buch sind sie als Erklaerbilder fuer Kontenfindung geeignet, solange der Text klar sagt, dass Sichtbarkeit noch keine richtige Einrichtung beweist.
+
 ## Qualitaetsfelder fuer neue Screenshot-Metadaten
 
 Neue oder ueberarbeitete `.screenshot.json`-Dateien sollen diese Felder tragen:

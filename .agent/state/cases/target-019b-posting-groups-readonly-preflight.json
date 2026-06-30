@@ -1,0 +1,224 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-019B-POSTING-GROUPS-READONLY-PREFLIGHT",
+  "title": "Read-only Posting Groups preflight for Universaarl foundation",
+  "status": "done",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "workType": "foundation-posting-groups-readonly-preflight",
+  "taskClass": "wizard_work",
+  "sourceEvidence": [
+    "TARGET-019-POSTING-GROUPS-PREFLIGHT-OR-NUMBERING-PARK-DECISION"
+  ],
+  "purpose": "Open the key posting-group and VAT setup pages read-only so the book and next setup cases know which Business Central pages control account determination before master data or document preview.",
+  "targetPages": [
+    {
+      "id": "general-posting-setup",
+      "pageId": 314,
+      "page": "Buchungsmatrix / General Posting Setup"
+    },
+    {
+      "id": "customer-posting-groups",
+      "pageId": 110,
+      "page": "Debitorenbuchungsgruppen / Customer Posting Groups"
+    },
+    {
+      "id": "vendor-posting-groups",
+      "pageId": 93,
+      "page": "Kreditorenbuchungsgruppen / Vendor Posting Groups"
+    },
+    {
+      "id": "inventory-posting-setup",
+      "pageId": 5826,
+      "page": "Lagerbuchung Einrichtung / Inventory Posting Setup"
+    },
+    {
+      "id": "vat-posting-setup",
+      "pageId": 472,
+      "page": "USt-Buchungsmatrix / VAT Posting Setup"
+    }
+  ],
+  "allowedActions": [
+    "open-playthru-business-central",
+    "open-UNIVERSAARL-DE-with-documentation",
+    "open-posting-group-pages-readonly-by-direct-page-url",
+    "capture-readonly-context-screenshots",
+    "write-result-and-next-step-card",
+    "queue-and-state-update"
+  ],
+  "forbiddenActions": [
+    "leave-playthru",
+    "operate-in-legacy-lab-as-active-target",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "api-shortcut",
+    "change-posting-groups",
+    "change-vat-setup",
+    "click-new-edit-delete-or-post-actions",
+    "claim-posting-readiness-from-page-visibility",
+    "claim-german-vat-correctness"
+  ],
+  "entryCriteria": [
+    "TARGET-019 has parked remaining numbering setup gaps consciously.",
+    "UNIVERSAARL-DE exists and is the active target company.",
+    "No master data or document creation has started."
+  ],
+  "exitCriteria": [
+    "Each target page is classified as observed, rejected or blocked.",
+    "Screenshots and text snapshots explain what beginners should see and what is not proven.",
+    "No setup value is changed."
+  ],
+  "lookahead": [
+    {
+      "caseId": "TARGET-019B-POSTING-GROUPS-READONLY-PREFLIGHT",
+      "status": "ready-next",
+      "reason": "Posting Groups can be inspected read-only after TARGET-019."
+    },
+    {
+      "caseId": "TARGET-020-VAT-SETUP-READINESS",
+      "status": "ready-after-current",
+      "reason": "VAT setup follows posting group context."
+    },
+    {
+      "caseId": "TARGET-021-DIMENSIONS-FOUNDATION",
+      "status": "ready-after-current",
+      "reason": "Dimensions should be available before process evidence."
+    },
+    {
+      "caseId": "TARGET-022-CORE-MASTERDATA-PLAN",
+      "status": "needs-setup-first",
+      "reason": "Master data needs posting groups, VAT and dimensions."
+    },
+    {
+      "caseId": "TARGET-023-CUSTOMER-VENDOR-ITEM-TEMPLATES-PREFLIGHT",
+      "status": "needs-setup-first",
+      "reason": "Templates depend on foundation defaults."
+    }
+  ],
+  "nextStep": "Run TARGET-020: inspect VAT setup readiness and source boundaries before any German VAT claim, setup change, document preview or posting.",
+  "createdAt": "2026-06-30T15:01:22.818Z",
+  "completedAt": "2026-06-30T15:03:31.331Z",
+  "resultStatus": "observed",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-019b-posting-groups-readonly-preflight/TARGET-019B-result.json",
+  "proved": [
+    "5/5 posting-group or VAT setup pages opened read-only in playthru/UNIVERSAARL-DE.",
+    "No setup value, master data, document draft, preview posting or posting was executed.",
+    "Buchungsmatrix / General Posting Setup visible read-only.",
+    "Debitorenbuchungsgruppen / Customer Posting Groups visible read-only.",
+    "Kreditorenbuchungsgruppen / Vendor Posting Groups visible read-only.",
+    "Lagerbuchung Einrichtung / Inventory Posting Setup visible read-only.",
+    "USt-Buchungsmatrix / VAT Posting Setup visible read-only."
+  ],
+  "notProved": [
+    "Posting group completeness is not proven.",
+    "Account correctness is not proven.",
+    "German VAT correctness is not proven.",
+    "No Preview Posting or ledger trace exists."
+  ],
+  "pages": [
+    {
+      "id": "general-posting-setup",
+      "pageId": 314,
+      "label": "Buchungsmatrix / General Posting Setup",
+      "status": "observed",
+      "reason": "Expected posting-group page text is visible."
+    },
+    {
+      "id": "customer-posting-groups",
+      "pageId": 110,
+      "label": "Debitorenbuchungsgruppen / Customer Posting Groups",
+      "status": "observed",
+      "reason": "Expected posting-group page text is visible."
+    },
+    {
+      "id": "vendor-posting-groups",
+      "pageId": 93,
+      "label": "Kreditorenbuchungsgruppen / Vendor Posting Groups",
+      "status": "observed",
+      "reason": "Expected posting-group page text is visible."
+    },
+    {
+      "id": "inventory-posting-setup",
+      "pageId": 5826,
+      "label": "Lagerbuchung Einrichtung / Inventory Posting Setup",
+      "status": "observed",
+      "reason": "Expected posting-group page text is visible."
+    },
+    {
+      "id": "vat-posting-setup",
+      "pageId": 472,
+      "label": "USt-Buchungsmatrix / VAT Posting Setup",
+      "status": "observed",
+      "reason": "Expected posting-group page text is visible."
+    }
+  ],
+  "blockedBy": [],
+  "warnings": [
+    "New/Neu action may be visible but was not clicked.",
+    "Edit/Bearbeiten action may be visible but was not clicked.",
+    "Posting/preview action text may be visible but was not clicked."
+  ],
+  "flags": {
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noMasterDataChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noSearch": true,
+    "noBookMasterChange": true,
+    "noSetupChange": true,
+    "readOnlyDirectPageRoutes": true
+  },
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-019b-posting-groups-readonly-preflight/TARGET-019B-result.json",
+    "playwright/projects/fibu-book5/img/target-019b-001-general-posting-setup.png",
+    "playwright/projects/fibu-book5/img/target-019b-002-customer-posting-groups.png",
+    "playwright/projects/fibu-book5/img/target-019b-003-vendor-posting-groups.png",
+    "playwright/projects/fibu-book5/img/target-019b-004-inventory-posting-setup.png",
+    "playwright/projects/fibu-book5/img/target-019b-005-vat-posting-setup.png"
+  ],
+  "nextCase": "TARGET-020-VAT-SETUP-READINESS",
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-019B-POSTING-GROUPS-READONLY-PREFLIGHT",
+    "plannedNextCaseBeforeReview": "TARGET-019B-POSTING-GROUPS-READONLY-PREFLIGHT",
+    "lastEvidenceSummary": "TARGET-019 parked unresolved numbering setup gaps for now and unlocked read-only Posting Groups preflight.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "Posting groups are the next foundation dependency before master data and any Preview Posting.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-020-VAT-SETUP-READINESS",
+        "status": "ready-next",
+        "reason": "VAT setup follows posting group page preflight before document preview."
+      },
+      {
+        "caseId": "TARGET-021-DIMENSIONS-FOUNDATION",
+        "status": "ready-after-current",
+        "reason": "Dimensions can be prepared after posting/VAT setup sequencing."
+      },
+      {
+        "caseId": "TARGET-022-CORE-MASTERDATA-PLAN",
+        "status": "needs-setup-first",
+        "reason": "Customers, vendors and items need posting groups, VAT and dimensions."
+      },
+      {
+        "caseId": "TARGET-023-CUSTOMER-VENDOR-ITEM-TEMPLATES-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Templates depend on the setup defaults observed in foundation cases."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-020-VAT-SETUP-READINESS",
+    "whySelectedNextCaseIsBest": "Posting group page contexts are visible enough for the VAT readiness case.",
+    "risksBeforeNextCase": [
+      "Do not edit posting groups until a separate setup-change case defines values and accounts.",
+      "Do not create master data yet.",
+      "Do not claim posting readiness from visibility alone."
+    ],
+    "requiredPreparation": [
+      "Use TARGET-019B screenshots as read-only context, not setup correctness proof."
+    ]
+  }
+}
